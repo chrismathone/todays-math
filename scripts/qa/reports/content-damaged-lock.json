@@ -1,8 +1,8 @@
 {
- "적용": "본문 손상/누락 중 RPM 소스·원본 출처 메타데이터 전무 문항 출제 제외 (directUseAllowed=false)",
- "기준시각": "2026-08-22T18:51:58.661Z",
+ "적용": "본문 손상/누락(그림 유실 제외) 문항 출제 제외 (directUseAllowed=false)",
+ "기준시각": "2026-08-22T19:17:29.695Z",
  "되돌리기": "ALLOW_UNIT_FIX=1 npx tsx scripts/qa/apply-content-damaged-lock.ts --revert",
- "잠근건수": 74,
+ "잠근건수": 389,
  "이전상태": [
   {
    "id": "02e35cca-a5eb-42f1-b7bc-d73cff01ee30",
@@ -372,6 +372,1581 @@
   {
    "id": "fe57488a-7564-4802-9cae-06bbcfbfd173",
    "problemCode": "J20108-P5MA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "004875ea-c4d5-422d-a5f7-706ab9952813",
+   "problemCode": "HC10404-3377",
+   "directUseAllowed": true
+  },
+  {
+   "id": "007163f1-6b0b-4d16-87d5-2a1cbecc6e79",
+   "problemCode": "HC10101-GGHH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0076e544-cf4c-42f7-8476-b9f558c6ed31",
+   "problemCode": "HPS0101-4SKS",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0181076c-c94a-4686-8f09-351a069e9beb",
+   "problemCode": "J30101-B3PL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "024865e6-dae4-427a-a470-089948e09ed9",
+   "problemCode": "HM10209-VMQJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "02629996-04df-4e13-bf93-da4d6e70fc83",
+   "problemCode": "J30503-F5TJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "02b4c55d-6264-4b47-adb5-34f590c7e165",
+   "problemCode": "HAL0108-W7GV",
+   "directUseAllowed": true
+  },
+  {
+   "id": "02e01723-0bc5-4afb-9af8-3fad5ddf5404",
+   "problemCode": "J30301-YXTG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "02f42197-1b0c-4a2c-a5ba-74401d8a2563",
+   "problemCode": "J30503-5JU4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "02fede68-2507-4246-923a-19966bed1d8e",
+   "problemCode": "J10201-4W4B",
+   "directUseAllowed": true
+  },
+  {
+   "id": "06095506-e322-4b97-8b44-7558033fdd7f",
+   "problemCode": "HC10104-P9P8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "06beb35c-e40b-473b-9a32-014be97af1c1",
+   "problemCode": "J20101-Q7XD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0725dc9d-b545-4772-b2fb-4a343cf2fa45",
+   "problemCode": "J30203-EARY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "074e918f-ac0c-4a4f-83b7-6efa098fa93c",
+   "problemCode": "HAL0113-LJUA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0a8e538c-f1b6-4496-b0dd-f70e613d9d7d",
+   "problemCode": "HC10209-PLJJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0addfc52-51ff-428a-8170-9975da672780",
+   "problemCode": "HAL0307-57JW",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0b254191-5140-43dc-bc62-3c10b6fa358b",
+   "problemCode": "J30203-CQVG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0c8ef991-69ba-43bc-bc60-9b2a4d3bee80",
+   "problemCode": "J20107-DV8C",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0cc96807-7101-4abc-a2b6-302b0d8261f2",
+   "problemCode": "J30103-26RZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "0e56123c-8e79-4b92-bd45-79dda4b6a5a2",
+   "problemCode": "HAL0103-CXYR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "10924cf8-8ee3-46e8-9ed7-6712525a7c94",
+   "problemCode": "J10105-VGPD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "10b8b2fc-7050-45ee-bd9e-2d0901e99520",
+   "problemCode": "J30302-QFRH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "119ce82b-3ce4-437d-9b50-f7706cafa448",
+   "problemCode": "J30103-LB4V",
+   "directUseAllowed": true
+  },
+  {
+   "id": "129318c3-b843-4d78-99c7-b98c8b46f990",
+   "problemCode": "J30203-FSAD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "12fff06c-636b-49fb-a62b-a1c133a748da",
+   "problemCode": "J20106-8FEE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "13761c4e-5f99-411d-a15e-6a398fa6c80f",
+   "problemCode": "J30103-ZC24",
+   "directUseAllowed": true
+  },
+  {
+   "id": "1389bf5e-f33f-4c53-9841-2dcf090040a6",
+   "problemCode": "J20205-3QA7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "13bebbf1-44db-4fe1-b661-dcb69e84c8f4",
+   "problemCode": "J30103-YBW3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "14dc04a6-3a9a-475a-820d-b38e8c0c6758",
+   "problemCode": "J30401-FQRZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "155ecd99-e097-4c38-9f5b-7227566b86f8",
+   "problemCode": "J20106-9MLJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "15fc6a33-f1e6-4c47-9548-d047fc566c8d",
+   "problemCode": "HPS0305-FQPQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "162c25fa-0cf5-4ea9-86fc-ef8c4d348e51",
+   "problemCode": "HAL0106-9ZUH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "17cc225e-b150-4589-b2eb-f90c8d8e8d65",
+   "problemCode": "J20106-MY4C",
+   "directUseAllowed": true
+  },
+  {
+   "id": "18227e22-2c92-47e9-808a-e8c0f2857b67",
+   "problemCode": "HPS0301-ZTXR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "184e7b80-61c2-407c-ad1a-03789694f237",
+   "problemCode": "J10201-9U4M",
+   "directUseAllowed": true
+  },
+  {
+   "id": "18eacadc-3b42-4abf-8897-c83e30db4fae",
+   "problemCode": "J30201-T5UG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "1b64ab3d-1107-4780-95c1-103fd0428bae",
+   "problemCode": "J30101-VNAA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "1dd19b5b-c871-40ec-a688-7b4b39ffa160",
+   "problemCode": "J20106-TKQA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "1ea0c5e6-8cb5-44d0-80ae-7e5cf738bfbd",
+   "problemCode": "HM10101-KDQD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "1ff0b278-001a-4367-918b-32e066b00d66",
+   "problemCode": "HAL0113-MX4D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "212e35c7-9a37-4f5b-ad44-259b9b705d93",
+   "problemCode": "HM10306-KYM8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "22c157ce-a30c-4408-a599-a10f26adc4fa",
+   "problemCode": "HM10209-9F2C",
+   "directUseAllowed": true
+  },
+  {
+   "id": "23958010-9f5b-435c-aa6e-264b983a0130",
+   "problemCode": "J30201-ZTPB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2399a676-e81f-4bda-ae6c-38f013424e95",
+   "problemCode": "HAL0309-E3FX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2460dede-794d-4adc-a7ab-09a0ed7dc01f",
+   "problemCode": "HC20313-D3TE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2485ee64-9f78-4dc3-adba-eecc386c76cf",
+   "problemCode": "J30203-L4JW",
+   "directUseAllowed": true
+  },
+  {
+   "id": "24a4cd4d-e74e-4e17-80c4-378e701d446c",
+   "problemCode": "HAL0108-6YBU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "24a5c0fb-b670-4b9f-a8bb-6d043379c15e",
+   "problemCode": "J30103-HU8Y",
+   "directUseAllowed": true
+  },
+  {
+   "id": "26bb7f4e-b19e-4866-bc1f-5bbe97e721e4",
+   "problemCode": "J30201-W4M6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "26fbacab-39a5-4db7-a62e-9539c785396e",
+   "problemCode": "J30203-4JTF",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2721d015-391f-4919-b135-96e6b6884ef0",
+   "problemCode": "J10201-GTC9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "283265aa-6d2e-4a20-8ee6-6946aa1d530a",
+   "problemCode": "HM10306-Y3BV",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2842c12b-cccf-4991-83b6-e66670e83e9e",
+   "problemCode": "J30103-T27K",
+   "directUseAllowed": true
+  },
+  {
+   "id": "28a061cf-5660-4f0e-9e58-5312a70fb221",
+   "problemCode": "J10306-K4ER",
+   "directUseAllowed": true
+  },
+  {
+   "id": "28a6267a-e2b7-44bf-a7ab-ef4a279a3503",
+   "problemCode": "J20106-LBSN",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2ac274a0-d978-4113-80d4-2497ae8e3038",
+   "problemCode": "J30103-Z89A",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2aec85c4-1465-4d4a-989a-48476fba64b1",
+   "problemCode": "J20106-W2LV",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2af8842e-7100-48d2-9f13-3559314298bb",
+   "problemCode": "J10201-3JES",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2b6373fa-0599-4394-be19-6f6c13b4879a",
+   "problemCode": "J30701-2CCL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2bec0157-afe4-41cc-80f8-a9dde2ef5a1b",
+   "problemCode": "HAL0106-3975",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2c219094-9538-46d8-a19d-7db47fd2ce1c",
+   "problemCode": "J10201-FZC4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2cd62b8b-eb0a-4f79-870e-a79ed3f8bbfe",
+   "problemCode": "HAL0106-WG9D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2cd69e1b-b21c-4dac-b839-ae8799b818ae",
+   "problemCode": "J10301-GB2C",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2d667460-47d3-437d-9210-bda48a19b825",
+   "problemCode": "HAL0106-K2KX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "2fef7ee8-8c64-420a-ab69-f5a51d7f6d15",
+   "problemCode": "HC10203-4Q8W",
+   "directUseAllowed": true
+  },
+  {
+   "id": "30540b00-2bfd-4caf-89b0-8d9b226611ce",
+   "problemCode": "J10201-AMM5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "30cce630-9051-424f-b552-ca4552d28558",
+   "problemCode": "J30103-3CUL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "310d8f27-adc1-427a-8d31-448e7ed6e3db",
+   "problemCode": "HC10201-T3G9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "31a46784-2c38-4f17-ad8a-18978f7f7ecd",
+   "problemCode": "J10301-SY6W",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3322b215-2844-40e8-a1a7-39c0b3a9d6dc",
+   "problemCode": "HPS0306-KQG6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "340e7e49-d64c-40f8-9b52-907588f86839",
+   "problemCode": "J10201-AEKB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "34970753-82d1-45cb-9beb-0e17e51cf6b3",
+   "problemCode": "HAL0103-LU4N",
+   "directUseAllowed": true
+  },
+  {
+   "id": "37257188-f27c-466f-8a03-9875ed5987ff",
+   "problemCode": "HC10201-XFFZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "37590bd0-1afd-458a-8773-c247ff789266",
+   "problemCode": "J10201-A8LC",
+   "directUseAllowed": true
+  },
+  {
+   "id": "381a1ff0-7ba6-425d-807f-836fb21b3975",
+   "problemCode": "J20301-2XTG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "38b8368b-8fbb-4ddd-a2f0-2ad1ea3d2c21",
+   "problemCode": "J30701-UAKE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3923ddfc-56c8-45e9-bcaa-22ba13c46f63",
+   "problemCode": "J10102-7U6S",
+   "directUseAllowed": true
+  },
+  {
+   "id": "39465ed6-a975-41bb-9eab-0710b6087850",
+   "problemCode": "HPS0204-RDTX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "39a01ca6-e3a7-4d94-ac2f-f4ab84063b17",
+   "problemCode": "HC10104-NYEY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "39ea9ae4-68e8-4bae-bdd3-97619151eccb",
+   "problemCode": "J20106-T659",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3a0bff8b-57c3-48ac-9b6a-1492bd9a6572",
+   "problemCode": "HAL0103-HTL7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3a7bb08d-22f6-42cd-b512-586f42d62d25",
+   "problemCode": "J20101-WC6Q",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3a7bb547-87f1-40a0-8fe2-09a3d344919f",
+   "problemCode": "HAL0212-RAG3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3bf6bb8b-d515-4f86-a36b-4cc315af1047",
+   "problemCode": "J30101-QMXP",
+   "directUseAllowed": true
+  },
+  {
+   "id": "3da1328b-de94-4905-819a-60d482c6d65a",
+   "problemCode": "J30101-U9VD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "438cc6ce-6775-476c-85fb-3f68710715b4",
+   "problemCode": "HAL0106-CGJK",
+   "directUseAllowed": true
+  },
+  {
+   "id": "44b2703f-330a-4487-9497-38dfeda143f6",
+   "problemCode": "J30503-LLAM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "4547ab9c-4cee-4f77-a828-fb1be7c9c0c7",
+   "problemCode": "HM10102-PSPA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "45bd8da5-0de1-4e0b-a06d-455d98a032a2",
+   "problemCode": "HC20310-KE9P",
+   "directUseAllowed": true
+  },
+  {
+   "id": "472b4bb0-67ad-4f78-818d-e0c968a51f9a",
+   "problemCode": "HC10201-YEN2",
+   "directUseAllowed": true
+  },
+  {
+   "id": "47ccfaba-8076-495d-b81b-f8d862c8d490",
+   "problemCode": "HAL0109-L33S",
+   "directUseAllowed": true
+  },
+  {
+   "id": "4919867b-c615-48b3-887a-1c99984aa2ff",
+   "problemCode": "J30101-QX7P",
+   "directUseAllowed": true
+  },
+  {
+   "id": "4b241949-ee4e-4af3-9d8c-5194a0cbc92f",
+   "problemCode": "HC10112-NHB3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "4d810e2e-c464-4351-bce1-92b7f3911c7f",
+   "problemCode": "J20205-9443",
+   "directUseAllowed": true
+  },
+  {
+   "id": "4e3be489-4268-42fc-9a05-c51d2a06d24b",
+   "problemCode": "J10201-EYRQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "50031af8-93d0-47cf-9a6d-5aa1a5d86ef1",
+   "problemCode": "J30103-R2XP",
+   "directUseAllowed": true
+  },
+  {
+   "id": "51223346-2f3b-4446-bd95-6b9f849b4949",
+   "problemCode": "J20301-BQUE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "51678a96-9177-4f5f-942a-0488a470389a",
+   "problemCode": "J30302-ZUHN",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5181d898-b0d8-46e3-b96b-8474c5f81afb",
+   "problemCode": "HPS0302-G8HL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "53db5f7d-13eb-487a-b742-cda26bf4eb90",
+   "problemCode": "HC20106-X9XN",
+   "directUseAllowed": true
+  },
+  {
+   "id": "541b7b54-9835-4a05-8b37-136962db0fb0",
+   "problemCode": "J10201-82EY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "54c712b3-28be-44db-b253-e93d6fd00011",
+   "problemCode": "HAL0210-N7UZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "563daf7b-6342-4060-bb32-9a4ea5bd0f99",
+   "problemCode": "HAL0304-L8MK",
+   "directUseAllowed": true
+  },
+  {
+   "id": "58958a2b-ff67-4df1-88c6-eb1c6d41c097",
+   "problemCode": "HAL0110-5APA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "59066892-e24a-4188-a3c0-c60ba3933127",
+   "problemCode": "J20107-CB5Q",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5ba93a9e-1c9d-4654-aac3-0df5ce23acf3",
+   "problemCode": "HM10105-YP6P",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5ce2b51e-4e6d-4c48-beae-a7a01024028a",
+   "problemCode": "HM10207-XQWM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5d4a89dc-5dc6-4348-b36d-0c675c64a493",
+   "problemCode": "J20106-JLRU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5d4a8a3b-6359-4a81-92bc-a7292db77ed4",
+   "problemCode": "J10201-74CR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5e2f24d9-8959-4a70-9971-d568bb79441e",
+   "problemCode": "J30103-68MA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5efcd725-99d4-4aa4-9bfa-a76cd9feebda",
+   "problemCode": "HM10106-YLAG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5fa75d9b-7767-4e96-b0bb-fe57bece3fa8",
+   "problemCode": "J30103-9MGE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "5fff0c25-ca5b-4654-9dbc-9bfbf9f6c544",
+   "problemCode": "J20102-LT8A",
+   "directUseAllowed": true
+  },
+  {
+   "id": "609b2f2a-84a4-4f3b-96d4-1c7d72a01d22",
+   "problemCode": "HAL0204-7HWH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "60cf1298-0e74-4b15-ba64-3dbe1f95b0b6",
+   "problemCode": "HAL0106-CZGJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "61ab5caf-6a46-47ae-9f2e-76e9f708e7e0",
+   "problemCode": "J20301-RKC3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "62e61361-8759-4b65-a5ab-0196f881726e",
+   "problemCode": "J30101-TM7G",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6346da4f-1ab7-4104-b480-25d637e2fa37",
+   "problemCode": "HAL0203-NMWF",
+   "directUseAllowed": true
+  },
+  {
+   "id": "64e98656-52ed-42c3-a2bf-f43cc6c8d4c4",
+   "problemCode": "HM10207-8XC2",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6571616c-8e2d-47ef-b6d1-f75594c74a56",
+   "problemCode": "J10201-5G5V",
+   "directUseAllowed": true
+  },
+  {
+   "id": "65777f48-1246-4fc4-b158-04e10677fb4b",
+   "problemCode": "HAL0204-NDYR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "668e3fab-306f-4ce8-90a0-1117e6e935c6",
+   "problemCode": "J10201-8UR3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "66d34a40-b167-4762-a37a-1caea3d3c982",
+   "problemCode": "HM10101-EPNA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "671ab17c-e03b-4eb4-adfb-1df44ff004f8",
+   "problemCode": "HAL0109-ST6H",
+   "directUseAllowed": true
+  },
+  {
+   "id": "676faa73-108d-4fb6-b5dd-544ad5c7448e",
+   "problemCode": "J30101-V37N",
+   "directUseAllowed": true
+  },
+  {
+   "id": "67bef899-5263-45d8-b883-ff1c2e8702a2",
+   "problemCode": "HPS0301-ZSVX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6808590a-3f4d-4b7e-b12a-82716671f524",
+   "problemCode": "HPS0306-4UZ6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6858584a-f04d-4e82-bb9d-2e137162df63",
+   "problemCode": "J20106-NYHJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6a57f855-3da2-4904-b99b-18487b32dab4",
+   "problemCode": "HAL0307-B4UY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6a6a8727-1c63-46c0-8cb2-c1bac0585c5f",
+   "problemCode": "J30103-4KND",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6ac7eff6-c18b-47ff-99bf-83eae3b971e4",
+   "problemCode": "HM10310-8LNQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6b49966d-c755-4959-9c6a-2562bb005de0",
+   "problemCode": "J20104-CFK5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6c2240d8-bb93-49e7-8557-947f41c46d59",
+   "problemCode": "HM10310-E26N",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6c941e9a-1021-4d4b-9f19-4dc7a188c15b",
+   "problemCode": "J30101-M28D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6ccb08e2-2d34-44e1-a20d-017d73f6af81",
+   "problemCode": "HM10103-CX7D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6cd13730-d80d-4bbc-9537-f90b720d6c92",
+   "problemCode": "J30401-FPHX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6f36508f-a4c5-488b-b148-4aad46d40307",
+   "problemCode": "HC20209-VFVH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6f739daa-b867-4307-84ef-28dc13217168",
+   "problemCode": "J30101-2RAH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "6fd23211-7d2e-48f8-a895-d12bc1a948b0",
+   "problemCode": "HM10201-BCM3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "70aa0ad1-6453-42ee-8494-901916549c67",
+   "problemCode": "HAL0103-HHVR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "70c009d6-f27c-4594-9946-e569e1d9a53f",
+   "problemCode": "HPS0103-YLAM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "70c2e4e3-fae3-4f28-a655-5ff43980efc5",
+   "problemCode": "HC20313-VXPY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "72342518-066b-4ab5-be66-b991e17d4f9c",
+   "problemCode": "J30503-8CWL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7338aee0-f04a-4466-b146-6530362dc022",
+   "problemCode": "HC20310-DMNF",
+   "directUseAllowed": true
+  },
+  {
+   "id": "747f4c11-7c07-49b6-8676-8fa80aaaa17b",
+   "problemCode": "HM10207-BTBV",
+   "directUseAllowed": true
+  },
+  {
+   "id": "757ab9ec-6480-4040-abed-d46fa9901c4b",
+   "problemCode": "HAL0204-AWX2",
+   "directUseAllowed": true
+  },
+  {
+   "id": "75a58401-a616-41d5-837d-564b3d17f7a9",
+   "problemCode": "J20106-RDRQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7694c55b-e758-42a1-b6c4-dc475c2d5c8c",
+   "problemCode": "HAL0101-SWS9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "77602175-7b58-488d-bb84-9ba1a44fcb6a",
+   "problemCode": "HAL0103-AHU3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7820619d-ea4a-4171-85fb-96b0a9220f9d",
+   "problemCode": "J20101-47EA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "79c2fb0d-bddf-40f3-9137-93eced43d001",
+   "problemCode": "HPS0306-4V6H",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7d1be54a-24f7-4011-af41-903978cd45ca",
+   "problemCode": "J10201-HKUE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7d7510db-8cd1-4ebf-98fd-016b9e47217b",
+   "problemCode": "HAL0103-KXQU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7e92d317-b663-4e54-9c86-d52969957abe",
+   "problemCode": "HAL0103-G5CY",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7f13f548-7962-47f9-bdf9-f9f92ba237a2",
+   "problemCode": "J30101-5HJJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "7f292cf0-1ca7-48ec-a682-2a1a55f37a97",
+   "problemCode": "J20205-QB2F",
+   "directUseAllowed": true
+  },
+  {
+   "id": "818e8496-a1b0-47a7-9cc2-917c9f8fdfc7",
+   "problemCode": "HC20203-D62R",
+   "directUseAllowed": true
+  },
+  {
+   "id": "834140e4-dd60-4c11-a254-a5a5df6f2cc2",
+   "problemCode": "HAL0106-DPFB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8442e369-1056-4cbc-90d7-e36ac7a24650",
+   "problemCode": "HM10208-LZ6K",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8538e7d7-67e3-47a0-8fcd-7a6ac2daca03",
+   "problemCode": "J20106-LSY8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "86c61138-9871-49f0-91f3-af7ee68addf5",
+   "problemCode": "HAL0108-BC2L",
+   "directUseAllowed": true
+  },
+  {
+   "id": "872d3e85-afe0-463e-ba87-0ac8497d3b4b",
+   "problemCode": "J20106-389Y",
+   "directUseAllowed": true
+  },
+  {
+   "id": "87d6faf9-f470-498a-9253-8b8646b2c60d",
+   "problemCode": "J10404-Z757",
+   "directUseAllowed": true
+  },
+  {
+   "id": "88083a1e-b8e1-4aaa-b348-5a1de1d77ce1",
+   "problemCode": "J30401-HTLK",
+   "directUseAllowed": true
+  },
+  {
+   "id": "89124c0c-aa09-4a66-b181-d1d9656f05cf",
+   "problemCode": "J30203-V6DR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "89f95eff-b8dc-48a0-8084-8710f322b645",
+   "problemCode": "J30101-JGDW",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8a3966cb-58e4-4300-b931-bfaf6fe4b5ac",
+   "problemCode": "HM10310-AWSH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8a77c278-623b-442f-baf9-94499352c84d",
+   "problemCode": "HAL0101-Y2C2",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8b0d48f2-3801-4c85-b761-542e4ce4b4b4",
+   "problemCode": "J10306-EVW8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8b539d35-909d-4092-8fb5-0ff6f31189f3",
+   "problemCode": "HPS0306-W5C7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8b8ee413-ba84-4418-922b-874a2e8b51cb",
+   "problemCode": "HAL0203-QJCC",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8d89948e-8292-4f48-98d7-24778384c84a",
+   "problemCode": "HC10201-MY8V",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8d9e7954-8ee0-4e75-babd-5f95c0124f7e",
+   "problemCode": "HAL0106-6VXZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8dbf90d8-ba24-46f3-ad9b-d0ee3c6be742",
+   "problemCode": "HAL0204-6DY5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8e5c0790-2dc9-43e6-a76a-80fa1750e92e",
+   "problemCode": "J30201-3AWH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "8e97124c-5c20-4b63-ac46-f7d20ee8940a",
+   "problemCode": "HAL0201-VLSU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "900d3608-2300-4c48-98e0-77f861c6767c",
+   "problemCode": "J20301-N48L",
+   "directUseAllowed": true
+  },
+  {
+   "id": "90c78820-82dc-41c6-b96e-9f2d1148f666",
+   "problemCode": "HC20106-XZPL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9198b3c2-97c2-4fbe-a9f4-01a88400e544",
+   "problemCode": "J10201-SUC8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "91e80879-66f4-4b03-9e03-45eff19553fa",
+   "problemCode": "J30101-YK9K",
+   "directUseAllowed": true
+  },
+  {
+   "id": "92551626-dec0-40f0-b270-21cfe577805c",
+   "problemCode": "J30203-Z373",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9387ec5f-1058-495b-a947-3064d36c6d66",
+   "problemCode": "HAL0106-XH2Z",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9422a0e7-ca63-4cae-b2a3-73d5b8d5d45f",
+   "problemCode": "HC20313-RABL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "94574597-039d-4f30-b2f3-8f4c129006b9",
+   "problemCode": "J30302-VQVE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "951f7ca0-ca4e-4d04-925b-d5dcb3088dd5",
+   "problemCode": "HM10201-985Z",
+   "directUseAllowed": true
+  },
+  {
+   "id": "95225aff-cd2e-47a3-b6d3-328479d5cc86",
+   "problemCode": "J20106-44CN",
+   "directUseAllowed": true
+  },
+  {
+   "id": "968e04cf-0843-430d-a51b-e6f54f696404",
+   "problemCode": "J20106-8QSM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "97344d2d-cb5b-48cc-ac2c-5247c3d3f828",
+   "problemCode": "HM10105-3X8F",
+   "directUseAllowed": true
+  },
+  {
+   "id": "97b9b5d4-3b4b-4eb0-a8a8-b88eef355ebf",
+   "problemCode": "HAL0101-C8TR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "996f1a3a-30d4-42c3-81a9-68f960833ec3",
+   "problemCode": "J10201-QMS4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "99ce49f4-4a16-4bfd-951e-71215ef77d87",
+   "problemCode": "J10306-PNZ4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9a0b2cde-13fa-4580-895f-39cf0e6e458f",
+   "problemCode": "J20301-SU5F",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9be37570-9cc4-41bc-ba80-792c2fc7416a",
+   "problemCode": "HAL0204-2MZ5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9d616b60-dc46-4a84-a166-c9286ece5bab",
+   "problemCode": "HAL0101-HYT8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9e30bdf0-9d62-49bd-9baf-bf94dfe97503",
+   "problemCode": "J10301-R7C3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9e44e356-9aec-4303-9162-6e55c6fd9a6d",
+   "problemCode": "HAL0203-HJRX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9e4e4e58-9708-4b5d-8406-e828d9d7523b",
+   "problemCode": "HAL0103-B4DR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9e6df992-37dd-42d8-96d5-97674f8c940d",
+   "problemCode": "J30103-Y4A2",
+   "directUseAllowed": true
+  },
+  {
+   "id": "9fd6aad1-1b39-4cf2-b9f0-80e102e19cb6",
+   "problemCode": "HAL0103-MTW5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a0049946-8865-4982-b1c2-e553baa2fac9",
+   "problemCode": "J10201-WKQ3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a1fd774c-1942-4c5c-a976-ec8365f0f439",
+   "problemCode": "HM10310-9T2J",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a2617669-26e7-4032-9f2e-5251eeb7b15f",
+   "problemCode": "J30203-QXCX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a2838415-f62c-43f9-a4bb-4a8c76579110",
+   "problemCode": "HAL0106-KY4P",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a300d149-4a8d-4047-a0f5-08ca2e0bd52d",
+   "problemCode": "HAL0302-3YT4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a593423c-cb98-45cf-9b0a-0e1b5190a862",
+   "problemCode": "HAL0309-LFSM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a5d599cb-23eb-4dac-b556-2678084e6a45",
+   "problemCode": "J10102-ZF5S",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a5dd658d-59b4-4e26-a776-bf6a40747eb2",
+   "problemCode": "J30203-KA32",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a6e2f475-b945-46e2-a38f-03463c555592",
+   "problemCode": "J30101-RG4X",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a7140bf7-4b86-444e-a8ec-420edb7765d4",
+   "problemCode": "J10306-NYJV",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a7e4323a-8dcd-4fd4-8876-355f64d2fe7a",
+   "problemCode": "HAL0307-3MXB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a7e7f763-fde2-4dfe-b1c0-42ce01e4e657",
+   "problemCode": "J30101-STML",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a7f2759f-9b46-432b-8da0-a9d2692f13c1",
+   "problemCode": "HAL0105-2BS9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a8120ee5-4a37-4896-ac85-80bdde06089a",
+   "problemCode": "HAL0103-DEKU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a89ba947-a66b-4ca2-9d94-47ceda19583a",
+   "problemCode": "J20301-VTNU",
+   "directUseAllowed": true
+  },
+  {
+   "id": "a8ec62de-485d-4b03-9884-b35744f45335",
+   "problemCode": "HM10208-NTS3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ac3a0727-cdf0-46f6-a65a-f9d612e0f830",
+   "problemCode": "HAL0103-PKVD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ae21472b-d465-47c3-ad96-01928b01f840",
+   "problemCode": "HC20310-KSBN",
+   "directUseAllowed": true
+  },
+  {
+   "id": "af800d0f-7521-4d97-bc55-697c34bddbfb",
+   "problemCode": "HAL0103-UHZQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "b14dc02c-d682-48b2-9e14-081c716a36c8",
+   "problemCode": "HC20313-XP9Q",
+   "directUseAllowed": true
+  },
+  {
+   "id": "b60f625f-d10a-4859-b2f6-dac5d736220c",
+   "problemCode": "HM10201-TV6W",
+   "directUseAllowed": true
+  },
+  {
+   "id": "b7525a23-c8a3-4988-929d-26b5434ee3e4",
+   "problemCode": "HAL0210-38HG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "b8f40731-ff4e-4a6f-b47f-2987aa92429d",
+   "problemCode": "J30101-9FQ6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "baa5040e-bd89-466a-845b-d8d8abb662d2",
+   "problemCode": "HAL0205-FNAT",
+   "directUseAllowed": true
+  },
+  {
+   "id": "baa8468b-fc23-49ae-97db-c5c77430822f",
+   "problemCode": "HAL0101-7Z8G",
+   "directUseAllowed": true
+  },
+  {
+   "id": "bcf0f67b-ef1d-42f1-a6e4-bf18e30adc74",
+   "problemCode": "HM10209-ASTX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "be16a211-5b80-4ba5-8f1f-3bbc2fa716be",
+   "problemCode": "HM10204-ZGT3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "be2ac509-270d-445d-984a-990e71daa826",
+   "problemCode": "J20106-NK3T",
+   "directUseAllowed": true
+  },
+  {
+   "id": "bf550510-9fbd-4538-ae9e-15a808c2a65f",
+   "problemCode": "J20205-HXC5",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c08398e5-b7f0-47dc-b1e6-9acbef8c2e8f",
+   "problemCode": "J20101-EFPG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c136b48f-fa0d-4600-80f9-4072aa57292d",
+   "problemCode": "J30101-5HLL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c1895634-c6a1-40b9-9353-35b5ccd1746d",
+   "problemCode": "J20106-R6JA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c242c310-895c-494b-b1f5-9ad4c2159fe5",
+   "problemCode": "HC10201-K49N",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c52692b1-8400-486a-9a90-3879c94d4045",
+   "problemCode": "J30203-7K3L",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c532e5e2-3854-473e-9914-f13b4e7f462c",
+   "problemCode": "HAL0106-HE2R",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c6f06acc-a145-4de7-8e2a-aac6f078325f",
+   "problemCode": "HAL0103-DKQJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c7d48cc3-a0b3-437b-a430-96035ca2e0f8",
+   "problemCode": "HAL0103-S39M",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c865873c-61b8-4d8d-a331-683b4f6e5b8a",
+   "problemCode": "J10105-492H",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c87c41c7-984e-4452-899d-874387213494",
+   "problemCode": "HPS0305-JHG4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c87de5a4-b1dd-47c8-8842-6c540f9009b6",
+   "problemCode": "HAL0309-HXBH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c88d25cd-3560-475b-9a2a-f8def401c949",
+   "problemCode": "HC20209-WQE9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "c93edbf7-b680-49c1-85fe-16fa56f92831",
+   "problemCode": "HM10201-DJYS",
+   "directUseAllowed": true
+  },
+  {
+   "id": "cc7276f2-9821-491c-9c51-2e9689194dc2",
+   "problemCode": "HAL0205-THWH",
+   "directUseAllowed": true
+  },
+  {
+   "id": "cc8c2d8f-f99e-49bf-b8f5-b966ccb4bc93",
+   "problemCode": "HAL0106-PBGX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ccb3dd63-3194-439f-b89d-d87d60adccdf",
+   "problemCode": "HC10401-BGUZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ce198f91-b84b-4f56-b097-62e8a3ba0716",
+   "problemCode": "HM10209-VQTZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "cea65a95-9fbb-48ae-8cdb-8925c29cc674",
+   "problemCode": "HAL0204-QCZS",
+   "directUseAllowed": true
+  },
+  {
+   "id": "cf3546e5-e91c-48d9-8e3f-4b7964e0f54b",
+   "problemCode": "HPS0103-3AKM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "cf3c9493-6429-4d2e-811a-9d6cbd3aacc6",
+   "problemCode": "HC10402-2F8D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d07022e3-c010-489d-b3fe-84efc83c83a1",
+   "problemCode": "J30503-HDQ7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d2c61e26-80b6-4d4c-9d14-188254665e40",
+   "problemCode": "HAL0309-X4DE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d58a8273-6f72-4a6c-8927-644c6122dfba",
+   "problemCode": "J10306-SKNB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d5f90341-bc16-4d14-8b91-9078cb94a61a",
+   "problemCode": "HAL0209-Q74Y",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d65196e2-9836-4227-bbbd-a1b94868e26c",
+   "problemCode": "HC10108-NWHC",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d6d47e23-e316-45c1-b4a1-ce0d26fcc307",
+   "problemCode": "J30701-T2D7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d6f8b07c-8a58-4b6f-8bc9-9cbcf7d39a95",
+   "problemCode": "HAL0304-YTX9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d7be6bf7-600a-49f9-95c0-74b2b9aaec31",
+   "problemCode": "J20106-ML9J",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d8b75b8c-4ca2-4c90-b4ae-9dbab58248c6",
+   "problemCode": "J10201-CL9R",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d8cadd1d-9ea0-43e2-a139-e2c500b48f0c",
+   "problemCode": "HPS0202-PK8T",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d93e4448-178b-4fe0-9dec-51ec848ae0ef",
+   "problemCode": "HC20310-NU92",
+   "directUseAllowed": true
+  },
+  {
+   "id": "d98f89f7-05b3-41b9-bf37-2492bd7043de",
+   "problemCode": "HC10104-DXXT",
+   "directUseAllowed": true
+  },
+  {
+   "id": "da7bdc56-4903-4d65-b255-b06846c434d7",
+   "problemCode": "J30203-39KW",
+   "directUseAllowed": true
+  },
+  {
+   "id": "db05ec6f-e04a-4f23-b3e2-3b5e9664fbda",
+   "problemCode": "J30202-J9TX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "db2097ac-750f-4d68-83c6-e6539c256f91",
+   "problemCode": "HAL0208-T9QZ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "db2721af-ac0b-4f80-b56c-d1332214294b",
+   "problemCode": "J20408-5HXC",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ddff2fc0-b7b2-41e6-a6f5-465e0450d67c",
+   "problemCode": "J20104-A36G",
+   "directUseAllowed": true
+  },
+  {
+   "id": "de08456a-8c74-4c25-a020-970bb51e3a99",
+   "problemCode": "J30701-WE2L",
+   "directUseAllowed": true
+  },
+  {
+   "id": "dea6f4cb-1d1c-4183-aca9-c07f3ae202e7",
+   "problemCode": "HM10201-5KGL",
+   "directUseAllowed": true
+  },
+  {
+   "id": "df12c7cb-5c73-4431-9cb0-8ab7b69c70ec",
+   "problemCode": "HAL0205-F47Q",
+   "directUseAllowed": true
+  },
+  {
+   "id": "df3724bb-5e49-4d02-81bf-0d2cbc61db38",
+   "problemCode": "J20107-WQ4X",
+   "directUseAllowed": true
+  },
+  {
+   "id": "df37d28c-91e8-471b-8435-88fdb90b72a3",
+   "problemCode": "HAL0210-47YT",
+   "directUseAllowed": true
+  },
+  {
+   "id": "df6850f1-63b7-4b4c-9913-7f71eb4596fc",
+   "problemCode": "J20107-7BXB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e0ec377f-ef0f-448d-8030-dee8ca54ec08",
+   "problemCode": "HPS0104-ECSB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e17ec1e9-11a6-4d61-9eeb-c9d7a693a3c4",
+   "problemCode": "HC10102-WAS6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e32f5257-fd32-4617-bed6-a71dcf3a67b3",
+   "problemCode": "HM10101-9ZU7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e51e12a9-fb1f-46a8-8704-1923a514e530",
+   "problemCode": "HAL0103-MNTX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e6566cca-cb09-4987-96f4-31e440917ab4",
+   "problemCode": "J30201-L8UB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e7fe2a51-8f48-4d9e-ae7c-9bc69f082fc1",
+   "problemCode": "J30103-HTU3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e91112a2-8463-4210-bb77-99665278617b",
+   "problemCode": "HAL0101-JB5P",
+   "directUseAllowed": true
+  },
+  {
+   "id": "e965fc1f-bb95-4239-84f1-69183a91c3c9",
+   "problemCode": "J10301-R78E",
+   "directUseAllowed": true
+  },
+  {
+   "id": "eac9829c-2550-44dd-9e8f-b6f8518acf92",
+   "problemCode": "J30103-UDBX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "eae67c13-3df5-406f-b187-71f8000151f9",
+   "problemCode": "J30503-SMX6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ebddd02c-1530-4491-bb46-bb3751884f7d",
+   "problemCode": "HM10207-LZKB",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ebf0b0db-4ce4-4231-98ff-d141ac9e0f69",
+   "problemCode": "J10201-ECG7",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ebfadc73-3d54-4b67-9947-98742d63df7c",
+   "problemCode": "HPS0306-WEXR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ecf0e247-c07a-46ca-b8df-03534e7ab5d1",
+   "problemCode": "J30701-24C3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ed1ac7cb-7e75-47bc-a4a4-6d9a7a4f2d8a",
+   "problemCode": "HC20310-QZJP",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ee48310f-be36-45e0-89ab-4c1d72412c2b",
+   "problemCode": "HAL0103-KWM8",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ee50662f-b91a-4267-a581-f1be95560a83",
+   "problemCode": "HAL0204-YLY3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ee831467-4d34-437c-8f20-34a0b254e91d",
+   "problemCode": "HAL0103-QFQD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ee9a660a-dda2-4284-8481-85fc11dbc152",
+   "problemCode": "HAL0106-6HN4",
+   "directUseAllowed": true
+  },
+  {
+   "id": "eec88186-d874-48bf-a109-9639cca9b613",
+   "problemCode": "J30201-T3MM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ef58ad13-3076-4931-b132-0493c5bf18c6",
+   "problemCode": "HAL0309-ASA3",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ef8c63fd-1e4c-43e7-bfb1-190211ce2a39",
+   "problemCode": "J20101-3YE9",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ef945786-689a-4c1a-bad9-442c1f0626f8",
+   "problemCode": "HC10401-Y5QS",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f0bfa888-181e-4162-bb6a-b928c0089dca",
+   "problemCode": "J20104-A5PA",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f21cf799-c0e3-488e-9520-5a5f140725c8",
+   "problemCode": "HM10201-5Y8B",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f272b538-191b-480e-a0a6-326e8612561d",
+   "problemCode": "HAL0106-HFU6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f2796468-5367-4f23-aa30-6859c041b1fb",
+   "problemCode": "J30103-EYFQ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f2d6c796-13e4-4f56-b47d-ae7768b13c5e",
+   "problemCode": "HM10209-C2FF",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f2fcb7a3-e707-434e-ad50-75fa1042c8af",
+   "problemCode": "J30203-2LBF",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f5be421c-f03c-4373-bea5-421043a14a3f",
+   "problemCode": "J20106-LFNX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f5dc798a-e0ec-4931-b0fc-640839b3b73b",
+   "problemCode": "J10306-ZGD6",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f5ead7ae-8bec-44e9-b3c1-942f99fecb96",
+   "problemCode": "HAL0209-LJSD",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f6baf113-6cc0-430c-8d9f-e54f87fe4c33",
+   "problemCode": "J20205-F55Y",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f70ecae5-56f3-41a0-9a23-cf40c9ed8a50",
+   "problemCode": "HAL0103-GHWX",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f867f453-d05d-468f-8dac-f0edcaf0ffef",
+   "problemCode": "HC10212-7BZK",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f8b850c2-0006-4c1d-b6d2-ea810237ce8e",
+   "problemCode": "HC10104-2U7D",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f908d587-29b1-4b8b-8d4b-8501e5420660",
+   "problemCode": "HAL0106-Y5GR",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f954453a-7895-405b-bfa3-ad1620fea06d",
+   "problemCode": "HC10221-9WDE",
+   "directUseAllowed": true
+  },
+  {
+   "id": "f9db90b5-094a-4fca-aa4f-6a463116218a",
+   "problemCode": "HAL0109-ZQLG",
+   "directUseAllowed": true
+  },
+  {
+   "id": "fcdb3b17-d8c7-42d6-9e4a-950c27441063",
+   "problemCode": "HAL0103-BDGM",
+   "directUseAllowed": true
+  },
+  {
+   "id": "fd6276f3-80ea-44b3-9b79-e7b7479dd9ee",
+   "problemCode": "J10301-H76K",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ff361fae-4870-4874-8973-4a61fb13fe1d",
+   "problemCode": "HAL0101-ZAWJ",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ff7a00ab-ccb5-4626-a5a5-e806a3fc7208",
+   "problemCode": "J30101-SD4X",
+   "directUseAllowed": true
+  },
+  {
+   "id": "ff90d610-3efa-4878-9958-0added297e3f",
+   "problemCode": "HAL0106-VMAH",
    "directUseAllowed": true
   }
  ]
