@@ -1114,7 +1114,10 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "1-5-3") {
-    const kind = intBetween(rng, 0, 2);
+    // 네 갈래를 **고르게** 뽑는다(차 · 범위 비교 · 두 그래프 결합 · 합계). `intBetween` 이
+    // 균등이므로 각 25%다 — 어느 하나를 무겁게 둘 근거가 아직 없어 균등으로 둔다.
+    // 실측 분포는 시험이 찍는다(씨앗 300개 기준).
+    const kind = intBetween(rng, 0, 3);
     if (kind === 0) {
       return make(
         unit,
@@ -1171,6 +1174,27 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
           `${n(hi.value)}명입니다. ${steps.join(" ")} ` +
           `따라서 ${inRange.map((v) => v.label).join(", ")}입니다.`,
         figure,
+      );
+    }
+    if (kind === 2) {
+      // 두 그래프 결합 — 자리는 **1-5-3 「막대그래프의 활용」**이다. 근거가 셋이다:
+      // ⑴ 큐브 교재 둘 다 이 유형을 개념 층이 아니라 **응용/실력** 층에 둔다
+      //    (개념응용 「응용 쑥!」의 「두 막대그래프를 연결하여 내용 알기」 · 실력 「실력 다지기」의
+      //     「약점 체크 · 두 막대그래프에서 알 수 있는 내용 알아보기」. 기본 개념서엔 아예 없다).
+      // ⑵ 시드 이름이 그대로 가리킨다 — 1-5-2 는 「그리기」인데 이 유형은 **읽는** 문항이다.
+      // ⑶ 같은 층인 「범위 비교」(위 `kind === 1`)가 이미 여기 있다.
+      //
+      // ⚠️ 이 갈래만 **소재도 값도 다르다.** 위 갈래들이 쓰는 `theme`·`values`·`figure` 는
+      // 「좋아하는 것을 고른 학생 수」인데, 여기는 「팔린 수 × 한 개의 값」이라야 참이다
+      // (좋아하는 과일을 «팔고 받은 돈»은 말이 안 된다). 그래서 `buildSaleCombo` 가 제
+      // 소재·값·발문·해설을 통째로 만들고, 그림도 제 것(`saleFigure`)을 쓴다.
+      const sale = buildSaleCombo(rng);
+      return make(
+        unit,
+        sale.content,
+        sale.answer,
+        sale.solution,
+        saleFigure(sale),
       );
     }
     // 합계는 «막는 문턱»이 아니라 **구성으로 참이 되는 값**이다 — 곧 그 규모의 총원이다.
@@ -1234,7 +1258,13 @@ const SALE_THEMES: readonly SaleTheme[] = [
     place: "어느 문구점",
     goods: "연필",
     counter: "자루",
-    labels: ["빨강", "파랑", "검정"],
+    // ⚠️ 「빨강」이 아니라 **「빨간색」**인 까닭은 말투가 아니라 **지면**이다.
+    // 제목 폭 가드는 「제목이 **제 그래프**보다 넓은가」를 보는데, 그래프 폭은 **항목
+    // 이름이 정한다.** 「자루」는 세는 말 중 유일하게 두 글자라 제목이 「한 자루의 가격」
+    // (103단위)으로 가장 긴데, 이름이 두 글자면 그래프가 96단위로 좁아져 **던진다**
+    // (실측 2026-08-23, 짝으로 그렸을 때. 단독으로 그리면 넉넉해서 **안 걸린다**).
+    // 세 글자로 하면 그래프가 넓어져 들어간다 — 소재를 버리지 않고 제목 꼴도 지킨다.
+    labels: ["빨간색", "파란색", "검은색"],
   },
   {
     place: "어느 김밥집",
@@ -1355,14 +1385,17 @@ function buildSaleCombo(rng: Rng): SaleCombo {
 /**
  * 두 자료를 **안쪽 그래프 스펙 둘**로 만든다.
  *
- * 계약(2026-08-23 확정 방향): `chartPair` 는 `charts` 배열로 감싸고 **각 안쪽 스펙은 단독
- * `barChart` 와 동일**하다. 그래서 «감싸는 것»(아직 미확정)과 «안쪽»(확정)을 갈라 두고,
- * 여기서는 **안쪽만** 만든다. 배선할 때 이 결과를 `charts` 에 그대로 넣으면 된다.
+ * 계약(렌더러 확정본 `3d0122ef`): `chartPair` 는 `charts` 배열 **둘**로 감싸고, 각 안쪽 스펙은
+ * **단독 `barChart` 와 완전히 같은 모양**이라 `orient`·`title` 을 스스로 든다. 그래서 여기서
+ * 안쪽 둘을 그대로 만들고, 부르는 쪽이 `charts` 에 넣기만 한다.
  *
- * 배선 때 붙일 `title` 은 **짧은 형**으로 확정됐다(원장님 2026-08-23) — 수 쪽은 「팔린 수」,
- * 가격 쪽은 「한 ${counter}의 가격」(최장 「한 자루의 가격」 8글자). 긴 정보는 **발문이 이미
- * 말하므로** 제목에 넣지 않는다. 렌더러에 제목 폭 가드가 생기면 「소재 전량의 제목이 그 안」을
- * 시험으로 잠근다 — 그때 네 가지를 열거하지 말고 `SALE_THEMES` 를 **읽어서** 돌릴 것.
+ * `title` 은 **짧은 형**이다(원장님 2026-08-23) — 수 「팔린 수」 · 가격 「한 ${counter}의 가격」.
+ * 긴 정보(「어느 편의점에서 오늘 팔린 종류별 …」)는 **발문이 이미 말하므로** 제목에 넣지 않는다.
+ * ⚠️ 제목을 **열거하지 않는다** — `counter` 를 소재에서 읽는다. 「한 개/자루/줄」 넷을 손으로
+ * 적으면 소재가 늘 때 그 목록이 조용히 낡는다(세는 쪽과 고치는 쪽이 같이 눈이 먼다).
+ *
+ * 방향: **수 쪽만 가로형**이다. 값 축 눈금이 옆으로 늘어서므로 여기서 5줄 상한이 나온다
+ * (`SALE_MAX_TICKS`). 가격은 세로형 기본이라 9줄이어도 무관하다.
  *
  * ⚠️ 이 함수를 시험이 **직접** 부른다. 시험이 스펙을 따로 만들면 규칙이 두 벌이 되어
  * 「자와 조판이 다른 것을 본다」가 된다 — 지면 값(`yMax`·`yStep`)은 한 곳에서만 정한다.
@@ -1378,9 +1411,18 @@ function saleChartSpecs(c: SaleCombo): {
       vals: c.counts,
       step: SALE_COUNT_STEP,
       unit: c.theme.counter,
+      orient: "horizontal",
+      title: "팔린 수",
     },
-    { role: "가격", vals: c.prices, step: SALE_PRICE_STEP, unit: "원" },
-  ].map(({ role, vals, step, unit }) => ({
+    {
+      role: "가격",
+      vals: c.prices,
+      step: SALE_PRICE_STEP,
+      unit: "원",
+      orient: "vertical",
+      title: `한 ${c.theme.counter}의 가격`,
+    },
+  ].map(({ role, vals, step, unit, orient, title }) => ({
     role,
     step,
     // `yMax` 는 «하한»만 준다 — 축 맨 위는 엔진이 `ceil(최댓값 / 걸음) × 걸음` 으로 올린다.
@@ -1389,8 +1431,15 @@ function saleChartSpecs(c: SaleCombo): {
       yMax: Math.max(...vals) + 1,
       yStep: step,
       yLabel: unit,
+      orient,
+      title,
     }),
   }));
+}
+
+/** 두 그래프를 짝으로 감싼다 — 안쪽은 위에서 만든 것 **그대로**다(계약 `3d0122ef`). */
+function saleFigure(c: SaleCombo): Record<string, unknown> {
+  return fig("chartPair", { charts: saleChartSpecs(c).map((x) => x.spec) });
 }
 
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
@@ -2391,6 +2440,7 @@ export const G4_BAR_SPLITS = barSplits;
 export const G4_SALE_THEMES = SALE_THEMES;
 export const G4_SALE_COMBO = buildSaleCombo;
 export const G4_SALE_CHART_SPECS = saleChartSpecs;
+export const G4_SALE_FIGURE = saleFigure;
 export const G4_SALE_LIMITS = {
   countStep: SALE_COUNT_STEP,
   priceStep: SALE_PRICE_STEP,

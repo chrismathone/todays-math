@@ -91,6 +91,22 @@ describe("[초등 출제 CLI] 프리셋 배분 (D-71 안A)", () => {
   });
 });
 
+/**
+ * 「갈래 미등록 소단원」 픽스처를 커버리지에서 **뽑는다** — 손으로 박으면
+ * (처음엔 초4 1-5-3 이었다) 그 소단원에 갈래가 달리는 날 이 시험이 엉뚱하게
+ * 빨개진다. 230개 전부 등록되는 날에는 이 픽스처가 없어지는 게 맞고,
+ * 그때는 아래 시험들이 지킬 대상 자체가 사라진 것이니 같이 걷어 낸다.
+ */
+function tierlessFixture(): { grade: string; code: string } {
+  const row = listCoverage().find((r) => r.tiers.length === 0);
+  if (!row) {
+    throw new Error(
+      "갈래 없는 소단원이 더 없다 — 230개 전부 등록됐다면 이 픽스처와 «갈래 없음» 시험들을 걷어 낼 때다",
+    );
+  }
+  return { grade: row.grade, code: row.code };
+}
+
 describe("[초등 출제 CLI] 세트 생성", () => {
   it("같은 씨앗은 같은 세트다 — 재현 가능", () => {
     const a = generateSet({
@@ -121,15 +137,9 @@ describe("[초등 출제 CLI] 세트 생성", () => {
   });
 
   it("갈래 없는 소단원에 프리셋을 물으면 던진다 — 조용히 기본 문항을 내지 않는다", () => {
-    // 초4 1-5-3 은 아직 갈래 미등록 (파일럿은 초3 1-1-2 · 초5 1-6-2)
+    const { grade, code } = tierlessFixture();
     expect(() =>
-      generateSet({
-        grade: "초4",
-        code: "1-5-3",
-        count: 4,
-        seed: 1,
-        preset: "중위반",
-      }),
+      generateSet({ grade, code, count: 4, seed: 1, preset: "중위반" }),
     ).toThrow(/갈래/);
   });
 
@@ -174,13 +184,9 @@ describe("[초등 출제 CLI] 세트 생성", () => {
   });
 
   it("갈래 없는 소단원에 직접 배분이면 던진다", () => {
+    const { grade, code } = tierlessFixture();
     expect(() =>
-      generateSet({
-        grade: "초4",
-        code: "1-5-3",
-        seed: 1,
-        tierCounts: { 기본: 2 },
-      }),
+      generateSet({ grade, code, seed: 1, tierCounts: { 기본: 2 } }),
     ).toThrow(/갈래/);
   });
 

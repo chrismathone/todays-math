@@ -15,6 +15,7 @@ import {
   G4_LINE_THEMES,
   G4_SALE_CHART_SPECS,
   G4_SALE_COMBO,
+  G4_SALE_FIGURE,
   G4_SALE_LIMITS,
   G4_SALE_THEMES,
   G4_THEME_SHARE,
@@ -433,6 +434,12 @@ describe("[초등 엔진] 소단원 전량", () => {
     for (const unit of bars) {
       for (let i = 0; i < 120; i += 1) {
         const item = generateElementaryProblem(unit, 20260000 + i * 7);
+        // 두 그래프 결합 갈래(1-5-3)는 **다른 무리**다 — 소재가 `SALE_THEMES` 이고 값도
+        // 「팔린 수 × 한 개의 값」이라 막대 «규모»가 아예 없다. 무리를 안 거르고 채점하면
+        // 「규모 이름을 못 찾았다」로 빨개진다(배선하자마자 실제로 그랬다).
+        // 열쇠는 발문 문구가 아니라 **그림의 종류**로 잡는다 — 문구는 바뀌어도 구조는 남는다.
+        if ((item.figureSpec as { kind?: string } | null)?.kind === "chartPair")
+          continue;
         const spec = item.figureSpec as { values: { value: number }[] };
         const scale = G4_BAR_SCALES.find((sc) => item.content.includes(sc.who));
         expect(scale, `규모 이름을 못 찾았다: ${item.content}`).toBeTruthy();
@@ -1571,15 +1578,24 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
           continue;
         }
         drawn += 1;
-        // 세로축 눈금은 `text-anchor="end"`, 막대 값 이름표는 `"middle"` 이다.
-        // 정수 전부를 모으면 **막대 값이 눈금으로 섞여** 간격이 엉킨다(실제로 겪었다).
+        // ⚠️ 눈금을 **`text-anchor` 로 가르면 안 된다.** 세로형은 눈금이 `"end"` 인데
+        //    가로형은 눈금이 밑줄에 누워 `"middle"` 이라, 방향이 바뀌는 순간 한 쪽을
+        //    통째로 못 본다(실제로 겪었다 — 「간격이 []」). **글자 크기가 방향과 무관한
+        //    열쇠다**: 눈금은 14, 막대 값 이름표는 16, 항목 이름·단위는 13.
+        //    (숫자만 걸러 내므로 제목 「팔린 수」는 크기가 14여도 안 섞인다.)
         const ticks = [
           ...new Set(
             [...r.svg.matchAll(/<text\b([^>]*)>\s*(\d+)\s*<\/text>/g)]
-              .filter((m) => /text-anchor="end"/.test(m[1]!))
+              .filter((m) => /font-size="14"/.test(m[1]!))
               .map((m) => Number(m[2])),
           ),
         ].sort((a, b) => a - b);
+        if (ticks.length < 2) {
+          bad.push(
+            `${role}: 눈금을 ${ticks.length}개밖에 못 읽었다 — 뽑개가 눈이 멀었다`,
+          );
+          continue;
+        }
         const gaps = [...new Set(ticks.slice(1).map((v, j) => v - ticks[j]!))];
         if (gaps.length !== 1 || gaps[0] !== step) {
           bad.push(
@@ -1628,6 +1644,89 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
     expect(uniq, uniq.join("\n")).toEqual([]);
     // 0 은 「깨끗」과 「못 셈」을 구분해 주지 않는다 — 한 장도 안 그렸으면 걸린다.
     expect(drawn, "안쪽 스펙을 한 장도 못 그렸다").toBe(SEEDS * 2);
+  });
+
+  // ⚠️ **방향을 잠근다.** 원장님 확정 시안이 「수 쪽 가로형 · 가격 쪽 세로형」이고,
+  //    `SALE_MAX_TICKS.수 = 5` 라는 상한이 **가로형이라서** 나온 수다(눈금이 옆으로 늘어서
+  //    7줄부터 글자가 본문 아래로 떨어진다). 방향을 세로로 뒤집으면 그 상한의 **근거가
+  //    사라지는데** 시험은 아무 말도 안 한다 — 변이로 확인했다(뒤집어도 52개 전부 초록).
+  //    그래서 여기서 못 박는다. 방향이 바뀌면 상한도 다시 재야 한다는 뜻이다.
+  it("판매 두 그래프의 방향은 확정 시안 그대로다 — 수는 가로, 가격은 세로", () => {
+    const combo = G4_SALE_COMBO(createRng(20260000));
+    const got = Object.fromEntries(
+      G4_SALE_CHART_SPECS(combo).map(({ role, spec }) => [
+        role,
+        (spec as { orient?: string }).orient ?? "vertical",
+      ]),
+    );
+    expect(got).toEqual({ 수: "horizontal", 가격: "vertical" });
+  });
+
+  // 배선 뒤 잠금 ①: **소재 전량**의 제목이 렌더러 제목 폭 가드를 통과하는가.
+  //
+  // ⚠️ **짝으로** 그려야 한다. `_chart_pair` 는 안쪽을 `compact=True` 로 좁게 그리므로
+  //    **단독으로 그리면 넉넉해서 안 걸린다** — 실제로 단독 렌더로는 6소재 12장이 전부
+  //    통과하는데 짝으로는 연필이 던졌다(제목 103 > 폭 96). 자에 넣는 입력이 조판과
+  //    다르면 놓침이 된다는 그 자리다.
+  // ⚠️ 제목 넷을 **열거하지 않는다** — `G4_SALE_THEMES` 를 돌므로 소재가 늘면 따라온다.
+  it("판매 소재 전량의 제목이 짝으로 그려도 폭 가드를 통과한다", async () => {
+    const bad: string[] = [];
+    let drawn = 0;
+    for (const th of G4_SALE_THEMES) {
+      // 그 소재가 실제로 나오는 씨앗을 찾아 쓴다 — 스펙을 손으로 짓지 않는다.
+      let combo: ReturnType<typeof G4_SALE_COMBO> | null = null;
+      for (let i = 0; i < 400 && !combo; i += 1) {
+        const c = G4_SALE_COMBO(createRng(20260000 + i * 7));
+        if (c.theme.goods === th.goods && c.theme.counter === th.counter)
+          combo = c;
+      }
+      if (!combo) {
+        bad.push(`${th.goods}: 씨앗 400개에서 한 번도 안 나온다 — 죽은 소재다`);
+        continue;
+      }
+      const r = await renderFigureSpec(G4_SALE_FIGURE(combo));
+      if (!r.ok) {
+        bad.push(
+          `${th.goods}(${th.counter}) 「한 ${th.counter}의 가격」: ${r.error}`,
+        );
+        continue;
+      }
+      drawn += 1;
+    }
+    expect(bad, bad.join("\n")).toEqual([]);
+    expect(drawn, "짝을 한 장도 못 그렸다").toBe(G4_SALE_THEMES.length);
+  });
+
+  // 배선 뒤 잠금 ②: 새 갈래가 **문항으로** 나올 때 그림이 실제로 그려지는가.
+  // (위 ①은 소재를 훑고, 이쪽은 씨앗을 훑는다 — 값 조합이 갈리는 축이 다르다.)
+  it("두 그래프 결합 갈래는 씨앗을 훑어도 모두 그려진다", async () => {
+    const unit = UNITS.find(
+      (u) => u.grade === "초4" && u.section.startsWith("1-5-3"),
+    )!;
+    const bad: string[] = [];
+    let drawn = 0;
+    // 갈래가 넷이라 결합 문항은 씨앗의 약 1/4 이다. 64개만 훑으면 **우연히 14개**가 나와
+    // 「16장」이 안 채워진다(실제로 그랬다) — 표본이 모자란 것이지 갈래가 빠진 게 아니다.
+    // 16장을 채우면 바로 멈추므로 예산을 넉넉히 두는 데 드는 값은 없다.
+    for (let i = 0; i < 200 && drawn < 16; i += 1) {
+      const item = generateElementaryProblem(unit, 20260000 + i * 7);
+      if (!/팔고 받은 돈/.test(item.content)) continue;
+      const spec = item.figureSpec as {
+        kind?: string;
+        charts?: unknown[];
+      } | null;
+      if (spec?.kind !== "chartPair" || spec.charts?.length !== 2) {
+        bad.push(
+          `씨앗 ${20260000 + i * 7}: 그림이 chartPair 둘이 아니다 (${spec?.kind})`,
+        );
+        continue;
+      }
+      const r = await renderFigureSpec(spec);
+      if (!r.ok) bad.push(`씨앗 ${20260000 + i * 7}: ${r.error}`);
+      else drawn += 1;
+    }
+    expect(bad, bad.join("\n")).toEqual([]);
+    expect(drawn, "결합 문항을 하나도 못 모았다 — 갈래가 빠졌나").toBe(16);
   });
 
   it("크기가 같은 분수 그림이 실제로 그려진다", async () => {

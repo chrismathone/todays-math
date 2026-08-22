@@ -552,6 +552,306 @@ def build_planner_book(grade: str, path: Path, series: str) -> dict:
             "pageCount": page_count, "units": units}
 
 
+"""─────────── 딸림책 24권 (매칭북 16 · 응용강화북 8) ───────────
+
+원장님 2026-08-23: 「매칭북과 응용강화북도 세세히 훑어봐봐」.
+
+세 시리즈의 **지면 문법이 서로 다르다** — 파서를 짜기 전에 3-1 을 시리즈마다 렌더해
+눈으로 보고 시작했다(리드 규칙 1). 본 것:
+
+  ㄱ. 개념 매칭북 「기초력 학습지」 — **한 쪽 = 한 유형**. 분홍 배지 안에 연번(sz≈18),
+     그 오른쪽에 유형 이름(sz≈14~16), 오른끝에 「진도북 NNN쪽」. 진도북 개념에 1:1.
+  ㄴ. 응용강화북 — **한 쪽 = 한 유형**. 「응용/강화」 배지(sz 22·20.5) + 연번(sz 22)
+     + 유형 이름(sz 20), 아랫줄에 「진도북 NNN쪽의 연습 문제」.
+  ㄷ. 실력 매칭북 — **유형 이름이 없다.** STEP 구획 이름(sz≈25)만 있고, 문항마다
+     「NN 유사」 배지가 붙어 **진도북 문항 번호**를 가리킨다. 머리에는
+     「진도북[012~015쪽]의 확인, 강화 문제 복습」. 즉 유형을 더하는 책이 아니라
+     **문항 대응표**다 — 이름을 지어내지 않고 그 구조를 그대로 적는다.
+
+크기(sz)로 가르는 까닭: x 좌표는 학기마다 흔들리지만 조판 크기는 시리즈 안에서 같다.
+그래도 못 읽은 쪽은 **세어서 찍는다**(침묵 금지) — 아래 `missingType` 집계.
+"""
+
+MATCH_CONCEPT_BOOKS = [
+    (g, ROOT / "큐브수학 개념" / "매칭북" / f"큐브수학 개념 {g}_매칭북.pdf") for g in GRADES
+]
+MATCH_SKILL_BOOKS = [
+    (g, ROOT / "큐브수학 실력" / f"{g} 큐브실력" / f"큐브수학 실력 {g}_매칭북.pdf") for g in GRADES
+]
+BOOST_BOOKS = [
+    (g, ROOT / "큐브수학 개념응용" / "응용강화북" / f"큐브수학 개념응용 {g} 응용강화북.pdf")
+    for g in GRADES
+]
+
+UNIT_RE = re.compile(r"^(\d+)\s*\.\s*(.+)$")
+SKILL_STEPS = ("개념 완성하기", "실력 다지기", "서술형 해결하기")
+
+
+def _unit_of(sps: list[dict]) -> str | None:
+    """머리·바닥에 적힌 「N. 단원명」. 여러 곳에 나오므로 **가장 잦은 것**을 쓴다.
+
+    작은 글자(sz<=12.5)만 본다 — 본문의 문항 번호는 sz 26 이라 안 걸린다.
+    실력 매칭북은 「1.」과 「덧셈과 뺄셈」이 딴 span 이라 줄로 묶고 나서 읽는다.
+    """
+    small = [s for s in sps if s["size"] <= 12.5]
+    hits: dict[str, int] = {}
+    for _, line in _join_lines(small):
+        m = UNIT_RE.match(line.strip())
+        if not m:
+            continue
+        title = re.sub(r"\s*\d+\s*$", "", m.group(2)).strip()  # 바닥의 쪽 연번을 뗀다
+        title = re.sub(r"\s*수학\s*\d+[-－]\d+\s*$", "", title).strip()
+        # 한 글자 단원이 있다 — 3-2 「3. 원」. 길이로 거르면 그 단원이 통째로 «?» 가 된다
+        # (진도북 파서가 「각」에서 겪고 주석까지 남긴 자리와 같은 부류다).
+        if not re.search(r"[가-힣]", title):
+            continue
+        key = f"{int(m.group(1))}. {title}"
+        hits[key] = hits.get(key, 0) + 1
+    return max(hits.items(), key=lambda kv: kv[1])[0] if hits else None
+
+
+def _join_tight(sps: list[dict]) -> str:
+    """같은 줄은 **띄어쓰기 없이**, 줄 사이는 한 칸으로. 유형 이름 조립용.
+
+    책이 `(세 자리 수)+(세 자리 수)` 처럼 붙여 쓰므로 붙인다. 줄로 먼저 묶는 까닭은
+    `_join_lines` 와 같다 — x 로만 정렬하면 두 줄짜리 이름이 뒤섞인다
+    (실측 3-1 p27: 「1보다 작은 소수 / 1보다 큰 소수」가 「11보다 작은 소수 /보다 큰 소수」).
+    """
+    groups: list[list[dict]] = []
+    for sp in sorted(sps, key=lambda s: s["y"]):
+        if groups and abs(sp["y"] - groups[-1][0]["y"]) <= 4.0:
+            groups[-1].append(sp)
+        else:
+            groups.append([sp])
+    lines = ["".join(s["t"] for s in sorted(g, key=lambda s: s["x"])) for g in groups]
+    return re.sub(r"\s+", " ", " ".join(lines)).strip()
+
+
+def _planner_pages(joined: str) -> list[int]:
+    """머리글의 「진도북 NNN쪽」에서 **쪽 번호 전부**를 뽑는다.
+
+    두 군데가 어긋난다 —
+      · 번호가 span 으로 쪼개진다: 「진도북 0 09 쪽」(실측 개념 매칭북 5-1 전권).
+        숫자 사이 공백을 지우고 읽지 않으면 **그 책 23쪽이 통째로 0건**이 된다.
+      · 한 쪽이 진도북 **두 쪽**에 붙는다: 「진도북 033쪽, 035쪽」(실측 4-1 p6).
+    """
+    m = re.search(r"진도북\s*((?:[\d\s]+쪽\s*[,·]?\s*)+)", joined)
+    if not m:
+        return []
+    body = re.sub(r"\s+(?=\d)", "", m.group(1))
+    return [int(x) for x in re.findall(r"\d+", body)]
+
+
+def _head(sps: list[dict], ymax: float) -> tuple[list[dict], str]:
+    """머리 band 와 **줄 단위로 이어 붙인** 문장.
+
+    ⚠️ (y,x) 로 그냥 정렬하면 안 된다 — 같은 줄인데 y 가 0.2px 다른 span 이 x 를
+    무시하고 앞에 선다. 실측: 「진도북 026쪽의 연습 문제」가
+    `62 026 진도북 쪽의 연습 문제` 로 뒤섞여 **응용강화북 24쪽이 통째로 0건**이었다
+    (`_join_lines` 의 주석이 경고한 바로 그 자리인데 새 코드에서 되풀이했다).
+    """
+    head = [s for s in sps if s["y"] < ymax]
+    joined = re.sub(r"\s+", " ", " ".join(line for _, line in _join_lines(head)))
+    return head, joined
+
+
+def parse_match_concept(doc: pymupdf.Document) -> list[dict]:
+    """개념 매칭북 — 한 쪽 = 한 유형. **책이 두 부로 나뉜다**(실측 3-1):
+
+      · 「기초력 학습지」 p1~33 — 분홍 배지에 연번, 진도북 개념에 1:1
+      · 「미리 보는 수학 익힘」 p34~64 — 연번 배지가 없고 유형 이름만 (sz 13.6)
+
+    ⚠️ 연번 배지는 같은 좌표에 **두 번 찍힌다**(실측 p10: 「12」 위에 「10」).
+    눈으로 보이는 것은 **나중에 그린 것**이라 문서 순서의 마지막을 쓴다.
+    """
+    out = []
+    for pno in range(doc.page_count):
+        sps = spans_of(doc[pno])
+        head, joined = _head(sps, 115.0)
+        planner = _planner_pages(joined)
+        if not planner:
+            continue  # 표지·정답 쪽 — 진도북 딱지가 없다
+        kind = "미리 보는 수학 익힘" if "수학 익힘" in joined else "기초력 학습지"
+        nos = [s["t"] for s in head if 17 <= s["size"] < 20 and s["t"].isdigit()]
+        no = nos[-1] if nos else None  # 겹쳐 찍힌 것 중 **위에 있는 것**
+        # 배지 낱말(sz>=17.5)·작은 딱지(sz<12)를 뺀 나머지가 유형 이름이다.
+        name = _join_tight([s for s in head if 12 <= s["size"] < 17.5])
+        out.append({
+            "page": pno + 1, "no": no, "kind": kind, "type": name,
+            "unit": _unit_of(sps), "plannerPage": planner[0], "plannerPages": planner,
+        })
+    return out
+
+
+def parse_boost(doc: pymupdf.Document) -> list[dict]:
+    """응용강화북 — 한 쪽 = 한 응용 유형. 진도북 「연습 문제」에 붙는다."""
+    out = []
+    for pno in range(doc.page_count):
+        sps = spans_of(doc[pno])
+        head, joined = _head(sps, 120.0)
+        m = re.search(r"진도북\s*([\d\s]+?)\s*쪽의\s*(.+?)\s*문제", joined)
+        if m is None:
+            continue
+        no = next((s["t"] for s in head if s["size"] >= 20 and s["t"].isdigit()), None)
+        name = _join_tight(
+            [s for s in head
+             if 17 <= s["size"] < 24 and not s["t"].isdigit() and s["t"] not in ("응용", "강화")]
+        )
+        out.append({
+            "page": pno + 1, "no": no, "type": name,
+            "unit": _unit_of(sps), "plannerPage": int(re.sub(r"\s+", "", m.group(1))),
+            "plannerKind": m.group(2),
+        })
+    return out
+
+
+def parse_match_skill(doc: pymupdf.Document) -> list[dict]:
+    """실력 매칭북 — 유형 이름이 없다. STEP 구획 + 진도북 쪽범위 + 「유사」 배지 수.
+
+    구획 이름은 그 구획 **첫 쪽에만** 있다(실측 p1 개념 완성하기 / p3 은 p2 실력
+    다지기의 이어짐) — 진도북 파서와 같이 **이어지는 것**으로 다룬다.
+    """
+    out = []
+    current: str | None = None
+    unit: str | None = None
+    for pno in range(doc.page_count):
+        sps = spans_of(doc[pno])
+        head, joined = _head(sps, 115.0)
+        big = sorted([s for s in head if s["size"] >= 22], key=lambda s: s["x"])
+        title = re.sub(r"\s+", " ", " ".join(s["t"] for s in big)).strip()
+        if title in SKILL_STEPS:
+            current = title
+        m = re.search(r"진도북\s*\[?\s*(\d+)\s*[~∼]\s*(\d+)\s*쪽\s*\]?\s*의\s*(.+?)\s*문제", joined)
+        similar = sum(1 for s in sps if s["t"] == "유사")
+        # 신판(5-2·6-2)은 구획 이름이 **깨진 장식 글꼴**이라 텍스트로 못 읽는다. 그래도
+        # 진도북 매핑이나 「유사」 배지가 있으면 그 쪽은 본문이다 — 이름만 비운다(지어내지 않는다).
+        if m is None and current is None and similar == 0:
+            continue  # 앞부속·표지
+        # 왼쪽 쪽은 바닥이 「02 수학 3－1」이라 단원 이름이 없다 — 앞 쪽에서 이어받는다.
+        unit = _unit_of(sps) or unit
+        out.append({
+            "page": pno + 1, "step": current, "unit": unit,
+            "plannerFrom": int(m.group(1)) if m else None,
+            "plannerTo": int(m.group(2)) if m else None,
+            "plannerKind": m.group(3) if m else None,
+            "similarItems": similar,
+        })
+    return out
+
+
+COMPANION_PARSERS = {
+    "개념매칭": parse_match_concept,
+    "응용강화": parse_boost,
+    "실력매칭": parse_match_skill,
+}
+
+
+def build_companion_book(grade: str, path: Path, series: str) -> dict:
+    doc = pymupdf.open(path)
+    pages = COMPANION_PARSERS[series](doc)
+    count = doc.page_count
+    doc.close()
+    # 대단원은 **번호로** 묶는다. 딱지의 띄어쓰기가 쪽마다 흔들려(실측 3-1 실력 매칭북:
+    # 「3. 나눗셈」과 「3. 나눗 셈」) 글자로 묶으면 한 단원이 둘로 쪼개진다.
+    order: list[int | None] = []
+    by: dict[int | None, list[dict]] = {}
+    labels: dict[int | None, dict[str, int]] = {}
+    for p in pages:
+        no = _unit_no(p.get("unit"))
+        if no not in by:
+            by[no] = []
+            labels[no] = {}
+            order.append(no)
+        by[no].append(p)
+        if p.get("unit"):
+            labels[no][p["unit"]] = labels[no].get(p["unit"], 0) + 1
+    missing = sum(1 for p in pages if series != "실력매칭" and not p.get("type"))
+    units = []
+    for no in order:
+        best = max(labels[no].items(), key=lambda kv: kv[1])[0] if labels[no] else "?"
+        units.append({"unitNo": no, "unit": best, "pages": by[no]})
+    return {
+        "grade": grade, "series": series, "file": path.name, "pageCount": count,
+        "parsedPages": len(pages), "missingType": missing, "units": units,
+    }
+
+
+# ── 본책 대조 ─────────────────────────────────────────────────────────
+# 원장님 질문은 «딸림책이 새 유형을 더하는가» 다. 이름을 맞대되 **공백·문장부호·
+# 빈칸 상자(□)·머리 번호**를 지운 뒤 견준다 — 「크기 비교에서 ↻ 안에」 처럼 빈칸
+# 글리프가 한쪽에만 남는 자리가 있기 때문이다.
+_NORM_DROP = re.compile(r"[\s()\[\]{}<>,.·・:;!?~∼\-–—+×÷=□■▢▣▤▥▦▧▨▩▒░▓↻⇁①-⑳⑴-⒇]+")
+
+
+def _norm_type(s: str) -> str:
+    return _NORM_DROP.sub("", re.sub(r"^\s*\d+\s*\.\s*", "", s or ""))
+
+
+def _split_types(name: str) -> list[str]:
+    """한 쪽이 진도북 개념 **둘**을 겹쳐 싣는다 — 「선의 종류 / 직각」.
+
+    통째로 맞대면 「딸림책에만 있는 유형」으로 잘못 잡힌다(실측: 이 한 줄 때문에
+    30개 단원이 «새 유형 있음»으로 나왔다). 슬래시로 갈라 **낱개로** 견준다.
+    ⑴⑵ 로 나눠 실은 것(「똑같이 나누기 ⑴」)은 `_norm_type` 이 그 표식을 지운다.
+    """
+    return [x.strip() for x in re.split(r"\s*/\s*", name or "") if x.strip()]
+
+
+def _unit_no(label: str | None) -> int | None:
+    m = UNIT_RE.match((label or "").strip())
+    return int(m.group(1)) if m else None
+
+
+def compare_companions(books: list[dict], planner_books: list[dict],
+                       companions: list[dict]) -> list[dict]:
+    """대단원마다 「딸림책에만 있는 유형」. 실력 매칭북은 이름이 없어 대조 대상이 아니다."""
+    rows = []
+    for comp in companions:
+        if comp["series"] == "실력매칭":
+            continue
+        if comp["series"] == "개념매칭":
+            src = next((b for b in books if b["grade"] == comp["grade"]), None)
+            base = {u["unit"]: list(u["concepts"]) for u in src["units"]} if src else {}
+            against = "개념 진도북 개념 목록"
+        else:
+            src = next((b for b in planner_books
+                        if b["series"] == "응용" and b["grade"] == comp["grade"]), None)
+            base = ({u["unit"]: [i for s in u["sections"] for i in s["items"]]
+                     for u in src["units"]} if src else {})
+            against = "개념응용 진도북 학습계획표"
+        for u in comp["units"]:
+            no = u["unitNo"]
+            names: list[str] = []
+            for p in u["pages"]:
+                names.extend(_split_types(p.get("type", "")))
+            have: set[str] = set()
+            for x in base.get(no, []):
+                have.update(_norm_type(part) for part in _split_types(x))
+            # 같은 유형이 앞부(기초력)와 뒷부(익힘)에 두 번 실린다 — 한 번만 센다.
+            #
+            # 「이름이 그대로 있나」만 물으면 답이 거칠다. 실측해 보니 안 맞는 것의 대부분은
+            # **새 유형이 아니라 진도북 개념을 잘게 쪼갠 것**이었다 —
+            # 진도북 「시간의 덧셈과 뺄셈」 하나가 매칭북에서 「시간의 덧셈」·「시간의 뺄셈」
+            # 두 학습지가 된다. 그래서 셋으로 가른다: 같음 · 쪼갬(부분 관계) · 새로움.
+            split, fresh = [], []
+            for n in dict.fromkeys(names):
+                key = _norm_type(n)
+                if key in have:
+                    continue
+                if any(key and (key in h or h in key) for h in have):
+                    split.append(n)
+                else:
+                    fresh.append(n)
+            rows.append({
+                "series": comp["series"], "grade": comp["grade"], "unit": u["unit"],
+                "against": against, "companionTypes": len(dict.fromkeys(names)),
+                "plannerTypes": len(have),
+                "splitOfPlanner": split,
+                "onlyInCompanion": fresh,
+            })
+    return rows
+
+
 DOC_PATH = Path("docs/planning/tracks/cube-concept-catalog.md")
 
 DOC_HEAD = """# 큐브수학 개념 진도북 8권 — 대단원·개념·지면 유형 카탈로그
@@ -630,11 +930,102 @@ DOC_TAIL = """
 - 발문 표본(stems)은 두 단 조판을 한 줄로 편 것이라 **조각**이다 — 유형 이름이 아니라
   단서로 쓸 것. 정확한 지면은 쪽 번호로 렌더해 본다.
 - 대단원 쪽 범위 밖(표지·차례·권말 평가 149~152쪽)은 단원에 배정하지 않았다.
-- 매칭북·개념응용·실력 시리즈는 이 카탈로그에 없다 — 다음 채집 대상이다.
+- 딸림책 24권(매칭북 16 · 응용강화북 8)은 §6~7 에 있다. 정답 PDF 9권은 대상이 아니다.
+- **실력 매칭북에는 유형 이름이 없다** — 이름 대조표(§7)에 그 시리즈가 빠진 것은
+  누락이 아니라 책의 성질이다. 그 책은 문항마다 「유사」 배지로 진도북 문항을 가리키는
+  **대응표**다.
+- 딸림책 유형 이름에도 진도북과 같은 글리프 공백이 남는다 — 빈칸 상자와 소수점이
+  텍스트 레이어에 없다(실측: 응용강화북 「0 1이 몇 개인지 구하기」 = 실제 「0.1이…」).
+  빈칸 상자는 두 책이 **다른 글자**를 쓴다(진도북 ▒ · 강화북 ■) — 대조에서 둘 다 지운다.
+- **못 읽은 쪽이 남아 있다**(전체 1,152쪽 중 21쪽). 침묵시키지 않고 여기 적는다:
+  실력 매칭북 5-2 18쪽 · 6-2 2쪽 · 개념 매칭북 5-1 1쪽. 신판 실력 매칭북은 구획 이름이
+  **깨진 장식 글꼴**이라 텍스트로 못 읽고(6-2 p1 은 같은 글이 두 벌 겹쳐 찍혀 있다),
+  그 쪽들은 진도북 매핑도 배지도 없어 건너뛰었다. 유형 이름이 없는 시리즈라 §7 대조에는
+  영향이 없다.
+- 실력 매칭북 STEP 배지는 「STEP n · 한 번 더 · 개념 완성하기」 꼴이다 — 「한 번 더」는
+  구획 이름이 아니라 배지 안 딱지다(실측 렌더). 구획 이름만 뜬다.
+"""
+
+DOC_COMPANION_HEAD = """
+---
+
+# 딸림책 24권 — 매칭북 16 · 응용강화북 8
+
+원장님 2026-08-23: 「매칭북과 응용강화북도 세세히 훑어봐봐」.
+
+세 시리즈는 **지면 문법이 서로 다르다**(파서를 짜기 전에 시리즈마다 렌더해 눈으로 확인):
+
+| 시리즈 | 권수 | 한 쪽의 뜻 | 진도북과의 이음 |
+|---|---:|---|---|
+| 개념 매칭북 | 8 | 한 쪽 = 한 유형. 앞부(「기초력 학습지」)는 연번 배지, 뒷부(「미리 보는 수학 익힘」)는 이름만 | 쪽마다 「진도북 NNN쪽」 |
+| 응용강화북 | 8 | 한 쪽 = 한 응용 유형 | 쪽마다 「진도북 NNN쪽의 연습 문제」 |
+| 실력 매칭북 | 8 | **유형 이름이 없다.** STEP 구획 + 문항별 「유사」 배지 | 머리에 「진도북[NNN~NNN쪽]의 … 문제 복습」 |
 """
 
 
-def render_md(books: list[dict], planner_books: list[dict]) -> str:
+SERIES_TITLE = {
+    "개념매칭": "개념 매칭북", "응용강화": "응용강화북", "실력매칭": "실력 매칭북",
+}
+
+
+def render_companions(companions: list[dict], rows: list[dict]) -> list[str]:
+    parts = [DOC_COMPANION_HEAD]
+    for series in ("개념매칭", "응용강화", "실력매칭"):
+        parts.append(f"## 6-{'123'[('개념매칭', '응용강화', '실력매칭').index(series)]}. "
+                     f"{SERIES_TITLE[series]} 8권\n")
+        for book in [b for b in companions if b["series"] == series]:
+            parts.append(f"### {SERIES_TITLE[series]} {book['grade']} "
+                         f"({book['file']} · {book['pageCount']}쪽 · 읽은 쪽 {book['parsedPages']})\n")
+            for u in book["units"]:
+                parts.append(f"**{u['unit']}** — {len(u['pages'])}쪽\n")
+                for p in u["pages"]:
+                    if series == "실력매칭":
+                        rng = (f"진도북 p{p['plannerFrom']}~{p['plannerTo']} 「{p['plannerKind']}」"
+                               if p["plannerFrom"] else "(머리 없음 — 왼쪽 쪽)")
+                        parts.append(f"- p{p['page']} [{p['step'] or '?'}] {rng} · 유사 배지 {p['similarItems']}")
+                    elif series == "개념매칭":
+                        parts.append(f"- p{p['page']} [{p['kind']}] "
+                                     f"{('(' + p['no'] + ') ') if p['no'] else ''}{p['type']} "
+                                     f"← 진도북 p{p['plannerPage']}")
+                    else:
+                        parts.append(f"- p{p['page']} ({p['no']}) {p['type']} "
+                                     f"← 진도북 p{p['plannerPage']}의 {p['plannerKind']} 문제")
+                parts.append("")
+    parts.append("""
+---
+
+# 7. 본책 대조 — 딸림책이 **새 유형을 더하는가**
+
+원장님 질문에 답하는 표다. 이름을 **공백·문장부호·빈칸 상자를 지우고** 맞댔다.
+
+⚠️ **「새 이름」은 「새 학습 내용」이 아니다.** 이 칸은 *이름 문자열이 진도북 목록에
+없다*는 뜻일 뿐이다. 실제로 훑어 보면 대부분 **같은 개념의 다른 말씨**다 —
+진도북 「직육면체의 부피 **구하는 방법**」 ↔ 매칭북 「직육면체의 부피 **구하기**」,
+진도북 「m³ 알아보기」 ↔ 매칭북 「1 m³와 1 cm³의 관계」. 판단은 사람이 한다.
+
+- **같음** — 이름까지 그대로. 그 단원의 딸림책은 진도북 유형의 반복·강화다.
+- **쪼갬** — 진도북 개념 하나를 둘 이상으로 나눠 실었다(부분 문자열 관계).
+  진도북 「시간의 덧셈과 뺄셈」 → 매칭북 「시간의 덧셈」·「시간의 뺄셈」.
+  **D-71 연산 갈래를 더 잘게 가를 재료**가 여기 있다.
+- **새 이름** — 위 둘에 안 걸린 것. 말씨 차이인지 진짜 새 유형인지 **눈으로 봐야 한다**.
+
+실력 매칭북은 유형 이름이 없어 이 표에 없다 — 대신 그 책은 문항마다 「유사」 배지로
+진도북 문항을 가리키므로 **구조적으로** 새 유형을 더할 수 없다(§6-3 의 배지 수 참조).
+""")
+    parts.append("| 시리즈 | 학기 | 대단원 | 딸림책 유형 | 진도북 유형 | 진도북 개념을 쪼갠 것 | **새 이름** |")
+    parts.append("|---|---|---|---:|---:|---|---|")
+    for r in rows:
+        only = "**없음**" if not r["onlyInCompanion"] else " / ".join(r["onlyInCompanion"])
+        spl = "—" if not r["splitOfPlanner"] else " / ".join(r["splitOfPlanner"])
+        parts.append(f"| {SERIES_TITLE[r['series']]} | {r['grade']} | {r['unit']} | "
+                     f"{r['companionTypes']} | {r['plannerTypes']} | {spl} | {only} |")
+    parts.append("")
+    return parts
+
+
+def render_md(books: list[dict], planner_books: list[dict],
+              companions: list[dict] | None = None,
+              rows: list[dict] | None = None) -> str:
     parts = [DOC_HEAD]
     for book in books:
         n_concepts = sum(len(u["concepts"]) for u in book["units"])
@@ -662,6 +1053,8 @@ def render_md(books: list[dict], planner_books: list[dict]) -> str:
                         parts.append(f"  - {it}")
                 parts.append("")
     parts.append(DOC_TAIL)
+    if companions:
+        parts.extend(render_companions(companions, rows or []))
     return "\n".join(parts)
 
 
@@ -704,11 +1097,48 @@ def main() -> None:
             missing = sum(1 for u in book["units"] for s in u["sections"] if s["name"] == "?")
             flag = f" · ⚠️ 이름 없는 구획 {missing}" if missing else ""
             print(f"✅ {series} {grade}: 단원 {len(book['units'])} · 구획 {n_sec} · 유형 줄 {n_items}{flag}")
-    # 문서는 **전권(개념 8 + 응용 8 + 실력 8)**을 돌렸을 때만 쓴다 — 부분 실행이
+    companions: list[dict] = []
+    for series, book_list, prefix in (
+        ("개념매칭", MATCH_CONCEPT_BOOKS, "match-concept"),
+        ("응용강화", BOOST_BOOKS, "boost"),
+        ("실력매칭", MATCH_SKILL_BOOKS, "match-skill"),
+    ):
+        for grade, path in book_list:
+            if only and grade != only:
+                continue
+            if not path.exists():
+                print(f"❌ 없음: {path}")
+                continue
+            book = build_companion_book(grade, path, series)
+            companions.append(book)
+            out = OUT_DIR / f"{prefix}-{grade}.json"
+            out.write_text(json.dumps(book, ensure_ascii=False, indent=1), encoding="utf-8")
+            types = sum(1 for u in book["units"] for p in u["pages"] if p.get("type"))
+            extra = f" · 유형 {types}" if series != "실력매칭" else ""
+            flag = f" · ⚠️ 이름 못 읽음 {book['missingType']}" if book["missingType"] else ""
+            skipped = book["pageCount"] - book["parsedPages"]
+            print(f"✅ {SERIES_TITLE[series]} {grade}: 단원 {len(book['units'])} · "
+                  f"읽은 쪽 {book['parsedPages']}/{book['pageCount']}"
+                  f"{f' (건너뜀 {skipped})' if skipped else ''}{extra}{flag}")
+
+    rows = compare_companions(books, planner_books, companions)
+    if rows:
+        added = [r for r in rows if r["onlyInCompanion"]]
+        split = [r for r in rows if r["splitOfPlanner"]]
+        print(f"\n📐 본책 대조: 대단원 {len(rows)} · 진도북 개념을 **쪼갠** 단원 {len(split)}"
+              f" · **새 이름**이 있는 단원 {len(added)}")
+        for r in added[:24]:
+            print(f"   [새] {SERIES_TITLE[r['series']]} {r['grade']} {r['unit']}: "
+                  + " / ".join(r["onlyInCompanion"]))
+
+    # 문서는 **전권(진도북 24 + 딸림책 24)**을 돌렸을 때만 쓴다 — 부분 실행이
     # 덮어쓰면 나머지가 문서에서 사라진다 (2026-08-20 「되돌리기 원장 덮어쓰기」 자리).
-    if len(books) == len(BOOKS) and len(planner_books) == len(APP_BOOKS) + len(SKILL_BOOKS):
+    all_books = len(books) == len(BOOKS)
+    all_planner = len(planner_books) == len(APP_BOOKS) + len(SKILL_BOOKS)
+    all_comp = len(companions) == len(MATCH_CONCEPT_BOOKS) + len(BOOST_BOOKS) + len(MATCH_SKILL_BOOKS)
+    if all_books and all_planner and all_comp:
         DOC_PATH.parent.mkdir(parents=True, exist_ok=True)
-        DOC_PATH.write_text(render_md(books, planner_books), encoding="utf-8")
+        DOC_PATH.write_text(render_md(books, planner_books, companions, rows), encoding="utf-8")
         print(f"📄 카탈로그 문서 → {DOC_PATH}")
     else:
         print(f"(부분 실행 — {DOC_PATH} 는 갱신하지 않음)")
