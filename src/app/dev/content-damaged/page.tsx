@@ -14,8 +14,14 @@ import { db } from "@/lib/db";
  * ⚠️ 읽기만 한다. 아무것도 안 바꾼다.
  * 학년 필터·페이지네이션은 URL 쿼리(`?grade=…&page=…`)로 — 서버 컴포넌트를
  * 유지해 클라이언트 상태 없이 링크만으로 동작한다.
+ *
+ * 🔴 "누락"은 본문 텍스트 손상과 그림 유실 둘 다에 쓰인다 — 「유리수 분류표
+ *    이미지가 누락되어」는 본문은 멀쩡하고 그림만 없는 경우다(별도 결함,
+ *    docs/planning/16 회수 트랙 대상). 2026-08-23 원장님 확인 후 그림/이미지/
+ *    사진을 언급하는 사유는 여기서 뺀다 — "진짜 손상"만 남긴다.
  */
 const DAMAGE_KEYWORDS = /손상|깨|누락|오타|결손|훼손/;
+const FIGURE_MENTION = /그림|이미지|사진/;
 
 const GRADE_ORDER = [
   "중1",
@@ -44,7 +50,9 @@ async function loadDamagedReasons(): Promise<Map<string, string>> {
   const rows = JSON.parse(raw) as Array<{ id: string; reason: string }>;
   const map = new Map<string, string>();
   for (const r of rows) {
-    if (DAMAGE_KEYWORDS.test(r.reason)) map.set(r.id, r.reason);
+    if (DAMAGE_KEYWORDS.test(r.reason) && !FIGURE_MENTION.test(r.reason)) {
+      map.set(r.id, r.reason);
+    }
   }
   return map;
 }
