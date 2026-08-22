@@ -12,13 +12,32 @@
  * 새는데, 조용히 0이 되면 「없다」와 「못 센다」를 구분할 수 없다
  * (CLAUDE.md 2026-08-18 `report-missing-figures.ts` 와 같은 태도).
  */
+import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
+  supportedTiers,
 } from "../../src/lib/elementary/generate";
 
 /** 여러 씨앗으로 봐야 «가끔 어기는» 생성기가 드러난다. */
 const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
+
+type Unit = ReturnType<typeof elementaryUnits>[number];
+
+/**
+ * 이 소단원이 낼 수 있는 문항 갈래 — 표준(`undefined`) + 등록된 난이도 4단 (D-71·D-72).
+ *
+ * ⚠️ **갈래를 안 세면 그 축은 가드 밖이다.** 2026-08-23 실측: 파일럿 갈래에
+ * 「정답 +7 · KaTeX 미감쌈 · 맨 숫자 999」를 심었는데 판정기 넷이 **전부 초록**이었다.
+ * 갈래가 없는 소단원은 표준 하나뿐이라 예전과 완전히 같다.
+ */
+function variantsOf(unit: Unit): (ElemTier | undefined)[] {
+  return supportedTiers(unit).length > 0
+    ? [undefined, ...ELEM_TIERS]
+    : [undefined];
+}
+
+const tierLabel = (tier: ElemTier | undefined) => (tier ? ` «${tier}»` : "");
 
 /** 발문에서 수를 뽑는다 — KaTeX 안팎을 가리지 않는다. */
 function numbers(text: string): number[] {
@@ -143,10 +162,73 @@ type Check = {
    * **거짓 경보는 가드를 끈다.**
    */
   when?: (section: string) => boolean;
+  /**
+   * **식이 없는 발문**에 쓰는 느슨한 판정 — 난이도 갈래의 기본·응용·심화 전용.
+   *
+   * ⚠️ `opShape` 는 「발문이 식 하나」를 전제한다(이 파일 위쪽 주석 참조). 그런데
+   * 기본·응용·심화는 **일부러** 문장형·역산형이다 — `우유 $2\,\mathrm{L}$를 $9$명이…`
+   * 는 분명히 (자연수)÷(자연수)인데 `a\div b` 가 없어서 구조 검사가 못 읽는다.
+   * 2026-08-23 에 갈래를 순회에 넣자마자 그 부류로 **거짓 경보 6건**이 났다.
+   * **거짓 경보는 가드를 끈다** — 그래서 구조 대신 **종류가 있는가**로 떨어뜨린다.
+   * 사각지대로 두지는 않는다: 종류가 없으면 여전히 위반이다.
+   */
+  loose?: (content: string) => boolean;
 };
 
 const notDecimalContext = (s: string) => !s.includes("소수");
 const decimalContext = (s: string) => s.includes("소수");
+
+/** 발문에 있는 수의 종류별 개수. `\square`·`□` 는 **구해야 할 수**라 어떤 종류로도 센다. */
+function kindCounts(
+  c: string,
+): Record<Operand["kind"], number> & { 미지수: number } {
+  const stripped = c
+    .replace(/\frac\{\d+\}\{\d+\}/g, " ")
+    .replace(/\d+\.\d+/g, " ");
+  return {
+    분수: fracs(c).length,
+    소수: decimalPlaces(c).length,
+    자연수: (stripped.match(/\d+/g) ?? []).length,
+    미지수: (c.match(/\square|□/g) ?? []).length,
+  };
+}
+
+/** 두 피연산자 «종류»가 발문에 있기는 한가. 없으면 미지수 자리로 갈음한다. */
+function kindsPresent(
+  left: Operand["kind"],
+  right: Operand["kind"],
+): (content: string) => boolean {
+  return (c) => {
+    const have = kindCounts(c);
+    let wild = have.미지수;
+    for (const k of [left, right]) {
+      if (have[k] > 0) {
+        have[k] -= 1;
+        continue;
+      }
+      if (wild > 0) {
+        wild -= 1;
+        continue;
+      }
+      return false;
+    }
+    return true;
+  };
+}
+
+/** 「(A)op(B)」 검사 하나 — 식이 있으면 구조로, 없으면 종류로 본다. */
+function opCheck(
+  needle: string,
+  op: "div" | "times",
+  left: Operand["kind"],
+  right: Operand["kind"],
+): Check {
+  return {
+    needle,
+    ok: opShape(op, left, right),
+    loose: kindsPresent(left, right),
+  };
+}
 
 const CHECKS: Check[] = [
   {
@@ -223,15 +305,15 @@ const CHECKS: Check[] = [
   // needle 이 실제로 닿는 소단원은 `scripts/qa` 에서 전수 열거로 확인했다 —
   // 「(분수)×(분수)」 는 일부러 안 만든다: 2-1-4 의 그 구절은 **답** 쪽 조건이라
   // 발문에 걸면 멀쩡한 소단원이 통째로 위반이 된다.
-  { needle: "(분수)×(자연수)", ok: opShape("times", "분수", "자연수") },
-  { needle: "(자연수)×(분수)", ok: opShape("times", "자연수", "분수") },
-  { needle: "(자연수)÷(자연수)", ok: opShape("div", "자연수", "자연수") },
-  { needle: "(분수)÷(자연수)", ok: opShape("div", "분수", "자연수") },
-  { needle: "(소수)÷(자연수)", ok: opShape("div", "소수", "자연수") },
-  { needle: "(분수)÷(분수)", ok: opShape("div", "분수", "분수") },
-  { needle: "(자연수)÷(분수)", ok: opShape("div", "자연수", "분수") },
-  { needle: "(소수)÷(소수)", ok: opShape("div", "소수", "소수") },
-  { needle: "(자연수)÷(소수)", ok: opShape("div", "자연수", "소수") },
+  opCheck("(분수)×(자연수)", "times", "분수", "자연수"),
+  opCheck("(자연수)×(분수)", "times", "자연수", "분수"),
+  opCheck("(자연수)÷(자연수)", "div", "자연수", "자연수"),
+  opCheck("(분수)÷(자연수)", "div", "분수", "자연수"),
+  opCheck("(소수)÷(자연수)", "div", "소수", "자연수"),
+  opCheck("(분수)÷(분수)", "div", "분수", "분수"),
+  opCheck("(자연수)÷(분수)", "div", "자연수", "분수"),
+  opCheck("(소수)÷(소수)", "div", "소수", "소수"),
+  opCheck("(자연수)÷(소수)", "div", "자연수", "소수"),
   {
     needle: "몫이 1보다 작은",
     ok: (c) => {
@@ -487,15 +569,19 @@ const FIXTURES: Fixture[] = [
 function verdict(
   content: string,
   section: string,
+  /** 식이 없어도 되는 발문인가 — 난이도 갈래의 **기본·응용·심화**가 그렇다. */
+  allowLoose = false,
 ): { kind: "통과" | "위반" | "미판정"; needles: string[] } {
   const seen: string[] = [];
+  const pass = (c: Check, alt: string) =>
+    c.ok(content, alt) || (allowLoose && (c.loose?.(content) ?? false));
   for (const alt of section.split(/\s*,\s*/)) {
     const checks = CHECKS.filter(
       (c) => alt.includes(c.needle) && (c.when?.(section) ?? true),
     );
     if (checks.length === 0) continue;
     seen.push(...checks.map((c) => c.needle));
-    if (checks.every((c) => c.ok(content, alt)))
+    if (checks.every((c) => pass(c, alt)))
       return { kind: "통과", needles: seen };
   }
   return { kind: seen.length > 0 ? "위반" : "미판정", needles: seen };
@@ -537,28 +623,40 @@ const unjudged: string[] = [];
 let checked = 0;
 
 for (const unit of units) {
-  const verdicts = SEEDS.map((s) => ({
-    seed: s,
-    v: verdict(generateElementaryProblem(unit, s).content, unit.section),
-  }));
-  if (verdicts.every((x) => x.v.kind === "미판정")) {
-    // 조건어가 괄호 안에 있는데 우리 목록에 없는 것만 «미판정» 으로 센다.
-    if (/\([^)]*(?:수|분수)\)/.test(unit.section)) {
-      unjudged.push(`${unit.grade} ${unit.section}`);
+  // 난이도 갈래도 **같은 소단원 이름을 단다** — 「(1보다 작은 소수)」 소단원의 심화가
+  // `2.0` 을 내면 그것도 위반이다. 갈래를 안 세면 그 축이 통째로 가드 밖이다(D-72).
+  for (const tier of variantsOf(unit)) {
+    const where = `${unit.grade} ${unit.section}${tierLabel(tier)}`;
+    const verdicts = SEEDS.map((s) => ({
+      seed: s,
+      v: verdict(
+        generateElementaryProblem(unit, s, tier).content,
+        unit.section,
+        // 표준·연산은 식이 그대로 나오는 꼴이라 구조를 그대로 요구한다.
+        tier !== undefined && tier !== "연산",
+      ),
+    }));
+    if (verdicts.every((x) => x.v.kind === "미판정")) {
+      // 조건어가 괄호 안에 있는데 우리 목록에 없는 것만 «미판정» 으로 센다.
+      // 갈래마다 세면 한 소단원이 다섯 번 찍히므로 **표준에서만** 적는다.
+      if (tier === undefined && /\([^)]*(?:수|분수)\)/.test(unit.section)) {
+        unjudged.push(`${unit.grade} ${unit.section}`);
+      }
+      continue;
     }
-    continue;
-  }
-  checked += 1;
-  const bad = verdicts.filter((x) => x.v.kind === "위반");
-  if (bad.length > 0) {
-    const sample = generateElementaryProblem(
-      unit,
-      bad[0]!.seed,
-    ).content.replace(/\n/g, " ");
-    const needles = [...new Set(bad.flatMap((x) => x.v.needles))].join(" · ");
-    broken.push(
-      `${unit.grade} ${unit.section}\n      조건 「${needles}」 · 씨앗 ${bad.length}/${SEEDS.length} 위반\n      예: ${sample}`,
-    );
+    checked += 1;
+    const bad = verdicts.filter((x) => x.v.kind === "위반");
+    if (bad.length > 0) {
+      const sample = generateElementaryProblem(
+        unit,
+        bad[0]!.seed,
+        tier,
+      ).content.replace(/\n/g, " ");
+      const needles = [...new Set(bad.flatMap((x) => x.v.needles))].join(" · ");
+      broken.push(
+        `${where}\n      조건 「${needles}」 · 씨앗 ${bad.length}/${SEEDS.length} 위반\n      예: ${sample}`,
+      );
+    }
   }
 }
 

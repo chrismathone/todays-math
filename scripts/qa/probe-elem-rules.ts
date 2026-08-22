@@ -8,9 +8,11 @@
  *
  * 「끝났다」 = 이 스크립트가 **전 규칙 0** 을 찍는 것.
  */
+import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
+  supportedTiers,
 } from "../../src/lib/elementary/generate";
 import {
   arabicPolygons,
@@ -22,6 +24,25 @@ import {
 
 /** 다양성을 재는 씨앗들. 하나로는 「늘 같은 도형」이 구조적으로 안 보인다. */
 const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
+
+type Unit = ReturnType<typeof elementaryUnits>[number];
+
+/**
+ * 이 소단원이 낼 수 있는 문항 갈래 — 표준(`undefined`) + 등록된 난이도 4단 (D-71·D-72).
+ *
+ * ⚠️ **갈래를 안 세면 그 축은 가드 밖이다.** 2026-08-23 에 실측했다 — 파일럿 갈래에
+ * 「정답 +7 · KaTeX 미감쌈 · 해설에 맨 숫자 999」를 심었는데 판정기 넷이 **전부 초록**이었다.
+ * 표준 문항만 뽑고 있었기 때문이다. 「없는 축은 변이시킬 수 없다」의 그 자리다.
+ *
+ * 갈래가 없는 소단원은 표준 하나뿐이라 예전과 완전히 같다.
+ */
+function variantsOf(unit: Unit): (ElemTier | undefined)[] {
+  return supportedTiers(unit).length > 0
+    ? [undefined, ...ELEM_TIERS]
+    : [undefined];
+}
+
+const tierLabel = (tier: ElemTier | undefined) => (tier ? ` «${tier}»` : "");
 
 const gradeArg = process.argv.slice(2).find((a) => a.startsWith("초"));
 const listAll = process.argv.includes("--list");
@@ -62,13 +83,66 @@ if (process.argv.includes("--selftest")) {
       false,
     ],
   ];
+  /*
+   * 갈래 순회 눈금 (D-72).
+   *
+   * 2026-08-23 실측: 갈래를 안 세면 「정답 +7 · KaTeX 미감쌈 · 해설에 맨 숫자 999」를
+   * 심어도 판정기 넷이 **전부 초록**이었다. 그래서 여기서 두 가지를 따로 잠근다 —
+   *   ㉠ **순회에 갈래가 들었나** (`variantsOf` 가 5가지를 내나)
+   *   ㉡ **든 것을 실제로 잡나** (R1 이 미감쌈·맨 숫자를 잡나)
+   * ㉠ 만 있으면 「돌기는 도는데 아무것도 안 보는」 순회를 못 걸러낸다.
+   *
+   * 이 판정기가 맡는 결함은 **R1·R2·R3·R4·R9** 다. 정답의 «값»이 틀린 것은
+   * `probe-elem-arithmetic` 몫이고 여기서는 구조적으로 안 잡힌다 — 그 경계도 아래에서 못 박는다.
+   */
+  const withTiers = elementaryUnits().find((u) => supportedTiers(u).length > 0);
+  const withoutTiers = elementaryUnits().find(
+    (u) => supportedTiers(u).length === 0,
+  );
+  rows.push(
+    [
+      "갈래 등록 소단원은 5가지를 훑는다",
+      variantsOf(withTiers!).length === 5,
+      true,
+    ],
+    [
+      "갈래 없는 소단원은 표준 1가지만",
+      variantsOf(withoutTiers!).length === 1,
+      true,
+    ],
+    // 양성 — 갈래 문항에 심었던 그 결함을 R1 이 잡아야 한다
+    ["정답을 KaTeX 로 안 감쌌다 — 걸려야", bareNumbers("117").length > 0, true],
+    [
+      "해설에 맨 숫자가 남았다 — 걸려야",
+      bareNumbers("답은 999. $11\\times10=110$입니다.").length > 0,
+      true,
+    ],
+    // 음성 — 깨끗한 갈래 문항은 통과해야 한다(거짓 경보는 가드를 끈다)
+    ["감싼 정답은 통과해야", bareNumbers("$110$").length === 0, true],
+    [
+      "깨끗한 해설은 통과해야",
+      bareNumbers(
+        "직사각형의 넓이는 가로와 세로의 곱입니다. $11\\times10=110$입니다.",
+      ).length === 0,
+      true,
+    ],
+    // 경계 — 값이 틀린 것은 이 판정기가 **못 잡는다**. arithmetic 몫이다.
+    [
+      "값만 틀린 정답은 여기서 안 걸린다(경계)",
+      bareNumbers("$117$").length === 0,
+      true,
+    ],
+  );
+
   let bad = 0;
   for (const [why, got, want] of rows) {
     if (got !== want) bad += 1;
     console.log(`  ${got === want ? "✅" : "❌"} ${why}`);
   }
   console.log(
-    bad === 0 ? "\n✅ R9-b 눈금 5건 (양성 1 · 음성 4)" : `\n❌ ${bad}건 어긋남`,
+    bad === 0
+      ? `\n✅ 눈금 ${rows.length}건 (R9-b 5 + 갈래 순회 7)`
+      : `\n❌ ${bad}건 어긋남 — **이 판정기를 믿지 마라**`,
   );
   process.exit(bad === 0 ? 0 : 1);
 }
@@ -85,42 +159,92 @@ const add = (rule: string, where: string, detail: string) =>
 /** 발문 중복은 **전체** 를 봐야 한다 — 학년을 걸러도 분모는 230 이다. */
 const allByContent = new Map<string, string>();
 for (const unit of elementaryUnits()) {
-  const p = generateElementaryProblem(unit);
-  const where = `${p.grade} ${p.section}`;
-  const prev = allByContent.get(p.content);
-  if (prev) {
-    if (!gradeArg || p.grade === gradeArg) {
-      add("R5 발문중복", where, `= ${prev}`);
+  for (const tier of variantsOf(unit)) {
+    const p = generateElementaryProblem(unit, undefined, tier);
+    const where = `${p.grade} ${p.section}${tierLabel(tier)}`;
+    const prev = allByContent.get(p.content);
+    if (prev) {
+      if (!gradeArg || p.grade === gradeArg) {
+        add("R5 발문중복", where, `= ${prev}`);
+      }
+    } else {
+      allByContent.set(p.content, where);
     }
-  } else {
-    allByContent.set(p.content, where);
   }
 }
 
+/** 실제로 몇 «갈래»를 훑었나. 소단원 수보다 커야 갈래가 순회에 든 것이다. */
+let visited = 0;
+
 for (const unit of units) {
-  const p = generateElementaryProblem(unit);
-  const where = `${p.grade} ${p.section}`;
-  const all = `${p.content}\n${p.answer}\n${p.solution}`;
+  for (const tier of variantsOf(unit)) {
+    visited += 1;
+    checkOne(unit, tier);
+  }
+}
 
-  const bare = [
-    ...bareNumbers(p.content).map((x) => `발문:${x}`),
-    ...bareNumbers(p.answer).map((x) => `정답:${x}`),
-    ...bareNumbers(p.solution).map((x) => `해설:${x}`),
-  ];
-  if (bare.length) add("R1 KaTeX밖숫자", where, bare.slice(0, 6).join(" "));
+function checkOne(unit: Unit, tier: ElemTier | undefined): void {
+  const items = SEEDS.map((s) => generateElementaryProblem(unit, s, tier));
+  const where = `${unit.grade} ${unit.section}${tierLabel(tier)}`;
 
-  const dec = runawayDecimals(all);
-  if (dec.length) add("R2 샌소수", where, dec[0]!);
+  /*
+   * R1~R4 를 **전 씨앗**에 댄다.
+   *
+   * ⚠️ 예전에는 기본 씨앗 **하나**만 봤다. 그러면 「어떤 씨앗에서만 나는 결함」이
+   * 구조적으로 안 보인다 — 2026-08-23 에 실측했다: 갈래 문항의 직사각형 가지에
+   * 결함을 심었는데 기본 씨앗은 정사각형 가지를 타서 **초록**이었다.
+   * R9 용으로 이 8개를 이미 뽑고 있으므로 비용은 사실상 0이다.
+   *
+   * 같은 결함이 여덟 번 찍히지 않게 규칙마다 **한 번만** 적고 몇 씨앗에서 났는지 센다.
+   */
+  const once = (rule: string, hitsPerSeed: (string | null)[]) => {
+    const bad = hitsPerSeed
+      .map((d, i) => (d ? { d, seed: SEEDS[i]! } : null))
+      .filter((x): x is { d: string; seed: number } => x !== null);
+    if (bad.length === 0) return;
+    const tail =
+      bad.length === SEEDS.length
+        ? "전 씨앗"
+        : `씨앗 ${bad.length}/${SEEDS.length}`;
+    add(rule, where, `${bad[0]!.d} (${tail}, 예: ${bad[0]!.seed})`);
+  };
 
-  const adv = tooAdvanced(p.orderIndex, p.solution);
-  if (adv.length) add("R3 학년밖연산", where, adv.join(","));
-
-  const poly = [...arabicPolygons(all), ...unfilledPlaceholders(all)];
-  if (poly.length) add("R4 도형이름", where, poly.join(","));
+  once(
+    "R1 KaTeX밖숫자",
+    items.map((p) => {
+      const bare = [
+        ...bareNumbers(p.content).map((x) => `발문:${x}`),
+        ...bareNumbers(p.answer).map((x) => `정답:${x}`),
+        ...bareNumbers(p.solution).map((x) => `해설:${x}`),
+      ];
+      return bare.length ? bare.slice(0, 6).join(" ") : null;
+    }),
+  );
+  once(
+    "R2 샌소수",
+    items.map(
+      (p) =>
+        runawayDecimals(`${p.content}\n${p.answer}\n${p.solution}`)[0] ?? null,
+    ),
+  );
+  once(
+    "R3 학년밖연산",
+    items.map((p) => {
+      const adv = tooAdvanced(p.orderIndex, p.solution);
+      return adv.length ? adv.join(",") : null;
+    }),
+  );
+  once(
+    "R4 도형이름",
+    items.map((p) => {
+      const all = `${p.content}\n${p.answer}\n${p.solution}`;
+      const poly = [...arabicPolygons(all), ...unfilledPlaceholders(all)];
+      return poly.length ? poly.join(",") : null;
+    }),
+  );
 
   // R9 — 씨앗을 바꿔도 문항이 통째로 같으면 단조롭다.
   // 원장님: 「항상 도형은 다양할수록 좋음. 너무 단조로우면 재미도 학습의욕도 떨어짐」
-  const items = SEEDS.map((s) => generateElementaryProblem(unit, s));
   const variants = new Set(items.map((i) => i.content));
   if (variants.size === 1)
     add("R9 고정문항", where, `씨앗 ${SEEDS.length}개 전부 동일`);
@@ -149,7 +273,10 @@ for (const h of hits) {
   byRule.get(h.rule)!.push(h);
 }
 
-console.log(`대상 소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""}\n`);
+console.log(
+  `대상 소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""} · ` +
+    `훑은 갈래 ${visited}개 (표준 + 등록된 난이도 4단)\n`,
+);
 if (hits.length === 0) {
   console.log("✅ 전 규칙 0");
 } else {

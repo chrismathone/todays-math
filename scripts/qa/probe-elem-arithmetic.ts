@@ -32,12 +32,31 @@ import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 
+import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
+  supportedTiers,
 } from "../../src/lib/elementary/generate";
 
 const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
+
+type Unit = ReturnType<typeof elementaryUnits>[number];
+
+/**
+ * 이 소단원이 낼 수 있는 문항 갈래 — 표준(`undefined`) + 등록된 난이도 4단 (D-71·D-72).
+ *
+ * ⚠️ **갈래를 안 세면 그 축은 가드 밖이다.** 2026-08-23 실측: 파일럿 갈래에
+ * 「정답 +7 · KaTeX 미감쌈 · 맨 숫자 999」를 심었는데 판정기 넷이 **전부 초록**이었다.
+ * 갈래가 없는 소단원은 표준 하나뿐이라 예전과 완전히 같다.
+ */
+function variantsOf(unit: Unit): (ElemTier | undefined)[] {
+  return supportedTiers(unit).length > 0
+    ? [undefined, ...ELEM_TIERS]
+    : [undefined];
+}
+
+const tierLabel = (tier: ElemTier | undefined) => (tier ? ` «${tier}»` : "");
 
 // ── 유리수 ─────────────────────────────────────────────────────────────
 type Rat = { n: number; d: number };
@@ -846,28 +865,33 @@ let readable = 0;
 let unreadable = 0;
 
 for (const unit of units) {
-  const results = SEEDS.map((s) => {
-    const p = generateElementaryProblem(unit, s);
-    return { seed: s, p, kind: judge(p.content, p.answer) };
-  });
-  if (results.every((r) => r.kind === "못읽음")) {
-    unreadable += 1;
-    continue;
-  }
-  readable += 1;
-  const first = results.find((r) => r.kind !== "못읽음")!;
-  const who = readAny(first.p.content, first.p.answer)?.r.name ?? "?";
-  byReader.set(who, (byReader.get(who) ?? 0) + 1);
+  // 난이도 갈래도 값을 묻는다 — 심화의 네 걸음 사슬이 한 걸음 어긋나면 여기서 잡혀야 한다.
+  // 갈래를 안 세면 그 축이 통째로 가드 밖이다(D-72).
+  for (const tier of variantsOf(unit)) {
+    const where = `${unit.grade} ${unit.section}${tierLabel(tier)}`;
+    const results = SEEDS.map((s) => {
+      const p = generateElementaryProblem(unit, s, tier);
+      return { seed: s, p, kind: judge(p.content, p.answer) };
+    });
+    if (results.every((r) => r.kind === "못읽음")) {
+      unreadable += 1;
+      continue;
+    }
+    readable += 1;
+    const first = results.find((r) => r.kind !== "못읽음")!;
+    const who = readAny(first.p.content, first.p.answer)?.r.name ?? "?";
+    byReader.set(who, (byReader.get(who) ?? 0) + 1);
 
-  const bad = results.filter((r) => r.kind === "틀림");
-  if (bad.length > 0) {
-    const b = bad[0]!;
-    const t = readAny(b.p.content, b.p.answer)?.got;
-    wrong.push(
-      `${unit.grade} ${unit.section}\n      씨앗 ${bad.length}/${SEEDS.length} 틀림\n` +
-        `      ${b.p.content.replace(/\n/g, " ")}\n` +
-        `      정답 ${b.p.answer}   ·   참값 ${t ? showVal(t.truth) : "?"}`,
-    );
+    const bad = results.filter((r) => r.kind === "틀림");
+    if (bad.length > 0) {
+      const b = bad[0]!;
+      const t = readAny(b.p.content, b.p.answer)?.got;
+      wrong.push(
+        `${where}\n      씨앗 ${bad.length}/${SEEDS.length} 틀림\n` +
+          `      ${b.p.content.replace(/\n/g, " ")}\n` +
+          `      정답 ${b.p.answer}   ·   참값 ${t ? showVal(t.truth) : "?"}`,
+      );
+    }
   }
 }
 
