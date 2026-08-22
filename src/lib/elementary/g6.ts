@@ -1,5 +1,6 @@
 import type { UnitSeed } from "../../../prisma/seed-data/units";
 
+import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make } from "./make";
 import { divFrac, fmtFrac, gcd, lcm, mulFrac } from "./math";
@@ -1513,6 +1514,450 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     cyl,
   );
 }
+
+// ── 난이도 갈래 (D-71 축 · D-72 확대) — 초6 `1-1 분수의 나눗셈` ──────────────
+//
+// 축은 D-72 그대로다. 소단원이 달라도 같은 잣대다.
+//   연산 절차 한 번(식·값이 그대로) · 기본 식을 스스로 세움(문장 한 겹)
+//   응용 두 단계(중간값·다른 개념 결합) · 심화 역산·조건 조합
+//
+// 유형 재료는 `tracks/cube-concept-catalog.md` 초6 1-1 에서 채집했다 —
+// 실력 6-1 의 「곱셈과 나눗셈의 관계 활용」·「몫이 가장 작은(큰) 나눗셈식 만들기」·
+// 「정다각형에서 변의 길이 구하기」·「도형의 넓이를 이용하여 길이 구하기」,
+// 응용 6-1 의 「몫이 가장 큰(작은) 분수의 나눗셈식 만들기」가 **심화가 거꾸로 묻는 것**이다.
+//
+// ⚠️ 소단원 조건은 갈래 넷이 **전부** 지켜야 한다. 그런데 `probe-elem-section-conditions`
+// 의 `opShape` 는 발문에 **리터럴 `\div` 식**을 요구한다(식이 없으면 위반). 1-1-1·1-1-2 의
+// 기본·응용·심화는 축이 정한 대로 **문장형**이라 그 추출기에 걸린다 — 그쪽 주석이
+// 「문장형이 생기면 그때 이 추출기를 넓힌다」고 예고한 자리다. 축을 굽혀 식을 끼워 넣지
+// 않는다(발문이 식을 주면 그건 1단이다). 넓히는 일은 판정기 몫으로 보고했다.
+
+/**
+ * 수 뒤의 조사는 **읽는 소리**가 정한다 — `84`(팔십사)는 받침이 없고 `13`(십삼)은 있다.
+ * `josa()` 는 한글 낱말용이라 숫자에는 쓸 수 없다(`$84$` 의 마지막 글자는 `4` 다).
+ */
+function numHasFinal(value: number): boolean {
+  const last = Math.abs(Math.trunc(value)) % 10;
+  if (last === 0) return true; // 십·백·천·만 — 모두 받침이 있다
+  return [1, 3, 6, 7, 8].includes(last); // 일·삼·육·칠·팔
+}
+
+function numJosa(
+  value: number,
+  withFinal: string,
+  withoutFinal: string,
+): string {
+  return numHasFinal(value) ? withFinal : withoutFinal;
+}
+
+/** 수 뒤의 「로/으로」. **ㄹ 받침은 「로」**다(일로·칠로·팔로) — 받침 유무만으로는 못 가른다. */
+function numRo(value: number): string {
+  const last = Math.abs(Math.trunc(value)) % 10;
+  if (last === 0) return "으로";
+  return last === 3 || last === 6 ? "으로" : "로";
+}
+
+/**
+ * `fmtFrac` 이 낸 글자에서 **마지막으로 읽히는 수**.
+ * `11\frac{1}{4}` 는 「십일과 사분의 일」이라 끝소리가 **분자** 다.
+ */
+function lastSpokenNumber(latex: string): number {
+  const frac = latex.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+  if (frac) return Number(frac[1]);
+  const nums = latex.match(/\d+/g);
+  return nums ? Number(nums[nums.length - 1]) : 0;
+}
+
+/**
+ * 「똑같이 나누어 담는」 소재. 나눗셈이 자연스러운 것만 — 단위와 **그 단위의 조사**까지 묶는다.
+ * `kg` 는 「킬로그램」이라 「을」, `L` 은 「리터」라 「를」다 — 라틴 글자로는 못 가른다.
+ */
+const SHARE_STUFF = [
+  { thing: "우유", unit: "L", unitJosa: "를", verb: "나누어 마시려고" },
+  { thing: "주스", unit: "L", unitJosa: "를", verb: "나누어 마시려고" },
+  { thing: "밀가루", unit: "kg", unitJosa: "을", verb: "나누어 담으려고" },
+  { thing: "쌀", unit: "kg", unitJosa: "을", verb: "나누어 담으려고" },
+  { thing: "물", unit: "L", unitJosa: "를", verb: "나누어 담으려고" },
+  { thing: "설탕", unit: "kg", unitJosa: "을", verb: "나누어 담으려고" },
+] as const;
+
+/** 「자르는」 소재 — 길이라 `m` 로 잰다. */
+const CUT_STUFF = ["끈", "리본", "철사", "색 테이프", "노끈"] as const;
+
+/** 정다각형 결합에 쓰는 변의 수. `polyName` 표 안이고, 초6 이 이름을 아는 범위다. */
+const POLY_SIDES = [3, 4, 5, 6, 8] as const;
+
+/**
+ * 「어떤 수」 역산의 재료 — 잘못하여 **곱한** 결과에서 어떤 수를 되짚는다.
+ *
+ * 구성이 보장하는 것: `wrong = some * k` 라 되짚는 나눗셈이 **딱 떨어진다**.
+ * 그리고 `k` 가 `some` 을 안 나누게 골라 **바른 값이 분수**로 남는다 —
+ * 자연수로 떨어지면 「몫을 분수로」라는 이 대단원의 알맹이가 사라진다.
+ */
+function wrongTimes(rng: Rng): { some: number; k: number; wrong: number } {
+  for (let t = 0; t < 200; t += 1) {
+    const k = intBetween(rng, 3, 9);
+    const some = intBetween(rng, 2, 20);
+    if (some % k === 0) continue; // 바른 값이 자연수가 되면 분수 문항이 아니다
+    return { some, k, wrong: some * k };
+  }
+  throw new Error("역산 재료를 못 만들었습니다");
+}
+
+// ── 1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기 ──
+
+/** 연산 — 식이 그대로 주어진다. 절차 한 번. */
+function natDivCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = intBetween(rng, 2, b - 1);
+  const done = fmtFrac(a, b);
+  const chain =
+    gcd(a, b) === 1
+      ? `${a}\\div${b}=\\frac{${a}}{${b}}`
+      : `${a}\\div${b}=\\frac{${a}}{${b}}=${done}`;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫을 분수로 나타내시오.`,
+    expr(done),
+    `나누어지는 수를 분자, 나누는 수를 분모로 씁니다. ${expr(chain)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 「똑같이 나눈 한 부분의 양」이라 식을 학생이 세운다. */
+function natDivWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const people = intBetween(rng, 3, 9);
+  const amount = intBetween(rng, 2, people - 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(amount, s.unit)}${s.unitJosa} ${num(people)}명이 똑같이 ${s.verb} 합니다. ` +
+      `한 사람이 갖는 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(fmtFrac(amount, people)),
+    `전체를 사람 수로 나눕니다. ${expr(`${amount}\\div${people}=${fmtFrac(amount, people)}`)}`,
+  );
+}
+
+/**
+ * 응용 — 두 단계. 중간값을 만들거나 도형과 결합한다.
+ *
+ * ⓐ 남은 양을 먼저 구하고(뺄셈) 나눈다. ⓑ 정다각형의 변의 수를 떠올려(다른 개념) 나눈다.
+ * 둘 다 몫이 자연수로 떨어지면 이 대단원이 아니게 되므로 **구성이 분수를 보장한다.**
+ */
+function natDivApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const sides = pick(rng, POLY_SIDES);
+    // 둘레가 변의 수로 나누어떨어지면 한 변이 자연수가 된다 — 분수 몫을 강제한다.
+    const per = pick(
+      rng,
+      Array.from({ length: 20 }, (_, i) => i + 5).filter(
+        (v) => v % sides !== 0,
+      ),
+    );
+    return make(
+      unit,
+      `둘레가 ${unitNum(per, "m")} 인 ${polyName(sides, true)} 모양 화단이 있습니다. 한 변의 길이는 몇 m입니까?`,
+      expr(fmtFrac(per, sides)),
+      `${polyName(sides, true)}은 변의 길이가 모두 같으므로 둘레를 변의 수 ${num(sides)}${numRo(sides)} 나눕니다. ` +
+        `${expr(`${per}\\div${sides}=${fmtFrac(per, sides)}`)}`,
+    );
+  }
+  const thing = pick(rng, CUT_STUFF);
+  const people = intBetween(rng, 3, 8);
+  const used = intBetween(rng, 1, 5);
+  // 남은 양이 사람 수로 나누어떨어지지 않게 골라 몫이 분수로 남는다.
+  const left = pick(
+    rng,
+    Array.from({ length: 16 }, (_, i) => i + 2).filter((v) => v % people !== 0),
+  );
+  const total = left + used;
+  return make(
+    unit,
+    `${thing} ${unitNum(total, "m")} 중에서 ${unitNum(used, "m")}${josa("m", "을", "를")} 쓰고, ` +
+      `남은 ${thing}${josa(thing, "을", "를")} ${num(people)}명이 똑같이 나누어 가졌습니다. ` +
+      `한 사람이 가진 ${thing}${josa(thing, "은", "는")} 몇 m입니까?`,
+    expr(fmtFrac(left, people)),
+    `먼저 남은 ${thing}의 길이를 구합니다. ${expr(`${total}-${used}=${left}`)} 이므로 ${num(left)} m입니다. ` +
+      `이것을 ${num(people)}명이 나누면 ${expr(`${left}\\div${people}=${fmtFrac(left, people)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산·조건 조합.
+ *
+ * ⓐ 「잘못하여 곱했더니」 — 곱셈과 나눗셈의 관계로 어떤 수를 되짚고 다시 나눈다(D-72 예시 그대로).
+ * ⓑ 수 카드로 **몫이 가장 큰** 나눗셈식 만들기 — 「가장 큰 ÷ 가장 작은」을 스스로 고른다.
+ */
+function natDivDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const r = wrongTimes(rng);
+    return make(
+      unit,
+      `어떤 수를 ${num(r.k)}${numRo(r.k)} 나누어야 할 것을 잘못하여 ${num(r.k)}${numJosa(r.k, "을", "를")} 곱했더니 ${num(r.wrong)}${numJosa(r.wrong, "이", "가")} 되었습니다. ` +
+        `바르게 계산한 값을 분수로 나타내시오.`,
+      expr(fmtFrac(r.some, r.k)),
+      `잘못 계산한 식에서 어떤 수를 먼저 구합니다. ${expr(`${r.wrong}\\div${r.k}=${r.some}`)} 이므로 어떤 수는 ${num(r.some)}입니다. ` +
+        `바르게 계산하면 ${expr(`${r.some}\\div${r.k}=${fmtFrac(r.some, r.k)}`)} 입니다.`,
+    );
+  }
+  // 수 카드 셋 — 서로 달라야 「가장 큰·가장 작은」이 하나로 정해진다.
+  const cards: number[] = [];
+  while (cards.length < 3) {
+    const v = intBetween(rng, 2, 9);
+    if (!cards.includes(v)) cards.push(v);
+  }
+  const hi = Math.max(...cards);
+  const lo = Math.min(...cards);
+  return make(
+    unit,
+    `수 카드 ${num(cards[0]!)}, ${num(cards[1]!)}, ${num(cards[2]!)} 중에서 두 장을 골라 (자연수)÷(자연수)를 만들려고 합니다. ` +
+      `몫이 가장 큰 나눗셈식을 만들고 그 몫을 분수로 나타내시오.`,
+    expr(fmtFrac(hi, lo)),
+    `몫이 가장 크려면 나누어지는 수는 가장 크고 나누는 수는 가장 작아야 합니다. ` +
+      `가장 큰 수는 ${num(hi)}, 가장 작은 수는 ${num(lo)}이므로 ${expr(`${hi}\\div${lo}=${fmtFrac(hi, lo)}`)} 입니다.`,
+  );
+}
+
+// ── 1-1-2 (분수)÷(자연수) 알아보기 ──
+
+/** 연산 — 식 그대로. 분모에 나누는 수를 곱하면 끝난다. */
+function fracNatCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 7);
+  const d = intBetween(rng, 2, 9);
+  const top = coprimeTop(rng, d);
+  const [p, q] = divFrac(top, d, k, 1);
+  return make(
+    unit,
+    `다음을 계산하시오.\n\n${expr(`\\frac{${top}}{${d}}\\div${k}=\\square`)}`,
+    expr(fmtFrac(p, q)),
+    `분자는 그대로 두고 분모에 나누는 수를 곱합니다. ` +
+      `${expr(`\\frac{${top}}{${d}}\\div${k}=\\frac{${top}}{${d}\\times${k}}=${fmtFrac(p, q)}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 나눌 양이 분수라는 것만 다르다. */
+function fracNatWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const d = intBetween(rng, 3, 9);
+  const top = coprimeTop(rng, d);
+  const people = intBetween(rng, 2, 6);
+  const [p, q] = divFrac(top, d, people, 1);
+  return make(
+    unit,
+    `${s.thing} ${expr(`\\frac{${top}}{${d}}`)} ${s.unit}${s.unitJosa} ${num(people)}명이 똑같이 ${s.verb} 합니다. ` +
+      `한 사람이 갖는 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(fmtFrac(p, q)),
+    `전체를 사람 수로 나눕니다. 분자는 그대로 두고 분모에 ${num(people)}${numJosa(people, "을", "를")} 곱하면 ` +
+      `${expr(`\\frac{${top}}{${d}}\\div${people}=\\frac{${top}}{${d}\\times${people}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 응용 — 두 단계.
+ *
+ * ⓐ 두 번 자른다(나눗셈 두 번). ⓑ 직사각형의 넓이와 가로에서 세로를 구한다
+ * (카탈로그 「도형의 넓이를 이용하여 길이 구하기」 — 넓이는 곱이라는 것을 먼저 떠올려야 한다).
+ */
+function fracNatApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, CUT_STUFF);
+    const d = intBetween(rng, 2, 7);
+    const top = coprimeTop(rng, d);
+    const first = intBetween(rng, 2, 5);
+    const second = intBetween(rng, 2, 4);
+    const [m1, n1] = divFrac(top, d, first, 1);
+    const [p, q] = divFrac(m1, n1, second, 1);
+    return make(
+      unit,
+      `길이가 ${expr(`\\frac{${top}}{${d}}`)} m인 ${thing}${josa(thing, "을", "를")} 똑같이 ${num(first)}도막으로 자른 뒤, ` +
+        `그중 한 도막을 다시 똑같이 ${num(second)}도막으로 잘랐습니다. 가장 짧은 도막의 길이는 몇 m입니까?`,
+      expr(fmtFrac(p, q)),
+      `먼저 ${num(first)}도막으로 자르면 한 도막은 ${expr(`\\frac{${top}}{${d}}\\div${first}=${fmtFrac(m1, n1)}`)} m입니다. ` +
+        `이것을 다시 ${num(second)}도막으로 자르면 ${expr(`${fmtFrac(m1, n1)}\\div${second}=${fmtFrac(p, q)}`)} m입니다.`,
+    );
+  }
+  const width = intBetween(rng, 2, 5);
+  const parts = intBetween(rng, 2, 4);
+  const d = intBetween(rng, 3, 9);
+  const top = coprimeTop(rng, d);
+  const [hn, hd] = divFrac(top, d, width, 1); // 세로
+  const [p, q] = divFrac(hn, hd, parts, 1); // 한 도막
+  return make(
+    unit,
+    `넓이가 ${expr(`\\frac{${top}}{${d}}`)} m²이고 가로가 ${unitNum(width, "m")} 인 직사각형 모양 종이가 있습니다. ` +
+      `이 종이의 세로를 똑같이 ${num(parts)}도막으로 나누면 한 도막의 길이는 몇 m입니까?`,
+    expr(fmtFrac(p, q)),
+    `(직사각형의 넓이)=(가로)×(세로)이므로 세로는 ${expr(`\\frac{${top}}{${d}}\\div${width}=${fmtFrac(hn, hd)}`)} m입니다. ` +
+      `이것을 ${num(parts)}도막으로 나누면 ${expr(`${fmtFrac(hn, hd)}\\div${parts}=${fmtFrac(p, q)}`)} m입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산.
+ *
+ * ⓐ 몫에서 **어떤 수를 되짚어** 다른 수로 다시 나눈다. ⓑ 「$\square$ 에 알맞은 수」.
+ *
+ * ⚠️ 「**잘못하여 곱했더니**」 꼴은 이 소단원에 못 쓴다. 잘못 계산한 결과 `(어떤 수)×k` 는
+ * $1$ 을 넘어(때로는 자연수라) 발문에 **진분수가 사라진다** — 소단원 이름이 내건
+ * 「(분수)÷(자연수)」가 깨진다. 실제로 씨앗 104 에서 「곱했더니 $3$이 되었습니다」가 나왔다.
+ * 되짚는 방향을 «나눈 몫»으로 바꾸면 발문의 분수가 늘 진분수로 남는다 —
+ * **구성이 조건을 보장**하고, 시험이 그것을 씨앗 16개에서 확인한다.
+ */
+function fracNatDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 7);
+  const top = coprimeTop(rng, d);
+  const k = intBetween(rng, 2, 6);
+  if (intBetween(rng, 0, 1) === 0) {
+    const other = intBetween(rng, 2, 6);
+    const [qn, qd] = divFrac(top, d, k, 1); // 나눈 몫 — 진분수보다 더 작다
+    const [p, q] = divFrac(top, d, other, 1);
+    return make(
+      unit,
+      `어떤 수를 ${num(k)}${numRo(k)} 나누었더니 ${expr(fmtFrac(qn, qd))}${numJosa(lastSpokenNumber(fmtFrac(qn, qd)), "이", "가")} 되었습니다. ` +
+        `어떤 수를 ${num(other)}${numRo(other)} 나눈 몫은 얼마입니까?`,
+      expr(fmtFrac(p, q)),
+      `나눗셈을 거꾸로 하면 어떤 수를 구할 수 있습니다. ` +
+        `${expr(`${fmtFrac(qn, qd)}\\times${k}=${fmtFrac(top, d)}`)} 이므로 어떤 수는 ${expr(fmtFrac(top, d))} 입니다. ` +
+        `이것을 ${num(other)}${numRo(other)} 나누면 ${expr(`${fmtFrac(top, d)}\\div${other}=${fmtFrac(p, q)}`)} 입니다.`,
+    );
+  }
+  const [p, q] = divFrac(top, d, k, 1);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 자연수를 구하시오.\n\n${expr(`\\frac{${top}}{${d}}\\div\\square=${fmtFrac(p, q)}`)}`,
+    num(k),
+    `분자는 그대로 두고 분모에 ${expr("\\square")}를 곱한 것이므로, ` +
+      `분모끼리 견주면 ${expr(`${d}\\times\\square=${d * k}`)} 입니다. ` +
+      `따라서 ${expr(`\\square=${d * k}\\div${d}=${k}`)} 입니다.`,
+  );
+}
+
+// ── 1-1-3 (대분수)÷(자연수) 알아보기 ──
+
+/** 대분수 재료 — 분수 부분은 기약분수로, 가분수로 고친 분자도 함께 돌려준다. */
+function mixedParts(
+  rng: Rng,
+  maxWhole = 4,
+): { w: number; t: number; d: number; imp: number } {
+  const d = intBetween(rng, 2, 8);
+  const t = coprimeTop(rng, d);
+  const w = intBetween(rng, 1, maxWhole);
+  return { w, t, d, imp: w * d + t };
+}
+
+/** 연산 — 식 그대로. 대분수를 가분수로 고치는 절차 한 번. */
+function mixedNatCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  const k = intBetween(rng, 2, 6);
+  const [p, q] = divFrac(m.imp, m.d, k, 1);
+  return make(
+    unit,
+    `다음을 계산하시오.\n\n${expr(`${m.w}\\frac{${m.t}}{${m.d}}\\div${k}=\\square`)}`,
+    expr(fmtFrac(p, q)),
+    `대분수를 가분수로 고칩니다. ${expr(`${m.w}\\frac{${m.t}}{${m.d}}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ` +
+      `분자는 그대로 두고 분모에 나누는 수를 곱하면 ${expr(`\\frac{${m.imp}}{${m.d}\\times${k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 나눌 양이 대분수다. */
+function mixedNatWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const m = mixedParts(rng, 5);
+  const people = intBetween(rng, 2, 6);
+  const [p, q] = divFrac(m.imp, m.d, people, 1);
+  return make(
+    unit,
+    `${s.thing} ${expr(`${m.w}\\frac{${m.t}}{${m.d}}`)} ${s.unit}${s.unitJosa} ${num(people)}명이 똑같이 ${s.verb} 합니다. ` +
+      `한 사람이 갖는 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(fmtFrac(p, q)),
+    `대분수를 가분수로 고치면 ${expr(`${m.w}\\frac{${m.t}}{${m.d}}=\\frac{${m.imp}}{${m.d}}`)} 입니다. ` +
+      `사람 수로 나누면 ${expr(`\\frac{${m.imp}}{${m.d}\\times${people}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 응용 — 두 단계. 정다각형의 둘레에서 한 변을 구한다(다른 개념 결합).
+ * ⓑ 는 「빠르기」 — 간 거리와 걸린 시간에서 한 시간에 간 거리를 구한다(응용 6-1 유형).
+ */
+function mixedNatApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 5);
+  if (intBetween(rng, 0, 1) === 0) {
+    const sides = pick(rng, POLY_SIDES);
+    const [p, q] = divFrac(m.imp, m.d, sides, 1);
+    return make(
+      unit,
+      `둘레가 ${expr(`${m.w}\\frac{${m.t}}{${m.d}}`)} m인 ${polyName(sides, true)} 모양 액자가 있습니다. 한 변의 길이는 몇 m입니까?`,
+      expr(fmtFrac(p, q)),
+      `${polyName(sides, true)}은 변의 길이가 모두 같으므로 둘레를 변의 수 ${num(sides)}${numRo(sides)} 나눕니다. ` +
+        `${expr(`${m.w}\\frac{${m.t}}{${m.d}}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ` +
+        `${expr(`\\frac{${m.imp}}{${m.d}\\times${sides}}=${fmtFrac(p, q)}`)} 입니다.`,
+    );
+  }
+  const hours = intBetween(rng, 2, 6);
+  const [hn, hd] = divFrac(m.imp, m.d, hours, 1); // 한 시간 동안 간 거리
+  const [p, q] = divFrac(hn, hd, 2, 1); // 그 절반 = 30분
+  return make(
+    unit,
+    `자전거를 타고 ${expr(`${m.w}\\frac{${m.t}}{${m.d}}`)} km를 가는 데 ${num(hours)}시간이 걸렸습니다. ` +
+      `같은 빠르기로 갈 때 ${num(30)}분 동안 간 거리는 몇 km입니까?`,
+    expr(fmtFrac(p, q)),
+    `먼저 한 시간 동안 간 거리를 구합니다. ` +
+      `${expr(`${m.w}\\frac{${m.t}}{${m.d}}\\div${hours}=${fmtFrac(hn, hd)}`)} km입니다. ` +
+      `${num(30)}분은 한 시간의 절반이므로 ${expr(`${fmtFrac(hn, hd)}\\div2=${fmtFrac(p, q)}`)} km입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산. 「잘못하여 곱했더니」의 결과가 대분수라, 되짚은 어떤 수도 대분수다.
+ *
+ * ⚠️ 발문에 **대분수가 있어야** 이 소단원이다(조건 판정기가 `\d+\frac{` 를 본다).
+ * 처음엔 「어떤 수가 대분수면 결과도 대분수」라고 적어 두었는데 **그것이 거짓이었다** —
+ * `d | imp\times k` 면 결과가 **자연수**가 되어 발문에서 대분수가 사라진다
+ * (실측: 씨앗 135 에서 「곱했더니 $7$이 되었습니다」). `gcd(t,d)=1` 이므로
+ * `d | imp\times k \iff d | k` 다 — **`k` 가 `d` 의 배수가 아니게** 골라 구성이 조건을 보장한다.
+ */
+function mixedNatDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  let k = intBetween(rng, 2, 5);
+  for (let t = 0; t < 20 && k % m.d === 0; t += 1) k = intBetween(rng, 2, 5);
+  if (k % m.d === 0) k = m.d === 2 ? 3 : 2;
+  const [wn, wd] = mulFrac(m.imp, m.d, k, 1);
+  const [p, q] = divFrac(m.imp, m.d, k, 1);
+  return make(
+    unit,
+    `어떤 수를 ${num(k)}${numRo(k)} 나누어야 할 것을 잘못하여 ${num(k)}${numJosa(k, "을", "를")} 곱했더니 ` +
+      `${expr(fmtFrac(wn, wd))}${numJosa(lastSpokenNumber(fmtFrac(wn, wd)), "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `잘못 계산한 식에서 어떤 수를 먼저 구합니다. ` +
+      `${expr(`${fmtFrac(wn, wd)}\\div${k}=${m.w}\\frac{${m.t}}{${m.d}}`)} 이므로 어떤 수는 ` +
+      `${expr(`${m.w}\\frac{${m.t}}{${m.d}}`)} 입니다. 바르게 계산하면 ` +
+      `${expr(`\\frac{${m.imp}}{${m.d}\\times${k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 난이도 갈래 (D-72 확대 1차분) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
+ * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
+ */
+export const G6_TIERS: ElemTierMap = {
+  "초6|1-1-1": {
+    연산: natDivCalc,
+    기본: natDivWord,
+    응용: natDivApply,
+    심화: natDivDeep,
+  },
+  "초6|1-1-2": {
+    연산: fracNatCalc,
+    기본: fracNatWord,
+    응용: fracNatApply,
+    심화: fracNatDeep,
+  },
+  "초6|1-1-3": {
+    연산: mixedNatCalc,
+    기본: mixedNatWord,
+    응용: mixedNatApply,
+    심화: mixedNatDeep,
+  },
+};
 
 export const G6: Record<string, ChapterHandler> = {
   "초6|1-1 분수의 나눗셈": fracDiv61,
