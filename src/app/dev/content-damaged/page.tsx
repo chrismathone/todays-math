@@ -6,12 +6,19 @@ import Link from "next/link";
 import { MathText } from "@/components/math/MathText";
 import { db } from "@/lib/db";
 
+import { NoteForm } from "./NoteForm";
+
 /**
  * 본문 손상/누락 검수 목록 — AI 해설 생성 파이프라인(`scripts/qa/apply-ai-solutions.ts`)이
  * "본문만으로 못 풂"으로 건너뛴 문항 중, 사유가 본문 자체의 손상·누락 계열인 것만 모은다.
  * 정본(HWP/PDF) 대조로 복구할지, 출제 제외로 돌릴지 판단하는 자리다.
  *
- * ⚠️ 읽기만 한다. 아무것도 안 바꾼다.
+ * 2026-08-23 원장님 지시로 이 목록 전량이 `directUseAllowed=false`(출제 보류) —
+ * 되돌리기 원장: scripts/qa/reports/content-damaged-lock.json,
+ * 스크립트: scripts/qa/apply-content-damaged-lock.ts.
+ * 메모는 기존 검수 API(`POST /api/problems/{id}/review`, verdict=unsure)에 남긴다 —
+ * 로그인 세션이 있어야 저장된다. 조회 자체는 로그인 없이도 된다(다른 /dev 페이지와 동일).
+ *
  * 학년 필터·페이지네이션은 URL 쿼리(`?grade=…&page=…`)로 — 서버 컴포넌트를
  * 유지해 클라이언트 상태 없이 링크만으로 동작한다.
  *
@@ -145,6 +152,24 @@ export default async function ContentDamagedPage({
   const page = Math.min(Math.max(1, rawPage), totalPages);
   const pageItems = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
+  const logs = await db.problemReviewLog.findMany({
+    where: { problemId: { in: pageItems.map((item) => item.id) } },
+    orderBy: { createdAt: "desc" },
+    select: {
+      problemId: true,
+      note: true,
+      verdict: true,
+      createdAt: true,
+      reviewer: { select: { name: true } },
+    },
+  });
+  const logsByProblem = new Map<string, typeof logs>();
+  for (const log of logs) {
+    const list = logsByProblem.get(log.problemId) ?? [];
+    list.push(log);
+    logsByProblem.set(log.problemId, list);
+  }
+
   return (
     <main
       style={{
@@ -173,6 +198,8 @@ export default async function ContentDamagedPage({
           AI 해설 생성 파이프라인이 &ldquo;본문만으로 풀 수 없다&rdquo;고 건너뛴
           문항 중, 사유가 본문 손상·누락 계열인 것만 모았다. DB 정답은
           참고용으로 함께 표시한다 — 실제 정답 여부는 원본 대조로만 확정된다.
+          <strong> 전량 출제 보류(directUseAllowed=false) 상태다.</strong> 각
+          항목에 메모를 남기면 검수 기록(ProblemReviewLog)에 저장된다.
         </p>
         <div
           style={{
@@ -277,6 +304,41 @@ export default async function ContentDamagedPage({
             >
               사유: {item.reason}
             </p>
+            {(logsByProblem.get(item.id) ?? []).length > 0 ? (
+              <ul
+                style={{
+                  listStyle: "none",
+                  margin: "8px 0 0",
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                }}
+              >
+                {(logsByProblem.get(item.id) ?? []).map((log, logIndex) => (
+                  <li
+                    key={logIndex}
+                    style={{
+                      fontSize: 12,
+                      color: "#444",
+                      background: "#f7f7f2",
+                      borderRadius: 6,
+                      padding: "6px 8px",
+                    }}
+                  >
+                    <strong>{log.reviewer?.name ?? "익명"}</strong>{" "}
+                    <span style={{ color: "#999" }}>
+                      {log.createdAt
+                        .toISOString()
+                        .slice(0, 16)
+                        .replace("T", " ")}
+                    </span>
+                    {log.note ? <> — {log.note}</> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <NoteForm problemId={item.id} />
           </li>
         ))}
       </ol>
