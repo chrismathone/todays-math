@@ -57,6 +57,12 @@ export default async function ContentDamagedPage() {
       content: true,
       answer: true,
       unit: { select: { grade: true, section: true } },
+      school: true,
+      examId: true,
+      questionNumber: true,
+      sourceFile: true,
+      externalId: true,
+      score: true,
     },
   });
 
@@ -69,6 +75,12 @@ export default async function ContentDamagedPage() {
       grade: r.unit?.grade ?? "",
       unitName: r.unit ? `${r.unit.grade} · ${r.unit.section}` : "—",
       reason: reasons.get(r.id) ?? "",
+      school: r.school,
+      examId: r.examId,
+      questionNumber: r.questionNumber,
+      sourceFile: r.sourceFile,
+      externalId: r.externalId,
+      score: r.score,
     }))
     .sort((a, b) => {
       const ga = GRADE_ORDER.indexOf(a.grade);
@@ -166,6 +178,36 @@ export default async function ContentDamagedPage() {
                 #{i + 1} · {item.problemCode} · {item.unitName}
               </span>
               <span>정답(DB): {item.answer}</span>
+            </div>
+            <div
+              style={{
+                fontSize: 12,
+                color: "#666",
+                marginBottom: 8,
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "4px 12px",
+              }}
+            >
+              {item.school ? <span>학교: {item.school}</span> : null}
+              {item.examId ? <span>시험: {item.examId}</span> : null}
+              {item.questionNumber != null ? (
+                <span>원본 문항번호: {item.questionNumber}</span>
+              ) : null}
+              {item.score != null ? <span>배점: {item.score}</span> : null}
+              {item.sourceFile ? (
+                <span>원본 경로: {item.sourceFile}</span>
+              ) : null}
+              {item.externalId ? (
+                <span>external_id: {item.externalId}</span>
+              ) : null}
+              {!item.school &&
+              !item.examId &&
+              item.questionNumber == null &&
+              !item.sourceFile &&
+              !item.externalId ? (
+                <span style={{ color: "#999" }}>원본 출처 메타데이터 없음</span>
+              ) : null}
             </div>
             <MathText as="div" text={item.content} />
             <p
