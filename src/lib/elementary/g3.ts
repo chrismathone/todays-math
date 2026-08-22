@@ -79,7 +79,9 @@ function subWithBorrows(
 ): [number, number] {
   for (let k = 0; k < 80; k += 1) {
     const a = intBetween(rng, 200, 980);
-    const b = intBetween(rng, 11, a - 10);
+    // ⚠️ 아래끝이 $11$ 이면 **두 자리 수를 뺀다** — 소단원 이름은 (세 자리)−(세 자리)다.
+    // 실측(4단 확대 시험): `435-20`·`366-15` 가 나왔다. 기본 경로도 같이 고쳐진다.
+    const b = intBetween(rng, 101, a - 10);
     const [, a1, a0] = digits(a);
     const [, b1, b0] = digits(b);
     let borrows = 0;
@@ -1385,15 +1387,402 @@ function add3Reverse(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 1-1 덧셈과 뺄셈 나머지 세 소단원 (D-72 확대) ────────────────────────
+//
+// 축은 D-72 그대로: 1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계(중간값)
+// · 4단 역산(「잘못 계산했더니」·「전체가 ~일 때」).
+//
+// 파일럿(1-1-2)과 **틀을 겹치지 않게** 짰다 — 같은 대단원이라 시험지에 나란히 나간다.
+//   · 2단: 파일럿은 「두 갈래를 합친다」, 여기는 「가진 것 + 더 얻은 것」(1-1-1) ·
+//     「있던 것에서 덜어낸다」(1-1-3·4)
+//   · 3단: 파일럿은 「한쪽이 더 많다」, 여기는 「세 수」(1-1-1) · 「두 번 덜어낸다」(뺄셈)
+//   · 4단: 파일럿은 「잘못 더했더니」 하나, 여기는 「전체가 ~일 때」를 함께 돌린다
+
+/** 세 자리 뺄셈의 받아내림 횟수. `subWithBorrows` 와 **같은 셈**이어야 한다. */
+function borrowCount(a: number, b: number): number {
+  const [, a1, a0] = digits(a);
+  const [, b1, b0] = digits(b);
+  let borrows = 0;
+  let x0 = a0;
+  let x1 = a1;
+  if (x0 < b0) {
+    borrows += 1;
+    x0 += 10;
+    x1 -= 1;
+  }
+  if (x1 < b1) borrows += 1;
+  return borrows;
+}
+
 /**
- * 난이도 갈래 (D-71 파일럿) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
- * 축은 시안(연산=식 그대로 · 기본=문장 한 겹 · 응용=두 단계 · 심화=역산·어떤 수)을 따른다.
+ * 1단(연산) 지면 형식 — 여덟 가지. 「식·값 그대로」는 지키되 **묻는 말투와 조판**을 돌린다.
+ *
+ * 한 소단원이 늘 똑같은 한 줄이면 학습지로 못 쓴다(원장님 「너무 단조로우면 재미도
+ * 학습의욕도 떨어짐」). 수 뒤에 조사가 붙지 않는 말투만 골랐다.
+ */
+const CALC_FORM_COUNT = 8;
+
+function calcForm(
+  unit: UnitSeed,
+  form: number,
+  a: number,
+  b: number,
+  op: "+" | "-",
+  result: number,
+): ElemProblem {
+  const sign = op === "+" ? "+" : "-";
+  const figSpec = fig("columnOp", {
+    top: String(a),
+    op: op === "+" ? "+" : "−",
+    bottom: String(b),
+  });
+  const eq = `$${a}${sign}${b}=\\square$`;
+  const solution = expr(`${a}${sign}${b}=${result}`);
+  const word = op === "+" ? "합" : "차";
+  const wordJosa = josa(word, "을", "를");
+  switch (form % CALC_FORM_COUNT) {
+    case 0:
+      return make(
+        unit,
+        `다음을 계산하시오.\n\n${eq}`,
+        n(result),
+        solution,
+        figSpec,
+      );
+    case 1:
+      return make(
+        unit,
+        `세로셈으로 계산하시오.\n\n${eq}`,
+        n(result),
+        solution,
+        figSpec,
+      );
+    case 2:
+      return make(unit, eq, n(result), solution);
+    case 3:
+      return make(
+        unit,
+        `□ 안에 알맞은 수를 써넣으시오.\n\n${eq}`,
+        n(result),
+        solution,
+      );
+    case 4:
+      return make(
+        unit,
+        `두 수의 ${word}${wordJosa} 구하시오.\n\n$${a}$,  $${b}$`,
+        n(result),
+        solution,
+      );
+    case 5:
+      return make(
+        unit,
+        `$${a}$ 에서 $${b}$ 만큼 ${op === "+" ? "더한" : "뺀"} 값을 구하시오.`,
+        n(result),
+        solution,
+      );
+    case 6:
+      return make(
+        unit,
+        `계산 결과를 구하시오.\n\n${eq}`,
+        n(result),
+        solution,
+        figSpec,
+      );
+    default:
+      return make(unit, `다음 식을 계산하시오.\n\n${eq}`, n(result), solution);
+  }
+}
+
+/** 2단(기본) — 「가지고 있던 것에 더 얻는다」. 파일럿의 「두 갈래 합치기」와 다른 틀이다. */
+const GAIN_STORY = [
+  { who: "형", thing: "딱지", unit: "장", verb: "얻었습니다" },
+  { who: "지수", thing: "구슬", unit: "개", verb: "얻었습니다" },
+  { who: "도윤", thing: "붙임딱지", unit: "장", verb: "모았습니다" },
+  { who: "서연", thing: "우표", unit: "장", verb: "모았습니다" },
+  { who: "민재", thing: "사탕", unit: "개", verb: "받았습니다" },
+  { who: "하린", thing: "색종이", unit: "장", verb: "받았습니다" },
+  { who: "준서", thing: "구슬", unit: "개", verb: "모았습니다" },
+  { who: "윤아", thing: "스티커", unit: "장", verb: "받았습니다" },
+] as const;
+
+/** 2단(기본) — 「있던 것에서 덜어낸다」. 뺄셈 두 소단원이 함께 쓴다. */
+const SPEND_STORY = [
+  { who: "형", thing: "딱지", unit: "장", verb: "주었습니다" },
+  { who: "지수", thing: "구슬", unit: "개", verb: "주었습니다" },
+  { who: "도윤", thing: "색종이", unit: "장", verb: "썼습니다" },
+  { who: "서연", thing: "붙임딱지", unit: "장", verb: "썼습니다" },
+  { who: "민재", thing: "사탕", unit: "개", verb: "나누어 주었습니다" },
+  { who: "하린", thing: "우표", unit: "장", verb: "나누어 주었습니다" },
+  { who: "준서", thing: "쿠키", unit: "개", verb: "먹었습니다" },
+  { who: "윤아", thing: "감", unit: "개", verb: "먹었습니다" },
+] as const;
+
+/** 3단(응용) — 세 수의 합. 소재가 «세 자리»여야 자연스럽다. */
+const THREE_PLACE = [
+  { place: "가 상자", b: "나 상자", c: "다 상자", thing: "구슬", unit: "개" },
+  { place: "첫째 날", b: "둘째 날", c: "셋째 날", thing: "줄넘기", unit: "번" },
+  { place: "가 농장", b: "나 농장", c: "다 농장", thing: "사과", unit: "개" },
+  { place: "가 반", b: "나 반", c: "다 반", thing: "붙임딱지", unit: "장" },
+  { place: "가 마을", b: "나 마을", c: "다 마을", thing: "나무", unit: "그루" },
+  { place: "월요일", b: "화요일", c: "수요일", thing: "종이컵", unit: "개" },
+  { place: "가 서점", b: "나 서점", c: "다 서점", thing: "공책", unit: "권" },
+  { place: "가 창고", b: "나 창고", c: "다 창고", thing: "벽돌", unit: "장" },
+] as const;
+
+/** 3단(응용) — 두 번 덜어낸다. 뺄셈 두 소단원이 함께 쓴다. */
+const SPEND_TWICE = [
+  { who: "형", thing: "딱지", unit: "장" },
+  { who: "지수", thing: "구슬", unit: "개" },
+  { who: "도윤", thing: "색종이", unit: "장" },
+  { who: "서연", thing: "우표", unit: "장" },
+  { who: "민재", thing: "사탕", unit: "개" },
+  { who: "하린", thing: "붙임딱지", unit: "장" },
+  { who: "준서", thing: "쿠키", unit: "개" },
+  { who: "윤아", thing: "스티커", unit: "장" },
+] as const;
+
+// ── 1-1-1 받아올림이 없는·한 번 있는 (세 자리)+(세 자리) ──
+
+function sub111Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const heavy = intBetween(rng, 0, 1); // 받아올림 0번 / 1번 — 소단원 이름이 둘 다 허용한다
+  const [a, b] = addWithCarries(rng, heavy, heavy);
+  return calcForm(
+    unit,
+    intBetween(rng, 0, CALC_FORM_COUNT - 1),
+    a,
+    b,
+    "+",
+    a + b,
+  );
+}
+
+function sub111Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, intBetween(rng, 0, 1), 1);
+  const s = pick(rng, GAIN_STORY);
+  return make(
+    unit,
+    `${s.who}${josa(s.who, "은", "는")} ${s.thing}${josa(s.thing, "을", "를")} ${n(a)}${s.unit} 가지고 있었습니다. 오늘 ${n(b)}${s.unit}${josa(s.unit, "을", "를")} 더 ${s.verb}. ${s.who}${josa(s.who, "이", "가")} 가진 ${s.thing}${josa(s.thing, "은", "는")} 모두 몇 ${s.unit}입니까?`,
+    n(a + b),
+    `가지고 있던 수에 더 얻은 수를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 모두 ${n(a + b)}${s.unit}입니다.`,
+  );
+}
+
+/** 세 수의 합 — 두 덧셈이 **모두** 소단원 범위(받아올림 1번 이하, 세 자리)여야 한다. */
+function threeSum(rng: Rng): [number, number, number] {
+  for (let k = 0; k < 240; k += 1) {
+    const [a, b] = addWithCarries(rng, 0, 1);
+    const mid = a + b;
+    // 셋째 수도 세 자리여야 하므로 자리가 $101$ 은 남아 있어야 한다. 이 문턱을 `999`
+    // 로 두면 `intBetween(101, 999-mid)` 범위가 **뒤집혀 던진다**(실측: 씨앗 400개 중 7).
+    // 가드로 거르지 말고 뽑는 범위를 막는다 — `addWithCarries` 주석과 같은 태도.
+    if (mid > 898) continue;
+    const c = intBetween(rng, 101, 999 - mid);
+    if (carryCount(mid, c) > 1) continue;
+    return [a, b, c];
+  }
+  throw new Error("세 수의 합을 못 만들었습니다");
+}
+
+function sub111Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, c] = threeSum(rng);
+  const s = pick(rng, THREE_PLACE);
+  const mid = a + b;
+  return make(
+    unit,
+    `${s.place}에 ${s.thing}${josa(s.thing, "이", "가")} ${n(a)}${s.unit}, ${s.b}에 ${n(b)}${s.unit}, ${s.c}에 ${n(c)}${s.unit} 있습니다. ${s.thing}${josa(s.thing, "은", "는")} 모두 몇 ${s.unit}입니까?`,
+    n(mid + c),
+    `먼저 두 곳을 더합니다. ${expr(`${a}+${b}=${mid}`)} 입니다. 여기에 나머지를 더하면 ${expr(`${mid}+${c}=${mid + c}`)} 이므로 모두 ${n(mid + c)}${s.unit}입니다.`,
+  );
+}
+
+/**
+ * 4단(심화) — 역산 두 갈래. D-72 가 든 두 말투를 **둘 다** 돌린다.
+ *   ㉠ 「전체가 ~일 때」 — 합과 한 수를 알고 다른 수를 구한다
+ *   ㉡ 「잘못 계산했더니」 — 파일럿과 같은 자릿수 맞바꿈
+ * 되짚는 뺄셈은 D-72 ⑷ 로 허용됐다(받아내림은 초2 기학습).
+ */
+function sub111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, GAIN_STORY);
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = addWithCarries(rng, intBetween(rng, 0, 1), 1);
+    const total = a + b;
+    return make(
+      unit,
+      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}이 들어 있다면 다른 상자에는 몇 ${s.unit}이 들어 있습니까?`,
+      n(b),
+      `전체에서 아는 쪽을 덜어 냅니다. ${expr(`${total}-${a}=${b}`)} 이므로 ${n(b)}${s.unit}입니다.`,
+    );
+  }
+  const r = reverseAddLight(rng);
+  return make(
+    unit,
+    `어떤 수에 $${r.right}$ 만큼 더해야 할 것을 잘못하여 $${r.wrong}$ 만큼 더했더니 합이 $${r.wrongSum}$ 입니다. 바르게 계산한 값은 얼마입니까?`,
+    n(r.rightSum),
+    `잘못 더한 식에서 어떤 수를 먼저 구합니다. ${expr(`${r.wrongSum}-${r.wrong}=${r.some}`)} 이므로 어떤 수는 ${n(r.some)} 입니다. 바르게 계산하면 ${expr(`${r.some}+${r.right}=${r.rightSum}`)} 입니다.`,
+  );
+}
+
+/** 1-1-1 용 역산 — 파일럿과 달리 **받아올림 1번 이하**로 묶는다. */
+function reverseAddLight(rng: Rng): {
+  some: number;
+  right: number;
+  wrong: number;
+  wrongSum: number;
+  rightSum: number;
+} {
+  for (let k = 0; k < 240; k += 1) {
+    const [some, right] = addWithCarries(rng, 0, 1);
+    const wrong = swapDigits(right, rng);
+    if (wrong === right) continue;
+    const rightSum = some + right;
+    const wrongSum = some + wrong;
+    if (some < 100 || wrongSum < 100 || wrongSum > 999 || rightSum > 999)
+      continue;
+    if (carryCount(some, wrong) > 1) continue;
+    return { some, right, wrong, wrongSum, rightSum };
+  }
+  throw new Error("1-1-1 역산 수를 못 만들었습니다");
+}
+
+// ── 1-1-3 받아내림이 없는·한 번 있는 · 1-1-4 받아내림이 두 번 있는 ──
+
+function subCalcOf(minB: number, maxB: number) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const lo = minB === maxB ? minB : intBetween(rng, minB, maxB);
+    const [a, b] = subWithBorrows(rng, lo, lo);
+    return calcForm(
+      unit,
+      intBetween(rng, 0, CALC_FORM_COUNT - 1),
+      a,
+      b,
+      "-",
+      a - b,
+    );
+  };
+}
+
+function subWordOf(minB: number, maxB: number) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const [a, b] = subWithBorrows(rng, minB, maxB);
+    const s = pick(rng, SPEND_STORY);
+    return make(
+      unit,
+      `${s.who}${josa(s.who, "은", "는")} ${s.thing}${josa(s.thing, "을", "를")} ${n(a)}${s.unit} 가지고 있었습니다. 그중 ${n(b)}${s.unit}${josa(s.unit, "을", "를")} ${s.verb}. 남은 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+      n(a - b),
+      `가지고 있던 수에서 덜어낸 수를 뺍니다. ${expr(`${a}-${b}=${a - b}`)} 이므로 ${n(a - b)}${s.unit} 남습니다.`,
+    );
+  };
+}
+
+/** 두 번 덜어낸다 — 두 뺄셈이 **모두** 소단원 범위여야 한다. */
+function twoStepSub(
+  rng: Rng,
+  minB: number,
+  maxB: number,
+): [number, number, number] {
+  for (let k = 0; k < 240; k += 1) {
+    const [a, b] = subWithBorrows(rng, minB, maxB);
+    const mid = a - b;
+    if (mid < 210) continue;
+    // 둘째 뺄셈도 **(세 자리)−(세 자리)** 여야 소단원 안이다 — 두 자리를 빼면 딴 소단원이다.
+    const c = intBetween(rng, 100, mid - 10);
+    const bc = borrowCount(mid, c);
+    if (bc < minB || bc > maxB) continue;
+    return [a, b, c];
+  }
+  throw new Error("두 번 빼기 수를 못 만들었습니다");
+}
+
+function subApplyOf(minB: number, maxB: number) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const [a, b, c] = twoStepSub(rng, minB, maxB);
+    const s = pick(rng, SPEND_TWICE);
+    const mid = a - b;
+    return make(
+      unit,
+      `${s.who}${josa(s.who, "은", "는")} ${s.thing}${josa(s.thing, "을", "를")} ${n(a)}${s.unit} 가지고 있었습니다. 어제 ${n(b)}${s.unit}${josa(s.unit, "을", "를")} 쓰고, 오늘 ${n(c)}${s.unit}${josa(s.unit, "을", "를")} 더 썼습니다. 남은 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+      n(mid - c),
+      `먼저 어제 쓰고 남은 수를 구합니다. ${expr(`${a}-${b}=${mid}`)} 입니다. 여기서 오늘 쓴 수를 빼면 ${expr(`${mid}-${c}=${mid - c}`)} 이므로 ${n(mid - c)}${s.unit} 남습니다.`,
+    );
+  };
+}
+
+/** 뺄셈의 역산 — 「잘못 뺐더니」와 「전체가 ~일 때」. */
+function subDeepOf(minB: number, maxB: number) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const s = pick(rng, SPEND_TWICE);
+    if (intBetween(rng, 0, 1) === 0) {
+      const [a, b] = subWithBorrows(rng, minB, maxB);
+      const diff = a - b;
+      return make(
+        unit,
+        `${s.who}${josa(s.who, "은", "는")} ${s.thing}${josa(s.thing, "을", "를")} 몇 ${s.unit} 가지고 있었습니다. 그중 ${n(b)}${s.unit}${josa(s.unit, "을", "를")} 쓰고 나니 ${n(diff)}${s.unit} 남았습니다. 처음에 가지고 있던 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+        n(a),
+        `남은 수에 쓴 수를 도로 더합니다. ${expr(`${diff}+${b}=${a}`)} 이므로 처음에 ${n(a)}${s.unit} 가지고 있었습니다.`,
+      );
+    }
+    const r = reverseSub(rng, minB, maxB);
+    return make(
+      unit,
+      `어떤 수에서 $${r.right}$ 만큼 빼야 할 것을 잘못하여 $${r.wrong}$ 만큼 뺐더니 결과가 $${r.wrongDiff}$ 입니다. 바르게 계산한 값은 얼마입니까?`,
+      n(r.rightDiff),
+      `잘못 뺀 식에서 어떤 수를 먼저 구합니다. ${expr(`${r.wrongDiff}+${r.wrong}=${r.some}`)} 이므로 어떤 수는 ${n(r.some)} 입니다. 바르게 계산하면 ${expr(`${r.some}-${r.right}=${r.rightDiff}`)} 입니다.`,
+    );
+  };
+}
+
+function reverseSub(
+  rng: Rng,
+  minB: number,
+  maxB: number,
+): {
+  some: number;
+  right: number;
+  wrong: number;
+  wrongDiff: number;
+  rightDiff: number;
+} {
+  for (let k = 0; k < 240; k += 1) {
+    const [some, right] = subWithBorrows(rng, minB, maxB);
+    const wrong = swapDigits(right, rng);
+    if (wrong === right || wrong >= some) continue;
+    const rightDiff = some - right;
+    const wrongDiff = some - wrong;
+    if (rightDiff < 100 || wrongDiff < 100) continue;
+    const bc = borrowCount(some, wrong);
+    if (bc < minB || bc > maxB) continue;
+    return { some, right, wrong, wrongDiff, rightDiff };
+  }
+  throw new Error("뺄셈 역산 수를 못 만들었습니다");
+}
+
+/**
+ * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
+ * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산)를 따른다.
  */
 export const G3_TIERS: ElemTierMap = {
+  "초3|1-1-1": {
+    연산: sub111Calc,
+    기본: sub111Word,
+    응용: sub111Apply,
+    심화: sub111Deep,
+  },
   "초3|1-1-2": {
     연산: add3Calc,
     기본: add3Word,
     응용: add3TwoStep,
     심화: add3Reverse,
+  },
+  "초3|1-1-3": {
+    연산: subCalcOf(0, 1),
+    기본: subWordOf(0, 1),
+    응용: subApplyOf(0, 1),
+    심화: subDeepOf(0, 1),
+  },
+  "초3|1-1-4": {
+    연산: subCalcOf(2, 2),
+    기본: subWordOf(2, 2),
+    응용: subApplyOf(2, 2),
+    심화: subDeepOf(2, 2),
   },
 };
