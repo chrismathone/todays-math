@@ -6398,6 +6398,13 @@ function pos263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  *      `markedShape` 는 도형을 **하나만** 담는다(`KIND_FIELDS` 가 `{"shape"}`) — 「가·나
  *      중 합동인 것」류는 `namedShapes` 몫이고 거기엔 값을 안 적는다.
  *
+ * ⚠️ **말투 묶음은 가드가 아니라 «다양성»이 이유다.** 이 대단원은 수가 **그림에만**
+ *    있는 갈래가 여럿이라(2-3-2 연산·2-3-3 기본/응용·2-3-4 연산) 발문이 한 문장으로
+ *    굳는다. 처음엔 R9(고정문항)가 발문 글자만 봐서 말투를 넣었는데, R9 가 그림
+ *    스펙까지 보게 넓어진 뒤 재 보니 **원래 발문 하나로도 통과**한다(그림이 씨앗
+ *    8개에서 7~8가지 — 2026-08-23 g3 실측). 그러니 **지워도 초록이다.** 그래도 남기는
+ *    이유는 원장님 원칙 「너무 단조로우면 재미도 학습의욕도 떨어진다」(D-66 ⑹) 하나다.
+ *
  * ⚠️ **2-3-1 은 이 대단원에서 가장 얇다.** 묻는 것이 「합동인가 아닌가」 하나뿐이라
  *    1단이 예/아니오로 흐르고 4단은 거슬러 갈 값이 없다. 그래서 **개수 축**으로 세우되,
  *    4단만은 세기가 아니라 **조건 조합**(「정확히 두 쌍이 되게」)으로 만들었다 —
@@ -6437,8 +6444,7 @@ function cong231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   // 여덟 칸을 넘기지 않게 홑의 수를 **뽑는 범위에서** 가른다(뒤에 걸어 거르지 않는다).
   const singles = intBetween(rng, 0, Math.min(2, 8 - pairs * 2));
   const items = congSet(rng, pairs, singles);
-  // ⚠️ 발문이 도형 수로만 갈리면 씨앗 16개에서 **여섯 가지**뿐이다(변형 8+ 미달).
-  //    표준이 같은 소단원에서 쓰는 말투 묶음을 갈래에도 둔다.
+  // 말투 묶음 — 왜 남기는지는 이 대단원 머리말 참조(가드가 아니라 다양성).
   const ask = pick(rng, [
     "서로 합동인 두 도형은 모두 몇 쌍입니까?",
     "포개었을 때 완전히 겹치는 두 도형은 모두 몇 쌍입니까?",
@@ -6461,7 +6467,7 @@ function cong231Read(unit: UnitSeed, rng: Rng): ElemProblem {
     (it, i) => items.findIndex((o) => o.shape === it.shape) !== i,
   )!.shape;
   const [first, second] = items.filter((it) => it.shape === twinKind);
-  // 발문이 기호 하나로만 갈리면 씨앗 16개에서 다섯 가지뿐이다(변형 8+ 미달).
+  // 말투 묶음 — 왜 남기는지는 이 대단원 머리말 참조(가드가 아니라 다양성).
   const ask = pick(rng, [
     "어느 도형과 서로 합동입니까? 기호를 쓰시오.",
     "어느 도형과 포개면 완전히 겹칩니까? 기호를 쓰시오.",
@@ -6483,7 +6489,7 @@ function cong231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const items = congSet(rng, pairs, singles);
   const ask = pick(rng, [
     "자기와 합동인 도형이 하나도 없는 도형은 몇 개입니까?",
-    "짝을 지을 수 없는 도형은 몇 개입니까?",
+    "합동인 짝을 지을 수 없는 도형은 몇 개입니까?",
     "포개어 겹칠 도형이 없는 도형은 몇 개입니까?",
   ]);
   return make(
@@ -6795,6 +6801,416 @@ function sym234Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 2-5 직육면체 — 난이도 4단 (D-72 확대 13차) ──────────
+ *
+ * ⚠️ **쓸 수 있는 «양»이 이 대단원만 유난히 좁다.** 세 방향에서 막힌다:
+ *    ㉠ **겉넓이·부피는 초6** (1-6-1·1-6-2, g6 가 이미 갈래를 썼다) — D-66 ⑶ 위반이자
+ *       남의 학년과 겹친다. **쓰지 않는다.**
+ *    ㉡ **한 면의 넓이·둘레는 초5 1-6** — 실측으로 정면 충돌을 확인했다:
+ *         1-6-2 연산 「한 변이 $15$ cm인 정사각형의 **넓이**는?」
+ *         1-6-1 연산 「가로 $18$, 세로 $10$ 인 직사각형의 **둘레**는?」
+ *       그래서 2-5-1 에서 «한 면의 넓이·둘레»를 통째로 뺐다(D-66 ⒃ 형제 소단원).
+ *    ㉢ 표준이 이미 쓰는 것 — 모서리 합(2-5-1·2-5-5) · 마주 보는 면(2-5-5) ·
+ *       구성요소 개수(2-5-2·2-5-3·2-5-4).
+ *
+ * ⚠️ **개수를 물으면 답이 상수다.** 「평행한 면은 몇 쌍?」은 어느 씨앗에서도 3이라
+ *    「답 가짓수」를 못 넘는다. **가드를 푸는 대신 문형을 바꿨다**(2026-08-23 리드) —
+ *    «몇 개인가»가 아니라 **«어느 것인가»**를 묻는다:
+ *
+ *      ✗ 평행한 면은 몇 쌍입니까?              → 늘 3
+ *      ✓ 가로 $8$·세로 $5$ 인 면과 **평행한 면의 넓이**는?  → 치수마다 갈린다
+ *
+ *    소단원이 가르치는 것(평행한 면은 합동 · 숨은 모서리는 세 방향 하나씩)이 **답을
+ *    내는 근거 그 자체**라, 곱셈을 억지로 얹은 것이 아니다. **2-5-3 의 «넓이»는
+ *    목적이 아니라 수단이다** — 묻는 것은 «어느 면인가»이고 넓이는 그 답을 적는 방법일
+ *    뿐이다(1-6 은 넓이가 목적이다. 이 문장을 지우면 다음 사람이 「1-6 과 겹치네」로
+ *    읽고 이 갈래를 지운다).
+ *
+ * ⚠️ **꼭짓점 이름(ㄱㄴㄷㄹ)은 엔진에 없다.** 실측: `cuboid`·`netCuboid` 의 허용 키는
+ *    `{w,d,h}` 뿐이고, `validate_elementary` 가 다른 키를 막는다(「허용되지 않은 키」).
+ *    그려지는 글자는 치수 셋뿐이다. 그래서 면·모서리를 **치수로** 지목한다 — 기호로
+ *    지목하면 «가리킬 데가 없어 못 푸는 문항»이 된다.
+ */
+
+/** 세 모서리 — 서로 달라야 「가로 w·세로 d 인 면」이 하나로 정해진다. */
+function boxDims(rng: Rng): { w: number; d: number; h: number } {
+  const w = intBetween(rng, 5, 12);
+  const d = pick(
+    rng,
+    [2, 3, 4, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  const h = pick(
+    rng,
+    [2, 3, 4, 5, 6, 7, 9].filter((v) => v !== w && v !== d),
+  );
+  return { w, d, h };
+}
+
+/* ── 2-5-2 정사각형 6개로 둘러싸인 도형(정육면체) — **모서리만** 쓴다 ──
+ * ⚠️ 번호를 조심하라 — **2-5-1 이 «직사각형 6개»(직육면체)**, 2-5-2 가 정육면체다.
+ *    이름과 번호가 짐작과 반대라 처음에 거꾸로 등록했다(2026-08-23, 렌더해서 찾았다).
+ */
+
+/** 연산 — 모서리 합에서 한 모서리를 되찾는다(나눗셈 한 번). 표준은 정방향을 쓴다. */
+function boxCubeCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `정육면체의 모든 모서리 길이의 합이 ${n(12 * e)} cm입니다. 한 모서리의 길이는 몇 cm입니까?`,
+    n(e),
+    `정육면체의 모서리는 ${n(12)}개이고 길이가 모두 같습니다. ${expr(`${12 * e}\\div12=${e}`)}이므로 ${n(e)} cm입니다.`,
+    fig("cuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/** 기본 — 문장에서 «모서리 열둘»을 스스로 떠올린다(한 겹). */
+function boxCubeRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 3, 15);
+  const thing = pick(rng, [
+    "상자",
+    "주사위 모양 나무토막",
+    "선물 상자",
+  ] as const);
+  return make(
+    unit,
+    `한 모서리의 길이가 ${n(e)} cm인 정육면체 모양 ${thing}의 모든 모서리에 테이프를 붙이려고 합니다. 테이프는 몇 cm 필요합니까?`,
+    n(12 * e),
+    `정육면체의 모서리는 ${n(12)}개이고 길이가 모두 같으므로 ${expr(`${e}\\times12=${12 * e}`)}입니다. 테이프는 ${n(12 * e)} cm 필요합니다.`,
+    fig("cuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/** 응용 — 두르고 **남는 길이**를 묻는다(두 단계). 남는 양은 구성상 양수다. */
+function boxCubeApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 3, 12);
+  const left = intBetween(rng, 4, 40);
+  const tape = 12 * e + left;
+  return make(
+    unit,
+    `길이가 ${n(tape)} cm인 테이프로 한 모서리가 ${n(e)} cm인 정육면체 모양 상자의 모든 모서리를 붙였습니다. 남는 테이프는 몇 cm입니까?`,
+    n(left),
+    `모서리에 쓴 테이프는 ${expr(`${e}\\times12=${12 * e}`)} cm입니다. 남는 것은 ${expr(`${tape}-${12 * e}=${left}`)}이므로 ${n(left)} cm입니다.`,
+    fig("cuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/**
+ * 심화 — **조건 조합**: 모서리 합이 같은 정육면체와 직육면체.
+ *
+ * ⚠️ **답에서 거꾸로 짓는다**(D-66 ⒂) — 정육면체의 모서리 `e` 를 먼저 잡아 합을 만들고,
+ *    직육면체의 두 모서리를 그 안에서 고른다. 합을 먼저 뽑으면 `4` 로 안 나뉘거나
+ *    남은 모서리가 0 이하가 되고, 그때 거르면 후보가 비는 씨앗이 생긴다.
+ */
+function boxCubeDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 5, 12);
+  const total = 12 * e; // = 4·(w+d+h) 이므로 w+d+h = 3e
+  const w = intBetween(rng, 2, 3 * e - 3);
+  const d = intBetween(rng, 1, 3 * e - w - 1);
+  const h = 3 * e - w - d;
+  return make(
+    unit,
+    `한 모서리가 ${n(e)} cm인 정육면체와 모든 모서리 길이의 합이 같은 직육면체가 있습니다. 이 직육면체의 가로가 ${n(w)} cm, 세로가 ${n(d)} cm일 때 높이는 몇 cm입니까?`,
+    n(h),
+    `정육면체의 모서리 길이의 합은 ${expr(`${e}\\times12=${total}`)} cm입니다. 직육면체는 가로·세로·높이가 각각 ${n(4)}개씩이므로 세 모서리의 합은 ${expr(`${total}\\div4=${3 * e}`)} cm입니다. 따라서 높이는 ${expr(`${3 * e}-${w}-${d}=${h}`)}이므로 ${n(h)} cm입니다.`,
+  );
+}
+
+/* ── 2-5-1 직사각형 6개로 둘러싸인 도형(직육면체) ── */
+
+/** 연산 — 세 모서리에서 모든 모서리 길이의 합(절차 한 번). */
+function boxRectCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
+    n(4 * (w + d + h)),
+    `직육면체는 길이가 같은 모서리가 ${n(4)}개씩 세 무리 있습니다. ${expr(`(${w}+${d}+${h})\\times4=${4 * (w + d + h)}`)}이므로 ${n(4 * (w + d + h))} cm입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 문장에서 스스로 세운다(한 겹). */
+function boxRectRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로 ${n(w)} cm, 세로 ${n(d)} cm, 높이 ${n(h)} cm인 직육면체 모양 상자의 모든 모서리에 색 끈을 두르려고 합니다. 색 끈은 몇 cm 필요합니까?`,
+    n(4 * (w + d + h)),
+    `가로·세로·높이가 각각 ${n(4)}개씩이므로 ${expr(`(${w}+${d}+${h})\\times4=${4 * (w + d + h)}`)}입니다. 색 끈은 ${n(4 * (w + d + h))} cm 필요합니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 응용 — 모서리 합에서 남은 한 모서리를 되찾는다(두 단계). */
+function boxRectApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const total = 4 * (w + d + h);
+  return make(
+    unit,
+    `직육면체의 모든 모서리 길이의 합이 ${n(total)} cm입니다. 가로가 ${n(w)} cm, 세로가 ${n(d)} cm일 때 높이는 몇 cm입니까?`,
+    n(h),
+    `가로·세로·높이가 각각 ${n(4)}개씩이므로 세 모서리의 합은 ${expr(`${total}\\div4=${w + d + h}`)} cm입니다. 높이는 ${expr(`${w + d + h}-${w}-${d}=${h}`)}이므로 ${n(h)} cm입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산 + 조건**: 「가로가 세로의 몇 배」가 답을 하나로 만든다.
+ * `d` 와 배수 `k` 를 먼저 잡아 합을 만든다 — 나눗셈이 딱 떨어지는 것이 구성 보장이다.
+ */
+function boxRectDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 7);
+  const k = intBetween(rng, 2, 4);
+  const w = d * k;
+  const h = intBetween(rng, 2, 9);
+  const total = 4 * (w + d + h);
+  return make(
+    unit,
+    `모든 모서리 길이의 합이 ${n(total)} cm인 직육면체가 있습니다. 가로는 세로의 ${n(k)}배이고 높이가 ${n(h)} cm일 때, 세로는 몇 cm입니까?`,
+    n(d),
+    `세 모서리의 합은 ${expr(`${total}\\div4=${w + d + h}`)} cm이고, 높이를 빼면 ${expr(`${w + d + h}-${h}=${w + d}`)} cm가 가로와 세로의 합입니다. 가로가 세로의 ${n(k)}배이므로 세로의 ${expr(`${k}+1=${k + 1}`)}배가 ${n(w + d)} cm입니다. 따라서 ${expr(`${w + d}\\div${k + 1}=${d}`)}이므로 세로는 ${n(d)} cm입니다.`,
+  );
+}
+
+/* ── 2-5-3 직육면체의 성질 — «몇 개인가»가 아니라 «어느 면인가»를 묻는다 ── */
+
+/** 연산 — 평행한 면은 **합동**이다(성질 한 번). */
+function box253Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm인 면과 서로 평행한 면의 넓이는 몇 cm²입니까?`,
+    n(w * d),
+    `직육면체에서 서로 평행한 두 면은 모양과 크기가 같습니다. 따라서 넓이도 같아 ${expr(`${w}\\times${d}=${w * d}`)}이므로 ${n(w * d)} cm²입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 수직인 면은 **넷**이고, 그중 어느 것이 가장 넓은지 스스로 골라야 한다(한 겹). */
+function box253Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const big = Math.max(w, d);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm인 면과 수직인 면은 ${n(4)}개입니다. 그중 가장 넓은 면의 넓이는 몇 cm²입니까?`,
+    n(big * h),
+    `이 면과 수직인 네 면은 가로가 ${n(w)} cm 또는 ${n(d)} cm이고 세로가 모두 높이 ${n(h)} cm입니다. 더 긴 ${n(big)} cm 쪽이 가장 넓으므로 ${expr(`${big}\\times${h}=${big * h}`)}, 곧 ${n(big * h)} cm²입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 응용 — 수직인 면 **넷의 넓이의 합**(두 단계: 어느 넷인지 고르고 더한다). */
+function box253Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const sum = 2 * h * (w + d);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm인 면과 수직인 면 ${n(4)}개의 넓이의 합은 몇 cm²입니까?`,
+    n(sum),
+    `수직인 네 면은 ${expr(`${w}\\times${h}`)}인 면 ${n(2)}개와 ${expr(`${d}\\times${h}`)}인 면 ${n(2)}개입니다. 합은 ${expr(`(${w}\\times${h}+${d}\\times${h})\\times2=${sum}`)}이므로 ${n(sum)} cm²입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/**
+ * 심화 — **역산**: 옆면 넷의 넓이의 합에서 높이를 거슬러 구한다.
+ * `2(w+d)·h` 이므로 `h` 를 먼저 잡으면 나눗셈이 딱 떨어진다.
+ */
+function box253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const sum = 2 * h * (w + d);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm인 면과 수직인 면 ${n(4)}개의 넓이의 합이 ${n(sum)} cm²입니다. 이 직육면체의 높이는 몇 cm입니까?`,
+    n(h),
+    `수직인 네 면의 가로를 모두 더하면 ${expr(`(${w}+${d})\\times2=${2 * (w + d)}`)} cm이고, 세로는 모두 높이입니다. 따라서 높이는 ${expr(`${sum}\\div${2 * (w + d)}=${h}`)}이므로 ${n(h)} cm입니다.`,
+  );
+}
+
+/* ── 2-5-4 직육면체의 겨냥도 — 보이는 것과 보이지 않는 것 ── */
+
+/** 연산 — 보이지 않는 모서리는 **세 방향 하나씩**이다(성질 한 번). */
+function box254Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 겨냥도에서 보이지 않는 모서리 ${n(3)}개의 길이의 합은 몇 cm입니까?`,
+    n(w + d + h),
+    `겨냥도에서 보이지 않는 모서리는 가로·세로·높이 방향으로 하나씩 ${n(3)}개입니다. ${expr(`${w}+${d}+${h}=${w + d + h}`)}이므로 ${n(w + d + h)} cm입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 보이는 아홉은 전체에서 숨은 셋을 뺀 것이다(한 겹). */
+function box254Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const s = w + d + h;
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 겨냥도에서 보이는 모서리 ${n(9)}개의 길이의 합은 몇 cm입니까?`,
+    n(3 * s),
+    `모든 모서리의 길이의 합은 ${expr(`(${w}+${d}+${h})\\times4=${4 * s}`)} cm이고, 보이지 않는 ${n(3)}개의 합은 ${expr(`${w}+${d}+${h}=${s}`)} cm입니다. 따라서 ${expr(`${4 * s}-${s}=${3 * s}`)}이므로 ${n(3 * s)} cm입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 응용 — 보이는 것과 보이지 않는 것의 **차**(두 단계). */
+function box254Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const s = w + d + h;
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 겨냥도에서, 보이는 모서리 길이의 합과 보이지 않는 모서리 길이의 합의 차는 몇 cm입니까?`,
+    n(2 * s),
+    `보이는 ${n(9)}개의 합은 ${expr(`${s}\\times3=${3 * s}`)} cm, 보이지 않는 ${n(3)}개의 합은 ${n(s)} cm입니다. 차는 ${expr(`${3 * s}-${s}=${2 * s}`)}이므로 ${n(2 * s)} cm입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/**
+ * 심화 — **역산**: 보이는 모서리 합에서 모든 모서리 합을 거슬러 구한다.
+ * 보이는 것이 `3(w+d+h)`, 전체가 `4(w+d+h)` 이므로 전체 `= 보이는 것 ÷ 3 × 4` 다.
+ * `w+d+h` 를 먼저 잡으므로 나눗셈이 **언제나** 딱 떨어진다.
+ */
+function box254Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const s = w + d + h;
+  return make(
+    unit,
+    `어떤 직육면체의 겨냥도에서 보이는 모서리 ${n(9)}개의 길이의 합이 ${n(3 * s)} cm입니다. 이 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
+    n(4 * s),
+    `보이는 ${n(9)}개는 가로·세로·높이가 각각 ${n(3)}개씩이므로 세 모서리의 합은 ${expr(`${3 * s}\\div3=${s}`)} cm입니다. 모든 모서리는 각각 ${n(4)}개씩이므로 ${expr(`${s}\\times4=${4 * s}`)}, 곧 ${n(4 * s)} cm입니다.`,
+  );
+}
+
+/* ── 2-5-5 정육면체의 전개도 — **둘레** 축(표준은 «마주 보는 면»과 «모서리 합»을 쓴다) ──
+ *
+ * ⚠️ **전개도의 둘레는 «어떻게 펼쳤나»에 매인다.** 이 엔진의 배치는 아래 십자꼴이고
+ *    (`elem_advanced.py` `_net_cuboid` 의 주석), 그때 둘레는 `2w + 8d + 4h` 다.
+ *        [top] / [L][front][R] / [bot] / [back]
+ *    **믿고 쓰지 않고 실제로 재서 확인했다** — 그려진 `<rect>` 여섯을 잘게 쪼개
+ *    덮인 칸의 외곽을 세니 세 모양에서 식과 정확히 같았다(2026-08-23 실측):
+ *        w=4 d=4 h=4 → 56 (= 14e) · w=8 d=5 h=3 → 68 · w=6 d=2 h=7 → 56
+ *    ⚠️ **배치를 바꾸면 이 값이 바뀐다.** 그림 세션이 `_net_cuboid` 를 손보면 여기도
+ *       같이 봐야 한다 — 이 의존은 시험으로 못 잡는다(시험이 같은 식을 다시 쓸 뿐이다).
+ */
+
+/** 연산 — 전개도의 둘레(정육면체는 `14e`). */
+function net255Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 13);
+  return make(
+    unit,
+    `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 이 전개도의 둘레는 몇 cm입니까?`,
+    n(14 * e),
+    `전개도의 테두리는 한 모서리의 ${n(14)}배입니다. ${expr(`${e}\\times14=${14 * e}`)}이므로 ${n(14 * e)} cm입니다.`,
+    fig("netCuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/** 기본 — 문장에서 스스로(한 겹): 테두리를 오리는 길이. */
+function net255Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 13);
+  return make(
+    unit,
+    `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 접는 선은 그대로 두고 테두리만 가위로 오릴 때, 오리는 길이는 모두 몇 cm입니까?`,
+    n(14 * e),
+    `접는 선은 오리지 않으므로 오리는 곳은 테두리뿐입니다. 테두리는 한 모서리의 ${n(14)}배이므로 ${expr(`${e}\\times14=${14 * e}`)}이므로 ${n(14 * e)} cm입니다.`,
+    fig("netCuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/** 응용 — 두 단계: 테두리를 오리고 남는 끈. */
+function net255Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 8);
+  const left = intBetween(rng, 3, 30);
+  const tape = 14 * e + left;
+  return make(
+    unit,
+    `길이가 ${n(tape)} cm인 색 끈으로 한 모서리가 ${n(e)} cm인 정육면체 전개도의 테두리를 둘렀습니다. 남는 색 끈은 몇 cm입니까?`,
+    n(left),
+    `테두리의 길이는 ${expr(`${e}\\times14=${14 * e}`)} cm입니다. 남는 것은 ${expr(`${tape}-${14 * e}=${left}`)}이므로 ${n(left)} cm입니다.`,
+    fig("netCuboid", { w: e, d: e, h: e }),
+  );
+}
+
+/**
+ * 심화 — **역산**: 둘레에서 한 모서리를 거슬러 구한 뒤 **모서리 합**까지 간다(두 걸음).
+ * `e` 를 먼저 잡으므로 `14` 로 나누어떨어지는 것이 구성 보장이다.
+ */
+function net255Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 13);
+  return make(
+    unit,
+    `어떤 정육면체의 전개도의 둘레가 ${n(14 * e)} cm입니다. 이 전개도를 접어 만든 정육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
+    n(12 * e),
+    `전개도의 둘레는 한 모서리의 ${n(14)}배이므로 한 모서리는 ${expr(`${14 * e}\\div14=${e}`)} cm입니다. 정육면체의 모서리는 ${n(12)}개이므로 ${expr(`${e}\\times12=${12 * e}`)}, 곧 ${n(12 * e)} cm입니다.`,
+  );
+}
+
+/* ── 2-5-6 직육면체의 전개도 — **접었을 때 어느 면과 만나나**를 치수로 묻는다 ── */
+
+/** 연산 — 접으면 마주 보는 면은 합동이다(성질 한 번). */
+function net256Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 이 전개도를 접었을 때 가로 ${n(w)} cm, 세로 ${n(d)} cm인 면과 마주 보는 면의 넓이는 몇 cm²입니까?`,
+    n(w * d),
+    `접었을 때 마주 보는 두 면은 모양과 크기가 같습니다. 따라서 넓이도 같아 ${expr(`${w}\\times${d}=${w * d}`)}이므로 ${n(w * d)} cm²입니다.`,
+    fig("netCuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 전개도에서 **같은 넓이의 면이 둘씩**임을 스스로 쓴다(한 겹). */
+function net256Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 접었을 때 서로 마주 보는 두 면 중 가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 면 두 개의 넓이의 합은 몇 cm²입니까?`,
+    n(2 * w * h),
+    `가로 ${n(w)} cm, 세로 ${n(h)} cm인 면은 접었을 때 서로 마주 보는 ${n(2)}개입니다. 합은 ${expr(`${w}\\times${h}\\times2=${2 * w * h}`)}이므로 ${n(2 * w * h)} cm²입니다.`,
+    fig("netCuboid", { w, d, h }),
+  );
+}
+
+/** 응용 — 두 단계: 서로 다른 두 종류의 면을 골라 합한다. */
+function net256Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const sum = w * d + w * h;
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 가로 ${n(w)} cm·세로 ${n(d)} cm인 면 한 개와 가로 ${n(w)} cm·세로 ${n(h)} cm인 면 한 개의 넓이의 합은 몇 cm²입니까?`,
+    n(sum),
+    `두 면의 넓이는 각각 ${expr(`${w}\\times${d}=${w * d}`)} cm², ${expr(`${w}\\times${h}=${w * h}`)} cm²입니다. 합은 ${expr(`${w * d}+${w * h}=${sum}`)}이므로 ${n(sum)} cm²입니다.`,
+    fig("netCuboid", { w, d, h }),
+  );
+}
+
+/**
+ * 심화 — **역산 + 조건 조합**: 두 면의 넓이에서 **두 모서리**를 거슬러 구하고,
+ * 거기서 모든 모서리 길이의 합까지 간다(세 걸음).
+ *
+ * ⚠️ `w`·`d`·`h` 를 먼저 잡으므로 두 나눗셈이 **언제나** 딱 떨어진다 — 넓이를 먼저
+ *    뽑아 나누면 정수가 아닐 수 있고, 그때 거르면 후보가 빈다(D-66 ⒂).
+ *
+ * ⚠️ **그림을 붙이지 않는다.** 붙였다가 뺐다(2026-08-24). `netCuboid` 는
+ *    `w !== d !== h` 면 세 치수를 **변 밖에 글자로** 찍는데(`elem_advanced.py`
+ *    `_net_cuboid` 1726행), `boxDims` 가 셋이 서로 다른 것을 보장하므로
+ *    **언제나** 찍힌다. 그러면 역산으로 구하라는 세로·높이가 지면에 적혀 있어
+ *    학생이 두 나눗셈을 건너뛴다 — **심화가 실질 연산으로 주저앉는다.**
+ *    값·조사·등식·사다리 판정기가 전부 초록이었다. 그 축이 없었다.
+ *    2-5-5 심화가 같은 꼴(그림 없이 「전개도」를 낱말로만)로 이미 서 있다.
+ */
+function net256Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  const total = 4 * (w + d + h);
+  return make(
+    unit,
+    `어떤 직육면체의 전개도에서 가로가 ${n(w)} cm인 면 두 개의 넓이가 각각 ${n(w * d)} cm², ${n(w * h)} cm²였습니다. 이 전개도를 접어 만든 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
+    n(total),
+    `넓이를 가로로 나누면 나머지 두 모서리를 알 수 있습니다. ${expr(`${w * d}\\div${w}=${d}`)}, ${expr(`${w * h}\\div${w}=${h}`)}이므로 세로는 ${n(d)} cm, 높이는 ${n(h)} cm입니다. 가로·세로·높이가 각각 ${n(4)}개씩이므로 ${expr(`(${w}+${d}+${h})\\times4=${total}`)}, 곧 ${n(total)} cm입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -7072,6 +7488,42 @@ export const G5_TIERS: ElemTierMap = {
     기본: sym234Read,
     응용: sym234Apply,
     심화: sym234Deep,
+  },
+  "초5|2-5-1": {
+    연산: boxRectCalc,
+    기본: boxRectRead,
+    응용: boxRectApply,
+    심화: boxRectDeep,
+  },
+  "초5|2-5-2": {
+    연산: boxCubeCalc,
+    기본: boxCubeRead,
+    응용: boxCubeApply,
+    심화: boxCubeDeep,
+  },
+  "초5|2-5-3": {
+    연산: box253Calc,
+    기본: box253Read,
+    응용: box253Apply,
+    심화: box253Deep,
+  },
+  "초5|2-5-4": {
+    연산: box254Calc,
+    기본: box254Read,
+    응용: box254Apply,
+    심화: box254Deep,
+  },
+  "초5|2-5-5": {
+    연산: net255Calc,
+    기본: net255Read,
+    응용: net255Apply,
+    심화: net255Deep,
+  },
+  "초5|2-5-6": {
+    연산: net256Calc,
+    기본: net256Read,
+    응용: net256Apply,
+    심화: net256Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,

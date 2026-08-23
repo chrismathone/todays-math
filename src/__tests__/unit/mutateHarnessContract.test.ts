@@ -32,6 +32,11 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { G3_TIERS } from "@/lib/elementary/g3";
+import { G4_TIERS } from "@/lib/elementary/g4";
+import { G5_TIERS } from "@/lib/elementary/g5";
+import { G6_TIERS } from "@/lib/elementary/g6";
+
 const QA = path.join(process.cwd(), "scripts", "qa");
 const harness = readFileSync(path.join(QA, "mutate-elem-tiers.py"), "utf8");
 const oneShot = readFileSync(path.join(QA, "mutate-one.py"), "utf8");
@@ -172,5 +177,61 @@ describe("[변이 하네스] 전량 판과 낱개 판이 같은 것을 잰다", 
     ]) {
       expect(ignore, `.gitignore 에 «${pat}» 가 없다`).toContain(pat);
     }
+  });
+
+  /* ── `sections` 가 실재하는 소단원만 가리키나 ──────────────────────────────
+   *
+   * ⚠️ **왜 이 좁은 형태인가.** 리드가 처음 제안한 것은 「각 학년의 `sections` 가
+   *    그 학년 `G*_TIERS` 에 등록된 소단원을 **전부** 덮는다」였다. 재 보니
+   *    **거짓 경보가 89건**이다:
+   *        g3 등록 51 · sections 16 (빠짐 35)
+   *        g4 등록 59 · sections 16 (빠짐 43)
+   *        g5 등록 56 · sections 48 (빠짐  8)
+   *        g6 등록 52 · sections 49 (빠짐  3)
+   *    `sections` 는 **변이가 닿는 자리를 훑는 범위**지 등록 목록이 아니다. 변이가
+   *    없는 소단원까지 훑으면 느려지기만 한다. 그 규칙을 넣었으면 89건이 늘 빨갛고,
+   *    **늘 우는 가드는 꺼진다**(CLAUDE.md 2026-08-20 「거짓 경보는 가드를 끈다」).
+   *
+   *    그래서 **반대 방향**만 잠근다 — 「`sections` 에 있는 것은 전부 실재한다」.
+   *    실측 결과 네 학년 모두 «남음 0» 이라 오늘 초록이고, 오타나 이름이 바뀐
+   *    소단원이 생기면 내일 빨개진다. 이건 **거짓 경보가 날 수 없는 형태**다.
+   *
+   * ⚠️ **이것이 g4 의 그 결함을 잡지는 못한다.** 「2-4-3 이 `sections` 에 **없다**」는
+   *    여기 안 걸린다(없는 것은 «남는» 것이 아니다). 그쪽은 하네스가 실행 중에
+   *    ⑵ 「산출물이 그대로다」로 **이미 시끄럽게** 잡는다 — 다만 그 메시지가
+   *    「변이가 뜻을 안 바꿨다」와 뭉개져 있어서, 2026-08-24 에 **두 원인을 갈라
+   *    찍도록** 고쳤다(`mutate-elem-tiers.py` 의 `??` 갈래). 잡는 자리가 여기가
+   *    아니라 거기다.
+   */
+  it("`sections` 는 실재하는 소단원만 가리킨다 (오타·이름 바뀜)", () => {
+    const registered: Record<string, Set<string>> = {
+      g3: new Set(Object.keys(G3_TIERS).map((k) => k.split("|")[1]!)),
+      g4: new Set(Object.keys(G4_TIERS).map((k) => k.split("|")[1]!)),
+      g5: new Set(Object.keys(G5_TIERS).map((k) => k.split("|")[1]!)),
+      g6: new Set(Object.keys(G6_TIERS).map((k) => k.split("|")[1]!)),
+    };
+
+    const bad: string[] = [];
+    for (const [which, want] of Object.entries(registered)) {
+      // ⚠️ 정규식을 **템플릿 리터럴로 짓지 않는다.** 템플릿은 `\s`·`\[` 를 escape 로
+      //    먹어 버려 `s`·`[` 가 된 정규식이 조용히 다른 것을 찾는다(2026-08-24 실제로
+      //    걸렸다). 자리 찾기는 문자열 검색으로 하고, 정규식은 **리터럴**만 쓴다.
+      const start = harness.indexOf(`"${which}": {`);
+      expect(start, `${which}: TARGETS 에 그 대상이 없다`).toBeGreaterThan(-1);
+      const key = harness.indexOf(`"sections": [`, start);
+      expect(
+        key,
+        `${which}: TARGETS 에서 sections 를 못 찾았다`,
+      ).toBeGreaterThan(-1);
+      const body = harness.slice(key, harness.indexOf("]", key));
+      const codes = [...body.matchAll(/"([^"]+)"/g)]
+        .map((m) => m[1]!)
+        .filter((c) => c !== "sections");
+      expect(codes.length, `${which}: sections 가 비었다`).toBeGreaterThan(0);
+      for (const c of codes)
+        if (!want.has(c))
+          bad.push(`${which}: "${c}" 는 등록된 소단원이 아니다`);
+    }
+    expect(bad).toEqual([]);
   });
 });

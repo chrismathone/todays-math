@@ -4782,7 +4782,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
         const rows = new Set(
           SEEDS.map((s) => {
             const p = problem(code, tier, s);
-            return `${p.content} ${JSON.stringify(p.figureSpec ?? null)}`;
+            return `${p.content}「그림」${JSON.stringify(p.figureSpec ?? null)}`;
           }),
         );
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
@@ -5044,6 +5044,29 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     expect(clash.slice(0, 3), `표준과 겹친 것 ${clash.length}건`).toEqual([]);
   });
 
+  it("수가 그림에만 있는 갈래는 **그림만으로** 갈린다 — 말투가 가드를 떠받치지 않는다", () => {
+    // ⚠️ 이 갈래들의 발문에는 말투 묶음이 있는데, 그것을 **가드 버팀목으로 오해하면**
+    //    다음 사람이 「지우면 시험이 깨진다」고 여겨 손을 못 댄다. 반대로 「그냥 장식」
+    //    으로 여기고 지웠다가 정말 깨질 수도 있다. 둘 다 **주석으로는 못 막는다** —
+    //    「지워도 초록이다」는 산문이라 낡는다(2026-08-23 g3: 없는 주석 < 낡은 주석
+    //    < 틀린 주석. 셋 다 사람이 읽는 것만 고친다).
+    //    그래서 **말투를 빼고** 그림 스펙만으로 갈리는지를 여기서 직접 잰다.
+    for (const [code, tier] of [
+      ["2-3-2", "연산"],
+      ["2-3-3", "기본"],
+      ["2-3-3", "응용"],
+      ["2-3-4", "연산"],
+    ] as const) {
+      const figs = new Set(
+        SEEDS.map((s) => JSON.stringify(problem(code, tier, s).figureSpec)),
+      );
+      expect(
+        figs.size,
+        `${code} ${tier}: 그림이 ${figs.size}가지뿐 — 말투를 빼면 변형이 무너진다`,
+      ).toBeGreaterThanOrEqual(8);
+    }
+  });
+
   it("2-3-3·2-3-4 는 표준이 안 쓰는 **격자 모드**를 쓴다", () => {
     for (const [code, tier] of [
       ["2-3-3", "기본"],
@@ -5064,5 +5087,498 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
         ).toBeUndefined();
       }
     }
+  });
+});
+
+/* ── 2-5 직육면체 (D-72 13차) ─────────────────────────────────────────────── */
+
+const CODES25 = ["2-5-1", "2-5-2", "2-5-3", "2-5-4", "2-5-5", "2-5-6"] as const;
+
+/** 그림 스펙의 `{w,d,h}`. 그림이 없으면 null. */
+function dimsOf(p: {
+  figureSpec: unknown;
+}): { w: number; d: number; h: number } | null {
+  const f = p.figureSpec as { w?: number; d?: number; h?: number } | null;
+  return f &&
+    typeof f.w === "number" &&
+    typeof f.d === "number" &&
+    typeof f.h === "number"
+    ? { w: f.w, d: f.d, h: f.h }
+    : null;
+}
+
+describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
+  it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES25) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES25) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 문항이 8개 이상이다 (발문+그림)", () => {
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = problem(code, tier, s);
+            return `${p.content}「그림」${JSON.stringify(p.figureSpec ?? null)}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("답의 가짓수가 넉넉하다 (씨앗 500 · 가짓수 ≥4 · 최빈 ≤45%)", () => {
+    // ⚠️ 이 대단원은 「평행한 면은 몇 쌍?」처럼 **답이 상수**가 되기 쉽다. 그래서
+    //    «몇 개인가» 대신 «어느 것인가»(치수로 지목)를 묻는다 — 가드를 푸는 대신
+    //    문형을 바꾼 것이고, 이 시험이 그 선택을 지킨다.
+    const N = 500;
+    const bad: string[] = [];
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45)
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1)", () => {
+    const bad: string[] = [];
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── 이름이 곧 조건 (D-66 ⑼) ── */
+
+  it("**번호와 이름이 맞는다** — 2-5-1 은 직육면체, 2-5-2 는 정육면체", () => {
+    // ⚠️ 이름이 짐작과 **반대**다: 2-5-1 이 「직사각형 6개」(직육면체)이고
+    //    2-5-2 가 「정사각형 6개」(정육면체)다. 처음에 거꾸로 등록했고, 값도 조사도
+    //    전부 맞아서 **어느 가드도 안 물었다** — 네 갈래를 렌더해 보고서야 찾았다
+    //    (2026-08-23). 구성이 보장하므로 **전량**으로 잰다.
+    for (let seed = 0; seed < 200; seed += 1) {
+      for (const tier of ELEM_TIERS) {
+        const one = problem("2-5-1", tier, seed);
+        expect(
+          /직육면체/.test(one.content),
+          `2-5-1 ${tier} @${seed} 발문에 «직육면체»가 없다\n${one.content}`,
+        ).toBe(true);
+        const two = problem("2-5-2", tier, seed);
+        expect(
+          /정육면체/.test(two.content),
+          `2-5-2 ${tier} @${seed} 발문에 «정육면체»가 없다\n${two.content}`,
+        ).toBe(true);
+        // 정육면체 갈래의 그림은 세 모서리가 **모두 같아야** 한다
+        const dims = dimsOf(two);
+        if (dims)
+          expect(
+            dims.w === dims.d && dims.d === dims.h,
+            `2-5-2 ${tier} @${seed} 그림이 정육면체가 아니다 ${JSON.stringify(dims)}`,
+          ).toBe(true);
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 ── */
+
+  it("2-5-1·2-5-2 — 모서리 길이의 합이 다시 선다", () => {
+    for (const seed of SEEDS) {
+      // 2-5-2 연산: 합 ÷ 12
+      const c = problem("2-5-2", "연산", seed);
+      const [total] = intsIn(c.content);
+      expect(total! % 12, `2-5-2 연산 @${seed} 합이 12로 안 나뉜다`).toBe(0);
+      expect(answerNumber(c.answer, `2-5-2 연산 @${seed}`)).toBe(total! / 12);
+
+      // 2-5-1 연산: (w+d+h)×4
+      const r = problem("2-5-1", "연산", seed);
+      const [w, d, h] = intsIn(r.content);
+      expect(answerNumber(r.answer, `2-5-1 연산 @${seed}`), r.content).toBe(
+        4 * (w! + d! + h!),
+      );
+    }
+  });
+
+  it("2-5-3 — 평행한 면은 합동, 수직인 면은 넷 (성질이 답의 근거다)", () => {
+    for (let seed = 0; seed < 120; seed += 1) {
+      // 연산: 평행한 면의 넓이 = w·d
+      const c = problem("2-5-3", "연산", seed);
+      const [w, d] = intsIn(c.content);
+      expect(answerNumber(c.answer, `2-5-3 연산 @${seed}`), c.content).toBe(
+        w! * d!,
+      );
+      const cd = dimsOf(c)!;
+      expect(
+        cd.w === w && cd.d === d,
+        `2-5-3 연산 @${seed} 발문의 치수가 그림과 다르다`,
+      ).toBe(true);
+
+      // 응용: 옆면 넷의 합 = 2h(w+d)
+      const ap = problem("2-5-3", "응용", seed);
+      const ad = dimsOf(ap)!;
+      expect(answerNumber(ap.answer, `2-5-3 응용 @${seed}`), ap.content).toBe(
+        2 * ad.h * (ad.w + ad.d),
+      );
+
+      // 심화: 그 합에서 높이를 되찾는다 — **나눗셈이 딱 떨어져야** 뜻이 선다
+      const dp = problem("2-5-3", "심화", seed);
+      // ⚠️ 발문 가운데 「$4$개」가 끼므로 **자리로 세면 어긋난다**(실측: 합 대신 4를 집었다).
+      //    묻는 값은 이름으로 집는다.
+      const [dw, dd] = intsIn(dp.content);
+      const sum = Number(/합이 \$(\d+)\$/.exec(dp.content)![1]);
+      expect(
+        sum! % (2 * (dw! + dd!)),
+        `2-5-3 심화 @${seed} 높이가 정수가 아니다`,
+      ).toBe(0);
+      expect(answerNumber(dp.answer, `2-5-3 심화 @${seed}`), dp.content).toBe(
+        sum! / (2 * (dw! + dd!)),
+      );
+    }
+  });
+
+  it("2-5-4 — 숨은 모서리 셋 · 보이는 아홉이 전체 넷과 맞물린다", () => {
+    for (const seed of SEEDS) {
+      const c = problem("2-5-4", "연산", seed);
+      const [w, d, h] = intsIn(c.content);
+      const s = w! + d! + h!;
+      expect(answerNumber(c.answer, `2-5-4 연산 @${seed}`), c.content).toBe(s);
+
+      const r = problem("2-5-4", "기본", seed);
+      const rd = dimsOf(r)!;
+      expect(answerNumber(r.answer, `2-5-4 기본 @${seed}`), r.content).toBe(
+        3 * (rd.w + rd.d + rd.h),
+      );
+
+      const ap = problem("2-5-4", "응용", seed);
+      const ad = dimsOf(ap)!;
+      expect(answerNumber(ap.answer, `2-5-4 응용 @${seed}`), ap.content).toBe(
+        2 * (ad.w + ad.d + ad.h),
+      );
+
+      // 심화: 보이는 합 ÷ 3 × 4 — **3으로 나누어떨어져야** 한다
+      const dp = problem("2-5-4", "심화", seed);
+      const vis = Number(/합이 \$(\d+)\$/.exec(dp.content)![1]);
+      expect(vis! % 3, `2-5-4 심화 @${seed} 보이는 합이 3으로 안 나뉜다`).toBe(
+        0,
+      );
+      expect(answerNumber(dp.answer, `2-5-4 심화 @${seed}`), dp.content).toBe(
+        (vis! / 3) * 4,
+      );
+    }
+  });
+
+  it("2-5-5 — 전개도 둘레는 한 모서리의 **14배**다 (엔진 배치 실측 근거)", () => {
+    // ⚠️ 이 값은 **전개도를 어떻게 펼쳤나**에 매인다. `_net_cuboid` 의 십자 배치에서
+    //    둘레는 `2w+8d+4h` 이고 정육면체면 `14e` 다 — 그려진 `<rect>` 여섯의 외곽을
+    //    직접 재어 확인했다(2026-08-23: 4·4·4→56 · 8·5·3→68 · 6·2·7→56).
+    //    **배치가 바뀌면 이 시험이 아니라 엔진이 먼저 바뀐다** — 그때 여기도 봐야 한다.
+    for (const seed of SEEDS) {
+      const c = problem("2-5-5", "연산", seed);
+      const [e] = intsIn(c.content);
+      expect(answerNumber(c.answer, `2-5-5 연산 @${seed}`), c.content).toBe(
+        14 * e!,
+      );
+      const d = dimsOf(c)!;
+      expect(
+        d.w === e && d.d === e && d.h === e,
+        `2-5-5 @${seed} 그림이 정육면체가 아니다`,
+      ).toBe(true);
+
+      // 심화: 둘레 → 한 모서리 → 모서리 합(12배). 14로 나누어떨어져야 한다
+      const dp = problem("2-5-5", "심화", seed);
+      const [per] = intsIn(dp.content);
+      expect(per! % 14, `2-5-5 심화 @${seed} 둘레가 14로 안 나뉜다`).toBe(0);
+      expect(answerNumber(dp.answer, `2-5-5 심화 @${seed}`), dp.content).toBe(
+        (per! / 14) * 12,
+      );
+    }
+  });
+
+  it("2-5-6 — 마주 보는 면은 넓이가 같다 (역산은 두 나눗셈이 떨어진다)", () => {
+    for (const seed of SEEDS) {
+      const c = problem("2-5-6", "연산", seed);
+      const cd = dimsOf(c)!;
+      expect(answerNumber(c.answer, `2-5-6 연산 @${seed}`), c.content).toBe(
+        cd.w * cd.d,
+      );
+
+      // ⚠️ 심화 몫은 여기서 뺐다 — **그림이 없어졌기 때문**이다(2026-08-24).
+      //    그림이 역산의 답을 글자로 찍고 있어서 뗐고, 그러면 `dimsOf` 가 설 데가
+      //    없다. 심화는 아래 「발문에 실린 두 넓이가 답의 근거다」가 잠근다 —
+      //    참을 그림이 아니라 **발문**에서 가져오므로 그쪽이 원래 옳은 자리다.
+      const dp = problem("2-5-6", "심화", seed);
+      const [w, a1, a2] = intsIn(dp.content);
+      expect(a1! % w!, `2-5-6 심화 @${seed} 첫 나눗셈이 안 떨어진다`).toBe(0);
+      expect(a2! % w!, `2-5-6 심화 @${seed} 둘째 나눗셈이 안 떨어진다`).toBe(0);
+    }
+  });
+
+  /* ── 형제 소단원 겹침 (D-66 ⒃) ── */
+
+  it("초5 1-6(둘레와 넓이)과 발문이 겹치지 않는다 — 골격까지", () => {
+    // ⚠️ 「직육면체 한 면의 넓이」는 사실상 「직사각형의 넓이」라 **자기 학년 안에서**
+    //    겹친다. 그래서 2-5-1·2-5-2 에서 «한 면의 넓이·둘레»를 통째로 뺐다.
+    //    2-5-3·2-5-6 의 넓이는 «어느 면인가»를 답하는 **수단**이라 골격이 다르다.
+    const skeleton = (t: string) => t.replace(/\d+/g, "#");
+    const others = new Set<string>();
+    for (const u of elementaryUnits().filter(
+      (x) => x.grade === "초5" && x.section.startsWith("1-6-"),
+    )) {
+      const tiers = supportedTiers(u);
+      for (const tier of tiers.length ? tiers : [undefined]) {
+        for (let seed = 1; seed <= 10; seed += 1)
+          others.add(
+            skeleton(generateElementaryProblem(u, seed, tier).content),
+          );
+      }
+    }
+    expect(others.size, "이웃 모집단이 비었다").toBeGreaterThan(20);
+
+    const clash: string[] = [];
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          if (others.has(skeleton(c)))
+            clash.push(`골격 일치 ${code} ${tier}\n    ${c}`);
+        }
+      }
+    }
+    expect(clash.slice(0, 3), `초5 1-6 과 겹친 발문 ${clash.length}건`).toEqual(
+      [],
+    );
+  });
+
+  it("겉넓이·부피를 쓰지 않는다 — 그건 **초6** 이다 (D-66 ⑶)", () => {
+    // ⚠️ 초6 1-6-1「직육면체의 겉넓이」·1-6-2「부피」는 g6 가 이미 갈래를 썼다.
+    //    여기서 쓰면 학년을 넘고 남의 문항과 겹친다.
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const word of ["겉넓이", "부피", "cm³", "m³"]) {
+            expect(
+              `${p.content} ${p.solution}`.includes(word),
+              `${code} ${tier} @${seed} 에 «${word}» 가 있다 — 초6 내용이다`,
+            ).toBe(false);
+          }
+        }
+      }
+    }
+  });
+
+  /* ── 변이가 찾아 준 구멍 넷 (2026-08-24 13차분 회차) ────────────────────────
+   *
+   * ⚠️ 아래 넷은 **전부 「값이 맞는데 틀린」 부류**라 앞 시험이 구조적으로 못 봤다.
+   *    변이 여섯이 초록으로 빠져나갔고, 그 여섯을 보고 이 넷을 썼다. 여기 적어 두는
+   *    까닭은 「무엇을 안 보고 있었나」가 시험 이름만으로는 안 남기 때문이다.
+   */
+
+  it("답이 언제나 양수다 — 「남는 것이 $-7$ cm」인 문항은 없다", () => {
+    // ⚠️ 역산·「남는 양」 갈래는 **구성으로** 양수가 보장된다(D-66 ⒂). 그런데 그
+    //    보장을 잠근 시험이 없어, 범위를 한 칸 넓히는 변이 둘이 초록으로 지나갔다.
+    //    해설의 뺄셈은 산술적으로 맞으므로 값 검산·등식 판정기도 못 잡는 자리다.
+    const bad: string[] = [];
+    for (const code of CODES25) {
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 200; seed += 1) {
+          const p = problem(code, tier, seed);
+          const v = answerNumber(p.answer, `${code} ${tier} @${seed}`);
+          if (!(v > 0))
+            bad.push(`${code} ${tier} @${seed}: ${p.answer} — ${p.content}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 3), `양수가 아닌 답 ${bad.length}건`).toEqual([]);
+  });
+
+  it("2-5-3 기본 — «가장 넓은» 면을 고른다 (가장 좁은 쪽이 아니다)", () => {
+    // ⚠️ 2-5-3 은 연산·응용·심화만 잠겨 있었다. 기본의 `Math.max` 를 `Math.min` 으로
+    //    뒤집는 변이가 초록이었다 — 발문은 «가장 넓은»이라 하고 답은 가장 좁은 것인데
+    //    해설도 같이 틀리므로 **자기 안에서는 앞뒤가 맞는다.**
+    for (const seed of SEEDS) {
+      const r = problem("2-5-3", "기본", seed);
+      const d = dimsOf(r)!;
+      expect(answerNumber(r.answer, `2-5-3 기본 @${seed}`), r.content).toBe(
+        Math.max(d.w, d.d) * d.h,
+      );
+    }
+  });
+
+  it("2-5-6 심화 — **발문에 실린 두 넓이**가 답의 근거다 (그림이 아니라)", () => {
+    // ⚠️ 앞 시험은 답을 **그림 치수**로 견줬다. 그러면 발문의 넓이만 틀어져도 초록이다
+    //    — 「둘째 넓이를 $w$ 만큼 부풀리기」 변이가 정확히 그 구멍으로 빠져나갔다.
+    //    게다가 부풀린 값도 $w$ 로 나누어떨어져 「나눗셈이 떨어지나」 가드까지 통과했다.
+    //    참을 그림에서 가져오면 발문이 거짓말을 해도 안 보인다.
+    for (const seed of SEEDS) {
+      const dp = problem("2-5-6", "심화", seed);
+      const [w, a1, a2] = intsIn(dp.content);
+      expect(answerNumber(dp.answer, `2-5-6 심화 @${seed}`), dp.content).toBe(
+        4 * (w! + a1! / w! + a2! / w!),
+      );
+    }
+  });
+
+  it("2-5-1 심화 — 발문의 «세로의 $k$배»가 실제로 참이다", () => {
+    // ⚠️ 이 조건이 답을 하나로 만든다. 깨져도 답은 여전히 «어떤 수»라서 값 검산이
+    //    안 물고, 배수 관계를 되짚는 시험이 없어 변이가 초록이었다.
+    for (const seed of SEEDS) {
+      const dp = problem("2-5-1", "심화", seed);
+      const [total, k, h] = intsIn(dp.content);
+      expect(total! % 4, `2-5-1 심화 @${seed} 합이 $4$ 로 안 나뉜다`).toBe(0);
+      const d = answerNumber(dp.answer, `2-5-1 심화 @${seed}`);
+      expect(total! / 4 - d - h!, dp.content).toBe(k! * d);
+    }
+  });
+
+  /* ── 그림도 R5다 — 심화의 그림이 «발문에 없는 수»를 글자로 찍지 않는다 ────────
+   *
+   * ⚠️ **D-66 ⑻(발문이 답을 이미 말하지 않는다)의 «그림판»이다.** ⑺·⑿ 가
+   *    「그림이 답하지 않는다 / 가리지 않는다」를 다루는데, **「그림이 답을 적어
+   *    준다」는 또 다른 얼굴**이다. 나중에 D-66 에 얹을 값어치가 있다(리드 확인).
+   *
+   * ⚠️ **왜 필요한가** — 2-5-6 심화가 이랬다(2026-08-24). 발문은 「가로 $10$ cm인
+   *    면 두 개의 넓이가 $40$·$60$」이고 역산이 `40÷10=4`·`60÷10=6` 인데, 붙은
+   *    `netCuboid` 가 **`4 cm`·`6 cm` 를 변 밖에 글자로** 찍었다
+   *    (`scripts/figure/elem_advanced.py` `_net_cuboid` 1726행: `w == d == h` 가
+   *    아니면 세 치수를 늘 찍는다. `boxDims` 가 셋이 서로 다른 것을 **보장**하므로
+   *    그 갈래에서는 **언제나** 찍힌다 — 60/60 이 우연이 아니라 구조다).
+   *    학생은 두 나눗셈을 건너뛰고 읽으면 된다. **심화가 실질 연산으로 주저앉는다.**
+   *    값·조사·등식·사다리 판정기가 **전부 초록**이었다. 그 축이 없었기 때문이다.
+   *
+   * ⚠️ **취향이 아니라 분모로 갈랐다.** 초5 심화 전량에서 씨앗 60개씩 세니
+   *        1-3-1 · 1-3-2 · 2-3-1 · 2-3-2   치수 글자  0/60
+   *        2-5-6                          치수 글자 60/60   ← 혼자
+   *    넷 대 하나면 설계가 아니라 **빠뜨린 것**이다.
+   *
+   * ⚠️ **눈금을 픽스처로 박는다** — 실물만 보면 2-5-6 을 고치는 순간 양성이 사라져
+   *    재현율을 영영 못 잰다(전량 초록이라 잘 도는 것처럼 보인다).
+   *    눈금 = **양성 2 · 음성 2**. 위 census 표(양성 1 · 음성 4)가 실물 쪽 눈금이다.
+   *
+   * ⚠️ **이 열쇠가 못 보는 것** — 치수를 «변 밖에 글자로» 찍는 kind 는 실측으로
+   *    `cuboid`·`netCuboid` 둘뿐이라 그 둘만 본다. `table`·`areaPoly` 등이 수를
+   *    찍는지는 **안 쟀다.** 넓히려면 엔진 원문을 먼저 재라 — 안 재고 넓히면
+   *    거짓 경보가 나고, 거짓 경보는 가드를 끈다(CLAUDE.md 2026-08-20).
+   *
+   * ⚠️ **옮길 때** — 이 축은 학년을 안 가린다. 공용 판정기가 원래 자리이고, 리드가
+   *    「공용으로 옮길 후보」로 잡아 두었다. 옮기는 사람이 눈금을 다시 만들지
+   *    않도록 위 수치와 픽스처를 그대로 가져갈 것.
+   */
+
+  /** 치수를 «변 밖에 글자로» 찍는 kind — `elem_advanced.py` 실측. */
+  const labelsDims = (fs: Record<string, unknown>) =>
+    (fs.kind === "cuboid" || fs.kind === "netCuboid") &&
+    !(fs.w === fs.d && fs.d === fs.h);
+
+  /** 그림이 발문에 없는 수를 새로 들이면 그 수들을 돌려준다. */
+  const figureLeak = (content: string, fs: Record<string, unknown> | null) => {
+    if (!fs || !labelsDims(fs)) return [];
+    const inText = new Set(intsIn(content));
+    return (["w", "d", "h"] as const)
+      .map((k) => Number(fs[k]))
+      .filter((v) => !inText.has(v));
+  };
+
+  it("심화의 그림은 **발문에 없는 수**를 글자로 찍지 않는다 (그림도 R5다)", () => {
+    // ── 눈금 (양성 2 · 음성 2) — 이 판정기가 «아니오»를 낼 수 있는가 ──
+    expect(
+      figureLeak("가로가 $10$ cm인 면 두 개의 넓이가 각각 $40$ cm², $60$ cm²", {
+        kind: "netCuboid",
+        w: 10,
+        d: 4,
+        h: 6,
+      }),
+      "양성 — 역산의 답 $4$·$6$ 이 그림에 적혀 있다 (2-5-6 심화의 옛 모습)",
+    ).toEqual([4, 6]);
+    expect(
+      figureLeak("모든 모서리 길이의 합이 $148$ cm인 직육면체가 있습니다", {
+        kind: "cuboid",
+        w: 24,
+        d: 6,
+        h: 7,
+      }),
+      "양성 — 발문에 없는 세 치수가 다 그림에 있다",
+    ).toEqual([24, 6, 7]);
+    expect(
+      figureLeak("가로가 $6$ cm, 세로가 $4$ cm, 높이가 $7$ cm인 직육면체", {
+        kind: "netCuboid",
+        w: 6,
+        d: 4,
+        h: 7,
+      }),
+      "음성 — 발문이 이미 말한 치수다 (연산·기본은 이래야 한다)",
+    ).toEqual([]);
+    expect(
+      figureLeak("한 모서리가 $9$ cm인 정육면체", {
+        kind: "cuboid",
+        w: 9,
+        d: 9,
+        h: 9,
+      }),
+      "음성 — 정육면체는 엔진이 치수를 안 찍는다",
+    ).toEqual([]);
+
+    // ── 실물 — 초5 심화 전량 ──
+    const bad: string[] = [];
+    for (const u of elementaryUnits().filter((x) => x.grade === "초5")) {
+      if (!supportedTiers(u).length) continue;
+      for (let seed = 0; seed < 60; seed += 1) {
+        const p = generateElementaryProblem(u, seed, "심화");
+        const leak = figureLeak(
+          p.content,
+          p.figureSpec as Record<string, unknown> | null,
+        );
+        if (leak.length)
+          bad.push(
+            `${u.section} @${seed}: 그림이 ${leak.join("·")} 를 새로 들인다 — ${p.content}`,
+          );
+      }
+    }
+    expect(
+      bad.slice(0, 3),
+      `그림이 답을 글자로 흘리는 심화 ${bad.length}건`,
+    ).toEqual([]);
   });
 });

@@ -278,6 +278,7 @@ scripts/qa/nosol-out/
 scripts/qa/.mutate-elem-tiers.probe.*.ts
 scripts/qa/.mutate-one.probe.*.ts
 scripts/qa/.mutate-inflight.*.json
+scripts/qa/.mutate-last.*.json
 
 # `probe-elem-charts.ts` 의 기본 출력(646KB). 저장소 뿌리에 남는데 산출물이라
 # 커밋할 것이 아니다 — 실수로 실리는 것을 막는다(2026-08-23 실제로 남아 있었다).
