@@ -66,6 +66,11 @@ MUTATIONS = [
         + "mathrm{cm}` : `$${answer}$개`,",
     ),
     (
+        "M8 분수 뒤 조사를 손으로 박는다 (새 가드: 대분수 읽기까지 보나)",
+        "content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum, t1))} $${rightTex}$ ${ask}`,",
+        "content: `두 유리수 $${leftTex}$와 $${rightTex}$ ${ask}`,",
+    ),
+    (
         "M7 수 뒤 조사를 손으로 박는다 (새 가드: 조사가 읽기와 맞나)",
         "$${N}$${waGwa(N)} 서로소인 수의 개수를 구하시오.",
         "$${N}$과 서로소인 수의 개수를 구하시오.",
