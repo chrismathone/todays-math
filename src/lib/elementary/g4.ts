@@ -4520,6 +4520,12 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier244Apply,
     심화: tier244Deep,
   },
+  "초4|2-4-5": {
+    연산: tier245Calc,
+    기본: tier245Basic,
+    응용: tier245Apply,
+    심화: tier245Deep,
+  },
   "초4|2-4-6": {
     연산: tier246Calc,
     기본: tier246Basic,
@@ -8122,6 +8128,96 @@ function tier244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 마름모 모양으로 나올 만한 물건. 수만으로는 변형이 열둘뿐이라 소재로 넓힌다. */
 const RHOMBUS_ITEMS = ["연", "타일", "장식", "무늬"] as const;
+
+/* ──────────── 2-4-5 평행사변형 (2026-08-23, 비율 수리 뒤 열림) ────────────
+ *
+ * 표준이 「한 각 → 이웃한 각 / 마주 보는 각」과 「이웃한 두 변 → 네 변의 합」을 쓴다.
+ * 갈래는 **변 축(1·3단)과 각 축(2·4단)을 나눠** 그 셋을 피한다.
+ *
+ * ⚠️ **그림은 1·2단에만 붙인다 — 재서 그렇게 정했다.** 엔진이 `para` 의 `sides`·`angles`
+ * 를 그림에 반영하므로(실측: 각 $115^\circ$ → 그린 각 $115.0^\circ$) 값을 실을 수 있다.
+ * 그런데 **답이 길이인 갈래(3단)에 기본 비율로 그리면 그림이 답을 배반한다** —
+ * 「합 $34$·한 변 $9$ → 이웃 $8$」인데 기본 그림은 이웃을 $1.5$배로 그린다.
+ * 4단도 같다(각의 차가 발문 값과 다르게 그려진다). **그래서 그 둘은 그림 없이 낸다** —
+ * 「값을 배반하는 그림」보다 「그림 없음」이 낫다(2026-08-23 그 결함을 찾은 자리다).
+ */
+
+/** 평행사변형 그림 — 값을 주면 엔진이 그 값대로 그린다(비율 수리 뒤). */
+function paraFigure(rest: Record<string, unknown>): Record<string, unknown> {
+  return fig("markedShape", { shape: "para", ...rest });
+}
+
+/** **2-4-5 1단 — 마주 보는 변은 같다.** 성질 한 번, 계산 없음. 표준은 이 방향을 안 쓴다. */
+function tier245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `평행사변형입니다. 한 변의 길이가 ${cm(side)}일 때 그 변과 마주 보는 변의 길이는 ` +
+      `몇 cm인가?`,
+    cm(side),
+    `평행사변형은 마주 보는 두 변의 길이가 서로 같습니다. 그러므로 ${cm(side)}입니다.`,
+    // 적힌 변은 하나뿐이다 — 마주 보는 변은 **그림에서 같게 그려지고** 라벨은 없다.
+    paraFigure({ sides: [`${side} cm`, null, null, null] }),
+  );
+}
+
+/** **2-4-5 2단 — 한 각에서 네 각 모두로.** 표준은 이웃한 각 «하나»만 묻는다. */
+function tier245Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 직각이면 직사각형이라 「평행사변형」이라 부르는 것이 흔들린다 — $90^\circ$ 는 뺀다.
+  const a = pick(
+    rng,
+    [50, 55, 60, 65, 70, 75, 80, 100, 105, 110, 115, 120, 125, 130],
+  );
+  return make(
+    unit,
+    `평행사변형에서 한 각의 크기가 ${deg(a)}입니다. 네 각의 크기를 모두 구하시오.`,
+    `${deg(a)}, ${deg(180 - a)}, ${deg(a)}, ${deg(180 - a)}`,
+    `평행사변형은 마주 보는 두 각의 크기가 같으므로 ${deg(a)}인 각이 ${n(2)}개입니다. ` +
+      `이웃한 두 각의 크기의 합은 ${deg(180)}이므로 나머지 두 각은 ` +
+      `${expr(`180-${a}=${180 - a}`)} 입니다.`,
+    paraFigure({ angles: [`${a}°`, null, null, null] }),
+  );
+}
+
+/** **2-4-5 3단 — 네 변의 합과 한 변에서 이웃한 변으로.** 중간값은 합의 절반이다. */
+function tier245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 4, 14);
+  const b = pick(
+    rng,
+    Array.from({ length: 14 }, (_, i) => i + 3).filter((v) => v !== a),
+  );
+  return make(
+    unit,
+    `평행사변형의 네 변의 길이의 합이 ${cm((a + b) * 2)}이고 한 변의 길이가 ${cm(a)}입니다. ` +
+      `이 변과 이웃한 변의 길이는 몇 cm인가?`,
+    cm(b),
+    `평행사변형은 마주 보는 두 변의 길이가 같으므로 이웃한 두 변의 길이의 합은 ` +
+      `${expr(`${(a + b) * 2}\\div2=${a + b}`)} 입니다. ` +
+      `${expr(`${a + b}-${a}=${b}`)} 이므로 ${cm(b)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-5 4단 — 이웃한 두 각의 «차»에서 각을 찾는다.**
+ *
+ * 합이 $180^\circ$ 라는 것과 차를 함께 써야 정해진다. 작은 각을 $\square$ 로 두면
+ * `□ + (□ + 차) = 180` 이다. 차가 짝수라야 $\square$ 가 자연수인데, 여기서는 **차를
+ * 먼저 뽑아 각을 유도**하므로 그 조건이 실제로 일한다(D-66 ⒂).
+ */
+function tier245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const gap = intBetween(rng, 1, 12) * 10;
+  const small = (180 - gap) / 2;
+  return make(
+    unit,
+    `평행사변형에서 이웃한 두 각의 크기의 차가 ${deg(gap)}입니다. ` +
+      `두 각 중 큰 각의 크기는 몇 도인가?`,
+    deg(small + gap),
+    `평행사변형은 이웃한 두 각의 크기의 합이 ${deg(180)}입니다. 작은 각을 ` +
+      `${expr("\\square")}라고 하면 ${expr(`\\square+(\\square+${gap})=180`)} 이므로 ` +
+      `${expr(`\\square\\times2=180-${gap}=${small * 2}`)} 이고 작은 각은 ${deg(small)}입니다. ` +
+      `큰 각은 ${expr(`${small}+${gap}=${small + gap}`)} 입니다.`,
+  );
+}
 
 /** **2-4-6 1단 — 네 변의 합에서 한 변으로.** 표준은 한 변→합, 여기는 **역방향**이다. */
 function tier246Calc(unit: UnitSeed, rng: Rng): ElemProblem {

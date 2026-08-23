@@ -30,7 +30,7 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
-const CODES = ["2-4-4", "2-4-6", "2-4-7"] as const;
+const CODES = ["2-4-4", "2-4-5", "2-4-6", "2-4-7"] as const;
 const SWEEP = Array.from({ length: 600 }, (_, i) => i * 7919 + 13);
 
 function unitOf(code: string) {
@@ -50,6 +50,10 @@ function gen(code: string, seed: number, tier?: ElemTier) {
 /** `$12\,\mathrm{cm}$` 에서 $12$ 를 나온 차례대로. */
 const cmsIn = (t: string): number[] =>
   [...t.matchAll(/\$(\d+)\\,\\mathrm\{cm\}\$/g)].map((m) => Number(m[1]));
+
+/** `$46^\circ$` 에서 $46$ 을 나온 차례대로. */
+const degsIn = (t: string): number[] =>
+  [...t.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) => Number(m[1]));
 
 /** `$3$가지` 에서 $3$ 을. */
 const countIn = (t: string): number | null => {
@@ -373,5 +377,99 @@ describe("[초4 2-4-7] 여러 가지 사각형", () => {
       looked += 1;
     }
     counted(looked, "4단 전량");
+  });
+});
+
+/* ─────────────────────── 2-4-5 평행사변형 ─────────────────────── */
+
+describe("[초4 2-4-5] 평행사변형", () => {
+  it("1단 — 마주 보는 변의 길이가 준 변과 같다", () => {
+    let looked = 0;
+    for (const s of SWEEP) {
+      const p = gen("2-4-5", s, "연산");
+      const [side] = cmsIn(p.content);
+      expect(cmsIn(p.answer)[0], `씨앗 ${s}: ${p.content}`).toBe(side);
+      looked += 1;
+    }
+    counted(looked, "1단 전량");
+  });
+
+  it("**2단 — 네 각이 $180^\circ$ 짝으로 서고 직각이 아니다**", () => {
+    let looked = 0;
+    for (const s of SWEEP) {
+      const p = gen("2-4-5", s, "기본");
+      const given = degsIn(p.content)[0]!;
+      const four = degsIn(p.answer);
+      expect(four.length, `씨앗 ${s}: ${p.answer}`).toBe(4);
+      expect(four[0], `씨앗 ${s}`).toBe(given);
+      expect(four[2], `씨앗 ${s}: 마주 보는 각이 다르다`).toBe(given);
+      expect(four[1], `씨앗 ${s}: 이웃한 각의 합이 $180^\circ$ 가 아니다`).toBe(
+        180 - given,
+      );
+      expect(four[3], `씨앗 ${s}`).toBe(180 - given);
+      // 직각이면 직사각형이라 「평행사변형」이라 부르는 것이 흔들린다.
+      expect(given, `씨앗 ${s}: $90^\circ$ 는 직사각형이다`).not.toBe(90);
+      looked += 1;
+    }
+    counted(looked, "2단 전량");
+  });
+
+  it("3단 — 합의 절반에서 준 변을 뺀 값이다", () => {
+    let looked = 0;
+    for (const s of SWEEP) {
+      const p = gen("2-4-5", s, "응용");
+      const [total, a] = cmsIn(p.content);
+      const b = cmsIn(p.answer)[0]!;
+      expect((a! + b) * 2, `씨앗 ${s}: ${p.content}`).toBe(total);
+      expect(b, `씨앗 ${s}: 이웃한 변이 0 이하다`).toBeGreaterThan(0);
+      // 두 변이 같으면 마름모라 「이웃한 변」을 따로 묻는 뜻이 옅어진다.
+      expect(b, `씨앗 ${s}: 이웃한 두 변이 같다`).not.toBe(a);
+      looked += 1;
+    }
+    counted(looked, "3단 전량");
+  });
+
+  it("**4단 — 합 $180^\circ$ 와 차를 함께 써야 정해진다**", () => {
+    let looked = 0;
+    for (const s of SWEEP) {
+      const p = gen("2-4-5", s, "심화");
+      const gap = degsIn(p.content)[0]!;
+      const big = degsIn(p.answer)[0]!;
+      const small = big - gap;
+      expect(small + big, `씨앗 ${s}: ${p.content}`).toBe(180);
+      expect(small, `씨앗 ${s}: 작은 각이 0 이하다`).toBeGreaterThan(0);
+      expect(gap % 2, `씨앗 ${s}: 차가 홀수면 각이 자연수가 아니다`).toBe(0);
+      looked += 1;
+    }
+    counted(looked, "4단 전량");
+  });
+
+  it("**그림은 값을 배반하지 않는 갈래에만 붙는다**", () => {
+    // ⚠️ 3·4단에 기본 비율로 그리면 **그림이 답을 배반한다** — 「합 34·한 변 9 → 이웃 8」인데
+    // 기본 그림은 이웃을 $1.5$배로 그린다. 그래서 그 둘은 그림 없이 낸다.
+    // 1·2단은 적힌 값(변 하나 / 각 하나)을 엔진이 그대로 그린다(실측: 각 115° → 115.0°).
+    let withFig = 0;
+    let without = 0;
+    for (const s of SWEEP.slice(0, 120)) {
+      for (const tier of ELEM_TIERS) {
+        const p = gen("2-4-5", s, tier);
+        const has = p.figureSpec !== null;
+        if (tier === "연산" || tier === "기본") {
+          expect(has, `«${tier}» 씨앗 ${s}: 그림이 있어야 한다`).toBe(true);
+          const spec = p.figureSpec as Record<string, unknown>;
+          expect(spec.kind, `«${tier}»`).toBe("markedShape");
+          expect(spec.shape, `«${tier}»`).toBe("para");
+          withFig += 1;
+        } else {
+          expect(
+            has,
+            `«${tier}» 씨앗 ${s}: 그림이 답을 배반한다 — 붙이면 안 된다`,
+          ).toBe(false);
+          without += 1;
+        }
+      }
+    }
+    counted(withFig, "그림 있는 갈래");
+    counted(without, "그림 없는 갈래");
   });
 });

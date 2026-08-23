@@ -517,3 +517,103 @@ describe("자체 눈금 — 이 파일의 도구가 살아 있는가", () => {
     expect(gapsOf([10, 14, 11, 20])).toEqual([4, -3, 9]);
   });
 });
+
+/* ─────────────────── 단위 뒤 조사 (2026-08-23, g3 이 알려 준 실물 결함) ─────────────────── */
+
+describe("[초4] 단위 뒤 조사", () => {
+  /**
+   * **단위 뒤 조사는 «글자»가 아니라 «소리»가 정한다.** `cm`→센티미터(받침 없음)라 `를`,
+   * `kg`→킬로그램(받침 ㅁ)이라 `을`. `℃`→도라 `로`, `명`→`으로`.
+   *
+   * ⚠️ **실제로 지면에 나가고 있었다** — 「세로 눈금 한 칸은 몇 **mm을** 나타내는가?」·
+   * 「$23$**명로** 그보다」. 소재마다 단위가 달라지는 자리에 조사를 **박아** 둔 탓이다.
+   * 소재 하나만 맞고 나머지는 다 틀렸다. g3(`claude-ac`)이 전 학년을 훑어 알려 줬다.
+   *
+   * ⚠️ **「이」는 조사일 수도 계사일 수도 있다.** 「$6$℃**이고**」·「…℃**입니다**」의 「이」는
+   * **이다의 어간**이라 받침과 무관하게 옳다. 뒤에 한글이 이어지면 세지 않는다 —
+   * 그 구분을 안 하면 멀쩡한 문장 수십 개가 걸려 **거짓 경보가 가드를 끈다**(g3 도 같은 곳에서 멈췄다).
+   */
+  const SPOKEN_FINAL: Record<string, boolean> = {
+    "℃": false, // 도
+    cm: false, // 센티미터
+    mm: false, // 밀리미터
+    m: false, // 미터
+    kg: true, // 킬로그램
+    g: true, // 그램
+    권: true,
+    명: true,
+    원: true,
+  };
+  const PAIRS: [withEnd: string, withoutEnd: string][] = [
+    ["을", "를"],
+    ["은", "는"],
+    ["이", "가"],
+    ["으로", "로"],
+  ];
+
+  it("**초4 전 갈래에서 단위 뒤 조사가 맞다** (발문·정답·해설)", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const u of elementaryUnits()) {
+      if (u.grade !== "초4") continue;
+      const tiers =
+        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+      for (const tier of tiers) {
+        for (const seed of WIDE) {
+          const p = generateElementaryProblem(u, seed, tier);
+          for (const text of [p.content, p.answer, p.solution]) {
+            for (const [unit, hasFinal] of Object.entries(SPOKEN_FINAL)) {
+              for (const [withEnd, withoutEnd] of PAIRS) {
+                const wrong = hasFinal ? withoutEnd : withEnd;
+                const at = text.indexOf(`${unit}${wrong}`);
+                if (at < 0) continue;
+                // 계사(「℃이고」·「명이었다」)는 조사가 아니다 — 뒤에 한글이 이어지면 뺀다.
+                const next = text[at + unit.length + wrong.length] ?? "";
+                if (next >= "가" && next <= "힣") continue;
+                bad.push(
+                  `${u.section.split(" ")[0]} «${tier ?? "표준"}» s${seed}: ${unit}${wrong}`,
+                );
+              }
+            }
+          }
+          looked += 1;
+        }
+      }
+    }
+    expect(
+      looked,
+      "본 문항이 0이면 이 검사는 아무것도 안 지킨다",
+    ).toBeGreaterThan(0);
+    expect([...new Set(bad)].slice(0, 6)).toEqual([]);
+  }, 30_000);
+
+  it("**눈금 — 이 검사가 틀린 조사를 실제로 잡는다**", () => {
+    // 위 검사가 늘 초록이면 「깨끗해서」인지 「못 세서」인지 안 갈린다.
+    const wrongOnes = ["몇 mm을 나타내는가?", "$23$명로 그보다"];
+    for (const text of wrongOnes) {
+      const hit = Object.entries(SPOKEN_FINAL).some(([unit, hasFinal]) =>
+        PAIRS.some(([withEnd, withoutEnd]) => {
+          const wrong = hasFinal ? withoutEnd : withEnd;
+          const at = text.indexOf(`${unit}${wrong}`);
+          if (at < 0) return false;
+          const next = text[at + unit.length + wrong.length] ?? "";
+          return !(next >= "가" && next <= "힣");
+        }),
+      );
+      expect(hit, `못 잡는다: ${text}`).toBe(true);
+    }
+    // 음성 대조 — 계사와 옳은 조사는 안 잡혀야 한다.
+    for (const text of ["$6$℃이고 모두", "몇 cm를 나타내는가?", "$23$명으로"]) {
+      const hit = Object.entries(SPOKEN_FINAL).some(([unit, hasFinal]) =>
+        PAIRS.some(([withEnd, withoutEnd]) => {
+          const wrong = hasFinal ? withoutEnd : withEnd;
+          const at = text.indexOf(`${unit}${wrong}`);
+          if (at < 0) return false;
+          const next = text[at + unit.length + wrong.length] ?? "";
+          return !(next >= "가" && next <= "힣");
+        }),
+      );
+      expect(hit, `거짓 경보: ${text}`).toBe(false);
+    }
+  });
+});
