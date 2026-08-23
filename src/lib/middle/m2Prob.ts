@@ -2,10 +2,13 @@
  * 중2 RPM 2-2 「확률」 01~13 13유형 전량 — 세션 2A-중2수확률 소유
  * (docs/planning/tracks/middle-engine-wave2-plan.md §1).
  *
- * ## 2B 대기 소재 (지어내기 금지 — v2 채색(regions) 병합 후)
- *  - 회전판(원판을 부채꼴로 나눠 색칠) 소재 발문 — 확률 01·03·06 등의 회전판
- *    변형은 영역 채색 그림이 필요해 이 물결에서는 내지 않는다. 주사위·구슬
- *    그림도 「그림 없이 성립하는 발문」 우선 원칙에 따라 텍스트로만 낸다.
+ * ## 회전판 소재 (세션 2E, 2026-08-23 — 채색 축이 main 에 들어온 뒤)
+ * 01·03·06 에 **회전판 갈래**를 더했다. 그림은 `m2Shade.ts` 의 `spinnerSpec` —
+ * 칸마다 다른 옅은 색을 깔되 **묻는 것은 칸에 적힌 수**다. 지면은 흑백으로
+ * 인쇄되므로(절대 규칙 6) 색으로만 갈리는 회전판은 종이에서 못 푼다.
+ * **그림이 곧 검산이다** — 테스트가 `figureSpec` 의 칸 라벨을 되읽어 조건에
+ * 맞는 칸을 세고 그 값으로 확률을 다시 만든다.
+ * 주사위·구슬 그림은 「그림 없이 성립하는 발문」 우선 원칙에 따라 텍스트로만 낸다.
  *
  * 우리 단원 배정 (공유 DB Unit.section 실측 2026-08-23):
  *   확률의 뜻과 성질(334) ← 01~05 · 확률의 계산(3) ← 06~13
@@ -17,6 +20,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { spinnerSpec } from "./m2Shade";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -38,7 +42,10 @@ function attempt<T>(tries: number, f: () => T | null): T {
   throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
 }
 
-type Body = Pick<MidProblem, "content" | "answer" | "solution" | "facts">;
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
 
 function def(
   rpmType: string,
@@ -147,10 +154,58 @@ const DICE_CONDS: readonly { text: string; count: number }[] = [
   { text: "$6$의 약수", count: 4 },
 ];
 
+// ── 회전판 소품 ───────────────────────────────────
+
+/** 회전판 칸 수 — 라벨이 칸 안에 들어가는 범위 (실렌더 확인 2026-08-23). */
+const SPIN_SIZES = [4, 5, 6, 8] as const;
+
+/** 칸에 적는 수는 늘 $1$부터 $k$까지 — 그림과 발문이 같은 말을 하게. */
+function spinnerFigure(k: number): Record<string, unknown> {
+  return spinnerSpec(
+    k,
+    Array.from({ length: k }, (_v, i) => String(i + 1)),
+  );
+}
+
+/** 회전판 발문 머리 — 그림·조건 문구가 늘 붙어 다니게 한 곳에 둔다. */
+function spinnerHead(k: number): string {
+  return `다음 그림과 같이 크기가 같은 $${k}$개의 부분으로 나누어진 원판에 $1$부터 $${k}$까지의 자연수가 하나씩 적혀 있다. 이 원판을 돌린 후 멈추었을 때,`;
+}
+
+/** 회전판 발문 꼬리 — 바늘이 경계선을 가리키는 경우를 제외한다. */
+const SPIN_TAIL = " (단, 바늘이 경계선을 가리키는 경우는 생각하지 않는다.)";
+
+/**
+ * `\dfrac{a}{b}=기약분수` — **이미 기약이면 한 번만** 적는다.
+ * 그러지 않으면 해설에 `$\dfrac{1}{6}=\dfrac{1}{6}$` 같은 헛걸음이 나간다.
+ */
+function reduceTex(n: number, d: number): string {
+  const f = red(n, d);
+  const raw = `\\dfrac{${n}}{${d}}`;
+  return f.n === n && f.d === d ? raw : `${raw}=${fracTex(f)}`;
+}
+
 export const M2_PROB: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
   def("01", "확률", SEC.뜻과성질, "easy", (rng): Body => {
-    const kind = pick(rng, [0, 1] as const);
+    const kind = pick(rng, [0, 1, 2] as const);
+    if (kind === 2) {
+      // 회전판 — 칸에 적힌 수가 m 의 배수
+      const k = pick(rng, SPIN_SIZES);
+      const m = attempt(50, () => {
+        const v = intBetween(rng, 2, 4);
+        return Math.floor(k / v) >= 1 && Math.floor(k / v) < k ? v : null;
+      });
+      const cnt = Math.floor(k / m);
+      const p = red(cnt, k);
+      return {
+        content: `${spinnerHead(k)} 바늘이 가리키는 부분에 적힌 수가 $${m}$의 배수일 확률을 구하시오.${SPIN_TAIL}`,
+        answer: ansTex(p),
+        solution: `모든 경우의 수는 $${k}$ 이고, $1$부터 $${k}$까지의 자연수 중 $${m}$의 배수는 $${cnt}$개이다.\n따라서 구하는 확률은 $${reduceTex(cnt, k)}$ 이다.`,
+        facts: { kind, k, m, num: p.n, den: p.d },
+        figureSpec: spinnerFigure(k),
+      };
+    }
     if (kind === 0) {
       const S = intBetween(rng, 4, 10);
       const cnt = 6 - Math.abs(7 - S);
@@ -197,13 +252,25 @@ export const M2_PROB: TypeEntry[] = [
 
   // 03 ─────────────────────────────────────────────
   def("03", "확률의 성질", SEC.뜻과성질, "easy", (rng): Body => {
+    const kind = pick(rng, [0, 1] as const);
+    if (kind === 1) {
+      // 회전판 — 절대로 일어나지 않는 사건(원판에 없는 수)과 반드시 일어나는 사건
+      const k = pick(rng, SPIN_SIZES);
+      return {
+        content: `${spinnerHead(k)} 바늘이 가리키는 부분에 적힌 수가 $${k + 1}$ 이상일 확률을 $p$, $${k}$ 이하일 확률을 $q$ 라 하자. $p+q$ 의 값을 구하시오.${SPIN_TAIL}`,
+        answer: `$1$`,
+        solution: `원판에 적힌 수는 $1$부터 $${k}$까지이므로 $${k + 1}$ 이상인 수는 없다. 절대로 일어나지 않는 사건이므로 $p=0$ 이다.\n바늘이 가리키는 수는 반드시 $${k}$ 이하이므로 반드시 일어나는 사건이고 $q=1$ 이다.\n따라서 $p+q=0+1=1$ 이다.`,
+        facts: { kind, k, ans: 1 },
+        figureSpec: spinnerFigure(k),
+      };
+    }
     const r = intBetween(rng, 2, 6);
     const b = intBetween(rng, 2, 6);
     return {
       content: `빨간 공 $${r}$개와 파란 공 $${b}$개가 들어 있는 주머니에서 한 개의 공을 꺼낼 때, 노란 공이 나올 확률을 $p$, 빨간 공 또는 파란 공이 나올 확률을 $q$ 라 하자. $p+q$ 의 값을 구하시오.`,
       answer: `$1$`,
       solution: `주머니에 노란 공은 없으므로 절대로 일어나지 않는 사건이고 $p=0$ 이다.\n꺼낸 공은 반드시 빨간 공 또는 파란 공이므로 $q=1$ 이다.\n따라서 $p+q=0+1=1$ 이다.`,
-      facts: { r, b, ans: 1 },
+      facts: { kind, r, b, ans: 1 },
     };
   }),
 
@@ -272,9 +339,31 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 06 ─────────────────────────────────────────────
-  def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "mid", (rng) =>
-    attempt(300, (): Body | null => {
-      const kind = pick(rng, [0, 1] as const);
+  def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "mid", (rng) => {
+    // 갈래를 **재시도 밖에서** 뽑는다 — 안에서 뽑으면 조건이 까다로운 갈래
+    // (회전판: 최소공배수가 칸 수를 넘어야 한다)가 재시도마다 밀려나
+    // 지면에 거의 안 나온다. 실측으로 6문항 중 0회였다.
+    const kind = pick(rng, [0, 1, 2] as const);
+    return attempt(300, (): Body | null => {
+      if (kind === 2) {
+        // 회전판 — 두 배수 사건. 최소공배수가 k 를 넘어야 «동시에 일어나지 않는다»
+        const k = pick(rng, SPIN_SIZES);
+        const a = intBetween(rng, 2, 5);
+        const b = intBetween(rng, 2, 5);
+        if (a >= b) return null;
+        if ((a * b) / gcd(a, b) <= k) return null;
+        const ca = Math.floor(k / a);
+        const cb = Math.floor(k / b);
+        if (ca < 1 || cb < 1) return null;
+        const p = red(ca + cb, k);
+        return {
+          content: `${spinnerHead(k)} 바늘이 가리키는 부분에 적힌 수가 $${a}$의 배수 또는 $${b}$의 배수일 확률을 구하시오.${SPIN_TAIL}`,
+          answer: ansTex(p),
+          solution: `$1$부터 $${k}$까지의 자연수 중 $${a}$의 배수는 $${ca}$개, $${b}$의 배수는 $${cb}$개이고, 두 사건은 동시에 일어나지 않는다.\n따라서 구하는 확률은 $\\dfrac{${ca}}{${k}}+\\dfrac{${cb}}{${k}}=${fracTex(p)}$ 이다.`,
+          facts: { kind, k, a, b, num: p.n, den: p.d },
+          figureSpec: spinnerFigure(k),
+        };
+      }
       if (kind === 0) {
         const N = intBetween(rng, 15, 30);
         const a = intBetween(rng, 4, 9);
@@ -301,8 +390,8 @@ export const M2_PROB: TypeEntry[] = [
         solution: `합이 $${S1}$인 경우는 $${c1}$가지, 합이 $${S2}$인 경우는 $${c2}$가지이고, 두 사건은 동시에 일어나지 않는다.\n따라서 구하는 확률은 $\\dfrac{${c1}}{36}+\\dfrac{${c2}}{36}=${fracTex(p)}$ 이다.`,
         facts: { kind, S1, S2, num: p.n, den: p.d },
       };
-    }),
-  ),
+    });
+  }),
 
   // 07 ─────────────────────────────────────────────
   def("07", "두 사건 가 동시에 일어날 확률", SEC.계산, "mid", (rng): Body => {

@@ -2,10 +2,12 @@
  * 중2 RPM 2-2 「경우의 수」 — 세션 2A-중2수확률 소유
  * (docs/planning/tracks/middle-engine-wave2-plan.md §1).
  *
- * 등록: 01~14 · 16 (15유형).
+ * 등록: 01~16 (16유형 전량).
  *
- * ## 2B 대기 목록 (지어내기 금지 — v2 마크·채색 문법 병합 후)
- *  - 경우의 수 15 「색칠하는 경우의 수」 — 영역 채색 그림(regions)이 필요하다.
+ * 15 「색칠하는 경우의 수」는 FigureSpec v2 **채색 축**(`regions`)이 main 에 들어온
+ * 뒤에 냈다(세션 2E, 2026-08-23). 도형은 `m2Shade.ts` 가 만들고, **그림이 곧
+ * 검산**이다 — 테스트가 `figureSpec` 의 영역 경계에서 이웃 관계를 되읽어
+ * 색칠 가짓수를 전수 나열로 세고 정답과 맞댄다.
  *
  * 우리 단원 배정 (공유 DB Unit.section 실측 2026-08-23):
  *   경우의 수(36) ← 01~07 · 여러 가지 경우의 수(254) ← 08~14·16
@@ -20,6 +22,13 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import {
+  PART_LETTERS,
+  shadeAdjacency,
+  shadeParts,
+  shadePartsSpec,
+  type ShadeShape,
+} from "./m2Shade";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -155,6 +164,103 @@ export function gridFigureSpec(
   };
   if (via) marks.mP = { center: `P${via.px}${via.py}`, radius: 2 };
   return { version: 2, points, segments, labels, circles: marks };
+}
+
+// ── 유형 15 색칠하기 소품 ────────────────────────────
+
+/** 발문에 늘어놓는 색 이름 — 앞에서부터 `n` 개를 쓴다. */
+const SHADE_COLORS = [
+  "빨간색",
+  "노란색",
+  "파란색",
+  "초록색",
+  "보라색",
+  "주황색",
+] as const;
+
+/** 부분 개수를 세는 우리말 수 — 「네 부분」. 아라비아 숫자로 쓰지 않는다. */
+const PART_WORD: Record<number, string> = { 3: "세", 4: "네", 5: "다섯" };
+
+/** 도형을 가리키는 말 — 그림의 생김새와 맞춘다. */
+const SHAPE_NOUN: Record<ShadeShape, string> = {
+  disc: "원",
+  strip: "직사각형",
+  fan: "직사각형",
+  wheel: "도형",
+};
+
+/** `facts` 에 남길 도형 종류 코드 (facts 는 수만 담는다). */
+const SHAPE_CODE: Record<ShadeShape, number> = {
+  disc: 0,
+  strip: 1,
+  fan: 2,
+  wheel: 3,
+};
+
+/** 「모두 다른 색」에 쓰는 (도형, 나눈 수) — 이웃 관계와 무관하므로 전부 쓴다. */
+const DISTINCT_PAIRS: readonly (readonly [ShadeShape, number])[] = [
+  ["disc", 3],
+  ["disc", 4],
+  ["disc", 5],
+  ["strip", 3],
+  ["strip", 4],
+  ["strip", 5],
+  ["fan", 3],
+  ["fan", 4],
+  ["wheel", 3],
+  ["wheel", 4],
+];
+
+/**
+ * 「이웃만 다르게」에 쓰는 (도형, 나눈 수) 와 색의 최소 개수.
+ *
+ * 아무 도형이나 못 쓴다 — A 부터 차례로 칠할 때 **앞서 칠한 이웃끼리 서로
+ * 이웃이어야** 그 색들이 반드시 달라서 「남은 색 가짓수」가 한 수로 정해진다.
+ * 원판을 넷 이상으로 나누면(둘레가 사슬) 마주 본 두 부분이 같은 색일 수도
+ * 있어 곱셈 하나로 못 센다 — 그래서 원판은 셋만 둔다. `greedyFactors` 가
+ * 그 성질을 다시 확인하고 어긋나면 **던진다**(표를 늘리다 조용히 틀리지 않게).
+ */
+const ADJ_PAIRS: readonly (readonly [ShadeShape, number, number])[] = [
+  ["strip", 3, 3],
+  ["strip", 4, 3],
+  ["strip", 5, 3],
+  ["fan", 3, 4],
+  ["fan", 4, 4],
+  ["disc", 3, 4],
+  ["wheel", 3, 5],
+];
+
+/**
+ * A 부터 차례로 칠할 때 각 부분에 쓸 수 있는 색의 가짓수.
+ * 앞서 칠한 이웃들이 서로 이웃이 아니면(=색이 같을 수도 있으면) **던진다**.
+ */
+function greedyFactors(adj: readonly number[][], n: number): number[] {
+  return adj.map((nb, i) => {
+    const earlier = nb.filter((j) => j < i);
+    for (const a of earlier) {
+      for (const b of earlier) {
+        if (a !== b && !adj[a]!.includes(b)) {
+          throw new Error(
+            `색칠 순서 ${i} 의 앞선 이웃 ${a}, ${b} 가 서로 이웃이 아닙니다 — 곱셈 하나로 셀 수 없는 도형입니다`,
+          );
+        }
+      }
+    }
+    const f = n - earlier.length;
+    if (f < 1) {
+      throw new Error(`색이 모자랍니다: 부분 ${i} 에 남는 색이 ${f}가지`);
+    }
+    return f;
+  });
+}
+
+function product(xs: readonly number[]): number {
+  return xs.reduce((a, b) => a * b, 1);
+}
+
+/** `$5\times4\times3$` 의 곱셈식 본문 (달러 밖). */
+function timesTex(xs: readonly number[]): string {
+  return xs.join("\\times");
 }
 
 export const M2_COUNTING: TypeEntry[] = [
@@ -597,6 +703,67 @@ export const M2_COUNTING: TypeEntry[] = [
       answer: `$${ans}$`,
       solution: `직선 $l$ 에서 $2$개, 직선 $m$ 에서 $1$개를 뽑는 경우가 $${comb(p, 2)}\\times${q}=${comb(p, 2) * q}$가지이고, 직선 $l$ 에서 $1$개, 직선 $m$ 에서 $2$개를 뽑는 경우가 $${p}\\times${comb(q, 2)}=${comb(q, 2) * p}$가지이다.\n따라서 구하는 개수는 $${comb(p, 2) * q}+${comb(q, 2) * p}=${ans}$ 이다.`,
       facts: { kind, p, q, ans },
+    };
+  }),
+
+  // 15 ─────────────────────────────────────────────
+  def("15", "색칠하는 경우의 수", SEC.여러가지, "hard", (rng): Body => {
+    const rule = pick(rng, [0, 1] as const); // 0: 모두 다른 색 · 1: 이웃만 다르게
+    const [shape, k, nLo] =
+      rule === 0 ? [...pick(rng, DISTINCT_PAIRS), 0] : pick(rng, ADJ_PAIRS);
+    const parts = shadeParts(shape as ShadeShape, k as number);
+    const letters = PART_LETTERS.slice(0, parts);
+    const n =
+      rule === 0
+        ? intBetween(rng, Math.max(4, parts), 5)
+        : intBetween(rng, nLo as number, (nLo as number) + 1);
+    const factors =
+      rule === 0
+        ? Array.from({ length: parts }, (_v, i) => n - i)
+        : greedyFactors(shadeAdjacency(shape as ShadeShape, k as number), n);
+    const ans = product(factors);
+    const noun = SHAPE_NOUN[shape as ShadeShape];
+    const colorList = SHADE_COLORS.slice(0, n).join(", ");
+    const head = `다음 그림과 같이 ${letters.join(", ")} 의 ${PART_WORD[parts]!} 부분으로 나누어진 ${noun}이 있다. ${colorList}의 $${n}$가지 색을 사용하여`;
+    const facts = {
+      rule,
+      shape: SHAPE_CODE[shape as ShadeShape],
+      k: k as number,
+      parts,
+      colors: n,
+      ans,
+    };
+    const figureSpec = shadePartsSpec(shape as ShadeShape, k as number);
+    if (rule === 0) {
+      const steps = letters
+        .slice(1)
+        .map((L, i) => `${L} 에는 $${factors[i + 1]}$가지`)
+        .join(", ");
+      return {
+        content: `${head} 각 부분에 모두 다른 색을 칠하는 경우의 수를 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `이미 칠한 색은 다시 쓸 수 없으므로 ${letters[0]} 에는 $${n}$가지, ${steps}를 칠할 수 있다.\n따라서 구하는 경우의 수는 $${timesTex(factors)}=${ans}$ 이다.`,
+        facts,
+        figureSpec,
+      };
+    }
+    const adj = shadeAdjacency(shape as ShadeShape, k as number);
+    const steps = letters
+      .slice(1)
+      .map((L, i) => {
+        const idx = i + 1;
+        const earlier = adj[idx]!.filter((j) => j < idx).map(
+          (j) => PART_LETTERS[j]!,
+        );
+        return `${L} 는 ${earlier.join(", ")} 와 이웃하므로 $${factors[idx]}$가지`;
+      })
+      .join(", ");
+    return {
+      content: `${head} 각 부분에 색을 칠하려고 한다. 같은 색을 여러 번 사용해도 좋으나 이웃하는 부분에는 서로 다른 색을 칠하는 경우의 수를 구하시오.`,
+      answer: `$${ans}$`,
+      solution: `${letters[0]} 부터 차례로 칠하면 ${letters[0]} 에 칠할 수 있는 색은 $${n}$가지이다.\n${steps}이다.\n따라서 구하는 경우의 수는 $${timesTex(factors)}=${ans}$ 이다.`,
+      facts,
+      figureSpec,
     };
   }),
 
