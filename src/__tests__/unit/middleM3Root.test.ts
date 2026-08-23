@@ -42,7 +42,7 @@ import {
   generateMiddleSet,
   registeredTypes,
 } from "../../lib/middle/generate";
-import { M3_ROOT, isSquareFree } from "../../lib/middle/m3Root";
+import { M3_ROOT } from "../../lib/middle/m3Root";
 import type { MidProblem } from "../../lib/middle/types";
 
 const SEEDS = [20260824, 1, 7777, 424242, 99991];
@@ -227,6 +227,18 @@ function gcd(a: number, b: number): number {
   return x === 0 ? 1 : x;
 }
 
+/**
+ * 제곱인수가 없는가 — **시험이 따로 센다.**
+ *
+ * 제품의 `isSquareFree` 를 불러 쓰면, 그 뿌리인 `simplifySqrt` 를 망가뜨리는
+ * 변이에서 **세는 쪽과 고치는 쪽이 같이 눈이 먼다** — 답은 정리되지 않았는데
+ * 가드는 「정리됐다」고 한다. 이 저장소가 여러 번 데인 자리라 여기서 다시 센다.
+ */
+function squareFree(n: number): boolean {
+  for (let d = 2; d * d <= n; d += 1) if (n % (d * d) === 0) return false;
+  return true;
+}
+
 function isSquareInt(n: number): boolean {
   if (n < 0) return false;
   const r = Math.round(Math.sqrt(n));
@@ -306,7 +318,7 @@ const CHECK: Record<string, Check> = {
   },
   [S("05")]: (p) => {
     const { branch, area, out, inner, p: pp, q } = p.facts;
-    expect(isSquareFree(inner!)).toBe(true);
+    expect(squareFree(inner!)).toBe(true);
     const got = evalRadical(mathOf(p.answer));
     if (branch === 0) {
       expect(out! * out! * inner!).toBe(area);
@@ -457,7 +469,7 @@ const CHECK: Record<string, Check> = {
   [I("04")]: (p) => {
     const { c, p: pp, q, out, inner, branch } = p.facts;
     expect(out! * out! * inner!).toBe(pp! * pp! + q! * q!);
-    expect(isSquareFree(inner!)).toBe(true);
+    expect(squareFree(inner!)).toBe(true);
     const d = Math.hypot(pp!, q!);
     near(evalRadical(mathOf(p.answer)), c! + (branch === 0 ? d : -d), 1e-9);
   },
@@ -704,8 +716,8 @@ describe("검산 도구가 살아 있다 (제품을 거치지 않고 잰다)", (
 
   it("근호 정리·유리화 판정기가 일부러 걸리는 입력에서 빨개진다", () => {
     expect(radicands("2\\sqrt{8}+\\sqrt{3}")).toEqual([8, 3]);
-    expect(isSquareFree(8)).toBe(false);
-    expect(isSquareFree(15)).toBe(true);
+    expect(squareFree(8)).toBe(false);
+    expect(squareFree(15)).toBe(true);
     expect(fractions("\\dfrac{1}{\\sqrt{3}}")).toEqual([
       { num: "1", den: "\\sqrt{3}" },
     ]);
@@ -835,7 +847,7 @@ describe("물결 4B — 중3 3-1 앞 세 중단원 48유형", () => {
           for (const p of generateMiddleSet(e.key, seed, 3)) {
             for (const n of radicands(p.answer)) {
               expect(
-                isSquareFree(n),
+                squareFree(n),
                 `${e.key} seed ${seed}: 정답 ${p.answer} 의 근호 안 ${n} 에 제곱인수가 있다`,
               ).toBe(true);
               expect(
