@@ -109,10 +109,30 @@ const VERIFY: Record<string, (f: F) => boolean> = {
     return f.x! * f.rn! === f.cd! * f.rm! && f.x! + f.cd! === f.ad! + f.bc!;
   },
   // ∠C=90 외접 사각형: CF=CG=r, 접선 길이 상등.
+  //
+  // ⚠️ 값이 맞는 것만으로는 모자란다 — **그런 사각형이 실제로 있어야** 한다.
+  // 꼭짓점 네 중심각의 합이 360°이므로 `Σ arctan(t_i/r)=180°`이고 tC=r 이라
+  // ψ_C=45°다. 그래서 ψ_A+ψ_B+ψ_D=135° 를 만족하는 tD>0 이 있어야 한다
+  // (2026-08-23: r 을 세 변과 함께 주면 과잉결정이라 Σψ=188.3° 인 문항이 났다).
   "3-2|원과 직선|15": (f) => {
-    if (f.mode === 0) return f.x! === f.ab! - f.bc! + f.r!;
-    if (f.mode === 1) return f.x! === f.ad! - f.cd! + f.r!;
-    return f.x! === f.ab! + f.cd! - f.bc!;
+    if (f.mode === 2) {
+      // r 을 안 주는 갈래 — 세 변에서 r 이 유일하게 정해지면 존재한다.
+      if (f.x! !== f.ab! + f.cd! - f.bc!) return false;
+      const g = (r: number): number =>
+        Math.atan((f.ab! - f.bc! + r) / r) +
+        Math.atan((f.bc! - r) / r) +
+        Math.PI / 4 +
+        Math.atan((f.cd! - r) / r) -
+        Math.PI;
+      const hi = Math.min(f.bc!, f.cd!) - 1e-9;
+      return g(1e-9) > 0 && g(hi) < 0;
+    }
+    const psi = (t: number): number => Math.atan(t / f.r!);
+    if (psi(f.tA!) + psi(f.tB!) >= (135 * Math.PI) / 180) return false;
+    if (f.mode === 0) {
+      return f.tB! === f.bc! - f.r! && f.x! === f.ab! - f.bc! + f.r!;
+    }
+    return f.tB! === f.cd! - f.r! && f.x! === f.ad! - f.cd! + f.r!;
   },
   // 직사각형+접선 DE: t²+w²=d², 사각형 ABED 외접 ⇒ w+d = 2L−t.
   "3-2|원과 직선|16": (f) => {
@@ -276,6 +296,29 @@ describe("중3 원의 접선 10유형 (원과 직선 07~16)", () => {
       });
     });
   }
+
+  /**
+   * 유형 15 는 「값은 맞는데 그런 사각형은 없는」 문항이 나기 쉽다(과잉결정).
+   * 그 위반율은 **0.1% 수준**이라 위의 씨앗 6개·변형 8개로는 구조적으로 못 본다
+   * — 실제로 존재 가드를 지우는 변이가 그 검사에서 **초록**이었다(2026-08-23).
+   * 그래서 이 유형만 씨앗을 넓혀 전량 검산한다.
+   */
+  it("15: 넓은 씨앗(500×12)에서도 «그런 사각형이 있다»가 전부 참", () => {
+    const key = "3-2|원과 직선|15";
+    const verify = VERIFY[key]!;
+    let checked = 0;
+    for (let seed = 0; seed < 500; seed += 1) {
+      for (let v = 0; v < 12; v += 1) {
+        const p = generateMiddleProblem(key, seed * 977 + 13, v);
+        checked += 1;
+        expect(
+          verify(p.facts),
+          `seed ${seed} v${v} 존재성 실패: ${JSON.stringify(p.facts)}`,
+        ).toBe(true);
+      }
+    }
+    expect(checked).toBe(6000);
+  });
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
     for (const e of entries) {

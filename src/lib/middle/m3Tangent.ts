@@ -412,46 +412,87 @@ function figRightIncircle(raw: {
 }
 
 /**
- * 14 외접 사각형 — 네 접선의 법선각(도)으로 꼭짓점을 계산한다.
- * angles = [AB, BC, CD, DA] 변의 법선각. withTangentLabels 는 접점 P·Q·R·S.
+ * 네 변에서 꼭짓점별 접선 길이 [tA,tB,tC,tD] 를 얻는다.
+ *
+ * 외접 사각형은 네 변을 다 알아도 접선 분해에 자유도가 하나 남으므로
+ * 가능한 구간의 **중점**을 잡는다(한쪽으로 쏠린 그림을 피한다).
+ * 피토 정리(AB+CD=AD+BC)가 안 맞으면 던진다 — 값과 안 맞는 그림을 그리느니
+ * 안 그리는 쪽이다(09 §4-20).
+ */
+function quadTangents(
+  ab: number,
+  bc: number,
+  cd: number,
+  ad: number,
+): [number, number, number, number] {
+  if (Math.abs(ab + cd - (ad + bc)) > 1e-9) {
+    throw new Error("그림 계산 실패: 외접 사각형이 아닙니다 (AB+CD≠AD+BC)");
+  }
+  const lo = Math.max(0, ab - bc);
+  const hi = Math.min(ab, ad);
+  if (hi - lo <= 1e-9) {
+    throw new Error("그림 계산 실패: 접선 길이 분해가 없습니다");
+  }
+  const tA = (lo + hi) / 2;
+  return [tA, ab - tA, bc - ab + tA, ad - tA];
+}
+
+/**
+ * 14 외접 사각형 — 꼭짓점별 접선 길이로 **실제 사각형**을 세운다.
+ *
+ * 내접원 반지름 r 은 `Σ arctan(t_i/r) = π` 를 이분법으로 푼다(그 식이
+ * 꼭짓점 네 중심각의 합이 360°라는 조건이다). 그림이 발문의 변 길이 비를
+ * 그대로 갖는다 — 임의 배치로 그리면 「AB=8·CD=20」이 정사각형으로 나온다.
  */
 function figCircumQuad(opts: {
-  angles: readonly [number, number, number, number];
+  tangents: readonly [number, number, number, number];
   withTangentLabels: boolean;
 }): FigureSpec {
-  const R = 50;
-  const O: Pt = [124, 102];
-  const T = opts.angles.map((a) => polar(O, a, R));
-  const dir = (t: Pt): Pt => [-(t[1] - O[1]), t[0] - O[0]];
-  const cross = (i: number, j: number): Pt =>
-    lineCross(T[i]!, dir(T[i]!), T[j]!, dir(T[j]!));
-  const points: Record<string, SpecPoint> = {
-    O,
-    A: cross(0, 3),
-    B: cross(0, 1),
-    C: cross(1, 2),
-    D: cross(2, 3),
-  };
-  const labels: Record<string, string> = {
-    O: "O",
-    A: "A",
-    B: "B",
-    C: "C",
-    D: "D",
-  };
+  const t = opts.tangents;
+  if (t.some((v) => !(v > 0))) {
+    throw new Error("그림 계산 실패: 접선 길이가 양수가 아닙니다");
+  }
+  const sumPsi = (r: number): number =>
+    t.reduce((acc, v) => acc + Math.atan(v / r), 0);
+  let lo = 1e-6;
+  let hi = Math.max(...t) * 1000;
+  for (let i = 0; i < 200; i += 1) {
+    const mid = (lo + hi) / 2;
+    if (sumPsi(mid) > Math.PI) lo = mid;
+    else hi = mid;
+  }
+  const r = (lo + hi) / 2;
+  const psi = t.map((v) => Math.atan(v / r));
+  // 변 AB 의 접점을 왼쪽(180°)에 두고 A→B→C→D 를 시계 방향으로 놓는다.
+  const phi: number[] = [Math.PI + psi[0]!];
+  for (let i = 1; i < 4; i += 1) {
+    phi.push(phi[i - 1]! - (psi[i - 1]! + psi[i]!));
+  }
+  const dist = t.map((v) => Math.hypot(v, r));
+  const s = 104 / Math.max(...dist);
+  const O: Pt = [130, 108];
+  const at = (angle: number, radius: number): Pt => [
+    O[0] + radius * Math.cos(angle),
+    O[1] - radius * Math.sin(angle),
+  ];
+  const names = ["A", "B", "C", "D"] as const;
+  const points: Record<string, SpecPoint> = { O };
+  const labels: Record<string, string> = { O: "O" };
+  for (let i = 0; i < 4; i += 1) {
+    points[names[i]!] = at(phi[i]!, dist[i]! * s);
+    labels[names[i]!] = names[i]!;
+  }
   if (opts.withTangentLabels) {
-    points.P = T[0]!;
-    points.Q = T[1]!;
-    points.R = T[2]!;
-    points.S = T[3]!;
-    labels.P = "P";
-    labels.Q = "Q";
-    labels.R = "R";
-    labels.S = "S";
+    // 변 AB·BC·CD·DA 의 접점 P·Q·R·S — 꼭짓점 i 에서 ψ_i 만큼 돌아간 자리.
+    const tp = ["P", "Q", "R", "S"] as const;
+    for (let i = 0; i < 4; i += 1) {
+      points[tp[i]!] = at(phi[i]! - psi[i]!, r * s);
+      labels[tp[i]!] = tp[i]!;
+    }
   }
   return spec(
     points,
-    { c: { center: "O", radius: R } },
+    { c: { center: "O", radius: r * s } },
     {
       segments: {
         AB: ["A", "B"],
@@ -465,6 +506,44 @@ function figCircumQuad(opts: {
 }
 
 /**
+ * ∠C=90° 외접 사각형이 실제로 존재하는가 — 꼭짓점 네 중심각의 합이 360°,
+ * 즉 `Σ arctan(t_i/r) = 180°` 이고 tC=r 이라 ψ_C=45° 다. 그래서
+ * `ψ_A+ψ_B < 135°` 여야 tD>0 인 D 가 생긴다.
+ *
+ * ⚠️ 이 조건은 그림만의 문제가 아니다 — 안 맞으면 **발문의 사각형이 없다**.
+ * (실측 2026-08-23: r·AB·BC·CD 를 다 주면 과잉결정이라 ψ 합이 188.3° 가 됐다.)
+ */
+function circumRightExists(r: number, tA: number, tB: number): boolean {
+  if (!(r > 0 && tA > 0 && tB > 0)) return false;
+  return Math.atan(tA / r) + Math.atan(tB / r) < 135 * DEG - 1e-9;
+}
+
+/**
+ * ∠C=90° 외접 사각형에서 세 변(AB·BC·CD)만 알 때 내접원 반지름을 푼다.
+ * tB=BC−r · tD=CD−r · tA=AB−tB 를 넣고 `Σψ=180°` 를 이분법으로 —
+ * 좌변은 r 에 대해 단조감소라 해가 하나다. 그림을 발문 값과 맞추는 데 쓴다.
+ */
+function circumRightRadius(ab: number, bc: number, cd: number): number {
+  const g = (r: number): number =>
+    Math.atan((ab - bc + r) / r) +
+    Math.atan((bc - r) / r) +
+    45 * DEG +
+    Math.atan((cd - r) / r) -
+    180 * DEG;
+  let lo = 1e-9;
+  let hi = Math.min(bc, cd) - 1e-9;
+  if (!(g(lo) > 0 && g(hi) < 0)) {
+    throw new Error("그림 계산 실패: ∠C=90° 외접 사각형이 없습니다");
+  }
+  for (let i = 0; i < 200; i += 1) {
+    const mid = (lo + hi) / 2;
+    if (g(mid) > 0) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
  * 15 ∠C=90° 외접 사각형 — C 오른쪽 아래 직각, OFCG 정사각형.
  * (r, tB, ab) 접선 길이 단위로 B·A 를 놓고 D 는 A 의 두 번째 접선으로 계산.
  * mirror 는 밑변↔오른변을 맞바꾼 판(B↔D, E↔H, F↔G).
@@ -472,18 +551,25 @@ function figCircumQuad(opts: {
 function figCircumRight(opts: {
   r: number;
   tB: number;
-  ab: number;
+  tA: number;
   mirror: boolean;
 }): FigureSpec {
+  // ∠C=90° 외접 사각형은 (r, tA, tB) 로 결정된다 — tD 는 계산으로 나온다.
+  // 꼭짓점 네 중심각의 합이 360°(=Σψ 가 180°)이므로 ψ_A+ψ_B < 135° 여야
+  // tD>0 인 D 가 생긴다. 못 만들면 **던진다**(조용히 구겨 넣지 않는다).
+  if (!circumRightExists(opts.r, opts.tA, opts.tB)) {
+    throw new Error("그림 계산 실패: 외접 사각형 D 가 생기지 않습니다");
+  }
   const Cpt: Pt = [188, 168];
   const s = 118 / (opts.tB + opts.r);
   const rPx = opts.r * s;
   let B: Pt = [r2(Cpt[0] - (opts.tB + opts.r) * s), Cpt[1]];
   let O: Pt = [r2(Cpt[0] - rPx), r2(Cpt[1] - rPx)];
   const beta = 2 * Math.atan(opts.r / opts.tB);
+  const ab = opts.tA + opts.tB;
   let A: Pt = [
-    r2(B[0] + opts.ab * s * Math.cos(beta)),
-    r2(B[1] - opts.ab * s * Math.sin(beta)),
+    r2(B[0] + ab * s * Math.cos(beta)),
+    r2(B[1] - ab * s * Math.sin(beta)),
   ];
   const u = unit(sub2(B, A));
   const n = unit(sub2(O, A));
@@ -997,9 +1083,14 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
 
   def("12", "삼각형의 내접원", "mid", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3] as const);
-    const t1 = intBetween(rng, 2, 8);
-    const t2 = intBetween(rng, 2, 8);
-    const t3 = intBetween(rng, 2, 8);
+    // 접선 길이가 겹치면 이등변·정삼각형이 되어 발문이 시시해진다 — 셋을 가른다.
+    const [t1, t2, t3] = attempt(80, () => {
+      const a = intBetween(rng, 2, 8);
+      const b = intBetween(rng, 2, 8);
+      const c = intBetween(rng, 2, 8);
+      if (a === b || b === c || a === c) return null;
+      return [a, b, c] as const;
+    });
     const ab = t1 + t2;
     const bc = t2 + t3;
     const ca = t3 + t1;
@@ -1137,7 +1228,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
         solution: `원에 외접하는 사각형에서 두 쌍의 대변의 길이의 합은 같다.\n$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이므로 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, ab, bc, cd, ad, x: ad },
         figureSpec: figCircumQuad({
-          angles: [172, 262, 352, 86],
+          tangents: quadTangents(ab, bc, cd, ad),
           withTangentLabels: false,
         }),
       };
@@ -1156,7 +1247,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
           solution: `$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이므로 $${p}+(x+${m})=(2x-${n})+${q}$이다.\n이를 풀면 $x=${x0}$이다.`,
           facts: { mode, p, q, m, n, x: x0 },
           figureSpec: figCircumQuad({
-            angles: [168, 258, 356, 92],
+            tangents: quadTangents(p, q, x0 + m, 2 * x0 - n),
             withTangentLabels: false,
           }),
         };
@@ -1166,14 +1257,13 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       const a = 2 * intBetween(rng, 2, 5);
       const b = a + 2 * intBetween(rng, 1, 4);
       const x = (a + b) / 2;
-      const delta = Math.atan((b - a) / (2 * Math.sqrt(a * b))) / DEG;
       return {
         content: `원 $O$에 외접하는 등변사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
         answer: cm(x),
         solution: `등변사다리꼴이므로 $\\overline{AB}=\\overline{CD}$이다.\n$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}=${a}+${b}=${a + b}\\,(\\mathrm{cm})$이므로 $\\overline{AB}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { mode, a, b, x },
         figureSpec: figCircumQuad({
-          angles: [180 - r2(delta), 270, r2(delta), 90],
+          tangents: quadTangents(x, b, x, a),
           withTangentLabels: false,
         }),
       };
@@ -1182,13 +1272,15 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       const ab = intBetween(rng, 4, 10);
       const cd = intBetween(rng, 4, 10);
       const per = 2 * (ab + cd);
+      const free = intBetween(rng, 3, ab + cd - 3);
       return {
         content: `사각형 $ABCD$는 원 $O$에 외접하고 네 점 $P$, $Q$, $R$, $S$는 각각 변 $AB$, $BC$, $CD$, $DA$ 위의 접점이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$이고 사각형 $ABCD$의 둘레의 길이가 ${cm(per)}일 때, $\\overline{DS}+\\overline{CQ}$의 길이를 구하시오.`,
         answer: cm(cd),
         solution: `$\\overline{DS}=\\overline{DR}$, $\\overline{CQ}=\\overline{CR}$이므로 $\\overline{DS}+\\overline{CQ}=\\overline{CD}$이다.\n$\\overline{AB}+\\overline{CD}=\\dfrac{1}{2}\\times${per}=${ab + cd}\\,(\\mathrm{cm})$이므로 $\\overline{CD}=${ab + cd}-${ab}=${cd}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, ab, per, x: cd },
+        // AD·BC 는 발문이 정하지 않는다 — 합이 AB+CD 인 아무 짝이나 잡는다.
         figureSpec: figCircumQuad({
-          angles: [176, 266, 348, 88],
+          tangents: quadTangents(ab, ab + cd - free, cd, free),
           withTangentLabels: true,
         }),
       };
@@ -1212,7 +1304,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       solution: `$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}=${ad}+${bc}=${S}\\,(\\mathrm{cm})$이다.\n$\\overline{AB}:\\overline{CD}=${rm}:${rn}$이므로 $\\overline{AB}=${S}\\times\\dfrac{${rm}}{${rm + rn}}=${abv}\\,(\\mathrm{cm})$이다.`,
       facts: { mode, rm, rn, ad, bc, cd: cdv, x: abv },
       figureSpec: figCircumQuad({
-        angles: [165, 255, 350, 95],
+        tangents: quadTangents(abv, bc, cdv, ad),
         withTangentLabels: false,
       }),
     };
@@ -1221,48 +1313,66 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
   def("15", "원에 외접하는 사각형의 성질⑵", "hard", (rng): Body => {
     const mode = pick(rng, [0, 1, 2] as const);
     if (mode === 0) {
-      const r = intBetween(rng, 3, 6);
-      const tB = intBetween(rng, r, 9);
-      const ah = intBetween(rng, 2, 6);
-      const ab = ah + tB;
-      const bc = tB + r;
-      return {
-        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$이다. 점 $H$가 변 $DA$ 위의 접점일 때, $\\overline{AH}$의 길이를 구하시오.`,
-        answer: cm(ah),
-        solution: `변 $AB$, $BC$, $CD$ 위의 접점을 각각 $E$, $F$, $G$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CF}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{BE}=\\overline{BF}=${bc}-${r}=${tB}\\,(\\mathrm{cm})$이므로 $\\overline{AH}=\\overline{AE}=${ab}-${tB}=${ah}\\,(\\mathrm{cm})$이다.`,
-        facts: { mode, r, ab, bc, x: ah },
-        figureSpec: figCircumRight({ r, tB, ab, mirror: false }),
-      };
+      return attempt(80, () => {
+        const r = intBetween(rng, 3, 6);
+        const tB = intBetween(rng, r, 9);
+        const ah = intBetween(rng, 2, 6);
+        const ab = ah + tB;
+        const bc = tB + r;
+        // 그런 사각형이 실제로 있어야 한다(ψ_A+ψ_B<135°) — 아니면 다시 뽑는다.
+        if (!circumRightExists(r, ah, tB)) return null;
+        return {
+          content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$이다. 점 $H$가 변 $DA$ 위의 접점일 때, $\\overline{AH}$의 길이를 구하시오.`,
+          answer: cm(ah),
+          solution: `변 $AB$, $BC$, $CD$ 위의 접점을 각각 $E$, $F$, $G$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CF}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{BE}=\\overline{BF}=${bc}-${r}=${tB}\\,(\\mathrm{cm})$이므로 $\\overline{AH}=\\overline{AE}=${ab}-${tB}=${ah}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, r, ab, bc, tA: ah, tB, x: ah },
+          figureSpec: figCircumRight({ r, tB, tA: ah, mirror: false }),
+        };
+      });
     }
     if (mode === 1) {
-      const r = intBetween(rng, 3, 6);
-      const tD = intBetween(rng, r, 9);
-      const ae = intBetween(rng, 2, 6);
-      const ad = ae + tD;
-      const cd = tD + r;
-      return {
-        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AD}=${ad}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$이다. 점 $E$가 변 $AB$ 위의 접점일 때, $\\overline{AE}$의 길이를 구하시오.`,
-        answer: cm(ae),
-        solution: `변 $BC$, $CD$, $DA$ 위의 접점을 각각 $F$, $G$, $H$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CG}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{DH}=\\overline{DG}=${cd}-${r}=${tD}\\,(\\mathrm{cm})$이므로 $\\overline{AE}=\\overline{AH}=${ad}-${tD}=${ae}\\,(\\mathrm{cm})$이다.`,
-        facts: { mode, r, ad, cd, x: ae },
-        figureSpec: figCircumRight({ r, tB: tD, ab: ad, mirror: true }),
-      };
+      return attempt(80, () => {
+        const r = intBetween(rng, 3, 6);
+        const tD = intBetween(rng, r, 9);
+        const ae = intBetween(rng, 2, 6);
+        const ad = ae + tD;
+        const cd = tD + r;
+        if (!circumRightExists(r, ae, tD)) return null;
+        return {
+          content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AD}=${ad}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$이다. 점 $E$가 변 $AB$ 위의 접점일 때, $\\overline{AE}$의 길이를 구하시오.`,
+          answer: cm(ae),
+          solution: `변 $BC$, $CD$, $DA$ 위의 접점을 각각 $F$, $G$, $H$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CG}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{DH}=\\overline{DG}=${cd}-${r}=${tD}\\,(\\mathrm{cm})$이므로 $\\overline{AE}=\\overline{AH}=${ad}-${tD}=${ae}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, r, ad, cd, tA: ae, tB: tD, x: ae },
+          figureSpec: figCircumRight({ r, tB: tD, tA: ae, mirror: true }),
+        };
+      });
     }
-    const r = intBetween(rng, 3, 6);
-    const tA = intBetween(rng, 2, 8);
-    const tB = intBetween(rng, r, 8);
-    const tD = intBetween(rng, 2, 8);
-    const ab = tA + tB;
-    const bc = tB + r;
-    const cd = r + tD;
-    const ad = tA + tD;
-    return {
-      content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
-      answer: cm(ad),
-      solution: `원에 외접하는 사각형에서 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\n따라서 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
-      facts: { mode, r, ab, bc, cd, ad, x: ad },
-      figureSpec: figCircumRight({ r, tB, ab, mirror: false }),
-    };
+    // ⚠️ 여기서 반지름까지 함께 주면 **과잉결정**이라 그런 사각형이 없다
+    // (실측 2026-08-23: r=5·AB=13·BC=12·CD=9 는 Σψ=188.3° — 존재 조건 180° 위반).
+    // 세 변만 준다: 그러면 r 이 유일하게 정해지고(circumRightRadius) 그림도 값과 맞는다.
+    return attempt(80, () => {
+      const ab = intBetween(rng, 8, 16);
+      const bc = intBetween(rng, 6, 14);
+      const cd = intBetween(rng, 6, 14);
+      const ad = ab + cd - bc;
+      if (ad < 4 || bc < 4 || cd < 4) return null;
+      let rr: number;
+      try {
+        rr = circumRightRadius(ab, bc, cd);
+      } catch {
+        return null; // 그런 ∠C=90° 사각형이 없다
+      }
+      const tB = bc - rr;
+      const tA = ab - tB;
+      if (!circumRightExists(rr, tA, tB)) return null;
+      return {
+        content: `원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+        answer: cm(ad),
+        solution: `원에 외접하는 사각형에서 두 쌍의 대변의 길이의 합은 같으므로 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\\n따라서 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, ab, bc, cd, ad, x: ad },
+        figureSpec: figCircumRight({ r: rr, tB, tA, mirror: false }),
+      };
+    });
   }),
 
   def("16", "원에 외접하는 사각형의 응용", "hard", (rng): Body => {
