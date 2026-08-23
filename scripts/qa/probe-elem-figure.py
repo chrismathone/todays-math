@@ -152,6 +152,16 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "symmetry", "axis": "v", "n": 5, "cells": [[0, 0], [1, 2], [3, 3]]},
     {"version": "elem-1", "kind": "stackCubes", "voxels": [[0, 0, 0], [0, 0, 1], [1, 0, 0], [0, 1, 0], [1, 1, 0]], "views": ["iso", "top", "front", "side"]},
     {"version": "elem-1", "kind": "sphere", "r": 3},
+    # 입체 kind 셋 (2026-08-23, 입체-kind 세션). 구멍·컷·회전축을 전부 건드리는 표본 —
+    # 없으면 새 kind 는 변이 시험에서 구조적으로 0 이 된다 (09 §4-20-c).
+    {"version": "elem-1", "kind": "hollowSolid",
+     "outer": {"shape": "cylinder", "r": 4, "h": 9}, "inner": {"shape": "cylinder", "r": 1.5}},
+    {"version": "elem-1", "kind": "hollowSolid",
+     "outer": {"shape": "cuboid", "w": 6, "d": 4, "h": 6}, "inner": {"shape": "cylinder", "r": 1.5}},
+    {"version": "elem-1", "kind": "cutCuboid", "w": 12, "d": 9, "h": 9,
+     "cut": {"x": 3, "w": 5, "d": 3, "h": 6}},
+    {"version": "elem-1", "kind": "revolvePlan",
+     "pieces": [{"shape": "rightTri", "w": 5, "h": 7, "wLabel": "5 cm", "hLabel": "7 cm"}]},
 ]
 
 
