@@ -2506,6 +2506,720 @@ function mix113Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-2 약수와 배수 — 난이도 4단 (D-72 확대 3차) ──────────
+ *
+ * «수 규모 키우기 ≠ 다양성»(원장님 원칙) — 수는 FACTOR_NUMBERS(12~45)·최소공배수 ≤ 72
+ * 급으로 묶고, 어려움은 전부 **유형 축**에서 온다(판별 · 범위 결합 · 지워진 약수 복원 ·
+ * 나머지 조건 · 역산). 수 개념 소단원이라 2단(기본)은 「식 세우기」 대신 **판별·성질
+ * 적용 한 겹**이다(D-72 ⑶ 유형별 변주와 같은 자리).
+ *
+ * 이웃 분리(D-66 ⑸)는 **낱말 수준**까지 간다 — 시험이 잠근다:
+ *  · 1-2-1(한 수)·1-2-2(관계) 발문에는 공약수·공배수 계열 낱말이 없다.
+ *  · 1-2-3(공약수 집합) 발문에는 «공배수»가, 1-2-5(공배수 집합) 발문에는 «공약수»가 없다.
+ *  · 나눗셈·나누기 문장은 1-2-4(최대공약수 활용)만 쓴다. 시간·바둑판 활용은 1-2-6 만.
+ *
+ * 나머지 조건 문항의 정의역(리드 지시 2026-08-23): **나누는 수 > 나머지**를 뽑는
+ * 범위로 보장한다(1-2-4 심화 r < g · 1-2-6 심화 r < min(a,b)) — 경계 위반은 에러가
+ * 아니라 «그럴듯한 오답»으로 나가는 부류다. 시험이 그 경계를 다시 잰다.
+ */
+
+/** 두 수 뽑기 — 공약수가 «셋 이상»인 짝(최대공약수가 합성수). 1-2-3 이 쓴다. */
+function pairWithRichGcd(rng: Rng): [number, number] {
+  const a = pick(rng, FACTOR_NUMBERS);
+  const b = pick(
+    rng,
+    FACTOR_NUMBERS.filter((x) => x !== a && divisors(gcd(a, x)).length >= 3),
+  );
+  return [a, b];
+}
+
+/** 1-2-4 활용 짝 — 최대공약수 ≥ 4 이고 (a/g)×(b/g) ≤ 20 라 «장수» 답도 작다. */
+const GCD_PAIRS = [
+  [18, 24],
+  [24, 36],
+  [16, 20],
+  [27, 45],
+  [20, 30],
+  [28, 42],
+  [30, 45],
+  [32, 40],
+  [24, 40],
+  [36, 45],
+] as const;
+
+/** 1-2-5·1-2-6 짝 — 최대공약수 > 1 이고 최소공배수 ≤ 40. */
+const LCM_PAIRS = [
+  [4, 6],
+  [6, 8],
+  [6, 9],
+  [8, 12],
+  [4, 10],
+  [9, 12],
+  [6, 15],
+  [8, 10],
+  [10, 15],
+  [12, 18],
+] as const;
+
+/** «어떤 두 수의 최대공약수/최소공배수가 …» 꼴이 쓰는 값 풀. */
+const GCD_GIVEN = [8, 12, 16, 18, 20, 24] as const;
+const LCM_GIVEN = [8, 12, 14, 15, 16, 20] as const;
+
+/* ── 1-2-1 약수와 배수 — «한 수»의 약수·배수만 다룬다 ── */
+
+/** 연산 — k번째 약수·배수 하나를 짚는다(절차 한 번). */
+function fac121Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    // FACTOR_NUMBERS 는 모두 합성수라 «두 번째로 작은 약수»(가장 작은 소인수)가 늘 있다.
+    const num = pick(rng, FACTOR_NUMBERS);
+    const d = divisors(num);
+    return make(
+      unit,
+      `${n(num)}의 약수 중에서 두 번째로 작은 수를 구하시오.`,
+      n(d[1]!),
+      `${n(num)}의 약수는 ${nums(d)}입니다. 작은 수부터 두 번째는 ${n(d[1]!)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 3, 12);
+  const k = intBetween(rng, 5, 9);
+  return make(
+    unit,
+    `${n(b)}의 배수 중에서 ${n(k)}번째로 작은 수를 구하시오.`,
+    n(b * k),
+    `${n(b)}의 배수를 작은 수부터 세면 ${n(k)}번째는 ${expr(`${b}\\times${k}=${b * k}`)}입니다.`,
+  );
+}
+
+/** 기본 — 판별 한 겹: 약수가 아닌 것 / 배수인 것을 골라낸다. */
+function fac121Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const num = pick(rng, FACTOR_NUMBERS);
+    const d = divisors(num);
+    const three = pickSome(rng, d.slice(1), 3);
+    const notDiv: number[] = [];
+    for (let v = 2; v < num; v += 1) if (num % v !== 0) notDiv.push(v);
+    const bad = pick(rng, notDiv);
+    return make(
+      unit,
+      `다음 수 중에서 ${n(num)}의 약수가 아닌 수를 찾아 쓰시오.  ${nums(shuffled(rng, [...three, bad]))}`,
+      n(bad),
+      `${n(num)}의 약수는 ${nums(d)}입니다. ${nj(bad, "은", "는")} ${nj(num, "을", "를")} 나누어떨어지게 하지 못하므로 약수가 아닙니다.`,
+    );
+  }
+  const b = intBetween(rng, 4, 9);
+  const mult = b * intBetween(rng, 3, 8);
+  const notMul: number[] = [];
+  for (let v = mult - b + 1; v <= mult + b - 1; v += 1)
+    if (v % b !== 0 && v !== mult) notMul.push(v);
+  const others = pickSome(rng, notMul, 3);
+  return make(
+    unit,
+    `다음 수 중에서 ${n(b)}의 배수를 찾아 쓰시오.  ${nums(shuffled(rng, [mult, ...others]))}`,
+    n(mult),
+    `${expr(`${b}\\times${mult / b}=${mult}`)}이므로 ${nj(mult, "은", "는")} ${n(b)}의 배수입니다. 나머지는 ${nro(b)} 나누어떨어지지 않습니다.`,
+  );
+}
+
+/** 응용 — 범위와 결합한다(두 단계): 1~M 의 배수 개수 · K보다 큰 약수 개수. */
+function fac121Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 4, 9);
+    const k = intBetween(rng, 4, 8);
+    const M = b * k + intBetween(rng, 1, b - 1);
+    return make(
+      unit,
+      `${n(1)}부터 ${n(M)}까지의 수 중에서 ${n(b)}의 배수는 모두 몇 개입니까?`,
+      n(k),
+      `${n(M)}까지에 들어 있는 ${n(b)}의 배수 중 가장 큰 수는 ${expr(`${b}\\times${k}=${b * k}`)}입니다. 따라서 ${n(b)}의 배수는 모두 ${n(k)}개입니다.`,
+    );
+  }
+  const num = pick(rng, FACTOR_NUMBERS);
+  const d = divisors(num);
+  const i = intBetween(rng, 1, d.length - 3);
+  const K = d[i]!;
+  const count = d.length - 1 - i;
+  return make(
+    unit,
+    `${n(num)}의 약수 중에서 ${n(K)}보다 큰 수는 모두 몇 개입니까?`,
+    n(count),
+    `${n(num)}의 약수는 ${nums(d)}입니다. 이 중 ${n(K)}보다 큰 수는 ${nums(d.slice(i + 1))}의 ${n(count)}개입니다.`,
+  );
+}
+
+/** 심화 — 지워진 약수 복원(가장 큰 약수가 곧 그 수다) · 약수∧배수 조건 조합. */
+function fac121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    // 약수가 5~6개인 수만 — 목록이 길면 지면이 늘어지고, 짧으면 복원이 시시하다.
+    const num = pick(rng, [12, 16, 18, 20, 28, 32, 45]);
+    const d = divisors(num);
+    const hide = intBetween(rng, 1, d.length - 2);
+    const shown = d
+      .map((v, idx) => (idx === hide ? "\\square" : String(v)))
+      .join(",\\ ");
+    return make(
+      unit,
+      `어떤 수의 약수를 모두 작은 수부터 쓴 것입니다. □ 안에 알맞은 수를 구하시오.  ${expr(shown)}`,
+      n(d[hide]!),
+      `약수 중 가장 큰 수가 어떤 수 자신이므로 어떤 수는 ${n(num)}입니다. ${n(num)}의 약수는 ${nums(d)}이므로 □는 ${n(d[hide]!)}입니다.`,
+    );
+  }
+  const m = pick(rng, [2, 3, 5]);
+  const num = pick(
+    rng,
+    FACTOR_NUMBERS.filter((x) => {
+      if (x % m !== 0) return false;
+      const cnt = divisors(x / m).length;
+      return cnt >= 2 && cnt <= 4;
+    }),
+  );
+  const vals = divisors(num / m).map((v) => v * m);
+  return make(
+    unit,
+    `${n(num)}의 약수 중에서 ${n(m)}의 배수를 모두 구하시오.`,
+    nums(vals),
+    `${n(num)}의 약수는 ${nums(divisors(num))}입니다. 이 중 ${n(m)}의 배수는 ${nums(vals)}입니다.`,
+  );
+}
+
+/* ── 1-2-2 약수와 배수의 관계 — 곱셈식 하나가 맺는 «관계»만 다룬다(목록 나열 없음) ── */
+
+/** 연산 — 관계를 말하는 곱셈식의 □ 하나(절차 한 번). */
+function rel122Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 12);
+  const b = intBetween(rng, 3, 9);
+  const c = a * b;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${nj(c, "은", "는")} ${n(a)}의 배수입니다. □ 안에 알맞은 수를 구하시오.  ${expr(`${a}\\times\\square=${c}`)}`,
+      n(b),
+      `${expr(`${c}\\div${a}=${b}`)}이므로 □는 ${n(b)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${nj(a, "은", "는")} ${n(c)}의 약수입니다. □ 안에 알맞은 수를 구하시오.  ${expr(`\\square\\times${a}=${c}`)}`,
+    n(b),
+    `${expr(`${c}\\div${a}=${b}`)}이므로 □는 ${n(b)}입니다.`,
+  );
+}
+
+/** 기본 — 관계인 짝을 판별하거나(㉮), 관계의 이름을 답한다(㉯). */
+function rel122Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 3, 9);
+    const k = intBetween(rng, 2, 6);
+    const related: [number, number] = [a, a * k];
+    const x = intBetween(rng, 4, 9);
+    const y = x * intBetween(rng, 2, 4) + intBetween(rng, 1, x - 1);
+    const unrelated: [number, number] = [x, y];
+    const firstIsRelated = intBetween(rng, 0, 1) === 0;
+    const [p1, p2] = firstIsRelated
+      ? [related, unrelated]
+      : [unrelated, related];
+    return make(
+      unit,
+      `두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠ ${n(p1[0])}, ${n(p1[1])}   ㉡ ${n(p2[0])}, ${n(p2[1])}`,
+      firstIsRelated ? "㉠" : "㉡",
+      `${expr(`${a}\\times${k}=${a * k}`)}이므로 ${nj(a * k, "은", "는")} ${n(a)}의 배수이고 두 수는 약수와 배수의 관계입니다. ${nj(y, "은", "는")} ${nro(x)} 나누어떨어지지 않습니다.`,
+    );
+  }
+  const a = intBetween(rng, 3, 12);
+  const b = intBetween(rng, 3, 9);
+  const c = a * b;
+  return make(
+    unit,
+    `${nj(c, "은", "는")} ${n(a)}의 배수입니다. 그러면 ${nj(a, "은", "는")} ${n(c)}의 무엇인지 쓰시오.`,
+    "약수",
+    `${nj(c, "이", "가")} ${n(a)}의 배수이면 ${nj(a, "은", "는")} ${nj(c, "을", "를")} 나누어떨어지게 하므로 ${n(c)}의 약수입니다.`,
+  );
+}
+
+/** 응용 — 관계인 수를 **모두** 찾거나(양방향 판별), 곱셈식이 주는 약수 넷을 읽는다. */
+function rel122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = pick(rng, [8, 9, 12, 15, 16, 18, 20]);
+    const d = pick(
+      rng,
+      divisors(a).filter((v) => v >= 2 && v < a),
+    );
+    const m = a * intBetween(rng, 2, 4);
+    // a<u<2a 라 u 는 a 의 배수도 약수도 아니다. w 는 a 를 나누지 못하는 작은 수.
+    const u = a + intBetween(rng, 1, a - 1);
+    const smalls: number[] = [];
+    for (let v = 2; v < a; v += 1) if (a % v !== 0) smalls.push(v);
+    const w = pick(rng, smalls);
+    return make(
+      unit,
+      `다음 수 중에서 ${nj(a, "과", "와")} 약수와 배수의 관계인 수를 모두 찾아 쓰시오.  ${nums(shuffled(rng, [d, m, u, w]))}`,
+      nums([d, m]),
+      `${nj(d, "은", "는")} ${n(a)}의 약수이고 ${nj(m, "은", "는")} ${n(a)}의 배수입니다. 나머지 두 수는 ${nj(a, "과", "와")} 약수와 배수의 관계가 아닙니다.`,
+    );
+  }
+  const p = intBetween(rng, 2, 8);
+  const q = pick(
+    rng,
+    [2, 3, 4, 5, 6, 7, 8].filter((v) => v !== p),
+  );
+  const c = p * q;
+  const lo = Math.min(p, q);
+  const hi = Math.max(p, q);
+  return make(
+    unit,
+    `다음 곱셈식에서 알 수 있는 ${n(c)}의 약수를 모두 쓰시오.  ${expr(`${p}\\times${q}=${c}`)}`,
+    nums([1, lo, hi, c]),
+    `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 이 식에서 알 수 있는 약수는 ${nums([1, lo, hi, c])}입니다.`,
+  );
+}
+
+/** 심화 — «어떤 수와 N 이 관계» 를 크기 조건과 조합해 양방향으로 되찾는다. */
+function rel122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const num = pick(rng, [12, 16, 18, 20, 28]);
+    const d = divisors(num).slice(0, -1);
+    return make(
+      unit,
+      `어떤 수와 ${nj(num, "은", "는")} 약수와 배수의 관계입니다. 어떤 수가 ${n(num)}보다 작을 때, 어떤 수가 될 수 있는 수를 모두 구하시오.`,
+      nums(d),
+      `${n(num)}보다 작으면서 관계인 수는 ${n(num)}의 약수입니다. ${n(num)}의 약수 중 ${n(num)}보다 작은 수는 ${nums(d)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 6, 9);
+  const L = 4 * b - 1;
+  return make(
+    unit,
+    `어떤 수와 ${nj(b, "은", "는")} 약수와 배수의 관계입니다. 어떤 수가 ${n(b)}보다 크고 ${n(L)}보다 작을 때, 어떤 수가 될 수 있는 수를 모두 구하시오.`,
+    nums([2 * b, 3 * b]),
+    `${n(b)}보다 크면서 관계인 수는 ${n(b)}의 배수입니다. ${n(b)}보다 크고 ${n(L)}보다 작은 ${n(b)}의 배수는 ${nums([2 * b, 3 * b])}입니다.`,
+  );
+}
+
+/* ── 1-2-3 공약수와 최대공약수 — 공약수를 «집합»으로 다룬다(공약수 = 최대공약수의 약수) ── */
+
+/** 연산 — 두 번째로 큰 공약수를 짚거나, 최대공약수에서 공약수 전부를 편다. */
+function comdiv123Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pairWithRichGcd(rng);
+    const cd = divisors(gcd(a, b));
+    const second = cd[cd.length - 2]!;
+    return make(
+      unit,
+      `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 두 번째로 큰 수를 구하시오.`,
+      n(second),
+      `두 수의 최대공약수는 ${n(gcd(a, b))}이고, 공약수는 최대공약수의 약수인 ${nums(cd)}입니다. 큰 수부터 두 번째는 ${n(second)}입니다.`,
+    );
+  }
+  const g = pick(rng, GCD_GIVEN);
+  return make(
+    unit,
+    `어떤 두 수의 최대공약수가 ${n(g)}입니다. 두 수의 공약수를 모두 구하시오.`,
+    nums(divisors(g)),
+    `공약수는 최대공약수의 약수입니다. ${n(g)}의 약수는 ${nums(divisors(g))}입니다.`,
+  );
+}
+
+/** 기본 — 공약수 판별 · 최대공약수에서 공약수의 «개수»를 읽는다. */
+function comdiv123Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pairWithRichGcd(rng);
+    const cd = divisors(gcd(a, b));
+    const three = pickSome(rng, cd, 3);
+    // 한쪽만 나누는 수 — 그럴듯한 미끼다. 두 수가 다르므로 반드시 있다.
+    // 주어진 두 수 자신은 미끼로 어색하니 다른 후보가 있으면 피한다((16,32) 같은
+    // 짝은 32 뿐이라 그때만 쓴다).
+    const oneSided = [...divisors(a), ...divisors(b)].filter(
+      (v) => !(a % v === 0 && b % v === 0),
+    );
+    const strangers = oneSided.filter((v) => v !== a && v !== b);
+    const bad = pick(rng, strangers.length > 0 ? strangers : oneSided);
+    return make(
+      unit,
+      `다음 수 중에서 ${nj(a, "과", "와")} ${n(b)}의 공약수가 아닌 수를 찾아 쓰시오.  ${nums(shuffled(rng, [...three, bad]))}`,
+      n(bad),
+      `두 수의 공약수는 ${nums(cd)}입니다. ${nj(bad, "은", "는")} 두 수 중 한쪽만 나누어떨어지게 하므로 공약수가 아닙니다.`,
+    );
+  }
+  const g = pick(rng, GCD_GIVEN);
+  return make(
+    unit,
+    `어떤 두 수의 최대공약수가 ${n(g)}입니다. 두 수의 공약수는 모두 몇 개입니까?`,
+    n(divisors(g).length),
+    `공약수는 최대공약수 ${n(g)}의 약수인 ${nums(divisors(g))}이므로 ${n(divisors(g).length)}개입니다.`,
+  );
+}
+
+/** 응용 — 목록을 넘어 한 걸음: 공약수의 합 · 조건(K보다 큰)에 맞는 공약수. */
+function comdiv123Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  const cd = divisors(gcd(a, b));
+  if (intBetween(rng, 0, 1) === 0) {
+    const sum = cd.reduce((x, y) => x + y, 0);
+    return make(
+      unit,
+      `${nj(a, "과", "와")} ${n(b)}의 공약수를 모두 더하면 얼마입니까?`,
+      n(sum),
+      `공약수는 최대공약수 ${n(gcd(a, b))}의 약수인 ${nums(cd)}입니다. 모두 더하면 ${n(sum)}입니다.`,
+    );
+  }
+  const i = intBetween(rng, 0, cd.length - 2);
+  const K = cd[i]!;
+  const rest = cd.slice(i + 1);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 ${n(K)}보다 큰 수를 모두 구하시오.`,
+    nums(rest),
+    `공약수는 ${nums(cd)}입니다. 이 중 ${n(K)}보다 큰 수는 ${nums(rest)}입니다.`,
+  );
+}
+
+/** 심화 — 공약수 목록에서 최대공약수를 «되찾고», 수를 셋으로 늘려 조합한다. */
+function comdiv123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const g = pick(rng, GCD_GIVEN);
+    return make(
+      unit,
+      `어떤 두 수의 공약수를 모두 쓰면 ${nums(divisors(g))}입니다. 두 수의 최대공약수를 구하시오.`,
+      n(g),
+      `공약수 중 가장 큰 수가 최대공약수이므로 ${n(g)}입니다.`,
+    );
+  }
+  const [x, y, z] = pick(rng, [
+    [12, 18, 24],
+    [16, 24, 32],
+    [20, 30, 40],
+    [18, 27, 45],
+    [12, 20, 28],
+    [24, 36, 42],
+  ] as const);
+  const g = gcd(gcd(x, y), z);
+  return make(
+    unit,
+    `세 수 ${n(x)}, ${n(y)}, ${n(z)}의 최대공약수를 구하시오.`,
+    n(g),
+    `${nj(x, "과", "와")} ${n(y)}의 최대공약수는 ${n(gcd(x, y))}이고, ${nj(gcd(x, y), "과", "와")} ${n(z)}의 최대공약수는 ${n(g)}입니다. 따라서 세 수의 최대공약수는 ${n(g)}입니다.`,
+  );
+}
+
+/* ── 1-2-4 최대공약수 구하는 방법 — 나누기·자르기 문장은 이 소단원만 쓴다 ── */
+
+/** 연산 — 최대공약수 값을 구한다(해설이 나눗셈법을 보인다 — 표준의 약수 나열과 다른 길). */
+function gcd124Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `두 수 ${n(a)}, ${n(b)}의 최대공약수를 구하시오.`,
+      n(g),
+      `두 수를 ${nro(g)} 나누면 몫이 ${n(a / g)}, ${n(b / g)}이고 두 몫의 공약수는 ${n(1)}뿐입니다. 따라서 최대공약수는 ${n(g)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}의 공약수 중에서 가장 큰 수를 구하시오.`,
+    n(g),
+    `공약수 중 가장 큰 수가 최대공약수입니다. 두 수를 ${nro(g)} 나누면 몫 ${n(a / g)}, ${nj(b / g, "은", "는")} 공약수가 ${n(1)}뿐이므로 답은 ${n(g)}입니다.`,
+  );
+}
+
+/** 기본 — 활용 문장 한 겹: 똑같이 나누기(사람 수) · 가장 큰 정사각형(한 변). 답이 곧 G 다. */
+function gcd124Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `사과 ${n(a)}개와 배 ${n(b)}개를 최대한 많은 학생에게 남김없이 똑같이 나누어 주려고 합니다. 학생은 최대 몇 명입니까?`,
+      n(g),
+      `학생 수는 ${nj(a, "과", "와")} ${nj(b, "을", "를")} 모두 나누어떨어지게 해야 하므로 두 수의 공약수입니다. 최대한 많은 학생은 최대공약수인 ${n(g)}명입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `가로가 ${n(a)} cm, 세로가 ${n(b)} cm인 직사각형 모양 종이를 남는 부분 없이 크기가 같은 가장 큰 정사각형으로 자르려고 합니다. 정사각형의 한 변은 몇 cm입니까?`,
+    n(g),
+    `정사각형의 한 변은 가로와 세로를 모두 나누어떨어지게 해야 하므로 두 수의 공약수입니다. 가장 큰 정사각형의 한 변은 최대공약수인 ${n(g)} cm입니다.`,
+  );
+}
+
+/** 응용 — 두 단계: 최대공약수를 구한 «다음» 몫·장수를 묻는다. */
+function gcd124Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `밤 ${n(a)}개와 호두 ${n(b)}개를 최대한 많은 접시에 남김없이 똑같이 나누어 담으려고 합니다. 접시 한 개에 담는 밤은 몇 개입니까?`,
+      n(a / g),
+      `접시 수는 두 수의 최대공약수인 ${n(g)}개입니다. 접시 한 개에 담는 밤은 ${expr(`${a}\\div${g}=${a / g}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `가로가 ${n(a)} cm, 세로가 ${n(b)} cm인 직사각형 모양 게시판을 크기가 같은 가장 큰 정사각형 종이로 빈틈없이 덮으려고 합니다. 정사각형 종이는 모두 몇 장 필요합니까?`,
+    n((a / g) * (b / g)),
+    `가장 큰 정사각형의 한 변은 최대공약수인 ${n(g)} cm입니다. 가로로 ${expr(`${a}\\div${g}=${a / g}`)}장, 세로로 ${expr(`${b}\\div${g}=${b / g}`)}장이므로 모두 ${expr(`${a / g}\\times${b / g}=${(a / g) * (b / g)}`)}장입니다.`,
+  );
+}
+
+/**
+ * 심화 — 나머지 조건 역산. **나누는 수 > 나머지**를 뽑는 범위로 보장한다
+ * (`r ≤ g-1`) — 경계를 어긴 문항은 에러가 아니라 «그럴듯한 오답»으로 나간다.
+ */
+function gcd124Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const g = pick(rng, [5, 6, 7, 8, 9]);
+    const r1 = intBetween(rng, 1, g - 1);
+    const r2 = intBetweenExcept(rng, 1, g - 1, r1);
+    // 몫이 서로소여야 «가장 큰 어떤 수»가 정확히 g 다.
+    const [p, q] = pick(rng, [
+      [2, 3],
+      [3, 4],
+      [2, 5],
+      [3, 5],
+      [4, 5],
+      [5, 6],
+      [2, 7],
+    ] as const);
+    const a = g * p + r1;
+    const b = g * q + r2;
+    return make(
+      unit,
+      `${nj(a, "을", "를")} 어떤 수로 나누면 나머지가 ${n(r1)}이고, ${nj(b, "을", "를")} 어떤 수로 나누면 나머지가 ${n(r2)}입니다. 어떤 수 중에서 가장 큰 수를 구하시오.`,
+      n(g),
+      // 수 뒤 조사는 소리가 정한다 — expr 뒤에 «과/는» 을 박으면 「$14$과」가 나온다.
+      `나머지를 빼면 ${expr(`${a}-${r1}=${g * p}`)}, ${expr(`${b}-${r2}=${g * q}`)}입니다. 이 두 수는 어떤 수로 나누어떨어지므로 어떤 수는 두 수의 공약수입니다. 최대공약수는 ${n(g)}이고, ${nj(g, "은", "는")} 나머지 ${nj(r1, "과", "와")} ${n(r2)}보다 크므로 어떤 수 중 가장 큰 수는 ${n(g)}입니다.`,
+    );
+  }
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${nj(b, "을", "를")} 어떤 수로 나누면 두 수 모두 나누어떨어집니다. 어떤 수가 될 수 있는 수는 모두 몇 개입니까?`,
+    n(divisors(g).length),
+    `어떤 수는 두 수의 공약수입니다. 최대공약수 ${n(g)}의 약수인 ${nums(divisors(g))}이므로 모두 ${n(divisors(g).length)}개입니다.`,
+  );
+}
+
+/* ── 1-2-5 공배수와 최소공배수 — 공배수를 «집합»으로 다룬다(공배수 = 최소공배수의 배수) ── */
+
+/** 연산 — 공배수 중 가장 작은 수 · 최소공배수에서 공배수 셋을 편다. */
+function commul125Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pick(rng, LCM_PAIRS);
+    const m = lcm(a, b);
+    return make(
+      unit,
+      `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 가장 작은 수를 구하시오.`,
+      n(m),
+      `두 수의 공배수 중 가장 작은 수가 최소공배수입니다. ${nj(a, "과", "와")} ${n(b)}의 최소공배수는 ${n(m)}입니다.`,
+    );
+  }
+  const m = pick(rng, LCM_GIVEN);
+  return make(
+    unit,
+    `어떤 두 수의 최소공배수가 ${n(m)}입니다. 두 수의 공배수를 가장 작은 수부터 ${n(3)}개 쓰시오.`,
+    nums([m, 2 * m, 3 * m]),
+    `공배수는 최소공배수의 배수입니다. ${n(m)}의 배수를 작은 수부터 쓰면 ${nums([m, 2 * m, 3 * m])}입니다.`,
+  );
+}
+
+/** 기본 — 공배수 판별 · 최소공배수에서 k번째 공배수. */
+function commul125Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pick(rng, LCM_PAIRS);
+    const m = lcm(a, b);
+    const good = m * intBetween(rng, 1, 3);
+    // 한쪽만의 배수 — 그럴듯한 미끼. 공배수가 되어 버린 값은 거른다.
+    const decoys: number[] = [];
+    for (const k of [1, 2, 3, 4, 5]) {
+      if ((a * k) % m !== 0 && a * k !== good) decoys.push(a * k);
+      if ((b * k) % m !== 0 && b * k !== good) decoys.push(b * k);
+    }
+    const shown = shuffled(rng, [good, ...pickSome(rng, decoys, 3)]);
+    return make(
+      unit,
+      `다음 수 중에서 ${nj(a, "과", "와")} ${n(b)}의 공배수를 찾아 쓰시오.  ${nums(shown)}`,
+      n(good),
+      `두 수의 최소공배수는 ${n(m)}이고 공배수는 ${n(m)}의 배수입니다. ${nj(good, "은", "는")} ${n(m)}의 배수이므로 공배수입니다.`,
+    );
+  }
+  const m = pick(rng, LCM_GIVEN);
+  const k = intBetween(rng, 4, 5);
+  return make(
+    unit,
+    `어떤 두 수의 최소공배수가 ${n(m)}일 때, 두 수의 공배수 중에서 ${n(k)}번째로 작은 수를 구하시오.`,
+    n(k * m),
+    `공배수는 최소공배수의 배수이므로 ${n(k)}번째로 작은 수는 ${expr(`${m}\\times${k}=${k * m}`)}입니다.`,
+  );
+}
+
+/** 응용 — 범위와 결합: 1~L 의 공배수 개수 · K 에 가장 가까운 공배수. */
+function commul125Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 범위 상한을 100 아래로 묶는다 — 수 규모를 키우는 것은 다양성 축이 아니다(원장님).
+    const k = intBetween(rng, 2, Math.max(2, Math.min(4, Math.floor(95 / m))));
+    const L = m * k + intBetween(rng, 1, Math.min(m - 1, 100 - m * k));
+    return make(
+      unit,
+      `${n(1)}부터 ${n(L)}까지의 수 중에서 ${nj(a, "과", "와")} ${n(b)}의 공배수는 모두 몇 개입니까?`,
+      n(k),
+      `두 수의 최소공배수는 ${n(m)}이고 공배수는 ${n(m)}의 배수입니다. ${n(L)}까지에는 ${expr(`${m}\\times${k}=${m * k}`)}까지 들어 있으므로 모두 ${n(k)}개입니다.`,
+    );
+  }
+  const j = intBetween(rng, 2, 3);
+  const o = intBetween(rng, 1, Math.floor((m - 1) / 2));
+  const K = intBetween(rng, 0, 1) === 0 ? j * m + o : j * m - o;
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 ${n(K)}에 가장 가까운 수를 구하시오.`,
+    n(j * m),
+    `두 수의 공배수는 최소공배수 ${n(m)}의 배수인 ${nums([m, 2 * m, 3 * m])}, … 입니다. ${nj(K, "과", "와")}의 차가 가장 작은 수는 ${n(j * m)}입니다.`,
+  );
+}
+
+/** 심화 — 집합에서 최소공배수를 «되찾고», 수를 셋으로 늘려 조합한다. */
+function commul125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const m = pick(rng, LCM_GIVEN);
+    return make(
+      unit,
+      `어떤 두 수의 공배수 중에서 세 번째로 작은 수가 ${n(3 * m)}입니다. 두 수의 최소공배수를 구하시오.`,
+      n(m),
+      `공배수는 최소공배수의 배수이므로 세 번째로 작은 수는 최소공배수의 ${n(3)}배입니다. 따라서 최소공배수는 ${expr(`${3 * m}\\div3=${m}`)}입니다.`,
+    );
+  }
+  const [x, y, z] = pick(rng, [
+    [2, 3, 4],
+    [3, 4, 6],
+    [2, 5, 6],
+    [4, 5, 6],
+    [4, 6, 9],
+    [3, 5, 6],
+    [4, 6, 8],
+  ] as const);
+  const m = lcm(lcm(x, y), z);
+  return make(
+    unit,
+    `세 수 ${n(x)}, ${n(y)}, ${n(z)}의 최소공배수를 구하시오.`,
+    n(m),
+    `${nj(x, "과", "와")} ${n(y)}의 최소공배수는 ${n(lcm(x, y))}이고, ${nj(lcm(x, y), "과", "와")} ${n(z)}의 최소공배수는 ${n(m)}입니다. 따라서 세 수의 최소공배수는 ${n(m)}입니다.`,
+  );
+}
+
+/* ── 1-2-6 최소공배수 구하는 방법 — 시간표·바둑판 활용은 이 소단원만 쓴다 ── */
+
+/** 연산 — 최소공배수 값 · 나눗셈법의 구조(공약수로 나눈 몫이 서로 나눠지지 않을 때). */
+function lcm126Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pick(rng, LCM_PAIRS);
+    const g = gcd(a, b);
+    const m = lcm(a, b);
+    return make(
+      unit,
+      `두 수 ${n(a)}, ${n(b)}의 최소공배수를 구하시오.`,
+      n(m),
+      `두 수를 공약수 ${nro(g)} 나누면 몫이 ${n(a / g)}, ${n(b / g)}입니다. 최소공배수는 ${expr(`${g}\\times${a / g}\\times${b / g}=${m}`)}입니다.`,
+    );
+  }
+  const g = intBetween(rng, 2, 4);
+  const [p, q] = pick(rng, [
+    [2, 3],
+    [3, 4],
+    [2, 5],
+    [3, 5],
+    [4, 5],
+    [2, 7],
+  ] as const);
+  const m = g * p * q;
+  return make(
+    unit,
+    `어떤 두 수를 공약수 ${nro(g)} 나누었더니 몫이 ${nj(p, "과", "와")} ${nj(q, "이", "가")} 되었습니다. 두 몫의 공약수는 ${n(1)}뿐입니다. 처음 두 수의 최소공배수를 구하시오.`,
+    n(m),
+    `최소공배수는 나눈 공약수와 두 몫의 곱입니다. ${expr(`${g}\\times${p}\\times${q}=${m}`)}입니다.`,
+  );
+}
+
+/** 기본 — 활용 문장 한 겹: 함께 가는 날 · 가장 작은 정사각형의 한 변. 답이 곧 최소공배수다. */
+function lcm126Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `형은 ${n(a)}일마다, 동생은 ${n(b)}일마다 수영장에 갑니다. 오늘 두 사람이 함께 갔다면, 바로 다음에 함께 가는 날은 며칠 후입니까?`,
+      n(m),
+      `함께 가는 날은 ${nj(a, "과", "와")} ${n(b)}의 공배수입니다. 바로 다음은 최소공배수인 ${n(m)}일 후입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `가로가 ${n(a)} cm, 세로가 ${n(b)} cm인 직사각형 모양 카드를 겹치지 않게 빈틈없이 늘어놓아 가장 작은 정사각형을 만들려고 합니다. 정사각형의 한 변은 몇 cm입니까?`,
+    n(m),
+    `정사각형의 한 변은 ${nj(a, "과", "와")} ${n(b)}의 공배수여야 합니다. 가장 작은 정사각형의 한 변은 최소공배수인 ${n(m)} cm입니다.`,
+  );
+}
+
+/** 응용 — 두 단계: 최소공배수를 구한 «다음» 횟수·장수를 묻는다. */
+function lcm126Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 시간 상한을 100초 아래로 묶는다(수 규모 원칙). T 가 공배수에 딱 앉지 않아 경계가 없다.
+    const k = intBetween(rng, 2, Math.max(2, Math.min(4, Math.floor(95 / m))));
+    const T = m * k + intBetween(rng, 1, Math.min(m - 1, 100 - m * k));
+    return make(
+      unit,
+      `빨간 전등은 ${n(a)}초마다, 파란 전등은 ${n(b)}초마다 깜빡입니다. 두 전등이 동시에 깜빡인 뒤 ${n(T)}초 동안 다시 동시에 깜빡이는 것은 모두 몇 번입니까?`,
+      n(k),
+      `동시에 깜빡이는 것은 최소공배수인 ${n(m)}초마다입니다. ${n(T)}초 동안에는 ${expr(`${m}\\times${k}=${m * k}`)}초까지 ${n(k)}번 있습니다.`,
+    );
+  }
+  return make(
+    unit,
+    `가로가 ${n(a)} cm, 세로가 ${n(b)} cm인 직사각형 모양 색 카드를 겹치지 않게 빈틈없이 늘어놓아 가장 작은 정사각형을 만들었습니다. 사용한 색 카드는 모두 몇 장입니까?`,
+    n((m / a) * (m / b)),
+    `가장 작은 정사각형의 한 변은 최소공배수인 ${n(m)} cm입니다. 가로로 ${expr(`${m}\\div${a}=${m / a}`)}장, 세로로 ${expr(`${m}\\div${b}=${m / b}`)}장이므로 모두 ${expr(`${m / a}\\times${m / b}=${(m / a) * (m / b)}`)}장입니다.`,
+  );
+}
+
+/**
+ * 심화 — 나머지·역산. **나누는 수 > 나머지**(`r < min(a,b)`)를 뽑는 범위로 보장한다.
+ * ㉯의 «다른 수» 후보는 M 의 약수 중 최소공배수를 되만드는 수만이다 — 목록을 실제로
+ * 세어 최솟값을 낸다(공식으로 흉내 내면 (a,M) 짝이 바뀔 때 조용히 틀린다).
+ */
+function lcm126Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [a, b] = pick(rng, LCM_PAIRS);
+    const m = lcm(a, b);
+    const r = intBetween(rng, 1, Math.min(a, b) - 1);
+    return make(
+      unit,
+      `어떤 수를 ${nro(a)} 나누어도 ${nro(b)} 나누어도 나머지가 ${n(r)}입니다. 어떤 수 중에서 가장 작은 수를 구하시오.`,
+      n(m + r),
+      `나머지 ${nj(r, "을", "를")} 빼면 ${nj(a, "과", "와")} ${nro(b)} 모두 나누어떨어지므로 두 수의 공배수입니다. 가장 작은 공배수는 최소공배수 ${n(m)}이므로 어떤 수는 ${expr(`${m}+${r}=${m + r}`)}입니다.`,
+    );
+  }
+  const [a, M] = pick(rng, [
+    [6, 24],
+    [8, 24],
+    [10, 20],
+    [12, 36],
+    [9, 18],
+    [6, 30],
+  ] as const);
+  const cands = divisors(M).filter((d) => lcm(a, d) === M);
+  const ans = cands[0]!;
+  return make(
+    unit,
+    `두 수의 최소공배수가 ${n(M)}입니다. 한 수가 ${n(a)}일 때, 다른 수가 될 수 있는 수 중에서 가장 작은 수를 구하시오.`,
+    n(ans),
+    `다른 수는 ${n(M)}의 약수 중에서 ${nj(a, "과", "와")}의 최소공배수가 ${nj(M, "이", "가")} 되는 수입니다. 될 수 있는 수는 ${nums(cands)}이고, 가장 작은 수는 ${n(ans)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -2531,6 +3245,42 @@ export const G5_TIERS: ElemTierMap = {
     기본: mix113Read,
     응용: mix113Apply,
     심화: mix113Deep,
+  },
+  "초5|1-2-1": {
+    연산: fac121Calc,
+    기본: fac121Read,
+    응용: fac121Apply,
+    심화: fac121Deep,
+  },
+  "초5|1-2-2": {
+    연산: rel122Calc,
+    기본: rel122Read,
+    응용: rel122Apply,
+    심화: rel122Deep,
+  },
+  "초5|1-2-3": {
+    연산: comdiv123Calc,
+    기본: comdiv123Read,
+    응용: comdiv123Apply,
+    심화: comdiv123Deep,
+  },
+  "초5|1-2-4": {
+    연산: gcd124Calc,
+    기본: gcd124Read,
+    응용: gcd124Apply,
+    심화: gcd124Deep,
+  },
+  "초5|1-2-5": {
+    연산: commul125Calc,
+    기본: commul125Read,
+    응용: commul125Apply,
+    심화: commul125Deep,
+  },
+  "초5|1-2-6": {
+    연산: lcm126Calc,
+    기본: lcm126Read,
+    응용: lcm126Apply,
+    심화: lcm126Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,

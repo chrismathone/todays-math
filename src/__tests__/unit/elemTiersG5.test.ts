@@ -862,3 +862,574 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
     }
   });
 });
+
+/* ────────── 초5 1-2 약수와 배수 — 4단 (D-72 확대 3차) ────────── */
+
+const CODES12 = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5", "1-2-6"] as const;
+
+/* 참은 발문의 수 + 시험 자신의 산술로 다시 선다 — 생성기의 math.ts 를 부르지 않는다. */
+const gcd2 = (a: number, b: number): number => (b === 0 ? a : gcd2(b, a % b));
+const lcm2 = (a: number, b: number): number => (a * b) / gcd2(a, b);
+function divs(v: number): number[] {
+  const out: number[] = [];
+  for (let i = 1; i <= v; i += 1) if (v % i === 0) out.push(i);
+  return out;
+}
+const related = (x: number, y: number): boolean => x % y === 0 || y % x === 0;
+
+describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
+  it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES12) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES12) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(
+          new Set(rows).size,
+          `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1)", () => {
+    const bad: string[] = [];
+    for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("약수와 배수에는 그림이 없다 — 갈래 넷 전부", () => {
+    for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          expect(
+            problem(code, tier, seed).figureSpec,
+            `${code} ${tier} @${seed}`,
+          ).toBeNull();
+        }
+      }
+    }
+  });
+
+  /* ── 낱말 축 (D-66 ⑸) — 소단원 주제가 발문의 낱말에서 갈린다 ── */
+
+  it("1-2-1·1-2-2 발문에는 공약수·공배수 계열 낱말이 없다", () => {
+    for (const code of ["1-2-1", "1-2-2"]) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          expect(
+            /공약수|공배수/.test(c),
+            `${code} ${tier} @${seed}\n${c}`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  it("1-2-3 발문은 공약수 쪽이고 1-2-5 발문은 공배수 쪽이다", () => {
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        const c3 = problem("1-2-3", tier, seed).content;
+        expect(/공약수/.test(c3), `1-2-3 ${tier} @${seed}\n${c3}`).toBe(true);
+        expect(/공배수/.test(c3), `1-2-3 ${tier} @${seed}\n${c3}`).toBe(false);
+        const c5 = problem("1-2-5", tier, seed).content;
+        expect(/공배수/.test(c5), `1-2-5 ${tier} @${seed}\n${c5}`).toBe(true);
+        expect(/공약수/.test(c5), `1-2-5 ${tier} @${seed}\n${c5}`).toBe(false);
+        // 1-2-4 는 공배수를, 1-2-6 은 «최대공약수»를 입에 올리지 않는다.
+        const c4 = problem("1-2-4", tier, seed).content;
+        expect(/공배수/.test(c4), `1-2-4 ${tier} @${seed}\n${c4}`).toBe(false);
+        const c6 = problem("1-2-6", tier, seed).content;
+        expect(/최대공약수/.test(c6), `1-2-6 ${tier} @${seed}\n${c6}`).toBe(
+          false,
+        );
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 ── */
+
+  it("1-2-1 — 약수·배수가 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-1", "연산", seed);
+      const cA = answerNumber(calc.answer, "1-2-1 연산");
+      if (calc.content.includes("약수")) {
+        const [num] = nums(calc.content) as [number];
+        expect(cA, calc.content).toBe(divs(num)[1]);
+      } else {
+        const [b, k] = nums(calc.content) as [number, number];
+        expect(cA, calc.content).toBe(b * k);
+      }
+
+      const read = problem("1-2-1", "기본", seed);
+      const rA = answerNumber(read.answer, "1-2-1 기본");
+      const [head, ...shown] = nums(read.content) as [number, ...number[]];
+      expect(shown.length, read.content).toBe(4);
+      if (read.content.includes("아닌")) {
+        const strangers = shown.filter((v) => head % v !== 0);
+        expect(strangers, read.content).toEqual([rA]);
+      } else {
+        const multiples = shown.filter((v) => v % head === 0);
+        expect(multiples, read.content).toEqual([rA]);
+      }
+
+      const app = problem("1-2-1", "응용", seed);
+      const aA = answerNumber(app.answer, "1-2-1 응용");
+      if (app.content.includes("부터")) {
+        const [, M, b] = nums(app.content) as [number, number, number];
+        expect(M % b, `경계가 배수에 앉으면 안 된다: ${app.content}`).not.toBe(
+          0,
+        );
+        expect(aA, app.content).toBe(Math.floor(M / b));
+      } else {
+        const [num, K] = nums(app.content) as [number, number];
+        expect(divs(num), `K 는 약수여야 그럴듯하다: ${app.content}`).toContain(
+          K,
+        );
+        expect(aA, app.content).toBe(divs(num).filter((v) => v > K).length);
+      }
+
+      const deep = problem("1-2-1", "심화", seed);
+      if (deep.content.includes("\\square")) {
+        const shownD = nums(deep.content);
+        const num = Math.max(...shownD);
+        const missing = divs(num).filter((v) => !shownD.includes(v));
+        expect(missing, deep.content).toEqual([
+          answerNumber(deep.answer, "1-2-1 심화"),
+        ]);
+      } else {
+        const [num, m] = nums(deep.content) as [number, number];
+        expect(nums(deep.answer), deep.content).toEqual(
+          divs(num).filter((v) => v % m === 0),
+        );
+      }
+    }
+  });
+
+  it("1-2-2 — 관계가 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-2", "연산", seed);
+      const eq = calc.content.match(
+        /\$(?:(\d+)\\times\\square|\\square\\times(\d+))=(\d+)\$/,
+      )!;
+      const factor = Number(eq[1] ?? eq[2]);
+      const product = Number(eq[3]);
+      expect(
+        factor * answerNumber(calc.answer, "1-2-2 연산"),
+        calc.content,
+      ).toBe(product);
+
+      const read = problem("1-2-2", "기본", seed);
+      if (read.content.includes("기호")) {
+        const [x, y, u, v] = nums(read.content) as [
+          number,
+          number,
+          number,
+          number,
+        ];
+        const firstRelated = related(x, y);
+        expect(
+          firstRelated !== related(u, v),
+          `정확히 한 짝만 관계여야 한다: ${read.content}`,
+        ).toBe(true);
+        expect(read.answer, read.content).toBe(firstRelated ? "㉠" : "㉡");
+      } else {
+        const [c, a] = nums(read.content) as [number, number];
+        expect(c % a, read.content).toBe(0);
+        expect(read.answer, read.content).toBe("약수");
+      }
+
+      const app = problem("1-2-2", "응용", seed);
+      if (app.content.includes("곱셈식")) {
+        const [c, p, q] = nums(app.content) as [number, number, number];
+        expect(p * q, app.content).toBe(c);
+        expect(nums(app.answer), app.content).toEqual([
+          1,
+          Math.min(p, q),
+          Math.max(p, q),
+          c,
+        ]);
+      } else {
+        const [a, ...shown] = nums(app.content) as [number, ...number[]];
+        const good = shown.filter((v) => related(v, a)).sort((x, y) => x - y);
+        expect(good.length, app.content).toBe(2);
+        expect(nums(app.answer), app.content).toEqual(good);
+      }
+
+      const deep = problem("1-2-2", "심화", seed);
+      // ㉯(범위 속 배수)도 「…보다 작을 때」를 담는다 — «보다 크고»가 갈라 준다.
+      if (!deep.content.includes("보다 크고")) {
+        const [num] = nums(deep.content) as [number];
+        expect(nums(deep.answer), deep.content).toEqual(divs(num).slice(0, -1));
+      } else {
+        const [b, , L] = nums(deep.content) as [number, number, number];
+        const want: number[] = [];
+        for (let v = b + 1; v < L; v += 1) if (v % b === 0) want.push(v);
+        expect(nums(deep.answer), deep.content).toEqual(want);
+        expect(want.length, deep.content).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("1-2-3 — 공약수 집합이 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-3", "연산", seed);
+      if (calc.content.includes("어떤 두 수")) {
+        const [g] = nums(calc.content) as [number];
+        expect(nums(calc.answer), calc.content).toEqual(divs(g));
+      } else {
+        const [a, b] = nums(calc.content) as [number, number];
+        const cd = divs(gcd2(a, b));
+        expect(answerNumber(calc.answer, "1-2-3 연산"), calc.content).toBe(
+          cd[cd.length - 2],
+        );
+      }
+
+      const read = problem("1-2-3", "기본", seed);
+      if (read.content.includes("아닌")) {
+        const [a, b, ...shown] = nums(read.content) as [
+          number,
+          number,
+          ...number[],
+        ];
+        const strangers = shown.filter((v) => !(a % v === 0 && b % v === 0));
+        expect(strangers, read.content).toEqual([
+          answerNumber(read.answer, "1-2-3 기본"),
+        ]);
+      } else {
+        const [g] = nums(read.content) as [number];
+        expect(answerNumber(read.answer, "1-2-3 기본"), read.content).toBe(
+          divs(g).length,
+        );
+      }
+
+      const app = problem("1-2-3", "응용", seed);
+      const cdApp = (a: number, b: number) => divs(gcd2(a, b));
+      if (app.content.includes("더하면")) {
+        const [a, b] = nums(app.content) as [number, number];
+        expect(answerNumber(app.answer, "1-2-3 응용"), app.content).toBe(
+          cdApp(a, b).reduce((x, y) => x + y, 0),
+        );
+      } else {
+        const [a, b, K] = nums(app.content) as [number, number, number];
+        const rest = cdApp(a, b).filter((v) => v > K);
+        expect(rest.length, app.content).toBeGreaterThan(0);
+        expect(nums(app.answer), app.content).toEqual(rest);
+      }
+
+      const deep = problem("1-2-3", "심화", seed);
+      if (deep.content.includes("모두 쓰면")) {
+        const shown = nums(deep.content);
+        const g = answerNumber(deep.answer, "1-2-3 심화");
+        expect(shown, deep.content).toEqual(divs(g));
+      } else {
+        const [x, y, z] = nums(deep.content) as [number, number, number];
+        const g = gcd2(gcd2(x, y), z);
+        expect(
+          g,
+          `세 수가 서로소면 물을 것이 없다: ${deep.content}`,
+        ).toBeGreaterThan(1);
+        expect(answerNumber(deep.answer, "1-2-3 심화"), deep.content).toBe(g);
+      }
+    }
+  });
+
+  it("1-2-4 — 최대공약수 활용이 다시 서고, 나누는 수 > 나머지다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-4", "연산", seed);
+      {
+        const [a, b] = nums(calc.content) as [number, number];
+        expect(answerNumber(calc.answer, "1-2-4 연산"), calc.content).toBe(
+          gcd2(a, b),
+        );
+      }
+
+      const read = problem("1-2-4", "기본", seed);
+      {
+        const [a, b] = nums(read.content) as [number, number];
+        expect(answerNumber(read.answer, "1-2-4 기본"), read.content).toBe(
+          gcd2(a, b),
+        );
+      }
+
+      const app = problem("1-2-4", "응용", seed);
+      {
+        const [a, b] = nums(app.content) as [number, number];
+        const g = gcd2(a, b);
+        const aA = answerNumber(app.answer, "1-2-4 응용");
+        if (app.content.includes("밤")) {
+          expect(aA, app.content).toBe(a / g);
+        } else {
+          expect(aA, app.content).toBe((a / g) * (b / g));
+        }
+      }
+
+      const deep = problem("1-2-4", "심화", seed);
+      const dA = answerNumber(deep.answer, "1-2-4 심화");
+      if (deep.content.includes("나머지가")) {
+        const [a, r1, b, r2] = nums(deep.content) as [
+          number,
+          number,
+          number,
+          number,
+        ];
+        // 리드 경계(2026-08-23): 나누는 수는 나머지보다 커야 한다 — 어기면 그럴듯한 오답.
+        expect(dA, `나누는 수 ≤ 나머지: ${deep.content}`).toBeGreaterThan(r1);
+        expect(dA, `나누는 수 ≤ 나머지: ${deep.content}`).toBeGreaterThan(r2);
+        expect((a - r1) % dA, deep.content).toBe(0);
+        expect((b - r2) % dA, deep.content).toBe(0);
+        // 최대성 — 이보다 큰 공약수가 남아 있으면 «가장 큰»이 거짓이다.
+        expect(gcd2(a - r1, b - r2), deep.content).toBe(dA);
+      } else {
+        const [a, b] = nums(deep.content) as [number, number];
+        expect(dA, deep.content).toBe(divs(gcd2(a, b)).length);
+      }
+    }
+  });
+
+  it("1-2-5 — 공배수 집합이 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-5", "연산", seed);
+      if (calc.content.includes("어떤 두 수")) {
+        const [m] = nums(calc.content) as [number];
+        expect(nums(calc.answer), calc.content).toEqual([m, 2 * m, 3 * m]);
+      } else {
+        const [a, b] = nums(calc.content) as [number, number];
+        expect(answerNumber(calc.answer, "1-2-5 연산"), calc.content).toBe(
+          lcm2(a, b),
+        );
+      }
+
+      const read = problem("1-2-5", "기본", seed);
+      if (read.content.includes("찾아 쓰시오")) {
+        const [a, b, ...shown] = nums(read.content) as [
+          number,
+          number,
+          ...number[],
+        ];
+        const m = lcm2(a, b);
+        const commons = shown.filter((v) => v % m === 0);
+        expect(commons, read.content).toEqual([
+          answerNumber(read.answer, "1-2-5 기본"),
+        ]);
+      } else {
+        const [m, k] = nums(read.content) as [number, number];
+        expect(answerNumber(read.answer, "1-2-5 기본"), read.content).toBe(
+          k * m,
+        );
+      }
+
+      const app = problem("1-2-5", "응용", seed);
+      const aA = answerNumber(app.answer, "1-2-5 응용");
+      if (app.content.includes("부터")) {
+        const [, L, a, b] = nums(app.content) as [
+          number,
+          number,
+          number,
+          number,
+        ];
+        const m = lcm2(a, b);
+        expect(
+          L,
+          `범위가 100 을 넘는다(수 규모): ${app.content}`,
+        ).toBeLessThanOrEqual(100);
+        expect(
+          L % m,
+          `경계가 공배수에 앉으면 안 된다: ${app.content}`,
+        ).not.toBe(0);
+        expect(aA, app.content).toBe(Math.floor(L / m));
+      } else {
+        const [a, b, K] = nums(app.content) as [number, number, number];
+        const m = lcm2(a, b);
+        expect(aA % m, app.content).toBe(0);
+        expect(
+          Math.abs(K - aA) * 2,
+          `가장 가까운 수가 갈린다(동률): ${app.content}`,
+        ).toBeLessThan(m);
+      }
+
+      const deep = problem("1-2-5", "심화", seed);
+      if (deep.content.includes("세 번째로 작은 수가")) {
+        const [T] = nums(deep.content) as [number];
+        expect(answerNumber(deep.answer, "1-2-5 심화") * 3, deep.content).toBe(
+          T,
+        );
+      } else {
+        const [x, y, z] = nums(deep.content) as [number, number, number];
+        expect(answerNumber(deep.answer, "1-2-5 심화"), deep.content).toBe(
+          lcm2(lcm2(x, y), z),
+        );
+      }
+    }
+  });
+
+  it("1-2-6 — 최소공배수 활용이 다시 서고, 나머지 < 나누는 수다", () => {
+    for (const seed of SEEDS) {
+      const calc = problem("1-2-6", "연산", seed);
+      const cA = answerNumber(calc.answer, "1-2-6 연산");
+      if (calc.content.includes("공약수")) {
+        const [g, p, q] = nums(calc.content) as [number, number, number];
+        expect(
+          gcd2(p, q),
+          `두 몫이 서로 나눠지면 답이 틀린다: ${calc.content}`,
+        ).toBe(1);
+        expect(cA, calc.content).toBe(g * p * q);
+      } else {
+        const [a, b] = nums(calc.content) as [number, number];
+        expect(cA, calc.content).toBe(lcm2(a, b));
+      }
+
+      const read = problem("1-2-6", "기본", seed);
+      {
+        const [a, b] = nums(read.content) as [number, number];
+        expect(answerNumber(read.answer, "1-2-6 기본"), read.content).toBe(
+          lcm2(a, b),
+        );
+      }
+
+      const app = problem("1-2-6", "응용", seed);
+      const aA = answerNumber(app.answer, "1-2-6 응용");
+      if (app.content.includes("전등")) {
+        const [a, b, T] = nums(app.content) as [number, number, number];
+        const m = lcm2(a, b);
+        expect(
+          T,
+          `시간이 100초를 넘는다(수 규모): ${app.content}`,
+        ).toBeLessThanOrEqual(100);
+        expect(
+          T % m,
+          `경계에 앉으면 «몇 번»이 갈린다: ${app.content}`,
+        ).not.toBe(0);
+        expect(aA, app.content).toBe(Math.floor(T / m));
+      } else {
+        const [a, b] = nums(app.content) as [number, number];
+        const m = lcm2(a, b);
+        expect(aA, app.content).toBe((m / a) * (m / b));
+      }
+
+      const deep = problem("1-2-6", "심화", seed);
+      const dA = answerNumber(deep.answer, "1-2-6 심화");
+      if (deep.content.includes("나머지가")) {
+        const [a, b, r] = nums(deep.content) as [number, number, number];
+        // 리드 경계(2026-08-23): 나머지는 «모든» 나누는 수보다 작아야 한다.
+        expect(r, `나머지 ≥ 나누는 수: ${deep.content}`).toBeLessThan(a);
+        expect(r, `나머지 ≥ 나누는 수: ${deep.content}`).toBeLessThan(b);
+        expect((dA - r) % a, deep.content).toBe(0);
+        expect((dA - r) % b, deep.content).toBe(0);
+        // 최소성 — 나머지를 뺀 것이 최소공배수 그 자체여야 한다.
+        expect(dA - r, deep.content).toBe(lcm2(a, b));
+      } else {
+        const [M, a] = nums(deep.content) as [number, number];
+        expect(lcm2(a, dA), deep.content).toBe(M);
+        // 최소성 — 더 작은 후보가 남아 있으면 «가장 작은»이 거짓이다.
+        for (let d = 1; d < dA; d += 1) {
+          if (M % d === 0) {
+            expect(lcm2(a, d), `더 작은 후보 ${d}: ${deep.content}`).not.toBe(
+              M,
+            );
+          }
+        }
+      }
+    }
+  });
+
+  /**
+   * 나머지 조건의 경계는 씨앗 16개로 못 지킨다 — 뽑는 범위를 한 칸 넓히는 변이가
+   * 16개 씨앗에서는 위반 값을 안 뽑아 초록이었다(2026-08-23 변이 하네스 실측).
+   * 200개를 쓸어 위반이 «뽑힐 수 있으면 반드시 뽑히게» 한다. 분기 표본 수도 세어
+   * 쓸기가 헛돌지 않았음을 함께 잠근다(0 은 「깨끗」과 「못 셈」을 구분하지 않는다).
+   */
+  it("나머지 조건의 경계 — 나누는 수 > 나머지 (씨앗 200개 쓸기)", () => {
+    let hit4 = 0;
+    let hit6 = 0;
+    for (let seed = 1; seed <= 200; seed += 1) {
+      const d4 = problem("1-2-4", "심화", seed);
+      if (d4.content.includes("나머지가")) {
+        hit4 += 1;
+        const [a, r1, b, r2] = nums(d4.content) as [
+          number,
+          number,
+          number,
+          number,
+        ];
+        const ans = answerNumber(d4.answer, "1-2-4 심화");
+        expect(ans, `나누는 수 ≤ 나머지: ${d4.content}`).toBeGreaterThan(
+          Math.max(r1, r2),
+        );
+        expect(gcd2(a - r1, b - r2), d4.content).toBe(ans);
+      }
+      const d6 = problem("1-2-6", "심화", seed);
+      if (d6.content.includes("나머지가")) {
+        hit6 += 1;
+        const [a, b, r] = nums(d6.content) as [number, number, number];
+        expect(r, `나머지 ≥ 나누는 수: ${d6.content}`).toBeLessThan(
+          Math.min(a, b),
+        );
+        expect(answerNumber(d6.answer, "1-2-6 심화") - r, d6.content).toBe(
+          lcm2(a, b),
+        );
+      }
+    }
+    expect(hit4, "1-2-4 나머지 분기가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+    expect(hit6, "1-2-6 나머지 분기가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+  });
+
+  it("1-2 여섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});

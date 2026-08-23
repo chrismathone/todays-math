@@ -266,10 +266,20 @@ const readSquare: Reader = {
   },
 };
 
+/**
+ * 나눗셈 식 `$a\div b$` 의 개수. ②·③ 은 **하나일 때만** 읽는다 — 둘 이상이면 «어느
+ * 몫»인지(합·차·비교) 발문이 정하므로, 첫 식만 읽으면 조용한 오독이다.
+ * 2026-08-23 g6 적발: 초3 1-3-2 응용($35\div5$ 와 $35\div7$ 의 몫의 합, 답 12 옳음)이
+ * 첫 식의 몫 7 을 참으로 삼아 빨갛게 찍혔다. **거짓 경보는 가드를 끈다.**
+ */
+const divExprCount = (content: string): number =>
+  [...content.matchAll(/\$\d+\\div\d+\$/g)].length;
+
 /** ② 몫과 나머지 — 자연수 나눗셈이므로 **내림 몫과 나머지**로 정확히 잰다. */
 const readQuotRem: Reader = {
   name: "몫과 나머지",
   read(content, answer) {
+    if (divExprCount(content) > 1) return null;
     const q = content.match(/\$(\d+)\\div(\d+)\$\s*의?\s*몫과 나머지/);
     if (!q) return null;
     const a = Number(q[1]);
@@ -296,6 +306,7 @@ const readQuotient: Reader = {
   read(content, answer) {
     if (!/몫/.test(content) || /나머지/.test(content)) return null;
     if (NOT_A_VALUE.test(content)) return null;
+    if (divExprCount(content) > 1) return null; // 둘 이상이면 «어느 몫»인지 모른다
     const q = content.match(/\$(\d+)\\div(\d+)\$/);
     if (!q) return null;
     const a = Number(q[1]);
@@ -404,11 +415,22 @@ const readCompound: Reader = {
 /** ⑦ 여럿 중 가장 큰·작은 것 고르기. 정답이 **발문에 있는 값 중 하나**라 바깥 근거가 필요 없다. */
 const readPickExtreme: Reader = {
   name: "크기 비교",
-  read(content, answer) {
+  read(rawContent, answer) {
+    // «$3$만 $195$인 수» 는 **하나의 수**다(3×10000+195, 초4 1-1-7 갈래). 낱개 $…$ 로
+    // 읽으면 3 과 195 가 따로 후보가 되어 **맞는 답을 «틀림»이라 한다** — 거짓 경보는
+    // 가드를 끈다(2026-08-20). 합성 규칙은 우리말 수 표기에서 오는 것이지 생성기가 아니다.
+    const content = rawContent.replace(
+      /\$(\d+)\$만 \$(\d+)\$인 수/g,
+      (_, x: string, y: string) => `$${Number(x) * 10000 + Number(y)}$`,
+    );
     const want = content.match(
       /중\s*(?:에서\s*)?(?:더|가장)\s*(큰|작은)\s*(?:수|분수|소수)?\s*를?\s*쓰시오/,
     );
     if (!want) return null;
+    // «~인 다섯 자리 수 중에서 가장 큰 수» 는 **조건으로 서술된 집합**이다 — 발문의
+    // 낱값($5$·$9$)은 후보가 아니라 조건이라, 열거로 읽으면 맞는 답을 «틀림»이라
+    // 한다(elem-g4 1-1-2 심화 적발). 후보 열거가 아니면 판정하지 않는다.
+    if (/인\s[가-힣\s]*수 중/.test(content)) return null;
     const terms = [...content.matchAll(/\$([^$]*)\$/g)].map((m) =>
       parseTerm(m[1]!),
     );
@@ -800,6 +822,25 @@ const FIXTURES: Fixture[] = [
     why: "큰 수 고르기",
   },
   {
+    content: "$3$만 $195$인 수와 $29946$ 중 더 큰 수를 쓰시오.",
+    answer: "$30195$",
+    want: "맞음",
+    why: "«x만 y인 수» 는 합성된 한 수(30195)다 — 낱개로 읽으면 3·195 가 후보가 되어 맞는 답을 «틀림»이라 한다 (elem-g4 1-1-7 적발)",
+  },
+  {
+    content: "$3$만 $195$인 수와 $29946$ 중 더 큰 수를 쓰시오.",
+    answer: "$29946$",
+    want: "틀림",
+    why: "합성 표기를 배운 뒤에도 틀린 답은 틀렸다고 해야 한다 — 음성 대조군",
+  },
+  {
+    content:
+      "만의 자리 숫자가 $5$, 백의 자리 숫자가 $9$인 다섯 자리 수 중에서 가장 큰 수를 쓰시오.",
+    answer: "$59999$",
+    want: "못읽음",
+    why: "«~인 수 중에서» 는 조건으로 서술된 집합 — 낱값 5·9 는 후보가 아니라 조건이다. 열거로 읽으면 맞는 답 59999 를 «틀림»이라 한다 (elem-g4 1-1-2 심화 적발)",
+  },
+  {
     content:
       "한 변이 $7\\,\\mathrm{cm}$인 정팔각형의 모든 변의 길이의 합은 몇 cm인가?",
     answer: "$56\\,\\mathrm{cm}$",
@@ -833,6 +874,18 @@ const FIXTURES: Fixture[] = [
     answer: "$8$",
     want: "못읽음",
     why: "나누어떨어지지 않으면 «내림 몫»인지 «정확한 몫»인지 발문마다 다르다",
+  },
+  {
+    content: "$35\\div5$의 몫과 $35\\div7$의 몫의 합을 구하시오.",
+    answer: "$12$",
+    want: "못읽음",
+    why: "나눗셈 식이 둘이면 «어느 몫»인지 발문이 정한다 — 첫 식만 읽으면 맞는 답 12 를 «틀림»이라 한다 (g6 적발)",
+  },
+  {
+    content: "$28\\div4$의 몫과 $30\\div5$의 몫과 나머지를 …",
+    answer: "몫 $6$, 나머지 $0$",
+    want: "못읽음",
+    why: "몫과 나머지도 식이 둘이면 읽지 않는다 — 인접한 쪽만 무는 것은 요행이다",
   },
   {
     content: "$(2+3)\\times4=\\square$",
