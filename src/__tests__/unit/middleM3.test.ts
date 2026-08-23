@@ -129,13 +129,29 @@ function everyNumberFinite(v: unknown): boolean {
   return true;
 }
 
+/**
+ * 이 파일의 분모 — «원과 직선 01~06» + «원주각 01~10» 열여섯.
+ *
+ * ⚠️ 「책·학년으로 거르고 남의 단원 이름을 하나씩 뺀다」로 짜면 **3-2 에 유형이
+ * 더 등록될 때마다 조용히 쓸려 들어온다.** 2026-08-23 물결 3E 가 「삼각비」
+ * 32유형을 3-2 에 등록하자 이 파일의 분모가 16 → 48 이 되어 85건이 빨개졌다
+ * (middle-engine-wave3-plan.md §9 가 예고한 그 자리). 그래서 «빼는» 쪽이 아니라
+ * **이 파일이 지키는 중단원 둘을 이름으로 못 박는** 쪽으로 뒤집는다.
+ */
+const OWN_MINORS = new Set(["원과 직선", "원주각"]);
+const ownEntries = (): ReturnType<typeof registeredTypes> =>
+  registeredTypes().filter(
+    (e) =>
+      e.rpmBook === "3-2" &&
+      e.grade === "중3" &&
+      OWN_MINORS.has(e.rpmMinor) &&
+      e.unitSection !== "원의 접선",
+  );
+
 describe("중3 원의 성질 16유형", () => {
   // «원의 접선»(원과 직선 07~16, m3Tangent.ts)은 2차 물결 세션 소유 —
-  // middleM3Tangent.test.ts 가 따로 검산한다. 이 파일의 분모는 01~06+원주각.
-  const entries = registeredTypes().filter(
-    (e) =>
-      e.rpmBook === "3-2" && e.grade === "중3" && e.unitSection !== "원의 접선",
-  );
+  // middleM3Tangent.test.ts 가 따로 검산한다.
+  const entries = ownEntries();
   const lineEntries = entries.filter((e) => e.rpmMinor === "원과 직선");
   const angleEntries = entries.filter((e) => e.rpmMinor === "원주각");
 
@@ -170,9 +186,7 @@ describe("중3 원의 성질 16유형", () => {
     expect(byKey.get("3-2|원주각|10")).toBe("반원에 대한 원주각의 크기의 응용");
   });
 
-  for (const e of registeredTypes().filter(
-    (x) => x.rpmBook === "3-2" && x.unitSection !== "원의 접선",
-  )) {
+  for (const e of ownEntries()) {
     describe(`${e.rpmMinor} ${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260823);
