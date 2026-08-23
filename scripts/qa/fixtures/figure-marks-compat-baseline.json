@@ -1,0 +1,2770 @@
+{
+ "cube-angle": {
+  "md5": "33f9bc8bfcbecc231a622a4af6da1d3c",
+  "spec": {
+   "labels": {
+    "D": "ㄷ",
+    "G": "ㄱ",
+    "N": "ㄴ"
+   },
+   "points": {
+    "D": [
+     216,
+     88
+    ],
+    "G": [
+     24,
+     88
+    ],
+    "N": [
+     120,
+     22
+    ]
+   },
+   "segments": {
+    "gn": [
+     "G",
+     "N"
+    ],
+    "nd": [
+     "N",
+     "D"
+    ]
+   },
+   "style": {
+    "label_offset": 16,
+    "point_radius": 2.2,
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 229 117.17\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"229\" height=\"117.17\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"18.5\" y1=\"102.97\" x2=\"114.5\" y2=\"36.97\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"114.5\" y1=\"36.97\" x2=\"210.5\" y2=\"102.97\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <circle cx=\"210.5\" cy=\"102.97\" r=\"2.2\" fill=\"#111111\" />\n    <circle cx=\"18.5\" cy=\"102.97\" r=\"2.2\" fill=\"#111111\" />\n    <circle cx=\"114.5\" cy=\"36.97\" r=\"2.2\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"210.5\" y=\"88.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">ㄷ</text>\n    <text x=\"18.5\" y=\"88.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">ㄱ</text>\n    <text x=\"114.5\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">ㄴ</text>\n  </g>\n</svg>"
+ },
+ "cube-shapes": {
+  "md5": "6a14b903ed1f079858eaf6c16d1866e3",
+  "spec": {
+   "circles": {
+    "c1": {
+     "center": "O1",
+     "radius": 28
+    },
+    "c2": {
+     "center": "O2",
+     "radius": 24
+    }
+   },
+   "labels": {
+    "O1": "469",
+    "O2": "543",
+    "rL": "385",
+    "tL": "207",
+    "uL": "437",
+    "zL": "118"
+   },
+   "points": {
+    "O1": [
+     214,
+     42
+    ],
+    "O2": [
+     128,
+     126
+    ],
+    "r1": [
+     96,
+     22
+    ],
+    "r2": [
+     160,
+     22
+    ],
+    "r3": [
+     160,
+     62
+    ],
+    "r4": [
+     96,
+     62
+    ],
+    "rL": [
+     128,
+     42
+    ],
+    "t1": [
+     18,
+     18
+    ],
+    "t2": [
+     78,
+     18
+    ],
+    "t3": [
+     48,
+     78
+    ],
+    "tL": [
+     48,
+     42
+    ],
+    "u1": [
+     18,
+     96
+    ],
+    "u2": [
+     78,
+     148
+    ],
+    "u3": [
+     18,
+     148
+    ],
+    "uL": [
+     34,
+     128
+    ],
+    "z1": [
+     176,
+     122
+    ],
+    "z2": [
+     236,
+     122
+    ],
+    "z3": [
+     252,
+     158
+    ],
+    "z4": [
+     160,
+     158
+    ],
+    "zL": [
+     206,
+     142
+    ]
+   },
+   "segments": {
+    "r12": [
+     "r1",
+     "r2"
+    ],
+    "r23": [
+     "r2",
+     "r3"
+    ],
+    "r34": [
+     "r3",
+     "r4"
+    ],
+    "r41": [
+     "r4",
+     "r1"
+    ],
+    "t12": [
+     "t1",
+     "t2"
+    ],
+    "t23": [
+     "t2",
+     "t3"
+    ],
+    "t31": [
+     "t3",
+     "t1"
+    ],
+    "u12": [
+     "u1",
+     "u2"
+    ],
+    "u23": [
+     "u2",
+     "u3"
+    ],
+    "u31": [
+     "u3",
+     "u1"
+    ],
+    "z12": [
+     "z1",
+     "z2"
+    ],
+    "z23": [
+     "z2",
+     "z3"
+    ],
+    "z34": [
+     "z3",
+     "z4"
+    ],
+    "z41": [
+     "z4",
+     "z1"
+    ]
+   },
+   "style": {
+    "font_size": 12,
+    "label_offset": 1,
+    "show_points": false
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 259.35 169.35\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"259.35\" height=\"169.35\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"208.675\" cy=\"40.675\" r=\"28\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"122.675\" cy=\"124.675\" r=\"24\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"12.675\" y1=\"16.675\" x2=\"72.675\" y2=\"16.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"72.675\" y1=\"16.675\" x2=\"42.675\" y2=\"76.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"42.675\" y1=\"76.675\" x2=\"12.675\" y2=\"16.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"90.675\" y1=\"20.675\" x2=\"154.675\" y2=\"20.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"154.675\" y1=\"20.675\" x2=\"154.675\" y2=\"60.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"154.675\" y1=\"60.675\" x2=\"90.675\" y2=\"60.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"90.675\" y1=\"60.675\" x2=\"90.675\" y2=\"20.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"94.675\" x2=\"72.675\" y2=\"146.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"72.675\" y1=\"146.675\" x2=\"12.675\" y2=\"146.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"146.675\" x2=\"12.675\" y2=\"94.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"170.675\" y1=\"120.675\" x2=\"230.675\" y2=\"120.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"230.675\" y1=\"120.675\" x2=\"246.675\" y2=\"156.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"246.675\" y1=\"156.675\" x2=\"154.675\" y2=\"156.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"154.675\" y1=\"156.675\" x2=\"170.675\" y2=\"120.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"208.675\" y=\"41.355\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">469</text>\n    <text x=\"122.675\" y=\"125.355\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">543</text>\n    <text x=\"122.675\" y=\"41.355\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">385</text>\n    <text x=\"42.675\" y=\"41.355\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">207</text>\n    <text x=\"30.909\" y=\"132.749\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">437</text>\n    <text x=\"200.675\" y=\"141.355\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\">118</text>\n  </g>\n</svg>"
+ },
+ "m3-arc-height": {
+  "md5": "858efc1e10ffc66d8b64eb87ab4d17fa",
+  "spec": {
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "M": "M",
+    "O": "O"
+   },
+   "points": {
+    "A": [
+     59.2,
+     140.6
+    ],
+    "B": [
+     180.8,
+     140.6
+    ],
+    "C": [
+     120,
+     171
+    ],
+    "M": [
+     120,
+     140.6
+    ],
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "CM": [
+     "C",
+     "M"
+    ],
+    "OA": {
+     "dash": "5 4",
+     "points": [
+      "O",
+      "A"
+     ]
+    },
+    "OM": {
+     "dash": "5 4",
+     "points": [
+      "O",
+      "M"
+     ]
+    }
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 178.325\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"178.325\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"27.875\" y1=\"134.275\" x2=\"149.475\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"164.675\" x2=\"88.675\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"88.675\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" stroke-dasharray=\"5 4\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"27.875\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" stroke-dasharray=\"5 4\" />\n  </g>\n  <g>\n    <circle cx=\"27.875\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"149.475\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"164.675\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"27.875\" y=\"117.445\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"149.475\" y=\"117.445\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"103.517\" y=\"153.993\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"98.461\" y=\"128.649\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">M</text>\n    <text x=\"88.675\" y=\"78.995\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "m3-chord-cross": {
+  "md5": "7e35d921dc878072bf2d5403f7cf534d",
+  "spec": {
+   "angles": {
+    "angB": {
+     "label": "30°",
+     "points": [
+      "A",
+      "D"
+     ],
+     "vertex": "B"
+    },
+    "angD": {
+     "label": "x",
+     "points": [
+      "B",
+      "C"
+     ],
+     "vertex": "D"
+    },
+    "angP": {
+     "label": "70°",
+     "points": [
+      "B",
+      "C"
+     ],
+     "vertex": "P"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "P": "P"
+   },
+   "points": {
+    "A": {
+     "angle": 150,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 250,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 330,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "D": {
+     "angle": 90,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ],
+    "P": {
+     "segments": [
+      "AC",
+      "BD"
+     ],
+     "type": "intersection"
+    }
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AC": [
+     "A",
+     "C"
+    ],
+    "BD": [
+     "B",
+     "D"
+    ],
+    "DC": [
+     "D",
+     "C"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 187.667 212.302\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"187.667\" height=\"212.302\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"93.834\" cy=\"108.47\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"28.016\" y1=\"70.47\" x2=\"67.84\" y2=\"179.887\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"28.016\" y1=\"70.47\" x2=\"159.652\" y2=\"146.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"67.84\" y1=\"179.887\" x2=\"93.834\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"93.834\" y1=\"32.47\" x2=\"159.652\" y2=\"146.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 62.7 165.8 A 15.0 15.0 0 0 1 70.4 165.1\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 91.2 47.2 A 15.0 15.0 0 0 0 101.3 45.5\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 79.1 116.2 A 15.0 15.0 0 0 0 94.7 108.9\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"28.016\" cy=\"70.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"67.84\" cy=\"179.887\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"159.652\" cy=\"146.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"93.834\" cy=\"32.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"81.671\" cy=\"101.448\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"65.661\" y=\"158.822\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">30°</text>\n    <text x=\"98.175\" y=\"60.93\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"92.237\" y=\"127.946\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">70°</text>\n    <text x=\"16.03\" y=\"67.71\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"63.107\" y=\"197.052\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"171.637\" y=\"157.55\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"93.834\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n    <text x=\"71.885\" y=\"115.394\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n  </g>\n</svg>"
+ },
+ "m3-chord-perp": {
+  "md5": "aef6da5c60e4aae6d56ebf8d7034e3a2",
+  "spec": {
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "M": "M",
+    "O": "O"
+   },
+   "points": {
+    "A": [
+     59.2,
+     140.6
+    ],
+    "B": [
+     180.8,
+     140.6
+    ],
+    "M": [
+     120,
+     140.6
+    ],
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "OA": [
+     "O",
+     "A"
+    ],
+    "OM": [
+     "O",
+     "M"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 177.35\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"177.35\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"27.875\" y1=\"134.275\" x2=\"149.475\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"88.675\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"27.875\" y2=\"134.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <circle cx=\"27.875\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"149.475\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"134.275\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"27.875\" y=\"117.445\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"149.475\" y=\"117.445\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"98.461\" y=\"128.649\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">M</text>\n    <text x=\"88.675\" y=\"78.995\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "m3-diameter-cross": {
+  "md5": "549b84ed57ec481560b77c716227c004",
+  "spec": {
+   "angles": {
+    "angA": {
+     "label": "25°",
+     "points": [
+      "C",
+      "D"
+     ],
+     "vertex": "A"
+    },
+    "angP": {
+     "label": "x",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "P"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "O": "O",
+    "P": "P"
+   },
+   "points": {
+    "A": {
+     "angle": 180,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 0,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 60,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "D": {
+     "angle": 110,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ],
+    "P": {
+     "segments": [
+      "AC",
+      "BD"
+     ],
+     "type": "intersection"
+    }
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AC": [
+     "A",
+     "C"
+    ],
+    "AD": [
+     "A",
+     "D"
+    ],
+    "BD": [
+     "B",
+     "D"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 211.74 191.727\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"211.74\" height=\"191.727\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"105.87\" cy=\"103.052\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"29.87\" y1=\"103.052\" x2=\"181.87\" y2=\"103.052\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"29.87\" y1=\"103.052\" x2=\"143.87\" y2=\"37.234\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"181.87\" y1=\"103.052\" x2=\"79.876\" y2=\"31.635\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"29.87\" y1=\"103.052\" x2=\"79.876\" y2=\"31.635\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 42.9 95.6 A 15.0 15.0 0 0 0 38.5 90.8\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 100.2 62.5 A 15.0 15.0 0 0 0 125.5 63.6\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"29.87\" cy=\"103.052\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"181.87\" cy=\"103.052\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"143.87\" cy=\"37.234\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"79.876\" cy=\"31.635\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"113.179\" cy=\"54.954\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"48.302\" y=\"90.002\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">25°</text>\n    <text x=\"112.088\" y=\"83.77\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"16.03\" y=\"107.212\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"195.71\" y=\"107.212\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"150.79\" y=\"29.408\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"75.143\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n    <text x=\"115.656\" y=\"116.998\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"88.225\" y=\"84.068\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n  </g>\n</svg>"
+ },
+ "m3-inscribed-central-major": {
+  "md5": "c2b97c95ca560770f4a83fb5a694a060",
+  "spec": {
+   "angles": {
+    "angO": {
+     "label": "80°",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "O"
+    },
+    "angP": {
+     "label": "x",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "P"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "O": "O",
+    "P": "P"
+   },
+   "points": {
+    "A": {
+     "angle": 230,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 310,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ],
+    "P": {
+     "angle": 90,
+     "circle": "c",
+     "type": "on_circle"
+    }
+   },
+   "segments": {
+    "OA": [
+     "O",
+     "A"
+    ],
+    "OB": [
+     "O",
+     "B"
+    ],
+    "PA": [
+     "P",
+     "A"
+    ],
+    "PB": [
+     "P",
+     "B"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 197.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"197.145\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"108.47\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"88.675\" y1=\"32.47\" x2=\"39.823\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"32.47\" x2=\"137.527\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"108.47\" x2=\"39.823\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"108.47\" x2=\"137.527\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 79.0 120.0 A 15.0 15.0 0 0 0 98.3 120.0\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 83.5 46.6 A 15.0 15.0 0 0 0 93.8 46.6\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"39.823\" cy=\"166.689\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"137.527\" cy=\"166.689\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"108.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"32.47\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"88.675\" y=\"137.31\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">80°</text>\n    <text x=\"88.675\" y=\"61.31\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"30.927\" y=\"181.451\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"146.423\" y=\"181.451\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"88.675\" y=\"98.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"88.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n  </g>\n</svg>"
+ },
+ "m3-inscribed-central-minor": {
+  "md5": "95235f7c97b77fc3052fd14aaed4d5dc",
+  "spec": {
+   "angles": {
+    "angO": {
+     "label": "100°",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "O"
+    },
+    "angP": {
+     "label": "x",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "P"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "O": "O",
+    "P": "P"
+   },
+   "points": {
+    "A": {
+     "angle": 220,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 320,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ],
+    "P": {
+     "angle": 270,
+     "circle": "c",
+     "type": "on_circle"
+    }
+   },
+   "segments": {
+    "OA": [
+     "O",
+     "A"
+    ],
+    "OB": [
+     "O",
+     "B"
+    ],
+    "PA": [
+     "P",
+     "A"
+    ],
+    "PB": [
+     "P",
+     "B"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 197.925\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"197.925\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"88.675\" y1=\"164.675\" x2=\"30.456\" y2=\"137.527\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"164.675\" x2=\"146.894\" y2=\"137.527\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"30.456\" y2=\"137.527\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"88.675\" x2=\"146.894\" y2=\"137.527\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 77.2 98.3 A 15.0 15.0 0 0 0 100.2 98.3\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 75.1 158.3 A 15.0 15.0 0 0 1 102.3 158.3\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"30.456\" cy=\"137.527\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"146.894\" cy=\"137.527\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"88.675\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"164.675\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"88.675\" y=\"117.515\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">100°</text>\n    <text x=\"88.675\" y=\"143.515\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"19.854\" y=\"150.583\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"157.496\" y=\"150.583\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"88.675\" y=\"78.995\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"88.675\" y=\"182.675\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n  </g>\n</svg>"
+ },
+ "m3-inscribed-iso": {
+  "md5": "de4a63f158dd51419806a2e5439ccefc",
+  "spec": {
+   "angles": {
+    "angA": {
+     "label": "40°",
+     "points": [
+      "B",
+      "C"
+     ],
+     "vertex": "A"
+    },
+    "angB": {
+     "label": "x",
+     "points": [
+      "A",
+      "C"
+     ],
+     "vertex": "B"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "M": "M",
+    "N": "N",
+    "O": "O"
+   },
+   "points": {
+    "A": {
+     "angle": 90,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 310,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 230,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "M": [
+     144.43,
+     86.11
+    ],
+    "N": [
+     95.58,
+     86.11
+    ],
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ],
+    "CA": [
+     "C",
+     "A"
+    ],
+    "OM": [
+     "O",
+     "M"
+    ],
+    "ON": [
+     "O",
+     "N"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 197.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"197.145\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"108.47\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"88.675\" y1=\"32.47\" x2=\"137.527\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"137.527\" y1=\"166.689\" x2=\"39.823\" y2=\"166.689\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"39.823\" y1=\"166.689\" x2=\"88.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"108.47\" x2=\"113.105\" y2=\"99.58\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"88.675\" y1=\"108.47\" x2=\"64.255\" y2=\"99.58\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 93.8 46.6 A 15.0 15.0 0 0 1 83.5 46.6\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 132.4 152.6 A 15.0 15.0 0 0 0 122.5 166.7\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"88.675\" cy=\"32.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"137.527\" cy=\"166.689\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"39.823\" cy=\"166.689\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"113.105\" cy=\"99.58\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"64.255\" cy=\"99.58\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"88.675\" cy=\"108.47\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"88.675\" y=\"61.31\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">40°</text>\n    <text x=\"117.048\" y=\"156.19\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"88.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"146.423\" y=\"181.451\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"30.927\" y=\"181.451\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"122.891\" y=\"93.954\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">M</text>\n    <text x=\"64.255\" y=\"82.75\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">N</text>\n    <text x=\"88.675\" y=\"98.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "m3-semicircle": {
+  "md5": "9e4716dae30fa6cb01af09bb1c357dbb",
+  "spec": {
+   "angles": {
+    "angA": {
+     "label": "35°",
+     "points": [
+      "C",
+      "B"
+     ],
+     "vertex": "A"
+    },
+    "angB": {
+     "label": "x",
+     "points": [
+      "C",
+      "A"
+     ],
+     "vertex": "B"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "O": "O"
+   },
+   "points": {
+    "A": {
+     "angle": 180,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 0,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 70,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "CA": [
+     "C",
+     "A"
+    ],
+    "CB": [
+     "C",
+     "B"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 211.74 191.727\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"211.74\" height=\"191.727\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"105.87\" cy=\"103.052\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"29.87\" y1=\"103.052\" x2=\"181.87\" y2=\"103.052\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"131.864\" y1=\"31.635\" x2=\"29.87\" y2=\"103.052\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"131.864\" y1=\"31.635\" x2=\"181.87\" y2=\"103.052\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 42.2 94.4 A 15.0 15.0 0 0 1 44.9 103.1\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 173.3 90.8 A 15.0 15.0 0 0 0 166.9 103.1\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"29.87\" cy=\"103.052\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"181.87\" cy=\"103.052\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"131.864\" cy=\"31.635\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"53.713\" y=\"99.374\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">35°</text>\n    <text x=\"159.695\" y=\"95.348\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"16.03\" y=\"107.212\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"195.71\" y=\"107.212\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"136.597\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"105.87\" y=\"93.372\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "m3-tangent-pair": {
+  "md5": "2a76c191d596a3f252fcbcccb0918d68",
+  "spec": {
+   "angles": {
+    "angC": {
+     "label": "x",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "C"
+    },
+    "angP": {
+     "label": "50°",
+     "points": [
+      "A",
+      "B"
+     ],
+     "vertex": "P"
+    }
+   },
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 66
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "O": "O",
+    "P": "P"
+   },
+   "points": {
+    "A": {
+     "angle": 65,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": -65,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 180,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ],
+    "P": [
+     276.17,
+     95
+    ]
+   },
+   "segments": {
+    "CA": [
+     "C",
+     "A"
+    ],
+    "CB": [
+     "C",
+     "B"
+    ],
+    "PA": [
+     "P",
+     "A"
+    ],
+    "PB": [
+     "P",
+     "B"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 279.715 182.759\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"279.715\" height=\"182.759\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"95.87\" cy=\"90.99\" r=\"66\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"252.04\" y1=\"90.99\" x2=\"123.763\" y2=\"31.173\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"252.04\" y1=\"90.99\" x2=\"123.763\" y2=\"150.806\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"29.87\" y1=\"90.99\" x2=\"123.763\" y2=\"31.173\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"29.87\" y1=\"90.99\" x2=\"123.763\" y2=\"150.806\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 42.5 82.9 A 15.0 15.0 0 0 1 42.5 99.0\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 238.4 84.7 A 15.0 15.0 0 0 0 238.4 97.3\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <circle cx=\"123.763\" cy=\"31.173\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"123.763\" cy=\"150.806\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"29.87\" cy=\"90.99\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"252.04\" cy=\"90.99\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"54.87\" y=\"94.83\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"227.04\" y=\"94.83\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">50°</text>\n    <text x=\"129.612\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"129.612\" y=\"167.509\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"16.03\" y=\"95.15\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"95.87\" y=\"81.31\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"252.04\" y=\"81.31\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n  </g>\n</svg>"
+ },
+ "m3-tri-sine": {
+  "md5": "b163092e310288e5e2925491ca9af8ef",
+  "spec": {
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "O": "O"
+   },
+   "points": {
+    "A": {
+     "angle": 90,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 323.13,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 216.87,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ],
+    "CA": [
+     "C",
+     "A"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 177.35 197.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"177.35\" height=\"197.145\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"88.675\" cy=\"108.47\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"88.675\" y1=\"32.47\" x2=\"149.475\" y2=\"154.07\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"149.475\" y1=\"154.07\" x2=\"27.875\" y2=\"154.07\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"27.875\" y1=\"154.07\" x2=\"88.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <circle cx=\"88.675\" cy=\"32.47\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"149.475\" cy=\"154.07\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"27.875\" cy=\"154.07\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"88.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"160.547\" y=\"166.534\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"16.803\" y=\"166.534\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"88.675\" y=\"98.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "m3-two-chords": {
+  "md5": "c780c6e165a59e1d19704334bd94c568",
+  "spec": {
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 76
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "M": "M",
+    "N": "N",
+    "O": "O"
+   },
+   "points": {
+    "A": {
+     "angle": 188.13,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "B": {
+     "angle": 81.87,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "C": {
+     "angle": 68.13,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "D": {
+     "angle": -38.13,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "M": [
+     87.76,
+     62.76
+    ],
+    "N": [
+     164.05,
+     83.2
+    ],
+    "O": [
+     120,
+     95
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "CD": [
+     "C",
+     "D"
+    ],
+    "OM": [
+     "O",
+     "M"
+    ],
+    "ON": [
+     "O",
+     "N"
+    ]
+   },
+   "style": {
+    "show_points": true
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 193.642 196.242\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"193.642\" height=\"196.242\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"104.967\" cy=\"107.567\" r=\"76\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"29.731\" y1=\"118.315\" x2=\"115.715\" y2=\"32.331\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"133.277\" y1=\"37.037\" x2=\"164.75\" y2=\"154.493\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"104.967\" y1=\"107.567\" x2=\"72.727\" y2=\"75.327\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"104.967\" y1=\"107.567\" x2=\"149.017\" y2=\"95.767\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <circle cx=\"29.731\" cy=\"118.315\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"115.715\" cy=\"32.331\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"133.277\" cy=\"37.037\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"164.75\" cy=\"154.493\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"72.727\" cy=\"75.327\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"149.017\" cy=\"95.767\" r=\"1.65\" fill=\"#111111\" />\n    <circle cx=\"104.967\" cy=\"107.567\" r=\"1.65\" fill=\"#111111\" />\n  </g>\n  <g>\n    <text x=\"16.03\" y=\"124.432\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"117.672\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"138.433\" y=\"28.353\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"175.636\" y=\"167.199\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n    <text x=\"72.727\" y=\"65.647\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">M</text>\n    <text x=\"158.803\" y=\"90.141\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">N</text>\n    <text x=\"104.967\" y=\"97.887\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n  </g>\n</svg>"
+ },
+ "regions-0607-annulus": {
+  "md5": "5efb8e83ef9620e7d2d506d0b43c1640",
+  "spec": {
+   "angles": {
+    "angO": {
+     "label": "45°",
+     "points": [
+      "Bout",
+      "Aout"
+     ],
+     "vertex": "O"
+    }
+   },
+   "arcs": {
+    "arcIn": {
+     "circle": "cin",
+     "dir": "ccw",
+     "from": "Bin",
+     "to": "Ain"
+    },
+    "arcOut": {
+     "circle": "cout",
+     "dir": "ccw",
+     "from": "Bout",
+     "to": "Aout"
+    }
+   },
+   "circles": {
+    "cin": {
+     "center": "O",
+     "draw": false,
+     "radius": 80
+    },
+    "cout": {
+     "center": "O",
+     "draw": false,
+     "radius": 160
+    }
+   },
+   "dimensions": {
+    "dimIn": {
+     "label": "4 cm",
+     "points": [
+      "O",
+      "Ain"
+     ]
+    },
+    "dimOut": {
+     "label": "4 cm",
+     "points": [
+      "Ain",
+      "Aout"
+     ]
+    }
+   },
+   "points": {
+    "Ain": {
+     "angle": 45,
+     "circle": "cin",
+     "type": "on_circle"
+    },
+    "Aout": {
+     "angle": 45,
+     "circle": "cout",
+     "type": "on_circle"
+    },
+    "Bin": {
+     "angle": 0,
+     "circle": "cin",
+     "type": "on_circle"
+    },
+    "Bout": {
+     "angle": 0,
+     "circle": "cout",
+     "type": "on_circle"
+    },
+    "O": [
+     0,
+     200
+    ]
+   },
+   "regions": {
+    "ring": {
+     "boundary": [
+      {
+       "seg": [
+        "Ain",
+        "Aout"
+       ]
+      },
+      {
+       "arc": {
+        "circle": "cout",
+        "dir": "cw",
+        "from": "Aout",
+        "to": "Bout"
+       }
+      },
+      {
+       "seg": [
+        "Bout",
+        "Bin"
+       ]
+      },
+      {
+       "arc": {
+        "circle": "cin",
+        "dir": "ccw",
+        "from": "Bin",
+        "to": "Ain"
+       }
+      }
+     ],
+     "fill": "#f5d9b8"
+    }
+   },
+   "segments": {
+    "sA": [
+     "O",
+     "Aout"
+    ],
+    "sB": [
+     "O",
+     "Bout"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 200.35 157.745\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"200.35\" height=\"157.745\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 84.244 73.501 L 140.812 16.932 A 160 160 0 0 1 187.675 130.07 L 107.675 130.07 A 80 80 0 0 0 84.244 73.501 Z\" fill=\"#f5d9b8\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"27.675\" y1=\"130.07\" x2=\"140.812\" y2=\"16.932\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"27.675\" y1=\"130.07\" x2=\"187.675\" y2=\"130.07\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 107.675 130.07 A 80 80 0 0 0 84.244 73.501\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 187.675 130.07 A 160 160 0 0 0 140.812 16.932\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 42.7 130.1 A 15.0 15.0 0 0 0 38.3 119.5\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 26.599 108.395 Q 27.144 117.118 29.796 127.948 M 62.569 72.425 Q 71.292 72.97 82.122 75.622\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 83.167 51.826 Q 83.713 60.549 86.365 71.38 M 119.137 15.856 Q 127.86 16.401 138.691 19.054\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"50.772\" y=\"124.342\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">45°</text>\n    <text x=\"34.393\" y=\"85.019\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">4 cm</text>\n    <text x=\"90.961\" y=\"28.45\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">4 cm</text>\n  </g>\n</svg>"
+ },
+ "regions-0614-petals": {
+  "md5": "7a1ba199590f3888bbfe7cebbd2ec742",
+  "spec": {
+   "arcs": {
+    "arcB": {
+     "circle": "cB",
+     "dir": "cw",
+     "from": "BL",
+     "to": "BR"
+    },
+    "arcL": {
+     "circle": "cL",
+     "dir": "cw",
+     "from": "TL",
+     "to": "BL"
+    },
+    "arcR": {
+     "circle": "cR",
+     "dir": "cw",
+     "from": "BR",
+     "to": "TR"
+    },
+    "arcT": {
+     "circle": "cT",
+     "dir": "cw",
+     "from": "TR",
+     "to": "TL"
+    }
+   },
+   "circles": {
+    "cB": {
+     "center": "MB",
+     "draw": false,
+     "radius": 120
+    },
+    "cL": {
+     "center": "ML",
+     "draw": false,
+     "radius": 120
+    },
+    "cR": {
+     "center": "MR",
+     "draw": false,
+     "radius": 120
+    },
+    "cT": {
+     "center": "MT",
+     "draw": false,
+     "radius": 120
+    }
+   },
+   "dimensions": {
+    "dimBot": {
+     "label": "12 cm",
+     "points": [
+      "BL",
+      "BR"
+     ]
+    }
+   },
+   "points": {
+    "BL": [
+     0,
+     240
+    ],
+    "BR": [
+     240,
+     240
+    ],
+    "M": [
+     120,
+     120
+    ],
+    "MB": [
+     120,
+     240
+    ],
+    "ML": [
+     0,
+     120
+    ],
+    "MR": [
+     240,
+     120
+    ],
+    "MT": [
+     120,
+     0
+    ],
+    "TL": [
+     0,
+     0
+    ],
+    "TR": [
+     240,
+     0
+    ]
+   },
+   "regions": {
+    "petalBL": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cB",
+        "dir": "ccw",
+        "from": "M",
+        "to": "BL"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cL",
+        "dir": "ccw",
+        "from": "BL",
+        "to": "M"
+       }
+      }
+     ],
+     "fill": "#f5ddc4"
+    },
+    "petalBR": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cB",
+        "dir": "ccw",
+        "from": "BR",
+        "to": "M"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cR",
+        "dir": "ccw",
+        "from": "M",
+        "to": "BR"
+       }
+      }
+     ],
+     "fill": "#f5ddc4"
+    },
+    "petalTL": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cT",
+        "dir": "ccw",
+        "from": "TL",
+        "to": "M"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cL",
+        "dir": "ccw",
+        "from": "M",
+        "to": "TL"
+       }
+      }
+     ],
+     "fill": "#f5ddc4"
+    },
+    "petalTR": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cT",
+        "dir": "ccw",
+        "from": "M",
+        "to": "TR"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cR",
+        "dir": "ccw",
+        "from": "TR",
+        "to": "M"
+       }
+      }
+     ],
+     "fill": "#f5ddc4"
+    }
+   },
+   "segments": {
+    "bottom": [
+     "BL",
+     "BR"
+    ],
+    "left": [
+     "TL",
+     "BL"
+    ],
+    "midH": [
+     "ML",
+     "MR"
+    ],
+    "midV": [
+     "MT",
+     "MB"
+    ],
+    "right": [
+     "TR",
+     "BR"
+    ],
+    "top": [
+     "TL",
+     "TR"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 265.35 291.225\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"265.35\" height=\"291.225\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 132.675 132.675 A 120 120 0 0 0 252.675 12.675 A 120 120 0 0 0 132.675 132.675 Z\" fill=\"#f5ddc4\" stroke=\"none\" />\n    <path d=\"M 12.675 12.675 A 120 120 0 0 0 132.675 132.675 A 120 120 0 0 0 12.675 12.675 Z\" fill=\"#f5ddc4\" stroke=\"none\" />\n    <path d=\"M 132.675 132.675 A 120 120 0 0 0 12.675 252.675 A 120 120 0 0 0 132.675 132.675 Z\" fill=\"#f5ddc4\" stroke=\"none\" />\n    <path d=\"M 252.675 252.675 A 120 120 0 0 0 132.675 132.675 A 120 120 0 0 0 252.675 252.675 Z\" fill=\"#f5ddc4\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"12.675\" y1=\"12.675\" x2=\"252.675\" y2=\"12.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"252.675\" y1=\"12.675\" x2=\"252.675\" y2=\"252.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"252.675\" x2=\"252.675\" y2=\"252.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"12.675\" x2=\"12.675\" y2=\"252.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"132.675\" y1=\"12.675\" x2=\"132.675\" y2=\"252.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"132.675\" x2=\"252.675\" y2=\"132.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 12.675 252.675 A 120 120 0 0 1 252.675 252.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 12.675 12.675 A 120 120 0 0 1 12.675 252.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 252.675 252.675 A 120 120 0 0 1 252.675 12.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 252.675 12.675 A 120 120 0 0 1 12.675 12.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 102.29 265.731 Q 58.983 263.039 15.675 252.675 M 163.06 265.731 Q 206.368 263.039 249.675 252.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"132.675\" y=\"271.475\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">12 cm</text>\n  </g>\n</svg>"
+ },
+ "regions-0616-semi-diag": {
+  "md5": "a35d340e36a973828acb3631c9959ade",
+  "spec": {
+   "arcs": {
+    "semi": {
+     "circle": "cL",
+     "dir": "cw",
+     "from": "TL",
+     "to": "BL"
+    }
+   },
+   "circles": {
+    "cL": {
+     "center": "Mid",
+     "draw": false,
+     "radius": 80
+    }
+   },
+   "dimensions": {
+    "dimB": {
+     "label": "8 cm",
+     "points": [
+      "BL",
+      "BR"
+     ]
+    },
+    "dimL": {
+     "label": "8 cm",
+     "points": [
+      "TL",
+      "BL"
+     ],
+     "side": "left"
+    }
+   },
+   "points": {
+    "BL": [
+     0,
+     160
+    ],
+    "BR": [
+     160,
+     160
+    ],
+    "Mid": [
+     0,
+     80
+    ],
+    "P": [
+     80,
+     80
+    ],
+    "TL": [
+     0,
+     0
+    ],
+    "TR": [
+     160,
+     0
+    ]
+   },
+   "regions": {
+    "shade": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cL",
+        "dir": "cw",
+        "from": "TL",
+        "to": "P"
+       }
+      },
+      {
+       "seg": [
+        "P",
+        "TR"
+       ]
+      },
+      {
+       "seg": [
+        "TR",
+        "TL"
+       ]
+      }
+     ],
+     "fill": "#ded9ea"
+    }
+   },
+   "segments": {
+    "bottom": [
+     "BL",
+     "BR"
+    ],
+    "diag": [
+     "BL",
+     "TR"
+    ],
+    "left": [
+     "TL",
+     "BL"
+    ],
+    "rad": [
+     "Mid",
+     "P"
+    ],
+    "right": [
+     "TR",
+     "BR"
+    ],
+    "top": [
+     "TL",
+     "TR"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 237.475 211.225\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"237.475\" height=\"211.225\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 64.8 12.675 A 80 80 0 0 1 144.8 92.675 L 224.8 12.675 L 64.8 12.675 Z\" fill=\"#ded9ea\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"64.8\" y1=\"12.675\" x2=\"224.8\" y2=\"12.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"224.8\" y1=\"12.675\" x2=\"224.8\" y2=\"172.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"172.675\" x2=\"224.8\" y2=\"172.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"12.675\" x2=\"64.8\" y2=\"172.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"172.675\" x2=\"224.8\" y2=\"12.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"92.675\" x2=\"144.8\" y2=\"92.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 64.8 12.675 A 80 80 0 0 1 64.8 172.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 120.19 185.245 Q 93.995 182.2 67.8 172.675 M 169.41 185.245 Q 195.605 182.2 221.8 172.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 35.368 78.265 Q 40.008 46.97 64.8 15.675 M 35.368 107.085 Q 40.008 138.38 64.8 169.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"144.8\" y=\"191.475\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">8 cm</text>\n    <text x=\"34.3\" y=\"97.475\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">8 cm</text>\n  </g>\n</svg>"
+ },
+ "regions-0619-dome": {
+  "md5": "3ecfc3e1cfbc87ce807fce9b0c9697f7",
+  "spec": {
+   "arcs": {
+    "arcLeft": {
+     "circle": "cB2",
+     "dir": "ccw",
+     "from": "Mb",
+     "to": "L"
+    },
+    "arcRight": {
+     "circle": "cC2",
+     "dir": "ccw",
+     "from": "R",
+     "to": "Mb"
+    },
+    "arcTop": {
+     "circle": "cM",
+     "dir": "cw",
+     "from": "L",
+     "to": "R"
+    }
+   },
+   "circles": {
+    "cB2": {
+     "center": "B",
+     "draw": false,
+     "radius": 100
+    },
+    "cC2": {
+     "center": "C",
+     "draw": false,
+     "radius": 100
+    },
+    "cM": {
+     "center": "SqC",
+     "draw": false,
+     "radius": 100
+    }
+   },
+   "dimensions": {
+    "dim10": {
+     "label": "10 cm",
+     "points": [
+      "B",
+      "C"
+     ]
+    },
+    "dim5a": {
+     "label": "5 cm",
+     "points": [
+      "A",
+      "L"
+     ],
+     "side": "left"
+    },
+    "dim5b": {
+     "label": "5 cm",
+     "points": [
+      "L",
+      "B"
+     ],
+     "side": "left"
+    }
+   },
+   "labels": {
+    "A": {
+     "position": "NW"
+    },
+    "B": {
+     "position": "SW"
+    },
+    "C": {
+     "position": "SE"
+    },
+    "D": {
+     "position": "NE"
+    }
+   },
+   "points": {
+    "A": [
+     0,
+     0
+    ],
+    "B": [
+     0,
+     200
+    ],
+    "C": [
+     200,
+     200
+    ],
+    "D": [
+     200,
+     0
+    ],
+    "L": [
+     0,
+     100
+    ],
+    "Mb": [
+     100,
+     200
+    ],
+    "R": [
+     200,
+     100
+    ],
+    "SqC": [
+     100,
+     100
+    ]
+   },
+   "regions": {
+    "dome": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cM",
+        "dir": "cw",
+        "from": "L",
+        "to": "R"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cC2",
+        "dir": "ccw",
+        "from": "R",
+        "to": "Mb"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cB2",
+        "dir": "ccw",
+        "from": "Mb",
+        "to": "L"
+       }
+      }
+     ],
+     "fill": "#fbe4a2"
+    }
+   },
+   "segments": {
+    "bottom": [
+     "B",
+     "C"
+    ],
+    "left": [
+     "A",
+     "B"
+    ],
+    "right": [
+     "D",
+     "C"
+    ],
+    "top": [
+     "A",
+     "D"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 290.616 266.966\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"290.616\" height=\"266.966\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 64.8 128.416 A 100 100 0 0 1 264.8 128.416 A 100 100 0 0 0 164.8 228.416 A 100 100 0 0 0 64.8 128.416 Z\" fill=\"#fbe4a2\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"64.8\" y1=\"28.416\" x2=\"264.8\" y2=\"28.416\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"264.8\" y1=\"28.416\" x2=\"264.8\" y2=\"228.416\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"228.416\" x2=\"264.8\" y2=\"228.416\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"64.8\" y1=\"28.416\" x2=\"64.8\" y2=\"228.416\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 164.8 228.416 A 100 100 0 0 0 64.8 128.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 264.8 128.416 A 100 100 0 0 0 164.8 228.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 64.8 128.416 A 100 100 0 0 1 264.8 128.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 135.015 241.096 Q 101.407 238.117 67.8 228.416 M 194.585 241.096 Q 228.192 238.117 261.8 228.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 36.82 64.906 Q 43.067 48.161 64.8 31.416 M 36.82 91.926 Q 43.067 108.671 64.8 125.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 36.82 164.906 Q 43.067 148.161 64.8 131.416 M 36.82 191.926 Q 43.067 208.671 64.8 225.416\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"164.8\" y=\"247.216\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">10 cm</text>\n    <text x=\"34.3\" y=\"83.216\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">5 cm</text>\n    <text x=\"34.3\" y=\"183.216\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">5 cm</text>\n    <text x=\"55.014\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"55.014\" y=\"242.363\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"274.586\" y=\"242.363\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"274.586\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n  </g>\n</svg>"
+ },
+ "regions-0622-rotate": {
+  "md5": "bc734c88eedb871e836cd5f7af105cdf",
+  "spec": {
+   "angles": {
+    "angA": {
+     "label": "60°",
+     "points": [
+      "B",
+      "Bp"
+     ],
+     "vertex": "A"
+    }
+   },
+   "arcs": {
+    "arcOrig": {
+     "circle": "cM",
+     "dir": "ccw",
+     "from": "B",
+     "to": "A"
+    },
+    "arcRot": {
+     "circle": "cR",
+     "dir": "cw",
+     "from": "A",
+     "to": "Bp"
+    },
+    "arcSec": {
+     "circle": "cA",
+     "dir": "cw",
+     "from": "Bp",
+     "to": "B"
+    }
+   },
+   "circles": {
+    "cA": {
+     "center": "A",
+     "draw": false,
+     "radius": 200
+    },
+    "cA2": {
+     "center": "A",
+     "draw": false,
+     "radius": 100
+    },
+    "cM": {
+     "center": "M",
+     "draw": false,
+     "radius": 100
+    },
+    "cR": {
+     "center": "M2",
+     "draw": false,
+     "radius": 100
+    }
+   },
+   "dimensions": {
+    "dimAB": {
+     "label": "10 cm",
+     "points": [
+      "A",
+      "B"
+     ]
+    }
+   },
+   "labels": {
+    "A": {
+     "position": "SW"
+    },
+    "B": {
+     "position": "SE"
+    },
+    "Bp": {
+     "position": "N",
+     "text": "B′"
+    }
+   },
+   "points": {
+    "A": [
+     0,
+     300
+    ],
+    "B": {
+     "angle": 0,
+     "circle": "cA",
+     "type": "on_circle"
+    },
+    "Bp": {
+     "angle": 60,
+     "circle": "cA",
+     "type": "on_circle"
+    },
+    "M": [
+     100,
+     300
+    ],
+    "M2": {
+     "angle": 60,
+     "circle": "cA2",
+     "type": "on_circle"
+    }
+   },
+   "regions": {
+    "moon": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cR",
+        "dir": "cw",
+        "from": "A",
+        "to": "Bp"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cA",
+        "dir": "cw",
+        "from": "Bp",
+        "to": "B"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cM",
+        "dir": "ccw",
+        "from": "B",
+        "to": "A"
+       }
+      }
+     ],
+     "fill": "#d7e6f0"
+    }
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "ABp": [
+     "A",
+     "Bp"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 288.491 244.225\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"288.491\" height=\"244.225\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 62.675 205.675 A 100 100 0 0 1 162.675 32.47 A 200 200 0 0 1 262.675 205.675 A 100 100 0 0 0 62.675 205.675 Z\" fill=\"#d7e6f0\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"62.675\" y1=\"205.675\" x2=\"262.675\" y2=\"205.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"62.675\" y1=\"205.675\" x2=\"162.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 262.675 205.675 A 100 100 0 0 0 62.675 205.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 62.675 205.675 A 100 100 0 0 1 162.675 32.47\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 162.675 32.47 A 200 200 0 0 1 262.675 205.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 77.7 205.7 A 15.0 15.0 0 0 0 70.2 192.7\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 132.89 218.355 Q 99.282 215.376 65.675 205.675 M 192.46 218.355 Q 226.067 215.376 259.675 205.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"84.326\" y=\"197.015\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">60°</text>\n    <text x=\"162.675\" y=\"224.475\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">10 cm</text>\n    <text x=\"52.889\" y=\"219.621\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"272.461\" y=\"219.621\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"162.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B′</text>\n  </g>\n</svg>"
+ },
+ "regions-0623-lunes": {
+  "md5": "02275416f7da5a66bcc7d62ed95935e0",
+  "spec": {
+   "arcs": {
+    "sAB": {
+     "circle": "cAB",
+     "dir": "ccw",
+     "from": "A",
+     "to": "B"
+    },
+    "sAC": {
+     "circle": "cAC",
+     "dir": "cw",
+     "from": "A",
+     "to": "C"
+    },
+    "sBC": {
+     "circle": "cBC",
+     "dir": "cw",
+     "from": "B",
+     "to": "C"
+    }
+   },
+   "circles": {
+    "cAB": {
+     "center": "MAB",
+     "draw": false,
+     "radius": 120
+    },
+    "cAC": {
+     "center": "MAC",
+     "draw": false,
+     "radius": 90
+    },
+    "cBC": {
+     "center": "MBC",
+     "draw": false,
+     "radius": 150
+    }
+   },
+   "dimensions": {
+    "dimAB": {
+     "inset": 20,
+     "label": "4 cm",
+     "points": [
+      "A",
+      "B"
+     ],
+     "side": "right"
+    },
+    "dimAC": {
+     "inset": 20,
+     "label": "3 cm",
+     "points": [
+      "A",
+      "C"
+     ],
+     "side": "left"
+    },
+    "dimBC": {
+     "label": "5 cm",
+     "points": [
+      "B",
+      "C"
+     ]
+    }
+   },
+   "labels": {
+    "A": {
+     "position": "N"
+    },
+    "B": {
+     "position": "W"
+    },
+    "C": {
+     "position": "E"
+    }
+   },
+   "points": {
+    "A": [
+     192,
+     96
+    ],
+    "B": [
+     0,
+     240
+    ],
+    "C": [
+     300,
+     240
+    ],
+    "MAB": [
+     96,
+     168
+    ],
+    "MAC": [
+     246,
+     168
+    ],
+    "MBC": [
+     150,
+     240
+    ],
+    "RA1": [
+     180.8,
+     104.4
+    ],
+    "RA2": [
+     200.4,
+     107.2
+    ],
+    "RA3": [
+     189.2,
+     115.6
+    ]
+   },
+   "regions": {
+    "luneL": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cAB",
+        "dir": "ccw",
+        "from": "A",
+        "to": "B"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cBC",
+        "dir": "cw",
+        "from": "B",
+        "to": "A"
+       }
+      }
+     ],
+     "fill": "#f7ddd6"
+    },
+    "luneR": {
+     "boundary": [
+      {
+       "arc": {
+        "circle": "cAC",
+        "dir": "cw",
+        "from": "A",
+        "to": "C"
+       }
+      },
+      {
+       "arc": {
+        "circle": "cBC",
+        "dir": "ccw",
+        "from": "C",
+        "to": "A"
+       }
+      }
+     ],
+     "fill": "#f7ddd6"
+    }
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AC": [
+     "A",
+     "C"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ],
+    "ra1": [
+     "RA1",
+     "RA3"
+    ],
+    "ra2": [
+     "RA3",
+     "RA2"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 385.35 243.225\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"385.35\" height=\"243.225\" fill=\"#ffffff\" />\n  <g>\n    <path d=\"M 228.675 60.675 A 120 120 0 0 0 36.675 204.675 A 150 150 0 0 1 228.675 60.675 Z\" fill=\"#f7ddd6\" stroke=\"none\" />\n    <path d=\"M 228.675 60.675 A 90 90 0 0 1 336.675 204.675 A 150 150 0 0 0 228.675 60.675 Z\" fill=\"#f7ddd6\" stroke=\"none\" />\n  </g>\n  <g>\n    <line x1=\"228.675\" y1=\"60.675\" x2=\"36.675\" y2=\"204.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"228.675\" y1=\"60.675\" x2=\"336.675\" y2=\"204.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"36.675\" y1=\"204.675\" x2=\"336.675\" y2=\"204.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"217.475\" y1=\"69.075\" x2=\"225.875\" y2=\"80.275\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"225.875\" y1=\"80.275\" x2=\"237.075\" y2=\"71.875\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 228.675 60.675 A 120 120 0 0 0 36.675 204.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 228.675 60.675 A 90 90 0 0 1 336.675 204.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 36.675 204.675 A 150 150 0 0 1 336.675 204.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 172.01 138.288 Q 197.073 111.789 212.675 72.675 M 127.05 172.008 Q 94.593 188.649 52.675 192.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 246.331 128.483 Q 238.497 106.333 240.675 76.675 M 276.523 168.739 Q 295.593 182.461 324.675 188.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 159.965 218.213 Q 99.82 216.131 39.675 204.675 M 213.385 218.213 Q 273.53 216.131 333.675 204.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"150.975\" y=\"161.875\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">4 cm</text>\n    <text x=\"258.275\" y=\"155.775\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">3 cm</text>\n    <text x=\"186.675\" y=\"223.475\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">5 cm</text>\n    <text x=\"228.675\" y=\"50.995\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"22.835\" y=\"208.835\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"350.515\" y=\"208.835\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n  </g>\n</svg>"
+ },
+ "regions-0625-belt6": {
+  "md5": "926375e1dc97d373950b274fd08f9ec7",
+  "spec": {
+   "arcs": {
+    "abl": {
+     "circle": "cbl",
+     "dir": "ccw",
+     "from": "TblL",
+     "to": "TblB"
+    },
+    "abr": {
+     "circle": "cbr",
+     "dir": "ccw",
+     "from": "TbrB",
+     "to": "TbrR"
+    },
+    "atl": {
+     "circle": "ctl",
+     "dir": "ccw",
+     "from": "TtlT",
+     "to": "TtlL"
+    },
+    "atr": {
+     "circle": "ctr",
+     "dir": "ccw",
+     "from": "TtrR",
+     "to": "TtrT"
+    }
+   },
+   "circles": {
+    "cbl": {
+     "center": "Obl",
+     "radius": 55
+    },
+    "cbr": {
+     "center": "Obr",
+     "radius": 55
+    },
+    "cml": {
+     "center": "Oml",
+     "radius": 55
+    },
+    "cmr": {
+     "center": "Omr",
+     "radius": 55
+    },
+    "ctl": {
+     "center": "Otl",
+     "radius": 55
+    },
+    "ctr": {
+     "center": "Otr",
+     "radius": 55
+    }
+   },
+   "dimensions": {
+    "dimR": {
+     "font_size": 12,
+     "label": "2 cm",
+     "points": [
+      "Otr",
+      "TtrT"
+     ]
+    }
+   },
+   "points": {
+    "Obl": [
+     110,
+     280
+    ],
+    "Obr": [
+     220,
+     280
+    ],
+    "Oml": [
+     110,
+     170
+    ],
+    "Omr": [
+     220,
+     170
+    ],
+    "Otl": [
+     110,
+     60
+    ],
+    "Otr": [
+     220,
+     60
+    ],
+    "TblB": {
+     "angle": 270,
+     "circle": "cbl",
+     "type": "on_circle"
+    },
+    "TblL": {
+     "angle": 180,
+     "circle": "cbl",
+     "type": "on_circle"
+    },
+    "TbrB": {
+     "angle": 270,
+     "circle": "cbr",
+     "type": "on_circle"
+    },
+    "TbrR": {
+     "angle": 0,
+     "circle": "cbr",
+     "type": "on_circle"
+    },
+    "TtlL": {
+     "angle": 180,
+     "circle": "ctl",
+     "type": "on_circle"
+    },
+    "TtlT": {
+     "angle": 90,
+     "circle": "ctl",
+     "type": "on_circle"
+    },
+    "TtrR": {
+     "angle": 0,
+     "circle": "ctr",
+     "type": "on_circle"
+    },
+    "TtrT": {
+     "angle": 90,
+     "circle": "ctr",
+     "type": "on_circle"
+    }
+   },
+   "segments": {
+    "beltB": [
+     "TblB",
+     "TbrB"
+    ],
+    "beltL": [
+     "TtlL",
+     "TblL"
+    ],
+    "beltR": [
+     "TbrR",
+     "TtrR"
+    ],
+    "beltT": [
+     "TtrT",
+     "TtlT"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 245.35 355.35\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"245.35\" height=\"355.35\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"67.675\" cy=\"67.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"177.675\" cy=\"67.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"67.675\" cy=\"177.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"177.675\" cy=\"177.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"67.675\" cy=\"287.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"177.675\" cy=\"287.675\" r=\"55\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"177.675\" y1=\"12.675\" x2=\"67.675\" y2=\"12.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"67.675\" x2=\"12.675\" y2=\"287.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"67.675\" y1=\"342.675\" x2=\"177.675\" y2=\"342.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"232.675\" y1=\"287.675\" x2=\"232.675\" y2=\"67.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 12.675 287.675 A 55 55 0 0 0 67.675 342.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 177.675 342.675 A 55 55 0 0 0 232.675 287.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 67.675 12.675 A 55 55 0 0 0 12.675 67.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 232.675 67.675 A 55 55 0 0 0 177.675 12.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 188.741 51.39 Q 185.266 58.032 177.675 64.675 M 188.741 28.96 Q 185.266 22.317 177.675 15.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"191.675\" y=\"44.015\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">2 cm</text>\n  </g>\n</svg>"
+ },
+ "regions-0626-belt3": {
+  "md5": "fe6379d94081d2407148fed2bf57c8de",
+  "spec": {
+   "arcs": {
+    "b1": {
+     "circle": "c1",
+     "dir": "ccw",
+     "from": "T1R",
+     "to": "T1L"
+    },
+    "b2": {
+     "circle": "c2",
+     "dir": "ccw",
+     "from": "T2L",
+     "to": "T2B"
+    },
+    "b3": {
+     "circle": "c3",
+     "dir": "ccw",
+     "from": "T3B",
+     "to": "T3R"
+    }
+   },
+   "circles": {
+    "c1": {
+     "center": "O1",
+     "radius": 90
+    },
+    "c2": {
+     "center": "O2",
+     "radius": 90
+    },
+    "c3": {
+     "center": "O3",
+     "radius": 90
+    },
+    "cH": {
+     "center": "O1",
+     "draw": false,
+     "radius": 180
+    }
+   },
+   "dimensions": {
+    "dimR": {
+     "label": "3 cm",
+     "points": [
+      "O1",
+      "T1R"
+     ]
+    }
+   },
+   "points": {
+    "O1": [
+     150,
+     100
+    ],
+    "O2": {
+     "angle": 240,
+     "circle": "cH",
+     "type": "on_circle"
+    },
+    "O3": {
+     "angle": 300,
+     "circle": "cH",
+     "type": "on_circle"
+    },
+    "T1L": {
+     "angle": 150,
+     "circle": "c1",
+     "type": "on_circle"
+    },
+    "T1R": {
+     "angle": 30,
+     "circle": "c1",
+     "type": "on_circle"
+    },
+    "T2B": {
+     "angle": 270,
+     "circle": "c2",
+     "type": "on_circle"
+    },
+    "T2L": {
+     "angle": 150,
+     "circle": "c2",
+     "type": "on_circle"
+    },
+    "T3B": {
+     "angle": 270,
+     "circle": "c3",
+     "type": "on_circle"
+    },
+    "T3R": {
+     "angle": 30,
+     "circle": "c3",
+     "type": "on_circle"
+    }
+   },
+   "segments": {
+    "beltB": [
+     "T2B",
+     "T3B"
+    ],
+    "beltL": [
+     "T1L",
+     "T2L"
+    ],
+    "beltR": [
+     "T3R",
+     "T1R"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 385.35 361.235\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"385.35\" height=\"361.235\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"192.675\" cy=\"102.675\" r=\"90\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"102.675\" cy=\"258.56\" r=\"90\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <circle cx=\"282.675\" cy=\"258.56\" r=\"90\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"114.733\" y1=\"57.675\" x2=\"24.733\" y2=\"213.56\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"102.675\" y1=\"348.56\" x2=\"282.675\" y2=\"348.56\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"360.617\" y1=\"213.56\" x2=\"270.617\" y2=\"57.675\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 270.617 57.675 A 90 90 0 0 0 114.733 57.675\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 24.733 213.56 A 90 90 0 0 0 102.675 348.56\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <path d=\"M 282.675 348.56 A 90 90 0 0 0 360.617 213.56\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 204.403 86.233 Q 199.369 92.891 195.273 101.175 M 250.514 59.611 Q 258.798 58.58 268.019 59.175\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"224.646\" y=\"72.851\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">3 cm</text>\n  </g>\n</svg>"
+ },
+ "round2-bisector-two-arcs": {
+  "md5": "50856cd22b99ac243696322be383d7f3",
+  "spec": {
+   "angles": {
+    "a1": {
+     "points": [
+      "A",
+      "D"
+     ],
+     "vertex": "C"
+    },
+    "a2": {
+     "points": [
+      "D",
+      "B"
+     ],
+     "vertex": "C"
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+   },
+   "points": {
+    "A": [
+     30,
+     150
+    ],
+    "B": [
+     190,
+     150
+    ],
+    "C": [
+     150,
+     30
+    ],
+    "D": [
+     123,
+     150
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AC_": [
+     "A",
+     "C"
+    ],
+    "CB": [
+     "C",
+     "B"
+    ],
+    "CD": [
+     "C",
+     "D"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 201.846 165.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"201.846\" height=\"165.145\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"16.03\" y1=\"152.47\" x2=\"176.03\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"16.03\" y1=\"152.47\" x2=\"136.03\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"136.03\" y1=\"32.47\" x2=\"176.03\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"136.03\" y1=\"32.47\" x2=\"109.03\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 125.4 43.1 A 15.0 15.0 0 0 0 132.7 47.1\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 132.7 47.1 A 15.0 15.0 0 0 0 140.8 46.7\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n  </g>\n  <g>\n    <text x=\"16.03\" y=\"142.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"185.816\" y=\"146.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"136.03\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"118.816\" y=\"146.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n  </g>\n</svg>"
+ },
+ "round2-grid-paths": {
+  "md5": "689f7ea89e7ebe75c31167339850788f",
+  "spec": {
+   "labels": {
+    "P00": "A",
+    "P32": "B"
+   },
+   "points": {
+    "P00": [
+     20,
+     140
+    ],
+    "P01": [
+     20,
+     90
+    ],
+    "P02": [
+     20,
+     40
+    ],
+    "P10": [
+     70,
+     140
+    ],
+    "P11": [
+     70,
+     90
+    ],
+    "P12": [
+     70,
+     40
+    ],
+    "P20": [
+     120,
+     140
+    ],
+    "P21": [
+     120,
+     90
+    ],
+    "P22": [
+     120,
+     40
+    ],
+    "P30": [
+     170,
+     140
+    ],
+    "P31": [
+     170,
+     90
+    ],
+    "P32": [
+     170,
+     40
+    ]
+   },
+   "segments": {
+    "h0": [
+     "P00",
+     "P30"
+    ],
+    "h1": [
+     "P01",
+     "P31"
+    ],
+    "h2": [
+     "P02",
+     "P32"
+    ],
+    "v0": [
+     "P00",
+     "P02"
+    ],
+    "v1": [
+     "P10",
+     "P12"
+    ],
+    "v2": [
+     "P20",
+     "P22"
+    ],
+    "v3": [
+     "P30",
+     "P32"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 178.705 145.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"178.705\" height=\"145.145\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"12.675\" y1=\"132.47\" x2=\"162.675\" y2=\"132.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"82.47\" x2=\"162.675\" y2=\"82.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"32.47\" x2=\"162.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"12.675\" y1=\"132.47\" x2=\"12.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"62.675\" y1=\"132.47\" x2=\"62.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"112.675\" y1=\"132.47\" x2=\"112.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"162.675\" y1=\"132.47\" x2=\"162.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"22.461\" y=\"126.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"162.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n  </g>\n</svg>"
+ },
+ "round2-incircle-right": {
+  "md5": "d06accbcb6d66ad4f4b9f3d52c876ce0",
+  "spec": {
+   "circles": {
+    "inc": {
+     "center": "I",
+     "radius": 40
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "I": "I"
+   },
+   "points": {
+    "A": [
+     20,
+     160
+    ],
+    "B": [
+     180,
+     160
+    ],
+    "C": [
+     20,
+     40
+    ],
+    "I": [
+     60,
+     120
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ],
+    "CA": [
+     "C",
+     "A"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 192.06 181.666\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"192.06\" height=\"181.666\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"56.03\" cy=\"112.47\" r=\"40\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"16.03\" y1=\"152.47\" x2=\"176.03\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"176.03\" y1=\"152.47\" x2=\"16.03\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"16.03\" y1=\"32.47\" x2=\"16.03\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"25.816\" y=\"166.416\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"176.03\" y=\"142.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"16.03\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"56.03\" y=\"102.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">I</text>\n  </g>\n</svg>"
+ },
+ "round2-iso-base-angles": {
+  "md5": "f723ab35a0093cf463530d0d902581fe",
+  "spec": {
+   "angles": {
+    "b": {
+     "label": "50°",
+     "points": [
+      "A",
+      "C"
+     ],
+     "vertex": "B"
+    },
+    "c": {
+     "label": "x",
+     "points": [
+      "B",
+      "A"
+     ],
+     "vertex": "C"
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+   },
+   "points": {
+    "A": [
+     90,
+     20
+    ],
+    "B": [
+     20,
+     150
+    ],
+    "C": [
+     160,
+     150
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AC": [
+     "A",
+     "C"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 195.35 190.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"195.35\" height=\"190.145\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"97.675\" y1=\"32.47\" x2=\"27.675\" y2=\"162.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"97.675\" y1=\"32.47\" x2=\"167.675\" y2=\"162.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"27.675\" y1=\"162.47\" x2=\"167.675\" y2=\"162.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 34.8 149.3 A 15.0 15.0 0 0 1 42.7 162.5\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n    <path d=\"M 152.7 162.5 A 15.0 15.0 0 0 1 160.6 149.3\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1\" />\n  </g>\n  <g>\n    <text x=\"49.138\" y=\"153.49\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">50°</text>\n    <text x=\"146.212\" y=\"153.49\" font-family=\"Times New Roman, Batang, serif\" font-size=\"12\" font-style=\"italic\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke\" stroke=\"#ffffff\" stroke-width=\"4.5\" stroke-linejoin=\"round\">x</text>\n    <text x=\"97.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"27.675\" y=\"145.64\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"177.461\" y=\"156.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n  </g>\n</svg>"
+ },
+ "round2-linear-graph": {
+  "md5": "f10416bee7349c2c08a23c80734744ac",
+  "spec": {
+   "labels": {
+    "O": "O",
+    "T1": "2",
+    "T2": "2",
+    "Xp": "x",
+    "Yp": "y"
+   },
+   "points": {
+    "A": [
+     40,
+     160
+    ],
+    "B": [
+     180,
+     20
+    ],
+    "O": [
+     100,
+     100
+    ],
+    "T1": [
+     140,
+     100
+    ],
+    "T2": [
+     100,
+     60
+    ],
+    "Xm": [
+     10,
+     100
+    ],
+    "Xp": [
+     190,
+     100
+    ],
+    "Ym": [
+     100,
+     190
+    ],
+    "Yp": [
+     100,
+     10
+    ]
+   },
+   "segments": {
+    "line": [
+     "A",
+     "B"
+    ],
+    "xaxis": [
+     "Xm",
+     "Xp"
+    ],
+    "yaxis": [
+     "Ym",
+     "Yp"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 208.705 225.145\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"208.705\" height=\"225.145\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"12.675\" y1=\"122.47\" x2=\"192.675\" y2=\"122.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"102.675\" y1=\"212.47\" x2=\"102.675\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"42.675\" y1=\"182.47\" x2=\"182.675\" y2=\"42.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"112.461\" y=\"136.416\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"142.675\" y=\"112.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">2</text>\n    <text x=\"112.461\" y=\"76.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">2</text>\n    <text x=\"192.675\" y=\"112.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">x</text>\n    <text x=\"102.675\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">y</text>\n  </g>\n</svg>"
+ },
+ "round2-trapezoid-ratio": {
+  "md5": "667d58f089ccf9e8ae528fec70bb4605",
+  "spec": {
+   "dimensions": {
+    "ae": {
+     "label": "4",
+     "points": [
+      "A",
+      "E"
+     ],
+     "side": "left"
+    },
+    "eb": {
+     "label": "2",
+     "points": [
+      "E",
+      "B"
+     ],
+     "side": "left"
+    }
+   },
+   "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "E": "E",
+    "F": "F"
+   },
+   "points": {
+    "A": [
+     60,
+     30
+    ],
+    "B": [
+     20,
+     150
+    ],
+    "C": [
+     190,
+     150
+    ],
+    "D": [
+     150,
+     30
+    ],
+    "E": [
+     40,
+     90
+    ],
+    "F": [
+     170,
+     90
+    ]
+   },
+   "segments": {
+    "AB": [
+     "A",
+     "B"
+    ],
+    "AD": [
+     "A",
+     "D"
+    ],
+    "BC": [
+     "B",
+     "C"
+    ],
+    "DC": [
+     "D",
+     "C"
+    ],
+    "EF": [
+     "E",
+     "F"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 219.748 185.01\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"219.748\" height=\"185.01\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"63.932\" y1=\"32.47\" x2=\"153.932\" y2=\"32.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"43.932\" y1=\"92.47\" x2=\"173.932\" y2=\"92.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"23.932\" y1=\"152.47\" x2=\"193.932\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"63.932\" y1=\"32.47\" x2=\"23.932\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"153.932\" y1=\"32.47\" x2=\"193.932\" y2=\"152.47\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    <path d=\"M 49.1 44.971 Q 54.553 39.647 62.983 35.316 M 39.567 73.57 Q 40.735 81.101 44.88 89.624\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n    <path d=\"M 29.1 104.971 Q 34.553 99.647 42.983 95.316 M 19.567 133.57 Q 20.735 141.101 24.88 149.624\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  </g>\n  <g>\n    <text x=\"40.65\" y=\"62.843\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">4</text>\n    <text x=\"20.65\" y=\"122.843\" font-family=\"Times New Roman, Batang, serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#111111\" paint-order=\"stroke fill\" stroke=\"#ffffff\" stroke-width=\"7\" stroke-linejoin=\"round\">2</text>\n    <text x=\"68.308\" y=\"23.5\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"19.555\" y=\"169.76\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n    <text x=\"203.718\" y=\"146.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">C</text>\n    <text x=\"153.932\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">D</text>\n    <text x=\"53.718\" y=\"86.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">E</text>\n    <text x=\"183.718\" y=\"86.844\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">F</text>\n  </g>\n</svg>"
+ },
+ "round2-two-tangents": {
+  "md5": "533bc8c9ea12a20352a72e9882d8df84",
+  "spec": {
+   "circles": {
+    "c": {
+     "center": "O",
+     "radius": 45
+    }
+   },
+   "labels": {
+    "O": "O",
+    "P": "P",
+    "T1": "A",
+    "T2": "B"
+   },
+   "points": {
+    "O": [
+     70,
+     100
+    ],
+    "P": [
+     200,
+     100
+    ],
+    "T1": {
+     "angle": 55,
+     "circle": "c",
+     "type": "on_circle"
+    },
+    "T2": {
+     "angle": -55,
+     "circle": "c",
+     "type": "on_circle"
+    }
+   },
+   "segments": {
+    "OP": [
+     "O",
+     "P"
+    ],
+    "OT1": [
+     "O",
+     "T1"
+    ],
+    "PT1": [
+     "P",
+     "T1"
+    ],
+    "PT2": [
+     "P",
+     "T2"
+    ]
+   },
+   "version": 2
+  },
+  "svg": "<svg viewBox=\"0 0 203.705 134.438\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"203.705\" height=\"134.438\" fill=\"#ffffff\" />\n  <g>\n    <circle cx=\"57.675\" cy=\"66.829\" r=\"45\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.35\" />\n    <line x1=\"187.675\" y1=\"66.829\" x2=\"83.486\" y2=\"29.967\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"187.675\" y1=\"66.829\" x2=\"83.486\" y2=\"103.691\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"57.675\" y1=\"66.829\" x2=\"83.486\" y2=\"29.967\" stroke=\"#111111\" stroke-width=\"1.25\" />\n    <line x1=\"57.675\" y1=\"66.829\" x2=\"187.675\" y2=\"66.829\" stroke=\"#111111\" stroke-width=\"1.25\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"57.675\" y=\"57.149\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">O</text>\n    <text x=\"187.675\" y=\"57.149\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">P</text>\n    <text x=\"91.424\" y=\"22.79\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">A</text>\n    <text x=\"91.424\" y=\"119.188\" font-family=\"Times New Roman, Batang, serif\" font-size=\"13\" text-anchor=\"middle\" fill=\"#111111\">B</text>\n  </g>\n</svg>"
+ }
+}
