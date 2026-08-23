@@ -85,6 +85,42 @@ function themeShare<T>(unit: UnitSeed, themes: readonly T[]): readonly T[] {
   return mine;
 }
 
+/**
+ * **단위 뒤 조사는 «글자»가 아니라 «소리»가 정한다.** `cm` 은 «센티미터»라 받침이 없고
+ * (`를`·`로`), `kg` 은 «킬로그램»이라 받침이 있다(`을`·`으로`). `℃` 는 «도»다.
+ *
+ * ⚠️ **이 표를 안 쓰고 조사를 박아서 실물 결함이 나갔다** (2026-08-23, g3 이 알려 줌):
+ * 「세로 눈금 한 칸은 몇 **mm을** 나타내는가?」·「$23$**명로** 그보다」. 소재마다 단위가
+ * 달라지는 자리에서 한 조사를 박으면 **소재 하나만 맞고 나머지는 다 틀린다.**
+ *
+ * ⚠️ **모르는 단위는 던진다.** 조용히 한쪽을 고르면 새 단위가 들어올 때마다 같은 결함이
+ * 다시 난다 — 손 목록은 새므로 **새는 것을 시끄럽게** 만든다.
+ */
+const UNIT_HAS_FINAL: Record<string, boolean> = {
+  "℃": false, // 도
+  cm: false, // 센티미터
+  mm: false, // 밀리미터
+  m: false, // 미터
+  kg: true, // 킬로그램
+  g: true, // 그램
+  권: true,
+  명: true,
+  원: true,
+  개: false,
+  회: false,
+};
+
+/** 단위 뒤 조사 — 받침이 있으면 `withEnd`(을·으로·이·은), 없으면 `withoutEnd`. */
+function unitJosa(unit: string, withEnd: string, withoutEnd: string): string {
+  const has = UNIT_HAS_FINAL[unit];
+  if (has === undefined) {
+    throw new Error(
+      `단위 뒤 조사를 정할 수 없습니다: «${unit}» — 읽는 소리를 UNIT_HAS_FINAL 에 적어라`,
+    );
+  }
+  return `${unit}${has ? withEnd : withoutEnd}`;
+}
+
 /** 받침에 따라 조사를 고른다 — 「사과을」 이 지면에 나가지 않게. */
 function josa(word: string, withEnd: string, withoutEnd: string): string {
   const last = word.charCodeAt(word.length - 1);
@@ -4496,6 +4532,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier247Apply,
     심화: tier247Deep,
   },
+  "초4|2-6-1": {
+    연산: tier261Calc,
+    기본: tier261Basic,
+    응용: tier261Apply,
+    심화: tier261Deep,
+  },
+  "초4|2-6-2": {
+    연산: tier262Calc,
+    기본: tier262Basic,
+    응용: tier262Apply,
+    심화: tier262Deep,
+  },
+  "초4|2-6-3": {
+    연산: tier263Calc,
+    기본: tier263Basic,
+    응용: tier263Apply,
+    심화: tier263Deep,
+  },
   "초4|2-5-1": {
     연산: tier251Calc,
     기본: tier251Basic,
@@ -8574,7 +8628,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       // 아니게 되므로 막대에서만 묻는다. 걸음 값은 그림에 실은 `theme.yStep` 그대로다.
       return make(
         unit,
-        `${intro} 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내는가?`,
+        `${intro} 세로 눈금 한 칸은 몇 ${unitJosa(theme.unit, "을", "를")} 나타내는가?`,
         `${n(theme.yStep)}${theme.unit}`,
         `세로축 눈금이 ${n(0)}, ${n(theme.yStep)}, ${n(theme.yStep * 2)}, … 로 매겨져 있으므로 ` +
           `한 칸은 ${n(theme.yStep)}${theme.unit}입니다.`,
@@ -8846,7 +8900,7 @@ function tier252Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(last - bar)}${theme.unit}`,
     `값이 ${n(bar)}${theme.unit} 이상이 된 것은 ` +
       `${josa(theme.labels[1]!.math, "이", "가")} 처음입니다` +
-      `(${theme.labels[0]!.math}의 값은 ${n(nums[0]!)}${theme.unit}로 그보다 작습니다). ` +
+      `(${theme.labels[0]!.math}의 값은 ${n(nums[0]!)}${unitJosa(theme.unit, "으로", "로")} 그보다 작습니다). ` +
       `그때부터 마지막 ${theme.labels[nums.length - 1]!.math}까지 보면 ` +
       `${expr(`${last}-${bar}=${last - bar}`)} 이므로 ${n(last - bar)}${theme.unit} 늘었습니다.`,
     lineFigure(theme, nums),
@@ -9144,6 +9198,288 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   return noBranch(unit);
+}
+
+/* ──────────── 2-6 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * ⚠️ **정다각형의 «한 각의 크기»는 한 갈래도 만들지 않는다.** 정오각형 한 각
+ * $108^\circ$ 는 $(n-2)\times180\div n$ 이라 **초4 범위 밖**이다(초4 는 삼각형 $180^\circ$·
+ * 사각형 $360^\circ$ 까지). 그래서 2-6-2 는 **변 축으로만** 간다. 2-4-6(마름모)에서 각 축을
+ * 뺀 것과 판단은 같지만 까닭이 다르다 — 거기는 겹침, 여기는 **교육과정 범위**다.
+ *
+ * ⚠️ **「예/아니요」 문형을 한 갈래도 쓰지 않는다.** 표준 2-6-1 이 그 문형을 쓴다
+ * (「곡선이 있어도 다각형인가」). 낱말만 바꾸면 「상수만 바꾼 것은 같은 문항」(R5)이고,
+ * 찍어도 절반이라 그 자체로 약한 문형이다.
+ *
+ * 표준이 이미 쓴 것을 피해 **묻는 방향**을 돌렸다:
+ *   2-6-1 표준은 «변 수 → 이름»·«이름 → 꼭짓점 수»  → 갈래는 «꼭짓점 수 → 이름»
+ *   2-6-2 표준은 «한 변 ↔ 모든 변의 합» **양방향**   → 갈래는 «합과 한 변 → 변의 수»
+ *   2-6-3 표준은 «이름 → 개수» 둘                    → 갈래는 «개수 → 이름», «개수 → 개수»
+ *
+ * ⚠️ **그림은 아직 안 붙였다.** ② 확장이 정n각형 모양은 그리지만 `sides`·`angles` 에
+ * **값을 적으면 던진다**(비율 수리 전 임시 차단, elem-figures 2026-08-23). 2-6-2 는
+ * 한 변 길이를 적는 갈래가 대부분이라 지금 붙이면 던진다. 수리 뒤 2-4 넷과 함께 얹는다.
+ * 그리고 정n각형은 ⑧「고르기」목록에 **없다** — 윤곽으로 안 갈린다(정칠↔정팔 2.18px).
+ */
+
+/**
+ * 대각선 수 표 — `n(n-3)/2`. **다섯 값이 서로 달라서** 역산이 하나로 정해진다.
+ * 엔진의 그림 쪽 잠금과 같은 값이다(square 2 · pentagon 5 · hexagon 9 · octagon 20).
+ */
+const DIAGONALS: readonly { sides: number; total: number; each: number }[] = [
+  4, 5, 6, 7, 8,
+].map((s) => ({ sides: s, total: (s * (s - 3)) / 2, each: s - 3 }));
+
+/** **2-6-1 1단 — 꼭짓점 수에서 이름으로.** 표준은 **변** 수를 준다(방향이 다르다). */
+function tier261Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ `sino` 표가 **십이까지**다 — 그 위를 뽑으면 던진다.
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `꼭짓점이 ${n(sides)}개인 다각형의 이름을 쓰시오.`
+      : `어떤 다각형의 꼭짓점이 ${n(sides)}개입니다. 이 다각형을 무엇이라고 하는가?`,
+    polyName(sides),
+    `다각형은 변의 수와 꼭짓점의 수가 같습니다. 꼭짓점이 ${n(sides)}개이면 변도 ` +
+      `${n(sides)}개이므로 ${polyName(sides)}입니다.`,
+  );
+}
+
+/** **2-6-1 2단 — 변과 꼭짓점의 «합»에서 이름으로.** 둘이 같다는 것을 알아야 반으로 나눈다. */
+function tier261Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `어떤 다각형의 변의 수와 꼭짓점의 수를 더하면 ${n(sides * 2)}입니다. ` +
+          `이 다각형의 이름을 쓰시오.`
+      : `변의 수와 꼭짓점의 수의 합이 ${n(sides * 2)}인 다각형이 있습니다. ` +
+          `이 다각형을 무엇이라고 하는가?`,
+    polyName(sides),
+    `다각형은 변의 수와 꼭짓점의 수가 같으므로 ` +
+      `${expr(`${sides * 2}\\div2=${sides}`)} 입니다. 변이 ${n(sides)}개이므로 ` +
+      `${polyName(sides)}입니다.`,
+  );
+}
+
+/** **2-6-1 3단 — 조건이 서로 다른 두 다각형.** 하나는 변으로, 하나는 꼭짓점으로 준다. */
+function tier261Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 9);
+  const b = intBetween(rng, 5, 9);
+  return make(
+    unit,
+    `다각형 ㉠은 변이 ${n(a)}개이고, 다각형 ㉡은 꼭짓점이 ${n(b)}개입니다. ` +
+      `두 다각형의 꼭짓점의 수의 합은 몇 개인가?`,
+    `${n(a + b)}개`,
+    `㉠은 변이 ${n(a)}개이므로 꼭짓점도 ${n(a)}개입니다. ㉡의 꼭짓점은 ${n(b)}개입니다. ` +
+      `${expr(`${a}+${b}=${a + b}`)} 이므로 ${n(a + b)}개입니다.`,
+  );
+}
+
+/**
+ * **2-6-1 4단 — 두 조건을 엮어 이름을 찾는다.**
+ *
+ * ㉡의 변을 $\square$ 로 두면 `□ + (□ + 차) = 합` 이다.
+ *
+ * ⚠️ **「차가 짝수라야 $\square$ 가 자연수」는 틀린 말이다.** 작은 쪽을 먼저 뽑고 합을
+ * 유도하므로 `합 − 차 = 작은 쪽 × 2` 라 **차의 홀짝은 아무것도 안 바꾼다.** 2-4-4 4단에
+ * 똑같이 틀린 주석을 적었다가 변이가 **초록으로** 짚어 줬고, 여기도 같았다. 짝수만 쓰는
+ * 까닭은 해설의 `□×2 = 합 − 차` 가 눈에 익은 꼴로 남게 하려는 것뿐이다.
+ */
+function tier261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ **둘 다 변이 $3$개 이상**이라야 다각형이고, 큰 쪽이 **$12$각형을 넘으면 던진다**
+  // (`sino` 표가 십이까지다). 합·차에서 유도하면 그 두 자리가 다 샌다 —
+  // **작은 쪽과 차를 먼저 뽑고 합을 유도**한다(D-66 ⒂).
+  const small = intBetween(rng, 3, 6);
+  const gap = intBetween(rng, 1, 2) * 2;
+  const big = small + gap;
+  return make(
+    unit,
+    `다각형 ㉠은 다각형 ㉡보다 변이 ${n(gap)}개 많고, 두 다각형의 변의 수의 합은 ` +
+      `${n(small + big)}개입니다. ㉠의 이름을 쓰시오.`,
+    polyName(big),
+    `㉡의 변의 수를 ${expr("\\square")}라고 하면 ㉠은 ${expr(`\\square+${gap}`)} 이므로 ` +
+      `${expr(`\\square+(\\square+${gap})=${small + big}`)} 입니다. ` +
+      `${expr(`\\square\\times2=${small + big}-${gap}=${small * 2}`)} 이므로 ㉡은 ` +
+      `${n(small)}개, ㉠은 ${expr(`${small}+${gap}=${big}`)} 개입니다. 따라서 ${polyName(big)}입니다.`,
+  );
+}
+
+/**
+ * **2-6-2 1단 — 합과 한 변에서 «변의 수»로.**
+ *
+ * 표준이 「한 변 → 합」과 「합 → 한 변」 **양방향**을 이미 쓴다. 남은 세 번째 방향이 이것이다.
+ */
+function tier262Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  const side = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `어떤 정다각형의 모든 변의 길이의 합이 ${cm(side * sides)}이고 한 변이 ${cm(side)}입니다. ` +
+      `이 정다각형의 이름을 쓰시오.`,
+    polyName(sides, true),
+    `정다각형은 모든 변의 길이가 같으므로 변의 수는 ` +
+      `${expr(`${side * sides}\\div${side}=${sides}`)} 개입니다. ` +
+      `따라서 ${polyName(sides, true)}입니다.`,
+  );
+}
+
+/** **2-6-2 2단 — 이름을 숨기고 성질로 준다.** 표준은 이름을 그대로 준다. */
+function tier262Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  const side = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `변의 길이가 모두 같고 각의 크기도 모두 같은 다각형이 있습니다. 변이 ${n(sides)}개이고 ` +
+      `한 변이 ${cm(side)}일 때, 이 도형의 이름과 모든 변의 길이의 합을 각각 구하시오.`,
+    `${polyName(sides, true)}, ${cm(side * sides)}`,
+    `변의 길이가 모두 같고 각의 크기도 모두 같은 다각형은 정다각형이고, 변이 ${n(sides)}개이므로 ` +
+      `${polyName(sides, true)}입니다. ${expr(`${side}\\times${sides}=${side * sides}`)} 이므로 ` +
+      `${cm(side * sides)}입니다.`,
+  );
+}
+
+/** **2-6-2 3단 — 모든 변의 합이 «같은» 다른 정다각형.** 중간값은 그 합이다. */
+function tier262Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 두 변의 수가 달라야 「다른 정다각형」이고, 합이 나누어떨어져야 한 변이 자연수다.
+  const from = pick(rng, [5, 6, 8, 10]);
+  const to = pick(
+    rng,
+    [3, 4, 5, 6].filter((v) => v !== from),
+  );
+  const side = intBetween(rng, 2, 5) * to;
+  const total = side * from;
+  return make(
+    unit,
+    `한 변이 ${cm(side)}인 ${polyName(from, true)}이 있습니다. 이 도형과 모든 변의 길이의 ` +
+      `합이 같은 ${polyName(to, true)}의 한 변은 몇 cm인가?`,
+    cm(total / to),
+    `${polyName(from, true)}의 모든 변의 길이의 합은 ` +
+      `${expr(`${side}\\times${from}=${total}`)} 입니다. ` +
+      `${polyName(to, true)}은 변이 ${n(to)}개이므로 ` +
+      `${expr(`${total}\\div${to}=${total / to}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-6-2 4단 — 정삼각형을 거쳐 정다각형의 이름까지.**
+ *
+ * 세 단계다: 정삼각형의 세 변의 합 → 그 한 변 → 그보다 $\square$ 긴 한 변 → 변의 수.
+ */
+function tier262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const triSide = intBetween(rng, 3, 8);
+  const more = intBetween(rng, 1, 4);
+  const side = triSide + more;
+  const sides = intBetween(rng, 5, 10);
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(triSide * 3)}인 정삼각형이 있습니다. 어떤 정다각형의 한 변은 ` +
+      `이 정삼각형의 한 변보다 ${cm(more)} 길고, 그 정다각형의 모든 변의 길이의 합은 ` +
+      `${cm(side * sides)}입니다. 이 정다각형의 이름을 쓰시오.`,
+    polyName(sides, true),
+    `정삼각형의 한 변은 ${expr(`${triSide * 3}\\div3=${triSide}`)} 이므로 정다각형의 한 변은 ` +
+      `${expr(`${triSide}+${more}=${side}`)} 입니다. 변의 수는 ` +
+      `${expr(`${side * sides}\\div${side}=${sides}`)} 개이므로 ${polyName(sides, true)}입니다.`,
+  );
+}
+
+/**
+ * **2-6-3 1단 — 한 꼭짓점의 대각선 수에서 되짚는다.** 표준은 「이름 → 개수」다.
+ *
+ * 풀이 다섯뿐이라 묻는 것을 **이름 / 꼭짓점 수** 둘로 갈라 변형을 낸다. 수를 억지로
+ * 넓히지 않는 까닭은 나중에 그림을 얹을 때 ② 가 그리는 정n각형이 $4$~$8$각형이기 때문이다.
+ */
+function tier263Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(rng, DIAGONALS);
+  const asksName = intBetween(rng, 0, 1) === 0;
+  const why =
+    `한 꼭짓점에서는 자기 자신과 이웃한 두 꼭짓점에 대각선을 그을 수 없으므로 ` +
+    `꼭짓점의 수는 ${expr(`${d.each}+3=${d.sides}`)} 개입니다.`;
+  return make(
+    unit,
+    `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
+      (asksName
+        ? `이 다각형의 이름을 쓰시오.`
+        : `이 다각형의 꼭짓점은 몇 개인가?`),
+    asksName ? polyName(d.sides) : `${n(d.sides)}개`,
+    asksName ? `${why} 따라서 ${polyName(d.sides)}입니다.` : why,
+  );
+}
+
+/** **2-6-3 2단 — 두 다각형의 «차».** 각각을 구하고 견준다. */
+function tier263Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const big = pick(
+    rng,
+    DIAGONALS.filter((d) => d.sides >= 6),
+  );
+  const small = pick(
+    rng,
+    DIAGONALS.filter((d) => d.sides < big.sides),
+  );
+  return make(
+    unit,
+    `${polyName(big.sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 ` +
+      `${polyName(small.sides)}보다 몇 개 더 많은가?`,
+    `${n(big.each - small.each)}개`,
+    `한 꼭짓점에서 그을 수 있는 대각선은 ${polyName(big.sides)}이 ` +
+      `${expr(`${big.sides}-3=${big.each}`)} 개, ${polyName(small.sides)}이 ` +
+      `${expr(`${small.sides}-3=${small.each}`)} 개입니다. ` +
+      `${expr(`${big.each}-${small.each}=${big.each - small.each}`)} 이므로 ` +
+      `${n(big.each - small.each)}개 더 많습니다.`,
+  );
+}
+
+/** **2-6-3 3단 — 한 꼭짓점에서 전체로.** 중간값은 꼭짓점의 수다. */
+function tier263Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(rng, DIAGONALS);
+  const withSides = intBetween(rng, 0, 1) === 0;
+  const count =
+    `꼭짓점의 수는 ${expr(`${d.each}+3=${d.sides}`)} 개입니다. 꼭짓점마다 ` +
+    `${n(d.each)}개씩 그을 수 있는데 대각선을 두 번씩 세었으므로 ` +
+    `${expr(`${d.sides}\\times${d.each}\\div2=${d.total}`)} 입니다.`;
+  return make(
+    unit,
+    `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
+      (withSides
+        ? `이 다각형의 변의 수와 대각선의 수를 더하면 얼마인가?`
+        : `이 다각형에 그을 수 있는 대각선은 모두 몇 개인가?`),
+    withSides ? `${n(d.sides + d.total)}개` : `${n(d.total)}개`,
+    withSides
+      ? `${count} 변은 ${n(d.sides)}개이므로 ` +
+          `${expr(`${d.sides}+${d.total}=${d.sides + d.total}`)} 입니다.`
+      : count,
+  );
+}
+
+/**
+ * **2-6-3 4단 — 전체 대각선 수에서 도형을 찾아 그 둘레까지.**
+ *
+ * $n(n-3)/2$ 는 $4$~$8$각형에서 $2·5·9·14·20$ 으로 **서로 달라** 도형이 하나로 정해진다.
+ * 초4 는 식을 못 푸니 **대입해 찾는 수밖에 없고**, 그래서 해설이 표를 세워 그 길을 보여 준다.
+ *
+ * ⚠️ **첫 판은 「전체 → 한 꼭짓점」이라 3단의 정확한 역이었다.** 같은 다섯 값 풀에서 뽑으니
+ * 같은 씨앗에서 **같은 수로 나란히** 섰다(실측: 씨앗 20260823 에서 둘 다 $5$개·$2$개).
+ * 한 시험지에 3·4단이 같이 실리면 티가 난다 — 그래서 4단은 **변의 수를 거쳐 둘레로** 간다.
+ * 되짚기는 그대로 있고 단계가 하나 더 붙는다.
+ */
+function tier263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(
+    rng,
+    DIAGONALS.filter((x) => x.sides >= 5),
+  );
+  const side = intBetween(rng, 3, 9);
+  const table = DIAGONALS.filter((x) => x.sides <= d.sides)
+    .map((x) => `${polyName(x.sides)} ${n(x.total)}개`)
+    .join(", ");
+  return make(
+    unit,
+    `어떤 정다각형에 그을 수 있는 대각선이 모두 ${n(d.total)}개입니다. ` +
+      `이 정다각형의 한 변이 ${cm(side)}일 때 모든 변의 길이의 합은 몇 cm인가?`,
+    cm(side * d.sides),
+    `대각선의 수를 차례로 세어 보면 ${table} 입니다. ` +
+      `${n(d.total)}개인 것은 ${polyName(d.sides)}이므로 변이 ${n(d.sides)}개입니다. ` +
+      `${expr(`${side}\\times${d.sides}=${side * d.sides}`)} 이므로 ${cm(side * d.sides)}입니다.`,
+  );
 }
 
 export const G4: Record<string, ChapterHandler> = {

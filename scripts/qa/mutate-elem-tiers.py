@@ -965,6 +965,32 @@ G4_MUTS = [
         "  const stem = `어떤 사각형은 ${c.has}지만 ${c.not}.`;",
         "  const stem = `어떤 사각형은 ${c.has}습니다.`;",
     ),
+    # ── 초4 2-6 다각형 (2026-08-23, elem-g4) ─────────────────────────────
+    (
+        "2-6-1 4단 훼손 — 작은 쪽이 다각형이 못 되는 수도 뽑는다",
+        "  const small = intBetween(rng, 3, 6);",
+        "  const small = intBetween(rng, 1, 6);",
+    ),
+    (
+        "2-6-1 4단 훼손 — 답으로 «작은 쪽» 다각형을 낸다",
+        "    polyName(big),",
+        "    polyName(small),",
+    ),
+    (
+        "2-6-2 3단 훼손 — 한 변이 «옮겨 갈 도형»의 배수가 아니어도 된다",
+        "  const side = intBetween(rng, 2, 5) * to;",
+        "  const side = intBetween(rng, 2, 5) * from;",
+    ),
+    (
+        "2-6-3 훼손 — 한 꼭짓점의 대각선 수를 $n-2$ 로 센다",
+        "].map((s) => ({ sides: s, total: (s * (s - 3)) / 2, each: s - 3 }));",
+        "].map((s) => ({ sides: s, total: (s * (s - 3)) / 2, each: s - 2 }));",
+    ),
+    (
+        "2-6-3 훼손 — 전체 대각선 수를 두 번 세는 것을 잊는다",
+        "].map((s) => ({ sides: s, total: (s * (s - 3)) / 2, each: s - 3 }));",
+        "].map((s) => ({ sides: s, total: s * (s - 3), each: s - 3 }));",
+    ),
     # ── 이미 착지한 초4 가드 — 되돌리면 지면이 실제로 나빠지는 것 ──────────
     (
         "표준 2-3-2 훼손 — 더한 값의 꼬리 $0$ 을 막지 않는다(「$1.90$」이 지면에 나간다)",
@@ -1076,6 +1102,7 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elemTiersG4Tri.test.ts",
             "src/__tests__/unit/elemTiersG4Quad.test.ts",
+            "src/__tests__/unit/elemTiersG4Poly.test.ts",
             "src/__tests__/unit/elemTiersG4Dec.test.ts",
             "src/__tests__/unit/elemTiersG4Line.test.ts",
         ],
@@ -1091,6 +1118,9 @@ TARGETS = {
             "2-4-6",
             "2-4-7",
             "2-5-2",
+            "2-6-1",
+            "2-6-2",
+            "2-6-3",
             "2-5-3",
         ],
         "muts": G4_MUTS,
