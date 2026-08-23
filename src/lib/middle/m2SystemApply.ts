@@ -11,6 +11,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -130,9 +131,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         const k = nonzero(rng, 1, 5);
         const c3 = q * x0 - k * y0;
         return {
-          content: `연립방정식 $\\begin{cases}x+y=${s}\\\\${p}x-y=${c2}\\end{cases}$ 의 해가 일차방정식 $${q}x-ky=${c3}$ 을 만족시킬 때, 상수 $k$의 값을 구하시오.`,
+          content: `연립방정식 $\\begin{cases}x+y=${s}\\\\${p}x-y=${c2}\\end{cases}$ 의 해가 일차방정식 $${q}x-ky=${c3}$ ${eulReul(c3)} 만족시킬 때, 상수 $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `연립방정식의 두 식을 변끼리 더하면 $${p + 1}x=${s + c2}$이므로 $x=${x0}$, $y=${y0}$이다.\n$x=${x0}$, $y=${y0}$ 를 $${q}x-ky=${c3}$에 대입하면 $${q * x0}${sc(-y0, "k")}=${c3}$이다.\n따라서 $k=${k}$이다.`,
+          solution: `연립방정식의 두 식을 변끼리 더하면 $${p + 1}x=${s + c2}$이므로 $x=${x0}$, $y=${y0}$이다.\n$x=${x0}$, $y=${y0}$ ${eulReul(y0)} $${q}x-ky=${c3}$에 대입하면 $${q * x0}${sc(-y0, "k")}=${c3}$이다.\n따라서 $k=${k}$이다.`,
           facts: { s, p, c2, q, c3, k, x0, y0 },
         };
       }),
@@ -148,9 +149,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       const m = x0 + y0;
       if (t1 === 0 || t2 === 0 || m === 0) return null;
       return {
-        content: `연립방정식 $\\begin{cases}2x+y=k${sg(t1)}\\\\x-2y=k${sg(t2)}\\end{cases}$ 를 만족시키는 $x$, $y$에 대하여 $x+y=${m}$ 일 때, 상수 $k$의 값을 구하시오.`,
+        content: `연립방정식 $\\begin{cases}2x+y=k${sg(t1)}\\\\x-2y=k${sg(t2)}\\end{cases}$ ${eulReul(t2)} 만족시키는 $x$, $y$에 대하여 $x+y=${m}$ 일 때, 상수 $k$의 값을 구하시오.`,
         answer: `$${k}$`,
-        solution: `두 식을 변끼리 빼면 $x+3y=${t1 - t2}$이다.\n$x+y=${m}$ 와 연립하여 풀면 $2y=${t1 - t2 - m}$, $y=${y0}$, $x=${x0}$이다.\n$x=${x0}$, $y=${y0}$ 를 $2x+y=k${sg(t1)}$에 대입하면 $k=${k}$이다.`,
+        solution: `두 식을 변끼리 빼면 $x+3y=${t1 - t2}$이다.\n$x+y=${m}$ ${waGwa(m)} 연립하여 풀면 $2y=${t1 - t2 - m}$, $y=${y0}$, $x=${x0}$이다.\n$x=${x0}$, $y=${y0}$ ${eulReul(y0)} $2x+y=k${sg(t1)}$에 대입하면 $k=${k}$이다.`,
         facts: { t1, t2, m, k, x0, y0 },
       };
     }),
@@ -205,9 +206,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         if (x2 === 0 || Math.abs(x2) > 12) return null;
         if (x2 === x0 && y2 === y0) return null;
         return {
-          content: `연립방정식 $\\begin{cases}x+ay=${c1}\\\\bx-y=${c2}\\end{cases}$ 에서 갑은 $a$를 잘못 보고 풀어 $x=${x1}$, $y=${y1}$ 을 얻었고, 을은 $b$를 잘못 보고 풀어 $x=${x2}$, $y=${y2}$ 를 얻었다. 처음 연립방정식의 옳은 해를 구하시오. (단, $a$, $b$는 상수)`,
+          content: `연립방정식 $\\begin{cases}x+ay=${c1}\\\\bx-y=${c2}\\end{cases}$ 에서 갑은 $a$를 잘못 보고 풀어 $x=${x1}$, $y=${y1}$ ${eulReul(y1)} 얻었고, 을은 $b$를 잘못 보고 풀어 $x=${x2}$, $y=${y2}$ ${eulReul(y2)} 얻었다. 처음 연립방정식의 옳은 해를 구하시오. (단, $a$, $b$는 상수)`,
           answer: `$x=${x0}$, $y=${y0}$`,
-          solution: `갑은 $a$를 잘못 보았으므로 갑이 얻은 해는 $bx-y=${c2}$ 를 만족시킨다. $${mc(x1, "b")}${sg(-y1)}=${c2}$에서 $b=${b}$이다.\n을은 $b$를 잘못 보았으므로 을이 얻은 해는 $x+ay=${c1}$ 을 만족시킨다. $${x2}${sc(y2, "a")}=${c1}$에서 $a=${a}$이다.\n따라서 $\\begin{cases}x${sc(a, "y")}=${c1}\\\\${mc(b, "x")}-y=${c2}\\end{cases}$ 를 풀면 $x=${x0}$, $y=${y0}$이다.`,
+          solution: `갑은 $a$를 잘못 보았으므로 갑이 얻은 해는 $bx-y=${c2}$ ${eulReul(c2)} 만족시킨다. $${mc(x1, "b")}${sg(-y1)}=${c2}$에서 $b=${b}$이다.\n을은 $b$를 잘못 보았으므로 을이 얻은 해는 $x+ay=${c1}$ ${eulReul(c1)} 만족시킨다. $${x2}${sc(y2, "a")}=${c1}$에서 $a=${a}$이다.\n따라서 $\\begin{cases}x${sc(a, "y")}=${c1}\\\\${mc(b, "x")}-y=${c2}\\end{cases}$ ${eulReul(c2)} 풀면 $x=${x0}$, $y=${y0}$이다.`,
           facts: { c1, c2, x1, y1, x2, y2, a, b, x0, y0 },
         };
       }),
@@ -229,7 +230,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       return {
         content: `연립방정식 $\\begin{cases}${p}x${sc(q, "y")}=${r}\\\\${k * p}x+ay=${k * r}\\end{cases}$ 의 해가 무수히 많을 때, 상수 $a$의 값을 구하시오.`,
         answer: `$${a}$`,
-        solution: `해가 무수히 많으려면 두 방정식이 같은 방정식이어야 한다.\n첫째 식의 양변에 $${k}$를 곱하면 $${k * p}x${sc(a, "y")}=${k * r}$이다.\n따라서 $a=${a}$이다.`,
+        solution: `해가 무수히 많으려면 두 방정식이 같은 방정식이어야 한다.\n첫째 식의 양변에 $${k}$${eulReul(k)} 곱하면 $${k * p}x${sc(a, "y")}=${k * r}$이다.\n따라서 $a=${a}$이다.`,
         facts: { A1: p, B1: q, C1: r, A2: k * p, C2: k * r, a },
       };
     },
@@ -247,7 +248,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       return {
         content: `연립방정식 $\\begin{cases}${p}x${sc(q, "y")}=${r}\\\\${k * p}x+ay=${C2}\\end{cases}$ 의 해가 없을 때, 상수 $a$의 값을 구하시오.`,
         answer: `$${a}$`,
-        solution: `해가 없으려면 $x$, $y$의 계수는 각각 같고 상수항은 달라야 한다.\n첫째 식의 양변에 $${k}$를 곱하면 $${k * p}x${sc(a, "y")}=${k * r}$이고, $${k * r}\\ne${C2}$이다.\n따라서 $a=${a}$이다.`,
+        solution: `해가 없으려면 $x$, $y$의 계수는 각각 같고 상수항은 달라야 한다.\n첫째 식의 양변에 $${k}$${eulReul(k)} 곱하면 $${k * p}x${sc(a, "y")}=${k * r}$이고, $${k * r}\\ne${C2}$이다.\n따라서 $a=${a}$이다.`,
         facts: { A1: p, B1: q, C1: r, A2: k * p, C2, a },
       };
     }),

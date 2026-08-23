@@ -16,6 +16,7 @@ import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
 import { M2_TYPES } from "../../lib/middle/m2";
+import { eulReul, waGwa } from "../../lib/middle/m2Josa";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -371,6 +372,19 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
       });
     });
   }
+
+  it("수 뒤 조사가 수 읽기의 받침을 따른다 (일→을, 이→를, 십→을)", () => {
+    expect(eulReul(1)).toBe("을");
+    expect(eulReul(2)).toBe("를");
+    expect(eulReul(3)).toBe("을");
+    expect(eulReul(4)).toBe("를");
+    expect(eulReul(9)).toBe("를");
+    expect(eulReul(10)).toBe("을"); // 십
+    expect(eulReul(12)).toBe("를"); // 십이
+    expect(eulReul(-3)).toBe("을"); // 마이너스 삼
+    expect(waGwa(2)).toBe("와");
+    expect(waGwa(21)).toBe("과"); // 이십일
+  });
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
     for (const e of M2_TYPES) {

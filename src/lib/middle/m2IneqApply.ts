@@ -12,6 +12,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -127,9 +128,9 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
         const a = 2 * s - c;
         if (a < 1) return null;
         return {
-          content: `두 일차부등식 $2x+${b1}<x+${b2}$ 와 $3x-a<x+${c}$ 의 해가 서로 같을 때, 상수 $a$의 값을 구하시오.`,
+          content: `두 일차부등식 $2x+${b1}<x+${b2}$ ${waGwa(b2)} $3x-a<x+${c}$ 의 해가 서로 같을 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `$2x+${b1}<x+${b2}$를 풀면 $x<${s}$이다.\n$3x-a<x+${c}$를 풀면 $2x<a+${c}$, $x<\\dfrac{a+${c}}{2}$이다.\n두 부등식의 해가 서로 같으므로 $\\dfrac{a+${c}}{2}=${s}$에서 $a=${a}$이다.`,
+          solution: `$2x+${b1}<x+${b2}$${eulReul(b2)} 풀면 $x<${s}$이다.\n$3x-a<x+${c}$${eulReul(c)} 풀면 $2x<a+${c}$, $x<\\dfrac{a+${c}}{2}$이다.\n두 부등식의 해가 서로 같으므로 $\\dfrac{a+${c}}{2}=${s}$에서 $a=${a}$이다.`,
           facts: { b1, b2, c, a, s },
         };
       }),
@@ -166,7 +167,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       const n = intBetween(rng, 3, 8);
       const lo = n - d;
       return {
-        content: `$x$에 대한 부등식 $x-a\\le${d}$ 를 만족시키는 자연수 $x$가 $${n}$개일 때, 상수 $a$의 값의 범위를 구하시오.`,
+        content: `$x$에 대한 부등식 $x-a\\le${d}$ ${eulReul(d)} 만족시키는 자연수 $x$가 $${n}$개일 때, 상수 $a$의 값의 범위를 구하시오.`,
         answer: `$${lo}\\le a<${lo + 1}$`,
         solution: `$x-a\\le${d}$에서 $x\\le a+${d}$이다.\n이를 만족시키는 자연수 $x$가 $${n}$개이려면 $${n}\\le a+${d}<${n + 1}$이어야 한다.\n따라서 $${lo}\\le a<${lo + 1}$이다.`,
         facts: { d, n, lo },
@@ -180,7 +181,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     const c = intBetween(rng, 1, 9);
     const m = b + c + 1;
     return {
-      content: `어떤 자연수의 $2$배에서 $${b}$를 뺀 수는 그 자연수에 $${c}$를 더한 수보다 크다고 한다. 이러한 자연수 중 가장 작은 수를 구하시오.`,
+      content: `어떤 자연수의 $2$배에서 $${b}$${eulReul(b)} 뺀 수는 그 자연수에 $${c}$${eulReul(c)} 더한 수보다 크다고 한다. 이러한 자연수 중 가장 작은 수를 구하시오.`,
       answer: `$${m}$`,
       solution: `어떤 자연수를 $x$라 하면 $2x-${b}>x+${c}$이다.\n정리하면 $x>${b + c}$이므로 가장 작은 자연수는 $${m}$이다.`,
       facts: { b, c, m },
@@ -197,7 +198,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       const c = s3 - a - b;
       if (c < 60 || c > 100) return null;
       return {
-        content: `세 번의 수학 시험에서 $${a}$점, $${b}$점, $${c}$점을 받았다. 네 번에 걸친 시험의 평균이 $${m}$점 이상이 되려면 네 번째 시험에서 최소 몇 점을 받아야 하는지 구하시오.`,
+        content: `세 번의 수학 시험에서 $${a}$점, $${b}$점, $${c}$점을 받았다. 네 번째 시험까지의 평균이 $${m}$점 이상이 되려면 네 번째 시험에서 최소 몇 점을 받아야 하는지 구하시오.`,
         answer: `$${x0}$점`,
         solution: `네 번째 시험 점수를 $x$점이라 하면 $\\dfrac{${a}+${b}+${c}+x}{4}\\ge${m}$이다.\n$${s3}+x\\ge${4 * m}$이므로 $x\\ge${x0}$이다.\n따라서 최소 $${x0}$점을 받아야 한다.`,
         facts: { a, b, c, m, x0 },
@@ -365,7 +366,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       return {
         content: `갈 때는 시속 $${v1}\\,\\mathrm{km}$, 올 때는 같은 길을 시속 $${v2}\\,\\mathrm{km}$로 걸어서 전체 걸리는 시간이 $${T}$시간 이내가 되게 하려고 한다. 최대 몇 $\\mathrm{km}$ 떨어진 곳까지 갔다 올 수 있는지 구하시오.`,
         answer: `$${d}\\,\\mathrm{km}$`,
-        solution: `$x\\,\\mathrm{km}$ 떨어진 곳까지 갔다 온다고 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}\\le${T}$이다.\n양변에 $${v1 * v2}$를 곱하여 풀면 $x\\le${d}$이다.\n따라서 최대 $${d}\\,\\mathrm{km}$ 떨어진 곳까지 갔다 올 수 있다.`,
+        solution: `$x\\,\\mathrm{km}$ 떨어진 곳까지 갔다 온다고 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}\\le${T}$이다.\n양변에 $${v1 * v2}$${eulReul(v1 * v2)} 곱하여 풀면 $x\\le${d}$이다.\n따라서 최대 $${d}\\,\\mathrm{km}$ 떨어진 곳까지 갔다 올 수 있다.`,
         facts: { v1, v2, T, d },
       };
     },
