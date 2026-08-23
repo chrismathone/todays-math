@@ -347,40 +347,22 @@ const injectDisplayStyle = (inner: string): string => {
   return `\\displaystyle ${inner}`;
 };
 
-/**
- * 단순 정수 가분수 → 대분수 변환. 한국 중·고등 교과 관행 — 특히 중1
- * 수준에선 순환소수 미학습이라 대분수가 크기 비교·근사 판단에 훨씬 직관적.
- * 예: `\frac{4}{3}` → `1\frac{1}{3}`, `\frac{7}{2}` → `3\frac{1}{2}`,
- *     `-\frac{5}{2}` → `-2\frac{1}{2}`, `\frac{6}{3}` → `2` (정수로 떨어짐).
- *
- * **보수적 휴리스틱** — 분자·분모가 모두 *순수 정수* (1~3자리) 인 가분수만
- * 변환. 식 분수 (`\frac{a+1}{2}` / `\frac{\sqrt{2}}{3}` 등) 는 의도된 표기일
- * 수 있고 KaTeX 가 단순화 못 하므로 그대로 둔다. 진분수 (`\frac{1}{3}`),
- * 분모 0, 분자 = 분모 (1), 분자 < 분모 도 모두 그대로.
- *
- * 음수: 부호를 외부로 빼서 같은 변환 적용한다. `\dfrac` 도 대상에 포함 —
- * 이 시점이 preprocessMathText 안이라 `\dfrac` → `\frac` 정규화 이후라
- * 신경 안 써도 되지만, 호출 순서가 바뀌어도 안전하게 둘 다 매치.
- */
-const improperToMixed = (math: string): string =>
-  math.replace(
-    /(-?)\\d?frac\{(\d{1,4})\}\{(\d{1,4})\}/g,
-    (full, sign: string, numStr: string, denStr: string) => {
-      const num = parseInt(numStr, 10);
-      const den = parseInt(denStr, 10);
-      if (!Number.isFinite(num) || !Number.isFinite(den) || den === 0)
-        return full;
-      if (num < den) return full; // 진분수 — 손대지 않음.
-      const whole = Math.floor(num / den);
-      const remainder = num % den;
-      if (remainder === 0) {
-        // 정수로 떨어짐 — 그냥 정수로 표기.
-        return `${sign}${whole}`;
-      }
-      // 대분수 — `n\frac{r}{q}`. KaTeX는 정수 옆 \frac 을 자동 spacing 처리.
-      return `${sign}${whole}\\frac{${remainder}}{${den}}`;
-    },
-  );
+// §대분수 — **가분수를 대분수로 바꾸는 규칙은 여기 있었고, 지웠다** (2026-08-24).
+//
+// 원장님 확정: 「중등은 대분수 변환하지 말 것」. 이 규칙은 mathgen 전처리를 통째로
+// 이식하며 딸려 온 것이고(`aed9b430`), 주석은 그것을 「한국 중·고등 교과 관행」이라
+// 적어 두었는데 **그 전제가 뒤집혀 있었다** — 대분수는 초등 표기이고, 중학교부터는
+// 문자가 들어와 `2rac{1}{2}` 가 「2 곱하기 1/2」로 읽힐 수 있어 가분수를 쓴다.
+//
+// 그리고 이 자리는 **렌더 경로**다. DB 값은 그대로인데 종이에 다른 수가 찍혔다:
+//   · 공유 DB 문항 7,724 · 자리 26,376 (중1~고3 **전 학년**)
+//   · 정수로 떨어지면 분수를 통째로 접어 `\dfrac{355}{5}=71` 이 「71=71」이 됐다(742문항)
+//   · 초3 「가분수를 대분수로 나타내시오」는 **10건 전량**이 발문에 정답을 찍었다
+//
+// 되살리려면 **학년을 아는 자리**에서만 켜야 한다 — 지금 렌더 경로에는 학년이 없다.
+// 옛 구현은 git 에 있다: `git show aed9b430:src/lib/math/textPreprocess.ts`
+// 지키는 검사: `src/__tests__/unit/mixedNumberPolicy.test.ts`
+// 계량기: `npx tsx scripts/qa/census-mixed-number.ts`
 
 /**
  * 인접 박스 행 auto-split harness — 사용자 보고 (2026-05-27, CLAUDE.md §26-6).
@@ -472,7 +454,7 @@ export const cleanMalformedLatex = (s: string): string =>
  *
  *  1) cleanMalformedLatex (모델 typo 정리)
  *  2) 유니코드 수학기호 → LaTeX 명령어
- *  3) `improperToMixed` — `\frac`/`\dfrac` 정수 가분수 → 대분수 (한국 교과서)
+ *  3) (없음) — 예전에 여기서 «정수 가분수 → 대분수» 를 했다. 뺐다: 아래 §대분수
  *  4) uprightGeometryLabels (점 라벨 직립 Roman)
  *  5) autoSizeBrackets (분수/적분 포함 괄호를 `\left/\right` 로)
  *  6) **`\frac` → `\dfrac` 업그레이드** — 한국 교과서 룰: 인라인 모드에서도
@@ -541,9 +523,13 @@ export const applyMathInnerNormalization = (inner: string): string => {
   s = radicalToSqrt(s);
   for (const [re, repl] of UNICODE_MATH_MAP) s = s.replace(re, repl);
   s = repeatingDigitsToDots(s);
-  // improperToMixed 가 `\frac` 와 `\dfrac` 둘 다 매치, 반환은 `\frac` 표준화.
-  // 그 뒤 단계 6 에서 모두 `\dfrac` 로 업그레이드.
-  s = improperToMixed(s);
+  // ⚠️ **가분수를 대분수로 바꾸지 않는다** (원장님 확정 2026-08-24 「중등은 대분수
+  //    변환하지 말 것」). 예전에 여기서 `improperToMixed` 를 불렀는데, 그것은
+  //    mathgen 전처리를 통째로 이식하며 딸려 온 규칙이었다(`aed9b430`).
+  //    이 자리는 **렌더 경로**라 DB 값은 그대로인데 종이에 다른 수가 찍혔다 —
+  //    실측 공유 DB 문항 7,724 · 자리 26,376(중1~고3 전 학년).
+  //    지키는 검사: `src/__tests__/unit/mixedNumberPolicy.test.ts`
+  //    다시 넣지 말 것. 되살리려면 학년을 아는 자리에서만 켜야 한다.
   // 인접 박스 행 안전망 — `\boxed{ABCD}` → `\boxed{A}\boxed{B}\boxed{C}\boxed{D}`.
   // uprightGeometryLabels *이전* 에 호출 — \mathrm{} wrap 후엔 매치 안 됨.
   s = splitMultiLetterBoxed(s);
