@@ -35,6 +35,8 @@ const SEC = {
   넓이부피비: "닮은 도형의 넓이의 비와 부피의 비",
   삼평행비: "삼각형에서 평행선 사이의 선분의 길이의 비",
   각이등분: "삼각형의 각의 이등분선",
+  닮음조건: "삼각형의 닮음 조건",
+  평행선비: "평행선 사이의 선분의 길이의 비",
 } as const;
 
 function r2(v: number): number {
@@ -528,7 +530,1109 @@ const COPRIME_UP = [
   [4, 5],
 ] as const;
 
+/**
+ * (a, b) — 직각삼각형의 빗변 위 수선의 발 유형(13)용. 두 다리가
+ * `a²+b²` 이 완전제곱이 되는 쌍이어야 `AB=a·c`·`AC=b·c` 가 정수다
+ * (`c=√(a²+b²)`, `AH=ab`, `BH=a²`, `CH=b²`).
+ */
+const SIM13_LEGS = [
+  [3, 4],
+  [4, 3],
+] as const;
+
+/**
+ * (BH, CH) — 곱이 완전제곱인 쌍. `AH=√(BH·CH)` 만 물을 때는 세 변이 정수일
+ * 필요가 없어 훨씬 넓게 고를 수 있다(위 표는 세 자리 수를 만든다).
+ */
+const SIM13_FEET = [
+  [4, 9],
+  [9, 4],
+  [2, 8],
+  [8, 2],
+  [3, 12],
+  [12, 3],
+  [8, 18],
+  [18, 8],
+  [9, 16],
+  [16, 9],
+  [5, 20],
+  [20, 5],
+  [6, 24],
+  [24, 6],
+  [4, 25],
+  [25, 4],
+] as const;
+
+/**
+ * (AE, AB', CD) — 접은 직사각형 유형(15). 종이라 `CD = AE + EB'` 이고
+ * `EB' = EB = √(AE²+AB'²)` 이므로 **CD 를 마음대로 못 고른다** — 세 값이
+ * 서로를 정한다. `B'D = AE·CD/AB'` 가 정수인 쌍만 남겼다.
+ */
+const SIM15_FOLDS = [
+  [3, 4, 8],
+  [4, 3, 9],
+  [6, 8, 16],
+  [8, 6, 18],
+  [9, 12, 24],
+  [12, 9, 27],
+] as const;
+
+/** (i, j) — 12 유형의 닮음비 AD:BE = DB:EC = j:i. 기약이어야 값이 작게 나온다. */
+const SIM12_RATIOS = [
+  [1, 1],
+  [2, 3],
+  [3, 2],
+  [3, 4],
+  [4, 3],
+  [1, 2],
+  [2, 1],
+  [1, 3],
+  [3, 1],
+] as const;
+
+/** (AD, BC) — 조화평균 `2pq/(p+q)` 가 정수인 쌍 (10 유형). */
+const HARMONIC_PAIRS = [
+  [6, 12],
+  [12, 6],
+  [10, 15],
+  [15, 10],
+  [12, 24],
+  [21, 28],
+  [20, 30],
+  [12, 4],
+  [24, 8],
+  [30, 20],
+] as const;
+
+/** (AB, CD) — `ab/(a+b)` 가 정수인 쌍 (11 유형). */
+const RECIPROCAL_PAIRS = [
+  [6, 12],
+  [12, 6],
+  [10, 15],
+  [15, 10],
+  [12, 4],
+  [20, 30],
+  [30, 20],
+  [9, 18],
+  [18, 9],
+  [8, 8],
+] as const;
+
+// ── 2B 마크 문법 도형 (ticks·parallel·arcs·right) ─────────────────────────
+// 닮음 09~15·평행선 비 08~11 은 «같은 각»·«평행»·«직각»을 지면에 찍어야 성립한다.
+// 같은 각 쌍은 호의 **개수**로 구분한다 — 첫 쌍 1개, 둘째 쌍 2개.
+
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+/** attempt — 조건을 만족할 때까지 다시 뽑는다. 소진되면 던진다. */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
+/**
+ * 닮음 조건용 두 삼각형 나란히 — 왼쪽 ABC, 오른쪽 DEF(닮음비 1:k).
+ * 같은 각 쌍은 호 개수로 구분한다(첫 쌍 1개, 둘째 쌍 2개).
+ */
+function figSimPair09(
+  k: number,
+  mode: number,
+  labels: Record<string, string>,
+): Fig {
+  const bw = 96;
+  const bh = 58;
+  const gap = 42;
+  const A: XY = [34, bh];
+  const B: XY = [0, 0];
+  const C: XY = [bw, 0];
+  const E: XY = [bw + gap, 0];
+  const F: XY = [bw + gap + bw * k, 0];
+  const D: XY = [bw + gap + 34 * k, bh * k];
+  const angles: Record<string, unknown> =
+    mode === 0
+      ? {
+          angB: { vertex: "B", points: ["A", "C"] },
+          angE: { vertex: "E", points: ["D", "F"] },
+        }
+      : {
+          // ⚠️ 한 삼각형에 각 라벨을 둘 붙이면 **겹친다** — 두 삼각형이 220px 를
+          //    나눠 쓰므로 라벨 거리(25px)가 삼각형보다 크다(실측 2026-08-23).
+          //    RPM 지면처럼 삼각형마다 하나씩 적고, 나머지는 **호 개수**가 잇는다.
+          angA: { vertex: "A", points: ["B", "C"], label: labels.angA },
+          angD: { vertex: "D", points: ["E", "F"] },
+          angB: { vertex: "B", points: ["A", "C"], arcs: 2 },
+          angE: {
+            vertex: "E",
+            points: ["D", "F"],
+            arcs: 2,
+            label: labels.angB,
+          },
+        };
+  const pts: Record<string, XY> = { A, B, C, D, E, F };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+  };
+  const g1: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
+  const g2: XY = [(D[0] + E[0] + F[0]) / 3, (D[1] + E[1] + F[1]) / 3];
+  const anchors: Record<string, XY> = {
+    ab: sideAnchor(A, B, 0.5, g1, 16),
+    bc: sideAnchor(B, C, 0.5, g1, 15),
+    de: sideAnchor(D, E, 0.5, g2, 16),
+    ef: sideAnchor(E, F, 0.5, g2, 15),
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CA: ["C", "A"],
+      DE: ["D", "E"],
+      EF: ["E", "F"],
+      FD: ["F", "D"],
+    },
+    angles,
+    labels: out,
+  };
+}
+
+/**
+ * △ABC 에서 D 는 AB 위, E 는 AC 위, 선분 DE — △ADE ∽ △ACB (SAS 닮음).
+ * ∠A 는 공통이므로 호 하나로 찍는다.
+ */
+function figSasInner10(
+  ad: number,
+  ab: number,
+  ae: number,
+  ac: number,
+  labels: Record<string, string>,
+): Fig {
+  const scale = 150 / Math.max(ab, ac);
+  const A: XY = [0, 0];
+  const B: XY = [-0.62 * ab * scale, -0.78 * ab * scale];
+  const C: XY = [0.9 * ac * scale, -0.44 * ac * scale];
+  const D = lerp(A, B, ad / ab);
+  const E = lerp(A, C, ae / ac);
+  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
+  const pts: Record<string, XY> = { A, B, C, D, E };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+  };
+  const anchors: Record<string, XY> = {
+    ad: sideAnchor(A, D, 0.5, g, 15),
+    db: sideAnchor(D, B, 0.5, g, 15),
+    ae: sideAnchor(A, E, 0.5, g, 15),
+    ec: sideAnchor(E, C, 0.5, g, 15),
+    de: sideAnchor(D, E, 0.5, g, -16),
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AD: ["A", "D"],
+      DB: ["D", "B"],
+      AE: ["A", "E"],
+      EC: ["E", "C"],
+      DE: ["D", "E"],
+      BC: ["B", "C"],
+    },
+    // AB·AC 를 D·E 에서 끊었으므로 ∠A 는 «덮이는 광선»(AD·AE)으로 가리킨다.
+    angles: { angA: { vertex: "A", points: ["D", "E"] } },
+    labels: out,
+  };
+}
+
+/**
+ * △ABC 에서 D 는 AB 위, E 는 BC 위, 선분 DE — ∠BDE=∠C 이므로 △BDE ∽ △BCA.
+ * 같은 각 두 자리(∠BDE·∠BCA)를 이중 호로 찍는다(∠B 는 공통이라 안 찍는다).
+ */
+function figAaInner11(
+  bd: number,
+  ba: number,
+  be: number,
+  bc: number,
+  labels: Record<string, string>,
+): Fig {
+  const scale = 150 / Math.max(ba, bc);
+  const B: XY = [0, 0];
+  const C: XY = [bc * scale, 0];
+  const A: XY = [0.3 * ba * scale, 0.95 * ba * scale];
+  const D = lerp(B, A, bd / ba);
+  const E = lerp(B, C, be / bc);
+  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
+  const pts: Record<string, XY> = { A, B, C, D, E };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+  };
+  const anchors: Record<string, XY> = {
+    bd: sideAnchor(B, D, 0.5, g, 16),
+    da: sideAnchor(D, A, 0.5, g, 16),
+    be: sideAnchor(B, E, 0.5, g, 15),
+    ec: sideAnchor(E, C, 0.5, g, 15),
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      BD: ["B", "D"],
+      DA: ["D", "A"],
+      BE: ["B", "E"],
+      EC: ["E", "C"],
+      DE: ["D", "E"],
+      AC: ["A", "C"],
+    },
+    angles: {
+      angD: { vertex: "D", points: ["B", "E"], arcs: 2 },
+      angC: { vertex: "C", points: ["E", "A"], arcs: 2 },
+    },
+    labels: out,
+  };
+}
+
+/**
+ * ∠ABC=90° 이고 A·C 에서 B 를 지나는 직선에 내린 수선의 발 D·E.
+ * △ADB ∽ △BEC (AA) — 직각 세 자리를 기호로 찍는다.
+ */
+function figRightFeet12(
+  ad: number,
+  bd: number,
+  be: number,
+  ce: number,
+  labels: Record<string, string>,
+): Fig {
+  const k = 10;
+  const D: XY = [0, 0];
+  const B: XY = [bd * k, 0];
+  const E: XY = [(bd + be) * k, 0];
+  const A: XY = [0, ad * k];
+  const C: XY = [(bd + be) * k, ce * k];
+  const L1: XY = [-26, 0];
+  const L2: XY = [(bd + be) * k + 26, 0];
+  const pts: Record<string, XY> = { A, B, C, D, E, L1, L2 };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+  };
+  const anchors: Record<string, XY> = {
+    ad: [-20, (ad * k) / 2],
+    be: [(bd + be / 2) * k, -17],
+    ce: [(bd + be) * k + 22, (ce * k) / 2],
+    bd: [(bd / 2) * k, -17],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      l: ["L1", "L2"],
+      AD: ["A", "D"],
+      CE: ["C", "E"],
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+    },
+    angles: {
+      rD: { vertex: "D", points: ["A", "B"], right: true },
+      rE: { vertex: "E", points: ["C", "B"], right: true },
+      rB: { vertex: "B", points: ["A", "C"], right: true },
+    },
+    labels: out,
+  };
+}
+
+/** ∠A=90° 인 직각삼각형에서 빗변 BC 에 내린 수선의 발 H. */
+function figAltitude13(
+  bh: number,
+  ch: number,
+  ah: number,
+  labels: Record<string, string>,
+): Fig {
+  const k = 6;
+  const B: XY = [0, 0];
+  const H: XY = [bh * k, 0];
+  const C: XY = [(bh + ch) * k, 0];
+  const A: XY = [bh * k, ah * k];
+  const pts: Record<string, XY> = { A, B, C, H };
+  const out: Record<string, string> = { A: "A", B: "B", C: "C", H: "H" };
+  const anchors: Record<string, XY> = {
+    bh: [(bh / 2) * k, -17],
+    ch: [(bh + ch / 2) * k, -17],
+    ah: [bh * k - 20, (ah * k) / 2],
+    ab: [(bh * k) / 2 - 18, (ah * k) / 2 + 12],
+    ac: [(2 * bh + ch) * k * 0.5 + 16, (ah * k) / 2 + 12],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      BH: ["B", "H"],
+      HC: ["H", "C"],
+      AB: ["A", "B"],
+      AC: ["A", "C"],
+      AH: ["A", "H"],
+    },
+    angles: {
+      rA: { vertex: "A", points: ["B", "C"], right: true },
+      rH: { vertex: "H", points: ["A", "C"], right: true },
+    },
+    labels: out,
+  };
+}
+
+/** 그림자 닮음 — 나무와 막대(둘 다 지면에 수직) + 같은 시각의 햇빛. */
+function figShadow14(
+  poleH: number,
+  poleS: number,
+  treeS: number,
+  labels: Record<string, string>,
+): Fig {
+  const treeH = (poleH * treeS) / poleS;
+  const kx = 130 / (treeS + poleS);
+  const ky = 120 / treeH;
+  const B: XY = [0, 0];
+  const T: XY = [0, treeH * ky];
+  const S1: XY = [treeS * kx, 0];
+  const P: XY = [treeS * kx + 30, 0];
+  const Q: XY = [treeS * kx + 30, poleH * ky];
+  const S2: XY = [treeS * kx + 30 + poleS * kx, 0];
+  const pts: Record<string, XY> = { B, T, S1, P, Q, S2 };
+  const out: Record<string, string> = {};
+  const anchors: Record<string, XY> = {
+    poleH: [treeS * kx + 24, (poleH * ky) / 2],
+    poleS: [treeS * kx + 30 + (poleS * kx) / 2, -17],
+    treeS: [(treeS * kx) / 2, -17],
+    treeH: [-22, (treeH * ky) / 2],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      ground1: ["B", "S1"],
+      tree: ["T", "B"],
+      ray1: ["T", "S1"],
+      ground2: ["P", "S2"],
+      pole: ["Q", "P"],
+      ray2: ["Q", "S2"],
+    },
+    angles: {
+      rB: { vertex: "B", points: ["T", "S1"], right: true },
+      rP: { vertex: "P", points: ["Q", "S2"], right: true },
+    },
+    labels: out,
+  };
+}
+
+/**
+ * 직사각형 종이 ABCD 를 EC 를 접는 선으로 하여 B 가 AD 위의 P(=B') 에 오도록 접었다.
+ * △AEP ∽ △DPC (AA). 접은 자리라 EB=EP·CB=CP 를 tick 으로 찍는다.
+ */
+function figFoldRect15(
+  ae: number,
+  ap: number,
+  cd: number,
+  pd: number,
+  labels: Record<string, string>,
+): Fig {
+  const k = 8;
+  const side = cd * k;
+  const long = (ap + pd) * k;
+  const A: XY = [0, side];
+  const B: XY = [0, 0];
+  const C: XY = [long, 0];
+  const D: XY = [long, side];
+  const E: XY = [0, side - ae * k];
+  const P: XY = [ap * k, side];
+  const pts: Record<string, XY> = { A, B, C, D, E, P };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    P: "B'",
+  };
+  const anchors: Record<string, XY> = {
+    ae: [-20, side - (ae * k) / 2],
+    ap: [(ap * k) / 2, side + 16],
+    cd: [long + 20, side / 2],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AE: ["A", "E"],
+      EB: { points: ["E", "B"], ticks: 1 },
+      BC: { points: ["B", "C"], ticks: 2 },
+      CD: ["C", "D"],
+      AP: ["A", "P"],
+      PD: ["P", "D"],
+      EP: { points: ["E", "P"], ticks: 1 },
+      PC: { points: ["P", "C"], ticks: 2 },
+      EC: ["E", "C"],
+    },
+    angles: {
+      rA: { vertex: "A", points: ["E", "P"], right: true },
+      rD: { vertex: "D", points: ["P", "C"], right: true },
+    },
+    labels: out,
+  };
+}
+
+/** 세 평행선 l∥m∥n 과 두 절단선 — 평행 » 로 «평행»을 지면에 남긴다. */
+function figThreeParallel08(
+  a: number,
+  b: number,
+  labels: Record<string, string>,
+): Fig {
+  const k = 90 / (a + b);
+  const h1 = a * k;
+  const h2 = b * k;
+  const W = 120;
+  const leanL = 24;
+  const leanR = -28;
+  const P1: XY = [0, h1 + h2];
+  const P2: XY = [(leanL * h2) / (h1 + h2), h2];
+  const P3: XY = [leanL, 0];
+  const Q1: XY = [W, h1 + h2];
+  const Q2: XY = [W + (leanR * h2) / (h1 + h2), h2];
+  const Q3: XY = [W + leanR, 0];
+  const pad = 30;
+  const minX = Math.min(0, leanL, W, W + leanR) - pad;
+  const maxX = Math.max(0, leanL, W, W + leanR) + pad;
+  const pts: Record<string, XY> = {
+    P1,
+    P2,
+    P3,
+    Q1,
+    Q2,
+    Q3,
+    lA: [minX, h1 + h2],
+    lB: [maxX, h1 + h2],
+    mA: [minX, h2],
+    mB: [maxX, h2],
+    nA: [minX, 0],
+    nB: [maxX, 0],
+  };
+  const out: Record<string, unknown> = {
+    lB: { text: "l", italic: true },
+    mB: { text: "m", italic: true },
+    nB: { text: "n", italic: true },
+  };
+  const anchors: Record<string, XY> = {
+    a: [(P1[0] + P2[0]) / 2 - 22, (P1[1] + P2[1]) / 2],
+    b: [(P2[0] + P3[0]) / 2 - 22, (P2[1] + P3[1]) / 2],
+    c: [(Q1[0] + Q2[0]) / 2 + 22, (Q1[1] + Q2[1]) / 2],
+    x: [(Q2[0] + Q3[0]) / 2 + 22, (Q2[1] + Q3[1]) / 2],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`t_${key}`] = anchors[key]!;
+      out[`t_${key}`] = text;
+    }
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      lineL: { points: ["lA", "lB"], parallel: 1 },
+      lineM: { points: ["mA", "mB"], parallel: 1 },
+      lineN: { points: ["nA", "nB"], parallel: 1 },
+      cutL: ["P1", "P3"],
+      cutR: ["Q1", "Q3"],
+    },
+    labels: out,
+  };
+}
+
+/**
+ * 사다리꼴 ABCD (AD∥EF∥BC) — E 는 AB 위, F 는 DC 위.
+ * `diag` 를 주면 두 대각선도 그린다(EF 가 교점을 지나는 유형).
+ */
+function figTrapMid09(
+  ad: number,
+  bc: number,
+  t: number,
+  opts: { diag?: boolean; labels?: Record<string, string> },
+): Fig {
+  const k = 150 / Math.max(ad, bc);
+  const h = 108;
+  const A: XY = [(bc - ad) * k * 0.5, h];
+  const D: XY = [(bc + ad) * k * 0.5, h];
+  const B: XY = [0, 0];
+  const C: XY = [bc * k, 0];
+  const E = lerp(A, B, t);
+  const F = lerp(D, C, t);
+  const pts: Record<string, XY> = { A, B, C, D, E, F };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+  };
+  const segments: Record<string, unknown> = {
+    AD: { points: ["A", "D"], parallel: 1 },
+    // 대각선을 그리는 유형에서는 EF 의 중점이 곧 두 대각선의 교점이라
+    // » 표시가 교차선에 묻혀 안 보인다 — 그때는 찍지 않는다(실렌더 확인).
+    EF: opts.diag ? ["E", "F"] : { points: ["E", "F"], parallel: 1 },
+    BC: { points: ["B", "C"], parallel: 1 },
+    AE: ["A", "E"],
+    EB: ["E", "B"],
+    DF: ["D", "F"],
+    FC: ["F", "C"],
+  };
+  if (opts.diag) {
+    segments.AC = ["A", "C"];
+    segments.BD = ["B", "D"];
+  }
+  const anchors: Record<string, XY> = {
+    ad: [(A[0] + D[0]) / 2, h + 16],
+    bc: [(B[0] + C[0]) / 2, -16],
+    ef: [(E[0] + F[0]) / 2, (E[1] + F[1]) / 2 + 16],
+    ae: [(A[0] + E[0]) / 2 - 20, (A[1] + E[1]) / 2],
+    eb: [(E[0] + B[0]) / 2 - 20, (E[1] + B[1]) / 2],
+  };
+  for (const [key, text] of Object.entries(opts.labels ?? {})) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  return { version: 2, points: fitPts(pts), segments, labels: out };
+}
+
+/**
+ * AB∥EF∥DC 인 «나비» 모양 — B·C 는 한 직선 위, AC 와 BD 의 교점이 E.
+ * `perp` 면 AB·DC 가 BC 에 수직이고 직각 기호를 찍는다.
+ */
+function figButterfly11(
+  ab: number,
+  dc: number,
+  bcLen: number,
+  perp: boolean,
+  labels: Record<string, string>,
+): Fig {
+  const k = 128 / Math.max(ab, dc, bcLen * 0.72);
+  const B: XY = [0, 0];
+  const C: XY = [bcLen * k, 0];
+  const A: XY = [perp ? 0 : -14, ab * k];
+  const D: XY = [perp ? bcLen * k : bcLen * k + 14, dc * k];
+  const ef = (ab * dc) / (ab + dc);
+  const fx = (bcLen * ab) / (ab + dc);
+  const F: XY = [fx * k, 0];
+  const E: XY = [fx * k, ef * k];
+  const pts: Record<string, XY> = { A, B, C, D, E, F };
+  const out: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+  };
+  const anchors: Record<string, XY> = {
+    ab: [A[0] - 22, (ab * k) / 2],
+    dc: [D[0] + 22, (dc * k) / 2],
+    bc: [(bcLen * k) / 2, -18],
+  };
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key]) {
+      pts[`n_${key}`] = anchors[key]!;
+      out[`n_${key}`] = text;
+    }
+  }
+  const angles: Record<string, unknown> = perp
+    ? {
+        // BC 를 F 에서 끊었으므로 직각기호는 BF·FC 를 광선으로 쓴다.
+        rB: { vertex: "B", points: ["A", "F"], right: true },
+        rC: { vertex: "C", points: ["D", "F"], right: true },
+      }
+    : {};
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AB: { points: ["A", "B"], parallel: 1 },
+      EF: { points: ["E", "F"], parallel: 1 },
+      DC: { points: ["D", "C"], parallel: 1 },
+      BF: ["B", "F"],
+      FC: ["F", "C"],
+      AC: ["A", "C"],
+      BD: ["B", "D"],
+    },
+    angles,
+    labels: out,
+  };
+}
+
 export const M2_GEO_SIM: TypeEntry[] = [
+  // ── 삼각형의 닮음 조건 (2B 마크 문법: 같은 각 호·직각 기호) ──────────
+  def(
+    MINOR_SIM,
+    "09",
+    "삼각형의 닮음 조건",
+    SEC.닮음조건,
+    "easy",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const k = intBetween(rng, 2, 4);
+        const ab = intBetween(rng, 3, 9);
+        const bc = attempt(40, () => {
+          const v = intBetween(rng, 3, 9);
+          return v !== ab ? v : null;
+        });
+        const de = k * ab;
+        const x = k * bc;
+        return {
+          content: `두 삼각형 $ABC$와 $DEF$에서 $\\angle B=\\angle E$이고 $\\overline{AB}:\\overline{DE}=\\overline{BC}:\\overline{EF}$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{DE}=${de}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `두 쌍의 대응변의 길이의 비가 같고 그 끼인각의 크기가 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\\mathrm{SAS}$ 닮음이다.\n닮음비는 $\\overline{AB}:\\overline{DE}=${ab}:${de}=1:${k}$이므로 $\\overline{EF}=${k}\\times${bc}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, k, ab, bc, de, x },
+          figureSpec: figSimPair09(k, 0, {
+            ab: `${ab} cm`,
+            bc: `${bc} cm`,
+            de: `${de} cm`,
+          }),
+        };
+      }
+      const p = intBetween(rng, 35, 70);
+      const q = attempt(40, () => {
+        const v = intBetween(rng, 35, 70);
+        return 180 - p - v >= 20 ? v : null;
+      });
+      const x = 180 - p - q;
+      return {
+        content: `두 삼각형 $ABC$와 $DEF$에서 $\\angle A=\\angle D=${p}^\\circ$, $\\angle B=\\angle E=${q}^\\circ$이다. 이때 $\\angle F$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `두 쌍의 대응각의 크기가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\\mathrm{AA}$ 닮음이다.\n삼각형 $DEF$의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle F=180^\\circ-${p}^\\circ-${q}^\\circ=${x}^\\circ$이다.`,
+        facts: { mode, p, q, x },
+        figureSpec: figSimPair09(1.35, 1, { angA: `${p}°`, angB: `${q}°` }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "10",
+    "삼각형의 닮음을 이용하여 변의 길이 구하기 닮음",
+    SEC.닮음조건,
+    "mid",
+    (rng): Body => {
+      const k = intBetween(rng, 2, 3);
+      const p = intBetween(rng, 3, 8);
+      const r = attempt(60, () => {
+        const v = intBetween(rng, 3, 8);
+        return k * v > p && k * p > v ? v : null;
+      });
+      const ab = k * r;
+      const ac = k * p;
+      const m = intBetween(rng, 4, 9);
+      const x = k * m;
+      return {
+        content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위의 점이다. $\\overline{AD}=${p}\\,\\mathrm{cm}$, $\\overline{DB}=${ab - p}\\,\\mathrm{cm}$, $\\overline{AE}=${r}\\,\\mathrm{cm}$, $\\overline{EC}=${ac - r}\\,\\mathrm{cm}$, $\\overline{DE}=${m}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}=${p}+${ab - p}=${ab}\\,(\\mathrm{cm})$, $\\overline{AC}=${r}+${ac - r}=${ac}\\,(\\mathrm{cm})$이다.\n삼각형 $ADE$와 삼각형 $ACB$에서 $\\angle A$는 공통이고 $\\overline{AD}:\\overline{AC}=${p}:${ac}=1:${k}$, $\\overline{AE}:\\overline{AB}=${r}:${ab}=1:${k}$이므로 두 삼각형은 $\\mathrm{SAS}$ 닮음이다.\n따라서 $\\overline{BC}=${k}\\times\\overline{DE}=${k}\\times${m}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode: 0, k, p, r, ab, ac, m, x },
+        figureSpec: figSasInner10(p, ab, r, ac, {
+          ad: `${p} cm`,
+          db: `${ab - p} cm`,
+          ae: `${r} cm`,
+          ec: `${ac - r} cm`,
+          de: `${m} cm`,
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "11",
+    "삼각형의 닮음을 이용하여 변의 길이 구하기 닮음",
+    SEC.닮음조건,
+    "mid",
+    (rng): Body => {
+      // 닮음비 1:k 로 **구성**한다 — BC=k·BD, BA=k·BE 면 BD·BA=BE·BC 가 항상 성립.
+      // 「나누어떨어질 때까지 다시 뽑기」로 하면 던진다(실측: 씨앗 하나가 소진).
+      const k = intBetween(rng, 2, 3);
+      const d = intBetween(rng, 3, 9);
+      const e = attempt(40, () => {
+        const v = intBetween(rng, 3, 9);
+        // d=e 면 BA=BC 라 DE∥AC 가 되어 «엇각 닮음»이 아닌 다른 유형이 된다.
+        return v !== d ? v : null;
+      });
+      const a = k * e - d;
+      const bc = k * d;
+      const x = bc - e;
+      return {
+        content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{BC}$ 위의 점이고 $\\angle BDE=\\angle C$이다. $\\overline{BD}=${d}\\,\\mathrm{cm}$, $\\overline{DA}=${a}\\,\\mathrm{cm}$, $\\overline{BE}=${e}\\,\\mathrm{cm}$일 때, $\\overline{EC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $BDE$와 삼각형 $BCA$에서 $\\angle B$는 공통이고 $\\angle BDE=\\angle BCA$이므로 두 삼각형은 $\\mathrm{AA}$ 닮음이다.\n$\\overline{BD}:\\overline{BC}=\\overline{BE}:\\overline{BA}$이므로 $${d}\\times(${d}+${a})=${e}\\times\\overline{BC}$에서 $\\overline{BC}=${bc}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EC}=${bc}-${e}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode: 0, k, d, a, e, bc, x },
+        figureSpec: figAaInner11(d, d + a, e, bc, {
+          bd: `${d} cm`,
+          da: `${a} cm`,
+          be: `${e} cm`,
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "12",
+    "직각삼각형의 닮음",
+    SEC.닮음조건,
+    "mid",
+    (rng): Body => {
+      // 닮음비 j:i 로 **구성**한다 — AD=j·s·BE=i·s·EC=i·t·BD=j·t 면
+      // AD:BE = DB:EC = j:i 가 항상 성립한다. 「나누어떨어질 때까지 다시
+      // 뽑기」로 하면 던진다(실측: 비를 묶자마자 소진됐다).
+      const [i, j] = pick(rng, SIM12_RATIOS);
+      const [u, v, w, x] = attempt(80, () => {
+        const a1 = intBetween(rng, 1, 4);
+        const b1 = intBetween(rng, 1, 4);
+        const ad = j * a1;
+        const be = i * a1;
+        const ec = i * b1;
+        const bd = j * b1;
+        const ok =
+          ad >= 3 &&
+          ad <= 16 &&
+          be >= 2 &&
+          be <= 16 &&
+          ec >= 3 &&
+          ec <= 16 &&
+          bd >= 2 &&
+          bd <= 16 &&
+          // BD:BE 가 크게 벌어지면 B 가 한쪽 끝에 몰려 지면이 안 읽힌다(실렌더).
+          bd <= 3 * be &&
+          3 * bd >= be;
+        return ok ? ([ad, be, ec, bd] as const) : null;
+      });
+      return {
+        content: `그림과 같이 $\\angle ABC=90^\\circ$인 직각삼각형 $ABC$의 두 꼭짓점 $A$, $C$에서 꼭짓점 $B$를 지나는 직선에 내린 수선의 발을 각각 $D$, $E$라 하자. $\\overline{AD}=${u}\\,\\mathrm{cm}$, $\\overline{BE}=${v}\\,\\mathrm{cm}$, $\\overline{CE}=${w}\\,\\mathrm{cm}$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $ADB$와 삼각형 $BEC$에서 $\\angle ADB=\\angle BEC=90^\\circ$이고, $\\angle ABD=90^\\circ-\\angle CBE=\\angle BCE$이므로 두 삼각형은 $\\mathrm{AA}$ 닮음이다.\n$\\overline{AD}:\\overline{BE}=\\overline{DB}:\\overline{EC}$이므로 $${u}\\times${w}=${v}\\times\\overline{BD}$에서 $\\overline{BD}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { mode: 0, u, v, w, x },
+        figureSpec: figRightFeet12(u, x, v, w, {
+          ad: `${u} cm`,
+          be: `${v} cm`,
+          ce: `${w} cm`,
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "13",
+    "직각삼각형의 닮음의 응용",
+    SEC.닮음조건,
+    "mid",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const [bh, ch] = pick(rng, SIM13_FEET);
+        const ah = Math.round(Math.sqrt(bh * ch));
+        return {
+          content: `그림과 같이 $\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 하자. $\\overline{BH}=${bh}\\,\\mathrm{cm}$, $\\overline{CH}=${ch}\\,\\mathrm{cm}$일 때, $\\overline{AH}$의 길이를 구하시오.`,
+          answer: `$${ah}\\,\\mathrm{cm}$`,
+          solution: `삼각형 $ABH$와 삼각형 $CAH$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AH}^{\\,2}=\\overline{BH}\\times\\overline{CH}$이다.\n$\\overline{AH}^{\\,2}=${bh}\\times${ch}=${bh * ch}$이므로 $\\overline{AH}=${ah}\\,\\mathrm{cm}$이다.`,
+          facts: { mode, ah, bh, ch, x: ah },
+          figureSpec: figAltitude13(bh, ch, ah, {
+            bh: `${bh} cm`,
+            ch: `${ch} cm`,
+          }),
+        };
+      }
+      const [a, b] = pick(rng, SIM13_LEGS);
+      const ah = a * b;
+      const bh = a * a;
+      const ch = b * b;
+      const bcLen = a * a + b * b;
+      const hyp = Math.round(Math.sqrt(bcLen));
+      const ab = a * hyp;
+      const ac = b * hyp;
+      const x = ch + ac;
+      return {
+        content: `그림과 같이 $\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 $\\overline{AH}\\perp\\overline{BC}$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AH}=${ah}\\,\\mathrm{cm}$, $\\overline{BH}=${bh}\\,\\mathrm{cm}$일 때, $\\overline{CH}+\\overline{AC}$의 값을 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AH}^{\\,2}=\\overline{BH}\\times\\overline{CH}$이므로 $${ah}^{2}=${bh}\\times\\overline{CH}$에서 $\\overline{CH}=${ch}\\,\\mathrm{cm}$이다.\n$\\overline{BC}=${bh}+${ch}=${bcLen}\\,(\\mathrm{cm})$이고 $\\overline{AC}^{\\,2}=\\overline{CH}\\times\\overline{CB}=${ch}\\times${bcLen}=${ch * bcLen}$이므로 $\\overline{AC}=${ac}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{CH}+\\overline{AC}=${ch}+${ac}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, ah, bh, ch, ab, ac, x },
+        figureSpec: figAltitude13(bh, ch, ah, {
+          bh: `${bh} cm`,
+          ah: `${ah} cm`,
+          ab: `${ab} cm`,
+        }),
+      };
+    },
+  ),
+
+  def(MINOR_SIM, "14", "닮음의 활용", SEC.닮음조건, "mid", (rng): Body => {
+    const mode = intBetween(rng, 0, 1);
+    if (mode === 0) {
+      // 나무 높이를 cm 로 재면 지면이 우스워진다 — 전부 m 로 쓰고,
+      // 그림자 비를 정수배로 **구성**해 답이 항상 정수가 되게 한다.
+      const poleH = intBetween(rng, 1, 3);
+      const poleS = intBetween(rng, 2, 6);
+      const j = intBetween(rng, 4, 12);
+      const treeS = poleS * j;
+      const x = poleH * j;
+      return {
+        content: `높이가 $${poleH}\,\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\,\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\,\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
+        answer: `$${x}\,\mathrm{m}$`,
+        solution: `같은 시각에 햇빛이 이루는 각의 크기가 같으므로 막대와 그림자가 이루는 삼각형과 나무와 그림자가 이루는 삼각형은 $\mathrm{AA}$ 닮음이다.\n(막대의 높이)$:$(막대의 그림자)$=$(나무의 높이)$:$(나무의 그림자)이므로 $${poleH}:${poleS}=x:${treeS}$이다.\n$${poleS}x=${poleH}\times${treeS}=${poleH * treeS}$이므로 $x=${x}$이다.`,
+        facts: { mode, poleH, poleS, treeS, x },
+        figureSpec: figShadow14(poleH, poleS, treeS, {
+          poleH: `${poleH} m`,
+          poleS: `${poleS} m`,
+          treeS: `${treeS} m`,
+        }),
+      };
+    }
+    const n = pick(rng, [200, 500, 1000, 2000, 2500, 5000] as const);
+    const l = intBetween(rng, 3, 15);
+    const x = (l * n) / 100;
+    return {
+      content: `축척이 $\\dfrac{1}{${n}}$인 축도에서 두 지점 $A$, $B$ 사이의 거리가 $${l}\\,\\mathrm{cm}$이다. 두 지점 $A$, $B$ 사이의 실제 거리는 몇 $\\mathrm{m}$인지 구하시오.`,
+      answer: `$${x}\\,\\mathrm{m}$`,
+      solution: `(실제 거리)$=$(축도에서의 거리)$\\times${n}$이므로 $${l}\\times${n}=${l * n}\\,(\\mathrm{cm})$이다.\n$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 실제 거리는 $${x}\\,\\mathrm{m}$이다.`,
+      facts: { mode, n, l, x },
+      figureSpec: null,
+    };
+  }),
+
+  def(
+    MINOR_SIM,
+    "15",
+    "접은 도형에서의 닮은 삼각형",
+    SEC.닮음조건,
+    "hard",
+    (rng): Body => {
+      const [p, q, cd] = pick(rng, SIM15_FOLDS);
+      const x = (p * cd) / q;
+      return {
+        content: `그림은 직사각형 모양의 종이 $ABCD$를 $\\overline{EC}$를 접는 선으로 하여 꼭짓점 $B$가 $\\overline{AD}$ 위의 점 $B'$에 오도록 접은 것이다. $\\overline{AE}=${p}\\,\\mathrm{cm}$, $\\overline{AB'}=${q}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{B'D}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\angle A=\\angle D=90^\\circ$이고 $\\angle AEB'=90^\\circ-\\angle AB'E=\\angle DB'C$이므로 삼각형 $AEB'$와 삼각형 $DB'C$는 $\\mathrm{AA}$ 닮음이다.\n$\\overline{AE}:\\overline{DB'}=\\overline{AB'}:\\overline{DC}$이므로 $${p}\\times${cd}=${q}\\times\\overline{B'D}$이다.\n따라서 $\\overline{B'D}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { mode: 0, p, q, cd, x },
+        figureSpec: figFoldRect15(p, q, cd, x, {
+          ae: `${p} cm`,
+          ap: `${q} cm`,
+          cd: `${cd} cm`,
+        }),
+      };
+    },
+  ),
+
+  // ── 평행선 사이의 선분의 길이의 비 (2B 마크 문법: 평행 ») ─────────────
+  def(
+    MINOR_PAR,
+    "08",
+    "평행선 사이의 선분의 길이의 비",
+    SEC.평행선비,
+    "easy",
+    (rng): Body => {
+      const a = intBetween(rng, 3, 12);
+      const b = attempt(40, () => {
+        const v = intBetween(rng, 3, 12);
+        return v !== a ? v : null;
+      });
+      // a:b 를 기약분수로 줄인 뒤 그 배수로 c·x 를 만든다 — 나누어떨어짐이 보장된다.
+      const g = gcd(a, b);
+      const t = intBetween(rng, 2, 5);
+      const c = (a / g) * t;
+      const x = (b / g) * t;
+      return {
+        content: `그림에서 $l\\parallel m\\parallel n$일 때, $x$의 값을 구하시오. (단, 길이의 단위는 $\\mathrm{cm}$이다.)`,
+        answer: `$${x}$`,
+        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $${a}:${b}=${c}:x$이다.\n$${a}x=${b}\\times${c}=${b * c}$이므로 $x=${x}$이다.`,
+        facts: { mode: 0, a, b, c, x },
+        figureSpec: figThreeParallel08(a, b, {
+          a: `${a}`,
+          b: `${b}`,
+          c: `${c}`,
+          x: { text: "x", italic: true } as unknown as string,
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "09",
+    "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+    SEC.평행선비,
+    "mid",
+    (rng): Body => {
+      const m = intBetween(rng, 2, 9);
+      const n = intBetween(rng, 2, 9);
+      const p = intBetween(rng, 4, 14);
+      const q = attempt(120, () => {
+        const v = intBetween(rng, p + 2, p + 20);
+        return (n * p + m * v) % (m + n) === 0 ? v : null;
+      });
+      const x = (n * p + m * q) / (m + n);
+      return {
+        content: `그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=${p}\\,\\mathrm{cm}$, $\\overline{BC}=${q}\\,\\mathrm{cm}$, $\\overline{AE}=${m}\\,\\mathrm{cm}$, $\\overline{EB}=${n}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=${p}\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=${m}:${m + n}$이고 $\\overline{BH}=${q}-${p}=${q - p}\\,(\\mathrm{cm})$이므로 $\\overline{EG}=${q - p}\\times\\dfrac{${m}}{${m + n}}=\\dfrac{${m * (q - p)}}{${m + n}}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=${p}+\\dfrac{${m * (q - p)}}{${m + n}}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode: 0, m, n, p, q, x },
+        figureSpec: figTrapMid09(p, q, m / (m + n), {
+          labels: {
+            ad: `${p} cm`,
+            bc: `${q} cm`,
+            ae: `${m} cm`,
+            eb: `${n} cm`,
+          },
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "10",
+    "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+    SEC.평행선비,
+    "mid",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const [p, q] = pick(rng, HARMONIC_PAIRS);
+        const x = (2 * p * q) / (p + q);
+        return {
+          content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=${p}\\,\\mathrm{cm}$, $\\overline{BC}=${q}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=${p}:${q}$이다.\n삼각형 $ABC$에서 $\\overline{EO}=${q}\\times\\dfrac{${p}}{${p + q}}=\\dfrac{${p * q}}{${p + q}}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{${p * q}}{${p + q}}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{${p * q}}{${p + q}}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, p, q, x },
+          figureSpec: figTrapMid09(p, q, p / (p + q), {
+            diag: true,
+            labels: { ad: `${p} cm`, bc: `${q} cm` },
+          }),
+        };
+      }
+      const [p, x] = pick(rng, HARMONIC_PAIRS);
+      const ef = (2 * p * x) / (p + x);
+      return {
+        content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=${p}\\,\\mathrm{cm}$, $\\overline{EF}=${ef}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{${ef}}-\\dfrac{1}{${p}}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, p, ef, x },
+        figureSpec: figTrapMid09(p, x, p / (p + x), {
+          diag: true,
+          labels: { ad: `${p} cm`, ef: `${ef} cm` },
+        }),
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "11",
+    "평행선 사이의 선분의 길이의 비의 응용",
+    SEC.평행선비,
+    "mid",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const [a, b] = pick(rng, RECIPROCAL_PAIRS);
+        const x = (a * b) / (a + b);
+        return {
+          content: `그림에서 $\\overline{AB}\\parallel\\overline{EF}\\parallel\\overline{DC}$이고 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{CD}=${b}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `삼각형 $ABE$와 삼각형 $CDE$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{BE}:\\overline{DE}=${a}:${b}$이다.\n삼각형 $BCD$에서 $\\overline{EF}\\parallel\\overline{DC}$이므로 $\\overline{EF}:${b}=\\overline{BE}:\\overline{BD}=${a}:${a + b}$이다.\n따라서 $\\overline{EF}=\\dfrac{${a}\\times${b}}{${a + b}}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, a, b, x },
+          figureSpec: figButterfly11(a, b, a + b, false, {
+            ab: `${a} cm`,
+            dc: `${b} cm`,
+          }),
+        };
+      }
+      const [a, b] = pick(rng, RECIPROCAL_PAIRS);
+      const bcLen = attempt(80, () => {
+        const v = 2 * intBetween(rng, 4, 14);
+        return ((v * a * b) / (a + b)) % 2 === 0 ? v : null;
+      });
+      const ef = (a * b) / (a + b);
+      const x = (bcLen * ef) / 2;
+      return {
+        content: `그림에서 $\\overline{AB}$와 $\\overline{CD}$가 모두 $\\overline{BC}$에 수직이고 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{CD}=${b}\\,\\mathrm{cm}$, $\\overline{BC}=${bcLen}\\,\\mathrm{cm}$이다. $\\overline{AC}$와 $\\overline{BD}$의 교점을 $E$라 할 때, 삼각형 $EBC$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `점 $E$에서 $\\overline{BC}$에 내린 수선의 발을 $F$라 하면 $\\overline{AB}\\parallel\\overline{EF}\\parallel\\overline{DC}$이므로 $\\overline{EF}=\\dfrac{${a}\\times${b}}{${a}+${b}}=${ef}\\,(\\mathrm{cm})$이다.\n삼각형 $EBC$는 밑변이 $\\overline{BC}$, 높이가 $\\overline{EF}$이므로 넓이는 $\\dfrac{1}{2}\\times${bcLen}\\times${ef}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { mode, a, b, bcLen, x },
+        figureSpec: figButterfly11(a, b, bcLen, true, {
+          ab: `${a} cm`,
+          dc: `${b} cm`,
+          bc: `${bcLen} cm`,
+        }),
+      };
+    },
+  ),
+
   // ── 도형의 닮음 ───────────────────────────────────────────
   def(MINOR_SIM, "01", "닮은 도형", SEC.닮은도형, "easy", (rng): Body => {
     const perm = intBetween(rng, 0, 5);

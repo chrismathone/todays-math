@@ -29,7 +29,10 @@ const WAVE2B = new Set([
     (_, i) => `2-2|여러 가지 사각형|${String(i + 1).padStart(2, "0")}`,
   ),
   "2-2|여러 가지 사각형|17",
-  ...Array.from({ length: 7 }, (_, i) => `2-2|도형의 닮음|${i + 9}`),
+  ...Array.from(
+    { length: 7 },
+    (_, i) => `2-2|도형의 닮음|${String(i + 9).padStart(2, "0")}`,
+  ),
   ...Array.from(
     { length: 4 },
     (_, i) =>
