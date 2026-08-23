@@ -1132,6 +1132,9 @@ export const M1_CALC: TypeEntry[] = [
       const s3 = Math.sign(sa / sc);
       if (s2 === 0) return null;
       const sols = signSolutions(s1, s2, s3, useSum);
+      // ⚠️ 이 가드는 **지금 얼개에서는 한 번도 안 걸린다**(부호 8가지 전수 확인 —
+      // 짝 테스트의 「24 — 여덟 부호 전수」가 그 «없다»를 센다). 장식이라서 두는 게
+      // 아니라, 조건 얼개를 바꾸면 그때부터 진짜 일하기 때문에 남긴다.
       if (sols.length !== 1) return null; // 답이 하나가 아니면 내지 않는다
       const cond2 = useSum ? "a+b" : "a-b";
       return {
@@ -1170,6 +1173,9 @@ export const M1_CALC: TypeEntry[] = [
       }
       const cands = idx.map((j) => CANDS[j]!);
       const wantMax = rng() < 0.5;
+      // ⚠️ 아래 두 가드(값이 겹친다 · 구간 안에서 순서가 뒤집힌다)도 **지금 보기
+      // 풀에서는 한 번도 안 걸린다**(조합 1008가지 전수 — 짝 테스트의
+      // 「25 — 보기 풀 전수」가 센다). 보기를 늘리면 그때부터 진짜 일한다.
       const xs = sampleRange(r, GEN_TS);
       let winner = -1;
       for (const x of xs) {

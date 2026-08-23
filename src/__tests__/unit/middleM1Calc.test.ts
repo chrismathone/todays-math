@@ -619,6 +619,98 @@ describe("중1 정수와 유리수의 계산 27유형", () => {
     });
   }
 
+  /*
+   * 아래 두 건은 **생성기의 재시도 가드가 지금 «걸릴 일이 없다»는 사실**을 못 박는다.
+   *
+   * 변이 시험(`scripts/qa/mutate-m1-calc.mjs`)에서 그 두 가드를 껐더니 산출물이
+   * 하나도 안 바뀌었다. 그때 「가드가 장식이다」로 넘기면 안 된다 — 「0」이
+   * «못 센다»인지 «없다»인지 먼저 갈라야 한다(2026-08-21 교훈). 전수로 세어 보니
+   * **없다**였다: 지금 조건 얼개와 보기 풀에서는 답이 늘 하나로 정해진다.
+   *
+   * 그래서 가드는 **남기고**, 그 «없다»를 여기서 센다. 보기나 조건을 늘려
+   * 걸리는 경우가 생기면 여기가 빨개져 「이제 그 가드가 진짜 일한다」고 알린다.
+   */
+  it("24 — 여덟 부호 전수에서 조건 셋은 늘 하나로 정해진다", () => {
+    let notUnique = 0;
+    for (const sa of [1, -1]) {
+      for (const sb of [1, -1]) {
+        for (const sc of [1, -1]) {
+          const s1 = Math.sign(sa * sb);
+          const useSum = s1 > 0;
+          const s2 = Math.sign(useSum ? sa + sb : sa - sb);
+          const s3 = Math.sign(sa / sc);
+          let n = 0;
+          for (const a of [1, -1]) {
+            for (const b of [1, -1]) {
+              for (const c of [1, -1]) {
+                if (Math.sign(a * b) !== s1) continue;
+                if (Math.sign(useSum ? a + b : a - b) !== s2) continue;
+                if (Math.sign(a / c) !== s3) continue;
+                n += 1;
+              }
+            }
+          }
+          if (n !== 1) notUnique += 1;
+        }
+      }
+    }
+    expect(
+      notUnique,
+      "여기가 0이 아니면 생성기의 유일성 가드가 이제 진짜 일한다",
+    ).toBe(0);
+  });
+
+  it("25 — 보기 풀 전수에서 구간 안 극값이 뒤집히거나 겹치는 조합이 없다", () => {
+    const codes = Object.keys(TEST_CANDS).map(Number);
+    let flipped = 0;
+    let tied = 0;
+    let combos = 0;
+    for (const rc of Object.keys(TEST_RANGES).map(Number)) {
+      const r = TEST_RANGES[rc]!;
+      for (let i = 0; i < codes.length; i += 1) {
+        for (let j = i + 1; j < codes.length; j += 1) {
+          for (let k = j + 1; k < codes.length; k += 1) {
+            for (let l = k + 1; l < codes.length; l += 1) {
+              for (const wantMax of [true, false]) {
+                combos += 1;
+                const cs = [codes[i]!, codes[j]!, codes[k]!, codes[l]!].map(
+                  (c) => TEST_CANDS[c]!,
+                );
+                let winner = -1;
+                for (const t of TEST_TS) {
+                  const x = r.lo + (r.hi - r.lo) * t;
+                  const vals = cs.map((c) => c(x));
+                  let bi = 0;
+                  for (let m = 1; m < vals.length; m += 1) {
+                    if (wantMax ? vals[m]! > vals[bi]! : vals[m]! < vals[bi]!) {
+                      bi = m;
+                    }
+                  }
+                  for (let m = 0; m < vals.length; m += 1) {
+                    if (m !== bi && Math.abs(vals[m]! - vals[bi]!) < 1e-6) {
+                      tied += 1;
+                    }
+                  }
+                  if (winner === -1) winner = bi;
+                  else if (winner !== bi) flipped += 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(combos, "조합을 안 세면 아래 0 은 아무 뜻이 없다").toBe(1008);
+    expect(
+      flipped,
+      "여기가 0이 아니면 생성기의 뒤집힘 가드가 이제 진짜 일한다",
+    ).toBe(0);
+    expect(
+      tied,
+      "여기가 0이 아니면 생성기의 겹침 가드가 이제 진짜 일한다",
+    ).toBe(0);
+  });
+
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
     for (const e of entries) {
       const set = generateMiddleSet(e.key, 20260823, 4);
