@@ -1,0 +1,10 @@
+import { chromium } from "@playwright/test";
+import path from "node:path";
+const abs = path.resolve("docs/planning/tracks/mixed-number-sian.html").split(String.fromCharCode(92)).join("/");
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1100, height: 1400 } });
+await page.goto("file:///" + abs);
+await page.waitForTimeout(800);
+await page.locator("body").screenshot({ path: process.env.TEMP + "/sian-mixed.png" });
+await browser.close();
+console.log("ok " + abs);

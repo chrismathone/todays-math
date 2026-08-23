@@ -201,4 +201,9 @@ async function main(): Promise<void> {
   if (all || args.includes("--db")) await censusDb();
 }
 
-void main();
+// 다른 스크립트가 `countRewrites` 만 빌려 갈 때 계량기가 통째로 도는 것을 막는다
+// (실제로 시안 스크립트가 이 파일을 import 하자 DB 전수가 한 번 더 돌았다).
+const 직접실행 = /census-mixed-number\.(ts|mjs|js)$/.test(
+  process.argv[1] ?? "",
+);
+if (직접실행) void main();
