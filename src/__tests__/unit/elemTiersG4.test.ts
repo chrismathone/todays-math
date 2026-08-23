@@ -237,10 +237,23 @@ describe("[초등 엔진] 초4 1-5-3 난이도 4단 (셋째 파일럿)", () => {
         bad.push(`씨앗 ${seed}: 점선 자리가 없다`);
       if (!/\?/.test(r.svg)) bad.push(`씨앗 ${seed}: ? 표시가 없다`);
       // 그려진 것에 참값이 없어야 한다 — 눈금 숫자로도 새면 안 된다.
+      //
+      // ⚠️ 2026-08-23: 이 정규식의 `\b` 가 **백스페이스 한 글자(0x08)** 로 파일에 박혀
+      // 있었다(파일을 쓰는 스크립트에서 역슬래시가 한 겹 벗겨진 자국). 그러면 `<text`
+      // 뒤에 백스페이스를 요구하므로 **아무것도 안 잡히고**, `drawn` 이 늘 비어
+      // `includes` 가 늘 거짓이라 **이 검사는 죽은 채 초록**이었다. 컴파일·린트·시험이
+      // 전부 통과하므로 아무 가드도 안 운다.
+      //
+      // 그래서 **분모를 함께 센다** — 이름표를 하나도 못 읽었으면 그것부터 실패다.
+      // 「0건이 «깨끗»인지 «못 셈»인지」를 가르는 자리다.
       const truth = answerNum(p.answer);
-      const drawn = [...r.svg.matchAll(/<text([^>]*)>\s*(\d+)\s*<\/text>/g)]
+      const drawn = [...r.svg.matchAll(/<text\b([^>]*)>\s*(\d+)\s*<\/text>/g)]
         .filter((m) => /font-size="16"/.test(m[1]!))
         .map((m) => Number(m[2]));
+      if (drawn.length === 0)
+        bad.push(
+          `씨앗 ${seed}: 막대 이름표를 하나도 못 읽었다 — 이 검사가 죽었다`,
+        );
       if (drawn.includes(truth))
         bad.push(`씨앗 ${seed}: 참값 ${truth} 이 막대 이름표로 그려졌다`);
     }
