@@ -1073,6 +1073,30 @@ G6_MUTS = [
         "const h = withHole(b.h);",
         "const h = b.h;",
     ),
+    # -- 초6 1-5 그래프 역산 — 그림이 답을 지면에 찍는가 (2026-08-24) ------
+    # 셋 다 **값 검산으로 구조적으로 안 잡힌다** — 어느 쪽이든 산술은 다 맞다.
+    # 틀리는 것은 「학생이 비례식을 세워야 하는가, 부채꼴을 읽으면 되는가」뿐이다.
+    (
+        "유출 되돌리기 ⑴ — 1-5-3 심화가 전체를 $100$명으로도 뽑는다",
+        "const total = pick(rng, REVERSE_CHART_TOTALS);\n  const [x, y] = twoLabels(rng, d.items);",
+        "const total = pick(rng, CHART_TOTALS);\n  const [x, y] = twoLabels(rng, d.items);",
+    ),
+    (
+        # ⑴ 과 나눈 까닭: 자리가 **둘**이라 한 변이로는 둘 다 덮는지 못 본다.
+        # 한쪽만 되돌려도 시험이 빨개져야 «두 자리를 다 문다»가 증명된다.
+        "유출 되돌리기 ⑵ — 1-5-5 심화가 전체를 $100$명으로도 뽑는다",
+        "const low = sorted[sorted.length - 1]!;\n  const total = pick(rng, REVERSE_CHART_TOTALS);",
+        "const low = sorted[sorted.length - 1]!;\n  const total = pick(rng, CHART_TOTALS);",
+    ),
+    (
+        # ⚠️ 이 변이가 겨누는 것은 「거르긴 거르는가」가 아니라 **«어느 값»을 거르는가**다.
+        # 100 을 아무 값으로 바꿔도 초록이면 그 가드는 「필터가 있다」만 잠그는 것이지
+        # 「$100$ 이 위험한 값이다」를 안 잠근다. 답 = 전체 x % / 100 이므로 답이 그
+        # 항목의 %와 같아지는 전체는 **오직 100** 이다 — 값 자체가 뜻을 가진다.
+        "값 바꿔치기 — 거르는 전체를 $100$ 대신 $200$ 으로 (필터는 그대로 있다)",
+        "const REVERSE_CHART_TOTALS = CHART_TOTALS.filter((t) => t !== 100);",
+        "const REVERSE_CHART_TOTALS = CHART_TOTALS.filter((t) => t !== 200);",
+    ),
 ]
 
 G4_MUTS = [

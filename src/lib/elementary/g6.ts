@@ -566,6 +566,26 @@ function chartData(rng: Rng, spread = false): ChartData {
 /** 전체 수량. 백분율이 $5$ 의 배수이므로 $20$ 의 배수면 항목 수량이 자연수로 떨어진다. */
 const CHART_TOTALS = [100, 200, 300, 400] as const;
 
+/**
+ * 「**그 항목**을 고른 학생이 몇 명인가」를 되짚는 갈래가 쓰는 «전체 인원».
+ *
+ * ⚠️ **$100$ 을 뺀다.** 전체가 $100$명이면 배율이 $1$ 이라 답이 곧 **그 항목의 %**가
+ * 되는데, 원그래프·띠그래프는 그 %를 지면에 찍는다 — `_pie_chart`
+ * (`scripts/figure/elem_advanced.py:804`)가 부채꼴 안과 범례 **두 곳**에 쓴다.
+ * 그러면 학생은 비례식을 세우지 않고 **그 부채꼴을 읽으면** 맞는다.
+ *
+ * 답 $=$ 전체 $\times$ %$\div100$ 이므로 **답 $=$ % $\iff$ 전체 $=100$** — 정확히
+ * 동치다. 그래서 이 한 줄이 그 부류를 **전부** 막고, 넘치게 막지도 않는다.
+ * (다른 전체에서도 답이 «다른» 항목의 %와 우연히 같을 수 있지만, 학생은 그 수가
+ * 어느 항목의 것인지 알 길이 없어 읽어서 맞힐 수 없다. 그것까지 막으면 거짓 경보다.)
+ *
+ * 반대로 «전체 인원»을 묻는 갈래(1-5-1 심화)는 답이 늘 어느 %보다 커서
+ * **구조적으로 안전**하므로 $100$ 을 그대로 쓴다(실측: 배율1 128자리 · 겹침 0).
+ *
+ * 2026-08-24 실측(고치기 전): 1-5-3 심화 113/400 · 1-5-5 심화 115/400 이 샜다.
+ */
+const REVERSE_CHART_TOTALS = CHART_TOTALS.filter((t) => t !== 100);
+
 function twoLabels(rng: Rng, items: { label: string; pct: number }[]) {
   const i = intBetween(rng, 0, items.length - 1);
   const j = (i + intBetween(rng, 1, items.length - 1)) % items.length;
@@ -3736,7 +3756,7 @@ function pieReadApply(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 심화 — 역산 두 번. X 의 명수에서 전체를 되짚어 Y 의 명수를 구한다. */
 function pieReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = chartDataDistinct(rng);
-  const total = pick(rng, CHART_TOTALS);
+  const total = pick(rng, REVERSE_CHART_TOTALS);
   const [x, y] = twoLabels(rng, d.items);
   const nX = (total * x.pct) / 100;
   const nY = (total * y.pct) / 100;
@@ -3916,7 +3936,7 @@ function cmpChartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
   const top = sorted[0]!;
   const low = sorted[sorted.length - 1]!;
-  const total = pick(rng, CHART_TOTALS);
+  const total = pick(rng, REVERSE_CHART_TOTALS);
   const nTop = (total * top.pct) / 100;
   const nLow = (total * low.pct) / 100;
   return make(
