@@ -56,12 +56,19 @@ import json
 import os
 import re
 import subprocess
+import time
 import sys
 import tempfile
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+HERE = os.path.dirname(os.path.abspath(__file__))            # scripts/qa
+# 🔴 **저장소 뿌리다** — `dirname` 한 번이면 `scripts/` 다(2026-08-24 실제 결함).
+#    그때 `FIGDIR` 이 `scripts/scripts/figure` 가 되고, 무엇보다 ㉤ 의
+#    `MUTATION-IN-PROGRESS.*` 훑기가 **엉뚱한 디렉터리**를 봐서 반쪽만 살았다.
+#    그런데도 exit 1 이 나왔다 — 빵부스러기를 짚는 다른 줄이 물었기 때문이다.
+#    **맞는 답이 맞는 이유를 증명하지 않는다.**
+ROOT = os.path.dirname(os.path.dirname(HERE))                # 저장소 뿌리
 FIGDIR = os.path.join(ROOT, "scripts", "figure")
+assert os.path.isdir(FIGDIR), f"FIGDIR 이 없다: {FIGDIR} — ROOT 계산을 보라"
 COLLECTOR = os.path.join(HERE, "probe-table-width.ts")
 
 
@@ -87,10 +94,29 @@ def refuse_during_mutation() -> None:
     ]
     live = [m for m in marks if os.path.exists(m)]
     if live:
+        # 🔴 **죽은 회차도 표지를 남긴다.** 셧다운·한도로 죽은 세션은 스스로 신고하지
+        #    않으므로(CLAUDE.md 2026-08-21), 표지가 있다고 회차가 사는 것은 아니다.
+        #    그렇다고 나이로 자동 무시하면 «조용히 변이본을 재는» 구멍이 다시 열린다.
+        #    그래서 **판단하지 말고 근거를 찍는다** — 사람이 지우게.
+        lines = [
+            f"   {os.path.basename(m)}  (수정 {(time.time() - os.path.getmtime(m)) / 60.0:.0f}분 전)"
+            for m in live
+        ]
+        # ⚠️ **여기서 「그 PID 가 살아 있나」를 우리가 판정하지 않는다.**
+        #    표지의 PID 는 bash 의 `$$` — Git Bash 에서 그것은 **MSYS 가짜 PID** 라
+        #    Windows 쪽(파이썬 `os.kill`·PowerShell `Get-Process`)에서는 **늘 «없음»**이다.
+        #    실측(2026-08-24): 회차가 도는 중에 `kill -0 55280` 은 「산다」인데
+        #    `Get-Process -Id 55280` 은 빈 값이다. 그대로 두면 **100% 거짓 경보**이고,
+        #    그 경보가 「살아 있는 회차의 표지를 지워라」라고 시킨다 — 없느니만 못하다
+        #    (2026-08-20 「거짓 경보는 가드를 끈다」).
+        #    표지 안에 **같은 셸에서 돌릴 `kill -0` 한 줄**이 이미 적혀 있다. 그쪽이 옳다.
         die(
-            "**변이 회차가 돌고 있다** — 지금 재면 변이본을 잰다.\n"
-            "   " + " · ".join(os.path.basename(m) for m in live) + "\n"
-            "   회차가 끝난 뒤에 돌려라."
+            "**변이 회차 표지가 있다** — 지금 재면 변이본을 잰다.\n"
+            + "\n".join(lines)
+            + "\n   회차가 끝난 뒤에 돌려라.\n"
+            "   죽은 회차의 표지일 수도 있다 — **표지를 열어 그 안의 `kill -0` 을**\n"
+            "   **bash 에서** 돌려 보고(우리가 대신 판정하지 않는다), 죽었으면 표지를\n"
+            "   지우고 `git diff scripts/figure/` 로 변이 잔재부터 되돌려라."
         )
 
 
