@@ -189,6 +189,34 @@ describe.skipIf(!hasEngine)("[linearGraph] 교과 문법", () => {
     const b = await renderFigureSpec(POS);
     expect(a).toEqual(b);
   });
+
+  // ── 지면 폭 (물결 4A, 2026-08-24) ───────────────────────────────────
+  //
+  // 옛 구현은 폭이 범위·라벨에 따라 **126~238 로 떠다녔고**, 그래서 눈금 글자가
+  // 지면에서 10.50px ~ 17.78px 이었다(실측). 그중 셋은 본문 12.5px 아래인데
+  // 에러가 안 났다 — viewBox 폭 하나가 지면 등급을 가르기 때문이다.
+  // 이제 `curveGraph` 와 **같은 폭**에 박혀 있다. 자세한 잠금은 figureCurveGraph.test.ts.
+  it("범위가 무엇이든 viewBox 폭이 240 이다 — 등급이 안 뒤집힌다", async () => {
+    const cases = [
+      { xRange: [-2, 2], yRange: [-2, 2], marks: [[1, 1]] },
+      { xRange: [-4, 4], yRange: [-4, 4], marks: [[1, 1]] },
+      { xRange: [-6, 6], yRange: [-6, 6], marks: [[1, 1]] },
+      { xRange: [-1, 11], yRange: [-1, 11], marks: [[1, 1]] },
+    ];
+    for (const c of cases) {
+      const r = await renderFigureSpec({
+        ...POS,
+        ...c,
+        lines: [{ slope: 1, yIntercept: 0 }],
+      });
+      expect(r.ok, JSON.stringify(c.xRange)).toBe(true);
+      if (!r.ok) continue;
+      expect(
+        Number(/viewBox="0 0 ([\d.]+)/.exec(r.svg)![1]),
+        JSON.stringify(c.xRange),
+      ).toBe(240);
+    }
+  });
 });
 
 describe.skipIf(!hasEngine)("[linearGraph] 던지는 것 (D-70)", () => {
@@ -196,7 +224,8 @@ describe.skipIf(!hasEngine)("[linearGraph] 던지는 것 (D-70)", () => {
     const r = await renderFigureSpec({ ...POS, marks: [[2, 2]] }); // 2·2-1=3≠2
     expect(r.ok).toBe(false);
     if (r.ok) return;
-    expect(r.error).toContain("직선 위");
+    // 물결 4A 부터 이 판정은 `curveGraph` 와 **한 벌**이라 「그래프 위」로 말한다.
+    expect(r.error).toContain("그래프 위");
   });
 
   it("marks 는 정수만 — (1.5, 2) 는 던진다", async () => {
