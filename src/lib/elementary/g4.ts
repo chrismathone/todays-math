@@ -4406,6 +4406,36 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier214Apply,
     심화: tier214Deep,
   },
+  "초4|2-2-1": {
+    연산: tier221Calc,
+    기본: tier221Basic,
+    응용: tier221Apply,
+    심화: tier221Deep,
+  },
+  "초4|2-2-2": {
+    연산: tier222Calc,
+    기본: tier222Basic,
+    응용: tier222Apply,
+    심화: tier222Deep,
+  },
+  "초4|2-2-3": {
+    연산: tier223Calc,
+    기본: tier223Basic,
+    응용: tier223Apply,
+    심화: tier223Deep,
+  },
+  "초4|2-2-4": {
+    연산: tier224Calc,
+    기본: tier224Basic,
+    응용: tier224Apply,
+    심화: tier224Deep,
+  },
+  "초4|2-2-5": {
+    연산: tier225Calc,
+    기본: tier225Basic,
+    응용: tier225Apply,
+    심화: tier225Deep,
+  },
   "초4|2-3-1": {
     연산: tier231Calc,
     기본: tier231Basic,
@@ -6066,6 +6096,627 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+
+/* ──────────── 2-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **도형 성질 소단원이라 1단은 「계산」이 아니라 「성질 한 번 적용」이다.**
+ * 자료형 1단을 「값 읽기」로 두는 것(D-72 ⑶)과 같은 자리다 — 세로 셈이 없는 소단원에
+ * 억지로 계산을 넣으면 그 소단원이 **안 가르치는 것**을 묻게 된다.
+ *
+ * 표준이 이미 쓴 뼈대를 피했다: 세 변→이름 · 그림에서 고르기 · 꼭지각↔밑각 ·
+ * 두 변+나머지→둘레 · 정삼각형 한 각/둘레/둘레÷3 · 두 각·세 각→분류 ·
+ * 정삼각형은 예각 · 밑각·꼭지각→두 이름. 갈래는 **묻는 방향**을 돌려서 갈랐다.
+ *
+ * ⚠️ **「정삼각형도 이등변삼각형인가」를 묻는 발문은 한 갈래도 만들지 않는다.**
+ * 교과서마다 다루는 방식이 갈려 **답이 하나로 안 정해진다.** 그래서 2-2-1 1단은
+ * 이름이 아니라 **개수**를 묻고(정삼각형이면 $3$, 이등변이면 $2$), 2-2-5 는 1단·3단에서
+ * 세 각이 모두 같은 경우를 **아예 안 뽑는다.**
+ *
+ * ⚠️ **삼각형이 되는 조건(두 변의 합 > 나머지 한 변)은 초4 범위 밖이다.** 그래서
+ * 「나머지 한 변이 될 수 있는 길이를 모두」 류는 **두 경우가 다 성립하는 수만** 뽑는다 —
+ * 뽑고 거르는 게 아니라 **못 뽑을 자리를 안 만든다**(`isoSidePairs`).
+ *
+ * ⚠️ **그림(`markedShape`)은 아직 안 붙였다.** 스펙 모양은 알지만 이 워크트리에서
+ * **한 번도 렌더해 본 적이 없다**(그림 세션 하네스가 도는 중). 「도는 것을 본 적 없는
+ * 그림」을 배선하면 안 된다 — 2026-08-23 에 같은 자리에서 물렸다. 하네스 창이 닫히고
+ * 실제로 그려지는 것을 본 뒤 1단 다섯에 얹는다.
+ */
+
+/**
+ * 세 변으로 **삼각형이 되는가** — 두 짧은 변의 합이 가장 긴 변보다 길어야 한다.
+ *
+ * ⚠️ **이 판정은 여기 한 곳에만 둔다.** 갈래마다 손으로 적으면 한 곳만 고쳐도 아무도
+ * 모른다 — 실제로 그렇게 새어 2-2-1 4단이 $(10,5,5)$·$(8,4,4)$ 를 냈다. 그 값들은
+ * **둘레도 맞고 「같은 두 변」도 맞아 값 검산으로는 안 잡힌다.** 산술이 전부 옳은데
+ * 삼각형이 아니라 **납작하게 겹친 선분**일 뿐이다. 그리고 초4 는 이 조건을 배우지
+ * 않으므로 **학생이 가려낼 수도 없다** — 우리가 안 내는 수밖에 없다.
+ */
+function isTriangle(a: number, b: number, c: number): boolean {
+  const [x, y, z] = [a, b, c].sort((p, q) => p - q);
+  return x! + y! > z!;
+}
+
+/**
+ * 「두 변이 $a$, $b$ 인 이등변삼각형」의 나머지 한 변이 **두 경우 다** 되는 짝.
+ *
+ * 나머지 한 변은 $a$ 이거나 $b$ 인데, 두 경우가 다 삼각형이어야 답이 둘이다.
+ * 안 그러면 답이 **하나뿐**인데 발문은 「모두 쓰시오」라고 묻는다.
+ */
+function isoSidePairs(): readonly (readonly [number, number])[] {
+  const out: (readonly [number, number])[] = [];
+  for (let small = 3; small <= 12; small += 1) {
+    for (let big = small + 1; big <= small * 2 + 2; big += 1) {
+      if (isTriangle(small, small, big) && isTriangle(small, big, big)) {
+        out.push([small, big]);
+      }
+    }
+  }
+  return out;
+}
+
+/** 세 각을 늘어놓는 차례. 큰 각이 늘 같은 자리에 오면 **자리로 외운다**. */
+const TRI_PERMS = [
+  [0, 1, 2],
+  [0, 2, 1],
+  [1, 0, 2],
+  [1, 2, 0],
+  [2, 0, 1],
+  [2, 1, 0],
+] as const;
+
+/** 정삼각형 모양으로 나올 만한 물건. 소재가 갈려야 씨앗을 바꾼 보람이 있다. */
+const EQ_TRI_ITEMS = ["표지판", "타일", "액자", "받침대"] as const;
+
+/** 잘라 쓰는 재료 — 「남은 것」을 물을 수 있는 소재. */
+const WIRE_ITEMS = ["철사", "끈", "리본", "털실"] as const;
+
+/**
+ * 이등변삼각형에서 「꼭지각 = 밑각의 $k$배」(또는 그 반대)가 **자연수로 떨어지는** 짝.
+ *
+ * $1$배는 뺀다 — 세 각이 모두 $60^\circ$ 가 되어 이 대단원이 피하기로 한
+ * 「정삼각형도 이등변삼각형인가」 자리로 들어간다.
+ */
+const ISO_RATIOS = [
+  { k: 2, apexIsBig: true }, // 밑각 45 · 꼭지각 90
+  { k: 3, apexIsBig: true }, // 36 · 108
+  { k: 4, apexIsBig: true }, // 30 · 120
+  { k: 7, apexIsBig: true }, // 20 · 140
+  { k: 8, apexIsBig: true }, // 18 · 144
+  { k: 2, apexIsBig: false }, // 밑각 72 · 꼭지각 36
+  { k: 4, apexIsBig: false }, // 80 · 20
+  { k: 7, apexIsBig: false }, // 84 · 12
+] as const;
+
+/** **2-2-1 1단 — 길이가 같은 변의 «개수».** 표준은 「이름을 쓰시오」, 여기는 개수다. */
+function tier221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    const s = intBetween(rng, 4, 12);
+    return make(
+      unit,
+      `삼각형의 세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}입니다. ` +
+        `길이가 같은 변은 몇 개인가?`,
+      `${n(3)}개`,
+      `세 변의 길이가 모두 ${cm(s)}로 같으므로 길이가 같은 변은 ${n(3)}개입니다.`,
+    );
+  }
+  if (kind === 1) {
+    const [small, big] = pick(rng, isoSidePairs());
+    const same = intBetween(rng, 0, 1) === 0 ? small : big;
+    const odd = same === small ? big : small;
+    // 다른 한 변이 앞·가운데·뒤 어디에도 오게 — 「끝의 둘이 같다」로 외우지 못하게.
+    const sides = [same, same, same];
+    sides[intBetween(rng, 0, 2)] = odd;
+    return make(
+      unit,
+      `삼각형의 세 변의 길이가 ${cm(sides[0]!)}, ${cm(sides[1]!)}, ${cm(sides[2]!)}입니다. ` +
+        `길이가 같은 변은 몇 개인가?`,
+      `${n(2)}개`,
+      `${cm(same)}인 변이 ${n(2)}개, ${cm(odd)}인 변이 ${n(1)}개입니다. ` +
+        `길이가 같은 변은 ${n(2)}개입니다.`,
+    );
+  }
+  const a = intBetween(rng, 5, 9);
+  const b = a + intBetween(rng, 1, 3);
+  const c = b + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `삼각형의 세 변의 길이가 ${cm(a)}, ${cm(b)}, ${cm(c)}입니다. ` +
+      `길이가 같은 변은 몇 개인가?`,
+    `${n(0)}개`,
+    `세 변의 길이 ${cm(a)}, ${cm(b)}, ${cm(c)}가 서로 모두 다르므로 ` +
+      `길이가 같은 변은 ${n(0)}개입니다.`,
+  );
+}
+
+/** **2-2-1 2단 — 나머지 한 변이 될 수 있는 길이를 «모두».** 이등변의 뜻을 스스로 편다. */
+function tier221Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [small, big] = pick(rng, isoSidePairs());
+  return make(
+    unit,
+    `이등변삼각형의 두 변의 길이가 각각 ${cm(small)}, ${cm(big)}입니다. ` +
+      `나머지 한 변의 길이가 될 수 있는 길이를 모두 쓰시오.`,
+    `${cm(small)}, ${cm(big)}`,
+    `이등변삼각형은 길이가 같은 변이 ${n(2)}개입니다. ` +
+      `나머지 한 변이 ${cm(small)}이면 세 변이 ${cm(small)}, ${cm(small)}, ${cm(big)}이고, ` +
+      `${cm(big)}이면 ${cm(small)}, ${cm(big)}, ${cm(big)}입니다. ` +
+      `두 경우 모두 길이가 같은 변이 ${n(2)}개이므로 ` +
+      `${cm(small)}와 ${cm(big)} 두 가지가 될 수 있습니다.`,
+  );
+}
+
+/** 「같은 두 변」과 다르면서 삼각형이 되는 나머지 한 변 — 이등변이 뜻을 갖는 자리. */
+function otherSides(leg: number): number[] {
+  return Array.from({ length: leg * 2 + 2 }, (_, i) => i + 2).filter(
+    (v) => v !== leg && isTriangle(leg, leg, v),
+  );
+}
+
+/** **2-2-1 3단 — 둘레와 나머지 한 변에서 «같은 두 변».** 빼고 나누는 두 단계다. */
+function tier221Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const leg = intBetween(rng, 5, 14);
+  const other = pick(rng, otherSides(leg));
+  const total = leg * 2 + other;
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(total)}인 이등변삼각형이 있습니다. ` +
+      `길이가 같은 두 변이 아닌 나머지 한 변의 길이가 ${cm(other)}일 때, ` +
+      `길이가 같은 두 변의 길이는 각각 몇 cm인가?`,
+    cm(leg),
+    `길이가 같은 두 변의 길이의 합은 ${expr(`${total}-${other}=${total - other}`)} 입니다. ` +
+      `두 변의 길이가 서로 같으므로 ${expr(`${total - other}\\div2=${leg}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-1 4단 — 두 조건을 엮어 세 변을 다 찾는다.**
+ *
+ * 둘레 하나로는 안 풀리고 「같은 두 변이 나머지보다 $d$ 만큼 길다/짧다」가 같이 있어야
+ * 정해진다. 나머지 한 변을 $\square$ 로 두면 `□ × 3 ± d × 2 = 둘레` 다.
+ *
+ * ⚠️ **첫 판은 「한 변만 뺐더니」 복원(잘못 계산)이었다.** 그러면 이 대단원의 4단 다섯 중
+ * **둘**이 「잘못된 것을 바로잡기」가 된다 — 한 시험지에 2-2 심화가 둘 실리면 같은 문형이
+ * 나란히 선다(리드 2026-08-23). 「잘못」 문형은 2-2-4 에 하나만 남겼다. 거기가 더 값지다 —
+ * 거긴 **셈이 아니라 근거가 틀린** 자리라 다른 갈래로 대신할 수 없다.
+ *
+ * ⚠️ **첫 판은 「$\square>d$ 면 된다」로 적었다가 $(10,5,5)$·$(8,4,4)$ 를 냈다.**
+ * 그건 삼각형이 아니라 납작하게 겹친 선분이다. 이제 손으로 안 적고 `isTriangle` 하나에
+ * 물어본다 — 조건을 갈래마다 적으면 한 곳만 고쳐도 아무도 모른다.
+ */
+function tier221Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const longer = intBetween(rng, 0, 1) === 0;
+  const d = intBetween(rng, 1, 6);
+  const other = pick(
+    rng,
+    Array.from({ length: 20 }, (_, i) => i + 4).filter((v) => {
+      const side = longer ? v + d : v - d;
+      return side > 0 && isTriangle(side, side, v);
+    }),
+  );
+  const leg = longer ? other + d : other - d;
+  const total = leg * 2 + other;
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(total)}인 이등변삼각형이 있습니다. ` +
+      `길이가 같은 두 변은 나머지 한 변보다 각각 ${cm(d)} ` +
+      `${longer ? "깁니다" : "짧습니다"}. 세 변의 길이를 각각 구하시오.`,
+    `${cm(other)}, ${cm(leg)}, ${cm(leg)}`,
+    `나머지 한 변의 길이를 ${expr("\\square")}라고 하면 길이가 같은 두 변은 각각 ` +
+      `${expr(`\\square${longer ? "+" : "-"}${d}`)} 이므로 세 변의 길이의 합은 ` +
+      `${expr(`\\square\\times3${longer ? "+" : "-"}${d * 2}=${total}`)} 입니다. ` +
+      `${expr(`\\square\\times3=${total}${longer ? "-" : "+"}${d * 2}=${other * 3}`)} 이고 ` +
+      `${expr(`${other * 3}\\div3=${other}`)} 이므로 나머지 한 변은 ${cm(other)}, ` +
+      `길이가 같은 두 변은 각각 ${cm(leg)}입니다.`,
+  );
+}
+
+/**
+ * 밑각이 될 수 있는 크기. **$60^\circ$ 는 뺀다** — 그러면 세 각이 모두 $60^\circ$ 라
+ * 정삼각형인데 발문은 「이등변삼각형」이라 부르게 되어, 이 대단원이 피하기로 한
+ * 「정삼각형도 이등변삼각형인가」 자리로 들어간다. 답은 정해지지만 발문이 흔들린다.
+ */
+function baseAngles(lo: number, hi: number): number[] {
+  return Array.from({ length: hi - lo + 1 }, (_, i) => i + lo).filter(
+    (v) => v !== 60,
+  );
+}
+
+/** **2-2-2 1단 — 성질 한 번.** 표준은 꼭지각↔밑각(계산), 여기는 «다른 한 밑각»이다. */
+function tier222Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(25, 80));
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. ` +
+        `다른 한 밑각의 크기는 몇 도인가?`,
+      deg(base),
+      `이등변삼각형은 두 밑각의 크기가 같습니다. 한 밑각이 ${deg(base)}이므로 ` +
+        `다른 한 밑각도 ${deg(base)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 삼각형에 크기가 같은 두 각이 있고 그중 한 각의 크기가 ${deg(base)}입니다. ` +
+      `크기가 같은 나머지 한 각의 크기는 몇 도인가?`,
+    deg(base),
+    `두 각의 크기가 같은 삼각형은 이등변삼각형입니다. 크기가 같은 두 각이므로 ` +
+      `나머지 한 각의 크기도 ${deg(base)}입니다.`,
+  );
+}
+
+/** **2-2-2 2단 — 두 밑각의 «합»에서 꼭지각.** 세 각의 합을 스스로 끌어와야 선다. */
+function tier222Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(30, 85));
+  const sum = base * 2;
+  return make(
+    unit,
+    `이등변삼각형에서 두 밑각의 크기의 합이 ${deg(sum)}입니다. ` +
+      `꼭지각의 크기는 몇 도인가?`,
+    deg(180 - sum),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. 두 밑각의 합이 ${deg(sum)}이므로 ` +
+      `꼭지각은 ${expr(`180-${sum}=${180 - sum}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-2 3단 — 「꼭지각이 한 밑각보다 □ 크다/작다」.** 중간값은 밑각이다.
+ *
+ * 세 각이 밑각·밑각·(밑각$\pm d$) 이므로 `밑각 × 3 = 180 ∓ d` 다. 밑각이 자연수가 되려면
+ * $d$ 가 $3$의 배수여야 한다 — 뽑고 거르지 않고 **$3$의 배수만 뽑는다.**
+ * 작은 쪽은 꼭지각이 $0$ 보다 커야 하고(`d<90`), 큰 쪽은 밑각이 남아야 한다(`d<180`).
+ */
+function tier222Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const smaller = intBetween(rng, 0, 1) === 0;
+  const d = intBetween(rng, 1, smaller ? 28 : 20) * 3;
+  const baseAngle = smaller ? (180 + d) / 3 : (180 - d) / 3;
+  const apex = smaller ? baseAngle - d : baseAngle + d;
+  const sign = smaller ? "-" : "+";
+  return make(
+    unit,
+    `이등변삼각형에서 꼭지각의 크기가 한 밑각의 크기보다 ${deg(d)} ` +
+      `${smaller ? "작습니다" : "큽니다"}. 꼭지각의 크기는 몇 도인가?`,
+    deg(apex),
+    `한 밑각의 크기를 ${expr("\\square")}라고 하면 세 각의 크기의 합은 ` +
+      `${expr(`\\square+\\square+(\\square${sign}${d})=180`)} 입니다. ` +
+      `${expr(`\\square\\times3=180${smaller ? "+" : "-"}${d}=${baseAngle * 3}`)} 이므로 ` +
+      `한 밑각은 ${deg(baseAngle)}이고, 꼭지각은 ` +
+      `${expr(`${baseAngle}${sign}${d}=${apex}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-2 4단 — 「꼭지각이 한 밑각의 □배」.** 조건을 결합해 거꾸로 각을 찾는다.
+ *
+ * 3단이 **차**라면 여기는 **배**다. 밑각을 $\square$ 로 두면 세 각의 합이
+ * `□ × (2+k) = 180`(또는 `□ × (2k+1) = 180`)이 되어, 나눗셈 한 번이 더 든다.
+ */
+function tier222Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { k, apexIsBig } = pick(rng, ISO_RATIOS);
+  const parts = apexIsBig ? k + 2 : 2 * k + 1;
+  const one = 180 / parts;
+  const baseAngle = apexIsBig ? one : one * k;
+  const apex = 180 - baseAngle * 2;
+  const askApex = intBetween(rng, 0, 1) === 0;
+  const head = apexIsBig
+    ? `이등변삼각형에서 꼭지각의 크기가 한 밑각의 크기의 ${n(k)}배입니다.`
+    : `이등변삼각형에서 한 밑각의 크기가 꼭지각의 크기의 ${n(k)}배입니다.`;
+  const build = apexIsBig
+    ? `한 밑각의 크기를 ${expr("\\square")}라고 하면 꼭지각은 ${expr(`\\square\\times${k}`)} 이므로 ` +
+      `세 각의 크기의 합은 ${expr(`\\square\\times${parts}=180`)} 입니다. ` +
+      `${expr(`180\\div${parts}=${one}`)} 이므로 한 밑각은 ${deg(baseAngle)}입니다.`
+    : `꼭지각의 크기를 ${expr("\\square")}라고 하면 한 밑각은 ${expr(`\\square\\times${k}`)} 이므로 ` +
+      `세 각의 크기의 합은 ${expr(`\\square\\times${parts}=180`)} 입니다. ` +
+      `${expr(`180\\div${parts}=${one}`)} 이므로 꼭지각은 ${deg(apex)}입니다.`;
+  return make(
+    unit,
+    `${head} ${askApex ? "꼭지각" : "한 밑각"}의 크기는 몇 도인가?`,
+    deg(askApex ? apex : baseAngle),
+    `${build} 세 각의 크기는 ${deg(baseAngle)}, ${deg(baseAngle)}, ${deg(apex)}이므로 ` +
+      `${askApex ? "꼭지각" : "한 밑각"}의 크기는 ${deg(askApex ? apex : baseAngle)}입니다.`,
+  );
+}
+
+/** **2-2-3 1단 — 성질 한 번.** 한 변에서 나머지 두 변으로. 표준은 이 방향을 안 쓴다. */
+function tier223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, EQ_TRI_ITEMS);
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `정삼각형 모양의 ${josa(item, "이", "가")} 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
+      `나머지 두 변의 길이는 각각 몇 cm인가?`,
+    cm(s),
+    `정삼각형은 세 변의 길이가 모두 같습니다. 한 변이 ${cm(s)}이므로 ` +
+      `나머지 두 변도 각각 ${cm(s)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-3 2단 — 이름을 숨기고 «각» 조건으로 준다.**
+ *
+ * 표준은 「정삼각형의 한 변이 …」처럼 **이름을 준다.** 여기는 「세 각의 크기가 모두 같은」
+ * 으로 주어, 각 성질 → 이름 → 변 성질을 스스로 이어야 식이 선다.
+ */
+function tier223Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  const wholeSum = intBetween(rng, 0, 1) === 0;
+  const value = wholeSum ? s * 3 : s * 2;
+  return make(
+    unit,
+    `세 각의 크기가 모두 같은 삼각형이 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
+      `${wholeSum ? "세 변의 길이의 합" : "나머지 두 변의 길이의 합"}은 몇 cm인가?`,
+    cm(value),
+    `세 각의 크기가 모두 같은 삼각형은 정삼각형이고, 정삼각형은 세 변의 길이가 모두 같습니다. ` +
+      `${expr(`${s}\\times${wholeSum ? 3 : 2}=${value}`)} 이므로 ${cm(value)}입니다.`,
+  );
+}
+
+/** **2-2-3 3단 — 만들고 «남은» 길이.** 중간값은 정삼각형 한 개에 드는 길이다. */
+function tier223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, WIRE_ITEMS);
+  const side = intBetween(rng, 4, 13);
+  const left = intBetween(rng, 2, 30);
+  const total = side * 3 + left;
+  return make(
+    unit,
+    `길이가 ${cm(total)}인 ${josa(item, "을", "를")} 사용하여 한 변의 길이가 ${cm(side)}인 ` +
+      `정삼각형을 한 개 만들었습니다. 남은 ${josa(item, "은", "는")} 몇 cm인가?`,
+    cm(left),
+    `정삼각형은 세 변의 길이가 같으므로 만드는 데 쓴 ${item}의 길이는 ` +
+      `${expr(`${side}\\times3=${side * 3}`)} 입니다. ` +
+      `남은 길이는 ${expr(`${total}-${side * 3}=${left}`)} 입니다.`,
+  );
+}
+
+/** **2-2-3 4단 — 「남김없이 썼다」에서 개수를 되짚는다.** 곱하고 나누는 역산이다. */
+function tier223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, WIRE_ITEMS);
+  const side = intBetween(rng, 4, 12);
+  const count = intBetween(rng, 3, 8);
+  const each = side * 3;
+  return make(
+    unit,
+    `길이가 ${cm(each * count)}인 ${josa(item, "을", "를")} 남김없이 사용하여 ` +
+      `한 변의 길이가 ${cm(side)}인 정삼각형을 여러 개 만들었습니다. ` +
+      `정삼각형을 몇 개 만들었는가?`,
+    `${n(count)}개`,
+    `정삼각형 한 개를 만드는 데 필요한 ${item}의 길이는 ` +
+      `${expr(`${side}\\times3=${each}`)} 입니다. ` +
+      `${expr(`${each * count}\\div${each}=${count}`)} 이므로 ${n(count)}개를 만들었습니다.`,
+  );
+}
+
+/** 부류를 **먼저 정하고** 세 각을 만든다 — 씨앗에 맡기면 한쪽만 쏟아진다. */
+function triAnglesOfClass(rng: Rng, kind: number): [number, number, number] {
+  if (kind === 0) {
+    const a = intBetween(rng, 20, 70);
+    return [90, a, 90 - a];
+  }
+  if (kind === 1) {
+    const big = intBetween(rng, 95, 130);
+    const a = intBetween(rng, 20, 170 - big);
+    return [big, a, 180 - big - a];
+  }
+  const a = intBetween(rng, 55, 85);
+  const b = intBetween(rng, 55, 85);
+  return [a, b, 180 - a - b];
+}
+
+/** **2-2-4 1단 — 그 부류의 각이 «몇 개»인가.** 표준은 분류 이름, 여기는 개수다. */
+function tier224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 2));
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  const ask = pick(rng, ["예각", "직각", "둔각"] as const);
+  const hit = shown.filter((v) =>
+    ask === "예각" ? v < 90 : ask === "직각" ? v === 90 : v > 90,
+  );
+  const rule =
+    ask === "예각"
+      ? `${deg(90)}보다 작은 각`
+      : ask === "직각"
+        ? `${deg(90)}인 각`
+        : `${deg(90)}보다 크고 ${deg(180)}보다 작은 각`;
+  return make(
+    unit,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. ` +
+      `이 삼각형에서 ${ask}은 몇 개인가?`,
+    `${n(hit.length)}개`,
+    `${ask}은 ${rule}입니다. 세 각 중 ${ask}은 ` +
+      `${hit.length > 0 ? `${hit.map((v) => deg(v)).join(", ")}로 ${n(hit.length)}개` : `없으므로 ${n(0)}개`}입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 2단 — 분류 이름을 «조건»으로 준다.** 표준의 역방향이다.
+ *
+ * 표준은 각 → 이름이고, 여기는 이름 → 각이다. 「직각삼각형」이라는 말에서
+ * $90^\circ$ 하나를 스스로 꺼내야 식이 선다.
+ */
+function tier224Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) === 0) {
+    return make(
+      unit,
+      `직각삼각형에서 직각이 아닌 두 각의 크기의 합은 몇 도인가?`,
+      deg(90),
+      `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있고 세 각의 크기의 합은 ${deg(180)}입니다. ` +
+        `나머지 두 각의 합은 ${expr("180-90=90")} 입니다.`,
+    );
+  }
+  const one = intBetween(rng, 20, 70);
+  return make(
+    unit,
+    `직각삼각형에서 직각이 아닌 한 각의 크기가 ${deg(one)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(90 - one),
+    `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있습니다. ` +
+      `세 각의 크기의 합이 ${deg(180)}이므로 나머지 한 각은 ` +
+      `${expr(`180-90-${one}=${90 - one}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 3단 — 「두 각이 같고 나머지가 □」에서 분류.** 중간값은 그 같은 두 각이다.
+ *
+ * 주어진 각을 **부류부터 정해** 뽑는다. 씨앗에 맡기면 세 부류가 안 고루 나온다
+ * (표준 2-2-4 가 이미 같은 이유로 그렇게 한다).
+ *
+ * ⚠️ **직각삼각형은 이 문형으로 못 낸다 — 그래서 안 낸다.** 두 각이 같은 삼각형이
+ * 직각삼각형이려면 직각이 «나머지 한 각»일 수밖에 없는데(같은 두 각이 둘 다 직각일 수는
+ * 없다), 그러면 발문이 $90^\circ$ 를 그대로 보여 주어 **중간값을 구할 것도 없이 답이 보인다.**
+ * 3단인데 1단이 되는 자리다. 첫 판에는 들어 있었고 표본을 눈으로 보고서 걸렀다 —
+ * 「세 부류가 다 나온다」만 세면 이건 구조적으로 안 보인다.
+ */
+function tier224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const given =
+    intBetween(rng, 0, 1) === 0
+      ? intBetween(rng, 5, 44) * 2 // 10~88 → 같은 두 각이 46~85 라 가장 큰 각이 90 미만
+      : intBetween(rng, 46, 85) * 2; // 92~170 → 둔각
+  const same = (180 - given) / 2;
+  const big = Math.max(given, same);
+  return make(
+    unit,
+    `삼각형에서 두 각의 크기가 서로 같고 나머지 한 각의 크기가 ${deg(given)}입니다. ` +
+      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    triClass(given, same, same),
+    `크기가 같은 두 각의 합은 ${expr(`180-${given}=${180 - given}`)} 이고 ` +
+      `두 각이 같으므로 각각 ${expr(`${180 - given}\\div2=${same}`)} 입니다. ` +
+      `세 각 중 가장 큰 각이 ${deg(big)}이므로 ${triClass(given, same, same)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 4단 — 「예각이 두 개니까 예각삼각형」을 바로잡는다.**
+ *
+ * 어느 삼각형에도 예각은 적어도 두 개 있으므로 그 근거는 **늘 참이면서 늘 쓸모없다.**
+ * 가장 큰 각 하나가 부류를 정한다는 것을 알아야 갈린다. 그래서 표본은 직각·둔각만 쓴다 —
+ * 예각삼각형을 뽑으면 잘못된 근거로도 답이 맞아 **이 갈래가 아무것도 안 묻는다.**
+ *
+ * ⚠️ **이 대단원에서 「잘못」 문형은 여기 하나만 둔다 — 다양성을 이유로 이것까지 바꾸지 말 것.**
+ * 「잘못 계산」에는 두 종류가 있다: **셈을 틀린 것**과 **판단 근거를 틀린 것**. 앞엣것은
+ * 역산·조건 결합으로 얼마든지 대신할 수 있어서 2-2-1 4단을 그렇게 바꿨다. 뒤엣것은
+ * **대체재가 없다** — 「예각이 둘이니까」는 학생이 실제로 하는 오해이고, 그 오해를 바로
+ * 겨누는 문형이 이것뿐이다(리드 확인 2026-08-23).
+ */
+function tier224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 1));
+  // **큰 각을 감춘다.** 세 각을 다 보여 주면 셈이 한 단계도 없어 3단(두 단계)보다
+  // 가벼워진다 — 사다리가 뒤집힌 것으로 읽히는 자리다(리드가 g5 에서 잡은 그 무늬).
+  // 감추면 ⑴ 나머지 한 각을 구하고 ⑵ 분류하고 ⑶ 잘못된 근거를 물리쳐야 한다.
+  // 덤으로 **잘못된 근거가 더 자연스러워진다** — 「보이는 두 각이 다 예각이니까」는
+  // 학생이 실제로 하는 오해다. 부류가 직각·둔각뿐이라 예각은 늘 정확히 둘이다.
+  const hidden = angles.find((v) => v >= 90)!;
+  const [a, b] = angles.filter((v) => v < 90);
+  const shown = intBetween(rng, 0, 1) === 0 ? [a!, b!] : [b!, a!];
+  const name = triClass(angles[0]!, angles[1]!, angles[2]!);
+  return make(
+    unit,
+    `어떤 삼각형의 두 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}입니다. ` +
+      `이 두 각이 모두 예각이므로 예각삼각형이라고 하였습니다. ` +
+      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인지 바르게 쓰시오.`,
+    name,
+    `나머지 한 각의 크기는 ` +
+      `${expr(`180-${shown[0]!}-${shown[1]!}=${hidden}`)} 입니다. ` +
+      `삼각형은 어느 것이나 예각이 적어도 ${n(2)}개 있으므로 예각의 개수로는 분류할 수 없고, ` +
+      `가장 큰 각의 크기를 봐야 합니다. 가장 큰 각이 ${deg(hidden)}이므로 ${name}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 1단 — 한 기준을 «주고» 다른 기준을 읽는다.** 가장 큰 각 하나만 보면 된다.
+ *
+ * ⚠️ 첫 판은 「세 각을 주고 **변** 기준을 묻기」였다. 그러면 두 가지가 한꺼번에 나빴다 —
+ * ⑴ 답이 늘 「이등변삼각형」 하나라 고를 것이 없고, ⑵ **각 기준이 문항에 아예 안 나와**
+ * 이 소단원이 내건 「두 가지 기준」의 절반이 빠진다. 새로 붙인 소단원 조건 검사가 바로
+ * 그것을 잡았다 — 검사가 옳고 갈래가 약했다. 변 기준을 발문이 **알려 주고** 각 기준을
+ * 묻게 하면 한 단계는 그대로면서 두 축이 다 선다(답도 세 가지로 갈린다).
+ *
+ * 세 각이 모두 같은 경우는 안 뽑는다 — 「정삼각형인가 이등변삼각형인가」가 되어
+ * 답이 하나로 안 정해진다(이 대단원이 피하기로 한 자리).
+ */
+function tier225Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const same = pick(rng, baseAngles(20, 85));
+  const apex = 180 - same * 2;
+  const shown = pick(rng, TRI_PERMS).map((i) => [same, same, apex][i]!);
+  const big = Math.max(same, apex);
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 ` +
+      `이등변삼각형이 있습니다. 이 삼각형을 각의 크기에 따라 분류하면 ` +
+      `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    triClass(same, same, apex),
+    `${deg(same)}인 각이 ${n(2)}개 있어 두 변의 길이가 같으므로 이등변삼각형입니다. ` +
+      `각의 크기에 따라 분류할 때는 가장 큰 각을 봅니다. ` +
+      `가장 큰 각이 ${deg(big)}이므로 ${triClass(same, same, apex)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 2단 — 두 이름을 «함께» 걸고 각을 구한다.**
+ *
+ * 크기가 같은 두 각이 둘 다 직각이거나 둘 다 둔각일 수는 없으므로, 그 각은 **꼭지각**이다.
+ * 이 판단이 이 소단원의 몫이다 — 한 기준만으로는 안 풀린다.
+ */
+function tier225Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const isRight = intBetween(rng, 0, 3) === 0;
+  const apex = isRight ? 90 : intBetween(rng, 46, 85) * 2;
+  const base = (180 - apex) / 2;
+  const word = isRight ? "직각" : "둔각";
+  return make(
+    unit,
+    `이등변삼각형이면서 ${word}삼각형인 삼각형이 있습니다. ` +
+      (isRight
+        ? `직각이 아닌 두 각의 크기는 각각 몇 도인가?`
+        : `둔각의 크기가 ${deg(apex)}일 때 나머지 두 각의 크기는 각각 몇 도인가?`),
+    deg(base),
+    `크기가 같은 두 각이 모두 ${word}일 수는 없으므로 ${word}은 꼭지각입니다. ` +
+      `나머지 두 각의 합은 ${expr(`180-${apex}=${180 - apex}`)} 이고 ` +
+      `두 각의 크기가 같으므로 각각 ${expr(`${180 - apex}\\div2=${base}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 3단 — 한 밑각에서 «각 기준» 분류로.** 중간값은 꼭지각이다.
+ *
+ * 표준은 세 각을 다 주고 두 이름을 묻는다. 여기는 **한 각만** 주고, 나머지를 구한 뒤에야
+ * 분류가 된다. 밑각이 $45^\circ$ 보다 작으면 둔각, 같으면 직각, 크면 예각이라 세 부류가 다 나온다.
+ */
+function tier225Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(20, 85));
+  const apex = 180 - base * 2;
+  const name = triClass(base, base, apex);
+  return make(
+    unit,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 이 삼각형을 각의 크기에 따라 ` +
+      `분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    name,
+    `두 밑각의 크기가 같으므로 꼭지각은 ${expr(`180-${base}-${base}=${apex}`)} 입니다. ` +
+      `세 각 중 가장 큰 각이 ${deg(Math.max(base, apex))}이므로 ${name}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 4단 — 한 각만 주면 경우가 «둘»이다.**
+ *
+ * 주어진 각이 꼭지각일 수도 밑각일 수도 있다. $45^\circ$ 보다 작은 짝수만 쓰면
+ * 두 경우의 **각 기준 분류가 서로 갈린다**(꼭지각이면 예각, 밑각이면 둔각) —
+ * 갈리지 않으면 「경우를 나눈다」가 답에서 티가 안 나 이 갈래가 뜻을 잃는다.
+ */
+function tier225Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 22) * 2; // 10~44 짝수
+  const baseWhenApex = (180 - a) / 2; // 68~85 → 세 각이 모두 예각
+  const apexWhenBase = 180 - a * 2; // 92~160 → 둔각
+  return make(
+    unit,
+    `한 각의 크기가 ${deg(a)}인 이등변삼각형이 있습니다. 나머지 두 각의 크기가 될 수 있는 ` +
+      `경우를 모두 구하고, 각각 각의 크기에 따라 분류하시오.`,
+    `${deg(baseWhenApex)}, ${deg(baseWhenApex)}(예각삼각형) 또는 ` +
+      `${deg(a)}, ${deg(apexWhenBase)}(둔각삼각형)`,
+    `${deg(a)}가 꼭지각이면 두 밑각은 ${expr(`(180-${a})\\div2=${baseWhenApex}`)} 이고, ` +
+      `세 각이 모두 ${deg(90)}보다 작으므로 예각삼각형입니다. ` +
+      `${deg(a)}가 한 밑각이면 다른 한 밑각도 ${deg(a)}이고 꼭지각은 ` +
+      `${expr(`180-${a}-${a}=${apexWhenBase}`)} 이므로 둔각삼각형입니다.`,
+  );
+}
+
 /* ───────────────── 2-3 소수의 덧셈과 뺄셈 ─────────────────
  *
  * ⚠️ 해설에 **소수의 곱셈·나눗셈을 쓰지 않는다**(R3). 그것은 초5-2 다.

@@ -20,13 +20,18 @@
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import os
 import subprocess
 import sys
 
-sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+# ⚠️ `line_buffering` 을 켠다. 파이썬은 출력이 **파일·파이프로 갈 때 버퍼링**해서,
+#    회차가 도중에 죽으면 **이미 끝난 판정까지 통째로 사라진다** — 2026-08-23 에
+#    9분 30초를 돌고 죽었더니 남은 파일이 **0바이트**였다. 한 변이는 40~60초라
+#    긴 회차를 나눠 도는 판에서는 「어디까지 갔나」가 곧 재개 지점이다.
+sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # ⚠️ **경로에 PID 를 넣는다.** 예전에는 고정 이름이라, 두 학년 하네스가 동시에 돌면
@@ -536,7 +541,7 @@ G5_MUTS = [
         "  const k = intBetween(rng, 2, 8); // d 와 공약수를 반드시 가진다",
     ),
     (
-        "오개념 훼손 — 2-2-4 응용의 «잘못 계산한 값» 이 자연수부 곱이 아니다 (③)",
+        "오개념 훼손 — 2-2-4 심화의 «잘못 계산한 값» 이 자연수부 곱이 아니다 (③)",
         "    expr(fracLatex(dn, dd)),",
         "    expr(fracLatex(rn, rd)),",
     ),
@@ -565,7 +570,7 @@ G5_MUTS = [
         "  const b = overOneT(rng, (x) => x !== a);\n  const k2 = intBetween(rng, 2, 9);\n  const total = a * k1 + b * k2;",
     ),
     (
-        "제자리로 돌아옴 — 2-4-7 심화가 오른쪽 2칸·왼쪽 2칸이 되어 계산이 뜻을 잃는다",
+        "제자리로 돌아옴 — 2-4-7 응용이 오른쪽 2칸·왼쪽 2칸이 되어 두 단계가 뜻을 잃는다",
         "  const downSteps = pick(\n    rng,\n    [1, 2].filter((d) => d !== upSteps),\n  );",
         "  const downSteps = pick(rng, [1, 2]);",
     ),
@@ -831,6 +836,90 @@ G6_MUTS = [
         "      `지름이 ${unitNum(d, \"cm\")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,\n      num(6 * r),",
         "      `지름이 ${unitNum(d, \"cm\")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,\n      num(6 * d),",
     ),
+    # ── D-73 원주율 — 「적은 값 ≠ 쓴 값」 두 방향 ────────────────────
+    # 이 부류는 **값 검산으로 안 잡힌다**: 어느 쪽 산술도 그 자체로는 맞다.
+    # 지면에서만 틀리므로 「적은 값과 쓴 값이 같은가」를 재는 가드만 문다.
+    (
+        "규약 어긋남 ㉡ — 2-5-2 응용이 $3$ 이라 적고 해설은 $3.1$ 로 계산한다",
+        '`굴러간 거리는 몇 cm인가? (원주율: ${num("3.1")})`,',
+        '`굴러간 거리는 몇 cm인가? (원주율: ${num(3)})`,',
+    ),
+    (
+        "규약 어긋남 ㉠ — 2-5-4 응용이 $3.14$ 라 적고 해설은 $3.1$ 로 계산한다",
+        '`원주가 ${unitNum(fromTenths(c), "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,',
+        '`원주가 ${unitNum(fromTenths(c), "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num("3.14")})`,',
+    ),
+]
+
+G4_MUTS = [
+    # ── 초4 2-2 삼각형 (2026-08-23, elem-g4) ─────────────────────────────
+    #
+    # ⚠️ **초4 는 46소단원이 착지할 때까지 변이 등록이 하나도 없었다**(리드 실측
+    # 2026-08-23). 그동안 검증을 안 한 것은 아니다 — 리드가 「$1.90$ 꼬리 $0$」·
+    # 「$12$시과」·꺾은선 77건을 실제로 변이시켜 확인했다. 그런데 **전부 스크래치의
+    # 일회용 스크립트**여서 아무것도 안 남았다. 증명은 됐고 **가드는 안 남은** 상태다.
+    # 그래서 새 2-2 뿐 아니라 **그때 그 셋을 여기 못 박는다** — 지면에 나갈 뻔했던 것들이다.
+    (
+        "삼각형 부등식 훼손 — 두 변의 합이 나머지와 «같아도» 삼각형이라 한다",
+        "  const [x, y, z] = [a, b, c].sort((p, q) => p - q);\n  return x! + y! > z!;",
+        "  const [x, y, z] = [a, b, c].sort((p, q) => p - q);\n  return x! + y! >= z!;",
+    ),
+    (
+        "2-2-1 2단 훼손 — 나머지가 «작은 쪽»인 경우를 안 본다",
+        "      if (isTriangle(small, small, big) && isTriangle(small, big, big)) {",
+        "      if (isTriangle(small, big, big)) {",
+    ),
+    (
+        "2-2-1 3단 훼손 — 나머지 한 변이 «같은 두 변»과 같아도 된다(정삼각형)",
+        "    (v) => v !== leg && isTriangle(leg, leg, v),",
+        "    (v) => isTriangle(leg, leg, v),",
+    ),
+    (
+        "2-2-1 4단 훼손 — 두 조건 중 «차»를 안 지킨다",
+        "  const leg = longer ? other + d : other - d;",
+        "  const leg = longer ? other + d + 1 : other - d;",
+    ),
+    (
+        "2-2-2 훼손 — 밑각 $60^\\circ$ 를 허용한다(세 각이 다 $60^\\circ$ 인데 «이등변»이라 부른다)",
+        "  return Array.from({ length: hi - lo + 1 }, (_, i) => i + lo).filter(\n    (v) => v !== 60,\n  );",
+        "  return Array.from({ length: hi - lo + 1 }, (_, i) => i + lo);",
+    ),
+    (
+        "2-2-4 3단 훼손 — 나머지 한 각이 $90^\\circ$ 인 경우를 되살린다(계산 없이 답이 보인다)",
+        "  const given =\n    intBetween(rng, 0, 1) === 0\n      ? intBetween(rng, 5, 44) * 2",
+        "  const given =\n    intBetween(rng, 0, 1) === 0\n      ? 90",
+    ),
+    (
+        "2-2-4 4단 훼손 — 큰 각을 안 감춘다(셈이 0단계가 되어 3단보다 가벼워진다)",
+        "  const [a, b] = angles.filter((v) => v < 90);",
+        "  const [a, b] = angles.filter((v) => v <= 180);",
+    ),
+    (
+        "2-2-4 4단 훼손 — 예각삼각형도 뽑는다(틀린 근거로도 답이 맞는다)",
+        "  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 1));",
+        "  const angles = triAnglesOfClass(rng, intBetween(rng, 1, 2));",
+    ),
+    (
+        "2-2-5 4단 훼손 — 두 경우의 부류가 같아지는 각도 뽑는다",
+        "  const a = intBetween(rng, 5, 22) * 2; // 10~44 짝수",
+        "  const a = intBetween(rng, 5, 30) * 2; // 10~60 짝수",
+    ),
+    # ── 이미 착지한 초4 가드 — 되돌리면 지면이 실제로 나빠지는 것 ──────────
+    (
+        "표준 2-3-2 훼손 — 더한 값의 꼬리 $0$ 을 막지 않는다(「$1.90$」이 지면에 나간다)",
+        "        Array.from({ length: 40 }, (_, i) => i + 1).filter(\n          (d) => (x + d) % 10 !== 0,\n        ),",
+        "        Array.from({ length: 40 }, (_, i) => i + 1),",
+    ),
+    (
+        "표준 2-5-2 훼손 — 때 이름 뒤 조사를 「과」로 박는다(「$12$시과」가 나간다)",
+        '        `${josa(theme.labels[at]!.math, "과", "와")} ${theme.labels[at + 1]!.math} 사이`,',
+        '        `${theme.labels[at]!.math}과 ${theme.labels[at + 1]!.math} 사이`,',
+    ),
+    (
+        "2-5-3 4단 훼손 — 표를 써야 하는 자리에 꺾은선을 그린다",
+        "      `${expr(`${most}-${gaps[other]!}=${most - gaps[other]!}`)}`,\n    tableFigure(theme, nums),",
+        "      `${expr(`${most}-${gaps[other]!}=${most - gaps[other]!}`)}`,\n    lineFigure(theme, nums),",
+    ),
 ]
 
 TARGETS = {
@@ -912,6 +1001,31 @@ TARGETS = {
             "2-4-7",
         ],
         "muts": G5_MUTS,
+    },
+    # 초4 의 잠금은 **시험 파일 넷**에 흩어져 있다(2-1 분수 · 2-3 소수 · 2-5 꺾은선 ·
+    # 2-2 삼각형). 변이 하나가 무는 곳이 그중 하나뿐이라도 넷을 다 돌려야 한다 —
+    # 하나만 돌리면 다른 파일이 무는 변이가 「시험이 못 잡는다」로 읽힌다(g3 과 같은 까닭).
+    # 표준 갈래를 건드리는 변이(2-3-2 꼬리 $0$ · 2-5-2 조사)가 있어 sections 에
+    # 그 소단원들도 넣는다 — 안 넣으면 ⑵ 에서 «산출물이 그대로다»로 오판된다.
+    "g4": {
+        "file": "src/lib/elementary/g4.ts",
+        "test": [
+            "src/__tests__/unit/elemTiersG4Tri.test.ts",
+            "src/__tests__/unit/elemTiersG4Dec.test.ts",
+            "src/__tests__/unit/elemTiersG4Line.test.ts",
+        ],
+        "grade": "초4",
+        "sections": [
+            "2-2-1",
+            "2-2-2",
+            "2-2-3",
+            "2-2-4",
+            "2-2-5",
+            "2-3-2",
+            "2-5-2",
+            "2-5-3",
+        ],
+        "muts": G4_MUTS,
     },
     # 변이가 소단원 열여섯(1-2 다섯 + 1-3 다섯 + 1-4 여섯)에 걸쳐 있어 «sections» 로
     # 전부 찍는다 — 하나만 찍으면 다른 소단원만 바꾸는 변이가 ⑵ 에서 오판된다.
@@ -1001,6 +1115,164 @@ def probe(grade: str, sections: list[str]) -> str:
             os.remove(PROBE_PATH)
 
 
+# ── 죽어도 남는 빵부스러기 ────────────────────────────────────────────────────
+#
+# `finally` 는 **하드 킬에서 안 돈다.** 2026-08-23 에 두 번, 도는 중에 죽어서
+# 대상 파일이 «변이가 적용된 채» 남았다. 그때 되살릴 수 있었던 것은 순전히
+# 운영자가 **손으로** 원본 md5 를 미리 찍어 뒀기 때문이다.
+#
+# ⚠️ 그리고 이 파일들은 대개 **미커밋**이다(갈래 작업 중이니까). 그러니
+#    `git checkout` 으로 되돌리면 **그날 작업이 통째로 날아간다** — 되돌리는
+#    유일한 안전한 길은 «적용된 변이를 거꾸로 치환»하는 것이고, 그러려면
+#    **어느 변이였는지**를 알아야 한다. 그것을 여기 적어 둔다.
+#
+# ⚠️ **대상마다 따로 둔다.** 한 파일로 두면 g5 회차와 g6 회차가 **동시에 돌 때**
+#    서로의 빵부스러기를 덮어쓰고, 먼저 끝난 쪽이 남의 것을 지운다. 게다가 한쪽의
+#    **살아 있는** 회차를 다른 쪽이 「죽은 회차」로 읽어 **둘 다 못 돌게** 된다 —
+#    거짓 경보는 가드를 끈다. 대상별로 나누면 두 회차는 서로를 아예 안 본다
+#    (같은 대상을 둘이 동시에 도는 것은 원래 하면 안 되는 일이라 그대로 막는다).
+def inflight_path(which: str) -> str:
+    return os.path.join(ROOT, "scripts", "qa", f".mutate-inflight.{which}.json")
+
+
+def mark_inflight(
+    which: str, rel_file: str, base_md5: str, idx: int, name: str
+) -> None:
+    io.open(inflight_path(which), "w", encoding="utf-8", newline="\n").write(
+        json.dumps(
+            {"file": rel_file, "base_md5": base_md5, "index": idx, "name": name},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+def clear_inflight(which: str) -> None:
+    p = inflight_path(which)
+    if os.path.exists(p):
+        os.remove(p)
+
+
+def inflight_files() -> list[tuple[str, str]]:
+    """
+    남아 있는 빵부스러기 — `(대상, 경로)`.
+
+    ⚠️ **옛 형식(`.mutate-inflight.json`, 대상 이름이 없다)도 읽는다.** 이 이름은
+       하루 안에 두 번 바뀌었고, 그 사이에 **이미 돌고 있던 회차**는 옛 이름으로
+       빵부스러기를 남긴다 — 도는 프로세스는 자기 메모리 안의 옛 코드를 쓰니까.
+       새 이름만 보면 그 회차가 죽었을 때 빵부스러기가 **안 보인다.**
+       이름이 비면 안에 적힌 `file` 로 대상을 되찾는다.
+    """
+    qa = os.path.join(ROOT, "scripts", "qa")
+    out = []
+    for fn in sorted(os.listdir(qa)):
+        if not (fn.startswith(".mutate-inflight") and fn.endswith(".json")):
+            continue
+        p = os.path.join(qa, fn)
+        which = fn[len(".mutate-inflight.") : -len(".json")]
+        if not which:  # 옛 형식 — 안을 열어 대상을 되찾는다
+            try:
+                d = json.loads(io.open(p, encoding="utf-8").read())
+                which = next(
+                    (k for k, t in TARGETS.items() if t["file"] == d.get("file")), ""
+                )
+            except Exception:
+                which = ""
+        out.append((which or "(대상 모름)", p))
+    return out
+
+
+def sweep_stale_probes() -> None:
+    """
+    하드 킬이 남긴 **남의 임시 프로브**를 치운다.
+
+    ⚠️ 살아 있는 회차의 것을 지우면 그 회차가 「산출물을 못 얻었다」로 떨어진다 —
+       그래서 **PID 로 고르지 않고 나이로** 고른다. 프로브 파일은 probe() 한 번마다
+       쓰고 지우므로 몇 분만 지나도 확실히 고아다. 30분을 넘긴 것만 치운다.
+    """
+    import time
+
+    qa = os.path.join(ROOT, "scripts", "qa")
+    for fn in os.listdir(qa):
+        if not fn.startswith(".mutate-") or not fn.endswith(".ts"):
+            continue
+        p = os.path.join(qa, fn)
+        try:
+            if time.time() - os.path.getmtime(p) > 1800:
+                os.remove(p)
+                print(f"(죽은 회차가 남긴 임시 프로브를 치웁니다: {fn})")
+        except OSError:
+            pass
+
+
+def inflight_guard(which: str) -> int:
+    """앞 회차가 **더럽게 죽었으면** 새로 돌지 않는다 — 무엇을 재는지 알 수 없다."""
+    p = inflight_path(which)
+    if not os.path.exists(p):
+        return 0
+    d = json.loads(io.open(p, encoding="utf-8").read())
+    print("⛔ 앞 회차가 **변이를 적용한 채 죽었습니다.** 판정하지 않습니다.\n")
+    print(f"   파일   {d['file']}")
+    print(f"   변이   [{d['index']}] {d['name']}")
+    print(f"   원본   md5 {d['base_md5']}\n")
+    print("   되돌리기:  python scripts/qa/mutate-elem-tiers.py --recover")
+    print("   ⚠️ `git checkout` 은 쓰지 마십시오 — 그 파일은 대개 미커밋입니다.")
+    return 1
+
+
+def recover() -> int:
+    """적용된 변이를 **거꾸로** 치환해 되돌린다. md5 가 안 맞으면 쓰지 않는다."""
+    #
+    # ⚠️ **남의 대상을 되돌리지 않는다.** 처음엔 남은 빵부스러기를 **전부** 훑게
+    #    했는데, 그 순간 이 명령이 **다른 세션의 미커밋 파일에 쓰는 도구**가 된다.
+    #    실제로 g5 를 되돌리다 g6 것까지 집어 「되돌려도 md5 가 다르다」로 막혔다
+    #    (2026-08-23). 막힌 이유가 더 중요하다 — 그쪽 회차가 **살아 있어서**
+    #    내가 [N] 을 읽는 사이 그쪽은 [N+1] 로 넘어가 있었다. md5 가드가 없었으면
+    #    남의 도는 회차 한복판에 썼을 것이다.
+    #
+    #    그래서 대상을 **반드시 이름으로** 받는다. 인자 없이 부르면 남은 것을
+    #    보여만 주고 아무것도 쓰지 않는다.
+    left = inflight_files()
+    if not left:
+        print("되돌릴 것이 없습니다 — 빵부스러기가 없습니다.")
+        return 0
+    want = next((a for a in sys.argv[1:] if a in TARGETS), None)
+    if want is None:
+        print("되돌릴 대상을 **이름으로** 주십시오 — 남의 회차를 건드리지 않기 위해서입니다.\n")
+        for which, p in left:
+            d = json.loads(io.open(p, encoding="utf-8").read())
+            print(f"   {which}: {d['file']}  변이 [{d['index']}] {d['name']}")
+        print(f"\n   보기:  python scripts/qa/mutate-elem-tiers.py {left[0][0]} --recover")
+        print("   ⚠️ 그 대상의 회차가 **지금 돌고 있으면** 되돌리지 마십시오.")
+        return 2
+    hit = next((p for w, p in left if w == want), None)
+    if hit is None:
+        print(f"«{want}» 의 빵부스러기가 없습니다 — 되돌릴 것이 없습니다.")
+        return 0
+    return recover_one(want, json.loads(io.open(hit, encoding="utf-8").read()))
+
+
+def recover_one(which: str, d: dict) -> int:
+    target = next(t for t in TARGETS.values() if t["file"] == d["file"])
+    _name, old, new = target["muts"][d["index"]]
+    path = os.path.join(ROOT, d["file"])
+    text = io.open(path, "rb").read().replace(b"\r\n", b"\n").decode("utf-8")
+    if text.count(new) != 1 or text.count(old) != 0:
+        print(f"⛔ 파일이 예상한 모양이 아닙니다(new={text.count(new)} old={text.count(old)}).")
+        print("   누가 그 사이 고쳤을 수 있습니다 — 손으로 확인하십시오. 쓰지 않습니다.")
+        return 1
+    fixed = text.replace(new, old, 1).encode("utf-8")
+    got = hashlib.md5(fixed).hexdigest()
+    if got != d["base_md5"]:
+        print(f"⛔ 되돌려도 md5 가 다릅니다: {got} ≠ {d['base_md5']}")
+        print("   그 사이 다른 수정이 들어왔습니다 — 손으로 확인하십시오. 쓰지 않습니다.")
+        return 1
+    io.open(path, "wb").write(fixed)
+    clear_inflight(which)
+    print(f"✅ 되돌렸습니다 — {d['file']} md5 {got} (변이 되돌리기 + 줄끝 둘 다)")
+    return 0
+
+
 def failed_tests(test_paths: str | list[str]) -> tuple[int, list[str]]:
     # 한 학년의 잠금이 시험 파일 **여럿**에 걸쳐 있을 수 있다(초3 은 파일럿 판과
     # 확대 판이 따로다) — 하나만 돌리면 다른 쪽이 무는 변이를 «시험이 못 잡는다»로 읽는다.
@@ -1020,7 +1292,20 @@ def failed_tests(test_paths: str | list[str]) -> tuple[int, list[str]]:
 
 
 def main() -> int:
+    if "--recover" in sys.argv:
+        return recover()
     which = sys.argv[1] if len(sys.argv) > 1 else "g3"
+    if inflight_guard(which):
+        return 2
+    sweep_stale_probes()
+    # ── 구간 — 「10분 벽」을 넘기지 않고 나눠 돌기 위한 것 ────────────────────────
+    #
+    # ⚠️ 나눠 돌 수 있게 되면 **부분 회차를 전량으로 착각할** 위험이 새로 생긴다.
+    #    그래서 구간을 준 회차는 마지막 줄이 절대 「전량」이라 말하지 않고 **몇 번부터
+    #    몇 번까지 돌았는지**를 반드시 찍는다 — 조용히 자르면 표가 「전부 해 봤다」로
+    #    읽힌다(CLAUDE.md 2026-08-18 「빠진 표본은 반드시 세어 찍어라」).
+    lo = int(next((a.split("=")[1] for a in sys.argv if a.startswith("--from=")), 0))
+    hi_arg = next((a.split("=")[1] for a in sys.argv if a.startswith("--to=")), None)
     target = TARGETS.get(which)
     if target is None:
         print(f"모르는 대상입니다: {which} — {' · '.join(TARGETS)}")
@@ -1029,6 +1314,11 @@ def main() -> int:
         print(f"«{which}» 변이 목록이 비어 있습니다. 채우기 전에는 판정하지 않습니다 —")
         print("빈 목록으로 「전부 빨강」을 찍으면 아무것도 증명하지 못합니다.")
         return 2
+    hi = min(int(hi_arg) if hi_arg is not None else len(target["muts"]) - 1,
+             len(target["muts"]) - 1)
+    if lo > hi:
+        print(f"구간이 비었습니다: [{lo}..{hi}] — 판정하지 않습니다.")
+        return 2
 
     path = os.path.join(ROOT, target["file"])
     # 복원은 **바이트**로 한다. 텍스트 모드로 되쓰면 Windows 가 LF 를 CRLF 로 바꿔
@@ -1036,6 +1326,7 @@ def main() -> int:
     # 실제로 났다(HEAD 와 2,565줄 전부 줄끝만 다른 파일이 남았다). 변이 적용 중의
     # 임시 상태는 텍스트 쓰기여도 되지만, 원상은 반드시 원본 바이트 그대로 돌려놓는다.
     src_bytes = io.open(path, "rb").read()
+    base_md5 = hashlib.md5(src_bytes).hexdigest()
     src = io.open(path, encoding="utf-8").read()
     if os.path.exists(PROBE_PATH):
         os.remove(PROBE_PATH)
@@ -1045,11 +1336,49 @@ def main() -> int:
     if not base.startswith("["):
         print("기준 산출물을 못 얻었습니다:", base[:400])
         return 1
-    print(f"대상 {which} · 기준 산출물 {len(json.loads(base))}건\n")
+
+    # ── 음성 대조 — 변이를 넣기 **전에** 그 시험이 초록인가 ────────────────────────
+    # ⚠️ 판정은 「종료 코드 ≠ 0 이면 RED」다. 그러니 **기준이 이미 빨갛거나 러너가
+    #    아예 못 뜨면 모든 변이가 빨강**으로 찍힌다 — 답이 진실에 따라 안 변하는
+    #    판정자는 판정자가 아니라 도장이다. 낱개 판(`mutate-one.py`)이 없어진
+    #    리포터 이름(`basic`, vitest 4 에서 제거)을 써서 정확히 그 상태였다
+    #    (2026-08-23 발견). 이쪽은 `--reporter=json` 이라 무사했지만 **구조는 같다.**
+    #    「망가진 것을 잡는가」만 보면 「멀쩡한 것을 멀쩡하다 하는가」는 구조적으로
+    #    안 보인다 — 그래서 여기에 음성 대조를 못 박는다.
+    base_code, base_fails = failed_tests(target["test"])
+    if base_code != 0:
+        print(f"기준 시험이 **이미 빨갛습니다**({len(base_fails)}건) — 판정하지 않습니다.")
+        for name in base_fails[:8]:
+            print("   ↳", name)
+        print("변이를 넣기 전에 초록이어야 「빨개졌다」가 뜻을 가집니다.")
+        return 1
+
+    print(
+        f"대상 {which} · 기준 산출물 {len(json.loads(base))}건 · 기준 시험 초록 · "
+        f"변이 [{lo}..{hi}] / 전체 {len(target['muts'])}\n"
+    )
 
     ok = True
     try:
-        for name, before, after in target["muts"]:
+        for idx, (name, before, after) in enumerate(target["muts"]):
+            if idx < lo or idx > hi:
+                continue
+            # ⚠️ **다음 변이를 넣기 전에 파일이 아직 «내가 재기 시작한 그것»인지 본다.**
+            #    이 고리는 매번 `src_bytes`(회차 시작 바이트)로 되돌린다. 그러니 도는
+            #    중에 주인이 그 파일을 저장하면 **그 수정을 조용히 덮어쓴다** — 되돌리기
+            #    기능이 곧 남의 작업을 먹는 기능이 된다. 그리고 기준선이 어긋나므로
+            #    빵부스러기의 md5 도 영영 안 맞게 된다(2026-08-23 g6 이 겪은 그 자리).
+            #    어긋나면 **쓰지 않고 멈춘다.**
+            if io.open(path, "rb").read() != src_bytes:
+                print(
+                    f"  ⛔ {target['file']} 가 회차 도중에 바뀌었습니다 — 판정을 멈춥니다.\n"
+                    "     (누가 저장했거나 같은 대상 회차가 둘입니다. 덮어쓰지 않습니다.)\n"
+                    "     ⚠️ 앞 회차의 **종료 통보를 받았더라도** 그 아래 python·vitest\n"
+                    "        자식이 살아 있을 수 있습니다 — 「죽였다」와 「죽었다」는 다릅니다.\n"
+                    "        `ps` 로 자식을 먼저 확인하십시오."
+                )
+                ok = False
+                break
             # 자리는 정확히 **하나**여야 한다 — 0이면 치환 실패, 2 이상이면 첫 자리만
             # 바뀌어 «내가 노린 자리»라는 보장이 없다 (2026-08-23 메모리: count==1 단정).
             count = src.count(before)
@@ -1062,7 +1391,13 @@ def main() -> int:
                 print(f"  ??    {name}\n        ← {why}")
                 ok = False
                 continue
-            io.open(path, "w", encoding="utf-8").write(src.replace(before, after, 1))
+            # ⚠️ **바이트로 쓴다.** 텍스트 모드로 쓰면 Windows 가 `\n` 을 `\r\n` 으로
+            #    바꿔, 도중에 죽었을 때 «변이 적용 + 전량 CRLF» 라는 **두 겹 손상**이
+            #    남는다(2026-08-23 두 번째 발생). 바이트로 쓰면 죽어도 줄끝은 성하다.
+            io.open(path, "wb").write(src.replace(before, after, 1).encode("utf-8"))
+            # 죽어도 **무엇을 되돌려야 하는지**가 디스크에 남는다 — `finally` 는
+            # 하드 킬에서 안 돈다. 이게 없으면 다음 사람이 md5 를 손으로 재현해야 한다.
+            mark_inflight(which, target["file"], base_md5, idx, name)
             got = None
             if io.open(path, encoding="utf-8").read() == src:
                 print(f"  ??    {name}\n        ← 파일이 안 바뀌었다")
@@ -1082,21 +1417,43 @@ def main() -> int:
                 ok = False
             else:
                 code, names = failed_tests(target["test"])
-                print(f"  {'RED  ' if code else 'GREEN'} {name}")
-                for t in names[:3]:
-                    print(f"        ↳ {t}")
-                if code == 0:
-                    print("        ← 시험이 못 잡는다")
+                # ⚠️ **빨간데 어느 시험인지 못 대면 그것은 판정이 아니다.** 러너가
+                #    기동 단계에서 죽어도 종료 코드는 0이 아니라, 「가드가 물었다」와
+                #    구분되지 않는다 — 낱개 판이 없어진 리포터 이름 때문에 **모든
+                #    변이를 RED 로 찍던** 그 모양 그대로다(2026-08-23).
+                unreadable = code != 0 and (
+                    not names or names[0].startswith("(판정 결과를 못 읽었다")
+                )
+                if unreadable:
+                    print(f"  ??    {name}\n        ← **빨간데 실패한 시험을 못 댄다**(러너가 안 떴다). 판정하지 않는다")
                     ok = False
+                else:
+                    print(f"  {'RED  ' if code else 'GREEN'} {name}")
+                    for t in names[:3]:
+                        print(f"        ↳ {t}")
+                    if code == 0:
+                        print("        ← 시험이 못 잡는다")
+                        ok = False
             io.open(path, "wb").write(src_bytes)
+            clear_inflight(which)
     finally:
         # 어떤 일이 있어도 되돌린다 — 변이가 남은 채 끝나면 그게 가장 나쁘다.
         io.open(path, "wb").write(src_bytes)
+        clear_inflight(which)
         if os.path.exists(PROBE_PATH):
             os.remove(PROBE_PATH)
 
     restored = io.open(path, "rb").read() == src_bytes
-    print("\n" + ("모든 변이가 빨강" if ok else "빠진 변이가 있다"))
+    ran = hi - lo + 1
+    whole = lo == 0 and hi == len(target["muts"]) - 1
+    scope = (
+        f"전량 {ran}종"
+        if whole
+        else f"**부분** [{lo}..{hi}] {ran}종 / 전체 {len(target['muts'])}"
+    )
+    print("\n" + ("모든 변이가 빨강" if ok else "빠진 변이가 있다") + f" — {scope}")
+    if not whole:
+        print("⚠️ 구간 회차입니다 — 이 수치를 「전량」이라고 적지 마십시오.")
     print("복원:", "예" if restored else "**아니오 — 손으로 확인하라**")
     return 0 if (ok and restored) else 1
 

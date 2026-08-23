@@ -325,50 +325,73 @@ describe("초4 2-3 소수의 덧셈과 뺄셈 — 4단 등록", () => {
   });
 });
 
+/**
+ * 전량 쓸기 두 건의 시간 한계 — **기본 $5$초로는 모자란다.**
+ *
+ * 실측(2026-08-23): 놀고 있는 컴퓨터에서 각각 **4,565ms · 4,475ms** 다. 기본 한계의
+ * $91\%$ 라 다른 세션이 무엇이든 돌리면 넘어간다. 그러면 vitest 가 **실패**로 적는데,
+ * 그 실패가 변이 하네스에 **가짜 빨강**으로 실린다 — 이 저장소가 여러 번 적은
+ * 「죽은 가드」의 **반대편**이다. 실제로 `G4_MUTS` 첫 회차에서 삼각형 부등식 변이가
+ * 이 검사를 떨어뜨린 것으로 찍혔고, 통제 재현에서는 **안 떨어졌다.** 판정 자체는
+ * 옳았지만(내 시험 넷이 물었다) **적힌 이름이 틀렸다.** 관계없는 변이가 「잡혔다」로
+ * 읽히면 장식인 가드를 가드로 착각한다.
+ *
+ * 쓸기를 줄이지 않고 한계를 올린다 — 표본을 줄이면 그때부터 못 보는 자리가 생긴다.
+ */
+const SWEEP_MS = 20_000;
+
 describe("소수의 꼴 — 꼬리 $0$ 과 자릿수", () => {
-  it("발문·정답·해설 어디에도 꼬리 $0$ 이 없다", () => {
-    const bad: string[] = [];
-    for (const code of CODES) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
-        for (const seed of SWEEP) {
-          const p = gen(code, seed, tier);
-          for (const [where, text] of [
-            ["발문", p.content],
-            ["정답", p.answer],
-            ["해설", p.solution],
-          ] as const) {
-            for (const d of tailZeros(text)) {
-              bad.push(`${code} «${tier ?? "표준"}» s${seed} ${where}: ${d}`);
+  it(
+    "발문·정답·해설 어디에도 꼬리 $0$ 이 없다",
+    () => {
+      const bad: string[] = [];
+      for (const code of CODES) {
+        for (const tier of [undefined, ...ELEM_TIERS]) {
+          for (const seed of SWEEP) {
+            const p = gen(code, seed, tier);
+            for (const [where, text] of [
+              ["발문", p.content],
+              ["정답", p.answer],
+              ["해설", p.solution],
+            ] as const) {
+              for (const d of tailZeros(text)) {
+                bad.push(`${code} «${tier ?? "표준"}» s${seed} ${where}: ${d}`);
+              }
             }
           }
         }
       }
-    }
-    expect(bad.slice(0, 5)).toEqual([]);
-  });
+      expect(bad.slice(0, 5)).toEqual([]);
+    },
+    SWEEP_MS,
+  );
 
-  it("이름이 약속한 자리보다 깊은 소수가 없다 (발문·정답·해설)", () => {
-    const bad: string[] = [];
-    for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
-        for (const seed of SWEEP) {
-          const p = gen(code, seed, tier);
-          const all = [
-            ...placesIn(p.content),
-            ...placesIn(p.answer),
-            ...placesIn(p.solution),
-          ];
-          const deepest = Math.max(0, ...all);
-          if (deepest > DEEPEST[code]!) {
-            bad.push(
-              `${code} «${tier}» s${seed}: ${deepest}자리 — ${p.content}`,
-            );
+  it(
+    "이름이 약속한 자리보다 깊은 소수가 없다 (발문·정답·해설)",
+    () => {
+      const bad: string[] = [];
+      for (const code of CODES) {
+        for (const tier of ELEM_TIERS) {
+          for (const seed of SWEEP) {
+            const p = gen(code, seed, tier);
+            const all = [
+              ...placesIn(p.content),
+              ...placesIn(p.answer),
+              ...placesIn(p.solution),
+            ];
+            const deepest = Math.max(0, ...all);
+            if (deepest > DEEPEST[code]!) {
+              bad.push(
+                `${code} «${tier}» s${seed}: ${deepest}자리 — ${p.content}`,
+              );
+            }
           }
         }
       }
-    }
-    expect(bad.slice(0, 5)).toEqual([]);
-  });
+      expect(bad.slice(0, 5)).toEqual([]);
+    },
+    SWEEP_MS,
+  );
 
   /*
    * 이름이 「소수 N 자리 수의 …」인 넷은 **발문의 가장 깊은 자리가 곧 N** 이어야 한다.
