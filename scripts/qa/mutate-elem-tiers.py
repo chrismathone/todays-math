@@ -29,7 +29,14 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PROBE_PATH = os.path.join(ROOT, "scripts", "qa", ".mutate-elem-tiers.probe.ts")
+# ⚠️ **경로에 PID 를 넣는다.** 예전에는 고정 이름이라, 두 학년 하네스가 동시에 돌면
+# 한쪽이 `finally` 에서 지운 파일을 다른 쪽 `npx tsx` 가 열지 못해 산출물이 비었다.
+# 그러면 판정이 «산출물을 못 얻었다»로 떨어진다 — 2026-08-23 실측: 초6 31종 중
+# **13종이 한 칸 걸러 하나씩** 그렇게 찍혔고(무작위가 아니라 «번갈아»가 단서였다),
+# 원인을 컴파일 깨짐으로 읽으면 멀쩡한 변이를 의심하게 된다.
+PROBE_PATH = os.path.join(
+    ROOT, "scripts", "qa", f".mutate-elem-tiers.probe.{os.getpid()}.ts"
+)
 
 # 산출물에 figureSpec 까지 넣는다 — 「그림을 뗀다」류 변이는 본문·정답·해설이 그대로라
 # 그림을 안 찍으면 ⑵ 에서 «산출물이 그대로다»로 오판된다(멀쩡한 변이를 판정 거부).
@@ -51,7 +58,16 @@ for (const sec of sections) {
     // 변이는 산출물을 안 바꿔 **판정할 수 없다**(⑵ 거부). 4·79 는 초3 2-2-3 에서
     // 「나쁜 나머지가 뽑는 범위의 **끝**」인 자리를 밟는다 — 그것 없이는 「나쁜 r 탐색
     // 범위를 하나 줄임」 변이가 영영 판정되지 않는다(2026-08-23 실측).
-    for (const seed of [20260821, 7, 1234, 1, 2, 3, 4, 79]) {
+    //
+    // 23 은 초6 2-4 가 넣었다. 앞 여덟 씨앗은 2-4-5 심화의 **차 가지에서 뒤 이름이 더
+    // 많은 경우**(a<b)와 2-4-3 응용의 **오답 비율이 약분되는 경우**를 하나도 안 밟아
+    // 그 두 변이가 «산출물이 그대로다»로 판정 거부됐다. 23 은 **둘 다** 밟는다.
+    //
+    // 68 은 초6 2-2-4 「낱말 거짓말」 변이 몫이다. 그 자리는 **800 씨앗 중 4개**(0.5%)
+    // 뿐이라 아홉 씨앗으로는 구조적으로 안 밟힌다 — 변이를 손으로 적용해 산출물이
+    // 달라지는 씨앗을 찾아 넣었다(68·515·534·737 중 첫째). 그 자리가 바로 리드 반려의
+    // 「긴 막대 $12$ cm, 짧은 막대 $13$ cm」다.
+    for (const seed of [20260821, 7, 1234, 1, 2, 3, 4, 79, 23, 68]) {
       try {
         const p = generateElementaryProblem(unit, seed, tier);
         out.push(
@@ -437,6 +453,68 @@ G5_MUTS = [
         "  for (let v = Math.max(1, limit - 12); v < limit; v += 1) lowPool.push(v);",
         "  for (let v = limit - 12; v < limit; v += 1) lowPool.push(v);",
     ),
+    # ── 9차분 (2-2 분수의 곱셈) ──
+    (
+        # 값은 같고 답도 같다 — **차례만** 틀린다. 검산 가드는 통째로 조용하다.
+        "차례 훼손 — 2-2-1 이 (자연수)×(분수) 로 쓴다 (이름의 약속 ②)",
+        "`계산하시오.  ${expr(`\\\\frac{${a}}{${d}}\\\\times${k}`)}`,",
+        "`계산하시오.  ${expr(`${k}\\\\times\\\\frac{${a}}{${d}}`)}`,",
+    ),
+    (
+        "차례 훼손 — 2-2-2 가 (분수)×(자연수) 로 쓴다 (이름의 약속 ②)",
+        "`계산하시오.  ${expr(`${k}\\\\times\\\\frac{${a}}{${d}}`)}`,",
+        "`계산하시오.  ${expr(`\\\\frac{${a}}{${d}}\\\\times${k}`)}`,",
+    ),
+    (
+        "약분이 사라짐 — 2-2 의 자연수가 분모와 서로소만 되어 해설의 «약분»이 빈 말이 된다 (①)",
+        "  const k = pick(rng, divs) * intBetween(rng, 1, 2); // d 와 공약수를 반드시 가진다",
+        "  const k = intBetween(rng, 2, 8); // d 와 공약수를 반드시 가진다",
+    ),
+    (
+        "오개념 훼손 — 2-2-4 응용의 «잘못 계산한 값» 이 자연수부 곱이 아니다 (③)",
+        "    expr(fracLatex(dn, dd)),",
+        "    expr(fracLatex(rn, rd)),",
+    ),
+    # ── 10차분 (2-4 소수의 곱셈) ──
+    (
+        # 값도 답도 같다 — **차례만** 틀린다. 검산 가드는 통째로 조용하다.
+        "차례 훼손 — 2-4-1 이 (자연수)×(1보다 작은 소수) 로 쓴다 (이름의 약속)",
+        "`계산하시오.  ${expr(`${dec(t, 1)}\\\\times${k}`)}`,",
+        "`계산하시오.  ${expr(`${k}\\\\times${dec(t, 1)}`)}`,",
+    ),
+    (
+        "크기 훼손 — 2-4-1 이 1보다 큰 소수를 쓴다 (소단원 이름)",
+        "  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);\n  return make(\n    unit,\n    `계산하시오.  ${expr(`${dec(t, 1)}\\\\times${k}`)}`,",
+        "  const t = overOneT(rng, (x) => (x * k) % 10 !== 0);\n  return make(\n    unit,\n    `계산하시오.  ${expr(`${dec(t, 1)}\\\\times${k}`)}`,",
+    ),
+    (
+        # `dec()` 가 꼬리 0 을 접으므로 지면에 「$0.20$」은 안 나온다 — 그 대신
+        # **자리가 사라져** 이 소단원이 가르치려는 것이 안 보인다. 값 검산은 조용하다.
+        "자리 접힘 — 2-4-5 연산의 곱이 10의 배수가 되어 두 자리가 한 자리로 접힌다",
+        "  const b = underOneT(rng, (x) => (a * x) % 10 !== 0);\n  return make(\n    unit,\n    `계산하시오.",
+        "  const b = underOneT(rng);\n  return make(\n    unit,\n    `계산하시오.",
+    ),
+    (
+        "자리 접힘 — 2-4-2 응용의 합이 10의 배수가 될 수 있다",
+        "  const { b, k2 } = sumPairOverOne(rng, a, k1);\n  const total = a * k1 + b * k2;",
+        "  const b = overOneT(rng, (x) => x !== a);\n  const k2 = intBetween(rng, 2, 9);\n  const total = a * k1 + b * k2;",
+    ),
+    (
+        "제자리로 돌아옴 — 2-4-7 심화가 오른쪽 2칸·왼쪽 2칸이 되어 계산이 뜻을 잃는다",
+        "  const downSteps = pick(rng, [1, 2].filter((d) => d !== upSteps));",
+        "  const downSteps = pick(rng, [1, 2]);",
+    ),
+    (
+        # 소단원 이름이 약속한 것이 지면에 없으면 판정기도 시험도 그 조건을 못 본다.
+        "조건 사라짐 — 2-4-3 심화가 소수를 □ 로 가려 「1보다 작은 소수」가 지면에서 사라진다",
+        "`□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\\\square\\\\times${dec(t, 1)}=${dec(k * t, 1)}`)}`,",
+        "`□ 안에 알맞은 소수를 구하시오.  ${expr(`${k}\\\\times\\\\square=${dec(k * t, 1)}`)}`,",
+    ),
+    (
+        "진분수 약속 훼손 — 2-2-3 에 대분수가 든다 (소단원 이름)",
+        "`계산하시오.  ${expr(`\\\\frac{${a}}{${d}}\\\\times\\\\frac{${b}}{${e}}`)}`,",
+        "`계산하시오.  ${expr(`1\\\\frac{${a}}{${d}}\\\\times\\\\frac{${b}}{${e}}`)}`,",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -607,6 +685,60 @@ G6_MUTS = [
         """    `다음 나눗셈의 몫을 구하시오.\\n\\n${expr(`${c.a}\\\\div${b}=\\\\square`)}`,
     num(c.a),""",
     ),
+    (
+        # 2-4 ② — 비는 «자리»가 뜻이다. 뒤집으면 두 항의 **곱도 합도 그대로**라
+        # 값만 보는 잣대는 초록이다. 시험이 왼쪽·오른쪽을 따로 봐야만 빨개진다.
+        "자리 뒤집기 — 2-4-1 기본이 비의 전항과 후항을 바꿔 답한다",
+        """      `이런 상자 ${num(k)}개에 담긴 ${g.x} 수와 ${g.y} 수의 비를 쓰시오.`,
+    expr(`${a * k}:${b * k}`),""",
+        """      `이런 상자 ${num(k)}개에 담긴 ${g.x} 수와 ${g.y} 수의 비를 쓰시오.`,
+    expr(`${b * k}:${a * k}`),""",
+    ),
+    (
+        # 2-4 ① — 값(비율)은 그대로 맞다. **기약이 아닐 뿐**이다.
+        # 「비율이 같은가」만 보는 검산은 구조적으로 이걸 못 본다.
+        "기약 훼손 — 2-4-2 기본이 약분하지 않은 비를 답으로 낸다",
+        "    expr(`${p / g}:${q / g}`),",
+        "    expr(`${p}:${q}`),",
+    ),
+    (
+        # 2-4 ③ — 2-2-4 반려와 같은 부류. 값은 옳고 **낱말만** 거짓말한다.
+        "낱말 거짓말 — 2-4-5 심화가 «더 많은 쪽»을 값이 아니라 이름 차례로 고른다",
+        """  const more = a > b ? kid.one : kid.two;
+  const less = a > b ? kid.two : kid.one;""",
+        """  const more = kid.one;
+  const less = kid.two;""",
+    ),
+    (
+        # 2-4 ④ — 비례배분의 몫이 자연수가 아니게 된다.
+        "몫 훼손 — 2-4-5 응용의 둘레가 항의 합으로 안 나누어떨어진다",
+        "  const around = 2 * (w + h);",
+        "  const around = 2 * (w + h) + 2;",
+    ),
+    (
+        # 가드의 가드 — 시험이 「약분해 보이는 등식」을 예외로 빼 준다. 그 예외가
+        # **통째로 새는 구멍**이면 안 되므로, 등식을 없애 날 분수만 남겨 본다.
+        "예외 남용 — 2-4-3 응용 해설이 약분 등식 없이 안 줄인 분수만 적는다",
+        """  const wg = gcd(a + m, b + m);
+  const wrongRatio =
+    wg === 1""",
+        """  const wg = gcd(a + m, b + m);
+  const wrongRatio =
+    wg >= 1""",
+    ),
+    (
+        # 위 「예외 남용」과 짝이다. 그것은 **등식을 없애** 날 분수를 남기고, 이것은
+        # **거짓 등식**을 남긴다. 시험의 예외가 「오른쪽이 정말 왼쪽의 기약형인가」를
+        # 안 보고 통째로 빼면 이 자리가 조용히 통과한다.
+        #
+        # ⚠️ 처음엔 시험 쪽 조건을 `true ||` 로 열어 확인하려 했는데 **초록**이었다.
+        # 지금 해설에는 «참인 약분 등식»밖에 없어서 **산출물이 안 바뀌었기** 때문이다
+        # (하네스 판정 ⑵ 와 같은 함정 — 초록이 「장식」을 뜻하지 않는다).
+        # 거짓 등식을 **만들어 넣어야** 그 조건이 하는 일이 보인다.
+        "거짓 약분 — 2-4-3 응용 해설이 틀린 등식으로 «약분한 척» 한다",
+        "${(a + m) / wg}}{${(b + m) / wg}}",
+        "${a}}{${b}}",
+    ),
 ]
 
 TARGETS = {
@@ -672,6 +804,15 @@ TARGETS = {
             "2-1-4",
             "2-1-5",
             "2-1-6",
+            "2-2-1",
+            "2-2-2",
+            "2-2-3",
+            "2-2-4",
+            "2-4-1",
+            "2-4-2",
+            "2-4-3",
+            "2-4-5",
+            "2-4-7",
         ],
         "muts": G5_MUTS,
     },
@@ -716,6 +857,11 @@ TARGETS = {
             "2-2-3",
             "2-2-4",
             "2-2-5",
+            "2-4-1",
+            "2-4-2",
+            "2-4-3",
+            "2-4-4",
+            "2-4-5",
         ],
         "muts": G6_MUTS,
     },
@@ -727,14 +873,28 @@ def run(args: list[str]) -> tuple[int, str]:
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 
+# 산출물을 못 얻었을 때 **왜** 못 얻었는지. 예전에는 stderr 를 통째로 버려서
+# 「판정하지 않는다: 」 뒤가 비어 있었다 — 다음 사람이 원인을 다시 찾아야 했다.
+# 2026-08-23 실측: 다중 세션이 `src/lib/elementary/` 를 저장하는 사이에 돌면
+# 남의 **중간 상태**가 컴파일을 깨서 이 자리가 난다. 그때 그 파일 이름이 보여야
+# 「내 변이가 이상한가」와 「과녁이 움직였나」를 가를 수 있다.
+LAST_PROBE_ERR = ""
+
+
 def probe(grade: str, sections: list[str]) -> str:
+    global LAST_PROBE_ERR
     ts = PROBE_TS.replace("__GRADE__", grade).replace(
         "__SECTIONS__", json.dumps(sections)
     )
     io.open(PROBE_PATH, "w", encoding="utf-8").write(ts)
     try:
-        _, out = run(["npx", "tsx", PROBE_PATH])
-        return out.strip()
+        r = subprocess.run(
+            ["npx", "tsx", PROBE_PATH], capture_output=True, shell=True, cwd=ROOT
+        )
+        err = r.stderr.decode("utf-8", "replace").strip()
+        out = r.stdout.decode("utf-8", "replace").strip()
+        LAST_PROBE_ERR = "" if out else " / ".join(err.splitlines()[:3])
+        return out
     finally:
         if os.path.exists(PROBE_PATH):
             os.remove(PROBE_PATH)
@@ -816,7 +976,7 @@ def main() -> int:
                 # 「가드가 잡았다」로 읽힌다. 기준 산출물에만 있던 잣대를 여기에도 건다.
                 print(
                     f"  ??    {name}\n        ← **산출물을 못 얻었다**(컴파일이 깨졌을 수 있다). "
-                    f"판정하지 않는다: {got[:160]}"
+                    f"판정하지 않는다: {(got or LAST_PROBE_ERR)[:240]}"
                 )
                 ok = False
             else:

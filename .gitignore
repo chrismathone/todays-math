@@ -271,3 +271,8 @@ scripts/qa/reports/svg-compare-blocked/
 
 # 해설 생성 배치 산출물 — 재생성 가능, 원장(reports/ai-solution-*.json)만 커밋
 scripts/qa/nosol-out/
+
+# 변이 하네스가 잠깐 쓰는 산출물 probe — 이름에 PID 가 붙는다(동시 실행 충돌 방지).
+# 정상 종료하면 스스로 지우지만, 중간에 죽으면 남는다. 남의 `git add -A` 에
+# 실려 공유 이력으로 나간 전례가 있어(2026-08-18·08-19) 아예 막아 둔다.
+scripts/qa/.mutate-elem-tiers.probe.*.ts

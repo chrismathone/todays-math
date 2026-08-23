@@ -44,6 +44,81 @@ export function unfilledPlaceholders(text: string): string[] {
   return text.match(/[a-zA-Z]각형/g) ?? [];
 }
 
+// ── R-조사 — 수식 뒤 조사가 «읽는 소리»와 맞는가 (2026-08-23, elem-g4 이식) ─────
+//
+// 학년마다 각자 손으로 세던 것을 한곳에 올린다. 그래야 결함이 학년 사이를 안 넘나든다.
+//
+// ⚠️ **표준(`undefined`)을 포함해 훑어야 한다.** g3 이 실측으로 찾은 뿌리가 이것이다 —
+// 각 학년의 조사 검사가 `ELEM_TIERS` 만 순회해 **표준이 통째로 빠져 있었다**(갈래는
+// 30여 자리를 잡는데 표준은 구조적으로 0). 대단원 블록을 서로 본떠 썼으니 같은 자리가
+// 여러 학년에 있다. 이 함수를 부르는 쪽은 반드시 `[undefined, ...ELEM_TIERS]` 로 돈다.
+
+/** 끝 숫자를 한자 수사로 읽었을 때 받침이 있는가. 영·일·삼·육·칠·팔 만 있다. */
+const JOSA_BATCHIM: Record<string, boolean> = {
+  "0": true,
+  "1": true,
+  "2": false,
+  "3": true,
+  "4": false,
+  "5": false,
+  "6": true,
+  "7": true,
+  "8": true,
+  "9": false,
+};
+
+/** 조사가 받침 뒤에 쓰는 것인가. */
+const JOSA_NEEDS_BATCHIM: Record<string, boolean> = {
+  을: true,
+  를: false,
+  이: true,
+  가: false,
+  과: true,
+  와: false,
+  은: true,
+  는: false,
+};
+
+/**
+ * `$...$` 뒤 조사 중 **틀린 것**만 돌려준다. 잡힌 자리를 있는 그대로 적는다
+ * (띄어쓰기까지 보여야 어디를 고칠지 안다).
+ *
+ * 규칙 셋:
+ *  ㉠ **분수는 분자를 마지막에 읽는다** — `\frac{6}{10}` 은 「십분의 육」이라 «을».
+ *  ㉡ 그 밖은 **끝 숫자**의 소리로 정한다.
+ *  ㉢ 뒤에 한글이 이어지면 조사가 아니다 — 「$3$ **은행**나무」의 «은» 은 낱말의 첫 글자다.
+ *
+ * ⚠️ **㉢ 은 정확도 문제가 아니라 «가드 생존» 문제다.** 2026-08-23 elem-g5 실측:
+ * ㉢ 없이 재면 「$49$ **이**상인」의 «이» 를 조사로 읽어 **거짓 양성 41자리**가 났고
+ * (전체 65 → ㉢ 을 넣으니 **9**), 범위·비교를 다루는 단원이 통째로 빨개졌다.
+ * **거짓 경보는 가드를 끈다** — 늘 우는 검사는 다음 사람이 꺼 버리고, 그러면 진짜
+ * 결함도 같이 안 보인다. ㉢ 을 빼려는 사람은 이 수치를 먼저 볼 것.
+ *
+ * ⚠️ **못 재는 것은 «통과»가 아니라 «안 잼»이다.** 아래는 판정 **밖**이다 —
+ * 다음 사람이 「검사된다」고 읽지 않도록 여기 적어 둔다:
+ *  · `$\square$`·`$x$` 처럼 수가 없는 것 — 소리를 모른다.
+ *  · `$3$ kg을` 처럼 **단위가 소리를 바꾸는 것**(「킬로그램」이라 «을») — 수식 밖 낱말이
+ *    소리의 끝을 정하므로 이 스캐너의 규칙으로는 못 잰다.
+ *  · 「$4$ 대 $7$의 비」처럼 수식 사이에 낱말이 낀 것 — 마지막 수식만 본다.
+ */
+export function josaFaults(text: string): string[] {
+  const bad: string[] = [];
+  const re = /\$([^$]*)\$ ?(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+  let m = re.exec(text);
+  while (m !== null) {
+    const span = m[1]!;
+    const asFrac = span.match(/\\frac\{(\d+)\}\{\d+\}$/);
+    const asNum = span.match(/(\d+)$/);
+    const digits = asFrac?.[1] ?? asNum?.[1];
+    if (digits !== undefined) {
+      const want = JOSA_BATCHIM[digits.slice(-1)!]!;
+      if (JOSA_NEEDS_BATCHIM[m[2]!] !== want) bad.push(m[0]);
+    }
+    m = re.exec(text);
+  }
+  return bad;
+}
+
 /** 학년 안에서 «아직 안 배운 연산»을 가려낼 이름들. 값은 그 연산을 **도입하는 단원 이름**이다. */
 const CONCEPT_CHAPTER: Record<string, string> = {
   분수의곱셈: "2-2 분수의 곱셈",

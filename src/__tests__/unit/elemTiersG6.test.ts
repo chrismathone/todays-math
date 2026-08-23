@@ -2738,3 +2738,704 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 2-4 비례식과 비례배분 (5소단원 · 20갈래)
+//
+// 이 대단원의 답은 **자리가 뜻이다** — `$3:4$` 와 `$4:3$` 은 다른 답이다.
+// 그런데 값 검산이 흔히 쓰는 잣대(두 항의 곱·합, 약분한 비율)는 그 둘을 **구조적으로
+// 못 가른다**. 그래서 이 블록은 답을 «순서 있는 수의 나열»로 읽어 **자리마다** 견준다.
+// ══════════════════════════════════════════════════════════════════════════
+
+const G6_24_CODES = ["2-4-1", "2-4-2", "2-4-3", "2-4-4", "2-4-5"] as const;
+
+/** 답을 «모양 + 순서 있는 수의 나열»로. 모양(비·비례식·쌍·수)도 답의 일부다. */
+function readOrdered(
+  answer: string,
+): { shape: string; terms: number[] } | null {
+  const inner = answer.match(/^\$(.+)\$$/)?.[1];
+  if (inner === undefined) return null;
+  if (/^\d+:\d+=\d+:\d+$/.test(inner))
+    return { shape: "비례식", terms: inner.split(/[:=]/).map(Number) };
+  if (/^\d+(?::\d+)+$/.test(inner))
+    return { shape: "비", terms: inner.split(":").map(Number) };
+  if (/^\d+,\\ \d+$/.test(inner))
+    return { shape: "쌍", terms: inner.split(/,\\ /).map(Number) };
+  if (/^\d+$/.test(inner)) return { shape: "수", terms: [Number(inner)] };
+  return null;
+}
+
+/** 두 유리수의 비를 서로소인 자연수 쌍으로. */
+function reduceRatio(p: R, q: R): [number, number] {
+  const A = p.n * q.d;
+  const B = q.n * p.d;
+  const g = gcd(A, B);
+  return [A / g, B / g];
+}
+
+/** 단위 → 밑단위와 그 배율. **시험이 직접 든다** — 엔진 표를 안 쓴다. */
+const UNIT_BASE: Record<string, { base: string; n: number; d: number }> = {
+  m: { base: "길이", n: 1, d: 1 },
+  cm: { base: "길이", n: 1, d: 100 },
+  kg: { base: "무게", n: 1, d: 1 },
+  g: { base: "무게", n: 1, d: 1000 },
+  L: { base: "들이", n: 1, d: 1 },
+  mL: { base: "들이", n: 1, d: 1000 },
+};
+
+/** `$1.8\,\mathrm{kg}$` · `$\frac{1}{2}\,\mathrm{m}$` 를 **밑단위 값**으로 순서대로. */
+function quantitiesIn(text: string): R[] {
+  const out: R[] = [];
+  for (const m of text.matchAll(/\$([^$]*)\$/g)) {
+    const span = m[1]!;
+    const um = span.match(/\\mathrm\{([a-zA-Z]+)\}/);
+    const tok = span.replace(/\\,|\\mathrm\{[a-zA-Z]+\}(\^\d)?/g, "").trim();
+    const v = readDecTok(tok) ?? readNumber(tok);
+    if (!v) continue;
+    const u = um ? UNIT_BASE[um[1]!] : undefined;
+    out.push(u ? rat(v.n * u.n, v.d * u.d) : v);
+  }
+  return out;
+}
+
+const asRatio = (a: number, b: number) => ({ shape: "비", terms: [a, b] });
+const asNum = (v: number) => ({ shape: "수", terms: [v] });
+
+/**
+ * 발문이 말하는 답을 **시험이 다시 짓는다**. 엔진 함수를 안 부른다(되부르면 동어반복).
+ *
+ * 못 읽으면 `null` — 부르는 쪽이 **위반**으로 센다. 조용히 통과시키면 그 문형이
+ * 통째로 사각지대가 된다(이 저장소가 여러 번 겪은 자리).
+ */
+function truthOf24(
+  code: string,
+  c: string,
+): { shape: string; terms: number[] } | null {
+  if (code === "2-4-1") {
+    // 심화ⓑ 가 연산ⓐ 와 같은 말(「전항과 후항에 각각 …을 곱」)을 쓴다 — 먼저 가른다.
+    let m = c.match(
+      /^어떤 비의 전항과 후항에 각각 \$(\d+)\$[을를] 곱했더니 \$(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const [k, P, Q] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      if (P % k !== 0 || Q % k !== 0) return null;
+      return asNum(P / k + Q / k);
+    }
+    m = c.match(
+      /전항과 후항에 각각 \$(\d+)\$[을를] 곱한 비[\s\S]*?\$(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const k = Number(m[1]);
+      return asRatio(Number(m[2]) * k, Number(m[3]) * k);
+    }
+    m = c.match(
+      /전항과 후항을 각각 \$(\d+)\$으?로 나눈 비[\s\S]*?\$(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const [g, A, B] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      if (A % g !== 0 || B % g !== 0) return null;
+      return asRatio(A / g, B / g);
+    }
+    m = c.match(/^한 상자에 .*?\$(\d+)\$.*?\$(\d+)\$.*?이런 상자 \$(\d+)\$개/);
+    if (m) {
+      const k = Number(m[3]);
+      return asRatio(Number(m[1]) * k, Number(m[2]) * k);
+    }
+    m = c.match(
+      /중에서 \$(\d+):(\d+)\$[과와] 비율이 같은 비를 찾아[\s\S]*?\$(\d+):(\d+)\$, \$(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const v = m.slice(1, 7).map(Number);
+      const hits = [
+        [v[2]!, v[3]!],
+        [v[4]!, v[5]!],
+      ].filter(([x, y]) => x! * v[1]! === y! * v[0]!);
+      // 후보가 둘 다 맞거나 둘 다 틀리면 **문항 자체가 틀린 것**이다.
+      return hits.length === 1 ? asRatio(hits[0]![0]!, hits[0]![1]!) : null;
+    }
+    m = c.match(
+      /^\$(\d+):(\d+)\$[과와] 비율이 같은 비 중에서 전항과 후항의 합이 \$(\d+)\$인/,
+    );
+    if (m) {
+      const [a, b, sum] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      if (sum % (a + b) !== 0) return null;
+      const k = sum / (a + b);
+      return asRatio(a * k, b * k);
+    }
+    return null;
+  }
+
+  if (code === "2-4-2") {
+    const bare = c.match(/\$(\d+):(\d+)\$/);
+    if (bare) {
+      const [A, B] = [Number(bare[1]), Number(bare[2])];
+      const g = gcd(A, B);
+      return asRatio(A / g, B / g);
+    }
+    const qs = quantitiesIn(c);
+    if (qs.length < 2) return null;
+    const [x, y] = reduceRatio(qs[0]!, qs[1]!);
+    return asRatio(x, y);
+  }
+
+  if (code === "2-4-3") {
+    let m = c.match(
+      /^다음 비례식에서 (외항|내항)을 모두 쓰시오[\s\S]*?\$(\d+):(\d+)=(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const v = m.slice(2, 6).map(Number);
+      // 지면의 «비례식»이 참이 아니면 문항이 틀렸다.
+      if (v[0]! * v[3]! !== v[1]! * v[2]!) return null;
+      return {
+        shape: "쌍",
+        terms: m[1] === "외항" ? [v[0]!, v[3]!] : [v[1]!, v[2]!],
+      };
+    }
+    if (c.startsWith("작은 ")) {
+      const v = decNumbersIn(c);
+      if (v.length !== 4 || v.some((x) => x.d !== 1)) return null;
+      const t = v.map((x) => x.n);
+      if (t[0]! * t[3]! !== t[1]! * t[2]!) return null;
+      return { shape: "비례식", terms: t };
+    }
+    m = c.match(
+      /^다음 두 식 중에서 비례식을 찾아[\s\S]*?\$(\d+):(\d+)=(\d+):(\d+)\$, \$(\d+):(\d+)=(\d+):(\d+)\$/,
+    );
+    if (m) {
+      const v = m.slice(1, 9).map(Number);
+      const hits = [v.slice(0, 4), v.slice(4, 8)].filter(
+        (t) => t[0]! * t[3]! === t[1]! * t[2]!,
+      );
+      return hits.length === 1 ? { shape: "비례식", terms: hits[0]! } : null;
+    }
+    m = c.match(
+      /^비례식 \$(\d+):(\d+)=\\square:\\square\$ 에서 두 번째 비의 전항과 후항의 차가 \$(\d+)\$/,
+    );
+    if (m) {
+      const [a, b, diff] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      const gap = Math.abs(a - b);
+      if (gap === 0 || diff % gap !== 0) return null;
+      const k = diff / gap;
+      return { shape: "비례식", terms: [a, b, a * k, b * k] };
+    }
+    return null;
+  }
+
+  if (code === "2-4-4") {
+    let m = c.match(
+      /\$((?:\d+|\\square):(?:\d+|\\square)=(?:\d+|\\square):(?:\d+|\\square))\$/,
+    );
+    if (m) {
+      const parts = m[1]!.split(/[:=]/);
+      if (parts.filter((p) => p === "\\square").length !== 1) return null;
+      const pos = parts.indexOf("\\square");
+      const v = parts.map((p) => (p === "\\square" ? 0 : Number(p)));
+      const want =
+        pos === 0
+          ? (v[1]! * v[2]!) / v[3]!
+          : pos === 3
+            ? (v[1]! * v[2]!) / v[0]!
+            : pos === 1
+              ? (v[0]! * v[3]!) / v[2]!
+              : (v[0]! * v[3]!) / v[1]!;
+      return Number.isInteger(want) ? asNum(want) : null;
+    }
+    m = c.match(
+      /^[가-힣]+ \$(\d+)\$[가-힣]+의 값이 \$(\d+)\$원입니다\. 같은 [가-힣]+ \$(\d+)\$[가-힣]+의 값은 몇 원입니까\?$/,
+    );
+    if (m) {
+      const [a, price, more] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      const v = (price * more) / a;
+      return Number.isInteger(v) ? asNum(v) : null;
+    }
+    if (c.startsWith("휘발유 ")) {
+      const v = decNumbersIn(c);
+      if (v.length !== 4 || v.some((x) => x.d !== 1)) return null;
+      const t = v.map((x) => x.n);
+      const need = (t[0]! * t[2]!) / t[1]!;
+      return Number.isInteger(need) ? asNum(need - t[3]!) : null;
+    }
+    m = c.match(
+      /^어떤 비례식에서 외항의 곱이 \$(\d+)\$입니다\. 내항 중 하나가 \$(\d+)\$일 때/,
+    );
+    if (m) {
+      const [prod, known] = [Number(m[1]), Number(m[2])];
+      return prod % known === 0 ? asNum(prod / known) : null;
+    }
+    m = c.match(
+      /^어떤 비례식에서 내항은 \$(\d+)\$[과와] \$(\d+)\$ 입니다\. 외항 중 하나가 \$(\d+)\$일 때/,
+    );
+    if (m) {
+      const [x, y, outer] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      return (x * y) % outer === 0 ? asNum((x * y) / outer) : null;
+    }
+    return null;
+  }
+
+  if (code === "2-4-5") {
+    let m = c.match(
+      /^\$(\d+)\$[을를] \$(\d+):(\d+)\$으?로 비례배분하면 두 수는 각각/,
+    );
+    if (m) {
+      const [total, a, b] = [Number(m[1]), Number(m[2]), Number(m[3])];
+      if (total % (a + b) !== 0) return null;
+      const k = total / (a + b);
+      return { shape: "쌍", terms: [a * k, b * k] };
+    }
+    const asked = c.match(/([가-힣]+)[이가] 갖는/);
+    m = c.match(
+      /\$(\d+)\$[가-힣]+[을를] ([가-힣]+), ([가-힣]+), ([가-힣]+)[이가] \$(\d+):(\d+):(\d+)\$/,
+    );
+    if (m && asked) {
+      const total = Number(m[1]);
+      const names = [m[2]!, m[3]!, m[4]!];
+      const t = [Number(m[5]), Number(m[6]), Number(m[7])];
+      const sum = t[0]! + t[1]! + t[2]!;
+      const idx = names.indexOf(asked[1]!);
+      if (idx < 0 || total % sum !== 0) return null;
+      return asNum((total / sum) * t[idx]!);
+    }
+    m = c.match(
+      /\$(\d+)\$[가-힣]+[을를] ([가-힣]+)[과와] ([가-힣]+)[이가] \$(\d+):(\d+)\$/,
+    );
+    if (m && asked) {
+      const [total, a, b] = [Number(m[1]), Number(m[4]), Number(m[5])];
+      const part = asked[1] === m[2] ? a : asked[1] === m[3] ? b : null;
+      if (part === null || total % (a + b) !== 0) return null;
+      return asNum((total / (a + b)) * part);
+    }
+    if (c.startsWith("둘레가 ")) {
+      const v = decNumbersIn(c);
+      if (v.length !== 3 || v.some((x) => x.d !== 1)) return null;
+      const t = v.map((x) => x.n);
+      if (t[0]! % 2 !== 0) return null;
+      const half = t[0]! / 2;
+      if (half % (t[1]! + t[2]!) !== 0) return null;
+      const k = half / (t[1]! + t[2]!);
+      return asNum(t[1]! * k * (t[2]! * k));
+    }
+    m = c.match(
+      /^[가-힣]+[을를] ([가-힣]+)[과와] ([가-힣]+)[이가] \$(\d+):(\d+)\$으?로 나누어 가졌더니 ([가-힣]+)[이가] \$(\d+)\$/,
+    );
+    if (m) {
+      const [a, b] = [Number(m[3]), Number(m[4])];
+      const part = m[5] === m[1] ? a : m[5] === m[2] ? b : null;
+      const mine = Number(m[6]);
+      if (part === null || mine % part !== 0) return null;
+      return asNum((mine / part) * (a + b));
+    }
+    m = c.match(
+      /^[가-힣]+[을를] ([가-힣]+)[과와] ([가-힣]+)[이가] \$(\d+):(\d+)\$으?로 나누어 가졌습니다\. ([가-힣]+)[이가] ([가-힣]+)보다 \$(\d+)\$/,
+    );
+    if (m) {
+      const [a, b] = [Number(m[3]), Number(m[4])];
+      const moreIsFirst = m[5] === m[1] && m[6] === m[2];
+      const moreIsSecond = m[5] === m[2] && m[6] === m[1];
+      if (!moreIsFirst && !moreIsSecond) return null;
+      const big = moreIsFirst ? a : b;
+      const small = moreIsFirst ? b : a;
+      // ③ 낱말이 값을 주장한다 — 「더 많이」가 실제로 큰 쪽이 아니면 여기서 죽는다.
+      if (big <= small) return null;
+      const diff = Number(m[7]);
+      return diff % (big - small) === 0
+        ? asNum((diff / (big - small)) * (a + b))
+        : null;
+    }
+    return null;
+  }
+  return null;
+}
+
+describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
+  it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_24_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 — 비는 **왼쪽·오른쪽을 따로** 견준다", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_24_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          const want = truthOf24(code, flat);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          const got = readOrdered(p.answer);
+          if (!got) {
+            bad.push(`${where}: 답 모양을 못 읽음 — ${p.answer}`);
+            continue;
+          }
+          checked += 1;
+          if (got.shape !== want.shape) {
+            bad.push(
+              `${where}: 답이 «${got.shape}» 인데 «${want.shape}» 여야 — ${p.answer}`,
+            );
+          } else if (
+            got.terms.length !== want.terms.length ||
+            got.terms.some((v, i) => v !== want.terms[i])
+          ) {
+            bad.push(
+              `${where}: 답 ${p.answer} ([${want.terms.join(", ")}] 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_24_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("2-4-2 의 답은 늘 «가장 간단한 자연수의 비»다 (시험이 최대공약수를 잰다)", () => {
+    // 소단원 이름이 내건 조건은 **답**에 있다. 값이 맞아도 기약이 아니면 답이 아니다.
+    const bad: string[] = [];
+    const unit = unitOf("2-4-2");
+    for (const tier of ELEM_TIERS) {
+      for (let seed = 0; seed < 400; seed += 1) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const got = readOrdered(p.answer);
+        if (!got || got.shape !== "비" || got.terms.length !== 2) {
+          bad.push(
+            `2-4-2 ${tier} seed=${seed}: 답이 비가 아니다 — ${p.answer}`,
+          );
+          continue;
+        }
+        const [x, y] = got.terms as [number, number];
+        if (!Number.isInteger(x) || !Number.isInteger(y) || x < 1 || y < 1) {
+          bad.push(
+            `2-4-2 ${tier} seed=${seed}: 자연수 비가 아니다 — ${p.answer}`,
+          );
+        } else if (gcd(x, y) !== 1) {
+          bad.push(
+            `2-4-2 ${tier} seed=${seed}: 기약이 아니다 (gcd=${gcd(x, y)}) — ${p.answer}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("2-4-2 는 갈래마다 «간단히 하는 걸음»이 하나씩 늘어난다", () => {
+    // 「심화만 되짚는다」축이 안 서는 소단원이다(역산이 아니라 **조건 결합**으로 오른다).
+    // 그러면 축이 없는 게 아니라 **다른 축**이다 — 지면에 남은 «고칠 것»의 종류로 잰다.
+    const bad: string[] = [];
+    const unit = unitOf("2-4-2");
+    const unitsOf = (s: string) =>
+      new Set([...s.matchAll(/\\mathrm\{([a-zA-Z]+)\}/g)].map((m) => m[1]));
+    for (const seed of SEEDS) {
+      const at = (t: ElemTier) =>
+        generateElementaryProblem(unit, seed, t).content.replace(/\n+/g, " ");
+      const calc = at("연산");
+      const basic = at("기본");
+      const apply = at("응용");
+      const deep = at("심화");
+      if (!/^다음 비를 .*\$\d+:\d+\$$/.test(calc))
+        bad.push(`연산 seed=${seed}: 자연수 비 하나가 아니다 — ${calc}`);
+      if (!/\d\.\d/.test(basic) || basic.includes("\\frac"))
+        bad.push(`기본 seed=${seed}: 소수 두 양이 아니다 — ${basic}`);
+      if (!apply.includes("\\frac") || !/\d\.\d/.test(apply))
+        bad.push(`응용 seed=${seed}: 분수와 소수가 섞이지 않았다 — ${apply}`);
+      if (unitsOf(deep).size !== 2)
+        bad.push(`심화 seed=${seed}: 단위가 둘이 아니다 — ${deep}`);
+      if (unitsOf(basic).size !== 1)
+        bad.push(`기본 seed=${seed}: 단위가 하나가 아니다 — ${basic}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("2-4-1 응용의 오답 후보는 «뒤집은 비»다 — 곱·합으로는 안 갈리는 자리를 세운다", () => {
+    // 이 문항이 ② 축을 실제로 재려면 두 후보가 **곱도 합도 같아야** 한다.
+    // 안 그러면 곱만 보는 잣대로도 갈려서, 「자리를 본다」는 잠금이 장식이 된다.
+    const bad: string[] = [];
+    const unit = unitOf("2-4-1");
+    let seen = 0;
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = generateElementaryProblem(unit, seed, "응용");
+      const flat = p.content.replace(/\n+/g, " ");
+      const m = flat.match(
+        /중에서 \$(\d+):(\d+)\$[과와] .*\$(\d+):(\d+)\$, \$(\d+):(\d+)\$/,
+      );
+      if (!m) {
+        bad.push(`seed=${seed}: 후보 둘을 못 읽음 — ${flat}`);
+        continue;
+      }
+      seen += 1;
+      const v = m.slice(1, 7).map(Number);
+      const [a, b, p1, q1, p2, q2] = v as number[];
+      if (p1 !== q2 || q1 !== p2)
+        bad.push(`seed=${seed}: 두 후보가 서로 뒤집힌 짝이 아니다 — ${flat}`);
+      if (p1! * q1! !== p2! * q2!)
+        bad.push(`seed=${seed}: 두 후보의 곱이 다르다 — ${flat}`);
+      if (p1! + q1! !== p2! + q2!)
+        bad.push(`seed=${seed}: 두 후보의 합이 다르다 — ${flat}`);
+      if (a === b)
+        bad.push(
+          `seed=${seed}: 기준 비의 두 항이 같아 뒤집어도 같다 — ${flat}`,
+        );
+      const ok = [
+        [p1!, q1!],
+        [p2!, q2!],
+      ].filter(([x, y]) => x! * b! === y! * a!);
+      if (ok.length !== 1)
+        bad.push(`seed=${seed}: 비율이 같은 후보가 ${ok.length}개다 — ${flat}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(seen).toBe(200);
+  });
+
+  it("비례배분은 몫이 자연수다 — 전체가 «항의 합»으로 나누어떨어진다", () => {
+    const bad: string[] = [];
+    const unit = unitOf("2-4-5");
+    for (const tier of ELEM_TIERS) {
+      for (let seed = 0; seed < 500; seed += 1) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const flat = p.content.replace(/\n+/g, " ");
+        const rm = flat.match(/\$(\d+):(\d+)(?::(\d+))?\$/);
+        if (!rm) {
+          bad.push(`${tier} seed=${seed}: 비가 지면에 없다 — ${flat}`);
+          continue;
+        }
+        const terms = [rm[1], rm[2], rm[3]]
+          .filter((v): v is string => v !== undefined)
+          .map(Number);
+        const sum = terms.reduce((s, v) => s + v, 0);
+        if (terms.reduce((g, v) => gcd(g, v), 0) !== 1) {
+          bad.push(
+            `${tier} seed=${seed}: 비가 가장 간단한 자연수의 비가 아니다 — ${flat}`,
+          );
+        }
+        // 전체가 어디 적혔는지는 갈래마다 다르다 — 역산 갈래에서는 **답**이 전체다.
+        let total = NaN;
+        if (/비례배분하면 두 수는/.test(flat)) {
+          const t = readOrdered(p.answer);
+          total = t && t.shape === "쌍" ? t.terms[0]! + t.terms[1]! : NaN;
+        } else if (flat.startsWith("둘레가 ")) {
+          const around = Number(flat.match(/^둘레가 \$(\d+)/)?.[1]);
+          total = around % 2 === 0 ? around / 2 : NaN;
+        } else if (/처음 .*모두 몇/.test(flat)) {
+          total = Number(p.answer.match(/^\$(\d+)\$$/)?.[1] ?? NaN);
+        } else {
+          total = Number(flat.match(/\$(\d+)\$[가-힣]+[을를] /)?.[1] ?? NaN);
+        }
+        if (!Number.isFinite(total)) {
+          bad.push(
+            `${tier} seed=${seed}: 전체를 못 읽음 — ${flat} / ${p.answer}`,
+          );
+        } else if (total % sum !== 0 || total / sum < 1) {
+          bad.push(
+            `${tier} seed=${seed}: ${total}÷${sum} 이 떨어지지 않는다 — ${flat}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("순서를 주장하는 낱말은 값의 순서와 맞는다 — 2-4-5 씨앗 0~1999 전수", () => {
+    // ⚠️ 씨앗 16개로는 구조적으로 안 보이는 부류다 — 2-2-4 반려가 2000 중 7건(0.35%)
+    // 이었다. 값·판정기·시험이 전부 통과하고 **낱말만** 거짓말한다. 그래서 전수로 쓴다.
+    // 그리고 엔진의 표시가 아니라 **지면의 낱말**로 잰다(표시를 믿으면 같이 눈이 먼다).
+    const bad: string[] = [];
+    const unit = unitOf("2-4-5");
+    let seen = 0;
+    for (const tier of ELEM_TIERS) {
+      for (let seed = 0; seed < 2000; seed += 1) {
+        const flat = generateElementaryProblem(
+          unit,
+          seed,
+          tier,
+        ).content.replace(/\n+/g, " ");
+        const more = flat.match(
+          /([가-힣]+)[이가] ([가-힣]+)보다 \$(\d+)\$[가-힣]+ 더 많이/,
+        );
+        if (!more) continue;
+        seen += 1;
+        const m = flat.match(
+          /([가-힣]+)[과와] ([가-힣]+)[이가] \$(\d+):(\d+)\$/,
+        );
+        if (!m) {
+          bad.push(`${tier} seed=${seed}: 비와 두 이름을 못 읽음 — ${flat}`);
+          continue;
+        }
+        const [a, b] = [Number(m[3]), Number(m[4])];
+        const bigger = a > b ? m[1] : m[2];
+        const smaller = a > b ? m[2] : m[1];
+        if (more[1] !== bigger || more[2] !== smaller) {
+          bad.push(
+            `${tier} seed=${seed}: 「${more[1]}가 ${more[2]}보다 더 많이」인데 비는 ${a}:${b} — ${flat}`,
+          );
+        }
+        if (a === b || Number(more[3]) % Math.abs(a - b) !== 0) {
+          bad.push(`${tier} seed=${seed}: 차가 값과 안 맞는다 — ${flat}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 잴 자리가 정말 있는가 — 0 이면 이 잠금은 아무것도 증명하지 않는다.
+    expect(seen).toBeGreaterThan(100);
+  });
+
+  it("2-4-3 기본의 «작은·큰» 도 값과 맞는다 — 씨앗 0~1999 전수", () => {
+    const bad: string[] = [];
+    const unit = unitOf("2-4-3");
+    let seen = 0;
+    for (let seed = 0; seed < 2000; seed += 1) {
+      const p = generateElementaryProblem(unit, seed, "기본");
+      if (!p.content.startsWith("작은 ")) continue;
+      seen += 1;
+      const v = decNumbersIn(p.content).map((x) => x.n);
+      if (v.length !== 4) {
+        bad.push(`seed=${seed}: 네 수를 못 읽음 — ${p.content}`);
+        continue;
+      }
+      if (v[2]! <= v[0]! || v[3]! <= v[1]!) {
+        bad.push(`seed=${seed}: 「큰 것」이 더 작다 — ${p.content}`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(seen).toBe(2000);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "2-4-1": /^다음 비의 전항과 후항/,
+      "2-4-2": /^다음 비를 가장 간단한 자연수의 비로 나타내시오/,
+      "2-4-3": /^다음 비례식에서 (외항|내항)을 모두 쓰시오/,
+      "2-4-4": /^\$\\square\$ 안에 알맞은 수를 구하시오/,
+      "2-4-5": /비례배분하면 두 수는 각각 얼마입니까\?$/,
+    };
+    // 2-4-2 는 역산이 아니라 **조건 결합**으로 오르는 소단원이라 이 축이 없다 —
+    // 그 축은 위 「걸음이 하나씩 늘어난다」가 대신 잰다(사각지대로 두지 않는다).
+    const DEEP_MARK: Record<string, RegExp> = {
+      "2-4-1": /^어떤 비의|합이 \$\d+\$인 비를 쓰시오/,
+      "2-4-3": /차가 \$\d+\$입니다/,
+      "2-4-4": /^어떤 비례식에서/,
+      "2-4-5": /가졌더니|더 많이 가졌다면/,
+    };
+    for (const code of G6_24_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const at = (t: ElemTier) =>
+          generateElementaryProblem(unit, seed, t).content.replace(/\n+/g, " ");
+        expect(
+          CALC_SHAPE[code]!.test(at("연산")),
+          `${code} 연산 seed=${seed}: ${at("연산")}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(at("기본")),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${at("기본")}`,
+        ).toBe(false);
+        const deep = DEEP_MARK[code];
+        if (!deep) continue;
+        expect(
+          deep.test(at("심화")),
+          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화")}`,
+        ).toBe(true);
+        expect(
+          deep.test(at("응용")),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${at("응용")}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_24_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·꼬리 0·샌 소수 없음", () => {
+    const bad: string[] = [];
+    // 「기약이다」 가드가 **몇 개를 재고 몇 개를 예외로 뺐는지**를 센다.
+    // 예외는 조용히 넓어진다 — 세어서 못 박아 두면 «갑자기 커진 것»이 보인다.
+    // (리드 지적 2026-08-23. 「못 잰 것은 통과가 아니라 안 잼」과 같은 태도다.)
+    let fracSeen = 0;
+    let fracExempt = 0;
+    for (const code of G6_24_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            const trailing = field.match(/\d+\.\d*0(?![\d])/g);
+            if (trailing)
+              bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);
+            const runaway = field.match(/\d+\.\d{4,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
+            // 지면의 분수는 기약이다. **딱 한 자리만** 예외 — 해설이 「$\frac{15}{18}=
+            // \frac{5}{6}$」처럼 **약분해 보이는** 등식. 그 왼쪽은 안 줄인 게 뜻이다.
+            // 그 자리를 통째로 빼지 않고 «오른쪽이 정말 왼쪽의 기약형일 때만» 뺀다 —
+            // 안 그러면 이 가드가 해설에서 장식이 된다.
+            fracSeen += [...field.matchAll(/\\frac\{\d+\}\{\d+\}/g)].length;
+            const scan =
+              name === "해설"
+                ? field.replace(
+                    /\\frac\{(\d+)\}\{(\d+)\}=\\frac\{(\d+)\}\{(\d+)\}/g,
+                    (all, a1, b1, c1, d1) => {
+                      const [x, y, u, w] = [a1, b1, c1, d1].map(Number) as [
+                        number,
+                        number,
+                        number,
+                        number,
+                      ];
+                      if (x * w === y * u && gcd(u, w) === 1) {
+                        fracExempt += 2;
+                        return " ";
+                      }
+                      return all;
+                    },
+                  )
+                : field;
+            for (const f of scan.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)) {
+              if (gcd(Number(f[1]), Number(f[2])) !== 1)
+                bad.push(`${where} ${name}: 분수가 기약이 아니다 — ${f[0]}`);
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 실측 리터럴로 못 박는다 — 예외가 넓어지면 이 줄이 먼저 빨개진다.
+    // 분모(fracSeen)도 같이 박는다: **0 이면 이 가드는 아무것도 안 잰 것**이다.
+    expect({ 분수: fracSeen, 예외: fracExempt }).toEqual({
+      분수: 99,
+      예외: 38,
+    });
+  });
+});

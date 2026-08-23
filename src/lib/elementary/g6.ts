@@ -3534,7 +3534,8 @@ function stripReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
     `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
       `조사한 전체 학생은 몇 명입니까?`,
     num(total),
-    `띠그래프에서 ${one.label}의 비율은 ${expr(`${one.pct}\\%`)} 입니다. 전체의 ${expr(`\\frac{${one.pct}}{100}`)} 이 ${num(n)}명이므로 ` +
+    // 「백분의 (pct)」 — 분수는 **분자를 마지막에 읽으므로** 조사는 pct 가 정한다(R-조사).
+    `띠그래프에서 ${one.label}의 비율은 ${expr(`${one.pct}\\%`)} 입니다. 전체의 ${expr(`\\frac{${one.pct}}{100}`)}${numJosa(one.pct, "이", "가")} ${num(n)}명이므로 ` +
       `${expr(`${n}\\div\\frac{${one.pct}}{100}=${total}`)} 입니다.`,
     fig("stripChart", { segments: d.items }),
   );
@@ -4446,7 +4447,9 @@ function flipDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `곱셈식이 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)}${numJosa(f.n2, "이", "가")} 되는 나눗셈식을 쓰시오.`,
+    // ⚠️ 지면의 마지막 수식은 **뒤집힌** `\frac{d2}{n2}` 라 분자가 `d2` 다 — 조사는 그것이
+    //    정한다. `n2` 로 골라 「$\frac{3}{5}\times\frac{3}{2}$가」가 나갔다(R-조사가 잡았다).
+    `곱셈식이 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)}${numJosa(f.d2, "이", "가")} 되는 나눗셈식을 쓰시오.`,
     expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`),
     `곱한 수 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 의 분모와 분자를 되돌리면 나누는 수 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 입니다.`,
   );
@@ -5042,6 +5045,605 @@ function remDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 9차분) — 초6 `2-4 비례식과 비례배분` (5소단원 · 20갈래) ──
+//
+// 앞 여덟 차분과 다른 점 하나가 이 대단원 전체를 지배한다 — **답이 «순서 있는 짝»** 이다.
+// ⑴ `$3:4$` 와 `$4:3$` 은 **다른 답**이다. 그런데 값 검산이 흔히 쓰는 잣대(두 항의 곱·합,
+//    비율을 약분한 값)는 그 둘을 **구조적으로 못 가른다** — 곱도 합도 같다. 그래서 시험은
+//    비를 **왼쪽·오른쪽 따로** 대조한다. 2-4-1 응용은 오답 후보를 일부러 **뒤집은 비**로
+//    놓았다: 그 대조가 죽으면 문항의 답이 둘이 되어 지면 자체가 틀린다.
+// ⑵ 2-4-2 는 소단원이 「**간단한** 자연수의 비로 나타내기」라고 약속한다 — 답의 두 항이
+//    서로소가 아니면 **값은 맞는데 답이 아니다**. 시험은 답의 최대공약수를 재고,
+//    `probe-elem-section-conditions.ts` 는 반대편(지면에 «간단히 할 것»이 남았는가)을 잰다.
+// ⑶ 비례배분의 몫은 **자연수로 떨어져야** 한다. 「떨어지면 좋고」가 아니라 전체를
+//    `(a+b)\times k` 로 **지어서** 보장한다. 시험이 그 나눗셈을 다시 해 본다.
+// ⑷ 「$X$ 가 $Y$ 보다 더 많이」처럼 **낱말이 값을 주장하는** 자리는 값을 먼저 정하고
+//    낱말을 뒤에 고른다 — 2-2-4 반려 선례(소재를 먼저 골라 「긴 막대」가 더 짧았다,
+//    2000 씨앗 중 7건). 씨앗 전량으로 잠근다.
+// ⑸ 비 뒤에 조사를 붙일 때는 **뒤 항**의 소리로 고른다(`numJosa`) — `$3:4$` 는
+//    「삼 대 사」다. 파일 머리 `josa` 주석이 「쓰지 말라」고 한 자리이므로, 쓰는 곳은
+//    이 규칙을 지킨 곳뿐이다.
+
+/**
+ * 서로소인 두 항. 지면의 비는 **가장 간단한 자연수의 비**로만 세운다
+ * (`2:4` 는 교재에 안 쓴다 — 표준 `proportion` 이 이미 그렇게 한다).
+ *
+ * 폴백은 **이웃한 두 수**다 — `gcd(n, n±1)=1` 이라 늘 서로소이고 범위도 안 벗어난다.
+ * (예전 폴백 후보 `[a, lo]` 는 `a=4, lo=2` 에서 서로소가 아니다.)
+ */
+function coprimePair(rng: Rng, lo: number, hi: number): [number, number] {
+  const a = intBetween(rng, lo, hi);
+  for (let t = 0; t < 30; t += 1) {
+    const b = intBetween(rng, lo, hi);
+    if (b !== a && gcd(a, b) === 1) return [a, b];
+  }
+  return [a, a > lo ? a - 1 : a + 1];
+}
+
+/** 「두 항을 최대공약수로 나눈다」 한 문장. 이미 서로소면 **그 사실을** 대신 적는다. */
+function simplifySentence(a: number, b: number): string {
+  const g = gcd(a, b);
+  return g === 1
+    ? `두 항의 최대공약수가 ${num(1)}이므로 ${expr(`${a}:${b}`)}${numJosa(b, "이", "가")} 가장 간단한 자연수의 비입니다.`
+    : `두 항을 최대공약수 ${num(g)}${numRo(g)} 나누면 ${expr(`${a / g}:${b / g}`)} 입니다.`;
+}
+
+// ── 2-4-1 비의 성질 알아보기 ──
+
+/** 2-4-1 기본 — 한 상자에 같이 담는 두 물건. 세는 말이 물건마다 다르다. */
+const BOX_GOODS = [
+  { x: "사과", cx: "개", y: "배", cy: "개" },
+  { x: "연필", cx: "자루", y: "공책", cy: "권" },
+  { x: "장미", cx: "송이", y: "국화", cy: "송이" },
+  { x: "붕어빵", cx: "개", y: "우유", cy: "병" },
+] as const;
+
+/** 연산 — 비의 성질 한 번. 전항·후항에 같은 수를 곱하거나 나눈다. */
+function ratioPropCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  if (rng() < 0.5) {
+    const k = intBetween(rng, 2, 7);
+    return make(
+      unit,
+      `다음 비의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱한 비를 쓰시오.\n\n${expr(`${a}:${b}`)}`,
+      expr(`${a * k}:${b * k}`),
+      `비의 전항과 후항에 ${num(0)}이 아닌 같은 수를 곱해도 비율은 같습니다. ` +
+        `${expr(`${a}\\times${k}:${b}\\times${k}=${a * k}:${b * k}`)}`,
+    );
+  }
+  const g = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `다음 비의 전항과 후항을 각각 ${num(g)}${numRo(g)} 나눈 비를 쓰시오.\n\n${expr(`${a * g}:${b * g}`)}`,
+    expr(`${a}:${b}`),
+    `비의 전항과 후항을 ${num(0)}이 아닌 같은 수로 나누어도 비율은 같습니다. ` +
+      `${expr(`${a * g}\\div${g}:${b * g}\\div${g}=${a}:${b}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 상자 수만큼 두 물건이 같이 늘어난다(비의 성질이 상황에 서 있다). */
+function ratioPropWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = pick(rng, BOX_GOODS);
+  const [a, b] = coprimePair(rng, 2, 6);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 상자에 ${g.x} ${num(a)}${g.cx}${josa(g.cx, "과", "와")} ${g.y} ${num(b)}${g.cy}${josa(g.cy, "을", "를")} 담습니다. ` +
+      `이런 상자 ${num(k)}개에 담긴 ${g.x} 수와 ${g.y} 수의 비를 쓰시오.`,
+    expr(`${a * k}:${b * k}`),
+    `상자 ${num(k)}개에는 ${g.x}${josa(g.x, "이", "가")} ${expr(`${a}\\times${k}=${a * k}`)} ${g.cx}, ` +
+      `${g.y}${josa(g.y, "이", "가")} ${expr(`${b}\\times${k}=${b * k}`)} ${g.cy} 있습니다. ` +
+      `${g.x} 수와 ${g.y} 수의 비는 ${expr(`${a * k}:${b * k}`)} 입니다.`,
+  );
+}
+
+/**
+ * 응용 — 두 걸음. 두 비의 비율을 각각 따져 같은 것을 고른다.
+ *
+ * ⚠️ 오답 후보를 일부러 **전항과 후항을 뒤집은 비**로 놓았다. 두 항의 곱도 합도 같아서
+ * 「값이 맞나」만 보는 검산으로는 정답과 오답이 **구별되지 않는다** — 왼쪽·오른쪽을
+ * 따로 봐야 하는 이유가 지면에 서 있는 자리다.
+ */
+function ratioPropApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  const right = `${a * k}:${b * k}`;
+  const wrong = `${b * k}:${a * k}`;
+  const rightFirst = rng() < 0.5;
+  return make(
+    unit,
+    `다음 두 비 중에서 ${expr(`${a}:${b}`)}${numJosa(b, "과", "와")} 비율이 같은 비를 찾아 쓰시오.\n\n` +
+      (rightFirst
+        ? `${expr(right)}, ${expr(wrong)}`
+        : `${expr(wrong)}, ${expr(right)}`),
+    expr(right),
+    `${expr(right)}${numJosa(b * k, "은", "는")} ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ` +
+      `${num(k)}${numJosa(k, "을", "를")} 곱한 비이므로 비율이 같습니다. ` +
+      `${expr(wrong)}${numJosa(a * k, "은", "는")} 전항과 후항이 바뀌어 비율이 다릅니다.`,
+  );
+}
+
+/** 심화 — ⓐ 두 항의 «합» 조건과 결합 ⓑ 곱하기 전 비를 되짚어 합을 구한다(역산). */
+function ratioPropDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  if (intBetween(rng, 0, 1) === 0) {
+    const sum = (a + b) * k;
+    return make(
+      unit,
+      `${expr(`${a}:${b}`)}${numJosa(b, "과", "와")} 비율이 같은 비 중에서 ` +
+        `전항과 후항의 합이 ${num(sum)}인 비를 쓰시오.`,
+      expr(`${a * k}:${b * k}`),
+      `${expr(`${a}:${b}`)} 의 두 항의 합은 ${expr(`${a}+${b}=${a + b}`)} 입니다. ` +
+        `${expr(`${sum}\\div${a + b}=${k}`)} 이므로 두 항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱합니다. ` +
+        `${expr(`${a * k}:${b * k}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 비의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱했더니 ` +
+      `${expr(`${a * k}:${b * k}`)}${numJosa(b * k, "이", "가")} 되었습니다. ` +
+      `처음 비의 전항과 후항의 합은 얼마입니까?`,
+    num(a + b),
+    `처음 비는 두 항을 각각 ${num(k)}${numRo(k)} 나눈 ${expr(`${a}:${b}`)} 입니다. ` +
+      `두 항의 합은 ${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+// ── 2-4-2 간단한 자연수의 비로 나타내기 ──
+
+/** 2-4-2 기본 — 소수 한 자리로 재는 두 재료. */
+const MIX_STUFF = [
+  { x: "주스", y: "우유", u: "L" },
+  { x: "물", y: "식초", u: "L" },
+  { x: "밀가루", y: "설탕", u: "kg" },
+  { x: "간장", y: "참기름", u: "L" },
+] as const;
+
+/** 2-4-2 응용 — 한쪽은 분수, 한쪽은 소수로 잰 두 끈. */
+const MIX_STRINGS = [
+  { x: "빨간 끈", y: "파란 끈" },
+  { x: "노란 리본", y: "초록 리본" },
+  { x: "굵은 철사", y: "가는 철사" },
+] as const;
+
+/**
+ * 2-4-2 심화 — **단위가 서로 다른** 두 양. `per` 는 큰 단위 한 개가 작은 단위 몇인가.
+ *
+ * 조사는 단위를 **소리 내어 읽은** 끝소리가 정한다(킬로그램**과** · 미터**와**) —
+ * 글자 `kg` 만 봐서는 못 고른다. 그래서 손으로 적는다.
+ */
+const UNIT_MIX = [
+  { big: "m", small: "cm", per: 100, ro: "로", thing: "게시판" }, // 센티미터로
+  { big: "kg", small: "g", per: 1000, ro: "으로", thing: "상자" }, // 그램으로
+  { big: "L", small: "mL", per: 1000, ro: "로", thing: "물통" }, // 밀리리터로
+] as const;
+
+/** 연산 — 자연수 비 하나. 최대공약수로 나눈다. */
+function simpleRatioCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `다음 비를 가장 간단한 자연수의 비로 나타내시오.\n\n${expr(`${a * g}:${b * g}`)}`,
+    expr(`${a}:${b}`),
+    `두 항을 최대공약수 ${num(g)}${numRo(g)} 나눕니다. ` +
+      `${expr(`${a * g}\\div${g}:${b * g}\\div${g}=${a}:${b}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 소수 한 자리로 잰 두 양을 자연수 비로 고친다. */
+function simpleRatioWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, MIX_STUFF);
+  const p = intBetween(rng, 2, 9);
+  let q = intBetween(rng, 2, 9);
+  for (let t = 0; t < 20 && q === p; t += 1) q = intBetween(rng, 2, 9);
+  if (q === p) q = p === 9 ? 8 : p + 1;
+  const g = gcd(p, q);
+  return make(
+    unit,
+    `${s.x}의 양은 ${unitNum(decStr(p, 1), s.u)} 이고 ${s.y}의 양은 ${unitNum(decStr(q, 1), s.u)} 입니다. ` +
+      `${s.x}의 양과 ${s.y}의 양의 비를 가장 간단한 자연수의 비로 나타내시오.`,
+    expr(`${p / g}:${q / g}`),
+    `소수 첫째 자리까지 있으므로 두 항에 각각 ${num(10)}${numJosa(10, "을", "를")} 곱하면 ` +
+      `${expr(`${p}:${q}`)} 입니다. ${simplifySentence(p, q)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 분수는 소수로 고치고, 그 다음 자연수 비로 만든다. */
+function simpleRatioApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, MIX_STRINGS);
+  const d = pick(rng, [2, 4, 5] as const);
+  const t = coprimeTop(rng, d, 1, d - 1);
+  const a100 = (t * 100) / d;
+  let c10 = intBetween(rng, 2, 9);
+  for (let i = 0; i < 20 && c10 * 10 === a100; i += 1)
+    c10 = intBetween(rng, 2, 9);
+  const b100 = c10 * 10;
+  // 두 항이 모두 소수 첫째 자리까지면 `10`배로 족하다 — 해설이 하는 말이 참이어야 한다.
+  const mult = a100 % 10 === 0 && b100 % 10 === 0 ? 10 : 100;
+  const shrink = 100 / mult;
+  const A = a100 / shrink;
+  const B = b100 / shrink;
+  const g = gcd(A, B);
+  return make(
+    unit,
+    `${s.x}의 길이는 ${unitNum(`\\frac{${t}}{${d}}`, "m")} 이고 ${s.y}의 길이는 ${unitNum(decStr(c10, 1), "m")} 입니다. ` +
+      `${s.x}의 길이와 ${s.y}의 길이의 비를 가장 간단한 자연수의 비로 나타내시오.`,
+    expr(`${A / g}:${B / g}`),
+    `${expr(`\\frac{${t}}{${d}}`)}${numJosa(t, "을", "를")} 소수로 고치면 ` +
+      `${expr(`${t}\\div${d}=${fromCents(a100)}`)} 입니다. 두 항에 각각 ${num(mult)}${numJosa(mult, "을", "를")} 곱하면 ` +
+      `${expr(`${A}:${B}`)} 입니다. ${simplifySentence(A, B)}`,
+  );
+}
+
+/** 심화 — 단위 맞추기·소수 없애기·약분 세 걸음이 겹친다. */
+function simpleRatioDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const u = pick(rng, UNIT_MIX);
+  // 큰 단위 쪽은 늘 소수 한 자리다 — 10 의 배수는 뺀다(빼지 않으면 «소수» 걸음이 사라진다).
+  const big10 = pick(rng, [12, 14, 15, 16, 18, 24, 25] as const);
+  let small10 = pick(rng, [4, 5, 6, 8, 9, 12, 15] as const);
+  for (let i = 0; i < 20 && small10 === big10; i += 1) {
+    small10 = pick(rng, [4, 5, 6, 8, 9, 12, 15] as const);
+  }
+  const step = u.per / 10;
+  const A = big10 * step;
+  const B = small10 * step;
+  const g = gcd(A, B);
+  return make(
+    unit,
+    `${u.thing}에 담은 두 양을 재었더니 각각 ${unitNum(decStr(big10, 1), u.big)}, ${unitNum(B, u.small)} 이었습니다. ` +
+      `앞의 양과 뒤의 양의 비를 가장 간단한 자연수의 비로 나타내시오.`,
+    expr(`${A / g}:${B / g}`),
+    `${expr(`1\\,\\mathrm{${u.big}}=${u.per}\\,\\mathrm{${u.small}}`)} 이므로 ` +
+      `${expr(`${decStr(big10, 1)}\\times${u.per}=${A}`)} 입니다. 단위를 ${u.small}${u.ro} 맞추면 ` +
+      `${expr(`${A}:${B}`)} 입니다. ${simplifySentence(A, B)}`,
+  );
+}
+
+// ── 2-4-3 비례식 알아보기 ──
+
+/** 2-4-3 기본 — 닮은 직사각형 두 개를 놓는 소재. */
+const RECT_THINGS = ["액자", "깃발", "게시판", "카드"] as const;
+
+/** 연산 — 외항·내항의 «자리»를 아는가만 묻는다. */
+function propEqCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  const inner = rng() < 0.5;
+  return make(
+    unit,
+    `다음 비례식에서 ${inner ? "내항" : "외항"}을 모두 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)}`,
+    inner ? expr(`${b},\\ ${a * k}`) : expr(`${a},\\ ${b * k}`),
+    inner
+      ? `비례식의 안쪽에 있는 두 수가 내항입니다. ${expr(`${b},\\ ${a * k}`)} 입니다.`
+      : `비례식의 바깥쪽에 있는 두 수가 외항입니다. ${expr(`${a},\\ ${b * k}`)} 입니다.`,
+  );
+}
+
+/**
+ * 기본 — 한 겹 문장제. 두 직사각형의 «가로:세로» 가 같음을 비례식으로 적는다.
+ *
+ * 「작은·큰」은 낱말이 값을 주장하는 자리다. 여기서는 `k >= 2` 라 **구성으로** 참이다
+ * (2-4-5 심화처럼 값에 따라 갈리는 자리는 낱말을 값 뒤에 고른다).
+ * 답이 하나로 정해지도록 「작은 것을 앞에」를 발문이 못 박는다.
+ */
+function propEqWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, RECT_THINGS);
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `작은 ${thing}의 가로와 세로는 각각 ${unitNum(a, "cm")}, ${unitNum(b, "cm")} 이고, ` +
+      `큰 ${thing}의 가로와 세로는 각각 ${unitNum(a * k, "cm")}, ${unitNum(b * k, "cm")} 입니다. ` +
+      `두 ${thing}의 가로와 세로의 비는 비율이 같습니다. 이것을 비례식으로 나타내시오. ` +
+      `단, 작은 ${thing}의 비를 앞에 쓰시오.`,
+    expr(`${a}:${b}=${a * k}:${b * k}`),
+    `작은 ${thing}의 가로와 세로의 비는 ${expr(`${a}:${b}`)}, 큰 ${thing}의 가로와 세로의 비는 ` +
+      `${expr(`${a * k}:${b * k}`)} 입니다. 비율이 같으므로 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 두 식의 비율을 각각 따져 «비례식인 것»을 고른다. */
+function propEqApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 5);
+  const m = intBetween(rng, 1, 4);
+  const right = `${a}:${b}=${a * k}:${b * k}`;
+  // 오답은 「두 항에 같은 수를 **더한**」 흔한 오개념이다 — 비율이 지켜지지 않는다.
+  const wrong = `${a}:${b}=${a + m}:${b + m}`;
+  // 지면의 분수는 기약으로 적는다 — 약분되는 것만 «약분해 보이는 등식»으로 쓴다.
+  const wg = gcd(a + m, b + m);
+  const wrongRatio =
+    wg === 1
+      ? `\\frac{${a + m}}{${b + m}}`
+      : `\\frac{${a + m}}{${b + m}}=\\frac{${(a + m) / wg}}{${(b + m) / wg}}`;
+  const rightFirst = rng() < 0.5;
+  return make(
+    unit,
+    `다음 두 식 중에서 비례식을 찾아 쓰시오.\n\n` +
+      (rightFirst
+        ? `${expr(right)}, ${expr(wrong)}`
+        : `${expr(wrong)}, ${expr(right)}`),
+    expr(right),
+    `${expr(`\\frac{${a * k}}{${b * k}}=\\frac{${a}}{${b}}`)} 이므로 ${expr(right)} 의 두 비는 비율이 같습니다. ` +
+      // 분수 뒤 조사는 **분자**가 정한다(「팔분의 구」) — R-조사가 이 자리를 잡았다.
+      // 등식으로 적을 때는 **마지막에 읽히는** 분자, 곧 약분한 쪽이 조사를 정한다.
+      `두 항에 같은 수를 더하면 비율이 달라지므로 ${expr(wrongRatio)}${numJosa((a + m) / wg, "은", "는")} ` +
+      `${expr(`\\frac{${a}}{${b}}`)}${numJosa(a, "과", "와")} 다릅니다.`,
+  );
+}
+
+/** 심화 — 두 항의 «차» 조건으로 두 번째 비를 되짚어 비례식을 완성한다. */
+function propEqDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  const gap = Math.abs(a - b);
+  const diff = gap * k;
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=\\square:\\square`)} 에서 두 번째 비의 전항과 후항의 차가 ${num(diff)}입니다. ` +
+      `이 비례식을 완성하여 쓰시오.`,
+    expr(`${a}:${b}=${a * k}:${b * k}`),
+    `두 번째 비는 ${expr(`${a}:${b}`)} 의 두 항에 같은 수를 곱한 비입니다. ` +
+      `${expr(`${a}:${b}`)} 의 두 항의 차는 ${num(gap)}이고 ${expr(`${diff}\\div${gap}=${k}`)} 이므로 ` +
+      `두 항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱합니다. ${expr(`${a}:${b}=${a * k}:${b * k}`)} 입니다.`,
+  );
+}
+
+// ── 2-4-4 비례식의 성질 알아보기 ──
+
+/** 2-4-4 기본 — 개수와 값이 함께 늘어나는 물건. */
+const PRICE_GOODS = [
+  { name: "연필", c: "자루" },
+  { name: "공책", c: "권" },
+  { name: "지우개", c: "개" },
+  { name: "색종이", c: "장" },
+] as const;
+
+/** 연산 — □ 를 네 자리 중 하나에 놓는다. 외항의 곱 = 내항의 곱 한 번. */
+function propRuleCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  const full: number[] = [a, b, a * k, b * k];
+  const pos = intBetween(rng, 0, 3);
+  const cell = (i: number) => (i === pos ? "\\square" : String(full[i]));
+  const outer = pos === 0 || pos === 3;
+  const otherIdx = pos === 0 ? 3 : pos === 3 ? 0 : pos === 1 ? 2 : 1;
+  // □ 가 외항이면 **내항**의 곱이, 내항이면 **외항**의 곱이 «아는 쪽»이다.
+  const kx = outer ? full[1] : full[0];
+  const ky = outer ? full[2] : full[3];
+  const known = kx * ky;
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 구하시오.\n\n${expr(`${cell(0)}:${cell(1)}=${cell(2)}:${cell(3)}`)}`,
+    num(full[pos]),
+    `비례식에서 외항의 곱과 내항의 곱은 같습니다. ` +
+      `${outer ? "내항" : "외항"}의 곱은 ${expr(`${kx}\\times${ky}=${known}`)} 입니다. ` +
+      `${expr(`\\square=${known}\\div${full[otherIdx]}=${full[pos]}`)} 입니다.`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 개수와 값의 비례식을 세워 한 번 푼다. */
+function propRuleWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = pick(rng, PRICE_GOODS);
+  const a = intBetween(rng, 2, 6);
+  const per = pick(rng, [200, 300, 500, 700] as const);
+  const c = a * per;
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `${g.name} ${num(a)}${g.c}의 값이 ${num(c)}원입니다. 같은 ${g.name} ${num(a * k)}${g.c}의 값은 몇 원입니까?`,
+    num(c * k),
+    `${g.name} 수와 값의 비가 같으므로 ${expr(`${a}:${c}=${a * k}:\\square`)} 입니다. ` +
+      `외항의 곱과 내항의 곱이 같으므로 ${expr(`${c}\\times${a * k}\\div${a}=${c * k}`)} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 비례식으로 필요한 양을 구하고, 가진 양을 뺀다. */
+function propRuleApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = pick(rng, [8, 10, 12, 15] as const);
+  const a = intBetween(rng, 2, 5);
+  const d = a * r;
+  const need = a + intBetween(rng, 2, 8);
+  const far = need * r;
+  const have = intBetween(rng, 1, need - 1);
+  return make(
+    unit,
+    `휘발유 ${unitNum(a, "L")} 로 ${unitNum(d, "km")} 를 가는 자동차가 있습니다. ` +
+      `이 자동차로 ${unitNum(far, "km")} 를 가려고 합니다. 지금 휘발유가 ${unitNum(have, "L")} 있다면 ` +
+      `휘발유를 몇 L 더 넣어야 합니까?`,
+    num(need - have),
+    `필요한 휘발유를 ${expr("\\square")} 라 하면 ${expr(`${a}:${d}=\\square:${far}`)} 입니다. ` +
+      `외항의 곱과 내항의 곱이 같으므로 ${expr(`${a}\\times${far}\\div${d}=${need}`)} 입니다. ` +
+      `${expr(`${need}-${have}=${need - have}`)} 이므로 ${unitNum(need - have, "L")} 를 더 넣어야 합니다.`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 외항의 곱에서 내항을 ⓑ 내항 둘에서 나머지 외항을 되짚는다. */
+function propRuleDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  if (intBetween(rng, 0, 1) === 0) {
+    const prod = a * b * k;
+    const useB = rng() < 0.5;
+    const known = useB ? b : a * k;
+    const want = useB ? a * k : b;
+    return make(
+      unit,
+      `어떤 비례식에서 외항의 곱이 ${num(prod)}입니다. 내항 중 하나가 ${num(known)}일 때 다른 내항을 구하시오.`,
+      num(want),
+      `비례식에서 외항의 곱과 내항의 곱은 같으므로 내항의 곱도 ${num(prod)}입니다. ` +
+        `${expr(`${prod}\\div${known}=${want}`)} 입니다.`,
+    );
+  }
+  const prod = b * (a * k);
+  return make(
+    unit,
+    `어떤 비례식에서 내항은 ${num(b)}${numJosa(b, "과", "와")} ${num(a * k)} 입니다. ` +
+      `외항 중 하나가 ${num(a)}일 때 나머지 외항을 구하시오.`,
+    num(b * k),
+    `내항의 곱은 ${expr(`${b}\\times${a * k}=${prod}`)} 입니다. 외항의 곱도 ${num(prod)}이므로 ` +
+      `${expr(`${prod}\\div${a}=${b * k}`)} 입니다.`,
+  );
+}
+
+// ── 2-4-5 비례배분 ──
+
+/** 두 사람 — **이름은 값을 주장하지 않는다.** 누가 더 많은지는 비가 정한다. */
+const SHARE_KIDS = [
+  { one: "준서", two: "하윤" },
+  { one: "도현", two: "채원" },
+  { one: "은우", two: "소율" },
+  { one: "지안", two: "예준" },
+] as const;
+
+/** 세 사람 — 응용의 세 항 비례배분. */
+const SHARE_TRIOS = [
+  ["민서", "하준", "예린"],
+  ["시우", "다은", "건우"],
+  ["아윤", "서진", "태호"],
+] as const;
+
+/** 세 항 비는 **전체의 최대공약수가 1**인 것만 쓴다(가장 간단한 자연수의 비). */
+const SHARE_TRIPLES = [
+  [1, 2, 3],
+  [2, 3, 4],
+  [1, 2, 2],
+  [2, 3, 5],
+  [1, 3, 4],
+  [3, 4, 5],
+  [1, 1, 2],
+  [2, 2, 3],
+] as const;
+
+const SHARE_ITEMS = [
+  { name: "색종이", c: "장" },
+  { name: "구슬", c: "개" },
+  { name: "젤리", c: "개" },
+  { name: "스티커", c: "장" },
+] as const;
+
+/** 연산 — 수 하나를 두 몫으로 가른다. 전체는 `(a+b)*k` 라 늘 나누어떨어진다. */
+function shareCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  return make(
+    unit,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)}${numRo(b)} 비례배분하면 두 수는 각각 얼마입니까?`,
+    expr(`${a * k},\\ ${b * k}`),
+    `전체를 ${expr(`${a}+${b}=${a + b}`)} 묶음으로 나누면 한 묶음은 ${expr(`${total}\\div${a + b}=${k}`)} 입니다. ` +
+      `각각 ${expr(`${k}\\times${a}=${a * k}`)}, ${expr(`${k}\\times${b}=${b * k}`)} 입니다.`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. **누구의 몫을 묻는지**가 씨앗마다 바뀐다(자리가 뜻이다). */
+function shareWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kid = pick(rng, SHARE_KIDS);
+  const item = pick(rng, SHARE_ITEMS);
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  const first = rng() < 0.5;
+  const who = first ? kid.one : kid.two;
+  const part = first ? a : b;
+  return make(
+    unit,
+    `${item.name} ${num(total)}${item.c}${josa(item.c, "을", "를")} ${kid.one}${josa(kid.one, "과", "와")} ` +
+      `${kid.two}${josa(kid.two, "이", "가")} ${expr(`${a}:${b}`)}${numRo(b)} 나누어 가지려고 합니다. ` +
+      `${who}${josa(who, "이", "가")} 갖는 ${item.name}${josa(item.name, "은", "는")} 몇 ${item.c}입니까?`,
+    num(part * k),
+    `전체를 ${expr(`${a}+${b}=${a + b}`)} 묶음으로 나누면 한 묶음은 ${expr(`${total}\\div${a + b}=${k}`)} ${item.c}입니다. ` +
+      `${who}${josa(who, "은", "는")} ${num(part)}묶음이므로 ${expr(`${k}\\times${part}=${part * k}`)} ${item.c}입니다.`,
+  );
+}
+
+/** 응용 — ⓐ 세 항 비례배분(자리가 셋) ⓑ 둘레를 가로·세로로 갈라 넓이까지 간다. */
+function shareApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const trio = pick(rng, SHARE_TRIOS);
+    const item = pick(rng, SHARE_ITEMS);
+    const t = pick(rng, SHARE_TRIPLES);
+    const k = intBetween(rng, 3, 8);
+    const sum = t[0] + t[1] + t[2];
+    const total = sum * k;
+    const idx = intBetween(rng, 0, 2);
+    const who = trio[idx];
+    return make(
+      unit,
+      `${item.name} ${num(total)}${item.c}${josa(item.c, "을", "를")} ${trio[0]}, ${trio[1]}, ` +
+        `${trio[2]}${josa(trio[2], "이", "가")} ${expr(`${t[0]}:${t[1]}:${t[2]}`)}${numRo(t[2])} 나누어 가지려고 합니다. ` +
+        `${who}${josa(who, "이", "가")} 갖는 ${item.name}${josa(item.name, "은", "는")} 몇 ${item.c}입니까?`,
+      num(t[idx] * k),
+      `전체를 ${expr(`${t[0]}+${t[1]}+${t[2]}=${sum}`)} 묶음으로 나누면 한 묶음은 ` +
+        `${expr(`${total}\\div${sum}=${k}`)} ${item.c}입니다. ` +
+        `${who}${josa(who, "은", "는")} ${num(t[idx])}묶음이므로 ${expr(`${k}\\times${t[idx]}=${t[idx] * k}`)} ${item.c}입니다.`,
+    );
+  }
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 2, 8);
+  const w = a * k;
+  const h = b * k;
+  const around = 2 * (w + h);
+  return make(
+    unit,
+    `둘레가 ${unitNum(around, "cm")} 이고 가로와 세로의 길이의 비가 ${expr(`${a}:${b}`)} 인 직사각형이 있습니다. ` +
+      `이 직사각형의 넓이는 몇 ${expr("\\mathrm{cm}^2")} 입니까?`,
+    num(w * h),
+    `가로와 세로의 합은 ${expr(`${around}\\div2=${w + h}`)} 입니다. 이것을 ${expr(`${a}:${b}`)}${numRo(b)} ` +
+      `비례배분하면 가로는 ${unitNum(w, "cm")}, 세로는 ${unitNum(h, "cm")} 입니다. ` +
+      `넓이는 ${expr(`${w}\\times${h}=${w * h}`)} 입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산. ⓐ 한 사람의 몫에서 ⓑ 두 몫의 «차» 에서 전체를 되짚는다.
+ *
+ * ⚠️ ⓑ 의 「$X$ 가 $Y$ 보다 더 많이」는 **낱말이 값을 주장하는** 자리다. 소재를 먼저
+ * 고르면 값이 그 말을 배신한다(2-2-4 반려: 「긴 막대 $11$ cm, 짧은 막대 $13$ cm」,
+ * 2000 씨앗 중 7건이라 표본으로는 안 보인다). 그래서 **비를 먼저 정하고** 누가
+ * «더 많은 쪽»인지 그 값에서 고른다.
+ */
+function shareDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kid = pick(rng, SHARE_KIDS);
+  const item = pick(rng, SHARE_ITEMS);
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  if (intBetween(rng, 0, 1) === 0) {
+    const first = rng() < 0.5;
+    const who = first ? kid.one : kid.two;
+    const part = first ? a : b;
+    return make(
+      unit,
+      `${item.name}${josa(item.name, "을", "를")} ${kid.one}${josa(kid.one, "과", "와")} ` +
+        `${kid.two}${josa(kid.two, "이", "가")} ${expr(`${a}:${b}`)}${numRo(b)} 나누어 가졌더니 ` +
+        `${who}${josa(who, "이", "가")} ${num(part * k)}${item.c}${josa(item.c, "을", "를")} 가졌습니다. ` +
+        `처음 ${item.name}${josa(item.name, "은", "는")} 모두 몇 ${item.c}입니까?`,
+      num(total),
+      `${who}${josa(who, "은", "는")} ${num(part)}묶음을 가졌으므로 한 묶음은 ` +
+        `${expr(`${part * k}\\div${part}=${k}`)} ${item.c}입니다. 전체는 ` +
+        `${expr(`${a}+${b}=${a + b}`)} 묶음이므로 ${expr(`${k}\\times${a + b}=${total}`)} ${item.c}입니다.`,
+    );
+  }
+  // 값이 먼저다 — 누가 «더 많은 쪽»인지는 비가 정한다.
+  const more = a > b ? kid.one : kid.two;
+  const less = a > b ? kid.two : kid.one;
+  const gap = Math.abs(a - b);
+  return make(
+    unit,
+    `${item.name}${josa(item.name, "을", "를")} ${kid.one}${josa(kid.one, "과", "와")} ` +
+      `${kid.two}${josa(kid.two, "이", "가")} ${expr(`${a}:${b}`)}${numRo(b)} 나누어 가졌습니다. ` +
+      `${more}${josa(more, "이", "가")} ${less}보다 ${num(gap * k)}${item.c} 더 많이 가졌다면 ` +
+      `처음 ${item.name}${josa(item.name, "은", "는")} 모두 몇 ${item.c}입니까?`,
+    num(total),
+    `두 사람의 몫은 ${expr(`${a}:${b}`)} 이므로 차는 ${num(gap)}묶음입니다. 한 묶음은 ` +
+      `${expr(`${gap * k}\\div${gap}=${k}`)} ${item.c}입니다. 전체는 ${expr(`${a}+${b}=${a + b}`)} 묶음이므로 ` +
+      `${expr(`${k}\\times${a + b}=${total}`)} ${item.c}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -5268,6 +5870,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: remWord,
     응용: remApply,
     심화: remDeep,
+  },
+  "초6|2-4-1": {
+    연산: ratioPropCalc,
+    기본: ratioPropWord,
+    응용: ratioPropApply,
+    심화: ratioPropDeep,
+  },
+  "초6|2-4-2": {
+    연산: simpleRatioCalc,
+    기본: simpleRatioWord,
+    응용: simpleRatioApply,
+    심화: simpleRatioDeep,
+  },
+  "초6|2-4-3": {
+    연산: propEqCalc,
+    기본: propEqWord,
+    응용: propEqApply,
+    심화: propEqDeep,
+  },
+  "초6|2-4-4": {
+    연산: propRuleCalc,
+    기본: propRuleWord,
+    응용: propRuleApply,
+    심화: propRuleDeep,
+  },
+  "초6|2-4-5": {
+    연산: shareCalc,
+    기본: shareWord,
+    응용: shareApply,
+    심화: shareDeep,
   },
 };
 

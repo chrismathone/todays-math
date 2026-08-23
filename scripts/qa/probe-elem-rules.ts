@@ -17,6 +17,7 @@ import {
 import {
   arabicPolygons,
   bareNumbers,
+  josaFaults,
   runawayDecimals,
   tooAdvanced,
   unfilledPlaceholders,
@@ -132,6 +133,66 @@ if (process.argv.includes("--selftest")) {
       bareNumbers("$117$").length === 0,
       true,
     ],
+    // ── R-조사 눈금 (elem-g4 가 보낸 8행 그대로 + 경계) ────────────────────
+    // 양성·음성이 **둘 다** 있어야 한다 — 양성만 대면 「지어냄」이 구조적으로 0이 된다.
+    [
+      "분수는 분자를 마지막에 읽는다 — 「십분의 육」 뒤 «를» 은 걸려야",
+      josaFaults("$\\frac{6}{10}$를 더하면").length === 1,
+      true,
+    ],
+    [
+      "같은 분수에 «을» 은 통과해야",
+      josaFaults("$\\frac{6}{10}$을 더하면").length === 0,
+      true,
+    ],
+    [
+      "「오분의 이」 뒤 «가» 는 통과해야",
+      josaFaults("$\\frac{2}{5}$가 되었다").length === 0,
+      true,
+    ],
+    [
+      "같은 분수에 «이» 는 걸려야",
+      josaFaults("$\\frac{2}{5}$이 되었다").length === 1,
+      true,
+    ],
+    [
+      "「일」 뒤 «을» 은 통과해야",
+      josaFaults("$1$을 받아올려").length === 0,
+      true,
+    ],
+    [
+      "한 칸 띄운 조사도 본다 — 「칠분의 일」 뒤 «와» 는 걸려야",
+      josaFaults("$4\\frac{1}{7}$ 와 같이").length === 1,
+      true,
+    ],
+    [
+      "같은 자리에 «과» 는 통과해야",
+      josaFaults("$4\\frac{1}{7}$과 같이").length === 0,
+      true,
+    ],
+    [
+      "낱말의 첫 글자를 조사로 읽으면 안 된다 — 「$3$ 은행나무」",
+      josaFaults("$3$ 은행나무").length === 0,
+      true,
+    ],
+    // 규칙 ㉢ 을 빼면 이 한 줄이 빨개진다 — g5 실측으로 거짓 양성 41자리를 만들던 부류다
+    // (65 → 9). 범위·비교 단원이 통째로 우는 것을 막는 자리이므로 눈금에 못 박는다.
+    [
+      "「$49$ 이상인」의 «이» 는 조사가 아니다 — ㉢ 이 없으면 41자리가 거짓 양성",
+      josaFaults("$49$ 이상인 수를 모두 쓰시오").length === 0,
+      true,
+    ],
+    // 경계 — «통과»가 아니라 «안 잼»이다. 이 줄이 없으면 다음 사람이 「□ 는 검사된다」고 읽는다.
+    [
+      "□ 는 소리를 모른다 — 판정 **밖**이다(통과가 아니라 안 잼, 경계)",
+      josaFaults("$1\\frac{\\square}{9}$를 뺀").length === 0,
+      true,
+    ],
+    [
+      "단위가 소리를 바꾸는 자리도 판정 밖이다 — 「$3$ kg을」(경계)",
+      josaFaults("$3$ kg을 담았다").length === 0,
+      true,
+    ],
   );
 
   let bad = 0;
@@ -141,7 +202,8 @@ if (process.argv.includes("--selftest")) {
   }
   console.log(
     bad === 0
-      ? `\n✅ 눈금 ${rows.length}건 (R9-b 5 + 갈래 순회 7)`
+      ? // 개수·묶음을 손으로 적으면 눈금을 늘릴 때마다 거짓말이 된다 — 세어서 찍는다.
+        `\n✅ 눈금 ${rows.length}건 (R9-b · 갈래 순회 · R조사)`
       : `\n❌ ${bad}건 어긋남 — **이 판정기를 믿지 마라**`,
   );
   process.exit(bad === 0 ? 0 : 1);
@@ -240,6 +302,19 @@ function checkOne(unit: Unit, tier: ElemTier | undefined): void {
       const all = `${p.content}\n${p.answer}\n${p.solution}`;
       const poly = [...arabicPolygons(all), ...unfilledPlaceholders(all)];
       return poly.length ? poly.join(",") : null;
+    }),
+  );
+  // R-조사 — 수식 뒤 조사가 읽는 소리와 맞는가(2026-08-23 elem-g4 이식).
+  // ⚠️ `variantsOf` 가 **표준을 포함**하므로 여기 오는 items 에 표준이 들어 있다 —
+  //    학년별 검사들이 갈래만 돌아 표준이 구조적으로 0이던 그 자리를 이 순회가 메운다.
+  once(
+    "R조사",
+    items.map((p) => {
+      const hits = [
+        ...josaFaults(p.content).map((x) => `발문:${x}`),
+        ...josaFaults(p.solution).map((x) => `해설:${x}`),
+      ];
+      return hits.length ? hits.slice(0, 4).join(" ") : null;
     }),
   );
 

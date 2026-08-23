@@ -350,6 +350,37 @@ function opCheck(
   };
 }
 
+const gcdOf = (a: number, b: number): number =>
+  b === 0 ? Math.abs(a) : gcdOf(b, a % b);
+
+/** 발문에 실린 비의 항들 — `$3:4$` · `$2:2:3$`. 없으면 null(= 못 읽음 → 위반). */
+function ratioTerms(c: string): number[] | null {
+  const m = c.match(/\$(\d+):(\d+)(?::(\d+))?\$/);
+  if (!m) return null;
+  return [m[1], m[2], m[3]]
+    .filter((v): v is string => v !== undefined)
+    .map(Number);
+}
+
+/**
+ * 지면에 «아직 간단히 안 된 것»이 남아 있는가 — 2-4-2 의 조건을 **발문 쪽**에서 잰다.
+ *
+ * 소수·분수는 그 자체로 「자연수의 비로 고칠 일」이 남아 있고, 단위가 서로 다른 두 양도
+ * 맞추기 전에는 비가 아니다. 순수 자연수 비뿐이라면 **두 항이 서로소가 아니어야** 한다.
+ *
+ * ⚠️ 아무것도 못 읽으면 **위반**으로 떨어뜨린다 — 조용히 통과시키면 그 부류가 통째로
+ * 사각지대가 된다(이 파일 머리 주석의 태도).
+ */
+function unsimplifiedOnPage(c: string): boolean {
+  if (/\d+\.\d+|\\frac\{/.test(c)) return true;
+  const units = new Set(
+    [...c.matchAll(/\\mathrm\{([a-zA-Z]+)\}/g)].map((m) => m[1]),
+  );
+  if (units.size >= 2) return true;
+  const pairs = [...c.matchAll(/\$(\d+):(\d+)\$/g)];
+  return pairs.some((m) => gcdOf(Number(m[1]), Number(m[2])) > 1);
+}
+
 const CHECKS: Check[] = [
   {
     needle: "1보다 작은 소수",
@@ -584,6 +615,39 @@ const CHECKS: Check[] = [
       const place = c.match(/소수 (첫|둘)째 자리/);
       if (q === null || !place) return false;
       return quotientDp(q) > (place[1] === "첫" ? 1 : 2);
+    },
+  },
+  {
+    // 초6 2-4-2 «**간단한** 자연수의 비로 나타내기» — 발견기 빚 목록 상환 (2026-08-23).
+    //
+    // 이 소단원의 약속은 **답**에 있다(두 항이 서로소). 그런데 이 판정기는 답을 안 본다 —
+    // 그래서 **반대편**을 잰다: 지면에 «아직 간단하지 않은 것»이 남아 있는가.
+    // 이미 기약인 자연수 비만 실린 문항은 고칠 것이 없어 소단원이 성립하지 않는다.
+    // (답의 기약 여부는 `elemTiersG6.test.ts` 가 씨앗 전량으로 잰다 — 둘이 다른 축이다.)
+    needle: "간단한 자연수의 비",
+    ok: unsimplifiedOnPage,
+  },
+  {
+    // 초6 2-4-5 «비례배분» — 몫이 **자연수로 떨어지는가**.
+    //
+    // 전체가 지면에 있으면 「전체 ÷ (비의 항의 합)」이 떨어지는지 **직접** 잰다.
+    // 역산형(전체를 묻는 갈래)은 전체가 답이라 지면에 없다 — 그때는 loose 로
+    // 「비가 실려 있고 그 비가 가장 간단한 자연수의 비인가」까지만 본다.
+    // ⚠️ loose 를 «통과»로 읽지 말 것. 그 갈래에서 **못 잰 것**은 나눗셈이다.
+    needle: "비례배분",
+    ok: (c) => {
+      const r = ratioTerms(c);
+      if (!r) return false;
+      const sum = r.reduce((s, v) => s + v, 0);
+      const inRatio = new Set(r);
+      return numbers(c).some(
+        (v) =>
+          Number.isInteger(v) && v > sum && !inRatio.has(v) && v % sum === 0,
+      );
+    },
+    loose: (c) => {
+      const r = ratioTerms(c);
+      return r !== null && r.reduce((g, v) => gcdOf(g, v), 0) === 1;
     },
   },
 ];
@@ -1061,6 +1125,61 @@ const FIXTURES: Fixture[] = [
     loose: true,
     why: "남는 것이 $0$ 이다 — 덧셈 폴백이 아무 덧셈이나 통과시키면 여기서 걸린다(음성 대조)",
   },
+  // ── 초6 2-4 비례식과 비례배분 (2026-08-23) ────────────────────────
+  {
+    section: "2-4-2 간단한 자연수의 비로 나타내기",
+    content: "다음 비를 가장 간단한 자연수의 비로 나타내시오.\n\n$3:4$",
+    want: false,
+    why: "이미 기약이라 «간단히 할 것»이 지면에 없다 — 소단원이 성립하지 않는다",
+  },
+  {
+    section: "2-4-2 간단한 자연수의 비로 나타내기",
+    content: "다음 비를 가장 간단한 자연수의 비로 나타내시오.\n\n$72:27$",
+    want: true,
+    why: "두 항이 서로소가 아니다 — 약분할 것이 남아 있다",
+  },
+  {
+    section: "2-4-2 간단한 자연수의 비로 나타내기",
+    content:
+      "주스의 양은 $0.3\\,\\mathrm{L}$ 이고 우유의 양은 $0.4\\,\\mathrm{L}$ 입니다. 두 양의 비를 가장 간단한 자연수의 비로 나타내시오.",
+    want: true,
+    why: "소수는 그 자체로 «자연수의 비로 고칠 일»이다(비 표기가 없어도 통과해야 한다)",
+  },
+  {
+    section: "2-4-2 간단한 자연수의 비로 나타내기",
+    content:
+      "다음 비를 가장 간단한 자연수의 비로 나타내시오.\n\n$2\\,\\mathrm{m}:150\\,\\mathrm{cm}$",
+    want: true,
+    why: "단위가 서로 다르면 맞추는 걸음이 남아 있다 — 소수가 없어도 통과해야 한다(경계)",
+  },
+  {
+    section: "2-4-5 비례배분",
+    content: "$40$을 $3:4$로 비례배분하면 두 수는 각각 얼마입니까?",
+    want: false,
+    why: "$40\\div7$ 이 떨어지지 않는다 — 몫이 자연수가 아니면 초등 답이 안 나온다",
+  },
+  {
+    section: "2-4-5 비례배분",
+    content: "$42$를 $3:4$로 비례배분하면 두 수는 각각 얼마입니까?",
+    want: true,
+    why: "$42\\div7=6$ — 전체가 항의 합으로 나누어떨어진다",
+  },
+  {
+    section: "2-4-5 비례배분",
+    content:
+      "구슬을 지안과 예준이 $4:3$으로 나누어 가졌더니 예준이 $27$개를 가졌습니다. 처음 구슬은 모두 몇 개입니까?",
+    want: true,
+    loose: true,
+    why: "역산 갈래 — 전체가 **답**이라 지면에 없다. 비가 기약인지까지만 잰다(못 잰 것은 나눗셈)",
+  },
+  {
+    section: "2-4-5 비례배분",
+    content:
+      "구슬을 지안과 예준이 $4:6$으로 나누어 가졌더니 예준이 $27$개를 가졌습니다. 처음 구슬은 모두 몇 개입니까?",
+    want: false,
+    loose: true,
+    why: "loose 가 «아무 비나» 통과시키면 여기서 걸린다 — $4:6$ 은 가장 간단한 비가 아니다(음성 대조)",
+  },
 ];
 
 /**
@@ -1111,7 +1230,7 @@ function verdict(
 // 검사도 없고 이 어휘에도 없어 **빚 목록에조차 안 떴다**(침묵의 침묵). 어휘가 손 목록인
 // 한 이런 자리는 또 생긴다 — 새 조건어를 만나면 여기부터 채울 것.
 const CONDITION_VOCAB =
-  /받아올림|받아내림|올림|내림|버림|나누어떨어|나머지|남는|자리 수|몇십몇|몇십|몇백|1보다 (?:작은|큰)|[이가] (?:없는|있는)/;
+  /받아올림|받아내림|올림|내림|버림|나누어떨어|나머지|남는|자리 수|몇십몇|몇십|몇백|1보다 (?:작은|큰)|[이가] (?:없는|있는)|간단한 자연수의 비|비례배분/;
 
 /** 이 소단원에 실제로 붙는 검사 수 — when 게이트까지 통과한 것만 센다. */
 function attachedChecks(section: string): number {
