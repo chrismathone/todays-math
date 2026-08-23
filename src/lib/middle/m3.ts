@@ -40,6 +40,7 @@ import {
   figTriSine,
   figTwoChords,
 } from "./m3Figures";
+import { M3_POLY } from "./m3Poly";
 import { M3_ROOT } from "./m3Root";
 import { M3_TANGENT_TYPES } from "./m3Tangent";
 import { M3_TRIG } from "./m3Trig";
@@ -440,6 +441,7 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
   ...M3_TANGENT_TYPES,
+  ...M3_POLY,
   ...M3_TRIG,
   ...M3_ROOT,
 ];
