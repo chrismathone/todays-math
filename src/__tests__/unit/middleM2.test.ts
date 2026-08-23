@@ -15,7 +15,14 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
-import { M2_TYPES } from "../../lib/middle/m2";
+// ⚠️ 합본(m2.ts 의 M2_TYPES)이 아니라 **이 시험이 지키는 두 모듈만** 훑는다.
+//    합본을 훑으면 다른 세션이 m2.ts spread 에 유형을 더하는 순간 그 유형이
+//    이 파일의 VERIFY/ANSWER_KEY 에 들이대져 「검산식 누락」으로 빨개진다
+//    (2026-08-23 물결 2C 가 실제로 밟음 — 중1 본보기 테스트가 이미 겪고
+//    주석까지 남긴 자리다). 자기 유형은 자기 시험이 지킨다.
+import { M2_INEQ_APPLY } from "../../lib/middle/m2IneqApply";
+import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
+
 import { eulReul, waGwa } from "../../lib/middle/m2Josa";
 import {
   generateMiddleProblem,
@@ -23,21 +30,10 @@ import {
 } from "../../lib/middle/generate";
 import type { MidProblem } from "../../lib/middle/types";
 
-const SEEDS = [20260823, 1, 7777, 424242, 99991];
+/** 이 시험이 지키는 유형 — 물결 1 중2 세션이 낸 두 모듈뿐이다. */
+const OWNED = [...M2_INEQ_APPLY, ...M2_SYSTEM_APPLY];
 
-/**
- * ⚠️ 이 시험은 **이 네 중단원**만 본다. `M2_TYPES` 는 중물결로 늘어나는
- * 모음이라(2차 물결: 기하·수·확률 모듈이 같은 배열에 붙는다), 그 전체를
- * 자기 것으로 가정하면 남의 모듈이 들어올 때마다 여기가 빨개진다.
- * 범위를 중단원으로 좌혀 둔다 — 검사 내용은 그대로다.
- */
-const OWN_MINORS = new Set([
-  "일차부등식",
-  "일차부등식의 활용",
-  "연립일차방정식",
-  "연립일차방정식의 활용",
-]);
-const OWN_TYPES = M2_TYPES.filter((e) => OWN_MINORS.has(e.rpmMinor));
+const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
 /** 유형별 독립 검산 — 키는 `RPM중단원|번호`. 식은 발문의 조건을 직접 옮긴 것. */
 const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
@@ -268,9 +264,9 @@ type CatalogType = { minor: string; number: string; title: string };
 
 describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
   it("36유형이 등록돼 있고 유형 번호가 색인과 같다", () => {
-    expect(OWN_TYPES.length).toBe(36);
+    expect(OWNED.length).toBe(36);
     const byMinor = new Map<string, string[]>();
-    for (const e of OWN_TYPES) {
+    for (const e of OWNED) {
       const arr = byMinor.get(e.rpmMinor) ?? [];
       arr.push(e.rpmType);
       byMinor.set(e.rpmMinor, arr);
@@ -315,7 +311,7 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
     );
     const catalog = JSON.parse(raw) as Record<string, { types: CatalogType[] }>;
     const book = catalog["2-1"]!.types;
-    for (const e of OWN_TYPES) {
+    for (const e of OWNED) {
       const hit = book.find(
         (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
       );
@@ -326,7 +322,7 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
 
   it("우리 단원 9개(0건 7개 + 해가 특수 + 개수·예금액)에 실측 이름으로 붙는다", () => {
     const count = new Map<string, number>();
-    for (const e of OWN_TYPES) {
+    for (const e of OWNED) {
       count.set(e.unitSection, (count.get(e.unitSection) ?? 0) + 1);
     }
     // 공유 DB Unit.section 실측 리터럴 (2026-08-23)
@@ -345,7 +341,7 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
     );
   });
 
-  for (const e of OWN_TYPES) {
+  for (const e of OWNED) {
     const vkey = `${e.rpmMinor}|${e.rpmType}`;
     describe(`${e.rpmMinor} ${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
@@ -401,7 +397,7 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
   });
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
-    for (const e of OWN_TYPES) {
+    for (const e of OWNED) {
       const set = generateMiddleSet(e.key, 20260823, 4);
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
