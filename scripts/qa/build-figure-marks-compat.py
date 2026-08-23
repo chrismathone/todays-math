@@ -123,8 +123,11 @@ def main() -> None:
 
     os.makedirs(os.path.dirname(FIXTURE), exist_ok=True)
     # JSON 안 문자열로 저장 — Windows EOL 변환이 SVG 바이트를 못 건드린다.
+    # ⚠️ sort_keys 금지 — spec 의 키 순서가 곧 그리는 순서다.  정렬해 저장하면
+    #    「저장된 spec」과 「그때 렌더한 svg」가 서로 다른 순서를 말하게 된다
+    #    (실측 2026-08-23: cube-shapes 의 <line> 순서가 갈렸다).
     with io.open(FIXTURE, "w", encoding="utf-8", newline="\n") as fh:
-        json.dump(baseline, fh, ensure_ascii=False, indent=1, sort_keys=True)
+        json.dump(baseline, fh, ensure_ascii=False, indent=1)
     print(f"구움: {len(baseline)}개 → {FIXTURE}")
 
 
