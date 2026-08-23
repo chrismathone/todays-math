@@ -134,9 +134,16 @@ _PRESENTATION_ATTRS = frozenset({
 })
 _COMMON_ATTRS = _PRESENTATION_ATTRS
 _TEXT_ATTRS = frozenset({"x", "y", "dx", "dy", "rotate", "xml:space"})
+# `<g transform>` — 에셋 합성(figure_assets.py)이 조각을 배치하는 유일한 길이라
+# 허용하되, 값은 아래 `_TRANSFORM_RE` 형태(translate/scale/rotate 의 수 인자만)로
+# 좁힌다. url()·표현식이 들어갈 자리가 없어 보안 표면이 늘지 않는다 (2026-08-23).
+_TRANSFORM_RE = re.compile(
+    r"^\s*(?:(?:translate|scale|rotate)\(\s*-?\d+(?:\.\d+)?"
+    r"(?:[\s,]+-?\d+(?:\.\d+)?){0,2}\s*\)\s*)+$"
+)
 _TAG_ATTRS = {
     "svg": frozenset({"viewBox", "preserveAspectRatio"}),
-    "g": _COMMON_ATTRS,
+    "g": _COMMON_ATTRS | {"transform"},
     "circle": _COMMON_ATTRS | {"cx", "cy", "r"},
     "ellipse": _COMMON_ATTRS | {"cx", "cy", "rx", "ry"},
     "line": _COMMON_ATTRS | {"x1", "y1", "x2", "y2"},
@@ -449,6 +456,9 @@ def _validate_attr(tag: str, name: str, value: str) -> None:
     if name == "id":
         if not _ID_RE.match(value.strip()):
             raise SvgSecurityError("invalid id")
+    elif name == "transform":
+        if not _TRANSFORM_RE.match(value):
+            raise SvgSecurityError("invalid transform (translate/scale/rotate with numeric args only)")
     elif name == "gradientUnits":
         if value.strip() not in {"objectBoundingBox", "userSpaceOnUse"}:
             raise SvgSecurityError("invalid gradientUnits")

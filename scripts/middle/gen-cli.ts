@@ -1,0 +1,202 @@
+/**
+ * 중학 유형 출제 CLI — RPM 유형 단위로 자체 엔진이 문항을 만든다 (AI 아님).
+ *
+ * 사용:
+ *   npx tsx scripts/middle/gen-cli.ts --list                       # 등록된 유형
+ *   npx tsx scripts/middle/gen-cli.ts --type "1-1|일차방정식의 활용|15" --count 4 \
+ *       --seed 20260823 [--out set.json] [--html preview.html]
+ *   npx tsx scripts/middle/gen-cli.ts --section "일차방정식의 활용(도형, 농도, 일)" \
+ *       --count 6 --seed 20260823 --html preview.html              # 단원의 유형들을 고루
+ *
+ * - DB 에는 아무것도 쓰지 않는다 (적재는 별도 절차 — D-22·D-31).
+ * - HTML 은 «검수용 미리보기»다. 시험지 지면이 아니다 (D-07).
+ */
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+
+import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
+import {
+  generateMiddleSet,
+  registeredTypes,
+  typesForSection,
+} from "../../src/lib/middle/generate";
+import type { MidProblem } from "../../src/lib/middle/types";
+import { renderMathHtml } from "../../src/lib/math/renderMathHtml";
+
+type Args = Record<string, string | true>;
+
+/**
+ * 검수 화면에도 **제품과 같은** 순환점 규칙을 넣는다.
+ * 손으로 베껴 두면 제품만 고쳐질 때 검수 화면이 조용히 달라진다 —
+ * 실제로 2026-08-23 에 검수 화면에서만 순환소수 점이 안 보였다.
+ * 규칙을 못 찾으면 **던진다**(조용히 점 없는 화면을 내지 않는다).
+ */
+function repeatDotCss(): string {
+  const css = readFileSync(
+    resolve(process.cwd(), "src/app/globals.css"),
+    "utf8",
+  );
+  const start = css.indexOf(".repeat-dot {");
+  const endMark = css.indexOf("}", css.indexOf(".repeat-dot::before {"));
+  if (start < 0 || endMark < 0) {
+    throw new Error(
+      "globals.css 에서 .repeat-dot 규칙을 못 찾았습니다 — 이름이 바뀌었으면 여기도 고치십시오",
+    );
+  }
+  return css.slice(start, endMark + 1);
+}
+
+function parseArgs(argv: string[]): Args {
+  const out: Args = {};
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i]!;
+    if (!a.startsWith("--")) throw new Error(`알 수 없는 인자: ${a}`);
+    const key = a.slice(2);
+    const next = argv[i + 1];
+    if (next !== undefined && !next.startsWith("--")) {
+      out[key] = next;
+      i += 1;
+    } else {
+      out[key] = true;
+    }
+  }
+  return out;
+}
+
+function printList(): void {
+  let lastSection = "";
+  for (const e of registeredTypes()) {
+    if (e.unitSection !== lastSection) {
+      console.log(`\n${e.grade} ${e.unitSection}`);
+      lastSection = e.unitSection;
+    }
+    console.log(`  ${e.key}  ${e.rpmTitle}  [${e.rpmBook} p기준 ${e.rpmType}]`);
+  }
+  console.log(`\n등록 유형 ${registeredTypes().length}개`);
+}
+
+function esc(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/**
+ * 검수용 HTML — figureSpec 이 있는 문항은 엔진으로 실제 렌더한다
+ * (scripts/elem/gen-cli.ts 의 renderFigureSpec 패턴). 그림 실패는 조용히
+ * 빼지 않고 사유를 지면에 적고, 호출자가 종료 코드 1 로 알린다.
+ */
+async function toHtml(
+  items: MidProblem[],
+  seed: number,
+): Promise<{ html: string; figureErrors: string[] }> {
+  const figureErrors: string[] = [];
+  const blocks: string[] = [];
+  for (let i = 0; i < items.length; i += 1) {
+    const p = items[i]!;
+    let figure = "";
+    if (p.figureSpec) {
+      const r = await renderFigureSpec(p.figureSpec);
+      if (r.ok) {
+        figure = `<div class="fig">${r.svg}</div>`;
+      } else {
+        figureErrors.push(
+          `${i + 1}번 (${p.rpmType} ${p.rpmTitle}): ${r.error}`,
+        );
+        figure = `<div class="fig err">그림 실패: ${esc(r.error)}</div>`;
+      }
+    }
+    blocks.push(`
+<section class="item">
+<div class="meta">#${i + 1} · ${p.grade} · ${p.unitSection} · RPM ${p.rpmBook} ${p.rpmMinor} ${p.rpmType} ${p.rpmTitle} · ${p.difficulty}</div>
+<div class="content">${renderMathHtml(p.content)}</div>
+${figure}
+<div class="ans">정답: ${renderMathHtml(p.answer)}</div>
+<div class="sol">${p.solution
+      .split("\n")
+      .map((line) => renderMathHtml(line))
+      .join("<br/>")}</div>
+</section>`);
+  }
+  const rows = blocks.join("\n");
+  const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"/>
+<title>중학 유형 미리보기 (seed ${seed})</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"/>
+<style>
+body{font-family:'Malgun Gothic',sans-serif;max-width:760px;margin:24px auto;padding:0 16px;color:#1a1a1a}
+.item{border:1px solid #ddd;border-radius:8px;padding:14px 16px;margin:14px 0}
+.meta{font-size:12px;color:#888;margin-bottom:8px}
+.content{font-size:15px;line-height:1.7}
+.fig{margin:8px 0}
+.fig svg{max-width:340px;height:auto}
+.fig.err{color:#b00020;font-weight:600}
+.ans{margin-top:8px;font-size:14px;color:#1a56db;font-weight:600}
+.sol{margin-top:6px;font-size:13px;color:#555;line-height:1.7;border-top:1px dashed #eee;padding-top:6px}
+${repeatDotCss()}
+</style></head><body>
+<h1 style="font-size:18px">중학 유형 미리보기 — ${items.length}문항 (seed ${seed})</h1>
+${rows}
+</body></html>`;
+  return { html, figureErrors };
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.list) {
+    printList();
+    return;
+  }
+
+  const seed = Number(args.seed ?? 20260823);
+  const count = Number(args.count ?? 4);
+
+  let items: MidProblem[] = [];
+  if (typeof args.type === "string") {
+    items = generateMiddleSet(args.type, seed, count);
+  } else if (typeof args.section === "string") {
+    const types = typesForSection(args.section);
+    if (types.length === 0) {
+      throw new Error(
+        `이 단원에 등록된 유형이 없습니다: ${args.section} — --list 로 확인`,
+      );
+    }
+    // 유형들을 돌아가며 고루 — 같은 유형 안에서는 variant 로 갈린다
+    for (let i = 0; i < count; i += 1) {
+      const t = types[i % types.length]!;
+      items.push(
+        ...generateMiddleSet(t.key, seed + Math.floor(i / types.length), 1),
+      );
+    }
+  } else {
+    throw new Error("--list 또는 --type/--section 을 주십시오");
+  }
+
+  console.log(`${items.length}문항 생성 (seed ${seed})`);
+  for (const p of items) {
+    console.log(`  [${p.rpmType} ${p.rpmTitle}] ${p.answer}`);
+  }
+
+  if (typeof args.out === "string") {
+    const outPath = resolve(args.out);
+    mkdirSync(dirname(outPath), { recursive: true });
+    writeFileSync(outPath, JSON.stringify(items, null, 1), "utf-8");
+    console.log(`JSON → ${outPath}`);
+  }
+  if (typeof args.html === "string") {
+    const htmlPath = resolve(args.html);
+    const { html, figureErrors } = await toHtml(items, seed);
+    mkdirSync(dirname(htmlPath), { recursive: true });
+    writeFileSync(htmlPath, html, "utf-8");
+    console.log(`HTML → ${htmlPath}`);
+    if (figureErrors.length) {
+      console.error(
+        `그림 실패 ${figureErrors.length}건:\n  ${figureErrors.join("\n  ")}`,
+      );
+      process.exitCode = 1;
+    }
+  }
+}
+
+main().catch((e) => {
+  console.error(e instanceof Error ? e.message : e);
+  process.exit(1);
+});

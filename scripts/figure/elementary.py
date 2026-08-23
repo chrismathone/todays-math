@@ -77,6 +77,8 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "fracPie": frozenset({"start", "fill"}),
     "triRow": frozenset({"fill"}),
     "trapFour": frozenset({"fill"}),
+    # `align` — 칸 정렬("center" 기본 / "left"). 줄기와 잎의 **잎**이 왼쪽이어야 한다.
+    "table": frozenset({"align"}),
 }
 
 
@@ -415,6 +417,26 @@ def _text(
         f'<text x="{_n(x)}" y="{_n(y)}" fill="{INK}" font-size="{_n(size)}" '
         f'font-family="Batang, serif" font-weight="{weight}" text-anchor="{anchor}" '
         f'dominant-baseline="middle">{_esc(t)}</text>'
+    )
+
+
+# 13pt 글자 폭 **상한** — 실측 「바닐라」 39.72/3 = 13.24(한글), 숫자 7.99.
+# 라틴·괄호는 숫자보다도 좁아서(「(개)」 23.54 = 한글 13.24 + 괄호 둘 10.3) 8.0 이면 넉넉하다.
+# 잘림을 막는 용도라 **상한이면 맞다** — 다만 너무 헐거우면 배치에서 폭을 낭비하므로
+# 한글과 나머지를 나눈다(모두 한글로 치면 「(개)」가 39.7 로 16단위 부풀었다).
+#
+# ⚠️ **여기가 한 곳이다.** 표 열 폭(`_table`)과 그래프 라벨(`elem_advanced`)이 같은 자를
+#    써야 한다 — 두 벌이 되면 한쪽만 고쳐진다(2026-08-18 「같은 규칙을 쓰는 자리가 둘이면
+#    한 숫자를 두 곳이 쓰게 하라」). elem_advanced 는 이것을 import 한다.
+HANGUL_W_13 = 13.24
+ASCII_W_13 = 8.0
+
+
+def _label_w_max(text: str, size: float = 13.0) -> float:
+    """글자 폭 **상한**. 한글은 넓고 나머지는 좁다 — 넘치지 않을 만큼만 넉넉하게."""
+    scale = size / 13.0
+    return scale * sum(
+        HANGUL_W_13 if ord(ch) >= 0x1100 else ASCII_W_13 for ch in text
     )
 
 
@@ -931,6 +953,59 @@ def _clocks(spec: Mapping[str, Any]) -> str:
     return _svg(width, pad + 2 * r + 36, "".join(parts))
 
 
+# 표 칸의 좌우 여백(한쪽). 글자와 세로줄 사이 최소 틈.
+TABLE_CELL_PAD = 5.0
+# 열 최소 폭. 숫자 한 칸짜리 열이 실보다 좁아지지 않게.
+TABLE_MIN_CW = 24.0
+
+
+def _table_widths(cells_by_col: list[list[str]], fs: float, usable: float, base: float) -> list[float]:
+    """열 폭을 **내용에 비례해** 나눈다. 못 담으면 **던진다** (D-70).
+
+    옛 규칙은 `cw = min(56, usable/cols)` 균등이었다. 그러면 「10이상~20미만」 같은
+    8자 계급 라벨이 든 열과 「5」 한 자짜리 도수 열이 **같은 폭**이라 긴 쪽 첫 글자가
+    열 밖으로 나갔다(실렌더 확인, `C:/tmp/wave3-probe.png`). 잘린 그림은 지면에서
+    티가 안 나고 에러도 안 난다 — 그래서 **조용히 자르지 않고 던진다.**
+
+    ## 총 폭은 «오늘의 지면»을 바닥으로 깐다
+
+    `base`(= 옛 규칙이 내던 총 폭) 보다 **모자라면 base 를 그대로 쓰고 배분만 바꾼다.**
+    그래야 지금 잘 나오는 표가 **viewBox 폭이 한 단위도 안 바뀐다** — 폭 하나로 지면
+    등급(140/240px)이 갈리므로, 안 그러면 멀쩡한 표의 글자 크기까지 같이 뒤집힌다
+    (CLAUDE.md 2026-08-23). 필요 폭이 base 를 넘을 때에만 넓히고, 상한(`usable`)을
+    넘으면 던진다.
+    """
+    need = [
+        max(TABLE_MIN_CW, max(_label_w_max(c, fs) for c in col) + TABLE_CELL_PAD * 2)
+        for col in cells_by_col
+    ]
+    total_need = sum(need)
+    if total_need > usable:
+        widest = max(range(len(need)), key=lambda i: need[i])
+        raise ValueError(
+            f"표가 지면 폭을 넘습니다 (필요 {total_need:.0f} > {usable:.0f}단위, "
+            f"가장 넓은 열 {widest + 1}번 {need[widest]:.0f}). 라벨을 줄이거나 열을 나누십시오"
+        )
+    total = max(base, total_need)
+    return [w * total / total_need for w in need]
+
+
+def _table_align(spec: Mapping[str, Any], cols: int) -> list[str]:
+    """칸 정렬. 문자열이면 모든 열에, 배열이면 열마다.
+
+    줄기와 잎 그림은 **잎이 왼쪽 정렬**이라야 자릿수가 세로로 맞는다 — 가운데 정렬이면
+    행마다 잎의 시작 x 가 달라져 「몇 번째 잎인가」를 셀 수 없다.
+    """
+    raw = spec.get("align", "center")
+    vals = raw if isinstance(raw, list) else [raw] * cols
+    if len(vals) != cols:
+        raise ValueError(f"align 배열은 열 수({cols})와 같아야 합니다")
+    for v in vals:
+        if v not in ("center", "left"):
+            raise ValueError('align 은 "center" 또는 "left" 여야 합니다')
+    return list(vals)
+
+
 def _table(spec: Mapping[str, Any]) -> str:
     headers = spec["headers"]
     rows = spec["rows"]
@@ -939,29 +1014,53 @@ def _table(spec: Mapping[str, Any]) -> str:
     cols = len(headers)
     if cols < 1:
         raise ValueError("headers 는 비어 있지 않아야 합니다")
+    for row in rows:
+        if not isinstance(row, list) or len(row) != cols:
+            raise ValueError("행 칸 수가 머리와 같아야 합니다")
+    align = _table_align(spec, cols)
     pad, rh = 8.0, 24.0
-    # 열이 많으면 칸만 줄인다. viewBox 를 키우면 화면에서 숫자가 본문보다 작아진다.
-    cw = min(56.0, (TABLE_VIEWBOX_MAX - pad * 2) / cols)
-    fs = 13 if cw >= 36 else 12
+    usable = TABLE_VIEWBOX_MAX - pad * 2
+    # 옛 균등 규칙이 내던 총 폭 — 이보다 좁히지 않는다(지금 지면을 그대로 둔다).
+    base = min(56.0, usable / cols) * cols
+    cells_by_col = [
+        [str(headers[i])] + [str(row[i]) for row in rows] for i in range(cols)
+    ]
+    widths = _table_widths(cells_by_col, 13.0, usable, base)
+    # 글자 크기는 **가장 좁은 열**이 정한다 — 균등이던 시절과 같은 규칙이라
+    # 폭이 안 바뀐 표는 크기도 그대로다.
+    fs = 13 if min(widths) >= 36 else 12
+    xs = [pad]
+    for w in widths:
+        xs.append(xs[-1] + w)
+    total_w = xs[-1] - pad
+
+    def cell_x(i: int) -> tuple[float, str]:
+        return (
+            (xs[i] + TABLE_CELL_PAD, "start")
+            if align[i] == "left"
+            else (xs[i] + widths[i] / 2, "middle")
+        )
+
     parts = [
-        _rect(pad, pad, cols * cw, rh, sw=1.2, fill="#d7e0e8"),
+        _rect(pad, pad, total_w, rh, sw=1.2, fill="#d7e0e8"),
     ]
     for i, h in enumerate(headers):
-        parts.append(_text(pad + cw * i + cw / 2, pad + rh / 2, h, size=fs))
+        parts.append(_text(xs[i] + widths[i] / 2, pad + rh / 2, h, size=fs))
         if i:
-            x = pad + cw * i
+            x = xs[i]
             parts.append(
                 f'<line x1="{_n(x)}" y1="{_n(pad)}" x2="{_n(x)}" y2="{_n(pad + rh * (1 + len(rows)))}" '
                 f'stroke="{INK}" stroke-width="1"/>'
             )
     for r, row in enumerate(rows):
-        if not isinstance(row, list) or len(row) != cols:
-            raise ValueError("행 칸 수가 머리와 같아야 합니다")
         y = pad + rh * (r + 1)
-        parts.append(_rect(pad, y, cols * cw, rh, sw=1.2))
+        parts.append(_rect(pad, y, total_w, rh, sw=1.2))
         for i, cell in enumerate(row):
-            parts.append(_text(pad + cw * i + cw / 2, y + rh / 2, cell, size=fs, weight="600"))
-    return _svg(pad * 2 + cols * cw, pad * 2 + rh * (1 + len(rows)), "".join(parts))
+            cx, anchor = cell_x(i)
+            parts.append(
+                _text(cx, y + rh / 2, cell, size=fs, anchor=anchor, weight="600")
+            )
+    return _svg(pad * 2 + total_w, pad * 2 + rh * (1 + len(rows)), "".join(parts))
 
 
 def _tape(spec: Mapping[str, Any]) -> str:
@@ -2157,3 +2256,10 @@ from elem_advanced import ADV_FIELDS, ADV_OPTIONAL, ADV_RENDER  # noqa: E402
 KIND_FIELDS.update(ADV_FIELDS)
 OPTIONAL.update(ADV_OPTIONAL)
 _RENDER.update(ADV_RENDER)
+
+# 실물 에셋 합성 kind (assetScene) — 규격·검증은 figure_assets.py 한 곳에.
+from figure_assets import ASSET_FIELDS, ASSET_OPTIONAL, ASSET_RENDER  # noqa: E402
+
+KIND_FIELDS.update(ASSET_FIELDS)
+OPTIONAL.update(ASSET_OPTIONAL)
+_RENDER.update(ASSET_RENDER)
