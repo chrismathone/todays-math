@@ -858,9 +858,15 @@ export const M1_CALC: TypeEntry[] = [
       const isOdd = rng() < 0.5;
       const parity = isOdd ? "홀수" : "짝수";
       const nSample = isOdd ? 5 : 4;
-      const idx = [0, 1, 2].map(() => intBetween(rng, 0, NEG_TERMS.length - 1));
-      if (new Set(idx).size !== 3) return null;
-      const terms = idx.map((i) => NEG_TERMS[i]!);
+      // 밑이 $1$ 인 `-1^{n}` 꼴은 **맨 앞에서만** 쓴다 — 뒤에 오면 `+-1^{n}` 이 찍힌다.
+      const tailPool = NEG_TERMS.filter((t) => t.base === -1);
+      const idx = [
+        NEG_TERMS[intBetween(rng, 0, NEG_TERMS.length - 1)]!,
+        tailPool[intBetween(rng, 0, tailPool.length - 1)]!,
+        tailPool[intBetween(rng, 0, tailPool.length - 1)]!,
+      ];
+      if (new Set(idx.map((t) => t.code)).size !== 3) return null;
+      const terms = idx;
       const ops = [1, rng() < 0.5 ? 1 : -1, rng() < 0.5 ? 1 : -1];
       const ans = terms.reduce(
         (acc, t, i) => acc + ops[i]! * negTermValue(t, nSample),
@@ -1018,6 +1024,7 @@ export const M1_CALC: TypeEntry[] = [
       if (u === w) return null;
       const p = intBetween(rng, 1, u - 1);
       const r = intBetween(rng, 1, w - 1);
+      if (gcd(p, u) !== 1 || gcd(r, w) !== 1) return null; // 발문의 분수도 기약이라야 한다
       const inner = subQ(q(p, u), q(r, w));
       if (inner.n === 0) return null;
       const D = lcm(u, w) * pick(rng, [1, 2] as const);
@@ -1136,7 +1143,7 @@ export const M1_CALC: TypeEntry[] = [
         solution:
           `$a\\times b${signText(s1)}$이므로 $a$와 $b$는 ${s1 > 0 ? "같은" : "다른"} 부호이다.\n` +
           (useSum
-            ? `부호가 같은 두 수의 합이 $${signText(s2).slice(0)}$이므로 둘 다 ${s2 > 0 ? "양수" : "음수"}이다. 즉 $a${signText(sa)}$, $b${signText(sb)}$이다.\n`
+            ? `부호가 같은 두 수에 대하여 $a+b${signText(s2)}$이므로 둘 다 ${s2 > 0 ? "양수" : "음수"}이다. 즉 $a${signText(sa)}$, $b${signText(sb)}$이다.\n`
             : `$a-b${signText(s2)}$이므로 ${s2 > 0 ? "$a$가 양수, $b$가 음수" : "$a$가 음수, $b$가 양수"}이다. 즉 $a${signText(sa)}$, $b${signText(sb)}$이다.\n`) +
           `$a\\div c${signText(s3)}$이므로 $a$와 $c$는 ${s3 > 0 ? "같은" : "다른"} 부호이고, 따라서 $c${signText(sc)}$이다.`,
         facts: {

@@ -20,11 +20,6 @@
  */
 import { M1_BOOK1 } from "./m1Book1";
 import { M1_BOOK2 } from "./m1Book2";
-import { M1_CALC } from "./m1Calc";
 import type { TypeEntry } from "./types";
 
-export const M1EXTRA_TYPES: TypeEntry[] = [
-  ...M1_BOOK1,
-  ...M1_BOOK2,
-  ...M1_CALC,
-];
+export const M1EXTRA_TYPES: TypeEntry[] = [...M1_BOOK1, ...M1_BOOK2];
