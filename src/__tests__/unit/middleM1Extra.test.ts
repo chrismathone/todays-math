@@ -636,6 +636,14 @@ describe("중1 저조 단원 30유형 (m1Extra)", () => {
         }
       });
 
+      it("변형 20개도 전부 검산을 통과한다", () => {
+        // 고정 씨앗 5개가 못 건드리는 가지(변환·kind)를 변형이 넓게 밟는다.
+        const check = CHECKS[e.key]!;
+        for (let variant = 0; variant < 20; variant += 1) {
+          check(generateMiddleProblem(e.key, 20260823, variant));
+        }
+      });
+
       it("숫자가 KaTeX 밖에 없다 (본문·정답·해설)", () => {
         for (const seed of SEEDS) {
           const p = generateMiddleProblem(e.key, seed);
@@ -666,5 +674,35 @@ describe("중1 저조 단원 30유형 (m1Extra)", () => {
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
     }
+  });
+
+  it("가지가 있는 유형은 모든 가지가 표본에 나온다", () => {
+    // 픽스처가 경계를 안 가르면 그 가지의 변이는 영영 초록이다 (2026-08-21).
+    const seen = (key: string, field: string, tries: number): Set<number> => {
+      const s = new Set<number>();
+      for (let v = 0; v < tries; v += 1) {
+        s.add(generateMiddleProblem(key, 20260823, v).facts[field]!);
+      }
+      return s;
+    };
+    expect(seen("1-1|소인수분해|02", "kind", 40)).toEqual(new Set([0, 1]));
+    expect(seen("1-1|좌표와 그래프|05", "t", 120)).toEqual(
+      new Set([1, 2, 3, 4, 5, 6]),
+    );
+    expect(seen("1-1|좌표와 그래프|06", "t", 120)).toEqual(
+      new Set([0, 1, 2, 3, 4, 5, 6]),
+    );
+    expect(seen("1-1|좌표와 그래프|06", "c", 120)).toEqual(
+      new Set([0, 1, 2, 3]),
+    );
+    expect(seen("1-1|좌표와 그래프|10", "axis", 60)).toEqual(
+      new Set([0, 1, 2]),
+    );
+    expect(seen("1-2|다각형|07", "kind", 40)).toEqual(new Set([0, 1]));
+    expect(seen("1-2|대푯값|02", "n", 60)).toEqual(new Set([5, 6, 7]));
+    expect(seen("1-2|위치 관계|06", "kind", 120)).toEqual(
+      new Set([0, 1, 2, 3, 4, 5]),
+    );
+    expect(seen("1-2|위치 관계|08", "kind", 40)).toEqual(new Set([0, 1]));
   });
 });
