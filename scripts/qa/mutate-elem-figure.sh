@@ -462,17 +462,16 @@ run "꺾은선만 옛 자로 그리기 (눈금은 새 축)"
 
 # ㉗ 눈금을 그을 때 **넘겨받은 걸음을 버리고** `_y_step` 을 다시 부른다 —
 #    스펙의 yStep 이 조용히 무시되어 「한 칸 3명」 발문 옆에 5명 간격이 그려진다 (D-70).
+#    (옛 앵커는 인라인 `v = 0` 루프였는데 눈금이 `_plot_axes`/`_tick_values` 로
+#     리팩터링되며 죽었다 — 2026-08-23 재수리. 변이는 **지금 지키는 규칙**을 겨눈다:
+#     `_plot_axes` 주석이 「여기서 `_y_step` 을 다시 부르면 안 된다」인 바로 그 자리.)
 python - "$ADV" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
-old = """        _line((left, top + plot_h), (left + plot_w, top + plot_h)),
-    ]
-    v = 0"""
-assert old in s, "앵커 없음 ㉗"
-new = """        _line((left, top + plot_h), (left + plot_w, top + plot_h)),
-    ]
-    step = _y_step(axis_top)
-    v = 0"""
+old = """    for v in _tick_values(axis_top, step):"""
+assert s.count(old) == 1, "앵커 없음 ㉗"
+new = """    step = _y_step(axis_top)
+    for v in _tick_values(axis_top, step):"""
 io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 PY
 run "눈금이 yStep 을 버리고 _y_step 을 다시 부른다"
