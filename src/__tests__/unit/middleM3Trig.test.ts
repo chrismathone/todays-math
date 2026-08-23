@@ -80,30 +80,137 @@ function stripWrap(raw: string): string {
   let t = raw
     .replace(/^\$/, "")
     .replace(/\$$/, "")
-    .replace(/\\,\\mathrm\{[a-z]+\}(\^2)?/g, "")
+    .replace(/\\,\(?\\mathrm\{[a-z]+\}(\^2)?\)?/g, "")
     .replace(/\^\\circ/g, "")
     .trim();
   if (t.startsWith("(") && t.endsWith(")")) t = t.slice(1, -1);
   return t;
 }
 
-function termValue(body: string): number {
-  const f = body.match(/^\\dfrac\{(.+)\}\{(.+)\}$/);
-  if (f) return termValue(f[1]!) / termValue(f[2]!);
-  const s = body.match(/^(\d*)\\sqrt\{(\d+)\}$/);
-  if (s) return (s[1] ? Number(s[1]) : 1) * Math.sqrt(Number(s[2]));
-  if (/^\d+(\.\d+)?$/.test(body)) return Number(body);
+/** 최상위 `\\times`·`\\div` 로 인수를 자른다. 앞선 연산이 나눗셈이면 `div`. */
+function splitFactors(t: string): { div: boolean; body: string }[] {
+  const out: { div: boolean; body: string }[] = [];
+  let depth = 0;
+  let start = 0;
+  let div = false;
+  for (let i = 0; i < t.length; i += 1) {
+    const c = t[i]!;
+    if (c === "{") depth += 1;
+    else if (c === "}") depth -= 1;
+    else if (depth === 0 && c === "\\") {
+      if (t.startsWith("\\times", i)) {
+        out.push({ div, body: t.slice(start, i) });
+        div = false;
+        start = i + 6;
+        i += 5;
+      } else if (t.startsWith("\\div", i)) {
+        out.push({ div, body: t.slice(start, i) });
+        div = true;
+        start = i + 4;
+        i += 3;
+      }
+    }
+  }
+  out.push({ div, body: t.slice(start) });
+  return out;
+}
+
+/** `t[open]` 이 `{` 일 때 짝이 되는 `}` 의 색인. 없으면 `-1`. */
+function matchBrace(t: string, open: number): number {
+  let depth = 0;
+  for (let i = open; i < t.length; i += 1) {
+    if (t[i] === "{") depth += 1;
+    else if (t[i] === "}") {
+      depth -= 1;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
+}
+
+/**
+ * `\\dfrac{A}{B}` · `n\\sqrt{r}` · 순수한 수.
+ *
+ * ⚠️ 분수는 **중괄호 짝을 세어** 가른다. 정규식 하나로는
+ * `\\dfrac{6}{\\dfrac{\\sqrt{3}}{2}}` 처럼 **중첩된 분수**를 엉뚱하게 갈라
+ * 「못 읽는 항」으로 만든다 — 그러면 등식 검사가 그 줄을 **조용히 건너뛴다**
+ * (2026-08-23: 양성 대조군이 그래서 안 걸렸다).
+ */
+function parseAtom(body: string): number {
+  const t = body.trim();
+  if (t.startsWith("\\dfrac{")) {
+    const a = matchBrace(t, 6);
+    if (a > 0 && t[a + 1] === "{") {
+      const b = matchBrace(t, a + 1);
+      if (b === t.length - 1) {
+        return parseExpr(t.slice(7, a)) / parseExpr(t.slice(a + 2, b));
+      }
+    }
+    throw new Error(`분수를 못 읽었다: ${body}`);
+  }
+  const r = t.match(/^(\d*)\\sqrt\{(\d+)\}$/);
+  if (r) return (r[1] ? Number(r[1]) : 1) * Math.sqrt(Number(r[2]));
+  if (/^\d+(\.\d+)?$/.test(t)) return Number(t);
   throw new Error(`알 수 없는 항: ${body}`);
+}
+
+function parseProduct(t: string): number {
+  let acc = 1;
+  let first = true;
+  for (const f of splitFactors(t)) {
+    const v = parseAtom(f.body);
+    acc = first ? (f.div ? 1 / v : v) : f.div ? acc / v : acc * v;
+    first = false;
+  }
+  return acc;
+}
+
+function parseExpr(t: string): number {
+  const s = t.trim();
+  if (s === "0") return 0;
+  return splitSigned(s).reduce(
+    (u, { sign, body }) => u + sign * parseProduct(body),
+    0,
+  );
 }
 
 /** `$(12-4\sqrt{3})\,\mathrm{cm}$` 같은 정답의 수. 모르는 모양이면 **던진다**. */
 function latexValue(raw: string): number {
-  const t = stripWrap(raw);
-  if (t === "0") return 0;
-  return splitSigned(t).reduce(
-    (u, { sign, body }) => u + sign * termValue(body),
-    0,
-  );
+  return parseExpr(stripWrap(raw));
+}
+
+/**
+ * 해설·발문에 적힌 **등식이 실제로 성립하는가**. `$a=b=c$` 를 `=` 로 갈라
+ * **둘 다 수로 읽히는 이웃 쌍만** 견준다(`\overline{AB}`·`\sin 30^\circ` 처럼
+ * 못 읽는 쪽은 건너뛴다).
+ *
+ * 왜 필요한가: 값(`facts`)과 정답이 맞아도 **해설의 계산 줄이 틀릴 수 있다.**
+ * 2026-08-23 변이 시험에서 활용 05 의 「가까운 각」을 「먼 각」으로 바꾸니
+ * 해설이 `\dfrac{6}{\sin 45^\circ}=6\sqrt{2}` 대신 틀린 각으로 나눴는데
+ * **다른 검사는 전부 초록**이었다 — 그 자리를 이 검사가 막는다.
+ */
+function equalityMismatches(text: string): string[] {
+  const out: string[] = [];
+  for (const seg of text.match(/\$[^$]*\$/g) ?? []) {
+    const parts = seg.slice(1, -1).split("=");
+    if (parts.length < 2) continue;
+    let prev: number | null = null;
+    let prevRaw = "";
+    for (const part of parts) {
+      let v: number | null = null;
+      try {
+        v = latexValue(part);
+      } catch {
+        v = null;
+      }
+      if (v !== null && prev !== null && !near(v, prev, 1e-6)) {
+        out.push(`${prevRaw.trim()} = ${part.trim()} → ${prev} vs ${v}`);
+      }
+      prev = v;
+      prevRaw = part;
+    }
+  }
+  return out;
 }
 
 /** `$2\cos A$` 처럼 `c0 ± c\sin A ± c\cos A ± c\tan A` 꼴을 각 `deg` 에서 잰다. */
@@ -117,7 +224,7 @@ function trigLinearValue(raw: string, deg: number): number {
       const fn = { sin: 0, cos: 1, tan: 2 }[m[2] as "sin" | "cos" | "tan"];
       return u + sign * coef * TRIG(fn, deg);
     }
-    return u + sign * termValue(body);
+    return u + sign * parseProduct(body);
   }, 0);
 }
 
@@ -691,6 +798,24 @@ describe("직각 판정기 — 문턱이 «진짜 틀린 각»을 가르는가",
   });
 });
 
+describe("등식 판정기 — 틀린 계산 줄을 실제로 잡는가", () => {
+  it("양쪽이 다르면 잡는다 (양성 대조군)", () => {
+    expect(
+      equalityMismatches("$\\dfrac{6}{\\dfrac{\\sqrt{3}}{2}}=6\\sqrt{2}$"),
+    ).toHaveLength(1);
+    expect(equalityMismatches("$100\\times0.5878=58.79$")).toHaveLength(1);
+  });
+  it("맞으면 안 잡고, 못 읽는 쪽은 건너뛴다 (음성 대조군)", () => {
+    expect(equalityMismatches("$100\\times0.5878=58.78$")).toEqual([]);
+    expect(
+      equalityMismatches(
+        "$\\overline{AB}=\\dfrac{6}{\\sin 45^\\circ}=6\\sqrt{2}$",
+      ),
+    ).toEqual([]);
+    expect(equalityMismatches("$0.5878-0.5592=0.0286$")).toEqual([]);
+  });
+});
+
 describe("전처리 판정기 — 지면이 수를 고쳐 쓰는가", () => {
   it("가분수·접힘을 실제로 잡는다 (양성 대조군)", () => {
     expect(preprocessRewrites("$x-\\dfrac{3}{2}y$")).toHaveLength(1);
@@ -843,6 +968,28 @@ describe("중3 삼각비 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14
               expect(
                 preprocessRewrites(text),
                 `${e.key} seed ${seed} v${v}: ${text}`,
+              ).toEqual([]);
+            }
+          }
+        }
+      });
+
+      /**
+       * 값(`facts`)과 정답이 맞아도 **해설의 계산 줄이 틀릴 수 있다.** 등식의
+       * 양쪽이 둘 다 수로 읽히면 실제로 같은지 잰다.
+       */
+      it("발문·해설에 적힌 등식이 실제로 성립한다", () => {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 6; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const [name, text] of [
+              ["발문", p.content],
+              ["정답", p.answer],
+              ["해설", p.solution],
+            ] as const) {
+              expect(
+                equalityMismatches(text),
+                `${e.key} seed ${seed} v${v} ${name}`,
               ).toEqual([]);
             }
           }
