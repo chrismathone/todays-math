@@ -871,6 +871,26 @@ describe("중1 식·방정식 33유형 (m1Expr)", () => {
         }
       });
 
+      it("정수끼리의 가분수를 내보내지 않는다", () => {
+        // 제품 전처리 `textPreprocess.improperToMixed` 가 `\dfrac{9}{5}` 를
+        // **대분수** `1\frac{4}{5}` 로 바꿔 지면에 내보낸다(초등 관행). 중학 계수를
+        // 대분수로 쓰는 교과서는 없다 — 렌더는 멀쩡해서 붉은 글자 검사로는
+        // 구조적으로 못 잡고, 2026-08-23 에 **화면을 찍어 보고서야** 드러났다.
+        // 전처리는 우리 소유가 아니므로 이쪽에서 그 꼴을 아예 안 낸다.
+        const pat = /\\d?frac\{(\d{1,4})\}\{(\d{1,4})\}/g;
+        for (let variant = 0; variant < 24; variant += 1) {
+          const p = generateMiddleProblem(e.key, 20260823, variant);
+          for (const part of [p.content, p.answer, p.solution]) {
+            for (const m of part.matchAll(pat)) {
+              expect(
+                Number(m[1]) < Number(m[2]),
+                `${m[0]} 은 대분수로 바뀐다 — ${part}`,
+              ).toBe(true);
+            }
+          }
+        }
+      });
+
       it("분모에 음수를 두지 않는다", () => {
         // 렌더는 멀쩡해서 안 걸린다 — 지면에서만 보이는 결함이라 글자로 막는다.
         for (let variant = 0; variant < 24; variant += 1) {

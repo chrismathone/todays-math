@@ -473,35 +473,39 @@ const EXPR_TYPES: TypeEntry[] = [
     "식의 값 구하기 분모에 분수 대입하기",
     SEC.식의값,
     "mid",
-    (rng): Body => {
-      const mode = intBetween(rng, 0, 1);
-      if (mode === 0) {
-        const p = intNonzero(rng, -6, 6);
-        const q = intNonzero(rng, -6, 6);
-        const m = intBetween(rng, 2, 9);
-        const n = intBetween(rng, 2, 9);
-        const V = m * p - n * q;
+    (rng): Body =>
+      attempt(400, (): Body | null => {
+        const mode = intBetween(rng, 0, 1);
+        if (mode === 0) {
+          // 분모가 $1$이면 대입할 것이 분수가 아니다 — 이 유형의 뜻이 사라진다.
+          const p = intNonzero(rng, -6, 6);
+          const q = intNonzero(rng, -6, 6);
+          if (Math.abs(p) < 2 || Math.abs(q) < 2) return null;
+          const m = intBetween(rng, 2, 9);
+          const n = intBetween(rng, 2, 9);
+          const V = m * p - n * q;
+          return {
+            content: `$x=${fracRaw(1, p)}$, $y=${fracRaw(1, q)}$일 때, $\\dfrac{${m}}{x}-\\dfrac{${n}}{y}$의 값을 구하시오.`,
+            answer: `$${V}$`,
+            solution: `분모에 분수를 대입할 때는 생략된 나눗셈 기호를 다시 쓴다.\n$\\dfrac{${m}}{x}=${m}\\div${fracRawParen(1, p)}=${m}\\times\\left(${p}\\right)=${m * p}$이고, 같은 방법으로 $\\dfrac{${n}}{y}=${n * q}$이다.\n따라서 구하는 값은 $${m * p}${signed(-(n * q))}=${V}$이다.`,
+            facts: { mode, p, q, m, n, V },
+          };
+        }
+        const p = intNonzero(rng, -5, 5);
+        const q = intNonzero(rng, -5, 5);
+        const r = intNonzero(rng, -5, 5);
+        if (Math.abs(p) < 2 || Math.abs(q) < 2 || Math.abs(r) < 2) return null;
+        const l = intBetween(rng, 2, 6);
+        const m = intBetween(rng, 2, 6);
+        const n = intBetween(rng, 2, 6);
+        const V = l * p - m * q - n * r;
         return {
-          content: `$x=${fracRaw(1, p)}$, $y=${fracRaw(1, q)}$일 때, $\\dfrac{${m}}{x}-\\dfrac{${n}}{y}$의 값을 구하시오.`,
+          content: `$a=${fracRaw(1, p)}$, $b=${fracRaw(1, q)}$, $c=${fracRaw(1, r)}$일 때, $\\dfrac{${l}}{a}-\\dfrac{${m}}{b}-\\dfrac{${n}}{c}$의 값을 구하시오.`,
           answer: `$${V}$`,
-          solution: `분모에 분수를 대입할 때는 생략된 나눗셈 기호를 다시 쓴다.\n$\\dfrac{${m}}{x}=${m}\\div${fracRawParen(1, p)}=${m}\\times\\left(${p}\\right)=${m * p}$이고, 같은 방법으로 $\\dfrac{${n}}{y}=${n * q}$이다.\n따라서 구하는 값은 $${m * p}${signed(-(n * q))}=${V}$이다.`,
-          facts: { mode, p, q, m, n, V },
+          solution: `분모에 분수를 대입할 때는 생략된 나눗셈 기호를 다시 쓴다.\n$\\dfrac{${l}}{a}=${l * p}$, $\\dfrac{${m}}{b}=${m * q}$, $\\dfrac{${n}}{c}=${n * r}$이다.\n따라서 구하는 값은 $${l * p}${signed(-(m * q))}${signed(-(n * r))}=${V}$이다.`,
+          facts: { mode, p, q, r, l, m, n, V },
         };
-      }
-      const p = intNonzero(rng, -5, 5);
-      const q = intNonzero(rng, -5, 5);
-      const r = intNonzero(rng, -5, 5);
-      const l = intBetween(rng, 2, 6);
-      const m = intBetween(rng, 2, 6);
-      const n = intBetween(rng, 2, 6);
-      const V = l * p - m * q - n * r;
-      return {
-        content: `$a=${fracRaw(1, p)}$, $b=${fracRaw(1, q)}$, $c=${fracRaw(1, r)}$일 때, $\\dfrac{${l}}{a}-\\dfrac{${m}}{b}-\\dfrac{${n}}{c}$의 값을 구하시오.`,
-        answer: `$${V}$`,
-        solution: `분모에 분수를 대입할 때는 생략된 나눗셈 기호를 다시 쓴다.\n$\\dfrac{${l}}{a}=${l * p}$, $\\dfrac{${m}}{b}=${m * q}$, $\\dfrac{${n}}{c}=${n * r}$이다.\n따라서 구하는 값은 $${l * p}${signed(-(m * q))}${signed(-(n * r))}=${V}$이다.`,
-        facts: { mode, p, q, r, l, m, n, V },
-      };
-    },
+      }),
   ),
 
   def(
@@ -516,9 +520,12 @@ const EXPR_TYPES: TypeEntry[] = [
         const T = intBetween(rng, 1, 8) * 5;
         const V = (9 / 5) * T + 32;
         return {
-          content: `섭씨 $x$ °C는 화씨 $\\dfrac{9}{5}x+32$ °F이다. 섭씨 $${T}$ °C는 화씨 몇 °F인지 구하시오.`,
+          // 문자를 분자에 넣어 쓴다 — `\dfrac{9}{5}x` 로 쓰면 제품 전처리
+          // (`textPreprocess.improperToMixed`)가 이것을 **대분수** `1\frac45 x`
+          // 로 바꿔 지면에 내보낸다. 중학 계수는 가분수로 쓴다.
+          content: `섭씨 $x$ °C는 화씨 $\\dfrac{9x}{5}+32$ °F이다. 섭씨 $${T}$ °C는 화씨 몇 °F인지 구하시오.`,
           answer: `$${V}$ °F`,
-          solution: `$x=${T}$${eulReul(T)} 대입하면 $\\dfrac{9}{5}\\times${T}+32=${(9 / 5) * T}+32=${V}$이다.\n따라서 화씨 $${V}$ °F이다.`,
+          solution: `$x=${T}$${eulReul(T)} 대입하면 $\\dfrac{9\\times${T}}{5}+32=${(9 / 5) * T}+32=${V}$이다.\n따라서 화씨 $${V}$ °F이다.`,
           facts: { mode, T, V },
         };
       }
@@ -619,10 +626,14 @@ const EXPR_TYPES: TypeEntry[] = [
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 2);
       if (mode === 0) {
-        // (분수)×(일차식) — 분모가 약분되도록 계수를 분모의 배수로 잡는다
-        const n = intBetween(rng, 2, 5);
-        const m = intNonzero(rng, -7, 7);
-        if (Math.abs(m) === 1 || gcd(Math.abs(m), n) !== 1) return null;
+        // (분수)×(일차식) — 분모가 약분되도록 계수를 분모의 배수로 잡는다.
+        // 가분수는 쓰지 않는다: 제품 전처리(`textPreprocess.improperToMixed`)가
+        // `\dfrac{7}{3}` 을 **대분수** `2\frac13` 으로 바꿔 지면에 내보내는데,
+        // 중학 계수를 대분수로 쓰는 교과서는 없다. 그래서 진분수만 낸다.
+        const n = intBetween(rng, 3, 6);
+        const m = intNonzero(rng, -5, 5);
+        if (Math.abs(m) === 1 || Math.abs(m) >= n) return null;
+        if (gcd(Math.abs(m), n) !== 1) return null;
         const a1 = intNonzero(rng, -4, 4);
         const b1 = intNonzero(rng, -6, 6);
         const a = n * a1;
@@ -638,22 +649,22 @@ const EXPR_TYPES: TypeEntry[] = [
         };
       }
       if (mode === 1) {
-        // (일차식)÷(분수) — 역수의 곱으로 고친다
-        const m = intBetween(rng, 2, 5);
-        const n = intNonzero(rng, -7, 7);
-        if (Math.abs(n) === 1 || gcd(m, Math.abs(n)) !== 1) return null;
-        const a1 = intNonzero(rng, -4, 4);
-        const b1 = intNonzero(rng, -6, 6);
-        const a = m * a1;
-        const b = m * b1;
-        const p = n * a1;
-        const q = n * b1;
-        const expr = `\\left(${lin(a, b)}\\right)\\div${fracRawParen(m, n)}`;
+        // (일차식)÷(수) — RPM 0624 꼴. 나누는 수를 분수로 두면 역수가 반드시
+        // 가분수가 되어(둘 중 하나는 분자가 크다) 해설이 대분수로 나간다.
+        // 그래서 나누는 수는 정수로 둔다 — 유형 제목의 「수」 그대로다.
+        const d = intNonzero(rng, -9, 9);
+        if (Math.abs(d) === 1) return null;
+        const a1 = intNonzero(rng, -6, 6);
+        const b1 = intNonzero(rng, -8, 8);
+        const a = d * a1;
+        const b = d * b1;
+        if (Math.abs(a) > 60 || Math.abs(b) > 72) return null;
+        const expr = `\\left(${lin(a, b)}\\right)\\div${d < 0 ? `\\left(${d}\\right)` : d}`;
         return {
           content: `다음 식을 계산하시오.\n$${expr}$`,
-          answer: `$${lin(p, q)}$`,
-          solution: `나눗셈은 역수의 곱셈으로 고친다.\n$${expr}=\\left(${lin(a, b)}\\right)\\times${fracRawParen(n, m)}=${lin(p, q)}$이다.`,
-          facts: { mode, m, n, a, b, p, q },
+          answer: `$${lin(a1, b1)}$`,
+          solution: `나눗셈은 역수의 곱셈으로 고쳐 일차식의 각 항을 $${d}$로 나눈다.\n$${expr}=${lin(a1, b1)}$이다.`,
+          facts: { mode, d, a, b, p: a1, q: b1 },
         };
       }
       const k = intNonzero(rng, -6, 6);
@@ -1220,9 +1231,13 @@ const EQ_TYPES: TypeEntry[] = [
       attempt(400, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
         if (mode === 0) {
-          const n = intBetween(rng, 2, 6);
-          const m = intNonzero(rng, -7, 7);
-          if (Math.abs(m) === 1 || gcd(Math.abs(m), n) !== 1) return null;
+          // 계수는 **진분수**만 — 가분수는 제품 전처리(`improperToMixed`)가
+          // 대분수로 바꿔 지면에 내보낸다. 해설도 역수 분수를 쓰지 않고
+          // 「양변에 n 을 곱한 뒤 m 으로 나눈다」로 적는다(같은 이유).
+          const n = intBetween(rng, 3, 6);
+          const m = intNonzero(rng, -5, 5);
+          if (Math.abs(m) === 1 || Math.abs(m) >= n) return null;
+          if (gcd(Math.abs(m), n) !== 1) return null;
           const t = intNonzero(rng, -6, 6);
           const r = n * t;
           const c = intNonzero(rng, -9, 9);
@@ -1234,7 +1249,7 @@ const EQ_TYPES: TypeEntry[] = [
           return {
             content: `등식의 성질을 이용하여 다음 방정식을 푸시오.\n$${fracRaw(m, n)}x${signed(-c)}=${e}$`,
             answer: `$x=${r}$`,
-            solution: `${move} $${fracRaw(m, n)}x=${m * t}$이다.\n양변에 $${fracRaw(n, m)}$을 곱하면 $x=${r}$이다.`,
+            solution: `${move} $${fracRaw(m, n)}x=${m * t}$이다.\n양변에 $${n}$${eulReul(n)} 곱하면 $${m}x=${m * r}$이고, 양변을 $${m}$${eulReul(m)} 나누면 $x=${r}$이다.`,
             facts: { mode, m, n, c, e, r },
           };
         }
