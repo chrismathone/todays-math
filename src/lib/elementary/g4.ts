@@ -128,6 +128,27 @@ function josaNum(
   return `${n(value)}${tail(value, withEnd, withoutEnd)}`;
 }
 
+/**
+ * 수 + (으)로. **받침표(josaNum)로는 못 정한다** — ㄹ 받침(일·칠·팔)은 받침이 있어도
+ * «로»다. 끝 숫자의 소리로 가른다(0 은 십·백·천·만·억으로 끝나는 소리 — 모두 «으로»).
+ * ⚠️ 조 단위(…000000000000)로 끝나는 수에는 쓰지 말 것 — «조»는 «로»다.
+ */
+const RO_JOSA: Record<string, string> = {
+  "0": "으로",
+  "1": "로",
+  "2": "로",
+  "3": "으로",
+  "4": "로",
+  "5": "로",
+  "6": "으로",
+  "7": "로",
+  "8": "로",
+  "9": "로",
+};
+function roJosa(value: number): string {
+  return `${n(value)}${RO_JOSA[String(value % 10)]}`;
+}
+
 /** 소수는 **정수로 계산해서 찍는다** — 부동소수점이 지면으로 새면 R2 다. */
 function dec1(tenths: number): string {
   return `${Math.floor(tenths / 10)}.${tenths % 10}`;
@@ -1821,8 +1842,11 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
     const bb = Math.round(b / 10) * 10;
     return make(
       unit,
-      `${expr(`${a}\\times${b}`)}${tail(b, "을", "를")} 어림셈으로 구하려고 합니다. ` +
-        `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱을 구하시오.`,
+      // «$…$ 를» 처럼 수식 바로 뒤에 조사를 붙이지 않는다(a42ba6bb 의 g3 1-3-2 와
+      // 같은 수리) — 식을 아랫줄로 내려 「다음 곱셈을」로 받는다.
+      `다음 곱셈을 어림셈으로 구하려고 합니다. ` +
+        `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱을 구하시오.\n\n` +
+        `${expr(`${a}\\times${b}`)}`,
       n(aa * bb),
       `${josaNum(a, "을", "를")} ${josaNum(aa, "으로", "로")}, ${josaNum(b, "을", "를")} ${josaNum(bb, "으로", "로")} ` +
         `어림하면 ${expr(`${aa}\\times${bb}=${aa * bb}`)} 입니다.`,
@@ -1852,7 +1876,14 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "1-3-5") {
-    const b = intBetween(rng, 12, 39);
+    // «몇십몇»은 일의 자리가 0이 아니다 — 20·30 이 나오면 이웃 몇십몇으로 보낸다.
+    // 실측(수리 전, 씨앗 2000): 146건이 몇십($210\div30$)이었다. 풀 교체가 아니라
+    // 사상으로 고친 것은 비위반 씨앗의 출력을 그대로 보존하기 위해서다(전후 대조 최소).
+    // 대가로 21·31 이 두 배로 나온다 — 조건 위반보다 싸다.
+    // 방식 갈림 기준(팀장 2026-08-23): 조건이 **배타 분류**면 전수 열거 풀(a42ba6bb 의
+    // 올림 4분류), **단일 술어**면 이 최소 사상 — 여기는 «일의 자리 ≠ 0» 하나다.
+    let b = intBetween(rng, 12, 39);
+    if (b % 10 === 0) b += 1;
     const q = intBetween(rng, 3, 9);
     return make(
       unit,
@@ -1863,7 +1894,9 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "1-3-6") {
-    const b = intBetween(rng, 12, 29);
+    // «몇십몇» 약속 — 1-3-5 와 같은 사상(수리 전 실측: 씨앗 2000 중 120건이 20).
+    let b = intBetween(rng, 12, 29);
+    if (b % 10 === 0) b += 1;
     const q = intBetween(rng, 11, 34);
     const r = intBetween(rng, 1, b - 1);
     const a = b * q + r;
@@ -1899,6 +1932,538 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   return noBranch(unit);
+}
+
+/* ──────────── 1-3 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 계산 단원의 모범(g3 초3 1-1)을 따른다: 연산 식 하나 · 기본 문장 · 응용 두 단계
+ * (중간값) · 심화 «잘못 계산했더니»·«어떤 수» 역산. 수의 약속은 소단원 이름 그대로 —
+ * (세 자리)·(몇십)·(몇십몇)·몫 자리 수 — 시험이 표준까지 같은 잣대로 잠근다.
+ * 규모는 소단원 띠 안(SCALE_CAP): 곱 다섯 자리 상한 9만, 1-3-4 심화의 «잘못 곱한»
+ * 값만 b≤50·q≤9 로 눌러 2.5만 아래.
+ */
+
+/** 두 자리 수의 십·일 자리 숫자를 바꾼다 — «자리 바꿔 잘못 계산» 심화용. */
+function swapDigits(v: number): number {
+  return (v % 10) * 10 + Math.floor(v / 10);
+}
+
+/** 1-3-1 기본 문장의 소재 — 상자·묶음으로 세는 것. */
+const MUL_ITEMS = [
+  { obj: "연필", cnt: "자루", box: "상자" },
+  { obj: "구슬", cnt: "개", box: "봉지" },
+  { obj: "사탕", cnt: "개", box: "통" },
+] as const;
+
+/** **1-3-1 1단 연산 — a의 b배(식 하나).** 표준의 맨 세로셈(`=\square`)과 표면이 다르다. */
+function tier31Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  return make(
+    unit,
+    `${josaNum(a, "의", "의")} ${n(b)}배는 얼마인가?`,
+    n(a * b),
+    `${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+  );
+}
+
+/** **1-3-1 2단 기본 — «씩 b상자» 문장.** 식을 스스로 세운다. */
+function tier31Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, MUL_ITEMS);
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  return make(
+    unit,
+    `한 ${t.box}에 ${n(a)}${t.cnt}씩 들어 있는 ${josa(t.obj, "이", "가")} ` +
+      `${n(b)}${t.box} 있습니다. ${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+    `${n(a * b)}${t.cnt}`,
+    `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}${t.cnt}입니다.`,
+  );
+}
+
+/** **1-3-1 3단 응용 — 사고 남은 돈(두 단계).** 곱을 구하고 낸 돈에서 뺀다. */
+function tier31Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  const total = a * b;
+  const pay = (Math.floor(total / 10000) + 1) * 10000;
+  return make(
+    unit,
+    `한 개에 ${n(a)}원인 물건을 ${n(b)}개 사고 ${n(pay)}원을 냈습니다. ` +
+      `거스름돈은 얼마인가?`,
+    `${n(pay - total)}원`,
+    `물건값은 ${expr(`${a}\\times${b}=${total}`)} 원입니다. ` +
+      `${expr(`${pay}-${total}=${pay - total}`)} 이므로 거스름돈은 ${n(pay - total)}원입니다.`,
+  );
+}
+
+/** **1-3-1 4단 심화 — «곱해야 할 것을 더했더니» 복원(D-72 문형).** */
+function tier31Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  const wrong = x + b;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 더했더니 ` +
+      `${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산하면 얼마인가?`,
+    n(x * b),
+    `${expr(`${wrong}-${b}=${x}`)} 이므로 어떤 수는 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\times${b}=${x * b}`)} 입니다.`,
+  );
+}
+
+/** 표준 1-3-2 와 같은 «두 자리 수» — 일의 자리가 0이 아니다(그건 1-3-1 의 몫). */
+function twoDigit(rng: Rng): number {
+  return intBetween(rng, 1, 8) * 10 + intBetween(rng, 1, 9);
+}
+
+/** **1-3-2 1단 연산 — 덧셈을 곱셈으로.** 1-3-1 연산(배)과 표면을 갈랐다. */
+function tier32Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} ${n(b)}번 더한 수를 곱셈식으로 구하시오.`,
+    n(a * b),
+    `같은 수를 여러 번 더한 것은 곱셈으로 나타냅니다. ${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+  );
+}
+
+/** **1-3-2 2단 기본 — 하루 a개씩 b일 문장.** */
+function tier32Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `공장에서 하루에 인형을 ${n(a)}개씩 만듭니다. ${n(b)}일 동안 만드는 인형은 ` +
+        `모두 몇 개인가?`,
+      `${n(a * b)}개`,
+      `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `종이학을 하루에 ${n(a)}개씩 ${n(b)}일 동안 접으면 종이학은 모두 몇 개가 되는가?`,
+    `${n(a * b)}개`,
+    `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
+  );
+}
+
+/** **1-3-2 3단 응용 — 곱하고 덜어 내는 두 단계.** */
+function tier32Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  const k = intBetween(rng, 111, 899);
+  const total = a * b;
+  return make(
+    unit,
+    `한 상자에 ${n(a)}개씩 들어 있는 클립 ${n(b)}상자에서 클립 ${n(k)}개를 ` +
+      `사용했습니다. 남은 클립은 몇 개인가?`,
+    `${n(total - k)}개`,
+    `클립은 모두 ${expr(`${a}\\times${b}=${total}`)} 개입니다. ` +
+      `${expr(`${total}-${k}=${total - k}`)} 이므로 ${n(total - k)}개가 남습니다.`,
+  );
+}
+
+/**
+ * **1-3-2 4단 심화 — 자리 바꾼 수로 잘못 곱한 복원.** 십·일의 자리를 바꾼 수(47↔74)로
+ * 곱했다 — 되짚기는 나눗셈이 아니라 **곱셈 사실**로 보인다(다섯 자리 나눗셈을 지면에
+ * 세우지 않는다).
+ */
+function tier32Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 123, 897);
+  const tens = intBetween(rng, 1, 8);
+  let ones = intBetween(rng, 1, 9);
+  if (ones === tens) ones = ones === 9 ? 1 : ones + 1;
+  const b = tens * 10 + ones;
+  const bs = swapDigits(b);
+  const wrong = x * bs;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 십의 자리와 일의 자리 ` +
+      `숫자를 바꾼 ${josaNum(bs, "을", "를")} 곱했더니 ${josaNum(wrong, "이", "가")} ` +
+      `되었습니다. 바르게 계산하면 얼마인가?`,
+    n(x * b),
+    `${josaNum(bs, "을", "를")} 곱하여 ${josaNum(wrong, "이", "가")} 되는 수를 찾으면 ` +
+      `${expr(`${bs}\\times${x}=${wrong}`)} 에서 어떤 수는 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\times${b}=${x * b}`)} 입니다.`,
+  );
+}
+
+/** 어림용 세 자리 수 — 끝 두 자리가 50(반올림 경계)도 0(이미 몇백)도 아니다. */
+function roughA(rng: Rng): number {
+  let r = intBetween(rng, 11, 88);
+  if (r >= 50) r += 1;
+  return intBetween(rng, 1, 8) * 100 + r;
+}
+
+/** **1-3-3 1단 연산 — 몇백에 가장 가까운가.** 어림 한 번. */
+function tier33Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const lo = Math.floor(a / 100) * 100;
+  const hi = lo + 100;
+  const aa = Math.round(a / 100) * 100;
+  return make(
+    unit,
+    `${josaNum(a, "은", "는")} 몇백에 가장 가까운가?`,
+    n(aa),
+    `${josaNum(a, "은", "는")} ${josaNum(lo, "과", "와")} ${n(hi)} 사이의 수이며 ` +
+      `${n(aa)}에 더 가깝습니다.`,
+  );
+}
+
+/** **1-3-3 2단 기본 — 문장 속 어림 곱.** 표준(맨 지시문)과 달리 맥락이 있다. */
+function tier33Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `학생 ${n(b)}명에게 ${n(a)}원짜리 공책을 한 권씩 사 주려고 합니다. 필요한 돈은 ` +
+      `약 얼마인지 ${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 ` +
+      `어림하여 구하시오.`,
+    `약 ${n(aa * bb)}원`,
+    `${josaNum(a, "을", "를")} ${roJosa(aa)}, ${josaNum(b, "을", "를")} ${roJosa(bb)} 어림하면 ` +
+      `${expr(`${aa}\\times${bb}=${aa * bb}`)} 이므로 약 ${n(aa * bb)}원입니다.`,
+  );
+}
+
+/** **1-3-3 3단 응용 — 어림한 곱과 실제 곱의 차(두 단계).** */
+function tier33Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  const act = a * b;
+  const hiV = Math.max(est, act);
+  const loV = Math.min(est, act);
+  return make(
+    unit,
+    `다음 곱셈에서 ${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 ` +
+      `어림하여 구한 곱과 실제로 계산한 곱의 차를 구하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    n(hiV - loV),
+    `어림한 곱은 ${expr(`${aa}\\times${bb}=${est}`)} 이고 실제 곱은 ` +
+      `${expr(`${a}\\times${b}=${act}`)} 입니다. ${expr(`${hiV}-${loV}=${hiV - loV}`)} 입니다.`,
+  );
+}
+
+/** **1-3-3 4단 심화 — 어림의 원상.** 몇백으로 어림하면 aa 가 되는 수의 끝. */
+function tier33Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const aa = intBetween(rng, 2, 9) * 100;
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const ans = wantBig ? aa + 49 : aa - 50;
+  return make(
+    unit,
+    `몇백으로 어림하면 ${josaNum(aa, "이", "가")} 되는 세 자리 수 중에서 가장 ` +
+      `${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(ans),
+    `백의 자리 아래가 ${n(50)} 이상이면 올리고 ${n(50)} 미만이면 버립니다. ` +
+      `${josaNum(aa, "이", "가")} 되는 수는 ${n(aa - 50)}부터 ${n(aa + 49)}까지이므로 ` +
+      `가장 ${wantBig ? "큰" : "작은"} 수는 ${n(ans)}입니다.`,
+  );
+}
+
+/** **1-3-4 1단 연산 — b씩 묶으면 몇 묶음.** 나눗셈 한 번. */
+function tier34Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 몇 묶음이 되는가?`,
+    `${n(q)}묶음`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}묶음이 됩니다.`,
+  );
+}
+
+/** **1-3-4 2단 기본 — 나눔 문장.** 딱 떨어지는 것과 남는 것을 다 낸다. */
+function tier34Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = b * q;
+    return make(
+      unit,
+      `색종이 ${n(a)}장을 한 명에게 ${n(b)}장씩 나누어 주면 몇 명에게 줄 수 있는가?`,
+      `${n(q)}명`,
+      `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}명에게 줄 수 있습니다.`,
+    );
+  }
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되고 몇 개가 남는가?`,
+    `${n(q)}봉지, ${n(r)}개`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ` +
+      `${n(q)}봉지가 되고 ${n(r)}개가 남습니다.`,
+  );
+}
+
+/** **1-3-4 3단 응용 — 남는 사람도 타야 한다(올림 나눗셈, 두 단계).** */
+function tier34Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 4) * 10;
+  const q = intBetween(rng, 2, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `학생 ${n(a)}명이 한 대에 ${n(b)}명씩 버스에 타려고 합니다. 버스는 적어도 ` +
+      `몇 대 필요한가?`,
+    `${n(q + 1)}대`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}대에 ` +
+      `타면 ${n(r)}명이 남습니다. 남은 학생도 타야 하므로 ${expr(`${q}+1=${q + 1}`)} 대가 ` +
+      `필요합니다.`,
+  );
+}
+
+/**
+ * **1-3-4 4단 심화 — «나누어야 할 것을 곱했더니» 복원.** 잘못 곱한 값은 커진다 —
+ * 규모 띠를 지키려 b≤50·q≤9 로 누른다(블록 머리말).
+ */
+function tier34Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 5) * 10;
+  const q = intBetween(rng, 2, 9);
+  const x = b * q;
+  const wrong = x * b;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누어야 할 것을 잘못하여 ${josaNum(b, "을", "를")} ` +
+      `곱했더니 ${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산한 몫을 구하시오.`,
+    n(q),
+    `${josaNum(b, "을", "를")} 곱하여 ${josaNum(wrong, "이", "가")} 되는 수는 ` +
+      `${expr(`${b}\\times${x}=${wrong}`)} 에서 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\div${b}=${q}`)} 이므로 몫은 ${n(q)}입니다.`,
+  );
+}
+
+/** 몇십몇 — 일의 자리가 0이 아닌 12~39. 표준 1-3-5 와 같은 띠다. */
+function tensOnes(rng: Rng, maxTens: number): number {
+  return intBetween(rng, 1, maxTens) * 10 + intBetween(rng, 1, 9);
+}
+
+/** **1-3-5 1단 연산 — 곱셈 빈칸으로 나눗셈 관계 한 번.** */
+function tier35Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `${expr(`${b}\\times\\square=${a}`)} 에서 ${expr("\\square")} 에 알맞은 수를 구하시오.`,
+    n(q),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${expr("\\square")} 에 알맞은 수는 ${n(q)}입니다.`,
+  );
+}
+
+/** **1-3-5 2단 기본 — 색 테이프 자르기 문장.** */
+function tier35Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `길이가 ${cm(a)}인 색 테이프를 ${cm(b)}씩 자르면 몇 도막이 되는가?`,
+    `${n(q)}도막`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}도막이 됩니다.`,
+  );
+}
+
+/** **1-3-5 3단 응용 — 덜어 내고 나누는 두 단계(중간값).** */
+function tier35Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const rest = b * q;
+  const k = intBetween(rng, 11, 48);
+  const a = rest + k;
+  return make(
+    unit,
+    `구슬 ${n(a)}개 중에서 ${n(k)}개를 동생에게 주고, 남은 구슬을 한 통에 ${n(b)}개씩 ` +
+      `담았습니다. 통은 몇 개가 되는가?`,
+    `${n(q)}개`,
+    `남은 구슬은 ${expr(`${a}-${k}=${rest}`)} 개입니다. ${expr(`${rest}\\div${b}=${q}`)} 이므로 ` +
+      `통은 ${n(q)}개가 됩니다.`,
+  );
+}
+
+/** **1-3-5 4단 심화 — 검산으로 어떤 수 되찾기.** */
+function tier35Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const x = b * q + r;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누었더니 몫이 ${n(q)}, 나머지가 ${josaNum(r, "이", "가")} ` +
+      `되었습니다. 어떤 수를 구하시오.`,
+    n(x),
+    `검산하면 ${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${x}`)} 이므로 ` +
+      `어떤 수는 ${n(x)}입니다.`,
+  );
+}
+
+/** **1-3-6 1단 연산 — 나누어떨어지는 두 자리 몫.** 표준(늘 나머지 있음)과 갈린다. */
+function tier36Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 34);
+  const a = b * q;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)}의 몫을 구하시오.`,
+    n(q),
+    `몫의 십의 자리부터 구합니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 몫은 ${n(q)}입니다.`,
+  );
+}
+
+/** **1-3-6 2단 기본 — 봉지 문장(두 자리 몫).** */
+function tier36Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 34);
+  const a = b * q;
+  return make(
+    unit,
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되는가?`,
+    `${n(q)}봉지`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}봉지가 됩니다.`,
+  );
+}
+
+/** **1-3-6 3단 응용 — 다 읽는 데 며칠(올림, 두 단계).** 1-3-4 응용과 소재·틀이 다르다. */
+function tier36Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 33);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 다 읽는 데 며칠이 걸리는가?`,
+    `${n(q + 1)}일`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}일 ` +
+      `동안 읽으면 ${n(r)}쪽이 남습니다. 남은 쪽을 읽는 날이 하루 더 필요하므로 ` +
+      `${expr(`${q}+1=${q + 1}`)} 일이 걸립니다.`,
+  );
+}
+
+/** **1-3-6 4단 심화 — 자리 바꾼 수로 잘못 나눈 복원.** 검산으로 되짚어 바르게 나눈다. */
+function tier36Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const tens = intBetween(rng, 1, 2);
+  let ones = intBetween(rng, 1, 9);
+  if (ones === tens) ones = ones === 9 ? 3 : ones + 1;
+  const b = tens * 10 + ones;
+  const bs = swapDigits(b);
+  const q = intBetween(rng, 11, 34);
+  let r = intBetween(rng, 1, b - 1);
+  // 잘못 나눈 쪽이 나누어떨어지면 «나머지가 $0$» 이 지면에 나간다 — 초등 표현이
+  // 아니다(팀장 검수 2026-08-23, 씨앗 3000 중 89건). r 를 한 칸씩 옮겨 피한다.
+  // 종료 보장: r 는 1..b-1 을 전부 도는데 그 안의 x 후보가 모두 bs 의 배수일 수는 없다.
+  while ((b * q + r) % bs === 0) r = (r % (b - 1)) + 1;
+  const x = b * q + r;
+  const q2 = Math.floor(x / bs);
+  const r2 = x - bs * q2;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누어야 할 것을 잘못하여 십의 자리와 일의 자리 숫자를 ` +
+      `바꾼 ${roJosa(bs)} 나누었더니 몫이 ${n(q2)}, 나머지가 ${josaNum(r2, "이", "가")} ` +
+      `되었습니다. 바르게 계산한 몫과 나머지를 구하시오.`,
+    `몫 ${n(q)}, 나머지 ${n(r)}`,
+    `잘못 나눈 것을 검산하면 어떤 수는 ${expr(`${bs}\\times${q2}=${bs * q2}`)} 에서 ` +
+      `${expr(`${bs * q2}+${r2}=${x}`)} 입니다. ${expr(`${b}\\times${q}=${b * q}`)}, ` +
+      `${expr(`${x}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)}입니다.`,
+  );
+}
+
+/** 표준 1-3-7 과 같은 나누는 수 띠 — 끝자리 0 이 아닌 17~42. */
+const DIV_ROUGH_POOL = [
+  17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39,
+  41, 42,
+] as const;
+
+/** **1-3-7 1단 연산 — 나누는 수를 몇십으로 어림하면.** 1-3-3 연산(몇백)과 문형이 다르다. */
+function tier37Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const q = intBetween(rng, 6, 19);
+  const a = b * q + intBetween(rng, 0, b - 1);
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수 ${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?\n\n` +
+      `${expr(`${a}\\div${b}`)}`,
+    n(bb),
+    `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
+  );
+}
+
+/** **1-3-7 2단 기본 — 봉지 수 어림 문장.** */
+function tier37Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  return make(
+    unit,
+    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으려고 합니다. ${josaNum(b, "을", "를")} ` +
+      `몇십으로 어림하여 봉지 수를 어림하시오.`,
+    `약 ${n(k)}봉지`,
+    `${josaNum(b, "을", "를")} ${roJosa(bb)} 어림하면 ${expr(`${a}\\div${bb}=${k}`)} 이므로 ` +
+      `약 ${n(k)}봉지입니다.`,
+  );
+}
+
+/** **1-3-7 3단 응용 — 두 나눗셈의 어림 몫 비교(두 단계 × 둘).** */
+function tier37Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b1 = pick(rng, DIV_ROUGH_POOL);
+  const b2 = pick(rng, DIV_ROUGH_POOL);
+  const bb1 = Math.round(b1 / 10) * 10;
+  const bb2 = Math.round(b2 / 10) * 10;
+  const k1 = intBetween(rng, 6, 19);
+  let k2 = intBetween(rng, 6, 18);
+  if (k2 >= k1) k2 += 1;
+  const a1 = bb1 * k1;
+  const a2 = bb2 * k2;
+  const win = k1 > k2 ? "가" : "나";
+  return make(
+    unit,
+    `두 나눗셈의 나누는 수를 몇십으로 어림하여 몫을 각각 어림했습니다. 어림한 몫이 ` +
+      `더 큰 나눗셈의 기호를 쓰시오.\n\n가 ${expr(`${a1}\\div${b1}`)}   나 ${expr(`${a2}\\div${b2}`)}`,
+    win,
+    `나누는 수를 몇십으로 어림하면 가는 ${expr(`${a1}\\div${bb1}=${k1}`)}, ` +
+      `나는 ${expr(`${a2}\\div${bb2}=${k2}`)} 입니다. ` +
+      `${expr(k1 > k2 ? `${k1}>${k2}` : `${k2}>${k1}`)} 이므로 어림한 몫이 더 큰 것은 ${win}입니다.`,
+  );
+}
+
+/**
+ * **1-3-7 4단 심화 — 몇십 어림의 원상(두 끝을 다 쓴다 — 1-3-3 심화와 답 꼴 분화)과
+ * 경계 판단.** bb 풀이 여덟뿐이라 원상 꼴만으로는 변형이 좁다(실측 6/16) — 경계값
+ * (±5·±6)의 «되는가» 판단을 곁들인다.
+ */
+function tier37Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const bb = intBetween(rng, 2, 9) * 10;
+  if (intBetween(rng, 0, 1) === 0) {
+    const delta = pick(rng, [-6, -5, 4, 5]);
+    const cand = bb + delta;
+    const rounded = Math.round(cand / 10) * 10;
+    const yes = rounded === bb;
+    const up = cand % 10 >= 5;
+    return make(
+      unit,
+      `${josaNum(cand, "은", "는")} 몇십으로 어림하면 ${josaNum(bb, "이", "가")} 되는가? ` +
+        `'예' 또는 '아니요'로 답하시오.`,
+      yes ? "예" : "아니요",
+      `일의 자리 숫자가 ${n(cand % 10)}이므로 ${up ? "올리면" : "버리면"} ${n(rounded)}입니다. ` +
+        `${yes ? "그러므로 '예'입니다." : `${josaNum(bb, "이", "가")} 아니므로 '아니요'입니다.`}`,
+    );
+  }
+  return make(
+    unit,
+    `몇십으로 어림하면 ${josaNum(bb, "이", "가")} 되는 두 자리 수 중에서 가장 작은 수와 ` +
+      `가장 큰 수를 차례로 쓰시오.`,
+    `${n(bb - 5)}, ${n(bb + 4)}`,
+    `십의 자리 아래가 ${n(5)} 이상이면 올리고 ${n(5)} 미만이면 버립니다. ` +
+      `${josaNum(bb, "이", "가")} 되는 수는 ${n(bb - 5)}부터 ${n(bb + 4)}까지입니다.`,
+  );
 }
 
 /* ───────────────────── 1-4 평면도형의 이동 ───────────────────── */
@@ -3336,6 +3901,48 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier26Apply,
     심화: tier26Deep,
   },
+  "초4|1-3-1": {
+    연산: tier31Calc,
+    기본: tier31Basic,
+    응용: tier31Apply,
+    심화: tier31Deep,
+  },
+  "초4|1-3-2": {
+    연산: tier32Calc,
+    기본: tier32Basic,
+    응용: tier32Apply,
+    심화: tier32Deep,
+  },
+  "초4|1-3-3": {
+    연산: tier33Calc,
+    기본: tier33Basic,
+    응용: tier33Apply,
+    심화: tier33Deep,
+  },
+  "초4|1-3-4": {
+    연산: tier34Calc,
+    기본: tier34Basic,
+    응용: tier34Apply,
+    심화: tier34Deep,
+  },
+  "초4|1-3-5": {
+    연산: tier35Calc,
+    기본: tier35Basic,
+    응용: tier35Apply,
+    심화: tier35Deep,
+  },
+  "초4|1-3-6": {
+    연산: tier36Calc,
+    기본: tier36Basic,
+    응용: tier36Apply,
+    심화: tier36Deep,
+  },
+  "초4|1-3-7": {
+    연산: tier37Calc,
+    기본: tier37Basic,
+    응용: tier37Apply,
+    심화: tier37Deep,
+  },
   "초4|1-5-1": {
     연산: tier51Calc,
     기본: tier51Basic,
@@ -3521,7 +4128,8 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
         `색칠한 부분은 전체의 ${expr(`\\frac{${a}}{${den}}`)}입니다. ` +
           `여기에 ${expr(`\\frac{${b}}{${den}}`)}만큼 더 색칠하면 색칠한 부분은 전체의 얼마인가?`,
         expr(`\\frac{${a + b}}{${den}}`),
-        `전체를 ${josaNum(den, "으로", "로")} 똑같이 나눈 것 중 ${n(a)}칸에 ${n(b)}칸을 더 색칠하면 ${n(a + b)}칸입니다. ` +
+        // (으)로는 받침표가 아니라 소리표(roJosa)다 — den 7·8 이 «7으로/8으로»로 나가던 자리.
+        `전체를 ${roJosa(den)} 똑같이 나눈 것 중 ${n(a)}칸에 ${n(b)}칸을 더 색칠하면 ${n(a + b)}칸입니다. ` +
           `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}`,
         fracSpec(rng, den, a),
       );
