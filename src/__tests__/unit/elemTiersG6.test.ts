@@ -3506,3 +3506,485 @@ describe("[초6 표준] 2-5-3 — 그림 없이도 도형이 하나로 정해진
     });
   });
 });
+
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 2-5 원의 둘레와 넓이 (4소단원 · 16갈래)
+//
+// 이 대단원의 위험은 값이 아니라 **발문이 도형을 하나로 정하는가**다 — 2-5-3 표준을
+// 고치며 세운 규약(「꼭 맞게」+「단, …」)을 갈래가 물려받는지 전량으로 잰다.
+// 원주율도 같은 부류다: 발문이 안 적으면 「$3$ 으로 풀까 $3.14$ 로 풀까」가 안 갈린다.
+// ══════════════════════════════════════════════════════════════════════════
+
+const G6_25_CODES = ["2-5-1", "2-5-2", "2-5-3", "2-5-4"] as const;
+
+/** 발문에서 «이름 뒤 수» 하나. 없으면 NaN — 부르는 쪽이 위반으로 센다. */
+function numAfter(c: string, re: RegExp): number {
+  const m = c.match(re);
+  return m ? Number(m[1]) : NaN;
+}
+
+// ⚠️ 「**반**지름이」 안에 「지름이」가 들어 있다. 뒤돌아보기를 안 걸면 반지름을 지름으로
+// 읽어 넓이가 딱 **네 배** 어긋난다 — 2-5-3 기본에서 실제로 그렇게 걸렸다(엔진은 옳았고
+// 시험이 틀렸다). 낱말이 낱말을 품는 자리는 정규식이 조용히 거짓말한다.
+const RE_D = /(?<!반)지름이 \$(\d+)\\,\\mathrm\{cm\}\$/;
+const RE_R = /반지름이 \$(\d+)\\,\\mathrm\{(?:cm|m)\}\$/;
+
+/**
+ * 2-5 는 **센트(정수)로 견준다** — D-73 이 응용에 `$3.1$`, 심화에 `$3.14$` 를 걸어
+ * 답에 소수가 선다. 부동소수점으로 재면 `0.1+0.2` 부류가 조용히 어긋난다.
+ */
+function centsAfter(c: string, re: RegExp): number {
+  const m = c.match(re);
+  if (!m) return NaN;
+  const [whole, frac = ""] = m[1]!.split(".");
+  return Number(whole) * 100 + Number(frac.padEnd(2, "0") || "0");
+}
+
+const asCents = (cents: number) => ({ shape: "수", terms: [cents] });
+
+/** 답을 **센트**로. `$74.4$` · `$200,\ 400$` 둘 다 읽는다. */
+function readCents(answer: string): { shape: string; terms: number[] } | null {
+  const inner = answer.match(/^\$(.+)\$$/)?.[1];
+  if (inner === undefined) return null;
+  const toCents = (t: string): number | null => {
+    const m = t.match(/^(\d+)(?:\.(\d{1,2}))?$/);
+    if (!m) return null;
+    return Number(m[1]) * 100 + Number((m[2] ?? "").padEnd(2, "0") || "0");
+  };
+  const parts = inner.split(/,\\ /).map(toCents);
+  if (parts.some((v) => v === null)) return null;
+  return {
+    shape: parts.length > 1 ? "쌍" : "수",
+    terms: parts as number[],
+  };
+}
+
+/** 2-5 의 참 — 시험이 다시 짓는다. 못 읽으면 null(= 위반). */
+function truthOf25(
+  code: string,
+  c: string,
+): { shape: string; terms: number[] } | null {
+  if (code === "2-5-1") {
+    if (c.includes("정육각형의 둘레가")) {
+      // 심화 ⓐ — 내접 정육각형 둘레에서 외접 정사각형 둘레로
+      const p = numAfter(c, /정육각형의 둘레가 \$(\d+)\\,\\mathrm\{cm\}\$/);
+      if (!Number.isFinite(p) || p % 6 !== 0) return null;
+      return asCents((p / 6) * 800);
+    }
+    if (c.includes("정사각형의 둘레가")) {
+      // 심화 ⓑ — 반대 방향(외접 정사각형 둘레에서 내접 정육각형 둘레로)
+      const p = numAfter(c, /정사각형의 둘레가 \$(\d+)\\,\\mathrm\{cm\}\$/);
+      if (!Number.isFinite(p) || p % 8 !== 0) return null;
+      return asCents((p / 8) * 600);
+    }
+    if (c.includes("굴렸더니")) {
+      // 응용 — 굴러간 거리에서 지름의 범위(쌍)
+      const l = numAfter(c, /굴렸더니 \$(\d+)\\,\\mathrm\{cm\}\$/);
+      if (!Number.isFinite(l) || l % 12 !== 0) return null;
+      return { shape: "쌍", terms: [(l / 4) * 100, (l / 3) * 100] };
+    }
+    const rh = numAfter(c, /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/);
+    if (Number.isFinite(rh) && c.includes("정육각형")) return asCents(rh * 600);
+    const d = numAfter(c, RE_D);
+    if (!Number.isFinite(d)) return null;
+    if (c.includes("정사각형")) return asCents(d * 400);
+    if (c.includes("몇 cm보다 깁니까")) return asCents(d * 300); // 기본
+    return null;
+  }
+
+  if (code === "2-5-2") {
+    if (c.includes("굴렸더니")) {
+      // 심화 — 굴러간 거리와 바퀴 수에서 반지름 (D-73: 원주율 $3.14$)
+      const l = centsAfter(c, /굴렸더니 \$([\d.]+)\\,\\mathrm\{cm\}\$/);
+      const t = numAfter(c, /\$(\d+)\$바퀴/);
+      if (!Number.isFinite(l) || !Number.isFinite(t) || l % t !== 0)
+        return null;
+      const per = l / t; // 원주(센트)
+      if ((per * 100) % 314 !== 0) return null;
+      const dia = (per * 100) / 314; // 지름(센트)
+      return dia % 2 === 0 ? asCents(dia / 2) : null;
+    }
+    if (c.includes("바퀴 굴렸습니다")) {
+      // 응용 — 반지름과 바퀴 수에서 굴러간 거리 (D-73: 원주율 $3.1$)
+      const r = numAfter(c, RE_R);
+      const t = numAfter(c, /\$(\d+)\$바퀴/);
+      return Number.isFinite(r) && Number.isFinite(t)
+        ? asCents(620 * r * t)
+        : null;
+    }
+    const d = numAfter(c, RE_D);
+    return Number.isFinite(d) ? asCents(300 * d) : null; // 연산·기본 ($3$)
+  }
+
+  if (code === "2-5-3") {
+    if (c.includes("마름모의 넓이가")) {
+      // 심화 — 내접 마름모 넓이에서 **지름**을 되짚는다(두 걸음 역산)
+      const ar = numAfter(c, /마름모의 넓이가 \$(\d+)\$ cm²/);
+      if (!Number.isFinite(ar)) return null;
+      const dd = ar * 2; // (지름)×(지름)
+      const d = Math.round(Math.sqrt(dd));
+      return d * d === dd ? asCents(100 * d) : null;
+    }
+    if (c.includes("보다 크고")) {
+      // 응용 — 안팎 두 넓이(쌍)
+      const r = numAfter(c, RE_R);
+      return Number.isFinite(r)
+        ? { shape: "쌍", terms: [200 * r * r, 400 * r * r] }
+        : null;
+    }
+    const d = numAfter(c, RE_D);
+    if (Number.isFinite(d)) {
+      if (c.includes("마름모")) return asCents(d * d * 50);
+      if (c.includes("정사각형")) return asCents(d * d * 100);
+      return null;
+    }
+    const r = numAfter(c, RE_R);
+    if (Number.isFinite(r) && c.includes("마름모")) return asCents(200 * r * r);
+    return null;
+  }
+
+  if (code === "2-5-4") {
+    if (c.includes("넓이가")) {
+      // 심화 — 넓이에서 반지름·지름을 되짚는다 (D-73: 원주율 $3.14$)
+      const a = centsAfter(c, /넓이가 \$([\d.]+)\$ cm²인 원/);
+      if (!Number.isFinite(a) || a % 314 !== 0) return null;
+      const rr = a / 314;
+      const r = Math.round(Math.sqrt(rr));
+      if (r * r !== rr) return null;
+      if (c.includes("반지름은 몇")) return asCents(100 * r);
+      if (c.includes("지름은 몇")) return asCents(200 * r);
+      return null;
+    }
+    if (c.includes("원주가")) {
+      // 응용 — 원주에서 반지름을 되찾아 넓이 (D-73: 원주율 $3.1$)
+      const cc = centsAfter(c, /원주가 \$([\d.]+)\\,\\mathrm\{cm\}\$/);
+      if (!Number.isFinite(cc) || cc % 310 !== 0) return null;
+      const dia = cc / 310; // 지름 = 원주 ÷ 3.1
+      return dia % 2 === 0 ? asCents(310 * (dia / 2) * (dia / 2)) : null;
+    }
+    const rc = numAfter(c, /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/);
+    if (Number.isFinite(rc)) return asCents(300 * rc * rc); // 연산 — 반지름(cm)
+    const dm = numAfter(c, /(?<!반)지름이 \$(\d+)\\,\\mathrm\{m\}\$/);
+    if (Number.isFinite(dm)) return dm % 2 === 0 ? asCents(75 * dm * dm) : null; // 기본 — 지름(m)
+    return null;
+  }
+  return null;
+}
+
+describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
+  it("소단원 넷이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_25_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (시험이 공식을 직접 든다)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_25_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          const want = truthOf25(code, flat);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          const got = readCents(p.answer);
+          if (!got) {
+            bad.push(`${where}: 답 모양을 못 읽음 — ${p.answer}`);
+            continue;
+          }
+          checked += 1;
+          if (
+            got.shape !== want.shape ||
+            got.terms.length !== want.terms.length ||
+            got.terms.some((v, i) => v !== want.terms[i])
+          ) {
+            bad.push(
+              `${where}: 답 ${p.answer} ([${want.terms.join(", ")}] 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_25_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("원 안팎 도형에는 «꼭 맞게»와 짝이 맞는 조건이 늘 붙는다 — 씨앗 0~499 전수", () => {
+    // 2-5-3 표준을 고치며 세운 규약을 **갈래가 물려받는가**. 그림이 없으니 이 말이
+    // 없으면 답이 하나로 안 선다 — 값 검산으로는 구조적으로 안 잡히는 부류다.
+    const bad: string[] = [];
+    const seen = { 정육각형: 0, 마름모: 0, 정사각형: 0 };
+    for (const code of ["2-5-1", "2-5-3"] as const) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 500; seed += 1) {
+          const c = generateElementaryProblem(unit, seed, tier).content.replace(
+            /\n+/g,
+            " ",
+          );
+          const shapes = (["정육각형", "마름모", "정사각형"] as const).filter(
+            (k) => c.includes(k),
+          );
+          if (shapes.length === 0) continue;
+          if (!c.includes("꼭 맞게"))
+            bad.push(`${code} ${tier} seed=${seed}: 「꼭 맞게」가 없다 — ${c}`);
+          for (const k of shapes) {
+            seen[k] += 1;
+            const want =
+              k === "정육각형"
+                ? "정육각형의 여섯 꼭짓점은 모두 원 위에 있습니다"
+                : k === "마름모"
+                  ? "마름모의 네 꼭짓점은 모두 원 위에 있습니다"
+                  : "정사각형의 네 변은 모두 원에 닿습니다";
+            if (!c.includes(want))
+              bad.push(`${code} ${tier} seed=${seed}: ${k} 조건이 없다 — ${c}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 분모 — 세 도형이 **다 나와야** 한다. 0 인 것이 있으면 그 도형은 «안 잰» 것이다.
+    expect({
+      정육각형: seen.정육각형 > 100,
+      마름모: seen.마름모 > 100,
+      정사각형: seen.정사각형 > 100,
+    }).toEqual({ 정육각형: true, 마름모: true, 정사각형: true });
+  });
+
+  it("원주율은 D-73 표대로 서고, **발문에 적은 값으로 해설이 계산한다** — 씨앗 0~299 전수", () => {
+    // D-73(원장님 확정 2026-08-23): 연산 $3$ · 기본 $3$ · 응용 $3.1$ · 심화 $3.14$.
+    //
+    // ⚠️ 예전 잠금은 「$3.14$ 가 섞이면 빨강」이었다. D-73 이면 그것은 **거꾸로 걸린다** —
+    // 있어야 할 것을 막는다. 진짜 축은 「**적은 값과 쓴 값이 같은가**」다:
+    // 「$3$ 이라 적고 $3.14$ 로 계산」은 양쪽 다 산술이 맞아 **값 검산으로는 안 잡히고**
+    // 지면에서만 틀린다. 이 저장소가 되풀이해 밟는 부류라 여기서 못 박는다.
+    const WANT: Record<string, string> = {
+      연산: "3",
+      기본: "3",
+      응용: "3.1",
+      심화: "3.14",
+    };
+    const bad: string[] = [];
+    let withPi = 0;
+    for (const code of G6_25_CODES) {
+      const unit = unitOf(code);
+      const needsPi = code === "2-5-2" || code === "2-5-4";
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 300; seed += 1) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const said = p.content.match(/\(원주율: \$([\d.]+)\$\)/)?.[1];
+          if (!needsPi) {
+            if (/원주율/.test(p.content))
+              bad.push(`${where}: 원주율을 안 쓰는 소단원인데 적혀 있다`);
+            continue;
+          }
+          withPi += 1;
+          if (said === undefined) {
+            bad.push(`${where}: 발문이 원주율을 안 적었다 — ${p.content}`);
+            continue;
+          }
+          if (said !== WANT[tier]!)
+            bad.push(
+              `${where}: 원주율이 $${said}$ 다 (D-73 은 $${WANT[tier]}$)`,
+            );
+          // 해설이 곱하거나 나눈 «원주율 후보» 값들.
+          //
+          // ⚠️ 맨 `3` 이 원주율이 아닐 수 있다 — 「$18.6\times3=55.8$」의 3 이 **바퀴 수**인
+          // 자리가 있어 첫 판이 거기서 거짓 경보를 냈다. **거짓 경보는 가드를 끈다.**
+          // 그래서 「쓴 값 == 적은 값」으로 못 박지 않고 두 조건으로 나눈다:
+          //   ㉠ 적은 값이 해설에 **반드시 있다**   ㉡ 적은 값보다 **잘게 쓴 값이 없다**
+          // 「$3$ 이라 적고 $3.14$ 로 계산」은 ㉡ 이, 「$3.14$ 라 적고 $3$ 으로 계산」은
+          // ㉠ 이 잡는다. 바퀴 수 3 은 «더 잘지» 않으므로 통과한다.
+          const used = new Set(
+            [
+              ...p.solution.matchAll(
+                /(?:\\times|\\div)(3(?:\.1\d?)?)(?![\d.])/g,
+              ),
+            ].map((m) => m[1]!),
+          );
+          const finer = ["3", "3.1", "3.14"].filter(
+            (v) => v.length > said.length && used.has(v),
+          );
+          if (!used.has(said))
+            bad.push(
+              `${where}: 발문은 $${said}$ 인데 해설에 그 값이 없다 — ${p.solution}`,
+            );
+          if (finer.length > 0)
+            bad.push(
+              `${where}: 발문은 $${said}$ 인데 해설이 [${finer.join(", ")}] 로 계산한다`,
+            );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 분모 — 원주율을 쓰는 갈래가 정말 있는가. 0 이면 위 검사는 아무것도 안 잰 것이다.
+    expect(withPi).toBe(2 * ELEM_TIERS.length * 300);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "2-5-1": /^(반)?지름이 .*원 (안|밖)에 꼭 맞게 그린 .*둘레는 몇 cm인가\?/,
+      "2-5-2": /^지름이 .*원의 원주는 몇 cm인가\?/,
+      "2-5-3": /^지름이 .*원 (안|밖)에 꼭 맞게 그린 .*넓이는 몇 cm²인가\?/,
+      "2-5-4": /^반지름이 .*원이 있습니다\. 이 원의 넓이는 몇 cm²인가\?/,
+    };
+    const DEEP_MARK: Record<string, RegExp> = {
+      "2-5-1": /어떤 원 (안|밖)에 꼭 맞게 그린 (정육각형|정사각형)의 둘레가/,
+      "2-5-2": /굴렸더니/,
+      "2-5-3": /어떤 원 안에 꼭 맞게 그린 마름모의 넓이가/,
+      "2-5-4": /넓이가 \$[\d.]+\$ cm²인 원이 있습니다/,
+    };
+    for (const code of G6_25_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const at = (t: ElemTier) =>
+          generateElementaryProblem(unit, seed, t).content.replace(/\n+/g, " ");
+        expect(
+          CALC_SHAPE[code]!.test(at("연산")),
+          `${code} 연산 seed=${seed}: ${at("연산")}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(at("기본")),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${at("기본")}`,
+        ).toBe(false);
+        expect(
+          DEEP_MARK[code]!.test(at("심화")),
+          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화")}`,
+        ).toBe(true);
+        expect(
+          DEEP_MARK[code]!.test(at("응용")),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${at("응용")}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_25_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·꼬리 0·샌 소수·분수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_25_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            if (field.includes("\\frac"))
+              bad.push(`${where} ${name}: 분수가 섞였다`);
+            // D-73 이후 응용·심화는 소수가 **정상**이다. 다만 꼬리 0 과 샌 소수는 막는다.
+            const trailing = field.match(/\d+\.\d*0(?![\d])/g);
+            if (trailing)
+              bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);
+            const runaway = field.match(/\d+\.\d{3,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 **전량** — 단위 뒤 조사는 «소리»로 고른다
+//
+// `rules.ts` 의 R-조사는 이 부류를 **판정 밖**이라고 스스로 적어 두었다(「$3$ kg을」).
+// 수식 밖 낱말이 소리의 끝을 정하기 때문이다. 그 사각지대를 여기서 덮는다 —
+// 단위 기호는 목록이 닫혀 있어 소리를 표로 적을 수 있다.
+//
+// 2026-08-23 실측: 이 검사를 처음 돌리자 **7자리**가 틀려 있었다.
+//  · 「몇 kg**가** 남습니까?」(킬로그램가) — 맨 글자 자리
+//  · 「$2.4\,\mathrm{kg}$**를**」·「$0.6\,\mathrm{kg}$ **가**」 — **KaTeX 로 감싼** 자리 6곳.
+//    이쪽은 R-조사도 g3 의 소스 판정기도 구조적으로 못 본다(하나는 판정 밖, 하나는
+//    `josa()` 호출이 아니라 리터럴이라). **셋이 서로의 사각지대를 덮는다.**
+// ══════════════════════════════════════════════════════════════════════════
+
+describe("[초6 전량] 단위 뒤 조사", () => {
+  it("«단위 + 조사» 가 전부 소리와 맞는다 (표준·갈래 전량, 씨앗 0~199)", () => {
+    /** 단위를 **읽었을 때** 받침이 있는가. 그램·킬로그램만 있다. */
+    const FINAL: Record<string, boolean> = {
+      m: false,
+      cm: false,
+      km: false,
+      L: false,
+      mL: false,
+      g: true,
+      kg: true,
+    };
+    const NEEDS: Record<string, boolean> = {
+      을: true,
+      를: false,
+      이: true,
+      가: false,
+      과: true,
+      와: false,
+      은: true,
+      는: false,
+    };
+    // 맨 글자(`몇 kg가`)와 KaTeX 로 감싼 것(`$…\mathrm{kg}$ 가`) 둘 다 본다.
+    const RE =
+      /(?:\mathrm\{(kg|mL|km|cm|m|L|g)\}\$ ?|(kg|mL|km|cm|m|L|g))(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+    const bad = new Set<string>();
+    let seen = 0;
+    for (const u of elementaryUnits().filter((x) => x.grade === "초6")) {
+      const tiers =
+        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+      for (const tier of tiers) {
+        for (let seed = 0; seed < 200; seed += 1) {
+          const p = generateElementaryProblem(u, seed, tier);
+          for (const field of [p.content, p.solution]) {
+            for (const m of field.matchAll(RE)) {
+              seen += 1;
+              const sym = (m[1] ?? m[2])!;
+              if (NEEDS[m[3]!] !== FINAL[sym]) {
+                bad.add(`${u.section} ${tier ?? "표준"}: ${m[0]}`);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect([...bad].slice(0, 8)).toEqual([]);
+    // 분모 — 잴 자리가 정말 있는가. 0 이면 이 검사는 아무것도 증명하지 않는다.
+    expect(seen).toBeGreaterThan(1000);
+  });
+});

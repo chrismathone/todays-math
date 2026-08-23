@@ -863,6 +863,37 @@ for (let b = 11; b <= 49; b += 1) {
 }
 
 /** 반올림 문항의 나누는 수 — 몫이 딱 떨어지지 않아야 「반올림」이 뜻을 가진다. */
+/**
+ * 단위 기호 뒤의 조사. **소리로 정한다** — `kg` 은 「킬로그램」이라 받침이 있고
+ * `m` 은 「미터」라 없다. 글자만 봐서는 못 고른다.
+ *
+ * 2026-08-23 실측: 초6 전량(표준+갈래, 씨앗 200)에서 «단위+조사» 자리가 열일곱인데
+ * 틀린 것은 **한 자리**였다 — 2-2-5 「몇 kg**가** 남습니까?」(킬로그램가).
+ * 나머지 열여섯은 **우연히** 맞았다. 소재 풀에 `kg` 하나가 끼는 순간 틀리므로
+ * 손으로 적지 말고 여기를 부른다. 모르는 단위는 **던진다**(조용히 통과 금지).
+ */
+const UNIT_HAS_FINAL: Record<string, boolean> = {
+  m: false, // 미터
+  cm: false, // 센티미터
+  km: false, // 킬로미터
+  L: false, // 리터
+  mL: false, // 밀리리터
+  g: true, // 그램
+  kg: true, // 킬로그램
+};
+
+function unitJosa(
+  unitSymbol: string,
+  withFinal: string,
+  withoutFinal: string,
+): string {
+  const has = UNIT_HAS_FINAL[unitSymbol];
+  if (has === undefined) {
+    throw new Error(`단위 조사 표에 없는 단위입니다: ${unitSymbol}`);
+  }
+  return has ? withFinal : withoutFinal;
+}
+
 const ROUND_DIVISORS = [3, 6, 7, 9, 11, 12, 13] as const;
 
 const SHARE_THEMES = [
@@ -887,7 +918,7 @@ function decDiv62(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${t.measure}가 ${unitNum(total, t.unit)} 인 ${t.item}${josa(t.item, "을", "를")} 한 사람에게 ${unitNum(per, t.unit)} 씩 나누어 주려고 합니다. ` +
-        `몇 명에게 나누어 줄 수 있고 몇 ${t.unit}가 남는지 구하시오.`,
+        `몇 명에게 나누어 줄 수 있고 몇 ${t.unit}${unitJosa(t.unit, "이", "가")} 남는지 구하시오.`,
       `${num(people)}명, ${unitNum(rem, t.unit)}`,
       `${expr(`${per}\\times${people}=${per * people}`)} 이므로 ${num(people)}명에게 나누어 줄 수 있고, ` +
         `${expr(`${total}-${per * people}=${rem}`)} 만큼 남습니다.`,
@@ -3056,10 +3087,11 @@ function cmpApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = red - b0;
   return make(
     unit,
-    `빨간 ${thing} ${num(red)}장과 파란 ${thing}가 있습니다. 파란 ${thing}는 빨간 ${thing}보다 ${num(d)}장 적습니다. ` +
+    `빨간 ${thing} ${num(red)}장과 파란 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `파란 ${thing}${josa(thing, "은", "는")} 빨간 ${thing}보다 ${num(d)}장 적습니다. ` +
       `빨간 ${thing} 수는 파란 ${thing} 수의 몇 배입니까?`,
     num(k),
-    `파란 ${thing}는 ${expr(`${red}-${d}=${b0}`)} 장입니다. ${expr(`${red}\\div${b0}=${k}`)} 이므로 ${num(k)}배입니다.`,
+    `파란 ${thing}${josa(thing, "은", "는")} ${expr(`${red}-${d}=${b0}`)} 장입니다. ${expr(`${red}\\div${b0}=${k}`)} 이므로 ${num(k)}배입니다.`,
   );
 }
 
@@ -4199,7 +4231,7 @@ function sameDenWord(unit: UnitSeed, rng: Rng): ElemProblem {
     if (a >= d || gcd(a, d) !== 1 || gcd(b, d) !== 1) continue;
     return make(
       unit,
-      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit}를 ${expr(`\\frac{${b}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
+      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit}${unitJosa(s.unit, "을", "를")} ${expr(`\\frac{${b}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
       num(k),
       `분모가 같으므로 분자끼리 나눕니다. ${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}=${a}\\div${b}=${k}`)}`,
     );
@@ -4220,7 +4252,7 @@ function sameDenApply(unit: UnitSeed, rng: Rng): ElemProblem {
     if (gcd(a, d) !== 1 || gcd(u, d) !== 1 || gcd(b, d) !== 1) continue;
     return make(
       unit,
-      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit} 중에서 ${expr(`\\frac{${u}}{${d}}`)} ${s.unit}를 사용하고, ` +
+      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit} 중에서 ${expr(`\\frac{${u}}{${d}}`)} ${s.unit}${unitJosa(s.unit, "을", "를")} 사용하고, ` +
         `남은 ${s.thing}${josa(s.thing, "을", "를")} ${expr(`\\frac{${b}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
       num(k),
       `남은 ${s.thing}${josa(s.thing, "은", "는")} ${expr(`\\frac{${a}}{${d}}-\\frac{${u}}{${d}}=\\frac{${k * b}}{${d}}`)} 입니다. ` +
@@ -4354,7 +4386,7 @@ function natFracWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = m * n;
   return make(
     unit,
-    `${s.thing} ${num(k)} ${s.unit}를 ${expr(`\\frac{${n}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
+    `${s.thing} ${num(k)} ${s.unit}${unitJosa(s.unit, "을", "를")} ${expr(`\\frac{${n}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
     num(m * d),
     `${expr(`${k}\\div\\frac{${n}}{${d}}=${k}\\times\\frac{${d}}{${n}}=${m * d}`)} 이므로 ${num(m * d)}${s.count}입니다.`,
   );
@@ -4630,7 +4662,7 @@ function sameDpWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = decStr(c.b, 1);
   return make(
     unit,
-    `${s.thing} ${unitNum(a, s.unit)}를 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
+    `${s.thing} ${unitNum(a, s.unit)}${unitJosa(s.unit, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
       `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
     num(c.q),
     `전체를 한 ${s.into}에 담는 양으로 나눕니다. ${expr(`${a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
@@ -4659,7 +4691,7 @@ function sameDpApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = decStr(c.b, 1);
   return make(
     unit,
-    `${s.thing} ${unitNum(decStr(total, 1), s.unit)} 중에서 ${unitNum(decStr(u10, 1), s.unit)}를 쓰고, ` +
+    `${s.thing} ${unitNum(decStr(total, 1), s.unit)} 중에서 ${unitNum(decStr(u10, 1), s.unit)}${unitJosa(s.unit, "을", "를")} 쓰고, ` +
       `남은 ${s.thing}${josa(s.thing, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담았습니다. ` +
       `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
     num(c.q),
@@ -4808,7 +4840,7 @@ function natDpWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = decStr(c.b, 1);
   return make(
     unit,
-    `${s.thing} ${unitNum(c.a, s.unit)}을 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
+    `${s.thing} ${unitNum(c.a, s.unit)}${unitJosa(s.unit, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
       `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
     num(c.q),
     `전체를 한 ${s.into}에 담는 양으로 나눕니다. ${expr(`${c.a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
@@ -4826,7 +4858,7 @@ function natDpApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = decStr(c.b, 1);
   return make(
     unit,
-    `${s.thing} ${unitNum(c.a + u, s.unit)}을 사서 ${unitNum(u, s.unit)}을 쓰고, ` +
+    `${s.thing} ${unitNum(c.a + u, s.unit)}${unitJosa(s.unit, "을", "를")} 사서 ${unitNum(u, s.unit)}${unitJosa(s.unit, "을", "를")} 쓰고, ` +
       `남은 ${s.thing}${josa(s.thing, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담았습니다. ` +
       `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
     num(c.q),
@@ -4909,7 +4941,7 @@ function roundWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const nextName = place === 1 ? "둘" : "셋";
   return make(
     unit,
-    `${s.thing} ${unitNum(c.a, s.unit)}을 ${num(c.b)}개의 ${s.into}에 똑같이 나누어 담으려고 합니다. ` +
+    `${s.thing} ${unitNum(c.a, s.unit)}${unitJosa(s.unit, "을", "를")} ${num(c.b)}개의 ${s.into}에 똑같이 나누어 담으려고 합니다. ` +
       // 단위는 소재에서 가져온다 — `kg` 를 박아 두면 L 소재가 하나 들어오는 날 조용히 틀린다.
       `한 ${s.into}에 담기는 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}인지 반올림하여 소수 ${placeName}째 자리까지 나타내시오.`,
     expr(decStr(c.cut, place)),
@@ -5019,11 +5051,11 @@ function remWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const rem = decStr(r.rem10, 1);
   return make(
     unit,
-    `${s.thing} ${unitNum(total, s.unit)}를 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주려고 합니다. ` +
-      `몇 명에게 나누어 줄 수 있고 몇 ${s.unit}가 남습니까?`,
+    `${s.thing} ${unitNum(total, s.unit)}${unitJosa(s.unit, "을", "를")} 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주려고 합니다. ` +
+      `몇 명에게 나누어 줄 수 있고 몇 ${s.unit}${unitJosa(s.unit, "이", "가")} 남습니까?`,
     `${num(r.people)}명, ${unitNum(rem, s.unit)}`,
     `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 이므로 ${num(r.people)}명에게 줄 수 있고, ` +
-      `${expr(`${total}-${r.per * r.people}=${rem}`)} 이므로 ${unitNum(rem, s.unit)} 가 남습니다.`,
+      `${expr(`${total}-${r.per * r.people}=${rem}`)} 이므로 ${unitNum(rem, s.unit)} ${unitJosa(s.unit, "이", "가")} 남습니다.`,
   );
 }
 
@@ -5036,7 +5068,7 @@ function remApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const need10 = r.per * 10 - r.rem10; // 한 사람 몫을 채우는 데 모자란 양
   return make(
     unit,
-    `${s.thing} ${unitNum(total, s.unit)}를 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주었더니 조금 남았습니다. ` +
+    `${s.thing} ${unitNum(total, s.unit)}${unitJosa(s.unit, "을", "를")} 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주었더니 조금 남았습니다. ` +
       `남은 ${s.thing}${josa(s.thing, "으로", "로")} 한 사람에게 더 주려면 ${s.thing}${josa(s.thing, "이", "가")} 몇 ${s.unit} 더 필요합니까?`,
     expr(decStr(need10, 1)),
     `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 이므로 ${num(r.people)}명에게 주고 ` +
@@ -5054,7 +5086,7 @@ function remDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${s.thing}${josa(s.thing, "을", "를")} 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주었더니 ` +
-      `${num(r.people)}명에게 줄 수 있고 ${unitNum(rem, s.unit)} 가 남았습니다. 처음에 있던 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+      `${num(r.people)}명에게 줄 수 있고 ${unitNum(rem, s.unit)} ${unitJosa(s.unit, "이", "가")} 남았습니다. 처음에 있던 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
     expr(total),
     `나누어 준 양은 ${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 입니다. ` +
       `남은 양을 더하면 ${expr(`${r.per * r.people}+${rem}=${total}`)} 입니다.`,
@@ -5660,6 +5692,356 @@ function shareDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 10차분) — 초6 `2-5 원의 둘레와 넓이` (4소단원 · 16갈래) ──
+//
+// ⑴ **한정어 규약을 물려받는다.** 2-5-3 표준을 고치며 세운 것과 같다 — 「원 안에 그린
+//    마름모」는 무수히 많고, 교과서는 **그림이** 내접·외접을 정해 주는데 우리 지면에는
+//    그림이 없다. 그래서 「**꼭 맞게**」 + 「**단, …**」로 답을 하나로 못 박는다.
+//    2-5-1 의 정육각형·정사각형도 같은 부류라 같은 규약을 쓴다
+//    (`probe-elem-section-conditions.ts` 의 needle 「원의 넓이 어림」이 2-5-3 을 잰다).
+// ⑵ **원주율은 발문이 늘 적는다.** 표준이 이미 `$3$` 과 `$3.14$` 를 **둘 다** 쓴다 —
+//    적지 않으면 「$3$ 으로 풀까 $3.14$ 로 풀까」가 지면에서 안 갈린다. 갈래도 늘 적는다.
+// ⑶ `$3.14$` 를 쓰는 자리는 **정수 배율**(`fromCents`)로만 만든다 — 부동소수점을
+//    지면에 흘리지 않는다(R2). `314 * n` 을 센트로 들고 다니다 마지막에 글자로 바꾼다.
+// ⑷ 답이 «두 수 사이»인 갈래가 둘 있다(2-5-1 응용 · 2-5-3 응용). **새 답 모양을 안 만든다** —
+//    이미 있는 «쌍»(`$a,\ b$`, 외항·비례배분이 쓰는 것)으로 선다. 세어 보고 정했다.
+
+/**
+ * 십분의 일 자리까지의 소수를 글자로. **꼬리 0 을 안 남긴다** — `31.0` 은 초등 지면에
+ * 안 쓴다(`fromCents` 와 같은 태도). 정수 배율로만 다루므로 부동소수점을 안 거친다(R2).
+ */
+function fromTenths(tenths: number): string {
+  return tenths % 10 === 0 ? String(tenths / 10) : decStr(tenths, 1);
+}
+
+/** 2-5-1·2-5-3 — 원 안팎에 «꼭 맞게» 그리는 도형의 조건절. 도형마다 조건이 다르다. 도형마다 조건이 다르다.
+ *
+ * ⚠️ 조건이 **둘** 필요한 갈래에서는 「단, …」을 두 번 쓰지 않는다(지면에서 어색하다).
+ * 안쪽 도형을 「단, 」으로 먼저, 바깥 도형을 「또, 」로 뒤에 둔다. 순서를 뒤집지 말 것 —
+ * `probe-elem-section-conditions.ts` 의 2-5-3 검사가 「단, 마름모…」 꼴을 본다.
+ */
+const FIT_HEX = "단, 정육각형의 여섯 꼭짓점은 모두 원 위에 있습니다.";
+const FIT_RHOMBUS = "단, 마름모의 네 꼭짓점은 모두 원 위에 있습니다.";
+const FIT_SQUARE = "단, 정사각형의 네 변은 모두 원에 닿습니다.";
+const ALSO_SQUARE = "또, 정사각형의 네 변은 모두 원에 닿습니다.";
+const ALSO_HEX = "또, 정육각형의 여섯 꼭짓점은 모두 원 위에 있습니다.";
+
+/** 원 모양 물건 — 굴리지 않는 것. */
+const ROUND_THINGS = ["접시", "시계", "쟁반", "거울"] as const;
+/** 굴릴 수 있는 원 모양 물건. */
+const ROLLERS = ["굴렁쇠", "자전거 바퀴", "훌라후프"] as const;
+
+// ── 2-5-1 원주와 원주율 알아보기 ──
+
+/** 연산 — 안팎에 꼭 맞게 그린 도형의 둘레. 지름의 몇 배인지가 이 소단원의 뼈대다. */
+function circPiCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const d = 2 * r;
+  // ⚠️ 정육각형 가지는 예전에 **지름**을 줘서 `÷2` 가 붙었다 — 절차가 둘이라
+  // D-72 의 「연산 = 절차 한 번」에 어긋나고, 실제로 **기본(한 걸음)보다 무거웠다.**
+  // 한 변이 곧 반지름이므로 반지름을 준다. 정사각형 가지는 한 변이 지름이라 지름을 준다.
+  if (rng() < 0.5) {
+    return make(
+      unit,
+      `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,
+      num(6 * r),
+      `여섯 꼭짓점이 모두 원 위에 있으므로 정육각형의 한 변은 반지름과 같은 ${unitNum(r, "cm")} 입니다. ` +
+        `${expr(`${r}\\times6=${6 * r}`)}`,
+    );
+  }
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm인가? ${FIT_SQUARE}`,
+    num(4 * d),
+    `네 변이 모두 원에 닿으므로 정사각형의 한 변은 원의 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
+      `${expr(`${d}\\times4=${4 * d}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 「원주는 지름의 $3$배보다 길다」를 상황에 대 본다. */
+function circPiWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, ROUND_THINGS);
+  const d = intBetween(rng, 4, 20);
+  return make(
+    unit,
+    `원 모양 ${thing}의 지름이 ${unitNum(d, "cm")} 입니다. 원주는 지름의 ${num(3)}배보다 길고 ` +
+      `${num(4)}배보다 짧습니다. 이 ${thing}의 원주는 몇 cm보다 깁니까?`,
+    num(3 * d),
+    `원주는 지름의 ${num(3)}배보다 길므로 ${expr(`${d}\\times3=${3 * d}`)} 보다 깁니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 굴러간 거리에서 지름의 **범위**를 되짚는다(답은 «쌍»). */
+function circPiApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const roller = pick(rng, ROLLERS);
+  const k = intBetween(rng, 2, 9);
+  const c = 12 * k; // 12 의 배수라 ÷3·÷4 가 둘 다 자연수로 떨어진다
+  return make(
+    unit,
+    `${roller}${josa(roller, "을", "를")} 한 바퀴 굴렸더니 ${unitNum(c, "cm")} 를 갔습니다. ` +
+      `원주는 지름의 ${num(3)}배보다 길고 ${num(4)}배보다 짧습니다. ` +
+      `이 ${roller}의 지름은 몇 cm보다 길고 몇 cm보다 짧은지 차례로 쓰시오.`,
+    expr(`${c / 4},\\ ${c / 3}`),
+    `한 바퀴 굴러간 거리가 원주입니다. 원주가 지름의 ${num(4)}배보다 짧으므로 지름은 ` +
+      `${expr(`${c}\\div4=${c / 4}`)} 보다 길고, 원주가 지름의 ${num(3)}배보다 길므로 지름은 ` +
+      `${expr(`${c}\\div3=${c / 3}`)} 보다 짧습니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산+조건 결합. 한 도형의 둘레에서 **반대쪽** 도형의 둘레로 건너간다.
+ *
+ * 방향을 둘 다 낸다. 한 방향뿐이면 답이 반지름 하나로 정해져 씨앗 16개에서 가짓수가
+ * 여덟을 못 채운다(실측 7) — 다양성이 모자라는 것도 갈래가 덜 선 것이다.
+ */
+function circPiDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어떤 원 안에 꼭 맞게 그린 정육각형의 둘레가 ${unitNum(6 * r, "cm")} 입니다. ` +
+        `같은 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm인가? ${FIT_HEX} ${ALSO_SQUARE}`,
+      num(8 * r),
+      `정육각형의 한 변은 원의 반지름이므로 반지름은 ${expr(`${6 * r}\\div6=${r}`)} 이고 ` +
+        `지름은 ${expr(`${r}\\times2=${2 * r}`)} 입니다. 정사각형의 한 변은 지름과 같으므로 ` +
+        `둘레는 ${expr(`${2 * r}\\times4=${8 * r}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 원 밖에 꼭 맞게 그린 정사각형의 둘레가 ${unitNum(8 * r, "cm")} 입니다. ` +
+      `같은 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_SQUARE} ${ALSO_HEX}`,
+    num(6 * r),
+    `정사각형의 한 변은 원의 지름이므로 지름은 ${expr(`${8 * r}\\div4=${2 * r}`)} 이고 ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. 정육각형의 한 변은 반지름과 같으므로 ` +
+      `둘레는 ${expr(`${r}\\times6=${6 * r}`)} 입니다.`,
+  );
+}
+
+// ── 2-5-2 원주와 지름 구하기 ──
+
+/**
+ * 연산 — 지름에서 원주 한 번.
+ *
+ * ⚠️ **원주율은 난이도 축에 건다 — D-73**(원장님 확정 2026-08-23:
+ * 「원주율은 소수의 계산이 필요한 혼합문제에서 3.14까지 확장. 단순 계산 필요없이
+ * 단순하게 하려면 3이나 3.1로. **난이도에 따라 문제 복잡도에 따라**」).
+ *
+ *   연산 `$3$` · 기본 `$3$` · 응용 `$3.1$` · 심화 `$3.14$`
+ *
+ * 연산·기본은 절차와 식 세우기가 과제라 원주율 자릿수가 짐이 되면 안 되고,
+ * 심화가 원장님이 말한 「소수의 계산이 필요한 혼합문제」다.
+ * **표준 세 자리(2-5-1 계산 · 2-5-2 원주지름 · 2-5-4 지름)는 그대로 둔다** —
+ * 「확장」이지 「통일」이 아니고, 표준은 교과서를 비추는 자리다.
+ *
+ * 그래서 **한 시험지에 두 값이 선다.** 그러면 「$3$ 이라 적고 $3.14$ 로 계산」이
+ * 지면에서만 틀리고 값 검산으로는 안 잡힌다 — 시험이 **발문에 적힌 값과 해설이
+ * 실제로 곱한 값이 같은가**를 잰다(`elemTiersG6.test.ts`).
+ * 표준 지름 갈래가 `$3.14$` 를 쓰므로 「지름+$3$」은 겹치지 않는다.
+ */
+function circLenCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 폭이 좁으면 씨앗 16개에서 가짓수가 여덟을 못 채운다(3~14 로는 실측 7).
+  const d = intBetween(rng, 3, 24);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm인가? (원주율: ${num(3)})`,
+    num(3 * d),
+    `(원주)=(지름)×(원주율)입니다. ${expr(`${d}\\times3=${3 * d}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 지름을 주고 테두리 길이를 묻는다. */
+function circLenWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, ROUND_THINGS);
+  const d = intBetween(rng, 3, 14);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원 모양 ${thing}의 둘레에 테두리를 두르려고 합니다. ` +
+      `테두리는 몇 cm가 필요한가? (원주율: ${num(3)})`,
+    num(3 * d),
+    `필요한 테두리의 길이는 원주와 같습니다. ${expr(`${d}\\times3=${3 * d}`)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 반지름에서 원주를 구하고 바퀴 수만큼 곱한다. */
+function circLenApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const roller = pick(rng, ROLLERS);
+  const r = intBetween(rng, 2, 9);
+  const turns = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 ${roller}${josa(roller, "을", "를")} ${num(turns)}바퀴 굴렸습니다. ` +
+      `굴러간 거리는 몇 cm인가? (원주율: ${num("3.1")})`,
+    num(fromTenths(62 * r * turns)),
+    `지름은 ${expr(`${r}\\times2=${2 * r}`)} 이고 원주는 ` +
+      `${expr(`${2 * r}\\times3.1=${fromTenths(62 * r)}`)} 입니다. ` +
+      `${expr(`${fromTenths(62 * r)}\\times${turns}=${fromTenths(62 * r * turns)}`)} 이므로 ` +
+      `${unitNum(fromTenths(62 * r * turns), "cm")} 를 갔습니다.`,
+  );
+}
+
+/** 심화 — 역산. 굴러간 거리와 바퀴 수에서 반지름을 되짚는다. */
+function circLenDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const roller = pick(rng, ROLLERS);
+  const r = intBetween(rng, 2, 9);
+  const turns = intBetween(rng, 3, 12);
+  // 역산이 $3.14$ 로 나누므로 **답에서 거꾸로 짓는다** — 앞에서 뽑아 나누면
+  // 딱 안 떨어진다(D-73 ㉠). 반지름을 먼저 정하고 굴러간 거리를 만든다.
+  const perTurn = 628 * r; // 원주(센트) = 지름 × 3.14
+  const total = perTurn * turns;
+  return make(
+    unit,
+    `${roller}${josa(roller, "을", "를")} ${num(turns)}바퀴 굴렸더니 ${unitNum(fromCents(total), "cm")} 를 갔습니다. ` +
+      `이 ${roller}의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+    num(r),
+    `원주는 ${expr(`${fromCents(total)}\\div${turns}=${fromCents(perTurn)}`)} 입니다. ` +
+      `지름은 ${expr(`${fromCents(perTurn)}\\div3.14=${2 * r}`)} 이고 ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
+  );
+}
+
+// ── 2-5-3 원의 넓이 어림하기 ──
+
+/** 연산 — 지름을 주고 안팎 도형의 넓이 하나. (표준은 **반지름**을 준다 — 묻는 자리가 다르다.) */
+function circAppCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  const d = 2 * r;
+  if (rng() < 0.5) {
+    return make(
+      unit,
+      `지름이 ${unitNum(d, "cm")} 인 원 안에 꼭 맞게 그린 마름모의 넓이는 몇 cm²인가? ${FIT_RHOMBUS}`,
+      num(2 * r * r),
+      `네 꼭짓점이 모두 원 위에 있으므로 두 대각선은 모두 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
+        `${expr(`${d}\\times${d}\\div2=${2 * r * r}`)}`,
+    );
+  }
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²인가? ${FIT_SQUARE}`,
+    num(4 * r * r),
+    `네 변이 모두 원에 닿으므로 한 변은 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
+      `${expr(`${d}\\times${d}=${4 * r * r}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 원 모양 종이에서 마름모를 오려 낸다. */
+function circAppWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 22);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 모양 색종이 안에 꼭 맞게 마름모를 그려 오렸습니다. ` +
+      `오려 낸 마름모의 넓이는 몇 cm²인가? ${FIT_RHOMBUS}`,
+    num(2 * r * r),
+    `네 꼭짓점이 모두 원 위에 있으므로 두 대각선은 모두 지름과 같은 ${unitNum(2 * r, "cm")} 입니다. ` +
+      `${expr(`${2 * r}\\times${2 * r}\\div2=${2 * r * r}`)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 안팎 둘을 다 구해 원의 넓이가 **사이에 있음**을 말한다(답은 «쌍»). */
+function circAppApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 어림하려고 합니다. 원 안에 꼭 맞게 그린 마름모와 ` +
+      `원 밖에 꼭 맞게 그린 정사각형으로 어림하면, 원의 넓이는 몇 cm²보다 크고 몇 cm²보다 작은지 ` +
+      `차례로 쓰시오. ${FIT_RHOMBUS} ${ALSO_SQUARE}`,
+    expr(`${2 * r * r},\\ ${4 * r * r}`),
+    `마름모의 두 대각선은 지름과 같으므로 넓이는 ${expr(`${2 * r}\\times${2 * r}\\div2=${2 * r * r}`)} 입니다. ` +
+      `정사각형의 한 변도 지름과 같으므로 넓이는 ${expr(`${2 * r}\\times${2 * r}=${4 * r * r}`)} 입니다. ` +
+      `원의 넓이는 그 사이에 있습니다.`,
+  );
+}
+
+/** 심화 — 역산. 바깥 넓이에서 안쪽 넓이로 건너간다(반지름을 거치지 않아도 절반이다). */
+function circAppDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  // ⚠️ 예전 판은 「정사각형 넓이 → 마름모 넓이」라 **반으로 나누는 한 걸음**이었다.
+  // 응용(안팎 둘을 다 구하는 두 걸음)보다 **얕아서 사다리가 거꾸로 섰다** —
+  // 값·판정기·시험이 다 통과하고 「네 갈래를 나란히 놓고 봐야」 보이는 자리다.
+  // 넓이에서 **지름**을 되짚게 해 두 걸음 역산으로 올린다.
+  return make(
+    unit,
+    `어떤 원 안에 꼭 맞게 그린 마름모의 넓이가 ${num(2 * r * r)} cm²입니다. ` +
+      `이 원의 지름은 몇 cm인가? ${FIT_RHOMBUS}`,
+    num(2 * r),
+    `마름모의 두 대각선은 모두 지름과 같으므로 (지름)×(지름)은 ` +
+      `${expr(`${2 * r * r}\\times2=${4 * r * r}`)} 입니다. ` +
+      `${expr(`${2 * r}\\times${2 * r}=${4 * r * r}`)} 이므로 지름은 ${unitNum(2 * r, "cm")} 입니다.`,
+  );
+}
+
+// ── 2-5-4 원의 넓이 구하는 방법 알아보기 ──
+
+/** 연산 — 지름에서 넓이 한 번. 표준의 지름 갈래는 `$3.14$` 라 「지름+$3$」은 겹치지 않는다. */
+function circAreaCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  // ⚠️ 예전 판은 **지름**을 줘서 `÷2` 가 붙었고, 그래서 **기본보다 걸음이 많았다**.
+  // 연산은 절차 한 번이어야 한다 — 반지름을 준다. 표준이 같은 문장을 쓰므로
+  // 두 문장으로 갈라 R5(발문 중복)를 피한다.
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 이 원의 넓이는 몇 cm²인가? (원주율: ${num(3)})`,
+    num(3 * r * r),
+    `(원의 넓이)=(반지름)×(반지름)×(원주율)입니다. ` +
+      `${expr(`${r}\\times${r}\\times3=${3 * r * r}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 원 모양 화단의 넓이. */
+function circAreaWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, ["화단", "연못", "무대", "잔디밭"] as const);
+  const r = intBetween(rng, 2, 9);
+  // 기본은 연산보다 한 겹 위다 — **지름**을 줘서 반지름을 먼저 구하게 한다.
+  return make(
+    unit,
+    `지름이 ${unitNum(2 * r, "m")} 인 원 모양 ${place}${josa(place, "이", "가")} 있습니다. ` +
+      `이 ${place}의 넓이는 몇 m²인가? ` +
+      `(원주율: ${num(3)})`,
+    num(3 * r * r),
+    `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. ` +
+      `(원의 넓이)=(반지름)×(반지름)×(원주율)이므로 ` +
+      `${expr(`${r}\\times${r}\\times3=${3 * r * r}`)} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 원주에서 반지름을 되찾은 뒤 넓이를 구한다. */
+function circAreaApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 폭을 넉넉히 둔다. 이 시험의 씨앗 열여섯은 **첫 뽑기가 몰린다** — 폭 14 에서
+  // 가짓수가 딱 8(문턱)이었다. 문턱에 걸친 값은 다음 손질에 조용히 무너진다.
+  const r = intBetween(rng, 2, 24);
+  const c = 62 * r; // 원주(십분의 일) = 지름 × 3.1
+  return make(
+    unit,
+    `원주가 ${unitNum(fromTenths(c), "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,
+    num(fromTenths(31 * r * r)),
+    `지름은 ${expr(`${fromTenths(c)}\\div3.1=${2 * r}`)} 이고 반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. ` +
+      `넓이는 ${expr(`${r}\\times${r}\\times3.1=${fromTenths(31 * r * r)}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. 넓이에서 ⓐ 반지름 ⓑ 지름을 되짚는다. */
+function circAreaDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 13);
+  // 넓이를 **답에서 거꾸로** 짓는다 — $3.14$ 로 나눠 떨어져야 한다(D-73 ㉠).
+  const area = fromCents(314 * r * r);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+      num(r),
+      `(반지름)×(반지름)은 ${expr(`${area}\\div3.14=${r * r}`)} 입니다. ` +
+        `${expr(`${r}\\times${r}=${r * r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+    num(2 * r),
+    `(반지름)×(반지름)은 ${expr(`${area}\\div3.14=${r * r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다. ` +
+      `지름은 ${expr(`${r}\\times2=${2 * r}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -5916,6 +6298,30 @@ export const G6_TIERS: ElemTierMap = {
     기본: shareWord,
     응용: shareApply,
     심화: shareDeep,
+  },
+  "초6|2-5-1": {
+    연산: circPiCalc,
+    기본: circPiWord,
+    응용: circPiApply,
+    심화: circPiDeep,
+  },
+  "초6|2-5-2": {
+    연산: circLenCalc,
+    기본: circLenWord,
+    응용: circLenApply,
+    심화: circLenDeep,
+  },
+  "초6|2-5-3": {
+    연산: circAppCalc,
+    기본: circAppWord,
+    응용: circAppApply,
+    심화: circAppDeep,
+  },
+  "초6|2-5-4": {
+    연산: circAreaCalc,
+    기본: circAreaWord,
+    응용: circAreaApply,
+    심화: circAreaDeep,
   },
 };
 
