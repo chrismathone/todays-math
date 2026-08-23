@@ -1746,6 +1746,818 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
     return _svg(bw + pad * 2 + extra_r, bh + pad * 2 + extra_b, "".join(parts))
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# 입체 kind 셋 — hollowSolid · cutCuboid · revolvePlan (2026-08-23)
+#
+# 정본은 RPM 중학 1-2 원본 지면이다(본문·수치는 베끼지 않고 **모양만**):
+#   · hollowSolid — p127 유형07 0845(원기둥⊖원기둥)·0846/0848(직육면체⊖직육면체)
+#     ·0847(정육면체⊖원기둥)
+#   · cutCuboid  — p127 유형08 0849(윗면·앞면에 닿은 홈)·0850(같은 무리, 정육면체)
+#     ·0851(앞면 세로 홈, 바닥까지)·유형08 개념 상자(모서리 코너 컷)
+#   · revolvePlan — p111 유형14(회전 전 반평면 도형 + 축 ℓ + 회전 화살표)
+#     ·p133 유형20 0891(치수 붙은 직각삼각형)
+#
+# ## 숨은 모서리 — 면-쌍 규칙이 아니라 **가림 판정**으로 가른다
+#
+# §4-14 의 「양쪽 면이 다 뒤를 보면 숨음」은 볼록 입체에만 맞다. 구멍·홈이 있는
+# 입체는 **앞을 보는 면의 모서리도 다른 살에 가려진다** — 0851 의 깊은 홈에서
+# 안쪽 벽 모서리가 오른쪽 기둥 뒤로 숨는 것이 정확히 그 자리다(원본도 그 토막만
+# 점선이다). 그래서 모서리를 점으로 나눠, 각 점에서 **관찰자 쪽 반직선이 살을
+# 지나는 길이**를 해석적으로(상자·수직 원기둥의 구간 교집합) 재고, 숨은 토막만
+# 점선으로 긋는다. 구멍 안쪽 세로 모서리가 **개구부 바로 아래에서 잠깐 실선**이
+# 되는 것도 이 판정의 산물이다 — 뚫린 곳으로는 실제로 보이기 때문이다(원본 0846).
+#
+# ## 투영
+#
+# 각진 것은 기존 `_cuboid` 와 같은 cabinet(45°, ratio 0.5). 둥근 것만 §4-15 대로
+# 깊이축을 화면 위(90°)로 세우고 `ROUND_RATIO` 를 쓴다. 정육면체에 뚫린 원기둥
+# 구멍(0847)은 **그 면 위의 원을 같은 View 로 투영**한다 — 여기서 타원이 기우는
+# 것은 §4-15 의 결함이 아니라 기운 면 위의 원이라 그런 것이고, 원본 지면도 그렇다.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# 구멍·컷과 바깥 사이 최소 살 두께(cm). 더 얇으면 지면에서 선끼리 붙는다.
+SOLID_MIN_WALL = 0.3
+# 가림 판정에서 「제 표면 스침」을 걸러 내는 여유(cm). 살 두께(≥0.3)보다 훨씬 작아야
+# 하고, 0이면 모서리가 제가 속한 면에 걸려 전부 숨은 것으로 나온다.
+SOLID_RAY_EPS = 0.05
+# 곧은 모서리 하나를 몇 점으로 나눠 가림을 재는가.
+SOLID_EDGE_SAMPLES = 48
+
+
+def _ray_dir(ratio: float, deg: float) -> tuple[float, float, float]:
+    """화면에서 같은 자리에 겹쳐 보이는 점들의 방향, **관찰자 쪽**(y 감소)으로.
+
+    `View.direction` 은 관찰자→화면 안쪽이므로 그 반대다.
+    """
+    a = math.radians(deg)
+    return (ratio * math.cos(a), -1.0, ratio * math.sin(a))
+
+
+def _iv_box_fn(dr, x0, x1, y0, y1, z0, z1):
+    """점 p 에서 dr 방향 직선이 상자와 만나는 매개변수 구간 (s0, s1) — 없으면 None."""
+
+    def iv(p):
+        s0, s1 = -1e18, 1e18
+        for pi, di, lo, hi in (
+            (p[0], dr[0], x0, x1),
+            (p[1], dr[1], y0, y1),
+            (p[2], dr[2], z0, z1),
+        ):
+            if abs(di) < 1e-12:
+                if pi <= lo or pi >= hi:
+                    return None
+            else:
+                a, b = (lo - pi) / di, (hi - pi) / di
+                if a > b:
+                    a, b = b, a
+                if a > s0:
+                    s0 = a
+                if b < s1:
+                    s1 = b
+        return (s0, s1) if s1 - s0 > 1e-9 else None
+
+    return iv
+
+
+def _iv_vcyl_fn(dr, cx, cy, r, z0, z1):
+    """수직 원기둥(축이 z, 중심 (cx,cy))과의 매개변수 구간."""
+
+    def iv(p):
+        dx, dy, dz = dr
+        fx, fy = p[0] - cx, p[1] - cy
+        qa = dx * dx + dy * dy
+        qb = 2 * (fx * dx + fy * dy)
+        qc = fx * fx + fy * fy - r * r
+        disc = qb * qb - 4 * qa * qc
+        if disc <= 0:
+            return None
+        rt = math.sqrt(disc)
+        s0, s1 = (-qb - rt) / (2 * qa), (-qb + rt) / (2 * qa)
+        if abs(dz) < 1e-12:
+            if p[2] <= z0 or p[2] >= z1:
+                return None
+        else:
+            a, b = (z0 - p[2]) / dz, (z1 - p[2]) / dz
+            if a > b:
+                a, b = b, a
+            s0, s1 = max(s0, a), min(s1, b)
+        return (s0, s1) if s1 - s0 > 1e-9 else None
+
+    return iv
+
+
+def _make_hidden(outer_iv, inner_iv):
+    """숨음 판정 — 관찰자 쪽 반직선이 «바깥 − 구멍» 살을 SOLID_RAY_EPS 넘게 지나는가."""
+
+    def hidden(p) -> bool:
+        o = outer_iv(p)
+        if o is None:
+            return False
+        s0, s1 = max(o[0], SOLID_RAY_EPS), o[1]
+        if s1 - s0 <= SOLID_RAY_EPS:
+            return False
+        if inner_iv is not None:
+            iv = inner_iv(p)
+            if iv is not None:
+                a, b = max(iv[0], s0), min(iv[1], s1)
+                return (s1 - s0) - max(0.0, b - a) > SOLID_RAY_EPS
+        return True
+
+    return hidden
+
+
+def _seg3(a, b, n: int = SOLID_EDGE_SAMPLES):
+    return [
+        (
+            a[0] + (b[0] - a[0]) * i / n,
+            a[1] + (b[1] - a[1]) * i / n,
+            a[2] + (b[2] - a[2]) * i / n,
+        )
+        for i in range(n + 1)
+    ]
+
+
+def _draw_chains(chains, view, hidden) -> list[str]:
+    """모서리(3D 점열)를 화면 토막으로 — 보이는 토막 실선, 숨은 토막 점선.
+
+    토막 경계는 이웃 표본의 중점이라 표본 간격(모서리/48)의 절반까지 어긋날 수
+    있는데, 획 1px 에서는 안 보인다. 곧은 모서리의 토막은 양끝 두 점으로 줄여
+    SVG 를 키우지 않는다.
+    """
+    parts: list[str] = []
+    for pts3, straight in chains:
+        if straight:
+            pts3 = _seg3(pts3[0], pts3[-1])
+        flags = [hidden(p) for p in pts3]
+        scr = [view(p) for p in pts3]
+        runs: list[tuple[bool, list[tuple[float, float]]]] = []
+        cur = [scr[0]]
+        f = flags[0]
+        for k in range(1, len(pts3)):
+            if flags[k] == f:
+                cur.append(scr[k])
+            else:
+                mid = ((scr[k - 1][0] + scr[k][0]) / 2, (scr[k - 1][1] + scr[k][1]) / 2)
+                cur.append(mid)
+                runs.append((f, cur))
+                cur = [mid, scr[k]]
+                f = flags[k]
+        runs.append((f, cur))
+        for hid, pts in runs:
+            if len(pts) < 2:
+                continue
+            if straight:
+                pts = [pts[0], pts[-1]]
+            if hid:
+                parts.append(_polyline(pts, sw=1.0, dash=HIDDEN_DASH))
+            else:
+                parts.append(_polyline(pts, sw=1.15))
+    return parts
+
+
+def _fill_poly(pts, fill: str) -> str:
+    """윤곽 없는 면 칠. 모서리는 `_draw_chains` 가 따로 긋는다 — 칠에 잉크 윤곽을
+    주면 가려진 모서리까지 실선으로 둘러져 점선과 겹친다. 같은 색 hairline 은
+    이웃 칠 사이 안티에일리어싱 틈을 메운다."""
+    s = " ".join(f"{_n(x)},{_n(y)}" for x, y in pts)
+    return f'<polygon points="{s}" fill="{fill}" stroke="{fill}" stroke-width="0.6"/>'
+
+
+def _shape_keys(m: Any, name: str, required: frozenset[str], optional: frozenset[str] = frozenset()) -> None:
+    if not isinstance(m, Mapping):
+        raise ValueError(f"{name} 은 객체여야 합니다")
+    extra = set(m) - required - optional
+    if extra:
+        raise ValueError(f"{name} 에 허용되지 않은 키: {', '.join(sorted(str(k) for k in extra))}")
+    missing = required - set(m)
+    if missing:
+        raise ValueError(f"{name} 에 빠진 키: {', '.join(sorted(missing))}")
+
+
+def _cuboid_dim_parts(view, w: float, d: float, h: float, edges3) -> list[str]:
+    """직육면체 계열 바깥 치수 세 개 — `_cuboid` 와 같은 자리·같은 `measured()` 한 벌.
+
+    edges3 는 (w모서리, h모서리, d모서리) 의 3D 끝점 쌍 — 컷이 그 모서리를 끊었으면
+    부르는 쪽이 성한 모서리로 바꿔 넘긴다(끊긴 모서리에 전체 길이를 적으면 거짓말이다).
+    """
+    inside = view((w / 2, d / 2, h / 2))
+    parts: list[str] = []
+    for (a3, b3), label in zip(edges3, (f"{_n(w)} cm", f"{_n(h)} cm", f"{_n(d)} cm")):
+        a, b = view(a3), view(b3)
+        span = math.hypot(b[0] - a[0], b[1] - a[1])
+        off = _outward_off(a, b, inside, DIM_OFF if span >= 28 else DIM_OFF + 6)
+        parts.append(_length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12))
+    return parts
+
+
+def _dim_towards(view, a3, b3, label: str, want3, off_mag: float = DIM_OFF) -> str:
+    """치수 곡선을 3D 상의 want3 쪽(빈 공간)으로 밀어 measured() 로 긋는다."""
+    a, b = view(a3), view(b3)
+    mid = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+    wv = view(want3)
+    off = _off_towards(a, b, (wv[0] - mid[0], wv[1] - mid[1]), off_mag)
+    return _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12)
+
+
+def _box_edges(w: float, d: float, h: float) -> list:
+    out = []
+    for z in (0.0, h):
+        out.append([(0.0, 0.0, z), (w, 0.0, z)])
+        out.append([(w, 0.0, z), (w, d, z)])
+        out.append([(w, d, z), (0.0, d, z)])
+        out.append([(0.0, d, z), (0.0, 0.0, z)])
+    for x in (0.0, w):
+        for y in (0.0, d):
+            out.append([(x, y, 0.0), (x, y, h)])
+    return out
+
+
+# ── hollowSolid — 구멍이 뚫린 기둥 (RPM 유형07) ──────────────────────────────
+
+
+def _hollow_cyl(R: float, H: float, r: float) -> str:
+    from core.figure_solid import circle3
+
+    if R - r < SOLID_MIN_WALL:
+        raise ValueError(f"구멍 반지름 {_n(r)} 이 바깥 반지름 {_n(R)} 에 너무 가깝습니다")
+    scale = 70.0 / max(2 * R, H)
+    obot = circle3((0, 0, 0), R, (0, 0, 1), 64)
+    otop = circle3((0, 0, H), R, (0, 0, 1), 64)
+    ibot = circle3((0, 0, 0), r, (0, 0, 1), 64)
+    itop = circle3((0, 0, H), r, (0, 0, 1), 64)
+    view, svg_w, svg_h = _fitted_cabinet(
+        obot + otop, scale, (24.0, 26.0, 40.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+    )
+    dr = _ray_dir(ROUND_RATIO, ROUND_DEG)
+    hidden = _make_hidden(
+        _iv_vcyl_fn(dr, 0.0, 0.0, R, 0.0, H), _iv_vcyl_fn(dr, 0.0, 0.0, r, -1.0, H + 1.0)
+    )
+    top_scr = _round_ring(view, otop)
+    bot_scr = _round_ring(view, obot)
+    i_l = min(range(len(bot_scr)), key=lambda i: bot_scr[i][0])
+    i_r = max(range(len(bot_scr)), key=lambda i: bot_scr[i][0])
+    near_bot, _far_bot = _split_ring(bot_scr, i_l, i_r)
+    near_top, _far_top = _split_ring(top_scr, i_l, i_r)
+    if near_top[0][0] > near_top[-1][0]:
+        near_top = near_top[::-1]
+    if near_bot[0][0] < near_bot[-1][0]:
+        near_bot = near_bot[::-1]
+    parts = [
+        _fill_poly(near_top + near_bot, FACE_FRONT),
+        _fill_poly(top_scr, FACE_TOP),
+        # 개구부는 「안이 비어 있다」로 읽히게 셋 중 가장 어두운 면색을 깐다.
+        _fill_poly(_round_ring(view, itop), FACE_SIDE),
+    ]
+    chains = [
+        (otop, False),
+        (obot, False),
+        (itop, False),
+        (ibot, False),
+        ([(R, 0.0, 0.0), (R, 0.0, H)], True),
+        ([(-R, 0.0, 0.0), (-R, 0.0, H)], True),
+        ([(r, 0.0, 0.0), (r, 0.0, H)], True),
+        ([(-r, 0.0, 0.0), (-r, 0.0, H)], True),
+    ]
+    parts += _draw_chains(chains, view, hidden)
+    # 치수 — 전부 measured() 한 벌(§4-16). 반지름은 중심에 점을 찍고 그 선 자체가
+    # 치수선이 되게 off=0. 바깥 R 은 오른쪽, 구멍 r 은 왼쪽으로 갈라 겹치지 않는다.
+    c = view((0.0, 0.0, H))
+    pR = view((R, 0.0, H))
+    pr = view((-r, 0.0, H))
+    parts.append(f'<circle cx="{_n(c[0])}" cy="{_n(c[1])}" r="2" fill="{INK}"/>')
+    parts.append(_length_mark(c[0], c[1], pR[0], pR[1], f"{_n(R)} cm", off=0, fs=12))
+    parts.append(_length_mark(c[0], c[1], pr[0], pr[1], f"{_n(r)} cm", off=0, fs=12))
+    tR, bR = view((R, 0.0, H)), view((R, 0.0, 0.0))
+    parts.append(
+        _length_mark(
+            tR[0], tR[1], bR[0], bR[1], f"{_n(H)} cm",
+            off=_off_towards(tR, bR, (1.0, 0.0), DIM_OFF), fs=12,
+        )
+    )
+    return _svg(svg_w, svg_h, "".join(parts))
+
+
+def _hollow_box(w: float, d: float, h: float, cw: float, cd: float, hole_r: float | None) -> str:
+    """직육면체에 관통 구멍 — 사각(0846) 또는 원(0847). 구멍은 가운데."""
+    from core.figure_solid import circle3
+
+    mx = max(w, d, h)
+    scale = 56.0 / mx
+    depth_px = 0.5 * scale * d
+    if depth_px < 24.0:
+        scale *= 24.0 / depth_px
+    corners = [(x, y, z) for x in (0.0, w) for y in (0.0, d) for z in (0.0, h)]
+    view, svg_w, svg_h = _fitted_cabinet(corners, scale, (40.0, 22.0, 52.0, 44.0))
+    dr = _ray_dir(0.5, 45.0)
+    outer_iv = _iv_box_fn(dr, 0.0, w, 0.0, d, 0.0, h)
+    if hole_r is None:
+        if (w - cw) / 2 < SOLID_MIN_WALL or (d - cd) / 2 < SOLID_MIN_WALL:
+            raise ValueError("구멍이 바깥 직육면체에 너무 가깝습니다")
+        hx0, hx1 = (w - cw) / 2, (w + cw) / 2
+        hy0, hy1 = (d - cd) / 2, (d + cd) / 2
+        inner_iv = _iv_box_fn(dr, hx0, hx1, hy0, hy1, -1.0, h + 1.0)
+    else:
+        if min(w, d) / 2 - hole_r < SOLID_MIN_WALL:
+            raise ValueError("구멍 반지름이 바깥 직육면체에 너무 가깝습니다")
+        inner_iv = _iv_vcyl_fn(dr, w / 2, d / 2, hole_r, -1.0, h + 1.0)
+    hidden = _make_hidden(outer_iv, inner_iv)
+
+    def p(x: float, y: float, z: float):
+        return view((x, y, z))
+
+    parts = [
+        _fill_poly([p(0, 0, 0), p(w, 0, 0), p(w, 0, h), p(0, 0, h)], FACE_FRONT),
+        _fill_poly([p(w, 0, 0), p(w, d, 0), p(w, d, h), p(w, 0, h)], FACE_SIDE),
+        _fill_poly([p(0, 0, h), p(w, 0, h), p(w, d, h), p(0, d, h)], FACE_TOP),
+    ]
+    chains = [(e, True) for e in _box_edges(w, d, h)]
+    if hole_r is None:
+        opening = [(hx0, hy0, h), (hx1, hy0, h), (hx1, hy1, h), (hx0, hy1, h)]
+        parts.append(_fill_poly([view(q) for q in opening], FACE_SIDE))
+        bottom = [(x, y, 0.0) for x, y, _z in opening]
+        for ring in (opening, bottom):
+            m = len(ring)
+            chains += [([ring[i], ring[(i + 1) % m]], True) for i in range(m)]
+        chains += [([(x, y, h), (x, y, 0.0)], True) for x, y, _z in opening]
+    else:
+        htop = circle3((w / 2, d / 2, h), hole_r, (0, 0, 1), 64)
+        hbot = circle3((w / 2, d / 2, 0), hole_r, (0, 0, 1), 64)
+        parts.append(_fill_poly([view(q) for q in htop[:-1]], FACE_SIDE))
+        chains += [(htop, False), (hbot, False)]
+        # 구멍 벽의 실루엣 — 시선의 수평 성분에 접하는 두 점의 세로선.
+        th = math.atan2(dr[0], -dr[1])
+        for t in (th, th + math.pi):
+            sx = w / 2 + hole_r * math.cos(t)
+            sy = d / 2 + hole_r * math.sin(t)
+            chains.append(([(sx, sy, 0.0), (sx, sy, h)], True))
+    parts += _draw_chains(chains, view, hidden)
+    parts += _cuboid_dim_parts(
+        view, w, d, h,
+        (((0, 0, 0), (w, 0, 0)), ((0, 0, 0), (0, 0, h)), ((w, 0, 0), (w, d, 0))),
+    )
+    if hole_r is None:
+        void = ((hx0 + hx1) / 2, (hy0 + hy1) / 2, h)
+        parts.append(
+            _dim_towards(view, (hx0, hy0, h), (hx1, hy0, h), f"{_n(cw)} cm", void, 8.0)
+        )
+        parts.append(
+            _dim_towards(view, (hx1, hy0, h), (hx1, hy1, h), f"{_n(cd)} cm", void, 8.0)
+        )
+    else:
+        c = view((w / 2, d / 2, h))
+        th = math.atan2(dr[0], -dr[1])
+        rim = view((w / 2 + hole_r * math.cos(th), d / 2 + hole_r * math.sin(th), h))
+        parts.append(f'<circle cx="{_n(c[0])}" cy="{_n(c[1])}" r="2" fill="{INK}"/>')
+        parts.append(_length_mark(c[0], c[1], rim[0], rim[1], f"{_n(hole_r)} cm", off=0, fs=12))
+    return _svg(svg_w, svg_h, "".join(parts))
+
+
+def _hollow_solid(spec: Mapping[str, Any]) -> str:
+    outer, inner = spec["outer"], spec["inner"]
+    if not isinstance(outer, Mapping) or not isinstance(inner, Mapping):
+        raise ValueError("outer/inner 는 객체여야 합니다")
+    oshape, ishape = outer.get("shape"), inner.get("shape")
+    if oshape == "cylinder":
+        _shape_keys(outer, "outer", frozenset({"shape", "r", "h"}))
+        if ishape != "cylinder":
+            raise ValueError("원기둥에는 원기둥 구멍만 지원합니다")
+        _shape_keys(inner, "inner", frozenset({"shape", "r"}))
+        return _hollow_cyl(
+            _num(outer["r"], "outer.r", 0.4, 20),
+            _num(outer["h"], "outer.h", 0.4, 30),
+            _num(inner["r"], "inner.r", 0.2, 20),
+        )
+    if oshape == "cuboid":
+        _shape_keys(outer, "outer", frozenset({"shape", "w", "d", "h"}))
+        w = _num(outer["w"], "outer.w", 0.5, 40)
+        d = _num(outer["d"], "outer.d", 0.5, 40)
+        h = _num(outer["h"], "outer.h", 0.5, 40)
+        if ishape == "cuboid":
+            _shape_keys(inner, "inner", frozenset({"shape", "w", "d"}))
+            return _hollow_box(
+                w, d, h,
+                _num(inner["w"], "inner.w", 0.2, 40),
+                _num(inner["d"], "inner.d", 0.2, 40),
+                None,
+            )
+        if ishape == "cylinder":
+            _shape_keys(inner, "inner", frozenset({"shape", "r"}))
+            return _hollow_box(w, d, h, 0.0, 0.0, _num(inner["r"], "inner.r", 0.2, 20))
+        raise ValueError(f"모르는 구멍 모양입니다: {ishape}")
+    raise ValueError(f"모르는 바깥 모양입니다: {oshape}")
+
+
+# ── cutCuboid — 일부를 잘라 낸 직육면체 (RPM 유형08) ─────────────────────────
+
+
+def _notched_rect(W: float, V: float, a: float, b: float, c: float):
+    """[0,W]×[0,V] − [a,b]×[c,V] — 노치는 반드시 위 변(v=V)에 닿는다. 남는 다각형 목록."""
+    gl = a > 1e-9
+    gr = b < W - 1e-9
+    gb = c > 1e-9
+    if not gb:
+        out = []
+        if gl:
+            out.append([(0.0, 0.0), (a, 0.0), (a, V), (0.0, V)])
+        if gr:
+            out.append([(b, 0.0), (W, 0.0), (W, V), (b, V)])
+        return out
+    if gl and gr:
+        return [[(0.0, 0.0), (W, 0.0), (W, V), (b, V), (b, c), (a, c), (a, V), (0.0, V)]]
+    if gl:
+        return [[(0.0, 0.0), (W, 0.0), (W, c), (a, c), (a, V), (0.0, V)]]
+    if gr:
+        return [[(0.0, 0.0), (W, 0.0), (W, V), (b, V), (b, c), (0.0, c)]]
+    return [[(0.0, 0.0), (W, 0.0), (W, c), (0.0, c)]]
+
+
+def _cut_cuboid(spec: Mapping[str, Any]) -> str:
+    w = _num(spec["w"], "w", 0.5, 40)
+    d = _num(spec["d"], "d", 0.5, 40)
+    h = _num(spec["h"], "h", 0.5, 40)
+    cut = spec["cut"]
+    _shape_keys(cut, "cut", frozenset(), frozenset({"x", "w", "d", "h"}))
+    given_w, given_d, given_h = "w" in cut, "d" in cut, "h" in cut
+    # 뺀 키는 「그 방향 전체」다. 둘 이상 빼면 통째 조각을 떼는 것이라 잘린 모양이
+    # 남지 않거나(널판 제거) 입체가 두 동강 난다 — 조용히 그리지 않고 던진다.
+    if (not given_w) + (not given_d) + (not given_h) > 1:
+        raise ValueError("cut 은 w·d·h 중 둘 이상을 주어야 합니다 (뺀 키 = 그 방향 전체)")
+    cw = _num(cut["w"], "cut.w", 0.2, 40) if given_w else w
+    cd = _num(cut["d"], "cut.d", 0.2, 40) if given_d else d
+    ch = _num(cut["h"], "cut.h", 0.2, 40) if given_h else h
+    if given_w and cw > w - SOLID_MIN_WALL:
+        raise ValueError(f"cut.w {_n(cw)} 는 w {_n(w)} 보다 {_n(SOLID_MIN_WALL)} 이상 작아야 합니다")
+    if given_d and cd > d - SOLID_MIN_WALL:
+        raise ValueError(f"cut.d {_n(cd)} 는 d {_n(d)} 보다 {_n(SOLID_MIN_WALL)} 이상 작아야 합니다")
+    if given_h and ch > h - SOLID_MIN_WALL:
+        raise ValueError(f"cut.h {_n(ch)} 는 h {_n(h)} 보다 {_n(SOLID_MIN_WALL)} 이상 작아야 합니다")
+    x_given = "x" in cut
+    if x_given:
+        if not given_w:
+            raise ValueError("cut.w 없이 cut.x 를 줄 수 없습니다")
+        cx = _num(cut["x"], "cut.x", 0, 40)
+        if cx + cw > w + 1e-9:
+            raise ValueError("cut.x + cut.w 가 w 를 넘습니다")
+    else:
+        cx = (w - cw) / 2
+    eps = 1e-9
+    zf = h - ch
+    touch_l, touch_r = cx <= eps, cx + cw >= w - eps
+    touch_b, touch_k = ch >= h - eps, cd >= d - eps  # 바닥·뒷면까지 닿는가
+
+    mx = max(w, d, h)
+    scale = 56.0 / mx
+    depth_px = 0.5 * scale * d
+    if depth_px < 24.0:
+        scale *= 24.0 / depth_px
+    corners = [(x, y, z) for x in (0.0, w) for y in (0.0, d) for z in (0.0, h)]
+    view, svg_w, svg_h = _fitted_cabinet(corners, scale, (40.0, 22.0, 52.0, 44.0))
+    dr = _ray_dir(0.5, 45.0)
+    hidden = _make_hidden(
+        _iv_box_fn(dr, 0.0, w, 0.0, d, 0.0, h),
+        _iv_box_fn(
+            dr,
+            cx - 1.0 if touch_l else cx,
+            cx + cw + 1.0 if touch_r else cx + cw,
+            -1.0,
+            cd + 1.0 if touch_k else cd,
+            zf - 1.0 if touch_b else zf,
+            h + 1.0,
+        ),
+    )
+
+    # 면 목록: (3D 다각형, 칠 색 | None). 보이는 법선(+x·−y·+z)만 칠한다.
+    faces: list[tuple[list, str | None]] = []
+
+    def add(local_polys, mapf, fill):
+        for poly in local_polys:
+            faces.append(([mapf(u, v) for u, v in poly], fill))
+
+    add(_notched_rect(w, h, cx, cx + cw, zf), lambda u, v: (u, 0.0, v), FACE_FRONT)
+    add(_notched_rect(w, d, cx, cx + cw, d - cd), lambda u, v: (u, d - v, h), FACE_TOP)
+    if touch_r:
+        add(_notched_rect(d, h, 0.0, cd, zf), lambda u, v: (w, u, v), FACE_SIDE)
+    else:
+        faces.append(([(w, 0.0, 0.0), (w, d, 0.0), (w, d, h), (w, 0.0, h)], FACE_SIDE))
+    if touch_l:
+        add(_notched_rect(d, h, 0.0, cd, zf), lambda u, v: (0.0, u, v), None)
+    else:
+        faces.append(([(0.0, 0.0, 0.0), (0.0, d, 0.0), (0.0, d, h), (0.0, 0.0, h)], None))
+    if touch_b:
+        add(_notched_rect(w, d, cx, cx + cw, d - cd), lambda u, v: (u, d - v, 0.0), None)
+    else:
+        faces.append(([(0.0, 0.0, 0.0), (w, 0.0, 0.0), (w, d, 0.0), (0.0, d, 0.0)], None))
+    if touch_k:
+        add(_notched_rect(w, h, cx, cx + cw, zf), lambda u, v: (u, d, v), None)
+    else:
+        faces.append(([(0.0, d, 0.0), (w, d, 0.0), (w, d, h), (0.0, d, h)], None))
+    inner: list[tuple[list, str | None]] = []
+    if not touch_b:  # 홈 바닥
+        inner.append(([(cx, 0.0, zf), (cx + cw, 0.0, zf), (cx + cw, cd, zf), (cx, cd, zf)], FACE_TOP))
+    if not touch_k:  # 홈 뒷벽 (관찰자를 본다)
+        inner.append(([(cx, cd, zf), (cx + cw, cd, zf), (cx + cw, cd, h), (cx, cd, h)], FACE_FRONT))
+    if not touch_l:  # 홈 왼벽 (법선 +x → 보인다)
+        inner.append(([(cx, 0.0, zf), (cx, cd, zf), (cx, cd, h), (cx, 0.0, h)], FACE_SIDE))
+    if not touch_r:  # 홈 오른벽 (법선 −x → 안 보인다)
+        inner.append(([(cx + cw, 0.0, zf), (cx + cw, cd, zf), (cx + cw, cd, h), (cx + cw, 0.0, h)], None))
+
+    # 안쪽 벽 → 윗면 → 오른면 → 앞면 순서로 칠한다 — 깊은 홈이 오른쪽 기둥 뒤로
+    # 숨는 경우(0851) 가까운 면이 나중에 와야 실제 가림과 같아진다.
+    parts = [_fill_poly([view(q) for q in poly], fill) for poly, fill in inner if fill]
+    for want in (FACE_TOP, FACE_SIDE, FACE_FRONT):
+        for poly, fill in faces:
+            if fill == want:
+                parts.append(_fill_poly([view(q) for q in poly], fill))
+
+    # 모서리 — 면 다각형에서 모아 중복을 걷고, 토막별로 실선/점선.
+    edge_map: dict[tuple, tuple] = {}
+    for poly, _fill in faces + inner:
+        m = len(poly)
+        for i in range(m):
+            a3, b3 = poly[i], poly[(i + 1) % m]
+            key = tuple(sorted((tuple(round(c, 4) for c in a3), tuple(round(c, 4) for c in b3))))
+            edge_map.setdefault(key, (a3, b3))
+    parts += _draw_chains([([a3, b3], True) for a3, b3 in edge_map.values()], view, hidden)
+
+    # 바깥 치수 — 컷이 끊은 모서리에는 적지 않는다(성한 모서리로 옮긴다).
+    w_edge = ((0, 0, 0), (w, 0, 0)) if not touch_b else ((0, d, h), (w, d, h))
+    if not touch_l:
+        h_edge = ((0, 0, 0), (0, 0, h))
+    elif not touch_r:
+        h_edge = ((w, 0, 0), (w, 0, h))
+    else:
+        h_edge = ((w, d, 0), (w, d, h))
+    d_edge = ((w, 0, 0), (w, d, 0)) if not (touch_r and touch_b) else ((0, 0, 0), (0, d, 0))
+    parts += _cuboid_dim_parts(view, w, d, h, (w_edge, h_edge, d_edge))
+
+    # 컷 치수 — 받은 값만 적는다(§4-20). 셋을 홈 안에 다 밀어 넣으면 서로 겹치므로
+    # (0849 재현에서 실측) 폭·깊이는 위(빈 하늘)로, 높이만 홈의 빈 공간으로 민다.
+    void = (cx + cw / 2, cd / 2, (zf + h) / 2)
+    x1 = cx + cw
+    if given_w:
+        if not touch_b:
+            # 홈 바닥 앞모서리 — 라벨은 그 아래 앞면 위로. 위 하늘에 두면 cd 라벨과
+            # 정확히 겹친다(0849 재현 실측: cd 의 halo 가 cw 를 통째로 덮었다).
+            a3, b3 = (cx, 0.0, zf), (x1, 0.0, zf)
+            want = (cx + cw / 2, 0.0, zf - 5.0)
+        else:
+            a3, b3 = (cx, cd, h), (x1, cd, h)  # 바닥까지 뚫린 홈 — 뒷벽 윗모서리 위
+            want = (cx + cw / 2, cd, h + 6.0)
+        parts.append(_dim_towards(view, a3, b3, f"{_n(cw)} cm", want, 9.0))
+    if given_d:
+        if not touch_r:
+            a3, b3 = (x1, 0.0, h), (x1, cd, h)
+            want = (x1 + 5.0, cd / 2, h - 5.0)  # 오른쪽 아래(윗면 위) — cw 와 갈라놓는다
+        elif not touch_l:
+            a3, b3 = (cx, 0.0, h), (cx, cd, h)
+            want = (cx - 5.0, cd / 2, h + 5.0)  # 왼쪽 위(빈 하늘)
+        else:
+            a3, b3 = (x1, 0.0, zf), (x1, cd, zf)
+            want = (x1 + 5.0, cd / 2, zf - 3.0)
+        parts.append(_dim_towards(view, a3, b3, f"{_n(cd)} cm", want, 9.0))
+    if given_h:
+        if not touch_r:
+            a3, b3 = (x1, 0.0, zf), (x1, 0.0, h)
+        elif not touch_l:
+            a3, b3 = (cx, 0.0, zf), (cx, 0.0, h)
+        else:
+            # 좌우가 다 바깥에 닿는 컷(폭 전체) — 뒷벽의 오른끝 세로 모서리에 적는다.
+            a3, b3 = (w, cd, zf), (w, cd, h)
+        parts.append(_dim_towards(view, a3, b3, f"{_n(ch)} cm", void, 9.0))
+    # 컷 위치(x)는 양쪽에 기둥이 남을 때만 치수가 된다 — 왼기둥 폭으로 적는다.
+    if x_given and not touch_l and not touch_r:
+        parts.append(
+            _dim_towards(view, (0.0, 0.0, h), (cx, 0.0, h), f"{_n(cx)} cm", (cx / 2, 0.0, h + 6.0))
+        )
+    return _svg(svg_w, svg_h, "".join(parts))
+
+
+# ── revolvePlan — 회전 전 반평면 도형 + 축 (RPM 유형14·유형20) ───────────────
+#
+# ⚠️ 축은 **실선**이다. 착수 브리프에 「점선」이라 적혀 있었지만 원본 지면
+#    (p111 유형14 상자·0738·0739·p133 0890~0892)이 전부 가는 실선이고,
+#    원본이 정본이다. 축 라벨 ℓ 과 회전 화살표는 축 맨 위.
+
+_REV_REQ: dict[str, frozenset[str]] = {
+    "rect": frozenset({"shape", "w", "h"}),
+    "rightTri": frozenset({"shape", "w", "h"}),
+    "rightTrap": frozenset({"shape", "w", "w2", "h"}),
+    "semicircle": frozenset({"shape", "r"}),
+    "quarter": frozenset({"shape", "r"}),
+}
+_REV_OPT: dict[str, frozenset[str]] = {
+    "rect": frozenset({"wLabel", "hLabel"}),
+    "rightTri": frozenset({"flip", "wLabel", "hLabel", "slantLabel"}),
+    "rightTrap": frozenset({"wLabel", "w2Label", "hLabel"}),
+    "semicircle": frozenset({"rLabel"}),
+    "quarter": frozenset({"flip", "rLabel"}),
+}
+# 회전 화살표 타원 반지름(px) — 원본처럼 축을 감싸는 납작한 고리.
+REV_ARROW_RX = 8.0
+REV_ARROW_RY = 3.2
+
+
+def _rev_arc(cx_cm: float, cy_cm: float, r_cm: float, a0: float, a1: float, n: int = 36):
+    """cm 좌표의 원호 점열 (a0→a1, 도 단위 반시계)."""
+    return [
+        (
+            cx_cm + r_cm * math.cos(math.radians(a0 + (a1 - a0) * i / n)),
+            cy_cm + r_cm * math.sin(math.radians(a0 + (a1 - a0) * i / n)),
+        )
+        for i in range(n + 1)
+    ]
+
+
+def _revolve_plan(spec: Mapping[str, Any]) -> str:
+    pieces = spec["pieces"]
+    if not isinstance(pieces, list) or not 1 <= len(pieces) <= 3:
+        raise ValueError("pieces 는 1~3개여야 합니다")
+    gap = _num(spec.get("gap", 0), "gap", 0, 10)
+    parsed = []
+    for i, piece in enumerate(pieces):
+        if not isinstance(piece, Mapping):
+            raise ValueError(f"pieces[{i}] 는 객체여야 합니다")
+        shape = piece.get("shape")
+        if shape not in _REV_REQ:
+            raise ValueError(f"모르는 회전 평면도형입니다: {shape}")
+        _shape_keys(piece, f"pieces[{i}]", _REV_REQ[shape], _REV_OPT[shape])
+        parsed.append(piece)
+        if shape == "semicircle" and len(pieces) > 1:
+            raise ValueError("semicircle 은 혼자만 쓸 수 있습니다 (위아래가 축에 닿는다)")
+
+    # 조각별 (아랫폭, 윗폭, 높이, 바깥 윤곽 점열 생성기). 좌표는 cm — x 는 축에서
+    # 바깥쪽(+), y 는 아래에서 위(+). 화면에 옮길 때 x 를 왼쪽으로 뒤집는다.
+    outline: list[tuple[float, float]] = []  # 바깥 윤곽 (아래 → 위)
+    corners: list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]] = []
+    labels: list[tuple[tuple[float, float], tuple[float, float], str, str]] = []
+    y = 0.0
+    prev_top = None
+    for i, piece in enumerate(parsed):
+        shape = piece["shape"]
+        flip = bool(piece.get("flip", False))
+        if shape == "rect":
+            pw = _num(piece["w"], "w", 0.5, 30)
+            ph = _num(piece["h"], "h", 0.5, 30)
+            bw, tw = pw, pw
+            seg = [(pw, y), (pw, y + ph)]
+        elif shape == "rightTri":
+            pw = _num(piece["w"], "w", 0.5, 30)
+            ph = _num(piece["h"], "h", 0.5, 30)
+            bw, tw = (0.0, pw) if flip else (pw, 0.0)
+            seg = [(0.0, y), (pw, y + ph)] if flip else [(pw, y), (0.0, y + ph)]
+        elif shape == "rightTrap":
+            pw = _num(piece["w"], "w", 0.5, 30)
+            tw2 = _num(piece["w2"], "w2", 0.3, 30)
+            ph = _num(piece["h"], "h", 0.5, 30)
+            if abs(pw - tw2) < 1e-9:
+                raise ValueError("rightTrap 은 w 와 w2 가 달라야 합니다 (같으면 rect)")
+            bw, tw = pw, tw2
+            seg = [(pw, y), (tw2, y + ph)]
+        elif shape == "semicircle":
+            pr = _num(piece["r"], "r", 0.5, 30)
+            bw, tw, ph = 0.0, 0.0, 2 * pr
+            seg = _rev_arc(0.0, y + pr, pr, -90.0, 90.0)
+        else:  # quarter
+            pr = _num(piece["r"], "r", 0.5, 30)
+            ph = pr
+            if flip:
+                bw, tw = 0.0, pr
+                seg = _rev_arc(0.0, y + pr, pr, -90.0, 0.0)
+            else:
+                bw, tw = pr, 0.0
+                seg = _rev_arc(0.0, y, pr, 0.0, 90.0)
+        if tw <= 1e-9 and i < len(parsed) - 1:
+            raise ValueError("윗변이 축에 닿는 조각 위에는 더 쌓을 수 없습니다")
+        if bw <= 1e-9 and i > 0:
+            raise ValueError("아랫변이 축에 닿는 조각은 맨 아래에만 놓을 수 있습니다")
+        if prev_top is not None and abs(prev_top - bw) > 1e-9:
+            outline.append((bw, y))  # 층 사이 가로 턱
+        outline += seg
+        prev_top = tw
+        piece_geom = (shape, flip, y, ph, bw, tw)
+        # 라벨 좌표는 나중에 화면 변환 뒤 measured() 로 — cm 끝점만 기억해 둔다.
+        for key, a, b in _rev_label_edges(piece, piece_geom):
+            labels.append((a, b, str(piece[key]), key))
+        y += ph
+    total_h = y
+    width = max((x for x, _ in outline), default=1.0)
+
+    s = min(110.0 / max(total_h, 1e-9), 84.0 / max(width + gap, 1e-9), 30.0)
+    pad_l = 20.0
+    ax = pad_l + s * (width + gap)
+    top_y = 46.0
+
+    def scr(pt) -> tuple[float, float]:
+        return (ax - s * (gap + pt[0]), top_y + s * (total_h - pt[1]))
+
+    poly = [scr((0.0, 0.0))]
+    poly += [scr(pt) for pt in outline]
+    if prev_top is not None and prev_top > 1e-9:
+        poly.append(scr((0.0, total_h)))
+    # 연속 중복 꼭짓점 제거 — 턱 점과 다음 조각의 시작점이 같은 자리다.
+    dedup: list[tuple[float, float]] = []
+    for pt in poly:
+        if not dedup or math.hypot(pt[0] - dedup[-1][0], pt[1] - dedup[-1][1]) > 1e-6:
+            dedup.append(pt)
+    if len(dedup) > 1 and math.hypot(dedup[0][0] - dedup[-1][0], dedup[0][1] - dedup[-1][1]) <= 1e-6:
+        dedup.pop()
+    poly = dedup
+    parts = [_poly(poly, FAINT, 1.4)]
+
+    # 직각 표시 — 곧은 변끼리 90° 로 만나는 모퉁이에만(원본: 직사각형 넷·삼각형 하나).
+    pts_logical = poly
+    m = len(pts_logical)
+    mark = 7.0
+    for i in range(m):
+        p0, p1, p2 = pts_logical[i - 1], pts_logical[i], pts_logical[(i + 1) % m]
+        v1 = (p0[0] - p1[0], p0[1] - p1[1])
+        v2 = (p2[0] - p1[0], p2[1] - p1[1])
+        l1, l2 = math.hypot(*v1), math.hypot(*v2)
+        if l1 < mark * 1.5 or l2 < mark * 1.5:
+            continue
+        u1 = (v1[0] / l1, v1[1] / l1)
+        u2 = (v2[0] / l2, v2[1] / l2)
+        if abs(u1[0] * u2[0] + u1[1] * u2[1]) > 0.02:
+            continue
+        q1 = (p1[0] + u1[0] * mark, p1[1] + u1[1] * mark)
+        q3 = (p1[0] + u2[0] * mark, p1[1] + u2[1] * mark)
+        q2 = (q1[0] + u2[0] * mark, q1[1] + u2[1] * mark)
+        parts.append(_polyline([q1, q2, q3], sw=0.9))
+
+    # 회전축 — 원본대로 **가는 실선**, 도형 위·아래로 넉넉히 뻗는다.
+    axis_top = 22.0
+    axis_bot = top_y + s * total_h + 14.0
+    parts.append(_line((ax, axis_top), (ax, axis_bot), sw=1.0))
+    parts.append(_text(ax, 8.0, "ℓ", size=13))
+    # 회전 화살표 — 축을 감싸는 납작한 타원 호 + 오른끝 화살촉.
+    acy = 20.0
+    arc = [
+        (ax + REV_ARROW_RX * math.cos(math.radians(t)), acy - REV_ARROW_RY * math.sin(math.radians(t)))
+        for t in range(200, -21, -10)
+    ]
+    parts.append(_polyline(arc, sw=1.0))
+    hx, hy = arc[-1]
+    parts.append(
+        f'<polygon points="{_n(hx - 3.4)},{_n(hy - 2.6)} {_n(hx + 1.8)},{_n(hy - 0.4)} '
+        f'{_n(hx - 2.2)},{_n(hy + 2.4)}" fill="{INK}"/>'
+    )
+
+    # 치수 라벨 — 전부 measured() 한 벌(§4-16). 반지름은 중심 점 + off=0.
+    for a_cm, b_cm, text, key in labels:
+        a, b = scr(a_cm), scr(b_cm)
+        if key == "rLabel":
+            parts.append(f'<circle cx="{_n(a[0])}" cy="{_n(a[1])}" r="2" fill="{INK}"/>')
+            parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=0, fs=12))
+            continue
+        cxs = sum(p[0] for p in poly) / len(poly)
+        cys = sum(p[1] for p in poly) / len(poly)
+        off = _outward_off(a, b, (cxs, cys), DIM_OFF)
+        parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=off, fs=12))
+    # 축 위(x=0)에 앉는 라벨은 바깥 = 축 오른쪽이다. `_svg` 는 글자 닻점만 세므로
+    # (09 §4-17) 그 글자 폭만큼 오른쪽 여백을 여기서 잡아 준다 — 0891 재현에서
+    # 「7 cm」의 m 이 잘려 나갔다.
+    pad_r = 34.0 if any(a[0] == 0.0 and b[0] == 0.0 for a, b, _t, _k in labels) else 18.0
+    return _svg(ax + pad_r, axis_bot + 6.0, "".join(parts))
+
+
+def _rev_label_edges(piece: Mapping[str, Any], geom) -> list:
+    """조각의 라벨 키 → 잰 두 끝점(cm). 없는 라벨은 안 낸다(받은 치수만, §4-20)."""
+    shape, flip, y, ph, bw, tw = geom
+    out = []
+    if shape == "rect":
+        if "wLabel" in piece:
+            out.append(("wLabel", (0.0, y), (bw, y)))
+        if "hLabel" in piece:
+            out.append(("hLabel", (bw, y), (bw, y + ph)))
+    elif shape == "rightTri":
+        base_y = y + ph if flip else y
+        w_cm = bw if not flip else tw
+        if "wLabel" in piece:
+            out.append(("wLabel", (0.0, base_y), (w_cm, base_y)))
+        if "hLabel" in piece:
+            out.append(("hLabel", (0.0, y), (0.0, y + ph)))
+        if "slantLabel" in piece:
+            if flip:
+                out.append(("slantLabel", (0.0, y), (w_cm, y + ph)))
+            else:
+                out.append(("slantLabel", (w_cm, y), (0.0, y + ph)))
+    elif shape == "rightTrap":
+        if "wLabel" in piece:
+            out.append(("wLabel", (0.0, y), (bw, y)))
+        if "w2Label" in piece:
+            out.append(("w2Label", (0.0, y + ph), (tw, y + ph)))
+        if "hLabel" in piece:
+            out.append(("hLabel", (0.0, y), (0.0, y + ph)))
+    elif shape == "semicircle":
+        if "rLabel" in piece:
+            out.append(("rLabel", (0.0, y + ph / 2), (ph / 2, y + ph / 2)))
+    else:  # quarter
+        if "rLabel" in piece:
+            base_y = y + ph if flip else y
+            out.append(("rLabel", (0.0, base_y), (ph, base_y)))
+    return out
+
+
 ADV_FIELDS: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"cols", "rows", "filled"}),
     "groupDots": frozenset({"groups", "each"}),
@@ -1768,6 +2580,10 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     "netCuboid": frozenset({"w", "d", "h"}),
     "netCylinder": frozenset({"r", "h"}),
     "areaPoly": frozenset({"shape", "base", "height"}),
+    # 입체 kind 셋 (2026-08-23, RPM 1-2 유형07·08·14) — 위 절 참조.
+    "hollowSolid": frozenset({"outer", "inner"}),
+    "cutCuboid": frozenset({"w", "d", "h", "cut"}),
+    "revolvePlan": frozenset({"pieces"}),
 }
 ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"fill"}),
@@ -1784,6 +2600,7 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "areaPoly": frozenset({"top", "d2"}),
     "cylinder": frozenset(),
     "prism": frozenset({"net"}),
+    "revolvePlan": frozenset({"gap"}),
 }
 ADV_RENDER = {
     "fracBars": _frac_bars,
@@ -1807,4 +2624,7 @@ ADV_RENDER = {
     "netCuboid": _net_cuboid,
     "netCylinder": _net_cylinder,
     "areaPoly": _area_poly,
+    "hollowSolid": _hollow_solid,
+    "cutCuboid": _cut_cuboid,
+    "revolvePlan": _revolve_plan,
 }
