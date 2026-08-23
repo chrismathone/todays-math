@@ -13,6 +13,7 @@ import { createRng } from "../elementary/rng";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_REAL } from "./m1Real";
+import { M1_STAT_TYPES } from "./m1Stat";
 import { M2_TYPES } from "./m2";
 import { M3_TYPES } from "./m3";
 import type { MidProblem, TypeEntry } from "./types";
@@ -23,6 +24,7 @@ const ALL: TypeEntry[] = [
   ...M1_LINEAR_APPLY,
   ...M1EXTRA_TYPES,
   ...M1_REAL,
+  ...M1_STAT_TYPES,
   ...M2_TYPES,
   ...M3_TYPES,
 ];
