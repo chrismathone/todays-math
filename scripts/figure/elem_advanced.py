@@ -2771,17 +2771,32 @@ def _linear_graph(spec: Mapping[str, Any]) -> str:
     for (xa, ya), (xb, yb) in segs:
         parts.append(_line((sx(xa), sy(ya)), (sx(xb), sy(yb)), sw=1.9))
 
-    # ⑥ 식 라벨 — 직선 위끝 부근(0882). 축과 겹치면 기울기 쪽으로 비킨다.
+    # ⑥ 식 라벨 — 직선 위끝 부근(0882). 축과 겹치면 기울기의 빈 쪽으로 비키고,
+    #    앞 라벨과 겹치면 **그 직선의 아래끝**으로 옮긴다 — 두 직선이 위 경계를
+    #    가까이서 나가면 위끝 라벨 둘이 포개져 못 읽는다(실사 미리보기에서 확인).
     has_label = False
+    placed: list[tuple[float, float]] = []
+
+    def _label_spot(m: float, end: tuple[float, float], at_top: bool) -> tuple[float, float]:
+        ex, ey = end
+        if abs(ex - ax) < 28.0:
+            free_right = (m > 0) == at_top  # 위끝은 기울기 쪽이, 아래끝은 반대쪽이 빈다
+            ex += 26.0 if free_right else -26.0
+        ex = min(max(ex, 30.0), x_end - 4.0)
+        return ex, (ey - 8.0 if at_top else ey + 12.0)
+
     for (m, b, label), ((xa, ya), (xb, yb)) in zip(parsed, segs):
         if not label:
             continue
         has_label = True
-        ex, ey = (sx(xa), sy(ya)) if ya > yb else (sx(xb), sy(yb))
-        if abs(ex - ax) < 16.0:
-            ex += 20.0 if m > 0 else -20.0
-        ex = min(max(ex, 30.0), x_end - 4.0)
-        parts.append(_lg_text(ex, ey - 8.0, label, italic=True))
+        top, bot = ((sx(xa), sy(ya)), (sx(xb), sy(yb)))
+        if top[1] > bot[1]:
+            top, bot = bot, top
+        cand = _label_spot(m, top, True)
+        if any(abs(cand[0] - px) < 46.0 and abs(cand[1] - py) < 14.0 for px, py in placed):
+            cand = _label_spot(m, bot, False)
+        placed.append(cand)
+        parts.append(_lg_text(cand[0], cand[1], label, italic=True))
 
     w = x_end + LG_ARROW + (26.0 if has_label else 10.0)
     h = sy(ylo) + LG_AXIS_OVER + 8.0
