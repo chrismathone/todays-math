@@ -31,6 +31,13 @@ _SAFE_PAINT_NAMES = {
     "orange", "purple", "brown", "pink", "navy", "teal", "maroon",
     "silver", "lime", "aqua", "fuchsia",
 }
+# 영역(region) 채색은 **연한 색만** — 본문 잉크(선·라벨·치수)가 채색 위에서도
+# 또렷해야 한다.  RPM 실측 지면색은 0.85~0.90 (#f2d5c8 살구 0.855 · #f5e6b8 노랑
+# 0.90 · #d5e8f0 하늘 0.88).  0.78 은 그 무리 아래·중간톤 위의 빈 틈이다.
+REGION_MIN_LUMINANCE = 0.78
+# 호 하나를 충돌 검사용 폴리라인으로 다듬는 표본 수.  33이면 360° 호에서도
+# 이웃 표본 간 11.25° — 반지름 100 기준 시위 오차 0.5px 미만이다.
+_ARC_SAMPLE_COUNT = 33
 
 
 class GeometryValidationError(ValueError):
@@ -127,11 +134,65 @@ class Canvas:
 
 @dataclass(frozen=True, slots=True)
 class Circle:
-    """A named circle whose center is a named point."""
+    """A named circle whose center is a named point.
+
+    ``draw=False`` keeps the circle as pure construction geometry: points can
+    still be placed on it and arcs/regions can still reference it, but no full
+    circumference is inked, it contributes nothing to bounds, and labels or
+    dimension curves may cross it freely.  Sector and shaded-region figures
+    need this — the printed page shows only arc pieces, never the full circle.
+    """
 
     name: str
     center: str
     radius: float
+    draw: bool = True
+
+
+@dataclass(frozen=True, slots=True)
+class ArcStroke:
+    """A stroked circular arc from one named point to another along a circle.
+
+    ``direction`` is the mathematical sense (``ccw`` = counter-clockwise as
+    seen on screen, matching :meth:`FigureScene.point_on_circle` angles).
+    """
+
+    name: str
+    circle: str
+    p1: str
+    p2: str
+    direction: str = "ccw"
+    dash: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class RegionPiece:
+    """One boundary piece of a filled region: a segment or a circular arc.
+
+    ``start``/``end`` are named points.  Arc pieces additionally reference a
+    named circle and a traversal ``direction`` (same convention as
+    :class:`ArcStroke`).
+    """
+
+    kind: str                    # "seg" | "arc"
+    start: str
+    end: str
+    circle: str | None = None
+    direction: str = "ccw"
+
+
+@dataclass(frozen=True, slots=True)
+class Region:
+    """A closed filled region bounded by an ordered chain of pieces.
+
+    The chain must close piece-to-piece **by point name** — piece *i* must end
+    exactly where piece *i+1* starts and the last piece must end at the first
+    piece's start.  A broken chain is an error, never silently filled.
+    """
+
+    name: str
+    boundary: tuple[RegionPiece, ...]
+    fill: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -262,6 +323,50 @@ def _safe_paint(value: Any, what: str) -> str:
     return color
 
 
+def _region_fill_color(value: Any, what: str) -> str:
+    """Validate a region fill: opaque hex (or ``white``) and **light**.
+
+    Fills sit underneath every stroke and label, so a dark fill would bury
+    the black exam ink.  Named dark colors and alpha channels are rejected
+    outright — luminance under alpha compositing depends on what is behind,
+    which this validator cannot know.
+    """
+
+    color = _safe_paint(value, what)
+    lowered = color.lower()
+    if lowered == "white":
+        return color
+    match = re.fullmatch(r"#([0-9a-f]{3}|[0-9a-f]{6})", lowered)
+    if not match:
+        raise GeometryValidationError(
+            f"{what} must be 'white' or an opaque hex color (#rgb/#rrggbb)")
+    digits = match.group(1)
+    if len(digits) == 3:
+        digits = "".join(ch * 2 for ch in digits)
+    red, green, blue = (int(digits[i:i + 2], 16) for i in (0, 2, 4))
+    luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255.0
+    if luminance < REGION_MIN_LUMINANCE:
+        raise GeometryValidationError(
+            f"{what} must be a light color: relative luminance "
+            f"{luminance:.3f} < {REGION_MIN_LUMINANCE}")
+    return color
+
+
+def _validate_dash(value: Any, what: str) -> None:
+    """Reject dash arrays without at least one positive finite length."""
+
+    try:
+        dash_values = [float(part) for part in str(value).replace(",", " ").split()]
+    except ValueError as exc:
+        raise GeometryValidationError(f"{what} must be a numeric list") from exc
+    if (not dash_values or any(not math.isfinite(item) or item < 0
+                               for item in dash_values)
+            or not any(item > 0 for item in dash_values)):
+        raise GeometryValidationError(
+            f"{what} must contain non-negative lengths and at least one "
+            "positive length")
+
+
 def _fmt(value: float) -> str:
     if abs(value) < 0.0000005:
         value = 0.0
@@ -382,6 +487,49 @@ def _quadratic_samples(name: str, start: Point, control: Point, end: Point,
     return tuple(samples)
 
 
+def _arc_point_samples(name: str, center: Point, radius: float, start_deg: float,
+                       signed_sweep_deg: float,
+                       count: int = _ARC_SAMPLE_COUNT) -> tuple[Point, ...]:
+    """Sample an arc as a deterministic polyline for collision and QA checks.
+
+    Angles are mathematical degrees with the engine's SVG y-down correction
+    (``y = cy - r*sin``), identical to ``core.figure_svg.circle_pt``.
+    """
+
+    samples: list[Point] = []
+    for index in range(count):
+        t = index / (count - 1)
+        theta = math.radians(start_deg + signed_sweep_deg * t)
+        samples.append(Point(f"{name}@{index}",
+                             center.x + radius * math.cos(theta),
+                             center.y - radius * math.sin(theta)))
+    return tuple(samples)
+
+
+def _arc_bbox(center: Point, radius: float, start_deg: float,
+              signed_sweep_deg: float) -> Box:
+    """Exact bounding box of an arc: endpoints plus covered axis extrema."""
+
+    def covered(angle_deg: float) -> bool:
+        if signed_sweep_deg >= 0:
+            return (angle_deg - start_deg) % 360.0 <= signed_sweep_deg
+        return (start_deg - angle_deg) % 360.0 <= -signed_sweep_deg
+
+    xs: list[float] = []
+    ys: list[float] = []
+    for angle in (start_deg, start_deg + signed_sweep_deg):
+        theta = math.radians(angle)
+        xs.append(center.x + radius * math.cos(theta))
+        ys.append(center.y - radius * math.sin(theta))
+    # Math angle 0/180 are x extrema; 90/270 are **screen** y extrema (y-down).
+    for quadrant in (0.0, 90.0, 180.0, 270.0):
+        if covered(quadrant):
+            theta = math.radians(quadrant)
+            xs.append(center.x + radius * math.cos(theta))
+            ys.append(center.y - radius * math.sin(theta))
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
 def _lerp_point(name: str, first: Point, second: Point, t: float) -> Point:
     return Point(name, first.x + (second.x - first.x) * t,
                  first.y + (second.y - first.y) * t)
@@ -481,6 +629,8 @@ class FigureScene:
     points: dict[str, Point] = field(default_factory=dict, init=False)
     circles: dict[str, Circle] = field(default_factory=dict, init=False)
     segments: dict[str, Segment] = field(default_factory=dict, init=False)
+    arcs: dict[str, ArcStroke] = field(default_factory=dict, init=False)
+    regions: dict[str, Region] = field(default_factory=dict, init=False)
     angles: dict[str, AngleMark] = field(default_factory=dict, init=False)
     dimensions: dict[str, DimensionMark] = field(default_factory=dict, init=False)
     labels: dict[str, PointLabel] = field(default_factory=dict, init=False)
@@ -515,6 +665,8 @@ class FigureScene:
         scene.points.update(self.points)
         scene.circles.update(self.circles)
         scene.segments.update(self.segments)
+        scene.arcs.update(self.arcs)
+        scene.regions.update(self.regions)
         scene.angles.update(self.angles)
         scene.dimensions.update(self.dimensions)
         scene.labels.update(self.labels)
@@ -525,7 +677,8 @@ class FigureScene:
 
         for existing_kind, collection in (
                 ("point", self.points), ("circle", self.circles),
-                ("segment", self.segments), ("angle", self.angles),
+                ("segment", self.segments), ("arc", self.arcs),
+                ("region", self.regions), ("angle", self.angles),
                 ("dimension", self.dimensions)):
             if name in collection:
                 raise GeometryValidationError(
@@ -540,13 +693,17 @@ class FigureScene:
         return self
 
     def add_circle(self, name: str, center: str | Point | Sequence[Number],
-                   radius: Number) -> "FigureScene":
+                   radius: Number, *, draw: bool = True) -> "FigureScene":
         """Add a circle.
 
         ``center`` normally names a point.  A :class:`Point` or ``(x, y)`` is
         accepted for compatibility with v1 tuple-based helper code; an internal
-        named center point is created when necessary.
+        named center point is created when necessary.  ``draw=False`` keeps the
+        circle as construction geometry only (see :class:`Circle`).
         """
+
+        if not isinstance(draw, bool):
+            raise GeometryValidationError(f"circle {name!r} draw must be boolean")
 
         name = _name(name, "circle name")
         self._ensure_global_new(name, "circle")
@@ -568,7 +725,7 @@ class FigureScene:
             self.add_point(center_name, center[0], center[1])
         else:
             raise GeometryValidationError("circle center must be a point ref or (x, y)")
-        self.circles[name] = Circle(name, center_name, float(radius))
+        self.circles[name] = Circle(name, center_name, float(radius), draw)
         return self
 
     def point_on_circle(self, name: str, circle: str, angle: Number) -> "FigureScene":
@@ -607,6 +764,89 @@ class FigureScene:
         self._ensure_global_new(segment_name, "segment")
         self.segments[segment_name] = Segment(segment_name, endpoint1, endpoint2, dashed)
         return self
+
+    def add_arc(self, name: str, circle: str, p1: str, p2: str,
+                *, direction: str = "ccw", dash: str | None = None) -> "FigureScene":
+        """Add a stroked arc along ``circle`` from point ``p1`` to ``p2``.
+
+        ``direction`` is ``ccw`` (mathematical, counter-clockwise on screen)
+        or ``cw``.  Both endpoints must lie exactly on the circle — use
+        ``on_circle`` points; hand-rounded coordinates are rejected.
+        """
+
+        arc_name = _name(name, "arc name")
+        self._ensure_global_new(arc_name, "arc")
+        self.arcs[arc_name] = ArcStroke(
+            arc_name, _name(circle, "arc circle ref"),
+            _name(p1, "arc endpoint"), _name(p2, "arc endpoint"),
+            str(direction).strip().lower(),
+            None if dash is None else str(dash))
+        return self
+
+    def add_region(self, name: str, boundary: Sequence[RegionPiece],
+                   fill: str) -> "FigureScene":
+        """Add a filled region bounded by a closed chain of pieces.
+
+        ``boundary`` is an ordered sequence of :class:`RegionPiece`.  The chain
+        must connect end-to-start by point name and close back onto the first
+        piece; ``fill`` must be a light opaque color (see
+        :data:`REGION_MIN_LUMINANCE`).  All structural checks run again in
+        :meth:`validate` so cached values are never trusted.
+        """
+
+        region_name = _name(name, "region name")
+        self._ensure_global_new(region_name, "region")
+        pieces = tuple(boundary)
+        if not pieces or any(not isinstance(piece, RegionPiece) for piece in pieces):
+            raise GeometryValidationError(
+                f"region {region_name!r} boundary must be RegionPiece items")
+        color = _region_fill_color(fill, f"region {region_name!r} fill")
+        self.regions[region_name] = Region(region_name, pieces, color)
+        return self
+
+    def _arc_geometry(self, circle_name: str, start_name: str, end_name: str,
+                      direction: str, what: str) -> tuple[Point, float, float, float]:
+        """Resolve one arc to ``(center, radius, start_deg, signed_sweep_deg)``.
+
+        Raises when an endpoint is off the circle or the sweep is degenerate.
+        Positive sweep is counter-clockwise on screen (math angles, y-down
+        corrected) and maps to SVG sweep-flag 0.
+        """
+
+        circle_obj = self.circles[circle_name]
+        center = self.points[circle_obj.center]
+        start, end = self.points[start_name], self.points[end_name]
+        tolerance = max(1.0e-12, abs(circle_obj.radius) * 1.0e-7)
+        for role, point in (("start", start), ("end", end)):
+            residual = abs(math.hypot(point.x - center.x, point.y - center.y)
+                           - circle_obj.radius)
+            if residual > tolerance:
+                raise GeometryValidationError(
+                    f"{what} {role} point {point.name!r} is not on circle "
+                    f"{circle_name!r} (residual {residual:.6g}); "
+                    "construct it with on_circle")
+        start_deg = math.degrees(math.atan2(-(start.y - center.y),
+                                            start.x - center.x))
+        end_deg = math.degrees(math.atan2(-(end.y - center.y),
+                                          end.x - center.x))
+        if direction == "ccw":
+            sweep = (end_deg - start_deg) % 360.0
+        elif direction == "cw":
+            sweep = (start_deg - end_deg) % 360.0
+        else:
+            raise GeometryValidationError(
+                f"{what} direction must be 'ccw' or 'cw', got {direction!r}")
+        if sweep <= 1.0e-6 or sweep >= 360.0 - 1.0e-6:
+            raise GeometryValidationError(
+                f"{what} sweep is degenerate ({sweep:.6g}°): endpoints must be "
+                "two distinct positions on the circle")
+        return center, circle_obj.radius, start_deg, (
+            sweep if direction == "ccw" else -sweep)
+
+    def _arc_stroke_samples(self, arc: ArcStroke) -> tuple[Point, ...]:
+        center, radius, start_deg, signed = self._arc_geometry(
+            arc.circle, arc.p1, arc.p2, arc.direction, f"arc {arc.name!r}")
+        return _arc_point_samples(arc.name, center, radius, start_deg, signed)
 
     def intersection(self, name: str, segment1: str, segment2: str) -> "FigureScene":
         """Construct the intersection of two named finite segments."""
@@ -717,7 +957,8 @@ class FigureScene:
 
         owner_by_name: dict[str, str] = {}
         for kind, collection in (("point", self.points), ("circle", self.circles),
-                                 ("segment", self.segments), ("angle", self.angles),
+                                 ("segment", self.segments), ("arc", self.arcs),
+                                 ("region", self.regions), ("angle", self.angles),
                                  ("dimension", self.dimensions)):
             for geometry_name in collection:
                 if geometry_name in owner_by_name:
@@ -816,6 +1057,64 @@ class FigureScene:
                     raise GeometryValidationError(
                         f"segment {segment.name!r} dash must contain non-negative lengths "
                         "and at least one positive length")
+
+        for circle_obj in self.circles.values():
+            if not isinstance(circle_obj.draw, bool):
+                raise GeometryValidationError(
+                    f"circle {circle_obj.name!r} draw must be boolean")
+
+        for arc in self.arcs.values():
+            if arc.circle not in self.circles:
+                raise GeometryValidationError(
+                    f"arc {arc.name!r} has unknown circle ref {arc.circle!r}")
+            for ref in (arc.p1, arc.p2):
+                if ref not in self.points:
+                    raise GeometryValidationError(
+                        f"arc {arc.name!r} has unknown point ref {ref!r}")
+            if arc.p1 == arc.p2:
+                raise GeometryValidationError(
+                    f"arc {arc.name!r} endpoints must be two different points")
+            if arc.dash is not None:
+                _validate_dash(arc.dash, f"arc {arc.name!r} dash")
+            # Raises on off-circle endpoints, bad direction, degenerate sweep.
+            self._arc_geometry(arc.circle, arc.p1, arc.p2, arc.direction,
+                               f"arc {arc.name!r}")
+
+        for region in self.regions.values():
+            _region_fill_color(region.fill, f"region {region.name!r} fill")
+            if len(region.boundary) < 2:
+                raise GeometryValidationError(
+                    f"region {region.name!r} boundary needs at least two pieces")
+            for index, piece in enumerate(region.boundary):
+                what = f"region {region.name!r} boundary[{index}]"
+                if piece.kind not in {"seg", "arc"}:
+                    raise GeometryValidationError(
+                        f"{what} has unknown piece kind {piece.kind!r}")
+                for ref in (piece.start, piece.end):
+                    if ref not in self.points:
+                        raise GeometryValidationError(
+                            f"{what} has unknown point ref {ref!r}")
+                if piece.start == piece.end:
+                    raise GeometryValidationError(
+                        f"{what} endpoints must be two different points")
+                if piece.kind == "seg":
+                    a, b = self.points[piece.start], self.points[piece.end]
+                    if math.hypot(a.x - b.x, a.y - b.y) <= _EPS:
+                        raise GeometryValidationError(f"{what} has zero length")
+                else:
+                    if piece.circle is None or piece.circle not in self.circles:
+                        raise GeometryValidationError(
+                            f"{what} has unknown circle ref {piece.circle!r}")
+                    self._arc_geometry(piece.circle, piece.start, piece.end,
+                                       piece.direction, what)
+            # 닫힘 검사 — 조각 끝점이 이어지지 않으면 던진다(조용히 채우기 금지).
+            for index, piece in enumerate(region.boundary):
+                following = region.boundary[(index + 1) % len(region.boundary)]
+                if piece.end != following.start:
+                    raise GeometryValidationError(
+                        f"region {region.name!r} boundary does not connect: "
+                        f"piece {index} ends at {piece.end!r} but the next "
+                        f"piece starts at {following.start!r}")
 
         for point in self.points.values():
             if point.kind == "on_circle":
@@ -1036,10 +1335,18 @@ class FigureScene:
             if _segment_intersects_box(self.points[segment.p1], self.points[segment.p2], box):
                 hard += 1
                 cost += 20.0
+        for arc_name in sorted(self.arcs):
+            if _polyline_intersects_box(
+                    self._arc_stroke_samples(self.arcs[arc_name]), box):
+                hard += 1
+                cost += 20.0
         cx, cy = (box[0] + box[2]) / 2.0, (box[1] + box[3]) / 2.0
         half_diag = math.hypot(box[2] - box[0], box[3] - box[1]) / 2.0
         for circle_name in sorted(self.circles):
             circle_obj = self.circles[circle_name]
+            if not circle_obj.draw:
+                # Construction circles leave no ink — nothing to collide with.
+                continue
             center = self.points[circle_obj.center]
             if abs(math.hypot(cx - center.x, cy - center.y) - circle_obj.radius) < half_diag + 0.75:
                 hard += 1
@@ -1162,11 +1469,24 @@ class FigureScene:
                 near_geometry = 0
                 endpoint_pair = {dimension.p1, dimension.p2}
                 for segment in self.segments.values():
-                    if {segment.p1, segment.p2} == endpoint_pair:
+                    a, b = self.points[segment.p1], self.points[segment.p2]
+                    chord_scale = math.hypot(b.x - a.x, b.y - a.y)
+                    chord_tolerance = max(1.0e-9, chord_scale * 1.0e-7)
+                    own_chord = {segment.p1, segment.p2} == endpoint_pair or (
+                        # 긴 변의 **일부**를 재는 치수(반지름 4 cm 가 지름 선분
+                        # 위에 있는 부채꼴 고리 등): 두 끝점이 같은 선분 위에
+                        # 있으면 곡선은 그 선분과 끝점에서만 닿는다 — 교차가
+                        # 아니라 자기 현이다.  이 배치는 종전에는 모든 오프셋
+                        # 후보가 «교차»로 죽어 아예 그릴 수 없었다.
+                        _distance_point_line(first, a, b) <= chord_tolerance
+                        and _distance_point_line(second, a, b) <= chord_tolerance
+                        and _point_within_segment(first, a, b, chord_tolerance)
+                        and _point_within_segment(second, a, b, chord_tolerance)
+                    )
+                    if own_chord:
                         # A one-sided quadratic meets its measured chord only
                         # at the deliberately inset start/end points.  The
                         # value label itself still needs genuine clearance.
-                        a, b = self.points[segment.p1], self.points[segment.p2]
                         label_clearance = _expand_box(
                             label_box,
                             self.style.segment_width / 2.0 + 0.5,
@@ -1174,7 +1494,6 @@ class FigureScene:
                         if _segment_intersects_box(a, b, label_clearance):
                             geometry_crossings += 1
                         continue
-                    a, b = self.points[segment.p1], self.points[segment.p2]
                     if (_polyline_intersects_segment(samples, a, b)
                             or _segment_intersects_box(a, b, label_box)):
                         geometry_crossings += 1
@@ -1185,8 +1504,26 @@ class FigureScene:
                         if clearance < 3.0:
                             near_geometry += 1
 
+                for arc_name in sorted(self.arcs):
+                    arc_samples = self._arc_stroke_samples(self.arcs[arc_name])
+                    if (_polylines_intersect(samples, arc_samples)
+                            or _polyline_intersects_box(arc_samples,
+                                                        _expand_box(label_box, 1.0))):
+                        geometry_crossings += 1
+                    else:
+                        clearance = min(
+                            _distance_xy_to_segment(sample.x, sample.y, a, b)
+                            for sample in samples
+                            for a, b in zip(arc_samples, arc_samples[1:]))
+                        if clearance < 3.0:
+                            near_geometry += 1
+
                 circle_crossings = 0
                 for circle_obj in self.circles.values():
+                    if not circle_obj.draw:
+                        # No ink on construction circles; dimension curves may
+                        # cross their circumference freely.
+                        continue
                     center = self.points[circle_obj.center]
                     if _box_intersects_circle(label_box, center, circle_obj.radius, 0.75):
                         circle_crossings += 1
@@ -1304,6 +1641,9 @@ class FigureScene:
         stroke_pad = max(self.style.circle_width, self.style.segment_width,
                          self.style.mark_width) / 2.0
         for circle_obj in self.circles.values():
+            if not circle_obj.draw:
+                # No ink — a construction circle must not inflate the canvas.
+                continue
             center = self.points[circle_obj.center]
             r = circle_obj.radius + stroke_pad
             bounds.append((center.x - r, center.y - r, center.x + r, center.y + r))
@@ -1312,6 +1652,22 @@ class FigureScene:
             a, b = self.points[segment.p1], self.points[segment.p2]
             bounds.append((min(a.x, b.x) - stroke_pad, min(a.y, b.y) - stroke_pad,
                            max(a.x, b.x) + stroke_pad, max(a.y, b.y) + stroke_pad))
+        for arc_name in sorted(self.arcs):
+            arc = self.arcs[arc_name]
+            center, radius, start_deg, signed = self._arc_geometry(
+                arc.circle, arc.p1, arc.p2, arc.direction, f"arc {arc.name!r}")
+            bounds.append(_expand_box(
+                _arc_bbox(center, radius, start_deg, signed), stroke_pad))
+        for region_name in sorted(self.regions):
+            # A fill is visible ink even where no stroke follows the boundary —
+            # the bulge of an arc piece must stay inside the canvas.
+            for index, piece in enumerate(self.regions[region_name].boundary):
+                if piece.kind != "arc":
+                    continue
+                center, radius, start_deg, signed = self._arc_geometry(
+                    piece.circle, piece.start, piece.end, piece.direction,
+                    f"region {region_name!r} boundary[{index}]")
+                bounds.append(_arc_bbox(center, radius, start_deg, signed))
         for layout in dimension_layouts.values():
             dimension_pad = self.style.dimension_width / 2.0 + 0.75
             bounds.append(_expand_box(_merge_bounds(
@@ -1355,12 +1711,49 @@ class FigureScene:
         resolved = self.resolve()
         _, _, width, height = resolved.view_box
         style = self.style
+        fills: list[str] = []
         main: list[str] = []
         marks: list[str] = []
         labels: list[str] = []
         tx, ty = resolved.translation
 
+        def arc_fragment(circle_name: str, start_name: str, end_name: str,
+                         direction: str, what: str) -> str:
+            """SVG ``A`` command for one validated arc, ending exactly on the
+            named end point so chained region pieces stay byte-continuous."""
+
+            _, radius, _, signed = self._arc_geometry(
+                circle_name, start_name, end_name, direction, what)
+            end = self.points[end_name]
+            large = 1 if abs(signed) > 180.0 else 0
+            sweep_flag = 0 if signed > 0 else 1
+            return (f'A {_fmt(radius)} {_fmt(radius)} 0 {large} {sweep_flag} '
+                    f'{_fmt(end.x + tx)} {_fmt(end.y + ty)}')
+
+        # 영역 채색은 모든 잉크(선·호·마크·라벨)보다 **아래**에 깔린다 —
+        # 채색이 라벨·치수를 가리면 안 된다.  순서는 스펙에 적힌 순서다
+        # (흰 채움으로 앞 영역을 도려내는 지면이 있다).
+        for region in self.regions.values():
+            first = region.boundary[0]
+            start_point = self.points[first.start]
+            parts = [f'M {_fmt(start_point.x + tx)} {_fmt(start_point.y + ty)}']
+            for index, piece in enumerate(region.boundary):
+                end_point = self.points[piece.end]
+                if piece.kind == "seg":
+                    parts.append(
+                        f'L {_fmt(end_point.x + tx)} {_fmt(end_point.y + ty)}')
+                else:
+                    parts.append(arc_fragment(
+                        piece.circle, piece.start, piece.end, piece.direction,
+                        f"region {region.name!r} boundary[{index}]"))
+            parts.append("Z")
+            fills.append(
+                f'<path d="{" ".join(parts)}" '
+                f'fill="{escape(region.fill, quote=True)}" stroke="none"/>')
+
         for circle_obj in self.circles.values():
+            if not circle_obj.draw:
+                continue
             center = self.points[circle_obj.center]
             main.append(
                 f'<circle cx="{_fmt(center.x + tx)}" cy="{_fmt(center.y + ty)}" '
@@ -1376,6 +1769,16 @@ class FigureScene:
                 f'x2="{_fmt(b.x + tx)}" y2="{_fmt(b.y + ty)}" '
                 f'stroke="{escape(style.stroke, quote=True)}" '
                 f'stroke-width="{_fmt(style.segment_width)}"{dash}/>' )
+        for arc_name in sorted(self.arcs):
+            arc = self.arcs[arc_name]
+            start_point = self.points[arc.p1]
+            dash = (f' stroke-dasharray="{escape(arc.dash, quote=True)}"'
+                    if arc.dash else "")
+            main.append(
+                f'<path d="M {_fmt(start_point.x + tx)} {_fmt(start_point.y + ty)} '
+                f'{arc_fragment(arc.circle, arc.p1, arc.p2, arc.direction, f"arc {arc.name!r}")}" '
+                f'fill="none" stroke="{escape(style.stroke, quote=True)}" '
+                f'stroke-width="{_fmt(style.segment_width)}"{dash}/>')
 
         for angle_name in sorted(self.angles):
             angle = self.angles[angle_name]
@@ -1448,12 +1851,16 @@ class FigureScene:
 
         background = (f'\n  <rect width="{_fmt(width)}" height="{_fmt(height)}" fill="#ffffff"/>'
                       if self.background == "white" else "")
+        # 영역이 없으면 그룹도 없다 — 기존 지면의 SVG 가 한 바이트도 안 변한다.
+        fills_group = (f'  <g>\n    ' + "\n    ".join(fills) + '\n  </g>\n'
+                       if fills else "")
         main_body = "\n    ".join(main)
         marks_body = "\n    ".join(marks)
         labels_body = "\n    ".join(labels)
         svg = (
             f'<svg xmlns="http://www.w3.org/2000/svg" '
             f'viewBox="0 0 {_fmt(width)} {_fmt(height)}">{background}\n'
+            f'{fills_group}'
             f'  <g>\n    {main_body}\n  </g>\n'
             f'  <g>\n    {marks_body}\n  </g>\n'
             f'  <g>\n    {labels_body}\n  </g>\n'
@@ -1600,6 +2007,23 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
           "labels": {"A": "A", "B": "B"}
         }
 
+    Shaded-region figures add ``arcs`` (stroked arc pieces), ``regions``
+    (light fills bounded by a closed seg/arc chain), and construction circles
+    with ``draw: false``::
+
+        {
+          "circles": {"c": {"center": "O", "radius": 60, "draw": false}},
+          "arcs": {"arcAB": {"circle": "c", "from": "A", "to": "B",
+                             "dir": "ccw"}},
+          "regions": {"shade": {"boundary": [
+              {"seg": ["O", "A"]},
+              {"arc": {"circle": "c", "from": "A", "to": "B", "dir": "ccw"}},
+              {"seg": ["B", "O"]}],
+            "fill": "#f2d5c8"}}
+        }
+
+    Region boundaries must connect end-to-start by point name and close; a
+    broken chain raises.  Fills must be light (:data:`REGION_MIN_LUMINANCE`).
     Unknown fields and references are errors; no placeholder geometry is made.
     """
 
@@ -1608,8 +2032,8 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
     if not isinstance(spec, Mapping):
         raise FigureSpecError("FigureSpec must be a mapping")
     allowed_top = {"version", "theme", "canvas", "background", "style",
-                   "points", "circles", "segments", "angles", "dimensions",
-                   "labels"}
+                   "points", "circles", "segments", "arcs", "regions",
+                   "angles", "dimensions", "labels"}
     _strict_keys(spec, allowed_top, "FigureSpec")
     if "version" not in spec:
         raise FigureSpecError("FigureSpec requires version: 2")
@@ -1646,6 +2070,8 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
     point_records = _named_records(spec.get("points"), "points")
     circle_records = _named_records(spec.get("circles"), "circles")
     segment_records = _named_records(spec.get("segments"), "segments")
+    arc_records = _named_records(spec.get("arcs"), "arcs")
+    region_records = _named_records(spec.get("regions"), "regions")
     angle_records = _named_records(spec.get("angles"), "angles")
     dimension_records = _named_records(spec.get("dimensions"), "dimensions")
 
@@ -1678,11 +2104,15 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
         for name, item in circle_records:
             if not isinstance(item, Mapping):
                 raise FigureSpecError(f"circles.{name} must be an object")
-            _strict_keys(item, {"center", "radius"}, f"circles.{name}")
+            _strict_keys(item, {"center", "radius", "draw"}, f"circles.{name}")
             if "center" not in item or "radius" not in item:
                 raise FigureSpecError(f"circles.{name} requires center and radius")
+            draw = item.get("draw", True)
+            if not isinstance(draw, bool):
+                raise FigureSpecError(f"circles.{name}.draw must be boolean")
             scene.add_circle(name, str(item["center"]),
-                             _spec_number(item["radius"], f"circles.{name}.radius"))
+                             _spec_number(item["radius"], f"circles.{name}.radius"),
+                             draw=draw)
 
         for name, item, kind in constructed_points:
             if kind == "on_circle":
@@ -1790,6 +2220,60 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
                 font_size=None if item.get("font_size") is None else _spec_number(
                     item["font_size"], f"dimensions.{name}.font_size"))
 
+        for name, item in arc_records:
+            if not isinstance(item, Mapping):
+                raise FigureSpecError(f"arcs.{name} must be an object")
+            _strict_keys(item, {"circle", "from", "to", "dir", "dash"},
+                         f"arcs.{name}")
+            for required in ("circle", "from", "to"):
+                if required not in item:
+                    raise FigureSpecError(
+                        f"arcs.{name} requires circle, from, and to")
+            scene.add_arc(
+                name, str(item["circle"]), str(item["from"]), str(item["to"]),
+                direction=str(item.get("dir", "ccw")),
+                dash=None if item.get("dash") is None else str(item["dash"]))
+
+        for name, item in region_records:
+            if not isinstance(item, Mapping):
+                raise FigureSpecError(f"regions.{name} must be an object")
+            _strict_keys(item, {"boundary", "fill"}, f"regions.{name}")
+            if "boundary" not in item or "fill" not in item:
+                raise FigureSpecError(f"regions.{name} requires boundary and fill")
+            boundary_value = item["boundary"]
+            if (not isinstance(boundary_value, Sequence)
+                    or isinstance(boundary_value, (str, bytes))):
+                raise FigureSpecError(f"regions.{name}.boundary must be a list")
+            pieces: list[RegionPiece] = []
+            for index, piece_value in enumerate(boundary_value):
+                piece_path = f"regions.{name}.boundary[{index}]"
+                if not isinstance(piece_value, Mapping):
+                    raise FigureSpecError(f"{piece_path} must be an object")
+                keys = set(piece_value)
+                if keys == {"seg"}:
+                    p1, p2 = _pair(piece_value["seg"], f"{piece_path}.seg")
+                    pieces.append(RegionPiece("seg", p1, p2))
+                elif keys == {"arc"}:
+                    arc_value = piece_value["arc"]
+                    if not isinstance(arc_value, Mapping):
+                        raise FigureSpecError(f"{piece_path}.arc must be an object")
+                    _strict_keys(arc_value, {"circle", "from", "to", "dir"},
+                                 f"{piece_path}.arc")
+                    for required in ("circle", "from", "to"):
+                        if required not in arc_value:
+                            raise FigureSpecError(
+                                f"{piece_path}.arc requires circle, from, and to")
+                    pieces.append(RegionPiece(
+                        "arc", str(arc_value["from"]), str(arc_value["to"]),
+                        str(arc_value["circle"]),
+                        str(arc_value.get("dir", "ccw")).strip().lower()))
+                else:
+                    raise FigureSpecError(
+                        f"{piece_path} must have exactly one of 'seg' or 'arc'")
+            if not isinstance(item["fill"], str):
+                raise FigureSpecError(f"regions.{name}.fill must be text")
+            scene.add_region(name, pieces, item["fill"])
+
         labels_value = spec.get("labels")
         if labels_value is not None:
             if isinstance(labels_value, Mapping):
@@ -1885,9 +2369,10 @@ def intersecting_chords_template(*, width: Number = 187, height: Number = 171,
 
 
 __all__ = [
-    "AngleMark", "Canvas", "Circle", "DimensionLayout", "DimensionMark",
-    "FigureScene", "FigureSpec",
+    "AngleMark", "ArcStroke", "Canvas", "Circle", "DimensionLayout",
+    "DimensionMark", "FigureScene", "FigureSpec",
     "FigureSpecError", "GeometryValidationError", "Point", "PointLabel",
+    "Region", "RegionPiece", "REGION_MIN_LUMINANCE",
     "ResolvedScene", "Segment", "StyleProfile", "compile_figure_spec",
     "intersecting_chords_template", "render_figure_spec",
 ]
