@@ -131,6 +131,21 @@ SPECS: list[dict] = [
     # 관례 각을 쓰는 판 — **각을 안 적는다**(적으면 관례값을 안 탄다).
     {"version": "elem-1", "kind": "markedShape", "shape": "para",
      "sides": ["4 cm", "6 cm", None, None]},
+    # 값 반영 확장(2026-08-23) — 「모든 변이 같은 도형」은 한 변만 줘도 된다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k, "sides": ["5 cm"]}
+        for k in ("square", "diamond", "tallDiamond", "pentagon", "nonagon")
+    ],
+    {"version": "elem-1", "kind": "markedShape", "shape": "rect",
+     "sides": ["4 cm", "7 cm", None, None]},
+    # 던져야 하는 것 — 모순
+    {"version": "elem-1", "kind": "markedShape", "shape": "square",
+     "sides": ["8 cm", "5 cm", None, None]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "rect",
+     "angles": ["70°", None, None, None]},
+    # `trap` + sides — 지금은 **던진다**. 「같은변 목록에 trap 을 넣는」 변이가
+    # 이 자리를 건드려야 산출물이 바뀐다(표본이 안 건드리면 판정 자체를 못 한다).
+    {"version": "elem-1", "kind": "markedShape", "shape": "trap", "sides": ["5 cm"]},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},

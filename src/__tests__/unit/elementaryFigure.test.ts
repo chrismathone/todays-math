@@ -3271,6 +3271,90 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(Math.max(a, b) / Math.min(a, b), "4:6 비").toBeCloseTo(1.5, 1);
   });
 
+  it("**«모든 변이 같은 도형» 목록이 거짓말하지 않는다** — 좌표로 검산", async () => {
+    // 🔴 **목록을 여기 손으로 적지 않는다.** 처음에 다섯을 하드코딩했더니
+    //    「`_EQUILATERAL` 에 `trap` 을 넣는」 변이가 **초록**이었다 — 시험이 그 목록을
+    //    안 읽으니 무엇을 넣든 안 보였다. 09 §4-22 「손 목록은 샌다」가 **이 검사에**
+    //    또 걸린 것이다(오늘 세 번째 자리: sphere · markedShape · 여기).
+    //
+    //    엔진의 `_EQUILATERAL` 을 읽어 **그 안의 모든 도형**을 좌표로 잰다. 목록에
+    //    넣기만 하고 실제로 변이 다르면 「한 변만 줘도 된다」가 곧 배반이 된다.
+    const kinds = equilateralFromEngine();
+    expect(kinds.length, "등변 도형 수").toBeGreaterThanOrEqual(7);
+    for (const shape of kinds) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+        sides: ["5 cm"],
+      });
+      expect(r.ok, `${shape} 는 한 변만 줘도 그려져야 한다`).toBe(true);
+      if (!r.ok) return;
+      const c = shapeCorners(r.svg)[0]!;
+      const n = c.length;
+      const sides = c.map((_p, i) =>
+        Math.hypot(
+          c[i]![0] - c[(i + 1) % n]![0],
+          c[i]![1] - c[(i + 1) % n]![1],
+        ),
+      );
+      expect(
+        Math.max(...sides) - Math.min(...sides),
+        `${shape} 변 편차 — 이 도형은 «모든 변이 같다»로 등록돼 있다`,
+      ).toBeLessThan(0.5);
+    }
+  }, 60_000);
+
+  it("**직사각형은 이웃한 두 변의 비를 지킨다** — 4:7", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rect",
+      sides: ["4 cm", "7 cm", null, null],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const m = /<rect[^>]*width="([\d.]+)"[^>]*height="([\d.]+)"/.exec(r.svg);
+    expect(m, "rect 태그").not.toBeNull();
+    const w = Number(m![1]);
+    const h = Number(m![2]);
+    expect(Math.max(w, h) / Math.min(w, h), "4:7").toBeCloseTo(1.75, 2);
+  });
+
+  it.each([
+    [
+      "같은 변 도형에 서로 다른 값",
+      { shape: "square", sides: ["8 cm", "5 cm"] },
+      /모든 변이 같은/,
+    ],
+    ["직사각형에 90°가 아닌 각", { shape: "rect", angles: ["70°"] }, /90/],
+  ])("**모순은 던진다** — %s", async (_w, extra, why) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      ...extra,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(why);
+  });
+
+  it("`rhombus` 는 `diamond` 의 별칭이다 — 이름이 두 벌이라 받아 준다", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rhombus",
+    });
+    const b = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "diamond",
+    });
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    expect(a.svg).toBe(b.svg);
+  });
+
   it("**음성 대조군** — 값을 안 주면 지금 모양 그대로다 (회귀 방지)", async () => {
     const a = await renderFigureSpec({
       version: "elem-1",
@@ -3431,6 +3515,24 @@ describe.skipIf(!hasEngine)("[초등 그림] 가려진 값 선언은 한 곳이�
  * ⑧ `namedShapes` 가 실제로 받는 도형 목록을 **엔진 소스에서** 읽는다.
  * 시험이 자기 손 목록을 두면 도형을 더해도 검사가 안 늘어난다(09 §4-22).
  */
+/**
+ * 엔진의 `_EQUILATERAL`(모든 변이 같다고 **선언된** 도형)을 읽는다.
+ * `frozenset({...}) | _NGON_KINDS` 라 두 조각을 합친다 — 정n각형은 `_NGON_SIDES` 에서.
+ */
+function equilateralFromEngine(): string[] {
+  const src = readFileSync(
+    path.join(process.cwd(), "scripts", "figure", "elementary.py"),
+    "utf8",
+  );
+  const m = /_EQUILATERAL = frozenset\(\s*\{([^}]*)\}/.exec(src);
+  if (!m) throw new Error("_EQUILATERAL 을 못 읽었다");
+  const base = [...m[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  const g = /_NGON_SIDES: dict\[str, int\] = \{([^}]*)\}/.exec(src);
+  if (!g) throw new Error("_NGON_SIDES 를 못 읽었다");
+  const ngon = [...g[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  return [...base, ...ngon];
+}
+
 function shapeKindsFromEngine(): string[] {
   const src = readFileSync(
     path.join(process.cwd(), "scripts", "figure", "elementary.py"),

@@ -1364,6 +1364,7 @@ _NGON_SIDES: dict[str, int] = {
     "hexagon": 6,
     "heptagon": 7,
     "octagon": 8,
+    "nonagon": 9,
 }
 _NGON_KINDS = frozenset(_NGON_SIDES)
 _SHAPE_KINDS = frozenset(
@@ -1381,6 +1382,12 @@ _SHAPE_KINDS = frozenset(
         "irregQuad",
     }
 )
+# **모든 변이 정의상 같은** 도형 — `sides` 를 줘도 비율이 이미 맞다.
+# 실측(슬롯 100)으로 정했다: square 100×4 · diamond 71×4 · tallDiamond 55×4 ·
+# 정n각형 n개가 전부 같다. 「한 변이 5 cm 인 마름모의 네 변의 합은?」이 이 자리다.
+# ⚠️ 목록을 손으로 적지 않고 **좌표에서 확인**할 수도 있지만, 그러면 렌더할 때마다
+#    재게 된다. 대신 시험이 「이 목록의 도형은 정말 변이 다 같은가」를 잰다.
+_EQUILATERAL = frozenset({"square", "diamond", "tallDiamond"}) | _NGON_KINDS
 _MARKED_KINDS = _SHAPE_KINDS | _NGON_KINDS
 # 도형 항목의 허용 키. 오타(`mark`)가 조용히 무시되면 「옵션을 껐는데 왜 그대로냐」가 된다.
 _SHAPE_ITEM_KEYS = frozenset({"shape", "label", "marks"})
@@ -1684,18 +1691,30 @@ PARA_DEFAULT_DEG = 65.0
 
 
 def _para_points(
-    sides: list[float | None], angles: list[float | None], pad: float, size: float
+    sides: list[float | None],
+    angles: list[float | None],
+    pad: float,
+    size: float,
+    right: bool = False,
 ) -> list[tuple[float, float]] | None:
-    """평행사변형 — 이웃한 두 변의 비와 한 각을 반영한다. 둘 다 없으면 `None`."""
+    """평행사변형·직사각형 — 이웃한 두 변의 비와 한 각을 반영한다. 둘 다 없으면 `None`.
+
+    `right` 면 각을 **늘 90°** 로 둔다(직사각형은 각이 자유롭지 않다). 그래서 `rect` 는
+    적힌 각이 90° 가 아니면 **모순**이다 — 조용히 90° 로 그리지 않고 던진다.
+    """
     known_s = [v for v in sides if v is not None]
     known_a = [v for v in angles if v is not None]
     if not known_s and not known_a:
         return None
+    if right and known_a and abs(known_a[0] - 90.0) > 0.5:
+        raise ValueError(
+            f"직사각형의 각은 90° 인데 {known_a[0]:g}° 가 적혔습니다"
+        )
     if known_a and (known_a[0] <= 0 or known_a[0] >= 180):
         raise ValueError(f"각 {known_a[0]:g}° 로는 평행사변형이 만들어지지 않습니다")
     a = known_s[0] if known_s else 1.4
     b = known_s[1] if len(known_s) > 1 else 1.0
-    deg = known_a[0] if known_a else PARA_DEFAULT_DEG
+    deg = 90.0 if right else (known_a[0] if known_a else PARA_DEFAULT_DEG)
     t = math.radians(deg)
     return _fit(
         [
@@ -1725,6 +1744,10 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     #    필드를 늘릴 때 **한쪽만 늘어나고** 아무도 모른다 — 변이 시험이 그것을 잡았다
     #    (「모르는 키 검사 끄기」가 초록이었다 = 그 검사는 아무것도 안 지켰다).
     kind = str(spec.get("shape", ""))
+    # `areaPoly` 는 마름모를 `rhombus` 라 부르고 도형 목록은 `diamond` 라 부른다 —
+    # **이름이 두 벌**이라 학년 세션이 헷갈린다(elem-g4 가 `rhombus` 로 넣어 막혔다).
+    # 여기서 받아 준다. 이름을 통일하는 것이 옳지만 그건 `areaPoly` 까지 걸린 별건이다.
+    kind = {"rhombus": "diamond"}.get(kind, kind)
     if kind not in _MARKED_KINDS:
         raise ValueError(f"모르는 도형입니다: {kind}")
 
@@ -1761,8 +1784,19 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     angs = _angle_nums(angles)
     if n == 3:
         pts = _triangle_points(nums, angs, pad, size) or pts
-    elif kind == "para":
-        pts = _para_points(nums, angs, pad, size) or pts
+    elif kind in ("para", "rect"):
+        # 이웃한 두 변의 비 + 한 각. `rect` 는 각이 늘 90° 라 변만 본다.
+        pts = _para_points(nums, angs, pad, size, right=(kind == "rect")) or pts
+    elif kind in _EQUILATERAL:
+        # 🔴 **이미 모든 변이 같은 도형** — `sides` 를 줘도 비율이 이미 맞다(실측).
+        #    「한 변이 5 cm 인 마름모의 네 변의 합은?」류가 이 자리다. 던질 이유가 없다.
+        #    다만 **서로 다른 값**을 적었으면 그건 모순이라 던진다.
+        vals = [v for v in nums if v is not None]
+        if len(set(vals)) > 1:
+            raise ValueError(
+                f"«{kind}» 는 모든 변이 같은 도형인데 서로 다른 값이 적혔습니다: "
+                f"{' · '.join(f'{v:g}' for v in sorted(set(vals)))}"
+            )
     elif any(v is not None for v in nums) or any(v is not None for v in angs):
         # 아직 비율을 못 맞추는 도형 — 조용히 배반하느니 던진다.
         raise ValueError(

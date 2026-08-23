@@ -750,6 +750,38 @@ io.open(p, "w", encoding="utf-8").write(s.replace(old, "PARA_DEFAULT_DEG = 20.0 
 MUT
 run "평행사변형 관례 각을 납작하게"
 
+# ㊼ **`_EQUILATERAL` 에 «변이 다른» 도형을 넣는다** — 손 목록이 거짓말하는 자리.
+#    `trap`(60·90·100·90)을 넣으면 「한 변 5cm」가 통과하는데 **그림은 네 변이 다르다.**
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '_EQUILATERAL = frozenset({"square", "diamond", "tallDiamond"}) | _NGON_KINDS'
+assert old in s, "앵커 없음 337"
+new = '_EQUILATERAL = frozenset({"square", "diamond", "tallDiamond", "trap"}) | _NGON_KINDS  # 변이'
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "같은변 목록에 trap 을 넣는다 (손 목록이 거짓말)"
+
+# ㊽ **직사각형이 이웃 두 변의 비를 안 지킨다** — 4:7 인데 관례 비로 그린다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '        pts = _para_points(nums, angs, pad, size, right=(kind == "rect")) or pts'
+assert old in s, "앵커 없음 338"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "        pass  # 변이", 1))
+MUT
+run "직사각형·평행사변형이 변의 비를 안 지킨다"
+
+# ㊾ **모순인 값을 조용히 받는다** — 정사각형에 8·5 를 적어도 그린다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        if len(set(vals)) > 1:"
+assert old in s, "앵커 없음 339"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "        if False:  # 변이", 1))
+MUT
+run "같은변 도형에 서로 다른 값을 조용히 받는다"
+
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
 if [ -n "$ONLY" ]; then
