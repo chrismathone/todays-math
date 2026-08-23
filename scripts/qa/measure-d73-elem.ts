@@ -32,6 +32,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 import {
@@ -48,6 +49,8 @@ const SRC = "src/lib/math/textPreprocess.ts";
 const arg = (k: string) =>
   process.argv.find((a) => a.startsWith(`--${k}=`))?.split("=")[1];
 const onlyGrade = arg("grade");
+/** 소단원 앞자리로 좁힌다 — 「대분수를 가르치는 소단원이 상했나」를 볼 때 쓴다. */
+const onlySection = arg("section");
 const seedCount = Number(arg("seeds") ?? 40);
 
 /** 옛 전처리를 **git 에서 그대로 꺼내** 쓴다 — 규칙을 옮겨 적지 않는다. */
@@ -60,7 +63,9 @@ async function loadOld(): Promise<(s: string) => string> {
     { encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 },
   );
   writeFileSync(out, text, "utf-8");
-  const mod = (await import(path.resolve(out))) as {
+  // ⚠️ 윈도 절대경로(`C:\…`)를 그대로 넘기면 ESM 로더가 «프로토콜 c:» 라며 던진다.
+  //    `file://` URL 로 바꿔야 한다 — 실제로 여기서 한 번 죽었다.
+  const mod = (await import(pathToFileURL(path.resolve(out)).href)) as {
     preprocessMathText: (s: string) => string;
   };
   return mod.preprocessMathText;
@@ -86,7 +91,7 @@ async function main() {
   const OLD = await loadOld();
 
   // ── 자기시험: 이 자가 **아니오를 낼 수 있는가**. 못 내면 아무것도 안 세고 멈춘다.
-  const probe = "$\frac{7}{2}$ 와 $\frac{6}{3}$";
+  const probe = "$\\frac{7}{2}$ 와 $\\frac{6}{3}$";
   if (OLD(probe) === NEW(probe)) {
     console.error(
       "❌ 자기시험 실패 — 일부러 걸리는 입력에서 옛것과 새것이 같다.\n" +
@@ -103,6 +108,7 @@ async function main() {
 
   for (const unit of elementaryUnits()) {
     if (onlyGrade && unit.grade !== onlyGrade) continue;
+    if (onlySection && !(unit.section ?? "").startsWith(onlySection)) continue;
     const tiers = supportedTiers(unit);
     const list: (string | undefined)[] = tiers.length ? [...tiers] : [undefined];
     for (const tier of list) {
@@ -162,7 +168,7 @@ async function main() {
   const shown = new Map<string, number>();
   for (const r of rows) {
     const k = kindOf(r);
-    if ((shown.get(k) ?? 0) >= 3) continue;
+    if ((shown.get(k) ?? 0) >= (onlySection ? 8 : 3)) continue;
     shown.set(k, (shown.get(k) ?? 0) + 1);
     console.log(`\n[${k}] ${r.grade} ${r.section} · ${r.tier} · seed=${r.seed} · ${r.field}`);
     console.log(`  옛 : ${r.old.slice(0, 200)}`);
