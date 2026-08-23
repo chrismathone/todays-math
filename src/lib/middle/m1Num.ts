@@ -634,7 +634,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     BOOK,
     MIN_소인수,
     "10",
-    "약수의 개수가 주어질 때  안에 들어 갈 수 있는 자연수 구하기",
+    "약수의 개수가 주어질 때  안에 들어 갈 수 있는 자연수 구하기",
     SEC.소인수,
     "hard",
     (rng) =>
@@ -1937,7 +1937,7 @@ const 정수_TYPES: TypeEntry[] = [
             content: `절댓값이 같고 부호가 반대인 두 수 중 큰 수가 $${x}$일 때, 이 두 수를 나타내는 수직선 위의 두 점 사이의 거리를 구하시오.`,
             answer: `$${d}$`,
             solution: `두 수는 $${x}$${nGwa(x)} $-${x}$이다.\n두 점은 $0$을 나타내는 점에서 각각 $${x}$만큼 떨어져 있으므로 두 점 사이의 거리는 $${x}+${x}=${d}$이다.`,
-            facts: { kind, x, d },
+            facts: { kind, x, d, answer: d },
           };
         }
         const answer = kind === 0 ? x : -x;
