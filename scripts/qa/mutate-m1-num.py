@@ -22,7 +22,7 @@ import sys
 
 TARGET = "src/lib/middle/m1Num.ts"
 TEST = "src/__tests__/unit/middleM1Num.test.ts"
-PROBE = ".probe.ts"
+PROBE = "scripts/qa/probe-m1-num.ts"
 
 BS = chr(92)  # 역슬래시 한 개 — 도구 층이 벗기지 못하게 조립한다
 
