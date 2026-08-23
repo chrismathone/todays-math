@@ -3828,3 +3828,111 @@ describe.skipIf(!hasEngine)("[초등 그림] tiling — 조각과 목표", () =>
     expect(p[1]!.length, "목표는 육각형").toBe(6);
   });
 });
+
+/* ── ① circleParts — 원과 그 부분 (2026-08-24, elem-figures) ─────────────────
+ *
+ * 초3 2-3-1(중심·지름·반지름) · 2-3-2(원의 성질) · 2-3-3(원 그리기).
+ *
+ * 🔴 **이 소단원은 「묻는 것」과 「그리는 것」이 같아지기 쉽다**(리드 경고).
+ *    2-3-1 은 **용어 자체**를 묻고(「이은 선분을 무엇이라 하는가」 → 반지름),
+ *    2-3-2·3 은 **묻는 값**을 적으면 답이다(「지름 10 인 원의 반지름은?」).
+ *    그래서 엔진이 ㉠ 용어 라벨을 **아예 안 그리고** ㉡ 반지름·지름을 **둘 다 받으면 던진다**.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분", () => {
+  const texts = (svg: string) =>
+    [...svg.matchAll(/>([^<]+)<\/text>/g)].map((m) => m[1]!);
+
+  it("**용어를 적지 않는다** — 그 용어가 2-3-1 의 답이다", async () => {
+    for (const spec of [{ radius: "5 cm" }, { diameter: "10 cm" }, {}]) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        ...spec,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      for (const word of ["반지름", "지름", "원의 중심", "중심"]) {
+        expect(
+          r.svg,
+          `«${word}» 이 지면에 있으면 2-3-1 의 답이다`,
+        ).not.toContain(word);
+      }
+    }
+  });
+
+  it("**주어진 값만 적는다** — 둘 다 주면 던진다", async () => {
+    const both = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+      diameter: "10 cm",
+    });
+    expect(both.ok, "둘 다 적으면 답이 지면에 있다").toBe(false);
+    // 하나씩은 된다 — 그리고 **적은 것만** 나온다.
+    const onlyR = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    expect(onlyR.ok).toBe(true);
+    if (!onlyR.ok) return;
+    expect(texts(onlyR.svg)).toEqual(["5 cm"]);
+  });
+
+  it("**지름은 중심을 지난다** — 좌표에서 잰다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      diameter: "10 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = /<circle cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"/.exec(r.svg)!;
+    const [cx, cy, rad] = [Number(c[1]), Number(c[2]), Number(c[3])];
+    const L =
+      /<line x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)"/.exec(
+        r.svg,
+      )!;
+    const [x1, y1, x2, y2] = [1, 2, 3, 4].map((i) => Number(L[i]));
+    // 지름의 중점이 원의 중심이어야 한다.
+    expect(
+      Math.hypot((x1! + x2!) / 2 - cx, (y1! + y2!) / 2 - cy),
+      "중점=중심",
+    ).toBeLessThan(0.5);
+    // 그리고 그 길이가 반지름의 **두 배**여야 한다 — 그림이 값을 배반하지 않는다.
+    expect(Math.hypot(x2! - x1!, y2! - y1!) / rad, "지름/반지름").toBeCloseTo(
+      2,
+      1,
+    );
+  });
+
+  it("**중심에 점이 있다** — 무엇에서 잰 길이인지 보이게 (09 §4-16)", async () => {
+    const on = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    const off = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+      center: false,
+    });
+    expect(on.ok && off.ok).toBe(true);
+    if (!on.ok || !off.ok) return;
+    expect((on.svg.match(/<circle/g) ?? []).length, "원 + 중심점").toBe(2);
+    expect((off.svg.match(/<circle/g) ?? []).length, "원만").toBe(1);
+  });
+
+  it("**치수는 measured() 다** — halo + 점선 (09 §4-16)", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain('paint-order="stroke"');
+    expect(r.svg).toContain('stroke-dasharray="6 4"');
+  });
+});

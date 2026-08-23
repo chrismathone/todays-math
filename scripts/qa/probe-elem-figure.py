@@ -160,6 +160,13 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "tiling", "piece": "square", "target": "square",
      "pieceSide": 6, "targetSide": 18},
     {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "hexagon"},
+    # ① circleParts (2026-08-24) — 초3 2-3. **용어는 안 그린다 · 주어진 값만 적는다**
+    {"version": "elem-1", "kind": "circleParts", "radius": "5 cm"},
+    {"version": "elem-1", "kind": "circleParts", "diameter": "10 cm"},
+    {"version": "elem-1", "kind": "circleParts"},
+    {"version": "elem-1", "kind": "circleParts", "radius": "7 cm", "center": False},
+    # 던져야 하는 것 — 둘 다 적으면 그림이 답을 말한다. 가드를 빼면 그려지므로 산출물이 바뀐다.
+    {"version": "elem-1", "kind": "circleParts", "radius": "5 cm", "diameter": "10 cm"},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},

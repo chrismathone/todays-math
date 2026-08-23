@@ -36,6 +36,8 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
     "lineRelation": frozenset({"relation"}),
     # ⑥ 조각과 목표를 나란히 — **채운 모습은 안 그린다**(답이 샌다). 초4 2-6-4.
     "tiling": frozenset({"piece", "target"}),
+    # ① 원과 그 부분 — 초3 2-3. **용어 라벨은 안 그린다**(그 용어가 답이다).
+    "circleParts": frozenset(),
     "placeValue": frozenset({"hundreds", "tens", "ones"}),
     "base10": frozenset({"rows"}),
     "opBox": frozenset({"input", "op"}),
@@ -65,6 +67,7 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
     "lineRelation": frozenset({"labels", "distance", "marks", "perpCount"}),
     "tiling": frozenset({"pieceSide", "targetSide", "labels"}),
+    "circleParts": frozenset({"radius", "diameter", "center"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -2068,8 +2071,58 @@ def _tiling(spec: Mapping[str, Any]) -> str:
     return _svg(pad * 2 + small + gap + big, pad * 2 + big + 18, "".join(parts))
 
 
+def _circle_parts(spec: Mapping[str, Any]) -> str:
+    """원과 그 부분 — 중심 · 반지름 · 지름. 초3 2-3.
+
+    ## 🔴 **용어를 적지 않는다** — 2-3-1 이 그 용어를 묻는다
+
+    발문 셋이 「원의 중심과 원 위의 한 점을 이은 선분을 **무엇이라고 하는지**」다.
+    그림에 「반지름」이라 적으면 **그것이 곧 답**이다(D-66 ⑺). 그래서 용어 라벨은
+    **아예 안 그린다** — 옵션으로도 두지 않는다. 「끄면 되지」로 두면 켠 채 나간다.
+
+    ## 🔴 **주어진 값만 적는다** — 묻는 값은 부르는 쪽이 안 넘긴다
+
+    2-3-2 는 「지름 10 인 원의 **반지름**은?」이고 2-3-3 은 「컴퍼스를 8 벌려 그렸다,
+    **지름**은?」이다. 둘 다 적으면 답이 지면에 있다. 엔진은 **받은 것만** 그리고,
+    무엇을 넘길지는 갈래가 정한다 — 다만 **둘 다 값을 주면 던진다**(그 조합은
+    「구하라」 문항이 될 수 없다).
+
+    그린 것이 값을 배반하지 않게 **지름 = 반지름 × 2 를 좌표에서** 지킨다.
+    """
+    r_lab = spec.get("radius")
+    d_lab = spec.get("diameter")
+    if r_lab is not None and d_lab is not None:
+        raise ValueError(
+            "radius 와 diameter 를 **둘 다** 적으면 그림이 답을 말합니다 — "
+            "주어진 쪽만 넘기십시오"
+        )
+    pad, rad = 26.0, 62.0
+    cx, cy = pad + rad, pad + rad
+    parts: list[str] = [
+        f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="{_n(rad)}" '
+        f'fill="none" stroke="{INK}" stroke-width="1.5"/>'
+    ]
+    # 중심점 — 「무엇에서 잰 길이인가」가 보이려면 점이 있어야 한다(09 §4-16).
+    if spec.get("center", True):
+        parts.append(
+            f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="2.2" fill="{INK}"/>'
+        )
+    if r_lab is not None:
+        # 반지름 — 중심에서 원 위 한 점까지. 비스듬히 그어 지름과 눈으로 갈리게.
+        ang = math.radians(-35.0)
+        ex, ey = cx + rad * math.cos(ang), cy + rad * math.sin(ang)
+        parts.append(_seg((cx, cy), (ex, ey), sw=1.3))
+        parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))
+    if d_lab is not None:
+        # 지름 — **중심을 지나는** 현. 좌표가 대칭이라 그 성질이 자동으로 참이다.
+        parts.append(_seg((cx - rad, cy), (cx + rad, cy), sw=1.3))
+        parts.append(_length_mark(cx - rad, cy, cx + rad, cy, str(d_lab), off=12.0))
+    return _svg(pad * 2 + rad * 2, pad * 2 + rad * 2, "".join(parts))
+
+
 _RENDER = {
     "numberCards": _number_cards,
+    "circleParts": _circle_parts,
     "tiling": _tiling,
     "lineRelation": _line_relation,
     "markedShape": _marked_shape,

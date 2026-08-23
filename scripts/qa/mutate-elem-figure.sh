@@ -75,8 +75,8 @@ FLAG=MUTATION-IN-PROGRESS.elem-figure.txt
 #    ⚠️ `echo >` 는 셸 **내장**이라 fork 없이 쓴다 — `mktemp`·`cp` 는 fork 가 필요해
 #       `fork: Resource temporarily unavailable` 상황에서 실패한다. 오늘 그것으로
 #       `trap` 이 못 돌아 변이가 파일에 남았다.
-CRUMB=.mutate-inflight.elem-figure.json
-LAST=.mutate-last.elem-figure.json
+CRUMB=scripts/qa/.mutate-inflight.elem-figure.json
+LAST=scripts/qa/.mutate-last.elem-figure.json
 BAK_ADV=$(mktemp)
 BAK_BASE=$(mktemp)
 BEFORE=$(mktemp)
@@ -842,6 +842,73 @@ io.open(p, "w", encoding="utf-8").write(
 )
 MUT
 run "lineRelation 두 이름이 같은 직선에 붙는다"
+
+# ── ① circleParts (초3 2-3) ────────────────────────────────────────────────
+# 이 소단원은 **묻는 것과 그리는 것이 같아지기 쉽다** — 변이 다섯 중 둘이 그 부류다.
+
+# ① **용어를 적는다** — 2-3-1 이 「이 선분을 무엇이라 하는지」를 묻는다. 적으면 답이다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    return _svg(pad * 2 + rad * 2, pad * 2 + rad * 2, "
+assert s.count(old) == 1, "앵커 없음 350"
+new = ("    parts.append(f'<text x=\"{_n(cx)}\" y=\"14\">반지름</text>')  # 변이" + chr(10) + old)
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "circleParts 가 «반지름» 이라고 적는다 (2-3-1 의 답)"
+
+# ① **둘 다 받는다** — 반지름과 지름을 함께 그리면 「구하라」가 성립하지 않는다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    if r_lab is not None and d_lab is not None:"
+assert s.count(old) == 1, "앵커 없음 351"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "    if False:  # 변이", 1))
+MUT
+run "circleParts 가 반지름·지름을 둘 다 그린다 (답이 샌다)"
+
+# ① **지름이 중심을 안 지난다** — 라벨은 «지름»인데 그린 것은 현. 값을 배반하는 부류.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        parts.append(_seg((cx - rad, cy), (cx + rad, cy), sw=1.3))"
+assert s.count(old) == 1, "앵커 없음 352"
+new = "        parts.append(_seg((cx - rad * 0.866, cy - rad * 0.5), (cx + rad * 0.866, cy - rad * 0.5), sw=1.3))  # 변이"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "circleParts 의 지름이 중심을 안 지난다"
+
+# ① **지름 = 반지름 × 2 가 그림에서 거짓** — 좌표로 재지 않으면 이 부류는 침묵한다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        parts.append(_seg((cx - rad, cy), (cx + rad, cy), sw=1.3))"
+assert s.count(old) == 1, "앵커 없음 353"
+new = "        parts.append(_seg((cx - rad * 0.7, cy), (cx + rad * 0.7, cy), sw=1.3))  # 변이"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "circleParts 의 지름 길이가 반지름의 두 배가 아니다"
+
+# ① **중심점을 안 그린다** — 「무엇에서 잰 길이인가」가 지면에서 사라진다(09 §4-16).
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    if spec.get(\"center\", True):"
+assert s.count(old) == 1, "앵커 없음 354"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "    if False:  # 변이", 1))
+MUT
+run "circleParts 가 중심점을 안 그린다"
+
+# ① **치수가 measured() 가 아니다** — halo·점선이 빠지면 「잰 길이」로 안 읽힌다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))"
+assert s.count(old) == 1, "앵커 없음 355"
+new = ("        parts.append(f'<text x=\"{_n(cx)}\" y=\"{_n(cy)}\">{r_lab}</text>')  # 변이")
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "circleParts 치수가 measured() 가 아니다 (맨 글자)"
 
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
