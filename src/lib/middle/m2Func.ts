@@ -62,6 +62,15 @@ function mono(m: number): string {
   return `${m}x`;
 }
 
+/**
+ * 기약분수 `num/den` 의 교과 표기 — den=1 이면 정수, 음수는 분수 앞에 부호.
+ * 계산 사슬 없이 결과만 적는 자리에 쓴다(`4/2` 로 끝나면 지면에 그대로 나간다).
+ */
+function fracTex(num: number, den: number): string {
+  if (den === 1) return `${num}`;
+  return `${num < 0 ? "-" : ""}\\dfrac{${Math.abs(num)}}{${den}}`;
+}
+
 /** `mx+b` 꼴 (b=0 이면 mx). */
 function linear(m: number, b: number): string {
   if (b === 0) return mono(m);
@@ -282,7 +291,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `오른쪽 그림과 같은 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때, $y$의 값의 증가량을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나므로 기울기는 $\\dfrac{${y2 - y1}}{${x2 - x1}}$이다.\n$x$의 값이 $${p}$만큼 증가할 때 $y$의 값의 증가량은 $\\dfrac{${y2 - y1}}{${x2 - x1}}\\times${p}=${ans}$이다.`,
+        solution: `그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나므로 기울기는 $${fracTex(num, den)}$이다.\n$x$의 값이 $${p}$만큼 증가할 때 $y$의 값의 증가량은 $${fracTex(num, den)}\\times${p}=${ans}$이다.`,
         facts: { num, den, b, x1, y1, x2, y2, p, ans },
         figureSpec: {
           version: "elem-1",

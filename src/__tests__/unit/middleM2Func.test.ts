@@ -266,6 +266,38 @@ describe("중2 일차함수 함수 유형 18개", () => {
       }
     });
 
+    it("해설의 분수는 약분됐거나 그 자리에서 약분된다 — 4/2 로 끝나지 않는다", () => {
+      // 「약분 안 된 분수」가 아니라 **「약분한 값이 바로 뒤에 안 따라오는 분수」**를 센다.
+      // $\\dfrac{12}{4}=3$ 은 교과 계산 사슬(정상)이고, $\\dfrac{4}{2}$ 로 끝나면
+      // 그대로 지면에 나간다(2026-08-23 실측 46자리 — 유형 07 이 그랬다).
+      const gcd = (a: number, b: number): number =>
+        b ? gcd(b, a % b) : Math.abs(a);
+      const FRAC = /dfrac{(-?\d+)}{(-?\d+)}/g;
+      const bad: string[] = [];
+      for (const e of entries) {
+        for (const seed of SEEDS) {
+          for (const p of generateMiddleSet(e.key, seed, 4)) {
+            for (const text of [p.content, p.answer, p.solution]) {
+              for (const m of text.matchAll(FRAC)) {
+                const n = Number(m[1]);
+                const d = Number(m[2]);
+                if (Math.abs(d) === 1 || gcd(n, d) !== Math.abs(d)) continue;
+                const after = text
+                  .slice((m.index ?? 0) + m[0].length)
+                  .trimStart();
+                if (after.startsWith("=" + String(n / d))) continue;
+                bad.push(`${e.rpmMinor}|${e.rpmType} seed ${seed}: ${m[0]}`);
+              }
+            }
+          }
+        }
+      }
+      expect(
+        bad.slice(0, 5),
+        `약분 안 된 채 끝나는 분수 ${bad.length}자리`,
+      ).toEqual([]);
+    });
+
     describe.skipIf(!hasEngine)("실제 엔진 렌더", () => {
       it("그림 유형 셋의 figureSpec 이 실제로 그려진다 — 직선 밖 mark 면 엔진이 던진다", async () => {
         for (const vk of FIGURE_KEYS) {
