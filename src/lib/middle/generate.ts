@@ -10,10 +10,20 @@
  */
 import { createRng } from "../elementary/rng";
 
+import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
+import { M2_TYPES } from "./m2";
+import { M3_TYPES } from "./m3";
 import type { MidProblem, TypeEntry } from "./types";
 
-const ALL: TypeEntry[] = [...M1_LINEAR_APPLY];
+// 세션별 소유 모듈을 여기서만 합친다 — 병렬 세션은 자기 모듈 파일만 만지므로
+// 이 파일에서 병합 충돌이 나지 않는다 (한 줄짜리 spread 는 이미 다 있다).
+const ALL: TypeEntry[] = [
+  ...M1_LINEAR_APPLY,
+  ...M1EXTRA_TYPES,
+  ...M2_TYPES,
+  ...M3_TYPES,
+];
 
 const BY_KEY = new Map<string, TypeEntry>();
 for (const e of ALL) {

@@ -20,6 +20,12 @@ export type MidProblem = {
   solution: string;
   difficulty: "easy" | "mid" | "hard";
   facts: Record<string, number>;
+  /**
+   * 도형이 필요한 유형만 채운다 — FigureSpec v2 (09-figure-engine-guide §1 계층 A).
+   * 실증 완료 목록(§2)에 있는 도형만 쓸 것. 없는 도형이 필요하면 그 유형을
+   * 보류 목록에 남기고 지어내지 말 것.
+   */
+  figureSpec?: Record<string, unknown> | null;
 };
 
 export type TypeHandler = (rng: Rng) => MidProblem;
