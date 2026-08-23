@@ -33,27 +33,46 @@ const SEEDS = [
 const problem = (code: string, tier: ElemTier, seed: number) =>
   generateElementaryProblem(unitOf(code), seed, tier);
 
-/* ── 분수 뒤 조사 (2026-08-23 곁들이) ──
- * 조사는 «소리 내어 읽은 마지막 소리»가 정하고, 분수는 **분자로 끝난다**(«삼분의 이»).
- * 표본이 아니라 **규칙**으로 잠근다 — 표준·갈래를 한 자리에서 전부 훑는다.
- * 이 결함은 에러가 아니라 «그럴듯한 문장»으로 나가므로 시험이 아니면 아무도 못 본다.
+/* ── 수식 뒤 조사 (2026-08-23 곁들이 · 08-23 확대) ──
+ * 조사는 «소리 내어 읽은 마지막 소리»가 정한다. 표본이 아니라 **규칙**으로 잠그고,
+ * 표준·갈래를 한 자리에서 전부 훑는다. 이 결함은 에러가 아니라 «그럴듯한 문장»으로
+ * 나가므로 시험이 아니면 아무도 못 본다.
+ *
+ * ⚠️ **첫 판은 열쇠가 좁아 눈이 멀어 있었다.** `\frac{}{}$` 뒤 **붙여 쓴** 조사만 봐서
+ *    「$6$를」(육이라 «을»)·「$…\div6$로」 같은 자리가 **구조적으로 0** 이었다
+ *    (2026-08-23 g4 가 넓힌 검사로 잡아 회송 — 내 파일에서 실제로 9자리가 나왔다).
+ *    이제 **모든 `$…$` 덩어리**와 **한 칸 띄운 조사**까지 본다.
+ *
+ * 규칙 셋(g4 정본): ① 분수로 끝나면 **분자**를 읽는다 ② 그 밖에는 끝의 수를 읽는다
+ * ③ **조사 뒤에 한글이 바로 붙으면 조사가 아니다**(「$49$ 이상」의 «이», 계사 «이므로»).
+ * ③ 이 없으면 범위 소단원이 통째로 거짓 양성이 된다(실측 41자리).
  */
 
 /** «이» 는 계사(-이다)일 수 있다 — «$\frac{5}{10}$이므로» 는 옳다. 주격과 갈라야 한다. */
 const COPULA_TAIL = /^(므로|고|다|라|며|면|지만|어야|었|니|기)/;
 
-/** 분수 덩어리 바로 뒤 조사가 분자 소리와 맞는가 — 어긋난 자리를 모아 돌려준다. */
+/** 덩어리를 읽었을 때 마지막 수. 못 읽으면 null — 애매하면 판정하지 않는다. */
+function spokenTail(latex: string): number | null {
+  const frac = /\\frac\{(\d+)\}\{\d+\}[^0-9]*$/.exec(latex);
+  if (frac) return Number(frac[1]);
+  const tail = /(\d+)[^0-9]*$/.exec(latex);
+  return tail ? Number(tail[1]) : null;
+}
+
+/** 수식 덩어리 뒤 조사가 그 소리와 맞는가 — 어긋난 자리를 모아 돌려준다. */
 function fracJosaMisses(text: string): string[] {
   const FINAL = new Set([0, 1, 3, 6, 7, 8]);
   const RIEUL = new Set([1, 7, 8]);
   const out: string[] = [];
-  const re = /\\frac\{(\d+)\}\{(\d+)\}\$(으로|과|와|은|는|이|가|을|를|로)/g;
+  const re = /\$([^$]+)\$ ?(으로|과|와|은|는|이|가|을|를|로)/g;
   for (const m of text.matchAll(re)) {
-    const num = Number(m[1]);
-    const josa = m[3]!;
+    const josa = m[2]!;
     const rest = text.slice(m.index + m[0].length);
+    if (/^[가-힣]/.test(rest)) continue; // ③ 조사 뒤 한글 → 낱말의 일부
     if (josa === "이" && COPULA_TAIL.test(rest)) continue;
-    const d = num % 10;
+    const spoken = spokenTail(m[1]!);
+    if (spoken === null) continue;
+    const d = Number(String(spoken).slice(-1));
     const f = FINAL.has(d);
     const r = RIEUL.has(d);
     const ok: Record<string, boolean> = {
@@ -68,7 +87,7 @@ function fracJosaMisses(text: string): string[] {
       으로: f && !r,
       로: !f || r,
     };
-    if (!ok[josa]) out.push(`분자 ${num} 뒤 «${josa}»`);
+    if (!ok[josa]) out.push(`«${m[1]}» 뒤 «${josa}» (읽는 소리 ${spoken})`);
   }
   return out;
 }
@@ -2594,6 +2613,16 @@ describe("[초5 표기] 분수 뒤 조사는 분자 소리와 맞는다", () => 
     expect(fracJosaMisses("$\\frac{2}{3}$와 $\\frac{1}{4}$")).toHaveLength(0);
     expect(fracJosaMisses("$\\frac{1}{2}$로 고친")).toHaveLength(0); // 일 = ㄹ받침
     expect(fracJosaMisses("$\\frac{5}{10}$이므로 답은")).toHaveLength(0); // 계사
+    // 넓힌 축 — 분수 **밖**·**띄어 쓴** 조사도 본다(첫 판이 여기서 눈멀어 있었다)
+    expect(fracJosaMisses("차 $6$를 더해")).toHaveLength(1); // 육 → «을»
+    expect(fracJosaMisses("$48\\div6$로 계산했습니다")).toHaveLength(1); // 육 → «으로»
+    expect(fracJosaMisses("$2,\\ 5,\\ 10$로 $3$개")).toHaveLength(1); // 십 → «으로»
+    expect(fracJosaMisses("$6$ 를 더해")).toHaveLength(1); // 한 칸 띄워도 조사다
+    expect(fracJosaMisses("차 $6$을 더해")).toHaveLength(0);
+    expect(fracJosaMisses("$7$로 나누면")).toHaveLength(0); // 칠 = ㄹ받침
+    // ③ 조사 뒤 한글 — 「이상」의 «이» 를 조사로 읽으면 범위 소단원이 통째로 거짓 양성
+    expect(fracJosaMisses("$49$ 이상인 수를 모두")).toHaveLength(0);
+    expect(fracJosaMisses("$38$ 이상 $49$ 이하인 수")).toHaveLength(0);
   });
 
   it("초5 전 소단원 — 표준과 등록된 갈래 넷 전부에서 어긋남이 없다", () => {
@@ -2995,6 +3024,510 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("1-5 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});
+
+/* ── 2-1 수의 범위와 어림하기 (D-72 7차) — 재검산 도우미 ── */
+
+const CODES21 = ["2-1-1", "2-1-2", "2-1-3", "2-1-4", "2-1-5", "2-1-6"] as const;
+
+/** 어림 셋 — 시험이 **제 손으로** 다시 센다(엔진의 것을 안 부른다). */
+const ceilT = (x: number, p: number): number => Math.ceil(x / p) * p;
+const floorT = (x: number, p: number): number => Math.floor(x / p) * p;
+const roundT = (x: number, p: number): number =>
+  Math.floor((x % p) / (p / 10)) >= 5 ? ceilT(x, p) : floorT(x, p);
+
+/** 자리 이름 → 자릿값. */
+const PLACE_OF: Record<string, number> = { 십: 10, 백: 100, 천: 1000 };
+
+/** 답이 `$a,\ b$` 꼴(두 수)일 때 그 둘. */
+function answerPair(answer: string, label: string): [number, number] {
+  const m = /^\$(\d+),\\ (\d+)\$$/.exec(answer);
+  expect(m, `${label}: 두 수 답이 아니다 — ${answer}`).not.toBeNull();
+  return [Number(m![1]), Number(m![2])];
+}
+
+/** 답이 `$a,\ b,\ c…$` 꼴일 때 전부. */
+function answerList(answer: string, label: string): number[] {
+  const m = /^\$(.+)\$$/.exec(answer);
+  expect(m, `${label}: KaTeX 로 안 감싼 답 — ${answer}`).not.toBeNull();
+  return m![1]!.split(",\\ ").map((s) => {
+    expect(s, `${label}: 수가 아닌 항목 — ${answer}`).toMatch(/^\d+$/);
+    return Number(s);
+  });
+}
+
+/** 발문의 `$…$` 안 자연수 전부(순서대로). */
+const intsIn = (t: string): number[] =>
+  [...t.matchAll(/\$([^$]*)\$/g)].flatMap((m) =>
+    (m[1]!.match(/\d+/g) ?? []).map(Number),
+  );
+
+describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
+  it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES21) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES21) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES21) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES21) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
+    for (const code of CODES21) {
+      for (const tier of ELEM_TIERS) {
+        const answers = new Set(
+          SEEDS.map((s) => problem(code, tier, s).answer),
+        );
+        expect(
+          answers.size,
+          `${code} ${tier} 답이 한 가지뿐이다`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES21) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── 낱말 축 (D-66⑸) ── */
+
+  it("낱말 축 — 이상·이하 / 초과·미만 / 올림 / 버림 / 반올림이 제자리에 있다", () => {
+    // ⚠️ 「반올림」은 「올림」을 **글자로 품는다** — 먼저 지우고 봐야 한다
+    // (옛 표준이 `includes("올림")` 때문에 2-1-6 에서 올림 문항을 내던 그 자리).
+    const hasUp = (c: string) => c.replace(/반올림/g, "").includes("올림");
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const c1 = problem("2-1-1", tier, seed).content;
+        expect(/이상|이하/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(
+          true,
+        );
+        expect(/초과|미만/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(
+          false,
+        );
+        const c2 = problem("2-1-2", tier, seed).content;
+        expect(/초과|미만/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(
+          true,
+        );
+        expect(/이상|이하/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(
+          false,
+        );
+        // 어림 셋 — 제 낱말이 반드시 있고, 반올림은 2-1-6 에만 있다.
+        //
+        // ⚠️ **발문+해설**에서 찾는다. 「기본」 갈래는 생활 장면에서 학생이 어림을
+        //    **스스로 고르는** 것이 그 갈래의 정체라 발문에 낱말을 일부러 안 쓴다
+        //    (「올림하시오」라고 말해 주면 판별이 사라진다). 발문만 보면 그 갈래가
+        //    통째로 빨개지는데, 그것은 제품이 아니라 시험이 틀린 것이다.
+        const both4 = (t: ElemTier) => {
+          const p = problem("2-1-4", t, seed);
+          return `${p.content} ${p.solution}`;
+        };
+        expect(hasUp(both4(tier)), `2-1-4 ${tier}`).toBe(true);
+        const p5 = problem("2-1-5", tier, seed);
+        expect(
+          `${p5.content} ${p5.solution}`.includes("버림"),
+          `2-1-5 ${tier}`,
+        ).toBe(true);
+        const p6 = problem("2-1-6", tier, seed);
+        expect(
+          `${p6.content} ${p6.solution}`.includes("반올림"),
+          `2-1-6 ${tier}`,
+        ).toBe(true);
+        for (const code of ["2-1-4", "2-1-5"] as const) {
+          expect(
+            problem(code, tier, seed).content.includes("반올림"),
+            `${code} ${tier} 에 반올림`,
+          ).toBe(false);
+        }
+        // 소수는 2-1-6 에만 (소단원 이름이 「어림의 활용」이라 거기가 자리다)
+        for (const code of ["2-1-4", "2-1-5"] as const) {
+          expect(
+            /\d\.\d/.test(problem(code, tier, seed).content),
+            `${code} ${tier} 에 소수`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  /* ── 경계 — 이 대단원의 알맹이 ── */
+
+  it("2-1-1·2-1-2 — 경계값이 목록에 있고, 이상은 넣고 초과는 뺀다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, keepEdge] of [
+        ["2-1-1", true],
+        ["2-1-2", false],
+      ] as const) {
+        const calc = problem(code, "연산", seed);
+        const label = `${code} 연산 @${seed}`;
+        const nums0 = intsIn(calc.content);
+        const pool = nums0.slice(0, 5);
+        const limit = nums0[5]!;
+        expect(pool, `${label} 목록이 다섯이 아니다`).toHaveLength(5);
+        // 경계값 자신이 목록에 **반드시** 있어야 두 낱말의 답이 갈린다
+        expect(
+          pool,
+          `${label} 경계값이 목록에 없다\n${calc.content}`,
+        ).toContain(limit);
+        const want = pool
+          .filter((v) => (keepEdge ? v >= limit : v > limit))
+          .sort((a, b) => a - b);
+        expect(answerList(calc.answer, label), calc.content).toEqual(want);
+        // 반대쪽 낱말이면 답이 **달라야** 한다 — 경계값 하나가 그것을 보장한다
+        const other = pool
+          .filter((v) => (keepEdge ? v > limit : v >= limit))
+          .sort((a, b) => a - b);
+        expect(want.length, `${label} 두 낱말이 같은 답을 낸다`).not.toBe(
+          other.length,
+        );
+      }
+    }
+  });
+
+  it("개수로 독립 검산 — 낱말 넷이 경계를 어떻게 가르는가 (리드 지적)", () => {
+    // 값 검산은 경계 하나 어긋나도 침묵할 수 있지만, **개수**는 1 이 어긋나 바로 보인다.
+    for (const seed of SEEDS) {
+      const a1 = problem("2-1-1", "응용", seed);
+      const [lo1, hi1] = intsIn(a1.content);
+      let evens = 0;
+      for (let v = lo1!; v <= hi1!; v += 1) if (v % 2 === 0) evens += 1;
+      expect(Number(/^\$(\d+)\$$/.exec(a1.answer)![1]), a1.content).toBe(evens);
+
+      const a2 = problem("2-1-2", "응용", seed);
+      const [lo2, hi2] = intsIn(a2.content);
+      expect(
+        Number(/^\$(\d+)\$$/.exec(a2.answer)![1]),
+        `${a2.content}\n초과·미만은 양 끝을 뺀다`,
+      ).toBe(hi2! - lo2! - 1);
+
+      // 심화 역산 — 개수에서 끝값을 되짚는다(이상·이하는 +1, 초과·미만은 −1)
+      const d1 = problem("2-1-1", "심화", seed);
+      const [aa, cnt] = intsIn(d1.content);
+      const b1 = Number(/^\$(\d+)\$$/.exec(d1.answer)![1]);
+      expect(b1 - aa! + 1, d1.content).toBe(cnt);
+      const d2 = problem("2-1-2", "심화", seed);
+      const [aa2, cnt2] = intsIn(d2.content);
+      const b2 = Number(/^\$(\d+)\$$/.exec(d2.answer)![1]);
+      expect(b2 - aa2! - 1, d2.content).toBe(cnt2);
+    }
+  });
+
+  it("2-1-3 — 경계값인 사람·물건이 «이상»엔 들고 «초과»엔 안 든다", () => {
+    for (const seed of SEEDS) {
+      for (const [tier, keepEdge] of [
+        ["연산", true],
+        ["기본", false],
+      ] as const) {
+        const p = problem("2-1-3", tier, seed);
+        // 발문의 수 차례: 기준 · **후보 개수** · 값들. 개수는 씨앗마다 4~6 으로 갈린다
+        // (답의 폭이 후보 수에 매여 있어 고정하면 답이 2종뿐이 된다 — 리드 검수 반려 ③).
+        const ns = intsIn(p.content);
+        const limit = ns[0]!;
+        const count = ns[1]!;
+        const values = ns.slice(2, 2 + count);
+        expect(values, `2-1-3 ${tier} @${seed}\n${p.content}`).toHaveLength(
+          count,
+        );
+        expect(
+          values,
+          `2-1-3 ${tier} @${seed} 경계값이 목록에 없다\n${p.content}`,
+        ).toContain(limit);
+        const want = values.filter((v) => (keepEdge ? v >= limit : v > limit));
+        expect(Number(/^\$(\d+)\$$/.exec(p.answer)![1]), p.content).toBe(
+          want.length,
+        );
+      }
+    }
+  });
+
+  /* ── 어림 — 「뜻 없는 어림」이 없고, 역산 범위는 양방향으로 선다 ── */
+
+  it("어림 문항은 뜻이 있다 — 아래 자리가 0인 수를 어림하라고 하지 않는다", () => {
+    for (const code of ["2-1-4", "2-1-5", "2-1-6"] as const) {
+      for (const tier of ["연산", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const placeName = /([십백천])의 자리/.exec(p.content)?.[1];
+          if (!placeName) continue; // 소수 갈래 등
+          const place = PLACE_OF[placeName]!;
+          const x = intsIn(p.content)[0]!;
+          expect(
+            x % place,
+            `${code} ${tier} @${seed}: ${x} 는 ${placeName}의 자리 아래가 0이라 어림이 뜻이 없다`,
+          ).not.toBe(0);
+        }
+      }
+    }
+    // 반올림 판정 자리가 4 이하·5 이상 **양쪽**을 밟는가 — 한쪽만이면 그 가지가 죽는다
+    let up = 0;
+    let down = 0;
+    for (let seed = 1; seed <= 200; seed += 1) {
+      const p = problem("2-1-6", "연산", seed);
+      const placeName = /([십백천])의 자리/.exec(p.content)![1]!;
+      const place = PLACE_OF[placeName]!;
+      const x = intsIn(p.content)[0]!;
+      if (Math.floor((x % place) / (place / 10)) >= 5) up += 1;
+      else down += 1;
+    }
+    expect(up, "반올림에서 «올리는» 가지가 안 나왔다").toBeGreaterThan(20);
+    expect(down, "반올림에서 «버리는» 가지가 안 나왔다").toBeGreaterThan(20);
+  });
+
+  it("2-1-4·2-1-5·2-1-6 연산·응용 — 어림값이 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, fn] of [
+        ["2-1-4", ceilT],
+        ["2-1-5", floorT],
+        ["2-1-6", roundT],
+      ] as const) {
+        const calc = problem(code, "연산", seed);
+        const pn = /([십백천])의 자리/.exec(calc.content)?.[1];
+        if (pn) {
+          const place = PLACE_OF[pn]!;
+          const x = intsIn(calc.content)[0]!;
+          expect(
+            Number(/^\$(\d+)\$$/.exec(calc.answer)![1]),
+            calc.content,
+          ).toBe(fn(x, place));
+        }
+        const ap = problem(code, "응용", seed);
+        const apn = /([십백천])의 자리/.exec(ap.content)?.[1];
+        if (!apn) continue;
+        const place = PLACE_OF[apn]!;
+        const x = intsIn(ap.content)[0]!;
+        const got = Number(/^\$(\d+)\$$/.exec(ap.answer)![1]);
+        if (code === "2-1-4") expect(got, ap.content).toBe(ceilT(x, place) - x);
+        else if (code === "2-1-5")
+          expect(got, ap.content).toBe(x - floorT(x, place));
+        else
+          expect(got, ap.content).toBe(
+            Math.abs(roundT(x, 10) - roundT(x, 100)),
+          );
+      }
+    }
+  });
+
+  it("역산 범위는 **양방향**으로 선다 — 끝값은 그 어림값이 되고 바깥값은 안 된다", () => {
+    // 리드 지적: 「범위를 이렇게 계산했다」를 옮겨 적으면 넓게 틀려도 조용하다.
+    // 끝값을 직접 어림해 맞는지 보고, **바로 바깥값**도 어림해 안 맞는지 본다.
+    for (const seed of SEEDS) {
+      for (const [code, fn] of [
+        ["2-1-4", ceilT],
+        ["2-1-6", roundT],
+      ] as const) {
+        const p = problem(code, "심화", seed);
+        const label = `${code} 심화 @${seed}`;
+        const place = PLACE_OF[/([십백천])의 자리/.exec(p.content)![1]!]!;
+        const target = intsIn(p.content)[0]!;
+        const [lo, hi] = answerPair(p.answer, label);
+        expect(lo, `${label} 아래끝이 위끝보다 크다`).toBeLessThanOrEqual(hi);
+        expect(fn(lo, place), `${label} 아래끝 ${lo}\n${p.content}`).toBe(
+          target,
+        );
+        expect(fn(hi, place), `${label} 위끝 ${hi}\n${p.content}`).toBe(target);
+        expect(
+          fn(lo - 1, place),
+          `${label} 아래끝 바깥 ${lo - 1} 도 ${target} 이 된다 — 범위가 넓다`,
+        ).not.toBe(target);
+        expect(
+          fn(hi + 1, place),
+          `${label} 위끝 바깥 ${hi + 1} 도 ${target} 이 된다 — 범위가 넓다`,
+        ).not.toBe(target);
+      }
+
+      // 2-1-5 심화는 **조건 조합** — 두 어림을 동시에 만족하는 범위다
+      const d5 = problem("2-1-5", "심화", seed);
+      const label5 = `2-1-5 심화 @${seed}`;
+      const place5 = PLACE_OF[/([십백천])의 자리/.exec(d5.content)![1]!]!;
+      const [u, dn] = intsIn(d5.content);
+      const [lo5, hi5] = answerPair(d5.answer, label5);
+      for (const v of [lo5, hi5]) {
+        expect(ceilT(v, place5), `${label5} ${v} 의 올림\n${d5.content}`).toBe(
+          u,
+        );
+        expect(floorT(v, place5), `${label5} ${v} 의 버림`).toBe(dn);
+      }
+      for (const v of [lo5 - 1, hi5 + 1]) {
+        const both = ceilT(v, place5) === u && floorT(v, place5) === dn;
+        expect(both, `${label5} 바깥값 ${v} 도 두 조건을 만족한다`).toBe(false);
+      }
+      // 두 조건이 **둘 다** 답을 깎는가 — 한쪽만으로는 범위가 더 넓어야 한다
+      let onlyCeil = 0;
+      let onlyFloor = 0;
+      for (let v = dn! - place5; v <= u! + place5; v += 1) {
+        if (v >= 1 && ceilT(v, place5) === u) onlyCeil += 1;
+        if (v >= 1 && floorT(v, place5) === dn) onlyFloor += 1;
+      }
+      expect(onlyCeil, `${label5} 올림 조건이 놀고 있다`).toBeGreaterThan(
+        hi5 - lo5 + 1,
+      );
+      expect(onlyFloor, `${label5} 버림 조건이 놀고 있다`).toBeGreaterThan(
+        hi5 - lo5 + 1,
+      );
+    }
+  });
+
+  it("2-1-6 기본 — 소수 반올림이 정수 스케일로 다시 선다 (꼬리 0 없음)", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-1-6", "기본", seed);
+      const label = `2-1-6 기본 @${seed}`;
+      const src = /\$(\d+\.\d+)\$/.exec(p.content)![1]!;
+      const ans = /^\$(\d+(?:\.\d+)?)\$$/.exec(p.answer)![1]!;
+      // 백분의 일 정수로 재서 부동소수점을 안 쓴다
+      const centi = Math.round(Number(src) * 100);
+      const tenth = Math.floor(centi / 10) % 10;
+      const hundredth = centi % 10;
+      expect(
+        hundredth,
+        `${label} 둘째 자리가 0이면 반올림이 뜻이 없다`,
+      ).not.toBe(0);
+      const whole = Math.floor(centi / 100);
+      const want = hundredth >= 5 ? whole * 10 + tenth + 1 : whole * 10 + tenth;
+      expect(Math.round(Number(ans) * 10), `${label}\n${p.content}`).toBe(want);
+      expect(ans, `${label} 꼬리 0 이 남았다 — ${ans}`).not.toMatch(/\.\d*0$/);
+    }
+  });
+
+  it("전수 쓸기 1000 — 어림이 뜻을 잃는 세 자리를 구성이 막는다 (리드 검수 반려 ①②)", () => {
+    // 셋 다 **값은 옳아서** 검산 가드가 조용한 부류다. 「그 문항이 뜻이 있나」는
+    // 값 검산과 다른 축이라 따로 세야 하고, 10%짜리 분포는 **전수**라야 안다.
+    let intAns = 0;
+    let zeroDiff = 0;
+    for (let seed = 0; seed < 1000; seed += 1) {
+      // ① 「소수 첫째 자리까지」인데 답이 정수로 접히면 자리가 지면에서 사라진다
+      //    (`dec` 가 꼬리 0 을 자른다 — 「$1.0$」이라 쓸 수도 없다).
+      const r = problem("2-1-6", "기본", seed);
+      if (/^\$\d+\$$/.test(r.answer)) {
+        intAns += 1;
+        if (intAns <= 2)
+          expect(r.answer, `2-1-6 기본 @${seed} 정수 답\n${r.content}`).toMatch(
+            /\./,
+          );
+      }
+      // ② 「차를 구하시오」인데 두 어림이 같은 값이면 견줌이 뜻을 잃는다
+      const a = problem("2-1-6", "응용", seed);
+      if (a.answer === "$0$") {
+        zeroDiff += 1;
+        if (zeroDiff <= 2)
+          expect(a.answer, `2-1-6 응용 @${seed} 차가 0\n${a.content}`).not.toBe(
+            "$0$",
+          );
+      }
+    }
+    expect(intAns, "소수 첫째 자리 답이 정수로 접힌 자리").toBe(0);
+    expect(zeroDiff, "두 어림이 같은 값을 가리킨 자리").toBe(0);
+  });
+
+  it("답의 가짓수가 넉넉하다 — 「상수답이 아니다」로는 2종도 통과한다 (반려 ③)", () => {
+    // ⚠️ 앞서 「답 분포」 시험은 **가짓수 ≥ 2** 만 봤다. 그래서 2-1-3 연산·기본이
+    //    «2종뿐»인 채로 통과했다(최빈 51.4% — 학생이 보기도 전에 둘 중 하나).
+    //    지표를 **가짓수**로 바꿔야 그 자리가 보인다.
+    const N = 1000;
+    const bad: string[] = [];
+    for (const code of CODES21) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45) {
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+        }
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("2-1-3 후보 수가 씨앗마다 갈린다 — 답의 폭은 후보 수가 정한다", () => {
+    const sizes = new Set<number>();
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-1-3", "연산", seed);
+      // 발문이 스스로 밝힌 개수와 실제 나열이 같아야 한다(「넷의」 하드코딩 금지)
+      const said = Number(/\$(\d+)\$(?:개|명)의/.exec(p.content)![1]);
+      // ⚠️ 목록을 고를 때 **쉼표가 있는** 덩어리를 요구한다 — 안 그러면 기준값
+      //    「$12$ 살」이 먼저 걸려 나열이 1개로 읽힌다(내 첫 판이 그랬다).
+      const listed = /\$(\d+(?:,\\ \d+)+)\$ (?:kg|살)/
+        .exec(p.content)![1]!
+        .split(",\\ ").length;
+      expect(
+        said,
+        `2-1-3 연산 @${seed} 발문이 말한 수와 나열이 다르다\n${p.content}`,
+      ).toBe(listed);
+      sizes.add(listed);
+    }
+    expect(
+      sizes.size,
+      `후보 수가 한 가지뿐이다 — ${[...sizes]}`,
+    ).toBeGreaterThanOrEqual(2);
+  });
+
+  it("2-1 여섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES21) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);

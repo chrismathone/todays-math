@@ -43,8 +43,15 @@ for (const sec of sections) {
   const unit = elementaryUnits().find(
     (u) => u.grade === "__GRADE__" && u.section.startsWith(sec),
   )!;
-  for (const tier of ELEM_TIERS) {
-    for (const seed of [20260821, 7, 1234, 1, 2, 3]) {
+  // ⚠️ **표준(`undefined`)까지 찍는다.** 갈래만 찍으면 「표준 발문을 고치는 변이」가
+  // ⑵ 에서 «산출물이 그대로다»로 판정 거부된다 — 표준 결함은 구조적으로 안 보인다.
+  // 초3 조사 수리(1-3-3 표준)를 등록하며 실제로 걸렸다(2026-08-23 elem-g3).
+  for (const tier of [undefined, ...ELEM_TIERS]) {
+    // ⚠️ 씨앗은 **일부러 고른 것**이다. 표본이 어떤 자리를 안 밟으면 그 자리를 건드리는
+    // 변이는 산출물을 안 바꿔 **판정할 수 없다**(⑵ 거부). 4·79 는 초3 2-2-3 에서
+    // 「나쁜 나머지가 뽑는 범위의 **끝**」인 자리를 밟는다 — 그것 없이는 「나쁜 r 탐색
+    // 범위를 하나 줄임」 변이가 영영 판정되지 않는다(2026-08-23 실측).
+    for (const seed of [20260821, 7, 1234, 1, 2, 3, 4, 79]) {
       try {
         const p = generateElementaryProblem(unit, seed, tier);
         out.push(
@@ -93,6 +100,144 @@ G3_MUTS = [
         "갈래 뭉개기 — 심화를 연산으로",
         "    심화: add3Reverse,",
         "    심화: add3Calc,",
+    ),
+    # ── 초3 2-1 곱셈 · 2-2 나눗셈 확대(elem-g3, 2026-08-23) ──
+    # 이름 약속 잠금과 표준 수리를 지키는 변이다. 표준을 고치는 변이가 섞여 있어
+    # 산출물 probe 가 **표준까지** 찍어야 판정된다(위 PROBE_TS 주석).
+    (
+        "[2-1] 표준 2-1-3: 20·30·40 건너뛰기 삭제",
+        "    for (const cut of [20, 30, 40]) if (b >= cut) b += 1;",
+        "    for (const cut of [20, 30, 40]) if (false && b >= cut) b += 1;",
+    ),
+    (
+        "[2-1] 표준 2-1-3: 건너뛰기 위끝 45→48 (뽑는 범위가 새 밖으로)",
+        "let b = intBetween(rng, 12, 45);",
+        "let b = intBetween(rng, 12, 48);",
+    ),
+    (
+        "[2-1] 2-1-1·2 올림 갈림 뒤집기 (1)↔(2)",
+        'return section.includes("(2)") ? [2, 3] : [0, 1];',
+        'return section.includes("(2)") ? [0, 1] : [2, 3];',
+    ),
+    (
+        "[2-1] 2-1-1·2 응용: 곱한 뒤 더할 것을 곱만",
+        "      n(p + c),\n      `먼저 곱합니다.",
+        "      n(p),\n      `먼저 곱합니다.",
+    ),
+    (
+        "[2-1] 2-1-1·2 심화 ㉢: 두 번째 곱하는 수가 올림 약속을 어겨도 통과",
+        "    (v) => v !== b && mulCarries3x1(a, v) >= lo && mulCarries3x1(a, v) <= hi,",
+        "    (v) => v !== b,",
+    ),
+    (
+        "[2-1] 2-1-1·2 심화 ㉡: 가린 자리를 한 자리 옆으로",
+        "    const hidden = Math.floor(a / 10 ** pos) % 10;",
+        "    const hidden = Math.floor(a / 10 ** ((pos + 1) % 3)) % 10;",
+    ),
+    (
+        "[2-1] 2-1-3 갈래: (몇)×(몇십몇) 꼴을 (몇)×(몇십) 으로",
+        "  return [intBetween(rng, 2, 9), tensOnes21(rng)];",
+        "  return [intBetween(rng, 2, 9), intBetween(rng, 2, 9) * 10];",
+    ),
+    (
+        "[2-1] 2-1-3 응용: 덜어낸 뒤 답이 곱 그대로",
+        "    n(p - c),\n    `묶음의 수를 먼저 곱합니다.",
+        "    n(p),\n    `묶음의 수를 먼저 곱합니다.",
+    ),
+    (
+        "[2-1] 2-1-3 심화 ㉡: 되짚은 몇십에 10 더하기",
+        "      n(t1),\n      `몇십끼리의 곱은",
+        "      n(t1 + 10),\n      `몇십끼리의 곱은",
+    ),
+    (
+        "[2-1] 2-1-4: «몇십몇» 의 일의 자리에 0 을 허용",
+        "  return intBetween(rng, 1, 9) * 10 + intBetween(rng, 1, 9);",
+        "  return intBetween(rng, 1, 9) * 10 + intBetween(rng, 0, 9);",
+    ),
+    (
+        "[2-1] 2-1-4 심화: 카드 네 장 중복 허용(동률 방지 건너뛰기 무력화)",
+        "  const cards = distinctIdx(rng, 9, 4).map((i) => i + 1);",
+        "  const cards = [0, 1, 2, 3].map(() => intBetween(rng, 1, 9));",
+    ),
+    (
+        "[2-1] 2-1-4 심화: 가장 큰·작은 판정 뒤집기",
+        "          if (askBig ? v1 * v2 > bestP : v1 * v2 < bestP) {",
+        "          if (askBig ? v1 * v2 < bestP : v1 * v2 > bestP) {",
+    ),
+    (
+        "[2-2] 표준 2-2-3: 건너뛰기 삭제 (몇십이 되살아난다)",
+        "    if (r >= bad) r += 1;",
+        "    if (false && r >= bad) r += 1;",
+    ),
+    (
+        "[2-2] 표준 2-2-3: 나쁜 r 탐색 범위를 하나 줄임",
+        "for (let v = 1; v <= b - 1; v += 1) if ((b * q + v) % 10 === 0) bad = v;",
+        "for (let v = 1; v <= b - 2; v += 1) if ((b * q + v) % 10 === 0) bad = v;",
+    ),
+    (
+        "[2-2] 2-2-1·2 내림 갈림 뒤집기",
+        'return section.includes("내림이 있는");',
+        'return !section.includes("내림이 있는");',
+    ),
+    (
+        "[2-2] 2-2-1·2 응용: 덜어내기를 안 한다",
+        "    n(q - c),\n    `한 몫을 먼저 구합니다. ${expr(`${a}\\\\div${b}=${q}`)} 입니다. ${expr(`${q}-${c}=${q - c}`)} 이므로 답은",
+        "    n(q),\n    `한 몫을 먼저 구합니다. ${expr(`${a}\\\\div${b}=${q}`)} 입니다. ${expr(`${q}-${c}=${q - c}`)} 이므로 답은",
+    ),
+    (
+        "[2-2] 2-2-1·2 응용: 「그중 몇 묶음」을 곱하지 않는다",
+        "      n(q * c),\n      `한 몫을 먼저 구합니다.",
+        "      n(q + c),\n      `한 몫을 먼저 구합니다.",
+    ),
+    (
+        "[2-2] 2-2-1·2 심화 ㉠: 되짚은 나뉘는 수를 어긋나게",
+        "      n(a),\n      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,\n    );\n  }\n  const wrong = a * b;",
+        "      n(a + b),\n      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,\n    );\n  }\n  const wrong = a * b;",
+    ),
+    (
+        "[2-2] 2-2-3: 나머지가 나누는 수까지 커질 수 있게",
+        "    r = intBetween(rng, 1, b - 1);",
+        "    r = intBetween(rng, 1, b);",
+    ),
+    (
+        "[2-2] 2-2-3 기본: 「남는 것」에 몫을 답한다",
+        "      n(r),\n      `${expr(`${b}\\\\times${q}=${b * q}`)}",
+        "      n(q),\n      `${expr(`${b}\\\\times${q}=${b * q}`)}",
+    ),
+    (
+        "[2-2] 2-2-3 응용: 「적어도」에 한 묶음을 안 더한다",
+        "      n(q + 1),",
+        "      n(q),",
+    ),
+    (
+        "[2-2] 2-2-3 심화 ㉡: 채우는 수를 나머지로",
+        "    n(b - r),\n    `${expr(`${b}\\\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 나누는 수가 ${n(b)} 이므로",
+        "    n(r),\n    `${expr(`${b}\\\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 나누는 수가 ${n(b)} 이므로",
+    ),
+    (
+        "[2-2] 2-2-4: 나뉘는 수 아래끝을 b 에서 유도하지 않음 (두 자리가 샌다)",
+        "function div3Exact(rng: Rng): [number, number, number] {\n  const b = intBetween(rng, 3, 9);\n  const q = intBetween(rng, Math.ceil(100 / b), 48);",
+        "function div3Exact(rng: Rng): [number, number, number] {\n  const b = intBetween(rng, 3, 9);\n  const q = intBetween(rng, 12, 48);",
+    ),
+    (
+        "[2-2] 2-2-4 심화 ㉡: 일의 자리까지 가린다 (답이 하나가 아니다)",
+        "  const pos = intBetween(rng, 1, 2);",
+        "  const pos = intBetween(rng, 0, 2);",
+    ),
+    (
+        "[2-2] 2-2-4 응용: 더 받은 것을 안 더한다",
+        "      n(q + c),\n      `한 몫을 먼저 구합니다.",
+        "      n(q),\n      `한 몫을 먼저 구합니다.",
+    ),
+    (
+        "[조사] 1-3-3 표준 조사 수리 되돌리기 — «$…=18$ 에서» 를 «를» 로",
+        "$ 에서 $${a}\\\\div${b}$ 의 몫을 구하시오.`,",
+        "$ 를 이용하여 $${a}\\\\div${b}$ 의 몫을 구하시오.`,",
+    ),
+    (
+        '[2-4] 2-4-5 표준: 나머지 있는 나눗셈을 다시 등식으로 (거짓 등식 되살리기)',
+        '${expr(`${den}\\\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면',
+        '$${num}\\\\div${den}=${whole}$ 이고 나머지가 ${n(rest)} 이므로 대분수로 나타내면',
     ),
 ]
 
@@ -269,6 +414,29 @@ G5_MUTS = [
         "  return shuffled(rng, [a, b, inner, below, above]);",
         "  return shuffled(rng, [a + 1, b, inner, below, above]);",
     ),
+    # ── 8차분 (2-1 검수 반려 수리) ──
+    (
+        # «$1.0$» 이라 쓸 수 없으니(꼬리 0 금지) 뽑는 데서 막아야 한다.
+        "자리 사라짐 — 2-1-6 기본이 소수 첫째 자리 0 을 뽑아 답이 정수가 된다 (반려 ①)",
+        "  const tenth = hundredth >= 5 ? intBetween(rng, 0, 8) : intBetween(rng, 1, 9);",
+        "  const tenth = intBetween(rng, 0, 9);",
+    ),
+    (
+        "견줌 무력화 — 2-1-6 응용의 두 어림이 같은 값을 가리켜 차가 0 이 된다 (반려 ②)",
+        "  const tens = intBetween(rng, 0, 8);\n  const ones = tens === 0 ? intBetween(rng, 5, 9) : intBetween(rng, 1, 9);\n  const below = tens * 10 + ones;",
+        "  const below = intBetween(rng, 1, 99);",
+    ),
+    (
+        # 「상수답이 아니다」는 이것을 **통과시킨다** — 가짓수를 세는 시험만 문다.
+        "답의 폭 좁힘 — 2-1-3 후보 수를 넷으로 고정해 답이 2종뿐이 된다 (반려 ③)",
+        "  const total = intBetween(rng, 4, 6);",
+        "  const total = 4;",
+    ),
+    (
+        "정의역 훼손 — 2-1-3 아래 값이 0·음수가 될 수 있다 (나이·무게)",
+        "  for (let v = Math.max(1, limit - 12); v < limit; v += 1) lowPool.push(v);",
+        "  for (let v = limit - 12; v < limit; v += 1) lowPool.push(v);",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -442,11 +610,30 @@ G6_MUTS = [
 ]
 
 TARGETS = {
+    # 초3 은 잠금이 **두 파일**에 걸쳐 있다 — 파일럿(1-1-2)은 elementaryG3Tiers,
+    # 확대분(1-2~2-2)은 elemTiersG3 다. 하나만 돌리면 다른 쪽이 무는 변이가
+    # 「시험이 못 잡는다」로 읽힌다. 소단원도 변이가 닿는 곳을 전부 찍어야
+    # ⑵ 에서 «산출물이 그대로다»로 오판되지 않는다.
     "g3": {
         "file": "src/lib/elementary/g3.ts",
-        "test": "src/__tests__/unit/elementaryG3Tiers.test.ts",
+        "test": [
+            "src/__tests__/unit/elementaryG3Tiers.test.ts",
+            "src/__tests__/unit/elemTiersG3.test.ts",
+        ],
         "grade": "초3",
-        "section": "1-1-2",
+        "sections": [
+            "1-1-2",
+            "1-3-3",
+            "2-1-1",
+            "2-1-2",
+            "2-1-3",
+            "2-1-4",
+            "2-2-1",
+            "2-2-2",
+            "2-2-3",
+            "2-2-4",
+            "2-4-5",
+        ],
         "muts": G3_MUTS,
     },
     # 변이가 1-1·1-2·1-3·1-4·1-6-3 에 걸쳐 있어 «sections» 로 전부 찍는다(g6 과 같은 까닭).
@@ -553,8 +740,11 @@ def probe(grade: str, sections: list[str]) -> str:
             os.remove(PROBE_PATH)
 
 
-def failed_tests(test_path: str) -> tuple[int, list[str]]:
-    code, txt = run(["npx", "vitest", "run", test_path, "--reporter=json"])
+def failed_tests(test_paths: str | list[str]) -> tuple[int, list[str]]:
+    # 한 학년의 잠금이 시험 파일 **여럿**에 걸쳐 있을 수 있다(초3 은 파일럿 판과
+    # 확대 판이 따로다) — 하나만 돌리면 다른 쪽이 무는 변이를 «시험이 못 잡는다»로 읽는다.
+    paths = [test_paths] if isinstance(test_paths, str) else list(test_paths)
+    code, txt = run(["npx", "vitest", "run", *paths, "--reporter=json"])
     names: list[str] = []
     try:
         data = json.loads(txt[txt.index("{"):])
@@ -612,11 +802,22 @@ def main() -> int:
                 ok = False
                 continue
             io.open(path, "w", encoding="utf-8").write(src.replace(before, after, 1))
+            got = None
             if io.open(path, encoding="utf-8").read() == src:
                 print(f"  ??    {name}\n        ← 파일이 안 바뀌었다")
                 ok = False
-            elif probe(target["grade"], sections) == base:
+            elif (got := probe(target["grade"], sections)) == base:
                 print(f"  ??    {name}\n        ← **산출물이 그대로다.** 판정하지 않는다")
+                ok = False
+            elif not got.startswith("["):
+                # ⚠️ 「바뀌었다」와 「못 얻었다」는 다르다. 변이가 컴파일을 깨면 probe 가
+                # 에러 문자열을 돌려주는데, 그것도 base 와 «다르므로» 여기까지 통과해
+                # 시험이 컴파일 오류로 떨어지고 **RED 로 찍힌다** — 아무것도 안 잡았는데
+                # 「가드가 잡았다」로 읽힌다. 기준 산출물에만 있던 잣대를 여기에도 건다.
+                print(
+                    f"  ??    {name}\n        ← **산출물을 못 얻었다**(컴파일이 깨졌을 수 있다). "
+                    f"판정하지 않는다: {got[:160]}"
+                )
                 ok = False
             else:
                 code, names = failed_tests(target["test"])

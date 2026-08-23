@@ -162,6 +162,12 @@ function lro(latex: string): string {
   return `${expr(latex)}${FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로"}`;
 }
 
+/** 수 나열(`nums`) 뒤 `(으)로` — 읽는 소리는 **마지막 수**로 끝난다. */
+function numsRo(values: readonly (number | string)[]): string {
+  const d = lastDigit(String(values[values.length - 1] ?? 0));
+  return `${nums(values)}${FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로"}`;
+}
+
 /** 소수 표기 뒤 조사 — 마지막 숫자 소리로 정한다(«영 점 오오»). */
 function dj(decText: string, withFinal: string, without: string): string {
   return `${expr(decText)}${FINAL_DIGITS.has(lastDigit(decText)) ? withFinal : without}`;
@@ -1840,7 +1846,7 @@ function per61Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `둘레가 ${n(2 * (w + h))} cm인 직사각형이 있습니다. 가로가 세로보다 ${n(d)} cm 더 길 때, 가로는 몇 cm입니까?`,
     n(w),
-    `둘레의 절반이 가로와 세로의 합이므로 ${expr(`${2 * (w + h)}\\div2=${w + h}`)} cm입니다. 여기에 차 ${n(d)}를 더해 반으로 나누면 ${expr(`(${w + h}+${d})\\div2=${w}`)}입니다.`,
+    `둘레의 절반이 가로와 세로의 합이므로 ${expr(`${2 * (w + h)}\\div2=${w + h}`)} cm입니다. 여기에 차 ${nj(d, "을", "를")} 더해 반으로 나누면 ${expr(`(${w + h}+${d})\\div2=${w}`)}입니다.`,
   );
 }
 
@@ -2557,7 +2563,7 @@ function mix113Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     const wrong = a - b * c + q;
     return make(
       unit,
-      `${expr(`(${a}-${b})\\times${c}+${d}\\div${e}`)}를 계산해야 하는데, 잘못하여 괄호를 빠뜨리고 ${expr(`${a}-${b}\\times${c}+${d}\\div${e}`)}로 계산했습니다. 바르게 계산한 값과 잘못 계산한 값의 차는 얼마입니까?`,
+      `${lj(`(${a}-${b})\\times${c}+${d}\\div${e}`, "을", "를")} 계산해야 하는데, 잘못하여 괄호를 빠뜨리고 ${lro(`${a}-${b}\\times${c}+${d}\\div${e}`)} 계산했습니다. 바르게 계산한 값과 잘못 계산한 값의 차는 얼마입니까?`,
       n(right - wrong),
       `바르게 계산하면 ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}\\times${c}=${(a - b) * c}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${(a - b) * c}+${q}=${right}`)}입니다. 잘못 계산하면 ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}-${b * c}+${q}=${wrong}`)}입니다. 차는 ${expr(`${right}-${wrong}=${right - wrong}`)}입니다.`,
     );
@@ -3860,7 +3866,7 @@ function eq141Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `${fr(sn, sd)}의 분모에 ${nj(addDen, "을", "를")} 더했습니다. 분수의 크기가 변하지 않게 하려면 분자에 얼마를 더해야 합니까?`,
       n(addNum),
-      `분모가 ${expr(`${sd}+${addDen}=${sd * g}`)}로 ${n(g)}배가 되었으므로 분자도 ${n(g)}배인 ${nj(sn * g, "이", "가")} 되어야 합니다. 더할 수는 ${expr(`${sn * g}-${sn}=${addNum}`)}입니다.`,
+      `분모가 ${lro(`${sd}+${addDen}=${sd * g}`)} ${n(g)}배가 되었으므로 분자도 ${n(g)}배인 ${nj(sn * g, "이", "가")} 되어야 합니다. 더할 수는 ${expr(`${sn * g}-${sn}=${addNum}`)}입니다.`,
     );
   }
   // 범위 (lo, lo+sd) 안의 sd 배수는 정확히 하나(sd·g)다 — 답이 하나로 좁혀진다.
@@ -3918,7 +3924,7 @@ function sim142Read(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${frj(sn * g, sd * g, "을", "를")} 약분하여 만들 수 있는 분수는 모두 몇 개입니까?`,
     n(count),
-    `분모와 분자를 함께 나눌 수 있는 ${n(1)}보다 큰 수는 ${nums(divisors(g).filter((d) => d > 1))}로 ${n(count)}개이고, 각각으로 약분하면 서로 다른 분수가 ${n(count)}개 나옵니다.`,
+    `분모와 분자를 함께 나눌 수 있는 ${n(1)}보다 큰 수는 ${numsRo(divisors(g).filter((d) => d > 1))} ${n(count)}개이고, 각각으로 약분하면 서로 다른 분수가 ${n(count)}개 나옵니다.`,
   );
 }
 
@@ -4291,15 +4297,28 @@ const SUB_DENS = [3, 4, 5, 6, 8, 9, 10, 12] as const;
  * 단위 낱말을 **읽은 소리**의 받침 — `m`=미터·`L`=리터는 없고 `kg`=킬로그램은 있다.
  * 글자(m·L·kg)를 보고 정하면 틀린다. 조사는 언제나 소리가 정한다.
  */
-const UNIT_HAS_FINAL: Record<string, boolean> = {
-  m: false,
-  L: false,
-  kg: true,
+const UNIT_SOUND: Record<string, readonly [boolean, boolean]> = {
+  // [받침이 있나, ㄹ받침인가] — ㄹ받침은 «으로» 가 아니라 «로» 다(«살로»).
+  m: [false, false],
+  L: [false, false],
+  kg: [true, false],
+  살: [true, true],
+  명: [true, false],
+  개: [false, false],
+  원: [true, false],
+  장: [true, false],
+  칸: [true, false],
 };
 
-/** 단위 뒤 조사. `uj("kg", "을", "를")` → `kg을`. */
+/** 단위 뒤 조사. `uj("kg", "을", "를")` → `kg을`. 모르는 단위는 받침 없음으로 본다. */
 const uj = (unitWord: string, withFinal: string, without: string): string =>
-  `${unitWord}${UNIT_HAS_FINAL[unitWord] ? withFinal : without}`;
+  `${unitWord}${(UNIT_SOUND[unitWord] ?? [false, false])[0] ? withFinal : without}`;
+
+/** 단위 뒤 `(으)로`. `uro("kg")` → `kg으로`, `uro("살")` → `살로`. */
+const uro = (unitWord: string): string => {
+  const [final, rieul] = UNIT_SOUND[unitWord] ?? [false, false];
+  return `${unitWord}${final && !rieul ? "으로" : "로"}`;
+};
 
 /** 문장 소재 — [것, 단위]. 사람 이름은 따로 뽑는다. */
 const FRAC_STUFF = [
@@ -4658,6 +4677,515 @@ function sub154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 2-1 수의 범위와 어림하기 — 난이도 4단 (D-72 확대 7차) ──────────
+ *
+ * **이 대단원의 알맹이는 «경계»다.** 두 자리가 조용히 틀린다:
+ *
+ * ㉠ **경계 포함/제외** — 「이상·이하」는 끝을 넣고 「초과·미만」은 뺀다. 후보에 경계값
+ *    자신이 없으면 두 낱말이 **같은 답**을 내고, 낱말을 바꿔치기해도 아무도 모른다.
+ *    그래서 2-1-1·2-1-2 는 **경계값을 반드시 목록에 넣는다**(구성 보장).
+ *
+ * ㉡ **뜻 없는 어림** — 어림할 수의 아래 자리가 이미 0이면 올림·버림·반올림이 전부
+ *    그 수 자신이다. 정답은 «맞으니» 검산 가드가 조용하다(g6 의 「딱 떨어지면 반올림이
+ *    뜻 없다」와 같은 자리). 그래서 어림 세 소단원은 **아래 자리가 0이 아님을 뽑는
+ *    범위로 보장**하고, 반올림은 판정 자리가 4 이하·5 이상 **양쪽을 다 밟게** 한다.
+ *
+ * 역산 갈래는 어림값에서 **원래 수의 범위**를 되짚는다. 그때 ㉡ 의 구성 보장을
+ * **정답 범위에는 절대 걸지 않는다** — 세 소단원의 끝 규칙이 다르고 둘은 끝값 자신이
+ * 「어림이 뜻 없는 수」다. 올림 3500 → 3401~**3500**(위끝이 백의 배수) · 버림 3500 →
+ * **3500**~3599(아래끝) · 반올림 3500 → 3450~3549. ㉡ 을 답에 걸면 3499 가 되어 **틀린다.**
+ * 그래서 ㉡ 은 **낼 수를 뽑을 때만** 건다(2026-08-23 리드 지적).
+ *
+ * 소수 어림은 2-1-6 한 갈래뿐이다 — 근거는 구현 위험이 아니라 **소단원 이름**이다.
+ * 2-1-6 이 「반올림 알아보기와 **어림의 활용**」이고 교과서의 소수 어림이 실리는 자리가
+ * 거기다(값은 정수 스케일 `dec()` 를 거치므로 부동소수점 위험은 어차피 없다 —
+ * 없는 위험을 근거로 적으면 다음 사람이 틀린 근거를 물려받는다).
+ */
+
+/** 자리 이름 — 어림 문항이 내거는 자리. */
+const PLACES = [
+  [10, "십"],
+  [100, "백"],
+  [1000, "천"],
+] as const;
+
+/**
+ * 어림할 수 하나 — **그 자리 아래가 0이 아님**을 보장한다.
+ * 아래가 0이면 올림·버림·반올림이 전부 제자리라 문항이 뜻을 잃는다.
+ */
+function roundTarget(rng: Rng, place: number): number {
+  const high = intBetween(
+    rng,
+    place === 1000 ? 2 : 12,
+    place === 1000 ? 9 : 87,
+  );
+  const below = intBetween(rng, 1, place - 1); // 1 이상 — 절대 0이 아니다
+  return high * place + below;
+}
+
+/** 올림·버림·반올림 — 시험도 같은 뜻을 쓰지만 **제 손으로** 다시 센다. */
+const ceilTo = (x: number, place: number): number =>
+  Math.ceil(x / place) * place;
+const floorTo = (x: number, place: number): number =>
+  Math.floor(x / place) * place;
+const roundTo = (x: number, place: number): number => {
+  const digit = Math.floor((x % place) / (place / 10));
+  return digit >= 5 ? ceilTo(x, place) : floorTo(x, place);
+};
+
+/**
+ * 범위 문항의 생활 장면 — 표준(놀이기구·키)과 겹치지 않게 잡았다(R5).
+ *
+ * ⚠️ **주체·세는 말·값 범위를 장면에 딸린 값으로 묶는다.** 따로 뽑으면
+ *    「**택배**에서 … **네 사람이** $18$ kg」처럼 사람 무게가 18kg 이 된다
+ *    (2026-08-23 눈검사에서 실측 — g4 가 회송한 「색종이를 먹는다」와 같은 자리).
+ *    `[장면, 조건 문구, 재는 것, 단위, 주체, 세는 말, 기준 하한, 기준 상한]`
+ */
+const RANGE_SCENES = [
+  ["박물관", "관람료를 할인받으려면", "나이", "살", "어린이", "명", 8, 13],
+  ["수영장", "어린이 요금을 내려면", "나이", "살", "어린이", "명", 8, 13],
+  ["택배 회사", "보통 요금으로 부치려면", "무게", "kg", "상자", "개", 5, 25],
+  ["승강기", "한 번에 실으려면", "무게", "kg", "짐", "개", 5, 25],
+] as const;
+
+/* ── 2-1-1 이상과 이하 — 경계를 **포함**한다 ── */
+
+/** 후보 목록 — 경계값 자신을 **반드시** 넣는다. 안 넣으면 이상↔초과가 같은 답을 낸다. */
+function boundaryPool(rng: Rng, a: number, b: number): number[] {
+  const inner = intBetween(rng, a + 1, b - 1);
+  const below = a - intBetween(rng, 1, 4);
+  const above = b + intBetween(rng, 1, 4);
+  return shuffled(rng, [a, b, inner, below, above]);
+}
+
+/** 연산 — 목록에서 「a 이상」인 수를 고른다(경계 하나가 반드시 걸린다). */
+function rng211Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v >= a);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(a)} 이상인 수를 모두 쓰시오.`,
+    nums([...hit].sort((p, q) => p - q)),
+    `${n(a)} 이상은 ${nj(a, "과", "와")} 같거나 큰 수이므로 ${n(a)} 자신도 들어갑니다.`,
+  );
+}
+
+/** 기본 — 두 끝을 다 건다(이상이면서 이하). 경계 둘이 다 목록에 있다. */
+function rng211Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v >= a && v <= b);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(a)} 이상 ${n(b)} 이하인 수를 모두 쓰시오.`,
+    nums([...hit].sort((p, q) => p - q)),
+    `양 끝인 ${nj(a, "과", "와")} ${nj(b, "이", "가")} 모두 들어갑니다.`,
+  );
+}
+
+/** 응용 — 범위 안에서 조건을 하나 더 건다(두 단계). */
+function rng211Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 10, 40) * 2; // 짝수 경계 — 경계가 조건에 실제로 걸린다
+  const b = a + intBetween(rng, 8, 20);
+  const evens: number[] = [];
+  for (let v = a; v <= b; v += 1) if (v % 2 === 0) evens.push(v);
+  return make(
+    unit,
+    `${n(a)} 이상 ${n(b)} 이하인 자연수 중에서 짝수는 모두 몇 개입니까?`,
+    n(evens.length),
+    `${n(a)} 이상 ${n(b)} 이하에는 양 끝이 다 들어가고, 그중 짝수는 ${nums(evens.slice(0, 3))} … 로 ${n(evens.length)}개입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 개수에서 끝 값을 거슬러 구한다. 경계를 포함하므로 b=a+개수−1 이다. */
+function rng211Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 70);
+  const count = intBetween(rng, 5, 15);
+  const b = a + count - 1;
+  return make(
+    unit,
+    `${n(a)} 이상 □ 이하인 자연수가 모두 ${n(count)}개입니다. □에 알맞은 수를 구하시오.`,
+    n(b),
+    `양 끝을 모두 포함하므로 개수는 ${expr(`\\square-${a}+1`)}입니다. ${expr(`\\square-${a}+1=${count}`)}이므로 □는 ${n(b)}입니다.`,
+  );
+}
+
+/* ── 2-1-2 초과와 미만 — 경계를 **뺀다**. 2-1-1 과 같은 목록으로 답이 갈린다 ── */
+
+/** 연산 — 목록에서 「a 초과」인 수를 고른다(경계 a 는 빠진다). */
+function rng212Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v > a);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(a)} 초과인 수를 모두 쓰시오.`,
+    nums([...hit].sort((p, q) => p - q)),
+    `${n(a)} 초과는 ${nj(a, "보다", "보다")} 큰 수이므로 ${n(a)} 자신은 들어가지 않습니다.`,
+  );
+}
+
+/** 기본 — 두 끝을 다 뺀다(초과이면서 미만). */
+function rng212Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v > a && v < b);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(a)} 초과 ${n(b)} 미만인 수를 모두 쓰시오.`,
+    nums([...hit].sort((p, q) => p - q)),
+    `양 끝인 ${nj(a, "과", "와")} ${nj(b, "은", "는")} 들어가지 않습니다.`,
+  );
+}
+
+/** 응용 — 같은 두 수를 «이상·이하»로도 «초과·미만»으로도 세어 **차이**를 묻는다. */
+function rng212Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 60);
+  const b = a + intBetween(rng, 8, 20);
+  const openCount = b - a - 1;
+  return make(
+    unit,
+    `${n(a)} 초과 ${n(b)} 미만인 자연수는 모두 몇 개입니까?`,
+    n(openCount),
+    `${nj(a, "과", "와")} ${nj(b, "을", "를")} 빼야 하므로 ${expr(`${b}-${a}-1=${openCount}`)}개입니다.`,
+  );
+}
+
+/** 심화 — **역산** + 두 표현 바꿔 쓰기. 자연수에서 「a 초과」는 「a+1 이상」이다. */
+function rng212Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 70);
+  const count = intBetween(rng, 5, 15);
+  const b = a + count + 1;
+  return make(
+    unit,
+    `${n(a)} 초과 □ 미만인 자연수가 모두 ${n(count)}개입니다. □에 알맞은 수를 구하시오.`,
+    n(b),
+    `양 끝을 빼므로 개수는 ${expr(`\\square-${a}-1`)}입니다. ${expr(`\\square-${a}-1=${count}`)}이므로 □는 ${n(b)}입니다.`,
+  );
+}
+
+/* ── 2-1-3 수의 범위를 알고 문제 해결하기 — 생활 장면(표준의 놀이기구와 다르다) ── */
+
+/** 장면 하나 + 값 넷 — 경계값 자신이 **반드시** 목록에 든다(이상↔초과가 갈리게). */
+function rangeScene(rng: Rng): {
+  head: string;
+  what: string;
+  unitName: string;
+  who: string;
+  countUnit: string;
+  limit: number;
+  values: number[];
+} {
+  const [place, cond, what, unitName, who, countUnit, lo, hi] = pick(
+    rng,
+    RANGE_SCENES,
+  );
+  const limit = intBetween(rng, lo, hi);
+  // 답의 폭은 **후보 수**가 정한다. 수를 넷으로 고정하고 아래 개수만 1~2 로 가르면
+  // 답이 «2종»뿐이다(이상 = 4−below → {2,3} · 초과 = 3−below → {1,2}) — 학생이
+  // 보기도 전에 둘 중 하나다. 게다가 「상수답이 아니다」 시험은 그것을 **통과시킨다**
+  // (2026-08-23 리드 검수 실측 최빈 51.4%). 그래서 **후보 수 자체를 갈랐다.**
+  const total = intBetween(rng, 4, 6);
+  const below = intBetween(rng, 1, total - 2); // 경계값 위가 적어도 하나 남는다
+  // ⚠️ 아래 값은 **1 이상**이어야 한다 — 나이도 무게도 0이나 음수일 수 없다.
+  //    기준에서 빼 나가면 기준이 작을 때 「무게 $-7$ kg」이 나온다(2026-08-23 실측).
+  //    그래서 [1, 기준−1] 에서 **서로 다른 값**을 골라 온다. 기준 하한(5·8)이
+  //    `below` 상한(4)보다 크므로 고를 것이 언제나 넉넉하다.
+  const lowPool: number[] = [];
+  for (let v = Math.max(1, limit - 12); v < limit; v += 1) lowPool.push(v);
+  const highPool: number[] = [];
+  for (let v = limit + 1; v <= limit + 20; v += 1) highPool.push(v);
+  const rest = [
+    ...pickSome(rng, lowPool, below),
+    ...pickSome(rng, highPool, total - 1 - below),
+  ];
+  const values = shuffled(rng, [
+    limit, // 경계값 자신 — 이 하나가 두 낱말의 답을 가른다
+    ...rest,
+  ]);
+  return {
+    head: `${place}에서 ${cond} ${what}가`,
+    what,
+    unitName,
+    who,
+    countUnit,
+    limit,
+    values,
+  };
+}
+
+/** 연산 — 기준 «이상»인 것을 센다. 경계값이 반드시 하나 있어 이상/초과가 갈린다. */
+function rng213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const ok = s.values.filter((v) => v >= s.limit);
+  return make(
+    unit,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${s.what}가 ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
+    n(ok.length),
+    `${n(s.limit)} ${s.unitName}인 것도 «이상»에 들어갑니다. 맞는 것은 ${nums([...ok].sort((p, q) => p - q))} ${uro(s.unitName)} ${n(ok.length)}${s.countUnit}입니다.`,
+  );
+}
+
+/** 기본 — «초과» 로 물어 경계값 하나가 빠진다(연산과 답이 갈린다). */
+function rng213Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const ok = s.values.filter((v) => v > s.limit);
+  return make(
+    unit,
+    `${s.head} ${n(s.limit)} ${s.unitName} 초과여야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${s.what}가 ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
+    n(ok.length),
+    `${n(s.limit)} ${s.unitName}인 것은 «초과»에 들어가지 않습니다. 맞는 것은 ${nums([...ok].sort((p, q) => p - q))} ${uro(s.unitName)} ${n(ok.length)}${s.countUnit}입니다.`,
+  );
+}
+
+/** 응용 — 요금 구간표를 읽는다(두 단계: 구간 찾기 → 값 읽기). */
+function rng213Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const edge1 = intBetween(rng, 3, 6);
+  const edge2 = edge1 + intBetween(rng, 3, 6);
+  const fee1 = intBetween(rng, 2, 4) * 1000;
+  const fee2 = fee1 + intBetween(rng, 1, 3) * 1000;
+  const fee3 = fee2 + intBetween(rng, 1, 3) * 1000;
+  // 무게를 **경계값 자신**으로 두어 「이하」가 실제로 갈라 준다.
+  const w = pick(rng, [edge1, edge2, intBetween(rng, edge2 + 1, edge2 + 5)]);
+  const fee = w <= edge1 ? fee1 : w <= edge2 ? fee2 : fee3;
+  return make(
+    unit,
+    `택배 요금은 무게가 ${n(edge1)} kg 이하이면 ${n(fee1)}원, ${n(edge1)} kg 초과 ${n(edge2)} kg 이하이면 ${n(fee2)}원, ${n(edge2)} kg 초과이면 ${n(fee3)}원입니다. 무게가 ${n(w)} kg인 물건의 요금은 얼마입니까?`,
+    n(fee),
+    `${n(w)} kg은 ${w <= edge1 ? `${n(edge1)} kg 이하` : w <= edge2 ? `${n(edge1)} kg 초과 ${n(edge2)} kg 이하` : `${n(edge2)} kg 초과`} 구간이므로 ${n(fee)}원입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 요금에서 무게의 범위를 거슬러 말한다. */
+function rng213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const edge1 = intBetween(rng, 3, 6);
+  const edge2 = edge1 + intBetween(rng, 3, 6);
+  const fee1 = intBetween(rng, 2, 4) * 1000;
+  const fee2 = fee1 + intBetween(rng, 1, 3) * 1000;
+  return make(
+    unit,
+    `택배 요금은 무게가 ${n(edge1)} kg 이하이면 ${n(fee1)}원, ${n(edge1)} kg 초과 ${n(edge2)} kg 이하이면 ${n(fee2)}원입니다. 요금이 ${n(fee2)}원이었을 때, 무게가 될 수 있는 가장 큰 자연수는 몇 kg입니까?`,
+    n(edge2),
+    `${n(fee2)}원 구간은 ${n(edge1)} kg 초과 ${n(edge2)} kg 이하이고, «이하»는 끝을 포함하므로 가장 큰 자연수는 ${n(edge2)} kg입니다.`,
+  );
+}
+
+/* ── 2-1-4 올림 — 아래 자리가 0이 아님을 구성이 보장한다 ── */
+
+/** 연산 — 지정 자리까지 올림(절차 한 번). */
+function up214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const x = roundTarget(rng, place);
+  const up = ceilTo(x, place);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 ${placeName}의 자리까지 나타내시오.`,
+    n(up),
+    `${placeName}의 자리 아래가 ${nj(0, "이", "가")} 아니므로 올립니다. 답은 ${n(up)}입니다.`,
+  );
+}
+
+/** 기본 — 생활 장면에서 스스로 «올림»을 고른다(남으면 하나 더 필요하다). */
+function up214Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const per = pick(rng, [10, 100]);
+  const boxes = intBetween(rng, 12, 48);
+  const left = intBetween(rng, 1, per - 1); // 반드시 남는다 — 올림이 뜻을 가진다
+  const total = boxes * per + left;
+  // 세는 말(개·장)을 소재에 **딸린 값**으로 묶는다 — 따로 두면 「사탕 2540장」이 나온다.
+  const [thing, counter, box] = pick(rng, [
+    ["귤", "개", "상자"],
+    ["공책", "권", "묶음"],
+    ["빵", "개", "봉지"],
+    ["색종이", "장", "묶음"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(total)}${counter}를 한 ${box}에 ${n(per)}${counter}씩 담으려고 합니다. ${wj(thing, "을", "를")} 모두 담으려면 ${wj(box, "은", "는")} 적어도 몇 개 필요합니까?`,
+    n(boxes + 1),
+    `${n(per)}${counter}씩 ${n(boxes)}${box}에 담으면 ${n(left)}${counter}가 남고, 남은 것도 담아야 하므로 ${wj(box, "이", "가")} 하나 더 필요합니다. 올림하여 ${n(boxes + 1)}${box}입니다.`,
+  );
+}
+
+/** 응용 — 올림한 값과 원래 수의 **차**를 묻는다(두 걸음). */
+function up214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const x = roundTarget(rng, place);
+  const up = ceilTo(x, place);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 ${placeName}의 자리까지 나타낸 수와 원래 수의 차를 구하시오.`,
+    n(up - x),
+    `올림하면 ${n(up)}이므로 차는 ${expr(`${up}-${x}=${up - x}`)}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 올림값에서 원래 수의 범위를 되짚는다. */
+function up214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const up =
+    intBetween(rng, place === 1000 ? 3 : 13, place === 1000 ? 9 : 87) * place;
+  return make(
+    unit,
+    `어떤 자연수를 올림하여 ${placeName}의 자리까지 나타냈더니 ${nj(up, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
+    nums([up - place + 1, up]),
+    `올림하여 ${n(up)}이 되려면 ${n(up - place)}보다 크고 ${n(up)}보다 작거나 같아야 합니다. 가장 작은 수는 ${n(up - place + 1)}, 가장 큰 수는 ${n(up)}입니다.`,
+  );
+}
+
+/* ── 2-1-5 버림 ── */
+
+/** 연산 — 지정 자리까지 버림(절차 한 번). */
+function down215Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const x = roundTarget(rng, place);
+  const down = floorTo(x, place);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 버림하여 ${placeName}의 자리까지 나타내시오.`,
+    n(down),
+    `${placeName}의 자리 아래 수를 모두 버립니다. 답은 ${n(down)}입니다.`,
+  );
+}
+
+/** 기본 — 생활 장면에서 스스로 «버림»을 고른다(남는 것은 못 쓴다). */
+function down215Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const per = pick(rng, [10, 100]);
+  const bundles = intBetween(rng, 12, 48);
+  const left = intBetween(rng, 1, per - 1);
+  const total = bundles * per + left;
+  const [thing, counter, box] = pick(rng, [
+    ["색종이", "장", "묶음"],
+    ["구슬", "개", "봉지"],
+    ["사탕", "개", "봉지"],
+    ["연필", "자루", "묶음"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(total)}${counter}를 한 ${box}에 ${n(per)}${counter}씩 담아 팔려고 합니다. 팔 수 있는 ${wj(thing, "은", "는")} 모두 몇 ${counter}입니까?`,
+    n(bundles * per),
+    `${n(per)}${counter}씩 ${n(bundles)}${box}을 담으면 ${n(left)}${counter}가 남고, 남은 것은 팔 수 없습니다. 버림하여 ${expr(`${bundles}\\times${per}=${bundles * per}`)}${counter}입니다.`,
+  );
+}
+
+/** 응용 — 버린 만큼을 묻는다(두 걸음). */
+function down215Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const x = roundTarget(rng, place);
+  const down = floorTo(x, place);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 버림하여 ${placeName}의 자리까지 나타낼 때 버려지는 수는 얼마입니까?`,
+    n(x - down),
+    `버림하면 ${n(down)}이므로 버려지는 수는 ${expr(`${x}-${down}=${x - down}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **조건 조합**. 2-1-4·2-1-6 심화가 이미 역산이라 셋이 같은 모양이 되지 않게
+ * 여기만 두 어림을 겹친다(원장님 다양성 원칙, 2026-08-23 리드 지적).
+ *
+ * 올림 결과 `u` = 버림 결과 `d` + place 인 짝만 쓴다 — 그래야 **두 조건이 둘 다 답을
+ * 깎는다**(올림 조건: d+1 이상 u 이하 · 버림 조건: d 이상 u−1 이하 → 겹치면 d+1 ~ u−1).
+ * 조건 하나가 놀면 그 자리를 지우는 변이가 안 잡힌다.
+ */
+function down215Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const d =
+    intBetween(rng, place === 1000 ? 3 : 13, place === 1000 ? 8 : 86) * place;
+  const u = d + place;
+  return make(
+    unit,
+    `어떤 자연수를 올림하여 ${placeName}의 자리까지 나타내면 ${nj(u, "이", "가")} 되고, 버림하여 ${placeName}의 자리까지 나타내면 ${nj(d, "이", "가")} 됩니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
+    nums([d + 1, u - 1]),
+    `올림하여 ${n(u)}이 되려면 ${n(d)}보다 크고 ${n(u)}보다 작거나 같아야 하고, 버림하여 ${n(d)}이 되려면 ${n(d)}보다 크거나 같고 ${n(u)}보다 작아야 합니다. 두 조건을 함께 만족하는 수는 ${n(d + 1)}부터 ${n(u - 1)}까지입니다.`,
+  );
+}
+
+/* ── 2-1-6 반올림 — 판정 자리가 4 이하·5 이상 양쪽을 다 밟는다 ── */
+
+/** 연산 — 지정 자리까지 반올림(절차 한 번). */
+function round216Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const x = roundTarget(rng, place);
+  const digit = Math.floor((x % place) / (place / 10));
+  const r = roundTo(x, place);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 ${placeName}의 자리까지 나타내시오.`,
+    n(r),
+    `바로 아래 자리 숫자가 ${n(digit)}이므로 ${digit >= 5 ? "올립니다" : "버립니다"}. 답은 ${n(r)}입니다.`,
+  );
+}
+
+/** 기본 — 소수 첫째 자리까지 반올림. 값은 **정수 스케일**로만 다룬다(부동소수점 금지). */
+function round216Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 백분의 일 정수로 잰다. 둘째 자리가 0이면 반올림이 뜻을 잃으므로 1 이상만 뽑는다.
+  const whole = intBetween(rng, 1, 9);
+  const hundredth = intBetween(rng, 1, 9);
+  // ⚠️ **답의 소수 첫째 자리가 0이 되면 안 된다.** `dec` 가 꼬리 0 을 잘라 내므로
+  //    「소수 첫째 자리까지」라고 물어 놓고 답이 정수로 나온다(`1.02` → `1`).
+  //    「$1.0$」이라 쓸 수도 없다(꼬리 0 금지 규약). 그러니 **구성으로 안 뽑는다** —
+  //    올릴 때 9(→10)와 버릴 때 0 을 빼면 첫째 자리가 언제나 1~9 다.
+  //    (2026-08-23 리드 검수 실측 10.1%. g6 이 초6 2-2-4 에서 막은 그 자리와 같다.)
+  const tenth = hundredth >= 5 ? intBetween(rng, 0, 8) : intBetween(rng, 1, 9);
+  const centi = whole * 100 + tenth * 10 + hundredth;
+  const roundedTenth = hundredth >= 5 ? tenth + 1 : tenth;
+  const rounded = whole * 100 + roundedTenth * 10;
+  return make(
+    unit,
+    `${dj(dec(centi, 2), "을", "를")} 반올림하여 소수 첫째 자리까지 나타내시오.`,
+    expr(dec(rounded, 2)),
+    `소수 둘째 자리 숫자가 ${n(hundredth)}이므로 ${hundredth >= 5 ? "올립니다" : "버립니다"}. 답은 ${expr(dec(rounded, 2))}입니다.`,
+  );
+}
+
+/**
+ * 응용 — 같은 수를 두 자리로 반올림해 견준다(두 걸음).
+ *
+ * ⚠️ 두 어림이 **같은 값**을 가리키면 답이 0 이 되고, 「두 자리로 보는 눈」이라는
+ *    이 갈래의 정체가 사라진다(값은 옳으니 검산 가드는 조용하다 — 2026-08-23 리드
+ *    검수 실측 9.9%). 아래 두 자리가 1~4 이거나 95~99 일 때 그렇게 되므로
+ *    **그 구간을 안 뽑는다.** 문턱을 옮기는 게 아니라 못 뽑게 하는 쪽이다.
+ */
+function round216Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const high = intBetween(rng, 12, 87);
+  // 아래 두 자리는 ⑴ 1~4·95~99 가 아니어야 두 어림이 갈리고,
+  //             ⑵ **10의 배수가 아니어야** 십의 자리 반올림이 제자리가 아니다.
+  // 두 조건을 뽑는 방식으로 함께 보장한다(일의 자리를 0에서 빼고, 십의 자리가 0이면 5부터).
+  const tens = intBetween(rng, 0, 8);
+  const ones = tens === 0 ? intBetween(rng, 5, 9) : intBetween(rng, 1, 9);
+  const below = tens * 10 + ones;
+  const x = high * 100 + below;
+  const toTen = roundTo(x, 10);
+  const toHundred = roundTo(x, 100);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 십의 자리까지 나타낸 수와 백의 자리까지 나타낸 수의 차를 구하시오.`,
+    n(Math.abs(toTen - toHundred)),
+    `십의 자리까지는 ${n(toTen)}, 백의 자리까지는 ${n(toHundred)}이므로 차는 ${n(Math.abs(toTen - toHundred))}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 반올림값에서 원래 수의 범위를 되짚는다(양 끝이 서로 다른 규칙이다). */
+function round216Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, placeName] = pick(rng, PLACES);
+  const r =
+    intBetween(rng, place === 1000 ? 3 : 13, place === 1000 ? 9 : 87) * place;
+  const lo = r - place / 2;
+  const hi = r + place / 2 - 1;
+  return make(
+    unit,
+    `어떤 자연수를 반올림하여 ${placeName}의 자리까지 나타냈더니 ${nj(r, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
+    nums([lo, hi]),
+    `반올림하여 ${n(r)}이 되려면 ${n(lo)} 이상 ${n(hi + 1)} 미만이어야 합니다. 가장 작은 수는 ${n(lo)}, 가장 큰 수는 ${n(hi)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -4791,6 +5319,42 @@ export const G5_TIERS: ElemTierMap = {
     기본: sub154Read,
     응용: sub154Apply,
     심화: sub154Deep,
+  },
+  "초5|2-1-1": {
+    연산: rng211Calc,
+    기본: rng211Read,
+    응용: rng211Apply,
+    심화: rng211Deep,
+  },
+  "초5|2-1-2": {
+    연산: rng212Calc,
+    기본: rng212Read,
+    응용: rng212Apply,
+    심화: rng212Deep,
+  },
+  "초5|2-1-3": {
+    연산: rng213Calc,
+    기본: rng213Read,
+    응용: rng213Apply,
+    심화: rng213Deep,
+  },
+  "초5|2-1-4": {
+    연산: up214Calc,
+    기본: up214Read,
+    응용: up214Apply,
+    심화: up214Deep,
+  },
+  "초5|2-1-5": {
+    연산: down215Calc,
+    기본: down215Read,
+    응용: down215Apply,
+    심화: down215Deep,
+  },
+  "초5|2-1-6": {
+    연산: round216Calc,
+    기본: round216Read,
+    응용: round216Apply,
+    심화: round216Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,
