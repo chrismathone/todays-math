@@ -149,13 +149,19 @@ const results = [];
 try {
   for (const m of MUTATIONS) {
     const src = original.toString("utf8");
-    const hits = src.split(m.find).length - 1;
+    // 앵커는 LF 로 적고 **파일의 줄끝에 맞춰** 찾는다. 이 저장소는 autocrlf 라
+    // `git checkout` 한 번이면 작업 트리가 CRLF 가 되고, 그러면 여러 줄 앵커가
+    // 통째로 0개가 된다(2026-08-23 실제로 셋이 그렇게 «판정 불가» 로 떨어졌다).
+    const eol = src.includes("\r\n") ? "\r\n" : "\n";
+    const find = m.find.split("\n").join(eol);
+    const to = m.to.split("\n").join(eol);
+    const hits = src.split(find).length - 1;
     if (hits !== 1) {
       results.push({ name: m.name, verdict: `🛑 앵커 ${hits}개 — 판정 불가` });
       console.log(`🛑 ${m.name}: 앵커가 ${hits}개입니다(1개라야 한다). 판정하지 않습니다.`);
       continue;
     }
-    writeFileSync(MODULE, Buffer.from(src.replace(m.find, m.to), "utf8"));
+    writeFileSync(MODULE, Buffer.from(src.replace(find, to), "utf8"));
 
     // ⑴ 파일이 바뀌었나
     const after = readFileSync(MODULE);
