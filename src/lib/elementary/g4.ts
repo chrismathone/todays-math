@@ -4382,6 +4382,30 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier53Apply,
     심화: tier53Deep,
   },
+  "초4|2-1-1": {
+    연산: tier211Calc,
+    기본: tier211Basic,
+    응용: tier211Apply,
+    심화: tier211Deep,
+  },
+  "초4|2-1-2": {
+    연산: tier212Calc,
+    기본: tier212Basic,
+    응용: tier212Apply,
+    심화: tier212Deep,
+  },
+  "초4|2-1-3": {
+    연산: tier213Calc,
+    기본: tier213Basic,
+    응용: tier213Apply,
+    심화: tier213Deep,
+  },
+  "초4|2-1-4": {
+    연산: tier214Calc,
+    기본: tier214Basic,
+    응용: tier214Apply,
+    심화: tier214Deep,
+  },
 };
 
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
@@ -5086,6 +5110,719 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-1 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 초4 는 **분모가 같은** 범위다 — 통분은 초5 1-5 다. 그런데 **소단원 이름이 넷 다 초5 1-5
+ * 와 같다**(진분수의 덧셈·뺄셈, 대분수의 덧셈·뺄셈). 이름이 같으면 문형·낱말이 겹치기
+ * 쉽고, 겹치면 두 학년이 사실상 같은 문항을 낸다. 그래서 초5 가 쓰는 자리를 피한다 —
+ * 「계산하시오.」·「A는 X를, B는 Y를 가지고 있습니다」·「… 중에서 …를 썼습니다」·
+ * 「어떤 수에 …를 더했더니」·「□ 안에 알맞은 수를 구하시오」, 그리고 **사람 이름 전부**.
+ * 소재도 나눠 갖는다(초5 는 철사·밀가루·설탕·물·우유·색 테이프·리본·피자·색종이를 쓴다).
+ *
+ * ⚠️ 이 회피를 **손 목록으로 지키지 않는다** — 손 목록은 샌다(세는 쪽과 고치는 쪽이 같이
+ * 눈이 먼다). 시험이 초5 1-5 를 **실제로 뽑아** ㉠ 발문 완전 일치 ㉡ 수를 가린 골격 일치를
+ * 둘 다 0 으로 세고, 진짜 판별자인 **동분모**에는 「초5 에는 분모가 다른 발문이 실제로
+ * 있다」는 음성 대조군을 붙인다 — 안 그러면 그 판별자가 가르는지 알 수 없다.
+ *
+ * 약분은 초5 1-4 다. 표준(`fracAdd42`)이 **답이 약분되지 않는 짝만** 뽑는 약속을 쓰므로
+ * 갈래도 그 약속을 잇는다 — 문턱을 밀지 않고 **짝을 전수 열거해서** 고른다. 뺄셈이 음수로
+ * 접히지 않는 것도 열거한 풀이 보장한다. 그리고 풀이 빌 수 있는 분모는 `pick` 전에
+ * **분모 쪽에서 걸러**(`densWith`) 던질 자리를 아예 없앤다.
+ */
+
+/** 여러 답을 늘어놓는다 — 「$1$, $2$, $3$」. */
+function nums(values: readonly number[]): string {
+  return values.map((v) => n(v)).join(", ");
+}
+
+/** 답으로 나갈 수 있는 분자인가 — 분모로 나누어떨어지지도, 약분되지도 않는다. */
+function cleanRest(num: number, den: number): boolean {
+  const rest = ((num % den) + den) % den;
+  return rest !== 0 && gcd(rest, den) === 1;
+}
+
+/** 풀이 빈 분모를 **뽑기 전에** 걸러 낸다. 씨앗을 다시 뽑는 대신 못 뽑을 자리를 없앤다. */
+function densWith(pool: (den: number) => { length: number }): number[] {
+  return FRAC_DENS.filter((d) => pool(d).length > 0);
+}
+
+/**
+ * 합이 $1$ 을 **안 넘는** 짝. 「화단의 얼마에 심었나」처럼 **전체가 $1$ 인 상황**에 쓴다 —
+ * 그런 자리에 합이 $1$ 을 넘는 짝을 쓰면 「화단 전체의 $1\frac{4}{9}$ 에 심었다」가 되어
+ * 상황 자체가 거짓이 된다(눈검수에서 실제로 나왔다).
+ */
+function properSumPairs(den: number): [number, number][] {
+  return fracPairs(den, "add").filter(([a, b]) => a + b < den);
+}
+
+/**
+ * 2-1-1 3단 — 「$b$ 만큼 더 긴 것」을 거쳐 합을 구한다. 셋 다 진분수로 두고(`a+b<den`)
+ * 답만 대분수가 될 수 있게 한다. 중간값 `(a+b)/den` 도 **답으로 나가는 값**이라 약분되면 안 된다.
+ */
+function relSumPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; a + b < den; b += 1) {
+      if (gcd(a + b, den) !== 1) continue;
+      if (!cleanRest(2 * a + b, den)) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-1 4단 — 「더할 것을 잘못하여 뺐다」. `[b, c]` 에서 잘못 계산한 값이 `c/den`,
+ * 어떤 수가 `(c+b)/den`, 바르게 계산한 값이 `(c+2b)/den` 이다. 셋 다 약분되면 안 되고
+ * 어떤 수는 진분수여야 한다(소단원 약속).
+ */
+function wrongAddPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let b = 1; b < den; b += 1) {
+    for (let c = 1; c < den; c += 1) {
+      if (b === c) continue; // 「$\frac25$ 를 뺐더니 $\frac25$」 는 읽는 사람을 헷갈리게 한다
+      if (gcd(c, den) !== 1) continue;
+      if (c + b >= den || gcd(c + b, den) !== 1) continue;
+      if (!cleanRest(c + 2 * b, den)) continue;
+      out.push([b, c]);
+    }
+  }
+  return out;
+}
+
+/** 위와 같되 「두 값의 차 $2b/den$」까지 답으로 나가는 가지. 분모를 미리 거르는 쪽을 쓴다. */
+function wrongDiffPairs(den: number): [number, number][] {
+  return wrongAddPairs(den).filter(([b]) => cleanRest(2 * b, den));
+}
+
+/** 2-1-2 2단 — 전체 $1$ 에서 뺀다. 남은 `den-a` 가 약분되면 안 된다. */
+function wholeMinusNums(den: number): number[] {
+  const out: number[] = [];
+  for (let a = 1; a < den; a += 1) if (gcd(den - a, den) === 1) out.push(a);
+  return out;
+}
+
+/** 2-1-2 3단 — 두 번 덜어 낸다. 중간값 `a-b` 와 답 `a-b-c` 가 둘 다 약분되면 안 된다. */
+function twoUseTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let a = 3; a < den; a += 1) {
+    for (let b = 1; b < a; b += 1) {
+      if (gcd(a - b, den) !== 1) continue;
+      for (let c = 1; c < a - b; c += 1) {
+        if (gcd(a - b - c, den) !== 1) continue;
+        out.push([a, b, c]);
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-2 4단 — 차보다 «작은»/«큰» 동분모 진분수의 개수. 답이 **둘 이상**인 것만 남긴다 —
+ * 0개·전부인 씨앗이 섞이면 셈이 아니라 요행이 된다.
+ */
+function countPairs(den: number, less: boolean): [number, number][] {
+  return fracPairs(den, "sub").filter(([a, b]) =>
+    less ? a - b - 1 >= 2 : den - 1 - (a - b) >= 2,
+  );
+}
+
+/** 2-1-3 1단 — 분수 부분이 반드시 **받아올림**되는 짝. 표준은 둘을 섞는다. */
+function carryPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (a + b <= den) continue;
+      if (gcd(a + b - den, den) !== 1) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-3 2단 — 받아올림이 있어도 없어도 된다. 답만 약분되지 않으면 된다. */
+function mixedSumPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (cleanRest(a + b, den)) out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-3 3단 — 세 값의 합. 분자를 **서로 다르게** 둔다 — 같으면 자연수 부분까지 겹쳤을 때
+ * 「둘째 날과 셋째 날이 글자 그대로 같은 값」인 발문이 나온다.
+ */
+function threeSumTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (b === a) continue;
+      for (let c = 1; c < den; c += 1) {
+        if (c === a || c === b) continue;
+        if (cleanRest(a + b + c, den)) out.push([a, b, c]);
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-3 4단 — 수 카드 셋 중 둘로 대분수를 만든다. `p<q<r` 일 때 가장 큰 것은 `r q/den`,
+ * 가장 작은 것은 `p q/den` 이라 **분자가 둘 다 `q`** 다. 그래서 합의 분수 부분은 `2q/den`.
+ */
+function cardTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let p = 1; p < den - 2; p += 1) {
+    for (let q = p + 1; q < den - 1; q += 1) {
+      if (!cleanRest(2 * q, den)) continue;
+      for (let r = q + 1; r < den; r += 1) out.push([p, q, r]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-4 1단 — 분수끼리 뺄 수 없어 **받아내림**하는 짝(`a<b`). */
+function borrowPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = a + 1; b < den; b += 1) {
+      if (gcd(a + den - b, den) !== 1) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-4 3단 — 가장 큰 것과 가장 작은 것의 차. 자연수 차가 $2$ 이므로 답은 늘 양수다. */
+function spreadPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let p = 1; p < den; p += 1) {
+    for (let q = 1; q < den; q += 1) {
+      if (q === p) continue;
+      if (!cleanRest(q - p, den)) continue;
+      out.push([p, q]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-4 4단 — 「$\square$ 에 들어갈 수 있는 자연수」. **답의 개수를 먼저 정하고** 수를 짠다 —
+ * 조건을 만든 뒤 세면 0개·전부인 씨앗이 섞인다. `c = a + den - m - 1` 로 잡으면
+ * 뺀 값이 오른쪽과 **같아지는** $\square$ 가 정확히 `m+1` 이 된다(자연수 차는 늘 $2$).
+ */
+function ineqPairs(den: number, greater: boolean): [number, number][] {
+  const out: [number, number][] = [];
+  for (let m = 2; m <= den - 2; m += 1) {
+    if (!greater && den - m - 2 < 2) continue;
+    for (let a = 1; a <= m; a += 1) out.push([m, a]);
+  }
+  return out;
+}
+
+/** **2-1-1 1단 연산 — 동분모 진분수의 합.** 표준의 `=\square` 꼴과 달리 말로 묻는다. */
+function tier211Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const sum = a + b;
+  return make(
+    unit,
+    `다음 두 분수의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(sum, den)),
+    `분모가 같은 분수끼리는 분자끼리 더합니다. ` +
+      `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${sum}}{${den}}`)}` +
+      (sum > den
+        ? ` 이고, 가분수이므로 대분수로 고치면 ${expr(fmtFrac(sum, den))} 입니다.`
+        : ` 입니다.`),
+  );
+}
+
+/** **2-1-1 2단 기본 — 상황에서 식을 세운다.** 두 양을 합치는 자리 셋. */
+function tier211Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 0, 2);
+  // 「화단 전체」는 전체가 $1$ 이라 합이 $1$ 을 넘으면 안 된다 — 무리를 **먼저** 좁힌다.
+  const pool =
+    which === 1 ? properSumPairs : (d: number) => fracPairs(d, "add");
+  const den = pick(rng, densWith(pool));
+  const [a, b] = pick(rng, pool(den));
+  const x = expr(`\\frac{${a}}{${den}}`);
+  const y = expr(`\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(a + b, den));
+  const how =
+    `분모가 같으므로 분자끼리 더합니다. ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}` +
+    (a + b > den ? ` 이고, 대분수로 고치면 ${got} 입니다.` : ` 입니다.`);
+  if (which === 0) {
+    return make(
+      unit,
+      // 소재는 초5 1-5 와 겹치지 않게 고른다 — g5 의 `FRAC_STUFF` 는 물·주스·끈·철사·밀가루·설탕.
+      `오전에 식용유를 ${x} L 쓰고, 오후에는 ${y} L 썼습니다. ` +
+        `하루 동안 쓴 식용유는 모두 몇 L입니까?`,
+      got,
+      `하루 동안 쓴 양은 두 양을 더한 것입니다. ${how}`,
+    );
+  }
+  if (which === 1) {
+    return make(
+      unit,
+      `화단의 ${x} 에는 튤립을, ${y} 에는 국화를 심었습니다. ` +
+        `꽃을 심은 부분은 화단 전체의 얼마입니까?`,
+      got,
+      `꽃을 심은 부분은 두 부분을 더한 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `빨간 물감 ${x} L와 파란 물감 ${y} L를 섞었습니다. 섞은 물감은 모두 몇 L입니까?`,
+    got,
+    `섞은 물감의 양은 두 양을 더한 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-1 3단 응용 — 중간값을 거친다.** 「더 긴 쪽」을 먼저 구하고 둘을 합친다(두 단계). */
+function tier211Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(relSumPairs));
+  const [a, b] = pick(rng, relSumPairs(den));
+  const one = expr(`\\frac{${a}}{${den}}`);
+  const gap = expr(`\\frac{${b}}{${den}}`);
+  const other = expr(`\\frac{${a + b}}{${den}}`);
+  const got = expr(fmtFrac(2 * a + b, den));
+  const step1 = `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}`;
+  const step2 =
+    `두 양을 더하면 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${a + b}}{${den}}=\\frac{${2 * a + b}}{${den}}`)}` +
+    (2 * a + b > den ? ` 이고, 대분수로 고치면 ${got} 입니다.` : ` 입니다.`);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      // 「끈」은 초5 1-5 소재라 「막대」로 둔다(g5 `FRAC_STUFF`).
+      `빨간 막대의 길이는 ${one} m입니다. 파란 막대는 빨간 막대보다 ${gap} m 더 깁니다. ` +
+        `두 막대의 길이의 합은 몇 m입니까?`,
+      got,
+      `파란 막대의 길이를 먼저 구합니다. ${step1} 이므로 파란 막대는 ${other} m입니다. ${step2}`,
+    );
+  }
+  return make(
+    unit,
+    `작은 상자의 무게는 ${one} kg입니다. 큰 상자는 작은 상자보다 ${gap} kg 더 무겁습니다. ` +
+      `두 상자의 무게의 합은 몇 kg입니까?`,
+    got,
+    `큰 상자의 무게를 먼저 구합니다. ${step1} 이므로 큰 상자는 ${other} kg입니다. ${step2}`,
+  );
+}
+
+/** **2-1-1 4단 심화 — 잘못 계산했더니.** 역산으로 어떤 수를 되찾고 다시 바르게 계산한다. */
+function tier211Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const diffAsked = intBetween(rng, 0, 1) === 0;
+  const pool = diffAsked ? wrongDiffPairs : wrongAddPairs;
+  const den = pick(rng, densWith(pool));
+  const [b, c] = pick(rng, pool(den));
+  const add = expr(`\\frac{${b}}{${den}}`);
+  const wrong = expr(`\\frac{${c}}{${den}}`);
+  const some = expr(`\\frac{${c + b}}{${den}}`);
+  const right = expr(fmtFrac(c + 2 * b, den));
+  // 분수 뒤 조사는 **분자의 소리**로 정해진다 — 「십분의 육」은 «을», 「오분의 이」는 «를».
+  const addO = `${add}${tail(b, "을", "를")}`;
+  const wrongI = `${wrong}${tail(c, "이", "가")}`;
+  const lead = `어떤 수에 ${addO} 더해야 할 것을 잘못하여 뺐더니 ${wrongI} 되었습니다. `;
+  const back =
+    `잘못 계산한 값이 ${wrongI} 되었으므로 어떤 수는 ` +
+    `${expr(`\\frac{${c}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + b}}{${den}}`)} 입니다. `;
+  if (diffAsked) {
+    return make(
+      unit,
+      `${lead}잘못 계산한 값과 바르게 계산한 값의 차는 얼마입니까?`,
+      expr(fmtFrac(2 * b, den)),
+      `${back}바르게 계산하면 ` +
+        `${expr(`\\frac{${c + b}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + 2 * b}}{${den}}`)} 입니다. ` +
+        `두 값의 차는 ` +
+        `${expr(`\\frac{${c + 2 * b}}{${den}}-\\frac{${c}}{${den}}=\\frac{${2 * b}}{${den}}`)} 이므로 ` +
+        `${expr(fmtFrac(2 * b, den))} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${lead}바르게 계산한 값은 얼마입니까?`,
+    right,
+    `${back}어떤 수 ${some} 에 ${addO} 더하면 ` +
+      `${expr(`\\frac{${c + b}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + 2 * b}}{${den}}`)}` +
+      (c + 2 * b > den
+        ? ` 이고, 대분수로 고치면 ${right} 입니다.`
+        : ` 입니다.`),
+  );
+}
+
+/** **2-1-2 1단 연산 — 동분모 진분수의 차.** */
+function tier212Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `다음 두 분수의 차를 구하시오.\n\n${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)}`,
+    expr(`\\frac{${a - b}}{${den}}`),
+    `분모가 같은 분수끼리는 분자끼리 뺍니다. ` +
+      `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a - b}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** **2-1-2 2단 기본 — 전체 $1$ 에서 뺀다.** $1$ 을 분모가 같은 가분수로 고치는 자리다. */
+function tier212Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(wholeMinusNums));
+  const a = pick(rng, wholeMinusNums(den));
+  const used = expr(`\\frac{${a}}{${den}}`);
+  const got = expr(`\\frac{${den - a}}{${den}}`);
+  const how =
+    `전체를 ${expr("1")} 로 보면 ${expr(`1=\\frac{${den}}{${den}}`)} 이므로 ` +
+    `${expr(`\\frac{${den}}{${den}}-\\frac{${a}}{${den}}=\\frac{${den - a}}{${den}}`)} 입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `케이크 한 개의 ${used} 만큼을 먹었습니다. 남은 케이크는 전체의 얼마입니까?`,
+      got,
+      `남은 것은 전체에서 먹은 만큼을 뺀 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `도화지 한 장의 ${used} 만큼을 잘라 냈습니다. 남은 도화지는 전체의 얼마입니까?`,
+    got,
+    `남은 것은 전체에서 잘라 낸 만큼을 뺀 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-2 3단 응용 — 두 번 덜어 낸다.** 중간값을 거치는 두 단계. */
+function tier212Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(twoUseTriples));
+  const [a, b, c] = pick(rng, twoUseTriples(den));
+  const all = expr(`\\frac{${a}}{${den}}`);
+  const u1 = expr(`\\frac{${b}}{${den}}`);
+  const u2 = expr(`\\frac{${c}}{${den}}`);
+  const got = expr(`\\frac{${a - b - c}}{${den}}`);
+  const step1 = `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a - b}}{${den}}`)}`;
+  const step2 = `${expr(`\\frac{${a - b}}{${den}}-\\frac{${c}}{${den}}=\\frac{${a - b - c}}{${den}}`)}`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `페인트가 ${all} L 있었습니다. 벽을 칠하는 데 ${u1} L, 문을 칠하는 데 ${u2} L를 썼습니다. ` +
+        `남은 페인트는 몇 L입니까?`,
+      got,
+      `벽을 칠하고 남은 양은 ${step1} 입니다. 여기서 문을 칠한 만큼을 더 빼면 ${step2} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `모래가 ${all} kg 있었습니다. 화단에 ${u1} kg, 화분에 ${u2} kg을 담았습니다. ` +
+      `남은 모래는 몇 kg입니까?`,
+    got,
+    `화단에 담고 남은 양은 ${step1} 입니다. 여기서 화분에 담은 만큼을 더 빼면 ${step2} 입니다.`,
+  );
+}
+
+/** **2-1-2 4단 심화 — 조건 결합.** 차를 구한 뒤 그 범위에 드는 동분모 진분수를 센다. */
+function tier212Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const less = intBetween(rng, 0, 1) === 0;
+  const den = pick(
+    rng,
+    densWith((d) => countPairs(d, less)),
+  );
+  const [a, b] = pick(rng, countPairs(den, less));
+  const gap = a - b;
+  // 「과/와」도 분수 뒤에서는 **분자의 소리**를 따른다 — 「팔분의 육과」·「오분의 삼과」.
+  const two = `${expr(`\\frac{${a}}{${den}}`)}${tail(a, "과", "와")} ${expr(`\\frac{${b}}{${den}}`)}의 차`;
+  const how =
+    `두 분수의 차는 ` +
+    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${gap}}{${den}}`)} 입니다. `;
+  if (less) {
+    return make(
+      unit,
+      `${two}보다 작으면서 분모가 ${n(den)}인 진분수는 모두 몇 개입니까?`,
+      `${n(gap - 1)}개`,
+      `${how}분모가 ${n(den)}인 진분수 중 이보다 작은 것은 분자가 ${n(1)}부터 ` +
+        `${n(gap - 1)}까지이므로 ${n(gap - 1)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${two}보다 크면서 ${expr("1")} 보다 작고 분모가 ${n(den)}인 진분수는 모두 몇 개입니까?`,
+    `${n(den - 1 - gap)}개`,
+    `${how}분모가 ${n(den)}인 진분수 중 이보다 큰 것은 분자가 ${n(gap + 1)}부터 ` +
+      `${n(den - 1)}까지이므로 ${n(den - 1 - gap)}개입니다.`,
+  );
+}
+
+/** **2-1-3 1단 연산 — 받아올림이 있는 대분수의 합.** 표준은 두 경우를 섞는다. */
+function tier213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(carryPairs));
+  const [a, b] = pick(rng, carryPairs(den));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  const total = (w1 + w2) * den + a + b;
+  return make(
+    unit,
+    `다음 두 대분수의 합을 구하시오.\n\n` +
+      `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(total, den)),
+    `자연수는 자연수끼리, 분수는 분수끼리 더합니다. ${expr(`${w1}+${w2}=${w1 + w2}`)} 이고 ` +
+      `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)} 입니다. ` +
+      `분수 부분이 가분수이므로 자연수에 ${n(1)}을 받아올리면 ${expr(fmtFrac(total, den))} 입니다.`,
+  );
+}
+
+/** **2-1-3 2단 기본 — 두 양을 잇는다.** */
+function tier213Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(mixedSumPairs));
+  const [a, b] = pick(rng, mixedSumPairs(den));
+  const w1 = intBetween(rng, 1, 4);
+  /*
+   * 두 대분수가 **글자까지 같아지지 않게** 한다 — 「쌀 $3\frac37$ kg이 담긴 자루에
+   * 쌀 $3\frac37$ kg을 더 담았습니다」가 실측 29/1200 로 나왔다(리드 검수 2026-08-23).
+   * 2-1-3 «응용» 에서 같은 부류를 `threeSumTriples` 로 막았는데 여기만 빠져 있었다.
+   *
+   * 분자가 다르면 자연수 부분은 겹쳐도 되므로(`2\frac17+2\frac37` 은 멀쩡하다) **분자가
+   * 같을 때만** 자연수 부분을 비켜 간다 — 짝을 통째로 버리면 멀쩡한 문항까지 잃는다.
+   * `w1` 이 $4$ 면 아래 목록에 없으므로 어차피 겹치지 않는다.
+   */
+  const w2 =
+    a === b
+      ? pick(
+          rng,
+          [1, 2, 3].filter((w) => w !== w1),
+        )
+      : intBetween(rng, 1, 3);
+  const total = (w1 + w2) * den + a + b;
+  const x = expr(`${w1}\\frac{${a}}{${den}}`);
+  const y = expr(`${w2}\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(total, den));
+  const how =
+    `자연수는 자연수끼리, 분수는 분수끼리 더합니다. ${expr(`${w1}+${w2}=${w1 + w2}`)} 이고 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)} 이므로 ` +
+    (a + b >= den
+      ? `자연수에 ${n(1)}을 받아올려 ${got} 입니다.`
+      : `${got} 입니다.`);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `집에서 도서관까지의 거리는 ${x} km이고, 도서관에서 학교까지의 거리는 ${y} km입니다. ` +
+        `집에서 도서관을 지나 학교까지 가는 거리는 모두 몇 km입니까?`,
+      got,
+      `가는 거리는 두 거리를 더한 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `쌀 ${x} kg이 담긴 자루에 쌀 ${y} kg을 더 담았습니다. 자루에 담긴 쌀은 모두 몇 kg입니까?`,
+    got,
+    `자루에 담긴 쌀은 두 양을 더한 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-3 3단 응용 — 세 값의 합.** 두 번 더하며 중간값을 거친다. */
+function tier213Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(threeSumTriples));
+  const [a, b, c] = pick(rng, threeSumTriples(den));
+  const w1 = intBetween(rng, 1, 3);
+  const w2 = intBetween(rng, 1, 3);
+  const w3 = intBetween(rng, 1, 3);
+  const ws = w1 + w2 + w3;
+  const ns = a + b + c;
+  const total = ws * den + ns;
+  const got = expr(fmtFrac(total, den));
+  const carried = Math.floor(ns / den);
+  const how =
+    `자연수 부분끼리 더하면 ${expr(`${w1}+${w2}+${w3}=${ws}`)} 이고, ` +
+    `분수 부분끼리 더하면 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}+\\frac{${c}}{${den}}=\\frac{${ns}}{${den}}`)} 입니다. ` +
+    (carried > 0
+      ? `분수 부분이 가분수이므로 자연수에 ${josaNum(carried, "을", "를")} 받아올려 ${got} 입니다.`
+      : `그러므로 ${got} 입니다.`);
+  return make(
+    unit,
+    `딸기를 첫째 날 ${expr(`${w1}\\frac{${a}}{${den}}`)} kg, ` +
+      `둘째 날 ${expr(`${w2}\\frac{${b}}{${den}}`)} kg, ` +
+      `셋째 날 ${expr(`${w3}\\frac{${c}}{${den}}`)} kg 땄습니다. ` +
+      `사흘 동안 딴 딸기는 모두 몇 kg입니까?`,
+    got,
+    how,
+  );
+}
+
+/** **2-1-3 4단 심화 — 수 카드로 만든 가장 큰·가장 작은 대분수의 합.** 조건 결합. */
+function tier213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(cardTriples));
+  const [p, q, r] = pick(rng, cardTriples(den));
+  const order = pick(rng, [
+    [p, q, r],
+    [p, r, q],
+    [q, p, r],
+    [q, r, p],
+    [r, p, q],
+    [r, q, p],
+  ]);
+  const big = expr(`${r}\\frac{${q}}{${den}}`);
+  const small = expr(`${p}\\frac{${q}}{${den}}`);
+  const total = (p + r) * den + 2 * q;
+  const got = expr(fmtFrac(total, den));
+  /*
+   * 보기로 드는 한 벌은 **자연수 `q` · 분자 `p`** 다. `p<q<r` 이므로 이것은 가장 큰 것도
+   * (자연수가 `r` 이 아니다) 가장 작은 것도(자연수가 `p` 가 아니다) 아니라서 답이 안 샌다.
+   *
+   * 보기를 넣는 이유는 꾸밈이 아니다 — 소단원 이름이 약속하는 **대분수가 지면에 서야** 한다.
+   * 처음 판에는 「대분수를 만들려고 합니다」라는 **낱말**만 있고 대분수 꼴이 하나도 없어서
+   * 조건 판정기가 씨앗 40/40 을 걸었다(팀장 신호 2026-08-23). 값은 맞는데 약속한 성질이
+   * 지면에서 사라진 부류다 — 그 판정이 옳다.
+   */
+  const sample = expr(`${q}\\frac{${p}}{${den}}`);
+  return make(
+    unit,
+    `${n(3)}장의 수 카드 ${nums(order)} 중에서 ${n(2)}장을 골라 자연수 부분과 분자에 ` +
+      `한 번씩 놓아 분모가 ${n(den)}인 대분수를 만들려고 합니다. ` +
+      `예를 들어 ${sample}${tail(p, "과", "와")} 같이 만듭니다. ` +
+      `만들 수 있는 가장 큰 대분수와 가장 작은 대분수의 합을 구하시오.`,
+    got,
+    `자연수 부분이 클수록 큰 대분수이므로 가장 큰 대분수는 ${big} 이고, ` +
+      `자연수 부분이 작을수록 작은 대분수이므로 가장 작은 대분수는 ${small} 입니다. ` +
+      `${expr(`${r}+${p}=${p + r}`)} 이고 ` +
+      `${expr(`\\frac{${q}}{${den}}+\\frac{${q}}{${den}}=\\frac{${2 * q}}{${den}}`)} 이므로 ` +
+      (2 * q >= den
+        ? `자연수에 ${n(1)}을 받아올려 ${got} 입니다.`
+        : `합은 ${got} 입니다.`),
+  );
+}
+
+/** **2-1-4 1단 연산 — 받아내림이 있는 대분수의 차.** */
+function tier214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(borrowPairs));
+  const [a, b] = pick(rng, borrowPairs(den));
+  const w2 = intBetween(rng, 1, 3);
+  /*
+   * 받아내림 뒤 자연수 차를 늘 $1$ 이상으로 둔다 — **결함 수리가 아니라 문체 선택**이다.
+   * 표준(`fracAdd42` 2-1-4)은 「$1-1=0$, …」 꼴을 그대로 쓰고 그것도 읽는 데 문제가 없다
+   * (오히려 자연수 부분이 사라지는 것을 보여 준다). 갈래에서는 답이 늘 대분수로 서는 쪽을
+   * 골랐을 뿐이니 **표준을 이것에 맞추러 가지 말 것**(리드 검수 2026-08-23).
+   */
+  const w1 = w2 + intBetween(rng, 2, 4);
+  const total = (w1 - w2) * den + a - b;
+  return make(
+    unit,
+    `다음 두 대분수의 차를 구하시오.\n\n` +
+      `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(total, den)),
+    `분수끼리 뺄 수 없으므로 ` +
+      `${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)} 으로 고칩니다. ` +
+      `${expr(`${w1 - 1}-${w2}=${w1 - 1 - w2}`)} 이고 ` +
+      `${expr(`\\frac{${a + den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a + den - b}}{${den}}`)} 이므로 ` +
+      `${expr(fmtFrac(total, den))} 입니다.`,
+  );
+}
+
+/** **2-1-4 2단 기본 — 자연수에서 대분수를 뺀다.** 자연수를 가분수로 고치는 자리다. */
+function tier214Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(wholeMinusNums));
+  const b = pick(rng, wholeMinusNums(den));
+  const w = intBetween(rng, 1, 3);
+  // 자연수 차를 늘 $1$ 이상으로 — 위 `tier214Calc` 와 같은 **문체 선택**이다(결함 아님).
+  const whole = w + intBetween(rng, 2, 4);
+  const total = (whole - w) * den - b;
+  const cut = expr(`${w}\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(total, den));
+  const how =
+    `${expr(`${whole}=${whole - 1}\\frac{${den}}{${den}}`)} 으로 고칩니다. ` +
+    `${expr(`${whole - 1}-${w}=${whole - 1 - w}`)} 이고 ` +
+    `${expr(`\\frac{${den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${den - b}}{${den}}`)} 이므로 ` +
+    `${got} 입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `길이가 ${n(whole)} m인 호스에서 ${cut} m를 잘라 냈습니다. 남은 호스는 몇 m입니까?`,
+      got,
+      `남은 길이는 전체에서 잘라 낸 길이를 뺀 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `고구마 ${n(whole)} kg 중에서 ${cut} kg을 쪄서 먹었습니다. 남은 고구마는 몇 kg입니까?`,
+    got,
+    `남은 무게는 전체에서 먹은 무게를 뺀 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-4 3단 응용 — 크기 비교 뒤 뺄셈.** 셋 중 최대·최소를 먼저 가린다(두 단계). */
+function tier214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(spreadPairs));
+  const [p, q] = pick(rng, spreadPairs(den));
+  const wLo = intBetween(rng, 1, 3);
+  const mid = intBetween(rng, 1, den - 1);
+  const show = (w: number, k: number) => expr(`${w}\\frac{${k}}{${den}}`);
+  const lo = show(wLo, p);
+  const hi = show(wLo + 2, q);
+  // 자연수 부분이 셋 다 달라(wLo, wLo+1, wLo+2) 크기 순서는 분자와 무관하게 정해진다.
+  // 늘어놓는 차례는 **크기 순으로 서지 않는 것만** 쓴다 — 정렬돼 나오면 비교가 사라진다.
+  const order = pick(rng, [
+    [show(wLo + 1, mid), hi, lo],
+    [hi, lo, show(wLo + 1, mid)],
+    [lo, hi, show(wLo + 1, mid)],
+  ]);
+  const total = 2 * den + q - p;
+  const got = expr(fmtFrac(total, den));
+  return make(
+    unit,
+    `가방 세 개의 무게가 각각 ${order[0]} kg, ${order[1]} kg, ${order[2]} kg입니다. ` +
+      `가장 무거운 가방과 가장 가벼운 가방의 무게의 차는 몇 kg입니까?`,
+    got,
+    `자연수 부분을 비교하면 가장 무거운 가방은 ${hi} kg, 가장 가벼운 가방은 ${lo} kg입니다. ` +
+      (q < p
+        ? `분수끼리 뺄 수 없으므로 ` +
+          `${expr(`${wLo + 2}\\frac{${q}}{${den}}=${wLo + 1}\\frac{${q + den}}{${den}}`)} 으로 고쳐 ` +
+          `${expr(`${wLo + 1}-${wLo}=1`)} 이고 ` +
+          `${expr(`\\frac{${q + den}}{${den}}-\\frac{${p}}{${den}}=\\frac{${q + den - p}}{${den}}`)} 이므로 ` +
+          `${got} 입니다.`
+        : `${expr(`${wLo + 2}-${wLo}=2`)} 이고 ` +
+          `${expr(`\\frac{${q}}{${den}}-\\frac{${p}}{${den}}=\\frac{${q - p}}{${den}}`)} 이므로 ` +
+          `${got} 입니다.`),
+  );
+}
+
+/** **2-1-4 4단 심화 — 조건에 맞는 수를 모두.** 같아지는 자리를 먼저 찾고 부등호로 가른다. */
+function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const greater = intBetween(rng, 0, 1) === 0;
+  const den = pick(
+    rng,
+    densWith((d) => ineqPairs(d, greater)),
+  );
+  const [m, a] = pick(rng, ineqPairs(den, greater));
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + 2;
+  const c = a + den - m - 1;
+  const left = expr(`${w1}\\frac{${a}}{${den}}`);
+  const sub = expr(`1\\frac{\\square}{${den}}`);
+  const right = expr(`${w2}\\frac{${c}}{${den}}`);
+  const same = expr(`1\\frac{${m + 1}}{${den}}`);
+  const answers = greater
+    ? Array.from({ length: m }, (_, i) => i + 1)
+    : Array.from({ length: den - m - 2 }, (_, i) => m + 2 + i);
+  const tie =
+    `빼는 수가 ${same} 일 때 ` +
+    `${expr(`${w1}\\frac{${a}}{${den}}-1\\frac{${m + 1}}{${den}}=${w2}\\frac{${c}}{${den}}`)} 로 ` +
+    `두 값이 같아집니다. 빼는 수가 작을수록 뺀 값은 커집니다. `;
+  return make(
+    unit,
+    // □ 뒤에는 조사를 붙일 수 없다 — 소리를 모르므로 「만큼을」처럼 **받침을 안 타는** 말로 잇는다.
+    `${left} 에서 ${sub} 만큼을 뺀 값이 ${right} 보다 ${greater ? "클" : "작을"} 때, ` +
+      `${expr("\\square")} 에 들어갈 수 있는 자연수를 모두 쓰시오. ` +
+      `(단, 분자는 분모보다 작습니다.)`,
+    nums(answers),
+    `${tie}` +
+      (greater
+        ? `따라서 ${expr("\\square")} 는 ${josaNum(m, "보다", "보다")} 크지 않아야 하므로 ` +
+          `${nums(answers)}입니다.`
+        : `따라서 ${expr("\\square")} 는 ${josaNum(m + 1, "보다", "보다")} 커야 하고, ` +
+          `분자는 분모보다 작아야 하므로 ${nums(answers)}입니다.`),
+  );
+}
+
 /* ───────────────────────── 2-2 삼각형 ───────────────────────── */
 
 /**
