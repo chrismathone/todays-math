@@ -212,8 +212,16 @@ function addSolution(terms: readonly Q[], S: Q): string {
   if (lcd === 1) return `$${left}=${fin}$이다.`;
   const num = terms.reduce((acc, t) => acc + t.n * (lcd / t.d), 0);
   const mid = texRawFrac(num, lcd);
-  if (mid === fin) return `분모를 $${lcd}$로 통분하면 $${left}=${fin}$이다.`;
-  return `분모를 $${lcd}$로 통분하면 $${left}=${mid}=${fin}$이다.`;
+  // 「통분하면」이라고만 쓰면 뒤에 통분한 **항들**이 올 것처럼 읽힌다 —
+  // 실제로 오는 것은 모아 더한 한 분수다. 지면에서 그렇게 보였다.
+  //
+  // 그리고 모아 놓은 분수가 **딱 떨어지면** 그 중간 단계는 지면에서 답과 똑같이
+  // 보인다(제품 렌더러가 $\dfrac{16}{2}$ 를 $-8$ 로 접는다 — `improperToMixed`).
+  // 그대로 두면 `=-8=-8` 이 찍힌다. 실제로 그렇게 나갔다.
+  const redundant = mid === fin || num % lcd === 0;
+  if (redundant)
+    return `분모를 $${lcd}$로 통분하여 더하면 $${left}=${fin}$이다.`;
+  return `분모를 $${lcd}$로 통분하여 더하면 $${left}=${mid}=${fin}$이다.`;
 }
 
 /** 분모가 `dens` 안에 있는 $0$ 아닌 유리수 하나(약분되어 분모가 줄 수 있다). */
@@ -269,25 +277,58 @@ function negTermValue(t: NegTerm, n: number): number {
 
 type Cand = { code: number; tex: string; f: (a: number) => number };
 
-const CANDS: readonly Cand[] = [
-  { code: 1, tex: "a", f: (a) => a },
-  { code: 2, tex: "-a", f: (a) => -a },
-  { code: 3, tex: "a^{2}", f: (a) => a * a },
-  { code: 4, tex: "-a^{2}", f: (a) => -(a * a) },
-  { code: 5, tex: "a^{3}", f: (a) => a * a * a },
-  { code: 6, tex: "-a^{3}", f: (a) => -(a * a * a) },
-  { code: 7, tex: "\\dfrac{1}{a}", f: (a) => 1 / a },
-  { code: 8, tex: "-\\dfrac{1}{a}", f: (a) => -1 / a },
-  { code: 9, tex: "\\dfrac{1}{a^{2}}", f: (a) => 1 / (a * a) },
+/**
+ * `f` 는 «구간 안에서 순서가 늘 같은가»를 볼 때 쓰는 근삿값,
+ * `q` 는 **풀이에 적을 정확한 값**이다 — 대입해 보인 수가 소수로 나가면 안 된다.
+ */
+type CandQ = Cand & { q: (a: Q) => Q };
+
+const CANDS: readonly CandQ[] = [
+  { code: 1, tex: "a", f: (a) => a, q: (a) => a },
+  { code: 2, tex: "-a", f: (a) => -a, q: (a) => negQ(a) },
+  { code: 3, tex: "a^{2}", f: (a) => a * a, q: (a) => powQ(a, 2) },
+  { code: 4, tex: "-a^{2}", f: (a) => -(a * a), q: (a) => negQ(powQ(a, 2)) },
+  { code: 5, tex: "a^{3}", f: (a) => a * a * a, q: (a) => powQ(a, 3) },
+  {
+    code: 6,
+    tex: "-a^{3}",
+    f: (a) => -(a * a * a),
+    q: (a) => negQ(powQ(a, 3)),
+  },
+  {
+    code: 7,
+    tex: "\\dfrac{1}{a}",
+    f: (a) => 1 / a,
+    q: (a) => divQ(q(1), a),
+  },
+  {
+    code: 8,
+    tex: "-\\dfrac{1}{a}",
+    f: (a) => -1 / a,
+    q: (a) => negQ(divQ(q(1), a)),
+  },
+  {
+    code: 9,
+    tex: "\\dfrac{1}{a^{2}}",
+    f: (a) => 1 / (a * a),
+    q: (a) => divQ(q(1), powQ(a, 2)),
+  },
 ];
 
-type Range = { code: number; tex: string; lo: number; hi: number };
+/** `probe` 는 구간 **안쪽**의 딱 떨어지는 수 — 풀이에서 실제로 대입해 보인다. */
+type Range = {
+  code: number;
+  tex: string;
+  lo: number;
+  hi: number;
+  probe: Q;
+};
 
 const RANGES: readonly Range[] = [
-  { code: 1, tex: "-1<a<0", lo: -1, hi: 0 },
-  { code: 2, tex: "0<a<1", lo: 0, hi: 1 },
-  { code: 3, tex: "a<-1", lo: -5, hi: -1 },
-  { code: 4, tex: "a>1", lo: 1, hi: 5 },
+  { code: 1, tex: "-1<a<0", lo: -1, hi: 0, probe: q(-1, 2) },
+  { code: 2, tex: "0<a<1", lo: 0, hi: 1, probe: q(1, 2) },
+  { code: 3, tex: "a<-1", lo: -5, hi: -1, probe: q(-2) },
+  { code: 4, tex: "a>1", lo: 1, hi: 5, probe: q(2) },
 ];
 
 /** 열린 구간 안쪽 표본점 — 끝점은 넣지 않는다. */
@@ -811,8 +852,12 @@ export const M1_CALC: TypeEntry[] = [
       const raw = mulQ(powQ(base1, e1), powQ(base2, e2));
       const P = outerMinus ? negQ(raw) : raw;
       if (!nice(P, 400, 64)) return null;
+      // 밑이 양의 정수면 괄호를 두르지 않는다 — 지면에 `(5)^{2}` 로 찍혔다.
       const head = `\\left(${texQ(base1)}\\right)^{${e1}}`;
-      const tail = `\\left(${texQ(base2)}\\right)^{${e2}}`;
+      const tail =
+        base2.n < 0
+          ? `\\left(${texQ(base2)}\\right)^{${e2}}`
+          : `${texQ(base2)}^{${e2}}`;
       const expr = `${outerMinus ? "-" : ""}${head}\\times${tail}`;
       const p1 = powQ(base1, e1);
       const p2 = powQ(base2, e2);
@@ -882,7 +927,10 @@ export const M1_CALC: TypeEntry[] = [
         content: `$n$이 ${parity}일 때, $${expr}$을 계산하시오.`,
         answer: `$${ans}$`,
         solution:
-          `밑이 $1$인 $-1^{n}$은 지수와 상관없이 $-1$이고, $(-1)^{n}$은 지수가 짝수이면 $1$, 홀수이면 $-1$이다.\n` +
+          // 밑이 $1$ 인 항이 없는데 그 규칙부터 늘어놓으면 안 쓰는 말이 된다.
+          (terms.some((t) => t.base === 1)
+            ? `밑이 $1$인 $-1^{n}$은 지수와 상관없이 $-1$이고, $(-1)^{n}$은 지수가 짝수이면 $1$, 홀수이면 $-1$이다.\n`
+            : `$(-1)^{n}$은 지수가 짝수이면 $1$, 홀수이면 $-1$이다.\n`) +
           `$n$이 ${parity}이므로 ${perTerm}이다.\n` +
           `따라서 $${expr}=${ans}$이다.`,
         facts: {
@@ -1193,6 +1241,19 @@ export const M1_CALC: TypeEntry[] = [
         else if (winner !== bi) return null; // 구간 안에서 순서가 뒤집히면 답이 없다
       }
       if (winner === -1) return null;
+      // 풀이는 `r.probe` 하나를 대입해 보인다 — 그 점에서도 같은 것이 극값이라야
+      // 「대입해 보니 이것」이 답과 어긋나지 않는다. 보기를 늘리면 여기가 막는다.
+      const probeVals = cands.map((c) => c.q(r.probe));
+      let pb = 0;
+      for (let i = 1; i < probeVals.length; i += 1) {
+        const better = wantMax
+          ? probeVals[i]!.n * probeVals[pb]!.d >
+            probeVals[pb]!.n * probeVals[i]!.d
+          : probeVals[i]!.n * probeVals[pb]!.d <
+            probeVals[pb]!.n * probeVals[i]!.d;
+        if (better) pb = i;
+      }
+      if (pb !== winner) return null;
       const list = cands.map((c) => `$${c.tex}$`).join(", ");
       return {
         content:
@@ -1201,8 +1262,9 @@ export const M1_CALC: TypeEntry[] = [
         answer: `$${cands[winner]!.tex}$`,
         solution:
           `조건을 만족시키는 수를 하나 골라 대신 넣어 크기를 비교한다.\n` +
-          `$${r.tex}$이므로 문자에 그 범위의 수를 넣어 보면 ` +
-          `${wantMax ? "가장 큰" : "가장 작은"} 수는 $${cands[winner]!.tex}$이다.`,
+          `$a=${texQ(r.probe)}$를 넣으면 ` +
+          `${cands.map((c) => `$${c.tex}=${texQ(c.q(r.probe))}$`).join(", ")}이다.\n` +
+          `따라서 ${wantMax ? "가장 큰" : "가장 작은"} 수는 $${cands[winner]!.tex}$이다.`,
         facts: {
           range: r.code,
           c1: cands[0]!.code,
@@ -1236,7 +1298,8 @@ export const M1_CALC: TypeEntry[] = [
         solution:
           `지애는 $${k}$번 이기고 $${n - k}$번 졌으므로 점수는 $${k}\\times${win}+${n - k}\\times\\left(${lose}\\right)=${scoreA}$(점)이다.\n` +
           `이서는 $${n - k}$번 이기고 $${k}$번 졌으므로 점수는 $${n - k}\\times${win}+${k}\\times\\left(${lose}\\right)=${scoreB}$(점)이다.\n` +
-          `따라서 두 점수의 차는 $${scoreA}-\\left(${scoreB}\\right)=${D}$(점)이다.`,
+          // 양수를 괄호로 두르면 지면에 `9-(5)` 로 찍힌다 — 음수일 때만 두른다.
+          `따라서 두 점수의 차는 $${scoreA}-${scoreB < 0 ? `\\left(${scoreB}\\right)` : scoreB}=${D}$(점)이다.`,
         facts: { win, lose, n, k, scoreA, scoreB, D },
       };
     }),

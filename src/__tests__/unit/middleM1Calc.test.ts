@@ -33,6 +33,7 @@
 import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
+import { preprocessMathText } from "../../lib/math/textPreprocess";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -586,6 +587,34 @@ describe("중1 정수와 유리수의 계산 27유형", () => {
           const p = generateMiddleProblem(e.key, seed);
           expect(badFracs(p.content), `발문: ${p.content}`).toEqual([]);
           expect(badFracs(p.answer), `정답: ${p.answer}`).toEqual([]);
+        }
+      });
+
+      /*
+       * 위 검사는 **저장된 문자열**을 본다. 지면에 찍히는 것은 그게 아니다 —
+       * 제품 전처리 `improperToMixed` 가 $\dfrac{16}{2}$ 를 $2$ 로, $\dfrac{7}{2}$ 를
+       * $3\dfrac{1}{2}$ 로 접는다(실측: 우리 문항 1,620자리 **전부** 손을 탄다).
+       * 그래서 지면형을 한 번 더 잰다.
+       *
+       * ⚠️ 정직하게 — **오늘 이 검사는 위 검사에 딸려 온다.** 기약인 가분수
+       * $p/q$ 를 대분수로 접으면 나머지 $r=p \bmod q$ 에 대해 $\gcd(r,q)=\gcd(p,q)=1$
+       * 이므로 나머지도 반드시 기약이다. 즉 저장본이 깨끗하면 지면형도 깨끗하다.
+       * 그래도 두는 이유는 하나다: `improperToMixed` 는 **남의 파일**이고 저장소
+       * 전체가 쓴다. 그 접는 규칙이 바뀌면 우리 지면이 먼저 알아야 한다.
+       * (「걸릴 일이 없는 가드」를 그런 줄 모르고 두지 않는다 — 아래 24·25 와 같은 자리.)
+       */
+      it("제품 전처리를 태운 뒤에도 발문·정답에 약분 안 된 분수가 없다", () => {
+        for (const seed of SEEDS) {
+          const p = generateMiddleProblem(e.key, seed);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+          ] as const) {
+            const rendered = preprocessMathText(text);
+            expect(badFracs(rendered), `${label} 지면형: ${rendered}`).toEqual(
+              [],
+            );
+          }
         }
       });
 
