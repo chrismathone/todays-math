@@ -57,16 +57,21 @@ function barValue(spec: BarSpec, label: string): number {
   return hit!.value!;
 }
 
-/** 표 갈래(1-5-2)의 스펙 — 표의 값을 라벨(머리글)로 찾는다. */
+/**
+ * 표 갈래(1-5-2)의 스펙 — 표의 값을 라벨로 찾는다.
+ *
+ * ⚠️ 2026-08-24 에 표가 **세로로** 섰다(D-70 폭 가드). 그전에는 라벨이 머리줄에
+ * 있었고 값이 `rows[0]` 한 줄이었다. 이제 **행마다 «라벨, 값»** 이다.
+ */
 type TableSpec = { kind: string; headers: string[]; rows: string[][] };
 
 function tableValue(spec: TableSpec, label: string): number {
-  const at = spec.headers.indexOf(label);
+  const row = spec.rows.find((r) => r[0] === label);
   expect(
-    at,
-    `표에 ${label} 열이 없다: ${spec.headers.join(",")}`,
-  ).toBeGreaterThan(0);
-  return Number(spec.rows[0]![at]);
+    row,
+    `표에 ${label} 행이 없다: ${spec.rows.map((r) => r[0]).join(",")}`,
+  ).toBeTruthy();
+  return Number(row![1]);
 }
 
 describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () => {
@@ -102,10 +107,13 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
         const p2 = generateElementaryProblem(unitOf("1-5-2"), seed, tier);
         const spec = p2.figureSpec as TableSpec;
         expect(spec.kind, `1-5-2 ${tier} seed ${seed}`).toBe("table");
-        // 표의 짜임 — 머리글(항목 이름 + 라벨 넷) 한 줄, 값 한 줄.
-        expect(spec.headers.length, `1-5-2 ${tier} seed ${seed}`).toBe(5);
-        expect(spec.rows.length, `1-5-2 ${tier} seed ${seed}`).toBe(1);
-        expect(spec.rows[0]!.length, `1-5-2 ${tier} seed ${seed}`).toBe(5);
+        // 표의 짜임 — **세로**다. 머리글은 «항목 이름 · 학생 수(명)» 둘,
+        // 행은 항목마다 하나(넷)이고 행마다 «라벨, 값» 두 칸이다.
+        expect(spec.headers.length, `1-5-2 ${tier} seed ${seed}`).toBe(2);
+        expect(spec.rows.length, `1-5-2 ${tier} seed ${seed}`).toBe(4);
+        for (const row of spec.rows) {
+          expect(row.length, `1-5-2 ${tier} seed ${seed}`).toBe(2);
+        }
       }
     }
   });
@@ -238,7 +246,8 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(unitOf("1-5-2"), seed, "기본");
       const spec = p.figureSpec as TableSpec;
-      const vals = spec.rows[0]!.slice(1).map(Number);
+      // 세로 표 — 값은 **행마다 둘째 칸**이다.
+      const vals = spec.rows.map((r) => Number(r[1]));
       const max = Math.max(...vals);
       if (/적어도 몇 명까지/.test(p.content)) {
         kinds.add("몇명까지");
@@ -267,7 +276,8 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
       const s = Number(ms![1]);
       if (/적어도 몇 칸/.test(p.content)) {
         kinds.add("최소칸수");
-        const vals = spec.rows[0]!.slice(1).map(Number);
+        // 세로 표 — 값은 **행마다 둘째 칸**이다.
+      const vals = spec.rows.map((r) => Number(r[1]));
         expect(got * s, `seed ${seed}`).toBe(Math.max(...vals));
       } else {
         kinds.add("칸차");

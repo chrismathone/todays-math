@@ -4069,9 +4069,11 @@ function tier51Deep(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 그리기 갈래의 **표** — 완성된 그래프 대신 원자료를 보인다(「그리기」의 정체성). */
 function barTable(d: ReturnType<typeof barData>): Record<string, unknown> {
+  // 세로로 세운다 — 까닭은 `tableFigure` 머리글 참조(D-70 폭 가드).
+  // 여기는 이름이 「학생 수(명)」 하나뿐이라 **줄일 것이 없고 전치만으로 선다.**
   return fig("table", {
-    headers: [d.theme.item, ...d.values.map((v) => v.label)],
-    rows: [["학생 수(명)", ...d.values.map((v) => String(v.value))]],
+    headers: [d.theme.item, "학생 수(명)"],
+    rows: d.values.map((v) => [v.label, String(v.value)]),
   });
 }
 
@@ -8808,6 +8810,17 @@ type TimeLabel = { text: string; math: string };
  */
 type LineTheme = {
   topic: string;
+  /**
+   * **표 칸에 쓸 짧은 이름.** 없으면 `topic` 을 쓴다.
+   *
+   * 표의 첫 열은 «지면 폭 − 나머지 열» 만 쓸 수 있다(실측: 남는 자리 최소 $52$단위).
+   * 「하루 동안 내린 비의 양(mm)」은 $165$단위라 그 자리에 **못 들어간다** — 옛 엔진은
+   * 조용히 잘랐고(왼쪽 끝 $-11.8$까지 넘쳤다) 지금 엔진은 던진다(D-70).
+   *
+   * ⚠️ **`topic` 자체를 줄이지 않는다.** 발문이 「$\cdots$ 을 조사하여 나타낸 표입니다」로
+   * 그 말을 쓰므로, 줄이면 지면의 문장이 같이 상한다. 짧게 쓸 자리는 **표 칸뿐**이다.
+   */
+  short?: string;
   unit: string;
   labels: readonly TimeLabel[];
   base: readonly [number, number];
@@ -8891,6 +8904,7 @@ const LINE_THEMES: readonly LineTheme[] = [
     // 그림 세션이 `_axis_top` 으로 걸음을 사다리 삼게 고쳐, 실측으로 `yMax 1153` 이
     // **7줄**(`0·200·…·1200`)로 나온다. 원장님: 「큰 눈금 써도 된다」.
     topic: "박물관에 온 관람객 수",
+    short: "관람객 수",
     unit: "명",
     labels: timeLabels([1, 2, 3, 4, 5], "월"),
     base: [8, 14],
@@ -8921,6 +8935,7 @@ const LINE_THEMES: readonly LineTheme[] = [
   },
   {
     topic: "하루 동안 내린 비의 양",
+    short: "비의 양",
     unit: "mm",
     labels: timeLabels([6, 7, 8, 9, 10], "일"),
     base: [8, 12],
@@ -9403,13 +9418,25 @@ function tableValues(rng: Rng, theme: LineTheme): number[] {
 }
 
 /** 2-5-3 갈래의 그림 — 표. 발문도 표만 가리킨다. */
+/**
+ * 표를 **세로로** 세운다 — 항목이 행, 값이 열(D-70 폭 가드, 2026-08-24).
+ *
+ * 가로로 눕히면 첫 열에 긴 이름이 들어가는데, 그 자리는 «지면 폭 − 나머지 열» 뿐이다.
+ * 실측으로 남는 자리가 **최소 $52$단위**인데 「하루 동안 내린 비의 양(mm)」은 $165$다.
+ * 옛 엔진은 그것을 **조용히 잘랐고**(글자 왼쪽 끝이 $-11.8$까지 넘쳐 한글 다섯 자가
+ * 사라졌다) 에러도 안 났다 — 지면에서 티가 안 나는 결함이었다.
+ *
+ * ⚠️ **세 안을 실제 렌더러에 대 보고 골랐다**(시뮬레이션이 아니다).
+ *   라벨만 줄이기 $0/192$ · 전치만 $141/192$ · **전치 + 긴 이름 둘 줄이기 $192/192$**.
+ *   전치만으로는 값 열이 $193$단위라 아직 넘친다 — 둘 다 필요하다.
+ */
 function tableFigure(
   theme: LineTheme,
   nums: readonly number[],
 ): Record<string, unknown> {
   return fig("table", {
-    headers: ["구분", ...theme.labels.map((l) => l.text)],
-    rows: [[`${theme.topic}(${theme.unit})`, ...nums.map((v) => String(v))]],
+    headers: ["구분", `${theme.short ?? theme.topic}(${theme.unit})`],
+    rows: theme.labels.map((l, i) => [l.text, String(nums[i] ?? "")]),
   });
 }
 

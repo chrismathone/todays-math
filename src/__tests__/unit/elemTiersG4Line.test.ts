@@ -18,9 +18,13 @@
  * (초4 짝 53장 중 17장이 `mid` 로 떨어져 눈금 글자 11.45~12.30px < 본문 12.5px)
  * 지금 넣으면 같은 결함을 하나 더 만든다. 그림 세션이 고치면 그때 따로 얹는다.
  */
+import { existsSync } from "node:fs";
+import path from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { G4_LINE_THEMES } from "@/lib/elementary/g4";
 import {
   elementaryUnits,
@@ -32,6 +36,11 @@ const CODES = ["2-5-1", "2-5-2", "2-5-3"] as const;
 const SEEDS = Array.from({ length: 16 }, (_, i) => 20260823 + i * 7919);
 const WIDE = Array.from({ length: 200 }, (_, i) => 31337 + i * 104729);
 const SWEEP = Array.from({ length: 1200 }, (_, i) => 20260823 + i * 7919);
+
+/** 그림 엔진이 이 컴퓨터에 있나 — 없으면 «실제 렌더» 축은 건너뛴다(그래서 다른 축을 둔다). */
+const hasFigureEngine =
+  existsSync(path.join(process.cwd(), "vendor", "figure-engine")) ||
+  existsSync(process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기");
 
 function unitOf(code: string) {
   const u = elementaryUnits().find(
@@ -55,12 +64,18 @@ type Spec = {
   yStep?: number;
 };
 
-/** 그림에 실린 값. 꺾은선은 `values`, 표는 `rows[0]` 의 둘째 칸부터다. */
+/**
+ * 그림에 실린 값. 꺾은선은 `values`, 표는 **각 행의 둘째 칸**이다.
+ *
+ * ⚠️ 2026-08-24 에 표가 **세로로** 섰다(D-70 폭 가드). 그전에는 `rows[0]` 한 줄에
+ * 값이 다 들어 있었다 — 그 시절 코드를 그대로 두면 값이 **빈 배열**이 되고,
+ * 「구간이 하나로 선다」류 검사가 «0개»를 받아 조용히 다른 이유로 빨개진다.
+ */
 function figureNums(spec: Spec | null): number[] {
   if (spec?.kind === "lineChart")
     return (spec.values ?? []).map((v) => v.value);
   if (spec?.kind === "table")
-    return (spec.rows?.[0] ?? []).slice(1).map(Number);
+    return (spec.rows ?? []).map((r) => Number(r[1]));
   return [];
 }
 
@@ -68,7 +83,8 @@ function figureNums(spec: Spec | null): number[] {
 function figureLabels(spec: Spec | null): string[] {
   if (spec?.kind === "lineChart")
     return (spec.values ?? []).map((v) => v.label);
-  if (spec?.kind === "table") return (spec.headers ?? []).slice(1);
+  // 표가 세로로 서므로 때 이름은 **각 행의 첫 칸**이다(전에는 머리줄이었다).
+  if (spec?.kind === "table") return (spec.rows ?? []).map((r) => String(r[0]));
   return [];
 }
 
@@ -616,4 +632,114 @@ describe("[초4] 단위 뒤 조사", () => {
       expect(hit, `거짓 경보: ${text}`).toBe(false);
     }
   });
+});
+
+/* ────────── 표가 지면 폭에 **실제로** 들어가는가 (2026-08-24) ──────────
+ *
+ * main 병합이 열 폭 가드(D-70)를 들여오자 초4 표 **192건**이 던졌다. 회귀가 아니라
+ * **원래 잘리고 있던 것이 드러난 것**이다 — 옛 엔진은 균등 폭이라 「하루 동안 내린
+ * 비의 양(mm)」($165$단위)을 $44.8$ 칸에 넣고 **조용히 잘랐다**(글자 왼쪽 끝 $-11.8$,
+ * 한글 다섯 자가 사라졌다). 에러도 안 나고 지면에서 티도 안 났다.
+ *
+ * ⚠️ **시험이 없어서가 아니라 «축»이 없어서 조용했다.** 2-5-3 은 이 파일에 시험이
+ * 여럿 있었는데 전부 **발문·값**을 봤다. 「그 스펙이 실제로 그려지는가」를 아무도
+ * 안 물었다. 그래서 축을 둘로 세운다 —
+ *
+ *   ㉮ **엔진 없이도 도는 것** — 스펙이 세로로 서 있는가(열 둘, 행이 항목 수).
+ *      `skipIf` 는 엔진이 없으면 **조용히 건너뛴다**. 그러면 이 결함이 또 침묵한다.
+ *   ㉯ **엔진이 있을 때** — 정말 그려지고, 글자가 `viewBox` 안에 있는가.
+ */
+describe("[초4 표] 지면 폭 — 스펙 모양 (엔진 없이도 돈다)", () => {
+  const TABLE_CODES = ["1-5-2", "2-5-3"] as const;
+
+  it("**표가 세로로 서 있다** — 열은 둘, 행은 항목 수", () => {
+    let looked = 0;
+    for (const code of TABLE_CODES) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of WIDE) {
+          const spec = gen(code, seed, tier).figureSpec as
+            | { kind?: string; headers?: unknown[]; rows?: unknown[][] }
+            | undefined;
+          if (spec?.kind !== "table") continue;
+          // 가로로 누우면 첫 열에 긴 이름이 들어가 지면을 넘는다 — 그 모양을 막는다.
+          expect(spec.headers, `${code} ${tier} 씨앗 ${seed} 열이 둘이 아니다`).toHaveLength(2);
+          expect(
+            spec.rows!.length,
+            `${code} ${tier} 씨앗 ${seed} 항목이 행으로 안 섰다`,
+          ).toBeGreaterThanOrEqual(4);
+          for (const row of spec.rows!) {
+            expect(row, `${code} ${tier} 씨앗 ${seed} 행이 두 칸이어야`).toHaveLength(2);
+          }
+          looked += 1;
+        }
+      }
+    }
+    // 분모 — 표가 한 건도 안 나왔으면 위의 전량 통과는 아무것도 안 지킨다.
+    expect(looked, "표 스펙을 한 건도 못 봤다").toBeGreaterThan(0);
+  });
+
+  it("**표 이름이 짧은 쪽을 쓴다** — 긴 소재 둘", () => {
+    // 발문은 긴 이름을 그대로 쓰고(문장이 상하지 않게), 표 칸만 짧은 이름을 쓴다.
+    let looked = 0;
+    let shortSeen = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of WIDE) {
+        const p = gen("2-5-3", seed, tier);
+        const spec = p.figureSpec as { kind?: string; headers?: string[] } | undefined;
+        if (spec?.kind !== "table") continue;
+        looked += 1;
+        const head = String(spec.headers![1]);
+        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain("하루 동안");
+        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain("박물관에 온");
+        if (head.startsWith("비의 양") || head.startsWith("관람객 수")) {
+          shortSeen += 1;
+          // 그 소재의 **발문**에는 긴 이름이 그대로 남아 있어야 한다.
+          expect(
+            /하루 동안 내린 비의 양|박물관에 온 관람객 수/.test(p.content),
+            `씨앗 ${seed} 발문 문장까지 줄었다`,
+          ).toBe(true);
+        }
+      }
+    }
+    expect(looked, "표 스펙을 한 건도 못 봤다").toBeGreaterThan(0);
+    expect(shortSeen, "짧은 이름을 쓰는 소재가 한 번도 안 나왔다").toBeGreaterThan(0);
+  });
+});
+
+describe.skipIf(!hasFigureEngine)("[초4 표] 지면 폭 — 실제 렌더", () => {
+  /**
+   * ⚠️ **이 블록은 엔진이 없으면 조용히 건너뛴다.** 그래서 위의 «스펙 모양» 축을
+   * 따로 두었다 — 건너뛰어도 세로로 선 것은 잠긴다. 여기서만 잴 수 있는 것은
+   * 「글자가 정말 지면 안에 있는가」이고, 그것이 옛 결함의 알맹이였다.
+   */
+  it("**표가 그려지고 글자가 지면 안에 있다**", async () => {
+    const seen = new Set<string>();
+    let rendered = 0;
+    for (const code of ["1-5-2", "2-5-3"] as const) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const spec = gen(code, seed, tier).figureSpec;
+          if ((spec as { kind?: string } | undefined)?.kind !== "table") continue;
+          const key = JSON.stringify(spec);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          const r = await renderFigureSpec(spec as Record<string, unknown>);
+          expect(r.ok, `${code} ${tier} 씨앗 ${seed} 렌더 실패`).toBe(true);
+          if (!r.ok) continue;
+          const vb = /viewBox="([^"]+)"/.exec(r.svg)?.[1]?.split(/\s+/).map(Number);
+          expect(vb, "viewBox 를 못 읽음").toBeTruthy();
+          const width = vb![2]!;
+          const xs = [
+            ...r.svg.matchAll(/<text x="(-?[\d.]+)"/g),
+          ].map((m) => Number(m[1]));
+          expect(xs.length, `${code} 글자가 없다`).toBeGreaterThan(0);
+          // 옛 엔진은 왼쪽 끝이 $-11.8$ 까지 넘쳐 한글 다섯 자를 잘랐다.
+          expect(Math.min(...xs), `${code} ${tier} 씨앗 ${seed} 왼쪽으로 넘침`).toBeGreaterThanOrEqual(0);
+          expect(Math.max(...xs), `${code} ${tier} 씨앗 ${seed} 오른쪽으로 넘침`).toBeLessThanOrEqual(width);
+          rendered += 1;
+        }
+      }
+    }
+    expect(rendered, "표를 한 장도 안 그렸다 — 이 검사는 아무것도 안 지킨다").toBeGreaterThan(0);
+  }, 120_000);
 });
