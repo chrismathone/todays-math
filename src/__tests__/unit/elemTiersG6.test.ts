@@ -733,17 +733,18 @@ function readDecTok(tok: string): R | null {
   return rat(Number(`${m[1]}${frac}`), 10 ** frac.length);
 }
 
-/** 발문·정답의 `$...$` 덩어리에서 소수·자연수를 순서대로 뽑는다. */
+/** 발문·정답의 `$...$` 덩어리에서 소수·자연수·분수를 순서대로 뽑는다.
+ *  `\%` 는 걷어 내고(백분율 수치), `:` 는 가른다(`$3:4$` 의 두 항). */
 function decNumbersIn(text: string): R[] {
   const out: R[] = [];
   for (const m of text.matchAll(/\$([^$]*)\$/g)) {
     const tok = m[1]!
-      .replace(/\\,|\\;|\\!/g, "")
+      .replace(/\\,|\\;|\\!|\\%/g, "")
       .replace(/\\mathrm\{[a-zA-Z]+\}(\^\d)?/g, "")
-      .replace(/\\div|\\times|\\square|=/g, " ")
+      .replace(/\\div|\\times|\\square|=|:/g, " ")
       .trim();
     for (const piece of tok.split(/\s+/)) {
-      const v = readDecTok(piece);
+      const v = readDecTok(piece) ?? readNumber(piece);
       if (v) out.push(v);
     }
   }
@@ -1020,6 +1021,428 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
             if (field.includes("\\frac"))
               bad.push(`${where} ${name}: 분수가 섞였다`);
             // 초등 지면은 «7.0» 처럼 꼬리 0 을 적지 않는다.
+            const trailing = field.match(/\d+\.\d*0(?![\d])/g);
+            if (trailing)
+              bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+// ══════════ 4차분 — 1-4 비와 비율 ══════════
+//
+// 답 모양이 넷(자연수·비·기약분수·소수)이고, **비의 어순**이 이 대단원 최대 함정이다:
+// 「B에 대한 A의 비」=A:B(B가 기준량) · 「A와 B의 비」=A:B · 「A의 B에 대한 비」=A:B.
+// 생성기가 한 문형을 거꾸로 읽으면 그 갈래 전량이 그럴듯한 오답이 된다 — 그래서
+// ⑴ 이 시험이 어순 규칙을 **생성기와 독립으로** 다시 구현해 발문에서 비를 되뽑고
+// ⑵ 세 문형을 고정 픽스처로도 잠근다(파서 자체의 눈금 — 엔진을 안 부른다).
+
+const G6_14_CODES = [
+  "1-4-1",
+  "1-4-2",
+  "1-4-3",
+  "1-4-4",
+  "1-4-5",
+  "1-4-6",
+] as const;
+
+/** 발문에서 «이름 $n$» 짝을 뽑는다: "남학생 $4$명과" → { name: "남학생", v: 4 }.
+ *  이름에 앞말이 딸려 붙을 수 있어(«명과 여학생») 찾을 때는 endsWith 로 맞춘다. */
+function namedCounts(content: string): { name: string; v: number }[] {
+  const out: { name: string; v: number }[] = [];
+  for (const m of content.matchAll(/([가-힣][가-힣 ]*?)\s\$(\d+)\$/g)) {
+    out.push({ name: m[1]!.trim(), v: Number(m[2]) });
+  }
+  return out;
+}
+
+/**
+ * 비(`$a:b$`)가 답인 발문에서 어순 규칙으로 (비교하는 양, 기준량)을 되뽑는다.
+ * 「전체 …」는 이름이 아니라 **이름들의 합**이다. 못 읽으면 null — 위반으로 처리된다.
+ */
+function ratioTruthOf(content: string): [number, number] | null {
+  const dae = content.match(/\$(\d+)\$ 대 \$(\d+)\$/);
+  if (dae) return [Number(dae[1]), Number(dae[2])];
+  if (content.includes("만큼")) {
+    const ns = decNumbersIn(content);
+    if (ns.length < 2 || ns[0]!.d !== 1 || ns[1]!.d !== 1) return null;
+    const b0 = ns[0]!.n;
+    const d = ns[1]!.n;
+    return content.includes("큰") ? [b0 + d, b0] : [b0 - d, b0];
+  }
+  const counts = namedCounts(content);
+  const resolve = (label: string): number | null => {
+    if (label.startsWith("전체")) {
+      return counts.reduce((s, c) => s + c.v, 0);
+    }
+    const hit = counts.find((c) => c.name.endsWith(label));
+    return hit ? hit.v : null;
+  };
+  // 「B에 대한 A의 비」 = A:B — 기준량이 앞에 온다.
+  let m = content.match(
+    /([가-힣][가-힣 ]*?) 수에 대한 ([가-힣][가-힣 ]*?) 수의 비/,
+  );
+  if (m) {
+    const x = resolve(m[2]!);
+    const y = resolve(m[1]!);
+    return x !== null && y !== null ? [x, y] : null;
+  }
+  // 「A의 B에 대한 비」 = A:B.
+  m = content.match(
+    /([가-힣][가-힣 ]*?) 수의 ([가-힣][가-힣 ]*?) 수에 대한 비/,
+  );
+  if (m) {
+    const x = resolve(m[1]!);
+    const y = resolve(m[2]!);
+    return x !== null && y !== null ? [x, y] : null;
+  }
+  // 「A와 B의 비」 = A:B — 차례 그대로.
+  m = content.match(/([가-힣][가-힣 ]*?) 수와 ([가-힣][가-힣 ]*?) 수의 비/);
+  if (m) {
+    const x = resolve(m[1]!);
+    const y = resolve(m[2]!);
+    return x !== null && y !== null ? [x, y] : null;
+  }
+  return null;
+}
+
+/** `$a:b$` 답. 비는 6-1 에서 약분하지 않으므로 **그대로의 짝**으로 견준다. */
+function readRatioAnswer(answer: string): [number, number] | null {
+  const m = answer.match(/^\$(\d+):(\d+)\$$/);
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+/** 정답 하나를 유리수로 — 자연수·소수·분수(`fmtFrac` 산출) 전부. */
+function readMixedAnswer(answer: string): R {
+  const m = answer.match(/^\$(.+)\$$/);
+  expect(m, `정답 모양: ${answer}`).toBeTruthy();
+  const tok = m![1]!.replace(/\\,|\\;|\\!/g, "").trim();
+  const v = readDecTok(tok) ?? readNumber(tok);
+  expect(v, `정답을 못 읽음: ${answer}`).toBeTruthy();
+  return v!;
+}
+
+/** 유리수 값 비교(교차곱) — 백분율 비교 갈래가 쓴다. */
+const rlt = (a: R, b: R) => a.n * b.d < b.n * a.d;
+
+/**
+ * 유리수 답 갈래의 참 — 발문의 낱말로 가른다. 어순(«에 대한»)이 방향을 정하는 갈래는
+ * 그 방향을 여기서 **다시** 정한다(엔진 해석을 되받으면 값 복사라 같이 눈먼다).
+ */
+function truthOf14(content: string): R | null {
+  const ns = decNumbersIn(content);
+  const at = (i: number) => ns[i] ?? null;
+
+  // 1-4-1 심화 ⓑ — 어떤 수를 되짚어 다른 배를 구한다
+  if (content.includes("어떤 수의")) {
+    const [k1, v, k2] = [at(0), at(1), at(2)];
+    return k1 && v && k2 ? rmul(rdiv(v, k1), k2) : null;
+  }
+  // 1-4-1 심화 ⓐ — 배수 관계에서 기준을 되짚는다
+  if (content.includes("배입니다")) {
+    const [k, total] = [at(0), at(1)];
+    return k && total ? rdiv(total, k) : null;
+  }
+  // 1-4-5 심화 — 백분율을 비율로 되돌린다 (ⓐ 기약분수 · ⓑ 비교하는 양)
+  if (content.includes("나타내었더니")) {
+    if (content.includes("기약분수")) {
+      const r = at(0);
+      return r ? rdiv(r, rat(100)) : null;
+    }
+    const [base, p] = [at(0), at(1)];
+    return base && p ? rmul(base, rdiv(p, rat(100))) : null;
+  }
+  // 1-4-3 심화 — 비율에서 비교하는 양·기준량을 되짚는다
+  if (content.includes("기준량이") && content.includes("비교하는 양은")) {
+    const [base, f] = [at(0), at(1)];
+    return base && f ? rmul(base, f) : null;
+  }
+  if (content.includes("비교하는 양이") && content.includes("기준량은")) {
+    const [comp, f] = [at(0), at(1)];
+    return comp && f ? rdiv(comp, f) : null;
+  }
+  // 1-4-4 심화 — 비율(빠르기)에서 거리·시간을 되짚는다
+  if (/비율이 \$/.test(content)) {
+    const [rate, other] = [at(0), at(1)];
+    if (!rate || !other) return null;
+    return content.includes("몇 시간") ? rdiv(other, rate) : rmul(rate, other);
+  }
+  // 1-4-6 심화 ⓐ — 할인가에서 원래 가격을 되짚는다
+  if (content.includes("원래 가격")) {
+    const [r, paid] = [at(0), at(1)];
+    return r && paid ? rdiv(paid, rat(100 - r.n, 100)) : null;
+  }
+  // 1-4-6 심화 ⓑ — 찬성률과 찬성 수에서 전체를 되짚는다
+  if (content.includes("찬성률이")) {
+    const [rate, yes] = [at(0), at(1)];
+    return rate && yes ? rdiv(yes, rat(rate.n, 100)) : null;
+  }
+  // 1-4-6 응용 — 할인 금액을 빼고 남은 지불액
+  if (content.includes("할인하여 샀습니다")) {
+    const [p, r] = [at(0), at(1)];
+    return p && r ? rmul(p, rat(100 - r.n, 100)) : null;
+  }
+  // 1-4-6 연산 — 이자율 (예금한 돈이 기준량이다)
+  if (content.includes("예금한")) {
+    const [pr, it] = [at(0), at(1)];
+    return pr && it ? rmul(rdiv(it, pr), rat(100)) : null;
+  }
+  // 1-4-4 응용 — 물+소금을 먼저 소금물로
+  if (content.includes("녹여")) {
+    const [w, s] = [at(0), at(1)];
+    return w && s ? rdiv(s, rat(w.n + s.n)) : null;
+  }
+  // 1-4-6 기본 — 소금물의 진하기를 백분율로 (소금물이 기준량이다)
+  if (content.includes("소금물") && content.includes("%")) {
+    const [total, s] = [at(0), at(1)];
+    return total && s ? rmul(rdiv(s, total), rat(100)) : null;
+  }
+  // 1-4-5 응용 — 두 비율을 백분율로 바꿔 견준다
+  if (content.includes("두 비율")) {
+    const [f, d] = [at(0), at(1)];
+    if (!f || !d) return null;
+    const pickBig = content.includes("큰");
+    const chosen = rlt(f, d) === pickBig ? d : f;
+    return rmul(chosen, rat(100));
+  }
+  // 1-4-5 연산 — 소수 비율 × 100
+  if (/^비율 \$/.test(content) && ns.length === 1) {
+    return rmul(at(0)!, rat(100));
+  }
+  // 1-4-3 응용 — 나머지 쪽을 먼저 구해 전체에 대한 비율로
+  if (content.includes("그중") && content.includes("나머지")) {
+    const [r, a] = [at(0), at(1)];
+    return r && a ? rat(r.n - a.n, r.n) : null;
+  }
+  // 1-4-5 기본 — 전체에 대한 부분을 백분율로
+  if (content.includes("그중") && content.includes("%")) {
+    const [t, a] = [at(0), at(1)];
+    return t && a ? rmul(rdiv(a, t), rat(100)) : null;
+  }
+  // 1-4-3 기본 — 모둠에 대한 무리의 비율(분수)
+  if (content.includes("명 중")) {
+    const [b, a] = [at(0), at(1)];
+    return b && a ? rdiv(a, b) : null;
+  }
+  // 1-4-1 응용 — 다른 쪽을 차에서 먼저 구한다
+  if (content.includes("적습니다")) {
+    const [red, d] = [at(0), at(1)];
+    return red && d ? rdiv(red, rat(red.n - d.n)) : null;
+  }
+  // 1-4-4 기본 ⓐ — 걸린 시간에 대한 간 거리 (시간이 앞에 적힌다)
+  if (content.includes("동안") || content.includes("걸린 시간이")) {
+    const [h, dist] = [at(0), at(1)];
+    return h && dist ? rdiv(dist, h) : null;
+  }
+  // 1-4-4 기본 ⓑ — 넓이에 대한 인구
+  if (content.includes("인구")) {
+    const [a, p] = [at(0), at(1)];
+    return a && p ? rdiv(p, a) : null;
+  }
+  // 1-4-1 연산·기본 — 큰 수 ÷ 작은 수 · 1-4-3 연산 — 비를 소수 비율로
+  const [a, b] = [at(0), at(1)];
+  if (!a || !b || ns.length > 2) return null;
+  return rdiv(a, b);
+}
+
+describe("[초6 갈래] 1-4 비와 비율", () => {
+  it("소단원 여섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_14_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("비 어순 눈금 — 판독기가 세 문형과 «전체»를 옳게 읽는다 (엔진을 안 부른다)", () => {
+    const rows: { content: string; want: [number, number]; why: string }[] = [
+      {
+        content:
+          "여학생 $5$명과 남학생 $4$명이 있습니다. 여학생 수에 대한 남학생 수의 비를 쓰시오.",
+        want: [4, 5],
+        why: "«B에 대한 A의 비» = A:B — 기준량이 앞에 온다",
+      },
+      {
+        content:
+          "여학생 $5$명과 남학생 $4$명이 있습니다. 남학생 수에 대한 여학생 수의 비를 쓰시오.",
+        want: [5, 4],
+        why: "같은 문형, 반대 방향 — 방향이 안 갈리면 판독기가 아니다",
+      },
+      {
+        content:
+          "여학생 $5$명과 남학생 $4$명이 있습니다. 남학생 수와 여학생 수의 비를 쓰시오.",
+        want: [4, 5],
+        why: "«A와 B의 비» = A:B — 차례 그대로",
+      },
+      {
+        content:
+          "여학생 $5$명과 남학생 $4$명이 있습니다. 남학생 수의 여학생 수에 대한 비를 쓰시오.",
+        want: [4, 5],
+        why: "«A의 B에 대한 비» = A:B — 엔진이 아직 안 쓰는 문형도 잠근다",
+      },
+      {
+        content:
+          "남학생 $4$명과 여학생 $5$명이 있습니다. 전체 학생 수에 대한 남학생 수의 비를 쓰시오.",
+        want: [4, 9],
+        why: "«전체 …»는 이름이 아니라 이름들의 합이다",
+      },
+    ];
+    for (const f of rows) {
+      expect(ratioTruthOf(f.content), `${f.why} — ${f.content}`).toEqual(
+        f.want,
+      );
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (비는 어순 규칙으로, 나머지는 유리수로 재계산)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_14_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          const pairGot = readRatioAnswer(p.answer);
+          if (pairGot) {
+            const want = ratioTruthOf(p.content);
+            if (!want) {
+              bad.push(`${where}: 비 발문을 못 읽음 — ${flat}`);
+              continue;
+            }
+            checked += 1;
+            if (want[0] !== pairGot[0] || want[1] !== pairGot[1]) {
+              bad.push(
+                `${where}: 답 ${p.answer} (${want[0]}:${want[1]} 이어야) — ${flat}`,
+              );
+            }
+            continue;
+          }
+          const want = truthOf14(p.content);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          checked += 1;
+          const got = readMixedAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${rshow(want)} 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_14_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("연산은 이름표 붙은 값이고, 기본은 상황문이며, 응용은 등식이 하나 더 많다", () => {
+    // 손 목록이다 — 연산 문형을 바꾸면 여기가 먼저 빨개져서 새 문형을 적게 만든다.
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "1-4-1": /^\$\d+\$[은는] \$\d+\$의 몇 배입니까/,
+      "1-4-2": /^\$\d+\$ 대 \$\d+\$/,
+      "1-4-3": /^비 \$\d+:\d+\$ 의 비율을 소수로/,
+      "1-4-4": /^걸린 시간이 \$\d+\$시간이고/,
+      "1-4-5": /^비율 \$[\d.]+\$/,
+      "1-4-6": /^예금한 돈이 \$\d+\$원이고/,
+    };
+    const eqs = (s: string) => (s.match(/\$[^$]*=[^$]*\$/g) ?? []).length;
+    for (const code of G6_14_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        expect(
+          CALC_SHAPE[code]!.test(calc.content),
+          `${code} 연산 seed=${seed}: ${calc.content}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(basic.content),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${basic.content}`,
+        ).toBe(false);
+        // 3단은 중간값(전체·차·할인 금액·환산)이 있어 해설의 등식이 2단보다 하나 많다.
+        expect(
+          eqs(apply.solution) > eqs(basic.solution),
+          `${code} seed=${seed}: 응용 등식 ${eqs(apply.solution)} · 기본 ${eqs(basic.solution)} — ${apply.solution}`,
+        ).toBe(true);
+        expect(
+          /어떤 수|배입니다|기준량이|비교하는 양이|나타내었더니|원래 가격|찬성률이|비율이 \$/.test(
+            apply.content,
+          ),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("심화는 역산 표지가 있다 — 비율·백분율을 주고 반대쪽을 되짚는다", () => {
+    for (const code of G6_14_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        expect(
+          /어떤 수|배입니다|기준량이|비교하는 양이|나타내었더니|원래 가격|찬성률이|비율이 \$/.test(
+            deep.content,
+          ),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        // ⓐ «백분율→기약분수»는 발문의 수가 하나뿐이다(백분율 하나에서 되돌린다) — ≥1 로 잰다.
+        expect(
+          decNumbersIn(deep.content).length,
+          `${code} 심화 seed=${seed}: ${deep.content}`,
+        ).toBeGreaterThanOrEqual(1);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_14_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·샌 소수·꼬리 0 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_14_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            const runaway = field.match(/\d+\.\d{3,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
             const trailing = field.match(/\d+\.\d*0(?![\d])/g);
             if (trailing)
               bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);

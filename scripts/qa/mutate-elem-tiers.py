@@ -96,6 +96,50 @@ G3_MUTS = [
     ),
 ]
 
+# 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
+# 손으로 재현하던 것을 하네스로 승격한 것이다(같은 자리 ×10000→×1000).
+# ⚠️ `n(k * 10000),` 은 표준 1-6-3 판과 갈래 판 **두 곳**이라 발문 줄까지 문맥으로 못 박는다.
+G5_MUTS = [
+    (
+        "심화 검산 훼손 — 1-1-1 잘못계산의 바른 값에서 b 하나를 뺀다",
+        "n(c + 2 * b),",
+        "n(c + b),",
+    ),
+    (
+        "연산 검산 훼손 — 1-1-3 ㉮ 정답이 나눗셈을 안 접는다(q 대신 d)",
+        "n(a * b + c - q),",
+        "n(a * b + c - d),",
+    ),
+    (
+        "갈래 뭉개기 — 1-1-1 심화를 연산으로",
+        "    심화: mix111Deep,",
+        "    심화: mix111Calc,",
+    ),
+    (
+        "단위 환산 훼손 — 1-6-3 연산 갈래가 m²→cm² 를 ×1000 으로",
+        r"""`${expr(`${k}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{cm}^2")}입니까?`,
+      n(k * 10000),""",
+        r"""`${expr(`${k}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{cm}^2")}입니까?`,
+      n(k * 1000),""",
+    ),
+    # ── 3차분 (1-2 약수와 배수) ──
+    (
+        "구성 훼손 — 1-2-4 심화 둘째 수의 나머지가 발문과 어긋난다",
+        "    const b = g * q + r2;",
+        "    const b = g * q + r1;",
+    ),
+    (
+        "경계 훼손 — 1-2-6 심화 나머지가 나누는 수보다 커질 수 있다 (리드 경계 지시)",
+        "    const r = intBetween(rng, 1, Math.min(a, b) - 1);",
+        "    const r = intBetween(rng, 1, Math.min(a, b) + 1);",
+    ),
+    (
+        "낱말 축 훼손 — 1-2-5 연산이 공배수를 공약수라 말한다 (D-66 ⑸)",
+        """      `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 가장 작은 수를 구하시오.`,""",
+        """      `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 가장 작은 수를 구하시오.`,""",
+    ),
+]
+
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
 # 공식·검산·갈래 배선·«기본은 그림에서 읽는다»·그림 자체·죽은 짝(꼭짓점↔면) 여섯.
 G6_MUTS = [
@@ -137,6 +181,42 @@ G6_MUTS = [
 ] as const;""",
         """const PYR_DEEP_PAIRS = [["꼭짓점", "면"]] as const;""",
     ),
+    # ── 3차분 (1-3 소수의 나눗셈) — 몫-성질은 판정기가 발문에서 못 재므로(loose)
+    #    시험이 정답에 대고 지킨다. 그 시험이 정말 무는지 셋으로 문다.
+    (
+        "조건 훼손 — 1-3-2 풀이 몫 1 이상을 낸다",
+        "    (c) => c.q >= 20 && c.q < 100 && c.q % 10 === 0 && oneDecDividend(c),",
+        "    (c) => c.q >= 20 && c.q < 200 && c.q % 10 === 0 && oneDecDividend(c),",
+    ),
+    (
+        "검산 훼손 — 1-3-1 상자 응용 답을 0.1 올린다",
+        """    expr(decStr(q10, 1)),
+    `${b.item}만의 무게를 먼저 구합니다.""",
+        """    expr(decStr(q10 + 1, 1)),
+    `${b.item}만의 무게를 먼저 구합니다.""",
+    ),
+    (
+        "갈래 뭉개기 — 1-3-4 심화를 연산으로",
+        "    심화: decZeroDeep,",
+        "    심화: decZeroCalc,",
+    ),
+    # ── 4차분 (1-4 비와 비율) — 최대 함정은 **비의 어순**(«B에 대한 A의 비» = A:B).
+    #    시험이 어순 규칙을 독립 구현했는지, 뒤집힌 비를 정말 무는지 문다.
+    (
+        "어순 훼손 — 1-4-2 응용의 비가 뒤집힌다",
+        "    expr(`${a}:${a + b}`),",
+        "    expr(`${a + b}:${a}`),",
+    ),
+    (
+        "검산 훼손 — 1-4-6 심화 원래 가격을 100원 올린다",
+        "      num(orig),",
+        "      num(orig + 100),",
+    ),
+    (
+        "갈래 뭉개기 — 1-4-5 심화를 연산으로",
+        "    심화: pctDeep,",
+        "    심화: pctCalc,",
+    ),
 ]
 
 TARGETS = {
@@ -147,22 +227,40 @@ TARGETS = {
         "section": "1-1-2",
         "muts": G3_MUTS,
     },
-    # elem-g5 가 채운다. 목록이 비면 **돌지 않고 멈춘다** — 「변이 0개 전부 빨강」이
-    # 초록으로 읽히면 안 된다(0은 「깨끗」과 「못 셈」을 구분해 주지 않는다).
+    # 변이가 1-1 셋과 1-6-3 에 걸쳐 있어 «sections» 로 전부 찍는다(g6 과 같은 까닭).
+    # 시험은 두 트랜치(1-1·1-6)를 다 담은 elemTiersG5.test.ts 다 — 파일럿(1-6-2)의
+    # elementaryG5Tiers.test.ts 는 변이 목록이 그 소단원을 안 물므로 여기서 안 부른다.
     "g5": {
         "file": "src/lib/elementary/g5.ts",
-        "test": "src/__tests__/unit/elementaryG5Tiers.test.ts",
+        "test": "src/__tests__/unit/elemTiersG5.test.ts",
         "grade": "초5",
-        "section": "1-6-2",
-        "muts": [],
+        "sections": ["1-1-1", "1-1-2", "1-1-3", "1-2-4", "1-2-5", "1-2-6", "1-6-3"],
+        "muts": G5_MUTS,
     },
-    # 변이가 소단원 다섯에 걸쳐 있어 «sections» 로 전부 찍는다 — 하나만 찍으면
-    # 다른 소단원만 바꾸는 변이가 ⑵ 에서 «산출물이 그대로다»로 오판된다.
+    # 변이가 소단원 열여섯(1-2 다섯 + 1-3 다섯 + 1-4 여섯)에 걸쳐 있어 «sections» 로
+    # 전부 찍는다 — 하나만 찍으면 다른 소단원만 바꾸는 변이가 ⑵ 에서 오판된다.
     "g6": {
         "file": "src/lib/elementary/g6.ts",
         "test": "src/__tests__/unit/elemTiersG6.test.ts",
         "grade": "초6",
-        "sections": ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"],
+        "sections": [
+            "1-2-1",
+            "1-2-2",
+            "1-2-3",
+            "1-2-4",
+            "1-2-5",
+            "1-3-1",
+            "1-3-2",
+            "1-3-3",
+            "1-3-4",
+            "1-3-5",
+            "1-4-1",
+            "1-4-2",
+            "1-4-3",
+            "1-4-4",
+            "1-4-5",
+            "1-4-6",
+        ],
         "muts": G6_MUTS,
     },
 }
@@ -213,6 +311,11 @@ def main() -> int:
         return 2
 
     path = os.path.join(ROOT, target["file"])
+    # 복원은 **바이트**로 한다. 텍스트 모드로 되쓰면 Windows 가 LF 를 CRLF 로 바꿔
+    # 「복원: 예」(텍스트 비교)가 참인데 **md5 는 달라진다** — 2026-08-23 g5 실행에서
+    # 실제로 났다(HEAD 와 2,565줄 전부 줄끝만 다른 파일이 남았다). 변이 적용 중의
+    # 임시 상태는 텍스트 쓰기여도 되지만, 원상은 반드시 원본 바이트 그대로 돌려놓는다.
+    src_bytes = io.open(path, "rb").read()
     src = io.open(path, encoding="utf-8").read()
     if os.path.exists(PROBE_PATH):
         os.remove(PROBE_PATH)
@@ -254,14 +357,14 @@ def main() -> int:
                 if code == 0:
                     print("        ← 시험이 못 잡는다")
                     ok = False
-            io.open(path, "w", encoding="utf-8").write(src)
+            io.open(path, "wb").write(src_bytes)
     finally:
         # 어떤 일이 있어도 되돌린다 — 변이가 남은 채 끝나면 그게 가장 나쁘다.
-        io.open(path, "w", encoding="utf-8").write(src)
+        io.open(path, "wb").write(src_bytes)
         if os.path.exists(PROBE_PATH):
             os.remove(PROBE_PATH)
 
-    restored = io.open(path, encoding="utf-8").read() == src
+    restored = io.open(path, "rb").read() == src_bytes
     print("\n" + ("모든 변이가 빨강" if ok else "빠진 변이가 있다"))
     print("복원:", "예" if restored else "**아니오 — 손으로 확인하라**")
     return 0 if (ok and restored) else 1

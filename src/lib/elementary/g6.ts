@@ -2947,6 +2947,491 @@ function natDecDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 4차분) — 초6 `1-4 비와 비율` (소단원 여섯 · 24갈래) ────
+//
+// 이 대단원은 앞 셋과 또 다르다.
+// ⑴ 답 모양이 넷이다 — 자연수(배·백분율)·비(`$a:b$`)·기약분수·소수. 검산은
+//    `elemTiersG6.test.ts` 가 전담한다(산술 판정기의 리더에 안 걸리는 문형들이다).
+// ⑵ «사용되는 경우»(1-4-4·1-4-6)는 상징식이 없어 「\div+\square」 축이 못 선다 —
+//    연산은 **이름표가 붙은 값**(「걸린 시간이 $3$시간이고 간 거리가 …일 때」)으로 못 박고,
+//    기본은 상황문에서 기준량·비교하는 양을 스스로 추리게 한다.
+// ⑶ 심화는 카탈로그 「비율을 이용하여 기준량(비교하는 양) 구하기」·「이자율」이 뼈대다 —
+//    비율·백분율을 **주고** 반대쪽을 되짚는다. 상수답이 없게 방향·요소를 벌린다(F1 선례).
+// ⑷ 비는 6-1 에서 약분하지 않는다(가장 간단한 자연수의 비는 6-2 2-4) — `$9:6$` 그대로 적는다.
+
+/** 1-4-1 기본 — 두 물건. 세는 말이 물건마다 다르다. */
+const CMP_PAIRS = [
+  { x: "연필", cx: "자루", y: "지우개", cy: "개" },
+  { x: "공책", cx: "권", y: "풀", cy: "개" },
+  { x: "색연필", cx: "자루", y: "가위", cy: "개" },
+  { x: "구슬", cx: "개", y: "주사위", cy: "개" },
+] as const;
+
+/** 1-4-1 응용 — 색으로 가르는 낱장 물건(전부 「장」·모음 끝이라 조사가 한 벌이다). */
+const CMP_SHEETS = ["색종이", "딱지", "카드"] as const;
+
+/** 1-4-1 심화 ⓐ — 배수 관계로 견주는 과일. */
+const CMP_FRUITS = [
+  { big: "귤", small: "사과" },
+  { big: "방울토마토", small: "참외" },
+  { big: "딸기", small: "키위" },
+] as const;
+
+/** 1-4-2 — 두 무리와 그 전체를 부르는 말. */
+const BI_PAIRS = [
+  { x: "남학생", y: "여학생", c: "명", whole: "학생" },
+  { x: "흰 바둑돌", y: "검은 바둑돌", c: "개", whole: "바둑돌" },
+  { x: "튤립", y: "장미", c: "송이", whole: "꽃" },
+  { x: "동화책", y: "위인전", c: "권", whole: "책" },
+] as const;
+
+/** 1-4-3 기본 — 「…인 학생」 무리. */
+const RATE_GROUPS = [
+  "안경을 쓴",
+  "운동을 좋아하는",
+  "강아지를 기르는",
+] as const;
+
+/** 1-4-4 — 시속으로 쓸 수 있는 비율(60~90). 몫이 자연수로 서게 곱으로 만든다. */
+const SPEED_RATES = [60, 70, 80, 90] as const;
+const VEHICLES = ["기차", "버스", "트럭"] as const;
+
+/** 1-4-5 기본 — 꽃 무리. 기준량은 백분율이 자연수로 떨어지는 수만. */
+const FLOWERS = ["장미", "튤립", "국화"] as const;
+const PCT_TOTALS = [10, 20, 25, 50] as const;
+
+/** 1-4-6 — 돈 단위 풀. 백분율 곱이 늘 자연수가 되게 1000 의 배수만 쓴다. */
+const MONEY = [2000, 5000, 8000, 10000, 20000] as const;
+
+// ── 1-4-1 두 수 비교하기 ──
+
+/** 연산 — 수 둘만 준다. 나눗셈 한 번. */
+function cmpCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9);
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${num(b * k)}${numJosa(b * k, "은", "는")} ${num(b)}의 몇 배입니까?`,
+    num(k),
+    `큰 수를 작은 수로 나눕니다. ${expr(`${b * k}\\div${b}=${k}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 두 물건의 수를 나눗셈으로 견준다. */
+function cmpWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, CMP_PAIRS);
+  const b = intBetween(rng, 2, 6);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${p.x} ${num(b * k)}${p.cx}${josa(p.cx, "과", "와")} ${p.y} ${num(b)}${p.cy}${josa(p.cy, "이", "가")} 있습니다. ` +
+      `${p.x} 수는 ${p.y} 수의 몇 배입니까?`,
+    num(k),
+    `${p.x} 수를 ${p.y} 수로 나눕니다. ${expr(`${b * k}\\div${b}=${k}`)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 다른 쪽 수를 차에서 먼저 구하고 나눈다. */
+function cmpApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CMP_SHEETS);
+  const b0 = intBetween(rng, 2, 6);
+  const k = intBetween(rng, 2, 5);
+  const red = b0 * k;
+  const d = red - b0;
+  return make(
+    unit,
+    `빨간 ${thing} ${num(red)}장과 파란 ${thing}가 있습니다. 파란 ${thing}는 빨간 ${thing}보다 ${num(d)}장 적습니다. ` +
+      `빨간 ${thing} 수는 파란 ${thing} 수의 몇 배입니까?`,
+    num(k),
+    `파란 ${thing}는 ${expr(`${red}-${d}=${b0}`)} 장입니다. ${expr(`${red}\\div${b0}=${k}`)} 이므로 ${num(k)}배입니다.`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 배수 관계에서 기준을 되짚는다. ⓑ 어떤 수를 되짚어 다른 배를 구한다. */
+function cmpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const f = pick(rng, CMP_FRUITS);
+    const base = intBetween(rng, 3, 9);
+    const k = intBetween(rng, 2, 6);
+    return make(
+      unit,
+      `${f.big} 수는 ${f.small} 수의 ${num(k)}배입니다. ${f.big}${josa(f.big, "이", "가")} ${num(base * k)}개일 때 ` +
+        `${f.small}${josa(f.small, "은", "는")} 몇 개입니까?`,
+      num(base),
+      `${f.small} 수를 ${expr("\\square")} 라 하면 ${expr(`\\square\\times${k}=${base * k}`)} 입니다. ` +
+        `${expr(`${base * k}\\div${k}=${base}`)} 이므로 ${num(base)}개입니다.`,
+    );
+  }
+  const k1 = intBetween(rng, 2, 5);
+  const some = intBetween(rng, 2, 8);
+  const k2 = pick(
+    rng,
+    Array.from({ length: 8 }, (_, i) => i + 2).filter((v) => v !== k1),
+  );
+  return make(
+    unit,
+    `어떤 수의 ${num(k1)}배는 ${num(some * k1)}입니다. 어떤 수의 ${num(k2)}배는 얼마입니까?`,
+    num(some * k2),
+    `어떤 수는 ${expr(`${some * k1}\\div${k1}=${some}`)} 입니다. ${expr(`${some}\\times${k2}=${some * k2}`)} 입니다.`,
+  );
+}
+
+// ── 1-4-2 비 ──
+
+/** 연산 — 「대」를 기호로. 절차 한 번. */
+function biCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  let b = intBetween(rng, 2, 9);
+  for (let t = 0; t < 20 && b === a; t += 1) b = intBetween(rng, 2, 9);
+  if (b === a) b = a === 9 ? 8 : a + 1;
+  return make(
+    unit,
+    `${num(a)} 대 ${num(b)}${numJosa(b, "을", "를")} 비로 나타내시오.`,
+    expr(`${a}:${b}`),
+    `「${num(a)} 대 ${num(b)}」는 기호 ${expr(":")} 을 써서 ${expr(`${a}:${b}`)} 로 나타냅니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 「…와 …의 비」는 차례 그대로다. */
+function biWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, BI_PAIRS);
+  const a = intBetween(rng, 2, 9);
+  let b = intBetween(rng, 2, 9);
+  for (let t = 0; t < 20 && b === a; t += 1) b = intBetween(rng, 2, 9);
+  if (b === a) b = a === 9 ? 8 : a + 1;
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `${p.x} 수와 ${p.y} 수의 비를 쓰시오.`,
+    expr(`${a}:${b}`),
+    `「${p.x} 수와 ${p.y} 수의 비」는 두 수를 차례대로 적습니다. ${expr(`${a}:${b}`)} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 전체를 먼저 만든 뒤 「전체에 대한」 비를 쓴다. */
+function biApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, BI_PAIRS);
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `전체 ${p.whole} 수에 대한 ${p.x} 수의 비를 쓰시오.`,
+    expr(`${a}:${a + b}`),
+    `전체 ${p.whole}${josa(p.whole, "은", "는")} ${expr(`${a}+${b}=${a + b}`)} 입니다. ` +
+      `「에 대한」 뒤가 비교하는 양이므로 ${expr(`${a}:${a + b}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 조건 조합. 기준량과 「기준량보다 얼마만큼 큰(작은)」 조건에서 비를 세운다. */
+function biDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b0 = intBetween(rng, 3, 9);
+  const d = intBetween(rng, 1, b0 - 1);
+  const bigger = intBetween(rng, 0, 1) === 0;
+  const first = bigger ? b0 + d : b0 - d;
+  return make(
+    unit,
+    `기준량이 ${num(b0)}이고 비교하는 양이 기준량보다 ${num(d)}만큼 ${bigger ? "큰" : "작은"} 비를 쓰시오.`,
+    expr(`${first}:${b0}`),
+    `비교하는 양은 ${expr(`${b0}${bigger ? "+" : "-"}${d}=${first}`)} 입니다. ` +
+      `비는 (비교하는 양):(기준량)이므로 ${expr(`${first}:${b0}`)} 입니다.`,
+  );
+}
+
+// ── 1-4-3 비율 ──
+
+/** 연산 — 비를 비율로. 소수로 나타낸다(표준의 «분수로»와 가른다). */
+function rateCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, [2, 4, 5, 8] as const);
+  // ⚠️ (a·100)%b==0 을 직접 요구한다 — b=8 에 홀수 a 를 주면 1/8=0.125 처럼
+  //    소수 세 자리가 되어 센트 표기(fromCents)가 깨진다(검산이 실측으로 잡았다).
+  const a = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 1).filter(
+      (v) => v % b !== 0 && (v * 100) % b === 0,
+    ),
+  );
+  const q = fromCents((a * 100) / b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 비율을 소수로 나타내시오.`,
+    expr(q),
+    `(비율)=(비교하는 양)÷(기준량)입니다. ${expr(`${a}\\div${b}=${q}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 기준량·비교하는 양을 문장에서 추린다. */
+function rateWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const who = pick(rng, RATE_GROUPS);
+  const b = intBetween(rng, 4, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `어느 모둠 학생 ${num(b)}명 중 ${who} 학생이 ${num(a)}명입니다. ` +
+      `모둠 학생 수에 대한 ${who} 학생 수의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(a, b)),
+    `기준량은 모둠 학생 수, 비교하는 양은 ${who} 학생 수입니다. 비율은 ${expr(fmtFrac(a, b))} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 나머지 쪽 수를 먼저 구해 전체에 대한 비율을 만든다. */
+function rateApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 6, 12);
+  const a = intBetween(rng, 1, r - 1);
+  return make(
+    unit,
+    `바구니에 구슬이 ${num(r)}개 있고 그중 빨간 구슬이 ${num(a)}개, 나머지는 파란 구슬입니다. ` +
+      `전체 구슬 수에 대한 파란 구슬 수의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(r - a, r)),
+    `파란 구슬은 ${expr(`${r}-${a}=${r - a}`)} 개입니다. 전체에 대한 비율은 ${expr(`\\frac{${r - a}}{${r}}=${fmtFrac(r - a, r)}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. 비율을 주고 ⓐ 비교하는 양 ⓑ 기준량을 되짚는다(카탈로그 유형 그대로). */
+function rateDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const fd = intBetween(rng, 2, 9);
+  const fn = coprimeTop(rng, fd);
+  const m = intBetween(rng, 2, 6);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `기준량이 ${num(fd * m)}이고 비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 인 비가 있습니다. 비교하는 양은 얼마입니까?`,
+      num(fn * m),
+      `(비교하는 양)=(기준량)×(비율)입니다. ${expr(`${fd * m}\\times\\frac{${fn}}{${fd}}=${fn * m}`)}`,
+    );
+  }
+  return make(
+    unit,
+    `비교하는 양이 ${num(fn * m)}이고 비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 인 비가 있습니다. 기준량은 얼마입니까?`,
+    num(fd * m),
+    `(기준량)=(비교하는 양)÷(비율)입니다. ${expr(`${fn * m}\\div\\frac{${fn}}{${fd}}=${fn * m}\\times\\frac{${fd}}{${fn}}=${fd * m}`)}`,
+  );
+}
+
+// ── 1-4-4 비율이 사용되는 경우 ──
+
+/** 연산 — 값에 이름표가 붙어 있다. 나눗셈 한 번. */
+function rateUseCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `걸린 시간이 ${num(h)}시간이고 간 거리가 ${unitNum(rate * h, "km")} 일 때, ` +
+      `걸린 시간에 대한 간 거리의 비율을 구하시오.`,
+    num(rate),
+    `기준량은 걸린 시간입니다. ${expr(`${rate * h}\\div${h}=${rate}`)}`,
+  );
+}
+
+/** 기본 — 상황문에서 기준량·비교하는 양을 추린다. ⓐ 탈것의 빠르기 ⓑ 마을의 인구. */
+function rateUseWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const v = pick(rng, VEHICLES);
+    const rate = pick(rng, SPEED_RATES);
+    const h = intBetween(rng, 2, 4);
+    return make(
+      unit,
+      `${v}${josa(v, "이", "가")} ${num(h)}시간 동안 ${unitNum(rate * h, "km")}를 갔습니다. ` +
+        `걸린 시간에 대한 간 거리의 비율을 구하시오.`,
+      num(rate),
+      `기준량은 걸린 시간, 비교하는 양은 간 거리입니다. ${expr(`${rate * h}\\div${h}=${rate}`)}`,
+    );
+  }
+  const a = intBetween(rng, 2, 8);
+  const per = pick(rng, [120, 150, 200, 250, 300] as const);
+  return make(
+    unit,
+    `어느 마을의 넓이는 ${num(a)} km²이고 인구는 ${num(a * per)}명입니다. 넓이에 대한 인구의 비율을 구하시오.`,
+    num(per),
+    `기준량은 넓이, 비교하는 양은 인구입니다. ${expr(`${a * per}\\div${a}=${per}`)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 소금물 전체를 먼저 만들어야 기준량이 선다. */
+function rateUseApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = pick(rng, [200, 250, 400, 500] as const);
+  const salt = pick(
+    rng,
+    ([20, 30, 40, 50] as const).filter((s) => s < total),
+  );
+  const water = total - salt;
+  return make(
+    unit,
+    `물 ${num(water)} g에 소금 ${num(salt)} g을 모두 녹여 소금물을 만들었습니다. ` +
+      `소금물 양에 대한 소금 양의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(salt, total)),
+    `소금물은 ${expr(`${water}+${salt}=${total}`)} 입니다. ` +
+      `비율은 ${expr(`\\frac{${salt}}{${total}}=${fmtFrac(salt, total)}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. 비율(빠르기)을 주고 ⓐ 간 거리 ⓑ 걸린 시간을 되짚는다. */
+function rateUseDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 5);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `걸린 시간에 대한 간 거리의 비율이 ${num(rate)}인 버스가 있습니다. ` +
+        `이 버스가 ${num(h)}시간 동안 간 거리는 몇 km입니까?`,
+      num(rate * h),
+      `비율이 ${num(rate)}이므로 한 시간에 ${unitNum(rate, "km")}를 갑니다. ${expr(`${rate}\\times${h}=${rate * h}`)}`,
+    );
+  }
+  return make(
+    unit,
+    `걸린 시간에 대한 간 거리의 비율이 ${num(rate)}인 버스가 ${unitNum(rate * h, "km")}를 가려면 몇 시간이 걸립니까?`,
+    num(h),
+    `비율이 ${num(rate)}이므로 한 시간에 ${unitNum(rate, "km")}를 갑니다. ${expr(`${rate * h}\\div${rate}=${h}`)}`,
+  );
+}
+
+// ── 1-4-5 백분율 ──
+
+/** 연산 — 소수 비율을 백분율로. 절차 한 번(표준의 «분수 비율»과 가른다). */
+function pctCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 1, 99);
+  return make(
+    unit,
+    `비율 ${expr(fromCents(c))}${centsJosa(c, "을", "를")} 백분율로 나타내시오.`,
+    num(c),
+    `비율에 ${num(100)}을 곱하고 기호 ${expr("\\%")} 를 붙입니다. ${expr(`${fromCents(c)}\\times100=${c}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 전체에 대한 부분을 백분율로. */
+function pctWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const flower = pick(rng, FLOWERS);
+  const total = pick(rng, PCT_TOTALS);
+  const a = intBetween(rng, 1, Math.min(total - 1, 19));
+  const pct = (a * 100) / total;
+  return make(
+    unit,
+    `화단에 꽃이 ${num(total)}송이 피어 있고 그중 ${flower}${josa(flower, "이", "가")} ${num(a)}송이입니다. ` +
+      `전체 꽃 수에 대한 ${flower} 수의 비율은 몇 %입니까?`,
+    num(pct),
+    `전체에 대한 ${flower}의 비율에 ${num(100)}을 곱합니다. ${expr(`\\frac{${a}}{${total}}\\times100=${pct}`)}`,
+  );
+}
+
+/** 응용 — 두 걸음. 분수·소수 비율을 각각 백분율로 바꾼 뒤 견준다(비율의 크기 비교). */
+function pctApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const fd = pick(rng, [2, 4, 5, 10, 20, 25] as const);
+  const fn = coprimeTop(rng, fd);
+  const pf = (fn * 100) / fd;
+  const d10 = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 1).filter((v) => v * 10 !== pf),
+  );
+  const pd = d10 * 10;
+  const bigger = intBetween(rng, 0, 1) === 0;
+  const want = bigger ? Math.max(pf, pd) : Math.min(pf, pd);
+  return make(
+    unit,
+    `두 비율 ${expr(`\\frac{${fn}}{${fd}}`)}${numJosa(fn, "과", "와")} ${expr(fromCents(d10 * 10))} 중 ` +
+      `더 ${bigger ? "큰" : "작은"} 것을 백분율로 나타내시오.`,
+    num(want),
+    `${expr(`\\frac{${fn}}{${fd}}\\times100=${pf}`)} 이고 ${expr(`${fromCents(d10 * 10)}\\times100=${pd}`)} 이므로 ` +
+      `더 ${bigger ? "큰" : "작은"} 것은 ${expr(`${want}\\%`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 백분율을 기약분수로 되돌린다. ⓑ 백분율과 기준량에서 비교하는 양을 구한다. */
+function pctDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const r = intBetween(rng, 1, 99);
+    return make(
+      unit,
+      `어떤 비율을 백분율로 나타내었더니 ${expr(`${r}\\%`)} 였습니다. 이 비율을 기약분수로 나타내시오.`,
+      expr(fmtFrac(r, 100)),
+      `백분율을 ${num(100)}으로 나누면 비율입니다. ${expr(`\\frac{${r}}{100}=${fmtFrac(r, 100)}`)}`,
+    );
+  }
+  const base = pick(rng, [20, 40, 60, 80] as const);
+  const p = intBetween(rng, 1, 19) * 5;
+  return make(
+    unit,
+    `기준량이 ${num(base)}인 비를 백분율로 나타내었더니 ${expr(`${p}\\%`)} 였습니다. 비교하는 양은 얼마입니까?`,
+    num((base * p) / 100),
+    `백분율이 ${expr(`${p}\\%`)} 이므로 비율은 ${expr(`\\frac{${p}}{100}`)} 입니다. ` +
+      `${expr(`${base}\\times\\frac{${p}}{100}=${(base * p) / 100}`)}`,
+  );
+}
+
+// ── 1-4-6 백분율이 사용되는 경우 ──
+
+/** 연산 — 값에 이름표가 붙어 있다. 이자율 한 번(카탈로그 「이자율 구하기」). */
+function pctUseCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pr = pick(rng, [10000, 20000, 50000] as const);
+  const r = pick(rng, [4, 5, 6, 8, 10] as const);
+  return make(
+    unit,
+    `예금한 돈이 ${num(pr)}원이고 받은 이자가 ${num((pr * r) / 100)}원일 때, ` +
+      `예금한 돈에 대한 이자의 비율은 몇 %입니까?`,
+    num(r),
+    `${expr(`\\frac{${(pr * r) / 100}}{${pr}}\\times100=${r}`)} 이므로 ${expr(`${r}\\%`)} 입니다.`,
+  );
+}
+
+/** 기본 — 상황문에서 기준량을 추린다. 소금물의 진하기를 백분율로. */
+function pctUseWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = pick(rng, [200, 250, 400, 500] as const);
+  const salt = pick(
+    rng,
+    ([20, 40, 50, 100] as const).filter(
+      (s) => s < total && (s * 100) % total === 0,
+    ),
+  );
+  const pct = (salt * 100) / total;
+  return make(
+    unit,
+    `소금물 ${num(total)} g에 소금 ${num(salt)} g이 녹아 있습니다. ` +
+      `소금물 양에 대한 소금 양의 비율은 몇 %입니까?`,
+    num(pct),
+    `${expr(`\\frac{${salt}}{${total}}\\times100=${pct}`)} 이므로 ${expr(`${pct}\\%`)} 입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 할인 금액을 먼저 구해 지불한 금액을 만든다(백분율의 활용). */
+function pctUseApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r = pick(rng, [10, 20, 25, 30, 40] as const);
+  const cut = (p * r) / 100;
+  return make(
+    unit,
+    `정가가 ${num(p)}원인 물건을 ${expr(`${r}\\%`)} 할인하여 샀습니다. 지불한 금액은 얼마입니까?`,
+    num(p - cut),
+    `할인 금액은 ${expr(`${p}\\times\\frac{${r}}{100}=${cut}`)} 원입니다. ` +
+      `${expr(`${p}-${cut}=${p - cut}`)} 이므로 ${num(p - cut)}원입니다.`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 할인가에서 원래 가격을 되짚는다. ⓑ 찬성률과 찬성 수에서 전체를 되짚는다. */
+function pctUseDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const orig = pick(rng, MONEY);
+    const r = pick(rng, [10, 20, 25, 50] as const);
+    const paid = (orig * (100 - r)) / 100;
+    return make(
+      unit,
+      `어떤 물건을 ${expr(`${r}\\%`)} 할인하여 ${num(paid)}원에 샀습니다. 이 물건의 원래 가격은 얼마입니까?`,
+      num(orig),
+      `${expr(`${r}\\%`)} 를 할인했으므로 지불한 금액은 원래 가격의 ${expr(`${100 - r}\\%`)} 입니다. ` +
+        `${expr(`${paid}\\div\\frac{${100 - r}}{100}=${orig}`)} 이므로 ${num(orig)}원입니다.`,
+    );
+  }
+  const rate = pick(rng, [40, 50, 60, 80] as const);
+  const total = pick(rng, [200, 250, 400, 500] as const);
+  const yes = (total * rate) / 100;
+  return make(
+    unit,
+    `어느 학교 투표에서 찬성률이 ${expr(`${rate}\\%`)} 이고 찬성한 학생이 ${num(yes)}명입니다. ` +
+      `투표한 학생은 모두 몇 명입니까?`,
+    num(total),
+    `전체의 ${expr(`${rate}\\%`)} 가 ${num(yes)}명입니다. ${expr(`${yes}\\div\\frac{${rate}}{100}=${total}`)} 이므로 ${num(total)}명입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -3029,6 +3514,42 @@ export const G6_TIERS: ElemTierMap = {
     기본: natDecWord,
     응용: natDecApply,
     심화: natDecDeep,
+  },
+  "초6|1-4-1": {
+    연산: cmpCalc,
+    기본: cmpWord,
+    응용: cmpApply,
+    심화: cmpDeep,
+  },
+  "초6|1-4-2": {
+    연산: biCalc,
+    기본: biWord,
+    응용: biApply,
+    심화: biDeep,
+  },
+  "초6|1-4-3": {
+    연산: rateCalc,
+    기본: rateWord,
+    응용: rateApply,
+    심화: rateDeep,
+  },
+  "초6|1-4-4": {
+    연산: rateUseCalc,
+    기본: rateUseWord,
+    응용: rateUseApply,
+    심화: rateUseDeep,
+  },
+  "초6|1-4-5": {
+    연산: pctCalc,
+    기본: pctWord,
+    응용: pctApply,
+    심화: pctDeep,
+  },
+  "초6|1-4-6": {
+    연산: pctUseCalc,
+    기본: pctUseWord,
+    응용: pctUseApply,
+    심화: pctUseDeep,
   },
 };
 
