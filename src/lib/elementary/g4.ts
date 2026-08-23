@@ -2496,12 +2496,18 @@ const MOVE_SHAPES = [
     ],
     n: 4,
   },
+  // ⚠️ 이 자리에 있던 S자 조각([1,1],[2,1],[2,2],[3,2])은 **180° 대칭**이라
+  // 이 목록의 약속(좌우 뒤집기 ≠ 위아래 뒤집기)을 스스로 어겼다 — 그 조각으로는
+  // 「몇 도 돌렸나」의 90°와 270°도 같은 그림이 되어 기록된 답이 중의적이었다
+  // (elem-g4 적발 2026-08-23, 갈래 시험의 비대칭 잠금이 찾았다). 대칭이 하나도 없는
+  // P자 조각으로 바꿨다 — 뒤집기 둘·회전 셋·원본이 전부 서로 다르다.
   {
     cells: [
       [1, 1],
+      [1, 2],
       [2, 1],
       [2, 2],
-      [3, 2],
+      [3, 1],
     ],
     n: 5,
   },
@@ -2633,6 +2639,367 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   return noBranch(unit);
+}
+
+/* ──────────── 1-4 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 그림은 표준이 쓰는 rotateFlip kind + MOVE_SHAPES 재사용뿐이다(D-61, 새 kind 없음).
+ * 돌리기 표기는 표준 규약 그대로 — op(rot90·rot180·rot270)는 **시계 방향**이고,
+ * 반시계는 360−d 로만 말한다. 좌표 변환 검산은 시험이 독립 재구현으로 한다.
+ * 규모: 수는 전부 1000 아래(90°×11 = 990 이 최대).
+ */
+
+/** 네 방향과 그 반대 — «잘못 옮김» 복원용 짝. */
+const DIR_PAIRS = [
+  ["오른쪽", "왼쪽"],
+  ["왼쪽", "오른쪽"],
+  ["위쪽", "아래쪽"],
+  ["아래쪽", "위쪽"],
+] as const;
+
+/** **1-4-1 1단 연산 — 같은 방향으로 두 번(합).** 표준(반대 방향 상쇄)과 방향이 다르다. */
+function tier41Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 7);
+  const b = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `모눈에서 점 ㄷ을 ${dir}으로 ${n(a)}칸 옮긴 다음 ${dir}으로 ${n(b)}칸 더 옮겼습니다. ` +
+      `점 ㄷ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${dir}으로 ${n(a + b)}칸`,
+    `같은 쪽으로 두 번 옮기면 옮긴 칸수를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
+      `${dir}으로 ${n(a + b)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 2단 기본 — 세로축 상쇄(남는 쪽이 뒤 방향).** 표준은 가로축·앞 방향이 남는다. */
+function tier41Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, [
+    ["위쪽", "아래쪽"],
+    ["아래쪽", "위쪽"],
+  ] as const);
+  const a = intBetween(rng, 2, 6);
+  const b = a + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `모눈에서 점 ㄹ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. ` +
+      `점 ㄹ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${second}으로 ${n(b - a)}칸`,
+    `${first} ${n(a)}칸과 ${second} ${n(a)}칸은 서로 지워집니다. ` +
+      `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 3단 응용 — 세 번 이동을 두 축으로 결산(두 단계).** 답이 두 성분이다. */
+function tier41Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [h1, h2] = pick(rng, [
+    ["오른쪽", "왼쪽"],
+    ["왼쪽", "오른쪽"],
+  ] as const);
+  const v = pick(rng, ["위쪽", "아래쪽"] as const);
+  const a = intBetween(rng, 3, 7);
+  const b = intBetween(rng, 2, 6);
+  const c3 = intBetween(rng, 1, a - 1);
+  return make(
+    unit,
+    `모눈에서 점 ㅁ을 ${h1}으로 ${n(a)}칸, ${v}으로 ${n(b)}칸, ${h2}으로 ${n(c3)}칸 차례로 ` +
+      `옮겼습니다. 점 ㅁ은 처음 자리에서 ${h1}으로 몇 칸, ${v}으로 몇 칸 옮겨진 것인가?`,
+    `${h1}으로 ${n(a - c3)}칸, ${v}으로 ${n(b)}칸`,
+    `가로로는 ${expr(`${a}-${c3}=${a - c3}`)} 에서 ${h1}으로 ${n(a - c3)}칸, ` +
+      `세로로는 ${v}으로 ${n(b)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 4단 심화 — «잘못 옮김» 복원(D-72 문형).** 반대로 간 만큼의 두 배가 필요하다. */
+function tier41Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [want, did] = pick(rng, DIR_PAIRS);
+  const a = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `모눈에서 점 ㅂ을 ${want}으로 ${n(a)}칸 옮겨야 할 것을 잘못하여 ${did}으로 ${n(a)}칸 ` +
+      `옮겼습니다. 바른 자리로 가려면 ${want}으로 몇 칸 옮겨야 하는가?`,
+    `${n(2 * a)}칸`,
+    `잘못 간 ${n(a)}칸을 되돌아오는 데 ${n(a)}칸, 처음 자리에서 바른 자리까지 ${n(a)}칸이 ` +
+      `더 필요합니다. ${expr(`${a}+${a}=${2 * a}`)} 이므로 ${n(2 * a)}칸입니다.`,
+  );
+}
+
+/** **1-4-2 1단 연산 — 같은 방향으로 이어 밀기(합, cm).** */
+function tier42Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 8);
+  const b = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `도형을 ${dir}으로 ${cm(a)} 민 다음 ${dir}으로 ${cm(b)} 더 밀었습니다. ` +
+      `도형은 처음 자리에서 ${dir}으로 몇 cm 밀린 것인가?`,
+    cm(a + b),
+    `같은 쪽으로 이어 밀면 민 거리를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
+      `${cm(a + b)} 밀린 것입니다.`,
+  );
+}
+
+/** **1-4-2 2단 기본 — 밀기의 불변 성질.** 직사각형 세로(표준은 정사각형 한 변)와 성질 판단. */
+function tier42Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const w = intBetween(rng, 3, 9);
+    const h = intBetween(rng, 2, w - 1);
+    const dir = pick(rng, DIR_PAIRS)[0];
+    const dist = intBetween(rng, 2, 8);
+    return make(
+      unit,
+      `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. ` +
+        `민 도형의 세로는 몇 cm인가?`,
+      cm(h),
+      `도형을 밀어도 모양과 크기는 변하지 않습니다. 세로는 그대로 ${cm(h)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `도형을 밀었을 때 바뀌는 것은 '모양'과 '위치' 중 무엇인가?`,
+    "위치",
+    `도형을 밀면 모양과 크기는 변하지 않고 위치만 바뀝니다.`,
+  );
+}
+
+/** **1-4-2 3단 응용 — 왕복의 알짜(두 단계).** 표준 ①은 같은 거리 왕복(«예»)이다. */
+function tier42Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, [
+    ["오른쪽", "왼쪽"],
+    ["왼쪽", "오른쪽"],
+  ] as const);
+  const a = intBetween(rng, 5, 9);
+  const delta = intBetween(rng, 1, 3) * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
+  const b = a + delta;
+  const netDir = a > b ? d1 : d2;
+  const netDist = Math.abs(a - b);
+  const hi = Math.max(a, b);
+  const lo = Math.min(a, b);
+  return make(
+    unit,
+    `도형을 ${d1}으로 ${cm(a)} 민 다음 ${d2}으로 ${cm(b)} 밀었습니다. ` +
+      `도형은 처음 자리에서 어느 쪽으로 몇 cm 밀린 것과 같은가?`,
+    `${netDir}으로 ${cm(netDist)}`,
+    `두 방향이 반대이므로 먼 쪽이 남습니다. ${expr(`${hi}-${lo}=${netDist}`)} 이므로 ` +
+      `${netDir}으로 ${cm(netDist)} 밀린 것과 같습니다.`,
+  );
+}
+
+/** **1-4-2 4단 심화 — 잘못 민 방향 복원.** 되돌기와 바른 거리의 합. */
+function tier42Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [want, did] = pick(rng, DIR_PAIRS);
+  const a = intBetween(rng, 2, 7);
+  const b = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `도형을 ${want}으로 ${cm(a)} 밀어야 할 것을 잘못하여 ${did}으로 ${cm(b)} 밀었습니다. ` +
+      `바른 자리로 가려면 ${want}으로 몇 cm 밀어야 하는가?`,
+    cm(a + b),
+    `잘못 민 ${cm(b)}을 되돌아오고 다시 ${cm(a)}을 더 밀어야 합니다. ` +
+      `${expr(`${b}+${a}=${a + b}`)} 이므로 ${cm(a + b)} 밀어야 합니다.`,
+  );
+}
+
+/** **1-4-3 1단 연산 — 뒤집기의 자리 이동(줄 번호).** 수로 변형이 갈린다. */
+function tier43Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cols = intBetween(rng, 5, 9);
+  const k = intBetween(rng, 1, cols);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `가로가 ${n(cols)}칸인 모눈 도형을 좌우로 뒤집었습니다. 왼쪽에서 ${n(k)}번째 세로줄은 ` +
+        `뒤집은 도형에서 왼쪽에서 몇 번째 세로줄이 되는가?`,
+      `${n(cols + 1 - k)}번째`,
+      `좌우로 뒤집으면 왼쪽에서 ${n(k)}번째 줄이 오른쪽에서 ${n(k)}번째 줄이 됩니다. ` +
+        `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 왼쪽에서 ${n(cols + 1 - k)}번째 줄입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `세로가 ${n(cols)}칸인 모눈 도형을 위아래로 뒤집었습니다. 위에서 ${n(k)}번째 가로줄은 ` +
+      `뒤집은 도형에서 위에서 몇 번째 가로줄이 되는가?`,
+    `${n(cols + 1 - k)}번째`,
+    `위아래로 뒤집으면 위에서 ${n(k)}번째 줄이 아래에서 ${n(k)}번째 줄이 됩니다. ` +
+      `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 위에서 ${n(cols + 1 - k)}번째 줄입니다.`,
+  );
+}
+
+/**
+ * **1-4-3 2단 기본 — 그림 판정(예/아니요).** 표준 ①의 열린 «어떻게»와 꼴을 갈랐다.
+ * 답의 유일성은 MOVE_SHAPES 의 성질(두 뒤집기 결과가 다름)이 지킨다 — 시험이 잠근다.
+ */
+function tier43Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const shape = pick(rng, MOVE_SHAPES);
+  const op = pick(rng, ["flipH", "flipV"] as const);
+  const asked = pick(rng, ["flipH", "flipV"] as const);
+  const yes = op === asked;
+  const opName = op === "flipH" ? "좌우로" : "위아래로";
+  const askedName = asked === "flipH" ? "좌우로" : "위아래로";
+  return make(
+    unit,
+    `왼쪽 도형을 한 번 뒤집어 오른쪽 도형을 만들었습니다. ${askedName} 뒤집은 것인가? ` +
+      `'예' 또는 '아니요'로 답하시오.`,
+    yes ? "예" : "아니요",
+    `색칠한 칸이 ${op === "flipH" ? "왼쪽과 오른쪽" : "위쪽과 아래쪽"}이 서로 바뀌었으므로 ` +
+      `${opName} 뒤집은 것입니다. ${yes ? "그러므로 '예'입니다." : "그러므로 '아니요'입니다."}`,
+    fig("rotateFlip", { cells: shape.cells, op, n: shape.n }),
+  );
+}
+
+/** **1-4-3 3단 응용 — 두 축의 홀짝 결산.** 답이 네 갈래로 갈린다. */
+function tier43Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t1 = intBetween(rng, 1, 4);
+  const t2 = intBetween(rng, 1, 4);
+  const h = t1 % 2 === 1;
+  const v = t2 % 2 === 1;
+  const answer =
+    h && v
+      ? `시계 방향으로 ${deg(180)} 돌린 도형과 같다`
+      : h
+        ? "좌우로 한 번 뒤집은 도형과 같다"
+        : v
+          ? "위아래로 한 번 뒤집은 도형과 같다"
+          : "처음 도형과 같다";
+  const tailNote =
+    h && v
+      ? ` 좌우와 위아래를 한 번씩 뒤집은 것은 시계 방향으로 ${deg(180)} 돌린 것과 같습니다.`
+      : "";
+  return make(
+    unit,
+    `도형을 좌우로 ${n(t1)}번, 위아래로 ${n(t2)}번 뒤집었습니다. 그 결과는 처음 도형을 ` +
+      `어떻게 움직인 도형과 같은지 쓰시오.`,
+    answer,
+    `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같습니다. 좌우 ${josaNum(t1, "은", "는")} ` +
+      `${h ? "홀수라 한 번 뒤집은 것과 같고" : "짝수라 뒤집지 않은 것과 같고"}, ` +
+      `위아래 ${josaNum(t2, "은", "는")} ${v ? "홀수라 한 번 뒤집은 것과 같습니다." : "짝수라 뒤집지 않은 것과 같습니다."}` +
+      `${tailNote} 그러므로 ${answer.replace(/다$/, "습니다")}.`,
+  );
+}
+
+/** **1-4-3 4단 심화 — 짝수 조건 역산.** 범위 안의 유일한 2의 배수를 찾는다. */
+function tier43Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const axis = pick(rng, ["좌우로", "위아래로"] as const);
+  const ans = intBetween(rng, 2, 6) * 2;
+  const width = pick(rng, [1, 2]);
+  const lo = ans - width;
+  const hi = ans + width;
+  return make(
+    unit,
+    `도형을 ${axis} 몇 번 뒤집었더니 처음 도형과 같았습니다. 뒤집은 횟수가 ${n(lo)}번보다 ` +
+      `많고 ${n(hi)}번보다 적다면 몇 번 뒤집은 것인가?`,
+    `${n(ans)}번`,
+    `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같으므로 횟수는 ${n(2)}의 배수입니다. ` +
+      `${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(2)}의 배수는 ${n(ans)}뿐입니다.`,
+  );
+}
+
+/** **1-4-4 1단 연산 — 여러 번 돌리기를 한 바퀴로 접기.** 표준 ⓪(합)과 달리 남는 각을 묻는다. */
+function tier44Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 4의 배수면 답이 0°(처음 그대로)가 된다 — 빼고 뽑는다. 값이 여섯뿐이면 변형 8+ 가
+  // 안 서서(실측 6/16) 열다섯까지 넓혔다. 최대 90×15=1350 — 규모 시험의 상한 근거.
+  const t = pick(rng, [5, 6, 7, 9, 10, 11, 13, 14, 15]);
+  const total = 90 * t;
+  const ans = total % 360;
+  const whole = total - ans;
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 시계 방향으로 몇 도 돌린 ` +
+          `것과 같은가?`
+      : `시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌린 도형과 같은 도형을 한 번에 만들려면 ` +
+          `시계 방향으로 몇 도 돌리면 되는가?`,
+    deg(ans),
+    `${expr(`90\\times${t}=${total}`)} 입니다. 한 바퀴(${deg(360)})를 돌면 처음과 같으므로 ` +
+      `${expr(`${total}-${whole}=${ans}`)} 에서 ${deg(ans)} 돌린 것과 같습니다.`,
+  );
+}
+
+/**
+ * **1-4-4 2단 기본 — 그림을 반시계로 읽기.** 표준 ②는 시계 방향을 묻는다.
+ * op 는 표준 규약 그대로 시계 방향이고, 반시계 각은 360−d 다.
+ */
+function tier44Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const shape = pick(rng, MOVE_SHAPES);
+  const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
+  const cw = TURN_NAME[op]!;
+  const ccw = 360 - cw;
+  // 발문 문형을 두 벌로 갈랐다 — 그림 갈래라 변형은 그림에 살지만, R9(씨앗마다 같은
+  // 발문 금지)는 발문 자체가 갈려야 한다(팀장 신호 2026-08-23).
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `왼쪽 도형을 시계 반대 방향으로 돌려 오른쪽 도형을 만들었습니다. 시계 반대 방향으로 ` +
+          `몇 도 돌린 것인가?`
+      : `오른쪽 도형은 왼쪽 도형을 시계 반대 방향으로 돌린 것입니다. 몇 도 돌린 것인지 구하시오.`,
+    deg(ccw),
+    `이 도형은 시계 방향으로 ${deg(cw)} 돌린 것과 같습니다. 시계 반대 방향으로는 ` +
+      `${expr(`360-${cw}=${ccw}`)} 에서 ${deg(ccw)} 돌린 것입니다.`,
+    fig("rotateFlip", { cells: shape.cells, op, n: shape.n }),
+  );
+}
+
+/** **1-4-4 3단 응용 — 두 번 돌리기의 알짜(두 단계).** 반대 방향은 그만큼 되돌린다. */
+function tier44Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const ROT = [90, 180, 270] as const;
+  if (intBetween(rng, 0, 1) === 0) {
+    const d1 = pick(rng, ROT);
+    const d2 = pick(
+      rng,
+      ROT.filter((d) => d !== d1),
+    );
+    const ans = (d1 - d2 + 360) % 360;
+    return make(
+      unit,
+      `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 시계 반대 방향으로 ${deg(d2)} 돌렸습니다. ` +
+        `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+      deg(ans),
+      `반대 방향 돌리기는 그만큼 되돌리는 것입니다. ` +
+        `${d1 > d2 ? expr(`${d1}-${d2}=${ans}`) : `${expr(`${d2}-${d1}=${d2 - d1}`)} 만큼 시계 반대 방향이 남고, 이는 시계 방향 ${expr(`360-${d2 - d1}=${ans}`)}`} 이므로 ` +
+        `시계 방향으로 ${deg(ans)} 돌린 것과 같습니다.`,
+    );
+  }
+  const d1 = pick(rng, ROT);
+  const d2 = pick(
+    rng,
+    ROT.filter((d) => (d1 + d) % 360 !== 0),
+  );
+  const ans = (d1 + d2) % 360;
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 다시 시계 방향으로 ${deg(d2)} 돌렸습니다. ` +
+      `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+    deg(ans),
+    `같은 방향으로 이어 돌리면 두 각을 더합니다. ${expr(`${d1}+${d2}=${d1 + d2}`)} 이고 ` +
+      `${d1 + d2 > 360 ? `한 바퀴(${deg(360)})를 덜어 내면 ${expr(`${d1 + d2}-360=${ans}`)} 에서 ` : ""}` +
+      `${deg(ans)} 돌린 것과 같습니다.`,
+  );
+}
+
+/** **1-4-4 4단 심화 — 되돌리기 역산과 4의 배수 조건.** */
+function tier44Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d = pick(rng, [90, 180, 270] as const);
+    return make(
+      unit,
+      `어떤 도형을 시계 방향으로 ${deg(d)} 돌렸더니 가 도형이 되었습니다. 가 도형을 시계 ` +
+        `방향으로 몇 도 돌리면 처음 도형이 되는가?`,
+      deg(360 - d),
+      `한 바퀴(${deg(360)})를 돌면 처음 도형과 같습니다. ${expr(`360-${d}=${360 - d}`)} 이므로 ` +
+        `시계 방향으로 ${deg(360 - d)} 돌리면 처음 도형이 됩니다.`,
+    );
+  }
+  const ans = intBetween(rng, 2, 5) * 4;
+  const width = pick(rng, [1, 2]);
+  const lo = ans - width;
+  const hi = ans + width;
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(90)}씩 몇 번 돌렸더니 처음 도형과 같았습니다. 돌린 횟수가 ` +
+      `${n(lo)}번보다 많고 ${n(hi)}번보다 적다면 몇 번 돌린 것인가?`,
+    `${n(ans)}번`,
+    `${deg(90)}씩 ${n(4)}번 돌리면 한 바퀴가 되어 처음 도형과 같으므로 횟수는 ${n(4)}의 ` +
+      `배수입니다. ${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(4)}의 배수는 ${n(ans)}뿐입니다.`,
+  );
 }
 
 /* ───────────────────────── 1-5 막대그래프 ─────────────────────────
@@ -3942,6 +4309,30 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier37Basic,
     응용: tier37Apply,
     심화: tier37Deep,
+  },
+  "초4|1-4-1": {
+    연산: tier41Calc,
+    기본: tier41Basic,
+    응용: tier41Apply,
+    심화: tier41Deep,
+  },
+  "초4|1-4-2": {
+    연산: tier42Calc,
+    기본: tier42Basic,
+    응용: tier42Apply,
+    심화: tier42Deep,
+  },
+  "초4|1-4-3": {
+    연산: tier43Calc,
+    기본: tier43Basic,
+    응용: tier43Apply,
+    심화: tier43Deep,
+  },
+  "초4|1-4-4": {
+    연산: tier44Calc,
+    기본: tier44Basic,
+    응용: tier44Apply,
+    심화: tier44Deep,
   },
   "초4|1-5-1": {
     연산: tier51Calc,
