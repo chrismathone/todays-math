@@ -57,7 +57,7 @@ const QA_DIR = path.join(process.cwd(), "scripts", "qa");
 const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-josa-source", 10],
   ["probe-elem-rules", 27],
-  ["probe-elem-section-conditions", 111],
+  ["probe-elem-section-conditions", 119],
   ["probe-elem-equations", 25],
   ["probe-elem-arithmetic", 44],
   ["probe-elem-routing", 4],

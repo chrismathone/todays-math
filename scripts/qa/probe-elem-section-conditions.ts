@@ -512,6 +512,85 @@ function shapeNameCheck(needle: string, re: RegExp): Check {
   return { needle, ok: (c, _s, solution) => re.test(c + (solution ?? "")) };
 }
 
+/* ── 초3 2-5 들이와 무게 — 조건 판정 도우미 (2026-08-24 elem-g3) ──────────
+ *
+ * 단위 짝은 **소단원 이름에서** 정한다. 지면에서 읽으면 「지면에 kg 이 있으니
+ * 무게다」가 되어 동어반복이다 — 그러면 「무게 소단원인데 L 로 쓴다」를 못 잡는다.
+ */
+function capUnitsOfSection(alt: string): [big: string, small: string] {
+  return alt.includes("무게") ? ["kg", "g"] : ["L", "mL"];
+}
+
+/** 지면에 찍힌 **양**의 개수. 섞은 꼴(`$2\,\mathrm{L}\ 300\,\mathrm{mL}$`)은 하나로 센다. */
+function capQuantityCount(c: string, big: string, small: string): number {
+  const re = new RegExp(
+    `\\d+\\\\,\\\\mathrm\\{${big}\\}\\\\ \\d+\\\\,\\\\mathrm\\{${small}\\}` +
+      `|\\d+\\\\,\\\\mathrm\\{(?:${big}|${small})\\}`,
+    "g",
+  );
+  return [...c.matchAll(re)].length;
+}
+
+/**
+ * 「비교」 — 견줄 것이 **둘 이상**이고, 발문이 어느 쪽·차례·사잇값을 묻는가.
+ *
+ * $\square$ 도 견줄 자리 하나로 센다(4단은 한 자리를 비워 두고 그 값을 묻는다).
+ */
+function capCompares(c: string, alt: string): boolean {
+  const [big, small] = capUnitsOfSection(alt);
+  const seen = capQuantityCount(c, big, small) + (/\\square|□/.test(c) ? 1 : 0);
+  const asks =
+    /기호를 쓰시오|차례로|가장 (?:큰|작은) 수|알맞은 것을 쓰시오/.test(c);
+  return seen >= 2 && asks;
+}
+
+/**
+ * 「단위」 — 준 꼴과 **다른 단위**로 묻는가. 그게 이 소단원이 시키는 일이다.
+ *
+ * ⚠️ 「몇 L 몇 mL인지」는 「몇 mL인지」를 **부분 문자열로 품는다.** 섞은 꼴을 먼저
+ *    가려내지 않으면 방향 둘이 같은 것으로 읽힌다 — 이 저장소가 여러 번 밟은 자리다.
+ *
+ * ⚠️ **「작은 단위 값이 있다」와 「작은 단위 **하나로만** 준 값이 있다」는 다르다.**
+ *    섞은 꼴 `$2\,\mathrm{L}\ 300\,\mathrm{mL}$` 안에도 `300\,\mathrm{mL}` 가 있어서,
+ *    그냥 찾으면 **「섞은 꼴로 주고 섞은 꼴로 묻는」**(환산이 하나도 안 드는) 발문이
+ *    통과한다. 음성 눈금이 그걸 잡았다 — 그래서 섞은 꼴을 **지우고** 남는 것을 본다.
+ */
+function capConverts(c: string, alt: string): boolean {
+  const [big, small] = capUnitsOfSection(alt);
+  const mixedRe = new RegExp(
+    `\\d+\\\\,\\\\mathrm\\{${big}\\}\\\\ \\d+\\\\,\\\\mathrm\\{${small}\\}`,
+    "g",
+  );
+  const mixed = mixedRe.test(c);
+  const rest = c.replace(mixedRe, "");
+  const smallOnly = new RegExp(`\\d+\\\\,\\\\mathrm\\{${small}\\}`).test(rest);
+  const bigOnly = new RegExp(`\\d+\\\\,\\\\mathrm\\{${big}\\}`).test(rest);
+  const boxBig = new RegExp(`\\\\square\\\\,\\\\mathrm\\{${big}\\}`).test(c);
+  const boxSmall = new RegExp(`\\\\square\\\\,\\\\mathrm\\{${small}\\}`).test(
+    c,
+  );
+  // 1단 — 등식의 두 변이 서로 다른 단위다.
+  const eqCross = (boxSmall && (mixed || bigOnly)) || (boxBig && smallOnly);
+  // 2~4단 — 문장이 «준 꼴과 다른 단위»로 묻는다. 섞은 꼴을 **먼저** 가른다.
+  const asksMixed = new RegExp(`몇 ${big} 몇 ${small}인지`).test(c);
+  const asksSmall = !asksMixed && new RegExp(`몇 ${small}인지`).test(c);
+  return eqCross || (asksSmall && mixed) || (asksMixed && smallOnly);
+}
+
+/**
+ * 「합과 차」 — 두 양을 더하거나 빼는 셈이 지면에 있는가.
+ *
+ * 1단은 식에 부호가 있고, 2~4단은 문장이라 **해설의 수 계산**으로 떨어뜨린다
+ * (문장형에 구조 검사를 대면 거짓 경보가 난다 — 이 파일 `loose` 주석 참조).
+ */
+function capAddSub(c: string, alt: string, solution: string): boolean {
+  const [, small] = capUnitsOfSection(alt);
+  const opInStem = new RegExp(`\\\\mathrm\\{${small}\\}[+-]`).test(c);
+  const words = /더 담|덜어 냈|담았습니다|남은/.test(c);
+  const opInSolution = /\d+\s*[+-]\s*\d+\s*=/.test(solution);
+  return opInStem || (words && opInSolution);
+}
+
 const CHECKS: Check[] = [
   // ── 초4 2-4 사각형 (2026-08-23, elem-g4) ────────────────────────────
   //
@@ -950,6 +1029,49 @@ const CHECKS: Check[] = [
     // 구별되지 않는다. 해설까지 보면 그 결함이 **구조적으로 안 잡힌다**(해설은 늘 쓴다).
     needle: "분수만큼은 얼마인지",
     ok: (c) => anyFraction(c),
+  },
+
+  /* ── 초3 2-5 들이와 무게 (2026-08-24 elem-g3) ───────────────────────────
+   *
+   * 여섯 소단원이 **셋 × 둘**이다(비교·단위·합과 차 × 들이·무게). 생성기가 공장
+   * 셋을 나눠 쓰므로 **조건도 셋만** 둔다 — 여섯 벌로 적으면 한쪽만 고쳐도 아무도 모른다.
+   *
+   * ⚠️ **셋은 서로를 배제하지 않는다.** 「합과 차」의 해설에도 환산이 있고 「단위」의
+   *    심화에도 덧셈이 있다. 배제로 짜면 거짓 경보가 쏟아지고, **거짓 경보는 가드를
+   *    끈다**(2026-08-20). 그래서 각 조건은 그 소단원이 **반드시 시키는 일**만 요구한다:
+   *
+   *      비교    → 견줄 것이 둘 이상이고, 발문이 **어느 쪽·차례·사잇값**을 묻는가
+   *      단위    → 준 꼴과 **다른 단위**로 묻는가 (환산이 실제로 드는가)
+   *      합과 차 → 두 양을 **더하거나 빼는 셈**이 지면에 있는가
+   *
+   *    리드가 든 예 「들이 비교하기인데 단위 변환만 있다」는 **첫째가 잡는다** —
+   *    환산만 있는 발문에는 「기호를 쓰시오」도 「차례로」도 없기 때문이다.
+   *    음성 눈금으로 그 발문을 그대로 박아 두었다(아래 FIXTURES).
+   */
+
+  {
+    needle: "들이 비교",
+    ok: (c, alt) => capCompares(c, alt),
+  },
+  {
+    needle: "무게 비교",
+    ok: (c, alt) => capCompares(c, alt),
+  },
+  {
+    needle: "들이의 단위",
+    ok: (c, alt) => capConverts(c, alt),
+  },
+  {
+    needle: "무게의 단위",
+    ok: (c, alt) => capConverts(c, alt),
+  },
+  {
+    needle: "들이의 합과 차",
+    ok: (c, alt, sol) => capAddSub(c, alt, sol ?? ""),
+  },
+  {
+    needle: "무게의 합과 차",
+    ok: (c, alt, sol) => capAddSub(c, alt, sol ?? ""),
   },
 ];
 
@@ -1778,6 +1900,67 @@ const FIXTURES: Fixture[] = [
     content: "구슬 $24$개의 $\\frac{3}{4}$ 만큼은 몇 개인지 쓰시오.",
     want: true,
     why: "발문이 분수를 이고 있다",
+  },
+
+  // ── 초3 2-5 들이와 무게 (2026-08-24 elem-g3) ──────────────────────────
+  //
+  // ⚠️ **음성 넷을 먼저 썼다.** 「일부러 걸리는 입력을 하나 넣어 빨개지는 것부터
+  //    보라」(리드) — 0 은 「깨끗」과 「못 셈」을 안 갈라 준다.
+  {
+    section: "2-5-1 들이 비교하기",
+    content: "$3\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$ 는 몇 mL인지 쓰시오.",
+    want: false,
+    why: "**리드가 든 그 결함** — 들이 비교하기인데 견줄 것이 하나뿐이고 환산만 시킨다",
+  },
+  {
+    section: "2-5-4 무게 비교하기",
+    content:
+      "가 상자의 무게는 $2\\,\\mathrm{kg}\\ 500\\,\\mathrm{g}$, 나 상자의 무게는 $2700\\,\\mathrm{g}$ 입니다. 두 상자의 무게를 모두 g으로 고치시오.",
+    want: false,
+    why: "양은 둘인데 **견주기를 안 묻는다** — 고쳐 쓰기만 시킨다",
+  },
+  {
+    section: "2-5-2 들이의 단위",
+    content: "$2\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$ 는 몇 L 몇 mL인지 쓰시오.",
+    want: false,
+    why: "준 꼴과 묻는 꼴이 **같다** — 환산이 하나도 안 든다",
+  },
+  {
+    section: "2-5-6 무게의 합과 차",
+    content:
+      "가 자루의 무게는 $4\\,\\mathrm{kg}\\ 200\\,\\mathrm{g}$ 입니다. 몇 g인지 쓰시오.",
+    want: false,
+    why: "합도 차도 없다 — 「단위」 소단원이 할 일이다",
+  },
+  // 양성 — 실제로 지면에 나가는 꼴 넷(갈래 1~4를 하나씩).
+  {
+    section: "2-5-1 들이 비교하기",
+    content:
+      "두 들이를 비교하여 $\\square$ 안에 $>$ 와 $<$ 중 알맞은 것을 쓰시오.\n\n$4\\,\\mathrm{L}\\ 356\\,\\mathrm{mL}$ $\\square$ $4290\\,\\mathrm{mL}$",
+    want: true,
+    why: "1단 — 견줄 것이 둘이고 부등호를 묻는다",
+  },
+  {
+    section: "2-5-4 무게 비교하기",
+    content:
+      "가 자루의 무게는 $\\square\\,\\mathrm{g}$ 입니다. 가 자루는 나 자루보다 무겁고, 다 자루보다 가볍습니다. 나 자루의 무게는 $4\\,\\mathrm{kg}\\ 618\\,\\mathrm{g}$, 다 자루의 무게는 $5\\,\\mathrm{kg}\\ 13\\,\\mathrm{g}$ 입니다. $\\square$ 안에 들어갈 수 있는 수 중 가장 큰 수를 쓰시오.",
+    want: true,
+    why: "4단 — 사잇값을 묻는다(견주기는 조건 둘로 들어 있다)",
+  },
+  {
+    section: "2-5-5 무게의 단위",
+    content:
+      "봉지에 담긴 사과의 무게는 $8\\,\\mathrm{kg}\\ 900\\,\\mathrm{g}$ 입니다. 이 무게는 몇 g인지 쓰시오.",
+    want: true,
+    why: "2단 — 섞은 꼴로 주고 작은 단위로 묻는다",
+  },
+  {
+    section: "2-5-3 들이의 합과 차",
+    content:
+      "물병에 보리차가 $3\\,\\mathrm{L}\\ 210\\,\\mathrm{mL}$ 있었습니다. 여기에 보리차를 $2\\,\\mathrm{L}\\ 900\\,\\mathrm{mL}$ 더 담고, 다시 $500\\,\\mathrm{mL}$ 를 덜어 냈습니다. 지금 물병에 있는 보리차는 몇 L 몇 mL인지 쓰시오.",
+    solution: "먼저 더하면 $3210+2900=6110$ 입니다.",
+    want: true,
+    why: "3단 — 문장이라 **해설의 수 계산**으로 떨어뜨린다",
   },
 ];
 

@@ -3850,3 +3850,480 @@ describe("[초3 4단] 2-4 — 답을 발문에서 다시 세운다", () => {
 // 「발문이 부른 조건은 발문에 있어야 한다」는 **학년을 넘는 축**이라 여기 있지 않다 —
 // `elemStemSelfContained.test.ts` 가 전 학년을 본다(2026-08-23). 여기 사본을 두지 말 것:
 // 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+
+/* ══════════════ 2-5 들이와 무게 (D-72 확대, 2026-08-24) ══════════════ */
+
+const CAPACITY = ["2-5-1", "2-5-2", "2-5-3"] as const;
+const MASS = ["2-5-4", "2-5-5", "2-5-6"] as const;
+/** 여섯을 「무엇을 하는 소단원인가」로 짝지어 둔다 — 공장 하나를 둘이 나눠 쓴다. */
+const CAP_FAMILY = [
+  { kind: "비교", codes: ["2-5-1", "2-5-4"] },
+  { kind: "단위", codes: ["2-5-2", "2-5-5"] },
+  { kind: "합과 차", codes: ["2-5-3", "2-5-6"] },
+] as const;
+
+const CAP_SEEDS = Array.from({ length: 24 }, (_, i) => 20260824 + i * 6131);
+/** 「틀의 집합」을 견주는 잠금 전용 — 갈래를 다 훑으려면 24개로는 모자란다(아래 주석). */
+const CAP_SHAPE_SEEDS = Array.from(
+  { length: 40 },
+  (_, i) => 20260824 + i * 6131,
+);
+
+/** 그 소단원이 쓰는 단위 짝. 코드로 정한다 — 지면에서 읽으면 동어반복이다. */
+function capUnits(code: string): { big: string; small: string } {
+  return (CAPACITY as readonly string[]).includes(code)
+    ? { big: "L", small: "mL" }
+    : { big: "kg", small: "g" };
+}
+
+type CapVal = { mixed: boolean; total: number };
+
+/**
+ * 지면에 찍힌 **양**을 전부 읽는다. `$2\,\mathrm{L}\ 300\,\mathrm{mL}$` 는 섞은 꼴,
+ * `$2300\,\mathrm{mL}$` 는 작은 단위 하나, `$3\,\mathrm{L}$` 는 큰 단위 하나.
+ *
+ * ⚠️ 값을 **작은 단위로 환산해** 돌려준다 — 그래야 견주는 셈을 여기서 다시 할 수 있다.
+ *    생성기의 환산을 부르지 않는다(부르면 「제품이 틀릴수록 좋은 점수」가 된다).
+ *
+ * ⚠️ **`$…$` 경계를 요구하지 않는다.** 1단의 식은 두 양이 **한 KaTeX 덩어리**에 들어
+ *    있다(`$2\,\mathrm{L}\ 3\,\mathrm{mL}+…=\square$`). 경계를 걸었더니 그 갈래에서
+ *    **값 0개**가 나왔고, 「값이 없다」는 「값이 틀렸다」를 구조적으로 못 본다.
+ *    섞은 꼴을 **먼저** 대므로 그 안의 작은 단위가 홑값으로 다시 세어지지 않는다.
+ */
+function capVals(text: string, code: string): CapVal[] {
+  const { big, small } = capUnits(code);
+  const re = new RegExp(
+    `(\\d+)\\\\,\\\\mathrm\\{${big}\\}\\\\ (\\d+)\\\\,\\\\mathrm\\{${small}\\}` +
+      `|(\\d+)\\\\,\\\\mathrm\\{${small}\\}` +
+      `|(\\d+)\\\\,\\\\mathrm\\{${big}\\}`,
+    "g",
+  );
+  const out: CapVal[] = [];
+  for (const m of text.matchAll(re)) {
+    if (m[1] !== undefined)
+      out.push({ mixed: true, total: Number(m[1]) * 1000 + Number(m[2]) });
+    else if (m[3] !== undefined)
+      out.push({ mixed: false, total: Number(m[3]) });
+    else out.push({ mixed: false, total: Number(m[4]) * 1000 });
+  }
+  return out;
+}
+
+/** 답이 섞은 꼴이면 그 값을, 아니면 `null`. */
+function capMixedAnswer(answer: string, code: string): number | null {
+  const { big, small } = capUnits(code);
+  const m = answer.match(
+    new RegExp(
+      `^\\$(\\d+)\\\\,\\\\mathrm\\{${big}\\}\\\\ (\\d+)\\\\,\\\\mathrm\\{${small}\\}\\$$`,
+    ),
+  );
+  return m ? Number(m[1]) * 1000 + Number(m[2]) : null;
+}
+
+/** 답이 맨 수(`$3649$`)이면 그 값을, 아니면 `null`. */
+function capPlainAnswer(answer: string): number | null {
+  const m = answer.match(/^\$(\d+)\$$/);
+  return m ? Number(m[1]) : null;
+}
+
+describe("[초3 4단] 2-5 들이와 무게 — 여섯 소단원", () => {
+  const ALL = [...CAPACITY, ...MASS];
+
+  it("여섯 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of ALL)
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of ALL)
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 7373, tier);
+        const b = generateElementaryProblem(planeUnit(code), 7373, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+  });
+
+  /**
+   * 들이 쪽과 무게 쪽이 **한 공장에서 나온다**는 것을 잠근다.
+   * 이게 이 소단원 묶음의 설계다 — 한쪽만 고치면 두 소단원이 조용히 갈라진다.
+   *
+   * ⚠️ **씨앗이 같아도 두 소단원의 문항은 같지 않다.** 난수가
+   *    `seed + orderIndex * 17 + TIER_SALT` 로 서므로 `orderIndex` 가 다른 순간
+   *    뽑히는 값도 **고르는 갈래도** 달라진다. 첫 판이 「씨앗마다 뼈대가 같아야」로
+   *    적었다가 여섯 갈래에서 빨개졌는데, 그건 결함이 아니라 **내 전제가 틀린 것**이었다.
+   *
+   *    그래서 **갈래별 «뼈대의 집합»**을 견준다 — 한 공장이면 씨앗을 충분히 돌렸을 때
+   *    두 소단원이 내놓는 틀의 가짓수와 모양이 같아야 한다. 수·한글·단위는 지운다
+   *    (그 셋은 원래 다르다). 남는 것이 곧 **틀**이다.
+   */
+  it("들이와 무게가 한 공장에서 나온다 — 틀의 집합이 같다", () => {
+    const bad: string[] = [];
+    // ⚠️ 한글은 **낱말 수까지 지운다.** 「많이 담기는」은 두 마디, 「무거운」은 한 마디라
+    //    낱말마다 `·` 하나로 바꾸면 그 차이가 남아 「틀이 다르다」로 읽힌다 — 실제로
+    //    비교 세 갈래가 그것 때문에 빨개졌다. 줄바꿈은 지우지 않는다(그건 틀이다).
+    // ⚠️ 단위는 `\mathrm{}` **밖에도** 있다 — 「몇 L 몇 mL인지」처럼 발문 문장에 그냥 선다.
+    //    안쪽만 지웠더니 단위 세 갈래가 그것 때문에 빨개졌다.
+    const skeleton = (t: string) =>
+      t
+        .replace(/\\mathrm\{(?:mL|kg|mm|cm|km|L|g|m)\}/g, "\\mathrm{U}")
+        .replace(/(?<![A-Za-z])(?:mL|kg|km|cm|mm|L|g|m)(?![A-Za-z])/g, "U")
+        .replace(/\d+/g, "#")
+        .replace(/[가-힣]+(?: +[가-힣]+)*/g, "·");
+    for (const { kind, codes } of CAP_FAMILY) {
+      const [capCode, massCode] = codes;
+      for (const tier of ELEM_TIERS) {
+        // ⚠️ 씨앗이 **모자라면 「틀이 갈린다」가 거짓으로 뜬다.** 24개에서는 2-5-5 가
+        //    단위 1단의 여섯 틀 중 다섯만 내서 빨개졌다 — 설계가 아니라 **표본** 문제였다.
+        //    실측으로 40개부터 양쪽이 여섯을 다 낸다(24: 6 대 5 · 40·60·80: 6 대 6).
+        const shapes = (code: string) =>
+          new Set(
+            CAP_SHAPE_SEEDS.map((s) =>
+              skeleton(
+                generateElementaryProblem(planeUnit(code), s, tier).content,
+              ),
+            ),
+          );
+        const a = shapes(capCode);
+        const b = shapes(massCode);
+        const onlyA = [...a].filter((x) => !b.has(x));
+        const onlyB = [...b].filter((x) => !a.has(x));
+        if (onlyA.length || onlyB.length)
+          bad.push(
+            `${kind} ${tier}: 틀이 갈린다 — ${capCode}만 ${onlyA.length} · ${massCode}만 ${onlyB.length}\n  ${(onlyA[0] ?? onlyB[0] ?? "").slice(0, 160)}`,
+          );
+        // 분모 — 틀이 하나도 없으면 「같다」가 «못 셈»이다.
+        if (a.size === 0) bad.push(`${kind} ${tier}: 틀을 하나도 못 읽었다`);
+      }
+    }
+    expect(bad.slice(0, 3)).toEqual([]);
+  });
+
+  it("비교 — 부등호·기호·차례가 지면의 값과 맞는다", () => {
+    const bad: string[] = [];
+    for (const code of ["2-5-1", "2-5-4"] as const)
+      for (const seed of CAP_SEEDS) {
+        // 1단 — 부등호가 두 값의 실제 대소와 같아야 한다.
+        const calc = generateElementaryProblem(planeUnit(code), seed, "연산");
+        const cv = capVals(calc.content, code);
+        if (cv.length !== 2)
+          bad.push(`${code} 연산 ${seed}: 값이 ${cv.length}개`);
+        else {
+          const want = cv[0]!.total > cv[1]!.total ? "$>$" : "$<$";
+          if (calc.answer !== want)
+            bad.push(
+              `${code} 연산 ${seed}: ${cv[0]!.total} vs ${cv[1]!.total} 인데 답이 ${calc.answer}`,
+            );
+          if (cv[0]!.total === cv[1]!.total)
+            bad.push(`${code} 연산 ${seed}: 두 값이 같아 답이 없다`);
+          // 한쪽은 반드시 섞은 꼴이어야 «단위 맞추기»가 든다.
+          if (!cv[0]!.mixed)
+            bad.push(`${code} 연산 ${seed}: 섞은 꼴이 없다 — 환산이 안 든다`);
+        }
+
+        // 2단 — 묻는 쪽(많은·적은)에 맞는 기호를 답해야 한다.
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        const wv = capVals(word.content, code);
+        if (wv.length !== 2)
+          bad.push(`${code} 기본 ${seed}: 값이 ${wv.length}개`);
+        else {
+          const askLess = /적게 담기는|가벼운/.test(word.content);
+          const biggerIs = wv[0]!.total > wv[1]!.total ? "가" : "나";
+          const want = askLess ? (biggerIs === "가" ? "나" : "가") : biggerIs;
+          if (word.answer !== want)
+            bad.push(
+              `${code} 기본 ${seed}: ${askLess ? "적은" : "많은"} 쪽인데 답이 ${word.answer} (${wv[0]!.total}, ${wv[1]!.total})`,
+            );
+        }
+
+        // 3단 — 답의 차례가 실제 내림차순이어야 한다.
+        const ap = generateElementaryProblem(planeUnit(code), seed, "응용");
+        const av = capVals(ap.content, code);
+        const labels = ap.answer.split(", ");
+        if (av.length !== 3 || labels.length !== 3)
+          bad.push(
+            `${code} 응용 ${seed}: 값 ${av.length} · 답 ${labels.length}`,
+          );
+        else {
+          const byLabel: Record<string, number> = {
+            가: av[0]!.total,
+            나: av[1]!.total,
+            다: av[2]!.total,
+          };
+          const sorted = labels.map((l) => byLabel[l]!);
+          if (new Set(labels).size !== 3)
+            bad.push(`${code} 응용 ${seed}: 기호가 겹친다 — ${ap.answer}`);
+          if (!(sorted[0]! > sorted[1]! && sorted[1]! > sorted[2]!))
+            bad.push(
+              `${code} 응용 ${seed}: 차례가 아니다 — ${ap.answer} / ${sorted.join(">")}`,
+            );
+        }
+
+        // 4단 — 답이 두 조건 «나 < 답 < 다» 를 채우는 **가장 큰** 수여야 한다.
+        const deep = generateElementaryProblem(planeUnit(code), seed, "심화");
+        const dv = capVals(deep.content, code);
+        const ans = capPlainAnswer(deep.answer);
+        if (dv.length !== 2 || ans === null)
+          bad.push(`${code} 심화 ${seed}: 값 ${dv.length} · 답 ${deep.answer}`);
+        else {
+          const [lo, hi] = [dv[0]!.total, dv[1]!.total];
+          if (!(lo < hi))
+            bad.push(`${code} 심화 ${seed}: 조건이 뒤집혔다 ${lo}>=${hi}`);
+          if (ans !== hi - 1)
+            bad.push(
+              `${code} 심화 ${seed}: 가장 큰 수는 ${hi - 1} 인데 답이 ${ans}`,
+            );
+          if (!(ans > lo))
+            bad.push(`${code} 심화 ${seed}: 답이 아래 조건을 안 채운다`);
+          if (!deep.content.includes("\\square"))
+            bad.push(`${code} 심화 ${seed}: 역산 표지($\\square$)가 없다`);
+        }
+      }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("단위 — 환산이 정확하고, 답이 **작은 단위 하나**로 떨어진다", () => {
+    const bad: string[] = [];
+    for (const code of ["2-5-2", "2-5-5"] as const) {
+      const { big, small } = capUnits(code);
+      for (const seed of CAP_SEEDS) {
+        // 1단 — 등식 양변이 같은 값이어야 한다(어느 쪽에 $\square$ 가 있든).
+        const calc = generateElementaryProblem(planeUnit(code), seed, "연산");
+        const eq = calc.content.match(/\$([^$]*=[^$]*)\$/);
+        const box = capPlainAnswer(calc.answer);
+        if (!eq || box === null) {
+          bad.push(`${code} 연산 ${seed}: 등식이나 답이 없다 — ${calc.answer}`);
+        } else {
+          const side = (t: string) => {
+            const bg = t.match(new RegExp(`(\\d+)\\\\,\\\\mathrm\\{${big}\\}`));
+            const sm = t.match(
+              new RegExp(`(\\d+)\\\\,\\\\mathrm\\{${small}\\}`),
+            );
+            let v = (bg ? Number(bg[1]) * 1000 : 0) + (sm ? Number(sm[1]) : 0);
+            if (new RegExp(`\\\\square\\\\,\\\\mathrm\\{${big}\\}`).test(t))
+              v += box * 1000;
+            if (new RegExp(`\\\\square\\\\,\\\\mathrm\\{${small}\\}`).test(t))
+              v += box;
+            return v;
+          };
+          const [l, r] = eq[1]!.split("=") as [string, string];
+          if (side(l) !== side(r))
+            bad.push(`${code} 연산 ${seed}: 양변이 ${side(l)} ≠ ${side(r)}`);
+        }
+
+        // 2단 — 한 값을 다른 꼴로 옮긴다. 총량이 보존돼야 한다.
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        const wv = capVals(word.content, code);
+        const wa =
+          capPlainAnswer(word.answer) ?? capMixedAnswer(word.answer, code);
+        if (wv.length !== 1 || wa === null)
+          bad.push(`${code} 기본 ${seed}: 값 ${wv.length} · 답 ${word.answer}`);
+        else if (wv[0]!.total !== wa)
+          bad.push(`${code} 기본 ${seed}: ${wv[0]!.total} ≠ ${wa}`);
+
+        // 3단 — 한 그릇 몫 × 개수. 답은 작은 단위 하나.
+        const ap = generateElementaryProblem(planeUnit(code), seed, "응용");
+        const av = capVals(ap.content, code);
+        const cnt = ap.content.match(/\$(\d+)\$개/);
+        const aa = capPlainAnswer(ap.answer);
+        if (av.length !== 1 || !cnt || aa === null)
+          bad.push(
+            `${code} 응용 ${seed}: 값 ${av.length} · 개수 ${cnt?.[1]} · 답 ${ap.answer}`,
+          );
+        else if (av[0]!.total * Number(cnt[1]) !== aa)
+          bad.push(`${code} 응용 ${seed}: ${av[0]!.total}×${cnt[1]} ≠ ${aa}`);
+
+        // 4단 — 되짚기(덜어 낸 것 + 남은 것). 답은 작은 단위 하나.
+        const deep = generateElementaryProblem(planeUnit(code), seed, "심화");
+        const dv = capVals(deep.content, code);
+        const da = capPlainAnswer(deep.answer);
+        if (dv.length !== 2 || da === null)
+          bad.push(`${code} 심화 ${seed}: 값 ${dv.length} · 답 ${deep.answer}`);
+        else {
+          if (dv[0]!.total + dv[1]!.total !== da)
+            bad.push(
+              `${code} 심화 ${seed}: ${dv[0]!.total}+${dv[1]!.total} ≠ ${da}`,
+            );
+          if (dv[0]!.total === dv[1]!.total)
+            bad.push(`${code} 심화 ${seed}: 덜어 낸 양과 남은 양이 같다`);
+          if (!/처음/.test(deep.content))
+            bad.push(`${code} 심화 ${seed}: 되짚기 표지(「처음」)가 없다`);
+        }
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("합과 차 — 값이 맞고, 심화는 **받아내림이 반드시** 난다", () => {
+    const bad: string[] = [];
+    let calcCross = 0;
+    for (const code of ["2-5-3", "2-5-6"] as const)
+      for (const seed of CAP_SEEDS) {
+        // 1단 — 식 그대로. 자리 넘김이 나는 씨앗을 따로 센다(아래에서 분모로 쓴다).
+        const calc = generateElementaryProblem(planeUnit(code), seed, "연산");
+        const cv = capVals(calc.content, code);
+        const ca = capMixedAnswer(calc.answer, code);
+        const isAdd = calc.content.includes("}+");
+        if (cv.length !== 2 || ca === null)
+          bad.push(`${code} 연산 ${seed}: 값 ${cv.length} · 답 ${calc.answer}`);
+        else {
+          const want = isAdd
+            ? cv[0]!.total + cv[1]!.total
+            : cv[0]!.total - cv[1]!.total;
+          if (want !== ca)
+            bad.push(
+              `${code} 연산 ${seed}: ${cv[0]!.total}${isAdd ? "+" : "-"}${cv[1]!.total} = ${want} ≠ ${ca}`,
+            );
+          const s1 = cv[0]!.total % 1000;
+          const s2 = cv[1]!.total % 1000;
+          if (isAdd ? s1 + s2 >= 1000 : s1 < s2) calcCross += 1;
+        }
+
+        // 2단 — 문장. 답은 섞은 꼴.
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        const wv = capVals(word.content, code);
+        const wa = capMixedAnswer(word.answer, code);
+        if (wv.length !== 2 || wa === null)
+          bad.push(`${code} 기본 ${seed}: 값 ${wv.length} · 답 ${word.answer}`);
+        else {
+          const plus = /담았습니다/.test(word.content);
+          const want = plus
+            ? wv[0]!.total + wv[1]!.total
+            : wv[0]!.total - wv[1]!.total;
+          if (want !== wa)
+            bad.push(`${code} 기본 ${seed}: ${want} ≠ ${wa} — ${word.content}`);
+        }
+
+        // 3단 — 두 단계(더하고 덜어 낸다).
+        const ap = generateElementaryProblem(planeUnit(code), seed, "응용");
+        const av = capVals(ap.content, code);
+        const aa = capMixedAnswer(ap.answer, code);
+        if (av.length !== 3 || aa === null)
+          bad.push(`${code} 응용 ${seed}: 값 ${av.length} · 답 ${ap.answer}`);
+        else if (av[0]!.total + av[1]!.total - av[2]!.total !== aa)
+          bad.push(
+            `${code} 응용 ${seed}: ${av[0]!.total}+${av[1]!.total}-${av[2]!.total} ≠ ${aa}`,
+          );
+
+        // 4단 — 되짚기. 답 + 더한 양 = 나중 양이어야 하고, **받아내림이 난다.**
+        const deep = generateElementaryProblem(planeUnit(code), seed, "심화");
+        const dv = capVals(deep.content, code);
+        const da = capMixedAnswer(deep.answer, code);
+        if (dv.length !== 2 || da === null)
+          bad.push(`${code} 심화 ${seed}: 값 ${dv.length} · 답 ${deep.answer}`);
+        else {
+          const [added, end] = [dv[0]!.total, dv[1]!.total];
+          if (da + added !== end)
+            bad.push(`${code} 심화 ${seed}: ${da}+${added} ≠ ${end}`);
+          if (!(end % 1000 < added % 1000))
+            bad.push(
+              `${code} 심화 ${seed}: 받아내림이 안 난다 (${end % 1000} >= ${added % 1000})`,
+            );
+          if (!/처음/.test(deep.content))
+            bad.push(`${code} 심화 ${seed}: 되짚기 표지(「처음」)가 없다`);
+        }
+      }
+    expect(bad.slice(0, 6)).toEqual([]);
+    // ⚠️ **분모를 같이 잠근다.** 「자리 넘김이 난다」를 안 세면 1단이 전부 넘김 없는
+    //    값으로 굳어도 초록이다 — 그러면 이 소단원이 「단위」와 구별되지 않는다.
+    const total = CAP_SEEDS.length * 2;
+    expect(
+      calcCross,
+      `1단에서 자리 넘김이 난 씨앗 ${calcCross}/${total}`,
+    ).toBeGreaterThan(total / 5);
+    expect(
+      calcCross,
+      "1단이 전부 자리 넘김이면 넘김 없는 꼴을 못 낸다",
+    ).toBeLessThan(total);
+  });
+
+  it("답의 모양이 갈래마다 갈린다 — 세 소단원이 서로를 흉내 내지 않는다", () => {
+    const bad: string[] = [];
+    for (const seed of CAP_SEEDS.slice(0, 8))
+      for (const tier of ELEM_TIERS) {
+        for (const code of ["2-5-3", "2-5-6"] as const) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          if (capMixedAnswer(p.answer, code) === null)
+            bad.push(
+              `${code} ${tier} ${seed}: 합과 차의 답은 섞은 꼴이어야 — ${p.answer}`,
+            );
+        }
+        for (const code of ["2-5-2", "2-5-5"] as const) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          // 2단만 «작은 단위 → 섞은 꼴» 방향이 있어 예외다. 나머지는 맨 수.
+          if (tier !== "기본" && capPlainAnswer(p.answer) === null)
+            bad.push(
+              `${code} ${tier} ${seed}: 단위의 답은 맨 수여야 — ${p.answer}`,
+            );
+        }
+        for (const code of ["2-5-1", "2-5-4"] as const) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const ok =
+            /^\$[<>]\$$/.test(p.answer) ||
+            /^[가나다](, [가나다])*$/.test(p.answer) ||
+            (tier === "심화" && capPlainAnswer(p.answer) !== null);
+          if (!ok)
+            bad.push(
+              `${code} ${tier} ${seed}: 비교의 답은 기호·부등호여야 — ${p.answer}`,
+            );
+        }
+      }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  /**
+   * ⚠️ **이건 내가 실제로 낸 결함이다**(2026-08-24). cfg 에 적어 둔 조사 넷은
+   * `L`·`kg` 의 **읽는 소리**를 따르는 값인데, 그것을 한글 낱말 「무게」에 대서
+   * 「두 무게**을** 비교하여」·「세 봉지의 무게**이**」가 지면에 나갔다.
+   *
+   * **들이 쪽은 우연히 맞아서 안 드러났다** — 리터의 조사(를·가)와 「들이」의 조사가
+   * 같기 때문이다. 그래서 이 잠금은 **무게 쪽이 있어야 뜻이 있다.**
+   * 지면을 눈으로 보고서야 찾았고, 고친 뒤 여기 못 박는다.
+   */
+  it("한글 낱말에 **단위 조사**를 대지 않는다 — 「무게을」·「무게이」가 없다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const code of [...CAPACITY, ...MASS])
+      for (const tier of ELEM_TIERS)
+        for (const seed of CAP_SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const t = `${p.content}\n${p.solution}`;
+          if (/들이|무게/.test(t)) looked += 1;
+          for (const m of t.matchAll(/(들이|무게)([은는이가을를])/g)) {
+            const word = m[1]!;
+            const got = m[2]!;
+            // 「들이」·「무게」는 둘 다 받침이 없다 — 는·가·를 만 옳다.
+            if (["은", "이", "을"].includes(got))
+              bad.push(`${code} ${tier} ${seed}: 「${word}${got}」`);
+          }
+        }
+    expect(bad.slice(0, 6)).toEqual([]);
+    // 분모 — 그 낱말이 지면에서 사라지면 이 잠금은 «못 셈»이 된다.
+    expect(
+      looked,
+      "「들이」·「무게」가 지면에 하나도 없다 — 축이 사라졌다",
+    ).toBeGreaterThan(0);
+  });
+
+  it("답의 작은 자리가 $0$ 인 섞은 꼴이 없다", () => {
+    const bad: string[] = [];
+    for (const code of [...CAPACITY, ...MASS]) {
+      const { big, small } = capUnits(code);
+      const zero = new RegExp(
+        `\\d+\\\\,\\\\mathrm\\{${big}\\}\\\\ 0\\\\,\\\\mathrm\\{${small}\\}`,
+      );
+      const zeroBig = new RegExp(`\\$0\\\\,\\\\mathrm\\{${big}\\}`);
+      for (const tier of ELEM_TIERS)
+        for (const seed of CAP_SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const t = `${p.content}\n${p.answer}\n${p.solution}`;
+          if (zero.test(t))
+            bad.push(`${code} ${tier} ${seed}: 작은 자리가 $0$`);
+          if (zeroBig.test(t))
+            bad.push(`${code} ${tier} ${seed}: 큰 자리가 $0$`);
+        }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+});

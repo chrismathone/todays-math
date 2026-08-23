@@ -6223,6 +6223,533 @@ function cmp246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 2-5 들이와 무게 (D-72 확대) ──────────────────────────────────────────
+//
+// 여섯 소단원이 **셋 × 둘**이다 — 「비교」·「단위」·「합과 차」를 들이(L·mL)와
+// 무게(kg·g)가 각각 한 벌씩 쓴다. 단위 경계가 1000 으로 같고 하는 일이 같으므로,
+// 1-5 길이가 `LenCfg` 하나를 나눠 쓴 것처럼 **공장 셋을 여섯 소단원이 나눠 쓴다.**
+// 한쪽만 고쳐 두 소단원이 조용히 갈라지는 일이 구조적으로 없어진다.
+//
+// ⚠️ **단위 뒤 조사는 «읽는 소리»로 갈린다 — 여기서는 `josa()` 를 쓸 수 없다.**
+//    `josa()` 는 **글자**의 받침을 보는데, `L`·`kg` 은 글자가 소리가 아니다.
+//    리터·밀리리터는 받침이 없고(「리터는」·「리터를」), 킬로그램·그램은 있다
+//    (「그램은」·「그램을」). 그래서 cfg 에 **한 벌씩** 적어 둔다 — 큰 단위와 작은
+//    단위가 같은 소리로 끝나므로 한 벌이면 족하다.
+//    (지면에 나간 이 자리를 전량 재는 것은 `scripts/qa/probe-elem-unit-josa.ts` 다.)
+//
+// ⚠️ **세 갈래가 서로를 흉내 내지 않게 «답의 모양»을 갈라 두었다:**
+//      비교    → 기호(가·나·다) 또는 부등호
+//      단위    → 작은 단위 하나로 (몇 mL · 몇 g)
+//      합과 차 → 몇 L 몇 mL (섞은 꼴)
+//    이 구분이 없으면 「들이 비교하기인데 단위 변환만 하고 있다」가 **지면에서
+//    안 보인다.** 조건 판정기가 이 모양을 본다(2026-08-24).
+
+type CapCfg = {
+  big: string;
+  small: string;
+  /** 「들이」·「무게」 */
+  word: string;
+  /**
+   * 단위를 **읽은 소리** 뒤 조사. 글자로는 못 정한다 — 위 주석 참조.
+   *
+   * ⚠️ **`word` 뒤에는 이것을 쓰지 마라.** 이 넷은 `L`·`kg` 의 소리를 따르는 값이라
+   *    「들이」·「무게」 같은 **한글 낱말**에 대면 틀린다 — 실제로 첫 판이
+   *    「두 무게**을** 비교하여」·「세 봉지의 무게**이**」를 지면에 냈다(들이 쪽은
+   *    우연히 같아서 안 드러났다). 한글 낱말은 `josa()` 로 **계산**한다.
+   */
+  jNun: string;
+  jGa: string;
+  jReul: string;
+  jRo: string;
+  /** 관형형 「많이 담기는」·「무거운」 */
+  moreAdj: string;
+  /** 연결형 「많이 담기고」·「무겁고」 */
+  moreConn: string;
+  /** 종결형 「많이 담깁니다」·「무겁습니다」 */
+  moreVerb: string;
+  /** 관형형 「적게 담기는」·「가벼운」 */
+  lessAdj: string;
+  /** 종결형 「적게 담깁니다」·「가볍습니다」 */
+  lessVerb: string;
+  /** 담는 그릇 · 무게를 다는 것 */
+  vessels: readonly string[];
+  /** 담기는 것 */
+  stuff: readonly string[];
+};
+
+const CAP_L: CapCfg = {
+  big: "L",
+  small: "mL",
+  word: "들이",
+  jNun: "는",
+  jGa: "가",
+  jReul: "를",
+  jRo: "로",
+  moreAdj: "많이 담기는",
+  moreConn: "많이 담기고",
+  moreVerb: "많이 담깁니다",
+  lessAdj: "적게 담기는",
+  lessVerb: "적게 담깁니다",
+  vessels: [
+    "물통",
+    "주전자",
+    "냄비",
+    "항아리",
+    "물병",
+    "양동이",
+    "수조",
+    "물뿌리개",
+  ],
+  stuff: ["물", "우유", "주스", "보리차", "식용유", "간장", "매실청", "포도즙"],
+};
+
+const CAP_KG: CapCfg = {
+  big: "kg",
+  small: "g",
+  word: "무게",
+  jNun: "은",
+  jGa: "이",
+  jReul: "을",
+  jRo: "으로",
+  moreAdj: "무거운",
+  moreConn: "무겁고",
+  moreVerb: "무겁습니다",
+  lessAdj: "가벼운",
+  lessVerb: "가볍습니다",
+  vessels: ["상자", "가방", "바구니", "자루", "봉지", "수레", "보따리", "들통"],
+  stuff: ["감자", "고구마", "밀가루", "설탕", "사과", "쌀", "콩", "귤"],
+};
+
+/** `$2\,\mathrm{L}\ 300\,\mathrm{mL}$` — cfg 에 맞춘 섞은 꼴. */
+const mixedCap = (cfg: CapCfg, b: number, s: number) =>
+  mixedUnit(b, s, cfg.big, cfg.small);
+
+/** 「가」·「나」·「다」 — 그릇에 붙이는 이름표. */
+const CAP_LABELS = ["가", "나", "다"] as const;
+
+/** 셋을 늘어놓는 순열 여섯. 무작위 비교자로 `sort` 하지 않기 위한 것 — 아래 주석 참조. */
+const CAP_PERMS = [
+  [0, 1, 2],
+  [0, 2, 1],
+  [1, 0, 2],
+  [1, 2, 0],
+  [2, 0, 1],
+  [2, 1, 0],
+] as const;
+
+/* ── 2-5-1 들이 비교하기 · 2-5-4 무게 비교하기 ── */
+
+/**
+ * 1단 — 섞은 꼴과 작은 단위 하나를 견주어 부등호를 답한다.
+ *
+ * 왼쪽만 섞은 꼴로 둔다 — 그래야 **단위를 맞추는 일**이 반드시 한 번 든다.
+ * 양쪽 다 섞은 꼴이면 큰 단위만 보고 답이 나와 비교가 알맹이를 잃는다.
+ */
+function capCmpCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const left = b * 1000 + s;
+    const gap =
+      intBetween(rng, 20, 400) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
+    const right = left + gap;
+    const sign = left > right ? ">" : "<";
+    return make(
+      unit,
+      `두 ${cfg.word}${josa(cfg.word, "을", "를")} 비교하여 $\\square$ 안에 $>$ 와 $<$ 중 알맞은 것을 쓰시오.\n\n${mixedCap(cfg, b, s)} $\\square$ ${unitNum(right, cfg.small)}`,
+      expr(sign),
+      `${mixedCap(cfg, b, s)} ${cfg.jNun} ${unitNum(left, cfg.small)} 입니다. ${expr(`${left}${sign}${right}`)} 이므로 $\\square$ 안에는 ${expr(sign)} ${josa(sign, "이", "가")} 들어갑니다.`,
+    );
+  };
+}
+
+/** 2단 — 두 그릇을 문장으로 견준다. 묻는 쪽(큰·작은)을 오간다. */
+function capCmpWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const t1 = b * 1000 + s;
+    const gap =
+      intBetween(rng, 30, 400) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
+    const t2 = t1 + gap;
+    const askMore = intBetween(rng, 0, 1) === 1;
+    const bigger = t1 > t2 ? "가" : "나";
+    const answer = askMore ? bigger : bigger === "가" ? "나" : "가";
+    const vessel = pick(rng, cfg.vessels);
+    const vGa = josa(vessel, "이", "가");
+    return make(
+      unit,
+      `가 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, b, s)}, 나 ${vessel}의 ${cfg.word}는 ${unitNum(t2, cfg.small)} 입니다. 더 ${askMore ? cfg.moreAdj : cfg.lessAdj} ${vessel}의 기호를 쓰시오.`,
+      answer,
+      `가 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, b, s)}, 곧 ${unitNum(t1, cfg.small)} 입니다. ${expr(`${Math.max(t1, t2)}>${Math.min(t1, t2)}`)} 이므로 ${bigger} ${vessel}${vGa} 더 ${cfg.moreVerb}. 따라서 답은 ${answer} ${vessel} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 셋을 견주어 차례로 늘어놓는다(단위 맞추기 세 번 + 줄 세우기). */
+function capCmpApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const base = intBetween(rng, 1, 4) * 1000 + intBetween(rng, 100, 800);
+    // 셋이 서로 다르도록 벌려 둔다 — 같으면 「차례로」의 답이 하나로 안 정해진다.
+    const d1 = intBetween(rng, 40, 300);
+    const d2 = d1 + intBetween(rng, 40, 300);
+    const totals = [base, base + d1, base + d2];
+    // 섞은 꼴과 작은 단위 하나를 번갈아 보이게 자리를 섞는다.
+    //
+    // ⚠️ `sort` 에 무작위 비교자를 넣지 않는다 — 그건 «섞기»가 아니라 **정렬 규약을
+    //    어기는 것**이라 엔진마다 결과가 다를 수 있다. 순열을 손에 쥐고 하나를 고른다.
+    const order = pick(rng, CAP_PERMS);
+    const shown = order.map((i) => totals[i]!);
+    const vessel = pick(rng, cfg.vessels);
+    const lines = shown.map((t, i) =>
+      i % 2 === 0
+        ? `${CAP_LABELS[i]} ${vessel}: ${mixedCap(cfg, Math.floor(t / 1000), t % 1000)}`
+        : `${CAP_LABELS[i]} ${vessel}: ${unitNum(t, cfg.small)}`,
+    );
+    const desc = shown
+      .map((t, i) => ({ label: CAP_LABELS[i]!, t }))
+      .sort((x, y) => y.t - x.t);
+    return make(
+      unit,
+      `세 ${vessel}의 ${cfg.word}${josa(cfg.word, "이", "가")} 다음과 같습니다. ${cfg.moreAdj} ${vessel}부터 차례로 기호를 쓰시오.\n\n${lines.join("\n")}`,
+      desc.map((d) => d.label).join(", "),
+      `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 모두 ${cfg.small} ${cfg.jRo} 고쳐 견줍니다. ${shown.map((t, i) => `${CAP_LABELS[i]} ${vessel}${josa(vessel, "은", "는")} ${unitNum(t, cfg.small)}`).join(", ")} 입니다. ${expr(desc.map((d) => d.t).join(">"))} 이므로 ${desc.map((d) => d.label).join(", ")} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — 조건 **둘** 사이에 드는 값 가운데 가장 큰 수(역산).
+ *
+ * ⚠️ $\square$ 를 **작은 단위 쪽에** 둔다. 섞은 꼴 쪽에 두면 학생이 큰 단위만 보고
+ *    답을 쓸 수 있어 「비교」라는 소단원 조건이 지면에서 사라진다.
+ */
+function capCmpDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const loB = intBetween(rng, 1, 4);
+    const loS = intBetween(rng, 100, 700);
+    const lo = loB * 1000 + loS;
+    const raw = lo + intBetween(rng, 120, 800);
+    // 작은 자리가 $0$ 이면 지면에 `$3\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 나간다 — 한 칸 민다.
+    const hi = raw % 1000 === 0 ? raw + 50 : raw;
+    const hiB = Math.floor(hi / 1000);
+    const hiS = hi % 1000;
+    const answer = hi - 1;
+    const vessel = pick(rng, cfg.vessels);
+    const vNun = josa(vessel, "은", "는");
+    return make(
+      unit,
+      `가 ${vessel}의 ${cfg.word}는 $\\square\\,\\mathrm{${cfg.small}}$ 입니다. 가 ${vessel}${vNun} 나 ${vessel}보다 ${cfg.moreConn}, 다 ${vessel}보다 ${cfg.lessVerb}. 나 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, loB, loS)}, 다 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, hiB, hiS)} 입니다. $\\square$ 안에 들어갈 수 있는 수 중 가장 큰 수를 쓰시오.`,
+      n(answer),
+      `나 ${vessel}${vNun} ${unitNum(lo, cfg.small)}, 다 ${vessel}${vNun} ${unitNum(hi, cfg.small)} 입니다. $\\square$ 안의 수는 ${n(lo)} 보다 크고 ${n(hi)} 보다 작아야 하므로 ${n(lo + 1)} 부터 ${n(answer)} 까지입니다. 그중 가장 큰 수는 ${n(answer)} 입니다.`,
+    );
+  };
+}
+
+/* ── 2-5-2 들이의 단위 · 2-5-5 무게의 단위 ── */
+
+/**
+ * 1단 — 단위 바꾸기 식. 네 꼴을 돌아가며 낸다.
+ *
+ * ⚠️ 식은 KaTeX 한 덩어리라 변형 공간 정규화에서 지워진다 — 1-5 와 같은 이유로
+ *    **지시문을 꼴마다 갈라** 둔다(안 그러면 씨앗을 바꿔도 지면이 같아 보인다).
+ */
+function capUnitCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    const total = b * 1000 + s;
+    const form = intBetween(rng, 0, 3);
+    const prompt = pick(
+      rng,
+      [
+        [
+          `$\\square$ 안에 알맞은 수를 쓰시오.`,
+          `큰 단위를 작은 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [
+          `빈칸에 알맞은 수를 구하시오.`,
+          `몇 ${cfg.big} 몇 ${cfg.small}인 ${cfg.word}${josa(cfg.word, "을", "를")} ${cfg.small} 단위로 바꾸어 $\\square$ 에 쓰시오.`,
+        ],
+        [
+          `$\\square$ 에 알맞은 수를 구하시오.`,
+          `작은 단위를 큰 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [`빈칸에 알맞은 수를 쓰시오.`, `$\\square$ 에 들어갈 수를 구하시오.`],
+      ][form]!,
+    );
+    if (form === 0) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b}\\,\\mathrm{${cfg.big}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(b * 1000),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 입니다.`,
+      );
+    }
+    if (form === 1) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b}\\,\\mathrm{${cfg.big}}\\ ${s}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 이고, ${expr(`${b * 1000}+${s}=${total}`)} 입니다.`,
+      );
+    }
+    if (form === 2) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b * 1000}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.big}}$`,
+        n(b),
+        `$1000\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(b * 1000, cfg.small)} ${cfg.jNun} ${unitNum(b, cfg.big)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${prompt}\n\n$${total}\\,\\mathrm{${cfg.small}}=${b}\\,\\mathrm{${cfg.big}}\\ \\square\\,\\mathrm{${cfg.small}}$`,
+      n(s),
+      `${unitNum(b, cfg.big)} ${cfg.jNun} ${unitNum(b * 1000, cfg.small)} 이므로 ${expr(`${total}-${b * 1000}=${s}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 단위를 바꾼다. 방향(큰→작은·작은→큰)을 오간다. */
+function capUnitWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    const total = b * 1000 + s;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    if (intBetween(rng, 0, 1) === 0) {
+      return make(
+        unit,
+        `${vessel}에 담긴 ${thing}의 ${cfg.word}는 ${mixedCap(cfg, b, s)} 입니다. 이 ${cfg.word}는 몇 ${cfg.small}인지 쓰시오.`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 이고, ${expr(`${b * 1000}+${s}=${total}`)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${vessel}에 담긴 ${thing}의 ${cfg.word}는 ${unitNum(total, cfg.small)} 입니다. 이 ${cfg.word}는 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, b, s),
+      `$1000\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(total, cfg.small)} ${cfg.jNun} ${mixedCap(cfg, b, s)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 같은 것 여러 개를 모아 작은 단위 하나로(변환 + 여러 번 더하기). */
+function capUnitApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    // ⚠️ `b * cnt` 를 **한 자리**로 묶어 둔다 — 해설이 $1000\times(b\,cnt)$ 를 쓰는데,
+    //    두 자리가 되면 초3 이 아직 안 배운 곱셈이 해설에 나온다.
+    const b = intBetween(rng, 1, 2);
+    const s = intBetween(rng, 1, 9) * 100;
+    const each = b * 1000 + s;
+    const cnt = intBetween(rng, 2, 4);
+    const total = each * cnt;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `한 ${vessel}에 ${thing}${thingEul} ${mixedCap(cfg, b, s)} 씩 담았습니다. 이런 ${vessel} ${n(cnt)}개에 담은 ${thing}${thingNun} 모두 몇 ${cfg.small}인지 쓰시오.`,
+      n(total),
+      `${cfg.big}끼리 모으면 ${expr(`${b}\\times${cnt}=${b * cnt}`)}, ${cfg.small}끼리 모으면 ${expr(`${s}\\times${cnt}=${s * cnt}`)} 입니다. $1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b * cnt}=${b * cnt * 1000}`)} 이고, ${expr(`${b * cnt * 1000}+${s * cnt}=${total}`)} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — **처음** 양을 되짚어 작은 단위 하나로 답한다(역산 + 변환).
+ *
+ * 답을 작은 단위로 두는 것이 이 소단원의 조건이다 — 섞은 꼴로 답하면
+ * 「합과 차」와 지면에서 구별되지 않는다.
+ */
+function capUnitDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const usedB = intBetween(rng, 1, 3);
+    const usedS = intBetween(rng, 1, 9) * 100;
+    const used = usedB * 1000 + usedS;
+    const leftB = intBetween(rng, 1, 3);
+    const leftSRaw = intBetween(rng, 1, 9) * 100;
+    // 쓴 양과 남은 양이 **똑같으면** 우연처럼 보인다(씨앗 하나에서 실제로 났다).
+    const leftS =
+      leftB === usedB && leftSRaw === usedS
+        ? leftSRaw === 900
+          ? 800
+          : leftSRaw + 100
+        : leftSRaw;
+    const rest = leftB * 1000 + leftS;
+    const first = used + rest;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    return make(
+      unit,
+      `${vessel}에 있던 ${thing} 중에서 ${mixedCap(cfg, usedB, usedS)} ${cfg.jReul} 덜어 내고 나니 ${mixedCap(cfg, leftB, leftS)} ${cfg.jGa} 남았습니다. 처음에 있던 ${thing}${thingNun} 몇 ${cfg.small}인지 쓰시오.`,
+      n(first),
+      `덜어 낸 것은 ${unitNum(used, cfg.small)}, 남은 것은 ${unitNum(rest, cfg.small)} 입니다. 처음에 있던 ${thing}${thingNun} 이 둘을 더한 것이므로 ${expr(`${used}+${rest}=${first}`)} 입니다.`,
+    );
+  };
+}
+
+/* ── 2-5-3 들이의 합과 차 · 2-5-6 무게의 합과 차 ── */
+
+/**
+ * 1단 — 합·차 식 그대로. **받아올림·받아내림이 반드시 한 번은 나게** 뽑는다.
+ *
+ * 이 소단원의 알맹이가 «$1000$ 을 넘거나 모자랄 때 큰 단위로 옮기는 것»이라,
+ * 자리 넘김이 없는 것만 나오면 지면이 「단위」 소단원과 구별되지 않는다.
+ */
+function capSumCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const isAdd = intBetween(rng, 0, 1) === 1;
+    const cross = intBetween(rng, 0, 1) === 1;
+    const b1 = intBetween(rng, 2, 4);
+    const b2 = intBetween(rng, 1, 3);
+    if (isAdd) {
+      const s1 = intBetween(rng, 100, 900);
+      // ⚠️ 합이 **정확히 $1000$** 이면 답이 `$3\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 된다 —
+      //    받아올림은 나지만 지면에 `0` 이 남는다. 아래끝을 하나 올려 그 값을 뺀다.
+      const s2 = cross
+        ? intBetween(rng, 1001 - s1, 999)
+        : intBetween(rng, 50, 999 - s1);
+      const sum = s1 + s2;
+      const carry = sum >= 1000 ? 1 : 0;
+      const outS = sum - carry * 1000;
+      const outB = b1 + b2 + carry;
+      return make(
+        unit,
+        `다음을 계산하시오.\n\n$${b1}\\,\\mathrm{${cfg.big}}\\ ${s1}\\,\\mathrm{${cfg.small}}+${b2}\\,\\mathrm{${cfg.big}}\\ ${s2}\\,\\mathrm{${cfg.small}}=\\square$`,
+        mixedCap(cfg, outB, outS),
+        carry === 1
+          ? `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${sum}`)} 이고, $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jNun} $1\\,\\mathrm{${cfg.big}}$ 이므로 받아올림합니다. ${cfg.big}끼리 더하면 ${expr(`${b1}+${b2}+1=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`
+          : `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${outS}`)}, ${cfg.big}끼리 더하면 ${expr(`${b1}+${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`,
+      );
+    }
+    const s2 = intBetween(rng, 100, 900);
+    // ⚠️ 아래끝을 `s2` 로 두면 **두 작은 자리가 같아** 답이
+    //    `$4\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 된다(씨앗 하나에서 실제로 났다).
+    const s1 = cross
+      ? intBetween(rng, 50, s2 - 1)
+      : intBetween(rng, s2 + 1, 950);
+    const bigLeft = b1 + b2;
+    const total1 = bigLeft * 1000 + s1;
+    const total2 = b2 * 1000 + s2;
+    const diff = total1 - total2;
+    const outB = Math.floor(diff / 1000);
+    const outS = diff % 1000;
+    const borrow = s1 < s2;
+    return make(
+      unit,
+      `다음을 계산하시오.\n\n$${bigLeft}\\,\\mathrm{${cfg.big}}\\ ${s1}\\,\\mathrm{${cfg.small}}-${b2}\\,\\mathrm{${cfg.big}}\\ ${s2}\\,\\mathrm{${cfg.small}}=\\square$`,
+      mixedCap(cfg, outB, outS),
+      borrow
+        ? `${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꿉니다. ${expr(`${s1 + 1000}-${s2}=${outS}`)} 이고 ${expr(`${bigLeft - 1}-${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`
+        : `${cfg.small}끼리 빼면 ${expr(`${s1}-${s2}=${outS}`)}, ${cfg.big}끼리 빼면 ${expr(`${bigLeft}-${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 합·차. 답은 섞은 꼴. */
+function capSumWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const isAdd = intBetween(rng, 0, 1) === 1;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    if (isAdd) {
+      const b1 = intBetween(rng, 1, 3);
+      const s1 = intBetween(rng, 200, 900);
+      const b2 = intBetween(rng, 1, 3);
+      // 합이 정확히 $1000$ 이면 답의 작은 자리가 `0` 이 된다 — 아래끝을 하나 올린다.
+      const s2 = intBetween(rng, 1001 - s1, 950);
+      const sum = s1 + s2;
+      const outB = b1 + b2 + (sum >= 1000 ? 1 : 0);
+      const outS = sum % 1000;
+      return make(
+        unit,
+        `${vessel}에 ${thing}${thingEul} 어제 ${mixedCap(cfg, b1, s1)}, 오늘 ${mixedCap(cfg, b2, s2)} 담았습니다. 담은 ${thing}${thingNun} 모두 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+        mixedCap(cfg, outB, outS),
+        `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${sum}`)} 이므로 받아올림하여 ${cfg.big}끼리 ${expr(`${b1}+${b2}+1=${outB}`)} 입니다. 따라서 ${mixedCap(cfg, outB, outS)} 입니다.`,
+      );
+    }
+    const b2 = intBetween(rng, 1, 2);
+    // ⚠️ 큰 자리가 **둘 이상** 벌어져야 한다 — 받아내림으로 하나를 내주고도
+    //    답의 큰 자리가 `0` 이 되지 않는다(`$0\,\mathrm{L}\ 350\,\mathrm{mL}$` 방지).
+    const b1 = intBetween(rng, b2 + 2, 6);
+    const s1 = intBetween(rng, 100, 500);
+    const s2 = intBetween(rng, s1 + 50, 950);
+    const total1 = b1 * 1000 + s1;
+    const total2 = b2 * 1000 + s2;
+    const diff = total1 - total2;
+    return make(
+      unit,
+      `${vessel}에 ${thing}${josa(thing, "이", "가")} ${mixedCap(cfg, b1, s1)} 있었습니다. 그중 ${mixedCap(cfg, b2, s2)} ${cfg.jReul} 덜어 냈다면 남은 ${thing}${thingNun} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(diff / 1000), diff % 1000),
+      `${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꿉니다. ${expr(`${s1 + 1000}-${s2}=${diff % 1000}`)} 이고 ${expr(`${b1 - 1}-${b2}=${Math.floor(diff / 1000)}`)} 이므로 ${mixedCap(cfg, Math.floor(diff / 1000), diff % 1000)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 두 단계: 더 담고 덜어 낸다(합과 차를 잇달아). */
+function capSumApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b0 = intBetween(rng, 2, 4);
+    // ⚠️ 두 단계라 「끝 값의 작은 자리가 $0$ 이 되나」를 손으로 못 센다. 그래서
+    //    **자리를 갈라 둔다** — 처음 값만 십의 자리를 갖고(백의 배수가 아니다),
+    //    더하는 값·덜어 내는 값은 백의 배수다. 그러면 끝 값의 십의 자리가 처음 값
+    //    그대로 남아 **$0$ 이 될 수 없다.** (뺄셈·덧셈이 백의 자리 위에서만 논다.)
+    const s0 = intBetween(rng, 1, 8) * 100 + intBetween(rng, 1, 9) * 10;
+    const start = b0 * 1000 + s0;
+    const addB = intBetween(rng, 1, 2);
+    const addS = intBetween(rng, Math.ceil((1000 - s0) / 100), 9) * 100;
+    const add = addB * 1000 + addS;
+    const cut = intBetween(rng, 1, 9) * 100;
+    const end = start + add - cut;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `${vessel}에 ${thing}${josa(thing, "이", "가")} ${mixedCap(cfg, b0, s0)} 있었습니다. 여기에 ${thing}${thingEul} ${mixedCap(cfg, addB, addS)} 더 담고, 다시 ${unitNum(cut, cfg.small)} ${cfg.jReul} 덜어 냈습니다. 지금 ${vessel}에 있는 ${thing}${thingNun} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(end / 1000), end % 1000),
+      `먼저 더하면 ${expr(`${start}+${add}=${start + add}`)} 입니다. 여기서 덜어 내면 ${expr(`${start + add}-${cut}=${end}`)} 이므로 ${mixedCap(cfg, Math.floor(end / 1000), end % 1000)} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — **처음** 양을 되짚는다(역산). 받아내림이 반드시 난다.
+ *
+ * 답을 섞은 꼴로 둔다 — 「단위」 소단원의 4단이 작은 단위 하나로 답하므로,
+ * 이 둘이 한 시험지에 실려도 지면에서 갈린다.
+ */
+function capSumDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const addB = intBetween(rng, 1, 3);
+    const addS = intBetween(rng, 300, 900);
+    const add = addB * 1000 + addS;
+    // 받아내림으로 큰 자리 하나를 내주므로, **둘 이상** 벌려야 답의 큰 자리가 남는다.
+    const endB = addB + intBetween(rng, 2, 4);
+    // 받아내림이 반드시 나게 — 나중 값의 작은 자리를 더한 값보다 작게 둔다.
+    const endS = intBetween(rng, 50, addS - 50);
+    const end = endB * 1000 + endS;
+    const first = end - add;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `${vessel}에 ${thing}${thingEul} ${mixedCap(cfg, addB, addS)} 더 담았더니 ${thing}${josa(thing, "이", "가")} 모두 ${mixedCap(cfg, endB, endS)} ${cfg.jGa} 되었습니다. 처음에 들어 있던 ${thing}${josa(thing, "은", "는")} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(first / 1000), first % 1000),
+      `처음 양은 나중 양에서 더 담은 양을 뺀 것입니다. ${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꾸어 ${expr(`${endS + 1000}-${addS}=${first % 1000}`)} 이고, ${expr(`${endB - 1}-${addB}=${Math.floor(first / 1000)}`)} 이므로 ${mixedCap(cfg, Math.floor(first / 1000), first % 1000)} 입니다.`,
+    );
+  };
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -6498,5 +7025,41 @@ export const G3_TIERS: ElemTierMap = {
     기본: subWordOf(2, 2),
     응용: subApplyOf(2, 2),
     심화: subDeepOf(2, 2),
+  },
+  "초3|2-5-1": {
+    연산: capCmpCalcOf(CAP_L),
+    기본: capCmpWordOf(CAP_L),
+    응용: capCmpApplyOf(CAP_L),
+    심화: capCmpDeepOf(CAP_L),
+  },
+  "초3|2-5-2": {
+    연산: capUnitCalcOf(CAP_L),
+    기본: capUnitWordOf(CAP_L),
+    응용: capUnitApplyOf(CAP_L),
+    심화: capUnitDeepOf(CAP_L),
+  },
+  "초3|2-5-3": {
+    연산: capSumCalcOf(CAP_L),
+    기본: capSumWordOf(CAP_L),
+    응용: capSumApplyOf(CAP_L),
+    심화: capSumDeepOf(CAP_L),
+  },
+  "초3|2-5-4": {
+    연산: capCmpCalcOf(CAP_KG),
+    기본: capCmpWordOf(CAP_KG),
+    응용: capCmpApplyOf(CAP_KG),
+    심화: capCmpDeepOf(CAP_KG),
+  },
+  "초3|2-5-5": {
+    연산: capUnitCalcOf(CAP_KG),
+    기본: capUnitWordOf(CAP_KG),
+    응용: capUnitApplyOf(CAP_KG),
+    심화: capUnitDeepOf(CAP_KG),
+  },
+  "초3|2-5-6": {
+    연산: capSumCalcOf(CAP_KG),
+    기본: capSumWordOf(CAP_KG),
+    응용: capSumApplyOf(CAP_KG),
+    심화: capSumDeepOf(CAP_KG),
   },
 };
