@@ -483,14 +483,146 @@ function squarePick(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * 3×3 점 안의 사각형이 **직사각형인가** — 네 꼭짓점에서 정수 내적이 모두 $0$ 인가.
+ * 이름표가 아니라 좌표로 가른다.
+ */
+function quadIsRect(pts: Pt[]): boolean {
+  for (let i = 0; i < 4; i += 1) {
+    const v = pts[i]!;
+    const p = pts[(i + 3) % 4]!;
+    const q = pts[(i + 1) % 4]!;
+    if (vecDot(v, p, q) !== 0) return false;
+  }
+  return true;
+}
+
+/** 볼록 배치로 정렬 — 그대로 이으면 변이 서로 넘나드는 사각형이 그려진다. */
+function orderConvex(pts: Pt[]): Pt[] {
+  const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length;
+  const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+  return [...pts].sort(
+    (a, b) =>
+      Math.atan2(a[1] - cy, a[0] - cx) - Math.atan2(b[1] - cy, b[0] - cx),
+  );
+}
+
+/**
+ * 직사각형이 **아닌** 사각형 곁들이. 「직사각형을 찾으시오」의 곁들이라 넷 중 하나라도
+ * 직각이 아니어야 한다 — 목록을 손으로 적되 **불러올 때 계산으로 검산**한다.
+ */
+const NON_RECT_QUADS: Pt[][] = [
+  [
+    [0, 3],
+    [1, 1],
+    [3, 1],
+    [2, 3],
+  ],
+  [
+    [0, 3],
+    [1, 1],
+    [2, 1],
+    [3, 3],
+  ],
+  [
+    [0, 3],
+    [1, 0],
+    [3, 1],
+    [2, 3],
+  ],
+  [
+    [0, 2],
+    [1, 0],
+    [3, 2],
+    [2, 3],
+  ],
+  [
+    [0, 3],
+    [0, 1],
+    [2, 0],
+    [3, 2],
+  ],
+  // ⚠️ `[[1,3],[0,1],[2,0],[3,2]]` 를 여기 적었다가 아래 검산에 걸렸다 —
+  //    **45° 기운 정사각형**이라 네 각이 모두 직각이었다. 손 목록은 반드시 검산할 것.
+  [
+    [0, 3],
+    [1, 1],
+    [3, 2],
+    [2, 3],
+  ],
+].map((q) => orderConvex(q as Pt[]));
+
+for (const q of NON_RECT_QUADS) {
+  if (quadIsRect(q))
+    throw new Error(`곁들이인데 직사각형입니다: ${JSON.stringify(q)}`);
+}
+
+/** 직사각형 하나 + 아닌 것들을 나란히. 정답은 **좌표로** 정해진다. */
+function rectRow(rng: Rng) {
+  const count = intBetween(rng, 2, 3);
+  const gap = 5;
+  const rows = 3;
+  const answerAt = intBetween(rng, 0, count - 1);
+  // 가로와 세로가 같으면 정사각형이라 「직사각형」의 답으로 헷갈린다 — 다르게 잡는다.
+  const w = intBetween(rng, 2, 4);
+  const h = pick(
+    rng,
+    [1, 2, 3].filter((v) => v !== w),
+  );
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const c0 = i * gap;
+    const pts =
+      i === answerAt
+        ? ([
+            [c0, rows - h],
+            [c0 + w, rows - h],
+            [c0 + w, rows],
+            [c0, rows],
+          ] as Pt[])
+        : pick(rng, NON_RECT_QUADS).map((p) => [p[0] + c0, p[1]] as Pt);
+    shapes.push(closedShape(pts, SHAPE_LABELS[i]!));
+  }
+  return {
+    cols: (count - 1) * gap + 4,
+    rows,
+    shapes,
+    labels: SHAPE_LABELS.slice(0, count),
+    answer: SHAPE_LABELS[answerAt]!,
+    w,
+    h,
+  };
+}
+
+/** 표준 1-2-4 — 직사각형 찾기. (이 소단원은 오래 「직각삼각형」으로 잘못 적혀 있었다.) */
+function rectPick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    `${row.labels.join(", ")} 중에서 직사각형의 기호를 쓰시오.`,
+    `${row.labels.join(", ")} 중에서 네 각이 모두 직각인 사각형의 기호를 쓰시오.`,
+    `직사각형을 찾아 기호를 쓰시오. (${row.labels.join(", ")})`,
+  ]);
+  return make(
+    unit,
+    ask,
+    row.answer,
+    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
 function plane(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("선분")) return lineNames(unit, rng);
+  // ⚠️ 「정사각형」을 「직사각형」보다 **먼저** 본다 — 둘은 다른 낱말이라 겹치지 않지만,
+  // 순서를 바꾸면 나중에 「직사각형 중에서…」 같은 이름이 생겼을 때 조용히 샌다.
   if (s.includes("정사각형")) return squarePick(unit, rng);
+  if (s.includes("직사각형")) return rectPick(unit, rng);
   if (s.includes("직각삼각형")) {
-    return secNo(unit) === "1-2-4"
-      ? rightTriCount(unit, rng)
-      : rightTriPick(unit, rng);
+    // 1-2-3 하나뿐이다(1-2-4 는 직사각형으로 바로잡혔다). 찾기와 세기를 번갈아 낸다.
+    return intBetween(rng, 0, 1) === 0
+      ? rightTriPick(unit, rng)
+      : rightTriCount(unit, rng);
   }
   return rightAnglePick(unit, rng);
 }
@@ -1756,11 +1888,737 @@ function reverseSub(
   throw new Error("뺄셈 역산 수를 못 만들었습니다");
 }
 
+// ── 1-2 평면도형 (D-72 확대) ──────────────────────────────────────────
+//
+// ★ **도형 대단원의 4단 축 — 뒤 학년 도형 확대는 이 넷을 그대로 인용한다** (리드 승인 2026-08-23)
+//   1단 절차 한 번  — 그림을 보고 **한 번에** 이름·기호를 답한다
+//   2단 스스로 세움 — 조건이 **문장으로만** 주어지고 그림에 대어 고른다
+//   3단 두 단계     — 세고 나서 그 수로 다시 셈하거나, 두 개념을 결합한다
+//   4단 조건 조합   — D-72 가 4단에 적은 「역산·**조건 조합**」 중 **조건 조합** 쪽
+//
+// 왜 4단이 역산이 아니라 조건 조합인가 — 도형에는 **되짚을 셈이 없다.** 다만 길이가
+// 딸린 소단원(1-2-4 직사각형·1-2-5 정사각형)은 「네 변의 합 → 한 변·세로」로 역산이
+// 성립하므로 거기서는 역산을 쓴다. 길이가 없는 소단원에서 억지로 역산을 만들지 말 것.
+//
+// 그리고 1단 갈래는 **표준 생성기를 그대로 부르지 않는다.** 말투 풀이 표준과 같으면
+// 같은 발문이 시험지에 둘 나오고(실측: 1-2-5·1-2-1 에서 실제로 났다) 변형 공간도
+// 표준 것 그대로라 8+ 요구가 사실상 미달이 된다.
+//
+// 답의 «참»은 언제나 **그림**에서 온다 — 삼각형은 3×3 점 안의 것을 전부 세어 정수
+// 내적으로 직각을 가르고(`TRI_POOLS`), 사각형은 칸 수로 가른다. 이름표만 바꿔 붙이지 않는다.
+
+const LINE_LETTERS = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ"] as const;
+
+/** 점만 찍힌 격자. 「이을 수 있는 선분」을 세는 문항에 쓴다 — 세 점이 한 줄에 서지 않게 골랐다. */
+const DOT_LAYOUTS: Pt[][] = [
+  [
+    [0, 2],
+    [2, 0],
+    [4, 2],
+  ],
+  [
+    [0, 0],
+    [3, 1],
+    [1, 3],
+  ],
+  [
+    [1, 0],
+    [0, 3],
+    [4, 2],
+  ],
+  [
+    [0, 1],
+    [2, 3],
+    [4, 0],
+  ],
+  [
+    [0, 0],
+    [3, 0],
+    [0, 3],
+    [3, 3],
+  ],
+  [
+    [0, 2],
+    [2, 0],
+    [4, 2],
+    [2, 3],
+  ],
+  [
+    [0, 0],
+    [4, 1],
+    [1, 3],
+    [3, 3],
+  ],
+  [
+    [0, 1],
+    [2, 0],
+    [4, 3],
+    [1, 3],
+  ],
+];
+
+function dotsOnly(
+  layout: Pt[],
+  letters: readonly string[],
+): Record<string, unknown> {
+  const cols = Math.max(...layout.map((p) => p[0]));
+  const rows = Math.max(...layout.map((p) => p[1]));
+  return fig("pointGrid", {
+    cols,
+    rows,
+    dots: layout.map((p, i) => ({
+      c: p[0],
+      r: p[1],
+      label: letters[i] ?? "",
+      side: "up",
+    })),
+    lines: [],
+  });
+}
+
+// ── 1-2-1 선분, 반직선, 직선 ──
+
+/**
+ * 1단 — 정의를 읽고 이름을 댄다. 한 걸음이면 끝난다.
+ *
+ * ⚠️ 기본 문항 `lineNames` 를 **그대로 부르면 안 된다.** 말투가 셋뿐이라 소금이 달라도
+ * 씨앗에 따라 같은 발문이 나온다(실측: 씨앗 16개 중 2). 갈래 쪽 말투를 따로 둔다.
+ */
+function line121Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const i = intBetween(rng, 0, LINE_LETTERS.length - 2);
+  const a = LINE_LETTERS[i]!;
+  const b = LINE_LETTERS[i + 1]!;
+  const kind = pick(rng, ["선분", "반직선", "직선"] as const);
+  if (kind === "선분") {
+    return make(
+      unit,
+      `점 ${a}과 점 ${b}을 곧게 이었습니다. 이 선의 이름을 쓰시오.`,
+      `선분 ${a}${b}`,
+      `두 점을 곧게 이은 선은 선분입니다. 점 ${a}과 점 ${b}을 이었으므로 선분 ${a}${b}입니다.`,
+    );
+  }
+  if (kind === "반직선") {
+    return make(
+      unit,
+      `점 ${a}에서 출발하여 점 ${b}쪽으로 끝없이 그은 곧은 선의 이름을 쓰시오.`,
+      `반직선 ${a}${b}`,
+      `한쪽으로만 끝없이 늘인 곧은 선은 반직선입니다. 출발한 점을 먼저 읽어 반직선 ${a}${b}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `점 ${a}과 점 ${b}을 지나면서 양쪽 끝이 없는 곧은 선의 이름을 쓰시오.`,
+    `직선 ${a}${b}`,
+    `양쪽으로 끝없이 늘인 곧은 선은 직선입니다. 두 점을 지나므로 직선 ${a}${b}입니다.`,
+  );
+}
+
+/** 2단 — 「늘이면 무엇이 되는가」. 그림의 선분을 조건대로 **바꿔** 판단한다(한 겹). */
+function line121Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const i = intBetween(rng, 0, LINE_LETTERS.length - 2);
+  const a = LINE_LETTERS[i]!;
+  const b = LINE_LETTERS[i + 1]!;
+  const left = intBetween(rng, 0, 1);
+  const both = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    both
+      ? `선분 ${a}${b}을 **양쪽으로** 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`.replace(
+          /\*\*/g,
+          "",
+        )
+      : `선분 ${a}${b}를 점 ${a} 쪽으로만 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`,
+    both ? `직선 ${a}${b}` : `반직선 ${b}${a}`,
+    both
+      ? `선분을 양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`
+      : `한쪽으로만 끝없이 늘이면 반직선입니다. 늘이지 않은 점 ${b}에서 시작하므로 반직선 ${b}${a}입니다.`,
+    fig("pointGrid", {
+      cols: 6,
+      rows: 2,
+      dots: [
+        { c: left, r: 1, label: a, side: "up" },
+        { c: left + 5, r: 1, label: b, side: "up" },
+      ],
+      lines: [
+        [
+          [left, 1],
+          [left + 5, 1],
+        ],
+      ],
+    }),
+  );
+}
+
+/** 3단 — 점의 수를 세고, 그 수로 **선분의 수**를 구한다(두 단계). */
+function line121Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const layout = pick(rng, DOT_LAYOUTS);
+  const k = layout.length;
+  const letters = LINE_LETTERS.slice(0, k);
+  const segs = (k * (k - 1)) / 2;
+  return make(
+    unit,
+    pick(rng, [
+      `그림의 점 중 두 점을 이어 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+      `점을 두 개 고를 때마다 선분이 하나 생깁니다. 그림에서 생기는 선분은 모두 몇 개인지 쓰시오.`,
+      `그림의 점을 빠짐없이 두 개씩 짝지어 선분을 그었습니다. 선분은 모두 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 그을 수 있는 선분의 개수를 구하시오.`,
+      `곧게 이은 선을 선분이라 합니다. 그림의 점으로 그을 수 있는 선분은 몇 개인지 쓰시오.`,
+      `그림에 찍힌 점을 두 개씩 이어 선분을 그으려고 합니다. 선분은 모두 몇 개 그을 수 있는지 쓰시오.`,
+      `그림의 점들을 이어 만들 수 있는 선분의 수를 쓰시오.`,
+      `두 점을 곧게 이은 선을 선분이라고 합니다. 그림에서 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(segs),
+    `점이 ${n(k)}개이고, 한 점에서 나머지 ${n(k - 1)}개의 점으로 선분을 그을 수 있습니다. ${expr(`${k}\\times${k - 1}=${k * (k - 1)}`)} 인데 같은 선분을 두 번씩 센 것이므로 ${expr(`${k * (k - 1)}\\div2=${segs}`)} 개입니다.`,
+    dotsOnly(layout, letters),
+  );
+}
+
+/** 4단 — 선분과 반직선을 **함께** 센다(조건 조합). 반직선은 방향이 있어 두 배다. */
+function line121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const layout = pick(rng, DOT_LAYOUTS);
+  const k = layout.length;
+  const segs = (k * (k - 1)) / 2;
+  const rays = k * (k - 1);
+  return make(
+    unit,
+    pick(rng, [
+      `그림의 점 중 두 점을 이어 선분과 반직선을 그으려고 합니다. 그을 수 있는 반직선의 수와 선분의 수의 차는 몇 개인지 쓰시오.`,
+      `그림의 점으로 반직선과 선분을 모두 그었을 때, 두 수의 차는 몇 개인지 쓰시오.`,
+      `선분은 짝마다 하나, 반직선은 짝마다 둘입니다. 그림에서 그 수의 차는 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 그을 수 있는 반직선의 수에서 선분의 수를 뺀 값을 쓰시오.`,
+      `그림에서 반직선의 수와 선분의 수를 각각 세어, 큰 수에서 작은 수를 뺀 값을 쓰시오.`,
+      `그림의 점으로 그을 수 있는 반직선은 선분보다 몇 개 더 많은지 쓰시오.`,
+      `반직선 ㄱㄴ과 반직선 ㄴㄱ은 서로 다릅니다. 그림의 점으로 그을 수 있는 반직선의 수에서 선분의 수를 빼면 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 선분과 반직선을 모두 그었습니다. 반직선이 선분보다 몇 개 더 많은지 쓰시오.`,
+    ]),
+    n(rays - segs),
+    `선분은 두 점의 짝마다 하나이므로 ${n(segs)}개입니다. 반직선은 시작하는 점이 어디냐에 따라 달라 짝마다 둘이므로 ${n(rays)}개입니다. ${expr(`${rays}-${segs}=${rays - segs}`)} 이므로 차는 ${n(rays - segs)}개입니다.`,
+    dotsOnly(layout, LINE_LETTERS.slice(0, k)),
+  );
+}
+
+// ── 1-2-2 각, 직각 알아보기 ──
+
+// 1단(연산) 갈래는 기본 문항 함수를 **그대로 부르지 않고** 따로 짠다.
+// 기본 함수(`rightAnglePick` 등)의 말투 풀은 셋뿐이라 변형 공간이 모자라는데,
+// 거기를 넓히면 **갈래 없는 기본 경로의 산출물까지 바뀐다.** 갈래 쪽만 넓힌다.
+
+function angle122Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = angleRow(rng, count, 1);
+  const ask = pick(rng, [
+    `직각인 각은 어느 것인지 기호를 쓰시오.`,
+    `직각을 하나 골라 그 기호를 쓰시오.`,
+    `직각에 해당하는 각의 기호를 쓰시오.`,
+    `각의 크기가 직각인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.rightLabels[0]!,
+    `삼각자의 직각 부분을 대었을 때 꼭 맞는 각은 ${row.rightLabels[0]!} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 각 여러 개를 늘어놓고 **직각인 것의 수**를 함께 돌려준다. */
+function angleRow(rng: Rng, count: number, rightCount: number) {
+  const gap = count === 3 ? 4 : 5;
+  const cols = (count - 1) * gap + 2;
+  const rightSlots = new Set<number>();
+  while (rightSlots.size < rightCount)
+    rightSlots.add(intBetween(rng, 0, count - 1));
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const pair = rightSlots.has(i)
+      ? pick(rng, ANGLE_POOLS.right)
+      : pick(rng, ANGLE_POOLS.other);
+    const fx = intBetween(rng, 0, 1) === 1;
+    const c0 = i * gap;
+    const move = (p: Pt): Pt => {
+      const f = flipPt(p, fx, false);
+      return [f[0] + c0, f[1]];
+    };
+    const v = move(ANGLE_V);
+    const p = move(pair[0]);
+    const q = move(pair[1]);
+    shapes.push({
+      pts: [v, p, q],
+      lines: [
+        [v, p],
+        [v, q],
+      ],
+      label: SHAPE_LABELS[i]!,
+      anchor: v,
+      side: "down",
+    });
+  }
+  const rightLabels = SHAPE_LABELS.slice(0, count).filter((_, i) =>
+    rightSlots.has(i),
+  );
+  return { cols, shapes, rightLabels, labels: SHAPE_LABELS.slice(0, count) };
+}
+
+/** 2단 — 조건이 **문장으로만**. 「종이를 두 번 접어 만든 각과 꼭 맞는」 = 직각. */
+function angle122Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = angleRow(rng, count, 1);
+  const answer = row.rightLabels[0]!;
+  const ask = pick(rng, [
+    `종이를 반듯하게 두 번 접었을 때 생기는 각과 꼭 맞는 각의 기호를 쓰시오.`,
+    `삼각자의 뾰족하지 않은 부분과 꼭 맞는 각의 기호를 쓰시오.`,
+    `두 변이 서로 반듯하게 만나는 각의 기호를 쓰시오.`,
+    `시계의 긴바늘이 세 시간 동안 돌 때 생기는 각과 같은 각의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    answer,
+    `문장이 가리키는 것은 직각입니다. 삼각자의 직각 부분을 대었을 때 꼭 맞는 각은 ${answer} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 3단 — 직각인 것과 아닌 것을 **각각 세고** 차를 구한다(두 단계). */
+function angle122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = angleRow(rng, count, rightCount);
+  const other = count - rightCount;
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 중에서 직각인 각의 수와 직각이 아닌 각의 수의 차는 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 를 보고 직각인 각과 직각이 아닌 각을 각각 센 뒤, 그 차를 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각인 것의 수와 그렇지 않은 것의 수가 몇 개 차이 나는지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각을 세고, 남은 각의 수와의 차를 쓰시오.`,
+      `${row.labels.join(", ")} 를 두 무리로 나누었습니다. 직각인 무리와 아닌 무리의 개수 차를 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각인 것과 아닌 것으로 나누었습니다. 두 무리의 개수의 차는 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각은 몇 개이고 직각이 아닌 각은 몇 개인지 세어, 그 차를 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각의 수가 직각이 아닌 각의 수보다 몇 개 많고 적은지 그 차를 쓰시오.`,
+    ]),
+    n(Math.abs(rightCount - other)),
+    `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, 나머지 ${n(other)}개는 직각이 아닙니다. ${expr(`${Math.max(rightCount, other)}-${Math.min(rightCount, other)}=${Math.abs(rightCount - other)}`)} 이므로 차는 ${n(Math.abs(rightCount - other))}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 4단 — 각과 **도형의 직각**을 함께 센다(조건 조합). */
+function angle122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = angleRow(rng, count, rightCount);
+  // 오른쪽에 사각형 하나를 덧붙인다 — 직사각형은 직각이 넷이다.
+  const side = intBetween(rng, 1, 2);
+  const wide = intBetween(rng, 0, 1) === 1;
+  const c0 = row.cols + 2;
+  const w = wide ? side + 1 : side;
+  const h = side;
+  const rect = closedShape(
+    [
+      [c0, 2 - h],
+      [c0 + w, 2 - h],
+      [c0 + w, 2],
+      [c0, 2],
+    ],
+    "라",
+  );
+  const total = rightCount + 4;
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 그림 전체에서 직각은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 그림에 있는 직각을 모두 세어 그 수를 쓰시오.`,
+      `각 ${row.labels.join(", ")} 와 직사각형 라 에서 직각이 몇 개인지 각각 세어 더한 값을 쓰시오.`,
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형일 때, 직각의 개수를 모두 더하면 몇 개인지 쓰시오.`,
+      `그림에는 각 ${row.labels.join(", ")} 와 직사각형 라 가 있습니다. 직각은 통틀어 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 각에 있는 직각과 직사각형에 있는 직각을 모두 세면 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직각을 하나도 빠뜨리지 말고 세어 그 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 직사각형 라 를 함께 보고, 직각이 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(total),
+    `각 ${row.labels.join(", ")} 중 직각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 직사각형은 네 각이 모두 직각이므로 ${n(4)}개입니다. ${expr(`${rightCount}+4=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+    pointGridSpec(c0 + w, 2, [...row.shapes, rect]),
+  );
+}
+
+// ── 1-2-3 직각삼각형 알아보기 (찾기) ──
+
+function tri123Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = triangleRow(rng, count, 1);
+  const ask = pick(rng, [
+    `직각삼각형은 어느 것인지 기호를 쓰시오.`,
+    `직각삼각형에 해당하는 것의 기호를 쓰시오.`,
+    `직각삼각형 하나를 골라 그 기호를 쓰시오.`,
+    `삼각형 가운데 직각삼각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.rightLabels[0]!,
+    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!} 의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 2단 — 조건이 문장으로만. 「한 각이 직각인 삼각형」을 말로 풀어 준다. */
+function tri123Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = triangleRow(rng, count, 1);
+  const answer = row.rightLabels[0]!;
+  const ask = pick(rng, [
+    `삼각자의 직각 부분을 대었을 때 꼭 맞는 각이 있는 삼각형의 기호를 쓰시오.`,
+    `한 각이 종이를 두 번 접어 만든 각과 같은 삼각형의 기호를 쓰시오.`,
+    `두 변이 서로 반듯하게 만나는 곳이 있는 삼각형의 기호를 쓰시오.`,
+    `직각을 낀 두 변이 있는 삼각형의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    answer,
+    `문장이 가리키는 것은 직각삼각형입니다. 한 각이 직각인 삼각형이 ${answer} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 3단 — 직각삼각형이 **아닌** 것을 세고 그 수를 답한다(뒤집어 세기, 두 단계). */
+function tri123Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const other = count - rightCount;
+  const otherLabels = row.labels.filter((l) => !row.rightLabels.includes(l));
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 가운데 직각삼각형을 빼면 삼각형이 몇 개 남는지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각이 없는 삼각형의 개수를 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 갈랐습니다. 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 에서 삼각자의 직각 부분과 꼭 맞는 각이 없는 삼각형은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 나눌 때, 직각삼각형이 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각이 하나도 없는 삼각형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각삼각형을 뺀 나머지 삼각형은 몇 개인지 쓰시오.`,
+    ]),
+    n(other),
+    `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 전체 ${n(count)}개에서 빼면 ${expr(`${count}-${rightCount}=${other}`)} 이므로 ${otherLabels.join(", ")} 로 ${n(other)}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 4단 — 삼각형과 사각형을 섞어 놓고 **조건 둘**을 겹쳐 건다. */
+function tri123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const c0 = row.cols + 2;
+  const w = intBetween(rng, 1, 2);
+  const h = intBetween(rng, 1, 2);
+  const rect = closedShape(
+    [
+      [c0, 2 - h],
+      [c0 + w, 2 - h],
+      [c0 + w, 2],
+      [c0, 2],
+    ],
+    "라",
+  );
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 이 중에서 변이 셋이면서 직각이 있는 도형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 가진 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 라 중에서 「변이 셋」과 「직각이 있다」를 함께 만족하는 도형은 몇 개인지 쓰시오.`,
+      `그림의 도형 ${row.labels.join(", ")}, 라 가운데 삼각형이면서 직각을 가진 것은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건을 모두 채우는 도형의 개수를 쓰시오.`,
+      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 있는 도형은 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」과 「직각이 있다」를 모두 만족하는 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 사각형 라 중에서, 변이 셋이면서 직각을 가진 도형은 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(rightCount),
+    `변이 셋인 도형은 삼각형 ${row.labels.join(", ")} 입니다. 라는 변이 넷이라 조건에 맞지 않습니다. 그중 직각이 있는 것은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
+    pointGridSpec(c0 + w, 2, [...row.shapes, rect]),
+  );
+}
+
+// ── 1-2-4 직사각형 알아보기 ──
+// 이 소단원은 오래 「직각삼각형 알아보기」로 잘못 적혀 있었다(eywa 정본 288~289 중복).
+// 2026-08-23 에 units.ts 를 바로잡았고, 표준·갈래를 **직사각형**으로 다시 짰다.
+
+/** 1단 — 직사각형 하나를 고른다. 표준과 말투가 겹치지 않게 따로 둔다. */
+function rect124Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    `직사각형은 어느 것인지 기호를 쓰시오.`,
+    `직사각형에 해당하는 것의 기호를 쓰시오.`,
+    `직사각형 하나를 골라 그 기호를 쓰시오.`,
+    `사각형 가운데 직사각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.answer,
+    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer} 가 그렇습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 2단 — 조건이 **문장으로만** 주어진다. */
+function rect124Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    // ⚠️ 표준 `rectPick` 이 「네 각이 모두 직각인 사각형」을 쓴다 — 그대로 쓰면 발문이
+    //    바이트까지 같아진다(실측: 씨앗 300개 중 15). 말투를 갈라 둔다.
+    `네 꼭짓점이 모두 직각인 사각형`,
+    `마주 보는 두 변의 길이가 같고 네 각이 모두 직각인 사각형`,
+    `삼각자의 직각 부분이 네 꼭짓점에 모두 꼭 맞는 사각형`,
+    `종이를 두 번 접어 만든 각이 네 꼭짓점에 모두 있는 사각형`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
+    row.answer,
+    `문장이 가리키는 것은 직사각형입니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 3단 — 가로와 세로를 알고 **네 변의 길이의 합**을 구한다(두 단계). */
+function rect124Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 4, 12);
+  const h = pick(
+    rng,
+    [2, 3, 5, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  const thing = pick(rng, [
+    "액자",
+    "공책",
+    "칠판",
+    "책상",
+    "손수건",
+    "게시판",
+    "창문",
+    "카드",
+  ]);
+  return make(
+    unit,
+    pick(rng, [
+      `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+      `직사각형 모양 ${thing}의 가로는 ${n(w)} cm, 세로는 ${n(h)} cm입니다. 네 변의 길이의 합을 구하시오.`,
+      `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형이 있습니다. 네 변의 길이를 모두 더하면 몇 cm인지 쓰시오.`,
+      `${thing}${josa(thing, "은", "는")} 가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형입니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    ]),
+    n((w + h) * 2),
+    `직사각형은 마주 보는 두 변의 길이가 같습니다. 네 변을 모두 더하면 ${expr(`${w}+${h}+${w}+${h}=${(w + h) * 2}`)} 이므로 ${n((w + h) * 2)} cm입니다.`,
+  );
+}
+
+/** 4단 — **역산**. 네 변의 길이의 합과 가로에서 세로를 되짚는다. */
+function rect124Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 4, 12);
+  const h = pick(
+    rng,
+    [2, 3, 5, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  const total = (w + h) * 2;
+  const half = w + h;
+  const thing = pick(rng, [
+    "액자",
+    "공책",
+    "칠판",
+    "책상",
+    "손수건",
+    "게시판",
+    "창문",
+    "카드",
+  ]);
+  return make(
+    unit,
+    pick(rng, [
+      `네 변의 길이의 합이 ${n(total)} cm인 직사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 가로가 ${n(w)} cm일 때 세로는 몇 cm인지 쓰시오.`,
+      `직사각형 모양 ${thing}의 네 변의 길이의 합은 ${n(total)} cm이고 가로는 ${n(w)} cm입니다. 세로를 구하시오.`,
+      `어떤 직사각형의 네 변의 길이를 모두 더하니 ${n(total)} cm였습니다. 가로가 ${n(w)} cm라면 세로는 몇 cm인지 쓰시오.`,
+      `${thing}${josa(thing, "은", "는")} 네 변의 길이의 합이 ${n(total)} cm인 직사각형입니다. 가로가 ${n(w)} cm일 때 세로는 몇 cm인지 쓰시오.`,
+    ]),
+    n(h),
+    `직사각형은 마주 보는 두 변의 길이가 같으므로, 네 변의 합의 반이 가로와 세로의 합입니다. ${expr(`${total}\\div2=${half}`)} 입니다. 여기서 가로를 빼면 ${expr(`${half}-${w}=${h}`)} 이므로 세로는 ${n(h)} cm입니다.`,
+  );
+}
+
+// ── 1-2-5 정사각형 알아보기 ──
+
+function sq125Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const ask = pick(rng, [
+    `정사각형은 어느 것인지 기호를 쓰시오.`,
+    `정사각형에 해당하는 것의 기호를 쓰시오.`,
+    `정사각형 하나를 골라 그 기호를 쓰시오.`,
+    `사각형 가운데 정사각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.answer,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/**
+ * 나란한 직사각형 한 줄. 정확히 하나만 정사각형이다.
+ *
+ * `squarePick`(기본 문항)과 **따로 짠다** — 거기서 발문을 긁어 기호를 되찾으려 했더니
+ * 말투가 세 가지라 「…를 찾아 기호를 쓰시오. (가, 나)」 꼴에서 정규식이 빗나갔다.
+ * 빗나가면 **조용히 「가, 나」로 떨어져** 그림과 다른 기호를 적는다 — 긁지 말고 만든다.
+ */
+function squareRow(rng: Rng) {
+  const count = intBetween(rng, 2, 3);
+  const gap = count === 3 ? 4 : 5;
+  const maxW = count === 3 ? 2 : 3;
+  const rows = 3;
+  const side = intBetween(rng, 2, maxW);
+  const answerAt = intBetween(rng, 0, count - 1);
+  const oblong: [number, number][] = [];
+  for (let w = 1; w <= maxW; w += 1) {
+    for (let h = 1; h <= rows; h += 1) if (w !== h) oblong.push([w, h]);
+  }
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const [w, h] = i === answerAt ? [side, side] : pick(rng, oblong);
+    const c0 = i * gap;
+    const r0 = rows - h!;
+    shapes.push(
+      closedShape(
+        [
+          [c0, r0],
+          [c0 + w!, r0],
+          [c0 + w!, r0 + h!],
+          [c0, r0 + h!],
+        ],
+        SHAPE_LABELS[i]!,
+      ),
+    );
+  }
+  return {
+    cols: (count - 1) * gap + maxW,
+    rows,
+    shapes,
+    labels: SHAPE_LABELS.slice(0, count),
+    answer: SHAPE_LABELS[answerAt]!,
+    side,
+  };
+}
+
+/** 2단 — 조건이 문장으로만. 「네 각이 직각이고 네 변이 같은」을 말로 풀어 준다. */
+function sq125Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const ask = pick(rng, [
+    `네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형`,
+    `네 변의 길이가 모두 같은 직사각형`,
+    `가로와 세로의 길이가 같은 직사각형`,
+    `네 변의 길이가 모두 같고 네 각이 모두 같은 사각형`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
+    row.answer,
+    `문장이 가리키는 것은 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 3단 — 정사각형을 찾고 그 **네 변의 길이의 합**까지 구한다(두 단계). */
+function sq125Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const thing = pick(rng, [
+    "색종이",
+    "손수건",
+    "액자",
+    "타일",
+    "방석",
+    "게시판",
+    "창문",
+    "스케치북",
+  ]);
+  return make(
+    unit,
+    `한 변의 길이가 ${n(side)} cm인 정사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    n(side * 4),
+    `정사각형은 네 변의 길이가 모두 같습니다. 같은 길이를 네 번 더하면 ${expr(`${side}+${side}+${side}+${side}=${side * 4}`)} 이므로 ${n(side * 4)} cm입니다.`,
+  );
+}
+
+/** 4단 — **역산**. 네 변의 길이의 합에서 한 변을 되짚는다. 도형에서 역산이 서는 자리다. */
+function sq125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const total = side * 4;
+  const thing = pick(rng, [
+    "색종이",
+    "손수건",
+    "액자",
+    "타일",
+    "방석",
+    "게시판",
+    "창문",
+    "스케치북",
+  ]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `네 변의 길이의 합이 ${n(total)} cm인 정사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 이 ${thing}의 한 변의 길이는 몇 cm인지 쓰시오.`,
+      n(side),
+      `정사각형은 네 변의 길이가 모두 같으므로 합을 넷으로 똑같이 나눕니다. ${expr(`${total}\\div4=${side}`)} 이므로 한 변은 ${n(side)} cm입니다.`,
+    );
+  }
+  // 가로와 세로의 **합이 짝수**라야 네 변의 합이 $4$ 로 나누어떨어진다.
+  // 홀수를 허용하면 정사각형 한 변이 `$9.5$` 로 나온다 — 초3 에 소수는 1-6 단원이고,
+  // 원장님이 잡으신 「분수 답을 소수로」(R2)와 같은 부류다. 뽑는 범위에서 막는다.
+  const w = side + pick(rng, [2, 4, 6]);
+  const rectTotal = (w + side) * 2;
+  return make(
+    unit,
+    `네 변의 길이의 합이 같은 정사각형과 직사각형이 있습니다. 직사각형의 가로가 ${n(w)} cm, 세로가 ${n(side)} cm일 때 정사각형의 한 변의 길이는 몇 cm인지 쓰시오.`,
+    n(rectTotal / 4),
+    `직사각형의 네 변의 길이의 합은 ${expr(`${w}+${side}+${w}+${side}=${rectTotal}`)} 입니다. 정사각형은 네 변이 같으므로 ${expr(`${rectTotal}\\div4=${rectTotal / 4}`)} 이므로 한 변은 ${n(rectTotal / 4)} cm입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
- * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산)를 따른다.
+ * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
  */
 export const G3_TIERS: ElemTierMap = {
+  "초3|1-2-1": {
+    연산: line121Calc,
+    기본: line121Word,
+    응용: line121Apply,
+    심화: line121Deep,
+  },
+  "초3|1-2-2": {
+    연산: angle122Calc,
+    기본: angle122Word,
+    응용: angle122Apply,
+    심화: angle122Deep,
+  },
+  "초3|1-2-3": {
+    연산: tri123Calc,
+    기본: tri123Word,
+    응용: tri123Apply,
+    심화: tri123Deep,
+  },
+  "초3|1-2-4": {
+    연산: rect124Calc,
+    기본: rect124Word,
+    응용: rect124Apply,
+    심화: rect124Deep,
+  },
+  "초3|1-2-5": {
+    연산: sq125Calc,
+    기본: sq125Word,
+    응용: sq125Apply,
+    심화: sq125Deep,
+  },
   "초3|1-1-1": {
     연산: sub111Calc,
     기본: sub111Word,

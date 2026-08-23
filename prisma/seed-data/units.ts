@@ -895,7 +895,15 @@ export const CURRICULUM_UNITS: UnitSeed[] = [
   {
     grade: "초3",
     chapter: "1-2 평면도형",
-    section: "1-2-4 직각삼각형 알아보기",
+    // ⚠️ 2026-08-23 수리 — 여기는 오래 「1-2-3 직각삼각형 알아보기」와 **글자까지 같은**
+    // 이름이 들어 있었다. 우리 이관의 실수가 아니라 **원본의 결함**이다:
+    //   · eywa 정본 `C:/Creative/eywa/src/features/onescreen/curriculum.ts` 288~289 두 줄이
+    //     서로 같다. units.ts 는 그것을 충실히 복사했을 뿐이다.
+    //   · 큐브 정본 두 권이 독립 증거다 — `docs/planning/tracks/cube-concept-catalog.md`
+    //     63~64 · 1283~1284 의 2단원 차례가 「4. 직각삼각형 · **5. 직사각형**」이고,
+    //     기초력 학습지도 2692~2693 에서 「(08) 직각삼각형 / (09) 직사각형·정사각형」으로 갈린다.
+    // 공유 DB 의 unit 행 이름은 여기서 손대지 않는다(리드가 원장님께 따로 표면화).
+    section: "1-2-4 직사각형 알아보기",
     orderIndex: 138,
   },
   {
