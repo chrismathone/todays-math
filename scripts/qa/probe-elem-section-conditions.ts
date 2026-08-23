@@ -19,8 +19,28 @@ import {
   supportedTiers,
 } from "../../src/lib/elementary/generate";
 
-/** 여러 씨앗으로 봐야 «가끔 어기는» 생성기가 드러난다. */
-const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
+/**
+ * 여러 씨앗으로 봐야 «가끔 어기는» 생성기가 드러난다.
+ *
+ * ⚠️ **표본이 갈래의 한 가지를 통째로 놓치면 초록이 «사고»가 된다.**
+ * 2026-08-23 실측: 초6 `1-1-1 응용` 은 두 모양(남은 양 / 정다각형)을 **46:54** 로 내는데
+ * 씨앗 8개가 **8/8 한쪽만** 뽑았다(그럴 확률 ≈0.7%). 그 위의 「조건 위반 0」은 그 가지에
+ * 대해 아무것도 증명하지 않았고, 강제로 그 가지를 내게 하자 곧바로 빨강이 나왔다.
+ * 씨앗을 40개로 늘리면 한쪽만 나올 확률이 실질적으로 0이다(`0.54^40 ≈ 1e-11`).
+ *
+ * 앞 8개는 **그대로 둔다** — 예전 실행과 견줄 수 있어야 「늘려서 새로 나온 것」이 보인다.
+ */
+const SEEDS = [
+  20260821,
+  7,
+  1234,
+  99991,
+  20260822,
+  555,
+  31337,
+  4242,
+  ...Array.from({ length: 32 }, (_, i) => i * 613 + 101),
+];
 
 type Unit = ReturnType<typeof elementaryUnits>[number];
 
@@ -178,39 +198,68 @@ type Check = {
 const notDecimalContext = (s: string) => !s.includes("소수");
 const decimalContext = (s: string) => s.includes("소수");
 
-/** 발문에 있는 수의 종류별 개수. `\square`·`□` 는 **구해야 할 수**라 어떤 종류로도 센다. */
+/**
+ * 발문에 있는 수의 종류별 개수. `\square`·`□` 는 **구해야 할 수**라 어떤 종류로도 센다.
+ *
+ * ⚠️ 여기 `stripped` 는 **자연수만** 세려고 다른 종류를 걷어 낸 것이다. 걷어 내기가 새면
+ * 분수의 분자·분모가 자연수로 세어져 「자연수가 하나도 없는데 있다」가 된다 —
+ * 실제로 그랬다(2026-08-23): `/\frac…/` 의 `\f` 는 정규식 리터럴에서 **폼피드**라
+ * 어떤 분수도 못 지웠고, 자연수 피연산자를 통째로 없앤 발문이 **초록**으로 통과했다.
+ * 역슬래시는 `\\` 로 적는다 — 이 저장소가 반복해 데인 자리다(2026-08-21 은 반대 방향이었다).
+ */
 function kindCounts(
   c: string,
 ): Record<Operand["kind"], number> & { 미지수: number } {
   const stripped = c
-    .replace(/\frac\{\d+\}\{\d+\}/g, " ")
-    .replace(/\d+\.\d+/g, " ");
+    // 대분수는 **한 덩어리**다 — 앞의 정수부를 따로 세면 자연수가 하나 늘어난다.
+    .replace(/\d+\s*\\frac\{\d+\}\{\d+\}/g, " ")
+    .replace(/\\frac\{\d+\}\{\d+\}/g, " ")
+    .replace(/\d+\.\d+/g, " ")
+    // 단위·지수는 피연산자가 아니다 — `\mathrm{m}^3` 의 `3` 을 자연수로 세면 안 된다.
+    .replace(/\\mathrm\{[^}]*\}/g, " ")
+    .replace(/\^\{?\d+\}?/g, " ");
   return {
     분수: fracs(c).length,
     소수: decimalPlaces(c).length,
     자연수: (stripped.match(/\d+/g) ?? []).length,
-    미지수: (c.match(/\square|□/g) ?? []).length,
+    미지수: (c.match(/\\square|□/g) ?? []).length,
   };
 }
 
-/** 두 피연산자 «종류»가 발문에 있기는 한가. 없으면 미지수 자리로 갈음한다. */
+const NUMBER_KINDS = ["분수", "소수", "자연수"] as const;
+
+/**
+ * 두 피연산자 «종류»가 발문에 있기는 한가 — **식이 없는 문장형 갈래**에 쓰는 느슨한 판정.
+ *
+ * 규칙 (원장님·리드 승인 2026-08-23):
+ *   ⑴ **요구한 종류는 각각 하나 이상.** 없으면 `\square` 가 갈음한다(구해야 할 수다).
+ *   ⑵ **요구하지 않은 종류는 없어야 한다.** 이게 이 검사의 이빨이다 —
+ *      「자연수를 소수로 바꿔 심기」가 ⑴ 만으로는 통과한다(자연수는 여전히 하나 남는다).
+ *
+ * ⚠️ 예전 규칙은 같은 종류를 **개수 2** 로 요구했다(`for (const k of [left, right])` 가
+ * 하나씩 깎았다). 그래서 `(자연수)÷(자연수)` 의 **3단 결합형**이 거짓 빨강이었다 —
+ * 「둘레가 $7$ m인 정사각형 화단의 한 변은?」은 나누는 수 `4` 가 **「정사각형」이라는 낱말
+ * 안에** 있어 발문의 수가 하나뿐이다. 그리고 그게 D-72 3단 「다른 개념과 결합」의 알맹이다.
+ * 개수가 아니라 **종류가 있는가**로 본다.
+ */
 function kindsPresent(
   left: Operand["kind"],
   right: Operand["kind"],
 ): (content: string) => boolean {
+  const wanted = new Set<Operand["kind"]>([left, right]);
   return (c) => {
     const have = kindCounts(c);
     let wild = have.미지수;
-    for (const k of [left, right]) {
-      if (have[k] > 0) {
-        have[k] -= 1;
-        continue;
-      }
+    for (const k of wanted) {
+      if (have[k] > 0) continue;
       if (wild > 0) {
         wild -= 1;
         continue;
       }
       return false;
+    }
+    for (const k of NUMBER_KINDS) {
+      if (!wanted.has(k) && have[k] > 0) return false;
     }
     return true;
   };
@@ -382,7 +431,17 @@ const CHECKS: Check[] = [
  *
  *   npx tsx scripts/qa/probe-elem-section-conditions.ts --selftest
  */
-type Fixture = { section: string; content: string; want: boolean; why: string };
+/**
+ * 눈금 하나. `loose: true` 면 **문장형 갈래**(기본·응용·심화)로 재 본다 —
+ * 그 경로는 2026-08-23 까지 픽스처가 **하나도 없었다.** 재는 쪽이 없으면 고쳐도 모른다.
+ */
+type Fixture = {
+  section: string;
+  content: string;
+  want: boolean;
+  why: string;
+  loose?: boolean;
+};
 const FIXTURES: Fixture[] = [
   // ── 걸려야 하는 것 (양성) ─────────────────────────────────────────
   {
@@ -552,6 +611,65 @@ const FIXTURES: Fixture[] = [
     want: true,
     why: "「×(분수)」 구절은 답 쪽 조건이다 — 발문에는 나눗셈식만 있어도 옳다",
   },
+
+  // ── 문장형 갈래(loose) — 이 경로는 2026-08-23 까지 눈금이 **하나도 없었다** ──────
+  //
+  // 양성·음성을 **둘 다** 둔다. 양성만 두면 「지어냄」이, 음성만 두면 「거짓 경보」가
+  // 구조적으로 0이 된다 (CLAUDE.md 2026-08-20 판정자 눈금과 같은 자리).
+  {
+    section: "1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+    content:
+      "우유 $5\\,\\mathrm{L}$를 $8$명이 똑같이 나누어 마시려고 합니다. 한 사람이 갖는 우유는 몇 L입니까?",
+    want: true,
+    loose: true,
+    why: "문장형 2단 — 식은 없지만 분명히 (자연수)÷(자연수)다",
+  },
+  {
+    section: "1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+    content:
+      "둘레가 $7\\,\\mathrm{m}$ 인 정사각형 모양 화단이 있습니다. 한 변의 길이는 몇 m입니까?",
+    want: true,
+    loose: true,
+    why:
+      "3단 **결합** — 나누는 수 4 가 「정사각형」이라는 낱말 안에 있어 발문의 수가 하나뿐이다. " +
+      "예전 규칙(같은 종류 개수 2)이 이것을 거짓 빨강으로 잡았다",
+  },
+  {
+    section: "1-1-2 (분수)÷(자연수) 알아보기",
+    content:
+      "밀가루 $\\frac{7}{9}$ kg을 여러 명이 똑같이 나누어 담으려고 합니다. 한 사람이 갖는 밀가루는 몇 kg입니까?",
+    want: false,
+    loose: true,
+    why:
+      "**자연수 피연산자가 없다.** `\\f` 가 폼피드라 분수를 못 지우던 때는 분자·분모가 " +
+      "자연수로 세어져 이것이 초록이었다 — 일부러 걸리는 입력",
+  },
+  {
+    section: "1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+    content:
+      "우유 $5.5\\,\\mathrm{L}$를 $8$명이 똑같이 나누어 마시려고 합니다. 한 사람이 갖는 우유는 몇 L입니까?",
+    want: false,
+    loose: true,
+    why: "요구 밖 종류(소수)가 섞였다 — ⑴ 만으로는 자연수가 남아 통과한다. ⑵ 가 잡는다",
+  },
+  {
+    section: "1-1-2 (분수)÷(자연수) 알아보기",
+    content:
+      "밀가루 $7$ kg을 $3$명이 똑같이 나누어 담으려고 합니다. 한 사람이 갖는 밀가루는 몇 kg입니까?",
+    want: false,
+    loose: true,
+    why: "분수가 없다 — 요구 종류 ⑴ 이 잡는다",
+  },
+  {
+    section: "1-1-2 (분수)÷(자연수) 알아보기",
+    content:
+      "$\\square$ 안에 알맞은 자연수를 구하시오.\n\n$\\frac{1}{4}\\div\\square=\\frac{1}{20}$",
+    want: true,
+    loose: true,
+    why:
+      "구해야 할 자연수가 `\\square` 다 — 미지수가 갈음한다. " +
+      "`/\\square/` 는 `\\s`+「quare」라 그 와일드카드도 **죽어 있었다**",
+  },
 ];
 
 /**
@@ -590,7 +708,7 @@ function verdict(
 if (process.argv.includes("--selftest")) {
   let failed = 0;
   for (const f of FIXTURES) {
-    const v = verdict(f.content, f.section);
+    const v = verdict(f.content, f.section, f.loose ?? false);
     if (v.kind === "미판정") {
       console.log(`  ❌ 검사가 아예 안 붙는다 — ${f.section}`);
       failed += 1;
@@ -600,14 +718,15 @@ if (process.argv.includes("--selftest")) {
     const mark = got === f.want ? "✅" : "❌";
     if (got !== f.want) failed += 1;
     console.log(
-      `  ${mark} ${f.want ? "통과해야" : "걸려야"} — ${f.why}\n       ${f.section}\n       ${f.content}`,
+      `  ${mark} ${f.want ? "통과해야" : "걸려야"}${f.loose ? " «문장형»" : ""} — ${f.why}\n       ${f.section}\n       ${f.content}`,
     );
   }
   // 개수를 손으로 적으면 fixture 를 늘릴 때마다 거짓말이 된다 — 세어서 찍는다.
   const positives = FIXTURES.filter((f) => !f.want).length;
+  const loose = FIXTURES.filter((f) => f.loose).length;
   console.log(
     failed === 0
-      ? `\n✅ 눈금 ${FIXTURES.length}건 전부 맞다 (양성 ${positives} · 음성 ${FIXTURES.length - positives})`
+      ? `\n✅ 눈금 ${FIXTURES.length}건 전부 맞다 (양성 ${positives} · 음성 ${FIXTURES.length - positives} · 그중 문장형 ${loose})`
       : `\n❌ 눈금 ${failed}건 어긋남 — **가드를 믿을 수 없다**`,
   );
   process.exit(failed === 0 ? 0 : 1);
