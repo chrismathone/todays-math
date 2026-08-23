@@ -28,16 +28,13 @@
  * 넓히지 **않은** 자리도 근거를 남긴다 — 「기타」 85개는 되풀이되는 꼴이 거의 없는
  * 낱개 문장제라(정규화해 세면 대부분 1건씩) 한글 뜻을 읽어야 한다. 그건 거짓 경보의 원천이다.
  */
-import { createHash } from "node:crypto";
-import { readFileSync, readdirSync } from "node:fs";
-import path from "node:path";
-
 import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
+import { SweepTally, openFence } from "./elemProbeFence";
 
 const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
 
@@ -974,18 +971,14 @@ const units = elementaryUnits().filter(
  * 오르카 다중 세션이 같은 워크트리에서 `g3~g6.ts` 를 동시에 고친다. 재는 도중에 저장되면
  * 「정답 어긋남 0」이 «깨끗해서 0»인지 «반쯤 저장된 파일을 봐서 0»인지 구분되지 않는다.
  * 그래서 **재기 전과 후의 파일 지문을 견주고, 달라졌으면 수치를 내지 않고 멈춘다.**
+ *
+ * 2026-08-23 에 `elemProbeFence.ts` 로 **공용화**했다 — 이 울타리를 가진 판정기가 여섯 중
+ * 하나뿐이라 나머지 다섯이 같은 위험에 그대로 노출돼 있었다. 규칙은 그대로다.
  */
-const GEN_DIR = path.join(process.cwd(), "src", "lib", "elementary");
-function generatorFingerprint(): string {
-  const h = createHash("sha1");
-  for (const f of readdirSync(GEN_DIR).sort()) {
-    if (!f.endsWith(".ts")) continue;
-    h.update(f);
-    h.update(readFileSync(path.join(GEN_DIR, f)));
-  }
-  return h.digest("hex");
-}
-const fingerprintBefore = generatorFingerprint();
+// 범위는 **읽는 범위**와 같게 — `초3` 만 재면서 g4 저장에 멈추면 다음 사람이 울타리를 끈다.
+const fence = openFence({ grades: gradeArg ? [gradeArg] : undefined });
+/** 분모 — 「위반 0」이 «깨끗»인지 «못 셈»인지 가른다. */
+const tally = new SweepTally();
 
 const wrong: string[] = [];
 const byReader = new Map<string, number>();
@@ -999,6 +992,9 @@ for (const unit of units) {
   // 갈래를 안 세면 그 축이 통째로 가드 밖이다(D-72).
   for (const tier of variantsOf(unit)) {
     const where = `${unit.grade} ${unit.section}${tierLabel(tier)}`;
+    // 못 읽어 건너뛴 갈래도 **훑기는 훑은 것**이라 분모에 넣는다 — 분모에서 빼면
+    // 「읽을 수 있는 것만 셌다」가 되어 못 읽음이 늘수록 성적이 좋아진다.
+    tally.count(unit.grade, unit.section, tier, SEEDS.length);
     const results = SEEDS.map((s) => {
       const p = generateElementaryProblem(unit, s, tier);
       return { seed: s, p, kind: judge(p.content, p.answer) };
@@ -1032,6 +1028,11 @@ for (const unit of units) {
   }
 }
 
+// **찍기 전에** 울타리를 닫는다 — 뒤에 닫으면 못 쓸 수치를 이미 내보낸 뒤다.
+tally.assertNonEmpty();
+fence.close();
+
+console.log(`훑은 것 — ${tally.line()} · ${fence.scopeLine()}`);
 console.log(
   `식을 읽은 소단원 ${readable}${gradeArg ? ` (${gradeArg})` : ""} · 못 읽음 ${unreadable}\n`,
 );
@@ -1117,28 +1118,7 @@ if (process.argv.includes("--unreadable")) {
   process.exit(0);
 }
 
-/**
- * 이 울타리는 **시험할 수 있어야** 한다. 재는 창이 tsx 컴파일보다 훨씬 짧아서, 밖에서
- * 타이밍을 맞춰 파일을 건드리는 방식으로는 「안 걸렸다」가 «울타리가 없다»인지
- * «창을 못 맞췄다»인지 갈리지 않는다 — 그래서 창을 늘리는 손잡이를 둔다.
- * 시험 전용이며 평소에는 한 줄도 돌지 않는다.
- */
-const fenceDelay = Number(process.env.ELEM_PROBE_FENCE_DELAY_MS ?? 0);
-if (fenceDelay > 0) {
-  const until = Date.now() + fenceDelay;
-  while (Date.now() < until) {
-    /* 창을 열어 둔다 */
-  }
-}
-
-if (generatorFingerprint() !== fingerprintBefore) {
-  console.log(
-    "⛔ 재는 동안 `src/lib/elementary/` 가 바뀌었다 — **이 수치는 못 쓴다.**\n" +
-      "   다른 세션이 생성기를 고치는 중이다. 그 세션이 끝난 뒤 다시 돌려라.",
-  );
-  process.exit(2);
-}
-
+// 울타리는 위에서 이미 닫았다(`fence.close()`) — 수치를 찍기 전이다.
 if (wrong.length === 0) {
   console.log("✅ 정답 어긋남 0");
 } else {

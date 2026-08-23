@@ -21,6 +21,7 @@
  */
 import { readFileSync } from "node:fs";
 import { elementaryUnits } from "../../src/lib/elementary/generate";
+import { openFence } from "./elemProbeFence";
 
 const FILES = ["g3", "g4", "g5", "g6"] as const;
 
@@ -145,19 +146,45 @@ function decMul61(u, r) {
 }
 
 // ── 전량 ───────────────────────────────────────────────────────────────
+//
+// ⚠️ 이 판정기는 생성기를 **원문으로 읽는다**(문항을 만들지 않는다). 그래서 다중 세션이
+// 그 파일을 저장하는 중이면 **반쯤 쓰인 원문**을 읽고 낱말이 덜 잡힌다 — 그러면
+// 「죽은 갈래 0」이 «위험한 짝이 없어서 0»이 아니라 «원문을 덜 봐서 0»이 된다.
+// 거짓 빨강보다 **거짓 초록**이 나쁘다. 그래서 울타리를 두르고, 분모를 **파일마다** 찍는다
+// (총계 하나만 찍으면 한 학년이 통째로 비어도 숫자가 그럴듯하다).
+const fence = openFence();
 const units = elementaryUnits();
 const all: Risk[] = [];
+const perFile: string[] = [];
 let needleCount = 0;
 
 for (const f of FILES) {
   const src = readFileSync(`src/lib/elementary/${f}.ts`, "utf8");
   const grade = `초${f.slice(1)}`;
   const sections = units.filter((u) => u.grade === grade).map((u) => u.section);
-  needleCount += needlesOf(src).length;
+  const needles = needlesOf(src).length;
+  needleCount += needles;
+  perFile.push(`${grade} 낱말 ${needles}·소단원 ${sections.length}`);
   all.push(...risks(f, src, sections));
 }
 
-console.log(`\`includes\` 로 가르는 낱말 ${needleCount}개를 훑었다\n`);
+// **찍기 전에** 닫는다 — 뒤에 닫으면 못 쓸 수치를 이미 내보낸 뒤다.
+fence.close();
+
+// 「문항 수」는 이 판정기에 없다 — 문항을 만들지 않기 때문이다. 없는 것을 지어내지 않고
+// **왜 없는지**를 적는다(안 적으면 다음 사람이 「문항도 검사된다」고 읽는다).
+console.log(
+  `훑은 것 — 파일 ${FILES.length} · ${perFile.join(" · ")} · ${fence.scopeLine()}`,
+);
+console.log(
+  `\`includes\` 로 가르는 낱말 ${needleCount}개를 훑었다 (문항은 안 만든다 — 원문 검사)\n`,
+);
+if (needleCount === 0) {
+  console.log(
+    "⛔ **낱말을 하나도 못 뽑았다** — 「죽은 갈래 0」은 «깨끗»이 아니라 «못 셈»이다.",
+  );
+  process.exit(2);
+}
 if (all.length === 0) {
   console.log("✅ 죽은 갈래 0");
 } else {
