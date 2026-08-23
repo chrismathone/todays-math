@@ -209,7 +209,8 @@ function figIso03(a: number, mode: number): Fig {
   const angles: Record<string, unknown> =
     mode === 0
       ? {
-          angB: { vertex: "B", points: ["A", "C"], label: `${a}°` },
+          // B 의 광선은 D 방향으로 적는다(A 와 같은 방향) — BD 세그먼트가 덮는다.
+          angB: { vertex: "B", points: ["D", "C"], label: `${a}°` },
           angC: { vertex: "C", points: ["A", "E"], label: "x" },
         }
       : {
@@ -220,8 +221,11 @@ function figIso03(a: number, mode: number): Fig {
     version: 2,
     points: svgPoints({ A, B, C, D, E }),
     segments: {
+      // BA 를 BD·DA 로 나눠 그린다 — 각 광선 검증은 꼭짓점이 세그먼트 위에
+      // 정확히 있어야 하는데 fit 반올림(0.01px)이 공선성을 깬다.
       BE: ["B", "E"],
-      BA: ["B", "A"],
+      BD: ["B", "D"],
+      DA: ["D", "A"],
       AC: ["A", "C"],
       DC: ["D", "C"],
     },

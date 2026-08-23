@@ -73,6 +73,25 @@ function lerp(p1: XY, p2: XY, t: number): XY {
   return [p1[0] + (p2[0] - p1[0]) * t, p1[1] + (p2[1] - p1[1]) * t];
 }
 
+/**
+ * 선분 위 t 지점에서 변에 **수직인** 방향(무게중심 반대쪽)으로 push 한 라벨 앵커.
+ * 꼭짓점 근처 짧은 구간에서도 라벨이 변 옆에 붙는다(edgeAnchor 는 중심 방사형이라 위로 뜼다).
+ */
+function sideAnchor(p1: XY, p2: XY, t: number, g: XY, push: number): XY {
+  const mx = p1[0] + (p2[0] - p1[0]) * t;
+  const my = p1[1] + (p2[1] - p1[1]) * t;
+  let nx = -(p2[1] - p1[1]);
+  let ny = p2[0] - p1[0];
+  const n = Math.hypot(nx, ny) || 1;
+  nx /= n;
+  ny /= n;
+  if (nx * (mx - g[0]) + ny * (my - g[1]) < 0) {
+    nx = -nx;
+    ny = -ny;
+  }
+  return [mx + nx * push, my + ny * push];
+}
+
 type Fig = Record<string, unknown>;
 
 type Body = Pick<
@@ -149,8 +168,8 @@ function figSim02(
       F,
       n1: edgeAnchor(B, C, 0.5, g1, 16),
       n2: edgeAnchor(E, F, 0.5, g2, 16),
-      n3: edgeAnchor(A, B, 0.5, g1, 18),
-      n4: edgeAnchor(D, E, 0.5, g2, 18),
+      n3: sideAnchor(A, B, 0.5, g1, 15),
+      n4: sideAnchor(D, E, 0.5, g2, 15),
     }),
     segments: {
       AB: ["A", "B"],
@@ -223,12 +242,12 @@ function figPar01(
     E: "E",
   };
   const anchors: Array<[string, XY, string | undefined]> = [
-    ["n1", edgeAnchor(A, D, 0.5, g, 20), labels.ad],
-    ["n2", edgeAnchor(D, B, 0.5, g, 20), labels.db],
-    ["n3", edgeAnchor(A, E, 0.5, g, 20), labels.ae],
-    ["n4", edgeAnchor(E, C, 0.5, g, 20), labels.ec],
+    ["n1", sideAnchor(A, D, 0.5, g, 16), labels.ad],
+    ["n2", sideAnchor(D, B, 0.5, g, 16), labels.db],
+    ["n3", sideAnchor(A, E, 0.5, g, 16), labels.ae],
+    ["n4", sideAnchor(E, C, 0.5, g, 16), labels.ec],
     ["n5", edgeAnchor(B, C, 0.5, g, 18), labels.bc],
-    ["n6", [(D[0] + E[0]) / 2 + 6, (D[1] + E[1]) / 2 + 13], labels.de],
+    ["n6", [(D[0] + E[0]) / 2, (D[1] + E[1]) / 2 - 14], labels.de],
   ];
   for (const [k, at, text] of anchors) {
     if (text !== undefined) {
@@ -320,7 +339,7 @@ function figPar03(
       G,
       n1: edgeAnchor(B, G, 0.5, cen, 18),
       n2: edgeAnchor(G, C, 0.5, cen, 18),
-      n3: [(F[0] + E[0]) / 2, (F[1] + E[1]) / 2 + 13],
+      n3: [(F[0] + E[0]) / 2, (F[1] + E[1]) / 2 - 14],
     }),
     segments: {
       AB: ["A", "B"],
@@ -389,21 +408,22 @@ function figPar04(f1: number, f2: number): Fig {
   };
 }
 
-/** |AB|:|AC| = ab:ac 인 삼각형 — 밑변 위 x 좌표를 이차식으로 푼다. */
-function apexForRatio(ab: number, ac: number, w: number, h: number): XY {
+/**
+ * |AB|:|AC| = ab:ac 인 꼭짓점 — B(0,0)·C(w,0)에 대한 아폴로니오스 원 위에서
+ * 고른다. 원하는 높이가 원보다 크면 원이 허용하는 높이(0.85R)로 낮춘다 —
+ * 비율(=길이 관계)이 그림의 참이고 높이는 연출이다.
+ */
+function apexForRatio(ab: number, ac: number, w: number, hWanted: number): XY {
   const rho = ab / ac;
-  if (Math.abs(rho - 1) < 1e-9) return [w / 2, h];
-  const a = 1 - rho * rho;
-  const b = 2 * rho * rho * w;
-  const c = -(rho * rho) * (w * w + h * h) + h * h;
-  const disc = Math.sqrt(b * b - 4 * a * c);
-  const roots = [(-b + disc) / (2 * a), (-b - disc) / (2 * a)];
-  const x = roots.find((v) => v > 0 && v < w);
-  if (x === undefined) {
-    throw new Error(
-      `apexForRatio: ${ab}:${ac} 비율의 꼭짓점이 밑변 안에 없습니다`,
-    );
-  }
+  if (Math.abs(rho - 1) < 1e-9) return [w / 2, hWanted];
+  const m = (w * rho * rho) / (rho * rho - 1);
+  const R = Math.abs((w * rho) / (rho * rho - 1));
+  const h = Math.min(hWanted, 0.85 * R);
+  const dx = Math.sqrt(R * R - h * h);
+  const cands = [m - dx, m + dx];
+  const x = cands.reduce((best, v) =>
+    Math.abs(v - w / 2) < Math.abs(best - w / 2) ? v : best,
+  );
   return [x, h];
 }
 
