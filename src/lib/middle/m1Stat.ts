@@ -68,7 +68,7 @@ const SEC = {
 } as const;
 
 /** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
-function attempt<T>(tries: number, f: () => T | null): T {
+export function attempt<T>(tries: number, f: () => T | null): T {
   for (let i = 0; i < tries; i += 1) {
     const v = f();
     if (v !== null) return v;
@@ -76,7 +76,10 @@ function attempt<T>(tries: number, f: () => T | null): T {
   throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
 }
 
-type Body = Pick<MidProblem, "content" | "answer" | "solution" | "facts">;
+export type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts"
+> & { figureSpec?: MidProblem["figureSpec"] };
 
 /** 본문에 «값으로» 적힌 수 — 단위·지수·아래첨자의 숫자는 값이 아니다. */
 function plainNumbers(text: string): number[] {
@@ -107,7 +110,7 @@ function askedDefault(f: Record<string, number>): number[] {
   return f.ans === undefined ? [] : [f.ans];
 }
 
-function def(
+export function def(
   minor: string,
   rpmType: string,
   rpmTitle: string,
@@ -147,12 +150,28 @@ function hasFinal(word: string): boolean {
   return (ch - 0xac00) % 28 !== 0;
 }
 /** 목적격 조사 — 받침 있으면 「을」, 없으면 「를」. */
-function obj(word: string): string {
+export function obj(word: string): string {
   return `${word}${hasFinal(word) ? "을" : "를"}`;
 }
 
+/** 주격 조사 — 받침 있으면 「이」, 없으면 「가」. */
+export function subj(word: string): string {
+  return `${word}${hasFinal(word) ? "이" : "가"}`;
+}
+
+/**
+ * 수 뒤의 은/는 · 이/가 — **읽는 소리**로 갈린다.
+ *
+ * 「$50$ 는」이 아니라 「$50$ 은」이다(오십 → 받침 ㅂ). 끝자리가
+ * $0\,1\,3\,6\,7\,8$ 이면 받침이 있고($십\,일\,삼\,육\,칠\,팔$),
+ * $2\,4\,5\,9$ 면 없다($이\,사\,오\,구$). 끝자리 $0$ 은 «십·백·천» 이라 받침이 있다.
+ */
+export function numFinal(n: number): boolean {
+  return [0, 1, 3, 6, 7, 8].includes(Math.abs(Math.trunc(n)) % 10);
+}
+
 /** 상대도수 백분율 정수(1~100)를 소수 표기로 — `26 → 0.26`, `10 → 0.1`, `100 → 1`. */
-function dec(percent: number): string {
+export function dec(percent: number): string {
   return (percent / 100).toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
 }
 
