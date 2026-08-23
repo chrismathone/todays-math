@@ -463,10 +463,12 @@ function figCircumQuad(opts: {
   }
   const r = (lo + hi) / 2;
   const psi = t.map((v) => Math.atan(v / r));
-  // 변 AB 의 접점을 왼쪽(180°)에 두고 A→B→C→D 를 시계 방향으로 놓는다.
-  const phi: number[] = [Math.PI + psi[0]!];
+  // 변 AB 의 접점을 왼쪽(180°)에 두고 A→B→C→D 를 **반시계**로 놓는다 —
+  // SVG 는 y 가 아래로 자라므로 화면에서는 A 왼위·B 왼아래·C 오른아래·D 오른위,
+  // 곧 교과서 사각형 관습이 된다.
+  const phi: number[] = [Math.PI - psi[0]!];
   for (let i = 1; i < 4; i += 1) {
-    phi.push(phi[i - 1]! - (psi[i - 1]! + psi[i]!));
+    phi.push(phi[i - 1]! + (psi[i - 1]! + psi[i]!));
   }
   const dist = t.map((v) => Math.hypot(v, r));
   const s = 104 / Math.max(...dist);
@@ -486,7 +488,7 @@ function figCircumQuad(opts: {
     // 변 AB·BC·CD·DA 의 접점 P·Q·R·S — 꼭짓점 i 에서 ψ_i 만큼 돌아간 자리.
     const tp = ["P", "Q", "R", "S"] as const;
     for (let i = 0; i < 4; i += 1) {
-      points[tp[i]!] = at(phi[i]! - psi[i]!, r * s);
+      points[tp[i]!] = at(phi[i]! + psi[i]!, r * s);
       labels[tp[i]!] = tp[i]!;
     }
   }
@@ -1272,7 +1274,10 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       const ab = intBetween(rng, 4, 10);
       const cd = intBetween(rng, 4, 10);
       const per = 2 * (ab + cd);
-      const free = intBetween(rng, 3, ab + cd - 3);
+      // AD·BC 는 발문이 정하지 않는다 — 그림이 한쪽으로 길어지지 않게
+      // 합(=AB+CD)의 절반 언저리에서 잡는다.
+      const half = Math.floor((ab + cd) / 2);
+      const free = intBetween(rng, Math.max(3, half - 2), half + 2);
       return {
         content: `사각형 $ABCD$는 원 $O$에 외접하고 네 점 $P$, $Q$, $R$, $S$는 각각 변 $AB$, $BC$, $CD$, $DA$ 위의 접점이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$이고 사각형 $ABCD$의 둘레의 길이가 ${cm(per)}일 때, $\\overline{DS}+\\overline{CQ}$의 길이를 구하시오.`,
         answer: cm(cd),
