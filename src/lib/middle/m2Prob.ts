@@ -177,7 +177,7 @@ export const M2_PROB: TypeEntry[] = [
   def("02", "방정식 부등식에서의 확률", SEC.뜻과성질, "mid", (rng) =>
     attempt(200, (): Body | null => {
       const c = pick(rng, [2, 3] as const);
-      const k = intBetween(rng, c === 2 ? 1 : 0, 6);
+      const k = intBetween(rng, 1, 6);
       // ca−b=k 를 만족하는 (a,b) — b=ca−k 가 1..6 에 드는 a 의 개수.
       let cnt = 0;
       for (let a = 1; a <= 6; a += 1) {
@@ -189,7 +189,7 @@ export const M2_PROB: TypeEntry[] = [
       return {
         content: `서로 다른 두 개의 주사위를 동시에 던져 나오는 눈의 수를 각각 $a$, $b$ 라 할 때, $${c}a-b=${k}$ 일 확률을 구하시오.`,
         answer: ansTex(p),
-        solution: `모든 경우의 수는 $6\\times6=36$ 이다.\n$b=${c}a-${k}$ 가 $1$ 이상 $6$ 이하가 되는 $a$ 를 찾으면 순서쌍 $(a,\\,b)$ 는 $${cnt}$가지이다.\n따라서 구하는 확률은 $\\dfrac{${cnt}}{36}=${fracTex(p)}$ 이다.`,
+        solution: `모든 경우의 수는 $6\\times6=36$ 이다.\n$b=${c}a-${k}$ ${iGa(k)} $1$ 이상 $6$ 이하가 되는 $a$ 를 찾으면 순서쌍 $(a,\\,b)$ 는 $${cnt}$가지이다.\n따라서 구하는 확률은 $\\dfrac{${cnt}}{36}=${fracTex(p)}$ 이다.`,
         facts: { c, k, num: p.n, den: p.d },
       };
     }),

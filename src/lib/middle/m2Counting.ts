@@ -209,6 +209,7 @@ export const M2_COUNTING: TypeEntry[] = [
         }
       }
       if (ways < 2 || ways > 9) return null;
+      if (useBig === 1 && M < 550) return null; // 500원이 쓰일 수 있는 금액만
       const coins =
         useBig === 1
           ? `$500$원짜리 동전 $${c500}$개, $100$원짜리 동전 $${c100}$개, $50$원짜리 동전 $${c50}$개`
@@ -401,7 +402,7 @@ export const M2_COUNTING: TypeEntry[] = [
     }
     if (kind === 1) {
       const n = intBetween(rng, 4, 6);
-      const k = intBetween(rng, 1, n);
+      const k = intBetween(rng, 2, n);
       const ans = fact(n - 1);
       return {
         content: `A 를 포함한 $${n}$명의 학생을 한 줄로 세울 때, A 가 앞에서 $${k}$번째에 서는 경우의 수를 구하시오.`,
@@ -599,7 +600,7 @@ export const M2_COUNTING: TypeEntry[] = [
     if (via === 0) {
       const ans = comb(m + n, m);
       return {
-        content: `다음 그림과 같이 바둑판 모양의 도로망이 있다. A 지점에서 출발하여 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
+        content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
         answer: `$${ans}$`,
         solution: `각 교차점에 A 지점에서 그 지점까지 최단 거리로 가는 경우의 수를 적으면, 그 값은 왼쪽 교차점과 아래쪽 교차점에 적힌 수의 합이 된다.\n이렇게 차례로 적으면 B 지점에는 $${ans}$ 가 적힌다.`,
         facts: { m, n, via, ans },
@@ -612,7 +613,7 @@ export const M2_COUNTING: TypeEntry[] = [
     const c2 = comb(m - px + (n - py), m - px);
     const ans = c1 * c2;
     return {
-      content: `다음 그림과 같이 바둑판 모양의 도로망이 있다. A 지점에서 출발하여 P 지점을 거쳐 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
+      content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 P 지점을 거쳐 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
       answer: `$${ans}$`,
       solution: `A 지점에서 P 지점까지 최단 거리로 가는 경우의 수는 $${c1}$ 이고, P 지점에서 B 지점까지 최단 거리로 가는 경우의 수는 $${c2}$ 이다.\n따라서 구하는 경우의 수는 $${c1}\\times${c2}=${ans}$ 이다.`,
       facts: { m, n, via, px, py, ans },

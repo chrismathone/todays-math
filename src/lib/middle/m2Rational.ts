@@ -90,6 +90,12 @@ function eunNeun(n: number): "은" | "는" {
   return vowelFinal(n) ? "는" : "은";
 }
 
+/** 도구격 조사: $2$로 · $3$으로 — 모음·ㄹ 받침(일·칠·팔) 뒤는 「로」. */
+function euRo(n: number): "로" | "으로" {
+  const d = Math.abs(n) % 10;
+  return d === 0 || d === 3 || d === 6 ? "으로" : "로";
+}
+
 // ── 수론 소품 (생성기 쪽 방법 — 테스트는 10^k 곱 검사로 따로 잰다) ──
 
 function gcd(a: number, b: number): number {
@@ -403,7 +409,8 @@ export const M2_RATIONAL: TypeEntry[] = [
       return {
         content: `분수 $\\dfrac{${n}}{${d}}$ ${eulReul(n)} 소수로 나타낼 때, 소수점 아래 $${N}$번째 자리의 숫자를 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$\\dfrac{${n}}{${d}}=${texOfRep(r)}$ 이므로 소수점 아래 ${r.pre.length > 0 ? `$${r.pre.length}$번째 자리까지는 $${r.pre}$ 이고 그 뒤로는` : ""} 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다.\n$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)} $${r.cyc.length}$${eulReul(r.cyc.length)} 나눈 나머지가 $${diff % r.cyc.length}$ 이므로 구하는 숫자는 $${ans}$ 이다.`,
+        solution: `$\\dfrac{${n}}{${d}}=${texOfRep(r)}$ 이므로 ${r.pre.length > 0 ? `소수점 아래 $${r.pre.length}$번째 자리까지는 $${r.pre}$ 이고 그 뒤로는 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다` : `소수점 아래에서 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다`}.
+${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$${eulReul(N)}`} $${r.cyc.length}$${euRo(r.cyc.length)} 나눈 나머지가 $${diff % r.cyc.length}$ 이므로 구하는 숫자는 $${ans}$ 이다.`,
         facts: { n, d, N, ans, ...repFacts("r", r) },
       };
     }),
@@ -921,6 +928,7 @@ export const M2_RATIONAL: TypeEntry[] = [
         const a = intBetween(rng, 1, A - 1);
         const b = intBetween(rng, 1, B - 1);
         if (a * B >= b * A) return null; // a/A < b/B
+        if (gcd(a, A) !== 1 || gcd(b, B) !== 1) return null; // 기약만 보여 준다
         const D = pick(rng, [12, 15, 24, 30] as const);
         const m = stripTwoFive(D);
         let cnt = 0;
@@ -931,7 +939,7 @@ export const M2_RATIONAL: TypeEntry[] = [
         return {
           content: `두 분수 $\\dfrac{${a}}{${A}}$ ${waGwa(a)} $\\dfrac{${b}}{${B}}$ 사이에 있는 분수 중에서 분모가 $${D}$ 인 분수를 $\\dfrac{x}{${D}}$ 라 할 때, 유한소수로 나타낼 수 있는 자연수 $x$ 의 개수를 구하시오.`,
           answer: `$${cnt}$`,
-          solution: `$\\dfrac{${a}}{${A}}<\\dfrac{x}{${D}}<\\dfrac{${b}}{${B}}$ 의 각 변에 $${D}$ ${eulReul(D)} 곱하면 $\\dfrac{${a * D}}{${A}}<x<\\dfrac{${b * D}}{${B}}$ 이다.\n$${D}=${factorTex(D)}$ 이므로 $\\dfrac{x}{${D}}$ 가 유한소수가 되려면 $x$ 는 $${m}$ 의 배수이어야 한다.\n이 범위의 $${m}$ 의 배수를 세면 $${cnt}$개이다.`,
+          solution: `$\\dfrac{${a}}{${A}}<\\dfrac{x}{${D}}<\\dfrac{${b}}{${B}}$ 의 각 변에 $${D}$ ${eulReul(D)} 곱하면 $${(a * D) % A === 0 ? String((a * D) / A) : `\\dfrac{${a * D}}{${A}}`}<x<${(b * D) % B === 0 ? String((b * D) / B) : `\\dfrac{${b * D}}{${B}}`}$ 이다.\n$${D}=${factorTex(D)}$ 이므로 $\\dfrac{x}{${D}}$ 가 유한소수가 되려면 $x$ 는 $${m}$ 의 배수이어야 한다.\n이 범위의 $${m}$ 의 배수를 세면 $${cnt}$개이다.`,
           facts: { a, A, b, B, D, cnt },
         };
       }),
