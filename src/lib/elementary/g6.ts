@@ -3432,6 +3432,455 @@ function pctUseDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 5차분) — 초6 `1-5 여러 가지 그래프` (소단원 다섯 · 20갈래) ──
+//
+// ⑴ **참이 처음으로 그림 스펙에 있다** — 읽기 소단원(1-5-1·3·5)의 자료는 `figureSpec`
+//    의 {label, pct} 가 SSOT 다. 시험 검산은 스펙에서 비율을 되뽑아 재계산한다.
+// ⑵ **새 kind 0** — pieChart·stripChart 만 쓴다. unknown 계약(6a19b9b8)은 barChart
+//    전용이므로 원·띠에 «지워진 값»을 만들지 않는다 — 역산의 되짚을 값은 **발문**에 있다
+//    (「X를 고른 학생이 $70$명 → 전체는?」). 그리기 소단원(1-5-2·4)은 자료를 발문 글로
+//    주고 그림을 안 붙인다(그래프를 «그리기 전» 단계라 그림이 없는 것이 자연스럽다).
+// ⑶ 백분율은 전부 5 의 배수, 전체 수는 CHART_TOTALS(100~400) — 명수·길이가 늘 자연수다.
+// ⑷ 표준 문형(1-5-1 명수 · 1-5-2 길이 · 1-5-3 비율 합 · 1-5-4 두 항목 명수 합 ·
+//    1-5-5 최고최저 차)과 묻는 것을 전부 가른다(R5).
+
+/** 전 항목 비율이 서로 다른 자료 — «가장 큰»·«…보다 높은» 이 유일하게 서야 하는 갈래용. */
+function chartDataDistinct(rng: Rng): ChartData {
+  for (let t = 0; t < 30; t += 1) {
+    const d = chartData(rng, true);
+    const ps = d.items.map((i) => i.pct);
+    if (new Set(ps).size === ps.length) return d;
+  }
+  return {
+    subject: GRAPH_THEMES[0].subject,
+    items: GRAPH_THEMES[0].items.slice(0, 3).map((label, i) => ({
+      label,
+      pct: [20, 30, 50][i]!,
+    })),
+  };
+}
+
+/** 서로 다른 5 의 배수 셋(내림차순)로 100 을 가르는 분할 — 1-5-2 응용(누적 위치)용. */
+const STRIP_TRIPLES: [number, number, number][] = [];
+for (let p3 = 15; p3 <= 30; p3 += 5) {
+  for (let p2 = p3 + 5; p2 <= 45; p2 += 5) {
+    const p1 = 100 - p2 - p3;
+    if (p1 > p2) STRIP_TRIPLES.push([p1, p2, p3]);
+  }
+}
+
+/** 항목이 넷인 주제만 — 1-5-4 기본(나머지 항목)이 네 항목을 쓴다. */
+const FOUR_ITEM_THEMES = GRAPH_THEMES.filter((t) => t.items.length >= 4);
+
+/** 띠·원 그리기 갈래가 쓰는 비율(5 의 배수). */
+const DRAW_PCTS = [15, 20, 25, 30, 35, 40, 45, 50, 55, 60] as const;
+
+// ── 1-5-1 띠그래프 (읽기) ──
+
+/** 연산 — 띠그래프에서 항목의 비율을 읽는다(명수는 표준 몫 — R5 분리). */
+function stripReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    num(one.pct),
+    `띠그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
+    fig("stripChart", { segments: items }),
+  );
+}
+
+/** 기본 — 가장 넓은 부분을 찾는다. 비율이 전부 달라야 답이 하나로 선다. */
+function stripReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 많은 학생이 고른 항목을 쓰시오.`,
+    top.label,
+    `띠그래프에서 가장 넓은 부분을 찾습니다. 비율이 ${expr(`${top.pct}\\%`)} 로 가장 큰 ${top.label}입니다.`,
+    fig("stripChart", { segments: d.items }),
+  );
+}
+
+/** 응용 — 두 항목의 비율을 읽어 명수 차로 바꾼다(두 걸음). */
+function stripReadApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const total = pick(rng, CHART_TOTALS);
+  const [p, q] = twoLabels(rng, d.items);
+  const [big, small] = p.pct > q.pct ? [p, q] : [q, p];
+  const nBig = (total * big.pct) / 100;
+  const nSmall = (total * small.pct) / 100;
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ` +
+      `${big.label}${josa(big.label, "을", "를")} 고른 학생은 ${small.label}${josa(small.label, "을", "를")} 고른 학생보다 몇 명 더 많습니까?`,
+    num(nBig - nSmall),
+    `${big.label}${josa(big.label, "은", "는")} ${expr(`${total}\\times\\frac{${big.pct}}{100}=${nBig}`)} 명이고 ` +
+      `${small.label}${josa(small.label, "은", "는")} ${expr(`${total}\\times\\frac{${small.pct}}{100}=${nSmall}`)} 명입니다. ` +
+      `${expr(`${nBig}-${nSmall}=${nBig - nSmall}`)} 이므로 ${num(nBig - nSmall)}명 더 많습니다.`,
+    fig("stripChart", { segments: d.items }),
+  );
+}
+
+/** 심화 — 역산. 한 항목의 명수에서 전체를 되짚는다(되짚을 값은 발문에 있다). */
+function stripReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartData(rng);
+  const total = pick(rng, CHART_TOTALS);
+  const one = d.items[intBetween(rng, 0, d.items.length - 1)]!;
+  const n = (total * one.pct) / 100;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
+      `조사한 전체 학생은 몇 명입니까?`,
+    num(total),
+    `띠그래프에서 ${one.label}의 비율은 ${expr(`${one.pct}\\%`)} 입니다. 전체의 ${expr(`\\frac{${one.pct}}{100}`)} 이 ${num(n)}명이므로 ` +
+      `${expr(`${n}\\div\\frac{${one.pct}}{100}=${total}`)} 입니다.`,
+    fig("stripChart", { segments: d.items }),
+  );
+}
+
+// ── 1-5-2 띠그래프로 나타내기 (그리기 — 자료를 발문이 주므로 그림 없음) ──
+
+/** 연산 — 명수를 비율로. 절차 한 번. */
+function stripDrawCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  const n = (total * p) / 100;
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 조사하였더니 ${item}${josa(item, "을", "를")} 고른 학생이 ${num(n)}명이었습니다. ` +
+      `이 자료를 띠그래프로 나타낼 때 ${item}의 비율은 몇 %입니까?`,
+    num(p),
+    `${expr(`\\frac{${n}}{${total}}\\times100=${p}`)} 이므로 ${expr(`${p}\\%`)} 입니다.`,
+  );
+}
+
+/** 기본 — 비율을 띠의 길이로. */
+function stripDrawWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  const w = pick(rng, [20, 40] as const);
+  const len = (w * p) / 100;
+  return make(
+    unit,
+    `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프로 나타낼 때 ${item}${josa(item, "이", "가")} 차지하는 길이는 몇 cm입니까?`,
+    num(len),
+    `전체 길이에 비율을 곱합니다. ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)}`,
+  );
+}
+
+/** 응용 — 비율이 큰 항목부터 차례로 그릴 때 마지막 항목이 시작되는 자리(누적). */
+function stripDrawApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [p1, p2, p3] = pick(rng, STRIP_TRIPLES);
+  const labels = theme.items.slice(0, 3);
+  // 지면에는 비율 차례를 섞어 적는다 — 차례 정하기가 이 갈래의 걸음이다.
+  const order = pick(rng, [
+    [0, 1, 2],
+    [1, 2, 0],
+    [2, 0, 1],
+    [1, 0, 2],
+  ] as const);
+  const pairs = [
+    { label: labels[0]!, pct: p1 },
+    { label: labels[1]!, pct: p2 },
+    { label: labels[2]!, pct: p3 },
+  ];
+  const shown = order.map((i) => pairs[i]!);
+  const last = pairs[2]!; // 가장 작은 항목 — 시작 자리는 나머지 둘의 합이다
+  const w = pick(rng, [20, 40] as const);
+  const start = (w * (p1 + p2)) / 100;
+  return make(
+    unit,
+    `${theme.subject} 조사에서 ${shown.map((s) => `${s.label}${josa(s.label, "은", "는")} ${expr(`${s.pct}\\%`)}`).join(", ")} 입니다. ` +
+      `비율이 큰 항목부터 왼쪽에서 차례로 전체 길이 ${unitNum(w, "cm")} 인 띠그래프에 나타낼 때, ` +
+      `${last.label}${josa(last.label, "이", "가")} 시작되는 곳은 왼쪽 끝에서 몇 cm입니까?`,
+    num(start),
+    `${last.label}보다 비율이 큰 두 항목이 먼저 오므로 그 합만큼 지나서 시작됩니다. ` +
+      `${expr(`${p1}+${p2}=${p1 + p2}`)} 이고 ${expr(`${w}\\times\\frac{${p1 + p2}}{100}=${start}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. 차지한 길이에서 비율을 되짚어 명수로 잇는다. */
+function stripDrawDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  const w = pick(rng, [20, 40] as const);
+  const len = (w * p) / 100;
+  const total = pick(rng, CHART_TOTALS);
+  const n = (total * p) / 100;
+  return make(
+    unit,
+    `${theme.subject}을 조사하여 전체 길이가 ${unitNum(w, "cm")} 인 띠그래프로 나타내었더니 ` +
+      `${item}${josa(item, "이", "가")} ${unitNum(len, "cm")}를 차지합니다. 조사한 전체 학생이 ${num(total)}명일 때 ` +
+      `${item}${josa(item, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num(n),
+    `${item}의 비율은 ${expr(`\\frac{${len}}{${w}}\\times100=${p}`)} 이므로 ${expr(`${p}\\%`)} 입니다. ` +
+      `${expr(`${total}\\times\\frac{${p}}{100}=${n}`)} 이므로 ${num(n)}명입니다.`,
+  );
+}
+
+// ── 1-5-3 원그래프 (읽기) ──
+
+/** 연산 — 원그래프에서 항목의 비율을 읽는다. */
+function pieReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    num(one.pct),
+    `원그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
+    fig("pieChart", { slices: items }),
+  );
+}
+
+/** 기본 — 두 항목의 비율 차. */
+function pieReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const [p, q] = twoLabels(rng, d.items);
+  const [big, small] = p.pct > q.pct ? [p, q] : [q, p];
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ` +
+      `${big.label}의 비율은 ${small.label}의 비율보다 몇 % 더 높습니까?`,
+    num(big.pct - small.pct),
+    `${big.label}${josa(big.label, "은", "는")} ${expr(`${big.pct}\\%`)}, ${small.label}${josa(small.label, "은", "는")} ${expr(`${small.pct}\\%`)} 입니다. ` +
+      `${expr(`${big.pct}-${small.pct}=${big.pct - small.pct}`)} 이므로 ${expr(`${big.pct - small.pct}\\%`)} 더 높습니다.`,
+    fig("pieChart", { slices: d.items }),
+  );
+}
+
+/** 응용 — «몇 배». 구성이 정수배를 보장한다. */
+function pieReadApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const yPct = pick(rng, [10, 15, 20] as const);
+  const k = pick(
+    rng,
+    ([2, 3] as const).filter((v) => 100 - yPct - v * yPct >= 10),
+  );
+  const xPct = k * yPct;
+  const rest = 100 - xPct - yPct;
+  const labels = theme.items.slice(0, 3);
+  const items = [
+    { label: labels[0]!, pct: xPct },
+    { label: labels[1]!, pct: yPct },
+    { label: labels[2]!, pct: rest },
+  ];
+  return make(
+    unit,
+    `학생들의 ${theme.subject}을 조사하여 나타낸 원그래프입니다. ` +
+      `${labels[0]}의 비율은 ${labels[1]}의 비율의 몇 배입니까?`,
+    num(k),
+    `${labels[0]}${josa(labels[0]!, "은", "는")} ${expr(`${xPct}\\%`)}, ${labels[1]}${josa(labels[1]!, "은", "는")} ${expr(`${yPct}\\%`)} 입니다. ` +
+      `${expr(`${xPct}\\div${yPct}=${k}`)} 이므로 ${num(k)}배입니다.`,
+    fig("pieChart", { slices: items }),
+  );
+}
+
+/** 심화 — 역산 두 번. X 의 명수에서 전체를 되짚어 Y 의 명수를 구한다. */
+function pieReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const total = pick(rng, CHART_TOTALS);
+  const [x, y] = twoLabels(rng, d.items);
+  const nX = (total * x.pct) / 100;
+  const nY = (total * y.pct) / 100;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${x.label}${josa(x.label, "을", "를")} 고른 학생이 ${num(nX)}명일 때, ` +
+      `${y.label}${josa(y.label, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num(nY),
+    `${x.label}의 비율이 ${expr(`${x.pct}\\%`)} 이므로 전체는 ${expr(`${nX}\\div\\frac{${x.pct}}{100}=${total}`)} 명입니다. ` +
+      `${y.label}${josa(y.label, "은", "는")} ${expr(`${total}\\times\\frac{${y.pct}}{100}=${nY}`)} 명입니다.`,
+    fig("pieChart", { slices: d.items }),
+  );
+}
+
+// ── 1-5-4 원그래프로 나타내기 (그리기 — 그림 없음) ──
+
+/** 연산 — 명수를 비율로. */
+function pieDrawCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  const n = (total * p) / 100;
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 조사하였더니 ${item}${josa(item, "을", "를")} 고른 학생이 ${num(n)}명이었습니다. ` +
+      `이 자료를 원그래프로 나타낼 때 ${item}의 비율은 몇 %입니까?`,
+    num(p),
+    `${expr(`\\frac{${n}}{${total}}\\times100=${p}`)} 이므로 ${expr(`${p}\\%`)} 입니다.`,
+  );
+}
+
+/** 기본 — 나머지 항목의 비율(전체가 100% 라는 것을 쓴다). */
+function pieDrawWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, FOUR_ITEM_THEMES);
+  const [a, b, c, dLabel] = theme.items;
+  for (let t = 0; t < 40; t += 1) {
+    const pa = pick(rng, DRAW_PCTS);
+    const pb = pick(rng, DRAW_PCTS);
+    const pc = pick(rng, DRAW_PCTS);
+    const pd = 100 - pa - pb - pc;
+    if (pd < 10) continue;
+    return make(
+      unit,
+      `${theme.subject}을 조사하여 원그래프로 나타내려고 합니다. ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ` +
+        `${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)}, ${c}${josa(c!, "은", "는")} ${expr(`${pc}\\%`)} 이고 나머지는 모두 ${dLabel}입니다. ` +
+        `${dLabel}의 비율은 몇 %입니까?`,
+      num(pd),
+      `전체는 ${expr(`100\\%`)} 입니다. ${expr(`100-(${pa}+${pb}+${pc})=${pd}`)} 이므로 ${expr(`${pd}\\%`)} 입니다.`,
+    );
+  }
+  // 40번 안에 못 찾을 수 없는 구성이지만, 조용히 나쁜 값을 내느니 던진다.
+  throw new Error("1-5-4 기본: 비율 조합을 만들지 못했습니다");
+}
+
+/** 응용 — 두 항목의 명수를 비율로 바꿔 합한다(표준의 «비율 합→명수»와 방향이 반대다). */
+function pieDrawApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const total = pick(rng, CHART_TOTALS);
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 85),
+  );
+  const nA = (total * pa) / 100;
+  const nB = (total * pb) / 100;
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject} 조사에서 ${a}${josa(a!, "이", "가")} ${num(nA)}명, ${b}${josa(b!, "이", "가")} ${num(nB)}명입니다. ` +
+      `원그래프로 나타낼 때 ${a}${josa(a!, "과", "와")} ${b}의 비율의 합은 몇 %입니까?`,
+    num(pa + pb),
+    `${a}${josa(a!, "은", "는")} ${expr(`\\frac{${nA}}{${total}}\\times100=${pa}`)} 이고 ` +
+      `${b}${josa(b!, "은", "는")} ${expr(`\\frac{${nB}}{${total}}\\times100=${pb}`)} 입니다. ` +
+      `${expr(`${pa}+${pb}=${pa + pb}`)} 이므로 ${expr(`${pa + pb}\\%`)} 입니다.`,
+  );
+}
+
+/** 심화 — 관계 단서(«…의 k배») + 전체 100% 를 겹쳐 명수까지 잇는다. */
+function pieDrawDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b, c] = theme.items;
+  const pb = pick(rng, [10, 15, 20, 25] as const);
+  const k = pick(
+    rng,
+    ([2, 3] as const).filter((v) => 100 - pb - v * pb >= 10),
+  );
+  const pa = k * pb;
+  const pc = 100 - pa - pb;
+  const total = pick(rng, CHART_TOTALS);
+  const n = (total * pc) / 100;
+  return make(
+    unit,
+    `${theme.subject}을 조사하여 원그래프로 나타내려고 합니다. ${a}의 비율은 ${b}의 비율의 ${num(k)}배이고, ` +
+      `${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. 나머지는 모두 ${c}입니다. ` +
+      `전체 학생이 ${num(total)}명일 때 ${c}${josa(c!, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num(n),
+    `${a}${josa(a!, "은", "는")} ${expr(`${pb}\\times${k}=${pa}`)} 이므로 ${expr(`${pa}\\%`)} 입니다. ` +
+      `${c}${josa(c!, "은", "는")} ${expr(`100-${pa}-${pb}=${pc}`)} 이므로 ${expr(`${pc}\\%`)} 이고, ` +
+      `${expr(`${total}\\times\\frac{${pc}}{100}=${n}`)} 이므로 ${num(n)}명입니다.`,
+  );
+}
+
+// ── 1-5-5 여러 가지 그래프 비교하기 (띠·원을 섞어 낸다) ──
+
+/** 이 소단원은 그래프 종류가 씨앗마다 갈린다 — 그림과 발문의 이름이 같이 움직인다. */
+function cmpChartFig(rng: Rng, items: ChartData["items"]) {
+  const usePie = rng() < 0.5;
+  return {
+    kindName: usePie ? "원그래프" : "띠그래프",
+    figure: usePie
+      ? fig("pieChart", { slices: items })
+      : fig("stripChart", { segments: items }),
+  };
+}
+
+/** 연산 — 가장 높은 항목의 비율 읽기(최고최저 차는 표준 몫 — R5 분리). */
+function cmpChartCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목의 비율은 몇 %입니까?`,
+    num(top.pct),
+    `${kindName}에서 가장 넓은 부분은 ${top.label}입니다. 비율은 ${expr(`${top.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 기본 — 한 항목보다 비율이 높은 항목 세기. */
+function cmpChartWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
+  // 가장 높은 항목을 고르면 답이 0 이 된다 — 그 아래에서 고른다.
+  const base = sorted[intBetween(rng, 1, sorted.length - 1)]!;
+  const count = d.items.filter((i) => i.pct > base.pct).length;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+      `${base.label}보다 비율이 높은 항목은 모두 몇 개입니까?`,
+    num(count),
+    `${base.label}의 비율은 ${expr(`${base.pct}\\%`)} 입니다. 이보다 비율이 높은 항목은 ` +
+      `${sorted
+        .filter((i) => i.pct > base.pct)
+        .map((i) => i.label)
+        .join(
+          ", ",
+        )}${josa(sorted[count - 1]!.label, "으로", "로")} 모두 ${num(count)}개입니다.`,
+    figure,
+  );
+}
+
+/** 응용 — 상위 두 항목의 합이 절반을 얼마나 넘는가(두 걸음). */
+function cmpChartApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
+  const sum = sorted[0]!.pct + sorted[1]!.pct;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+      `비율이 가장 높은 항목과 두 번째로 높은 항목의 비율의 합은 전체의 절반보다 몇 % 더 많습니까?`,
+    num(sum - 50),
+    `두 항목은 ${sorted[0]!.label}${josa(sorted[0]!.label, "과", "와")} ${sorted[1]!.label}이고 비율의 합은 ` +
+      `${expr(`${sorted[0]!.pct}+${sorted[1]!.pct}=${sum}`)} 입니다. 절반은 ${expr(`50\\%`)} 이므로 ` +
+      `${expr(`${sum}-50=${sum - 50}`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 심화 — 역산 두 번. 최고 항목의 명수에서 전체를 되짚어 최저 항목의 명수를 구한다. */
+function cmpChartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
+  const top = sorted[0]!;
+  const low = sorted[sorted.length - 1]!;
+  const total = pick(rng, CHART_TOTALS);
+  const nTop = (total * top.pct) / 100;
+  const nLow = (total * low.pct) / 100;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+      `비율이 가장 높은 항목을 고른 학생이 ${num(nTop)}명일 때, 비율이 가장 낮은 항목을 고른 학생은 몇 명입니까?`,
+    num(nLow),
+    `가장 높은 ${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 이므로 전체는 ${expr(`${nTop}\\div\\frac{${top.pct}}{100}=${total}`)} 명입니다. ` +
+      `가장 낮은 ${low.label}${josa(low.label, "은", "는")} ${expr(`${total}\\times\\frac{${low.pct}}{100}=${nLow}`)} 명입니다.`,
+    figure,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -3550,6 +3999,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: pctUseWord,
     응용: pctUseApply,
     심화: pctUseDeep,
+  },
+  "초6|1-5-1": {
+    연산: stripReadCalc,
+    기본: stripReadWord,
+    응용: stripReadApply,
+    심화: stripReadDeep,
+  },
+  "초6|1-5-2": {
+    연산: stripDrawCalc,
+    기본: stripDrawWord,
+    응용: stripDrawApply,
+    심화: stripDrawDeep,
+  },
+  "초6|1-5-3": {
+    연산: pieReadCalc,
+    기본: pieReadWord,
+    응용: pieReadApply,
+    심화: pieReadDeep,
+  },
+  "초6|1-5-4": {
+    연산: pieDrawCalc,
+    기본: pieDrawWord,
+    응용: pieDrawApply,
+    심화: pieDrawDeep,
+  },
+  "초6|1-5-5": {
+    연산: cmpChartCalc,
+    기본: cmpChartWord,
+    응용: cmpChartApply,
+    심화: cmpChartDeep,
   },
 };
 

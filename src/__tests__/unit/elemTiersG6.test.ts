@@ -1453,3 +1453,317 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════ 5차분 — 1-5 여러 가지 그래프 ══════════
+//
+// **참이 처음으로 그림 스펙에 있다** — 읽기 소단원(1-5-1·3·5)의 자료는 figureSpec 의
+// {label, pct} 다. 검산은 스펙에서 비율을 되뽑고, 발문의 라벨·수와 맞대어 재계산한다.
+// 그리고 **백분율 합 100 을 독립 재검산한다** — 그래프 자료가 100 을 못 채우면
+// 문항 전체가 성립하지 않는데, 그 결함은 렌더도 검산도 스스로 신고하지 않는다.
+
+const G6_15_CODES = ["1-5-1", "1-5-2", "1-5-3", "1-5-4", "1-5-5"] as const;
+
+type ChartSlice = { label: string; pct: number };
+
+/** figureSpec 에서 {label, pct} 목록을 꺼낸다 — 원·띠 두 kind 만 안다. */
+function chartPcts(spec: unknown): ChartSlice[] | null {
+  const s = spec as
+    | { kind?: string; slices?: ChartSlice[]; segments?: ChartSlice[] }
+    | null
+    | undefined;
+  if (!s) return null;
+  if (s.kind === "pieChart") return s.slices ?? null;
+  if (s.kind === "stripChart") return s.segments ?? null;
+  return null;
+}
+
+/** 발문에 나온 스펙 라벨을 **나온 차례대로**. (한 글자 라벨 «배»도 차례가 지켜 준다.) */
+function labelsInOrder(content: string, slices: ChartSlice[]): ChartSlice[] {
+  return slices
+    .filter((s) => content.includes(s.label))
+    .sort((a, b) => content.indexOf(a.label) - content.indexOf(b.label));
+}
+
+/**
+ * 유리수 답 갈래의 참 — 그림 문항은 스펙에서, 그리기 문항은 발문 수치에서 다시 만든다.
+ * 못 읽으면 null — 위반으로 처리된다.
+ */
+function truthOf15(content: string, spec: unknown): R | null {
+  const ns = decNumbersIn(content);
+  const at = (i: number) => ns[i] ?? null;
+  const slices = chartPcts(spec);
+  const named = slices ? labelsInOrder(content, slices) : [];
+
+  // 1-5-5 심화 — 최고 명수에서 전체를 되짚어 최저 명수로
+  if (content.includes("가장 높은 항목을 고른 학생이")) {
+    if (!slices || !at(0)) return null;
+    const ps = slices.map((s) => s.pct);
+    return rat(at(0)!.n * Math.min(...ps), Math.max(...ps));
+  }
+  // 1-5-1 심화 — 명수에서 전체를 되짚는다
+  if (content.includes("전체 학생은 몇 명")) {
+    const n = at(0);
+    return n && named[0] ? rat(n.n * 100, named[0].pct) : null;
+  }
+  // 1-5-3 심화 — X 명수 → 전체 → Y 명수
+  if (
+    content.includes("고른 학생이 $") &&
+    content.includes("고른 학생은 몇 명")
+  ) {
+    const n = at(0);
+    return n && named.length >= 2
+      ? rat(n.n * named[1]!.pct, named[0]!.pct)
+      : null;
+  }
+  // 1-5-2 심화 — 길이 → 비율 → 명수
+  if (content.includes("를 차지합니다")) {
+    const [w, len, t] = [at(0), at(1), at(2)];
+    return w && len && t ? rat(t.n * len.n, w.n) : null;
+  }
+  // 1-5-4 심화 — 관계 단서 + 합 100 → 명수
+  if (content.includes("배이고")) {
+    const [k, pb, t] = [at(0), at(1), at(2)];
+    if (!k || !pb || !t) return null;
+    return rat(t.n * (100 - k.n * pb.n - pb.n), 100);
+  }
+  // 1-5-4 기본 — 나머지 항목의 비율
+  if (content.includes("나머지는 모두") && content.includes("비율은 몇 %")) {
+    if (ns.length < 3) return null;
+    return rat(100 - ns.reduce((s, v) => s + v.n, 0));
+  }
+  // 1-5-2 응용 — 비율이 큰 항목부터 그릴 때의 누적 시작 자리
+  if (content.includes("시작되는 곳")) {
+    const pairs = [
+      ...content.matchAll(/([가-힣][가-힣 ]*?)[은는] \$(\d+)\\%\$/g),
+    ].map((m) => ({ label: m[1]!.trim(), pct: Number(m[2]) }));
+    const asked = content.match(/([가-힣][가-힣 ]*?)[이가] 시작되는/);
+    const w = ns[ns.length - 1];
+    if (pairs.length < 3 || !asked || !w) return null;
+    // 문장 첫 항목은 캡처가 앞말까지 삼킨다(«좋아하는 과목 조사에서 영어») — 양방향으로 맞댄다.
+    const mine = pairs.find(
+      (p) => p.label.endsWith(asked[1]!) || asked[1]!.endsWith(p.label),
+    );
+    if (!mine) return null;
+    const before = pairs
+      .filter((p) => p.pct > mine.pct)
+      .reduce((s, p) => s + p.pct, 0);
+    return rat(w.n * before, 100);
+  }
+  // 1-5-2·4 연산 — 명수 → 비율
+  if (content.includes("조사하였더니") && content.includes("비율은 몇 %")) {
+    const [t, n] = [at(0), at(1)];
+    return t && n ? rat(n.n * 100, t.n) : null;
+  }
+  // 1-5-2 기본 — 비율 → 길이
+  if (content.includes("차지하는 길이")) {
+    const [p, w] = [at(0), at(1)];
+    return p && w ? rat(w.n * p.n, 100) : null;
+  }
+  // 1-5-4 응용 — 두 명수 → 비율 합
+  if (content.includes("비율의 합은 몇 %")) {
+    const [t, nA, nB] = [at(0), at(1), at(2)];
+    return t && nA && nB ? rat((nA.n + nB.n) * 100, t.n) : null;
+  }
+  // 1-5-5 응용 — 상위 두 항목의 합 − 절반
+  if (content.includes("절반보다")) {
+    if (!slices) return null;
+    const ps = slices.map((s) => s.pct).sort((a, b) => b - a);
+    return rat(ps[0]! + ps[1]! - 50);
+  }
+  // 1-5-5 연산 — 최고 비율 읽기
+  if (content.includes("가장 높은 항목의 비율")) {
+    return slices ? rat(Math.max(...slices.map((s) => s.pct))) : null;
+  }
+  // 1-5-5 기본 — 한 항목보다 높은 항목 세기
+  if (content.includes("보다 비율이 높은 항목")) {
+    if (!slices || !named[0]) return null;
+    return rat(slices.filter((s) => s.pct > named[0]!.pct).length);
+  }
+  // 1-5-1 응용 — 두 항목의 명수 차 (큰 쪽이 앞에 적힌다)
+  if (content.includes("더 많습니까")) {
+    const t = at(0);
+    return t && named.length >= 2
+      ? rat(t.n * (named[0]!.pct - named[1]!.pct), 100)
+      : null;
+  }
+  // 1-5-3 기본 — 두 항목의 비율 차 (높은 쪽이 앞에 적힌다)
+  if (content.includes("더 높습니까")) {
+    return named.length >= 2 ? rat(named[0]!.pct - named[1]!.pct) : null;
+  }
+  // 1-5-3 응용 — «몇 배»
+  if (content.includes("몇 배입니까")) {
+    return named.length >= 2 ? rat(named[0]!.pct, named[1]!.pct) : null;
+  }
+  // 1-5-1·3 연산 — 항목 비율 읽기 (발문에 수가 없다 — 그래프가 자료다)
+  if (content.includes("의 비율은 몇 %입니까") && ns.length === 0) {
+    return named[0] ? rat(named[0].pct) : null;
+  }
+  return null;
+}
+
+describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
+  it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_15_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("그래프 자료의 백분율 합은 늘 100 이고, 읽기 갈래에만 그림이 있다", () => {
+    const bad: string[] = [];
+    for (const code of G6_15_CODES) {
+      const unit = unitOf(code);
+      const drawing = code === "1-5-2" || code === "1-5-4";
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const slices = chartPcts(p.figureSpec ?? null);
+          if (drawing) {
+            // 그리기 소단원은 자료를 발문이 준다 — 그림이 붙으면 설계가 샌 것이다.
+            if (p.figureSpec) bad.push(`${where}: 그리기 갈래에 그림`);
+            continue;
+          }
+          if (!slices) {
+            bad.push(`${where}: 그림이 없거나 못 읽음`);
+            continue;
+          }
+          const sum = slices.reduce((s, v) => s + v.pct, 0);
+          if (sum !== 100) {
+            bad.push(`${where}: 백분율 합 ${sum} — ${JSON.stringify(slices)}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("정답은 발문·그림이 말하는 값과 같다 (그림 문항은 스펙에서 되뽑는다)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_15_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          // 1-5-1 기본 — 낱말 답(가장 큰 항목). 스펙의 최댓값 라벨과 맞댄다.
+          if (p.content.includes("가장 많은 학생이 고른 항목")) {
+            const slices = chartPcts(p.figureSpec ?? null);
+            if (!slices) {
+              bad.push(`${where}: 그림 없음 — ${flat}`);
+              continue;
+            }
+            checked += 1;
+            const top = slices.reduce((a, b) => (a.pct > b.pct ? a : b));
+            if (p.answer !== top.label) {
+              bad.push(`${where}: 답 ${p.answer} (${top.label} 이어야)`);
+            }
+            continue;
+          }
+          const want = truthOf15(p.content, p.figureSpec ?? null);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          checked += 1;
+          const got = readMixedAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${rshow(want)} 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_15_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 응용은 되짚지 않는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "1-5-1": /띠그래프입니다\. [가-힣 ]+의 비율은 몇 %입니까\?$/,
+      "1-5-2": /^학생 \$\d+\$명의 .+ 조사하였더니/,
+      "1-5-3": /원그래프입니다\. [가-힣 ]+의 비율은 몇 %입니까\?$/,
+      "1-5-4": /^학생 \$\d+\$명의 .+ 조사하였더니/,
+      "1-5-5": /가장 높은 항목의 비율은 몇 %입니까\?$/,
+    };
+    const DEEP = /전체 학생은 몇 명|고른 학생이 \$|를 차지합니다|배이고/;
+    for (const code of G6_15_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        expect(
+          CALC_SHAPE[code]!.test(calc.content),
+          `${code} 연산 seed=${seed}: ${calc.content}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(basic.content),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${basic.content}`,
+        ).toBe(false);
+        expect(
+          DEEP.test(deep.content),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        expect(
+          DEEP.test(apply.content),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_15_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·샌 소수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_15_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            const runaway = field.match(/\d+\.\d{3,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});

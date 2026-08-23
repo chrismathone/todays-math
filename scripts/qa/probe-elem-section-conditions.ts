@@ -172,8 +172,8 @@ function decimalPlacesWanted(section: string): number[] {
 type Check = {
   /** 소단원 이름에 이 말이 있으면 적용한다. */
   needle: string;
-  /** 발문이 조건을 지키면 true. */
-  ok: (content: string, section: string) => boolean;
+  /** 발문이 조건을 지키면 true. `solution` 은 초3 1-4 올림 검사만 쓴다(문장형 폴백). */
+  ok: (content: string, section: string, solution?: string) => boolean;
   /**
    * 이 조건이 그 소단원에 정말 적용되는가. 없으면 늘 적용.
    *
@@ -197,6 +197,37 @@ type Check = {
 
 const notDecimalContext = (s: string) => !s.includes("소수");
 const decimalContext = (s: string) => s.includes("소수");
+
+// ── 초3 1-4 곱셈 — 배타 올림 약속 (2026-08-23, g3 적발 a42ba6bb) ─────────────
+//
+// «올림이 없는» 1-4-2 의 37.5% 가 올림을 내고 있었는데, 이 판정기에 1-4 조건이 아예
+// 없어 그 축이 **구조적으로 0** 이었다. 분류의 정본은 elemTiersG3.test.ts `mulClassOf` —
+// 같은 약속을 여기서 독립으로 다시 센다(생성기 풀을 되부르면 동어반복이다).
+// 문장형 갈래는 발문에 식이 없으므로 **해설**에서 읽는다 — 이 검사들만 solution 을 본다.
+
+/** `$ab\times c$` 의 올림 분류. 식이 없으면 null — 부르는 쪽이 위반으로 처리한다. */
+function mulCarryClass(text: string): "none" | "ones" | "tens" | "both" | null {
+  const m = text.match(/\$(\d{2})\\times(\d)(?!\d)/);
+  if (!m) return null;
+  const a = Number(m[1]);
+  const b = Number(m[2]);
+  const ones = (a % 10) * b >= 10;
+  const tens = Math.floor(a / 10) * b + Math.floor(((a % 10) * b) / 10) >= 10;
+  return ones ? (tens ? "both" : "ones") : tens ? "tens" : "none";
+}
+
+function mulCarryCheck(
+  needle: string,
+  wanted: "none" | "ones" | "tens" | "both",
+  when?: (s: string) => boolean,
+): Check {
+  return {
+    needle,
+    ok: (c, _s, solution) =>
+      (mulCarryClass(c) ?? mulCarryClass(solution ?? "")) === wanted,
+    when,
+  };
+}
 
 /**
  * 발문에 있는 수의 종류별 개수. `\square`·`□` 는 **구해야 할 수**라 어떤 종류로도 센다.
@@ -427,6 +458,26 @@ const CHECKS: Check[] = [
       return f.length >= 2 && f.some(([, d]) => d !== f[0]![1]);
     },
   },
+  // 초3 1-4 곱셈 — 위 mulCarryCheck 주석 참조. needle 은 괄호까지 붙여 받아올림(덧셈)과
+  // 가른다. 1-4-4 needle 은 1-4-5 이름(«십의 자리와 일의 자리에서…»)에도 들어 있어
+  // when 으로 뺀다 — 진분수/가분수가 서로를 끄던 것과 같은 자리다.
+  {
+    needle: "(몇십)×(몇)",
+    ok: (c, _s, solution) => {
+      const m = (c + " " + (solution ?? "")).match(
+        /\$(\d{2})\\times(\d)(?!\d)/,
+      );
+      return m !== null && Number(m[1]) % 10 === 0;
+    },
+  },
+  mulCarryCheck("올림이 없는 (몇십몇)×(몇)", "none"),
+  mulCarryCheck("십의 자리에서 올림이 있는 (몇십몇)×(몇)", "tens"),
+  mulCarryCheck(
+    "일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "ones",
+    (s) => !s.includes("십의 자리와"),
+  ),
+  mulCarryCheck("십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)", "both"),
 ];
 
 /**
@@ -448,6 +499,8 @@ type Fixture = {
   want: boolean;
   why: string;
   loose?: boolean;
+  /** 문장형 폴백 눈금용 — 초3 1-4 올림 검사만 해설을 본다. */
+  solution?: string;
 };
 const FIXTURES: Fixture[] = [
   // ── 걸려야 하는 것 (양성) ─────────────────────────────────────────
@@ -714,6 +767,78 @@ const FIXTURES: Fixture[] = [
     loose: true,
     why: "역산형 — `\\square` 가 나누는 수(자연수)를 갈음한다",
   },
+
+  // ── 초3 1-4 곱셈 배타 올림 (2026-08-23, g3 적발 a42ba6bb) ────────────────
+  // 양성 첫 건이 **수리 전 실측 결함 그 자체**다 — 1-4-2 가 $32\times5$ 를 내고 있었다.
+  {
+    section: "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    content: "$32\\times5$를 계산하시오.",
+    want: false,
+    why: "올림이 있다(2×5=10) — 수리 전 실측 결함 (g3 적발 a42ba6bb)",
+  },
+  {
+    section: "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    content: "$32\\times3$을 계산하시오.",
+    want: true,
+    why: "어느 자리에도 올림이 없다",
+  },
+  {
+    section: "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$21\\times4$를 계산하시오.",
+    want: false,
+    why: "올림이 아예 없다 — 십의 자리 올림이 약속이다",
+  },
+  {
+    section: "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$52\\times4$를 계산하시오.",
+    want: true,
+    why: "십의 자리만 올림(5×4=20)",
+  },
+  {
+    section: "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$47\\times3$을 계산하시오.",
+    want: false,
+    why: "둘 다 올림(7×3=21 · 4×3+2=14) — 일의 자리만이 약속이다",
+  },
+  {
+    section: "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$27\\times3$을 계산하시오.",
+    want: true,
+    why: "일의 자리만 올림(7×3=21 · 2×3+2=8)",
+  },
+  {
+    section: "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$27\\times3$을 계산하시오.",
+    want: false,
+    why: "일의 자리만 올림이다 — 둘 다가 약속이다",
+  },
+  {
+    section: "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    content: "$47\\times3$을 계산하시오.",
+    want: true,
+    why: "두 자리 다 올림",
+  },
+  {
+    section: "1-4-1 (몇십)×(몇)",
+    content: "$32\\times4$를 계산하시오.",
+    want: false,
+    why: "몇십이 아니라 몇십몇이다",
+  },
+  {
+    section: "1-4-1 (몇십)×(몇)",
+    content: "$30\\times4$를 계산하시오.",
+    want: true,
+    why: "몇십 × 몇",
+  },
+  {
+    section: "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    content:
+      "사과가 한 상자에 $32$개씩 $3$상자 있습니다. 사과는 모두 몇 개입니까?",
+    solution: "$32\\times3=96$ 이므로 $96$개입니다.",
+    want: true,
+    loose: true,
+    why: "문장형 — 식은 해설에서 읽는다",
+  },
 ];
 
 /**
@@ -733,10 +858,13 @@ function verdict(
   section: string,
   /** 식이 없어도 되는 발문인가 — 난이도 갈래의 **기본·응용·심화**가 그렇다. */
   allowLoose = false,
+  /** 해설 — 초3 1-4 올림 검사의 문장형 폴백만 쓴다. */
+  solution = "",
 ): { kind: "통과" | "위반" | "미판정"; needles: string[] } {
   const seen: string[] = [];
   const pass = (c: Check, alt: string) =>
-    c.ok(content, alt) || (allowLoose && (c.loose?.(content) ?? false));
+    c.ok(content, alt, solution) ||
+    (allowLoose && (c.loose?.(content) ?? false));
   for (const alt of section.split(/\s*,\s*/)) {
     const checks = CHECKS.filter(
       (c) => alt.includes(c.needle) && (c.when?.(section) ?? true),
@@ -752,7 +880,7 @@ function verdict(
 if (process.argv.includes("--selftest")) {
   let failed = 0;
   for (const f of FIXTURES) {
-    const v = verdict(f.content, f.section, f.loose ?? false);
+    const v = verdict(f.content, f.section, f.loose ?? false, f.solution ?? "");
     if (v.kind === "미판정") {
       console.log(`  ❌ 검사가 아예 안 붙는다 — ${f.section}`);
       failed += 1;
@@ -790,15 +918,19 @@ for (const unit of units) {
   // `2.0` 을 내면 그것도 위반이다. 갈래를 안 세면 그 축이 통째로 가드 밖이다(D-72).
   for (const tier of variantsOf(unit)) {
     const where = `${unit.grade} ${unit.section}${tierLabel(tier)}`;
-    const verdicts = SEEDS.map((s) => ({
-      seed: s,
-      v: verdict(
-        generateElementaryProblem(unit, s, tier).content,
-        unit.section,
-        // 표준·연산은 식이 그대로 나오는 꼴이라 구조를 그대로 요구한다.
-        tier !== undefined && tier !== "연산",
-      ),
-    }));
+    const verdicts = SEEDS.map((s) => {
+      const p = generateElementaryProblem(unit, s, tier);
+      return {
+        seed: s,
+        v: verdict(
+          p.content,
+          unit.section,
+          // 표준·연산은 식이 그대로 나오는 꼴이라 구조를 그대로 요구한다.
+          tier !== undefined && tier !== "연산",
+          p.solution,
+        ),
+      };
+    });
     if (verdicts.every((x) => x.v.kind === "미판정")) {
       // 조건어가 괄호 안에 있는데 우리 목록에 없는 것만 «미판정» 으로 센다.
       // 갈래마다 세면 한 소단원이 다섯 번 찍히므로 **표준에서만** 적는다.
