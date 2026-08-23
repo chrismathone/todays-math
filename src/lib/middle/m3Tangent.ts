@@ -51,22 +51,28 @@ function polar(c: Pt, angleDeg: number, radius: number): Pt {
   ];
 }
 
-/** 점 o 에서 직선 ab 에 내린 수선의 발. */
+/**
+ * 점 o 에서 직선 ab 에 내린 수선의 발.
+ *
+ * ⚠️ 반올림하지 않는다 — 엔진의 각(角) ray 커버 검사는 꼭짓점이 선분 위에
+ * 있는지 허용오차 scale·1e-7 로 재므로, 소수 2자리 반올림(최대 0.007px 이탈)이
+ * 걸린다(실측 2026-08-23: 유형 11 의 E 가 40변형 중 13번 거부됨).
+ */
 function foot(o: Pt, a: Pt, b: Pt): Pt {
   const ux = b[0] - a[0];
   const uy = b[1] - a[1];
   const t = ((o[0] - a[0]) * ux + (o[1] - a[1]) * uy) / (ux * ux + uy * uy);
-  return [r2(a[0] + t * ux), r2(a[1] + t * uy)];
+  return [a[0] + t * ux, a[1] + t * uy];
 }
 
-/** p1 + t·d1 == p2 + s·d2 의 교점. 평행이면 던진다. */
+/** p1 + t·d1 == p2 + s·d2 의 교점. 평행이면 던진다. 반올림 없음(foot 과 같은 이유). */
 function lineCross(p1: Pt, d1: Pt, p2: Pt, d2: Pt): Pt {
   const det = d1[0] * d2[1] - d1[1] * d2[0];
   if (Math.abs(det) < 1e-9) {
     throw new Error("그림 계산 실패: 두 직선이 평행합니다");
   }
   const t = ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / det;
-  return [r2(p1[0] + t * d1[0]), r2(p1[1] + t * d1[1])];
+  return [p1[0] + t * d1[0], p1[1] + t * d1[1]];
 }
 
 function unit(v: Pt): Pt {
