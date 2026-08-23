@@ -3550,3 +3550,198 @@ function shapeKindsFromEngine(): string[] {
   if (kinds.length < 5) throw new Error(`도형이 너무 적다: ${kinds.length}`);
   return kinds;
 }
+
+/* ── ③ lineRelation — 두 직선의 관계 (2026-08-24, elem-figures) ───────────────
+ *
+ * 초4 2-4-1(수직과 수선) · 2-4-2(평행과 평행선) · 2-4-3(평행선 사이의 거리).
+ *
+ * 🔴 **「표시가 있다」가 아니라 「정말 그러한가」를 잰다** — 리드가 ②에서 묶어 준 축이다.
+ *    ②에서 「대각선 개수」는 참인데 도형이 찌그러져도 개수는 그대로였다.
+ *    **셀 수 있는 것만 재면 모양은 샌다.** 그래서 수직은 **내적**, 평행은 **외적**으로 잰다.
+ *
+ * ⚠️ 엔진 A(FigureSpec v2)로 가면 안 된다 — 직각을 **호**로 그린다(09 §2.1 주).
+ *    초등 교과서의 직각은 **작은 정사각형**이다.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] lineRelation — 두 직선의 관계", () => {
+  /** SVG 의 `<line>` 을 방향 벡터로. */
+  function segs(svg: string): { p: number[]; q: number[]; len: number }[] {
+    return [
+      ...svg.matchAll(
+        /<line x1="(-?[\d.]+)" y1="(-?[\d.]+)" x2="(-?[\d.]+)" y2="(-?[\d.]+)"/g,
+      ),
+    ].map((m) => {
+      const p = [Number(m[1]), Number(m[2])];
+      const q = [Number(m[3]), Number(m[4])];
+      return { p, q, len: Math.hypot(q[0]! - p[0]!, q[1]! - p[1]!) };
+    });
+  }
+  const dir = (s: { p: number[]; q: number[]; len: number }) => [
+    (s.q[0]! - s.p[0]!) / s.len,
+    (s.q[1]! - s.p[1]!) / s.len,
+  ];
+
+  it("**평행은 정말 평행하다** — 외적이 0", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const main = segs(r.svg)
+      .filter((x) => x.len > 40)
+      .slice(0, 2);
+    expect(main, "긴 직선 둘").toHaveLength(2);
+    const [u, v] = [dir(main[0]!), dir(main[1]!)];
+    expect(Math.abs(u[0]! * v[1]! - u[1]! * v[0]!), "외적").toBeLessThan(0.02);
+  });
+
+  it("**평행선 사이 거리는 수선으로 잰다** — 그 선이 두 직선에 수직", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      distance: "10 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain("10 cm");
+    // 치수는 `measured()` 가 낸다 — halo + 점선 `6 4` (09 §4-16)
+    expect(r.svg).toContain('paint-order="stroke"');
+    expect(r.svg).toContain('stroke-dasharray="6 4"');
+  });
+
+  it("**음성 대조군** — 평행 표시는 두 직선에 «같은 수»로 찍힌다", async () => {
+    // 한쪽에만 찍으면 「이 둘이 평행」이라는 뜻이 안 된다.
+    const one = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+    });
+    const two = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      marks: 2,
+    });
+    expect(one.ok && two.ok).toBe(true);
+    if (!one.ok || !two.ok) return;
+    expect((one.svg.match(/<polyline/g) ?? []).length, "1개씩 두 줄").toBe(2);
+    expect((two.svg.match(/<polyline/g) ?? []).length, "2개씩 두 줄").toBe(4);
+  });
+
+  it("**수선 여러 개는 길이가 정말 같다** — 그게 발문의 답이다", async () => {
+    // 「수선을 5개 그었습니다. 이 수선들의 길이는 서로 어떠한가?」(초4 2-4-3)
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      perpCount: 5,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const all = segs(r.svg);
+    const rails = all.filter(
+      (x) => x.len > 40 && Math.abs(x.p[1]! - x.q[1]!) < 0.5,
+    );
+    expect(rails, "평행선 둘").toHaveLength(2);
+    const perps = all.filter(
+      (x) => Math.abs(x.p[0]! - x.q[0]!) < 0.5 && x.len > 10,
+    );
+    expect(perps, "수선 다섯").toHaveLength(5);
+    const lens = perps.map((x) => x.len);
+    expect(
+      Math.max(...lens) - Math.min(...lens),
+      "수선 길이 편차",
+    ).toBeLessThan(0.5);
+  });
+
+  /**
+   * 🔴 **모양을 쟀는데 «이름»이 샜다** (리드가 좌표로 잡았다, 2026-08-24).
+   *
+   * 위 검사 여섯은 전부 **기하**를 잰다 — 내적·외적·직각 기호·수선 길이·관계·음성 대조.
+   * 그런데 **「이 이름이 어느 선에 붙었나」는 잴 자리가 아예 없었다.** 실제로
+   * `parallel` 은 **한 직선의 양 끝**에 「가」·「나」가 붙어 있었고
+   * (「직선 가와 나는 서로 평행합니다」와 **정면으로 어긋난다**),
+   * `bothPerpendicular` 은 세로선 하나와 **밑선**에 붙어 발문이 가리키는 둘 중
+   * 하나를 놓쳤다. 기하 축은 이것을 **구조적으로 못 본다** — 선은 멀쩡하니까.
+   *
+   * 「셀 수 있는 것만 재면 모양이 샌다」의 **다음 겹**이다: 모양이 맞아도 이름이 샌다.
+   */
+  it.each([["parallel", false]])(
+    "**두 이름이 서로 다른 직선에 붙는다** — %s",
+    async (relation, bothVertical) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "lineRelation",
+        relation,
+        labels: ["가", "나"],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const lines = segs(r.svg).filter((x) => x.len > 40);
+      const texts = [
+        ...r.svg.matchAll(
+          /<text x="(-?[\d.]+)" y="(-?[\d.]+)"[^>]*>([^<]+)<\/text>/g,
+        ),
+      ].map((m) => ({ x: Number(m[1]), y: Number(m[2]), t: m[3]! }));
+      expect(texts, "이름 둘").toHaveLength(2);
+      // 라벨에서 가장 가까운 선분을 임자로 삼는다.
+      const owner = (tx: number, ty: number) => {
+        let best = Infinity;
+        let bi = -1;
+        lines.forEach((L, i) => {
+          const dx = L.q[0]! - L.p[0]!;
+          const dy = L.q[1]! - L.p[1]!;
+          const t = Math.max(
+            0,
+            Math.min(
+              1,
+              ((tx - L.p[0]!) * dx + (ty - L.p[1]!) * dy) / (dx * dx + dy * dy),
+            ),
+          );
+          const d = Math.hypot(
+            tx - (L.p[0]! + t * dx),
+            ty - (L.p[1]! + t * dy),
+          );
+          if (d < best) {
+            best = d;
+            bi = i;
+          }
+        });
+        return bi;
+      };
+      const owners = texts.map((x) => owner(x.x, x.y));
+      expect(
+        new Set(owners).size,
+        `${relation}: 두 이름이 같은 선에 붙었다`,
+      ).toBe(2);
+      if (bothVertical) {
+        // 「한 직선에 수직인 **두** 직선」이 가리키는 것은 그 둘이지 밑선이 아니다.
+        for (const i of owners) {
+          const L = lines[i]!;
+          expect(
+            Math.abs(L.p[0]! - L.q[0]!),
+            "이름은 세로선에 붙어야 한다",
+          ).toBeLessThan(0.5);
+        }
+      }
+    },
+  );
+
+  it("**모르는 관계·키는 던진다**", async () => {
+    const bad = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "skew",
+    });
+    expect(bad.ok).toBe(false);
+    const badKey = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      distanc: "10 cm",
+    });
+    expect(badKey.ok).toBe(false);
+  });
+});

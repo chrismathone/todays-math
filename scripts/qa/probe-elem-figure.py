@@ -146,6 +146,14 @@ SPECS: list[dict] = [
     # `trap` + sides — 지금은 **던진다**. 「같은변 목록에 trap 을 넣는」 변이가
     # 이 자리를 건드려야 산출물이 바뀐다(표본이 안 건드리면 판정 자체를 못 한다).
     {"version": "elem-1", "kind": "markedShape", "shape": "trap", "sides": ["5 cm"]},
+    # ③ lineRelation (2026-08-24) — 초4 2-4-1·2·3.
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel"},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel",
+     "labels": ["가", "나"]},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel", "marks": 2},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel",
+     "distance": "10 cm"},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel", "perpCount": 5},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},

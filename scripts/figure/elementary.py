@@ -32,6 +32,8 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
     "numberCards": frozenset({"cards"}),
     # ② 도형 위 표시 — 성질 문항. 고르기(`namedShapes`)와 **모양 목록을 공유**한다.
     "markedShape": frozenset({"shape"}),
+    # ③ 두 직선의 관계 — 수직·평행(+ 평행선 사이 거리). 초4 2-4-1·2·3.
+    "lineRelation": frozenset({"relation"}),
     "placeValue": frozenset({"hundreds", "tens", "ones"}),
     "base10": frozenset({"rows"}),
     "opBox": frozenset({"input", "op"}),
@@ -59,6 +61,7 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
 OPTIONAL: dict[str, frozenset[str]] = {
     "base10": frozenset({"equation"}),
     "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
+    "lineRelation": frozenset({"labels", "distance", "marks", "perpCount"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -1912,8 +1915,105 @@ def _tick_span(
     )
 
 
+# 평행 표시(겹화살표)의 크기 — 두 직선에 **같은 개수**를 찍어 「이 둘이 평행」을 말한다.
+_PARA_MARK = 5.0
+
+
+def _para_mark(mx: float, my: float, dx: float, dy: float, k: int) -> str:
+    """평행 표시 — 진행 방향으로 벌어진 「>」 를 `k` 개. 두 직선에 **같은 수**를 찍는다."""
+    out: list[str] = []
+    for i in range(k):
+        ox = mx + (i - (k - 1) / 2) * _PARA_MARK * 1.3 * dx
+        oy = my + (i - (k - 1) / 2) * _PARA_MARK * 1.3 * dy
+        # 「>」 = 뒤로 벌어진 두 선분. 화살촉을 채우지 않는다(직각 기호와 헷갈리지 않게).
+        nx, ny = -dy, dx
+        out.append(
+            f'<polyline points="{_n(ox - _PARA_MARK * dx + nx * _PARA_MARK * 0.7)},'
+            f'{_n(oy - _PARA_MARK * dy + ny * _PARA_MARK * 0.7)} {_n(ox)},{_n(oy)} '
+            f'{_n(ox - _PARA_MARK * dx - nx * _PARA_MARK * 0.7)},'
+            f'{_n(oy - _PARA_MARK * dy - ny * _PARA_MARK * 0.7)}" '
+            f'fill="none" stroke="{INK}" stroke-width="1.15"/>'
+        )
+    return "".join(out)
+
+
+def _line_relation(spec: Mapping[str, Any]) -> str:
+    """두 직선의 관계 — **수직**·**평행**(+ 평행선 사이 거리). 초4 2-4-1·2·3.
+
+    ## 왜 `parallel` 뿐인가 (2026-08-24)
+
+    처음에 `perpendicular`·`bothPerpendicular` 도 만들었다가 **지웠다.** 초4 2-4-1·2 의
+    발문을 다시 보니 **묻는 것이 곧 그림이 보여 주는 것**이었다:
+
+    | 발문 | 답 | 그림이 그리면 |
+    |---|---|---|
+    | 「수선은 몇 도를 이루며 만나는가」 | 90° | 직각 기호가 **답을 말한다** |
+    | 「두 직선이 직각일 때 서로 무엇인가」 | 수직 | 〃 |
+    | 「한 직선에 수직인 두 직선은 어떤 관계인가」 | 평행 | 평행하게 그리면 **답을 말한다** |
+
+    D-66 ⑺ 의 그 자리다. 게다가 그 두 갈래는 **스펙 값을 하나도 안 받아**(좌표가 전부
+    상수) 씨앗이 달라도 그림이 한 픽셀도 안 바뀐다(R9-b). 그리고 g4 가 2-4-1·2 를
+    **글로 된 사다리**(꺾인 횟수의 홀짝)로 세우기로 해 **부를 갈래도 없다.**
+
+    → 값을 싣고 답을 안 보이는 쓰임이 생기면 그때 되살린다. 「직사각형에서 한 변에
+      수직인 변은 몇 개」류는 **도형 위**라 `markedShape`(②) 쪽이지 여기가 아니다.
+
+    🔴 **「표시가 있다」가 아니라 「정말 그러한가」가 불변식이다.** 수직은 두 방향 벡터의
+    내적이 0, 평행은 외적이 0 — 시험이 그린 좌표에서 그것을 잰다. 표시는 그 사실을
+    **보여 주는** 것이지 그것을 대신하지 않는다.
+
+    ⚠️ 엔진 A(FigureSpec v2)로 그리면 **직각이 호**가 된다(09 §2.1 주). 초등 교과서의
+       직각은 **작은 정사각형**이라 여기서 `_right_mark` 로 그린다.
+    """
+    rel = str(spec.get("relation", ""))
+    if rel != "parallel":
+        raise ValueError(
+            f"모르는 관계입니다: {rel} — 지금은 parallel 뿐입니다"
+        )
+    labels = spec.get("labels")
+    if labels is not None and (not isinstance(labels, list) or len(labels) != 2):
+        raise ValueError("labels 는 직선 이름 2개여야 합니다")
+    dist = spec.get("distance")
+
+    pad, w, h = 26.0, 150.0, 110.0
+    parts: list[str] = []
+    if True:
+        y0 = pad + h * 0.3
+        y1 = pad + h * 0.72
+        parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
+        parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
+        # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
+        k = _side_index(spec.get("marks", 1), "marks", 4) or 1
+        parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
+        parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
+        # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
+        # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
+        npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
+        for i in range(npp):
+            x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
+            parts.append(_seg((x, y0), (x, y1), sw=1.05))
+            parts.append(_right_mark((x, y0), (pad + w, y0), (x, y1), size=5.0))
+        if dist is not None:
+            # 평행선 사이 거리는 **수선으로만** 잰다 — 비스듬한 선분이 아니다.
+            mx = pad + w * 0.3
+            parts.append(_length_mark(mx, y0, mx, y1, str(dist), off=-11.0))
+        ends = [(pad, y0), (pad + w, y0), (pad, y1), (pad + w, y1)]
+        name_at = [(pad, y0), (pad, y1)]  # **서로 다른** 두 직선의 왼끝
+
+    if labels:
+        # 🔴 **갈래마다 «두 직선의 대표점»이 다르다.** 조건 하나로 뒤집으면 틀린다 —
+        #    실제로 `parallel` 은 한 직선의 양 끝에, `bothPerpendicular` 은 세로선 하나와
+        #    밑선에 이름이 붙어 있었다(리드가 좌표로 잡았다). 「직선 가와 나는 평행하다」와
+        #    **정면으로 어긋나는** 그림이었고, 기하 축(내적·외적)은 그것을 못 본다.
+        #    `ends` 를 쌓을 때 **이름 붙일 두 점을 앞 둘에** 두게 통일한다.
+        for (lx, ly), t in zip(name_at, labels):
+            parts.append(_text(lx, ly - 8, str(t), size=12))
+    return _svg(pad * 2 + w, pad * 2 + h, "".join(parts))
+
+
 _RENDER = {
     "numberCards": _number_cards,
+    "lineRelation": _line_relation,
     "markedShape": _marked_shape,
     "placeValue": _place_value,
     "base10": _base10,
