@@ -3419,3 +3419,430 @@ describe("[초3] 지면의 등식 — 표준까지 전수", () => {
     expect(judged, "등식을 한 자리도 못 읽었다").toBeGreaterThan(5000);
   });
 });
+
+/**
+ * 초3 **2-4 분수** — 여섯 소단원 × 네 갈래.
+ *
+ * **참은 지면에서 온다.** 생성기를 다시 부르지 않고 찍힌 발문·정답에서 분수를 뽑아
+ * 여기서 다시 셈한다.
+ *
+ * ⚠️ **구성이 100% 를 보장하는 성질의 문턱은 «전량»이다.** 이 대단원에는 그런 성질이
+ * 많다(분모가 같다 · 발문이 가분수다 · 분자가 서로 다르다 · 발문의 분수가 기약이다).
+ * 문턱을 「대부분」으로 두면 **구성이 절반 무너져도 안 운다** — 2026-08-23 g5 실측에서
+ * 구성 100% ↔ 변이 59.5% 인데 「200 중 100 초과」 문턱을 그대로 통과했다.
+ * 그래서 아래 검사들은 **어긋남 0** 을 요구하고, 동시에 **분모 가드**를 둔다
+ * (「하나도 못 읽었다」면 100% 는 공허하다 — 0은 «깨끗»과 «못 셈»을 안 가른다).
+ *
+ * ⚠️ **기약 규칙이 소단원마다 다른 것은 일부러다.** 분수가 **답**인 자리(2-4-1)는 안
+ * 거르고 **발문에 주어지는 값**인 자리(2-4-2·3)는 거른다 — 초3 은 약분(초5)을 안 배우므로
+ * $\frac26$ 이 정답이다. 이 시험은 **그 차이를 잠근다**(양쪽을 같게 만들면 빨개진다).
+ */
+describe("[초3 4단] 2-4 분수", () => {
+  const SEC24 = ["2-4-1", "2-4-2", "2-4-3", "2-4-4", "2-4-5", "2-4-6"] as const;
+  const SEEDS24 = Array.from({ length: 50 }, (_, i) => i * 37 + 3);
+
+  const unitOf = (code: string) =>
+    elementaryUnits().find(
+      (u) => u.grade === "초3" && u.section.startsWith(code),
+    )!;
+
+  /** 지면의 `\frac{a}{b}` 를 전부 뽑는다(대분수의 자연수 부분은 여기에 안 들어온다). */
+  const fracsIn = (text: string): [number, number][] =>
+    [...text.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+      Number(m[1]),
+      Number(m[2]),
+    ]);
+
+  /** 최대공약수 — 제품 함수를 안 부른다(부르면 동어반복이다). */
+  const gcd2 = (a: number, b: number): number => (b === 0 ? a : gcd2(b, a % b));
+
+  /** 표준 + 네 갈래. 표준(`undefined`)을 빠뜨리면 그 축이 통째로 가드 밖이 된다. */
+  const everyTier = () => [undefined, ...ELEM_TIERS] as const;
+
+  it("여섯 소단원이 네 갈래를 모두 갖는다", () => {
+    for (const code of SEC24)
+      expect(supportedTiers(unitOf(code)), code).toEqual([...ELEM_TIERS]);
+  });
+
+  it("표준·갈래의 답이 발문의 수에서 다시 나온다 — 2-4-1 (분수로 나타내기)", () => {
+    let judged = 0;
+    for (const tier of everyTier())
+      for (const seed of SEEDS24) {
+        const p = generateElementaryProblem(unitOf("2-4-1"), seed, tier);
+        const ans = fracsIn(p.answer);
+        if (ans.length === 0) {
+          // 심화만 개수를 답한다 — 그때는 발문에서 전체를 되짚어 검산한다.
+          const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((m) =>
+            Number(m[1]),
+          );
+          const got = Number(/\$(\d+)\$/.exec(p.answer)![1]);
+          const [groups, take, part] = nums as [number, number, number];
+          expect(got, `${tier ?? "표준"} 씨앗 ${seed}`).toBe(
+            (part / take) * groups,
+          );
+          judged += 1;
+          continue;
+        }
+        const [num, den] = ans[0]!;
+        expect(
+          num,
+          `${tier ?? "표준"} 씨앗 ${seed} — 분자가 분모보다 크다`,
+        ).toBeLessThan(den);
+        judged += 1;
+      }
+    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+  });
+
+  it("2-4-2 는 **단위분수**, 2-4-3 은 **분자 2 이상** — 이름이 약속한 그대로 (전량)", () => {
+    let judged = 0;
+    for (const [code, unitOnly] of [
+      ["2-4-2", true],
+      ["2-4-3", false],
+    ] as const)
+      for (const tier of everyTier())
+        for (const seed of SEEDS24) {
+          const p = generateElementaryProblem(unitOf(code), seed, tier);
+          const fs = fracsIn(p.content);
+          expect(
+            fs.length,
+            `${code} ${tier ?? "표준"} 씨앗 ${seed}`,
+          ).toBeGreaterThan(0);
+          const [num, den] = fs[0]!;
+          if (unitOnly)
+            expect(num, `${code} ${tier ?? "표준"} 씨앗 ${seed}`).toBe(1);
+          else
+            expect(
+              num,
+              `${code} ${tier ?? "표준"} 씨앗 ${seed}`,
+            ).toBeGreaterThanOrEqual(2);
+          // 발문에 주어지는 값이므로 **기약**이어야 한다(2-4-1 과 반대 규칙 — 일부러다).
+          expect(
+            gcd2(num, den),
+            `${code} ${tier ?? "표준"} 씨앗 ${seed} — 발문 분수가 약분된다`,
+          ).toBe(1);
+          judged += 1;
+        }
+    expect(judged, "한 문항도 안 읽었다").toBe(2 * 5 * SEEDS24.length);
+  });
+
+  it("2-4-1 은 답 자리라 **안 거른다** — 약분되는 답이 실제로 나온다 (반대쪽 확인)", () => {
+    // ⚠️ 이 검사가 없으면 「전부 기약으로 통일」해도 아무도 안 운다. 규칙이 갈리는 것이
+    //   일부러라는 것을 **양쪽에서** 잠근다.
+    let reducible = 0;
+    for (const seed of Array.from({ length: 200 }, (_, i) => i)) {
+      const p = generateElementaryProblem(unitOf("2-4-1"), seed);
+      const [num, den] = fracsIn(p.answer)[0]!;
+      if (gcd2(num, den) > 1) reducible += 1;
+    }
+    expect(
+      reducible,
+      "2-4-1 답이 전부 기약이다 — 초3 은 약분을 안 배우므로 거르면 안 된다",
+    ).toBeGreaterThan(0);
+  });
+
+  it("2-4-4 는 지면에 분수가 서고, 답이 분자·분모 비교와 맞는다 (전량)", () => {
+    let judged = 0;
+    for (const tier of everyTier())
+      for (const seed of SEEDS24) {
+        const p = generateElementaryProblem(unitOf("2-4-4"), seed, tier);
+        // 소단원 조건 — 이름이 분수의 «종류»를 약속하므로 분수가 지면에 있어야 한다.
+        expect(
+          fracsIn(p.content).length,
+          `${tier ?? "표준"} 씨앗 ${seed} — 발문에 분수가 없다`,
+        ).toBeGreaterThan(0);
+        const kind = /가분수$/.test(p.answer.trim())
+          ? "가분수"
+          : /진분수$/.test(p.answer.trim())
+            ? "진분수"
+            : null;
+        if (kind) {
+          const fs = fracsIn(p.answer);
+          const [num, den] = (
+            fs.length > 0 ? fs[0]! : fracsIn(p.content)[0]!
+          ) as [number, number];
+          expect(
+            num >= den ? "가분수" : "진분수",
+            `${tier ?? "표준"} 씨앗 ${seed}`,
+          ).toBe(kind);
+        }
+        judged += 1;
+      }
+    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+  });
+
+  it("2-4-5 는 발문이 **가분수**이고, 대분수 변환이 지면에서 다시 나온다 (전량)", () => {
+    let judged = 0;
+    for (const tier of everyTier())
+      for (const seed of SEEDS24) {
+        const p = generateElementaryProblem(unitOf("2-4-5"), seed, tier);
+        const all = `${p.content}\n${p.answer}`;
+        // 대분수는 `숫자\frac{}{}` 꼴로 지면에 선다. 가분수는 `\frac{큰}{작은}`.
+        const mixed = [...all.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/g)];
+        const improper = fracsIn(all).filter(([a, b]) => a >= b);
+        expect(
+          mixed.length + improper.length,
+          `${tier ?? "표준"} 씨앗 ${seed} — 대분수도 가분수도 안 보인다`,
+        ).toBeGreaterThan(0);
+        for (const m of mixed) {
+          const [w, r, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+          expect(
+            r,
+            `${tier ?? "표준"} 씨앗 ${seed} — 대분수의 분수 부분이 진분수가 아니다`,
+          ).toBeLessThan(d);
+          expect(r).toBeGreaterThan(0);
+          expect(w).toBeGreaterThan(0);
+        }
+        judged += 1;
+      }
+    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+  });
+
+  it("2-4-5 해설은 **나눗셈을 등식으로 적지 않는다** — 표준과 같은 꼴 (전량)", () => {
+    // 2026-08-23 회송: 표준이 `$17\div6=2$` 를 쓰고 있었다(거짓 등식). 네 갈래가 다시
+    // 그 꼴로 새지 않게 **한 소단원 안에서 표기를 잠근다.**
+    let judged = 0;
+    for (const tier of everyTier())
+      for (const seed of SEEDS24) {
+        const sol = generateElementaryProblem(
+          unitOf("2-4-5"),
+          seed,
+          tier,
+        ).solution!;
+        for (const m of sol.matchAll(/\$(\d+)\\div(\d+)=(\d+)\$/g)) {
+          const [a, b, c] = [Number(m[1]), Number(m[2]), Number(m[3])];
+          expect(
+            a % b === 0 && a / b === c,
+            `${tier ?? "표준"} 씨앗 ${seed} — 나누어떨어지지 않는데 등식으로 적었다: ${m[0]}`,
+          ).toBe(true);
+        }
+        judged += 1;
+      }
+    expect(judged, "해설을 한 자리도 안 읽었다").toBe(5 * SEEDS24.length);
+  });
+
+  it("2-4-6 은 분모가 **모두 같고** 분자가 서로 달라 답이 하나다 (전량)", () => {
+    let judged = 0;
+    for (const tier of everyTier())
+      for (const seed of SEEDS24) {
+        const p = generateElementaryProblem(unitOf("2-4-6"), seed, tier);
+        const fs = fracsIn(p.content);
+        expect(fs.length, `${tier ?? "표준"} 씨앗 ${seed}`).toBeGreaterThan(0);
+        expect(
+          new Set(fs.map(([, d]) => d)).size,
+          `${tier ?? "표준"} 씨앗 ${seed} — 분모가 섞였다`,
+        ).toBe(1);
+        // 「가장 큰·작은」을 묻는 갈래는 분자가 겹치면 답이 하나가 아니다.
+        // 심화는 경계 둘만 보이므로 겹칠 수가 없다(구성).
+        expect(
+          new Set(fs.map(([a]) => a)).size,
+          `${tier ?? "표준"} 씨앗 ${seed} — 분자가 겹쳐 답이 하나가 아니다`,
+        ).toBe(fs.length);
+        judged += 1;
+      }
+    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+  });
+
+  it("2-4-6 심화의 답은 조건 사이에서 다시 나오고, **개수가 아니라 분수**다", () => {
+    // ⚠️ 2-4-4 심화가 「몇 개」를 묻는다. 여기까지 개수를 물으면 한 시험지에 실렸을 때
+    //   두 문항이 같은 것을 묻는 것처럼 보인다(2026-08-23 리드 지적). 답의 **모양**을 잠근다.
+    for (const seed of SEEDS24) {
+      const p = generateElementaryProblem(unitOf("2-4-6"), seed, "심화");
+      expect(p.answer, `씨앗 ${seed}`).toMatch(/^\$\\frac\{\d+\}\{\d+\}\$$/);
+      const fs = fracsIn(p.content);
+      const [lo, hi] = [fs[0]![0], fs[1]![0]];
+      const [num, den] = fracsIn(p.answer)[0]!;
+      expect(den).toBe(fs[0]![1]);
+      expect(num, `씨앗 ${seed} — 사이에서 가장 큰 분자가 아니다`).toBe(hi - 1);
+      expect(num).toBeGreaterThan(lo);
+    }
+  });
+
+  it("2-4-4 심화는 **개수**를 묻고, 그 개수가 조건에서 다시 나온다", () => {
+    const counts = new Set<number>();
+    for (const seed of SEEDS24) {
+      const p = generateElementaryProblem(unitOf("2-4-4"), seed, "심화");
+      const got = Number(/\$(\d+)\$/.exec(p.answer)![1]);
+      const fs = fracsIn(p.content);
+      const den = fs[0]![1];
+      const limit =
+        fs.find(([a]) => a > 0 && a >= den)?.[0] ?? fs[fs.length - 1]![0];
+      expect(got, `씨앗 ${seed}`).toBe(limit - den);
+      counts.add(got);
+    }
+    // 「몇 개」 답이 한 값으로 굳으면 상수답이다 — 분모·범위를 흔든 것이 실제로 먹는가.
+    expect(counts.size, "개수 답이 굳었다").toBeGreaterThanOrEqual(4);
+  });
+});
+
+/**
+ * 초3 2-4 — **답을 지면에서 다시 세운다.**
+ *
+ * 왜 따로 있나 — 앞 블록은 「이름이 약속한 성질」(단위분수인가·분모가 같은가)만 잠갔다.
+ * 변이를 설계하다 보니 **답 자체를 아무도 재도출하지 않는 갈래가 아홉**이었다
+ * (2-4-2·3 네 갈래씩 · 2-4-6 연산·기본·응용). 그 자리는 셈을 뒤집어도 초록이다.
+ * 「가드는 망가뜨려 봐야 가드인 줄 안다」의 앞 단계 — **변이를 만들다가 구멍이 보였다.**
+ */
+describe("[초3 4단] 2-4 — 답을 발문에서 다시 세운다", () => {
+  const SEEDS_R = Array.from({ length: 40 }, (_, i) => i * 53 + 11);
+  const unitOf2 = (code: string) =>
+    elementaryUnits().find(
+      (u) => u.grade === "초3" && u.section.startsWith(code),
+    )!;
+  const fracs2 = (t: string): [number, number][] =>
+    [...t.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+      Number(m[1]),
+      Number(m[2]),
+    ]);
+  /** 발문에 찍힌 정수들 — `\frac{}{}` 안의 수는 안 센다(그건 분수로 따로 읽는다). */
+  const ints2 = (t: string): number[] =>
+    [...t.replace(/\\frac\{\d+\}\{\d+\}/g, "").matchAll(/\$(\d+)\$/g)].map(
+      (m) => Number(m[1]),
+    );
+
+  it("2-4-2·2-4-3 — 네 갈래의 답이 발문의 수와 분수에서 다시 나온다", () => {
+    let judged = 0;
+    for (const code of ["2-4-2", "2-4-3"] as const)
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS_R) {
+          const p = generateElementaryProblem(unitOf2(code), seed, tier);
+          const [take, den] = fracs2(p.content)[0]!;
+          const first = ints2(p.content)[0]!;
+          const got = Number(/\$(\d+)\$/.exec(p.answer)![1]);
+          const where = `${code} ${tier} 씨앗 ${seed}`;
+          if (tier === "심화") {
+            // 역산 — 「$\frac td$ 만큼이 part」에서 전체를 되짚는다.
+            expect(got, where).toBe((first / take) * den);
+            // 답은 발문에 안 보여야 한다(보이면 되짚을 게 없다).
+            expect(
+              ints2(p.content),
+              `${where} — 답이 발문에 그대로 있다`,
+            ).not.toContain(got);
+          } else if (tier === "응용") {
+            // 두 단계 — 분수만큼을 덜어 낸 나머지.
+            expect(got, where).toBe(first - (first / den) * take);
+          } else {
+            expect(got, where).toBe((first / den) * take);
+          }
+          judged += 1;
+        }
+      }
+    expect(judged, "한 문항도 안 읽었다").toBe(2 * 4 * SEEDS_R.length);
+  });
+
+  it("2-4-6 — 연산·기본·응용의 답이 지면의 분자에서 다시 나온다", () => {
+    let judged = 0;
+    for (const seed of SEEDS_R) {
+      // 연산 — 「가장 작은」을 묻는다(표준은 가장 큰 것을 묻는다).
+      const calc = generateElementaryProblem(unitOf2("2-4-6"), seed, "연산");
+      const nums = fracs2(calc.content).map(([a]) => a);
+      expect(calc.content, `연산 씨앗 ${seed}`).toMatch(/작은/);
+      expect(fracs2(calc.answer)[0]![0], `연산 씨앗 ${seed}`).toBe(
+        Math.min(...nums),
+      );
+
+      // 기본 — 답이 **가장 큰 분수 옆의 이름**이어야 한다.
+      const word = generateElementaryProblem(unitOf2("2-4-6"), seed, "기본");
+      const pairs = [
+        ...word.content.matchAll(/([가-힣]+): \$\\frac\{(\d+)\}\{\d+\}\$/g),
+      ].map((m) => [m[1]!, Number(m[2])] as const);
+      expect(pairs.length, `기본 씨앗 ${seed}`).toBe(3);
+      const best = pairs.reduce((x, y) => (y[1] > x[1] ? y : x));
+      expect(word.answer.trim(), `기본 씨앗 ${seed}`).toBe(best[0]);
+
+      // 응용 — 큰 것부터 늘어놓았는가(순서까지 본다).
+      const apply = generateElementaryProblem(unitOf2("2-4-6"), seed, "응용");
+      const shown = fracs2(apply.content).map(([a]) => a);
+      const ordered = fracs2(apply.answer).map(([a]) => a);
+      expect(ordered, `응용 씨앗 ${seed}`).toEqual(
+        [...shown].sort((a, b) => b - a),
+      );
+      judged += 3;
+    }
+    expect(judged).toBe(3 * SEEDS_R.length);
+  });
+
+  it("2-4-5 응용 — **자연수 부분이 더 큰 쪽**을 골랐는가", () => {
+    for (const seed of SEEDS_R) {
+      const p = generateElementaryProblem(unitOf2("2-4-5"), seed, "응용");
+      const shown = fracs2(p.content);
+      expect(shown.length, `씨앗 ${seed}`).toBe(2);
+      const [[nA, d], [nB]] = shown as [[number, number], [number, number]];
+      // 자연수 부분은 몫이다. 둘이 같으면 답이 하나가 아니므로 그것도 막는다.
+      expect(
+        Math.floor(nA / d) === Math.floor(nB / d),
+        `씨앗 ${seed} — 자연수 부분이 같아 답이 하나가 아니다`,
+      ).toBe(false);
+      const want = Math.floor(nA / d) > Math.floor(nB / d) ? nA : nB;
+      expect(fracs2(p.answer)[0]![0], `씨앗 ${seed}`).toBe(want);
+    }
+  });
+
+  // ── 아래 셋은 **변이가 초록이라 뒤늦게 채운 자물쇠**다 ──────────────────
+  // 하네스가 「이 자리를 망가뜨려도 아무도 안 운다」고 알려 준 것이 이 셋이다.
+  // 시험을 먼저 짜고 변이를 나중에 돌리면 이런 자리는 구조적으로 안 보인다.
+
+  it("2-4-4 연산 — 답 목록이 발문의 가분수 **전부**와 같다 (분자=분모 포함)", () => {
+    for (const seed of SEEDS_R) {
+      const p = generateElementaryProblem(unitOf2("2-4-4"), seed, "연산");
+      const shown = fracs2(p.content);
+      const den = shown[0]![1];
+      // 「분자가 분모와 같거나 크면 가분수」 — 같은 것을 빠뜨리면 여기서 걸린다.
+      const want = shown.filter(([a]) => a >= den).map(([a]) => a);
+      expect(
+        fracs2(p.answer).map(([a]) => a),
+        `씨앗 ${seed}`,
+      ).toEqual(want);
+      expect(
+        want.length,
+        `씨앗 ${seed} — 가분수가 하나도 없다`,
+      ).toBeGreaterThan(0);
+    }
+  });
+
+  it("2-4-4 기본 — 기준 분수와 답 분수가 **다르다** (「$0$ 만큼」이 나가면 안 된다)", () => {
+    for (const seed of SEEDS_R) {
+      const p = generateElementaryProblem(unitOf2("2-4-4"), seed, "기본");
+      expect(p.content, `씨앗 ${seed} — 0 만큼 옮기라고 한다`).not.toMatch(
+        /\$0\$ 만큼/,
+      );
+      const base = fracs2(p.content)[0]!;
+      const got = fracs2(p.answer)[0]!;
+      expect(got[0], `씨앗 ${seed} — 옮길 것이 없다`).not.toBe(base[0]);
+      expect(got[1], `씨앗 ${seed} — 분모가 바뀌었다`).toBe(base[1]);
+      // 발문이 말한 만큼 실제로 옮겼는가.
+      const m = /분자를 \$(\d+)\$ 만큼 (크게|작게)/.exec(p.content)!;
+      const step = Number(m[1]) * (m[2] === "크게" ? 1 : -1);
+      expect(got[0], `씨앗 ${seed}`).toBe(base[0] + step);
+    }
+  });
+
+  it("2-4-5 심화 — 가린 자리의 **참값**을 답한다", () => {
+    for (const seed of SEEDS_R) {
+      const p = generateElementaryProblem(unitOf2("2-4-5"), seed, "심화");
+      const [num, den] = fracs2(p.content)[0]!;
+      const got = Number(/\$(\d+)\$$/.exec(p.answer.trim())![1]);
+      const whole = Math.floor(num / den);
+      const rest = num % den;
+      // 자연수부가 가려졌으면 몫, 분자가 가려졌으면 나머지다.
+      // ⚠️ `\\square` 를 `\square` 로 적으면 정규식의 **공백류 `\s`** 가 되어 늘 거짓이다.
+      const hidesWhole = /\\square\\frac\{/.test(p.content);
+      expect(
+        got,
+        `씨앗 ${seed} — ${hidesWhole ? "자연수부" : "분자"}가 가려졌다`,
+      ).toBe(hidesWhole ? whole : rest);
+    }
+  });
+
+  it("2-4-1 심화 — 답이 발문에 안 보이고 되짚기가 성립한다", () => {
+    for (const seed of SEEDS_R) {
+      const p = generateElementaryProblem(unitOf2("2-4-1"), seed, "심화");
+      const [groups, take, part] = ints2(p.content) as [number, number, number];
+      const got = Number(/\$(\d+)\$/.exec(p.answer)![1]);
+      expect(got, `씨앗 ${seed}`).toBe((part / take) * groups);
+      expect(
+        ints2(p.content),
+        `씨앗 ${seed} — 답이 발문에 그대로 있다`,
+      ).not.toContain(got);
+    }
+  });
+});

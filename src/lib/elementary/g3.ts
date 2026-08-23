@@ -1176,6 +1176,14 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
   // 「개」로 세는 것만 — 색종이는 「장」이라 발문이 어색해진다.
   const stuff = pick(rng, ["사탕", "구슬", "딱지", "쿠키", "귤"]);
   if (s.includes("분수로 나타내기")) {
+    // ⚠️ **여기는 기약으로 안 거른다 — 아래 「분수만큼」과 통일하지 말 것.**
+    // 이 소단원의 분수는 **답**이다. 「$6$묶음 중 $2$묶음」의 답은 $\frac26$ 이 정답이고,
+    // $\frac13$ 을 요구하면 **약분(초5)을 안 배운 학년에게 안 배운 것을 요구**하게 된다.
+    // 아래 2-4-2·3 은 분수가 **발문에 주어지는 값**이라 반대로 걸러야 한다(거기 주석 참조).
+    // 실측 2026-08-23: 씨앗 200개에서 약분되는 답이 39건 — **결함이 아니라 학년에 맞는 것**.
+    // 같은 이유로 1-6-2·1-6-3(그림에서 읽는 분수)도 안 거른다.
+    // ⓘ 지금 초등 문항은 **자동 채점 경로가 없다**(답은 정답지에 찍고 사람이 채점한다).
+    //   나중에 자동 채점이 생기면 $\frac26$ 과 $\frac13$ 을 같게 볼지가 여기서 걸린다.
     const groups = intBetween(rng, 3, 6);
     const each = intBetween(rng, 2, 8);
     const whole = groups * each;
@@ -1196,6 +1204,10 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
     const whole = den * each;
     // 약분되는 분수($\frac24$)는 초3-2 가 아직 안 배운 모양이다 — 기약인 것만 고른다.
     // 분모와 서로소인 분자는 $den-1$ 이 늘 있으므로 후보가 비지 않는다.
+    // ⚠️ **위 「분수로 나타내기」와 규칙이 갈리는 것은 일부러다 — 통일하지 말 것.**
+    // 여기 분수는 **발문에 주어지는 값**이라 「$24$개의 $\frac26$ 만큼」이 학생에게 약분을
+    // 부른다. 위쪽은 분수가 **답**이라 안 거른다. 두 규칙은 어긋난 게 아니라 **서로 다른
+    // 것을 막는다** — 어느 쪽으로 통일해도 한쪽이 깨진다(2026-08-23 리드 확정).
     const take = many
       ? pick(
           rng,
@@ -5707,6 +5719,506 @@ function div224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ══ 2-4 분수 (2-4-1 ~ 2-4-6) ═══════════════════════════════════════════
+//
+// ⚠️ **기약 규칙은 소단원마다 다르고, 그것이 옳다** — `frac32` 의 두 주석을 먼저 읽을 것.
+//   분수가 **답**인 자리(2-4-1)는 안 거르고, **발문에 주어지는 값**인 자리(2-4-2·3)는 거른다.
+//   초3 은 약분(초5)을 안 배우므로 $\frac26$ 이 정답이다. **통일하지 말 것.**
+//
+// ⚠️ 이 대단원의 성질 여럿은 **구성이 100% 를 보장한다**(분모가 같다 · 발문이 가분수다 ·
+//   분자가 서로 다르다). 그런 성질의 시험 문턱은 **전량**이어야 한다 — 「대부분」으로 두면
+//   구성이 절반 무너져도 안 운다(2026-08-23 g5 실측: 구성 100% ↔ 변이 59.5% 가 «과반» 통과).
+
+/** 「개」로 세는 소재만 — 색종이는 「장」이라 발문이 어색해진다(`frac32` 와 같은 목록). */
+const FRAC24_STUFF = ["사탕", "구슬", "딱지", "쿠키", "귤"] as const;
+
+/** 세 사람 비교용. 2-4-6 기본은 **셋**이라 1-6-4 기본(둘)과 지면에서 갈린다. */
+const KID_TRIOS = [
+  ["가은", "나윤", "다인"],
+  ["라온", "시우", "하람"],
+  ["도현", "서진", "예찬"],
+] as const;
+
+/**
+ * 분모와 서로소인 분자 후보. **거르는 고리가 아니라 목록에서 고른다** — 뽑고 나서
+ * 버리면 씨앗마다 걸음 수가 달라져 되풀이가 깨진다.
+ * `den-1` 은 언제나 서로소라 후보가 비지 않는다(그래서 `pick` 이 안전하다).
+ */
+function coprimeNums(den: number, from: number): number[] {
+  return Array.from({ length: den - from }, (_, i) => i + from).filter(
+    (v) => gcd(v, den) === 1,
+  );
+}
+
+// ── 2-4-1 분수로 나타내기 ──
+
+/** 1단 — 묶음 수와 뽑은 묶음 수를 바로 준다(표준은 물건 개수부터 준다). */
+function part241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  const stem = pick(rng, [
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(groups)}묶음으로 나눈 것 가운데 ${n(take)}묶음을 분수로 나타내시오.`,
+    `전체를 ${n(groups)}묶음으로 똑같이 나누었습니다. ${n(take)}묶음은 전체의 얼마입니까?`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${take}}{${groups}}`),
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음이므로 ${expr(`\\frac{${take}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 묶음 수를 **스스로 구해야** 한다(한 묶음의 개수만 준다). */
+function part241Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 3, 8);
+  const each = intBetween(rng, 2, 9);
+  const whole = groups * each;
+  const take = intBetween(rng, 1, groups - 1);
+  const stem = pick(rng, [
+    `${stuff} ${n(whole)}개를 한 묶음에 ${n(each)}개씩 묶었습니다. ${n(take)}묶음은 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} ${n(whole)}개를 ${n(each)}개씩 똑같이 묶었습니다. 그중 ${n(take)}묶음을 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${take}}{${groups}}`),
+    `${n(whole)}개를 ${n(each)}개씩 묶으면 ${expr(`${whole}\\div${each}=${groups}`)} 이므로 ${n(groups)}묶음입니다. 그중 ${n(take)}묶음이므로 ${expr(`\\frac{${take}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 먹은 묶음을 빼서 **남은 묶음**을 구하고 분수로 나타낸다. */
+function part241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 4, 8);
+  const each = intBetween(rng, 2, 9);
+  const whole = groups * each;
+  const take = intBetween(rng, 1, groups - 2);
+  const left = groups - take;
+  const stem = pick(rng, [
+    `${stuff} ${n(whole)}개를 똑같이 ${n(groups)}묶음으로 나누어 그중 ${n(take)}묶음을 먹었습니다. 남은 것은 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} ${n(whole)}개를 ${n(groups)}묶음으로 똑같이 나누고 ${n(take)}묶음을 나누어 주었습니다. 남은 것을 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${left}}{${groups}}`),
+    `${n(groups)}묶음 중 ${n(take)}묶음을 덜어 내면 ${expr(`${groups}-${take}=${left}`)} 이므로 ${n(left)}묶음이 남습니다. 전체 ${n(groups)}묶음 중 ${n(left)}묶음이므로 ${expr(`\\frac{${left}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산·조건 둘: 「묶음 수」와 「몇 묶음이 몇 개」에서 **전체 개수**를 되짚는다. */
+function part241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 3, 8);
+  const each = intBetween(rng, 2, 9);
+  const take = intBetween(rng, 2, groups - 1);
+  const part = each * take;
+  const whole = each * groups;
+  const stem = pick(rng, [
+    // ⚠️ 소재 낱말 뒤 조사는 **반드시 `josa`** 로 — 「사탕를」·「구슬는」이 그대로 지면에 나간다.
+    //   조사 판정기들은 `$…$` 뒤만 보므로 이 부류를 구조적으로 못 잡는다(2026-08-23 실측 6자리).
+    `${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(groups)}묶음으로 나누었습니다. 그중 ${n(take)}묶음이 ${n(part)}개일 때, 처음 ${stuff}${josa(stuff, "은", "는")} 모두 몇 개입니까?`,
+    `${stuff}${josa(stuff, "을", "를")} ${n(groups)}묶음으로 똑같이 나누었더니 ${n(take)}묶음이 ${n(part)}개였습니다. 전체는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(whole),
+    `${n(take)}묶음이 ${n(part)}개이므로 한 묶음은 ${expr(`${part}\\div${take}=${each}`)} 개입니다. 묶음이 ${n(groups)}개이므로 전체는 ${expr(`${each}\\times${groups}=${whole}`)} 개입니다.`,
+  );
+}
+
+// ── 2-4-2 · 2-4-3 분수만큼은 얼마인지 알아보기 ──
+//
+// 두 소단원은 **분자 하나로만** 갈린다((1) 은 단위분수, (2) 는 분자 2 이상).
+// 그래서 공장 하나에 `unitOnly` 를 주어 **같은 규칙을 두 곳이 쓰게** 한다 —
+// 갈래마다 따로 적으면 한쪽만 고쳐도 아무도 모른다.
+
+/** 분자를 그 소단원 이름이 약속한 대로 고른다. 발문에 실리는 값이라 **기약만**. */
+function takeOf(rng: Rng, den: number, unitOnly: boolean): number {
+  return unitOnly ? 1 : pick(rng, coprimeNums(den, 2));
+}
+
+/** 1단 — 수만 준다(표준은 소재를 붙인다). */
+function frac24CalcOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const answer = each * take;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `${n(whole)}의 ${fr} 만큼은 얼마인지 쓰시오.`,
+      `${n(whole)}의 ${fr} 만큼은 어떤 수입니까?`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(answer),
+      // ⚠️ 수 뒤에 조사를 붙이지 않는다(읽는 소리로 갈린다) — 「$24$을」이 아니라
+      //   수를 문장 앞에 세우지 않고 셈으로 보인다. 전 학년 R-조사 판정기가 이 자리를 잡았다.
+      take === 1
+        ? `똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 입니다. ${fr} 만큼은 한 묶음이므로 ${n(answer)} 입니다.`
+        : `똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 입니다. ${n(take)}묶음이므로 ${expr(`${each}\\times${take}=${answer}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 분수를 **스스로 세워야** 한다(나눠 가지는 사람 수만 준다). */
+function frac24WordOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const answer = each * take;
+    // ⚠️ **발문에 분수가 서야 한다.** 「$N$개를 $d$명이 나누어 가짐」만 쓰면 지면에 분수가
+    //   하나도 없어 1-3 나눗셈 문항과 구별되지 않는다 — 소단원 이름이 약속한 「분수만큼」이
+    //   사라진다(2026-08-23 자체 시험이 잡았다. 공용 조건 판정기는 이 소단원을 아직 안 본다).
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const isNot = josa(stuff, "은", "는");
+    const stem = unitOnly
+      ? pick(rng, [
+          `${stuff} ${n(whole)}개가 있습니다. 그중 ${fr} 만큼을 동생에게 주었습니다. 동생에게 준 ${stuff}${isNot} 몇 개입니까?`,
+          `${stuff} ${n(whole)}개를 ${n(den)}명이 똑같이 나누어 가졌습니다. 한 사람이 가진 것은 전체의 ${fr} 만큼입니다. 한 사람이 가진 ${stuff}${isNot} 몇 개인지 쓰시오.`,
+        ])
+      : pick(rng, [
+          `${stuff} ${n(whole)}개가 있습니다. 그중 ${fr} 만큼을 상자에 담았습니다. 상자에 담은 ${stuff}${isNot} 몇 개입니까?`,
+          `${stuff} ${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누고 그중 ${n(take)}묶음을 담았습니다. 담은 것은 전체의 ${fr} 만큼입니다. 담은 ${stuff}${isNot} 몇 개인지 쓰시오.`,
+        ]);
+    return make(
+      unit,
+      stem,
+      n(answer),
+      take === 1
+        ? `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 개입니다. 한 묶음이 전체의 ${expr(`\\frac{1}{${den}}`)} 만큼입니다.`
+        : `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 개입니다. ${n(take)}묶음이므로 ${expr(`${each}\\times${take}=${answer}`)} 개이고, 이는 전체의 ${expr(`\\frac{${take}}{${den}}`)} 만큼입니다.`,
+    );
+  };
+}
+
+/** 3단 — 두 단계: 분수만큼을 구한 뒤 **남은 것**까지 센다. */
+function frac24ApplyOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const used = each * take;
+    const left = whole - used;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `${stuff} ${n(whole)}개 중 ${fr} 만큼을 먹었습니다. 남은 ${stuff}${josa(stuff, "은", "는")} 몇 개입니까?`,
+      `${stuff} ${n(whole)}개의 ${fr} 만큼을 나누어 주었습니다. 남은 것은 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(left),
+      `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${n(each)}개입니다. ${fr} 만큼은 ${
+        take === 1
+          ? `${n(used)}개`
+          : `${expr(`${each}\\times${take}=${used}`)} 개`
+      }이므로 남은 것은 ${expr(`${whole}-${used}=${left}`)} 개입니다.`,
+    );
+  };
+}
+
+/** 4단 — 역산: 「분수만큼이 몇 개」에서 **전체**를 되짚는다(답은 발문에 안 보인다). */
+function frac24DeepOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const part = each * take;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `어떤 수의 ${fr} 만큼이 ${n(part)} 입니다. 어떤 수는 얼마인지 쓰시오.`,
+      `${stuff} 상자에서 ${fr} 만큼을 꺼냈더니 ${n(part)}개였습니다. 상자에 있던 ${stuff}${josa(stuff, "은", "는")} 모두 몇 개입니까?`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(whole),
+      take === 1
+        ? `${fr} 만큼이 한 묶음이므로 한 묶음은 ${n(part)} 입니다. 묶음이 ${n(den)}개이므로 처음 수는 ${expr(`${part}\\times${den}=${whole}`)} 입니다.`
+        : `${n(take)}묶음이 ${n(part)} 이므로 한 묶음은 ${expr(`${part}\\div${take}=${each}`)} 입니다. 묶음이 ${n(den)}개이므로 처음 수는 ${expr(`${each}\\times${den}=${whole}`)} 입니다.`,
+    );
+  };
+}
+
+// ── 2-4-4 진분수와 가분수 알아보기 ──
+
+/** 1단 — 넷 중 가분수만 모두 고른다(표준은 하나를 판별한다). 진·가가 **둘 다 나오게** 구성. */
+function kind244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  // 진분수 둘 · 가분수 둘 — **구성으로 보장한다.** 뽑고 나서 세면 한쪽만 나오는 씨앗이 생긴다.
+  const proper = distinctIdx(rng, den - 1, 2).map((i) => i + 1);
+  const improper = distinctIdx(rng, 5, 2).map((i) => i + den);
+  const order = distinctIdx(rng, 4, 4);
+  const all = [...proper, ...improper];
+  const shown = order.map((i) => all[i]!);
+  const list = shown.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const ans = shown.filter((v) => v >= den);
+  return make(
+    unit,
+    `${pick(rng, ["다음 분수 중에서 가분수를 모두 골라 쓰시오.", "다음 중 가분수인 것을 모두 쓰시오."])}\n\n${list}`,
+    ans.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  "),
+    `분자가 분모와 같거나 분모보다 크면 가분수입니다. 분모가 ${n(den)} 이므로 분자가 ${n(den)} 이상인 것을 고릅니다.`,
+  );
+}
+
+/**
+ * 2단 — 분수를 **스스로 만들어** 놓고 판별한다(주어진 분수에서 분자를 옮겨 만든다).
+ *
+ * ⚠️ 분모·분자를 **말로만** 주면 지면에 분수가 하나도 안 선다. 전 학년
+ * `probe-elem-section-conditions` 의 「진분수와 가분수」 조건이 그것을 잡는다
+ * (2026-08-23 실측 40/40 위반). 기준이 되는 분수를 지면에 세우고 거기서 만들게 한다 —
+ * 축(식을 스스로 세움)은 그대로다.
+ */
+function kind244Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const improper = intBetween(rng, 0, 1) === 1;
+  const num = improper
+    ? intBetween(rng, den, den + 5)
+    : intBetween(rng, 1, den - 1);
+  // 기준 분수의 분자는 **답의 분자와 달라야** 한다 — 같으면 「분자를 그대로 둔 분수」가
+  // 되어 묻는 것이 사라진다. 뽑고 버리지 않고 **건너뛰기로** 막는다(씨앗마다 걸음 수가
+  // 같아야 되풀이가 깨지지 않는다). 가분수면 `num` 이 1..den-1 밖이라 애초에 안 부딪힌다.
+  const avoid = improper ? 0 : num;
+  let base = intBetween(rng, 1, den - 1 - (avoid > 0 ? 1 : 0));
+  if (avoid > 0 && base >= avoid) base += 1;
+  const gap = num - base;
+  const baseFr = expr(`\\frac{${base}}{${den}}`);
+  const move =
+    gap > 0
+      ? `분자를 ${n(gap)} 만큼 크게 한`
+      : `분자를 ${n(-gap)} 만큼 작게 한`;
+  const stem = pick(rng, [
+    `${baseFr} 에서 분모는 그대로 두고 ${move} 분수를 쓰고, 진분수와 가분수 중 무엇인지 쓰시오.`,
+    `${baseFr} 에서 분모는 그대로 두고 ${move} 분수는 진분수입니까, 가분수입니까? 분수와 함께 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    `${expr(`\\frac{${num}}{${den}}`)}, ${improper ? "가분수" : "진분수"}`,
+    `분모가 ${n(den)}, 분자가 ${n(num)} 이므로 ${expr(`\\frac{${num}}{${den}}`)} 입니다. ${
+      improper
+        ? `분자와 분모를 비교하면 ${expr(`${num}${num === den ? "=" : ">"}${den}`)} 이므로 가분수입니다.`
+        : `분자와 분모를 비교하면 ${expr(`${num}<${den}`)} 이므로 진분수입니다.`
+    }`,
+  );
+}
+
+/**
+ * 3단 — 두 단계: 주어진 진분수가 **가분수가 되려면** 분자를 얼마나 키워야 하는지.
+ * 판별(진분수다) → 되짚기(분모까지 얼마 남았나) 두 걸음이다.
+ */
+function kind244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 4, 9);
+  const num = intBetween(rng, 1, den - 1);
+  const need = den - num;
+  const fr = expr(`\\frac{${num}}{${den}}`);
+  const stem = pick(rng, [
+    `${fr} 의 분모는 그대로 두고 분자만 크게 하여 가분수를 만들려고 합니다. 분자에 더해야 하는 가장 작은 수를 쓰시오.`,
+    `${fr} 의 분자를 적어도 얼마만큼 크게 해야 가분수가 되는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(need),
+    `주어진 분수는 분자와 분모를 비교하면 ${expr(`${num}<${den}`)} 이므로 진분수입니다. 가분수가 되려면 분자가 분모와 같거나 커야 하므로 분자는 적어도 ${n(den)} 이어야 하고, ${expr(`${den}-${num}=${need}`)} 만큼 크게 해야 합니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 둘을 겹쳐 개수를 센다(가분수이면서 분자가 어떤 수보다 작다).
+ *
+ * ⚠️ 답이 「몇 개」라 **가짓수**를 봐야 한다. `span` 을 흔들어 답이 2~6 으로 갈리게 한다 —
+ * 분모를 고정하면 답이 한 값으로 굳는다.
+ */
+function kind244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const span = intBetween(rng, 2, 6);
+  const limit = den + span;
+  // ⚠️ 견줄 상대를 **수 분수**로 세운다. `\frac{\square}{d}` 만 있으면 지면에는 분수가
+  //   보이는데 판정기의 분수 세기(`fracs()`)가 □ 를 못 읽어 「분수가 없다」로 걸린다.
+  //   수 분수를 함께 세우면 문항도 더 구체적이 된다(2026-08-23).
+  const limFr = expr(`\\frac{${limit}}{${den}}`);
+  const stem = pick(rng, [
+    `${expr(`\\frac{\\square}{${den}}`)} 가 가분수이고 ${limFr} 보다 작습니다. ${expr("\\square")} 에 들어갈 수 있는 수는 모두 몇 개입니까?`,
+    `분모가 ${n(den)} 인 분수 중에서 ${limFr} 보다 작은 가분수는 모두 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(span),
+    `분모가 같으므로 분자만 견주면 됩니다. 가분수이려면 분자가 분모 ${n(den)} 보다 작지 않아야 하므로 ${n(den)} 부터이고, ${limFr} 보다 작아야 하므로 ${n(limit - 1)} 까지입니다. ${n(den)} 부터 ${n(limit - 1)} 까지이므로 ${expr(`${limit - 1}-${den}+1=${span}`)} 개입니다.`,
+  );
+}
+
+// ── 2-4-5 대분수 알아보기 ──
+//
+// ⚠️ 해설에서 **나머지가 있는 나눗셈을 등식으로 적지 않는다** — `$17\div6=2$` 는 거짓이다.
+//   표준을 2026-08-23 에 그 꼴로 고쳤으므로 네 갈래도 **같은 꼴**(곱하고 빼서 몫·나머지)로
+//   맞춘다. 한 소단원 안에서 표기가 갈리면 지면에서 바로 티가 난다.
+
+/** 1단 — **대분수 → 가분수**(표준은 반대 방향이다). */
+function mixed245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const num = whole * den + rest;
+  const mixed = expr(`${whole}\\frac{${rest}}{${den}}`);
+  return make(
+    unit,
+    `${pick(rng, ["다음 대분수를 가분수로 나타내시오.", "다음 대분수를 가분수로 고쳐 쓰시오."])}\n\n${mixed}`,
+    expr(`\\frac{${num}}{${den}}`),
+    `자연수 부분을 분모가 ${n(den)} 인 분수로 고치면 ${expr(`\\frac{${whole * den}}{${den}}`)} 이고, ${expr(`${whole * den}+${rest}=${num}`)} 이므로 ${expr(`\\frac{${num}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 대분수를 **스스로 세운다**(자연수 부분과 진분수 부분을 말로 준다). */
+function mixed245Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 6);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const stem = pick(rng, [
+    `자연수 부분이 ${n(whole)} 이고 진분수 부분이 ${expr(`\\frac{${rest}}{${den}}`)} 인 대분수를 쓰시오.`,
+    `자연수 ${n(whole)} 만큼과 ${expr(`\\frac{${rest}}{${den}}`)} 만큼을 더한 수를 대분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`${whole}\\frac{${rest}}{${den}}`),
+    `대분수는 자연수와 진분수를 나란히 씁니다. 자연수 부분이 ${n(whole)}, 진분수 부분이 ${expr(`\\frac{${rest}}{${den}}`)} 이므로 ${expr(`${whole}\\frac{${rest}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 가분수 둘을 각각 대분수로 고쳐 **자연수 부분이 큰 쪽**을 고른다. */
+function mixed245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  // 자연수 부분이 **반드시 다르게** — 같으면 답이 하나가 아니다(구성으로 막는다).
+  const [i, j] = distinctIdx(rng, 5, 2) as [number, number];
+  const wA = i + 1;
+  const wB = j + 1;
+  const rA = pick(rng, coprimeNums(den, 1));
+  const rB = pick(rng, coprimeNums(den, 1));
+  const numA = wA * den + rA;
+  const numB = wB * den + rB;
+  const bigger = wA > wB ? numA : numB;
+  const bigW = Math.max(wA, wB);
+  return make(
+    unit,
+    `${pick(rng, ["두 가분수를 대분수로 나타냈을 때, 자연수 부분이 더 큰 것을 가분수 그대로 쓰시오.", "다음 두 가분수 중 대분수로 고쳤을 때 자연수 부분이 더 큰 것을 쓰시오."])}\n\n${expr(`\\frac{${numA}}{${den}}`)},  ${expr(`\\frac{${numB}}{${den}}`)}`,
+    expr(`\\frac{${bigger}}{${den}}`),
+    `${expr(`${den}\\times${wA}=${den * wA}`)} 이고 ${expr(`${numA}-${den * wA}=${rA}`)} 이므로 첫째 분수는 ${expr(`${wA}\\frac{${rA}}{${den}}`)} 입니다. ` +
+      `${expr(`${den}\\times${wB}=${den * wB}`)} 이고 ${expr(`${numB}-${den * wB}=${rB}`)} 이므로 둘째 분수는 ${expr(`${wB}\\frac{${rB}}{${den}}`)} 입니다. ` +
+      `자연수 부분이 더 큰 것은 ${n(bigW)} 이므로 답은 ${expr(`\\frac{${bigger}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 가분수를 알려 주고 대분수의 **가려진 자리**를 되짚는다. */
+function mixed245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 6);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const num = whole * den + rest;
+  // 가리는 자리는 자연수부(0) 또는 분자(1). **분모는 안 가린다** — 가리면 답이 하나가 아니다.
+  const spot = intBetween(rng, 0, 1);
+  const hidden = spot === 0 ? whole : rest;
+  const shown =
+    spot === 0
+      ? expr(`\\square\\frac{${rest}}{${den}}`)
+      : expr(`${whole}\\frac{\\square}{${den}}`);
+  return make(
+    unit,
+    `가분수 ${expr(`\\frac{${num}}{${den}}`)} 만큼을 대분수로 나타내면 ${shown} 입니다. ${expr("\\square")} 에 알맞은 수를 쓰시오.`,
+    n(hidden),
+    `${expr(`${den}\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면 ${expr(`${whole}\\frac{${rest}}{${den}}`)} 이므로 ${expr("\\square")} 에 알맞은 수는 ${n(hidden)} 입니다.`,
+  );
+}
+
+// ── 2-4-6 분모가 같은 분수의 크기 비교 ──
+//
+// ⚠️ 소단원 **이름이 1-6-4 와 글자까지 같다.** 부딪히지 않는 이유는 라우터가 대단원 키
+//   (`초3|2-4 분수` → `frac32`)로 갈리기 때문이고, 낱말은 그 핸들러 안에서만 경쟁한다.
+//   그래도 **지면에서는 갈려야** 하므로 1-6-4 가 둘을 견줄 때 여기는 **셋**을 견준다.
+
+/** 1단 — 세 분수 중 **가장 작은** 것(표준은 가장 큰 것을 묻는다). */
+function cmp246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const small = Math.min(...three);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `${pick(rng, ["다음 세 분수 중 가장 작은 분수를 쓰시오.", "세 분수의 크기를 비교하여 가장 작은 것을 쓰시오."])}\n\n${list}`,
+    expr(`\\frac{${small}}{${den}}`),
+    `분모가 같은 분수는 분자가 작을수록 작습니다. 분자 중 가장 작은 수가 ${n(small)} 이므로 답은 ${expr(`\\frac{${small}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장: 셋 중 가장 많이 먹은 사람(답이 이름이라 1-6-4 의 둘 비교와 지면에서 갈린다). */
+function cmp246Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const kids = pick(rng, KID_TRIOS);
+  const top = three.indexOf(Math.max(...three));
+  const food = pick(rng, ["피자", "케이크", "빵"]);
+  const said = kids
+    .map((k, i) => `${k}: ${expr(`\\frac{${three[i]}}{${den}}`)}`)
+    .join(",  ");
+  return make(
+    unit,
+    // ⚠️ 소재는 `pick` 으로 뽑히므로 받침이 씨앗마다 갈린다 — 「빵를」이 그대로 나간다.
+    `세 사람이 똑같은 ${food}${josa(food, "을", "를")} 각각 다음만큼 먹었습니다. 가장 많이 먹은 사람은 누구인지 쓰시오.\n\n${said}`,
+    kids[top]!,
+    `분모가 같으므로 분자가 클수록 많이 먹은 것입니다. 분자 중 가장 큰 수가 ${n(Math.max(...three))} 이므로 ${kids[top]}입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 셋을 큰 것부터 **순서대로** 늘어놓는다. */
+function cmp246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const sorted = [...three].sort((a, b) => b - a);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `${pick(rng, ["다음 세 분수를 큰 것부터 차례로 쓰시오.", "세 분수를 큰 수부터 순서대로 늘어놓으시오."])}\n\n${list}`,
+    sorted.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  "),
+    `분모가 같은 분수는 분자가 클수록 큽니다. 분자를 큰 것부터 늘어놓으면 ${sorted.map((v) => n(v)).join(", ")} 이므로 ${sorted.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ")} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 둘 사이에 드는 분수 중 **가장 큰 것**.
+ *
+ * ⚠️ 답을 **분수**로 둔다. 2-4-4 심화가 「몇 개」라서, 여기까지 개수를 물으면 한 시험지에
+ *   실렸을 때 두 문항이 같은 것을 묻는 것처럼 보인다(2026-08-23 리드 지적).
+ */
+function cmp246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  // 사이가 **반드시 두 칸 이상** 벌어지게 구성한다 — 붙어 있으면 답이 없다.
+  const lo = intBetween(rng, 1, den - 4);
+  const hi = intBetween(rng, lo + 3, den - 1);
+  const ans = hi - 1;
+  return make(
+    unit,
+    `분모가 ${n(den)} 인 분수 중에서 ${expr(`\\frac{${lo}}{${den}}`)} 보다 크고 ${expr(`\\frac{${hi}}{${den}}`)} 보다 작은 것 가운데 가장 큰 분수를 쓰시오.`,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으므로 분자만 견주면 됩니다. 분자는 ${n(lo)} 보다 크고 ${n(hi)} 보다 작아야 하므로 ${n(lo + 1)} 부터 ${n(ans)} 까지입니다. 그중 가장 큰 분자는 ${n(ans)} 이므로 답은 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -5915,6 +6427,43 @@ export const G3_TIERS: ElemTierMap = {
     기본: rem223Word,
     응용: rem223Apply,
     심화: rem223Deep,
+  },
+  "초3|2-4-1": {
+    연산: part241Calc,
+    기본: part241Word,
+    응용: part241Apply,
+    심화: part241Deep,
+  },
+  // (1) 은 단위분수, (2) 는 분자 2 이상 — **분자 하나로만** 갈리므로 같은 공장을 쓴다.
+  "초3|2-4-2": {
+    연산: frac24CalcOf(true),
+    기본: frac24WordOf(true),
+    응용: frac24ApplyOf(true),
+    심화: frac24DeepOf(true),
+  },
+  "초3|2-4-3": {
+    연산: frac24CalcOf(false),
+    기본: frac24WordOf(false),
+    응용: frac24ApplyOf(false),
+    심화: frac24DeepOf(false),
+  },
+  "초3|2-4-4": {
+    연산: kind244Calc,
+    기본: kind244Word,
+    응용: kind244Apply,
+    심화: kind244Deep,
+  },
+  "초3|2-4-5": {
+    연산: mixed245Calc,
+    기본: mixed245Word,
+    응용: mixed245Apply,
+    심화: mixed245Deep,
+  },
+  "초3|2-4-6": {
+    연산: cmp246Calc,
+    기본: cmp246Word,
+    응용: cmp246Apply,
+    심화: cmp246Deep,
   },
   "초3|2-2-4": {
     연산: div224Calc,

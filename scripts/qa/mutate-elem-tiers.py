@@ -252,8 +252,73 @@ G3_MUTS = [
     ),
     (
         '[2-4] 2-4-5 표준: 나머지 있는 나눗셈을 다시 등식으로 (거짓 등식 되살리기)',
-        '${expr(`${den}\\\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면',
-        '$${num}\\\\div${den}=${whole}$ 이고 나머지가 ${n(rest)} 이므로 대분수로 나타내면',
+        '${expr(`${den}\\\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.',
+        '$${num}\\\\div${den}=${whole}$ 이고 나머지가 ${n(rest)} 이므로 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.',
+    ),
+    (
+        '[2-4] 2-4-1 심화: 되짚은 전체를 한 묶음 적게',
+        '  const whole = each * groups;\n  const stem = pick(rng, [\n    // ⚠️ 소재 낱말 뒤 조사는',
+        '  const whole = each * (groups - 1);\n  const stem = pick(rng, [\n    // ⚠️ 소재 낱말 뒤 조사는',
+    ),
+    (
+        '[2-4] 2-4-1 표준: 답 분수를 기약으로 거른다 (초3 은 약분을 안 배운다)',
+        '    const take = intBetween(rng, 1, groups - 1);\n    return make(\n      unit,\n      `${stuff} ${n(whole)}개를 똑같이',
+        '    const take = pick(rng, coprimeNums(groups, 1));\n    return make(\n      unit,\n      `${stuff} ${n(whole)}개를 똑같이',
+    ),
+    (
+        '[2-4] 2-4-2 가 단위분수를 안 지킨다 ((1)/(2) 갈림 무력화)',
+        '  return unitOnly ? 1 : pick(rng, coprimeNums(den, 2));',
+        '  return pick(rng, coprimeNums(den, unitOnly ? 1 : 2));',
+    ),
+    (
+        '[2-4] 2-4-2·3 응용: 덜어낸 나머지를 하나 더',
+        '    const left = whole - used;',
+        '    const left = whole - used + 1;',
+    ),
+    (
+        '[2-4] 2-4-3 발문 분수의 기약 거름을 뺀다 (약분되는 분수가 발문에 선다)',
+        'function coprimeNums(den: number, from: number): number[] {\n  return Array.from({ length: den - from }, (_, i) => i + from).filter(\n    (v) => gcd(v, den) === 1,\n  );',
+        'function coprimeNums(den: number, from: number): number[] {\n  return Array.from({ length: den - from }, (_, i) => i + from).filter(\n    (v) => v > 0,\n  );',
+    ),
+    (
+        '[2-4] 2-4-4 연산: 가분수 판정을 «분모보다 큰» 으로 (같은 것을 뺀다)',
+        '  const ans = shown.filter((v) => v >= den);',
+        '  const ans = shown.filter((v) => v > den);',
+    ),
+    (
+        '[2-4] 2-4-4 심화: 개수를 하나 더',
+        '    n(span),\n    `분모가 같으므로 분자만 견주면 됩니다.',
+        '    n(span + 1),\n    `분모가 같으므로 분자만 견주면 됩니다.',
+    ),
+    (
+        '[2-4] 2-4-4 기본: 기준 분수의 분자가 답과 같아질 수 있게 (묻는 것이 사라진다)',
+        '  const avoid = improper ? 0 : num;',
+        '  const avoid = 0;',
+    ),
+    (
+        '[2-4] 2-4-5 심화: 가린 자리를 맞바꾼다',
+        '  const hidden = spot === 0 ? whole : rest;',
+        '  const hidden = spot === 0 ? rest : whole;',
+    ),
+    (
+        '[2-4] 2-4-5 응용: 자연수 부분 비교를 뒤집는다',
+        '  const bigger = wA > wB ? numA : numB;',
+        '  const bigger = wA < wB ? numA : numB;',
+    ),
+    (
+        '[2-4] 2-4-6 연산: 「가장 작은」을 묻고 가장 큰 것을 답한다',
+        '  const small = Math.min(...three);',
+        '  const small = Math.max(...three);',
+    ),
+    (
+        '[2-4] 2-4-6 심화: 사이의 가장 큰 분자를 한 칸 아래로',
+        '  const ans = hi - 1;',
+        '  const ans = hi - 2;',
+    ),
+    (
+        '[2-4] 2-4-6 기본: 가장 많이 먹은 사람 대신 가장 적게 먹은 사람',
+        '  const top = three.indexOf(Math.max(...three));',
+        '  const top = three.indexOf(Math.min(...three));',
     ),
 ]
 
@@ -501,7 +566,7 @@ G5_MUTS = [
     ),
     (
         "제자리로 돌아옴 — 2-4-7 심화가 오른쪽 2칸·왼쪽 2칸이 되어 계산이 뜻을 잃는다",
-        "  const downSteps = pick(rng, [1, 2].filter((d) => d !== upSteps));",
+        "  const downSteps = pick(\n    rng,\n    [1, 2].filter((d) => d !== upSteps),\n  );",
         "  const downSteps = pick(rng, [1, 2]);",
     ),
     (
@@ -739,6 +804,33 @@ G6_MUTS = [
         "${(a + m) / wg}}{${(b + m) / wg}}",
         "${a}}{${b}}",
     ),
+    # ── 초6 2-5 원의 둘레와 넓이 (2026-08-23) ──
+    (
+        # 2-5-3 표준을 고치며 세운 규약을 갈래가 물려받는가. 그림이 없으므로 이 말이
+        # 빠지면 「원 안에 그린 정육각형」이 무수히 많아 **답이 하나로 안 선다.**
+        # 값은 그대로 맞으니 검산으로는 구조적으로 안 잡힌다.
+        "한정어 제거 — 2-5-1 연산이 «꼭 맞게»도 조건절도 없이 도형을 말한다",
+        '`지름이 ${unitNum(d, "cm")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,',
+        '`지름이 ${unitNum(d, "cm")} 인 원 안에 그린 정육각형의 둘레는 몇 cm인가?`,',
+    ),
+    (
+        # 발문이 원주율을 안 적으면 「$3$ 으로 풀까 $3.14$ 로 풀까」가 지면에서 안 갈린다.
+        "규약 누락 — 2-5-2 연산이 원주율을 발문에 안 적는다",
+        '`지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm인가? (원주율: ${num(3)})`,\n    num(3 * d),',
+        '`지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm인가?`,\n    num(3 * d),',
+    ),
+    (
+        # 2-4 와 같은 축 — 답이 «순서 있는 쌍»이라 뒤집으면 두 수의 곱도 합도 그대로다.
+        "자리 뒤집기 — 2-5-1 응용이 지름의 아래끝과 위끝을 바꿔 답한다",
+        "    expr(`${c / 4},\\\\ ${c / 3}`),",
+        "    expr(`${c / 3},\\\\ ${c / 4}`),",
+    ),
+    (
+        # 정육각형의 한 변은 **반지름**이다. 지름으로 읽으면 둘레가 두 배가 된다.
+        "공식 훼손 — 2-5-1 연산이 정육각형 한 변을 지름으로 읽는다",
+        "      `지름이 ${unitNum(d, \"cm\")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,\n      num(6 * r),",
+        "      `지름이 ${unitNum(d, \"cm\")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,\n      num(6 * d),",
+    ),
 ]
 
 TARGETS = {
@@ -765,6 +857,11 @@ TARGETS = {
             "2-2-3",
             "2-2-4",
             "2-4-5",
+            "2-4-1",
+            "2-4-2",
+            "2-4-3",
+            "2-4-4",
+            "2-4-6",
         ],
         "muts": G3_MUTS,
     },
@@ -862,6 +959,10 @@ TARGETS = {
             "2-4-3",
             "2-4-4",
             "2-4-5",
+            "2-5-1",
+            "2-5-2",
+            "2-5-3",
+            "2-5-4",
         ],
         "muts": G6_MUTS,
     },
