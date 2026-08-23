@@ -608,6 +608,55 @@ io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 MUT
 run "값 0 에서도 크기 0 막대를 그린다"
 
+# ㊵ **markedShape**(② 도형 위 표시) — 같은 무리로 묶은 두 변의 **길이를 어긋낸다**.
+#    tick 은 그대로 찍히므로 「표시가 거짓말하는」 그림이 된다. 값 검산으로는 안 보인다.
+python - "$BASE" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        return [(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)]"
+assert old in s, "앵커 없음 325"
+io.open(p, "w", encoding="utf-8").write(
+    s.replace(old, old.replace("(ox + s / 2, oy)", "(ox + s / 2 + 6, oy)"), 1)
+)
+MUT
+run "markedShape 다리 두 변을 어긋냄 (tick 은 그대로)"
+
+# ㊶ 직각 기호를 안 그린다 — 초등 직각은 **작은 정사각형**이다(엔진 A 는 호로 그린다).
+python - "$BASE" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "            parts.append(_right_mark(pts[i], pts[(i - 1) % n], pts[(i + 1) % n]))"
+assert old in s, "앵커 없음 326"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "            pass  # 변이", 1))
+MUT
+run "markedShape 직각 기호 안 그리기"
+
+# ㊷ 변 라벨을 `measured()` 가 아니라 **날 텍스트**로 (09 §4-16 위반).
+#    ⚠️ 이 변이는 describe **밖**의 「어느 kind 든 cm 라벨은 halo」가 잡는다 —
+#       `-t` 로 이름을 좁히면 그 검사가 안 돌아 «가드가 아니다»로 보인다. 실제로 속았다.
+python - "$BASE" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)"
+assert old in s, "앵커 없음 327"
+io.open(p, "w", encoding="utf-8").write(
+    s.replace(old, "            _text(mx, my, str(label), size=12)  # 변이", 1)
+)
+MUT
+run "markedShape 변 라벨을 날 텍스트로"
+
+# ㊸ **모양 목록을 ⑧(namedShapes)과 갈라 놓는다** — 두 kind 가 `_shape_points` 하나를
+#    쓰는 것이 이 설계의 핵심이다. 갈라지면 한쪽만 늘어나도 아무도 모른다.
+python - "$BASE" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    pts = _shape_points(kind, pad, pad, size)"
+assert old in s, "앵커 없음 328"
+new = "    pts = [(x, y * 0.8) for x, y in _shape_points(kind, pad, pad, size)]  # 변이"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "markedShape 모양 목록을 namedShapes 와 갈라 놓기"
+
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
 if [ -n "$ONLY" ]; then

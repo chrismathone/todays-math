@@ -68,6 +68,41 @@ SPECS: list[dict] = [
             {"shape": "rightTri", "label": "라", "marks": True},
         ],
     },
+    # ② markedShape — 도형 **위**의 표시. `namedShapes` 와 모양 목록을 공유하므로
+    #    **전 종류**를 넣어 어느 도형의 좌표가 망가져도 산출물이 움직이게 한다.
+    #    표시(변 라벨·각·tick·직각)를 **켠 판과 끈 판을 둘 다** 넣는다 — 켠 것만 넣으면
+    #    「표시를 안 줬는데 그려진다」를, 끈 것만 넣으면 「켰는데 안 그려진다」를 못 본다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k}
+        for k in sorted(
+            {
+                "square", "rect", "rightTri", "isoTri", "wideTri", "eqTri",
+                "diamond", "tallDiamond", "trap", "para", "irregQuad",
+            }
+        )
+    ],
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "isoTri",
+        "sides": ["7 cm", "7 cm", "5 cm"],
+        "angles": [None, "54°", None],
+        "equal": [[0, 1]],
+    },
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "rightTri",
+        "right": [0],
+        "sides": ["3 cm", None, "4 cm"],
+    },
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "para",
+        "angles": ["115°", None, "115°", None],
+        "equal": [[0, 2], [1, 3]],
+    },
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},
@@ -190,6 +225,18 @@ def _assert_covers_every_kind() -> None:
 def main() -> None:
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     _assert_covers_every_kind()
+    # `--specs` — 표본을 **JSON 으로** 내준다. 시험(TS)이 「전 kind 를 훑는」 검사에서
+    # 이것을 읽는다. 그래야 목록이 **한 곳**이 된다.
+    #
+    # 🔴 이 스위치가 생긴 이유: `elementaryFigure.test.ts` 의 「어느 kind 든 cm 라벨은
+    #    halo」가 주석에는 「전 kind 를 훑는다」고 적혀 있는데 **실제로는 손 목록**이었다.
+    #    `markedShape` 를 새로 넣자 그 검사가 구조적으로 못 봤고, 변이(변 라벨을 날
+    #    텍스트로)가 초록으로 나왔다. 09 §4-22 「손 목록은 샌다」가 **그 시험 자신**에게
+    #    또 걸린 것이다(sphere 에 이어 두 번째). 표본은 `_assert_covers_every_kind` 가
+    #    KIND_FIELDS 와 대조하므로, 여기서 읽으면 kind 를 빠뜨릴 수 없다.
+    if "--specs" in sys.argv:
+        print(json.dumps(SPECS, ensure_ascii=False))
+        return
     for spec in SPECS:
         name = json.dumps(spec, ensure_ascii=False, sort_keys=True)
         try:

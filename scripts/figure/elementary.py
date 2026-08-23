@@ -30,6 +30,8 @@ DIM_OFF = 12.0
 FIT_PAD = 2.0
 KIND_FIELDS: dict[str, frozenset[str]] = {
     "numberCards": frozenset({"cards"}),
+    # ② 도형 위 표시 — 성질 문항. 고르기(`namedShapes`)와 **모양 목록을 공유**한다.
+    "markedShape": frozenset({"shape"}),
     "placeValue": frozenset({"hundreds", "tens", "ones"}),
     "base10": frozenset({"rows"}),
     "opBox": frozenset({"input", "op"}),
@@ -56,6 +58,7 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
 }
 OPTIONAL: dict[str, frozenset[str]] = {
     "base10": frozenset({"equation"}),
+    "markedShape": frozenset({"sides", "angles", "equal", "right"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -1398,6 +1401,67 @@ def _right_mark(
     )
 
 
+def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float, float]]:
+    """도형의 **꼭짓점**을 그리는 순서대로.
+
+    🔴 **`namedShapes`(고르기)와 `markedShape`(성질)가 이 하나를 쓴다.** 모양 목록이
+    두 벌이 되면 한쪽만 늘어나도 아무도 모른다 — 오늘 `allow_unknown` 이 정확히 그
+    모양이었다(막대에만 있고 꺾은선에는 없었다, CLAUDE.md 2026-08-18).
+
+    ⚠️ `square`·`rect` 는 지면에 여전히 `<rect>` 로 나간다(아래 `_draw_named_shape`).
+    여기서 점을 내는 것은 **재기 위해서**이지 그리는 방식을 바꾸려는 게 아니다.
+    """
+    if kind == "square":
+        return [(ox, oy), (ox + s, oy), (ox + s, oy + s), (ox, oy + s)]
+    if kind == "rect":
+        x0, w = ox + s * 0.18, s * 0.64
+        return [(x0, oy), (x0 + w, oy), (x0 + w, oy + s), (x0, oy + s)]
+    if kind == "rightTri":
+        return [(ox, oy + s), (ox, oy), (ox + s, oy + s)]
+    if kind == "isoTri":
+        # 밑변을 좁힌다. 밑변 s·높이 s 이면 정삼각형(밑변 s·높이 0.866s)과 윤곽 거리가
+        # **3.93px** 뿐이라 tick 없이는 둘을 못 가른다 — 등변 표시를 옵트인으로 돌린
+        # 순간(원장님 결함 ⑤) 세 세션이 같은 자리에서 막혔다. 0.58s 로 좁히면 9.45px 가
+        # 되어 나머지 짝들(최소 7.92px) 사이에 묻힌다. 변 길이 비 1.12 → 1.80 (09 §4-19).
+        half = s * ISO_TRI_BASE / 2
+        return [(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)]
+    if kind == "wideTri":
+        return [(ox, oy + s), (ox + s / 2, oy + s * 0.42), (ox + s, oy + s)]
+    if kind == "eqTri":
+        h = s * math.sqrt(3) / 2
+        y0 = oy + (s - h) / 2
+        return [(ox, y0 + h), (ox + s / 2, y0), (ox + s, y0 + h)]
+    if kind == "diamond":
+        return [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]
+    if kind == "tallDiamond":
+        return [
+            (ox + s / 2, oy),
+            (ox + s * 0.72, oy + s / 2),
+            (ox + s / 2, oy + s),
+            (ox + s * 0.28, oy + s / 2),
+        ]
+    if kind == "trap":
+        return [
+            (ox + s * 0.2, oy + s * 0.12),
+            (ox + s * 0.8, oy + s * 0.12),
+            (ox + s, oy + s),
+            (ox, oy + s),
+        ]
+    if kind == "para":
+        return [
+            (ox + s * 0.28, oy),
+            (ox + s, oy),
+            (ox + s * 0.72, oy + s),
+            (ox, oy + s),
+        ]
+    return [
+        (ox + s * 0.08, oy + s * 0.22),
+        (ox + s * 0.92, oy),
+        (ox + s, oy + s * 0.62),
+        (ox + s * 0.18, oy + s),
+    ]
+
+
 def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = False) -> str:
     """`marks` 는 **등변 tick·직각 기호**를 그릴지다. 기본은 끈 쪽이다.
 
@@ -1406,68 +1470,19 @@ def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = F
     안전한 쪽을 기본값으로 두고, 성질을 **주고** 푸는 문항만 켠다. 도형 자체는 여전히
     정확한 정삼각형·직각삼각형이라 재면 알 수 있다.
     """
-    if kind == "square":
-        return _rect(ox, oy, s, s, sw=1.5)
-    if kind == "rect":
-        return _rect(ox + s * 0.18, oy, s * 0.64, s, sw=1.5)
+    pts = _shape_points(kind, ox, oy, s)
+    if kind in ("square", "rect"):
+        # 지면은 그대로 `<rect>` 다 — 점으로 가른 것은 재기 위해서다.
+        x0 = min(p[0] for p in pts)
+        y0 = min(p[1] for p in pts)
+        return _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
     if kind == "rightTri":
-        pts = [(ox, oy + s), (ox, oy), (ox + s, oy + s)]
         mark = _right_mark(pts[0], pts[1], pts[2]) if marks else ""
         return _poly_pts(pts) + mark
-    if kind == "isoTri":
-        # 밑변을 좁힌다. 밑변 s·높이 s 이면 정삼각형(밑변 s·높이 0.866s)과 윤곽 거리가
-        # **3.93px** 뿐이라 tick 없이는 둘을 못 가른다 — 등변 표시를 옵트인으로 돌린
-        # 순간(원장님 결함 ⑤) 세 세션이 같은 자리에서 막혔다. 0.58s 로 좁히면 9.45px 가
-        # 되어 나머지 짝들(최소 7.92px) 사이에 묻힌다. 변 길이 비 1.12 → 1.80 (09 §4-19).
-        half = s * ISO_TRI_BASE / 2
-        return _poly_pts([(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)])
-    if kind == "wideTri":
-        return _poly_pts([(ox, oy + s), (ox + s / 2, oy + s * 0.42), (ox + s, oy + s)])
     if kind == "eqTri":
-        h = s * math.sqrt(3) / 2
-        y0 = oy + (s - h) / 2
-        pts = [(ox, y0 + h), (ox + s / 2, y0), (ox + s, y0 + h)]
         ticks = "".join(_tick_at(pts[i], pts[(i + 1) % 3]) for i in range(3)) if marks else ""
         return _poly_pts(pts) + ticks
-    if kind == "diamond":
-        return _poly_pts(
-            [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]
-        )
-    if kind == "tallDiamond":
-        return _poly_pts(
-            [
-                (ox + s / 2, oy),
-                (ox + s * 0.72, oy + s / 2),
-                (ox + s / 2, oy + s),
-                (ox + s * 0.28, oy + s / 2),
-            ]
-        )
-    if kind == "trap":
-        return _poly_pts(
-            [
-                (ox + s * 0.2, oy + s * 0.12),
-                (ox + s * 0.8, oy + s * 0.12),
-                (ox + s, oy + s),
-                (ox, oy + s),
-            ]
-        )
-    if kind == "para":
-        return _poly_pts(
-            [
-                (ox + s * 0.28, oy),
-                (ox + s, oy),
-                (ox + s * 0.72, oy + s),
-                (ox, oy + s),
-            ]
-        )
-    return _poly_pts(
-        [
-            (ox + s * 0.08, oy + s * 0.22),
-            (ox + s * 0.92, oy),
-            (ox + s, oy + s * 0.62),
-            (ox + s * 0.18, oy + s),
-        ]
-    )
+    return _poly_pts(pts)
 
 
 def _named_shapes(spec: Mapping[str, Any]) -> str:
@@ -1508,8 +1523,134 @@ def _named_shapes(spec: Mapping[str, Any]) -> str:
     return _svg(width, height, "".join(parts))
 
 
+def _side_index(v: Any, name: str, n: int) -> int:
+    """변·꼭짓점 번호. 범위를 벗어나면 **던진다** — 조용히 감싸면 엉뚱한 변에 표시된다."""
+    if isinstance(v, bool) or not isinstance(v, int):
+        raise ValueError(f"{name} 의 번호는 정수여야 합니다: {v!r}")
+    if not 0 <= v < n:
+        raise ValueError(f"{name} 의 번호가 범위를 벗어났습니다: {v} (0~{n - 1})")
+    return v
+
+
+# 같은 무리의 변에 찍는 tick 개수. 무리가 둘이면 ‖ 와 ‖‖ 로 갈린다 — 개수가 곧 「무리」다.
+_EQUAL_TICKS = (1, 2, 3)
+
+
+def _marked_shape(spec: Mapping[str, Any]) -> str:
+    """도형 **하나** 위에 각도·변 길이·등변 tick·직각 기호를 얹는다.
+
+    `namedShapes`(고르기)와 나누는 축은 「**도형이 몇 개인가**」가 아니라
+    「**무엇을 지키는 불변식인가**」다. 고르기는 도형 쌍이 윤곽으로 갈려야 하고
+    (`SHAPE_MIN_DISTANCE`, 09 §4-19), 성질 문항은 도형이 하나라 잴 쌍이 없다.
+    한 kind 에 두 규칙이 살면 가드 절반이 늘 헛돈다.
+
+    모양은 `_shape_points` 하나에서 온다 — 목록을 두 벌로 만들지 않는다.
+    치수는 전부 `_length_mark`(=`measured()`) 다 (09 §4-16).
+    """
+    # ⚠️ 키 검사를 여기서 **다시 하지 않는다.** `validate_elementary` 가 `KIND_FIELDS`·
+    #    `OPTIONAL` 로 이미 거른다("검증은 한 벌뿐이다"). 여기 목록을 하나 더 두면
+    #    필드를 늘릴 때 **한쪽만 늘어나고** 아무도 모른다 — 변이 시험이 그것을 잡았다
+    #    (「모르는 키 검사 끄기」가 초록이었다 = 그 검사는 아무것도 안 지켰다).
+    kind = str(spec.get("shape", ""))
+    if kind not in _SHAPE_KINDS:
+        raise ValueError(f"모르는 도형입니다: {kind}")
+
+    pad, size = 30.0, 104.0
+    pts = _shape_points(kind, pad, pad, size)
+    n = len(pts)
+
+    def _seq(name: str, limit: int) -> list[Any]:
+        raw = spec.get(name)
+        if raw is None:
+            return [None] * limit
+        if not isinstance(raw, list):
+            raise ValueError(f"{name} 은 배열이어야 합니다")
+        if len(raw) > limit:
+            raise ValueError(f"{name} 이 꼭짓점 수({limit})보다 깁니다")
+        return list(raw) + [None] * (limit - len(raw))
+
+    sides = _seq("sides", n)
+    angles = _seq("angles", n)
+
+    parts: list[str] = []
+    if kind in ("square", "rect"):
+        x0 = min(p[0] for p in pts)
+        y0 = min(p[1] for p in pts)
+        parts.append(
+            _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
+        )
+    else:
+        parts.append(_poly_pts(pts))
+
+    # 등변 tick — 무리마다 개수를 달리해 «어느 변끼리 같은가»가 보이게 한다.
+    equal = spec.get("equal")
+    if equal is not None:
+        if not isinstance(equal, list):
+            raise ValueError("equal 은 배열이어야 합니다")
+        for g, group in enumerate(equal):
+            if not isinstance(group, list) or len(group) < 2:
+                raise ValueError("equal 의 각 무리는 변 번호 2개 이상이어야 합니다")
+            count = _EQUAL_TICKS[min(g, len(_EQUAL_TICKS) - 1)]
+            for si in group:
+                i = _side_index(si, "equal", n)
+                a, b = pts[i], pts[(i + 1) % n]
+                for k in range(count):
+                    # 여러 개면 중점 둘레로 살짝 벌린다.
+                    parts.append(_tick_span(a, b, 0.5 + (k - (count - 1) / 2) * 0.055))
+
+    # 직각 기호 — **작은 정사각형**이다. 엔진 A 는 이 자리를 호로 그린다(09 §2.1 주).
+    right = spec.get("right")
+    if right is not None:
+        if not isinstance(right, list):
+            raise ValueError("right 는 배열이어야 합니다")
+        for ri in right:
+            i = _side_index(ri, "right", n)
+            parts.append(_right_mark(pts[i], pts[(i - 1) % n], pts[(i + 1) % n]))
+
+    # 변 길이 — `measured()`. 도형 **바깥**으로 벌린다.
+    cx = sum(p[0] for p in pts) / n
+    cy = sum(p[1] for p in pts) / n
+    for i, label in enumerate(sides):
+        if label is None:
+            continue
+        a, b = pts[i], pts[(i + 1) % n]
+        mx, my = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
+        # 무게중심 반대쪽이 바깥이다 — `measured` 의 off 부호로 정한다.
+        nx, ny = -(b[1] - a[1]), b[0] - a[0]
+        outward = (mx - cx) * nx + (my - cy) * ny
+        parts.append(
+            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)
+        )
+
+    # 각 — 꼭짓점에서 **안쪽**으로 들여 적는다.
+    for i, label in enumerate(angles):
+        if label is None:
+            continue
+        px, py = pts[i]
+        dx, dy = cx - px, cy - py
+        hyp = math.hypot(dx, dy) or 1.0
+        parts.append(_text(px + dx / hyp * 22, py + dy / hyp * 22 + 4, str(label), size=12))
+
+    return _svg(pad * 2 + size, pad * 2 + size, "".join(parts))
+
+
+def _tick_span(
+    a: tuple[float, float], b: tuple[float, float], t: float, length: float = 3.4
+) -> str:
+    """변 `a→b` 의 위치 `t` 에 수직 tick 하나. `_tick_at` 의 t 를 옮길 수 있는 판."""
+    mx, my = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    hyp = math.hypot(dx, dy) or 1.0
+    nx, ny = (-dy / hyp) * length, (dx / hyp) * length
+    return (
+        f'<line x1="{_n(mx - nx)}" y1="{_n(my - ny)}" x2="{_n(mx + nx)}" y2="{_n(my + ny)}" '
+        f'stroke="{INK}" stroke-width="1.2"/>'
+    )
+
+
 _RENDER = {
     "numberCards": _number_cards,
+    "markedShape": _marked_shape,
     "placeValue": _place_value,
     "base10": _base10,
     "opBox": _op_box,

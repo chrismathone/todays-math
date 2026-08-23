@@ -1338,6 +1338,18 @@ describe.skipIf(!hasEngine)(
       expect(new Set(sizes).size, "r 이 달라도 원 크기는 같다").toBe(1);
     });
 
+    /**
+     * ⚠️ **이 목록은 손 목록이고, 그래서 샌다.** 09 §4-22 가 적은 그대로다 —
+     * `sphere` 를 놓쳤던 자리이고, 2026-08-23 에 `markedShape` 를 새로 넣었을 때
+     * **또 놓쳤다**(변이 「변 라벨을 날 텍스트로」가 초록이었다).
+     *
+     * 표본(`probe-elem-figure.py --specs`)을 정본으로 읽게 고쳐 봤으나, **vitest 안에서만**
+     * 변이가 반영되지 않는 현상을 못 밝혔다(커맨드라인에서는 날 텍스트가 확실히 나오고,
+     * `drawn` 98→84 로 vitest 가 변이 자체는 본다). 원인 불명인 채로 두면 「검사된다」고
+     * 읽히므로 **손 목록으로 되돌리고 새 kind 를 직접 추가**했다.
+     * 새 kind 를 넣는 사람은 **여기에도 넣어야 한다** — 그리고 그 사실이 문제다.
+     * (미해결 자리: `docs/planning/tracks/elem-figure-demand-20260823.md` §10)
+     */
     it("어느 kind 든 cm 라벨은 halo 치수 글자다 — 날 텍스트가 없다", async () => {
       const bare: string[] = [];
       for (const spec of [
@@ -1367,6 +1379,14 @@ describe.skipIf(!hasEngine)(
           kind: "stackCubes",
           voxels: [[0, 0, 0]],
           views: ["iso"],
+        },
+        // ② markedShape (2026-08-23) — 변 길이를 적는 kind 라 반드시 여기 있어야 한다.
+        {
+          version: "elem-1",
+          kind: "markedShape",
+          shape: "isoTri",
+          sides: ["7 cm", "7 cm", "5 cm"],
+          equal: [[0, 1]],
         },
       ]) {
         const r = await renderFigureSpec(spec);
@@ -2952,3 +2972,150 @@ function shoelace(pts: string) {
   }
   return Math.abs(area) / 2;
 }
+
+/* ── ② markedShape — 도형 «위»의 표시 (2026-08-23, elem-figures) ─────────────
+ *
+ * 왜 `namedShapes` 와 다른 kind 인가: `namedShapes` 는 「가·나·다 중 고르시오」용이고
+ * 그 불변식은 **도형 쌍의 윤곽 거리**(`SHAPE_MIN_DISTANCE` 6px, 09 §4-19)다.
+ * 성질 문항은 도형이 **하나뿐**이라 잴 쌍이 없다 — 한 kind 에 두 규칙이 살면
+ * 가드 절반이 늘 헛돌고, 그게 「배선이 한쪽만」 자리다(CLAUDE.md 2026-08-18).
+ *
+ * 도형 **모양**은 두 kind 가 `_shape_points` 하나를 쓴다. 목록이 두 벌이 되면
+ * 「한쪽만 늘어난다」가 그 자리에서 열린다.
+ *
+ * 참은 **그려진 SVG** 에서 온다 — 스펙을 되읽지 않는다. 기대값은 리터럴이다
+ * (제품 상수에서 만들면 상수를 바꿀 때 기대값이 따라가 영원히 초록이다, 09 §4-20-d).
+ */
+const MARKED_ISO = {
+  version: "elem-1",
+  kind: "markedShape",
+  shape: "isoTri",
+  // ⚠️ `isoTri` 의 점은 [밑변왼, 꼭대기, 밑변오] 라 **같은 두 변은 0·1**(다리)이고
+  // 변 2 가 밑변이다. 처음에 [0,2] 로 썼다가 빨개졌다 — 시험이 도형 구조를 잡아 줬다.
+  sides: ["7 cm", "7 cm", null],
+  angles: [null, "63°", null],
+  equal: [[0, 1]],
+};
+
+describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시", () => {
+  it("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain("7 cm");
+    expect(r.svg).toContain("63°");
+  });
+
+  it("**같다고 표시한 변은 그린 길이도 같다** — tick 이 거짓말하지 않는다", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [corners] = shapeCorners(r.svg);
+    expect(corners).toBeDefined();
+    const at = (i: number) => corners![i % corners!.length]!;
+    const len = (i: number) =>
+      Math.hypot(at(i)[0] - at(i + 1)[0], at(i)[1] - at(i + 1)[1]);
+    // equal:[[0,1]] 이 주장하는 두 변. **음성 대조**: 밑변(2)은 이들과 달라야 한다 —
+    // 「전부 같다」로 통과하면 이 가드는 아무것도 안 지킨다.
+    expect(Math.abs(len(0) - len(1))).toBeLessThan(0.5);
+    expect(Math.abs(len(0) - len(2))).toBeGreaterThan(5);
+  });
+
+  it("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
+    const r = await renderFigureSpec({
+      ...MARKED_ISO,
+      angles: ["63°", "54°", "63°"],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const nums = [...r.svg.matchAll(/(\d+)°/g)].map((m) => Number(m[1]));
+    expect(nums.length).toBe(3);
+    expect(nums.reduce((a, b) => a + b, 0)).toBe(180);
+  });
+
+  it("**직각 기호 자리는 실제로 90°** — 호가 아니라 꺾인 선이다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rightTri",
+      // 점이 [왼아래, 왼위, 오아래] 라 직각은 **0**. 처음에 1 로 썼다가 빨개졌다.
+      right: [0],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [corners] = shapeCorners(r.svg);
+    expect(corners).toBeDefined();
+    const at = (i: number) => corners![((i % 3) + 3) % 3]!;
+    const u = [at(1)[0] - at(0)[0], at(1)[1] - at(0)[1]];
+    const v = [at(2)[0] - at(0)[0], at(2)[1] - at(0)[1]];
+    expect(Math.abs(u[0]! * v[0]! + u[1]! * v[1]!)).toBeLessThan(1);
+    // 초등 직각은 **작은 정사각형**이다. 엔진 A 는 이 자리를 호로 그린다(09 §2.1 주).
+    expect(r.svg).toContain("<polyline");
+  });
+
+  it("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // sides 2개 + angles 1개 = 3
+    expect([...r.svg.matchAll(/7 cm/g)].length).toBe(2);
+    expect([...r.svg.matchAll(/63°/g)].length).toBe(1);
+  });
+
+  it("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // `_length_mark` 는 점선 `6 4` 를 낸다. 날 `<text>` 로 적으면 이 선이 사라진다.
+    // ⚠️ 「cm 라벨은 halo」 전 kind 검사가 이 kind 에서 왜 안 무는지 못 밝혔다
+    //    (문서 §10). 그래서 **같은 것을 다른 특징으로** 한 번 더 잰다.
+    const dashes = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
+    expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
+  });
+
+  it("**음성 대조군** — 표시를 안 주면 tick·직각이 나오지 않는다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).not.toContain("<polyline");
+    expect(r.svg).not.toContain("cm");
+    expect(r.svg).not.toContain("°");
+  });
+
+  it("**모르는 키·모르는 도형은 예외** — 오타가 조용히 무시되지 않는다", async () => {
+    const bad = await renderFigureSpec({ ...MARKED_ISO, sidez: ["1"] });
+    expect(bad.ok).toBe(false);
+    const badShape = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "노형",
+    });
+    expect(badShape.ok).toBe(false);
+  });
+
+  it("**⑧과 같은 도형 함수를 쓴다** — 목록이 두 벌이 아니다", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "eqTri",
+    });
+    const b = await renderFigureSpec({
+      version: "elem-1",
+      kind: "namedShapes",
+      items: [{ shape: "eqTri", label: "가" }],
+    });
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    const ra = rigidSignature(shapeCorners(a.svg)[0]!);
+    const rb = rigidSignature(shapeCorners(b.svg)[0]!);
+    // 자세·크기가 아니라 **모양**이 같아야 한다 — 변 길이 비로 견준다.
+    const norm = (s: number[]) => s.map((v) => v / s[s.length - 1]!);
+    expect(norm(ra.sides).map((v) => v.toFixed(3))).toEqual(
+      norm(rb.sides).map((v) => v.toFixed(3)),
+    );
+  });
+});
