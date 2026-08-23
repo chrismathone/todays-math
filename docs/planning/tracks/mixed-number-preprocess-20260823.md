@@ -80,7 +80,7 @@
 | 검사 | `src/__tests__/unit/mixedNumberPolicy.test.ts` (5건) |
 | 변이 | `python scripts/qa/mutate-mixed-number.py` — 규칙을 되살리면 🔴 |
 | 계량기 | `npx tsx scripts/qa/census-mixed-number.ts` |
-| 시안 | `docs/planning/tracks/mixed-number-sian.html` (전·후 15건) |
+| 시안 | `docs/planning/tracks/mixed-number-sian.html` (전·후 15건 — **결정 전 기록**, 지금 지면은 오른쪽 칸) |
 
 변이 실측 — 기준 `$\dfrac{4}{3}$ $\dfrac{355}{5}=71$` / 변이 `$1\dfrac{1}{3}$ $71=71$`.
 
