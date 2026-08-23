@@ -3558,10 +3558,6 @@ const mulV = (x: [number, number], y: [number, number]): [number, number] => {
   return [num / g, den / g];
 };
 
-/** 발문의 `$…$` 덩어리들. */
-const chunksOf = (t: string): string[] =>
-  [...t.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
-
 describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES22) {
@@ -3794,10 +3790,12 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
     }
   });
 
-  it("2-2-4 응용 — 오개념(자연수부만 곱하기)을 실제로 밟게 하고 차가 선다 (③)", () => {
+  it("2-2-4 심화 — 오개념(자연수부만 곱하기)을 실제로 밟게 하고 차가 선다 (③)", () => {
+    // ⚠️ 이 갈래는 2026-08-23 까지 **응용** 자리에 있었다. D-72 가 4단 예시로 글자
+    //    그대로 드는 문형(「잘못 계산했더니」)이라 3단에 두면 사다리가 뒤집힌다.
     for (const seed of SEEDS) {
-      const p = problem("2-2-4", "응용", seed);
-      const label = `2-2-4 응용 @${seed}`;
+      const p = problem("2-2-4", "심화", seed);
+      const label = `2-2-4 심화 @${seed}`;
       const m = /(\d+)\\frac\{(\d+)\}\{(\d+)\}\\times(\d+)/.exec(p.content)!;
       const [w, a, d, k] = [1, 2, 3, 4].map((i) => Number(m[i]));
       const right = mulV([w! * d! + a!, d!], [k!, 1]);
@@ -3936,6 +3934,451 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("2-2 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});
+
+/* ── 2-4 소수의 곱셈 (D-72 9차) — 재검산 도우미 ── */
+
+const CODES24 = [
+  "2-4-1",
+  "2-4-2",
+  "2-4-3",
+  "2-4-4",
+  "2-4-5",
+  "2-4-6",
+  "2-4-7",
+] as const;
+
+/** 소수 표기를 **정수 스케일**로. 부동소수점을 안 쓴다. `[값, 자릿수]`. */
+function decScaled(tok: string): [number, number] | null {
+  const m = /^(\d+)(?:\.(\d+))?$/.exec(tok);
+  if (!m) return null;
+  const frac = m[2] ?? "";
+  return [Number(m[1] + frac), frac.length];
+}
+
+/** 답 덩어리에서 정수 스케일 값과 자릿수. */
+function answerDecScaled(answer: string, label: string): [number, number] {
+  const m = /^\$(\d+(?:\.\d+)?)\$$/.exec(answer);
+  expect(m, `${label}: 수 답이 아니다 — ${answer}`).not.toBeNull();
+  // 꼬리 0 은 지면 규약 위반이다 — `dec()` 가 접어야 한다
+  expect(m![1], `${label}: 꼬리 0 이 남았다 — ${answer}`).not.toMatch(
+    /\.\d*0$/,
+  );
+  return decScaled(m![1]!)!;
+}
+
+/** 발문의 `$…$` 안에 있는 소수·자연수 토큰들(순서대로). */
+function decTokens(text: string): [number, number][] {
+  const out: [number, number][] = [];
+  for (const m of text.matchAll(/\$([^$]+)\$/g)) {
+    for (const piece of m[1]!.split(/\\times|=|\+|-/)) {
+      const v = decScaled(piece.trim());
+      if (v) out.push(v);
+    }
+  }
+  return out;
+}
+
+/** 두 정수 스케일 값의 곱 — 자릿수는 더해진다(이 대단원의 알맹이). */
+const mulScaled = (
+  x: [number, number],
+  y: [number, number],
+): [number, number] => [x[0] * y[0], x[1] + y[1]];
+
+/** 정수 스케일 값을 «접은» 꼴로 — 꼬리 0 을 없앤 [값, 자릿수]. */
+function collapse([v, d]: [number, number]): [number, number] {
+  let value = v;
+  let dp = d;
+  while (dp > 0 && value % 10 === 0) {
+    value /= 10;
+    dp -= 1;
+  }
+  return [value, dp];
+}
+
+describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
+  it("일곱 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES24) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES24) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("답의 가짓수가 넉넉하다 (씨앗 500 · 가짓수 ≥4 · 최빈 ≤45%)", () => {
+    const N = 500;
+    const bad: string[] = [];
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45)
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── 이름의 약속 — «차례»와 «크기»를 따로 잠근다 ── */
+
+  it("차례 — 2-4-1·2 는 소수 먼저, 2-4-3·4 는 자연수 먼저 (서로의 음성 대조)", () => {
+    // □ 도 그 자리를 지킨다(역산 갈래가 한쪽을 비운다).
+    const decFirst = /(?:^|[^\d.])\d+\.\d+\\times(?:\d+|\\square)(?!\.)/;
+    const wholeFirst = /(?:^|[^\d.])(?:\d+|\\square)\\times\d+\.\d+/;
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        for (const code of ["2-4-1", "2-4-2"] as const) {
+          const c = problem(code, tier, seed).content;
+          const s = problem(code, tier, seed).solution;
+          expect(
+            decFirst.test(`${c} ${s}`),
+            `${code} ${tier} @${seed} 소수 먼저가 없다\n${c}`,
+          ).toBe(true);
+          expect(
+            wholeFirst.test(c),
+            `${code} ${tier} @${seed} 발문에 자연수가 앞선 식이 있다\n${c}`,
+          ).toBe(false);
+        }
+        for (const code of ["2-4-3", "2-4-4"] as const) {
+          const c = problem(code, tier, seed).content;
+          const s = problem(code, tier, seed).solution;
+          expect(
+            wholeFirst.test(`${c} ${s}`),
+            `${code} ${tier} @${seed} 자연수 먼저가 없다\n${c}`,
+          ).toBe(true);
+          expect(
+            decFirst.test(c),
+            `${code} ${tier} @${seed} 발문에 소수가 앞선 식이 있다\n${c}`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  it("크기 — 「1보다 작은」 소단원의 소수는 1 미만, 「1보다 큰」 쪽은 1 초과", () => {
+    /** 발문·해설의 소수 토큰 값들(정수 스케일 → 실수 비교는 스케일로). */
+    const decsIn = (t: string) => decTokens(t).filter(([, d]) => d > 0);
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        // 2-4-1·2-4-3: 곱하는 소수가 1보다 작다 → 발문에 «0.x» 가 반드시 있다
+        for (const code of ["2-4-1", "2-4-3"] as const) {
+          const c = problem(code, tier, seed).content;
+          const unders = decsIn(c).filter(([v, d]) => v < 10 ** d);
+          expect(
+            unders.length,
+            `${code} ${tier} @${seed} 1보다 작은 소수가 없다\n${c}`,
+          ).toBeGreaterThan(0);
+        }
+        // 2-4-2·2-4-4: 곱하는 소수가 1보다 크다
+        for (const code of ["2-4-2", "2-4-4"] as const) {
+          const c = problem(code, tier, seed).content;
+          const overs = decsIn(c).filter(([v, d]) => v > 10 ** d);
+          expect(
+            overs.length,
+            `${code} ${tier} @${seed} 1보다 큰 소수가 없다\n${c}`,
+          ).toBeGreaterThan(0);
+        }
+      }
+      // 2-4-5·2-4-6 연산 — 두 피연산자가 **둘 다** 그 크기다
+      const c5 = problem("2-4-5", "연산", seed).content;
+      const m5 = /(\d+\.\d+)\\times(\d+\.\d+)/.exec(c5)!;
+      for (const t of [m5[1]!, m5[2]!]) {
+        const [v, d] = decScaled(t)!;
+        expect(v, `2-4-5 @${seed} ${t} 가 1보다 작지 않다`).toBeLessThan(
+          10 ** d,
+        );
+      }
+      const c6 = problem("2-4-6", "연산", seed).content;
+      const m6 = /(\d+\.\d+)\\times(\d+\.\d+)/.exec(c6)!;
+      for (const t of [m6[1]!, m6[2]!]) {
+        const [v, d] = decScaled(t)!;
+        expect(v, `2-4-6 @${seed} ${t} 가 1보다 크지 않다`).toBeGreaterThan(
+          10 ** d,
+        );
+      }
+    }
+  });
+
+  /* ── 자리 — 이 대단원의 알맹이 ── */
+
+  it("자리가 접히지 않는다 — 전량 (씨앗 300)", () => {
+    // ⚠️ `dec()` 가 꼬리 0 을 접으므로 지면에 「$0.20$」은 안 나온다. 그런데 그때
+    //    답이 한 자리(또는 정수)로 **접혀** 「소수끼리 곱하면 자리가 더해진다」가
+    //    지면에서 사라진다 — 값 검산이 구조적으로 못 보는 부류다(실측 8.6~27%).
+    //    구성이 100% 를 보장하므로 문턱도 **전량**이다.
+    const WANT: Record<string, number> = {
+      "2-4-1": 1,
+      "2-4-2": 1,
+      "2-4-3": 1,
+      "2-4-4": 1,
+      "2-4-5": 2,
+      "2-4-6": 2,
+    };
+    for (const [code, want] of Object.entries(WANT)) {
+      // 심화는 **피연산자**(□)를 묻는 갈래라 기대 자릿수가 다르다 — 여기서 뺀다.
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (let seed = 0; seed < 300; seed += 1) {
+          const p = problem(code, tier, seed);
+          const [, dp] = answerDecScaled(p.answer, `${code} ${tier} @${seed}`);
+          expect(
+            dp,
+            `${code} ${tier} @${seed} 자리가 접혔다 — ${p.answer}\n${p.content}`,
+          ).toBe(want);
+        }
+      }
+    }
+  });
+
+  it("소수 세 자리 이상이 없다 — 초5 범위 (2-4-7 은 자리를 옮기는 소단원이라 뺀다)", () => {
+    for (const code of CODES24) {
+      if (code === "2-4-7") continue;
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            expect(
+              /\d\.\d{3}/.test(text),
+              `${code} ${tier} @${seed} ${where} 에 소수 세 자리\n${text}`,
+            ).toBe(false);
+          }
+        }
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 — 정수 스케일로만 (부동소수점 금지) ── */
+
+  it("2-4-1~6 연산 — 곱이 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      for (const code of [
+        "2-4-1",
+        "2-4-2",
+        "2-4-3",
+        "2-4-4",
+        "2-4-5",
+        "2-4-6",
+      ] as const) {
+        const p = problem(code, "연산", seed);
+        const label = `${code} 연산 @${seed}`;
+        const toks = decTokens(p.content);
+        expect(
+          toks.length,
+          `${label} 피연산자가 둘이 아니다\n${p.content}`,
+        ).toBe(2);
+        const want = collapse(mulScaled(toks[0]!, toks[1]!));
+        expect(
+          answerDecScaled(p.answer, label),
+          `${label}\n${p.content}`,
+        ).toEqual(want);
+      }
+    }
+  });
+
+  it("2-4-7 — 소수점이 옮겨진 칸수만큼 값이 바뀐다 (갈래마다 «무엇을 묻나»가 다르다)", () => {
+    for (const seed of SEEDS) {
+      // 연산·기본 — 한 번 옮긴다. 피연산자 둘의 곱이 그대로 답이다.
+      for (const tier of ["연산", "기본"] as const) {
+        const p = problem("2-4-7", tier, seed);
+        const label = `2-4-7 ${tier} @${seed}`;
+        const toks = decTokens(p.content);
+        expect(toks.length, `${label}\n${p.content}`).toBe(2);
+        expect(
+          answerDecScaled(p.answer, label),
+          `${label}\n${p.content}`,
+        ).toEqual(collapse(mulScaled(toks[0]!, toks[1]!)));
+      }
+
+      // 응용 — 두 번 옮기되 **제자리로 돌아오지 않는다**(그러면 두 단계가 뜻을 잃는다)
+      const ap = problem("2-4-7", "응용", seed);
+      const apLabel = `2-4-7 응용 @${seed}`;
+      const apToks = decTokens(ap.content);
+      expect(apToks.length, `${apLabel}\n${ap.content}`).toBe(3);
+      expect(
+        answerDecScaled(ap.answer, apLabel),
+        `${apLabel}\n${ap.content}`,
+      ).toEqual(
+        collapse(mulScaled(mulScaled(apToks[0]!, apToks[1]!), apToks[2]!)),
+      );
+      expect(
+        collapse(apToks[0]!),
+        `${apLabel} 제자리로 돌아왔다 — 두 단계가 뜻을 잃는다\n${ap.content}`,
+      ).not.toEqual(answerDecScaled(ap.answer, apLabel));
+
+      // 심화 — **역산 + 조건 조합**. 값 검산은 나눗셈 없이 «어긋난 곱»으로 한다:
+      //   어떤 수 × A = X · 어떤 수 × B = 답  ⟹  답 × A = X × B.
+      // ⚠️ 이 항등식은 「어떤 수」를 지면에서 **읽지 않고** 검산한다 — 발문에 없는
+      //    값을 시험이 되만들면 그 순간 생성기와 같은 식을 두 벌 쓰는 셈이 된다.
+      const dp2 = problem("2-4-7", "심화", seed);
+      const label = `2-4-7 심화 @${seed}`;
+      const toks = decTokens(dp2.content);
+      expect(toks.length, `${label}\n${dp2.content}`).toBe(3);
+      const [mulA, given, mulB] = [toks[0]!, toks[1]!, toks[2]!];
+      const ans = answerDecScaled(dp2.answer, label);
+      expect(
+        collapse(mulScaled(ans, mulA)),
+        `${label} 역산이 안 맞는다\n${dp2.content}`,
+      ).toEqual(collapse(mulScaled(given, mulB)));
+      // 두 곱하는 수가 같으면 답이 곧 주어진 값이라 역산이 뜻을 잃는다
+      expect(
+        collapse(mulA),
+        `${label} 곱하는 두 수가 같다 — 답이 곧 주어진 값이다\n${dp2.content}`,
+      ).not.toEqual(collapse(mulB));
+    }
+  });
+
+  /* ── 이웃 학년 (④) — 손 목록이 아니라 실제로 뽑아 대조 ── */
+
+  it("초4 2-3(소수의 덧셈과 뺄셈)과 발문이 겹치지 않는다 — 갈래까지 (④)", () => {
+    const skeleton = (t: string) => t.replace(/\d+/g, "#");
+    const others = new Map<string, string>();
+    for (const u of elementaryUnits().filter(
+      (x) => x.grade === "초4" && x.section.startsWith("2-3-"),
+    )) {
+      const tiers = supportedTiers(u);
+      for (const tier of tiers.length ? tiers : [undefined]) {
+        for (let seed = 1; seed <= 8; seed += 1) {
+          const c = generateElementaryProblem(u, seed, tier).content;
+          others.set(c, u.section);
+          others.set(`SKEL:${skeleton(c)}`, u.section);
+        }
+      }
+    }
+    expect(others.size, "이웃 모집단이 비었다").toBeGreaterThan(100);
+
+    const clash: string[] = [];
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          if (others.get(c)) clash.push(`완전 일치 ${code} ${tier}\n    ${c}`);
+          const s = others.get(`SKEL:${skeleton(c)}`);
+          if (s) clash.push(`골격 일치 ${code} ${tier} ↔ ${s}\n    ${c}`);
+        }
+      }
+    }
+    expect(clash.slice(0, 3), `초4 2-3 과 겹친 발문 ${clash.length}건`).toEqual(
+      [],
+    );
+  });
+
+  it("판별자는 «곱셈» — 여기서는 강하다(측정으로 골랐다) (④ 음성 대조)", () => {
+    // ⚠️ 같은 열쇠가 이웃에 따라 다르다. 초6 2-1(나눗셈)에서는 ×가 **37.5%** 라
+    //    약했지만(2-2 때 실측), 초4 2-3(덧뺄셈)에서는 **0.0%** 라 강하다.
+    //    그래서 판별자는 이웃마다 **다시 재서** 고른다.
+    let mine = 0;
+    for (const code of CODES24) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(
+            `${p.content} ${p.solution}`,
+            `${code} ${tier} @${seed} 에 곱셈이 없다`,
+          ).toContain("\\times");
+          mine += 1;
+        }
+      }
+    }
+    expect(mine).toBeGreaterThan(400);
+
+    let others = 0;
+    let withTimes = 0;
+    for (const u of elementaryUnits().filter(
+      (x) => x.grade === "초4" && x.section.startsWith("2-3-"),
+    )) {
+      const tiers = supportedTiers(u);
+      for (const tier of tiers.length ? tiers : [undefined]) {
+        for (let seed = 1; seed <= 16; seed += 1) {
+          const q = generateElementaryProblem(u, seed, tier);
+          others += 1;
+          if (`${q.content} ${q.solution}`.includes("\\times")) withTimes += 1;
+        }
+      }
+    }
+    expect(others, "반대쪽 모집단이 비었다").toBeGreaterThan(300);
+    expect(
+      withTimes / others,
+      `초4 2-3 의 ${((withTimes / others) * 100).toFixed(1)}% 에 ×가 있다 — 판별자가 약해졌다`,
+    ).toBeLessThan(0.1);
+  });
+
+  it("2-4 일곱 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES24) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);

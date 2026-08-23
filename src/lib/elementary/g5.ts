@@ -5454,7 +5454,17 @@ function fm224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 기본 — 대분수 × 진분수. */
+/**
+ * 기본 — 문장에서 식을 **스스로** 세운다(한 겹). 대분수 × 진분수를 «빠르기»로 낸다.
+ *
+ * ⚠️ 옛 판은 여기도 「계산하시오」였다 — **연산의 복제**다. 네 갈래를 나란히 놓으면
+ *    1단과 2단이 같은 모양이라 사다리가 오르지 않는다(2026-08-23 리드 검수).
+ *    갈래 하나만 보면 「대분수×진분수라 연산과 다르다」로 읽히는데, **다른 것은
+ *    수이고 요구하는 일은 같다.** D-72 의 축은 수가 아니라 «식을 누가 세우나»다.
+ *
+ * 소재를 «빠르기»로 고른 이유: 2-2-1·2-2-2·2-2-3 기본이 전부 «담긴 양/전체의
+ * 얼마만큼»이라 문형이 겹친다(D-66 ⑸). 이웃 셋 어디에도 없는 틀로 갈랐다.
+ */
 function fm224Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, d, b, e } = twoReducible(rng);
   const w = intBetween(rng, 1, 3);
@@ -5462,18 +5472,51 @@ function fm224Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const [num, den] = simplify(imp * b, d * e);
   return make(
     unit,
-    `계산하시오.  ${expr(`${mixedLatex(w, a, d)}\\times\\frac{${b}}{${e}}`)}`,
+    `한 시간에 ${mx(w, a, d)} km를 걷는 사람이 있습니다. 이 사람이 ${fr(b, e)} 시간 동안 걸은 거리는 몇 km입니까?`,
     expr(fracLatex(num, den)),
-    `대분수를 가분수 ${fro(imp, d)} 고친 뒤 분자끼리, 분모끼리 곱합니다. ${expr(`\\frac{${imp}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+    `걸은 거리는 «한 시간에 걷는 거리»에 «걸은 시간»을 곱해 구합니다. 대분수를 가분수 ${fro(imp, d)} 고치면 ${expr(`\\frac{${imp}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} km입니다.`,
   );
 }
 
 /**
- * 응용 — **오개념을 실제로 밟게 한다**: 자연수 부분만 곱하는 잘못.
- * 바른 값 `(w·d+a)/d × k` 와 잘못 값 `w×k` 의 차를 묻는다. 바른 값이 언제나
- * 더 크므로(분수부가 0이 아니다) 차는 반드시 양수다.
+ * 응용 — **두 단계**: 봉지 수만큼 곱해 전체를 구한 뒤, 그중 얼마만큼을 다시 곱한다.
+ * 대분수·자연수·진분수가 한 문항에 다 선다 — 「여러 가지」가 이 소단원의 이름이다.
  */
 function fm224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const w = intBetween(rng, 1, 3);
+  const k = intBetween(rng, 2, 5);
+  const imp = w * d + a;
+  const [tn, td] = simplify(imp * k, d);
+  const [num, den] = simplify(tn * b, td * e);
+  // ⚠️ 「썼다/마셨다」를 소재와 **따로** 두면 「주스를 사용했다」가 나온다.
+  //    소재에 딸린 값으로 묶는다(MUL_STUFF 와 같은 자리 — g4 가 회송한 「색종이를 먹는다」).
+  const [thing, unitWord, bag, didPast, didAdn] = pick(rng, [
+    ["밀가루", "kg", "봉지", "사용했다면", "사용한"],
+    ["설탕", "kg", "봉지", "사용했다면", "사용한"],
+    ["주스", "L", "병", "마셨다면", "마신"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${mx(w, a, d)} ${uj(unitWord, "이", "가")} 든 ${wj(bag, "이", "가")} ${n(k)}개 있습니다. 이 ${thing} 전체의 ${frj(b, e, "을", "를")} ${didPast} ${didAdn} ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `대분수를 가분수 ${fro(imp, d)} 고치면 전체는 ${expr(`\\frac{${imp}}{${d}}\\times${k}=${fracLatex(tn, td)}`)}입니다. 그중 ${frj(b, e, "을", "를")} ${didAdn} 것이므로 ${expr(`${fracLatex(tn, td)}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **오개념을 실제로 밟게 한다**: 자연수 부분만 곱하는 잘못.
+ * 바른 값 `(w·d+a)/d × k` 와 잘못 값 `w×k` 의 차를 묻는다. 바른 값이 언제나
+ * 더 크므로(분수부가 0이 아니다) 차는 반드시 양수다.
+ *
+ * ⚠️ **이 갈래는 옛 판에서 «응용» 자리에 있었다.** D-72 가 4단 예시로 글자 그대로
+ *    드는 문형(「잘못 계산했더니」)이 3단에 서 있었고, 그 대신 심화는 대분수끼리의
+ *    맨 「계산하시오」였다 — **3단과 4단이 뒤집혀 있었다.** 등록 갈래 180개 전량에서
+ *    「심화가 4단 표지 없는 맨 계산」인 것은 **둘뿐**이었고 둘 다 이 트랙 것이었다
+ *    (2026-08-23 리드 실측). 분모가 그렇게 갈리면 해석 차이가 아니라 결함이다.
+ *    `scripts/qa/probe-elem-tier-ladder.ts` 가 이 축을 이제 상시로 지킨다.
+ */
+function fm224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, d, k } = reducibleTriple(rng);
   const w = intBetween(rng, 1, 4);
   const imp = w * d + a;
@@ -5487,19 +5530,552 @@ function fm224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 대분수끼리의 곱(둘 다 가분수로 고쳐야 한다). */
-function fm224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { a, d, b, e } = twoReducible(rng);
-  const w1 = intBetween(rng, 1, 3);
-  const w2 = intBetween(rng, 1, 3);
-  const i1 = w1 * d + a;
-  const i2 = w2 * e + b;
-  const [num, den] = simplify(i1 * i2, d * e);
+/* ────────── 2-4 소수의 곱셈 — 난이도 4단 (D-72 확대 9차) ──────────
+ *
+ * **조건이 두 축이다.** 소단원 이름이 «차례»(자연수가 앞이냐 뒤냐)와 «크기»(1보다
+ * 작은/큰)를 **각각** 내걸고, 2-4-1~4 가 그 2×2 다. 값은 같아도 차례가 다르면 다른
+ * 소단원이므로(2-2 와 같은 자리) 시험이 차례와 크기를 **따로** 잠근다.
+ *
+ * ⚠️ **자리가 접히면 이 대단원이 가르치려는 것이 지면에서 사라진다.**
+ *    `dec()` 가 꼬리 0 을 접으므로 「$0.20$」은 안 나가지만, 그때 답이 한 자리(또는
+ *    정수)가 되어 「소수끼리 곱하면 자리가 더해진다」가 안 보인다 — 2-1-6 의
+ *    「소수 첫째 자리까지인데 답이 정수」와 같은 부류다. 그래서 **곱이 10의 배수가
+ *    되는 짝을 뽑는 데서 뺀다.** 옛 표준은 이 가드를 2-4-1·2-4-3 에만 걸었는데,
+ *    여기서는 여섯 소단원 전부에 건다. 구성이 100% 를 보장하므로 시험도 **전량**으로 잰다.
+ *
+ * 피연산자는 **소수 한 자리**로 묶는다 — 곱이 최대 두 자리라 초5 범위 안이다
+ * (2-4-7 만 10·100 을 곱해 자리를 옮기는 쪽이라 따로 잰다).
+ *
+ * 이웃 초4 2-3(소수의 덧셈과 뺄셈)과의 판별자는 **측정으로** 골랐다(2026-08-23):
+ *   초4 2-3 모집단 448행에서 발문·해설의 `\times` 는 **0.0%** · 「곱」 0.0% ·
+ *   「합·차·+·−」 42.9%. 그래서 «곱셈이 있다»가 여기서는 **강한** 판별자다
+ *   (초6 2-1 나눗셈에서는 37.5% 라 약했다 — **같은 열쇠가 이웃에 따라 다르다**).
+ *   「배」는 쓰지 않는다 — 초4 2-3-2 의 «**배추**의 무게» 가 그 글자에 걸린다.
+ */
+
+/** 1보다 **작은** 소수 한 자리 — 십분의 일 정수 2~9(`0.2`~`0.9`). */
+function underOneT(rng: Rng, ok: (t: number) => boolean = () => true): number {
+  const cands = [2, 3, 4, 5, 6, 7, 8, 9].filter(ok);
+  return pick(rng, cands.length ? cands : [3]);
+}
+
+/** 1보다 **큰** 소수 한 자리 — 십분의 일 정수 11~49(`1.1`~`4.9`). 정수부만인 것은 뺀다. */
+function overOneT(rng: Rng, ok: (t: number) => boolean = () => true): number {
+  const cands: number[] = [];
+  for (let w = 1; w <= 4; w += 1)
+    for (let f = 1; f <= 9; f += 1) {
+      const t = w * 10 + f;
+      if (ok(t)) cands.push(t);
+    }
+  return pick(rng, cands.length ? cands : [13]);
+}
+
+/**
+ * 「두 곱의 합」 갈래용 — `head × k1 + b × k2` 가 **10의 배수가 되지 않는** 짝.
+ *
+ * ⚠️ 조건을 `overOneT` 의 걸개로만 주면 후보가 **빌 수 있고**, 그때 폴백(`13`)이
+ *    조건을 깬다 — 그래서 실측이 6.5%·2.6% 남아 있었다(2026-08-23). 걸개를 하나만
+ *    움직이면 못 푸는 짝이 있으니(`b`·`k2` 를 함께 봐야 한다) **짝을 통째로** 뽑는다.
+ *    `b=11` 로 두면 `b×k2 ≡ k2` 라 `k2∈[2,9]` 중 많아야 하나만 막히므로 **반드시 있다.**
+ */
+function sumPairOverOne(
+  rng: Rng,
+  head: number,
+  k1: number,
+): { b: number; k2: number } {
+  const pairs: [number, number][] = [];
+  for (let k2 = 2; k2 <= 9; k2 += 1)
+    for (let w = 1; w <= 4; w += 1)
+      for (let f = 1; f <= 9; f += 1) {
+        const b = w * 10 + f;
+        if (b === head) continue;
+        if ((b * k2) % 10 === 0) continue;
+        if ((head * k1 + b * k2) % 10 === 0) continue;
+        pairs.push([b, k2]);
+      }
+  const [b, k2] = pick(rng, pairs);
+  return { b, k2 };
+}
+
+/** 소수 문장의 소재 — `[것, 단위, 담는 것, 있음말]`(2-2 와 같은 묶음 규칙). */
+const DEC_STUFF = [
+  ["물", "L", "병", "들어 있습니다"],
+  ["우유", "L", "병", "들어 있습니다"],
+  ["소금", "kg", "봉지", "들어 있습니다"],
+  ["모래", "kg", "자루", "들어 있습니다"],
+] as const;
+
+/* ── 2-4-1 (1보다 작은 소수)×(자연수) ── */
+
+/** 연산 — 식이 그대로. 곱이 자리를 안 잃는다. */
+function dm241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
   return make(
     unit,
-    `계산하시오.  ${expr(`${mixedLatex(w1, a, d)}\\times${mixedLatex(w2, b, e)}`)}`,
-    expr(fracLatex(num, den)),
-    `두 대분수를 모두 가분수로 고칩니다. ${expr(`${mixedLatex(w1, a, d)}=\\frac{${i1}}{${d}}`)}, ${expr(`${mixedLatex(w2, b, e)}=\\frac{${i2}}{${e}}`)}이므로 ${expr(`\\frac{${i1}}{${d}}\\times\\frac{${i2}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+    `계산하시오.  ${expr(`${dec(t, 1)}\\times${k}`)}`,
+    expr(dec(t * k, 1)),
+    `${nj(t, "과", "와")} ${nj(k, "을", "를")} 곱한 ${n(t * k)}에 소수 한 자리를 찍으면 ${expr(dec(t * k, 1))}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 스스로 세운다. */
+function dm241Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const [thing, unitWord, box, have] = pick(rng, DEC_STUFF);
+  return make(
+    unit,
+    `한 ${box}에 ${thing} ${expr(dec(t, 1))} ${unitWord}씩 ${have}. ${n(k)}${box}의 ${wj(thing, "은", "는")} 모두 몇 ${unitWord}입니까?`,
+    expr(dec(t * k, 1)),
+    `한 ${box}의 양에 ${box} 수를 곱합니다. ${expr(`${dec(t, 1)}\\times${k}=${dec(t * k, 1)}`)}이므로 ${expr(dec(t * k, 1))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 곱한 뒤 덜어 낸다(두 단계). 남는 양은 구성상 양수다. */
+function dm241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 3, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const total = t * k;
+  // 남는 양이 10의 배수면 답이 정수로 접혀 「소수」가 지면에서 사라진다.
+  const usedPool: number[] = [];
+  for (let v = 1; v < total; v += 1)
+    if ((total - v) % 10 !== 0) usedPool.push(v);
+  const used = pick(rng, usedPool);
+  const [thing, unitWord, box, have] = pick(rng, DEC_STUFF);
+  return make(
+    unit,
+    `한 ${box}에 ${thing} ${expr(dec(t, 1))} ${unitWord}씩 ${have}. 이런 것이 ${n(k)}${box} 있을 때 그중 ${expr(dec(used, 1))} ${uj(unitWord, "을", "를")} 썼다면 남은 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(dec(total - used, 1)),
+    `전체는 ${expr(`${dec(t, 1)}\\times${k}=${dec(total, 1)}`)}입니다. 여기서 쓴 만큼을 빼면 ${expr(`${dec(total, 1)}-${dec(used, 1)}=${dec(total - used, 1)}`)}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 곱한 결과에서 처음 소수를 거슬러 구한다. */
+function dm241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 자연수를 구하시오.  ${expr(`${dec(t, 1)}\\times\\square=${dec(t * k, 1)}`)}`,
+    n(k),
+    `□는 결과를 ${expr(dec(t, 1))}${dro(dec(t, 1))} 나눈 수입니다. ${expr(`${dec(t, 1)}\\times${k}=${dec(t * k, 1)}`)}이므로 □는 ${n(k)}입니다.`,
+  );
+}
+
+/* ── 2-4-2 (1보다 큰 소수)×(자연수) ── */
+
+/** 연산 — 1보다 큰 소수가 앞에 선다. */
+function dm242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${dec(a, 1)}\\times${k}`)}`,
+    expr(dec(a * k, 1)),
+    `${nj(a, "과", "와")} ${nj(k, "을", "를")} 곱한 ${n(a * k)}에 소수 한 자리를 찍으면 ${expr(dec(a * k, 1))}입니다.`,
+  );
+}
+
+/** 기본 — 길이 문장(2-4-1 의 «담는 것»과 다른 문형). */
+function dm242Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  const [thing, piece] = pick(rng, [
+    ["색 테이프", "도막"],
+    ["철사", "도막"],
+    ["리본", "개"],
+  ] as const);
+  return make(
+    unit,
+    `길이가 ${expr(dec(a, 1))} m인 ${thing} ${n(k)}${wj(piece, "을", "를")} 겹치지 않게 이어 붙였습니다. 이어 붙인 ${wj(thing, "은", "는")} 몇 m입니까?`,
+    expr(dec(a * k, 1)),
+    `한 ${piece}의 길이에 ${piece} 수를 곱합니다. ${expr(`${dec(a, 1)}\\times${k}=${dec(a * k, 1)}`)}이므로 ${expr(dec(a * k, 1))} m입니다.`,
+  );
+}
+
+/** 응용 — 두 종류를 각각 곱해 합한다(두 단계). */
+function dm242Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k1 = intBetween(rng, 2, 5);
+  const a = overOneT(rng, (x) => (x * k1) % 10 !== 0);
+  // 합까지 10의 배수가 아니어야 답이 한 자리로 남는다 — 짝을 통째로 뽑는다.
+  const { b, k2 } = sumPairOverOne(rng, a, k1);
+  const total = a * k1 + b * k2;
+  return make(
+    unit,
+    `길이가 ${expr(dec(a, 1))} m인 막대 ${n(k1)}개와 ${expr(dec(b, 1))} m인 막대 ${n(k2)}개가 있습니다. 막대의 길이는 모두 몇 m입니까?`,
+    expr(dec(total, 1)),
+    `${expr(`${dec(a, 1)}\\times${k1}=${dec(a * k1, 1)}`)}, ${expr(`${dec(b, 1)}\\times${k2}=${dec(b * k2, 1)}`)}이므로 모두 ${expr(`${dec(a * k1, 1)}+${dec(b * k2, 1)}=${dec(total, 1)}`)} m입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 자연수 쪽을 거슬러 구한다(2-4-1 은 소수 쪽이었다). */
+function dm242Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 자연수를 구하시오.  ${expr(`${dec(a, 1)}\\times\\square=${dec(a * k, 1)}`)}`,
+    n(k),
+    `□는 결과를 ${expr(dec(a, 1))}${dro(dec(a, 1))} 나눈 수입니다. ${expr(`${dec(a, 1)}\\times${k}=${dec(a * k, 1)}`)}이므로 □는 ${n(k)}입니다.`,
+  );
+}
+
+/* ── 2-4-3 (자연수)×(1보다 작은 소수) — 차례가 2-4-1 과 반대다 ── */
+
+/** 연산 — 자연수가 앞에 선다. */
+function dm243Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${k}\\times${dec(t, 1)}`)}`,
+    expr(dec(k * t, 1)),
+    `${nj(k, "과", "와")} ${nj(t, "을", "를")} 곱한 ${n(k * t)}에 소수 한 자리를 찍으면 ${expr(dec(k * t, 1))}입니다.`,
+  );
+}
+
+/** 기본 — «전체의 얼마만큼»(자연수가 앞서는 그 뜻). 1보다 작으니 결과가 줄어든다. */
+function dm243Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["철사", "m"],
+    ["물", "L"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(k)} ${unitWord} 중에서 전체의 ${expr(dec(t, 1))}만큼을 썼습니다. 쓴 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(dec(k * t, 1)),
+    `전체의 얼마만큼인지는 곱셈으로 구합니다. ${expr(`${k}\\times${dec(t, 1)}=${dec(k * t, 1)}`)}이므로 ${expr(dec(k * t, 1))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 쓴 뒤 **남은** 양을 묻는다(두 단계). */
+function dm243Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const used = k * t;
+  const rest = k * 10 - used;
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["철사", "m"],
+    ["물", "L"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(k)} ${unitWord} 중에서 전체의 ${expr(dec(t, 1))}만큼을 썼습니다. 남은 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(dec(rest, 1)),
+    `쓴 양은 ${expr(`${k}\\times${dec(t, 1)}=${dec(used, 1)}`)}입니다. 남은 양은 ${expr(`${k}-${dec(used, 1)}=${dec(rest, 1)}`)} ${unitWord}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 1보다 작은 소수 쪽을 거슬러 구한다. */
+function dm243Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\square\\times${dec(t, 1)}=${dec(k * t, 1)}`)}`,
+    n(k),
+    `□는 결과를 ${expr(dec(t, 1))}${dro(dec(t, 1))} 나눈 수입니다. ${expr(`${k}\\times${dec(t, 1)}=${dec(k * t, 1)}`)}이므로 □는 ${n(k)}입니다.`,
+  );
+}
+
+/* ── 2-4-4 (자연수)×(1보다 큰 소수) ── */
+
+/** 연산 — 자연수 뒤에 1보다 큰 소수. */
+function dm244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${k}\\times${dec(a, 1)}`)}`,
+    expr(dec(k * a, 1)),
+    `${nj(k, "과", "와")} ${nj(a, "을", "를")} 곱한 ${n(k * a)}에 소수 한 자리를 찍으면 ${expr(dec(k * a, 1))}입니다.`,
+  );
+}
+
+/**
+ * 기본 — «…의 …배». 1보다 **큰** 소수를 곱하니 결과가 **늘어난다** —
+ * 1보다 작은 소수를 곱해 줄어드는 2-4-3 기본(«전체의 …만큼»)과 짝을 이룬다.
+ * (초4 2-3-3 이 «A는 B의 몇 배입니까»를 쓰지만 그건 **배수를 묻는** 문형이고
+ *  이쪽은 배수를 주고 **값을 묻는다** — 골격 대조 시험이 그 둘을 갈라 준다.)
+ */
+function dm244Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["철사", "m"],
+    ["밀가루", "kg"],
+    ["물", "L"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(k)} ${unitWord}의 ${expr(dec(a, 1))}배는 몇 ${unitWord}입니까?`,
+    expr(dec(k * a, 1)),
+    `몇 배인지는 곱셈으로 구합니다. ${expr(`${k}\\times${dec(a, 1)}=${dec(k * a, 1)}`)}이므로 ${expr(dec(k * a, 1))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 두 사람 몫을 더한다(두 단계). */
+function dm244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k1 = intBetween(rng, 2, 6);
+  const a = overOneT(rng, (x) => (x * k1) % 10 !== 0);
+  const { b, k2 } = sumPairOverOne(rng, a, k1);
+  const total = k1 * a + k2 * b;
+  return make(
+    unit,
+    `길이가 ${n(k1)} m인 끈의 ${expr(dec(a, 1))}배와 ${n(k2)} m인 끈의 ${expr(dec(b, 1))}배를 이어 붙였습니다. 이어 붙인 끈은 모두 몇 m입니까?`,
+    expr(dec(total, 1)),
+    `${expr(`${k1}\\times${dec(a, 1)}=${dec(k1 * a, 1)}`)}, ${expr(`${k2}\\times${dec(b, 1)}=${dec(k2 * b, 1)}`)}이므로 모두 ${expr(`${dec(k1 * a, 1)}+${dec(k2 * b, 1)}=${dec(total, 1)}`)} m입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 1보다 큰 소수 쪽을 거슬러 구한다. */
+function dm244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\square\\times${dec(a, 1)}=${dec(k * a, 1)}`)}`,
+    n(k),
+    `□는 결과를 ${expr(dec(a, 1))}${dro(dec(a, 1))} 나눈 수입니다. ${expr(`${k}\\times${dec(a, 1)}=${dec(k * a, 1)}`)}이므로 □는 ${n(k)}입니다.`,
+  );
+}
+
+/* ── 2-4-5 (1보다 작은 소수)×(1보다 작은 소수) — 자리가 **두 자리**로 깊어진다 ── */
+
+/** 연산 — 두 소수가 모두 1보다 작다. 곱은 소수 두 자리다. */
+function dm245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = underOneT(rng);
+  const b = underOneT(rng, (x) => (a * x) % 10 !== 0);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${dec(a, 1)}\\times${dec(b, 1)}`)}`,
+    expr(dec(a * b, 2)),
+    `${nj(a, "과", "와")} ${nj(b, "을", "를")} 곱한 ${n(a * b)}에 소수 두 자리를 찍으면 ${expr(dec(a * b, 2))}입니다. 소수 한 자리끼리 곱하면 자리가 둘이 됩니다.`,
+  );
+}
+
+/** 기본 — 직사각형 넓이(2-4-6 의 단위량 문형과 다르다). */
+function dm245Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = underOneT(rng);
+  const b = underOneT(rng, (x) => (a * x) % 10 !== 0 && x !== a);
+  const thing = pick(rng, ["화단", "게시판", "책상", "돗자리"] as const);
+  return make(
+    unit,
+    `가로가 ${expr(dec(a, 1))} m, 세로가 ${expr(dec(b, 1))} m인 직사각형 모양 ${wj(thing, "이", "가")} 있습니다. 이 ${thing}의 넓이는 몇 m²입니까?`,
+    expr(dec(a * b, 2)),
+    `직사각형의 넓이는 가로와 세로를 곱합니다. ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(a * b, 2)}`)}이므로 ${expr(dec(a * b, 2))} m²입니다.`,
+  );
+}
+
+/** 응용 — 넓이를 구한 뒤 그 일부를 다시 묻는다(두 단계). */
+function dm245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = underOneT(rng);
+  const b = underOneT(rng, (x) => (a * x) % 10 !== 0 && x !== a);
+  const area = a * b; // 백분의 일 정수
+  // 넓이×개수가 10의 배수면 소수 **두 자리**가 한 자리로 접힌다.
+  const k = pick(
+    rng,
+    [2, 3, 4, 5].filter((v) => (area * v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `가로가 ${expr(dec(a, 1))} m, 세로가 ${expr(dec(b, 1))} m인 직사각형 모양 화단이 ${n(k)}개 있습니다. 화단의 넓이는 모두 몇 m²입니까?`,
+    expr(dec(area * k, 2)),
+    `화단 하나의 넓이는 ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(area, 2)}`)}입니다. ${n(k)}개이므로 ${expr(`${dec(area, 2)}\\times${k}=${dec(area * k, 2)}`)} m²입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 소수 두 자리 결과에서 한쪽 소수를 거슬러 구한다. */
+function dm245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = underOneT(rng);
+  const b = underOneT(rng, (x) => (a * x) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 소수를 구하시오.  ${expr(`${dec(a, 1)}\\times\\square=${dec(a * b, 2)}`)}`,
+    expr(dec(b, 1)),
+    `□는 결과를 ${expr(dec(a, 1))}${dro(dec(a, 1))} 나눈 수입니다. ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(a * b, 2)}`)}이므로 □는 ${expr(dec(b, 1))}입니다.`,
+  );
+}
+
+/* ── 2-4-6 (1보다 큰 소수)×(1보다 큰 소수) ── */
+
+/** 연산 — 두 소수가 모두 1보다 크다. */
+function dm246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = overOneT(rng);
+  const b = overOneT(rng, (x) => (a * x) % 10 !== 0);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${dec(a, 1)}\\times${dec(b, 1)}`)}`,
+    expr(dec(a * b, 2)),
+    `${nj(a, "과", "와")} ${nj(b, "을", "를")} 곱한 ${n(a * b)}에 소수 두 자리를 찍으면 ${expr(dec(a * b, 2))}입니다.`,
+  );
+}
+
+/** 기본 — 단위량 문장(1 m 무게). 2-4-5 의 넓이 문형과 다르다. */
+function dm246Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = overOneT(rng);
+  const b = overOneT(rng, (x) => (a * x) % 10 !== 0);
+  const thing = pick(rng, ["철사", "밧줄", "쇠막대"] as const);
+  return make(
+    unit,
+    `${n(1)} m의 무게가 ${expr(dec(a, 1))} kg인 ${wj(thing, "이", "가")} 있습니다. 이 ${thing} ${expr(dec(b, 1))} m의 무게는 몇 kg입니까?`,
+    expr(dec(a * b, 2)),
+    `${n(1)} m의 무게에 길이를 곱합니다. ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(a * b, 2)}`)}이므로 ${expr(dec(a * b, 2))} kg입니다.`,
+  );
+}
+
+/** 응용 — 넓이를 구하되 **1보다 큰** 두 소수로(두 단계: 넓이 뒤 덜어 내기). */
+function dm246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = overOneT(rng);
+  const b = overOneT(rng, (x) => (a * x) % 10 !== 0);
+  const area = a * b;
+  // 남은 넓이가 10의 배수면 소수 두 자리가 접힌다.
+  const cutPool: number[] = [];
+  for (let v = 1; v <= Math.floor(area / 2); v += 1)
+    if ((area - v) % 10 !== 0) cutPool.push(v);
+  const cut = pick(rng, cutPool);
+  return make(
+    unit,
+    `가로가 ${expr(dec(a, 1))} m, 세로가 ${expr(dec(b, 1))} m인 직사각형 모양 밭에서 ${expr(dec(cut, 2))} m²에 고추를 심었습니다. 고추를 심지 않은 곳은 몇 m²입니까?`,
+    expr(dec(area - cut, 2)),
+    `밭 전체의 넓이는 ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(area, 2)}`)}입니다. 심은 곳을 빼면 ${expr(`${dec(area, 2)}-${dec(cut, 2)}=${dec(area - cut, 2)}`)} m²입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 두 자리 결과에서 1보다 큰 소수를 거슬러 구한다. */
+function dm246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = overOneT(rng);
+  const b = overOneT(rng, (x) => (a * x) % 10 !== 0);
+  return make(
+    unit,
+    `□ 안에 알맞은 소수를 구하시오.  ${expr(`\\square\\times${dec(b, 1)}=${dec(a * b, 2)}`)}`,
+    expr(dec(a, 1)),
+    `□는 결과를 ${expr(dec(b, 1))}${dro(dec(b, 1))} 나눈 수입니다. ${expr(`${dec(a, 1)}\\times${dec(b, 1)}=${dec(a * b, 2)}`)}이므로 □는 ${expr(dec(a, 1))}입니다.`,
+  );
+}
+
+/* ── 2-4-7 곱의 소수점의 위치 — 자리가 «옮겨지는» 것을 본다 ──
+ *
+ * ⚠️ **옛 판은 사다리가 거꾸로였다** (2026-08-23 리드 검수). 연산 `5.56×1000` ·
+ *    기본 `193×0.01` 로 **1단이 두 번** 서고, 응용이 `40.9×□=4.09`(역산 = D-72 **4단**
+ *    표지), 심화가 `9.18×100×0.1`(두 단계 = **3단** 표지)이었다. 곧 **2단이 1단의
+ *    복제이고 3·4단이 뒤집힌** 것이다. 값도 조사도 판정기도 전부 초록이었다 —
+ *    「네 갈래를 나란히 렌더해 사다리가 오르는가」를 아무도 안 물었기 때문이다.
+ *
+ *    이제: 연산 = 한 번 옮긴다(양방향) · 기본 = 문장에서 스스로 세운다 ·
+ *    응용 = **두 번** 옮긴다(문장) · 심화 = **거슬러 찾은 뒤 한 번 더** 옮긴다.
+ *    양방향을 연산으로 내렸으므로 기본이 왼쪽 이동을 떠맡지 않아도 된다.
+ */
+
+/** 백분의 일 정수. 끝자리가 0이면 지면에서 자리가 접히므로 밀어 낸다. */
+function hundredthT(rng: Rng, lo = 105, hi = 989): number {
+  const v = intBetween(rng, lo, hi);
+  return v % 10 === 0 ? v + 1 : v;
+}
+
+/** 연산 — 한 번 옮긴다. **양쪽 다** 낸다(10·100·1000 과 0.1·0.01). */
+function dm247Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = hundredthT(rng);
+    const mul = pick(rng, [10, 100, 1000]);
+    const steps = mul === 10 ? 1 : mul === 100 ? 2 : 3;
+    return make(
+      unit,
+      `계산하시오.  ${expr(`${dec(b, 2)}\\times${mul}`)}`,
+      expr(dec(b * mul, 2)),
+      `${nj(mul, "을", "를")} 곱하면 소수점이 오른쪽으로 ${n(steps)}칸 옮겨집니다. 답은 ${expr(dec(b * mul, 2))}입니다.`,
+    );
+  }
+  const whole = intBetween(rng, 12, 987);
+  const w = whole % 10 === 0 ? whole + 1 : whole;
+  const steps = pick(rng, [1, 2]);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${w}\\times${dec(1, steps)}`)}`,
+    expr(dec(w, steps)),
+    `${dj(dec(1, steps), "을", "를")} 곱하면 소수점이 왼쪽으로 ${n(steps)}칸 옮겨집니다. 답은 ${expr(dec(w, steps))}입니다.`,
+  );
+}
+
+/**
+ * 기본 — 문장에서 식을 **스스로** 세운다(한 겹). 「몇 개분의 무게」가 곧 ×10·100·1000 이다.
+ *
+ * 소재를 «~짜리»로 고른 이유: 2-2-1 기본의 「한 병에 …씩 들어 있습니다」와
+ * 2-4-2 기본의 「이어 붙였습니다」가 이미 자리를 잡고 있어 문형이 겹친다(D-66 ⑸).
+ */
+function dm247Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = hundredthT(rng);
+  const mul = pick(rng, [10, 100, 1000]);
+  const steps = mul === 10 ? 1 : mul === 100 ? 2 : 3;
+  const thing = pick(rng, ["상자", "봉지", "벽돌", "통"] as const);
+  return make(
+    unit,
+    `${expr(dec(b, 2))} kg짜리 ${thing} ${n(mul)}개의 무게는 모두 몇 kg입니까?`,
+    expr(dec(b * mul, 2)),
+    `한 개의 무게에 개수를 곱합니다. ${nj(mul, "을", "를")} 곱하면 소수점이 오른쪽으로 ${n(steps)}칸 옮겨지므로 ${expr(`${dec(b, 2)}\\times${mul}=${dec(b * mul, 2)}`)}입니다.`,
+  );
+}
+
+/** 응용 — **두 단계**: 개수만큼 곱해 전체를 구한 뒤, 그 전체의 얼마만큼을 다시 곱한다. */
+function dm247Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = hundredthT(rng);
+  // ⚠️ 오른쪽 2칸 뒤 왼쪽 2칸이면 **제자리로 돌아온다** — 두 단계가 뜻을 잃는다
+  //    (2-1-6 응용의 「차가 0」과 같은 부류다). 옮긴 칸이 남도록 짝을 뽑는다.
+  const up = pick(rng, [100, 1000]);
+  const upSteps = up === 100 ? 2 : 3;
+  const downSteps = pick(
+    rng,
+    [1, 2].filter((d) => d !== upSteps),
+  );
+  const after = (b * up) / 10 ** downSteps;
+  const thing = pick(rng, ["상자", "봉지", "벽돌", "통"] as const);
+  return make(
+    unit,
+    `${expr(dec(b, 2))} kg짜리 ${wj(thing, "이", "가")} ${n(up)}개 있습니다. 이 ${thing} 전체 무게의 ${expr(dec(1, downSteps))}만큼은 몇 kg입니까?`,
+    expr(dec(after, 2)),
+    `전체 무게는 ${nj(up, "을", "를")} 곱해 소수점이 오른쪽으로 ${n(upSteps)}칸 옮겨진 ${expr(dec(b * up, 2))} kg입니다. 여기에 ${dj(dec(1, downSteps), "을", "를")} 곱하면 소수점이 왼쪽으로 ${n(downSteps)}칸 옮겨지므로 ${expr(`${dec(b * up, 2)}\\times${dec(1, downSteps)}=${dec(after, 2)}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산 + 조건 조합**: 곱한 결과에서 어떤 수를 거슬러 찾고, 그 수에 **다른 수**를
+ * 곱한 값을 묻는다. 자리를 왼쪽으로 되돌린 뒤 다시 오른쪽으로 보내야 한다.
+ *
+ * ⚠️ 두 곱하는 수를 **같은 방향에서 서로 다르게** 뽑는다. 방향을 섞으면 초5 범위 밖의
+ *    소수 자리가 나오고(백분의 일에 `0.01` 을 곱하면 넷째 자리), 같은 수를 두 번 뽑으면
+ *    답이 곧 주어진 값이 되어 역산이 뜻을 잃는다.
+ */
+function dm247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = hundredthT(rng);
+    const mulA = pick(rng, [10, 100, 1000]);
+    const mulB = pick(
+      rng,
+      [10, 100, 1000].filter((v) => v !== mulA),
+    );
+    const stepsA = mulA === 10 ? 1 : mulA === 100 ? 2 : 3;
+    return make(
+      unit,
+      `어떤 수에 ${nj(mulA, "을", "를")} 곱했더니 ${dj(dec(b * mulA, 2), "이", "가")} 되었습니다. 어떤 수에 ${nj(mulB, "을", "를")} 곱하면 얼마입니까?`,
+      expr(dec(b * mulB, 2)),
+      `${nj(mulA, "을", "를")} 곱해 소수점이 오른쪽으로 ${n(stepsA)}칸 옮겨졌으므로, 어떤 수는 소수점을 왼쪽으로 ${n(stepsA)}칸 되돌린 ${expr(dec(b, 2))}입니다. 여기에 ${nj(mulB, "을", "를")} 곱하면 ${expr(`${dec(b, 2)}\\times${mulB}=${dec(b * mulB, 2)}`)}입니다.`,
+    );
+  }
+  const whole = intBetween(rng, 12, 987);
+  const w = whole % 10 === 0 ? whole + 1 : whole;
+  const stepsA = pick(rng, [1, 2]);
+  const stepsB = stepsA === 1 ? 2 : 1;
+  return make(
+    unit,
+    `어떤 수에 ${dj(dec(1, stepsA), "을", "를")} 곱했더니 ${dj(dec(w, stepsA), "이", "가")} 되었습니다. 어떤 수에 ${dj(dec(1, stepsB), "을", "를")} 곱하면 얼마입니까?`,
+    expr(dec(w, stepsB)),
+    `${dj(dec(1, stepsA), "을", "를")} 곱해 소수점이 왼쪽으로 ${n(stepsA)}칸 옮겨졌으므로, 어떤 수는 소수점을 오른쪽으로 ${n(stepsA)}칸 되돌린 ${n(w)}입니다. 여기에 ${dj(dec(1, stepsB), "을", "를")} 곱하면 ${expr(`${w}\\times${dec(1, stepsB)}=${dec(w, stepsB)}`)}입니다.`,
   );
 }
 
@@ -5696,6 +6272,48 @@ export const G5_TIERS: ElemTierMap = {
     기본: fm224Read,
     응용: fm224Apply,
     심화: fm224Deep,
+  },
+  "초5|2-4-1": {
+    연산: dm241Calc,
+    기본: dm241Read,
+    응용: dm241Apply,
+    심화: dm241Deep,
+  },
+  "초5|2-4-2": {
+    연산: dm242Calc,
+    기본: dm242Read,
+    응용: dm242Apply,
+    심화: dm242Deep,
+  },
+  "초5|2-4-3": {
+    연산: dm243Calc,
+    기본: dm243Read,
+    응용: dm243Apply,
+    심화: dm243Deep,
+  },
+  "초5|2-4-4": {
+    연산: dm244Calc,
+    기본: dm244Read,
+    응용: dm244Apply,
+    심화: dm244Deep,
+  },
+  "초5|2-4-5": {
+    연산: dm245Calc,
+    기본: dm245Read,
+    응용: dm245Apply,
+    심화: dm245Deep,
+  },
+  "초5|2-4-6": {
+    연산: dm246Calc,
+    기본: dm246Read,
+    응용: dm246Apply,
+    심화: dm246Deep,
+  },
+  "초5|2-4-7": {
+    연산: dm247Calc,
+    기본: dm247Read,
+    응용: dm247Apply,
+    심화: dm247Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,
