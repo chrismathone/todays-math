@@ -1136,6 +1136,40 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
     }
   });
 
+  /**
+   * 지면에 나가는 **모든** 순환소수 표기를 정규형으로 잠근다 — 유형별 검산이
+   * 미리 «어디에 순환소수가 나오는지» 정해 두지 않는 발견기다.
+   *
+   * 이 검사는 변이 시험이 찾아 준 사각지대를 막는다: 정규형 가드를 지웠더니
+   * 유형 17 이 $0.\overline{9}$(=1)·$0.\overline{0}$(=0) 을 냈는데, 유형별
+   * 검산은 자릿수 비교만 해서 초록이었다. 「목록을 손으로 쓰면 세는 쪽과
+   * 고치는 쪽이 같이 눈이 먼다」(CLAUDE.md 2026-08-18) — 그래서 본문에서
+   * 표기를 **직접 훑어** 잰다.
+   */
+  it("지면의 순환소수 표기가 모두 정규형이다 (0·9만·되풀이·앞자리 중복 금지)", () => {
+    const RE = /(\d+)\.(\d*)\\overline\{(\d+)\}/g;
+    let seen = 0;
+    for (const e of ALL) {
+      for (const seed of SEEDS) {
+        for (let variant = 0; variant < 8; variant += 1) {
+          const p = generateMiddleProblem(e.key, seed, variant);
+          for (const part of [p.content, p.answer, p.solution]) {
+            for (const m of part.matchAll(RE)) {
+              seen += 1;
+              const r = { int: Number(m[1]), pre: m[2]!, cyc: m[3]! };
+              expect(
+                canonical(r),
+                `${e.key} seed=${seed} v=${variant}: 비정규 표기 ${m[0]}`,
+              ).toBe(true);
+            }
+          }
+        }
+      }
+    }
+    // 표본이 그 자리를 실제로 밟는지 — 0이면 이 검사는 아무것도 못 잰다
+    expect(seen).toBeGreaterThan(200);
+  });
+
   it("그림은 최단거리(16)에만 있고 나머지는 없다", () => {
     for (const e of ALL) {
       const p = generateMiddleProblem(e.key, 20260823);
