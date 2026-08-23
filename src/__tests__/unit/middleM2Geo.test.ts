@@ -33,10 +33,6 @@ const GEO = M2_TYPES.filter(
   (e) => e.rpmBook === "2-2" && MINORS.has(e.rpmMinor),
 );
 
-function gcd(a: number, b: number): number {
-  return b === 0 ? a : gcd(b, a % b);
-}
-
 /** 삼각형 세 각의 합 — 검산이 발문의 성질을 «다시 세운다». */
 function angleSum(...angles: number[]): boolean {
   return angles.reduce((s, v) => s + v, 0) === 180;
