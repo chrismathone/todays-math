@@ -4558,3 +4558,238 @@ describe("[초3 그림] 2-3 원 — 그림이 답도 풀이 단계도 말하지 
     );
   });
 });
+
+/* ══════════════ 2-6 그림그래프 (D-72 확대, 2026-08-24) ══════════════
+ *
+ * **참은 지면에서 온다.** 그런데 이 소단원은 지면의 절반이 **그림**이라, 발문 문자열이
+ * 아니라 `figureSpec` 의 칸 수를 읽어 여기서 다시 셈한다.
+ *
+ * ## 이 묶음이 지키는 것 — **그림이 답을 말하지 않는다**
+ *
+ * elem-figures 가 2-3 에서 잡은 것과 같은 부류이고, 여기는 자리가 둘이다:
+ *   · **2-6-2 는 큰·작은 그림을 안 그린다.** 그려 놓고 「몇 개 그려야 하나」를 물으면
+ *     **세면 답**이다. 표만 준다.
+ *   · **2-6-1 심화는 묻는 곳을 그림에서 뺀다.** 그려 두고 물으면 칸을 세면 끝이라
+ *     역산이 아니다.
+ *
+ * 둘 다 **값 검산으로는 안 잡힌다** — 답은 맞기 때문이다. 그래서 여기서 못 박는다.
+ */
+type PicItem = { label: string; count: number };
+type PicSpec = { kind?: string; unit?: number; items?: PicItem[] };
+
+const GRAPH_SEEDS = Array.from({ length: 24 }, (_, i) => 20260824 + i * 4231);
+const GRAPH_CODES = ["2-6-1", "2-6-2"] as const;
+
+const picOf = (code: string, seed: number, tier: (typeof ELEM_TIERS)[number]) =>
+  generateElementaryProblem(planeUnit(code), seed, tier)
+    .figureSpec as PicSpec | null;
+
+/** 답 `큰 그림 $3$개, 작은 그림 $5$개` → `[3, 5]`. */
+function bigSmall(answer: string): [number, number] | null {
+  const m = answer.match(/큰 그림 \$(\d+)\$개, 작은 그림 \$(\d+)\$개/);
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+describe("[초3 4단] 2-6 그림그래프 — 두 소단원", () => {
+  it("두 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of GRAPH_CODES)
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of GRAPH_CODES)
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 5150, tier);
+        const b = generateElementaryProblem(planeUnit(code), 5150, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+  });
+
+  /**
+   * ⚠️ 렌더러는 `count` 0~12 · `items` 1~6 을 받고, 넘쳐도 **안 던진다**
+   * (`_svg` 가 viewBox 를 넓힌다). 그런데 넓어지면 두 단 지면에서 **줄어든다** —
+   * 실측 `count` 8부터 240 → 356. 그래서 **우리가** 묶는다. 렌더러에 기대면
+   * 「안 던지니 괜찮다」로 읽고 작은 아이콘이 지면에 나간다.
+   */
+  it("그림그래프 칸 수가 지면 폭 안에 있다 — 칸 ≤ 7 · 항목 ≤ 4", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const code of GRAPH_CODES)
+      for (const tier of ELEM_TIERS)
+        for (const seed of GRAPH_SEEDS) {
+          const spec = picOf(code, seed, tier);
+          if (!spec || spec.kind !== "pictograph") continue;
+          looked += 1;
+          const items = spec.items ?? [];
+          if (items.length < 1 || items.length > 4)
+            bad.push(`${code} ${tier} ${seed}: 항목 ${items.length}개`);
+          for (const it of items)
+            if (it.count < 1 || it.count > 7)
+              bad.push(`${code} ${tier} ${seed}: ${it.label} 칸 ${it.count}`);
+        }
+    expect(bad.slice(0, 6)).toEqual([]);
+    expect(
+      looked,
+      "그림그래프를 하나도 못 봤다 — 축이 사라졌다",
+    ).toBeGreaterThan(0);
+  });
+
+  it("2-6-1 — 답이 그림의 칸 수와 맞는다 (읽는 쪽)", () => {
+    const bad: string[] = [];
+    for (const seed of GRAPH_SEEDS) {
+      // 1단 — 한 곳의 값 = 칸 수 × 한 칸.
+      const calc = generateElementaryProblem(planeUnit("2-6-1"), seed, "연산");
+      const cs = calc.figureSpec as PicSpec;
+      const step = cs.unit!;
+      const label = calc.content.match(/([가나다라]) /)?.[1];
+      const row = (cs.items ?? []).find((x) => x.label === label);
+      if (!row) bad.push(`연산 ${seed}: 「${label}」 줄이 그림에 없다`);
+      else if (answerOf(calc.answer) !== row.count * step)
+        bad.push(`연산 ${seed}: ${row.count}×${step} ≠ ${calc.answer}`);
+
+      // 2단 — 가장 많은/적은 곳. 칸 수가 겹치면 답이 하나로 안 정해진다.
+      const word = generateElementaryProblem(planeUnit("2-6-1"), seed, "기본");
+      const ws = word.figureSpec as PicSpec;
+      const items = ws.items ?? [];
+      const counts = items.map((x) => x.count);
+      if (new Set(counts).size !== counts.length)
+        bad.push(`기본 ${seed}: 칸 수가 겹친다 — ${counts.join(",")}`);
+      const askMost = word.content.includes("가장 많은");
+      const want = items.find(
+        (x) =>
+          x.count === (askMost ? Math.max(...counts) : Math.min(...counts)),
+      )!;
+      if (word.answer !== want.label)
+        bad.push(
+          `기본 ${seed}: ${askMost ? "최다" : "최소"}는 ${want.label} 인데 답이 ${word.answer}`,
+        );
+
+      // 3단 — 두 곳의 합 또는 차.
+      const ap = generateElementaryProblem(planeUnit("2-6-1"), seed, "응용");
+      const as2 = ap.figureSpec as PicSpec;
+      const marks = [...ap.content.matchAll(/([가나다라]) /g)].map(
+        (m) => m[1]!,
+      );
+      const two = [...new Set(marks)].slice(0, 2);
+      const rows = two.map((l) => (as2.items ?? []).find((x) => x.label === l));
+      if (rows.some((r) => !r) || two.length !== 2)
+        bad.push(`응용 ${seed}: 두 곳을 못 읽었다 — ${marks.join(",")}`);
+      else {
+        const [p, q] = rows as [PicItem, PicItem];
+        const st = as2.unit!;
+        const isSum = ap.content.includes("더하면");
+        const want2 = isSum
+          ? (p.count + q.count) * st
+          : Math.abs(p.count - q.count) * st;
+        if (answerOf(ap.answer) !== want2)
+          bad.push(
+            `응용 ${seed}: ${isSum ? "합" : "차"} ${want2} ≠ ${ap.answer}`,
+          );
+        if (!isSum && p.count === q.count)
+          bad.push(`응용 ${seed}: 차가 $0$ 이다 — 문항이 안 된다`);
+      }
+
+      // 4단 — 묻는 곳은 **그림에 없어야** 한다. 있으면 칸을 세면 끝이라 역산이 아니다.
+      const deep = generateElementaryProblem(planeUnit("2-6-1"), seed, "심화");
+      const ds = deep.figureSpec as PicSpec;
+      const shown = ds.items ?? [];
+      if (shown.some((x) => x.label === "라"))
+        bad.push(`심화 ${seed}: 묻는 곳(라)이 그림에 있다 — 세면 답이다`);
+      const st2 = ds.unit!;
+      const total = Number(deep.content.match(/전체가 \$(\d+)\$/)?.[1] ?? NaN);
+      const sum = shown.reduce((a, b) => a + b.count, 0) * st2;
+      if (!Number.isFinite(total))
+        bad.push(`심화 ${seed}: 전체 값을 발문에서 못 읽었다`);
+      else if (answerOf(deep.answer) !== total - sum)
+        bad.push(`심화 ${seed}: ${total}-${sum} ≠ ${deep.answer}`);
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("2-6-2 — 큰·작은 그림 개수가 자릿값과 맞는다 (나타내는 쪽)", () => {
+    const bad: string[] = [];
+    for (const tier of ELEM_TIERS)
+      for (const seed of GRAPH_SEEDS) {
+        const p = generateElementaryProblem(planeUnit("2-6-2"), seed, tier);
+        const bs = bigSmall(p.answer);
+        if (!bs) {
+          bad.push(`${tier} ${seed}: 답 모양이 아니다 — ${p.answer}`);
+          continue;
+        }
+        const [big, small] = bs;
+        // 큰 그림 한 개 = $10$, 작은 그림 한 개 = $1$ 이므로 값은 이렇게 선다.
+        if (small < 1 || small > 9)
+          bad.push(
+            `${tier} ${seed}: 작은 그림 ${small}개 — 일의 자리가 아니다`,
+          );
+        if (big < 1) bad.push(`${tier} ${seed}: 큰 그림 ${big}개`);
+        // 해설이 그 자릿값을 실제로 보여야 한다(등식으로).
+        const val = big * 10 + small;
+        const eqFwd = `10\\times${big}+${small}=${val}`;
+        const eqBack = `${val}=10\\times${big}+${small}`;
+        if (!p.solution.includes(eqFwd) && !p.solution.includes(eqBack))
+          bad.push(
+            `${tier} ${seed}: 해설에 자릿값 등식이 없다 — ${p.solution.slice(0, 60)}`,
+          );
+      }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  /**
+   * ⚠️ **이것이 이 소단원의 목숨이다.** 큰·작은 그림을 그려 주면 「몇 개 그려야
+   * 하나」의 답이 **지면에 그려져 있다.** 값 검산은 통과한다 — 답이 맞으니까.
+   */
+  it("2-6-2 는 그림그래프를 **그리지 않는다** — 그리면 세면 답이다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const tier of ELEM_TIERS)
+      for (const seed of GRAPH_SEEDS) {
+        const spec = picOf("2-6-2", seed, tier);
+        looked += 1;
+        if (spec && spec.kind === "pictograph")
+          bad.push(`${tier} ${seed}: 그림그래프를 그렸다 — 세면 답이다`);
+      }
+    expect(bad.slice(0, 6)).toEqual([]);
+    expect(looked, "2-6-2 를 하나도 못 봤다").toBe(
+      ELEM_TIERS.length * GRAPH_SEEDS.length,
+    );
+  });
+
+  /**
+   * ⚠️ **내가 실제로 낸 결함이다**(2026-08-24). 「$5$개**을** 나타냅니다」를 여섯 자리에
+   * 하드코딩했다 — 소재마다 단위가 갈리는데(개·그루·권·명·대·자루) 조사를 글자로 박았다.
+   * 2-5 에서 「무게**을**」로 같은 것을 했고, **두 번째**다.
+   */
+  it("단위 뒤 조사를 하드코딩하지 않는다 — 「개을」·「그루을」이 없다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const code of GRAPH_CODES)
+      for (const tier of ELEM_TIERS)
+        for (const seed of GRAPH_SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const t = `${p.content}\n${p.solution}`;
+          for (const m of t.matchAll(
+            /\$\d+\$([가-힣]{1,2})([은는이가을를])(?![가-힣])/g,
+          )) {
+            looked += 1;
+            const w = m[1]!;
+            const got = m[2]!;
+            const hasFinal = (w.charCodeAt(w.length - 1) - 0xac00) % 28 !== 0;
+            const wantIdx = ["은는", "이가", "을를"].findIndex((pr) =>
+              pr.includes(got),
+            );
+            const want = ["은는", "이가", "을를"][wantIdx]![hasFinal ? 0 : 1];
+            if (got !== want)
+              bad.push(
+                `${code} ${tier} ${seed}: 「${w}${got}」→「${w}${want}」`,
+              );
+          }
+        }
+    expect(bad.slice(0, 6)).toEqual([]);
+    expect(
+      looked,
+      "수+단위+조사 자리를 하나도 못 봤다 — 축이 사라졌다",
+    ).toBeGreaterThan(0);
+  });
+});
