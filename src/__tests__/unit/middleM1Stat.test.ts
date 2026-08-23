@@ -19,6 +19,7 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -223,9 +224,24 @@ describe("중1 3A — 구 계열 + 도수분포표와 상대도수(텍스트 유
     );
   });
 
-  it("우리 단원 이름이 교육과정 시드에 실제로 있다", () => {
+  it("우리 단원 이름이 교육과정 시드(정본)에 실제로 있다", () => {
     // 「손으로 적은 단원 이름」이 시드와 어긋나면 적재가 조용히 못 붙는다.
-    // 정본은 `prisma/seed-data/units.ts` 다 — 거기 없는 이름이면 여기서 빨개진다.
+    // 그러니 참을 **정본에서** 가져온다 — 여기 목록을 손으로 적으면
+    // 손 목록끼리 견주는 동어반복이 된다.
+    const seeded = new Set(
+      CURRICULUM_UNITS.filter((u) => u.grade === "중1").map((u) => u.section),
+    );
+    for (const e of M1_STAT_TYPES) {
+      expect(
+        seeded.has(e.unitSection),
+        `중1 시드에 없는 단원 이름: ${e.unitSection} (${e.key})`,
+      ).toBe(true);
+    }
+  });
+
+  it("붙인 단원이 셋뿐이다 — 엉뚱한 단원으로 새면 눈에 띄게", () => {
+    // 위 검사는 「시드에 있는 이름인가」만 본다. 시드에 있는 **다른** 단원으로
+    // 잘못 붙는 것은 못 본다(예: 「대푯값」). 그래서 셋을 못 박아 둔다.
     const sections = new Set(M1_STAT_TYPES.map((e) => e.unitSection));
     expect(sections).toEqual(
       new Set(["구의 겉넓이와 부피", "도수분포표", "상대도수"]),
