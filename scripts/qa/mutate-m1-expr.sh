@@ -43,13 +43,23 @@ case "${BASE:-}" in
 esac
 
 run() { # $1 = 변이 이름
-  local after moved r
+  local after moved out rc r
   after=$(mktemp)
+  # ⑴ 파일이 바뀌었나
   if cmp -s "$SRC" "$BACKUP"; then
     echo "[$1] 🔴 **파일이 그대로다 — 치환이 안 먹었다.** 판정 안 함"
     restore; return
   fi
+  # ⑵ 산출물이 바뀌었나 — 표본이 아예 못 돌면(문법 파괴) 그것도 판정 불가다.
+  #    표본은 유형별 예외를 스스로 잡아 `THROW` 로 찍으므로, 0 이 아닌 종료는
+  #    「생성기가 던졌다」가 아니라 「모듈이 안 읽힌다」는 뜻이다.
   npx tsx "$PROBE" > "$after" 2>&1
+  rc=$?
+  if [ "$rc" -ne 0 ]; then
+    echo "[$1] 🔴 **표본이 아예 안 돌았다(rc=$rc) — 변이가 코드를 깨뜨렸다.** 판정 안 함"
+    tail -3 "$after" | sed 's/^/        /'
+    restore; return
+  fi
   # 달라진 줄 수를 **찍는다** — 「0줄인데 초록」이 조용히 «가드가 아니다» 로
   # 읽히면 멀쩡한 시험을 고치러 간다(2026-08-23 이 하네스가 실제로 그랬다).
   moved=$(diff "$BEFORE" "$after" | grep -c '^[<>]')
@@ -57,23 +67,38 @@ run() { # $1 = 변이 이름
     echo "[$1] 🔴 **산출물이 그대로다(달라진 줄 0) — 동작을 안 바꾸는 변이다.** 판정 안 함"
     restore; return
   fi
-  r=$(npx vitest run "$TEST" 2>&1 | grep -oE "Tests +[0-9]+ failed" | head -1)
-  echo "[$1] 산출물 ${moved}줄 달라짐 → ${r:-🟢 전부 초록 ← 가드가 아니다}"
+  # ⑶ 그제서야 시험. 판정은 **종료 코드**로 한다 — 요약 줄을 grep 하면
+  #    「수집 실패」처럼 «Tests N failed» 줄이 아예 없는 경우가 초록으로 읽힌다
+  #    (2026-08-23 실제로 그렇게 거짓 초록이 났다).
+  out=$(npx vitest run "$TEST" 2>&1)
+  rc=$?
+  r=$(printf '%s' "$out" | grep -oE "Tests +[0-9]+ failed" | head -1)
+  if [ "$rc" -ne 0 ]; then
+    echo "[$1] 산출물 ${moved}줄 달라짐 → 🔴 ${r:-시험이 수집조차 안 됨(빨강)}"
+  else
+    echo "[$1] 산출물 ${moved}줄 달라짐 → 🟢 전부 초록 ← 가드가 아니다"
+  fi
   restore
 }
 
-# 앵커에는 역슬래시를 넣지 않는다 — 도구·셸 층이 한 겹씩 벗겨 «파일은 바뀌었는데
-# 뜻은 안 바뀐» 변이가 된다(2026-08-21).
+# 찾을 것·바꿀 것을 **base64 로 실어 나른다.** 그냥 넘기면 층마다 한 겹씩 갉아먹는다:
+#   · Git Bash(MSYS) 는 `//` 로 시작하는 값을 경로로 보고 슬래시 하나를 지운다
+#     — 2026-08-23 에 `// 변이` 가 `/ 변이` 가 되어 문법이 깨졌고, 그 바람에
+#     시험이 수집조차 안 되어 **거짓 초록**이 났다.
+#   · 도구·셸의 따옴표 층은 역슬래시를 한 겹 벗긴다(메모 「변이 치환은 바이트 조립」).
+# base64 는 그 두 층을 모두 통과한다.
 mutate() { # $1 = 찾을 것, $2 = 바꿀 것
-  MUT_OLD="$1" MUT_NEW="$2" MUT_FILE="$SRC" python - <<'PY'
-import io, os
+  MUT_OLD64=$(printf '%s' "$1" | base64 -w0) \
+  MUT_NEW64=$(printf '%s' "$2" | base64 -w0) \
+  MUT_FILE="$SRC" python - <<'PY'
+import base64, io, os
 p = os.environ["MUT_FILE"]
-old = os.environ["MUT_OLD"]
-new = os.environ["MUT_NEW"]
+old = base64.b64decode(os.environ["MUT_OLD64"]).decode("utf-8")
+new = base64.b64decode(os.environ["MUT_NEW64"]).decode("utf-8")
 s = io.open(p, encoding="utf-8").read()
 n = s.count(old)
 if n != 1:
-    raise SystemExit("ANCHOR %d" % n)
+    raise SystemExit("ANCHOR %d — %r" % (n, old[:40]))
 io.open(p, "w", encoding="utf-8", newline="").write(s.replace(old, new, 1))
 PY
 }
