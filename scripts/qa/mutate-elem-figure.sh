@@ -32,6 +32,22 @@ BASE=scripts/figure/elementary.py
 #
 #    이 검사는 **표지를 세우기도 전에** 한다. 이름을 틀렸을 뿐인데 공유 워크트리를
 #    건드리거나 기준선으로 35초를 태울 이유가 없다.
+CTRL=$(printf '\a\b\v\f')
+# 🔴 **자기 소스와 대상에 제어문자가 있나** — 가장 싼 검사를 **가장 먼저** 한다.
+#    2026-08-23~24 에 이 부류를 **네 번** 밟았다: 정규식의 낱말 경계 표시가 백스페이스 한 글자로 박혀
+#    「직각을 호로 그리지 않는다」 검사가 **아무것도 안 맞는 채 늘 통과**했다.
+#    heredoc·도구 층이 역슬래시를 한 겹 벗기는 것이 원인이라 **사람이 기억할 일이 아니다.**
+#    ⚠️ 이 검사 자체도 「일부러 넣은 제어문자」로 시험해 빨개지는 것을 확인했다.
+for f in "$0" scripts/figure/elementary.py scripts/figure/elem_advanced.py          src/__tests__/unit/elementaryFigure.test.ts; do
+  # ⚠️ 패턴을 **조립**한다 — 제어문자를 리터럴로 적으면 이 파일이 **자기 검사에 걸린다**
+  #    (실제로 그렇게 됐다 — 오늘 다섯 번째 얼굴이었다).
+  if grep -qP "[$CTRL]" "$f" 2>/dev/null; then
+    echo "🔴 **제어문자가 박혀 있다: $f** — 그 줄의 정규식·문자열은 뜻이 다르다. 판정 없이 멈춘다"
+    grep -nP "[$CTRL]" "$f" | head -3 | cat -v | sed 's/^/     /'
+    exit 2
+  fi
+done
+
 ONLY=${MUTATE_ONLY:-}
 if [ -n "$ONLY" ]; then
   MATCHED=$(grep '^run "' "$0" | grep -c -- "$ONLY")
@@ -50,7 +66,17 @@ fi
 # 예전에는 `scripts/figure/` 밑에 뒀는데 team-lead 표지는 `scripts/qa/` 였다 —
 # **갈려 있으면 서로 자기 쪽만 본다.** 실제로 team-lead 의 대기 스크립트가 뿌리만
 # 훑어서 내 표지를 못 봤다. 뿌리에 모으면 `ls MUTATION-IN-PROGRESS.*` 한 줄로 다 보인다.
+# g5 규약(2026-08-24): 회차 머리에 **되쓸 파일**을 찍는다 — 창을 연 파일과 되쓰는
+# 파일이 다를 수 있고, 그때 남이 「내 파일은 아니겠지」 하고 지나간다.
+echo "▶ 이 회차가 **되쓸 파일**: $ADV · $BASE"
 FLAG=MUTATION-IN-PROGRESS.elem-figure.txt
+# 🔴 **빵부스러기** — 변이를 적용하기 **직전에** 쓰고 정상 복원 때 지운다. 그래서
+#    **이 파일이 남아 있다는 것 자체가 「더럽게 죽었다」**는 뜻이다(g5).
+#    ⚠️ `echo >` 는 셸 **내장**이라 fork 없이 쓴다 — `mktemp`·`cp` 는 fork 가 필요해
+#       `fork: Resource temporarily unavailable` 상황에서 실패한다. 오늘 그것으로
+#       `trap` 이 못 돌아 변이가 파일에 남았다.
+CRUMB=.mutate-inflight.elem-figure.json
+LAST=.mutate-last.elem-figure.json
 BAK_ADV=$(mktemp)
 BAK_BASE=$(mktemp)
 BEFORE=$(mktemp)
@@ -66,7 +92,7 @@ PYERR=$(mktemp)
 cp "$ADV" "$BAK_ADV"
 cp "$BASE" "$BAK_BASE"
 
-restore() { cp "$BAK_ADV" "$ADV"; cp "$BAK_BASE" "$BASE"; }
+restore() { cp "$BAK_ADV" "$ADV"; cp "$BAK_BASE" "$BASE"; rm -f "$CRUMB"; }
 cleanup() { restore; rm -f "$FLAG"; }
 # 죽어도 원본을 되돌린다. 중간에 끊기면 변이가 그대로 남아 다음 사람이 그걸 읽는다.
 trap 'cleanup; echo "중단 — 원상 복구했다"; exit 130' INT TERM
@@ -119,6 +145,8 @@ baseline() {
 baseline
 
 run() { # $1=이름
+  # 빵부스러기 — **변이가 이미 적용된 뒤**이므로 여기서 쓴다(그 전에 죽으면 파일이 성하다).
+  echo "{\"harness\":\"elem-figure\",\"name\":\"$1\",\"files\":[\"$ADV\",\"$BASE\"]}" > "$CRUMB"
   local after; after=$(mktemp)
   if [ -n "$ONLY" ] && [ "${1#*"$ONLY"}" = "$1" ]; then restore; return; fi
   if cmp -s "$BAK_ADV" "$ADV" && cmp -s "$BAK_BASE" "$BASE"; then
@@ -782,6 +810,39 @@ io.open(p, "w", encoding="utf-8").write(s.replace(old, "        if False:  # 변
 MUT
 run "같은변 도형에 서로 다른 값을 조용히 받는다"
 
+# ⑥ tiling — **크기 비를 무시**하고 조각을 고정 크기로. 발문의 값이 그림에서 사라진다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    small = big * ps / ts"
+assert old in s, "앵커 없음 340"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "    small = big * 0.5  # 변이", 1))
+MUT
+run "tiling 이 크기 비를 무시한다"
+
+# ⑥ **채운 모습을 그린다** — 조각을 목표 위에 얹으면 **세면 답**이다(D-66 ⑺).
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "    parts.append(_poly_pts(_shape_points(target, pad + small + gap, pad, big)))"
+assert old in s, "앵커 없음 341"
+new = old + chr(10) + "    parts.append(_poly_pts(_shape_points(piece, pad + small + gap, pad, small)))  # 변이"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "tiling 이 채운 모습을 그린다 (답이 샌다)"
+
+# ③ 라벨이 **같은 직선**에 붙는다 — 모양은 맞는데 이름이 새는 자리.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        name_at = [(pad, y0), (pad, y1)]"
+assert old in s, "앵커 없음 342"
+io.open(p, "w", encoding="utf-8").write(
+    s.replace(old, "        name_at = [(pad, y0), (pad + w, y0)]  # 변이", 1)
+)
+MUT
+run "lineRelation 두 이름이 같은 직선에 붙는다"
+
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
 if [ -n "$ONLY" ]; then
@@ -820,6 +881,10 @@ if [ "$baseline_bad" -ne 0 ]; then
   echo "🔴 **무변이 기준선이 빨갛다** — 위 빨강들이 변이 때문인지 알 수 없다"
   fail=1
 fi
+# g5 규약: **끝나도 남긴다** — 회차가 끝난 뒤에도 「무엇을 언제 돌렸나」를 추적할 근거.
+{ echo "{"; echo "  \"harness\": \"elem-figure\","; echo "  \"judged\": $judged,";
+  echo "  \"declared\": $declared,"; echo "  \"skipped\": $skipped,";
+  echo "  \"notguard\": $notguard,"; echo "  \"filtered\": \"${ONLY:-}\""; echo "}"; } > "$LAST"
 [ "$fail" -eq 0 ] && echo "✅ 변이 $declared 개 전부 판정됐고 전부 빨강이다"
 echo "원상 복구 완료"
 exit "$fail"
