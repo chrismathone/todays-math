@@ -62,6 +62,7 @@ const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-arithmetic", 44],
   ["probe-elem-routing", 4],
   ["probe-elem-tier-ladder", 14],
+  ["probe-elem-unit-josa", 12],
 ];
 
 /**
