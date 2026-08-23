@@ -790,9 +790,24 @@ B단계로 새로 뽑은 시험지의 그림을 얻으려면 그 PDF 도 캐시�
 
 `src/lib/elementary/` (g3~g6) + `scripts/figure/elementary.py`·`elem_advanced.py`.
 범위는 **초3~초6 네 학년 230개 소단원이 전부** (D-68 — 초1·초2 안 만든다).
-전 소단원 × 씨앗 1,260개 관문(`elementaryCoverage.test.ts`) · 판정기 4종
-(`probe-elem-{rules,routing,arithmetic,section-conditions}.ts`) · 그림 스펙 전수 렌더
+전 소단원 × 씨앗 1,260개 관문(`elementaryCoverage.test.ts`) · 그림 스펙 전수 렌더
 · 도표 2,400장 자(`probe-elem-charts.ts`+`measure-elem-charts.py`) 전부 0.
+
+### 🔴 학년 손 뗌 관문 — **아홉을 다 돌린다** (2026-08-24)
+
+```
+throw · equations · arithmetic · rules · routing
+section-conditions · tier-ladder · unit-josa · josa-source
+```
+
+⚠️ **이 목록이 손으로 적은 목록이라 실제로 한 번 샜다.** 여기 「판정기 4종」이라 적혀
+있던 동안 리드가 세션들에 여덟만 일러 줬고, 빠진 `josa-source` 가 잡았어야 할
+「원기둥 모양 연필꽂이**이** 있습니다」가 `rules 초6 = 0` 뒤에 숨어 있었다
+(2026-08-24 elem-g6 적발). **`rules` 의 조사 규칙은 이 자리를 안 본다 — 축이 다르다.**
+
+목록에 없는 판정기는 **구조적으로 안 돌아간다.** 판정기를 새로 만들면 **여기와**
+**`elemProbeGauges.test.ts` 를 같이** 고칠 것. 눈금 쪽은 `scripts/qa/probe-elem-*.ts` 를
+디렉터리에서 읽어 스스로 늘어나지만, **이 «학년별 쓸기» 목록은 그렇지 않다.**
 축·걸음 규칙은 D-67(B안), 규모·유형 결정은 D-69·D-70.
 
 ## 10.2 다음 단계 — **난이도 엔진** (원장님과 같이 정함 2026-08-22, D-71)
