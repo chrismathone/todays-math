@@ -1836,7 +1836,7 @@ function sub111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     const total = a + b;
     return make(
       unit,
-      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}이 들어 있다면 다른 상자에는 몇 ${s.unit}이 들어 있습니까?`,
+      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}${josa(s.unit, "이", "가")} 들어 있다면 다른 상자에는 몇 ${s.unit}${josa(s.unit, "이", "가")} 들어 있습니까?`,
       n(b),
       `전체에서 아는 쪽을 덜어 냅니다. ${expr(`${total}-${a}=${b}`)} 이므로 ${n(b)}${s.unit}입니다.`,
     );
