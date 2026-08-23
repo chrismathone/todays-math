@@ -25,6 +25,7 @@ import {
   generateMiddleProblem,
   generateMiddleSet,
 } from "../../lib/middle/generate";
+import { preprocessMathText } from "../../lib/math/textPreprocess";
 import { M1_FREQ, M1_SPHERE, M1_STAT_TYPES } from "../../lib/middle/m1Stat";
 import type { MidProblem } from "../../lib/middle/types";
 
@@ -246,6 +247,31 @@ describe("중1 3A — 구 계열 + 도수분포표와 상대도수(텍스트 유
     expect(sections).toEqual(
       new Set(["구의 겉넓이와 부피", "도수분포표", "상대도수"]),
     );
+  });
+
+  it("제품 전처리가 내 수식의 수를 바꾸지 않는다", () => {
+    // 화면을 눈으로 보고서야 나온 결함이다(2026-08-23). `preprocessMathText` 는
+    // 「정수 가분수 → 대분수」를 **한국 교과 관행**으로 적용한다(초등 분수에서는 옳다).
+    // 그런데 구의 부피 공식 $\dfrac43\pi r^3$ 가 그 규칙에 정확히 걸려
+    // 지면에 **$1\frac13\pi$** 로 나갔고, $\dfrac{12}{2}=6$ 은 통째로 접혀
+    // 「$6=6$」이 됐다. 수학은 맞지만 공식이 아니고, 해설이 말이 안 된다.
+    //
+    // 참을 **제품 함수에서** 가져온다 — 규칙을 여기 옮겨 적으면 그 규칙이
+    // 바뀌는 날 이 검사가 눈이 먼다. 판정은 「전처리 전후로 수식 안의 수가
+    // 같은가」다(전처리가 수를 바꿨다면 내가 쓴 식이 아니다).
+    const digits = (s: string) =>
+      (s.match(/\$[^$]*\$/g) ?? []).join(" ").match(/\d+/g)?.join(",") ?? "";
+    for (const e of M1_STAT_TYPES) {
+      for (let s = 0; s < 60; s += 1) {
+        const p = generateMiddleProblem(e.key, s * 7919 + 13);
+        for (const field of [p.content, p.answer, p.solution]) {
+          expect(
+            digits(preprocessMathText(field)),
+            `${e.key} — 전처리가 수식을 고쳐 씁니다: ${field}`,
+          ).toBe(digits(field));
+        }
+      }
+    }
   });
 
   it("그림이 없다 — 못 그리는 그림을 지어내지 않았다", () => {

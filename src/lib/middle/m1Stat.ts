@@ -197,7 +197,7 @@ export const M1_SPHERE: TypeEntry[] = [
       return {
         content: `지름의 길이가 $${d}\\,\\mathrm{cm}$인 구의 겉넓이를 구하시오.`,
         answer: `$${S}\\pi\\,\\mathrm{cm}^2$`,
-        solution: `반지름의 길이는 $\\dfrac{${d}}{2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 겉넓이는 $4\\pi\\times${r}^{2}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        solution: `반지름의 길이는 지름의 길이의 절반이므로 $${r}\\,\\mathrm{cm}$이다.\n따라서 겉넓이는 $4\\pi\\times${r}^{2}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
         facts: { branch, r, d, S, ans: S },
       };
     }),
@@ -212,7 +212,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구의 부피를 구하시오.`,
           answer: `$${V}\\pi\\,\\mathrm{cm}^3$`,
-          solution: `$\\dfrac{4}{3}\\pi\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+          solution: `$\\dfrac{4\\pi}{3}\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
           facts: { branch, r, V, ans: V },
         };
       }
@@ -221,7 +221,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `지름의 길이가 $${d}\\,\\mathrm{cm}$인 구의 부피를 구하시오.`,
           answer: `$${V}\\pi\\,\\mathrm{cm}^3$`,
-          solution: `반지름의 길이는 $\\dfrac{${d}}{2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 부피는 $\\dfrac{4}{3}\\pi\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+          solution: `반지름의 길이는 지름의 길이의 절반이므로 $${r}\\,\\mathrm{cm}$이다.\n따라서 부피는 $\\dfrac{4\\pi}{3}\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
           facts: { branch, r, d, V, ans: V },
         };
       }
@@ -230,7 +230,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `겉넓이가 $${S}\\pi\\,\\mathrm{cm}^2$인 구의 부피를 구하시오.`,
           answer: `$${V}\\pi\\,\\mathrm{cm}^3$`,
-          solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $4\\pi r^{2}=${S}\\pi$에서 $r^{2}=${r * r}$, $r=${r}$이다.\n따라서 부피는 $\\dfrac{4}{3}\\pi\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+          solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $4\\pi r^{2}=${S}\\pi$에서 $r^{2}=${r * r}$, $r=${r}$이다.\n따라서 부피는 $\\dfrac{4\\pi}{3}\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
           facts: { branch, r, S, V, ans: V },
         };
       }
@@ -238,7 +238,7 @@ export const M1_SPHERE: TypeEntry[] = [
       return {
         content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 반구의 부피를 구하시오.`,
         answer: `$${H}\\pi\\,\\mathrm{cm}^3$`,
-        solution: `구의 부피의 절반이므로 $\\dfrac{1}{2}\\times\\dfrac{4}{3}\\pi\\times${r}^{3}=${H}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+        solution: `구의 부피의 절반이므로 $\\dfrac{1}{2}\\times\\dfrac{4\\pi}{3}\\times${r}^{3}=${H}\\pi\\,(\\mathrm{cm}^3)$이다.`,
         facts: { branch, r, V: H, ans: H },
       };
     }),
@@ -270,7 +270,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구의 $\\dfrac{1}{${n}}$을 잘라 내고 남은 입체도형의 겉넓이와 부피를 차례로 구하시오.`,
           answer: `겉넓이 $${A}\\pi\\,\\mathrm{cm}^2$, 부피 $${V}\\pi\\,\\mathrm{cm}^3$`,
-          solution: `남은 구면의 넓이는 $4\\pi\\times${r}^{2}\\times\\dfrac{${n - 1}}{${n}}=${curved}\\pi$이다.\n잘라 낸 단면은 $${planes}$개이고 넓이의 합은 $${cut}\\pi$이므로 겉넓이는 $${curved}\\pi+${cut}\\pi=${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{4}{3}\\pi\\times${r}^{3}\\times\\dfrac{${n - 1}}{${n}}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+          solution: `남은 구면의 넓이는 $4\\pi\\times${r}^{2}\\times\\dfrac{${n - 1}}{${n}}=${curved}\\pi$이다.\n잘라 낸 단면은 $${planes}$개이고 넓이의 합은 $${cut}\\pi$이므로 겉넓이는 $${curved}\\pi+${cut}\\pi=${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{4\\pi}{3}\\times${r}^{3}\\times\\dfrac{${n - 1}}{${n}}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
           facts: { n, r, A, V, ans: A },
         };
       }),
@@ -293,7 +293,7 @@ export const M1_SPHERE: TypeEntry[] = [
           return {
             content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 반원을 지름을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 겉넓이와 부피를 차례로 구하시오.`,
             answer: `겉넓이 $${A}\\pi\\,\\mathrm{cm}^2$, 부피 $${V}\\pi\\,\\mathrm{cm}^3$`,
-            solution: `반원을 지름을 회전축으로 하여 $1$회전 시키면 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구가 생긴다.\n겉넓이는 $4\\pi\\times${r}^{2}=${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{4}{3}\\pi\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+            solution: `반원을 지름을 회전축으로 하여 $1$회전 시키면 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구가 생긴다.\n겉넓이는 $4\\pi\\times${r}^{2}=${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{4\\pi}{3}\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
             facts: { half, r, A, V, ans: A },
           };
         }
@@ -302,7 +302,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 사분원을 한 반지름을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 겉넓이와 부피를 차례로 구하시오.`,
           answer: `겉넓이 $${A}\\pi\\,\\mathrm{cm}^2$, 부피 $${V}\\pi\\,\\mathrm{cm}^3$`,
-          solution: `사분원을 한 반지름을 회전축으로 하여 $1$회전 시키면 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 반구가 생긴다.\n곡면의 넓이 $${2 * r * r}\\pi$와 단면인 원의 넓이 $${r * r}\\pi$를 더하면 겉넓이는 $${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{1}{2}\\times\\dfrac{4}{3}\\pi\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
+          solution: `사분원을 한 반지름을 회전축으로 하여 $1$회전 시키면 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 반구가 생긴다.\n곡면의 넓이 $${2 * r * r}\\pi$와 단면인 원의 넓이 $${r * r}\\pi$를 더하면 겉넓이는 $${A}\\pi\\,(\\mathrm{cm}^2)$이다.\n부피는 $\\dfrac{1}{2}\\times\\dfrac{4\\pi}{3}\\times${r}^{3}=${V}\\pi\\,(\\mathrm{cm}^3)$이다.`,
           facts: { half, r, A, V, ans: A },
         };
       }),
@@ -360,7 +360,7 @@ export const M1_SPHERE: TypeEntry[] = [
           return {
             content: `한 모서리의 길이가 $${a}\\,\\mathrm{cm}$인 정육면체 안에 구가 꼭 맞게 들어 있을 때, 이 구의 겉넓이를 구하시오.`,
             answer: `$${S}\\pi\\,\\mathrm{cm}^2$`,
-            solution: `구의 지름의 길이가 정육면체의 한 모서리의 길이와 같으므로 반지름의 길이는 $\\dfrac{${a}}{2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 겉넓이는 $4\\pi\\times${r}^{2}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+            solution: `구의 지름의 길이가 정육면체의 한 모서리의 길이와 같으므로 반지름의 길이는 그 절반인 $${r}\\,\\mathrm{cm}$이다.\n따라서 겉넓이는 $4\\pi\\times${r}^{2}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
             facts: { branch, a, r, S, ans: S },
           };
         }
@@ -383,7 +383,7 @@ export const M1_SPHERE: TypeEntry[] = [
         return {
           content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 반구 안에 원뿔이 꼭 맞게 들어 있다. 반구와 원뿔의 부피를 각각 $V_{1}$, $V_{2}$라 할 때, $\\dfrac{V_{1}}{V_{2}}$의 값을 구하시오.`,
           answer: `$${ratio}$`,
-          solution: `$V_{1}=\\dfrac{1}{2}\\times\\dfrac{4}{3}\\pi\\times${r}^{3}=\\dfrac{${half}}{3}\\pi$이다.\n원뿔은 밑면의 반지름의 길이와 높이가 모두 $${r}\\,\\mathrm{cm}$이므로 $V_{2}=\\dfrac{1}{3}\\pi\\times${r}^{2}\\times${r}=\\dfrac{${cone}}{3}\\pi$이다.\n따라서 $\\dfrac{V_{1}}{V_{2}}=${ratio}$이다.`,
+          solution: `$V_{1}=\\dfrac{1}{2}\\times\\dfrac{4\\pi}{3}\\times${r}^{3}=\\dfrac{${half}\\pi}{3}$이다.\n원뿔은 밑면의 반지름의 길이와 높이가 모두 $${r}\\,\\mathrm{cm}$이므로 $V_{2}=\\dfrac{1}{3}\\pi\\times${r}^{2}\\times${r}=\\dfrac{${cone}\\pi}{3}$이다.\n따라서 $\\dfrac{V_{1}}{V_{2}}=${ratio}$이다.`,
           facts: { branch, r, half, cone, ratio, ans: ratio },
         };
       }),
@@ -549,7 +549,7 @@ export const M1_FREQ: TypeEntry[] = [
         return {
           content: `어느 중학교 학생들의 ${obj(t.subject)} 조사하여 나타낸 도수분포표에서 ${band}인 계급의 도수는 $${d}$명이고, 이 계급에 속하는 학생은 전체의 $${p}\\%$이다. 이 도수분포표에서 도수의 총합을 구하시오.`,
           answer: `$${T}$`,
-          solution: `도수의 총합을 $x$라 하면 $\\dfrac{${d}}{x}\\times100=${p}$이다.\n따라서 $x=${d}\\times\\dfrac{100}{${p}}=${T}$이다.`,
+          solution: `도수의 총합을 $x$라 하면 $\\dfrac{${d}}{x}\\times100=${p}$이다.\n양변에 $x$ 를 곱하여 정리하면 $x=${T}$이다.`,
           facts: { branch, T, d, p, ans: T },
         };
       }),
@@ -711,7 +711,14 @@ export const M1_FREQ: TypeEntry[] = [
         const q = q0 / g;
         // 이미 기약이면 «$=3:10=3:10$» 처럼 같은 비를 두 번 쓰지 않는다.
         const reduced = g > 1 ? `${p0}:${q0}=${p}:${q}` : `${p}:${q}`;
-        const ratioLine = `(상대도수의 비)$=\\dfrac{${c}}{${a}}:\\dfrac{${d}}{${b}}=${reduced}$이다.`;
+        // 갈래 0 의 총합은 «$4k$, $k$» 라 분모에도 $k$ 를 남긴다 — 바로 위 줄에서
+        // 그렇게 놓아 놓고 분모를 $4$ 라고 쓰면 앞뒤가 어긋난다.
+        // 분자에 $m$ 이 남으므로 제품 전처리의 «정수 가분수 → 대분수» 도 안 걸린다.
+        const denA = branch === 0 ? coef(a, "k") : String(a);
+        const denB = branch === 0 ? coef(b, "k") : String(b);
+        const over = (num: string, den: string): string =>
+          den === "1" ? num : `\\dfrac{${num}}{${den}}`;
+        const ratioLine = `(상대도수의 비)$=${over(coef(c, "m"), denA)}:${over(coef(d, "m"), denB)}=${reduced}$이다.`;
         if (branch === 0) {
           return {
             content: `A, B 두 반의 도수의 총합의 비가 $${a}:${b}$이고 어떤 계급의 도수의 비가 $${c}:${d}$일 때, 이 계급의 상대도수의 비를 가장 간단한 자연수의 비로 나타내시오.`,
