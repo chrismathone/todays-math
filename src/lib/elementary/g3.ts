@@ -952,19 +952,25 @@ function fracDec31(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** (세 자리)×(한 자리) 의 올림 횟수 — 표준·갈래가 **이 함수 하나**로 센다. */
+function mulCarries3x1(a: number, b: number): number {
+  let carries = 0;
+  let carry = 0;
+  for (let d = 0; d < 3; d += 1) {
+    const digit = Math.floor(a / 10 ** d) % 10;
+    const v = digit * b + carry;
+    carry = Math.floor(v / 10);
+    if (carry > 0) carries += 1;
+  }
+  return carries;
+}
+
 /** (세 자리)×(한 자리) 에서 올림이 몇 번 나는가로 고른다. */
 function mul3x1(rng: Rng, minC: number, maxC: number): [number, number] {
   for (let k = 0; k < 120; k += 1) {
     const a = intBetween(rng, 112, 498);
     const b = intBetween(rng, 2, 8);
-    let carries = 0;
-    let carry = 0;
-    for (let d = 0; d < 3; d += 1) {
-      const digit = Math.floor(a / 10 ** d) % 10;
-      const v = digit * b + carry;
-      carry = Math.floor(v / 10);
-      if (carry > 0) carries += 1;
-    }
+    const carries = mulCarries3x1(a, b);
     if (carries >= minC && carries <= maxC) return [a, b];
   }
   return minC === 0 ? [123, 2] : [387, 6];
@@ -1006,7 +1012,10 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
       );
     }
     const a = intBetween(rng, 3, 9);
-    const b = intBetween(rng, 12, 48);
+    // b 가 20·30·40 이면 (몇)×(몇십) — 소단원 이름의 세 꼴 어디에도 없다(실측 4/200).
+    // 가드로 거르지 않고 건너뛰기 추첨으로 뽑는 범위에서 뺀다: 12..45 → 12..48∖{20,30,40}.
+    let b = intBetween(rng, 12, 45);
+    for (const cut of [20, 30, 40]) if (b >= cut) b += 1;
     return make(
       unit,
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -4848,6 +4857,436 @@ function cmp167Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 2-1 곱셈 (D-72 확대) ─────────────────────────────────────────────────
+//
+// 이름 약속: 2-1-1/2 는 (세 자리)×(한 자리), 2-1-3 은 (몇십)×(몇십)·(몇십몇)×(몇십)·
+// (몇)×(몇십몇) 세 꼴, 2-1-4 는 (몇십몇)×(몇십몇). «몇십몇»은 자리 구성(십 1..9 ·
+// 일 1..9)으로 만든다 — 일의 자리 0 이 뽑는 범위에 아예 없다(재추첨 없음).
+// (1)/(2)의 올림 종류는 표준과 **같은 함수**(mul3x1)가 정한다 — 규칙이 두 벌이 되지 않게.
+
+/** «몇십몇» — 십의 자리 1..9, 일의 자리 1..9. */
+function tensOnes21(rng: Rng): number {
+  return intBetween(rng, 1, 9) * 10 + intBetween(rng, 1, 9);
+}
+
+/** 소단원 이름이 약속한 올림 횟수 — «(1)» 0~1번, «(2)» 2~3번. 갈림의 **단 하나의 자리**. */
+function carryBand21(section: string): [number, number] {
+  return section.includes("(2)") ? [2, 3] : [0, 1];
+}
+
+/** 2-1-1·2-1-2 의 곱 한 벌 — 표준 mul32 와 **같은 함수**(mul3x1)로 뽑는다. */
+function mul21PairOf(section: string, rng: Rng): [number, number] {
+  const [lo, hi] = carryBand21(section);
+  return mul3x1(rng, lo, hi);
+}
+
+/** 1단 — (세 자리)×(한 자리) 식 그대로. */
+function mul21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `계산 결과를 쓰시오.\n\n${eqBox}`,
+    `${eq} 의 곱을 구하시오.`,
+    `다음 식을 계산하시오.\n\n${eqBox}`,
+    `곱셈식을 계산하여 ${sq} 의 값을 쓰시오.\n\n${eqBox}`,
+    `${eq} 의 값을 계산하시오.`,
+    `계산하여 알맞은 수를 ${sq} 에 쓰시오.\n\n${eqBox}`,
+    `다음 곱셈식의 곱을 쓰시오.\n\n${eq}`,
+    `곱셈을 하여 값을 구하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. 세 자리 수가 자연스러운 소재(공장·쪽수·값)를 쓴다. */
+function mul21Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `공장에서 인형을 하루에 ${n(a)}개씩 만듭니다. ${n(b)}일 동안 만드는 인형은 모두 몇 개인지 쓰시오.`,
+    `동화책 한 권은 ${n(a)}쪽입니다. 같은 책 ${n(b)}권의 쪽수를 모두 더하면 몇 쪽인지 쓰시오.`,
+    `한 자루에 ${n(a)}원인 연필이 있습니다. 이 연필 ${n(b)}자루의 값은 모두 얼마인지 쓰시오.`,
+    `빵집에서 빵을 하루에 ${n(a)}개씩 굽습니다. ${n(b)}일 동안 굽는 빵은 모두 몇 개인지 쓰시오.`,
+    `젤리가 한 통에 ${n(a)}개씩 담겨 있습니다. ${n(b)}통에 담긴 젤리는 모두 몇 개인지 쓰시오.`,
+    `마트에 물병이 한 층에 ${n(a)}병씩 진열되어 있습니다. ${n(b)}층에 진열된 물병은 모두 몇 병인지 쓰시오.`,
+    `농장에서 달걀을 하루에 ${n(a)}개씩 거둡니다. ${n(b)}일 동안 거두는 달걀은 모두 몇 개인지 쓰시오.`,
+    `과수원에서 사과를 한 상자에 ${n(a)}개씩 담았습니다. ${n(b)}상자에 담은 사과는 모두 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `같은 수를 ${n(b)}번 더하는 것은 곱셈과 같습니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `문구점에서 색종이를 ${n(a)}장씩 ${n(b)}묶음 들여오고, 낱장으로 ${n(c)}장을 더 들여왔습니다. 들여온 색종이는 모두 몇 장인지 쓰시오.`,
+      `공장에서 부품을 하루에 ${n(a)}개씩 ${n(b)}일 동안 만들고, 마지막 날 ${n(c)}개를 더 만들었습니다. 만든 부품은 모두 몇 개인지 쓰시오.`,
+      `한 상자에 ${n(a)}개씩 든 나사 ${n(b)}상자와 낱개 나사 ${n(c)}개가 있습니다. 나사는 모두 몇 개인지 쓰시오.`,
+      `책을 하루에 ${n(a)}쪽씩 ${n(b)}일 동안 읽고, 오늘 ${n(c)}쪽을 더 읽었습니다. 지금까지 읽은 쪽수는 모두 몇 쪽인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 남은 것까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `빵집에서 빵을 하루에 ${n(a)}개씩 ${n(b)}일 동안 구웠습니다. 그중 ${n(c)}개가 팔렸다면 남은 빵은 몇 개인지 쓰시오.`,
+    `달걀을 하루에 ${n(a)}개씩 ${n(b)}일 동안 거두었는데, 그중 ${n(c)}개를 요리에 썼습니다. 남은 달걀은 몇 개인지 쓰시오.`,
+    `구슬을 한 통에 ${n(a)}개씩 ${n(b)}통 준비했다가 ${n(c)}개를 친구에게 주었습니다. 남은 구슬은 몇 개인지 쓰시오.`,
+    `쿠키를 한 번에 ${n(a)}개씩 ${n(b)}번 구운 뒤 ${n(c)}개를 포장해 보냈습니다. 남은 쿠키는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 덜어낸 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 역산 세 틀. ㉠ 곱하는 한 자리 수를 되짚는다. ㉡ 가린 자리의 숫자를 되찾는다.
+ * ㉢ 되짚은 «어떤 수»를 다른 수로 다시 곱한다(두 단계).
+ *
+ * 해설은 곱셈만 쓴다 — 나눗셈은 2-2 라 아직 안 배웠다(D-66⑶).
+ * ⚠️ 틀이 ㉠ 하나뿐이면 **답이 «$2$» 로 39% 쏠린다**(실측 300씨앗 117건) — 표준이
+ * 쓰는 `mul3x1` 이 올림 0~1번 조건에서 곱하는 수 2를 자주 뽑기 때문이다. 표준 함수는
+ * 건드리지 않고(표준 출력 보존) **틀을 늘려** 쏠림을 나눈다.
+ */
+function mul21Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const sq = expr(`\\square`);
+  // ㉢ 이 쓸 두 번째 곱하는 수 — 처음 수와 다르고, **소단원이 약속한 올림 횟수**를
+  // 그대로 지키는 것만 모은다(전수 열거). 비면 ㉢ 을 안 쓴다 — 되뽑기 고리를 두지 않는다.
+  const [lo, hi] = carryBand21(unit.section);
+  const pool2 = [2, 3, 4, 5, 6, 7, 8, 9].filter(
+    (v) => v !== b && mulCarries3x1(a, v) >= lo && mulCarries3x1(a, v) <= hi,
+  );
+  const frame = intBetween(rng, 0, pool2.length === 0 ? 1 : 2);
+  if (frame === 0) {
+    const eqD = expr(`${a}\\times\\square=${p}`);
+    const stem = pick(rng, [
+      `곱셈식의 ${sq} 에 알맞은 수를 쓰시오.\n\n${eqD}`,
+      `${eqD} 에서 ${sq} 의 값을 구하시오.`,
+      `다음 곱셈식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+      `${sq} 에 알맞은 한 자리 수를 구하시오.\n\n${eqD}`,
+      // ⚠️ 아래 넷은 문장이 앞선다 — 그래도 **한 자리 수가 지면에 서야** 한다.
+      // 답이 한 자리라 발문에 안 나오면 소단원 이름의 「한 자리 수」가 지면에서 사라진다
+      // (조건 판정기 실측 10/40·5/40). 그래서 넷 다 ${sq} 가 든 식을 함께 싣는다.
+      `${n(a)} 에 어떤 한 자리 수를 곱한 결과가 ${n(p)} 입니다. 곱한 수를 구하시오.\n\n${eqD}`,
+      `${n(a)} 의 몇 배가 ${n(p)} 인지 구하시오.\n\n${eqD}`,
+      `어떤 한 자리 수와 ${n(a)} 의 곱이 ${n(p)} 입니다. 어떤 수를 구하시오.\n\n${eqD}`,
+      `${n(a)} 씩 ${sq} 묶음이면 모두 ${n(p)} 입니다. ${sq} 에 알맞은 수를 구하시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(b),
+      `${expr(`${a}\\times${b}=${p}`)} 이므로 구하는 한 자리 수는 ${n(b)} 입니다.`,
+    );
+  }
+  if (frame === 1) {
+    // 가린 자리 하나. 곱은 가린 숫자에 대해 **엄격히 커지므로** 답이 하나로 정해진다.
+    const pos = intBetween(rng, 0, 2);
+    const hidden = Math.floor(a / 10 ** pos) % 10;
+    const masked = [2, 1, 0]
+      .map((d) =>
+        d === pos ? "\\square" : String(Math.floor(a / 10 ** d) % 10),
+      )
+      .join("");
+    const eqH = expr(`${masked}\\times${b}=${p}`);
+    const place = pos === 0 ? "일" : pos === 1 ? "십" : "백";
+    const stem = pick(rng, [
+      `${sq} 에 알맞은 숫자를 구하시오.\n\n${eqH}`,
+      `곱셈식이 맞도록 ${sq} 에 알맞은 숫자를 써넣으시오.\n\n${eqH}`,
+      `가려진 ${place}의 자리 숫자를 구하시오.\n\n${eqH}`,
+      `다음 곱셈식에서 ${sq} 에 들어갈 숫자를 쓰시오.\n\n${eqH}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(hidden),
+      `곱해지는 수를 찾으면 ${expr(`${a}\\times${b}=${p}`)} 이므로 ${sq} 에 알맞은 숫자는 ${n(hidden)} 입니다.`,
+    );
+  }
+  const b2 = pool2[intBetween(rng, 0, pool2.length - 1)]!;
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)}배 하였더니 ${n(p)} 입니다. 이 어떤 수를 ${n(b2)}배 하면 얼마인지 쓰시오.`,
+    `어떤 수의 ${n(b)}배가 ${n(p)} 입니다. 같은 어떤 수의 ${n(b2)}배는 얼마인지 구하시오.`,
+    `어떤 수를 ${n(b)}번 더한 값이 ${n(p)} 입니다. 이 어떤 수를 ${n(b2)}번 더하면 얼마인지 쓰시오.`,
+    `어떤 수를 ${n(b)}배 한 값이 ${n(p)} 일 때, 그 어떤 수를 ${n(b2)}배 한 값을 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(a * b2),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 어떤 수는 ${n(a)} 입니다. 그 수를 ${n(b2)}배 하면 ${expr(`${a}\\times${b2}=${a * b2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 — 세 꼴 중 하나를 뽑는다. 셋 다 이름의 합집합 안이다. */
+function mul213PairOf(rng: Rng): [number, number] {
+  const shape = intBetween(rng, 0, 2);
+  if (shape === 0)
+    return [intBetween(rng, 2, 9) * 10, intBetween(rng, 2, 9) * 10];
+  if (shape === 1) return [tensOnes21(rng), intBetween(rng, 2, 9) * 10];
+  return [intBetween(rng, 2, 9), tensOnes21(rng)];
+}
+
+/** 1단 — 세 꼴 식 그대로. */
+function mul213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱을 계산하시오.\n\n${eqBox}`,
+    `${eq} 의 값을 구하여 쓰시오.`,
+    `다음 곱셈의 곱을 구하시오.\n\n${eq}`,
+    `${sq} 에 알맞은 값을 쓰시오.\n\n${eqBox}`,
+    `계산하시오.\n\n${eqBox}`,
+    `${eq} 의 계산 결과를 쓰시오.`,
+    `곱셈식의 곱을 구하시오.\n\n${eqBox}`,
+    `두 수의 곱을 구하시오.\n\n${n(a)},  ${n(b)}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. 세 꼴 어느 것이 와도 자연스러운 소재를 쓴다. */
+function mul213Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `강당에 의자를 한 줄에 ${n(a)}개씩 ${n(b)}줄 놓았습니다. 놓은 의자는 모두 몇 개인지 쓰시오.`,
+    `한 사람이 색 테이프를 ${n(a)}장씩 모았습니다. ${n(b)}명이 모은 색 테이프는 모두 몇 장인지 쓰시오.`,
+    `한 상자에 귤이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 든 귤은 모두 몇 개인지 쓰시오.`,
+    `딱지를 한 통에 ${n(a)}장씩 ${n(b)}통에 담았습니다. 담은 딱지는 모두 몇 장인지 쓰시오.`,
+    `하루에 종이비행기를 ${n(a)}개씩 접습니다. ${n(b)}일 동안 접는 종이비행기는 모두 몇 개인지 쓰시오.`,
+    `화단에 꽃을 한 줄에 ${n(a)}송이씩 ${n(b)}줄 심었습니다. 심은 꽃은 모두 몇 송이인지 쓰시오.`,
+    `빨대가 한 묶음에 ${n(a)}개씩 ${n(b)}묶음 있습니다. 빨대는 모두 몇 개인지 쓰시오.`,
+    `한 판에 스티커가 ${n(a)}장씩 붙어 있습니다. ${n(b)}판에 붙어 있는 스티커는 모두 몇 장인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `한 묶음의 수에 묶음 수를 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul213Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `문방구에서 지우개를 한 상자에 ${n(a)}개씩 ${n(b)}상자 들여오고, 낱개로 ${n(c)}개를 더 들여왔습니다. 지우개는 모두 몇 개인지 쓰시오.`,
+      `물을 한 묶음에 ${n(a)}병씩 ${n(b)}묶음 사고, ${n(c)}병을 따로 샀습니다. 산 물은 모두 몇 병인지 쓰시오.`,
+      `종이컵을 한 줄에 ${n(a)}개씩 ${n(b)}줄로 쌓고, 옆에 ${n(c)}개를 더 두었습니다. 종이컵은 모두 몇 개인지 쓰시오.`,
+      `붙임딱지를 ${n(a)}장씩 ${n(b)}묶음과 낱장 ${n(c)}장을 준비했습니다. 준비한 붙임딱지는 모두 몇 장인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `묶음의 수를 먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `사탕을 한 봉지에 ${n(a)}개씩 ${n(b)}봉지 샀는데, 그중 ${n(c)}개를 나누어 주었습니다. 남은 사탕은 몇 개인지 쓰시오.`,
+    `젤리를 한 통에 ${n(a)}개씩 ${n(b)}통 준비했다가 ${n(c)}개를 먹었습니다. 남은 젤리는 몇 개인지 쓰시오.`,
+    `연결 큐브를 한 상자에 ${n(a)}개씩 ${n(b)}상자 가져왔는데, ${n(c)}개를 다른 반에 빌려주었습니다. 남은 연결 큐브는 몇 개인지 쓰시오.`,
+    `요구르트를 한 묶음에 ${n(a)}병씩 ${n(b)}묶음 샀는데, ${n(c)}병을 마셨습니다. 남은 요구르트는 몇 병인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `묶음의 수를 먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 쓴 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 역산 두 틀. ㉠ (몇)×(몇십몇) 에서 한 자리 수를 되짚는다. ㉡ (몇십)×(몇십) 에서
+ * 몇십을 되짚는다. 둘 다 소단원 이름의 세 꼴 안이다.
+ */
+function mul213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const t1 = intBetween(rng, 2, 9) * 10;
+    const t2 = intBetween(rng, 2, 9) * 10;
+    const tp = t1 * t2;
+    const eqT = expr(`\\square\\times${t2}=${tp}`);
+    const sqT = expr(`\\square`);
+    const stem = pick(rng, [
+      `${sqT} 에 알맞은 몇십을 구하시오.\n\n${eqT}`,
+      `${eqT} 에서 ${sqT} 의 값을 쓰시오.`,
+      `다음 곱셈식의 ${sqT} 에 알맞은 수를 구하시오.\n\n${eqT}`,
+      `어떤 몇십과 ${n(t2)} 의 곱이 ${n(tp)} 입니다. 어떤 수를 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(t1),
+      `몇십끼리의 곱은 곱셈구구의 곱 뒤에 ${expr(`0`)} 두 개가 붙습니다. ${expr(`${t1}\\times${t2}=${tp}`)} 이므로 구하는 수는 ${n(t1)} 입니다.`,
+    );
+  }
+  const a = intBetween(rng, 3, 9);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const eqD = expr(`\\square\\times${b}=${p}`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱셈식의 ${sq} 에 알맞은 수를 구하시오.\n\n${eqD}`,
+    `${eqD} 에서 ${sq} 의 값을 쓰시오.`,
+    `${sq} 에 들어갈 한 자리 수를 구하시오.\n\n${eqD}`,
+    `알맞은 수를 ${sq} 에 써넣으시오.\n\n${eqD}`,
+    `다음 식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+    `${eqD} 의 ${sq} 에 알맞은 한 자리 수를 쓰시오.`,
+    `어떤 한 자리 수와 ${n(b)} 의 곱이 ${n(p)} 입니다. 어떤 수를 쓰시오.`,
+    `어떤 한 자리 수와 ${n(b)} 의 곱은 ${n(p)} 입니다. 어떤 수는 얼마인지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(a),
+    `차례로 곱해 봅니다. ${expr(`${a - 1}\\times${b}=${(a - 1) * b}`)}, ${expr(`${a}\\times${b}=${p}`)} 이므로 구하는 한 자리 수는 ${n(a)} 입니다.`,
+  );
+}
+
+/** 1단 — (몇십몇)×(몇십몇) 식 그대로. */
+function mul214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 곱을 계산하시오.`,
+    `다음 두 수의 곱을 구하시오.\n\n${n(a)},  ${n(b)}`,
+    `계산 결과를 ${sq} 에 알맞게 쓰시오.\n\n${eqBox}`,
+    `다음을 계산하여 값을 쓰시오.\n\n${eq}`,
+    `곱셈식 ${eqBox} 의 ${sq} 에 알맞은 수를 구하시오.`,
+    `${eq} 의 값은 얼마인지 쓰시오.`,
+    `다음 곱셈식을 계산하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. */
+function mul214Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `한 상자에 감이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 들어 있는 감은 모두 몇 개인지 쓰시오.`,
+    `하루에 줄넘기를 ${n(a)}번씩 합니다. ${n(b)}일 동안 하는 줄넘기는 모두 몇 번인지 쓰시오.`,
+    `한 봉지에 ${n(a)}개씩 든 밤이 ${n(b)}봉지 있습니다. 밤은 모두 몇 개인지 쓰시오.`,
+    `학생 ${n(a)}명이 종이학을 ${n(b)}마리씩 접었습니다. 접은 종이학은 모두 몇 마리인지 쓰시오.`,
+    `극장의 한 구역에 좌석이 ${n(a)}개씩 ${n(b)}구역 있습니다. 좌석은 모두 몇 개인지 쓰시오.`,
+    `한 쪽에 낱말을 ${n(a)}개씩 ${n(b)}쪽 외웠습니다. 외운 낱말은 모두 몇 개인지 쓰시오.`,
+    `과일 가게에서 딸기를 한 팩에 ${n(a)}개씩 ${n(b)}팩 팔았습니다. 판 딸기는 모두 몇 개인지 쓰시오.`,
+    `버스 한 대에 ${n(a)}명씩 버스 ${n(b)}대에 나누어 탔습니다. 탄 사람은 모두 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `한 묶음의 수에 묶음 수를 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `젤리를 한 봉지에 ${n(a)}개씩 ${n(b)}봉지 사고, 낱개로 ${n(c)}개를 더 샀습니다. 산 젤리는 모두 몇 개인지 쓰시오.`,
+      `공책이 한 묶음에 ${n(a)}권씩 ${n(b)}묶음 있고, 낱권이 ${n(c)}권 더 있습니다. 공책은 모두 몇 권인지 쓰시오.`,
+      `배드민턴 연습을 하루에 ${n(a)}번씩 ${n(b)}일 동안 하고, 마지막 날 ${n(c)}번을 더 했습니다. 연습은 모두 몇 번인지 쓰시오.`,
+      `한 판에 ${n(a)}개씩 든 달걀 ${n(b)}판과 낱개 달걀 ${n(c)}개가 있습니다. 달걀은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `먼저 곱셈으로 묶음의 수를 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `귤을 한 상자에 ${n(a)}개씩 ${n(b)}상자 샀는데, 그중 ${n(c)}개를 이웃과 나누었습니다. 남은 귤은 몇 개인지 쓰시오.`,
+    `색 구슬을 한 통에 ${n(a)}개씩 ${n(b)}통 모았다가 ${n(c)}개를 동생에게 주었습니다. 남은 색 구슬은 몇 개인지 쓰시오.`,
+    `물티슈가 한 팩에 ${n(a)}장씩 ${n(b)}팩 있었는데, ${n(c)}장을 썼습니다. 남은 물티슈는 몇 장인지 쓰시오.`,
+    `초콜릿을 한 상자에 ${n(a)}개씩 ${n(b)}상자 준비했다가 ${n(c)}개를 손님에게 드렸습니다. 남은 초콜릿은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `먼저 곱셈으로 묶음의 수를 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 쓴 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 수 카드 네 장으로 가장 큰·작은 곱 만들기(조건 조합). 답은 전수 비교로 구한다. */
+function mul214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cards = distinctIdx(rng, 9, 4).map((i) => i + 1);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  let bestA = 0;
+  let bestB = 0;
+  let bestP = askBig ? -1 : Number.MAX_SAFE_INTEGER;
+  for (let i = 0; i < 4; i += 1)
+    for (let j = 0; j < 4; j += 1)
+      for (let k = 0; k < 4; k += 1)
+        for (let l = 0; l < 4; l += 1) {
+          if (new Set([i, j, k, l]).size !== 4) continue;
+          const v1 = cards[i]! * 10 + cards[j]!;
+          const v2 = cards[k]! * 10 + cards[l]!;
+          if (askBig ? v1 * v2 > bestP : v1 * v2 < bestP) {
+            bestA = v1;
+            bestB = v2;
+            bestP = v1 * v2;
+          }
+        }
+  const list = cards.map((d) => n(d)).join(", ");
+  const stem = askBig
+    ? pick(rng, [
+        `수 카드 ${list} 의 네 장이 있습니다. 카드를 한 번씩 모두 사용하여 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 가장 큰 곱을 구하시오.`,
+        `네 장의 수 카드 ${list} 만 한 번씩 사용하여 두 자리 수끼리의 곱셈식을 만듭니다. 곱이 가장 클 때의 곱을 쓰시오.`,
+        `수 카드 ${list} 의 숫자를 한 번씩만 써서 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 만들 수 있는 가장 큰 곱을 쓰시오.`,
+        `${list} 의 네 숫자를 모두 한 번씩 사용해 두 자리 수 두 개를 만들어 곱합니다. 곱이 가장 크게 되는 값을 구하시오.`,
+      ])
+    : pick(rng, [
+        `수 카드 ${list} 의 네 장이 있습니다. 카드를 한 번씩 모두 사용하여 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 가장 작은 곱을 구하시오.`,
+        `네 장의 수 카드 ${list} 만 한 번씩 사용하여 두 자리 수끼리의 곱셈식을 만듭니다. 곱이 가장 작을 때의 곱을 쓰시오.`,
+        `수 카드 ${list} 의 숫자를 한 번씩만 써서 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 만들 수 있는 가장 작은 곱을 쓰시오.`,
+        `${list} 의 네 숫자를 모두 한 번씩 사용해 두 자리 수 두 개를 만들어 곱합니다. 곱이 가장 작게 되는 값을 구하시오.`,
+      ]);
+  return make(
+    unit,
+    stem,
+    n(bestP),
+    `${askBig ? "십의 자리 숫자가 클수록 곱이 큽니다." : "십의 자리 숫자가 작을수록 곱이 작습니다."} 만들 수 있는 곱을 비교하면 가장 ${askBig ? "큰" : "작은"} 곱은 ${expr(`${bestA}\\times${bestB}=${bestP}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -5014,6 +5453,30 @@ export const G3_TIERS: ElemTierMap = {
     기본: cmp167Word,
     응용: cmp167Apply,
     심화: cmp167Deep,
+  },
+  "초3|2-1-1": {
+    연산: mul21Calc,
+    기본: mul21Word,
+    응용: mul21Apply,
+    심화: mul21Deep,
+  },
+  "초3|2-1-2": {
+    연산: mul21Calc,
+    기본: mul21Word,
+    응용: mul21Apply,
+    심화: mul21Deep,
+  },
+  "초3|2-1-3": {
+    연산: mul213Calc,
+    기본: mul213Word,
+    응용: mul213Apply,
+    심화: mul213Deep,
+  },
+  "초3|2-1-4": {
+    연산: mul214Calc,
+    기본: mul214Word,
+    응용: mul214Apply,
+    심화: mul214Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,

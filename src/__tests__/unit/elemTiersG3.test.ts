@@ -2205,3 +2205,443 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+/**
+ * 초3 2-1 곱셈 4단 확대 (D-72) — 네 소단원 전부.
+ *
+ * **이름 약속 잠금이 이 블록의 알맹이다**(g4 elemTiersG4MulDiv 선례). 소단원 이름이
+ * 「(세 자리 수)×(한 자리 수)」·「(몇십)×(몇십)…」·「(몇십몇)×(몇십몇)」을 약속하므로,
+ * 지면에 실제로 찍힌 곱의 **자리 조건을 여기서 다시 판정**한다 — 표준까지 같은 잣대다
+ * (수리 전 실측: 표준 2-1-3 이 씨앗 200 중 4건에서 (몇)×(몇십) 을 냈다).
+ * 올림 횟수도 여기 다시 센다 — 제품 함수를 부르면 동어반복이 된다.
+ */
+
+const MUL21 = ["2-1-1", "2-1-2", "2-1-3", "2-1-4"] as const;
+
+/** «몇십» = 두 자리이고 일의 자리가 0 · «몇십몇» = 두 자리이고 일의 자리가 0 이 아니다. */
+const isTens21 = (v: number) => v >= 10 && v <= 99 && v % 10 === 0;
+const isTensOnes21 = (v: number) => v >= 10 && v <= 99 && v % 10 !== 0;
+const isOne21 = (v: number) => v >= 1 && v <= 9;
+const isThree21 = (v: number) => v >= 100 && v <= 999;
+
+/** 소단원 이름이 허락하는 곱의 꼴인가 — 이름을 여기 다시 적는다. */
+function shapeOk21(code: string, a: number, b: number): boolean {
+  if (code === "2-1-1" || code === "2-1-2") return isThree21(a) && isOne21(b);
+  if (code === "2-1-3")
+    return (
+      (isTens21(a) && isTens21(b)) ||
+      (isTensOnes21(a) && isTens21(b)) ||
+      (isOne21(a) && isTensOnes21(b))
+    );
+  return isTensOnes21(a) && isTensOnes21(b);
+}
+
+/** (세 자리)×(한 자리) 의 올림 횟수 — 생성기와 **따로** 센다. */
+function carries3x1(a: number, b: number): number {
+  let count = 0;
+  let carry = 0;
+  for (let d = 0; d < 3; d += 1) {
+    const digit = Math.floor(a / 10 ** d) % 10;
+    const v = digit * b + carry;
+    carry = Math.floor(v / 10);
+    if (carry > 0) count += 1;
+  }
+  return count;
+}
+
+/** 이름이 약속한 올림 횟수 — 「(1)」 0~1번, 「(2)」 2~3번. */
+const CARRY_BAND21: Record<string, [number, number]> = {
+  "2-1-1": [0, 1],
+  "2-1-2": [2, 3],
+};
+
+describe("[초3 4단] 2-1 곱셈 — 네 소단원 (표준 포함)", () => {
+  it("네 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of MUL21) {
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 4242, tier);
+        const b = generateElementaryProblem(planeUnit(code), 4242, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+    }
+  });
+
+  // ── 이름 약속 ⑴ 자리 조건 — 표준은 씨앗 200개로 넓게 본다.
+  // 수리 전 실측 4/200(전부 (몇)×(몇십))이라 16개로는 놓친다.
+  it("2-1 표준 생성기의 곱이 씨앗 200개에서 모두 이름대로다", () => {
+    const bad: string[] = [];
+    for (const code of MUL21) {
+      for (let seed = 0; seed < 200; seed += 1) {
+        const p = generateElementaryProblem(planeUnit(code), seed);
+        const m = p.content.match(/\$(\d+)\\times(\d+)=/);
+        if (!m) {
+          bad.push(`${code} 표준 seed ${seed}: 곱셈식이 발문에 없다`);
+          continue;
+        }
+        const a = Number(m[1]);
+        const b = Number(m[2]);
+        if (!shapeOk21(code, a, b))
+          bad.push(`${code} 표준 seed ${seed}: ${a}×${b} — 이름과 다른 꼴`);
+        const band = CARRY_BAND21[code];
+        if (band) {
+          const c = carries3x1(a, b);
+          if (c < band[0] || c > band[1])
+            bad.push(
+              `${code} 표준 seed ${seed}: ${a}×${b} — 올림 ${c}번 (약속 ${band[0]}~${band[1]})`,
+            );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  // ── 이름 약속 ⑵ 갈래도 같은 잣대 — 해설에 찍힌 **모든** 곱을 본다.
+  it("네 갈래 해설의 모든 곱이 이름이 약속한 자리·올림이다", () => {
+    const bad: string[] = [];
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const muls = divSteps(p.solution).filter((s) => s.op === "×");
+          if (muls.length === 0) {
+            bad.push(`${code} ${tier} seed ${seed}: 곱셈 스텝이 없다`);
+            continue;
+          }
+          for (const s of muls) {
+            if (s.a * s.b !== s.c)
+              bad.push(
+                `${code} ${tier} seed ${seed}: ${s.a}×${s.b}=${s.c} (참 ${s.a * s.b})`,
+              );
+            if (!shapeOk21(code, s.a, s.b))
+              bad.push(
+                `${code} ${tier} seed ${seed}: ${s.a}×${s.b} — 이름과 다른 꼴`,
+              );
+            const band = CARRY_BAND21[code];
+            if (band) {
+              const c = carries3x1(s.a, s.b);
+              if (c < band[0] || c > band[1])
+                bad.push(
+                  `${code} ${tier} seed ${seed}: ${s.a}×${s.b} — 올림 ${c}번 (약속 ${band[0]}~${band[1]})`,
+                );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("해설의 모든 셈이 맞고, 정답은 마지막 스텝의 값과 같다", () => {
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const st = divSteps(p.solution);
+          expect(
+            st.length,
+            `${code} ${tier} seed ${seed}: 식이 없다`,
+          ).toBeGreaterThan(0);
+          for (const s of st) {
+            const want =
+              s.op === "+"
+                ? s.a + s.b
+                : s.op === "-"
+                  ? s.a - s.b
+                  : s.op === "×"
+                    ? s.a * s.b
+                    : s.a / s.b;
+            expect(
+              want,
+              `${code} ${tier} seed ${seed}: ${s.a}${s.op}${s.b}`,
+            ).toBe(s.c);
+          }
+          // 1~3단은 마지막 스텝이 곧 답이다. 4단은 되짚는 갈래라 아래에서 따로 본다.
+          if (tier !== "심화")
+            expect(
+              answerOf(p.answer),
+              `${code} ${tier} seed ${seed}: ${p.solution}`,
+            ).toBe(st[st.length - 1]!.c);
+        }
+      }
+    }
+  });
+
+  it("D-72 축 — 1단 곱 한 번 · 2단 문장 · 3단 곱하고 더하거나 덜기", () => {
+    for (const code of MUL21) {
+      for (const seed of SEEDS) {
+        const calc = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "연산").solution,
+        );
+        expect(calc.length, `${code} 연산 seed ${seed}`).toBe(1);
+        expect(calc[0]!.op, `${code} 연산 seed ${seed}`).toBe("×");
+
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        expect(word.content, `${code} 기본 seed ${seed}`).not.toMatch(
+          /\\times|\\div|\\square/,
+        );
+        expect(
+          word.content.length,
+          `${code} 기본 seed ${seed}`,
+        ).toBeGreaterThan(20);
+
+        const apply = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "응용").solution,
+        );
+        expect(
+          apply.length,
+          `${code} 응용 seed ${seed}`,
+        ).toBeGreaterThanOrEqual(2);
+        expect(apply[0]!.op, `${code} 응용 seed ${seed}`).toBe("×");
+        expect(
+          apply.slice(1).some((t) => t.a === apply[0]!.c),
+          `${code} 응용 seed ${seed}: 곱이 다음 셈으로 안 이어진다`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  // ── 1~3단의 답을 **발문의 수**에서 다시 구한다.
+  it("2-1 연산·응용의 답이 발문의 수에서 다시 나온다", () => {
+    for (const code of MUL21) {
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(planeUnit(code), seed, "연산");
+        const cm = calc.content.match(/\$(\d+)\\times(\d+)/);
+        if (cm) {
+          expect(answerOf(calc.answer), `${code} 연산 seed ${seed}`).toBe(
+            Number(cm[1]) * Number(cm[2]),
+          );
+        } else {
+          // 「두 수의 곱을 구하시오. $a$, $b$」 틀 — 수 두 개가 곱해진다.
+          const ns = nums(calc.content);
+          expect(ns.length, `${code} 연산 seed ${seed}`).toBe(2);
+          expect(answerOf(calc.answer), `${code} 연산 seed ${seed}`).toBe(
+            ns[0]! * ns[1]!,
+          );
+        }
+
+        // 응용은 «남은» 이면 덜어내고 아니면 더한다 — 발문의 말이 곧 셈이다.
+        const apply = generateElementaryProblem(planeUnit(code), seed, "응용");
+        const an = nums(apply.content);
+        expect(an.length, `${code} 응용 seed ${seed}: ${apply.content}`).toBe(
+          3,
+        );
+        const [x, y, z] = an as [number, number, number];
+        const minus = /남은/.test(apply.content);
+        expect(
+          answerOf(apply.answer),
+          `${code} 응용 seed ${seed}: ${apply.content}`,
+        ).toBe(minus ? x * y - z : x * y + z);
+      }
+    }
+  });
+
+  // ── 4단 — 틀마다 답을 발문에서 되짚는다. 발문에 답이 그대로 보이면 안 된다.
+  it("2-1-1·2-1-2 심화 — 세 틀의 답이 발문에서 역산으로 나온다", () => {
+    for (const code of ["2-1-1", "2-1-2"] as const) {
+      for (const seed of SEEDS) {
+        const p = generateElementaryProblem(planeUnit(code), seed, "심화");
+        const ans = answerOf(p.answer);
+        const masked = p.content.match(
+          /\$(\d*)\\square(\d*)\\times(\d+)=(\d+)\$/,
+        );
+        const boxMul = p.content.match(/\$(\d+)\\times\\square=(\d+)\$/);
+        if (masked) {
+          // ㉡ 가린 자리 — 0..9 를 넣어 보면 답이 **하나뿐**이어야 한다.
+          const [, head, tail, mulStr, prodStr] = masked as unknown as string[];
+          const fits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter(
+            (d) =>
+              Number(`${head}${d}${tail}`) * Number(mulStr) === Number(prodStr),
+          );
+          expect(fits, `${code} 심화 seed ${seed}: ${p.content}`).toEqual([
+            ans,
+          ]);
+        } else if (boxMul) {
+          // ㉠ 곱하는 수 되짚기 — 식이 실린 틀.
+          expect(Number(boxMul[1]) * ans, `${code} 심화 seed ${seed}`).toBe(
+            Number(boxMul[2]),
+          );
+          expect(ans, `${code} 심화 seed ${seed}: 한 자리`).toBeLessThan(10);
+        } else if (p.content.includes("\\square")) {
+          // ㉠ 「$a$ 씩 $\square$ 묶음이면 모두 $p$」 틀 — 발문의 두 수로 되짚는다.
+          const ns = nums(p.content);
+          expect(ns.length, `${code} 심화 seed ${seed}: ${p.content}`).toBe(2);
+          expect(ns[0]! * ans, `${code} 심화 seed ${seed}`).toBe(ns[1]!);
+          expect(ans, `${code} 심화 seed ${seed}: 한 자리`).toBeLessThan(10);
+        } else {
+          // ㉢ 되짚어 다시 곱하기 — $b$·$p$·$b2$ 순으로 발문에 선다.
+          const ns = nums(p.content);
+          expect(ns.length, `${code} 심화 seed ${seed}: ${p.content}`).toBe(3);
+          const [b, prod, b2] = ns as [number, number, number];
+          expect(prod % b, `${code} 심화 seed ${seed}: 나누어떨어져야`).toBe(0);
+          expect(ans, `${code} 심화 seed ${seed}`).toBe((prod / b) * b2);
+          expect(
+            b2,
+            `${code} 심화 seed ${seed}: 두 번 같은 수로 곱하면 답이 보인다`,
+          ).not.toBe(b);
+        }
+        expect(
+          p.content.includes(`$${ans}$`),
+          `${code} 심화 seed ${seed}: 답이 발문에 그대로 보인다`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("2-1-3 심화 — 두 틀의 답이 발문의 곱셈식에서 다시 나온다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(planeUnit("2-1-3"), seed, "심화");
+      const ans = answerOf(p.answer);
+      const m = p.content.match(/\$\\square\\times(\d+)=(\d+)\$/);
+      if (m) {
+        expect(ans * Number(m[1]), `2-1-3 심화 seed ${seed}`).toBe(
+          Number(m[2]),
+        );
+      } else {
+        const ns = nums(p.content);
+        expect(ns.length, `2-1-3 심화 seed ${seed}: ${p.content}`).toBe(2);
+        expect(ans * ns[0]!, `2-1-3 심화 seed ${seed}`).toBe(ns[1]!);
+      }
+      // 되짚은 값도 이름의 꼴 안이다 — 몇십이거나 한 자리다.
+      expect(
+        isTens21(ans) || isOne21(ans),
+        `2-1-3 심화 seed ${seed}: 답 ${ans}`,
+      ).toBe(true);
+    }
+  });
+
+  it("2-1-4 심화 — 카드 네 장의 가장 큰·작은 곱을 전수 비교로 다시 구한다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(planeUnit("2-1-4"), seed, "심화");
+      const cards = nums(p.content);
+      expect(cards.length, `2-1-4 심화 seed ${seed}: ${p.content}`).toBe(4);
+      expect(
+        new Set(cards).size,
+        `2-1-4 심화 seed ${seed}: 카드가 겹친다`,
+      ).toBe(4);
+      for (const c of cards)
+        expect(isOne21(c), `2-1-4 심화 seed ${seed}: 카드 ${c}`).toBe(true);
+      // ⚠️ 어느 쪽을 묻는지 **발문이 말하게** 한다 — 한쪽만 보고 나머지를 기본값으로
+      // 떨어뜨리면 「가장 클 때」를 못 읽고도 조용히 작은 쪽으로 채점한다(실측 1건).
+      const askBig = /가장 큰|가장 클 때|가장 크게/.test(p.content);
+      const askSmall = /가장 작은|가장 작을 때|가장 작게/.test(p.content);
+      expect(
+        askBig !== askSmall,
+        `2-1-4 심화 seed ${seed}: 큰·작은 어느 쪽인지 발문이 말하지 않는다 — ${p.content}`,
+      ).toBe(true);
+      let best = askBig ? -1 : Number.MAX_SAFE_INTEGER;
+      for (let i = 0; i < 4; i += 1)
+        for (let j = 0; j < 4; j += 1)
+          for (let k = 0; k < 4; k += 1)
+            for (let l = 0; l < 4; l += 1) {
+              if (new Set([i, j, k, l]).size !== 4) continue;
+              const v =
+                (cards[i]! * 10 + cards[j]!) * (cards[k]! * 10 + cards[l]!);
+              if (askBig ? v > best : v < best) best = v;
+            }
+      expect(answerOf(p.answer), `2-1-4 심화 seed ${seed}: ${p.content}`).toBe(
+        best,
+      );
+    }
+  });
+
+  it("모든 갈래의 답이 씨앗에 따라 갈린다 — 상수답 금지", () => {
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Set<string>();
+        for (let seed = 0; seed < 40; seed += 1)
+          seen.add(
+            generateElementaryProblem(planeUnit(code), seed, tier).answer,
+          );
+        expect(seen.size, `${code} ${tier} 상수답`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        const stems = new Set<string>();
+        for (let seed = 0; seed < 240; seed += 1) {
+          stems.add(
+            generateElementaryProblem(
+              planeUnit(code),
+              seed,
+              tier,
+            ).content.replace(/\$[^$]*\$/g, "#"),
+          );
+        }
+        expect(stems.size, `${code} ${tier} 변형 공간`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("네 갈래 발문 틀이 서로 갈린다", () => {
+    for (const code of MUL21) {
+      for (const seed of SEEDS) {
+        const stems = ELEM_TIERS.map((t) =>
+          generateElementaryProblem(planeUnit(code), seed, t).content.replace(
+            /\$[^$]*\$/g,
+            "#",
+          ),
+        );
+        expect(
+          new Set(stems).size,
+          `${code} seed ${seed}: ${stems.join(" | ")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("모든 갈래의 수가 KaTeX 안에 있고, 수 뒤에 조사를 붙이지 않는다", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    const bad: string[] = [];
+    for (const code of MUL21) {
+      for (const tier of [undefined, ...ELEM_TIERS]) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const outside = text.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (outside)
+              bad.push(
+                `${code} ${tier ?? "표준"} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
+              );
+            if (risk.test(text) && !/\\mathrm/.test(text)) {
+              bad.push(
+                `${code} ${tier ?? "표준"} seed ${seed} ${label}: ${text.match(risk)![0]}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  // 해설이 그 학년까지 배운 연산만 쓰는가(D-66⑶) — 2-1 에서 나눗셈은 아직 안 배웠다.
+  it("2-1 갈래 해설에 나눗셈이 없다 — 나눗셈은 2-2 다", () => {
+    for (const code of MUL21) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          expect(p.solution, `${code} ${tier} seed ${seed}`).not.toMatch(
+            /\\div/,
+          );
+        }
+      }
+    }
+  });
+});
