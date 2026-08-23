@@ -14,6 +14,10 @@
  *
  * - 2-2|도형의 닮음|09~15 (닮음 각 표시 — 같은 각 이중 호·직각 기호)
  * - 2-2|평행선 사이의 선분의 길이의 비|08~11 (평행 » 표시 — 세 평행선·사다리꼴)
+ *
+ * ⚠️ 2B 마크 문법(ticks·parallel·arcs·right)은 **main 에 이미 병합돼 있다**
+ *    (2026-08-23 확인). 이 목록은 이제 착수 가능하며, 이 세션의 범위 밖이다
+ *    (브리프가 «마크 문법 없이 지금 그려지는 유형만» 으로 잡았다).
  */
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
