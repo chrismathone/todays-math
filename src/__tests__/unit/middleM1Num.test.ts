@@ -898,6 +898,26 @@ function numVowelFinal(n: number): boolean {
   const d = Math.abs(n) % 10;
   return d === 2 || d === 4 || d === 5 || d === 9;
 }
+
+/**
+ * 수식 끝에서 «읽을 때 마지막에 오는 수» — 없으면 `null`(판정하지 않는다).
+ *
+ * 분수를 그냥 건너뛰면 안 된다. `improperToMixed`(textPreprocess)가 가분수를
+ * **대분수**로 그리므로 $\frac{14}{5}$ 는 「$2$와 $5$분의 $4$」로 읽히고,
+ * 조사는 그 **나머지**를 따른다. 처음엔 「숫자로 끝나는 것」만 봐서 유형 13 의
+ * 64자리를 통째로 못 봤다 — 지표가 실패를 셀 수 있는 형태여야 한다.
+ */
+function trailingReadNumber(body: string): number | null {
+  const frac = body.match(/\\frac\{(\d+)\}\{(\d+)\}$/);
+  if (frac) {
+    const a = Number(frac[1]);
+    const b = Number(frac[2]);
+    if (a % b === 0) return a / b;
+    return a > b ? a % b : a;
+  }
+  const int = body.match(/(\d+)$/);
+  return int ? Number(int[1]) : null;
+}
 const JOSA_PAIR: Record<string, [string, string]> = {
   을: ["을", "를"],
   를: ["을", "를"],
@@ -1010,15 +1030,15 @@ describe("중1 1-1 「수」 38유형 (m1Num)", () => {
           const p = generateMiddleProblem(e.key, 20260823, variant);
           for (const part of [p.content, p.answer, p.solution]) {
             for (const m of part.matchAll(/\$([^$]*)\$(을|를|은|는|와|과)/g)) {
-              const tail = m[1]!.match(/(\d+)$/);
-              if (!tail) continue; // 지수·문자로 끝나면 읽기를 알 수 없다
-              const n = Number(tail[1]);
+              const n = trailingReadNumber(m[1]!);
+              if (n === null) continue; // 지수·문자로 끝나면 읽기를 알 수 없다
               const want = numVowelFinal(n)
                 ? JOSA_PAIR[m[2]!]![1]
                 : JOSA_PAIR[m[2]!]![0];
-              expect(m[2], `$…${tail[1]}$${m[2]} → ${want} (${part})`).toBe(
-                want,
-              );
+              expect(
+                m[2],
+                `$…${m[1]!.slice(-16)}$${m[2]} → ${want} (${part})`,
+              ).toBe(want);
             }
           }
         }

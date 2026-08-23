@@ -67,6 +67,17 @@ const wGwa = (w: string): string => (wordHasBatchim(w) ? "과" : "와");
  */
 const nEun = (n: number): string => (eulReul(n) === "을" ? "은" : "는");
 const nEul = eulReul;
+
+/**
+ * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수».
+ * `improperToMixed`(textPreprocess) 가 가분수를 **대분수**로 그리므로
+ * 마지막에 읽는 수는 분자가 아니라 **나머지**다: $14/5$ → 「$2$와 $5$분의 **$4$**」.
+ */
+function fracTail(num: number, den: number): number {
+  const a = Math.abs(num);
+  if (a % den === 0) return a / den;
+  return a > den ? a % den : a;
+}
 const nGwa = waGwa;
 
 // ── 소인수분해 소품 ────────────────────────────────────────
@@ -1280,9 +1291,11 @@ const 최대최소_TYPES: TypeEntry[] = [
           return {
             content: `어느 버스 정류장에서 ${lineA} 버스는 $${a}$분마다, ${lineB} 버스는 $${b}$분마다 출발한다. 두 버스가 오전 $${startHour}$시에 동시에 출발하였을 때, 그 후 처음으로 다시 동시에 출발하는 시각을 구하시오.`,
             answer: `오전 $${hh}$시 $${mm}$분`,
-            solution: `$${a}$${nGwa(a)} $${b}$의 최소공배수가 $${L}$이므로 $${L}$분 후에 처음으로 다시 동시에 출발한다.\n$${L}$분은 $${Math.floor(
-              L / 60,
-            )}$시간 $${mm}$분이므로 구하는 시각은 오전 $${hh}$시 $${mm}$분이다.`,
+            solution: `$${a}$${nGwa(a)} $${b}$의 최소공배수가 $${L}$이므로 $${L}$분 후에 처음으로 다시 동시에 출발한다.\n${
+              L < 60
+                ? ""
+                : `$${L}$분은 $${Math.floor(L / 60)}$시간 $${mm}$분이므로 `
+            }구하는 시각은 오전 $${hh}$시 $${mm}$분이다.`,
             facts: { kind, a, b, L, startHour, hh, mm },
           };
         }
@@ -2068,13 +2081,13 @@ const 정수_TYPES: TypeEntry[] = [
               ? "사이에 있는 정수 중 가장 큰 수를 구하시오."
               : "사이에 있는 모든 정수의 합을 구하시오.";
         return {
-          content: `두 유리수 $${leftTex}$와 $${rightTex}$ ${ask}`,
+          content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum, t1))} $${rightTex}$ ${ask}`,
           answer: `$${answer}$${kind === 0 ? "개" : ""}`,
-          solution: `$${leftTex}=${(lNum / t1).toFixed(2)}$, $${rightTex}=${(
-            rNum / t2
-          ).toFixed(
-            2,
-          )}$이므로 두 수 사이에 있는 정수는 ${ints.map((v) => `$${v}$`).join(", ")}의 $${count}$개이다.\n따라서 구하는 값은 $${answer}$이다.`,
+          solution: `$${leftTex}$${nEun(fracTail(lNum, t1))} $${lo - 1}$${nGwa(lo - 1)} $${lo}$ 사이의 수이고, $${rightTex}$${nEun(fracTail(rNum, t2))} $${hi}$${nGwa(hi)} $${
+            hi + 1
+          }$ 사이의 수이다.\n따라서 두 수 사이에 있는 정수는 ${ints
+            .map((v) => `$${v}$`)
+            .join(", ")}의 $${count}$개이고, 구하는 값은 $${answer}$이다.`,
           facts: { kind, lo, hi, lNum, lDen: t1, rNum, rDen: t2, answer },
         };
       }),
