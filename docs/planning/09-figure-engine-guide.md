@@ -163,6 +163,9 @@ FigureSpec v2 에 **없는 것**: 수 모형, 수 카드, 연산 상자, 곱셈�
 | `cylinder` / `cone` / `sphere` | 원기둥·원뿔·구. 타원은 **축에 나란**하고 `ROUND_RATIO`=**0.15**.<br>원뿔은 꼭대기→밑면 접선 + 보이는 호. 삼각형+타원 금지 |
 | `netCuboid` / `netCylinder` | 전개도 읽기. 모눈에 그리기는 안 만든다. `netCylinder` 는 원이 직사각형 긴 변에 접한다 |
 | `areaPoly` | 직사각·삼각·평행사변형·사다리꼴·마름모 넓이 |
+| `hollowSolid` | 구멍 뚫린 기둥(RPM 유형07). outer(cuboid\|cylinder) ⊖ inner 관통.<br>숨은 윤곽은 **가림 판정**으로 토막별 점선(면-쌍 규칙은 볼록 전용). 벽 <0.3 이면 던진다 |
+| `cutCuboid` | 일부를 잘라 낸 직육면체(RPM 유형08). `cut` 의 뺀 키 = 그 방향 전체.<br>둘 이상 빼면 던진다. 받은 컷 치수만 적는다(§4-20) |
+| `revolvePlan` | 회전 전 반평면 도형 + 축(RPM 유형14·20). rect·rightTri·rightTrap·semicircle·quarter<br>+ 쌓기. 축은 **실선**(원본 지면이 실선) + ℓ + 회전 화살표. 직각 표시는 직각 모퉁이 자동 |
 
 ### 불변식 (원장님 육안 2026-08-20~21 — 테스트가 지킴)
 
