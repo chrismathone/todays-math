@@ -1,6 +1,6 @@
 /**
- * 중2 기하 27유형 (RPM 2-2 삼각형의 성질·여러 가지 사각형·도형의 닮음·평행선 비)
- * — 독립 검산.
+ * 중2 기하 55유형 (RPM 2-2 삼각형의 성질·여러 가지 사각형·도형의 닮음·평행선 비)
+ * — 독립 검산. 2B 물결(마크 문법)로 **네 중단원 전량**(12+17+15+11)을 덮었다.
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)로 유형마다 조건식을
  * **여기서 다시 세워** 만족하는지 본다. 검산식은 「발문이 말하는 성질」을 직접
@@ -17,6 +17,7 @@ import {
   generateMiddleSet,
 } from "../../lib/middle/generate";
 import { M2_TYPES } from "../../lib/middle/m2";
+import { QUAD10_CLAIMS, QUAD11_SHAPES } from "../../lib/middle/m2GeoQuad";
 import { SIM01_PERMS } from "../../lib/middle/m2GeoSim";
 import type { MidProblem } from "../../lib/middle/types";
 
@@ -32,6 +33,106 @@ const MINORS = new Set([
 const GEO = M2_TYPES.filter(
   (e) => e.rpmBook === "2-2" && MINORS.has(e.rpmMinor),
 );
+
+type P2 = readonly [number, number];
+
+function dist(a: P2, b: P2): number {
+  return Math.hypot(a[0] - b[0], a[1] - b[1]);
+}
+
+/** 벡터 b→a 와 b→c 의 내적 — 0 이면 그 각이 직각이다. */
+function dot(a: P2, b: P2, c: P2): number {
+  return (a[0] - b[0]) * (c[0] - b[0]) + (a[1] - b[1]) * (c[1] - b[1]);
+}
+
+function near(a: number, b: number, eps = 1e-9): boolean {
+  return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+}
+
+/**
+ * 07 — 직각이등변삼각형의 두 꼭짓점에서 직선 l 에 내린 수선.
+ * 발문이 말하는 **도형을 여기서 직접 세워** ⑴ AB=AC ⑵ ∠BAC=90° ⑶ DE=x 를
+ * 잰다(생성기의 `x=p+q` 를 옮겨 적지 않는다).
+ */
+function rhaFeetHolds(p: number, q: number, x: number): boolean {
+  const D: P2 = [0, 0];
+  const A: P2 = [q, 0];
+  const E: P2 = [q + p, 0];
+  const C: P2 = [0, p];
+  const B: P2 = [q + p, q];
+  return (
+    near(dist(A, B), dist(A, C)) && near(dot(B, A, C), 0) && near(dist(D, E), x)
+  );
+}
+
+/**
+ * 08 — ∠C=90°, AD=AC(D 는 빗변 위), DE⊥AB(E 는 BC 위)일 때 △BED 의 둘레.
+ * E 를 **수직 조건으로 직접 풀어** 세 변을 재 돌려준다.
+ */
+function rhsFoldPerimeter(a: number, b: number, c: number): number | null {
+  if (a * a + b * b !== c * c || b >= c) return null;
+  const A: P2 = [0, b];
+  const B: P2 = [a, 0];
+  const ux = a / c;
+  const uy = -b / c;
+  const D: P2 = [A[0] + b * ux, A[1] + b * uy];
+  // D 에서 AB 에 수직인 방향 (-uy, ux) 로 나아가 x축(BC)에 닿는 점이 E.
+  const step = -D[1] / ux;
+  const E: P2 = [D[0] + step * -uy, 0];
+  if (!(E[0] > 0 && E[0] < a)) return null;
+  return dist(B, E) + dist(E, D) + dist(D, B);
+}
+
+/**
+ * 12 — 폭이 일정한 종이접기. AC(=m)·BC(=n) 이 폭까지 정하므로 좌표를 세워
+ * ⑴ |AB|=m ⑵ |BC|=n ⑶ **∠ABC=∠ACB**(이등변이 되는 근거)를 확인한다.
+ */
+function foldIsoscelesHolds(m: number, n: number): boolean {
+  const bx = (2 * m * m - n * n) / (2 * m);
+  const w2 = m * m - bx * bx;
+  if (!(bx > 0 && bx < m && w2 > 0)) return false;
+  const w = Math.sqrt(w2);
+  const A: P2 = [0, w];
+  const C: P2 = [m, w];
+  const B: P2 = [bx, 0];
+  const cosABC = dot(A, B, C) / (dist(A, B) * dist(B, C));
+  const cosACB = dot(A, C, B) / (dist(A, C) * dist(C, B));
+  return (
+    near(dist(A, B), m) && near(dist(B, C), n) && near(cosABC, cosACB, 1e-8)
+  );
+}
+
+/**
+ * 10 유형 명제의 참·거짓 — **테스트가 손으로 다시 세운 표**.
+ * 모듈의 `QUAD10_CLAIMS` 와 갈리면 아래 «두 표가 같다» 검사가 빨개진다
+ * (같은 표를 두 벌 두는 것이 목적이다 — 한쪽만 고치면 드러난다).
+ */
+const QUAD10_TRUTH: readonly boolean[] = [
+  true, // 평행사변형은 사다리꼴이다
+  false, // 마름모는 직사각형이다
+  true, // 정사각형은 마름모이다
+  false, // 직사각형은 정사각형이다
+  true, // 두 대각선의 길이가 같은 평행사변형은 직사각형이다
+  true, // 두 대각선이 서로 수직인 평행사변형은 마름모이다
+  true, // 이웃하는 두 변의 길이가 같은 직사각형은 정사각형이다
+  true, // 한 내각의 크기가 90°인 마름모는 정사각형이다
+  false, // 이웃하는 두 내각의 크기가 같은 사각형은 직사각형이다
+  false, // 등변사다리꼴은 평행사변형이다
+  true, // 정사각형은 직사각형이다
+  true, // 마름모는 평행사변형이다
+  true, // 두 대각선이 서로 다른 것을 이등분하는 사각형은 평행사변형이다
+  false, // 평행사변형은 마름모이다
+];
+
+/** 11 유형 사각형별 [두 대각선의 길이가 같다, 수직이다, 서로 다른 것을 이등분한다]. */
+const QUAD11_TRUTH: readonly (readonly [boolean, boolean, boolean])[] = [
+  [false, false, false], // 사다리꼴
+  [false, false, true], // 평행사변형
+  [true, false, true], // 직사각형
+  [false, true, true], // 마름모
+  [true, false, false], // 등변사다리꼴
+  [true, true, true], // 정사각형
+];
 
 /** 삼각형 세 각의 합 — 검산이 발문의 성질을 «다시 세운다». */
 function angleSum(...angles: number[]): boolean {
@@ -154,10 +255,153 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   // 외각 이등분선: AB·CD = AC·BD, BD = BC + CD
   "평행선 사이의 선분의 길이의 비|07": (f) =>
     f.ab! * f.x! === f.ac! * (f.b! + f.x!) && f.ab! > f.ac!,
+
+  // ── 2B 물결 (마크 문법이 열어 준 28유형) ──────────────────────────
+  // 직각삼각형의 두 예각의 합은 90°
+  "삼각형의 성질|06": (f) => f.acute! + f.x! === 90 && f.x! > 0,
+  // 좌표로 세워 AB=AC·∠BAC=90°·DE=x 를 직접 잰다
+  "삼각형의 성질|07": (f) => rhaFeetHolds(f.p!, f.q!, f.x!),
+  // 세 변이 피타고라스 세 쌍이고, E 를 수직 조건으로 풀어 둘레를 직접 잰다
+  "삼각형의 성질|08": (f) => {
+    const peri = rhsFoldPerimeter(f.a!, f.b!, f.c!);
+    return peri !== null && near(peri, f.x!);
+  },
+  // 접은 각·엇각으로 ∠ABC=∠ACB 가 되는지 좌표로 확인 / 넓이는 ½·AC·폭
+  "삼각형의 성질|12": (f) =>
+    f.mode === 0
+      ? foldIsoscelesHolds(f.m!, f.n!) && f.x! === f.m!
+      : 2 * f.x! === f.m! * f.w! && f.m! > f.w!,
+
+  // 직사각형: △OAB 가 이등변이므로 세 각의 합 / 대각선은 반쪽의 두 배
+  "여러 가지 사각형|01": (f) =>
+    f.mode === 0 ? angleSum(f.a!, f.a!, f.x!) : f.x! === 2 * f.r! && f.r! > 0,
+  // 직사각형이 되는 조건: 한 내각 90° / 두 대각선의 길이가 같다
+  "여러 가지 사각형|02": (f) =>
+    f.mode === 0
+      ? f.p! * f.x! - f.q! === 90
+      : f.p! * f.x! + f.q! === f.x! + f.s! && f.len! === f.p! * f.x! + f.q!,
+  // 마름모: △ABC 가 이등변(AB=BC) → 세 각의 합 / 대각선이 각을 이등분
+  "여러 가지 사각형|03": (f) =>
+    f.mode === 0
+      ? angleSum(f.a!, f.a!, f.x!)
+      : 2 * f.b! + f.x! === 180 && f.b! > 0,
+  // 마름모가 되는 조건: 이웃한 두 변이 같다 / 두 대각선이 수직
+  "여러 가지 사각형|04": (f) =>
+    f.mode === 0
+      ? f.p! * f.x! + f.q! === f.x! + f.s! && f.peri! === 4 * f.side!
+      : f.p! * f.x! + f.q! === 90,
+  // 정사각형: 두 대각선이 수직이므로 넓이 = ½d² / △AED 의 세 각의 합
+  "여러 가지 사각형|05": (f) =>
+    f.mode === 0
+      ? 2 * f.x! === f.d! * f.d!
+      : angleSum(45, 180 - f.b!, f.x!) && f.b! > 45 && f.b! < 135,
+  // 정사각형이 되는 조건: 이웃한 두 변이 같다 / 두 대각선의 길이가 같다
+  "여러 가지 사각형|06": (f) =>
+    f.mode === 0
+      ? f.p! * f.x! + f.q! === f.x! + f.s! && f.area! === f.side! * f.side!
+      : f.p! * f.x! + f.q! === f.x! + f.s! && 2 * f.area! === f.d! * f.d!,
+  // 등변사다리꼴: AD∥BC 이므로 ∠A+∠B=180 / ∠B = 2∠ADB (엇각+이등변)
+  "여러 가지 사각형|07": (f) =>
+    f.mode === 0 ? f.b! + f.x! === 180 : f.x! === 2 * f.t! && f.t! > 0,
+  // 등변사다리꼴의 응용: BC = AD + 2·CH / ∠A=120° 면 BC = AD + AB
+  "여러 가지 사각형|08": (f) =>
+    f.mode === 0
+      ? f.p! + 2 * f.x! === f.q! && f.q! > f.p!
+      : f.x! === f.p! + f.c! && f.c! % 2 === 0,
+  // 판별⑴: □EFGH 는 정사각형이므로 넓이 = (한 변)² = t² + (s-t)²
+  "여러 가지 사각형|09": (f) =>
+    f.x! === f.t! * f.t! + (f.s! - f.t!) * (f.s! - f.t!) &&
+    f.t! > 0 &&
+    f.t! < f.s!,
+  // 사이의 관계: 테스트가 **자기 진리표**로 옳은 명제를 다시 센다
+  "여러 가지 사각형|10": (f) => {
+    const idx = [f.i0!, f.i1!, f.i2!, f.i3!, f.i4!];
+    if (new Set(idx).size !== 5) return false;
+    return idx.filter((i) => QUAD10_TRUTH[i]).length === f.x!;
+  },
+  // 대각선의 성질: 테스트가 자기 성질표로 a·b·c 를 다시 센다
+  "여러 가지 사각형|11": (f) => {
+    const idx = [f.i0!, f.i1!, f.i2!, f.i3!, f.i4!, f.i5!].filter(
+      (i) => i >= 0,
+    );
+    if (new Set(idx).size !== f.n!) return false;
+    const a = idx.filter((i) => QUAD11_TRUTH[i]![0]).length;
+    const b = idx.filter((i) => QUAD11_TRUTH[i]![1]).length;
+    const c = idx.filter(
+      (i) => QUAD11_TRUTH[i]![0] && QUAD11_TRUTH[i]![1] && QUAD11_TRUTH[i]![2],
+    ).length;
+    return a === f.a! && b === f.b! && c === f.c! && f.x! === a + b + c;
+  },
+  // 중점사각형: 정사각형→정사각형(넓이 k²) / 마름모→직사각형(두 변이 대각선의 절반)
+  "여러 가지 사각형|12": (f) =>
+    f.mode === 0
+      ? f.x! === f.k! * f.k!
+      : 4 * f.x! === f.p! * f.q! && f.p! !== f.q!,
+  // 판별⑵: □EBFD 는 마름모, BF = AD - FC. 그림이 성립하려면 AD > 2·FC
+  "여러 가지 사각형|17": (f) =>
+    f.side! === f.p! - f.q! && f.x! === 4 * f.side! && f.p! > 2 * f.q!,
+
+  // 닮음 조건: SAS 는 비례식을 곱셈꼴로 / AA 는 세 내각의 합
+  "도형의 닮음|09": (f) =>
+    f.mode === 0
+      ? f.ab! * f.x! === f.de! * f.bc! && f.ab! !== f.de!
+      : angleSum(f.p!, f.q!, f.x!),
+  // SAS 닮음: AD·AB = AE·AC 가 닮음비의 근거, BC·AD = DE·AC 가 결론
+  "도형의 닮음|10": (f) =>
+    f.p! * f.ab! === f.r! * f.ac! &&
+    f.x! * f.p! === f.m! * f.ac! &&
+    f.p! < f.ab! &&
+    f.r! < f.ac!,
+  // AA 닮음(엇각): BD·BA = BE·BC, EC = BC - BE. BA=BC 면 DE∥AC 라 다른 유형
+  "도형의 닮음|11": (f) =>
+    f.d! * (f.d! + f.a!) === f.e! * f.bc! &&
+    f.x! === f.bc! - f.e! &&
+    f.bc! !== f.d! + f.a!,
+  // 두 수선의 발: AD·CE = BE·BD
+  "도형의 닮음|12": (f) => f.u! * f.w! === f.v! * f.x!,
+  // 빗변 위의 수선: AH² = BH·CH (그리고 AC² = CH·CB)
+  "도형의 닮음|13": (f) =>
+    f.mode === 0
+      ? f.ah! * f.ah! === f.bh! * f.ch! && f.x! === f.ah!
+      : f.ah! * f.ah! === f.bh! * f.ch! &&
+        f.ac! * f.ac! === f.ch! * (f.bh! + f.ch!) &&
+        f.x! === f.ch! + f.ac!,
+  // 그림자: (막대 높이):(막대 그림자) = (나무 높이):(나무 그림자) / 축척
+  "도형의 닮음|14": (f) =>
+    f.mode === 0
+      ? f.poleH! * f.treeS! === f.poleS! * f.x!
+      : 100 * f.x! === f.l! * f.n!,
+  // 접은 직사각형: AE·CD = AB'·B'D 이고 종이라 CD = AE + √(AE²+AB'²)
+  "도형의 닮음|15": (f) =>
+    f.p! * f.cd! === f.q! * f.x! &&
+    (f.cd! - f.p!) * (f.cd! - f.p!) === f.p! * f.p! + f.q! * f.q!,
+
+  // 세 평행선: a·x = b·c (비례식을 곱셈꼴로)
+  "평행선 사이의 선분의 길이의 비|08": (f) => f.a! * f.x! === f.b! * f.c!,
+  // 사다리꼴 EF: EF·(m+n) = n·AD + m·BC
+  "평행선 사이의 선분의 길이의 비|09": (f) =>
+    f.x! * (f.m! + f.n!) === f.n! * f.p! + f.m! * f.q! && f.q! > f.p!,
+  // 대각선 교점을 지나는 EF: 1/AD + 1/BC = 2/EF (조화평균)
+  "평행선 사이의 선분의 길이의 비|10": (f) =>
+    f.mode === 0
+      ? 2 * f.p! * f.q! === f.x! * (f.p! + f.q!)
+      : 2 * f.p! * f.x! === f.ef! * (f.p! + f.x!),
+  // 나비꼴: 1/AB + 1/CD = 1/EF / 넓이는 ½·BC·EF
+  "평행선 사이의 선분의 길이의 비|11": (f) =>
+    f.mode === 0
+      ? f.x! * (f.a! + f.b!) === f.a! * f.b!
+      : 2 * f.x! * (f.a! + f.b!) === f.bcLen! * f.a! * f.b!,
 };
 
-/** 답 문자열의 첫 수가 facts 의 이 키와 같아야 한다. */
-const ANSWER_KEY: Record<string, string> = {
+/**
+ * 답 문자열의 첫 수가 facts 의 이 값과 같아야 한다.
+ * 문자열이면 그 키, 함수면 «모드마다 답이 다른 유형»의 계산이다
+ * (예: 「x 를 구하시오」와 「둘레를 구하시오」가 한 유형 안에 있다).
+ */
+const ANSWER_KEY: Record<
+  string,
+  string | ((f: Record<string, number>) => number)
+> = {
   "삼각형의 성질|01": "x",
   "삼각형의 성질|02": "sum",
   "삼각형의 성질|03": "x",
@@ -184,6 +428,35 @@ const ANSWER_KEY: Record<string, string> = {
   "평행선 사이의 선분의 길이의 비|05": "x",
   "평행선 사이의 선분의 길이의 비|06": "x",
   "평행선 사이의 선분의 길이의 비|07": "x",
+  // ── 2B 물결 ────────────────────────────────────────────────────
+  "삼각형의 성질|06": "x",
+  "삼각형의 성질|07": "x",
+  "삼각형의 성질|08": "x",
+  "삼각형의 성질|12": "x",
+  "여러 가지 사각형|01": "x",
+  "여러 가지 사각형|02": (f) => (f.mode === 0 ? f.x! : f.len!),
+  "여러 가지 사각형|03": "x",
+  "여러 가지 사각형|04": (f) => (f.mode === 0 ? f.peri! : f.x!),
+  "여러 가지 사각형|05": "x",
+  "여러 가지 사각형|06": (f) => f.area!,
+  "여러 가지 사각형|07": "x",
+  "여러 가지 사각형|08": "x",
+  "여러 가지 사각형|09": "x",
+  "여러 가지 사각형|10": "x",
+  "여러 가지 사각형|11": "x",
+  "여러 가지 사각형|12": "x",
+  "여러 가지 사각형|17": "x",
+  "도형의 닮음|09": "x",
+  "도형의 닮음|10": "x",
+  "도형의 닮음|11": "x",
+  "도형의 닮음|12": "x",
+  "도형의 닮음|13": "x",
+  "도형의 닮음|14": "x",
+  "도형의 닮음|15": "x",
+  "평행선 사이의 선분의 길이의 비|08": "x",
+  "평행선 사이의 선분의 길이의 비|09": "x",
+  "평행선 사이의 선분의 길이의 비|10": "x",
+  "평행선 사이의 선분의 길이의 비|11": "x",
   // 닮음 01 은 답이 «대응변·대응각» 이라 수가 없다 — 아래에서 따로 검사한다.
 };
 
@@ -209,12 +482,43 @@ const FIGURE_KEYS = new Set([
   "평행선 사이의 선분의 길이의 비|05",
   "평행선 사이의 선분의 길이의 비|06",
   "평행선 사이의 선분의 길이의 비|07",
+  // ── 2B 물결 — 마크 문법이 있어야 그려지는 것들 ─────────────────
+  "삼각형의 성질|06",
+  "삼각형의 성질|07",
+  "삼각형의 성질|08",
+  "삼각형의 성질|12",
+  "여러 가지 사각형|01",
+  "여러 가지 사각형|02",
+  "여러 가지 사각형|03",
+  "여러 가지 사각형|04",
+  "여러 가지 사각형|05",
+  "여러 가지 사각형|06",
+  "여러 가지 사각형|07",
+  "여러 가지 사각형|08",
+  "여러 가지 사각형|09",
+  "여러 가지 사각형|12",
+  "여러 가지 사각형|17",
+  "도형의 닮음|09",
+  "도형의 닮음|10",
+  "도형의 닮음|11",
+  "도형의 닮음|12",
+  "도형의 닮음|13",
+  "도형의 닮음|15",
+  "평행선 사이의 선분의 길이의 비|08",
+  "평행선 사이의 선분의 길이의 비|09",
+  "평행선 사이의 선분의 길이의 비|10",
+  "평행선 사이의 선분의 길이의 비|11",
 ]);
 
 /** 그림이 «있을 수도, 없을 수도» 있는 유형 — mode 가 가른다. */
 const FIGURE_BY_MODE: Record<string, (f: Record<string, number>) => boolean> = {
   // 04 는 내각 이등분선 모드(0)만 그림. 외각 이등분선 모드(1)는 v2 로 못 그린다.
   "삼각형의 성질|04": (f) => f.mode === 0,
+  // 닮음 14 는 그림자 모드(0)만 그림. 축척 모드(1)는 발문이 전부 말한다.
+  "도형의 닮음|14": (f) => f.mode === 0,
+  // 사각형 10·11 은 보기 나열 문항이라 그림이 없다.
+  "여러 가지 사각형|10": () => false,
+  "여러 가지 사각형|11": () => false,
 };
 
 function vkey(e: { rpmMinor: string; rpmType: string }): string {
@@ -239,62 +543,46 @@ function everyNumberFinite(v: unknown): boolean {
 
 /** 스펙의 labels 에서 «숫자 라벨»만 뽑는다 (`12 cm` → 12). */
 function numericLabels(spec: Record<string, unknown>): number[] {
-  const labels = (spec.labels ?? {}) as Record<string, string>;
+  // ⚠️ 라벨 값은 문자열일 수도, `{text, italic}` 객체일 수도 있다(엔진 스키마).
+  //    객체에 `.trim()` 을 부르면 여기서 터진다 — 문자열만 본다.
+  const labels = (spec.labels ?? {}) as Record<string, unknown>;
   const out: number[] = [];
-  for (const text of Object.values(labels)) {
-    const m = /^(\d+(?:\.\d+)?)(?:\s*(?:cm|°))?$/.exec(text.trim());
+  for (const value of Object.values(labels)) {
+    const text =
+      typeof value === "string"
+        ? value
+        : typeof (value as { text?: unknown })?.text === "string"
+          ? (value as { text: string }).text
+          : null;
+    if (text === null) continue;
+    const m = /^(\d+(?:\.\d+)?)(?:\s*(?:cm|m|°))?$/.exec(text.trim());
     if (m) out.push(Number(m[1]));
   }
   return out;
 }
 
-describe("중2 기하 27유형 (RPM 2-2)", () => {
+describe("중2 기하 55유형 (RPM 2-2)", () => {
   it("네 중단원의 계획된 번호가 전부 등록돼 있다", () => {
     const byMinor = new Map<string, string[]>();
     for (const e of GEO) {
       byMinor.set(e.rpmMinor, [...(byMinor.get(e.rpmMinor) ?? []), e.rpmType]);
     }
-    expect(GEO.length).toBe(27);
-    expect(byMinor.get("삼각형의 성질")!.sort()).toEqual([
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "09",
-      "10",
-      "11",
-    ]);
-    expect(byMinor.get("여러 가지 사각형")!.sort()).toEqual([
-      "13",
-      "14",
-      "15",
-      "16",
-    ]);
-    expect(byMinor.get("도형의 닮음")!.sort()).toEqual([
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-    ]);
-    expect(byMinor.get("평행선 사이의 선분의 길이의 비")!.sort()).toEqual([
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-    ]);
+    // 2B 물결로 네 중단원이 **빠짐없이** 등록됐다 — RPM 색인의 번호 전량.
+    const seq = (n: number): string[] =>
+      Array.from({ length: n }, (_, i) => String(i + 1).padStart(2, "0"));
+    expect(GEO.length).toBe(55);
+    expect(byMinor.get("삼각형의 성질")!.sort()).toEqual(seq(12));
+    expect(byMinor.get("여러 가지 사각형")!.sort()).toEqual(seq(17));
+    expect(byMinor.get("도형의 닮음")!.sort()).toEqual(seq(15));
+    expect(byMinor.get("평행선 사이의 선분의 길이의 비")!.sort()).toEqual(
+      seq(11),
+    );
   });
 
-  it("2B 대기(마크 문법 필요) 유형은 등록하지 않았다", () => {
-    // 직각 기호·같음 tick·평행 표시가 있어야 하는 유형 — 지어내지 않는다.
-    const waiting = [
+  it("2B 대기였던 유형이 이제 전부 등록돼 있다 (마크 문법 병합 후)", () => {
+    // 2A 세션이 «직각 기호·같음 tick·평행 표시가 없어 못 그린다»며 남긴 목록.
+    // 2B 에서 그 문법이 들어왔으므로 **하나도 빠짐없이** 등록돼야 한다.
+    const wasWaiting = [
       "삼각형의 성질|06",
       "삼각형의 성질|07",
       "삼각형의 성질|08",
@@ -310,8 +598,8 @@ describe("중2 기하 27유형 (RPM 2-2)", () => {
       "평행선 사이의 선분의 길이의 비|11",
     ];
     const registered = new Set(GEO.map(vkey));
-    for (const k of waiting) {
-      expect(registered.has(k), `${k} 는 2B 대기여야 한다`).toBe(false);
+    for (const k of wasWaiting) {
+      expect(registered.has(k), `${k} 가 아직 없다`).toBe(true);
     }
   });
 
@@ -322,13 +610,17 @@ describe("중2 기하 27유형 (RPM 2-2)", () => {
     }
     expect(count).toEqual(
       new Map([
-        ["이등변삼각형의 성질", 6],
-        ["직각삼각형의 합동", 2],
+        ["이등변삼각형의 성질", 7],
+        ["직각삼각형의 합동", 5],
         ["평행선과 삼각형의 넓이", 4],
         ["닮은 도형", 4],
         ["닮은 도형의 넓이의 비와 부피의 비", 4],
         ["삼각형에서 평행선 사이의 선분의 길이의 비", 5],
         ["삼각형의 각의 이등분선", 2],
+        ["직사각형, 마름모, 정사각형", 6],
+        ["등변사다리꼴, 여러 가지 사각형", 7],
+        ["삼각형의 닮음 조건", 7],
+        ["평행선 사이의 선분의 길이의 비", 4],
       ]),
     );
   });
@@ -355,6 +647,40 @@ describe("중2 기하 27유형 (RPM 2-2)", () => {
     expect(byKey.get("평행선 사이의 선분의 길이의 비|07")).toBe(
       "삼각형의 외각의 이등분선의 성질",
     );
+    // 2B 물결 몫
+    expect(byKey.get("삼각형의 성질|06")).toBe("직각삼각형의 합동 조건");
+    expect(byKey.get("삼각형의 성질|12")).toBe("폭이 일정한 종이접기");
+    expect(byKey.get("여러 가지 사각형|03")).toBe("마름모의 뜻과 성질");
+    expect(byKey.get("여러 가지 사각형|12")).toBe(
+      "사각형의 각 변의 중점을 연결하여 만든 사각형",
+    );
+    expect(byKey.get("여러 가지 사각형|17")).toBe("여러 가지 사각형의 판별 ⑵");
+    expect(byKey.get("도형의 닮음|13")).toBe("직각삼각형의 닮음의 응용");
+    expect(byKey.get("도형의 닮음|15")).toBe("접은 도형에서의 닮은 삼각형");
+    expect(byKey.get("평행선 사이의 선분의 길이의 비|10")).toBe(
+      "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+    );
+  });
+
+  it("명제·성질 표는 모듈과 테스트가 **따로 들고** 같은 값이어야 한다", () => {
+    // 한쪽만 고치면 여기서 드러난다(2026-08-23: 표를 두 벌 두는 것이 목적).
+    expect(QUAD10_CLAIMS.length).toBe(QUAD10_TRUTH.length);
+    QUAD10_CLAIMS.forEach(([text, ok], i) => {
+      expect(ok, `명제 ${i}: ${text}`).toBe(QUAD10_TRUTH[i]);
+    });
+    expect(QUAD11_SHAPES.length).toBe(QUAD11_TRUTH.length);
+    QUAD11_SHAPES.forEach(([name, eq, perp, bisect], i) => {
+      expect([eq, perp, bisect], `사각형 ${name}`).toEqual(QUAD11_TRUTH[i]);
+    });
+    // 11 유형의 c 는 «길이가 같고 + 수직이고 + 이등분»인데, 이 표에서는 앞 둘이면
+    // 셋째가 따라온다 — 그래서 셋째 항을 지워도 답이 안 변한다(변이 시험이
+    // 「산출물이 안 바뀐다」로 알려 줬다). 그 함의를 여기서 못 박는다: 표에
+    // 새 사각형을 넣어 이 관계가 깨지면 **이 검사가 먼저 빨개진다.**
+    QUAD11_SHAPES.forEach(([name, eq, perp, bisect]) => {
+      if (eq && perp) {
+        expect(bisect, `${name}: 같고 수직인데 이등분이 아니다`).toBe(true);
+      }
+    });
   });
 
   for (const e of GEO) {
@@ -382,9 +708,11 @@ describe("중2 기하 27유형 (RPM 2-2)", () => {
         if (key === undefined) return; // 닮음 01 — 아래 전용 검사
         for (const seed of SEEDS) {
           const p = generateMiddleProblem(e.key, seed);
-          expect(firstNumber(p.answer), `${p.answer} vs facts.${key}`).toBe(
-            p.facts[key],
-          );
+          const want = typeof key === "string" ? p.facts[key] : key(p.facts);
+          expect(
+            firstNumber(p.answer),
+            `${p.answer} vs ${JSON.stringify(p.facts)}`,
+          ).toBe(want);
         }
       });
 

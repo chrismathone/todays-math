@@ -7,6 +7,7 @@
  */
 import { M2_COUNTING } from "./m2Counting";
 import { M2_FUNC } from "./m2Func";
+import { M2_GEO_QUAD } from "./m2GeoQuad";
 import { M2_GEO_SIM } from "./m2GeoSim";
 import { M2_GEO_TRI } from "./m2GeoTri";
 import { M2_INEQ_APPLY } from "./m2IneqApply";
@@ -24,4 +25,5 @@ export const M2_TYPES: TypeEntry[] = [
   ...M2_FUNC,
   ...M2_GEO_TRI,
   ...M2_GEO_SIM,
+  ...M2_GEO_QUAD,
 ];
