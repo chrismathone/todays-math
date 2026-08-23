@@ -639,6 +639,18 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
           baseSidesOf(deep.content) ?? baseSidesOf(deep.solution),
           `${code} 심화 seed=${seed}: 밑면을 어디서도 못 읽는다 — ${deep.content}`,
         ).not.toBeNull();
+        // 「…이 $k$개인 입체」꼴 심화의 답이 $k$ 그대로면 되짚은 것이 없다 —
+        // 각뿔은 꼭짓점·면이 같은 수(n+1)라 그 둘을 짝지으면 정확히 이렇게 된다.
+        // 엔진은 그 짝을 `PYR_DEEP_PAIRS` 에서 뺐는데, 주석만으로는 안 잠기니 여기서 잠근다.
+        const givenCount = deep.content.match(
+          /(?:꼭짓점|모서리|면)[이가] \$(\d+)\$개인 각(?:기둥|뿔)/,
+        );
+        if (givenCount) {
+          expect(
+            answerNum(deep.answer),
+            `${code} 심화 seed=${seed}: 준 수가 그대로 답이다 — ${deep.content}`,
+          ).not.toBe(Number(givenCount[1]));
+        }
       }
     }
   });

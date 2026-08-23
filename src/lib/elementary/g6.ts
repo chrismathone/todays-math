@@ -2291,14 +2291,23 @@ function pyrFaceDeep(unit: UnitSeed, rng: Rng): ElemProblem {
         `밑면이 같은 각뿔의 ${asked}${josa(asked, "은", "는")} ${how[asked]}`,
     );
   }
+  // 견주는 요소를 면 하나로 고정하면 답이 늘 $1$ 이다((n+2)-(n+1) — n 과 무관).
+  // 심화 답이 상수면 외워서 맞힌다 — 요소를 셋으로 벌려 답이 $1$·$n-1$·$n$ 으로 갈리게 한다.
+  const key: PartKey = pick(rng, PART_KEYS);
+  const diff = prism[key] - pyr[key];
+  const howOf: Record<PartKey, string> = {
+    면: `각기둥의 면은 ${expr(`2+${n}=${prism.면}`)} 개, 각뿔의 면은 ${expr(`1+${n}=${pyr.면}`)} 개이므로 `,
+    꼭짓점: `각기둥의 꼭짓점은 ${expr(`${n}\\times2=${prism.꼭짓점}`)} 개, 각뿔의 꼭짓점은 ${expr(`${n}+1=${pyr.꼭짓점}`)} 개이므로 `,
+    모서리: `각기둥의 모서리는 ${expr(`${n}\\times3=${prism.모서리}`)} 개, 각뿔의 모서리는 ${expr(`${n}\\times2=${pyr.모서리}`)} 개이므로 `,
+  };
   return make(
     unit,
     `밑면의 모양이 같은 각기둥과 각뿔이 있습니다. 각뿔의 옆면이 ${num(n)}개일 때, ` +
-      `각기둥의 면은 각뿔의 면보다 몇 개 더 많습니까?`,
-    num(prism.면 - pyr.면),
+      `각기둥의 ${key}${josa(key, "은", "는")} 각뿔의 ${key}보다 몇 개 더 많습니까?`,
+    num(diff),
     `각뿔의 옆면이 ${num(n)}개이므로 밑면은 ${polyName(n)}입니다. ` +
-      `각기둥의 면은 ${expr(`2+${n}=${prism.면}`)} 개, 각뿔의 면은 ${expr(`1+${n}=${pyr.면}`)} 개이므로 ` +
-      `${expr(`${prism.면}-${pyr.면}=${prism.면 - pyr.면}`)} 개 더 많습니다.`,
+      howOf[key] +
+      `${expr(`${prism[key]}-${pyr[key]}=${diff}`)} 개 더 많습니다.`,
   );
 }
 

@@ -3,6 +3,7 @@
 
     python scripts/qa/mutate-elem-tiers.py g3
     python scripts/qa/mutate-elem-tiers.py g5
+    python scripts/qa/mutate-elem-tiers.py g6
 
 **판정 순서가 이 도구의 알맹이다** (CLAUDE.md 2026-08-20·08-21):
 
@@ -30,21 +31,28 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROBE_PATH = os.path.join(ROOT, "scripts", "qa", ".mutate-elem-tiers.probe.ts")
 
+# 산출물에 figureSpec 까지 넣는다 — 「그림을 뗀다」류 변이는 본문·정답·해설이 그대로라
+# 그림을 안 찍으면 ⑵ 에서 «산출물이 그대로다»로 오판된다(멀쩡한 변이를 판정 거부).
 PROBE_TS = """
 import { elementaryUnits, generateElementaryProblem } from "../../src/lib/elementary/generate";
 import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 
-const unit = elementaryUnits().find(
-  (u) => u.grade === "__GRADE__" && u.section.startsWith("__SECTION__"),
-)!;
+const sections: string[] = __SECTIONS__;
 const out: string[] = [];
-for (const tier of ELEM_TIERS) {
-  for (const seed of [20260821, 7, 1234, 1, 2, 3]) {
-    try {
-      const p = generateElementaryProblem(unit, seed, tier);
-      out.push(`${tier}|${seed}|${p.content}|${p.answer}|${p.solution}`);
-    } catch (err) {
-      out.push(`${tier}|${seed}|THROW ${String(err)}`);
+for (const sec of sections) {
+  const unit = elementaryUnits().find(
+    (u) => u.grade === "__GRADE__" && u.section.startsWith(sec),
+  )!;
+  for (const tier of ELEM_TIERS) {
+    for (const seed of [20260821, 7, 1234, 1, 2, 3]) {
+      try {
+        const p = generateElementaryProblem(unit, seed, tier);
+        out.push(
+          `${sec}|${tier}|${seed}|${p.content}|${p.answer}|${p.solution}|${JSON.stringify(p.figureSpec ?? null)}`,
+        );
+      } catch (err) {
+        out.push(`${sec}|${tier}|${seed}|THROW ${String(err)}`);
+      }
     }
   }
 }
@@ -69,10 +77,12 @@ G3_MUTS = [
         "  const total = base + second;",
         "  const total = base + more;",
     ),
+    # ⚠️ `n(r.rightSum),` 만으로는 g3.ts 에 **2곳**이다(1-1-2 add3Reverse · reverseAddLight 쪽).
+    # 예전 하네스는 첫 자리를 바꿔 우연히 맞았다 — count==1 단정을 넣으며 문맥으로 못 박는다.
     (
         "심화 역산 훼손 — 어떤 수를 답으로 낸다",
-        "    n(r.rightSum),",
-        "    n(r.some),",
+        "  const r = reverseAdd(rng);\n  return make(\n    unit,\n    `어떤 수에 $${r.right}$ 만큼 더해야 할 것을 잘못하여 $${r.wrong}$ 만큼 더했더니 합이 $${r.wrongSum}$ 입니다. 바르게 계산한 값은 얼마입니까?`,\n    n(r.rightSum),",
+        "  const r = reverseAdd(rng);\n  return make(\n    unit,\n    `어떤 수에 $${r.right}$ 만큼 더해야 할 것을 잘못하여 $${r.wrong}$ 만큼 더했더니 합이 $${r.wrongSum}$ 입니다. 바르게 계산한 값은 얼마입니까?`,\n    n(r.some),",
     ),
     (
         "소재 고정 — 기본 갈래가 늘 첫 소재",
@@ -83,6 +93,49 @@ G3_MUTS = [
         "갈래 뭉개기 — 심화를 연산으로",
         "    심화: add3Reverse,",
         "    심화: add3Calc,",
+    ),
+]
+
+# 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
+# 공식·검산·갈래 배선·«기본은 그림에서 읽는다»·그림 자체·죽은 짝(꼭짓점↔면) 여섯.
+G6_MUTS = [
+    (
+        "공식 훼손 — 각기둥 모서리를 2n 으로",
+        "const prismParts = (n: number) => ({ 꼭짓점: 2 * n, 모서리: 3 * n, 면: n + 2 });",
+        "const prismParts = (n: number) => ({ 꼭짓점: 2 * n, 모서리: 2 * n, 면: n + 2 });",
+    ),
+    (
+        "검산 훼손 — 각뿔 옆면 전체 넓이 답을 하나 올린다",
+        "    num(n * one),",
+        "    num(n * one + 1),",
+    ),
+    (
+        "갈래 뭉개기 — 1-2-1 심화를 연산으로",
+        "    심화: prismFaceDeep,",
+        "    심화: prismFaceCalc,",
+    ),
+    (
+        "축 훼손 — 기본이 밑면 이름을 말해 버린다",
+        "`다음은 각기둥 모양 ${thing}입니다. 옆면은 몇 개입니까?`,",
+        "`다음은 ${sino(n)}각기둥 모양 ${thing}입니다. 옆면은 몇 개입니까?`,",
+    ),
+    (
+        "그림 훼손 — 기본 갈래에서 겨냥도를 뗀다",
+        """    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. 옆면의 수는 밑면의 변의 수와 같으므로 ${num(n)}개입니다.`,
+    fig("prism", { sides: n, h: 3 }),
+  );""",
+        """    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. 옆면의 수는 밑면의 변의 수와 같으므로 ${num(n)}개입니다.`,
+  );""",
+    ),
+    (
+        "죽은 짝 되살리기 — 각뿔 심화가 꼭짓점↔면을 짝짓는다(준 수가 그대로 답)",
+        """const PYR_DEEP_PAIRS = [
+  ["모서리", "꼭짓점"],
+  ["모서리", "면"],
+  ["면", "모서리"],
+  ["꼭짓점", "모서리"],
+] as const;""",
+        """const PYR_DEEP_PAIRS = [["꼭짓점", "면"]] as const;""",
     ),
 ]
 
@@ -103,6 +156,15 @@ TARGETS = {
         "section": "1-6-2",
         "muts": [],
     },
+    # 변이가 소단원 다섯에 걸쳐 있어 «sections» 로 전부 찍는다 — 하나만 찍으면
+    # 다른 소단원만 바꾸는 변이가 ⑵ 에서 «산출물이 그대로다»로 오판된다.
+    "g6": {
+        "file": "src/lib/elementary/g6.ts",
+        "test": "src/__tests__/unit/elemTiersG6.test.ts",
+        "grade": "초6",
+        "sections": ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"],
+        "muts": G6_MUTS,
+    },
 }
 
 
@@ -111,8 +173,10 @@ def run(args: list[str]) -> tuple[int, str]:
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 
-def probe(grade: str, section: str) -> str:
-    ts = PROBE_TS.replace("__GRADE__", grade).replace("__SECTION__", section)
+def probe(grade: str, sections: list[str]) -> str:
+    ts = PROBE_TS.replace("__GRADE__", grade).replace(
+        "__SECTIONS__", json.dumps(sections)
+    )
     io.open(PROBE_PATH, "w", encoding="utf-8").write(ts)
     try:
         _, out = run(["npx", "tsx", PROBE_PATH])
@@ -153,7 +217,8 @@ def main() -> int:
     if os.path.exists(PROBE_PATH):
         os.remove(PROBE_PATH)
 
-    base = probe(target["grade"], target["section"])
+    sections = target.get("sections") or [target["section"]]
+    base = probe(target["grade"], sections)
     if not base.startswith("["):
         print("기준 산출물을 못 얻었습니다:", base[:400])
         return 1
@@ -162,15 +227,23 @@ def main() -> int:
     ok = True
     try:
         for name, before, after in target["muts"]:
-            if before not in src:
-                print(f"  ??    {name}\n        ← 자리를 못 찾았다(변이가 적용되지 않았다)")
+            # 자리는 정확히 **하나**여야 한다 — 0이면 치환 실패, 2 이상이면 첫 자리만
+            # 바뀌어 «내가 노린 자리»라는 보장이 없다 (2026-08-23 메모리: count==1 단정).
+            count = src.count(before)
+            if count != 1:
+                why = (
+                    "자리를 못 찾았다(변이가 적용되지 않았다)"
+                    if count == 0
+                    else f"자리가 {count}곳이다 — 어느 것이 바뀔지 모른다. 문맥을 넓혀라"
+                )
+                print(f"  ??    {name}\n        ← {why}")
                 ok = False
                 continue
             io.open(path, "w", encoding="utf-8").write(src.replace(before, after, 1))
             if io.open(path, encoding="utf-8").read() == src:
                 print(f"  ??    {name}\n        ← 파일이 안 바뀌었다")
                 ok = False
-            elif probe(target["grade"], target["section"]) == base:
+            elif probe(target["grade"], sections) == base:
                 print(f"  ??    {name}\n        ← **산출물이 그대로다.** 판정하지 않는다")
                 ok = False
             else:
