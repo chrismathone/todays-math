@@ -6758,7 +6758,9 @@ function coneKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 연산 — 구의 지름에서 반지름. 절차 한 번. */
 function ballKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
-  const r = intBetween(rng, 2, 25);
+  // ⚠️ 그림이 붙는 갈래는 **$20$ 까지** — `_sphere` 가 `r` 을 $0.4$~$20$ 으로 받는다.
+  //    갈래 시험은 그림을 **안 그려 보므로** 넘겨도 초록이다(실측 5건이 그렇게 샜다).
+  const r = intBetween(rng, 2, 20);
   return make(
     unit,
     `지름이 ${unitNum(2 * r, "cm")} 인 구입니다. 이 구의 반지름은 몇 cm인가?`,
@@ -6784,7 +6786,9 @@ function ballKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 응용 — 두 걸음. 구의 중심을 지나게 자른 단면의 둘레. 원주율 `$3.1$`. */
 function ballKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
-  const r = intBetween(rng, 2, 25);
+  // ⚠️ 그림이 붙는 갈래는 **$20$ 까지** — `_sphere` 가 `r` 을 $0.4$~$20$ 으로 받는다.
+  //    갈래 시험은 그림을 **안 그려 보므로** 넘겨도 초록이다(실측 5건이 그렇게 샜다).
+  const r = intBetween(rng, 2, 20);
   const d = 2 * r;
   const circT = d * 31;
   return make(
