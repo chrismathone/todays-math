@@ -5186,6 +5186,323 @@ function round216Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 2-2 분수의 곱셈 — 난이도 4단 (D-72 확대 8차) ──────────
+ *
+ * **이 대단원은 «차례»가 이름의 약속이다.** 2-2-1 은 `(분수)×(자연수)`, 2-2-2 는
+ * `(자연수)×(분수)` — 값은 같아도 **쓰는 차례가 다르고**, 그 차례가 곧 소단원이다.
+ * 그래서 두 소단원은 서로의 **음성 대조**다: 2-2-1 발문에 자연수가 앞선 식이 있으면
+ * 그 자체로 결함이고, 시험이 정규식으로 차례를 잠근다(2026-08-23 리드 지시 ②).
+ *
+ * 기약은 **답의 꼴로만** 건다 — 「약분」은 이 소단원 이름이 아니므로 발문이 그것을
+ * 요구하지 않는다(①). 대신 약분이 **실제로 일어나는 짝**을 섞어 해설에 그 과정이
+ * 서게 하고, 시험이 「약분이 일어난 문항이 일정 비율 이상」인지도 센다 — 안 그러면
+ * 「약분 과정이 선다」는 문장이 늘 빈 말이 된다.
+ *
+ * 2-2-4 의 오개념은 **자연수부만 곱하는 것**이다(③). 응용이 그 함정을 실제로 밟게
+ * 하고(잘못 계산한 값과 바른 값의 차), 시험이 두 값을 따로 재계산해 견준다.
+ */
+
+/** 곱해서 약분이 반드시 일어나는 (분자, 분모, 자연수) — 해설의 약분 과정이 빈 말이 안 되게. */
+function reducibleTriple(rng: Rng): { a: number; d: number; k: number } {
+  const d = pick(rng, [4, 6, 8, 9, 10, 12]);
+  const divs = divisors(d).filter((v) => v > 1 && v < d);
+  const k = pick(rng, divs) * intBetween(rng, 1, 2); // d 와 공약수를 반드시 가진다
+  const a = coprimeTop(rng, d);
+  return { a, d, k: Math.max(2, k) };
+}
+
+/**
+ * 곱셈 문장의 소재 — `[것, 단위, 담는 것, 있음말]`.
+ * ⚠️ 「담는 것」과 「있음말」을 따로 두면 「한 **도막**에 끈이 **들어 있습니다**」가 된다.
+ *    소재에 딸린 값으로 묶는다(g4 가 회송한 「색종이를 먹는다」와 같은 자리).
+ */
+const MUL_STUFF = [
+  ["물", "L", "병", "들어 있습니다"],
+  ["주스", "L", "병", "들어 있습니다"],
+  ["밀가루", "kg", "봉지", "들어 있습니다"],
+  ["끈", "m", "도막", "있습니다"],
+  ["리본", "m", "개", "있습니다"],
+] as const;
+
+/* ── 2-2-1 (분수)×(자연수) — 식은 언제나 «분수 먼저» ── */
+
+/** 연산 — 식이 그대로 주어진다(절차 한 번). 약분이 실제로 일어난다. */
+function fm221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(a * k, d);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${a}}{${d}}\\times${k}`)}`,
+    expr(fracLatex(num, den)),
+    `분모는 그대로 두고 분자에 ${nj(k, "을", "를")} 곱합니다. ${expr(`\\frac{${a}\\times${k}}{${d}}=\\frac{${a * k}}{${d}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 **스스로** 세운다(한 겹). «한 개에 얼마씩 몇 개». */
+function fm221Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(a * k, d);
+  const [thing, unitWord, box, have] = pick(rng, MUL_STUFF);
+  return make(
+    unit,
+    `한 ${box}에 ${thing} ${fr(a, d)} ${unitWord}씩 ${have}. ${n(k)}${box}의 ${wj(thing, "은", "는")} 모두 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `한 ${box}의 양에 ${box} 수를 곱합니다. ${expr(`\\frac{${a}}{${d}}\\times${k}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 곱한 뒤 쓴 만큼을 덜어 낸다(두 단계). 남는 양은 구성상 양수다. */
+function fm221Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [tn, td] = simplify(a * k, d);
+  // ⚠️ 쓴 양은 **원래 분모 `d`** 로 잰다. 약분된 분모(`td`)로 재면 `td` 가 1 이 될 때
+  //    「$\frac{1}{1}$ 을 썼다」가 되고 남은 양이 **0** 이 된다(2026-08-23 눈검사 실측).
+  //    전체가 `a·k/d` 이므로 분자를 `1 … a·k−1` 에서 고르면 남는 양이 반드시 양수다.
+  const usedNum = intBetween(rng, 1, a * k - 1);
+  const [un, ud] = simplify(usedNum, d);
+  const [rn, rd] = subFrac(a * k, d, usedNum, d);
+  const [thing, unitWord, box, have] = pick(rng, MUL_STUFF);
+  return make(
+    unit,
+    `한 ${box}에 ${thing} ${fr(a, d)} ${unitWord}씩 ${have}. 이런 것이 ${n(k)}${box} 있을 때 그중 ${expr(fracLatex(un, ud))} ${uj(unitWord, "을", "를")} 썼다면 남은 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(rn, rd)),
+    `전체는 ${expr(`\\frac{${a}}{${d}}\\times${k}=${fracLatex(tn, td)}`)}입니다. 여기서 쓴 만큼을 빼면 ${expr(`${fracLatex(tn, td)}-${fracLatex(un, ud)}=${fracLatex(rn, rd)}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산**: 곱한 결과에서 처음 분수를 거슬러 구한다.
+ *
+ * ⚠️ **이 갈래가 판정기에 안 걸리는 것은 안전해서가 아니다.** 발문에 `(분수)×(자연수)`
+ *    식이 없는 것은 2-2-2 심화와 똑같은데, 저쪽만 위반으로 잡혔다 — 이쪽 발문에는
+ *    분수(`3\frac13`)와 자연수(`8`)가 **둘 다 글자로 있어** `section-conditions` 의
+ *    느슨한 판정(kindsPresent)을 통과했을 뿐이다. **엄밀 판정(차례까지 보는 opShape)은
+ *    둘 다 못 넘는다.** 그러니 「2-2-1 은 괜찮더라」로 읽지 말 것 — 판정기가 조여지면
+ *    여기가 먼저 걸린다. 그때는 2-2-2 심화처럼 `\square\times…` 를 발문에 세우면 된다
+ *    (2026-08-23 리드 검수에서 이 비대칭을 기록으로 남기라는 지시).
+ */
+function fm221Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(a * k, d);
+  return make(
+    unit,
+    `어떤 수에 ${nj(k, "을", "를")} 곱했더니 ${lj(fracLatex(num, den), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    fr(a, d),
+    `어떤 수는 곱한 결과를 ${nro(k)} 나눈 수입니다. ${expr(`\\frac{${a}}{${d}}\\times${k}=${fracLatex(num, den)}`)}이므로 어떤 수는 ${fr(a, d)}입니다.`,
+  );
+}
+
+/* ── 2-2-2 (자연수)×(분수) — 식은 언제나 «자연수 먼저». «전체의 얼마만큼»이 그 뜻이다 ── */
+
+/** 연산 — 식이 그대로 주어진다(차례가 2-2-1 과 반대다). */
+function fm222Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(k * a, d);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${k}\\times\\frac{${a}}{${d}}`)}`,
+    expr(fracLatex(num, den)),
+    `자연수를 분자에 곱합니다. ${expr(`\\frac{${k}\\times${a}}{${d}}=\\frac{${k * a}}{${d}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 기본 — «전체의 얼마만큼» 문장(한 겹). 자연수가 앞서는 그 뜻 그대로다. */
+function fm222Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(k * a, d);
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["철사", "m"],
+    ["물", "L"],
+    ["밀가루", "kg"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(k)} ${unitWord}의 ${frj(a, d, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `전체의 얼마만큼인지는 곱셈으로 구합니다. ${expr(`${k}\\times\\frac{${a}}{${d}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 부분을 구하고 **남은 것**을 묻는다(두 단계). */
+function fm222Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [pn, pd] = simplify(k * a, d);
+  const [rn, rd] = subFrac(k, 1, pn, pd);
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["철사", "m"],
+    ["물", "L"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${n(k)} ${unitWord} 중에서 전체의 ${frj(a, d, "을", "를")} 썼습니다. 남은 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(rn, rd)),
+    `쓴 양은 ${expr(`${k}\\times\\frac{${a}}{${d}}=${fracLatex(pn, pd)}`)}입니다. 남은 양은 ${expr(`${k}-${fracLatex(pn, pd)}=${fracLatex(rn, rd)}`)}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 「어떤 수의 몇 분의 몇이 …」에서 어떤 수를 구한다. */
+function fm222Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const [num, den] = simplify(k * a, d);
+  return make(
+    unit,
+    // ⚠️ 역산이라도 **소단원 이름의 꼴**(자연수 × 분수)이 지면에 서야 한다.
+    //    처음엔 말로만 「어떤 자연수의 …은 …입니다」로 냈는데, 발문에 자연수가
+    //    하나도 없어 판정기가 조건 위반으로 잡았다(2026-08-23 실측 32/40).
+    //    □ 가 그 자연수 자리를 지키므로 차례도 그대로 보인다.
+    `□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\square\\times\\frac{${a}}{${d}}=${fracLatex(num, den)}`)}`,
+    n(k),
+    `□는 결과를 ${fro(a, d)} 나눈 수입니다. ${expr(`${k}\\times\\frac{${a}}{${d}}=${fracLatex(num, den)}`)}이므로 □는 ${n(k)}입니다.`,
+  );
+}
+
+/* ── 2-2-3 진분수의 곱셈 — 두 분수가 **모두 진분수**다 ── */
+
+/** 진분수 두 개 — 곱하면 약분이 일어나게 (분자, 분모) 짝을 맞물린다. */
+function twoReducible(rng: Rng): {
+  a: number;
+  d: number;
+  b: number;
+  e: number;
+} {
+  const d = pick(rng, [4, 6, 8, 9, 10]);
+  const e = pick(
+    rng,
+    [4, 6, 8, 9, 10].filter((v) => v !== d),
+  );
+  const a = coprimeTop(rng, d);
+  // 분자 `b` 가 분모 `d` 와 공약수를 가지면 엇갈려 약분된다.
+  const cands: number[] = [];
+  for (let v = 1; v < e; v += 1)
+    if (gcd(v, e) === 1 && gcd(v, d) > 1) cands.push(v);
+  const b = cands.length ? pick(rng, cands) : coprimeTop(rng, e);
+  return { a, d, b, e };
+}
+
+/** 연산 — 식이 그대로 주어진다. */
+function fm223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const [num, den] = simplify(a * b, d * e);
+  const same = a * b === num && d * e === den;
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}`)}`,
+    expr(fracLatex(num, den)),
+    `분자끼리, 분모끼리 곱합니다. ${expr(`\\frac{${a}\\times${b}}{${d}\\times${e}}=\\frac{${a * b}}{${d * e}}${same ? "" : `=${fracLatex(num, den)}`}`)}입니다.`,
+  );
+}
+
+/** 기본 — «얼마의 얼마만큼» 문장(한 겹). */
+function fm223Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const [num, den] = simplify(a * b, d * e);
+  const [thing, unitWord] = pick(rng, [
+    ["끈", "m"],
+    ["리본", "m"],
+    ["주스", "L"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${fr(a, d)} ${unitWord} 중에서 ${frj(b, e, "을", "를")} 썼습니다. 쓴 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `전체의 얼마만큼인지는 곱셈입니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 진분수 셋을 곱한다(두 걸음). */
+function fm223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const f = pick(rng, [2, 3, 4, 5]);
+  const g2 = coprimeTop(rng, f);
+  const [s1, sd1] = simplify(a * b, d * e);
+  const [num, den] = simplify(s1 * g2, sd1 * f);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}\\times\\frac{${g2}}{${f}}`)}`,
+    expr(fracLatex(num, den)),
+    `앞의 두 분수를 먼저 곱하면 ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(s1, sd1)}`)}이고, 여기에 ${frj(g2, f, "을", "를")} 곱하면 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 곱한 결과에서 한쪽 분수를 거슬러 구한다. */
+function fm223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const [num, den] = simplify(a * b, d * e);
+  return make(
+    unit,
+    `□ 안에 알맞은 수를 구하시오.  ${expr(`\\frac{${a}}{${d}}\\times\\square=${fracLatex(num, den)}`)}`,
+    fr(b, e),
+    `□는 결과를 ${fro(a, d)} 나눈 수입니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}이므로 □는 ${fr(b, e)}입니다.`,
+  );
+}
+
+/* ── 2-2-4 여러 가지 분수의 곱셈 — 대분수. 오개념은 «자연수부만 곱하기» ── */
+
+/** 연산 — 대분수 × 자연수. 가분수로 고치는 과정이 해설에 선다. */
+function fm224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const w = intBetween(rng, 1, 4);
+  const imp = w * d + a;
+  const [num, den] = simplify(imp * k, d);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${mixedLatex(w, a, d)}\\times${k}`)}`,
+    expr(fracLatex(num, den)),
+    `대분수를 가분수 ${fro(imp, d)} 고친 뒤 분자에 ${nj(k, "을", "를")} 곱합니다. ${expr(`\\frac{${imp}}{${d}}\\times${k}=\\frac{${imp * k}}{${d}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 기본 — 대분수 × 진분수. */
+function fm224Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const w = intBetween(rng, 1, 3);
+  const imp = w * d + a;
+  const [num, den] = simplify(imp * b, d * e);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${mixedLatex(w, a, d)}\\times\\frac{${b}}{${e}}`)}`,
+    expr(fracLatex(num, den)),
+    `대분수를 가분수 ${fro(imp, d)} 고친 뒤 분자끼리, 분모끼리 곱합니다. ${expr(`\\frac{${imp}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/**
+ * 응용 — **오개념을 실제로 밟게 한다**: 자연수 부분만 곱하는 잘못.
+ * 바른 값 `(w·d+a)/d × k` 와 잘못 값 `w×k` 의 차를 묻는다. 바른 값이 언제나
+ * 더 크므로(분수부가 0이 아니다) 차는 반드시 양수다.
+ */
+function fm224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, k } = reducibleTriple(rng);
+  const w = intBetween(rng, 1, 4);
+  const imp = w * d + a;
+  const [rn, rd] = simplify(imp * k, d);
+  const [dn, dd] = subFrac(rn, rd, w * k, 1);
+  return make(
+    unit,
+    `${lj(`${mixedLatex(w, a, d)}\\times${k}`, "을", "를")} 계산해야 하는데, 잘못하여 자연수 부분만 곱해 ${nj(w * k, "이라고", "라고")} 답했습니다. 바르게 계산한 값과 잘못 계산한 값의 차를 구하시오.`,
+    expr(fracLatex(dn, dd)),
+    `바르게 계산하면 대분수를 가분수 ${fro(imp, d)} 고쳐 ${expr(`\\frac{${imp}}{${d}}\\times${k}=${fracLatex(rn, rd)}`)}입니다. 잘못 계산한 값은 ${expr(`${w}\\times${k}=${w * k}`)}이므로 차는 ${expr(`${fracLatex(rn, rd)}-${w * k}=${fracLatex(dn, dd)}`)}입니다.`,
+  );
+}
+
+/** 심화 — 대분수끼리의 곱(둘 다 가분수로 고쳐야 한다). */
+function fm224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, d, b, e } = twoReducible(rng);
+  const w1 = intBetween(rng, 1, 3);
+  const w2 = intBetween(rng, 1, 3);
+  const i1 = w1 * d + a;
+  const i2 = w2 * e + b;
+  const [num, den] = simplify(i1 * i2, d * e);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${mixedLatex(w1, a, d)}\\times${mixedLatex(w2, b, e)}`)}`,
+    expr(fracLatex(num, den)),
+    `두 대분수를 모두 가분수로 고칩니다. ${expr(`${mixedLatex(w1, a, d)}=\\frac{${i1}}{${d}}`)}, ${expr(`${mixedLatex(w2, b, e)}=\\frac{${i2}}{${e}}`)}이므로 ${expr(`\\frac{${i1}}{${d}}\\times\\frac{${i2}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -5355,6 +5672,30 @@ export const G5_TIERS: ElemTierMap = {
     기본: round216Read,
     응용: round216Apply,
     심화: round216Deep,
+  },
+  "초5|2-2-1": {
+    연산: fm221Calc,
+    기본: fm221Read,
+    응용: fm221Apply,
+    심화: fm221Deep,
+  },
+  "초5|2-2-2": {
+    연산: fm222Calc,
+    기본: fm222Read,
+    응용: fm222Apply,
+    심화: fm222Deep,
+  },
+  "초5|2-2-3": {
+    연산: fm223Calc,
+    기본: fm223Read,
+    응용: fm223Apply,
+    심화: fm223Deep,
+  },
+  "초5|2-2-4": {
+    연산: fm224Calc,
+    기본: fm224Read,
+    응용: fm224Apply,
+    심화: fm224Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,

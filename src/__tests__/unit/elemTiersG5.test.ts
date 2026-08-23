@@ -3545,3 +3545,411 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
     }
   });
 });
+
+/* ── 2-2 분수의 곱셈 (D-72 8차) — 재검산 도우미 ── */
+
+const CODES22 = ["2-2-1", "2-2-2", "2-2-3", "2-2-4"] as const;
+
+/** 유리수 곱 — 시험이 제 손으로 센다(엔진의 mulFrac 을 안 부른다). */
+const mulV = (x: [number, number], y: [number, number]): [number, number] => {
+  const num = x[0] * y[0];
+  const den = x[1] * y[1];
+  const g = gcd2(num, den);
+  return [num / g, den / g];
+};
+
+/** 발문의 `$…$` 덩어리들. */
+const chunksOf = (t: string): string[] =>
+  [...t.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
+
+describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
+  it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES22) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES22) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("답의 가짓수가 넉넉하다 (씨앗 500 · 가짓수 ≥4 · 최빈 ≤45%)", () => {
+    const N = 500;
+    const bad: string[] = [];
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45)
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── ① 기약은 «답의 꼴»로만 · 약분 과정이 빈 말이 아니다 ── */
+
+  it("답은 언제나 기약이고, 발문은 기약을 요구하지 않는다 (①)", () => {
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const label = `${code} ${tier} @${seed}`;
+          // 답의 꼴로만 잠근다 — 「약분」·「기약」은 이 소단원 이름이 아니다
+          expect(
+            /기약|약분하여 나타/.test(p.content),
+            `${label} 발문이 기약을 요구한다\n${p.content}`,
+          ).toBe(false);
+          answerFracValue(p.answer, label); // 기약·대분수 정본 꼴을 잠근다
+        }
+      }
+    }
+  });
+
+  it("약분이 **언제나** 일어난다 — 해설의 «약분»이 빈 말이 아니게 (①)", () => {
+    // 「약분 과정이 해설에 선다」는 문장은, 약분이 **일어나는 짝을 뽑아야** 참이 된다.
+    // 안 그러면 늘 기약이라 그 문장이 아무것도 안 가리킨다.
+    //
+    // ⚠️ 처음엔 문턱을 «200 중 100 초과» 로 눈대중해 두었는데, **변이가 그대로
+    //    통과했다**(「자연수를 그냥 2~8 에서 뽑는다」 → 이론 비율 25/42 = **59.5%**
+    //    라 119/200 으로 문턱을 넘는다). 구성은 공약수를 **반드시** 갖게 뽑으므로
+    //    실측이 **100.0%** 다(씨앗 500 전량). 그러니 문턱도 **전량**이어야 한다 —
+    //    구성이 보장하는 것을 확률로 재면 그 가드는 헐겁다(2026-08-23 실측).
+    for (const [code, tier] of [
+      ["2-2-1", "연산"],
+      ["2-2-2", "연산"],
+      ["2-2-4", "연산"],
+    ] as const) {
+      let reduced = 0;
+      let read = 0;
+      for (let seed = 0; seed < 200; seed += 1) {
+        const p = problem(code, tier, seed);
+        // 해설이 `\frac{큰}{d}=…` 로 한 번 더 접히면 약분이 일어난 것이다
+        const beforeAfter = /\\frac\{(\d+)\}\{(\d+)\}=(?:\d|\\frac)/.exec(
+          p.solution,
+        );
+        if (beforeAfter) {
+          read += 1;
+          const bn = Number(beforeAfter[1]);
+          const bd = Number(beforeAfter[2]);
+          if (gcd2(bn, bd) > 1) reduced += 1;
+        }
+      }
+      // 분모를 먼저 지킨다 — 해설을 하나도 못 읽으면 «100%» 가 공허하다
+      expect(read, `${code} ${tier}: 해설에서 곱셈 결과를 못 읽었다`).toBe(200);
+      expect(
+        reduced,
+        `${code} ${tier}: 약분이 안 일어난 문항이 있다 (${reduced}/200)`,
+      ).toBe(200);
+    }
+  });
+
+  /* ── ② 차례가 이름의 약속 — 두 소단원이 서로의 음성 대조다 ── */
+
+  it("2-2-1 은 «분수 먼저», 2-2-2 는 «자연수 먼저» (②)", () => {
+    // □ 도 자연수 자리를 지킨다 — 역산 갈래는 그 자리를 □ 로 비워 내건다.
+    const fracFirst = /\\frac\{\d+\}\{\d+\}\\times(?:\d|\\square)/;
+    const wholeFirst =
+      /(?:^|[^}\d])(?:\d+|\\square)\\times\\frac\{\d+\}\{\d+\}/;
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        const c1 = `${problem("2-2-1", tier, seed).content} ${problem("2-2-1", tier, seed).solution}`;
+        const c2 = `${problem("2-2-2", tier, seed).content} ${problem("2-2-2", tier, seed).solution}`;
+        // 제 차례가 있어야 하고 —
+        expect(
+          fracFirst.test(c1),
+          `2-2-1 ${tier} @${seed} 분수 먼저가 없다\n${c1}`,
+        ).toBe(true);
+        expect(
+          wholeFirst.test(c2),
+          `2-2-2 ${tier} @${seed} 자연수 먼저가 없다\n${c2}`,
+        ).toBe(true);
+        // — 상대의 차례는 **발문에** 없어야 한다(음성 대조).
+        expect(
+          wholeFirst.test(problem("2-2-1", tier, seed).content),
+          `2-2-1 ${tier} @${seed} 발문에 자연수가 앞선 식이 있다`,
+        ).toBe(false);
+        expect(
+          fracFirst.test(problem("2-2-2", tier, seed).content),
+          `2-2-2 ${tier} @${seed} 발문에 분수가 앞선 식이 있다`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 ── */
+
+  it("2-2-1·2-2-2 — 곱이 발문의 수로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, tier] of [
+        ["2-2-1", "연산"],
+        ["2-2-2", "연산"],
+      ] as const) {
+        const p = problem(code, tier, seed);
+        const label = `${code} ${tier} @${seed}`;
+        const m =
+          code === "2-2-1"
+            ? /\\frac\{(\d+)\}\{(\d+)\}\\times(\d+)/.exec(p.content)!
+            : /(\d+)\\times\\frac\{(\d+)\}\{(\d+)\}/.exec(p.content)!;
+        const [fa, fd, k] =
+          code === "2-2-1"
+            ? [Number(m[1]), Number(m[2]), Number(m[3])]
+            : [Number(m[2]), Number(m[3]), Number(m[1])];
+        expect(
+          answerFracValue(p.answer, label),
+          `${label}\n${p.content}`,
+        ).toEqual(mulV([fa, fd], [k, 1]));
+      }
+    }
+  });
+
+  it("2-2-3 — 두 진분수의 곱이 다시 서고, 피연산자가 모두 진분수다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-2-3", "연산", seed);
+      const label = `2-2-3 연산 @${seed}`;
+      const m = /\\frac\{(\d+)\}\{(\d+)\}\\times\\frac\{(\d+)\}\{(\d+)\}/.exec(
+        p.content,
+      )!;
+      const [a, d, b, e] = [1, 2, 3, 4].map((i) => Number(m[i]));
+      // 이름 약속 — 「진분수의 곱셈」이므로 피연산자가 둘 다 진분수다
+      expect(a!, `${label} 앞이 진분수가 아니다`).toBeLessThan(d!);
+      expect(b!, `${label} 뒤가 진분수가 아니다`).toBeLessThan(e!);
+      expect(/\d\\frac\{/.test(p.content), `${label} 대분수가 있다`).toBe(
+        false,
+      );
+      expect(
+        answerFracValue(p.answer, label),
+        `${label}\n${p.content}`,
+      ).toEqual(mulV([a!, d!], [b!, e!]));
+    }
+  });
+
+  it("2-2-4 — 대분수가 반드시 끼고, 가분수 전환이 해설에 선다 (③)", () => {
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        const p = problem("2-2-4", tier, seed);
+        const label = `2-2-4 ${tier} @${seed}`;
+        expect(
+          /\d\\frac\{/.test(p.content),
+          `${label} 대분수가 없다\n${p.content}`,
+        ).toBe(true);
+        expect(
+          /가분수/.test(p.solution),
+          `${label} 해설에 가분수 전환이 없다`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("2-2-4 응용 — 오개념(자연수부만 곱하기)을 실제로 밟게 하고 차가 선다 (③)", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-2-4", "응용", seed);
+      const label = `2-2-4 응용 @${seed}`;
+      const m = /(\d+)\\frac\{(\d+)\}\{(\d+)\}\\times(\d+)/.exec(p.content)!;
+      const [w, a, d, k] = [1, 2, 3, 4].map((i) => Number(m[i]));
+      const right = mulV([w! * d! + a!, d!], [k!, 1]);
+      const wrong = w! * k!;
+      // 발문이 내건 «잘못 계산한 값» 이 정말 자연수부만 곱한 값이다
+      // 인용 조사는 받침이 있으면 «이라고», 없으면 «라고» — 둘 다 읽는다.
+      const said = Number(/곱해 \$(\d+)\$이?라고/.exec(p.content)![1]);
+      expect(said, `${label} 잘못값이 자연수부 곱이 아니다\n${p.content}`).toBe(
+        wrong,
+      );
+      // 차 = 바른 − 잘못 (바른 쪽이 언제나 크다 — 분수부가 0이 아니다)
+      const diffNum = right[0] * 1 - wrong * right[1];
+      const g = gcd2(Math.abs(diffNum), right[1]);
+      expect(
+        answerFracValue(p.answer, label),
+        `${label}\n${p.content}`,
+      ).toEqual([diffNum / g, right[1] / g]);
+      expect(diffNum, `${label} 차가 0 이하다`).toBeGreaterThan(0);
+    }
+  });
+
+  /* ── ④ 이웃 학년과 겹치지 않는다 — 손 목록이 아니라 실제로 뽑아 대조 ── */
+
+  it("초6 2-1(분수의 나눗셈)·초5 1-5(분수 덧뺄셈)와 발문이 겹치지 않는다 (④)", () => {
+    /** 수를 지운 «뼈대» — 수만 다른 같은 문형도 잡는다. */
+    const skeleton = (t: string) => t.replace(/\d+/g, "#");
+    const others = new Map<string, string>();
+    const add = (grade: string, prefix: string) => {
+      for (const u of elementaryUnits().filter(
+        (x) => x.grade === grade && x.section.startsWith(prefix),
+      )) {
+        const tiers = supportedTiers(u);
+        for (const tier of tiers.length ? tiers : [undefined]) {
+          for (let seed = 1; seed <= 8; seed += 1) {
+            const c = generateElementaryProblem(u, seed, tier).content;
+            others.set(c, `${grade} ${u.section}`);
+            others.set(`SKEL:${skeleton(c)}`, `${grade} ${u.section}`);
+          }
+        }
+      }
+    };
+    add("초6", "2-1-");
+    add("초5", "1-5-");
+    expect(
+      others.size,
+      "이웃 모집단이 비었다 — 대조가 아무것도 안 한다",
+    ).toBeGreaterThan(50);
+
+    const clash: string[] = [];
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          const exact = others.get(c);
+          if (exact)
+            clash.push(`완전 일치 ${code} ${tier} ↔ ${exact}\n    ${c}`);
+          const skel = others.get(`SKEL:${skeleton(c)}`);
+          if (skel) clash.push(`골격 일치 ${code} ${tier} ↔ ${skel}\n    ${c}`);
+        }
+      }
+    }
+    expect(clash.slice(0, 3), `이웃과 겹친 발문 ${clash.length}건`).toEqual([]);
+  });
+
+  it("판별자 — 내 발문은 곱셈만 담는다(÷·+·− 0건) · 이웃엔 있다 (④ 음성 대조)", () => {
+    // ⚠️ 처음엔 판별자를 「내 것에 ×가 있다」로 잡았는데, **음성 대조가 그것을
+    //    깼다** — 이웃(초6 2-1 나눗셈 · 초5 1-5 덧뺄셈)의 **37.5%** 에도 ×가 있다
+    //    (나눗셈은 역수를 «곱하고», 덧뺄셈은 통분에서 ×를 쓴다). 「내 것에 있다」는
+    //    판별자가 아니다 — **이웃에 없어야** 갈라 준다.
+    //
+    //    실측(내 것 256행 · 이웃 576행, 2026-08-23):
+    //      발문+해설 ×   : 내 100.0% / 이웃 37.5%  ← 한쪽만 참이라 약하다
+    //      발문 ÷        : 내   0.0% / 이웃 17.7%  ← **한쪽 방향으로 확실**
+    //      발문 수식 +·− : 내   0.0% / 이웃 22.2%
+    //      발문 「나누」   : 내   0.0% / 이웃 21.2%
+    //    그래서 잠그는 것은 **«내 발문에 다른 연산이 하나도 없다»** 쪽이다.
+    const OTHER_OPS = /\\div|나누|나눗/;
+    const addSub = (c: string) =>
+      [...c.matchAll(/\$([^$]*)\$/g)].some((m) => /[+-]/.test(m[1]!));
+
+    let mine = 0;
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const pr = problem(code, tier, seed);
+          const label = `${code} ${tier} @${seed}`;
+          expect(
+            OTHER_OPS.test(pr.content),
+            `${label} 발문에 나눗셈이 있다\n${pr.content}`,
+          ).toBe(false);
+          expect(
+            addSub(pr.content),
+            `${label} 발문 수식에 덧셈·뺄셈이 있다\n${pr.content}`,
+          ).toBe(false);
+          // 「기본·응용」은 문장으로만 주고 식은 학생이 세운다 — 그것이 그 갈래의
+          // 정체라 **발문+해설**에서 곱셈을 찾는다(발문만 보면 시험이 틀린다).
+          expect(
+            `${pr.content} ${pr.solution}`,
+            `${label} 에 곱셈이 없다`,
+          ).toContain("\\times");
+          mine += 1;
+        }
+      }
+    }
+    expect(mine).toBeGreaterThan(200);
+
+    // 음성 대조 — 이웃에는 그 연산들이 **실제로 있다**. 없으면 이 판별자는
+    // 「둘 다 0」이라 아무것도 안 가른다(0 이 «깨끗»인지 «못 셈»인지의 그 자리).
+    let others = 0;
+    let othersOtherOps = 0;
+    for (const [grade, prefix] of [
+      ["초6", "2-1-"],
+      ["초5", "1-5-"],
+    ] as const) {
+      for (const u of elementaryUnits().filter(
+        (x) => x.grade === grade && x.section.startsWith(prefix),
+      )) {
+        const tiers = supportedTiers(u);
+        for (const tier of tiers.length ? tiers : [undefined]) {
+          for (let seed = 1; seed <= 16; seed += 1) {
+            const q = generateElementaryProblem(u, seed, tier);
+            others += 1;
+            if (OTHER_OPS.test(q.content) || addSub(q.content))
+              othersOtherOps += 1;
+          }
+        }
+      }
+    }
+    expect(others, "반대쪽 모집단이 비었다").toBeGreaterThan(200);
+    expect(
+      othersOtherOps / others,
+      `이웃 발문의 ${((othersOtherOps / others) * 100).toFixed(1)}% 에만 다른 연산이 있다 — 판별자가 안 갈라 준다`,
+    ).toBeGreaterThan(0.25);
+  });
+
+  it("2-2 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES22) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});
