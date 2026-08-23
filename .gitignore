@@ -276,3 +276,5 @@ scripts/qa/nosol-out/
 # 정상 종료하면 스스로 지우지만, 중간에 죽으면 남는다. 남의 `git add -A` 에
 # 실려 공유 이력으로 나간 전례가 있어(2026-08-18·08-19) 아예 막아 둔다.
 scripts/qa/.mutate-elem-tiers.probe.*.ts
+scripts/qa/.mutate-one.probe.*.ts
+scripts/qa/.mutate-inflight.*.json
