@@ -110,6 +110,69 @@ function wj(word: string, withFinal: string, without: string): string {
   return `${word}${hasFinal ? withFinal : without}`;
 }
 
+/* ── 수식 덩어리 뒤 조사 ──
+ * 조사는 **그 덩어리를 소리 내어 읽은 마지막 소리**가 정한다. 분수는 «분모분의 분자» 라
+ * **분자로 끝나고**(대분수 `2\frac{1}{3}` 도 «이와 삼분의 일»), 그 밖에는 마지막 수를 읽는다.
+ * 그래서 `$\frac{2}{3}$과` 는 틀렸다 — 「이」로 끝나니 «와» 다.
+ *
+ * ⚠️ 이 규칙을 **여기 한 곳**에만 둔다. 손으로 「과」를 박으면 분자가 바뀌는 순간 틀리고,
+ *    그 틀림은 에러가 아니라 **그럴듯한 문장**으로 지면에 나간다(2026-08-23 실측: 표준·갈래
+ *    합쳐 24자리). 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+ */
+
+/** 분수 한 덩어리. `fr(3, 4)` → `$\frac{3}{4}$`. */
+const fr = (num: number, den: number): string => expr(`\\frac{${num}}{${den}}`);
+
+/**
+ * LaTeX 덩어리를 읽었을 때 **마지막에 오는 수**. 분수로 끝나면 분자, 아니면 끝의 수.
+ * 못 찾으면 던진다 — 조용히 틀린 조사를 붙이는 것이 이 수리가 막으려는 바로 그 결함이다.
+ */
+function lastSpoken(latex: string): number {
+  const frac = /\\frac\{(\d+)\}\{\d+\}[^0-9]*$/.exec(latex);
+  if (frac) return Number(frac[1]);
+  const tail = /(\d+)[^0-9]*$/.exec(latex);
+  if (tail) return Number(tail[1]);
+  throw new Error(`조사를 정할 수 없습니다 — 읽을 수가 없는 덩어리: ${latex}`);
+}
+
+/** 분수 뒤 조사. `frj(2, 3, "과", "와")` → `$\frac{2}{3}$와`. */
+function frj(
+  num: number,
+  den: number,
+  withFinal: string,
+  without: string,
+): string {
+  return `${fr(num, den)}${FINAL_DIGITS.has(lastDigit(num)) ? withFinal : without}`;
+}
+
+/** 분수 뒤 `(으)로`. `fro(20, 7)` → `$\frac{20}{7}$으로`(이십 — ㅂ받침). */
+function fro(num: number, den: number): string {
+  const d = lastDigit(num);
+  return `${fr(num, den)}${FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로"}`;
+}
+
+/** 임의의 LaTeX 덩어리 뒤 조사 — 대분수·정수로 접히는 `fracLatex` 결과에 쓴다. */
+function lj(latex: string, withFinal: string, without: string): string {
+  return `${expr(latex)}${FINAL_DIGITS.has(lastDigit(lastSpoken(latex))) ? withFinal : without}`;
+}
+
+/** 임의의 LaTeX 덩어리 뒤 `(으)로`. */
+function lro(latex: string): string {
+  const d = lastDigit(lastSpoken(latex));
+  return `${expr(latex)}${FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로"}`;
+}
+
+/** 소수 표기 뒤 조사 — 마지막 숫자 소리로 정한다(«영 점 오오»). */
+function dj(decText: string, withFinal: string, without: string): string {
+  return `${expr(decText)}${FINAL_DIGITS.has(lastDigit(decText)) ? withFinal : without}`;
+}
+
+/** 소수 표기 뒤 `(으)로` — 일·칠·팔은 ㄹ받침이라 «로»다(«0.7로»). */
+function dro(decText: string): string {
+  const d = lastDigit(decText);
+  return FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로";
+}
+
 /* ────────────────────────────── 1-1 자연수의 혼합 계산 ────────────────────────────── */
 
 function mixedCalc(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -466,7 +529,7 @@ function reduce(unit: UnitSeed, rng: Rng): ElemProblem {
     const bigger = milli > decMilli ? fracText : expr(decText);
     return make(
       unit,
-      `${fracText}과 ${expr(decText)} 중 더 큰 수를 쓰시오.`,
+      `${frj(fn, fd, "과", "와")} ${expr(decText)} 중 더 큰 수를 쓰시오.`,
       bigger,
       `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이고 ${expr(`${dec(milli, 3)}${milli > decMilli ? ">" : "<"}${decText}`)}입니다.`,
     );
@@ -496,7 +559,7 @@ function reduce(unit: UnitSeed, rng: Rng): ElemProblem {
     const [rn, rd] = simplify(sn * g, sd * g);
     return make(
       unit,
-      `${expr(`\\frac{${sn * g}}{${sd * g}}`)}를 기약분수로 나타내시오.`,
+      `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타내시오.`,
       expr(`\\frac{${rn}}{${rd}}`),
       `${nj(sn * g, "과", "와")} ${n(sd * g)}의 최대공약수 ${nro(gcd(sn * g, sd * g))} 분모와 분자를 나눕니다.`,
     );
@@ -514,7 +577,7 @@ function reduce(unit: UnitSeed, rng: Rng): ElemProblem {
     const L = lcm(d1, d2);
     return make(
       unit,
-      `${expr(`\\frac{${a}}{${d1}}`)}과 ${expr(`\\frac{${b}}{${d2}}`)}를 통분하시오.`,
+      `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 통분하시오.`,
       nums([`\\frac{${(a * L) / d1}}{${L}}`, `\\frac{${(b * L) / d2}}{${L}}`]),
       `두 분모의 최소공배수 ${nj(L, "을", "를")} 공통분모로 삼습니다. ${expr(`\\frac{${a}}{${d1}}=\\frac{${(a * L) / d1}}{${L}}`)}, ${expr(`\\frac{${b}}{${d2}}=\\frac{${(b * L) / d2}}{${L}}`)}입니다.`,
     );
@@ -530,9 +593,9 @@ function reduce(unit: UnitSeed, rng: Rng): ElemProblem {
   const leftBig = a * d2 > b * d1;
   return make(
     unit,
-    `${expr(`\\frac{${a}}{${d1}}`)}과 ${expr(`\\frac{${b}}{${d2}}`)} 중 더 큰 분수를 쓰시오.`,
-    leftBig ? expr(`\\frac{${a}}{${d1}}`) : expr(`\\frac{${b}}{${d2}}`),
-    `${nro(L)} 통분하면 ${expr(`\\frac{${(a * L) / d1}}{${L}}`)}과 ${expr(`\\frac{${(b * L) / d2}}{${L}}`)}이므로 분자가 큰 쪽이 더 큽니다.`,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)} 중 더 큰 분수를 쓰시오.`,
+    leftBig ? fr(a, d1) : fr(b, d2),
+    `${nro(L)} 통분하면 ${frj((a * L) / d1, L, "과", "와")} ${fr((b * L) / d2, L)}이므로 분자가 큰 쪽이 더 큽니다.`,
   );
 }
 
@@ -922,7 +985,7 @@ function fracMul(unit: UnitSeed, rng: Rng): ElemProblem {
         unit,
         expr(`${mixedLatex(w, a, d)}\\times${k}=\\square`),
         expr(fracLatex(num, den)),
-        `대분수를 가분수 ${expr(`\\frac{${w * d + a}}{${d}}`)}로 고친 뒤 분자에 ${nj(k, "을", "를")} 곱합니다.`,
+        `대분수를 가분수 ${fro(w * d + a, d)} 고친 뒤 분자에 ${nj(k, "을", "를")} 곱합니다.`,
       );
     }
     const [b, d2] = properFrac(rng, [3, 4, 5, 6, 7, 8, 9]);
@@ -931,7 +994,7 @@ function fracMul(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       expr(`${mixedLatex(w, a, d)}\\times\\frac{${b}}{${d2}}=\\square`),
       expr(fracLatex(num, den)),
-      `대분수를 가분수 ${expr(`\\frac{${w * d + a}}{${d}}`)}로 고친 뒤 분자끼리, 분모끼리 곱합니다.`,
+      `대분수를 가분수 ${fro(w * d + a, d)} 고친 뒤 분자끼리, 분모끼리 곱합니다.`,
     );
   }
 
@@ -1950,10 +2013,17 @@ function area64Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const ph = intBetween(rng, 3, 10);
   const area = pb * ph;
   // 삼각형 밑변은 `2×넓이` 의 약수여야 높이가 자연수다.
-  const tb = pick(
-    rng,
-    [4, 5, 6, 8, 10, 12, 15, 16, 20].filter((v) => (2 * area) % v === 0),
+  //
+  // ⚠️ 후보를 **손 목록**으로 두면 빈 배열이 되어 던진다 — `pb=7,ph=7` 이면
+  //    `2×넓이=98` 이고 옛 목록 `[4,5,6,8,10,12,15,16,20]` 의 어느 수로도 안 나뉜다
+  //    (씨앗 1,000개 쓸기에서 30회 실측, 씨앗 16개로는 안 보인다).
+  //    그래서 **실제 약수에서 유도**한다. 이러면 `pb` 자신이 언제나 후보에 있다 —
+  //    `pb ∈ [4,12] ⊂ [4,20]` 이고 `2×넓이 ÷ pb = 2×ph ≤ 20 ≤ 30` 이므로
+  //    두 조건을 다 통과한다. 즉 **구성상 절대 비지 않는다.**
+  const tbCands = divisors(2 * area).filter(
+    (v) => v >= 4 && v <= 20 && (2 * area) / v <= 30,
   );
+  const tb = pick(rng, tbCands);
   const th = (2 * area) / tb;
   return make(
     unit,
@@ -3694,29 +3764,7 @@ function corr133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  * 명시하고, 최소공배수 방식 갈래는 gcd(d1,d2)>1 로 뽑아 두 방식이 실제로 갈린다.
  */
 
-/** 분수 한 덩어리. */
-const fr = (num: number, den: number): string => expr(`\\frac{${num}}{${den}}`);
-
-/** 분수 뒤 조사 — 읽은 소리는 **분자**로 끝난다(«사분의 삼»). */
-function frj(
-  num: number,
-  den: number,
-  withFinal: string,
-  without: string,
-): string {
-  return `${fr(num, den)}${FINAL_DIGITS.has(lastDigit(num)) ? withFinal : without}`;
-}
-
-/** 소수 표기 뒤 조사 — 마지막 숫자 소리로 정한다(«영 점 오오»). */
-function dj(decText: string, withFinal: string, without: string): string {
-  return `${expr(decText)}${FINAL_DIGITS.has(lastDigit(decText)) ? withFinal : without}`;
-}
-
-/** 소수 표기 뒤 (으)로 — 일·칠·팔은 ㄹ받침이라 «로»다(«0.7로»). */
-function dro(decText: string): string {
-  const d = lastDigit(decText);
-  return FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로";
-}
+/* 분수·소수 뒤 조사 헬퍼(fr·frj·fro·lj·dj·dro)는 파일 맨 위 «수식 덩어리 뒤 조사» 한 곳에 있다. */
 
 /** 분모와 서로소인 분자 하나(min 이상) — 기약 진분수를 분모 고정으로 뽑는다. */
 function coprimeTop(rng: Rng, den: number, min = 1): number {
@@ -3993,7 +4041,7 @@ function com143Apply(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분했을 때, 두 분자의 합을 구하시오.`,
       n(p + q),
-      `공통분모는 ${n(L)}이고 통분하면 ${fr(p, L)}과 ${fr(q, L)}입니다. 분자의 합은 ${expr(`${p}+${q}=${p + q}`)}입니다.`,
+      `공통분모는 ${n(L)}이고 통분하면 ${frj(p, L, "과", "와")} ${fr(q, L)}입니다. 분자의 합은 ${expr(`${p}+${q}=${p + q}`)}입니다.`,
     );
   }
   const big = Math.max(p, q);
@@ -4002,7 +4050,7 @@ function com143Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분했을 때, 두 분자의 차를 구하시오.`,
     n(big - small),
-    `공통분모는 ${n(L)}이고 통분하면 ${fr(p, L)}과 ${fr(q, L)}입니다. 분자의 차는 ${expr(`${big}-${small}=${big - small}`)}입니다.`,
+    `공통분모는 ${n(L)}이고 통분하면 ${frj(p, L, "과", "와")} ${fr(q, L)}입니다. 분자의 차는 ${expr(`${big}-${small}=${big - small}`)}입니다.`,
   );
 }
 
@@ -4069,7 +4117,7 @@ function cmp144Read(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${frj(a, dens[0]!, "과", "와")} ${fr(b, dens[1]!)} 중 더 작은 분수를 쓰시오.`,
     leftSmall ? fr(a, dens[0]!) : fr(b, dens[1]!),
-    `통분하면 ${fr(a * dens[1]!, dens[0]! * dens[1]!)}과 ${fr(b * dens[0]!, dens[0]! * dens[1]!)}이므로 분자가 작은 쪽이 더 작습니다.`,
+    `통분하면 ${frj(a * dens[1]!, dens[0]! * dens[1]!, "과", "와")} ${fr(b * dens[0]!, dens[0]! * dens[1]!)}이므로 분자가 작은 쪽이 더 작습니다.`,
   );
 }
 
@@ -4085,7 +4133,7 @@ function cmp144Apply(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `${list} 중에서 가장 큰 분수를 쓰시오.`,
       fr(top[0], top[1]),
-      `세 분수를 두 개씩 통분하여 견주면 ${fr(top[0], top[1])}이 가장 큽니다.`,
+      `세 분수를 두 개씩 통분하여 견주면 ${frj(top[0], top[1], "이", "가")} 가장 큽니다.`,
     );
   }
   const bottom = byValue[0]!;
@@ -4093,7 +4141,7 @@ function cmp144Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${list} 중에서 가장 작은 분수를 쓰시오.`,
     fr(bottom[0], bottom[1]),
-    `세 분수를 두 개씩 통분하여 견주면 ${fr(bottom[0], bottom[1])}이 가장 작습니다.`,
+    `세 분수를 두 개씩 통분하여 견주면 ${frj(bottom[0], bottom[1], "이", "가")} 가장 작습니다.`,
   );
 }
 
@@ -4221,6 +4269,395 @@ function fd145Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-5 분수의 덧셈과 뺄셈 — 난이도 4단 (D-72 확대 6차) ──────────
+ *
+ * 소단원 이름이 곧 조건이다(D-66⑼): **1-5-1 진분수의 덧셈 · 1-5-2 대분수의 덧셈 ·
+ * 1-5-3 진분수의 뺄셈 · 1-5-4 대분수의 뺄셈.** 그래서 이름 약속을 자기 시험이 잠근다 —
+ * 「진분수」소단원의 **피연산자**는 진분수뿐이고, 「대분수」소단원은 대분수가 낀다.
+ * (답은 이름이 걸지 않는다 — 진분수끼리 더하면 답이 대분수가 될 수 있다.)
+ *
+ * 뺄셈은 **구성으로** 결과가 양수임을 보장한다(⑶) — 음수로 접히면 초등 지면이 아니다.
+ * 진분수 뺄셈은 큰 쪽에서 작은 쪽을 빼도록 자리를 바꾸고, 대분수 뺄셈은 자연수부를
+ * 벌려 둔다. 답은 언제나 기약(R2 대분수 정본 꼴)이고 시험이 gcd 로 따로 검산한다(⑴).
+ *
+ * 표기 규약(⑷): 분수는 `fracLatex` 한 곳을 거친다 — 가분수는 대분수로 접히고,
+ * 분모가 1이면 자연수로, 나머지가 0이면 자연수로 떨어진다. 손으로 `\frac` 을 쓰지 않는다.
+ */
+
+/** 진분수 뺄셈용 분모 짝 — 통분이 살아 있게 gcd 로 안 접히는 것도 섞는다. */
+const SUB_DENS = [3, 4, 5, 6, 8, 9, 10, 12] as const;
+
+/**
+ * 단위 낱말을 **읽은 소리**의 받침 — `m`=미터·`L`=리터는 없고 `kg`=킬로그램은 있다.
+ * 글자(m·L·kg)를 보고 정하면 틀린다. 조사는 언제나 소리가 정한다.
+ */
+const UNIT_HAS_FINAL: Record<string, boolean> = {
+  m: false,
+  L: false,
+  kg: true,
+};
+
+/** 단위 뒤 조사. `uj("kg", "을", "를")` → `kg을`. */
+const uj = (unitWord: string, withFinal: string, without: string): string =>
+  `${unitWord}${UNIT_HAS_FINAL[unitWord] ? withFinal : without}`;
+
+/** 문장 소재 — [것, 단위]. 사람 이름은 따로 뽑는다. */
+const FRAC_STUFF = [
+  ["물", "L"],
+  ["주스", "L"],
+  ["끈", "m"],
+  ["철사", "m"],
+  ["밀가루", "kg"],
+  ["설탕", "kg"],
+] as const;
+
+const FRAC_NAMES = ["지호", "예린", "민준", "서아", "도윤"] as const;
+
+/** 두 진분수를 뽑되 **값이 다르고** 분모도 다르게. 큰 쪽·작은 쪽을 갈라 돌려준다. */
+function twoProperFracs(
+  rng: Rng,
+  dens: readonly number[],
+): { big: [number, number]; small: [number, number] } {
+  const [a, d1] = properFrac(rng, dens);
+  const [b, d2] = properFrac(
+    rng,
+    dens.filter((x) => x !== d1),
+  );
+  // 분모가 다르고 둘 다 기약이면 두 값은 절대 같지 않다 — 동률이 구성상 불가능하다.
+  return a * d2 > b * d1
+    ? { big: [a, d1], small: [b, d2] }
+    : { big: [b, d2], small: [a, d1] };
+}
+
+/** 대분수 한 덩어리 — 자연수부는 1 이상. */
+const mx = (whole: number, num: number, den: number): string =>
+  expr(mixedLatex(whole, num, den));
+
+/** 대분수 뒤 조사 — 읽은 소리는 **분자**로 끝난다(«이와 삼분의 일»). */
+const mxj = (
+  whole: number,
+  num: number,
+  den: number,
+  withFinal: string,
+  without: string,
+): string =>
+  `${mx(whole, num, den)}${FINAL_DIGITS.has(lastDigit(num)) ? withFinal : without}`;
+
+/* ── 1-5-1 진분수의 덧셈 ── */
+
+/** 연산 — 식이 그대로 주어진다(절차 한 번). */
+function add151Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const L = lcm(d1, d2);
+  const [num, den] = addFrac(a, d1, b, d2);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${a}}{${d1}}+\\frac{${b}}{${d2}}`)}`,
+    expr(fracLatex(num, den)),
+    `${nro(L)} 통분하면 ${expr(`\\frac{${(a * L) / d1}}{${L}}+\\frac{${(b * L) / d2}}{${L}}=\\frac{${(a * L) / d1 + (b * L) / d2}}{${L}}`)}이고, 약분하여 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 **스스로** 세운다(한 겹). */
+function add151Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const [num, den] = addFrac(a, d1, b, d2);
+  const [thing, unitWord] = pick(rng, FRAC_STUFF);
+  const [who1, who2] = pickSome(rng, FRAC_NAMES, 2);
+  return make(
+    unit,
+    `${wj(who1, "은", "는")} ${thing} ${fr(a, d1)} ${uj(unitWord, "을", "를")}, ${wj(who2, "은", "는")} ${fr(b, d2)} ${uj(unitWord, "을", "를")} 가지고 있습니다. 두 사람이 가진 ${wj(thing, "은", "는")} 모두 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `두 양을 더합니다. ${expr(`\\frac{${a}}{${d1}}+\\frac{${b}}{${d2}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 세 분수를 더하거나(두 걸음), 남은 양을 묻는다. */
+function add151Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [3, 4, 5, 6, 8, 12], 3);
+  const fracs = dens.map((d) => [coprimeTop(rng, d), d] as const);
+  const [n1, d1] = fracs[0]!;
+  const [n2, d2] = fracs[1]!;
+  const [n3, d3] = fracs[2]!;
+  const [s1, sd1] = addFrac(n1, d1, n2, d2);
+  const [num, den] = addFrac(s1, sd1, n3, d3);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${n1}}{${d1}}+\\frac{${n2}}{${d2}}+\\frac{${n3}}{${d3}}`)}`,
+    expr(fracLatex(num, den)),
+    `앞의 두 분수를 먼저 더하면 ${expr(`\\frac{${n1}}{${d1}}+\\frac{${n2}}{${d2}}=${fracLatex(s1, sd1)}`)}이고, 여기에 ${frj(n3, d3, "을", "를")} 더하면 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 더해서 주어진 합이 되는 수를 거슬러 구한다. */
+function add151Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, [3, 4, 5, 6, 8, 12]);
+  const [sn, sd] = addFrac(big[0], big[1], small[0], small[1]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `□ 안에 알맞은 수를 구하시오.  ${expr(`\\frac{${small[0]}}{${small[1]}}+\\square=${fracLatex(sn, sd)}`)}`,
+      expr(fracLatex(big[0], big[1])),
+      `□는 합에서 앞의 수를 뺀 것입니다. ${expr(`${fracLatex(sn, sd)}-\\frac{${small[0]}}{${small[1]}}=${fracLatex(big[0], big[1])}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 수에 ${frj(small[0], small[1], "을", "를")} 더했더니 ${lj(fracLatex(sn, sd), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    expr(fracLatex(big[0], big[1])),
+    `어떤 수는 ${lj(fracLatex(sn, sd), "에서", "에서")} ${frj(small[0], small[1], "을", "를")} 뺀 것입니다. ${expr(`${fracLatex(sn, sd)}-\\frac{${small[0]}}{${small[1]}}=${fracLatex(big[0], big[1])}`)}입니다.`,
+  );
+}
+
+/* ── 1-5-2 대분수의 덧셈 ── */
+
+/** 연산 — 대분수 둘을 더한다(절차 한 번). */
+function add152Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  const L = lcm(d1, d2);
+  const [num, den] = addFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${mixedLatex(w1, a, d1)}+${mixedLatex(w2, b, d2)}`)}`,
+    expr(fracLatex(num, den)),
+    `자연수는 자연수끼리, 분수는 ${nro(L)} 통분해 더합니다. ${expr(`${w1}+${w2}=${w1 + w2}`)}이고 ${expr(`\\frac{${(a * L) / d1}}{${L}}+\\frac{${(b * L) / d2}}{${L}}=${fracLatex((a * L) / d1 + (b * L) / d2, L)}`)}이므로 답은 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 기본 — 대분수와 진분수를 더한다. 문장에서 식을 세운다(한 겹). */
+function add152Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 5);
+  const [num, den] = addFrac(w1 * d1 + a, d1, b, d2);
+  const [thing, unitWord] = pick(rng, [
+    ["색 테이프", "m"],
+    ["리본", "m"],
+    ["우유", "L"],
+    ["모래", "kg"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${mx(w1, a, d1)} ${unitWord}에 ${fr(b, d2)} ${uj(unitWord, "을", "를")} 더 이었습니다. ${wj(thing, "은", "는")} 모두 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `${mxj(w1, a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 더합니다. ${expr(`${mixedLatex(w1, a, d1)}+\\frac{${b}}{${d2}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 대분수 셋을 더한다(두 걸음). */
+function add152Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [3, 4, 5, 6, 8, 12], 3);
+  const parts = dens.map(
+    (d) => [intBetween(rng, 1, 3), coprimeTop(rng, d), d] as const,
+  );
+  const asImproper = parts.map(([w, t, d]) => [w * d + t, d] as const);
+  const [s1, sd1] = addFrac(
+    asImproper[0]![0],
+    asImproper[0]![1],
+    asImproper[1]![0],
+    asImproper[1]![1],
+  );
+  const [num, den] = addFrac(s1, sd1, asImproper[2]![0], asImproper[2]![1]);
+  const shown = parts.map(([w, t, d]) => mixedLatex(w, t, d)).join("+");
+  return make(
+    unit,
+    `계산하시오.  ${expr(shown)}`,
+    expr(fracLatex(num, den)),
+    `앞의 두 대분수를 먼저 더하면 ${expr(`${mixedLatex(parts[0]![0], parts[0]![1], parts[0]![2])}+${mixedLatex(parts[1]![0], parts[1]![1], parts[1]![2])}=${fracLatex(s1, sd1)}`)}이고, 여기에 ${mxj(parts[2]![0], parts[2]![1], parts[2]![2], "을", "를")} 더하면 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 합에서 거슬러 대분수를 구한다. */
+function add152Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  const [sn, sd] = addFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `어떤 수에 ${mxj(w2, b, d2, "을", "를")} 더했더니 ${lj(fracLatex(sn, sd), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    expr(fracLatex(w1 * d1 + a, d1)),
+    `어떤 수는 합에서 ${mxj(w2, b, d2, "을", "를")} 뺀 것입니다. ${expr(`${fracLatex(sn, sd)}-${mixedLatex(w2, b, d2)}=${fracLatex(w1 * d1 + a, d1)}`)}입니다.`,
+  );
+}
+
+/* ── 1-5-3 진분수의 뺄셈 — 결과가 양수임을 구성이 보장한다 ── */
+
+/** 연산 — 식이 그대로 주어진다(절차 한 번). */
+function sub153Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const L = lcm(big[1], small[1]);
+  const [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`\\frac{${big[0]}}{${big[1]}}-\\frac{${small[0]}}{${small[1]}}`)}`,
+    expr(fracLatex(num, den)),
+    `${nro(L)} 통분하면 ${expr(`\\frac{${(big[0] * L) / big[1]}}{${L}}-\\frac{${(small[0] * L) / small[1]}}{${L}}=\\frac{${(big[0] * L) / big[1] - (small[0] * L) / small[1]}}{${L}}`)}이고, 약분하여 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 세운다(한 겹). «얼마나 더»·«남은 것». */
+function sub153Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+  const [thing, unitWord] = pick(rng, FRAC_STUFF);
+  const [who1, who2] = pickSome(rng, FRAC_NAMES, 2);
+  return make(
+    unit,
+    `${wj(who1, "은", "는")} ${thing} ${fr(big[0], big[1])} ${uj(unitWord, "을", "를")}, ${wj(who2, "은", "는")} ${fr(small[0], small[1])} ${uj(unitWord, "을", "를")} 가지고 있습니다. ${wj(who1, "은", "는")} ${who2}보다 몇 ${unitWord} 더 많이 가지고 있습니까?`,
+    expr(fracLatex(num, den)),
+    `많은 쪽에서 적은 쪽을 뺍니다. ${expr(`\\frac{${big[0]}}{${big[1]}}-\\frac{${small[0]}}{${small[1]}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 1 에서 두 번 덜어 낸다(두 걸음). 남는 양은 반드시 양수다. */
+function sub153Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 같은 분모로 두 조각을 뽑되 합이 분모보다 작게 — 1 − (조각1+조각2) > 0.
+  const den0 = pick(rng, [5, 6, 7, 8, 9, 10, 12]);
+  const p1 = intBetween(rng, 1, den0 - 2);
+  // 두 조각이 같은 수면 「같은 말을 두 번」이라 지면이 심심하다. 다른 값이 있으면 그쪽을
+  // 고르되, 없으면(분모가 작아 후보가 하나뿐이면) 그냥 쓴다 — 범위를 비우지 않는다.
+  const p2Cands: number[] = [];
+  for (let v = 1; v <= den0 - p1 - 1; v += 1) if (v !== p1) p2Cands.push(v);
+  const p2 = p2Cands.length
+    ? pick(rng, p2Cands)
+    : intBetween(rng, 1, den0 - p1 - 1);
+  const [num, den] = subFrac(den0 - p1, den0, p2, den0);
+  // ⚠️ 소재와 동사를 따로 뽑으면 「색종이를 **먹는다**」가 나온다(2026-08-23 g4 적발,
+  //    씨앗 2,000개 중 670회). 동사는 소재에 **딸린 값**이어야 한다 — 소재를 늘려도
+  //    짝이 자동으로 따라오고, 시험이 그 짝을 잠근다.
+  const [thing, whole, verbPast, verbPerf, verbNoun] = pick(rng, [
+    ["피자", "한 판", "먹고", "먹었습니다", "먹은"],
+    ["케이크", "한 개", "먹고", "먹었습니다", "먹은"],
+    ["색종이", "한 장", "쓰고", "썼습니다", "쓴"],
+    ["도화지", "한 장", "쓰고", "썼습니다", "쓴"],
+    ["끈", "한 개", "쓰고", "썼습니다", "쓴"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${whole}의 ${frj(p1, den0, "을", "를")} 어제 ${verbPast}, ${frj(p2, den0, "을", "를")} 오늘 ${verbPerf}. 남은 ${wj(thing, "은", "는")} 전체의 얼마입니까?`,
+    expr(fracLatex(num, den)),
+    `전체 ${n(1)}에서 ${verbNoun} 만큼을 뺍니다. ${expr(`1-\\frac{${p1}}{${den0}}=\\frac{${den0 - p1}}{${den0}}`)}이고, 여기서 ${frj(p2, den0, "을", "를")} 더 빼면 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 뺀 결과에서 거슬러 구한다. */
+function sub153Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const [rn, rd] = subFrac(big[0], big[1], small[0], small[1]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `□ 안에 알맞은 수를 구하시오.  ${expr(`\\frac{${big[0]}}{${big[1]}}-\\square=${fracLatex(rn, rd)}`)}`,
+      expr(fracLatex(small[0], small[1])),
+      `□는 앞의 수에서 결과를 뺀 것입니다. ${expr(`\\frac{${big[0]}}{${big[1]}}-${fracLatex(rn, rd)}=${fracLatex(small[0], small[1])}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 수에서 ${frj(small[0], small[1], "을", "를")} 뺐더니 ${lj(fracLatex(rn, rd), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    expr(fracLatex(big[0], big[1])),
+    `어떤 수는 결과에 뺀 수를 도로 더한 것입니다. ${expr(`${fracLatex(rn, rd)}+\\frac{${small[0]}}{${small[1]}}=${fracLatex(big[0], big[1])}`)}입니다.`,
+  );
+}
+
+/* ── 1-5-4 대분수의 뺄셈 — 자연수부를 벌려 결과가 양수다 ── */
+
+/** 연산 — 대분수끼리 뺀다(절차 한 번). */
+function sub154Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  const L = lcm(d1, d2);
+  const [num, den] = subFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${mixedLatex(w1, a, d1)}-${mixedLatex(w2, b, d2)}`)}`,
+    expr(fracLatex(num, den)),
+    `${nro(L)} 통분한 뒤 자연수는 자연수끼리, 분수는 분수끼리 뺍니다. 분수 부분을 뺄 수 없으면 자연수에서 ${n(1)}을 받아내립니다. 답은 ${expr(fracLatex(num, den))}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 세운다(한 겹). 대분수에서 진분수를 뺀다. */
+function sub154Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 2, 5);
+  const [num, den] = subFrac(w1 * d1 + a, d1, b, d2);
+  const [thing, unitWord] = pick(rng, [
+    ["철사", "m"],
+    ["색 테이프", "m"],
+    ["물", "L"],
+    ["밀가루", "kg"],
+  ] as const);
+  return make(
+    unit,
+    `${thing} ${mx(w1, a, d1)} ${unitWord} 중에서 ${fr(b, d2)} ${uj(unitWord, "을", "를")} 썼습니다. 남은 ${wj(thing, "은", "는")} 몇 ${unitWord}입니까?`,
+    expr(fracLatex(num, den)),
+    `가진 양에서 쓴 양을 뺍니다. ${expr(`${mixedLatex(w1, a, d1)}-\\frac{${b}}{${d2}}=${fracLatex(num, den)}`)}이므로 ${expr(fracLatex(num, den))} ${unitWord}입니다.`,
+  );
+}
+
+/** 응용 — 자연수에서 대분수를 뺀다(받아내림이 반드시 인다). */
+function sub154Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [b, d2] = properFrac(rng, FRAC_DENS);
+  const w2 = intBetween(rng, 1, 3);
+  const whole = intBetween(rng, w2 + 1, w2 + 4);
+  const [num, den] = subFrac(whole, 1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `계산하시오.  ${expr(`${whole}-${mixedLatex(w2, b, d2)}`)}`,
+    expr(fracLatex(num, den)),
+    `자연수 ${nj(whole, "을", "를")} ${lro(`${whole - 1}\\frac{${d2}}{${d2}}`)} 바꾸어 뺍니다. ${expr(`${whole - 1}\\frac{${d2}}{${d2}}-${mixedLatex(w2, b, d2)}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: 뺀 결과에서 처음 양을 거슬러 구한다. */
+function sub154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  const [rn, rd] = subFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `어떤 수에서 ${mxj(w2, b, d2, "을", "를")} 뺐더니 ${lj(fracLatex(rn, rd), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    expr(fracLatex(w1 * d1 + a, d1)),
+    `어떤 수는 결과에 뺀 수를 도로 더한 것입니다. ${expr(`${fracLatex(rn, rd)}+${mixedLatex(w2, b, d2)}=${fracLatex(w1 * d1 + a, d1)}`)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -4330,6 +4767,30 @@ export const G5_TIERS: ElemTierMap = {
     기본: fd145Read,
     응용: fd145Apply,
     심화: fd145Deep,
+  },
+  "초5|1-5-1": {
+    연산: add151Calc,
+    기본: add151Read,
+    응용: add151Apply,
+    심화: add151Deep,
+  },
+  "초5|1-5-2": {
+    연산: add152Calc,
+    기본: add152Read,
+    응용: add152Apply,
+    심화: add152Deep,
+  },
+  "초5|1-5-3": {
+    연산: sub153Calc,
+    기본: sub153Read,
+    응용: sub153Apply,
+    심화: sub153Deep,
+  },
+  "초5|1-5-4": {
+    연산: sub154Calc,
+    기본: sub154Read,
+    응용: sub154Apply,
+    심화: sub154Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,

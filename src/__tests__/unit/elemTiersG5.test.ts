@@ -33,6 +33,46 @@ const SEEDS = [
 const problem = (code: string, tier: ElemTier, seed: number) =>
   generateElementaryProblem(unitOf(code), seed, tier);
 
+/* ── 분수 뒤 조사 (2026-08-23 곁들이) ──
+ * 조사는 «소리 내어 읽은 마지막 소리»가 정하고, 분수는 **분자로 끝난다**(«삼분의 이»).
+ * 표본이 아니라 **규칙**으로 잠근다 — 표준·갈래를 한 자리에서 전부 훑는다.
+ * 이 결함은 에러가 아니라 «그럴듯한 문장»으로 나가므로 시험이 아니면 아무도 못 본다.
+ */
+
+/** «이» 는 계사(-이다)일 수 있다 — «$\frac{5}{10}$이므로» 는 옳다. 주격과 갈라야 한다. */
+const COPULA_TAIL = /^(므로|고|다|라|며|면|지만|어야|었|니|기)/;
+
+/** 분수 덩어리 바로 뒤 조사가 분자 소리와 맞는가 — 어긋난 자리를 모아 돌려준다. */
+function fracJosaMisses(text: string): string[] {
+  const FINAL = new Set([0, 1, 3, 6, 7, 8]);
+  const RIEUL = new Set([1, 7, 8]);
+  const out: string[] = [];
+  const re = /\\frac\{(\d+)\}\{(\d+)\}\$(으로|과|와|은|는|이|가|을|를|로)/g;
+  for (const m of text.matchAll(re)) {
+    const num = Number(m[1]);
+    const josa = m[3]!;
+    const rest = text.slice(m.index + m[0].length);
+    if (josa === "이" && COPULA_TAIL.test(rest)) continue;
+    const d = num % 10;
+    const f = FINAL.has(d);
+    const r = RIEUL.has(d);
+    const ok: Record<string, boolean> = {
+      과: f,
+      와: !f,
+      은: f,
+      는: !f,
+      이: f,
+      가: !f,
+      을: f,
+      를: !f,
+      으로: f && !r,
+      로: !f || r,
+    };
+    if (!ok[josa]) out.push(`분자 ${num} 뒤 «${josa}»`);
+  }
+  return out;
+}
+
 /**
  * KaTeX 덩어리 안의 수. `$12$` 뿐 아니라 `$7\,\mathrm{m}^2$` 도 읽는다 —
  * 단위(`\mathrm{…}`)와 지수(`^2`)는 «값»이 아니므로 먼저 지운다.
@@ -391,6 +431,27 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
         (sum - dd) / 2,
       );
     }
+  });
+
+  it("씨앗 0~999 어디서도 던지지 않는다 — 뽑을 후보가 비지 않는다", () => {
+    // 씨앗 16개로는 못 보는 부류가 있다: `area64Deep` 의 밑변 후보가 **손 목록**이라
+    // `2×넓이=98`(밑변 7·높이 7)이면 빈 배열이 되어 `pick` 이 던졌다 — 1,000씨앗에서
+    // 30회 실측(2026-08-23). 후보를 약수에서 유도하도록 고쳤고, 여기서 잠근다.
+    const fails: string[] = [];
+    for (const code of ["1-6-4", "1-6-5", "1-6-1", "1-6-3"] as const) {
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 1000; seed += 1) {
+          try {
+            problem(code, tier, seed);
+          } catch (err) {
+            fails.push(
+              `${code} ${tier} @${seed}: ${err instanceof Error ? err.message : String(err)}`,
+            );
+          }
+        }
+      }
+    }
+    expect(fails.slice(0, 5), `던진 자리 ${fails.length}개`).toEqual([]);
   });
 
   it("이웃 소단원과 발문이 겹치지 않는다 (D-66 ⑸)", () => {
@@ -2502,6 +2563,438 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
   it("1-4 다섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});
+
+/* ── 분수 뒤 조사 — 표준·갈래 전량 (2026-08-23 곁들이) ── */
+
+describe("[초5 표기] 분수 뒤 조사는 분자 소리와 맞는다", () => {
+  it("판정기 자기 시험 — 걸려야 할 것과 걸리면 안 될 것을 둘 다 댄다", () => {
+    // 양성 대조 — 이것들이 안 걸리면 아래 «0건»은 «깨끗»이 아니라 «못 셈»이다.
+    expect(fracJosaMisses("$\\frac{7}{8}$를 통분")).toHaveLength(1);
+    expect(fracJosaMisses("$\\frac{2}{3}$과 $\\frac{1}{4}$")).toHaveLength(1);
+    expect(fracJosaMisses("가분수 $\\frac{20}{7}$로 고친")).toHaveLength(1);
+    // 음성 대조
+    expect(fracJosaMisses("$\\frac{7}{8}$을 통분")).toHaveLength(0);
+    expect(fracJosaMisses("$\\frac{2}{3}$와 $\\frac{1}{4}$")).toHaveLength(0);
+    expect(fracJosaMisses("$\\frac{1}{2}$로 고친")).toHaveLength(0); // 일 = ㄹ받침
+    expect(fracJosaMisses("$\\frac{5}{10}$이므로 답은")).toHaveLength(0); // 계사
+  });
+
+  it("초5 전 소단원 — 표준과 등록된 갈래 넷 전부에서 어긋남이 없다", () => {
+    const units = elementaryUnits().filter((u) => u.grade === "초5");
+    const bad: string[] = [];
+    let scanned = 0;
+    for (const unit of units) {
+      const tiers = supportedTiers(unit);
+      for (let seed = 1; seed <= 8; seed += 1) {
+        for (const tier of [undefined, ...tiers]) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          scanned += 1;
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            for (const miss of fracJosaMisses(text)) {
+              bad.push(
+                `${unit.section} «${tier ?? "표준"}» @${seed} ${where}: ${miss}\n    ${text}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    // 훑은 자리가 없으면 «0건»이 아무것도 뜻하지 않는다 — 분모를 먼저 지킨다.
+    expect(scanned, "훑은 산출이 없다").toBeGreaterThan(1000);
+    expect(bad, `분수 뒤 조사 어긋남 ${bad.length}자리`).toEqual([]);
+  });
+});
+
+/* ── 1-5 분수의 덧셈과 뺄셈 (D-72 6차) — 재검산 도우미 ── */
+
+const CODES15 = ["1-5-1", "1-5-2", "1-5-3", "1-5-4"] as const;
+
+/** `$…$` 안의 분수·대분수·자연수를 **값**(분자/분모)으로 읽는다. 시험이 직접 판다. */
+function readFracValue(chunk: string): [number, number] | null {
+  const mixed = /^(\d+)\\frac\{(\d+)\}\{(\d+)\}$/.exec(chunk);
+  if (mixed) {
+    const w = Number(mixed[1]);
+    const nn = Number(mixed[2]);
+    const dd = Number(mixed[3]);
+    return [w * dd + nn, dd];
+  }
+  const plain = /^\\frac\{(\d+)\}\{(\d+)\}$/.exec(chunk);
+  if (plain) return [Number(plain[1]), Number(plain[2])];
+  const whole = /^(\d+)$/.exec(chunk);
+  if (whole) return [Number(whole[1]), 1];
+  return null;
+}
+
+/**
+ * 답 덩어리(`$…$`) 하나를 값으로 읽고, **쓰인 꼴**이 정본인지 잠근다.
+ *
+ * ⚠️ 검사를 **값**에 걸면 안 된다 — 대분수 `1\frac{1}{12}` 의 값은 13/12 이고
+ *    「분자 < 분모」가 당연히 거짓이다. 처음에 그렇게 짜서 멀쩡한 답 여섯 갈래가
+ *    빨갛게 나왔다(2026-08-23). 규약은 **분수부**에 대한 것이다.
+ */
+function answerFracValue(answer: string, label: string): [number, number] {
+  const m = /^\$([^$]+)\$$/.exec(answer);
+  expect(m, `${label}: KaTeX 로 안 감싼 답 — ${answer}`).not.toBeNull();
+  const chunk = m![1]!;
+  const v = readFracValue(chunk);
+  expect(v, `${label}: 분수 꼴이 아니다 — ${answer}`).not.toBeNull();
+
+  // ⑷ 표기 규약 — 쓰인 꼴의 **분수부**가 진분수이고 기약이어야 한다.
+  const written = /^(?:(\d+))?\\frac\{(\d+)\}\{(\d+)\}$/.exec(chunk);
+  if (written) {
+    const pn = Number(written[2]);
+    const pd = Number(written[3]);
+    expect(pn, `${label}: 분수부가 가분수다 — ${answer}`).toBeLessThan(pd);
+    // ⑴ 기약 — 시험이 gcd 로 따로 검산한다(엔진의 simplify 를 안 부른다)
+    expect(gcd2(pn, pd), `${label}: 분수부가 기약이 아니다 — ${answer}`).toBe(
+      1,
+    );
+    if (written[1] !== undefined) {
+      expect(
+        Number(written[1]),
+        `${label}: 자연수부가 0이면 대분수로 쓰지 않는다 — ${answer}`,
+      ).toBeGreaterThan(0);
+    }
+  } else {
+    // 자연수로 떨어진 답 — `\frac` 이 남아 있으면 안 된다.
+    expect(chunk, `${label}: 알 수 없는 답 꼴 — ${answer}`).toMatch(/^\d+$/);
+  }
+  return v!;
+}
+
+/** 본문의 `$…$` 덩어리들 중 분수·대분수·자연수로 읽히는 것만. */
+function fracValuesIn(text: string): [number, number][] {
+  const out: [number, number][] = [];
+  for (const m of text.matchAll(/\$([^$]+)\$/g)) {
+    for (const piece of m[1]!.split(/[+\-=]/)) {
+      const v = readFracValue(piece.trim());
+      if (v) out.push(v);
+    }
+  }
+  return out;
+}
+
+const addV = (x: [number, number], y: [number, number]): [number, number] => {
+  const num = x[0] * y[1] + y[0] * x[1];
+  const den = x[1] * y[1];
+  const g = gcd2(num, den);
+  return [num / g, den / g];
+};
+const subV = (x: [number, number], y: [number, number]): [number, number] => {
+  const num = x[0] * y[1] - y[0] * x[1];
+  const den = x[1] * y[1];
+  const g = gcd2(Math.abs(num), den);
+  return [num / g, den / g];
+};
+
+describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
+  it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES15) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES15) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        const answers = new Set(
+          SEEDS.map((s) => problem(code, tier, s).answer),
+        );
+        expect(
+          answers.size,
+          `${code} ${tier} 답이 한 가지뿐이다`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("답이 언제나 기약이고 가분수를 그대로 내지 않는다 (⑴⑷)", () => {
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          answerFracValue(p.answer, `${code} ${tier} @${seed}`);
+        }
+      }
+    }
+  });
+
+  it("이름 약속 — 「진분수」는 진분수만, 「대분수」는 대분수가 낀다 (⑵)", () => {
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        for (const code of ["1-5-1", "1-5-3"] as const) {
+          const c = problem(code, tier, seed).content;
+          // 이름이 거는 것은 **피연산자**다 — 진분수끼리 더해도 «합»은 대분수가 될 수
+          // 있고(교과서도 그렇게 쓴다), 심화의 역산 발문은 그 합을 내건다.
+          // 그래서 마지막 덩어리(결과)를 뺀 나머지에만 «대분수 없음»을 건다.
+          const chunks = [...c.matchAll(/\$([^$]+)\$/g)]
+            .map((m) => m[1]!)
+            .filter((x) => x.includes("\\frac"));
+          const operands = tier === "심화" ? chunks.slice(0, -1) : chunks;
+          for (const piece of operands) {
+            expect(
+              /\d\\frac\{/.test(piece),
+              `${code} ${tier} @${seed} 진분수 소단원의 피연산자가 대분수다\n${c}`,
+            ).toBe(false);
+          }
+        }
+        for (const code of ["1-5-2", "1-5-4"] as const) {
+          const c = problem(code, tier, seed).content;
+          expect(
+            /\d\\frac\{/.test(c),
+            `${code} ${tier} @${seed} 대분수 소단원에 대분수가 없다\n${c}`,
+          ).toBe(true);
+        }
+        // 덧셈 소단원은 뺄셈 문장을 쓰지 않는다.
+        expect(
+          /뺐더니|뺀 |덜어|남은|더 많이|중에서/.test(
+            problem("1-5-1", tier, seed).content,
+          ),
+          `1-5-1 ${tier} @${seed} 에 뺄셈 문장`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("뺄셈 갈래는 결과가 언제나 양수다 (⑶)", () => {
+    for (const code of ["1-5-3", "1-5-4"] as const) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const [num] = answerFracValue(p.answer, `${code} ${tier} @${seed}`);
+          expect(
+            num,
+            `${code} ${tier} @${seed} 답이 0 이하다\n${p.content}`,
+          ).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  it("1-5-1·1-5-2 — 발문의 수로 합이 다시 선다", () => {
+    for (const seed of SEEDS) {
+      for (const code of ["1-5-1", "1-5-2"] as const) {
+        for (const tier of ["연산", "응용"] as const) {
+          const p = problem(code, tier, seed);
+          const vs = fracValuesIn(p.content);
+          const label = `${code} ${tier} @${seed}`;
+          expect(
+            vs.length,
+            `${label} 발문에 분수가 없다`,
+          ).toBeGreaterThanOrEqual(2);
+          const sum = vs.slice(1).reduce((acc, v) => addV(acc, v), vs[0]!);
+          expect(
+            answerFracValue(p.answer, label),
+            `${label}\n${p.content}`,
+          ).toEqual(sum);
+        }
+        // 심화 — 답 + 발문의 더한 수 = 발문의 합
+        const dp = problem(code, "심화", seed);
+        const label = `${code} 심화 @${seed}`;
+        const vs = fracValuesIn(dp.content);
+        expect(vs.length, label).toBe(2);
+        const ans = answerFracValue(dp.answer, label);
+        expect(addV(ans, vs[0]!), `${label}\n${dp.content}`).toEqual(vs[1]!);
+      }
+    }
+  });
+
+  it("1-5-3·1-5-4 — 발문의 수로 차가 다시 선다", () => {
+    for (const seed of SEEDS) {
+      for (const code of ["1-5-3", "1-5-4"] as const) {
+        const calc = problem(code, "연산", seed);
+        const label = `${code} 연산 @${seed}`;
+        const vs = fracValuesIn(calc.content);
+        expect(vs.length, label).toBe(2);
+        expect(
+          answerFracValue(calc.answer, label),
+          `${label}\n${calc.content}`,
+        ).toEqual(subV(vs[0]!, vs[1]!));
+
+        // 심화 — 두 꼴은 **구조가 반대**다. 한 덩어리로 보면 부호가 뒤집힌다.
+        //   □ 식  : `A-□=R`      → A − 답 = R   (답이 빼는 수)
+        //   문장  : `어떤 수에서 X를 뺐더니 R` → 답 − X = R (답이 처음 수)
+        const dp = problem(code, "심화", seed);
+        const dLabel = `${code} 심화 @${seed}`;
+        const dvs = fracValuesIn(dp.content);
+        expect(dvs.length, dLabel).toBe(2);
+        const ans = answerFracValue(dp.answer, dLabel);
+        if (dp.content.includes("□")) {
+          expect(subV(dvs[0]!, ans), `${dLabel}\n${dp.content}`).toEqual(
+            dvs[1]!,
+          );
+        } else {
+          expect(subV(ans, dvs[0]!), `${dLabel}\n${dp.content}`).toEqual(
+            dvs[1]!,
+          );
+        }
+      }
+    }
+  });
+
+  it("1-5-4 응용 — 자연수에서 대분수를 빼 받아내림이 반드시 인다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-5-4", "응용", seed);
+      const label = `1-5-4 응용 @${seed}`;
+      const vs = fracValuesIn(p.content);
+      expect(vs.length, `${label}\n${p.content}`).toBe(2);
+      expect(vs[0]![1], `${label} 앞이 자연수가 아니다`).toBe(1);
+      // 뒤가 대분수(분수부가 0이 아님) → 받아내림이 반드시 인다
+      expect(vs[1]![0] % vs[1]![1], `${label} 받아내림이 없다`).not.toBe(0);
+      expect(
+        answerFracValue(p.answer, label),
+        `${label}\n${p.content}`,
+      ).toEqual(subV(vs[0]!, vs[1]!));
+    }
+  });
+
+  it("경계 쓸기 200 — 뺄셈 결과 양수·기약·정본 꼴 (구성 보장)", () => {
+    for (let seed = 1; seed <= 200; seed += 1) {
+      for (const code of CODES15) {
+        for (const tier of ELEM_TIERS) {
+          const p = problem(code, tier, seed);
+          const [num] = answerFracValue(p.answer, `${code} ${tier} @${seed}`);
+          expect(num, `${code} ${tier} @${seed}`).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  it("\\frac 가 붉음 없이 그려진다 (렌더)", () => {
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        const p = problem(code, tier, 11);
+        const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
+        expect(html, `${code} ${tier}`).not.toContain("katex-error");
+        expect(html, `${code} ${tier}`).not.toMatch(/color:\s*#cc0000/i);
+      }
+    }
+  });
+
+  it("소재와 동사가 어울린다 — 「색종이를 먹는다」가 없다 (씨앗 2000 쓸기)", () => {
+    // g4 가 초4 2-1 착수 조사 중 잡아 회송한 결함(2026-08-23). 소재와 동사를 **따로**
+    // 뽑으면 씨앗 2,000개 중 670회가 「색종이를 먹었습니다」였다. 동사를 소재에 딸린
+    // 값으로 묶어 고쳤고, 여기서 **짝 자체**를 잠근다 — 소재를 늘려도 같은 결함이 안 난다.
+    const EDIBLE = /피자|케이크|과자|빵|우유|주스|물|밀가루|설탕/;
+    const bad: string[] = [];
+    for (let seed = 0; seed < 2000; seed += 1) {
+      const c = problem("1-5-3", "응용", seed).content;
+      const s = problem("1-5-3", "응용", seed).solution;
+      const eats = /먹/.test(c) || /먹/.test(s);
+      if (!eats) continue;
+      // 「먹」이 나왔으면 그 소재는 먹을 수 있는 것이어야 한다.
+      const thing = /^(\S+) 한 (?:판|개|장)의/.exec(c)?.[1] ?? "";
+      if (!EDIBLE.test(thing))
+        bad.push(`@${seed} «${thing}» 를 먹는다\n    ${c}`);
+    }
+    expect(bad.slice(0, 3), `어울리지 않는 짝 ${bad.length}자리`).toEqual([]);
+  });
+
+  it("초4 2-1 과 발문이 겹치지 않는다 — 같은 이름의 네 소단원 (g4 협의)", () => {
+    // 초4 2-1 과 초5 1-5 는 소단원 이름이 넷 다 같다. 판별자는 **분모**다 —
+    // 초4 는 동분모, 초5 는 서로 다른 분모(1-5-3 응용의 «전체 1» 갈래만 동분모다).
+    const g4Units = elementaryUnits().filter(
+      (u) => u.grade === "초4" && u.section.startsWith("2-1-"),
+    );
+    if (g4Units.length === 0) return; // 아직 안 들어왔으면 이 검사는 건너뛴다
+    const g4Contents = new Set<string>();
+    for (const u of g4Units) {
+      for (const tier of supportedTiers(u).length
+        ? supportedTiers(u)
+        : [undefined]) {
+        for (let seed = 1; seed <= 16; seed += 1) {
+          g4Contents.add(generateElementaryProblem(u, seed, tier).content);
+        }
+      }
+    }
+    const clash: string[] = [];
+    for (const code of CODES15) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          if (g4Contents.has(c))
+            clash.push(`${code} ${tier} @${seed}\n    ${c}`);
+        }
+      }
+    }
+    expect(clash, `초4 2-1 과 겹친 발문 ${clash.length}건`).toEqual([]);
+  });
+
+  it("1-5 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES15) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
