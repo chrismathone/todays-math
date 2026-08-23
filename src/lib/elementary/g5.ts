@@ -1692,11 +1692,408 @@ function area62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-6-1 정다각형과 사각형의 둘레 ────────── */
+
+/** 둘레 문항의 생활 소재 — (무엇, 둘레에 두르는 것). */
+const RIM_THINGS = [
+  ["화단", "울타리"],
+  ["게시판", "테두리 띠"],
+  ["운동장", "흰 선"],
+  ["텃밭", "그물"],
+  ["사진", "액자 테"],
+] as const;
+
+/** 연산 — 공식 한 번. 도형 이름은 한자 수사(R4). */
+function per61Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const sides = intBetween(rng, 3, 8);
+    const side = intBetween(rng, 4, 16);
+    return make(
+      unit,
+      `한 변의 길이가 ${n(side)} cm인 ${polyName(sides, true)}의 둘레는 몇 cm입니까?`,
+      n(sides * side),
+      `${wj(polyName(sides, true), "은", "는")} 변이 ${n(sides)}개이고 길이가 모두 같으므로 ${expr(`${side}\\times${sides}=${sides * side}`)}입니다.`,
+    );
+  }
+  const w = intBetween(rng, 7, 18);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 둘레는 몇 cm입니까?`,
+    n(2 * (w + h)),
+    `직사각형은 마주 보는 변의 길이가 같으므로 ${expr(`(${w}+${h})\\times2=${2 * (w + h)}`)}입니다.`,
+  );
+}
+
 /**
- * 난이도 갈래 (D-71 파일럿) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
- * 축은 시안(연산=치수 글로 · 기본=그림 읽기 · 응용=둘레→넓이 · 심화=개념 사슬)을 따른다.
+ * 기본 — **생활 문장 한 겹**. 식을 스스로 세운다.
+ *
+ * ⚠️ 1-6-2 기본이 「그림에서 치수 읽기」라 여기까지 그림으로 하면 두 소단원이 닮는다
+ * (D-66 ⑸). 같은 2단이라도 **한 겹의 종류를 달리** 한다 — 여기는 문장, 저기는 그림.
+ */
+function per61Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [place, rim] = pick(rng, RIM_THINGS);
+  if (intBetween(rng, 0, 1) === 0) {
+    const side = intBetween(rng, 5, 15);
+    return make(
+      unit,
+      `한 변의 길이가 ${n(side)} m인 정사각형 모양 ${place} 둘레에 ${wj(rim, "을", "를")} 두르려고 합니다. ${wj(rim, "은", "는")} 몇 m 필요합니까?`,
+      n(4 * side),
+      `정사각형은 네 변의 길이가 같으므로 ${expr(`${side}\\times4=${4 * side}`)} m가 필요합니다.`,
+    );
+  }
+  const w = intBetween(rng, 6, 16);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로가 ${n(w)} m, 세로가 ${n(h)} m인 직사각형 모양 ${place} 둘레에 ${wj(rim, "을", "를")} 두르려고 합니다. ${wj(rim, "은", "는")} 몇 m 필요합니까?`,
+    n(2 * (w + h)),
+    `둘레를 구하면 되므로 ${expr(`(${w}+${h})\\times2=${2 * (w + h)}`)} m가 필요합니다.`,
+  );
+}
+
+/**
+ * 응용 — 둘레에서 **길이**를 되찾는다. 두 단계(반둘레 → 합과 차).
+ *
+ * 1-6-2 응용은 둘레에서 **넓이**로 간다. 답의 종류가 달라 두 소단원이 안 닮는다.
+ */
+function per61Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const sides = intBetween(rng, 3, 8);
+    const side = intBetween(rng, 4, 15);
+    return make(
+      unit,
+      `둘레가 ${n(sides * side)} cm인 ${polyName(sides, true)}이 있습니다. 한 변의 길이는 몇 cm입니까?`,
+      n(side),
+      `${wj(polyName(sides, true), "은", "는")} 변이 ${n(sides)}개이고 길이가 모두 같으므로 ${expr(`${sides * side}\\div${sides}=${side}`)}입니다.`,
+    );
+  }
+  // 합과 차 — 가로·세로로 만들어 두면 나누어떨어짐이 구성으로 보장된다.
+  const h = intBetween(rng, 3, 12);
+  const d = intBetween(rng, 2, 9);
+  const w = h + d;
+  return make(
+    unit,
+    `둘레가 ${n(2 * (w + h))} cm인 직사각형이 있습니다. 가로가 세로보다 ${n(d)} cm 더 길 때, 가로는 몇 cm입니까?`,
+    n(w),
+    `둘레의 절반이 가로와 세로의 합이므로 ${expr(`${2 * (w + h)}\\div2=${w + h}`)} cm입니다. 여기에 차 ${n(d)}를 더해 반으로 나누면 ${expr(`(${w + h}+${d})\\div2=${w}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **귀퉁이를 잘라도 둘레는 그대로**다. 잘린 두 변이 남은 두 변으로 옮겨 가기 때문.
+ *
+ * 카탈로그의 「직각으로 이루어진 도형의 둘레 구하기」 유형이다. 1-6-2 심화(넓이→변→둘레→넓이)와
+ * 걸음도 답도 겹치지 않는다.
+ */
+function per61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 9, 18);
+  const h = intBetween(rng, 6, w - 2);
+  const cw = intBetween(rng, 2, w - 4);
+  const ch = intBetween(rng, 2, h - 3);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형 모양 종이의 한 귀퉁이에서 가로가 ${n(cw)} cm, 세로가 ${n(ch)} cm인 직사각형을 잘라 냈습니다. 남은 도형의 둘레는 몇 cm입니까?`,
+    n(2 * (w + h)),
+    `잘라 낸 자리에서 없어진 두 변의 길이는 안쪽에 새로 생긴 두 변의 길이와 같습니다. 가로끼리 더하면 ${n(w)} cm, 세로끼리 더하면 ${n(h)} cm 그대로이므로 둘레는 처음 직사각형과 같은 ${expr(`(${w}+${h})\\times2=${2 * (w + h)}`)}입니다.`,
+  );
+}
+
+/* ────────── 1-6-3 1cm²보다 더 큰 넓이의 단위 ────────── */
+
+const ROOM_THINGS = [
+  "교실 바닥",
+  "강당 무대",
+  "주차장",
+  "체육관 바닥",
+  "옥상 정원",
+] as const;
+
+/** 연산 — 단위 사이의 관계를 한 번 쓴다. */
+function unit63Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${expr(`${k}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{cm}^2")}입니까?`,
+      n(k * 10000),
+      `${expr("1\\,\\mathrm{m}=100\\,\\mathrm{cm}")}이므로 ${expr("1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2")}입니다. 따라서 ${expr(`${k}\\times10000=${k * 10000}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${expr(`${k}\\,\\mathrm{km}^2`)}는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
+    n(k * 1000000),
+    `${expr("1\\,\\mathrm{km}=1000\\,\\mathrm{m}")}이므로 ${expr("1\\,\\mathrm{km}^2=1000000\\,\\mathrm{m}^2")}입니다. 따라서 ${expr(`${k}\\times1000000=${k * 1000000}`)}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 식을 세워 **큰 단위**로 답한다. */
+function unit63Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, ROOM_THINGS);
+  const w = intBetween(rng, 5, 20);
+  const h = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `가로가 ${n(w)} m, 세로가 ${n(h)} m인 직사각형 모양 ${place}의 넓이는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
+    n(w * h),
+    `직사각형의 넓이는 가로와 세로의 곱이므로 ${expr(`${w}\\times${h}=${w * h}`)}입니다.`,
+  );
+}
+
+/** 응용 — **작은 단위로 주고 큰 단위로 묻는다.** 환산 뒤 넓이(두 단계). */
+function unit63Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, ROOM_THINGS);
+  const w = intBetween(rng, 2, 9);
+  const h = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `가로가 ${n(w * 100)} cm, 세로가 ${n(h * 100)} cm인 직사각형 모양 ${wj(place, "이", "가")} 있습니다. 넓이는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
+    n(w * h),
+    `${expr("100\\,\\mathrm{cm}=1\\,\\mathrm{m}")}이므로 가로는 ${n(w)} m, 세로는 ${n(h)} m입니다. 넓이는 ${expr(`${w}\\times${h}=${w * h}`)}입니다.`,
+  );
+}
+
+/** 심화 — 단위가 섞인 **역산**. 넓이와 한 변에서 다른 변을 되찾는다. */
+function unit63Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, ROOM_THINGS);
+  const w = intBetween(rng, 2, 9);
+  const h = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `넓이가 ${expr(`${w * h}\\,\\mathrm{m}^2`)}인 직사각형 모양 ${wj(place, "이", "가")} 있습니다. 가로가 ${n(w * 100)} cm일 때 세로는 몇 m입니까?`,
+    n(h),
+    `가로 ${n(w * 100)} cm는 ${expr("100\\,\\mathrm{cm}=1\\,\\mathrm{m}")}이므로 ${n(w)} m입니다. 넓이는 가로와 세로의 곱이므로 세로는 ${expr(`${w * h}\\div${w}=${h}`)}입니다.`,
+  );
+}
+
+/* ────────── 1-6-4 평행사변형과 삼각형의 넓이 ────────── */
+
+/** 1-6-4·1-6-5 기본의 소재. 1-6-2 기본(`AREA_THINGS`)과 **다른 풀**이라 두 소단원이 안 닮는다. */
+const SHAPE_THINGS = [
+  "표지판",
+  "깃발",
+  "연",
+  "붙임딱지",
+  "쿠키",
+  "나무 조각",
+  "받침",
+] as const;
+
+/** 연산 — 밑변·높이가 글로 주어진다. 그림 없음. */
+function area64Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 10) * 2;
+  const h = intBetween(rng, 3, 12);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 삼각형의 넓이는 몇 cm²입니까?`,
+      n((b * h) / 2),
+      `삼각형의 넓이는 밑변과 높이를 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`${b}\\times${h}\\div2=${(b * h) / 2}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 평행사변형의 넓이는 몇 cm²입니까?`,
+    n(b * h),
+    `평행사변형의 넓이는 밑변과 높이의 곱이므로 ${expr(`${b}\\times${h}=${b * h}`)}입니다.`,
+  );
+}
+
+/** 기본 — 그림에서 밑변·높이를 읽는다. 발문에 수가 없다. */
+function area64Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, SHAPE_THINGS);
+  const b = intBetween(rng, 3, 9) * 2;
+  const h = intBetween(rng, 3, 11);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `다음 삼각형 모양 ${thing}의 넓이는 몇 cm²입니까?`,
+      n((b * h) / 2),
+      `그림에서 밑변이 ${n(b)} cm, 높이가 ${n(h)} cm임을 읽습니다. ${expr(`${b}\\times${h}\\div2=${(b * h) / 2}`)}입니다.`,
+      fig("areaPoly", { shape: "tri", base: b, height: h }),
+    );
+  }
+  return make(
+    unit,
+    `다음 평행사변형 모양 ${thing}의 넓이는 몇 cm²입니까?`,
+    n(b * h),
+    `그림에서 밑변이 ${n(b)} cm, 높이가 ${n(h)} cm임을 읽습니다. ${expr(`${b}\\times${h}=${b * h}`)}입니다.`,
+    fig("areaPoly", { shape: "para", base: b, height: h }),
+  );
+}
+
+/** 응용 — 넓이에서 **높이**를 되찾는다. 삼각형은 두 단계(×2 뒤 ÷). */
+function area64Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 10) * 2;
+  const h = intBetween(rng, 3, 12);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `넓이가 ${n((b * h) / 2)} cm²인 삼각형의 밑변이 ${n(b)} cm입니다. 높이는 몇 cm입니까?`,
+      n(h),
+      `삼각형의 넓이는 밑변과 높이를 곱한 뒤 ${n(2)}로 나눈 것이므로, 넓이에 ${n(2)}를 곱하면 밑변과 높이의 곱입니다. ${expr(`${(b * h) / 2}\\times2=${b * h}`)}이고 ${expr(`${b * h}\\div${b}=${h}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `넓이가 ${n(b * h)} cm²인 평행사변형의 밑변이 ${n(b)} cm입니다. 높이는 몇 cm입니까?`,
+    n(h),
+    `평행사변형의 넓이는 밑변과 높이의 곱이므로 높이는 ${expr(`${b * h}\\div${b}=${h}`)}입니다.`,
+  );
+}
+
+/** 심화 — **넓이가 같은 두 도형**을 잇는다. 평행사변형 넓이 → 삼각형 높이(네 걸음). */
+function area64Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pb = intBetween(rng, 4, 12);
+  const ph = intBetween(rng, 3, 10);
+  const area = pb * ph;
+  // 삼각형 밑변은 `2×넓이` 의 약수여야 높이가 자연수다.
+  const tb = pick(
+    rng,
+    [4, 5, 6, 8, 10, 12, 15, 16, 20].filter((v) => (2 * area) % v === 0),
+  );
+  const th = (2 * area) / tb;
+  return make(
+    unit,
+    `밑변이 ${n(pb)} cm, 높이가 ${n(ph)} cm인 평행사변형과 넓이가 같은 삼각형이 있습니다. 이 삼각형의 밑변이 ${n(tb)} cm일 때 높이는 몇 cm입니까?`,
+    n(th),
+    `평행사변형의 넓이는 ${expr(`${pb}\\times${ph}=${area}`)}입니다. 삼각형도 넓이가 ${n(area)} cm²이고 넓이에 ${n(2)}를 곱하면 밑변과 높이의 곱이므로 ${expr(`${area}\\times2=${2 * area}`)}이고, 높이는 ${expr(`${2 * area}\\div${tb}=${th}`)}입니다.`,
+  );
+}
+
+/* ────────── 1-6-5 마름모와 사다리꼴의 넓이 ────────── */
+
+/** 연산 — 치수가 글로. */
+function area65Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d1 = intBetween(rng, 3, 9) * 2;
+    const d2 = pick(
+      rng,
+      [4, 5, 6, 7, 8, 9, 10, 11].filter((v) => v !== d1),
+    );
+    return make(
+      unit,
+      `두 대각선의 길이가 ${n(d1)} cm, ${n(d2)} cm인 마름모의 넓이는 몇 cm²입니까?`,
+      n((d1 * d2) / 2),
+      `마름모의 넓이는 두 대각선을 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`${d1}\\times${d2}\\div2=${(d1 * d2) / 2}`)}입니다.`,
+    );
+  }
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  return make(
+    unit,
+    `윗변의 길이가 ${n(top)} cm, 아랫변의 길이가 ${n(bot)} cm, 높이가 ${n(h)} cm인 사다리꼴의 넓이는 몇 cm²입니까?`,
+    n(((top + bot) * h) / 2),
+    `사다리꼴의 넓이는 두 변의 길이를 더해 높이를 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`(${top}+${bot})\\times${h}\\div2=${((top + bot) * h) / 2}`)}입니다.`,
+  );
+}
+
+/** 기본 — 그림에서 읽는다. */
+function area65Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, SHAPE_THINGS);
+  if (intBetween(rng, 0, 1) === 0) {
+    const d1 = intBetween(rng, 3, 9) * 2;
+    const d2 = pick(
+      rng,
+      [4, 5, 6, 7, 8, 9, 10, 11].filter((v) => v !== d1),
+    );
+    return make(
+      unit,
+      `다음 마름모 모양 ${thing}의 넓이는 몇 cm²입니까?`,
+      n((d1 * d2) / 2),
+      `그림에서 두 대각선이 ${n(d1)} cm, ${n(d2)} cm임을 읽습니다. ${expr(`${d1}\\times${d2}\\div2=${(d1 * d2) / 2}`)}입니다.`,
+      fig("areaPoly", { shape: "rhombus", base: d1, height: d2, d2 }),
+    );
+  }
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  return make(
+    unit,
+    `다음 사다리꼴 모양 ${thing}의 넓이는 몇 cm²입니까?`,
+    n(((top + bot) * h) / 2),
+    `그림에서 윗변 ${n(top)} cm, 아랫변 ${n(bot)} cm, 높이 ${n(h)} cm를 읽습니다. ${expr(`(${top}+${bot})\\times${h}\\div2=${((top + bot) * h) / 2}`)}입니다.`,
+    fig("areaPoly", { shape: "trap", base: bot, height: h, top }),
+  );
+}
+
+/** 응용 — 넓이에서 **모르는 대각선·윗변**을 되찾는다(두 단계). */
+function area65Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d1 = intBetween(rng, 3, 9) * 2;
+    const d2 = pick(
+      rng,
+      [4, 5, 6, 7, 8, 9, 10, 11].filter((v) => v !== d1),
+    );
+    const area = (d1 * d2) / 2;
+    return make(
+      unit,
+      `넓이가 ${n(area)} cm²인 마름모의 한 대각선이 ${n(d1)} cm입니다. 다른 대각선은 몇 cm입니까?`,
+      n(d2),
+      `마름모의 넓이에 ${n(2)}를 곱하면 두 대각선의 곱이므로 ${expr(`${area}\\times2=${d1 * d2}`)}이고, ${expr(`${d1 * d2}\\div${d1}=${d2}`)}입니다.`,
+    );
+  }
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  const area = ((top + bot) * h) / 2;
+  return make(
+    unit,
+    `넓이가 ${n(area)} cm²인 사다리꼴의 아랫변이 ${n(bot)} cm, 높이가 ${n(h)} cm입니다. 윗변은 몇 cm입니까?`,
+    n(top),
+    `넓이에 ${n(2)}를 곱하고 높이로 나누면 두 변의 합이므로 ${expr(`${area}\\times2\\div${h}=${top + bot}`)} cm입니다. 여기에서 아랫변을 빼면 ${expr(`${top + bot}-${bot}=${top}`)}입니다.`,
+  );
+}
+
+/** 심화 — 조건을 **조합**한다. 윗변과 아랫변의 차가 주어진 사다리꼴(네 걸음). */
+function area65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const top = intBetween(rng, 3, 9);
+  const d = intBetween(rng, 2, 8);
+  const bot = top + d;
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  const area = ((top + bot) * h) / 2;
+  return make(
+    unit,
+    `넓이가 ${n(area)} cm²이고 높이가 ${n(h)} cm인 사다리꼴이 있습니다. 아랫변이 윗변보다 ${n(d)} cm 더 길 때, 윗변은 몇 cm입니까?`,
+    n(top),
+    `넓이에 ${n(2)}를 곱하고 높이로 나누면 두 변의 합이므로 ${expr(`${area}\\times2\\div${h}=${top + bot}`)} cm입니다. 합에서 차를 빼고 반으로 나누면 짧은 변이므로 ${expr(`(${top + bot}-${d})\\div2=${top}`)}입니다.`,
+  );
+}
+
+/**
+ * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
+ * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
+ *
+ * ⚠️ **이웃 소단원과 닮지 않게** 짰다(D-66 ⑸). 1-6-1 응용은 둘레→**길이**, 1-6-2 응용은
+ * 둘레→**넓이**다. 1-6-1 기본은 **문장** 한 겹, 1-6-2·1-6-4·1-6-5 기본은 **그림** 한 겹이다.
  */
 export const G5_TIERS: ElemTierMap = {
+  "초5|1-6-1": {
+    연산: per61Calc,
+    기본: per61Read,
+    응용: per61Apply,
+    심화: per61Deep,
+  },
+  "초5|1-6-3": {
+    연산: unit63Calc,
+    기본: unit63Read,
+    응용: unit63Apply,
+    심화: unit63Deep,
+  },
+  "초5|1-6-4": {
+    연산: area64Calc,
+    기본: area64Read,
+    응용: area64Apply,
+    심화: area64Deep,
+  },
+  "초5|1-6-5": {
+    연산: area65Calc,
+    기본: area65Read,
+    응용: area65Apply,
+    심화: area65Deep,
+  },
   "초5|1-6-2": {
     연산: area62Calc,
     기본: area62Read,

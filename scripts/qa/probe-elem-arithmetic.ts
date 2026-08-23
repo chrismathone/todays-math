@@ -509,9 +509,30 @@ const FORMULAS: Formula[] = [
   },
 ];
 
+/**
+ * 발문에 나오는 **길이 단위**들. `cm` 안의 `m` 을 따로 세지 않게 긴 것부터 본다.
+ *
+ * 왜 필요한가 — 이 판정기에는 **단위 환산이 없다.** 그런데 난이도 갈래의 응용은
+ * 일부러 「가로가 $800$ cm … 넓이는 몇 $\mathrm{m}^2$」처럼 **준 단위와 묻는 단위를
+ * 달리** 한다(그게 그 갈래의 알맹이다). 그걸 그대로 곱하면 참값이 `160000` 이 되어
+ * **맞는 답 `16` 을 틀렸다고 한다.** 2026-08-23 에 실제로 그렇게 났다.
+ * **거짓 경보는 가드를 끈다** — 못 읽는 쪽으로 둔다.
+ */
+function lengthUnits(content: string): Set<string> {
+  const out = new Set<string>();
+  for (const m of content.matchAll(
+    /\mathrm\{(mm|cm|km|m)\}|(?<![a-zA-Z])(mm|cm|km|m)(?![a-zA-Z])/g,
+  )) {
+    out.add((m[1] ?? m[2])!);
+  }
+  return out;
+}
+
 const readFormula: Reader = {
   name: "넓이·둘레·부피",
   read(content, answer) {
+    // 길이 단위가 둘 이상 섞이면 환산이 필요한데 우리는 못 한다 — 읽지 않는다.
+    if (lengthUnits(content).size > 1) return null;
     for (const f of FORMULAS) {
       if (!f.when.test(content) || !f.ask.test(content)) continue;
       const truth = f.of(content);
@@ -810,6 +831,27 @@ const FIXTURES: Fixture[] = [
     want: "못읽음",
     why: "무리가 다른 단위는 환산하지 않는다",
   },
+  // ── 길이 단위가 섞인 발문 (D-72 난이도 갈래의 응용이 일부러 그렇게 낸다) ──
+  {
+    content:
+      "가로가 $800$ cm, 세로가 $200$ cm인 직사각형 모양 체육관 바닥이 있습니다. 넓이는 몇 $\mathrm{m}^2$입니까?",
+    answer: "$16$",
+    want: "못읽음",
+    why: "준 단위(cm)와 묻는 단위(m²)가 다르다 — 그대로 곱하면 맞는 답 16 을 «틀림»이라 한다",
+  },
+  {
+    content: "가로가 $8$ cm, 세로가 $6$ cm인 직사각형의 넓이는 몇 cm²입니까?",
+    answer: "$48$",
+    want: "맞음",
+    why: "단위가 하나뿐이면 그대로 읽는다 — 위 가드가 멀쩡한 문항까지 막으면 안 된다",
+  },
+  {
+    content:
+      "가로가 $6$ m, 세로가 $4$ m인 직사각형 모양 텃밭의 넓이는 몇 $\mathrm{m}^2$입니까?",
+    answer: "$24$",
+    want: "맞음",
+    why: "m 만 쓰인 발문도 그대로 읽힌다 (음성 대조)",
+  },
 ];
 
 if (process.argv.includes("--selftest")) {
@@ -861,6 +903,8 @@ const fingerprintBefore = generatorFingerprint();
 
 const wrong: string[] = [];
 const byReader = new Map<string, number>();
+/** 못 읽은 «까닭» 별 갈래 수 — 일부러 건너뛴 것을 침묵시키지 않는다. */
+const skipReasons = new Map<string, number>();
 let readable = 0;
 let unreadable = 0;
 
@@ -875,6 +919,13 @@ for (const unit of units) {
     });
     if (results.every((r) => r.kind === "못읽음")) {
       unreadable += 1;
+      // **왜** 못 읽었는지 센다. 「못 읽음 N」만 찍으면 우리가 일부러 건너뛴 것과
+      // 넓히면 읽을 수 있는 것이 한 숫자에 섞인다 — 침묵 스킵이 된다.
+      const why =
+        lengthUnits(results[0]!.p.content).size > 1
+          ? "단위가 섞여 환산이 필요하다 (판정기가 환산을 못 한다)"
+          : "그 밖";
+      skipReasons.set(why, (skipReasons.get(why) ?? 0) + 1);
       continue;
     }
     readable += 1;
@@ -898,6 +949,12 @@ for (const unit of units) {
 console.log(
   `식을 읽은 소단원 ${readable}${gradeArg ? ` (${gradeArg})` : ""} · 못 읽음 ${unreadable}\n`,
 );
+// 일부러 건너뛴 것은 **세어서** 보여 준다 (D-72 «침묵 스킵 금지»).
+for (const [why, count] of [...skipReasons].sort((a, b) => b[1] - a[1])) {
+  if (why === "그 밖") continue;
+  console.log(`   ⏭ ${String(count).padStart(3)}  ${why}`);
+}
+if (skipReasons.size > 1) console.log("");
 if (byReader.size > 0 && !process.argv.includes("--unreadable")) {
   for (const [k, v] of [...byReader].sort((a, b) => b[1] - a[1])) {
     console.log(`   ${String(v).padStart(3)}  ${k}`);
@@ -916,31 +973,38 @@ if (process.argv.includes("--unreadable")) {
     string,
     { unit: string; content: string; answer: string }[]
   >();
+  // ⚠️ 여기도 **갈래를 돌아야** 한다. 안 돌면 못 읽는 갈래가 이 목록에도 안 떠서
+  //    「못 읽는다는 사실」 자체가 두 겹으로 숨는다 (2026-08-23 에 2-6-2 로 같은 일이 있었다).
   for (const unit of units) {
-    const p = generateElementaryProblem(unit, SEEDS[0]!);
-    const readableHere = SEEDS.some((s) => {
-      const q = generateElementaryProblem(unit, s);
-      return judge(q.content, q.answer) !== "못읽음";
-    });
-    if (readableHere) continue;
-    const c = p.content;
-    const key = NOT_A_VALUE.test(c)
-      ? "A. 묻는 것이 «값»이 아니다 (일부러 안 읽음)"
-      : /=\\square/.test(c)
-        ? "B. `=\\square` 는 있는데 항·연산자를 못 읽음"
-        : /그래프/.test(c)
-          ? "C. 그래프 읽기 (참이 그림 스펙에 있다)"
-          : /무엇이라고 하는가|이름을 쓰시오|무엇인가|기호를 쓰시오|어떤 도형인가/.test(
-                c,
-              )
-            ? "D. 용어·이름·고르기 (정답이 수가 아니다)"
-            : "Z. 낱개 문장제";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key)!.push({
-      unit: `${unit.grade} ${unit.section}`,
-      content: c,
-      answer: p.answer,
-    });
+    for (const tier of variantsOf(unit)) {
+      const p = generateElementaryProblem(unit, SEEDS[0]!, tier);
+      const readableHere = SEEDS.some((s) => {
+        const q = generateElementaryProblem(unit, s, tier);
+        return judge(q.content, q.answer) !== "못읽음";
+      });
+      if (readableHere) continue;
+      const c = p.content;
+      const key =
+        lengthUnits(c).size > 1
+          ? "E. 길이 단위가 섞였다 — 환산이 필요한데 우리는 못 한다 (일부러 안 읽음)"
+          : NOT_A_VALUE.test(c)
+            ? "A. 묻는 것이 «값»이 아니다 (일부러 안 읽음)"
+            : /=\\square/.test(c)
+              ? "B. `=\\square` 는 있는데 항·연산자를 못 읽음"
+              : /그래프/.test(c)
+                ? "C. 그래프 읽기 (참이 그림 스펙에 있다)"
+                : /무엇이라고 하는가|이름을 쓰시오|무엇인가|기호를 쓰시오|어떤 도형인가/.test(
+                      c,
+                    )
+                  ? "D. 용어·이름·고르기 (정답이 수가 아니다)"
+                  : "Z. 낱개 문장제";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key)!.push({
+        unit: `${unit.grade} ${unit.section}${tierLabel(tier)}`,
+        content: c,
+        answer: p.answer,
+      });
+    }
   }
   for (const [k, rows] of [...groups].sort(
     (a, b) => b[1].length - a[1].length,
