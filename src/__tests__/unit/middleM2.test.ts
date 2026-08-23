@@ -15,13 +15,22 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
-import { M2_TYPES } from "../../lib/middle/m2";
+import { M2_INEQ_APPLY } from "../../lib/middle/m2IneqApply";
+import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
 import { eulReul, waGwa } from "../../lib/middle/m2Josa";
 import {
   generateMiddleProblem,
   generateMiddleSet,
 } from "../../lib/middle/generate";
 import type { MidProblem } from "../../lib/middle/types";
+
+/**
+ * 이 파일이 검산하는 것은 1차 물결 두 모듈(부등식·연립)뿐이다. `m2.ts` 의
+ * spread 는 2차 물결 세션들이 자기 모듈을 계속 더하므로(2A — wave2-plan §1)
+ * 전체 spread 가 아니라 두 모듈을 직접 합쳐 36유형 고정 검사를 유지한다.
+ * 2차 물결 유형의 검산은 middleM2NumProb.test.ts 등 세션별 테스트에 있다.
+ */
+const M2_TYPES = [...M2_INEQ_APPLY, ...M2_SYSTEM_APPLY];
 
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
