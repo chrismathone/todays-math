@@ -4334,6 +4334,36 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier44Apply,
     심화: tier44Deep,
   },
+  "초4|1-6-1": {
+    연산: tier61Calc,
+    기본: tier61Basic,
+    응용: tier61Apply,
+    심화: tier61Deep,
+  },
+  "초4|1-6-2": {
+    연산: tier62Calc,
+    기본: tier62Basic,
+    응용: tier62Apply,
+    심화: tier62Deep,
+  },
+  "초4|1-6-3": {
+    연산: tier63Calc,
+    기본: tier63Basic,
+    응용: tier63Apply,
+    심화: tier63Deep,
+  },
+  "초4|1-6-4": {
+    연산: tier64Calc,
+    기본: tier64Basic,
+    응용: tier64Apply,
+    심화: tier64Deep,
+  },
+  "초4|1-6-5": {
+    연산: tier65Calc,
+    기본: tier65Basic,
+    응용: tier65Apply,
+    심화: tier65Deep,
+  },
   "초4|1-5-1": {
     연산: tier51Calc,
     기본: tier51Basic,
@@ -4466,6 +4496,447 @@ function pattern(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   return noBranch(unit);
+}
+
+/* ──────────── 1-6 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 그림 없이 수·식 배열로만 간다. 배열 갈래의 유일성(주어진 항으로 규칙이 하나로
+ * 서는가)은 시험이 {등차·등비·증가증가} 를 전부 대 보는 반증 형태로 잠근다.
+ * 신기한 계산식 가족(37×3k 등)의 해설은 곱셈을 다시 하는 것이 아니라 패턴으로
+ * 유도한다 — 결과의 자릿수는 표시용이다(규모 상한 99000).
+ */
+
+/** 몇째의 한글 서수 — 답·발문에 수 없이 쓴다. */
+const ORDINAL = [
+  "첫째",
+  "둘째",
+  "셋째",
+  "넷째",
+  "다섯째",
+  "여섯째",
+  "일곱째",
+  "여덟째",
+  "아홉째",
+] as const;
+
+/** **1-6-1 1단 연산 — 줄어드는 등차.** 표준(증가 둘)에 없는 감소 배열. */
+function tier61Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 50, 99);
+  const t = [a, a - d, a - d * 2, a - d * 3];
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓았습니다. 다섯째에 올 수를 쓰시오. ` +
+      `${t.map((v) => n(v)).join(", ")}`,
+    n(a - d * 4),
+    `${n(d)}씩 작아지는 규칙입니다. ${expr(`${a - d * 3}-${d}=${a - d * 4}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 2단 기본 — 가운데가 비었다.** 표준은 늘 끝이 빈다. */
+function tier61Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 3, 40);
+  return make(
+    unit,
+    `수의 배열에서 규칙을 찾아 가운데 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${n(a)}, ${n(a + d)}, ${expr("\\square")}, ${n(a + d * 3)}, ${n(a + d * 4)}`,
+    n(a + d * 2),
+    `${n(d)}씩 커지는 규칙입니다. ${expr(`${a + d}+${d}=${a + d * 2}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 3단 응용 — 멀리 있는 항.** 규칙을 찾아 여러 번 잇는다(두 단계). */
+function tier61Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d = intBetween(rng, 2, 9);
+    const a = intBetween(rng, 3, 40);
+    return make(
+      unit,
+      `규칙에 따라 수를 늘어놓을 때 여덟째에 올 수를 쓰시오. ` +
+        `${n(a)}, ${n(a + d)}, ${n(a + d * 2)}, ${n(a + d * 3)}`,
+      n(a + d * 7),
+      `${n(d)}씩 커지는 규칙입니다. 여덟째 수는 첫째 수보다 ${n(d)}씩 ${n(7)}번 큰 수이므로 ` +
+        `${expr(`${a}+${d}\\times7=${a + d * 7}`)} 입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓을 때 여섯째에 올 수를 쓰시오. ` +
+      `${n(a)}, ${n(a * 2)}, ${n(a * 4)}, ${n(a * 8)}`,
+    n(a * 32),
+    `${n(2)}배씩 커지는 규칙입니다. ${expr(`${a * 8}\\times2=${a * 16}`)}, ` +
+      `${expr(`${a * 16}\\times2=${a * 32}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 4단 심화 — 역산·조건.** 다섯째에서 첫째를 되짚거나, 처음으로 넘는 째를 찾는다. */
+function tier61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 3, 40);
+    const fifth = a + d * 4;
+    return make(
+      unit,
+      `${n(d)}씩 커지는 규칙으로 수를 늘어놓았습니다. 다섯째 수가 ${josaNum(fifth, "이", "가")} ` +
+        `되었다면 첫째 수는 얼마인가?`,
+      n(a),
+      `다섯째 수는 첫째 수보다 ${n(d)}씩 ${n(4)}번 큰 수입니다. ` +
+        `${expr(`${fifth}-${d}\\times4=${a}`)} 이므로 첫째 수는 ${n(a)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 3, 20);
+  const k = intBetween(rng, 5, 9);
+  const L = a + d * (k - 1) - intBetween(rng, 1, d - 1 || 1);
+  const terms = [a, a + d, a + d * 2, a + d * 3];
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓을 때 처음으로 ${josaNum(L, "을", "를")} 넘는 수는 몇째에 ` +
+      `오는가? ${terms.map((v) => n(v)).join(", ")}`,
+    ORDINAL[k - 1]!,
+    `${n(d)}씩 커지는 규칙입니다. ${ORDINAL[k - 2]!} 수는 ${expr(`${a}+${d}\\times${k - 2}=${a + d * (k - 2)}`)} 로 ` +
+      `${n(L)}보다 크지 않고, ${ORDINAL[k - 1]!} 수는 ${expr(`${a}+${d}\\times${k - 1}=${a + d * (k - 1)}`)} 로 ` +
+      `처음으로 ${josaNum(L, "을", "를")} 넘습니다.`,
+  );
+}
+
+/** **1-6-2 1단 연산 — 늘어나는 개수 읽기.** 표준(몇째의 개수)과 묻는 것이 다르다. */
+function tier62Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 모형이 몇 개씩 늘어나는 규칙인지 쓰시오.`,
+    `${n(d)}개씩`,
+    `${expr(`${s + d}-${s}=${d}`)} 이고 ${expr(`${s + d * 2}-${s + d}=${d}`)} 이므로 ` +
+      `${n(d)}개씩 늘어나는 규칙입니다.`,
+  );
+}
+
+/**
+ * **1-6-2 2단 기본 — 늘어나는 개수가 1개씩 커지는 배열.** 표준의 제곱수·등차와
+ * 셋째 가족이다(계단을 넓혀 쌓는 꼴).
+ */
+function tier62Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const inc = intBetween(rng, 2, 4);
+  const t2 = s + inc;
+  const t3 = t2 + inc + 1;
+  const askFive = intBetween(rng, 0, 1) === 0;
+  const t4 = t3 + inc + 2;
+  const t5 = t4 + inc + 3;
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(t2)}개, ` +
+      `셋째는 ${n(t3)}개입니다. ${askFive ? "다섯째" : "넷째"}는 몇 개인가?`,
+    `${n(askFive ? t5 : t4)}개`,
+    `늘어나는 개수가 ${n(inc)}개, ${n(inc + 1)}개로 ${n(1)}개씩 커지는 규칙입니다. ` +
+      `${expr(`${t3}+${inc + 2}=${t4}`)}${askFive ? ` 이고 ${expr(`${t4}+${inc + 3}=${t5}`)}` : ""} 이므로 ` +
+      `${askFive ? "다섯째" : "넷째"}는 ${n(askFive ? t5 : t4)}개입니다.`,
+  );
+}
+
+/** **1-6-2 3단 응용 — 개수에서 몇째를 되찾는다(두 단계).** */
+function tier62Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  const k = intBetween(rng, 5, 9);
+  const target = s + d * (k - 1);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 모형이 ${n(target)}개인 것은 몇째인가?`,
+    ORDINAL[k - 1]!,
+    `${n(d)}개씩 늘어나는 규칙입니다. 첫째보다 ${expr(`${target}-${s}=${target - s}`)} 개 많고 ` +
+      `${expr(`${target - s}\\div${d}=${k - 1}`)} 이므로 ${n(d)}개씩 ${n(k - 1)}번 늘어난 ` +
+      `${ORDINAL[k - 1]!}입니다.`,
+  );
+}
+
+/** **1-6-2 4단 심화 — 첫째부터 넷째까지의 합.** 규칙을 잇고 더하는 다단계. */
+function tier62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  const t = [s, s + d, s + d * 2, s + d * 3];
+  const total = t[0]! + t[1]! + t[2]! + t[3]!;
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 첫째부터 넷째까지 놓은 모형은 모두 몇 개인가?`,
+    `${n(total)}개`,
+    `${n(d)}개씩 늘어나므로 넷째는 ${expr(`${t[2]}+${d}=${t[3]}`)} 개입니다. ` +
+      `${expr(`${t[0]}+${t[1]}+${t[2]}+${t[3]}=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+  );
+}
+
+/** 1-6-3 갈래의 덧셈식 배열 재료 — 나머지 u 를 표준(1~6)과 다른 띠(11~76)에 둔다. */
+function addRows(rng: Rng) {
+  const u = intBetween(rng, 11, 76);
+  const left = (k: number) => 100 * k + u;
+  const right = (k: number) => 100 * k + u + 1;
+  const sum = (k: number) => left(k) + right(k);
+  return { left, right, sum };
+}
+
+/** **1-6-3 1단 연산 — 뺄셈식 배열.** 표준(덧셈 행)에 없는 갈래다. */
+function tier63Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 6, 9) * 100 + intBetween(rng, 11, 89);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${m}-100=${m - 100}`)}, ${expr(`${m}-200=${m - 200}`)}, ` +
+      `${expr(`${m}-300=\\square`)}`,
+    n(m - 300),
+    `빼는 수가 ${n(100)}씩 커지므로 차는 ${n(100)}씩 작아집니다. ` +
+      `${expr(`${m - 200}-100=${m - 300}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 2단 기본 — 다음에 올 계산식 쓰기.** 답이 수가 아니라 **식**이다. */
+function tier63Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 넷째에 올 계산식을 쓰시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    expr(`${r.left(4)}+${r.right(4)}=${r.sum(4)}`),
+    `더하는 두 수가 각각 ${n(100)}씩 커지고 합은 ${n(200)}씩 커집니다. 넷째 계산식은 ` +
+      `${expr(`${r.left(4)}+${r.right(4)}=${r.sum(4)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 3단 응용 — 여섯째의 합(멀리).** 규칙을 찾아 여러 번 잇는다. */
+function tier63Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 여섯째 계산식의 합을 구하시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(r.sum(6)),
+    `합이 ${n(200)}씩 커지는 규칙입니다. 여섯째 합은 첫째 합보다 ${n(200)}씩 ${n(5)}번 큰 수이므로 ` +
+      `${expr(`${r.sum(1)}+200\\times5=${r.sum(6)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 4단 심화 — 합에서 몇째를 되찾는다(역산).** */
+function tier63Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  const k = intBetween(rng, 5, 9);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 합이 ${josaNum(r.sum(k), "이", "가")} 되는 계산식은 ` +
+      `몇째인지 쓰시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    ORDINAL[k - 1]!,
+    `합이 ${n(200)}씩 커지는 규칙입니다. ${expr(`${r.sum(k)}-${r.sum(1)}=${r.sum(k) - r.sum(1)}`)} 이고 ` +
+      `${expr(`${r.sum(k) - r.sum(1)}\\div200=${k - 1}`)} 이므로 첫째에서 ${n(k - 1)}번 커진 ` +
+      `${ORDINAL[k - 1]!}입니다.`,
+  );
+}
+
+/** **1-6-4 1단 연산 — 나누어지는 수가 10배면 몫도 10배.** 표준(곱셈 쪽)의 나눗셈 짝. */
+function tier64Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}\\div${b}=${q}`)}, ${expr(`${a * 10}\\div${b}=${q * 10}`)}, ` +
+      `${expr(`${a * 100}\\div${b}=\\square`)}`,
+    n(q * 100),
+    `나누어지는 수가 ${n(10)}배가 되면 몫도 ${n(10)}배가 됩니다. ` +
+      `${expr(`${q * 10}\\times10=${q * 100}`)} 입니다.`,
+  );
+}
+
+/** **1-6-4 2단 기본 — 합이 변하지 않는 배열.** 표준 ①(차 불변)의 덧셈 짝. */
+function tier64Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 60);
+  const b = intBetween(rng, 33, 80);
+  const s = a + b;
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=${s}`)}, ${expr(`${a + 10}+${b - 10}=${s}`)}, ` +
+      `${expr(`${a + 20}+${b - 20}=\\square`)}`,
+    n(s),
+    `더하는 두 수가 ${n(10)}씩 커지고 ${n(10)}씩 작아지면 합은 변하지 않습니다.`,
+  );
+}
+
+/** 신기한 계산식 가족 — 결과가 패턴으로 서는 것만. k 는 몇째(3~5). */
+const WONDER_FAMILIES = [
+  {
+    name: "삼칠",
+    row: (k: number) => `37\\times${3 * k}=${111 * k}`,
+    lhs: (k: number) => `37\\times${3 * k}`,
+    value: (k: number) => 111 * k,
+    why: `곱하는 수가 ${"$3$"}씩 커질 때마다 결과는 ${"$111$"}씩 커집니다`,
+  },
+  {
+    name: "팔",
+    row: (k: number) =>
+      `${"123456789".slice(0, k)}\\times8+${k}=${"987654321".slice(0, k)}`,
+    lhs: (k: number) => `${"123456789".slice(0, k)}\\times8+${k}`,
+    value: (k: number) => Number("987654321".slice(0, k)),
+    why: `앞 수가 한 자리씩 길어질 때마다 결과도 ${"$9$"}부터 한 자리씩 길어집니다`,
+  },
+  {
+    name: "구",
+    row: (k: number) =>
+      `${"123456789".slice(0, k)}\\times9+${k + 1}=${"1".repeat(k + 1)}`,
+    lhs: (k: number) => `${"123456789".slice(0, k)}\\times9+${k + 1}`,
+    value: (k: number) => Number("1".repeat(k + 1)),
+    why: `앞 수가 한 자리씩 길어질 때마다 결과의 ${"$1$"}이 하나씩 늘어납니다`,
+  },
+] as const;
+
+/** **1-6-4 3단 응용 — 신기한 계산식의 다음 줄.** 계산이 아니라 패턴으로 잇는다. */
+function tier64Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const fam = pick(rng, WONDER_FAMILIES);
+  // ×9 가족은 다섯째가 111111 로 규모 띠(99000)를 넘는다 — 넷째까지만(팀장 2026-08-23).
+  const k = fam.name === "구" ? intBetween(rng, 3, 4) : intBetween(rng, 3, 5);
+  const shown = Array.from({ length: k - 1 }, (_, i) => expr(fam.row(i + 1)));
+  // 발문이 (가족, k) 로만 정해지면 변형이 여덟뿐이다(실측) — 묻는 문형을 두 벌로 가른다.
+  const ask =
+    intBetween(rng, 0, 1) === 0
+      ? `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. `
+      : `규칙적인 계산식입니다. ${expr("\\square")} 에 알맞은 수를 구하시오. `;
+  return make(
+    unit,
+    `${ask}${shown.join(", ")}, ${expr(`${fam.lhs(k)}=\\square`)}`,
+    n(fam.value(k)),
+    `${fam.why}. ${expr(`${fam.lhs(k)}=${fam.value(k)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-4 4단 심화 — 결과에서 식을 되찾는다(역산, 답이 식).** */
+function tier64Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 묻는 문형을 두 벌로 — ×9 가족은 목표값이 두 가지뿐이라 문형이 하나면 변형이 좁다.
+  const ask = (v: number) =>
+    intBetween(rng, 0, 1) === 0
+      ? `계산식의 배열에서 규칙을 찾아 계산 결과가 ${josaNum(v, "이", "가")} 되는 계산식을 쓰시오. `
+      : `규칙적인 계산식입니다. 계산 결과가 ${josaNum(v, "이", "가")} 되는 계산식을 쓰시오. `;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 4, 8);
+    // 보이는 줄 수도 씨앗으로 가른다 — 목표값만 갈리면 변형이 좁다(실측 6/16).
+    const rows = intBetween(rng, 2, 3);
+    const shown = Array.from({ length: rows }, (_, i) =>
+      expr(`37\\times${3 * (i + 1)}=${111 * (i + 1)}`),
+    ).join(", ");
+    return make(
+      unit,
+      `${ask(111 * k)}${shown}`,
+      expr(`37\\times${3 * k}=${111 * k}`),
+      `결과가 ${n(111)}씩 커질 때 곱하는 수는 ${n(3)}씩 커집니다. ` +
+        `${expr(`111\\times${k}=${111 * k}`)} 이므로 ${expr(`37\\times${3 * k}=${111 * k}`)} 입니다.`,
+    );
+  }
+  // ×9 가족은 넷째까지(11111) — 다섯째 111111 은 규모 띠 밖.
+  const k = intBetween(rng, 3, 4);
+  const ones = "1".repeat(k + 1);
+  const rows = k === 3 ? 2 : intBetween(rng, 2, 3);
+  const shown = Array.from({ length: rows }, (_, i) =>
+    expr(
+      `${"123456789".slice(0, i + 1)}\\times9+${i + 2}=${"1".repeat(i + 2)}`,
+    ),
+  ).join(", ");
+  return make(
+    unit,
+    `${ask(Number(ones))}${shown}`,
+    expr(`${"123456789".slice(0, k)}\\times9+${k + 1}=${ones}`),
+    `결과의 ${n(1)}이 하나씩 늘 때 앞 수도 한 자리씩 길어집니다. ` +
+      `${expr(`${"123456789".slice(0, k)}\\times9+${k + 1}=${ones}`)} 입니다.`,
+  );
+}
+
+/** **1-6-5 1단 연산 — 옳은 식 판단.** 절반은 어긋난 식이다. */
+function tier65Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 48);
+  const b = intBetween(rng, 12, 48);
+  const gap = intBetween(rng, 2, 9);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const rightB = ok ? b - gap : b - gap + pick(rng, [-2, -1, 1, 2]);
+  return make(
+    unit,
+    `다음 식은 옳은가? 옳으면 '예', 옳지 않으면 '아니요'로 답하시오. ` +
+      `${expr(`${a}+${b}=${a + gap}+${rightB}`)}`,
+    ok ? "예" : "아니요",
+    `왼쪽은 ${expr(`${a}+${b}=${a + b}`)} 이고 오른쪽은 ${expr(`${a + gap}+${rightB}=${a + gap + rightB}`)} 입니다. ` +
+      `${ok ? "두 값이 같으므로 옳은 식입니다." : "두 값이 다르므로 옳지 않은 식입니다."}`,
+  );
+}
+
+/** **1-6-5 2단 기본 — 세 수를 묶어 등호를 세운다.** */
+function tier65Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 40);
+  const b = intBetween(rng, 11, 40);
+  const c3 = intBetween(rng, 11, 40);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}+${c3}=${a}+\\square`)}`,
+    n(b + c3),
+    `양쪽에 ${josaNum(a, "이", "가")} 똑같이 있으므로 ${expr("\\square")} 는 나머지 두 수의 ` +
+      `합입니다. ${expr(`${b}+${c3}=${b + c3}`)} 입니다.`,
+  );
+}
+
+/** **1-6-5 3단 응용 — 지름길이 없는 일반형(두 단계).** 합을 구해 되뺀다. */
+function tier65Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 48);
+  const b = intBetween(rng, 15, 48);
+  const s = a + b;
+  const c3 = intBetween(rng, 11, s - 11);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=${c3}+\\square`)}`,
+    n(s - c3),
+    `왼쪽의 합은 ${expr(`${a}+${b}=${s}`)} 입니다. ${expr(`${s}-${c3}=${s - c3}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(s - c3)}입니다.`,
+  );
+}
+
+/** **1-6-5 4단 심화 — 혼합 역산.** 등호 건너의 뺄셈·곱셈을 되짚는다. */
+function tier65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 15, 48);
+    const b = intBetween(rng, 15, 48);
+    const c3 = intBetween(rng, 11, 40);
+    return make(
+      unit,
+      `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+        `${expr(`${a}+${b}=\\square-${c3}`)}`,
+      n(a + b + c3),
+      `왼쪽의 합은 ${expr(`${a}+${b}=${a + b}`)} 입니다. ${expr("\\square")} 에서 ` +
+        `${josaNum(c3, "을", "를")} 뺀 값이 ${josaNum(a + b, "과", "와")} 같아야 하므로 ` +
+        `${expr(`${a + b}+${c3}=${a + b + c3}`)} 입니다.`,
+    );
+  }
+  // ⚠️ 곱을 먼저 뽑고 그 안에서 a 를 고르면 «$3\times3=9$ 인데 a 는 11 이상» 같은
+  // 뒤집힌 범위가 난다(팀장 적발 2026-08-23, 조건 판정기가 던졌다). 곱이 넉넉해지도록
+  // **c3 를 고른 뒤 b 의 하한을 그로부터 계산**한다 — 구성으로 하한 ≤ 상한을 보장한다.
+  const c3 = intBetween(rng, 3, 9);
+  const b = intBetween(rng, Math.ceil(20 / c3), 12);
+  const a = intBetween(rng, 11, b * c3 - 2);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`\\square+${a}=${b}\\times${c3}`)}`,
+    n(b * c3 - a),
+    `오른쪽은 ${expr(`${b}\\times${c3}=${b * c3}`)} 입니다. ${expr(`${b * c3}-${a}=${b * c3 - a}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(b * c3 - a)}입니다.`,
+  );
 }
 
 /* ───────────────── 2-1 분수의 덧셈과 뺄셈 ───────────────── */
