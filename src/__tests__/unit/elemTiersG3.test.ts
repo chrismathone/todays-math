@@ -404,6 +404,7 @@ function isSquare(g: { pts: XY[] }): boolean {
 const PLANE = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"] as const;
 const DIVISION = ["1-3-1", "1-3-2", "1-3-3", "1-3-4"] as const;
 const MULT = ["1-4-1", "1-4-2", "1-4-3", "1-4-4", "1-4-5"] as const;
+const LENTIME = ["1-5-1", "1-5-2", "1-5-3", "1-5-4", "1-5-5", "1-5-6"] as const;
 
 function planeUnit(code: string) {
   return elementaryUnits().find(
@@ -718,8 +719,8 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     // 같은 발문을 내는 것을 판정기가 잡았는데, 나머지 셋도 같은 자리가 있었고
     // 씨앗이 안 맞아 안 걸렸을 뿐이다 — 여기서 씨앗을 넓혀 잠근다.
     const bad: string[] = [];
-    // 1-1(계산)·1-3(나눗셈)·1-4(곱셈)까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
-    for (const code of [...CODES, ...PLANE, ...DIVISION, ...MULT]) {
+    // 1-1·1-3·1-4·1-5 까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
+    for (const code of [...CODES, ...PLANE, ...DIVISION, ...MULT, ...LENTIME]) {
       for (const seed of SEEDS) {
         const plain = generateElementaryProblem(planeUnit(code), seed).content;
         const seen = new Map<string, string>();
@@ -1301,6 +1302,421 @@ describe("[초3 4단] 1-4 곱셈 — 다섯 소단원 (표준 포함)", () => {
                 `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
               );
             if (risk.test(text) && !/\mathrm/.test(text)) {
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+/**
+ * 초3 1-5 길이와 시간 4단 확대 (D-72) — 여섯 소단원 전부.
+ *
+ * 단위 경계(10 mm·1000 m·60초·60분)가 알맹이다 — 환산·올림·내림을 **여기서 독립
+ * 재계산**한다(발문의 수를 총량으로 바꿔 답의 총량과 맞댄다 — 생성기 함수를 부르지
+ * 않는다). 답의 분·초 자리는 반드시 정규화(< 60)이고 $0$ 이 아니어야 한다.
+ */
+
+/** 발문·답의 시간 표기를 앞에서부터 토큰으로 — 총량은 초 단위. */
+function timeTokens(
+  text: string,
+): { kind: "hm" | "clock" | "ms" | "m" | "s"; sec: number }[] {
+  const re =
+    /\$(\d+)\$시간 \$(\d+)\$분|\$(\d+)\$시 \$(\d+)\$분|\$(\d+)\$분 \$(\d+)\$초|\$(\d+)\$분|\$(\d+)\$초/g;
+  const out: { kind: "hm" | "clock" | "ms" | "m" | "s"; sec: number }[] = [];
+  for (const m of text.matchAll(re)) {
+    if (m[1] !== undefined)
+      out.push({ kind: "hm", sec: (Number(m[1]) * 60 + Number(m[2])) * 60 });
+    else if (m[3] !== undefined)
+      out.push({ kind: "clock", sec: (Number(m[3]) * 60 + Number(m[4])) * 60 });
+    else if (m[5] !== undefined)
+      out.push({ kind: "ms", sec: Number(m[5]) * 60 + Number(m[6]) });
+    else if (m[7] !== undefined)
+      out.push({ kind: "m", sec: Number(m[7]) * 60 });
+    else out.push({ kind: "s", sec: Number(m[8]) });
+  }
+  return out;
+}
+
+/** 답의 «$h$시간 $m$분» — 분 자리가 정규화(1..59)됐는지도 함께 잠근다. */
+function hmAnswer(a: string): { h: number; m: number } {
+  const m = a.match(/^\$(\d+)\$시간 \$(\d+)\$분$/);
+  expect(m, `시간 답 형식이 아니다: ${a}`).toBeTruthy();
+  const parsed = { h: Number(m![1]), m: Number(m![2]) };
+  expect(parsed.m, `분 자리가 0 이다: ${a}`).toBeGreaterThanOrEqual(1);
+  expect(parsed.m, `분 자리가 60 을 넘는다: ${a}`).toBeLessThanOrEqual(59);
+  return parsed;
+}
+
+function clockAnswer(a: string): { h: number; m: number } {
+  const m = a.match(/^\$(\d+)\$시 \$(\d+)\$분$/);
+  expect(m, `시각 답 형식이 아니다: ${a}`).toBeTruthy();
+  const parsed = { h: Number(m![1]), m: Number(m![2]) };
+  expect(parsed.h, `시각의 시가 12 를 넘는다: ${a}`).toBeLessThanOrEqual(11);
+  expect(parsed.m, `분 자리: ${a}`).toBeGreaterThanOrEqual(1);
+  expect(parsed.m, `분 자리: ${a}`).toBeLessThanOrEqual(59);
+  return parsed;
+}
+
+function msAnswer(a: string): { m: number; s: number } {
+  const m = a.match(/^\$(\d+)\$분 \$(\d+)\$초$/);
+  expect(m, `분·초 답 형식이 아니다: ${a}`).toBeTruthy();
+  const parsed = { m: Number(m![1]), s: Number(m![2]) };
+  expect(parsed.s, `초 자리: ${a}`).toBeGreaterThanOrEqual(1);
+  expect(parsed.s, `초 자리: ${a}`).toBeLessThanOrEqual(59);
+  return parsed;
+}
+
+/** 길이 토큰 — 총량은 작은 단위(mm 또는 m). 큰 단위 배율은 단위 이름에서 정한다. */
+function lenTokens(text: string): { mixed: boolean; small: number }[] {
+  const re =
+    /\$(\d+)\\,\\mathrm\{(cm|km)\}\\ (\d+)\\,\\mathrm\{(?:mm|m)\}\$|\$(\d+)\\,\\mathrm\{(?:mm|m)\}\$/g;
+  const out: { mixed: boolean; small: number }[] = [];
+  for (const m of text.matchAll(re)) {
+    if (m[1] !== undefined) {
+      const mul = m[2] === "cm" ? 10 : 1000;
+      out.push({ mixed: true, small: Number(m[1]) * mul + Number(m[3]) });
+    } else {
+      out.push({ mixed: false, small: Number(m[4]) });
+    }
+  }
+  return out;
+}
+
+describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
+  it("여섯 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of LENTIME) {
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of LENTIME) {
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 4242, tier);
+        const b = generateElementaryProblem(planeUnit(code), 4242, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+    }
+  });
+
+  it("1-5-1·1-5-2 — 발문의 길이 총량과 답이 단위 환산으로 정확히 맞는다", () => {
+    const bad: string[] = [];
+    for (const code of ["1-5-1", "1-5-2"] as const) {
+      const mul = code === "1-5-1" ? 10 : 1000;
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          if (tier === "연산") {
+            // 지시문에도 $\square$ 홑블록이 있으니, «=» 가 든 블록이 등식이다.
+            const eq = p.content.match(/\$([^$]*=[^$]*)\$/);
+            if (!eq || !eq[1]!.includes("\\square")) {
+              bad.push(`${code} 연산 seed ${seed}: 등식이 없다 — ${p.content}`);
+              continue;
+            }
+            const [left, right] = eq[1]!.split("=") as [string, string];
+            const readSide = (side: string, boxValue: number) => {
+              const big = side.match(/(\d+)\\,\\mathrm\{(?:cm|km)\}/);
+              const small = side.match(/(\d+)\\,\\mathrm\{(?:mm|m)\}/);
+              let total =
+                (big ? Number(big[1]) * mul : 0) +
+                (small ? Number(small[1]) : 0);
+              if (/\\square\\,\\mathrm\{(?:mm|m)\}/.test(side))
+                total += boxValue;
+              if (/\\square\\,\\mathrm\{(?:cm|km)\}/.test(side))
+                total += boxValue * mul;
+              return total;
+            };
+            const ans = answerOf(p.answer);
+            if (readSide(left, ans) !== readSide(right, ans))
+              bad.push(
+                `${code} 연산 seed ${seed}: 등식 양변이 다르다 — ${p.content} / ${p.answer}`,
+              );
+            continue;
+          }
+          const toks = lenTokens(p.content);
+          if (tier === "기본") {
+            const total = toks[0]!.small;
+            const ansToks = lenTokens(p.answer);
+            const ansSmall =
+              ansToks.length > 0 ? ansToks[0]!.small : answerOf(p.answer);
+            if (total !== ansSmall)
+              bad.push(
+                `${code} 기본 seed ${seed}: ${total} ≠ ${ansSmall} — ${p.content} / ${p.answer}`,
+              );
+          } else if (tier === "응용") {
+            if (toks.length !== 2) {
+              bad.push(`${code} 응용 seed ${seed}: 길이가 ${toks.length}개`);
+              continue;
+            }
+            if (answerOf(p.answer) !== toks[0]!.small + toks[1]!.small)
+              bad.push(
+                `${code} 응용 seed ${seed}: ${toks[0]!.small}+${toks[1]!.small} ≠ ${p.answer}`,
+              );
+          } else {
+            if (toks.length !== 2) {
+              bad.push(`${code} 심화 seed ${seed}: 길이가 ${toks.length}개`);
+              continue;
+            }
+            const whole = toks.find((t) => !t.mixed)!;
+            const part = toks.find((t) => t.mixed)!;
+            if (answerOf(p.answer) !== whole.small - part.small)
+              bad.push(
+                `${code} 심화 seed ${seed}: ${whole.small}-${part.small} ≠ ${p.answer}`,
+              );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-5-3 — 어림·실측의 차가 발문에서 다시 구해지고, 이긴 사람이 정말 더 가깝다", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      const calc = generateElementaryProblem(planeUnit("1-5-3"), seed, "연산");
+      const g = calc.content.match(/(\d+)\\,\\mathrm\{cm\}/);
+      if (!g || answerOf(calc.answer) !== Number(g[1]) * 10)
+        bad.push(`연산 seed ${seed}: ${calc.content} / ${calc.answer}`);
+
+      const word = generateElementaryProblem(planeUnit("1-5-3"), seed, "기본");
+      const mm = [...word.content.matchAll(/(\d+)\\,\\mathrm\{mm\}/g)].map(
+        (m) => Number(m[1]),
+      );
+      if (mm.length !== 3) bad.push(`기본 seed ${seed}: mm ${mm.length}개`);
+      else {
+        const [real, gA, gB] = mm as [number, number, number];
+        const dA = Math.abs(gA - real);
+        const dB = Math.abs(gB - real);
+        if (dA === dB) bad.push(`기본 seed ${seed}: 두 어림의 차가 같다`);
+        if (!word.content.includes(word.answer))
+          bad.push(`기본 seed ${seed}: 답 이름이 발문에 없다`);
+        // 답 이름이 «더 가까운 쪽 어림값» 바로 앞 자리에 서는지 — 첫 이름이 gA 의 임자다.
+        const firstNameIdx = word.content.indexOf(word.answer);
+        const otherName = [
+          ...word.content.matchAll(/([가-힣]{2})[은는이가]? 약/g),
+        ]
+          .map((m) => m[1]!)
+          .find((nm) => nm !== word.answer);
+        if (otherName) {
+          const winnerIsFirst = firstNameIdx < word.content.indexOf(otherName);
+          const nearIsFirst = dA < dB;
+          if (winnerIsFirst !== nearIsFirst)
+            bad.push(
+              `기본 seed ${seed}: 답 ${word.answer} 가 더 먼 쪽이다 — ${word.content}`,
+            );
+        }
+      }
+
+      const apply = generateElementaryProblem(planeUnit("1-5-3"), seed, "응용");
+      const am = [...apply.content.matchAll(/(\d+)\\,\\mathrm\{mm\}/g)].map(
+        (m) => Number(m[1]),
+      );
+      if (am.length === 3) {
+        const [real, g1, g2] = am as [number, number, number];
+        const want = Math.abs(Math.abs(g1 - real) - Math.abs(g2 - real));
+        if (answerOf(apply.answer) !== want)
+          bad.push(`응용 seed ${seed}: ${want} ≠ ${apply.answer}`);
+        if (want < 1) bad.push(`응용 seed ${seed}: 차이가 0`);
+      } else bad.push(`응용 seed ${seed}: mm ${am.length}개`);
+
+      const deep = generateElementaryProblem(planeUnit("1-5-3"), seed, "심화");
+      const gcm = deep.content.match(/(\d+)\\,\\mathrm\{cm\}/);
+      const dmm = deep.content.match(/(\d+)\\,\\mathrm\{mm\}/);
+      const longer = /깁니다|길다고/.test(deep.content);
+      if (!gcm || !dmm) bad.push(`심화 seed ${seed}: 수를 못 읽음`);
+      else if (
+        answerOf(deep.answer) !==
+        Number(gcm[1]) * 10 + (longer ? 1 : -1) * Number(dmm[1])
+      )
+        bad.push(`심화 seed ${seed}: ${deep.content} / ${deep.answer}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-5-4 — 분·초 환산이 발문 총량과 초 단위로 정확히 맞는다", () => {
+    const bad: string[] = [];
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = generateElementaryProblem(planeUnit("1-5-4"), seed, tier);
+        const toks = timeTokens(p.content);
+        const totalIn = toks.reduce((x, t) => x + t.sec, 0);
+        let ansSec: number;
+        if (/몇 분 몇 초/.test(p.content)) {
+          const a = msAnswer(p.answer);
+          ansSec = a.m * 60 + a.s;
+        } else if (/몇 초|초로 나타내시오/.test(p.content)) {
+          ansSec = answerOf(p.answer);
+        } else {
+          ansSec = answerOf(p.answer) * 60;
+        }
+        const want = tier === "심화" ? toks[0]!.sec - toks[1]!.sec : totalIn;
+        if (ansSec !== want)
+          bad.push(
+            `${tier} seed ${seed}: ${want} ≠ ${ansSec} — ${p.content} / ${p.answer}`,
+          );
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-5-5 — 60분 올림이 독립 재계산과 맞는다 (합·끝나는 시각·세 시간)", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "기본"] as const) {
+        const p = generateElementaryProblem(planeUnit("1-5-5"), seed, tier);
+        const durs = timeTokens(p.content).filter((t) => t.kind === "hm");
+        const a = hmAnswer(p.answer);
+        if (durs.length !== 2)
+          bad.push(`${tier} seed ${seed}: 시간이 ${durs.length}개`);
+        else if ((a.h * 60 + a.m) * 60 !== durs[0]!.sec + durs[1]!.sec)
+          bad.push(`${tier} seed ${seed}: 합이 어긋난다 — ${p.content}`);
+      }
+
+      const ap = generateElementaryProblem(planeUnit("1-5-5"), seed, "응용");
+      const clock = timeTokens(ap.content).find((t) => t.kind === "clock");
+      const dur = timeTokens(ap.content).find((t) => t.kind === "hm");
+      const end = clockAnswer(ap.answer);
+      if (!clock || !dur) bad.push(`응용 seed ${seed}: 시각·시간을 못 읽음`);
+      else if ((end.h * 60 + end.m) * 60 !== clock.sec + dur.sec)
+        bad.push(`응용 seed ${seed}: 끝 시각이 어긋난다 — ${ap.content}`);
+
+      const dp = generateElementaryProblem(planeUnit("1-5-5"), seed, "심화");
+      const parts = timeTokens(dp.content).filter(
+        (t) => t.kind === "hm" || t.kind === "m",
+      );
+      const da = hmAnswer(dp.answer);
+      if (parts.length !== 3)
+        bad.push(`심화 seed ${seed}: 시간이 ${parts.length}개 — ${dp.content}`);
+      else if (
+        (da.h * 60 + da.m) * 60 !==
+        parts[0]!.sec + parts[1]!.sec + parts[2]!.sec
+      )
+        bad.push(`심화 seed ${seed}: 세 시간 합이 어긋난다 — ${dp.content}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-5-6 — 60분 내림이 독립 재계산과 맞는다 (차·걸린 시간·되짚기)", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "기본"] as const) {
+        const p = generateElementaryProblem(planeUnit("1-5-6"), seed, tier);
+        const durs = timeTokens(p.content).filter((t) => t.kind === "hm");
+        const a = hmAnswer(p.answer);
+        if (durs.length !== 2)
+          bad.push(`${tier} seed ${seed}: 시간이 ${durs.length}개`);
+        else {
+          const big = Math.max(durs[0]!.sec, durs[1]!.sec);
+          const small = Math.min(durs[0]!.sec, durs[1]!.sec);
+          if (big === small) bad.push(`${tier} seed ${seed}: 두 시간이 같다`);
+          else if ((a.h * 60 + a.m) * 60 !== big - small)
+            bad.push(`${tier} seed ${seed}: 차가 어긋난다 — ${p.content}`);
+        }
+      }
+
+      const ap = generateElementaryProblem(planeUnit("1-5-6"), seed, "응용");
+      const clocks = timeTokens(ap.content).filter((t) => t.kind === "clock");
+      const a = hmAnswer(ap.answer);
+      if (clocks.length !== 2)
+        bad.push(`응용 seed ${seed}: 시각이 ${clocks.length}개`);
+      else if (
+        (a.h * 60 + a.m) * 60 !==
+        Math.max(clocks[0]!.sec, clocks[1]!.sec) -
+          Math.min(clocks[0]!.sec, clocks[1]!.sec)
+      )
+        bad.push(`응용 seed ${seed}: 걸린 시간이 어긋난다 — ${ap.content}`);
+
+      const dp = generateElementaryProblem(planeUnit("1-5-6"), seed, "심화");
+      const rdurs = timeTokens(dp.content).filter((t) => t.kind === "hm");
+      const da = hmAnswer(dp.answer);
+      if (rdurs.length !== 2)
+        bad.push(`심화 seed ${seed}: 시간이 ${rdurs.length}개`);
+      else if ((da.h * 60 + da.m) * 60 !== rdurs[0]!.sec + rdurs[1]!.sec)
+        bad.push(`심화 seed ${seed}: 되짚은 합이 어긋난다 — ${dp.content}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("모든 갈래의 답이 씨앗에 따라 갈린다 — 상수답 금지", () => {
+    for (const code of LENTIME) {
+      for (const tier of ELEM_TIERS) {
+        const answers = new Set<string>();
+        for (let seed = 0; seed < 40; seed += 1) {
+          answers.add(
+            generateElementaryProblem(planeUnit(code), seed, tier).answer,
+          );
+        }
+        expect(
+          answers.size,
+          `${code} ${tier}: ${[...answers].slice(0, 4).join(" ")}`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
+    for (const code of LENTIME) {
+      for (const tier of ELEM_TIERS) {
+        const stems = new Set<string>();
+        for (let seed = 0; seed < 240; seed += 1) {
+          stems.add(
+            generateElementaryProblem(
+              planeUnit(code),
+              seed,
+              tier,
+            ).content.replace(/\$[^$]*\$/g, "#"),
+          );
+        }
+        expect(stems.size, `${code} ${tier} 변형 공간`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("네 갈래 발문 틀이 서로 갈린다", () => {
+    for (const code of LENTIME) {
+      for (const seed of SEEDS) {
+        const stems = ELEM_TIERS.map((t) =>
+          generateElementaryProblem(planeUnit(code), seed, t).content.replace(
+            /\$[^$]*\$/g,
+            "#",
+          ),
+        );
+        expect(
+          new Set(stems).size,
+          `${code} seed ${seed}: ${stems.join(" | ")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("모든 갈래의 수가 KaTeX 안에 있고, 수 뒤에 조사를 붙이지 않는다", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    const bad: string[] = [];
+    for (const code of LENTIME) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const outside = text.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (outside)
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
+              );
+            if (risk.test(text) && !/\\mathrm/.test(text)) {
               bad.push(
                 `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
               );

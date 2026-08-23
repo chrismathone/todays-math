@@ -3195,6 +3195,759 @@ function mul14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 1-5 길이와 시간 (D-72 확대) ──────────────────────────────────────────
+//
+// 단위 경계(10 mm·1000 m·60초·60분)의 받아올림·내림이 이 대단원의 알맹이다.
+// 그림은 쓰지 않는다 — 필요한 자리가 생기면 기존 kind(clock·tape·timeAdd)만 쓰고,
+// 새 형태는 리드 경유(D-61). 길이 두 소단원(1-5-1·1-5-2)은 단위만 다르고 구조가
+// 같아 **공장 하나**를 나눠 쓴다(subCalcOf 와 같은 방식 — 규칙이 두 벌이 되지 않게).
+
+type LenCfg = {
+  big: string;
+  small: string;
+  mul: number;
+  smallPick: (rng: Rng) => number;
+  /** 「연필의 길이는」·「집에서 학교까지의 거리는」 — 소재가 딸린 주어. */
+  subject: (rng: Rng) => string;
+  word: string;
+};
+
+const LEN_CM: LenCfg = {
+  big: "cm",
+  small: "mm",
+  mul: 10,
+  smallPick: (rng) => intBetween(rng, 1, 9),
+  subject: (rng) =>
+    `${pick(rng, ["연필", "못", "클립", "지우개", "열쇠", "크레파스", "빨대", "나뭇잎"])}의 길이는`,
+  word: "길이",
+};
+
+const LEN_KM: LenCfg = {
+  big: "km",
+  small: "m",
+  // 몇백 m 로만 뽑는다 — 초3 1-5-2 는 «몇 km 몇백 m» 까지만 다룬다(표준과 같은 눈금).
+  mul: 1000,
+  smallPick: (rng) => intBetween(rng, 1, 9) * 100,
+  subject: (rng) =>
+    `${pick(rng, ["집에서 학교까지", "집에서 도서관까지", "학교에서 공원까지", "집에서 놀이터까지", "학교에서 우체국까지", "집에서 시장까지", "공원에서 도서관까지", "집에서 문구점까지"])}의 거리는`,
+  word: "거리",
+};
+
+const mixedLen = (cfg: LenCfg, k: number, e: number) =>
+  `$${k}\\,\\mathrm{${cfg.big}}\\ ${e}\\,\\mathrm{${cfg.small}}$`;
+
+/** 1단 — 단위 변환 식 그대로. 표준(「□ 안에 알맞은 수」)과 지시문을 갈라 둔다. */
+function lenCalcOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    const total = k * cfg.mul + e;
+    // ⚠️ 식은 KaTeX 한 덩어리라 변형 공간 정규화($…$→#)에서 지워진다 — 지시문이
+    //    틀마다 달라야 8종이 산다(형×지시문 2 = 8).
+    const form = intBetween(rng, 0, 3);
+    const prompt = pick(
+      rng,
+      [
+        [
+          `$\\square$ 에 알맞은 수를 쓰시오.`,
+          `큰 단위를 작은 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [
+          `빈칸에 알맞은 수를 구하시오.`,
+          `몇 ${cfg.big} 몇 ${cfg.small}인 값을 ${cfg.small} 단위로 바꾸어 $\\square$ 에 쓰시오.`,
+        ],
+        [
+          `$\\square$ 안에 알맞은 수를 구하시오.`,
+          `작은 단위를 큰 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [`빈칸에 알맞은 수를 쓰시오.`, `$\\square$ 에 들어갈 수를 구하시오.`],
+      ][form]!,
+    );
+    if (form === 0) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k}\\,\\mathrm{${cfg.big}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(k * cfg.mul),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 입니다.`,
+      );
+    }
+    if (form === 1) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k}\\,\\mathrm{${cfg.big}}\\ ${e}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 이고, ${expr(`${k * cfg.mul}+${e}=${total}`)} 입니다.`,
+      );
+    }
+    if (form === 2) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k * cfg.mul}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.big}}$`,
+        n(k),
+        `$${cfg.mul}\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(k * cfg.mul, cfg.small)} 는 ${unitNum(k, cfg.big)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${prompt}\n\n$${total}\\,\\mathrm{${cfg.small}}=${k}\\,\\mathrm{${cfg.big}}\\ \\square\\,\\mathrm{${cfg.small}}$`,
+      n(e),
+      `$${k}\\,\\mathrm{${cfg.big}}=${k * cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${total}-${k * cfg.mul}=${e}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 변환. 방향(큰→작은·작은→큰)을 오간다. */
+function lenWordOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    const total = k * cfg.mul + e;
+    const sub = cfg.subject(rng);
+    if (intBetween(rng, 0, 1) === 0) {
+      return make(
+        unit,
+        `${sub} ${mixedLen(cfg, k, e)} 입니다. 이 ${cfg.word}는 몇 ${cfg.small}인지 쓰시오.`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 이고, ${expr(`${k * cfg.mul}+${e}=${total}`)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${sub} ${unitNum(total, cfg.small)} 입니다. 이 ${cfg.word}는 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedLen(cfg, k, e),
+      `$${cfg.mul}\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(total, cfg.small)} 는 ${mixedLen(cfg, k, e)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 둘을 이어(더해) 작은 단위로 구한다(변환 두 번 + 덧셈). */
+function lenApplyOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k1 = intBetween(rng, 1, 4);
+    const e1 = cfg.smallPick(rng);
+    const k2 = intBetween(rng, 1, 4);
+    const e2 = cfg.smallPick(rng);
+    const t1 = k1 * cfg.mul + e1;
+    const t2 = k2 * cfg.mul + e2;
+    const stem =
+      cfg.big === "cm"
+        ? pick(rng, [
+            `길이가 ${mixedLen(cfg, k1, e1)} 인 색 테이프와 ${mixedLen(cfg, k2, e2)} 인 색 테이프를 겹치지 않게 이었습니다. 이은 길이는 모두 몇 mm인지 쓰시오.`,
+            `${mixedLen(cfg, k1, e1)} 인 리본과 ${mixedLen(cfg, k2, e2)} 인 리본을 나란히 이으면 전체 길이는 몇 mm인지 쓰시오.`,
+            `막대 두 개의 길이가 각각 ${mixedLen(cfg, k1, e1)}, ${mixedLen(cfg, k2, e2)} 입니다. 두 막대를 이은 길이는 몇 mm인지 쓰시오.`,
+            `철사 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 를 이어 붙였습니다. 전체 길이는 몇 mm인지 쓰시오.`,
+            `색 테이프 두 장을 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 만큼 잘랐습니다. 자른 길이를 모두 더하면 몇 mm인지 쓰시오.`,
+            `털실을 어제 ${mixedLen(cfg, k1, e1)}, 오늘 ${mixedLen(cfg, k2, e2)} 만큼 썼습니다. 이틀 동안 쓴 털실은 몇 mm인지 쓰시오.`,
+            `종이띠 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 를 나란히 붙였습니다. 붙인 종이띠의 전체 길이는 몇 mm인지 쓰시오.`,
+            `개미가 ${mixedLen(cfg, k1, e1)} 를 기어가고 이어서 ${mixedLen(cfg, k2, e2)} 를 더 기어갔습니다. 개미가 움직인 거리는 몇 mm인지 쓰시오.`,
+          ])
+        : pick(rng, [
+            `집에서 학교까지는 ${mixedLen(cfg, k1, e1)} 이고, 학교에서 공원까지는 ${mixedLen(cfg, k2, e2)} 입니다. 집에서 학교를 지나 공원까지 가는 거리는 몇 m인지 쓰시오.`,
+            `집에서 도서관까지는 ${mixedLen(cfg, k1, e1)}, 도서관에서 시장까지는 ${mixedLen(cfg, k2, e2)} 입니다. 집에서 도서관을 지나 시장까지의 거리는 몇 m인지 쓰시오.`,
+            `등산로 입구에서 쉼터까지는 ${mixedLen(cfg, k1, e1)} 이고, 쉼터에서 정상까지는 ${mixedLen(cfg, k2, e2)} 입니다. 입구에서 정상까지의 거리는 몇 m인지 쓰시오.`,
+            `자전거로 오전에 ${mixedLen(cfg, k1, e1)}, 오후에 ${mixedLen(cfg, k2, e2)} 를 달렸습니다. 하루 동안 달린 거리는 몇 m인지 쓰시오.`,
+            `마을 한 바퀴 중 큰길이 ${mixedLen(cfg, k1, e1)}, 골목길이 ${mixedLen(cfg, k2, e2)} 입니다. 마을 한 바퀴는 몇 m인지 쓰시오.`,
+            `아침에 ${mixedLen(cfg, k1, e1)}, 저녁에 ${mixedLen(cfg, k2, e2)} 를 걸었습니다. 하루 동안 걸은 거리는 몇 m인지 쓰시오.`,
+            `버스로 ${mixedLen(cfg, k1, e1)} 를 가고 걸어서 ${mixedLen(cfg, k2, e2)} 를 더 갔습니다. 이동한 거리는 모두 몇 m인지 쓰시오.`,
+            `강 상류 구간 ${mixedLen(cfg, k1, e1)} 와 하류 구간 ${mixedLen(cfg, k2, e2)} 를 이어 배를 탔습니다. 배로 간 거리는 몇 m인지 쓰시오.`,
+          ]);
+    return make(
+      unit,
+      stem,
+      n(t1 + t2),
+      `${mixedLen(cfg, k1, e1)} 는 ${unitNum(t1, cfg.small)}, ${mixedLen(cfg, k2, e2)} 는 ${unitNum(t2, cfg.small)} 입니다. ${expr(`${t1}+${t2}=${t1 + t2}`)} 입니다.`,
+    );
+  };
+}
+
+/** 4단 — 역산: 전체에서 한 부분을 되짚어 뺀다. */
+function lenDeepOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 1, 4);
+    const e = cfg.smallPick(rng);
+    const part = k * cfg.mul + e;
+    const rest = intBetween(rng, 2, 9) * (cfg.mul === 10 ? 1 : 100) + cfg.mul;
+    const whole = part + rest;
+    const stem =
+      cfg.big === "cm"
+        ? pick(rng, [
+            `길이가 ${unitNum(whole, cfg.small)} 인 철사를 두 도막으로 잘랐습니다. 한 도막이 ${mixedLen(cfg, k, e)} 라면 다른 도막은 몇 mm인지 쓰시오.`,
+            `${unitNum(whole, cfg.small)} 인 색 테이프에서 ${mixedLen(cfg, k, e)} 를 잘라 썼습니다. 남은 길이는 몇 mm인지 쓰시오.`,
+            `리본 ${unitNum(whole, cfg.small)} 중에서 ${mixedLen(cfg, k, e)} 를 선물 포장에 썼습니다. 남은 리본은 몇 mm인지 쓰시오.`,
+            `끈 ${unitNum(whole, cfg.small)} 를 두 도막으로 나누었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 나머지 한 도막은 몇 mm인지 쓰시오.`,
+            `털실 ${unitNum(whole, cfg.small)} 에서 ${mixedLen(cfg, k, e)} 만큼 잘라 냈습니다. 남은 털실은 몇 mm인지 쓰시오.`,
+            `길이가 ${unitNum(whole, cfg.small)} 인 빨대에서 ${mixedLen(cfg, k, e)} 를 잘라 냈습니다. 남은 빨대는 몇 mm인지 쓰시오.`,
+            `테이프 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 만큼 이미 썼습니다. 아직 남은 테이프는 몇 mm인지 쓰시오.`,
+            `실 ${unitNum(whole, cfg.small)} 를 두 도막 내었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 남은 한 도막은 몇 mm인지 쓰시오.`,
+          ])
+        : pick(rng, [
+            `집에서 공원까지의 거리는 ${unitNum(whole, cfg.small)} 입니다. 그중 ${mixedLen(cfg, k, e)} 를 걸었다면 남은 거리는 몇 m인지 쓰시오.`,
+            `전체 ${unitNum(whole, cfg.small)} 인 산책로에서 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸어야 하는 거리는 몇 m인지 쓰시오.`,
+            `마라톤 연습으로 ${unitNum(whole, cfg.small)} 를 달리기로 했습니다. 지금까지 ${mixedLen(cfg, k, e)} 를 달렸다면 남은 거리는 몇 m인지 쓰시오.`,
+            `자전거 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 지점을 지났습니다. 끝까지 남은 거리는 몇 m인지 쓰시오.`,
+            `둘레가 ${unitNum(whole, cfg.small)} 인 호수에서 ${mixedLen(cfg, k, e)} 만큼 걸었습니다. 한 바퀴까지 남은 거리는 몇 m인지 쓰시오.`,
+            `기차가 갈 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 를 이미 왔습니다. 남은 거리는 몇 m인지 쓰시오.`,
+            `등굣길 ${unitNum(whole, cfg.small)} 가운데 ${mixedLen(cfg, k, e)} 를 걸어왔습니다. 학교까지 남은 거리는 몇 m인지 쓰시오.`,
+            `산책로 전체는 ${unitNum(whole, cfg.small)} 이고, 지금까지 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸을 거리는 몇 m인지 쓰시오.`,
+          ]);
+    return make(
+      unit,
+      stem,
+      n(rest),
+      `${mixedLen(cfg, k, e)} 는 ${unitNum(part, cfg.small)} 입니다. ${expr(`${whole}-${part}=${rest}`)} 입니다.`,
+    );
+  };
+}
+
+// ── 1-5-3 길이와 거리를 어림하고 재어 보기 ──
+
+const GUESS_THINGS = [
+  "지우개",
+  "풀",
+  "가위",
+  "색연필",
+  "머리핀",
+  "클립",
+  "열쇠",
+  "못",
+] as const;
+
+/** 1단 — 어림값의 단위 변환 한 걸음. */
+function guessCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const g = intBetween(rng, 3, 9);
+  const stem = pick(rng, [
+    `${thing}의 길이를 약 ${unitNum(g, "cm")} 로 어림했습니다. 어림한 길이는 몇 mm인지 쓰시오.`,
+    `${thing}의 길이를 어림했더니 약 ${unitNum(g, "cm")} 였습니다. 이 어림값을 mm 로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(g * 10),
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${expr(`10\\times${g}=${g * 10}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 누가 더 가깝게 어림했는지 문장으로 판단한다. */
+function guessWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const [nameA, nameB] = pick(rng, [
+    ["가은", "나윤"],
+    ["다인", "라온"],
+    ["시우", "하람"],
+    ["도현", "서진"],
+  ] as const);
+  const real = intBetween(rng, 40, 90);
+  // 두 어림의 «거리»가 반드시 갈리게 뽑는다 — 가까운 쪽과 먼 쪽을 따로 만든다.
+  const nearOff = pick(rng, [-4, -3, -2, 2, 3, 4]);
+  const farOff = pick(rng, [-9, -8, 8, 9, 11, 12]);
+  const aIsNear = intBetween(rng, 0, 1) === 0;
+  const gNearMm = real + nearOff;
+  const gFarMm = real + farOff;
+  // 어림을 cm 로 반올림해 말하면 두 어림값이 같아져 차가 안 갈릴 수 있다 —
+  // mm 그대로 말하게 한다(어림을 mm 로 말하는 것도 교과서에 있다).
+  const gA = aIsNear ? gNearMm : gFarMm;
+  const gB = aIsNear ? gFarMm : gNearMm;
+  const dA = Math.abs(gA - real);
+  const dB = Math.abs(gB - real);
+  const winner = dA < dB ? nameA : nameB;
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 실제 길이는 ${unitNum(real, "mm")} 입니다. ${nameA}${josa(nameA, "이", "가")} 약 ${unitNum(gA, "mm")}, ${nameB}${josa(nameB, "이", "가")} 약 ${unitNum(gB, "mm")} 로 어림했다면 실제 길이에 더 가깝게 어림한 사람의 이름을 쓰시오.`,
+      `실제 길이가 ${unitNum(real, "mm")} 인 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} 약 ${unitNum(gA, "mm")}, ${nameB}${josa(nameB, "은", "는")} 약 ${unitNum(gB, "mm")} 로 어림했습니다. 더 가깝게 어림한 사람은 누구인지 이름을 쓰시오.`,
+    ]),
+    winner,
+    `${nameA}의 차는 ${expr(`${Math.max(gA, real)}-${Math.min(gA, real)}=${dA}`)} 이고, ${nameB}의 차는 ${expr(`${Math.max(gB, real)}-${Math.min(gB, real)}=${dB}`)} 입니다. 차가 더 작은 ${winner}${josa(winner, "이", "가")} 더 가깝게 어림했습니다.`,
+  );
+}
+
+/** 3단 — 어림과 실측의 차를 구하고, 두 사람의 차까지 견준다(두 단계). */
+function guessApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const real = intBetween(rng, 40, 90);
+  const nearOff = pick(rng, [-4, -3, -2, 2, 3, 4]);
+  const farOff = pick(rng, [-9, -8, 8, 9, 11, 12]);
+  const g1 = real + nearOff;
+  const g2 = real + farOff;
+  const d1 = Math.abs(g1 - real);
+  const d2 = Math.abs(g2 - real);
+  const gap = Math.abs(d1 - d2);
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 실제 길이는 ${unitNum(real, "mm")} 입니다. 형은 약 ${unitNum(g1, "mm")}, 동생은 약 ${unitNum(g2, "mm")} 로 어림했습니다. 두 사람의 어림값과 실제 길이의 차는 서로 몇 mm 차이 나는지 쓰시오.`,
+      `실제 길이가 ${unitNum(real, "mm")} 인 ${thing}${josa(thing, "을", "를")} 형은 약 ${unitNum(g1, "mm")}, 동생은 약 ${unitNum(g2, "mm")} 로 어림했습니다. 누가 몇 mm 더 가깝게 어림했는지 그 차이를 쓰시오.`,
+    ]),
+    n(gap),
+    `형의 차는 ${expr(`${Math.max(g1, real)}-${Math.min(g1, real)}=${d1}`)} 이고, 동생의 차는 ${expr(`${Math.max(g2, real)}-${Math.min(g2, real)}=${d2}`)} 입니다. ${expr(`${Math.max(d1, d2)}-${Math.min(d1, d2)}=${gap}`)} 이므로 ${unitNum(gap, "mm")} 차이 납니다.`,
+  );
+}
+
+/** 4단 — 역산: 어림값과 「몇 mm 길다·짧다」에서 실제 길이를 되짚는다. */
+function guessDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const g = intBetween(rng, 4, 9);
+  const d = intBetween(rng, 2, 9);
+  const longer = intBetween(rng, 0, 1) === 0;
+  const real = g * 10 + (longer ? d : -d);
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 길이를 약 ${unitNum(g, "cm")} 로 어림했는데, 실제 길이는 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "깁니다" : "짧습니다"}. 실제 길이는 몇 mm인지 쓰시오.`,
+      `${thing}${josa(thing, "을", "를")} 약 ${unitNum(g, "cm")} 로 어림했습니다. 자로 재면 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "길다고" : "짧다고"} 합니다. 실제 길이는 몇 mm인지 쓰시오.`,
+    ]),
+    n(real),
+    `어림한 ${unitNum(g, "cm")} 는 ${unitNum(g * 10, "mm")} 입니다. ${expr(longer ? `${g * 10}+${d}=${real}` : `${g * 10}-${d}=${real}`)} 이므로 실제 길이는 ${unitNum(real, "mm")} 입니다.`,
+  );
+}
+
+// ── 1-5-4 1분보다 작은 단위 · 1-5-5 시간의 덧셈 · 1-5-6 시간의 뺄셈 ──
+//
+// 60 경계가 알맹이다. 갈래는 올림·내림이 «있는 씨앗과 없는 씨앗»을 섞는다(소단원
+// 이름에 조건이 없으므로 둘 다 소단원 안이다 — 표준은 늘 경계를 넘긴다).
+// 답의 분·초 자리는 반드시 정규화(< 60)되고 $0$ 이 되지 않게 **뽑을 때** 막는다.
+
+const hmStr = (h: number, m: number) => `${n(h)}시간 ${n(m)}분`;
+const clockStr = (h: number, m: number) => `${n(h)}시 ${n(m)}분`;
+const msStr = (m: number, s: number) => `${n(m)}분 ${n(s)}초`;
+
+/** 시간 두 벌의 합 — carry 여부를 씨앗이 고르고, 합의 분이 $0$ 이 되지 않게 뽑는다. */
+function addHm(rng: Rng): {
+  h1: number;
+  m1: number;
+  h2: number;
+  m2: number;
+  hh: number;
+  mm: number;
+} {
+  const carry = intBetween(rng, 0, 1) === 1;
+  const h1 = intBetween(rng, 1, 4);
+  const h2 = intBetween(rng, 1, 3);
+  let m1: number;
+  let m2: number;
+  if (carry) {
+    m1 = intBetween(rng, 6, 55);
+    m2 = intBetween(rng, Math.max(6, 61 - m1), 55);
+  } else {
+    m1 = intBetween(rng, 1, 58);
+    m2 = intBetween(rng, 1, 59 - m1);
+  }
+  const total = m1 + m2;
+  return {
+    h1,
+    m1,
+    h2,
+    m2,
+    hh: h1 + h2 + (total >= 60 ? 1 : 0),
+    mm: total % 60,
+  };
+}
+
+/** 시간 두 벌의 차 — borrow 여부를 씨앗이 고른다. 앞이 늘 크다. */
+function subHm(rng: Rng): {
+  h1: number;
+  m1: number;
+  sh: number;
+  sm: number;
+  hh: number;
+  mm: number;
+} {
+  const borrow = intBetween(rng, 0, 1) === 1;
+  if (borrow) {
+    const h1 = intBetween(rng, 3, 8);
+    const sh = intBetween(rng, 1, h1 - 2);
+    const m1 = intBetween(rng, 5, 25);
+    const sm = intBetween(rng, m1 + 5, 55);
+    return { h1, m1, sh, sm, hh: h1 - 1 - sh, mm: m1 + 60 - sm };
+  }
+  const h1 = intBetween(rng, 2, 8);
+  const sh = intBetween(rng, 1, h1 - 1);
+  const m1 = intBetween(rng, 10, 55);
+  const sm = intBetween(rng, 1, m1 - 1);
+  return { h1, m1, sh, sm, hh: h1 - sh, mm: m1 - sm };
+}
+
+/** 분↔초 해설 한 줄 — «1분은 60초» 근거를 늘 같은 모양으로 쓴다. */
+const minToSec = (m: number) =>
+  `$1$ 분은 $60$ 초이므로 ${expr(`60\\times${m}=${m * 60}`)} 입니다.`;
+
+// ── 1-5-4 1분보다 작은 단위 ──
+
+/** 1단 — 분↔초 변환 식 그대로. 표준(「몇 초인지 쓰시오」 두 틀)과 말투를 갈라 둔다. */
+function sec154Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 5);
+  const s = intBetween(rng, 1, 59);
+  const form = intBetween(rng, 0, 3);
+  const prompt = intBetween(rng, 0, 1);
+  if (form === 0) {
+    return make(
+      unit,
+      prompt === 0
+        ? `${n(m)}분을 초로 나타내시오.`
+        : `${n(m)}분과 같은 시간은 몇 초인지 구하시오.`,
+      n(m * 60),
+      minToSec(m),
+    );
+  }
+  if (form === 1) {
+    const t = m * 60 + s;
+    return make(
+      unit,
+      prompt === 0
+        ? `${n(t)}초를 몇 분 몇 초로 나타내시오.`
+        : `${n(t)}초와 같은 시간을 몇 분 몇 초로 쓰시오.`,
+      msStr(m, s),
+      `$60$ 초는 $1$ 분이므로 ${n(t)}초는 ${msStr(m, s)}입니다. 검산하면 ${expr(`${m * 60}+${s}=${t}`)} 입니다.`,
+    );
+  }
+  if (form === 2) {
+    return make(
+      unit,
+      prompt === 0
+        ? `${msStr(m, s)}를 초로 나타내시오.`
+        : `${msStr(m, s)}와 같은 시간은 몇 초인지 구하시오.`,
+      n(m * 60 + s),
+      `$1$ 분은 $60$ 초이므로 ${n(m)}분은 ${n(m * 60)}초입니다. ${expr(`${m * 60}+${s}=${m * 60 + s}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    prompt === 0
+      ? `${n(m * 60)}초를 분으로 나타내시오.`
+      : `${n(m * 60)}초와 같은 시간은 몇 분인지 구하시오.`,
+    n(m),
+    `$60$ 초는 $1$ 분이므로 ${n(m * 60)}초는 ${n(m)}분입니다. 검산하면 ${expr(`60\\times${m}=${m * 60}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장 변환. 방향은 틀마다 정해져 있다. */
+function sec154Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 1, 4);
+  const s = intBetween(rng, 1, 59);
+  const t = m * 60 + s;
+  const form = intBetween(rng, 0, 7);
+  const toSec = form % 2 === 1;
+  const stems = [
+    `수영장에서 잠수를 ${n(t)}초 동안 했습니다. 잠수한 시간은 몇 분 몇 초인지 쓰시오.`,
+    `라면을 끓이는 데 ${msStr(m, s)}가 걸렸습니다. 걸린 시간은 몇 초인지 쓰시오.`,
+    `노래 한 곡의 길이는 ${n(t)}초입니다. 이 노래는 몇 분 몇 초짜리인지 쓰시오.`,
+    `양치질을 ${msStr(m, s)} 동안 했습니다. 몇 초 동안 한 것인지 쓰시오.`,
+    `달리기 기록이 ${n(t)}초였습니다. 이 기록은 몇 분 몇 초인지 쓰시오.`,
+    `엘리베이터를 ${msStr(m, s)} 동안 기다렸습니다. 기다린 시간은 몇 초인지 쓰시오.`,
+    `동영상의 길이는 ${n(t)}초입니다. 몇 분 몇 초짜리 동영상인지 쓰시오.`,
+    `줄넘기를 ${msStr(m, s)} 동안 했습니다. 줄넘기를 한 시간은 몇 초인지 쓰시오.`,
+  ];
+  return make(
+    unit,
+    stems[form]!,
+    toSec ? n(t) : msStr(m, s),
+    toSec
+      ? `$1$ 분은 $60$ 초이므로 ${n(m)}분은 ${n(m * 60)}초입니다. ${expr(`${m * 60}+${s}=${t}`)} 입니다.`
+      : `$60$ 초는 $1$ 분이므로 ${n(t)}초는 ${msStr(m, s)}입니다. 검산하면 ${expr(`${m * 60}+${s}=${t}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 활동을 이어 한 뒤 몇 분 몇 초인지(60 경계 갈림, 두 단계). */
+function sec154Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m1 = intBetween(rng, 1, 3);
+  const s1 = intBetween(rng, 5, 55);
+  let s2 = intBetween(rng, 5, 55);
+  if ((s1 + s2) % 60 === 0) s2 += 1; // 초 자리가 $0$ 이 되면 한 칸 민다
+  const total = m1 * 60 + s1 + s2;
+  const am = Math.floor(total / 60);
+  const as = total % 60;
+  const stem = pick(rng, [
+    `플랭크를 ${msStr(m1, s1)} 동안 하고, 쉬지 않고 ${n(s2)}초 더 했습니다. 플랭크를 한 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `노래를 ${msStr(m1, s1)} 동안 부르고 이어서 ${n(s2)}초 더 불렀습니다. 노래를 부른 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `물을 ${msStr(m1, s1)} 동안 끓이고 ${n(s2)}초 더 끓였습니다. 물을 끓인 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `숨 참기를 ${msStr(m1, s1)} 하고 나서 ${n(s2)}초 더 참았습니다. 모두 몇 분 몇 초 동안 참았는지 쓰시오.`,
+    `훌라후프를 ${msStr(m1, s1)} 동안 돌리고 ${n(s2)}초 더 돌렸습니다. 훌라후프를 돌린 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `책을 ${msStr(m1, s1)} 동안 소리 내어 읽고, ${n(s2)}초 동안 더 읽었습니다. 모두 몇 분 몇 초 동안 읽었는지 쓰시오.`,
+    `제자리 뛰기를 ${msStr(m1, s1)} 하고 쉬지 않고 ${n(s2)}초 더 했습니다. 모두 몇 분 몇 초인지 쓰시오.`,
+    `호흡 운동을 ${msStr(m1, s1)} 한 뒤 ${n(s2)}초 더 이어 했습니다. 호흡 운동을 한 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    msStr(am, as),
+    `초끼리 더하면 ${expr(`${s1}+${s2}=${s1 + s2}`)} 입니다. ${
+      s1 + s2 >= 60
+        ? `$60$ 초는 $1$ 분이므로 ${n(s1 + s2)}초는 ${msStr(1, s1 + s2 - 60)}입니다. `
+        : ``
+    }모두 ${msStr(am, as)}입니다. 검산하면 ${expr(`${am * 60}+${as}=${total}`)} 초입니다.`,
+  );
+}
+
+/** 4단 — 역산: 목표한 분에서 이미 한 초를 되짚어 뺀다. */
+function sec154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const M = intBetween(rng, 2, 5);
+  const t = intBetween(rng, 30, M * 60 - 30);
+  const remain = M * 60 - t;
+  const stem = pick(rng, [
+    `줄넘기를 ${n(M)}분 동안 하기로 했습니다. 지금까지 ${n(t)}초 했다면 몇 초 더 해야 하는지 쓰시오.`,
+    `명상을 ${n(M)}분 동안 하려고 합니다. 벌써 ${n(t)}초가 지났다면 남은 시간은 몇 초인지 쓰시오.`,
+    `${n(M)}분짜리 모래시계가 있습니다. 모래가 떨어지기 시작한 지 ${n(t)}초가 지났다면 몇 초 뒤에 다 떨어지는지 쓰시오.`,
+    `발표 시간은 ${n(M)}분입니다. 지금까지 ${n(t)}초 발표했다면 남은 발표 시간은 몇 초인지 쓰시오.`,
+    `노래 한 곡은 ${n(M)}분짜리입니다. ${n(t)}초가 지났다면 노래가 몇 초 뒤에 끝나는지 쓰시오.`,
+    `체험 시간은 ${n(M)}분입니다. 시작한 지 ${n(t)}초가 지났다면 남은 체험 시간은 몇 초인지 쓰시오.`,
+    `타이머를 ${n(M)}분에 맞추었습니다. ${n(t)}초가 지난 지금, 몇 초 뒤에 울리는지 쓰시오.`,
+    `라면을 ${n(M)}분 동안 끓여야 합니다. 지금까지 ${n(t)}초 끓였다면 몇 초 더 끓여야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(remain),
+    `${n(M)}분은 ${expr(`60\\times${M}=${M * 60}`)} 초입니다. ${expr(`${M * 60}-${t}=${remain}`)} 이므로 ${n(remain)}초 남았습니다.`,
+  );
+}
+
+// ── 1-5-5 시간의 덧셈 ──
+
+/** 1단 — 두 시간의 합 식 그대로(올림 갈림). 표준(「…과 …을 더하면」 한 틀)과 갈라 둔다. */
+function time155Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2, hh, mm } = addHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(h2, m2);
+  const stem = pick(rng, [
+    `다음 두 시간의 합은 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
+    `${A}에 ${B}을 더한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간 ${A}과 ${B}의 합을 구하시오.`,
+    `합이 몇 시간 몇 분인지 쓰시오.\n\n${A} $+$ ${B}`,
+    `${A}보다 ${B} 더 긴 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `다음 시간을 모두 더하면 몇 시간 몇 분인지 구하시오.\n\n${A}, ${B}`,
+    `${A}과 ${B}을 이어서 보내면 모두 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간의 합을 구하시오.\n\n${A}, ${B}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다. ${
+      m1 + m2 >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장의 합. */
+function time155Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2, hh, mm } = addHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(h2, m2);
+  const stem = pick(rng, [
+    `숙제를 ${A} 동안 하고, 책을 ${B} 동안 읽었습니다. 공부한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `기차를 ${A} 타고, 이어서 버스를 ${B} 탔습니다. 탈것을 탄 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `오전에 ${A}, 오후에 ${B} 동안 그림을 그렸습니다. 그림을 그린 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `청소를 ${A} 하고 요리를 ${B} 했습니다. 집안일을 한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `등산을 ${A} 하고 내려오는 데 ${B} 걸렸습니다. 산에 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `영화를 ${A} 보고, 이어진 감독 인터뷰를 ${B} 보았습니다. 상영관에 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `수영을 ${A}, 줄넘기를 ${B} 동안 했습니다. 운동한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `블록 놀이를 ${A} 하고 보드게임을 ${B} 했습니다. 놀이한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다. ${
+      m1 + m2 >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 3단 — 시각 + 걸린 시간 = 끝나는 시각(두 단계). */
+function time155Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sh = intBetween(rng, 1, 6);
+  const sm = intBetween(rng, 5, 55);
+  const dh = intBetween(rng, 1, 3);
+  let dm = intBetween(rng, 5, 55);
+  if ((sm + dm) % 60 === 0) dm += 1; // 끝나는 분이 $0$ 이면 한 칸 민다
+  const total = sm + dm;
+  const eh = sh + dh + (total >= 60 ? 1 : 0);
+  const em = total % 60;
+  const stem = pick(rng, [
+    `${clockStr(sh, sm)}에 시작한 영화가 ${hmStr(dh, dm)} 동안 상영됩니다. 영화가 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 출발한 기차가 ${hmStr(dh, dm)} 뒤에 도착합니다. 도착 시각은 몇 시 몇 분인지 쓰시오.`,
+    `공연이 ${clockStr(sh, sm)}에 시작하여 ${hmStr(dh, dm)} 동안 이어집니다. 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}부터 ${hmStr(dh, dm)} 동안 봉사 활동을 합니다. 봉사 활동이 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 요리를 시작해 ${hmStr(dh, dm)} 만에 끝냈습니다. 요리가 끝난 시각은 몇 시 몇 분인지 쓰시오.`,
+    `견학이 ${clockStr(sh, sm)}에 시작되어 ${hmStr(dh, dm)} 동안 진행됩니다. 견학이 끝나는 시각을 구하시오.`,
+    `${clockStr(sh, sm)}에 잠들어 ${hmStr(dh, dm)} 동안 낮잠을 잤습니다. 잠에서 깬 시각은 몇 시 몇 분인지 쓰시오.`,
+    `버스가 ${clockStr(sh, sm)}에 출발해 ${hmStr(dh, dm)} 뒤에 종점에 닿습니다. 종점에 닿는 시각은 몇 시 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    clockStr(eh, em),
+    `분끼리 더하면 ${expr(`${sm}+${dm}=${total}`)} 입니다. ${
+      total >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(total)}분은 ${hmStr(1, em)}입니다. `
+        : ``
+    }시끼리 더하면 ${expr(`${sh}+${dh}=${sh + dh}`)} 이므로 끝나는 시각은 ${clockStr(eh, em)}입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 세 시간의 합(분 합이 두 번 올림될 수 있다). */
+function time155Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const h1 = intBetween(rng, 1, 2);
+  const h2 = intBetween(rng, 1, 2);
+  const h3 = intBetween(rng, 0, 1);
+  const m1 = intBetween(rng, 15, 55);
+  const m2 = intBetween(rng, 15, 55);
+  let m3 = intBetween(rng, 15, 55);
+  if ((m1 + m2 + m3) % 60 === 0) m3 += 1;
+  const tm = m1 + m2 + m3;
+  const carry = Math.floor(tm / 60);
+  const mm = tm % 60;
+  const hh = h1 + h2 + h3 + carry;
+  const parts: [string, string, string] = [
+    hmStr(h1, m1),
+    hmStr(h2, m2),
+    h3 === 0 ? `${n(m3)}분` : hmStr(h3, m3),
+  ];
+  const stem = pick(rng, [
+    `독서를 ${parts[0]}, 운동을 ${parts[1]}, 산책을 ${parts[2]} 동안 했습니다. 세 활동을 한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `기차를 ${parts[0]}, 버스를 ${parts[1]}, 지하철을 ${parts[2]} 동안 탔습니다. 탈것을 탄 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `오전 공부 ${parts[0]}, 오후 공부 ${parts[1]}, 저녁 공부 ${parts[2]} — 하루에 공부한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `청소 ${parts[0]}, 빨래 ${parts[1]}, 설거지 ${parts[2]} 만큼 걸렸습니다. 집안일에 걸린 시간을 모두 더하면 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 모두 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 이고 ${expr(`${m1 + m2}+${m3}=${tm}`)} 입니다. ${
+      carry >= 1
+        ? `$60$ 분은 $1$ 시간이므로 ${n(tm)}분은 ${hmStr(carry, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(h3 === 0 ? `${h1}+${h2}=${h1 + h2}` : `${h1}+${h2}+${h3}=${h1 + h2 + h3}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+// ── 1-5-6 시간의 뺄셈 ──
+
+/** 1단 — 두 시간의 차 식 그대로(내림 갈림). 표준(「…에서 …을 빼면」 한 틀)과 갈라 둔다. */
+function time156Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(sh, sm);
+  const stem = pick(rng, [
+    `다음 두 시간의 차는 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
+    `${A}과 ${B}의 차를 구하시오.`,
+    `${A}은 ${B}보다 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `차가 몇 시간 몇 분인지 쓰시오.\n\n${A} $-$ ${B}`,
+    `${A}에서 ${B}만큼 지나면 남는 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간의 차를 구하시오.\n\n${A}, ${B}`,
+    `계획한 ${A} 가운데 ${B}을 쓰고 나면 몇 시간 몇 분이 남는지 쓰시오.`,
+    `${B}과 ${A}의 차는 몇 시간 몇 분인지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    m1 < sm
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${m1}+60=${m1 + 60}`)} 이고 ${expr(`${m1 + 60}-${sm}=${mm}`)} 입니다. 시간끼리 빼면 ${expr(`${h1 - 1}-${sh}=${hh}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${m1}-${sm}=${mm}`)} 이고, 시간끼리 빼면 ${expr(`${h1}-${sh}=${hh}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장의 차. 더 오래 한 쪽이 앞이라 차가 늘 양수다. */
+function time156Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(sh, sm);
+  const stem = pick(rng, [
+    `형은 ${A}, 동생은 ${B} 동안 자전거를 탔습니다. 형이 몇 시간 몇 분 더 오래 탔는지 쓰시오.`,
+    `어제는 ${A}, 오늘은 ${B} 동안 책을 읽었습니다. 어제가 오늘보다 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `비행기는 ${A}, 기차는 ${B} 걸립니다. 기차가 몇 시간 몇 분 더 빨리 도착하는지 쓰시오.`,
+    `언니는 ${A}, 나는 ${B} 동안 그림을 그렸습니다. 언니가 나보다 몇 시간 몇 분 더 그렸는지 쓰시오.`,
+    `수학 공부를 ${A}, 영어 공부를 ${B} 했습니다. 수학 공부를 몇 시간 몇 분 더 오래 했는지 쓰시오.`,
+    `첫날에는 ${A}, 둘째 날에는 ${B} 동안 여행지를 걸었습니다. 첫날이 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `쾌속선은 ${B}, 여객선은 ${A} 걸립니다. 쾌속선이 몇 시간 몇 분 더 빨리 닿는지 쓰시오.`,
+    `놀이공원에서 언니는 ${A}, 동생은 ${B} 동안 놀이 기구를 탔습니다. 언니가 몇 시간 몇 분 더 탔는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    m1 < sm
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${m1}+60=${m1 + 60}`)} 이고 ${expr(`${m1 + 60}-${sm}=${mm}`)} 입니다. 시간끼리 빼면 ${expr(`${h1 - 1}-${sh}=${hh}`)} 이므로 차는 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${m1}-${sm}=${mm}`)} 이고, 시간끼리 빼면 ${expr(`${h1}-${sh}=${hh}`)} 이므로 차는 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 3단 — 시작·끝 시각에서 걸린 시간을 구한다(두 단계). */
+function time156Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sh = intBetween(rng, 1, 5);
+  const borrow = intBetween(rng, 0, 1) === 1;
+  let sm: number;
+  let eh: number;
+  let em: number;
+  if (borrow) {
+    sm = intBetween(rng, 20, 55);
+    em = intBetween(rng, 5, sm - 5);
+    eh = sh + intBetween(rng, 2, 4);
+  } else {
+    sm = intBetween(rng, 5, 40);
+    em = intBetween(rng, sm + 5, 55);
+    eh = sh + intBetween(rng, 1, 4);
+  }
+  const hh = borrow ? eh - sh - 1 : eh - sh;
+  const mm = borrow ? em + 60 - sm : em - sm;
+  const stem = pick(rng, [
+    `${clockStr(sh, sm)}에 시작한 연극이 ${clockStr(eh, em)}에 끝났습니다. 연극을 한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 출발하여 ${clockStr(eh, em)}에 도착했습니다. 가는 데 걸린 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `도서관에 ${clockStr(sh, sm)}에 들어가서 ${clockStr(eh, em)}에 나왔습니다. 도서관에 있던 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}부터 ${clockStr(eh, em)}까지 축구를 했습니다. 축구를 한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `영화가 ${clockStr(sh, sm)}에 시작해 ${clockStr(eh, em)}에 끝났습니다. 상영 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 청소를 시작해 ${clockStr(eh, em)}에 마쳤습니다. 청소한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `기차가 ${clockStr(sh, sm)}에 떠나 ${clockStr(eh, em)}에 도착했습니다. 기차를 탄 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `체험 학습이 ${clockStr(sh, sm)}부터 ${clockStr(eh, em)}까지 있었습니다. 체험 학습 시간은 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    borrow
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${em}+60=${em + 60}`)} 이고 ${expr(`${em + 60}-${sm}=${mm}`)} 입니다. 시끼리 빼면 ${expr(`${eh - 1}-${sh}=${hh}`)} 이므로 걸린 시간은 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${em}-${sm}=${mm}`)} 이고, 시끼리 빼면 ${expr(`${eh}-${sh}=${hh}`)} 이므로 걸린 시간은 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 4단 — 역산: 빼고 남은 시간에서 처음 시간을 되짚는다(덧셈으로 되돌린다). */
+function time156Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dh = intBetween(rng, 1, 3);
+  let dm = intBetween(rng, 5, 55);
+  const H = intBetween(rng, 1, 4);
+  const M = intBetween(rng, 5, 55);
+  if ((M + dm) % 60 === 0) dm += 1;
+  const total = M + dm;
+  const hh = H + dh + (total >= 60 ? 1 : 0);
+  const mm = total % 60;
+  const stem = pick(rng, [
+    `어떤 시간에서 ${hmStr(dh, dm)}을 뺐더니 ${hmStr(H, M)}이 되었습니다. 어떤 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `전체 시간에서 ${hmStr(dh, dm)}을 쓰고 나니 ${hmStr(H, M)}이 남았습니다. 전체 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `찰흙 놀이에 ${hmStr(dh, dm)}을 쓰고 ${hmStr(H, M)}이 남았습니다. 처음에 있던 놀이 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `계획한 시간 중 ${hmStr(dh, dm)}을 이미 보냈고 ${hmStr(H, M)}이 남았습니다. 계획한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `가지고 있던 자유 시간에서 ${hmStr(dh, dm)}을 쓰니 ${hmStr(H, M)}이 남았습니다. 처음 자유 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `건전지로 ${hmStr(dh, dm)}을 쓰고 나니 ${hmStr(H, M)} 쓸 만큼 남았습니다. 건전지로 쓸 수 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `어떤 시간보다 ${hmStr(dh, dm)} 짧은 시간이 ${hmStr(H, M)}입니다. 어떤 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${hmStr(H, M)}은 어떤 시간에서 ${hmStr(dh, dm)}을 뺀 것입니다. 어떤 시간을 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `뺀 시간을 도로 더합니다. 분끼리 더하면 ${expr(`${M}+${dm}=${total}`)} 입니다. ${
+      total >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(total)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${H}+${dh}=${H + dh}`)} 이므로 처음 시간은 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -3283,6 +4036,42 @@ export const G3_TIERS: ElemTierMap = {
     기본: mul14Word,
     응용: mul14Apply,
     심화: mul14Deep,
+  },
+  "초3|1-5-1": {
+    연산: lenCalcOf(LEN_CM),
+    기본: lenWordOf(LEN_CM),
+    응용: lenApplyOf(LEN_CM),
+    심화: lenDeepOf(LEN_CM),
+  },
+  "초3|1-5-2": {
+    연산: lenCalcOf(LEN_KM),
+    기본: lenWordOf(LEN_KM),
+    응용: lenApplyOf(LEN_KM),
+    심화: lenDeepOf(LEN_KM),
+  },
+  "초3|1-5-3": {
+    연산: guessCalc,
+    기본: guessWord,
+    응용: guessApply,
+    심화: guessDeep,
+  },
+  "초3|1-5-4": {
+    연산: sec154Calc,
+    기본: sec154Word,
+    응용: sec154Apply,
+    심화: sec154Deep,
+  },
+  "초3|1-5-5": {
+    연산: time155Calc,
+    기본: time155Word,
+    응용: time155Apply,
+    심화: time155Deep,
+  },
+  "초3|1-5-6": {
+    연산: time156Calc,
+    기본: time156Word,
+    응용: time156Apply,
+    심화: time156Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,
