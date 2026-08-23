@@ -930,7 +930,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
           : `$\\angle PAB$의 크기를 구하시오.`;
       const tail =
         mode === 0
-          ? `$\\angle PAO=\\angle PBO=90^\\circ$이므로 사각형 $APBO$에서 $\\angle AOB=360^\\circ-90^\\circ-90^\\circ-${p}^\\circ=${x}^\\circ$이다.`
+          ? `접선은 접점을 지나는 반지름과 수직이므로 $\\angle PAO=\\angle PBO=90^\\circ$이다.\n사각형 $APBO$의 내각의 크기의 합에서 $\\angle AOB=360^\\circ-90^\\circ-90^\\circ-${p}^\\circ=${x}^\\circ$이다.`
           : `$\\overline{PA}=\\overline{PB}$이므로 삼각형 $PAB$는 이등변삼각형이다.\n따라서 $\\angle PAB=\\dfrac{1}{2}\\times(180^\\circ-${p}^\\circ)=${x}^\\circ$이다.`;
       return {
         content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\angle APB=${p}^\\circ$일 때, ${ask}`,
@@ -1373,7 +1373,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       return {
         content: `원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
         answer: cm(ad),
-        solution: `원에 외접하는 사각형에서 두 쌍의 대변의 길이의 합은 같으므로 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\\n따라서 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
+        solution: `원에 외접하는 사각형에서 두 쌍의 대변의 길이의 합은 같으므로 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\n따라서 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, ab, bc, cd, ad, x: ad },
         figureSpec: figCircumRight({ r: rr, tB, tA, mirror: false }),
       };

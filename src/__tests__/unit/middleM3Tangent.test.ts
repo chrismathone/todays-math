@@ -267,6 +267,51 @@ describe("중3 원의 접선 10유형 (원과 직선 07~16)", () => {
         }
       });
 
+      /**
+       * KaTeX 밖의 백슬래시는 지면에 **날 문자로** 나간다(제품 렌더러가
+       * `$` 밖 백슬래시를 글자 그대로 이스케이프한다). 2026-08-23 실제로
+       * 해설 한 줄이 `…이다.\n따라서…` 로 났다 — 줄바꿈 대신 «\n» 이 찍힌다.
+       * 숫자 가드(bareNumbers)는 이 부류를 구조적으로 못 본다.
+       */
+      it("KaTeX 밖에 백슬래시가 없다 (날 \\n 이 지면에 찍히는 것을 막는다)", () => {
+        const outside = (t: string): string => t.replace(/\$[^$]*\$/g, " ");
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 8; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const [name, text] of [
+              ["content", p.content],
+              ["answer", p.answer],
+              ["solution", p.solution],
+            ] as const) {
+              // `.` 는 개행에 안 맞는다 — 줄 끝 백슬래시(템플릿 이어붙임)까지
+              // 보려면 [\s\S] 여야 한다(실측 2026-08-23: 그 판이 통과했다).
+              expect(
+                outside(text).match(/\\[\s\S]/g) ?? [],
+                `${e.key} seed ${seed} v${v} ${name}`,
+              ).toEqual([]);
+            }
+          }
+        }
+      });
+
+      /**
+       * 해설은 「식 세우기 → 답」 두 단계 이상이라 줄바꿈이 있어야 한다.
+       * 템플릿 리터럴에서 줄 끝 백슬래시(이어붙임)를 잘못 쓰면 줄바꿈이
+       * **조용히 사라져** 두 문장이 한 줄로 붙는다 — 백슬래시 가드는 그 판을
+       * 못 본다(산출물에 백슬래시가 안 남는다). 그래서 축을 따로 둔다.
+       */
+      it("해설이 한 줄로 뭉치지 않는다 (단계 사이 줄바꿈)", () => {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 8; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            expect(
+              p.solution.split("\n").filter((s) => s.trim() !== "").length,
+              `${e.key} seed ${seed} v${v} 해설 줄 수`,
+            ).toBeGreaterThanOrEqual(2);
+          }
+        }
+      });
+
       it("그림이 항상 있고 스펙의 수는 전부 유한하다", () => {
         for (const seed of SEEDS) {
           const p = generateMiddleProblem(e.key, seed);
