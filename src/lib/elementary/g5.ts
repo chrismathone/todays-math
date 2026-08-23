@@ -2062,6 +2062,450 @@ function area65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-1 자연수의 혼합 계산 — 난이도 4단 (D-72 확대 2차) ──────────
+ *
+ * 이 대단원은 **소단원 이름이 연산 집합을 내건다**(D-66 ⑼) — 1-1-1 은 (+·−) 또는 (×·÷)만,
+ * 1-1-2 는 +·− 에 ×(또는 ÷) 하나, 1-1-3 은 네 연산 전부. 갈래 넷이 **모두** 그 집합을
+ * 지킨다(발문·해설의 수식까지). units.ts 에 「괄호」 소단원은 없으므로(2026-08-23 확인)
+ * 괄호는 소단원 축이 아니라 **갈래 축의 재료**다.
+ *
+ * 리드 지시(2026-08-23) 둘을 구성으로 보장한다:
+ *  ① **순서가 답을 가른다** — 잘못된 순서(같은 층은 뒤부터, 층이 섞이면 왼쪽부터 그냥)로
+ *    접은 값이 정답과 반드시 다르게 수를 뽑는다. 곱하는·나누는 수를 2 이상으로 두면
+ *    대수적으로 언제나 갈린다(예: `a+b×c-d` 의 왼쪽부터 값과의 차는 `a(c-1)`).
+ *  ② **모든 중간값이 자연수** — 나눗셈은 몫을 먼저 뽑아 나누어떨어짐을 구성으로 만든다.
+ *    가드로 거르지 않는다(거르면 변형 공간이 씨앗에 따라 조용히 좁아진다).
+ *
+ * 기본과 응용을 가르는 한 겹: **기본은 직선형**(이야기 순서 그대로 왼쪽에서 오른쪽으로
+ * 한 식이 선다), **응용은 묶음**(중간 덩어리를 먼저 계산해야 식이 선다 — 괄호가 생긴다).
+ * 소재 풀은 소단원마다 서로 다르다(D-66 ⑸).
+ */
+
+/**
+ * `lo..hi` 에서 `not` 을 뺀 수 하나.
+ *
+ * 혼합 계산은 「더했다 도로 빼기」(`+9-9`)·「나눴다 도로 곱하기」(`÷7×7`)가 나오면
+ * 답이 발문의 수 그대로가 된다 — 계산을 안 해도 맞는 문항이다. 표본 눈검사에서 실제로
+ * 나왔고(2026-08-23), 가드로 거르지 않고 **뽑는 범위에서 뺀다**.
+ */
+function intBetweenExcept(
+  rng: Rng,
+  lo: number,
+  hi: number,
+  not: number,
+): number {
+  const cands: number[] = [];
+  for (let v = lo; v <= hi; v += 1) if (v !== not) cands.push(v);
+  return pick(rng, cands);
+}
+
+/** 1-1-1 기본 ㉮ 타고 내리는 것. 이웃 소단원 풀과 겹치지 않는다(D-66 ⑸). */
+const RIDE_THINGS = ["버스", "지하철", "기차"] as const;
+/** 1-1-1 기본 ㉯ 잘라 잇는 것 (cm). */
+const CUT_THINGS = ["리본", "끈", "철사"] as const;
+/** 1-1-1 응용 ㉮ 모으는 것 — (무엇, 만들었다는 말). */
+const FOLD_THINGS = [
+  ["종이학", "접었습니다"],
+  ["카드", "모았습니다"],
+] as const;
+/** 1-1-1 응용 ㉯ 봉지에 든 것. */
+const BAG_THINGS = ["초콜릿", "젤리"] as const;
+
+/** 연산 — 같은 층 두 연산을 왼쪽부터. 뒤를 먼저 접으면 값이 갈라진다(순서가 답을 가른다). */
+function mix111Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    // `a-b+c` — 뒤(b+c)를 먼저 접으면 정답과 `2c` 만큼 어긋난다. `c ≥ 5` 라 언제나 갈린다.
+    // `c ≠ b` — 같으면 뺐다 도로 더해 답이 `a` 그대로다.
+    const a = intBetween(rng, 25, 80);
+    const b = intBetween(rng, 7, a - 6);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    return make(
+      unit,
+      expr(`${a}-${b}+${c}=\\square`),
+      n(a - b + c),
+      `덧셈과 뺄셈만 있으면 앞에서부터 차례로 계산합니다. ${expr(`${a}-${b}=${a - b}`)}이므로 ${expr(`${a - b}+${c}=${a - b + c}`)}입니다.`,
+    );
+  }
+  // `a÷b×c` — 뒤(b×c)를 먼저 접으면 `a÷(b×c)` 가 되어 갈라진다(`c ≥ 2`).
+  // `c ≠ b` — 같으면 나눴다 도로 곱해 답이 `a` 그대로다.
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  const c = intBetweenExcept(rng, 2, 9, b);
+  return make(
+    unit,
+    expr(`${a}\\div${b}\\times${c}=\\square`),
+    n(q * c),
+    `곱셈과 나눗셈만 있으면 앞에서부터 차례로 계산합니다. ${expr(`${a}\\div${b}=${q}`)}이므로 ${expr(`${q}\\times${c}=${q * c}`)}입니다.`,
+  );
+}
+
+/** 기본 — 직선형 문장 한 겹. 이야기 순서 그대로 한 식이 선다. */
+function mix111Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const ride = pick(rng, RIDE_THINGS);
+    const a = intBetween(rng, 20, 45);
+    const b = intBetween(rng, 5, a - 8);
+    const c = intBetweenExcept(rng, 3, 15, b); // 내린 수와 같으면 답이 처음 그대로다
+    return make(
+      unit,
+      `${ride}에 ${n(a)}명이 타고 있었습니다. 이번 정거장에서 ${n(b)}명이 내리고 ${n(c)}명이 탔습니다. 지금 ${ride}에 타고 있는 사람은 몇 명입니까?`,
+      n(a - b + c),
+      `하나의 식으로 나타내면 ${expr(`${a}-${b}+${c}`)}입니다. 앞에서부터 계산하면 ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}+${c}=${a - b + c}`)}입니다.`,
+    );
+  }
+  // 자른 도막 «중» `c` 개를 잇는다 — 도막은 `b` 개뿐이므로 `c < b` 여야 이야기가 선다.
+  const thing = pick(rng, CUT_THINGS);
+  const b = intBetween(rng, 3, 9);
+  const len = intBetween(rng, 3, 20);
+  const a = b * len;
+  const c = intBetween(rng, 2, b - 1);
+  return make(
+    unit,
+    `길이가 ${n(a)} cm인 ${wj(thing, "을", "를")} 똑같이 ${n(b)}도막으로 잘랐습니다. 자른 도막 중 ${n(c)}개를 겹치지 않게 이어 붙이면 전체 길이는 몇 cm입니까?`,
+    n(len * c),
+    `하나의 식으로 나타내면 ${expr(`${a}\\div${b}\\times${c}`)}입니다. 앞에서부터 계산하면 ${expr(`${a}\\div${b}=${len}`)}, ${expr(`${len}\\times${c}=${len * c}`)}입니다.`,
+  );
+}
+
+/** 응용 — 묶음 두 단계: 덜어 낼 것을 먼저 묶거나(㉮ 합), 전체를 먼저 만든다(㉯ 곱). */
+function mix111Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [thing, made] = pick(rng, FOLD_THINGS);
+    const b = intBetween(rng, 6, 25);
+    const c = intBetween(rng, 5, 20);
+    const rest = intBetween(rng, 4, 30);
+    const a = b + c + rest;
+    return make(
+      unit,
+      `${wj(thing, "을", "를")} ${n(a)}개 ${made}. 동생에게 ${n(b)}개, 친구에게 ${n(c)}개를 주었습니다. 남은 ${wj(thing, "은", "는")} 몇 개입니까?`,
+      n(rest),
+      `준 것을 먼저 묶으면 ${expr(`${b}+${c}=${b + c}`)}입니다. 하나의 식으로 나타내면 ${expr(`${a}-(${b}+${c})`)}이므로 ${expr(`${a}-${b + c}=${rest}`)}입니다.`,
+    );
+  }
+  const thing = pick(rng, BAG_THINGS);
+  // `c ∉ {a, b}` — 겹치면 `×a÷a` 꼴로 접혀 답이 발문의 수 그대로다. 후보가 반드시
+  // 남게 봉지 수를 4~6 으로 두고, `b=5` 일 때만 홀수 소수 곱을 피한다(5×5·7×5 는
+  // 2~9 안의 «딴» 약수가 없다). 그러면 짝수 `a` 는 `2`, `a=9` 는 `3` 이 언제나 남는다.
+  const b = intBetween(rng, 4, 6);
+  const a = b === 5 ? pick(rng, [4, 6, 8, 9]) : intBetween(rng, 3, 9);
+  const c = pick(
+    rng,
+    [2, 3, 4, 5, 6, 7, 8, 9].filter(
+      (v) => (a * b) % v === 0 && v !== a * b && v !== a && v !== b,
+    ),
+  );
+  return make(
+    unit,
+    `${wj(thing, "이", "가")} 한 봉지에 ${n(a)}개씩 ${n(b)}봉지 있습니다. 이 ${wj(thing, "을", "를")} ${n(c)}명이 남김없이 똑같이 나누어 가지면 한 사람이 몇 개씩 가지게 됩니까?`,
+    n((a * b) / c),
+    `전체를 먼저 구하면 ${expr(`${a}\\times${b}=${a * b}`)}입니다. 하나의 식으로 나타내면 ${expr(`${a}\\times${b}\\div${c}`)}이므로 ${expr(`${a * b}\\div${c}=${(a * b) / c}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — 「잘못 계산했더니」(D-72 ⑵ 명시 유형). 어떤 수를 먼저 되찾고 바르게 계산한다.
+ * 소단원의 두 얼굴대로 ㉮는 덧셈↔뺄셈, ㉯는 곱셈↔나눗셈을 바꿔 낸다.
+ */
+function mix111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 5, 25);
+    const c = intBetween(rng, 10, 60);
+    return make(
+      unit,
+      `어떤 수에 ${nj(b, "을", "를")} 더해야 할 것을 잘못하여 뺐더니 ${nj(c, "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+      n(c + 2 * b),
+      `어떤 수를 구하면 ${expr(`${c}+${b}=${c + b}`)}입니다. 바르게 계산하면 ${expr(`${c + b}+${b}=${c + 2 * b}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 6);
+  const c = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `어떤 수에 ${nj(b, "을", "를")} 곱해야 할 것을 잘못하여 ${nro(b)} 나누었더니 ${nj(c, "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    n(b * b * c),
+    `어떤 수를 구하면 ${expr(`${c}\\times${b}=${b * c}`)}입니다. 바르게 계산하면 ${expr(`${b * c}\\times${b}=${b * b * c}`)}입니다.`,
+  );
+}
+
+/* ── 1-1-2 덧셈, 뺄셈, 곱셈(나눗셈) — ×와 ÷ 중 **하나만** 낀다(둘 다면 1-1-3 이다) ── */
+
+/** 1-1-2 기본 ㉮ 주고받는 것. */
+const GIVE_THINGS = ["사탕", "과자"] as const;
+/** 1-1-2 기본 ㉯ 나누어 갖는 것 (장). */
+const PAPER_THINGS = ["색종이", "도화지"] as const;
+/** 1-1-2 응용 ㉮ 문구점 물건 두 가지 — (물건1, 세는 말1, 물건2, 세는 말2). */
+const STORE_PAIRS = [
+  ["연필", "자루", "지우개", "개"],
+  ["공책", "권", "볼펜", "자루"],
+] as const;
+/** 1-1-2 응용 ㉯ 상자에 덜어 두는 것. */
+const MARBLE_THINGS = ["구슬", "바둑돌"] as const;
+
+/** 연산 — 세 연산이 한 식에. 왼쪽부터 그냥 접으면 `a(c-1)` 만큼 어긋난다(`c ≥ 2`). */
+function mix112Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const a = b * c + intBetween(rng, 5, 40);
+    const d = intBetweenExcept(rng, 4, 15, b * c); // 뺀 만큼 도로 더하면 답이 a 다
+    return make(
+      unit,
+      expr(`${a}-${b}\\times${c}+${d}=\\square`),
+      n(a - b * c + d),
+      `곱셈을 먼저 계산합니다. ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}-${b * c}+${d}=${a - b * c + d}`)}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const a = intBetween(rng, 10, 50);
+  // 더한 몫만큼 도로 빼면 답이 `a` 다 — `d ≠ q`.
+  const d = intBetweenExcept(rng, 2, Math.min(15, a + q - 2), q);
+  return make(
+    unit,
+    expr(`${a}+${b}\\div${c}-${d}=\\square`),
+    n(a + q - d),
+    `나눗셈을 먼저 계산합니다. ${expr(`${b}\\div${c}=${q}`)}이므로 ${expr(`${a}+${q}-${d}=${a + q - d}`)}입니다.`,
+  );
+}
+
+/** 기본 — 직선형 문장 한 겹(㉮ 곱셈이 낌 · ㉯ 나눗셈이 낌). */
+function mix112Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, GIVE_THINGS);
+    const b = intBetween(rng, 2, 6);
+    const c = intBetween(rng, 2, 6);
+    const a = b * c + intBetween(rng, 3, 25);
+    const d = intBetweenExcept(rng, 3, 15, b * c); // 준 만큼 도로 받으면 답이 a 다
+    return make(
+      unit,
+      `${wj(thing, "을", "를")} ${n(a)}개 가지고 있습니다. 친구 ${n(b)}명에게 ${n(c)}개씩 나누어 주고, 어머니께 ${wj(thing, "을", "를")} ${n(d)}개 받았습니다. 지금 가지고 있는 ${wj(thing, "은", "는")} 몇 개입니까?`,
+      n(a - b * c + d),
+      `하나의 식으로 나타내면 ${expr(`${a}-${b}\\times${c}+${d}`)}입니다. 곱셈을 먼저 계산하면 ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}-${b * c}+${d}=${a - b * c + d}`)}입니다.`,
+    );
+  }
+  const thing = pick(rng, PAPER_THINGS);
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 3, 12);
+  const a = b * q;
+  const c = intBetween(rng, 2, 9);
+  const d = intBetweenExcept(rng, 2, q + c - 2, c); // 받은 만큼 도로 쓰면 답이 몫 그대로다
+  return make(
+    unit,
+    `${wj(thing, "을", "를")} ${n(a)}장 준비해 모둠 ${n(b)}개에 똑같이 나누어 주었습니다. 우리 모둠은 받은 ${thing}에 ${n(c)}장을 더 받고 ${n(d)}장을 사용했습니다. 우리 모둠에 남은 ${wj(thing, "은", "는")} 몇 장입니까?`,
+    n(q + c - d),
+    `하나의 식으로 나타내면 ${expr(`${a}\\div${b}+${c}-${d}`)}입니다. 나눗셈을 먼저 계산하면 ${expr(`${a}\\div${b}=${q}`)}이므로 ${expr(`${q}+${c}-${d}=${q + c - d}`)}입니다.`,
+  );
+}
+
+/** 응용 — 묶음 두 단계: 물건값을 먼저 묶거나(㉮), 남은 것을 먼저 묶는다(㉯). */
+function mix112Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [item1, cnt1, item2, cnt2] = pick(rng, STORE_PAIRS);
+    const b = 100 * intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = 100 * intBetween(rng, 2, 8);
+    const e = intBetween(rng, 2, 6);
+    const change = 100 * intBetween(rng, 1, 9);
+    const cost = b * c + d * e;
+    const a = cost + change;
+    return make(
+      unit,
+      `문구점에서 한 ${cnt1}에 ${n(b)}원인 ${item1} ${n(c)}${wj(cnt1, "과", "와")} 한 ${cnt2}에 ${n(d)}원인 ${item2} ${n(e)}${wj(cnt2, "을", "를")} 사고 ${n(a)}원을 냈습니다. 거스름돈은 얼마입니까?`,
+      n(change),
+      `물건값을 먼저 묶으면 ${expr(`${b}\\times${c}+${d}\\times${e}=${cost}`)}입니다. 하나의 식으로 나타내면 ${expr(`${a}-(${b}\\times${c}+${d}\\times${e})`)}이므로 ${expr(`${a}-${cost}=${change}`)}입니다.`,
+    );
+  }
+  const thing = pick(rng, MARBLE_THINGS);
+  const q = intBetween(rng, 3, 9);
+  const c = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 4, 20);
+  const a = b + c * q;
+  const d = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${wj(thing, "이", "가")} ${n(a)}개 있습니다. 그중 ${n(b)}개를 상자에 넣고, 남은 ${wj(thing, "을", "를")} ${n(c)}명이 똑같이 나누어 가졌습니다. 한 사람이 ${wj(thing, "을", "를")} ${n(d)}개씩 더 받으면 한 사람이 가진 ${wj(thing, "은", "는")} 몇 개가 됩니까?`,
+    n(q + d),
+    `남은 것을 먼저 묶으면 ${expr(`${a}-${b}=${c * q}`)}입니다. 하나의 식으로 나타내면 ${expr(`(${a}-${b})\\div${c}+${d}`)}이므로 ${expr(`${c * q}\\div${c}=${q}`)}, ${expr(`${q}+${d}=${q + d}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — □ 역산. 갈래 둘은 □의 자리가 다르다(㉮ 곱해지는 수 · ㉯ 나누어지는 수).
+ * 식이 □에 대해 일차라 답은 하나뿐이다.
+ */
+function mix112Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const m = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const a = intBetween(rng, 10, 40);
+    const d = intBetween(rng, 2, Math.min(15, a + m * c - 2));
+    const r = a + m * c - d;
+    return make(
+      unit,
+      `□ 안에 알맞은 수를 구하시오.  ${expr(`${a}+\\square\\times${c}-${d}=${r}`)}`,
+      n(m),
+      // 수 뒤 조사는 소리가 정한다 — 「$\square\times6$는」이 나오는 자리라 «의 값은» 으로 피한다.
+      `거꾸로 계산합니다. ${expr(`\\square\\times${c}`)}의 값은 ${expr(`${r}+${d}-${a}=${m * c}`)}이므로 ${expr(`\\square=${m * c}\\div${c}=${m}`)}입니다.`,
+    );
+  }
+  const k = intBetween(rng, 2, 9);
+  const c = intBetween(rng, 2, 6);
+  const box = c * k;
+  const a = k + intBetween(rng, 3, 40);
+  const d = intBetween(rng, 2, 15);
+  const r = a - k + d;
+  return make(
+    unit,
+    `□ 안에 알맞은 수를 구하시오.  ${expr(`${a}-\\square\\div${c}+${d}=${r}`)}`,
+    n(box),
+    `거꾸로 계산합니다. ${expr(`\\square\\div${c}`)}의 값은 ${expr(`${a}+${d}-${r}=${k}`)}이므로 ${expr(`\\square=${k}\\times${c}=${box}`)}입니다.`,
+  );
+}
+
+/* ── 1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈 — 네 연산이 전부 든다 ── */
+
+/** 1-1-3 기본 ㉮ 통에 나누어 담는 것 (L). */
+const POUR_THINGS = ["물", "주스"] as const;
+/** 1-1-3 기본 ㉯ 모아서 나누는 것 (장). */
+const STICKER_THINGS = ["붙임딱지", "우표"] as const;
+/** 1-1-3 응용 ㉮ 상자에 든 것. */
+const BOX_SNACKS = ["쿠키", "빵"] as const;
+/** 1-1-3 응용 ㉯ 바구니에 담는 것. */
+const BASKET_THINGS = ["달걀", "감자"] as const;
+
+/** 연산 — 네 연산 한 식(㉯는 괄호 포함). 왼쪽부터 그냥 접으면 갈라진다(`e ≥ 2`). */
+function mix113Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 3, 9);
+    const b = intBetween(rng, 3, 9);
+    const c = intBetweenExcept(rng, 5, 30, q); // 더한 만큼 몫으로 도로 빼면 답이 a×b 다
+    return make(
+      unit,
+      expr(`${a}\\times${b}+${c}-${d}\\div${e}=\\square`),
+      n(a * b + c - q),
+      `곱셈과 나눗셈을 먼저 계산합니다. ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${a * b}+${c}-${q}=${a * b + c - q}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 3, 12);
+  const a = b + intBetween(rng, 2, 12);
+  const c = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    expr(`(${a}-${b})\\times${c}+${d}\\div${e}=\\square`),
+    n((a - b) * c + q),
+    `괄호 안을 먼저 계산합니다. ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}\\times${c}=${(a - b) * c}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${(a - b) * c}+${q}=${(a - b) * c + q}`)}입니다.`,
+  );
+}
+
+/** 기본 — 직선형 문장 한 겹. 네 연산이 이야기 순서 그대로 선다. */
+function mix113Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, POUR_THINGS);
+    const b = intBetween(rng, 2, 9);
+    const base = intBetween(rng, 2, 9);
+    const a = b * base;
+    const c = intBetween(rng, 2, 5);
+    const d = intBetween(rng, 2, 5);
+    // 부은 만큼 도로 덜면 답이 처음 몫 그대로다 — `e ≠ c×d`.
+    const e = intBetweenExcept(rng, 2, base + c * d - 2, c * d);
+    return make(
+      unit,
+      `${wj(thing, "이", "가")} ${n(a)} L 있습니다. 이 ${wj(thing, "을", "를")} 통 ${n(b)}개에 똑같이 나누어 담은 뒤, 그중 한 통에 ${wj(thing, "을", "를")} ${n(c)} L씩 ${n(d)}번 더 부었습니다. 이 통에서 ${n(e)} L를 덜어 내면 이 통에 남는 ${wj(thing, "은", "는")} 몇 L입니까?`,
+      n(base + c * d - e),
+      `하나의 식으로 나타내면 ${expr(`${a}\\div${b}+${c}\\times${d}-${e}`)}입니다. 나눗셈과 곱셈을 먼저 계산하면 ${expr(`${a}\\div${b}=${base}`)}, ${expr(`${c}\\times${d}=${c * d}`)}이므로 ${expr(`${base}+${c * d}-${e}=${base + c * d - e}`)}입니다.`,
+    );
+  }
+  const thing = pick(rng, STICKER_THINGS);
+  const b = intBetween(rng, 2, 6);
+  const c = intBetween(rng, 2, 6);
+  const a = b * c + intBetween(rng, 5, 30);
+  const e = intBetween(rng, 2, 9);
+  const k = intBetweenExcept(rng, 2, 9, b * c); // 준 만큼 몫으로 도로 받으면 답이 a 다
+  const d = e * k;
+  return make(
+    unit,
+    `${wj(thing, "을", "를")} ${n(a)}장 모았습니다. 친구 ${n(b)}명에게 ${n(c)}장씩 나누어 주었습니다. 선생님께서 ${wj(thing, "을", "를")} ${n(d)}장 가져와 학생 ${n(e)}명에게 똑같이 나누어 주셔서 나도 한 사람 몫을 받았습니다. 지금 가지고 있는 ${wj(thing, "은", "는")} 몇 장입니까?`,
+    n(a - b * c + k),
+    `하나의 식으로 나타내면 ${expr(`${a}-${b}\\times${c}+${d}\\div${e}`)}입니다. 곱셈과 나눗셈을 먼저 계산하면 ${expr(`${b}\\times${c}=${b * c}`)}, ${expr(`${d}\\div${e}=${k}`)}이므로 ${expr(`${a}-${b * c}+${k}=${a - b * c + k}`)}입니다.`,
+  );
+}
+
+/** 응용 — 묶음 두 단계: 전체를 먼저 묶어 나누거나(㉮), 남은 것을 먼저 묶어 나눈다(㉯). */
+function mix113Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, BOX_SNACKS);
+    const people = intBetween(rng, 2, 9);
+    const q = intBetween(rng, 4, 9);
+    const total = people * q;
+    // 상자 수를 정하고 상자에 최대한 담으면 낱개가 `1~d` 로 남는다 — 나머지가 아니라 구성이다.
+    const d = intBetween(rng, 2, Math.min(6, Math.floor((total - 1) / 3)));
+    const c = Math.floor((total - 1) / d);
+    const g = total - c * d;
+    const e = intBetween(rng, 1, q - 1);
+    return make(
+      unit,
+      `${wj(thing, "이", "가")} 한 상자에 ${n(c)}개씩 ${n(d)}상자와 낱개 ${n(g)}개가 있습니다. 이 ${wj(thing, "을", "를")} ${n(people)}명이 남김없이 똑같이 나누어 가진 뒤, 한 사람이 ${n(e)}개를 먹었습니다. 이 사람에게 남은 ${wj(thing, "은", "는")} 몇 개입니까?`,
+      n(q - e),
+      `전체를 먼저 묶으면 ${expr(`${c}\\times${d}+${g}=${total}`)}입니다. 하나의 식으로 나타내면 ${expr(`(${c}\\times${d}+${g})\\div${people}-${e}`)}이므로 ${expr(`${total}\\div${people}=${q}`)}, ${expr(`${q}-${e}=${q - e}`)}입니다.`,
+    );
+  }
+  const thing = pick(rng, BASKET_THINGS);
+  const b = intBetween(rng, 2, 6);
+  const c = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 2, 9);
+  const a = b * c + d * q;
+  const e = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${wj(thing, "이", "가")} ${n(a)}개 있습니다. 하루에 ${n(b)}개씩 ${n(c)}일 동안 사용했습니다. 남은 ${wj(thing, "을", "를")} 바구니 ${n(d)}개에 남김없이 똑같이 나누어 담고, 바구니 한 개에 ${wj(thing, "을", "를")} ${n(e)}개 더 담았습니다. 이 바구니에 담긴 ${wj(thing, "은", "는")} 몇 개입니까?`,
+    n(q + e),
+    `사용한 것을 먼저 묶으면 ${expr(`${b}\\times${c}=${b * c}`)}입니다. 하나의 식으로 나타내면 ${expr(`(${a}-${b}\\times${c})\\div${d}+${e}`)}이므로 ${expr(`${a}-${b * c}=${d * q}`)}, ${expr(`${d * q}\\div${d}=${q}`)}, ${expr(`${q}+${e}=${q + e}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — 조건 조합·역산. ㉮ 괄호를 빠뜨린 「잘못 계산」의 차(두 값의 차는 `a(c-1)` 로
+ * 언제나 양수다) · ㉯ 괄호 속 □ 역산(네 걸음 거꾸로).
+ */
+function mix113Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 5);
+    // 잘못 계산한 값(`a-b×c+d÷e`)도 자연수여야 이야기가 선다 — `a ≥ b×c+2`.
+    const a = b * c + intBetween(rng, 2, 40);
+    const right = (a - b) * c + q;
+    const wrong = a - b * c + q;
+    return make(
+      unit,
+      `${expr(`(${a}-${b})\\times${c}+${d}\\div${e}`)}를 계산해야 하는데, 잘못하여 괄호를 빠뜨리고 ${expr(`${a}-${b}\\times${c}+${d}\\div${e}`)}로 계산했습니다. 바르게 계산한 값과 잘못 계산한 값의 차는 얼마입니까?`,
+      n(right - wrong),
+      `바르게 계산하면 ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}\\times${c}=${(a - b) * c}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${(a - b) * c}+${q}=${right}`)}입니다. 잘못 계산하면 ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}-${b * c}+${q}=${wrong}`)}입니다. 차는 ${expr(`${right}-${wrong}=${right - wrong}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 3, 20);
+  const c = intBetween(rng, 2, 6);
+  const k = intBetween(rng, 2, 9);
+  const x = b + c * k;
+  const m1 = intBetween(rng, 2, 6);
+  const m2 = intBetween(rng, 2, 6);
+  const r = k + m1 * m2;
+  return make(
+    unit,
+    `□ 안에 알맞은 수를 구하시오.  ${expr(`(\\square-${b})\\div${c}+${m1}\\times${m2}=${r}`)}`,
+    n(x),
+    `거꾸로 계산합니다. ${expr(`${m1}\\times${m2}=${m1 * m2}`)}이므로 ${expr(`(\\square-${b})\\div${c}`)}의 값은 ${expr(`${r}-${m1 * m2}=${k}`)}입니다. ${expr(`\\square-${b}`)}의 값은 ${expr(`${k}\\times${c}=${c * k}`)}이므로 ${expr(`\\square=${c * k}+${b}=${x}`)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -2070,6 +2514,24 @@ function area65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  * 둘레→**넓이**다. 1-6-1 기본은 **문장** 한 겹, 1-6-2·1-6-4·1-6-5 기본은 **그림** 한 겹이다.
  */
 export const G5_TIERS: ElemTierMap = {
+  "초5|1-1-1": {
+    연산: mix111Calc,
+    기본: mix111Read,
+    응용: mix111Apply,
+    심화: mix111Deep,
+  },
+  "초5|1-1-2": {
+    연산: mix112Calc,
+    기본: mix112Read,
+    응용: mix112Apply,
+    심화: mix112Deep,
+  },
+  "초5|1-1-3": {
+    연산: mix113Calc,
+    기본: mix113Read,
+    응용: mix113Apply,
+    심화: mix113Deep,
+  },
   "초5|1-6-1": {
     연산: per61Calc,
     기본: per61Read,

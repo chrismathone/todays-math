@@ -393,7 +393,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
 
   it("이웃 소단원과 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
-    for (const code of [...CODES, "1-6-2"]) {
+    for (const code of [...CODES, "1-6-2", ...CODES11]) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
@@ -409,6 +409,454 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
             ).toBe(owner);
           }
           seen.set(key, owner);
+        }
+      }
+    }
+  });
+});
+
+/* ────────── 초5 1-1 자연수의 혼합 계산 — 4단 (D-72 확대 2차) ────────── */
+
+const CODES11 = ["1-1-1", "1-1-2", "1-1-3"] as const;
+
+/**
+ * `$…$` 덩어리(발문+해설)에 나타난 연산 기호. 이 대단원은 **소단원 이름이 연산 집합을
+ * 내걸므로**(D-66 ⑼) 갈래 넷 전부가 그 집합을 지키는지를 이 열쇠로 잰다.
+ */
+function opsIn(...texts: string[]): Set<string> {
+  const set = new Set<string>();
+  for (const t of texts) {
+    for (const m of t.matchAll(/\$([^$]*)\$/g)) {
+      const chunk = m[1]!;
+      if (chunk.includes("\\times")) set.add("×");
+      if (chunk.includes("\\div")) set.add("÷");
+      if (chunk.includes("+")) set.add("+");
+      if (chunk.includes("-")) set.add("−");
+    }
+  }
+  return set;
+}
+
+describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
+  it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES11) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES11) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES11) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(
+          new Set(rows).size,
+          `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  // 리드 지시(2026-08-23): 갈래마다 변형 8개 이상. R9 의 「>2」보다 세게 잠근다.
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES11) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1)", () => {
+    const bad: string[] = [];
+    for (const code of CODES11) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("혼합 계산에는 그림이 없다 — 갈래 넷 전부", () => {
+    for (const code of CODES11) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          expect(
+            problem(code, tier, seed).figureSpec,
+            `${code} ${tier} @${seed}`,
+          ).toBeNull();
+        }
+      }
+    }
+  });
+
+  /* ── 소단원 이름이 내건 연산 집합 (D-66 ⑼) ── */
+
+  it("1-1-1 — 덧뺄 또는 곱나눗 **한 가족만** 쓴다 (수식 기준)", () => {
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = problem("1-1-1", tier, seed);
+        const ops = opsIn(p.content, p.solution);
+        const addSub = ops.has("+") || ops.has("−");
+        const mulDiv = ops.has("×") || ops.has("÷");
+        expect(
+          addSub && mulDiv,
+          `${tier} @${seed}: 두 가족이 섞였다 ${[...ops].join("")}\n${p.content}`,
+        ).toBe(false);
+        // 심화(잘못 계산)는 한쪽 연산이 말로만 나올 수 있다 — 나머지 갈래는 둘 다 있어야 한다.
+        if (tier !== "심화") {
+          expect(
+            ops.size,
+            `${tier} @${seed}: 한 연산뿐이면 «섞여 있는 식»이 아니다\n${p.content}`,
+          ).toBeGreaterThanOrEqual(2);
+        }
+      }
+    }
+  });
+
+  it("1-1-2 — 덧·뺄에 곱셈 «또는» 나눗셈 하나만 낀다", () => {
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = problem("1-1-2", tier, seed);
+        // 심화(□ 역산)의 해설은 «거꾸로 계산»이라 반대 연산(×↔÷)이 함께 나온다 —
+        // 소단원 이름이 조건을 거는 것은 **주어진 식**(발문)이다.
+        const ops =
+          tier === "심화" ? opsIn(p.content) : opsIn(p.content, p.solution);
+        expect(ops.has("+"), `${tier} @${seed}\n${p.content}`).toBe(true);
+        expect(ops.has("−"), `${tier} @${seed}\n${p.content}`).toBe(true);
+        expect(
+          ops.has("×") !== ops.has("÷"),
+          `${tier} @${seed}: ×·÷ 는 정확히 하나여야 한다(둘 다면 1-1-3 이다) ${[...ops].join("")}\n${p.content}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("1-1-3 — 네 연산이 전부 든다", () => {
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = problem("1-1-3", tier, seed);
+        const ops = opsIn(p.content, p.solution);
+        expect(
+          ops.size,
+          `${tier} @${seed}: ${[...ops].join("")}\n${p.content}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 + «잘못된 순서 값 ≠ 정답» (리드 지시 2026-08-23) ── */
+
+  it("1-1-1 연산 — 값이 다시 서고, 뒤부터 접은 값과 갈린다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-1", "연산", seed);
+      const [a, b, c] = nums(p.content) as [number, number, number];
+      const ans = answerNumber(p.answer, "1-1-1 연산");
+      // 「도로 접기」 금지 — b == c 면 계산을 안 해도 답이 a 그대로다.
+      expect(c, `상쇄 꼴이다: ${p.content}`).not.toBe(b);
+      if (p.content.includes("\\div")) {
+        expect(a % b, p.content).toBe(0);
+        expect(ans, p.content).toBe((a / b) * c);
+        // 뒤(b×c)를 먼저 접은 a÷(b×c) 는 정답과 달라야 한다 — 분수 비교 대신 곱으로 잰다.
+        expect(ans * b * c, `순서를 안 가른다: ${p.content}`).not.toBe(a);
+      } else {
+        expect(a, `중간값 자연수: ${p.content}`).toBeGreaterThan(b);
+        expect(ans, p.content).toBe(a - b + c);
+        expect(a - b - c, `순서를 안 가른다: ${p.content}`).not.toBe(ans);
+      }
+    }
+  });
+
+  it("1-1-2 연산 — 값이 다시 서고, 왼쪽부터 그냥 접은 값과 갈린다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-2", "연산", seed);
+      const [a, b, c, d] = nums(p.content) as [number, number, number, number];
+      const ans = answerNumber(p.answer, "1-1-2 연산");
+      if (p.content.includes("\\times")) {
+        expect(a - b * c, `중간값 자연수: ${p.content}`).toBeGreaterThan(0);
+        expect(d, `상쇄 꼴이다(뺀 만큼 도로 더함): ${p.content}`).not.toBe(
+          b * c,
+        );
+        expect(ans, p.content).toBe(a - b * c + d);
+        expect((a - b) * c + d, `순서를 안 가른다: ${p.content}`).not.toBe(ans);
+      } else {
+        expect(b % c, p.content).toBe(0);
+        expect(d, `상쇄 꼴이다(더한 몫만큼 도로 뺌): ${p.content}`).not.toBe(
+          b / c,
+        );
+        expect(ans, p.content).toBe(a + b / c - d);
+        expect(ans, p.content).toBeGreaterThan(0);
+        // 왼쪽부터 값 (a+b)÷c−d 와 갈린다 — 분수 비교 대신 곱으로 잰다.
+        expect((ans + d) * c, `순서를 안 가른다: ${p.content}`).not.toBe(a + b);
+      }
+    }
+  });
+
+  it("1-1-3 연산 — 값이 다시 서고, 왼쪽부터 그냥 접은 값과 갈린다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-3", "연산", seed);
+      const [a, b, c, d, e] = nums(p.content) as [
+        number,
+        number,
+        number,
+        number,
+        number,
+      ];
+      const ans = answerNumber(p.answer, "1-1-3 연산");
+      expect(d % e, p.content).toBe(0);
+      if (p.content.startsWith("$(")) {
+        expect(a, `중간값 자연수: ${p.content}`).toBeGreaterThan(b);
+        expect(ans, p.content).toBe((a - b) * c + d / e);
+        expect((a - b) * c + d, `순서를 안 가른다: ${p.content}`).not.toBe(
+          ans * e,
+        );
+      } else {
+        expect(
+          c,
+          `상쇄 꼴이다(더한 만큼 몫으로 도로 뺌): ${p.content}`,
+        ).not.toBe(d / e);
+        expect(ans, p.content).toBe(a * b + c - d / e);
+        expect(a * b + c - d, `순서를 안 가른다: ${p.content}`).not.toBe(
+          ans * e,
+        );
+      }
+    }
+  });
+
+  it("1-1-1 기본·응용 — 발문의 수로 답이 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const read = problem("1-1-1", "기본", seed);
+      const [a, b, c] = nums(read.content) as [number, number, number];
+      const rA = answerNumber(read.answer, "1-1-1 기본");
+      if (read.content.includes("정거장")) {
+        expect(a, read.content).toBeGreaterThan(b);
+        expect(c, `상쇄 꼴이다(내린 만큼 도로 탐): ${read.content}`).not.toBe(
+          b,
+        );
+        expect(rA, read.content).toBe(a - b + c);
+      } else {
+        expect(a % b, read.content).toBe(0);
+        expect(c, `도막은 ${b}개뿐이다: ${read.content}`).toBeLessThan(b);
+        expect(rA, read.content).toBe((a / b) * c);
+      }
+
+      const app = problem("1-1-1", "응용", seed);
+      const an = nums(app.content) as [number, number, number];
+      const aA = answerNumber(app.answer, "1-1-1 응용");
+      if (app.content.includes("봉지")) {
+        expect((an[0] * an[1]) % an[2], app.content).toBe(0);
+        // c ∈ {a, b} 면 ×a÷a 꼴로 접혀 답이 발문의 수 그대로다.
+        expect(an[2], `상쇄 꼴이다: ${app.content}`).not.toBe(an[0]);
+        expect(an[2], `상쇄 꼴이다: ${app.content}`).not.toBe(an[1]);
+        expect(aA, app.content).toBe((an[0] * an[1]) / an[2]);
+      } else {
+        expect(aA, app.content).toBe(an[0] - an[1] - an[2]);
+        expect(aA, app.content).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("1-1-1 심화 — 어떤 수를 되찾아 바르게 계산한 값이 맞다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-1", "심화", seed);
+      const ans = answerNumber(p.answer, "1-1-1 심화");
+      if (p.content.includes("더해야")) {
+        // 잘못: x−b=c → x=c+b, 바르게: x+b=c+2b
+        const [b, c] = nums(p.content) as [number, number];
+        expect(ans, p.content).toBe(c + 2 * b);
+      } else {
+        // 「$b$를 곱해야 … $b$로 나누었더니 $c$」 — b 가 발문에 두 번 찍힌다(조사 «로» 앞).
+        const [b, b2, c] = nums(p.content) as [number, number, number];
+        expect(b2, `곱하는 수와 나누는 수가 다르다: ${p.content}`).toBe(b);
+        // 잘못: x÷b=c → x=b×c, 바르게: x×b=b²c
+        expect(ans, p.content).toBe(b * b * c);
+      }
+    }
+  });
+
+  it("1-1-2 기본·응용 — 발문의 수로 답이 다시 선다", () => {
+    for (const seed of SEEDS) {
+      const read = problem("1-1-2", "기본", seed);
+      const rn = nums(read.content) as [number, number, number, number];
+      const rA = answerNumber(read.answer, "1-1-2 기본");
+      if (read.content.includes("친구")) {
+        expect(rn[0] - rn[1] * rn[2], read.content).toBeGreaterThan(0);
+        expect(rn[3], `상쇄 꼴이다: ${read.content}`).not.toBe(rn[1] * rn[2]);
+        expect(rA, read.content).toBe(rn[0] - rn[1] * rn[2] + rn[3]);
+      } else {
+        expect(rn[0] % rn[1], read.content).toBe(0);
+        expect(rn[3], `상쇄 꼴이다: ${read.content}`).not.toBe(rn[2]);
+        expect(rA, read.content).toBe(rn[0] / rn[1] + rn[2] - rn[3]);
+        expect(rA, read.content).toBeGreaterThan(0);
+      }
+
+      const app = problem("1-1-2", "응용", seed);
+      const aA = answerNumber(app.answer, "1-1-2 응용");
+      if (app.content.includes("문구점")) {
+        const [b, c, d, e, a] = nums(app.content) as [
+          number,
+          number,
+          number,
+          number,
+          number,
+        ];
+        expect(
+          a,
+          `치른 돈이 물건값보다 커야 한다: ${app.content}`,
+        ).toBeGreaterThan(b * c + d * e);
+        expect(aA, app.content).toBe(a - (b * c + d * e));
+      } else {
+        const [a, b, c, d] = nums(app.content) as [
+          number,
+          number,
+          number,
+          number,
+        ];
+        expect((a - b) % c, app.content).toBe(0);
+        expect(aA, app.content).toBe((a - b) / c + d);
+      }
+    }
+  });
+
+  it("1-1-2 심화 — □를 발문의 식에 되넣으면 등식이 선다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-2", "심화", seed);
+      const [a, c, d, r] = nums(p.content) as [number, number, number, number];
+      const ans = answerNumber(p.answer, "1-1-2 심화");
+      if (p.content.includes("\\square\\times")) {
+        expect(a + ans * c - d, p.content).toBe(r);
+        expect(a + ans * c, `중간값 자연수: ${p.content}`).toBeGreaterThan(d);
+      } else {
+        expect(ans % c, `□÷${c} 가 나누어떨어져야 한다: ${p.content}`).toBe(0);
+        expect(a - ans / c + d, p.content).toBe(r);
+        expect(a, `중간값 자연수: ${p.content}`).toBeGreaterThan(ans / c);
+      }
+    }
+  });
+
+  it("1-1-3 기본·응용 — 발문의 수로 답이 다시 서고 나눗셈이 떨어진다", () => {
+    for (const seed of SEEDS) {
+      const read = problem("1-1-3", "기본", seed);
+      const rn = nums(read.content) as [number, number, number, number, number];
+      const rA = answerNumber(read.answer, "1-1-3 기본");
+      if (read.content.includes("통")) {
+        expect(rn[0] % rn[1], read.content).toBe(0);
+        expect(
+          rn[4],
+          `상쇄 꼴이다(부은 만큼 도로 덞): ${read.content}`,
+        ).not.toBe(rn[2] * rn[3]);
+        expect(rA, read.content).toBe(rn[0] / rn[1] + rn[2] * rn[3] - rn[4]);
+        expect(rA, read.content).toBeGreaterThan(0);
+      } else {
+        expect(rn[3] % rn[4], read.content).toBe(0);
+        expect(rn[0] - rn[1] * rn[2], read.content).toBeGreaterThan(0);
+        expect(rn[3] / rn[4], `상쇄 꼴이다: ${read.content}`).not.toBe(
+          rn[1] * rn[2],
+        );
+        expect(rA, read.content).toBe(rn[0] - rn[1] * rn[2] + rn[3] / rn[4]);
+      }
+
+      const app = problem("1-1-3", "응용", seed);
+      const an = nums(app.content) as [number, number, number, number, number];
+      const aA = answerNumber(app.answer, "1-1-3 응용");
+      if (app.content.includes("상자")) {
+        const [c, d, g, people, e] = an;
+        expect((c * d + g) % people, app.content).toBe(0);
+        expect(
+          g,
+          `낱개가 상자 하나를 채우면 안 된다: ${app.content}`,
+        ).toBeLessThanOrEqual(d);
+        expect(aA, app.content).toBe((c * d + g) / people - e);
+        expect(aA, app.content).toBeGreaterThan(0);
+      } else {
+        const [a, b, c, d, e] = an;
+        expect(a - b * c, `중간값 자연수: ${app.content}`).toBeGreaterThan(0);
+        expect((a - b * c) % d, app.content).toBe(0);
+        expect(aA, app.content).toBe((a - b * c) / d + e);
+      }
+    }
+  });
+
+  it("1-1-3 심화 — 차가 맞거나 □가 등식에 되들어간다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-1-3", "심화", seed);
+      const ans = answerNumber(p.answer, "1-1-3 심화");
+      if (p.content.includes("괄호를 빠뜨리고")) {
+        const [a, b, c, d, e, a2, b2, c2, d2, e2] = nums(p.content) as [
+          number,
+          number,
+          number,
+          number,
+          number,
+          number,
+          number,
+          number,
+          number,
+          number,
+        ];
+        expect([a2, b2, c2, d2, e2], p.content).toEqual([a, b, c, d, e]);
+        expect(d % e, p.content).toBe(0);
+        const right = (a - b) * c + d / e;
+        const wrong = a - b * c + d / e;
+        expect(
+          wrong,
+          `잘못 계산한 값도 자연수여야 한다: ${p.content}`,
+        ).toBeGreaterThan(0);
+        expect(ans, p.content).toBe(right - wrong);
+        expect(ans, p.content).toBeGreaterThan(0);
+      } else {
+        const [b, c, m1, m2, r] = nums(p.content) as [
+          number,
+          number,
+          number,
+          number,
+          number,
+        ];
+        expect(ans, `□−${b} 가 자연수여야 한다: ${p.content}`).toBeGreaterThan(
+          b,
+        );
+        expect((ans - b) % c, p.content).toBe(0);
+        expect((ans - b) / c + m1 * m2, p.content).toBe(r);
+      }
+    }
+  });
+
+  it("1-1 세 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES11) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
         }
       }
     }

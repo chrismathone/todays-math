@@ -96,13 +96,7 @@ function parseTerm(raw: string): Rat | null {
   return null;
 }
 
-const OPS: [string, (a: Rat, b: Rat) => Rat][] = [
-  ["\\div", div],
-  ["\\times", mul],
-  ["+", add],
-  ["-", sub],
-];
-/** 같은 층끼리만 왼쪽에서 오른쪽으로 읽는다 — 층이 섞이면 우선순위가 생겨 못 읽는다. */
+/** 연산자의 층 — 괄호 다음에 ×÷(2층), 그다음 +−(1층). 같은 층은 왼쪽부터 접는다. */
 const TIER: Record<string, number> = {
   "\\div": 2,
   "\\times": 2,
@@ -185,65 +179,86 @@ type Reader = {
   read: (content: string, answer: string) => Reading;
 };
 
-/** ① `$A op B=\square$` — 처음부터 있던 꼴. 같은 층이면 연산자가 여럿이어도 왼쪽부터 읽는다. */
+/**
+ * ① `$…=\square$` — 왼쪽 식을 **정확한 우선순위**(괄호 → ×÷ → +−, 같은 층은 왼쪽부터)로
+ * 읽는다. 2026-08-23 초5 1-1(혼합 계산) 확대에서 괄호까지 넓혔다 — 그 전에는 괄호가
+ * 보이면 못 읽는 쪽으로 돌려보내서, `a-(b+c)=\square` 류(표준 1-1 과 1-1-3 «연산» 갈래)가
+ * 통째로 판정 밖이었다. 모르는 글자가 항에 남으면 `parseTerm` 이 null 을 내 여전히 못
+ * 읽는 쪽으로 간다(조용히 틀리게 읽는 일은 없다).
+ */
 const readSquare: Reader = {
   name: "=□ 식",
   read(content, answer) {
     const hits = [...content.matchAll(/\$([^$]*?)=\\square\$/g)];
     if (hits.length !== 1) return null;
     const lhs = hits[0]![1]!;
-    if (lhs.includes("(") || lhs.includes("\\square")) return null;
+    if (lhs.includes("\\square")) return null;
 
-    // 항과 연산자로 쪼갠다. 맨 앞의 `-` 는 연산자가 아니므로 자리를 1부터 본다.
-    const terms: string[] = [];
-    const ops: string[] = [];
-    let rest = lhs;
-    for (;;) {
-      let at = -1;
-      let sym = "";
-      for (const [s] of OPS) {
-        const i = rest.indexOf(s, 1);
-        if (i > 0 && (at === -1 || i < at)) {
-          at = i;
-          sym = s;
-        }
+    // 토큰: 항 · 연산자 · 괄호. 항은 `parseTerm` 이 아는 꼴(자연수·소수·분수·대분수)뿐이다.
+    type Tok =
+      { kind: "op" | "open" | "close"; sym: string } | { kind: "term"; v: Rat };
+    const toks: Tok[] = [];
+    for (const part of lhs.split(/(\\div|\\times|\+|-|\(|\))/)) {
+      if (part === "") continue;
+      if (part === "(") toks.push({ kind: "open", sym: part });
+      else if (part === ")") toks.push({ kind: "close", sym: part });
+      else if (TIER[part] !== undefined) toks.push({ kind: "op", sym: part });
+      else {
+        const v = parseTerm(part);
+        if (v === null) return null;
+        toks.push({ kind: "term", v });
       }
-      if (at === -1) {
-        terms.push(rest);
-        break;
-      }
-      terms.push(rest.slice(0, at));
-      ops.push(sym);
-      rest = rest.slice(at + sym.length);
     }
-    if (ops.length === 0) return null;
+    if (!toks.some((t) => t.kind === "op")) return null;
 
-    const vals = terms.map((t) => parseTerm(t));
-    if (vals.some((v) => v === null)) return null;
-
-    // 괄호가 없으면 우선순위는 정해져 있다 — ×÷ 를 먼저 접고, 그다음 +- 를 왼쪽부터.
-    // (괄호가 있으면 위에서 이미 못 읽는 쪽으로 돌려보냈다.)
-    let nums = vals as Rat[];
-    let syms = ops;
-    for (const tier of [2, 1]) {
-      const outN: Rat[] = [nums[0]!];
-      const outS: string[] = [];
-      for (const [i, o] of syms.entries()) {
-        if (TIER[o] === tier) {
-          outN[outN.length - 1] = APPLY[o]!(
-            outN[outN.length - 1]!,
-            nums[i + 1]!,
-          );
-        } else {
-          outS.push(o);
-          outN.push(nums[i + 1]!);
-        }
+    // 되내림 파서 — 층마다 왼쪽부터 접는다. 괄호 짝이 안 맞거나 토큰이 남으면 못 읽음.
+    let at = 0;
+    const parseAtom = (): Rat | null => {
+      const t = toks[at];
+      if (!t) return null;
+      if (t.kind === "term") {
+        at += 1;
+        return t.v;
       }
-      nums = outN;
-      syms = outS;
+      if (t.kind === "open") {
+        at += 1;
+        const v = parseSum();
+        if (v === null || toks[at]?.kind !== "close") return null;
+        at += 1;
+        return v;
+      }
+      return null;
+    };
+    const parseProd = (): Rat | null => {
+      let acc = parseAtom();
+      while (acc !== null) {
+        const t = toks[at];
+        if (t?.kind !== "op" || TIER[t.sym] !== 2) return acc;
+        at += 1;
+        const rhs = parseAtom();
+        acc = rhs === null ? null : APPLY[t.sym]!(acc, rhs);
+      }
+      return acc;
+    };
+    const parseSum = (): Rat | null => {
+      let acc = parseProd();
+      while (acc !== null) {
+        const t = toks[at];
+        if (t?.kind !== "op" || TIER[t.sym] !== 1) return acc;
+        at += 1;
+        const rhs = parseProd();
+        acc = rhs === null ? null : APPLY[t.sym]!(acc, rhs);
+      }
+      return acc;
+    };
+
+    let acc: Rat | null;
+    try {
+      acc = parseSum();
+    } catch {
+      return null; // 0 으로 나누는 식은 값이 없다 — 못 읽는 쪽으로
     }
-    if (nums.length !== 1 || syms.length !== 0) return null;
-    const acc = nums[0]!;
+    if (acc === null || at !== toks.length) return null;
 
     const got = ratAnswer(answer);
     if (got === null) return null;
@@ -822,8 +837,26 @@ const FIXTURES: Fixture[] = [
   {
     content: "$(2+3)\\times4=\\square$",
     answer: "$20$",
+    want: "맞음",
+    why: "괄호 → ×÷ → +− 순서로 읽는다 (2026-08-23 초5 1-1 확대에서 넓혔다)",
+  },
+  {
+    content: "$(14-5)\\times3+8\\div2=\\square$",
+    answer: "$31$",
+    want: "맞음",
+    why: "괄호 + 네 연산 — 초5 1-1-3 «연산» 갈래의 꼴",
+  },
+  {
+    content: "$20-(3+5)=\\square$",
+    answer: "$22$",
+    want: "틀림",
+    why: "괄호를 무시하고 왼쪽부터 계산한 값 — $12$ 다",
+  },
+  {
+    content: "$(2+3\\times4=\\square$",
+    answer: "$14$",
     want: "못읽음",
-    why: "괄호가 있으면 읽지 않는다 — 묶음을 잘못 풀면 조용히 틀리게 읽는다",
+    why: "괄호 짝이 안 맞으면 읽지 않는다 — 묶음을 잘못 풀면 조용히 틀리게 읽는다",
   },
   {
     content: "$3\\,\\mathrm{km}=\\square\\,\\mathrm{L}$",
