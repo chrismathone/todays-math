@@ -336,6 +336,12 @@ const VERIFY: Record<string, Check> = {
     expect(ties, "극값이 둘이면 답이 하나가 아니다").toBe(1);
     expect(same(best, F(f, "ans"))).toBe(true);
     expect(same(best, parseAnswer(p.answer))).toBe(true);
+    // 발문이 **묻는 것**과 답이 같은 쪽인가 — 값만 보면 이 어긋남이 안 보인다.
+    expect(
+      p.content.includes(wantMax ? "가장 큰" : "가장 작은"),
+      p.content,
+    ).toBe(true);
+    expect(p.content.includes(wantMax ? "가장 작은" : "가장 큰")).toBe(false);
   },
   // 거듭제곱은 곱을 **되풀이해서** 낸다 (생성기의 powQ 와 다른 구현).
   "15": (f, p) => {
@@ -482,6 +488,13 @@ const VERIFY: Record<string, Check> = {
     }
     expect(codes[winner]).toBe(N(f, "ans"));
     expect(new Set(codes).size, "보기가 겹친다").toBe(4);
+    // 발문이 **묻는 것**과 답이 같은 쪽인가. 생성기가 「가장 작은」을 물어 놓고
+    // 가장 큰 것을 답으로 내도 값 검산은 그대로 통과한다 — 이 줄이 갈라 준다.
+    expect(
+      p.content.includes(wantMax ? "가장 큰" : "가장 작은"),
+      p.content,
+    ).toBe(true);
+    expect(p.content.includes(wantMax ? "가장 작은" : "가장 큰")).toBe(false);
     // 지면에 찍힌 것이 정말 그 보기인가 — 값이 맞아도 식이 다르면 문항이 틀린다.
     expect(p.answer).toBe(`$${TEST_CAND_TEX[codes[winner]!]}$`);
     expect(p.content.includes(`$${range.tex}$`), p.content).toBe(true);
