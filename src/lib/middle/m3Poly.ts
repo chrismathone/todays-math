@@ -925,7 +925,7 @@ const MUL: TypeEntry[] = [
           )} 의 값을 구하시오.`,
           answer: M(String(value)),
           solution: `${M(law)} 이다.\n값을 대입하면 ${M(
-            `(${s})^2-${mode === 0 ? 2 : 4}\\times(${p})=${value}`,
+            `${wp(s, "")}^2-${mode === 0 ? 2 : 4}\\times${wp(p, "")}=${value}`,
           )} 이다.`,
           facts: { mode, s, p, value },
         };
@@ -941,7 +941,7 @@ const MUL: TypeEntry[] = [
         )} 의 값을 구하시오.`,
         answer: M(String(value)),
         solution: `${M(law)} 이다.\n값을 대입하면 ${M(
-          `(${d})^2+${mode === 1 ? 4 : 2}\\times(${p})=${value}`,
+          `${wp(d, "")}^2+${mode === 1 ? 4 : 2}\\times${wp(p, "")}=${value}`,
         )} 이다.`,
         facts: { mode, d, p, value },
       };
@@ -984,7 +984,7 @@ const MUL: TypeEntry[] = [
         content: `${M(givenTex)} 일 때, ${M(askTex)} 의 값을 구하시오.`,
         answer: M(String(value)),
         solution: `${M(law)} 이다.\n값을 대입하면 ${M(
-          `(${t})^2${termTex(delta, "", false)}=${value}`,
+          `${wp(t, "")}^2${termTex(delta, "", false)}=${value}`,
         )} 이다.`,
         facts: { mode, t, value },
       };
@@ -1074,7 +1074,7 @@ const MUL: TypeEntry[] = [
           solution: `${M("x\\neq 0")} 이므로 양변을 ${M(
             "x",
           )} 로 나누면 ${M(midTex)} 이다.\n${M(law)} 이므로 구하는 값은 ${M(
-            `(${-a})^2${termTex(s === 1 ? -2 : 2, "", false)}=${value}`,
+            `${wp(-a, "")}^2${termTex(s === 1 ? -2 : 2, "", false)}=${value}`,
           )} 이다.`,
           facts: { s, a, value },
         };
@@ -1191,11 +1191,13 @@ const FAC: TypeEntry[] = [
         return {
           content: `${FACTOR}\n${M(src)}`,
           answer: M(out),
-          solution: `${M(
-            `${a * a}x^2=(${a}x)^2`,
-          )}, ${M(`${b * b}y^2=(${Math.abs(b)}y)^2`)} 이고 가운데 항이 ${M(
-            `2\\times${a}x\\times${Math.abs(b)}y=${2 * a * Math.abs(b)}xy`,
-          )} 이다.\n${M(`${src}=${out}`)}`,
+          solution: `${M(`A=${termTex(a, "x", true)}`)}, ${M(
+            `B=${termTex(Math.abs(b), "y", true)}`,
+          )} 로 두면 ${M(`A^2=${termTex(a * a, "x^2", true)}`)}, ${M(
+            `B^2=${termTex(b * b, "y^2", true)}`,
+          )}, ${M(
+            `2AB=${termTex(2 * a * Math.abs(b), "xy", true)}`,
+          )} 이므로 완전제곱식이다.\n${M(`${src}=${out}`)}`,
           facts: { mode, a, b },
         };
       }
@@ -1222,9 +1224,9 @@ const FAC: TypeEntry[] = [
             : `공통인 인수 ${M(String(k))}${eulReul(
                 k,
               )} 먼저 묶어 내면 ${M(`${k}${par(monic)}`)} 이다.\n`
-        }상수항이 ${M(`(${m})^2=${m * m}`)} 이고 ${M(
+        }상수항이 ${M(`${wp(m, "")}^2=${m * m}`)} 이고 ${M(
           "x",
-        )} 의 계수가 ${M(`2\\times(${m})=${2 * m}`)} 이므로 완전제곱식이다.\n${M(
+        )} 의 계수가 ${M(`2\\times${wp(m, "")}=${2 * m}`)} 이므로 완전제곱식이다.\n${M(
           `${src}=${out}`,
         )}`,
         facts: { mode, k, m },
@@ -1290,7 +1292,7 @@ const FAC: TypeEntry[] = [
               [p * q, ""],
             ])}`,
           )} 이다.\n${M("x")} 의 계수의 절반의 제곱에서 상수항을 빼면 ${M(
-            `k=\\left(\\dfrac{${p + q}}{2}\\right)^2-(${p * q})=${value}`,
+            `k=\\left(\\dfrac{${p + q}}{2}\\right)^2-${wp(p * q, "")}=${value}`,
           )} 이다.`,
           facts: { mode, p, q, value },
         };
@@ -1354,8 +1356,10 @@ const FAC: TypeEntry[] = [
         return {
           content: `${FACTOR}\n${M(src)}`,
           answer: M(out),
-          solution: `${M(`${a * a}x^2=(${a}x)^2`)}, ${M(
-            `${b * b}y^2=(${b}y)^2`,
+          solution: `${M(`A=${termTex(a, "x", true)}`)}, ${M(
+            `B=${termTex(b, "y", true)}`,
+          )} 로 두면 ${M(`A^2=${termTex(a * a, "x^2", true)}`)}, ${M(
+            `B^2=${termTex(b * b, "y^2", true)}`,
           )} 이다.\n${M(`a^2-b^2=(a+b)(a-b)`)} 를 쓰면 ${M(
             `${src}=${out}`,
           )} 이다.`,
@@ -1516,7 +1520,9 @@ const FAC: TypeEntry[] = [
         if (gcd(a, Math.abs(b)) !== 1) return null;
         if (a === 1 && b === m) return null;
         if (a === 1 && b === n) return null;
-        if (b === a * n) return null;
+        // 공통인수가 **하나로 정해져야** 한다: `b === a*n` 이면 둘째 식이
+        // `a(x+n)^2`, `b === a*m` 이면 `a(x+m)(x+n)` 이라 인수가 둘이 겹친다.
+        if (b === a * n || b === a * m) return null;
         const p1 = polyTex([
           [1, "x^2"],
           [m + n, "x"],
@@ -1564,7 +1570,7 @@ const FAC: TypeEntry[] = [
           solution: `${M(factor)}${iGa(-r)} 인수이므로 ${M(
             `x=${r}`,
           )}${eulReul(r)} 대입하면 식의 값이 ${M("0")} 이 된다.\n${M(
-            `${A}\\times(${r})^2+a\\times(${r})${termTex(C, "", false)}=0`,
+            `${A}\\times${wp(r, "")}^2+a\\times${wp(r, "")}${termTex(C, "", false)}=0`,
           )} 에서 ${M(`a=${a}`)} 이다.`,
           facts: { A, r, a, C },
         };
@@ -1668,10 +1674,12 @@ const FAC: TypeEntry[] = [
   def(MINOR_FAC, "14", "인수분해의 도형에의 활용 ⑵", SEC.응용, "mid", (rng) =>
     attempt<Gen>(120, () => {
       const a = intBetween(rng, 1, 4);
-      const b = nonZero(rng, -6, 6);
+      // 두 변이 모두 «길이» 이므로 상수항을 양수로 둔다 — `2x-5` 를 가로라고
+      // 하면 작은 `x` 에서 음수가 된다.
+      const b = intBetween(rng, 1, 6);
       const c = intBetween(rng, 1, 4);
       const d = intBetween(rng, 1, 6);
-      if (gcd(a, Math.abs(b)) !== 1 || gcd(c, d) !== 1) return null;
+      if (gcd(a, b) !== 1 || gcd(c, d) !== 1) return null;
       if (a * c < 2) return null;
       const area = polyTex([
         [a * c, "x^2"],

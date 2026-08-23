@@ -607,7 +607,8 @@ const SPECS: Record<string, Spec> = {
   [`${F}|10`]: {
     vars: ["x"],
     factored: true,
-    // 정답의 근을 두 다항식에 넣으면 둘 다 $0$ 이어야 한다.
+    // 정답의 근을 두 다항식에 넣으면 둘 다 $0$ 이어야 하고, **그런 근이 하나뿐**
+    // 이어야 한다 — 둘이면 「공통인 인수」가 하나로 안 정해져 발문이 성립하지 않는다.
     custom: (p) => {
       const ans = ansTex(p);
       const c0 = evalLatex(ans, { x: 0 });
@@ -621,8 +622,18 @@ const SPECS: Record<string, Spec> = {
           `${poly} 가 ${ans} 로 안 나눠진다`,
         ).toBe(true);
       }
-      // 두 다항식이 서로 상수배면 «공통인 인수» 가 하나로 안 정해진다.
-      expect(p1).not.toBe(p2);
+      const shared: number[] = [];
+      for (let r = -60; r <= 60; r += 1) {
+        if (
+          near(evalLatex(p1!, { x: r }), 0, 1e-9) &&
+          near(evalLatex(p2!, { x: r }), 0, 1e-9)
+        ) {
+          shared.push(r);
+        }
+      }
+      expect(shared, `공통인 근이 하나여야 한다 — ${p1} · ${p2}`).toEqual([
+        root,
+      ]);
     },
   },
   [`${F}|11`]: {
@@ -839,7 +850,7 @@ const MIN_CONTENTS: Record<string, number> = {
   [`${F}|11`]: 38,
   [`${F}|12`]: 40,
   [`${F}|13`]: 16,
-  [`${F}|14`]: 40,
+  [`${F}|14`]: 37,
   [`${F}|15`]: 40,
   [`${F}|16`]: 33,
   [`${F}|17`]: 33,
