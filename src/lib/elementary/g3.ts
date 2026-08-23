@@ -3948,6 +3948,906 @@ function time156Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 1-6 분수와 소수 (D-72 확대) ──────────────────────────────────────────
+//
+// 그림은 기존 kind(fracBars·fracPie·triRow·trapFour)만 쓴다 — 네 kind 모두 넓이가
+// 같은 등분이다(D-61: 칸 수가 아니라 **넓이**가 같아야 한다 — 대각선 분할 금지).
+// 소수는 초3 범위(소수 한 자리, 꼬리 0 없음)만 나온다. 크기 비교는 **동률이 나올 수
+// 없게 뽑을 때** 막는다(가드·재추첨이 아니라 건너뛰기 구성) — 시험이 전 갈래에서 잠근다.
+
+/**
+ * $0..n-1$ 에서 서로 다른 수 $k$ 개 — 이미 뽑힌 값을 **건너뛰어** 뽑는다(재추첨 없음).
+ * 크기 비교 갈래의 「동률 불가」가 전부 이 함수 하나에서 나온다.
+ */
+function distinctIdx(rng: Rng, n: number, k: number): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < k; i += 1) {
+    let v = intBetween(rng, 0, n - 1 - i);
+    for (const u of [...out].sort((a, b) => a - b)) if (v >= u) v += 1;
+    out.push(v);
+  }
+  return out;
+}
+
+/** 소수 값 격자 — 색인 0..35 ↔ «w.t» (w 0..3, t 1..9). 꼬리 0 이 구조적으로 없다. */
+const decIdxVal = (idx: number) => ({
+  w: Math.floor(idx / 9),
+  t: (idx % 9) + 1,
+});
+const decStrOf = (idx: number) => {
+  const { w, t } = decIdxVal(idx);
+  return `${w}.${t}`;
+};
+
+// ── 1-6-1 똑같이 나누기 ──
+
+/** 1단 — 그림을 보고 몇 등분인지 한 번에. 표준(「조각은 모두 몇 개」)과 말투를 갈라 둔다. */
+function part161Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}${josa(material, "은", "는")} 똑같이 나누어져 있습니다. 한 조각은 전체를 똑같이 몇 조각으로 나눈 것 중 하나인지 쓰시오.`,
+    `${material}${josa(material, "을", "를")} 그림처럼 똑같이 나누었습니다. 전체는 몇 조각으로 나누어졌는지 쓰시오.`,
+    `그림처럼 ${material}${josa(material, "을", "를")} 크기가 같게 나누면 조각이 몇 개 생기는지 쓰시오.`,
+    `그림은 ${material}${josa(material, "을", "를")} 크기가 같은 조각으로 나눈 것입니다. 몇 등분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(parts),
+    `크기가 같은 조각이 ${n(parts)}개이므로 전체를 똑같이 ${n(parts)}조각으로 나눈 것입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 문장 조건으로 나눌 조각 수를 세운다(«$c$조각씩 $k$명» — 답이 발문에 안 보인다). */
+function part161Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 3);
+  const k = intBetween(rng, 2, 4);
+  const total = c * k;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} ${n(k)}명이 ${n(c)}조각씩 먹도록 똑같이 나누려고 합니다. 몇 조각으로 나누어야 하는지 쓰시오.`,
+    `친구 ${n(k)}명이 ${thing}${josa(thing, "을", "를")} 한 명당 ${n(c)}조각씩 남김없이 먹으려면 똑같이 몇 조각으로 나눠야 하는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 한 사람이 ${n(c)}조각씩 갖도록 ${n(k)}명이 똑같이 나눕니다. 전체를 몇 조각으로 나누면 되는지 쓰시오.`,
+    `${n(k)}명이 ${n(c)}조각씩 나누어 먹을 수 있게 ${thing}${josa(thing, "을", "를")} 똑같이 나누면 모두 몇 조각인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `${n(c)}조각씩 ${n(k)}명이므로 ${expr(`${c}\\times${k}=${total}`)} 조각으로 똑같이 나눕니다.`,
+  );
+}
+
+/** 3단 — 그림의 조각을 세고, 둘이 똑같이 나누면 몇 조각씩인지(두 단계). */
+function part161Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = pick(rng, [4, 6, 8]);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}${josa(material, "은", "는")} 똑같이 나누어져 있습니다. 두 사람이 조각 수를 똑같이 나누어 가지면 한 사람이 몇 조각씩 가지는지 쓰시오.`,
+    `그림처럼 나눈 ${material}${josa(material, "을", "를")} 두 명이 남김없이 똑같이 나누어 먹으면 한 명이 몇 조각씩 먹는지 쓰시오.`,
+    `그림의 ${material} 조각을 세어, 둘이 똑같이 나눌 때 한 명의 몫이 몇 조각인지 쓰시오.`,
+    `똑같이 나누어진 그림의 ${material}${josa(material, "을", "를")} 두 사람이 같은 수만큼 나누어 가지면 한 사람에게 몇 조각씩 돌아가는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(parts / 2),
+    `조각은 모두 ${n(parts)}개입니다. ${expr(`${parts}\\div2=${parts / 2}`)} 이므로 한 사람이 ${n(parts / 2)}조각씩 가집니다.`,
+    spec,
+  );
+}
+
+/** 4단 — 역산: 먹고 남은 조각 수에서 처음 등분을 되짚는다. */
+function part161Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const r = intBetween(rng, 2, 6);
+  const total = e + r;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 나눈 뒤 ${n(e)}조각을 먹었더니 ${n(r)}조각이 남았습니다. 처음에 몇 조각으로 나누었는지 쓰시오.`,
+    `똑같이 나눈 ${thing} 중 ${n(e)}조각을 접시에 덜고 나니 ${n(r)}조각이 남았습니다. 전체는 몇 조각이었는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 나누어 ${n(e)}조각을 나누어 주었더니 ${n(r)}조각이 남았습니다. 처음 조각 수를 쓰시오.`,
+    `똑같이 나눈 ${thing}에서 ${n(e)}조각이 없어지고 ${n(r)}조각이 남아 있습니다. 처음에는 모두 몇 조각이었는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `남은 조각에 먹은 조각을 도로 더합니다. ${expr(`${r}+${e}=${total}`)} 이므로 처음에 ${n(total)}조각으로 나누었습니다.`,
+  );
+}
+
+// ── 1-6-2 분수 알아보기(1) ──
+
+/** 1단 — 그림의 색칠 부분을 분수로. 표준과 말투를 갈라 둔다. */
+function frac162Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}에서 색칠한 부분을 분수로 나타내시오.`,
+    `${material}${josa(material, "을", "를")} 똑같이 나눈 그림입니다. 색칠한 부분은 전체의 몇 분의 몇인지 분수로 쓰시오.`,
+    `그림에서 색칠한 조각이 전체에서 차지하는 부분을 분수로 쓰시오.`,
+    `색칠한 부분이 전체의 얼마인지 그림을 보고 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${filled}}{${parts}}`),
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 것 중 ${n(filled)}조각이므로 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 그림 없이 문장으로 분수를 세운다. */
+function frac162Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 9);
+  const filled = intBetween(rng, 1, parts - 1);
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누어 그중 ${n(filled)}조각을 사용했습니다. 사용한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing} 중에서 ${n(filled)}조각에 색칠했습니다. 색칠한 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누고 ${n(filled)}조각을 동생에게 주었습니다. 동생에게 준 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 ${n(filled)}조각을 골랐습니다. 고른 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${filled}}{${parts}}`),
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 것 중 ${n(filled)}조각이므로 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 몫을 합쳐 분수로(두 단계). */
+function frac162Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 5, 9);
+  const f1 = intBetween(rng, 1, parts - 3);
+  const f2 = intBetween(rng, 1, parts - f1 - 2);
+  const sum = f1 + f2;
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누었습니다. 언니가 ${n(f1)}조각, 동생이 ${n(f2)}조각에 색칠했다면 색칠한 부분은 모두 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 아침에 ${n(f1)}조각, 저녁에 ${n(f2)}조각을 먹었습니다. 먹은 부분을 모두 합해 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누어 ${n(f1)}조각과 ${n(f2)}조각을 차례로 사용했습니다. 사용한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(f1)}조각을 먼저, ${n(f2)}조각을 나중에 골랐습니다. 고른 부분 전체를 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${sum}}{${parts}}`),
+    `고른 조각을 모두 더하면 ${expr(`${f1}+${f2}=${sum}`)} 조각입니다. 전체 ${n(parts)}조각 중 ${n(sum)}조각이므로 ${expr(`\\frac{${sum}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 분수에서 조각 수를 되짚는다(색칠하지 않은 조각). */
+function frac162Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const filled = intBetween(rng, 1, parts - 2);
+  const rest = parts - filled;
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}의 색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다. 색칠하지 않은 조각은 몇 조각인지 쓰시오.`,
+    `똑같이 나눈 ${thing}에서 사용한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 라면, 남은 조각은 몇 조각인지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 만큼 먹었습니다. 먹지 않은 조각의 수를 쓰시오.`,
+    `색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 색칠이 안 된 조각은 몇 조각인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(rest),
+    `분모가 전체 조각 수이고 분자가 색칠한 조각 수입니다. ${expr(`${parts}-${filled}=${rest}`)} 이므로 ${n(rest)}조각입니다.`,
+  );
+}
+
+// ── 1-6-3 분수 알아보기(2) ──
+
+/** 1단 — 그림의 «색칠하지 않은» 부분을 분수로. 표준과 말투를 갈라 둔다. */
+function frac163Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const rest = parts - filled;
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}에서 색칠하지 않은 부분을 분수로 나타내시오.`,
+    `${material}${josa(material, "을", "를")} 똑같이 나눈 그림입니다. 색칠이 안 된 부분은 전체의 몇 분의 몇인지 쓰시오.`,
+    `그림에서 색칠되지 않은 조각이 전체에서 차지하는 부분을 분수로 쓰시오.`,
+    `색칠하지 않은 부분이 전체의 얼마인지 그림을 보고 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `전체 ${n(parts)}조각 중 색칠한 것이 ${n(filled)}조각이므로 색칠하지 않은 것은 ${expr(`${parts}-${filled}=${rest}`)} 조각입니다. 따라서 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 문장으로: 먹고 남은 부분을 분수로. */
+function frac163Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const eaten = intBetween(rng, 1, parts - 2);
+  const rest = parts - eaten;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누어 ${n(eaten)}조각을 먹었습니다. 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(eaten)}조각을 나누어 주었습니다. 남아 있는 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누고 ${n(eaten)}조각을 사용했습니다. 사용하지 않은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 ${n(eaten)}조각이 팔렸습니다. 팔리지 않은 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `전체 ${n(parts)}조각에서 ${n(eaten)}조각을 빼면 ${expr(`${parts}-${eaten}=${rest}`)} 조각입니다. 따라서 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 번 덜어낸 뒤 남은 부분을 분수로(두 단계). */
+function frac163Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 6, 10);
+  const e1 = intBetween(rng, 1, parts - 4);
+  const e2 = intBetween(rng, 1, parts - e1 - 3);
+  const rest = parts - e1 - e2;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누었습니다. 형이 ${n(e1)}조각, 동생이 ${n(e2)}조각을 먹었다면 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 점심에 ${n(e1)}조각, 저녁에 ${n(e2)}조각을 먹었습니다. 남은 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누어 ${n(e1)}조각과 ${n(e2)}조각을 차례로 나누어 주었습니다. 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(e1)}조각이 먼저, ${n(e2)}조각이 나중에 팔렸습니다. 팔리지 않은 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `먹은 조각은 ${expr(`${e1}+${e2}=${e1 + e2}`)} 조각입니다. ${expr(`${parts}-${e1 + e2}=${rest}`)} 이므로 남은 부분은 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 남은 부분의 분수에서 먹은 조각 수를 되짚는다. */
+function frac163Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const rest = intBetween(rng, 1, parts - 2);
+  const eaten = parts - rest;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 먹고 나니 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 먹은 조각은 몇 조각인지 쓰시오.`,
+    `똑같이 나눈 ${thing}의 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 라면, 이미 먹은 조각의 수를 쓰시오.`,
+    `팔고 남은 ${thing}${josa(thing, "이", "가")} 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 팔린 조각은 몇 조각인지 쓰시오.`,
+    `남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 없어진 조각의 수를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(eaten),
+    // 발문이 먹은·팔린·없어진 조각을 오가므로 해설은 동사를 고정하지 않는다.
+    `분모가 전체 조각 수이고 분자가 남은 조각 수입니다. ${expr(`${parts}-${rest}=${eaten}`)} 이므로 ${n(eaten)}조각입니다.`,
+  );
+}
+
+// ── 1-6-4 분모가 같은 분수의 크기 비교 ──
+
+const KID_PAIRS = [
+  ["가은", "나윤"],
+  ["다인", "라온"],
+  ["시우", "하람"],
+  ["도현", "서진"],
+] as const;
+
+/** 1단 — 두 분수 비교(큰·작은을 오간다). 표준(「더 큰 분수」 한 틀)과 말투를 갈라 둔다. */
+function cmp164Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  const big = Math.max(a, b);
+  const small = Math.min(a, b);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? big : small;
+  const frA = expr(`\\frac{${a}}{${den}}`);
+  const frB = expr(`\\frac{${b}}{${den}}`);
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 분수 ${frA}, ${frB} 중에서 더 큰 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 큰 것을 고르시오.\n\n${frA},  ${frB}`,
+        ]
+      : [
+          `두 분수 ${frA}, ${frB} 중에서 더 작은 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 작은 것을 고르시오.\n\n${frA},  ${frB}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으면 분자가 클수록 큽니다. ${expr(`${big}>${small}`)} 이므로 ${askBig ? "더 큰" : "더 작은"} 분수는 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장 비교: 누가 더 많이 먹었는가(이름 답, 동률 불가). */
+function cmp164Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  const winner = a > b ? nameA : nameB;
+  const thing = pick(rng, ["피자", "케이크", "김밥", "식빵"]);
+  const frA = expr(`\\frac{${a}}{${den}}`);
+  const frB = expr(`\\frac{${b}}{${den}}`);
+  const stem = pick(rng, [
+    `${nameA}${josa(nameA, "은", "는")} ${thing} 한 판의 ${frA} 만큼, ${nameB}${josa(nameB, "은", "는")} ${frB} 만큼 먹었습니다. 더 많이 먹은 사람의 이름을 쓰시오.`,
+    `같은 크기의 ${thing}에서 ${nameA}${josa(nameA, "이", "가")} ${frA} 만큼, ${nameB}${josa(nameB, "이", "가")} ${frB} 만큼 가졌습니다. 더 많이 가진 사람은 누구인지 쓰시오.`,
+    `${thing} 한 판을 두고 ${nameA}${josa(nameA, "은", "는")} 전체의 ${frA} 만큼, ${nameB}${josa(nameB, "은", "는")} 전체의 ${frB} 만큼 색칠했습니다. 더 넓게 색칠한 사람의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} ${thing}의 ${frA} 만큼, ${nameB}${josa(nameB, "이", "가")} ${frB} 만큼 사용했습니다. 더 많이 사용한 사람은 누구인지 이름을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `분모가 같으면 분자가 클수록 큽니다. ${expr(`${Math.max(a, b)}>${Math.min(a, b)}`)} 이므로 ${winner}${josa(winner, "이", "가")} 더 많습니다.`,
+  );
+}
+
+/** 3단 — 세 분수 중 가장 큰·작은 것(두 번 비교, 동률 불가). */
+function cmp164Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  const idx = distinctIdx(rng, den - 1, 3);
+  const nums = idx.map((v) => v + 1);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? Math.max(...nums) : Math.min(...nums);
+  const frs = nums.map((v) => expr(`\\frac{${v}}{${den}}`));
+  const list = `${frs[0]},  ${frs[1]},  ${frs[2]}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 분수 중에서 가장 큰 분수를 쓰시오.\n\n${list}`,
+          `다음 분수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 큰 분수를 골라 쓰시오.`,
+          `가장 큰 분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 분수 중에서 가장 작은 분수를 쓰시오.\n\n${list}`,
+          `다음 분수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 작은 분수를 골라 쓰시오.`,
+          `가장 작은 분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sorted = [...nums].sort((x, y) => y - x);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으면 분자가 클수록 큽니다. 분자를 견주면 ${expr(`${sorted[0]}>${sorted[1]}>${sorted[2]}`)} 이므로 답은 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: $\frac{a}{d}<\frac{\square}{d}<\frac{c}{d}$ 의 $\square$ 세기. */
+function cmp164Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  const a = intBetween(rng, 1, den - 4);
+  const c = intBetween(rng, a + 2, den - 1);
+  const count = c - a - 1;
+  const mid = expr(
+    `\\frac{${a}}{${den}}<\\frac{\\square}{${den}}<\\frac{${c}}{${den}}`,
+  );
+  const stem = pick(rng, [
+    `${mid} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 자연수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`\\frac{${a}}{${den}}`)} 보다 크고 ${expr(`\\frac{${c}}{${den}}`)} 보다 작은 분수 ${expr(`\\frac{\\square}{${den}}`)} 의 ${expr(`\\square`)} 에 알맞은 자연수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 자연수는 모두 몇 개인지 구하시오.\n\n${mid}`,
+    `${mid} 에 맞는 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    `분모가 ${n(den)} 인 분수 중에서 ${expr(`\\frac{${a}}{${den}}`)} 보다 크고 ${expr(`\\frac{${c}}{${den}}`)} 보다 작은 분수는 모두 몇 개인지 쓰시오.`,
+    `${mid} 의 ${expr(`\\square`)} 에 알맞은 자연수를 모두 찾을 때, 그 개수를 쓰시오.`,
+    `두 분수 ${expr(`\\frac{${a}}{${den}}`)}, ${expr(`\\frac{${c}}{${den}}`)} 사이에 있는, 분모가 ${n(den)} 인 분수의 개수를 쓰시오.`,
+    `${mid} 에 알맞은 ${expr(`\\square`)} 의 수를 모두 세면 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `분모가 같으므로 분자만 비교하면 됩니다. ${expr(`${a}<\\square<${c}`)} 인 자연수는 ${
+      count === 1
+        ? `${n(a + 1)} 뿐이므로`
+        : `${n(a + 1)}부터 ${n(c - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
+// ── 1-6-5 단위분수의 크기 비교 ──
+
+/** 1단 — 두 단위분수 비교(큰·작은을 오간다). 표준(「더 큰 분수」 한 틀)과 갈라 둔다. */
+function unit165Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  const askBig = intBetween(rng, 0, 1) === 0;
+  // 단위분수는 분모가 작을수록 크다.
+  const ans = askBig ? Math.min(a, b) : Math.max(a, b);
+  const frA = expr(`\\frac{1}{${a}}`);
+  const frB = expr(`\\frac{1}{${b}}`);
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 단위분수 ${frA}, ${frB} 중에서 더 큰 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 단위분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 큰 것을 고르시오.\n\n${frA},  ${frB}`,
+        ]
+      : [
+          `두 단위분수 ${frA}, ${frB} 중에서 더 작은 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 단위분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 작은 것을 고르시오.\n\n${frA},  ${frB}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{1}{${ans}}`),
+    `단위분수는 분모가 작을수록 큽니다. ${expr(`${Math.min(a, b)}<${Math.max(a, b)}`)} 이므로 답은 ${expr(`\\frac{1}{${ans}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 이야기 비교: 조각 수가 다르게 나눈 두 사람(이름 답). */
+function unit165Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  // 조각 수가 적게 나눈 쪽의 한 조각이 더 크다.
+  const winner = a < b ? nameA : nameB;
+  const thing = pick(rng, ["케이크", "피자", "떡", "파이"]);
+  const stem = pick(rng, [
+    `똑같은 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} ${n(a)}조각으로, ${nameB}${josa(nameB, "은", "는")} ${n(b)}조각으로 똑같이 나누어 각각 한 조각씩 먹었습니다. 더 많이 먹은 사람의 이름을 쓰시오.`,
+    `크기가 같은 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "이", "가")} ${n(a)}등분, ${nameB}${josa(nameB, "이", "가")} ${n(b)}등분 하여 한 조각씩 가졌습니다. 더 큰 조각을 가진 사람은 누구인지 쓰시오.`,
+    `같은 크기의 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} 똑같이 ${n(a)}조각, ${nameB}${josa(nameB, "은", "는")} 똑같이 ${n(b)}조각으로 나눴습니다. 한 조각의 크기가 더 큰 쪽의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} ${n(a)}조각으로, ${nameB}${josa(nameB, "이", "가")} ${n(b)}조각으로 같은 ${thing}${josa(thing, "을", "를")} 똑같이 나눴다면, 한 조각이 더 큰 사람은 누구인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `같은 전체를 나누면 조각 수가 적을수록 한 조각이 큽니다. ${expr(`${Math.min(a, b)}<${Math.max(a, b)}`)} 이므로 ${winner}${josa(winner, "이", "가")} 더 큽니다.`,
+  );
+}
+
+/** 3단 — 세 단위분수 중 가장 큰·작은 것(동률 불가). */
+function unit165Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const idx = distinctIdx(rng, 8, 3);
+  const dens = idx.map((v) => v + 2);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? Math.min(...dens) : Math.max(...dens);
+  const frs = dens.map((v) => expr(`\\frac{1}{${v}}`));
+  const list = `${frs[0]},  ${frs[1]},  ${frs[2]}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 단위분수 중에서 가장 큰 분수를 쓰시오.\n\n${list}`,
+          `다음 단위분수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 큰 분수를 골라 쓰시오.`,
+          `가장 큰 단위분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 단위분수 중에서 가장 작은 분수를 쓰시오.\n\n${list}`,
+          `다음 단위분수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 작은 분수를 골라 쓰시오.`,
+          `가장 작은 단위분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sorted = [...dens].sort((x, y) => x - y);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{1}{${ans}}`),
+    `단위분수는 분모가 작을수록 큽니다. 분모를 견주면 ${expr(`${sorted[0]}<${sorted[1]}<${sorted[2]}`)} 이므로 답은 ${expr(`\\frac{1}{${ans}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 부등식의 $\square$ 에 들어갈 수 세기(범위가 닫힌 방향만 쓴다). */
+function unit165Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    // 1/□ > 1/k (□ ≥ 2) — □ < k 이므로 k−2 개.
+    const k = intBetween(rng, 5, 9);
+    const count = k - 2;
+    const rel = expr(`\\frac{1}{\\square}>\\frac{1}{${k}}`);
+    const stem = pick(rng, [
+      `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 $2$ 이상의 자연수는 모두 몇 개인지 쓰시오.`,
+      `${expr(`\\frac{1}{${k}}`)} 보다 큰 단위분수 ${expr(`\\frac{1}{\\square}`)} 의 ${expr(`\\square`)} 에 알맞은 $2$ 이상의 자연수는 모두 몇 개인지 쓰시오.`,
+      `조건에 맞는 ${expr(`\\square`)} 의 자연수($2$ 이상)는 모두 몇 개인지 구하시오.\n\n${rel}`,
+      `${rel} 에 맞는 $2$ 이상의 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(count),
+      `단위분수는 분모가 작을수록 크므로 ${expr(`\\square<${k}`)} 여야 합니다. $2$ 이상이므로 ${expr(`2`)} 부터 ${n(k - 1)}까지, 모두 ${n(count)}개입니다.`,
+    );
+  }
+  // 1/a < 1/□ < 1/b — b < □ < a 이므로 a−b−1 개.
+  const b = intBetween(rng, 2, 5);
+  const a = intBetween(rng, b + 2, 9);
+  const count = a - b - 1;
+  const rel = expr(`\\frac{1}{${a}}<\\frac{1}{\\square}<\\frac{1}{${b}}`);
+  const stem = pick(rng, [
+    `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 자연수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`\\frac{1}{${a}}`)} 보다 크고 ${expr(`\\frac{1}{${b}}`)} 보다 작은 단위분수 ${expr(`\\frac{1}{\\square}`)} 의 ${expr(`\\square`)} 에 알맞은 자연수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 자연수는 모두 몇 개인지 구하시오.\n\n${rel}`,
+    `${rel} 에 맞는 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `단위분수는 분모가 작을수록 크므로 ${expr(`${b}<\\square<${a}`)} 여야 합니다. ${
+      count === 1
+        ? `${n(b + 1)} 뿐이므로`
+        : `${n(b + 1)}부터 ${n(a - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
+// ── 1-6-6 소수 알아보기 ──
+
+/** 1단 — 분수↔소수·자리 만들기 네 형. 표준(색칠 문장+그림 한 틀)과 갈라 둔다. */
+function dec166Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const form = intBetween(rng, 0, 3);
+  const prompt = intBetween(rng, 0, 1);
+  if (form === 0) {
+    const k = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `다음 분수를 소수로 나타내시오.\n\n${expr(`\\frac{${k}}{10}`)}`
+        : `분수 ${expr(`\\frac{${k}}{10}`)} 의 값을 소수로 쓰시오.`,
+      n(`0.${k}`),
+      `${expr(`\\frac{${k}}{10}`)} 의 값은 $0.1$ 짜리가 ${n(k)}개라는 뜻이므로 소수로 쓰면 ${expr(`0.${k}`)} 입니다.`,
+    );
+  }
+  if (form === 1) {
+    const k = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `다음 소수를 분수로 나타내시오.\n\n${expr(`0.${k}`)}`
+        : `소수 ${expr(`0.${k}`)} 의 값을 분수로 쓰시오.`,
+      expr(`\\frac{${k}}{10}`),
+      `${expr(`0.${k}`)} 의 값은 $0.1$ 짜리가 ${n(k)}개라는 뜻이므로 분수로 쓰면 ${expr(`\\frac{${k}}{10}`)} 입니다.`,
+    );
+  }
+  if (form === 2) {
+    const w = intBetween(rng, 1, 4);
+    const t = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `$1$ 짜리가 ${n(w)}개, $0.1$ 짜리가 ${n(t)}개 있으면 모두 얼마인지 소수로 쓰시오.`
+        : `$1$ 짜리 ${n(w)}개와 $0.1$ 짜리 ${n(t)}개를 모은 수를 소수로 나타내시오.`,
+      n(`${w}.${t}`),
+      `$1$ 짜리 ${n(w)}개는 ${n(w)}, $0.1$ 짜리 ${n(t)}개는 ${expr(`0.${t}`)} 이므로 모으면 ${expr(`${w}.${t}`)} 입니다.`,
+    );
+  }
+  const w = intBetween(rng, 1, 3);
+  const t = intBetween(rng, 1, 9);
+  const m = w * 10 + t;
+  return make(
+    unit,
+    prompt === 0
+      ? `$0.1$ 짜리가 ${n(m)}개 있으면 모두 얼마인지 소수로 쓰시오.`
+      : `$0.1$ 짜리 ${n(m)}개를 모은 수를 소수로 나타내시오.`,
+    n(`${w}.${t}`),
+    `$0.1$ 짜리 ${n(10)}개가 $1$ 입니다. ${n(m)}개는 $1$ 짜리 ${n(w)}개와 $0.1$ 짜리 ${n(t)}개이므로 ${expr(`${w}.${t}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장 변환: mm→cm 소수, 열 조각 이야기. */
+function dec166Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const form = intBetween(rng, 0, 1);
+  if (form === 0) {
+    const k = intBetween(rng, 1, 9);
+    const thing = pick(rng, ["못", "클립", "씨앗", "지우개"]);
+    const stem = pick(rng, [
+      `${thing}의 길이는 ${unitNum(k, "mm")} 입니다. 이 길이는 몇 cm인지 소수로 쓰시오.`,
+      `길이가 ${unitNum(k, "mm")} 인 ${thing}${josa(thing, "이", "가")} 있습니다. cm 단위의 소수로 나타내시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(`0.${k}`),
+      `$1\\,\\mathrm{mm}$ 는 $0.1\\,\\mathrm{cm}$ 입니다. ${unitNum(k, "mm")} 는 $0.1$ 짜리가 ${n(k)}개이므로 ${expr(`0.${k}`)} cm입니다.`,
+    );
+  }
+  const k = intBetween(rng, 1, 9);
+  const thing = pick(rng, ["떡", "양갱", "두부", "카스텔라"]);
+  const stem = pick(rng, [
+    `${thing} 한 개를 똑같이 ${n(10)}조각으로 나누어 ${n(k)}조각을 먹었습니다. 먹은 부분을 소수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(10)}조각으로 나눈 것 중 ${n(k)}조각에 색칠했습니다. 색칠한 부분을 소수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(`0.${k}`),
+    `전체를 똑같이 ${n(10)}조각으로 나눈 것 중 ${n(k)}조각이므로 ${expr(`\\frac{${k}}{10}`)} 이고, 소수로 쓰면 ${expr(`0.${k}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 부분을 모아 소수로(두 단계): cm·mm 결합, 온전한 것+조각. */
+function dec166Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 4);
+  const t = intBetween(rng, 1, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, ["연필", "리본", "빨대", "막대"]);
+    const stem = pick(rng, [
+      `${thing}의 길이는 ${n(w)} cm ${n(t)} mm 입니다. 이 길이는 몇 cm인지 소수로 나타내시오.`,
+      `길이가 ${n(w)} cm ${n(t)} mm 인 ${thing}${josa(thing, "이", "가")} 있습니다. cm 단위의 소수로 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(`${w}.${t}`),
+      `${n(t)} mm 는 ${expr(`0.${t}`)} cm입니다. ${n(w)} cm 와 ${expr(`0.${t}`)} cm 를 모으면 ${expr(`${w}.${t}`)} cm입니다.`,
+    );
+  }
+  const thing = pick(rng, ["초콜릿", "떡", "카스텔라", "양갱"]);
+  const stem = pick(rng, [
+    `온전한 ${thing} ${n(w)}개와, 똑같이 ${n(10)}조각으로 나눈 ${thing}의 ${n(t)}조각이 있습니다. ${thing}${josa(thing, "은", "는")} 모두 몇 개인지 소수로 나타내시오.`,
+    `${thing} ${n(w)}개가 통째로 있고, 한 개를 ${n(10)}등분한 조각이 ${n(t)}개 더 있습니다. 모두 몇 개인지 소수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(`${w}.${t}`),
+    `${n(10)}등분한 ${n(t)}조각은 ${expr(`0.${t}`)} 개입니다. ${n(w)}개와 모으면 ${expr(`${w}.${t}`)} 개입니다.`,
+  );
+}
+
+/** 4단 — 역산: 소수를 $0.1$ 짜리 개수·mm 로 되짚는다. */
+function dec166Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 3);
+  const t = intBetween(rng, 1, 9);
+  const total = w * 10 + t;
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `$0.1$ 짜리가 몇 개 모여야 소수 ${expr(`${w}.${t}`)} 만큼이 되는지 쓰시오.`,
+      `$0.1$ 짜리를 몇 개 모으면 ${expr(`${w}.${t}`)} 만큼이 되는지 쓰시오.`,
+      `소수 ${expr(`${w}.${t}`)} 만큼을 만들려면 $0.1$ 짜리가 몇 개 필요한지 쓰시오.`,
+      `${expr(`${w}.${t}`)} 만큼은 $0.1$ 짜리가 몇 개인 수인지 구하시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(total),
+      `$1$ 짜리 ${n(w)}개는 $0.1$ 짜리 ${n(w * 10)}개와 같고, ${expr(`0.${t}`)} 만큼은 $0.1$ 짜리 ${n(t)}개입니다. ${expr(`${w * 10}+${t}=${total}`)} 이므로 ${n(total)}개입니다.`,
+    );
+  }
+  const thing = pick(rng, ["연필", "리본", "빨대", "막대"]);
+  const stem = pick(rng, [
+    `${thing}의 길이는 ${expr(`${w}.${t}`)} cm입니다. 이 길이는 몇 mm인지 쓰시오.`,
+    `길이가 ${expr(`${w}.${t}`)} cm인 ${thing}${josa(thing, "이", "가")} 있습니다. mm 단위로 나타내시오.`,
+    `${expr(`${w}.${t}`)} cm짜리 ${thing}${josa(thing, "을", "를")} mm 로 재면 몇 mm인지 쓰시오.`,
+    `${thing}의 길이 ${expr(`${w}.${t}`)} cm를 mm 단위로 바꾸어 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${n(w)} cm 는 ${n(w * 10)} mm이고, ${expr(`0.${t}`)} cm 는 ${n(t)} mm입니다. ${expr(`${w * 10}+${t}=${total}`)} 입니다.`,
+  );
+}
+
+// ── 1-6-7 소수의 크기 비교 ──
+
+/** 1단 — 두 소수 비교(큰·작은을 오간다, 동률 불가). 표준(「더 큰 수」 한 틀)과 갈라 둔다. */
+function cmp167Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decStrOf(i);
+  const B = decStrOf(j);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  const ans = askBig ? (vA > vB ? A : B) : vA > vB ? B : A;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 소수 ${n(A)}, ${n(B)} 중에서 더 큰 수를 골라 쓰시오.`,
+          `${n(A)}, ${n(B)} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 소수를 쓰시오.\n\n${n(A)},  ${n(B)}`,
+          `두 소수 가운데 큰 것을 고르시오.\n\n${n(A)},  ${n(B)}`,
+        ]
+      : [
+          `두 소수 ${n(A)}, ${n(B)} 중에서 더 작은 수를 골라 쓰시오.`,
+          `${n(A)}, ${n(B)} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 소수를 쓰시오.\n\n${n(A)},  ${n(B)}`,
+          `두 소수 가운데 작은 것을 고르시오.\n\n${n(A)},  ${n(B)}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. ${askBig ? "더 큰" : "더 작은"} 수는 ${expr(ans)} 입니다.`,
+  );
+}
+
+/** 2단 — 기록 비교 문장(이름 답, 동률 불가). */
+function cmp167Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decStrOf(i);
+  const B = decStrOf(j);
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  const winner = vA > vB ? nameA : nameB;
+  const stem = pick(rng, [
+    `멀리뛰기에서 ${nameA}${josa(nameA, "은", "는")} ${n(A)} m, ${nameB}${josa(nameB, "은", "는")} ${n(B)} m 뛰었습니다. 더 멀리 뛴 사람의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} 캔 고구마는 ${n(A)} kg, ${nameB}${josa(nameB, "이", "가")} 캔 고구마는 ${n(B)} kg입니다. 더 많이 캔 사람은 누구인지 쓰시오.`,
+    `리본을 ${nameA}${josa(nameA, "은", "는")} ${n(A)} m, ${nameB}${josa(nameB, "은", "는")} ${n(B)} m 가지고 있습니다. 더 긴 리본을 가진 사람의 이름을 쓰시오.`,
+    `물을 ${nameA}${josa(nameA, "이", "가")} ${n(A)} L, ${nameB}${josa(nameB, "이", "가")} ${n(B)} L 마셨습니다. 더 많이 마신 사람은 누구인지 이름을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. ${expr(vA > vB ? A : B)} 쪽이 더 크므로 ${winner}${josa(winner, "이", "가")} 답입니다.`,
+  );
+}
+
+/** 3단 — 세 소수 중 가장 큰·작은 것(동률 불가). */
+function cmp167Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const idx = distinctIdx(rng, 36, 3);
+  const strs = idx.map(decStrOf);
+  const vals = idx.map((v) => decIdxVal(v).w * 10 + decIdxVal(v).t);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const pickIdx = askBig
+    ? vals.indexOf(Math.max(...vals))
+    : vals.indexOf(Math.min(...vals));
+  const ans = strs[pickIdx]!;
+  const list = `${n(strs[0]!)},  ${n(strs[1]!)},  ${n(strs[2]!)}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 소수 중에서 가장 큰 수를 쓰시오.\n\n${list}`,
+          `다음 소수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 소수 ${n(strs[0]!)}, ${n(strs[1]!)}, ${n(strs[2]!)} 중 가장 큰 수를 골라 쓰시오.`,
+          `가장 큰 소수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 소수 중에서 가장 작은 수를 쓰시오.\n\n${list}`,
+          `다음 소수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 소수 ${n(strs[0]!)}, ${n(strs[1]!)}, ${n(strs[2]!)} 중 가장 작은 수를 골라 쓰시오.`,
+          `가장 작은 소수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sortedStrs = idx
+    .map((v) => ({ s: decStrOf(v), val: decIdxVal(v).w * 10 + decIdxVal(v).t }))
+    .sort((x, y) => y.val - x.val)
+    .map((x) => x.s);
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. 크기 순서는 ${expr(`${sortedStrs[0]}>${sortedStrs[1]}>${sortedStrs[2]}`)} 이므로 답은 ${expr(ans)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 같은 자연수부에서 $w.a<w.\square<w.b$ 의 $\square$ 세기. */
+function cmp167Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 0, 3);
+  const a = intBetween(rng, 1, 6);
+  const b = intBetween(rng, a + 2, 8);
+  const count = b - a - 1;
+  const rel = expr(`${w}.${a}<${w}.\\square<${w}.${b}`);
+  const stem = pick(rng, [
+    `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`${w}.${a}`)} 보다 크고 ${expr(`${w}.${b}`)} 보다 작은 소수 ${expr(`${w}.\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 수는 모두 몇 개인지 구하시오.\n\n${rel}`,
+    `${rel} 에 맞는 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    `${expr(`${w}.${a}`)}, ${expr(`${w}.${b}`)} 사이에 있는 소수 한 자리 수는 모두 몇 개인지 쓰시오.`,
+    `${rel} 의 ${expr(`\\square`)} 에 알맞은 수를 모두 찾을 때, 그 개수를 쓰시오.`,
+    `두 소수 ${expr(`${w}.${a}`)}, ${expr(`${w}.${b}`)} 사이의 소수 한 자리 수를 모두 세어 그 수를 쓰시오.`,
+    `${rel} 에 알맞은 ${expr(`\\square`)} 의 수를 모두 세면 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `자연수 부분이 같으므로 소수 첫째 자리만 비교합니다. ${expr(`${a}<\\square<${b}`)} 인 수는 ${
+      count === 1
+        ? `${n(a + 1)} 뿐이므로`
+        : `${n(a + 1)}부터 ${n(b - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -4072,6 +4972,48 @@ export const G3_TIERS: ElemTierMap = {
     기본: time156Word,
     응용: time156Apply,
     심화: time156Deep,
+  },
+  "초3|1-6-1": {
+    연산: part161Calc,
+    기본: part161Word,
+    응용: part161Apply,
+    심화: part161Deep,
+  },
+  "초3|1-6-2": {
+    연산: frac162Calc,
+    기본: frac162Word,
+    응용: frac162Apply,
+    심화: frac162Deep,
+  },
+  "초3|1-6-3": {
+    연산: frac163Calc,
+    기본: frac163Word,
+    응용: frac163Apply,
+    심화: frac163Deep,
+  },
+  "초3|1-6-4": {
+    연산: cmp164Calc,
+    기본: cmp164Word,
+    응용: cmp164Apply,
+    심화: cmp164Deep,
+  },
+  "초3|1-6-5": {
+    연산: unit165Calc,
+    기본: unit165Word,
+    응용: unit165Apply,
+    심화: unit165Deep,
+  },
+  "초3|1-6-6": {
+    연산: dec166Calc,
+    기본: dec166Word,
+    응용: dec166Apply,
+    심화: dec166Deep,
+  },
+  "초3|1-6-7": {
+    연산: cmp167Calc,
+    기본: cmp167Word,
+    응용: cmp167Apply,
+    심화: cmp167Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,

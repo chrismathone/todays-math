@@ -8,6 +8,7 @@
 import { describe, expect, it } from "vitest";
 
 import { ELEM_TIERS } from "@/lib/elementary/difficulty";
+import { fracFigParts } from "@/lib/elementary/fracFig";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -405,6 +406,15 @@ const PLANE = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"] as const;
 const DIVISION = ["1-3-1", "1-3-2", "1-3-3", "1-3-4"] as const;
 const MULT = ["1-4-1", "1-4-2", "1-4-3", "1-4-4", "1-4-5"] as const;
 const LENTIME = ["1-5-1", "1-5-2", "1-5-3", "1-5-4", "1-5-5", "1-5-6"] as const;
+const FRACDEC = [
+  "1-6-1",
+  "1-6-2",
+  "1-6-3",
+  "1-6-4",
+  "1-6-5",
+  "1-6-6",
+  "1-6-7",
+] as const;
 
 function planeUnit(code: string) {
   return elementaryUnits().find(
@@ -719,8 +729,15 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     // 같은 발문을 내는 것을 판정기가 잡았는데, 나머지 셋도 같은 자리가 있었고
     // 씨앗이 안 맞아 안 걸렸을 뿐이다 — 여기서 씨앗을 넓혀 잠근다.
     const bad: string[] = [];
-    // 1-1·1-3·1-4·1-5 까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
-    for (const code of [...CODES, ...PLANE, ...DIVISION, ...MULT, ...LENTIME]) {
+    // 1-1·1-3·1-4·1-5·1-6 까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
+    for (const code of [
+      ...CODES,
+      ...PLANE,
+      ...DIVISION,
+      ...MULT,
+      ...LENTIME,
+      ...FRACDEC,
+    ]) {
       for (const seed of SEEDS) {
         const plain = generateElementaryProblem(planeUnit(code), seed).content;
         const seen = new Map<string, string>();
@@ -1703,6 +1720,466 @@ describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
     const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
     const bad: string[] = [];
     for (const code of LENTIME) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const outside = text.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (outside)
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
+              );
+            if (risk.test(text) && !/\\mathrm/.test(text)) {
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+/**
+ * 초3 1-6 분수와 소수 4단 확대 (D-72) — 일곱 소단원 전부.
+ *
+ * 그림이 있는 갈래는 **그림에서 참을 되살린다**(fracFigParts·filled — 이름표를 믿지
+ * 않는다, D-61). 분수는 전부 진분수(분자<분모≤12), 소수는 한 자리·꼬리 0 없음.
+ * 크기 비교는 어느 갈래에서도 동률이 나오면 안 된다 — 전 갈래에서 잠근다.
+ */
+
+/** 이름 갈래의 등장인물 어휘 — 정규식으로 «크기가» 같은 낱말을 이름으로 오독하지 않게 표로 찾는다. */
+const KID_NAMES = [
+  "가은",
+  "나윤",
+  "다인",
+  "라온",
+  "시우",
+  "하람",
+  "도현",
+  "서진",
+] as const;
+
+/** 본문에 등장하는 두 이름을 **등장 순서대로**. */
+function kidsIn(text: string): string[] {
+  return KID_NAMES.filter((k) => text.includes(k)).sort(
+    (a, b) => text.indexOf(a) - text.indexOf(b),
+  );
+}
+
+/** 본문의 수를 소수·정수로 갈라 읽는다 — `0.1` 을 정수 0 과 1 로 쪼개 읽지 않기 위해서다. */
+function fracDecNums(text: string): { decs: number[]; ints: number[] } {
+  const inner = [...text.matchAll(/\$([^$]*)\$/g)].map((m) => m[1]!).join(" ");
+  const decs = [...inner.matchAll(/\d+\.\d+/g)].map((m) => m[0]);
+  const stripped = inner
+    .replace(/\d+\.\d+/g, " ")
+    .replace(/\\frac\{\d+\}\{\d+\}/g, " ");
+  const ints = [...stripped.matchAll(/\d+/g)].map((m) => Number(m[0]));
+  return { decs: decs.map(Number), ints };
+}
+
+/** 본문·답의 숫자 분수 — `\frac{□}{d}` 같은 미지수 분수는 걸리지 않는다. */
+function fracsOf(text: string): { num: number; den: number }[] {
+  return [...text.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => ({
+    num: Number(m[1]),
+    den: Number(m[2]),
+  }));
+}
+
+describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
+  it("일곱 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of FRACDEC) {
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of FRACDEC) {
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 4242, tier);
+        const b = generateElementaryProblem(planeUnit(code), 4242, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+    }
+  });
+
+  it("분수는 전부 진분수(분자<분모≤12), 소수는 한 자리·꼬리 0 없음", () => {
+    const bad: string[] = [];
+    for (const code of FRACDEC) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const all = `${p.content} ${p.answer} ${p.solution}`;
+          for (const f of fracsOf(all)) {
+            if (f.num < 1 || f.num >= f.den || f.den > 12)
+              bad.push(`${code} ${tier} seed ${seed}: ${f.num}/${f.den}`);
+          }
+          for (const m of all.matchAll(/\d+\.(\d+)/g)) {
+            if (m[1]!.length !== 1 || m[1] === "0")
+              bad.push(`${code} ${tier} seed ${seed}: 소수 ${m[0]}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("그림 갈래의 참은 그림에서 온다 — 등분 수·색칠 수가 답과 맞는다", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      const c1 = generateElementaryProblem(planeUnit("1-6-1"), seed, "연산");
+      const s1 = c1.figureSpec as { kind?: string; filled?: number };
+      if (answerOf(c1.answer) !== fracFigParts(s1))
+        bad.push(
+          `1-6-1 연산 seed ${seed}: 답 ${c1.answer} ≠ 그림 ${fracFigParts(s1)}등분`,
+        );
+
+      const a1 = generateElementaryProblem(planeUnit("1-6-1"), seed, "응용");
+      const sa = a1.figureSpec as { kind?: string; filled?: number };
+      const parts = fracFigParts(sa);
+      if (parts % 2 !== 0)
+        bad.push(`1-6-1 응용 seed ${seed}: 홀수 등분 ${parts}`);
+      else if (answerOf(a1.answer) !== parts / 2)
+        bad.push(`1-6-1 응용 seed ${seed}: 답 ${a1.answer} ≠ ${parts}/2`);
+
+      const c2 = generateElementaryProblem(planeUnit("1-6-2"), seed, "연산");
+      const s2 = c2.figureSpec as { kind?: string; filled?: number };
+      const f2 = fracsOf(c2.answer)[0];
+      if (!f2) bad.push(`1-6-2 연산 seed ${seed}: 답이 분수가 아니다`);
+      else if (f2.den !== fracFigParts(s2) || f2.num !== s2.filled)
+        bad.push(
+          `1-6-2 연산 seed ${seed}: 답 ${c2.answer} ≠ 그림 ${s2.filled}/${fracFigParts(s2)}`,
+        );
+
+      const c3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "연산");
+      const s3 = c3.figureSpec as { kind?: string; filled?: number };
+      const f3 = fracsOf(c3.answer)[0];
+      if (!f3) bad.push(`1-6-3 연산 seed ${seed}: 답이 분수가 아니다`);
+      else if (
+        f3.den !== fracFigParts(s3) ||
+        f3.num !== fracFigParts(s3) - (s3.filled ?? 0)
+      )
+        bad.push(
+          `1-6-3 연산 seed ${seed}: 답 ${c3.answer} ≠ 그림 ${fracFigParts(s3) - (s3.filled ?? 0)}/${fracFigParts(s3)}`,
+        );
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-6-1 — 기본은 곱, 심화는 되짚은 합이 발문의 수에서 다시 나온다", () => {
+    for (const seed of SEEDS) {
+      const w = generateElementaryProblem(planeUnit("1-6-1"), seed, "기본");
+      const wi = fracDecNums(w.content).ints;
+      expect(wi.length, `기본 seed ${seed}`).toBe(2);
+      expect(answerOf(w.answer), `기본 seed ${seed}: ${w.content}`).toBe(
+        wi[0]! * wi[1]!,
+      );
+
+      const d = generateElementaryProblem(planeUnit("1-6-1"), seed, "심화");
+      const di = fracDecNums(d.content).ints;
+      expect(di.length, `심화 seed ${seed}`).toBe(2);
+      expect(answerOf(d.answer), `심화 seed ${seed}: ${d.content}`).toBe(
+        di[0]! + di[1]!,
+      );
+    }
+  });
+
+  it("1-6-2·1-6-3 — 문장 갈래의 분수·조각 수가 발문의 수에서 다시 나온다", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      const w2 = generateElementaryProblem(planeUnit("1-6-2"), seed, "기본");
+      const w2i = fracDecNums(w2.content).ints;
+      const w2f = fracsOf(w2.answer)[0]!;
+      if (w2f.den !== w2i[0] || w2f.num !== w2i[1])
+        bad.push(`1-6-2 기본 seed ${seed}: ${w2.content} / ${w2.answer}`);
+
+      const a2 = generateElementaryProblem(planeUnit("1-6-2"), seed, "응용");
+      const a2i = fracDecNums(a2.content).ints;
+      const a2f = fracsOf(a2.answer)[0]!;
+      if (a2f.den !== a2i[0] || a2f.num !== a2i[1]! + a2i[2]!)
+        bad.push(`1-6-2 응용 seed ${seed}: ${a2.content} / ${a2.answer}`);
+
+      const d2 = generateElementaryProblem(planeUnit("1-6-2"), seed, "심화");
+      const d2f = fracsOf(d2.content)[0]!;
+      if (answerOf(d2.answer) !== d2f.den - d2f.num)
+        bad.push(`1-6-2 심화 seed ${seed}: ${d2.content} / ${d2.answer}`);
+
+      const w3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "기본");
+      const w3i = fracDecNums(w3.content).ints;
+      const w3f = fracsOf(w3.answer)[0]!;
+      if (w3f.den !== w3i[0] || w3f.num !== w3i[0]! - w3i[1]!)
+        bad.push(`1-6-3 기본 seed ${seed}: ${w3.content} / ${w3.answer}`);
+
+      const a3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "응용");
+      const a3i = fracDecNums(a3.content).ints;
+      const a3f = fracsOf(a3.answer)[0]!;
+      if (a3f.den !== a3i[0] || a3f.num !== a3i[0]! - a3i[1]! - a3i[2]!)
+        bad.push(`1-6-3 응용 seed ${seed}: ${a3.content} / ${a3.answer}`);
+      if (a3f.num < 1) bad.push(`1-6-3 응용 seed ${seed}: 남은 조각 0`);
+
+      const d3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "심화");
+      const d3f = fracsOf(d3.content)[0]!;
+      if (answerOf(d3.answer) !== d3f.den - d3f.num)
+        bad.push(`1-6-3 심화 seed ${seed}: ${d3.content} / ${d3.answer}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-6-4 — 분모 같은 비교: 동률 불가·정답 정확·심화 세기", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "응용"] as const) {
+        const p = generateElementaryProblem(planeUnit("1-6-4"), seed, tier);
+        const fs = fracsOf(p.content);
+        const want = tier === "연산" ? 2 : 3;
+        if (fs.length < want) {
+          bad.push(`${tier} seed ${seed}: 분수 ${fs.length}개`);
+          continue;
+        }
+        const dens = new Set(fs.map((f) => f.den));
+        const nums = fs.map((f) => f.num);
+        if (dens.size !== 1) bad.push(`${tier} seed ${seed}: 분모가 다르다`);
+        if (new Set(nums).size !== nums.length)
+          bad.push(`${tier} seed ${seed}: 동률 분수`);
+        const askBig = /더 큰|큰 쪽|큰 것|가장 큰/.test(p.content);
+        const expected = askBig ? Math.max(...nums) : Math.min(...nums);
+        const af = fracsOf(p.answer)[0]!;
+        if (af.num !== expected)
+          bad.push(`${tier} seed ${seed}: 답 ${p.answer} ≠ ${expected}`);
+      }
+
+      const w = generateElementaryProblem(planeUnit("1-6-4"), seed, "기본");
+      const wf = fracsOf(w.content);
+      const wNames = kidsIn(w.content);
+      if (wf.length === 2 && wf[0]!.num !== wf[1]!.num && wNames.length === 2) {
+        // 첫 이름이 첫 분수의 임자다 — 분자가 큰 쪽의 이름이 답이어야 한다.
+        const winner = wf[0]!.num > wf[1]!.num ? wNames[0] : wNames[1];
+        if (w.answer !== winner)
+          bad.push(
+            `기본 seed ${seed}: 답 ${w.answer} ≠ ${winner} — ${w.content}`,
+          );
+      } else bad.push(`기본 seed ${seed}: 분수·이름 짝을 못 읽음`);
+
+      const d = generateElementaryProblem(planeUnit("1-6-4"), seed, "심화");
+      const df = fracsOf(d.content);
+      if (df.length < 2) bad.push(`심화 seed ${seed}: 분수 ${df.length}개`);
+      else {
+        const lo = Math.min(df[0]!.num, df[1]!.num);
+        const hi = Math.max(df[0]!.num, df[1]!.num);
+        const count = hi - lo - 1;
+        if (count < 1) bad.push(`심화 seed ${seed}: 사이가 비었다`);
+        else if (answerOf(d.answer) !== count)
+          bad.push(`심화 seed ${seed}: ${count} ≠ ${d.answer}`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-6-5 — 단위분수 비교: 동률 불가·분모 작은 쪽이 크다·심화 세기", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "응용"] as const) {
+        const p = generateElementaryProblem(planeUnit("1-6-5"), seed, tier);
+        const dens = fracsOf(p.content).map((f) => f.den);
+        if (new Set(dens).size !== dens.length)
+          bad.push(`${tier} seed ${seed}: 같은 단위분수`);
+        const askBig = /더 큰|큰 쪽|큰 것|가장 큰/.test(p.content);
+        const expected = askBig ? Math.min(...dens) : Math.max(...dens);
+        const af = fracsOf(p.answer)[0]!;
+        if (af.den !== expected)
+          bad.push(`${tier} seed ${seed}: 답 ${p.answer} ≠ 1/${expected}`);
+      }
+
+      const w = generateElementaryProblem(planeUnit("1-6-5"), seed, "기본");
+      const wi = fracDecNums(w.content).ints;
+      const wNames = kidsIn(w.content);
+      if (wi.length >= 2 && wi[0] !== wi[1] && wNames.length === 2) {
+        // 조각 수가 «적은» 쪽의 한 조각이 크다 — 첫 수가 첫 이름의 조각 수다.
+        const winner = wi[0]! < wi[1]! ? wNames[0] : wNames[1];
+        if (w.answer !== winner)
+          bad.push(
+            `기본 seed ${seed}: 답 ${w.answer} ≠ ${winner} — ${w.content}`,
+          );
+      } else bad.push(`기본 seed ${seed}: 수·이름을 못 읽음 — ${w.content}`);
+
+      const d = generateElementaryProblem(planeUnit("1-6-5"), seed, "심화");
+      const dd = fracsOf(d.content).map((f) => f.den);
+      const want =
+        dd.length === 1
+          ? dd[0]! - 2
+          : Math.max(dd[0]!, dd[1]!) - Math.min(dd[0]!, dd[1]!) - 1;
+      if (want < 1) bad.push(`심화 seed ${seed}: 셀 것이 없다`);
+      else if (answerOf(d.answer) !== want)
+        bad.push(`심화 seed ${seed}: ${want} ≠ ${d.answer} — ${d.content}`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-6-6 — 분수·소수·자리 만들기의 총량이 발문에서 다시 나온다", () => {
+    const bad: string[] = [];
+    const tenthsOf = (a: string): number | null => {
+      const dec = a.match(/^\$(\d+)\.(\d)\$$/);
+      if (dec) return Number(dec[1]) * 10 + Number(dec[2]);
+      return null;
+    };
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        const p = generateElementaryProblem(planeUnit("1-6-6"), seed, tier);
+        const { decs, ints } = fracDecNums(p.content);
+        const cf = fracsOf(p.content)[0];
+        const af = fracsOf(p.answer)[0];
+        const at = tenthsOf(p.answer);
+        if (cf && at !== null) {
+          // 분수 → 소수
+          if (cf.den !== 10 || at !== cf.num)
+            bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+        } else if (af && decs.length > 0) {
+          // 소수 → 분수
+          const t = Math.round(decs[0]! * 10);
+          if (af.den !== 10 || af.num !== t)
+            bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+        } else if (at !== null) {
+          // 자리 만들기·변환 — 값 필터(1·10 제거)는 정당한 1 을 지운다. 형은 키워드·위치로 가른다.
+          let want: number | null = null;
+          if (/짜리/.test(p.content)) {
+            // «$1$ 짜리 w개, $0.1$ 짜리 t개» → [1, w, t] / «$0.1$ 짜리 m개» → [m]
+            want =
+              ints.length >= 3 ? ints[1]! * 10 + ints[2]! : (ints[0] ?? null);
+          } else if (/mm/.test(p.content)) {
+            // «$k$ mm» → [k] / «$w$ cm $t$ mm» → [w, t]
+            want = ints.length === 1 ? ints[0]! : ints[0]! * 10 + ints[1]!;
+          } else if (ints.length === 2 && ints[0] === 10) {
+            want = ints[1]!; // «$10$조각 중 $k$조각»
+          } else if (ints.length === 3 && ints[1] === 10) {
+            want = ints[0]! * 10 + ints[2]!; // «$w$개 + $10$등분 $t$조각»
+          }
+          if (want === null || at !== want)
+            bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+        } else {
+          // 심화 되짚기 — 답이 정수(개수·mm), 발문 «목표 소수»의 십분 총량과 같다.
+          // 발문에 $0.1$ 토큰이 함께 있으므로 십분값 10 이상(w ≥ 1)인 쪽이 목표다.
+          const t =
+            decs.map((v) => Math.round(v * 10)).find((v) => v >= 10) ?? null;
+          if (t === null || answerOf(p.answer) !== t)
+            bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-6-7 — 소수 비교: 동률 불가·정답 정확·심화 세기", () => {
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "응용"] as const) {
+        const p = generateElementaryProblem(planeUnit("1-6-7"), seed, tier);
+        const vals = fracDecNums(p.content).decs.map((v) => Math.round(v * 10));
+        if (new Set(vals).size !== vals.length)
+          bad.push(`${tier} seed ${seed}: 동률 소수`);
+        const askBig = /더 큰|큰 쪽|큰 것|가장 큰/.test(p.content);
+        const expected = askBig ? Math.max(...vals) : Math.min(...vals);
+        const a = p.answer.match(/^\$(\d+)\.(\d)\$$/);
+        if (!a) bad.push(`${tier} seed ${seed}: 답 형식 ${p.answer}`);
+        else if (Number(a[1]) * 10 + Number(a[2]) !== expected)
+          bad.push(`${tier} seed ${seed}: 답 ${p.answer} ≠ ${expected}`);
+      }
+
+      const w = generateElementaryProblem(planeUnit("1-6-7"), seed, "기본");
+      const wv = fracDecNums(w.content).decs.map((v) => Math.round(v * 10));
+      const wNames = kidsIn(w.content);
+      if (wv.length < 2 || wNames.length !== 2)
+        bad.push(`기본 seed ${seed}: 못 읽음 — ${w.content}`);
+      else {
+        const winner = wv[0]! > wv[1]! ? wNames[0] : wNames[1];
+        if (w.answer !== winner)
+          bad.push(
+            `기본 seed ${seed}: 답 ${w.answer} ≠ ${winner} — ${w.content}`,
+          );
+      }
+
+      const d = generateElementaryProblem(planeUnit("1-6-7"), seed, "심화");
+      const dv = fracDecNums(d.content).decs.map((v) => Math.round(v * 10));
+      if (dv.length < 2) bad.push(`심화 seed ${seed}: 소수 ${dv.length}개`);
+      else {
+        const lo = Math.min(dv[0]!, dv[1]!);
+        const hi = Math.max(dv[0]!, dv[1]!);
+        if (Math.floor(lo / 10) !== Math.floor(hi / 10))
+          bad.push(`심화 seed ${seed}: 자연수부가 다르다 — ${d.content}`);
+        const count = hi - lo - 1;
+        if (count < 1) bad.push(`심화 seed ${seed}: 사이가 비었다`);
+        else if (answerOf(d.answer) !== count)
+          bad.push(`심화 seed ${seed}: ${count} ≠ ${d.answer}`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("모든 갈래의 답이 씨앗에 따라 갈린다 — 상수답 금지", () => {
+    for (const code of FRACDEC) {
+      for (const tier of ELEM_TIERS) {
+        const answers = new Set<string>();
+        for (let seed = 0; seed < 40; seed += 1) {
+          answers.add(
+            generateElementaryProblem(planeUnit(code), seed, tier).answer,
+          );
+        }
+        expect(
+          answers.size,
+          `${code} ${tier}: ${[...answers].slice(0, 4).join(" ")}`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
+    for (const code of FRACDEC) {
+      for (const tier of ELEM_TIERS) {
+        const stems = new Set<string>();
+        for (let seed = 0; seed < 240; seed += 1) {
+          stems.add(
+            generateElementaryProblem(
+              planeUnit(code),
+              seed,
+              tier,
+            ).content.replace(/\$[^$]*\$/g, "#"),
+          );
+        }
+        expect(stems.size, `${code} ${tier} 변형 공간`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("네 갈래 발문 틀이 서로 갈린다", () => {
+    for (const code of FRACDEC) {
+      for (const seed of SEEDS) {
+        const stems = ELEM_TIERS.map((t) =>
+          generateElementaryProblem(planeUnit(code), seed, t).content.replace(
+            /\$[^$]*\$/g,
+            "#",
+          ),
+        );
+        expect(
+          new Set(stems).size,
+          `${code} seed ${seed}: ${stems.join(" | ")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("모든 갈래의 수가 KaTeX 안에 있고, 수 뒤에 조사를 붙이지 않는다", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    const bad: string[] = [];
+    for (const code of FRACDEC) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(planeUnit(code), seed, tier);
