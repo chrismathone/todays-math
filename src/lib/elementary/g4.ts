@@ -336,6 +336,734 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-1 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * ⚠️ **규모는 소단원 띠에 고정한다** — 「숫자 규모를 키우는 축은 다양성이 아니다」
+ * (원장님 문항 다양성 원칙). 이 단원은 자릿수 자체가 교과 내용이라, 허용되는 규모는
+ * **각 소단원이 정한 띠**뿐이다: 1-1-1 은 10000 언저리 · 1-1-2/7 은 다섯 자리 ·
+ * 1-1-3 은 십만~구천만 · 1-1-4 는 만/억 · 1-1-5 는 억/조 · 1-1-6 은 표준과 같은 띠.
+ * 4단이라고 자릿수를 더 키우지 않는다 — 난이도는 절차 구조(조립·역산·조건 조합)로 올린다.
+ * 시험이 소단원별 상한으로 잠근다(elemTiersG4BigNum.test.ts).
+ *
+ * R5 대비 — 표준 여덟 갈래(1000×10·분해·지폐 10장·보다 큰 수 / 자리 숫자·값 /
+ * 조립·분해 / 억·조 3종 / 뛰어·거꾸로 / 두 수 비교)와 유형을 전부 갈랐다.
+ * 1-1-6 심화의 되짚기는 표준 ①(거꾸로 뛰어 세기)과 계산이 같아지지 않게
+ * 「잘못 뛰어 세었더니」 복원형(D-72 ⑵의 그 문형)으로 간다.
+ *
+ * 1-1-4 와 1-1-5 는 교과 구조가 평행이라(표준 ⓪①②도 평행) 갈래도 평행하되,
+ * 한 시험지에 나란히 실려도 단위만 바꾼 복붙으로 읽히지 않게 **문형 표면을 갈랐다**
+ * (팀장 지침 2026-08-23): 연산은 「얼마나 큰가」↔「~보다 ~ 큰 수는 몇 조인가」,
+ * 기본은 맨 조립·읽기 ↔ 예산 문장, 응용은 조립·수표 ↔ 나머지 있는 분해.
+ */
+
+/** 1-1-1 기본 문장의 소재 — 낱개로 묶는 물건(수를 세는 말이 「개/장」인 것만). */
+const MAN_ITEMS = [
+  { obj: "구슬", cnt: "개" },
+  { obj: "색종이", cnt: "장" },
+  { obj: "사탕", cnt: "개" },
+] as const;
+
+/**
+ * **1-1-1 1단 연산 — 10000 과의 자릿값 관계 한 번.** 「9990보다 얼마나 큰가」·
+ * 「10·100이 몇 개」. 표준이 가진 「1000이 몇 개」·「~보다 ~ 큰 수를 쓰시오」와 방향이 다르다.
+ */
+function tier11Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 1) {
+    const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+    const base = 10000 - d;
+    return make(
+      unit,
+      `${n(10000)}은 ${n(base)}보다 얼마나 큰 수인가?`,
+      n(d),
+      `${expr(`${base}+${d}=10000`)} 이므로 ${n(10000)}은 ${n(base)}보다 ${n(d)} 큰 수입니다.`,
+    );
+  }
+  if (kind === 2) {
+    return make(
+      unit,
+      `${n(10000)}은 ${n(10)}이 몇 개인 수인가?`,
+      n(1000),
+      `${expr("10\\times1000=10000")} 이므로 ${n(10)}이 ${n(1000)}개인 수입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10000)}은 ${n(100)}이 몇 개인 수인가?`,
+    n(100),
+    `${expr("100\\times100=10000")} 이므로 ${n(100)}이 ${n(100)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-1 2단 기본 — 문장에서 천·만 관계로 식을 세운다.** 물건 묶음(1000씩 b묶음)과
+ * 동전 두 벌(100원×100개·10원×1000개). 표준 「1000원 지폐 10장」과 수·소재가 겹치지 않는다.
+ */
+function tier11Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 1) {
+    const t = pick(rng, MAN_ITEMS);
+    const b = intBetween(rng, 2, 9);
+    const v = b * 1000;
+    return make(
+      unit,
+      `${josa(t.obj, "이", "가")} ${n(1000)}${t.cnt}씩 ${n(b)}묶음 있습니다. ` +
+        `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+      `${n(v)}${t.cnt}`,
+      `${expr(`1000\\times${b}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
+    );
+  }
+  if (kind === 2) {
+    return make(
+      unit,
+      `${n(100)}원짜리 동전 ${n(100)}개는 모두 얼마인가?`,
+      `${n(10000)}원`,
+      `${expr("100\\times100=10000")} 이므로 ${n(10000)}원입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10)}원짜리 동전 ${n(1000)}개는 모두 얼마인가?`,
+    `${n(10000)}원`,
+    `${expr("10\\times1000=10000")} 이므로 ${n(10000)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-1 3단 응용 — 두 단계.** 지폐·동전을 섞어 10000원을 모으거나, 모자란 장수를 구한다.
+ */
+function tier11Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const coins = (10 - a) * 10;
+    return make(
+      unit,
+      `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(coins)}개를 모으면 모두 얼마인가?`,
+      `${n(10000)}원`,
+      `${expr(`1000\\times${a}=${a * 1000}`)} 이고 ${expr(`100\\times${coins}=${coins * 100}`)} 입니다. ` +
+        `${expr(`${a * 1000}+${coins * 100}=10000`)} 이므로 모두 ${n(10000)}원입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(1000)}원짜리 지폐가 ${n(a)}장 있습니다. ${n(10000)}원이 되려면 ` +
+      `${n(1000)}원짜리 지폐가 몇 장 더 필요한가?`,
+    n(10 - a),
+    `${n(10000)}원은 ${n(1000)}원짜리 지폐 ${n(10)}장과 같습니다. ` +
+      `${expr(`10-${a}=${10 - a}`)} 이므로 ${n(10 - a)}장 더 필요합니다.`,
+  );
+}
+
+/**
+ * **1-1-1 4단 심화 — 역산·조건 조합.** 「어떤 수보다 k 큰 수가 10000」(표준 ③의 역방향),
+ * 「1000이 10개인 수보다 k 작은 수」(구성을 먼저 밟아야 한다).
+ */
+function tier11Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어떤 수보다 ${n(k)} 큰 수가 ${n(10000)}입니다. 어떤 수를 쓰시오.`,
+      n(10000 - k),
+      `${expr(`10000-${k}=${10000 - k}`)} 이므로 어떤 수는 ${n(10000 - k)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(1000)}이 ${n(10)}개인 수보다 ${n(k)} 작은 수를 쓰시오.`,
+    n(10000 - k),
+    `${n(1000)}이 ${n(10)}개인 수는 ${n(10000)}입니다. ${expr(`10000-${k}=${10000 - k}`)} 입니다.`,
+  );
+}
+
+/** 1-1-2 기본 문장의 소재 — 큰 묶음(10000)과 작은 묶음(1000)에 나눠 담는 것. */
+const ASSEMBLE_ITEMS = [
+  { obj: "구슬", big: "상자", small: "주머니", cnt: "개" },
+  { obj: "색종이", big: "묶음", small: "봉투", cnt: "장" },
+  { obj: "클립", big: "통", small: "봉지", cnt: "개" },
+] as const;
+
+/**
+ * **1-1-2 1단 연산 — 자릿값 조립 한 번.** 「10000이 a개, 1000이 b개, …인 수」.
+ * 표준(자리 숫자 읽기·값)의 반대 방향이다. 숫자가 0인 자리는 말하지 않으므로
+ * 나열 길이도 씨앗마다 갈린다.
+ */
+function tier12Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const digits = [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+  ];
+  const value = Number(digits.join(""));
+  const parts = digits
+    .map((d, i) => ({ d, unit: 10 ** (4 - i) }))
+    .filter((p) => p.d > 0);
+  const listing = parts.map((p) => `${n(p.unit)}이 ${n(p.d)}개`).join(", ");
+  const how =
+    parts.length >= 2
+      ? `자리의 값을 더하면 ${expr(`${parts.map((p) => p.d * p.unit).join("+")}=${value}`)} 입니다.`
+      : `${n(10000)}이 ${n(parts[0]!.d)}개이면 ${n(value)}입니다.`;
+  return make(unit, `${listing}인 수를 쓰시오.`, n(value), how);
+}
+
+/**
+ * **1-1-2 2단 기본 — 실생활 문장에서 자릿값 조립 식을 세운다.** 만 단위와 천 단위
+ * 두 묶음뿐이라 조립은 한 식이고, 문장이 한 겹이다.
+ */
+function tier12Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, ASSEMBLE_ITEMS);
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 2, 9);
+  const v = a * 10000 + b * 1000;
+  return make(
+    unit,
+    `${josa(t.obj, "을", "를")} ${n(10000)}${t.cnt}씩 ${t.big} ${n(a)}개에, ` +
+      `${n(1000)}${t.cnt}씩 ${t.small} ${n(b)}개에 담았습니다. ` +
+      `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+    `${n(v)}${t.cnt}`,
+    `${n(10000)}이 ${n(a)}개이면 ${n(a * 10000)}, ${n(1000)}이 ${n(b)}개이면 ${n(b * 1000)}입니다. ` +
+      `${expr(`${a * 10000}+${b * 1000}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
+  );
+}
+
+/**
+ * **1-1-2 3단 응용 — 숫자 카드로 가장 큰·작은 수 만들기(두 단계: 고르고 배열).**
+ * 그림은 카드 다섯 장(`numberCards`) — **뽑힌 차례 그대로** 보인다. 정렬해 보이면
+ * 그림이 답을 말한다(D-66 ⑺). 우연히 답과 같은 차례로 뽑히면 한 자리 돌린다.
+ */
+function tier12Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cards = pickDistinct(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 5);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const desc = [...cards].sort((x, y) => y - x);
+  const asc = [...cards].sort((x, y) => x - y);
+  // 가장 작은 수는 0 이 만의 자리에 올 수 없다 — 둘째로 작은 수를 먼저 놓는다.
+  const smallest = asc[0] === 0 ? [asc[1]!, 0, ...asc.slice(2)] : asc;
+  const ansDigits = wantBig ? desc : smallest;
+  const answer = Number(ansDigits.join(""));
+  let show = cards;
+  if (show.join("") === ansDigits.join(""))
+    show = [show[1]!, show[0]!, ...show.slice(2)];
+  const how = wantBig
+    ? `가장 큰 수는 높은 자리부터 큰 숫자를 차례로 놓습니다.`
+    : asc[0] === 0
+      ? `가장 작은 수는 높은 자리부터 작은 숫자를 놓되, 만의 자리에 ${n(0)}은 올 수 없으므로 ` +
+        `둘째로 작은 ${josaNum(asc[1]!, "을", "를")} 먼저 놓고 ${n(0)}을 놓습니다.`
+      : `가장 작은 수는 높은 자리부터 작은 숫자를 차례로 놓습니다.`;
+  // 카드는 그림에도, 발문에도 **뽑힌 차례 그대로** 적는다 — 발문만 보고도 풀 수 있어야
+  // 하고, 발문이 카드를 안 들면 갈래의 변형이 「큰/작은」 둘로 접힌다(실측 2026-08-23).
+  const listing = show.map((d) => n(d)).join(", ");
+  return make(
+    unit,
+    `숫자 카드 ${listing}${tail(show[4]!, "이", "가")} 한 장씩 있습니다. 카드를 한 번씩 모두 ` +
+      `사용하여 만들 수 있는 가장 ${wantBig ? "큰" : "작은"} 다섯 자리 수를 쓰시오.`,
+    n(answer),
+    `${how} 만든 수는 ${n(answer)}입니다.`,
+    fig("numberCards", { cards: show.map(String) }),
+  );
+}
+
+/**
+ * **1-1-2 4단 심화 — 두 자리를 못 박은 조건 조합.** 만·백의 자리를 정해 두고
+ * 나머지를 가장 크게(작게) 채운다 — 조건을 동시에 만족시켜야 한다.
+ */
+function tier12Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 0, 9);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const rest = wantBig ? 9 : 0;
+  const value = a * 10000 + rest * 1000 + c * 100 + rest * 10 + rest;
+  return make(
+    unit,
+    `만의 자리 숫자가 ${n(a)}, 백의 자리 숫자가 ${josaNum(c, "인", "인")} 다섯 자리 수 중에서 ` +
+      `가장 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(value),
+    `만의 자리와 백의 자리는 정해져 있으므로, 나머지 천·십·일의 자리에 가장 ` +
+      `${wantBig ? `큰 숫자 ${n(9)}를` : `작은 숫자 ${n(0)}을`} 놓으면 ${n(value)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 1단 연산 — 교차 단위 한 번.** 「값은 1000이 몇 개인가」 — 표준(10000이 몇 개)과
+ * 단위가 다르다.
+ */
+function tier13Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `${n(value)}은 ${n(1000)}이 몇 개인 수인가?`,
+    n(count * 10),
+    `${expr(`${value}\\div1000=${count * 10}`)} 이므로 ${n(1000)}이 ${n(count * 10)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 2단 기본 — 돈 문장에서 식을 세운다.** 「10000원권 count장은 얼마」 —
+ * 표준 ⓪의 관계를 문장 한 겹으로 감싼 것(2단의 몫).
+ */
+function tier13Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `은행에 ${n(10000)}원짜리 지폐가 ${n(count)}장 있습니다. 모두 얼마인가?`,
+    `${n(value)}원`,
+    `${expr(`10000\\times${count}=${value}`)} 이므로 모두 ${n(value)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 3단 응용 — 두 단계 조립.** 「100장 묶음 다발 k개」(만→백만 두 곱),
+ * 「10000이 x개, 1000이 y개」(자리 섞은 합).
+ */
+function tier13Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 9);
+    const bundle = 10000 * 100;
+    return make(
+      unit,
+      `${n(10000)}원짜리 지폐를 ${n(100)}장씩 묶은 다발이 ${n(k)}개 있습니다. 모두 얼마인가?`,
+      `${n(bundle * k)}원`,
+      `한 다발은 ${expr(`10000\\times100=${bundle}`)} 원입니다. ` +
+        `${expr(`${bundle}\\times${k}=${bundle * k}`)} 이므로 모두 ${n(bundle * k)}원입니다.`,
+    );
+  }
+  const x = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const y = intBetween(rng, 2, 9);
+  const v = 10000 * x + 1000 * y;
+  return make(
+    unit,
+    `${n(10000)}이 ${n(x)}개, ${n(1000)}이 ${n(y)}개인 수를 쓰시오.`,
+    n(v),
+    `${n(10000)}이 ${n(x)}개이면 ${n(10000 * x)}, ${n(1000)}이 ${n(y)}개이면 ${n(1000 * y)}입니다. ` +
+      `${expr(`${10000 * x}+${1000 * y}=${v}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 4단 심화 — 교차 단위 역산.** 값을 지면에 주지 않고 「1000이 m개인 수는
+ * 10000이 몇 개인가」 — 구성하고 다시 갈라야 한다(두 단계).
+ */
+function tier13Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const value = 10000 * count;
+  if (intBetween(rng, 0, 1) === 0) {
+    const m = count * 10;
+    return make(
+      unit,
+      `${n(1000)}이 ${n(m)}개인 수는 ${n(10000)}이 몇 개인 수인가?`,
+      n(count),
+      `${expr(`1000\\times${m}=${value}`)} 이고 ${expr(`${value}\\div10000=${count}`)} 이므로 ` +
+        `${n(10000)}이 ${n(count)}개인 수입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수인가?`,
+    n(count * 100),
+    `${expr(`10000\\times${count}=${value}`)} 이고 ${expr(`${value}\\div100=${count * 100}`)} 이므로 ` +
+      `${n(100)}이 ${n(count * 100)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 1단 연산 — 1억과 만 단위의 관계 한 번.** 「1억은 x만보다 얼마나 큰가」.
+ * (1-1-5 연산과 문형을 갈랐다 — 저쪽은 「~억보다 ~억 큰 수는 몇 조인가」.)
+ */
+function tier14Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  const base = 10000 - d;
+  return make(
+    unit,
+    `${n(1)}억은 ${n(base)}만보다 얼마나 큰 수인가?`,
+    `${n(d)}만`,
+    `${n(1)}억은 만이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=10000`)} 이므로 ` +
+      `${n(base)}만보다 ${n(d)}만 큰 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 2단 기본 — 억·만이 섞인 수를 읽고 쓴다.** 조립과 분해 양방향.
+ */
+function tier14Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 2, 9) * pick(rng, [1, 10, 100, 1000]);
+  const value = x * 100000000 + y * 10000;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${n(x)}억 ${n(y)}만인 수를 숫자로 쓰시오.`,
+      n(value),
+      `${n(x)}억은 ${n(x * 100000000)}, ${n(y)}만은 ${n(y * 10000)}이므로 ` +
+        `${expr(`${x * 100000000}+${y * 10000}=${value}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(value)}은 몇 억 몇 만인가?`,
+    `${n(x)}억 ${n(y)}만`,
+    `${n(value)}은 억이 ${n(x)}개, 만이 ${n(y)}개인 수이므로 ${n(x)}억 ${n(y)}만입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 3단 응용 — 두 단계.** 「1억이 a개, 1000만이 b개」 조립과 「1000만 원짜리
+ * 수표 m장」 문장(곱하고 자리를 넘긴다).
+ */
+function tier14Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 2, 9);
+    const b = intBetween(rng, 2, 9);
+    const v = a * 100000000 + b * 10000000;
+    return make(
+      unit,
+      `${n(1)}억이 ${n(a)}개, ${n(1000)}만이 ${n(b)}개인 수를 쓰시오.`,
+      n(v),
+      `${n(1)}억이 ${n(a)}개이면 ${n(a * 100000000)}, ${n(1000)}만이 ${n(b)}개이면 ` +
+        `${n(b * 10000000)}입니다. ${expr(`${a * 100000000}+${b * 10000000}=${v}`)} 입니다.`,
+    );
+  }
+  const m = intBetween(rng, 11, 89);
+  const v = m * 10000000;
+  return make(
+    unit,
+    `${n(1000)}만 원짜리 수표 ${n(m)}장은 모두 얼마인가?`,
+    `${n(v)}원`,
+    `${n(1000)}만 원은 ${n(10000000)}원입니다. ${expr(`10000000\\times${m}=${v}`)} 이므로 ` +
+      `모두 ${n(v)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 4단 심화 — 역산.** 「어떤 수에서 1000만이 d개 늘어나면 x억」(되짚기),
+ * 「만이 m개인 수는 몇 억인가」(단위를 두 번 갈아탄다).
+ */
+function tier14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 2, 9);
+    const d = intBetween(rng, 1, 9);
+    const ans = x * 100000000 - d * 10000000;
+    return make(
+      unit,
+      `어떤 수에서 ${n(1000)}만이 ${n(d)}개 늘어나면 ${n(x)}억이 됩니다. 어떤 수를 쓰시오.`,
+      n(ans),
+      `${n(1000)}만이 ${n(d)}개이면 ${n(d * 10000000)}입니다. ` +
+        `${expr(`${x * 100000000}-${d * 10000000}=${ans}`)} 이므로 어떤 수는 ${n(ans)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 9);
+  const m = a * 10000;
+  return make(
+    unit,
+    `만이 ${n(m)}개인 수는 몇 억인가?`,
+    `${n(a)}억`,
+    `만이 ${n(10000)}개이면 ${n(1)}억입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}억입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 1단 연산 — 조 완성형.** 「x억보다 d억 큰 수는 몇 조인가」 —
+ * 1-1-4 연산(「얼마나 큰가」)과 문형 표면을 갈랐다(팀장 지침).
+ */
+function tier15Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  const base = x * 10000 - d;
+  return make(
+    unit,
+    `${n(base)}억보다 ${n(d)}억 큰 수는 몇 조인가?`,
+    `${n(x)}조`,
+    `${n(1)}조는 억이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=${x * 10000}`)} 이므로 ` +
+      `${n(x * 10000)}억, 곧 ${n(x)}조입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 2단 기본 — 예산 문장으로 읽고 쓴다.** 1-1-4 기본(맨 조립·읽기)과 표면이 다르다.
+ */
+function tier15Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 2, 9) * pick(rng, [1, 10, 100, 1000]);
+  const value = x * 1000000000000 + y * 100000000;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어느 나라의 한 해 예산은 ${n(x)}조 ${n(y)}억 원입니다. 이 금액을 숫자로 쓰시오.`,
+      `${n(value)}원`,
+      `${n(x)}조는 ${n(x * 1000000000000)}, ${n(y)}억은 ${n(y * 100000000)}이므로 ` +
+        `${expr(`${x * 1000000000000}+${y * 100000000}=${value}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(value)}은 몇 조 몇 억인가?`,
+    `${n(x)}조 ${n(y)}억`,
+    `${n(value)}은 조가 ${n(x)}개, 억이 ${n(y)}개인 수이므로 ${n(x)}조 ${n(y)}억입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 3단 응용 — 나머지 있는 분해.** 「1000억이 N개인 수는 몇 조 몇 억인가」와
+ * 그 반대 — 1-1-4 응용(조립·수표)과 방향이 다르다. 표준 ⓪(딱 떨어지는 10a개)과 달리
+ * 나머지가 남는다.
+ */
+function tier15Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 1, 9);
+  const cnt = a * 10 + b;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${n(1000)}억이 ${n(cnt)}개인 수는 몇 조 몇 억인가?`,
+      `${n(a)}조 ${n(b * 1000)}억`,
+      `${n(1000)}억이 ${n(10)}개이면 ${n(1)}조입니다. ${n(cnt)}개는 ${n(10)}개씩 ${n(a)}묶음과 ` +
+        `${n(b)}개이므로 ${n(a)}조 ${n(b * 1000)}억입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(a)}조 ${n(b * 1000)}억은 ${n(1000)}억이 몇 개인 수인가?`,
+    n(cnt),
+    `${n(a)}조는 ${n(1000)}억이 ${n(a * 10)}개, ${n(b * 1000)}억은 ${n(1000)}억이 ${n(b)}개인 ` +
+      `수입니다. ${expr(`${a * 10}+${b}=${cnt}`)} 이므로 ${n(cnt)}개입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 4단 심화 — 역산.** 「줄었더니 x조 y억」(늘어난 1-1-4 심화와 방향·목표 꼴이
+ * 다르다), 「억이 m개인 수는 몇 조인가」.
+ */
+function tier15Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 2, 9);
+    const b = intBetween(rng, 1, 4);
+    const d = intBetween(rng, 1, 5);
+    const target = x * 1000000000000 + b * 100000000000;
+    const ans = target + d * 100000000000;
+    return make(
+      unit,
+      `어떤 수에서 ${n(1000)}억이 ${n(d)}개 줄었더니 ${n(x)}조 ${n(b * 1000)}억이 되었습니다. ` +
+        `어떤 수를 쓰시오.`,
+      n(ans),
+      `${n(x)}조 ${n(b * 1000)}억은 ${n(target)}이고, 줄어든 ${n(1000)}억 ${n(d)}개는 ` +
+        `${n(d * 100000000000)}입니다. ${expr(`${target}+${d * 100000000000}=${ans}`)} 이므로 ` +
+        `어떤 수는 ${n(ans)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 9);
+  const m = a * 10000;
+  return make(
+    unit,
+    `억이 ${n(m)}개인 수는 몇 조인가?`,
+    `${n(a)}조`,
+    `억이 ${n(10000)}개이면 ${n(1)}조입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}조입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 1단 연산 — 규칙 읽기 한 번.** 배열을 보고 「얼마씩 뛰어 세었는가」.
+ * 표준(결과 구하기)의 반대 방향이고, 1-6-1(다음 수 구하기)과도 묻는 것이 다르다.
+ */
+function tier16Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = pick(rng, [1000, 10000, 100000]);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const seq = [start, start + step, start + step * 2, start + step * 3];
+  return make(
+    unit,
+    `뛰어 센 수를 차례로 쓰면 ${seq.map((v) => n(v)).join(", ")}입니다. ` +
+      `얼마씩 뛰어 센 것인가?`,
+    `${n(step)}씩`,
+    `${expr(`${seq[1]}-${seq[0]}=${step}`)} 이므로 ${n(step)}씩 뛰어 세었습니다.`,
+  );
+}
+
+/**
+ * **1-1-6 2단 기본 — 저금 문장.** 뛰어 세기를 실생활 문장으로 감싼다(문장 한 겹).
+ */
+function tier16Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = pick(rng, [1000, 10000, 100000]);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const t = intBetween(rng, 2, 5);
+  const end = start + step * t;
+  return make(
+    unit,
+    `저금통에 ${n(start)}원이 들어 있습니다. 매달 ${n(step)}원씩 저금하면 ` +
+      `${n(t)}달 뒤에는 모두 얼마가 되는가?`,
+    `${n(end)}원`,
+    `${n(step)}원씩 ${n(t)}달이면 ${expr(`${step}\\times${t}=${step * t}`)} 원입니다. ` +
+      `${expr(`${start}+${step * t}=${end}`)} 이므로 모두 ${n(end)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 3단 응용 — 갈아타는 뛰어 세기(중간값).** s1씩 t1번 뒤 s2씩 t2번.
+ */
+function tier16Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [s1, s2] = pickDistinct(rng, [1000, 10000, 100000], 2) as [
+    number,
+    number,
+  ];
+  const t1 = intBetween(rng, 2, 3);
+  const t2 = intBetween(rng, 2, 3);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const mid = start + s1 * t1;
+  const end = mid + s2 * t2;
+  return make(
+    unit,
+    `${n(start)}에서 ${n(s1)}씩 ${n(t1)}번 뛰어 센 다음, 이어서 ${n(s2)}씩 ${n(t2)}번 더 ` +
+      `뛰어 세었습니다. 마지막 수를 쓰시오.`,
+    n(end),
+    `${expr(`${start}+${s1}\\times${t1}=${mid}`)} 이고, 이어서 ` +
+      `${expr(`${mid}+${s2}\\times${t2}=${end}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 4단 심화 — 「잘못 뛰어 세었더니」 복원(D-72 의 그 문형).** 표준 ①(거꾸로
+ * 뛰어 세기)과 계산이 같아지지 않게, 잘못 센 결과에서 처음 수를 되짚어 바르게 다시 센다.
+ * 곁가지로 「얼마씩 뛰었는지」 역산도 든다.
+ */
+function tier16Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = intBetween(rng, 2, 5);
+  const start = intBetween(rng, 12, 89) * 10000;
+  if (intBetween(rng, 0, 1) === 0) {
+    const [s, sw] = pickDistinct(rng, [1000, 10000, 100000], 2) as [
+      number,
+      number,
+    ];
+    const wrong = start + sw * t;
+    const right = start + s * t;
+    return make(
+      unit,
+      `어떤 수에서 ${n(s)}씩 ${n(t)}번 뛰어 세어야 할 것을 잘못하여 ${n(sw)}씩 ${n(t)}번 ` +
+        `뛰어 세었더니 ${n(wrong)}이 되었습니다. 바르게 뛰어 세면 얼마인가?`,
+      n(right),
+      `잘못 센 것을 되돌리면 어떤 수는 ${expr(`${wrong}-${sw}\\times${t}=${start}`)} 입니다. ` +
+        `바르게 뛰어 세면 ${expr(`${start}+${s}\\times${t}=${right}`)} 입니다.`,
+    );
+  }
+  const step = pick(rng, [1000, 10000, 100000]);
+  const end = start + step * t;
+  return make(
+    unit,
+    `${n(start)}에서 ${n(t)}번 뛰어 세었더니 ${josaNum(end, "이", "가")} 되었습니다. ` +
+      `얼마씩 뛰어 센 것인가?`,
+    `${n(step)}씩`,
+    `${expr(`${end}-${start}=${step * t}`)} 이고 ${expr(`${step * t}\\div${t}=${step}`)} 이므로 ` +
+      `${n(step)}씩 뛰어 세었습니다.`,
+  );
+}
+
+/**
+ * **1-1-7 1단 연산 — 자리 수 비교 한 번.** 네 자리와 다섯 자리 — 자리 수만 세면 끝난다.
+ * 표준(같은 다섯 자리끼리 높은 자리 비교)과 가르는 성질이 다르다.
+ */
+function tier17Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a4 = intBetween(rng, 1000, 9999);
+  const b5 = intBetween(rng, 10000, 99999);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const first = intBetween(rng, 0, 1) === 0 ? a4 : b5;
+  const second = first === a4 ? b5 : a4;
+  return make(
+    unit,
+    `두 수 ${n(first)}, ${n(second)} 중 더 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(wantBig ? b5 : a4),
+    `${josaNum(a4, "은", "는")} 네 자리 수, ${josaNum(b5, "은", "는")} 다섯 자리 수입니다. ` +
+      `자리 수가 많은 수가 더 크므로 더 ${wantBig ? "큰" : "작은"} 수는 ` +
+      `${n(wantBig ? b5 : a4)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 2단 기본 — 세 수 비교.** 두 번 견주어야 한다(표준은 두 수).
+ */
+function tier17Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 10000, 97999);
+  const mid = lo + intBetween(rng, 101, 900);
+  const hi = mid + intBetween(rng, 101, 900);
+  const order = intBetween(rng, 0, 2);
+  const shown =
+    order === 0 ? [mid, lo, hi] : order === 1 ? [hi, mid, lo] : [lo, hi, mid];
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    `세 수 ${shown.map((v) => n(v)).join(", ")} 중 가장 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(wantBig ? hi : lo),
+    `세 수 모두 다섯 자리 수이므로 높은 자리부터 차례로 비교합니다. ` +
+      `${expr(`${hi}>${mid}>${lo}`)} 이므로 가장 ${wantBig ? "큰" : "작은"} 수는 ` +
+      `${n(wantBig ? hi : lo)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 3단 응용 — 단위 표현을 수로 바꾼 뒤 비교(두 단계).** 「x만 y인 수」 ↔ 숫자.
+ */
+function tier17Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 1, 9999);
+  const a = x * 10000 + y;
+  const up = intBetween(rng, 0, 1) === 0;
+  const z = up ? a + intBetween(rng, 101, 900) : a - intBetween(rng, 101, 900);
+  const big = Math.max(a, z);
+  const small = Math.min(a, z);
+  return make(
+    unit,
+    `${n(x)}만 ${josaNum(y, "인", "인")} 수와 ${n(z)} 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `${n(x)}만 ${josaNum(y, "인", "인")} 수는 ${n(a)}입니다. ${expr(`${big}>${small}`)} 이므로 ` +
+      `더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 4단 심화 — □ 부등식 조건 조합.** □에 들어갈 수 있는 숫자를 모두 센다.
+ * 빈칸 앞자리는 같게 만들어 「그 자리 비교 + 같을 때 꼬리 비교」를 다 밟게 한다.
+ * 답은 생성기가 0~9 를 **전수 대입**해 센다 — 경계 실수를 구조적으로 막는다.
+ */
+function tier17Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const at = intBetween(rng, 1, 3);
+  const e = intBetween(rng, 2, 8);
+  const A = [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+  ];
+  const B = [...A];
+  for (let i = at; i < 5; i += 1) B[i] = intBetween(rng, 0, 9);
+  B[at] = e;
+  const less = intBetween(rng, 0, 1) === 0;
+  const numB = Number(B.join(""));
+  const numA = (x: number) =>
+    Number(A.map((d, i) => (i === at ? x : d)).join(""));
+  const okXs = Array.from({ length: 10 }, (_, x) => x).filter((x) =>
+    less ? numA(x) < numB : numA(x) > numB,
+  );
+  const left = A.slice(0, at).join("");
+  const right = A.slice(at + 1).join("");
+  const place = PLACE5[at]!;
+  // 경계(□ = 그 자리 숫자)의 해설은 **실제 비교값**으로 만든다 — 꼬리가 같으면
+  // 두 수가 같아지므로, 부호를 손으로 적으면 거짓 문장이 지면에 나간다.
+  const ae = numA(e);
+  const tie = okXs.includes(e)
+    ? ` ${expr(`\\square=${e}`)}일 때도 ${expr(`${ae}${less ? "<" : ">"}${numB}`)} 이므로 들어갈 수 있습니다.`
+    : ae === numB
+      ? ` ${expr(`\\square=${e}`)}일 때는 두 수가 같으므로 들어갈 수 없습니다.`
+      : ` ${expr(`\\square=${e}`)}일 때는 ${expr(`${ae}${ae > numB ? ">" : "<"}${numB}`)} 이므로 들어갈 수 없습니다.`;
+  return make(
+    unit,
+    `${n(0)}부터 ${n(9)}까지의 숫자 중에서 ${expr("\\square")} 안에 들어갈 수 있는 숫자는 ` +
+      `모두 몇 개인가? ${expr(`${left}\\square${right}${less ? "<" : ">"}${numB}`)}`,
+    n(okXs.length),
+    `${place}의 자리보다 높은 자리 숫자가 서로 같으므로 ${place}의 자리를 비교합니다.${tie} ` +
+      `${expr("\\square")} 안에 들어갈 수 있는 숫자는 ${okXs.map((x) => n(x)).join(", ")}이므로 ` +
+      `모두 ${n(okXs.length)}개입니다.`,
+  );
+}
+
 /* ────────────────────────────── 1-2 각도 ────────────────────────────── */
 
 function angleKind(d: number): string {
@@ -1963,6 +2691,48 @@ function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 것들은 별개다.
  */
 export const G4_TIERS: ElemTierMap = {
+  "초4|1-1-1": {
+    연산: tier11Calc,
+    기본: tier11Basic,
+    응용: tier11Apply,
+    심화: tier11Deep,
+  },
+  "초4|1-1-2": {
+    연산: tier12Calc,
+    기본: tier12Basic,
+    응용: tier12Apply,
+    심화: tier12Deep,
+  },
+  "초4|1-1-3": {
+    연산: tier13Calc,
+    기본: tier13Basic,
+    응용: tier13Apply,
+    심화: tier13Deep,
+  },
+  "초4|1-1-4": {
+    연산: tier14Calc,
+    기본: tier14Basic,
+    응용: tier14Apply,
+    심화: tier14Deep,
+  },
+  "초4|1-1-5": {
+    연산: tier15Calc,
+    기본: tier15Basic,
+    응용: tier15Apply,
+    심화: tier15Deep,
+  },
+  "초4|1-1-6": {
+    연산: tier16Calc,
+    기본: tier16Basic,
+    응용: tier16Apply,
+    심화: tier16Deep,
+  },
+  "초4|1-1-7": {
+    연산: tier17Calc,
+    기본: tier17Basic,
+    응용: tier17Apply,
+    심화: tier17Deep,
+  },
   "초4|1-5-1": {
     연산: tier51Calc,
     기본: tier51Basic,
