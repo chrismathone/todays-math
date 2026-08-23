@@ -1541,3 +1541,10 @@ from elem_advanced import ADV_FIELDS, ADV_OPTIONAL, ADV_RENDER  # noqa: E402
 KIND_FIELDS.update(ADV_FIELDS)
 OPTIONAL.update(ADV_OPTIONAL)
 _RENDER.update(ADV_RENDER)
+
+# 실물 에셋 합성 kind (assetScene) — 규격·검증은 figure_assets.py 한 곳에.
+from figure_assets import ASSET_FIELDS, ASSET_OPTIONAL, ASSET_RENDER  # noqa: E402
+
+KIND_FIELDS.update(ASSET_FIELDS)
+OPTIONAL.update(ASSET_OPTIONAL)
+_RENDER.update(ASSET_RENDER)
