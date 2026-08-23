@@ -11,7 +11,7 @@
  * 즉 **실제로 고쳤을 때의 지면**이다. 다 그리면 임시 사본은 지운다.
  * (2026-08-19 교훈 — 시안은 실물로 보여야 한다. ASCII 로 고른 것은 확정이 아니다.)
  */
-import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -52,7 +52,9 @@ function makeOffCopies(): void {
 
 function cleanup(): void {
   for (const f of [PRE_TMP, REN_TMP])
-    if (existsSync(f)) rmSync(f, { force: true });
+    // `rmSync` 금지 — 노드 v24(win32)가 **한글 경로에서 프로세스째 죽는다**
+    // (CLAUDE.md 2026-08-19). 이 저장소의 워크트리 이름에 한글이 있다.
+    if (existsSync(f)) unlinkSync(f);
 }
 
 interface Row {
