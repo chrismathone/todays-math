@@ -290,7 +290,7 @@ $${quadEq(1, -s, p)}$에서 $(x-${r1})(x-${r2})=0$이므로 $x=${r1}$ 또는 $x=
             `이차방정식 $${lead(bigA)}x^2${term(b, "x")}+a=0$의 한 근이 $x=${t}$일 때, 상수 $a$의 값을 구하시오.`,
             `$${a}$`,
             `한 근이 $x=${t}$이므로 $x=${t}$을 대입하면 등식이 성립한다.
-$${lead(bigA)}\\times(${t})^2${term(b, "")}\\times(${t})+a=0$에서 $${bigA * t * t + b * t}+a=0$이다.
+$${bigA}\\times(${t})^2${term(b, "")}\\times(${t})+a=0$에서 $${bigA * t * t + b * t}+a=0$이다.
 따라서 $a=${a}$이다.`,
             { A: bigA, b, a, t, mode, x: a },
           );
@@ -303,7 +303,7 @@ $${lead(bigA)}\\times(${t})^2${term(b, "")}\\times(${t})+a=0$에서 $${bigA * t 
           `이차방정식 $${lead(bigA)}x^2-(${b0}+a)x${term(bigC, "")}=0$의 한 근이 $x=${t}$일 때, 상수 $a$의 값을 구하시오.`,
           `$${a}$`,
           `한 근이 $x=${t}$이므로 $x=${t}$을 대입하면 등식이 성립한다.
-$${lead(bigA)}\\times(${t})^2-(${b0}+a)\\times(${t})${term(bigC, "")}=0$에서 $${b0}+a=${bigA * t + c0}$이다.
+$${bigA}\\times(${t})^2-(${b0}+a)\\times(${t})${term(bigC, "")}=0$에서 $${b0}+a=${bigA * t + c0}$이다.
 따라서 $a=${a}$이다.`,
           { A: bigA, b0, C: bigC, a, t, mode, x: a },
         );
@@ -537,7 +537,7 @@ $x^2${term(a, "x")}${term(cc, "")}=0$에서 $(x${term(-p, "")})(x${term(-q, "")}
           `$${a}$`,
           `$${quadEq(1, b1, c1)}$에서 $(x${term(-p, "")})(x${term(-q, "")})=0$이므로 $x=${lo}$ 또는 $x=${hi}$이다.
 ${mode === 0 ? "작은" : "큰"} 근은 $x=${t}$이므로 이것을 두 번째 이차방정식에 대입하면
-$${lead(bigA)}\\times(${t})^2+(a${term(m, "")})\\times(${t})${term(bigC, "")}=0$이다. 따라서 $a=${a}$이다.`,
+$${bigA}\\times(${t})^2+(a${term(m, "")})\\times(${t})${term(bigC, "")}=0$이다. 따라서 $a=${a}$이다.`,
           { p, q, b1, c1, t, A: bigA, m, C: bigC, a, mode, x: a },
         );
       }),
