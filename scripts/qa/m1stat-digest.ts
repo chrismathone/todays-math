@@ -1,0 +1,21 @@
+/** 산출물 지문 — 변이가 «동작»을 바꿨는지 보는 자. 파일 변경만으로는 모자란다. */
+import { createHash } from "node:crypto";
+
+import { generateMiddleProblem } from "../../src/lib/middle/generate";
+import { M1_STAT_TYPES } from "../../src/lib/middle/m1Stat";
+
+const h = createHash("sha256");
+for (const e of M1_STAT_TYPES) {
+  h.update(`${e.key}|${e.unitSection}|${e.rpmTitle}|${e.rpmMinor}\n`);
+  for (let s = 0; s < 120; s += 1) {
+    try {
+      const p = generateMiddleProblem(e.key, s * 7919 + 13);
+      h.update(
+        `${p.content} ${p.answer} ${p.solution} ${JSON.stringify(p.facts)}\n`,
+      );
+    } catch (err) {
+      h.update(`THROW:${(err as Error).message}\n`);
+    }
+  }
+}
+console.log(h.digest("hex"));
