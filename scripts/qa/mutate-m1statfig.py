@@ -44,7 +44,7 @@ MUTATIONS = [
         "hidden 이 facts.h 와 같은가",
         "hidden: [h],",
         "hidden: [h + 1 < n - 1 ? h + 1 : h - 1],",
-        2,
+        1,
     ),
     (
         "F4 줄기와 잎의 잎을 가운데 정렬로",

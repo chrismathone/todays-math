@@ -53,6 +53,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중1";
@@ -160,14 +161,15 @@ export function subj(word: string): string {
 }
 
 /**
- * 수 뒤의 은/는 · 이/가 — **읽는 소리**로 갈린다.
+ * 수 뒤에 받침이 있는가 — 「$50$ 는」이 아니라 「$50$ 은」이다(오십 → 받침 ㅂ).
  *
- * 「$50$ 는」이 아니라 「$50$ 은」이다(오십 → 받침 ㅂ). 끝자리가
- * $0\,1\,3\,6\,7\,8$ 이면 받침이 있고($십\,일\,삼\,육\,칠\,팔$),
- * $2\,4\,5\,9$ 면 없다($이\,사\,오\,구$). 끝자리 $0$ 은 «십·백·천» 이라 받침이 있다.
+ * ⚠️ **규칙을 여기 옮겨 적지 않는다.** 같은 판단이 이미 `m2Josa.ts` 에 있고,
+ * 손 목록이 두 벌이 되면 한쪽만 고쳐진다(이 저장소가 여러 번 밟은 자리).
+ * 그래서 그 모듈의 목적격 조사에 **되물어** 받침 여부를 얻는다 —
+ * 그쪽 규칙이 바뀌면 여기도 따라간다.
  */
 export function numFinal(n: number): boolean {
-  return [0, 1, 3, 6, 7, 8].includes(Math.abs(Math.trunc(n)) % 10);
+  return eulReul(n) === "을";
 }
 
 /** 상대도수 백분율 정수(1~100)를 소수 표기로 — `26 → 0.26`, `10 → 0.1`, `100 → 1`. */

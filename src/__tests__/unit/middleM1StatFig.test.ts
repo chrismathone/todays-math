@@ -353,6 +353,33 @@ describe("중1 3A — 그림이 붙은 통계 열셋", () => {
     });
   }
 
+  it("상대도수가 한 계급에 쏠리지 않는다 (한 계급 ≤ 50%)", () => {
+    // 변이 시험이 찾아 준 **없던 가드**다. 한 계급이 $75\%$ 를 먹으면 나머지 계급이
+    // 지면에서 안 읽히는데(실렌더로 봤다), 상한을 없애도 시험이 전부 초록이었다 —
+    // 「눈으로 보고 정한 규칙」이 코드에만 있고 아무도 안 지키고 있었다.
+    const REL = ["12", "13", "17", "18", "19"];
+    let checked = 0;
+    for (const e of M1_STAT_FIG.filter((x) => REL.includes(x.rpmType))) {
+      for (let s = 0; s < 120; s += 1) {
+        const f = generateMiddleProblem(e.key, s * 7919 + 13).facts as F;
+        // 12·13 은 백분율을 `p`, 17~19 는 `f`(+`g`) 에 담는다.
+        for (const prefix of ["p", "f", "g"]) {
+          if (f[`${prefix}0`] === undefined) continue;
+          const arr = unpack(f, prefix, f.n!);
+          if (sum(arr) !== 100) continue; // 도수 배열은 합이 100 이 아니다
+          checked += 1;
+          expect(Math.max(...arr), `${e.key} seed ${s}`).toBeLessThanOrEqual(
+            50,
+          );
+        }
+      }
+    }
+    expect(
+      checked,
+      "아무 상대도수도 안 봤다면 이 검사는 장식이다",
+    ).toBeGreaterThan(100);
+  });
+
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
     for (const e of M1_STAT_FIG) {
       const set = generateMiddleSet(e.key, 20260823, 4);
