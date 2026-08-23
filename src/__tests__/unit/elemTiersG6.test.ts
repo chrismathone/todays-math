@@ -3439,3 +3439,70 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
     });
   });
 });
+
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 **표준** 2-5-3 원의 넓이 어림하기 — 발문이 도형을 하나로 정하는가
+//
+// 갈래가 아직 없는 소단원이지만 잠금은 여기에 둔다(초6 엔진 잠금의 집).
+//
+// ⚠️ **값 검산으로는 구조적으로 안 잡히는 부류다.** 답($2r^2$·$4r^2$)은 교과서
+// 규약대로 맞다. 틀린 것은 「원 안에 그린 마름모」가 **무수히 많다**는 것이고,
+// 교과서는 그림이 정해 주는데 우리 지면에는 그림이 없다. 그래서 이 시험은 값이
+// 아니라 **한정어가 지면에 서 있는가**를 잰다(2026-08-18 기출 1,420건과 같은 부류).
+// ══════════════════════════════════════════════════════════════════════════
+
+describe("[초6 표준] 2-5-3 — 그림 없이도 도형이 하나로 정해진다", () => {
+  it("한정어와 «단, …» 조건이 발문에 늘 서고 해설이 그것을 근거로 쓴다 — 씨앗 0~999 전수", () => {
+    const unit = unitOf("2-5-3");
+    const bad: string[] = [];
+    let inner = 0;
+    let outer = 0;
+    for (let seed = 0; seed < 1000; seed += 1) {
+      const p = generateElementaryProblem(unit, seed);
+      const c = p.content.replace(/\n+/g, " ");
+      const r = Number(
+        c.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/)?.[1] ?? NaN,
+      );
+      const ans = Number(p.answer.match(/^\$(\d+)\$$/)?.[1] ?? NaN);
+      if (!Number.isFinite(r) || !Number.isFinite(ans)) {
+        bad.push(`seed=${seed}: 반지름·정답을 못 읽음 — ${c} / ${p.answer}`);
+        continue;
+      }
+      if (c.includes("마름모")) {
+        inner += 1;
+        if (!/원 안에 꼭 맞게 그린 마름모/.test(c))
+          bad.push(`seed=${seed}: 「꼭 맞게」 한정어가 없다 — ${c}`);
+        if (!/단, 마름모의 네 꼭짓점은 모두 원 위에 있습니다/.test(c))
+          bad.push(`seed=${seed}: 내접 조건이 발문에 없다 — ${c}`);
+        // 해설이 예전 말을 되풀이하면 같은 자리가 남는다 — 근거를 요구한다.
+        if (!/네 꼭짓점이 모두 원 위에 있으므로/.test(p.solution))
+          bad.push(
+            `seed=${seed}: 해설이 조건을 근거로 쓰지 않는다 — ${p.solution}`,
+          );
+        if (ans !== 2 * r * r)
+          bad.push(`seed=${seed}: 답 ${ans} (${2 * r * r} 이어야) — ${c}`);
+      } else if (c.includes("정사각형")) {
+        outer += 1;
+        if (!/원 밖에 꼭 맞게 그린 정사각형/.test(c))
+          bad.push(`seed=${seed}: 「꼭 맞게」 한정어가 없다 — ${c}`);
+        if (!/단, 정사각형의 네 변은 모두 원에 닿습니다/.test(c))
+          bad.push(`seed=${seed}: 외접 조건이 발문에 없다 — ${c}`);
+        if (!/네 변이 모두 원에 닿으므로/.test(p.solution))
+          bad.push(
+            `seed=${seed}: 해설이 조건을 근거로 쓰지 않는다 — ${p.solution}`,
+          );
+        if (ans !== 4 * r * r)
+          bad.push(`seed=${seed}: 답 ${ans} (${4 * r * r} 이어야) — ${c}`);
+      } else {
+        // 새 문형이 들어오면 **조용히 통과시키지 않는다** — 한정어를 안 재게 된다.
+        bad.push(`seed=${seed}: 아는 문형이 아니다 — ${c}`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 분모 — 두 가지가 **둘 다** 실제로 나와야 한다. 한쪽이 0이면 그쪽은 «안 잰» 것이다.
+    expect({ 내접: inner > 300, 외접: outer > 300 }).toEqual({
+      내접: true,
+      외접: true,
+    });
+  });
+});
