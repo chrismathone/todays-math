@@ -201,6 +201,53 @@ describe.skipIf(!hasEngine)("[도형 v2] arcs — 호 스트로크", () => {
     expect((await renderFigureSpec(spec2)).ok).toBe(false);
   });
 
+  it("접함 — 끈의 선분 끝과 호 끝이 같은 좌표에서 만난다 (§4-12)", async () => {
+    // 0626 축소판: 원 두 개 + 위쪽 공통접선 + 각 원의 호
+    const r = await renderFigureSpec({
+      version: 2,
+      points: {
+        O1: [0, 0],
+        O2: [120, 0],
+        T1: { type: "on_circle", circle: "c1", angle: 90 },
+        T2: { type: "on_circle", circle: "c2", angle: 90 },
+        E1: { type: "on_circle", circle: "c1", angle: 180 },
+        E2: { type: "on_circle", circle: "c2", angle: 0 },
+      },
+      circles: {
+        c1: { center: "O1", radius: 60 },
+        c2: { center: "O2", radius: 60 },
+      },
+      segments: { belt: ["T1", "T2"] },
+      arcs: {
+        a1: { circle: "c1", from: "E1", to: "T1", dir: "cw" },
+        a2: { circle: "c2", from: "T2", to: "E2", dir: "cw" },
+      },
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const line = r.svg.match(
+      /<line x1="([\d.-]+)" y1="([\d.-]+)" x2="([\d.-]+)" y2="([\d.-]+)"/,
+    );
+    expect(line).toBeTruthy();
+    // 호 경로의 A 명령 끝점(T1)·M 시작점(T2)이 선분의 두 끝과 **바이트까지** 같다
+    expect(r.svg).toContain(`A 60 60 0 0 1 ${line![1]} ${line![2]}`);
+    expect(r.svg).toContain(`<path d="M ${line![3]} ${line![4]} A 60 60 0 0 1`);
+  });
+
+  it("치수 개수 — 스펙이 준 치수만큼 점선 곡선과 라벨이 나온다", async () => {
+    const spec = annulusSpec();
+    (spec as Record<string, unknown>).dimensions = {
+      dimIn: { points: ["O", "Ain"], label: "4 cm" },
+      dimOut: { points: ["Ain", "Aout"], label: "4 cm" },
+    };
+    const r = await renderFigureSpec(spec);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // 치수 점선(6 4)은 정확히 두 벌 — 더 그리지도, 조용히 빠뜨리지도 않는다
+    expect(r.svg.match(/stroke-dasharray="6 4"/g)?.length).toBe(2);
+    expect(r.svg.match(/>4 cm<\/text>/g)?.length).toBe(2);
+  });
+
   it("dash 를 주면 stroke-dasharray 로 긋는다", async () => {
     const spec = annulusSpec();
     (spec.arcs as Record<string, Record<string, unknown>>).arcIn.dash = "5 4";
