@@ -1213,6 +1213,573 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 진도 안전이 이 블록의 제약이다: 어림(반올림 류)은 1-3-3 재료, 이등변·외각·다각형
+ * 내각은 뒤 단원 재료라 **전부 회피**했다. 1-2-5 심화의 「나머지 두 각이 같다」는
+ * 이등변이라는 **이름 없이 조건만** 쓴다. 그림은 기존 kind 만 쓴다 — 1-2-3 응용의
+ * `clocks` 하나(시계 읽기는 기학습). 각도기 «0이 아닌 눈금에서 시작한 각»은
+ * protractor kind 가 0-기준만 지원하므로 그림 없이 자족적 수치 서술로만 낸다
+ * (좌표 일회성 금지 — 팀장 지침 2026-08-23).
+ *
+ * 각도 값은 전부 0° 초과 180° 미만(합쳐 말하는 중간값도 360° 이하) — 시험이
+ * 상한 360 으로 잠근다.
+ */
+
+/**
+ * **1-2-1 1단 연산 — 벌어진 정도가 곧 크기.** 벌리기/오므리기 판단과 겹침 직접 비교.
+ * 표준(변 길이 미신·두 각도 수 비교)과 유형이 다르다.
+ */
+function tier21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 겹침형은 발문이 두 가지뿐이라 비중을 낮춘다 — 반반이면 변형 8+ 가 안 선다(실측).
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 2) {
+    const x = intBetween(rng, 20, 160);
+    const wantBig = intBetween(rng, 0, 1) === 0;
+    return make(
+      unit,
+      `크기가 ${deg(x)}인 각보다 더 ${wantBig ? "큰" : "작은"} 각을 만들려면 두 변을 ` +
+        `더 벌려야 하는가, 더 오므려야 하는가?`,
+      wantBig ? "벌려야 한다" : "오므려야 한다",
+      `각의 크기는 두 변이 벌어진 정도로 정해집니다. 더 ${wantBig ? "큰" : "작은"} 각을 ` +
+        `만들려면 두 변을 더 ${wantBig ? "벌려야" : "오므려야"} 합니다.`,
+    );
+  }
+  const inner = intBetween(rng, 0, 1) === 0 ? "가" : "나";
+  const outer = inner === "가" ? "나" : "가";
+  return make(
+    unit,
+    `꼭짓점을 맞추어 두 각을 겹쳤더니 ${outer} 각의 두 변 사이에 ${inner} 각이 꼭 ` +
+      `들어갑니다. 두 각 중 더 큰 각은 어느 것인가?`,
+    outer,
+    `${inner} 각이 ${outer} 각 안에 들어가므로 ${outer} 각의 두 변이 더 많이 벌어져 ` +
+      `있습니다. 더 큰 각은 ${outer} 각입니다.`,
+  );
+}
+
+/** **1-2-1 2단 기본 — 세 각을 스스로 견준다.** 표준은 두 각이다. */
+function tier21Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 15, 130);
+  const mid = lo + intBetween(rng, 5, 20);
+  const hi = mid + intBetween(rng, 5, 20);
+  const order = intBetween(rng, 0, 2);
+  const shown =
+    order === 0 ? [mid, lo, hi] : order === 1 ? [hi, mid, lo] : [lo, hi, mid];
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    `세 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. ` +
+      `가장 ${wantBig ? "큰" : "작은"} 각의 크기를 쓰시오.`,
+    deg(wantBig ? hi : lo),
+    `${expr(`${hi}>${mid}>${lo}`)} 이므로 가장 ${wantBig ? "큰" : "작은"} 각은 ` +
+      `${deg(wantBig ? hi : lo)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-1 3단 응용 — 간접 비교(두 단계).** 두 관계를 이어 추론하거나, 관계와 수치를
+ * 결합해 알맞은 크기를 고른다.
+ */
+function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 2) === 0) {
+    const asc = intBetween(rng, 0, 1) === 0;
+    const wantBig = intBetween(rng, 0, 1) === 0;
+    const chain = asc
+      ? "가 각은 나 각보다 크고, 나 각은 다 각보다 큽니다."
+      : "가 각은 나 각보다 작고, 나 각은 다 각보다 작습니다.";
+    const ans = asc === wantBig ? "가" : "다";
+    return make(
+      unit,
+      `${chain} 세 각 중 가장 ${wantBig ? "큰" : "작은"} 각은 어느 것인가?`,
+      ans,
+      `두 관계를 이으면 ${asc ? "가 각, 나 각, 다 각의 차례로 작아집니다" : "가 각, 나 각, 다 각의 차례로 커집니다"}. ` +
+        `가장 ${wantBig ? "큰" : "작은"} 각은 ${ans} 각입니다.`,
+    );
+  }
+  const x = intBetween(rng, 30, 140);
+  const bigger = x + intBetween(rng, 10, 25);
+  const smaller = x - intBetween(rng, 10, 25);
+  const more = intBetween(rng, 0, 1) === 0;
+  const win = more ? bigger : smaller;
+  const first = intBetween(rng, 0, 1) === 0 ? bigger : smaller;
+  const second = first === bigger ? smaller : bigger;
+  return make(
+    unit,
+    `가 각의 크기는 ${deg(x)}입니다. 나 각은 가 각보다 더 ${more ? "큽니다" : "작습니다"}. ` +
+      `${deg(first)}와 ${deg(second)} 중 나 각의 크기로 알맞은 것은 어느 것인가?`,
+    deg(win),
+    `나 각은 ${deg(x)}보다 ${more ? "커야" : "작아야"} 하므로 ` +
+      `${expr(more ? `${win}>${x}` : `${win}<${x}`)} 인 ${deg(win)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-1 4단 심화 — 범위 조건 조합.** 경계 두 개를 동시에 만족하는 각을 센다.
+ * 경계는 후보 값에서 고른다 — «사이에 드는 것»이 있는 쌍만(1-5-3 범위 비교의 그 규칙).
+ */
+function tier21Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c1 = intBetween(rng, 15, 60);
+  const c2 = c1 + intBetween(rng, 10, 25);
+  const c3 = c2 + intBetween(rng, 10, 25);
+  const c4 = c3 + intBetween(rng, 10, 25);
+  const arr = [c1, c2, c3, c4];
+  const [loAt, hiAt] = pick(rng, [
+    [0, 3],
+    [0, 2],
+    [1, 3],
+  ] as const);
+  const loV = arr[loAt]!;
+  const hiV = arr[hiAt]!;
+  const shown = [...arr];
+  for (let i = shown.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [shown[i], shown[j]] = [shown[j]!, shown[i]!];
+  }
+  const inRange = shown.filter((v) => v > loV && v < hiV);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. ` +
+      `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 모두 몇 개인가?`,
+    n(inRange.length),
+    `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 ${inRange.map((v) => deg(v)).join(", ")}입니다. ` +
+      `모두 ${n(inRange.length)}개입니다.`,
+  );
+}
+
+/**
+ * **1-2-2 1단 연산 — 1도의 정의를 곧장 쓴다.** 「1°가 d개 모인 각」 — 표준 ⓪(d°는 1°가
+ * 몇 개)의 역방향이고, 직각 상수형을 곁들인다.
+ */
+function tier22Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const d = intBetween(rng, 11, 169);
+    return make(
+      unit,
+      `${deg(1)}가 ${n(d)}개 모인 각의 크기는 몇 도인가?`,
+      deg(d),
+      `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `직각은 ${deg(1)}가 몇 개 모인 각인가?`,
+    n(90),
+    `직각의 크기는 ${deg(90)}이므로 ${deg(1)}가 ${n(90)}개 모인 각입니다.`,
+  );
+}
+
+/** **1-2-2 2단 기본 — 등분한 한 각.** 직각·직선을 똑같이 나누는 식을 스스로 세운다. */
+function tier22Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [2, 3, 5, 6, 9, 10, 15]);
+    return make(
+      unit,
+      `직각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+      deg(90 / k),
+      `직각은 ${deg(90)}입니다. ${expr(`90\\div${k}=${90 / k}`)} 이므로 ${deg(90 / k)}입니다.`,
+    );
+  }
+  const k = pick(rng, [2, 3, 4, 5, 6, 9, 10, 12, 15]);
+  return make(
+    unit,
+    `직선이 이루는 각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+    deg(180 / k),
+    `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180\\div${k}=${180 / k}`)} 이므로 ` +
+      `${deg(180 / k)}입니다.`,
+  );
+}
+
+/** **1-2-2 3단 응용 — 등분 조각 m개(두 단계).** 한 각을 구하고 m배 한다. */
+function tier22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [3, 5, 6, 9]);
+    const m = intBetween(rng, 2, k - 1);
+    const one = 90 / k;
+    return make(
+      unit,
+      `직각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 붙인 각의 ` +
+        `크기는 몇 도인가?`,
+      deg(one * m),
+      `${expr(`90\\div${k}=${one}`)} 이므로 나누어진 한 각은 ${deg(one)}입니다. ` +
+        `${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
+    );
+  }
+  const k = pick(rng, [4, 5, 6, 9]);
+  const m = intBetween(rng, 2, k - 1);
+  const one = 180 / k;
+  return make(
+    unit,
+    `직선이 이루는 각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 ` +
+      `붙인 각의 크기는 몇 도인가?`,
+    deg(one * m),
+    `직선이 이루는 각은 ${deg(180)}이므로 ${expr(`180\\div${k}=${one}`)} 에서 한 각은 ` +
+      `${deg(one)}입니다. ${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-2 4단 심화 — 역산.** 등분 수를 되짚거나, 각도기 눈금을 되짚는다.
+ * 눈금 유형은 수가 전부 발문에 있어 그림 없이 자족적이다(블록 머리말).
+ */
+function tier22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [2, 3, 5, 6, 9, 10]);
+    const d = 90 / k;
+    return make(
+      unit,
+      `직각을 똑같이 몇 개로 나누었더니 나누어진 한 각의 크기가 ${deg(d)}가 되었습니다. ` +
+        `몇 개로 나눈 것인가?`,
+      n(k),
+      `직각은 ${deg(90)}입니다. ${expr(`90\\div${d}=${k}`)} 이므로 ${n(k)}개로 나눈 것입니다.`,
+    );
+  }
+  const a = pick(rng, [10, 20, 30, 40, 50]);
+  const d = pick(rng, [25, 35, 40, 55, 65, 70, 85, 95, 110, 125]);
+  return make(
+    unit,
+    `각도기로 각을 잴 때 각의 한 변이 눈금 ${josaNum(a, "을", "를")} 가리키고 있습니다. ` +
+      `각의 크기가 ${deg(d)}라면 같은 쪽 눈금에서 다른 변이 가리키는 눈금은 얼마인가?`,
+    n(a + d),
+    `한 변의 눈금에서 각의 크기만큼 나아간 눈금이므로 ${expr(`${a}+${d}=${a + d}`)} 입니다.`,
+  );
+}
+
+/** **1-2-3 1단 연산 — 직각과 한 번 견준다.** 예각·둔각 이름은 표준 ①의 몫이다. */
+function tier23Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pool = [
+    15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165,
+  ];
+  const d = pick(rng, pool);
+  return make(
+    unit,
+    `크기가 ${deg(d)}인 각은 직각보다 큰가, 작은가?`,
+    d > 90 ? "크다" : "작다",
+    `직각은 ${deg(90)}입니다. ${expr(d > 90 ? `${d}>90` : `${d}<90`)} 이므로 ` +
+      `${deg(d)}인 각은 직각보다 ${d > 90 ? "큽니다" : "작습니다"}.`,
+  );
+}
+
+/**
+ * **1-2-3 2단 기본 — 스스로 갈라 예각만 나열한다.** 표준 ⓪(둔각 개수 세기)과 답의
+ * 꼴이 다르다(나열).
+ */
+function tier23Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const acutePool = [15, 25, 35, 45, 55, 65, 75, 85];
+  const obtusePool = [95, 105, 115, 125, 135, 145, 155, 165];
+  const nAcute = intBetween(rng, 1, 3);
+  const four = [
+    ...pickDistinct(rng, acutePool, nAcute),
+    ...pickDistinct(rng, obtusePool, 4 - nAcute),
+  ];
+  for (let i = four.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [four[i], four[j]] = [four[j]!, four[i]!];
+  }
+  const acute = four.filter((v) => v < 90);
+  return make(
+    unit,
+    `네 각의 크기가 ${four.map((v) => deg(v)).join(", ")}입니다. 이 중에서 예각을 ` +
+      `모두 찾아 쓰시오.`,
+    acute.map((v) => deg(v)).join(", "),
+    `${deg(90)}보다 작은 각이 예각이므로 ${acute.map((v) => deg(v)).join(", ")}입니다.`,
+  );
+}
+
+/**
+ * **1-2-3 3단 응용 — 시계와 결합(두 단계).** 정각의 두 바늘 사이 각을 칸 수로 구해
+ * 분류하거나, 두 시각의 각을 견준다. 시계 읽기는 기학습이라 진도 안전.
+ */
+function tier23Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const HOURS = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11];
+  const cells = (h: number) => Math.min(h, 12 - h);
+  if (intBetween(rng, 0, 1) === 0) {
+    const h = pick(rng, HOURS);
+    const angle2 = 30 * cells(h);
+    return make(
+      unit,
+      `시계가 ${n(h)}시를 가리킬 때 긴바늘과 짧은바늘이 이루는 작은 쪽 각은 ` +
+        `예각, 직각, 둔각 중 무엇인가?`,
+      angleKind(angle2),
+      `시계의 큰 눈금 한 칸의 각도는 ${expr("360\\div12=30")} 에서 ${deg(30)}입니다. ` +
+        `${n(h)}시에는 두 바늘 사이가 ${n(cells(h))}칸이므로 ` +
+        `${expr(`30\\times${cells(h)}=${angle2}`)} 이고, ${deg(angle2)}는 ${angleKind(angle2)}입니다.`,
+      fig("clocks", { items: [{ hour: h, minute: 0 }] }),
+    );
+  }
+  const h1 = pick(rng, HOURS);
+  const h2 = pick(
+    rng,
+    HOURS.filter((h) => cells(h) !== cells(h1)),
+  );
+  const win = cells(h1) > cells(h2) ? h1 : h2;
+  return make(
+    unit,
+    `${n(h1)}시와 ${n(h2)}시 중 긴바늘과 짧은바늘이 이루는 작은 쪽 각이 더 큰 시각은 ` +
+      `언제인가?`,
+    `${n(win)}시`,
+    `두 바늘 사이는 ${n(h1)}시에 ${n(cells(h1))}칸, ${n(h2)}시에 ${n(cells(h2))}칸입니다. ` +
+      `한 칸의 각도가 같으므로 칸이 더 많은 ${n(win)}시의 각이 더 큽니다.`,
+    fig("clocks", {
+      items: [
+        { hour: h1, minute: 0 },
+        { hour: h2, minute: 0 },
+      ],
+    }),
+  );
+}
+
+/** **1-2-3 4단 심화 — 분류 조건과 수치 조건을 동시에.** 「예각이면서 t°보다 큰 각」. */
+function tier23Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, [40, 50, 60]);
+  const sure = t + pick(rng, [5, 15, 25]);
+  const low = intBetween(rng, 15, t - 5);
+  const high1 = intBetween(rng, 95, 165);
+  const extra =
+    intBetween(rng, 0, 1) === 0
+      ? intBetween(rng, t + 1, 85)
+      : intBetween(rng, 95, 165);
+  const four = [sure, low, high1, extra];
+  for (let i = four.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [four[i], four[j]] = [four[j]!, four[i]!];
+  }
+  const hit = four.filter((v) => v < 90 && v > t);
+  return make(
+    unit,
+    `네 각의 크기가 ${four.map((v) => deg(v)).join(", ")}입니다. 예각이면서 ` +
+      `${deg(t)}보다 큰 각은 모두 몇 개인가?`,
+    n(hit.length),
+    `예각은 ${deg(90)}보다 작은 각입니다. 예각이면서 ${deg(t)}보다 큰 각은 ` +
+      `${hit.map((v) => deg(v)).join(", ")}이므로 모두 ${n(hit.length)}개입니다.`,
+  );
+}
+
+/** **1-2-4 1단 연산 — 이어 붙인 두 각(합 한 번).** 표준의 맨 식과 표면을 갈랐다. */
+function tier24Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 25, 75);
+  const y = intBetween(rng, 15, 60);
+  return make(
+    unit,
+    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도인가?`,
+    deg(x + y),
+    `이어 붙인 각의 크기는 두 각의 크기의 합입니다. ${expr(`${x}+${y}=${x + y}`)} 이므로 ` +
+      `${deg(x + y)}입니다.`,
+  );
+}
+
+/** **1-2-4 2단 기본 — 직각·직선을 채우는 각.** 기준각을 스스로 떠올려 식을 세운다. */
+function tier24Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 15, 75);
+    return make(
+      unit,
+      `${deg(x)}와 더하면 직각이 되는 각도는 몇 도인가?`,
+      deg(90 - x),
+      `직각은 ${deg(90)}입니다. ${expr(`90-${x}=${90 - x}`)} 이므로 ${deg(90 - x)}입니다.`,
+    );
+  }
+  const x = intBetween(rng, 25, 155);
+  return make(
+    unit,
+    `${deg(x)}와 더하면 직선이 이루는 각이 되는 각도는 몇 도인가?`,
+    deg(180 - x),
+    `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180-${x}=${180 - x}`)} 이므로 ` +
+      `${deg(180 - x)}입니다.`,
+  );
+}
+
+/** **1-2-4 3단 응용 — 합과 차를 잇는 두 단계.** 이어 붙이고 줄이거나, 직선 초과분을 잰다. */
+function tier24Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 25, 75);
+    const y = intBetween(rng, 25, 75);
+    const z = intBetween(rng, 15, x + y - 15);
+    return make(
+      unit,
+      `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각에서 ${deg(z)}만큼 줄이면 몇 도가 ` +
+        `되는가?`,
+      deg(x + y - z),
+      `${expr(`${x}+${y}=${x + y}`)} 이고 ${expr(`${x + y}-${z}=${x + y - z}`)} 이므로 ` +
+        `${deg(x + y - z)}가 됩니다.`,
+    );
+  }
+  const x = intBetween(rng, 95, 135);
+  const y = intBetween(rng, 95, 135);
+  return make(
+    unit,
+    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각은 직선이 이루는 각보다 ` +
+      `몇 도 더 큰가?`,
+    deg(x + y - 180),
+    `${expr(`${x}+${y}=${x + y}`)} 이고 직선이 이루는 각은 ${deg(180)}이므로 ` +
+      `${expr(`${x + y}-180=${x + y - 180}`)} 에서 ${deg(x + y - 180)} 더 큽니다.`,
+  );
+}
+
+/** **1-2-4 4단 심화 — «잘못 계산했더니» 복원(D-72 문형).** 더할 것을 빼거나 그 반대. */
+function tier24Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 35, 85);
+  const y = intBetween(rng, 15, 30);
+  if (intBetween(rng, 0, 1) === 0) {
+    const wrong = x - y;
+    const right = x + y;
+    return make(
+      unit,
+      `어떤 각도에 ${deg(y)}를 더해야 할 것을 잘못하여 뺐더니 ${deg(wrong)}가 ` +
+        `되었습니다. 바르게 계산하면 몇 도인가?`,
+      deg(right),
+      `${expr(`${wrong}+${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
+        `바르게 계산하면 ${expr(`${x}+${y}=${right}`)} 에서 ${deg(right)}입니다.`,
+    );
+  }
+  const wrong = x + y;
+  const right = x - y;
+  return make(
+    unit,
+    `어떤 각도에서 ${deg(y)}를 빼야 할 것을 잘못하여 더했더니 ${deg(wrong)}가 ` +
+      `되었습니다. 바르게 계산하면 몇 도인가?`,
+    deg(right),
+    `${expr(`${wrong}-${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}-${y}=${right}`)} 에서 ${deg(right)}입니다.`,
+  );
+}
+
+/** **1-2-5 1단 연산 — 두 각의 «합»에서 나머지 각.** 표준 ①은 두 각을 각각 준다. */
+function tier25Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 60, 150);
+  return make(
+    unit,
+    `삼각형에서 두 각의 크기의 합이 ${deg(s)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    deg(180 - s),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${s}=${180 - s}`)} 이므로 ` +
+      `${deg(180 - s)}입니다.`,
+  );
+}
+
+/** **1-2-5 2단 기본 — 직각삼각형.** 직각 하나를 스스로 떠올려 식을 세운다. */
+function tier25Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 70);
+  return make(
+    unit,
+    `직각삼각형에서 직각이 아닌 두 각 중 한 각의 크기가 ${deg(a)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(90 - a),
+    `직각은 ${deg(90)}이고 삼각형의 세 각의 합은 ${deg(180)}이므로 ` +
+      `${expr(`180-90-${a}=${90 - a}`)} 입니다.`,
+  );
+}
+
+/** **1-2-5 3단 응용 — 합을 구해 180°와 견준다(두 단계).** 그릴 수 있는가 판단. */
+function tier25Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 30, 70);
+  const b = intBetween(rng, 30, 70);
+  const valid = intBetween(rng, 0, 1) === 0;
+  const c3 = valid
+    ? 180 - a - b
+    : 180 - a - b + pick(rng, [-30, -20, -10, 10, 20, 30]);
+  const sum = a + b + c3;
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}인 삼각형을 그릴 수 있는가? ` +
+      `'예' 또는 '아니요'로 답하시오.`,
+    valid ? "예" : "아니요",
+    `세 각의 크기의 합을 구하면 ${expr(`${a}+${b}+${c3}=${sum}`)} 입니다. ` +
+      `삼각형의 세 각의 크기의 합은 ${deg(180)}${
+        valid ? "와 같으므로 그릴 수 있습니다" : "가 아니므로 그릴 수 없습니다"
+      }.`,
+  );
+}
+
+/**
+ * **1-2-5 4단 심화 — 조건 조합.** 「나머지 두 각의 크기가 서로 같다」 — 이등변이라는
+ * 이름 없이 조건만 쓴다(2-2 진도 전). 세 각이 모두 같은 꼴을 곁들인다.
+ */
+function tier25Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const a = intBetween(rng, 15, 60) * 2;
+    const rest = 180 - a;
+    return make(
+      unit,
+      `삼각형의 한 각의 크기는 ${deg(a)}이고, 나머지 두 각의 크기는 서로 같습니다. ` +
+        `나머지 한 각의 크기는 몇 도인가?`,
+      deg(rest / 2),
+      `${expr(`180-${a}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
+        `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `세 각의 크기가 모두 같은 삼각형의 한 각의 크기는 몇 도인가?`,
+    deg(60),
+    `세 각의 크기가 같으므로 ${expr("180\\div3=60")} 에서 ${deg(60)}입니다.`,
+  );
+}
+
+/** **1-2-6 1단 연산 — 세 각의 «합»에서 나머지 각.** 1-2-5 연산과 평행(표준도 평행). */
+function tier26Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 220, 330);
+  return make(
+    unit,
+    `사각형에서 세 각의 크기의 합이 ${deg(s)}일 때 나머지 한 각의 크기는 몇 도인가?`,
+    deg(360 - s),
+    `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${s}=${360 - s}`)} 이므로 ` +
+      `${deg(360 - s)}입니다.`,
+  );
+}
+
+/** **1-2-6 2단 기본 — 직각 둘을 스스로 떠올린다.** 1-2-5 기본(직각 하나)과 문형이 다르다. */
+function tier26Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c3 = intBetween(rng, 40, 140);
+  return make(
+    unit,
+    `두 각이 직각인 사각형에서 다른 한 각의 크기가 ${deg(c3)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(180 - c3),
+    `직각 두 개의 합은 ${expr("90+90=180")} 이고 사각형의 네 각의 합은 ${deg(360)}이므로 ` +
+      `${expr(`360-180-${c3}=${180 - c3}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-2-6 3단 응용 — 나머지 각을 구해 분류한다(두 단계).** 1-2-5 응용(예/아니요 판단)과
+ * 꼴을 갈랐다.
+ */
+function tier26Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c3 = intBetween(rng, 70, 110);
+  const rest = 360 - a - b - c3;
+  return make(
+    unit,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}입니다. 나머지 한 각은 ` +
+      `예각, 직각, 둔각 중 무엇인가?`,
+    angleKind(rest),
+    `${expr(`360-${a}-${b}-${c3}=${rest}`)} 이고 ${deg(rest)}는 ${angleKind(rest)}입니다.`,
+  );
+}
+
+/** **1-2-6 4단 심화 — 조건 조합.** 두 각이 같다는 조건과, 네 각이 모두 같은 꼴. */
+function tier26Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const a = intBetween(rng, 30, 60) * 2;
+    const b = intBetween(rng, 20, 50) * 2;
+    const rest = 360 - a - b;
+    return make(
+      unit,
+      `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}이고, 나머지 두 각의 크기는 서로 ` +
+        `같습니다. 나머지 한 각의 크기는 몇 도인가?`,
+      deg(rest / 2),
+      `${expr(`360-${a}-${b}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
+        `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `네 각의 크기가 모두 같은 사각형의 한 각의 크기는 몇 도인가?`,
+    deg(90),
+    `네 각의 크기가 같으므로 ${expr("360\\div4=90")} 에서 ${deg(90)}입니다.`,
+  );
+}
+
 /* ─────────────────────── 1-3 곱셈과 나눗셈 ─────────────────────── */
 
 function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -2732,6 +3299,42 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier17Basic,
     응용: tier17Apply,
     심화: tier17Deep,
+  },
+  "초4|1-2-1": {
+    연산: tier21Calc,
+    기본: tier21Basic,
+    응용: tier21Apply,
+    심화: tier21Deep,
+  },
+  "초4|1-2-2": {
+    연산: tier22Calc,
+    기본: tier22Basic,
+    응용: tier22Apply,
+    심화: tier22Deep,
+  },
+  "초4|1-2-3": {
+    연산: tier23Calc,
+    기본: tier23Basic,
+    응용: tier23Apply,
+    심화: tier23Deep,
+  },
+  "초4|1-2-4": {
+    연산: tier24Calc,
+    기본: tier24Basic,
+    응용: tier24Apply,
+    심화: tier24Deep,
+  },
+  "초4|1-2-5": {
+    연산: tier25Calc,
+    기본: tier25Basic,
+    응용: tier25Apply,
+    심화: tier25Deep,
+  },
+  "초4|1-2-6": {
+    연산: tier26Calc,
+    기본: tier26Basic,
+    응용: tier26Apply,
+    심화: tier26Deep,
   },
   "초4|1-5-1": {
     연산: tier51Calc,
