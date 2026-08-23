@@ -150,22 +150,112 @@ function onGrid(p: Pt, cols: number, rows: number): Pt {
   return p;
 }
 
+/**
+ * 점격자 렌더러가 받는 한도 — `scripts/figure/elementary.py` 의 `_point_grid` 가
+ * `cols·rows 는 1 이상 10 이하여야 합니다` 로 **던진다.**
+ *
+ * ⚠️ 이 수를 여기 적어 두는 것은 **두 벌**이다. 그래도 적는다 — 파이썬 쪽을 여기서
+ *    읽을 수 없기 때문이다. 대신 어긋나면 **생성이 던지게** 해서(아래) 조용히 지나가지
+ *    않게 했다. 저쪽이 한도를 바꾸면 `probe-elem-throw` 가 아니라 **그림 판정기**가 운다.
+ */
+const GRID_MAX = 10;
+
+/**
+ * 띠와 띠 사이 빈 줄. **두 줄**이다 — 라벨이 도형 *아래*에 붙으므로(`side: "down"`)
+ * 한 줄만 두면 윗 띠의 기호가 아랫 띠 도형과 겹친다.
+ */
+const GRID_BAND_GAP = 2;
+
+function shapeSpan(s: GridShape): { minC: number; maxC: number } {
+  const cs = s.pts.map((p) => p[0]);
+  return { minC: Math.min(...cs), maxC: Math.max(...cs) };
+}
+
+function shiftShape(s: GridShape, dc: number, dr: number): GridShape {
+  const mv = (p: Pt): Pt => [p[0] + dc, p[1] + dr];
+  return {
+    ...s,
+    pts: s.pts.map(mv),
+    lines: s.lines.map(([a, b]) => [mv(a), mv(b)] as [Pt, Pt]),
+    anchor: s.anchor ? mv(s.anchor) : undefined,
+  };
+}
+
+/**
+ * 폭이 한도를 넘으면 **아래로 접는다.**
+ *
+ * ## 왜 여기인가 — 부르는 자리가 **열여덟**이다
+ *
+ * 도형을 나란히 놓는 함수(`triangleRow`·`rectRow` 등)가 저마다 `c0 = i * gap` 으로
+ * 폭을 키운다. 셋을 놓으면 `cols` 가 13~14 가 되어 **렌더러가 던진다** — 그런데
+ * 생성기는 멀쩡한 스펙을 돌려주므로 **문항은 그림 없이 지면에 나간다.**
+ * 실측(2026-08-24): 씨앗 60 에서 **245건**(1-2-2 · 1-2-3 · 1-2-4).
+ *
+ * 부르는 자리마다 고치면 열여덟 벌이 되고, 한 벌만 빠뜨려도 아무도 모른다.
+ * 그래서 **폭을 아는 유일한 곳**인 여기서 접는다.
+ *
+ * ## 왜 «셋 중 하나를 뺀다»가 아닌가
+ *
+ * 도형을 줄이면 「가, 나, 다 중에서 고르시오」가 둘 중 고르기가 되어 **문항이 쉬워진다.**
+ * 지면 폭 때문에 난이도를 바꾸는 것은 거꾸로다 — 접으면 셋 다 남는다.
+ */
+function foldGrid(
+  cols: number,
+  rows: number,
+  shapes: GridShape[],
+): { cols: number; rows: number; shapes: GridShape[] } {
+  if (cols <= GRID_MAX) return { cols, rows, shapes };
+  // 왼쪽부터 차례로 — 발문의 「가, 나, 다」 차례와 같아야 한다.
+  const ordered = [...shapes].sort(
+    (a, b) => shapeSpan(a).minC - shapeSpan(b).minC,
+  );
+  const out: GridShape[] = [];
+  let at = 0;
+  let band = 0;
+  let widest = 0;
+  for (const s of ordered) {
+    const { minC, maxC } = shapeSpan(s);
+    const w = maxC - minC;
+    if (at > 0 && at + w > GRID_MAX) {
+      band += 1;
+      at = 0;
+    }
+    out.push(shiftShape(s, at - minC, band * (rows + GRID_BAND_GAP)));
+    widest = Math.max(widest, at + w);
+    at += w + 1;
+  }
+  return {
+    cols: widest,
+    rows: band * (rows + GRID_BAND_GAP) + rows,
+    shapes: out,
+  };
+}
+
 function pointGridSpec(
   cols: number,
   rows: number,
   shapes: GridShape[],
 ): Record<string, unknown> {
+  const g = foldGrid(cols, rows, shapes);
+  // ⚠️ **접고 나서** 던진다. 접어도 안 들어가는 것은 지면에 못 그리는 것이고,
+  //    그때는 조용한 «그림 없는 문항»보다 **터지는 쪽**이 낫다 —
+  //    `probe-elem-throw` 가 전 씨앗을 쓸므로 그 자리에서 잡힌다.
+  if (g.cols < 1 || g.cols > GRID_MAX || g.rows < 1 || g.rows > GRID_MAX) {
+    throw new Error(
+      `점격자가 렌더러 한도를 넘습니다: ${g.cols}x${g.rows} (한도 ${GRID_MAX}) — 도형 ${shapes.length}개`,
+    );
+  }
   const dots: Record<string, unknown>[] = [];
   const lines: [Pt, Pt][] = [];
-  for (const shape of shapes) {
+  for (const shape of g.shapes) {
     for (const [a, b] of shape.lines) {
-      lines.push([onGrid(a, cols, rows), onGrid(b, cols, rows)]);
+      lines.push([onGrid(a, g.cols, g.rows), onGrid(b, g.cols, g.rows)]);
     }
     const anchor =
       shape.anchor ??
       [...shape.pts].sort((p, q) => q[1] - p[1] || p[0] - q[0])[0]!;
     for (const p of shape.pts) {
-      onGrid(p, cols, rows);
+      onGrid(p, g.cols, g.rows);
       const isAnchor = p[0] === anchor[0] && p[1] === anchor[1];
       dots.push({
         c: p[0],
@@ -175,7 +265,7 @@ function pointGridSpec(
       });
     }
   }
-  return fig("pointGrid", { cols, rows, dots, lines });
+  return fig("pointGrid", { cols: g.cols, rows: g.rows, dots, lines });
 }
 
 function closedShape(pts: Pt[], label: string): GridShape {
@@ -1118,6 +1208,32 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * **2-3 원의 그림** — `circleParts`. 🔴 **그림이 학생이 할 단계를 대신하면 안 된다.**
+ *
+ * 이 소단원은 「원의 중심·지름·반지름」이 곧 이름이라 **묻는 것과 그리는 것이 같아지기
+ * 쉽다.** 그래서 발문마다 무엇을 묻는지 보고 갈랐다:
+ *
+ *  · **2-3-1(용어)** — 답이 «낱말»이다. 엔진이 용어 라벨을 아예 안 그리므로
+ *    맨 원 + 중심점이면 새는 것이 없다. 발문이 선분을 말로 다 설명한다.
+ *  · **2-3-2(성질)** — 한쪽 치수를 주고 다른 쪽을 묻는다. **준 쪽만** 적는다.
+ *    묻는 쪽을 적으면 답이 지면에 있다(엔진이 둘 다 받으면 던진다).
+ *  · **2-3-3(원 그리기)** — 「컴퍼스를 8cm 벌렸다 → 지름은?」. 숨은 단계가
+ *    **«벌린 길이 = 반지름»** 이다. 반지름을 8cm 라 적으면 **그 단계를 그림이
+ *    대신한다.** 그래서 치수를 안 적는다 — 2-3-2 와 겉보기가 같아도 이유가 다르다.
+ */
+function circleFig(
+  kind: "bare" | "showRadius" | "showDiameter" | "radius" | "diameter",
+  cm?: number,
+) {
+  if (kind === "bare") return fig("circleParts", {});
+  // `show` — **선분은 그리되 치수는 안 적는다.** 2-3-1 이 「이 선분을 무엇이라 하는지」를
+  // 묻는데 그 선분이 지면에 없으면 그림이 아무 말도 안 한다. 답은 낱말이라 안 샌다.
+  if (kind === "showRadius") return fig("circleParts", { show: "radius" });
+  if (kind === "showDiameter") return fig("circleParts", { show: "diameter" });
+  return fig("circleParts", { [kind]: `${cm} cm` });
+}
+
 function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("중심")) {
@@ -1128,6 +1244,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `원을 그릴 때 컴퍼스의 침을 꽂은 점, 곧 원의 한가운데 있는 점을 무엇이라고 하는지 쓰시오.`,
         "원의 중심",
         "원을 그릴 때 침을 꽂은 점이 원의 중심입니다. 원의 중심에서 원 위의 어느 점까지 재어도 길이가 같습니다.",
+        circleFig("bare"),
       );
     }
     if (which === "지름") {
@@ -1136,6 +1253,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `원의 중심을 지나면서 원 위의 두 점을 이은 선분을 무엇이라고 하는지 쓰시오.`,
         "지름",
         "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다. 한 원에서 지름은 모두 길이가 같습니다.",
+        circleFig("showDiameter"),
       );
     }
     return make(
@@ -1143,6 +1261,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
       `원의 중심과 원 위의 한 점을 이은 선분을 무엇이라고 하는지 쓰시오.`,
       "반지름",
       "원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다. 한 원에서 반지름은 모두 길이가 같습니다.",
+      circleFig("showRadius"),
     );
   }
   if (s.includes("성질")) {
@@ -1153,6 +1272,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `반지름이 ${unitNum(r, "cm")} 인 원의 지름은 몇 cm인지 쓰시오.`,
         n(r * 2),
         `한 원에서 지름은 반지름의 $2$ 배입니다. ${expr(`${r}\\times2=${r * 2}`)} 이므로 지름은 ${unitNum(r * 2, "cm")} 입니다.`,
+        circleFig("radius", r),
       );
     }
     return make(
@@ -1160,6 +1280,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
       `지름이 ${unitNum(r * 2, "cm")} 인 원의 반지름은 몇 cm인지 쓰시오.`,
       n(r),
       `한 원에서 반지름은 지름의 반입니다. ${expr(`${r * 2}\\div2=${r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
+      circleFig("diameter", r * 2),
     );
   }
   const r = intBetween(rng, 2, 9);
@@ -1168,6 +1289,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
     `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인지 쓰시오.`,
     n(r * 2),
     `컴퍼스를 벌린 길이가 원의 반지름이 됩니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+    circleFig("bare"),
   );
 }
 
@@ -6050,7 +6172,22 @@ function kind244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 function kind244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const den = intBetween(rng, 3, 9);
-  const span = intBetween(rng, 2, 6);
+  // ⚠️ 견줄 상대가 **나누어떨어지면 안 된다.**
+  //
+  //    `den + span` 이 `den` 의 배수면 상대가 `\frac{12}{6}` 처럼 **정수로 읽히는**
+  //    분수가 된다. D-73 전에는 전처리가 그걸 `2` 로 접어 지면이 자연스러웠는데,
+  //    이제 안 접히니 발문에 `\frac{12}{6} 보다 작은` 이 그대로 나간다 —
+  //    수학은 맞지만 교과서 말투가 아니다(실측 14자리 · 발문 7 · 해설 7, 2026-08-24).
+  //
+  //    ⚠️ **정수로 바꿔 쓰는 것으로는 못 푼다.** 그러면 발문에 남는 분수가
+  //       `\frac{\square}{d}` 뿐인데 판정기의 분수 세기가 □ 를 못 읽어
+  //       「진분수와 가분수」 조건이 **깨진다** — 실제로 고쳐 보고 씨앗 3/40 이 걸렸다.
+  //       그래서 «어떻게 적을까»가 아니라 **«그 자리를 안 만든다»**로 푼다.
+  //       상대는 늘 진짜 가분수이고, 그게 이 소단원이 다루는 것이기도 하다.
+  const span = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((v) => v % den !== 0),
+  );
   const limit = den + span;
   // ⚠️ 견줄 상대를 **수 분수**로 세운다. `\frac{\square}{d}` 만 있으면 지면에는 분수가
   //   보이는데 판정기의 분수 세기(`fracs()`)가 □ 를 못 읽어 「분수가 없다」로 걸린다.

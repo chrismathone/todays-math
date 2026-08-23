@@ -347,15 +347,17 @@ PY
 run "마름모 세로를 height 로 되돌리기"
 
 # ⑭ `diamond` 를 키워 **정사각형을 45° 돌린 것**과 합동으로 만든다.
+#    ⚠️ 2026-08-24 병합이 이 좌표를 `_shape_points` 안 **한 줄**로 옮겨 앵커가 죽었다.
+#    「판정 안 함」으로 빠져 회차가 exit 1 이 됐다 — 조용히 통과하지 않는 것을 확인했다.
 #    이 변이의 값어치: **하우스도르프 거리는 9.1px 로 초록**이다(자세가 달라 멀어 보인다).
 #    회전 불변 지문만 이것을 잡는다 — 두 축이 서로를 갈음하지 못한다는 증거다.
 python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
-old = "            [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]"
+old = "        return [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]"
 assert old in s, "앵커 없음 ⑭"
-new = ("            [(ox + s / 2, oy - s * 0.2071), (ox + s * 1.2071, oy + s / 2),\n"
-       "             (ox + s / 2, oy + s * 1.2071), (ox - s * 0.2071, oy + s / 2)]  # 변이")
+new = ("        return [(ox + s / 2, oy - s * 0.2071), (ox + s * 1.2071, oy + s / 2), "
+       "(ox + s / 2, oy + s * 1.2071), (ox - s * 0.2071, oy + s / 2)]  # 변이")
 io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 PY
 run "마름모를 돌린 정사각형과 합동으로"
@@ -909,6 +911,39 @@ new = ("        parts.append(f'<text x=\"{_n(cx)}\" y=\"{_n(cy)}\">{r_lab}</text
 io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 MUT
 run "circleParts 치수가 measured() 가 아니다 (맨 글자)"
+
+# ① `show` 가 **치수를 적는다** — 「그린다」와 「적는다」를 가른 그 축.
+#    이 변이가 없으면 «선분만»이라는 약속을 아무도 안 지킨다(2026-08-24 리드 지적).
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        if r_lab is not None:" + chr(10) + "            parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))"
+assert s.count(old) == 1, "앵커 없음 356"
+new = ("        parts.append(_length_mark(cx, cy, ex, ey, str(r_lab or " + chr(39) + "반지름" + chr(39) + "), off=-10.0))  # 변이")
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "circleParts show 가 치수·용어를 적는다"
+
+# ① `show` 가 **선분을 안 그린다** — 그러면 2-3-1 그림이 다시 빈 원이 된다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '    if r_lab is not None or show == "radius":'
+assert s.count(old) == 1, "앵커 없음 357"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "    if r_lab is not None:  # 변이", 1))
+MUT
+run "circleParts show radius 가 선분을 안 그린다"
+
+# ① `show` 가 **모르는 값을 조용히 받는다** — 오타가 빈 원으로 나간다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '    if show is not None and show not in ("radius", "diameter"):'
+assert s.count(old) == 1, "앵커 없음 358"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "    if False:  # 변이", 1))
+MUT
+run "circleParts show 가 모르는 값을 조용히 받는다"
+
 
 restore
 judged=$(grep -c "^\[" "$SUMMARY")

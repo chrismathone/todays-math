@@ -4327,3 +4327,234 @@ describe("[초3 4단] 2-5 들이와 무게 — 여섯 소단원", () => {
     expect(bad.slice(0, 6)).toEqual([]);
   });
 });
+
+/* ══════════ 점격자가 **렌더러 한도 안에** 있는가 (2026-08-24) ══════════
+ *
+ * ## 왜 이 시험이 따로 있나 — **갈래 시험은 스펙을 그려 보지 않는다**
+ *
+ * 위의 도형 시험들은 `figureSpec` 의 **필드**를 읽는다(점이 몇 개인가·직각인가).
+ * 그런데 그 스펙이 **실제로 그려지는가**는 아무도 안 물었다. 그래서 초3 1-2-2·1-2-3·
+ * 1-2-4 의 **245건**이 렌더러에서 던지고 있었고 — 즉 지면에 **그림 없이** 나가고
+ * 있었고 — 초3 시험은 **전부 초록**이었다(2026-08-24, 리드가 전량 렌더로 찾아 줬다).
+ *
+ * 같은 구멍이 그날 하루에 셋이었다(초4 표 192 · 초6 구 5 · 여기 245).
+ * **없는 축은 변이시킬 수 없다** — 그래서 축을 만든다.
+ *
+ * ## 무엇을 재고 무엇을 **못** 재나
+ *
+ * ㉠ **잰다**: `cols`·`rows` 가 렌더러 한도(1~10) 안인가. 이것이 245건의 실제 사유였다.
+ * ㉡ **못 잰다**: 「그려진 그림이 **옳은가**」는 여기서 못 본다. 파이썬 렌더러를
+ *    vitest 에서 부를 수 없기 때문이다 — 전량 렌더는 그림 판정기 몫이다.
+ *    이 시험은 **그 판정기가 못 도는 날에도 남는 최소선**이다.
+ * ㉢ 한도 `10` 은 `scripts/figure/elementary.py` 에도 있다 — **두 벌**이다.
+ *    저쪽이 한도를 **좁히면** 이 시험은 초록인 채로 놓친다. 그래서 g3.ts 는
+ *    접고도 안 들어가면 **던지고**, `probe-elem-throw` 가 전 씨앗을 쓴다.
+ */
+describe("[초3 그림] 점격자가 렌더러 한도 안에 있다", () => {
+  const GRID_MAX = 10;
+
+  it("cols·rows 가 $1$~$10$ 이고, 접힌 자리가 실제로 있다", () => {
+    const bad: string[] = [];
+    let seen = 0;
+    let folded = 0;
+    for (const u of elementaryUnits().filter((x) => x.grade === "초3"))
+      for (const tier of [
+        undefined,
+        ...(supportedTiers(u).length > 0 ? ELEM_TIERS : []),
+      ])
+        for (const seed of SEEDS) {
+          const spec = generateElementaryProblem(u, seed, tier).figureSpec as {
+            kind?: string;
+            cols?: number;
+            rows?: number;
+          } | null;
+          if (!spec || spec.kind !== "pointGrid") continue;
+          seen += 1;
+          const { cols = 0, rows = 0 } = spec;
+          if (cols < 1 || cols > GRID_MAX || rows < 1 || rows > GRID_MAX)
+            bad.push(
+              `${u.section} «${tier ?? "표준"}» 씨앗 ${seed}: ${cols}x${rows}`,
+            );
+          // 접으면 반드시 두 줄 이상이 된다 — 원래 띠는 rows 2~3 이다.
+          if (rows > 4) folded += 1;
+        }
+    expect(bad.slice(0, 6)).toEqual([]);
+    // ⚠️ **분모 둘.** 스펙을 하나도 못 보면 「한도 안」은 «못 셈»이고,
+    //    접힌 자리가 하나도 없으면 이 시험은 **고치기 전에도 초록**이었을 것이다.
+    expect(
+      seen,
+      "점격자 스펙을 하나도 못 봤다 — 축이 사라졌다",
+    ).toBeGreaterThan(100);
+    expect(
+      folded,
+      "접힌 점격자가 하나도 없다 — 접기를 지우면 245건이 되살아나는데 이 시험이 못 본다",
+    ).toBeGreaterThan(0);
+  });
+});
+
+/* ══════════ D-73 — 지면에 «정수로 읽히는 분수»가 있어도 되나 (2026-08-24) ══════════
+ *
+ * main 이 전처리의 「가분수 → 대분수·정수」 자동 변환을 없앴다(D-73). 그 전에는
+ * `\frac{9}{3}` 이 지면에서 `3` 으로 접혔고, 그래서 **엔진이 접힘에 기대고** 있었다.
+ *
+ * ⚠️ **정수로 읽히는 분수가 전부 결함인 것은 아니다.** 초3 전량(잰 칸 31,200)에서
+ *    75자리가 남아 있고 **전부 옳다** — 하나씩 보고 정했다:
+ *      · 2-4-5 해설 `\frac{12}{3}`  — 「자연수를 분모 $3$ 인 분수로 고치면」의 **그 단계**다.
+ *                                     `4` 로 접히면 계산 단계가 통째로 사라진다.
+ *      · 2-4-4 보기 `\frac{8}{4}`   — 「가분수를 고르시오」의 **정답 보기**다. `2` 로
+ *                                     접히면 가분수가 한 개도 안 보여 문항이 죽는다.
+ *      · 2-4-4 `\frac{3}{3}`        — 분자 = 분모도 가분수다. `1` 로 접으면 안 된다.
+ *
+ * 그래서 이 시험은 「0이어야 한다」가 아니라 **「그 한 자리가 다시 생기지 않는다」**만 잠근다.
+ * 걸렸던 자리는 2-4-4 **심화의 견줄 상대**다(발문 7 · 해설 7).
+ */
+describe("[초3 D-73] 견줄 상대가 «정수로 읽히는 분수»가 아니다", () => {
+  it("2-4-4 심화의 상대는 늘 진짜 가분수다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    const unit = planeUnit("2-4-4");
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(unit, seed, "심화");
+      const fracs = [
+        ...`${p.content}\n${p.solution}`.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g),
+      ];
+      // □ 가 든 분수는 수가 아니라 안 잡힌다 — 견줄 상대만 남는다.
+      for (const m of fracs) {
+        const a = Number(m[1]);
+        const b = Number(m[2]);
+        looked += 1;
+        if (a % b === 0)
+          bad.push(
+            `씨앗 ${seed}: 상대가 $${a}/${b}$ — 지면에서 「${a / b}」로 읽힌다`,
+          );
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+    // 분모 — 상대가 사라지면 이 잠금은 «못 셈»이 된다.
+    expect(
+      looked,
+      "심화 발문·해설에서 수 분수를 하나도 못 읽었다 — 축이 사라졌다",
+    ).toBeGreaterThan(SEEDS.length);
+  });
+
+  it("그래도 **가분수 자체는** 지면에 나온다 — 이 소단원이 다루는 것이다", () => {
+    let improper = 0;
+    const unit = planeUnit("2-4-4");
+    for (const seed of SEEDS)
+      for (const tier of ELEM_TIERS) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        for (const m of p.content.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g))
+          if (Number(m[1]) >= Number(m[2])) improper += 1;
+      }
+    // 「정수로 읽히는 것을 막았다」가 「가분수를 다 없앴다」가 되면 문항이 죽는다.
+    expect(
+      improper,
+      "발문에 가분수가 하나도 없다 — 「가분수를 고르시오」가 성립하지 않는다",
+    ).toBeGreaterThan(0);
+  });
+});
+
+/* ══════════ 초3 2-3 원 — 그림이 답도 풀이 단계도 말하지 않는다 (2026-08-24) ══════════
+ *
+ * 배선은 elem-figures 가 했고(`circleParts`), **잠금 내용도 그쪽이 줬다.** 여기 두는
+ * 것은 `elemTiersG3.test.ts` 가 g3 창이기 때문이다 — 같은 파일을 둘이 쓰면 덮는다.
+ *
+ * ## ⑶ 이 이 묶음의 알맹이다 — 2-3-2 와 **겉보기가 같은데 이유가 다르다**
+ *
+ *   · 2-3-2 는 「적으면 **답**이라서」 묻는 쪽을 안 적는다.
+ *   · 2-3-3 은 「적으면 **풀이 단계**를 대신해서」 아예 안 적는다.
+ *     「컴퍼스를 $8\,\mathrm{cm}$ 벌려 원을 그렸다 → 지름은?」의 숨은 단계가
+ *     **「벌린 길이 = 반지름」**이다. 그림이 반지름을 적어 주면 학생이 할 일이 없다.
+ *
+ * **값 검산으로는 둘 다 안 잡힌다.** 그래서 「2-3-2 처럼 준 쪽을 적으면 되겠네」로
+ * 되돌리기 쉽고, 되돌려도 **아무 시험도 안 운다** — ⑶ 이 없으면.
+ *
+ * ⚠️ `toMatchObject` 로 본다. elem-figures 가 2-3-1 에 선분을 그리는 축(`show`)을
+ *    더하는 중이라 **키가 는다** — 엄격 비교로 바꾸면 그 작업에서 빨개진다.
+ */
+describe("[초3 그림] 2-3 원 — 그림이 답도 풀이 단계도 말하지 않는다", () => {
+  const CIRCLE_SEEDS = Array.from({ length: 120 }, (_, i) => i);
+  const specOf = (code: string, seed: number) =>
+    generateElementaryProblem(planeUnit(code), seed).figureSpec as Record<
+      string,
+      unknown
+    > | null;
+
+  it("⑴ 2-3 세 소단원 전부에 원 그림이 붙는다", () => {
+    for (const code of ["2-3-1", "2-3-2", "2-3-3"] as const)
+      for (const seed of CIRCLE_SEEDS.slice(0, 40))
+        expect(specOf(code, seed), `${code} 씨앗 ${seed}`).toMatchObject({
+          version: "elem-1",
+          kind: "circleParts",
+        });
+  });
+
+  it("⑵ 2-3-2 는 **준 값**만 적는다 — 적힌 수가 답이면 안 된다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const seed of CIRCLE_SEEDS) {
+      const p = generateElementaryProblem(planeUnit("2-3-2"), seed);
+      const spec = p.figureSpec as Record<string, unknown>;
+      const labeled = (spec.radius ?? spec.diameter) as string | undefined;
+      if (labeled === undefined) {
+        bad.push(`씨앗 ${seed}: 준 쪽을 안 그렸다`);
+        continue;
+      }
+      looked += 1;
+      const num = String(labeled).replace(/[^\d.]/g, "");
+      // ㉠ 적힌 수는 **발문에 있는 수**여야 한다(준 값이다).
+      if (!p.content.includes(num))
+        bad.push(`씨앗 ${seed}: 그림의 ${num} 이 발문에 없다`);
+      // ㉡ 그리고 **답이면 안 된다.**
+      if (num === p.answer.replace(/[^\d.]/g, ""))
+        bad.push(`씨앗 ${seed}: 그림이 답(${num})을 말한다`);
+      // ㉢ 둘을 같이 적으면 엔진이 던진다 — 여기서도 막는다.
+      if (spec.radius !== undefined && spec.diameter !== undefined)
+        bad.push(`씨앗 ${seed}: 반지름과 지름을 둘 다 적었다`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+    expect(looked, "치수가 적힌 그림을 하나도 못 봤다 — 축이 사라졌다").toBe(
+      CIRCLE_SEEDS.length,
+    );
+  });
+
+  it("⑶ 2-3-3 은 치수를 **아예 안 적는다** — 「벌린 길이 = 반지름」이 풀이 단계다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const seed of CIRCLE_SEEDS) {
+      const spec = specOf("2-3-3", seed);
+      if (!spec) {
+        bad.push(`씨앗 ${seed}: 그림이 없다`);
+        continue;
+      }
+      looked += 1;
+      if (spec.radius !== undefined)
+        bad.push(`씨앗 ${seed}: 반지름을 적으면 그림이 풀이 단계를 대신한다`);
+      if (spec.diameter !== undefined)
+        bad.push(`씨앗 ${seed}: 지름은 곧 답이다`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+    expect(looked, "2-3-3 그림을 하나도 못 봤다 — 축이 사라졌다").toBe(
+      CIRCLE_SEEDS.length,
+    );
+  });
+
+  it("⑷ 2-3-1 은 치수를 안 적는다 — 답이 낱말이라 수는 쓸 데가 없다", () => {
+    const bad: string[] = [];
+    let looked = 0;
+    for (const seed of CIRCLE_SEEDS) {
+      const spec = specOf("2-3-1", seed);
+      if (!spec) {
+        bad.push(`씨앗 ${seed}: 그림이 없다`);
+        continue;
+      }
+      looked += 1;
+      if (spec.radius !== undefined || spec.diameter !== undefined)
+        bad.push(`씨앗 ${seed}: 답이 낱말인데 치수를 적었다`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+    expect(looked, "2-3-1 그림을 하나도 못 봤다 — 축이 사라졌다").toBe(
+      CIRCLE_SEEDS.length,
+    );
+  });
+});

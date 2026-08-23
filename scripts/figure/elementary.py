@@ -67,7 +67,7 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
     "lineRelation": frozenset({"labels", "distance", "marks", "perpCount"}),
     "tiling": frozenset({"pieceSide", "targetSide", "labels"}),
-    "circleParts": frozenset({"radius", "diameter", "center"}),
+    "circleParts": frozenset({"radius", "diameter", "center", "show"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -2082,35 +2082,35 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
 
     pad, w, h = 26.0, 150.0, 110.0
     parts: list[str] = []
-    if True:
-        y0 = pad + h * 0.3
-        y1 = pad + h * 0.72
-        parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
-        parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
-        # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
-        k = _side_index(spec.get("marks", 1), "marks", 4) or 1
-        parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
-        parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
-        # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
-        # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
-        npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
-        for i in range(npp):
-            x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
-            parts.append(_seg((x, y0), (x, y1), sw=1.05))
-            parts.append(_right_mark((x, y0), (pad + w, y0), (x, y1), size=5.0))
-        if dist is not None:
-            # 평행선 사이 거리는 **수선으로만** 잰다 — 비스듬한 선분이 아니다.
-            mx = pad + w * 0.3
-            parts.append(_length_mark(mx, y0, mx, y1, str(dist), off=-11.0))
-        ends = [(pad, y0), (pad + w, y0), (pad, y1), (pad + w, y1)]
-        name_at = [(pad, y0), (pad, y1)]  # **서로 다른** 두 직선의 왼끝
+    y0 = pad + h * 0.3
+    y1 = pad + h * 0.72
+    parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
+    parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
+    # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
+    k = _side_index(spec.get("marks", 1), "marks", 4) or 1
+    parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
+    parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
+    # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
+    # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
+    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
+    for i in range(npp):
+        x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
+        parts.append(_seg((x, y0), (x, y1), sw=1.05))
+        parts.append(_right_mark((x, y0), (pad + w, y0), (x, y1), size=5.0))
+    if dist is not None:
+        # 평행선 사이 거리는 **수선으로만** 잰다 — 비스듬한 선분이 아니다.
+        mx = pad + w * 0.3
+        parts.append(_length_mark(mx, y0, mx, y1, str(dist), off=-11.0))
+    name_at = [(pad, y0), (pad, y1)]  # **서로 다른** 두 직선의 왼끝
 
     if labels:
         # 🔴 **갈래마다 «두 직선의 대표점»이 다르다.** 조건 하나로 뒤집으면 틀린다 —
         #    실제로 `parallel` 은 한 직선의 양 끝에, `bothPerpendicular` 은 세로선 하나와
         #    밑선에 이름이 붙어 있었다(리드가 좌표로 잡았다). 「직선 가와 나는 평행하다」와
         #    **정면으로 어긋나는** 그림이었고, 기하 축(내적·외적)은 그것을 못 본다.
-        #    `ends` 를 쌓을 때 **이름 붙일 두 점을 앞 둘에** 두게 통일한다.
+        #    그래서 이름 자리는 **갈래마다 `name_at` 으로 따로 정한다** — 네 끝점을 한
+        #    목록에 쌓아 두고 「앞 둘」을 쓰는 식으로 하면, 갈래가 늘 때 그 순서가 조용히
+        #    어긋난다(그렇게 짰다가 틀렸다. 지금은 쓰지 않는 `ends` 를 지웠다).
         for (lx, ly), t in zip(name_at, labels):
             parts.append(_text(lx, ly - 8, str(t), size=12))
     return _svg(pad * 2 + w, pad * 2 + h, "".join(parts))
@@ -2206,16 +2206,34 @@ def _circle_parts(spec: Mapping[str, Any]) -> str:
         parts.append(
             f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="2.2" fill="{INK}"/>'
         )
-    if r_lab is not None:
+    # `show` — **치수 없이 선분만** 그린다. 2-3-1 이 「이 선분을 무엇이라 하는지」를
+    # 묻는데, 그 선분이 지면에 없으면 그림이 아무 말도 안 한다. 답은 **낱말**이라
+    # 선분을 그려도 새지 않는다 — 오히려 안 그리는 쪽이 문항을 약하게 만든다.
+    #
+    # 🔴 **여기서 「그린다」와 「적는다」가 갈라진다.** 그전에는 둘이 묶여 있어서
+    #    「용어를 안 그린다」가 **공짜로** 지켜졌다. 푸는 순간 그것을 지킬 사람이
+    #    새로 필요하다 — `show` 만 준 그림에 `<text>` 가 하나라도 있으면 안 된다.
+    #    시험이 그 축을 따로 문다(리드 지적, 2026-08-24).
+    show = spec.get("show")
+    if show is not None and show not in ("radius", "diameter"):
+        raise ValueError('show 는 "radius" 또는 "diameter" 여야 합니다')
+    if show == "radius" and r_lab is not None:
+        raise ValueError("show 와 radius 를 같이 주지 마십시오 — radius 가 이미 선분을 그립니다")
+    if show == "diameter" and d_lab is not None:
+        raise ValueError("show 와 diameter 를 같이 주지 마십시오 — diameter 가 이미 선분을 그립니다")
+
+    if r_lab is not None or show == "radius":
         # 반지름 — 중심에서 원 위 한 점까지. 비스듬히 그어 지름과 눈으로 갈리게.
         ang = math.radians(-35.0)
         ex, ey = cx + rad * math.cos(ang), cy + rad * math.sin(ang)
         parts.append(_seg((cx, cy), (ex, ey), sw=1.3))
-        parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))
-    if d_lab is not None:
+        if r_lab is not None:
+            parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))
+    if d_lab is not None or show == "diameter":
         # 지름 — **중심을 지나는** 현. 좌표가 대칭이라 그 성질이 자동으로 참이다.
         parts.append(_seg((cx - rad, cy), (cx + rad, cy), sw=1.3))
-        parts.append(_length_mark(cx - rad, cy, cx + rad, cy, str(d_lab), off=12.0))
+        if d_lab is not None:
+            parts.append(_length_mark(cx - rad, cy, cx + rad, cy, str(d_lab), off=12.0))
     return _svg(pad * 2 + rad * 2, pad * 2 + rad * 2, "".join(parts))
 
 

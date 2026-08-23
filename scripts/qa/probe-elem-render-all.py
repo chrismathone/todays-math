@@ -72,8 +72,22 @@ assert os.path.isdir(FIGDIR), f"FIGDIR 이 없다: {FIGDIR} — ROOT 계산을 �
 COLLECTOR = os.path.join(HERE, "probe-table-width.ts")
 
 
+# 🔴 **이 판정기의 «아니오»는 전부 `die()` 를 지난다.** 그런데 이 환경의 파이썬
+#    stdout 기본이 **cp949** 라, 🔴 를 쓰는 순간 `UnicodeEncodeError` 로 터진다 —
+#    종료 코드는 1 이라 관문은 빨개지는데 **stdout 이 통째로 비고 트레이스백만 남는다.**
+#    그러면 다음 사람은 「판정기가 깨졌네」로 읽지 「결함이 235건이네」로 안 읽는다.
+#    **판정은 나오는데 근거가 안 나오는** 그 모양이다(2026-08-23 「근거 줄이 비었다」).
+#    자식에게 주는 `PYTHONIOENCODING` 은 **자식 것**이라 여기엔 안 걸린다.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, OSError):  # 파이프·리다이렉트로 못 바꾸는 경우
+        pass
+
+
 def die(msg: str) -> None:
     sys.stdout.write(f"\n\U0001f534 {msg}\n")
+    sys.stdout.flush()
     raise SystemExit(1)
 
 

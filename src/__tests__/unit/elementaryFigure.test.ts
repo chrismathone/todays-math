@@ -3924,6 +3924,52 @@ describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분",
     expect((off.svg.match(/<circle/g) ?? []).length, "원만").toBe(1);
   });
 
+  /* 🔴 **`show` 는 「그린다」와 「적는다」를 갈랐다** (2026-08-24, 리드 지적).
+   *
+   * 그전에는 둘이 묶여 있어서 「용어·치수를 안 그린다」가 **공짜로** 지켜졌다 —
+   * 선분을 그리는 유일한 길이 라벨을 주는 것이었기 때문이다. `show` 로 그것을 푼
+   * 순간 **그 약속을 지킬 사람이 새로 필요해졌다.** 아래 셋이 그 사람이다.
+   */
+  it("**show 는 선분만 그린다** — 글자가 하나도 없어야 한다", async () => {
+    for (const which of ["radius", "diameter"] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        show: which,
+      });
+      expect(r.ok, which).toBe(true);
+      if (!r.ok) return;
+      // ㉠ 선분은 **그려진다** — 2-3-1 이 「이 선분」을 묻는다
+      expect((r.svg.match(/<line/g) ?? []).length, `${which} 선분`).toBe(1);
+      // ㉡ 그런데 글자는 **하나도 없다** — 용어도 치수도
+      expect(texts(r.svg), `${which} — show 만 줬는데 글자가 있다`).toEqual([]);
+    }
+  });
+
+  it("**show 와 라벨을 같이 주면 던진다** — 선분을 두 번 그릴 길이 없다", async () => {
+    for (const [which, key] of [
+      ["radius", "radius"],
+      ["diameter", "diameter"],
+    ] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        show: which,
+        [key]: "5 cm",
+      });
+      expect(r.ok, `${which} + ${key}`).toBe(false);
+    }
+  });
+
+  it("**show 는 두 값만 받는다** — 모르는 값은 던진다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      show: "chord",
+    });
+    expect(r.ok).toBe(false);
+  });
+
   it("**치수는 measured() 다** — halo + 점선 (09 §4-16)", async () => {
     const r = await renderFigureSpec({
       version: "elem-1",

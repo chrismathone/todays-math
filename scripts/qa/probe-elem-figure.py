@@ -161,10 +161,29 @@ SPECS: list[dict] = [
      "pieceSide": 6, "targetSide": 18},
     {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "hexagon"},
     # ① circleParts (2026-08-24) — 초3 2-3. **용어는 안 그린다 · 주어진 값만 적는다**
+    # ── main 병합(2026-08-24)이 들여온 kind 넷 ─────────────────────────────
+    # 🔴 **내 것이 아니어도 표본은 있어야 한다.** 이 하네스는 `elem_advanced.py` 를
+    #    되쓸므로 거기 kind 가 사정권에 든다. 표본이 없으면 그 자리를 변이시켜도
+    #    산출물이 안 바뀌어 **판정 자체가 안 된다**(09 §4-20-c).
+    #    실제로 이 넷이 빠져 있어 62종 전량이 「산출물이 그대로다」로 죽었다.
+    {"version": "elem-1", "kind": "histogram",
+     "classes": [10, 20, 30, 40, 50], "values": [3, 7, 5, 2]},
+    {"version": "elem-1", "kind": "freqPolygon",
+     "classes": [0, 10, 20, 30], "values": [4, 9, 6], "bars": True},
+    {"version": "elem-1", "kind": "linearGraph",
+     "lines": [{"slope": 2, "yIntercept": -1}], "xRange": [-5, 5], "yRange": [-5, 5]},
+    {"version": "elem-1", "kind": "assetScene",
+     "items": [{"asset": "baduk-black", "x": 10, "y": 10, "w": 80}], "canvas": [120, 120]},
     {"version": "elem-1", "kind": "circleParts", "radius": "5 cm"},
     {"version": "elem-1", "kind": "circleParts", "diameter": "10 cm"},
     {"version": "elem-1", "kind": "circleParts"},
     {"version": "elem-1", "kind": "circleParts", "radius": "7 cm", "center": False},
+    # `show` — 치수 없이 선분만 (2-3-1). 「그린다」와 「적는다」가 갈린 자리.
+    {"version": "elem-1", "kind": "circleParts", "show": "radius"},
+    {"version": "elem-1", "kind": "circleParts", "show": "diameter"},
+    # 던져야 하는 것 — show 와 라벨을 같이 주면 선분을 두 번 그릴 길이 없다
+    {"version": "elem-1", "kind": "circleParts", "show": "radius", "radius": "5 cm"},
+    {"version": "elem-1", "kind": "circleParts", "show": "chord"},
     # 던져야 하는 것 — 둘 다 적으면 그림이 답을 말한다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     {"version": "elem-1", "kind": "circleParts", "radius": "5 cm", "diameter": "10 cm"},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
