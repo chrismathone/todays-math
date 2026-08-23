@@ -1582,6 +1582,133 @@ def _side_index(v: Any, name: str, n: int) -> int:
 _EQUAL_TICKS = (1, 2, 3)
 
 
+_NUM_IN_LABEL = re.compile(r"[-+]?\d+(?:\.\d+)?")
+
+
+def _side_nums(labels: list[Any]) -> list[float | None]:
+    r"""라벨에서 **수**를 뽑는다. 「7 cm」→ 7 · 「$4\,\mathrm{cm}$」→ 4 · 수가 없으면 None.
+
+    라벨은 지면에 적히는 글자이고 여기서 필요한 것은 **비율**이라 수만 본다.
+    수가 없는 라벨(「가」 같은)은 비율에 안 쓴다 — 그건 배반할 값이 없다.
+    """
+    out: list[float | None] = []
+    for v in labels:
+        m = None if v is None else _NUM_IN_LABEL.search(str(v))
+        out.append(float(m.group()) if m else None)
+    return out
+
+
+def _angle_nums(labels: list[Any]) -> list[float | None]:
+    return _side_nums(labels)
+
+
+def _fit(pts: list[tuple[float, float]], pad: float, size: float) -> list[tuple[float, float]]:
+    """슬롯에 맞춰 키우고 가운데로. **비는 안 바뀐다** — 절대 크기는 원래 안 지킨다."""
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    w = max(xs) - min(xs) or 1.0
+    h = max(ys) - min(ys) or 1.0
+    k = size / max(w, h)
+    ox = pad + (size - w * k) / 2 - min(xs) * k
+    oy = pad + (size - h * k) / 2 - min(ys) * k
+    return [(x * k + ox, y * k + oy) for x, y in pts]
+
+
+def _triangle_points(
+    sides: list[float | None], angles: list[float | None], pad: float, size: float
+) -> list[tuple[float, float]] | None:
+    """적힌 값대로 삼각형을 잡는다. 값이 없으면 `None`(부르는 쪽이 관례 도형을 쓴다).
+
+    변 `i` 는 꼭짓점 `i`→`i+1`, 각 `i` 는 꼭짓점 `i` 다.
+    """
+    known_s = [v for v in sides if v is not None]
+    known_a = [v for v in angles if v is not None]
+    if not known_s and not known_a:
+        return None
+
+    # 🔴 **모순·불가능만 던진다.**
+    if len(known_a) == 3 and abs(sum(known_a) - 180.0) > 0.5:
+        raise ValueError(
+            f"세 각의 합이 {sum(known_a):g}° 입니다 — 삼각형은 180° 여야 합니다"
+        )
+    if len(known_s) == 3:
+        a, b, c = known_s
+        if a + b <= c or b + c <= a or c + a <= b:
+            raise ValueError(
+                f"세 변 {a:g}·{b:g}·{c:g} 로는 삼각형이 만들어지지 않습니다 "
+                f"(두 변의 합이 나머지 한 변보다 커야 합니다)"
+            )
+        # SSS — s0 를 밑변으로 놓고 셋째 꼭짓점을 푼다.
+        s0, s1, s2 = sides[0], sides[1], sides[2]
+        x = (s2 * s2 + s0 * s0 - s1 * s1) / (2 * s0)
+        y = math.sqrt(max(s2 * s2 - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s0, 0.0), (x, -y)], pad, size)
+
+    if len(known_a) >= 2:
+        # AA — 세 각이 정해지면 모양이 정해진다(크기는 자유). 사인법칙으로 변을 낸다.
+        aa = list(angles)
+        miss = [i for i, v in enumerate(aa) if v is None]
+        if len(miss) == 1:
+            aa[miss[0]] = 180.0 - sum(v for v in aa if v is not None)
+        if any(v is None or v <= 0 for v in aa):
+            return None
+        if abs(sum(aa) - 180.0) > 0.5:
+            raise ValueError(
+                f"세 각의 합이 {sum(aa):g}° 입니다 — 삼각형은 180° 여야 합니다"
+            )
+        # 변 i(=꼭짓점 i→i+1)는 그 둘이 아닌 **나머지 꼭짓점**의 각과 마주 본다.
+        s = [math.sin(math.radians(aa[(i + 2) % 3])) for i in range(3)]
+        x = (s[2] * s[2] + s[0] * s[0] - s[1] * s[1]) / (2 * s[0])
+        y = math.sqrt(max(s[2] * s[2] - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s[0], 0.0), (x, -y)], pad, size)
+
+    if len(known_s) == 2:
+        # 적힌 둘의 비만 지키면 된다 — 셋째는 관례값(지금 도형의 비를 쓴다).
+        i0 = sides.index(known_s[0])
+        i1 = len(sides) - 1 - sides[::-1].index(known_s[1])
+        base = [1.0, 1.0, ISO_TRI_BASE]
+        base[i0], base[i1] = known_s[0], known_s[1]
+        third = [i for i in range(3) if i not in (i0, i1)][0]
+        # 남은 변은 두 변 사이 어딘가 — 삼각부등식을 만족하는 값으로 둔다.
+        base[third] = (base[i0] + base[i1]) * 0.62
+        s0, s1, s2 = base
+        x = (s2 * s2 + s0 * s0 - s1 * s1) / (2 * s0)
+        y = math.sqrt(max(s2 * s2 - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s0, 0.0), (x, -y)], pad, size)
+    return None
+
+
+# 평행사변형의 관례 각 — 「이웃한 두 변이 4·6」처럼 **각이 안 적힌** 판에서 쓴다.
+# ⚠️ 너무 납작하면 지면에서 「이게 정말 4:6인가」가 안 읽힌다(리드 지적). 시험이 잠근다.
+PARA_DEFAULT_DEG = 65.0
+
+
+def _para_points(
+    sides: list[float | None], angles: list[float | None], pad: float, size: float
+) -> list[tuple[float, float]] | None:
+    """평행사변형 — 이웃한 두 변의 비와 한 각을 반영한다. 둘 다 없으면 `None`."""
+    known_s = [v for v in sides if v is not None]
+    known_a = [v for v in angles if v is not None]
+    if not known_s and not known_a:
+        return None
+    if known_a and (known_a[0] <= 0 or known_a[0] >= 180):
+        raise ValueError(f"각 {known_a[0]:g}° 로는 평행사변형이 만들어지지 않습니다")
+    a = known_s[0] if known_s else 1.4
+    b = known_s[1] if len(known_s) > 1 else 1.0
+    deg = known_a[0] if known_a else PARA_DEFAULT_DEG
+    t = math.radians(deg)
+    return _fit(
+        [
+            (0.0, 0.0),
+            (a, 0.0),
+            (a + b * math.cos(t), -b * math.sin(t)),
+            (b * math.cos(t), -b * math.sin(t)),
+        ],
+        pad,
+        size,
+    )
+
+
 def _marked_shape(spec: Mapping[str, Any]) -> str:
     """도형 **하나** 위에 각도·변 길이·등변 tick·직각 기호를 얹는다.
 
@@ -1618,24 +1745,32 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     sides = _seq("sides", n)
     angles = _seq("angles", n)
 
-    # 🔴 **임시 차단 (2026-08-23) — 비율 수리 전.**
+    # ── 적힌 값을 그림에 반영한다 (2026-08-23 비율 수리) ──────────────────────
     #
-    # 그린 도형이 **라벨과 무관하게 고정**이다. 실측:
-    #     sides ["7 cm","7 cm","4 cm"] → 그린 변 [108.3, 108.3, 60.3]
-    #     sides ["5 cm","5 cm","9 cm"] → 그린 변 [ 88.5,  88.5, 60.3]
-    # 「5,5,9」는 밑변이 제일 긴데 **제일 짧게** 그린다. 각도도 같다(「꼭지각 63°」→ 32°).
-    # **값은 맞고 그림이 그 값을 배반한다** — 09 §4-21 과 같은 부류이고 스스로 신고하지 않는다.
-    # elem-g4 가 배선하며 렌더해 보고 찾았다.
+    # **적힌 값은 반드시 그림에 반영한다. 안 적힌 것은 관례값으로 둔다.
+    #  적힌 값들이 서로 모순이거나 기하적으로 불가능할 때만 던진다.**
     #
-    # 지금은 **그리는 것보다 못 그리는 게 낫다** — 그래야 신고한다. 수리(SSS/AA 로
-    # 꼭짓점을 다시 잡기)가 끝나면 이 던짐을 비율 계산으로 갈아 끼운다.
-    # ⚠️ 「비율 수리 전」이라는 낱말을 **시험이 붙들고 있다** — 수리하면 그 시험이 빨개져
-    #    이 블록을 같이 지우게 된다(임시 조치가 영구가 되는 것을 막는 자리).
-    if any(v is not None for v in sides) or any(v is not None for v in angles):
+    # 종전에는 `sides`·`angles` 를 **라벨로만** 얹고 도형은 고정이었다 — 「5,5,9」의
+    # 밑변을 제일 짧게 그렸다. **값은 맞고 그림이 그 값을 배반**했고, 09 §4-21 과 같은
+    # 부류라 스스로 신고하지 않았다(elem-g4 가 배선하며 렌더해 보고 찾았다).
+    #
+    # ⚠️ 「모양이 유일하게 안 정해지면 던진다」로 잡았다가 **되물렀다.** 실제 발문은
+    #    변만 주거나 각만 준다(초4 2-4-5) — 안 적힌 것까지 문제 삼으면 그 갈래를
+    #    통째로 막는다. 안 적힌 것은 배반할 것이 없으므로 관례값으로 둔다.
+    nums = _side_nums(sides)
+    angs = _angle_nums(angles)
+    if n == 3:
+        pts = _triangle_points(nums, angs, pad, size) or pts
+    elif kind == "para":
+        pts = _para_points(nums, angs, pad, size) or pts
+    elif any(v is not None for v in nums) or any(v is not None for v in angs):
+        # 아직 비율을 못 맞추는 도형 — 조용히 배반하느니 던진다.
         raise ValueError(
-            "markedShape 는 아직 sides·angles 의 값을 그림에 반영하지 못합니다 "
-            "(비율 수리 전) — 값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
+            f"«{kind}» 는 아직 sides·angles 를 그림에 반영하지 못합니다 — "
+            f"값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
         )
+    cxr = sum(p[0] for p in pts) / n
+    cyr = sum(p[1] for p in pts) / n
 
     parts: list[str] = []
     if kind in ("square", "rect"):

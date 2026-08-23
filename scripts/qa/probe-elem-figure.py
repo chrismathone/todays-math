@@ -114,6 +114,23 @@ SPECS: list[dict] = [
     ],
     {"version": "elem-1", "kind": "markedShape", "shape": "octagon",
      "sides": ["4 cm", None, None, None, None, None, None, None]},
+    # 비율 수리(2026-08-23) — **적힌 값이 그림에 반영되는가**.
+    # ⚠️ 「5,5,9」(밑변이 가장 긴)와 「7,7,4」(다리가 긴)를 **둘 다** 넣는다 —
+    #    한쪽만이면 관례 도형과 구분이 안 돼 변이가 산출물을 안 바꾼다.
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["7 cm", "7 cm", "4 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["5 cm", "5 cm", "9 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["3 cm", "4 cm", "5 cm"]},
+    # 던져야 하는 것 — 산출물에는 `ERROR ...` 로 찍히므로 가드를 빼면 그림이 나와 바뀐다.
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["3 cm", "4 cm", "9 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "angles": ["70°", "70°", "70°"]},
+    # 관례 각을 쓰는 판 — **각을 안 적는다**(적으면 관례값을 안 탄다).
+    {"version": "elem-1", "kind": "markedShape", "shape": "para",
+     "sides": ["4 cm", "6 cm", None, None]},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},

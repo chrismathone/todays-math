@@ -1383,11 +1383,11 @@ describe.skipIf(!hasEngine)(
           views: ["iso"],
         },
         // ② markedShape (2026-08-23) — 변 길이를 적는 kind 라 반드시 여기 있어야 한다.
-        // ⓪ 차단 중 — 값을 빼 둔다. 수리하면 `sides` 를 되살려 이 kind 도 훑는다.
         {
           version: "elem-1",
           kind: "markedShape",
           shape: "isoTri",
+          sides: ["7 cm", "7 cm", "5 cm"],
           equal: [[0, 1]],
         },
       ]) {
@@ -3008,17 +3008,16 @@ const MARKED_ISO = {
   version: "elem-1",
   kind: "markedShape",
   shape: "isoTri",
-  // ⓪ 차단(2026-08-23) 중이라 값을 뺐다 — `equal` 표시만으로도 「tick 이 거짓말하지
-  // 않는가」는 그대로 잰다. 값을 쓰는 시험 넷은 아래에서 대기로 돌렸다.
+
   // ⚠️ `isoTri` 의 점은 [밑변왼, 꼭대기, 밑변오] 라 **같은 두 변은 0·1**(다리)이고
   // 변 2 가 밑변이다. 처음에 [0,2] 로 썼다가 빨개졌다 — 시험이 도형 구조를 잡아 줬다.
+  sides: ["7 cm", "7 cm", null],
+  angles: [null, "63°", null],
   equal: [[0, 1]],
 };
 
 describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시", () => {
-  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
-  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
-  it.skip("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
+  it("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3041,9 +3040,7 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(Math.abs(len(0) - len(2))).toBeGreaterThan(5);
   });
 
-  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
-  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
-  it.skip("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
+  it("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
     const r = await renderFigureSpec({
       ...MARKED_ISO,
       angles: ["63°", "54°", "63°"],
@@ -3075,9 +3072,7 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(r.svg).toContain("<polyline");
   });
 
-  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
-  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
-  it.skip("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
+  it("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3086,9 +3081,7 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect([...r.svg.matchAll(/63°/g)].length).toBe(1);
   });
 
-  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
-  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
-  it.skip("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
+  it("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3165,50 +3158,13 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     }
   });
 
-  /* ── ⓪ 임시 차단 (2026-08-23) ────────────────────────────────────────────
-   * 그린 도형이 **라벨과 무관하게 고정**이라 「5,5,9」의 밑변을 제일 짧게 그린다.
-   * **값은 맞고 그림이 그 값을 배반한다**(09 §4-21 부류, 스스로 신고하지 않는다).
-   * 수리 전까지는 **그리는 것보다 못 그리는 게 낫다** — 그래야 신고한다.
-   *
-   * 🔴 아래 시험이 **「비율 수리 전」이라는 낱말을 붙들고 있다.** 수리하면서 그 문구를
-   *    지우면 이 시험이 빨개져 **같이 지우게** 된다 — 임시 조치가 영구가 되는 것을
-   *    막는 가장 싼 방법이다(리드 제안). 그때 이 시험을 **비율 검사로 갈아 끼운다.**
+  /* ⓪ 임시 차단(2026-08-23)은 **걷어냈다** — 비율 수리가 그 자리를 대신한다.
+   * 그 차단은 「값을 적으면 던진다」였고, 시험이 **「비율 수리 전」이라는 낱말을
+   * 붙들고** 있었다. 수리하며 엔진에서 그 문구를 지우자 **그 시험이 정확히 빨개져**
+   * 이 블록을 같이 지우게 됐다 — 임시 조치가 스스로를 청소한 것이다(리드 제안).
+   * 지금 그 자리를 지키는 것은 위쪽 「그린 변의 비가 sides 와 같다」 셋과
+   * 「3·4·5 는 정말 직각이다」·「모순·불가능한 값은 던진다」다.
    */
-  it.each([
-    ["sides", { sides: ["5 cm", "5 cm", "9 cm"] }],
-    ["angles", { angles: ["63°", null, null] }],
-  ])(
-    "**값(%s)을 적으면 던진다** — 그림이 그 값을 안 따른다 (임시)",
-    async (_w, extra) => {
-      const r = await renderFigureSpec({
-        version: "elem-1",
-        kind: "markedShape",
-        shape: "isoTri",
-        ...extra,
-      });
-      expect(r.ok).toBe(false);
-      if (r.ok) return;
-      // 임시라는 표식 — 수리하며 이 낱말을 지우면 여기가 빨개진다.
-      expect(r.error, "임시 차단 표식").toContain("비율 수리 전");
-    },
-  );
-
-  it("**음성 대조군** — 값을 안 적으면 그려진다 (전부 던지기가 아니다)", async () => {
-    for (const extra of [
-      { equal: [[0, 1]] },
-      { right: [0] },
-      { diagonals: true, shape: "hexagon" },
-      {},
-    ]) {
-      const r = await renderFigureSpec({
-        version: "elem-1",
-        kind: "markedShape",
-        shape: "isoTri",
-        ...extra,
-      });
-      expect(r.ok, JSON.stringify(extra)).toBe(true);
-    }
-  });
 
   it("**음성 대조군** — 표시를 안 주면 tick·직각이 나오지 않는다", async () => {
     const r = await renderFigureSpec({
@@ -3221,6 +3177,115 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(r.svg).not.toContain("<polyline");
     expect(r.svg).not.toContain("cm");
     expect(r.svg).not.toContain("°");
+  });
+
+  /* ── 비율 수리 (2026-08-23) ────────────────────────────────────────────────
+   * **적힌 값은 반드시 그림에 반영한다.** ⓪ 임시 차단을 이 검사들이 대신한다.
+   * ⚠️ 「5,5,9」(밑변이 가장 긴)와 「7,7,4」(다리가 긴)를 **둘 다** 넣는다 —
+   *    한쪽만이면 고정 도형과 구분이 안 돼 구조적으로 0이다.
+   */
+  it.each([
+    ["7,7,4 다리가 김", [7, 7, 4]],
+    ["5,5,9 밑변이 가장 김", [5, 5, 9]],
+    ["4,6,8 셋이 다름", [4, 6, 8]],
+  ])("**그린 변의 비가 sides 와 같다** — %s", async (_w, want) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      sides: want.map((v) => `${v} cm`),
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    const drawn = c.map((_p, i) =>
+      Math.hypot(c[i]![0] - c[(i + 1) % 3]![0], c[i]![1] - c[(i + 1) % 3]![1]),
+    );
+    // 비로 견준다 — 절대 크기는 슬롯에 맞추므로 자유다.
+    const k = drawn[0]! / want[0]!;
+    for (let i = 0; i < 3; i += 1) {
+      expect(drawn[i]! / k, `변 ${i}`).toBeCloseTo(want[i]!, 1);
+    }
+  });
+
+  it("**적힌 각이 그림에 반영된다** — 3·4·5 는 정말 직각이다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      sides: ["3 cm", "4 cm", "5 cm"],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    // 변 0(=3)과 변 1(=4) 사이 꼭짓점 1 이 직각이어야 한다 — **내적으로** 잰다.
+    const u = [c[0]![0] - c[1]![0], c[0]![1] - c[1]![1]];
+    const v = [c[2]![0] - c[1]![0], c[2]![1] - c[1]![1]];
+    const cos =
+      (u[0]! * v[0]! + u[1]! * v[1]!) /
+      (Math.hypot(u[0]!, u[1]!) * Math.hypot(v[0]!, v[1]!));
+    expect(Math.abs(cos), "3·4·5 의 직각").toBeLessThan(0.02);
+  });
+
+  it.each([
+    ["삼각부등식 위반", { sides: ["3 cm", "4 cm", "9 cm"] }, /삼각형/],
+    ["각의 합이 180°가 아님", { angles: ["70°", "70°", "70°"] }, /180/],
+  ])("**모순·불가능한 값은 던진다** — %s", async (_w, extra, why) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      ...extra,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(why);
+  });
+
+  it("**관례값이 지면에서 읽히는 범위 안이다** — 납작한 평행사변형 금지", async () => {
+    // ⚠️ 각이 안 적힌 판(「이웃한 두 변이 4·6」)에서 관례 각을 쓴다. 그 각이 너무
+    //    납작하면 지면에서 **「이게 정말 4:6인가」가 안 읽힌다**(리드 지적).
+    //    적힌 값을 반영하는 것만으로는 부족하고, **안 적힌 것의 범위**도 지켜야 한다.
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "para",
+      sides: ["4 cm", "6 cm", null, null],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    const u = [c[1]![0] - c[0]![0], c[1]![1] - c[0]![1]];
+    const v = [c[3]![0] - c[0]![0], c[3]![1] - c[0]![1]];
+    const cos =
+      (u[0]! * v[0]! + u[1]! * v[1]!) /
+      (Math.hypot(u[0]!, u[1]!) * Math.hypot(v[0]!, v[1]!));
+    const deg = (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+    // 너무 납작하지도(<40°) 직사각형에 가깝지도(>80°) 않아야 한다 —
+    // 직사각형처럼 보이면 「평행사변형」임이 안 읽힌다.
+    expect(deg, "관례 각").toBeGreaterThan(40);
+    expect(deg, "관례 각").toBeLessThan(80);
+    // 그리고 적힌 비는 그대로 지켜야 한다.
+    const a = Math.hypot(u[0]!, u[1]!);
+    const b = Math.hypot(v[0]!, v[1]!);
+    expect(Math.max(a, b) / Math.min(a, b), "4:6 비").toBeCloseTo(1.5, 1);
+  });
+
+  it("**음성 대조군** — 값을 안 주면 지금 모양 그대로다 (회귀 방지)", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+    });
+    expect(a.ok).toBe(true);
+    if (!a.ok) return;
+    const c = shapeCorners(a.svg)[0]!;
+    const drawn = c.map((_p, i) =>
+      Math.hypot(c[i]![0] - c[(i + 1) % 3]![0], c[i]![1] - c[(i + 1) % 3]![1]),
+    );
+    // `ISO_TRI_BASE` 0.58 — 다리 둘이 같고 밑변이 좁다(09 §4-19).
+    expect(drawn[0]).toBeCloseTo(drawn[1]!, 1);
+    expect(drawn[2]! / drawn[0]!, "밑변/다리").toBeLessThan(0.7);
   });
 
   it("**모르는 키·모르는 도형은 예외** — 오타가 조용히 무시되지 않는다", async () => {

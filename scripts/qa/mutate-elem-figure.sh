@@ -719,6 +719,37 @@ io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 MUT
 run "정n각형을 찌그러뜨린다 (변 길이가 갈린다)"
 
+# ㊹ **비율을 안 맞춘다** — 적힌 `sides` 를 무시하고 관례 도형을 그린다.
+#    이것이 elem-g4 가 배선하며 찾은 그 결함이다(「5,5,9」의 밑변을 제일 짧게).
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        pts = _triangle_points(nums, angs, pad, size) or pts"
+assert old in s, "앵커 없음 334"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "        pass  # 변이", 1))
+MUT
+run "적힌 sides 를 무시하고 관례 도형을 그린다"
+
+# ㊺ **삼각부등식을 안 본다** — 「3,4,9」가 조용히 그려진다(값이 불가능한데 그림이 멀쩡).
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "        if a + b <= c or b + c <= a or c + a <= b:"
+assert old in s, "앵커 없음 335"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "        if False:  # 변이", 1))
+MUT
+run "삼각부등식을 안 본다"
+
+# ㊻ **관례 각을 납작하게** — 적힌 비는 맞지만 지면에서 안 읽힌다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "PARA_DEFAULT_DEG = 65.0"
+assert old in s, "앵커 없음 336"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "PARA_DEFAULT_DEG = 20.0  # 변이", 1))
+MUT
+run "평행사변형 관례 각을 납작하게"
+
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
 if [ -n "$ONLY" ]; then
