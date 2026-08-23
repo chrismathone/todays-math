@@ -39,6 +39,22 @@ REGION_MIN_LUMINANCE = 0.78
 # 이웃 표본 간 11.25° — 반지름 100 기준 시위 오차 0.5px 미만이다.
 _ARC_SAMPLE_COUNT = 33
 
+# ── 같음(tick)·평행(»)·직각 마크 상수 ──────────────────────────────────────
+# RPM 2-2 합동 단원 지면(p12~18) 벡터 실측(2026-08-23, 좌표·수치는 베끼지 않고
+# **비율만** 본다): 본선 0.80pt · 보조선 0.50pt · 마크(틱/각 호/직각기호) 0.30pt.
+# 마크는 각 호와 **같은 굵기**다 — 그래서 여기서도 style.mark_width 를 그대로 쓴다.
+# tick 전장 4.25pt ≈ 직각기호 한 변(4.0~4.7pt) ≈ 각 호 반지름(8~11pt)의 절반.
+# 우리 지면 척도(변 ~150px · angle_radius 15px)로 옮기면 tick 전장 8px 이 같은 비율.
+_TICK_HALF = 4.0            # tick 절반 길이 — 전장 8px
+_MARK_GAP = 3.0             # 이중·삼중 tick 사이 / 이중 호 반지름 차 (계획 지침 3px)
+_CHEVRON_ARM = 6.5          # 평행 » 한 획 길이 (RPM 화살촉 5.4×3.4pt 비율에 맞춤)
+_CHEVRON_HALF_ANGLE_DEG = 30.0
+_CHEVRON_GAP = 4.0          # 이중 » 사이 간격
+_RIGHT_ANGLE_SCALE = 0.55   # 직각기호 한 변 = 호 반지름 × 0.55 (실측 0.45~0.55)
+_BOTH_MARKS_SHIFT = 6.0     # 한 선분에 tick·» 둘 다면 중점에서 서로 반대로 비킨다
+# 직각 마크는 검산을 겸한다 — 두 변이 90°±0.5° 밖이면 그림이 거짓말이므로 던진다.
+_RIGHT_ANGLE_COS_TOL = math.cos(math.radians(89.5))
+
 
 class GeometryValidationError(ValueError):
     """Raised when a scene is geometrically invalid or internally inconsistent."""
@@ -197,17 +213,31 @@ class Region:
 
 @dataclass(frozen=True, slots=True)
 class Segment:
-    """A named finite segment between two named points."""
+    """A named finite segment between two named points.
+
+    ``ticks`` (0~3) draws equal-length tick marks perpendicular to the segment
+    at its midpoint; ``parallel`` (0~2) draws » chevrons pointing from ``p1``
+    toward ``p2``.  Both may appear on one segment (they shift apart along the
+    segment so neither overlaps the other).
+    """
 
     name: str
     p1: str
     p2: str
     dashed: str | None = None
+    ticks: int = 0
+    parallel: int = 0
 
 
 @dataclass(frozen=True, slots=True)
 class AngleMark:
-    """A small-angle arc and optional text label."""
+    """A small-angle arc and optional text label.
+
+    ``arcs=2`` draws a second concentric arc just inside the first (각의
+    이등분선의 «같은 각» 표시).  ``right=True`` replaces the arc with the small
+    square right-angle mark and doubles as a check: the two rays must actually
+    be perpendicular (90°±0.5°) or the scene refuses to render.
+    """
 
     name: str
     vertex: str
@@ -216,6 +246,8 @@ class AngleMark:
     radius: float | None = None
     label: str | None = None
     label_distance: float | None = None
+    arcs: int = 1
+    right: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -310,6 +342,17 @@ def _name(value: Any, what: str = "name") -> str:
     if not isinstance(value, str) or not value.strip():
         raise GeometryValidationError(f"{what} must be a non-empty string")
     return value.strip()
+
+
+def _mark_count(value: Any, maximum: int, what: str) -> int:
+    """Validate a 0..maximum mark-repeat count.  Booleans are refused —
+    ``ticks: true`` from model output must fail loudly, not count as 1."""
+
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise GeometryValidationError(f"{what} must be an integer (0~{maximum})")
+    if not 0 <= value <= maximum:
+        raise GeometryValidationError(f"{what} must be between 0 and {maximum}")
+    return value
 
 
 def _safe_paint(value: Any, what: str) -> str:
@@ -747,12 +790,15 @@ class FigureScene:
         return self
 
     def add_segment(self, name: str, p1: str, p2: str | None = None,
-                    *, dashed: str | None = None) -> "FigureScene":
+                    *, dashed: str | None = None, ticks: int = 0,
+                    parallel: int = 0) -> "FigureScene":
         """Add a named segment.
 
         Both ``add_segment('AC', 'A', 'C')`` and the compact
         ``add_segment('A', 'C')`` form are supported.  The compact form assigns
-        the deterministic name ``A--C``.
+        the deterministic name ``A--C``.  ``ticks`` (0~3) draws equal-length
+        marks at the midpoint; ``parallel`` (0~2) draws » chevrons pointing
+        from ``p1`` toward ``p2``.
         """
 
         if p2 is None:
@@ -762,7 +808,10 @@ class FigureScene:
             segment_name = _name(name, "segment name")
             endpoint1, endpoint2 = _name(p1, "segment endpoint"), _name(p2, "segment endpoint")
         self._ensure_global_new(segment_name, "segment")
-        self.segments[segment_name] = Segment(segment_name, endpoint1, endpoint2, dashed)
+        self.segments[segment_name] = Segment(
+            segment_name, endpoint1, endpoint2, dashed,
+            _mark_count(ticks, 3, f"segment {segment_name!r} ticks"),
+            _mark_count(parallel, 2, f"segment {segment_name!r} parallel"))
         return self
 
     def add_arc(self, name: str, circle: str, p1: str, p2: str,
@@ -843,6 +892,56 @@ class FigureScene:
         return center, circle_obj.radius, start_deg, (
             sweep if direction == "ccw" else -sweep)
 
+    def _segment_mark_lines(
+            self, segment: Segment) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+        """Stroke endpoints for one segment's tick/» marks, scene coordinates.
+
+        렌더와 경계 계산이 **같은 좌표**를 쓴다 — 두 벌이 되면 한쪽만 고쳐져도
+        아무도 모른다.  마크가 선분 밖으로 비어져 나가면(짧은 선분) 던진다.
+        """
+
+        if not segment.ticks and not segment.parallel:
+            return []
+        a, b = self.points[segment.p1], self.points[segment.p2]
+        length = math.hypot(b.x - a.x, b.y - a.y)
+        ux, uy = (b.x - a.x) / length, (b.y - a.y) / length
+        nx, ny = -uy, ux
+        mid_x, mid_y = (a.x + b.x) / 2.0, (a.y + b.y) / 2.0
+        both = bool(segment.ticks) and bool(segment.parallel)
+        lines: list[tuple[tuple[float, float], tuple[float, float]]] = []
+
+        if segment.ticks:
+            shift = -_BOTH_MARKS_SHIFT if both else 0.0
+            for index in range(segment.ticks):
+                offset = shift + (index - (segment.ticks - 1) / 2.0) * _MARK_GAP
+                cx_, cy_ = mid_x + offset * ux, mid_y + offset * uy
+                lines.append(((cx_ - _TICK_HALF * nx, cy_ - _TICK_HALF * ny),
+                              (cx_ + _TICK_HALF * nx, cy_ + _TICK_HALF * ny)))
+
+        if segment.parallel:
+            half = math.radians(_CHEVRON_HALF_ANGLE_DEG)
+            depth = _CHEVRON_ARM * math.cos(half)
+            wing = _CHEVRON_ARM * math.sin(half)
+            shift = _BOTH_MARKS_SHIFT if both else 0.0
+            for index in range(segment.parallel):
+                tip_off = (shift + depth / 2.0
+                           + (index - (segment.parallel - 1) / 2.0) * _CHEVRON_GAP)
+                tip_x, tip_y = mid_x + tip_off * ux, mid_y + tip_off * uy
+                back_x, back_y = tip_x - depth * ux, tip_y - depth * uy
+                lines.append(((back_x + wing * nx, back_y + wing * ny),
+                              (tip_x, tip_y)))
+                lines.append(((tip_x, tip_y),
+                              (back_x - wing * nx, back_y - wing * ny)))
+
+        reach = max(
+            abs((x - mid_x) * ux + (y - mid_y) * uy)
+            for line in lines for x, y in line)
+        if reach + 2.0 > length / 2.0:
+            raise GeometryValidationError(
+                f"segment {segment.name!r} is too short ({length:.4g}px) for its "
+                "tick/parallel marks — marks may not spill past the endpoints")
+        return lines
+
     def _arc_stroke_samples(self, arc: ArcStroke) -> tuple[Point, ...]:
         center, radius, start_deg, signed = self._arc_geometry(
             arc.circle, arc.p1, arc.p2, arc.direction, f"arc {arc.name!r}")
@@ -885,17 +984,32 @@ class FigureScene:
 
     def add_angle(self, name: str, vertex: str, p1: str, p2: str,
                   *, radius: Number | None = None, label: str | None = None,
-                  label_distance: Number | None = None) -> "FigureScene":
-        """Add a small-angle arc between rays ``vertex->p1`` and ``vertex->p2``."""
+                  label_distance: Number | None = None, arcs: int = 1,
+                  right: bool = False) -> "FigureScene":
+        """Add a small-angle arc between rays ``vertex->p1`` and ``vertex->p2``.
+
+        ``arcs=2`` draws a double arc; ``right=True`` draws the square
+        right-angle mark instead of an arc (and requires the rays to actually
+        be perpendicular).  The two options exclude each other.
+        """
 
         name = _name(name, "angle name")
         self._ensure_global_new(name, "angle")
         if label is not None and not isinstance(label, str):
             raise GeometryValidationError("angle label must be text or None")
+        if not isinstance(right, bool):
+            raise GeometryValidationError(f"angle {name!r} right must be boolean")
+        arcs_value = _mark_count(arcs, 2, f"angle {name!r} arcs")
+        if arcs_value == 0:
+            raise GeometryValidationError(f"angle {name!r} arcs must be 1 or 2")
+        if right and arcs_value != 1:
+            raise GeometryValidationError(
+                f"angle {name!r}: right=True replaces the arc; arcs must stay 1")
         self.angles[name] = AngleMark(
             name, _name(vertex, "angle vertex"), _name(p1, "angle ray ref"),
             _name(p2, "angle ray ref"), None if radius is None else float(radius),
-            label, None if label_distance is None else float(label_distance))
+            label, None if label_distance is None else float(label_distance),
+            arcs_value, right)
         return self
 
     def add_dimension(self, name: str, p1: str, p2: str, label: str,
@@ -1057,6 +1171,11 @@ class FigureScene:
                     raise GeometryValidationError(
                         f"segment {segment.name!r} dash must contain non-negative lengths "
                         "and at least one positive length")
+            # 값이 add_segment 를 거치지 않고 들어와도 같은 규칙이 다시 돈다.
+            _mark_count(segment.ticks, 3, f"segment {segment.name!r} ticks")
+            _mark_count(segment.parallel, 2, f"segment {segment.name!r} parallel")
+            # 마크가 선분 길이를 넘치면 여기서 던진다 (렌더와 같은 좌표 계산).
+            self._segment_mark_lines(segment)
 
         for circle_obj in self.circles.values():
             if not isinstance(circle_obj.draw, bool):
@@ -1190,6 +1309,30 @@ class FigureScene:
                     angle.label_distance, f"angle {angle.name!r}.label_distance") <= 0:
                 raise GeometryValidationError(
                     f"angle {angle.name!r} label_distance must be positive")
+            if _mark_count(angle.arcs, 2, f"angle {angle.name!r} arcs") == 0:
+                raise GeometryValidationError(f"angle {angle.name!r} arcs must be 1 or 2")
+            if angle.arcs == 2 and radius <= _MARK_GAP:
+                raise GeometryValidationError(
+                    f"angle {angle.name!r} radius {radius:.4g} leaves no room "
+                    "for the inner arc")
+            if not isinstance(angle.right, bool):
+                raise GeometryValidationError(f"angle {angle.name!r} right must be boolean")
+            if angle.right:
+                if angle.arcs != 1:
+                    raise GeometryValidationError(
+                        f"angle {angle.name!r}: right=True replaces the arc; arcs must stay 1")
+                # 직각 마크는 검산을 겸한다 — 90°±0.5° 밖이면 그림이 거짓말이다.
+                cos_value = abs(v1[0] * v2[0] + v1[1] * v2[1]) / (l1 * l2)
+                if cos_value > _RIGHT_ANGLE_COS_TOL:
+                    actual = math.degrees(math.acos(
+                        max(-1.0, min(1.0, (v1[0] * v2[0] + v1[1] * v2[1]) / (l1 * l2)))))
+                    raise GeometryValidationError(
+                        f"angle {angle.name!r} is marked right but measures "
+                        f"{actual:.2f}° — fix the geometry, not the mark")
+                if radius * _RIGHT_ANGLE_SCALE > min(l1, l2):
+                    raise GeometryValidationError(
+                        f"angle {angle.name!r} right-angle square does not fit "
+                        "inside its rays")
 
         for dimension in self.dimensions.values():
             for ref in (dimension.p1, dimension.p2):
@@ -1652,6 +1795,11 @@ class FigureScene:
             a, b = self.points[segment.p1], self.points[segment.p2]
             bounds.append((min(a.x, b.x) - stroke_pad, min(a.y, b.y) - stroke_pad,
                            max(a.x, b.x) + stroke_pad, max(a.y, b.y) + stroke_pad))
+            # tick/» 마크는 선분 밖(수직 방향)으로도 잉크가 나간다 — 렌더와
+            # 같은 좌표를 경계에 넣는다.
+            for (x1, y1), (x2, y2) in self._segment_mark_lines(segment):
+                bounds.append((min(x1, x2) - stroke_pad, min(y1, y2) - stroke_pad,
+                               max(x1, x2) + stroke_pad, max(y1, y2) + stroke_pad))
         for arc_name in sorted(self.arcs):
             arc = self.arcs[arc_name]
             center, radius, start_deg, signed = self._arc_geometry(
@@ -1780,18 +1928,46 @@ class FigureScene:
                 f'fill="none" stroke="{escape(style.stroke, quote=True)}" '
                 f'stroke-width="{_fmt(style.segment_width)}"{dash}/>')
 
+        for segment_name in sorted(self.segments):
+            segment = self.segments[segment_name]
+            for (x1, y1), (x2, y2) in self._segment_mark_lines(segment):
+                marks.append(
+                    f'<line x1="{_fmt(x1 + tx)}" y1="{_fmt(y1 + ty)}" '
+                    f'x2="{_fmt(x2 + tx)}" y2="{_fmt(y2 + ty)}" '
+                    f'stroke="{escape(style.stroke, quote=True)}" '
+                    f'stroke-width="{_fmt(style.mark_width)}" '
+                    f'stroke-linecap="round"/>')
         for angle_name in sorted(self.angles):
             angle = self.angles[angle_name]
             vertex, p1, p2 = (self.points[angle.vertex], self.points[angle.p1],
                               self.points[angle.p2])
             radius = style.angle_radius if angle.radius is None else angle.radius
-            path_data = angle_arc(
-                vertex.x + tx, vertex.y + ty,
-                (p1.x + tx, p1.y + ty), (p2.x + tx, p2.y + ty), radius)
-            marks.append(
-                f'<path d="{path_data}" fill="none" '
-                f'stroke="{escape(style.stroke, quote=True)}" '
-                f'stroke-width="{_fmt(style.mark_width)}"/>')
+            if angle.right:
+                # 직각기호 — 호 대신, 두 변 방향으로 놓인 작은 사각형의 두 변.
+                length1 = math.hypot(p1.x - vertex.x, p1.y - vertex.y)
+                length2 = math.hypot(p2.x - vertex.x, p2.y - vertex.y)
+                side = radius * _RIGHT_ANGLE_SCALE
+                u1x, u1y = ((p1.x - vertex.x) / length1, (p1.y - vertex.y) / length1)
+                u2x, u2y = ((p2.x - vertex.x) / length2, (p2.y - vertex.y) / length2)
+                marks.append(
+                    f'<path d="M {_fmt(vertex.x + side * u1x + tx)} '
+                    f'{_fmt(vertex.y + side * u1y + ty)} '
+                    f'L {_fmt(vertex.x + side * (u1x + u2x) + tx)} '
+                    f'{_fmt(vertex.y + side * (u1y + u2y) + ty)} '
+                    f'L {_fmt(vertex.x + side * u2x + tx)} '
+                    f'{_fmt(vertex.y + side * u2y + ty)}" fill="none" '
+                    f'stroke="{escape(style.stroke, quote=True)}" '
+                    f'stroke-width="{_fmt(style.mark_width)}"/>')
+                continue
+            for arc_index in range(angle.arcs):
+                path_data = angle_arc(
+                    vertex.x + tx, vertex.y + ty,
+                    (p1.x + tx, p1.y + ty), (p2.x + tx, p2.y + ty),
+                    radius - arc_index * _MARK_GAP)
+                marks.append(
+                    f'<path d="{path_data}" fill="none" '
+                    f'stroke="{escape(style.stroke, quote=True)}" '
+                    f'stroke-width="{_fmt(style.mark_width)}"/>')
         for dimension_name in sorted(self.dimensions):
             dimension = self.dimensions[dimension_name]
             layout = resolved.dimension_layouts[dimension.name]
@@ -2002,6 +2178,21 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
           "segments": {"AC": ["A", "C"], "BD": ["B", "D"]},
           "angles": {"x": {"vertex": "P", "points": ["D", "C"],
                               "label": "x°"}},
+
+    Mark grammar (합동·평행·직각 표기)::
+
+        "segments": {
+          "AB": ["A", "B"],                              // 기존 배열형 그대로
+          "AC": {"points": ["A", "C"], "ticks": 2},      // 같음 표시 1~3
+          "l1": {"points": ["P", "Q"], "parallel": 1}    // 평행 » 1~2 (p1→p2 방향)
+        },
+        "angles": {
+          "a": {"vertex": "C", "points": ["A", "D"], "arcs": 2},   // 이중 호
+          "r": {"vertex": "T", "points": ["O", "P"], "right": true} // 직각기호
+        }
+
+    ``right: true`` replaces the arc with the small square (호와 함께 못 쓴다)
+    and doubles as a check — the rays must actually be perpendicular.
           "dimensions": {"AC_len": {"points": ["A", "C"],
                                        "label": "12 cm", "side": "auto"}},
           "labels": {"A": "A", "B": "B"}
@@ -2135,8 +2326,8 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
                 continue
             if not isinstance(item, Mapping):
                 raise FigureSpecError(f"segments.{name} must be an object or [p1, p2]")
-            _strict_keys(item, {"points", "p1", "p2", "dash", "dashed"},
-                         f"segments.{name}")
+            _strict_keys(item, {"points", "p1", "p2", "dash", "dashed",
+                                "ticks", "parallel"}, f"segments.{name}")
             if "points" in item:
                 if "p1" in item or "p2" in item:
                     raise FigureSpecError(f"segments.{name}: use points or p1/p2, not both")
@@ -2146,7 +2337,9 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
                     raise FigureSpecError(f"segments.{name} requires p1 and p2")
                 p1, p2 = str(item["p1"]), str(item["p2"])
             dash = item.get("dash", item.get("dashed"))
-            scene.add_segment(name, p1, p2, dashed=None if dash is None else str(dash))
+            scene.add_segment(name, p1, p2, dashed=None if dash is None else str(dash),
+                              ticks=item.get("ticks", 0),
+                              parallel=item.get("parallel", 0))
 
         for name, item, kind in constructed_points:
             if kind == "intersection":
@@ -2168,7 +2361,7 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
             if not isinstance(item, Mapping):
                 raise FigureSpecError(f"angles.{name} must be an object")
             _strict_keys(item, {"vertex", "points", "p1", "p2", "radius", "label",
-                                "label_distance"}, f"angles.{name}")
+                                "label_distance", "arcs", "right"}, f"angles.{name}")
             if "vertex" not in item:
                 raise FigureSpecError(f"angles.{name} requires vertex")
             if "points" in item:
@@ -2179,13 +2372,21 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
                 if "p1" not in item or "p2" not in item:
                     raise FigureSpecError(f"angles.{name} requires two ray points")
                 p1, p2 = str(item["p1"]), str(item["p2"])
+            right_value = item.get("right", False)
+            if not isinstance(right_value, bool):
+                raise FigureSpecError(f"angles.{name}.right must be boolean")
+            if right_value and "arcs" in item:
+                raise FigureSpecError(
+                    f"angles.{name}: right:true replaces the arc — do not give arcs")
             scene.add_angle(
                 name, str(item["vertex"]), p1, p2,
                 radius=None if item.get("radius") is None else _spec_number(
                     item["radius"], f"angles.{name}.radius"),
                 label=item.get("label"),
                 label_distance=None if item.get("label_distance") is None else _spec_number(
-                    item["label_distance"], f"angles.{name}.label_distance"))
+                    item["label_distance"], f"angles.{name}.label_distance"),
+                arcs=item.get("arcs", 1),
+                right=right_value)
 
         for name, item in dimension_records:
             if not isinstance(item, Mapping):
