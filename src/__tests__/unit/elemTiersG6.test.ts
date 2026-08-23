@@ -715,3 +715,318 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════ 3차분 — 1-3 소수의 나눗셈 ══════════
+//
+// 1-1(분수)·1-2(도형)와 또 다르다: 참이 **소수**로 나오고, 소단원 조건이 **몫의 성질**
+// (1보다 작다 · 0을 내린다 · 첫째 자리 0)이다. `probe-elem-section-conditions` 는 문장형
+// 갈래에서 그 성질을 발문만으로 못 재므로(종류 규칙으로 떨어진다), **여기서 정답에 대고**
+// 잠근다. 검산은 소수를 부동소수점이 아니라 **유리수**(십·백분위 정수)로 다시 계산한다.
+
+const G6_13_CODES = ["1-3-1", "1-3-2", "1-3-3", "1-3-4", "1-3-5"] as const;
+
+/** `12.2` · `7` 을 유리수로 — 소수는 자릿수만큼의 거듭제곱 분모로 읽어 부동소수를 안 거친다. */
+function readDecTok(tok: string): R | null {
+  const m = tok.match(/^(\d+)(?:\.(\d+))?$/);
+  if (!m) return null;
+  const frac = m[2] ?? "";
+  return rat(Number(`${m[1]}${frac}`), 10 ** frac.length);
+}
+
+/** 발문·정답의 `$...$` 덩어리에서 소수·자연수를 순서대로 뽑는다. */
+function decNumbersIn(text: string): R[] {
+  const out: R[] = [];
+  for (const m of text.matchAll(/\$([^$]*)\$/g)) {
+    const tok = m[1]!
+      .replace(/\\,|\\;|\\!/g, "")
+      .replace(/\\mathrm\{[a-zA-Z]+\}(\^\d)?/g, "")
+      .replace(/\\div|\\times|\\square|=/g, " ")
+      .trim();
+    for (const piece of tok.split(/\s+/)) {
+      const v = readDecTok(piece);
+      if (v) out.push(v);
+    }
+  }
+  return out;
+}
+
+function readDecAnswer(answer: string): R {
+  const m = answer.match(/^\$(\d+(?:\.\d+)?)\$$/);
+  expect(m, `정답 모양: ${answer}`).toBeTruthy();
+  return readDecTok(m![1]!)!;
+}
+
+const rsub = (a: R, b: R) => rat(a.n * b.d - b.n * a.d, a.d * b.d);
+
+/** 정답 문자열의 소수점 아래 자릿수와 첫째 자리 숫자. */
+function decShape(answer: string): { dp: number; tenth: string | null } {
+  const m = answer.match(/^\$(\d+)(?:\.(\d+))?\$$/);
+  expect(m, `정답 모양: ${answer}`).toBeTruthy();
+  const frac = m![2] ?? "";
+  return { dp: frac.length, tenth: frac[0] ?? null };
+}
+
+/**
+ * 발문이 말하는 값을 **다시** 만든다 — 갈래를 발문의 낱말로 가른다(생성기 분기를 옮겨 적지 않는다).
+ * 못 읽으면 null 을 주고, 부르는 쪽이 위반으로 처리한다.
+ */
+function truthOf13(content: string): R | null {
+  const ns = decNumbersIn(content);
+  const at = (i: number) => ns[i] ?? null;
+
+  // 심화 — 수 카드로 몫이 가장 작은 나눗셈식
+  if (content.includes("수 카드") && content.includes("가장 작은")) {
+    if (ns.length < 3 || ns.some((v) => v.d !== 1)) return null;
+    const vals = ns.map((v) => v.n);
+    return rat(Math.min(...vals), Math.max(...vals));
+  }
+  // 심화 — `\square` 식. □ 의 자리(나누어지는 수/나누는 수)를 식에서 직접 읽는다.
+  if (content.includes("알맞은 수")) {
+    const asDividend = content.match(/\\square\\div(\d+)=(\d+(?:\.\d+)?)/);
+    if (asDividend) {
+      return rmul(rat(Number(asDividend[1])), readDecTok(asDividend[2]!)!);
+    }
+    const asDivisor = content.match(
+      /(\d+(?:\.\d+)?)\\div\\square=(\d+(?:\.\d+)?)/,
+    );
+    if (asDivisor) {
+      return rdiv(readDecTok(asDivisor[1]!)!, readDecTok(asDivisor[2]!)!);
+    }
+    return null;
+  }
+  // 심화 — 잘못하여 곱했더니: 어떤 수 = 결과 ÷ k, 바른 값 = 어떤 수 ÷ k
+  if (content.includes("잘못하여")) {
+    const k = at(0);
+    const wrong = ns[ns.length - 1] ?? null;
+    return k && wrong ? rdiv(rdiv(wrong, k), k) : null;
+  }
+  // 심화 — 「$k$로 나누었더니 $몫$」에서 어떤 수를 되짚어 다른 수로 나눈다
+  if (content.includes("나누었더니")) {
+    const [k, quot, other] = [at(0), at(1), at(2)];
+    return k && quot && other ? rdiv(rmul(quot, k), other) : null;
+  }
+  // 응용 — 전체 무게에서 빈 상자를 빼고 개수로 나눈다
+  if (content.includes("빈 상자")) {
+    const [k, total, box] = [at(0), at(1), at(2)];
+    return k && total && box ? rdiv(rsub(total, box), k) : null;
+  }
+  // 응용 — 쓰고(마시고) 남은 것을 나눈다
+  if (content.includes("중에서") && content.includes("남은")) {
+    const [total, used, k] = [at(0), at(1), at(2)];
+    return total && used && k ? rdiv(rsub(total, used), k) : null;
+  }
+  // 응용 — 나누어 가진 뒤 다시 자른다
+  if (content.includes("다시 똑같이")) {
+    const [total, j, b] = [at(0), at(1), at(2)];
+    return total && j && b ? rdiv(rdiv(total, j), b) : null;
+  }
+  // 응용 — 정다각형의 둘레 ÷ 변의 수 (변의 수는 이름에만 있다)
+  const sides = polySides(content);
+  if (sides !== null && content.includes("둘레")) {
+    const per = at(0);
+    return per ? rdiv(per, rat(sides)) : null;
+  }
+  // 연산·기본 — 두 수를 그대로 나눈다
+  const [a, b] = [at(0), at(1)];
+  if (!a || !b || ns.length > 2) return null;
+  return rdiv(a, b);
+}
+
+describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
+  it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_13_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (시험이 유리수로 다시 계산)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const want = truthOf13(p.content);
+          if (!want) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 발문을 못 읽음 — ${p.content.replace(/\n+/g, " ")}`,
+            );
+            continue;
+          }
+          checked += 1;
+          const got = readDecAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 답 ${p.answer} (${rshow(want)} 이어야) — ${p.content.replace(/\n+/g, " ")}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_13_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("소단원 이름이 내건 «몫의 성질»을 정답이 지킨다 — 판정기가 발문에서 못 재는 그 축", () => {
+    // 심화는 답이 몫이 아닐 수 있어(□ 가 나누어지는 수·나누는 수) 연산·기본·응용만 잰다.
+    // 심화의 성질은 위 검산(값)과 아래 역산 표지가 함께 잡는다.
+    const bad: string[] = [];
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const { dp, tenth } = decShape(p.answer);
+          const v = readDecAnswer(p.answer);
+          if (code === "1-3-1" && !(dp === 1 && v.n > v.d)) {
+            bad.push(
+              `${where}: 몫이 1보다 큰 소수 한 자리가 아니다 — ${p.answer}`,
+            );
+          }
+          if (code === "1-3-2" && !(dp === 1 && v.n < v.d)) {
+            bad.push(`${where}: 몫이 1보다 작지 않다 — ${p.answer}`);
+          }
+          if (code === "1-3-3" && !(dp === 2 && tenth !== "0")) {
+            bad.push(`${where}: 0을 내린 두 자리 몫이 아니다 — ${p.answer}`);
+          }
+          if (code === "1-3-4" && !(dp === 2 && tenth === "0")) {
+            bad.push(`${where}: 첫째 자리가 0이 아니다 — ${p.answer}`);
+          }
+          if (code === "1-3-5") {
+            if (dp < 1) bad.push(`${where}: 몫이 소수가 아니다 — ${p.answer}`);
+            if (/\d+\.\d+/.test(p.content)) {
+              bad.push(
+                `${where}: (자연수)÷(자연수)인데 발문에 소수 — ${p.content}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("연산은 식을 주고, 기본은 문장으로 묻는다 — 그리고 응용은 한 겹이 아니다", () => {
+    const oneStep = (p: { content: string; answer: string }) => {
+      const ns = decNumbersIn(p.content);
+      return (
+        ns.length === 2 && req(rdiv(ns[0]!, ns[1]!), readDecAnswer(p.answer))
+      );
+    };
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        // 1단 — 식이 그대로 있다(=\square 꼴이라 산술 판정기도 이 갈래를 읽는다).
+        expect(calc.content, `${code} 연산 seed=${seed}`).toMatch(/\\div/);
+        expect(calc.content, `${code} 연산 seed=${seed}`).toMatch(/\\square/);
+        // 2단 — 식·□ 없이 문장 한 겹. 두 수를 그대로 나누면 답이다.
+        expect(basic.content, `${code} 기본 seed=${seed}`).not.toMatch(/\\div/);
+        expect(basic.content, `${code} 기본 seed=${seed}`).not.toMatch(
+          /\\square/,
+        );
+        expect(
+          oneStep(basic),
+          `${code} 기본 seed=${seed}: ${basic.content}`,
+        ).toBe(true);
+        // 3단 — 한 겹이면 그건 기본이다. 중간값을 만들거나 수 하나가 낱말 안에 있다.
+        expect(
+          oneStep(apply),
+          `${code} 응용 seed=${seed}: 한 겹이다 — ${apply.content}`,
+        ).toBe(false);
+        expect(
+          /잘못하여|나누었더니|알맞은 수|가장 작은/.test(apply.content),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("심화는 역산 표지가 있고, 주어진 결과에서 되짚는다", () => {
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        // 손 목록이라 일부러 좁게 둔다 — 심화 갈래를 새로 만들면 여기가 먼저 빨개진다.
+        expect(
+          /잘못하여|나누었더니|알맞은 수|가장 작은/.test(deep.content),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        expect(
+          decNumbersIn(deep.content).length,
+          `${code} 심화 seed=${seed}: ${deep.content}`,
+        ).toBeGreaterThanOrEqual(2);
+        // 1-3-2 의 심화는 발문에 적힌 몫도 1보다 작아야 그 소단원이다.
+        if (code === "1-3-2") {
+          const stated = decNumbersIn(deep.content).filter((v) => v.d > 1);
+          expect(
+            stated.some((v) => v.n < v.d),
+            `1-3-2 심화 seed=${seed}: 1보다 작은 소수가 발문에 없다 — ${deep.content}`,
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·샌 소수·분수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_13_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            const runaway = field.match(/\d+\.\d{3,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
+            // 이 대단원에 분수가 나오면 종류가 샌 것이다(1-1 과 섞였다).
+            if (field.includes("\\frac"))
+              bad.push(`${where} ${name}: 분수가 섞였다`);
+            // 초등 지면은 «7.0» 처럼 꼬리 0 을 적지 않는다.
+            const trailing = field.match(/\d+\.\d*0(?![\d])/g);
+            if (trailing)
+              bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
