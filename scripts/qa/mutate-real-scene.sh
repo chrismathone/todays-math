@@ -31,6 +31,15 @@ restore() {
 }
 trap 'restore; rm -rf "$TMP"' EXIT
 
+# 원복은 `git checkout HEAD -- <파일>` 이라 **커밋 안 한 변경을 덮는다.**
+# 그래서 더러운 나무에서는 아예 돌지 않는다 — 2026-08-23 에 실제로 편집분을 잃었다.
+dirty="$(git status --porcelain -- "${TARGETS[@]}")"
+if [ -n "$dirty" ]; then
+  echo "⛔ 대상 파일에 커밋 안 한 변경이 있습니다 — 원복이 이것을 덮습니다. 먼저 커밋하십시오:"
+  echo "$dirty"
+  exit 1
+fi
+
 dump() { npx tsx "$PROBE" >"$1" 2>&1; }
 
 echo "── 기준 산출물 채집"
@@ -101,11 +110,13 @@ assert s.count(old) == 1, s.count(old)
 s = s.replace(old, "        `${tunnelLen + 100} m`,")
 '
 
-# ④ 닮음 그림이 닮음을 어긴다 — 사람 그림자만 1.5배로 늘인다(광선이 안 평행해진다)
-run_mutation "④ 축척: 사람 그림자만 1.5배" src/lib/middle/realScene.ts '
-old = "personTopX + m.personShadow * k"
-assert s.count(old) >= 2, s.count(old)
-s = s.replace(old, "personTopX + m.personShadow * k * 1.5")
+# ④ 수조 그림이 발문과 어긋난다 — 처음 물의 양을 들이의 10% 까지 허용한다.
+#    에셋의 물 높이는 고정(47%)이라, 이러면 「들이 100 L 에 10 L」 문항 옆에
+#    반쯤 찬 그림이 붙는다. 검산의 40~60% 조건이 갈라야 한다.
+run_mutation "④ 그림 정직성: 처음 물의 양 하한을 10% 로" src/lib/middle/m2Real.ts '
+old = "const lo = Math.ceil((capacity * 4) / 10);"
+assert s.count(old) == 1, s.count(old)
+s = s.replace(old, "const lo = Math.ceil((capacity * 1) / 10);")
 '
 
 # ⑤ 중단원명의 얇은 공백을 보통 공백으로 — 색인 정본 대조가 갈라야 한다

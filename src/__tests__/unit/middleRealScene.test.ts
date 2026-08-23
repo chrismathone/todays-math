@@ -1,5 +1,5 @@
 /**
- * 물결 2D — 실물 맥락 6유형(`m1Real`·`m2Real`)의 검산.
+ * 물결 2D — 실물 맥락 5유형(`m1Real`·`m2Real`)의 검산.
  *
  * 1차 물결 계약(같은 씨앗 == 같은 문항 · `facts` 독립 재계산 · 답 ↔ facts ·
  * bareNumbers · 변형 폭)에 **이 트랙만의 계약 둘**을 더한다.
@@ -46,6 +46,15 @@ const hasEngine =
 
 const OWNED = [...M1_REAL, ...M2_REAL];
 
+/**
+ * RPM 색인 정본의 중단원명. **가운데 공백은 U+2009(얇은 공백)라 눈에 안 보인다.**
+ * 여기 한 번은 날 문자로 적는다 — `middleTypeCoverage.test.ts` 가 「등록된 중단원이
+ * 어느 시험 파일엔가 **문자열로** 있는가」를 세기 때문이다. 이스케이프로만 적으면
+ * 그 가드에서 이 중단원이 구조적으로 «시험 없음»이 된다.
+ * 편집 중에 이 글자가 뭉개지면 바로 아래 `it` 이 잡는다.
+ */
+const MINOR_G2 = "일차함수와 그 그래프  ⑵";
+
 type CatalogType = { minor: string; number: string; title: string };
 
 /** 유형별 독립 검산 — 발문의 조건식을 **여기서 다시 세운다**(생성기 식을 옮겨 적지 않는다). */
@@ -65,20 +74,14 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   "1-2|입체도형의 겉넓이와 부피|18": (f) =>
     f.radius! * f.radius! * f.height! === 3 * f.rate! * f.t!,
   // 물의 양: 처음 + 분당×시간 = 들이, 그림이 정직하도록 처음은 들이의 40~60%
-  "2-1|일차함수와 그 그래프\u2009 ⑵|11": (f) =>
+  [`2-1|${MINOR_G2}|11`]: (f) =>
     f.initial! + f.rate! * f.t! === f.capacity! &&
     f.rate! > 0 &&
     f.initial! * 10 >= f.capacity! * 4 &&
     f.initial! * 10 <= f.capacity! * 6,
   // 마주 보고 걷기: (두 속력의 합)×시간 = 거리
-  "2-1|일차함수와 그 그래프\u2009 ⑵|12": (f) =>
+  [`2-1|${MINOR_G2}|12`]: (f) =>
     (f.speedA! + f.speedB!) * f.t! === f.dist! && f.speedA !== f.speedB,
-  // 닮음: 키 : 그림자 = 나무 높이 : 나무 그림자 (소수 키를 정수로 올려 교차곱)
-  "2-2|도형의 닮음|14": (f) =>
-    Math.round(f.personH! * 10) * f.treeShadow! ===
-      f.treeH! * f.personShadow! * 10 &&
-    f.personShadow! > 0 &&
-    f.treeH! > f.personH!,
 };
 
 /** 답 문자열의 첫 수가 `facts` 의 이 키와 같아야 한다. */
@@ -86,9 +89,8 @@ const ANSWER_KEY: Record<string, string> = {
   "1-1|정비례와 반비례|04": "t",
   "1-1|정비례와 반비례|14": "t",
   "1-2|입체도형의 겉넓이와 부피|18": "t",
-  "2-1|일차함수와 그 그래프\u2009 ⑵|11": "t",
-  "2-1|일차함수와 그 그래프\u2009 ⑵|12": "t",
-  "2-2|도형의 닮음|14": "treeH",
+  [`2-1|${MINOR_G2}|11`]: "t",
+  [`2-1|${MINOR_G2}|12`]: "t",
 };
 
 /**
@@ -112,7 +114,7 @@ const FIGURE_NUMBERS: Record<string, (p: MidProblem) => number[]> = {
     return [Number(m[1]), Number(m[2])];
   },
   // 「물을 C L까지 담을 수 있는 수조에 a L의 물이」
-  "2-1|일차함수와 그 그래프\u2009 ⑵|11": (p) => {
+  [`2-1|${MINOR_G2}|11`]: (p) => {
     const m = p.content.match(
       /물을 \$(\d+)\$ L까지 담을 수 있는 수조에 \$(\d+)\$ L의 물이/,
     );
@@ -120,7 +122,7 @@ const FIGURE_NUMBERS: Record<string, (p: MidProblem) => number[]> = {
     return [Number(m[1]), Number(m[2])];
   },
   // 「d m 떨어진 두 지점」 + 「분속 v m」 둘
-  "2-1|일차함수와 그 그래프\u2009 ⑵|12": (p) => {
+  [`2-1|${MINOR_G2}|12`]: (p) => {
     const d = p.content.match(/\$(\d+)\$ m 떨어진 두 지점/);
     const v = [...p.content.matchAll(/분속 \$(\d+)\$ m/g)].map((x) =>
       Number(x[1]),
@@ -129,15 +131,6 @@ const FIGURE_NUMBERS: Record<string, (p: MidProblem) => number[]> = {
       throw new Error(`발문에서 걷기 수치를 못 읽었습니다: ${p.content}`);
     }
     return [Number(d[1]), ...v];
-  },
-  // 「키가 a m인 사람의 그림자의 길이는 s m이고, 나무의 그림자의 길이는 S m」
-  "2-2|도형의 닮음|14": (p) => {
-    const m = p.content.match(
-      /키가 \$([\d.]+)\$ m인 사람의 그림자의 길이는 \$(\d+)\$ m이고, 나무의 그림자의 길이는 \$(\d+)\$ m/,
-    );
-    if (!m)
-      throw new Error(`발문에서 그림자 수치를 못 읽었습니다: ${p.content}`);
-    return [Number(m[1]), Number(m[2]), Number(m[3])];
   },
 };
 
@@ -181,10 +174,10 @@ function sorted(ns: number[]): number[] {
   return [...ns].sort((a, b) => a - b);
 }
 
-describe("물결 2D — 실물 맥락 6유형", () => {
-  it("6유형이 등록돼 있다 (중1 3 · 중2 3)", () => {
+describe("물결 2D — 실물 맥락 5유형", () => {
+  it("5유형이 등록돼 있다 (중1 3 · 중2 2)", () => {
     expect(M1_REAL.length).toBe(3);
-    expect(M2_REAL.length).toBe(3);
+    expect(M2_REAL.length).toBe(2);
     const keys = new Set(registeredTypes().map((e) => e.key));
     for (const e of OWNED) {
       expect(keys.has(e.key), `generate.ts 에 안 실린 유형: ${e.key}`).toBe(
@@ -217,6 +210,9 @@ describe("물결 2D — 실물 맥락 6유형", () => {
   });
 
   it("중단원명의 얇은 공백(U+2009)이 정본 그대로다", () => {
+    // 위 `MINOR_G2` 는 날 문자로 적혀 있다 — 뭉개졌으면 여기서 잡힌다.
+    expect(MINOR_G2).toBe("일차함수와 그 그래프\u2009 ⑵");
+    expect(MINOR_G2).not.toContain("  "); // 보통 공백 둘이면 정본과 다르다
     const linear2 = OWNED.filter((e) => e.rpmMinor.includes("\u2475"));
     expect(linear2.length).toBe(2);
     for (const e of linear2) {
@@ -236,7 +232,6 @@ describe("물결 2D — 실물 맥락 6유형", () => {
         ["반비례 관계 y=a/x의 그래프", 1],
         ["뿔의 겉넓이와 부피", 1],
         ["일차함수의 활용(속력, 도형, 기타)", 2],
-        ["삼각형의 닮음 조건", 1],
       ]),
     );
   });
@@ -362,7 +357,7 @@ describe("물결 2D — 실물 맥락 6유형", () => {
 
   // ── 이 트랙의 계약 ㉡ ──────────────────────────────────────────
   describe.skipIf(!hasEngine)("실제 엔진 렌더", () => {
-    it("6유형 전부가 실제로 그려진다", async () => {
+    it("5유형 전부가 실제로 그려진다", async () => {
       for (const e of OWNED) {
         for (const seed of SEEDS.slice(0, 3)) {
           const p = generateMiddleProblem(e.key, seed);
@@ -389,30 +384,5 @@ describe("물결 2D — 실물 맥락 6유형", () => {
         }
       }
     }, 60_000);
-  });
-});
-
-describe("그림자 장면은 축척을 어기면 던진다", () => {
-  it("나무가 사람의 8배면 사람이 알아볼 수 없이 작아진다 — 조용히 그리지 않는다", async () => {
-    const { shadowScene } = await import("../../lib/middle/realScene");
-    expect(() =>
-      shadowScene({ personH: 1.5, personShadow: 2, treeShadow: 16, treeH: 12 }),
-    ).toThrow(/너무 작습니다/);
-  });
-
-  it("두 광선의 기울기가 같다 (닮음 그림이 닮아야 한다)", async () => {
-    const { shadowScene } = await import("../../lib/middle/realScene");
-    const scene = shadowScene({
-      personH: 2,
-      personShadow: 3,
-      treeShadow: 12,
-      treeH: 8,
-    });
-    const rays = (scene.segments ?? []).filter((s) => s[4] === "dash");
-    expect(rays.length).toBe(2);
-    const slope = (s: (number | string)[]) =>
-      ((s[3] as number) - (s[1] as number)) /
-      ((s[2] as number) - (s[0] as number));
-    expect(slope(rays[0]!)).toBeCloseTo(slope(rays[1]!), 3);
   });
 });

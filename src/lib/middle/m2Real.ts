@@ -1,5 +1,5 @@
 /**
- * 중2 실물 맥락 유형 — `assetScene` 그림을 실은 3유형 (물결 2D).
+ * 중2 실물 맥락 유형 — `assetScene` 그림을 실은 2유형 (물결 2D).
  *
  * 병렬 세션 소유 모듈 — `m1Real.ts`·`realScene.ts` 와 한 세션이 만진다.
  * 계약·보류 사유는 `m1Real.ts` 머리 주석에 함께 적었다.
@@ -22,7 +22,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { at, hDim, place, shadowScene, sx, sy, vDim } from "./realScene";
+import { at, hDim, place, sx, sy, vDim } from "./realScene";
 import type { AssetScene } from "./realScene";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -30,12 +30,10 @@ const GRADE = "중2";
 
 /** RPM 색인 정본의 중단원명 — 가운데 공백 하나는 U+2009(얇은 공백)다. */
 export const MINOR_LINEAR2 = "일차함수와 그 그래프\u2009 ⑵";
-const MINOR_SIMILAR = "도형의 닮음";
 
 /** 우리 Unit.section 정확한 이름 (prisma/seed-data/units.ts 실측 2026-08-23) */
 const SEC = {
   일차함수활용: "일차함수의 활용(속력, 도형, 기타)",
-  닮음조건: "삼각형의 닮음 조건",
 } as const;
 
 function attempt<T>(tries: number, f: () => T | null): T {
@@ -221,42 +219,5 @@ export const M2_REAL: TypeEntry[] = [
           figureSpec: walkTowardScene(dist, speedA, speedB),
         };
       }),
-  ),
-
-  /**
-   * 닮음의 활용 — 그림자로 나무의 높이 재기.
-   * 햇빛은 평행하므로 두 직각삼각형이 AA 닮음이다.
-   * RPM 2-2 p85 유형 14 의 구조(0479·0480 계열, 수치·소재는 새로 만든 것).
-   */
-  def("2-2", MINOR_SIMILAR, "14", "닮음의 활용", SEC.닮음조건, "mid", (rng) =>
-    attempt(80, () => {
-      const personH = pick(rng, [1.5, 1.6, 1.8, 2] as const); // 키(m)
-      // 나무가 사람의 몇 배인가. 6 배가 넘으면 **축척대로 그린** 사람이 알아볼 수 없을 만큼
-      // 작아진다 — `shadowScene` 이 던진다. 그래서 여기서 범위를 잡는다.
-      const ratio = intBetween(rng, 4, 5);
-      const treeH = personH * ratio;
-      if (!Number.isInteger(treeH)) return null;
-      const personShadow = pick(rng, [2, 3] as const);
-      const treeShadow = personShadow * ratio;
-      const p10 = Math.round(personH * 10);
-      return {
-        content:
-          `오른쪽 그림과 같이 어느 날 같은 시각에 키가 $${personH}$ m인 사람의 그림자의 길이는 $${personShadow}$ m이고, ` +
-          `나무의 그림자의 길이는 $${treeShadow}$ m이었다. 이때 나무의 높이를 구하시오.`,
-        answer: `$${treeH}$ m`,
-        solution:
-          `햇빛은 평행하게 들어오므로 사람과 그림자가 이루는 직각삼각형과 나무와 그림자가 이루는 직각삼각형은 닮음이다.\n` +
-          `나무의 높이를 $x$ m라 하면 $${personH} : ${personShadow}=x : ${treeShadow}$이므로\n` +
-          `$${personShadow}x=${personH}\\times ${treeShadow}=${(p10 * treeShadow) / 10}$에서 $x=${treeH}$이다.\n` +
-          `따라서 나무의 높이는 $${treeH}$ m이다.`,
-        facts: { personH, personShadow, treeShadow, treeH },
-        figureSpec: shadowScene({
-          personH,
-          personShadow,
-          treeShadow,
-          treeH,
-        }),
-      };
-    }),
   ),
 ];
