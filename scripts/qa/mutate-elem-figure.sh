@@ -576,6 +576,39 @@ io.open(p, "w", encoding="utf-8").write(
 PY
 run "짝 안쪽을 단독 폭으로 그리기"
 
+# ㊲ 지워진 막대를 **축 절반 높이**로 굳힌다 — 점선 상자는 값 축 전체여야 한다.
+#    절반이면 「이 정도 값」으로 읽혀 그림이 없는 답을 암시한다.
+python - "$ADV" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '            parts.append(_rect(x, top, bw, plot_h, fill="none", sw=1.05, dash=UNKNOWN_DASH))'
+assert old in s, "앵커 없음 322"
+new = '            parts.append(_rect(x, top + plot_h / 2, bw, plot_h / 2, fill="none", sw=1.05, dash=UNKNOWN_DASH))'
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "지워진 막대를 축 절반 높이로"
+
+# ㊳ unknown 과 value 를 같이 실어도 통과시킨다 — **참값이 스펙에 들어온다**(답이 샌다).
+python - "$ADV" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '            if "value" in item:'
+assert old in s, "앵커 없음 323"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, "            if False:", 1))
+MUT
+run "unknown 에 value 를 같이 실어도 통과"
+
+# ㊴ 값 0 에서도 rect 를 그린다 — 정제기가 던져 **그림이 통째로 안 나간다**.
+python - "$ADV" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "            if h > 0:\n                parts.append(_rect(x, y, bw, h, fill=CHART[i % len(CHART)], sw=1.05))"
+assert old in s, "앵커 없음 324"
+new = "            parts.append(_rect(x, y, bw, h, fill=CHART[i % len(CHART)], sw=1.05))"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "값 0 에서도 크기 0 막대를 그린다"
+
 restore
 judged=$(grep -c "^\[" "$SUMMARY")
 if [ -n "$ONLY" ]; then

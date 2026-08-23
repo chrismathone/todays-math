@@ -2345,6 +2345,181 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
   });
 });
 
+/* ── 지워진 막대(unknown)와 값 0 (D-72 자료형 심화) ─────────────────────────── */
+const UNKNOWN_DASH = "4 3";
+/** 점선 상자 = fill 없는 rect. 값 막대(색 채움)와 갈린다. */
+function dashedBoxes(svg: string): string[] {
+  return [...svg.matchAll(/<rect [^>]*>/g)]
+    .map((m) => m[0])
+    .filter((r) => r.includes(`stroke-dasharray="${UNKNOWN_DASH}"`));
+}
+
+describe.skipIf(!hasEngine)("[초등 그림] 지워진 막대 · 값 0", () => {
+  const withUnknown = (orient?: string, values?: unknown[]) => ({
+    version: "elem-1",
+    kind: "barChart",
+    ...(orient ? { orient } : {}),
+    yMax: 30,
+    yStep: 5,
+    yLabel: "(명)",
+    values: values ?? [
+      { label: "가", value: 25 },
+      { label: "나", unknown: true },
+      { label: "다", value: 10 },
+      { label: "라", value: 20 },
+    ],
+  });
+
+  it.each(["vertical", "horizontal"])(
+    "%s — 지워진 막대는 점선 상자 + ? 로 그린다",
+    async (orient) => {
+      const r = await renderFigureSpec(
+        withUnknown(orient === "horizontal" ? "horizontal" : undefined),
+      );
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(dashedBoxes(r.svg)).toHaveLength(1);
+      const box = dashedBoxes(r.svg)[0]!;
+      expect(box).toContain('fill="none"');
+      expect(r.svg).toContain(">?<");
+
+      // ⚠️ **상자는 값 축 «전체»를 덮어야 한다.** 절반이면 「이 정도 값」으로 읽혀
+      //    그림이 없는 답을 암시한다. 「기하가 서로 같다」만 잠그면 둘 다 똑같이
+      //    틀린 높이여도 초록이라, 축에 대고 **자리까지** 재야 한다.
+      const at = (a: string) =>
+        Number(box.match(new RegExp(`${a}="([0-9.]+)"`))![1]);
+      if (orient === "horizontal") {
+        const xs = xTicks(r.svg);
+        expect(at("x")).toBeCloseTo(xs[0]!.x, 1);
+        expect(at("x") + at("width")).toBeCloseTo(xs[xs.length - 1]!.x, 1);
+      } else {
+        const ys = yTicks(r.svg);
+        const top = Math.min(...ys.map((t) => t.y));
+        const zero = Math.max(...ys.map((t) => t.y));
+        expect(at("y")).toBeCloseTo(top, 1);
+        expect(at("y") + at("height")).toBeCloseTo(zero, 1);
+      }
+    },
+  );
+
+  // ⚠️ 이 시험이 **계약을 잠근다.** 스펙에 참값이 없으니 기하가 같은 것은 «자동»이지만,
+  // 나중에 누가 value 를 「편의로」 되살리면 그림이 답을 흘린다(D-66 ⑺).
+  it("숨긴 값이 달라도 **점선 상자 기하가 같다** — 다른 값이 바뀌어도", async () => {
+    const a = await renderFigureSpec(withUnknown());
+    const b = await renderFigureSpec(
+      withUnknown(undefined, [
+        { label: "가", value: 5 },
+        { label: "나", unknown: true },
+        { label: "다", value: 30 },
+        { label: "라", value: 15 },
+      ]),
+    );
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    expect(dashedBoxes(a.svg)).toEqual(dashedBoxes(b.svg));
+  });
+
+  it("unknown 에 value 를 같이 실으면 **던진다** — 참값이 스펙에 있으면 답이 샌다", async () => {
+    const r = await renderFigureSpec(
+      withUnknown(undefined, [
+        { label: "가", value: 25 },
+        { label: "나", unknown: true, value: 15 },
+      ]),
+    );
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(/unknown|참값/);
+  });
+
+  it.each([
+    ["전부 unknown — 축 맨 위를 못 정한다", [{ label: "가", unknown: true }]],
+    [
+      "전부 0 — 막대가 하나도 안 그려진다",
+      [
+        { label: "가", value: 0 },
+        { label: "나", value: 0 },
+      ],
+    ],
+    [
+      "unknown: false 는 못 쓴다",
+      [
+        { label: "가", value: 5 },
+        { label: "나", unknown: false },
+      ],
+    ],
+    [
+      "항목 오타 키는 조용히 무시되지 않는다",
+      [
+        { label: "가", value: 5 },
+        { label: "나", valeu: 3 },
+      ],
+    ],
+  ])("%s", async (_why, values) => {
+    const r = await renderFigureSpec(withUnknown(undefined, values));
+    expect(r.ok).toBe(false);
+  });
+
+  it("꺾은선은 지워진 막대를 못 그린다 — 조용히 건너뛰지 않고 던진다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineChart",
+      yMax: 30,
+      yLabel: "(명)",
+      values: [
+        { label: "가", value: 25 },
+        { label: "나", unknown: true },
+      ],
+    });
+    expect(r.ok).toBe(false);
+  });
+
+  // `value: 0` 은 정당한 자료인데 크기 0 rect 를 그리면 정제기가 던진다
+  // (`figure_quality`: 「height must be positive」). `r.ok` 가 곧 sanitize 통과다.
+  it.each(["vertical", "horizontal"])(
+    "%s — 값 0 은 막대를 안 그리고 이름표만 남긴다 (정제기가 던지지 않는다)",
+    async (orient) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "barChart",
+        ...(orient === "horizontal" ? { orient: "horizontal" } : {}),
+        yMax: 10,
+        yStep: 2,
+        yLabel: "(명)",
+        values: [
+          { label: "가", value: 0 },
+          { label: "나", value: 7 },
+          { label: "다", value: 3 },
+        ],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(r.svg).not.toMatch(/<rect[^>]*width="0"/);
+      expect(r.svg).not.toMatch(/<rect[^>]*height="0"/);
+      expect(r.svg).toContain(">0<");
+    },
+  );
+
+  it("짝(chartPair) 안에서도 지워진 막대가 그려진다", async () => {
+    const r = await renderFigureSpec(
+      pairSpec(
+        {
+          ...PAIR_SOLD,
+          values: [
+            { label: "딸기", value: 10 },
+            { label: "멜론", unknown: true },
+            { label: "초코", value: 20 },
+            { label: "바닐라", value: 30 },
+          ],
+        },
+        PAIR_PRICE,
+      ),
+    );
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(dashedBoxes(r.svg)).toHaveLength(1);
+  });
+});
+
 describe("[초등 그림] 무작위 20 스펙 계약", () => {
   it("이름 붙은 도형·분수 사다리꼴·곱셈표는 초등 kind 다", () => {
     const byId = new Map(

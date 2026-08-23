@@ -128,6 +128,19 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 800, "yStep": 200, "values": [{"label": "딸기", "value": 800}, {"label": "멜론", "value": 500}, {"label": "바닐라", "value": 600}], "yLabel": "(원)"},
     # ㉢ 눈금이 겹칠 수밖에 없는 판 — **던져야** 한다(옛날엔 「0100200300…」 덩어리)
     {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 800, "yStep": 100, "values": [{"label": "딸기", "value": 800}, {"label": "멜론", "value": 500}], "yLabel": "(원)"},
+    # 지워진 막대(unknown)와 값 0 (D-72) — 새 경로라 표본이 없으면 변이가 판정 불가다.
+    {"version": "elem-1", "kind": "barChart", "yMax": 30, "yStep": 5, "yLabel": "(명)", "title": "읽은 책 수",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True}, {"label": "다", "value": 10}, {"label": "라", "value": 20}]},
+    {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 30, "yStep": 5, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True}, {"label": "다", "value": 10}]},
+    # 던져야 하는 것 — 참값을 스펙에 실은 판
+    {"version": "elem-1", "kind": "barChart", "yMax": 30, "yStep": 5, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True, "value": 15}]},
+    # 값 0 — 크기 0 rect 를 그리면 정제기가 던진다
+    {"version": "elem-1", "kind": "barChart", "yMax": 10, "yStep": 2, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 0}, {"label": "나", "value": 7}, {"label": "다", "value": 3}]},
+    {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 10, "yStep": 2, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 0}, {"label": "나", "value": 7}]},
     # 그래프 짝 (D-70 계열) — ㉠ 정상(원장님 확정 조합) ㉡ 제목이 넘치는 판
     # ㉢ 항목 라벨이 길어 짝이 넓어지는 판(눈금 글자가 본문 아래로 내려간다). ㉡㉢ 은 던진다.
     {"version": "elem-1", "kind": "chartPair", "charts": [

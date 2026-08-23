@@ -142,16 +142,59 @@ def _frac_bars(spec: Mapping[str, Any]) -> str:
     return _svg(TABLE_VIEWBOX_MAX, h, "".join(parts))
 
 
-def _chart_values(raw: Any, name: str) -> list[tuple[str, float]]:
+# 항목의 허용 키. 오타가 조용히 무시되면 「지웠는데 왜 그대로냐」가 된다 (namedShapes 와 같다).
+_VALUE_ITEM_KEYS = frozenset({"label", "value", "unknown"})
+
+
+def _chart_values(
+    raw: Any, name: str, allow_unknown: bool = False
+) -> list[tuple[str, float | None]]:
+    """항목 목록. 값이 `None` 이면 **지워진 막대**(unknown)다 (D-72 자료형 심화).
+
+    ## 참값을 스펙에 싣지 않는다
+
+    「지워진 막대의 값을 역산하라」가 문제인데 스펙이 그 값을 들고 있으면 **그림이 답을
+    흘린다**(D-66 ⑺). 그래서 unknown 항목에는 `value` 자체가 **없어야** 하고, 같이 오면
+    던진다 — 나중에 누가 「편의로」 되살리는 것을 막는 자리다.
+    숨긴 값이 무엇이든 점선 상자가 똑같이 그려지는 것은 **값이 아예 없으니 자동으로 참**이다.
+
+    ## 값이 하나도 없으면 못 그린다
+
+    축 맨 위를 정할 근거가 사라진다 — 조용히 1로 두지 않고 던진다.
+    """
     if not isinstance(raw, list) or not raw:
         raise ValueError(f"{name} 는 비어 있지 않은 배열이어야 합니다")
     if len(raw) > 8:
         raise ValueError(f"{name} 는 8개 이하여야 합니다")
-    out: list[tuple[str, float]] = []
+    out: list[tuple[str, float | None]] = []
     for i, item in enumerate(raw):
         if not isinstance(item, Mapping):
             raise ValueError(f"{name}[{i}] 는 객체여야 합니다")
-        out.append((str(item.get("label", "")), _num(item.get("value"), f"{name}[{i}].value", 0, 10000)))
+        extra = set(item) - _VALUE_ITEM_KEYS
+        if extra:
+            raise ValueError(
+                f"{name}[{i}] 에 허용되지 않은 키: {', '.join(sorted(str(k) for k in extra))}"
+            )
+        label = str(item.get("label", ""))
+        if "unknown" in item:
+            if item["unknown"] is not True:
+                raise ValueError(f"{name}[{i}].unknown 은 true 만 쓸 수 있습니다")
+            if not allow_unknown:
+                raise ValueError(f"{name}[{i}] — 이 그림은 지워진 막대를 그리지 못합니다")
+            if "value" in item:
+                raise ValueError(
+                    f"{name}[{i}] 는 unknown 인데 value 가 있습니다 — "
+                    f"참값을 스펙에 실으면 그림이 답을 흘립니다"
+                )
+            out.append((label, None))
+            continue
+        out.append((label, _num(item.get("value"), f"{name}[{i}].value", 0, 10000)))
+    if all(v is None for _, v in out):
+        raise ValueError(f"{name} 에 값이 하나도 없습니다 — 축 맨 위를 정할 수 없습니다")
+    if max(v for _, v in out if v is not None) <= 0:
+        # 「0명」 하나는 정당한 자료지만 **전부 0이면 막대가 하나도 안 그려진다** —
+        # 읽을 것이 없는 그림이다. `yMax` 가 있어도 마찬가지라 여기서 막는다.
+        raise ValueError(f"{name} 의 값이 전부 0입니다 — 막대가 하나도 안 그려집니다")
     return out
 
 
@@ -274,6 +317,9 @@ TICK_DIGIT_W = 8.605
 UNIT_GAP = 6.0
 # 이웃한 값 눈금 숫자 사이 최소 틈.
 TICK_MIN_GAP = 3.0
+# 지워진 막대(unknown)의 점선. 숨은 모서리(`5 4`)와 **다른 무늬**여야 한다 —
+# 겨냥도 점선과 같은 그림에 함께 나오지는 않지만, 뜻이 다르면 무늬도 달라야 헷갈리지 않는다.
+UNKNOWN_DASH = "4 3"
 
 # ── 그래프 짝 (chartPair) ────────────────────────────────────────────────────
 # 두 그래프 사이 틈.
@@ -472,13 +518,22 @@ def _bar_chart_h(
     _assert_ticks_fit(_tick_values(axis_top, step), plot_w)
     parts = _plot_axes(left, top, plot_w, plot_h, axis_top, step, horizontal=True)
     for i, (lab, val) in enumerate(values):
-        w = 0 if axis_top <= 0 else min(plot_w, plot_w * val / axis_top)
         y = top + gap + i * (bh + gap)
-        parts.append(_rect(left, y, w, bh, fill=CHART[i % len(CHART)], sw=1.05))
-        num = str(int(val)) if val == int(val) else _n(val)
-        # 막대 안쪽이면 격자선과 안 겹친다. 짧은 막대만 바깥 오른쪽에 둔다.
-        nx = left + w - 16 if w >= 34 else left + w + 12
-        parts.append(_text(nx, y + bh / 2, num, size=16))
+        if val is None:
+            # 지워진 막대 — **값 축 전체**를 점선으로 두른다. 어떤 눈금에도 안 걸리므로
+            # 그림이 답을 흘리지 않는다(D-66 ⑺). 항목마다 늘 같은 기하다.
+            parts.append(_rect(left, y, plot_w, bh, fill="none", sw=1.05, dash=UNKNOWN_DASH))
+            parts.append(_text(left + plot_w / 2, y + bh / 2, "?", size=16))
+        else:
+            w = 0 if axis_top <= 0 else min(plot_w, plot_w * val / axis_top)
+            # 0 은 정당한 자료다. rect 를 **안 그린다** — 폭 0 은 정제기가 막는다
+            # (`figure_quality` 의 「width must be positive」). 이름표 「0」은 그린다.
+            if w > 0:
+                parts.append(_rect(left, y, w, bh, fill=CHART[i % len(CHART)], sw=1.05))
+            num = str(int(val)) if val == int(val) else _n(val)
+            # 막대 안쪽이면 격자선과 안 겹친다. 짧은 막대만 바깥 오른쪽에 둔다.
+            nx = left + w - 16 if w >= 34 else left + w + 12
+            parts.append(_text(nx, y + bh / 2, num, size=16))
         parts.append(_text(left - 7, y + bh / 2, lab, size=13, anchor="end"))
     ylab = str(spec.get("yLabel", ""))
     # 단위 라벨은 **오른쪽 끝**에 오므로 viewBox 를 넘으면 잘린다. `_svg` 의 맞춤은
@@ -553,8 +608,9 @@ def _chart_pair(spec: Mapping[str, Any]) -> str:
 
 
 def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
-    values = _chart_values(spec["values"], "values")
-    data_max = max((v for _, v in values), default=0.0)
+    # 지워진 막대는 **막대그래프에서만** 그린다 — 꺾은선은 점을 못 찍는다.
+    values = _chart_values(spec["values"], "values", allow_unknown=True)
+    data_max = max(v for _, v in values if v is not None)
     y_max = _num(spec.get("yMax", data_max or 1), "yMax", 1, 10000)
     # 축 규칙은 **방향보다 위**에 있다 — 사다리·9줄·yStep·인상·던짐이 한 벌뿐이다.
     axis_top, step = _axis_top(y_max, data_max, _y_step_spec(spec))
@@ -579,14 +635,23 @@ def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
     bw = (plot_w - gap * (n + 1)) / n
     parts = _plot_axes(left, top, plot_w, plot_h, axis_top, step)
     for i, (lab, val) in enumerate(values):
-        h = 0 if axis_top <= 0 else min(plot_h, plot_h * val / axis_top)
         x = left + gap + i * (bw + gap)
-        y = top + plot_h - h
-        parts.append(_rect(x, y, bw, h, fill=CHART[i % len(CHART)], sw=1.05))
-        num = str(int(val)) if val == int(val) else _n(val)
-        # 막대 안쪽이면 격자선과 안 겹친다. 짧은 막대만 위에 둔다.
-        ny = y + 14 if h >= 24 else y - 12
-        parts.append(_text(x + bw / 2, ny, num, size=16))
+        if val is None:
+            # 지워진 막대 — **값 축 전체**를 점선으로 두른다. 어떤 눈금에도 안 걸리므로
+            # 그림이 답을 흘리지 않는다(D-66 ⑺). 항목마다 늘 같은 기하다.
+            parts.append(_rect(x, top, bw, plot_h, fill="none", sw=1.05, dash=UNKNOWN_DASH))
+            parts.append(_text(x + bw / 2, top + plot_h / 2, "?", size=16))
+        else:
+            h = 0 if axis_top <= 0 else min(plot_h, plot_h * val / axis_top)
+            y = top + plot_h - h
+            # 0 은 정당한 자료다. rect 를 **안 그린다** — 높이 0 은 정제기가 막는다
+            # (`figure_quality` 의 「height must be positive」). 이름표 「0」은 그린다.
+            if h > 0:
+                parts.append(_rect(x, y, bw, h, fill=CHART[i % len(CHART)], sw=1.05))
+            num = str(int(val)) if val == int(val) else _n(val)
+            # 막대 안쪽이면 격자선과 안 겹친다. 짧은 막대만 위에 둔다.
+            ny = y + 14 if h >= 24 else y - 12
+            parts.append(_text(x + bw / 2, ny, num, size=16))
         parts.append(_text(x + bw / 2, top + plot_h + 16, lab, size=13))
     parts.append(_unit_label(left, top, str(spec.get("yLabel", ""))))
     parts.append(_chart_title(title, left + plot_w / 2, plot_w, y=18.0))
@@ -602,7 +667,7 @@ def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
 
 def _line_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
     values = _chart_values(spec["values"], "values")
-    data_max = max((v for _, v in values), default=0.0)
+    data_max = max(v for _, v in values if v is not None)
     y_max = _num(spec.get("yMax", data_max or 1), "yMax", 1, 10000)
     axis_top, step = _axis_top(y_max, data_max, _y_step_spec(spec))
     n = len(values)
