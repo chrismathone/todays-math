@@ -403,6 +403,7 @@ function isSquare(g: { pts: XY[] }): boolean {
 
 const PLANE = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"] as const;
 const DIVISION = ["1-3-1", "1-3-2", "1-3-3", "1-3-4"] as const;
+const MULT = ["1-4-1", "1-4-2", "1-4-3", "1-4-4", "1-4-5"] as const;
 
 function planeUnit(code: string) {
   return elementaryUnits().find(
@@ -717,8 +718,8 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     // 같은 발문을 내는 것을 판정기가 잡았는데, 나머지 셋도 같은 자리가 있었고
     // 씨앗이 안 맞아 안 걸렸을 뿐이다 — 여기서 씨앗을 넓혀 잠근다.
     const bad: string[] = [];
-    // 1-1(계산)·1-3(나눗셈)까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
-    for (const code of [...CODES, ...PLANE, ...DIVISION]) {
+    // 1-1(계산)·1-3(나눗셈)·1-4(곱셈)까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
+    for (const code of [...CODES, ...PLANE, ...DIVISION, ...MULT]) {
       for (const seed of SEEDS) {
         const plain = generateElementaryProblem(planeUnit(code), seed).content;
         const seen = new Map<string, string>();
@@ -915,6 +916,14 @@ describe("[초3 4단] 1-3 나눗셈 — 네 소단원", () => {
     }
   });
 
+  it("1-3-2 «표준» 발문에 수식 뒤 조사가 없다 — «$…$ 를» 소수리(2026-08-23) 잠금", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(planeUnit("1-3-2"), seed);
+      expect(p.content, `seed ${seed}: ${p.content}`).not.toMatch(risk);
+    }
+  });
+
   it("모든 갈래의 답이 $1$ 이상이다 — 「남은 것 $0$개」류 함정을 내지 않는다", () => {
     for (const code of DIVISION) {
       for (const tier of ELEM_TIERS) {
@@ -1059,6 +1068,239 @@ describe("[초3 4단] 1-3 나눗셈 — 네 소단원", () => {
                 `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
               );
             if (risk.test(text) && !/\\mathrm/.test(text)) {
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+/**
+ * 초3 1-4 곱셈 4단 확대 (D-72) — 다섯 소단원 전부, «표준»까지 같은 잣대로.
+ *
+ * 소단원 이름의 약속: 1-4-1 은 (몇십)×(몇), 1-4-2~5 는 올림 종류가 서로 **배타**다
+ * («둘 다» 소단원이 따로 있으므로 「십의 자리에서」는 «십의 자리에서만»이다).
+ * 수리 전 실측(씨앗 200): 1-4-2 「올림이 없는」의 75건이 올림($32\times5=160$),
+ * 1-4-3 의 52건·1-4-4 의 82건이 «둘 다»였다 — 판정기에 1-4 조건이 없어 침묵했다.
+ * 올림 판정은 여기 다시 적는다 — 생성기 풀을 다시 부르면 동어반복이다.
+ */
+function mulClassOf(a: number, b: number): "none" | "ones" | "tens" | "both" {
+  const oc = (a % 10) * b >= 10;
+  const tc = Math.floor(a / 10) * b + Math.floor(((a % 10) * b) / 10) >= 10;
+  return oc ? (tc ? "both" : "ones") : tc ? "tens" : "none";
+}
+
+const MUL_CLASS: Record<string, "none" | "ones" | "tens" | "both"> = {
+  "1-4-2": "none",
+  "1-4-3": "tens",
+  "1-4-4": "ones",
+  "1-4-5": "both",
+};
+
+describe("[초3 4단] 1-4 곱셈 — 다섯 소단원 (표준 포함)", () => {
+  it("다섯 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of MULT) {
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of MULT) {
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 4242, tier);
+        const b = generateElementaryProblem(planeUnit(code), 4242, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+    }
+  });
+
+  it("모든 곱셈이 소단원 약속대로다 — 몇십·배타적 올림 종류, «표준»까지", () => {
+    const bad: string[] = [];
+    for (const code of MULT) {
+      for (const tier of [undefined, ...ELEM_TIERS]) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const muls = divSteps(p.solution).filter((s) => s.op === "×");
+          if (muls.length === 0) {
+            bad.push(
+              `${code} ${tier ?? "표준"} seed ${seed}: 곱셈 스텝이 없다`,
+            );
+            continue;
+          }
+          for (const s of muls) {
+            if (s.a * s.b !== s.c)
+              bad.push(
+                `${code} ${tier ?? "표준"} seed ${seed}: ${s.a}×${s.b}=${s.c} (참 ${s.a * s.b})`,
+              );
+            if (s.b < 2 || s.b > 9)
+              bad.push(
+                `${code} ${tier ?? "표준"} seed ${seed}: 곱하는 수 ${s.b}`,
+              );
+            if (code === "1-4-1") {
+              if (s.a % 10 !== 0 || s.a < 20 || s.a > 90)
+                bad.push(
+                  `${code} ${tier ?? "표준"} seed ${seed}: ${s.a} — 몇십이 아니다`,
+                );
+            } else {
+              if (s.a < 11 || s.a > 99 || s.a % 10 === 0)
+                bad.push(
+                  `${code} ${tier ?? "표준"} seed ${seed}: ${s.a} — 몇십몇이 아니다`,
+                );
+              else if (mulClassOf(s.a, s.b) !== MUL_CLASS[code])
+                bad.push(
+                  `${code} ${tier ?? "표준"} seed ${seed}: ${s.a}×${s.b} — 올림 ${mulClassOf(s.a, s.b)} (약속 ${MUL_CLASS[code]})`,
+                );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("해설의 모든 셈이 맞고, 정답은 마지막 스텝의 값과 같다", () => {
+    for (const code of MULT) {
+      for (const tier of [undefined, ...ELEM_TIERS]) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const st = divSteps(p.solution);
+          expect(
+            st.length,
+            `${code} ${tier ?? "표준"} seed ${seed}: 식이 없다`,
+          ).toBeGreaterThan(0);
+          for (const s of st) {
+            const want =
+              s.op === "+"
+                ? s.a + s.b
+                : s.op === "-"
+                  ? s.a - s.b
+                  : s.op === "×"
+                    ? s.a * s.b
+                    : s.a / s.b;
+            expect(
+              want,
+              `${code} ${tier ?? "표준"} seed ${seed}: ${s.a}${s.op}${s.b}`,
+            ).toBe(s.c);
+          }
+          expect(
+            answerOf(p.answer),
+            `${code} ${tier ?? "표준"} seed ${seed}: ${p.solution}`,
+          ).toBe(st[st.length - 1]!.c);
+        }
+      }
+    }
+  });
+
+  it("D-72 축 — 1단 곱셈 한 번 · 2단 문장 · 3단 곱하고 더하거나 덜기 · 4단 되짚고 곱하기", () => {
+    for (const code of MULT) {
+      for (const seed of SEEDS) {
+        const calc = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "연산").solution,
+        );
+        expect(calc.length, `${code} 연산 seed ${seed}`).toBe(1);
+        expect(calc[0]!.op, `${code} 연산 seed ${seed}`).toBe("×");
+
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        expect(word.content, `${code} 기본 seed ${seed}`).not.toMatch(
+          /\times|\div|\square/,
+        );
+        expect(
+          word.content.length,
+          `${code} 기본 seed ${seed}`,
+        ).toBeGreaterThan(20);
+
+        const apply = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "응용").solution,
+        );
+        expect(
+          apply.length,
+          `${code} 응용 seed ${seed}`,
+        ).toBeGreaterThanOrEqual(2);
+        expect(apply[0]!.op, `${code} 응용 seed ${seed}`).toBe("×");
+        expect(
+          apply
+            .slice(1)
+            .some((t) => t.a === apply[0]!.c || t.b === apply[0]!.c),
+          `${code} 응용 seed ${seed}: 곱이 다음 셈으로 안 이어진다`,
+        ).toBe(true);
+
+        // 4단: 먼저 ±로 어떤 수를 되짚고, **마지막**에 곱한다.
+        const deep = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "심화").solution,
+        );
+        expect(
+          deep.some((s) => s.op === "+" || s.op === "-"),
+          `${code} 심화 seed ${seed}: 되짚는 셈이 없다`,
+        ).toBe(true);
+        expect(deep[deep.length - 1]!.op, `${code} 심화 seed ${seed}`).toBe(
+          "×",
+        );
+      }
+    }
+  });
+
+  it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
+    for (const code of MULT) {
+      for (const tier of ELEM_TIERS) {
+        const stems = new Set<string>();
+        for (let seed = 0; seed < 240; seed += 1) {
+          stems.add(
+            generateElementaryProblem(
+              planeUnit(code),
+              seed,
+              tier,
+            ).content.replace(/\$[^$]*\$/g, "#"),
+          );
+        }
+        expect(stems.size, `${code} ${tier} 변형 공간`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("네 갈래 발문 틀이 서로 갈린다", () => {
+    for (const code of MULT) {
+      for (const seed of SEEDS) {
+        const stems = ELEM_TIERS.map((t) =>
+          generateElementaryProblem(planeUnit(code), seed, t).content.replace(
+            /\$[^$]*\$/g,
+            "#",
+          ),
+        );
+        expect(
+          new Set(stems).size,
+          `${code} seed ${seed}: ${stems.join(" | ")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("모든 갈래의 수가 KaTeX 안에 있고, 수 뒤에 조사를 붙이지 않는다", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    const bad: string[] = [];
+    for (const code of MULT) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const outside = text.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (outside)
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
+              );
+            if (risk.test(text) && !/\mathrm/.test(text)) {
               bad.push(
                 `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
               );

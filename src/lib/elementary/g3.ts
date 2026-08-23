@@ -640,7 +640,9 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("관계")) {
     return make(
       unit,
-      `$${a}\\div${b}=\\square$ 를 곱셈식으로 나타내면 $${b}\\times\\square=${a}$ 입니다. $\\square$ 에 알맞은 수를 쓰시오.`,
+      // «$…$ 를» 처럼 수식 바로 뒤에 조사를 붙이지 않는다(갈래 쪽 조사 규칙과 같은 표기) —
+      // 식을 아랫줄로 내려 「다음 나눗셈식을」로 받는다.
+      `다음 나눗셈식을 곱셈식으로 나타내면 $${b}\\times\\square=${a}$ 입니다. $\\square$ 에 알맞은 수를 쓰시오.\n\n$${a}\\div${b}=\\square$`,
       n(q),
       `곱셈식과 나눗셈식은 같은 수를 씁니다. $${b}\\times${q}=${a}$ 이므로 $\\square$ 에 알맞은 수는 ${n(q)} 입니다.`,
     );
@@ -661,11 +663,70 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * (몇십몇)×(몇) 의 올림 종류별 전수 열거 풀 — 1-4-2~5 는 서로 **배타**다(«십의 자리와
+ * 일의 자리» 소단원이 따로 있으므로 「십의 자리에서」는 «십의 자리에서만»이다).
+ *
+ * ⚠️ 예전에는 십·일의 자리를 손 범위(1..3·5..9)로 갈랐는데 b≤5 와 곱하면 경계가 샌다 —
+ * 실측(수리 전, 씨앗 200): 1-4-2 「올림이 **없는**」의 75건이 올림($32\times5=160$),
+ * 1-4-3 의 52건·1-4-4 의 82건이 «둘 다»였다. 판정기(section-conditions)에 1-4 조건이
+ * 없어 구조적으로 0이었다. 가드로 거르지 않고 **뽑는 풀 자체**를 조건으로 만든다.
+ * b 는 예전 그대로 2..5 다(원장님 「숫자 규모를 키우는 축은 아님」).
+ */
+function mulPools(): Record<
+  "none" | "ones" | "tens" | "both",
+  { t: number; o: number; b: number }[]
+> {
+  const pools: Record<
+    "none" | "ones" | "tens" | "both",
+    { t: number; o: number; b: number }[]
+  > = { none: [], ones: [], tens: [], both: [] };
+  for (let t = 1; t <= 9; t += 1) {
+    for (let o = 1; o <= 9; o += 1) {
+      for (let b = 2; b <= 5; b += 1) {
+        const onesCarry = o * b >= 10;
+        const tensCarry = t * b + Math.floor((o * b) / 10) >= 10;
+        const key = onesCarry
+          ? tensCarry
+            ? "both"
+            : "ones"
+          : tensCarry
+            ? "tens"
+            : "none";
+        pools[key].push({ t, o, b });
+      }
+    }
+  }
+  for (const key of ["none", "ones", "tens", "both"] as const) {
+    if (pools[key].length === 0)
+      throw new Error(`곱셈 풀이 비었습니다: ${key}`);
+  }
+  return pools;
+}
+
+const MUL_POOLS = mulPools();
+
+/** 소단원 이름 → 그 이름이 약속한 곱셈 한 벌. 표준과 갈래가 **이 함수 하나**로 뽑는다. */
+function mulCaseOf(section: string, rng: Rng): { a: number; b: number } {
+  if (section.includes("(몇십)×(몇)")) {
+    return { a: intBetween(rng, 2, 9) * 10, b: intBetween(rng, 2, 9) };
+  }
+  const pool =
+    section.includes("일의 자리") && section.includes("십의 자리")
+      ? MUL_POOLS.both
+      : section.includes("일의 자리")
+        ? MUL_POOLS.ones
+        : section.includes("십의 자리")
+          ? MUL_POOLS.tens
+          : MUL_POOLS.none;
+  const { t, o, b } = pick(rng, pool);
+  return { a: t * 10 + o, b };
+}
+
 function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("(몇십)×(몇)")) {
-    const a = intBetween(rng, 2, 9) * 10;
-    const b = intBetween(rng, 2, 9);
+    const { a, b } = mulCaseOf(s, rng);
     return make(
       unit,
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -673,23 +734,7 @@ function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
       expr(`${a}\\times${b}=${a * b}`),
     );
   }
-  let tens = intBetween(rng, 1, 8);
-  let ones = intBetween(rng, 1, 8);
-  const b = intBetween(rng, 2, 5);
-  if (s.includes("일의 자리") && s.includes("십의 자리")) {
-    ones = intBetween(rng, 5, 9);
-    tens = intBetween(rng, 5, 9);
-  } else if (s.includes("일의 자리")) {
-    ones = intBetween(rng, 5, 9);
-    tens = intBetween(rng, 1, 3);
-  } else if (s.includes("십의 자리")) {
-    ones = intBetween(rng, 1, 3);
-    tens = intBetween(rng, 5, 9);
-  } else {
-    ones = intBetween(rng, 1, 3);
-    tens = intBetween(rng, 1, 3);
-  }
-  const a = tens * 10 + ones;
+  const { a, b } = mulCaseOf(s, rng);
   return make(
     unit,
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -3035,6 +3080,121 @@ function div134Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 1-4 곱셈 (D-72 확대) ────────────────────────────────────────────────
+//
+// 다섯 소단원이 **같은 네 갈래 함수**를 쓴다 — 수의 약속(몇십·올림 종류)은 `mulCaseOf` 가
+// 소단원 이름에서 정하므로, 소단원마다 함수를 두면 같은 코드가 다섯 벌 된다.
+// 축(D-72): 1단 식 그대로 · 2단 «씩» 문장 · 3단 곱하고 더하거나 덜기(두 단계) ·
+// 4단 «잘못 계산» 역산(더한·뺀 두 방향 — 되짚은 어떤 수가 다시 소단원 풀의 수다).
+
+/** 1단 — 식 그대로. 표준(「다음을 계산하시오」+세로셈 그림)과 틀을 갈라 둔다. */
+function mul14Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const stem = pick(rng, [
+    `곱을 구하시오.\n\n${eq}`,
+    `${eq} 의 값을 쓰시오.`,
+    `${expr(`\\square`)} 에 알맞은 수를 쓰시오.\n\n${eqBox}`,
+    `곱셈 ${eq} 의 값을 구하시오.`,
+    `다음 곱셈을 하시오.\n\n${eqBox}`,
+    `곱셈식 ${eqBox} 에서 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `다음 곱셈의 값을 쓰시오.\n\n${eq}`,
+    `빈칸에 알맞은 수를 구하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — «씩» 문장. 식은 학생이 세운다(발문에 곱셈 기호가 없다). */
+function mul14Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `한 상자에 구슬이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 들어 있는 구슬은 모두 몇 개인지 쓰시오.`,
+    `학생 한 명이 색종이를 ${n(a)}장씩 가졌습니다. ${n(b)}명이 가진 색종이는 모두 몇 장인지 쓰시오.`,
+    `하루에 동화책을 ${n(a)}쪽씩 읽습니다. ${n(b)}일 동안 읽는 쪽수는 모두 몇 쪽인지 쓰시오.`,
+    `한 봉지에 사탕이 ${n(a)}개씩 담겨 있습니다. ${n(b)}봉지에 담긴 사탕은 모두 몇 개인지 쓰시오.`,
+    `꽃 한 다발은 ${n(a)}송이입니다. ${n(b)}다발의 꽃은 모두 몇 송이인지 쓰시오.`,
+    `한 줄에 의자가 ${n(a)}개씩 놓여 있습니다. ${n(b)}줄에 놓인 의자는 모두 몇 개인지 쓰시오.`,
+    `클립 한 통에 클립이 ${n(a)}개씩 들어 있습니다. ${n(b)}통에 든 클립은 모두 몇 개인지 쓰시오.`,
+    `버스 한 대에 ${n(a)}명씩 탈 수 있습니다. 버스 ${n(b)}대에 탈 수 있는 사람은 모두 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `${n(a)}씩 ${n(b)}묶음이므로 곱셈으로 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 낱개를 더하거나 덜어낸다(두 단계). */
+function mul14Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const c = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `귤이 ${n(a)}개씩 든 상자가 ${n(b)}상자 있고, 낱개 귤이 ${n(c)}개 더 있습니다. 귤은 모두 몇 개인지 쓰시오.`,
+      `색종이를 ${n(a)}장씩 ${n(b)}묶음 사고, 따로 ${n(c)}장을 더 샀습니다. 색종이는 모두 몇 장인지 쓰시오.`,
+      `우표를 ${n(a)}장씩 ${n(b)}줄로 붙이고 ${n(c)}장을 더 붙였습니다. 우표는 모두 몇 장인지 쓰시오.`,
+      `구슬을 ${n(a)}개씩 ${n(b)}주머니에 담고 ${n(c)}개를 주머니 밖에 두었습니다. 구슬은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `사탕을 ${n(a)}개씩 ${n(b)}봉지 만들었습니다. 그중 ${n(c)}개를 먹으면 남는 사탕은 몇 개인지 쓰시오.`,
+    `연필이 ${n(a)}자루씩 ${n(b)}상자 있습니다. ${n(c)}자루를 나누어 주면 남는 연필은 몇 자루인지 쓰시오.`,
+    `쿠키를 ${n(a)}개씩 ${n(b)}판 구웠습니다. ${n(c)}개를 맛보면 남는 쿠키는 몇 개인지 쓰시오.`,
+    `밤을 ${n(a)}개씩 ${n(b)}봉지에 담았다가 ${n(c)}개를 옆집에 주었습니다. 남은 밤은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `${expr(`${a}\\times${b}=${p}`)} 입니다. 덜어낸 것을 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — «잘못 계산» 역산. 배(倍) 대신 더하거나 뺀 결과에서 어떤 수를 되짚는다. */
+function mul14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = a + b;
+    const stem = pick(rng, [
+      `어떤 수를 ${n(b)}배 하여야 할 것을 잘못하여 ${n(b)} 만큼 더했더니 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+      `어떤 수에 ${n(b)} 만큼 더한 결과가 ${n(x)} 입니다. 이 어떤 수를 ${n(b)}배 하면 얼마인지 쓰시오.`,
+      `어떤 수를 ${n(b)}배 하여 구해야 하는데, 잘못하여 ${n(b)} 만큼 더했더니 ${n(x)} 입니다. 바르게 ${n(b)}배 한 값을 쓰시오.`,
+      `곱하는 수와 더하는 수를 헷갈려, 어떤 수에 ${n(b)} 만큼 더한 결과 ${n(x)} 만 얻었습니다. 원래 구하려던 ${n(b)}배 한 값을 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p),
+      `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}-${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+    );
+  }
+  const x = a - b;
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)}배 하여야 할 것을 잘못하여 ${n(b)} 만큼 뺐더니 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+    `어떤 수에서 ${n(b)} 만큼 뺀 결과가 ${n(x)} 입니다. 이 어떤 수를 ${n(b)}배 하면 얼마인지 쓰시오.`,
+    `어떤 수를 ${n(b)}배 하는 대신 ${n(b)} 만큼 빼는 실수를 해서 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+    `어떤 수에서 ${n(b)} 만큼 뺐더니 ${n(x)} 만 남았습니다. 이 어떤 수를 ${n(b)}배 한 값을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -3093,6 +3253,36 @@ export const G3_TIERS: ElemTierMap = {
     기본: div134Word,
     응용: div134Apply,
     심화: div134Deep,
+  },
+  "초3|1-4-1": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-2": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-3": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-4": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-5": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,
