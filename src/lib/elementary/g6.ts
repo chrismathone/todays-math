@@ -6042,6 +6042,466 @@ function circAreaDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 11차분) — 초6 `2-3 공간과 입체` (6소단원 · 24갈래) ──
+//
+// ⑴ **그림은 `iso`·`top` 만 쓴다.** `views` 는 iso·top·front·side 넷을 받지만
+//    앞·옆은 **렌더로 확인하지 못했다**(elem-figures 세션이 그 파일에 변이 중이었다).
+//    「스펙 모양을 아는 것」과 「도는 것을 본 것」은 다르다 — 표준이 이미 쓰는 둘만 쓴다.
+//    앞·옆을 쓰려면 **먼저 한 장 렌더해 보고** 그때 넓힌다.
+// ⑵ **도형에 수를 적지 않는다.** `markedShape` 에 값을 넣으면 그린 모양이 라벨과
+//    무관하게 고정이라 **그림이 값을 배반한다**(elem-figures 실측). `stackCubes` 의
+//    `top` 이 칸마다 층수를 찍는 것은 엔진이 스펙에서 **직접** 그리는 것이라 안전하다.
+// ⑶ 소단원 여섯이 **같은 물건**을 본다. 그래서 갈래를 가르는 것은 소재가 아니라
+//    **묻는 값**이다 — 빈 칸 · 총 개수 · 층별 · 직육면체 채우기 · 이어 붙이기.
+// ⑷ 역산 갈래는 **그림 없이 말로** 조건을 준다. 그림이 답을 그대로 보여 주면
+//    되짚을 것이 없어진다(R6 과 같은 태도).
+
+/** 위에서 본 모양에 **빈 칸이 하나는 있게** 만든다 — 「빈 칸 수」가 늘 $0$ 이면 축이 죽는다. */
+function withHole(h: number[][]): number[][] {
+  const rows = h.length;
+  const cols = h[0]!.length;
+  if (h.flat().some((v) => v === 0)) return h;
+  for (let y = 0; y < rows; y += 1) {
+    for (let x = 0; x < cols; x += 1) {
+      // 그 줄·칸에 다른 쌓기나무가 남아야 격자 크기가 발문과 어긋나지 않는다.
+      const rowLeft = h[y]!.filter((v, i) => i !== x && v > 0).length;
+      const colLeft = h.filter((r, j) => j !== y && r[x]! > 0).length;
+      if (rowLeft > 0 && colLeft > 0) {
+        const out = h.map((r) => [...r]);
+        out[y]![x] = 0;
+        return out;
+      }
+    }
+  }
+  return h;
+}
+
+/** 2-3 갈래가 함께 쓰는 바닥·높이. 표준과 같은 규칙(4×4 는 엔진 한도에 붙어 뺀다). */
+function stackBase(rng: Rng): {
+  cols: number;
+  rows: number;
+  h: number[][];
+  grid: string;
+} {
+  const cols = intBetween(rng, 2, 4);
+  const rows = cols === 4 ? intBetween(rng, 2, 3) : intBetween(rng, 2, 4);
+  const h = heightGrid(rng, cols, rows);
+  return { cols, rows, h, grid: `가로 ${num(cols)}칸, 세로 ${num(rows)}칸` };
+}
+
+/** 2-3 기본 갈래의 실생활 소재. */
+const STACK_PLACES = ["창고", "전시대", "놀이방", "미술실"] as const;
+
+// ── 2-3-1 어느 방향에서 보았는지 알아보기 ──
+
+/** 연산 — 위에서 본 모양의 **빈 칸**을 센다. 절차 한 번. */
+function viewCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const h = withHole(b.h);
+  const filled = h.flat().filter((v) => v > 0).length;
+  const empty = b.cols * b.rows - filled;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 ` +
+      `쌓기나무가 놓이지 않은 칸은 몇 칸인가?`,
+    num(empty),
+    `바닥은 모두 ${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다. ` +
+      `쌓기나무가 놓인 칸이 ${num(filled)}칸이므로 ` +
+      `${expr(`${b.cols * b.rows}-${filled}=${empty}`)} 칸이 비어 있습니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["iso", "top"] }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 위에서 본 칸 수를 그림에서 읽는다. */
+function viewWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${place}에 상자를 ${b.grid} 바닥 위에 쌓아 두었습니다. 쌓은 모양이 다음과 같을 때 ` +
+      `위에서 내려다보면 상자가 보이는 칸은 몇 칸인가?`,
+    num(filled),
+    `위에서 내려다보면 상자가 놓인 자리마다 한 칸씩 보입니다. ` +
+      `놓인 자리가 ${num(filled)}곳이므로 ${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+
+/** 응용 — 두 걸음. 「두 층 이상인 칸」과 「한 층뿐인 칸」을 따로 세어 뺀다. */
+function viewApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat();
+  const tall = flat.filter((v) => v >= 2).length;
+  const one = flat.filter((v) => v === 1).length;
+  const gap = Math.abs(tall - one);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양을 위에서 본 것입니다. 각 칸의 수는 그 자리에 쌓은 층수입니다. ` +
+      `두 층 이상인 칸의 수와 한 층뿐인 칸의 수의 차는 몇 칸인가?`,
+    num(gap),
+    `두 층 이상인 칸은 ${num(tall)}칸, 한 층뿐인 칸은 ${num(one)}칸입니다. ` +
+      `${expr(`${Math.max(tall, one)}-${Math.min(tall, one)}=${gap}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+/**
+ * 심화 — 역산·조건 결합. **그림 없이** 말로 조건을 준다.
+ * 그림이 답을 그대로 보여 주면 되짚을 것이 없어진다.
+ */
+function viewDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cells = intBetween(rng, 4, 9);
+  const tall = intBetween(rng, 1, cells - 1);
+  return make(
+    unit,
+    `쌓기나무로 만든 모양을 위에서 보니 쌓기나무가 놓인 칸이 ${num(cells)}칸이고, ` +
+      `그중 ${num(tall)}칸은 두 층 이상입니다. 이 모양에 쓴 쌓기나무는 적어도 몇 개인가?`,
+    num(cells + tall),
+    `놓인 칸은 적어도 한 층씩이므로 ${num(cells)}개가 필요합니다. ` +
+      `두 층 이상인 ${num(tall)}칸에는 한 개씩 더 있어야 하므로 ` +
+      `${expr(`${cells}+${tall}=${cells + tall}`)} 개입니다.`,
+  );
+}
+
+// ── 2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1) ──
+
+/** 연산 — 겨냥도와 위에서 본 모양을 보고 센다. */
+function cubeOneCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat().filter((v) => v > 0);
+  const total = flat.reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 쌓기나무를 모두 몇 개 사용했는가?`,
+    num(total),
+    `자리마다 쌓은 층수를 모두 더합니다. ${expr(`${flat.join("+")}=${total}`)}`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 상자를 쌓아 두고 개수를 묻는다. */
+function cubeOneWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const flat = b.h.flat().filter((v) => v > 0);
+  const total = flat.reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${place}에 똑같은 상자를 ${b.grid} 바닥 위에 다음과 같이 쌓았습니다. ` +
+      `쌓아 둔 상자는 모두 몇 개인가?`,
+    num(total),
+    `위에서 본 모양의 각 칸에 적힌 층수를 모두 더합니다. ${expr(`${flat.join("+")}=${total}`)}`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/**
+ * 응용 — 두 걸음. 쓴 개수를 **더해서** 구하고 가진 것에서 **뺀다**(쌍).
+ *
+ * ⚠️ 처음엔 「가장 높은 층수와 그 층에 놓인 개수」였다. 그것은 **읽기 둘**이지
+ * 걸음 둘이 아니다 — 해설에 등식이 하나도 없어 **같은 소단원의 기본(합)보다
+ * 가벼웠다.** 값 검산도 관문도 전부 초록이었고, 갈래 넷을 나란히 놓고 «걸음»을
+ * 세어서야 보였다. 「한 문항 안」만 보는 판정기는 이 부류를 구조적으로 못 본다.
+ */
+function cubeOneApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat().filter((v) => v > 0);
+  const total = flat.reduce((s, v) => s + v, 0);
+  const have = total + intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양을 위에서 본 것입니다. 각 칸의 수는 그 자리에 쌓은 층수입니다. ` +
+      `쌓기나무 ${num(have)}개로 이 모양을 만들었다면, 쓴 쌓기나무의 수와 남은 쌓기나무의 수를 ` +
+      `차례로 쓰시오.`,
+    expr(`${total},\\ ${have - total}`),
+    `칸에 적힌 수를 모두 더하면 ${expr(`${flat.join("+")}=${total}`)} 개를 썼습니다. ` +
+      `${expr(`${have}-${total}=${have - total}`)} 개가 남습니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+/** 심화 — 역산. 붙여 만든 전체에서 **한 모양의 개수**를 되짚는다(그림 없음). */
+function cubeOneDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const one = intBetween(rng, 5, 14);
+  const copies = intBetween(rng, 3, 6);
+  return make(
+    unit,
+    `똑같은 모양 ${num(copies)}개를 만드는 데 쌓기나무를 모두 ${num(one * copies)}개 사용했습니다. ` +
+      `한 모양에 사용한 쌓기나무는 몇 개인가?`,
+    num(one),
+    `모양 ${num(copies)}개에 쓴 쌓기나무를 똑같이 나눕니다. ` +
+      `${expr(`${one * copies}\\div${copies}=${one}`)} 개입니다.`,
+  );
+}
+
+// ── 2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2) ──
+
+/** 연산 — 위에서 본 모양의 수만 보고 센다. */
+function cubeTwoCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat().filter((v) => v > 0);
+  const total = flat.reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양을 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
+      `쌓기나무는 모두 몇 개인가?`,
+    num(total),
+    `칸에 적힌 수가 그 자리에 쌓은 쌓기나무의 개수입니다. ${expr(`${flat.join("+")}=${total}`)}`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 가장 높이 쌓은 자리의 층수를 읽는다. */
+function cubeTwoWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const maxH = Math.max(...b.h.flat());
+  return make(
+    unit,
+    `${place}에 상자를 ${b.grid} 바닥 위에 쌓고, 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
+      `가장 높이 쌓은 자리는 몇 층인가?`,
+    num(maxH),
+    `칸에 적힌 수 중 가장 큰 수가 가장 높이 쌓은 층수입니다. ${num(maxH)}층입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+/** 응용 — 두 걸음. **두 층 이상인 자리에만** 놓인 쌓기나무를 센다. */
+function cubeTwoApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const tallCells = b.h.flat().filter((v) => v >= 2);
+  const sum = tallCells.reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양을 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
+      `두 층 이상 쌓은 자리에 놓인 쌓기나무는 모두 몇 개인가?`,
+    num(sum),
+    `두 층 이상인 자리는 ${num(tallCells.length)}곳입니다. ` +
+      `그 자리에 놓인 쌓기나무를 모두 더하면 ${expr(`${tallCells.join("+")}=${sum}`)} 개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+/** 심화 — 역산·조건 결합. 합과 칸 수만으로 **두 층 이상인 칸의 최대 수**를 되짚는다. */
+function cubeTwoDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cells = intBetween(rng, 4, 8);
+  const extra = intBetween(rng, 1, cells - 1);
+  return make(
+    unit,
+    `위에서 본 모양의 칸이 ${num(cells)}칸이고, 칸에 적힌 수를 모두 더하니 ` +
+      `${num(cells + extra)}이었습니다. 두 층 이상인 칸은 많아야 몇 칸인가?`,
+    num(extra),
+    `모든 칸이 적어도 한 층이므로 ${num(cells)}개는 반드시 쓰입니다. ` +
+      `남는 것은 ${expr(`${cells + extra}-${cells}=${extra}`)} 개이고, ` +
+      `한 칸에 하나씩만 더 얹을 때 두 층 이상인 칸이 가장 많아지므로 ${num(extra)}칸입니다.`,
+  );
+}
+
+// ── 2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3) ──
+
+/** 연산 — **1층**에 놓인 쌓기나무를 센다(표준은 2·3층을 묻는다). */
+function cubeLayerCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const first = b.h.flat().filter((v) => v >= 1).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양입니다. ${num(1)}층에 놓인 쌓기나무는 몇 개인가?`,
+    num(first),
+    `${num(1)}층에는 쌓기나무가 놓인 자리마다 하나씩 있습니다. ` +
+      `놓인 자리가 ${num(first)}곳이므로 ${num(first)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 2층에 놓인 개수를 센다. */
+function cubeLayerWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const second = b.h.flat().filter((v) => v >= 2).length;
+  return make(
+    unit,
+    `${place}에 상자를 쌓았습니다. 쌓은 모양이 다음과 같을 때 ${num(2)}층에 놓인 상자는 몇 개인가?`,
+    num(second),
+    `${num(2)}층에 상자가 있으려면 그 자리가 ${num(2)}층 이상이어야 합니다. ` +
+      `그런 자리가 ${num(second)}곳이므로 ${num(second)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 응용 — 두 걸음. 1층과 2층의 개수를 따로 세어 뺀다. */
+function cubeLayerApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat();
+  const first = flat.filter((v) => v >= 1).length;
+  const second = flat.filter((v) => v >= 2).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓은 모양입니다. ${num(1)}층에 놓인 쌓기나무는 ` +
+      `${num(2)}층에 놓인 쌓기나무보다 몇 개 더 많은가?`,
+    num(first - second),
+    `${num(1)}층은 ${num(first)}개, ${num(2)}층은 ${num(second)}개입니다. ` +
+      `${expr(`${first}-${second}=${first - second}`)} 개 더 많습니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 심화 — 역산. 층별 개수만 주고 전체를 되짚는다(그림 없음). */
+function cubeLayerDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const third = intBetween(rng, 1, 3);
+  const second = third + intBetween(rng, 1, 4);
+  const first = second + intBetween(rng, 1, 4);
+  const total = first + second + third;
+  return make(
+    unit,
+    `쌓기나무로 만든 모양의 ${num(1)}층에는 ${num(first)}개, ${num(2)}층에는 ${num(second)}개, ` +
+      `${num(3)}층에는 ${num(third)}개가 놓여 있습니다. 사용한 쌓기나무는 모두 몇 개인가?`,
+    num(total),
+    `층마다 놓인 쌓기나무를 모두 더합니다. ${expr(`${first}+${second}+${third}=${total}`)}`,
+  );
+}
+
+// ── 2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4) ──
+
+/** 연산 — 직육면체 모양에 드는 쌓기나무. 세 수를 곱한다(그림 없음). */
+function cubeBoxCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 5);
+  const r = intBetween(rng, 2, 5);
+  const t = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `쌓기나무를 쌓아 가로 ${num(c)}칸, 세로 ${num(r)}칸, 높이 ${num(t)}층인 ` +
+      `직육면체 모양을 만들려고 합니다. 쌓기나무는 모두 몇 개 필요한가?`,
+    num(c * r * t),
+    `가로·세로·높이의 칸 수를 모두 곱합니다. ${expr(`${c}\\times${r}\\times${t}=${c * r * t}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 지금 쌓은 것에서 **더 필요한** 개수를 구한다. */
+function cubeBoxWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const flat = b.h.flat();
+  const total = flat.reduce((s, v) => s + v, 0);
+  const maxH = Math.max(...flat);
+  const target = b.cols * b.rows * maxH === total ? maxH + 1 : maxH;
+  const box = b.cols * b.rows * target;
+  return make(
+    unit,
+    `${place}에 상자를 ${b.grid} 바닥 위에 쌓았습니다. 여기에 상자를 더 쌓아 ` +
+      `${b.grid}, 높이 ${num(target)}층인 직육면체 모양을 만들려면 상자가 몇 개 더 필요한가?`,
+    num(box - total),
+    `직육면체 모양에는 ${expr(`${b.cols}\\times${b.rows}\\times${target}=${box}`)} 개가 듭니다. ` +
+      `지금 ${num(total)}개를 썼으므로 ${expr(`${box}-${total}=${box - total}`)} 개가 더 필요합니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 응용 — 두 걸음. 더 필요한 개수와 **다 만든 뒤의 전체**를 차례로 답한다(쌍). */
+function cubeBoxApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const flat = b.h.flat();
+  const total = flat.reduce((s, v) => s + v, 0);
+  const maxH = Math.max(...flat);
+  const target = b.cols * b.rows * maxH === total ? maxH + 1 : maxH;
+  const box = b.cols * b.rows * target;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. ${b.grid}, 높이 ${num(target)}층인 직육면체 모양을 ` +
+      `만들려고 합니다. 더 필요한 쌓기나무의 수와 다 만들었을 때 쓴 쌓기나무의 수를 차례로 쓰시오.`,
+    expr(`${box - total},\\ ${box}`),
+    `직육면체 모양에는 ${expr(`${b.cols}\\times${b.rows}\\times${target}=${box}`)} 개가 듭니다. ` +
+      `지금 ${num(total)}개를 썼으므로 ${expr(`${box}-${total}=${box - total}`)} 개가 더 필요하고, ` +
+      `다 만들면 ${num(box)}개를 쓴 것입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 심화 — 역산. 다 만든 직육면체와 더 넣은 개수에서 **처음 개수**를 되짚는다(그림 없음). */
+function cubeBoxDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 5);
+  const r = intBetween(rng, 2, 5);
+  const t = intBetween(rng, 2, 4);
+  const box = c * r * t;
+  const added = intBetween(rng, 2, box - 2);
+  return make(
+    unit,
+    `쌓기나무를 ${num(added)}개 더 쌓았더니 가로 ${num(c)}칸, 세로 ${num(r)}칸, ` +
+      `높이 ${num(t)}층인 직육면체 모양이 되었습니다. 처음에 쌓여 있던 쌓기나무는 몇 개인가?`,
+    num(box - added),
+    `직육면체 모양에는 ${expr(`${c}\\times${r}\\times${t}=${box}`)} 개가 듭니다. ` +
+      `그중 ${num(added)}개를 나중에 넣었으므로 처음에는 ` +
+      `${expr(`${box}-${added}=${box - added}`)} 개였습니다.`,
+  );
+}
+
+// ── 2-3-6 여러 가지 모양 만들기 ──
+
+/** 연산 — 한 모양의 개수와 만들 개수를 주고 곱한다(그림 없음). */
+function cubeMakeCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const one = intBetween(rng, 4, 12);
+  const copies = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `쌓기나무 ${num(one)}개로 만든 모양이 있습니다. 똑같은 모양 ${num(copies)}개를 만들려면 ` +
+      `쌓기나무는 모두 몇 개 필요한가?`,
+    num(one * copies),
+    `한 모양에 드는 쌓기나무에 모양의 수를 곱합니다. ` +
+      `${expr(`${one}\\times${copies}=${one * copies}`)}`,
+  );
+}
+
+/** 기본 — 한 겹 문장제. 그림에서 한 모양의 개수를 먼저 읽는다. */
+function cubeMakeWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, STACK_PLACES);
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  const copies = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `${place}에서 ${b.grid} 바닥 위에 상자를 쌓아 만든 모양입니다. ` +
+      `이와 똑같은 모양을 ${num(copies)}개 만들려면 상자는 모두 몇 개 필요한가?`,
+    num(total * copies),
+    `한 모양에 쓴 쌓기나무는 ${num(total)}개입니다. ` +
+      `${expr(`${total}\\times${copies}=${total * copies}`)}`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 응용 — 두 걸음. 필요한 전체를 구하고 가진 것을 뺀다. */
+function cubeMakeApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  const copies = intBetween(rng, 2, 4);
+  const need = total * copies;
+  const have = intBetween(rng, 1, need - 1);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무로 만든 모양입니다. 이와 똑같은 모양을 ${num(copies)}개 만들려고 하는데 ` +
+      `쌓기나무가 ${num(have)}개 있습니다. 쌓기나무는 몇 개 더 필요한가?`,
+    num(need - have),
+    `한 모양에 ${num(total)}개가 드므로 ${num(copies)}개에는 ` +
+      `${expr(`${total}\\times${copies}=${need}`)} 개가 필요합니다. ` +
+      `${expr(`${need}-${have}=${need - have}`)} 개가 더 필요합니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+/** 심화 — 역산. 남은 것을 빼고 **몇 개를 만들었는지** 되짚는다(그림 없음). */
+function cubeMakeDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const one = intBetween(rng, 4, 12);
+  const copies = intBetween(rng, 3, 7);
+  const rest = intBetween(rng, 1, one - 1);
+  return make(
+    unit,
+    `쌓기나무 ${num(one)}개로 만드는 모양을 여러 개 만들었더니 쌓기나무 ` +
+      `${num(one * copies + rest)}개 중 ${num(rest)}개가 남았습니다. 만든 모양은 몇 개인가?`,
+    num(copies),
+    `모양을 만드는 데 쓴 쌓기나무는 ${expr(`${one * copies + rest}-${rest}=${one * copies}`)} 개입니다. ` +
+      `한 모양에 ${num(one)}개가 드므로 ${expr(`${one * copies}\\div${one}=${copies}`)} 개를 만들었습니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -6322,6 +6782,42 @@ export const G6_TIERS: ElemTierMap = {
     기본: circAreaWord,
     응용: circAreaApply,
     심화: circAreaDeep,
+  },
+  "초6|2-3-1": {
+    연산: viewCalc,
+    기본: viewWord,
+    응용: viewApply,
+    심화: viewDeep,
+  },
+  "초6|2-3-2": {
+    연산: cubeOneCalc,
+    기본: cubeOneWord,
+    응용: cubeOneApply,
+    심화: cubeOneDeep,
+  },
+  "초6|2-3-3": {
+    연산: cubeTwoCalc,
+    기본: cubeTwoWord,
+    응용: cubeTwoApply,
+    심화: cubeTwoDeep,
+  },
+  "초6|2-3-4": {
+    연산: cubeLayerCalc,
+    기본: cubeLayerWord,
+    응용: cubeLayerApply,
+    심화: cubeLayerDeep,
+  },
+  "초6|2-3-5": {
+    연산: cubeBoxCalc,
+    기본: cubeBoxWord,
+    응용: cubeBoxApply,
+    심화: cubeBoxDeep,
+  },
+  "초6|2-3-6": {
+    연산: cubeMakeCalc,
+    기본: cubeMakeWord,
+    응용: cubeMakeApply,
+    심화: cubeMakeDeep,
   },
 };
 

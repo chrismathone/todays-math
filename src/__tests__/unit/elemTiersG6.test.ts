@@ -3923,6 +3923,381 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 `2-3 공간과 입체` (D-72 확대 11차분 — 6소단원 · 24갈래)
+//
+// ⚠️ **이 단원은 정답의 근거가 발문이 아니라 «그림»에 있다.** 발문은 「가로 $3$칸,
+// 세로 $2$칸 바닥에 쌓은 모양입니다」까지만 말하고 **층수는 `figureSpec.voxels` 에만**
+// 있다. 그래서 이 시험은 발문이 아니라 **그림을 되읽어** 다시 센다.
+//
+// 발문만 보고 검산하면 이 단원에서 잴 수 있는 것이 거의 없다 — 그러면
+// 「값은 맞는데 그림이 배반한다」가 통째로 축 밖이 된다(이 저장소가 되풀이해 밟는 자리).
+// 되읽는 쪽을 골랐으므로 **그림이 곧 참**이고, 그림과 발문이 어긋나는 것은
+// 아래 「격자」 검사가 따로 잡는다. 둘이 서로의 사각지대를 덮는다.
+// ══════════════════════════════════════════════════════════════════════════
+
+const G6_23_CODES = [
+  "2-3-1",
+  "2-3-2",
+  "2-3-3",
+  "2-3-4",
+  "2-3-5",
+  "2-3-6",
+] as const;
+
+/** `voxels` 를 층수 격자로 되돌린다. 쌓기나무 그림이 아니면 `null`. */
+function gridOf(spec: Record<string, unknown> | null): number[][] | null {
+  if (!spec || spec.kind !== "stackCubes") return null;
+  const vox = spec.voxels as [number, number, number][] | undefined;
+  if (!Array.isArray(vox) || vox.length === 0) return null;
+  const cols = Math.max(...vox.map((v) => v[0])) + 1;
+  const rows = Math.max(...vox.map((v) => v[1])) + 1;
+  const h = Array.from({ length: rows }, () => Array<number>(cols).fill(0));
+  for (const [x, y, z] of vox) h[y]![x] = Math.max(h[y]![x]!, z + 1);
+  return h;
+}
+
+type T23 = { shape: "수" | "쌍"; terms: number[] };
+const one23 = (v: number): T23 => ({ shape: "수", terms: [v] });
+const pair23 = (a: number, b: number): T23 => ({ shape: "쌍", terms: [a, b] });
+
+/** 정답을 읽는다. `$7$` 은 수, `$3,\ 2$` 는 쌍. 그 밖이면 `null`(= 빨강). */
+function readAns23(ans: string): T23 | null {
+  const p = ans.match(/^\$(\d+),\\ (\d+)\$$/);
+  if (p) return pair23(Number(p[1]), Number(p[2]));
+  const s = ans.match(/^\$(\d+)\$$/);
+  return s ? one23(Number(s[1])) : null;
+}
+
+/**
+ * 갈래마다 **참**을 직접 만든다. 엔진 함수를 되부르지 않는다.
+ *
+ * 그림이 있는 갈래는 격자에서, 없는 갈래(역산 여섯 + `2-3-5 연산` + `2-3-6 연산`)는
+ * **발문의 수**에서 센다. 발문을 못 읽으면 `null` — 조용히 넘기지 않고 빨개진다.
+ */
+function truthOf23(
+  code: string,
+  tier: ElemTier,
+  q: string,
+  h: number[][] | null,
+): T23 | null {
+  const cell = h ? h.flat() : [];
+  const cols = h ? h[0]!.length : 0;
+  const rows = h ? h.length : 0;
+  const filled = cell.filter((v) => v > 0).length;
+  const total = cell.reduce((s, v) => s + v, 0);
+  const tallN = cell.filter((v) => v >= 2).length;
+  const oneN = cell.filter((v) => v === 1).length;
+  const maxH = cell.length > 0 ? Math.max(...cell) : 0;
+
+  /** 발문에서 수를 뽑는다. 안 맞으면 `null` 이 위로 올라가 빨개진다. */
+  const g = (re: RegExp): number[] | null => {
+    const m = q.match(re);
+    return m ? m.slice(1).map(Number) : null;
+  };
+  const need = (v: number[] | null): v is number[] => v !== null;
+
+  switch (`${code} ${tier}`) {
+    // ── 2-3-1 어느 방향에서 보았는지 ──
+    case "2-3-1 연산":
+      return h ? one23(cols * rows - filled) : null;
+    case "2-3-1 기본":
+      return h ? one23(filled) : null;
+    case "2-3-1 응용":
+      return h ? one23(Math.abs(tallN - oneN)) : null;
+    case "2-3-1 심화": {
+      const v = g(/놓인 칸이 \$(\d+)\$칸이고, 그중 \$(\d+)\$칸은 두 층 이상/);
+      return need(v) ? one23(v[0]! + v[1]!) : null;
+    }
+
+    // ── 2-3-2 개수 (1) ──
+    case "2-3-2 연산":
+    case "2-3-2 기본":
+      return h ? one23(total) : null;
+    case "2-3-2 응용": {
+      const v = g(/쌓기나무 \$(\d+)\$개로 이 모양을 만들었다면/);
+      return h && need(v) ? pair23(total, v[0]! - total) : null;
+    }
+    case "2-3-2 심화": {
+      const v = g(
+        /똑같은 모양 \$(\d+)\$개를 만드는 데 쌓기나무를 모두 \$(\d+)\$개/,
+      );
+      return need(v) && v[1]! % v[0]! === 0 ? one23(v[1]! / v[0]!) : null;
+    }
+
+    // ── 2-3-3 개수 (2) ──
+    case "2-3-3 연산":
+      return h ? one23(total) : null;
+    case "2-3-3 기본":
+      return h ? one23(maxH) : null;
+    case "2-3-3 응용":
+      return h
+        ? one23(cell.filter((v) => v >= 2).reduce((s, v) => s + v, 0))
+        : null;
+    case "2-3-3 심화": {
+      const v = g(/칸이 \$(\d+)\$칸이고, 칸에 적힌 수를 모두 더하니 \$(\d+)\$/);
+      return need(v) ? one23(v[1]! - v[0]!) : null;
+    }
+
+    // ── 2-3-4 개수 (3) — 층별 ──
+    case "2-3-4 연산":
+      return h ? one23(filled) : null;
+    case "2-3-4 기본":
+      return h ? one23(tallN) : null;
+    case "2-3-4 응용":
+      return h ? one23(filled - tallN) : null;
+    case "2-3-4 심화": {
+      const v = g(
+        /\$1\$층에는 \$(\d+)\$개, \$2\$층에는 \$(\d+)\$개, \$3\$층에는 \$(\d+)\$개/,
+      );
+      return need(v) ? one23(v[0]! + v[1]! + v[2]!) : null;
+    }
+
+    // ── 2-3-5 개수 (4) — 직육면체 채우기 ──
+    case "2-3-5 연산": {
+      const v = g(
+        /가로 \$(\d+)\$칸, 세로 \$(\d+)\$칸, 높이 \$(\d+)\$층인 직육면체/,
+      );
+      return need(v) ? one23(v[0]! * v[1]! * v[2]!) : null;
+    }
+    case "2-3-5 기본":
+    case "2-3-5 응용": {
+      const t = g(/높이 \$(\d+)\$층인 직육면체/);
+      if (!h || !need(t)) return null;
+      const box = cols * rows * t[0]!;
+      return tier === "기본" ? one23(box - total) : pair23(box - total, box);
+    }
+    case "2-3-5 심화": {
+      const v = g(
+        /쌓기나무를 \$(\d+)\$개 더 쌓았더니 가로 \$(\d+)\$칸, 세로 \$(\d+)\$칸, 높이 \$(\d+)\$층인/,
+      );
+      return need(v) ? one23(v[1]! * v[2]! * v[3]! - v[0]!) : null;
+    }
+
+    // ── 2-3-6 여러 가지 모양 만들기 ──
+    case "2-3-6 연산": {
+      const v = g(
+        /쌓기나무 \$(\d+)\$개로 만든 모양이 있습니다\. 똑같은 모양 \$(\d+)\$개/,
+      );
+      return need(v) ? one23(v[0]! * v[1]!) : null;
+    }
+    case "2-3-6 기본": {
+      const v = g(/똑같은 모양을 \$(\d+)\$개 만들려면/);
+      return h && need(v) ? one23(total * v[0]!) : null;
+    }
+    case "2-3-6 응용": {
+      const v = g(
+        /똑같은 모양을 \$(\d+)\$개 만들려고 하는데 쌓기나무가 \$(\d+)\$개 있습니다/,
+      );
+      return h && need(v) ? one23(total * v[0]! - v[1]!) : null;
+    }
+    case "2-3-6 심화": {
+      const v = g(
+        /쌓기나무 \$(\d+)\$개로 만드는 모양을 여러 개 만들었더니 쌓기나무 \$(\d+)\$개 중 \$(\d+)\$개가 남았습니다/,
+      );
+      if (!need(v)) return null;
+      const used = v[1]! - v[2]!;
+      return used % v[0]! === 0 ? one23(used / v[0]!) : null;
+    }
+    default:
+      return null;
+  }
+}
+
+describe("[초6 갈래] 2-3 공간과 입체", () => {
+  it("소단원 여섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_23_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 **그림이 말하는 값**과 같다 (시험이 격자를 직접 센다)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    let fromFigure = 0;
+    for (const code of G6_23_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          const h = gridOf(p.figureSpec);
+          if (h) fromFigure += 1;
+          const want = truthOf23(code, tier, flat, h);
+          if (!want) {
+            bad.push(`${where}: 참을 못 세움 — ${flat}`);
+            continue;
+          }
+          const got = readAns23(p.answer);
+          if (!got) {
+            bad.push(`${where}: 답 모양을 못 읽음 — ${p.answer}`);
+            continue;
+          }
+          checked += 1;
+          if (
+            got.shape !== want.shape ||
+            got.terms.length !== want.terms.length ||
+            got.terms.some((v, i) => v !== want.terms[i])
+          ) {
+            bad.push(
+              `${where}: 답 ${p.answer} ([${want.terms.join(", ")}] 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_23_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    // 분모 — **그림에서 센 자리가 정말 있는가.** 그림 갈래 16개 × 씨앗이다.
+    // 0 이 되면 이 검사는 발문만 보는 것이 되어 이 단원의 축을 통째로 잃는다.
+    expect(fromFigure).toBe(16 * SEEDS.length);
+  });
+
+  it("발문이 말한 격자 == 그림의 바닥, 그리고 **뜬 쌓기나무가 없다** — 씨앗 0~299 전수", () => {
+    // ⚠️ 값 검산으로는 구조적으로 안 잡히는 부류다. 「가로 $3$칸」이라 적고 그림이
+    // $2$칸이면 학생이 세는 바닥과 우리가 센 바닥이 다르다 — 그런데 답은 우리 격자로
+    // 맞다. `heightGrid` 가 「가장자리 줄이 비면 안 된다」로, `withHole` 이
+    // 「그 줄·칸에 다른 것이 남아야」로 막고 있는 자리이고, 그 두 가드를 여기서 잠근다.
+    const bad: string[] = [];
+    let gridSites = 0;
+    let figSites = 0;
+    for (const code of G6_23_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 300; seed += 1) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const spec = p.figureSpec;
+          const h = gridOf(spec);
+          if (!h) continue;
+          figSites += 1;
+          // ㉠ 뜬 쌓기나무 — 칸마다 $z$ 가 $0$ 부터 이어져야 층수 합 == 개수다.
+          const vox = spec!.voxels as [number, number, number][];
+          const sum = h.flat().reduce((s, v) => s + v, 0);
+          if (sum !== vox.length)
+            bad.push(
+              `${where}: 뜬 쌓기나무 (층수합 ${sum} ≠ 개수 ${vox.length})`,
+            );
+          // ㉡ 발문이 격자를 말하면 그림의 바닥과 같아야 한다. **여러 번 말하면 다 같아야.**
+          const said = [
+            ...p.content.matchAll(/가로 \$(\d+)\$칸, 세로 \$(\d+)\$칸/g),
+          ];
+          for (const m of said) {
+            gridSites += 1;
+            const c = Number(m[1]);
+            const r = Number(m[2]);
+            if (c !== h[0]!.length || r !== h.length)
+              bad.push(
+                `${where}: 발문 ${c}×${r} ≠ 그림 ${h[0]!.length}×${h.length}`,
+              );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 분모 둘 — 그림도 격자 문장도 **실제로 있었는가**.
+    expect(figSites).toBe(16 * 300);
+    // 격자를 말하는 자리는 갈래마다 다르다(`2-3-4 기본`은 안 말하고 `2-3-5`는 두 번
+    // 말한다). **실측 리터럴로 못 박는다** — 문구가 바뀌면 여기가 먼저 빨개진다.
+    expect(gridSites).toBe(17 * 300);
+  });
+
+  it("갈래를 가르는 성질이 실제로 선다 — 씨앗 0~299 전수", () => {
+    // ⑴ **심화 여섯은 그림이 없다.** 역산인데 그림이 답을 그대로 보여 주면 되짚을 것이
+    //    없어진다(설계 ⑷). 그림을 붙이는 순간 심화가 기본으로 내려앉는다.
+    // ⑵ **응용 둘(2-3-2·2-3-5)은 쌍으로 답한다** — 두 걸음이 답에 드러나는 자리다.
+    // ⑶ **연산·기본은 늘 한 수**. 쌍이 새면 「절차 한 번」이 아니다.
+    // ⑷ **빈 칸이 늘 하나는 있다**(`withHole`) — 2-3-1 연산의 답이 늘 $0$ 이면 축이 죽는다.
+    // ⑸ **두 층 이상인 자리가 늘 하나는 있다** — 2-3-4 기본의 답이 늘 $0$ 이면 같은 일이다.
+    const bad: string[] = [];
+    const PAIR = new Set(["2-3-2 응용", "2-3-5 응용"]);
+    let emptyMin = Number.POSITIVE_INFINITY;
+    let tallMin = Number.POSITIVE_INFINITY;
+    for (const code of G6_23_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (let seed = 0; seed < 300; seed += 1) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          if (tier === "심화" && p.figureSpec)
+            bad.push(`${where}: 심화에 그림이 붙었다 — 되짚을 것이 없어진다`);
+          const got = readAns23(p.answer);
+          if (!got) {
+            bad.push(`${where}: 답 모양을 못 읽음 — ${p.answer}`);
+            continue;
+          }
+          const wantPair = PAIR.has(`${code} ${tier}`);
+          if (wantPair !== (got.shape === "쌍"))
+            bad.push(
+              `${where}: 답이 ${got.shape} 인데 ${wantPair ? "쌍" : "수"} 이어야`,
+            );
+          if (got.terms.some((v) => v < 0))
+            bad.push(`${where}: 답이 음수다 — ${p.answer}`);
+          if (code === "2-3-1" && tier === "연산")
+            emptyMin = Math.min(emptyMin, got.terms[0]!);
+          if (code === "2-3-4" && tier === "기본")
+            tallMin = Math.min(tallMin, got.terms[0]!);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect({ 빈칸최소: emptyMin, 두층최소: tallMin }).toEqual({
+      빈칸최소: 1,
+      두층최소: 1,
+    });
+  });
+
+  it("같은 씨앗이면 같은 문항, 씨앗 16개면 갈래마다 여러 문항", () => {
+    for (const code of G6_23_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        expect(JSON.stringify(a.figureSpec), `${code} ${tier} 그림 재현`).toBe(
+          JSON.stringify(b.figureSpec),
+        );
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}||${JSON.stringify(p.figureSpec)}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·소수·분수 없음", () => {
+    // 이 단원의 값은 **개수**뿐이라 소수도 분수도 설 자리가 없다. 하나라도 새면
+    // 어딘가에서 나눗셈이 안 떨어진 것이다.
+    const bad: string[] = [];
+    for (const code of G6_23_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            if (field.includes("\\frac"))
+              bad.push(`${where} ${name}: 분수가 섞였다`);
+            if (/\d\.\d/.test(field))
+              bad.push(`${where} ${name}: 소수가 섞였다 — ${field}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
 
 // ══════════════════════════════════════════════════════════════════════════
 // 초6 **전량** — 단위 뒤 조사는 «소리»로 고른다
