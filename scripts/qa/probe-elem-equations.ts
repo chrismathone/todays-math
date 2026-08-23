@@ -32,6 +32,7 @@ import {
 } from "../../src/lib/elementary/generate";
 import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import { supportedTiers } from "../../src/lib/elementary/generate";
+import { SweepTally, openFence } from "./elemProbeFence";
 
 /* ─────────────────────────── 유리수 ─────────────────────────── */
 
@@ -350,6 +351,12 @@ if (process.argv.includes("--selftest")) {
   if (selftest() !== 0) process.exit(1);
   console.log("");
 
+  // 재는 동안 생성기가 쓰이면 이 수치는 못 쓴다. 범위는 **읽는 범위**와 같게 —
+  // `초3` 만 재면서 g4 저장에 멈추면 다음 사람이 울타리를 끈다(거짓 경보는 가드를 끈다).
+  const fence = openFence({ grades: gradeArg ? [gradeArg] : undefined });
+  /** 갈래를 따로 센다 — 소단원·문항만 찍으면 D-72 축이 통째로 빠져도 안 보인다. */
+  const tally = new SweepTally();
+
   const units = elementaryUnits().filter(
     (u) => !gradeArg || u.grade === gradeArg,
   );
@@ -381,6 +388,7 @@ if (process.argv.includes("--selftest")) {
         : [undefined];
     for (const tier of tiers) {
       const where = `${unit.grade} ${unit.section}${tier ? ` «${tier}»` : ""}`;
+      tally.count(unit.grade, unit.section, tier, seedCount);
       for (let seed = 0; seed < seedCount; seed += 1) {
         const p = generateElementaryProblem(unit, seed, tier);
         problems += 1;
@@ -424,8 +432,12 @@ if (process.argv.includes("--selftest")) {
     (a, b) => b.seeds.length - a.seeds.length,
   );
   const total = rows.reduce((s, r) => s + r.seeds.length, 0);
+  // **찍기 전에** 닫는다 — 뒤에 닫으면 못 쓸 수치를 이미 내보낸 뒤다.
+  tally.assertNonEmpty();
+  fence.close();
   console.log(
-    `소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""} · 씨앗 0~${seedCount - 1} · 문항 ${problems}건\n` +
+    `훑은 것 — ${tally.line()} · ${fence.scopeLine()}\n` +
+      `소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""} · 씨앗 0~${seedCount - 1} · 문항 ${problems}건\n` +
       `등식 **검산 ${checked}개** · 등호 있는데 **못 읽음 ${skipped}개**(변수·□·단위 환산) · ` +
       `등호 없는 덩어리 ${noEquals}개\n` +
       `「이 식이 옳은가」 문항 ${truthProblems}건은 통째로 뺐다 — 일부러 틀린 등식을 싣는 갈래다\n`,

@@ -60,6 +60,28 @@
  * tally.assertNonEmpty();
  * fence.close();   // 바뀌었으면 exit 2 — 판정을 찍기 **전에** 부른다
  * ```
+ *
+ * ## 이 울타리를 **망가뜨려 보는** 법 (재현 규약)
+ *
+ * ```bash
+ * # ㉣ — 창 안에서 내용 그대로 다시 쓰기(변이 apply→restore 한 바퀴와 같은 모양)
+ * ELEM_PROBE_FENCE_DELAY_MS=12000 npx tsx scripts/qa/probe-elem-arithmetic.ts 초3 &
+ * sleep 6; touch src/lib/elementary/g3.ts; wait        # → exit 2
+ *
+ * # ㉢ — 프로세스는 떴고 생성기는 이미 읽혔고 아직 openFence 전
+ * ELEM_PROBE_FENCE_OPEN_DELAY_MS=10000 npx tsx scripts/qa/probe-elem-arithmetic.ts 초3 &
+ * sleep 7; touch src/lib/elementary/g3.ts; wait        # → exit 2
+ *
+ * # 음성 대조 — 아무도 안 건드리면 초록이어야 한다(거짓 경보는 가드를 끈다)
+ * npx tsx scripts/qa/probe-elem-arithmetic.ts 초3      # → exit 0
+ * ```
+ *
+ * ⚠️ 재현 스크립트에 **`set -e` 를 걸지 마라.** 이 시험은 `exit 2` 를 **일부러 받아
+ * 세는** 것이라, `-e` 면 첫 재현에서 스크립트가 죽고 나머지가 안 돈다. `set -uo pipefail`
+ * 까지만 건다(빠뜨린 것이 아니다 — 2026-08-23 판단).
+ *
+ * ⚠️ 그리고 옛 판과 견줄 때는 **`git show <커밋>:<경로>` 로 꺼내 돌려라.** 옛 규칙을
+ * 옮겨 적으면 「옛 판이었으면 초록이었다」가 측정이 아니라 추론이 된다.
  */
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, statSync } from "node:fs";
