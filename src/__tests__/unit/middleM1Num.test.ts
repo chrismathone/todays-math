@@ -1044,6 +1044,28 @@ describe("중1 1-1 「수」 38유형 (m1Num)", () => {
         }
       });
 
+      it("분수가 기약이다 (지면에 약분 안 된 분수가 안 나간다)", () => {
+        // `improperToMixed`(textPreprocess)는 가분수를 대분수로 바꾸지만
+        // **약분은 하지 않는다** — $\frac{6}{4}$ 는 $1\frac{2}{4}$ 로 그려진다.
+        // 렌더 검사도 bareNumbers 도 이 부류를 구조적으로 못 잡는다(에러가 아니다).
+        const g = (a: number, b: number): number => (b === 0 ? a : g(b, a % b));
+        for (let variant = 0; variant < 30; variant += 1) {
+          const p = generateMiddleProblem(e.key, 20260823, variant);
+          for (const part of [p.content, p.answer, p.solution]) {
+            for (const m of part.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)) {
+              const a = Number(m[1]);
+              const b = Number(m[2]);
+              // 분자가 분모의 배수면 렌더러가 정수로 그리므로 약분 문제가 없다.
+              if (a % b === 0) continue;
+              expect(
+                g(a, b),
+                `약분 안 된 분수 ${m[0]} — 지면에 그대로 나간다 (${part.slice(0, 70)})`,
+              ).toBe(1);
+            }
+          }
+        }
+      });
+
       it("실제 렌더러가 붉은 글자·raw 폴백 없이 그린다", () => {
         // KaTeX 는 unknown command 를 에러가 아니라 #cc0000 으로 그린다
         // (CLAUDE.md 2026-08-14) — 성공 여부는 실제 렌더로만 잰다.

@@ -334,6 +334,42 @@ function tokFacts(toks: readonly NumTok[]): Record<string, number> {
   return out;
 }
 
+/**
+ * 기약인 «가분수/진분수» (분자, 분모) 쌍 — 서로소이고 분자가 분모의 배수가 아니다.
+ *
+ * 왜 표인가: 아무 분자나 뽑으면 $\\frac{6}{4}$ 가 나오고, `improperToMixed` 는
+ * 그것을 $1\\frac{2}{4}$ 로 **약분하지 않고** 그린다 — 지면에 기약이 아닌
+ * 분수가 나간다. 표로 두면 생성기가 약분을 계산할 필요가 없다.
+ */
+const PROPER_FRACS: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [3, 2],
+  [5, 2],
+  [7, 2],
+  [9, 2],
+  [1, 3],
+  [2, 3],
+  [4, 3],
+  [5, 3],
+  [7, 3],
+  [8, 3],
+  [10, 3],
+  [1, 4],
+  [3, 4],
+  [5, 4],
+  [7, 4],
+  [9, 4],
+  [11, 4],
+  [1, 5],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+  [6, 5],
+  [7, 5],
+  [8, 5],
+  [9, 5],
+];
+
 /** 서로 다른 값의 표시 수 묶음 — 정수·분수·소수를 섞는다. */
 function mixedToks(rng: Rng, n: number): NumTok[] | null {
   return tries(300, () => {
@@ -343,9 +379,7 @@ function mixedToks(rng: Rng, n: number): NumTok[] | null {
       if (kind === 0) {
         out.push(intTok(intBetween(rng, -9, 9), intBetween(rng, 0, 1) === 1));
       } else if (kind === 1) {
-        const den = pick(rng, [2, 3, 4, 5] as const);
-        const num = intBetween(rng, 1, den * 3);
-        if (num % den === 0) return null;
+        const [num, den] = pick(rng, PROPER_FRACS);
         out.push(fracTok(pick(rng, [-1, 1] as const), num, den));
       } else if (kind === 2) {
         out.push(
