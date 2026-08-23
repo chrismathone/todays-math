@@ -358,13 +358,14 @@ function correspond(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 8);
 
   // 1-3-3 생활 속에서 찾아 **식으로** 나타내기
+  // 기호는 □(독립량)·△(종속량) — 5-1 교과는 x·y 문자를 쓰지 않는다 (2026-08-23 리드 확정).
   if (s.includes("생활 속")) {
     const [thing, part, per] = pick(rng, LIFE_PAIRS);
     return make(
       unit,
-      `${thing} ${n(1)}개에 ${wj(part, "이", "가")} ${n(per)}개 있습니다. ${thing}의 수를 ${expr("x")}, ${part}의 수를 ${expr("y")}라고 할 때 두 양 사이의 대응 관계를 식으로 나타내시오.`,
-      expr(`y=${per}\\times x`),
-      `${wj(thing, "이", "가")} ${n(1)}개 늘어날 때마다 ${wj(part, "은", "는")} ${n(per)}개씩 늘어나므로 ${expr(`y=${per}\\times x`)}입니다.`,
+      `${thing} ${n(1)}개에 ${wj(part, "이", "가")} ${n(per)}개 있습니다. ${thing}의 수를 □, ${part}의 수를 △라고 할 때 두 양 사이의 대응 관계를 식으로 나타내시오.`,
+      expr(`\\triangle=\\square\\times${per}`),
+      `${wj(thing, "이", "가")} ${n(1)}개 늘어날 때마다 ${wj(part, "은", "는")} ${n(per)}개씩 늘어나므로 ${expr(`\\triangle=\\square\\times${per}`)}입니다.`,
     );
   }
 
@@ -373,16 +374,16 @@ function correspond(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("식으로")) {
     const from = intBetween(rng, 1, 9);
     const xs = [from, from + 1, from + 2];
-    const ask = `표는 ${expr("x")}가 ${n(from)}부터 ${n(1)}씩 커질 때의 ${expr("y")}를 나타낸 것입니다. ${expr("x")}와 ${expr("y")} 사이의 대응 관계를 식으로 나타내시오.`;
+    const ask = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. □와 △ 사이의 대응 관계를 식으로 나타내시오.`;
     if (intBetween(rng, 0, 1) === 0) {
       const c = intBetween(rng, 3, 12);
       return make(
         unit,
         ask,
-        expr(`y=x+${c}`),
-        `${expr("y")}는 언제나 ${expr("x")}보다 ${n(c)}만큼 큽니다.`,
+        expr(`\\triangle=\\square+${c}`),
+        `△는 언제나 □보다 ${n(c)}만큼 큽니다.`,
         fig("table", {
-          headers: ["x", "y"],
+          headers: ["□", "△"],
           rows: xs.map((x) => [String(x), String(x + c)]),
         }),
       );
@@ -390,10 +391,10 @@ function correspond(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       ask,
-      expr(`y=${k}\\times x`),
-      `${expr("y")}는 언제나 ${expr("x")}의 ${n(k)}배입니다.`,
+      expr(`\\triangle=\\square\\times${k}`),
+      `△는 언제나 □의 ${n(k)}배입니다.`,
       fig("table", {
-        headers: ["x", "y"],
+        headers: ["□", "△"],
         rows: xs.map((x) => [String(x), String(x * k)]),
       }),
     );
@@ -403,11 +404,11 @@ function correspond(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = intBetween(rng, 5, 12);
   return make(
     unit,
-    `표를 보고 ${expr(`x=${x}`)}일 때 ${expr("y")}의 값을 구하시오.`,
+    `표를 보고 □가 ${n(x)}일 때 △의 값을 구하시오.`,
     n(k * x),
-    `${expr("y")}는 ${expr("x")}의 ${n(k)}배이므로 ${expr(`${k}\\times${x}=${k * x}`)}입니다.`,
+    `△는 □의 ${n(k)}배이므로 ${expr(`${k}\\times${x}=${k * x}`)}입니다.`,
     fig("table", {
-      headers: ["x", "y"],
+      headers: ["□", "△"],
       rows: [
         ["1", String(k)],
         ["2", String(2 * k)],
@@ -3220,6 +3221,467 @@ function lcm126Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-3 대응 관계 — 난이도 4단 (D-72 확대 4차) ──────────
+ *
+ * 기호 규약(2026-08-23 리드 확정): 독립량 □ · 종속량 △ — 5-1 교과는 x·y 를 안 쓴다.
+ * 답이 식인 갈래의 정본 꼴은 «△=□×k · △=□+c · △=□−c» 하나뿐이다 — 종속량 왼쪽 ·
+ * □ 먼저 · 상수 뒤. 시험이 표의 (□,△) 전 행 대입으로 재검산한다.
+ *
+ * 이웃 축(D-66⑸): 1-3-1 은 「식으로 나타내」 금지(값·규칙 읽기만) · 1-3-2 는 추상 표만
+ * (생활 소재 낱말 금지) · 1-3-3 은 생활 장면만(표 없음). 표는 1-3-1·1-3-2 에만 붙는다.
+ *
+ * 수 규모는 축이 아니다(원장님 원칙): 독립량 □≤30 · 배 k∈[2,8] · 상수 c∈[2,15]
+ * (자르기 관계만 +1 — 도막=횟수+1 이 그 관계의 사실이다).
+ * 어려움은 유형에서 온다 — 판별·먼 항·역산·양방향 빈칸·off-by-one(자르기 +1).
+ */
+
+/** 대응식 정본 꼴 — 종속량 왼쪽 · □ 먼저 · 상수 뒤. 다른 꼴을 내면 시험이 빨갛다. */
+const relMulLatex = (k: number): string => `\\triangle=\\square\\times${k}`;
+const relAddLatex = (c: number): string => `\\triangle=\\square+${c}`;
+const relSubLatex = (c: number): string => `\\triangle=\\square-${c}`;
+
+/** 대응표(가로꼴) — 윗줄이 □, 아랫줄이 △. 빈칸("")·㉠·㉡ 은 문자열로 넘긴다. */
+function corrTable(
+  tops: readonly (number | string)[],
+  bottoms: readonly (number | string)[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: ["□", ...tops.map(String)],
+    rows: [["△", ...bottoms.map(String)]],
+  });
+}
+
+/* ── 1-3-1 두 양 사이의 대응 관계 — 표를 **읽는다**. 「식으로 나타내」는 여기 없다 ── */
+
+/** 연산 — 규칙이 표에서 바로 보이고, 빈칸 하나를 채운다. 빈칸 자리는 씨앗이 정한다. */
+function corr131Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const intro = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다.`;
+  // 첫 칸은 남긴다 — 남은 세 짝으로 규칙이 서야 빈칸이 «읽기»가 된다.
+  const bp = intBetween(rng, 1, 3);
+  const bx = xs[bp]!;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 8);
+    const blankVal = bx * k;
+    return make(
+      unit,
+      `${intro} □가 ${n(bx)}일 때의 빈칸에 알맞은 수를 구하시오.`,
+      n(blankVal),
+      `△는 □의 ${n(k)}배입니다. 빈칸은 □가 ${n(bx)}일 때이므로 ${expr(`${bx}\\times${k}=${blankVal}`)}입니다.`,
+      corrTable(
+        xs,
+        xs.map((x, i) => (i === bp ? "" : x * k)),
+      ),
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const blankVal = bx + c;
+  return make(
+    unit,
+    `${intro} □가 ${n(bx)}일 때의 빈칸에 알맞은 수를 구하시오.`,
+    n(blankVal),
+    `△는 □보다 ${n(c)}만큼 큽니다. 빈칸은 □가 ${n(bx)}일 때이므로 ${expr(`${bx}+${c}=${blankVal}`)}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x, i) => (i === bp ? "" : x + c)),
+    ),
+  );
+}
+
+/** 기본 — 관계를 **판별**해서 말한다(몇 배인가 · 몇만큼 큰가). */
+function corr131Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const intro = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 8);
+    return make(
+      unit,
+      `${intro} △는 □의 몇 배입니까?`,
+      n(k),
+      `어느 칸에서나 △를 □로 나누면 ${n(k)}입니다. △는 □의 ${n(k)}배입니다.`,
+      corrTable(
+        xs,
+        xs.map((x) => x * k),
+      ),
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${intro} △는 □보다 몇만큼 큰 수입니까?`,
+    n(c),
+    `어느 칸에서나 △에서 □를 빼면 ${n(c)}입니다. △는 □보다 ${n(c)}만큼 큽니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x + c),
+    ),
+  );
+}
+
+/** 응용 — 규칙을 찾고 표 **밖의** 먼 값에 적용한다(두 단계). */
+function corr131Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const intro = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 6);
+    const m = intBetween(rng, 13, 25);
+    return make(
+      unit,
+      `${intro} □가 ${n(m)}일 때 △의 값을 구하시오.`,
+      n(k * m),
+      `△는 □의 ${n(k)}배이므로 ${expr(`${m}\\times${k}=${k * m}`)}입니다.`,
+      corrTable(
+        xs,
+        xs.map((x) => x * k),
+      ),
+    );
+  }
+  const c = intBetween(rng, 2, 15);
+  const m = intBetween(rng, 13, 30);
+  return make(
+    unit,
+    `${intro} □가 ${n(m)}일 때 △의 값을 구하시오.`,
+    n(m + c),
+    `△는 □보다 ${n(c)}만큼 크므로 ${expr(`${m}+${c}=${m + c}`)}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x + c),
+    ),
+  );
+}
+
+/** 심화 — **역산**: 표 밖의 △ 값에서 □를 거슬러 구한다. △ 값은 규칙 위에 정확히 놓는다. */
+function corr131Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const intro = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 8);
+    const m = intBetween(rng, 13, 25);
+    const v = k * m;
+    return make(
+      unit,
+      `${intro} △가 ${n(v)}일 때 □의 값을 구하시오.`,
+      n(m),
+      `△는 □의 ${n(k)}배이므로 □는 △를 ${nro(k)} 나눈 수입니다. ${expr(`${v}\\div${k}=${m}`)}입니다.`,
+      corrTable(
+        xs,
+        xs.map((x) => x * k),
+      ),
+    );
+  }
+  const c = intBetween(rng, 2, 15);
+  const m = intBetween(rng, 13, 30);
+  const v = m + c;
+  return make(
+    unit,
+    `${intro} △가 ${n(v)}일 때 □의 값을 구하시오.`,
+    n(m),
+    `△는 □보다 ${n(c)}만큼 크므로 □는 △에서 ${nj(c, "을", "를")} 뺀 수입니다. ${expr(`${v}-${c}=${m}`)}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x + c),
+    ),
+  );
+}
+
+/* ── 1-3-2 대응 관계를 식으로 나타내기 — 추상 표 → **정본 꼴 식**. 생활 소재는 여기 없다 ── */
+
+/** 연산 — 곱 관계 표를 읽고 식으로(절차 한 번). */
+function corr132Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const k = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. □가 ${n(from)}일 때 △는 ${n(from * k)}입니다. □와 △ 사이의 대응 관계를 식으로 나타내시오.`,
+    expr(relMulLatex(k)),
+    `△는 언제나 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x * k),
+    ),
+  );
+}
+
+/** 기본 — 더한 관계인지 뺀 관계인지 **판별**한 뒤 식으로(한 겹). */
+function corr132Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const from = intBetween(rng, 1, 9);
+    const xs = [from, from + 1, from + 2, from + 3];
+    const c = intBetween(rng, 2, 15);
+    return make(
+      unit,
+      `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. □와 △ 사이의 대응 관계를 식으로 나타내시오.`,
+      expr(relAddLatex(c)),
+      `△는 언제나 □보다 ${n(c)}만큼 크므로 ${expr(relAddLatex(c))}입니다.`,
+      corrTable(
+        xs,
+        xs.map((x) => x + c),
+      ),
+    );
+  }
+  // 차 관계 — □가 상수보다 커야 △가 자연수다. 뽑는 범위로 보장한다(10 > 최대 c 9).
+  // 시작 수 10~15 는 합 갈래(1~9)와 겹치지 않는다 — 두 갈래 발문이 같은 글이 되면
+  // 변형 수가 겉보기보다 준다.
+  const from = intBetween(rng, 10, 15);
+  const c = intBetween(rng, 2, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  return make(
+    unit,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. □와 △ 사이의 대응 관계를 식으로 나타내시오.`,
+    expr(relSubLatex(c)),
+    `△는 언제나 □보다 ${n(c)}만큼 작으므로 ${expr(relSubLatex(c))}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x - c),
+    ),
+  );
+}
+
+/**
+ * 응용·심화의 □ 열 — «1씩 커진다» 발판을 없앤다. 간격 하나는 반드시 2 이상이어야
+ * 뛰엄뛰엄이 **보장**된다 — pickSome 은 연속 4개(2,3,4,5)도 뽑는다.
+ */
+function corrSparseXs(rng: Rng): number[] {
+  const gaps = pick(rng, [
+    [1, 1, 2],
+    [1, 2, 1],
+    [2, 1, 1],
+    [1, 2, 2],
+    [2, 1, 2],
+    [2, 2, 1],
+    [2, 2, 2],
+  ] as const);
+  const span = gaps[0] + gaps[1] + gaps[2];
+  const base = intBetween(rng, 2, 9 - span);
+  return [base, base + gaps[0], base + gaps[0] + gaps[1], base + span];
+}
+
+/** 응용 — □가 뛰엄뛰엄이라(구성 보장) 이웃 차 발판이 없다. 칸마다 관계 가설을 맞대야 한다(두 단계). */
+function corr132Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const xs = corrSparseXs(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 8);
+    return make(
+      unit,
+      `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것입니다. □가 ${n(xs[0]!)}일 때 △는 ${n(xs[0]! * k)}입니다. 대응 관계를 식으로 나타내시오.`,
+      expr(relMulLatex(k)),
+      `어느 칸에서나 △를 □로 나누면 ${n(k)}입니다. △는 언제나 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다.`,
+      corrTable(
+        xs,
+        xs.map((x) => x * k),
+      ),
+    );
+  }
+  const c = intBetween(rng, 2, 15);
+  return make(
+    unit,
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것입니다. □가 ${n(xs[0]!)}일 때 △는 ${n(xs[0]! + c)}입니다. 대응 관계를 식으로 나타내시오.`,
+    expr(relAddLatex(c)),
+    `어느 칸에서나 △에서 □를 빼면 ${n(c)}입니다. △는 언제나 □보다 ${n(c)}만큼 크므로 ${expr(relAddLatex(c))}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x + c),
+    ),
+  );
+}
+
+/**
+ * 심화 — 빈칸이 **양방향**이다. ㉠은 △ 자리(정방향), ㉡은 □ 자리(역방향) — 답은 둘의 합.
+ * ㉡ 자리는 이웃 □ 사이가 3 이상 벌어진 곳만 고른다 — 사이가 2뿐이면 «그 사이의 수»가
+ * 하나뿐이라 역산 없이 답이 나온다. 마지막 자리는 위가 열려 있어 늘 된다.
+ */
+function corr132Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const xs = corrSparseXs(rng);
+  const p2cands = [1, 2, 3].filter(
+    (i) => i === 3 || xs[i + 1]! - xs[i - 1]! >= 3,
+  );
+  const p2 = pick(rng, p2cands);
+  const p1 = pick(
+    rng,
+    [1, 2, 3].filter((i) => i !== p2),
+  );
+  const mul = intBetween(rng, 0, 1) === 0;
+  const k = intBetween(rng, 2, 8);
+  const c = intBetween(rng, 2, 15);
+  const f = (x: number): number => (mul ? x * k : x + c);
+  const tick1 = f(xs[p1]!);
+  const tick2 = xs[p2]!;
+  const rel = mul ? relMulLatex(k) : relAddLatex(c);
+  return make(
+    unit,
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것입니다. □가 ${n(xs[0]!)}일 때 △는 ${n(f(xs[0]!))}입니다. 대응 관계를 식으로 나타내고, ㉠과 ㉡에 알맞은 수의 합을 구하시오.`,
+    n(tick1 + tick2),
+    `${mul ? `△는 언제나 □의 ${n(k)}배` : `△는 언제나 □보다 ${n(c)}만큼 큰 수`}이므로 ${expr(rel)}입니다. ㉠은 □가 ${n(xs[p1]!)}인 칸이므로 ${n(tick1)}이고, ㉡은 △가 ${n(f(xs[p2]!))}인 칸이므로 ${mul ? expr(`${f(xs[p2]!)}\\div${k}=${tick2}`) : expr(`${f(xs[p2]!)}-${c}=${tick2}`)}입니다. 합은 ${expr(`${tick1}+${tick2}=${tick1 + tick2}`)}입니다.`,
+    corrTable(
+      xs.map((x, i) => (i === p2 ? "㉡" : String(x))),
+      xs.map((x, i) => (i === p1 ? "㉠" : String(f(x)))),
+    ),
+  );
+}
+
+/* ── 1-3-3 생활 속에서 찾아 식으로 — **장면**이 관계를 준다. 표는 여기 없다 ── */
+
+/** 배 관계가 **사실인** 것들 — [것, 세는 말, 딸린 것, 세는 말, 한 개당 수]. */
+const CORR_FIXED = [
+  ["자동차", "대", "바퀴", "개", 4],
+  ["세발자전거", "대", "바퀴", "개", 3],
+  ["오리", "마리", "다리", "개", 2],
+  ["거미", "마리", "다리", "개", 8],
+  ["곤충", "마리", "다리", "개", 6],
+] as const;
+
+/** 담는 것들 — 한 개당 수는 씨앗이 정한다(3~8). [것, 세는 말, 담는 것, 세는 말, 동사]. */
+const CORR_PACKS = [
+  ["봉지", "개", "사탕", "개", "담았습니다"],
+  ["접시", "개", "귤", "개", "담았습니다"],
+  ["화분", "개", "꽃", "송이", "심었습니다"],
+  ["상자", "개", "지우개", "개", "담았습니다"],
+] as const;
+
+/** 자를 것들 — 곧은 것 하나를 자르면 도막은 «횟수+1»이다. */
+const CORR_CUT_THINGS = [
+  "통나무",
+  "리본",
+  "철사",
+  "빨랫줄",
+  "색 테이프",
+  "나무 막대",
+] as const;
+
+const CORR_ELDERS = ["형", "언니", "누나"] as const;
+
+/** 배 관계 생활 장면 한 줄 + □·△ 지정(«할 때»로 끝난다). 세는 말(tc·pc)도 해설이 쓴다. */
+function corrLifeMul(rng: Rng): {
+  setup: string;
+  thing: string;
+  tc: string;
+  part: string;
+  pc: string;
+  per: number;
+} {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [thing, tc, part, pc, per] = pick(rng, CORR_FIXED);
+    return {
+      setup: `${thing} ${n(1)}${tc}에 ${wj(part, "이", "가")} ${n(per)}${pc}씩 있습니다. ${thing}의 수를 □, ${part}의 수를 △라고 할 때`,
+      thing,
+      tc,
+      part,
+      pc,
+      per,
+    };
+  }
+  const [thing, tc, part, pc, verb] = pick(rng, CORR_PACKS);
+  const per = intBetween(rng, 3, 8);
+  return {
+    setup: `${thing} ${n(1)}${tc}에 ${wj(part, "을", "를")} ${n(per)}${pc}씩 ${verb}. ${thing}의 수를 □, ${part}의 수를 △라고 할 때`,
+    thing,
+    tc,
+    part,
+    pc,
+    per,
+  };
+}
+
+/** 자르기 장면 한 줄 + □·△ 지정(«할 때»로 끝난다). 도막 = 자른 횟수 + 1. */
+function corrLifeCut(rng: Rng): { setup: string; thing: string } {
+  const thing = pick(rng, CORR_CUT_THINGS);
+  return {
+    setup: `${wj(thing, "을", "를")} 한 번 자르면 ${n(2)}도막이 됩니다. 자른 횟수를 □, 도막의 수를 △라고 할 때`,
+    thing,
+  };
+}
+
+/** 연산 — 배 관계 장면을 그대로 식으로(절차 한 번). */
+function corr133Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { setup, thing, tc, part, pc, per } = corrLifeMul(rng);
+  return make(
+    unit,
+    `${setup}, 두 양 사이의 대응 관계를 식으로 나타내시오.`,
+    expr(relMulLatex(per)),
+    `${wj(thing, "이", "가")} ${n(1)}${tc} 늘어날 때마다 ${wj(part, "은", "는")} ${n(per)}${pc}씩 늘어나므로 ${expr(relMulLatex(per))}입니다.`,
+  );
+}
+
+/** 기본 — 배가 아닌 관계를 **판별**한다: 자르기(+1) · 나이 차(±c). */
+function corr133Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const { setup } = corrLifeCut(rng);
+    return make(
+      unit,
+      `${setup}, 두 양 사이의 대응 관계를 식으로 나타내시오.`,
+      expr(relAddLatex(1)),
+      `자르기 전에는 ${n(1)}도막이고 한 번 자를 때마다 도막이 ${n(1)}개씩 늘어나므로, 도막의 수는 자른 횟수보다 ${n(1)}만큼 큽니다. ${expr(relAddLatex(1))}입니다.`,
+    );
+  }
+  const elder = pick(rng, CORR_ELDERS);
+  const c = intBetween(rng, 2, 6);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${wj(elder, "은", "는")} 동생보다 ${n(c)}살 많습니다. 동생의 나이를 □, ${elder}의 나이를 △라고 할 때, 두 양 사이의 대응 관계를 식으로 나타내시오.`,
+      expr(relAddLatex(c)),
+      `${elder}의 나이는 언제나 동생의 나이보다 ${n(c)}만큼 크므로 ${expr(relAddLatex(c))}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `동생은 ${elder}보다 ${n(c)}살 적습니다. ${elder}의 나이를 □, 동생의 나이를 △라고 할 때, 두 양 사이의 대응 관계를 식으로 나타내시오.`,
+    expr(relSubLatex(c)),
+    `동생의 나이는 언제나 ${elder}의 나이보다 ${n(c)}만큼 작으므로 ${expr(relSubLatex(c))}입니다.`,
+  );
+}
+
+/** 응용 — 관계를 세우고 먼 값에 **적용**한다(두 단계). 자르기 갈래는 +1 이 함정이다. */
+function corr133Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const { setup, thing, part, per } = corrLifeMul(rng);
+    const m = intBetween(rng, 12, 25);
+    return make(
+      unit,
+      `${setup}, □가 ${n(m)}일 때 △의 값을 구하시오.`,
+      n(per * m),
+      `${part}의 수는 ${thing} 수의 ${n(per)}배이므로 ${expr(relMulLatex(per))}입니다. ${expr(`${m}\\times${per}=${per * m}`)}입니다.`,
+    );
+  }
+  const { setup } = corrLifeCut(rng);
+  const m = intBetween(rng, 12, 30);
+  return make(
+    unit,
+    `${setup}, □가 ${n(m)}일 때 △의 값을 구하시오.`,
+    n(m + 1),
+    `도막의 수는 자른 횟수보다 ${n(1)}만큼 크므로 ${expr(relAddLatex(1))}입니다. ${expr(`${m}+1=${m + 1}`)}입니다.`,
+  );
+}
+
+/** 심화 — **역산**: △에서 □를 거슬러 구한다. 자르기 갈래는 off-by-one 을 거꾸로 탄다. */
+function corr133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const { setup, thing, part, per } = corrLifeMul(rng);
+    const m = intBetween(rng, 9, 20);
+    const v = per * m;
+    return make(
+      unit,
+      `${setup}, △가 ${n(v)}일 때 □의 값을 구하시오.`,
+      n(m),
+      `${part}의 수는 ${thing} 수의 ${n(per)}배이므로(${expr(relMulLatex(per))}) □는 △를 ${nro(per)} 나눈 수입니다. ${expr(`${v}\\div${per}=${m}`)}입니다.`,
+    );
+  }
+  const { setup } = corrLifeCut(rng);
+  const m = intBetween(rng, 12, 30);
+  const v = m + 1;
+  return make(
+    unit,
+    `${setup}, △가 ${n(v)}일 때 □의 값을 구하시오.`,
+    n(m),
+    `도막의 수는 자른 횟수보다 ${n(1)}만큼 크므로(${expr(relAddLatex(1))}) □는 △보다 ${n(1)}만큼 작습니다. ${expr(`${v}-1=${m}`)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -3281,6 +3743,24 @@ export const G5_TIERS: ElemTierMap = {
     기본: lcm126Read,
     응용: lcm126Apply,
     심화: lcm126Deep,
+  },
+  "초5|1-3-1": {
+    연산: corr131Calc,
+    기본: corr131Read,
+    응용: corr131Apply,
+    심화: corr131Deep,
+  },
+  "초5|1-3-2": {
+    연산: corr132Calc,
+    기본: corr132Read,
+    응용: corr132Apply,
+    심화: corr132Deep,
+  },
+  "초5|1-3-3": {
+    연산: corr133Calc,
+    기본: corr133Read,
+    응용: corr133Apply,
+    심화: corr133Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,

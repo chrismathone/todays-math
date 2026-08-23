@@ -14,6 +14,8 @@ import {
   generateElementaryProblem,
   supportedTiers,
 } from "@/lib/elementary/generate";
+import { renderMathHtml } from "@/lib/math/renderMathHtml";
+import { preprocessMathText } from "@/lib/math/textPreprocess";
 
 const CODES = ["1-6-1", "1-6-3", "1-6-4", "1-6-5"] as const;
 
@@ -1416,6 +1418,539 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
   it("1-2 여섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES12) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});
+
+/* ── 1-3 대응 관계 (D-72 4차) — 재검산 도우미 ── */
+
+const CODES13 = ["1-3-1", "1-3-2", "1-3-3"] as const;
+
+/**
+ * 정본 꼴 대응식 답 파서 — «△=□×k · △=□+c · △=□−c» 밖의 꼴이면 여기서 죽는다
+ * (기호 규약 2026-08-23 리드 확정: 종속량 왼쪽 · □ 먼저 · 상수 뒤 · x·y 금지).
+ */
+function parseRel(answer: string, label: string): (x: number) => number {
+  const m = /^\$\\triangle=\\square(?:\\times(\d+)|\+(\d+)|-(\d+))\$$/.exec(
+    answer,
+  );
+  expect(m, `${label}: 정본 꼴이 아니다 — ${answer}`).not.toBeNull();
+  if (m![1] !== undefined) {
+    const k = Number(m![1]);
+    expect(
+      k,
+      `${label}: 배는 2 이상이어야 한다(1배는 항등)`,
+    ).toBeGreaterThanOrEqual(2);
+    return (x) => x * k;
+  }
+  if (m![2] !== undefined) {
+    const c = Number(m![2]);
+    return (x) => x + c;
+  }
+  const c = Number(m![3]!);
+  return (x) => x - c;
+}
+
+/** 대응표를 (□값, △값) 문자열 짝으로 — 가로꼴(윗줄 □·아랫줄 △)을 함께 잠근다. */
+function tablePairs(
+  p: { figureSpec: Record<string, unknown> | null },
+  label: string,
+): [string, string][] {
+  const spec = p.figureSpec as {
+    kind?: string;
+    headers?: string[];
+    rows?: string[][];
+  } | null;
+  expect(spec?.kind, `${label}: 대응표가 없다`).toBe("table");
+  const headers = spec!.headers!;
+  const rows = spec!.rows!;
+  expect(headers[0], label).toBe("□");
+  expect(rows.length, label).toBe(1);
+  expect(rows[0]![0], label).toBe("△");
+  expect(headers.length, label).toBe(5);
+  return headers.slice(1).map((h, i) => [h, rows[0]![i + 1]!]);
+}
+
+/**
+ * 수 짝만 보고 관계를 되찾는다 — 곱(×k)·더함(+c) 중 **정확히 하나**만 맞아야 한다.
+ * 둘 다 맞으면 표가 애매한 것이고, 하나도 안 맞으면 표가 깨진 것이다.
+ */
+function inferRel(
+  pairs: [string, string][],
+  label: string,
+): (x: number) => number {
+  const numeric = pairs
+    .filter(([a, b]) => /^\d+$/.test(a) && /^\d+$/.test(b))
+    .map(([a, b]) => [Number(a), Number(b)] as const);
+  expect(
+    numeric.length,
+    `${label}: 관계를 세울 수 짝이 둘보다 적다`,
+  ).toBeGreaterThanOrEqual(2);
+  const [x0, y0] = numeric[0]!;
+  const fits: ((x: number) => number)[] = [];
+  if (y0 % x0 === 0 && y0 / x0 >= 2) {
+    const k = y0 / x0;
+    if (numeric.every(([x, y]) => y === x * k)) fits.push((x) => x * k);
+  }
+  if (y0 !== x0) {
+    const c = y0 - x0;
+    if (numeric.every(([x, y]) => y - x === c)) fits.push((x) => x + c);
+  }
+  expect(fits.length, `${label}: 관계가 하나로 안 선다(${fits.length}개)`).toBe(
+    1,
+  );
+  return fits[0]!;
+}
+
+describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
+  it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES13) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES13) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES13) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(
+          new Set(rows).size,
+          `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES13) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1)", () => {
+    const bad: string[] = [];
+    for (const code of CODES13) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("표는 1-3-1·1-3-2 에만 붙고(□·△ 가로꼴), 1-3-3 은 그림이 없다", () => {
+    for (const code of ["1-3-1", "1-3-2"] as const) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          tablePairs(problem(code, tier, seed), `${code} ${tier} @${seed}`);
+        }
+      }
+    }
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        expect(
+          problem("1-3-3", tier, seed).figureSpec,
+          `1-3-3 ${tier} @${seed}`,
+        ).toBeNull();
+      }
+    }
+  });
+
+  it("x·y 가 어디에도 없다 — 갈래 넷 + 표준(옛 경로), 표 속까지", () => {
+    // LaTeX 명령(\triangle 등)을 걷어 낸 뒤 남는 라틴 글자가 있으면 안 된다.
+    // x·y 만 세면 «다른 문자로 돌아온 회귀»(a·b·k …)를 못 본다.
+    const latinLeft = (t: string) =>
+      t.replace(/\\[a-zA-Z]+/g, " ").match(/[A-Za-z]/g) ?? [];
+    const cellsOf = (spec: Record<string, unknown> | null): string => {
+      if (!spec) return "";
+      const s = spec as { headers?: string[]; rows?: string[][] };
+      return [...(s.headers ?? []), ...(s.rows ?? []).flat()].join(" ");
+    };
+    for (const code of CODES13) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+            ["표", cellsOf(p.figureSpec)],
+          ] as const) {
+            expect(
+              latinLeft(text),
+              `${code} ${tier} @${seed} ${where}: ${text}`,
+            ).toEqual([]);
+          }
+        }
+      }
+      // 표준(갈래 없이 — 옛 correspond 경로)도 같은 규약이다 (2026-08-23 리드 조건 ⑵).
+      for (let seed = 1; seed <= 16; seed += 1) {
+        const p = generateElementaryProblem(unitOf(code), seed);
+        for (const [where, text] of [
+          ["발문", p.content],
+          ["정답", p.answer],
+          ["해설", p.solution],
+          ["표", cellsOf(p.figureSpec)],
+        ] as const) {
+          expect(
+            latinLeft(text),
+            `${code} 표준 @${seed} ${where}: ${text}`,
+          ).toEqual([]);
+        }
+      }
+    }
+  });
+
+  /* ── 낱말 축 (D-66 ⑸) ── */
+
+  it("낱말 축 — «식으로 나타내»는 1-3-2·1-3-3 에만 있고 1-3-1 에는 없다", () => {
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const c1 = problem("1-3-1", tier, seed).content;
+        expect(/식으로 나타내/.test(c1), `1-3-1 ${tier} @${seed}\n${c1}`).toBe(
+          false,
+        );
+        const c2 = problem("1-3-2", tier, seed).content;
+        expect(/식으로 나타내/.test(c2), `1-3-2 ${tier} @${seed}\n${c2}`).toBe(
+          true,
+        );
+        const c3 = problem("1-3-3", tier, seed).content;
+        expect(/식으로 나타내/.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(
+          tier === "연산" || tier === "기본",
+        );
+      }
+    }
+  });
+
+  it("낱말 축 — 1-3-1·1-3-2 는 추상 표만, 1-3-3 은 생활 장면 + □·△ 지정", () => {
+    const lifeWords =
+      /자동차|세발자전거|오리|거미|곤충|봉지|접시|화분|상자|통나무|리본|철사|빨랫줄|테이프|막대|도막|나이|동생|형|언니|누나/;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        for (const code of ["1-3-1", "1-3-2"] as const) {
+          const c = problem(code, tier, seed).content;
+          expect(lifeWords.test(c), `${code} ${tier} @${seed}\n${c}`).toBe(
+            false,
+          );
+        }
+        const c3 = problem("1-3-3", tier, seed).content;
+        expect(lifeWords.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(true);
+        expect(/표는|빈칸/.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(
+          false,
+        );
+        // 기호 배정은 발문이 항상 말한다: «…를 □, …를 △라고 할 때»
+        expect(
+          /를 □, /.test(c3) && /를 △라고 할 때/.test(c3),
+          `1-3-3 ${tier} @${seed} 기호 지정이 없다\n${c3}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("답이 식인 갈래는 정본 꼴 하나뿐이고, 나머지는 수다", () => {
+    const formulaTiers: [string, readonly ElemTier[]][] = [
+      ["1-3-2", ["연산", "기본", "응용"]],
+      ["1-3-3", ["연산", "기본"]],
+    ];
+    for (const [code, tiers] of formulaTiers) {
+      for (const tier of tiers) {
+        for (const seed of SEEDS) {
+          parseRel(
+            problem(code, tier, seed).answer,
+            `${code} ${tier} @${seed}`,
+          );
+        }
+      }
+    }
+    const numberTiers: [string, readonly ElemTier[]][] = [
+      ["1-3-1", ELEM_TIERS],
+      ["1-3-2", ["심화"]],
+      ["1-3-3", ["응용", "심화"]],
+    ];
+    for (const [code, tiers] of numberTiers) {
+      for (const tier of tiers) {
+        for (const seed of SEEDS) {
+          answerNumber(
+            problem(code, tier, seed).answer,
+            `${code} ${tier} @${seed}`,
+          );
+        }
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 — 참은 찍힌 표·발문에서 ── */
+
+  it("1-3-1 — 표의 수로 답이 다시 선다 (빈칸·판별·먼 항·역산)", () => {
+    for (const seed of SEEDS) {
+      // 연산 — 발문이 지목한 □의 빈칸
+      const calc = problem("1-3-1", "연산", seed);
+      const cp = tablePairs(calc, "1-3-1 연산");
+      const cf = inferRel(cp, "1-3-1 연산");
+      const blanks = cp.filter(([, b]) => b === "");
+      expect(blanks.length, calc.content).toBe(1);
+      const bx = nums(calc.content)[2]!;
+      expect(Number(blanks[0]![0]), "빈칸 자리가 발문과 다르다").toBe(bx);
+      expect(answerNumber(calc.answer, "1-3-1 연산"), calc.content).toBe(
+        cf(bx),
+      );
+
+      // 기본 — 몇 배 / 몇만큼
+      const read = problem("1-3-1", "기본", seed);
+      const rp = tablePairs(read, "1-3-1 기본");
+      const rA = answerNumber(read.answer, "1-3-1 기본");
+      if (read.content.includes("몇 배")) {
+        for (const [a, b] of rp)
+          expect(Number(b), `${read.content} 표 ${a}→${b}`).toBe(
+            Number(a) * rA,
+          );
+      } else {
+        expect(read.content, read.content).toContain("몇만큼");
+        for (const [a, b] of rp)
+          expect(Number(b) - Number(a), `${read.content} 표 ${a}→${b}`).toBe(
+            rA,
+          );
+      }
+
+      // 응용 — 표 밖 정방향
+      const ap = problem("1-3-1", "응용", seed);
+      const app = tablePairs(ap, "1-3-1 응용");
+      const af = inferRel(app, "1-3-1 응용");
+      const m = nums(ap.content)[2]!;
+      expect(
+        m,
+        `${ap.content}: 표 안의 수를 물으면 «먼 항»이 아니다`,
+      ).toBeGreaterThan(Math.max(...app.map(([a]) => Number(a))));
+      expect(answerNumber(ap.answer, "1-3-1 응용"), ap.content).toBe(af(m));
+
+      // 심화 — 표 밖 역산
+      const dp = problem("1-3-1", "심화", seed);
+      const dpp = tablePairs(dp, "1-3-1 심화");
+      const df = inferRel(dpp, "1-3-1 심화");
+      const v = nums(dp.content)[2]!;
+      const dA = answerNumber(dp.answer, "1-3-1 심화");
+      expect(df(dA), `${dp.content}: 답을 되넣으면 △가 서야 한다`).toBe(v);
+      expect(dA, dp.content).toBeGreaterThan(
+        Math.max(...dpp.map(([a]) => Number(a))),
+      );
+    }
+  });
+
+  it("1-3-2 — 식이 표의 (□,△) 전 행에 들어맞는다", () => {
+    for (const seed of SEEDS) {
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        const p = problem("1-3-2", tier, seed);
+        const f = parseRel(p.answer, `1-3-2 ${tier}`);
+        const pairs = tablePairs(p, `1-3-2 ${tier}`);
+        for (const [a, b] of pairs)
+          expect(f(Number(a)), `${p.answer} vs 표 ${a}→${b}`).toBe(Number(b));
+        const tops = pairs.map(([a]) => Number(a));
+        if (tier === "응용") {
+          // 뛰엄뛰엄 보장 — «1씩» 발판이 없어야 두 단계다
+          const gaps = [
+            tops[1]! - tops[0]!,
+            tops[2]! - tops[1]!,
+            tops[3]! - tops[2]!,
+          ];
+          expect(Math.max(...gaps), p.content).toBeGreaterThanOrEqual(2);
+          // 발문 닻(□=x0 → △=y0)이 표 첫 열과 같다
+          expect(nums(p.content)[0], p.content).toBe(tops[0]);
+          expect(nums(p.content)[1], p.content).toBe(Number(pairs[0]![1]));
+        } else {
+          // «1씩 커질 때» — 윗줄이 정말 1씩 커지고 발문의 시작 수에서 출발한다
+          expect(tops[0], p.content).toBe(nums(p.content)[0]);
+          for (let i = 1; i < 4; i += 1)
+            expect(tops[i]! - tops[i - 1]!, p.content).toBe(1);
+        }
+      }
+
+      // 심화 — ㉠(정방향) + ㉡(역방향)
+      const dp = problem("1-3-2", "심화", seed);
+      const pairs = tablePairs(dp, "1-3-2 심화");
+      const f = inferRel(pairs, "1-3-2 심화");
+      const i1 = pairs.findIndex(([, b]) => b === "㉠");
+      const i2 = pairs.findIndex(([a]) => a === "㉡");
+      expect(i1, `${dp.content} ㉠이 없다`).toBeGreaterThan(0);
+      expect(i2, `${dp.content} ㉡이 없다`).toBeGreaterThan(0);
+      expect(i1, "㉠·㉡이 같은 칸이다").not.toBe(i2);
+      const tick1 = f(Number(pairs[i1]![0]));
+      const bottom2 = Number(pairs[i2]![1]);
+      let tick2 = -1;
+      for (let x = 1; x <= 100; x += 1)
+        if (f(x) === bottom2) {
+          tick2 = x;
+          break;
+        }
+      expect(
+        tick2,
+        `${dp.content}: ㉡ 역산이 자연수로 안 떨어진다`,
+      ).toBeGreaterThan(0);
+      expect(answerNumber(dp.answer, "1-3-2 심화"), dp.content).toBe(
+        tick1 + tick2,
+      );
+      // ㉡ 누출 방지 — 이웃 □ 사이가 2뿐이면 «그 사이의 수»가 하나라 역산 없이 풀린다
+      if (i2 < 3)
+        expect(
+          Number(pairs[i2 + 1]![0]) - Number(pairs[i2 - 1]![0]),
+          `${dp.content} ㉡ 이웃 간격`,
+        ).toBeGreaterThanOrEqual(3);
+      // 발문 닻이 표 첫 열과 같다
+      expect(nums(dp.content)[0], dp.content).toBe(Number(pairs[0]![0]));
+      expect(nums(dp.content)[1], dp.content).toBe(Number(pairs[0]![1]));
+    }
+  });
+
+  it("1-3-3 — 장면의 수로 답이 다시 선다 (배·자르기 +1·나이 차)", () => {
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        const p = problem("1-3-3", tier, seed);
+        const c = p.content;
+        const ns = nums(c);
+        const label = `1-3-3 ${tier} @${seed}`;
+        if (tier === "연산") {
+          expect(p.answer, `${label}\n${c}`).toBe(
+            `$\\triangle=\\square\\times${ns[1]}$`,
+          );
+        } else if (tier === "기본") {
+          if (c.includes("자르면")) {
+            expect(p.answer, `${label}\n${c}`).toBe("$\\triangle=\\square+1$");
+          } else if (c.includes("많습니다")) {
+            expect(p.answer, `${label}\n${c}`).toBe(
+              `$\\triangle=\\square+${ns[0]}$`,
+            );
+          } else {
+            expect(c, label).toContain("적습니다");
+            expect(p.answer, `${label}\n${c}`).toBe(
+              `$\\triangle=\\square-${ns[0]}$`,
+            );
+          }
+        } else if (tier === "응용") {
+          const a = answerNumber(p.answer, label);
+          if (c.includes("자르면"))
+            expect(a, `${label}\n${c}`).toBe(ns[1]! + 1);
+          else expect(a, `${label}\n${c}`).toBe(ns[1]! * ns[2]!);
+        } else {
+          const a = answerNumber(p.answer, label);
+          if (c.includes("자르면")) {
+            expect(a, `${label}\n${c}`).toBe(ns[1]! - 1);
+          } else {
+            expect(ns[2]! % ns[1]!, `${label} 나눗셈이 안 떨어진다\n${c}`).toBe(
+              0,
+            );
+            expect(a, `${label}\n${c}`).toBe(ns[2]! / ns[1]!);
+          }
+        }
+      }
+    }
+  });
+
+  it("경계 쓸기 200 — 자르기 +1 방향·역산 나눗셈·차 관계 자연수·㉡ 간격 (구성 보장)", () => {
+    let hitCut = 0;
+    let hitMul = 0;
+    let hitSub = 0;
+    let hitTick = 0;
+    for (let seed = 1; seed <= 200; seed += 1) {
+      // 1-3-3 심화 — 자르기는 △−1(off-by-one 방향), 배는 나눗셈이 떨어진다
+      const d3 = problem("1-3-3", "심화", seed);
+      const n3 = nums(d3.content);
+      if (d3.content.includes("자르면")) {
+        hitCut += 1;
+        expect(answerNumber(d3.answer, `@${seed}`), d3.content).toBe(
+          n3[1]! - 1,
+        );
+      } else {
+        hitMul += 1;
+        expect(n3[2]! % n3[1]!, d3.content).toBe(0);
+      }
+      // 1-3-2 기본 — 차 관계면 △가 전부 자연수(□ > c 를 뽑는 범위가 보장)
+      const r2 = problem("1-3-2", "기본", seed);
+      if (r2.answer.includes("\\square-")) {
+        hitSub += 1;
+        for (const [, b] of tablePairs(r2, `1-3-2 기본 @${seed}`))
+          expect(Number(b), r2.content).toBeGreaterThanOrEqual(1);
+      }
+      // 1-3-2 심화 — ㉡의 이웃 □ 간격이 3 미만이면 사이 수가 하나뿐이라 역산이 죽는다
+      const d2 = problem("1-3-2", "심화", seed);
+      const pr = tablePairs(d2, `1-3-2 심화 @${seed}`);
+      const i2 = pr.findIndex(([a]) => a === "㉡");
+      if (i2 > 0 && i2 < 3) {
+        hitTick += 1;
+        expect(
+          Number(pr[i2 + 1]![0]) - Number(pr[i2 - 1]![0]),
+          d2.content,
+        ).toBeGreaterThanOrEqual(3);
+      }
+    }
+    expect(hitCut, "자르기 심화가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+    expect(hitMul, "배 심화가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+    expect(hitSub, "차 관계 기본이 쓸기에 안 걸렸다").toBeGreaterThan(20);
+    expect(hitTick, "㉡ 가운데 자리가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+  });
+
+  it("△=□ 꼴이 도형 접두사 규칙에 안 걸리고 붉음 없이 그려진다 (렌더)", () => {
+    for (const rel of [
+      "\\triangle=\\square\\times4",
+      "\\triangle=\\square+7",
+      "\\triangle=\\square-2",
+    ]) {
+      // 전처리가 △= 를 도형 라벨(\triangle \mathrm{…})로 읽으면 여기서 죽는다
+      const pre = preprocessMathText(`$${rel}$`);
+      expect(pre, rel).toContain(rel);
+      expect(pre, rel).not.toContain("\\mathrm");
+      const html = renderMathHtml(`$${rel}$`);
+      expect(html, rel).not.toContain("katex-error");
+      expect(html, rel).not.toMatch(/color:\s*#cc0000/i);
+    }
+    // 실제 생성물 한 벌 — 발문·정답·해설 통째로
+    for (const code of CODES13) {
+      const p = problem(code, "연산", 11);
+      const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
+      expect(html, code).not.toContain("katex-error");
+      expect(html, code).not.toMatch(/color:\s*#cc0000/i);
+    }
+  });
+
+  it("1-3 세 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES13) {
       for (const tier of ELEM_TIERS) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
