@@ -36,11 +36,21 @@ if ! npx tsx "$PROBE" > "$BEFORE" 2>&1; then
   exit 1
 fi
 
-BASE=$(npx vitest run "$TEST" 2>&1 | grep -oE "Tests +[0-9]+ (passed|failed)" | head -1)
-echo "[기준] ${BASE:-판정 불가}"
-case "${BASE:-}" in
-  *failed*|"") echo "🔴 기준 시험이 초록이 아니다 — 하네스 중단"; exit 1;;
-esac
+# 오르카 다중 세션이 같이 도는 동안에는 메모리가 모자라 기본 `forks` 풀이
+# **워커를 못 띄운다**(「Timeout waiting for worker to respond」). 그러면 시험이
+# 빨간 것도 초록인 것도 아닌 「no tests」가 되어 판정이 통째로 헛돈다.
+# 스레드 풀은 프로세스를 안 만들어 그 압력을 안 받는다 — 이 파일은 순수 계산이라
+# 풀을 바꿔도 뜻이 안 달라진다.
+VT=(npx vitest run "$TEST" --pool=threads --maxWorkers=1)
+
+BASE_OUT=$("${VT[@]}" 2>&1)
+BASE_RC=$?
+echo "[기준] $(printf '%s' "$BASE_OUT" | grep -oE "Tests +[0-9]+ (passed|failed)" | head -1) (rc=$BASE_RC)"
+if [ "$BASE_RC" -ne 0 ]; then
+  echo "🔴 기준 시험이 초록이 아니다 — 하네스 중단"
+  printf '%s' "$BASE_OUT" | tail -12 | sed 's/^/        /'
+  exit 1
+fi
 
 run() { # $1 = 변이 이름
   local after moved out rc r
@@ -70,7 +80,7 @@ run() { # $1 = 변이 이름
   # ⑶ 그제서야 시험. 판정은 **종료 코드**로 한다 — 요약 줄을 grep 하면
   #    「수집 실패」처럼 «Tests N failed» 줄이 아예 없는 경우가 초록으로 읽힌다
   #    (2026-08-23 실제로 그렇게 거짓 초록이 났다).
-  out=$(npx vitest run "$TEST" 2>&1)
+  out=$("${VT[@]}" 2>&1)
   rc=$?
   r=$(printf '%s' "$out" | grep -oE "Tests +[0-9]+ failed" | head -1)
   if [ "$rc" -ne 0 ]; then
