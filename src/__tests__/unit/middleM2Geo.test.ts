@@ -672,6 +672,15 @@ describe("중2 기하 55유형 (RPM 2-2)", () => {
     QUAD11_SHAPES.forEach(([name, eq, perp, bisect], i) => {
       expect([eq, perp, bisect], `사각형 ${name}`).toEqual(QUAD11_TRUTH[i]);
     });
+    // 11 유형의 c 는 «길이가 같고 + 수직이고 + 이등분»인데, 이 표에서는 앞 둘이면
+    // 셋째가 따라온다 — 그래서 셋째 항을 지워도 답이 안 변한다(변이 시험이
+    // 「산출물이 안 바뀐다」로 알려 줬다). 그 함의를 여기서 못 박는다: 표에
+    // 새 사각형을 넣어 이 관계가 깨지면 **이 검사가 먼저 빨개진다.**
+    QUAD11_SHAPES.forEach(([name, eq, perp, bisect]) => {
+      if (eq && perp) {
+        expect(bisect, `${name}: 같고 수직인데 이등분이 아니다`).toBe(true);
+      }
+    });
   });
 
   for (const e of GEO) {

@@ -886,6 +886,10 @@ export const M2_GEO_QUAD: TypeEntry[] = [
       const idx = distinctIndices(rng, QUAD11_SHAPES.length, count);
       const a = idx.filter((i) => QUAD11_SHAPES[i]![1]).length;
       const b = idx.filter((i) => QUAD11_SHAPES[i]![2]).length;
+      // 발문 그대로 세 성질을 모두 요구한다. ⚠️ **이 표에서는** «같고 수직»이면
+      // 반드시 «이등분»이라 마지막 항이 대수적으로 함의된다(변이 시험이
+      // 「산출물이 안 바뀐다」로 알려 줬다). 그 함의는 테스트가 따로 못 박아
+      // 두었으니, 표에 새 사각형을 넣어 함의가 깨지면 그때 이 항이 산다.
       const c = idx.filter(
         (i) =>
           QUAD11_SHAPES[i]![1] && QUAD11_SHAPES[i]![2] && QUAD11_SHAPES[i]![3],
