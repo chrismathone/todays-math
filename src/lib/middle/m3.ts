@@ -21,8 +21,8 @@
  *
  * ## 보류 목록 (이 세션이 만들지 않은 것)
  *
- * - 3-2|원과 직선|07~16 (접선·내접원·외접 사각형) — 우리 단원 «원의 접선» 소속.
- *   브리프의 중3 스코프(원과 현·원주각) 밖이라 후속 트랙으로 남긴다.
+ * - 3-2|원과 직선|07~16 — 2차 물결 세션 2A-중3접선이 `m3Tangent.ts` 로 냈다
+ *   (2026-08-23, 아래 spread). 더 이상 보류가 아니다.
  * - 3-2|상자그림과 산점도 전체 — 보류. 계층 B 그림(FigureSpec v2 밖, 09 §2).
  */
 import { intBetween, pick } from "../elementary/rng";
@@ -40,6 +40,7 @@ import {
   figTriSine,
   figTwoChords,
 } from "./m3Figures";
+import { M3_TANGENT_TYPES } from "./m3Tangent";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -436,6 +437,7 @@ export const M3_TYPES: TypeEntry[] = [
       };
     },
   ),
+  ...M3_TANGENT_TYPES,
 ];
 
 // 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해

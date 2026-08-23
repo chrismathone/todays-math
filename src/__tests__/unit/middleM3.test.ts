@@ -130,8 +130,11 @@ function everyNumberFinite(v: unknown): boolean {
 }
 
 describe("중3 원의 성질 16유형", () => {
+  // «원의 접선»(원과 직선 07~16, m3Tangent.ts)은 2차 물결 세션 소유 —
+  // middleM3Tangent.test.ts 가 따로 검산한다. 이 파일의 분모는 01~06+원주각.
   const entries = registeredTypes().filter(
-    (e) => e.rpmBook === "3-2" && e.grade === "중3",
+    (e) =>
+      e.rpmBook === "3-2" && e.grade === "중3" && e.unitSection !== "원의 접선",
   );
   const lineEntries = entries.filter((e) => e.rpmMinor === "원과 직선");
   const angleEntries = entries.filter((e) => e.rpmMinor === "원주각");
@@ -167,7 +170,9 @@ describe("중3 원의 성질 16유형", () => {
     expect(byKey.get("3-2|원주각|10")).toBe("반원에 대한 원주각의 크기의 응용");
   });
 
-  for (const e of registeredTypes().filter((x) => x.rpmBook === "3-2")) {
+  for (const e of registeredTypes().filter(
+    (x) => x.rpmBook === "3-2" && x.unitSection !== "원의 접선",
+  )) {
     describe(`${e.rpmMinor} ${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260823);

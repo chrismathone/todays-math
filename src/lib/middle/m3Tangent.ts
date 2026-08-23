@@ -1,0 +1,1359 @@
+/**
+ * 중3 「원의 접선」 — RPM 3-2 «원과 직선» 07~16 10유형 전량.
+ *
+ * 세션 2A-중3접선 소유 모듈 (docs/planning/tracks/middle-engine-wave2-plan.md §1).
+ * 보유가 많은 단원(568건)이므로 목적은 커버 수가 아니라 **유형당 변형 폭**이다 —
+ * 유형마다 수치 풀 × 묻는 값(mode) 3~5갈래를 돌린다. `facts.mode` 가 그 갈래를
+ * 남기고, 테스트가 갈래별 조건식을 독립 재계산한다(middleM3Tangent.test.ts).
+ *
+ * ## 생성 규칙 — 정답을 먼저 뽑고 발문을 역산한다 (1차 물결 계약 그대로)
+ *
+ * 길이는 피타고라스 세 쌍·접선 길이 분해(t_A+t_B=AB)에서 뽑아 답이 항상 정수다.
+ * 근호가 남는 갈래(30°·60°·120°)는 계수가 정수인 $k\sqrt{3}$ 꼴만 낸다(중3 근호).
+ * `facts.x` 는 항상 답의 수(근호·π 답은 그 계수)다.
+ *
+ * ## 그림 (FigureSpec v2 — 실증 완료 «원의 접선» 패턴 재사용, 09 §2)
+ *
+ * - 반지름⊥접선의 직각 «기호»는 2B(마크 문법) 전이므로 각 라벨 "90°" 로
+ *   대신한다 (wave2 plan §1 지시).
+ * - 치수선(dimension)은 끝점이 원 위에 있으면 엔진이 거부한다(m3Figures.ts 실측
+ *   2026-08-23) — 수치는 발문이 전부 말하고 그림은 구조만 보인다.
+ * - 반원(11)은 draw:false 작도원 + arcs 호 렌더(v2 채색 축, 커밋 6a4b535b).
+ * - 내접원·외접 사각형(12~16)의 꼭짓점·접점 좌표는 발문의 실제 값(접선 길이)로
+ *   계산한다 — 값과 안 맞는 그림을 만들지 않는다(09 §4-20).
+ */
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
+
+import type { MidProblem, TypeEntry } from "./types";
+
+const GRADE = "중3";
+const BOOK = "3-2";
+const MINOR = "원과 직선";
+/** 우리 Unit.section 정확한 이름 (DB 실측 2026-08-23 — prisma/seed-data/units.ts 484~486 «원의 접선») */
+const SEC = "원의 접선";
+
+const DEG = Math.PI / 180;
+
+// ── 기하 헬퍼 (그림 좌표 계산) ─────────────────────────
+
+type Pt = readonly [number, number];
+
+function r2(v: number): number {
+  return Math.round(v * 100) / 100;
+}
+
+/** 수학각(도) → SVG 좌표 (y-down 보정). 엔진 `circle_pt` 와 같은 규약. */
+function polar(c: Pt, angleDeg: number, radius: number): Pt {
+  return [
+    r2(c[0] + radius * Math.cos(angleDeg * DEG)),
+    r2(c[1] - radius * Math.sin(angleDeg * DEG)),
+  ];
+}
+
+/** 점 o 에서 직선 ab 에 내린 수선의 발. */
+function foot(o: Pt, a: Pt, b: Pt): Pt {
+  const ux = b[0] - a[0];
+  const uy = b[1] - a[1];
+  const t = ((o[0] - a[0]) * ux + (o[1] - a[1]) * uy) / (ux * ux + uy * uy);
+  return [r2(a[0] + t * ux), r2(a[1] + t * uy)];
+}
+
+/** p1 + t·d1 == p2 + s·d2 의 교점. 평행이면 던진다. */
+function lineCross(p1: Pt, d1: Pt, p2: Pt, d2: Pt): Pt {
+  const det = d1[0] * d2[1] - d1[1] * d2[0];
+  if (Math.abs(det) < 1e-9) {
+    throw new Error("그림 계산 실패: 두 직선이 평행합니다");
+  }
+  const t = ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / det;
+  return [r2(p1[0] + t * d1[0]), r2(p1[1] + t * d1[1])];
+}
+
+function unit(v: Pt): Pt {
+  const n = Math.hypot(v[0], v[1]);
+  return [v[0] / n, v[1] / n];
+}
+
+function sub2(a: Pt, b: Pt): Pt {
+  return [a[0] - b[0], a[1] - b[1]];
+}
+
+/** u 를 축 n(단위벡터) 에 대해 반사 — 접선 방향 계산용. */
+function reflectDir(u: Pt, n: Pt): Pt {
+  const d = u[0] * n[0] + u[1] * n[1];
+  return [2 * d * n[0] - u[0], 2 * d * n[1] - u[1]];
+}
+
+type FigureSpec = Record<string, unknown>;
+type SpecPoint = Pt | Record<string, unknown>;
+
+function spec(
+  points: Record<string, SpecPoint>,
+  circles: Record<string, unknown>,
+  rest: Record<string, unknown>,
+): FigureSpec {
+  return {
+    version: 2,
+    style: { show_points: true },
+    points,
+    circles,
+    ...rest,
+  };
+}
+
+// ── 그림 빌더 ─────────────────────────────────────────
+
+/** 07 접선과 반지름 — 외부점 P, 접점 A, 반지름 OA. ratio = OP/r. */
+function figTangentRadius(opts: { ratio: number; deg30: boolean }): FigureSpec {
+  const R = 58;
+  const O: Pt = [78, 96];
+  const d = opts.ratio * R;
+  const P: Pt = [r2(O[0] + d), O[1]];
+  const phi = Math.acos(1 / opts.ratio) / DEG;
+  const angles: Record<string, unknown> = {
+    rt: { vertex: "A", points: ["O", "P"], label: "90°" },
+  };
+  if (opts.deg30) {
+    angles.ap = { vertex: "P", points: ["A", "O"], label: "30°" };
+  }
+  return spec(
+    { O, P, A: { type: "on_circle", circle: "c", angle: r2(phi) } },
+    { c: { center: "O", radius: R } },
+    {
+      segments: { PA: ["P", "A"], OA: ["O", "A"], OP: ["O", "P"] },
+      angles,
+      labels: { O: "O", A: "A", P: "P" },
+    },
+  );
+}
+
+/** 08 중심이 같은 두 원 — 큰 원의 현 AB 가 작은 원에 접점 H 로 접한다. */
+function figConcentric(opts: {
+  rb: number;
+  rs: number;
+  h: number;
+}): FigureSpec {
+  const R = 62;
+  const O: Pt = [110, 92];
+  const s = R / opts.rb;
+  const y = r2(O[1] + opts.rs * s);
+  const half = opts.h * s;
+  return spec(
+    {
+      O,
+      A: [r2(O[0] - half), y],
+      B: [r2(O[0] + half), y],
+      H: [O[0], y],
+    },
+    {
+      c: { center: "O", radius: R },
+      c2: { center: "O", radius: r2(opts.rs * s) },
+    },
+    {
+      segments: { AB: ["A", "B"], OH: ["O", "H"], OA: ["O", "A"] },
+      angles: { rt: { vertex: "H", points: ["O", "B"], label: "90°" } },
+      labels: { O: "O", A: "A", B: "B", H: "H" },
+    },
+  );
+}
+
+/** 09 두 접선 — 외부점 P, 접점 A(위)·B(아래). p = ∠APB(도). */
+function figTwoTangents(opts: {
+  p: number;
+  labelP?: string;
+  labelO?: string;
+  labelA?: string;
+  chord: boolean;
+  right90: boolean;
+}): FigureSpec {
+  const R = 56;
+  const O: Pt = [82, 96];
+  const half = opts.p / 2;
+  const d = R / Math.sin(half * DEG);
+  const P: Pt = [r2(O[0] + d), O[1]];
+  const phi = 90 - half;
+  const segments: Record<string, unknown> = {
+    PA: ["P", "A"],
+    PB: ["P", "B"],
+    OA: ["O", "A"],
+    OB: ["O", "B"],
+  };
+  if (opts.chord) segments.AB = ["A", "B"];
+  const angles: Record<string, unknown> = {};
+  if (opts.labelP) {
+    angles.angP = { vertex: "P", points: ["A", "B"], label: opts.labelP };
+  }
+  if (opts.labelO) {
+    angles.angO = { vertex: "O", points: ["A", "B"], label: opts.labelO };
+  }
+  if (opts.labelA) {
+    angles.angA = { vertex: "A", points: ["P", "B"], label: opts.labelA };
+  }
+  if (opts.right90) {
+    angles.rt = { vertex: "A", points: ["O", "P"], label: "90°" };
+  }
+  return spec(
+    {
+      O,
+      P,
+      A: { type: "on_circle", circle: "c", angle: r2(phi) },
+      B: { type: "on_circle", circle: "c", angle: r2(-phi) },
+    },
+    { c: { center: "O", radius: R } },
+    { segments, angles, labels: { O: "O", A: "A", B: "B", P: "P" } },
+  );
+}
+
+/**
+ * 10 접선의 성질 응용 — A 에서 두 접선 AD·AE, 세 번째 접선 BC(접점 F).
+ * ratio = OA/r. B 는 AD 위, C 는 AE 위 — 실제 접선 교점으로 계산한다.
+ */
+function figTangentTri(opts: {
+  ratio: number;
+  showRadius: boolean;
+  label60: boolean;
+}): FigureSpec {
+  const R = 54;
+  const O: Pt = [136, 96];
+  const d = opts.ratio * R;
+  const A: Pt = [r2(O[0] - d), O[1]];
+  const phi = Math.acos(1 / opts.ratio) / DEG;
+  const D = polar(O, 180 - phi, R);
+  const E = polar(O, 180 + phi, R);
+  const F = polar(O, 180 + 14, R);
+  const tangentDir: Pt = [-(F[1] - O[1]), F[0] - O[0]];
+  const B = lineCross(A, sub2(D, A), F, tangentDir);
+  const C = lineCross(A, sub2(E, A), F, tangentDir);
+  const segments: Record<string, unknown> = {
+    AD: ["A", "D"],
+    AE: ["A", "E"],
+    BC: ["B", "C"],
+  };
+  const angles: Record<string, unknown> = {};
+  if (opts.showRadius) {
+    segments.OD = ["O", "D"];
+    segments.OE = ["O", "E"];
+    angles.rt = { vertex: "D", points: ["O", "A"], label: "90°" };
+  }
+  if (opts.label60) {
+    angles.angA = { vertex: "A", points: ["D", "E"], label: "60°" };
+  }
+  return spec(
+    { O, A, D, E, F, B, C },
+    { c: { center: "O", radius: R } },
+    {
+      segments,
+      angles,
+      labels: { O: "O", A: "A", B: "B", C: "C", D: "D", E: "E", F: "F" },
+    },
+  );
+}
+
+/** 11 반원에서의 접선 — 지름 AB, 접선 AD·BC·CD(접점 E). 높이는 실제 비율. */
+function figSemicircleTan(opts: {
+  a: number;
+  b: number;
+  r: number;
+}): FigureSpec {
+  const R = 56;
+  const O: Pt = [118, 150];
+  const s = R / opts.r;
+  const A: Pt = [r2(O[0] - R), O[1]];
+  const B: Pt = [r2(O[0] + R), O[1]];
+  const D: Pt = [A[0], r2(O[1] - opts.a * s)];
+  const C: Pt = [B[0], r2(O[1] - opts.b * s)];
+  const E = foot(O, D, C);
+  return spec(
+    { O, A, B, C, D, E },
+    { c: { center: "O", radius: R, draw: false } },
+    {
+      arcs: { semi: { circle: "c", from: "B", to: "A", dir: "ccw" } },
+      segments: {
+        AB: ["A", "B"],
+        AD: ["A", "D"],
+        BC: ["B", "C"],
+        CD: ["C", "D"],
+        OE: { points: ["O", "E"], dash: "5 4" },
+      },
+      angles: { rt: { vertex: "E", points: ["O", "D"], label: "90°" } },
+      labels: { O: "O", A: "A", B: "B", C: "C", D: "D", E: "E" },
+    },
+  );
+}
+
+/**
+ * 12 삼각형의 내접원 — 접선 길이 (ta, tb, tc) 로 실제 삼각형·내심·접점을
+ * 계산한다. withPQ 는 C 쪽 네 번째 접선 PQ(P 는 BC, Q 는 CA 위)를 얹는다.
+ */
+function figIncircleTri(opts: {
+  ta: number;
+  tb: number;
+  tc: number;
+  withPQ: boolean;
+}): FigureSpec {
+  const cAB = opts.ta + opts.tb;
+  const aBC = opts.tb + opts.tc;
+  const bCA = opts.tc + opts.ta;
+  const s = 140 / Math.max(cAB, aBC, bCA);
+  const B: Pt = [46, 168];
+  const C: Pt = [r2(B[0] + aBC * s), B[1]];
+  const cosB = (cAB * cAB + aBC * aBC - bCA * bCA) / (2 * cAB * aBC);
+  const sinB = Math.sqrt(Math.max(0, 1 - cosB * cosB));
+  const A: Pt = [r2(B[0] + cAB * s * cosB), r2(B[1] - cAB * s * sinB)];
+  const per = cAB + aBC + bCA;
+  const I: Pt = [
+    r2((aBC * A[0] + bCA * B[0] + cAB * C[0]) / per),
+    r2((aBC * A[1] + bCA * B[1] + cAB * C[1]) / per),
+  ];
+  const rPx = r2(B[1] - I[1]);
+  const D = foot(I, A, B);
+  const E = foot(I, B, C);
+  const F = foot(I, C, A);
+  const points: Record<string, SpecPoint> = { O: I, A, B, C, D, E, F };
+  const segments: Record<string, unknown> = {
+    AB: ["A", "B"],
+    BC: ["B", "C"],
+    CA: ["C", "A"],
+  };
+  const labels: Record<string, string> = {
+    O: "O",
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+  };
+  if (opts.withPQ) {
+    const g = unit(sub2(C, I));
+    const G: Pt = [r2(I[0] + rPx * g[0]), r2(I[1] + rPx * g[1])];
+    const tDir: Pt = [-g[1], g[0]];
+    points.P = lineCross(G, tDir, B, sub2(C, B));
+    points.Q = lineCross(G, tDir, C, sub2(A, C));
+    segments.PQ = ["P", "Q"];
+    labels.P = "P";
+    labels.Q = "Q";
+  }
+  return spec(
+    points,
+    { c: { center: "O", radius: rPx } },
+    {
+      segments,
+      labels,
+    },
+  );
+}
+
+/**
+ * 13 직각삼각형의 내접원 — 직각 꼭짓점은 왼쪽 아래. 이름은 모드가 준다.
+ * hor/ver 는 가로·세로 «변의 길이»(같은 단위), 접점 라벨은 D(가로)·E(빗변)·F(세로).
+ */
+function figRightIncircle(raw: {
+  hor: number;
+  ver: number;
+  rightName: string;
+  horName: string;
+  verName: string;
+}): FigureSpec {
+  // 긴 변을 가로로 눕힌다 — 이름은 길이를 따라간다(값↔자리 대응 유지).
+  const opts =
+    raw.ver > raw.hor
+      ? {
+          hor: raw.ver,
+          ver: raw.hor,
+          rightName: raw.rightName,
+          horName: raw.verName,
+          verName: raw.horName,
+        }
+      : raw;
+  const s = 140 / Math.max(opts.hor, opts.ver);
+  const RA: Pt = [52, 166];
+  const H: Pt = [r2(RA[0] + opts.hor * s), RA[1]];
+  const V: Pt = [RA[0], r2(RA[1] - opts.ver * s)];
+  const hyp = Math.hypot(opts.hor, opts.ver) * s;
+  const rPx = r2((opts.hor * s + opts.ver * s - hyp) / 2);
+  const O: Pt = [r2(RA[0] + rPx), r2(RA[1] - rPx)];
+  const D: Pt = [O[0], RA[1]];
+  const F: Pt = [RA[0], O[1]];
+  const E = foot(O, H, V);
+  const points: Record<string, SpecPoint> = { O, D, E, F };
+  points[opts.rightName] = RA;
+  points[opts.horName] = H;
+  points[opts.verName] = V;
+  const labels: Record<string, string> = { O: "O", D: "D", E: "E", F: "F" };
+  labels[opts.rightName] = opts.rightName;
+  labels[opts.horName] = opts.horName;
+  labels[opts.verName] = opts.verName;
+  return spec(
+    points,
+    { c: { center: "O", radius: rPx } },
+    {
+      segments: {
+        s1: [opts.rightName, opts.horName],
+        s2: [opts.rightName, opts.verName],
+        s3: [opts.horName, opts.verName],
+      },
+      angles: {
+        rt: {
+          vertex: opts.rightName,
+          points: [opts.horName, opts.verName],
+          label: "90°",
+        },
+      },
+      labels,
+    },
+  );
+}
+
+/**
+ * 14 외접 사각형 — 네 접선의 법선각(도)으로 꼭짓점을 계산한다.
+ * angles = [AB, BC, CD, DA] 변의 법선각. withTangentLabels 는 접점 P·Q·R·S.
+ */
+function figCircumQuad(opts: {
+  angles: readonly [number, number, number, number];
+  withTangentLabels: boolean;
+}): FigureSpec {
+  const R = 50;
+  const O: Pt = [124, 102];
+  const T = opts.angles.map((a) => polar(O, a, R));
+  const dir = (t: Pt): Pt => [-(t[1] - O[1]), t[0] - O[0]];
+  const cross = (i: number, j: number): Pt =>
+    lineCross(T[i]!, dir(T[i]!), T[j]!, dir(T[j]!));
+  const points: Record<string, SpecPoint> = {
+    O,
+    A: cross(0, 3),
+    B: cross(0, 1),
+    C: cross(1, 2),
+    D: cross(2, 3),
+  };
+  const labels: Record<string, string> = {
+    O: "O",
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+  };
+  if (opts.withTangentLabels) {
+    points.P = T[0]!;
+    points.Q = T[1]!;
+    points.R = T[2]!;
+    points.S = T[3]!;
+    labels.P = "P";
+    labels.Q = "Q";
+    labels.R = "R";
+    labels.S = "S";
+  }
+  return spec(
+    points,
+    { c: { center: "O", radius: R } },
+    {
+      segments: {
+        AB: ["A", "B"],
+        BC: ["B", "C"],
+        CD: ["C", "D"],
+        DA: ["D", "A"],
+      },
+      labels,
+    },
+  );
+}
+
+/**
+ * 15 ∠C=90° 외접 사각형 — C 오른쪽 아래 직각, OFCG 정사각형.
+ * (r, tB, ab) 접선 길이 단위로 B·A 를 놓고 D 는 A 의 두 번째 접선으로 계산.
+ * mirror 는 밑변↔오른변을 맞바꾼 판(B↔D, E↔H, F↔G).
+ */
+function figCircumRight(opts: {
+  r: number;
+  tB: number;
+  ab: number;
+  mirror: boolean;
+}): FigureSpec {
+  const Cpt: Pt = [188, 168];
+  const s = 118 / (opts.tB + opts.r);
+  const rPx = opts.r * s;
+  let B: Pt = [r2(Cpt[0] - (opts.tB + opts.r) * s), Cpt[1]];
+  let O: Pt = [r2(Cpt[0] - rPx), r2(Cpt[1] - rPx)];
+  const beta = 2 * Math.atan(opts.r / opts.tB);
+  let A: Pt = [
+    r2(B[0] + opts.ab * s * Math.cos(beta)),
+    r2(B[1] - opts.ab * s * Math.sin(beta)),
+  ];
+  const u = unit(sub2(B, A));
+  const n = unit(sub2(O, A));
+  const u2 = reflectDir(u, n);
+  if (u2[0] <= 0.01) {
+    throw new Error("그림 계산 실패: 외접 사각형 D 가 생기지 않습니다");
+  }
+  const lam = (Cpt[0] - A[0]) / u2[0];
+  let D: Pt = [Cpt[0], r2(A[1] + lam * u2[1])];
+  if (lam <= 0 || D[1] >= O[1]) {
+    throw new Error("그림 계산 실패: 외접 사각형이 볼록하지 않습니다");
+  }
+  let E = foot(O, A, B);
+  let H = foot(O, A, D);
+  let F: Pt = [O[0], Cpt[1]];
+  let G: Pt = [Cpt[0], O[1]];
+  if (opts.mirror) {
+    const m = (p: Pt): Pt => [
+      r2(Cpt[0] - (Cpt[1] - p[1])),
+      r2(Cpt[1] - (Cpt[0] - p[0])),
+    ];
+    [A, B, D, O, E, F, G, H] = [m(A), m(D), m(B), m(O), m(H), m(G), m(F), m(E)];
+  }
+  return spec(
+    { O, A, B, C: Cpt, D, E, F, G, H },
+    { c: { center: "O", radius: r2(rPx) } },
+    {
+      segments: {
+        AB: ["A", "B"],
+        BC: ["B", "C"],
+        CD: ["C", "D"],
+        DA: ["D", "A"],
+      },
+      angles: { rt: { vertex: "C", points: ["B", "D"], label: "90°" } },
+      labels: {
+        O: "O",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        E: "E",
+        F: "F",
+        G: "G",
+        H: "H",
+      },
+    },
+  );
+}
+
+/**
+ * 16 직사각형 + 접선 DE — 원이 AB(왼)·BC(아래)·DA(위) 세 변에 접한다.
+ * (w=세로 변=2r, t=CE, L=AD) 실제 비율. G 는 BC 위 접점, H 는 DE 위 접점.
+ */
+function figRectTan(opts: {
+  w: number;
+  t: number;
+  L: number;
+  labelGH: boolean;
+}): FigureSpec {
+  const s = 130 / opts.L;
+  const A: Pt = [46, 44];
+  const D: Pt = [r2(A[0] + opts.L * s), A[1]];
+  const B: Pt = [A[0], r2(A[1] + opts.w * s)];
+  const C: Pt = [D[0], B[1]];
+  const rPx = r2((opts.w * s) / 2);
+  const O: Pt = [r2(A[0] + rPx), r2(A[1] + rPx)];
+  const E: Pt = [r2(A[0] + (opts.L - opts.t) * s), B[1]];
+  const points: Record<string, SpecPoint> = { O, A, B, C, D, E };
+  const labels: Record<string, string> = {
+    O: "O",
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+  };
+  if (opts.labelGH) {
+    points.G = [O[0], B[1]];
+    labels.G = "G";
+  }
+  return spec(
+    points,
+    { c: { center: "O", radius: rPx } },
+    {
+      segments: {
+        AB: ["A", "B"],
+        BC: ["B", "C"],
+        CD: ["C", "D"],
+        DA: ["D", "A"],
+        DE: ["D", "E"],
+      },
+      labels,
+    },
+  );
+}
+
+/** 16(사다리꼴) — ∠A=∠B=90°, AB=2r 왼변, 접선 CD. 실제 비율. */
+function figTrapTan(opts: { r: number; tD: number; tC: number }): FigureSpec {
+  const s = 118 / (opts.r + opts.tC);
+  const B: Pt = [42, 168];
+  const A: Pt = [B[0], r2(B[1] - 2 * opts.r * s)];
+  const D: Pt = [r2(B[0] + (opts.r + opts.tD) * s), A[1]];
+  const C: Pt = [r2(B[0] + (opts.r + opts.tC) * s), B[1]];
+  const O: Pt = [r2(B[0] + opts.r * s), r2(B[1] - opts.r * s)];
+  return spec(
+    { O, A, B, C, D },
+    { c: { center: "O", radius: r2(opts.r * s) } },
+    {
+      segments: {
+        AB: ["A", "B"],
+        BC: ["B", "C"],
+        CD: ["C", "D"],
+        DA: ["D", "A"],
+      },
+      angles: {
+        rtA: { vertex: "A", points: ["D", "B"], label: "90°" },
+        rtB: { vertex: "B", points: ["A", "C"], label: "90°" },
+      },
+      labels: { O: "O", A: "A", B: "B", C: "C", D: "D" },
+    },
+  );
+}
+
+// ── 수치 풀 ───────────────────────────────────────────
+
+/** [접선, 반지름, 빗변(OP)] — OP/r 이 1.25~2.6 인 것만 (그림이 읽히는 범위). */
+const T7 = [
+  [4, 3, 5],
+  [3, 4, 5],
+  [12, 5, 13],
+  [8, 6, 10],
+  [6, 8, 10],
+  [15, 8, 17],
+  [12, 9, 15],
+  [9, 12, 15],
+  [16, 12, 20],
+  [12, 16, 20],
+  [20, 15, 25],
+  [15, 20, 25],
+  [24, 10, 26],
+  [21, 20, 29],
+  [20, 21, 29],
+] as const;
+
+/** [반현 h, 작은 r, 큰 R] — h²+r²=R², r/R ≤ 0.87 (현이 가장자리에 붙지 않게). */
+const T8 = [
+  [4, 3, 5],
+  [3, 4, 5],
+  [12, 5, 13],
+  [8, 6, 10],
+  [6, 8, 10],
+  [15, 8, 17],
+  [12, 9, 15],
+  [9, 12, 15],
+  [16, 12, 20],
+  [12, 16, 20],
+  [20, 15, 25],
+  [15, 20, 25],
+  [24, 10, 26],
+  [21, 20, 29],
+  [20, 21, 29],
+] as const;
+
+/** [r, 접선 AE, OA] — 유형 10 모드 3. */
+const T10 = [
+  [3, 4, 5],
+  [4, 3, 5],
+  [6, 8, 10],
+  [8, 6, 10],
+  [9, 12, 15],
+  [5, 12, 13],
+  [8, 15, 17],
+  [12, 16, 20],
+] as const;
+
+/** [AD, BC, r] — 반원 접선: r² = AD·BC 가 되는 짝. */
+const T11 = [
+  [9, 4, 6],
+  [4, 9, 6],
+  [8, 2, 4],
+  [2, 8, 4],
+  [12, 3, 6],
+  [3, 12, 6],
+] as const;
+
+/** [가로, 세로, 빗변] — 직각삼각형 내접원. 변 비 ≤ 2.4. */
+const T13 = [
+  [3, 4, 5],
+  [6, 8, 10],
+  [5, 12, 13],
+  [9, 12, 15],
+  [8, 15, 17],
+  [12, 16, 20],
+  [15, 20, 25],
+  [20, 21, 29],
+  [18, 24, 30],
+] as const;
+
+/** [w=2r, t=CE, d=DE] — 유형 16 직사각형: w 짝수, L=(w+t+d)/2, L/w ≤ 2.5. */
+const T16 = [
+  [4, 3, 5],
+  [8, 6, 10],
+  [6, 8, 10],
+  [12, 5, 13],
+  [12, 9, 15],
+  [8, 15, 17],
+  [12, 16, 20],
+  [16, 12, 20],
+  [20, 15, 25],
+  [24, 7, 25],
+] as const;
+
+/** [r, tD, tC] — 유형 16 사다리꼴: tD·tC = r², tD < tC. */
+const T16T = [
+  [2, 1, 4],
+  [4, 2, 8],
+  [6, 4, 9],
+  [6, 3, 12],
+] as const;
+
+// ── 유형 등록 ─────────────────────────────────────────
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+function def(
+  rpmType: string,
+  rpmTitle: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${BOOK}|${MINOR}|${rpmType}`,
+    grade: GRADE,
+    unitSection: SEC,
+    rpmBook: BOOK,
+    rpmMinor: MINOR,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection: SEC,
+      rpmBook: BOOK,
+      rpmMinor: MINOR,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+const cm = (n: number | string): string => `$${n}\\,\\mathrm{cm}$`;
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
+export const M3_TANGENT_TYPES: TypeEntry[] = [
+  def("07", "원의 접선과 반지름", "easy", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3] as const);
+    if (mode === 3) {
+      const r = intBetween(rng, 3, 10);
+      const po = 2 * r;
+      return {
+        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\angle APO=30^\\circ$일 때, $\\overline{OP}$의 길이를 구하시오.`,
+        answer: cm(po),
+        solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\angle OAP=90^\\circ$이다.\n직각삼각형 $OAP$에서 $\\overline{OA}=\\overline{OP}\\sin 30^\\circ$이므로 $\\overline{OP}=2\\overline{OA}=2\\times${r}=${po}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, r, po, x: po },
+        figureSpec: figTangentRadius({ ratio: 2, deg30: true }),
+      };
+    }
+    const [pa, r, po] = pick(rng, T7);
+    const x = [pa, r, po][mode]!;
+    const contents = [
+      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\overline{OP}=${po}\\,\\mathrm{cm}$일 때, $\\overline{PA}$의 길이를 구하시오.`,
+      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. $\\overline{PA}=${pa}\\,\\mathrm{cm}$, $\\overline{OP}=${po}\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,
+      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\overline{PA}=${pa}\\,\\mathrm{cm}$일 때, $\\overline{OP}$의 길이를 구하시오.`,
+    ];
+    const works = [
+      `$\\overline{PA}=\\sqrt{${po}^2-${r}^2}=${pa}\\,(\\mathrm{cm})$`,
+      `$\\overline{OA}=\\sqrt{${po}^2-${pa}^2}=${r}\\,(\\mathrm{cm})$`,
+      `$\\overline{OP}=\\sqrt{${pa}^2+${r}^2}=${po}\\,(\\mathrm{cm})$`,
+    ];
+    return {
+      content: contents[mode]!,
+      answer: cm(x),
+      solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\angle OAP=90^\\circ$이다.\n직각삼각형 $OAP$에서 피타고라스 정리에 의하여 ${works[mode]!}이다.`,
+      facts: { mode, pa, r, po, x },
+      figureSpec: figTangentRadius({ ratio: po / r, deg30: false }),
+    };
+  }),
+
+  def(
+    "08",
+    "원의 접선과 반지름 중심이 같은 원이 주어진 경우",
+    "mid",
+    (rng): Body => {
+      const mode = pick(rng, [0, 1, 2, 3] as const);
+      const [h, rs, rb] = pick(rng, T8);
+      const ab = 2 * h;
+      const fig = figConcentric({ rb, rs, h });
+      if (mode === 0) {
+        return {
+          content: `중심이 같은 두 원의 반지름의 길이가 각각 ${cm(rb)}, ${cm(rs)}이다. 작은 원에 접하는 직선이 큰 원과 만나는 두 점을 각각 $A$, $B$라 할 때, $\\overline{AB}$의 길이를 구하시오.`,
+          answer: cm(ab),
+          solution: `접점을 $H$라 하면 $\\overline{OH}\\perp\\overline{AB}$이므로 $H$는 $\\overline{AB}$의 중점이다.\n직각삼각형 $OAH$에서 $\\overline{AH}=\\sqrt{${rb}^2-${rs}^2}=${h}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{AB}=2\\overline{AH}=${ab}\\,\\mathrm{cm}$이다.`,
+          facts: { mode, h, rs, rb, ab, x: ab },
+          figureSpec: fig,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `중심이 같은 두 원에서 큰 원의 현 $AB$는 작은 원의 접선이고 점 $H$는 그 접점이다. 큰 원의 반지름의 길이가 ${cm(rb)}이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, 작은 원의 반지름의 길이를 구하시오.`,
+          answer: cm(rs),
+          solution: `$\\overline{OH}\\perp\\overline{AB}$이므로 $\\overline{AH}=\\dfrac{1}{2}\\overline{AB}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAH$에서 $\\overline{OH}=\\sqrt{${rb}^2-${h}^2}=${rs}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, h, rs, rb, ab, x: rs },
+          figureSpec: fig,
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `중심이 같은 두 원에서 큰 원의 현 $AB$는 작은 원의 접선이고 점 $H$는 그 접점이다. 작은 원의 반지름의 길이가 ${cm(rs)}이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, 큰 원의 반지름의 길이를 구하시오.`,
+          answer: cm(rb),
+          solution: `$\\overline{OH}\\perp\\overline{AB}$이므로 $\\overline{AH}=\\dfrac{1}{2}\\overline{AB}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAH$에서 $\\overline{OA}=\\sqrt{${h}^2+${rs}^2}=${rb}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, h, rs, rb, ab, x: rb },
+          figureSpec: fig,
+        };
+      }
+      const area = h * h;
+      return {
+        content: `중심이 같은 두 원에서 큰 원의 현 $AB$가 작은 원에 접한다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, 두 원 사이에 낀 부분의 넓이를 구하시오.`,
+        answer: `$${area}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `큰 원과 작은 원의 반지름의 길이를 각각 $R\\,\\mathrm{cm}$, $r\\,\\mathrm{cm}$라 하고 접점을 $H$라 하면 $\\overline{AH}=\\dfrac{1}{2}\\overline{AB}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAH$에서 $R^2-r^2=\\overline{AH}^2=${area}$이다.\n따라서 구하는 넓이는 $\\pi R^2-\\pi r^2=${area}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { mode, h, rs, rb, ab, x: area },
+        figureSpec: fig,
+      };
+    },
+  ),
+
+  def("09", "원의 접선의 성질", "mid", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3, 4] as const);
+    if (mode === 0 || mode === 1) {
+      const p = 2 * intBetween(rng, 15, 35);
+      const x = mode === 0 ? 180 - p : (180 - p) / 2;
+      const ask =
+        mode === 0
+          ? `$\\angle AOB$의 크기를 구하시오.`
+          : `$\\angle PAB$의 크기를 구하시오.`;
+      const tail =
+        mode === 0
+          ? `$\\angle PAO=\\angle PBO=90^\\circ$이므로 사각형 $APBO$에서 $\\angle AOB=360^\\circ-90^\\circ-90^\\circ-${p}^\\circ=${x}^\\circ$이다.`
+          : `$\\overline{PA}=\\overline{PB}$이므로 삼각형 $PAB$는 이등변삼각형이다.\n따라서 $\\angle PAB=\\dfrac{1}{2}\\times(180^\\circ-${p}^\\circ)=${x}^\\circ$이다.`;
+      return {
+        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\angle APB=${p}^\\circ$일 때, ${ask}`,
+        answer: `$${x}^\\circ$`,
+        solution: tail,
+        facts: { mode, p, x },
+        figureSpec: figTwoTangents({
+          p,
+          labelP: `${p}°`,
+          labelO: mode === 0 ? "x" : undefined,
+          labelA: mode === 1 ? "x" : undefined,
+          chord: mode === 1,
+          right90: mode === 0,
+        }),
+      };
+    }
+    if (mode === 2) {
+      const l = intBetween(rng, 3, 15);
+      return {
+        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\overline{PA}=${l}\\,\\mathrm{cm}$일 때, $\\overline{PB}$의 길이를 구하시오.`,
+        answer: cm(l),
+        solution: `원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 같다.\n따라서 $\\overline{PB}=\\overline{PA}=${l}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, l, x: l },
+        figureSpec: figTwoTangents({ p: 44, chord: false, right90: true }),
+      };
+    }
+    if (mode === 3) {
+      const l = intBetween(rng, 4, 14);
+      return {
+        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\overline{PA}=${l}\\,\\mathrm{cm}$, $\\angle APB=60^\\circ$일 때, 현 $AB$의 길이를 구하시오.`,
+        answer: cm(l),
+        solution: `$\\overline{PA}=\\overline{PB}$이고 $\\angle APB=60^\\circ$이므로 삼각형 $PAB$는 정삼각형이다.\n따라서 $\\overline{AB}=\\overline{PA}=${l}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, l, p: 60, x: l },
+        figureSpec: figTwoTangents({
+          p: 60,
+          labelP: "60°",
+          chord: true,
+          right90: false,
+        }),
+      };
+    }
+    const r = intBetween(rng, 3, 9);
+    return {
+      content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\angle AOB=120^\\circ$, $\\overline{OA}=${r}\\,\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,
+      answer: `$${r}\\sqrt{3}\\,\\mathrm{cm}$`,
+      solution: `삼각형 $OAB$는 $\\overline{OA}=\\overline{OB}$인 이등변삼각형이다.\n$O$에서 $\\overline{AB}$에 내린 수선의 발을 $M$이라 하면 $\\angle AOM=60^\\circ$이므로 $\\overline{AM}=${r}\\sin 60^\\circ=\\dfrac{${r}\\sqrt{3}}{2}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{AB}=2\\overline{AM}=${r}\\sqrt{3}\\,\\mathrm{cm}$이다.`,
+      facts: { mode, r, aob: 120, x: r },
+      figureSpec: figTwoTangents({
+        p: 60,
+        labelO: "120°",
+        chord: true,
+        right90: false,
+      }),
+    };
+  }),
+
+  def("10", "원의 접선의 성질의 응용", "mid", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3, 4] as const);
+    if (mode === 3) {
+      const [r, ae, oa] = pick(rng, T10);
+      const per = 2 * ae;
+      return {
+        content: `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\overline{AD}$, $\\overline{AE}$와 만나는 점을 각각 $B$, $C$라 하자. $\\overline{OA}=${oa}\\,\\mathrm{cm}$, $\\overline{OE}=${r}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: cm(per),
+        solution: `$\\angle OEA=90^\\circ$이므로 직각삼각형 $OAE$에서 $\\overline{AE}=\\sqrt{${oa}^2-${r}^2}=${ae}\\,(\\mathrm{cm})$이다.\n접선의 길이가 같으므로 $\\overline{BD}=\\overline{BF}$, $\\overline{CE}=\\overline{CF}$이다. ($F$는 $\\overline{BC}$의 접점)\n따라서 삼각형 $ABC$의 둘레의 길이는 $\\overline{AD}+\\overline{AE}=2\\times${ae}=${per}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, r, ae, oa, x: per },
+        figureSpec: figTangentTri({
+          ratio: oa / r,
+          showRadius: true,
+          label60: false,
+        }),
+      };
+    }
+    if (mode === 4) {
+      const r = intBetween(rng, 3, 8);
+      const coef = 2 * r;
+      return {
+        content: `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\overline{AD}$, $\\overline{AE}$와 만나는 점을 각각 $B$, $C$라 하자. $\\angle EAD=60^\\circ$, $\\overline{OE}=${r}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: `$${coef}\\sqrt{3}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{OA}$는 $\\angle EAD$를 이등분하므로 $\\angle OAE=30^\\circ$이고 $\\angle OEA=90^\\circ$이다.\n직각삼각형 $OAE$에서 $\\overline{AE}=\\dfrac{${r}}{\\tan 30^\\circ}=${r}\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 삼각형 $ABC$의 둘레의 길이는 $2\\overline{AE}=${coef}\\sqrt{3}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, r, x: coef },
+        figureSpec: figTangentTri({
+          ratio: 2,
+          showRadius: true,
+          label60: true,
+        }),
+      };
+    }
+    return attempt(80, () => {
+      const ad = intBetween(rng, 9, 16);
+      const b1 = intBetween(rng, 2, 7);
+      const c1 = intBetween(rng, 2, 7);
+      if (ad <= b1 + c1 + 2) return null; // 삼각형이 눌린다
+      return m10Body(mode, ad, b1, c1);
+    });
+  }),
+
+  def("11", "반원에서의 접선", "hard", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3, 4] as const);
+    const [a, b, r] = pick(rng, T11);
+    const ab = 2 * r;
+    const cd = a + b;
+    const fig = figSemicircleTan({ a, b, r });
+    const head = `$\\overline{AB}$는 반원 $O$의 지름이고 $\\overline{AD}$, $\\overline{BC}$, $\\overline{CD}$는 반원 $O$의 접선이다. (점 $E$는 $\\overline{CD}$의 접점)`;
+    if (mode === 0) {
+      return {
+        content: `${head} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+        answer: cm(ab),
+        solution: `접선의 길이가 같으므로 $\\overline{DE}=\\overline{DA}=${a}\\,\\mathrm{cm}$, $\\overline{CE}=\\overline{CB}=${b}\\,\\mathrm{cm}$, 즉 $\\overline{CD}=${cd}\\,\\mathrm{cm}$이다.\n$D$에서 $\\overline{BC}$ 또는 그 연장선에 내린 수선의 발을 $H$라 하면 $\\overline{AB}=\\overline{DH}=\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, r, x: ab },
+        figureSpec: fig,
+      };
+    }
+    if (mode === 1) {
+      const per = ab + 2 * cd;
+      return {
+        content: `${head} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, 사각형 $ABCD$의 둘레의 길이를 구하시오.`,
+        answer: cm(per),
+        solution: `$\\overline{CD}=\\overline{DE}+\\overline{EC}=\\overline{DA}+\\overline{CB}=${cd}\\,(\\mathrm{cm})$이고, $\\overline{AB}=\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\,(\\mathrm{cm})$이다.\n따라서 둘레의 길이는 $${ab}+${b}+${cd}+${a}=${per}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, r, x: per },
+        figureSpec: fig,
+      };
+    }
+    if (mode === 2) {
+      const area = cd * r;
+      return {
+        content: `${head} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,
+        answer: `$${area}\\,\\mathrm{cm}^2$`,
+        solution: `$\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AB}=\\sqrt{(${a}+${b})^2-${Math.abs(a - b)}^2}=${ab}\\,(\\mathrm{cm})$이다.\n사다리꼴 $ABCD$의 넓이는 $\\dfrac{1}{2}\\times(${a}+${b})\\times${ab}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { mode, a, b, r, x: area },
+        figureSpec: fig,
+      };
+    }
+    if (mode === 3) {
+      return {
+        content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AD}=${a}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: cm(b),
+        solution: `$\\overline{BC}=x\\,\\mathrm{cm}$라 하면 $\\overline{CD}=\\overline{DE}+\\overline{EC}=(${a}+x)\\,\\mathrm{cm}$이다.\n$D$에서 $\\overline{BC}$ 또는 그 연장선에 내린 수선을 그으면 $(${a}+x)^2=(${a}-x)^2+${ab}^2$이므로 $${4 * a}x=${ab * ab}$, 즉 $x=${b}$이다.`,
+        facts: { mode, a, b, r, x: b },
+        figureSpec: fig,
+      };
+    }
+    const area = (cd * r) / 2;
+    return {
+      content: `${head} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, 삼각형 $DOC$의 넓이를 구하시오.`,
+      answer: `$${area}\\,\\mathrm{cm}^2$`,
+      solution: `$\\overline{CD}=\\overline{DA}+\\overline{CB}=${cd}\\,(\\mathrm{cm})$이고, 반원의 반지름은 $\\overline{AB}=\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\,(\\mathrm{cm})$에서 $${r}\\,\\mathrm{cm}$이다.\n$\\overline{OE}\\perp\\overline{CD}$이고 $\\overline{OE}=${r}\\,\\mathrm{cm}$이므로 삼각형 $DOC$의 넓이는 $\\dfrac{1}{2}\\times${cd}\\times${r}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+      facts: { mode, a, b, r, x: area },
+      figureSpec: fig,
+    };
+  }),
+
+  def("12", "삼각형의 내접원", "mid", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3] as const);
+    const t1 = intBetween(rng, 2, 8);
+    const t2 = intBetween(rng, 2, 8);
+    const t3 = intBetween(rng, 2, 8);
+    const ab = t1 + t2;
+    const bc = t2 + t3;
+    const ca = t3 + t1;
+    const head = `원 $O$는 삼각형 $ABC$의 내접원이고 세 점 $D$, $E$, $F$는 각각 변 $AB$, $BC$, $CA$ 위의 접점이다.`;
+    const fig = (withPQ: boolean): FigureSpec =>
+      figIncircleTri({ ta: t1, tb: t2, tc: t3, withPQ });
+    if (mode === 0) {
+      const target = pick(rng, [0, 1, 2] as const);
+      const name = ["AD", "BE", "CE"][target]!;
+      const x = [t1, t2, t3][target]!;
+      const expr = [
+        `\\dfrac{1}{2}\\times(${ab}+${ca}-${bc})`,
+        `\\dfrac{1}{2}\\times(${ab}+${bc}-${ca})`,
+        `\\dfrac{1}{2}\\times(${bc}+${ca}-${ab})`,
+      ][target]!;
+      return {
+        content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CA}=${ca}\\,\\mathrm{cm}$일 때, $\\overline{${name}}$의 길이를 구하시오.`,
+        answer: cm(x),
+        solution: `$\\overline{AD}=\\overline{AF}$, $\\overline{BD}=\\overline{BE}$, $\\overline{CE}=\\overline{CF}$이다.\n$\\overline{${name}}=${expr}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, target, t1, t2, t3, ab, bc, ca, x },
+        figureSpec: fig(false),
+      };
+    }
+    if (mode === 1) {
+      return {
+        content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ca}\\,\\mathrm{cm}$, $\\overline{AF}=${t1}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: cm(bc),
+        solution: `$\\overline{AD}=\\overline{AF}=${t1}\\,\\mathrm{cm}$이므로 $\\overline{BE}=\\overline{BD}=${ab}-${t1}=${t2}\\,(\\mathrm{cm})$, $\\overline{CE}=\\overline{CF}=${ca}-${t1}=${t3}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{BC}=${t2}+${t3}=${bc}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, t1, t2, t3, ab, ca, bc, af: t1, x: bc },
+        figureSpec: fig(false),
+      };
+    }
+    if (mode === 2) {
+      const per = 2 * (t1 + t2 + t3);
+      return {
+        content: `${head} 삼각형 $ABC$의 둘레의 길이가 ${cm(per)}이고 $\\overline{BE}=${t2}\\,\\mathrm{cm}$, $\\overline{CF}=${t3}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+        answer: cm(t1),
+        solution: `$\\overline{AD}=\\overline{AF}$, $\\overline{BD}=\\overline{BE}$, $\\overline{CE}=\\overline{CF}$이므로 둘레의 길이는 $2(\\overline{AD}+\\overline{BE}+\\overline{CF})$이다.\n따라서 $\\overline{AD}=\\dfrac{${per}}{2}-${t2}-${t3}=${t1}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, t1, t2, t3, per, be: t2, cf: t3, x: t1 },
+        figureSpec: fig(false),
+      };
+    }
+    const per = 2 * t3;
+    return {
+      content: `${head} $\\overline{PQ}$는 원 $O$에 접하고 두 점 $P$, $Q$는 각각 변 $BC$, $CA$ 위에 있다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AF}=${t1}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, 삼각형 $QPC$의 둘레의 길이를 구하시오.`,
+      answer: cm(per),
+      solution: `$\\overline{BD}=\\overline{AB}-\\overline{AD}=${ab}-${t1}=${t2}\\,(\\mathrm{cm})$이고 $\\overline{CE}=\\overline{BC}-\\overline{BE}=${bc}-${t2}=${t3}\\,(\\mathrm{cm})$이다.\n$\\overline{PQ}$의 접점을 $G$라 하면 $\\overline{PG}=\\overline{PE}$, $\\overline{QG}=\\overline{QF}$이므로 삼각형 $QPC$의 둘레의 길이는 $\\overline{CE}+\\overline{CF}=2\\times${t3}=${per}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, t1, t2, t3, ab, bc, af: t1, x: per },
+      figureSpec: fig(true),
+    };
+  }),
+
+  def("13", "직각삼각형의 내접원", "hard", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3] as const);
+    const [g1, g2, hyp] = pick(rng, T13);
+    const r = (g1 + g2 - hyp) / 2;
+    if (mode === 1) {
+      const y = g1 - r;
+      const z = g2 - r;
+      return {
+        content: `원 $O$는 $\\angle A=90^\\circ$인 직각삼각형 $ABC$의 내접원이고 점 $E$는 변 $BC$ 위의 접점이다. $\\overline{BE}=${y}\\,\\mathrm{cm}$, $\\overline{CE}=${z}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
+        answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{AB}=(r+${y})\\,\\mathrm{cm}$, $\\overline{AC}=(r+${z})\\,\\mathrm{cm}$이다.\n피타고라스 정리에서 $(r+${y})^2+(r+${z})^2=(${y}+${z})^2$을 풀면 $r=${r}$이다.\n따라서 원 $O$의 넓이는 $${r * r}\\pi\\,\\mathrm{cm}^2$이다.`,
+        facts: { mode, r, y, z, x: r * r },
+        figureSpec: figRightIncircle({
+          hor: g1,
+          ver: g2,
+          rightName: "A",
+          horName: "B",
+          verName: "C",
+        }),
+      };
+    }
+    if (mode === 2) {
+      const area = (g1 * g2) / 2;
+      return {
+        content: `반지름의 길이가 ${cm(r)}인 원 $O$가 $\\angle C=90^\\circ$인 직각삼각형 $ABC$에 내접한다. $\\overline{AC}=${g2}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${area}\\,\\mathrm{cm}^2$`,
+        solution: `$\\overline{BC}=a\\,\\mathrm{cm}$라 하면 접선의 길이에서 $\\overline{AB}=(a-${r})+(${g2}-${r})=(a+${g2 - 2 * r})\\,\\mathrm{cm}$이다.\n피타고라스 정리 $a^2+${g2}^2=(a+${g2 - 2 * r})^2$을 풀면 $a=${g1}$이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times${g1}\\times${g2}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { mode, r, g1, g2, hyp, x: area },
+        figureSpec: figRightIncircle({
+          hor: g1,
+          ver: g2,
+          rightName: "C",
+          horName: "B",
+          verName: "A",
+        }),
+      };
+    }
+    if (mode === 3) {
+      const x = g2 - r;
+      return {
+        content: `원 $O$는 $\\angle C=90^\\circ$인 직각삼각형 $ABC$의 내접원이고 점 $F$는 변 $CA$ 위의 접점이다. $\\overline{BC}=${g1}\\,\\mathrm{cm}$, $\\overline{CA}=${g2}\\,\\mathrm{cm}$일 때, $\\overline{AF}$의 길이를 구하시오.`,
+        answer: cm(x),
+        solution: `$\\overline{AB}=\\sqrt{${g1}^2+${g2}^2}=${hyp}\\,(\\mathrm{cm})$이고, 반지름의 길이는 $\\dfrac{${g1}+${g2}-${hyp}}{2}=${r}\\,(\\mathrm{cm})$이다.\n$\\overline{CF}=${r}\\,\\mathrm{cm}$이므로 $\\overline{AF}=${g2}-${r}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, r, g1, g2, hyp, x },
+        figureSpec: figRightIncircle({
+          hor: g1,
+          ver: g2,
+          rightName: "C",
+          horName: "B",
+          verName: "A",
+        }),
+      };
+    }
+    return {
+      content: `원 $O$는 $\\angle C=90^\\circ$인 직각삼각형 $ABC$의 내접원이다. $\\overline{BC}=${g1}\\,\\mathrm{cm}$, $\\overline{AC}=${g2}\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,
+      answer: cm(r),
+      solution: `$\\overline{AB}=\\sqrt{${g1}^2+${g2}^2}=${hyp}\\,(\\mathrm{cm})$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 접선의 길이에서 $(${g1}-r)+(${g2}-r)=${hyp}$이므로 $r=${r}$이다.`,
+      facts: { mode, r, g1, g2, hyp, x: r },
+      figureSpec: figRightIncircle({
+        hor: g1,
+        ver: g2,
+        rightName: "C",
+        horName: "B",
+        verName: "A",
+      }),
+    };
+  }),
+
+  def("14", "원에 외접하는 사각형의 성질⑴", "mid", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3, 4] as const);
+    if (mode === 0) {
+      const tA = intBetween(rng, 2, 8);
+      const tB = intBetween(rng, 2, 8);
+      const tC = intBetween(rng, 2, 8);
+      const tD = intBetween(rng, 2, 8);
+      const ab = tA + tB;
+      const bc = tB + tC;
+      const cd = tC + tD;
+      const ad = tA + tD;
+      return {
+        content: `사각형 $ABCD$가 원 $O$에 외접하고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+        answer: cm(ad),
+        solution: `원에 외접하는 사각형에서 두 쌍의 대변의 길이의 합은 같다.\n$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이므로 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, ab, bc, cd, ad, x: ad },
+        figureSpec: figCircumQuad({
+          angles: [172, 262, 352, 86],
+          withTangentLabels: false,
+        }),
+      };
+    }
+    if (mode === 1) {
+      return attempt(80, () => {
+        const x0 = intBetween(rng, 3, 9);
+        const m = intBetween(rng, 1, 5);
+        const n = intBetween(rng, 1, 5);
+        const q = intBetween(rng, 5, 10);
+        const p = q + x0 - m - n;
+        if (p < 4 || 2 * x0 - n < 3) return null; // 변이 너무 짧아진다
+        return {
+          content: `사각형 $ABCD$가 원 $O$에 외접하고 $\\overline{AB}=${p}\\,\\mathrm{cm}$, $\\overline{BC}=${q}\\,\\mathrm{cm}$, $\\overline{CD}=(x+${m})\\,\\mathrm{cm}$, $\\overline{AD}=(2x-${n})\\,\\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
+          answer: `$${x0}$`,
+          solution: `$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이므로 $${p}+(x+${m})=(2x-${n})+${q}$이다.\n이를 풀면 $x=${x0}$이다.`,
+          facts: { mode, p, q, m, n, x: x0 },
+          figureSpec: figCircumQuad({
+            angles: [168, 258, 356, 92],
+            withTangentLabels: false,
+          }),
+        };
+      });
+    }
+    if (mode === 2) {
+      const a = 2 * intBetween(rng, 2, 5);
+      const b = a + 2 * intBetween(rng, 1, 4);
+      const x = (a + b) / 2;
+      const delta = Math.atan((b - a) / (2 * Math.sqrt(a * b))) / DEG;
+      return {
+        content: `원 $O$에 외접하는 등변사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+        answer: cm(x),
+        solution: `등변사다리꼴이므로 $\\overline{AB}=\\overline{CD}$이다.\n$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}=${a}+${b}=${a + b}\\,(\\mathrm{cm})$이므로 $\\overline{AB}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, a, b, x },
+        figureSpec: figCircumQuad({
+          angles: [180 - r2(delta), 270, r2(delta), 90],
+          withTangentLabels: false,
+        }),
+      };
+    }
+    if (mode === 3) {
+      const ab = intBetween(rng, 4, 10);
+      const cd = intBetween(rng, 4, 10);
+      const per = 2 * (ab + cd);
+      return {
+        content: `사각형 $ABCD$는 원 $O$에 외접하고 네 점 $P$, $Q$, $R$, $S$는 각각 변 $AB$, $BC$, $CD$, $DA$ 위의 접점이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$이고 사각형 $ABCD$의 둘레의 길이가 ${cm(per)}일 때, $\\overline{DS}+\\overline{CQ}$의 길이를 구하시오.`,
+        answer: cm(cd),
+        solution: `$\\overline{DS}=\\overline{DR}$, $\\overline{CQ}=\\overline{CR}$이므로 $\\overline{DS}+\\overline{CQ}=\\overline{CD}$이다.\n$\\overline{AB}+\\overline{CD}=\\dfrac{1}{2}\\times${per}=${ab + cd}\\,(\\mathrm{cm})$이므로 $\\overline{CD}=${ab + cd}-${ab}=${cd}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, ab, per, x: cd },
+        figureSpec: figCircumQuad({
+          angles: [176, 266, 348, 88],
+          withTangentLabels: true,
+        }),
+      };
+    }
+    const [rm, rn] = pick(rng, [
+      [2, 3],
+      [3, 4],
+      [3, 5],
+      [2, 5],
+      [4, 5],
+    ] as const);
+    const k = intBetween(rng, 2, 5);
+    const abv = rm * k;
+    const cdv = rn * k;
+    const S = abv + cdv;
+    const ad = intBetween(rng, 2, Math.floor(S / 2) - 1);
+    const bc = S - ad;
+    return {
+      content: `원 $O$에 외접하는 사각형 $ABCD$에서 $\\overline{AD}=${ad}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$이고 $\\overline{AB}:\\overline{CD}=${rm}:${rn}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+      answer: cm(abv),
+      solution: `$\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}=${ad}+${bc}=${S}\\,(\\mathrm{cm})$이다.\n$\\overline{AB}:\\overline{CD}=${rm}:${rn}$이므로 $\\overline{AB}=${S}\\times\\dfrac{${rm}}{${rm + rn}}=${abv}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, rm, rn, ad, bc, cd: cdv, x: abv },
+      figureSpec: figCircumQuad({
+        angles: [165, 255, 350, 95],
+        withTangentLabels: false,
+      }),
+    };
+  }),
+
+  def("15", "원에 외접하는 사각형의 성질⑵", "hard", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2] as const);
+    if (mode === 0) {
+      const r = intBetween(rng, 3, 6);
+      const tB = intBetween(rng, r, 9);
+      const ah = intBetween(rng, 2, 6);
+      const ab = ah + tB;
+      const bc = tB + r;
+      return {
+        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$이다. 점 $H$가 변 $DA$ 위의 접점일 때, $\\overline{AH}$의 길이를 구하시오.`,
+        answer: cm(ah),
+        solution: `변 $AB$, $BC$, $CD$ 위의 접점을 각각 $E$, $F$, $G$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CF}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{BE}=\\overline{BF}=${bc}-${r}=${tB}\\,(\\mathrm{cm})$이므로 $\\overline{AH}=\\overline{AE}=${ab}-${tB}=${ah}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, r, ab, bc, x: ah },
+        figureSpec: figCircumRight({ r, tB, ab, mirror: false }),
+      };
+    }
+    if (mode === 1) {
+      const r = intBetween(rng, 3, 6);
+      const tD = intBetween(rng, r, 9);
+      const ae = intBetween(rng, 2, 6);
+      const ad = ae + tD;
+      const cd = tD + r;
+      return {
+        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AD}=${ad}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$이다. 점 $E$가 변 $AB$ 위의 접점일 때, $\\overline{AE}$의 길이를 구하시오.`,
+        answer: cm(ae),
+        solution: `변 $BC$, $CD$, $DA$ 위의 접점을 각각 $F$, $G$, $H$라 하면 $\\angle C=90^\\circ$이므로 사각형 $OFCG$는 정사각형이고 $\\overline{CG}=${r}\\,\\mathrm{cm}$이다.\n$\\overline{DH}=\\overline{DG}=${cd}-${r}=${tD}\\,(\\mathrm{cm})$이므로 $\\overline{AE}=\\overline{AH}=${ad}-${tD}=${ae}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, r, ad, cd, x: ae },
+        figureSpec: figCircumRight({ r, tB: tD, ab: ad, mirror: true }),
+      };
+    }
+    const r = intBetween(rng, 3, 6);
+    const tA = intBetween(rng, 2, 8);
+    const tB = intBetween(rng, r, 8);
+    const tD = intBetween(rng, 2, 8);
+    const ab = tA + tB;
+    const bc = tB + r;
+    const cd = r + tD;
+    const ad = tA + tD;
+    return {
+      content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사각형 $ABCD$에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+      answer: cm(ad),
+      solution: `원에 외접하는 사각형에서 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\n따라서 $\\overline{AD}=${ab}+${cd}-${bc}=${ad}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, r, ab, bc, cd, ad, x: ad },
+      figureSpec: figCircumRight({ r, tB, ab, mirror: false }),
+    };
+  }),
+
+  def("16", "원에 외접하는 사각형의 응용", "hard", (rng): Body => {
+    const mode = pick(rng, [0, 1, 2, 3, 4] as const);
+    if (mode === 3) {
+      const [r, tD, tC] = pick(rng, T16T);
+      const cd = tD + tC;
+      const sub = pick(rng, [0, 1] as const);
+      const x = sub === 0 ? (2 * r + cd) * r : 2 * (2 * r + cd);
+      const ask = sub === 0 ? "넓이" : "둘레의 길이";
+      const unitTail = sub === 0 ? "\\mathrm{cm}^2" : "\\mathrm{cm}";
+      const work =
+        sub === 0
+          ? `넓이는 $\\dfrac{1}{2}\\times(\\overline{AD}+\\overline{BC})\\times\\overline{AB}=\\dfrac{1}{2}\\times${2 * r + cd}\\times${2 * r}=${x}\\,(\\mathrm{cm}^2)$이다.`
+          : `둘레의 길이는 $\\overline{AB}+\\overline{CD}+(\\overline{AD}+\\overline{BC})=${2 * r}+${cd}+${2 * r + cd}=${x}\\,(\\mathrm{cm})$이다.`;
+      return {
+        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\angle A=\\angle B=90^\\circ$이고 $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 ${ask}를 구하시오.`,
+        answer: `$${x}\\,${unitTail}$`,
+        solution: `$\\angle A=\\angle B=90^\\circ$이므로 $\\overline{AB}=2\\times${r}=${2 * r}\\,(\\mathrm{cm})$이다.\n외접하는 사각형의 성질에서 $\\overline{AD}+\\overline{BC}=\\overline{AB}+\\overline{CD}=${2 * r}+${cd}=${2 * r + cd}\\,(\\mathrm{cm})$이다.\n${work}`,
+        facts: { mode, sub, r, tD, tC, cd, x },
+        figureSpec: figTrapTan({ r, tD, tC }),
+      };
+    }
+    const [w, t, d] = pick(rng, T16);
+    const L = (w + t + d) / 2;
+    const head = `원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자.`;
+    if (mode === 0) {
+      return {
+        content: `${head} $\\overline{CD}=${w}\\,\\mathrm{cm}$, $\\overline{DE}=${d}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+        answer: cm(L),
+        solution: `직각삼각형 $DEC$에서 $\\overline{CE}=\\sqrt{${d}^2-${w}^2}=${t}\\,(\\mathrm{cm})$이다.\n원 $O$는 사각형 $ABED$의 네 변에 모두 접하므로 $\\overline{AB}+\\overline{DE}=\\overline{AD}+\\overline{BE}$이다.\n$\\overline{BE}=\\overline{AD}-${t}\\,(\\mathrm{cm})$이므로 $${w}+${d}=2\\overline{AD}-${t}$, 즉 $\\overline{AD}=${L}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, w, t, d, L, x: L },
+        figureSpec: figRectTan({ w, t, L, labelGH: false }),
+      };
+    }
+    if (mode === 1) {
+      const x = (d - t) / 2;
+      return {
+        content: `${head} 점 $G$는 변 $BC$ 위의 접점이다. $\\overline{AB}=${w}\\,\\mathrm{cm}$, $\\overline{AD}=${L}\\,\\mathrm{cm}$일 때, $\\overline{GE}$의 길이를 구하시오.`,
+        answer: cm(x),
+        solution: `$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $${w}+\\overline{DE}=${L}+(${L}-e)$, 즉 $\\overline{DE}=(${2 * L - w}-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$이다.\n$\\overline{BG}=\\dfrac{1}{2}\\times${w}=${w / 2}\\,(\\mathrm{cm})$이므로 $\\overline{GE}=(${L}-${t})-${w / 2}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, w, t, d, L, x },
+        figureSpec: figRectTan({ w, t, L, labelGH: true }),
+      };
+    }
+    if (mode === 2) {
+      const x = 2 * L;
+      return {
+        content: `${head} $\\overline{AB}=${w}\\,\\mathrm{cm}$, $\\overline{AD}=${L}\\,\\mathrm{cm}$일 때, 삼각형 $DEC$의 둘레의 길이를 구하시오.`,
+        answer: cm(x),
+        solution: `$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(${2 * L - w}-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$, $\\overline{DE}=${d}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $${w}+${t}+${d}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, w, t, d, L, x },
+        figureSpec: figRectTan({ w, t, L, labelGH: false }),
+      };
+    }
+    const x = L - t;
+    return {
+      content: `${head} $\\overline{AB}=${w}\\,\\mathrm{cm}$, $\\overline{AD}=${L}\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.`,
+      answer: cm(x),
+      solution: `$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(${2 * L - w}-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$이다.\n따라서 $\\overline{BE}=${L}-${t}=${x}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, w, t, d, L, x },
+      figureSpec: figRectTan({ w, t, L, labelGH: false }),
+    };
+  }),
+];
+
+// ── 유형 10 의 길이 갈래 본문 (모드 0·1·2 공용) ────────
+
+function m10Body(mode: 0 | 1 | 2, ad: number, b1: number, c1: number): Body {
+  const ab = ad - b1;
+  const ac = ad - c1;
+  const bc = b1 + c1;
+  const head = `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\overline{AD}$, $\\overline{AE}$와 만나는 점을 각각 $B$, $C$($\\overline{BC}$의 접점은 $F$)라 하자.`;
+  const fig = figTangentTri({ ratio: 2.2, showRadius: false, label60: false });
+  if (mode === 0) {
+    return {
+      content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+      answer: cm(ad),
+      solution: `$\\overline{BD}=\\overline{BF}$, $\\overline{CE}=\\overline{CF}$이므로 삼각형 $ABC$의 둘레의 길이는 $\\overline{AD}+\\overline{AE}=2\\overline{AD}$이다.\n따라서 $\\overline{AD}=\\dfrac{1}{2}\\times(${ab}+${ac}+${bc})=${ad}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, ad, ab, ac, bc, x: ad },
+      figureSpec: fig,
+    };
+  }
+  if (mode === 1) {
+    return {
+      content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AD}=${ad}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{CE}$의 길이를 구하시오.`,
+      answer: cm(c1),
+      solution: `$\\overline{BD}=\\overline{AD}-\\overline{AB}=${ad}-${ab}=${b1}\\,(\\mathrm{cm})$이고 $\\overline{BF}=\\overline{BD}=${b1}\\,\\mathrm{cm}$이다.\n$\\overline{CF}=\\overline{BC}-\\overline{BF}=${bc}-${b1}=${c1}\\,(\\mathrm{cm})$이므로 $\\overline{CE}=\\overline{CF}=${c1}\\,\\mathrm{cm}$이다.`,
+      facts: { mode, ad, ab, bc, x: c1 },
+      figureSpec: fig,
+    };
+  }
+  return {
+    content: `${head} $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{AD}=${ad}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+    answer: cm(bc),
+    solution: `$\\overline{BF}=\\overline{BD}=${ad}-${ab}=${b1}\\,(\\mathrm{cm})$이고 $\\overline{CF}=\\overline{CE}=\\overline{AE}-\\overline{AC}=${ad}-${ac}=${c1}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{BC}=${b1}+${c1}=${bc}\\,(\\mathrm{cm})$이다.`,
+    facts: { mode, ad, ab, ac, x: bc },
+    figureSpec: fig,
+  };
+}
