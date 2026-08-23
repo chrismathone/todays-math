@@ -779,6 +779,10 @@ def _stat_second(spec: Mapping[str, Any], n: int) -> tuple[list[float], str, str
     """
     raw = spec.get("series2")
     if raw is None:
+        # 이름만 주고 둘째 계열이 없으면 그 이름은 **어디에도 안 그려진다.**
+        # 조용히 버리면 부르는 쪽은 이름표가 붙은 줄 안다 (D-70 — 침묵 금지).
+        if spec.get("label"):
+            raise ValueError("label 은 series2 와 함께 씁니다 — 한 계열에는 이름표를 안 답니다")
         return None
     if not isinstance(raw, Mapping):
         raise ValueError("series2 는 객체여야 합니다")
@@ -887,6 +891,17 @@ def _stat_svg(height: float, body: str) -> str:
     `_svg` 는 그린 것이 넘치면 viewBox 를 **넓혀** 준다. 그것은 잘림을 막는 좋은
     성질이지만, 여기서는 폭이 곧 지면 등급이라 넓어지는 순간 이 그림만 화면에서
     작아진다 — 그리고 아무 에러도 안 난다. 그래서 넓어졌으면 멈춘다.
+
+    ## 이 가드는 **오늘 안 걸린다** — 그게 결함이 아니라 여유가 0이라는 뜻이다
+
+    실측(2026-08-23): 두 kind × 계급 2~9 × 걸음 1·2·5·10 × 단위 라벨 16조합 =
+    **808장 전부 정확히 240**, 가장 오른쪽 좌표 **238.0**(= 240 − `FIT_PAD`, 여유
+    **0.00**). `_stat_frame` 이 여백을 정확히 되돌려 주므로 지금 입력으로는 도달할 수
+    없다 — 그래서 변이 하네스가 이 줄을 「판정 안 함」으로 돌려준다. **정상이다.**
+
+    ⚠️ 그러니 이 줄을 「초록이니 가드가 아니다」로 읽고 지우지 마라. 여유가 0이라
+    **프레임 밖으로 한 단위라도 더 그리는 순간 걸린다** — 앞으로 요소를 하나 더할 때
+    지면 등급이 조용히 뒤집히는 것을 막는 그물이 이것뿐이다.
     """
     svg = _svg(STAT_VIEWBOX, height, body)
     m = _SVG_SPLIT.match(svg)

@@ -475,6 +475,28 @@ describe.skipIf(!hasEngine)("[통계 kind] freqPolygon", () => {
     ).toContain("겹칩니다");
   });
 
+  it("폭 박기의 여유가 0 이다 — 가장 빠듯한 모양에서도 240 이다", async () => {
+    // 실측(2026-08-23): 두 kind × 계급 2~9 × 걸음 1·2·5·10 × 단위 라벨 16조합
+    // 808장 전부 240 이고, 가장 오른쪽 좌표가 **238.0**(= 240 − 여백 2)인 것이
+    // 아래 모양이다. 여유가 0 이라 프레임 밖으로 한 단위만 더 그려도 던진다.
+    const svg = await draw({
+      version: "elem-1",
+      kind: "freqPolygon",
+      classes: [0, 1, 2],
+      values: [1, 2],
+    });
+    expect(viewBoxW(svg)).toBe(PINNED_VIEWBOX);
+    const right = Math.max(
+      ...[...svg.matchAll(/(?:cx|x1|x2)="([\d.]+)"/g)].map((m) => Number(m[1])),
+      ...rects(svg).map((r) => r.x + r.w),
+    );
+    expect(right).toBeCloseTo(238, 1);
+  });
+
+  it("이름만 주고 둘째 계열이 없으면 던진다 — 그 이름은 안 그려진다", async () => {
+    expect(await reason({ ...POLY, label: "A반" })).toContain("series2");
+  });
+
   it("이름 없이 두 집단을 겹치면 던진다", async () => {
     expect(
       await reason({ ...POLY, series2: { values: POLY.values } }),

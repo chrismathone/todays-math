@@ -665,6 +665,47 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-23",
   },
   {
+    id: "stat-figure-frame",
+    title:
+      "히스토그램·도수분포다각형·도수분포표가 종이에서 읽히는가 (중1 통계)",
+    changed:
+      "`histogram`·`freqPolygon` kind 를 새로 냈다. 둘 다 **viewBox 폭 240 고정**이라 " +
+      "제품 등급이 `mid`(64mm) 하나다 — 안 박으면 계급 수·라벨 길이에 따라 폭이 " +
+      "떠다녀 그림마다 눈금 글자 크기가 뒤집힌다. 눈금 글자는 14단위, 본문은 12.5px. " +
+      "그리고 `table` 열 폭을 **내용 기반**으로 바꿨다: 「10이상~20미만」 같은 긴 계급 " +
+      "라벨이 든 표는 폭이 128 → 184.7 로 커져 **등급이 `compact`(37mm)에서 " +
+      "`mid`(64mm)로 올라간다**(옛 규칙에서는 그 라벨의 첫 글자가 잘리고 있었다). " +
+      "짧은 표는 폭이 한 단위도 안 바뀐다 — 옛 총 폭을 바닥으로 깔았다. " +
+      "다만 이 수치는 전부 **화면 계산이지 종이에서 잰 것이 아니다.**",
+    look:
+      "① 히스토그램의 **직사각형이 서로 붙어** 있어야 한다(틈이 보이면 불합격 — 넓이가 " +
+      "도수에 비례한다는 근거가 사라진다). ② 계급의 양 끝 값(10 15 20 …)이 **막대 " +
+      "경계에** 오고 이웃 숫자와 붙지 않아야 한다. ③ 도수분포다각형은 **양끝이 " +
+      "가로축에 닿아** 닫혀야 한다. ④ 「일부가 찢어져 보이지 않는」 그림은 찢긴 " +
+      "물결 자국이 옅은 회색인데, 흑백 프린터에서 **사라지면** 「도수 0」과 구별이 " +
+      "안 된다 — 안 보이면 적어 주십시오. ⑤ 모눈(연한 청색)이 흑백에서 너무 진해 " +
+      "막대·꺾은선을 먹지 않아야 한다. ⑥ 도수분포표의 긴 계급 라벨이 **칸 밖으로 " +
+      "삐져나오거나 잘리지** 않아야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/figure/elem_advanced.py (_stat_chart)",
+      "scripts/figure/elementary.py (_table_widths)",
+      "src/lib/figure/figureSvgFrame.ts",
+      "src/__tests__/unit/figureStatKinds.test.ts",
+      "docs/planning/09-figure-engine-guide.md §4-24",
+    ],
+    scale:
+      "중1 히스토그램·도수분포다각형 두 단원(DB 자격 5·7건으로 얇다) + RPM 1-2 " +
+      "「도수분포표와 상대도수」 19유형. 기존 `table` 중 긴 라벨이 든 것도 등급이 바뀐다.",
+    needs:
+      "**이 유형이 DB 에 적재된 뒤**라야 시험지에 실린다(지금은 엔진까지, D-22·D-31). " +
+      "그전에는 `node scripts/qa/probe-stat-kinds.mjs` 가 남기는 " +
+      "`C:/tmp/wave3-stat-{table,hist,poly}.png` 를 인쇄해 본다 — 지면 등급을 실제로 " +
+      "적용하고 본문 12.5px 을 옆에 나란히 찍는다.",
+    status: "대기",
+    changedOn: "2026-08-23",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",
