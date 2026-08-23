@@ -154,11 +154,13 @@ function figPara(w: number, h: number, slant: number, withDiag: boolean): Fig {
     D: [w + slant, h],
   };
   if (withDiag) pts.O = [(w + slant) / 2, h / 2];
+  // ⚠️ 평행 » 는 **방향이 같아야** 한 쌍으로 읽힌다. B→C 와 D→A 처럼 반대로
+  //    적으면 지면에서 화살촉이 서로 마주 본다(실렌더로 드러났다).
   const segments: Record<string, unknown> = {
     AB: { points: ["A", "B"], parallel: 2 },
+    DC: { points: ["D", "C"], parallel: 2 },
     BC: { points: ["B", "C"], parallel: 1 },
-    CD: { points: ["C", "D"], parallel: 2 },
-    DA: { points: ["D", "A"], parallel: 1 },
+    AD: { points: ["A", "D"], parallel: 1 },
   };
   const labels: Record<string, string> = { A: "A", B: "B", C: "C", D: "D" };
   if (withDiag) {
