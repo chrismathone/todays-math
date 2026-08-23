@@ -9,14 +9,6 @@ import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
 
 /**
- * 소단원 번호(`1-2-4`). 이름만으로는 못 가르는 자리가 있다 —
- * `1-2-3`·`1-2-4` 는 units.ts 에 **이름이 똑같이** `직각삼각형 알아보기` 로 적혀 있다.
- */
-function secNo(unit: UnitSeed): string {
-  return unit.section.split(" ")[0] ?? "";
-}
-
-/**
  * 한글 낱말 뒤 조사. 받침이 있으면 앞쪽(`은`·`이`·`을`).
  *
  * ⚠️ **수 뒤에는 쓰지 않는다.** 수는 읽는 소리로 갈리므로($4$→사→「가」, $3$→삼→「이」)
@@ -1018,6 +1010,10 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   if (s.includes("세 자리")) {
     const b = intBetween(rng, 3, 9);
+    // ⚠️ 몫을 12..48 로만 뽑으면 b 가 작을 때 나뉘는 수가 두 자리로 떨어진다 —
+    // 실측 $45\div3$, 씨앗 12/40 (probe-elem-section-conditions). 가드로 거르지 않고
+    // **아래끝을 b 에서 유도**한다(threeSum 과 같은 태도): $b\times q\ge100$ 이 되는
+    // 첫 몫부터 뽑는다. 위끝은 $9\times48=432\le999$ 라 그대로 세 자리 안이다.
     const q = intBetween(rng, 12, 48);
     const a = b * q;
     return make(
@@ -2027,7 +2023,7 @@ function line121Word(unit: UnitSeed, rng: Rng): ElemProblem {
           /\*\*/g,
           "",
         )
-      : `선분 ${a}${b}를 점 ${a} 쪽으로만 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`,
+      : `선분 ${a}${b}을 점 ${a} 쪽으로만 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`,
     both ? `직선 ${a}${b}` : `반직선 ${b}${a}`,
     both
       ? `선분을 양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`
@@ -2168,7 +2164,9 @@ function angle122Word(unit: UnitSeed, rng: Rng): ElemProblem {
     `종이를 반듯하게 두 번 접었을 때 생기는 각과 꼭 맞는 각의 기호를 쓰시오.`,
     `삼각자의 뾰족하지 않은 부분과 꼭 맞는 각의 기호를 쓰시오.`,
     `두 변이 서로 반듯하게 만나는 각의 기호를 쓰시오.`,
-    `시계의 긴바늘이 세 시간 동안 돌 때 생기는 각과 같은 각의 기호를 쓰시오.`,
+    // ⚠️ 「긴바늘이 세 시간」이라 적었다가 검수에서 잡았다 — 긴바늘은 한 시간에 한 바퀴라
+    //    세 시간이면 세 바퀴다. 직각을 만드는 것은 **짧은바늘**의 세 시간(한 바퀴의 사분의 일)이다.
+    `시계의 짧은바늘이 세 시간 동안 돌 때 생기는 각과 같은 각의 기호를 쓰시오.`,
   ]);
   return make(
     unit,

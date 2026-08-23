@@ -7,7 +7,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -468,6 +468,10 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
           bad.push(
             `1-2-4 ${tier} seed ${seed}: 그림 ${rects[0]!.label} ≠ 정답 ${a4.answer}`,
           );
+        // 가로=세로면 정사각형이라 「직사각형」의 답으로 헷갈린다 — 생성기(rectRow)가
+        // 다르게 잡기로 한 약속을 여기서 잠근다(변이 시험이 이 빈자리를 찾았다).
+        else if (isSquare(rects[0]!))
+          bad.push(`1-2-4 ${tier} seed ${seed}: 정답 도형이 정사각형이다`);
 
         const a5 = generateElementaryProblem(planeUnit("1-2-5"), seed, tier);
         const g5 = shapesOf(a5.figureSpec as Record<string, unknown>).filter(
@@ -614,6 +618,48 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     }
   });
 
+  it("1-2-4 «표준»도 직사각형을 낸다 — 개명(직각삼각형→직사각형)이 표준 경로까지 닿는다", () => {
+    // 갈래 키(`초3|1-2-4`)는 소단원 **번호**라 units.ts 이름이 되돌아가도 갈래는 멀쩡하다.
+    // 이름이 가르는 것은 **표준 라우팅**(plane) 하나뿐이므로, 여기를 안 잠그면
+    // 개명이 되돌아가도 이 파일 전체가 초록이다(변이 설계 중 실측).
+    const bad: string[] = [];
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(planeUnit("1-2-4"), seed);
+      const quads = shapesOf(p.figureSpec as Record<string, unknown>).filter(
+        (g) => g.pts.length === 4,
+      );
+      const rects = quads.filter((g) => isRect(g.pts));
+      if (quads.length < 2)
+        bad.push(`seed ${seed}: 사각형이 ${quads.length}개`);
+      if (rects.length !== 1)
+        bad.push(`seed ${seed}: 직사각형 ${rects.length}개`);
+      else if (rects[0]!.label !== p.answer)
+        bad.push(`seed ${seed}: 그림 ${rects[0]!.label} ≠ 정답 ${p.answer}`);
+      else if (isSquare(rects[0]!))
+        bad.push(`seed ${seed}: 정답 도형이 정사각형이다`);
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("1-2-4 응용·심화 — 답이 발문의 가로·세로에서 다시 구해진다", () => {
+    // 길이 문항이라 그림이 없다 — 참을 **발문에 찍힌 수**에서 가져온다.
+    // (변이 설계 중 실측: 이 갈래 둘은 어느 시험도 정답을 안 보고 있었다.)
+    for (const seed of SEEDS) {
+      const ap = generateElementaryProblem(planeUnit("1-2-4"), seed, "응용");
+      const [w, h] = nums(ap.content);
+      expect(answerOf(ap.answer), `응용 seed ${seed}: ${ap.content}`).toBe(
+        (w! + h!) * 2,
+      );
+
+      const dp = generateElementaryProblem(planeUnit("1-2-4"), seed, "심화");
+      const [total, w2] = nums(dp.content);
+      expect(total! % 2, `심화 seed ${seed}: 네 변의 합이 홀수다`).toBe(0);
+      expect(answerOf(dp.answer), `심화 seed ${seed}: ${dp.content}`).toBe(
+        total! / 2 - w2!,
+      );
+    }
+  });
+
   it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
     for (const code of PLANE) {
       for (const tier of ELEM_TIERS) {
@@ -707,5 +753,36 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
+  });
+});
+
+/**
+ * 초3 2-2-4 (세 자리 수)÷(한 자리 수) — **표준** 생성기의 범위 수리(2026-08-23) 잠금.
+ * 몫을 12..48 고정으로 뽑아 $45\div3$ 같은 두 자리 나뉘는 수가 나왔다(씨앗 12/40).
+ * 참은 발문에 찍힌 수에서 온다 — 생성기의 범위 상수를 다시 부르지 않는다.
+ */
+describe("[초3 표준] 2-2-4 (세 자리 수)÷(한 자리 수)", () => {
+  it("나뉘는 수가 항상 세 자리이고, 나누어떨어지고, 몫이 정답과 같다", () => {
+    const unit = elementaryUnits().find(
+      (u) => u.grade === "초3" && u.section.startsWith("2-2-4"),
+    )!;
+    // 위반율이 12/40 이던 결함이라 씨앗 40개면 되살아날 때 못 지나간다(놓칠 확률 ≈ 1e-6).
+    const wide = [
+      ...SEEDS,
+      ...Array.from({ length: 24 }, (_, i) => i * 613 + 101),
+    ];
+    for (const seed of wide) {
+      const p = generateElementaryProblem(unit, seed);
+      const m = p.content.match(/\$(\d+)\\div(\d+)=\\square\$/);
+      expect(m, `seed ${seed}: ${p.content}`).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      expect(a, `seed ${seed}: 나뉘는 수 ${a}`).toBeGreaterThanOrEqual(100);
+      expect(a, `seed ${seed}: 나뉘는 수 ${a}`).toBeLessThanOrEqual(999);
+      expect(b, `seed ${seed}: 나누는 수 ${b}`).toBeGreaterThanOrEqual(2);
+      expect(b, `seed ${seed}: 나누는 수 ${b}`).toBeLessThanOrEqual(9);
+      expect(a % b, `seed ${seed}: 나누어떨어지지 않는다`).toBe(0);
+      expect(answerOf(p.answer), `seed ${seed}`).toBe(a / b);
+    }
   });
 });
