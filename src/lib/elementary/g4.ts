@@ -4514,6 +4514,18 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier237Apply,
     심화: tier237Deep,
   },
+  "초4|2-4-2": {
+    연산: tier242Calc,
+    기본: tier242Basic,
+    응용: tier242Apply,
+    심화: tier242Deep,
+  },
+  "초4|2-4-3": {
+    연산: tier243Calc,
+    기본: tier243Basic,
+    응용: tier243Apply,
+    심화: tier243Deep,
+  },
   "초4|2-4-4": {
     연산: tier244Calc,
     기본: tier244Basic,
@@ -7988,6 +8000,345 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
  * 똑같이 그려진다). 그림 세션이 **「값을 적으면 던지게」**를 넣는 중이고, 그게 서면
  * 실수로 치수를 적어도 조용히 안 나간다. **그때 얹는다**(리드 판단 2026-08-23).
  */
+/* ──────── 2-4-2 평행과 평행선 (2026-08-24, 관계를 «이어 붙인다») ────────
+ *
+ * **이 소단원의 셈할 수 있는 축은 「한 직선에 수직인 두 직선은 서로 평행하다」이다** —
+ * 그 규칙이 **이어 붙는다**. 가⊥나·나⊥다 면 가∥다 이고, 거기에 다⊥라 를 더하면 가⊥라 다.
+ * 수직으로 한 번 꺾일 때마다 방향이 바뀌므로 **꺾인 횟수의 홀짝**이 답을 정한다.
+ * 1-4-2(밀기)가 「민 거리를 합하고 뺀다」로, 1-4-3(뒤집기)이 「뒤집은 횟수」로 사다리를
+ * 세운 것과 **같은 수법**이다 — 교과서가 정성적으로만 묻는 소단원에서 개념 자체가
+ * 허락하는 셈을 찾아낸다.
+ *
+ * ⚠️ **각도로 가지 않는다.** 1-2-3(각의 크기에 따라 분류)이 「$45^\circ$ 인 각은 직각보다
+ * 큰가」를, 1-2-4(각도의 합과 차)가 「직선이 이루는 각」과 「잘못하여 더했더니」를 이미
+ * 쓴다. 「수직으로 만나 생긴 네 각」류로 열면 낱말만 바뀐 같은 산술이다.
+ *
+ * ⚠️ **1-4-3 심화의 「$8$번보다 많고 $12$번보다 적다면」 문형을 안 쓴다.** 홀짝을 쓰는
+ * 소단원이라 **그 문형이 저절로 떠오른다** — 쓰기 전에 알아채고 걸렀다. 그대로 가면
+ * 뒤집기와 **같은 문항**이 되고, R5 는 소단원 «안»에서만 견주므로 이 겹침을 구조적으로
+ * 못 본다. 심화는 **가운데 관계를 되짚는** 쪽으로 갔다.
+ *   (다음 사람에게: 「홀짝인데 왜 범위 문형을 안 썼지」 싶으면 1-4-3 심화를 먼저 뽑아 보라.)
+ *
+ * ⚠️ **그림을 안 붙인다 — ③ 가 섰는데도 그렇다.** `lineRelation` 의 `perpendicular` ·
+ * `bothPerpendicular` 은 **값을 받지 않는다**(`labels` 뿐). 그러면 씨앗이 달라도 그림이
+ * 늘 같아 **R9-b 위반**이다 — 2-4-6 마름모에서 이미 한 번 낸 결함이다. 게다가
+ * `bothPerpendicular` 은 두 수선을 **평행하게 그려** 답을 그대로 보여 준다(㉡).
+ * 발문이 관계를 말로 다 적어 자족하므로 그림이 없어도 답이 하나다.
+ *
+ * ⚠️ **직선 이름의 시작 자리를 씨앗마다 옮긴다.** 관계 문항이라 수가 안 들어가서
+ * 문형이 갈래마다 둘뿐이었다(R4 는 여덟을 요구한다). 이름을 옮기는 것은 **개념의
+ * 변형이 아니라 소재의 변형**이다 — `TRAP_ITEMS`·`RHOMBUS_ITEMS` 와 같은 자리이고,
+ * 교과서도 직선 이름을 문항마다 달리 쓴다. 개념 쪽 변형은 1단을 셋으로, 2단을
+ * 세 길이로 늘려 따로 벌었다.
+ */
+
+/** 직선 이름 — 초4 교과서가 쓰는 차례. 받침이 없으므로 조사는 `josa` 가 고른다. */
+const LINE_NAMES = [
+  "가",
+  "나",
+  "다",
+  "라",
+  "마",
+  "바",
+  "사",
+  "아",
+  "자",
+] as const;
+
+/** 「직선 가」·「직선 나」… 이름이 모자라면 **던진다** — 조용히 `undefined` 가 나가지 않게. */
+function lineName(i: number): string {
+  const nm = LINE_NAMES[i];
+  if (nm === undefined) {
+    throw new Error(`직선 이름이 모자랍니다: ${i}번째 — LINE_NAMES 를 늘려라`);
+  }
+  return `직선 ${nm}`;
+}
+
+/** 「직선 가와」 처럼 이름 + 조사. 받침 판정을 여기 한 곳에 둔다. */
+function lineJosa(i: number, withEnd: string, withoutEnd: string): string {
+  return josa(lineName(i), withEnd, withoutEnd);
+}
+
+/** 이름 `k` 개를 쓸 때 시작 자리 — 뽑고 거르지 않고 **못 뽑을 자리를 안 만든다**. */
+function lineBase(rng: Rng, used: number): number {
+  return intBetween(rng, 0, LINE_NAMES.length - used);
+}
+
+/** 「직선 가, 직선 나, 직선 다」 처럼 늘어놓기. */
+function lineList(base: number, k: number): string {
+  return Array.from({ length: k }, (_, i) => lineName(base + i)).join(", ");
+}
+
+/**
+ * **2-4-2 1단 — 규칙을 한 번 적용한다.** 산술이 없다(D-72 ⑶).
+ *
+ * 세 갈래가 규칙을 **양쪽으로** 쓴다 — 수직 두 번이면 평행, 평행과 수직이 섞이면 수직.
+ * 어느 쪽도 이어 붙이기가 아니라 교과서 문장 그대로다.
+ */
+function tier242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 3);
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
+        `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}도 서로 수직입니다. ` +
+        `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 관계인가?`,
+      "평행",
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 둘 다 ` +
+        `${lineName(b + 1)}에 대한 수선입니다. 한 직선에 수직인 두 직선은 서로 ` +
+        `평행하므로 두 직선은 서로 평행합니다.`,
+    );
+  }
+  if (kind === 1) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 평행하고, ` +
+        `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
+        `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
+        `서로 어떤 관계인가?`,
+      "수직",
+      `${lineJosa(b + 2, "은", "는")} ${lineName(b + 1)}에 수직입니다. ` +
+        `${lineJosa(b, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
+        `같으므로 ${lineJosa(b + 2, "은", "는")} ${lineJosa(b, "과", "와")}도 ` +
+        `서로 수직입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
+      `평행합니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
+      `서로 어떤 관계인가?`,
+    "수직",
+    `${lineJosa(b + 2, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
+      `같습니다. ${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 수직이므로 ` +
+      `${lineName(b + 2)}에도 수직입니다.`,
+  );
+}
+
+/**
+ * **2-4-2 2단 — 스스로 이어 붙인다.**
+ *
+ * 수직으로 꺾인 횟수가 셋에서 다섯이라 1단처럼 한 번에 안 끝난다. 학생이 세울 것은
+ * 「수직으로 한 번 꺾일 때마다 방향이 바뀐다」는 규칙 하나이고, 그것을 되풀이한다.
+ */
+function tier242Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const links = intBetween(rng, 3, 5);
+  const b = lineBase(rng, links + 1);
+  const pairs = Array.from(
+    { length: links },
+    (_, i) => `${lineJosa(b + i, "과", "와")} ${lineName(b + i + 1)}`,
+  );
+  const even = links % 2 === 0;
+  return make(
+    unit,
+    `${lineList(b, links + 1)}가 있습니다. ${pairs.join(", ")}가 각각 서로 ` +
+      `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + links, "은", "는")} ` +
+      `서로 어떤 관계인가?`,
+    even ? "평행" : "수직",
+    `수직으로 한 번 꺾일 때마다 직선의 방향이 바뀝니다. ${lineName(b)}에서 ` +
+      `${lineName(b + links)}까지 수직으로 ${n(links)}번 꺾였으므로 ` +
+      (even
+        ? "짝수 번이라 방향이 처음으로 돌아와 두 직선은 서로 평행합니다."
+        : "홀수 번이라 방향이 바뀌어 두 직선은 서로 수직입니다."),
+  );
+}
+
+/**
+ * **2-4-2 3단 — 두 단계.** 「어느 것이 평행/수직인가」를 먼저 가려야(중간값)
+ * 「몇 개인가」가 나온다. 1·2단은 한 쌍만 보지만 여기서는 **전부**를 훑어야 한다.
+ */
+function tier242Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 5, 9);
+  const b = lineBase(rng, count);
+  const wantParallel = pick(rng, [true, false]);
+  const hits: number[] = [];
+  for (let i = 1; i < count; i += 1) {
+    if ((i % 2 === 0) === wantParallel) hits.push(b + i);
+  }
+  const word = wantParallel ? "평행" : "수직";
+  return make(
+    unit,
+    `직선 ${n(count)}개가 ${LINE_NAMES.slice(b, b + count).join(", ")} 순서로 ` +
+      `있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
+      `${lineJosa(b, "과", "와")} 서로 ${wantParallel ? "평행한" : "수직인"} 직선은 ` +
+      `${lineJosa(b, "을", "를")} 빼고 모두 몇 개인가?`,
+    `${n(hits.length)}개`,
+    `수직으로 한 번 꺾일 때마다 방향이 바뀌므로 ${lineName(b)}에서 ` +
+      `${wantParallel ? "짝수" : "홀수"} 번 꺾인 직선이 ${lineJosa(b, "과", "와")} ` +
+      `서로 ${word}입니다. ${hits.map((i) => lineName(i)).join(", ")}의 ` +
+      `${n(hits.length)}개입니다.`,
+  );
+}
+
+/**
+ * **2-4-2 4단 — 가운데 관계를 되짚는다.**
+ *
+ * 양 끝의 관계가 주어지고 **가운데 한 칸이 비어 있다.** 앞뒤에서 수직으로 한 번씩
+ * 꺾이니 그 둘만으로는 방향이 처음으로 돌아온다 — 그러므로 **양 끝의 관계가 곧 가운데의
+ * 관계**다. 「꺾인 횟수를 센다」를 거꾸로 쓰는 것이라 2·3단의 지름길이 안 통한다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다** — 가운데 관계를 먼저 뽑고 양 끝의 관계를 거기서 만든다.
+ */
+function tier242Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const middleParallel = pick(rng, [true, false]);
+  const b = lineBase(rng, 4);
+  const word = middleParallel ? "평행" : "수직";
+  return make(
+    unit,
+    `${lineList(b, 4)}가 차례로 있습니다. ${lineJosa(b, "과", "와")} ` +
+      `${lineJosa(b + 1, "은", "는")} 서로 수직이고, ${lineJosa(b + 2, "과", "와")} ` +
+      `${lineName(b + 3)}도 서로 수직입니다. ${lineJosa(b, "과", "와")} ` +
+      `${lineJosa(b + 3, "이", "가")} 서로 ${word}하려면 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 ` +
+      `관계여야 하는가?`,
+    word,
+    `${lineName(b)}에서 ${lineName(b + 1)}로, ${lineName(b + 2)}에서 ` +
+      `${lineName(b + 3)}로 수직으로 한 번씩 꺾이므로 이 둘만으로는 방향이 처음으로 ` +
+      `돌아옵니다. 그러므로 ${lineJosa(b, "과", "와")} ${lineName(b + 3)}의 관계는 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}의 관계와 같습니다. ` +
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 3, "이", "가")} 서로 ${word}하려면 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}도 서로 ${word}해야 합니다.`,
+  );
+}
+
+/* ──────── 2-4-3 평행선 사이의 거리 (2026-08-24, 그림을 안 기다리고 연다) ────────
+ *
+ * **남은 넷 중 이 소단원만 「길이」라는 셈할 수 있는 축을 자기 것으로 가진다.**
+ * 2-4-1(수직과 수선)·2-4-2(평행과 평행선)는 잴 길이가 없어 「이 도형에서 수직인/평행한
+ * 변이 몇 쌍인가」로만 사다리를 세울 수 있고 그건 도형을 봐야 한다 — 그 둘은 그림을
+ * 기다린다. 2-6-4(채우기)도 같다.
+ *
+ * ⚠️ **각도로 사다리를 세우지 않는다.** 「직각을 세 각으로 나누면」류로 열 수는 있으나
+ * 그러면 **1-2-4(각도의 합과 차)와 같은 산술**이 된다. 짐작이 아니라 돌려서 확인했다 —
+ * 1-2-4 심화가 이미 「어떤 각도에서 $28^\circ$ 를 빼야 할 것을 잘못하여 더했더니」다.
+ * 직각 옷만 입히면 같은 문형이 다시 난다. **R5 는 소단원 «안»에서만 견주므로 이 겹침을
+ * 구조적으로 못 본다** — 2-4-6 을 변 축으로만 돌린 것과 같은 자리다.
+ *
+ * ⚠️ **그림이 없어도 답이 유일하다.** 「직선 가·나·다가 **이 순서로** 나란히 놓여 있고
+ * 모두 평행합니다」가 배치를 통째로 정한다. 나중에 ③ 두 직선 관계가 오면 **얹기만** 하면
+ * 되고 발문은 다시 안 쓴다. 반대로 「각 ㄱㄷㅁ은 몇 도인가」처럼 **점이 어디 있는지를
+ * 그림이 정하는** 문형은 한 갈래도 안 만든다 — 그건 그림 없이 답이 둘이다.
+ *
+ * ⚠️ **4단을 「합에서 빼고 $2$ 로 나누기」로 짓지 않았다.** 2-4-4 4단이 이미
+ * `□+(□+차)=합` 이라 낱말만 바뀐 같은 산술이 된다. 대신 이 소단원 **자신의 성질**
+ * (수선의 길이는 어디에서 재어도 같다)을 되짚게 했다 — 그 성질을 모르면 못 푼다.
+ *
+ * ⚠️ 옛 `quad()` 안에 이 소단원 문항이 남아 있지만 **문형만 봤고 값은 새로 세웠다.**
+ * 죽은 코드는 아무 판정기도 안 보고 있어서 거기 있는 것이 옳다는 근거가 없다(리드 지적).
+ */
+
+/** **2-4-3 1단 — 성질을 한 번 적용한다.** 산술이 없다(2-2 기하와 같은 규격, D-72 ⑶).
+ *
+ * 두 갈래가 **같은 성질을 양쪽으로** 묻는다 — 수선을 재면 그것이 거리이고, 거리를 알면
+ * 그것이 수선의 길이다. 어느 쪽도 되짚기가 아니라 정의 그대로다.
+ */
+function tier243Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dist = intBetween(rng, 3, 15);
+  if (pick(rng, [true, false])) {
+    return make(
+      unit,
+      `평행한 두 직선 사이에 수선을 그었더니 그 수선의 길이가 ${cm(dist)}였습니다. ` +
+        `이 두 직선 사이의 거리는 몇 cm인가?`,
+      cm(dist),
+      `평행선 사이의 거리는 평행선 사이에 그은 수선의 길이입니다. ` +
+        `그러므로 ${cm(dist)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `평행한 두 직선 사이의 거리가 ${cm(dist)}입니다. 이 두 직선 사이에 그은 수선의 ` +
+      `길이는 몇 cm인가?`,
+    cm(dist),
+    `평행선 사이에 그은 수선의 길이가 곧 평행선 사이의 거리입니다. ` +
+      `그러므로 ${cm(dist)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 2단 — 스스로 식을 세운다.**
+ *
+ * 「이 순서로」가 직선 나를 가운데로 못 박으므로, 가와 다 사이가 두 거리의 **합**이라는
+ * 것이 발문만으로 정해진다. 학생이 세울 식은 그 덧셈 하나다.
+ */
+function tier243Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const near = intBetween(rng, 3, 14);
+  const far = intBetween(rng, 3, 14);
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}, 직선 나와 직선 다 사이의 ` +
+      `거리는 ${cm(far)}입니다. 직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+    cm(near + far),
+    `직선 나가 직선 가와 직선 다 사이에 있으므로 두 거리를 더하면 됩니다. ` +
+      `${expr(`${near}+${far}=${near + far}`)} 이므로 ${cm(near + far)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 3단 — 두 단계.** 한 칸의 거리를 **먼저 구해야**(중간값) 합을 낼 수 있다.
+ *
+ * 「더 멀다/더 가깝다」 두 갈래를 **뽑는 순서를 바꿔서** 만든다 — 뽑고 거르지 않으므로
+ * 못 뽑을 자리가 아예 없다(`trapSides` 와 같은 원칙). 「가깝다」쪽에서 음수가 날 수
+ * 있는데, 그것을 걸름으로 막으면 그 걸름이 **장식인지 아닌지** 다시 재야 한다.
+ */
+function tier243Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = intBetween(rng, 4, 12);
+  const diff = intBetween(rng, 2, 9);
+  const farther = pick(rng, [true, false]);
+  const near = farther ? base : base + diff;
+  const far = farther ? base + diff : base;
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}이고, 직선 나와 직선 다 ` +
+      `사이의 거리는 그보다 ${cm(diff)} 더 ${farther ? "깁니다" : "짧습니다"}. ` +
+      `직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+    cm(near + far),
+    `직선 나와 직선 다 사이의 거리는 ` +
+      `${expr(`${near}${farther ? "+" : "-"}${diff}=${far}`)} 입니다. ` +
+      `직선 나가 가운데에 있으므로 ` +
+      `${expr(`${near}+${far}=${near + far}`)} 이고 ${cm(near + far)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 4단 — 이 소단원 «자신의» 성질을 되짚는다.**
+ *
+ * 「평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같다」를 모르면 여러 수선의
+ * 길이 **합**에서 한 칸의 거리를 되찾을 수 없다. 그 되찾은 값이 중간값이고, 전체에서
+ * 다시 빼야 답이 나온다 — 되짚기 한 번, 빼기 한 번이다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다** — 답(묻는 칸)과 중간값(수선을 그은 칸)을 먼저 뽑고
+ * 합·전체를 거기서 **만든다**. 그리는 대로 뽑아 거르면 못 뽑을 자리가 난다.
+ *
+ * ⚠️ **두 칸의 범위를 겹치지 않게 잡는다.** 같은 값이 나오면 중간값과 답이 같아져
+ * 「합에서 되찾기」를 건너뛰고도 답이 맞는 씨앗이 생긴다 — 그러면 그 씨앗에서 4단이
+ * 3단보다 가볍다.
+ */
+function tier243Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const measured = intBetween(rng, 3, 9);
+  const asked = intBetween(rng, 11, 22);
+  const count = intBetween(rng, 2, 4);
+  const sum = measured * count;
+  const total = measured + asked;
+  const front = pick(rng, [true, false]);
+  const drawn = front ? "직선 가와 직선 나" : "직선 나와 직선 다";
+  const wanted = front ? "직선 나와 직선 다" : "직선 가와 직선 나";
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. ${drawn} 사이에 수선을 ${n(count)}개 그었더니 그 수선들의 길이의 ` +
+      `합이 ${cm(sum)}였습니다. 직선 가와 직선 다 사이의 거리가 ${cm(total)}일 때, ` +
+      `${wanted} 사이의 거리는 몇 cm인가?`,
+    cm(asked),
+    `평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같으므로 수선 한 개의 길이는 ` +
+      `${expr(`${sum}\\div${count}=${measured}`)} 입니다. 이것이 ${drawn} 사이의 ` +
+      `거리입니다. 그러므로 ${wanted} 사이의 거리는 ` +
+      `${expr(`${total}-${measured}=${asked}`)} 이고 ${cm(asked)}입니다.`,
+  );
+}
 
 /** 사다리꼴 소재 — 「평행한 두 변」이 실제로 있는 물건. */
 const TRAP_ITEMS = ["밭", "화단", "표지판", "창문"] as const;

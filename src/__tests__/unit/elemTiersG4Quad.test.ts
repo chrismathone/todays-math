@@ -30,7 +30,7 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
-const CODES = ["2-4-4", "2-4-5", "2-4-6", "2-4-7"] as const;
+const CODES = ["2-4-2", "2-4-3", "2-4-4", "2-4-5", "2-4-6", "2-4-7"] as const;
 const SWEEP = Array.from({ length: 600 }, (_, i) => i * 7919 + 13);
 
 function unitOf(code: string) {
@@ -471,5 +471,359 @@ describe("[초4 2-4-5] 평행사변형", () => {
     }
     counted(withFig, "그림 있는 갈래");
     counted(without, "그림 없는 갈래");
+  });
+});
+
+/* ──────────────────── 2-4-3 평행선 사이의 거리 ────────────────────
+ *
+ * 이 소단원은 **그림 없이** 섰다(2026-08-24). 그래서 지켜야 하는 것이 하나 늘었다 —
+ * **발문이 자족하는가.** 「직선 가·나·다가 **이 순서로**」가 배치를 못 박지 못하면
+ * 직선 나가 바깥에 놓일 수 있고, 그러면 답이 둘이다. 값 검산은 그것을 **구조적으로
+ * 못 본다** — 어느 배치를 잡아도 산술은 맞기 때문이다.
+ *
+ * ③ 두 직선 관계 그림이 오면 이 갈래에 그림을 **얹게** 된다. 그때 이 검사들이 거짓으로
+ * 빨개지면 안 되므로 **「그림이 없다」는 안 잠근다** — 잠그면 로드맵과 싸우는 가드가 된다.
+ * 대신 그림이 있든 없든 참이어야 하는 것(배치 낱말·값·사다리)만 잠근다.
+ */
+describe("[초4 2-4-3] 평행선 사이의 거리", () => {
+  /** `$3$개` 에서 $3$ 을. */
+  const perpCountIn = (t: string): number | null => {
+    const m = t.match(/\$(\d+)\$개/);
+    return m ? Number(m[1]) : null;
+  };
+
+  it("**1단 — 성질을 한 번 적용할 뿐이고, 두 방향이 둘 다 나온다**", () => {
+    let counted = 0;
+    const dirs = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed, "연산");
+      const asked = cmsIn(p.content);
+      const ans = cmsIn(p.answer);
+      expect(asked, `씨앗 ${seed} 발문에 길이가 하나여야`).toHaveLength(1);
+      expect(ans, `씨앗 ${seed} 답이 길이 하나여야`).toHaveLength(1);
+      // 성질을 한 번 적용하면 **답이 준 값 그대로**다 — 산술이 없다(D-72 ⑶).
+      expect(ans[0], `씨앗 ${seed}`).toBe(asked[0]);
+      dirs.add(/거리는 몇 cm인가/.test(p.content) ? "수선→거리" : "거리→수선");
+      counted += 1;
+    }
+    expect(counted, "분모가 0이면 위의 100% 는 아무것도 아니다").toBe(
+      SWEEP.length,
+    );
+    expect(
+      dirs,
+      "두 방향이 둘 다 나와야 — 한쪽이 죽으면 변형이 절반이다",
+    ).toEqual(new Set(["수선→거리", "거리→수선"]));
+  });
+
+  it("**2단 — 두 거리의 합이고, 배치를 정하는 낱말이 발문에 있다**", () => {
+    let counted = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed, "기본");
+      const given = cmsIn(p.content);
+      const ans = cmsIn(p.answer);
+      expect(given, `씨앗 ${seed}`).toHaveLength(2);
+      expect(ans, `씨앗 ${seed}`).toHaveLength(1);
+      expect(ans[0], `씨앗 ${seed} 합이 아니다`).toBe(given[0]! + given[1]!);
+      counted += 1;
+    }
+    expect(counted).toBe(SWEEP.length);
+  });
+
+  it("**3단 — 중간값을 거쳐야 답이 나오고, 두 방향이 둘 다 선다**", () => {
+    let counted = 0;
+    const dirs = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed, "응용");
+      const given = cmsIn(p.content);
+      expect(given, `씨앗 ${seed} 발문에 길이 둘(한 칸 · 차)`).toHaveLength(2);
+      const [near, diff] = given as [number, number];
+      const longer = /더 깁니다/.test(p.content);
+      expect(
+        longer || /더 짧습니다/.test(p.content),
+        `씨앗 ${seed} 길다/짧다 중 하나를 말해야`,
+      ).toBe(true);
+      // **중간값**을 먼저 세운다 — 이것이 3단을 2단과 가르는 자리다.
+      const far = longer ? near + diff : near - diff;
+      expect(
+        far,
+        `씨앗 ${seed} 거리가 $0$ 이하다 — 뽑고 거르면 이 자리가 난다`,
+      ).toBeGreaterThan(0);
+      expect(cmsIn(p.answer)[0], `씨앗 ${seed}`).toBe(near + far);
+      dirs.add(longer ? "길다" : "짧다");
+      counted += 1;
+    }
+    expect(counted).toBe(SWEEP.length);
+    expect(dirs).toEqual(new Set(["길다", "짧다"]));
+  });
+
+  it("**4단 — 합에서 한 칸을 되짚고, 그 되짚은 값이 답과 다르다**", () => {
+    let counted = 0;
+    const sides = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed, "심화");
+      const given = cmsIn(p.content);
+      expect(given, `씨앗 ${seed} 발문에 길이 둘(수선 합 · 전체)`).toHaveLength(
+        2,
+      );
+      const [sum, total] = given as [number, number];
+      const count = perpCountIn(p.content);
+      expect(count, `씨앗 ${seed} 수선 개수를 못 읽음`).toBeTruthy();
+      // 「어디에서 재어도 같다」를 쓰려면 딱 떨어져야 한다 — 안 떨어지면 초4 가 못 푼다.
+      expect(sum % count!, `씨앗 ${seed} 수선 합이 개수로 안 나누어진다`).toBe(
+        0,
+      );
+      const measured = sum / count!;
+      expect(cmsIn(p.answer)[0], `씨앗 ${seed}`).toBe(total - measured);
+      // ⚠️ **이것이 이 갈래의 급소다.** 되짚은 값과 답이 같으면 「합에서 되찾기」를
+      //    건너뛰고도 답이 맞아 그 씨앗에서 4단이 3단보다 가볍다.
+      expect(
+        measured,
+        `씨앗 ${seed} 중간값과 답이 같아 지름길이 생긴다`,
+      ).not.toBe(total - measured);
+      sides.add(
+        /직선 가와 직선 나 사이에 수선을/.test(p.content) ? "앞칸" : "뒷칸",
+      );
+      counted += 1;
+    }
+    expect(counted).toBe(SWEEP.length);
+    expect(sides).toEqual(new Set(["앞칸", "뒷칸"]));
+  });
+
+  it("**세 직선을 쓰는 갈래는 배치를 발문이 못 박는다** (그림이 없어도 답이 하나)", () => {
+    let counted = 0;
+    for (const tier of ["기본", "응용", "심화"] as const) {
+      for (const seed of SWEEP) {
+        const t = gen("2-4-3", seed, tier).content;
+        // 「이 순서로」가 없으면 직선 나가 바깥에 놓일 수 있어 **답이 둘**이 된다.
+        expect(t, `${tier} 씨앗 ${seed} 배치를 정하는 말이 없다`).toContain(
+          "이 순서로",
+        );
+        expect(
+          t,
+          `${tier} 씨앗 ${seed} 세 직선이 평행하다는 말이 없다`,
+        ).toMatch(/세 직선은 모두 서로 평행/);
+        counted += 1;
+      }
+    }
+    expect(counted).toBe(SWEEP.length * 3);
+  });
+
+  it("**각도로 사다리를 세우지 않는다** (1-2-4 와 같은 산술이 되는 자리)", () => {
+    let counted = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-3", seed, tier);
+        // 1-2-4(각도의 합과 차)가 이미 그 산술을 쓴다. 직각 옷만 입히면 같은 문형이다.
+        // R5 는 소단원 **안**에서만 견주므로 이 겹침을 구조적으로 못 본다.
+        expect(
+          degsIn(p.content).length + degsIn(p.solution).length,
+          `${tier} 씨앗 ${seed} 각도가 들어왔다`,
+        ).toBe(0);
+        counted += 1;
+      }
+    }
+    expect(counted).toBe(SWEEP.length * ELEM_TIERS.length);
+  });
+
+  /**
+   * **소단원의 약속이 지면에 남는가.**
+   *
+   * ⚠️ **첫 판은 네 갈래 모두에 「수선」을 요구해 빨개졌다 — 시험이 틀렸다.**
+   * 이 소단원은 축이 둘이다: 1·4단은 **수선의 성질**(어디에서 재어도 같다)을 쓰고,
+   * 2·3단은 **거리의 합**을 쓴다. 둘 다 「평행선 사이의 거리」다. 네 갈래에 같은
+   * 낱말을 요구하면 그건 약속이 아니라 **내가 기대한 문형**이다.
+   */
+  it("**소단원의 약속이 지면에 남는다** — 평행과 거리, 그리고 수선은 제 갈래에", () => {
+    let counted = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-3", seed, tier);
+        const page = `${p.content} ${p.solution}`;
+        expect(page, `${tier} 씨앗 ${seed} 평행을 안 말한다`).toMatch(/평행/);
+        expect(page, `${tier} 씨앗 ${seed} 거리를 안 말한다`).toContain("거리");
+        // 수선의 성질을 쓰는 갈래는 그 낱말이 반드시 지면에 있어야 한다.
+        if (tier === "연산" || tier === "심화") {
+          expect(page, `${tier} 씨앗 ${seed} 수선을 안 말한다`).toContain(
+            "수선",
+          );
+        }
+        counted += 1;
+      }
+    }
+    expect(counted).toBe(SWEEP.length * ELEM_TIERS.length);
+  });
+});
+
+/* ──────────────────── 2-4-2 평행과 평행선 ────────────────────
+ *
+ * **참은 「수직으로 꺾인 횟수의 홀짝」에서 온다** — 제품 함수를 안 부르고 발문에 적힌
+ * 직선 이름을 세어 다시 정한다. 생성기를 되부르면 홀짝을 거꾸로 넣어도 시험이 같이 틀린다.
+ *
+ * 이 소단원이 지켜야 하는 것 —
+ *  ㉠ **홀짝이 답을 정한다.** 짝수 번 꺾이면 평행, 홀수 번이면 수직. 전량으로 잰다.
+ *  ㉡ **각도가 한 자리도 안 나온다.** 1-2-3(각의 크기 분류)·1-2-4(각도의 합과 차)가
+ *     이미 그 산술을 쓴다. 「수직으로 만나 생긴 네 각」류로 새면 낱말만 바뀐 같은 문항이다.
+ *  ㉢ **1-4-3(뒤집기) 심화의 「$N$번보다 많고 $M$번보다 적다면」 문형을 안 쓴다.**
+ *     홀짝을 쓰는 소단원이라 저절로 떠오르는 문형이라 **막아 둔다**.
+ *  ㉣ **조사.** 직선 이름 가~자는 **모두 받침이 없다** — 「직선 가과」·「직선 나은」이
+ *     지면에 나가면 안 된다. 첫 판 해설 네 자리가 실제로 그랬다.
+ */
+describe("[초4 2-4-2] 평행과 평행선", () => {
+  /** 발문 맨 앞의 「직선 가, 직선 나, … 」 목록에서 직선 수를. 없으면 `null`. */
+  const listedLines = (t: string): number | null => {
+    const m = t.match(
+      /^((?:직선 [가-힣], )+직선 [가-힣])가 (있습니다|차례로 있습니다)/,
+    );
+    return m ? m[1]!.split(", ").length : null;
+  };
+  /** 「직선 $7$개가 가, 나, … 순서로」에서 개수를. */
+  const orderedCount = (t: string): number | null => {
+    const m = t.match(/직선 \$(\d+)\$개가 ([가-힣, ]+) 순서로/);
+    return m ? Number(m[1]) : null;
+  };
+
+  it("**1단 — 직선 셋으로 규칙을 한 번만 쓴다**", () => {
+    let counted0 = 0;
+    const answers = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed, "연산");
+      const names = new Set(
+        [...p.content.matchAll(/직선 ([가-힣])/g)].map((m) => m[1]),
+      );
+      expect(names.size, `씨앗 ${seed} 직선이 셋이어야`).toBe(3);
+      // ⚠️ **「이름이 셋인가」만으로는 못 잡는다.** 물음에만 나오고 **관계가 안 적힌**
+      //    직선이 있어도 이름 수는 그대로 셋이다 — 그런데 그 발문은 답을 못 정한다.
+      //    변이(「나와 나도 서로 수직」)가 **초록**으로 그것을 짚어 줬다. 세 직선이
+      //    모두 관계 문장과 물음에 나와야 하므로 **저마다 두 번 이상** 나와야 한다.
+      for (const nm of names) {
+        const times = p.content.split(`직선 ${nm}`).length - 1;
+        expect(
+          times,
+          `씨앗 ${seed} 직선 ${nm}이 ${times}번뿐 — 관계가 안 적힌 직선이 있다`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+      expect(["평행", "수직"], `씨앗 ${seed}`).toContain(p.answer);
+      answers.add(p.answer);
+      counted0 += 1;
+    }
+    expect(counted0).toBe(SWEEP.length);
+    expect(answers, "두 답이 둘 다 나와야 — 한쪽만이면 찍어도 맞는다").toEqual(
+      new Set(["평행", "수직"]),
+    );
+  });
+
+  it("**2단 — 꺾인 횟수의 홀짝이 답이다** (㉠)", () => {
+    let counted0 = 0;
+    const seen = new Set<number>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed, "기본");
+      const lines = listedLines(p.content);
+      expect(lines, `씨앗 ${seed} 직선 목록을 못 읽음`).toBeTruthy();
+      const links = lines! - 1;
+      expect(
+        links,
+        `씨앗 ${seed} 1단(꺾임 둘)보다 길어야`,
+      ).toBeGreaterThanOrEqual(3);
+      // **참을 여기서 다시 정한다** — 짝수 번 꺾이면 방향이 돌아온다.
+      expect(p.answer, `씨앗 ${seed} 꺾임 ${links}번`).toBe(
+        links % 2 === 0 ? "평행" : "수직",
+      );
+      seen.add(links);
+      counted0 += 1;
+    }
+    expect(counted0).toBe(SWEEP.length);
+    expect(
+      seen.size,
+      "꺾임 횟수가 한 가지뿐이면 답도 한 가지다",
+    ).toBeGreaterThan(1);
+  });
+
+  it("**3단 — 훑어서 세고, 짝·홀 두 물음이 둘 다 선다**", () => {
+    let counted0 = 0;
+    const asks = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed, "응용");
+      const total = orderedCount(p.content);
+      expect(total, `씨앗 ${seed} 직선 개수를 못 읽음`).toBeTruthy();
+      const wantParallel = /서로 평행한 직선은/.test(p.content);
+      expect(
+        wantParallel || /서로 수직인 직선은/.test(p.content),
+        `씨앗 ${seed} 무엇을 세는지 안 적혀 있다`,
+      ).toBe(true);
+      // 첫 직선에서 $i$ 번 꺾인 것이 $i$ 번째 — 짝수면 평행, 홀수면 수직.
+      let want = 0;
+      for (let i = 1; i < total!; i += 1) {
+        if ((i % 2 === 0) === wantParallel) want += 1;
+      }
+      expect(p.answer, `씨앗 ${seed} 직선 ${total}개`).toBe(`$${want}$개`);
+      asks.add(wantParallel ? "평행" : "수직");
+      counted0 += 1;
+    }
+    expect(counted0).toBe(SWEEP.length);
+    expect(asks).toEqual(new Set(["평행", "수직"]));
+  });
+
+  it("**4단 — 가운데 관계가 양 끝의 관계와 같다** (되짚기)", () => {
+    let counted0 = 0;
+    const answers = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed, "심화");
+      const m = p.content.match(/서로 (평행|수직)하려면/);
+      expect(m, `씨앗 ${seed} 양 끝에 요구된 관계를 못 읽음`).toBeTruthy();
+      // 앞뒤에서 수직으로 한 번씩 꺾이므로 그 둘은 서로 지운다 —
+      // **가운데 관계가 곧 양 끝의 관계**다. 이 항등이 이 갈래의 전부다.
+      expect(p.answer, `씨앗 ${seed}`).toBe(m![1]);
+      expect(listedLines(p.content), `씨앗 ${seed} 직선 넷`).toBe(4);
+      answers.add(p.answer);
+      counted0 += 1;
+    }
+    expect(counted0).toBe(SWEEP.length);
+    expect(answers).toEqual(new Set(["평행", "수직"]));
+  });
+
+  it("**각도로 사다리를 세우지 않는다** (㉡ 1-2-3 · 1-2-4 와 같은 산술이 되는 자리)", () => {
+    let counted0 = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-2", seed, tier);
+        expect(
+          degsIn(p.content).length + degsIn(p.solution).length,
+          `${tier} 씨앗 ${seed} 각도가 들어왔다`,
+        ).toBe(0);
+        counted0 += 1;
+      }
+    }
+    counted(counted0, "각도 전량");
+  });
+
+  it("**1-4-3(뒤집기)의 「$N$번보다 많고」 문형을 안 쓴다** (㉢)", () => {
+    let counted0 = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const c = gen("2-4-2", seed, tier).content;
+        // 홀짝을 쓰는 소단원이라 저절로 떠오르는 문형이다 — 그대로 가면 뒤집기와 같은 문항.
+        expect(c, `${tier} 씨앗 ${seed}`).not.toMatch(/번보다 (많고|적)/);
+        expect(c, `${tier} 씨앗 ${seed}`).not.toContain("뒤집");
+        counted0 += 1;
+      }
+    }
+    counted(counted0, "문형 전량");
+  });
+
+  it("**직선 이름 뒤 조사가 맞는다** (㉣ 가~자는 모두 받침이 없다)", () => {
+    let counted0 = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-2", seed, tier);
+        for (const page of [p.content, p.solution]) {
+          // 「직선 가과」·「직선 나은」·「직선 다이」 — 첫 판 해설 네 자리가 그랬다.
+          expect(page, `${tier} 씨앗 ${seed}`).not.toMatch(
+            /직선 [가나다라마바사아자](과|은|이)(?![가-힣])/,
+          );
+        }
+        counted0 += 1;
+      }
+    }
+    counted(counted0, "조사 전량");
   });
 });
