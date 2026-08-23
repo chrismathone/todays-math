@@ -2558,6 +2558,251 @@ def _rev_label_edges(piece: Mapping[str, Any], geom) -> list:
     return out
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# linearGraph — 교과 좌표평면 위 일차함수 직선 1~3개 (물결 2C, 2026-08-23)
+#
+# 정본은 RPM 중학 2-1 일차함수 단원 원본 지면이다(본문·수치는 베끼지 않고 **모양만**):
+#   · 0891(p132) — 직선 하나 + 점 (4,3)·(-4,-1) 을 **점선 안내선**으로 축에 잇고
+#     그 발치에만 숫자. 점 자체에는 표식이 없다(원본도 없다).
+#   · 0974(p144) — 절편 숫자는 직선이 축을 지나는 자리 **옆에** 적는다(6·2).
+#   · 0882(p130)·0975(p144) — 두 직선 교점·평행. 식 라벨은 직선 위끝 부근.
+#
+# 문법(계획서 §3): 축 화살촉(양의 방향만) · 원점 O · 정수 눈금 짧은 획
+# (숫자는 marks 가 가리키는 곳만) · 직선은 **범위 경계까지** · 두 직선 교점 지원.
+#
+# ## 던지는 것 (D-70 — 못 담으면 조용히 구겨 넣지 않는다)
+#
+#   · marks 의 점이 어느 직선 위에도 없으면 — **검산 겸용이다.** 생성기가 역산을
+#     틀리면 그림이 먼저 던진다. 그래서 marks 는 정수만 받는다(부동소수 «위에 있음»
+#     판정은 지어낸 참이 되기 쉽다 — 정수·정수 기울기·정수 절편이면 판정이 정확하다).
+#   · 기울기 극단(|m|>6 또는 |m|<1/6) — 축과 겹쳐 보인다.
+#   · 범위가 원점을 안 품으면 — 원점 O·화살촉 문법이 성립하지 않는다.
+#   · 직선의 보이는 토막이 짧으면(구석 스침) — 직선이 아니라 흠집으로 보인다.
+#
+# ## 등척이다 — x·y 한 칸이 같은 px
+#
+# 두 축의 칸이 다르면 「기울기 1」이 45°로 안 보인다 — 그린 값이 적힌 값이어야
+# 한다(09 §4-21). 시험이 «기울기 m 직선의 화면 dx/dy == 1/m» 을 잠근다.
+# ═══════════════════════════════════════════════════════════════════════════
+
+LG_UNIT = 18.0          # 한 칸(px). 범위가 넓으면 아래에서 14 로 줄인다.
+LG_UNIT_SMALL = 14.0
+LG_WIDE_SPAN = 9        # 이 칸수를 넘으면 작은 칸을 쓴다
+LG_TICK = 2.6           # 정수 눈금 짧은 획 절반 길이
+LG_AXIS_OVER = 11.0     # 축이 범위 밖으로 나가는 길이(화살촉 앞)
+LG_ARROW = 7.0          # 화살촉 길이
+LG_GUIDE_DASH = "4 3"   # 점선 안내선 (숨은 모서리 "5 4"·치수 "6 4" 와 구분)
+LG_SLOPE_MAX = 6.0      # 기울기 극단 상한 — tan⁻¹6 ≈ 80.5° (0882 의 3 이 실측 최대급)
+LG_MIN_SEG = 0.45       # 보이는 토막 최소 길이(짧은 범위 변 대비 비율)
+
+
+def _lg_text(x: float, y: float, t: Any, *, size: float = 12, anchor: str = "middle",
+             italic: bool = False) -> str:
+    """좌표평면 글자 — 원본 지면처럼 **가는 명조**다(발문 굵기가 아니다)."""
+    style = ' font-style="italic"' if italic else ""
+    return (
+        f'<text x="{_n(x)}" y="{_n(y)}" fill="{INK}" font-size="{_n(size)}" '
+        f'font-family="Batang, serif" font-weight="400"{style} text-anchor="{anchor}" '
+        f'dominant-baseline="middle">{_esc(t)}</text>'
+    )
+
+
+def _lg_clip(m: float, b: float, xlo: float, xhi: float, ylo: float, yhi: float):
+    """직선 y=mx+b 를 범위 상자에 자른 토막 — 없으면 None. 끝점은 경계 위다."""
+    if m > 0:
+        xa = max(xlo, (ylo - b) / m)
+        xb = min(xhi, (yhi - b) / m)
+    else:
+        xa = max(xlo, (yhi - b) / m)
+        xb = min(xhi, (ylo - b) / m)
+    if xa >= xb - 1e-12:
+        return None
+    return (xa, m * xa + b), (xb, m * xb + b)
+
+
+def _linear_graph(spec: Mapping[str, Any]) -> str:
+    lines = spec["lines"]
+    if not isinstance(lines, list) or not 1 <= len(lines) <= 3:
+        raise ValueError("lines 는 1~3개여야 합니다")
+    parsed: list[tuple[float, float, str | None]] = []
+    for i, ln in enumerate(lines):
+        if not isinstance(ln, Mapping):
+            raise ValueError(f"lines[{i}] 는 객체여야 합니다")
+        extra = set(ln) - {"slope", "yIntercept", "label"}
+        if extra:
+            raise ValueError(f"lines[{i}] 허용되지 않은 키: {', '.join(sorted(map(str, extra)))}")
+        m = _num(ln.get("slope"), f"lines[{i}].slope", -LG_SLOPE_MAX, LG_SLOPE_MAX)
+        if abs(m) < 1.0 / LG_SLOPE_MAX:
+            raise ValueError(f"lines[{i}].slope 이 극단입니다 — 축과 겹쳐 보입니다 (|m| 은 1/6~6)")
+        b = _num(ln.get("yIntercept"), f"lines[{i}].yIntercept", -20, 20)
+        label = ln.get("label")
+        if label is not None and (not isinstance(label, str) or not 1 <= len(label) <= 20):
+            raise ValueError(f"lines[{i}].label 은 1~20자 문자열이어야 합니다")
+        for pm, pb, _pl in parsed:
+            if abs(pm - m) < 1e-12 and abs(pb - b) < 1e-12:
+                raise ValueError("같은 직선이 두 번 있습니다")
+        parsed.append((m, b, label))
+
+    def _range(name: str) -> tuple[int, int]:
+        rng = spec[name]
+        if not isinstance(rng, list) or len(rng) != 2:
+            raise ValueError(f"{name} 은 [lo, hi] 여야 합니다")
+        lo = _int(rng[0], f"{name}[0]", -20, 20)
+        hi = _int(rng[1], f"{name}[1]", -20, 20)
+        if lo > -1 or hi < 1:
+            raise ValueError(f"{name} 은 원점을 품어야 합니다 (lo ≤ -1, hi ≥ 1)")
+        if not 4 <= hi - lo <= 12:
+            raise ValueError(f"{name} 폭은 4~12칸이어야 합니다")
+        return lo, hi
+
+    xlo, xhi = _range("xRange")
+    ylo, yhi = _range("yRange")
+
+    marks_raw = spec.get("marks", [])
+    if not isinstance(marks_raw, list) or len(marks_raw) > 4:
+        raise ValueError("marks 는 최대 4개의 [x, y] 목록이어야 합니다")
+    marks: list[tuple[int, int]] = []
+    for i, mk in enumerate(marks_raw):
+        if not isinstance(mk, list) or len(mk) != 2:
+            raise ValueError(f"marks[{i}] 는 [x, y] 여야 합니다")
+        mx = _int(mk[0], f"marks[{i}][0]", xlo, xhi)
+        my = _int(mk[1], f"marks[{i}][1]", ylo, yhi)
+        if mx == 0 and my == 0:
+            raise ValueError(f"marks[{i}] 가 원점입니다 — 원점은 O 로 이미 표기합니다")
+        # 검산 겸용 — 어느 직선 위에도 없으면 생성기가 역산을 틀린 것이다.
+        if not any(abs(my - (m * mx + b)) < 1e-9 for m, b, _l in parsed):
+            raise ValueError(f"marks[{i}] = ({mx}, {my}) 가 어느 직선 위에도 없습니다")
+        marks.append((mx, my))
+
+    grid = spec.get("grid", False)
+    if not isinstance(grid, bool):
+        raise ValueError("grid 는 true/false 여야 합니다")
+
+    span_x, span_y = xhi - xlo, yhi - ylo
+    u = LG_UNIT if max(span_x, span_y) <= LG_WIDE_SPAN else LG_UNIT_SMALL
+    pad_l, pad_t = 26.0, 24.0
+
+    def sx(x: float) -> float:
+        return pad_l + (x - xlo) * u
+
+    def sy(y: float) -> float:
+        return pad_t + (yhi - y) * u
+
+    ax, ay = sx(0.0), sy(0.0)  # 축 화면 좌표
+
+    # 보이는 토막 — 없거나 짧으면 던진다 (구석 스침은 직선으로 안 보인다).
+    segs: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    for m, b, _l in parsed:
+        seg = _lg_clip(m, b, xlo, xhi, ylo, yhi)
+        if seg is None:
+            raise ValueError(f"직선 y={_n(m)}x{b:+g} 이 범위 안에 없습니다")
+        (xa, ya), (xb, yb) = seg
+        if math.hypot(xb - xa, yb - ya) < LG_MIN_SEG * min(span_x, span_y):
+            raise ValueError(f"직선 y={_n(m)}x{b:+g} 이 범위 구석만 스칩니다 — 범위를 옮기십시오")
+        segs.append(seg)
+
+    parts: list[str] = []
+
+    # ① 모눈 (요청 시에만) — 축 밑에 깔린다.
+    if grid:
+        for gx in range(xlo, xhi + 1):
+            if gx == 0:
+                continue
+            parts.append(
+                f'<line x1="{_n(sx(gx))}" y1="{_n(sy(yhi))}" x2="{_n(sx(gx))}" '
+                f'y2="{_n(sy(ylo))}" stroke="{GRID}" stroke-width="{_n(GRID_SW)}"/>'
+            )
+        for gy in range(ylo, yhi + 1):
+            if gy == 0:
+                continue
+            parts.append(
+                f'<line x1="{_n(sx(xlo))}" y1="{_n(sy(gy))}" x2="{_n(sx(xhi))}" '
+                f'y2="{_n(sy(gy))}" stroke="{GRID}" stroke-width="{_n(GRID_SW)}"/>'
+            )
+
+    # ② 축 + 화살촉(양의 방향만) + 라벨 x·y·O — 원본 0974 배치.
+    x_end = sx(xhi) + LG_AXIS_OVER
+    y_end = sy(yhi) - LG_AXIS_OVER
+    parts.append(_line((sx(xlo) - LG_AXIS_OVER, ay), (x_end, ay), sw=1.0))
+    parts.append(_line((ax, sy(ylo) + LG_AXIS_OVER), (ax, y_end), sw=1.0))
+    parts.append(
+        f'<polygon points="{_n(x_end + LG_ARROW)},{_n(ay)} {_n(x_end)},{_n(ay - 2.8)} '
+        f'{_n(x_end)},{_n(ay + 2.8)}" fill="{INK}"/>'
+    )
+    parts.append(
+        f'<polygon points="{_n(ax)},{_n(y_end - LG_ARROW)} {_n(ax - 2.8)},{_n(y_end)} '
+        f'{_n(ax + 2.8)},{_n(y_end)}" fill="{INK}"/>'
+    )
+    parts.append(_lg_text(x_end + 4.0, ay + 12.0, "x", size=13, italic=True))
+    parts.append(_lg_text(ax - 9.0, y_end - 4.0, "y", size=13, italic=True))
+    parts.append(_lg_text(ax - 7.0, ay + 10.0, "O", size=12.5))
+
+    # ③ 정수 눈금 짧은 획 — 숫자는 marks 가 가리키는 곳만 (계획서 §3).
+    for gx in range(xlo, xhi + 1):
+        if gx == 0:
+            continue
+        parts.append(_line((sx(gx), ay - LG_TICK), (sx(gx), ay + LG_TICK), sw=0.9))
+    for gy in range(ylo, yhi + 1):
+        if gy == 0:
+            continue
+        parts.append(_line((ax - LG_TICK, sy(gy)), (ax + LG_TICK, sy(gy)), sw=0.9))
+
+    # ④ 점선 안내선 + 숫자 — 0891 문법. 축 위의 점(절편)은 안내선 없이 숫자만(0974).
+    done: set[tuple[str, int]] = set()
+    for mx, my in marks:
+        if mx != 0 and my != 0:
+            parts.append(
+                _polyline([(sx(mx), ay), (sx(mx), sy(my)), (ax, sy(my))],
+                          sw=0.9, dash=LG_GUIDE_DASH)
+            )
+        if mx != 0 and ("x", mx) not in done:
+            done.add(("x", mx))
+            # 숫자는 안내선 반대쪽 — 점이 위면 축 아래(0891 의 4), 아래면 축 위(0891 의 -4).
+            ny = ay + 11.0 if my >= 0 else ay - 8.0
+            parts.append(_lg_text(sx(mx) + (-5.0 if mx > 0 else 5.0), ny, mx))
+        if my != 0 and ("y", my) not in done:
+            done.add(("y", my))
+            if mx >= 0:
+                parts.append(_lg_text(ax - 5.0, sy(my) + 1.0, my, anchor="end"))
+            else:
+                parts.append(_lg_text(ax + 5.0, sy(my) + 1.0, my, anchor="start"))
+
+    # ⑤ 직선 — 범위 경계까지, 축보다 굵게(원본과 같은 위계).
+    for (xa, ya), (xb, yb) in segs:
+        parts.append(_line((sx(xa), sy(ya)), (sx(xb), sy(yb)), sw=1.9))
+
+    # ⑥ 식 라벨 — 직선 위끝 부근(0882). 축과 겹치면 기울기의 빈 쪽으로 비키고,
+    #    앞 라벨과 겹치면 **그 직선의 아래끝**으로 옮긴다 — 두 직선이 위 경계를
+    #    가까이서 나가면 위끝 라벨 둘이 포개져 못 읽는다(실사 미리보기에서 확인).
+    has_label = False
+    placed: list[tuple[float, float]] = []
+
+    def _label_spot(m: float, end: tuple[float, float], at_top: bool) -> tuple[float, float]:
+        ex, ey = end
+        if abs(ex - ax) < 28.0:
+            free_right = (m > 0) == at_top  # 위끝은 기울기 쪽이, 아래끝은 반대쪽이 빈다
+            ex += 26.0 if free_right else -26.0
+        ex = min(max(ex, 30.0), x_end - 4.0)
+        return ex, (ey - 8.0 if at_top else ey + 12.0)
+
+    for (m, b, label), ((xa, ya), (xb, yb)) in zip(parsed, segs):
+        if not label:
+            continue
+        has_label = True
+        top, bot = ((sx(xa), sy(ya)), (sx(xb), sy(yb)))
+        if top[1] > bot[1]:
+            top, bot = bot, top
+        cand = _label_spot(m, top, True)
+        if any(abs(cand[0] - px) < 46.0 and abs(cand[1] - py) < 14.0 for px, py in placed):
+            cand = _label_spot(m, bot, False)
+        placed.append(cand)
+        parts.append(_lg_text(cand[0], cand[1], label, italic=True))
+
+    w = x_end + LG_ARROW + (26.0 if has_label else 10.0)
+    h = sy(ylo) + LG_AXIS_OVER + 8.0
+    return _svg(w, h, "".join(parts))
+
+
 ADV_FIELDS: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"cols", "rows", "filled"}),
     "groupDots": frozenset({"groups", "each"}),
@@ -2584,6 +2829,8 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     "hollowSolid": frozenset({"outer", "inner"}),
     "cutCuboid": frozenset({"w", "d", "h", "cut"}),
     "revolvePlan": frozenset({"pieces"}),
+    # 교과 좌표평면 일차함수 (물결 2C, RPM 2-1 일차함수) — 위 절 참조.
+    "linearGraph": frozenset({"lines", "xRange", "yRange"}),
 }
 ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"fill"}),
@@ -2601,6 +2848,7 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "cylinder": frozenset(),
     "prism": frozenset({"net"}),
     "revolvePlan": frozenset({"gap"}),
+    "linearGraph": frozenset({"marks", "grid"}),
 }
 ADV_RENDER = {
     "fracBars": _frac_bars,
@@ -2627,4 +2875,5 @@ ADV_RENDER = {
     "hollowSolid": _hollow_solid,
     "cutCuboid": _cut_cuboid,
     "revolvePlan": _revolve_plan,
+    "linearGraph": _linear_graph,
 }
