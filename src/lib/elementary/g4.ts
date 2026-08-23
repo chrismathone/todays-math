@@ -1642,12 +1642,339 @@ function tier53Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/**
- * 초4 난이도 갈래 등록 (D-72 · 셋째 파일럿).
+/* ──────────── 1-5-1·1-5-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
  *
- * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 넷은 별개다.
+ * 자료형 잣대는 시안 그대로다 — 「값 읽기 → 비교 한 번 → 배·눈금 결합 → 역산」.
+ * 그런데 **표준이 이미 가져간 유형이 많다**(R5 — 표준↔갈래 같은 소단원 중복도 결함):
+ * 표준 1-5-1 이 값 읽기·최다 항목을, 표준 1-5-2 가 눈금 셋·순위·차를 갖고 있다.
+ * 그래서 소단원의 **정체성**으로 가른다:
+ *
+ *  · **1-5-1 「알아보기」** — 완성된 그래프에서. 1단은 값이 아니라 **그래프의 짜임**을
+ *    읽는다(가로·세로·막대 길이가 무엇을 나타내는가 — 큐브 개념 1 「막대그래프」의 유형.
+ *    값 읽기 그 자체는 표준 1-5-1 몫이다). 4단은 **지워진 막대**를 «다른 항목과의 관계»
+ *    단서로 역산한다 — 전체 합에서 역산하는 1-5-3 심화와 단서가 다르다
+ *    (큐브 실력 「막대그래프의 일부분을 보고 문제 해결하기」).
+ *  · **1-5-2 「그리기」** — 갈래 넷 전부 **표**(`barTable`)에서 출발한다(팀장 지침
+ *    2026-08-23: 1단은 「값 읽기」 소재를 옮겨 적지 말고 **그리기 방향의 절차 한 번**).
+ *    완성된 그래프를 읽는 표준 1-5-2 와 그림 종류부터 갈린다. 4단은 「그렸더니 몇 칸」
+ *    에서 눈금을 **되짚는다**(큐브 응용 「눈금 한 칸의 크기를 이용하여 다른 항목 구하기」).
+ *
+ * 재료는 셋 다 `barData` 하나다 — 소재는 `themeShare` 로 소단원끼리 겹치지 않는다.
+ */
+
+/**
+ * **1-5-1 1단 연산 — 그래프의 짜임 읽기.** 계산이 없고, 답이 발문에 적혀 있지 않다.
+ * 값 읽기(「몇 명인가」)·최다 항목은 표준 1-5-1 이 이미 내므로(R5) 여기서는 안 묻는다.
+ */
+function tier51Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    return make(
+      unit,
+      `${d.intro} 가로와 세로는 각각 무엇을 나타내는가?`,
+      `가로는 ${d.theme.item}, 세로는 학생 수`,
+      `가로는 조사한 ${josa(d.theme.item, "을", "를")} 나타내고, ` +
+        `세로는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다.`,
+      d.figure,
+    );
+  }
+  if (kind === 1) {
+    return make(
+      unit,
+      `${d.intro} 막대의 길이는 무엇을 나타내는가?`,
+      `${josa(d.theme.item, "을", "를")} 좋아하는 학생 수`,
+      `막대의 길이는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다. ` +
+        `막대가 길수록 좋아하는 학생이 많습니다.`,
+      d.figure,
+    );
+  }
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "을", "를")} 한눈에 찾으려면 ` +
+      `그래프에서 무엇을 비교하면 되는가?`,
+    "막대의 길이",
+    `막대의 길이가 학생 수를 나타내므로, 막대의 길이를 비교하면 가장 긴 막대가 ` +
+      `학생 수가 가장 많은 ${d.theme.item}입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 2단 기본 — 두 항목을 골라 합한다.** 값이 발문에 없고, 어느 막대 둘을 읽을지
+ * 스스로 정해 식을 세운다(덧셈 한 번). 차는 1-5-3(표준·기본)과 1-5-2 표준이 이미
+ * 가져갔으므로 **합**이다 — 전체 합(1-5-3 표준 「모두 몇 명」)과도 항목 둘이라 갈린다.
+ */
+function tier51Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  // 지면 순서(왼쪽부터)로 두 항목을 부른다 — 해설이 그래프와 같은 차례를 밟는다.
+  const [x, y] = d.values.filter((v) => v === d.pairA || v === d.pairB) as [
+    (typeof d.values)[number],
+    (typeof d.values)[number],
+  ];
+  const sum = x.value + y.value;
+  return make(
+    unit,
+    `${d.intro} ${josa(x.label, "과", "와")} ${josa(y.label, "을", "를")} 좋아하는 학생은 ` +
+      `모두 몇 명인가?`,
+    `${n(sum)}명`,
+    `${josa(x.label, "은", "는")} ${n(x.value)}명, ${josa(y.label, "은", "는")} ` +
+      `${n(y.value)}명입니다. ${expr(`${x.value}+${y.value}=${sum}`)} 이므로 모두 ${n(sum)}명입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 3단 응용 — 눈금 결합(두 단계).** 차를 구하고 눈금 한 칸으로 나눠 **칸**으로
+ * 답한다. 명 단위 차(1-5-2 표준·1-5-3)와 단위부터 다르고, 몇 배는 1-5-3 응용 몫이다.
+ */
+function tier51Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const diff = d.max - d.min;
+    const cells = diff / d.scale.step;
+    return make(
+      unit,
+      `${d.intro} 학생 수가 가장 많은 ${d.theme.item}의 막대는 가장 적은 ${d.theme.item}의 ` +
+        `막대보다 눈금 몇 칸 더 긴가?`,
+      `${n(cells)}칸`,
+      `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+        `${josa(d.bottom, "으로", "로")} ${n(d.min)}명이므로 차는 ` +
+        `${expr(`${d.max}-${d.min}=${diff}`)} 입니다. 세로 눈금 한 칸은 ${n(d.scale.step)}명이므로 ` +
+        `${expr(`${diff}\\div${d.scale.step}=${cells}`)} 칸 더 깁니다.`,
+      d.figure,
+    );
+  }
+  const [p, q] = pickDistinct(rng, d.values, 2) as [
+    (typeof d.values)[number],
+    (typeof d.values)[number],
+  ];
+  const big = p.value > q.value ? p : q;
+  const small = p.value > q.value ? q : p;
+  const diff = big.value - small.value;
+  const cells = diff / d.scale.step;
+  return make(
+    unit,
+    `${d.intro} ${josa(big.label, "의", "의")} 막대는 ${josa(small.label, "의", "의")} 막대보다 ` +
+      `눈금 몇 칸 더 긴가?`,
+    `${n(cells)}칸`,
+    `${josa(big.label, "은", "는")} ${n(big.value)}명, ${josa(small.label, "은", "는")} ` +
+      `${n(small.value)}명이므로 차는 ${expr(`${big.value}-${small.value}=${diff}`)} 입니다. ` +
+      `세로 눈금 한 칸은 ${n(d.scale.step)}명이므로 ${expr(`${diff}\\div${d.scale.step}=${cells}`)} 칸 더 깁니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 4단 심화 — 지워진 막대를 «관계» 단서로 역산.** 단서가 전체 합이면 1-5-3 심화와
+ * 같은 문항이 된다 — 여기서는 「다른 항목보다 $k$명 더 많다/적다」로 되짚는다.
+ *
+ * 스펙 계약은 1-5-3 심화(`tier53Deep`)와 같다: unknown 항목에 `value` 가 **아예 없고**
+ * (D-66 ⑺), 최댓값은 숨기지 않으며, `yMax` 는 **보이는 값**으로만 세운다.
+ */
+function tier51Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const hideable = d.values.filter((v) => v.value !== d.max);
+  const hidden = pick(rng, hideable);
+  const shown = d.values.filter((v) => v !== hidden);
+  const ref = pick(rng, shown);
+  const diff = hidden.value - ref.value;
+  const more = diff > 0;
+  const k = Math.abs(diff);
+  const figure = fig("barChart", {
+    values: d.values.map((v) =>
+      v === hidden
+        ? { label: v.label, unknown: true }
+        : { label: v.label, value: v.value },
+    ),
+    yMax: Math.max(...shown.map((v) => v.value)) + 1,
+    yStep: d.scale.step,
+    yLabel: d.theme.unit,
+  });
+  return make(
+    unit,
+    `${d.intro} ${josa(hidden.label, "을", "를")} 좋아하는 학생은 ` +
+      `${josa(ref.label, "을", "를")} 좋아하는 학생보다 ${n(k)}명 더 ${more ? "많다" : "적다"}고 ` +
+      `합니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(hidden.value)}명`,
+    `그래프에서 ${josa(ref.label, "을", "를")} 좋아하는 학생은 ${n(ref.value)}명입니다. ` +
+      `${expr(`${ref.value}${more ? "+" : "-"}${k}=${hidden.value}`)} 이므로 ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 ${n(hidden.value)}명입니다.`,
+    figure,
+  );
+}
+
+/** 그리기 갈래의 **표** — 완성된 그래프 대신 원자료를 보인다(「그리기」의 정체성). */
+function barTable(d: ReturnType<typeof barData>): Record<string, unknown> {
+  return fig("table", {
+    headers: [d.theme.item, ...d.values.map((v) => v.label)],
+    rows: [["학생 수(명)", ...d.values.map((v) => String(v.value))]],
+  });
+}
+
+/** 그리기 갈래의 첫 문장 — 그래프가 아니라 **표**를 가리킨다. */
+function drawIntro(d: ReturnType<typeof barData>): string {
+  return `${josa(d.scale.who, "이", "가")} 좋아하는 ${josa(d.theme.item, "을", "를")} 조사하여 나타낸 표입니다.`;
+}
+
+/**
+ * **1-5-2 1단 연산 — 값→칸 한 번(그리기 방향).** 표의 값 하나를 주어진 눈금으로 나눈다.
+ * 팀장 지침(2026-08-23): 자료형 1단의 「값 읽기」를 문자 그대로 옮기면 1-5-1 과 정체성이
+ * 겹친다 — 원장님 확정 취지는 «절차 한 번»이므로 그리기 방향의 나눗셈 한 번으로 간다.
+ */
+function tier52Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  const cells = d.one.value / s;
+  // 걸음이 $1$이면 「$5\div1=5$」가 지면에 나간다 — 식 없이 말로 푼다.
+  const how =
+    s === 1
+      ? `한 칸이 ${n(1)}명이므로 학생 수와 같은 ${n(cells)}칸으로 그립니다.`
+      : `한 칸이 ${n(s)}명이므로 ${expr(`${d.one.value}\\div${s}=${cells}`)} 칸으로 그립니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
+      `${n(s)}명으로 하면 ${josa(d.one.label, "의", "의")} 막대는 몇 칸으로 ` +
+      `그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(d.one.label, "은", "는")} ${n(d.one.value)}명입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 2단 기본 — 눈금 계획(스스로 고른다).** 표 전체를 훑어 가장 큰 수를 찾아야
+ * 답이 선다 — 값이 발문에 없다. 「적어도 몇 명까지」는 그리기의 단골 유형이다.
+ */
+function tier52Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금은 적어도 ` +
+        `몇 명까지 나타낼 수 있어야 하는가?`,
+      `${n(d.max)}명`,
+      `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. 세로 눈금은 ` +
+        `가장 큰 수까지 나타낼 수 있어야 하므로 적어도 ${n(d.max)}명까지 나타내야 합니다.`,
+      barTable(d),
+    );
+  }
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 길게 그려야 ` +
+      `하는 것은 어느 ${d.theme.item}인가?`,
+    d.top,
+    `막대의 길이는 학생 수를 나타내므로 학생 수가 가장 많은 ${josa(d.top, "의", "의")} ` +
+      `막대를 가장 길게 그려야 합니다. ${josa(d.top, "은", "는")} ${n(d.max)}명입니다.`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 3단 응용 — 눈금 계획 두 단계.** 표에서 값을 찾고(고르기) 눈금으로 나눈다 —
+ * 「적어도 몇 칸」과 「몇 칸 더 길게」 둘 다 찾기 + 나눗셈의 두 단계다.
+ */
+function tier52Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  if (intBetween(rng, 0, 1) === 0) {
+    const cells = d.max / s;
+    // 걸음 $1$이면 「\div1」 식이 지면에 나간다 — 말로 푼다(연산 갈래와 같은 이유).
+    const how =
+      s === 1
+        ? `한 칸이 ${n(1)}명이므로 눈금은 적어도 ${n(cells)}칸 있어야 합니다.`
+        : `한 칸이 ${n(s)}명이므로 눈금은 적어도 ${expr(`${d.max}\\div${s}=${cells}`)} 칸 있어야 합니다.`;
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
+        `${n(s)}명으로 하면 세로 눈금은 적어도 몇 칸 있어야 하는가?`,
+      `${n(cells)}칸`,
+      `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. ${how}`,
+      barTable(d),
+    );
+  }
+  const diff = d.pairA.value - d.pairB.value;
+  const cells = diff / s;
+  const how =
+    s === 1
+      ? `한 칸이 ${n(1)}명이므로 ${n(cells)}칸 더 길게 그려야 합니다.`
+      : `한 칸이 ${n(s)}명이므로 ${expr(`${diff}\\div${s}=${cells}`)} 칸 더 길게 그려야 합니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ${n(s)}명으로 ` +
+      `하면 ${josa(d.pairA.label, "의", "의")} 막대는 ${josa(d.pairB.label, "의", "의")} 막대보다 ` +
+      `몇 칸 더 길게 그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(d.pairA.label, "은", "는")} ${n(d.pairA.value)}명, ` +
+      `${josa(d.pairB.label, "은", "는")} ${n(d.pairB.value)}명이므로 차는 ` +
+      `${expr(`${d.pairA.value}-${d.pairB.value}=${diff}`)} 입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 4단 심화 — 눈금 역산.** 「그렸더니 몇 칸」에서 눈금 한 칸을 되짚고, 되짚은
+ * 눈금을 다른 항목에 적용한다. 전체 합 역산(1-5-3 심화)과 단서가 다르다.
+ *
+ * ⚠️ 칸 수가 $1$이면 역산이 자명해진다(한 칸 = 그 값). 값 넷은 서로 다른 걸음의
+ * 배수이므로 칸 수 $2$ 이상인 항목이 항상 셋 이상 있다 — 거기서만 고른다.
+ */
+function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  const cand = d.values.filter((v) => v.value / s >= 2);
+  const x = pick(rng, cand);
+  const c = x.value / s;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그렸더니 ${josa(x.label, "의", "의")} 막대가 ` +
+        `${n(c)}칸이 되었습니다. 세로 눈금 한 칸을 몇 명으로 한 것인가?`,
+      `${n(s)}명`,
+      `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명입니다. ${n(x.value)}명을 ` +
+        `${n(c)}칸으로 나타냈으므로 세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명으로 ` +
+        `한 것입니다.`,
+      barTable(d),
+    );
+  }
+  const y = pick(
+    rng,
+    d.values.filter((v) => v !== x),
+  );
+  const cells = y.value / s;
+  const how =
+    s === 1
+      ? `${josa(y.label, "은", "는")} ${n(y.value)}명이므로 ${n(cells)}칸으로 그려야 합니다.`
+      : `${josa(y.label, "은", "는")} ${n(y.value)}명이므로 ${expr(`${y.value}\\div${s}=${cells}`)} 칸으로 그려야 합니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 ${josa(x.label, "의", "의")} 막대를 ${n(c)}칸으로 그렸습니다. ` +
+      `같은 눈금으로 ${josa(y.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명인데 그 막대가 ${n(c)}칸이므로 ` +
+      `세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * 초4 난이도 갈래 등록 (D-72 · 셋째 파일럿 + 1-5 확대 2026-08-23).
+ *
+ * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 것들은 별개다.
  */
 export const G4_TIERS: ElemTierMap = {
+  "초4|1-5-1": {
+    연산: tier51Calc,
+    기본: tier51Basic,
+    응용: tier51Apply,
+    심화: tier51Deep,
+  },
+  "초4|1-5-2": {
+    연산: tier52Calc,
+    기본: tier52Basic,
+    응용: tier52Apply,
+    심화: tier52Deep,
+  },
   "초4|1-5-3": {
     연산: tier53Calc,
     기본: tier53Basic,
@@ -2964,9 +3291,10 @@ export const G4: Record<string, ChapterHandler> = {
   "초4|2-6 다각형": polygon,
 };
 
-// 셋째 파일럿(D-72) — **아직 `G4_TIERS` 로 등록하지 않았다.** `TierVariants` 가 넷을 컴파일로
-// 강제하는데 4단(역산)이 「지워진 막대」를 필요로 하고, 그 그림은 지금 `barChart` 가 못 그린다
-// (elem-1 kind 확장 여부가 팀장 판단 대기 중). 그때까지 셋을 **직접 호출**로 시험한다.
+// 셋째 파일럿(D-72)의 직접 호출 창구 — 등록은 끝났다. 넷 다 위 `G4_TIERS` 에 있고
+// generate.ts 가 병합하며, 4단의 「지워진 막대」(`unknown: true`)도 렌더러가 그린다
+// (elem-figures 확장 6a19b9b8). 이 셋은 단위 시험(elemTiersG4.test.ts)이 갈래를
+// 이름으로 직접 부르는 데만 쓴다 — 심화는 시험이 `G4_TIERS` 에서 꺼낸다.
 export const G4_TIER_CALC = tier53Calc;
 export const G4_TIER_BASIC = tier53Basic;
 export const G4_TIER_APPLY = tier53Apply;
