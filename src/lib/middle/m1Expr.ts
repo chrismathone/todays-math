@@ -1538,10 +1538,14 @@ const EQ_TYPES: TypeEntry[] = [
         const pp = qq + k;
         if (pp === 0) return null;
         const ss = intBetween(rng, 6, 30);
+        // 자연수 $a$ 를 훑는다. 훑는 범위는 넉넉히 잡고 **해의 조건으로만** 거른다 —
+        // 범위가 조건을 대신 하면 그 조건은 죽은 규칙이 되어 변이로 시험할 수 없다
+        // (2026-08-21 「가드가 0을 내면 «없다»가 아니라 «못 센다»일 수 있다」).
         const vals: number[] = [];
-        for (let a = 1; a < ss; a += 1) {
-          if ((ss - a) % Math.abs(k) !== 0) continue;
-          if ((ss - a) / Math.abs(k) < 1) continue;
+        for (let a = 1; a <= ss; a += 1) {
+          if ((ss - a) % k !== 0) continue;
+          const x = (ss - a) / k;
+          if (mode === 0 ? x < 1 : x > -1) continue;
           vals.push(a);
         }
         if (vals.length < 2 || vals.length > 5) return null;
