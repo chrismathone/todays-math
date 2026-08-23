@@ -66,7 +66,21 @@ from core.figure_solid import View                  # 3D 사방투영
 평면도형·원 계열은 전부 여기서 해결된다. 스키마가 엄격해 잘못된 스펙은 **조용히 통과하지 않고 예외**가 난다.
 
 허용 최상위 키: `version`(=2) · `theme` · `canvas` · `background` · `style` ·
-`points` · `circles` · `segments` · `angles` · `dimensions` · `labels`
+`points` · `circles` · `segments` · `arcs` · `regions` · `angles` · `dimensions` · `labels`
+
+**채색 축 (2026-08-23 신설)** — 색칠 넓이·끈 둘레 문항용:
+`regions`(선분·호 사슬로 닫힌 경계를 옅게 채움) · `arcs`(호 조각 스트로크) ·
+`circles.draw:false`(작도용 원 — 호의 기준으로만 쓰고 그리지 않음).
+경계 사슬이 점 이름으로 끝→시작 연결돼 닫히지 않으면 **던진다**. fill 은 옅어야
+한다(휘도 하한). 채색 레이어는 잉크 최하단, `regions` 없으면 기존 SVG 바이트 불변.
+
+```python
+"circles": {"c": {"center":"O","radius":60,"draw":False}},
+"arcs": {"arcAB": {"circle":"c","from":"A","to":"B","dir":"ccw"}},
+"regions": {"shade": {"boundary":[{"seg":["O","A"]},
+    {"arc":{"circle":"c","from":"A","to":"B","dir":"ccw"}},
+    {"seg":["B","O"]}], "fill":"#f2d5c8"}}
+```
 
 ```python
 spec = {
