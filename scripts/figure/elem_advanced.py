@@ -19,6 +19,7 @@ from elementary import (
     TABLE_VIEWBOX_MAX,
     _arrow_right,
     _esc,
+    _label_w_max,
     _length_mark,
     _n,
     _rect,
@@ -311,25 +312,9 @@ def _assert_ticks_readable(total_w: float) -> None:
         )
 
 
-# 13pt 글자 폭 **상한** — 실측 「바닐라」 39.72/3 = 13.24(한글), 숫자 7.99.
-# 라틴·괄호는 숫자보다도 좁아서(「(개)」 23.54 = 한글 13.24 + 괄호 둘 10.3) 8.0 이면 넉넉하다.
-# 잘림을 막는 용도라 **상한이면 맞다** — 다만 너무 헐거우면 짝 배치에서 폭을 낭비하므로
-# 한글과 나머지를 나눈다(모두 한글로 치면 「(개)」가 39.7 로 16단위 부풀었다).
-HANGUL_W_13 = 13.24
-ASCII_W_13 = 8.0
-
-
 def _digits_half(value: int) -> float:
     """눈금 숫자가 가운데 정렬이라 **오른쪽으로 뻗는 만큼**(폭의 절반)."""
     return TICK_DIGIT_W * len(str(int(value))) / 2
-
-
-def _label_w_max(text: str, size: float = 13.0) -> float:
-    """글자 폭 **상한**. 한글은 넓고 나머지는 좁다 — 넘치지 않을 만큼만 넉넉하게."""
-    scale = size / 13.0
-    return scale * sum(
-        HANGUL_W_13 if ord(ch) >= 0x1100 else ASCII_W_13 for ch in text
-    )
 
 
 def _assert_ticks_fit(ticks: list[int], plot_w: float) -> None:
