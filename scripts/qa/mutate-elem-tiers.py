@@ -1027,6 +1027,22 @@ G4_MUTS = [
         "      `${expr(`${a + b}-${a}=${b}`)} 이므로 ${cm(b)}입니다.`,\n  );\n}",
         "      `${expr(`${a + b}-${a}=${b}`)} 이므로 ${cm(b)}입니다.`,\n    paraFigure({ sides: [`${a} cm`, null, null, null] }),\n  );\n}",
     ),
+    # ── 초4 그림 (2026-08-23, 값 반영 확장 뒤) ────────────────────────────
+    (
+        "2-6-2 2단 훼손 — 그림의 도형을 발문의 변 수와 어긋나게 한다",
+        "      shape: REGULAR_SHAPES[sides]!,",
+        "      shape: REGULAR_SHAPES[5]!,",
+    ),
+    (
+        "2-6-2 2단 훼손 — 라벨을 모든 변에 적는다(그림이 합을 사실상 보여 준다)",
+        "      sides: [`${side} cm`, ...Array<null>(sides - 1).fill(null)],",
+        "      sides: Array<string>(sides).fill(`${side} cm`),",
+    ),
+    (
+        "2-6-2 2단 훼손 — 그릴 수 없는 십각형도 뽑는다(렌더가 던진다)",
+        "  const sides = intBetween(rng, 5, 9);\n  const side = intBetween(rng, 3, 9);",
+        "  const sides = intBetween(rng, 5, 10);\n  const side = intBetween(rng, 3, 9);",
+    ),
     # ── 초4 2-6 다각형 (2026-08-23, elem-g4) ─────────────────────────────
     (
         "2-6-1 4단 훼손 — 작은 쪽이 다각형이 못 되는 수도 뽑는다",

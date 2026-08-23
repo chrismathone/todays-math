@@ -410,3 +410,72 @@ describe("[초4 2-6-3] 대각선", () => {
     counted(looked, "4단 전량");
   });
 });
+
+/* ─────────────────── 그림 (2026-08-23, 값 반영 확장 뒤) ─────────────────── */
+
+describe("[초4 2-6] 그림", () => {
+  /**
+   * **㉠ 과 ㉡ 을 함께 본다** (09 §10.3):
+   *  ㉠ 그림이 **값을 따르는가** — 씨앗마다 같으면 어느 값도 안 가리킨다.
+   *  ㉡ 그림이 **답을 보여 주지 않는가** — 정n각형을 그려 주면 「변이 몇 개인가」는
+   *     세기만 하면 된다.
+   *
+   * 그래서 2-6 에서 그림이 붙는 자리는 **2-6-2 «기본» 하나**다 — 변의 수도 한 변의
+   * 길이도 **발문이 이미 말하므로** 그려도 답이 안 새고, 씨앗마다 도형과 라벨이 갈린다.
+   */
+  it("**2-6-2 «기본» 만 그림이 있고, 씨앗마다 갈린다** (㉠)", () => {
+    const specs = new Set<string>();
+    let looked = 0;
+    for (const s of SWEEP.slice(0, 200)) {
+      for (const code of CODES) {
+        for (const tier of ELEM_TIERS) {
+          const p = gen(code, s, tier);
+          const has = p.figureSpec !== null;
+          const want = code === "2-6-2" && tier === "기본";
+          expect(has, `${code} «${tier}» 씨앗 ${s}: 그림 유무`).toBe(want);
+          if (has) specs.add(JSON.stringify(p.figureSpec));
+          looked += 1;
+        }
+      }
+    }
+    counted(looked, "그림 전량");
+    // 씨앗마다 같은 그림이면 그 그림은 어느 값도 안 가리킨다 — R9-b 가 잡는 그 자리다.
+    expect(specs.size, "그림이 갈리는 가짓수").toBeGreaterThan(8);
+  });
+
+  it("**그림의 변 수와 라벨이 발문과 맞는다** — 그림이 값을 배반하지 않는다", () => {
+    // ⚠️ 「갈린다」는 「맞다」가 아니다. 스펙이 발문의 수와 실제로 맞는지 따로 잰다.
+    const DRAWABLE: Record<number, string> = {
+      5: "pentagon",
+      6: "hexagon",
+      7: "heptagon",
+      8: "octagon",
+      9: "nonagon",
+    };
+    let looked = 0;
+    for (const s of SWEEP) {
+      const p = gen("2-6-2", s, "기본");
+      const spec = p.figureSpec as {
+        shape: string;
+        sides: (string | null)[];
+      } | null;
+      expect(spec, `씨앗 ${s}: 그림이 없다`).toBeTruthy();
+      const sides = numsIn(p.content)[0]!;
+      const side = cmsIn(p.content)[0]!;
+      expect(spec!.shape, `씨앗 ${s}: ${p.content}`).toBe(DRAWABLE[sides]);
+      expect(spec!.sides.length, `씨앗 ${s}: 변 수와 라벨 칸 수가 다르다`).toBe(
+        sides,
+      );
+      expect(spec!.sides[0], `씨앗 ${s}: 한 변 라벨`).toBe(`${side} cm`);
+      // 나머지 칸은 비어 있어야 한다 — 다 적으면 그림이 답(합)을 사실상 보여 준다.
+      expect(
+        spec!.sides.slice(1).every((v) => v === null),
+        `씨앗 ${s}: 라벨이 하나보다 많다`,
+      ).toBe(true);
+      // 엔진에 `decagon` 이 없다 — 십각형을 뽑으면 렌더가 던진다.
+      expect(sides, `씨앗 ${s}: 그릴 수 없는 변 수`).toBeLessThanOrEqual(9);
+      looked += 1;
+    }
+    counted(looked, "2-6-2 기본 전량");
+  });
+});

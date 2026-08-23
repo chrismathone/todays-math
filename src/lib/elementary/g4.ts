@@ -8229,6 +8229,12 @@ function tier246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
       `${cm(side * 4)}일 때 한 변의 길이는 몇 cm인가?`,
     cm(side),
     `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side * 4}\\div4=${side}`)} 입니다.`,
+    // ⚠️ **그림을 안 붙인다 — 두 부류가 동시에 걸리는 자리다.**
+    //  ㉡ 한 변이 **곧 답**이라 치수를 적으면 그림이 답을 보여 준다.
+    //  ㉠ 그래서 값을 뺐더니 **씨앗마다 똑같은 그림**이 됐다 — 발문은 「한 변이 $5$」·
+    //     「$7$」로 갈리는데 그림이 안 갈리면 그 그림은 어느 값도 안 가리킨다.
+    // 붙이려면 답을 보여 주지 않으면서 씨앗마다 갈리는 값이 있어야 하는데 **없다.**
+    // 첫 판은 ㉡ 만 보고 값을 뺐고, `probe-elem-rules` R9-b 가 ㉠ 을 잡았다(2026-08-23).
   );
 }
 
@@ -9421,8 +9427,19 @@ function tier262Calc(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 /** **2-6-2 2단 — 이름을 숨기고 성질로 준다.** 표준은 이름을 그대로 준다. */
+/** 그릴 수 있는 정n각형. **엔진에 `decagon` 이 없다**(실측: pentagon~nonagon 만). */
+const REGULAR_SHAPES: Record<number, string> = {
+  5: "pentagon",
+  6: "hexagon",
+  7: "heptagon",
+  8: "octagon",
+  9: "nonagon",
+};
+
 function tier262Basic(unit: UnitSeed, rng: Rng): ElemProblem {
-  const sides = intBetween(rng, 5, 10);
+  // ⚠️ 그림을 붙이는 갈래라 **그릴 수 있는 변 수만** 뽑는다. 씨앗마다 그림이 있다 없다
+  // 하면 지면이 들쭉날쭉하고, 「못 그리면 빼기」는 그 사실을 조용히 덮는다.
+  const sides = intBetween(rng, 5, 9);
   const side = intBetween(rng, 3, 9);
   return make(
     unit,
@@ -9432,6 +9449,12 @@ function tier262Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     `변의 길이가 모두 같고 각의 크기도 모두 같은 다각형은 정다각형이고, 변이 ${n(sides)}개이므로 ` +
       `${polyName(sides, true)}입니다. ${expr(`${side}\\times${sides}=${side * sides}`)} 이므로 ` +
       `${cm(side * sides)}입니다.`,
+    // 변의 수도 한 변의 길이도 **발문이 이미 말한다** — 그림이 답을 보여 주지 않는다.
+    // (이름과 합이 답인데 둘 다 그림에서 «바로» 읽히지 않는다.)
+    fig("markedShape", {
+      shape: REGULAR_SHAPES[sides]!,
+      sides: [`${side} cm`, ...Array<null>(sides - 1).fill(null)],
+    }),
   );
 }
 
