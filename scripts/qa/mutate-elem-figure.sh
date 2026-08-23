@@ -139,6 +139,16 @@ run() { # $1=이름
   r=$(echo "$out" | grep -oE "Tests +[0-9]+ failed" | head -1)
   names=$(echo "$out" | grep -oE "^ *× .*" | sed 's/^ *× //; s/ [0-9]*ms$//' | sort -u \
             | head -6 | sed 's/^/      · /')
+  # 🔴 **빨간데 «실패한 시험 이름»을 못 대면 판정하지 않는다** (g5 가 데인 자리).
+  #    러너가 기동에서 죽으면(경합으로 워커를 못 띄움 · 없어진 리포터 이름 등) 종료 코드만
+  #    1 이고 실패 목록이 **비어 있다.** 그것을 RED 로 읽으면 **모든 변이가 빨강**이 되어
+  #    하네스가 도장이 된다 — 「가드가 문다」가 진실에 따라 안 변한다.
+  #    징후는 **판정 줄은 빨간데 근거 줄이 비는 것**뿐이라 눈으로는 잘 안 보인다.
+  if [ -n "$r" ] && [ -z "$names" ]; then
+    echo "[$1] 🔴 **빨간데 실패한 시험을 못 댄다 — 러너가 죽었을 수 있다.** 판정 안 함"       | tee -a "$SUMMARY"
+    echo "$out" | tail -4 | sed 's/^/       /'
+    restore; return
+  fi
   echo "[$1] ${r:-🟢 전부 초록 ← 가드가 아니다}" | tee -a "$SUMMARY"
   [ -n "$names" ] && echo "$names"
   restore
@@ -671,6 +681,43 @@ run "markedShape 모양 목록을 namedShapes 와 갈라 놓기"
 #    두 호출부가 따라오는가」뿐이다. 이 하네스의 ⑵단계(산출물이 바뀌었나)가 그것을
 #    「동작을 안 바꾸는 변이」로 **옳게** 걸러 낸다. 판정 수단이 다르므로 자리도 다르다:
 #    → `scripts/qa/mutate-chart-unknown.sh` (판정은 `probe-chart-unknown.py`)
+
+# ㊹ **정n각형을 ⑧ 고르기 목록에 넣는다** — 윤곽으로 안 갈리는데 「고르시오」가 된다.
+#    실측: 넣으면 바닥이 7.92px → 2.18px(heptagon↔octagon), 문턱 아래 7쌍.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = '        "irregQuad",' + chr(10) + "    }" + chr(10) + ")"
+assert old in s, "앵커 없음 331"
+new = ('        "irregQuad",' + chr(10)
+       + '        "pentagon", "hexagon", "heptagon", "octagon",  # 변이' + chr(10)
+       + "    }" + chr(10) + ")")
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "정n각형을 고르기 목록에 넣기 (윤곽으로 안 갈린다)"
+
+# ㊺ **대각선을 이웃까지 잇는다** — 개수가 n(n-3)/2 를 넘어 발문의 답과 갈린다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "            for j in range(i + 2, n):"
+assert old in s, "앵커 없음 332"
+io.open(p, "w", encoding="utf-8").write(
+    s.replace(old, "            for j in range(i + 1, n):  # 변이", 1)
+)
+MUT
+run "대각선이 이웃 꼭짓점까지 잇는다"
+
+# ㊻ **정n각형을 «정»답지 않게 그린다** — 반지름을 꼭짓점마다 흔들면 변 길이가 갈린다.
+python - "$BASE" 2>>"$PYERR" <<'MUT'
+import io, sys
+p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
+old = "            cx + r * math.sin(2 * math.pi * i / n),"
+assert old in s, "앵커 없음 333"
+new = "            cx + r * (1 + 0.06 * (i % 2)) * math.sin(2 * math.pi * i / n),  # 변이"
+io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+MUT
+run "정n각형을 찌그러뜨린다 (변 길이가 갈린다)"
 
 restore
 judged=$(grep -c "^\[" "$SUMMARY")

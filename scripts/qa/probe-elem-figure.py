@@ -19,6 +19,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(REPO, "vendor", "figure-engine"))
 sys.path.insert(0, os.path.join(REPO, "scripts", "figure"))
 
+import elementary  # noqa: E402
 from elementary import render_elementary  # noqa: E402
 
 SPECS: list[dict] = [
@@ -47,18 +48,16 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "areaPoly", "shape": "rhombus", "base": 12, "height": 4, "d2": 8},
     # 도형 **전 종류**를 넣는다. 한둘만 넣으면 나머지 도형의 좌표를 망가뜨려도
     # 산출물이 그대로라 변이를 판정할 수 없다 (`isoTri` 에서 실제로 겪었다).
+    #
+    # 🔴 **목록을 손으로 적지 않는다** — 엔진의 `_SHAPE_KINDS` 를 그대로 읽는다.
+    #    손으로 적으면 ⑧ 목록을 바꾸는 변이(예: 「정n각형을 고르기 목록에 넣기」)가
+    #    **산출물을 안 바꿔** 하네스의 ⑵단계에서 「동작을 안 바꾸는 변이」로 걸러진다.
+    #    2026-08-23 에 실제로 그렇게 판정 불가가 났다. 표본이 그 자리를 안 건드리면
+    #    가드를 꺼도 산출물이 그대로다 — 이 파일 머리말이 적어 둔 그 이야기다.
     {
         "version": "elem-1",
         "kind": "namedShapes",
-        "items": [
-            {"shape": k, "label": k}
-            for k in sorted(
-                {
-                    "square", "rect", "rightTri", "isoTri", "wideTri", "eqTri",
-                    "diamond", "tallDiamond", "trap", "para", "irregQuad",
-                }
-            )
-        ],
+        "items": [{"shape": k, "label": k} for k in sorted(elementary._SHAPE_KINDS)],
     },
     {
         "version": "elem-1",
@@ -103,6 +102,18 @@ SPECS: list[dict] = [
         "angles": ["115°", None, "115°", None],
         "equal": [[0, 2], [1, 3]],
     },
+    # 정n각형 + 대각선 (② 확장, 2026-08-23). **전 종류**를 넣는다 —
+    # 표본이 그 자리를 안 건드리면 「대각선을 이웃까지 잇는다」 변이의 산출물이 그대로다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k}
+        for k in ("pentagon", "hexagon", "heptagon", "octagon")
+    ],
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k, "diagonals": True}
+        for k in ("square", "rect", "pentagon", "hexagon", "octagon")
+    ],
+    {"version": "elem-1", "kind": "markedShape", "shape": "octagon",
+     "sides": ["4 cm", None, None, None, None, None, None, None]},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},

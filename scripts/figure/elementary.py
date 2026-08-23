@@ -58,7 +58,7 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
 }
 OPTIONAL: dict[str, frozenset[str]] = {
     "base10": frozenset({"equation"}),
-    "markedShape": frozenset({"sides", "angles", "equal", "right"}),
+    "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -1339,6 +1339,33 @@ def _trap_four(spec: Mapping[str, Any]) -> str:
     return _svg(pad * 2 + 3 * u, pad * 2 + u, "".join(parts))
 
 
+# 정n각형 — **② `markedShape` 전용**이다. ⑧ `namedShapes`(고르기)에는 **넣지 않는다.**
+#
+# 🔴 이유는 취향이 아니라 **실측**이다 (2026-08-23, `measure-shape-distance.py --all`,
+#    슬롯 44). 정n각형을 ⑧ 목록에 넣으면 **7쌍이 문턱(6px) 아래**로 떨어진다:
+#
+#      heptagon ↔ octagon   2.18px      ← 바닥
+#      heptagon ↔ hexagon   2.89px
+#      hexagon  ↔ octagon   2.95px
+#      heptagon ↔ pentagon  4.12px
+#      hexagon  ↔ pentagon  4.20px
+#      octagon  ↔ pentagon  4.20px
+#      diamond  ↔ hexagon   5.72px      ← 기존 도형까지 같이 좁아진다
+#
+#    변 수만 다르고 윤곽이 **원에 수렴**하니 「이 중에서 고르시오」가 성립하지 않는다.
+#    ⑧ 만 두면 바닥은 `para↔rect` 7.92px(여유 +1.92px)로 지금 그대로다.
+#    반면 성질 문항(「정팔각형의 한 변이 4 cm 이면 둘레는?」)은 **도형이 하나뿐**이라
+#    잴 쌍이 없다. 초4 2-6 발문 전수(씨앗 200)가 전부 그 부류였다.
+#
+# ⚠️ 「그럼 목록이 두 벌 아닌가」 — 아니다. `_MARKED_KINDS` 가 `_SHAPE_KINDS` 를
+#    **포함**하므로 ⑧ 에 도형을 더하면 ② 는 자동으로 따라온다. 한 방향 의존이다.
+_NGON_SIDES: dict[str, int] = {
+    "pentagon": 5,
+    "hexagon": 6,
+    "heptagon": 7,
+    "octagon": 8,
+}
+_NGON_KINDS = frozenset(_NGON_SIDES)
 _SHAPE_KINDS = frozenset(
     {
         "square",
@@ -1354,6 +1381,7 @@ _SHAPE_KINDS = frozenset(
         "irregQuad",
     }
 )
+_MARKED_KINDS = _SHAPE_KINDS | _NGON_KINDS
 # 도형 항목의 허용 키. 오타(`mark`)가 조용히 무시되면 「옵션을 껐는데 왜 그대로냐」가 된다.
 _SHAPE_ITEM_KEYS = frozenset({"shape", "label", "marks"})
 # 이등변삼각형 밑변 (슬롯 한 변 대비). 정삼각형과 **윤곽으로** 갈려야 한다 — 09 §4-19.
@@ -1401,6 +1429,22 @@ def _right_mark(
     )
 
 
+def _ngon_points(n: int, ox: float, oy: float, s: float) -> list[tuple[float, float]]:
+    """정n각형 — 슬롯에 내접. 꼭짓점 하나를 **맨 위**에 둔다(교과서 배치).
+
+    변 길이·내각이 모두 같은 것은 「정n각형」의 정의라 **좌표에서 자동으로 참**이다 —
+    시험이 그것을 재서 확인한다(지어낸 좌표를 넣으면 빨개진다).
+    """
+    cx, cy, r = ox + s / 2, oy + s / 2, s / 2
+    return [
+        (
+            cx + r * math.sin(2 * math.pi * i / n),
+            cy - r * math.cos(2 * math.pi * i / n),
+        )
+        for i in range(n)
+    ]
+
+
 def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float, float]]:
     """도형의 **꼭짓점**을 그리는 순서대로.
 
@@ -1411,6 +1455,8 @@ def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float
     ⚠️ `square`·`rect` 는 지면에 여전히 `<rect>` 로 나간다(아래 `_draw_named_shape`).
     여기서 점을 내는 것은 **재기 위해서**이지 그리는 방식을 바꾸려는 게 아니다.
     """
+    if kind in _NGON_SIDES:
+        return _ngon_points(_NGON_SIDES[kind], ox, oy, s)
     if kind == "square":
         return [(ox, oy), (ox + s, oy), (ox + s, oy + s), (ox, oy + s)]
     if kind == "rect":
@@ -1552,7 +1598,7 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     #    필드를 늘릴 때 **한쪽만 늘어나고** 아무도 모른다 — 변이 시험이 그것을 잡았다
     #    (「모르는 키 검사 끄기」가 초록이었다 = 그 검사는 아무것도 안 지켰다).
     kind = str(spec.get("shape", ""))
-    if kind not in _SHAPE_KINDS:
+    if kind not in _MARKED_KINDS:
         raise ValueError(f"모르는 도형입니다: {kind}")
 
     pad, size = 30.0, 104.0
@@ -1571,6 +1617,25 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
 
     sides = _seq("sides", n)
     angles = _seq("angles", n)
+
+    # 🔴 **임시 차단 (2026-08-23) — 비율 수리 전.**
+    #
+    # 그린 도형이 **라벨과 무관하게 고정**이다. 실측:
+    #     sides ["7 cm","7 cm","4 cm"] → 그린 변 [108.3, 108.3, 60.3]
+    #     sides ["5 cm","5 cm","9 cm"] → 그린 변 [ 88.5,  88.5, 60.3]
+    # 「5,5,9」는 밑변이 제일 긴데 **제일 짧게** 그린다. 각도도 같다(「꼭지각 63°」→ 32°).
+    # **값은 맞고 그림이 그 값을 배반한다** — 09 §4-21 과 같은 부류이고 스스로 신고하지 않는다.
+    # elem-g4 가 배선하며 렌더해 보고 찾았다.
+    #
+    # 지금은 **그리는 것보다 못 그리는 게 낫다** — 그래야 신고한다. 수리(SSS/AA 로
+    # 꼭짓점을 다시 잡기)가 끝나면 이 던짐을 비율 계산으로 갈아 끼운다.
+    # ⚠️ 「비율 수리 전」이라는 낱말을 **시험이 붙들고 있다** — 수리하면 그 시험이 빨개져
+    #    이 블록을 같이 지우게 된다(임시 조치가 영구가 되는 것을 막는 자리).
+    if any(v is not None for v in sides) or any(v is not None for v in angles):
+        raise ValueError(
+            "markedShape 는 아직 sides·angles 의 값을 그림에 반영하지 못합니다 "
+            "(비율 수리 전) — 값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
+        )
 
     parts: list[str] = []
     if kind in ("square", "rect"):
@@ -1597,6 +1662,20 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
                 for k in range(count):
                     # 여러 개면 중점 둘레로 살짝 벌린다.
                     parts.append(_tick_span(a, b, 0.5 + (k - (count - 1) / 2) * 0.055))
+
+    # 대각선 — **이웃하지 않은** 꼭짓점만 잇는다. 그은 개수가 발문의 답과 같아야 하므로
+    # 「n(n-3)/2」가 좌표에서 **자동으로** 나오게 둔다(손으로 세지 않는다).
+    # 값을 묻는 문항(「팔각형에 그을 수 있는 대각선은 몇 개?」)이 이 그림을 쓴다.
+    if spec.get("diagonals"):
+        if spec["diagonals"] is not True:
+            raise ValueError("diagonals 는 참·거짓이어야 합니다")
+        if n < 4:
+            raise ValueError("삼각형에는 대각선이 없습니다")
+        for i in range(n):
+            for j in range(i + 2, n):
+                if i == 0 and j == n - 1:
+                    continue  # 이웃(첫 점과 끝 점)
+                parts.append(_seg(pts[i], pts[j], sw=1.0, dash="4 3"))
 
     # 직각 기호 — **작은 정사각형**이다. 엔진 A 는 이 자리를 호로 그린다(09 §2.1 주).
     right = spec.get("right")
@@ -1632,6 +1711,22 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
         parts.append(_text(px + dx / hyp * 22, py + dy / hyp * 22 + 4, str(label), size=12))
 
     return _svg(pad * 2 + size, pad * 2 + size, "".join(parts))
+
+
+def _seg(
+    a: tuple[float, float],
+    b: tuple[float, float],
+    *,
+    sw: float = 1.2,
+    dash: str | None = None,
+) -> str:
+    """두 점을 잇는 선 하나. `elementary.py` 에는 범용 선 함수가 없어 kind 마다
+    `<line>` 을 손으로 조립하고 있었다 — 대각선처럼 **여러 개**를 긋는 자리에는 둔다."""
+    d = f' stroke-dasharray="{_esc(dash)}"' if dash else ""
+    return (
+        f'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" y2="{_n(b[1])}" '
+        f'stroke="{INK}" stroke-width="{_n(sw)}"{d}/>'
+    )
 
 
 def _tick_span(

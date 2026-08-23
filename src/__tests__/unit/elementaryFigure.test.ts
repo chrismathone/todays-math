@@ -1383,11 +1383,11 @@ describe.skipIf(!hasEngine)(
           views: ["iso"],
         },
         // ② markedShape (2026-08-23) — 변 길이를 적는 kind 라 반드시 여기 있어야 한다.
+        // ⓪ 차단 중 — 값을 빼 둔다. 수리하면 `sides` 를 되살려 이 kind 도 훑는다.
         {
           version: "elem-1",
           kind: "markedShape",
           shape: "isoTri",
-          sides: ["7 cm", "7 cm", "5 cm"],
           equal: [[0, 1]],
         },
       ]) {
@@ -1566,19 +1566,15 @@ describe.skipIf(!hasEngine)(
      * 두 무리 사이가 훤히 비어 있어 6px 문턱은 그 틈에 놓인다.
      */
     it("서로 다른 도형은 표시 없이도 윤곽으로 갈린다", async () => {
-      const kinds = [
-        "square",
-        "rect",
-        "rightTri",
-        "isoTri",
-        "wideTri",
-        "eqTri",
-        "diamond",
-        "tallDiamond",
-        "trap",
-        "para",
-        "irregQuad",
-      ];
+      // 🔴 **훑을 목록을 손으로 적지 않는다.** 손 목록이면 ⑧ 에 도형을 더해도 이 검사가
+      //    자동으로 안 늘어난다 — 09 §4-22 「손 목록은 샌다」. 엔진의 `_SHAPE_KINDS`
+      //    (⑧ 이 실제로 받는 목록)를 소스에서 읽는다.
+      //
+      //    ⚠️ `_MARKED_KINDS`(② 목록)가 아니라 `_SHAPE_KINDS` 다. 정n각형은 ② 전용이고
+      //       **윤곽으로 안 갈린다**(heptagon↔octagon 2.18px, 실측) — ⑧ 에 넣으면 안 된다.
+      //       그 사실은 아래 「정n각형은 고르기 목록에 없다」가 따로 잠근다.
+      const kinds = shapeKindsFromEngine();
+      expect(kinds.length, "⑧ 도형 종류").toBeGreaterThanOrEqual(11);
       const r = await renderFigureSpec({
         version: "elem-1",
         kind: "namedShapes",
@@ -1603,6 +1599,22 @@ describe.skipIf(!hasEngine)(
       expect(floor, "가장 닮은 짝을 재지 못했다").toBeGreaterThan(6);
       expect(floor, "재는 자가 실제 px 를 읽고 있지 않다").toBeLessThan(10);
       expect(close).toEqual([]);
+    });
+
+    /**
+     * ⑧(고르기)에 정n각형을 넣으면 **문제가 성립하지 않는다.**
+     * 실측(`measure-shape-distance.py --all`, 슬롯 44): 넣으면 7쌍이 문턱 아래로 떨어지고
+     * 바닥이 7.92px → **2.18px**(`heptagon↔octagon`)이 된다. 기존 짝까지 좁아진다
+     * (`diamond↔hexagon` 5.72px).
+     *
+     * 위 검사는 `_SHAPE_KINDS` 를 읽으므로 **누가 정n각형을 거기 넣으면 저절로 빨개진다.**
+     * 이 검사는 그 이유를 **말로 남기는** 자리다 — 빨강만 보면 「문턱을 내리면 되잖아」가 된다.
+     */
+    it("정n각형은 ⑧ 고르기 목록에 **없다** — 윤곽으로 안 갈린다", () => {
+      const kinds = shapeKindsFromEngine();
+      for (const ngon of ["pentagon", "hexagon", "heptagon", "octagon"]) {
+        expect(kinds, `${ngon} 은 ② 전용이다`).not.toContain(ngon);
+      }
     });
 
     /**
@@ -2996,15 +3008,17 @@ const MARKED_ISO = {
   version: "elem-1",
   kind: "markedShape",
   shape: "isoTri",
+  // ⓪ 차단(2026-08-23) 중이라 값을 뺐다 — `equal` 표시만으로도 「tick 이 거짓말하지
+  // 않는가」는 그대로 잰다. 값을 쓰는 시험 넷은 아래에서 대기로 돌렸다.
   // ⚠️ `isoTri` 의 점은 [밑변왼, 꼭대기, 밑변오] 라 **같은 두 변은 0·1**(다리)이고
   // 변 2 가 밑변이다. 처음에 [0,2] 로 썼다가 빨개졌다 — 시험이 도형 구조를 잡아 줬다.
-  sides: ["7 cm", "7 cm", null],
-  angles: [null, "63°", null],
   equal: [[0, 1]],
 };
 
 describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시", () => {
-  it("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
+  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
+  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
+  it.skip("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3027,7 +3041,9 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(Math.abs(len(0) - len(2))).toBeGreaterThan(5);
   });
 
-  it("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
+  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
+  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
+  it.skip("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
     const r = await renderFigureSpec({
       ...MARKED_ISO,
       angles: ["63°", "54°", "63°"],
@@ -3059,7 +3075,9 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(r.svg).toContain("<polyline");
   });
 
-  it("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
+  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
+  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
+  it.skip("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3068,7 +3086,9 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect([...r.svg.matchAll(/63°/g)].length).toBe(1);
   });
 
-  it("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
+  // ⓪ 차단(비율 수리 전) — 값을 쓰는 시험이라 지금은 못 돈다.
+  //    수리하면 「값을 적으면 던진다」가 빨개지고, 그때 이 넷을 **되살린다.**
+  it.skip("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
     const r = await renderFigureSpec(MARKED_ISO);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
@@ -3077,6 +3097,117 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     //    (문서 §10). 그래서 **같은 것을 다른 특징으로** 한 번 더 잰다.
     const dashes = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
     expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
+  });
+
+  it.each([
+    ["square", 4, 2],
+    ["pentagon", 5, 5],
+    ["hexagon", 6, 9],
+    ["octagon", 8, 20],
+  ])(
+    "**대각선 개수가 n(n-3)/2 다** — %s (꼭짓점 %i개 → %i개)",
+    async (shape, n, want) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+        diagonals: true,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 그은 개수가 **발문의 답**이다 — 「팔각형에 그을 수 있는 대각선은 몇 개?」
+      // 좌표에서 자동으로 나오게 두고(손으로 세지 않는다) 여기서 그 값을 확인한다.
+      const drawn = (r.svg.match(/stroke-dasharray="4 3"/g) ?? []).length;
+      expect(drawn, `${shape} 대각선`).toBe(want);
+      expect(want).toBe((n * (n - 3)) / 2); // 기대값 자체가 공식과 맞는지 (자가 검사)
+      // 꼭짓점 수도 맞아야 한다 — 정n각형을 엉뚱한 n 으로 그리면 개수만 우연히 맞을 수 있다.
+      expect(shapeCorners(r.svg)[0]!, `${shape} 꼭짓점`).toHaveLength(n);
+    },
+  );
+
+  it("**정n각형은 변 길이·내각이 모두 같다** — 정의가 좌표에서 참이어야 한다", async () => {
+    for (const [shape, n] of [
+      ["pentagon", 5],
+      ["hexagon", 6],
+      ["octagon", 8],
+    ] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const c = shapeCorners(r.svg)[0]!;
+      expect(c, `${shape} 꼭짓점`).toHaveLength(n);
+      const sides = c.map((_p, i) =>
+        Math.hypot(
+          c[i]![0] - c[(i + 1) % n]![0],
+          c[i]![1] - c[(i + 1) % n]![1],
+        ),
+      );
+      const spread = Math.max(...sides) - Math.min(...sides);
+      // 🔴 문턱 0.5px 은 **양쪽에서** 정했다 (2026-08-23 실측, 슬롯 104):
+      //      정상            변 편차 0.003px   (부동소수 오차뿐)
+      //      반지름 6% 흔듦   변 편차 2.36~2.96px
+      //    두 무리 사이가 훤히 비어 있어 0.5 는 그 틈이다 — **지금 값에서 유도한 것이
+      //    아니다.** 정상값(0.003)을 문턱으로 쓰면 제품이 정답을 정하는 그 함정이 된다.
+      //    변이 「정n각형을 찌그러뜨린다」가 이 단언 하나로 빨개지는 것을 확인했다.
+      expect(spread, `${shape} 변 길이 편차`).toBeLessThan(0.5);
+      // ⚠️ **중심각 편차 검사를 넣었다가 지웠다** — `_ngon_points` 는 늘 **원에 내접**하게
+      //    그리므로 변 = 2r·sin(중심각/2) 다. 반지름이 같으면 「변 길이 편차」와
+      //    「중심각 편차」는 **대수적으로 같은 말**이라 아무것도 더 안 갈라낸다.
+      //    실측으로 확인했다: 각을 흔드는 변이에서도 **변 길이 편차가 먼저** 걸린다
+      //    (10.09px). 죽은 검사를 남기면 「두 축이 지킨다」는 착시를 준다
+      //    (CLAUDE.md 2026-08-18 「대수적으로 같은 말이라 지웠다」와 같은 자리).
+      //    ⑴ `_ngon_points` 가 내접을 그만두거나 ⑵ 꼭짓점을 개별로 받게 되면
+      //    그때는 두 축이 갈라지므로 다시 넣어야 한다.
+    }
+  });
+
+  /* ── ⓪ 임시 차단 (2026-08-23) ────────────────────────────────────────────
+   * 그린 도형이 **라벨과 무관하게 고정**이라 「5,5,9」의 밑변을 제일 짧게 그린다.
+   * **값은 맞고 그림이 그 값을 배반한다**(09 §4-21 부류, 스스로 신고하지 않는다).
+   * 수리 전까지는 **그리는 것보다 못 그리는 게 낫다** — 그래야 신고한다.
+   *
+   * 🔴 아래 시험이 **「비율 수리 전」이라는 낱말을 붙들고 있다.** 수리하면서 그 문구를
+   *    지우면 이 시험이 빨개져 **같이 지우게** 된다 — 임시 조치가 영구가 되는 것을
+   *    막는 가장 싼 방법이다(리드 제안). 그때 이 시험을 **비율 검사로 갈아 끼운다.**
+   */
+  it.each([
+    ["sides", { sides: ["5 cm", "5 cm", "9 cm"] }],
+    ["angles", { angles: ["63°", null, null] }],
+  ])(
+    "**값(%s)을 적으면 던진다** — 그림이 그 값을 안 따른다 (임시)",
+    async (_w, extra) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "isoTri",
+        ...extra,
+      });
+      expect(r.ok).toBe(false);
+      if (r.ok) return;
+      // 임시라는 표식 — 수리하며 이 낱말을 지우면 여기가 빨개진다.
+      expect(r.error, "임시 차단 표식").toContain("비율 수리 전");
+    },
+  );
+
+  it("**음성 대조군** — 값을 안 적으면 그려진다 (전부 던지기가 아니다)", async () => {
+    for (const extra of [
+      { equal: [[0, 1]] },
+      { right: [0] },
+      { diagonals: true, shape: "hexagon" },
+      {},
+    ]) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "isoTri",
+        ...extra,
+      });
+      expect(r.ok, JSON.stringify(extra)).toBe(true);
+    }
   });
 
   it("**음성 대조군** — 표시를 안 주면 tick·직각이 나오지 않는다", async () => {
@@ -3230,3 +3361,25 @@ describe.skipIf(!hasEngine)("[초등 그림] 가려진 값 선언은 한 곳이�
     expect(n, "판정기 눈금 건수").toBeGreaterThanOrEqual(8);
   }, 60_000);
 });
+
+/**
+ * ⑧ `namedShapes` 가 실제로 받는 도형 목록을 **엔진 소스에서** 읽는다.
+ * 시험이 자기 손 목록을 두면 도형을 더해도 검사가 안 늘어난다(09 §4-22).
+ */
+function shapeKindsFromEngine(): string[] {
+  const src = readFileSync(
+    path.join(process.cwd(), "scripts", "figure", "elementary.py"),
+    "utf8",
+  );
+  // ⚠️ **한 겹만 본다** — 소스의 **첫** `frozenset({...})` 만 읽는다. 뒤에 재할당
+  //    (`_SHAPE_KINDS = _SHAPE_KINDS | ...`)이 붙으면 그건 **안 보인다.**
+  //    2026-08-23 변이에서 실제로 그렇게 초록이 났다. 「목록을 손으로 안 적는다」는
+  //    지켰지만 **유도가 한 겹**이라 생긴 구멍이다. 엔진에 직접 물으려면 python 을
+  //    띄워야 하는데, 그 경로는 이 파일에서 다른 결함을 겪어(§10) 지금은 소스를 읽는다.
+  //    → 도형을 더할 때는 **`frozenset` 안에** 적어라. 밖에서 합치면 이 검사가 못 본다.
+  const m = /_SHAPE_KINDS = frozenset\(\s*\{([^}]*)\}/.exec(src);
+  if (!m) throw new Error("_SHAPE_KINDS 를 못 읽었다");
+  const kinds = [...m[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  if (kinds.length < 5) throw new Error(`도형이 너무 적다: ${kinds.length}`);
+  return kinds;
+}
