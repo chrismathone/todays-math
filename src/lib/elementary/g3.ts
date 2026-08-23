@@ -9,14 +9,6 @@ import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
 
 /**
- * 소단원 번호(`1-2-4`). 이름만으로는 못 가르는 자리가 있다 —
- * `1-2-3`·`1-2-4` 는 units.ts 에 **이름이 똑같이** `직각삼각형 알아보기` 로 적혀 있다.
- */
-function secNo(unit: UnitSeed): string {
-  return unit.section.split(" ")[0] ?? "";
-}
-
-/**
  * 한글 낱말 뒤 조사. 받침이 있으면 앞쪽(`은`·`이`·`을`).
  *
  * ⚠️ **수 뒤에는 쓰지 않는다.** 수는 읽는 소리로 갈리므로($4$→사→「가」, $3$→삼→「이」)
@@ -145,7 +137,9 @@ type GridShape = {
   side?: string;
 };
 
-const SHAPE_LABELS = ["가", "나", "다"] as const;
+// ⚠️ 「라」는 1-2-2·1-2-3 심화가 **덧붙이는 사각형**의 기호이기도 하다. 그 두 함수는
+// 반드시 count ≤ 3 으로 부를 것 — 4개를 깔고 라를 또 붙이면 기호가 겹친다.
+const SHAPE_LABELS = ["가", "나", "다", "라"] as const;
 
 function onGrid(p: Pt, cols: number, rows: number): Pt {
   if (p[0] < 0 || p[0] > cols || p[1] < 0 || p[1] > rows) {
@@ -156,22 +150,112 @@ function onGrid(p: Pt, cols: number, rows: number): Pt {
   return p;
 }
 
+/**
+ * 점격자 렌더러가 받는 한도 — `scripts/figure/elementary.py` 의 `_point_grid` 가
+ * `cols·rows 는 1 이상 10 이하여야 합니다` 로 **던진다.**
+ *
+ * ⚠️ 이 수를 여기 적어 두는 것은 **두 벌**이다. 그래도 적는다 — 파이썬 쪽을 여기서
+ *    읽을 수 없기 때문이다. 대신 어긋나면 **생성이 던지게** 해서(아래) 조용히 지나가지
+ *    않게 했다. 저쪽이 한도를 바꾸면 `probe-elem-throw` 가 아니라 **그림 판정기**가 운다.
+ */
+const GRID_MAX = 10;
+
+/**
+ * 띠와 띠 사이 빈 줄. **두 줄**이다 — 라벨이 도형 *아래*에 붙으므로(`side: "down"`)
+ * 한 줄만 두면 윗 띠의 기호가 아랫 띠 도형과 겹친다.
+ */
+const GRID_BAND_GAP = 2;
+
+function shapeSpan(s: GridShape): { minC: number; maxC: number } {
+  const cs = s.pts.map((p) => p[0]);
+  return { minC: Math.min(...cs), maxC: Math.max(...cs) };
+}
+
+function shiftShape(s: GridShape, dc: number, dr: number): GridShape {
+  const mv = (p: Pt): Pt => [p[0] + dc, p[1] + dr];
+  return {
+    ...s,
+    pts: s.pts.map(mv),
+    lines: s.lines.map(([a, b]) => [mv(a), mv(b)] as [Pt, Pt]),
+    anchor: s.anchor ? mv(s.anchor) : undefined,
+  };
+}
+
+/**
+ * 폭이 한도를 넘으면 **아래로 접는다.**
+ *
+ * ## 왜 여기인가 — 부르는 자리가 **열여덟**이다
+ *
+ * 도형을 나란히 놓는 함수(`triangleRow`·`rectRow` 등)가 저마다 `c0 = i * gap` 으로
+ * 폭을 키운다. 셋을 놓으면 `cols` 가 13~14 가 되어 **렌더러가 던진다** — 그런데
+ * 생성기는 멀쩡한 스펙을 돌려주므로 **문항은 그림 없이 지면에 나간다.**
+ * 실측(2026-08-24): 씨앗 60 에서 **245건**(1-2-2 · 1-2-3 · 1-2-4).
+ *
+ * 부르는 자리마다 고치면 열여덟 벌이 되고, 한 벌만 빠뜨려도 아무도 모른다.
+ * 그래서 **폭을 아는 유일한 곳**인 여기서 접는다.
+ *
+ * ## 왜 «셋 중 하나를 뺀다»가 아닌가
+ *
+ * 도형을 줄이면 「가, 나, 다 중에서 고르시오」가 둘 중 고르기가 되어 **문항이 쉬워진다.**
+ * 지면 폭 때문에 난이도를 바꾸는 것은 거꾸로다 — 접으면 셋 다 남는다.
+ */
+function foldGrid(
+  cols: number,
+  rows: number,
+  shapes: GridShape[],
+): { cols: number; rows: number; shapes: GridShape[] } {
+  if (cols <= GRID_MAX) return { cols, rows, shapes };
+  // 왼쪽부터 차례로 — 발문의 「가, 나, 다」 차례와 같아야 한다.
+  const ordered = [...shapes].sort(
+    (a, b) => shapeSpan(a).minC - shapeSpan(b).minC,
+  );
+  const out: GridShape[] = [];
+  let at = 0;
+  let band = 0;
+  let widest = 0;
+  for (const s of ordered) {
+    const { minC, maxC } = shapeSpan(s);
+    const w = maxC - minC;
+    if (at > 0 && at + w > GRID_MAX) {
+      band += 1;
+      at = 0;
+    }
+    out.push(shiftShape(s, at - minC, band * (rows + GRID_BAND_GAP)));
+    widest = Math.max(widest, at + w);
+    at += w + 1;
+  }
+  return {
+    cols: widest,
+    rows: band * (rows + GRID_BAND_GAP) + rows,
+    shapes: out,
+  };
+}
+
 function pointGridSpec(
   cols: number,
   rows: number,
   shapes: GridShape[],
 ): Record<string, unknown> {
+  const g = foldGrid(cols, rows, shapes);
+  // ⚠️ **접고 나서** 던진다. 접어도 안 들어가는 것은 지면에 못 그리는 것이고,
+  //    그때는 조용한 «그림 없는 문항»보다 **터지는 쪽**이 낫다 —
+  //    `probe-elem-throw` 가 전 씨앗을 쓸므로 그 자리에서 잡힌다.
+  if (g.cols < 1 || g.cols > GRID_MAX || g.rows < 1 || g.rows > GRID_MAX) {
+    throw new Error(
+      `점격자가 렌더러 한도를 넘습니다: ${g.cols}x${g.rows} (한도 ${GRID_MAX}) — 도형 ${shapes.length}개`,
+    );
+  }
   const dots: Record<string, unknown>[] = [];
   const lines: [Pt, Pt][] = [];
-  for (const shape of shapes) {
+  for (const shape of g.shapes) {
     for (const [a, b] of shape.lines) {
-      lines.push([onGrid(a, cols, rows), onGrid(b, cols, rows)]);
+      lines.push([onGrid(a, g.cols, g.rows), onGrid(b, g.cols, g.rows)]);
     }
     const anchor =
       shape.anchor ??
       [...shape.pts].sort((p, q) => q[1] - p[1] || p[0] - q[0])[0]!;
     for (const p of shape.pts) {
-      onGrid(p, cols, rows);
+      onGrid(p, g.cols, g.rows);
       const isAnchor = p[0] === anchor[0] && p[1] === anchor[1];
       dots.push({
         c: p[0],
@@ -181,7 +265,7 @@ function pointGridSpec(
       });
     }
   }
-  return fig("pointGrid", { cols, rows, dots, lines });
+  return fig("pointGrid", { cols: g.cols, rows: g.rows, dots, lines });
 }
 
 function closedShape(pts: Pt[], label: string): GridShape {
@@ -483,14 +567,146 @@ function squarePick(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * 3×3 점 안의 사각형이 **직사각형인가** — 네 꼭짓점에서 정수 내적이 모두 $0$ 인가.
+ * 이름표가 아니라 좌표로 가른다.
+ */
+function quadIsRect(pts: Pt[]): boolean {
+  for (let i = 0; i < 4; i += 1) {
+    const v = pts[i]!;
+    const p = pts[(i + 3) % 4]!;
+    const q = pts[(i + 1) % 4]!;
+    if (vecDot(v, p, q) !== 0) return false;
+  }
+  return true;
+}
+
+/** 볼록 배치로 정렬 — 그대로 이으면 변이 서로 넘나드는 사각형이 그려진다. */
+function orderConvex(pts: Pt[]): Pt[] {
+  const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length;
+  const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+  return [...pts].sort(
+    (a, b) =>
+      Math.atan2(a[1] - cy, a[0] - cx) - Math.atan2(b[1] - cy, b[0] - cx),
+  );
+}
+
+/**
+ * 직사각형이 **아닌** 사각형 곁들이. 「직사각형을 찾으시오」의 곁들이라 넷 중 하나라도
+ * 직각이 아니어야 한다 — 목록을 손으로 적되 **불러올 때 계산으로 검산**한다.
+ */
+const NON_RECT_QUADS: Pt[][] = [
+  [
+    [0, 3],
+    [1, 1],
+    [3, 1],
+    [2, 3],
+  ],
+  [
+    [0, 3],
+    [1, 1],
+    [2, 1],
+    [3, 3],
+  ],
+  [
+    [0, 3],
+    [1, 0],
+    [3, 1],
+    [2, 3],
+  ],
+  [
+    [0, 2],
+    [1, 0],
+    [3, 2],
+    [2, 3],
+  ],
+  [
+    [0, 3],
+    [0, 1],
+    [2, 0],
+    [3, 2],
+  ],
+  // ⚠️ `[[1,3],[0,1],[2,0],[3,2]]` 를 여기 적었다가 아래 검산에 걸렸다 —
+  //    **45° 기운 정사각형**이라 네 각이 모두 직각이었다. 손 목록은 반드시 검산할 것.
+  [
+    [0, 3],
+    [1, 1],
+    [3, 2],
+    [2, 3],
+  ],
+].map((q) => orderConvex(q as Pt[]));
+
+for (const q of NON_RECT_QUADS) {
+  if (quadIsRect(q))
+    throw new Error(`곁들이인데 직사각형입니다: ${JSON.stringify(q)}`);
+}
+
+/** 직사각형 하나 + 아닌 것들을 나란히. 정답은 **좌표로** 정해진다. */
+function rectRow(rng: Rng) {
+  const count = intBetween(rng, 2, 3);
+  const gap = 5;
+  const rows = 3;
+  const answerAt = intBetween(rng, 0, count - 1);
+  // 가로와 세로가 같으면 정사각형이라 「직사각형」의 답으로 헷갈린다 — 다르게 잡는다.
+  const w = intBetween(rng, 2, 4);
+  const h = pick(
+    rng,
+    [1, 2, 3].filter((v) => v !== w),
+  );
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const c0 = i * gap;
+    const pts =
+      i === answerAt
+        ? ([
+            [c0, rows - h],
+            [c0 + w, rows - h],
+            [c0 + w, rows],
+            [c0, rows],
+          ] as Pt[])
+        : pick(rng, NON_RECT_QUADS).map((p) => [p[0] + c0, p[1]] as Pt);
+    shapes.push(closedShape(pts, SHAPE_LABELS[i]!));
+  }
+  return {
+    cols: (count - 1) * gap + 4,
+    rows,
+    shapes,
+    labels: SHAPE_LABELS.slice(0, count),
+    answer: SHAPE_LABELS[answerAt]!,
+    w,
+    h,
+  };
+}
+
+/** 표준 1-2-4 — 직사각형 찾기. (이 소단원은 오래 「직각삼각형」으로 잘못 적혀 있었다.) */
+function rectPick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    `${row.labels.join(", ")} 중에서 직사각형의 기호를 쓰시오.`,
+    `${row.labels.join(", ")} 중에서 네 각이 모두 직각인 사각형의 기호를 쓰시오.`,
+    `직사각형을 찾아 기호를 쓰시오. (${row.labels.join(", ")})`,
+  ]);
+  return make(
+    unit,
+    ask,
+    row.answer,
+    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
 function plane(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("선분")) return lineNames(unit, rng);
+  // ⚠️ 「정사각형」을 「직사각형」보다 **먼저** 본다 — 둘은 다른 낱말이라 겹치지 않지만,
+  // 순서를 바꾸면 나중에 「직사각형 중에서…」 같은 이름이 생겼을 때 조용히 샌다.
   if (s.includes("정사각형")) return squarePick(unit, rng);
+  if (s.includes("직사각형")) return rectPick(unit, rng);
   if (s.includes("직각삼각형")) {
-    return secNo(unit) === "1-2-4"
-      ? rightTriCount(unit, rng)
-      : rightTriPick(unit, rng);
+    // 1-2-3 하나뿐이다(1-2-4 는 직사각형으로 바로잡혔다). 찾기와 세기를 번갈아 낸다.
+    return intBetween(rng, 0, 1) === 0
+      ? rightTriPick(unit, rng)
+      : rightTriCount(unit, rng);
   }
   return rightAnglePick(unit, rng);
 }
@@ -514,7 +730,9 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("관계")) {
     return make(
       unit,
-      `$${a}\\div${b}=\\square$ 를 곱셈식으로 나타내면 $${b}\\times\\square=${a}$ 입니다. $\\square$ 에 알맞은 수를 쓰시오.`,
+      // «$…$ 를» 처럼 수식 바로 뒤에 조사를 붙이지 않는다(갈래 쪽 조사 규칙과 같은 표기) —
+      // 식을 아랫줄로 내려 「다음 나눗셈식을」로 받는다.
+      `다음 나눗셈식을 곱셈식으로 나타내면 $${b}\\times\\square=${a}$ 입니다. $\\square$ 에 알맞은 수를 쓰시오.\n\n$${a}\\div${b}=\\square$`,
       n(q),
       `곱셈식과 나눗셈식은 같은 수를 씁니다. $${b}\\times${q}=${a}$ 이므로 $\\square$ 에 알맞은 수는 ${n(q)} 입니다.`,
     );
@@ -522,7 +740,9 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("곱셈식")) {
     return make(
       unit,
-      `곱셈식 $\\square\\times${b}=${a}$ 를 이용하여 $${a}\\div${b}$ 의 몫을 구하시오.`,
+      // «$…=18$ 를» → 십팔이라 «을» 이어야 한다. 수 뒤에서는 조사를 **고르지 말고
+      // 안 붙인다**(읽는 소리로 갈려 글자만 봐서는 못 정한다) — 「에서」로 받는다.
+      `곱셈식 $\\square\\times${b}=${a}$ 에서 $${a}\\div${b}$ 의 몫을 구하시오.`,
       n(q),
       `$${q}\\times${b}=${a}$ 이므로 $${a}\\div${b}$ 의 몫은 ${n(q)} 입니다.`,
     );
@@ -535,11 +755,70 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * (몇십몇)×(몇) 의 올림 종류별 전수 열거 풀 — 1-4-2~5 는 서로 **배타**다(«십의 자리와
+ * 일의 자리» 소단원이 따로 있으므로 「십의 자리에서」는 «십의 자리에서만»이다).
+ *
+ * ⚠️ 예전에는 십·일의 자리를 손 범위(1..3·5..9)로 갈랐는데 b≤5 와 곱하면 경계가 샌다 —
+ * 실측(수리 전, 씨앗 200): 1-4-2 「올림이 **없는**」의 75건이 올림($32\times5=160$),
+ * 1-4-3 의 52건·1-4-4 의 82건이 «둘 다»였다. 판정기(section-conditions)에 1-4 조건이
+ * 없어 구조적으로 0이었다. 가드로 거르지 않고 **뽑는 풀 자체**를 조건으로 만든다.
+ * b 는 예전 그대로 2..5 다(원장님 「숫자 규모를 키우는 축은 아님」).
+ */
+function mulPools(): Record<
+  "none" | "ones" | "tens" | "both",
+  { t: number; o: number; b: number }[]
+> {
+  const pools: Record<
+    "none" | "ones" | "tens" | "both",
+    { t: number; o: number; b: number }[]
+  > = { none: [], ones: [], tens: [], both: [] };
+  for (let t = 1; t <= 9; t += 1) {
+    for (let o = 1; o <= 9; o += 1) {
+      for (let b = 2; b <= 5; b += 1) {
+        const onesCarry = o * b >= 10;
+        const tensCarry = t * b + Math.floor((o * b) / 10) >= 10;
+        const key = onesCarry
+          ? tensCarry
+            ? "both"
+            : "ones"
+          : tensCarry
+            ? "tens"
+            : "none";
+        pools[key].push({ t, o, b });
+      }
+    }
+  }
+  for (const key of ["none", "ones", "tens", "both"] as const) {
+    if (pools[key].length === 0)
+      throw new Error(`곱셈 풀이 비었습니다: ${key}`);
+  }
+  return pools;
+}
+
+const MUL_POOLS = mulPools();
+
+/** 소단원 이름 → 그 이름이 약속한 곱셈 한 벌. 표준과 갈래가 **이 함수 하나**로 뽑는다. */
+function mulCaseOf(section: string, rng: Rng): { a: number; b: number } {
+  if (section.includes("(몇십)×(몇)")) {
+    return { a: intBetween(rng, 2, 9) * 10, b: intBetween(rng, 2, 9) };
+  }
+  const pool =
+    section.includes("일의 자리") && section.includes("십의 자리")
+      ? MUL_POOLS.both
+      : section.includes("일의 자리")
+        ? MUL_POOLS.ones
+        : section.includes("십의 자리")
+          ? MUL_POOLS.tens
+          : MUL_POOLS.none;
+  const { t, o, b } = pick(rng, pool);
+  return { a: t * 10 + o, b };
+}
+
 function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("(몇십)×(몇)")) {
-    const a = intBetween(rng, 2, 9) * 10;
-    const b = intBetween(rng, 2, 9);
+    const { a, b } = mulCaseOf(s, rng);
     return make(
       unit,
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -547,23 +826,7 @@ function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
       expr(`${a}\\times${b}=${a * b}`),
     );
   }
-  let tens = intBetween(rng, 1, 8);
-  let ones = intBetween(rng, 1, 8);
-  const b = intBetween(rng, 2, 5);
-  if (s.includes("일의 자리") && s.includes("십의 자리")) {
-    ones = intBetween(rng, 5, 9);
-    tens = intBetween(rng, 5, 9);
-  } else if (s.includes("일의 자리")) {
-    ones = intBetween(rng, 5, 9);
-    tens = intBetween(rng, 1, 3);
-  } else if (s.includes("십의 자리")) {
-    ones = intBetween(rng, 1, 3);
-    tens = intBetween(rng, 5, 9);
-  } else {
-    ones = intBetween(rng, 1, 3);
-    tens = intBetween(rng, 1, 3);
-  }
-  const a = tens * 10 + ones;
+  const { a, b } = mulCaseOf(s, rng);
   return make(
     unit,
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -781,19 +1044,25 @@ function fracDec31(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** (세 자리)×(한 자리) 의 올림 횟수 — 표준·갈래가 **이 함수 하나**로 센다. */
+function mulCarries3x1(a: number, b: number): number {
+  let carries = 0;
+  let carry = 0;
+  for (let d = 0; d < 3; d += 1) {
+    const digit = Math.floor(a / 10 ** d) % 10;
+    const v = digit * b + carry;
+    carry = Math.floor(v / 10);
+    if (carry > 0) carries += 1;
+  }
+  return carries;
+}
+
 /** (세 자리)×(한 자리) 에서 올림이 몇 번 나는가로 고른다. */
 function mul3x1(rng: Rng, minC: number, maxC: number): [number, number] {
   for (let k = 0; k < 120; k += 1) {
     const a = intBetween(rng, 112, 498);
     const b = intBetween(rng, 2, 8);
-    let carries = 0;
-    let carry = 0;
-    for (let d = 0; d < 3; d += 1) {
-      const digit = Math.floor(a / 10 ** d) % 10;
-      const v = digit * b + carry;
-      carry = Math.floor(v / 10);
-      if (carry > 0) carries += 1;
-    }
+    const carries = mulCarries3x1(a, b);
     if (carries >= minC && carries <= maxC) return [a, b];
   }
   return minC === 0 ? [123, 2] : [387, 6];
@@ -835,7 +1104,10 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
       );
     }
     const a = intBetween(rng, 3, 9);
-    const b = intBetween(rng, 12, 48);
+    // b 가 20·30·40 이면 (몇)×(몇십) — 소단원 이름의 세 꼴 어디에도 없다(실측 4/200).
+    // 가드로 거르지 않고 건너뛰기 추첨으로 뽑는 범위에서 뺀다: 12..45 → 12..48∖{20,30,40}.
+    let b = intBetween(rng, 12, 45);
+    for (const cut of [20, 30, 40]) if (b >= cut) b += 1;
     return make(
       unit,
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
@@ -870,13 +1142,41 @@ function div2(rng: Rng, wantCarryDown: boolean): [number, number, number] {
   return wantCarryDown ? [52, 4, 13] : [48, 4, 12];
 }
 
+/**
+ * 나머지가 있는 (몇십몇)÷(몇) 한 벌 — 표준과 갈래가 **이 함수 하나**로 뽑는다.
+ *
+ * ⚠️ $a=b\times q+r$ 로 **조립한 뒤 일의 자리를 안 보면** $70\div8$·$10\div3$ 같은
+ * (몇십)÷(몇) 이 나온다 — 소단원 이름이 약속한 «몇십몇» 이 아니다(실측 20/200).
+ * 가드로 거르지 않고 **뽑는 범위에서 뺀다**: $b,q$ 가 정해지면 $r$ 은 연속 $b-1(\le8)$
+ * 개라 $bq+r$ 이 십의 배수가 되는 $r$ 은 **많아야 하나**다. 그 하나가 범위 안일 때만
+ * 한 칸 짧게 뽑아 그 지점부터 밀어 준다(전단사). 없으면 종전 그대로다.
+ * 그래서 두 자리($11\le a\le79$ — $9\times8+8=80$ 은 일의 자리가 0 이라 걸러진다)와
+ * $1\le r<b$ 가 구성으로 남는다.
+ *
+ * ⚠️ **$b$ 의 아래끝을 3 보다 낮추지 말 것.** $b=2$ 면 좋은 $r$ 이 $b-2=0$ 개라
+ * `intBetween(1, 0)` 이 던진다. 지금은 안 일어난다 — $b=2$ 는 $r=1$ 뿐이고 $2q+1$ 은
+ * 홀수라 십의 배수가 될 수 없어 `bad` 가 아예 없고 「없으면 종전대로」 갈래를 탄다.
+ * 그 근거가 **코드가 아니라 수학에 있으므로**, 범위를 넓히면 이 자리가 조용히 깨진다.
+ */
+function div2Rem(rng: Rng): [number, number, number, number] {
+  const b = intBetween(rng, 3, 9);
+  const q = intBetween(rng, 3, 8);
+  let bad = -1;
+  for (let v = 1; v <= b - 1; v += 1) if ((b * q + v) % 10 === 0) bad = v;
+  let r: number;
+  if (bad === -1) {
+    r = intBetween(rng, 1, b - 1);
+  } else {
+    r = intBetween(rng, 1, b - 2);
+    if (r >= bad) r += 1;
+  }
+  return [b * q + r, b, q, r];
+}
+
 function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("나머지")) {
-    const b = intBetween(rng, 3, 9);
-    const q = intBetween(rng, 3, 8);
-    const r = intBetween(rng, 1, b - 1);
-    const a = b * q + r;
+    const [a, b, q, r] = div2Rem(rng);
     return make(
       unit,
       `$${a}\\div${b}$ 의 몫과 나머지를 쓰시오.`,
@@ -886,7 +1186,11 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   if (s.includes("세 자리")) {
     const b = intBetween(rng, 3, 9);
-    const q = intBetween(rng, 12, 48);
+    // ⚠️ 몫을 12..48 로만 뽑으면 b 가 작을 때 나뉘는 수가 두 자리로 떨어진다 —
+    // 실측 $45\div3$, 씨앗 12/40 (probe-elem-section-conditions). 가드로 거르지 않고
+    // **아래끝을 b 에서 유도**한다(threeSum 과 같은 태도): $b\times q\ge100$ 이 되는
+    // 첫 몫부터 뽑는다. 위끝은 $9\times48=432\le999$ 라 그대로 세 자리 안이다.
+    const q = intBetween(rng, Math.ceil(100 / b), 48);
     const a = b * q;
     return make(
       unit,
@@ -904,6 +1208,32 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * **2-3 원의 그림** — `circleParts`. 🔴 **그림이 학생이 할 단계를 대신하면 안 된다.**
+ *
+ * 이 소단원은 「원의 중심·지름·반지름」이 곧 이름이라 **묻는 것과 그리는 것이 같아지기
+ * 쉽다.** 그래서 발문마다 무엇을 묻는지 보고 갈랐다:
+ *
+ *  · **2-3-1(용어)** — 답이 «낱말»이다. 엔진이 용어 라벨을 아예 안 그리므로
+ *    맨 원 + 중심점이면 새는 것이 없다. 발문이 선분을 말로 다 설명한다.
+ *  · **2-3-2(성질)** — 한쪽 치수를 주고 다른 쪽을 묻는다. **준 쪽만** 적는다.
+ *    묻는 쪽을 적으면 답이 지면에 있다(엔진이 둘 다 받으면 던진다).
+ *  · **2-3-3(원 그리기)** — 「컴퍼스를 8cm 벌렸다 → 지름은?」. 숨은 단계가
+ *    **«벌린 길이 = 반지름»** 이다. 반지름을 8cm 라 적으면 **그 단계를 그림이
+ *    대신한다.** 그래서 치수를 안 적는다 — 2-3-2 와 겉보기가 같아도 이유가 다르다.
+ */
+function circleFig(
+  kind: "bare" | "showRadius" | "showDiameter" | "radius" | "diameter",
+  cm?: number,
+) {
+  if (kind === "bare") return fig("circleParts", {});
+  // `show` — **선분은 그리되 치수는 안 적는다.** 2-3-1 이 「이 선분을 무엇이라 하는지」를
+  // 묻는데 그 선분이 지면에 없으면 그림이 아무 말도 안 한다. 답은 낱말이라 안 샌다.
+  if (kind === "showRadius") return fig("circleParts", { show: "radius" });
+  if (kind === "showDiameter") return fig("circleParts", { show: "diameter" });
+  return fig("circleParts", { [kind]: `${cm} cm` });
+}
+
 function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("중심")) {
@@ -914,6 +1244,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `원을 그릴 때 컴퍼스의 침을 꽂은 점, 곧 원의 한가운데 있는 점을 무엇이라고 하는지 쓰시오.`,
         "원의 중심",
         "원을 그릴 때 침을 꽂은 점이 원의 중심입니다. 원의 중심에서 원 위의 어느 점까지 재어도 길이가 같습니다.",
+        circleFig("bare"),
       );
     }
     if (which === "지름") {
@@ -922,6 +1253,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `원의 중심을 지나면서 원 위의 두 점을 이은 선분을 무엇이라고 하는지 쓰시오.`,
         "지름",
         "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다. 한 원에서 지름은 모두 길이가 같습니다.",
+        circleFig("showDiameter"),
       );
     }
     return make(
@@ -929,6 +1261,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
       `원의 중심과 원 위의 한 점을 이은 선분을 무엇이라고 하는지 쓰시오.`,
       "반지름",
       "원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다. 한 원에서 반지름은 모두 길이가 같습니다.",
+      circleFig("showRadius"),
     );
   }
   if (s.includes("성질")) {
@@ -939,6 +1272,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
         `반지름이 ${unitNum(r, "cm")} 인 원의 지름은 몇 cm인지 쓰시오.`,
         n(r * 2),
         `한 원에서 지름은 반지름의 $2$ 배입니다. ${expr(`${r}\\times2=${r * 2}`)} 이므로 지름은 ${unitNum(r * 2, "cm")} 입니다.`,
+        circleFig("radius", r),
       );
     }
     return make(
@@ -946,6 +1280,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
       `지름이 ${unitNum(r * 2, "cm")} 인 원의 반지름은 몇 cm인지 쓰시오.`,
       n(r),
       `한 원에서 반지름은 지름의 반입니다. ${expr(`${r * 2}\\div2=${r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
+      circleFig("diameter", r * 2),
     );
   }
   const r = intBetween(rng, 2, 9);
@@ -954,6 +1289,7 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
     `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인지 쓰시오.`,
     n(r * 2),
     `컴퍼스를 벌린 길이가 원의 반지름이 됩니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+    circleFig("bare"),
   );
 }
 
@@ -962,6 +1298,14 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
   // 「개」로 세는 것만 — 색종이는 「장」이라 발문이 어색해진다.
   const stuff = pick(rng, ["사탕", "구슬", "딱지", "쿠키", "귤"]);
   if (s.includes("분수로 나타내기")) {
+    // ⚠️ **여기는 기약으로 안 거른다 — 아래 「분수만큼」과 통일하지 말 것.**
+    // 이 소단원의 분수는 **답**이다. 「$6$묶음 중 $2$묶음」의 답은 $\frac26$ 이 정답이고,
+    // $\frac13$ 을 요구하면 **약분(초5)을 안 배운 학년에게 안 배운 것을 요구**하게 된다.
+    // 아래 2-4-2·3 은 분수가 **발문에 주어지는 값**이라 반대로 걸러야 한다(거기 주석 참조).
+    // 실측 2026-08-23: 씨앗 200개에서 약분되는 답이 39건 — **결함이 아니라 학년에 맞는 것**.
+    // 같은 이유로 1-6-2·1-6-3(그림에서 읽는 분수)도 안 거른다.
+    // ⓘ 지금 초등 문항은 **자동 채점 경로가 없다**(답은 정답지에 찍고 사람이 채점한다).
+    //   나중에 자동 채점이 생기면 $\frac26$ 과 $\frac13$ 을 같게 볼지가 여기서 걸린다.
     const groups = intBetween(rng, 3, 6);
     const each = intBetween(rng, 2, 8);
     const whole = groups * each;
@@ -982,6 +1326,10 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
     const whole = den * each;
     // 약분되는 분수($\frac24$)는 초3-2 가 아직 안 배운 모양이다 — 기약인 것만 고른다.
     // 분모와 서로소인 분자는 $den-1$ 이 늘 있으므로 후보가 비지 않는다.
+    // ⚠️ **위 「분수로 나타내기」와 규칙이 갈리는 것은 일부러다 — 통일하지 말 것.**
+    // 여기 분수는 **발문에 주어지는 값**이라 「$24$개의 $\frac26$ 만큼」이 학생에게 약분을
+    // 부른다. 위쪽은 분수가 **답**이라 안 거른다. 두 규칙은 어긋난 게 아니라 **서로 다른
+    // 것을 막는다** — 어느 쪽으로 통일해도 한쪽이 깨진다(2026-08-23 리드 확정).
     const take = many
       ? pick(
           rng,
@@ -1037,7 +1385,9 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `다음 가분수를 대분수로 나타내시오.\n\n$\\frac{${num}}{${den}}$`,
       expr(fracLatex(num, den)),
-      `$${num}\\div${den}=${whole}$ 이고 나머지가 ${n(rest)} 이므로 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.`,
+      // ⚠️ 나머지가 있는 나눗셈을 **등식**으로 적지 않는다 — `$17\div6=2$` 는 참이 아니다.
+      // 곱하고 빼서 몫·나머지를 보이는 꼴로 쓴다(2-2-3 해설과 같은 표기).
+      `${expr(`${den}\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.`,
     );
   }
   const den = intBetween(rng, 6, 9);
@@ -1608,7 +1958,7 @@ function sub111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     const total = a + b;
     return make(
       unit,
-      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}이 들어 있다면 다른 상자에는 몇 ${s.unit}이 들어 있습니까?`,
+      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}${josa(s.unit, "이", "가")} 들어 있다면 다른 상자에는 몇 ${s.unit}${josa(s.unit, "이", "가")} 들어 있습니까?`,
       n(b),
       `전체에서 아는 쪽을 덜어 냅니다. ${expr(`${total}-${a}=${b}`)} 이므로 ${n(b)}${s.unit}입니다.`,
     );
@@ -1756,11 +2106,5039 @@ function reverseSub(
   throw new Error("뺄셈 역산 수를 못 만들었습니다");
 }
 
+// ── 1-2 평면도형 (D-72 확대) ──────────────────────────────────────────
+//
+// ★ **도형 대단원의 4단 축 — 뒤 학년 도형 확대는 이 넷을 그대로 인용한다** (리드 승인 2026-08-23)
+//   1단 절차 한 번  — 그림을 보고 **한 번에** 이름·기호를 답한다
+//   2단 스스로 세움 — 조건이 **문장으로만** 주어지고 그림에 대어 고른다
+//   3단 두 단계     — 세고 나서 그 수로 다시 셈하거나, 두 개념을 결합한다
+//   4단 조건 조합   — D-72 가 4단에 적은 「역산·**조건 조합**」 중 **조건 조합** 쪽
+//
+// 왜 4단이 역산이 아니라 조건 조합인가 — 도형에는 **되짚을 셈이 없다.** 다만 길이가
+// 딸린 소단원(1-2-4 직사각형·1-2-5 정사각형)은 「네 변의 합 → 한 변·세로」로 역산이
+// 성립하므로 거기서는 역산을 쓴다. 길이가 없는 소단원에서 억지로 역산을 만들지 말 것.
+//
+// 그리고 1단 갈래는 **표준 생성기를 그대로 부르지 않는다.** 말투 풀이 표준과 같으면
+// 같은 발문이 시험지에 둘 나오고(실측: 1-2-5·1-2-1 에서 실제로 났다) 변형 공간도
+// 표준 것 그대로라 8+ 요구가 사실상 미달이 된다.
+//
+// 답의 «참»은 언제나 **그림**에서 온다 — 삼각형은 3×3 점 안의 것을 전부 세어 정수
+// 내적으로 직각을 가르고(`TRI_POOLS`), 사각형은 칸 수로 가른다. 이름표만 바꿔 붙이지 않는다.
+
+const LINE_LETTERS = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ"] as const;
+
+/** 점만 찍힌 격자. 「이을 수 있는 선분」을 세는 문항에 쓴다 — 세 점이 한 줄에 서지 않게 골랐다. */
+const DOT_LAYOUTS: Pt[][] = [
+  [
+    [0, 2],
+    [2, 0],
+    [4, 2],
+  ],
+  [
+    [0, 0],
+    [3, 1],
+    [1, 3],
+  ],
+  [
+    [1, 0],
+    [0, 3],
+    [4, 2],
+  ],
+  [
+    [0, 1],
+    [2, 3],
+    [4, 0],
+  ],
+  [
+    [0, 0],
+    [3, 0],
+    [0, 3],
+    [3, 3],
+  ],
+  [
+    [0, 2],
+    [2, 0],
+    [4, 2],
+    [2, 3],
+  ],
+  [
+    [0, 0],
+    [4, 1],
+    [1, 3],
+    [3, 3],
+  ],
+  [
+    [0, 1],
+    [2, 0],
+    [4, 3],
+    [1, 3],
+  ],
+];
+
+function dotsOnly(
+  layout: Pt[],
+  letters: readonly string[],
+): Record<string, unknown> {
+  const cols = Math.max(...layout.map((p) => p[0]));
+  const rows = Math.max(...layout.map((p) => p[1]));
+  return fig("pointGrid", {
+    cols,
+    rows,
+    dots: layout.map((p, i) => ({
+      c: p[0],
+      r: p[1],
+      label: letters[i] ?? "",
+      side: "up",
+    })),
+    lines: [],
+  });
+}
+
+// ── 1-2-1 선분, 반직선, 직선 ──
+
+/**
+ * 1단 — 정의를 읽고 이름을 댄다. 한 걸음이면 끝난다.
+ *
+ * ⚠️ 기본 문항 `lineNames` 를 **그대로 부르면 안 된다.** 말투가 셋뿐이라 소금이 달라도
+ * 씨앗에 따라 같은 발문이 나온다(실측: 씨앗 16개 중 2). 갈래 쪽 말투를 따로 둔다.
+ */
+function line121Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const i = intBetween(rng, 0, LINE_LETTERS.length - 2);
+  const a = LINE_LETTERS[i]!;
+  const b = LINE_LETTERS[i + 1]!;
+  const kind = pick(rng, ["선분", "반직선", "직선"] as const);
+  if (kind === "선분") {
+    return make(
+      unit,
+      `점 ${a}과 점 ${b}을 곧게 이었습니다. 이 선의 이름을 쓰시오.`,
+      `선분 ${a}${b}`,
+      `두 점을 곧게 이은 선은 선분입니다. 점 ${a}과 점 ${b}을 이었으므로 선분 ${a}${b}입니다.`,
+    );
+  }
+  if (kind === "반직선") {
+    return make(
+      unit,
+      `점 ${a}에서 출발하여 점 ${b}쪽으로 끝없이 그은 곧은 선의 이름을 쓰시오.`,
+      `반직선 ${a}${b}`,
+      `한쪽으로만 끝없이 늘인 곧은 선은 반직선입니다. 출발한 점을 먼저 읽어 반직선 ${a}${b}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `점 ${a}과 점 ${b}을 지나면서 양쪽 끝이 없는 곧은 선의 이름을 쓰시오.`,
+    `직선 ${a}${b}`,
+    `양쪽으로 끝없이 늘인 곧은 선은 직선입니다. 두 점을 지나므로 직선 ${a}${b}입니다.`,
+  );
+}
+
+/** 2단 — 「늘이면 무엇이 되는가」. 그림의 선분을 조건대로 **바꿔** 판단한다(한 겹). */
+function line121Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const i = intBetween(rng, 0, LINE_LETTERS.length - 2);
+  const a = LINE_LETTERS[i]!;
+  const b = LINE_LETTERS[i + 1]!;
+  const left = intBetween(rng, 0, 1);
+  const both = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    both
+      ? `선분 ${a}${b}을 **양쪽으로** 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`.replace(
+          /\*\*/g,
+          "",
+        )
+      : `선분 ${a}${b}을 점 ${a} 쪽으로만 끝없이 늘이면 어떤 선이 되는지 이름을 쓰시오.`,
+    both ? `직선 ${a}${b}` : `반직선 ${b}${a}`,
+    both
+      ? `선분을 양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`
+      : `한쪽으로만 끝없이 늘이면 반직선입니다. 늘이지 않은 점 ${b}에서 시작하므로 반직선 ${b}${a}입니다.`,
+    fig("pointGrid", {
+      cols: 6,
+      rows: 2,
+      dots: [
+        { c: left, r: 1, label: a, side: "up" },
+        { c: left + 5, r: 1, label: b, side: "up" },
+      ],
+      lines: [
+        [
+          [left, 1],
+          [left + 5, 1],
+        ],
+      ],
+    }),
+  );
+}
+
+/** 3단 — 점의 수를 세고, 그 수로 **선분의 수**를 구한다(두 단계). */
+function line121Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const layout = pick(rng, DOT_LAYOUTS);
+  const k = layout.length;
+  const letters = LINE_LETTERS.slice(0, k);
+  const segs = (k * (k - 1)) / 2;
+  return make(
+    unit,
+    pick(rng, [
+      `그림의 점 중 두 점을 이어 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+      `점을 두 개 고를 때마다 선분이 하나 생깁니다. 그림에서 생기는 선분은 모두 몇 개인지 쓰시오.`,
+      `그림의 점을 빠짐없이 두 개씩 짝지어 선분을 그었습니다. 선분은 모두 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 그을 수 있는 선분의 개수를 구하시오.`,
+      `곧게 이은 선을 선분이라 합니다. 그림의 점으로 그을 수 있는 선분은 몇 개인지 쓰시오.`,
+      `그림에 찍힌 점을 두 개씩 이어 선분을 그으려고 합니다. 선분은 모두 몇 개 그을 수 있는지 쓰시오.`,
+      `그림의 점들을 이어 만들 수 있는 선분의 수를 쓰시오.`,
+      `두 점을 곧게 이은 선을 선분이라고 합니다. 그림에서 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(segs),
+    `점이 ${n(k)}개이고, 한 점에서 나머지 ${n(k - 1)}개의 점으로 선분을 그을 수 있습니다. ${expr(`${k}\\times${k - 1}=${k * (k - 1)}`)} 인데 같은 선분을 두 번씩 센 것이므로 ${expr(`${k * (k - 1)}\\div2=${segs}`)} 개입니다.`,
+    dotsOnly(layout, letters),
+  );
+}
+
+/** 4단 — 선분과 반직선을 **함께** 센다(조건 조합). 반직선은 방향이 있어 두 배다. */
+function line121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const layout = pick(rng, DOT_LAYOUTS);
+  const k = layout.length;
+  const segs = (k * (k - 1)) / 2;
+  const rays = k * (k - 1);
+  return make(
+    unit,
+    pick(rng, [
+      `그림의 점 중 두 점을 이어 선분과 반직선을 그으려고 합니다. 그을 수 있는 반직선의 수와 선분의 수의 차는 몇 개인지 쓰시오.`,
+      `그림의 점으로 반직선과 선분을 모두 그었을 때, 두 수의 차는 몇 개인지 쓰시오.`,
+      `선분은 짝마다 하나, 반직선은 짝마다 둘입니다. 그림에서 그 수의 차는 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 그을 수 있는 반직선의 수에서 선분의 수를 뺀 값을 쓰시오.`,
+      `그림에서 반직선의 수와 선분의 수를 각각 세어, 큰 수에서 작은 수를 뺀 값을 쓰시오.`,
+      `그림의 점으로 그을 수 있는 반직선은 선분보다 몇 개 더 많은지 쓰시오.`,
+      `반직선 ㄱㄴ과 반직선 ㄴㄱ은 서로 다릅니다. 그림의 점으로 그을 수 있는 반직선의 수에서 선분의 수를 빼면 몇 개인지 쓰시오.`,
+      `그림의 점을 이어 선분과 반직선을 모두 그었습니다. 반직선이 선분보다 몇 개 더 많은지 쓰시오.`,
+    ]),
+    n(rays - segs),
+    `선분은 두 점의 짝마다 하나이므로 ${n(segs)}개입니다. 반직선은 시작하는 점이 어디냐에 따라 달라 짝마다 둘이므로 ${n(rays)}개입니다. ${expr(`${rays}-${segs}=${rays - segs}`)} 이므로 차는 ${n(rays - segs)}개입니다.`,
+    dotsOnly(layout, LINE_LETTERS.slice(0, k)),
+  );
+}
+
+// ── 1-2-2 각, 직각 알아보기 ──
+
+// 1단(연산) 갈래는 기본 문항 함수를 **그대로 부르지 않고** 따로 짠다.
+// 기본 함수(`rightAnglePick` 등)의 말투 풀은 셋뿐이라 변형 공간이 모자라는데,
+// 거기를 넓히면 **갈래 없는 기본 경로의 산출물까지 바뀐다.** 갈래 쪽만 넓힌다.
+
+function angle122Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = angleRow(rng, count, 1);
+  const ask = pick(rng, [
+    `직각인 각은 어느 것인지 기호를 쓰시오.`,
+    `직각을 하나 골라 그 기호를 쓰시오.`,
+    `직각에 해당하는 각의 기호를 쓰시오.`,
+    `각의 크기가 직각인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.rightLabels[0]!,
+    `삼각자의 직각 부분을 대었을 때 꼭 맞는 각은 ${row.rightLabels[0]!} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 각 여러 개를 늘어놓고 **직각인 것의 수**를 함께 돌려준다. */
+function angleRow(rng: Rng, count: number, rightCount: number) {
+  // 4개일 때도 간격 4 — 폭이 14로 rectRow(3개, 14)와 같은 상한이다. 2·3개는 예전 값 그대로.
+  const gap = count === 2 ? 5 : 4;
+  const cols = (count - 1) * gap + 2;
+  const rightSlots = new Set<number>();
+  while (rightSlots.size < rightCount)
+    rightSlots.add(intBetween(rng, 0, count - 1));
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const pair = rightSlots.has(i)
+      ? pick(rng, ANGLE_POOLS.right)
+      : pick(rng, ANGLE_POOLS.other);
+    const fx = intBetween(rng, 0, 1) === 1;
+    const c0 = i * gap;
+    const move = (p: Pt): Pt => {
+      const f = flipPt(p, fx, false);
+      return [f[0] + c0, f[1]];
+    };
+    const v = move(ANGLE_V);
+    const p = move(pair[0]);
+    const q = move(pair[1]);
+    shapes.push({
+      pts: [v, p, q],
+      lines: [
+        [v, p],
+        [v, q],
+      ],
+      label: SHAPE_LABELS[i]!,
+      anchor: v,
+      side: "down",
+    });
+  }
+  const rightLabels = SHAPE_LABELS.slice(0, count).filter((_, i) =>
+    rightSlots.has(i),
+  );
+  return { cols, shapes, rightLabels, labels: SHAPE_LABELS.slice(0, count) };
+}
+
+/** 2단 — 조건이 **문장으로만**. 「종이를 두 번 접어 만든 각과 꼭 맞는」 = 직각. */
+function angle122Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = angleRow(rng, count, 1);
+  const answer = row.rightLabels[0]!;
+  const ask = pick(rng, [
+    `종이를 반듯하게 두 번 접었을 때 생기는 각과 꼭 맞는 각의 기호를 쓰시오.`,
+    `삼각자의 뾰족하지 않은 부분과 꼭 맞는 각의 기호를 쓰시오.`,
+    `두 변이 서로 반듯하게 만나는 각의 기호를 쓰시오.`,
+    // ⚠️ 「긴바늘이 세 시간」이라 적었다가 검수에서 잡았다 — 긴바늘은 한 시간에 한 바퀴라
+    //    세 시간이면 세 바퀴다. 직각을 만드는 것은 **짧은바늘**의 세 시간(한 바퀴의 사분의 일)이다.
+    `시계의 짧은바늘이 세 시간 동안 돌 때 생기는 각과 같은 각의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    answer,
+    `문장이 가리키는 것은 직각입니다. 삼각자의 직각 부분을 대었을 때 꼭 맞는 각은 ${answer} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 3단 — 직각인 것과 아닌 것을 **각각 세고** 차를 구한다(두 단계). */
+function angle122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 「3도형 중 직각 1~2」로 고정하면 답이 늘 $1$ 이다(|1-2| — 씨앗 무관). 심화 상수답과
+  // 같은 부류라(g6 pyrFaceDeep, 7604dee6) **견주는 두 무리를 벌린다** — 도형 수 3·4 와
+  // 직각 수를 함께 흔들어 답이 $1$·$2$·$3$·$4$ 로 갈린다. 4도형에 직각 2는 차가 $0$ 이라
+  // 뽑는 범위에서 뺀다(답 $0$ 은 「차를 쓰시오」에 어색하다).
+  const count = intBetween(rng, 3, 4);
+  const rightCount = count === 3 ? pick(rng, [1, 2, 3]) : pick(rng, [1, 3, 4]);
+  const row = angleRow(rng, count, rightCount);
+  const other = count - rightCount;
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 중에서 직각인 각의 수와 직각이 아닌 각의 수의 차는 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 를 보고 직각인 각과 직각이 아닌 각을 각각 센 뒤, 그 차를 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각인 것의 수와 그렇지 않은 것의 수가 몇 개 차이 나는지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각을 세고, 남은 각의 수와의 차를 쓰시오.`,
+      `${row.labels.join(", ")} 를 두 무리로 나누었습니다. 직각인 무리와 아닌 무리의 개수 차를 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각인 것과 아닌 것으로 나누었습니다. 두 무리의 개수의 차는 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각은 몇 개이고 직각이 아닌 각은 몇 개인지 세어, 그 차를 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각의 수가 직각이 아닌 각의 수보다 몇 개 많고 적은지 그 차를 쓰시오.`,
+    ]),
+    n(Math.abs(rightCount - other)),
+    `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, ${
+      other === 0
+        ? `직각이 아닌 각은 ${n(0)}개입니다.`
+        : `나머지 ${n(other)}개는 직각이 아닙니다.`
+    } ${expr(`${Math.max(rightCount, other)}-${Math.min(rightCount, other)}=${Math.abs(rightCount - other)}`)} 이므로 차는 ${n(Math.abs(rightCount - other))}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 4단 — 각과 **도형의 직각**을 함께 센다(조건 조합). */
+function angle122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = angleRow(rng, count, rightCount);
+  // 오른쪽에 사각형 하나를 덧붙인다 — 직사각형은 직각이 넷이다.
+  const side = intBetween(rng, 1, 2);
+  const wide = intBetween(rng, 0, 1) === 1;
+  const c0 = row.cols + 2;
+  const w = wide ? side + 1 : side;
+  const h = side;
+  const rect = closedShape(
+    [
+      [c0, 2 - h],
+      [c0 + w, 2 - h],
+      [c0 + w, 2],
+      [c0, 2],
+    ],
+    "라",
+  );
+  const total = rightCount + 4;
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 그림 전체에서 직각은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 그림에 있는 직각을 모두 세어 그 수를 쓰시오.`,
+      `각 ${row.labels.join(", ")} 와 직사각형 라 에서 직각이 몇 개인지 각각 세어 더한 값을 쓰시오.`,
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형일 때, 직각의 개수를 모두 더하면 몇 개인지 쓰시오.`,
+      `그림에는 각 ${row.labels.join(", ")} 와 직사각형 라 가 있습니다. 직각은 통틀어 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 각에 있는 직각과 직사각형에 있는 직각을 모두 세면 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직각을 하나도 빠뜨리지 말고 세어 그 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 직사각형 라 를 함께 보고, 직각이 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(total),
+    `각 ${row.labels.join(", ")} 중 직각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 직사각형은 네 각이 모두 직각이므로 ${n(4)}개입니다. ${expr(`${rightCount}+4=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+    pointGridSpec(c0 + w, 2, [...row.shapes, rect]),
+  );
+}
+
+// ── 1-2-3 직각삼각형 알아보기 (찾기) ──
+
+function tri123Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = triangleRow(rng, count, 1);
+  const ask = pick(rng, [
+    `직각삼각형은 어느 것인지 기호를 쓰시오.`,
+    `직각삼각형에 해당하는 것의 기호를 쓰시오.`,
+    `직각삼각형 하나를 골라 그 기호를 쓰시오.`,
+    `삼각형 가운데 직각삼각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.rightLabels[0]!,
+    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!} 의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 2단 — 조건이 문장으로만. 「한 각이 직각인 삼각형」을 말로 풀어 준다. */
+function tri123Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const row = triangleRow(rng, count, 1);
+  const answer = row.rightLabels[0]!;
+  const ask = pick(rng, [
+    `삼각자의 직각 부분을 대었을 때 꼭 맞는 각이 있는 삼각형의 기호를 쓰시오.`,
+    `한 각이 종이를 두 번 접어 만든 각과 같은 삼각형의 기호를 쓰시오.`,
+    `두 변이 서로 반듯하게 만나는 곳이 있는 삼각형의 기호를 쓰시오.`,
+    `직각을 낀 두 변이 있는 삼각형의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    answer,
+    `문장이 가리키는 것은 직각삼각형입니다. 한 각이 직각인 삼각형이 ${answer} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 3단 — 직각삼각형이 **아닌** 것을 세고 그 수를 답한다(뒤집어 세기, 두 단계). */
+function tri123Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const other = count - rightCount;
+  const otherLabels = row.labels.filter((l) => !row.rightLabels.includes(l));
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 가운데 직각삼각형을 빼면 삼각형이 몇 개 남는지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각이 없는 삼각형의 개수를 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 갈랐습니다. 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 에서 삼각자의 직각 부분과 꼭 맞는 각이 없는 삼각형은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 나눌 때, 직각삼각형이 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 중 직각이 하나도 없는 삼각형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 에서 직각삼각형을 뺀 나머지 삼각형은 몇 개인지 쓰시오.`,
+    ]),
+    n(other),
+    `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 전체 ${n(count)}개에서 빼면 ${expr(`${count}-${rightCount}=${other}`)} 이므로 ${otherLabels.join(", ")} 로 ${n(other)}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 4단 — 삼각형과 사각형을 섞어 놓고 **조건 둘**을 겹쳐 건다. */
+function tri123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const c0 = row.cols + 2;
+  const w = intBetween(rng, 1, 2);
+  const h = intBetween(rng, 1, 2);
+  const rect = closedShape(
+    [
+      [c0, 2 - h],
+      [c0 + w, 2 - h],
+      [c0 + w, 2],
+      [c0, 2],
+    ],
+    "라",
+  );
+  return make(
+    unit,
+    pick(rng, [
+      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 이 중에서 변이 셋이면서 직각이 있는 도형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 가진 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 라 중에서 「변이 셋」과 「직각이 있다」를 함께 만족하는 도형은 몇 개인지 쓰시오.`,
+      `그림의 도형 ${row.labels.join(", ")}, 라 가운데 삼각형이면서 직각을 가진 것은 몇 개인지 쓰시오.`,
+      // ⚠️ 이 표현은 오래 「**두 조건**을 모두 채우는」이었다 — 그 두 조건이 발문에도
+      // 그림에도 없고 **해설에만** 있었다(그림은 pointGrid 라 글자가 없다). 값은 맞는데
+      // **학생이 풀 수 없는 문항**이라, 40씨앗 중 3건이 그렇게 나갔다.
+      // 조건을 부르려면 **그 자리에서 이름을 대야 한다**. 아래 시험이 잠근다.
+      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」·「직각이 있다」를 모두 채우는 도형의 개수를 쓰시오.`,
+      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 있는 도형은 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」과 「직각이 있다」를 모두 만족하는 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")} 와 사각형 라 중에서, 변이 셋이면서 직각을 가진 도형은 모두 몇 개인지 쓰시오.`,
+    ]),
+    n(rightCount),
+    `변이 셋인 도형은 삼각형 ${row.labels.join(", ")} 입니다. 라는 변이 넷이라 조건에 맞지 않습니다. 그중 직각이 있는 것은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
+    pointGridSpec(c0 + w, 2, [...row.shapes, rect]),
+  );
+}
+
+// ── 1-2-4 직사각형 알아보기 ──
+// 이 소단원은 오래 「직각삼각형 알아보기」로 잘못 적혀 있었다(eywa 정본 288~289 중복).
+// 2026-08-23 에 units.ts 를 바로잡았고, 표준·갈래를 **직사각형**으로 다시 짰다.
+
+/** 1단 — 직사각형 하나를 고른다. 표준과 말투가 겹치지 않게 따로 둔다. */
+function rect124Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    `직사각형은 어느 것인지 기호를 쓰시오.`,
+    `직사각형에 해당하는 것의 기호를 쓰시오.`,
+    `직사각형 하나를 골라 그 기호를 쓰시오.`,
+    `사각형 가운데 직사각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.answer,
+    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer} 가 그렇습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 2단 — 조건이 **문장으로만** 주어진다. */
+function rect124Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const ask = pick(rng, [
+    // ⚠️ 표준 `rectPick` 이 「네 각이 모두 직각인 사각형」을 쓴다 — 그대로 쓰면 발문이
+    //    바이트까지 같아진다(실측: 씨앗 300개 중 15). 말투를 갈라 둔다.
+    `네 꼭짓점이 모두 직각인 사각형`,
+    `마주 보는 두 변의 길이가 같고 네 각이 모두 직각인 사각형`,
+    `삼각자의 직각 부분이 네 꼭짓점에 모두 꼭 맞는 사각형`,
+    `종이를 두 번 접어 만든 각이 네 꼭짓점에 모두 있는 사각형`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
+    row.answer,
+    `문장이 가리키는 것은 직사각형입니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 3단 — 가로와 세로를 알고 **네 변의 길이의 합**을 구한다(두 단계). */
+function rect124Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 4, 12);
+  const h = pick(
+    rng,
+    [2, 3, 5, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  const thing = pick(rng, [
+    "액자",
+    "공책",
+    "칠판",
+    "책상",
+    "손수건",
+    "게시판",
+    "창문",
+    "카드",
+  ]);
+  return make(
+    unit,
+    pick(rng, [
+      `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+      `직사각형 모양 ${thing}의 가로는 ${n(w)} cm, 세로는 ${n(h)} cm입니다. 네 변의 길이의 합을 구하시오.`,
+      `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형이 있습니다. 네 변의 길이를 모두 더하면 몇 cm인지 쓰시오.`,
+      `${thing}${josa(thing, "은", "는")} 가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형입니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    ]),
+    n((w + h) * 2),
+    `직사각형은 마주 보는 두 변의 길이가 같습니다. 네 변을 모두 더하면 ${expr(`${w}+${h}+${w}+${h}=${(w + h) * 2}`)} 이므로 ${n((w + h) * 2)} cm입니다.`,
+  );
+}
+
+/** 4단 — **역산**. 네 변의 길이의 합과 가로에서 세로를 되짚는다. */
+function rect124Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 4, 12);
+  const h = pick(
+    rng,
+    [2, 3, 5, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  const total = (w + h) * 2;
+  const half = w + h;
+  const thing = pick(rng, [
+    "액자",
+    "공책",
+    "칠판",
+    "책상",
+    "손수건",
+    "게시판",
+    "창문",
+    "카드",
+  ]);
+  return make(
+    unit,
+    pick(rng, [
+      `네 변의 길이의 합이 ${n(total)} cm인 직사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 가로가 ${n(w)} cm일 때 세로는 몇 cm인지 쓰시오.`,
+      `직사각형 모양 ${thing}의 네 변의 길이의 합은 ${n(total)} cm이고 가로는 ${n(w)} cm입니다. 세로를 구하시오.`,
+      `어떤 직사각형의 네 변의 길이를 모두 더하니 ${n(total)} cm였습니다. 가로가 ${n(w)} cm라면 세로는 몇 cm인지 쓰시오.`,
+      `${thing}${josa(thing, "은", "는")} 네 변의 길이의 합이 ${n(total)} cm인 직사각형입니다. 가로가 ${n(w)} cm일 때 세로는 몇 cm인지 쓰시오.`,
+    ]),
+    n(h),
+    `직사각형은 마주 보는 두 변의 길이가 같으므로, 네 변의 합의 반이 가로와 세로의 합입니다. ${expr(`${total}\\div2=${half}`)} 입니다. 여기서 가로를 빼면 ${expr(`${half}-${w}=${h}`)} 이므로 세로는 ${n(h)} cm입니다.`,
+  );
+}
+
+// ── 1-2-5 정사각형 알아보기 ──
+
+function sq125Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const ask = pick(rng, [
+    `정사각형은 어느 것인지 기호를 쓰시오.`,
+    `정사각형에 해당하는 것의 기호를 쓰시오.`,
+    `정사각형 하나를 골라 그 기호를 쓰시오.`,
+    `사각형 가운데 정사각형인 것의 기호를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}`,
+    row.answer,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/**
+ * 나란한 직사각형 한 줄. 정확히 하나만 정사각형이다.
+ *
+ * `squarePick`(기본 문항)과 **따로 짠다** — 거기서 발문을 긁어 기호를 되찾으려 했더니
+ * 말투가 세 가지라 「…를 찾아 기호를 쓰시오. (가, 나)」 꼴에서 정규식이 빗나갔다.
+ * 빗나가면 **조용히 「가, 나」로 떨어져** 그림과 다른 기호를 적는다 — 긁지 말고 만든다.
+ */
+function squareRow(rng: Rng) {
+  const count = intBetween(rng, 2, 3);
+  const gap = count === 3 ? 4 : 5;
+  const maxW = count === 3 ? 2 : 3;
+  const rows = 3;
+  const side = intBetween(rng, 2, maxW);
+  const answerAt = intBetween(rng, 0, count - 1);
+  const oblong: [number, number][] = [];
+  for (let w = 1; w <= maxW; w += 1) {
+    for (let h = 1; h <= rows; h += 1) if (w !== h) oblong.push([w, h]);
+  }
+  const shapes: GridShape[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const [w, h] = i === answerAt ? [side, side] : pick(rng, oblong);
+    const c0 = i * gap;
+    const r0 = rows - h!;
+    shapes.push(
+      closedShape(
+        [
+          [c0, r0],
+          [c0 + w!, r0],
+          [c0 + w!, r0 + h!],
+          [c0, r0 + h!],
+        ],
+        SHAPE_LABELS[i]!,
+      ),
+    );
+  }
+  return {
+    cols: (count - 1) * gap + maxW,
+    rows,
+    shapes,
+    labels: SHAPE_LABELS.slice(0, count),
+    answer: SHAPE_LABELS[answerAt]!,
+    side,
+  };
+}
+
+/** 2단 — 조건이 문장으로만. 「네 각이 직각이고 네 변이 같은」을 말로 풀어 준다. */
+function sq125Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const ask = pick(rng, [
+    `네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형`,
+    `네 변의 길이가 모두 같은 직사각형`,
+    `가로와 세로의 길이가 같은 직사각형`,
+    `네 변의 길이가 모두 같고 네 각이 모두 같은 사각형`,
+  ]);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
+    row.answer,
+    `문장이 가리키는 것은 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 3단 — 정사각형을 찾고 그 **네 변의 길이의 합**까지 구한다(두 단계). */
+function sq125Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const thing = pick(rng, [
+    "색종이",
+    "손수건",
+    "액자",
+    "타일",
+    "방석",
+    "게시판",
+    "창문",
+    "스케치북",
+  ]);
+  return make(
+    unit,
+    `한 변의 길이가 ${n(side)} cm인 정사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 네 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    n(side * 4),
+    `정사각형은 네 변의 길이가 모두 같습니다. 같은 길이를 네 번 더하면 ${expr(`${side}+${side}+${side}+${side}=${side * 4}`)} 이므로 ${n(side * 4)} cm입니다.`,
+  );
+}
+
+/** 4단 — **역산**. 네 변의 길이의 합에서 한 변을 되짚는다. 도형에서 역산이 서는 자리다. */
+function sq125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const total = side * 4;
+  const thing = pick(rng, [
+    "색종이",
+    "손수건",
+    "액자",
+    "타일",
+    "방석",
+    "게시판",
+    "창문",
+    "스케치북",
+  ]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `네 변의 길이의 합이 ${n(total)} cm인 정사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 이 ${thing}의 한 변의 길이는 몇 cm인지 쓰시오.`,
+      n(side),
+      `정사각형은 네 변의 길이가 모두 같으므로 합을 넷으로 똑같이 나눕니다. ${expr(`${total}\\div4=${side}`)} 이므로 한 변은 ${n(side)} cm입니다.`,
+    );
+  }
+  // 가로와 세로의 **합이 짝수**라야 네 변의 합이 $4$ 로 나누어떨어진다.
+  // 홀수를 허용하면 정사각형 한 변이 `$9.5$` 로 나온다 — 초3 에 소수는 1-6 단원이고,
+  // 원장님이 잡으신 「분수 답을 소수로」(R2)와 같은 부류다. 뽑는 범위에서 막는다.
+  const w = side + pick(rng, [2, 4, 6]);
+  const rectTotal = (w + side) * 2;
+  return make(
+    unit,
+    `네 변의 길이의 합이 같은 정사각형과 직사각형이 있습니다. 직사각형의 가로가 ${n(w)} cm, 세로가 ${n(side)} cm일 때 정사각형의 한 변의 길이는 몇 cm인지 쓰시오.`,
+    n(rectTotal / 4),
+    `직사각형의 네 변의 길이의 합은 ${expr(`${w}+${side}+${w}+${side}=${rectTotal}`)} 입니다. 정사각형은 네 변이 같으므로 ${expr(`${rectTotal}\\div4=${rectTotal / 4}`)} 이므로 한 변은 ${n(rectTotal / 4)} cm입니다.`,
+  );
+}
+
+// ── 1-3 나눗셈 (D-72 확대) ────────────────────────────────────────────
+//
+// 나눗셈 도입 대단원 — 모든 나눗셈이 **곱셈구구 안**이다: 나누는 수·몫 2..9,
+// 나뉘는 수 ≤ 81, 나머지 없음(나머지는 2-2 가 맡는다). 표준 `division` 이
+// 소단원마다 한 틀뿐이므로 갈래 말투는 따로 둔다(1-2 와 같은 이유).
+//
+// 몫과 나누는 수가 같으면($25\div5$) 발문에 답이 보인다 — 표준의 회피 이유 그대로,
+// 여기서는 재추첨 가드가 아니라 **뽑는 범위에서** 뺀다(2-2-4 수리와 같은 태도).
+// 지면에 찍히는 **모든** 나눗셈이 몫≠나누는 수다 — 시험이 전 갈래에서 잠근다.
+
+/** 곱셈구구 안의 나눗셈 한 벌 — $a=b\times q$, $q\ne b$. */
+function divTriple(rng: Rng): { a: number; b: number; q: number } {
+  const b = intBetween(rng, 2, 9);
+  // 몫은 2..9 여덟 값에서 b 를 건너뛴다 — 2..8 로 뽑고 b 이상이면 한 칸 민다.
+  const qq = intBetween(rng, 2, 8);
+  const q = qq >= b ? qq + 1 : qq;
+  return { a: b * q, b, q };
+}
+
+/**
+ * 한 수를 서로 다른 두 수로 나누는 조합 — $a=b\times q_1=c\times q_2$, 넷 다 2..9,
+ * 두 나눗셈 모두 몫≠나누는 수. 심화 세 갈래(몫 비교·다시 담기·어떤 수)가
+ * **같은 풀 하나**를 쓴다 — 목록을 손으로 적지 않고 전수 열거로 만든다.
+ */
+function divCombos(): {
+  a: number;
+  b: number;
+  c: number;
+  q1: number;
+  q2: number;
+}[] {
+  const out: { a: number; b: number; c: number; q1: number; q2: number }[] = [];
+  for (let b = 2; b <= 9; b += 1) {
+    for (let q1 = 2; q1 <= 9; q1 += 1) {
+      if (q1 === b) continue;
+      const a = b * q1;
+      for (let c = 2; c <= 9; c += 1) {
+        if (c === b || a % c !== 0) continue;
+        const q2 = a / c;
+        if (q2 < 2 || q2 > 9 || q2 === c) continue;
+        // ⚠️ c 가 옛 몫과 같으면($a=b\times q_1=q_1\times b$) 새 몫이 옛 나누는 수 b 라서
+        //    **답이 발문에 그대로 보인다**(표본 눈검수 실측: 「4개씩 7묶음 → 7개씩?」의 답 4).
+        if (c === q1) continue;
+        out.push({ a, b, c, q1, q2 });
+      }
+    }
+  }
+  if (out.length === 0) throw new Error("나눗셈 조합 풀이 비었습니다");
+  return out;
+}
+
+const DIV_COMBOS = divCombos();
+/** 몫 비교용 — $b<c$ 면 몫의 차가 늘 양수라 「몇 개 더 많은가」가 선다. */
+const DIV_COMBOS_LT = DIV_COMBOS.filter((v) => v.b < v.c);
+if (DIV_COMBOS_LT.length === 0) throw new Error("나눗셈 비교 풀이 비었습니다");
+
+/** 등분 이야기 소재(1-3-1) — 사람·바구니에게 나눠 준다. */
+const SHARE_STUFF = [
+  "귤",
+  "구슬",
+  "색종이",
+  "딱지",
+  "연필",
+  "붙임딱지",
+  "초콜릿",
+  "지우개",
+] as const;
+
+/** 묶음 이야기 소재(1-3-3) — 봉지·상자에 «씩» 담는다. */
+const PACK_STUFF = [
+  "쿠키",
+  "사탕",
+  "도넛",
+  "방울토마토",
+  "클립",
+  "단추",
+  "젤리",
+  "빵",
+] as const;
+
+// ── 1-3-1 똑같이 나누기 ──
+
+/** 1단 — 식 그대로. 표준(사탕 묶음 그림 문장)과 겹치지 않게 식 틀만 따로 돌린다. */
+function div131Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `다음을 계산하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `나눗셈 ${expr(`${a}\\div${b}`)} 의 몫을 구하시오.`,
+    `${expr(`${a}\\div${b}`)} 의 값을 쓰시오.`,
+    `${expr(`\\square`)} 에 알맞은 수를 쓰시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `몫을 구하시오.\n\n${expr(`${a}\\div${b}`)}`,
+    `나눗셈식 ${expr(`${a}\\div${b}=\\square`)} 에서 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `다음 나눗셈의 몫을 쓰시오.\n\n${expr(`${a}\\div${b}`)}`,
+    `빈칸에 알맞은 수를 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 몫은 ${n(q)} 입니다.`,
+  );
+}
+
+/** 2단 — 등분 문장. 식은 학생이 세운다(발문에 나눗셈 기호가 없다). */
+function div131Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가지려고 합니다. 한 명이 몇 개씩 가지면 되는지 쓰시오.`,
+    `${thing} ${n(a)}개를 바구니 ${n(b)}개에 똑같이 나누어 담으면 한 바구니에 몇 개씩 담기는지 쓰시오.`,
+    `친구 ${n(b)}명이 ${thing} ${n(a)}개를 남김없이 똑같이 나누어 가졌습니다. 한 명이 가진 ${thing}${josa(thing, "은", "는")} 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 접시 ${n(b)}개에 남김없이 똑같이 나누어 놓으려고 합니다. 접시 한 개에 몇 개씩 놓아야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(a)}개를 ${n(b)}곳으로 똑같이 나누는 식은 ${expr(`${a}\\div${b}`)} 입니다. ${expr(`${a}\\div${b}=${q}`)} 이므로 한 곳에 ${n(q)}개씩입니다.`,
+  );
+}
+
+/** 3단 — 두 곳의 것을 **합친 뒤** 나눈다(두 단계). */
+function div131Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  // 「$1$개를 가져왔습니다」는 어색하다 — 두 몫 다 2개 이상으로 뽑는다(a ≥ 6 이라 늘 된다).
+  const x = intBetween(rng, 2, a - 2);
+  const y = a - x;
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `상자에 ${thing} ${n(x)}개, 주머니에 ${n(y)}개가 있습니다. 모두 모아 ${n(b)}명이 똑같이 나누어 가지면 한 명이 몇 개씩 가지는지 쓰시오.`,
+    `${thing}${josa(thing, "이", "가")} 책상 위에 ${n(x)}개, 서랍 안에 ${n(y)}개 있습니다. 전부 모아 ${n(b)}명이 똑같이 나누면 한 명의 몫은 몇 개인지 쓰시오.`,
+    `언니가 ${thing} ${n(x)}개, 동생이 ${n(y)}개를 가져왔습니다. 둘이 가져온 것을 모두 ${n(b)}명이 똑같이 나누어 가지면 한 명이 몇 개씩 받는지 쓰시오.`,
+    `${thing} ${n(x)}개가 든 봉지와 ${n(y)}개가 든 봉지가 있습니다. 두 봉지를 합쳐 ${n(b)}명에게 똑같이 나누어 주면 한 명에게 몇 개씩 줄 수 있는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `먼저 모두 모읍니다. ${expr(`${x}+${y}=${a}`)} 입니다. ${expr(`${a}\\div${b}=${q}`)} 이므로 한 명이 ${n(q)}개씩 가집니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 같은 것을 두 가지 수로 나눠 **몫을 견준다**. */
+function div131Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS_LT);
+  const d = q1 - q2;
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 ${n(b)}명이 똑같이 나눌 때와 ${n(c)}명이 똑같이 나눌 때, 한 명이 가지는 개수의 차는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개가 있습니다. ${n(b)}명이 나누면 ${n(c)}명이 나눌 때보다 한 명이 몇 개 더 가지는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}묶음으로 나눌 때와 ${n(c)}묶음으로 나눌 때, 한 묶음의 개수는 몇 개 차이 나는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}명에게 똑같이 나누어 주다가, 마음을 바꿔 ${n(c)}명에게 똑같이 나누어 주었습니다. 한 명이 받는 개수가 몇 개 줄었는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(d),
+    // 발문이 명·묶음을 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${a}\\div${b}=${q1}`)} 이고 ${expr(`${a}\\div${c}=${q2}`)} 입니다. 한 몫의 차는 ${expr(`${q1}-${q2}=${d}`)} 이므로 ${n(d)}개입니다.`,
+  );
+}
+
+// ── 1-3-2 곱셈과 나눗셈의 관계 ──
+
+/** 1단 — 곱셈식 하나에서 나눗셈 몫을 바로 읽는다. 어느 쪽 수를 물을지도 갈래다. */
+function div132Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const askQ = intBetween(rng, 0, 1) === 0;
+  const div = askQ ? `${a}\\div${b}` : `${a}\\div${q}`;
+  const ans = askQ ? q : b;
+  const mul = expr(`${b}\\times${q}=${a}`);
+  const stem = pick(rng, [
+    `곱셈식이 ${mul} 일 때, ${expr(div)} 의 몫을 구하시오.`,
+    `${mul} 입니다. ${expr(div)} 의 값을 쓰시오.`,
+    `곱셈식 ${mul} 에서 만든 나눗셈식 ${expr(`${div}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${mul} 이므로 ${expr(div)} 의 몫을 바로 알 수 있습니다. 그 몫을 쓰시오.`,
+    `곱셈과 나눗셈의 관계를 이용하여 ${expr(div)} 의 몫을 구하시오. (${mul})`,
+    `${expr(`${div}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 곱셈식 ${mul} 에서 찾아 쓰시오.`,
+    `곱셈식 ${mul} 의 세 수로 나눗셈식을 만들면 ${expr(`${div}=\\square`)} 입니다. ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${mul} 에서 ${expr(div)} 의 몫을 찾아 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `곱셈식과 나눗셈식은 같은 세 수를 씁니다. ${mul} 이므로 ${expr(`${div}=${ans}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 관계를 문장으로: 곱과 한 수를 알고 다른 수를 찾는다. */
+function div132Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `어떤 두 수의 곱이 ${n(a)} 입니다. 한 수가 ${n(b)} 일 때 다른 한 수를 쓰시오.`,
+    `${n(b)} 에 어떤 수를 곱한 결과가 ${n(a)} 입니다. 어떤 수를 쓰시오.`,
+    `어떤 수와 ${n(b)} 의 곱이 ${n(a)} 입니다. 어떤 수를 구하시오.`,
+    `곱이 ${n(a)} 인 두 수 중에서 한 수가 ${n(b)} 입니다. 나머지 한 수를 쓰시오.`,
+    `수 카드 두 장의 수를 곱했더니 ${n(a)} 입니다. 한 장의 수가 ${n(b)} 일 때 다른 한 장의 수를 쓰시오.`,
+    `${n(b)} 씩 몇 묶음을 모았더니 모두 ${n(a)}개입니다. 몇 묶음인지 쓰시오.`,
+    `한 봉지에 ${n(b)}개씩 들어 있는 과자 몇 봉지가 모두 ${n(a)}개입니다. 몇 봉지인지 쓰시오.`,
+    `${n(b)}명이 똑같이 나누어 가진 구슬이 모두 ${n(a)}개입니다. 한 명이 가진 구슬은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `곱하는 수는 나눗셈으로 구합니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱셈식 하나에서 나눗셈식 **둘**을 만들어 두 몫을 더한다(두 단계). */
+function div132Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const s = q + b;
+  const mul = expr(`${b}\\times${q}=${a}`);
+  // ⚠️ 발문에 `$a\div b$ 의 몫` 을 인라인하지 않는다 — 산술 판독기가 그 식을 «값 질문»으로
+  //    읽어 합(答)과 어긋난다고 봤다(실측: 씨앗 5/8). 나눗셈식은 학생이 만들게 두는 쪽이
+  //    3단 취지에도 맞다.
+  const stem = pick(rng, [
+    `곱셈식 ${mul} 에서 나눗셈식 두 개를 만들 수 있습니다. 두 나눗셈식의 몫의 합을 쓰시오.`,
+    `${mul} 에서 만들 수 있는 나눗셈식 두 개의 몫을 더한 값을 쓰시오.`,
+    `곱셈식 ${mul} 의 세 수로 나눗셈식 두 개를 만들고, 그 두 몫의 합을 구하시오.`,
+    `${mul} 입니다. 이 곱셈식에서 나온 나눗셈식 두 개의 몫을 더하면 얼마인지 쓰시오.`,
+    `곱셈식 ${mul} 에서 나눗셈식 두 개를 만들고, 두 몫을 더한 값을 구하시오.`,
+    `${mul} 에서 나온 두 나눗셈식의 몫을 모두 더하면 얼마인지 쓰시오.`,
+    `곱셈식이 ${mul} 일 때, 만들 수 있는 나눗셈식 두 개의 몫의 합을 구하시오.`,
+    `${mul} 의 세 수로 만들 수 있는 나눗셈식 두 개의 몫의 합을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(s),
+    `${expr(`${a}\\div${b}=${q}`)} 이고 ${expr(`${a}\\div${q}=${b}`)} 입니다. ${expr(`${q}+${b}=${s}`)} 이므로 합은 ${n(s)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 둘: 「나눠야 할 것을 잘못 뺐다」와 「나누는 수 되짚기」. */
+function div132Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = a - b;
+    const stem = pick(rng, [
+      `어떤 수를 ${n(b)} 씩 똑같이 나누어야 하는데 잘못하여 ${n(b)} 만큼 뺐더니 결과가 ${n(x)} 입니다. 바르게 계산한 몫을 쓰시오.`,
+      `어떤 수에서 ${n(b)} 만큼 빼면 ${n(x)} 입니다. 이 어떤 수를 ${n(b)} 씩 나누면 몫이 얼마인지 쓰시오.`,
+      `${n(b)} 씩 나누어야 할 수에서 잘못하여 ${n(b)} 만큼 뺐더니 ${n(x)} 만 남았습니다. 바르게 나눈 몫을 쓰시오.`,
+      `어떤 수를 ${n(b)} 씩 나누는 대신 ${n(b)} 만큼 빼는 실수를 했더니 결과가 ${n(x)} 입니다. 바르게 계산했을 때의 몫을 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q),
+      `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `${n(a)}개를 몇 명이 똑같이 나누었더니 한 명이 ${n(q)}개씩 가졌습니다. 몇 명이 나누었는지 쓰시오.`,
+    `나뉘는 수가 ${n(a)}, 몫이 ${n(q)} 인 나눗셈식이 있습니다. 나누는 수를 쓰시오.`,
+    `구슬 ${n(a)}개를 똑같이 나누어 담았더니 주머니마다 ${n(q)}개씩 꼭 맞게 들어갔습니다. 주머니는 몇 개인지 쓰시오.`,
+    `사탕 ${n(a)}개를 접시마다 ${n(q)}개씩 나누어 놓았더니 남는 것이 없었습니다. 접시는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b),
+    // 발문이 명·주머니·접시·나눗셈식을 오가므로 「구하는 수」로 고정한다.
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 구하는 수는 ${n(b)} 입니다. 검산하면 ${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+// ── 1-3-3 나눗셈의 몫을 곱셈식으로 구하기 ──
+
+/** 1단 — $b\times\square=a$ 꼴에서 몫을 읽는다. 표준($\square\times b$)과 자리를 바꿔 둔다. */
+function div133Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const box = expr(`${b}\\times\\square=${a}`);
+  const dv = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${box} 의 ${expr(`\\square`)} 에 알맞은 수를 구하여 ${dv} 의 몫을 쓰시오.`,
+    `곱셈식 ${box} 에서 ${dv} 의 몫을 구하시오.`,
+    `${dv} 의 몫은 ${box} 의 ${expr(`\\square`)} 입니다. 그 수를 쓰시오.`,
+    `${expr(`${b}\\times${q}=${a}`)} 입니다. ${dv} 의 몫을 쓰시오.`,
+    `곱셈식을 이용하여 ${dv} 의 몫을 구하시오.`,
+    `${expr(`${a}\\div${b}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 ${box} 에서 찾아 쓰시오.`,
+    `나눗셈 ${dv} 의 몫을 곱셈식으로 구하려고 합니다. ${box} 의 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${dv} 의 몫을 구하는 곱셈식은 ${box} 입니다. 몫을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «씩 담기» 문장. 몇 묶음인지 곱셈식으로 찾는다. */
+function div133Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 봉지 한 개에 ${n(b)}개씩 담으려고 합니다. 봉지는 몇 개 필요한지 쓰시오.`,
+    `${thing} ${n(a)}개를 한 접시에 ${n(b)}개씩 나누어 담으면 접시 몇 개에 담을 수 있는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}개씩 묶으면 몇 묶음이 되는지 쓰시오.`,
+    `상자 한 개에 ${thing}${josa(thing, "을", "를")} ${n(b)}개씩 담아 모두 ${n(a)}개를 담으려고 합니다. 상자는 몇 개 있어야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}개씩 몇 묶음이 ${n(a)}개가 되는지 곱셈식으로 찾습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 나눠 담고 나서 **몇 묶음을 덜어낸다**(두 단계). */
+function div133Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, q - 1);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 한 봉지에 ${n(b)}개씩 모두 담은 뒤, 그중 ${n(c)}봉지를 이웃에게 주었습니다. 남은 봉지는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}개씩 묶어 묶음을 만들고, ${n(c)}묶음을 동생에게 주면 몇 묶음이 남는지 쓰시오.`,
+    `${thing} ${n(a)}개를 접시 한 개에 ${n(b)}개씩 담았습니다. 그중 ${n(c)}접시를 손님상에 내면 남는 접시는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 상자 한 개에 ${n(b)}개씩 담아 두었다가 ${n(c)}상자를 팔았습니다. 남은 상자는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    // 발문이 봉지·묶음·접시·상자를 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다. 여기서 ${expr(`${q}-${c}=${q - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산+조합: 담긴 수로 **전체를 되짚고** 다른 크기로 다시 담는다. */
+function div133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 한 봉지에 ${n(b)}개씩 담았더니 남김없이 ${n(q1)}봉지가 되었습니다. 다시 한 봉지에 ${n(c)}개씩 담으면 몇 봉지가 되는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} ${n(b)}개씩 묶었더니 꼭 ${n(q1)}묶음이었습니다. 같은 ${thing}${josa(thing, "을", "를")} ${n(c)}개씩 다시 묶으면 몇 묶음인지 쓰시오.`,
+    `한 상자에 ${n(b)}개씩 ${n(q1)}상자에 꼭 맞게 담긴 ${thing}${josa(thing, "이", "가")} 있습니다. 이것을 한 상자에 ${n(c)}개씩 옮겨 담으면 상자 몇 개가 되는지 쓰시오.`,
+    `${thing} 전부를 ${n(b)}개씩 담아 ${n(q1)}봉지를 만들었습니다. 처음부터 ${n(c)}개씩 담았다면 몇 봉지가 되었을지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q2),
+    `먼저 전체 수를 되짚습니다. ${expr(`${b}\\times${q1}=${a}`)} 이므로 모두 ${n(a)}개입니다. ${expr(`${a}\\div${c}=${q2}`)} 입니다.`,
+  );
+}
+
+// ── 1-3-4 나눗셈의 몫을 곱셈구구로 구하기 ──
+
+/** 1단 — 구구단 이름을 앞세운 식 틀. 표준(「곱셈구구로 구하시오」 한 틀)과 갈라 둔다. */
+function div134Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const dv = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${n(b)}단 곱셈구구를 이용하여 ${dv} 의 몫을 구하시오.`,
+    `${n(b)}단 곱셈구구에서 곱이 ${n(a)} 인 곱셈식을 찾아 ${dv} 의 몫을 쓰시오.`,
+    `곱셈구구를 이용하여 다음 나눗셈의 몫을 구하시오.\n\n${dv}`,
+    `${expr(`${a}\\div${b}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 ${n(b)}단 곱셈구구에서 찾아 쓰시오.`,
+    `${n(b)}단 곱셈구구를 떠올려 ${dv} 의 값을 쓰시오.`,
+    `곱셈구구로 다음을 계산하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times\\square=${a}`)} 의 ${expr(`\\square`)} 에 알맞은 수를 찾아 몫을 쓰시오.`,
+    `다음 나눗셈의 몫을 곱셈구구에서 찾아 쓰시오.\n\n${dv}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «씩» 반복 문장(읽기·자르기·마시기). 구구단으로 몫을 찾는다. */
+function div134Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 며칠 만에 다 읽는지 쓰시오.`,
+    `길이가 ${n(a)} cm 인 색 테이프를 ${n(b)} cm 씩 자르면 몇 도막이 되는지 쓰시오.`,
+    `우유 ${n(a)}컵을 하루에 ${n(b)}컵씩 마시면 며칠 동안 마실 수 있는지 쓰시오.`,
+    `계단 ${n(a)}칸을 한 번에 ${n(b)}칸씩 오르면 몇 번 만에 다 오르는지 쓰시오.`,
+    `구슬 ${n(a)}개를 한 줄에 ${n(b)}개씩 꿰면 몇 줄이 되는지 쓰시오.`,
+    `문제집 ${n(a)}문제를 하루에 ${n(b)}문제씩 풀면 며칠 만에 다 푸는지 쓰시오.`,
+    `색종이 ${n(a)}장을 한 사람에게 ${n(b)}장씩 주면 몇 명에게 줄 수 있는지 쓰시오.`,
+    `쌓기나무 ${n(a)}개로 한 층에 ${n(b)}개씩 쌓으면 몇 층이 되는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 몫을 구하고 **거기에 더한다**(두 단계). */
+function div134Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, 5);
+  const [p1, p2] = pick(rng, [
+    ["동화책", "위인전"],
+    ["만화책", "과학책"],
+    ["동시집", "소설책"],
+    ["그림책", "역사책"],
+  ] as const);
+  const stem = pick(rng, [
+    `${p1} ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽습니다. ${p2}${josa(p2, "은", "는")} ${p1}보다 ${n(c)}일 더 걸립니다. ${p2}${josa(p2, "을", "를")} 다 읽는 데 며칠 걸리는지 쓰시오.`,
+    `${p1} ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽어 다 읽었습니다. ${p2}${josa(p2, "은", "는")} 그보다 ${n(c)}일 더 걸렸습니다. ${p2}${josa(p2, "은", "는")} 며칠 만에 다 읽었는지 쓰시오.`,
+    `하루에 ${n(b)}쪽씩 ${p1} ${n(a)}쪽을 다 읽은 뒤, ${n(c)}일 더 걸려 ${p2}${josa(p2, "을", "를")} 마쳤습니다. ${p2}${josa(p2, "을", "를")} 읽는 데 걸린 날수를 쓰시오.`,
+    `${p1} ${n(a)}쪽은 하루 ${n(b)}쪽씩 읽어 며칠 만에 끝냈고, ${p2}${josa(p2, "은", "는")} 그보다 ${n(c)}일이 더 걸렸습니다. ${p2}에 걸린 날수는 며칠인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q + c),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${p1}${josa(p1, "은", "는")} ${n(q)}일 걸립니다. ${expr(`${q}+${c}=${q + c}`)} 이므로 ${p2}${josa(p2, "은", "는")} ${n(q + c)}일 걸립니다.`,
+  );
+}
+
+/** 4단 — «어떤 수» 두 겹: 묶음 수로 어떤 수를 되짚고, 다른 크기로 다시 묶는다. */
+function div134Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS);
+  const boxEq = expr(`\\square\\div${b}=${q1}`);
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)} 씩 묶었더니 남김없이 ${n(q1)} 묶음이 되었습니다. 같은 수를 ${n(c)} 씩 묶으면 몇 묶음이 되는지 쓰시오.`,
+    `어떤 수를 ${n(b)} 씩 덜어 내면 꼭 ${n(q1)} 번 만에 없어집니다. 같은 수를 ${n(c)} 씩 덜어 내면 몇 번 만에 없어지는지 쓰시오.`,
+    `나누는 수가 ${n(b)} 이고 몫이 ${n(q1)} 인 나눗셈이 있습니다. 나뉘는 수는 그대로 두고 나누는 수만 ${n(c)} 이라고 하면 몫이 얼마인지 쓰시오.`,
+    `나눗셈의 몫이 ${n(q1)}, 나누는 수가 ${n(b)} 입니다. 나뉘는 수를 먼저 구하고, 그 수를 ${n(c)} 씩 나누었을 때의 몫을 쓰시오.`,
+    `${boxEq} 에서 ${expr(`\\square`)} 에 알맞은 수를 찾고, 그 수를 ${n(c)} 씩 묶으면 몇 묶음인지 쓰시오.`,
+    `${boxEq} 의 ${expr(`\\square`)} 에 알맞은 수를 구한 다음, 같은 수를 ${n(c)} 씩 덜어 내면 몇 번 만에 없어지는지 쓰시오.`,
+    `곱셈구구로 ${boxEq} 의 ${expr(`\\square`)} 에 알맞은 수를 구하고, 이어서 그 수를 ${n(c)} 씩 나눈 몫을 쓰시오.`,
+    `어떤 수는 ${n(b)} 단 곱셈구구의 값이고, ${boxEq} 의 ${expr(`\\square`)} 입니다. 이 수를 ${n(c)} 씩 나눈 몫을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q2),
+    // 발문이 묶음·번·몫을 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${b}\\times${q1}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. ${expr(`${a}\\div${c}=${q2}`)} 입니다.`,
+  );
+}
+
+// ── 1-4 곱셈 (D-72 확대) ────────────────────────────────────────────────
+//
+// 다섯 소단원이 **같은 네 갈래 함수**를 쓴다 — 수의 약속(몇십·올림 종류)은 `mulCaseOf` 가
+// 소단원 이름에서 정하므로, 소단원마다 함수를 두면 같은 코드가 다섯 벌 된다.
+// 축(D-72): 1단 식 그대로 · 2단 «씩» 문장 · 3단 곱하고 더하거나 덜기(두 단계) ·
+// 4단 «잘못 계산» 역산(더한·뺀 두 방향 — 되짚은 어떤 수가 다시 소단원 풀의 수다).
+
+/** 1단 — 식 그대로. 표준(「다음을 계산하시오」+세로셈 그림)과 틀을 갈라 둔다. */
+function mul14Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const stem = pick(rng, [
+    `곱을 구하시오.\n\n${eq}`,
+    `${eq} 의 값을 쓰시오.`,
+    `${expr(`\\square`)} 에 알맞은 수를 쓰시오.\n\n${eqBox}`,
+    `곱셈 ${eq} 의 값을 구하시오.`,
+    `다음 곱셈을 하시오.\n\n${eqBox}`,
+    `곱셈식 ${eqBox} 에서 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `다음 곱셈의 값을 쓰시오.\n\n${eq}`,
+    `빈칸에 알맞은 수를 구하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — «씩» 문장. 식은 학생이 세운다(발문에 곱셈 기호가 없다). */
+function mul14Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `한 상자에 구슬이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 들어 있는 구슬은 모두 몇 개인지 쓰시오.`,
+    `학생 한 명이 색종이를 ${n(a)}장씩 가졌습니다. ${n(b)}명이 가진 색종이는 모두 몇 장인지 쓰시오.`,
+    `하루에 동화책을 ${n(a)}쪽씩 읽습니다. ${n(b)}일 동안 읽는 쪽수는 모두 몇 쪽인지 쓰시오.`,
+    `한 봉지에 사탕이 ${n(a)}개씩 담겨 있습니다. ${n(b)}봉지에 담긴 사탕은 모두 몇 개인지 쓰시오.`,
+    `꽃 한 다발은 ${n(a)}송이입니다. ${n(b)}다발의 꽃은 모두 몇 송이인지 쓰시오.`,
+    `한 줄에 의자가 ${n(a)}개씩 놓여 있습니다. ${n(b)}줄에 놓인 의자는 모두 몇 개인지 쓰시오.`,
+    `클립 한 통에 클립이 ${n(a)}개씩 들어 있습니다. ${n(b)}통에 든 클립은 모두 몇 개인지 쓰시오.`,
+    `버스 한 대에 ${n(a)}명씩 탈 수 있습니다. 버스 ${n(b)}대에 탈 수 있는 사람은 모두 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `${n(a)}씩 ${n(b)}묶음이므로 곱셈으로 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 낱개를 더하거나 덜어낸다(두 단계). */
+function mul14Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const c = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `귤이 ${n(a)}개씩 든 상자가 ${n(b)}상자 있고, 낱개 귤이 ${n(c)}개 더 있습니다. 귤은 모두 몇 개인지 쓰시오.`,
+      `색종이를 ${n(a)}장씩 ${n(b)}묶음 사고, 따로 ${n(c)}장을 더 샀습니다. 색종이는 모두 몇 장인지 쓰시오.`,
+      `우표를 ${n(a)}장씩 ${n(b)}줄로 붙이고 ${n(c)}장을 더 붙였습니다. 우표는 모두 몇 장인지 쓰시오.`,
+      `구슬을 ${n(a)}개씩 ${n(b)}주머니에 담고 ${n(c)}개를 주머니 밖에 두었습니다. 구슬은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `사탕을 ${n(a)}개씩 ${n(b)}봉지 만들었습니다. 그중 ${n(c)}개를 먹으면 남는 사탕은 몇 개인지 쓰시오.`,
+    `연필이 ${n(a)}자루씩 ${n(b)}상자 있습니다. ${n(c)}자루를 나누어 주면 남는 연필은 몇 자루인지 쓰시오.`,
+    `쿠키를 ${n(a)}개씩 ${n(b)}판 구웠습니다. ${n(c)}개를 맛보면 남는 쿠키는 몇 개인지 쓰시오.`,
+    `밤을 ${n(a)}개씩 ${n(b)}봉지에 담았다가 ${n(c)}개를 옆집에 주었습니다. 남은 밤은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `${expr(`${a}\\times${b}=${p}`)} 입니다. 덜어낸 것을 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — «잘못 계산» 역산. 배(倍) 대신 더하거나 뺀 결과에서 어떤 수를 되짚는다. */
+function mul14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = a + b;
+    const stem = pick(rng, [
+      `어떤 수를 ${n(b)}배 하여야 할 것을 잘못하여 ${n(b)} 만큼 더했더니 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+      `어떤 수에 ${n(b)} 만큼 더한 결과가 ${n(x)} 입니다. 이 어떤 수를 ${n(b)}배 하면 얼마인지 쓰시오.`,
+      `어떤 수를 ${n(b)}배 하여 구해야 하는데, 잘못하여 ${n(b)} 만큼 더했더니 ${n(x)} 입니다. 바르게 ${n(b)}배 한 값을 쓰시오.`,
+      `곱하는 수와 더하는 수를 헷갈려, 어떤 수에 ${n(b)} 만큼 더한 결과 ${n(x)} 만 얻었습니다. 원래 구하려던 ${n(b)}배 한 값을 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p),
+      `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}-${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+    );
+  }
+  const x = a - b;
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)}배 하여야 할 것을 잘못하여 ${n(b)} 만큼 뺐더니 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+    `어떤 수에서 ${n(b)} 만큼 뺀 결과가 ${n(x)} 입니다. 이 어떤 수를 ${n(b)}배 하면 얼마인지 쓰시오.`,
+    `어떤 수를 ${n(b)}배 하는 대신 ${n(b)} 만큼 빼는 실수를 해서 결과가 ${n(x)} 입니다. 바르게 계산한 값을 쓰시오.`,
+    `어떤 수에서 ${n(b)} 만큼 뺐더니 ${n(x)} 만 남았습니다. 이 어떤 수를 ${n(b)}배 한 값을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+// ── 1-5 길이와 시간 (D-72 확대) ──────────────────────────────────────────
+//
+// 단위 경계(10 mm·1000 m·60초·60분)의 받아올림·내림이 이 대단원의 알맹이다.
+// 그림은 쓰지 않는다 — 필요한 자리가 생기면 기존 kind(clock·tape·timeAdd)만 쓰고,
+// 새 형태는 리드 경유(D-61). 길이 두 소단원(1-5-1·1-5-2)은 단위만 다르고 구조가
+// 같아 **공장 하나**를 나눠 쓴다(subCalcOf 와 같은 방식 — 규칙이 두 벌이 되지 않게).
+
+type LenCfg = {
+  big: string;
+  small: string;
+  mul: number;
+  smallPick: (rng: Rng) => number;
+  /** 「연필의 길이는」·「집에서 학교까지의 거리는」 — 소재가 딸린 주어. */
+  subject: (rng: Rng) => string;
+  word: string;
+};
+
+const LEN_CM: LenCfg = {
+  big: "cm",
+  small: "mm",
+  mul: 10,
+  smallPick: (rng) => intBetween(rng, 1, 9),
+  subject: (rng) =>
+    `${pick(rng, ["연필", "못", "클립", "지우개", "열쇠", "크레파스", "빨대", "나뭇잎"])}의 길이는`,
+  word: "길이",
+};
+
+const LEN_KM: LenCfg = {
+  big: "km",
+  small: "m",
+  // 몇백 m 로만 뽑는다 — 초3 1-5-2 는 «몇 km 몇백 m» 까지만 다룬다(표준과 같은 눈금).
+  mul: 1000,
+  smallPick: (rng) => intBetween(rng, 1, 9) * 100,
+  subject: (rng) =>
+    `${pick(rng, ["집에서 학교까지", "집에서 도서관까지", "학교에서 공원까지", "집에서 놀이터까지", "학교에서 우체국까지", "집에서 시장까지", "공원에서 도서관까지", "집에서 문구점까지"])}의 거리는`,
+  word: "거리",
+};
+
+const mixedLen = (cfg: LenCfg, k: number, e: number) =>
+  `$${k}\\,\\mathrm{${cfg.big}}\\ ${e}\\,\\mathrm{${cfg.small}}$`;
+
+/** 1단 — 단위 변환 식 그대로. 표준(「□ 안에 알맞은 수」)과 지시문을 갈라 둔다. */
+function lenCalcOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    const total = k * cfg.mul + e;
+    // ⚠️ 식은 KaTeX 한 덩어리라 변형 공간 정규화($…$→#)에서 지워진다 — 지시문이
+    //    틀마다 달라야 8종이 산다(형×지시문 2 = 8).
+    const form = intBetween(rng, 0, 3);
+    const prompt = pick(
+      rng,
+      [
+        [
+          `$\\square$ 에 알맞은 수를 쓰시오.`,
+          `큰 단위를 작은 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [
+          `빈칸에 알맞은 수를 구하시오.`,
+          `몇 ${cfg.big} 몇 ${cfg.small}인 값을 ${cfg.small} 단위로 바꾸어 $\\square$ 에 쓰시오.`,
+        ],
+        [
+          `$\\square$ 안에 알맞은 수를 구하시오.`,
+          `작은 단위를 큰 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [`빈칸에 알맞은 수를 쓰시오.`, `$\\square$ 에 들어갈 수를 구하시오.`],
+      ][form]!,
+    );
+    if (form === 0) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k}\\,\\mathrm{${cfg.big}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(k * cfg.mul),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 입니다.`,
+      );
+    }
+    if (form === 1) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k}\\,\\mathrm{${cfg.big}}\\ ${e}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 이고, ${expr(`${k * cfg.mul}+${e}=${total}`)} 입니다.`,
+      );
+    }
+    if (form === 2) {
+      return make(
+        unit,
+        `${prompt}\n\n$${k * cfg.mul}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.big}}$`,
+        n(k),
+        `$${cfg.mul}\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(k * cfg.mul, cfg.small)} 는 ${unitNum(k, cfg.big)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${prompt}\n\n$${total}\\,\\mathrm{${cfg.small}}=${k}\\,\\mathrm{${cfg.big}}\\ \\square\\,\\mathrm{${cfg.small}}$`,
+      n(e),
+      `$${k}\\,\\mathrm{${cfg.big}}=${k * cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${total}-${k * cfg.mul}=${e}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 변환. 방향(큰→작은·작은→큰)을 오간다. */
+function lenWordOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    const total = k * cfg.mul + e;
+    const sub = cfg.subject(rng);
+    if (intBetween(rng, 0, 1) === 0) {
+      return make(
+        unit,
+        `${sub} ${mixedLen(cfg, k, e)} 입니다. 이 ${cfg.word}는 몇 ${cfg.small}인지 쓰시오.`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`${cfg.mul}\\times${k}=${k * cfg.mul}`)} 이고, ${expr(`${k * cfg.mul}+${e}=${total}`)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${sub} ${unitNum(total, cfg.small)} 입니다. 이 ${cfg.word}는 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedLen(cfg, k, e),
+      `$${cfg.mul}\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(total, cfg.small)} 는 ${mixedLen(cfg, k, e)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 둘을 이어(더해) 작은 단위로 구한다(변환 두 번 + 덧셈). */
+function lenApplyOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k1 = intBetween(rng, 1, 4);
+    const e1 = cfg.smallPick(rng);
+    const k2 = intBetween(rng, 1, 4);
+    const e2 = cfg.smallPick(rng);
+    const t1 = k1 * cfg.mul + e1;
+    const t2 = k2 * cfg.mul + e2;
+    const stem =
+      cfg.big === "cm"
+        ? pick(rng, [
+            `길이가 ${mixedLen(cfg, k1, e1)} 인 색 테이프와 ${mixedLen(cfg, k2, e2)} 인 색 테이프를 겹치지 않게 이었습니다. 이은 길이는 모두 몇 mm인지 쓰시오.`,
+            `${mixedLen(cfg, k1, e1)} 인 리본과 ${mixedLen(cfg, k2, e2)} 인 리본을 나란히 이으면 전체 길이는 몇 mm인지 쓰시오.`,
+            `막대 두 개의 길이가 각각 ${mixedLen(cfg, k1, e1)}, ${mixedLen(cfg, k2, e2)} 입니다. 두 막대를 이은 길이는 몇 mm인지 쓰시오.`,
+            `철사 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 를 이어 붙였습니다. 전체 길이는 몇 mm인지 쓰시오.`,
+            `색 테이프 두 장을 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 만큼 잘랐습니다. 자른 길이를 모두 더하면 몇 mm인지 쓰시오.`,
+            `털실을 어제 ${mixedLen(cfg, k1, e1)}, 오늘 ${mixedLen(cfg, k2, e2)} 만큼 썼습니다. 이틀 동안 쓴 털실은 몇 mm인지 쓰시오.`,
+            `종이띠 ${mixedLen(cfg, k1, e1)} 와 ${mixedLen(cfg, k2, e2)} 를 나란히 붙였습니다. 붙인 종이띠의 전체 길이는 몇 mm인지 쓰시오.`,
+            `개미가 ${mixedLen(cfg, k1, e1)} 를 기어가고 이어서 ${mixedLen(cfg, k2, e2)} 를 더 기어갔습니다. 개미가 움직인 거리는 몇 mm인지 쓰시오.`,
+          ])
+        : pick(rng, [
+            `집에서 학교까지는 ${mixedLen(cfg, k1, e1)} 이고, 학교에서 공원까지는 ${mixedLen(cfg, k2, e2)} 입니다. 집에서 학교를 지나 공원까지 가는 거리는 몇 m인지 쓰시오.`,
+            `집에서 도서관까지는 ${mixedLen(cfg, k1, e1)}, 도서관에서 시장까지는 ${mixedLen(cfg, k2, e2)} 입니다. 집에서 도서관을 지나 시장까지의 거리는 몇 m인지 쓰시오.`,
+            `등산로 입구에서 쉼터까지는 ${mixedLen(cfg, k1, e1)} 이고, 쉼터에서 정상까지는 ${mixedLen(cfg, k2, e2)} 입니다. 입구에서 정상까지의 거리는 몇 m인지 쓰시오.`,
+            `자전거로 오전에 ${mixedLen(cfg, k1, e1)}, 오후에 ${mixedLen(cfg, k2, e2)} 를 달렸습니다. 하루 동안 달린 거리는 몇 m인지 쓰시오.`,
+            `마을 한 바퀴 중 큰길이 ${mixedLen(cfg, k1, e1)}, 골목길이 ${mixedLen(cfg, k2, e2)} 입니다. 마을 한 바퀴는 몇 m인지 쓰시오.`,
+            `아침에 ${mixedLen(cfg, k1, e1)}, 저녁에 ${mixedLen(cfg, k2, e2)} 를 걸었습니다. 하루 동안 걸은 거리는 몇 m인지 쓰시오.`,
+            `버스로 ${mixedLen(cfg, k1, e1)} 를 가고 걸어서 ${mixedLen(cfg, k2, e2)} 를 더 갔습니다. 이동한 거리는 모두 몇 m인지 쓰시오.`,
+            `강 상류 구간 ${mixedLen(cfg, k1, e1)} 와 하류 구간 ${mixedLen(cfg, k2, e2)} 를 이어 배를 탔습니다. 배로 간 거리는 몇 m인지 쓰시오.`,
+          ]);
+    return make(
+      unit,
+      stem,
+      n(t1 + t2),
+      `${mixedLen(cfg, k1, e1)} 는 ${unitNum(t1, cfg.small)}, ${mixedLen(cfg, k2, e2)} 는 ${unitNum(t2, cfg.small)} 입니다. ${expr(`${t1}+${t2}=${t1 + t2}`)} 입니다.`,
+    );
+  };
+}
+
+/** 4단 — 역산: 전체에서 한 부분을 되짚어 뺀다. */
+function lenDeepOf(cfg: LenCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const k = intBetween(rng, 1, 4);
+    const e = cfg.smallPick(rng);
+    const part = k * cfg.mul + e;
+    const rest = intBetween(rng, 2, 9) * (cfg.mul === 10 ? 1 : 100) + cfg.mul;
+    const whole = part + rest;
+    const stem =
+      cfg.big === "cm"
+        ? pick(rng, [
+            `길이가 ${unitNum(whole, cfg.small)} 인 철사를 두 도막으로 잘랐습니다. 한 도막이 ${mixedLen(cfg, k, e)} 라면 다른 도막은 몇 mm인지 쓰시오.`,
+            `${unitNum(whole, cfg.small)} 인 색 테이프에서 ${mixedLen(cfg, k, e)} 를 잘라 썼습니다. 남은 길이는 몇 mm인지 쓰시오.`,
+            `리본 ${unitNum(whole, cfg.small)} 중에서 ${mixedLen(cfg, k, e)} 를 선물 포장에 썼습니다. 남은 리본은 몇 mm인지 쓰시오.`,
+            `끈 ${unitNum(whole, cfg.small)} 를 두 도막으로 나누었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 나머지 한 도막은 몇 mm인지 쓰시오.`,
+            `털실 ${unitNum(whole, cfg.small)} 에서 ${mixedLen(cfg, k, e)} 만큼 잘라 냈습니다. 남은 털실은 몇 mm인지 쓰시오.`,
+            `길이가 ${unitNum(whole, cfg.small)} 인 빨대에서 ${mixedLen(cfg, k, e)} 를 잘라 냈습니다. 남은 빨대는 몇 mm인지 쓰시오.`,
+            `테이프 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 만큼 이미 썼습니다. 아직 남은 테이프는 몇 mm인지 쓰시오.`,
+            `실 ${unitNum(whole, cfg.small)} 를 두 도막 내었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 남은 한 도막은 몇 mm인지 쓰시오.`,
+          ])
+        : pick(rng, [
+            `집에서 공원까지의 거리는 ${unitNum(whole, cfg.small)} 입니다. 그중 ${mixedLen(cfg, k, e)} 를 걸었다면 남은 거리는 몇 m인지 쓰시오.`,
+            `전체 ${unitNum(whole, cfg.small)} 인 산책로에서 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸어야 하는 거리는 몇 m인지 쓰시오.`,
+            `마라톤 연습으로 ${unitNum(whole, cfg.small)} 를 달리기로 했습니다. 지금까지 ${mixedLen(cfg, k, e)} 를 달렸다면 남은 거리는 몇 m인지 쓰시오.`,
+            `자전거 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 지점을 지났습니다. 끝까지 남은 거리는 몇 m인지 쓰시오.`,
+            `둘레가 ${unitNum(whole, cfg.small)} 인 호수에서 ${mixedLen(cfg, k, e)} 만큼 걸었습니다. 한 바퀴까지 남은 거리는 몇 m인지 쓰시오.`,
+            `기차가 갈 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 를 이미 왔습니다. 남은 거리는 몇 m인지 쓰시오.`,
+            `등굣길 ${unitNum(whole, cfg.small)} 가운데 ${mixedLen(cfg, k, e)} 를 걸어왔습니다. 학교까지 남은 거리는 몇 m인지 쓰시오.`,
+            `산책로 전체는 ${unitNum(whole, cfg.small)} 이고, 지금까지 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸을 거리는 몇 m인지 쓰시오.`,
+          ]);
+    return make(
+      unit,
+      stem,
+      n(rest),
+      `${mixedLen(cfg, k, e)} 는 ${unitNum(part, cfg.small)} 입니다. ${expr(`${whole}-${part}=${rest}`)} 입니다.`,
+    );
+  };
+}
+
+// ── 1-5-3 길이와 거리를 어림하고 재어 보기 ──
+
+const GUESS_THINGS = [
+  "지우개",
+  "풀",
+  "가위",
+  "색연필",
+  "머리핀",
+  "클립",
+  "열쇠",
+  "못",
+] as const;
+
+/** 1단 — 어림값의 단위 변환 한 걸음. */
+function guessCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const g = intBetween(rng, 3, 9);
+  const stem = pick(rng, [
+    `${thing}의 길이를 약 ${unitNum(g, "cm")} 로 어림했습니다. 어림한 길이는 몇 mm인지 쓰시오.`,
+    `${thing}의 길이를 어림했더니 약 ${unitNum(g, "cm")} 였습니다. 이 어림값을 mm 로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(g * 10),
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${expr(`10\\times${g}=${g * 10}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 누가 더 가깝게 어림했는지 문장으로 판단한다. */
+function guessWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const [nameA, nameB] = pick(rng, [
+    ["가은", "나윤"],
+    ["다인", "라온"],
+    ["시우", "하람"],
+    ["도현", "서진"],
+  ] as const);
+  const real = intBetween(rng, 40, 90);
+  // 두 어림의 «거리»가 반드시 갈리게 뽑는다 — 가까운 쪽과 먼 쪽을 따로 만든다.
+  const nearOff = pick(rng, [-4, -3, -2, 2, 3, 4]);
+  const farOff = pick(rng, [-9, -8, 8, 9, 11, 12]);
+  const aIsNear = intBetween(rng, 0, 1) === 0;
+  const gNearMm = real + nearOff;
+  const gFarMm = real + farOff;
+  // 어림을 cm 로 반올림해 말하면 두 어림값이 같아져 차가 안 갈릴 수 있다 —
+  // mm 그대로 말하게 한다(어림을 mm 로 말하는 것도 교과서에 있다).
+  const gA = aIsNear ? gNearMm : gFarMm;
+  const gB = aIsNear ? gFarMm : gNearMm;
+  const dA = Math.abs(gA - real);
+  const dB = Math.abs(gB - real);
+  const winner = dA < dB ? nameA : nameB;
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 실제 길이는 ${unitNum(real, "mm")} 입니다. ${nameA}${josa(nameA, "이", "가")} 약 ${unitNum(gA, "mm")}, ${nameB}${josa(nameB, "이", "가")} 약 ${unitNum(gB, "mm")} 로 어림했다면 실제 길이에 더 가깝게 어림한 사람의 이름을 쓰시오.`,
+      `실제 길이가 ${unitNum(real, "mm")} 인 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} 약 ${unitNum(gA, "mm")}, ${nameB}${josa(nameB, "은", "는")} 약 ${unitNum(gB, "mm")} 로 어림했습니다. 더 가깝게 어림한 사람은 누구인지 이름을 쓰시오.`,
+    ]),
+    winner,
+    `${nameA}의 차는 ${expr(`${Math.max(gA, real)}-${Math.min(gA, real)}=${dA}`)} 이고, ${nameB}의 차는 ${expr(`${Math.max(gB, real)}-${Math.min(gB, real)}=${dB}`)} 입니다. 차가 더 작은 ${winner}${josa(winner, "이", "가")} 더 가깝게 어림했습니다.`,
+  );
+}
+
+/** 3단 — 어림과 실측의 차를 구하고, 두 사람의 차까지 견준다(두 단계). */
+function guessApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const real = intBetween(rng, 40, 90);
+  const nearOff = pick(rng, [-4, -3, -2, 2, 3, 4]);
+  const farOff = pick(rng, [-9, -8, 8, 9, 11, 12]);
+  const g1 = real + nearOff;
+  const g2 = real + farOff;
+  const d1 = Math.abs(g1 - real);
+  const d2 = Math.abs(g2 - real);
+  const gap = Math.abs(d1 - d2);
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 실제 길이는 ${unitNum(real, "mm")} 입니다. 형은 약 ${unitNum(g1, "mm")}, 동생은 약 ${unitNum(g2, "mm")} 로 어림했습니다. 두 사람의 어림값과 실제 길이의 차는 서로 몇 mm 차이 나는지 쓰시오.`,
+      `실제 길이가 ${unitNum(real, "mm")} 인 ${thing}${josa(thing, "을", "를")} 형은 약 ${unitNum(g1, "mm")}, 동생은 약 ${unitNum(g2, "mm")} 로 어림했습니다. 누가 몇 mm 더 가깝게 어림했는지 그 차이를 쓰시오.`,
+    ]),
+    n(gap),
+    `형의 차는 ${expr(`${Math.max(g1, real)}-${Math.min(g1, real)}=${d1}`)} 이고, 동생의 차는 ${expr(`${Math.max(g2, real)}-${Math.min(g2, real)}=${d2}`)} 입니다. ${expr(`${Math.max(d1, d2)}-${Math.min(d1, d2)}=${gap}`)} 이므로 ${unitNum(gap, "mm")} 차이 납니다.`,
+  );
+}
+
+/** 4단 — 역산: 어림값과 「몇 mm 길다·짧다」에서 실제 길이를 되짚는다. */
+function guessDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, GUESS_THINGS);
+  const g = intBetween(rng, 4, 9);
+  const d = intBetween(rng, 2, 9);
+  const longer = intBetween(rng, 0, 1) === 0;
+  const real = g * 10 + (longer ? d : -d);
+  return make(
+    unit,
+    pick(rng, [
+      `${thing}의 길이를 약 ${unitNum(g, "cm")} 로 어림했는데, 실제 길이는 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "깁니다" : "짧습니다"}. 실제 길이는 몇 mm인지 쓰시오.`,
+      `${thing}${josa(thing, "을", "를")} 약 ${unitNum(g, "cm")} 로 어림했습니다. 자로 재면 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "길다고" : "짧다고"} 합니다. 실제 길이는 몇 mm인지 쓰시오.`,
+    ]),
+    n(real),
+    `어림한 ${unitNum(g, "cm")} 는 ${unitNum(g * 10, "mm")} 입니다. ${expr(longer ? `${g * 10}+${d}=${real}` : `${g * 10}-${d}=${real}`)} 이므로 실제 길이는 ${unitNum(real, "mm")} 입니다.`,
+  );
+}
+
+// ── 1-5-4 1분보다 작은 단위 · 1-5-5 시간의 덧셈 · 1-5-6 시간의 뺄셈 ──
+//
+// 60 경계가 알맹이다. 갈래는 올림·내림이 «있는 씨앗과 없는 씨앗»을 섞는다(소단원
+// 이름에 조건이 없으므로 둘 다 소단원 안이다 — 표준은 늘 경계를 넘긴다).
+// 답의 분·초 자리는 반드시 정규화(< 60)되고 $0$ 이 되지 않게 **뽑을 때** 막는다.
+
+const hmStr = (h: number, m: number) => `${n(h)}시간 ${n(m)}분`;
+const clockStr = (h: number, m: number) => `${n(h)}시 ${n(m)}분`;
+const msStr = (m: number, s: number) => `${n(m)}분 ${n(s)}초`;
+
+/** 시간 두 벌의 합 — carry 여부를 씨앗이 고르고, 합의 분이 $0$ 이 되지 않게 뽑는다. */
+function addHm(rng: Rng): {
+  h1: number;
+  m1: number;
+  h2: number;
+  m2: number;
+  hh: number;
+  mm: number;
+} {
+  const carry = intBetween(rng, 0, 1) === 1;
+  const h1 = intBetween(rng, 1, 4);
+  const h2 = intBetween(rng, 1, 3);
+  let m1: number;
+  let m2: number;
+  if (carry) {
+    m1 = intBetween(rng, 6, 55);
+    m2 = intBetween(rng, Math.max(6, 61 - m1), 55);
+  } else {
+    m1 = intBetween(rng, 1, 58);
+    m2 = intBetween(rng, 1, 59 - m1);
+  }
+  const total = m1 + m2;
+  return {
+    h1,
+    m1,
+    h2,
+    m2,
+    hh: h1 + h2 + (total >= 60 ? 1 : 0),
+    mm: total % 60,
+  };
+}
+
+/** 시간 두 벌의 차 — borrow 여부를 씨앗이 고른다. 앞이 늘 크다. */
+function subHm(rng: Rng): {
+  h1: number;
+  m1: number;
+  sh: number;
+  sm: number;
+  hh: number;
+  mm: number;
+} {
+  const borrow = intBetween(rng, 0, 1) === 1;
+  if (borrow) {
+    const h1 = intBetween(rng, 3, 8);
+    const sh = intBetween(rng, 1, h1 - 2);
+    const m1 = intBetween(rng, 5, 25);
+    const sm = intBetween(rng, m1 + 5, 55);
+    return { h1, m1, sh, sm, hh: h1 - 1 - sh, mm: m1 + 60 - sm };
+  }
+  const h1 = intBetween(rng, 2, 8);
+  const sh = intBetween(rng, 1, h1 - 1);
+  const m1 = intBetween(rng, 10, 55);
+  const sm = intBetween(rng, 1, m1 - 1);
+  return { h1, m1, sh, sm, hh: h1 - sh, mm: m1 - sm };
+}
+
+/** 분↔초 해설 한 줄 — «1분은 60초» 근거를 늘 같은 모양으로 쓴다. */
+const minToSec = (m: number) =>
+  `$1$ 분은 $60$ 초이므로 ${expr(`60\\times${m}=${m * 60}`)} 입니다.`;
+
+// ── 1-5-4 1분보다 작은 단위 ──
+
+/** 1단 — 분↔초 변환 식 그대로. 표준(「몇 초인지 쓰시오」 두 틀)과 말투를 갈라 둔다. */
+function sec154Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 5);
+  const s = intBetween(rng, 1, 59);
+  const form = intBetween(rng, 0, 3);
+  const prompt = intBetween(rng, 0, 1);
+  if (form === 0) {
+    return make(
+      unit,
+      prompt === 0
+        ? `${n(m)}분을 초로 나타내시오.`
+        : `${n(m)}분과 같은 시간은 몇 초인지 구하시오.`,
+      n(m * 60),
+      minToSec(m),
+    );
+  }
+  if (form === 1) {
+    const t = m * 60 + s;
+    return make(
+      unit,
+      prompt === 0
+        ? `${n(t)}초를 몇 분 몇 초로 나타내시오.`
+        : `${n(t)}초와 같은 시간을 몇 분 몇 초로 쓰시오.`,
+      msStr(m, s),
+      `$60$ 초는 $1$ 분이므로 ${n(t)}초는 ${msStr(m, s)}입니다. 검산하면 ${expr(`${m * 60}+${s}=${t}`)} 입니다.`,
+    );
+  }
+  if (form === 2) {
+    return make(
+      unit,
+      prompt === 0
+        ? `${msStr(m, s)}를 초로 나타내시오.`
+        : `${msStr(m, s)}와 같은 시간은 몇 초인지 구하시오.`,
+      n(m * 60 + s),
+      `$1$ 분은 $60$ 초이므로 ${n(m)}분은 ${n(m * 60)}초입니다. ${expr(`${m * 60}+${s}=${m * 60 + s}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    prompt === 0
+      ? `${n(m * 60)}초를 분으로 나타내시오.`
+      : `${n(m * 60)}초와 같은 시간은 몇 분인지 구하시오.`,
+    n(m),
+    `$60$ 초는 $1$ 분이므로 ${n(m * 60)}초는 ${n(m)}분입니다. 검산하면 ${expr(`60\\times${m}=${m * 60}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장 변환. 방향은 틀마다 정해져 있다. */
+function sec154Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 1, 4);
+  const s = intBetween(rng, 1, 59);
+  const t = m * 60 + s;
+  const form = intBetween(rng, 0, 7);
+  const toSec = form % 2 === 1;
+  const stems = [
+    `수영장에서 잠수를 ${n(t)}초 동안 했습니다. 잠수한 시간은 몇 분 몇 초인지 쓰시오.`,
+    `라면을 끓이는 데 ${msStr(m, s)}가 걸렸습니다. 걸린 시간은 몇 초인지 쓰시오.`,
+    `노래 한 곡의 길이는 ${n(t)}초입니다. 이 노래는 몇 분 몇 초짜리인지 쓰시오.`,
+    `양치질을 ${msStr(m, s)} 동안 했습니다. 몇 초 동안 한 것인지 쓰시오.`,
+    `달리기 기록이 ${n(t)}초였습니다. 이 기록은 몇 분 몇 초인지 쓰시오.`,
+    `엘리베이터를 ${msStr(m, s)} 동안 기다렸습니다. 기다린 시간은 몇 초인지 쓰시오.`,
+    `동영상의 길이는 ${n(t)}초입니다. 몇 분 몇 초짜리 동영상인지 쓰시오.`,
+    `줄넘기를 ${msStr(m, s)} 동안 했습니다. 줄넘기를 한 시간은 몇 초인지 쓰시오.`,
+  ];
+  return make(
+    unit,
+    stems[form]!,
+    toSec ? n(t) : msStr(m, s),
+    toSec
+      ? `$1$ 분은 $60$ 초이므로 ${n(m)}분은 ${n(m * 60)}초입니다. ${expr(`${m * 60}+${s}=${t}`)} 입니다.`
+      : `$60$ 초는 $1$ 분이므로 ${n(t)}초는 ${msStr(m, s)}입니다. 검산하면 ${expr(`${m * 60}+${s}=${t}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 활동을 이어 한 뒤 몇 분 몇 초인지(60 경계 갈림, 두 단계). */
+function sec154Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m1 = intBetween(rng, 1, 3);
+  const s1 = intBetween(rng, 5, 55);
+  let s2 = intBetween(rng, 5, 55);
+  if ((s1 + s2) % 60 === 0) s2 += 1; // 초 자리가 $0$ 이 되면 한 칸 민다
+  const total = m1 * 60 + s1 + s2;
+  const am = Math.floor(total / 60);
+  const as = total % 60;
+  const stem = pick(rng, [
+    `플랭크를 ${msStr(m1, s1)} 동안 하고, 쉬지 않고 ${n(s2)}초 더 했습니다. 플랭크를 한 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `노래를 ${msStr(m1, s1)} 동안 부르고 이어서 ${n(s2)}초 더 불렀습니다. 노래를 부른 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `물을 ${msStr(m1, s1)} 동안 끓이고 ${n(s2)}초 더 끓였습니다. 물을 끓인 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `숨 참기를 ${msStr(m1, s1)} 하고 나서 ${n(s2)}초 더 참았습니다. 모두 몇 분 몇 초 동안 참았는지 쓰시오.`,
+    `훌라후프를 ${msStr(m1, s1)} 동안 돌리고 ${n(s2)}초 더 돌렸습니다. 훌라후프를 돌린 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+    `책을 ${msStr(m1, s1)} 동안 소리 내어 읽고, ${n(s2)}초 동안 더 읽었습니다. 모두 몇 분 몇 초 동안 읽었는지 쓰시오.`,
+    `제자리 뛰기를 ${msStr(m1, s1)} 하고 쉬지 않고 ${n(s2)}초 더 했습니다. 모두 몇 분 몇 초인지 쓰시오.`,
+    `호흡 운동을 ${msStr(m1, s1)} 한 뒤 ${n(s2)}초 더 이어 했습니다. 호흡 운동을 한 시간은 모두 몇 분 몇 초인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    msStr(am, as),
+    `초끼리 더하면 ${expr(`${s1}+${s2}=${s1 + s2}`)} 입니다. ${
+      s1 + s2 >= 60
+        ? `$60$ 초는 $1$ 분이므로 ${n(s1 + s2)}초는 ${msStr(1, s1 + s2 - 60)}입니다. `
+        : ``
+    }모두 ${msStr(am, as)}입니다. 검산하면 ${expr(`${am * 60}+${as}=${total}`)} 초입니다.`,
+  );
+}
+
+/** 4단 — 역산: 목표한 분에서 이미 한 초를 되짚어 뺀다. */
+function sec154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const M = intBetween(rng, 2, 5);
+  const t = intBetween(rng, 30, M * 60 - 30);
+  const remain = M * 60 - t;
+  const stem = pick(rng, [
+    `줄넘기를 ${n(M)}분 동안 하기로 했습니다. 지금까지 ${n(t)}초 했다면 몇 초 더 해야 하는지 쓰시오.`,
+    `명상을 ${n(M)}분 동안 하려고 합니다. 벌써 ${n(t)}초가 지났다면 남은 시간은 몇 초인지 쓰시오.`,
+    `${n(M)}분짜리 모래시계가 있습니다. 모래가 떨어지기 시작한 지 ${n(t)}초가 지났다면 몇 초 뒤에 다 떨어지는지 쓰시오.`,
+    `발표 시간은 ${n(M)}분입니다. 지금까지 ${n(t)}초 발표했다면 남은 발표 시간은 몇 초인지 쓰시오.`,
+    `노래 한 곡은 ${n(M)}분짜리입니다. ${n(t)}초가 지났다면 노래가 몇 초 뒤에 끝나는지 쓰시오.`,
+    `체험 시간은 ${n(M)}분입니다. 시작한 지 ${n(t)}초가 지났다면 남은 체험 시간은 몇 초인지 쓰시오.`,
+    `타이머를 ${n(M)}분에 맞추었습니다. ${n(t)}초가 지난 지금, 몇 초 뒤에 울리는지 쓰시오.`,
+    `라면을 ${n(M)}분 동안 끓여야 합니다. 지금까지 ${n(t)}초 끓였다면 몇 초 더 끓여야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(remain),
+    `${n(M)}분은 ${expr(`60\\times${M}=${M * 60}`)} 초입니다. ${expr(`${M * 60}-${t}=${remain}`)} 이므로 ${n(remain)}초 남았습니다.`,
+  );
+}
+
+// ── 1-5-5 시간의 덧셈 ──
+
+/** 1단 — 두 시간의 합 식 그대로(올림 갈림). 표준(「…과 …을 더하면」 한 틀)과 갈라 둔다. */
+function time155Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2, hh, mm } = addHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(h2, m2);
+  const stem = pick(rng, [
+    `다음 두 시간의 합은 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
+    `${A}에 ${B}을 더한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간 ${A}과 ${B}의 합을 구하시오.`,
+    `합이 몇 시간 몇 분인지 쓰시오.\n\n${A} $+$ ${B}`,
+    `${A}보다 ${B} 더 긴 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `다음 시간을 모두 더하면 몇 시간 몇 분인지 구하시오.\n\n${A}, ${B}`,
+    `${A}과 ${B}을 이어서 보내면 모두 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간의 합을 구하시오.\n\n${A}, ${B}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다. ${
+      m1 + m2 >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장의 합. */
+function time155Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2, hh, mm } = addHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(h2, m2);
+  const stem = pick(rng, [
+    `숙제를 ${A} 동안 하고, 책을 ${B} 동안 읽었습니다. 공부한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `기차를 ${A} 타고, 이어서 버스를 ${B} 탔습니다. 탈것을 탄 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `오전에 ${A}, 오후에 ${B} 동안 그림을 그렸습니다. 그림을 그린 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `청소를 ${A} 하고 요리를 ${B} 했습니다. 집안일을 한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `등산을 ${A} 하고 내려오는 데 ${B} 걸렸습니다. 산에 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `영화를 ${A} 보고, 이어진 감독 인터뷰를 ${B} 보았습니다. 상영관에 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `수영을 ${A}, 줄넘기를 ${B} 동안 했습니다. 운동한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `블록 놀이를 ${A} 하고 보드게임을 ${B} 했습니다. 놀이한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다. ${
+      m1 + m2 >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 3단 — 시각 + 걸린 시간 = 끝나는 시각(두 단계). */
+function time155Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sh = intBetween(rng, 1, 6);
+  const sm = intBetween(rng, 5, 55);
+  const dh = intBetween(rng, 1, 3);
+  let dm = intBetween(rng, 5, 55);
+  if ((sm + dm) % 60 === 0) dm += 1; // 끝나는 분이 $0$ 이면 한 칸 민다
+  const total = sm + dm;
+  const eh = sh + dh + (total >= 60 ? 1 : 0);
+  const em = total % 60;
+  const stem = pick(rng, [
+    `${clockStr(sh, sm)}에 시작한 영화가 ${hmStr(dh, dm)} 동안 상영됩니다. 영화가 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 출발한 기차가 ${hmStr(dh, dm)} 뒤에 도착합니다. 도착 시각은 몇 시 몇 분인지 쓰시오.`,
+    `공연이 ${clockStr(sh, sm)}에 시작하여 ${hmStr(dh, dm)} 동안 이어집니다. 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}부터 ${hmStr(dh, dm)} 동안 봉사 활동을 합니다. 봉사 활동이 끝나는 시각은 몇 시 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 요리를 시작해 ${hmStr(dh, dm)} 만에 끝냈습니다. 요리가 끝난 시각은 몇 시 몇 분인지 쓰시오.`,
+    `견학이 ${clockStr(sh, sm)}에 시작되어 ${hmStr(dh, dm)} 동안 진행됩니다. 견학이 끝나는 시각을 구하시오.`,
+    `${clockStr(sh, sm)}에 잠들어 ${hmStr(dh, dm)} 동안 낮잠을 잤습니다. 잠에서 깬 시각은 몇 시 몇 분인지 쓰시오.`,
+    `버스가 ${clockStr(sh, sm)}에 출발해 ${hmStr(dh, dm)} 뒤에 종점에 닿습니다. 종점에 닿는 시각은 몇 시 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    clockStr(eh, em),
+    `분끼리 더하면 ${expr(`${sm}+${dm}=${total}`)} 입니다. ${
+      total >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(total)}분은 ${hmStr(1, em)}입니다. `
+        : ``
+    }시끼리 더하면 ${expr(`${sh}+${dh}=${sh + dh}`)} 이므로 끝나는 시각은 ${clockStr(eh, em)}입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 세 시간의 합(분 합이 두 번 올림될 수 있다). */
+function time155Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const h1 = intBetween(rng, 1, 2);
+  const h2 = intBetween(rng, 1, 2);
+  const h3 = intBetween(rng, 0, 1);
+  const m1 = intBetween(rng, 15, 55);
+  const m2 = intBetween(rng, 15, 55);
+  let m3 = intBetween(rng, 15, 55);
+  if ((m1 + m2 + m3) % 60 === 0) m3 += 1;
+  const tm = m1 + m2 + m3;
+  const carry = Math.floor(tm / 60);
+  const mm = tm % 60;
+  const hh = h1 + h2 + h3 + carry;
+  const parts: [string, string, string] = [
+    hmStr(h1, m1),
+    hmStr(h2, m2),
+    h3 === 0 ? `${n(m3)}분` : hmStr(h3, m3),
+  ];
+  const stem = pick(rng, [
+    `독서를 ${parts[0]}, 운동을 ${parts[1]}, 산책을 ${parts[2]} 동안 했습니다. 세 활동을 한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `기차를 ${parts[0]}, 버스를 ${parts[1]}, 지하철을 ${parts[2]} 동안 탔습니다. 탈것을 탄 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `오전 공부 ${parts[0]}, 오후 공부 ${parts[1]}, 저녁 공부 ${parts[2]} — 하루에 공부한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `청소 ${parts[0]}, 빨래 ${parts[1]}, 설거지 ${parts[2]} 만큼 걸렸습니다. 집안일에 걸린 시간을 모두 더하면 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `분끼리 모두 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 이고 ${expr(`${m1 + m2}+${m3}=${tm}`)} 입니다. ${
+      carry >= 1
+        ? `$60$ 분은 $1$ 시간이므로 ${n(tm)}분은 ${hmStr(carry, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(h3 === 0 ? `${h1}+${h2}=${h1 + h2}` : `${h1}+${h2}+${h3}=${h1 + h2 + h3}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+// ── 1-5-6 시간의 뺄셈 ──
+
+/** 1단 — 두 시간의 차 식 그대로(내림 갈림). 표준(「…에서 …을 빼면」 한 틀)과 갈라 둔다. */
+function time156Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(sh, sm);
+  const stem = pick(rng, [
+    `다음 두 시간의 차는 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
+    `${A}과 ${B}의 차를 구하시오.`,
+    `${A}은 ${B}보다 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `차가 몇 시간 몇 분인지 쓰시오.\n\n${A} $-$ ${B}`,
+    `${A}에서 ${B}만큼 지나면 남는 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `두 시간의 차를 구하시오.\n\n${A}, ${B}`,
+    `계획한 ${A} 가운데 ${B}을 쓰고 나면 몇 시간 몇 분이 남는지 쓰시오.`,
+    `${B}과 ${A}의 차는 몇 시간 몇 분인지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    m1 < sm
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${m1}+60=${m1 + 60}`)} 이고 ${expr(`${m1 + 60}-${sm}=${mm}`)} 입니다. 시간끼리 빼면 ${expr(`${h1 - 1}-${sh}=${hh}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${m1}-${sm}=${mm}`)} 이고, 시간끼리 빼면 ${expr(`${h1}-${sh}=${hh}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 2단 — 생활 문장의 차. 더 오래 한 쪽이 앞이라 차가 늘 양수다. */
+function time156Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  const A = hmStr(h1, m1);
+  const B = hmStr(sh, sm);
+  const stem = pick(rng, [
+    `형은 ${A}, 동생은 ${B} 동안 자전거를 탔습니다. 형이 몇 시간 몇 분 더 오래 탔는지 쓰시오.`,
+    `어제는 ${A}, 오늘은 ${B} 동안 책을 읽었습니다. 어제가 오늘보다 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `비행기는 ${A}, 기차는 ${B} 걸립니다. 기차가 몇 시간 몇 분 더 빨리 도착하는지 쓰시오.`,
+    `언니는 ${A}, 나는 ${B} 동안 그림을 그렸습니다. 언니가 나보다 몇 시간 몇 분 더 그렸는지 쓰시오.`,
+    `수학 공부를 ${A}, 영어 공부를 ${B} 했습니다. 수학 공부를 몇 시간 몇 분 더 오래 했는지 쓰시오.`,
+    `첫날에는 ${A}, 둘째 날에는 ${B} 동안 여행지를 걸었습니다. 첫날이 몇 시간 몇 분 더 긴지 쓰시오.`,
+    `쾌속선은 ${B}, 여객선은 ${A} 걸립니다. 쾌속선이 몇 시간 몇 분 더 빨리 닿는지 쓰시오.`,
+    `놀이공원에서 언니는 ${A}, 동생은 ${B} 동안 놀이 기구를 탔습니다. 언니가 몇 시간 몇 분 더 탔는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    m1 < sm
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${m1}+60=${m1 + 60}`)} 이고 ${expr(`${m1 + 60}-${sm}=${mm}`)} 입니다. 시간끼리 빼면 ${expr(`${h1 - 1}-${sh}=${hh}`)} 이므로 차는 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${m1}-${sm}=${mm}`)} 이고, 시간끼리 빼면 ${expr(`${h1}-${sh}=${hh}`)} 이므로 차는 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 3단 — 시작·끝 시각에서 걸린 시간을 구한다(두 단계). */
+function time156Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sh = intBetween(rng, 1, 5);
+  const borrow = intBetween(rng, 0, 1) === 1;
+  let sm: number;
+  let eh: number;
+  let em: number;
+  if (borrow) {
+    sm = intBetween(rng, 20, 55);
+    em = intBetween(rng, 5, sm - 5);
+    eh = sh + intBetween(rng, 2, 4);
+  } else {
+    sm = intBetween(rng, 5, 40);
+    em = intBetween(rng, sm + 5, 55);
+    eh = sh + intBetween(rng, 1, 4);
+  }
+  const hh = borrow ? eh - sh - 1 : eh - sh;
+  const mm = borrow ? em + 60 - sm : em - sm;
+  const stem = pick(rng, [
+    `${clockStr(sh, sm)}에 시작한 연극이 ${clockStr(eh, em)}에 끝났습니다. 연극을 한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 출발하여 ${clockStr(eh, em)}에 도착했습니다. 가는 데 걸린 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `도서관에 ${clockStr(sh, sm)}에 들어가서 ${clockStr(eh, em)}에 나왔습니다. 도서관에 있던 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}부터 ${clockStr(eh, em)}까지 축구를 했습니다. 축구를 한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `영화가 ${clockStr(sh, sm)}에 시작해 ${clockStr(eh, em)}에 끝났습니다. 상영 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${clockStr(sh, sm)}에 청소를 시작해 ${clockStr(eh, em)}에 마쳤습니다. 청소한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `기차가 ${clockStr(sh, sm)}에 떠나 ${clockStr(eh, em)}에 도착했습니다. 기차를 탄 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `체험 학습이 ${clockStr(sh, sm)}부터 ${clockStr(eh, em)}까지 있었습니다. 체험 학습 시간은 몇 시간 몇 분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    borrow
+      ? `분끼리 뺄 수 없으므로 $1$ 시간을 $60$ 분으로 바꿉니다. ${expr(`${em}+60=${em + 60}`)} 이고 ${expr(`${em + 60}-${sm}=${mm}`)} 입니다. 시끼리 빼면 ${expr(`${eh - 1}-${sh}=${hh}`)} 이므로 걸린 시간은 ${hmStr(hh, mm)}입니다.`
+      : `분끼리 빼면 ${expr(`${em}-${sm}=${mm}`)} 이고, 시끼리 빼면 ${expr(`${eh}-${sh}=${hh}`)} 이므로 걸린 시간은 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+/** 4단 — 역산: 빼고 남은 시간에서 처음 시간을 되짚는다(덧셈으로 되돌린다). */
+function time156Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dh = intBetween(rng, 1, 3);
+  let dm = intBetween(rng, 5, 55);
+  const H = intBetween(rng, 1, 4);
+  const M = intBetween(rng, 5, 55);
+  if ((M + dm) % 60 === 0) dm += 1;
+  const total = M + dm;
+  const hh = H + dh + (total >= 60 ? 1 : 0);
+  const mm = total % 60;
+  const stem = pick(rng, [
+    `어떤 시간에서 ${hmStr(dh, dm)}을 뺐더니 ${hmStr(H, M)}이 되었습니다. 어떤 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `전체 시간에서 ${hmStr(dh, dm)}을 쓰고 나니 ${hmStr(H, M)}이 남았습니다. 전체 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `찰흙 놀이에 ${hmStr(dh, dm)}을 쓰고 ${hmStr(H, M)}이 남았습니다. 처음에 있던 놀이 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `계획한 시간 중 ${hmStr(dh, dm)}을 이미 보냈고 ${hmStr(H, M)}이 남았습니다. 계획한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `가지고 있던 자유 시간에서 ${hmStr(dh, dm)}을 쓰니 ${hmStr(H, M)}이 남았습니다. 처음 자유 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `건전지로 ${hmStr(dh, dm)}을 쓰고 나니 ${hmStr(H, M)} 쓸 만큼 남았습니다. 건전지로 쓸 수 있던 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
+    `어떤 시간보다 ${hmStr(dh, dm)} 짧은 시간이 ${hmStr(H, M)}입니다. 어떤 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `${hmStr(H, M)}은 어떤 시간에서 ${hmStr(dh, dm)}을 뺀 것입니다. 어떤 시간을 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    hmStr(hh, mm),
+    `뺀 시간을 도로 더합니다. 분끼리 더하면 ${expr(`${M}+${dm}=${total}`)} 입니다. ${
+      total >= 60
+        ? `$60$ 분은 $1$ 시간이므로 ${n(total)}분은 ${hmStr(1, mm)}입니다. `
+        : ``
+    }시간끼리 더하면 ${expr(`${H}+${dh}=${H + dh}`)} 이므로 처음 시간은 ${hmStr(hh, mm)}입니다.`,
+  );
+}
+
+// ── 1-6 분수와 소수 (D-72 확대) ──────────────────────────────────────────
+//
+// 그림은 기존 kind(fracBars·fracPie·triRow·trapFour)만 쓴다 — 네 kind 모두 넓이가
+// 같은 등분이다(D-61: 칸 수가 아니라 **넓이**가 같아야 한다 — 대각선 분할 금지).
+// 소수는 초3 범위(소수 한 자리, 꼬리 0 없음)만 나온다. 크기 비교는 **동률이 나올 수
+// 없게 뽑을 때** 막는다(가드·재추첨이 아니라 건너뛰기 구성) — 시험이 전 갈래에서 잠근다.
+
+/**
+ * $0..n-1$ 에서 서로 다른 수 $k$ 개 — 이미 뽑힌 값을 **건너뛰어** 뽑는다(재추첨 없음).
+ * 크기 비교 갈래의 「동률 불가」가 전부 이 함수 하나에서 나온다.
+ */
+function distinctIdx(rng: Rng, n: number, k: number): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < k; i += 1) {
+    let v = intBetween(rng, 0, n - 1 - i);
+    for (const u of [...out].sort((a, b) => a - b)) if (v >= u) v += 1;
+    out.push(v);
+  }
+  return out;
+}
+
+/** 소수 값 격자 — 색인 0..35 ↔ «w.t» (w 0..3, t 1..9). 꼬리 0 이 구조적으로 없다. */
+const decIdxVal = (idx: number) => ({
+  w: Math.floor(idx / 9),
+  t: (idx % 9) + 1,
+});
+const decStrOf = (idx: number) => {
+  const { w, t } = decIdxVal(idx);
+  return `${w}.${t}`;
+};
+
+// ── 1-6-1 똑같이 나누기 ──
+
+/** 1단 — 그림을 보고 몇 등분인지 한 번에. 표준(「조각은 모두 몇 개」)과 말투를 갈라 둔다. */
+function part161Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}${josa(material, "은", "는")} 똑같이 나누어져 있습니다. 한 조각은 전체를 똑같이 몇 조각으로 나눈 것 중 하나인지 쓰시오.`,
+    `${material}${josa(material, "을", "를")} 그림처럼 똑같이 나누었습니다. 전체는 몇 조각으로 나누어졌는지 쓰시오.`,
+    `그림처럼 ${material}${josa(material, "을", "를")} 크기가 같게 나누면 조각이 몇 개 생기는지 쓰시오.`,
+    `그림은 ${material}${josa(material, "을", "를")} 크기가 같은 조각으로 나눈 것입니다. 몇 등분인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(parts),
+    `크기가 같은 조각이 ${n(parts)}개이므로 전체를 똑같이 ${n(parts)}조각으로 나눈 것입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 문장 조건으로 나눌 조각 수를 세운다(«$c$조각씩 $k$명» — 답이 발문에 안 보인다). */
+function part161Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 3);
+  const k = intBetween(rng, 2, 4);
+  const total = c * k;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} ${n(k)}명이 ${n(c)}조각씩 먹도록 똑같이 나누려고 합니다. 몇 조각으로 나누어야 하는지 쓰시오.`,
+    `친구 ${n(k)}명이 ${thing}${josa(thing, "을", "를")} 한 명당 ${n(c)}조각씩 남김없이 먹으려면 똑같이 몇 조각으로 나눠야 하는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 한 사람이 ${n(c)}조각씩 갖도록 ${n(k)}명이 똑같이 나눕니다. 전체를 몇 조각으로 나누면 되는지 쓰시오.`,
+    `${n(k)}명이 ${n(c)}조각씩 나누어 먹을 수 있게 ${thing}${josa(thing, "을", "를")} 똑같이 나누면 모두 몇 조각인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `${n(c)}조각씩 ${n(k)}명이므로 ${expr(`${c}\\times${k}=${total}`)} 조각으로 똑같이 나눕니다.`,
+  );
+}
+
+/** 3단 — 그림의 조각을 세고, 둘이 똑같이 나누면 몇 조각씩인지(두 단계). */
+function part161Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = pick(rng, [4, 6, 8]);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}${josa(material, "은", "는")} 똑같이 나누어져 있습니다. 두 사람이 조각 수를 똑같이 나누어 가지면 한 사람이 몇 조각씩 가지는지 쓰시오.`,
+    `그림처럼 나눈 ${material}${josa(material, "을", "를")} 두 명이 남김없이 똑같이 나누어 먹으면 한 명이 몇 조각씩 먹는지 쓰시오.`,
+    `그림의 ${material} 조각을 세어, 둘이 똑같이 나눌 때 한 명의 몫이 몇 조각인지 쓰시오.`,
+    `똑같이 나누어진 그림의 ${material}${josa(material, "을", "를")} 두 사람이 같은 수만큼 나누어 가지면 한 사람에게 몇 조각씩 돌아가는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(parts / 2),
+    `조각은 모두 ${n(parts)}개입니다. ${expr(`${parts}\\div2=${parts / 2}`)} 이므로 한 사람이 ${n(parts / 2)}조각씩 가집니다.`,
+    spec,
+  );
+}
+
+/** 4단 — 역산: 먹고 남은 조각 수에서 처음 등분을 되짚는다. */
+function part161Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const r = intBetween(rng, 2, 6);
+  const total = e + r;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 나눈 뒤 ${n(e)}조각을 먹었더니 ${n(r)}조각이 남았습니다. 처음에 몇 조각으로 나누었는지 쓰시오.`,
+    `똑같이 나눈 ${thing} 중 ${n(e)}조각을 접시에 덜고 나니 ${n(r)}조각이 남았습니다. 전체는 몇 조각이었는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 나누어 ${n(e)}조각을 나누어 주었더니 ${n(r)}조각이 남았습니다. 처음 조각 수를 쓰시오.`,
+    `똑같이 나눈 ${thing}에서 ${n(e)}조각이 없어지고 ${n(r)}조각이 남아 있습니다. 처음에는 모두 몇 조각이었는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `남은 조각에 먹은 조각을 도로 더합니다. ${expr(`${r}+${e}=${total}`)} 이므로 처음에 ${n(total)}조각으로 나누었습니다.`,
+  );
+}
+
+// ── 1-6-2 분수 알아보기(1) ──
+
+/** 1단 — 그림의 색칠 부분을 분수로. 표준과 말투를 갈라 둔다. */
+function frac162Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}에서 색칠한 부분을 분수로 나타내시오.`,
+    `${material}${josa(material, "을", "를")} 똑같이 나눈 그림입니다. 색칠한 부분은 전체의 몇 분의 몇인지 분수로 쓰시오.`,
+    `그림에서 색칠한 조각이 전체에서 차지하는 부분을 분수로 쓰시오.`,
+    `색칠한 부분이 전체의 얼마인지 그림을 보고 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${filled}}{${parts}}`),
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 것 중 ${n(filled)}조각이므로 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 그림 없이 문장으로 분수를 세운다. */
+function frac162Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 9);
+  const filled = intBetween(rng, 1, parts - 1);
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누어 그중 ${n(filled)}조각을 사용했습니다. 사용한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing} 중에서 ${n(filled)}조각에 색칠했습니다. 색칠한 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누고 ${n(filled)}조각을 동생에게 주었습니다. 동생에게 준 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 ${n(filled)}조각을 골랐습니다. 고른 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${filled}}{${parts}}`),
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 것 중 ${n(filled)}조각이므로 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 몫을 합쳐 분수로(두 단계). */
+function frac162Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 5, 9);
+  const f1 = intBetween(rng, 1, parts - 3);
+  const f2 = intBetween(rng, 1, parts - f1 - 2);
+  const sum = f1 + f2;
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누었습니다. 언니가 ${n(f1)}조각, 동생이 ${n(f2)}조각에 색칠했다면 색칠한 부분은 모두 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 아침에 ${n(f1)}조각, 저녁에 ${n(f2)}조각을 먹었습니다. 먹은 부분을 모두 합해 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누어 ${n(f1)}조각과 ${n(f2)}조각을 차례로 사용했습니다. 사용한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(f1)}조각을 먼저, ${n(f2)}조각을 나중에 골랐습니다. 고른 부분 전체를 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${sum}}{${parts}}`),
+    `고른 조각을 모두 더하면 ${expr(`${f1}+${f2}=${sum}`)} 조각입니다. 전체 ${n(parts)}조각 중 ${n(sum)}조각이므로 ${expr(`\\frac{${sum}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 분수에서 조각 수를 되짚는다(색칠하지 않은 조각). */
+function frac162Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const filled = intBetween(rng, 1, parts - 2);
+  const rest = parts - filled;
+  const thing = pick(rng, [
+    "색종이",
+    "리본",
+    "초콜릿",
+    "두부",
+    "식빵",
+    "김밥",
+    "종이 띠",
+    "케이크",
+  ]);
+  const stem = pick(rng, [
+    `${thing}의 색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다. 색칠하지 않은 조각은 몇 조각인지 쓰시오.`,
+    `똑같이 나눈 ${thing}에서 사용한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 라면, 남은 조각은 몇 조각인지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 만큼 먹었습니다. 먹지 않은 조각의 수를 쓰시오.`,
+    `색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 색칠이 안 된 조각은 몇 조각인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(rest),
+    `분모가 전체 조각 수이고 분자가 색칠한 조각 수입니다. ${expr(`${parts}-${filled}=${rest}`)} 이므로 ${n(rest)}조각입니다.`,
+  );
+}
+
+// ── 1-6-3 분수 알아보기(2) ──
+
+/** 1단 — 그림의 «색칠하지 않은» 부분을 분수로. 표준과 말투를 갈라 둔다. */
+function frac163Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const rest = parts - filled;
+  const spec = fracSpec(rng, parts, filled);
+  const material = fracMaterial(rng, String(spec.kind));
+  const stem = pick(rng, [
+    `그림의 ${material}에서 색칠하지 않은 부분을 분수로 나타내시오.`,
+    `${material}${josa(material, "을", "를")} 똑같이 나눈 그림입니다. 색칠이 안 된 부분은 전체의 몇 분의 몇인지 쓰시오.`,
+    `그림에서 색칠되지 않은 조각이 전체에서 차지하는 부분을 분수로 쓰시오.`,
+    `색칠하지 않은 부분이 전체의 얼마인지 그림을 보고 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `전체 ${n(parts)}조각 중 색칠한 것이 ${n(filled)}조각이므로 색칠하지 않은 것은 ${expr(`${parts}-${filled}=${rest}`)} 조각입니다. 따라서 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+/** 2단 — 문장으로: 먹고 남은 부분을 분수로. */
+function frac163Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const eaten = intBetween(rng, 1, parts - 2);
+  const rest = parts - eaten;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누어 ${n(eaten)}조각을 먹었습니다. 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(eaten)}조각을 나누어 주었습니다. 남아 있는 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누고 ${n(eaten)}조각을 사용했습니다. 사용하지 않은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 ${n(eaten)}조각이 팔렸습니다. 팔리지 않은 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `전체 ${n(parts)}조각에서 ${n(eaten)}조각을 빼면 ${expr(`${parts}-${eaten}=${rest}`)} 조각입니다. 따라서 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 번 덜어낸 뒤 남은 부분을 분수로(두 단계). */
+function frac163Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 6, 10);
+  const e1 = intBetween(rng, 1, parts - 4);
+  const e2 = intBetween(rng, 1, parts - e1 - 3);
+  const rest = parts - e1 - e2;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(parts)}조각으로 나누었습니다. 형이 ${n(e1)}조각, 동생이 ${n(e2)}조각을 먹었다면 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `전체를 똑같이 ${n(parts)}조각으로 나눈 ${thing}에서 점심에 ${n(e1)}조각, 저녁에 ${n(e2)}조각을 먹었습니다. 남은 부분을 분수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 크기가 같게 ${n(parts)}조각으로 나누어 ${n(e1)}조각과 ${n(e2)}조각을 차례로 나누어 주었습니다. 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(parts)}조각으로 나눈 ${thing} 중 ${n(e1)}조각이 먼저, ${n(e2)}조각이 나중에 팔렸습니다. 팔리지 않은 부분을 분수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${rest}}{${parts}}`),
+    `먹은 조각은 ${expr(`${e1}+${e2}=${e1 + e2}`)} 조각입니다. ${expr(`${parts}-${e1 + e2}=${rest}`)} 이므로 남은 부분은 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 남은 부분의 분수에서 먹은 조각 수를 되짚는다. */
+function frac163Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const rest = intBetween(rng, 1, parts - 2);
+  const eaten = parts - rest;
+  const thing = pick(rng, [
+    "피자",
+    "케이크",
+    "김밥",
+    "떡",
+    "파이",
+    "식빵",
+    "와플",
+    "전",
+  ]);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 먹고 나니 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 먹은 조각은 몇 조각인지 쓰시오.`,
+    `똑같이 나눈 ${thing}의 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 라면, 이미 먹은 조각의 수를 쓰시오.`,
+    `팔고 남은 ${thing}${josa(thing, "이", "가")} 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 팔린 조각은 몇 조각인지 쓰시오.`,
+    `남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 없어진 조각의 수를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(eaten),
+    // 발문이 먹은·팔린·없어진 조각을 오가므로 해설은 동사를 고정하지 않는다.
+    `분모가 전체 조각 수이고 분자가 남은 조각 수입니다. ${expr(`${parts}-${rest}=${eaten}`)} 이므로 ${n(eaten)}조각입니다.`,
+  );
+}
+
+// ── 1-6-4 분모가 같은 분수의 크기 비교 ──
+
+const KID_PAIRS = [
+  ["가은", "나윤"],
+  ["다인", "라온"],
+  ["시우", "하람"],
+  ["도현", "서진"],
+] as const;
+
+/** 1단 — 두 분수 비교(큰·작은을 오간다). 표준(「더 큰 분수」 한 틀)과 말투를 갈라 둔다. */
+function cmp164Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  const big = Math.max(a, b);
+  const small = Math.min(a, b);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? big : small;
+  const frA = expr(`\\frac{${a}}{${den}}`);
+  const frB = expr(`\\frac{${b}}{${den}}`);
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 분수 ${frA}, ${frB} 중에서 더 큰 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 큰 것을 고르시오.\n\n${frA},  ${frB}`,
+        ]
+      : [
+          `두 분수 ${frA}, ${frB} 중에서 더 작은 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 작은 것을 고르시오.\n\n${frA},  ${frB}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으면 분자가 클수록 큽니다. ${expr(`${big}>${small}`)} 이므로 ${askBig ? "더 큰" : "더 작은"} 분수는 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장 비교: 누가 더 많이 먹었는가(이름 답, 동률 불가). */
+function cmp164Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  const winner = a > b ? nameA : nameB;
+  const thing = pick(rng, ["피자", "케이크", "김밥", "식빵"]);
+  const frA = expr(`\\frac{${a}}{${den}}`);
+  const frB = expr(`\\frac{${b}}{${den}}`);
+  const stem = pick(rng, [
+    `${nameA}${josa(nameA, "은", "는")} ${thing} 한 판의 ${frA} 만큼, ${nameB}${josa(nameB, "은", "는")} ${frB} 만큼 먹었습니다. 더 많이 먹은 사람의 이름을 쓰시오.`,
+    `같은 크기의 ${thing}에서 ${nameA}${josa(nameA, "이", "가")} ${frA} 만큼, ${nameB}${josa(nameB, "이", "가")} ${frB} 만큼 가졌습니다. 더 많이 가진 사람은 누구인지 쓰시오.`,
+    `${thing} 한 판을 두고 ${nameA}${josa(nameA, "은", "는")} 전체의 ${frA} 만큼, ${nameB}${josa(nameB, "은", "는")} 전체의 ${frB} 만큼 색칠했습니다. 더 넓게 색칠한 사람의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} ${thing}의 ${frA} 만큼, ${nameB}${josa(nameB, "이", "가")} ${frB} 만큼 사용했습니다. 더 많이 사용한 사람은 누구인지 이름을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `분모가 같으면 분자가 클수록 큽니다. ${expr(`${Math.max(a, b)}>${Math.min(a, b)}`)} 이므로 ${winner}${josa(winner, "이", "가")} 더 많습니다.`,
+  );
+}
+
+/** 3단 — 세 분수 중 가장 큰·작은 것(두 번 비교, 동률 불가). */
+function cmp164Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  const idx = distinctIdx(rng, den - 1, 3);
+  const nums = idx.map((v) => v + 1);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? Math.max(...nums) : Math.min(...nums);
+  const frs = nums.map((v) => expr(`\\frac{${v}}{${den}}`));
+  const list = `${frs[0]},  ${frs[1]},  ${frs[2]}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 분수 중에서 가장 큰 분수를 쓰시오.\n\n${list}`,
+          `다음 분수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 큰 분수를 골라 쓰시오.`,
+          `가장 큰 분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 분수 중에서 가장 작은 분수를 쓰시오.\n\n${list}`,
+          `다음 분수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 작은 분수를 골라 쓰시오.`,
+          `가장 작은 분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sorted = [...nums].sort((x, y) => y - x);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으면 분자가 클수록 큽니다. 분자를 견주면 ${expr(`${sorted[0]}>${sorted[1]}>${sorted[2]}`)} 이므로 답은 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: $\frac{a}{d}<\frac{\square}{d}<\frac{c}{d}$ 의 $\square$ 세기. */
+function cmp164Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  const a = intBetween(rng, 1, den - 4);
+  const c = intBetween(rng, a + 2, den - 1);
+  const count = c - a - 1;
+  const mid = expr(
+    `\\frac{${a}}{${den}}<\\frac{\\square}{${den}}<\\frac{${c}}{${den}}`,
+  );
+  const stem = pick(rng, [
+    `${mid} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 자연수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`\\frac{${a}}{${den}}`)} 보다 크고 ${expr(`\\frac{${c}}{${den}}`)} 보다 작은 분수 ${expr(`\\frac{\\square}{${den}}`)} 의 ${expr(`\\square`)} 에 알맞은 자연수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 자연수는 모두 몇 개인지 구하시오.\n\n${mid}`,
+    `${mid} 에 맞는 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    `분모가 ${n(den)} 인 분수 중에서 ${expr(`\\frac{${a}}{${den}}`)} 보다 크고 ${expr(`\\frac{${c}}{${den}}`)} 보다 작은 분수는 모두 몇 개인지 쓰시오.`,
+    `${mid} 의 ${expr(`\\square`)} 에 알맞은 자연수를 모두 찾을 때, 그 개수를 쓰시오.`,
+    `두 분수 ${expr(`\\frac{${a}}{${den}}`)}, ${expr(`\\frac{${c}}{${den}}`)} 사이에 있는, 분모가 ${n(den)} 인 분수의 개수를 쓰시오.`,
+    `${mid} 에 알맞은 ${expr(`\\square`)} 의 수를 모두 세면 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `분모가 같으므로 분자만 비교하면 됩니다. ${expr(`${a}<\\square<${c}`)} 인 자연수는 ${
+      count === 1
+        ? `${n(a + 1)} 뿐이므로`
+        : `${n(a + 1)}부터 ${n(c - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
+// ── 1-6-5 단위분수의 크기 비교 ──
+
+/** 1단 — 두 단위분수 비교(큰·작은을 오간다). 표준(「더 큰 분수」 한 틀)과 갈라 둔다. */
+function unit165Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  const askBig = intBetween(rng, 0, 1) === 0;
+  // 단위분수는 분모가 작을수록 크다.
+  const ans = askBig ? Math.min(a, b) : Math.max(a, b);
+  const frA = expr(`\\frac{1}{${a}}`);
+  const frB = expr(`\\frac{1}{${b}}`);
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 단위분수 ${frA}, ${frB} 중에서 더 큰 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 단위분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 큰 것을 고르시오.\n\n${frA},  ${frB}`,
+        ]
+      : [
+          `두 단위분수 ${frA}, ${frB} 중에서 더 작은 분수를 골라 쓰시오.`,
+          `${frA}, ${frB} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 단위분수를 쓰시오.\n\n${frA},  ${frB}`,
+          `두 분수 가운데 작은 것을 고르시오.\n\n${frA},  ${frB}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{1}{${ans}}`),
+    `단위분수는 분모가 작을수록 큽니다. ${expr(`${Math.min(a, b)}<${Math.max(a, b)}`)} 이므로 답은 ${expr(`\\frac{1}{${ans}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 이야기 비교: 조각 수가 다르게 나눈 두 사람(이름 답). */
+function unit165Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  // 조각 수가 적게 나눈 쪽의 한 조각이 더 크다.
+  const winner = a < b ? nameA : nameB;
+  const thing = pick(rng, ["케이크", "피자", "떡", "파이"]);
+  const stem = pick(rng, [
+    `똑같은 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} ${n(a)}조각으로, ${nameB}${josa(nameB, "은", "는")} ${n(b)}조각으로 똑같이 나누어 각각 한 조각씩 먹었습니다. 더 많이 먹은 사람의 이름을 쓰시오.`,
+    `크기가 같은 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "이", "가")} ${n(a)}등분, ${nameB}${josa(nameB, "이", "가")} ${n(b)}등분 하여 한 조각씩 가졌습니다. 더 큰 조각을 가진 사람은 누구인지 쓰시오.`,
+    `같은 크기의 ${thing}${josa(thing, "을", "를")} ${nameA}${josa(nameA, "은", "는")} 똑같이 ${n(a)}조각, ${nameB}${josa(nameB, "은", "는")} 똑같이 ${n(b)}조각으로 나눴습니다. 한 조각의 크기가 더 큰 쪽의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} ${n(a)}조각으로, ${nameB}${josa(nameB, "이", "가")} ${n(b)}조각으로 같은 ${thing}${josa(thing, "을", "를")} 똑같이 나눴다면, 한 조각이 더 큰 사람은 누구인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `같은 전체를 나누면 조각 수가 적을수록 한 조각이 큽니다. ${expr(`${Math.min(a, b)}<${Math.max(a, b)}`)} 이므로 ${winner}${josa(winner, "이", "가")} 더 큽니다.`,
+  );
+}
+
+/** 3단 — 세 단위분수 중 가장 큰·작은 것(동률 불가). */
+function unit165Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const idx = distinctIdx(rng, 8, 3);
+  const dens = idx.map((v) => v + 2);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const ans = askBig ? Math.min(...dens) : Math.max(...dens);
+  const frs = dens.map((v) => expr(`\\frac{1}{${v}}`));
+  const list = `${frs[0]},  ${frs[1]},  ${frs[2]}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 단위분수 중에서 가장 큰 분수를 쓰시오.\n\n${list}`,
+          `다음 단위분수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 큰 분수를 골라 쓰시오.`,
+          `가장 큰 단위분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 단위분수 중에서 가장 작은 분수를 쓰시오.\n\n${list}`,
+          `다음 단위분수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 분수 ${frs[0]}, ${frs[1]}, ${frs[2]} 중 가장 작은 분수를 골라 쓰시오.`,
+          `가장 작은 단위분수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sorted = [...dens].sort((x, y) => x - y);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{1}{${ans}}`),
+    `단위분수는 분모가 작을수록 큽니다. 분모를 견주면 ${expr(`${sorted[0]}<${sorted[1]}<${sorted[2]}`)} 이므로 답은 ${expr(`\\frac{1}{${ans}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 부등식의 $\square$ 에 들어갈 수 세기(범위가 닫힌 방향만 쓴다). */
+function unit165Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    // 1/□ > 1/k (□ ≥ 2) — □ < k 이므로 k−2 개.
+    const k = intBetween(rng, 5, 9);
+    const count = k - 2;
+    const rel = expr(`\\frac{1}{\\square}>\\frac{1}{${k}}`);
+    const stem = pick(rng, [
+      `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 $2$ 이상의 자연수는 모두 몇 개인지 쓰시오.`,
+      `${expr(`\\frac{1}{${k}}`)} 보다 큰 단위분수 ${expr(`\\frac{1}{\\square}`)} 의 ${expr(`\\square`)} 에 알맞은 $2$ 이상의 자연수는 모두 몇 개인지 쓰시오.`,
+      `조건에 맞는 ${expr(`\\square`)} 의 자연수($2$ 이상)는 모두 몇 개인지 구하시오.\n\n${rel}`,
+      `${rel} 에 맞는 $2$ 이상의 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(count),
+      `단위분수는 분모가 작을수록 크므로 ${expr(`\\square<${k}`)} 여야 합니다. $2$ 이상이므로 ${expr(`2`)} 부터 ${n(k - 1)}까지, 모두 ${n(count)}개입니다.`,
+    );
+  }
+  // 1/a < 1/□ < 1/b — b < □ < a 이므로 a−b−1 개.
+  const b = intBetween(rng, 2, 5);
+  const a = intBetween(rng, b + 2, 9);
+  const count = a - b - 1;
+  const rel = expr(`\\frac{1}{${a}}<\\frac{1}{\\square}<\\frac{1}{${b}}`);
+  const stem = pick(rng, [
+    `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 자연수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`\\frac{1}{${a}}`)} 보다 크고 ${expr(`\\frac{1}{${b}}`)} 보다 작은 단위분수 ${expr(`\\frac{1}{\\square}`)} 의 ${expr(`\\square`)} 에 알맞은 자연수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 자연수는 모두 몇 개인지 구하시오.\n\n${rel}`,
+    `${rel} 에 맞는 자연수 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `단위분수는 분모가 작을수록 크므로 ${expr(`${b}<\\square<${a}`)} 여야 합니다. ${
+      count === 1
+        ? `${n(b + 1)} 뿐이므로`
+        : `${n(b + 1)}부터 ${n(a - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
+// ── 1-6-6 소수 알아보기 ──
+
+/** 1단 — 분수↔소수·자리 만들기 네 형. 표준(색칠 문장+그림 한 틀)과 갈라 둔다. */
+function dec166Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const form = intBetween(rng, 0, 3);
+  const prompt = intBetween(rng, 0, 1);
+  if (form === 0) {
+    const k = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `다음 분수를 소수로 나타내시오.\n\n${expr(`\\frac{${k}}{10}`)}`
+        : `분수 ${expr(`\\frac{${k}}{10}`)} 의 값을 소수로 쓰시오.`,
+      n(`0.${k}`),
+      `${expr(`\\frac{${k}}{10}`)} 의 값은 $0.1$ 짜리가 ${n(k)}개라는 뜻이므로 소수로 쓰면 ${expr(`0.${k}`)} 입니다.`,
+    );
+  }
+  if (form === 1) {
+    const k = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `다음 소수를 분수로 나타내시오.\n\n${expr(`0.${k}`)}`
+        : `소수 ${expr(`0.${k}`)} 의 값을 분수로 쓰시오.`,
+      expr(`\\frac{${k}}{10}`),
+      `${expr(`0.${k}`)} 의 값은 $0.1$ 짜리가 ${n(k)}개라는 뜻이므로 분수로 쓰면 ${expr(`\\frac{${k}}{10}`)} 입니다.`,
+    );
+  }
+  if (form === 2) {
+    const w = intBetween(rng, 1, 4);
+    const t = intBetween(rng, 1, 9);
+    return make(
+      unit,
+      prompt === 0
+        ? `$1$ 짜리가 ${n(w)}개, $0.1$ 짜리가 ${n(t)}개 있으면 모두 얼마인지 소수로 쓰시오.`
+        : `$1$ 짜리 ${n(w)}개와 $0.1$ 짜리 ${n(t)}개를 모은 수를 소수로 나타내시오.`,
+      n(`${w}.${t}`),
+      `$1$ 짜리 ${n(w)}개는 ${n(w)}, $0.1$ 짜리 ${n(t)}개는 ${expr(`0.${t}`)} 이므로 모으면 ${expr(`${w}.${t}`)} 입니다.`,
+    );
+  }
+  const w = intBetween(rng, 1, 3);
+  const t = intBetween(rng, 1, 9);
+  const m = w * 10 + t;
+  return make(
+    unit,
+    prompt === 0
+      ? `$0.1$ 짜리가 ${n(m)}개 있으면 모두 얼마인지 소수로 쓰시오.`
+      : `$0.1$ 짜리 ${n(m)}개를 모은 수를 소수로 나타내시오.`,
+    n(`${w}.${t}`),
+    `$0.1$ 짜리 ${n(10)}개가 $1$ 입니다. ${n(m)}개는 $1$ 짜리 ${n(w)}개와 $0.1$ 짜리 ${n(t)}개이므로 ${expr(`${w}.${t}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장 변환: mm→cm 소수, 열 조각 이야기. */
+function dec166Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const form = intBetween(rng, 0, 1);
+  if (form === 0) {
+    const k = intBetween(rng, 1, 9);
+    const thing = pick(rng, ["못", "클립", "씨앗", "지우개"]);
+    const stem = pick(rng, [
+      `${thing}의 길이는 ${unitNum(k, "mm")} 입니다. 이 길이는 몇 cm인지 소수로 쓰시오.`,
+      `길이가 ${unitNum(k, "mm")} 인 ${thing}${josa(thing, "이", "가")} 있습니다. cm 단위의 소수로 나타내시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(`0.${k}`),
+      `$1\\,\\mathrm{mm}$ 는 $0.1\\,\\mathrm{cm}$ 입니다. ${unitNum(k, "mm")} 는 $0.1$ 짜리가 ${n(k)}개이므로 ${expr(`0.${k}`)} cm입니다.`,
+    );
+  }
+  const k = intBetween(rng, 1, 9);
+  const thing = pick(rng, ["떡", "양갱", "두부", "카스텔라"]);
+  const stem = pick(rng, [
+    `${thing} 한 개를 똑같이 ${n(10)}조각으로 나누어 ${n(k)}조각을 먹었습니다. 먹은 부분을 소수로 나타내시오.`,
+    `${thing}${josa(thing, "을", "를")} 똑같이 ${n(10)}조각으로 나눈 것 중 ${n(k)}조각에 색칠했습니다. 색칠한 부분을 소수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(`0.${k}`),
+    `전체를 똑같이 ${n(10)}조각으로 나눈 것 중 ${n(k)}조각이므로 ${expr(`\\frac{${k}}{10}`)} 이고, 소수로 쓰면 ${expr(`0.${k}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 부분을 모아 소수로(두 단계): cm·mm 결합, 온전한 것+조각. */
+function dec166Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 4);
+  const t = intBetween(rng, 1, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const thing = pick(rng, ["연필", "리본", "빨대", "막대"]);
+    const stem = pick(rng, [
+      `${thing}의 길이는 ${n(w)} cm ${n(t)} mm 입니다. 이 길이는 몇 cm인지 소수로 나타내시오.`,
+      `길이가 ${n(w)} cm ${n(t)} mm 인 ${thing}${josa(thing, "이", "가")} 있습니다. cm 단위의 소수로 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(`${w}.${t}`),
+      `${n(t)} mm 는 ${expr(`0.${t}`)} cm입니다. ${n(w)} cm 와 ${expr(`0.${t}`)} cm 를 모으면 ${expr(`${w}.${t}`)} cm입니다.`,
+    );
+  }
+  const thing = pick(rng, ["초콜릿", "떡", "카스텔라", "양갱"]);
+  const stem = pick(rng, [
+    `온전한 ${thing} ${n(w)}개와, 똑같이 ${n(10)}조각으로 나눈 ${thing}의 ${n(t)}조각이 있습니다. ${thing}${josa(thing, "은", "는")} 모두 몇 개인지 소수로 나타내시오.`,
+    `${thing} ${n(w)}개가 통째로 있고, 한 개를 ${n(10)}등분한 조각이 ${n(t)}개 더 있습니다. 모두 몇 개인지 소수로 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(`${w}.${t}`),
+    `${n(10)}등분한 ${n(t)}조각은 ${expr(`0.${t}`)} 개입니다. ${n(w)}개와 모으면 ${expr(`${w}.${t}`)} 개입니다.`,
+  );
+}
+
+/** 4단 — 역산: 소수를 $0.1$ 짜리 개수·mm 로 되짚는다. */
+function dec166Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 3);
+  const t = intBetween(rng, 1, 9);
+  const total = w * 10 + t;
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `$0.1$ 짜리가 몇 개 모여야 소수 ${expr(`${w}.${t}`)} 만큼이 되는지 쓰시오.`,
+      `$0.1$ 짜리를 몇 개 모으면 ${expr(`${w}.${t}`)} 만큼이 되는지 쓰시오.`,
+      `소수 ${expr(`${w}.${t}`)} 만큼을 만들려면 $0.1$ 짜리가 몇 개 필요한지 쓰시오.`,
+      `${expr(`${w}.${t}`)} 만큼은 $0.1$ 짜리가 몇 개인 수인지 구하시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(total),
+      `$1$ 짜리 ${n(w)}개는 $0.1$ 짜리 ${n(w * 10)}개와 같고, ${expr(`0.${t}`)} 만큼은 $0.1$ 짜리 ${n(t)}개입니다. ${expr(`${w * 10}+${t}=${total}`)} 이므로 ${n(total)}개입니다.`,
+    );
+  }
+  const thing = pick(rng, ["연필", "리본", "빨대", "막대"]);
+  const stem = pick(rng, [
+    `${thing}의 길이는 ${expr(`${w}.${t}`)} cm입니다. 이 길이는 몇 mm인지 쓰시오.`,
+    `길이가 ${expr(`${w}.${t}`)} cm인 ${thing}${josa(thing, "이", "가")} 있습니다. mm 단위로 나타내시오.`,
+    `${expr(`${w}.${t}`)} cm짜리 ${thing}${josa(thing, "을", "를")} mm 로 재면 몇 mm인지 쓰시오.`,
+    `${thing}의 길이 ${expr(`${w}.${t}`)} cm를 mm 단위로 바꾸어 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(total),
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${n(w)} cm 는 ${n(w * 10)} mm이고, ${expr(`0.${t}`)} cm 는 ${n(t)} mm입니다. ${expr(`${w * 10}+${t}=${total}`)} 입니다.`,
+  );
+}
+
+// ── 1-6-7 소수의 크기 비교 ──
+
+/** 1단 — 두 소수 비교(큰·작은을 오간다, 동률 불가). 표준(「더 큰 수」 한 틀)과 갈라 둔다. */
+function cmp167Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decStrOf(i);
+  const B = decStrOf(j);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  const ans = askBig ? (vA > vB ? A : B) : vA > vB ? B : A;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `두 소수 ${n(A)}, ${n(B)} 중에서 더 큰 수를 골라 쓰시오.`,
+          `${n(A)}, ${n(B)} 의 크기를 비교하여 큰 쪽을 쓰시오.`,
+          `크기가 더 큰 소수를 쓰시오.\n\n${n(A)},  ${n(B)}`,
+          `두 소수 가운데 큰 것을 고르시오.\n\n${n(A)},  ${n(B)}`,
+        ]
+      : [
+          `두 소수 ${n(A)}, ${n(B)} 중에서 더 작은 수를 골라 쓰시오.`,
+          `${n(A)}, ${n(B)} 의 크기를 비교하여 작은 쪽을 쓰시오.`,
+          `크기가 더 작은 소수를 쓰시오.\n\n${n(A)},  ${n(B)}`,
+          `두 소수 가운데 작은 것을 고르시오.\n\n${n(A)},  ${n(B)}`,
+        ],
+  );
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. ${askBig ? "더 큰" : "더 작은"} 수는 ${expr(ans)} 입니다.`,
+  );
+}
+
+/** 2단 — 기록 비교 문장(이름 답, 동률 불가). */
+function cmp167Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decStrOf(i);
+  const B = decStrOf(j);
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  const [nameA, nameB] = pick(rng, KID_PAIRS);
+  const winner = vA > vB ? nameA : nameB;
+  const stem = pick(rng, [
+    `멀리뛰기에서 ${nameA}${josa(nameA, "은", "는")} ${n(A)} m, ${nameB}${josa(nameB, "은", "는")} ${n(B)} m 뛰었습니다. 더 멀리 뛴 사람의 이름을 쓰시오.`,
+    `${nameA}${josa(nameA, "이", "가")} 캔 고구마는 ${n(A)} kg, ${nameB}${josa(nameB, "이", "가")} 캔 고구마는 ${n(B)} kg입니다. 더 많이 캔 사람은 누구인지 쓰시오.`,
+    `리본을 ${nameA}${josa(nameA, "은", "는")} ${n(A)} m, ${nameB}${josa(nameB, "은", "는")} ${n(B)} m 가지고 있습니다. 더 긴 리본을 가진 사람의 이름을 쓰시오.`,
+    `물을 ${nameA}${josa(nameA, "이", "가")} ${n(A)} L, ${nameB}${josa(nameB, "이", "가")} ${n(B)} L 마셨습니다. 더 많이 마신 사람은 누구인지 이름을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    winner,
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. ${expr(vA > vB ? A : B)} 쪽이 더 크므로 ${winner}${josa(winner, "이", "가")} 답입니다.`,
+  );
+}
+
+/** 3단 — 세 소수 중 가장 큰·작은 것(동률 불가). */
+function cmp167Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const idx = distinctIdx(rng, 36, 3);
+  const strs = idx.map(decStrOf);
+  const vals = idx.map((v) => decIdxVal(v).w * 10 + decIdxVal(v).t);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  const pickIdx = askBig
+    ? vals.indexOf(Math.max(...vals))
+    : vals.indexOf(Math.min(...vals));
+  const ans = strs[pickIdx]!;
+  const list = `${n(strs[0]!)},  ${n(strs[1]!)},  ${n(strs[2]!)}`;
+  const stem = pick(
+    rng,
+    askBig
+      ? [
+          `세 소수 중에서 가장 큰 수를 쓰시오.\n\n${list}`,
+          `다음 소수의 크기를 비교하여 가장 큰 것을 고르시오.\n\n${list}`,
+          `세 소수 ${n(strs[0]!)}, ${n(strs[1]!)}, ${n(strs[2]!)} 중 가장 큰 수를 골라 쓰시오.`,
+          `가장 큰 소수는 어느 것인지 쓰시오.\n\n${list}`,
+        ]
+      : [
+          `세 소수 중에서 가장 작은 수를 쓰시오.\n\n${list}`,
+          `다음 소수의 크기를 비교하여 가장 작은 것을 고르시오.\n\n${list}`,
+          `세 소수 ${n(strs[0]!)}, ${n(strs[1]!)}, ${n(strs[2]!)} 중 가장 작은 수를 골라 쓰시오.`,
+          `가장 작은 소수는 어느 것인지 쓰시오.\n\n${list}`,
+        ],
+  );
+  const sortedStrs = idx
+    .map((v) => ({ s: decStrOf(v), val: decIdxVal(v).w * 10 + decIdxVal(v).t }))
+    .sort((x, y) => y.val - x.val)
+    .map((x) => x.s);
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `자연수 부분부터 비교하고, 같으면 소수 첫째 자리를 비교합니다. 크기 순서는 ${expr(`${sortedStrs[0]}>${sortedStrs[1]}>${sortedStrs[2]}`)} 이므로 답은 ${expr(ans)} 입니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 같은 자연수부에서 $w.a<w.\square<w.b$ 의 $\square$ 세기. */
+function cmp167Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 0, 3);
+  const a = intBetween(rng, 1, 6);
+  const b = intBetween(rng, a + 2, 8);
+  const count = b - a - 1;
+  const rel = expr(`${w}.${a}<${w}.\\square<${w}.${b}`);
+  const stem = pick(rng, [
+    `${rel} 에서 ${expr(`\\square`)} 에 들어갈 수 있는 수는 모두 몇 개인지 쓰시오.`,
+    `${expr(`${w}.${a}`)} 보다 크고 ${expr(`${w}.${b}`)} 보다 작은 소수 ${expr(`${w}.\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수는 모두 몇 개인지 쓰시오.`,
+    `조건에 맞는 ${expr(`\\square`)} 의 수는 모두 몇 개인지 구하시오.\n\n${rel}`,
+    `${rel} 에 맞는 ${expr(`\\square`)} 의 개수를 쓰시오.`,
+    `${expr(`${w}.${a}`)}, ${expr(`${w}.${b}`)} 사이에 있는 소수 한 자리 수는 모두 몇 개인지 쓰시오.`,
+    `${rel} 의 ${expr(`\\square`)} 에 알맞은 수를 모두 찾을 때, 그 개수를 쓰시오.`,
+    `두 소수 ${expr(`${w}.${a}`)}, ${expr(`${w}.${b}`)} 사이의 소수 한 자리 수를 모두 세어 그 수를 쓰시오.`,
+    `${rel} 에 알맞은 ${expr(`\\square`)} 의 수를 모두 세면 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(count),
+    `자연수 부분이 같으므로 소수 첫째 자리만 비교합니다. ${expr(`${a}<\\square<${b}`)} 인 수는 ${
+      count === 1
+        ? `${n(a + 1)} 뿐이므로`
+        : `${n(a + 1)}부터 ${n(b - 1)}까지이므로`
+    } 모두 ${n(count)}개입니다.`,
+  );
+}
+
+// ── 2-1 곱셈 (D-72 확대) ─────────────────────────────────────────────────
+//
+// 이름 약속: 2-1-1/2 는 (세 자리)×(한 자리), 2-1-3 은 (몇십)×(몇십)·(몇십몇)×(몇십)·
+// (몇)×(몇십몇) 세 꼴, 2-1-4 는 (몇십몇)×(몇십몇). «몇십몇»은 자리 구성(십 1..9 ·
+// 일 1..9)으로 만든다 — 일의 자리 0 이 뽑는 범위에 아예 없다(재추첨 없음).
+// (1)/(2)의 올림 종류는 표준과 **같은 함수**(mul3x1)가 정한다 — 규칙이 두 벌이 되지 않게.
+
+/** «몇십몇» — 십의 자리 1..9, 일의 자리 1..9. */
+function tensOnes21(rng: Rng): number {
+  return intBetween(rng, 1, 9) * 10 + intBetween(rng, 1, 9);
+}
+
+/** 소단원 이름이 약속한 올림 횟수 — «(1)» 0~1번, «(2)» 2~3번. 갈림의 **단 하나의 자리**. */
+function carryBand21(section: string): [number, number] {
+  return section.includes("(2)") ? [2, 3] : [0, 1];
+}
+
+/** 2-1-1·2-1-2 의 곱 한 벌 — 표준 mul32 와 **같은 함수**(mul3x1)로 뽑는다. */
+function mul21PairOf(section: string, rng: Rng): [number, number] {
+  const [lo, hi] = carryBand21(section);
+  return mul3x1(rng, lo, hi);
+}
+
+/** 1단 — (세 자리)×(한 자리) 식 그대로. */
+function mul21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `계산 결과를 쓰시오.\n\n${eqBox}`,
+    `${eq} 의 곱을 구하시오.`,
+    `다음 식을 계산하시오.\n\n${eqBox}`,
+    `곱셈식을 계산하여 ${sq} 의 값을 쓰시오.\n\n${eqBox}`,
+    `${eq} 의 값을 계산하시오.`,
+    `계산하여 알맞은 수를 ${sq} 에 쓰시오.\n\n${eqBox}`,
+    `다음 곱셈식의 곱을 쓰시오.\n\n${eq}`,
+    `곱셈을 하여 값을 구하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. 세 자리 수가 자연스러운 소재(공장·쪽수·값)를 쓴다. */
+function mul21Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `공장에서 인형을 하루에 ${n(a)}개씩 만듭니다. ${n(b)}일 동안 만드는 인형은 모두 몇 개인지 쓰시오.`,
+    `동화책 한 권은 ${n(a)}쪽입니다. 같은 책 ${n(b)}권의 쪽수를 모두 더하면 몇 쪽인지 쓰시오.`,
+    `한 자루에 ${n(a)}원인 연필이 있습니다. 이 연필 ${n(b)}자루의 값은 모두 얼마인지 쓰시오.`,
+    `빵집에서 빵을 하루에 ${n(a)}개씩 굽습니다. ${n(b)}일 동안 굽는 빵은 모두 몇 개인지 쓰시오.`,
+    `젤리가 한 통에 ${n(a)}개씩 담겨 있습니다. ${n(b)}통에 담긴 젤리는 모두 몇 개인지 쓰시오.`,
+    `마트에 물병이 한 층에 ${n(a)}병씩 진열되어 있습니다. ${n(b)}층에 진열된 물병은 모두 몇 병인지 쓰시오.`,
+    `농장에서 달걀을 하루에 ${n(a)}개씩 거둡니다. ${n(b)}일 동안 거두는 달걀은 모두 몇 개인지 쓰시오.`,
+    `과수원에서 사과를 한 상자에 ${n(a)}개씩 담았습니다. ${n(b)}상자에 담은 사과는 모두 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `같은 수를 ${n(b)}번 더하는 것은 곱셈과 같습니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `문구점에서 색종이를 ${n(a)}장씩 ${n(b)}묶음 들여오고, 낱장으로 ${n(c)}장을 더 들여왔습니다. 들여온 색종이는 모두 몇 장인지 쓰시오.`,
+      `공장에서 부품을 하루에 ${n(a)}개씩 ${n(b)}일 동안 만들고, 마지막 날 ${n(c)}개를 더 만들었습니다. 만든 부품은 모두 몇 개인지 쓰시오.`,
+      `한 상자에 ${n(a)}개씩 든 나사 ${n(b)}상자와 낱개 나사 ${n(c)}개가 있습니다. 나사는 모두 몇 개인지 쓰시오.`,
+      `책을 하루에 ${n(a)}쪽씩 ${n(b)}일 동안 읽고, 오늘 ${n(c)}쪽을 더 읽었습니다. 지금까지 읽은 쪽수는 모두 몇 쪽인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 남은 것까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `빵집에서 빵을 하루에 ${n(a)}개씩 ${n(b)}일 동안 구웠습니다. 그중 ${n(c)}개가 팔렸다면 남은 빵은 몇 개인지 쓰시오.`,
+    `달걀을 하루에 ${n(a)}개씩 ${n(b)}일 동안 거두었는데, 그중 ${n(c)}개를 요리에 썼습니다. 남은 달걀은 몇 개인지 쓰시오.`,
+    `구슬을 한 통에 ${n(a)}개씩 ${n(b)}통 준비했다가 ${n(c)}개를 친구에게 주었습니다. 남은 구슬은 몇 개인지 쓰시오.`,
+    `쿠키를 한 번에 ${n(a)}개씩 ${n(b)}번 구운 뒤 ${n(c)}개를 포장해 보냈습니다. 남은 쿠키는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 덜어낸 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 역산 세 틀. ㉠ 곱하는 한 자리 수를 되짚는다. ㉡ 가린 자리의 숫자를 되찾는다.
+ * ㉢ 되짚은 «어떤 수»를 다른 수로 다시 곱한다(두 단계).
+ *
+ * 해설은 곱셈만 쓴다 — 나눗셈은 2-2 라 아직 안 배웠다(D-66⑶).
+ * ⚠️ 틀이 ㉠ 하나뿐이면 **답이 «$2$» 로 39% 쏠린다**(실측 300씨앗 117건) — 표준이
+ * 쓰는 `mul3x1` 이 올림 0~1번 조건에서 곱하는 수 2를 자주 뽑기 때문이다. 표준 함수는
+ * 건드리지 않고(표준 출력 보존) **틀을 늘려** 쏠림을 나눈다.
+ */
+function mul21Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const sq = expr(`\\square`);
+  // ㉢ 이 쓸 두 번째 곱하는 수 — 처음 수와 다르고, **소단원이 약속한 올림 횟수**를
+  // 그대로 지키는 것만 모은다(전수 열거). 비면 ㉢ 을 안 쓴다 — 되뽑기 고리를 두지 않는다.
+  const [lo, hi] = carryBand21(unit.section);
+  const pool2 = [2, 3, 4, 5, 6, 7, 8, 9].filter(
+    (v) => v !== b && mulCarries3x1(a, v) >= lo && mulCarries3x1(a, v) <= hi,
+  );
+  const frame = intBetween(rng, 0, pool2.length === 0 ? 1 : 2);
+  if (frame === 0) {
+    const eqD = expr(`${a}\\times\\square=${p}`);
+    const stem = pick(rng, [
+      `곱셈식의 ${sq} 에 알맞은 수를 쓰시오.\n\n${eqD}`,
+      `${eqD} 에서 ${sq} 의 값을 구하시오.`,
+      `다음 곱셈식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+      `${sq} 에 알맞은 한 자리 수를 구하시오.\n\n${eqD}`,
+      // ⚠️ 아래 넷은 문장이 앞선다 — 그래도 **한 자리 수가 지면에 서야** 한다.
+      // 답이 한 자리라 발문에 안 나오면 소단원 이름의 「한 자리 수」가 지면에서 사라진다
+      // (조건 판정기 실측 10/40·5/40). 그래서 넷 다 ${sq} 가 든 식을 함께 싣는다.
+      `${n(a)} 에 어떤 한 자리 수를 곱한 결과가 ${n(p)} 입니다. 곱한 수를 구하시오.\n\n${eqD}`,
+      `${n(a)} 의 몇 배가 ${n(p)} 인지 구하시오.\n\n${eqD}`,
+      `어떤 한 자리 수와 ${n(a)} 의 곱이 ${n(p)} 입니다. 어떤 수를 구하시오.\n\n${eqD}`,
+      `${n(a)} 씩 ${sq} 묶음이면 모두 ${n(p)} 입니다. ${sq} 에 알맞은 수를 구하시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(b),
+      `${expr(`${a}\\times${b}=${p}`)} 이므로 구하는 한 자리 수는 ${n(b)} 입니다.`,
+    );
+  }
+  if (frame === 1) {
+    // 가린 자리 하나. 곱은 가린 숫자에 대해 **엄격히 커지므로** 답이 하나로 정해진다.
+    const pos = intBetween(rng, 0, 2);
+    const hidden = Math.floor(a / 10 ** pos) % 10;
+    const masked = [2, 1, 0]
+      .map((d) =>
+        d === pos ? "\\square" : String(Math.floor(a / 10 ** d) % 10),
+      )
+      .join("");
+    const eqH = expr(`${masked}\\times${b}=${p}`);
+    const place = pos === 0 ? "일" : pos === 1 ? "십" : "백";
+    const stem = pick(rng, [
+      `${sq} 에 알맞은 숫자를 구하시오.\n\n${eqH}`,
+      `곱셈식이 맞도록 ${sq} 에 알맞은 숫자를 써넣으시오.\n\n${eqH}`,
+      `가려진 ${place}의 자리 숫자를 구하시오.\n\n${eqH}`,
+      `다음 곱셈식에서 ${sq} 에 들어갈 숫자를 쓰시오.\n\n${eqH}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(hidden),
+      `곱해지는 수를 찾으면 ${expr(`${a}\\times${b}=${p}`)} 이므로 ${sq} 에 알맞은 숫자는 ${n(hidden)} 입니다.`,
+    );
+  }
+  const b2 = pool2[intBetween(rng, 0, pool2.length - 1)]!;
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)}배 하였더니 ${n(p)} 입니다. 이 어떤 수를 ${n(b2)}배 하면 얼마인지 쓰시오.`,
+    `어떤 수의 ${n(b)}배가 ${n(p)} 입니다. 같은 어떤 수의 ${n(b2)}배는 얼마인지 구하시오.`,
+    `어떤 수를 ${n(b)}번 더한 값이 ${n(p)} 입니다. 이 어떤 수를 ${n(b2)}번 더하면 얼마인지 쓰시오.`,
+    `어떤 수를 ${n(b)}배 한 값이 ${n(p)} 일 때, 그 어떤 수를 ${n(b2)}배 한 값을 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(a * b2),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 어떤 수는 ${n(a)} 입니다. 그 수를 ${n(b2)}배 하면 ${expr(`${a}\\times${b2}=${a * b2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 — 세 꼴 중 하나를 뽑는다. 셋 다 이름의 합집합 안이다. */
+function mul213PairOf(rng: Rng): [number, number] {
+  const shape = intBetween(rng, 0, 2);
+  if (shape === 0)
+    return [intBetween(rng, 2, 9) * 10, intBetween(rng, 2, 9) * 10];
+  if (shape === 1) return [tensOnes21(rng), intBetween(rng, 2, 9) * 10];
+  return [intBetween(rng, 2, 9), tensOnes21(rng)];
+}
+
+/** 1단 — 세 꼴 식 그대로. */
+function mul213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱을 계산하시오.\n\n${eqBox}`,
+    `${eq} 의 값을 구하여 쓰시오.`,
+    `다음 곱셈의 곱을 구하시오.\n\n${eq}`,
+    `${sq} 에 알맞은 값을 쓰시오.\n\n${eqBox}`,
+    `계산하시오.\n\n${eqBox}`,
+    `${eq} 의 계산 결과를 쓰시오.`,
+    `곱셈식의 곱을 구하시오.\n\n${eqBox}`,
+    `두 수의 곱을 구하시오.\n\n${n(a)},  ${n(b)}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. 세 꼴 어느 것이 와도 자연스러운 소재를 쓴다. */
+function mul213Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `강당에 의자를 한 줄에 ${n(a)}개씩 ${n(b)}줄 놓았습니다. 놓은 의자는 모두 몇 개인지 쓰시오.`,
+    `한 사람이 색 테이프를 ${n(a)}장씩 모았습니다. ${n(b)}명이 모은 색 테이프는 모두 몇 장인지 쓰시오.`,
+    `한 상자에 귤이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 든 귤은 모두 몇 개인지 쓰시오.`,
+    `딱지를 한 통에 ${n(a)}장씩 ${n(b)}통에 담았습니다. 담은 딱지는 모두 몇 장인지 쓰시오.`,
+    `하루에 종이비행기를 ${n(a)}개씩 접습니다. ${n(b)}일 동안 접는 종이비행기는 모두 몇 개인지 쓰시오.`,
+    `화단에 꽃을 한 줄에 ${n(a)}송이씩 ${n(b)}줄 심었습니다. 심은 꽃은 모두 몇 송이인지 쓰시오.`,
+    `빨대가 한 묶음에 ${n(a)}개씩 ${n(b)}묶음 있습니다. 빨대는 모두 몇 개인지 쓰시오.`,
+    `한 판에 스티커가 ${n(a)}장씩 붙어 있습니다. ${n(b)}판에 붙어 있는 스티커는 모두 몇 장인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `한 묶음의 수에 묶음 수를 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul213Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `문방구에서 지우개를 한 상자에 ${n(a)}개씩 ${n(b)}상자 들여오고, 낱개로 ${n(c)}개를 더 들여왔습니다. 지우개는 모두 몇 개인지 쓰시오.`,
+      `물을 한 묶음에 ${n(a)}병씩 ${n(b)}묶음 사고, ${n(c)}병을 따로 샀습니다. 산 물은 모두 몇 병인지 쓰시오.`,
+      `종이컵을 한 줄에 ${n(a)}개씩 ${n(b)}줄로 쌓고, 옆에 ${n(c)}개를 더 두었습니다. 종이컵은 모두 몇 개인지 쓰시오.`,
+      `붙임딱지를 ${n(a)}장씩 ${n(b)}묶음과 낱장 ${n(c)}장을 준비했습니다. 준비한 붙임딱지는 모두 몇 장인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `묶음의 수를 먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `사탕을 한 봉지에 ${n(a)}개씩 ${n(b)}봉지 샀는데, 그중 ${n(c)}개를 나누어 주었습니다. 남은 사탕은 몇 개인지 쓰시오.`,
+    `젤리를 한 통에 ${n(a)}개씩 ${n(b)}통 준비했다가 ${n(c)}개를 먹었습니다. 남은 젤리는 몇 개인지 쓰시오.`,
+    `연결 큐브를 한 상자에 ${n(a)}개씩 ${n(b)}상자 가져왔는데, ${n(c)}개를 다른 반에 빌려주었습니다. 남은 연결 큐브는 몇 개인지 쓰시오.`,
+    `요구르트를 한 묶음에 ${n(a)}병씩 ${n(b)}묶음 샀는데, ${n(c)}병을 마셨습니다. 남은 요구르트는 몇 병인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `묶음의 수를 먼저 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 쓴 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 역산 두 틀. ㉠ (몇)×(몇십몇) 에서 한 자리 수를 되짚는다. ㉡ (몇십)×(몇십) 에서
+ * 몇십을 되짚는다. 둘 다 소단원 이름의 세 꼴 안이다.
+ */
+function mul213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const t1 = intBetween(rng, 2, 9) * 10;
+    const t2 = intBetween(rng, 2, 9) * 10;
+    const tp = t1 * t2;
+    const eqT = expr(`\\square\\times${t2}=${tp}`);
+    const sqT = expr(`\\square`);
+    const stem = pick(rng, [
+      `${sqT} 에 알맞은 몇십을 구하시오.\n\n${eqT}`,
+      `${eqT} 에서 ${sqT} 의 값을 쓰시오.`,
+      `다음 곱셈식의 ${sqT} 에 알맞은 수를 구하시오.\n\n${eqT}`,
+      `어떤 몇십과 ${n(t2)} 의 곱이 ${n(tp)} 입니다. 어떤 수를 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(t1),
+      `몇십끼리의 곱은 곱셈구구의 곱 뒤에 ${expr(`0`)} 두 개가 붙습니다. ${expr(`${t1}\\times${t2}=${tp}`)} 이므로 구하는 수는 ${n(t1)} 입니다.`,
+    );
+  }
+  const a = intBetween(rng, 3, 9);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const eqD = expr(`\\square\\times${b}=${p}`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱셈식의 ${sq} 에 알맞은 수를 구하시오.\n\n${eqD}`,
+    `${eqD} 에서 ${sq} 의 값을 쓰시오.`,
+    `${sq} 에 들어갈 한 자리 수를 구하시오.\n\n${eqD}`,
+    `알맞은 수를 ${sq} 에 써넣으시오.\n\n${eqD}`,
+    `다음 식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+    `${eqD} 의 ${sq} 에 알맞은 한 자리 수를 쓰시오.`,
+    `어떤 한 자리 수와 ${n(b)} 의 곱이 ${n(p)} 입니다. 어떤 수를 쓰시오.`,
+    `어떤 한 자리 수와 ${n(b)} 의 곱은 ${n(p)} 입니다. 어떤 수는 얼마인지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(a),
+    `차례로 곱해 봅니다. ${expr(`${a - 1}\\times${b}=${(a - 1) * b}`)}, ${expr(`${a}\\times${b}=${p}`)} 이므로 구하는 한 자리 수는 ${n(a)} 입니다.`,
+  );
+}
+
+/** 1단 — (몇십몇)×(몇십몇) 식 그대로. */
+function mul214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const eq = expr(`${a}\\times${b}`);
+  const eqBox = expr(`${a}\\times${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `곱셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 곱을 계산하시오.`,
+    `다음 두 수의 곱을 구하시오.\n\n${n(a)},  ${n(b)}`,
+    `계산 결과를 ${sq} 에 알맞게 쓰시오.\n\n${eqBox}`,
+    `다음을 계산하여 값을 쓰시오.\n\n${eq}`,
+    `곱셈식 ${eqBox} 의 ${sq} 에 알맞은 수를 구하시오.`,
+    `${eq} 의 값은 얼마인지 쓰시오.`,
+    `다음 곱셈식을 계산하시오.\n\n${eqBox}`,
+  ]);
+  return make(unit, stem, n(p), `${expr(`${a}\\times${b}=${p}`)} 입니다.`);
+}
+
+/** 2단 — 문장. */
+function mul214Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const stem = pick(rng, [
+    `한 상자에 감이 ${n(a)}개씩 들어 있습니다. ${n(b)}상자에 들어 있는 감은 모두 몇 개인지 쓰시오.`,
+    `하루에 줄넘기를 ${n(a)}번씩 합니다. ${n(b)}일 동안 하는 줄넘기는 모두 몇 번인지 쓰시오.`,
+    `한 봉지에 ${n(a)}개씩 든 밤이 ${n(b)}봉지 있습니다. 밤은 모두 몇 개인지 쓰시오.`,
+    `학생 ${n(a)}명이 종이학을 ${n(b)}마리씩 접었습니다. 접은 종이학은 모두 몇 마리인지 쓰시오.`,
+    `극장의 한 구역에 좌석이 ${n(a)}개씩 ${n(b)}구역 있습니다. 좌석은 모두 몇 개인지 쓰시오.`,
+    `한 쪽에 낱말을 ${n(a)}개씩 ${n(b)}쪽 외웠습니다. 외운 낱말은 모두 몇 개인지 쓰시오.`,
+    `과일 가게에서 딸기를 한 팩에 ${n(a)}개씩 ${n(b)}팩 팔았습니다. 판 딸기는 모두 몇 개인지 쓰시오.`,
+    `버스 한 대에 ${n(a)}명씩 버스 ${n(b)}대에 나누어 탔습니다. 탄 사람은 모두 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p),
+    `한 묶음의 수에 묶음 수를 곱합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱한 뒤 더하거나 덜어내는 두 단계. */
+function mul214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const c = intBetween(rng, 11, Math.min(98, p - 11));
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `젤리를 한 봉지에 ${n(a)}개씩 ${n(b)}봉지 사고, 낱개로 ${n(c)}개를 더 샀습니다. 산 젤리는 모두 몇 개인지 쓰시오.`,
+      `공책이 한 묶음에 ${n(a)}권씩 ${n(b)}묶음 있고, 낱권이 ${n(c)}권 더 있습니다. 공책은 모두 몇 권인지 쓰시오.`,
+      `배드민턴 연습을 하루에 ${n(a)}번씩 ${n(b)}일 동안 하고, 마지막 날 ${n(c)}번을 더 했습니다. 연습은 모두 몇 번인지 쓰시오.`,
+      `한 판에 ${n(a)}개씩 든 달걀 ${n(b)}판과 낱개 달걀 ${n(c)}개가 있습니다. 달걀은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(p + c),
+      `먼저 곱셈으로 묶음의 수를 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 낱개까지 더하면 ${expr(`${p}+${c}=${p + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `귤을 한 상자에 ${n(a)}개씩 ${n(b)}상자 샀는데, 그중 ${n(c)}개를 이웃과 나누었습니다. 남은 귤은 몇 개인지 쓰시오.`,
+    `색 구슬을 한 통에 ${n(a)}개씩 ${n(b)}통 모았다가 ${n(c)}개를 동생에게 주었습니다. 남은 색 구슬은 몇 개인지 쓰시오.`,
+    `물티슈가 한 팩에 ${n(a)}장씩 ${n(b)}팩 있었는데, ${n(c)}장을 썼습니다. 남은 물티슈는 몇 장인지 쓰시오.`,
+    `초콜릿을 한 상자에 ${n(a)}개씩 ${n(b)}상자 준비했다가 ${n(c)}개를 손님에게 드렸습니다. 남은 초콜릿은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(p - c),
+    `먼저 곱셈으로 묶음의 수를 구합니다. ${expr(`${a}\\times${b}=${p}`)} 입니다. 쓴 만큼 빼면 ${expr(`${p}-${c}=${p - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 수 카드 네 장으로 가장 큰·작은 곱 만들기(조건 조합). 답은 전수 비교로 구한다. */
+function mul214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cards = distinctIdx(rng, 9, 4).map((i) => i + 1);
+  const askBig = intBetween(rng, 0, 1) === 0;
+  let bestA = 0;
+  let bestB = 0;
+  let bestP = askBig ? -1 : Number.MAX_SAFE_INTEGER;
+  for (let i = 0; i < 4; i += 1)
+    for (let j = 0; j < 4; j += 1)
+      for (let k = 0; k < 4; k += 1)
+        for (let l = 0; l < 4; l += 1) {
+          if (new Set([i, j, k, l]).size !== 4) continue;
+          const v1 = cards[i]! * 10 + cards[j]!;
+          const v2 = cards[k]! * 10 + cards[l]!;
+          if (askBig ? v1 * v2 > bestP : v1 * v2 < bestP) {
+            bestA = v1;
+            bestB = v2;
+            bestP = v1 * v2;
+          }
+        }
+  const list = cards.map((d) => n(d)).join(", ");
+  const stem = askBig
+    ? pick(rng, [
+        `수 카드 ${list} 의 네 장이 있습니다. 카드를 한 번씩 모두 사용하여 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 가장 큰 곱을 구하시오.`,
+        `네 장의 수 카드 ${list} 만 한 번씩 사용하여 두 자리 수끼리의 곱셈식을 만듭니다. 곱이 가장 클 때의 곱을 쓰시오.`,
+        `수 카드 ${list} 의 숫자를 한 번씩만 써서 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 만들 수 있는 가장 큰 곱을 쓰시오.`,
+        `${list} 의 네 숫자를 모두 한 번씩 사용해 두 자리 수 두 개를 만들어 곱합니다. 곱이 가장 크게 되는 값을 구하시오.`,
+      ])
+    : pick(rng, [
+        `수 카드 ${list} 의 네 장이 있습니다. 카드를 한 번씩 모두 사용하여 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 가장 작은 곱을 구하시오.`,
+        `네 장의 수 카드 ${list} 만 한 번씩 사용하여 두 자리 수끼리의 곱셈식을 만듭니다. 곱이 가장 작을 때의 곱을 쓰시오.`,
+        `수 카드 ${list} 의 숫자를 한 번씩만 써서 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 만들 수 있는 가장 작은 곱을 쓰시오.`,
+        `${list} 의 네 숫자를 모두 한 번씩 사용해 두 자리 수 두 개를 만들어 곱합니다. 곱이 가장 작게 되는 값을 구하시오.`,
+      ]);
+  return make(
+    unit,
+    stem,
+    n(bestP),
+    `${askBig ? "십의 자리 숫자가 클수록 곱이 큽니다." : "십의 자리 숫자가 작을수록 곱이 작습니다."} 만들 수 있는 곱을 비교하면 가장 ${askBig ? "큰" : "작은"} 곱은 ${expr(`${bestA}\\times${bestB}=${bestP}`)} 입니다.`,
+  );
+}
+
+// ── 2-2 나눗셈 (D-72 확대) ───────────────────────────────────────────────
+//
+// 이름 약속: 2-2-1·2-2-2 는 (몇십)÷(몇)·(몇십몇)÷(몇) 이고 **내림 유무**가 갈린다,
+// 2-2-3 은 **나머지가 있는** (몇십몇)÷(몇), 2-2-4 는 (세 자리)÷(한 자리).
+// 수 뽑기는 표준이 쓰는 함수를 **그대로 쓴다**(div2 · div2Rem · div3Exact) —
+// 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+// 곱셈은 2-1 에서 배웠으므로 해설에 **곱셈 검산**을 쓴다(D-66⑶ 반대 방향).
+
+/** 소단원 이름이 약속한 내림 유무 — 갈림의 **단 하나의 자리**. */
+function carryDown22(section: string): boolean {
+  return section.includes("내림이 있는");
+}
+
+/** (세 자리)÷(한 자리), 나머지 없음 — 표준 div32 와 **같은 함수**로 뽑는다. */
+function div3Exact(rng: Rng): [number, number, number] {
+  const b = intBetween(rng, 3, 9);
+  const q = intBetween(rng, Math.ceil(100 / b), 48);
+  return [b * q, b, q];
+}
+
+/** 1단 — 나눗셈 한 번. 표준(「다음을 계산하시오」)과 틀을 갈라 둔다. */
+function div22Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const eq = expr(`${a}\\div${b}`);
+  const eqBox = expr(`${a}\\div${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `나눗셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 몫을 구하시오.`,
+    `${sq} 에 알맞은 수를 쓰시오.\n\n${eqBox}`,
+    `나눗셈식 ${eqBox} 에서 ${sq} 에 알맞은 수를 구하시오.`,
+    `다음 나눗셈의 몫을 쓰시오.\n\n${eq}`,
+    `${eq} 의 값을 계산하시오.`,
+    `몫을 구하여 ${sq} 에 써넣으시오.\n\n${eqBox}`,
+    `다음 나눗셈식을 계산하시오.\n\n${eqBox}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «똑같이 나누기» 문장. 식은 학생이 세운다. */
+function div22Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const stem = pick(rng, [
+    `색종이 ${n(a)}장을 ${n(b)}명에게 똑같이 나누어 주려고 합니다. 한 명이 몇 장씩 받는지 쓰시오.`,
+    `사탕 ${n(a)}개를 ${n(b)}봉지에 똑같이 나누어 담으면 한 봉지에 몇 개씩 담기는지 쓰시오.`,
+    `연필 ${n(a)}자루를 ${n(b)}상자에 똑같이 나누어 넣으면 한 상자에 몇 자루씩 들어가는지 쓰시오.`,
+    `구슬 ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가지면 한 사람이 몇 개씩 갖는지 쓰시오.`,
+    `쿠키 ${n(a)}개를 접시 ${n(b)}개에 똑같이 나누어 놓으면 한 접시에 몇 개씩 놓이는지 쓰시오.`,
+    `동화책 ${n(a)}쪽을 ${n(b)}일 동안 똑같이 나누어 읽으면 하루에 몇 쪽씩 읽어야 하는지 쓰시오.`,
+    `끈 ${n(a)}도막을 ${n(b)}묶음으로 똑같이 나누면 한 묶음이 몇 도막인지 쓰시오.`,
+    `학생 ${n(a)}명을 ${n(b)}모둠으로 똑같이 나누면 한 모둠이 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `똑같이 나누므로 나눗셈으로 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 맞습니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 곱하거나 덜어내는 두 단계. */
+function div22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  // ⚠️ 「그중 $c$ 묶음」 틀은 $c<b$ 여야 말이 된다. $b=2$ 면 $[2,1]$ 로 **범위가
+  // 뒤집혀 던진다** — 되뽑기가 아니라 **그때는 그 틀을 안 쓴다**(구성으로 회피).
+  if (b >= 3 && intBetween(rng, 0, 1) === 0) {
+    const c = intBetween(rng, 2, b - 1);
+    const stem = pick(rng, [
+      `공책 ${n(a)}권을 ${n(b)}반에 똑같이 나누어 주었습니다. 그중 ${n(c)}반이 받은 공책은 모두 몇 권인지 쓰시오.`,
+      `색연필 ${n(a)}자루를 ${n(b)}모둠에 똑같이 나누어 주었습니다. ${n(c)}모둠이 받은 색연필은 모두 몇 자루인지 쓰시오.`,
+      `귤 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담았습니다. ${n(c)}상자에 담긴 귤은 모두 몇 개인지 쓰시오.`,
+      `사탕 ${n(a)}개를 ${n(b)}봉지에 똑같이 나누어 담았습니다. ${n(c)}봉지에 든 사탕은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q * c),
+      `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${q}\\times${c}=${q * c}`)} 이므로 답은 ${n(q * c)} 입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const stem = pick(rng, [
+    `딱지 ${n(a)}장을 ${n(b)}명이 똑같이 나누어 가진 뒤, 한 사람이 ${n(c)}장을 잃어버렸습니다. 그 사람에게 남은 딱지는 몇 장인지 쓰시오.`,
+    `구슬 ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가진 뒤, 한 사람이 ${n(c)}개를 동생에게 주었습니다. 그 사람에게 남은 구슬은 몇 개인지 쓰시오.`,
+    `쿠키 ${n(a)}개를 접시 ${n(b)}개에 똑같이 나누어 놓은 뒤, 한 접시에서 ${n(c)}개를 먹었습니다. 그 접시에 남은 쿠키는 몇 개인지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}모둠에 똑같이 나누어 준 뒤, 한 모둠이 ${n(c)}장을 썼습니다. 그 모둠에 남은 색종이는 몇 장인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${q}-${c}=${q - c}`)} 이므로 답은 ${n(q - c)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 두 틀. ㉠ 나뉘는 수 되짚기 ㉡ 잘못 곱한 결과에서 바른 몫 찾기. */
+function div22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const sq = expr(`\\square`);
+  if (intBetween(rng, 0, 1) === 0) {
+    const eqD = expr(`\\square\\div${b}=${q}`);
+    const stem = pick(rng, [
+      `나눗셈식의 ${sq} 에 알맞은 수를 구하시오.\n\n${eqD}`,
+      `${eqD} 에서 ${sq} 에 알맞은 수를 쓰시오.`,
+      // ⚠️ «$4$ 로 나누어» 처럼 **수 뒤에 조사**를 붙이지 않는다(읽는 소리로 갈린다).
+      // 「나누는 수가 $4$ 인」 처럼 조사가 안 붙는 자리로 문장을 돌린다.
+      `나누는 수가 ${n(b)} 인 나눗셈의 몫이 ${n(q)} 입니다. 나뉘는 수를 구하시오.\n\n${eqD}`,
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)} 인 나눗셈이 있습니다. 나뉘는 수를 쓰시오.\n\n${eqD}`,
+      `${sq} 에 알맞은 두 자리 수를 구하시오.\n\n${eqD}`,
+      `다음 나눗셈식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,
+    );
+  }
+  const wrong = a * b;
+  // 바르게 할 나눗셈을 지면에 세운다 — 나뉘는 수는 가린 채로(답이 보이면 안 된다).
+  // 그래야 소단원 이름이 약속한 «(몇십몇)÷(몇)» 꼴이 발문에 실제로 선다.
+  const right = expr(`\\square\\div${b}`);
+  const stem = pick(rng, [
+    `나누는 수가 ${n(b)} 인 나눗셈을 해야 하는데 잘못하여 곱했더니 ${n(wrong)} 입니다. 바르게 계산한 몫을 쓰시오.\n\n${right}`,
+    `어떤 수를 ${n(b)} 만큼씩 나누어야 할 것을 잘못하여 ${n(b)} 배 했더니 ${n(wrong)} 입니다. 바르게 계산한 몫을 구하시오.\n\n${right}`,
+    `나눗셈을 해야 할 것을 곱셈으로 잘못 계산하여 나온 값이 ${n(wrong)} 입니다. 두 계산에 쓴 수가 모두 ${n(b)} 일 때, 바른 몫을 쓰시오.\n\n${right}`,
+    `어떤 수의 ${n(b)} 배가 ${n(wrong)} 입니다. 그 어떤 수의 몫을 구하시오.\n\n${right}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${b}\\times${a}=${wrong}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 1단 — 몫과 나머지. 정답은 표준과 같은 «몫 ~, 나머지 ~» 꼴이다. */
+function rem223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  const eq = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `나눗셈을 하여 몫과 나머지를 쓰시오.\n\n${eq}`,
+    `${eq} 의 몫과 나머지를 차례로 구하시오.`,
+    `다음 나눗셈의 몫과 나머지를 각각 구하시오.\n\n${eq}`,
+    `${eq} 에서 몫과 나머지를 쓰시오.`,
+    `나눗셈식 ${eq} 의 몫과 나머지를 구하시오.`,
+    `다음을 계산하여 몫과 나머지를 쓰시오.\n\n${eq}`,
+    `${eq} 의 몫과 나머지는 각각 얼마인지 구하시오.`,
+    `나눗셈 ${eq} 에서 나머지까지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    `몫 ${n(q)}, 나머지 ${n(r)}`,
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장. 남는 것이 몇인지, 또는 몇 묶음이 되는지를 묻는다. */
+function rem223Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으려고 합니다. 봉지에 담고 남는 사탕은 몇 개인지 쓰시오.`,
+      `색종이 ${n(a)}장을 ${n(b)}명에게 똑같이 나누어 줄 때 남는 색종이는 몇 장인지 쓰시오.`,
+      `구슬 ${n(a)}개를 한 통에 ${n(b)}개씩 담으면 남는 구슬은 몇 개인지 쓰시오.`,
+      `연필 ${n(a)}자루를 ${n(b)}자루씩 묶으면 묶고 남는 연필은 몇 자루인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(r),
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. ${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${b * q}+${r}=${a}`)} 이므로 맞습니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `귤 ${n(a)}개를 한 상자에 ${n(b)}개씩 담습니다. 가득 채운 상자는 몇 상자인지 쓰시오.`,
+    `쿠키 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담습니다. 가득 채운 봉지는 몇 봉지인지 쓰시오.`,
+    `공책 ${n(a)}권을 한 묶음에 ${n(b)}권씩 묶습니다. 만들 수 있는 묶음은 몇 묶음인지 쓰시오.`,
+    `달걀 ${n(a)}개를 한 판에 ${n(b)}개씩 담습니다. 가득 채운 판은 몇 판인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 가득 채운 것은 몫이므로 ${n(q)} 입니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 남는 것까지 함께 쓰는 두 단계. */
+function rem223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 남는 것까지 담으려면 한 묶음이 더 필요하다 — 몫에 하나를 더한다.
+    const stem = pick(rng, [
+      `학생 ${n(a)}명이 한 대에 ${n(b)}명씩 타는 배를 타려고 합니다. 모두 타려면 배는 적어도 몇 대 필요한지 쓰시오.`,
+      `사과 ${n(a)}개를 한 상자에 ${n(b)}개씩 담아 모두 담으려고 합니다. 상자는 적어도 몇 상자 필요한지 쓰시오.`,
+      `공 ${n(a)}개를 한 바구니에 ${n(b)}개씩 넣어 모두 담으려면 바구니는 적어도 몇 개 필요한지 쓰시오.`,
+      `책 ${n(a)}권을 한 칸에 ${n(b)}권씩 꽂아 모두 꽂으려면 칸은 적어도 몇 칸 필요한지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q + 1),
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 남는 것도 담아야 하므로 ${expr(`${q}+1=${q + 1}`)} 입니다.`,
+    );
+  }
+  // 남는 것을 채우려면 얼마가 더 있어야 하는가 — 나누는 수에서 나머지를 뺀다.
+  const stem = pick(rng, [
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았더니 마지막 봉지가 다 차지 않았습니다. 마지막 봉지를 가득 채우려면 사탕이 몇 개 더 필요한지 쓰시오.`,
+    `구슬 ${n(a)}개를 한 통에 ${n(b)}개씩 담았더니 마지막 통이 다 차지 않았습니다. 마지막 통을 가득 채우려면 구슬이 몇 개 더 필요한지 쓰시오.`,
+    `달걀 ${n(a)}개를 한 판에 ${n(b)}개씩 담았더니 마지막 판이 다 차지 않았습니다. 마지막 판을 채우려면 달걀이 몇 개 더 필요한지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}장씩 묶었더니 마지막 묶음이 다 차지 않았습니다. 마지막 묶음을 채우려면 색종이가 몇 장 더 필요한지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b - r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 한 묶음이 ${n(b)} 이므로 ${expr(`${b}-${r}=${b - r}`)} 만큼 더 필요합니다.`,
+  );
+}
+
+/** 4단 — 역산·조건 조합 두 틀. ㉠ 몫·나머지에서 나뉘는 수 ㉡ 나누어떨어지게 하려면. */
+function rem223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 나뉘는 수는 가린 채로 나눗셈을 지면에 세운다 — 이름이 약속한 꼴이 서면서
+    // 답(나뉘는 수)은 발문에 안 보인다.
+    const box = expr(`\\square\\div${b}`);
+    const stem = pick(rng, [
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)}, 나머지가 ${n(r)} 인 나눗셈이 있습니다. 나뉘는 수를 구하시오.\n\n${box}`,
+      `어떤 수를 ${n(b)} 씩 나누었더니 몫이 ${n(q)} 이고 나머지가 ${n(r)} 입니다. 어떤 수를 쓰시오.\n\n${box}`,
+      `몫이 ${n(q)}, 나머지가 ${n(r)} 인 나눗셈에서 나누는 수가 ${n(b)} 일 때, 나뉘는 수를 구하시오.\n\n${box}`,
+      `나누는 수가 ${n(b)} 인 나눗셈의 몫이 ${n(q)}, 나머지가 ${n(r)} 일 때 나뉘는 수는 얼마인지 구하시오.\n\n${box}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나뉘는 수는 곱한 뒤 나머지를 더해 되짚습니다. ${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${a}`)} 이므로 ${n(a)} 입니다.`,
+    );
+  }
+  const eq = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${eq} 에서 나누어떨어지게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 구하시오.`,
+    `나눗셈 ${eq} 에서 나누어떨어지도록 나뉘는 수를 늘리려고 합니다. 적어도 얼마를 더해야 하는지 쓰시오.`,
+    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.\n\n${eq}`,
+    `${eq} 에서 나머지가 없게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b - r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 나누는 수가 ${n(b)} 이므로 ${expr(`${b}-${r}=${b - r}`)} 만큼 더하면 나누어떨어집니다.`,
+  );
+}
+
+/** 1단 — (세 자리)÷(한 자리) 식 그대로. */
+function div224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const eq = expr(`${a}\\div${b}`);
+  const eqBox = expr(`${a}\\div${b}=\\square`);
+  const sq = expr(`\\square`);
+  // 문구는 2-2-1·2-2-2 와 **겹치지 않게** 따로 짠다 — 자리 수만 다른 같은 문장이
+  // 두 소단원에 서면 지면에서 같은 문항으로 읽힌다(D-66⑸ 취지).
+  const stem = pick(rng, [
+    `세 자리 수의 나눗셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 계산에서 몫은 얼마인지 쓰시오.`,
+    `계산하여 ${sq} 에 알맞은 수를 써넣으시오.\n\n${eqBox}`,
+    `다음 나눗셈에서 몫을 구하시오.\n\n${eq}`,
+    `${eq} 의 계산 결과를 쓰시오.`,
+    `나눗셈식 ${eqBox} 의 ${sq} 에 알맞은 수를 쓰시오.`,
+    `세로로 계산하여 몫을 구하시오.\n\n${eq}`,
+    `다음 식의 몫을 구하여 쓰시오.\n\n${eqBox}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장. 세 자리 수가 자연스러운 소재를 쓴다(2-2-1·2 와 소재를 갈라 둔다). */
+function div224Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const stem = pick(rng, [
+    `색종이 ${n(a)}장을 ${n(b)}반에 똑같이 나누어 주면 한 반이 몇 장씩 받는지 쓰시오.`,
+    `공장에서 만든 인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담으면 한 상자에 몇 개씩 들어가는지 쓰시오.`,
+    `위인전 ${n(a)}쪽을 ${n(b)}주 동안 똑같이 나누어 읽으면 한 주에 몇 쪽씩 읽어야 하는지 쓰시오.`,
+    `과수원에서 딴 사과 ${n(a)}개를 ${n(b)}수레에 똑같이 나누어 실으면 한 수레에 몇 개씩 실리는지 쓰시오.`,
+    `물 ${n(a)}병을 ${n(b)}묶음으로 똑같이 나누면 한 묶음이 몇 병인지 쓰시오.`,
+    `학생 ${n(a)}명을 ${n(b)}줄로 똑같이 세우면 한 줄에 몇 명씩 서는지 쓰시오.`,
+    `달걀 ${n(a)}개를 ${n(b)}판에 똑같이 나누어 담으면 한 판에 몇 개씩 담기는지 쓰시오.`,
+    `도서관에 있는 책 ${n(a)}권을 책꽂이 ${n(b)}칸에 똑같이 나누어 꽂으면 한 칸에 몇 권씩 꽂히는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `똑같이 나누므로 나눗셈으로 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 맞습니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 더하거나 덜어내는 두 단계. */
+function div224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const c = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `위인전 ${n(a)}쪽을 ${n(b)}주에 똑같이 나누어 읽기로 한 뒤, 첫 주에 ${n(c)}쪽을 더 읽었습니다. 첫 주에 읽은 쪽수는 몇 쪽인지 쓰시오.`,
+      `사과 ${n(a)}개를 ${n(b)}수레에 똑같이 나누어 실은 뒤, 한 수레에 ${n(c)}개를 더 실었습니다. 그 수레에 실린 사과는 몇 개인지 쓰시오.`,
+      `인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담은 뒤, 한 상자에 ${n(c)}개를 더 넣었습니다. 그 상자에 든 인형은 몇 개인지 쓰시오.`,
+      `책 ${n(a)}권을 책꽂이 ${n(b)}칸에 똑같이 나누어 꽂은 뒤, 한 칸에 ${n(c)}권을 더 꽂았습니다. 그 칸에 꽂힌 책은 몇 권인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q + c),
+      `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. 더 받은 것까지 더하면 ${expr(`${q}+${c}=${q + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담은 뒤, 한 상자에서 ${n(c)}개를 꺼내 팔았습니다. 그 상자에 남은 인형은 몇 개인지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}반에 똑같이 나누어 준 뒤, 한 반이 ${n(c)}장을 썼습니다. 그 반에 남은 색종이는 몇 장인지 쓰시오.`,
+    `물 ${n(a)}병을 ${n(b)}묶음으로 똑같이 나눈 뒤, 한 묶음에서 ${n(c)}병을 마셨습니다. 그 묶음에 남은 물은 몇 병인지 쓰시오.`,
+    `달걀 ${n(a)}개를 ${n(b)}판에 똑같이 나누어 담은 뒤, 한 판에서 ${n(c)}개를 요리에 썼습니다. 그 판에 남은 달걀은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. 쓴 만큼 빼면 ${expr(`${q}-${c}=${q - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 두 틀. ㉠ 나뉘는 수 되짚기 ㉡ 나뉘는 수의 가린 자리 복원. */
+function div224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const sq = expr(`\\square`);
+  if (intBetween(rng, 0, 1) === 0) {
+    const eqD = expr(`\\square\\div${b}=${q}`);
+    const stem = pick(rng, [
+      `${sq} 에 알맞은 세 자리 수를 구하시오.\n\n${eqD}`,
+      `${eqD} 의 ${sq} 에 알맞은 수를 쓰시오.`,
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)} 인 세 자리 수를 구하시오.\n\n${eqD}`,
+      `어떤 세 자리 수를 ${n(b)} 씩 나누었더니 몫이 ${n(q)} 입니다. 그 세 자리 수를 쓰시오.\n\n${eqD}`,
+      `나눗셈식이 맞도록 ${sq} 에 알맞은 세 자리 수를 써넣으시오.\n\n${eqD}`,
+      `몫이 ${n(q)} 인 나눗셈식입니다. 나뉘는 수를 구하시오.\n\n${eqD}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,
+    );
+  }
+  // 가린 자리 하나.
+  // ⚠️ **일의 자리는 가리지 않는다.** 2-2-3 에서 나머지를 배운 뒤라 「몫이 $47$」은
+  // 나누어떨어지지 않는 수까지 뜻할 수 있다 — $141\div3$ 도 $142\div3$ 도 몫이 $47$ 이라
+  // 답이 하나가 아니다. 십·백의 자리는 한 칸 바뀌면 나뉘는 수가 $10$ 이상 달라져
+  // 몫이 반드시 달라지므로($10\div b\ge10\div9>1$) 답이 **구성으로** 하나다.
+  const pos = intBetween(rng, 1, 2);
+  const hidden = Math.floor(a / 10 ** pos) % 10;
+  const masked = [2, 1, 0]
+    .map((d) => (d === pos ? "\\square" : String(Math.floor(a / 10 ** d) % 10)))
+    .join("");
+  const eqH = expr(`${masked}\\div${b}=${q}`);
+  const place = pos === 0 ? "일" : pos === 1 ? "십" : "백";
+  const stem = pick(rng, [
+    `${sq} 에 알맞은 숫자를 구하시오.\n\n${eqH}`,
+    `나눗셈식이 맞도록 ${sq} 에 알맞은 숫자를 써넣으시오.\n\n${eqH}`,
+    `가려진 ${place}의 자리 숫자를 구하시오.\n\n${eqH}`,
+    `다음 나눗셈식에서 ${sq} 에 들어갈 숫자를 쓰시오.\n\n${eqH}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(hidden),
+    `나누어지는 수를 곱으로 찾으면 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 숫자는 ${n(hidden)} 입니다.`,
+  );
+}
+
+// ══ 2-4 분수 (2-4-1 ~ 2-4-6) ═══════════════════════════════════════════
+//
+// ⚠️ **기약 규칙은 소단원마다 다르고, 그것이 옳다** — `frac32` 의 두 주석을 먼저 읽을 것.
+//   분수가 **답**인 자리(2-4-1)는 안 거르고, **발문에 주어지는 값**인 자리(2-4-2·3)는 거른다.
+//   초3 은 약분(초5)을 안 배우므로 $\frac26$ 이 정답이다. **통일하지 말 것.**
+//
+// ⚠️ 이 대단원의 성질 여럿은 **구성이 100% 를 보장한다**(분모가 같다 · 발문이 가분수다 ·
+//   분자가 서로 다르다). 그런 성질의 시험 문턱은 **전량**이어야 한다 — 「대부분」으로 두면
+//   구성이 절반 무너져도 안 운다(2026-08-23 g5 실측: 구성 100% ↔ 변이 59.5% 가 «과반» 통과).
+
+/** 「개」로 세는 소재만 — 색종이는 「장」이라 발문이 어색해진다(`frac32` 와 같은 목록). */
+const FRAC24_STUFF = ["사탕", "구슬", "딱지", "쿠키", "귤"] as const;
+
+/** 세 사람 비교용. 2-4-6 기본은 **셋**이라 1-6-4 기본(둘)과 지면에서 갈린다. */
+const KID_TRIOS = [
+  ["가은", "나윤", "다인"],
+  ["라온", "시우", "하람"],
+  ["도현", "서진", "예찬"],
+] as const;
+
+/**
+ * 분모와 서로소인 분자 후보. **거르는 고리가 아니라 목록에서 고른다** — 뽑고 나서
+ * 버리면 씨앗마다 걸음 수가 달라져 되풀이가 깨진다.
+ * `den-1` 은 언제나 서로소라 후보가 비지 않는다(그래서 `pick` 이 안전하다).
+ */
+function coprimeNums(den: number, from: number): number[] {
+  return Array.from({ length: den - from }, (_, i) => i + from).filter(
+    (v) => gcd(v, den) === 1,
+  );
+}
+
+// ── 2-4-1 분수로 나타내기 ──
+
+/** 1단 — 묶음 수와 뽑은 묶음 수를 바로 준다(표준은 물건 개수부터 준다). */
+function part241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  const stem = pick(rng, [
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 ${n(groups)}묶음으로 나눈 것 가운데 ${n(take)}묶음을 분수로 나타내시오.`,
+    `전체를 ${n(groups)}묶음으로 똑같이 나누었습니다. ${n(take)}묶음은 전체의 얼마입니까?`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${take}}{${groups}}`),
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음이므로 ${expr(`\\frac{${take}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 묶음 수를 **스스로 구해야** 한다(한 묶음의 개수만 준다). */
+function part241Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 3, 8);
+  const each = intBetween(rng, 2, 9);
+  const whole = groups * each;
+  const take = intBetween(rng, 1, groups - 1);
+  const stem = pick(rng, [
+    `${stuff} ${n(whole)}개를 한 묶음에 ${n(each)}개씩 묶었습니다. ${n(take)}묶음은 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} ${n(whole)}개를 ${n(each)}개씩 똑같이 묶었습니다. 그중 ${n(take)}묶음을 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${take}}{${groups}}`),
+    `${n(whole)}개를 ${n(each)}개씩 묶으면 ${expr(`${whole}\\div${each}=${groups}`)} 이므로 ${n(groups)}묶음입니다. 그중 ${n(take)}묶음이므로 ${expr(`\\frac{${take}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 먹은 묶음을 빼서 **남은 묶음**을 구하고 분수로 나타낸다. */
+function part241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 4, 8);
+  const each = intBetween(rng, 2, 9);
+  const whole = groups * each;
+  const take = intBetween(rng, 1, groups - 2);
+  const left = groups - take;
+  const stem = pick(rng, [
+    `${stuff} ${n(whole)}개를 똑같이 ${n(groups)}묶음으로 나누어 그중 ${n(take)}묶음을 먹었습니다. 남은 것은 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} ${n(whole)}개를 ${n(groups)}묶음으로 똑같이 나누고 ${n(take)}묶음을 나누어 주었습니다. 남은 것을 분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`\\frac{${left}}{${groups}}`),
+    `${n(groups)}묶음 중 ${n(take)}묶음을 덜어 내면 ${expr(`${groups}-${take}=${left}`)} 이므로 ${n(left)}묶음이 남습니다. 전체 ${n(groups)}묶음 중 ${n(left)}묶음이므로 ${expr(`\\frac{${left}}{${groups}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산·조건 둘: 「묶음 수」와 「몇 묶음이 몇 개」에서 **전체 개수**를 되짚는다. */
+function part241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, FRAC24_STUFF);
+  const groups = intBetween(rng, 3, 8);
+  const each = intBetween(rng, 2, 9);
+  const take = intBetween(rng, 2, groups - 1);
+  const part = each * take;
+  const whole = each * groups;
+  const stem = pick(rng, [
+    // ⚠️ 소재 낱말 뒤 조사는 **반드시 `josa`** 로 — 「사탕를」·「구슬는」이 그대로 지면에 나간다.
+    //   조사 판정기들은 `$…$` 뒤만 보므로 이 부류를 구조적으로 못 잡는다(2026-08-23 실측 6자리).
+    `${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(groups)}묶음으로 나누었습니다. 그중 ${n(take)}묶음이 ${n(part)}개일 때, 처음 ${stuff}${josa(stuff, "은", "는")} 모두 몇 개입니까?`,
+    `${stuff}${josa(stuff, "을", "를")} ${n(groups)}묶음으로 똑같이 나누었더니 ${n(take)}묶음이 ${n(part)}개였습니다. 전체는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(whole),
+    `${n(take)}묶음이 ${n(part)}개이므로 한 묶음은 ${expr(`${part}\\div${take}=${each}`)} 개입니다. 묶음이 ${n(groups)}개이므로 전체는 ${expr(`${each}\\times${groups}=${whole}`)} 개입니다.`,
+  );
+}
+
+// ── 2-4-2 · 2-4-3 분수만큼은 얼마인지 알아보기 ──
+//
+// 두 소단원은 **분자 하나로만** 갈린다((1) 은 단위분수, (2) 는 분자 2 이상).
+// 그래서 공장 하나에 `unitOnly` 를 주어 **같은 규칙을 두 곳이 쓰게** 한다 —
+// 갈래마다 따로 적으면 한쪽만 고쳐도 아무도 모른다.
+
+/** 분자를 그 소단원 이름이 약속한 대로 고른다. 발문에 실리는 값이라 **기약만**. */
+function takeOf(rng: Rng, den: number, unitOnly: boolean): number {
+  return unitOnly ? 1 : pick(rng, coprimeNums(den, 2));
+}
+
+/** 1단 — 수만 준다(표준은 소재를 붙인다). */
+function frac24CalcOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const answer = each * take;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `${n(whole)}의 ${fr} 만큼은 얼마인지 쓰시오.`,
+      `${n(whole)}의 ${fr} 만큼은 어떤 수입니까?`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(answer),
+      // ⚠️ 수 뒤에 조사를 붙이지 않는다(읽는 소리로 갈린다) — 「$24$을」이 아니라
+      //   수를 문장 앞에 세우지 않고 셈으로 보인다. 전 학년 R-조사 판정기가 이 자리를 잡았다.
+      take === 1
+        ? `똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 입니다. ${fr} 만큼은 한 묶음이므로 ${n(answer)} 입니다.`
+        : `똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 입니다. ${n(take)}묶음이므로 ${expr(`${each}\\times${take}=${answer}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 분수를 **스스로 세워야** 한다(나눠 가지는 사람 수만 준다). */
+function frac24WordOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const answer = each * take;
+    // ⚠️ **발문에 분수가 서야 한다.** 「$N$개를 $d$명이 나누어 가짐」만 쓰면 지면에 분수가
+    //   하나도 없어 1-3 나눗셈 문항과 구별되지 않는다 — 소단원 이름이 약속한 「분수만큼」이
+    //   사라진다(2026-08-23 자체 시험이 잡았다. 공용 조건 판정기는 이 소단원을 아직 안 본다).
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const isNot = josa(stuff, "은", "는");
+    const stem = unitOnly
+      ? pick(rng, [
+          `${stuff} ${n(whole)}개가 있습니다. 그중 ${fr} 만큼을 동생에게 주었습니다. 동생에게 준 ${stuff}${isNot} 몇 개입니까?`,
+          `${stuff} ${n(whole)}개를 ${n(den)}명이 똑같이 나누어 가졌습니다. 한 사람이 가진 것은 전체의 ${fr} 만큼입니다. 한 사람이 가진 ${stuff}${isNot} 몇 개인지 쓰시오.`,
+        ])
+      : pick(rng, [
+          `${stuff} ${n(whole)}개가 있습니다. 그중 ${fr} 만큼을 상자에 담았습니다. 상자에 담은 ${stuff}${isNot} 몇 개입니까?`,
+          `${stuff} ${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누고 그중 ${n(take)}묶음을 담았습니다. 담은 것은 전체의 ${fr} 만큼입니다. 담은 ${stuff}${isNot} 몇 개인지 쓰시오.`,
+        ]);
+    return make(
+      unit,
+      stem,
+      n(answer),
+      take === 1
+        ? `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 개입니다. 한 묶음이 전체의 ${expr(`\\frac{1}{${den}}`)} 만큼입니다.`
+        : `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${expr(`${whole}\\div${den}=${each}`)} 개입니다. ${n(take)}묶음이므로 ${expr(`${each}\\times${take}=${answer}`)} 개이고, 이는 전체의 ${expr(`\\frac{${take}}{${den}}`)} 만큼입니다.`,
+    );
+  };
+}
+
+/** 3단 — 두 단계: 분수만큼을 구한 뒤 **남은 것**까지 센다. */
+function frac24ApplyOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const used = each * take;
+    const left = whole - used;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `${stuff} ${n(whole)}개 중 ${fr} 만큼을 먹었습니다. 남은 ${stuff}${josa(stuff, "은", "는")} 몇 개입니까?`,
+      `${stuff} ${n(whole)}개의 ${fr} 만큼을 나누어 주었습니다. 남은 것은 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(left),
+      `${n(whole)}개를 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 ${n(each)}개입니다. ${fr} 만큼은 ${
+        take === 1
+          ? `${n(used)}개`
+          : `${expr(`${each}\\times${take}=${used}`)} 개`
+      }이므로 남은 것은 ${expr(`${whole}-${used}=${left}`)} 개입니다.`,
+    );
+  };
+}
+
+/** 4단 — 역산: 「분수만큼이 몇 개」에서 **전체**를 되짚는다(답은 발문에 안 보인다). */
+function frac24DeepOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const stuff = pick(rng, FRAC24_STUFF);
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    const part = each * take;
+    const fr = expr(`\\frac{${take}}{${den}}`);
+    const stem = pick(rng, [
+      `어떤 수의 ${fr} 만큼이 ${n(part)} 입니다. 어떤 수는 얼마인지 쓰시오.`,
+      `${stuff} 상자에서 ${fr} 만큼을 꺼냈더니 ${n(part)}개였습니다. 상자에 있던 ${stuff}${josa(stuff, "은", "는")} 모두 몇 개입니까?`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(whole),
+      take === 1
+        ? `${fr} 만큼이 한 묶음이므로 한 묶음은 ${n(part)} 입니다. 묶음이 ${n(den)}개이므로 처음 수는 ${expr(`${part}\\times${den}=${whole}`)} 입니다.`
+        : `${n(take)}묶음이 ${n(part)} 이므로 한 묶음은 ${expr(`${part}\\div${take}=${each}`)} 입니다. 묶음이 ${n(den)}개이므로 처음 수는 ${expr(`${each}\\times${den}=${whole}`)} 입니다.`,
+    );
+  };
+}
+
+// ── 2-4-4 진분수와 가분수 알아보기 ──
+
+/** 1단 — 넷 중 가분수만 모두 고른다(표준은 하나를 판별한다). 진·가가 **둘 다 나오게** 구성. */
+function kind244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  // 진분수 둘 · 가분수 둘 — **구성으로 보장한다.** 뽑고 나서 세면 한쪽만 나오는 씨앗이 생긴다.
+  const proper = distinctIdx(rng, den - 1, 2).map((i) => i + 1);
+  const improper = distinctIdx(rng, 5, 2).map((i) => i + den);
+  const order = distinctIdx(rng, 4, 4);
+  const all = [...proper, ...improper];
+  const shown = order.map((i) => all[i]!);
+  const list = shown.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const ans = shown.filter((v) => v >= den);
+  return make(
+    unit,
+    `${pick(rng, ["다음 분수 중에서 가분수를 모두 골라 쓰시오.", "다음 중 가분수인 것을 모두 쓰시오."])}\n\n${list}`,
+    ans.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  "),
+    `분자가 분모와 같거나 분모보다 크면 가분수입니다. 분모가 ${n(den)} 이므로 분자가 ${n(den)} 이상인 것을 고릅니다.`,
+  );
+}
+
+/**
+ * 2단 — 분수를 **스스로 만들어** 놓고 판별한다(주어진 분수에서 분자를 옮겨 만든다).
+ *
+ * ⚠️ 분모·분자를 **말로만** 주면 지면에 분수가 하나도 안 선다. 전 학년
+ * `probe-elem-section-conditions` 의 「진분수와 가분수」 조건이 그것을 잡는다
+ * (2026-08-23 실측 40/40 위반). 기준이 되는 분수를 지면에 세우고 거기서 만들게 한다 —
+ * 축(식을 스스로 세움)은 그대로다.
+ */
+function kind244Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const improper = intBetween(rng, 0, 1) === 1;
+  const num = improper
+    ? intBetween(rng, den, den + 5)
+    : intBetween(rng, 1, den - 1);
+  // 기준 분수의 분자는 **답의 분자와 달라야** 한다 — 같으면 「분자를 그대로 둔 분수」가
+  // 되어 묻는 것이 사라진다. 뽑고 버리지 않고 **건너뛰기로** 막는다(씨앗마다 걸음 수가
+  // 같아야 되풀이가 깨지지 않는다). 가분수면 `num` 이 1..den-1 밖이라 애초에 안 부딪힌다.
+  const avoid = improper ? 0 : num;
+  let base = intBetween(rng, 1, den - 1 - (avoid > 0 ? 1 : 0));
+  if (avoid > 0 && base >= avoid) base += 1;
+  const gap = num - base;
+  const baseFr = expr(`\\frac{${base}}{${den}}`);
+  const move =
+    gap > 0
+      ? `분자를 ${n(gap)} 만큼 크게 한`
+      : `분자를 ${n(-gap)} 만큼 작게 한`;
+  const stem = pick(rng, [
+    `${baseFr} 에서 분모는 그대로 두고 ${move} 분수를 쓰고, 진분수와 가분수 중 무엇인지 쓰시오.`,
+    `${baseFr} 에서 분모는 그대로 두고 ${move} 분수는 진분수입니까, 가분수입니까? 분수와 함께 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    `${expr(`\\frac{${num}}{${den}}`)}, ${improper ? "가분수" : "진분수"}`,
+    `분모가 ${n(den)}, 분자가 ${n(num)} 이므로 ${expr(`\\frac{${num}}{${den}}`)} 입니다. ${
+      improper
+        ? `분자와 분모를 비교하면 ${expr(`${num}${num === den ? "=" : ">"}${den}`)} 이므로 가분수입니다.`
+        : `분자와 분모를 비교하면 ${expr(`${num}<${den}`)} 이므로 진분수입니다.`
+    }`,
+  );
+}
+
+/**
+ * 3단 — 두 단계: 주어진 진분수가 **가분수가 되려면** 분자를 얼마나 키워야 하는지.
+ * 판별(진분수다) → 되짚기(분모까지 얼마 남았나) 두 걸음이다.
+ */
+function kind244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 4, 9);
+  const num = intBetween(rng, 1, den - 1);
+  const need = den - num;
+  const fr = expr(`\\frac{${num}}{${den}}`);
+  const stem = pick(rng, [
+    `${fr} 의 분모는 그대로 두고 분자만 크게 하여 가분수를 만들려고 합니다. 분자에 더해야 하는 가장 작은 수를 쓰시오.`,
+    `${fr} 의 분자를 적어도 얼마만큼 크게 해야 가분수가 되는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(need),
+    `주어진 분수는 분자와 분모를 비교하면 ${expr(`${num}<${den}`)} 이므로 진분수입니다. 가분수가 되려면 분자가 분모와 같거나 커야 하므로 분자는 적어도 ${n(den)} 이어야 하고, ${expr(`${den}-${num}=${need}`)} 만큼 크게 해야 합니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 둘을 겹쳐 개수를 센다(가분수이면서 분자가 어떤 수보다 작다).
+ *
+ * ⚠️ 답이 「몇 개」라 **가짓수**를 봐야 한다. `span` 을 흔들어 답이 2~6 으로 갈리게 한다 —
+ * 분모를 고정하면 답이 한 값으로 굳는다.
+ */
+function kind244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  // ⚠️ 견줄 상대가 **나누어떨어지면 안 된다.**
+  //
+  //    `den + span` 이 `den` 의 배수면 상대가 `\frac{12}{6}` 처럼 **정수로 읽히는**
+  //    분수가 된다. D-73 전에는 전처리가 그걸 `2` 로 접어 지면이 자연스러웠는데,
+  //    이제 안 접히니 발문에 `\frac{12}{6} 보다 작은` 이 그대로 나간다 —
+  //    수학은 맞지만 교과서 말투가 아니다(실측 14자리 · 발문 7 · 해설 7, 2026-08-24).
+  //
+  //    ⚠️ **정수로 바꿔 쓰는 것으로는 못 푼다.** 그러면 발문에 남는 분수가
+  //       `\frac{\square}{d}` 뿐인데 판정기의 분수 세기가 □ 를 못 읽어
+  //       「진분수와 가분수」 조건이 **깨진다** — 실제로 고쳐 보고 씨앗 3/40 이 걸렸다.
+  //       그래서 «어떻게 적을까»가 아니라 **«그 자리를 안 만든다»**로 푼다.
+  //       상대는 늘 진짜 가분수이고, 그게 이 소단원이 다루는 것이기도 하다.
+  const span = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((v) => v % den !== 0),
+  );
+  const limit = den + span;
+  // ⚠️ 견줄 상대를 **수 분수**로 세운다. `\frac{\square}{d}` 만 있으면 지면에는 분수가
+  //   보이는데 판정기의 분수 세기(`fracs()`)가 □ 를 못 읽어 「분수가 없다」로 걸린다.
+  //   수 분수를 함께 세우면 문항도 더 구체적이 된다(2026-08-23).
+  const limFr = expr(`\\frac{${limit}}{${den}}`);
+  const stem = pick(rng, [
+    `${expr(`\\frac{\\square}{${den}}`)} 가 가분수이고 ${limFr} 보다 작습니다. ${expr("\\square")} 에 들어갈 수 있는 수는 모두 몇 개입니까?`,
+    `분모가 ${n(den)} 인 분수 중에서 ${limFr} 보다 작은 가분수는 모두 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(span),
+    `분모가 같으므로 분자만 견주면 됩니다. 가분수이려면 분자가 분모 ${n(den)} 보다 작지 않아야 하므로 ${n(den)} 부터이고, ${limFr} 보다 작아야 하므로 ${n(limit - 1)} 까지입니다. ${n(den)} 부터 ${n(limit - 1)} 까지이므로 ${expr(`${limit - 1}-${den}+1=${span}`)} 개입니다.`,
+  );
+}
+
+// ── 2-4-5 대분수 알아보기 ──
+//
+// ⚠️ 해설에서 **나머지가 있는 나눗셈을 등식으로 적지 않는다** — `$17\div6=2$` 는 거짓이다.
+//   표준을 2026-08-23 에 그 꼴로 고쳤으므로 네 갈래도 **같은 꼴**(곱하고 빼서 몫·나머지)로
+//   맞춘다. 한 소단원 안에서 표기가 갈리면 지면에서 바로 티가 난다.
+
+/** 1단 — **대분수 → 가분수**(표준은 반대 방향이다). */
+function mixed245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const num = whole * den + rest;
+  const mixed = expr(`${whole}\\frac{${rest}}{${den}}`);
+  return make(
+    unit,
+    `${pick(rng, ["다음 대분수를 가분수로 나타내시오.", "다음 대분수를 가분수로 고쳐 쓰시오."])}\n\n${mixed}`,
+    expr(`\\frac{${num}}{${den}}`),
+    `자연수 부분을 분모가 ${n(den)} 인 분수로 고치면 ${expr(`\\frac{${whole * den}}{${den}}`)} 이고, ${expr(`${whole * den}+${rest}=${num}`)} 이므로 ${expr(`\\frac{${num}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 대분수를 **스스로 세운다**(자연수 부분과 진분수 부분을 말로 준다). */
+function mixed245Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 6);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const stem = pick(rng, [
+    `자연수 부분이 ${n(whole)} 이고 진분수 부분이 ${expr(`\\frac{${rest}}{${den}}`)} 인 대분수를 쓰시오.`,
+    `자연수 ${n(whole)} 만큼과 ${expr(`\\frac{${rest}}{${den}}`)} 만큼을 더한 수를 대분수로 나타내시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    expr(`${whole}\\frac{${rest}}{${den}}`),
+    `대분수는 자연수와 진분수를 나란히 씁니다. 자연수 부분이 ${n(whole)}, 진분수 부분이 ${expr(`\\frac{${rest}}{${den}}`)} 이므로 ${expr(`${whole}\\frac{${rest}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 가분수 둘을 각각 대분수로 고쳐 **자연수 부분이 큰 쪽**을 고른다. */
+function mixed245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  // 자연수 부분이 **반드시 다르게** — 같으면 답이 하나가 아니다(구성으로 막는다).
+  const [i, j] = distinctIdx(rng, 5, 2) as [number, number];
+  const wA = i + 1;
+  const wB = j + 1;
+  const rA = pick(rng, coprimeNums(den, 1));
+  const rB = pick(rng, coprimeNums(den, 1));
+  const numA = wA * den + rA;
+  const numB = wB * den + rB;
+  const bigger = wA > wB ? numA : numB;
+  const bigW = Math.max(wA, wB);
+  return make(
+    unit,
+    `${pick(rng, ["두 가분수를 대분수로 나타냈을 때, 자연수 부분이 더 큰 것을 가분수 그대로 쓰시오.", "다음 두 가분수 중 대분수로 고쳤을 때 자연수 부분이 더 큰 것을 쓰시오."])}\n\n${expr(`\\frac{${numA}}{${den}}`)},  ${expr(`\\frac{${numB}}{${den}}`)}`,
+    expr(`\\frac{${bigger}}{${den}}`),
+    `${expr(`${den}\\times${wA}=${den * wA}`)} 이고 ${expr(`${numA}-${den * wA}=${rA}`)} 이므로 첫째 분수는 ${expr(`${wA}\\frac{${rA}}{${den}}`)} 입니다. ` +
+      `${expr(`${den}\\times${wB}=${den * wB}`)} 이고 ${expr(`${numB}-${den * wB}=${rB}`)} 이므로 둘째 분수는 ${expr(`${wB}\\frac{${rB}}{${den}}`)} 입니다. ` +
+      `자연수 부분이 더 큰 것은 ${n(bigW)} 이므로 답은 ${expr(`\\frac{${bigger}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산: 가분수를 알려 주고 대분수의 **가려진 자리**를 되짚는다. */
+function mixed245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 6);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const num = whole * den + rest;
+  // 가리는 자리는 자연수부(0) 또는 분자(1). **분모는 안 가린다** — 가리면 답이 하나가 아니다.
+  const spot = intBetween(rng, 0, 1);
+  const hidden = spot === 0 ? whole : rest;
+  const shown =
+    spot === 0
+      ? expr(`\\square\\frac{${rest}}{${den}}`)
+      : expr(`${whole}\\frac{\\square}{${den}}`);
+  return make(
+    unit,
+    `가분수 ${expr(`\\frac{${num}}{${den}}`)} 만큼을 대분수로 나타내면 ${shown} 입니다. ${expr("\\square")} 에 알맞은 수를 쓰시오.`,
+    n(hidden),
+    `${expr(`${den}\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면 ${expr(`${whole}\\frac{${rest}}{${den}}`)} 이므로 ${expr("\\square")} 에 알맞은 수는 ${n(hidden)} 입니다.`,
+  );
+}
+
+// ── 2-4-6 분모가 같은 분수의 크기 비교 ──
+//
+// ⚠️ 소단원 **이름이 1-6-4 와 글자까지 같다.** 부딪히지 않는 이유는 라우터가 대단원 키
+//   (`초3|2-4 분수` → `frac32`)로 갈리기 때문이고, 낱말은 그 핸들러 안에서만 경쟁한다.
+//   그래도 **지면에서는 갈려야** 하므로 1-6-4 가 둘을 견줄 때 여기는 **셋**을 견준다.
+
+/** 1단 — 세 분수 중 **가장 작은** 것(표준은 가장 큰 것을 묻는다). */
+function cmp246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const small = Math.min(...three);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `${pick(rng, ["다음 세 분수 중 가장 작은 분수를 쓰시오.", "세 분수의 크기를 비교하여 가장 작은 것을 쓰시오."])}\n\n${list}`,
+    expr(`\\frac{${small}}{${den}}`),
+    `분모가 같은 분수는 분자가 작을수록 작습니다. 분자 중 가장 작은 수가 ${n(small)} 이므로 답은 ${expr(`\\frac{${small}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장: 셋 중 가장 많이 먹은 사람(답이 이름이라 1-6-4 의 둘 비교와 지면에서 갈린다). */
+function cmp246Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const kids = pick(rng, KID_TRIOS);
+  const top = three.indexOf(Math.max(...three));
+  const food = pick(rng, ["피자", "케이크", "빵"]);
+  const said = kids
+    .map((k, i) => `${k}: ${expr(`\\frac{${three[i]}}{${den}}`)}`)
+    .join(",  ");
+  return make(
+    unit,
+    // ⚠️ 소재는 `pick` 으로 뽑히므로 받침이 씨앗마다 갈린다 — 「빵를」이 그대로 나간다.
+    `세 사람이 똑같은 ${food}${josa(food, "을", "를")} 각각 다음만큼 먹었습니다. 가장 많이 먹은 사람은 누구인지 쓰시오.\n\n${said}`,
+    kids[top]!,
+    `분모가 같으므로 분자가 클수록 많이 먹은 것입니다. 분자 중 가장 큰 수가 ${n(Math.max(...three))} 이므로 ${kids[top]}입니다.`,
+  );
+}
+
+/** 3단 — 두 단계: 셋을 큰 것부터 **순서대로** 늘어놓는다. */
+function cmp246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const sorted = [...three].sort((a, b) => b - a);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `${pick(rng, ["다음 세 분수를 큰 것부터 차례로 쓰시오.", "세 분수를 큰 수부터 순서대로 늘어놓으시오."])}\n\n${list}`,
+    sorted.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  "),
+    `분모가 같은 분수는 분자가 클수록 큽니다. 분자를 큰 것부터 늘어놓으면 ${sorted.map((v) => n(v)).join(", ")} 이므로 ${sorted.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ")} 입니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 둘 사이에 드는 분수 중 **가장 큰 것**.
+ *
+ * ⚠️ 답을 **분수**로 둔다. 2-4-4 심화가 「몇 개」라서, 여기까지 개수를 물으면 한 시험지에
+ *   실렸을 때 두 문항이 같은 것을 묻는 것처럼 보인다(2026-08-23 리드 지적).
+ */
+function cmp246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 6, 9);
+  // 사이가 **반드시 두 칸 이상** 벌어지게 구성한다 — 붙어 있으면 답이 없다.
+  const lo = intBetween(rng, 1, den - 4);
+  const hi = intBetween(rng, lo + 3, den - 1);
+  const ans = hi - 1;
+  return make(
+    unit,
+    `분모가 ${n(den)} 인 분수 중에서 ${expr(`\\frac{${lo}}{${den}}`)} 보다 크고 ${expr(`\\frac{${hi}}{${den}}`)} 보다 작은 것 가운데 가장 큰 분수를 쓰시오.`,
+    expr(`\\frac{${ans}}{${den}}`),
+    `분모가 같으므로 분자만 견주면 됩니다. 분자는 ${n(lo)} 보다 크고 ${n(hi)} 보다 작아야 하므로 ${n(lo + 1)} 부터 ${n(ans)} 까지입니다. 그중 가장 큰 분자는 ${n(ans)} 이므로 답은 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
+  );
+}
+
+// ── 2-5 들이와 무게 (D-72 확대) ──────────────────────────────────────────
+//
+// 여섯 소단원이 **셋 × 둘**이다 — 「비교」·「단위」·「합과 차」를 들이(L·mL)와
+// 무게(kg·g)가 각각 한 벌씩 쓴다. 단위 경계가 1000 으로 같고 하는 일이 같으므로,
+// 1-5 길이가 `LenCfg` 하나를 나눠 쓴 것처럼 **공장 셋을 여섯 소단원이 나눠 쓴다.**
+// 한쪽만 고쳐 두 소단원이 조용히 갈라지는 일이 구조적으로 없어진다.
+//
+// ⚠️ **단위 뒤 조사는 «읽는 소리»로 갈린다 — 여기서는 `josa()` 를 쓸 수 없다.**
+//    `josa()` 는 **글자**의 받침을 보는데, `L`·`kg` 은 글자가 소리가 아니다.
+//    리터·밀리리터는 받침이 없고(「리터는」·「리터를」), 킬로그램·그램은 있다
+//    (「그램은」·「그램을」). 그래서 cfg 에 **한 벌씩** 적어 둔다 — 큰 단위와 작은
+//    단위가 같은 소리로 끝나므로 한 벌이면 족하다.
+//    (지면에 나간 이 자리를 전량 재는 것은 `scripts/qa/probe-elem-unit-josa.ts` 다.)
+//
+// ⚠️ **세 갈래가 서로를 흉내 내지 않게 «답의 모양»을 갈라 두었다:**
+//      비교    → 기호(가·나·다) 또는 부등호
+//      단위    → 작은 단위 하나로 (몇 mL · 몇 g)
+//      합과 차 → 몇 L 몇 mL (섞은 꼴)
+//    이 구분이 없으면 「들이 비교하기인데 단위 변환만 하고 있다」가 **지면에서
+//    안 보인다.** 조건 판정기가 이 모양을 본다(2026-08-24).
+
+type CapCfg = {
+  big: string;
+  small: string;
+  /** 「들이」·「무게」 */
+  word: string;
+  /**
+   * 단위를 **읽은 소리** 뒤 조사. 글자로는 못 정한다 — 위 주석 참조.
+   *
+   * ⚠️ **`word` 뒤에는 이것을 쓰지 마라.** 이 넷은 `L`·`kg` 의 소리를 따르는 값이라
+   *    「들이」·「무게」 같은 **한글 낱말**에 대면 틀린다 — 실제로 첫 판이
+   *    「두 무게**을** 비교하여」·「세 봉지의 무게**이**」를 지면에 냈다(들이 쪽은
+   *    우연히 같아서 안 드러났다). 한글 낱말은 `josa()` 로 **계산**한다.
+   */
+  jNun: string;
+  jGa: string;
+  jReul: string;
+  jRo: string;
+  /** 관형형 「많이 담기는」·「무거운」 */
+  moreAdj: string;
+  /** 연결형 「많이 담기고」·「무겁고」 */
+  moreConn: string;
+  /** 종결형 「많이 담깁니다」·「무겁습니다」 */
+  moreVerb: string;
+  /** 관형형 「적게 담기는」·「가벼운」 */
+  lessAdj: string;
+  /** 종결형 「적게 담깁니다」·「가볍습니다」 */
+  lessVerb: string;
+  /** 담는 그릇 · 무게를 다는 것 */
+  vessels: readonly string[];
+  /** 담기는 것 */
+  stuff: readonly string[];
+};
+
+const CAP_L: CapCfg = {
+  big: "L",
+  small: "mL",
+  word: "들이",
+  jNun: "는",
+  jGa: "가",
+  jReul: "를",
+  jRo: "로",
+  moreAdj: "많이 담기는",
+  moreConn: "많이 담기고",
+  moreVerb: "많이 담깁니다",
+  lessAdj: "적게 담기는",
+  lessVerb: "적게 담깁니다",
+  vessels: [
+    "물통",
+    "주전자",
+    "냄비",
+    "항아리",
+    "물병",
+    "양동이",
+    "수조",
+    "물뿌리개",
+  ],
+  stuff: ["물", "우유", "주스", "보리차", "식용유", "간장", "매실청", "포도즙"],
+};
+
+const CAP_KG: CapCfg = {
+  big: "kg",
+  small: "g",
+  word: "무게",
+  jNun: "은",
+  jGa: "이",
+  jReul: "을",
+  jRo: "으로",
+  moreAdj: "무거운",
+  moreConn: "무겁고",
+  moreVerb: "무겁습니다",
+  lessAdj: "가벼운",
+  lessVerb: "가볍습니다",
+  vessels: ["상자", "가방", "바구니", "자루", "봉지", "수레", "보따리", "들통"],
+  stuff: ["감자", "고구마", "밀가루", "설탕", "사과", "쌀", "콩", "귤"],
+};
+
+/** `$2\,\mathrm{L}\ 300\,\mathrm{mL}$` — cfg 에 맞춘 섞은 꼴. */
+const mixedCap = (cfg: CapCfg, b: number, s: number) =>
+  mixedUnit(b, s, cfg.big, cfg.small);
+
+/** 「가」·「나」·「다」 — 그릇에 붙이는 이름표. */
+const CAP_LABELS = ["가", "나", "다"] as const;
+
+/** 셋을 늘어놓는 순열 여섯. 무작위 비교자로 `sort` 하지 않기 위한 것 — 아래 주석 참조. */
+const CAP_PERMS = [
+  [0, 1, 2],
+  [0, 2, 1],
+  [1, 0, 2],
+  [1, 2, 0],
+  [2, 0, 1],
+  [2, 1, 0],
+] as const;
+
+/* ── 2-5-1 들이 비교하기 · 2-5-4 무게 비교하기 ── */
+
+/**
+ * 1단 — 섞은 꼴과 작은 단위 하나를 견주어 부등호를 답한다.
+ *
+ * 왼쪽만 섞은 꼴로 둔다 — 그래야 **단위를 맞추는 일**이 반드시 한 번 든다.
+ * 양쪽 다 섞은 꼴이면 큰 단위만 보고 답이 나와 비교가 알맹이를 잃는다.
+ */
+function capCmpCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const left = b * 1000 + s;
+    const gap =
+      intBetween(rng, 20, 400) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
+    const right = left + gap;
+    const sign = left > right ? ">" : "<";
+    return make(
+      unit,
+      `두 ${cfg.word}${josa(cfg.word, "을", "를")} 비교하여 $\\square$ 안에 $>$ 와 $<$ 중 알맞은 것을 쓰시오.\n\n${mixedCap(cfg, b, s)} $\\square$ ${unitNum(right, cfg.small)}`,
+      expr(sign),
+      `${mixedCap(cfg, b, s)} ${cfg.jNun} ${unitNum(left, cfg.small)} 입니다. ${expr(`${left}${sign}${right}`)} 이므로 $\\square$ 안에는 ${expr(sign)} ${josa(sign, "이", "가")} 들어갑니다.`,
+    );
+  };
+}
+
+/** 2단 — 두 그릇을 문장으로 견준다. 묻는 쪽(큰·작은)을 오간다. */
+function capCmpWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const t1 = b * 1000 + s;
+    const gap =
+      intBetween(rng, 30, 400) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
+    const t2 = t1 + gap;
+    const askMore = intBetween(rng, 0, 1) === 1;
+    const bigger = t1 > t2 ? "가" : "나";
+    const answer = askMore ? bigger : bigger === "가" ? "나" : "가";
+    const vessel = pick(rng, cfg.vessels);
+    const vGa = josa(vessel, "이", "가");
+    return make(
+      unit,
+      `가 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, b, s)}, 나 ${vessel}의 ${cfg.word}는 ${unitNum(t2, cfg.small)} 입니다. 더 ${askMore ? cfg.moreAdj : cfg.lessAdj} ${vessel}의 기호를 쓰시오.`,
+      answer,
+      `가 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, b, s)}, 곧 ${unitNum(t1, cfg.small)} 입니다. ${expr(`${Math.max(t1, t2)}>${Math.min(t1, t2)}`)} 이므로 ${bigger} ${vessel}${vGa} 더 ${cfg.moreVerb}. 따라서 답은 ${answer} ${vessel} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 셋을 견주어 차례로 늘어놓는다(단위 맞추기 세 번 + 줄 세우기). */
+function capCmpApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const base = intBetween(rng, 1, 4) * 1000 + intBetween(rng, 100, 800);
+    // 셋이 서로 다르도록 벌려 둔다 — 같으면 「차례로」의 답이 하나로 안 정해진다.
+    const d1 = intBetween(rng, 40, 300);
+    const d2 = d1 + intBetween(rng, 40, 300);
+    const totals = [base, base + d1, base + d2];
+    // 섞은 꼴과 작은 단위 하나를 번갈아 보이게 자리를 섞는다.
+    //
+    // ⚠️ `sort` 에 무작위 비교자를 넣지 않는다 — 그건 «섞기»가 아니라 **정렬 규약을
+    //    어기는 것**이라 엔진마다 결과가 다를 수 있다. 순열을 손에 쥐고 하나를 고른다.
+    const order = pick(rng, CAP_PERMS);
+    const shown = order.map((i) => totals[i]!);
+    const vessel = pick(rng, cfg.vessels);
+    const lines = shown.map((t, i) =>
+      i % 2 === 0
+        ? `${CAP_LABELS[i]} ${vessel}: ${mixedCap(cfg, Math.floor(t / 1000), t % 1000)}`
+        : `${CAP_LABELS[i]} ${vessel}: ${unitNum(t, cfg.small)}`,
+    );
+    const desc = shown
+      .map((t, i) => ({ label: CAP_LABELS[i]!, t }))
+      .sort((x, y) => y.t - x.t);
+    return make(
+      unit,
+      `세 ${vessel}의 ${cfg.word}${josa(cfg.word, "이", "가")} 다음과 같습니다. ${cfg.moreAdj} ${vessel}부터 차례로 기호를 쓰시오.\n\n${lines.join("\n")}`,
+      desc.map((d) => d.label).join(", "),
+      `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 모두 ${cfg.small} ${cfg.jRo} 고쳐 견줍니다. ${shown.map((t, i) => `${CAP_LABELS[i]} ${vessel}${josa(vessel, "은", "는")} ${unitNum(t, cfg.small)}`).join(", ")} 입니다. ${expr(desc.map((d) => d.t).join(">"))} 이므로 ${desc.map((d) => d.label).join(", ")} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — 조건 **둘** 사이에 드는 값 가운데 가장 큰 수(역산).
+ *
+ * ⚠️ $\square$ 를 **작은 단위 쪽에** 둔다. 섞은 꼴 쪽에 두면 학생이 큰 단위만 보고
+ *    답을 쓸 수 있어 「비교」라는 소단원 조건이 지면에서 사라진다.
+ */
+function capCmpDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const loB = intBetween(rng, 1, 4);
+    const loS = intBetween(rng, 100, 700);
+    const lo = loB * 1000 + loS;
+    const raw = lo + intBetween(rng, 120, 800);
+    // 작은 자리가 $0$ 이면 지면에 `$3\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 나간다 — 한 칸 민다.
+    const hi = raw % 1000 === 0 ? raw + 50 : raw;
+    const hiB = Math.floor(hi / 1000);
+    const hiS = hi % 1000;
+    const answer = hi - 1;
+    const vessel = pick(rng, cfg.vessels);
+    const vNun = josa(vessel, "은", "는");
+    return make(
+      unit,
+      `가 ${vessel}의 ${cfg.word}는 $\\square\\,\\mathrm{${cfg.small}}$ 입니다. 가 ${vessel}${vNun} 나 ${vessel}보다 ${cfg.moreConn}, 다 ${vessel}보다 ${cfg.lessVerb}. 나 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, loB, loS)}, 다 ${vessel}의 ${cfg.word}는 ${mixedCap(cfg, hiB, hiS)} 입니다. $\\square$ 안에 들어갈 수 있는 수 중 가장 큰 수를 쓰시오.`,
+      n(answer),
+      `나 ${vessel}${vNun} ${unitNum(lo, cfg.small)}, 다 ${vessel}${vNun} ${unitNum(hi, cfg.small)} 입니다. $\\square$ 안의 수는 ${n(lo)} 보다 크고 ${n(hi)} 보다 작아야 하므로 ${n(lo + 1)} 부터 ${n(answer)} 까지입니다. 그중 가장 큰 수는 ${n(answer)} 입니다.`,
+    );
+  };
+}
+
+/* ── 2-5-2 들이의 단위 · 2-5-5 무게의 단위 ── */
+
+/**
+ * 1단 — 단위 바꾸기 식. 네 꼴을 돌아가며 낸다.
+ *
+ * ⚠️ 식은 KaTeX 한 덩어리라 변형 공간 정규화에서 지워진다 — 1-5 와 같은 이유로
+ *    **지시문을 꼴마다 갈라** 둔다(안 그러면 씨앗을 바꿔도 지면이 같아 보인다).
+ */
+function capUnitCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    const total = b * 1000 + s;
+    const form = intBetween(rng, 0, 3);
+    const prompt = pick(
+      rng,
+      [
+        [
+          `$\\square$ 안에 알맞은 수를 쓰시오.`,
+          `큰 단위를 작은 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [
+          `빈칸에 알맞은 수를 구하시오.`,
+          `몇 ${cfg.big} 몇 ${cfg.small}인 ${cfg.word}${josa(cfg.word, "을", "를")} ${cfg.small} 단위로 바꾸어 $\\square$ 에 쓰시오.`,
+        ],
+        [
+          `$\\square$ 에 알맞은 수를 구하시오.`,
+          `작은 단위를 큰 단위로 바꾸어 빈칸을 채우시오.`,
+        ],
+        [`빈칸에 알맞은 수를 쓰시오.`, `$\\square$ 에 들어갈 수를 구하시오.`],
+      ][form]!,
+    );
+    if (form === 0) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b}\\,\\mathrm{${cfg.big}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(b * 1000),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 입니다.`,
+      );
+    }
+    if (form === 1) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b}\\,\\mathrm{${cfg.big}}\\ ${s}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.small}}$`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 이고, ${expr(`${b * 1000}+${s}=${total}`)} 입니다.`,
+      );
+    }
+    if (form === 2) {
+      return make(
+        unit,
+        `${prompt}\n\n$${b * 1000}\\,\\mathrm{${cfg.small}}=\\square\\,\\mathrm{${cfg.big}}$`,
+        n(b),
+        `$1000\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(b * 1000, cfg.small)} ${cfg.jNun} ${unitNum(b, cfg.big)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${prompt}\n\n$${total}\\,\\mathrm{${cfg.small}}=${b}\\,\\mathrm{${cfg.big}}\\ \\square\\,\\mathrm{${cfg.small}}$`,
+      n(s),
+      `${unitNum(b, cfg.big)} ${cfg.jNun} ${unitNum(b * 1000, cfg.small)} 이므로 ${expr(`${total}-${b * 1000}=${s}`)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 단위를 바꾼다. 방향(큰→작은·작은→큰)을 오간다. */
+function capUnitWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    const total = b * 1000 + s;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    if (intBetween(rng, 0, 1) === 0) {
+      return make(
+        unit,
+        `${vessel}에 담긴 ${thing}의 ${cfg.word}는 ${mixedCap(cfg, b, s)} 입니다. 이 ${cfg.word}는 몇 ${cfg.small}인지 쓰시오.`,
+        n(total),
+        `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b}=${b * 1000}`)} 이고, ${expr(`${b * 1000}+${s}=${total}`)} 입니다.`,
+      );
+    }
+    return make(
+      unit,
+      `${vessel}에 담긴 ${thing}의 ${cfg.word}는 ${unitNum(total, cfg.small)} 입니다. 이 ${cfg.word}는 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, b, s),
+      `$1000\\,\\mathrm{${cfg.small}}=1\\,\\mathrm{${cfg.big}}$ 이므로 ${unitNum(total, cfg.small)} ${cfg.jNun} ${mixedCap(cfg, b, s)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 같은 것 여러 개를 모아 작은 단위 하나로(변환 + 여러 번 더하기). */
+function capUnitApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    // ⚠️ `b * cnt` 를 **한 자리**로 묶어 둔다 — 해설이 $1000\times(b\,cnt)$ 를 쓰는데,
+    //    두 자리가 되면 초3 이 아직 안 배운 곱셈이 해설에 나온다.
+    const b = intBetween(rng, 1, 2);
+    const s = intBetween(rng, 1, 9) * 100;
+    const each = b * 1000 + s;
+    const cnt = intBetween(rng, 2, 4);
+    const total = each * cnt;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `한 ${vessel}에 ${thing}${thingEul} ${mixedCap(cfg, b, s)} 씩 담았습니다. 이런 ${vessel} ${n(cnt)}개에 담은 ${thing}${thingNun} 모두 몇 ${cfg.small}인지 쓰시오.`,
+      n(total),
+      `${cfg.big}끼리 모으면 ${expr(`${b}\\times${cnt}=${b * cnt}`)}, ${cfg.small}끼리 모으면 ${expr(`${s}\\times${cnt}=${s * cnt}`)} 입니다. $1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${expr(`1000\\times${b * cnt}=${b * cnt * 1000}`)} 이고, ${expr(`${b * cnt * 1000}+${s * cnt}=${total}`)} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — **처음** 양을 되짚어 작은 단위 하나로 답한다(역산 + 변환).
+ *
+ * 답을 작은 단위로 두는 것이 이 소단원의 조건이다 — 섞은 꼴로 답하면
+ * 「합과 차」와 지면에서 구별되지 않는다.
+ */
+function capUnitDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const usedB = intBetween(rng, 1, 3);
+    const usedS = intBetween(rng, 1, 9) * 100;
+    const used = usedB * 1000 + usedS;
+    const leftB = intBetween(rng, 1, 3);
+    const leftSRaw = intBetween(rng, 1, 9) * 100;
+    // 쓴 양과 남은 양이 **똑같으면** 우연처럼 보인다(씨앗 하나에서 실제로 났다).
+    const leftS =
+      leftB === usedB && leftSRaw === usedS
+        ? leftSRaw === 900
+          ? 800
+          : leftSRaw + 100
+        : leftSRaw;
+    const rest = leftB * 1000 + leftS;
+    const first = used + rest;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    return make(
+      unit,
+      `${vessel}에 있던 ${thing} 중에서 ${mixedCap(cfg, usedB, usedS)} ${cfg.jReul} 덜어 내고 나니 ${mixedCap(cfg, leftB, leftS)} ${cfg.jGa} 남았습니다. 처음에 있던 ${thing}${thingNun} 몇 ${cfg.small}인지 쓰시오.`,
+      n(first),
+      `덜어 낸 것은 ${unitNum(used, cfg.small)}, 남은 것은 ${unitNum(rest, cfg.small)} 입니다. 처음에 있던 ${thing}${thingNun} 이 둘을 더한 것이므로 ${expr(`${used}+${rest}=${first}`)} 입니다.`,
+    );
+  };
+}
+
+/* ── 2-5-3 들이의 합과 차 · 2-5-6 무게의 합과 차 ── */
+
+/**
+ * 1단 — 합·차 식 그대로. **받아올림·받아내림이 반드시 한 번은 나게** 뽑는다.
+ *
+ * 이 소단원의 알맹이가 «$1000$ 을 넘거나 모자랄 때 큰 단위로 옮기는 것»이라,
+ * 자리 넘김이 없는 것만 나오면 지면이 「단위」 소단원과 구별되지 않는다.
+ */
+function capSumCalcOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const isAdd = intBetween(rng, 0, 1) === 1;
+    const cross = intBetween(rng, 0, 1) === 1;
+    const b1 = intBetween(rng, 2, 4);
+    const b2 = intBetween(rng, 1, 3);
+    if (isAdd) {
+      const s1 = intBetween(rng, 100, 900);
+      // ⚠️ 합이 **정확히 $1000$** 이면 답이 `$3\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 된다 —
+      //    받아올림은 나지만 지면에 `0` 이 남는다. 아래끝을 하나 올려 그 값을 뺀다.
+      const s2 = cross
+        ? intBetween(rng, 1001 - s1, 999)
+        : intBetween(rng, 50, 999 - s1);
+      const sum = s1 + s2;
+      const carry = sum >= 1000 ? 1 : 0;
+      const outS = sum - carry * 1000;
+      const outB = b1 + b2 + carry;
+      return make(
+        unit,
+        `다음을 계산하시오.\n\n$${b1}\\,\\mathrm{${cfg.big}}\\ ${s1}\\,\\mathrm{${cfg.small}}+${b2}\\,\\mathrm{${cfg.big}}\\ ${s2}\\,\\mathrm{${cfg.small}}=\\square$`,
+        mixedCap(cfg, outB, outS),
+        carry === 1
+          ? `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${sum}`)} 이고, $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jNun} $1\\,\\mathrm{${cfg.big}}$ 이므로 받아올림합니다. ${cfg.big}끼리 더하면 ${expr(`${b1}+${b2}+1=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`
+          : `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${outS}`)}, ${cfg.big}끼리 더하면 ${expr(`${b1}+${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`,
+      );
+    }
+    const s2 = intBetween(rng, 100, 900);
+    // ⚠️ 아래끝을 `s2` 로 두면 **두 작은 자리가 같아** 답이
+    //    `$4\,\mathrm{L}\ 0\,\mathrm{mL}$` 가 된다(씨앗 하나에서 실제로 났다).
+    const s1 = cross
+      ? intBetween(rng, 50, s2 - 1)
+      : intBetween(rng, s2 + 1, 950);
+    const bigLeft = b1 + b2;
+    const total1 = bigLeft * 1000 + s1;
+    const total2 = b2 * 1000 + s2;
+    const diff = total1 - total2;
+    const outB = Math.floor(diff / 1000);
+    const outS = diff % 1000;
+    const borrow = s1 < s2;
+    return make(
+      unit,
+      `다음을 계산하시오.\n\n$${bigLeft}\\,\\mathrm{${cfg.big}}\\ ${s1}\\,\\mathrm{${cfg.small}}-${b2}\\,\\mathrm{${cfg.big}}\\ ${s2}\\,\\mathrm{${cfg.small}}=\\square$`,
+      mixedCap(cfg, outB, outS),
+      borrow
+        ? `${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꿉니다. ${expr(`${s1 + 1000}-${s2}=${outS}`)} 이고 ${expr(`${bigLeft - 1}-${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`
+        : `${cfg.small}끼리 빼면 ${expr(`${s1}-${s2}=${outS}`)}, ${cfg.big}끼리 빼면 ${expr(`${bigLeft}-${b2}=${outB}`)} 이므로 ${mixedCap(cfg, outB, outS)} 입니다.`,
+    );
+  };
+}
+
+/** 2단 — 문장으로 합·차. 답은 섞은 꼴. */
+function capSumWordOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const isAdd = intBetween(rng, 0, 1) === 1;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    if (isAdd) {
+      const b1 = intBetween(rng, 1, 3);
+      const s1 = intBetween(rng, 200, 900);
+      const b2 = intBetween(rng, 1, 3);
+      // 합이 정확히 $1000$ 이면 답의 작은 자리가 `0` 이 된다 — 아래끝을 하나 올린다.
+      const s2 = intBetween(rng, 1001 - s1, 950);
+      const sum = s1 + s2;
+      const outB = b1 + b2 + (sum >= 1000 ? 1 : 0);
+      const outS = sum % 1000;
+      return make(
+        unit,
+        `${vessel}에 ${thing}${thingEul} 어제 ${mixedCap(cfg, b1, s1)}, 오늘 ${mixedCap(cfg, b2, s2)} 담았습니다. 담은 ${thing}${thingNun} 모두 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+        mixedCap(cfg, outB, outS),
+        `${cfg.small}끼리 더하면 ${expr(`${s1}+${s2}=${sum}`)} 이므로 받아올림하여 ${cfg.big}끼리 ${expr(`${b1}+${b2}+1=${outB}`)} 입니다. 따라서 ${mixedCap(cfg, outB, outS)} 입니다.`,
+      );
+    }
+    const b2 = intBetween(rng, 1, 2);
+    // ⚠️ 큰 자리가 **둘 이상** 벌어져야 한다 — 받아내림으로 하나를 내주고도
+    //    답의 큰 자리가 `0` 이 되지 않는다(`$0\,\mathrm{L}\ 350\,\mathrm{mL}$` 방지).
+    const b1 = intBetween(rng, b2 + 2, 6);
+    const s1 = intBetween(rng, 100, 500);
+    const s2 = intBetween(rng, s1 + 50, 950);
+    const total1 = b1 * 1000 + s1;
+    const total2 = b2 * 1000 + s2;
+    const diff = total1 - total2;
+    return make(
+      unit,
+      `${vessel}에 ${thing}${josa(thing, "이", "가")} ${mixedCap(cfg, b1, s1)} 있었습니다. 그중 ${mixedCap(cfg, b2, s2)} ${cfg.jReul} 덜어 냈다면 남은 ${thing}${thingNun} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(diff / 1000), diff % 1000),
+      `${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꿉니다. ${expr(`${s1 + 1000}-${s2}=${diff % 1000}`)} 이고 ${expr(`${b1 - 1}-${b2}=${Math.floor(diff / 1000)}`)} 이므로 ${mixedCap(cfg, Math.floor(diff / 1000), diff % 1000)} 입니다.`,
+    );
+  };
+}
+
+/** 3단 — 두 단계: 더 담고 덜어 낸다(합과 차를 잇달아). */
+function capSumApplyOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const b0 = intBetween(rng, 2, 4);
+    // ⚠️ 두 단계라 「끝 값의 작은 자리가 $0$ 이 되나」를 손으로 못 센다. 그래서
+    //    **자리를 갈라 둔다** — 처음 값만 십의 자리를 갖고(백의 배수가 아니다),
+    //    더하는 값·덜어 내는 값은 백의 배수다. 그러면 끝 값의 십의 자리가 처음 값
+    //    그대로 남아 **$0$ 이 될 수 없다.** (뺄셈·덧셈이 백의 자리 위에서만 논다.)
+    const s0 = intBetween(rng, 1, 8) * 100 + intBetween(rng, 1, 9) * 10;
+    const start = b0 * 1000 + s0;
+    const addB = intBetween(rng, 1, 2);
+    const addS = intBetween(rng, Math.ceil((1000 - s0) / 100), 9) * 100;
+    const add = addB * 1000 + addS;
+    const cut = intBetween(rng, 1, 9) * 100;
+    const end = start + add - cut;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingNun = josa(thing, "은", "는");
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `${vessel}에 ${thing}${josa(thing, "이", "가")} ${mixedCap(cfg, b0, s0)} 있었습니다. 여기에 ${thing}${thingEul} ${mixedCap(cfg, addB, addS)} 더 담고, 다시 ${unitNum(cut, cfg.small)} ${cfg.jReul} 덜어 냈습니다. 지금 ${vessel}에 있는 ${thing}${thingNun} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(end / 1000), end % 1000),
+      `먼저 더하면 ${expr(`${start}+${add}=${start + add}`)} 입니다. 여기서 덜어 내면 ${expr(`${start + add}-${cut}=${end}`)} 이므로 ${mixedCap(cfg, Math.floor(end / 1000), end % 1000)} 입니다.`,
+    );
+  };
+}
+
+/**
+ * 4단 — **처음** 양을 되짚는다(역산). 받아내림이 반드시 난다.
+ *
+ * 답을 섞은 꼴로 둔다 — 「단위」 소단원의 4단이 작은 단위 하나로 답하므로,
+ * 이 둘이 한 시험지에 실려도 지면에서 갈린다.
+ */
+function capSumDeepOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    const addB = intBetween(rng, 1, 3);
+    const addS = intBetween(rng, 300, 900);
+    const add = addB * 1000 + addS;
+    // 받아내림으로 큰 자리 하나를 내주므로, **둘 이상** 벌려야 답의 큰 자리가 남는다.
+    const endB = addB + intBetween(rng, 2, 4);
+    // 받아내림이 반드시 나게 — 나중 값의 작은 자리를 더한 값보다 작게 둔다.
+    const endS = intBetween(rng, 50, addS - 50);
+    const end = endB * 1000 + endS;
+    const first = end - add;
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const thingEul = josa(thing, "을", "를");
+    return make(
+      unit,
+      `${vessel}에 ${thing}${thingEul} ${mixedCap(cfg, addB, addS)} 더 담았더니 ${thing}${josa(thing, "이", "가")} 모두 ${mixedCap(cfg, endB, endS)} ${cfg.jGa} 되었습니다. 처음에 들어 있던 ${thing}${josa(thing, "은", "는")} 몇 ${cfg.big} 몇 ${cfg.small}인지 쓰시오.`,
+      mixedCap(cfg, Math.floor(first / 1000), first % 1000),
+      `처음 양은 나중 양에서 더 담은 양을 뺀 것입니다. ${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꾸어 ${expr(`${endS + 1000}-${addS}=${first % 1000}`)} 이고, ${expr(`${endB - 1}-${addB}=${Math.floor(first / 1000)}`)} 이므로 ${mixedCap(cfg, Math.floor(first / 1000), first % 1000)} 입니다.`,
+    );
+  };
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
- * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산)를 따른다.
+ * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
  */
 export const G3_TIERS: ElemTierMap = {
+  "초3|1-2-1": {
+    연산: line121Calc,
+    기본: line121Word,
+    응용: line121Apply,
+    심화: line121Deep,
+  },
+  "초3|1-2-2": {
+    연산: angle122Calc,
+    기본: angle122Word,
+    응용: angle122Apply,
+    심화: angle122Deep,
+  },
+  "초3|1-2-3": {
+    연산: tri123Calc,
+    기본: tri123Word,
+    응용: tri123Apply,
+    심화: tri123Deep,
+  },
+  "초3|1-2-4": {
+    연산: rect124Calc,
+    기본: rect124Word,
+    응용: rect124Apply,
+    심화: rect124Deep,
+  },
+  "초3|1-2-5": {
+    연산: sq125Calc,
+    기본: sq125Word,
+    응용: sq125Apply,
+    심화: sq125Deep,
+  },
+  "초3|1-3-1": {
+    연산: div131Calc,
+    기본: div131Word,
+    응용: div131Apply,
+    심화: div131Deep,
+  },
+  "초3|1-3-2": {
+    연산: div132Calc,
+    기본: div132Word,
+    응용: div132Apply,
+    심화: div132Deep,
+  },
+  "초3|1-3-3": {
+    연산: div133Calc,
+    기본: div133Word,
+    응용: div133Apply,
+    심화: div133Deep,
+  },
+  "초3|1-3-4": {
+    연산: div134Calc,
+    기본: div134Word,
+    응용: div134Apply,
+    심화: div134Deep,
+  },
+  "초3|1-4-1": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-2": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-3": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-4": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-4-5": {
+    연산: mul14Calc,
+    기본: mul14Word,
+    응용: mul14Apply,
+    심화: mul14Deep,
+  },
+  "초3|1-5-1": {
+    연산: lenCalcOf(LEN_CM),
+    기본: lenWordOf(LEN_CM),
+    응용: lenApplyOf(LEN_CM),
+    심화: lenDeepOf(LEN_CM),
+  },
+  "초3|1-5-2": {
+    연산: lenCalcOf(LEN_KM),
+    기본: lenWordOf(LEN_KM),
+    응용: lenApplyOf(LEN_KM),
+    심화: lenDeepOf(LEN_KM),
+  },
+  "초3|1-5-3": {
+    연산: guessCalc,
+    기본: guessWord,
+    응용: guessApply,
+    심화: guessDeep,
+  },
+  "초3|1-5-4": {
+    연산: sec154Calc,
+    기본: sec154Word,
+    응용: sec154Apply,
+    심화: sec154Deep,
+  },
+  "초3|1-5-5": {
+    연산: time155Calc,
+    기본: time155Word,
+    응용: time155Apply,
+    심화: time155Deep,
+  },
+  "초3|1-5-6": {
+    연산: time156Calc,
+    기본: time156Word,
+    응용: time156Apply,
+    심화: time156Deep,
+  },
+  "초3|1-6-1": {
+    연산: part161Calc,
+    기본: part161Word,
+    응용: part161Apply,
+    심화: part161Deep,
+  },
+  "초3|1-6-2": {
+    연산: frac162Calc,
+    기본: frac162Word,
+    응용: frac162Apply,
+    심화: frac162Deep,
+  },
+  "초3|1-6-3": {
+    연산: frac163Calc,
+    기본: frac163Word,
+    응용: frac163Apply,
+    심화: frac163Deep,
+  },
+  "초3|1-6-4": {
+    연산: cmp164Calc,
+    기본: cmp164Word,
+    응용: cmp164Apply,
+    심화: cmp164Deep,
+  },
+  "초3|1-6-5": {
+    연산: unit165Calc,
+    기본: unit165Word,
+    응용: unit165Apply,
+    심화: unit165Deep,
+  },
+  "초3|1-6-6": {
+    연산: dec166Calc,
+    기본: dec166Word,
+    응용: dec166Apply,
+    심화: dec166Deep,
+  },
+  "초3|1-6-7": {
+    연산: cmp167Calc,
+    기본: cmp167Word,
+    응용: cmp167Apply,
+    심화: cmp167Deep,
+  },
+  "초3|2-1-1": {
+    연산: mul21Calc,
+    기본: mul21Word,
+    응용: mul21Apply,
+    심화: mul21Deep,
+  },
+  "초3|2-1-2": {
+    연산: mul21Calc,
+    기본: mul21Word,
+    응용: mul21Apply,
+    심화: mul21Deep,
+  },
+  "초3|2-1-3": {
+    연산: mul213Calc,
+    기본: mul213Word,
+    응용: mul213Apply,
+    심화: mul213Deep,
+  },
+  "초3|2-1-4": {
+    연산: mul214Calc,
+    기본: mul214Word,
+    응용: mul214Apply,
+    심화: mul214Deep,
+  },
+  "초3|2-2-1": {
+    연산: div22Calc,
+    기본: div22Word,
+    응용: div22Apply,
+    심화: div22Deep,
+  },
+  "초3|2-2-2": {
+    연산: div22Calc,
+    기본: div22Word,
+    응용: div22Apply,
+    심화: div22Deep,
+  },
+  "초3|2-2-3": {
+    연산: rem223Calc,
+    기본: rem223Word,
+    응용: rem223Apply,
+    심화: rem223Deep,
+  },
+  "초3|2-4-1": {
+    연산: part241Calc,
+    기본: part241Word,
+    응용: part241Apply,
+    심화: part241Deep,
+  },
+  // (1) 은 단위분수, (2) 는 분자 2 이상 — **분자 하나로만** 갈리므로 같은 공장을 쓴다.
+  "초3|2-4-2": {
+    연산: frac24CalcOf(true),
+    기본: frac24WordOf(true),
+    응용: frac24ApplyOf(true),
+    심화: frac24DeepOf(true),
+  },
+  "초3|2-4-3": {
+    연산: frac24CalcOf(false),
+    기본: frac24WordOf(false),
+    응용: frac24ApplyOf(false),
+    심화: frac24DeepOf(false),
+  },
+  "초3|2-4-4": {
+    연산: kind244Calc,
+    기본: kind244Word,
+    응용: kind244Apply,
+    심화: kind244Deep,
+  },
+  "초3|2-4-5": {
+    연산: mixed245Calc,
+    기본: mixed245Word,
+    응용: mixed245Apply,
+    심화: mixed245Deep,
+  },
+  "초3|2-4-6": {
+    연산: cmp246Calc,
+    기본: cmp246Word,
+    응용: cmp246Apply,
+    심화: cmp246Deep,
+  },
+  "초3|2-2-4": {
+    연산: div224Calc,
+    기본: div224Word,
+    응용: div224Apply,
+    심화: div224Deep,
+  },
   "초3|1-1-1": {
     연산: sub111Calc,
     기본: sub111Word,
@@ -1784,5 +7162,41 @@ export const G3_TIERS: ElemTierMap = {
     기본: subWordOf(2, 2),
     응용: subApplyOf(2, 2),
     심화: subDeepOf(2, 2),
+  },
+  "초3|2-5-1": {
+    연산: capCmpCalcOf(CAP_L),
+    기본: capCmpWordOf(CAP_L),
+    응용: capCmpApplyOf(CAP_L),
+    심화: capCmpDeepOf(CAP_L),
+  },
+  "초3|2-5-2": {
+    연산: capUnitCalcOf(CAP_L),
+    기본: capUnitWordOf(CAP_L),
+    응용: capUnitApplyOf(CAP_L),
+    심화: capUnitDeepOf(CAP_L),
+  },
+  "초3|2-5-3": {
+    연산: capSumCalcOf(CAP_L),
+    기본: capSumWordOf(CAP_L),
+    응용: capSumApplyOf(CAP_L),
+    심화: capSumDeepOf(CAP_L),
+  },
+  "초3|2-5-4": {
+    연산: capCmpCalcOf(CAP_KG),
+    기본: capCmpWordOf(CAP_KG),
+    응용: capCmpApplyOf(CAP_KG),
+    심화: capCmpDeepOf(CAP_KG),
+  },
+  "초3|2-5-5": {
+    연산: capUnitCalcOf(CAP_KG),
+    기본: capUnitWordOf(CAP_KG),
+    응용: capUnitApplyOf(CAP_KG),
+    심화: capUnitDeepOf(CAP_KG),
+  },
+  "초3|2-5-6": {
+    연산: capSumCalcOf(CAP_KG),
+    기본: capSumWordOf(CAP_KG),
+    응용: capSumApplyOf(CAP_KG),
+    심화: capSumDeepOf(CAP_KG),
   },
 };

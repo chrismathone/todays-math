@@ -7,6 +7,35 @@
  *   npx tsx scripts/qa/probe-elem-rules.ts 초3 --list # 걸린 것 전량 나열
  *
  * 「끝났다」 = 이 스크립트가 **전 규칙 0** 을 찍는 것.
+ *
+ * ## ⚠️ R9 가 보는 것과 **안 보는 것** (g5 가 낸 갈래)
+ *
+ * ```
+ * R9     씨앗마다 문항이 갈리나   ← 발문 + 그림 스펙
+ * R9-b   그림이 늘 같지 않나      ← 그림 스펙
+ * 안 봄   그 스펙이 **옳은가**      ← 라벨이 비었나 · 값이 그림과 맞나 · 그릴 수 있나
+ * ```
+ *
+ * **셋째 줄이 없으면 다음 사람이 「그림은 다 봤다」고 읽는다.**
+ *
+ * ## ⚠️ R9 의 그림 축과 R9-b 는 **둘 다 「회귀 방지」다** — 오늘 뭘 고친 게 아니다
+ *
+ * 「고쳤다」와 「앞으로 안 나게 했다」는 다른 말이고, 섞어 적으면 다음 사람이 **오늘
+ * 무언가 고쳐진 줄 알고** 그 축을 다시 안 본다. 2026-08-23 실측을 그대로 적는다:
+ *
+ * ```
+ * R9 그림 축   넓혀서 «살린» 갈래 0     ← 발문이 씨앗마다 고정인 갈래가 트리에 하나도 없다
+ * R9-b        실측 위반 0             ← 그림 붙는 소단원 전량이 이미 갈린다
+ * ```
+ *
+ * 둘 다 **그런 갈래가 생기는 날** 처음 일한다. 지금 초록인 것은 규칙이 세다는 뜻이
+ * 아니라 **아직 그 자리가 없다**는 뜻이다.
+ * R9 는 「씨앗마다 **갈리나**」를 본다. **「그 스펙이 옳나」는 안 본다.**
+ * 2026-08-23 실측이 그 경계를 보여 준다 — 초5 2-3-1 이 도형을 여덟 개까지 그리는데
+ * 공용 라벨은 다섯(가~마)뿐이라 **여섯째부터 이름이 `undefined`** 였다(28/40 씨앗).
+ * 발문·정답·해설이 다 멀쩡해 값 검산도 R1 도 초록이었고, **지면에서 도형에 이름이
+ * 안 붙는다**는 것만 틀렸다. 스펙은 씨앗마다 **갈리므로** 넓힌 R9 도 안 잡는다.
+ * **「R9 를 넓혔으니 그림은 검사된다」고 읽지 말 것** — 그건 다른 축이다.
  */
 import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
@@ -14,9 +43,11 @@ import {
   generateElementaryProblem,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
+import { openFence } from "./elemProbeFence";
 import {
   arabicPolygons,
   bareNumbers,
+  josaFaults,
   runawayDecimals,
   tooAdvanced,
   unfilledPlaceholders,
@@ -59,6 +90,32 @@ export function figureIsFixed(specs: (unknown | null)[]): boolean {
   return json.some((j) => j !== "null") && new Set(json).size === 1;
 }
 
+/**
+ * R9 — 씨앗이 달라도 **학생이 보는 지면**이 통째로 같으면 결함이다.
+ *
+ * ⚠️ **발문 «글자»만 보면 «수가 그림에만 있는» 갈래를 못 본다.** 초5 2-3-2·2-3-3·2-3-4
+ * 는 세 변·격자 칸이 `markedShape` 안에 있어 발문이 늘 같은 한 문장인데 **지면은 씨앗마다
+ * 다르다.** g5 가 말투 묶음을 넣어 통과시키고 **「가드를 만족시킨 것이지 결함을 고친 것이
+ * 아니다」**라고 스스로 적어 드러났다(2026-08-23).
+ *
+ * ⚠️ **그림을 그리지 않는다 — 스펙을 견준다.** 씨앗마다 SVG 를 뽑으면 ⑴ 판정기가 몇 분이
+ * 되어 **아무도 안 돌리고** ⑵ 그림 엔진에 매여 **엔진이 죽으면 이 판정기도 죽는다**
+ * (그러면 「깨끗」과 「판정 못 함」이 안 갈린다). **스펙이 다르면 지면이 다르다.**
+ *
+ * ⚠️ **그림이 없는 갈래는 옛 잣대 그대로다 — 분기를 두지 않아도 그렇게 된다.** 스펙이
+ * 전부 `null` 이면 합친 열쇠의 뒷자리가 상수라 발문만 견주는 것과 같아진다. 분기를 안
+ * 두는 쪽이 **틀릴 자리가 하나 적다.** (분기를 두면 「발문을 한 문장으로 고정해 놓고
+ * 그림만 흔들어 통과」하는 길이 열리는데, 그건 그림이 **있는** 갈래에만 허락된 것이다.)
+ */
+export function pageIsFixed(
+  items: readonly { content: string; figureSpec?: unknown }[],
+): boolean {
+  const keys = items.map(
+    (i) => `${i.content}\0${JSON.stringify(i.figureSpec ?? null)}`,
+  );
+  return keys.length > 0 && new Set(keys).size === 1;
+}
+
 if (process.argv.includes("--selftest")) {
   const rows: [string, boolean, boolean][] = [
     [
@@ -80,6 +137,39 @@ if (process.argv.includes("--selftest")) {
     [
       "같은 kind 인데 값이 다르다 — 통과해야",
       figureIsFixed([{ k: 1 }, { k: 2 }]),
+      false,
+    ],
+    // ── R9 지면 눈금 (2026-08-23) — 두 경우를 **둘 다** 못 박는다 ──────
+    [
+      "R9: 발문이 같아도 **그림이 갈리면** 통과해야 (수가 그림에만 있는 갈래)",
+      pageIsFixed([
+        {
+          content: "세 변의 길이를 보고 넓이를 구하시오.",
+          figureSpec: { k: 1 },
+        },
+        {
+          content: "세 변의 길이를 보고 넓이를 구하시오.",
+          figureSpec: { k: 2 },
+        },
+      ]),
+      false,
+    ],
+    [
+      "R9: 발문도 그림도 같으면 걸려야",
+      pageIsFixed([
+        { content: "같은 발문", figureSpec: { k: 1 } },
+        { content: "같은 발문", figureSpec: { k: 1 } },
+      ]),
+      true,
+    ],
+    [
+      "R9: **그림이 아예 없으면 옛 잣대다** — 발문이 같으면 걸려야(그림 뒤에 못 숨는다)",
+      pageIsFixed([{ content: "같은 발문" }, { content: "같은 발문" }]),
+      true,
+    ],
+    [
+      "R9: 발문이 갈리면 통과해야",
+      pageIsFixed([{ content: "발문 하나" }, { content: "발문 둘" }]),
       false,
     ],
   ];
@@ -132,6 +222,68 @@ if (process.argv.includes("--selftest")) {
       bareNumbers("$117$").length === 0,
       true,
     ],
+    // ── R-조사 눈금 (elem-g4 가 보낸 8행 그대로 + 경계) ────────────────────
+    // 양성·음성이 **둘 다** 있어야 한다 — 양성만 대면 「지어냄」이 구조적으로 0이 된다.
+    [
+      "분수는 분자를 마지막에 읽는다 — 「십분의 육」 뒤 «를» 은 걸려야",
+      josaFaults("$\\frac{6}{10}$를 더하면").length === 1,
+      true,
+    ],
+    [
+      "같은 분수에 «을» 은 통과해야",
+      josaFaults("$\\frac{6}{10}$을 더하면").length === 0,
+      true,
+    ],
+    [
+      "「오분의 이」 뒤 «가» 는 통과해야",
+      josaFaults("$\\frac{2}{5}$가 되었다").length === 0,
+      true,
+    ],
+    [
+      "같은 분수에 «이» 는 걸려야",
+      josaFaults("$\\frac{2}{5}$이 되었다").length === 1,
+      true,
+    ],
+    [
+      "「일」 뒤 «을» 은 통과해야",
+      josaFaults("$1$을 받아올려").length === 0,
+      true,
+    ],
+    [
+      "한 칸 띄운 조사도 본다 — 「칠분의 일」 뒤 «와» 는 걸려야",
+      josaFaults("$4\\frac{1}{7}$ 와 같이").length === 1,
+      true,
+    ],
+    [
+      "같은 자리에 «과» 는 통과해야",
+      josaFaults("$4\\frac{1}{7}$과 같이").length === 0,
+      true,
+    ],
+    [
+      "낱말의 첫 글자를 조사로 읽으면 안 된다 — 「$3$ 은행나무」",
+      josaFaults("$3$ 은행나무").length === 0,
+      true,
+    ],
+    // 규칙 ㉢ 을 빼면 이 한 줄이 빨개진다 — g5 실측으로 거짓 양성 41자리를 만들던 부류다
+    // (65 → 9). 범위·비교 단원이 통째로 우는 것을 막는 자리이므로 눈금에 못 박는다.
+    [
+      "「$49$ 이상인」의 «이» 는 조사가 아니다 — ㉢ 이 없으면 41자리가 거짓 양성",
+      josaFaults("$49$ 이상인 수를 모두 쓰시오").length === 0,
+      true,
+    ],
+    // 경계 — «통과»가 아니라 «안 잼»이다. 이 줄이 없으면 다음 사람이 「□ 는 검사된다」고 읽는다.
+    [
+      "□ 는 소리를 모른다 — 판정 **밖**이다(통과가 아니라 안 잼, 경계)",
+      josaFaults("$1\\frac{\\square}{9}$를 뺀").length === 0,
+      true,
+    ],
+    // ⚠️ 이 «판정 밖»은 이제 `probe-elem-unit-josa` 가 맡는다(2026-08-23).
+    //    「아무도 안 본다」로 읽지 말 것 — 그쪽이 지면에서 9,634자리를 잰다.
+    [
+      "단위가 소리를 바꾸는 자리는 여기서 판정 밖이다 — 「$3$ kg을」(경계)",
+      josaFaults("$3$ kg을 담았다").length === 0,
+      true,
+    ],
   );
 
   let bad = 0;
@@ -141,12 +293,17 @@ if (process.argv.includes("--selftest")) {
   }
   console.log(
     bad === 0
-      ? `\n✅ 눈금 ${rows.length}건 (R9-b 5 + 갈래 순회 7)`
+      ? // 개수·묶음을 손으로 적으면 눈금을 늘릴 때마다 거짓말이 된다 — 세어서 찍는다.
+        `\n✅ 눈금 ${rows.length}건 (R9-b · 갈래 순회 · R조사)`
       : `\n❌ ${bad}건 어긋남 — **이 판정기를 믿지 마라**`,
   );
   process.exit(bad === 0 ? 0 : 1);
 }
 
+// 재는 동안 생성기가 쓰이면 이 수치는 못 쓴다. 2026-08-23 에 이 판정기가 **반쯤 고쳐진**
+// g3.ts 를 읽고 **거짓 빨강**을 냈고, 그것이 남을 「이미 고친 것」을 다시 고치게 만들었다.
+// 거짓 초록은 결함을 숨기고, 거짓 빨강은 **남의 시간을 태운다** — 둘 다 이 울타리가 막는다.
+const fence = openFence({ grades: gradeArg ? [gradeArg] : undefined });
 const units = elementaryUnits().filter(
   (u) => !gradeArg || u.grade === gradeArg,
 );
@@ -242,12 +399,32 @@ function checkOne(unit: Unit, tier: ElemTier | undefined): void {
       return poly.length ? poly.join(",") : null;
     }),
   );
+  // R-조사 — 수식 뒤 조사가 읽는 소리와 맞는가(2026-08-23 elem-g4 이식).
+  // ⚠️ `variantsOf` 가 **표준을 포함**하므로 여기 오는 items 에 표준이 들어 있다 —
+  //    학년별 검사들이 갈래만 돌아 표준이 구조적으로 0이던 그 자리를 이 순회가 메운다.
+  once(
+    "R조사",
+    items.map((p) => {
+      const hits = [
+        ...josaFaults(p.content).map((x) => `발문:${x}`),
+        ...josaFaults(p.solution).map((x) => `해설:${x}`),
+      ];
+      return hits.length ? hits.slice(0, 4).join(" ") : null;
+    }),
+  );
 
-  // R9 — 씨앗을 바꿔도 문항이 통째로 같으면 단조롭다.
+  // R9 — 씨앗을 바꿔도 **지면**이 통째로 같으면 단조롭다(`pageIsFixed` 주석 참조).
   // 원장님: 「항상 도형은 다양할수록 좋음. 너무 단조로우면 재미도 학습의욕도 떨어짐」
   const variants = new Set(items.map((i) => i.content));
-  if (variants.size === 1)
-    add("R9 고정문항", where, `씨앗 ${SEEDS.length}개 전부 동일`);
+  // ⚠️ **이 한 줄(배선)은 눈금이 못 지킨다.** 아래 눈금은 `pageIsFixed` 를 **직접** 부르므로,
+  //    여기를 옛 잣대(`variants.size === 1`)로 되돌려도 눈금은 초록이다 — 실제로 변이로
+  //    확인했다(2026-08-23). 전량 쓸기도 못 가른다: 오늘 트리에 「발문 고정 + 그림 갈림」
+  //    갈래가 **0**이라 두 잣대의 답이 같기 때문이다(그런 갈래가 생기면 그때 갈린다).
+  //    이 파일의 R1~R4 도 같은 성질이다(눈금이 `bareNumbers` 등 **함수**를 본다) —
+  //    R9 만의 구멍이 아니라 **이 판정기의 구조**다. 고치려면 규칙 적용을 한 함수로 빼고
+  //    그 함수를 눈금이 불러야 한다. 지금은 그렇지 않다는 것을 여기 적어 둔다.
+  if (pageIsFixed(items))
+    add("R9 고정문항", where, `씨앗 ${SEEDS.length}개 전부 동일(발문·그림)`);
 
   // R9-b — **그림**도 갈려야 한다.
   //
@@ -273,9 +450,12 @@ for (const h of hits) {
   byRule.get(h.rule)!.push(h);
 }
 
+// **찍기 전에** 닫는다 — 뒤에 닫으면 못 쓸 수치를 이미 내보낸 뒤다.
+fence.close();
+
 console.log(
   `대상 소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""} · ` +
-    `훑은 갈래 ${visited}개 (표준 + 등록된 난이도 4단)\n`,
+    `훑은 갈래 ${visited}개 (표준 + 등록된 난이도 4단) · ${fence.scopeLine()}\n`,
 );
 if (hits.length === 0) {
   console.log("✅ 전 규칙 0");

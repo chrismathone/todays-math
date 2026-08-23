@@ -19,6 +19,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(REPO, "vendor", "figure-engine"))
 sys.path.insert(0, os.path.join(REPO, "scripts", "figure"))
 
+import elementary  # noqa: E402
 from elementary import render_elementary  # noqa: E402
 
 SPECS: list[dict] = [
@@ -47,18 +48,16 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "areaPoly", "shape": "rhombus", "base": 12, "height": 4, "d2": 8},
     # 도형 **전 종류**를 넣는다. 한둘만 넣으면 나머지 도형의 좌표를 망가뜨려도
     # 산출물이 그대로라 변이를 판정할 수 없다 (`isoTri` 에서 실제로 겪었다).
+    #
+    # 🔴 **목록을 손으로 적지 않는다** — 엔진의 `_SHAPE_KINDS` 를 그대로 읽는다.
+    #    손으로 적으면 ⑧ 목록을 바꾸는 변이(예: 「정n각형을 고르기 목록에 넣기」)가
+    #    **산출물을 안 바꿔** 하네스의 ⑵단계에서 「동작을 안 바꾸는 변이」로 걸러진다.
+    #    2026-08-23 에 실제로 그렇게 판정 불가가 났다. 표본이 그 자리를 안 건드리면
+    #    가드를 꺼도 산출물이 그대로다 — 이 파일 머리말이 적어 둔 그 이야기다.
     {
         "version": "elem-1",
         "kind": "namedShapes",
-        "items": [
-            {"shape": k, "label": k}
-            for k in sorted(
-                {
-                    "square", "rect", "rightTri", "isoTri", "wideTri", "eqTri",
-                    "diamond", "tallDiamond", "trap", "para", "irregQuad",
-                }
-            )
-        ],
+        "items": [{"shape": k, "label": k} for k in sorted(elementary._SHAPE_KINDS)],
     },
     {
         "version": "elem-1",
@@ -68,6 +67,125 @@ SPECS: list[dict] = [
             {"shape": "rightTri", "label": "라", "marks": True},
         ],
     },
+    # ② markedShape — 도형 **위**의 표시. `namedShapes` 와 모양 목록을 공유하므로
+    #    **전 종류**를 넣어 어느 도형의 좌표가 망가져도 산출물이 움직이게 한다.
+    #    표시(변 라벨·각·tick·직각)를 **켠 판과 끈 판을 둘 다** 넣는다 — 켠 것만 넣으면
+    #    「표시를 안 줬는데 그려진다」를, 끈 것만 넣으면 「켰는데 안 그려진다」를 못 본다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k}
+        for k in sorted(
+            {
+                "square", "rect", "rightTri", "isoTri", "wideTri", "eqTri",
+                "diamond", "tallDiamond", "trap", "para", "irregQuad",
+            }
+        )
+    ],
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "isoTri",
+        "sides": ["7 cm", "7 cm", "5 cm"],
+        "angles": [None, "54°", None],
+        "equal": [[0, 1]],
+    },
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "rightTri",
+        "right": [0],
+        "sides": ["3 cm", None, "4 cm"],
+    },
+    {
+        "version": "elem-1",
+        "kind": "markedShape",
+        "shape": "para",
+        "angles": ["115°", None, "115°", None],
+        "equal": [[0, 2], [1, 3]],
+    },
+    # 정n각형 + 대각선 (② 확장, 2026-08-23). **전 종류**를 넣는다 —
+    # 표본이 그 자리를 안 건드리면 「대각선을 이웃까지 잇는다」 변이의 산출물이 그대로다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k}
+        for k in ("pentagon", "hexagon", "heptagon", "octagon")
+    ],
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k, "diagonals": True}
+        for k in ("square", "rect", "pentagon", "hexagon", "octagon")
+    ],
+    {"version": "elem-1", "kind": "markedShape", "shape": "octagon",
+     "sides": ["4 cm", None, None, None, None, None, None, None]},
+    # 비율 수리(2026-08-23) — **적힌 값이 그림에 반영되는가**.
+    # ⚠️ 「5,5,9」(밑변이 가장 긴)와 「7,7,4」(다리가 긴)를 **둘 다** 넣는다 —
+    #    한쪽만이면 관례 도형과 구분이 안 돼 변이가 산출물을 안 바꾼다.
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["7 cm", "7 cm", "4 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["5 cm", "5 cm", "9 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["3 cm", "4 cm", "5 cm"]},
+    # 던져야 하는 것 — 산출물에는 `ERROR ...` 로 찍히므로 가드를 빼면 그림이 나와 바뀐다.
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "sides": ["3 cm", "4 cm", "9 cm"]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "isoTri",
+     "angles": ["70°", "70°", "70°"]},
+    # 관례 각을 쓰는 판 — **각을 안 적는다**(적으면 관례값을 안 탄다).
+    {"version": "elem-1", "kind": "markedShape", "shape": "para",
+     "sides": ["4 cm", "6 cm", None, None]},
+    # 값 반영 확장(2026-08-23) — 「모든 변이 같은 도형」은 한 변만 줘도 된다.
+    *[
+        {"version": "elem-1", "kind": "markedShape", "shape": k, "sides": ["5 cm"]}
+        for k in ("square", "diamond", "tallDiamond", "pentagon", "nonagon")
+    ],
+    {"version": "elem-1", "kind": "markedShape", "shape": "rect",
+     "sides": ["4 cm", "7 cm", None, None]},
+    # 던져야 하는 것 — 모순
+    {"version": "elem-1", "kind": "markedShape", "shape": "square",
+     "sides": ["8 cm", "5 cm", None, None]},
+    {"version": "elem-1", "kind": "markedShape", "shape": "rect",
+     "angles": ["70°", None, None, None]},
+    # `trap` + sides — 지금은 **던진다**. 「같은변 목록에 trap 을 넣는」 변이가
+    # 이 자리를 건드려야 산출물이 바뀐다(표본이 안 건드리면 판정 자체를 못 한다).
+    {"version": "elem-1", "kind": "markedShape", "shape": "trap", "sides": ["5 cm"]},
+    # ③ lineRelation (2026-08-24) — 초4 2-4-1·2·3.
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel"},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel",
+     "labels": ["가", "나"]},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel", "marks": 2},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel",
+     "distance": "10 cm"},
+    {"version": "elem-1", "kind": "lineRelation", "relation": "parallel", "perpCount": 5},
+    # ⑥ tiling (2026-08-24) — 조각과 목표를 나란히. **채운 모습은 안 그린다**.
+    {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "eqTri",
+     "pieceSide": 5, "targetSide": 10},
+    {"version": "elem-1", "kind": "tiling", "piece": "square", "target": "square",
+     "pieceSide": 6, "targetSide": 18},
+    {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "hexagon"},
+    # ① circleParts (2026-08-24) — 초3 2-3. **용어는 안 그린다 · 주어진 값만 적는다**
+    # ── main 병합(2026-08-24)이 들여온 kind 넷 ─────────────────────────────
+    # 🔴 **내 것이 아니어도 표본은 있어야 한다.** 이 하네스는 `elem_advanced.py` 를
+    #    되쓸므로 거기 kind 가 사정권에 든다. 표본이 없으면 그 자리를 변이시켜도
+    #    산출물이 안 바뀌어 **판정 자체가 안 된다**(09 §4-20-c).
+    #    실제로 이 넷이 빠져 있어 62종 전량이 「산출물이 그대로다」로 죽었다.
+    {"version": "elem-1", "kind": "histogram",
+     "classes": [10, 20, 30, 40, 50], "values": [3, 7, 5, 2]},
+    {"version": "elem-1", "kind": "freqPolygon",
+     "classes": [0, 10, 20, 30], "values": [4, 9, 6], "bars": True},
+    {"version": "elem-1", "kind": "linearGraph",
+     "lines": [{"slope": 2, "yIntercept": -1}], "xRange": [-5, 5], "yRange": [-5, 5]},
+    {"version": "elem-1", "kind": "assetScene",
+     "items": [{"asset": "baduk-black", "x": 10, "y": 10, "w": 80}], "canvas": [120, 120]},
+    {"version": "elem-1", "kind": "circleParts", "radius": "5 cm"},
+    {"version": "elem-1", "kind": "circleParts", "diameter": "10 cm"},
+    {"version": "elem-1", "kind": "circleParts"},
+    {"version": "elem-1", "kind": "circleParts", "radius": "7 cm", "center": False},
+    # `show` — 치수 없이 선분만 (2-3-1). 「그린다」와 「적는다」가 갈린 자리.
+    {"version": "elem-1", "kind": "circleParts", "show": "radius"},
+    {"version": "elem-1", "kind": "circleParts", "show": "diameter"},
+    # 던져야 하는 것 — show 와 라벨을 같이 주면 선분을 두 번 그릴 길이 없다
+    {"version": "elem-1", "kind": "circleParts", "show": "radius", "radius": "5 cm"},
+    {"version": "elem-1", "kind": "circleParts", "show": "chord"},
+    # 던져야 하는 것 — 둘 다 적으면 그림이 답을 말한다. 가드를 빼면 그려지므로 산출물이 바뀐다.
+    {"version": "elem-1", "kind": "circleParts", "radius": "5 cm", "diameter": "10 cm"},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},
@@ -128,6 +246,19 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 800, "yStep": 200, "values": [{"label": "딸기", "value": 800}, {"label": "멜론", "value": 500}, {"label": "바닐라", "value": 600}], "yLabel": "(원)"},
     # ㉢ 눈금이 겹칠 수밖에 없는 판 — **던져야** 한다(옛날엔 「0100200300…」 덩어리)
     {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 800, "yStep": 100, "values": [{"label": "딸기", "value": 800}, {"label": "멜론", "value": 500}], "yLabel": "(원)"},
+    # 지워진 막대(unknown)와 값 0 (D-72) — 새 경로라 표본이 없으면 변이가 판정 불가다.
+    {"version": "elem-1", "kind": "barChart", "yMax": 30, "yStep": 5, "yLabel": "(명)", "title": "읽은 책 수",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True}, {"label": "다", "value": 10}, {"label": "라", "value": 20}]},
+    {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 30, "yStep": 5, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True}, {"label": "다", "value": 10}]},
+    # 던져야 하는 것 — 참값을 스펙에 실은 판
+    {"version": "elem-1", "kind": "barChart", "yMax": 30, "yStep": 5, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 25}, {"label": "나", "unknown": True, "value": 15}]},
+    # 값 0 — 크기 0 rect 를 그리면 정제기가 던진다
+    {"version": "elem-1", "kind": "barChart", "yMax": 10, "yStep": 2, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 0}, {"label": "나", "value": 7}, {"label": "다", "value": 3}]},
+    {"version": "elem-1", "kind": "barChart", "orient": "horizontal", "yMax": 10, "yStep": 2, "yLabel": "(명)",
+     "values": [{"label": "가", "value": 0}, {"label": "나", "value": 7}]},
     # 그래프 짝 (D-70 계열) — ㉠ 정상(원장님 확정 조합) ㉡ 제목이 넘치는 판
     # ㉢ 항목 라벨이 길어 짝이 넓어지는 판(눈금 글자가 본문 아래로 내려간다). ㉡㉢ 은 던진다.
     {"version": "elem-1", "kind": "chartPair", "charts": [
@@ -187,6 +318,18 @@ def _assert_covers_every_kind() -> None:
 def main() -> None:
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     _assert_covers_every_kind()
+    # `--specs` — 표본을 **JSON 으로** 내준다. 시험(TS)이 「전 kind 를 훑는」 검사에서
+    # 이것을 읽는다. 그래야 목록이 **한 곳**이 된다.
+    #
+    # 🔴 이 스위치가 생긴 이유: `elementaryFigure.test.ts` 의 「어느 kind 든 cm 라벨은
+    #    halo」가 주석에는 「전 kind 를 훑는다」고 적혀 있는데 **실제로는 손 목록**이었다.
+    #    `markedShape` 를 새로 넣자 그 검사가 구조적으로 못 봤고, 변이(변 라벨을 날
+    #    텍스트로)가 초록으로 나왔다. 09 §4-22 「손 목록은 샌다」가 **그 시험 자신**에게
+    #    또 걸린 것이다(sphere 에 이어 두 번째). 표본은 `_assert_covers_every_kind` 가
+    #    KIND_FIELDS 와 대조하므로, 여기서 읽으면 kind 를 빠뜨릴 수 없다.
+    if "--specs" in sys.argv:
+        print(json.dumps(SPECS, ensure_ascii=False))
+        return
     for spec in SPECS:
         name = json.dumps(spec, ensure_ascii=False, sort_keys=True)
         try:

@@ -104,9 +104,16 @@ if (!report) {
   // ⑵ 처리되지 않은 오류 — 워커 사망이 여기로 온다
   const 미처리 = report.unhandledErrors?.length ?? 0;
   if (미처리 > 0) 문제.push(`처리되지 않은 오류 ${미처리}건 — 워커 사망이 여기로 온다`);
-  // ⑶ 실패 스위트
-  const 실패 = report.numFailedTestSuites ?? 0;
-  if (실패 > 0) 문제.push(`실패한 파일 ${실패}개`);
+  // ⑶ 실패 — **파일 수와 스위트 수를 갈라 찍는다.**
+  // `numFailedTestSuites` 는 파일이 아니라 `describe` 블록 수다(머리말 ⚠️ 참조).
+  // 그걸 「실패한 파일 N개」로 찍었더니, vitest 가 「4 failed」라 한 것을 게이트가 「8개」로
+  // 말해 **「넷이 안 돈 것 아닌가」로 읽히고 8분짜리 전량 회차를 한 번 더 돌게** 했다
+  // (2026-08-24 elem-g6 실측: 파일 4 · 시험 6 · 스위트 8). 이 게이트의 존재 이유가
+  // 「분모를 틀리게 말하지 않는 것」인데 자기 요약이 그걸 어기고 있었다.
+  const 실패스위트 = report.numFailedTestSuites ?? 0;
+  const 실패파일 = (report.testResults ?? []).filter((r) => r.status === "failed").length;
+  if (실패스위트 > 0)
+    문제.push(`실패한 파일 ${실패파일}개 · 스위트 ${실패스위트}개 (스위트는 describe 블록 수다)`);
 }
 
 // ⑷ vitest 자신의 종료 코드

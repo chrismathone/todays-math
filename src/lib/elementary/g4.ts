@@ -10,6 +10,7 @@ import {
   type UnitSeed,
 } from "../../../prisma/seed-data/units";
 
+import type { ElemTierMap } from "./difficulty";
 import { expr, n, polyName, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
 import { fig, make } from "./make";
@@ -84,6 +85,42 @@ function themeShare<T>(unit: UnitSeed, themes: readonly T[]): readonly T[] {
   return mine;
 }
 
+/**
+ * **단위 뒤 조사는 «글자»가 아니라 «소리»가 정한다.** `cm` 은 «센티미터»라 받침이 없고
+ * (`를`·`로`), `kg` 은 «킬로그램»이라 받침이 있다(`을`·`으로`). `℃` 는 «도»다.
+ *
+ * ⚠️ **이 표를 안 쓰고 조사를 박아서 실물 결함이 나갔다** (2026-08-23, g3 이 알려 줌):
+ * 「세로 눈금 한 칸은 몇 **mm을** 나타내는가?」·「$23$**명로** 그보다」. 소재마다 단위가
+ * 달라지는 자리에서 한 조사를 박으면 **소재 하나만 맞고 나머지는 다 틀린다.**
+ *
+ * ⚠️ **모르는 단위는 던진다.** 조용히 한쪽을 고르면 새 단위가 들어올 때마다 같은 결함이
+ * 다시 난다 — 손 목록은 새므로 **새는 것을 시끄럽게** 만든다.
+ */
+const UNIT_HAS_FINAL: Record<string, boolean> = {
+  "℃": false, // 도
+  cm: false, // 센티미터
+  mm: false, // 밀리미터
+  m: false, // 미터
+  kg: true, // 킬로그램
+  g: true, // 그램
+  권: true,
+  명: true,
+  원: true,
+  개: false,
+  회: false,
+};
+
+/** 단위 뒤 조사 — 받침이 있으면 `withEnd`(을·으로·이·은), 없으면 `withoutEnd`. */
+function unitJosa(unit: string, withEnd: string, withoutEnd: string): string {
+  const has = UNIT_HAS_FINAL[unit];
+  if (has === undefined) {
+    throw new Error(
+      `단위 뒤 조사를 정할 수 없습니다: «${unit}» — 읽는 소리를 UNIT_HAS_FINAL 에 적어라`,
+    );
+  }
+  return `${unit}${has ? withEnd : withoutEnd}`;
+}
+
 /** 받침에 따라 조사를 고른다 — 「사과을」 이 지면에 나가지 않게. */
 function josa(word: string, withEnd: string, withoutEnd: string): string {
   const last = word.charCodeAt(word.length - 1);
@@ -125,6 +162,27 @@ function josaNum(
   withoutEnd: string,
 ): string {
   return `${n(value)}${tail(value, withEnd, withoutEnd)}`;
+}
+
+/**
+ * 수 + (으)로. **받침표(josaNum)로는 못 정한다** — ㄹ 받침(일·칠·팔)은 받침이 있어도
+ * «로»다. 끝 숫자의 소리로 가른다(0 은 십·백·천·만·억으로 끝나는 소리 — 모두 «으로»).
+ * ⚠️ 조 단위(…000000000000)로 끝나는 수에는 쓰지 말 것 — «조»는 «로»다.
+ */
+const RO_JOSA: Record<string, string> = {
+  "0": "으로",
+  "1": "로",
+  "2": "로",
+  "3": "으로",
+  "4": "로",
+  "5": "로",
+  "6": "으로",
+  "7": "로",
+  "8": "로",
+  "9": "로",
+};
+function roJosa(value: number): string {
+  return `${n(value)}${RO_JOSA[String(value % 10)]}`;
 }
 
 /** 소수는 **정수로 계산해서 찍는다** — 부동소수점이 지면으로 새면 R2 다. */
@@ -335,6 +393,734 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-1 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * ⚠️ **규모는 소단원 띠에 고정한다** — 「숫자 규모를 키우는 축은 다양성이 아니다」
+ * (원장님 문항 다양성 원칙). 이 단원은 자릿수 자체가 교과 내용이라, 허용되는 규모는
+ * **각 소단원이 정한 띠**뿐이다: 1-1-1 은 10000 언저리 · 1-1-2/7 은 다섯 자리 ·
+ * 1-1-3 은 십만~구천만 · 1-1-4 는 만/억 · 1-1-5 는 억/조 · 1-1-6 은 표준과 같은 띠.
+ * 4단이라고 자릿수를 더 키우지 않는다 — 난이도는 절차 구조(조립·역산·조건 조합)로 올린다.
+ * 시험이 소단원별 상한으로 잠근다(elemTiersG4BigNum.test.ts).
+ *
+ * R5 대비 — 표준 여덟 갈래(1000×10·분해·지폐 10장·보다 큰 수 / 자리 숫자·값 /
+ * 조립·분해 / 억·조 3종 / 뛰어·거꾸로 / 두 수 비교)와 유형을 전부 갈랐다.
+ * 1-1-6 심화의 되짚기는 표준 ①(거꾸로 뛰어 세기)과 계산이 같아지지 않게
+ * 「잘못 뛰어 세었더니」 복원형(D-72 ⑵의 그 문형)으로 간다.
+ *
+ * 1-1-4 와 1-1-5 는 교과 구조가 평행이라(표준 ⓪①②도 평행) 갈래도 평행하되,
+ * 한 시험지에 나란히 실려도 단위만 바꾼 복붙으로 읽히지 않게 **문형 표면을 갈랐다**
+ * (팀장 지침 2026-08-23): 연산은 「얼마나 큰가」↔「~보다 ~ 큰 수는 몇 조인가」,
+ * 기본은 맨 조립·읽기 ↔ 예산 문장, 응용은 조립·수표 ↔ 나머지 있는 분해.
+ */
+
+/** 1-1-1 기본 문장의 소재 — 낱개로 묶는 물건(수를 세는 말이 「개/장」인 것만). */
+const MAN_ITEMS = [
+  { obj: "구슬", cnt: "개" },
+  { obj: "색종이", cnt: "장" },
+  { obj: "사탕", cnt: "개" },
+] as const;
+
+/**
+ * **1-1-1 1단 연산 — 10000 과의 자릿값 관계 한 번.** 「9990보다 얼마나 큰가」·
+ * 「10·100이 몇 개」. 표준이 가진 「1000이 몇 개」·「~보다 ~ 큰 수를 쓰시오」와 방향이 다르다.
+ */
+function tier11Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 1) {
+    const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+    const base = 10000 - d;
+    return make(
+      unit,
+      `${n(10000)}은 ${n(base)}보다 얼마나 큰 수인가?`,
+      n(d),
+      `${expr(`${base}+${d}=10000`)} 이므로 ${n(10000)}은 ${n(base)}보다 ${n(d)} 큰 수입니다.`,
+    );
+  }
+  if (kind === 2) {
+    return make(
+      unit,
+      `${n(10000)}은 ${n(10)}이 몇 개인 수인가?`,
+      n(1000),
+      `${expr("10\\times1000=10000")} 이므로 ${n(10)}이 ${n(1000)}개인 수입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10000)}은 ${n(100)}이 몇 개인 수인가?`,
+    n(100),
+    `${expr("100\\times100=10000")} 이므로 ${n(100)}이 ${n(100)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-1 2단 기본 — 문장에서 천·만 관계로 식을 세운다.** 물건 묶음(1000씩 b묶음)과
+ * 동전 두 벌(100원×100개·10원×1000개). 표준 「1000원 지폐 10장」과 수·소재가 겹치지 않는다.
+ */
+function tier11Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 1) {
+    const t = pick(rng, MAN_ITEMS);
+    const b = intBetween(rng, 2, 9);
+    const v = b * 1000;
+    return make(
+      unit,
+      `${josa(t.obj, "이", "가")} ${n(1000)}${t.cnt}씩 ${n(b)}묶음 있습니다. ` +
+        `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+      `${n(v)}${t.cnt}`,
+      `${expr(`1000\\times${b}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
+    );
+  }
+  if (kind === 2) {
+    return make(
+      unit,
+      `${n(100)}원짜리 동전 ${n(100)}개는 모두 얼마인가?`,
+      `${n(10000)}원`,
+      `${expr("100\\times100=10000")} 이므로 ${n(10000)}원입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10)}원짜리 동전 ${n(1000)}개는 모두 얼마인가?`,
+    `${n(10000)}원`,
+    `${expr("10\\times1000=10000")} 이므로 ${n(10000)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-1 3단 응용 — 두 단계.** 지폐·동전을 섞어 10000원을 모으거나, 모자란 장수를 구한다.
+ */
+function tier11Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const coins = (10 - a) * 10;
+    return make(
+      unit,
+      `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(coins)}개를 모으면 모두 얼마인가?`,
+      `${n(10000)}원`,
+      `${expr(`1000\\times${a}=${a * 1000}`)} 이고 ${expr(`100\\times${coins}=${coins * 100}`)} 입니다. ` +
+        `${expr(`${a * 1000}+${coins * 100}=10000`)} 이므로 모두 ${n(10000)}원입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(1000)}원짜리 지폐가 ${n(a)}장 있습니다. ${n(10000)}원이 되려면 ` +
+      `${n(1000)}원짜리 지폐가 몇 장 더 필요한가?`,
+    n(10 - a),
+    `${n(10000)}원은 ${n(1000)}원짜리 지폐 ${n(10)}장과 같습니다. ` +
+      `${expr(`10-${a}=${10 - a}`)} 이므로 ${n(10 - a)}장 더 필요합니다.`,
+  );
+}
+
+/**
+ * **1-1-1 4단 심화 — 역산·조건 조합.** 「어떤 수보다 k 큰 수가 10000」(표준 ③의 역방향),
+ * 「1000이 10개인 수보다 k 작은 수」(구성을 먼저 밟아야 한다).
+ */
+function tier11Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어떤 수보다 ${n(k)} 큰 수가 ${n(10000)}입니다. 어떤 수를 쓰시오.`,
+      n(10000 - k),
+      `${expr(`10000-${k}=${10000 - k}`)} 이므로 어떤 수는 ${n(10000 - k)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(1000)}이 ${n(10)}개인 수보다 ${n(k)} 작은 수를 쓰시오.`,
+    n(10000 - k),
+    `${n(1000)}이 ${n(10)}개인 수는 ${n(10000)}입니다. ${expr(`10000-${k}=${10000 - k}`)} 입니다.`,
+  );
+}
+
+/** 1-1-2 기본 문장의 소재 — 큰 묶음(10000)과 작은 묶음(1000)에 나눠 담는 것. */
+const ASSEMBLE_ITEMS = [
+  { obj: "구슬", big: "상자", small: "주머니", cnt: "개" },
+  { obj: "색종이", big: "묶음", small: "봉투", cnt: "장" },
+  { obj: "클립", big: "통", small: "봉지", cnt: "개" },
+] as const;
+
+/**
+ * **1-1-2 1단 연산 — 자릿값 조립 한 번.** 「10000이 a개, 1000이 b개, …인 수」.
+ * 표준(자리 숫자 읽기·값)의 반대 방향이다. 숫자가 0인 자리는 말하지 않으므로
+ * 나열 길이도 씨앗마다 갈린다.
+ */
+function tier12Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const digits = [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+  ];
+  const value = Number(digits.join(""));
+  const parts = digits
+    .map((d, i) => ({ d, unit: 10 ** (4 - i) }))
+    .filter((p) => p.d > 0);
+  const listing = parts.map((p) => `${n(p.unit)}이 ${n(p.d)}개`).join(", ");
+  const how =
+    parts.length >= 2
+      ? `자리의 값을 더하면 ${expr(`${parts.map((p) => p.d * p.unit).join("+")}=${value}`)} 입니다.`
+      : `${n(10000)}이 ${n(parts[0]!.d)}개이면 ${n(value)}입니다.`;
+  return make(unit, `${listing}인 수를 쓰시오.`, n(value), how);
+}
+
+/**
+ * **1-1-2 2단 기본 — 실생활 문장에서 자릿값 조립 식을 세운다.** 만 단위와 천 단위
+ * 두 묶음뿐이라 조립은 한 식이고, 문장이 한 겹이다.
+ */
+function tier12Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, ASSEMBLE_ITEMS);
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 2, 9);
+  const v = a * 10000 + b * 1000;
+  return make(
+    unit,
+    `${josa(t.obj, "을", "를")} ${n(10000)}${t.cnt}씩 ${t.big} ${n(a)}개에, ` +
+      `${n(1000)}${t.cnt}씩 ${t.small} ${n(b)}개에 담았습니다. ` +
+      `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+    `${n(v)}${t.cnt}`,
+    `${n(10000)}이 ${n(a)}개이면 ${n(a * 10000)}, ${n(1000)}이 ${n(b)}개이면 ${n(b * 1000)}입니다. ` +
+      `${expr(`${a * 10000}+${b * 1000}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
+  );
+}
+
+/**
+ * **1-1-2 3단 응용 — 숫자 카드로 가장 큰·작은 수 만들기(두 단계: 고르고 배열).**
+ * 그림은 카드 다섯 장(`numberCards`) — **뽑힌 차례 그대로** 보인다. 정렬해 보이면
+ * 그림이 답을 말한다(D-66 ⑺). 우연히 답과 같은 차례로 뽑히면 한 자리 돌린다.
+ */
+function tier12Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cards = pickDistinct(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 5);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const desc = [...cards].sort((x, y) => y - x);
+  const asc = [...cards].sort((x, y) => x - y);
+  // 가장 작은 수는 0 이 만의 자리에 올 수 없다 — 둘째로 작은 수를 먼저 놓는다.
+  const smallest = asc[0] === 0 ? [asc[1]!, 0, ...asc.slice(2)] : asc;
+  const ansDigits = wantBig ? desc : smallest;
+  const answer = Number(ansDigits.join(""));
+  let show = cards;
+  if (show.join("") === ansDigits.join(""))
+    show = [show[1]!, show[0]!, ...show.slice(2)];
+  const how = wantBig
+    ? `가장 큰 수는 높은 자리부터 큰 숫자를 차례로 놓습니다.`
+    : asc[0] === 0
+      ? `가장 작은 수는 높은 자리부터 작은 숫자를 놓되, 만의 자리에 ${n(0)}은 올 수 없으므로 ` +
+        `둘째로 작은 ${josaNum(asc[1]!, "을", "를")} 먼저 놓고 ${n(0)}을 놓습니다.`
+      : `가장 작은 수는 높은 자리부터 작은 숫자를 차례로 놓습니다.`;
+  // 카드는 그림에도, 발문에도 **뽑힌 차례 그대로** 적는다 — 발문만 보고도 풀 수 있어야
+  // 하고, 발문이 카드를 안 들면 갈래의 변형이 「큰/작은」 둘로 접힌다(실측 2026-08-23).
+  const listing = show.map((d) => n(d)).join(", ");
+  return make(
+    unit,
+    `숫자 카드 ${listing}${tail(show[4]!, "이", "가")} 한 장씩 있습니다. 카드를 한 번씩 모두 ` +
+      `사용하여 만들 수 있는 가장 ${wantBig ? "큰" : "작은"} 다섯 자리 수를 쓰시오.`,
+    n(answer),
+    `${how} 만든 수는 ${n(answer)}입니다.`,
+    fig("numberCards", { cards: show.map(String) }),
+  );
+}
+
+/**
+ * **1-1-2 4단 심화 — 두 자리를 못 박은 조건 조합.** 만·백의 자리를 정해 두고
+ * 나머지를 가장 크게(작게) 채운다 — 조건을 동시에 만족시켜야 한다.
+ */
+function tier12Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 0, 9);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const rest = wantBig ? 9 : 0;
+  const value = a * 10000 + rest * 1000 + c * 100 + rest * 10 + rest;
+  return make(
+    unit,
+    `만의 자리 숫자가 ${n(a)}, 백의 자리 숫자가 ${josaNum(c, "인", "인")} 다섯 자리 수 중에서 ` +
+      `가장 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(value),
+    `만의 자리와 백의 자리는 정해져 있으므로, 나머지 천·십·일의 자리에 가장 ` +
+      `${wantBig ? `큰 숫자 ${n(9)}를` : `작은 숫자 ${n(0)}을`} 놓으면 ${n(value)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 1단 연산 — 교차 단위 한 번.** 「값은 1000이 몇 개인가」 — 표준(10000이 몇 개)과
+ * 단위가 다르다.
+ */
+function tier13Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `${n(value)}은 ${n(1000)}이 몇 개인 수인가?`,
+    n(count * 10),
+    `${expr(`${value}\\div1000=${count * 10}`)} 이므로 ${n(1000)}이 ${n(count * 10)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 2단 기본 — 돈 문장에서 식을 세운다.** 「10000원권 count장은 얼마」 —
+ * 표준 ⓪의 관계를 문장 한 겹으로 감싼 것(2단의 몫).
+ */
+function tier13Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `은행에 ${n(10000)}원짜리 지폐가 ${n(count)}장 있습니다. 모두 얼마인가?`,
+    `${n(value)}원`,
+    `${expr(`10000\\times${count}=${value}`)} 이므로 모두 ${n(value)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 3단 응용 — 두 단계 조립.** 「100장 묶음 다발 k개」(만→백만 두 곱),
+ * 「10000이 x개, 1000이 y개」(자리 섞은 합).
+ */
+function tier13Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 9);
+    const bundle = 10000 * 100;
+    return make(
+      unit,
+      `${n(10000)}원짜리 지폐를 ${n(100)}장씩 묶은 다발이 ${n(k)}개 있습니다. 모두 얼마인가?`,
+      `${n(bundle * k)}원`,
+      `한 다발은 ${expr(`10000\\times100=${bundle}`)} 원입니다. ` +
+        `${expr(`${bundle}\\times${k}=${bundle * k}`)} 이므로 모두 ${n(bundle * k)}원입니다.`,
+    );
+  }
+  const x = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const y = intBetween(rng, 2, 9);
+  const v = 10000 * x + 1000 * y;
+  return make(
+    unit,
+    `${n(10000)}이 ${n(x)}개, ${n(1000)}이 ${n(y)}개인 수를 쓰시오.`,
+    n(v),
+    `${n(10000)}이 ${n(x)}개이면 ${n(10000 * x)}, ${n(1000)}이 ${n(y)}개이면 ${n(1000 * y)}입니다. ` +
+      `${expr(`${10000 * x}+${1000 * y}=${v}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-1-3 4단 심화 — 교차 단위 역산.** 값을 지면에 주지 않고 「1000이 m개인 수는
+ * 10000이 몇 개인가」 — 구성하고 다시 갈라야 한다(두 단계).
+ */
+function tier13Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const value = 10000 * count;
+  if (intBetween(rng, 0, 1) === 0) {
+    const m = count * 10;
+    return make(
+      unit,
+      `${n(1000)}이 ${n(m)}개인 수는 ${n(10000)}이 몇 개인 수인가?`,
+      n(count),
+      `${expr(`1000\\times${m}=${value}`)} 이고 ${expr(`${value}\\div10000=${count}`)} 이므로 ` +
+        `${n(10000)}이 ${n(count)}개인 수입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수인가?`,
+    n(count * 100),
+    `${expr(`10000\\times${count}=${value}`)} 이고 ${expr(`${value}\\div100=${count * 100}`)} 이므로 ` +
+      `${n(100)}이 ${n(count * 100)}개인 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 1단 연산 — 1억과 만 단위의 관계 한 번.** 「1억은 x만보다 얼마나 큰가」.
+ * (1-1-5 연산과 문형을 갈랐다 — 저쪽은 「~억보다 ~억 큰 수는 몇 조인가」.)
+ */
+function tier14Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  const base = 10000 - d;
+  return make(
+    unit,
+    `${n(1)}억은 ${n(base)}만보다 얼마나 큰 수인가?`,
+    `${n(d)}만`,
+    `${n(1)}억은 만이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=10000`)} 이므로 ` +
+      `${n(base)}만보다 ${n(d)}만 큰 수입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 2단 기본 — 억·만이 섞인 수를 읽고 쓴다.** 조립과 분해 양방향.
+ */
+function tier14Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 2, 9) * pick(rng, [1, 10, 100, 1000]);
+  const value = x * 100000000 + y * 10000;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${n(x)}억 ${n(y)}만인 수를 숫자로 쓰시오.`,
+      n(value),
+      `${n(x)}억은 ${n(x * 100000000)}, ${n(y)}만은 ${n(y * 10000)}이므로 ` +
+        `${expr(`${x * 100000000}+${y * 10000}=${value}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(value)}은 몇 억 몇 만인가?`,
+    `${n(x)}억 ${n(y)}만`,
+    `${n(value)}은 억이 ${n(x)}개, 만이 ${n(y)}개인 수이므로 ${n(x)}억 ${n(y)}만입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 3단 응용 — 두 단계.** 「1억이 a개, 1000만이 b개」 조립과 「1000만 원짜리
+ * 수표 m장」 문장(곱하고 자리를 넘긴다).
+ */
+function tier14Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 2, 9);
+    const b = intBetween(rng, 2, 9);
+    const v = a * 100000000 + b * 10000000;
+    return make(
+      unit,
+      `${n(1)}억이 ${n(a)}개, ${n(1000)}만이 ${n(b)}개인 수를 쓰시오.`,
+      n(v),
+      `${n(1)}억이 ${n(a)}개이면 ${n(a * 100000000)}, ${n(1000)}만이 ${n(b)}개이면 ` +
+        `${n(b * 10000000)}입니다. ${expr(`${a * 100000000}+${b * 10000000}=${v}`)} 입니다.`,
+    );
+  }
+  const m = intBetween(rng, 11, 89);
+  const v = m * 10000000;
+  return make(
+    unit,
+    `${n(1000)}만 원짜리 수표 ${n(m)}장은 모두 얼마인가?`,
+    `${n(v)}원`,
+    `${n(1000)}만 원은 ${n(10000000)}원입니다. ${expr(`10000000\\times${m}=${v}`)} 이므로 ` +
+      `모두 ${n(v)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-4 4단 심화 — 역산.** 「어떤 수에서 1000만이 d개 늘어나면 x억」(되짚기),
+ * 「만이 m개인 수는 몇 억인가」(단위를 두 번 갈아탄다).
+ */
+function tier14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 2, 9);
+    const d = intBetween(rng, 1, 9);
+    const ans = x * 100000000 - d * 10000000;
+    return make(
+      unit,
+      `어떤 수에서 ${n(1000)}만이 ${n(d)}개 늘어나면 ${n(x)}억이 됩니다. 어떤 수를 쓰시오.`,
+      n(ans),
+      `${n(1000)}만이 ${n(d)}개이면 ${n(d * 10000000)}입니다. ` +
+        `${expr(`${x * 100000000}-${d * 10000000}=${ans}`)} 이므로 어떤 수는 ${n(ans)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 9);
+  const m = a * 10000;
+  return make(
+    unit,
+    `만이 ${n(m)}개인 수는 몇 억인가?`,
+    `${n(a)}억`,
+    `만이 ${n(10000)}개이면 ${n(1)}억입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}억입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 1단 연산 — 조 완성형.** 「x억보다 d억 큰 수는 몇 조인가」 —
+ * 1-1-4 연산(「얼마나 큰가」)과 문형 표면을 갈랐다(팀장 지침).
+ */
+function tier15Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  const base = x * 10000 - d;
+  return make(
+    unit,
+    `${n(base)}억보다 ${n(d)}억 큰 수는 몇 조인가?`,
+    `${n(x)}조`,
+    `${n(1)}조는 억이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=${x * 10000}`)} 이므로 ` +
+      `${n(x * 10000)}억, 곧 ${n(x)}조입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 2단 기본 — 예산 문장으로 읽고 쓴다.** 1-1-4 기본(맨 조립·읽기)과 표면이 다르다.
+ */
+function tier15Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 2, 9) * pick(rng, [1, 10, 100, 1000]);
+  const value = x * 1000000000000 + y * 100000000;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어느 나라의 한 해 예산은 ${n(x)}조 ${n(y)}억 원입니다. 이 금액을 숫자로 쓰시오.`,
+      `${n(value)}원`,
+      `${n(x)}조는 ${n(x * 1000000000000)}, ${n(y)}억은 ${n(y * 100000000)}이므로 ` +
+        `${expr(`${x * 1000000000000}+${y * 100000000}=${value}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(value)}은 몇 조 몇 억인가?`,
+    `${n(x)}조 ${n(y)}억`,
+    `${n(value)}은 조가 ${n(x)}개, 억이 ${n(y)}개인 수이므로 ${n(x)}조 ${n(y)}억입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 3단 응용 — 나머지 있는 분해.** 「1000억이 N개인 수는 몇 조 몇 억인가」와
+ * 그 반대 — 1-1-4 응용(조립·수표)과 방향이 다르다. 표준 ⓪(딱 떨어지는 10a개)과 달리
+ * 나머지가 남는다.
+ */
+function tier15Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 1, 9);
+  const cnt = a * 10 + b;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${n(1000)}억이 ${n(cnt)}개인 수는 몇 조 몇 억인가?`,
+      `${n(a)}조 ${n(b * 1000)}억`,
+      `${n(1000)}억이 ${n(10)}개이면 ${n(1)}조입니다. ${n(cnt)}개는 ${n(10)}개씩 ${n(a)}묶음과 ` +
+        `${n(b)}개이므로 ${n(a)}조 ${n(b * 1000)}억입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${n(a)}조 ${n(b * 1000)}억은 ${n(1000)}억이 몇 개인 수인가?`,
+    n(cnt),
+    `${n(a)}조는 ${n(1000)}억이 ${n(a * 10)}개, ${n(b * 1000)}억은 ${n(1000)}억이 ${n(b)}개인 ` +
+      `수입니다. ${expr(`${a * 10}+${b}=${cnt}`)} 이므로 ${n(cnt)}개입니다.`,
+  );
+}
+
+/**
+ * **1-1-5 4단 심화 — 역산.** 「줄었더니 x조 y억」(늘어난 1-1-4 심화와 방향·목표 꼴이
+ * 다르다), 「억이 m개인 수는 몇 조인가」.
+ */
+function tier15Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 2, 9);
+    const b = intBetween(rng, 1, 4);
+    const d = intBetween(rng, 1, 5);
+    const target = x * 1000000000000 + b * 100000000000;
+    const ans = target + d * 100000000000;
+    return make(
+      unit,
+      `어떤 수에서 ${n(1000)}억이 ${n(d)}개 줄었더니 ${n(x)}조 ${n(b * 1000)}억이 되었습니다. ` +
+        `어떤 수를 쓰시오.`,
+      n(ans),
+      `${n(x)}조 ${n(b * 1000)}억은 ${n(target)}이고, 줄어든 ${n(1000)}억 ${n(d)}개는 ` +
+        `${n(d * 100000000000)}입니다. ${expr(`${target}+${d * 100000000000}=${ans}`)} 이므로 ` +
+        `어떤 수는 ${n(ans)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 9);
+  const m = a * 10000;
+  return make(
+    unit,
+    `억이 ${n(m)}개인 수는 몇 조인가?`,
+    `${n(a)}조`,
+    `억이 ${n(10000)}개이면 ${n(1)}조입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}조입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 1단 연산 — 규칙 읽기 한 번.** 배열을 보고 「얼마씩 뛰어 세었는가」.
+ * 표준(결과 구하기)의 반대 방향이고, 1-6-1(다음 수 구하기)과도 묻는 것이 다르다.
+ */
+function tier16Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = pick(rng, [1000, 10000, 100000]);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const seq = [start, start + step, start + step * 2, start + step * 3];
+  return make(
+    unit,
+    `뛰어 센 수를 차례로 쓰면 ${seq.map((v) => n(v)).join(", ")}입니다. ` +
+      `얼마씩 뛰어 센 것인가?`,
+    `${n(step)}씩`,
+    `${expr(`${seq[1]}-${seq[0]}=${step}`)} 이므로 ${n(step)}씩 뛰어 세었습니다.`,
+  );
+}
+
+/**
+ * **1-1-6 2단 기본 — 저금 문장.** 뛰어 세기를 실생활 문장으로 감싼다(문장 한 겹).
+ */
+function tier16Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = pick(rng, [1000, 10000, 100000]);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const t = intBetween(rng, 2, 5);
+  const end = start + step * t;
+  return make(
+    unit,
+    `저금통에 ${n(start)}원이 들어 있습니다. 매달 ${n(step)}원씩 저금하면 ` +
+      `${n(t)}달 뒤에는 모두 얼마가 되는가?`,
+    `${n(end)}원`,
+    `${n(step)}원씩 ${n(t)}달이면 ${expr(`${step}\\times${t}=${step * t}`)} 원입니다. ` +
+      `${expr(`${start}+${step * t}=${end}`)} 이므로 모두 ${n(end)}원입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 3단 응용 — 갈아타는 뛰어 세기(중간값).** s1씩 t1번 뒤 s2씩 t2번.
+ */
+function tier16Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [s1, s2] = pickDistinct(rng, [1000, 10000, 100000], 2) as [
+    number,
+    number,
+  ];
+  const t1 = intBetween(rng, 2, 3);
+  const t2 = intBetween(rng, 2, 3);
+  const start = intBetween(rng, 12, 89) * 10000;
+  const mid = start + s1 * t1;
+  const end = mid + s2 * t2;
+  return make(
+    unit,
+    `${n(start)}에서 ${n(s1)}씩 ${n(t1)}번 뛰어 센 다음, 이어서 ${n(s2)}씩 ${n(t2)}번 더 ` +
+      `뛰어 세었습니다. 마지막 수를 쓰시오.`,
+    n(end),
+    `${expr(`${start}+${s1}\\times${t1}=${mid}`)} 이고, 이어서 ` +
+      `${expr(`${mid}+${s2}\\times${t2}=${end}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-1-6 4단 심화 — 「잘못 뛰어 세었더니」 복원(D-72 의 그 문형).** 표준 ①(거꾸로
+ * 뛰어 세기)과 계산이 같아지지 않게, 잘못 센 결과에서 처음 수를 되짚어 바르게 다시 센다.
+ * 곁가지로 「얼마씩 뛰었는지」 역산도 든다.
+ */
+function tier16Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = intBetween(rng, 2, 5);
+  const start = intBetween(rng, 12, 89) * 10000;
+  if (intBetween(rng, 0, 1) === 0) {
+    const [s, sw] = pickDistinct(rng, [1000, 10000, 100000], 2) as [
+      number,
+      number,
+    ];
+    const wrong = start + sw * t;
+    const right = start + s * t;
+    return make(
+      unit,
+      `어떤 수에서 ${n(s)}씩 ${n(t)}번 뛰어 세어야 할 것을 잘못하여 ${n(sw)}씩 ${n(t)}번 ` +
+        `뛰어 세었더니 ${n(wrong)}이 되었습니다. 바르게 뛰어 세면 얼마인가?`,
+      n(right),
+      `잘못 센 것을 되돌리면 어떤 수는 ${expr(`${wrong}-${sw}\\times${t}=${start}`)} 입니다. ` +
+        `바르게 뛰어 세면 ${expr(`${start}+${s}\\times${t}=${right}`)} 입니다.`,
+    );
+  }
+  const step = pick(rng, [1000, 10000, 100000]);
+  const end = start + step * t;
+  return make(
+    unit,
+    `${n(start)}에서 ${n(t)}번 뛰어 세었더니 ${josaNum(end, "이", "가")} 되었습니다. ` +
+      `얼마씩 뛰어 센 것인가?`,
+    `${n(step)}씩`,
+    `${expr(`${end}-${start}=${step * t}`)} 이고 ${expr(`${step * t}\\div${t}=${step}`)} 이므로 ` +
+      `${n(step)}씩 뛰어 세었습니다.`,
+  );
+}
+
+/**
+ * **1-1-7 1단 연산 — 자리 수 비교 한 번.** 네 자리와 다섯 자리 — 자리 수만 세면 끝난다.
+ * 표준(같은 다섯 자리끼리 높은 자리 비교)과 가르는 성질이 다르다.
+ */
+function tier17Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a4 = intBetween(rng, 1000, 9999);
+  const b5 = intBetween(rng, 10000, 99999);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const first = intBetween(rng, 0, 1) === 0 ? a4 : b5;
+  const second = first === a4 ? b5 : a4;
+  return make(
+    unit,
+    `두 수 ${n(first)}, ${n(second)} 중 더 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(wantBig ? b5 : a4),
+    `${josaNum(a4, "은", "는")} 네 자리 수, ${josaNum(b5, "은", "는")} 다섯 자리 수입니다. ` +
+      `자리 수가 많은 수가 더 크므로 더 ${wantBig ? "큰" : "작은"} 수는 ` +
+      `${n(wantBig ? b5 : a4)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 2단 기본 — 세 수 비교.** 두 번 견주어야 한다(표준은 두 수).
+ */
+function tier17Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 10000, 97999);
+  const mid = lo + intBetween(rng, 101, 900);
+  const hi = mid + intBetween(rng, 101, 900);
+  const order = intBetween(rng, 0, 2);
+  const shown =
+    order === 0 ? [mid, lo, hi] : order === 1 ? [hi, mid, lo] : [lo, hi, mid];
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    `세 수 ${shown.map((v) => n(v)).join(", ")} 중 가장 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(wantBig ? hi : lo),
+    `세 수 모두 다섯 자리 수이므로 높은 자리부터 차례로 비교합니다. ` +
+      `${expr(`${hi}>${mid}>${lo}`)} 이므로 가장 ${wantBig ? "큰" : "작은"} 수는 ` +
+      `${n(wantBig ? hi : lo)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 3단 응용 — 단위 표현을 수로 바꾼 뒤 비교(두 단계).** 「x만 y인 수」 ↔ 숫자.
+ */
+function tier17Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 2, 9);
+  const y = intBetween(rng, 1, 9999);
+  const a = x * 10000 + y;
+  const up = intBetween(rng, 0, 1) === 0;
+  const z = up ? a + intBetween(rng, 101, 900) : a - intBetween(rng, 101, 900);
+  const big = Math.max(a, z);
+  const small = Math.min(a, z);
+  return make(
+    unit,
+    `${n(x)}만 ${josaNum(y, "인", "인")} 수와 ${n(z)} 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `${n(x)}만 ${josaNum(y, "인", "인")} 수는 ${n(a)}입니다. ${expr(`${big}>${small}`)} 이므로 ` +
+      `더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/**
+ * **1-1-7 4단 심화 — □ 부등식 조건 조합.** □에 들어갈 수 있는 숫자를 모두 센다.
+ * 빈칸 앞자리는 같게 만들어 「그 자리 비교 + 같을 때 꼬리 비교」를 다 밟게 한다.
+ * 답은 생성기가 0~9 를 **전수 대입**해 센다 — 경계 실수를 구조적으로 막는다.
+ */
+function tier17Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const at = intBetween(rng, 1, 3);
+  const e = intBetween(rng, 2, 8);
+  const A = [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+  ];
+  const B = [...A];
+  for (let i = at; i < 5; i += 1) B[i] = intBetween(rng, 0, 9);
+  B[at] = e;
+  const less = intBetween(rng, 0, 1) === 0;
+  const numB = Number(B.join(""));
+  const numA = (x: number) =>
+    Number(A.map((d, i) => (i === at ? x : d)).join(""));
+  const okXs = Array.from({ length: 10 }, (_, x) => x).filter((x) =>
+    less ? numA(x) < numB : numA(x) > numB,
+  );
+  const left = A.slice(0, at).join("");
+  const right = A.slice(at + 1).join("");
+  const place = PLACE5[at]!;
+  // 경계(□ = 그 자리 숫자)의 해설은 **실제 비교값**으로 만든다 — 꼬리가 같으면
+  // 두 수가 같아지므로, 부호를 손으로 적으면 거짓 문장이 지면에 나간다.
+  const ae = numA(e);
+  const tie = okXs.includes(e)
+    ? ` ${expr(`\\square=${e}`)}일 때도 ${expr(`${ae}${less ? "<" : ">"}${numB}`)} 이므로 들어갈 수 있습니다.`
+    : ae === numB
+      ? ` ${expr(`\\square=${e}`)}일 때는 두 수가 같으므로 들어갈 수 없습니다.`
+      : ` ${expr(`\\square=${e}`)}일 때는 ${expr(`${ae}${ae > numB ? ">" : "<"}${numB}`)} 이므로 들어갈 수 없습니다.`;
+  return make(
+    unit,
+    `${n(0)}부터 ${n(9)}까지의 숫자 중에서 ${expr("\\square")} 안에 들어갈 수 있는 숫자는 ` +
+      `모두 몇 개인가? ${expr(`${left}\\square${right}${less ? "<" : ">"}${numB}`)}`,
+    n(okXs.length),
+    `${place}의 자리보다 높은 자리 숫자가 서로 같으므로 ${place}의 자리를 비교합니다.${tie} ` +
+      `${expr("\\square")} 안에 들어갈 수 있는 숫자는 ${okXs.map((x) => n(x)).join(", ")}이므로 ` +
+      `모두 ${n(okXs.length)}개입니다.`,
+  );
+}
+
 /* ────────────────────────────── 1-2 각도 ────────────────────────────── */
 
 function angleKind(d: number): string {
@@ -484,6 +1270,573 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 진도 안전이 이 블록의 제약이다: 어림(반올림 류)은 1-3-3 재료, 이등변·외각·다각형
+ * 내각은 뒤 단원 재료라 **전부 회피**했다. 1-2-5 심화의 「나머지 두 각이 같다」는
+ * 이등변이라는 **이름 없이 조건만** 쓴다. 그림은 기존 kind 만 쓴다 — 1-2-3 응용의
+ * `clocks` 하나(시계 읽기는 기학습). 각도기 «0이 아닌 눈금에서 시작한 각»은
+ * protractor kind 가 0-기준만 지원하므로 그림 없이 자족적 수치 서술로만 낸다
+ * (좌표 일회성 금지 — 팀장 지침 2026-08-23).
+ *
+ * 각도 값은 전부 0° 초과 180° 미만(합쳐 말하는 중간값도 360° 이하) — 시험이
+ * 상한 360 으로 잠근다.
+ */
+
+/**
+ * **1-2-1 1단 연산 — 벌어진 정도가 곧 크기.** 벌리기/오므리기 판단과 겹침 직접 비교.
+ * 표준(변 길이 미신·두 각도 수 비교)과 유형이 다르다.
+ */
+function tier21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 겹침형은 발문이 두 가지뿐이라 비중을 낮춘다 — 반반이면 변형 8+ 가 안 선다(실측).
+  const kind = intBetween(rng, 0, 3);
+  if (kind <= 2) {
+    const x = intBetween(rng, 20, 160);
+    const wantBig = intBetween(rng, 0, 1) === 0;
+    return make(
+      unit,
+      `크기가 ${deg(x)}인 각보다 더 ${wantBig ? "큰" : "작은"} 각을 만들려면 두 변을 ` +
+        `더 벌려야 하는가, 더 오므려야 하는가?`,
+      wantBig ? "벌려야 한다" : "오므려야 한다",
+      `각의 크기는 두 변이 벌어진 정도로 정해집니다. 더 ${wantBig ? "큰" : "작은"} 각을 ` +
+        `만들려면 두 변을 더 ${wantBig ? "벌려야" : "오므려야"} 합니다.`,
+    );
+  }
+  const inner = intBetween(rng, 0, 1) === 0 ? "가" : "나";
+  const outer = inner === "가" ? "나" : "가";
+  return make(
+    unit,
+    `꼭짓점을 맞추어 두 각을 겹쳤더니 ${outer} 각의 두 변 사이에 ${inner} 각이 꼭 ` +
+      `들어갑니다. 두 각 중 더 큰 각은 어느 것인가?`,
+    outer,
+    `${inner} 각이 ${outer} 각 안에 들어가므로 ${outer} 각의 두 변이 더 많이 벌어져 ` +
+      `있습니다. 더 큰 각은 ${outer} 각입니다.`,
+  );
+}
+
+/** **1-2-1 2단 기본 — 세 각을 스스로 견준다.** 표준은 두 각이다. */
+function tier21Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 15, 130);
+  const mid = lo + intBetween(rng, 5, 20);
+  const hi = mid + intBetween(rng, 5, 20);
+  const order = intBetween(rng, 0, 2);
+  const shown =
+    order === 0 ? [mid, lo, hi] : order === 1 ? [hi, mid, lo] : [lo, hi, mid];
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    `세 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. ` +
+      `가장 ${wantBig ? "큰" : "작은"} 각의 크기를 쓰시오.`,
+    deg(wantBig ? hi : lo),
+    `${expr(`${hi}>${mid}>${lo}`)} 이므로 가장 ${wantBig ? "큰" : "작은"} 각은 ` +
+      `${deg(wantBig ? hi : lo)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-1 3단 응용 — 간접 비교(두 단계).** 두 관계를 이어 추론하거나, 관계와 수치를
+ * 결합해 알맞은 크기를 고른다.
+ */
+function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 2) === 0) {
+    const asc = intBetween(rng, 0, 1) === 0;
+    const wantBig = intBetween(rng, 0, 1) === 0;
+    const chain = asc
+      ? "가 각은 나 각보다 크고, 나 각은 다 각보다 큽니다."
+      : "가 각은 나 각보다 작고, 나 각은 다 각보다 작습니다.";
+    const ans = asc === wantBig ? "가" : "다";
+    return make(
+      unit,
+      `${chain} 세 각 중 가장 ${wantBig ? "큰" : "작은"} 각은 어느 것인가?`,
+      ans,
+      `두 관계를 이으면 ${asc ? "가 각, 나 각, 다 각의 차례로 작아집니다" : "가 각, 나 각, 다 각의 차례로 커집니다"}. ` +
+        `가장 ${wantBig ? "큰" : "작은"} 각은 ${ans} 각입니다.`,
+    );
+  }
+  const x = intBetween(rng, 30, 140);
+  const bigger = x + intBetween(rng, 10, 25);
+  const smaller = x - intBetween(rng, 10, 25);
+  const more = intBetween(rng, 0, 1) === 0;
+  const win = more ? bigger : smaller;
+  const first = intBetween(rng, 0, 1) === 0 ? bigger : smaller;
+  const second = first === bigger ? smaller : bigger;
+  return make(
+    unit,
+    `가 각의 크기는 ${deg(x)}입니다. 나 각은 가 각보다 더 ${more ? "큽니다" : "작습니다"}. ` +
+      `${deg(first)}와 ${deg(second)} 중 나 각의 크기로 알맞은 것은 어느 것인가?`,
+    deg(win),
+    `나 각은 ${deg(x)}보다 ${more ? "커야" : "작아야"} 하므로 ` +
+      `${expr(more ? `${win}>${x}` : `${win}<${x}`)} 인 ${deg(win)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-1 4단 심화 — 범위 조건 조합.** 경계 두 개를 동시에 만족하는 각을 센다.
+ * 경계는 후보 값에서 고른다 — «사이에 드는 것»이 있는 쌍만(1-5-3 범위 비교의 그 규칙).
+ */
+function tier21Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c1 = intBetween(rng, 15, 60);
+  const c2 = c1 + intBetween(rng, 10, 25);
+  const c3 = c2 + intBetween(rng, 10, 25);
+  const c4 = c3 + intBetween(rng, 10, 25);
+  const arr = [c1, c2, c3, c4];
+  const [loAt, hiAt] = pick(rng, [
+    [0, 3],
+    [0, 2],
+    [1, 3],
+  ] as const);
+  const loV = arr[loAt]!;
+  const hiV = arr[hiAt]!;
+  const shown = [...arr];
+  for (let i = shown.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [shown[i], shown[j]] = [shown[j]!, shown[i]!];
+  }
+  const inRange = shown.filter((v) => v > loV && v < hiV);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. ` +
+      `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 모두 몇 개인가?`,
+    n(inRange.length),
+    `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 ${inRange.map((v) => deg(v)).join(", ")}입니다. ` +
+      `모두 ${n(inRange.length)}개입니다.`,
+  );
+}
+
+/**
+ * **1-2-2 1단 연산 — 1도의 정의를 곧장 쓴다.** 「1°가 d개 모인 각」 — 표준 ⓪(d°는 1°가
+ * 몇 개)의 역방향이고, 직각 상수형을 곁들인다.
+ */
+function tier22Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const d = intBetween(rng, 11, 169);
+    return make(
+      unit,
+      `${deg(1)}가 ${n(d)}개 모인 각의 크기는 몇 도인가?`,
+      deg(d),
+      `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `직각은 ${deg(1)}가 몇 개 모인 각인가?`,
+    n(90),
+    `직각의 크기는 ${deg(90)}이므로 ${deg(1)}가 ${n(90)}개 모인 각입니다.`,
+  );
+}
+
+/** **1-2-2 2단 기본 — 등분한 한 각.** 직각·직선을 똑같이 나누는 식을 스스로 세운다. */
+function tier22Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [2, 3, 5, 6, 9, 10, 15]);
+    return make(
+      unit,
+      `직각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+      deg(90 / k),
+      `직각은 ${deg(90)}입니다. ${expr(`90\\div${k}=${90 / k}`)} 이므로 ${deg(90 / k)}입니다.`,
+    );
+  }
+  const k = pick(rng, [2, 3, 4, 5, 6, 9, 10, 12, 15]);
+  return make(
+    unit,
+    `직선이 이루는 각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+    deg(180 / k),
+    `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180\\div${k}=${180 / k}`)} 이므로 ` +
+      `${deg(180 / k)}입니다.`,
+  );
+}
+
+/** **1-2-2 3단 응용 — 등분 조각 m개(두 단계).** 한 각을 구하고 m배 한다. */
+function tier22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [3, 5, 6, 9]);
+    const m = intBetween(rng, 2, k - 1);
+    const one = 90 / k;
+    return make(
+      unit,
+      `직각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 붙인 각의 ` +
+        `크기는 몇 도인가?`,
+      deg(one * m),
+      `${expr(`90\\div${k}=${one}`)} 이므로 나누어진 한 각은 ${deg(one)}입니다. ` +
+        `${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
+    );
+  }
+  const k = pick(rng, [4, 5, 6, 9]);
+  const m = intBetween(rng, 2, k - 1);
+  const one = 180 / k;
+  return make(
+    unit,
+    `직선이 이루는 각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 ` +
+      `붙인 각의 크기는 몇 도인가?`,
+    deg(one * m),
+    `직선이 이루는 각은 ${deg(180)}이므로 ${expr(`180\\div${k}=${one}`)} 에서 한 각은 ` +
+      `${deg(one)}입니다. ${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
+  );
+}
+
+/**
+ * **1-2-2 4단 심화 — 역산.** 등분 수를 되짚거나, 각도기 눈금을 되짚는다.
+ * 눈금 유형은 수가 전부 발문에 있어 그림 없이 자족적이다(블록 머리말).
+ */
+function tier22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = pick(rng, [2, 3, 5, 6, 9, 10]);
+    const d = 90 / k;
+    return make(
+      unit,
+      `직각을 똑같이 몇 개로 나누었더니 나누어진 한 각의 크기가 ${deg(d)}가 되었습니다. ` +
+        `몇 개로 나눈 것인가?`,
+      n(k),
+      `직각은 ${deg(90)}입니다. ${expr(`90\\div${d}=${k}`)} 이므로 ${n(k)}개로 나눈 것입니다.`,
+    );
+  }
+  const a = pick(rng, [10, 20, 30, 40, 50]);
+  const d = pick(rng, [25, 35, 40, 55, 65, 70, 85, 95, 110, 125]);
+  return make(
+    unit,
+    `각도기로 각을 잴 때 각의 한 변이 눈금 ${josaNum(a, "을", "를")} 가리키고 있습니다. ` +
+      `각의 크기가 ${deg(d)}라면 같은 쪽 눈금에서 다른 변이 가리키는 눈금은 얼마인가?`,
+    n(a + d),
+    `한 변의 눈금에서 각의 크기만큼 나아간 눈금이므로 ${expr(`${a}+${d}=${a + d}`)} 입니다.`,
+  );
+}
+
+/** **1-2-3 1단 연산 — 직각과 한 번 견준다.** 예각·둔각 이름은 표준 ①의 몫이다. */
+function tier23Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pool = [
+    15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165,
+  ];
+  const d = pick(rng, pool);
+  return make(
+    unit,
+    `크기가 ${deg(d)}인 각은 직각보다 큰가, 작은가?`,
+    d > 90 ? "크다" : "작다",
+    `직각은 ${deg(90)}입니다. ${expr(d > 90 ? `${d}>90` : `${d}<90`)} 이므로 ` +
+      `${deg(d)}인 각은 직각보다 ${d > 90 ? "큽니다" : "작습니다"}.`,
+  );
+}
+
+/**
+ * **1-2-3 2단 기본 — 스스로 갈라 예각만 나열한다.** 표준 ⓪(둔각 개수 세기)과 답의
+ * 꼴이 다르다(나열).
+ */
+function tier23Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const acutePool = [15, 25, 35, 45, 55, 65, 75, 85];
+  const obtusePool = [95, 105, 115, 125, 135, 145, 155, 165];
+  const nAcute = intBetween(rng, 1, 3);
+  const four = [
+    ...pickDistinct(rng, acutePool, nAcute),
+    ...pickDistinct(rng, obtusePool, 4 - nAcute),
+  ];
+  for (let i = four.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [four[i], four[j]] = [four[j]!, four[i]!];
+  }
+  const acute = four.filter((v) => v < 90);
+  return make(
+    unit,
+    `네 각의 크기가 ${four.map((v) => deg(v)).join(", ")}입니다. 이 중에서 예각을 ` +
+      `모두 찾아 쓰시오.`,
+    acute.map((v) => deg(v)).join(", "),
+    `${deg(90)}보다 작은 각이 예각이므로 ${acute.map((v) => deg(v)).join(", ")}입니다.`,
+  );
+}
+
+/**
+ * **1-2-3 3단 응용 — 시계와 결합(두 단계).** 정각의 두 바늘 사이 각을 칸 수로 구해
+ * 분류하거나, 두 시각의 각을 견준다. 시계 읽기는 기학습이라 진도 안전.
+ */
+function tier23Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const HOURS = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11];
+  const cells = (h: number) => Math.min(h, 12 - h);
+  if (intBetween(rng, 0, 1) === 0) {
+    const h = pick(rng, HOURS);
+    const angle2 = 30 * cells(h);
+    return make(
+      unit,
+      `시계가 ${n(h)}시를 가리킬 때 긴바늘과 짧은바늘이 이루는 작은 쪽 각은 ` +
+        `예각, 직각, 둔각 중 무엇인가?`,
+      angleKind(angle2),
+      `시계의 큰 눈금 한 칸의 각도는 ${expr("360\\div12=30")} 에서 ${deg(30)}입니다. ` +
+        `${n(h)}시에는 두 바늘 사이가 ${n(cells(h))}칸이므로 ` +
+        `${expr(`30\\times${cells(h)}=${angle2}`)} 이고, ${deg(angle2)}는 ${angleKind(angle2)}입니다.`,
+      fig("clocks", { items: [{ hour: h, minute: 0 }] }),
+    );
+  }
+  const h1 = pick(rng, HOURS);
+  const h2 = pick(
+    rng,
+    HOURS.filter((h) => cells(h) !== cells(h1)),
+  );
+  const win = cells(h1) > cells(h2) ? h1 : h2;
+  return make(
+    unit,
+    `${n(h1)}시와 ${n(h2)}시 중 긴바늘과 짧은바늘이 이루는 작은 쪽 각이 더 큰 시각은 ` +
+      `언제인가?`,
+    `${n(win)}시`,
+    `두 바늘 사이는 ${n(h1)}시에 ${n(cells(h1))}칸, ${n(h2)}시에 ${n(cells(h2))}칸입니다. ` +
+      `한 칸의 각도가 같으므로 칸이 더 많은 ${n(win)}시의 각이 더 큽니다.`,
+    fig("clocks", {
+      items: [
+        { hour: h1, minute: 0 },
+        { hour: h2, minute: 0 },
+      ],
+    }),
+  );
+}
+
+/** **1-2-3 4단 심화 — 분류 조건과 수치 조건을 동시에.** 「예각이면서 t°보다 큰 각」. */
+function tier23Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, [40, 50, 60]);
+  const sure = t + pick(rng, [5, 15, 25]);
+  const low = intBetween(rng, 15, t - 5);
+  const high1 = intBetween(rng, 95, 165);
+  const extra =
+    intBetween(rng, 0, 1) === 0
+      ? intBetween(rng, t + 1, 85)
+      : intBetween(rng, 95, 165);
+  const four = [sure, low, high1, extra];
+  for (let i = four.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [four[i], four[j]] = [four[j]!, four[i]!];
+  }
+  const hit = four.filter((v) => v < 90 && v > t);
+  return make(
+    unit,
+    `네 각의 크기가 ${four.map((v) => deg(v)).join(", ")}입니다. 예각이면서 ` +
+      `${deg(t)}보다 큰 각은 모두 몇 개인가?`,
+    n(hit.length),
+    `예각은 ${deg(90)}보다 작은 각입니다. 예각이면서 ${deg(t)}보다 큰 각은 ` +
+      `${hit.map((v) => deg(v)).join(", ")}이므로 모두 ${n(hit.length)}개입니다.`,
+  );
+}
+
+/** **1-2-4 1단 연산 — 이어 붙인 두 각(합 한 번).** 표준의 맨 식과 표면을 갈랐다. */
+function tier24Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 25, 75);
+  const y = intBetween(rng, 15, 60);
+  return make(
+    unit,
+    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도인가?`,
+    deg(x + y),
+    `이어 붙인 각의 크기는 두 각의 크기의 합입니다. ${expr(`${x}+${y}=${x + y}`)} 이므로 ` +
+      `${deg(x + y)}입니다.`,
+  );
+}
+
+/** **1-2-4 2단 기본 — 직각·직선을 채우는 각.** 기준각을 스스로 떠올려 식을 세운다. */
+function tier24Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 15, 75);
+    return make(
+      unit,
+      `${deg(x)}와 더하면 직각이 되는 각도는 몇 도인가?`,
+      deg(90 - x),
+      `직각은 ${deg(90)}입니다. ${expr(`90-${x}=${90 - x}`)} 이므로 ${deg(90 - x)}입니다.`,
+    );
+  }
+  const x = intBetween(rng, 25, 155);
+  return make(
+    unit,
+    `${deg(x)}와 더하면 직선이 이루는 각이 되는 각도는 몇 도인가?`,
+    deg(180 - x),
+    `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180-${x}=${180 - x}`)} 이므로 ` +
+      `${deg(180 - x)}입니다.`,
+  );
+}
+
+/** **1-2-4 3단 응용 — 합과 차를 잇는 두 단계.** 이어 붙이고 줄이거나, 직선 초과분을 잰다. */
+function tier24Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = intBetween(rng, 25, 75);
+    const y = intBetween(rng, 25, 75);
+    const z = intBetween(rng, 15, x + y - 15);
+    return make(
+      unit,
+      `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각에서 ${deg(z)}만큼 줄이면 몇 도가 ` +
+        `되는가?`,
+      deg(x + y - z),
+      `${expr(`${x}+${y}=${x + y}`)} 이고 ${expr(`${x + y}-${z}=${x + y - z}`)} 이므로 ` +
+        `${deg(x + y - z)}가 됩니다.`,
+    );
+  }
+  const x = intBetween(rng, 95, 135);
+  const y = intBetween(rng, 95, 135);
+  return make(
+    unit,
+    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각은 직선이 이루는 각보다 ` +
+      `몇 도 더 큰가?`,
+    deg(x + y - 180),
+    `${expr(`${x}+${y}=${x + y}`)} 이고 직선이 이루는 각은 ${deg(180)}이므로 ` +
+      `${expr(`${x + y}-180=${x + y - 180}`)} 에서 ${deg(x + y - 180)} 더 큽니다.`,
+  );
+}
+
+/** **1-2-4 4단 심화 — «잘못 계산했더니» 복원(D-72 문형).** 더할 것을 빼거나 그 반대. */
+function tier24Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 35, 85);
+  const y = intBetween(rng, 15, 30);
+  if (intBetween(rng, 0, 1) === 0) {
+    const wrong = x - y;
+    const right = x + y;
+    return make(
+      unit,
+      `어떤 각도에 ${deg(y)}를 더해야 할 것을 잘못하여 뺐더니 ${deg(wrong)}가 ` +
+        `되었습니다. 바르게 계산하면 몇 도인가?`,
+      deg(right),
+      `${expr(`${wrong}+${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
+        `바르게 계산하면 ${expr(`${x}+${y}=${right}`)} 에서 ${deg(right)}입니다.`,
+    );
+  }
+  const wrong = x + y;
+  const right = x - y;
+  return make(
+    unit,
+    `어떤 각도에서 ${deg(y)}를 빼야 할 것을 잘못하여 더했더니 ${deg(wrong)}가 ` +
+      `되었습니다. 바르게 계산하면 몇 도인가?`,
+    deg(right),
+    `${expr(`${wrong}-${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}-${y}=${right}`)} 에서 ${deg(right)}입니다.`,
+  );
+}
+
+/** **1-2-5 1단 연산 — 두 각의 «합»에서 나머지 각.** 표준 ①은 두 각을 각각 준다. */
+function tier25Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 60, 150);
+  return make(
+    unit,
+    `삼각형에서 두 각의 크기의 합이 ${deg(s)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    deg(180 - s),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${s}=${180 - s}`)} 이므로 ` +
+      `${deg(180 - s)}입니다.`,
+  );
+}
+
+/** **1-2-5 2단 기본 — 직각삼각형.** 직각 하나를 스스로 떠올려 식을 세운다. */
+function tier25Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 70);
+  return make(
+    unit,
+    `직각삼각형에서 직각이 아닌 두 각 중 한 각의 크기가 ${deg(a)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(90 - a),
+    `직각은 ${deg(90)}이고 삼각형의 세 각의 합은 ${deg(180)}이므로 ` +
+      `${expr(`180-90-${a}=${90 - a}`)} 입니다.`,
+  );
+}
+
+/** **1-2-5 3단 응용 — 합을 구해 180°와 견준다(두 단계).** 그릴 수 있는가 판단. */
+function tier25Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 30, 70);
+  const b = intBetween(rng, 30, 70);
+  const valid = intBetween(rng, 0, 1) === 0;
+  const c3 = valid
+    ? 180 - a - b
+    : 180 - a - b + pick(rng, [-30, -20, -10, 10, 20, 30]);
+  const sum = a + b + c3;
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}인 삼각형을 그릴 수 있는가? ` +
+      `'예' 또는 '아니요'로 답하시오.`,
+    valid ? "예" : "아니요",
+    `세 각의 크기의 합을 구하면 ${expr(`${a}+${b}+${c3}=${sum}`)} 입니다. ` +
+      `삼각형의 세 각의 크기의 합은 ${deg(180)}${
+        valid ? "와 같으므로 그릴 수 있습니다" : "가 아니므로 그릴 수 없습니다"
+      }.`,
+  );
+}
+
+/**
+ * **1-2-5 4단 심화 — 조건 조합.** 「나머지 두 각의 크기가 서로 같다」 — 이등변이라는
+ * 이름 없이 조건만 쓴다(2-2 진도 전). 세 각이 모두 같은 꼴을 곁들인다.
+ */
+function tier25Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const a = intBetween(rng, 15, 60) * 2;
+    const rest = 180 - a;
+    return make(
+      unit,
+      `삼각형의 한 각의 크기는 ${deg(a)}이고, 나머지 두 각의 크기는 서로 같습니다. ` +
+        `나머지 한 각의 크기는 몇 도인가?`,
+      deg(rest / 2),
+      `${expr(`180-${a}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
+        `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `세 각의 크기가 모두 같은 삼각형의 한 각의 크기는 몇 도인가?`,
+    deg(60),
+    `세 각의 크기가 같으므로 ${expr("180\\div3=60")} 에서 ${deg(60)}입니다.`,
+  );
+}
+
+/** **1-2-6 1단 연산 — 세 각의 «합»에서 나머지 각.** 1-2-5 연산과 평행(표준도 평행). */
+function tier26Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 220, 330);
+  return make(
+    unit,
+    `사각형에서 세 각의 크기의 합이 ${deg(s)}일 때 나머지 한 각의 크기는 몇 도인가?`,
+    deg(360 - s),
+    `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${s}=${360 - s}`)} 이므로 ` +
+      `${deg(360 - s)}입니다.`,
+  );
+}
+
+/** **1-2-6 2단 기본 — 직각 둘을 스스로 떠올린다.** 1-2-5 기본(직각 하나)과 문형이 다르다. */
+function tier26Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c3 = intBetween(rng, 40, 140);
+  return make(
+    unit,
+    `두 각이 직각인 사각형에서 다른 한 각의 크기가 ${deg(c3)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(180 - c3),
+    `직각 두 개의 합은 ${expr("90+90=180")} 이고 사각형의 네 각의 합은 ${deg(360)}이므로 ` +
+      `${expr(`360-180-${c3}=${180 - c3}`)} 입니다.`,
+  );
+}
+
+/**
+ * **1-2-6 3단 응용 — 나머지 각을 구해 분류한다(두 단계).** 1-2-5 응용(예/아니요 판단)과
+ * 꼴을 갈랐다.
+ */
+function tier26Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c3 = intBetween(rng, 70, 110);
+  const rest = 360 - a - b - c3;
+  return make(
+    unit,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}입니다. 나머지 한 각은 ` +
+      `예각, 직각, 둔각 중 무엇인가?`,
+    angleKind(rest),
+    `${expr(`360-${a}-${b}-${c3}=${rest}`)} 이고 ${deg(rest)}는 ${angleKind(rest)}입니다.`,
+  );
+}
+
+/** **1-2-6 4단 심화 — 조건 조합.** 두 각이 같다는 조건과, 네 각이 모두 같은 꼴. */
+function tier26Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const a = intBetween(rng, 30, 60) * 2;
+    const b = intBetween(rng, 20, 50) * 2;
+    const rest = 360 - a - b;
+    return make(
+      unit,
+      `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}이고, 나머지 두 각의 크기는 서로 ` +
+        `같습니다. 나머지 한 각의 크기는 몇 도인가?`,
+      deg(rest / 2),
+      `${expr(`360-${a}-${b}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
+        `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `네 각의 크기가 모두 같은 사각형의 한 각의 크기는 몇 도인가?`,
+    deg(90),
+    `네 각의 크기가 같으므로 ${expr("360\\div4=90")} 에서 ${deg(90)}입니다.`,
+  );
+}
+
 /* ─────────────────────── 1-3 곱셈과 나눗셈 ─────────────────────── */
 
 function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -525,8 +1878,11 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
     const bb = Math.round(b / 10) * 10;
     return make(
       unit,
-      `${expr(`${a}\\times${b}`)}${tail(b, "을", "를")} 어림셈으로 구하려고 합니다. ` +
-        `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱을 구하시오.`,
+      // «$…$ 를» 처럼 수식 바로 뒤에 조사를 붙이지 않는다(a42ba6bb 의 g3 1-3-2 와
+      // 같은 수리) — 식을 아랫줄로 내려 「다음 곱셈을」로 받는다.
+      `다음 곱셈을 어림셈으로 구하려고 합니다. ` +
+        `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱을 구하시오.\n\n` +
+        `${expr(`${a}\\times${b}`)}`,
       n(aa * bb),
       `${josaNum(a, "을", "를")} ${josaNum(aa, "으로", "로")}, ${josaNum(b, "을", "를")} ${josaNum(bb, "으로", "로")} ` +
         `어림하면 ${expr(`${aa}\\times${bb}=${aa * bb}`)} 입니다.`,
@@ -556,7 +1912,14 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "1-3-5") {
-    const b = intBetween(rng, 12, 39);
+    // «몇십몇»은 일의 자리가 0이 아니다 — 20·30 이 나오면 이웃 몇십몇으로 보낸다.
+    // 실측(수리 전, 씨앗 2000): 146건이 몇십($210\div30$)이었다. 풀 교체가 아니라
+    // 사상으로 고친 것은 비위반 씨앗의 출력을 그대로 보존하기 위해서다(전후 대조 최소).
+    // 대가로 21·31 이 두 배로 나온다 — 조건 위반보다 싸다.
+    // 방식 갈림 기준(팀장 2026-08-23): 조건이 **배타 분류**면 전수 열거 풀(a42ba6bb 의
+    // 올림 4분류), **단일 술어**면 이 최소 사상 — 여기는 «일의 자리 ≠ 0» 하나다.
+    let b = intBetween(rng, 12, 39);
+    if (b % 10 === 0) b += 1;
     const q = intBetween(rng, 3, 9);
     return make(
       unit,
@@ -567,7 +1930,9 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "1-3-6") {
-    const b = intBetween(rng, 12, 29);
+    // «몇십몇» 약속 — 1-3-5 와 같은 사상(수리 전 실측: 씨앗 2000 중 120건이 20).
+    let b = intBetween(rng, 12, 29);
+    if (b % 10 === 0) b += 1;
     const q = intBetween(rng, 11, 34);
     const r = intBetween(rng, 1, b - 1);
     const a = b * q + r;
@@ -605,6 +1970,538 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-3 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 계산 단원의 모범(g3 초3 1-1)을 따른다: 연산 식 하나 · 기본 문장 · 응용 두 단계
+ * (중간값) · 심화 «잘못 계산했더니»·«어떤 수» 역산. 수의 약속은 소단원 이름 그대로 —
+ * (세 자리)·(몇십)·(몇십몇)·몫 자리 수 — 시험이 표준까지 같은 잣대로 잠근다.
+ * 규모는 소단원 띠 안(SCALE_CAP): 곱 다섯 자리 상한 9만, 1-3-4 심화의 «잘못 곱한»
+ * 값만 b≤50·q≤9 로 눌러 2.5만 아래.
+ */
+
+/** 두 자리 수의 십·일 자리 숫자를 바꾼다 — «자리 바꿔 잘못 계산» 심화용. */
+function swapDigits(v: number): number {
+  return (v % 10) * 10 + Math.floor(v / 10);
+}
+
+/** 1-3-1 기본 문장의 소재 — 상자·묶음으로 세는 것. */
+const MUL_ITEMS = [
+  { obj: "연필", cnt: "자루", box: "상자" },
+  { obj: "구슬", cnt: "개", box: "봉지" },
+  { obj: "사탕", cnt: "개", box: "통" },
+] as const;
+
+/** **1-3-1 1단 연산 — a의 b배(식 하나).** 표준의 맨 세로셈(`=\square`)과 표면이 다르다. */
+function tier31Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  return make(
+    unit,
+    `${josaNum(a, "의", "의")} ${n(b)}배는 얼마인가?`,
+    n(a * b),
+    `${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+  );
+}
+
+/** **1-3-1 2단 기본 — «씩 b상자» 문장.** 식을 스스로 세운다. */
+function tier31Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, MUL_ITEMS);
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  return make(
+    unit,
+    `한 ${t.box}에 ${n(a)}${t.cnt}씩 들어 있는 ${josa(t.obj, "이", "가")} ` +
+      `${n(b)}${t.box} 있습니다. ${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+    `${n(a * b)}${t.cnt}`,
+    `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}${t.cnt}입니다.`,
+  );
+}
+
+/** **1-3-1 3단 응용 — 사고 남은 돈(두 단계).** 곱을 구하고 낸 돈에서 뺀다. */
+function tier31Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  const total = a * b;
+  const pay = (Math.floor(total / 10000) + 1) * 10000;
+  return make(
+    unit,
+    `한 개에 ${n(a)}원인 물건을 ${n(b)}개 사고 ${n(pay)}원을 냈습니다. ` +
+      `거스름돈은 얼마인가?`,
+    `${n(pay - total)}원`,
+    `물건값은 ${expr(`${a}\\times${b}=${total}`)} 원입니다. ` +
+      `${expr(`${pay}-${total}=${pay - total}`)} 이므로 거스름돈은 ${n(pay - total)}원입니다.`,
+  );
+}
+
+/** **1-3-1 4단 심화 — «곱해야 할 것을 더했더니» 복원(D-72 문형).** */
+function tier31Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  const wrong = x + b;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 더했더니 ` +
+      `${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산하면 얼마인가?`,
+    n(x * b),
+    `${expr(`${wrong}-${b}=${x}`)} 이므로 어떤 수는 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\times${b}=${x * b}`)} 입니다.`,
+  );
+}
+
+/** 표준 1-3-2 와 같은 «두 자리 수» — 일의 자리가 0이 아니다(그건 1-3-1 의 몫). */
+function twoDigit(rng: Rng): number {
+  return intBetween(rng, 1, 8) * 10 + intBetween(rng, 1, 9);
+}
+
+/** **1-3-2 1단 연산 — 덧셈을 곱셈으로.** 1-3-1 연산(배)과 표면을 갈랐다. */
+function tier32Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} ${n(b)}번 더한 수를 곱셈식으로 구하시오.`,
+    n(a * b),
+    `같은 수를 여러 번 더한 것은 곱셈으로 나타냅니다. ${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+  );
+}
+
+/** **1-3-2 2단 기본 — 하루 a개씩 b일 문장.** */
+function tier32Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `공장에서 하루에 인형을 ${n(a)}개씩 만듭니다. ${n(b)}일 동안 만드는 인형은 ` +
+        `모두 몇 개인가?`,
+      `${n(a * b)}개`,
+      `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `종이학을 하루에 ${n(a)}개씩 ${n(b)}일 동안 접으면 종이학은 모두 몇 개가 되는가?`,
+    `${n(a * b)}개`,
+    `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
+  );
+}
+
+/** **1-3-2 3단 응용 — 곱하고 덜어 내는 두 단계.** */
+function tier32Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  const k = intBetween(rng, 111, 899);
+  const total = a * b;
+  return make(
+    unit,
+    `한 상자에 ${n(a)}개씩 들어 있는 클립 ${n(b)}상자에서 클립 ${n(k)}개를 ` +
+      `사용했습니다. 남은 클립은 몇 개인가?`,
+    `${n(total - k)}개`,
+    `클립은 모두 ${expr(`${a}\\times${b}=${total}`)} 개입니다. ` +
+      `${expr(`${total}-${k}=${total - k}`)} 이므로 ${n(total - k)}개가 남습니다.`,
+  );
+}
+
+/**
+ * **1-3-2 4단 심화 — 자리 바꾼 수로 잘못 곱한 복원.** 십·일의 자리를 바꾼 수(47↔74)로
+ * 곱했다 — 되짚기는 나눗셈이 아니라 **곱셈 사실**로 보인다(다섯 자리 나눗셈을 지면에
+ * 세우지 않는다).
+ */
+function tier32Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 123, 897);
+  const tens = intBetween(rng, 1, 8);
+  let ones = intBetween(rng, 1, 9);
+  if (ones === tens) ones = ones === 9 ? 1 : ones + 1;
+  const b = tens * 10 + ones;
+  const bs = swapDigits(b);
+  const wrong = x * bs;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 십의 자리와 일의 자리 ` +
+      `숫자를 바꾼 ${josaNum(bs, "을", "를")} 곱했더니 ${josaNum(wrong, "이", "가")} ` +
+      `되었습니다. 바르게 계산하면 얼마인가?`,
+    n(x * b),
+    `${josaNum(bs, "을", "를")} 곱하여 ${josaNum(wrong, "이", "가")} 되는 수를 찾으면 ` +
+      `${expr(`${bs}\\times${x}=${wrong}`)} 에서 어떤 수는 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\times${b}=${x * b}`)} 입니다.`,
+  );
+}
+
+/** 어림용 세 자리 수 — 끝 두 자리가 50(반올림 경계)도 0(이미 몇백)도 아니다. */
+function roughA(rng: Rng): number {
+  let r = intBetween(rng, 11, 88);
+  if (r >= 50) r += 1;
+  return intBetween(rng, 1, 8) * 100 + r;
+}
+
+/** **1-3-3 1단 연산 — 몇백에 가장 가까운가.** 어림 한 번. */
+function tier33Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const lo = Math.floor(a / 100) * 100;
+  const hi = lo + 100;
+  const aa = Math.round(a / 100) * 100;
+  return make(
+    unit,
+    `${josaNum(a, "은", "는")} 몇백에 가장 가까운가?`,
+    n(aa),
+    `${josaNum(a, "은", "는")} ${josaNum(lo, "과", "와")} ${n(hi)} 사이의 수이며 ` +
+      `${n(aa)}에 더 가깝습니다.`,
+  );
+}
+
+/** **1-3-3 2단 기본 — 문장 속 어림 곱.** 표준(맨 지시문)과 달리 맥락이 있다. */
+function tier33Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `학생 ${n(b)}명에게 ${n(a)}원짜리 공책을 한 권씩 사 주려고 합니다. 필요한 돈은 ` +
+      `약 얼마인지 ${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 ` +
+      `어림하여 구하시오.`,
+    `약 ${n(aa * bb)}원`,
+    `${josaNum(a, "을", "를")} ${roJosa(aa)}, ${josaNum(b, "을", "를")} ${roJosa(bb)} 어림하면 ` +
+      `${expr(`${aa}\\times${bb}=${aa * bb}`)} 이므로 약 ${n(aa * bb)}원입니다.`,
+  );
+}
+
+/** **1-3-3 3단 응용 — 어림한 곱과 실제 곱의 차(두 단계).** */
+function tier33Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  const act = a * b;
+  const hiV = Math.max(est, act);
+  const loV = Math.min(est, act);
+  return make(
+    unit,
+    `다음 곱셈에서 ${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 ` +
+      `어림하여 구한 곱과 실제로 계산한 곱의 차를 구하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    n(hiV - loV),
+    `어림한 곱은 ${expr(`${aa}\\times${bb}=${est}`)} 이고 실제 곱은 ` +
+      `${expr(`${a}\\times${b}=${act}`)} 입니다. ${expr(`${hiV}-${loV}=${hiV - loV}`)} 입니다.`,
+  );
+}
+
+/** **1-3-3 4단 심화 — 어림의 원상.** 몇백으로 어림하면 aa 가 되는 수의 끝. */
+function tier33Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const aa = intBetween(rng, 2, 9) * 100;
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const ans = wantBig ? aa + 49 : aa - 50;
+  return make(
+    unit,
+    `몇백으로 어림하면 ${josaNum(aa, "이", "가")} 되는 세 자리 수 중에서 가장 ` +
+      `${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(ans),
+    `백의 자리 아래가 ${n(50)} 이상이면 올리고 ${n(50)} 미만이면 버립니다. ` +
+      `${josaNum(aa, "이", "가")} 되는 수는 ${n(aa - 50)}부터 ${n(aa + 49)}까지이므로 ` +
+      `가장 ${wantBig ? "큰" : "작은"} 수는 ${n(ans)}입니다.`,
+  );
+}
+
+/** **1-3-4 1단 연산 — b씩 묶으면 몇 묶음.** 나눗셈 한 번. */
+function tier34Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 몇 묶음이 되는가?`,
+    `${n(q)}묶음`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}묶음이 됩니다.`,
+  );
+}
+
+/** **1-3-4 2단 기본 — 나눔 문장.** 딱 떨어지는 것과 남는 것을 다 낸다. */
+function tier34Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = b * q;
+    return make(
+      unit,
+      `색종이 ${n(a)}장을 한 명에게 ${n(b)}장씩 나누어 주면 몇 명에게 줄 수 있는가?`,
+      `${n(q)}명`,
+      `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}명에게 줄 수 있습니다.`,
+    );
+  }
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되고 몇 개가 남는가?`,
+    `${n(q)}봉지, ${n(r)}개`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ` +
+      `${n(q)}봉지가 되고 ${n(r)}개가 남습니다.`,
+  );
+}
+
+/** **1-3-4 3단 응용 — 남는 사람도 타야 한다(올림 나눗셈, 두 단계).** */
+function tier34Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 4) * 10;
+  const q = intBetween(rng, 2, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `학생 ${n(a)}명이 한 대에 ${n(b)}명씩 버스에 타려고 합니다. 버스는 적어도 ` +
+      `몇 대 필요한가?`,
+    `${n(q + 1)}대`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}대에 ` +
+      `타면 ${n(r)}명이 남습니다. 남은 학생도 타야 하므로 ${expr(`${q}+1=${q + 1}`)} 대가 ` +
+      `필요합니다.`,
+  );
+}
+
+/**
+ * **1-3-4 4단 심화 — «나누어야 할 것을 곱했더니» 복원.** 잘못 곱한 값은 커진다 —
+ * 규모 띠를 지키려 b≤50·q≤9 로 누른다(블록 머리말).
+ */
+function tier34Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 5) * 10;
+  const q = intBetween(rng, 2, 9);
+  const x = b * q;
+  const wrong = x * b;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누어야 할 것을 잘못하여 ${josaNum(b, "을", "를")} ` +
+      `곱했더니 ${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산한 몫을 구하시오.`,
+    n(q),
+    `${josaNum(b, "을", "를")} 곱하여 ${josaNum(wrong, "이", "가")} 되는 수는 ` +
+      `${expr(`${b}\\times${x}=${wrong}`)} 에서 ${n(x)}입니다. ` +
+      `바르게 계산하면 ${expr(`${x}\\div${b}=${q}`)} 이므로 몫은 ${n(q)}입니다.`,
+  );
+}
+
+/** 몇십몇 — 일의 자리가 0이 아닌 12~39. 표준 1-3-5 와 같은 띠다. */
+function tensOnes(rng: Rng, maxTens: number): number {
+  return intBetween(rng, 1, maxTens) * 10 + intBetween(rng, 1, 9);
+}
+
+/** **1-3-5 1단 연산 — 곱셈 빈칸으로 나눗셈 관계 한 번.** */
+function tier35Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `${expr(`${b}\\times\\square=${a}`)} 에서 ${expr("\\square")} 에 알맞은 수를 구하시오.`,
+    n(q),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${expr("\\square")} 에 알맞은 수는 ${n(q)}입니다.`,
+  );
+}
+
+/** **1-3-5 2단 기본 — 색 테이프 자르기 문장.** */
+function tier35Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `길이가 ${cm(a)}인 색 테이프를 ${cm(b)}씩 자르면 몇 도막이 되는가?`,
+    `${n(q)}도막`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}도막이 됩니다.`,
+  );
+}
+
+/** **1-3-5 3단 응용 — 덜어 내고 나누는 두 단계(중간값).** */
+function tier35Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const rest = b * q;
+  const k = intBetween(rng, 11, 48);
+  const a = rest + k;
+  return make(
+    unit,
+    `구슬 ${n(a)}개 중에서 ${n(k)}개를 동생에게 주고, 남은 구슬을 한 통에 ${n(b)}개씩 ` +
+      `담았습니다. 통은 몇 개가 되는가?`,
+    `${n(q)}개`,
+    `남은 구슬은 ${expr(`${a}-${k}=${rest}`)} 개입니다. ${expr(`${rest}\\div${b}=${q}`)} 이므로 ` +
+      `통은 ${n(q)}개가 됩니다.`,
+  );
+}
+
+/** **1-3-5 4단 심화 — 검산으로 어떤 수 되찾기.** */
+function tier35Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const x = b * q + r;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누었더니 몫이 ${n(q)}, 나머지가 ${josaNum(r, "이", "가")} ` +
+      `되었습니다. 어떤 수를 구하시오.`,
+    n(x),
+    `검산하면 ${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${x}`)} 이므로 ` +
+      `어떤 수는 ${n(x)}입니다.`,
+  );
+}
+
+/** **1-3-6 1단 연산 — 나누어떨어지는 두 자리 몫.** 표준(늘 나머지 있음)과 갈린다. */
+function tier36Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 34);
+  const a = b * q;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)}의 몫을 구하시오.`,
+    n(q),
+    `몫의 십의 자리부터 구합니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 몫은 ${n(q)}입니다.`,
+  );
+}
+
+/** **1-3-6 2단 기본 — 봉지 문장(두 자리 몫).** */
+function tier36Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 34);
+  const a = b * q;
+  return make(
+    unit,
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되는가?`,
+    `${n(q)}봉지`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}봉지가 됩니다.`,
+  );
+}
+
+/** **1-3-6 3단 응용 — 다 읽는 데 며칠(올림, 두 단계).** 1-3-4 응용과 소재·틀이 다르다. */
+function tier36Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 33);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 다 읽는 데 며칠이 걸리는가?`,
+    `${n(q + 1)}일`,
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}일 ` +
+      `동안 읽으면 ${n(r)}쪽이 남습니다. 남은 쪽을 읽는 날이 하루 더 필요하므로 ` +
+      `${expr(`${q}+1=${q + 1}`)} 일이 걸립니다.`,
+  );
+}
+
+/** **1-3-6 4단 심화 — 자리 바꾼 수로 잘못 나눈 복원.** 검산으로 되짚어 바르게 나눈다. */
+function tier36Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const tens = intBetween(rng, 1, 2);
+  let ones = intBetween(rng, 1, 9);
+  if (ones === tens) ones = ones === 9 ? 3 : ones + 1;
+  const b = tens * 10 + ones;
+  const bs = swapDigits(b);
+  const q = intBetween(rng, 11, 34);
+  let r = intBetween(rng, 1, b - 1);
+  // 잘못 나눈 쪽이 나누어떨어지면 «나머지가 $0$» 이 지면에 나간다 — 초등 표현이
+  // 아니다(팀장 검수 2026-08-23, 씨앗 3000 중 89건). r 를 한 칸씩 옮겨 피한다.
+  // 종료 보장: r 는 1..b-1 을 전부 도는데 그 안의 x 후보가 모두 bs 의 배수일 수는 없다.
+  while ((b * q + r) % bs === 0) r = (r % (b - 1)) + 1;
+  const x = b * q + r;
+  const q2 = Math.floor(x / bs);
+  const r2 = x - bs * q2;
+  return make(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누어야 할 것을 잘못하여 십의 자리와 일의 자리 숫자를 ` +
+      `바꾼 ${roJosa(bs)} 나누었더니 몫이 ${n(q2)}, 나머지가 ${josaNum(r2, "이", "가")} ` +
+      `되었습니다. 바르게 계산한 몫과 나머지를 구하시오.`,
+    `몫 ${n(q)}, 나머지 ${n(r)}`,
+    `잘못 나눈 것을 검산하면 어떤 수는 ${expr(`${bs}\\times${q2}=${bs * q2}`)} 에서 ` +
+      `${expr(`${bs * q2}+${r2}=${x}`)} 입니다. ${expr(`${b}\\times${q}=${b * q}`)}, ` +
+      `${expr(`${x}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)}입니다.`,
+  );
+}
+
+/** 표준 1-3-7 과 같은 나누는 수 띠 — 끝자리 0 이 아닌 17~42. */
+const DIV_ROUGH_POOL = [
+  17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39,
+  41, 42,
+] as const;
+
+/** **1-3-7 1단 연산 — 나누는 수를 몇십으로 어림하면.** 1-3-3 연산(몇백)과 문형이 다르다. */
+function tier37Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const q = intBetween(rng, 6, 19);
+  const a = b * q + intBetween(rng, 0, b - 1);
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수 ${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?\n\n` +
+      `${expr(`${a}\\div${b}`)}`,
+    n(bb),
+    `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
+  );
+}
+
+/** **1-3-7 2단 기본 — 봉지 수 어림 문장.** */
+function tier37Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  return make(
+    unit,
+    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으려고 합니다. ${josaNum(b, "을", "를")} ` +
+      `몇십으로 어림하여 봉지 수를 어림하시오.`,
+    `약 ${n(k)}봉지`,
+    `${josaNum(b, "을", "를")} ${roJosa(bb)} 어림하면 ${expr(`${a}\\div${bb}=${k}`)} 이므로 ` +
+      `약 ${n(k)}봉지입니다.`,
+  );
+}
+
+/** **1-3-7 3단 응용 — 두 나눗셈의 어림 몫 비교(두 단계 × 둘).** */
+function tier37Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b1 = pick(rng, DIV_ROUGH_POOL);
+  const b2 = pick(rng, DIV_ROUGH_POOL);
+  const bb1 = Math.round(b1 / 10) * 10;
+  const bb2 = Math.round(b2 / 10) * 10;
+  const k1 = intBetween(rng, 6, 19);
+  let k2 = intBetween(rng, 6, 18);
+  if (k2 >= k1) k2 += 1;
+  const a1 = bb1 * k1;
+  const a2 = bb2 * k2;
+  const win = k1 > k2 ? "가" : "나";
+  return make(
+    unit,
+    `두 나눗셈의 나누는 수를 몇십으로 어림하여 몫을 각각 어림했습니다. 어림한 몫이 ` +
+      `더 큰 나눗셈의 기호를 쓰시오.\n\n가 ${expr(`${a1}\\div${b1}`)}   나 ${expr(`${a2}\\div${b2}`)}`,
+    win,
+    `나누는 수를 몇십으로 어림하면 가는 ${expr(`${a1}\\div${bb1}=${k1}`)}, ` +
+      `나는 ${expr(`${a2}\\div${bb2}=${k2}`)} 입니다. ` +
+      `${expr(k1 > k2 ? `${k1}>${k2}` : `${k2}>${k1}`)} 이므로 어림한 몫이 더 큰 것은 ${win}입니다.`,
+  );
+}
+
+/**
+ * **1-3-7 4단 심화 — 몇십 어림의 원상(두 끝을 다 쓴다 — 1-3-3 심화와 답 꼴 분화)과
+ * 경계 판단.** bb 풀이 여덟뿐이라 원상 꼴만으로는 변형이 좁다(실측 6/16) — 경계값
+ * (±5·±6)의 «되는가» 판단을 곁들인다.
+ */
+function tier37Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const bb = intBetween(rng, 2, 9) * 10;
+  if (intBetween(rng, 0, 1) === 0) {
+    const delta = pick(rng, [-6, -5, 4, 5]);
+    const cand = bb + delta;
+    const rounded = Math.round(cand / 10) * 10;
+    const yes = rounded === bb;
+    const up = cand % 10 >= 5;
+    return make(
+      unit,
+      `${josaNum(cand, "은", "는")} 몇십으로 어림하면 ${josaNum(bb, "이", "가")} 되는가? ` +
+        `'예' 또는 '아니요'로 답하시오.`,
+      yes ? "예" : "아니요",
+      `일의 자리 숫자가 ${n(cand % 10)}이므로 ${up ? "올리면" : "버리면"} ${n(rounded)}입니다. ` +
+        `${yes ? "그러므로 '예'입니다." : `${josaNum(bb, "이", "가")} 아니므로 '아니요'입니다.`}`,
+    );
+  }
+  return make(
+    unit,
+    `몇십으로 어림하면 ${josaNum(bb, "이", "가")} 되는 두 자리 수 중에서 가장 작은 수와 ` +
+      `가장 큰 수를 차례로 쓰시오.`,
+    `${n(bb - 5)}, ${n(bb + 4)}`,
+    `십의 자리 아래가 ${n(5)} 이상이면 올리고 ${n(5)} 미만이면 버립니다. ` +
+      `${josaNum(bb, "이", "가")} 되는 수는 ${n(bb - 5)}부터 ${n(bb + 4)}까지입니다.`,
+  );
+}
+
 /* ───────────────────── 1-4 평면도형의 이동 ───────────────────── */
 
 /** 좌우로 뒤집은 것과 위아래로 뒤집은 것이 **다르게** 나오는 조각만 쓴다. */
@@ -635,12 +2532,18 @@ const MOVE_SHAPES = [
     ],
     n: 4,
   },
+  // ⚠️ 이 자리에 있던 S자 조각([1,1],[2,1],[2,2],[3,2])은 **180° 대칭**이라
+  // 이 목록의 약속(좌우 뒤집기 ≠ 위아래 뒤집기)을 스스로 어겼다 — 그 조각으로는
+  // 「몇 도 돌렸나」의 90°와 270°도 같은 그림이 되어 기록된 답이 중의적이었다
+  // (elem-g4 적발 2026-08-23, 갈래 시험의 비대칭 잠금이 찾았다). 대칭이 하나도 없는
+  // P자 조각으로 바꿨다 — 뒤집기 둘·회전 셋·원본이 전부 서로 다르다.
   {
     cells: [
       [1, 1],
+      [1, 2],
       [2, 1],
       [2, 2],
-      [3, 2],
+      [3, 1],
     ],
     n: 5,
   },
@@ -772,6 +2675,367 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   return noBranch(unit);
+}
+
+/* ──────────── 1-4 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 그림은 표준이 쓰는 rotateFlip kind + MOVE_SHAPES 재사용뿐이다(D-61, 새 kind 없음).
+ * 돌리기 표기는 표준 규약 그대로 — op(rot90·rot180·rot270)는 **시계 방향**이고,
+ * 반시계는 360−d 로만 말한다. 좌표 변환 검산은 시험이 독립 재구현으로 한다.
+ * 규모: 수는 전부 1000 아래(90°×11 = 990 이 최대).
+ */
+
+/** 네 방향과 그 반대 — «잘못 옮김» 복원용 짝. */
+const DIR_PAIRS = [
+  ["오른쪽", "왼쪽"],
+  ["왼쪽", "오른쪽"],
+  ["위쪽", "아래쪽"],
+  ["아래쪽", "위쪽"],
+] as const;
+
+/** **1-4-1 1단 연산 — 같은 방향으로 두 번(합).** 표준(반대 방향 상쇄)과 방향이 다르다. */
+function tier41Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 7);
+  const b = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `모눈에서 점 ㄷ을 ${dir}으로 ${n(a)}칸 옮긴 다음 ${dir}으로 ${n(b)}칸 더 옮겼습니다. ` +
+      `점 ㄷ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${dir}으로 ${n(a + b)}칸`,
+    `같은 쪽으로 두 번 옮기면 옮긴 칸수를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
+      `${dir}으로 ${n(a + b)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 2단 기본 — 세로축 상쇄(남는 쪽이 뒤 방향).** 표준은 가로축·앞 방향이 남는다. */
+function tier41Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, [
+    ["위쪽", "아래쪽"],
+    ["아래쪽", "위쪽"],
+  ] as const);
+  const a = intBetween(rng, 2, 6);
+  const b = a + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `모눈에서 점 ㄹ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. ` +
+      `점 ㄹ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${second}으로 ${n(b - a)}칸`,
+    `${first} ${n(a)}칸과 ${second} ${n(a)}칸은 서로 지워집니다. ` +
+      `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 3단 응용 — 세 번 이동을 두 축으로 결산(두 단계).** 답이 두 성분이다. */
+function tier41Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [h1, h2] = pick(rng, [
+    ["오른쪽", "왼쪽"],
+    ["왼쪽", "오른쪽"],
+  ] as const);
+  const v = pick(rng, ["위쪽", "아래쪽"] as const);
+  const a = intBetween(rng, 3, 7);
+  const b = intBetween(rng, 2, 6);
+  const c3 = intBetween(rng, 1, a - 1);
+  return make(
+    unit,
+    `모눈에서 점 ㅁ을 ${h1}으로 ${n(a)}칸, ${v}으로 ${n(b)}칸, ${h2}으로 ${n(c3)}칸 차례로 ` +
+      `옮겼습니다. 점 ㅁ은 처음 자리에서 ${h1}으로 몇 칸, ${v}으로 몇 칸 옮겨진 것인가?`,
+    `${h1}으로 ${n(a - c3)}칸, ${v}으로 ${n(b)}칸`,
+    `가로로는 ${expr(`${a}-${c3}=${a - c3}`)} 에서 ${h1}으로 ${n(a - c3)}칸, ` +
+      `세로로는 ${v}으로 ${n(b)}칸 옮겨진 것입니다.`,
+  );
+}
+
+/** **1-4-1 4단 심화 — «잘못 옮김» 복원(D-72 문형).** 반대로 간 만큼의 두 배가 필요하다. */
+function tier41Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [want, did] = pick(rng, DIR_PAIRS);
+  const a = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `모눈에서 점 ㅂ을 ${want}으로 ${n(a)}칸 옮겨야 할 것을 잘못하여 ${did}으로 ${n(a)}칸 ` +
+      `옮겼습니다. 바른 자리로 가려면 ${want}으로 몇 칸 옮겨야 하는가?`,
+    `${n(2 * a)}칸`,
+    `잘못 간 ${n(a)}칸을 되돌아오는 데 ${n(a)}칸, 처음 자리에서 바른 자리까지 ${n(a)}칸이 ` +
+      `더 필요합니다. ${expr(`${a}+${a}=${2 * a}`)} 이므로 ${n(2 * a)}칸입니다.`,
+  );
+}
+
+/** **1-4-2 1단 연산 — 같은 방향으로 이어 밀기(합, cm).** */
+function tier42Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 8);
+  const b = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `도형을 ${dir}으로 ${cm(a)} 민 다음 ${dir}으로 ${cm(b)} 더 밀었습니다. ` +
+      `도형은 처음 자리에서 ${dir}으로 몇 cm 밀린 것인가?`,
+    cm(a + b),
+    `같은 쪽으로 이어 밀면 민 거리를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
+      `${cm(a + b)} 밀린 것입니다.`,
+  );
+}
+
+/** **1-4-2 2단 기본 — 밀기의 불변 성질.** 직사각형 세로(표준은 정사각형 한 변)와 성질 판단. */
+function tier42Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) <= 2) {
+    const w = intBetween(rng, 3, 9);
+    const h = intBetween(rng, 2, w - 1);
+    const dir = pick(rng, DIR_PAIRS)[0];
+    const dist = intBetween(rng, 2, 8);
+    return make(
+      unit,
+      `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. ` +
+        `민 도형의 세로는 몇 cm인가?`,
+      cm(h),
+      `도형을 밀어도 모양과 크기는 변하지 않습니다. 세로는 그대로 ${cm(h)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `도형을 밀었을 때 바뀌는 것은 '모양'과 '위치' 중 무엇인가?`,
+    "위치",
+    `도형을 밀면 모양과 크기는 변하지 않고 위치만 바뀝니다.`,
+  );
+}
+
+/** **1-4-2 3단 응용 — 왕복의 알짜(두 단계).** 표준 ①은 같은 거리 왕복(«예»)이다. */
+function tier42Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, [
+    ["오른쪽", "왼쪽"],
+    ["왼쪽", "오른쪽"],
+  ] as const);
+  const a = intBetween(rng, 5, 9);
+  const delta = intBetween(rng, 1, 3) * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
+  const b = a + delta;
+  const netDir = a > b ? d1 : d2;
+  const netDist = Math.abs(a - b);
+  const hi = Math.max(a, b);
+  const lo = Math.min(a, b);
+  return make(
+    unit,
+    `도형을 ${d1}으로 ${cm(a)} 민 다음 ${d2}으로 ${cm(b)} 밀었습니다. ` +
+      `도형은 처음 자리에서 어느 쪽으로 몇 cm 밀린 것과 같은가?`,
+    `${netDir}으로 ${cm(netDist)}`,
+    `두 방향이 반대이므로 먼 쪽이 남습니다. ${expr(`${hi}-${lo}=${netDist}`)} 이므로 ` +
+      `${netDir}으로 ${cm(netDist)} 밀린 것과 같습니다.`,
+  );
+}
+
+/** **1-4-2 4단 심화 — 잘못 민 방향 복원.** 되돌기와 바른 거리의 합. */
+function tier42Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [want, did] = pick(rng, DIR_PAIRS);
+  const a = intBetween(rng, 2, 7);
+  const b = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `도형을 ${want}으로 ${cm(a)} 밀어야 할 것을 잘못하여 ${did}으로 ${cm(b)} 밀었습니다. ` +
+      `바른 자리로 가려면 ${want}으로 몇 cm 밀어야 하는가?`,
+    cm(a + b),
+    `잘못 민 ${cm(b)}을 되돌아오고 다시 ${cm(a)}을 더 밀어야 합니다. ` +
+      `${expr(`${b}+${a}=${a + b}`)} 이므로 ${cm(a + b)} 밀어야 합니다.`,
+  );
+}
+
+/** **1-4-3 1단 연산 — 뒤집기의 자리 이동(줄 번호).** 수로 변형이 갈린다. */
+function tier43Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cols = intBetween(rng, 5, 9);
+  const k = intBetween(rng, 1, cols);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `가로가 ${n(cols)}칸인 모눈 도형을 좌우로 뒤집었습니다. 왼쪽에서 ${n(k)}번째 세로줄은 ` +
+        `뒤집은 도형에서 왼쪽에서 몇 번째 세로줄이 되는가?`,
+      `${n(cols + 1 - k)}번째`,
+      `좌우로 뒤집으면 왼쪽에서 ${n(k)}번째 줄이 오른쪽에서 ${n(k)}번째 줄이 됩니다. ` +
+        `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 왼쪽에서 ${n(cols + 1 - k)}번째 줄입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `세로가 ${n(cols)}칸인 모눈 도형을 위아래로 뒤집었습니다. 위에서 ${n(k)}번째 가로줄은 ` +
+      `뒤집은 도형에서 위에서 몇 번째 가로줄이 되는가?`,
+    `${n(cols + 1 - k)}번째`,
+    `위아래로 뒤집으면 위에서 ${n(k)}번째 줄이 아래에서 ${n(k)}번째 줄이 됩니다. ` +
+      `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 위에서 ${n(cols + 1 - k)}번째 줄입니다.`,
+  );
+}
+
+/**
+ * **1-4-3 2단 기본 — 그림 판정(예/아니요).** 표준 ①의 열린 «어떻게»와 꼴을 갈랐다.
+ * 답의 유일성은 MOVE_SHAPES 의 성질(두 뒤집기 결과가 다름)이 지킨다 — 시험이 잠근다.
+ */
+function tier43Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const shape = pick(rng, MOVE_SHAPES);
+  const op = pick(rng, ["flipH", "flipV"] as const);
+  const asked = pick(rng, ["flipH", "flipV"] as const);
+  const yes = op === asked;
+  const opName = op === "flipH" ? "좌우로" : "위아래로";
+  const askedName = asked === "flipH" ? "좌우로" : "위아래로";
+  return make(
+    unit,
+    `왼쪽 도형을 한 번 뒤집어 오른쪽 도형을 만들었습니다. ${askedName} 뒤집은 것인가? ` +
+      `'예' 또는 '아니요'로 답하시오.`,
+    yes ? "예" : "아니요",
+    `색칠한 칸이 ${op === "flipH" ? "왼쪽과 오른쪽" : "위쪽과 아래쪽"}이 서로 바뀌었으므로 ` +
+      `${opName} 뒤집은 것입니다. ${yes ? "그러므로 '예'입니다." : "그러므로 '아니요'입니다."}`,
+    fig("rotateFlip", { cells: shape.cells, op, n: shape.n }),
+  );
+}
+
+/** **1-4-3 3단 응용 — 두 축의 홀짝 결산.** 답이 네 갈래로 갈린다. */
+function tier43Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t1 = intBetween(rng, 1, 4);
+  const t2 = intBetween(rng, 1, 4);
+  const h = t1 % 2 === 1;
+  const v = t2 % 2 === 1;
+  const answer =
+    h && v
+      ? `시계 방향으로 ${deg(180)} 돌린 도형과 같다`
+      : h
+        ? "좌우로 한 번 뒤집은 도형과 같다"
+        : v
+          ? "위아래로 한 번 뒤집은 도형과 같다"
+          : "처음 도형과 같다";
+  const tailNote =
+    h && v
+      ? ` 좌우와 위아래를 한 번씩 뒤집은 것은 시계 방향으로 ${deg(180)} 돌린 것과 같습니다.`
+      : "";
+  return make(
+    unit,
+    `도형을 좌우로 ${n(t1)}번, 위아래로 ${n(t2)}번 뒤집었습니다. 그 결과는 처음 도형을 ` +
+      `어떻게 움직인 도형과 같은지 쓰시오.`,
+    answer,
+    `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같습니다. 좌우 ${josaNum(t1, "은", "는")} ` +
+      `${h ? "홀수라 한 번 뒤집은 것과 같고" : "짝수라 뒤집지 않은 것과 같고"}, ` +
+      `위아래 ${josaNum(t2, "은", "는")} ${v ? "홀수라 한 번 뒤집은 것과 같습니다." : "짝수라 뒤집지 않은 것과 같습니다."}` +
+      `${tailNote} 그러므로 ${answer.replace(/다$/, "습니다")}.`,
+  );
+}
+
+/** **1-4-3 4단 심화 — 짝수 조건 역산.** 범위 안의 유일한 2의 배수를 찾는다. */
+function tier43Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const axis = pick(rng, ["좌우로", "위아래로"] as const);
+  const ans = intBetween(rng, 2, 6) * 2;
+  const width = pick(rng, [1, 2]);
+  const lo = ans - width;
+  const hi = ans + width;
+  return make(
+    unit,
+    `도형을 ${axis} 몇 번 뒤집었더니 처음 도형과 같았습니다. 뒤집은 횟수가 ${n(lo)}번보다 ` +
+      `많고 ${n(hi)}번보다 적다면 몇 번 뒤집은 것인가?`,
+    `${n(ans)}번`,
+    `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같으므로 횟수는 ${n(2)}의 배수입니다. ` +
+      `${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(2)}의 배수는 ${n(ans)}뿐입니다.`,
+  );
+}
+
+/** **1-4-4 1단 연산 — 여러 번 돌리기를 한 바퀴로 접기.** 표준 ⓪(합)과 달리 남는 각을 묻는다. */
+function tier44Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 4의 배수면 답이 0°(처음 그대로)가 된다 — 빼고 뽑는다. 값이 여섯뿐이면 변형 8+ 가
+  // 안 서서(실측 6/16) 열다섯까지 넓혔다. 최대 90×15=1350 — 규모 시험의 상한 근거.
+  const t = pick(rng, [5, 6, 7, 9, 10, 11, 13, 14, 15]);
+  const total = 90 * t;
+  const ans = total % 360;
+  const whole = total - ans;
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 시계 방향으로 몇 도 돌린 ` +
+          `것과 같은가?`
+      : `시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌린 도형과 같은 도형을 한 번에 만들려면 ` +
+          `시계 방향으로 몇 도 돌리면 되는가?`,
+    deg(ans),
+    `${expr(`90\\times${t}=${total}`)} 입니다. 한 바퀴(${deg(360)})를 돌면 처음과 같으므로 ` +
+      `${expr(`${total}-${whole}=${ans}`)} 에서 ${deg(ans)} 돌린 것과 같습니다.`,
+  );
+}
+
+/**
+ * **1-4-4 2단 기본 — 그림을 반시계로 읽기.** 표준 ②는 시계 방향을 묻는다.
+ * op 는 표준 규약 그대로 시계 방향이고, 반시계 각은 360−d 다.
+ */
+function tier44Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const shape = pick(rng, MOVE_SHAPES);
+  const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
+  const cw = TURN_NAME[op]!;
+  const ccw = 360 - cw;
+  // 발문 문형을 두 벌로 갈랐다 — 그림 갈래라 변형은 그림에 살지만, R9(씨앗마다 같은
+  // 발문 금지)는 발문 자체가 갈려야 한다(팀장 신호 2026-08-23).
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `왼쪽 도형을 시계 반대 방향으로 돌려 오른쪽 도형을 만들었습니다. 시계 반대 방향으로 ` +
+          `몇 도 돌린 것인가?`
+      : `오른쪽 도형은 왼쪽 도형을 시계 반대 방향으로 돌린 것입니다. 몇 도 돌린 것인지 구하시오.`,
+    deg(ccw),
+    `이 도형은 시계 방향으로 ${deg(cw)} 돌린 것과 같습니다. 시계 반대 방향으로는 ` +
+      `${expr(`360-${cw}=${ccw}`)} 에서 ${deg(ccw)} 돌린 것입니다.`,
+    fig("rotateFlip", { cells: shape.cells, op, n: shape.n }),
+  );
+}
+
+/** **1-4-4 3단 응용 — 두 번 돌리기의 알짜(두 단계).** 반대 방향은 그만큼 되돌린다. */
+function tier44Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const ROT = [90, 180, 270] as const;
+  if (intBetween(rng, 0, 1) === 0) {
+    const d1 = pick(rng, ROT);
+    const d2 = pick(
+      rng,
+      ROT.filter((d) => d !== d1),
+    );
+    const ans = (d1 - d2 + 360) % 360;
+    return make(
+      unit,
+      `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 시계 반대 방향으로 ${deg(d2)} 돌렸습니다. ` +
+        `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+      deg(ans),
+      `반대 방향 돌리기는 그만큼 되돌리는 것입니다. ` +
+        `${d1 > d2 ? expr(`${d1}-${d2}=${ans}`) : `${expr(`${d2}-${d1}=${d2 - d1}`)} 만큼 시계 반대 방향이 남고, 이는 시계 방향 ${expr(`360-${d2 - d1}=${ans}`)}`} 이므로 ` +
+        `시계 방향으로 ${deg(ans)} 돌린 것과 같습니다.`,
+    );
+  }
+  const d1 = pick(rng, ROT);
+  const d2 = pick(
+    rng,
+    ROT.filter((d) => (d1 + d) % 360 !== 0),
+  );
+  const ans = (d1 + d2) % 360;
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 다시 시계 방향으로 ${deg(d2)} 돌렸습니다. ` +
+      `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+    deg(ans),
+    `같은 방향으로 이어 돌리면 두 각을 더합니다. ${expr(`${d1}+${d2}=${d1 + d2}`)} 이고 ` +
+      `${d1 + d2 > 360 ? `한 바퀴(${deg(360)})를 덜어 내면 ${expr(`${d1 + d2}-360=${ans}`)} 에서 ` : ""}` +
+      `${deg(ans)} 돌린 것과 같습니다.`,
+  );
+}
+
+/** **1-4-4 4단 심화 — 되돌리기 역산과 4의 배수 조건.** */
+function tier44Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d = pick(rng, [90, 180, 270] as const);
+    return make(
+      unit,
+      `어떤 도형을 시계 방향으로 ${deg(d)} 돌렸더니 가 도형이 되었습니다. 가 도형을 시계 ` +
+        `방향으로 몇 도 돌리면 처음 도형이 되는가?`,
+      deg(360 - d),
+      `한 바퀴(${deg(360)})를 돌면 처음 도형과 같습니다. ${expr(`360-${d}=${360 - d}`)} 이므로 ` +
+        `시계 방향으로 ${deg(360 - d)} 돌리면 처음 도형이 됩니다.`,
+    );
+  }
+  const ans = intBetween(rng, 2, 5) * 4;
+  const width = pick(rng, [1, 2]);
+  const lo = ans - width;
+  const hi = ans + width;
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(90)}씩 몇 번 돌렸더니 처음 도형과 같았습니다. 돌린 횟수가 ` +
+      `${n(lo)}번보다 많고 ${n(hi)}번보다 적다면 몇 번 돌린 것인가?`,
+    `${n(ans)}번`,
+    `${deg(90)}씩 ${n(4)}번 돌리면 한 바퀴가 되어 처음 도형과 같으므로 횟수는 ${n(4)}의 ` +
+      `배수입니다. ${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(4)}의 배수는 ${n(ans)}뿐입니다.`,
+  );
 }
 
 /* ───────────────────────── 1-5 막대그래프 ─────────────────────────
@@ -993,8 +3257,14 @@ const BAR_THEMES: readonly BarTheme[] = [
   { item: "색", unit: "명", labels: ["보라", "주황", "분홍", "연두"] },
 ];
 
-function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = code(unit);
+/**
+ * 막대그래프 한 장의 **재료**. 표준 갈래(1-5-1~3)와 난이도 갈래(`G4_TIERS`)가 **같은 것**을
+ * 쓰게 하려고 뽑아 두었다 — 재료 만들기를 두 벌로 두면 한쪽만 고쳐도 아무도 모른다.
+ *
+ * ⚠️ `rng` 를 부르는 **차례가 곧 계약**이다. 여기서 순서를 바꾸면 같은 씨앗이 다른 그림을
+ * 내므로 «표준 갈래의 산출이 그대로인가»를 지문으로 확인하고 고쳐야 한다(실제로 확인했다).
+ */
+function barData(unit: UnitSeed, rng: Rng) {
   const theme = pick(rng, themeShare(unit, BAR_THEMES));
   const scale = pick(rng, BAR_SCALES);
   const total = pick(rng, scale.totals);
@@ -1035,6 +3305,47 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     yStep: scale.step,
     yLabel: theme.unit,
   });
+  return {
+    theme,
+    scale,
+    total,
+    picked,
+    values,
+    max,
+    min,
+    top,
+    bottom,
+    one,
+    ranked,
+    second,
+    secondValue,
+    pairA,
+    pairB,
+    intro,
+    figure,
+  };
+}
+
+function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = code(unit);
+  const {
+    theme,
+    scale,
+    total,
+    picked,
+    values,
+    max,
+    min,
+    top,
+    bottom,
+    one,
+    second,
+    secondValue,
+    pairA,
+    pairB,
+    intro,
+    figure,
+  } = barData(unit, rng);
 
   if (c === "1-5-1") {
     if (intBetween(rng, 0, 1) === 0) {
@@ -1442,6 +3753,843 @@ function saleFigure(c: SaleCombo): Record<string, unknown> {
   return fig("chartPair", { charts: saleChartSpecs(c).map((x) => x.spec) });
 }
 
+/* ──────────────── 1-5-3 난이도 4단 (D-72, 셋째 파일럿) ────────────────
+ *
+ * 축은 D-72 확정본 그대로다 — 소단원이 달라도 **같은 잣대**:
+ *   연산 절차 한 번 · 기본 식을 스스로 세움 · 응용 두 단계(다른 개념 결합) · 심화 역산.
+ * 자료형만 **1단이 「계산」이 아니라 「값 읽기」**다(D-72 ⑶).
+ *
+ * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로로 그대로 둔다.** 여기 넷은
+ * 별개 핸들러다 — 재료(`barData`·`buildSaleCombo`)만 같이 쓴다.
+ */
+
+/**
+ * **1단 연산 — 값 읽기.** 막대 하나를 눈금으로 읽으면 끝난다(계산 없음).
+ *
+ * ⚠️ **원장님 확정 2026-08-23: 「결합 그래프에서」.** 1-5-3 의 값 읽기는 단일 막대그래프가
+ * 아니라 **이 소단원 고유 소재(판매 결합 두 그래프)**에서 읽는다. 그래야 1-5-1
+ * 「막대그래프 알아보기」의 값 읽기와 **확실히 갈린다** — 소재가 다르고, 읽을 그래프를
+ * 둘 중에서 골라야 한다. 절차는 여전히 **한 번**이라 1단이 맞다.
+ *
+ * ⚠️ 「제일 쉬운 문항에 큰 그림(짝, 364단위)이 실린다」는 비용은 **선택지에 명시된 채로
+ * 원장님이 고르신 것**이다. 구현에서 이 비용을 우회하지 말 것(그림을 한 장으로 줄이는 등) —
+ * 그러면 1-5-1 과 가르는 근거가 사라진다. 자료형 소단원 전체가 이 결정을 모범으로 삼는다.
+ */
+function tier53Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = buildSaleCombo(rng);
+  const at = intBetween(rng, 0, 2);
+  const label = c.theme.labels[at]!;
+  const name = `${label} ${c.theme.goods}`;
+  const intro =
+    `${c.theme.place}에서 오늘 팔린 종류별 ${josa(c.theme.goods, "의", "의")} 수와 ` +
+    `${c.theme.goods} 한 ${c.theme.counter}의 가격을 조사하여 나타낸 막대그래프입니다.`;
+  // 어느 그래프를 읽는지 씨앗으로 가른다 — 둘 다 «막대 하나 읽기»라 같은 단이다.
+  if (intBetween(rng, 0, 1) === 0) {
+    const v = c.counts[at]!;
+    return make(
+      unit,
+      `${intro} 오늘 ${josa(name, "은", "는")} 몇 ${c.theme.counter} 팔렸는가?`,
+      `${n(v)}${c.theme.counter}`,
+      `「팔린 수」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ${n(v)}에 닿아 있으므로 ` +
+        `${n(v)}${c.theme.counter}입니다.`,
+      saleFigure(c),
+    );
+  }
+  const v = c.prices[at]!;
+  return make(
+    unit,
+    `${intro} ${name} 한 ${c.theme.counter}의 가격은 얼마인가?`,
+    `${n(v)}원`,
+    `「한 ${c.theme.counter}의 가격」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ` +
+      `${n(v)}에 닿아 있으므로 ${n(v)}원입니다.`,
+    saleFigure(c),
+  );
+}
+
+/**
+ * **2단 기본 — 비교 한 겹.** 그래프에서 최대·최소를 «골라» 한 번 뺀다.
+ *
+ * 1단과 갈리는 것은 **고르는 일이 한 겹 붙는다**는 점이다 — 값이 발문에 없고, 어느 막대를
+ * 볼지 스스로 정해야 식이 선다. 뺄셈 자체는 한 번뿐이라 3단은 아니다.
+ */
+function tier53Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 몇 명 더 많은가?`,
+    `${n(d.max - d.min)}명`,
+    `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+      `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
+      `${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 이므로 ${n(d.max - d.min)}명 더 많습니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **3단 응용 — 다른 개념과 결합.** 그래프 읽기에 **나눗셈(몇 배)** 또는 **눈금 한 칸**(D-70)이
+ * 한 겹 더 붙는다. 두 단계를 밟아야 답이 나온다.
+ *
+ * ⚠️ 「몇 배」는 **나누어떨어질 때만** 묻는다. 막대 값은 걸음의 배수라 배수 관계가 늘 서지는
+ * 않는다 — 안 떨어지면 눈금 유형으로 간다(답이 자연수가 아닌 문항을 내지 않는다).
+ */
+function tier53Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const times = d.max / d.min;
+  if (Number.isInteger(times) && times >= 2 && intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}의 몇 배인가?`,
+      `${n(times)}배`,
+      `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+        `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
+        `${expr(`${d.max}\\div${d.min}=${times}`)} 이므로 ${n(times)}배입니다.`,
+      d.figure,
+    );
+  }
+  // 눈금 결합 — 「한 칸이 몇 명인가」를 먼저 알아야 「몇 칸인가」가 나온다(두 단계).
+  const cells = d.one.value / d.scale.step;
+  return make(
+    unit,
+    `${d.intro} ${josa(d.one.label, "의", "의")} 막대는 눈금 몇 칸인가?`,
+    `${n(cells)}칸`,
+    `세로 눈금 한 칸은 ${n(d.scale.step)}명이고 ${josa(d.one.label, "은", "는")} ` +
+      `${n(d.one.value)}명이므로 ${expr(`${d.one.value}\\div${d.scale.step}=${cells}`)} 칸입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **4단 심화 — 역산.** 그래프에 **없는** 값을 전체에서 되돌려 구한다.
+ *
+ * 계약(2026-08-23, elem-figures 확장): `values` 항목은 `{ label, value }` **또는**
+ * `{ label, unknown: true }` 이고 **unknown 항목에는 `value` 필드가 아예 없다.**
+ * 참값이 스펙에 실리지 않으므로 **그림이 답을 흘리는 것이 구조적으로 불가능**하다(D-66 ⑺).
+ * 점선 상자 높이는 값과 무관한 고정값이고 그건 렌더러 몫이다.
+ *
+ * ⚠️ **시안(186행)을 문자 그대로 옮기면 안 된다.** 거기 점선 상자는 `y=70 height=68` 로
+ * **참값과 똑같은 높이**여서, 눈금에 대고 윗변을 읽으면 답이 나온다 — 손그림 예시의 결함이다.
+ * 원장님 확정 대상은 「지워진 자리 + ? + 전체에서 역산」이라는 **형태**지 그 높이가 아니다.
+ *
+ * ⚠️ **숨기는 것은 최댓값이 아니다.** `yMax` 는 그려진 값에서 나오는데, 최댓값을 숨기면
+ * 축이 보이는 막대들보다 높이 서서 **숨긴 값의 크기를 귀띔한다.** 그래서 최댓값이 아닌
+ * 항목만 고르고, `yMax` 도 **보이는 값**으로만 계산한다 — 안 그리는 값이 축에 남으면 안 된다.
+ */
+function tier53Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  // 최댓값이 아닌 자리 중에서 고른다(위 ⚠️).
+  const hideable = d.values.filter((v) => v.value !== d.max);
+  const hidden = pick(rng, hideable);
+  const shown = d.values.filter((v) => v !== hidden);
+  const rest = shown.reduce((a, v) => a + v.value, 0);
+  const figure = fig("barChart", {
+    values: d.values.map((v) =>
+      v === hidden
+        ? { label: v.label, unknown: true }
+        : { label: v.label, value: v.value },
+    ),
+    // **보이는 값**으로만 축을 세운다 — 숨긴 값은 축에도 남기지 않는다.
+    yMax: Math.max(...shown.map((v) => v.value)) + 1,
+    yStep: d.scale.step,
+    yLabel: d.theme.unit,
+  });
+  return make(
+    unit,
+    `${d.intro} 조사한 학생이 모두 ${n(d.total)}명일 때, ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(hidden.value)}명`,
+    `그래프에 나타난 ${shown.map((v) => v.label).join(", ")}의 학생 수를 더하면 ` +
+      `${expr(`${shown.map((v) => v.value).join("+")}=${rest}`)} 입니다. ` +
+      `전체가 ${n(d.total)}명이므로 ${expr(`${d.total}-${rest}=${hidden.value}`)} 이고, ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 ${n(hidden.value)}명입니다.`,
+    figure,
+  );
+}
+
+/* ──────────── 1-5-1·1-5-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 자료형 잣대는 시안 그대로다 — 「값 읽기 → 비교 한 번 → 배·눈금 결합 → 역산」.
+ * 그런데 **표준이 이미 가져간 유형이 많다**(R5 — 표준↔갈래 같은 소단원 중복도 결함):
+ * 표준 1-5-1 이 값 읽기·최다 항목을, 표준 1-5-2 가 눈금 셋·순위·차를 갖고 있다.
+ * 그래서 소단원의 **정체성**으로 가른다:
+ *
+ *  · **1-5-1 「알아보기」** — 완성된 그래프에서. 1단은 값이 아니라 **그래프의 짜임**을
+ *    읽는다(가로·세로·막대 길이가 무엇을 나타내는가 — 큐브 개념 1 「막대그래프」의 유형.
+ *    값 읽기 그 자체는 표준 1-5-1 몫이다). 4단은 **지워진 막대**를 «다른 항목과의 관계»
+ *    단서로 역산한다 — 전체 합에서 역산하는 1-5-3 심화와 단서가 다르다
+ *    (큐브 실력 「막대그래프의 일부분을 보고 문제 해결하기」).
+ *  · **1-5-2 「그리기」** — 갈래 넷 전부 **표**(`barTable`)에서 출발한다(팀장 지침
+ *    2026-08-23: 1단은 「값 읽기」 소재를 옮겨 적지 말고 **그리기 방향의 절차 한 번**).
+ *    완성된 그래프를 읽는 표준 1-5-2 와 그림 종류부터 갈린다. 4단은 「그렸더니 몇 칸」
+ *    에서 눈금을 **되짚는다**(큐브 응용 「눈금 한 칸의 크기를 이용하여 다른 항목 구하기」).
+ *
+ * 재료는 셋 다 `barData` 하나다 — 소재는 `themeShare` 로 소단원끼리 겹치지 않는다.
+ */
+
+/**
+ * **1-5-1 1단 연산 — 그래프의 짜임 읽기.** 계산이 없고, 답이 발문에 적혀 있지 않다.
+ * 값 읽기(「몇 명인가」)·최다 항목은 표준 1-5-1 이 이미 내므로(R5) 여기서는 안 묻는다.
+ */
+function tier51Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    return make(
+      unit,
+      `${d.intro} 가로와 세로는 각각 무엇을 나타내는가?`,
+      `가로는 ${d.theme.item}, 세로는 학생 수`,
+      `가로는 조사한 ${josa(d.theme.item, "을", "를")} 나타내고, ` +
+        `세로는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다.`,
+      d.figure,
+    );
+  }
+  if (kind === 1) {
+    return make(
+      unit,
+      `${d.intro} 막대의 길이는 무엇을 나타내는가?`,
+      `${josa(d.theme.item, "을", "를")} 좋아하는 학생 수`,
+      `막대의 길이는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다. ` +
+        `막대가 길수록 좋아하는 학생이 많습니다.`,
+      d.figure,
+    );
+  }
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "을", "를")} 한눈에 찾으려면 ` +
+      `그래프에서 무엇을 비교하면 되는가?`,
+    "막대의 길이",
+    `막대의 길이가 학생 수를 나타내므로, 막대의 길이를 비교하면 가장 긴 막대가 ` +
+      `학생 수가 가장 많은 ${d.theme.item}입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 2단 기본 — 두 항목을 골라 합한다.** 값이 발문에 없고, 어느 막대 둘을 읽을지
+ * 스스로 정해 식을 세운다(덧셈 한 번). 차는 1-5-3(표준·기본)과 1-5-2 표준이 이미
+ * 가져갔으므로 **합**이다 — 전체 합(1-5-3 표준 「모두 몇 명」)과도 항목 둘이라 갈린다.
+ */
+function tier51Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  // 지면 순서(왼쪽부터)로 두 항목을 부른다 — 해설이 그래프와 같은 차례를 밟는다.
+  const [x, y] = d.values.filter((v) => v === d.pairA || v === d.pairB) as [
+    (typeof d.values)[number],
+    (typeof d.values)[number],
+  ];
+  const sum = x.value + y.value;
+  return make(
+    unit,
+    `${d.intro} ${josa(x.label, "과", "와")} ${josa(y.label, "을", "를")} 좋아하는 학생은 ` +
+      `모두 몇 명인가?`,
+    `${n(sum)}명`,
+    `${josa(x.label, "은", "는")} ${n(x.value)}명, ${josa(y.label, "은", "는")} ` +
+      `${n(y.value)}명입니다. ${expr(`${x.value}+${y.value}=${sum}`)} 이므로 모두 ${n(sum)}명입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 3단 응용 — 눈금 결합(두 단계).** 차를 구하고 눈금 한 칸으로 나눠 **칸**으로
+ * 답한다. 명 단위 차(1-5-2 표준·1-5-3)와 단위부터 다르고, 몇 배는 1-5-3 응용 몫이다.
+ */
+function tier51Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const diff = d.max - d.min;
+    const cells = diff / d.scale.step;
+    return make(
+      unit,
+      `${d.intro} 학생 수가 가장 많은 ${d.theme.item}의 막대는 가장 적은 ${d.theme.item}의 ` +
+        `막대보다 눈금 몇 칸 더 긴가?`,
+      `${n(cells)}칸`,
+      `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+        `${josa(d.bottom, "으로", "로")} ${n(d.min)}명이므로 차는 ` +
+        `${expr(`${d.max}-${d.min}=${diff}`)} 입니다. 세로 눈금 한 칸은 ${n(d.scale.step)}명이므로 ` +
+        `${expr(`${diff}\\div${d.scale.step}=${cells}`)} 칸 더 깁니다.`,
+      d.figure,
+    );
+  }
+  const [p, q] = pickDistinct(rng, d.values, 2) as [
+    (typeof d.values)[number],
+    (typeof d.values)[number],
+  ];
+  const big = p.value > q.value ? p : q;
+  const small = p.value > q.value ? q : p;
+  const diff = big.value - small.value;
+  const cells = diff / d.scale.step;
+  return make(
+    unit,
+    `${d.intro} ${josa(big.label, "의", "의")} 막대는 ${josa(small.label, "의", "의")} 막대보다 ` +
+      `눈금 몇 칸 더 긴가?`,
+    `${n(cells)}칸`,
+    `${josa(big.label, "은", "는")} ${n(big.value)}명, ${josa(small.label, "은", "는")} ` +
+      `${n(small.value)}명이므로 차는 ${expr(`${big.value}-${small.value}=${diff}`)} 입니다. ` +
+      `세로 눈금 한 칸은 ${n(d.scale.step)}명이므로 ${expr(`${diff}\\div${d.scale.step}=${cells}`)} 칸 더 깁니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **1-5-1 4단 심화 — 지워진 막대를 «관계» 단서로 역산.** 단서가 전체 합이면 1-5-3 심화와
+ * 같은 문항이 된다 — 여기서는 「다른 항목보다 $k$명 더 많다/적다」로 되짚는다.
+ *
+ * 스펙 계약은 1-5-3 심화(`tier53Deep`)와 같다: unknown 항목에 `value` 가 **아예 없고**
+ * (D-66 ⑺), 최댓값은 숨기지 않으며, `yMax` 는 **보이는 값**으로만 세운다.
+ */
+function tier51Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const hideable = d.values.filter((v) => v.value !== d.max);
+  const hidden = pick(rng, hideable);
+  const shown = d.values.filter((v) => v !== hidden);
+  const ref = pick(rng, shown);
+  const diff = hidden.value - ref.value;
+  const more = diff > 0;
+  const k = Math.abs(diff);
+  const figure = fig("barChart", {
+    values: d.values.map((v) =>
+      v === hidden
+        ? { label: v.label, unknown: true }
+        : { label: v.label, value: v.value },
+    ),
+    yMax: Math.max(...shown.map((v) => v.value)) + 1,
+    yStep: d.scale.step,
+    yLabel: d.theme.unit,
+  });
+  return make(
+    unit,
+    `${d.intro} ${josa(hidden.label, "을", "를")} 좋아하는 학생은 ` +
+      `${josa(ref.label, "을", "를")} 좋아하는 학생보다 ${n(k)}명 더 ${more ? "많다" : "적다"}고 ` +
+      `합니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(hidden.value)}명`,
+    `그래프에서 ${josa(ref.label, "을", "를")} 좋아하는 학생은 ${n(ref.value)}명입니다. ` +
+      `${expr(`${ref.value}${more ? "+" : "-"}${k}=${hidden.value}`)} 이므로 ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 ${n(hidden.value)}명입니다.`,
+    figure,
+  );
+}
+
+/** 그리기 갈래의 **표** — 완성된 그래프 대신 원자료를 보인다(「그리기」의 정체성). */
+function barTable(d: ReturnType<typeof barData>): Record<string, unknown> {
+  // 세로로 세운다 — 까닭은 `tableFigure` 머리글 참조(D-70 폭 가드).
+  // 여기는 이름이 「학생 수(명)」 하나뿐이라 **줄일 것이 없고 전치만으로 선다.**
+  return fig("table", {
+    headers: [d.theme.item, "학생 수(명)"],
+    rows: d.values.map((v) => [v.label, String(v.value)]),
+  });
+}
+
+/** 그리기 갈래의 첫 문장 — 그래프가 아니라 **표**를 가리킨다. */
+function drawIntro(d: ReturnType<typeof barData>): string {
+  return `${josa(d.scale.who, "이", "가")} 좋아하는 ${josa(d.theme.item, "을", "를")} 조사하여 나타낸 표입니다.`;
+}
+
+/**
+ * **1-5-2 1단 연산 — 값→칸 한 번(그리기 방향).** 표의 값 하나를 주어진 눈금으로 나눈다.
+ * 팀장 지침(2026-08-23): 자료형 1단의 「값 읽기」를 문자 그대로 옮기면 1-5-1 과 정체성이
+ * 겹친다 — 원장님 확정 취지는 «절차 한 번»이므로 그리기 방향의 나눗셈 한 번으로 간다.
+ */
+function tier52Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  const cells = d.one.value / s;
+  // 걸음이 $1$이면 「$5\div1=5$」가 지면에 나간다 — 식 없이 말로 푼다.
+  const how =
+    s === 1
+      ? `한 칸이 ${n(1)}명이므로 학생 수와 같은 ${n(cells)}칸으로 그립니다.`
+      : `한 칸이 ${n(s)}명이므로 ${expr(`${d.one.value}\\div${s}=${cells}`)} 칸으로 그립니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
+      `${n(s)}명으로 하면 ${josa(d.one.label, "의", "의")} 막대는 몇 칸으로 ` +
+      `그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(d.one.label, "은", "는")} ${n(d.one.value)}명입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 2단 기본 — 눈금 계획(스스로 고른다).** 표 전체를 훑어 가장 큰 수를 찾아야
+ * 답이 선다 — 값이 발문에 없다. 「적어도 몇 명까지」는 그리기의 단골 유형이다.
+ */
+function tier52Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금은 적어도 ` +
+        `몇 명까지 나타낼 수 있어야 하는가?`,
+      `${n(d.max)}명`,
+      `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. 세로 눈금은 ` +
+        `가장 큰 수까지 나타낼 수 있어야 하므로 적어도 ${n(d.max)}명까지 나타내야 합니다.`,
+      barTable(d),
+    );
+  }
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 길게 그려야 ` +
+      `하는 것은 어느 ${d.theme.item}인가?`,
+    d.top,
+    `막대의 길이는 학생 수를 나타내므로 학생 수가 가장 많은 ${josa(d.top, "의", "의")} ` +
+      `막대를 가장 길게 그려야 합니다. ${josa(d.top, "은", "는")} ${n(d.max)}명입니다.`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 3단 응용 — 눈금 계획 두 단계.** 표에서 값을 찾고(고르기) 눈금으로 나눈다 —
+ * 「적어도 몇 칸」과 「몇 칸 더 길게」 둘 다 찾기 + 나눗셈의 두 단계다.
+ */
+function tier52Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  if (intBetween(rng, 0, 1) === 0) {
+    const cells = d.max / s;
+    // 걸음 $1$이면 「\div1」 식이 지면에 나간다 — 말로 푼다(연산 갈래와 같은 이유).
+    const how =
+      s === 1
+        ? `한 칸이 ${n(1)}명이므로 눈금은 적어도 ${n(cells)}칸 있어야 합니다.`
+        : `한 칸이 ${n(s)}명이므로 눈금은 적어도 ${expr(`${d.max}\\div${s}=${cells}`)} 칸 있어야 합니다.`;
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
+        `${n(s)}명으로 하면 세로 눈금은 적어도 몇 칸 있어야 하는가?`,
+      `${n(cells)}칸`,
+      `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. ${how}`,
+      barTable(d),
+    );
+  }
+  const diff = d.pairA.value - d.pairB.value;
+  const cells = diff / s;
+  const how =
+    s === 1
+      ? `한 칸이 ${n(1)}명이므로 ${n(cells)}칸 더 길게 그려야 합니다.`
+      : `한 칸이 ${n(s)}명이므로 ${expr(`${diff}\\div${s}=${cells}`)} 칸 더 길게 그려야 합니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ${n(s)}명으로 ` +
+      `하면 ${josa(d.pairA.label, "의", "의")} 막대는 ${josa(d.pairB.label, "의", "의")} 막대보다 ` +
+      `몇 칸 더 길게 그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(d.pairA.label, "은", "는")} ${n(d.pairA.value)}명, ` +
+      `${josa(d.pairB.label, "은", "는")} ${n(d.pairB.value)}명이므로 차는 ` +
+      `${expr(`${d.pairA.value}-${d.pairB.value}=${diff}`)} 입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * **1-5-2 4단 심화 — 눈금 역산.** 「그렸더니 몇 칸」에서 눈금 한 칸을 되짚고, 되짚은
+ * 눈금을 다른 항목에 적용한다. 전체 합 역산(1-5-3 심화)과 단서가 다르다.
+ *
+ * ⚠️ 칸 수가 $1$이면 역산이 자명해진다(한 칸 = 그 값). 값 넷은 서로 다른 걸음의
+ * 배수이므로 칸 수 $2$ 이상인 항목이 항상 셋 이상 있다 — 거기서만 고른다.
+ */
+function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  const cand = d.values.filter((v) => v.value / s >= 2);
+  const x = pick(rng, cand);
+  const c = x.value / s;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${drawIntro(d)} 표를 보고 막대그래프를 그렸더니 ${josa(x.label, "의", "의")} 막대가 ` +
+        `${n(c)}칸이 되었습니다. 세로 눈금 한 칸을 몇 명으로 한 것인가?`,
+      `${n(s)}명`,
+      `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명입니다. ${n(x.value)}명을 ` +
+        `${n(c)}칸으로 나타냈으므로 세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명으로 ` +
+        `한 것입니다.`,
+      barTable(d),
+    );
+  }
+  const y = pick(
+    rng,
+    d.values.filter((v) => v !== x),
+  );
+  const cells = y.value / s;
+  const how =
+    s === 1
+      ? `${josa(y.label, "은", "는")} ${n(y.value)}명이므로 ${n(cells)}칸으로 그려야 합니다.`
+      : `${josa(y.label, "은", "는")} ${n(y.value)}명이므로 ${expr(`${y.value}\\div${s}=${cells}`)} 칸으로 그려야 합니다.`;
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 ${josa(x.label, "의", "의")} 막대를 ${n(c)}칸으로 그렸습니다. ` +
+      `같은 눈금으로 ${josa(y.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
+    `${n(cells)}칸`,
+    `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명인데 그 막대가 ${n(c)}칸이므로 ` +
+      `세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명입니다. ${how}`,
+    barTable(d),
+  );
+}
+
+/**
+ * 초4 난이도 갈래 등록 (D-72 · 셋째 파일럿 + 1-5 확대 2026-08-23).
+ *
+ * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 것들은 별개다.
+ */
+export const G4_TIERS: ElemTierMap = {
+  "초4|1-1-1": {
+    연산: tier11Calc,
+    기본: tier11Basic,
+    응용: tier11Apply,
+    심화: tier11Deep,
+  },
+  "초4|1-1-2": {
+    연산: tier12Calc,
+    기본: tier12Basic,
+    응용: tier12Apply,
+    심화: tier12Deep,
+  },
+  "초4|1-1-3": {
+    연산: tier13Calc,
+    기본: tier13Basic,
+    응용: tier13Apply,
+    심화: tier13Deep,
+  },
+  "초4|1-1-4": {
+    연산: tier14Calc,
+    기본: tier14Basic,
+    응용: tier14Apply,
+    심화: tier14Deep,
+  },
+  "초4|1-1-5": {
+    연산: tier15Calc,
+    기본: tier15Basic,
+    응용: tier15Apply,
+    심화: tier15Deep,
+  },
+  "초4|1-1-6": {
+    연산: tier16Calc,
+    기본: tier16Basic,
+    응용: tier16Apply,
+    심화: tier16Deep,
+  },
+  "초4|1-1-7": {
+    연산: tier17Calc,
+    기본: tier17Basic,
+    응용: tier17Apply,
+    심화: tier17Deep,
+  },
+  "초4|1-2-1": {
+    연산: tier21Calc,
+    기본: tier21Basic,
+    응용: tier21Apply,
+    심화: tier21Deep,
+  },
+  "초4|1-2-2": {
+    연산: tier22Calc,
+    기본: tier22Basic,
+    응용: tier22Apply,
+    심화: tier22Deep,
+  },
+  "초4|1-2-3": {
+    연산: tier23Calc,
+    기본: tier23Basic,
+    응용: tier23Apply,
+    심화: tier23Deep,
+  },
+  "초4|1-2-4": {
+    연산: tier24Calc,
+    기본: tier24Basic,
+    응용: tier24Apply,
+    심화: tier24Deep,
+  },
+  "초4|1-2-5": {
+    연산: tier25Calc,
+    기본: tier25Basic,
+    응용: tier25Apply,
+    심화: tier25Deep,
+  },
+  "초4|1-2-6": {
+    연산: tier26Calc,
+    기본: tier26Basic,
+    응용: tier26Apply,
+    심화: tier26Deep,
+  },
+  "초4|1-3-1": {
+    연산: tier31Calc,
+    기본: tier31Basic,
+    응용: tier31Apply,
+    심화: tier31Deep,
+  },
+  "초4|1-3-2": {
+    연산: tier32Calc,
+    기본: tier32Basic,
+    응용: tier32Apply,
+    심화: tier32Deep,
+  },
+  "초4|1-3-3": {
+    연산: tier33Calc,
+    기본: tier33Basic,
+    응용: tier33Apply,
+    심화: tier33Deep,
+  },
+  "초4|1-3-4": {
+    연산: tier34Calc,
+    기본: tier34Basic,
+    응용: tier34Apply,
+    심화: tier34Deep,
+  },
+  "초4|1-3-5": {
+    연산: tier35Calc,
+    기본: tier35Basic,
+    응용: tier35Apply,
+    심화: tier35Deep,
+  },
+  "초4|1-3-6": {
+    연산: tier36Calc,
+    기본: tier36Basic,
+    응용: tier36Apply,
+    심화: tier36Deep,
+  },
+  "초4|1-3-7": {
+    연산: tier37Calc,
+    기본: tier37Basic,
+    응용: tier37Apply,
+    심화: tier37Deep,
+  },
+  "초4|1-4-1": {
+    연산: tier41Calc,
+    기본: tier41Basic,
+    응용: tier41Apply,
+    심화: tier41Deep,
+  },
+  "초4|1-4-2": {
+    연산: tier42Calc,
+    기본: tier42Basic,
+    응용: tier42Apply,
+    심화: tier42Deep,
+  },
+  "초4|1-4-3": {
+    연산: tier43Calc,
+    기본: tier43Basic,
+    응용: tier43Apply,
+    심화: tier43Deep,
+  },
+  "초4|1-4-4": {
+    연산: tier44Calc,
+    기본: tier44Basic,
+    응용: tier44Apply,
+    심화: tier44Deep,
+  },
+  "초4|1-6-1": {
+    연산: tier61Calc,
+    기본: tier61Basic,
+    응용: tier61Apply,
+    심화: tier61Deep,
+  },
+  "초4|1-6-2": {
+    연산: tier62Calc,
+    기본: tier62Basic,
+    응용: tier62Apply,
+    심화: tier62Deep,
+  },
+  "초4|1-6-3": {
+    연산: tier63Calc,
+    기본: tier63Basic,
+    응용: tier63Apply,
+    심화: tier63Deep,
+  },
+  "초4|1-6-4": {
+    연산: tier64Calc,
+    기본: tier64Basic,
+    응용: tier64Apply,
+    심화: tier64Deep,
+  },
+  "초4|1-6-5": {
+    연산: tier65Calc,
+    기본: tier65Basic,
+    응용: tier65Apply,
+    심화: tier65Deep,
+  },
+  "초4|1-5-1": {
+    연산: tier51Calc,
+    기본: tier51Basic,
+    응용: tier51Apply,
+    심화: tier51Deep,
+  },
+  "초4|1-5-2": {
+    연산: tier52Calc,
+    기본: tier52Basic,
+    응용: tier52Apply,
+    심화: tier52Deep,
+  },
+  "초4|1-5-3": {
+    연산: tier53Calc,
+    기본: tier53Basic,
+    응용: tier53Apply,
+    심화: tier53Deep,
+  },
+  "초4|2-1-1": {
+    연산: tier211Calc,
+    기본: tier211Basic,
+    응용: tier211Apply,
+    심화: tier211Deep,
+  },
+  "초4|2-1-2": {
+    연산: tier212Calc,
+    기본: tier212Basic,
+    응용: tier212Apply,
+    심화: tier212Deep,
+  },
+  "초4|2-1-3": {
+    연산: tier213Calc,
+    기본: tier213Basic,
+    응용: tier213Apply,
+    심화: tier213Deep,
+  },
+  "초4|2-1-4": {
+    연산: tier214Calc,
+    기본: tier214Basic,
+    응용: tier214Apply,
+    심화: tier214Deep,
+  },
+  "초4|2-2-1": {
+    연산: tier221Calc,
+    기본: tier221Basic,
+    응용: tier221Apply,
+    심화: tier221Deep,
+  },
+  "초4|2-2-2": {
+    연산: tier222Calc,
+    기본: tier222Basic,
+    응용: tier222Apply,
+    심화: tier222Deep,
+  },
+  "초4|2-2-3": {
+    연산: tier223Calc,
+    기본: tier223Basic,
+    응용: tier223Apply,
+    심화: tier223Deep,
+  },
+  "초4|2-2-4": {
+    연산: tier224Calc,
+    기본: tier224Basic,
+    응용: tier224Apply,
+    심화: tier224Deep,
+  },
+  "초4|2-2-5": {
+    연산: tier225Calc,
+    기본: tier225Basic,
+    응용: tier225Apply,
+    심화: tier225Deep,
+  },
+  "초4|2-3-1": {
+    연산: tier231Calc,
+    기본: tier231Basic,
+    응용: tier231Apply,
+    심화: tier231Deep,
+  },
+  "초4|2-3-2": {
+    연산: tier232Calc,
+    기본: tier232Basic,
+    응용: tier232Apply,
+    심화: tier232Deep,
+  },
+  "초4|2-3-3": {
+    연산: tier233Calc,
+    기본: tier233Basic,
+    응용: tier233Apply,
+    심화: tier233Deep,
+  },
+  "초4|2-3-4": {
+    연산: tier234Calc,
+    기본: tier234Basic,
+    응용: tier234Apply,
+    심화: tier234Deep,
+  },
+  "초4|2-3-5": {
+    연산: tier235Calc,
+    기본: tier235Basic,
+    응용: tier235Apply,
+    심화: tier235Deep,
+  },
+  "초4|2-3-6": {
+    연산: tier236Calc,
+    기본: tier236Basic,
+    응용: tier236Apply,
+    심화: tier236Deep,
+  },
+  "초4|2-3-7": {
+    연산: tier237Calc,
+    기본: tier237Basic,
+    응용: tier237Apply,
+    심화: tier237Deep,
+  },
+  "초4|2-4-2": {
+    연산: tier242Calc,
+    기본: tier242Basic,
+    응용: tier242Apply,
+    심화: tier242Deep,
+  },
+  "초4|2-4-3": {
+    연산: tier243Calc,
+    기본: tier243Basic,
+    응용: tier243Apply,
+    심화: tier243Deep,
+  },
+  "초4|2-4-4": {
+    연산: tier244Calc,
+    기본: tier244Basic,
+    응용: tier244Apply,
+    심화: tier244Deep,
+  },
+  "초4|2-4-5": {
+    연산: tier245Calc,
+    기본: tier245Basic,
+    응용: tier245Apply,
+    심화: tier245Deep,
+  },
+  "초4|2-4-6": {
+    연산: tier246Calc,
+    기본: tier246Basic,
+    응용: tier246Apply,
+    심화: tier246Deep,
+  },
+  "초4|2-4-7": {
+    연산: tier247Calc,
+    기본: tier247Basic,
+    응용: tier247Apply,
+    심화: tier247Deep,
+  },
+  "초4|2-6-1": {
+    연산: tier261Calc,
+    기본: tier261Basic,
+    응용: tier261Apply,
+    심화: tier261Deep,
+  },
+  "초4|2-6-2": {
+    연산: tier262Calc,
+    기본: tier262Basic,
+    응용: tier262Apply,
+    심화: tier262Deep,
+  },
+  "초4|2-6-3": {
+    연산: tier263Calc,
+    기본: tier263Basic,
+    응용: tier263Apply,
+    심화: tier263Deep,
+  },
+  "초4|2-5-1": {
+    연산: tier251Calc,
+    기본: tier251Basic,
+    응용: tier251Apply,
+    심화: tier251Deep,
+  },
+  "초4|2-5-2": {
+    연산: tier252Calc,
+    기본: tier252Basic,
+    응용: tier252Apply,
+    심화: tier252Deep,
+  },
+  "초4|2-5-3": {
+    연산: tier253Calc,
+    기본: tier253Basic,
+    응용: tier253Apply,
+    심화: tier253Deep,
+  },
+};
+
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
 
 function pattern(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -1556,6 +4704,447 @@ function pattern(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 1-6 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 그림 없이 수·식 배열로만 간다. 배열 갈래의 유일성(주어진 항으로 규칙이 하나로
+ * 서는가)은 시험이 {등차·등비·증가증가} 를 전부 대 보는 반증 형태로 잠근다.
+ * 신기한 계산식 가족(37×3k 등)의 해설은 곱셈을 다시 하는 것이 아니라 패턴으로
+ * 유도한다 — 결과의 자릿수는 표시용이다(규모 상한 99000).
+ */
+
+/** 몇째의 한글 서수 — 답·발문에 수 없이 쓴다. */
+const ORDINAL = [
+  "첫째",
+  "둘째",
+  "셋째",
+  "넷째",
+  "다섯째",
+  "여섯째",
+  "일곱째",
+  "여덟째",
+  "아홉째",
+] as const;
+
+/** **1-6-1 1단 연산 — 줄어드는 등차.** 표준(증가 둘)에 없는 감소 배열. */
+function tier61Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 50, 99);
+  const t = [a, a - d, a - d * 2, a - d * 3];
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓았습니다. 다섯째에 올 수를 쓰시오. ` +
+      `${t.map((v) => n(v)).join(", ")}`,
+    n(a - d * 4),
+    `${n(d)}씩 작아지는 규칙입니다. ${expr(`${a - d * 3}-${d}=${a - d * 4}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 2단 기본 — 가운데가 비었다.** 표준은 늘 끝이 빈다. */
+function tier61Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 3, 40);
+  return make(
+    unit,
+    `수의 배열에서 규칙을 찾아 가운데 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${n(a)}, ${n(a + d)}, ${expr("\\square")}, ${n(a + d * 3)}, ${n(a + d * 4)}`,
+    n(a + d * 2),
+    `${n(d)}씩 커지는 규칙입니다. ${expr(`${a + d}+${d}=${a + d * 2}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 3단 응용 — 멀리 있는 항.** 규칙을 찾아 여러 번 잇는다(두 단계). */
+function tier61Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const d = intBetween(rng, 2, 9);
+    const a = intBetween(rng, 3, 40);
+    return make(
+      unit,
+      `규칙에 따라 수를 늘어놓을 때 여덟째에 올 수를 쓰시오. ` +
+        `${n(a)}, ${n(a + d)}, ${n(a + d * 2)}, ${n(a + d * 3)}`,
+      n(a + d * 7),
+      `${n(d)}씩 커지는 규칙입니다. 여덟째 수는 첫째 수보다 ${n(d)}씩 ${n(7)}번 큰 수이므로 ` +
+        `${expr(`${a}+${d}\\times7=${a + d * 7}`)} 입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓을 때 여섯째에 올 수를 쓰시오. ` +
+      `${n(a)}, ${n(a * 2)}, ${n(a * 4)}, ${n(a * 8)}`,
+    n(a * 32),
+    `${n(2)}배씩 커지는 규칙입니다. ${expr(`${a * 8}\\times2=${a * 16}`)}, ` +
+      `${expr(`${a * 16}\\times2=${a * 32}`)} 입니다.`,
+  );
+}
+
+/** **1-6-1 4단 심화 — 역산·조건.** 다섯째에서 첫째를 되짚거나, 처음으로 넘는 째를 찾는다. */
+function tier61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 3, 40);
+    const fifth = a + d * 4;
+    return make(
+      unit,
+      `${n(d)}씩 커지는 규칙으로 수를 늘어놓았습니다. 다섯째 수가 ${josaNum(fifth, "이", "가")} ` +
+        `되었다면 첫째 수는 얼마인가?`,
+      n(a),
+      `다섯째 수는 첫째 수보다 ${n(d)}씩 ${n(4)}번 큰 수입니다. ` +
+        `${expr(`${fifth}-${d}\\times4=${a}`)} 이므로 첫째 수는 ${n(a)}입니다.`,
+    );
+  }
+  const a = intBetween(rng, 3, 20);
+  const k = intBetween(rng, 5, 9);
+  const L = a + d * (k - 1) - intBetween(rng, 1, d - 1 || 1);
+  const terms = [a, a + d, a + d * 2, a + d * 3];
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓을 때 처음으로 ${josaNum(L, "을", "를")} 넘는 수는 몇째에 ` +
+      `오는가? ${terms.map((v) => n(v)).join(", ")}`,
+    ORDINAL[k - 1]!,
+    `${n(d)}씩 커지는 규칙입니다. ${ORDINAL[k - 2]!} 수는 ${expr(`${a}+${d}\\times${k - 2}=${a + d * (k - 2)}`)} 로 ` +
+      `${n(L)}보다 크지 않고, ${ORDINAL[k - 1]!} 수는 ${expr(`${a}+${d}\\times${k - 1}=${a + d * (k - 1)}`)} 로 ` +
+      `처음으로 ${josaNum(L, "을", "를")} 넘습니다.`,
+  );
+}
+
+/** **1-6-2 1단 연산 — 늘어나는 개수 읽기.** 표준(몇째의 개수)과 묻는 것이 다르다. */
+function tier62Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 모형이 몇 개씩 늘어나는 규칙인지 쓰시오.`,
+    `${n(d)}개씩`,
+    `${expr(`${s + d}-${s}=${d}`)} 이고 ${expr(`${s + d * 2}-${s + d}=${d}`)} 이므로 ` +
+      `${n(d)}개씩 늘어나는 규칙입니다.`,
+  );
+}
+
+/**
+ * **1-6-2 2단 기본 — 늘어나는 개수가 1개씩 커지는 배열.** 표준의 제곱수·등차와
+ * 셋째 가족이다(계단을 넓혀 쌓는 꼴).
+ */
+function tier62Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const inc = intBetween(rng, 2, 4);
+  const t2 = s + inc;
+  const t3 = t2 + inc + 1;
+  const askFive = intBetween(rng, 0, 1) === 0;
+  const t4 = t3 + inc + 2;
+  const t5 = t4 + inc + 3;
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(t2)}개, ` +
+      `셋째는 ${n(t3)}개입니다. ${askFive ? "다섯째" : "넷째"}는 몇 개인가?`,
+    `${n(askFive ? t5 : t4)}개`,
+    `늘어나는 개수가 ${n(inc)}개, ${n(inc + 1)}개로 ${n(1)}개씩 커지는 규칙입니다. ` +
+      `${expr(`${t3}+${inc + 2}=${t4}`)}${askFive ? ` 이고 ${expr(`${t4}+${inc + 3}=${t5}`)}` : ""} 이므로 ` +
+      `${askFive ? "다섯째" : "넷째"}는 ${n(askFive ? t5 : t4)}개입니다.`,
+  );
+}
+
+/** **1-6-2 3단 응용 — 개수에서 몇째를 되찾는다(두 단계).** */
+function tier62Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  const k = intBetween(rng, 5, 9);
+  const target = s + d * (k - 1);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 모형이 ${n(target)}개인 것은 몇째인가?`,
+    ORDINAL[k - 1]!,
+    `${n(d)}개씩 늘어나는 규칙입니다. 첫째보다 ${expr(`${target}-${s}=${target - s}`)} 개 많고 ` +
+      `${expr(`${target - s}\\div${d}=${k - 1}`)} 이므로 ${n(d)}개씩 ${n(k - 1)}번 늘어난 ` +
+      `${ORDINAL[k - 1]!}입니다.`,
+  );
+}
+
+/** **1-6-2 4단 심화 — 첫째부터 넷째까지의 합.** 규칙을 잇고 더하는 다단계. */
+function tier62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  const t = [s, s + d, s + d * 2, s + d * 3];
+  const total = t[0]! + t[1]! + t[2]! + t[3]!;
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
+      `셋째는 ${n(s + d * 2)}개입니다. 첫째부터 넷째까지 놓은 모형은 모두 몇 개인가?`,
+    `${n(total)}개`,
+    `${n(d)}개씩 늘어나므로 넷째는 ${expr(`${t[2]}+${d}=${t[3]}`)} 개입니다. ` +
+      `${expr(`${t[0]}+${t[1]}+${t[2]}+${t[3]}=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+  );
+}
+
+/** 1-6-3 갈래의 덧셈식 배열 재료 — 나머지 u 를 표준(1~6)과 다른 띠(11~76)에 둔다. */
+function addRows(rng: Rng) {
+  const u = intBetween(rng, 11, 76);
+  const left = (k: number) => 100 * k + u;
+  const right = (k: number) => 100 * k + u + 1;
+  const sum = (k: number) => left(k) + right(k);
+  return { left, right, sum };
+}
+
+/** **1-6-3 1단 연산 — 뺄셈식 배열.** 표준(덧셈 행)에 없는 갈래다. */
+function tier63Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 6, 9) * 100 + intBetween(rng, 11, 89);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${m}-100=${m - 100}`)}, ${expr(`${m}-200=${m - 200}`)}, ` +
+      `${expr(`${m}-300=\\square`)}`,
+    n(m - 300),
+    `빼는 수가 ${n(100)}씩 커지므로 차는 ${n(100)}씩 작아집니다. ` +
+      `${expr(`${m - 200}-100=${m - 300}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 2단 기본 — 다음에 올 계산식 쓰기.** 답이 수가 아니라 **식**이다. */
+function tier63Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 넷째에 올 계산식을 쓰시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    expr(`${r.left(4)}+${r.right(4)}=${r.sum(4)}`),
+    `더하는 두 수가 각각 ${n(100)}씩 커지고 합은 ${n(200)}씩 커집니다. 넷째 계산식은 ` +
+      `${expr(`${r.left(4)}+${r.right(4)}=${r.sum(4)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 3단 응용 — 여섯째의 합(멀리).** 규칙을 찾아 여러 번 잇는다. */
+function tier63Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 여섯째 계산식의 합을 구하시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(r.sum(6)),
+    `합이 ${n(200)}씩 커지는 규칙입니다. 여섯째 합은 첫째 합보다 ${n(200)}씩 ${n(5)}번 큰 수이므로 ` +
+      `${expr(`${r.sum(1)}+200\\times5=${r.sum(6)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-3 4단 심화 — 합에서 몇째를 되찾는다(역산).** */
+function tier63Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  const k = intBetween(rng, 5, 9);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 합이 ${josaNum(r.sum(k), "이", "가")} 되는 계산식은 ` +
+      `몇째인지 쓰시오. ` +
+      `${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ` +
+      `${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ` +
+      `${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    ORDINAL[k - 1]!,
+    `합이 ${n(200)}씩 커지는 규칙입니다. ${expr(`${r.sum(k)}-${r.sum(1)}=${r.sum(k) - r.sum(1)}`)} 이고 ` +
+      `${expr(`${r.sum(k) - r.sum(1)}\\div200=${k - 1}`)} 이므로 첫째에서 ${n(k - 1)}번 커진 ` +
+      `${ORDINAL[k - 1]!}입니다.`,
+  );
+}
+
+/** **1-6-4 1단 연산 — 나누어지는 수가 10배면 몫도 10배.** 표준(곱셈 쪽)의 나눗셈 짝. */
+function tier64Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}\\div${b}=${q}`)}, ${expr(`${a * 10}\\div${b}=${q * 10}`)}, ` +
+      `${expr(`${a * 100}\\div${b}=\\square`)}`,
+    n(q * 100),
+    `나누어지는 수가 ${n(10)}배가 되면 몫도 ${n(10)}배가 됩니다. ` +
+      `${expr(`${q * 10}\\times10=${q * 100}`)} 입니다.`,
+  );
+}
+
+/** **1-6-4 2단 기본 — 합이 변하지 않는 배열.** 표준 ①(차 불변)의 덧셈 짝. */
+function tier64Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 60);
+  const b = intBetween(rng, 33, 80);
+  const s = a + b;
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=${s}`)}, ${expr(`${a + 10}+${b - 10}=${s}`)}, ` +
+      `${expr(`${a + 20}+${b - 20}=\\square`)}`,
+    n(s),
+    `더하는 두 수가 ${n(10)}씩 커지고 ${n(10)}씩 작아지면 합은 변하지 않습니다.`,
+  );
+}
+
+/** 신기한 계산식 가족 — 결과가 패턴으로 서는 것만. k 는 몇째(3~5). */
+const WONDER_FAMILIES = [
+  {
+    name: "삼칠",
+    row: (k: number) => `37\\times${3 * k}=${111 * k}`,
+    lhs: (k: number) => `37\\times${3 * k}`,
+    value: (k: number) => 111 * k,
+    why: `곱하는 수가 ${"$3$"}씩 커질 때마다 결과는 ${"$111$"}씩 커집니다`,
+  },
+  {
+    name: "팔",
+    row: (k: number) =>
+      `${"123456789".slice(0, k)}\\times8+${k}=${"987654321".slice(0, k)}`,
+    lhs: (k: number) => `${"123456789".slice(0, k)}\\times8+${k}`,
+    value: (k: number) => Number("987654321".slice(0, k)),
+    why: `앞 수가 한 자리씩 길어질 때마다 결과도 ${"$9$"}부터 한 자리씩 길어집니다`,
+  },
+  {
+    name: "구",
+    row: (k: number) =>
+      `${"123456789".slice(0, k)}\\times9+${k + 1}=${"1".repeat(k + 1)}`,
+    lhs: (k: number) => `${"123456789".slice(0, k)}\\times9+${k + 1}`,
+    value: (k: number) => Number("1".repeat(k + 1)),
+    why: `앞 수가 한 자리씩 길어질 때마다 결과의 ${"$1$"}이 하나씩 늘어납니다`,
+  },
+] as const;
+
+/** **1-6-4 3단 응용 — 신기한 계산식의 다음 줄.** 계산이 아니라 패턴으로 잇는다. */
+function tier64Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const fam = pick(rng, WONDER_FAMILIES);
+  // ×9 가족은 다섯째가 111111 로 규모 띠(99000)를 넘는다 — 넷째까지만(팀장 2026-08-23).
+  const k = fam.name === "구" ? intBetween(rng, 3, 4) : intBetween(rng, 3, 5);
+  const shown = Array.from({ length: k - 1 }, (_, i) => expr(fam.row(i + 1)));
+  // 발문이 (가족, k) 로만 정해지면 변형이 여덟뿐이다(실측) — 묻는 문형을 두 벌로 가른다.
+  const ask =
+    intBetween(rng, 0, 1) === 0
+      ? `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. `
+      : `규칙적인 계산식입니다. ${expr("\\square")} 에 알맞은 수를 구하시오. `;
+  return make(
+    unit,
+    `${ask}${shown.join(", ")}, ${expr(`${fam.lhs(k)}=\\square`)}`,
+    n(fam.value(k)),
+    `${fam.why}. ${expr(`${fam.lhs(k)}=${fam.value(k)}`)} 입니다.`,
+  );
+}
+
+/** **1-6-4 4단 심화 — 결과에서 식을 되찾는다(역산, 답이 식).** */
+function tier64Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 묻는 문형을 두 벌로 — ×9 가족은 목표값이 두 가지뿐이라 문형이 하나면 변형이 좁다.
+  const ask = (v: number) =>
+    intBetween(rng, 0, 1) === 0
+      ? `계산식의 배열에서 규칙을 찾아 계산 결과가 ${josaNum(v, "이", "가")} 되는 계산식을 쓰시오. `
+      : `규칙적인 계산식입니다. 계산 결과가 ${josaNum(v, "이", "가")} 되는 계산식을 쓰시오. `;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 4, 8);
+    // 보이는 줄 수도 씨앗으로 가른다 — 목표값만 갈리면 변형이 좁다(실측 6/16).
+    const rows = intBetween(rng, 2, 3);
+    const shown = Array.from({ length: rows }, (_, i) =>
+      expr(`37\\times${3 * (i + 1)}=${111 * (i + 1)}`),
+    ).join(", ");
+    return make(
+      unit,
+      `${ask(111 * k)}${shown}`,
+      expr(`37\\times${3 * k}=${111 * k}`),
+      `결과가 ${n(111)}씩 커질 때 곱하는 수는 ${n(3)}씩 커집니다. ` +
+        `${expr(`111\\times${k}=${111 * k}`)} 이므로 ${expr(`37\\times${3 * k}=${111 * k}`)} 입니다.`,
+    );
+  }
+  // ×9 가족은 넷째까지(11111) — 다섯째 111111 은 규모 띠 밖.
+  const k = intBetween(rng, 3, 4);
+  const ones = "1".repeat(k + 1);
+  const rows = k === 3 ? 2 : intBetween(rng, 2, 3);
+  const shown = Array.from({ length: rows }, (_, i) =>
+    expr(
+      `${"123456789".slice(0, i + 1)}\\times9+${i + 2}=${"1".repeat(i + 2)}`,
+    ),
+  ).join(", ");
+  return make(
+    unit,
+    `${ask(Number(ones))}${shown}`,
+    expr(`${"123456789".slice(0, k)}\\times9+${k + 1}=${ones}`),
+    `결과의 ${n(1)}이 하나씩 늘 때 앞 수도 한 자리씩 길어집니다. ` +
+      `${expr(`${"123456789".slice(0, k)}\\times9+${k + 1}=${ones}`)} 입니다.`,
+  );
+}
+
+/** **1-6-5 1단 연산 — 옳은 식 판단.** 절반은 어긋난 식이다. */
+function tier65Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 48);
+  const b = intBetween(rng, 12, 48);
+  const gap = intBetween(rng, 2, 9);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const rightB = ok ? b - gap : b - gap + pick(rng, [-2, -1, 1, 2]);
+  return make(
+    unit,
+    `다음 식은 옳은가? 옳으면 '예', 옳지 않으면 '아니요'로 답하시오. ` +
+      `${expr(`${a}+${b}=${a + gap}+${rightB}`)}`,
+    ok ? "예" : "아니요",
+    `왼쪽은 ${expr(`${a}+${b}=${a + b}`)} 이고 오른쪽은 ${expr(`${a + gap}+${rightB}=${a + gap + rightB}`)} 입니다. ` +
+      `${ok ? "두 값이 같으므로 옳은 식입니다." : "두 값이 다르므로 옳지 않은 식입니다."}`,
+  );
+}
+
+/** **1-6-5 2단 기본 — 세 수를 묶어 등호를 세운다.** */
+function tier65Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 40);
+  const b = intBetween(rng, 11, 40);
+  const c3 = intBetween(rng, 11, 40);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}+${c3}=${a}+\\square`)}`,
+    n(b + c3),
+    `양쪽에 ${josaNum(a, "이", "가")} 똑같이 있으므로 ${expr("\\square")} 는 나머지 두 수의 ` +
+      `합입니다. ${expr(`${b}+${c3}=${b + c3}`)} 입니다.`,
+  );
+}
+
+/** **1-6-5 3단 응용 — 지름길이 없는 일반형(두 단계).** 합을 구해 되뺀다. */
+function tier65Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 48);
+  const b = intBetween(rng, 15, 48);
+  const s = a + b;
+  const c3 = intBetween(rng, 11, s - 11);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=${c3}+\\square`)}`,
+    n(s - c3),
+    `왼쪽의 합은 ${expr(`${a}+${b}=${s}`)} 입니다. ${expr(`${s}-${c3}=${s - c3}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(s - c3)}입니다.`,
+  );
+}
+
+/** **1-6-5 4단 심화 — 혼합 역산.** 등호 건너의 뺄셈·곱셈을 되짚는다. */
+function tier65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 15, 48);
+    const b = intBetween(rng, 15, 48);
+    const c3 = intBetween(rng, 11, 40);
+    return make(
+      unit,
+      `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+        `${expr(`${a}+${b}=\\square-${c3}`)}`,
+      n(a + b + c3),
+      `왼쪽의 합은 ${expr(`${a}+${b}=${a + b}`)} 입니다. ${expr("\\square")} 에서 ` +
+        `${josaNum(c3, "을", "를")} 뺀 값이 ${josaNum(a + b, "과", "와")} 같아야 하므로 ` +
+        `${expr(`${a + b}+${c3}=${a + b + c3}`)} 입니다.`,
+    );
+  }
+  // ⚠️ 곱을 먼저 뽑고 그 안에서 a 를 고르면 «$3\times3=9$ 인데 a 는 11 이상» 같은
+  // 뒤집힌 범위가 난다(팀장 적발 2026-08-23, 조건 판정기가 던졌다). 곱이 넉넉해지도록
+  // **c3 를 고른 뒤 b 의 하한을 그로부터 계산**한다 — 구성으로 하한 ≤ 상한을 보장한다.
+  const c3 = intBetween(rng, 3, 9);
+  const b = intBetween(rng, Math.ceil(20 / c3), 12);
+  const a = intBetween(rng, 11, b * c3 - 2);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`\\square+${a}=${b}\\times${c3}`)}`,
+    n(b * c3 - a),
+    `오른쪽은 ${expr(`${b}\\times${c3}=${b * c3}`)} 입니다. ${expr(`${b * c3}-${a}=${b * c3 - a}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(b * c3 - a)}입니다.`,
+  );
+}
+
 /* ───────────────── 2-1 분수의 덧셈과 뺄셈 ───────────────── */
 
 const FRAC_DENS = [5, 6, 7, 8, 9, 10, 12] as const;
@@ -1607,7 +5196,8 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
         `색칠한 부분은 전체의 ${expr(`\\frac{${a}}{${den}}`)}입니다. ` +
           `여기에 ${expr(`\\frac{${b}}{${den}}`)}만큼 더 색칠하면 색칠한 부분은 전체의 얼마인가?`,
         expr(`\\frac{${a + b}}{${den}}`),
-        `전체를 ${josaNum(den, "으로", "로")} 똑같이 나눈 것 중 ${n(a)}칸에 ${n(b)}칸을 더 색칠하면 ${n(a + b)}칸입니다. ` +
+        // (으)로는 받침표가 아니라 소리표(roJosa)다 — den 7·8 이 «7으로/8으로»로 나가던 자리.
+        `전체를 ${roJosa(den)} 똑같이 나눈 것 중 ${n(a)}칸에 ${n(b)}칸을 더 색칠하면 ${n(a + b)}칸입니다. ` +
           `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}`,
         fracSpec(rng, den, a),
       );
@@ -1702,6 +5292,719 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-1 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * 초4 는 **분모가 같은** 범위다 — 통분은 초5 1-5 다. 그런데 **소단원 이름이 넷 다 초5 1-5
+ * 와 같다**(진분수의 덧셈·뺄셈, 대분수의 덧셈·뺄셈). 이름이 같으면 문형·낱말이 겹치기
+ * 쉽고, 겹치면 두 학년이 사실상 같은 문항을 낸다. 그래서 초5 가 쓰는 자리를 피한다 —
+ * 「계산하시오.」·「A는 X를, B는 Y를 가지고 있습니다」·「… 중에서 …를 썼습니다」·
+ * 「어떤 수에 …를 더했더니」·「□ 안에 알맞은 수를 구하시오」, 그리고 **사람 이름 전부**.
+ * 소재도 나눠 갖는다(초5 는 철사·밀가루·설탕·물·우유·색 테이프·리본·피자·색종이를 쓴다).
+ *
+ * ⚠️ 이 회피를 **손 목록으로 지키지 않는다** — 손 목록은 샌다(세는 쪽과 고치는 쪽이 같이
+ * 눈이 먼다). 시험이 초5 1-5 를 **실제로 뽑아** ㉠ 발문 완전 일치 ㉡ 수를 가린 골격 일치를
+ * 둘 다 0 으로 세고, 진짜 판별자인 **동분모**에는 「초5 에는 분모가 다른 발문이 실제로
+ * 있다」는 음성 대조군을 붙인다 — 안 그러면 그 판별자가 가르는지 알 수 없다.
+ *
+ * 약분은 초5 1-4 다. 표준(`fracAdd42`)이 **답이 약분되지 않는 짝만** 뽑는 약속을 쓰므로
+ * 갈래도 그 약속을 잇는다 — 문턱을 밀지 않고 **짝을 전수 열거해서** 고른다. 뺄셈이 음수로
+ * 접히지 않는 것도 열거한 풀이 보장한다. 그리고 풀이 빌 수 있는 분모는 `pick` 전에
+ * **분모 쪽에서 걸러**(`densWith`) 던질 자리를 아예 없앤다.
+ */
+
+/** 여러 답을 늘어놓는다 — 「$1$, $2$, $3$」. */
+function nums(values: readonly number[]): string {
+  return values.map((v) => n(v)).join(", ");
+}
+
+/** 답으로 나갈 수 있는 분자인가 — 분모로 나누어떨어지지도, 약분되지도 않는다. */
+function cleanRest(num: number, den: number): boolean {
+  const rest = ((num % den) + den) % den;
+  return rest !== 0 && gcd(rest, den) === 1;
+}
+
+/** 풀이 빈 분모를 **뽑기 전에** 걸러 낸다. 씨앗을 다시 뽑는 대신 못 뽑을 자리를 없앤다. */
+function densWith(pool: (den: number) => { length: number }): number[] {
+  return FRAC_DENS.filter((d) => pool(d).length > 0);
+}
+
+/**
+ * 합이 $1$ 을 **안 넘는** 짝. 「화단의 얼마에 심었나」처럼 **전체가 $1$ 인 상황**에 쓴다 —
+ * 그런 자리에 합이 $1$ 을 넘는 짝을 쓰면 「화단 전체의 $1\frac{4}{9}$ 에 심었다」가 되어
+ * 상황 자체가 거짓이 된다(눈검수에서 실제로 나왔다).
+ */
+function properSumPairs(den: number): [number, number][] {
+  return fracPairs(den, "add").filter(([a, b]) => a + b < den);
+}
+
+/**
+ * 2-1-1 3단 — 「$b$ 만큼 더 긴 것」을 거쳐 합을 구한다. 셋 다 진분수로 두고(`a+b<den`)
+ * 답만 대분수가 될 수 있게 한다. 중간값 `(a+b)/den` 도 **답으로 나가는 값**이라 약분되면 안 된다.
+ */
+function relSumPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; a + b < den; b += 1) {
+      if (gcd(a + b, den) !== 1) continue;
+      if (!cleanRest(2 * a + b, den)) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-1 4단 — 「더할 것을 잘못하여 뺐다」. `[b, c]` 에서 잘못 계산한 값이 `c/den`,
+ * 어떤 수가 `(c+b)/den`, 바르게 계산한 값이 `(c+2b)/den` 이다. 셋 다 약분되면 안 되고
+ * 어떤 수는 진분수여야 한다(소단원 약속).
+ */
+function wrongAddPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let b = 1; b < den; b += 1) {
+    for (let c = 1; c < den; c += 1) {
+      if (b === c) continue; // 「$\frac25$ 를 뺐더니 $\frac25$」 는 읽는 사람을 헷갈리게 한다
+      if (gcd(c, den) !== 1) continue;
+      if (c + b >= den || gcd(c + b, den) !== 1) continue;
+      if (!cleanRest(c + 2 * b, den)) continue;
+      out.push([b, c]);
+    }
+  }
+  return out;
+}
+
+/** 위와 같되 「두 값의 차 $2b/den$」까지 답으로 나가는 가지. 분모를 미리 거르는 쪽을 쓴다. */
+function wrongDiffPairs(den: number): [number, number][] {
+  return wrongAddPairs(den).filter(([b]) => cleanRest(2 * b, den));
+}
+
+/** 2-1-2 2단 — 전체 $1$ 에서 뺀다. 남은 `den-a` 가 약분되면 안 된다. */
+function wholeMinusNums(den: number): number[] {
+  const out: number[] = [];
+  for (let a = 1; a < den; a += 1) if (gcd(den - a, den) === 1) out.push(a);
+  return out;
+}
+
+/** 2-1-2 3단 — 두 번 덜어 낸다. 중간값 `a-b` 와 답 `a-b-c` 가 둘 다 약분되면 안 된다. */
+function twoUseTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let a = 3; a < den; a += 1) {
+    for (let b = 1; b < a; b += 1) {
+      if (gcd(a - b, den) !== 1) continue;
+      for (let c = 1; c < a - b; c += 1) {
+        if (gcd(a - b - c, den) !== 1) continue;
+        out.push([a, b, c]);
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-2 4단 — 차보다 «작은»/«큰» 동분모 진분수의 개수. 답이 **둘 이상**인 것만 남긴다 —
+ * 0개·전부인 씨앗이 섞이면 셈이 아니라 요행이 된다.
+ */
+function countPairs(den: number, less: boolean): [number, number][] {
+  return fracPairs(den, "sub").filter(([a, b]) =>
+    less ? a - b - 1 >= 2 : den - 1 - (a - b) >= 2,
+  );
+}
+
+/** 2-1-3 1단 — 분수 부분이 반드시 **받아올림**되는 짝. 표준은 둘을 섞는다. */
+function carryPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (a + b <= den) continue;
+      if (gcd(a + b - den, den) !== 1) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-3 2단 — 받아올림이 있어도 없어도 된다. 답만 약분되지 않으면 된다. */
+function mixedSumPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (cleanRest(a + b, den)) out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-3 3단 — 세 값의 합. 분자를 **서로 다르게** 둔다 — 같으면 자연수 부분까지 겹쳤을 때
+ * 「둘째 날과 셋째 날이 글자 그대로 같은 값」인 발문이 나온다.
+ */
+function threeSumTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = 1; b < den; b += 1) {
+      if (b === a) continue;
+      for (let c = 1; c < den; c += 1) {
+        if (c === a || c === b) continue;
+        if (cleanRest(a + b + c, den)) out.push([a, b, c]);
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-3 4단 — 수 카드 셋 중 둘로 대분수를 만든다. `p<q<r` 일 때 가장 큰 것은 `r q/den`,
+ * 가장 작은 것은 `p q/den` 이라 **분자가 둘 다 `q`** 다. 그래서 합의 분수 부분은 `2q/den`.
+ */
+function cardTriples(den: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let p = 1; p < den - 2; p += 1) {
+    for (let q = p + 1; q < den - 1; q += 1) {
+      if (!cleanRest(2 * q, den)) continue;
+      for (let r = q + 1; r < den; r += 1) out.push([p, q, r]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-4 1단 — 분수끼리 뺄 수 없어 **받아내림**하는 짝(`a<b`). */
+function borrowPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let a = 1; a < den; a += 1) {
+    for (let b = a + 1; b < den; b += 1) {
+      if (gcd(a + den - b, den) !== 1) continue;
+      out.push([a, b]);
+    }
+  }
+  return out;
+}
+
+/** 2-1-4 3단 — 가장 큰 것과 가장 작은 것의 차. 자연수 차가 $2$ 이므로 답은 늘 양수다. */
+function spreadPairs(den: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let p = 1; p < den; p += 1) {
+    for (let q = 1; q < den; q += 1) {
+      if (q === p) continue;
+      if (!cleanRest(q - p, den)) continue;
+      out.push([p, q]);
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-4 4단 — 「$\square$ 에 들어갈 수 있는 자연수」. **답의 개수를 먼저 정하고** 수를 짠다 —
+ * 조건을 만든 뒤 세면 0개·전부인 씨앗이 섞인다. `c = a + den - m - 1` 로 잡으면
+ * 뺀 값이 오른쪽과 **같아지는** $\square$ 가 정확히 `m+1` 이 된다(자연수 차는 늘 $2$).
+ */
+function ineqPairs(den: number, greater: boolean): [number, number][] {
+  const out: [number, number][] = [];
+  for (let m = 2; m <= den - 2; m += 1) {
+    if (!greater && den - m - 2 < 2) continue;
+    for (let a = 1; a <= m; a += 1) out.push([m, a]);
+  }
+  return out;
+}
+
+/** **2-1-1 1단 연산 — 동분모 진분수의 합.** 표준의 `=\square` 꼴과 달리 말로 묻는다. */
+function tier211Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const sum = a + b;
+  return make(
+    unit,
+    `다음 두 분수의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(sum, den)),
+    `분모가 같은 분수끼리는 분자끼리 더합니다. ` +
+      `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${sum}}{${den}}`)}` +
+      (sum > den
+        ? ` 이고, 가분수이므로 대분수로 고치면 ${expr(fmtFrac(sum, den))} 입니다.`
+        : ` 입니다.`),
+  );
+}
+
+/** **2-1-1 2단 기본 — 상황에서 식을 세운다.** 두 양을 합치는 자리 셋. */
+function tier211Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 0, 2);
+  // 「화단 전체」는 전체가 $1$ 이라 합이 $1$ 을 넘으면 안 된다 — 무리를 **먼저** 좁힌다.
+  const pool =
+    which === 1 ? properSumPairs : (d: number) => fracPairs(d, "add");
+  const den = pick(rng, densWith(pool));
+  const [a, b] = pick(rng, pool(den));
+  const x = expr(`\\frac{${a}}{${den}}`);
+  const y = expr(`\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(a + b, den));
+  const how =
+    `분모가 같으므로 분자끼리 더합니다. ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}` +
+    (a + b > den ? ` 이고, 대분수로 고치면 ${got} 입니다.` : ` 입니다.`);
+  if (which === 0) {
+    return make(
+      unit,
+      // 소재는 초5 1-5 와 겹치지 않게 고른다 — g5 의 `FRAC_STUFF` 는 물·주스·끈·철사·밀가루·설탕.
+      `오전에 식용유를 ${x} L 쓰고, 오후에는 ${y} L 썼습니다. ` +
+        `하루 동안 쓴 식용유는 모두 몇 L입니까?`,
+      got,
+      `하루 동안 쓴 양은 두 양을 더한 것입니다. ${how}`,
+    );
+  }
+  if (which === 1) {
+    return make(
+      unit,
+      `화단의 ${x} 에는 튤립을, ${y} 에는 국화를 심었습니다. ` +
+        `꽃을 심은 부분은 화단 전체의 얼마입니까?`,
+      got,
+      `꽃을 심은 부분은 두 부분을 더한 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `빨간 물감 ${x} L와 파란 물감 ${y} L를 섞었습니다. 섞은 물감은 모두 몇 L입니까?`,
+    got,
+    `섞은 물감의 양은 두 양을 더한 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-1 3단 응용 — 중간값을 거친다.** 「더 긴 쪽」을 먼저 구하고 둘을 합친다(두 단계). */
+function tier211Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(relSumPairs));
+  const [a, b] = pick(rng, relSumPairs(den));
+  const one = expr(`\\frac{${a}}{${den}}`);
+  const gap = expr(`\\frac{${b}}{${den}}`);
+  const other = expr(`\\frac{${a + b}}{${den}}`);
+  const got = expr(fmtFrac(2 * a + b, den));
+  const step1 = `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)}`;
+  const step2 =
+    `두 양을 더하면 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${a + b}}{${den}}=\\frac{${2 * a + b}}{${den}}`)}` +
+    (2 * a + b > den ? ` 이고, 대분수로 고치면 ${got} 입니다.` : ` 입니다.`);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      // 「끈」은 초5 1-5 소재라 「막대」로 둔다(g5 `FRAC_STUFF`).
+      `빨간 막대의 길이는 ${one} m입니다. 파란 막대는 빨간 막대보다 ${gap} m 더 깁니다. ` +
+        `두 막대의 길이의 합은 몇 m입니까?`,
+      got,
+      `파란 막대의 길이를 먼저 구합니다. ${step1} 이므로 파란 막대는 ${other} m입니다. ${step2}`,
+    );
+  }
+  return make(
+    unit,
+    `작은 상자의 무게는 ${one} kg입니다. 큰 상자는 작은 상자보다 ${gap} kg 더 무겁습니다. ` +
+      `두 상자의 무게의 합은 몇 kg입니까?`,
+    got,
+    `큰 상자의 무게를 먼저 구합니다. ${step1} 이므로 큰 상자는 ${other} kg입니다. ${step2}`,
+  );
+}
+
+/** **2-1-1 4단 심화 — 잘못 계산했더니.** 역산으로 어떤 수를 되찾고 다시 바르게 계산한다. */
+function tier211Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const diffAsked = intBetween(rng, 0, 1) === 0;
+  const pool = diffAsked ? wrongDiffPairs : wrongAddPairs;
+  const den = pick(rng, densWith(pool));
+  const [b, c] = pick(rng, pool(den));
+  const add = expr(`\\frac{${b}}{${den}}`);
+  const wrong = expr(`\\frac{${c}}{${den}}`);
+  const some = expr(`\\frac{${c + b}}{${den}}`);
+  const right = expr(fmtFrac(c + 2 * b, den));
+  // 분수 뒤 조사는 **분자의 소리**로 정해진다 — 「십분의 육」은 «을», 「오분의 이」는 «를».
+  const addO = `${add}${tail(b, "을", "를")}`;
+  const wrongI = `${wrong}${tail(c, "이", "가")}`;
+  const lead = `어떤 수에 ${addO} 더해야 할 것을 잘못하여 뺐더니 ${wrongI} 되었습니다. `;
+  const back =
+    `잘못 계산한 값이 ${wrongI} 되었으므로 어떤 수는 ` +
+    `${expr(`\\frac{${c}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + b}}{${den}}`)} 입니다. `;
+  if (diffAsked) {
+    return make(
+      unit,
+      `${lead}잘못 계산한 값과 바르게 계산한 값의 차는 얼마입니까?`,
+      expr(fmtFrac(2 * b, den)),
+      `${back}바르게 계산하면 ` +
+        `${expr(`\\frac{${c + b}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + 2 * b}}{${den}}`)} 입니다. ` +
+        `두 값의 차는 ` +
+        `${expr(`\\frac{${c + 2 * b}}{${den}}-\\frac{${c}}{${den}}=\\frac{${2 * b}}{${den}}`)} 이므로 ` +
+        `${expr(fmtFrac(2 * b, den))} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${lead}바르게 계산한 값은 얼마입니까?`,
+    right,
+    `${back}어떤 수 ${some} 에 ${addO} 더하면 ` +
+      `${expr(`\\frac{${c + b}}{${den}}+\\frac{${b}}{${den}}=\\frac{${c + 2 * b}}{${den}}`)}` +
+      (c + 2 * b > den
+        ? ` 이고, 대분수로 고치면 ${right} 입니다.`
+        : ` 입니다.`),
+  );
+}
+
+/** **2-1-2 1단 연산 — 동분모 진분수의 차.** */
+function tier212Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `다음 두 분수의 차를 구하시오.\n\n${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)}`,
+    expr(`\\frac{${a - b}}{${den}}`),
+    `분모가 같은 분수끼리는 분자끼리 뺍니다. ` +
+      `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a - b}}{${den}}`)} 입니다.`,
+  );
+}
+
+/** **2-1-2 2단 기본 — 전체 $1$ 에서 뺀다.** $1$ 을 분모가 같은 가분수로 고치는 자리다. */
+function tier212Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(wholeMinusNums));
+  const a = pick(rng, wholeMinusNums(den));
+  const used = expr(`\\frac{${a}}{${den}}`);
+  const got = expr(`\\frac{${den - a}}{${den}}`);
+  const how =
+    `전체를 ${expr("1")} 로 보면 ${expr(`1=\\frac{${den}}{${den}}`)} 이므로 ` +
+    `${expr(`\\frac{${den}}{${den}}-\\frac{${a}}{${den}}=\\frac{${den - a}}{${den}}`)} 입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `케이크 한 개의 ${used} 만큼을 먹었습니다. 남은 케이크는 전체의 얼마입니까?`,
+      got,
+      `남은 것은 전체에서 먹은 만큼을 뺀 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `도화지 한 장의 ${used} 만큼을 잘라 냈습니다. 남은 도화지는 전체의 얼마입니까?`,
+    got,
+    `남은 것은 전체에서 잘라 낸 만큼을 뺀 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-2 3단 응용 — 두 번 덜어 낸다.** 중간값을 거치는 두 단계. */
+function tier212Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(twoUseTriples));
+  const [a, b, c] = pick(rng, twoUseTriples(den));
+  const all = expr(`\\frac{${a}}{${den}}`);
+  const u1 = expr(`\\frac{${b}}{${den}}`);
+  const u2 = expr(`\\frac{${c}}{${den}}`);
+  const got = expr(`\\frac{${a - b - c}}{${den}}`);
+  const step1 = `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a - b}}{${den}}`)}`;
+  const step2 = `${expr(`\\frac{${a - b}}{${den}}-\\frac{${c}}{${den}}=\\frac{${a - b - c}}{${den}}`)}`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `페인트가 ${all} L 있었습니다. 벽을 칠하는 데 ${u1} L, 문을 칠하는 데 ${u2} L를 썼습니다. ` +
+        `남은 페인트는 몇 L입니까?`,
+      got,
+      `벽을 칠하고 남은 양은 ${step1} 입니다. 여기서 문을 칠한 만큼을 더 빼면 ${step2} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `모래가 ${all} kg 있었습니다. 화단에 ${u1} kg, 화분에 ${u2} kg을 담았습니다. ` +
+      `남은 모래는 몇 kg입니까?`,
+    got,
+    `화단에 담고 남은 양은 ${step1} 입니다. 여기서 화분에 담은 만큼을 더 빼면 ${step2} 입니다.`,
+  );
+}
+
+/** **2-1-2 4단 심화 — 조건 결합.** 차를 구한 뒤 그 범위에 드는 동분모 진분수를 센다. */
+function tier212Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const less = intBetween(rng, 0, 1) === 0;
+  const den = pick(
+    rng,
+    densWith((d) => countPairs(d, less)),
+  );
+  const [a, b] = pick(rng, countPairs(den, less));
+  const gap = a - b;
+  // 「과/와」도 분수 뒤에서는 **분자의 소리**를 따른다 — 「팔분의 육과」·「오분의 삼과」.
+  const two = `${expr(`\\frac{${a}}{${den}}`)}${tail(a, "과", "와")} ${expr(`\\frac{${b}}{${den}}`)}의 차`;
+  const how =
+    `두 분수의 차는 ` +
+    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${gap}}{${den}}`)} 입니다. `;
+  if (less) {
+    return make(
+      unit,
+      `${two}보다 작으면서 분모가 ${n(den)}인 진분수는 모두 몇 개입니까?`,
+      `${n(gap - 1)}개`,
+      `${how}분모가 ${n(den)}인 진분수 중 이보다 작은 것은 분자가 ${n(1)}부터 ` +
+        `${n(gap - 1)}까지이므로 ${n(gap - 1)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${two}보다 크면서 ${expr("1")} 보다 작고 분모가 ${n(den)}인 진분수는 모두 몇 개입니까?`,
+    `${n(den - 1 - gap)}개`,
+    `${how}분모가 ${n(den)}인 진분수 중 이보다 큰 것은 분자가 ${n(gap + 1)}부터 ` +
+      `${n(den - 1)}까지이므로 ${n(den - 1 - gap)}개입니다.`,
+  );
+}
+
+/** **2-1-3 1단 연산 — 받아올림이 있는 대분수의 합.** 표준은 두 경우를 섞는다. */
+function tier213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(carryPairs));
+  const [a, b] = pick(rng, carryPairs(den));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  const total = (w1 + w2) * den + a + b;
+  return make(
+    unit,
+    `다음 두 대분수의 합을 구하시오.\n\n` +
+      `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(total, den)),
+    `자연수는 자연수끼리, 분수는 분수끼리 더합니다. ${expr(`${w1}+${w2}=${w1 + w2}`)} 이고 ` +
+      `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)} 입니다. ` +
+      `분수 부분이 가분수이므로 자연수에 ${n(1)}을 받아올리면 ${expr(fmtFrac(total, den))} 입니다.`,
+  );
+}
+
+/** **2-1-3 2단 기본 — 두 양을 잇는다.** */
+function tier213Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(mixedSumPairs));
+  const [a, b] = pick(rng, mixedSumPairs(den));
+  const w1 = intBetween(rng, 1, 4);
+  /*
+   * 두 대분수가 **글자까지 같아지지 않게** 한다 — 「쌀 $3\frac37$ kg이 담긴 자루에
+   * 쌀 $3\frac37$ kg을 더 담았습니다」가 실측 29/1200 로 나왔다(리드 검수 2026-08-23).
+   * 2-1-3 «응용» 에서 같은 부류를 `threeSumTriples` 로 막았는데 여기만 빠져 있었다.
+   *
+   * 분자가 다르면 자연수 부분은 겹쳐도 되므로(`2\frac17+2\frac37` 은 멀쩡하다) **분자가
+   * 같을 때만** 자연수 부분을 비켜 간다 — 짝을 통째로 버리면 멀쩡한 문항까지 잃는다.
+   * `w1` 이 $4$ 면 아래 목록에 없으므로 어차피 겹치지 않는다.
+   */
+  const w2 =
+    a === b
+      ? pick(
+          rng,
+          [1, 2, 3].filter((w) => w !== w1),
+        )
+      : intBetween(rng, 1, 3);
+  const total = (w1 + w2) * den + a + b;
+  const x = expr(`${w1}\\frac{${a}}{${den}}`);
+  const y = expr(`${w2}\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(total, den));
+  const how =
+    `자연수는 자연수끼리, 분수는 분수끼리 더합니다. ${expr(`${w1}+${w2}=${w1 + w2}`)} 이고 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}=\\frac{${a + b}}{${den}}`)} 이므로 ` +
+    (a + b >= den
+      ? `자연수에 ${n(1)}을 받아올려 ${got} 입니다.`
+      : `${got} 입니다.`);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `집에서 도서관까지의 거리는 ${x} km이고, 도서관에서 학교까지의 거리는 ${y} km입니다. ` +
+        `집에서 도서관을 지나 학교까지 가는 거리는 모두 몇 km입니까?`,
+      got,
+      `가는 거리는 두 거리를 더한 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `쌀 ${x} kg이 담긴 자루에 쌀 ${y} kg을 더 담았습니다. 자루에 담긴 쌀은 모두 몇 kg입니까?`,
+    got,
+    `자루에 담긴 쌀은 두 양을 더한 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-3 3단 응용 — 세 값의 합.** 두 번 더하며 중간값을 거친다. */
+function tier213Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(threeSumTriples));
+  const [a, b, c] = pick(rng, threeSumTriples(den));
+  const w1 = intBetween(rng, 1, 3);
+  const w2 = intBetween(rng, 1, 3);
+  const w3 = intBetween(rng, 1, 3);
+  const ws = w1 + w2 + w3;
+  const ns = a + b + c;
+  const total = ws * den + ns;
+  const got = expr(fmtFrac(total, den));
+  const carried = Math.floor(ns / den);
+  const how =
+    `자연수 부분끼리 더하면 ${expr(`${w1}+${w2}+${w3}=${ws}`)} 이고, ` +
+    `분수 부분끼리 더하면 ` +
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}+\\frac{${c}}{${den}}=\\frac{${ns}}{${den}}`)} 입니다. ` +
+    (carried > 0
+      ? `분수 부분이 가분수이므로 자연수에 ${josaNum(carried, "을", "를")} 받아올려 ${got} 입니다.`
+      : `그러므로 ${got} 입니다.`);
+  return make(
+    unit,
+    `딸기를 첫째 날 ${expr(`${w1}\\frac{${a}}{${den}}`)} kg, ` +
+      `둘째 날 ${expr(`${w2}\\frac{${b}}{${den}}`)} kg, ` +
+      `셋째 날 ${expr(`${w3}\\frac{${c}}{${den}}`)} kg 땄습니다. ` +
+      `사흘 동안 딴 딸기는 모두 몇 kg입니까?`,
+    got,
+    how,
+  );
+}
+
+/** **2-1-3 4단 심화 — 수 카드로 만든 가장 큰·가장 작은 대분수의 합.** 조건 결합. */
+function tier213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(cardTriples));
+  const [p, q, r] = pick(rng, cardTriples(den));
+  const order = pick(rng, [
+    [p, q, r],
+    [p, r, q],
+    [q, p, r],
+    [q, r, p],
+    [r, p, q],
+    [r, q, p],
+  ]);
+  const big = expr(`${r}\\frac{${q}}{${den}}`);
+  const small = expr(`${p}\\frac{${q}}{${den}}`);
+  const total = (p + r) * den + 2 * q;
+  const got = expr(fmtFrac(total, den));
+  /*
+   * 보기로 드는 한 벌은 **자연수 `q` · 분자 `p`** 다. `p<q<r` 이므로 이것은 가장 큰 것도
+   * (자연수가 `r` 이 아니다) 가장 작은 것도(자연수가 `p` 가 아니다) 아니라서 답이 안 샌다.
+   *
+   * 보기를 넣는 이유는 꾸밈이 아니다 — 소단원 이름이 약속하는 **대분수가 지면에 서야** 한다.
+   * 처음 판에는 「대분수를 만들려고 합니다」라는 **낱말**만 있고 대분수 꼴이 하나도 없어서
+   * 조건 판정기가 씨앗 40/40 을 걸었다(팀장 신호 2026-08-23). 값은 맞는데 약속한 성질이
+   * 지면에서 사라진 부류다 — 그 판정이 옳다.
+   */
+  const sample = expr(`${q}\\frac{${p}}{${den}}`);
+  return make(
+    unit,
+    `${n(3)}장의 수 카드 ${nums(order)} 중에서 ${n(2)}장을 골라 자연수 부분과 분자에 ` +
+      `한 번씩 놓아 분모가 ${n(den)}인 대분수를 만들려고 합니다. ` +
+      `예를 들어 ${sample}${tail(p, "과", "와")} 같이 만듭니다. ` +
+      `만들 수 있는 가장 큰 대분수와 가장 작은 대분수의 합을 구하시오.`,
+    got,
+    `자연수 부분이 클수록 큰 대분수이므로 가장 큰 대분수는 ${big} 이고, ` +
+      `자연수 부분이 작을수록 작은 대분수이므로 가장 작은 대분수는 ${small} 입니다. ` +
+      `${expr(`${r}+${p}=${p + r}`)} 이고 ` +
+      `${expr(`\\frac{${q}}{${den}}+\\frac{${q}}{${den}}=\\frac{${2 * q}}{${den}}`)} 이므로 ` +
+      (2 * q >= den
+        ? `자연수에 ${n(1)}을 받아올려 ${got} 입니다.`
+        : `합은 ${got} 입니다.`),
+  );
+}
+
+/** **2-1-4 1단 연산 — 받아내림이 있는 대분수의 차.** */
+function tier214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(borrowPairs));
+  const [a, b] = pick(rng, borrowPairs(den));
+  const w2 = intBetween(rng, 1, 3);
+  /*
+   * 받아내림 뒤 자연수 차를 늘 $1$ 이상으로 둔다 — **결함 수리가 아니라 문체 선택**이다.
+   * 표준(`fracAdd42` 2-1-4)은 「$1-1=0$, …」 꼴을 그대로 쓰고 그것도 읽는 데 문제가 없다
+   * (오히려 자연수 부분이 사라지는 것을 보여 준다). 갈래에서는 답이 늘 대분수로 서는 쪽을
+   * 골랐을 뿐이니 **표준을 이것에 맞추러 가지 말 것**(리드 검수 2026-08-23).
+   */
+  const w1 = w2 + intBetween(rng, 2, 4);
+  const total = (w1 - w2) * den + a - b;
+  return make(
+    unit,
+    `다음 두 대분수의 차를 구하시오.\n\n` +
+      `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)}`,
+    expr(fmtFrac(total, den)),
+    `분수끼리 뺄 수 없으므로 ` +
+      `${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)} 으로 고칩니다. ` +
+      `${expr(`${w1 - 1}-${w2}=${w1 - 1 - w2}`)} 이고 ` +
+      `${expr(`\\frac{${a + den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a + den - b}}{${den}}`)} 이므로 ` +
+      `${expr(fmtFrac(total, den))} 입니다.`,
+  );
+}
+
+/** **2-1-4 2단 기본 — 자연수에서 대분수를 뺀다.** 자연수를 가분수로 고치는 자리다. */
+function tier214Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(wholeMinusNums));
+  const b = pick(rng, wholeMinusNums(den));
+  const w = intBetween(rng, 1, 3);
+  // 자연수 차를 늘 $1$ 이상으로 — 위 `tier214Calc` 와 같은 **문체 선택**이다(결함 아님).
+  const whole = w + intBetween(rng, 2, 4);
+  const total = (whole - w) * den - b;
+  const cut = expr(`${w}\\frac{${b}}{${den}}`);
+  const got = expr(fmtFrac(total, den));
+  const how =
+    `${expr(`${whole}=${whole - 1}\\frac{${den}}{${den}}`)} 으로 고칩니다. ` +
+    `${expr(`${whole - 1}-${w}=${whole - 1 - w}`)} 이고 ` +
+    `${expr(`\\frac{${den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${den - b}}{${den}}`)} 이므로 ` +
+    `${got} 입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `길이가 ${n(whole)} m인 호스에서 ${cut} m를 잘라 냈습니다. 남은 호스는 몇 m입니까?`,
+      got,
+      `남은 길이는 전체에서 잘라 낸 길이를 뺀 것입니다. ${how}`,
+    );
+  }
+  return make(
+    unit,
+    `고구마 ${n(whole)} kg 중에서 ${cut} kg을 쪄서 먹었습니다. 남은 고구마는 몇 kg입니까?`,
+    got,
+    `남은 무게는 전체에서 먹은 무게를 뺀 것입니다. ${how}`,
+  );
+}
+
+/** **2-1-4 3단 응용 — 크기 비교 뒤 뺄셈.** 셋 중 최대·최소를 먼저 가린다(두 단계). */
+function tier214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(spreadPairs));
+  const [p, q] = pick(rng, spreadPairs(den));
+  const wLo = intBetween(rng, 1, 3);
+  const mid = intBetween(rng, 1, den - 1);
+  const show = (w: number, k: number) => expr(`${w}\\frac{${k}}{${den}}`);
+  const lo = show(wLo, p);
+  const hi = show(wLo + 2, q);
+  // 자연수 부분이 셋 다 달라(wLo, wLo+1, wLo+2) 크기 순서는 분자와 무관하게 정해진다.
+  // 늘어놓는 차례는 **크기 순으로 서지 않는 것만** 쓴다 — 정렬돼 나오면 비교가 사라진다.
+  const order = pick(rng, [
+    [show(wLo + 1, mid), hi, lo],
+    [hi, lo, show(wLo + 1, mid)],
+    [lo, hi, show(wLo + 1, mid)],
+  ]);
+  const total = 2 * den + q - p;
+  const got = expr(fmtFrac(total, den));
+  return make(
+    unit,
+    `가방 세 개의 무게가 각각 ${order[0]} kg, ${order[1]} kg, ${order[2]} kg입니다. ` +
+      `가장 무거운 가방과 가장 가벼운 가방의 무게의 차는 몇 kg입니까?`,
+    got,
+    `자연수 부분을 비교하면 가장 무거운 가방은 ${hi} kg, 가장 가벼운 가방은 ${lo} kg입니다. ` +
+      (q < p
+        ? `분수끼리 뺄 수 없으므로 ` +
+          `${expr(`${wLo + 2}\\frac{${q}}{${den}}=${wLo + 1}\\frac{${q + den}}{${den}}`)} 으로 고쳐 ` +
+          `${expr(`${wLo + 1}-${wLo}=1`)} 이고 ` +
+          `${expr(`\\frac{${q + den}}{${den}}-\\frac{${p}}{${den}}=\\frac{${q + den - p}}{${den}}`)} 이므로 ` +
+          `${got} 입니다.`
+        : `${expr(`${wLo + 2}-${wLo}=2`)} 이고 ` +
+          `${expr(`\\frac{${q}}{${den}}-\\frac{${p}}{${den}}=\\frac{${q - p}}{${den}}`)} 이므로 ` +
+          `${got} 입니다.`),
+  );
+}
+
+/** **2-1-4 4단 심화 — 조건에 맞는 수를 모두.** 같아지는 자리를 먼저 찾고 부등호로 가른다. */
+function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const greater = intBetween(rng, 0, 1) === 0;
+  const den = pick(
+    rng,
+    densWith((d) => ineqPairs(d, greater)),
+  );
+  const [m, a] = pick(rng, ineqPairs(den, greater));
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + 2;
+  const c = a + den - m - 1;
+  const left = expr(`${w1}\\frac{${a}}{${den}}`);
+  const sub = expr(`1\\frac{\\square}{${den}}`);
+  const right = expr(`${w2}\\frac{${c}}{${den}}`);
+  const same = expr(`1\\frac{${m + 1}}{${den}}`);
+  const answers = greater
+    ? Array.from({ length: m }, (_, i) => i + 1)
+    : Array.from({ length: den - m - 2 }, (_, i) => m + 2 + i);
+  const tie =
+    `빼는 수가 ${same} 일 때 ` +
+    `${expr(`${w1}\\frac{${a}}{${den}}-1\\frac{${m + 1}}{${den}}=${w2}\\frac{${c}}{${den}}`)} 로 ` +
+    `두 값이 같아집니다. 빼는 수가 작을수록 뺀 값은 커집니다. `;
+  return make(
+    unit,
+    // □ 뒤에는 조사를 붙일 수 없다 — 소리를 모르므로 「만큼을」처럼 **받침을 안 타는** 말로 잇는다.
+    `${left} 에서 ${sub} 만큼을 뺀 값이 ${right} 보다 ${greater ? "클" : "작을"} 때, ` +
+      `${expr("\\square")} 에 들어갈 수 있는 자연수를 모두 쓰시오. ` +
+      `(단, 분자는 분모보다 작습니다.)`,
+    nums(answers),
+    `${tie}` +
+      (greater
+        ? `따라서 ${expr("\\square")} 는 ${josaNum(m, "보다", "보다")} 크지 않아야 하므로 ` +
+          `${nums(answers)}입니다.`
+        : `따라서 ${expr("\\square")} 는 ${josaNum(m + 1, "보다", "보다")} 커야 하고, ` +
+          `분자는 분모보다 작아야 하므로 ${nums(answers)}입니다.`),
+  );
+}
+
 /* ───────────────────────── 2-2 삼각형 ───────────────────────── */
 
 /**
@@ -1885,6 +6188,627 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+
+/* ──────────── 2-2 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **도형 성질 소단원이라 1단은 「계산」이 아니라 「성질 한 번 적용」이다.**
+ * 자료형 1단을 「값 읽기」로 두는 것(D-72 ⑶)과 같은 자리다 — 세로 셈이 없는 소단원에
+ * 억지로 계산을 넣으면 그 소단원이 **안 가르치는 것**을 묻게 된다.
+ *
+ * 표준이 이미 쓴 뼈대를 피했다: 세 변→이름 · 그림에서 고르기 · 꼭지각↔밑각 ·
+ * 두 변+나머지→둘레 · 정삼각형 한 각/둘레/둘레÷3 · 두 각·세 각→분류 ·
+ * 정삼각형은 예각 · 밑각·꼭지각→두 이름. 갈래는 **묻는 방향**을 돌려서 갈랐다.
+ *
+ * ⚠️ **「정삼각형도 이등변삼각형인가」를 묻는 발문은 한 갈래도 만들지 않는다.**
+ * 교과서마다 다루는 방식이 갈려 **답이 하나로 안 정해진다.** 그래서 2-2-1 1단은
+ * 이름이 아니라 **개수**를 묻고(정삼각형이면 $3$, 이등변이면 $2$), 2-2-5 는 1단·3단에서
+ * 세 각이 모두 같은 경우를 **아예 안 뽑는다.**
+ *
+ * ⚠️ **삼각형이 되는 조건(두 변의 합 > 나머지 한 변)은 초4 범위 밖이다.** 그래서
+ * 「나머지 한 변이 될 수 있는 길이를 모두」 류는 **두 경우가 다 성립하는 수만** 뽑는다 —
+ * 뽑고 거르는 게 아니라 **못 뽑을 자리를 안 만든다**(`isoSidePairs`).
+ *
+ * ⚠️ **그림(`markedShape`)은 아직 안 붙였다.** 스펙 모양은 알지만 이 워크트리에서
+ * **한 번도 렌더해 본 적이 없다**(그림 세션 하네스가 도는 중). 「도는 것을 본 적 없는
+ * 그림」을 배선하면 안 된다 — 2026-08-23 에 같은 자리에서 물렸다. 하네스 창이 닫히고
+ * 실제로 그려지는 것을 본 뒤 1단 다섯에 얹는다.
+ */
+
+/**
+ * 세 변으로 **삼각형이 되는가** — 두 짧은 변의 합이 가장 긴 변보다 길어야 한다.
+ *
+ * ⚠️ **이 판정은 여기 한 곳에만 둔다.** 갈래마다 손으로 적으면 한 곳만 고쳐도 아무도
+ * 모른다 — 실제로 그렇게 새어 2-2-1 4단이 $(10,5,5)$·$(8,4,4)$ 를 냈다. 그 값들은
+ * **둘레도 맞고 「같은 두 변」도 맞아 값 검산으로는 안 잡힌다.** 산술이 전부 옳은데
+ * 삼각형이 아니라 **납작하게 겹친 선분**일 뿐이다. 그리고 초4 는 이 조건을 배우지
+ * 않으므로 **학생이 가려낼 수도 없다** — 우리가 안 내는 수밖에 없다.
+ */
+function isTriangle(a: number, b: number, c: number): boolean {
+  const [x, y, z] = [a, b, c].sort((p, q) => p - q);
+  return x! + y! > z!;
+}
+
+/**
+ * 「두 변이 $a$, $b$ 인 이등변삼각형」의 나머지 한 변이 **두 경우 다** 되는 짝.
+ *
+ * 나머지 한 변은 $a$ 이거나 $b$ 인데, 두 경우가 다 삼각형이어야 답이 둘이다.
+ * 안 그러면 답이 **하나뿐**인데 발문은 「모두 쓰시오」라고 묻는다.
+ */
+function isoSidePairs(): readonly (readonly [number, number])[] {
+  const out: (readonly [number, number])[] = [];
+  for (let small = 3; small <= 12; small += 1) {
+    for (let big = small + 1; big <= small * 2 + 2; big += 1) {
+      if (isTriangle(small, small, big) && isTriangle(small, big, big)) {
+        out.push([small, big]);
+      }
+    }
+  }
+  return out;
+}
+
+/** 세 각을 늘어놓는 차례. 큰 각이 늘 같은 자리에 오면 **자리로 외운다**. */
+const TRI_PERMS = [
+  [0, 1, 2],
+  [0, 2, 1],
+  [1, 0, 2],
+  [1, 2, 0],
+  [2, 0, 1],
+  [2, 1, 0],
+] as const;
+
+/** 정삼각형 모양으로 나올 만한 물건. 소재가 갈려야 씨앗을 바꾼 보람이 있다. */
+const EQ_TRI_ITEMS = ["표지판", "타일", "액자", "받침대"] as const;
+
+/** 잘라 쓰는 재료 — 「남은 것」을 물을 수 있는 소재. */
+const WIRE_ITEMS = ["철사", "끈", "리본", "털실"] as const;
+
+/**
+ * 이등변삼각형에서 「꼭지각 = 밑각의 $k$배」(또는 그 반대)가 **자연수로 떨어지는** 짝.
+ *
+ * $1$배는 뺀다 — 세 각이 모두 $60^\circ$ 가 되어 이 대단원이 피하기로 한
+ * 「정삼각형도 이등변삼각형인가」 자리로 들어간다.
+ */
+const ISO_RATIOS = [
+  { k: 2, apexIsBig: true }, // 밑각 45 · 꼭지각 90
+  { k: 3, apexIsBig: true }, // 36 · 108
+  { k: 4, apexIsBig: true }, // 30 · 120
+  { k: 7, apexIsBig: true }, // 20 · 140
+  { k: 8, apexIsBig: true }, // 18 · 144
+  { k: 2, apexIsBig: false }, // 밑각 72 · 꼭지각 36
+  { k: 4, apexIsBig: false }, // 80 · 20
+  { k: 7, apexIsBig: false }, // 84 · 12
+] as const;
+
+/** **2-2-1 1단 — 길이가 같은 변의 «개수».** 표준은 「이름을 쓰시오」, 여기는 개수다. */
+function tier221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    const s = intBetween(rng, 4, 12);
+    return make(
+      unit,
+      `삼각형의 세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}입니다. ` +
+        `길이가 같은 변은 몇 개인가?`,
+      `${n(3)}개`,
+      `세 변의 길이가 모두 ${cm(s)}로 같으므로 길이가 같은 변은 ${n(3)}개입니다.`,
+    );
+  }
+  if (kind === 1) {
+    const [small, big] = pick(rng, isoSidePairs());
+    const same = intBetween(rng, 0, 1) === 0 ? small : big;
+    const odd = same === small ? big : small;
+    // 다른 한 변이 앞·가운데·뒤 어디에도 오게 — 「끝의 둘이 같다」로 외우지 못하게.
+    const sides = [same, same, same];
+    sides[intBetween(rng, 0, 2)] = odd;
+    return make(
+      unit,
+      `삼각형의 세 변의 길이가 ${cm(sides[0]!)}, ${cm(sides[1]!)}, ${cm(sides[2]!)}입니다. ` +
+        `길이가 같은 변은 몇 개인가?`,
+      `${n(2)}개`,
+      `${cm(same)}인 변이 ${n(2)}개, ${cm(odd)}인 변이 ${n(1)}개입니다. ` +
+        `길이가 같은 변은 ${n(2)}개입니다.`,
+    );
+  }
+  const a = intBetween(rng, 5, 9);
+  const b = a + intBetween(rng, 1, 3);
+  const c = b + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `삼각형의 세 변의 길이가 ${cm(a)}, ${cm(b)}, ${cm(c)}입니다. ` +
+      `길이가 같은 변은 몇 개인가?`,
+    `${n(0)}개`,
+    `세 변의 길이 ${cm(a)}, ${cm(b)}, ${cm(c)}가 서로 모두 다르므로 ` +
+      `길이가 같은 변은 ${n(0)}개입니다.`,
+  );
+}
+
+/** **2-2-1 2단 — 나머지 한 변이 될 수 있는 길이를 «모두».** 이등변의 뜻을 스스로 편다. */
+function tier221Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [small, big] = pick(rng, isoSidePairs());
+  return make(
+    unit,
+    `이등변삼각형의 두 변의 길이가 각각 ${cm(small)}, ${cm(big)}입니다. ` +
+      `나머지 한 변의 길이가 될 수 있는 길이를 모두 쓰시오.`,
+    `${cm(small)}, ${cm(big)}`,
+    `이등변삼각형은 길이가 같은 변이 ${n(2)}개입니다. ` +
+      `나머지 한 변이 ${cm(small)}이면 세 변이 ${cm(small)}, ${cm(small)}, ${cm(big)}이고, ` +
+      `${cm(big)}이면 ${cm(small)}, ${cm(big)}, ${cm(big)}입니다. ` +
+      `두 경우 모두 길이가 같은 변이 ${n(2)}개이므로 ` +
+      `${cm(small)}와 ${cm(big)} 두 가지가 될 수 있습니다.`,
+  );
+}
+
+/** 「같은 두 변」과 다르면서 삼각형이 되는 나머지 한 변 — 이등변이 뜻을 갖는 자리. */
+function otherSides(leg: number): number[] {
+  return Array.from({ length: leg * 2 + 2 }, (_, i) => i + 2).filter(
+    (v) => v !== leg && isTriangle(leg, leg, v),
+  );
+}
+
+/** **2-2-1 3단 — 둘레와 나머지 한 변에서 «같은 두 변».** 빼고 나누는 두 단계다. */
+function tier221Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const leg = intBetween(rng, 5, 14);
+  const other = pick(rng, otherSides(leg));
+  const total = leg * 2 + other;
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(total)}인 이등변삼각형이 있습니다. ` +
+      `길이가 같은 두 변이 아닌 나머지 한 변의 길이가 ${cm(other)}일 때, ` +
+      `길이가 같은 두 변의 길이는 각각 몇 cm인가?`,
+    cm(leg),
+    `길이가 같은 두 변의 길이의 합은 ${expr(`${total}-${other}=${total - other}`)} 입니다. ` +
+      `두 변의 길이가 서로 같으므로 ${expr(`${total - other}\\div2=${leg}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-1 4단 — 두 조건을 엮어 세 변을 다 찾는다.**
+ *
+ * 둘레 하나로는 안 풀리고 「같은 두 변이 나머지보다 $d$ 만큼 길다/짧다」가 같이 있어야
+ * 정해진다. 나머지 한 변을 $\square$ 로 두면 `□ × 3 ± d × 2 = 둘레` 다.
+ *
+ * ⚠️ **첫 판은 「한 변만 뺐더니」 복원(잘못 계산)이었다.** 그러면 이 대단원의 4단 다섯 중
+ * **둘**이 「잘못된 것을 바로잡기」가 된다 — 한 시험지에 2-2 심화가 둘 실리면 같은 문형이
+ * 나란히 선다(리드 2026-08-23). 「잘못」 문형은 2-2-4 에 하나만 남겼다. 거기가 더 값지다 —
+ * 거긴 **셈이 아니라 근거가 틀린** 자리라 다른 갈래로 대신할 수 없다.
+ *
+ * ⚠️ **첫 판은 「$\square>d$ 면 된다」로 적었다가 $(10,5,5)$·$(8,4,4)$ 를 냈다.**
+ * 그건 삼각형이 아니라 납작하게 겹친 선분이다. 이제 손으로 안 적고 `isTriangle` 하나에
+ * 물어본다 — 조건을 갈래마다 적으면 한 곳만 고쳐도 아무도 모른다.
+ */
+function tier221Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const longer = intBetween(rng, 0, 1) === 0;
+  const d = intBetween(rng, 1, 6);
+  const other = pick(
+    rng,
+    Array.from({ length: 20 }, (_, i) => i + 4).filter((v) => {
+      const side = longer ? v + d : v - d;
+      return side > 0 && isTriangle(side, side, v);
+    }),
+  );
+  const leg = longer ? other + d : other - d;
+  const total = leg * 2 + other;
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(total)}인 이등변삼각형이 있습니다. ` +
+      `길이가 같은 두 변은 나머지 한 변보다 각각 ${cm(d)} ` +
+      `${longer ? "깁니다" : "짧습니다"}. 세 변의 길이를 각각 구하시오.`,
+    `${cm(other)}, ${cm(leg)}, ${cm(leg)}`,
+    `나머지 한 변의 길이를 ${expr("\\square")}라고 하면 길이가 같은 두 변은 각각 ` +
+      `${expr(`\\square${longer ? "+" : "-"}${d}`)} 이므로 세 변의 길이의 합은 ` +
+      `${expr(`\\square\\times3${longer ? "+" : "-"}${d * 2}=${total}`)} 입니다. ` +
+      `${expr(`\\square\\times3=${total}${longer ? "-" : "+"}${d * 2}=${other * 3}`)} 이고 ` +
+      `${expr(`${other * 3}\\div3=${other}`)} 이므로 나머지 한 변은 ${cm(other)}, ` +
+      `길이가 같은 두 변은 각각 ${cm(leg)}입니다.`,
+  );
+}
+
+/**
+ * 밑각이 될 수 있는 크기. **$60^\circ$ 는 뺀다** — 그러면 세 각이 모두 $60^\circ$ 라
+ * 정삼각형인데 발문은 「이등변삼각형」이라 부르게 되어, 이 대단원이 피하기로 한
+ * 「정삼각형도 이등변삼각형인가」 자리로 들어간다. 답은 정해지지만 발문이 흔들린다.
+ */
+function baseAngles(lo: number, hi: number): number[] {
+  return Array.from({ length: hi - lo + 1 }, (_, i) => i + lo).filter(
+    (v) => v !== 60,
+  );
+}
+
+/** **2-2-2 1단 — 성질 한 번.** 표준은 꼭지각↔밑각(계산), 여기는 «다른 한 밑각»이다. */
+function tier222Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(25, 80));
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. ` +
+        `다른 한 밑각의 크기는 몇 도인가?`,
+      deg(base),
+      `이등변삼각형은 두 밑각의 크기가 같습니다. 한 밑각이 ${deg(base)}이므로 ` +
+        `다른 한 밑각도 ${deg(base)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 삼각형에 크기가 같은 두 각이 있고 그중 한 각의 크기가 ${deg(base)}입니다. ` +
+      `크기가 같은 나머지 한 각의 크기는 몇 도인가?`,
+    deg(base),
+    `두 각의 크기가 같은 삼각형은 이등변삼각형입니다. 크기가 같은 두 각이므로 ` +
+      `나머지 한 각의 크기도 ${deg(base)}입니다.`,
+  );
+}
+
+/** **2-2-2 2단 — 두 밑각의 «합»에서 꼭지각.** 세 각의 합을 스스로 끌어와야 선다. */
+function tier222Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(30, 85));
+  const sum = base * 2;
+  return make(
+    unit,
+    `이등변삼각형에서 두 밑각의 크기의 합이 ${deg(sum)}입니다. ` +
+      `꼭지각의 크기는 몇 도인가?`,
+    deg(180 - sum),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. 두 밑각의 합이 ${deg(sum)}이므로 ` +
+      `꼭지각은 ${expr(`180-${sum}=${180 - sum}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-2 3단 — 「꼭지각이 한 밑각보다 □ 크다/작다」.** 중간값은 밑각이다.
+ *
+ * 세 각이 밑각·밑각·(밑각$\pm d$) 이므로 `밑각 × 3 = 180 ∓ d` 다. 밑각이 자연수가 되려면
+ * $d$ 가 $3$의 배수여야 한다 — 뽑고 거르지 않고 **$3$의 배수만 뽑는다.**
+ * 작은 쪽은 꼭지각이 $0$ 보다 커야 하고(`d<90`), 큰 쪽은 밑각이 남아야 한다(`d<180`).
+ */
+function tier222Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const smaller = intBetween(rng, 0, 1) === 0;
+  const d = intBetween(rng, 1, smaller ? 28 : 20) * 3;
+  const baseAngle = smaller ? (180 + d) / 3 : (180 - d) / 3;
+  const apex = smaller ? baseAngle - d : baseAngle + d;
+  const sign = smaller ? "-" : "+";
+  return make(
+    unit,
+    `이등변삼각형에서 꼭지각의 크기가 한 밑각의 크기보다 ${deg(d)} ` +
+      `${smaller ? "작습니다" : "큽니다"}. 꼭지각의 크기는 몇 도인가?`,
+    deg(apex),
+    `한 밑각의 크기를 ${expr("\\square")}라고 하면 세 각의 크기의 합은 ` +
+      `${expr(`\\square+\\square+(\\square${sign}${d})=180`)} 입니다. ` +
+      `${expr(`\\square\\times3=180${smaller ? "+" : "-"}${d}=${baseAngle * 3}`)} 이므로 ` +
+      `한 밑각은 ${deg(baseAngle)}이고, 꼭지각은 ` +
+      `${expr(`${baseAngle}${sign}${d}=${apex}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-2 4단 — 「꼭지각이 한 밑각의 □배」.** 조건을 결합해 거꾸로 각을 찾는다.
+ *
+ * 3단이 **차**라면 여기는 **배**다. 밑각을 $\square$ 로 두면 세 각의 합이
+ * `□ × (2+k) = 180`(또는 `□ × (2k+1) = 180`)이 되어, 나눗셈 한 번이 더 든다.
+ */
+function tier222Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { k, apexIsBig } = pick(rng, ISO_RATIOS);
+  const parts = apexIsBig ? k + 2 : 2 * k + 1;
+  const one = 180 / parts;
+  const baseAngle = apexIsBig ? one : one * k;
+  const apex = 180 - baseAngle * 2;
+  const askApex = intBetween(rng, 0, 1) === 0;
+  const head = apexIsBig
+    ? `이등변삼각형에서 꼭지각의 크기가 한 밑각의 크기의 ${n(k)}배입니다.`
+    : `이등변삼각형에서 한 밑각의 크기가 꼭지각의 크기의 ${n(k)}배입니다.`;
+  const build = apexIsBig
+    ? `한 밑각의 크기를 ${expr("\\square")}라고 하면 꼭지각은 ${expr(`\\square\\times${k}`)} 이므로 ` +
+      `세 각의 크기의 합은 ${expr(`\\square\\times${parts}=180`)} 입니다. ` +
+      `${expr(`180\\div${parts}=${one}`)} 이므로 한 밑각은 ${deg(baseAngle)}입니다.`
+    : `꼭지각의 크기를 ${expr("\\square")}라고 하면 한 밑각은 ${expr(`\\square\\times${k}`)} 이므로 ` +
+      `세 각의 크기의 합은 ${expr(`\\square\\times${parts}=180`)} 입니다. ` +
+      `${expr(`180\\div${parts}=${one}`)} 이므로 꼭지각은 ${deg(apex)}입니다.`;
+  return make(
+    unit,
+    `${head} ${askApex ? "꼭지각" : "한 밑각"}의 크기는 몇 도인가?`,
+    deg(askApex ? apex : baseAngle),
+    `${build} 세 각의 크기는 ${deg(baseAngle)}, ${deg(baseAngle)}, ${deg(apex)}이므로 ` +
+      `${askApex ? "꼭지각" : "한 밑각"}의 크기는 ${deg(askApex ? apex : baseAngle)}입니다.`,
+  );
+}
+
+/** **2-2-3 1단 — 성질 한 번.** 한 변에서 나머지 두 변으로. 표준은 이 방향을 안 쓴다. */
+function tier223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, EQ_TRI_ITEMS);
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `정삼각형 모양의 ${josa(item, "이", "가")} 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
+      `나머지 두 변의 길이는 각각 몇 cm인가?`,
+    cm(s),
+    `정삼각형은 세 변의 길이가 모두 같습니다. 한 변이 ${cm(s)}이므로 ` +
+      `나머지 두 변도 각각 ${cm(s)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-3 2단 — 이름을 숨기고 «각» 조건으로 준다.**
+ *
+ * 표준은 「정삼각형의 한 변이 …」처럼 **이름을 준다.** 여기는 「세 각의 크기가 모두 같은」
+ * 으로 주어, 각 성질 → 이름 → 변 성질을 스스로 이어야 식이 선다.
+ */
+function tier223Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  const wholeSum = intBetween(rng, 0, 1) === 0;
+  const value = wholeSum ? s * 3 : s * 2;
+  return make(
+    unit,
+    `세 각의 크기가 모두 같은 삼각형이 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
+      `${wholeSum ? "세 변의 길이의 합" : "나머지 두 변의 길이의 합"}은 몇 cm인가?`,
+    cm(value),
+    `세 각의 크기가 모두 같은 삼각형은 정삼각형이고, 정삼각형은 세 변의 길이가 모두 같습니다. ` +
+      `${expr(`${s}\\times${wholeSum ? 3 : 2}=${value}`)} 이므로 ${cm(value)}입니다.`,
+  );
+}
+
+/** **2-2-3 3단 — 만들고 «남은» 길이.** 중간값은 정삼각형 한 개에 드는 길이다. */
+function tier223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, WIRE_ITEMS);
+  const side = intBetween(rng, 4, 13);
+  const left = intBetween(rng, 2, 30);
+  const total = side * 3 + left;
+  return make(
+    unit,
+    `길이가 ${cm(total)}인 ${josa(item, "을", "를")} 사용하여 한 변의 길이가 ${cm(side)}인 ` +
+      `정삼각형을 한 개 만들었습니다. 남은 ${josa(item, "은", "는")} 몇 cm인가?`,
+    cm(left),
+    `정삼각형은 세 변의 길이가 같으므로 만드는 데 쓴 ${item}의 길이는 ` +
+      `${expr(`${side}\\times3=${side * 3}`)} 입니다. ` +
+      `남은 길이는 ${expr(`${total}-${side * 3}=${left}`)} 입니다.`,
+  );
+}
+
+/** **2-2-3 4단 — 「남김없이 썼다」에서 개수를 되짚는다.** 곱하고 나누는 역산이다. */
+function tier223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, WIRE_ITEMS);
+  const side = intBetween(rng, 4, 12);
+  const count = intBetween(rng, 3, 8);
+  const each = side * 3;
+  return make(
+    unit,
+    `길이가 ${cm(each * count)}인 ${josa(item, "을", "를")} 남김없이 사용하여 ` +
+      `한 변의 길이가 ${cm(side)}인 정삼각형을 여러 개 만들었습니다. ` +
+      `정삼각형을 몇 개 만들었는가?`,
+    `${n(count)}개`,
+    `정삼각형 한 개를 만드는 데 필요한 ${item}의 길이는 ` +
+      `${expr(`${side}\\times3=${each}`)} 입니다. ` +
+      `${expr(`${each * count}\\div${each}=${count}`)} 이므로 ${n(count)}개를 만들었습니다.`,
+  );
+}
+
+/** 부류를 **먼저 정하고** 세 각을 만든다 — 씨앗에 맡기면 한쪽만 쏟아진다. */
+function triAnglesOfClass(rng: Rng, kind: number): [number, number, number] {
+  if (kind === 0) {
+    const a = intBetween(rng, 20, 70);
+    return [90, a, 90 - a];
+  }
+  if (kind === 1) {
+    const big = intBetween(rng, 95, 130);
+    const a = intBetween(rng, 20, 170 - big);
+    return [big, a, 180 - big - a];
+  }
+  const a = intBetween(rng, 55, 85);
+  const b = intBetween(rng, 55, 85);
+  return [a, b, 180 - a - b];
+}
+
+/** **2-2-4 1단 — 그 부류의 각이 «몇 개»인가.** 표준은 분류 이름, 여기는 개수다. */
+function tier224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 2));
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  const ask = pick(rng, ["예각", "직각", "둔각"] as const);
+  const hit = shown.filter((v) =>
+    ask === "예각" ? v < 90 : ask === "직각" ? v === 90 : v > 90,
+  );
+  const rule =
+    ask === "예각"
+      ? `${deg(90)}보다 작은 각`
+      : ask === "직각"
+        ? `${deg(90)}인 각`
+        : `${deg(90)}보다 크고 ${deg(180)}보다 작은 각`;
+  return make(
+    unit,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. ` +
+      `이 삼각형에서 ${ask}은 몇 개인가?`,
+    `${n(hit.length)}개`,
+    `${ask}은 ${rule}입니다. 세 각 중 ${ask}은 ` +
+      `${hit.length > 0 ? `${hit.map((v) => deg(v)).join(", ")}로 ${n(hit.length)}개` : `없으므로 ${n(0)}개`}입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 2단 — 분류 이름을 «조건»으로 준다.** 표준의 역방향이다.
+ *
+ * 표준은 각 → 이름이고, 여기는 이름 → 각이다. 「직각삼각형」이라는 말에서
+ * $90^\circ$ 하나를 스스로 꺼내야 식이 선다.
+ */
+function tier224Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 3) === 0) {
+    return make(
+      unit,
+      `직각삼각형에서 직각이 아닌 두 각의 크기의 합은 몇 도인가?`,
+      deg(90),
+      `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있고 세 각의 크기의 합은 ${deg(180)}입니다. ` +
+        `나머지 두 각의 합은 ${expr("180-90=90")} 입니다.`,
+    );
+  }
+  const one = intBetween(rng, 20, 70);
+  return make(
+    unit,
+    `직각삼각형에서 직각이 아닌 한 각의 크기가 ${deg(one)}입니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(90 - one),
+    `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있습니다. ` +
+      `세 각의 크기의 합이 ${deg(180)}이므로 나머지 한 각은 ` +
+      `${expr(`180-90-${one}=${90 - one}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 3단 — 「두 각이 같고 나머지가 □」에서 분류.** 중간값은 그 같은 두 각이다.
+ *
+ * 주어진 각을 **부류부터 정해** 뽑는다. 씨앗에 맡기면 세 부류가 안 고루 나온다
+ * (표준 2-2-4 가 이미 같은 이유로 그렇게 한다).
+ *
+ * ⚠️ **직각삼각형은 이 문형으로 못 낸다 — 그래서 안 낸다.** 두 각이 같은 삼각형이
+ * 직각삼각형이려면 직각이 «나머지 한 각»일 수밖에 없는데(같은 두 각이 둘 다 직각일 수는
+ * 없다), 그러면 발문이 $90^\circ$ 를 그대로 보여 주어 **중간값을 구할 것도 없이 답이 보인다.**
+ * 3단인데 1단이 되는 자리다. 첫 판에는 들어 있었고 표본을 눈으로 보고서 걸렀다 —
+ * 「세 부류가 다 나온다」만 세면 이건 구조적으로 안 보인다.
+ */
+function tier224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const given =
+    intBetween(rng, 0, 1) === 0
+      ? intBetween(rng, 5, 44) * 2 // 10~88 → 같은 두 각이 46~85 라 가장 큰 각이 90 미만
+      : intBetween(rng, 46, 85) * 2; // 92~170 → 둔각
+  const same = (180 - given) / 2;
+  const big = Math.max(given, same);
+  return make(
+    unit,
+    `삼각형에서 두 각의 크기가 서로 같고 나머지 한 각의 크기가 ${deg(given)}입니다. ` +
+      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    triClass(given, same, same),
+    `크기가 같은 두 각의 합은 ${expr(`180-${given}=${180 - given}`)} 이고 ` +
+      `두 각이 같으므로 각각 ${expr(`${180 - given}\\div2=${same}`)} 입니다. ` +
+      `세 각 중 가장 큰 각이 ${deg(big)}이므로 ${triClass(given, same, same)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-4 4단 — 「예각이 두 개니까 예각삼각형」을 바로잡는다.**
+ *
+ * 어느 삼각형에도 예각은 적어도 두 개 있으므로 그 근거는 **늘 참이면서 늘 쓸모없다.**
+ * 가장 큰 각 하나가 부류를 정한다는 것을 알아야 갈린다. 그래서 표본은 직각·둔각만 쓴다 —
+ * 예각삼각형을 뽑으면 잘못된 근거로도 답이 맞아 **이 갈래가 아무것도 안 묻는다.**
+ *
+ * ⚠️ **이 대단원에서 「잘못」 문형은 여기 하나만 둔다 — 다양성을 이유로 이것까지 바꾸지 말 것.**
+ * 「잘못 계산」에는 두 종류가 있다: **셈을 틀린 것**과 **판단 근거를 틀린 것**. 앞엣것은
+ * 역산·조건 결합으로 얼마든지 대신할 수 있어서 2-2-1 4단을 그렇게 바꿨다. 뒤엣것은
+ * **대체재가 없다** — 「예각이 둘이니까」는 학생이 실제로 하는 오해이고, 그 오해를 바로
+ * 겨누는 문형이 이것뿐이다(리드 확인 2026-08-23).
+ */
+function tier224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 1));
+  // **큰 각을 감춘다.** 세 각을 다 보여 주면 셈이 한 단계도 없어 3단(두 단계)보다
+  // 가벼워진다 — 사다리가 뒤집힌 것으로 읽히는 자리다(리드가 g5 에서 잡은 그 무늬).
+  // 감추면 ⑴ 나머지 한 각을 구하고 ⑵ 분류하고 ⑶ 잘못된 근거를 물리쳐야 한다.
+  // 덤으로 **잘못된 근거가 더 자연스러워진다** — 「보이는 두 각이 다 예각이니까」는
+  // 학생이 실제로 하는 오해다. 부류가 직각·둔각뿐이라 예각은 늘 정확히 둘이다.
+  const hidden = angles.find((v) => v >= 90)!;
+  const [a, b] = angles.filter((v) => v < 90);
+  const shown = intBetween(rng, 0, 1) === 0 ? [a!, b!] : [b!, a!];
+  const name = triClass(angles[0]!, angles[1]!, angles[2]!);
+  return make(
+    unit,
+    `어떤 삼각형의 두 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}입니다. ` +
+      `이 두 각이 모두 예각이므로 예각삼각형이라고 하였습니다. ` +
+      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인지 바르게 쓰시오.`,
+    name,
+    `나머지 한 각의 크기는 ` +
+      `${expr(`180-${shown[0]!}-${shown[1]!}=${hidden}`)} 입니다. ` +
+      `삼각형은 어느 것이나 예각이 적어도 ${n(2)}개 있으므로 예각의 개수로는 분류할 수 없고, ` +
+      `가장 큰 각의 크기를 봐야 합니다. 가장 큰 각이 ${deg(hidden)}이므로 ${name}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 1단 — 한 기준을 «주고» 다른 기준을 읽는다.** 가장 큰 각 하나만 보면 된다.
+ *
+ * ⚠️ 첫 판은 「세 각을 주고 **변** 기준을 묻기」였다. 그러면 두 가지가 한꺼번에 나빴다 —
+ * ⑴ 답이 늘 「이등변삼각형」 하나라 고를 것이 없고, ⑵ **각 기준이 문항에 아예 안 나와**
+ * 이 소단원이 내건 「두 가지 기준」의 절반이 빠진다. 새로 붙인 소단원 조건 검사가 바로
+ * 그것을 잡았다 — 검사가 옳고 갈래가 약했다. 변 기준을 발문이 **알려 주고** 각 기준을
+ * 묻게 하면 한 단계는 그대로면서 두 축이 다 선다(답도 세 가지로 갈린다).
+ *
+ * 세 각이 모두 같은 경우는 안 뽑는다 — 「정삼각형인가 이등변삼각형인가」가 되어
+ * 답이 하나로 안 정해진다(이 대단원이 피하기로 한 자리).
+ */
+function tier225Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const same = pick(rng, baseAngles(20, 85));
+  const apex = 180 - same * 2;
+  const shown = pick(rng, TRI_PERMS).map((i) => [same, same, apex][i]!);
+  const big = Math.max(same, apex);
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 ` +
+      `이등변삼각형이 있습니다. 이 삼각형을 각의 크기에 따라 분류하면 ` +
+      `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    triClass(same, same, apex),
+    `${deg(same)}인 각이 ${n(2)}개 있어 두 변의 길이가 같으므로 이등변삼각형입니다. ` +
+      `각의 크기에 따라 분류할 때는 가장 큰 각을 봅니다. ` +
+      `가장 큰 각이 ${deg(big)}이므로 ${triClass(same, same, apex)}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 2단 — 두 이름을 «함께» 걸고 각을 구한다.**
+ *
+ * 크기가 같은 두 각이 둘 다 직각이거나 둘 다 둔각일 수는 없으므로, 그 각은 **꼭지각**이다.
+ * 이 판단이 이 소단원의 몫이다 — 한 기준만으로는 안 풀린다.
+ */
+function tier225Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const isRight = intBetween(rng, 0, 3) === 0;
+  const apex = isRight ? 90 : intBetween(rng, 46, 85) * 2;
+  const base = (180 - apex) / 2;
+  const word = isRight ? "직각" : "둔각";
+  return make(
+    unit,
+    `이등변삼각형이면서 ${word}삼각형인 삼각형이 있습니다. ` +
+      (isRight
+        ? `직각이 아닌 두 각의 크기는 각각 몇 도인가?`
+        : `둔각의 크기가 ${deg(apex)}일 때 나머지 두 각의 크기는 각각 몇 도인가?`),
+    deg(base),
+    `크기가 같은 두 각이 모두 ${word}일 수는 없으므로 ${word}은 꼭지각입니다. ` +
+      `나머지 두 각의 합은 ${expr(`180-${apex}=${180 - apex}`)} 이고 ` +
+      `두 각의 크기가 같으므로 각각 ${expr(`${180 - apex}\\div2=${base}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 3단 — 한 밑각에서 «각 기준» 분류로.** 중간값은 꼭지각이다.
+ *
+ * 표준은 세 각을 다 주고 두 이름을 묻는다. 여기는 **한 각만** 주고, 나머지를 구한 뒤에야
+ * 분류가 된다. 밑각이 $45^\circ$ 보다 작으면 둔각, 같으면 직각, 크면 예각이라 세 부류가 다 나온다.
+ */
+function tier225Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(20, 85));
+  const apex = 180 - base * 2;
+  const name = triClass(base, base, apex);
+  return make(
+    unit,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 이 삼각형을 각의 크기에 따라 ` +
+      `분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+    name,
+    `두 밑각의 크기가 같으므로 꼭지각은 ${expr(`180-${base}-${base}=${apex}`)} 입니다. ` +
+      `세 각 중 가장 큰 각이 ${deg(Math.max(base, apex))}이므로 ${name}입니다.`,
+  );
+}
+
+/**
+ * **2-2-5 4단 — 한 각만 주면 경우가 «둘»이다.**
+ *
+ * 주어진 각이 꼭지각일 수도 밑각일 수도 있다. $45^\circ$ 보다 작은 짝수만 쓰면
+ * 두 경우의 **각 기준 분류가 서로 갈린다**(꼭지각이면 예각, 밑각이면 둔각) —
+ * 갈리지 않으면 「경우를 나눈다」가 답에서 티가 안 나 이 갈래가 뜻을 잃는다.
+ */
+function tier225Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 22) * 2; // 10~44 짝수
+  const baseWhenApex = (180 - a) / 2; // 68~85 → 세 각이 모두 예각
+  const apexWhenBase = 180 - a * 2; // 92~160 → 둔각
+  return make(
+    unit,
+    `한 각의 크기가 ${deg(a)}인 이등변삼각형이 있습니다. 나머지 두 각의 크기가 될 수 있는 ` +
+      `경우를 모두 구하고, 각각 각의 크기에 따라 분류하시오.`,
+    `${deg(baseWhenApex)}, ${deg(baseWhenApex)}(예각삼각형) 또는 ` +
+      `${deg(a)}, ${deg(apexWhenBase)}(둔각삼각형)`,
+    `${deg(a)}가 꼭지각이면 두 밑각은 ${expr(`(180-${a})\\div2=${baseWhenApex}`)} 이고, ` +
+      `세 각이 모두 ${deg(90)}보다 작으므로 예각삼각형입니다. ` +
+      `${deg(a)}가 한 밑각이면 다른 한 밑각도 ${deg(a)}이고 꼭지각은 ` +
+      `${expr(`180-${a}-${a}=${apexWhenBase}`)} 이므로 둔각삼각형입니다.`,
+  );
+}
+
 /* ───────────────── 2-3 소수의 덧셈과 뺄셈 ─────────────────
  *
  * ⚠️ 해설에 **소수의 곱셈·나눗셈을 쓰지 않는다**(R3). 그것은 초5-2 다.
@@ -1947,7 +6871,16 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
 
   if (c === "2-3-2") {
     const x = hundredths(rng, 10, 89);
-    const y = x + intBetween(rng, 1, 40);
+    // 더한 값의 끝자리가 $0$ 이면 「$1.90$」이 되어 꼬리 $0$ 이 지면에 나간다 —
+    // `x` 는 끝자리를 지키는데 `x+d` 는 안 지켜서 새고 있었다(갈래 쓸기가 실측, 2026-08-23).
+    const y =
+      x +
+      pick(
+        rng,
+        Array.from({ length: 40 }, (_, i) => i + 1).filter(
+          (d) => (x + d) % 10 !== 0,
+        ),
+      );
     const sx = dec2(x);
     const sy = dec2(y);
     const at = firstDiffPlace(x, y);
@@ -2054,6 +6987,759 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-3 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **소수는 정수로 들고 다니다 `dec1`·`dec2`·`dec3` 로만 찍는다.** 부동소수점이 지면에 새면
+ * 「$0.30000000000000004$」가 나간다. 그리고 **끝자리가 $0$ 이면 안 된다** —
+ * 「$7.0$」·「$0.30$」은 초등 지면에 안 쓴다. 구성으로 막고(끝자리 $1$~$9$) 시험이
+ * **발문·정답·해설 셋 다**에서 센다.
+ *
+ * ⚠️ **자릿수 약속을 「전부 같은 dp」로 잠그지 않았다.** 잠금 기준은
+ * 「**가장 깊은 자리 = 이름이 약속한 자리**, 그보다 깊은 것 없음」이다. 「전부 같은 dp」로
+ * 조이면 **이 대단원이 가르치려는 오개념 문항이 죽는다** — 「$5.63$ 에서 $0.4$ 를 빼야 할 것을
+ * 잘못하여 $0.04$ 를 뺐다」는 dp 1 과 2 가 **섞여야** 성립한다. 이름의 약속은 「그 자리까지
+ * 다룬다」이지 「모두 그 자리다」가 아니다. **더 엄하게 조이지 말 것**(리드 승인 2026-08-23).
+ *
+ * ⚠️ **2-3-3 은 연산이 자릿수를 «만들어 낸다».** 위 잠금은 발문으로 **들어오는** 깊이만
+ * 막는데, $\frac{1}{100}$ 을 걸면 결과가 두 자리 깊어진다($0.53$ → $0.0053$ 은 **네 자리**로
+ * 초4 밖이다). 그래서 2-3-3 은 **출발 수의 깊이를 연산에 맞춰** 제한하고, 잠금을 정답·해설까지
+ * 댄다. 「값은 맞는데 학년 밖」이라 값 검산이 구조적으로 못 보는 부류다(리드 지적).
+ *
+ * ⚠️ **해설에 소수의 곱셈·나눗셈을 쓰지 않는다**(R3, 초5-2·초6 진도). `$0.53\times10$` 이라고
+ * 쓰면 판정기가 「소수의 곱셈」으로 잡는다 — 표준처럼 **자릿값과 소수점 이동**으로 말한다.
+ *
+ * ⚠️ **초3 1-6-6 「소수 알아보기」·1-6-7 「소수의 크기 비교」와 이름이 닮았다.** 설계 때
+ * 실제로 뽑아 보니 내 초안 둘이 **그대로 초3 것이었다**(「세 소수 중 가장 큰 수」·「$0.\square$
+ * 부등식」). 가르는 것은 **자릿수**다 — 초3 은 실측으로 **소수 한 자리뿐**이고 2-3-1·2-3-2 는
+ * 두 자리 이상을 낸다. 시험이 초3 을 실제로 뽑아 골격을 대조하고, 그 판별자에는
+ * 「초3 쪽은 한 자리뿐」이라는 음성 대조군을 붙인다.
+ *
+ * 값 만들기는 파일 위쪽 `tenths` 를 그대로 쓴다(끝자리 ≠ 0 인 정수 만들기). 어느 자릿수인지는
+ * **`decN` 이 정한다** — 같은 일을 하는 이름을 하나 더 만들지 않는다.
+ */
+
+/** 소수 한 자리 후보(십분위 정수). 끝자리가 $0$ 이 아니다 — 「$7.0$」을 안 만든다. */
+const DEC1_POOL: number[] = Array.from({ length: 8 }, (_, w) => w + 1).flatMap(
+  (w) => Array.from({ length: 9 }, (_, j) => w * 10 + j + 1),
+);
+
+/**
+ * 소수 두 자리 후보(백분위 정수). 끝자리가 $0$ 이 아니다 — 「$0.30$」을 안 만든다.
+ *
+ * 자연수 부분 $0$ 부터 넣는다 — 「빈 병의 무게 $0.36$ kg」처럼 **$1$ 보다 작은 값**이
+ * 있어야 하는 자리가 있다. $1$ 부터 시작하면 그런 무리가 **통째로 비어 `pick` 이 던진다**
+ * (전수 쓸기가 실측했다: 2-3-6 기본·응용이 씨앗 1000/1000 에서 던지고 있었다).
+ */
+const DEC2_POOL: number[] = Array.from({ length: 9 }, (_, w) => w).flatMap(
+  (w) =>
+    Array.from({ length: 10 }, (_, t) => t).flatMap((t) =>
+      Array.from({ length: 9 }, (_, h) => w * 100 + t * 10 + h + 1),
+    ),
+);
+
+/** **2-3-1 1단 연산 — $0.001$이 몇 개인 수.** 표준은 $0.01$ 까지만 센다. */
+function tier231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * **방향이 표준과 반대다.** 표준은 「$0.01$이 N개인 수를 쓰시오」(개수 → 수)인데
+   * 갈래는 「이 수는 $0.001$이 몇 개인가」(수 → 개수)를 묻는다.
+   *
+   * 자리만 $0.01$ → $0.001$ 로 옮긴 첫 판은 **골격이 표준과 글자까지 같았다**
+   * (수를 가리면 둘 다 「⟨수⟩이 ⟨수⟩개인 수를 소수로 쓰시오」). 표준과 갈래는 **같은
+   * 시험지에 함께 실린다** — 자리만 다른 같은 문장은 학생에게 같은 문항이다.
+   */
+  const v = tenths(rng, 10, 899);
+  return make(
+    unit,
+    `${josaNum(dec3(v), "은", "는")} ${n("0.001")}이 몇 개인 수입니까?`,
+    `${n(v)}개`,
+    `${n(1)}은 ${n("0.001")}이 ${n(1000)}개, ${n("0.1")}은 ${n(100)}개, ` +
+      `${n("0.01")}은 ${n(10)}개입니다. 그러므로 ${josaNum(dec3(v), "은", "는")} ` +
+      `${n("0.001")}이 ${n(v)}개인 수입니다.`,
+  );
+}
+
+/** **2-3-1 2단 기본 — 자릿값 셋을 모아 한 수로.** 자리마다 몇 개인지를 합쳐 쓴다. */
+function tier231Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 9);
+  const b = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 1, 9);
+  const value = dec3(a * 100 + b * 10 + c);
+  return make(
+    unit,
+    `${n("0.1")}이 ${n(a)}개, ${n("0.01")}이 ${n(b)}개, ${n("0.001")}이 ${n(c)}개인 수를 ` +
+      `소수로 쓰시오.`,
+    n(value),
+    `${n("0.1")}이 ${n(a)}개이면 소수 첫째 자리 숫자가 ${n(a)}, ` +
+      `${n("0.01")}이 ${n(b)}개이면 소수 둘째 자리 숫자가 ${n(b)}, ` +
+      `${n("0.001")}이 ${n(c)}개이면 소수 셋째 자리 숫자가 ${josaNum(c, "이", "가")} 됩니다. ` +
+      `그러므로 ${n(value)}입니다.`,
+  );
+}
+
+/** **2-3-1 3단 응용 — 두 자리의 자릿값을 각각 읽어 더한다.** 중간값 둘을 거친다. */
+function tier231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 9);
+  const a = intBetween(rng, 1, 9);
+  const b = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 1, 9);
+  const value = `${w}.${a}${b}${c}`;
+  // 소수 둘째 자리 값은 `dec2` 로 찍는다 — `dec3(b*10)` 은 「$0.030$」이라 꼬리 $0$ 이다.
+  const second = dec2(b);
+  const third = dec3(c);
+  return make(
+    unit,
+    `${n(value)}에서 소수 둘째 자리 숫자가 나타내는 수와 소수 셋째 자리 숫자가 ` +
+      `나타내는 수의 합을 소수로 쓰시오.`,
+    n(dec3(b * 10 + c)),
+    `소수 둘째 자리 숫자 ${josaNum(b, "은", "는")} ${josaNum(second, "을", "를")} 나타내고, ` +
+      `소수 셋째 자리 숫자 ${josaNum(c, "은", "는")} ${josaNum(third, "을", "를")} 나타냅니다. ` +
+      `두 수를 더하면 ${n(dec3(b * 10 + c))}입니다.`,
+  );
+}
+
+/** **2-3-1 4단 심화 — 조건으로 소수 세 자리 수 만들기.** 자리마다 걸린 조건을 엮는다. */
+function tier231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 4);
+  const a = intBetween(rng, 1, 9 - k);
+  const b = a + k;
+  const j = intBetween(rng, 1, b - 1);
+  const c = b - j;
+  const w = intBetween(rng, 1, 9);
+  const value = dec3(w * 1000 + a * 100 + b * 10 + c);
+  /*
+   * 딸린 «맞지 않는 보기» 한 벌은 꾸밈이 아니다 — 소단원 이름이 약속하는 **소수 세 자리가
+   * 지면에 서야** 한다. 처음 판에는 「소수 세 자리 수」라는 **낱말**만 있고 세 자리 소수가
+   * 하나도 없어서 조건 판정기가 씨앗 40/40 을 걸었다(2-1-3 심화와 같은 자리다).
+   * 보기는 `w.aaa` 로 잡는다 — `k ≥ 1` 이므로 첫 조건에서 **반드시** 어긋나고, 답을 안 흘린다.
+   */
+  const counter = `${w}.${a}${a}${a}`;
+  return make(
+    unit,
+    `조건에 맞는 소수 세 자리 수를 쓰시오. ` +
+      `자연수 부분은 ${n(w)}이고, 소수 첫째 자리 숫자는 ${n(a)}입니다. ` +
+      `소수 둘째 자리 숫자는 소수 첫째 자리 숫자보다 ${n(k)} 큰 수이고, ` +
+      `소수 셋째 자리 숫자는 소수 둘째 자리 숫자보다 ${n(j)} 작은 수입니다. ` +
+      `예를 들어 ${josaNum(counter, "은", "는")} 소수 둘째 자리 숫자가 소수 첫째 자리 ` +
+      `숫자보다 크지 않으므로 조건에 맞지 않습니다.`,
+    n(value),
+    `소수 둘째 자리 숫자는 ${expr(`${a}+${k}=${b}`)} 이므로 ${n(b)}이고, ` +
+      `소수 셋째 자리 숫자는 ${expr(`${b}-${j}=${c}`)} 이므로 ${n(c)}입니다. ` +
+      `그러므로 구하는 수는 ${n(value)}입니다.`,
+  );
+}
+
+/** 2-3-2 무게를 견주는 소재 — 「자릿수가 많으면 큰 수」 오개념을 보이는 자리. */
+const WEIGH_PAIRS = [
+  ["호박", "무"],
+  ["수박", "참외"],
+  ["배추", "양파"],
+] as const;
+
+/** **2-3-2 1단 연산 — 큰 것부터 차례로.** 초3 은 «가장 큰 하나»를 고른다(그쪽과 다른 일). */
+function tier232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const picked: number[] = [];
+  while (picked.length < 3) {
+    const v = pick(rng, DEC2_POOL);
+    if (!picked.includes(v)) picked.push(v);
+  }
+  const sorted = [...picked].sort((x, y) => y - x);
+  return make(
+    unit,
+    `다음 소수를 큰 것부터 차례로 쓰시오.\n\n` +
+      `${picked.map((v) => n(dec2(v))).join(", ")}`,
+    sorted.map((v) => n(dec2(v))).join(", "),
+    `소수의 크기는 자연수 부분부터, 그다음 소수 첫째 자리, 소수 둘째 자리 차례로 ` +
+      `비교합니다. 큰 것부터 쓰면 ${sorted.map((v) => n(dec2(v))).join(", ")}입니다.`,
+  );
+}
+
+/** **2-3-2 2단 기본 — 자릿수가 다른 두 수.** 「자리가 많으면 큰 수」가 이 소단원의 오개념이다. */
+function tier232Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, WEIGH_PAIRS);
+  const w = intBetween(rng, 1, 8);
+  const t1 = intBetween(rng, 1, 8);
+  const t2 = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 1).filter((v) => v !== t1),
+  );
+  const x = w * 100 + t1 * 10 + intBetween(rng, 1, 9);
+  const y = w * 10 + t2;
+  const heavier = x > y * 10 ? first : second;
+  return make(
+    unit,
+    `${first}의 무게는 ${n(dec2(x))} kg이고, ${second}의 무게는 ${n(dec1(y))} kg입니다. ` +
+      `더 무거운 것은 무엇입니까?`,
+    heavier,
+    `자연수 부분이 ${roJosa(w)} 같으므로 소수 첫째 자리를 비교합니다. ` +
+      `${josaNum(t1, "과", "와")} ${n(t2)} 중 ${josaNum(Math.max(t1, t2), "이", "가")} 크므로 ` +
+      `${josa(heavier, "이", "가")} 더 무겁습니다. 소수는 자리 수가 많다고 큰 수가 아닙니다.`,
+  );
+}
+
+/** **2-3-2 3단 응용 — 두 수 사이에 든 소수 두 자리 수의 개수.** */
+function tier232Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 양 끝을 **두 자리 소수**로 준다 — 「소수 두 자리 수」가 낱말로만 있으면 그 약속이
+  // 지면에 안 선다(초3 과 가르는 판별자이기도 하다). 끝자리를 골라 `lo+1`·`hi-1` 도
+  // 꼬리 $0$ 이 되지 않게 한다.
+  const w = intBetween(rng, 1, 8);
+  const t = intBetween(rng, 0, 5);
+  const lo = (w * 10 + t) * 10 + intBetween(rng, 1, 8);
+  const hi = (w * 10 + t + intBetween(rng, 1, 3)) * 10 + intBetween(rng, 2, 9);
+  const count = hi - lo - 1;
+  return make(
+    unit,
+    `${n(dec2(lo))}보다 크고 ${n(dec2(hi))}보다 작은 ` +
+      `소수 두 자리 수는 모두 몇 개입니까?`,
+    `${n(count)}개`,
+    `양 끝의 두 수는 넣지 않으므로 ${n(dec2(lo + 1))}부터 ${n(dec2(hi - 1))}까지입니다. ` +
+      `소수 둘째 자리 숫자를 ${n(1)}씩 세면 ` +
+      `${expr(`${hi - 1}-${lo + 1}+1=${count}`)} 이므로 ${n(count)}개입니다.`,
+  );
+}
+
+/** **2-3-2 4단 심화 — 범위와 자릿수 조건을 함께.** 초3 의 「$0.\square$ 몇 개」와 다른 일이다. */
+function tier232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * 양 끝을 **두 자리 소수**로 준다 — 「소수 두 자리 수」가 낱말로만 있으면 그 약속이
+   * 지면에 안 선다(2-3-2 응용과 같은 자리에서 잡혔다).
+   *
+   * 답이 몇 개인지를 **먼저 정하고** 범위를 짠다. 범위를 먼저 잡고 세면 0개·전부인 씨앗이
+   * 섞인다. 양 끝은 답이 될 수 없게 한 칸씩 비켜 놓고, 끝자리가 $0$ 이 안 되게 고른다.
+   */
+  const w = intBetween(rng, 1, 8);
+  const d = intBetween(rng, 1, 9);
+  const m = intBetween(rng, 2, 3);
+  const t1 = intBetween(rng, 1, 8 - m);
+  const nine = Array.from({ length: 9 }, (_, i) => i + 1);
+  const k = pick(
+    rng,
+    nine.filter((v) => v !== d),
+  );
+  const j = pick(
+    rng,
+    nine.filter((v) => v !== 10 - d),
+  );
+  const lo = w * 100 + t1 * 10 + d - k;
+  const hi = w * 100 + (t1 + m - 1) * 10 + d + j;
+  const found: number[] = [];
+  for (let v = lo + 1; v < hi; v += 1) if (v % 10 === d) found.push(v);
+  return make(
+    unit,
+    `${n(dec2(lo))}보다 크고 ${n(dec2(hi))}보다 작은 소수 두 자리 수 중에서 ` +
+      `소수 둘째 자리 숫자가 ${n(d)}인 수를 모두 쓰시오.`,
+    found.map((v) => n(dec2(v))).join(", "),
+    `소수 둘째 자리 숫자가 ${n(d)}이므로 소수 첫째 자리 숫자를 하나씩 늘려 가며 찾습니다. ` +
+      `${found.map((v) => n(dec2(v))).join(", ")}입니다. 모두 ${n(found.length)}개입니다.`,
+  );
+}
+
+/**
+ * **2-3-3 1단 연산 — 관계 자체를 묻는다.** 두 수를 주고 「몇 배인가」를 세운다.
+ *
+ * ⚠️ 처음에는 「$x$ 의 $\frac{1}{100}$ 은?」이었는데 **골격이 표준과 글자까지 같았다**
+ * (표준은 $\frac{1}{10}$ — 수를 가리면 둘 다 「⟨수⟩의 ⟨수⟩은 얼마인가?」). 표준과 갈래는
+ * 같은 시험지에 함께 실리므로 **상수만 바꾼 것은 같은 문항**이다. 묻는 방향을 바꿨다.
+ */
+function tier233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  const hundred = intBetween(rng, 0, 1) === 0;
+  const small = hundred ? dec3(x) : dec2(x);
+  return make(
+    unit,
+    `${josaNum(dec1(x), "은", "는")} ${n(small)}의 몇 배입니까?`,
+    `${n(hundred ? 100 : 10)}배`,
+    `${n(small)}에서 소수점이 오른쪽으로 ${hundred ? "두" : "한"} 자리 옮겨지면 ` +
+      `${n(dec1(x))}입니다. 소수점이 오른쪽으로 한 자리 옮겨질 때마다 ${n(10)}배가 되므로 ` +
+      `${n(hundred ? 100 : 10)}배입니다.`,
+  );
+}
+
+/** **2-3-3 2단 기본 — 되짚어 어떤 수를 찾는다.** 표준은 늘 정방향이다. */
+function tier233Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  const hundred = intBetween(rng, 0, 1) === 0;
+  // 어떤 수를 $10$배·$100$배 하면 `dec1(x)` 가 된다 — 출발이 세 자리를 안 넘게 묶여 있다.
+  const answer = hundred ? dec3(x) : dec2(x);
+  return make(
+    unit,
+    `어떤 수의 ${n(hundred ? 100 : 10)}배가 ${josaNum(dec1(x), "입니다", "입니다")}. ` +
+      `어떤 수는 얼마입니까?`,
+    n(answer),
+    `${n(hundred ? 100 : 10)}배를 하면 소수점이 오른쪽으로 ` +
+      `${hundred ? "두" : "한"} 자리 옮겨집니다. 되짚으려면 소수점을 왼쪽으로 ` +
+      `${hundred ? "두" : "한"} 자리 옮기면 되므로 어떤 수는 ${n(answer)}입니다.`,
+  );
+}
+
+/** **2-3-3 3단 응용 — 두 번 옮긴다.** $10$배 뒤 $\frac{1}{100}$ (두 단계). */
+function tier233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 출발은 **소수 두 자리**까지 — 알짜로 한 자리만 깊어지므로 세 자리에서 멈춘다.
+  const x = pick(rng, DEC2_POOL);
+  const mid = dec1(x);
+  return make(
+    unit,
+    `${n(dec2(x))}의 ${n(10)}배의 $\\frac{1}{100}$은 얼마인가?`,
+    n(dec3(x)),
+    `${n(10)}배를 하면 소수점이 오른쪽으로 한 자리 옮겨져 ${n(mid)}입니다. ` +
+      `여기에 $\\frac{1}{100}$을 하면 소수점이 왼쪽으로 두 자리 옮겨져 ${n(dec3(x))}입니다.`,
+  );
+}
+
+/** **2-3-3 4단 심화 — 되짚었다가 다시 간다.** 어떤 수를 찾은 뒤 반대쪽으로 옮긴다. */
+function tier233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 어떤 수의 1/10 이 dec2(x) → 어떤 수는 dec1(x), 그 10배는 정수 x.
+    return make(
+      unit,
+      `어떤 수의 $\\frac{1}{10}$이 ${n(dec2(x))}입니다. ` +
+        `어떤 수의 ${n(10)}배는 얼마입니까?`,
+      n(x),
+      `$\\frac{1}{10}$을 하면 소수점이 왼쪽으로 한 자리 옮겨지므로, 되짚으면 어떤 수는 ` +
+        `${n(dec1(x))}입니다. 여기에 ${n(10)}배를 하면 소수점이 오른쪽으로 한 자리 옮겨져 ` +
+        `${n(x)}입니다.`,
+    );
+  }
+  // 어떤 수의 100 배가 정수 x → 어떤 수는 dec2(x), 그 1/10 은 dec3(x).
+  return make(
+    unit,
+    `어떤 수의 ${n(100)}배가 ${n(x)}입니다. ` +
+      `어떤 수의 $\\frac{1}{10}$은 얼마입니까?`,
+    n(dec3(x)),
+    `${n(100)}배를 하면 소수점이 오른쪽으로 두 자리 옮겨지므로, 되짚으면 어떤 수는 ` +
+      `${n(dec2(x))}입니다. 여기에 $\\frac{1}{10}$을 하면 소수점이 왼쪽으로 한 자리 옮겨져 ` +
+      `${n(dec3(x))}입니다.`,
+  );
+}
+
+/** **2-3-4 1단 연산 — 소수 한 자리 수의 합.** 표준은 `=\square` 꼴이다. */
+function tier234Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `다음 두 소수의 합을 구하시오.\n\n${expr(`${dec1(a)}+${dec1(b)}`)}`,
+    n(dec1(a + b)),
+    `소수점끼리 자리를 맞추어 같은 자리 수끼리 더합니다. ` +
+      `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)}`,
+  );
+}
+
+/** **2-3-4 2단 기본 — 두 날의 거리를 합친다.** */
+function tier234Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `어제 ${n(dec1(a))} km를 걷고, 오늘 ${n(dec1(b))} km를 걸었습니다. ` +
+      `이틀 동안 걸은 거리는 몇 km입니까?`,
+    n(dec1(a + b)),
+    `이틀 동안 걸은 거리는 두 거리를 더한 것입니다. ` +
+      `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)}`,
+  );
+}
+
+/** **2-3-4 3단 응용 — 세 값을 잇는다.** 두 번 더하며 중간값을 거친다. */
+function tier234Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  // 중간값 `a+b` 도 해설에 나가므로 끝자리가 $0$ 이면 안 된다. 조건을 **뽑는 단계마다**
+  // 나눠 건다 — 한 filter 에 몰면 `v` 와 무관한 항이 거짓일 때 풀이 통째로 비어 던진다.
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const c = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + b + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `나무 도막 세 개의 길이가 각각 ${n(dec1(a))} m, ${n(dec1(b))} m, ${n(dec1(c))} m입니다. ` +
+      `세 도막을 겹치지 않게 이으면 길이는 몇 m입니까?`,
+    n(dec1(a + b + c)),
+    `앞의 두 도막을 먼저 이으면 ${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다. ` +
+      `여기에 나머지 한 도막을 이으면 ` +
+      `${expr(`${dec1(a + b)}+${dec1(c)}=${dec1(a + b + c)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2-3-4 4단 — 수 카드 넉 장. **작은 두 장의 합이 $10$ 의 배수면** 최대 합의 끝자리가 $0$ 이
+ * 되어 「$14.0$」이 나간다. 씨앗을 다시 뽑지 않고 **넉 장 조합을 전수 열거해** 그것만 뺀다.
+ */
+const CARD_QUADS: number[][] = (() => {
+  const out: number[][] = [];
+  for (let a = 1; a <= 9; a += 1) {
+    for (let b = a + 1; b <= 9; b += 1) {
+      if ((a + b) % 10 === 0) continue; // a·b 가 가장 작은 둘 — 소수 첫째 자리로 간다
+      for (let c = b + 1; c <= 9; c += 1) {
+        for (let d = c + 1; d <= 9; d += 1) out.push([a, b, c, d]);
+      }
+    }
+  }
+  return out;
+})();
+
+/** **2-3-4 4단 심화 — 수 카드로 합을 가장 크게.** 큰 숫자를 일의 자리에 놓아야 한다. */
+function tier234Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [s1, s2, s3, s4] = pick(rng, CARD_QUADS) as [
+    number,
+    number,
+    number,
+    number,
+  ];
+  // 큰 것부터: m1 > m2 > m3 > m4. 최대 합은 큰 둘을 일의 자리에 놓은 것이다.
+  const [m1, m2, m3, m4] = [s4, s3, s2, s1];
+  const best = (m1 + m2) * 10 + m3 + m4;
+  const shown = pick(rng, [
+    [s2, s4, s1, s3],
+    [s3, s1, s4, s2],
+    [s4, s2, s3, s1],
+  ]);
+  // 보기로 드는 한 벌은 **일의 자리가 `m1`·`m3`** 이라 최대가 아니다(최대는 `m1`·`m2`).
+  return make(
+    unit,
+    `${n(4)}장의 수 카드 ${nums(shown)}${tail(shown[3]!, "을", "를")} 한 번씩 모두 사용하여 소수 한 자리 수 ` +
+      `두 개를 만들려고 합니다. 예를 들어 ${n(`${m1}.${m2}`)}${tail(m2, "과", "와")} ${n(`${m3}.${m4}`)}처럼 ` +
+      `만듭니다. 두 수의 합이 가장 클 때의 합을 구하시오.`,
+    n(dec1(best)),
+    `일의 자리는 소수 첫째 자리보다 ${n(10)}배 큰 자리이므로 큰 숫자 두 개를 ` +
+      `일의 자리에 놓아야 합니다. ${josaNum(m1, "과", "와")} ${josaNum(m2, "을", "를")} 일의 자리에, ` +
+      `${josaNum(m3, "과", "와")} ${josaNum(m4, "을", "를")} 소수 첫째 자리에 놓으면 ` +
+      `${expr(`${m1}+${m2}=${m1 + m2}`)} 이고 ` +
+      `${expr(`${dec1(m3)}+${dec1(m4)}=${dec1(m3 + m4)}`)} 이므로 합은 ${n(dec1(best))}입니다.`,
+  );
+}
+
+/** 두 수 사이의 «폭» 후보(백분위 정수 $0.11$~$0.99$). 끝자리가 $0$ 이 아니다. */
+const GAP_POOL: number[] = Array.from({ length: 9 }, (_, t) => t + 1).flatMap(
+  (t) => Array.from({ length: 9 }, (_, u) => t * 10 + u + 1),
+);
+
+/** `a` 보다 작으면서 차의 끝자리가 $0$ 이 아닌 값들. 뺄셈 짝을 **풀에서** 고른다. */
+function belowWithCleanDiff(pool: number[], a: number): number[] {
+  return pool.filter((v) => v < a && (a - v) % 10 !== 0);
+}
+
+/** **2-3-5 1단 연산 — 소수 한 자리 수의 차.** 표준은 `=\square` 꼴이다. */
+function tier235Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 가장 작은 값이 뽑히면 「더 작은 수」가 없어 풀이 빈다 — 뽑는 쪽에서 미리 잘라 둔다.
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 21),
+  );
+  const b = pick(rng, belowWithCleanDiff(DEC1_POOL, a));
+  return make(
+    unit,
+    `다음 두 소수의 차를 구하시오.\n\n${expr(`${dec1(a)}-${dec1(b)}`)}`,
+    n(dec1(a - b)),
+    `소수점끼리 자리를 맞추어 같은 자리 수끼리 뺍니다. ` +
+      `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)}`,
+  );
+}
+
+/** **2-3-5 2단 기본 — 가득 채우려면 얼마나 더.** 전체와 지금의 차를 세운다. */
+function tier235Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const full = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 31),
+  );
+  const now = pick(rng, belowWithCleanDiff(DEC1_POOL, full));
+  return make(
+    unit,
+    `들이가 ${n(dec1(full))} L인 양동이에 물이 ${n(dec1(now))} L 들어 있습니다. ` +
+      `양동이를 가득 채우려면 물을 몇 L 더 부어야 합니까?`,
+    n(dec1(full - now)),
+    `더 부어야 하는 양은 들이에서 지금 들어 있는 양을 뺀 것입니다. ` +
+      `${expr(`${dec1(full)}-${dec1(now)}=${dec1(full - now)}`)}`,
+  );
+}
+
+/** **2-3-5 3단 응용 — 기준 수의 위아래.** 두 수를 각각 구한 뒤 차를 낸다(두 단계). */
+function tier235Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 41),
+  );
+  const down = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < base - 10 && (base - v) % 10 !== 0),
+  );
+  const up = pick(
+    rng,
+    DEC1_POOL.filter(
+      (v) =>
+        v !== down && // 폭이 같으면 두 조건이 글자까지 같아진다
+        (base + v) % 10 !== 0 &&
+        (down + v) % 10 !== 0 &&
+        base + v < 200,
+    ),
+  );
+  const lower = base - down;
+  const upper = base + up;
+  return make(
+    unit,
+    `${n(dec1(base))}보다 ${n(dec1(down))} 작은 수와 ${n(dec1(base))}보다 ` +
+      `${n(dec1(up))} 큰 수가 있습니다. 두 수의 차는 얼마입니까?`,
+    n(dec1(upper - lower)),
+    `작은 쪽은 ${expr(`${dec1(base)}-${dec1(down)}=${dec1(lower)}`)} 이고, ` +
+      `큰 쪽은 ${expr(`${dec1(base)}+${dec1(up)}=${dec1(upper)}`)} 입니다. ` +
+      `두 수의 차는 ${expr(`${dec1(upper)}-${dec1(lower)}=${dec1(upper - lower)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-5 4단 심화 — 잘못 계산했더니.** 뺄 것을 더했으니 되짚어 두 번 뺀다. */
+function tier235Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sub = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 39),
+  );
+  // 잘못 계산한 값에서 두 번 빼야 하므로 넉넉히 큰 것만 쓴다.
+  const wrong = pick(
+    rng,
+    DEC1_POOL.filter(
+      (v) =>
+        v - sub >= 21 &&
+        (v - sub) % 10 !== 0 &&
+        (v - sub * 2) % 10 !== 0 &&
+        v - sub * 2 >= 1,
+    ),
+  );
+  const some = wrong - sub;
+  const right = some - sub;
+  return make(
+    unit,
+    `어떤 수에서 ${josaNum(dec1(sub), "을", "를")} 빼야 할 것을 잘못하여 더했더니 ` +
+      `${josaNum(dec1(wrong), "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    n(dec1(right)),
+    `더했더니 ${josaNum(dec1(wrong), "이", "가")} 되었으므로 어떤 수는 ` +
+      `${expr(`${dec1(wrong)}-${dec1(sub)}=${dec1(some)}`)} 입니다. ` +
+      `바르게 계산하면 ${expr(`${dec1(some)}-${dec1(sub)}=${dec1(right)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-6 1단 연산 — 소수 두 자리 수의 합.** 2-3-4 와 묻는 말을 달리한다. */
+function tier236Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC2_POOL);
+  const b = pick(
+    rng,
+    DEC2_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `다음 덧셈의 값을 소수로 나타내시오.\n\n${expr(`${dec2(a)}+${dec2(b)}`)}`,
+    n(dec2(a + b)),
+    `소수점끼리 자리를 맞추어 소수 둘째 자리부터 차례로 더합니다. ` +
+      `${expr(`${dec2(a)}+${dec2(b)}=${dec2(a + b)}`)}`,
+  );
+}
+
+/** **2-3-6 2단 기본 — 그릇과 담긴 것.** 두 무게를 합쳐 전체를 만든다. */
+function tier236Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const empty = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 100),
+  );
+  const inside = pick(
+    rng,
+    DEC2_POOL.filter((v) => (empty + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `빈 병의 무게는 ${n(dec2(empty))} kg이고, 병에 담긴 꿀의 무게는 ` +
+      `${n(dec2(inside))} kg입니다. 꿀이 담긴 병의 무게는 몇 kg입니까?`,
+    n(dec2(empty + inside)),
+    `꿀이 담긴 병의 무게는 빈 병의 무게와 꿀의 무게를 더한 것입니다. ` +
+      `${expr(`${dec2(empty)}+${dec2(inside)}=${dec2(empty + inside)}`)}`,
+  );
+}
+
+/** **2-3-6 3단 응용 — 되짚었다가 더한다.** 어떤 수를 먼저 찾아야 합을 낼 수 있다. */
+function tier236Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const gap = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 100),
+  );
+  const known = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) => v - gap >= 100 && (v - gap) % 10 !== 0 && (v * 2 - gap) % 10 !== 0,
+    ),
+  );
+  const some = known - gap;
+  return make(
+    unit,
+    `어떤 수보다 ${n(dec2(gap))} 큰 수가 ` +
+      `${josaNum(dec2(known), "입니다", "입니다")}. 어떤 수와 ${n(dec2(known))}의 합은 ` +
+      `얼마입니까?`,
+    n(dec2(some + known)),
+    `어떤 수는 ${expr(`${dec2(known)}-${dec2(gap)}=${dec2(some)}`)} 입니다. ` +
+      `두 수를 더하면 ${expr(`${dec2(some)}+${dec2(known)}=${dec2(some + known)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2-3-6 4단 — **소수 둘째 자리와 첫째 자리를 바꿔 쓴** 오류. `w.ab` 대신 `w.ba` 를 더했다.
+ * 두 자리가 달라야 오류가 성립하므로 `a !== b` 인 짝만 열거한다.
+ */
+const SWAP_PAIRS: [number, number][] = (() => {
+  const out: [number, number][] = [];
+  for (let a = 1; a <= 9; a += 1) {
+    for (let b = 1; b <= 9; b += 1) if (a !== b) out.push([a, b]);
+  }
+  return out;
+})();
+
+/** **2-3-6 4단 심화 — 잘못 계산했더니.** 두 자리를 바꿔 쓴 값으로 더했다. */
+function tier236Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, SWAP_PAIRS);
+  const w = intBetween(rng, 1, 3);
+  const right = w * 100 + a * 10 + b;
+  const wrongAdd = w * 100 + b * 10 + a;
+  const got = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) =>
+        v - wrongAdd >= 100 &&
+        (v - wrongAdd) % 10 !== 0 &&
+        (v - wrongAdd + right) % 10 !== 0,
+    ),
+  );
+  const some = got - wrongAdd;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(dec2(right), "을", "를")} 더해야 할 것을 잘못하여 ` +
+      `${josaNum(dec2(wrongAdd), "을", "를")} 더했더니 ` +
+      `${josaNum(dec2(got), "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    n(dec2(some + right)),
+    `잘못하여 더한 수가 ${josaNum(dec2(wrongAdd), "이", "가")} 이므로 어떤 수는 ` +
+      `${expr(`${dec2(got)}-${dec2(wrongAdd)}=${dec2(some)}`)} 입니다. ` +
+      `바르게 계산하면 ` +
+      `${expr(`${dec2(some)}+${dec2(right)}=${dec2(some + right)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-7 1단 연산 — 소수 두 자리 수의 차.** 2-3-5 와 묻는 말을 달리한다. */
+function tier237Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC2_POOL.filter((v) => v >= 201),
+  );
+  const b = pick(rng, belowWithCleanDiff(DEC2_POOL, a));
+  return make(
+    unit,
+    `다음 뺄셈의 값을 소수로 나타내시오.\n\n${expr(`${dec2(a)}-${dec2(b)}`)}`,
+    n(dec2(a - b)),
+    `소수점끼리 자리를 맞추어 소수 둘째 자리부터 차례로 뺍니다. ` +
+      `${expr(`${dec2(a)}-${dec2(b)}=${dec2(a - b)}`)}`,
+  );
+}
+
+/** **2-3-7 2단 기본 — 목표까지 남은 만큼.** 자릿수가 다른 두 수를 맞추어 뺀다. */
+function tier237Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 목표는 **소수 한 자리**, 달린 거리는 두 자리 — 자리를 맞추어 빼는 것이 이 소단원이다.
+  const goal = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 41),
+  );
+  const done = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < goal * 10 - 20 && (goal * 10 - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `오늘 달릴 거리는 ${n(dec1(goal))} km입니다. 지금까지 ${n(dec2(done))} km를 ` +
+      `달렸다면 앞으로 몇 km를 더 달려야 합니까?`,
+    n(dec2(goal * 10 - done)),
+    `더 달려야 하는 거리는 목표에서 지금까지 달린 거리를 뺀 것입니다. ` +
+      `${expr(`${dec1(goal)}-${dec2(done)}=${dec2(goal * 10 - done)}`)}`,
+  );
+}
+
+/** **2-3-7 3단 응용 — 되짚었다가 뺀다.** 어떤 수를 먼저 찾아야 다음 뺄셈을 할 수 있다. */
+function tier237Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const first = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 200),
+  );
+  const left = pick(
+    rng,
+    // 되짚은 「어떤 수」도 해설에 나가므로 끝자리가 $0$ 이면 안 된다(「$2.80$」).
+    DEC2_POOL.filter((v) => v < 300 && (first + v) % 10 !== 0),
+  );
+  const some = first + left;
+  const second = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < some && (some - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `어떤 수에서 ${josaNum(dec2(first), "을", "를")} 뺐더니 ` +
+      `${josaNum(dec2(left), "이", "가")} 되었습니다. 어떤 수에서 ` +
+      `${josaNum(dec2(second), "을", "를")} 빼면 얼마입니까?`,
+    n(dec2(some - second)),
+    `어떤 수는 ${expr(`${dec2(left)}+${dec2(first)}=${dec2(some)}`)} 입니다. ` +
+      `${expr(`${dec2(some)}-${dec2(second)}=${dec2(some - second)}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-3-7 4단 심화 — 차가 가장 작은 짝.** 세 수에서 두 개를 골라 본다.
+ * 2-3-4 심화의 「합이 가장 크게」와 방향이 대비된다.
+ */
+function tier237Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * 가장 작은 차를 **먼저 정하고** 세 수를 짠다 — 세 수를 먼저 뽑아 재면 최솟값이 겹치거나
+   * 끝자리가 $0$ 이 되는 씨앗이 섞인다.
+   *
+   * 끝자리 $0$ 을 막을 곳이 **넷**이다 — 두 차(`small`·`wide`)와 가운데·가장 큰 수.
+   * 처음에는 두 차만 막아서 「$7.70$」이 발문에 나갔다(쓸기가 실측).
+   */
+  const small = pick(
+    rng,
+    GAP_POOL.filter((v) => v <= 60),
+  );
+  const wide = pick(
+    rng,
+    GAP_POOL.filter((v) => v > small), // 최솟값이 하나로 서게 «더 넓은» 쪽만
+  );
+  const lo = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) =>
+        v + small + wide < 900 &&
+        (v + small) % 10 !== 0 &&
+        (v + small + wide) % 10 !== 0,
+    ),
+  );
+  const mid = lo + small;
+  const hi = mid + wide;
+  const order = pick(rng, [
+    [mid, hi, lo],
+    [hi, lo, mid],
+    [lo, hi, mid],
+  ]);
+  return make(
+    unit,
+    `세 소수 ${order.map((v) => n(dec2(v))).join(", ")} 중에서 두 수를 골라 차를 ` +
+      `구하려고 합니다. 차가 가장 작을 때의 값을 구하시오.`,
+    n(dec2(small)),
+    `차가 가장 작으려면 크기가 가장 가까운 두 수를 골라야 합니다. ` +
+      `크기 순으로 늘어놓고 이웃한 두 수끼리만 견주면 됩니다. ` +
+      `${josaNum(dec2(lo), "과", "와")} ${n(dec2(mid))}, ` +
+      `${josaNum(dec2(mid), "과", "와")} ${n(dec2(hi))}의 차를 견주면 ` +
+      `${expr(`${dec2(mid)}-${dec2(lo)}=${dec2(small)}`)} 이고 ` +
+      `${expr(`${dec2(hi)}-${dec2(mid)}=${dec2(wide)}`)} 이므로 ` +
+      `가장 작은 차는 ${n(dec2(small))}입니다.`,
+  );
+}
+
 /* ───────────────────────── 2-4 사각형 ───────────────────────── */
 
 function quad(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -2289,6 +7975,823 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+
+/* ──────────── 2-4 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **사각형 소단원도 1단은 「성질 한 번 적용」이다**(2-2 와 같은 자리, D-72 ⑶).
+ *
+ * ⚠️ **표준 2-4-5(평행사변형)를 피해서 짰다.** 그 소단원이 「한 각이 $N$ 도 → 이웃한 각 /
+ * 마주 보는 각」과 「이웃한 두 변 → 네 변의 합」을 이미 쓴다. 마름모도 그 성질을
+ * 물려받으므로 2-4-6 에 각 갈래를 넣으면 **낱말만 바뀐 같은 문형**이 나란히 선다.
+ * R5 시험은 **소단원 안에서만** 견주므로 이 겹침을 구조적으로 못 본다 —
+ * 그래서 2-4-6 은 **변 축**(마름모 자신의 정의)으로만 간다.
+ *
+ * ⚠️ **「A는 B라고 할 수 있는가? 예/아니요」 문형은 한 갈래도 안 만든다.** 표준
+ * 2-4-4·2-4-7 이 그 문형을 셋 쓴다. 낱말만 바꾸면 R5 가 말하는 「상수만 바꾼 것」이다.
+ * 2-4-7 1단을 **개수 세기**로 돌린 것이 그 때문이다 — 같은 개념을 묻되 문형이 다르고,
+ * 「예/아니요」는 찍어도 절반이라 그 자체로 약한 문형이다(리드 확인 2026-08-23).
+ *
+ * ⚠️ **철사·끈 맥락을 안 쓴다.** 2-2-3(정삼각형) 3·4단이 이미 그 소재라 한 시험지에
+ * 나란히 서면 같은 문형이 된다.
+ *
+ * 「네 변의 길이의 합」은 둘레 **공식**이 아니라 덧셈·곱셈이라 초4 범위 안으로 본다 —
+ * 표준이 이미 세 자리에서 그렇게 쓰고 있다(평행사변형·마름모·정사각형).
+ *
+ * ⚠️ **그림은 아직 안 붙였다.** `namedShapes` 로 되는 소단원이지만 엔진의 «그린 도형이
+ * 라벨과 무관하게 고정» 결함이 안 고쳐졌다(실측 2026-08-23: `[5,5,9]` 도 `[7,7,4]` 와
+ * 똑같이 그려진다). 그림 세션이 **「값을 적으면 던지게」**를 넣는 중이고, 그게 서면
+ * 실수로 치수를 적어도 조용히 안 나간다. **그때 얹는다**(리드 판단 2026-08-23).
+ */
+/* ──────── 2-4-2 평행과 평행선 (2026-08-24, 관계를 «이어 붙인다») ────────
+ *
+ * **이 소단원의 셈할 수 있는 축은 「한 직선에 수직인 두 직선은 서로 평행하다」이다** —
+ * 그 규칙이 **이어 붙는다**. 가⊥나·나⊥다 면 가∥다 이고, 거기에 다⊥라 를 더하면 가⊥라 다.
+ * 수직으로 한 번 꺾일 때마다 방향이 바뀌므로 **꺾인 횟수의 홀짝**이 답을 정한다.
+ * 1-4-2(밀기)가 「민 거리를 합하고 뺀다」로, 1-4-3(뒤집기)이 「뒤집은 횟수」로 사다리를
+ * 세운 것과 **같은 수법**이다 — 교과서가 정성적으로만 묻는 소단원에서 개념 자체가
+ * 허락하는 셈을 찾아낸다.
+ *
+ * ⚠️ **각도로 가지 않는다.** 1-2-3(각의 크기에 따라 분류)이 「$45^\circ$ 인 각은 직각보다
+ * 큰가」를, 1-2-4(각도의 합과 차)가 「직선이 이루는 각」과 「잘못하여 더했더니」를 이미
+ * 쓴다. 「수직으로 만나 생긴 네 각」류로 열면 낱말만 바뀐 같은 산술이다.
+ *
+ * ⚠️ **1-4-3 심화의 「$8$번보다 많고 $12$번보다 적다면」 문형을 안 쓴다.** 홀짝을 쓰는
+ * 소단원이라 **그 문형이 저절로 떠오른다** — 쓰기 전에 알아채고 걸렀다. 그대로 가면
+ * 뒤집기와 **같은 문항**이 되고, R5 는 소단원 «안»에서만 견주므로 이 겹침을 구조적으로
+ * 못 본다. 심화는 **가운데 관계를 되짚는** 쪽으로 갔다.
+ *   (다음 사람에게: 「홀짝인데 왜 범위 문형을 안 썼지」 싶으면 1-4-3 심화를 먼저 뽑아 보라.)
+ *
+ * ⚠️ **그림을 안 붙인다 — ③ 가 섰는데도 그렇다.** `lineRelation` 의 `perpendicular` ·
+ * `bothPerpendicular` 은 **값을 받지 않는다**(`labels` 뿐). 그러면 씨앗이 달라도 그림이
+ * 늘 같아 **R9-b 위반**이다 — 2-4-6 마름모에서 이미 한 번 낸 결함이다. 게다가
+ * `bothPerpendicular` 은 두 수선을 **평행하게 그려** 답을 그대로 보여 준다(㉡).
+ * 발문이 관계를 말로 다 적어 자족하므로 그림이 없어도 답이 하나다.
+ *
+ * ⚠️ **직선 이름의 시작 자리를 씨앗마다 옮긴다.** 관계 문항이라 수가 안 들어가서
+ * 문형이 갈래마다 둘뿐이었다(R4 는 여덟을 요구한다). 이름을 옮기는 것은 **개념의
+ * 변형이 아니라 소재의 변형**이다 — `TRAP_ITEMS`·`RHOMBUS_ITEMS` 와 같은 자리이고,
+ * 교과서도 직선 이름을 문항마다 달리 쓴다. 개념 쪽 변형은 1단을 셋으로, 2단을
+ * 세 길이로 늘려 따로 벌었다.
+ */
+
+/** 직선 이름 — 초4 교과서가 쓰는 차례. 받침이 없으므로 조사는 `josa` 가 고른다. */
+const LINE_NAMES = [
+  "가",
+  "나",
+  "다",
+  "라",
+  "마",
+  "바",
+  "사",
+  "아",
+  "자",
+] as const;
+
+/** 「직선 가」·「직선 나」… 이름이 모자라면 **던진다** — 조용히 `undefined` 가 나가지 않게. */
+function lineName(i: number): string {
+  const nm = LINE_NAMES[i];
+  if (nm === undefined) {
+    throw new Error(`직선 이름이 모자랍니다: ${i}번째 — LINE_NAMES 를 늘려라`);
+  }
+  return `직선 ${nm}`;
+}
+
+/** 「직선 가와」 처럼 이름 + 조사. 받침 판정을 여기 한 곳에 둔다. */
+function lineJosa(i: number, withEnd: string, withoutEnd: string): string {
+  return josa(lineName(i), withEnd, withoutEnd);
+}
+
+/** 이름 `k` 개를 쓸 때 시작 자리 — 뽑고 거르지 않고 **못 뽑을 자리를 안 만든다**. */
+function lineBase(rng: Rng, used: number): number {
+  return intBetween(rng, 0, LINE_NAMES.length - used);
+}
+
+/** 「직선 가, 직선 나, 직선 다」 처럼 늘어놓기. */
+function lineList(base: number, k: number): string {
+  return Array.from({ length: k }, (_, i) => lineName(base + i)).join(", ");
+}
+
+/**
+ * **2-4-2 1단 — 규칙을 한 번 적용한다.** 산술이 없다(D-72 ⑶).
+ *
+ * 세 갈래가 규칙을 **양쪽으로** 쓴다 — 수직 두 번이면 평행, 평행과 수직이 섞이면 수직.
+ * 어느 쪽도 이어 붙이기가 아니라 교과서 문장 그대로다.
+ */
+function tier242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 3);
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
+        `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}도 서로 수직입니다. ` +
+        `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 관계인가?`,
+      "평행",
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 둘 다 ` +
+        `${lineName(b + 1)}에 대한 수선입니다. 한 직선에 수직인 두 직선은 서로 ` +
+        `평행하므로 두 직선은 서로 평행합니다.`,
+    );
+  }
+  if (kind === 1) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 평행하고, ` +
+        `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
+        `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
+        `서로 어떤 관계인가?`,
+      "수직",
+      `${lineJosa(b + 2, "은", "는")} ${lineName(b + 1)}에 수직입니다. ` +
+        `${lineJosa(b, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
+        `같으므로 ${lineJosa(b + 2, "은", "는")} ${lineJosa(b, "과", "와")}도 ` +
+        `서로 수직입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
+      `평행합니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
+      `서로 어떤 관계인가?`,
+    "수직",
+    `${lineJosa(b + 2, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
+      `같습니다. ${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 수직이므로 ` +
+      `${lineName(b + 2)}에도 수직입니다.`,
+  );
+}
+
+/**
+ * **2-4-2 2단 — 스스로 이어 붙인다.**
+ *
+ * 수직으로 꺾인 횟수가 셋에서 다섯이라 1단처럼 한 번에 안 끝난다. 학생이 세울 것은
+ * 「수직으로 한 번 꺾일 때마다 방향이 바뀐다」는 규칙 하나이고, 그것을 되풀이한다.
+ */
+function tier242Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const links = intBetween(rng, 3, 5);
+  const b = lineBase(rng, links + 1);
+  const pairs = Array.from(
+    { length: links },
+    (_, i) => `${lineJosa(b + i, "과", "와")} ${lineName(b + i + 1)}`,
+  );
+  const even = links % 2 === 0;
+  return make(
+    unit,
+    `${lineList(b, links + 1)}가 있습니다. ${pairs.join(", ")}가 각각 서로 ` +
+      `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + links, "은", "는")} ` +
+      `서로 어떤 관계인가?`,
+    even ? "평행" : "수직",
+    `수직으로 한 번 꺾일 때마다 직선의 방향이 바뀝니다. ${lineName(b)}에서 ` +
+      `${lineName(b + links)}까지 수직으로 ${n(links)}번 꺾였으므로 ` +
+      (even
+        ? "짝수 번이라 방향이 처음으로 돌아와 두 직선은 서로 평행합니다."
+        : "홀수 번이라 방향이 바뀌어 두 직선은 서로 수직입니다."),
+  );
+}
+
+/**
+ * **2-4-2 3단 — 두 단계.** 「어느 것이 평행/수직인가」를 먼저 가려야(중간값)
+ * 「몇 개인가」가 나온다. 1·2단은 한 쌍만 보지만 여기서는 **전부**를 훑어야 한다.
+ */
+function tier242Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 5, 9);
+  const b = lineBase(rng, count);
+  const wantParallel = pick(rng, [true, false]);
+  const hits: number[] = [];
+  for (let i = 1; i < count; i += 1) {
+    if ((i % 2 === 0) === wantParallel) hits.push(b + i);
+  }
+  const word = wantParallel ? "평행" : "수직";
+  return make(
+    unit,
+    `직선 ${n(count)}개가 ${LINE_NAMES.slice(b, b + count).join(", ")} 순서로 ` +
+      `있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
+      `${lineJosa(b, "과", "와")} 서로 ${wantParallel ? "평행한" : "수직인"} 직선은 ` +
+      `${lineJosa(b, "을", "를")} 빼고 모두 몇 개인가?`,
+    `${n(hits.length)}개`,
+    `수직으로 한 번 꺾일 때마다 방향이 바뀌므로 ${lineName(b)}에서 ` +
+      `${wantParallel ? "짝수" : "홀수"} 번 꺾인 직선이 ${lineJosa(b, "과", "와")} ` +
+      `서로 ${word}입니다. ${hits.map((i) => lineName(i)).join(", ")}의 ` +
+      `${n(hits.length)}개입니다.`,
+  );
+}
+
+/**
+ * **2-4-2 4단 — 가운데 관계를 되짚는다.**
+ *
+ * 양 끝의 관계가 주어지고 **가운데 한 칸이 비어 있다.** 앞뒤에서 수직으로 한 번씩
+ * 꺾이니 그 둘만으로는 방향이 처음으로 돌아온다 — 그러므로 **양 끝의 관계가 곧 가운데의
+ * 관계**다. 「꺾인 횟수를 센다」를 거꾸로 쓰는 것이라 2·3단의 지름길이 안 통한다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다** — 가운데 관계를 먼저 뽑고 양 끝의 관계를 거기서 만든다.
+ */
+function tier242Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const middleParallel = pick(rng, [true, false]);
+  const b = lineBase(rng, 4);
+  const word = middleParallel ? "평행" : "수직";
+  return make(
+    unit,
+    `${lineList(b, 4)}가 차례로 있습니다. ${lineJosa(b, "과", "와")} ` +
+      `${lineJosa(b + 1, "은", "는")} 서로 수직이고, ${lineJosa(b + 2, "과", "와")} ` +
+      `${lineName(b + 3)}도 서로 수직입니다. ${lineJosa(b, "과", "와")} ` +
+      `${lineJosa(b + 3, "이", "가")} 서로 ${word}하려면 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 ` +
+      `관계여야 하는가?`,
+    word,
+    `${lineName(b)}에서 ${lineName(b + 1)}로, ${lineName(b + 2)}에서 ` +
+      `${lineName(b + 3)}로 수직으로 한 번씩 꺾이므로 이 둘만으로는 방향이 처음으로 ` +
+      `돌아옵니다. 그러므로 ${lineJosa(b, "과", "와")} ${lineName(b + 3)}의 관계는 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}의 관계와 같습니다. ` +
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 3, "이", "가")} 서로 ${word}하려면 ` +
+      `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}도 서로 ${word}해야 합니다.`,
+  );
+}
+
+/* ──────── 2-4-3 평행선 사이의 거리 (2026-08-24, 그림을 안 기다리고 연다) ────────
+ *
+ * **남은 넷 중 이 소단원만 「길이」라는 셈할 수 있는 축을 자기 것으로 가진다.**
+ * 2-4-1(수직과 수선)·2-4-2(평행과 평행선)는 잴 길이가 없어 「이 도형에서 수직인/평행한
+ * 변이 몇 쌍인가」로만 사다리를 세울 수 있고 그건 도형을 봐야 한다 — 그 둘은 그림을
+ * 기다린다. 2-6-4(채우기)도 같다.
+ *
+ * ⚠️ **각도로 사다리를 세우지 않는다.** 「직각을 세 각으로 나누면」류로 열 수는 있으나
+ * 그러면 **1-2-4(각도의 합과 차)와 같은 산술**이 된다. 짐작이 아니라 돌려서 확인했다 —
+ * 1-2-4 심화가 이미 「어떤 각도에서 $28^\circ$ 를 빼야 할 것을 잘못하여 더했더니」다.
+ * 직각 옷만 입히면 같은 문형이 다시 난다. **R5 는 소단원 «안»에서만 견주므로 이 겹침을
+ * 구조적으로 못 본다** — 2-4-6 을 변 축으로만 돌린 것과 같은 자리다.
+ *
+ * ⚠️ **그림이 없어도 답이 유일하다.** 「직선 가·나·다가 **이 순서로** 나란히 놓여 있고
+ * 모두 평행합니다」가 배치를 통째로 정한다. 나중에 ③ 두 직선 관계가 오면 **얹기만** 하면
+ * 되고 발문은 다시 안 쓴다. 반대로 「각 ㄱㄷㅁ은 몇 도인가」처럼 **점이 어디 있는지를
+ * 그림이 정하는** 문형은 한 갈래도 안 만든다 — 그건 그림 없이 답이 둘이다.
+ *
+ * ⚠️ **4단을 「합에서 빼고 $2$ 로 나누기」로 짓지 않았다.** 2-4-4 4단이 이미
+ * `□+(□+차)=합` 이라 낱말만 바뀐 같은 산술이 된다. 대신 이 소단원 **자신의 성질**
+ * (수선의 길이는 어디에서 재어도 같다)을 되짚게 했다 — 그 성질을 모르면 못 푼다.
+ *
+ * ⚠️ 옛 `quad()` 안에 이 소단원 문항이 남아 있지만 **문형만 봤고 값은 새로 세웠다.**
+ * 죽은 코드는 아무 판정기도 안 보고 있어서 거기 있는 것이 옳다는 근거가 없다(리드 지적).
+ */
+
+/** **2-4-3 1단 — 성질을 한 번 적용한다.** 산술이 없다(2-2 기하와 같은 규격, D-72 ⑶).
+ *
+ * 두 갈래가 **같은 성질을 양쪽으로** 묻는다 — 수선을 재면 그것이 거리이고, 거리를 알면
+ * 그것이 수선의 길이다. 어느 쪽도 되짚기가 아니라 정의 그대로다.
+ */
+function tier243Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dist = intBetween(rng, 3, 15);
+  if (pick(rng, [true, false])) {
+    return make(
+      unit,
+      `평행한 두 직선 사이에 수선을 그었더니 그 수선의 길이가 ${cm(dist)}였습니다. ` +
+        `이 두 직선 사이의 거리는 몇 cm인가?`,
+      cm(dist),
+      `평행선 사이의 거리는 평행선 사이에 그은 수선의 길이입니다. ` +
+        `그러므로 ${cm(dist)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `평행한 두 직선 사이의 거리가 ${cm(dist)}입니다. 이 두 직선 사이에 그은 수선의 ` +
+      `길이는 몇 cm인가?`,
+    cm(dist),
+    `평행선 사이에 그은 수선의 길이가 곧 평행선 사이의 거리입니다. ` +
+      `그러므로 ${cm(dist)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 2단 — 스스로 식을 세운다.**
+ *
+ * 「이 순서로」가 직선 나를 가운데로 못 박으므로, 가와 다 사이가 두 거리의 **합**이라는
+ * 것이 발문만으로 정해진다. 학생이 세울 식은 그 덧셈 하나다.
+ */
+function tier243Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const near = intBetween(rng, 3, 14);
+  const far = intBetween(rng, 3, 14);
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}, 직선 나와 직선 다 사이의 ` +
+      `거리는 ${cm(far)}입니다. 직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+    cm(near + far),
+    `직선 나가 직선 가와 직선 다 사이에 있으므로 두 거리를 더하면 됩니다. ` +
+      `${expr(`${near}+${far}=${near + far}`)} 이므로 ${cm(near + far)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 3단 — 두 단계.** 한 칸의 거리를 **먼저 구해야**(중간값) 합을 낼 수 있다.
+ *
+ * 「더 멀다/더 가깝다」 두 갈래를 **뽑는 순서를 바꿔서** 만든다 — 뽑고 거르지 않으므로
+ * 못 뽑을 자리가 아예 없다(`trapSides` 와 같은 원칙). 「가깝다」쪽에서 음수가 날 수
+ * 있는데, 그것을 걸름으로 막으면 그 걸름이 **장식인지 아닌지** 다시 재야 한다.
+ */
+function tier243Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = intBetween(rng, 4, 12);
+  const diff = intBetween(rng, 2, 9);
+  const farther = pick(rng, [true, false]);
+  const near = farther ? base : base + diff;
+  const far = farther ? base + diff : base;
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}이고, 직선 나와 직선 다 ` +
+      `사이의 거리는 그보다 ${cm(diff)} 더 ${farther ? "깁니다" : "짧습니다"}. ` +
+      `직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+    cm(near + far),
+    `직선 나와 직선 다 사이의 거리는 ` +
+      `${expr(`${near}${farther ? "+" : "-"}${diff}=${far}`)} 입니다. ` +
+      `직선 나가 가운데에 있으므로 ` +
+      `${expr(`${near}+${far}=${near + far}`)} 이고 ${cm(near + far)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-3 4단 — 이 소단원 «자신의» 성질을 되짚는다.**
+ *
+ * 「평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같다」를 모르면 여러 수선의
+ * 길이 **합**에서 한 칸의 거리를 되찾을 수 없다. 그 되찾은 값이 중간값이고, 전체에서
+ * 다시 빼야 답이 나온다 — 되짚기 한 번, 빼기 한 번이다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다** — 답(묻는 칸)과 중간값(수선을 그은 칸)을 먼저 뽑고
+ * 합·전체를 거기서 **만든다**. 그리는 대로 뽑아 거르면 못 뽑을 자리가 난다.
+ *
+ * ⚠️ **두 칸의 범위를 겹치지 않게 잡는다.** 같은 값이 나오면 중간값과 답이 같아져
+ * 「합에서 되찾기」를 건너뛰고도 답이 맞는 씨앗이 생긴다 — 그러면 그 씨앗에서 4단이
+ * 3단보다 가볍다.
+ */
+function tier243Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const measured = intBetween(rng, 3, 9);
+  const asked = intBetween(rng, 11, 22);
+  const count = intBetween(rng, 2, 4);
+  const sum = measured * count;
+  const total = measured + asked;
+  const front = pick(rng, [true, false]);
+  const drawn = front ? "직선 가와 직선 나" : "직선 나와 직선 다";
+  const wanted = front ? "직선 나와 직선 다" : "직선 가와 직선 나";
+  return make(
+    unit,
+    `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
+      `평행합니다. ${drawn} 사이에 수선을 ${n(count)}개 그었더니 그 수선들의 길이의 ` +
+      `합이 ${cm(sum)}였습니다. 직선 가와 직선 다 사이의 거리가 ${cm(total)}일 때, ` +
+      `${wanted} 사이의 거리는 몇 cm인가?`,
+    cm(asked),
+    `평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같으므로 수선 한 개의 길이는 ` +
+      `${expr(`${sum}\\div${count}=${measured}`)} 입니다. 이것이 ${drawn} 사이의 ` +
+      `거리입니다. 그러므로 ${wanted} 사이의 거리는 ` +
+      `${expr(`${total}-${measured}=${asked}`)} 이고 ${cm(asked)}입니다.`,
+  );
+}
+
+/** 사다리꼴 소재 — 「평행한 두 변」이 실제로 있는 물건. */
+const TRAP_ITEMS = ["밭", "화단", "표지판", "창문"] as const;
+
+/**
+ * 그 네 변으로 **사다리꼴이 실제로 그려지는가.**
+ *
+ * 평행한 두 변의 **차**를 밑변으로 삼고 평행하지 않은 두 변을 두 변으로 하는 삼각형이
+ * 서야 한다 — 그래서 조건이 `|a-b| < 긴 변 − 짧은 변 < a+b` 다(삼각형 부등식 그대로).
+ *
+ * ⚠️ **`isTriangle` 과 똑같은 부류의 결함을 여기서도 냈다.** 첫 판이 네 변을 따로따로
+ * 뽑아 `11, 4, 14, 8` 을 냈다 — 평행한 두 변의 차가 $3$ 인데 나머지 두 변의 차가 $4$ 라
+ * **그런 사다리꼴은 없다.** 네 수의 합도 맞고 「한 쌍만 평행」도 맞아 **값 검산으로는
+ * 안 잡힌다.** 존재하지 않는 도형일 뿐이다. 판정을 갈래마다 적지 않고 **여기 한 곳**에 둔다.
+ *
+ * 초4 는 이 조건을 배우지 않으므로 학생이 가려낼 수도 없다 — 우리가 안 내는 수밖에 없다.
+ */
+function isTrapezoid(
+  short: number,
+  long: number,
+  legA: number,
+  legB: number,
+): boolean {
+  const gap = long - short;
+  return gap > 0 && Math.abs(legA - legB) < gap && gap < legA + legB;
+}
+
+/**
+ * 사다리꼴 네 변 — **평행한 두 변**(길이가 다르다)과 평행하지 않은 두 변.
+ *
+ * 평행한 두 변이 같으면 평행사변형이 되어 「한 쌍만 평행」이 거짓이 되므로 **다르게** 뽑고,
+ * 차는 `isTrapezoid` 가 허락하는 폭에서만 고른다 — 뽑고 거르지 않고 **못 뽑을 자리를
+ * 안 만든다**. 두 변의 차가 $0$ 이면(둘이 같으면) 차가 $1$ 부터 서므로 늘 하나는 있다.
+ */
+function trapSides(rng: Rng): {
+  short: number;
+  long: number;
+  legA: number;
+  legB: number;
+} {
+  const legA = intBetween(rng, 3, 10);
+  const legB = intBetween(rng, 3, 10);
+  const short = intBetween(rng, 4, 11);
+  const gap = pick(
+    rng,
+    Array.from({ length: legA + legB - 1 }, (_, i) => i + 1).filter((g) =>
+      isTrapezoid(short, short + g, legA, legB),
+    ),
+  );
+  return { short, long: short + gap, legA, legB };
+}
+
+/** **2-4-4 1단 — 네 변의 합.** 평행한 두 변을 발문이 짚어 소단원 약속이 지면에 남는다. */
+function tier244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, TRAP_ITEMS);
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 평행한 두 변의 길이가 ` +
+      `${cm(short)}, ${cm(long)}이고 나머지 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
+      `네 변의 길이의 합은 몇 cm인가?`,
+    cm(total),
+    `${expr(`${short}+${long}+${legA}+${legB}=${total}`)} 이므로 ${cm(total)}입니다.`,
+  );
+}
+
+/** **2-4-4 2단 — 이름을 «판별하고» 재기.** 표준은 이름만 묻는다. */
+function tier244Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `어떤 사각형은 마주 보는 두 변 중 한 쌍만 서로 평행합니다. 이 사각형의 이름을 쓰고, ` +
+      `네 변의 길이가 ${cm(short)}, ${cm(legA)}, ${cm(long)}, ${cm(legB)}일 때 ` +
+      `네 변의 길이의 합을 구하시오.`,
+    `사다리꼴, ${cm(total)}`,
+    `평행한 변이 한 쌍이라도 있는 사각형은 사다리꼴입니다. ` +
+      `${expr(`${short}+${legA}+${long}+${legB}=${total}`)} 이므로 ${cm(total)}입니다.`,
+  );
+}
+
+/** **2-4-4 3단 — 평행한 두 변의 «합».** 중간값은 평행하지 않은 두 변의 합이다. */
+function tier244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, TRAP_ITEMS);
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ${cm(total)}이고, ` +
+      `평행하지 않은 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
+      `평행한 두 변의 길이의 합은 몇 cm인가?`,
+    cm(short + long),
+    `평행하지 않은 두 변의 길이의 합은 ${expr(`${legA}+${legB}=${legA + legB}`)} 입니다. ` +
+      `${expr(`${total}-${legA + legB}=${short + long}`)} 이므로 ${cm(short + long)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-4 4단 — 세 조건을 엮어 긴 변을 찾는다.**
+ *
+ * 네 변의 합에서 평행하지 않은 두 변을 빼면 평행한 두 변의 합이고, 거기에 «차»가
+ * 있어야 각각이 정해진다. 짧은 변을 $\square$ 로 두면
+ * `□ + (□ + 차) = 평행한 두 변의 합` 이다.
+ */
+function tier244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const short = intBetween(rng, 4, 12);
+  const leg = intBetween(rng, 3, 10);
+  // 평행하지 않은 두 변이 **같으므로** 두 변의 차가 $0$ 이고, 조건은 `0 < 차 < 2×다리` 다.
+  //
+  // ⚠️ **첫 판은 후보를 `2×(다리−1)` 까지만 만들어 걸름이 아무것도 안 걸렀다.** 그러면
+  // 그 `filter` 는 **장식**이고, 지워도 아무 일이 없다(변이가 초록으로 그것을 짚어 줬다).
+  // 후보를 조건 밖까지 만들어 **걸름이 실제로 일하게** 한다.
+  // (그리고 첫 판 주석은 「짝수라야 짧은 변이 자연수」라고 적었는데 **틀렸다** —
+  //  짧은 변을 먼저 뽑으므로 차의 홀짝은 아무것도 안 바꾼다. 짝수만 쓰는 까닭은
+  //  해설의 `□×2 = 합 − 차` 가 눈에 익은 꼴로 남게 하려는 것뿐이다.)
+  const gap = pick(
+    rng,
+    Array.from({ length: leg + 3 }, (_, i) => (i + 1) * 2).filter((g) =>
+      isTrapezoid(short, short + g, leg, leg),
+    ),
+  );
+  const long = short + gap;
+  const total = short + long + leg * 2;
+  return make(
+    unit,
+    `사다리꼴의 네 변의 길이의 합이 ${cm(total)}입니다. 평행하지 않은 두 변의 길이는 ` +
+      `각각 ${cm(leg)}로 같고, 평행한 두 변 중 긴 변은 짧은 변보다 ${cm(gap)} 깁니다. ` +
+      `긴 변의 길이는 몇 cm인가?`,
+    cm(long),
+    `평행한 두 변의 길이의 합은 ${expr(`${total}-${leg}-${leg}=${short + long}`)} 입니다. ` +
+      `짧은 변을 ${expr("\\square")}라고 하면 ` +
+      `${expr(`\\square+(\\square+${gap})=${short + long}`)} 이므로 ` +
+      `${expr(`\\square\\times2=${short + long}-${gap}=${short * 2}`)} 이고 ` +
+      `짧은 변은 ${cm(short)}입니다. 긴 변은 ${expr(`${short}+${gap}=${long}`)} 입니다.`,
+  );
+}
+
+/** 마름모 모양으로 나올 만한 물건. 수만으로는 변형이 열둘뿐이라 소재로 넓힌다. */
+const RHOMBUS_ITEMS = ["연", "타일", "장식", "무늬"] as const;
+
+/* ──────────── 2-4-5 평행사변형 (2026-08-23, 비율 수리 뒤 열림) ────────────
+ *
+ * 표준이 「한 각 → 이웃한 각 / 마주 보는 각」과 「이웃한 두 변 → 네 변의 합」을 쓴다.
+ * 갈래는 **변 축(1·3단)과 각 축(2·4단)을 나눠** 그 셋을 피한다.
+ *
+ * ⚠️ **그림은 1·2단에만 붙인다 — 재서 그렇게 정했다.** 엔진이 `para` 의 `sides`·`angles`
+ * 를 그림에 반영하므로(실측: 각 $115^\circ$ → 그린 각 $115.0^\circ$) 값을 실을 수 있다.
+ * 그런데 **답이 길이인 갈래(3단)에 기본 비율로 그리면 그림이 답을 배반한다** —
+ * 「합 $34$·한 변 $9$ → 이웃 $8$」인데 기본 그림은 이웃을 $1.5$배로 그린다.
+ * 4단도 같다(각의 차가 발문 값과 다르게 그려진다). **그래서 그 둘은 그림 없이 낸다** —
+ * 「값을 배반하는 그림」보다 「그림 없음」이 낫다(2026-08-23 그 결함을 찾은 자리다).
+ */
+
+/** 평행사변형 그림 — 값을 주면 엔진이 그 값대로 그린다(비율 수리 뒤). */
+function paraFigure(rest: Record<string, unknown>): Record<string, unknown> {
+  return fig("markedShape", { shape: "para", ...rest });
+}
+
+/** **2-4-5 1단 — 마주 보는 변은 같다.** 성질 한 번, 계산 없음. 표준은 이 방향을 안 쓴다. */
+function tier245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `평행사변형입니다. 한 변의 길이가 ${cm(side)}일 때 그 변과 마주 보는 변의 길이는 ` +
+      `몇 cm인가?`,
+    cm(side),
+    `평행사변형은 마주 보는 두 변의 길이가 서로 같습니다. 그러므로 ${cm(side)}입니다.`,
+    // 적힌 변은 하나뿐이다 — 마주 보는 변은 **그림에서 같게 그려지고** 라벨은 없다.
+    paraFigure({ sides: [`${side} cm`, null, null, null] }),
+  );
+}
+
+/** **2-4-5 2단 — 한 각에서 네 각 모두로.** 표준은 이웃한 각 «하나»만 묻는다. */
+function tier245Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 직각이면 직사각형이라 「평행사변형」이라 부르는 것이 흔들린다 — $90^\circ$ 는 뺀다.
+  const a = pick(
+    rng,
+    [50, 55, 60, 65, 70, 75, 80, 100, 105, 110, 115, 120, 125, 130],
+  );
+  return make(
+    unit,
+    `평행사변형에서 한 각의 크기가 ${deg(a)}입니다. 네 각의 크기를 모두 구하시오.`,
+    `${deg(a)}, ${deg(180 - a)}, ${deg(a)}, ${deg(180 - a)}`,
+    `평행사변형은 마주 보는 두 각의 크기가 같으므로 ${deg(a)}인 각이 ${n(2)}개입니다. ` +
+      `이웃한 두 각의 크기의 합은 ${deg(180)}이므로 나머지 두 각은 ` +
+      `${expr(`180-${a}=${180 - a}`)} 입니다.`,
+    paraFigure({ angles: [`${a}°`, null, null, null] }),
+  );
+}
+
+/** **2-4-5 3단 — 네 변의 합과 한 변에서 이웃한 변으로.** 중간값은 합의 절반이다. */
+function tier245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 4, 14);
+  const b = pick(
+    rng,
+    Array.from({ length: 14 }, (_, i) => i + 3).filter((v) => v !== a),
+  );
+  return make(
+    unit,
+    `평행사변형의 네 변의 길이의 합이 ${cm((a + b) * 2)}이고 한 변의 길이가 ${cm(a)}입니다. ` +
+      `이 변과 이웃한 변의 길이는 몇 cm인가?`,
+    cm(b),
+    `평행사변형은 마주 보는 두 변의 길이가 같으므로 이웃한 두 변의 길이의 합은 ` +
+      `${expr(`${(a + b) * 2}\\div2=${a + b}`)} 입니다. ` +
+      `${expr(`${a + b}-${a}=${b}`)} 이므로 ${cm(b)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-5 4단 — 이웃한 두 각의 «차»에서 각을 찾는다.**
+ *
+ * 합이 $180^\circ$ 라는 것과 차를 함께 써야 정해진다. 작은 각을 $\square$ 로 두면
+ * `□ + (□ + 차) = 180` 이다. 차가 짝수라야 $\square$ 가 자연수인데, 여기서는 **차를
+ * 먼저 뽑아 각을 유도**하므로 그 조건이 실제로 일한다(D-66 ⒂).
+ */
+function tier245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const gap = intBetween(rng, 1, 12) * 10;
+  const small = (180 - gap) / 2;
+  return make(
+    unit,
+    `평행사변형에서 이웃한 두 각의 크기의 차가 ${deg(gap)}입니다. ` +
+      `두 각 중 큰 각의 크기는 몇 도인가?`,
+    deg(small + gap),
+    `평행사변형은 이웃한 두 각의 크기의 합이 ${deg(180)}입니다. 작은 각을 ` +
+      `${expr("\\square")}라고 하면 ${expr(`\\square+(\\square+${gap})=180`)} 이므로 ` +
+      `${expr(`\\square\\times2=180-${gap}=${small * 2}`)} 이고 작은 각은 ${deg(small)}입니다. ` +
+      `큰 각은 ${expr(`${small}+${gap}=${small + gap}`)} 입니다.`,
+  );
+}
+
+/** **2-4-6 1단 — 네 변의 합에서 한 변으로.** 표준은 한 변→합, 여기는 **역방향**이다. */
+function tier246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, RHOMBUS_ITEMS);
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `마름모 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ` +
+      `${cm(side * 4)}일 때 한 변의 길이는 몇 cm인가?`,
+    cm(side),
+    `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side * 4}\\div4=${side}`)} 입니다.`,
+    // ⚠️ **그림을 안 붙인다 — 두 부류가 동시에 걸리는 자리다.**
+    //  ㉡ 한 변이 **곧 답**이라 치수를 적으면 그림이 답을 보여 준다.
+    //  ㉠ 그래서 값을 뺐더니 **씨앗마다 똑같은 그림**이 됐다 — 발문은 「한 변이 $5$」·
+    //     「$7$」로 갈리는데 그림이 안 갈리면 그 그림은 어느 값도 안 가리킨다.
+    // 붙이려면 답을 보여 주지 않으면서 씨앗마다 갈리는 값이 있어야 하는데 **없다.**
+    // 첫 판은 ㉡ 만 보고 값을 뺐고, `probe-elem-rules` R9-b 가 ㉠ 을 잡았다(2026-08-23).
+  );
+}
+
+/** **2-4-6 2단 — 두 도형을 재어 견준다.** 각각은 한 단계이고 판단이 하나 더 있다. */
+function tier246Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rhombus = intBetween(rng, 4, 12);
+  // 두 합이 같으면 「더 긴 쪽」이 없다 — 그런 짝을 **아예 안 뽑는다**.
+  const triangle = pick(
+    rng,
+    Array.from({ length: 12 }, (_, i) => i + 4).filter(
+      (v) => v * 3 !== rhombus * 4,
+    ),
+  );
+  const bigger = rhombus * 4 > triangle * 3 ? "마름모" : "정삼각형";
+  return make(
+    unit,
+    `한 변의 길이가 ${cm(rhombus)}인 마름모와 한 변의 길이가 ${cm(triangle)}인 정삼각형이 ` +
+      `있습니다. 두 도형 중 모든 변의 길이의 합이 더 긴 것은 무엇인가?`,
+    bigger,
+    `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${rhombus}\\times4=${rhombus * 4}`)}, ` +
+      `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${triangle}\\times3=${triangle * 3}`)} 입니다. ` +
+      `${expr(`${Math.max(rhombus * 4, triangle * 3)}>${Math.min(rhombus * 4, triangle * 3)}`)} 이므로 ` +
+      `${bigger}입니다.`,
+  );
+}
+
+/** **2-4-6 3단 — 마름모의 한 변을 거쳐 정삼각형으로.** 중간값은 그 한 변이다. */
+function tier246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `마름모의 네 변의 길이의 합이 ${cm(side * 4)}입니다. 이 마름모의 한 변과 길이가 같은 ` +
+      `변을 가진 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+    cm(side * 3),
+    `마름모의 한 변은 ${expr(`${side * 4}\\div4=${side}`)} 입니다. ` +
+      `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${side}\\times3=${side * 3}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-4-6 4단 — 늘인 뒤의 합에서 처음 한 변을 되짚는다.**
+ *
+ * ⚠️ **첫 판은 «늘인 뒤의 합을 구하기»(정방향)였다.** 그러면 「네 변이 각각 $\square$ 씩
+ * 늘었으니 합이 $\square\times4$ 만큼 는다」는 **지름길**이 있어 한 단계로 끝난다 —
+ * 4단이 3단보다 가벼워지는 자리다(리드가 미리 짚었고, 초6 2-5-3·2-5-4 가 오늘 같은
+ * 이유로 고쳐졌다). 방향을 뒤집으니 지름길이 사라지고 4단 표지(역산)도 선다.
+ */
+function tier246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 5, 14);
+  const more = intBetween(rng, 2, 6);
+  const grown = (side + more) * 4;
+  return make(
+    unit,
+    `어떤 마름모의 각 변을 ${cm(more)}씩 늘여 새로운 마름모를 만들었더니 ` +
+      `네 변의 길이의 합이 ${cm(grown)}가 되었습니다. ` +
+      `처음 마름모의 한 변의 길이는 몇 cm인가?`,
+    cm(side),
+    `새로운 마름모의 한 변은 ${expr(`${grown}\\div4=${side + more}`)} 입니다. ` +
+      `각 변을 ${cm(more)}씩 늘인 것이므로 처음 마름모의 한 변은 ` +
+      `${expr(`${side + more}-${more}=${side}`)} 입니다.`,
+  );
+}
+
+/** 사각형 이름과 그것이 «무엇이라고도 할 수 있는지». 포함 관계의 정본이다. */
+const QUAD_KINDS = [
+  { name: "정사각형", also: ["사다리꼴", "평행사변형", "마름모", "직사각형"] },
+  { name: "마름모", also: ["사다리꼴", "평행사변형"] },
+  { name: "직사각형", also: ["사다리꼴", "평행사변형"] },
+  { name: "평행사변형", also: ["사다리꼴"] },
+] as const;
+
+/** 낱말 목록을 「가, 나, 다가」처럼 잇는다 — 마지막 낱말에만 조사를 붙인다. */
+function listWithJosa(
+  words: readonly string[],
+  withEnd: string,
+  withoutEnd: string,
+): string {
+  const last = words[words.length - 1]!;
+  const head = words.slice(0, -1);
+  return head.length > 0
+    ? `${head.join(", ")}, ${josa(last, withEnd, withoutEnd)}`
+    : josa(last, withEnd, withoutEnd);
+}
+
+/**
+ * **2-4-7 1단 — 포함 관계를 «세거나 대거나».**
+ *
+ * ⚠️ 표준이 「A는 B라고 할 수 있는가? 예/아니요」를 **셋** 쓴다. 낱말만 바꾸면
+ * 「상수만 바꾼 것은 같은 문항」(R5)이 된다. 같은 개념을 묻되 **개수**와 **이름**으로
+ * 돌렸다 — 찍을 수 없고, 답이 $4$·$2$·$1$ 로 갈린다.
+ *
+ * 이 소단원은 관계가 알맹이라 수가 안 나온다. 그래서 변형은 **주어 넷 × 묻는 방식 둘**
+ * 로 낸다 — 수를 억지로 끼워 넣어 변형을 부풀리지 않는다(안 쓰는 수는 함정일 뿐이다).
+ */
+function tier247Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const q = pick(rng, QUAD_KINDS);
+  const others = ["사다리꼴", "평행사변형", "마름모", "직사각형"].filter(
+    (v) => v !== q.name,
+  );
+  const asksCount = intBetween(rng, 0, 1) === 0;
+  const why = `${josa(q.name, "은", "는")} ${listWithJosa(q.also, "이", "가")} 될 수 있습니다.`;
+  return make(
+    unit,
+    `${josa(q.name, "은", "는")} ${others.join(", ")} 중에서 ` +
+      (asksCount
+        ? "몇 가지라고 할 수 있는가?"
+        : "무엇이라고도 할 수 있는가? 모두 쓰시오."),
+    asksCount ? `${n(q.also.length)}가지` : q.also.join(", "),
+    asksCount ? `${why} 그러므로 ${n(q.also.length)}가지입니다.` : why,
+  );
+}
+
+/**
+ * 조건으로 이름이 **하나로** 정해지는 짝.
+ *
+ * ⚠️ **포함 관계 때문에 «가진 성질»만 나열하면 답이 하나로 안 정해진다.** 첫 판이
+ * 「마주 보는 두 쌍의 변이 평행하고 이웃한 두 변의 길이가 다르다 → 평행사변형」이었는데,
+ * **직사각형도 그 둘을 다 만족한다**(가로세로가 다른 직사각형). 「네 변의 길이가 모두
+ * 같다 → 마름모」도 정사각형이 걸린다. 그래서 **«아닌 것»을 함께 말해** 좁힌다.
+ */
+const QUAD_CLUES = [
+  {
+    has: "네 변의 길이가 모두 같",
+    not: "네 각의 크기는 모두 같지 않습니다",
+    name: "마름모",
+    why: "네 변의 길이가 모두 같은 사각형은 마름모이고, 그중 네 각까지 같은 것이 정사각형입니다",
+  },
+  {
+    has: "네 각의 크기가 모두 같",
+    not: "네 변의 길이는 모두 같지 않습니다",
+    name: "직사각형",
+    why: "네 각의 크기가 모두 같은 사각형은 직사각형이고, 그중 네 변까지 같은 것이 정사각형입니다",
+  },
+  {
+    has: "마주 보는 두 쌍의 변이 서로 평행하",
+    not: "네 변의 길이도 네 각의 크기도 모두 같지는 않습니다",
+    name: "평행사변형",
+    why: "마주 보는 두 쌍의 변이 평행한 사각형은 평행사변형이고, 그중 네 변이 같으면 마름모, 네 각이 같으면 직사각형입니다",
+  },
+  {
+    has: "마주 보는 한 쌍의 변만 서로 평행하",
+    not: "다른 한 쌍의 변은 서로 평행하지 않습니다",
+    name: "사다리꼴",
+    why: "평행한 변이 한 쌍이라도 있으면 사다리꼴이고, 두 쌍이 모두 평행하면 평행사변형입니다",
+  },
+] as const;
+
+/** **2-4-7 2단 — 「가진 것」과 「아닌 것」으로 이름을 좁힌다.** 표준은 정의만 묻는다. */
+function tier247Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, QUAD_CLUES);
+  const asksName = intBetween(rng, 0, 1) === 0;
+  const stem = `어떤 사각형은 ${c.has}지만 ${c.not}.`;
+  return make(
+    unit,
+    asksName
+      ? `${stem} 이 사각형의 이름을 쓰시오.`
+      : `${stem} 이 사각형을 무엇이라고 하는지 쓰시오.`,
+    c.name,
+    `${c.why}. 그러므로 이 사각형은 ${c.name}입니다.`,
+  );
+}
+
+/** **2-4-7 3단 — 이름을 가린 뒤 한 변까지.** 판별이 서야 계산이 선다. */
+function tier247Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `어떤 사각형은 네 변의 길이가 모두 같고 네 각의 크기도 모두 같습니다. ` +
+      `이 사각형의 네 변의 길이의 합이 ${cm(side * 4)}일 때, ` +
+      `이 사각형의 이름과 한 변의 길이를 각각 구하시오.`,
+    `정사각형, ${cm(side)}`,
+    `네 각의 크기가 모두 같은 사각형은 직사각형이고, 네 변의 길이까지 같으므로 정사각형입니다. ` +
+      `${expr(`${side * 4}\\div4=${side}`)} 이므로 한 변은 ${cm(side)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-7 4단 — 반례 조건 + 다른 도형을 거쳐 되짚는다.**
+ *
+ * 「네 변의 길이가 모두 같다」만으로는 마름모와 정사각형이 안 갈린다 — 「한 각이
+ * $90^\circ$ 가 **아니다**」가 정사각형을 지운다(포함 관계의 **경계**).
+ * 그 위에 「어떤 마름모보다 $\square$ cm 더 길다」가 얹혀 세 단계가 된다:
+ * 그 마름모의 합을 구하고 → 차를 더해 이 사각형의 합을 얻고 → $4$ 로 나눈다.
+ * 3단이 「조건 → 이름 → $\div4$」 두 단계인 자리와 이렇게 갈린다.
+ */
+function tier247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const other = intBetween(rng, 4, 12);
+  const gap = intBetween(rng, 1, 8) * 4; // 합의 차가 $4$의 배수라야 한 변이 자연수다
+  const side = other + gap / 4;
+  return make(
+    unit,
+    `어떤 사각형은 네 변의 길이가 모두 같고, 한 각의 크기가 ${deg(90)}가 아닙니다. ` +
+      `이 사각형의 네 변의 길이의 합은 한 변이 ${cm(other)}인 마름모의 네 변의 길이의 ` +
+      `합보다 ${cm(gap)} 더 깁니다. 이 사각형의 이름과 한 변의 길이를 각각 구하시오.`,
+    `마름모, ${cm(side)}`,
+    `네 변의 길이가 모두 같은 사각형은 마름모입니다. 그중 네 각이 모두 ${deg(90)}인 것이 ` +
+      `정사각형인데 한 각이 ${deg(90)}가 아니므로 정사각형은 아닙니다. ` +
+      `한 변이 ${cm(other)}인 마름모의 네 변의 길이의 합은 ` +
+      `${expr(`${other}\\times4=${other * 4}`)} 이므로 이 사각형의 네 변의 길이의 합은 ` +
+      `${expr(`${other * 4}+${gap}=${side * 4}`)} 입니다. ` +
+      `${expr(`${side * 4}\\div4=${side}`)} 이므로 한 변은 ${cm(side)}입니다.`,
+  );
+}
+
 /* ─────────────────────── 2-5 꺾은선그래프 ─────────────────────── */
 
 type TimeLabel = { text: string; math: string };
@@ -2307,6 +8810,17 @@ type TimeLabel = { text: string; math: string };
  */
 type LineTheme = {
   topic: string;
+  /**
+   * **표 칸에 쓸 짧은 이름.** 없으면 `topic` 을 쓴다.
+   *
+   * 표의 첫 열은 «지면 폭 − 나머지 열» 만 쓸 수 있다(실측: 남는 자리 최소 $52$단위).
+   * 「하루 동안 내린 비의 양(mm)」은 $165$단위라 그 자리에 **못 들어간다** — 옛 엔진은
+   * 조용히 잘랐고(왼쪽 끝 $-11.8$까지 넘쳤다) 지금 엔진은 던진다(D-70).
+   *
+   * ⚠️ **`topic` 자체를 줄이지 않는다.** 발문이 「$\cdots$ 을 조사하여 나타낸 표입니다」로
+   * 그 말을 쓰므로, 줄이면 지면의 문장이 같이 상한다. 짧게 쓸 자리는 **표 칸뿐**이다.
+   */
+  short?: string;
   unit: string;
   labels: readonly TimeLabel[];
   base: readonly [number, number];
@@ -2390,6 +8904,7 @@ const LINE_THEMES: readonly LineTheme[] = [
     // 그림 세션이 `_axis_top` 으로 걸음을 사다리 삼게 고쳐, 실측으로 `yMax 1153` 이
     // **7줄**(`0·200·…·1200`)로 나온다. 원장님: 「큰 눈금 써도 된다」.
     topic: "박물관에 온 관람객 수",
+    short: "관람객 수",
     unit: "명",
     labels: timeLabels([1, 2, 3, 4, 5], "월"),
     base: [8, 14],
@@ -2420,6 +8935,7 @@ const LINE_THEMES: readonly LineTheme[] = [
   },
   {
     topic: "하루 동안 내린 비의 양",
+    short: "비의 양",
     unit: "mm",
     labels: timeLabels([6, 7, 8, 9, 10], "일"),
     base: [8, 12],
@@ -2549,8 +9065,11 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `${intro} ${theme.topic}의 값이 가장 많이 변한 때는 어느 때와 어느 때 사이인가?`,
-        `${theme.labels[at]!.math}과 ${theme.labels[at + 1]!.math} 사이`,
-        `${theme.labels[at]!.math}과 ${theme.labels[at + 1]!.math} 사이에서 선이 가장 가파릅니다. ` +
+        // 때 이름 뒤 「과/와」는 **낱말의 받침**이 정한다 — 「$3$월과」·「$9$시와」.
+        // 「과」로 박아 두어 「$12$시과」가 나가고 있었다(2-5 갈래 작업 중 실측, 695자리 중 1).
+        // 수 뒤 조사(R조사)는 이 자리를 구조적으로 못 본다 — 조사가 붙은 것이 수가 아니라 낱말이다.
+        `${josa(theme.labels[at]!.math, "과", "와")} ${theme.labels[at + 1]!.math} 사이`,
+        `${josa(theme.labels[at]!.math, "과", "와")} ${theme.labels[at + 1]!.math} 사이에서 선이 가장 가파릅니다. ` +
           `${expr(`${Math.max(nums[at]!, nums[at + 1]!)}-${Math.min(nums[at]!, nums[at + 1]!)}=${change}`)} 만큼 변했습니다.`,
         figure,
       );
@@ -2577,7 +9096,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       // 아니게 되므로 막대에서만 묻는다. 걸음 값은 그림에 실은 `theme.yStep` 그대로다.
       return make(
         unit,
-        `${intro} 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내는가?`,
+        `${intro} 세로 눈금 한 칸은 몇 ${unitJosa(theme.unit, "을", "를")} 나타내는가?`,
         `${n(theme.yStep)}${theme.unit}`,
         `세로축 눈금이 ${n(0)}, ${n(theme.yStep)}, ${n(theme.yStep * 2)}, … 로 매겨져 있으므로 ` +
           `한 칸은 ${n(theme.yStep)}${theme.unit}입니다.`,
@@ -2606,6 +9125,432 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-5 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **자료형이라 1단은 「계산」이 아니라 「값 읽기」다**(D-72 ⑶).
+ *
+ * ⚠️ **「값이 가려진 꺾은선」은 만들지 않는다.** `_bar_chart` 만 `allow_unknown=True` 로
+ * 부르고 `_line_chart` 는 안 부른다(`elem_advanced.py:612` 대 `:669`). 지금 물으면 값을
+ * `values` 에 넣어야 하고, 넣으면 **그 값이 그려져** 답이 지면에 그대로 나온다.
+ *
+ * ⚠️ **`chartPair`(두 그래프 견주기)도 지금은 안 쓴다.** 짝의 폭 등급이 파이썬 가드와
+ * 어긋나 있다 — 파이썬은 짝이 늘 364px 틀에 든다고 보고 판정하는데(`PAIR_FRAME_PX`),
+ * TS `figureSvgSize` 는 viewBox 폭으로 등급을 정해 초4 의 짝(293~360단위)이 `pair`(380 초과)에
+ * **한 번도 안 걸린다.** 293단위짜리는 `mid`(240px)로 떨어져 눈금 글자가 **11.45px** 로
+ * 본문(12.5px) 아래가 된다. 고쳐지면 그때 짝 갈래를 따로 얹는다(리드 보고 2026-08-23).
+ *
+ * 표준과 겹치지 않게 **묻는 방향**을 갈랐다 — 표준이 「가장 큰 때는 **언제**」면 갈래는
+ * 「가장 작은 때의 **값**」, 표준이 때→값이면 갈래는 값→때.
+ */
+
+/**
+ * 2-5-1 3단용 — 한가운데 값을 읽으려면 **이웃한 두 값의 합이 짝수**여야 한다.
+ *
+ * 그런 이웃 짝은 **반드시 있다**: 걸음은 `1`~`6` 중 **서로 다른 넷**인데 홀수는 셋뿐이라
+ * 넷을 고르면 짝수가 적어도 하나 들어간다. 걸음이 짝수면 그 이웃의 두 값은 같은 홀짝이라
+ * 합이 짝수다(부호는 홀짝을 안 바꾼다). `theme.step` 이 짝수면 걸음이 전부 짝수라 더 넉넉하다.
+ */
+function evenSumPairs(nums: readonly number[]): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < nums.length - 1; i += 1) {
+    if ((nums[i]! + nums[i + 1]!) % 2 === 0) out.push(i);
+  }
+  return out;
+}
+
+/**
+ * 2-5-2 4단용 — **오른 뒤 반드시 한 번 내려간다.**
+ *
+ * 「값이 처음으로 $T$ 이상이 된 때」가 뜻을 가지려면 그 뒤에 오르내림이 있어야 한다
+ * (리드 2026-08-23) — 늘 오르기만 하면 「처음으로」가 빈 말이다. 표준 `lineValues` 는
+ * 내림 여부를 씨앗에 맡기므로 여기서 따로 만든다.
+ *
+ * 셋째 걸음만 내림이고 **그 폭을 둘째 오름보다 작게** 잡는다(`m2 < m1`). 그러면
+ * `v0 < v1 < v3 < v2` 이고 `v4 > v1` 이라 다섯 값이 모두 다르고 음수도 안 나온다 —
+ * 다시 뽑는 고리 없이 구성만으로 선다. 2-5-2 몫의 소재 셋은 모두 `rising` 이 아니라 내려가도 된다.
+ */
+function dipLineValues(rng: Rng, theme: LineTheme): number[] {
+  const m1 = intBetween(rng, 2, 6);
+  const m2 = intBetween(rng, 1, m1 - 1);
+  const rest = [1, 2, 3, 4, 5, 6].filter((v) => v !== m1 && v !== m2);
+  const m0 = rest.splice(intBetween(rng, 0, rest.length - 1), 1)[0]!;
+  const m3 = pick(rng, rest);
+  const first = intBetween(rng, theme.base[0], theme.base[1]) * theme.step;
+  const v1 = first + m0 * theme.step;
+  const v2 = v1 + m1 * theme.step;
+  const v3 = v2 - m2 * theme.step;
+  return [first, v1, v2, v3, v3 + m3 * theme.step];
+}
+
+/** 갈래가 쓰는 꺾은선 그림. 표준과 같은 규약(`yMax` 는 하한, 걸음은 `theme.yStep`). */
+function lineFigure(
+  theme: LineTheme,
+  nums: readonly number[],
+): Record<string, unknown> {
+  return fig("lineChart", {
+    values: theme.labels.map((label, i) => ({
+      label: label.text,
+      value: nums[i]!,
+    })),
+    yMax: Math.max(...nums) + 3,
+    yStep: theme.yStep,
+    yLabel: theme.unit,
+  });
+}
+
+/** 갈래 발문의 첫 문장 — 그림이 꺾은선일 때. */
+function lineIntro(theme: LineTheme): string {
+  return `${josa(theme.topic, "을", "를")} 조사하여 나타낸 꺾은선그래프입니다.`;
+}
+
+/**
+ * **2-5-1 1단 연산 — 값 읽기.** 표준은 「가장 큰 때는 **언제**」(답이 때), 여기는 **값**이다.
+ *
+ * ⚠️ 두 때를 **발문에 적어** 견주게 한다. 처음에는 「가장 작은 때의 값은?」이라고만 물었는데
+ * 발문에 수가 하나도 없어 **씨앗을 바꿔도 소재 셋뿐**이었다(변형 3가지). 자료형은 값이
+ * 그림에 있어 발문이 비기 쉽다 — 읽을 자리를 발문이 지목해야 갈린다.
+ */
+function tier251Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const a = intBetween(rng, 0, nums.length - 2);
+  const b = intBetween(rng, a + 1, nums.length - 1);
+  const lower = nums[a]! < nums[b]! ? a : b;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.labels[a]!.math, "과", "와")} ` +
+      `${theme.labels[b]!.math} 중 ${josa(theme.topic, "이", "가")} 더 작은 때의 값은 ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(nums[lower]!)}${theme.unit}`,
+    `${theme.labels[a]!.math}의 값은 ${n(nums[a]!)}${theme.unit}, ` +
+      `${theme.labels[b]!.math}의 값은 ${n(nums[b]!)}${theme.unit}입니다. ` +
+      `더 작은 쪽은 ${theme.labels[lower]!.math}이고 그 값은 ${n(nums[lower]!)}${theme.unit}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 1단 연산 — 값 읽기(역방향).** 표준은 때 → 값, 여기는 **값 → 때**다. */
+function tier252Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
+    theme.labels[at]!.math,
+    `세로축에서 ${n(nums[at]!)}${theme.unit}인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 ` +
+      `${theme.labels[at]!.math}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 2단 기본 — 기준과 견주어 센다.** 한 때를 기준으로 잡고 전량을 훑는다. */
+function tier251Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 기준은 **최대도 최소도 아닌** 때로 잡는다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sorted = [...nums].sort((a, b) => a - b);
+  const at = nums.indexOf(pick(rng, sorted.slice(1, -1)));
+  const more = nums.filter((v) => v > nums[at]!).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 ${theme.labels[at]!.math}의 값보다 ` +
+      `큰 때는 모두 몇 번인가?`,
+    `${n(more)}번`,
+    `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
+      `점이 그보다 높이 찍힌 때를 세면 ${n(more)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 3단 응용 — 한가운데 값 어림.** 두 점을 이은 선분이라 한가운데를 읽을 수 있다. */
+function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 이웃 합이 짝수인 짝은 **반드시 있다**(위 `evenSumPairs` 주석의 홀짝 셈).
+  const at = pick(rng, evenSumPairs(nums));
+  const lo = nums[at]!;
+  const hi = nums[at + 1]!;
+  const mid = (lo + hi) / 2;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
+      `${theme.labels[at + 1]!.math}의 한가운데 때의 값은 약 몇 ${theme.unit}인가?`,
+    `${n(mid)}${theme.unit}`,
+    // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
+    `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +
+      `읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 ` +
+      `${expr(`(${lo}+${hi})\\div2=${mid}`)} 이므로 약 ${n(mid)}${theme.unit}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 4단 심화 — 늘어난 만큼만 모은다.** 표준은 늘어난 «구간 수»를 센다. */
+function tier251Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 세기 시작하는 때를 발문에 적는다 — 안 적으면 발문에 수가 없어 변형이 소재 수로 묶인다.
+  const from = intBetween(rng, 0, nums.length - 3);
+  const rises = nums
+    .slice(from + 1)
+    .map((v, i) => v - nums[from + i]!)
+    .filter((d) => d > 0);
+  const total = rises.reduce((s, d) => s + d, 0);
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.labels[from]!.math}부터 마지막 때까지에서 ` +
+      `${josa(theme.topic, "이", "가")} 늘어난 구간만 골라 늘어난 양을 모두 더하면 ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(total)}${theme.unit}`,
+    `${theme.labels[from]!.math} 뒤로 선이 오른쪽 위로 올라간 구간만 봅니다. 늘어난 양은 ` +
+      `${rises.map((d) => n(d)).join(", ")}${theme.unit}이고, 모두 더하면 ` +
+      `${expr(`${rises.join("+")}=${total}`)} 입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-2 2단 기본 — 문턱을 넘은 때 세기.**
+ *
+ * ⚠️ 처음에는 「⟨때⟩의 값은 ⟨때⟩의 값보다 몇 … 더 큰가?」였는데 **표준과 골격이 글자까지
+ * 같았다** — 표준은 처음·마지막을 견주고 갈래는 가운데를 견줄 뿐, 수를 가리면 한 문장이다.
+ * 자리(index)만 옮긴 것은 같은 문항이라 **묻는 일 자체를** 바꿨다.
+ */
+function tier252Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 문턱은 **실제로 나온 값들 사이**에서 고른다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sorted = [...nums].sort((a, b) => a - b);
+  const bar = sorted[intBetween(rng, 0, sorted.length - 2)]!;
+  const over = nums.filter((v) => v > bar).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(bar)}${theme.unit}보다 ` +
+      `높은 때는 모두 몇 번인가?`,
+    `${n(over)}번`,
+    `세로축에서 ${n(bar)}${theme.unit}인 곳을 찾아 그보다 위에 찍힌 점을 세면 ` +
+      `${n(over)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 3단 응용 — 문턱을 넘는 구간 세기.** 구간마다 변화를 재고 문턱과 견준다. */
+function tier252Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const gaps = nums.slice(1).map((v, i) => Math.abs(v - nums[i]!));
+  // 문턱은 **실제로 나온 변화들 사이**에서 고른다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sortedGaps = [...gaps].sort((a, b) => a - b);
+  const bar = sortedGaps[intBetween(rng, 0, sortedGaps.length - 2)]!;
+  const over = gaps.filter((g) => g > bar).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} 이웃한 두 때 사이에서 ${theme.topic}의 값이 ` +
+      `${n(bar)}${theme.unit}보다 많이 변한 구간은 모두 몇 번인가?`,
+    `${n(over)}번`,
+    `이웃한 두 점의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
+      `이 중 ${n(bar)}${theme.unit}보다 큰 것은 ${n(over)}개이므로 ${n(over)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 4단 심화 — 문턱을 처음 넘은 때부터 끝까지.** 때를 찾고 다시 변화를 잰다. */
+function tier252Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  // 오른 뒤 반드시 한 번 내려간다 — 「처음으로」가 뜻을 가지려면 뒤에 오르내림이 있어야 한다.
+  const nums = dipLineValues(rng, theme);
+  const bar = nums[1]!;
+  const last = nums[nums.length - 1]!;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 처음으로 ${n(bar)}${theme.unit} 이상이 된 ` +
+      `때부터 마지막 때까지 값은 몇 ${theme.unit} 늘었는가?`,
+    `${n(last - bar)}${theme.unit}`,
+    `값이 ${n(bar)}${theme.unit} 이상이 된 것은 ` +
+      `${josa(theme.labels[1]!.math, "이", "가")} 처음입니다` +
+      `(${theme.labels[0]!.math}의 값은 ${n(nums[0]!)}${unitJosa(theme.unit, "으로", "로")} 그보다 작습니다). ` +
+      `그때부터 마지막 ${theme.labels[nums.length - 1]!.math}까지 보면 ` +
+      `${expr(`${last}-${bar}=${last - bar}`)} 이므로 ${n(last - bar)}${theme.unit} 늘었습니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/* ── 2-5-3 그리기와 활용 ──
+ *
+ * 그림이 **표**다(그리기 갈래의 정체성 — 1-5-2 선례). 그래서 발문은 **표만** 가리킨다:
+ * 「그래프에서」·「그림과 같이」를 **한 번도** 쓰지 않는다(리드 조건 ⑴, 시험이 전수로 잠근다).
+ *
+ * ⚠️ **D-70 과 부딪히지 않는다**(리드 판정 2026-08-23, 07 §D-70 원문 대조).
+ * D-70 이 막은 것은 「**그려진 점**이 몇째 눈금인가」다 — 꺾은선 값은 `theme.step` 의 배수인데
+ * 눈금은 `yStep` 이라 점이 눈금선 위에 안 앉기 때문이다. 여기는 지면에 **꺾은선이 아예 없고**
+ * (그림이 표), 답을 표의 수로 **세어서** 낸다. 읽을 점이 없으니 어긋날 것도 없다.
+ * D-70 자체가 원장님의 「눈금 몇 칸 유형도 넣어」에서 나온 결정이라 방향도 «넓히자» 쪽이다.
+ * **이 주석을 지우지 말 것** — 다음 사람이 「D-70 위반 아닌가」로 열 자리다.
+ */
+
+/**
+ * 2-5-3 값 — 모두 `theme.step` 의 **배수**이고 오름차순이며 이웃 차가 **서로 다르다.**
+ *
+ * 세 성질이 각각 무엇을 보장하는지:
+ *  · 배수  → 「한 칸이 `step` 일 때 몇 칸」·「물결선 위 몇째」가 **늘 자연수**다(구성 보장).
+ *  · 오름차순 → 최댓값이 마지막이라 칸 셈이 그것만 보면 된다.
+ *  · 차가 다름 → 「가장 가파른/완만한 구간」이 각각 **하나로 선다.**
+ *
+ * ⚠️ 걸음 수를 `yStep` 이 아니라 **`step`** 으로 잡는다. 처음에 `yStep`(10·200)으로 짰더니
+ * 「강낭콩의 키 $150$cm」가 나왔다 — 소재가 감당 못 하는 크기다. `step` 은 소재가 정한
+ * 값의 단위라 `theme.base` 와 같은 자리에 머문다(강낭콩 26~36cm · 박물관 650~900명).
+ */
+function tableValues(rng: Rng, theme: LineTheme): number[] {
+  const rest = [1, 2, 3, 4];
+  const mags: number[] = [];
+  for (let i = 0; i < 4; i += 1) {
+    mags.push(rest.splice(intBetween(rng, 0, rest.length - 1), 1)[0]!);
+  }
+  /*
+   * 첫 값은 **소재가 정한 띠**(`theme.base`)에서 뽑는다 — 표준 `lineValues` 와 같은 자리다.
+   * 그래야 「강낭콩의 키 $150$cm」 같은 값이 안 나온다. `base[0] ≥ 3` 이라 첫 값이 걸음
+   * 3칸 이상이고, 물결선 시작값을 그 아래에 놓을 자리가 반드시 남는다.
+   * 걸음 넷의 합은 늘 $1+2+3+4=10$ 이므로 가장 큰 값은 첫 값보다 걸음 10칸 위다.
+   */
+  const out = [intBetween(rng, theme.base[0], theme.base[1]) * theme.step];
+  for (const m of mags) out.push(out[out.length - 1]! + m * theme.step);
+  return out;
+}
+
+/** 2-5-3 갈래의 그림 — 표. 발문도 표만 가리킨다. */
+/**
+ * 표를 **세로로** 세운다 — 항목이 행, 값이 열(D-70 폭 가드, 2026-08-24).
+ *
+ * 가로로 눕히면 첫 열에 긴 이름이 들어가는데, 그 자리는 «지면 폭 − 나머지 열» 뿐이다.
+ * 실측으로 남는 자리가 **최소 $52$단위**인데 「하루 동안 내린 비의 양(mm)」은 $165$다.
+ * 옛 엔진은 그것을 **조용히 잘랐고**(글자 왼쪽 끝이 $-11.8$까지 넘쳐 한글 다섯 자가
+ * 사라졌다) 에러도 안 났다 — 지면에서 티가 안 나는 결함이었다.
+ *
+ * ⚠️ **세 안을 실제 렌더러에 대 보고 골랐다**(시뮬레이션이 아니다).
+ *   라벨만 줄이기 $0/192$ · 전치만 $141/192$ · **전치 + 긴 이름 둘 줄이기 $192/192$**.
+ *   전치만으로는 값 열이 $193$단위라 아직 넘친다 — 둘 다 필요하다.
+ */
+function tableFigure(
+  theme: LineTheme,
+  nums: readonly number[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: ["구분", `${theme.short ?? theme.topic}(${theme.unit})`],
+    rows: theme.labels.map((l, i) => [l.text, String(nums[i] ?? "")]),
+  });
+}
+
+/** 2-5-3 갈래 발문의 첫 문장 — **표**를 가리킨다(그래프가 아니다). */
+function tableIntro(theme: LineTheme): string {
+  return `${josa(theme.topic, "을", "를")} 조사하여 나타낸 표입니다.`;
+}
+
+/** **2-5-3 1단 연산 — 값 읽기.** 표에서 한 때의 값을 읽는다. */
+function tier253Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  return make(
+    unit,
+    `${tableIntro(theme)} ${theme.labels[at]!.math}의 ${josa(theme.topic, "은", "는")} ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(nums[at]!)}${theme.unit}`,
+    `표에서 ${theme.labels[at]!.math} 칸의 수를 읽으면 ${n(nums[at]!)}${theme.unit}입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-3 2단 기본 — 눈금이 몇 칸 필요한가.** 값이 모두 걸음의 배수라 답이 **늘 자연수**다.
+ *
+ * 어느 때의 값을 나타낼지 발문이 지목한다 — 「가장 큰 값」이라고만 하면 발문에 수가 없어
+ * 변형이 소재 수(셋)로 묶인다.
+ */
+function tier253Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  const ticks = nums[at]! / theme.step;
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타내려고 합니다. 세로 눈금 한 칸이 ` +
+      `${n(theme.step)}${theme.unit}일 때 ${theme.labels[at]!.math}의 값을 나타내려면 ` +
+      `눈금이 아래에서부터 몇 칸 올라가야 하는가?`,
+    `${n(ticks)}칸`,
+    `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
+      `한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
+      `${expr(`${nums[at]!}\\div${theme.step}=${ticks}`)} 이고 ${n(ticks)}칸입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/** **2-5-3 3단 응용 — 물결선.** 아래를 접고 시작한 축에서 몇째 눈금인지 센다(두 단계). */
+function tier253Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const min = Math.min(...nums);
+  /*
+   * 물결선 위 시작값. **$0$ 이면 안 된다** — 아래를 접으려고 넣는 것이 물결선인데
+   * $0$ 부터 시작하면 접은 것이 없다(첫 판에서 「$0$cm부터 시작」이 나왔다).
+   * 가장 작은 값 **아래**이면서 $0$ **위**인 걸음의 배수로 잡는다. 값도 시작값도 걸음의
+   * 배수라 `(값 − start) ÷ 걸음` 은 **늘 자연수**다(`tableValues` 가 칸을 13 이상으로
+   * 두어 이 자리가 반드시 남는다).
+   */
+  const start = intBetween(rng, 1, min / theme.step - 1) * theme.step;
+  // 어느 값을 찍는지도 갈린다 — 「가장 큰 값」만 물으면 발문의 수가 시작값 하나뿐이라 변형이 얇다.
+  const at = intBetween(rng, 0, nums.length - 1);
+  const target = intBetween(rng, 0, 1) === 0 ? Math.max(...nums) : nums[at]!;
+  const named = target !== Math.max(...nums) || intBetween(rng, 0, 1) === 0;
+  const which = named
+    ? `${theme.labels[nums.indexOf(target)]!.math}의 값`
+    : "가장 큰 값";
+  const nth = (target - start) / theme.step;
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때 물결선을 넣어 세로 눈금을 ` +
+      `${n(start)}${theme.unit}부터 시작하려고 합니다. 세로 눈금 한 칸은 ` +
+      `${n(theme.step)}${theme.unit}입니다. ${which}은 물결선 위로 몇째 눈금에 찍히는가?`,
+    `${n(nth)}째`,
+    `${which}은 ${n(target)}${theme.unit}이고 눈금은 ${n(start)}${theme.unit}부터 시작합니다. ` +
+      `${expr(`${target}-${start}=${target - start}`)} 이고 한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
+      `${expr(`${target - start}\\div${theme.step}=${nth}`)} 이고 ${n(nth)}째 눈금입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-3 4단 심화 — 가장 가파른 구간과 견주기.** 전 구간을 재고 지목된 구간과 견준다.
+ *
+ * 견줄 구간을 발문이 지목한다 — 「가장 가파른 것과 가장 완만한 것의 차」라고만 하면
+ * 발문에 수가 없어 변형이 소재 수(셋)로 묶인다.
+ */
+function tier253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const gaps = nums.slice(1).map((v, i) => v - nums[i]!);
+  const most = Math.max(...gaps);
+  const top = gaps.indexOf(most);
+  // 가장 가파른 구간 **말고** 하나를 골라 견준다 — 답이 $0$ 이 되지 않는다.
+  const other = pick(
+    rng,
+    gaps.map((_, i) => i).filter((i) => i !== top),
+  );
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때, 선이 가장 가파른 구간의 ` +
+      `변화량은 ${josa(theme.labels[other]!.math, "과", "와")} ` +
+      `${theme.labels[other + 1]!.math} 사이의 변화량보다 몇 ${theme.unit} 더 큰가?`,
+    `${n(most - gaps[other]!)}${theme.unit}`,
+    `이웃한 두 때의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
+      `가장 가파른 구간은 ${josa(theme.labels[top]!.math, "과", "와")} ` +
+      `${theme.labels[top + 1]!.math} 사이로 ${n(most)}${theme.unit}이고, ` +
+      `${josa(theme.labels[other]!.math, "과", "와")} ${theme.labels[other + 1]!.math} 사이는 ` +
+      `${n(gaps[other]!)}${theme.unit}입니다. ` +
+      `${expr(`${most}-${gaps[other]!}=${most - gaps[other]!}`)}`,
+    tableFigure(theme, nums),
+  );
+}
+
 /* ───────────────────────── 2-6 다각형 ─────────────────────────
  *
  * 도형 이름은 **한자 수사**로만 쓴다(R4) — `polyName` 을 거치면 `8각형`·`정n각형` 이 나올 수 없다.
@@ -2735,6 +9680,305 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
   return noBranch(unit);
 }
 
+/* ──────────── 2-6 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * ⚠️ **정다각형의 «한 각의 크기»는 한 갈래도 만들지 않는다.** 정오각형 한 각
+ * $108^\circ$ 는 $(n-2)\times180\div n$ 이라 **초4 범위 밖**이다(초4 는 삼각형 $180^\circ$·
+ * 사각형 $360^\circ$ 까지). 그래서 2-6-2 는 **변 축으로만** 간다. 2-4-6(마름모)에서 각 축을
+ * 뺀 것과 판단은 같지만 까닭이 다르다 — 거기는 겹침, 여기는 **교육과정 범위**다.
+ *
+ * ⚠️ **「예/아니요」 문형을 한 갈래도 쓰지 않는다.** 표준 2-6-1 이 그 문형을 쓴다
+ * (「곡선이 있어도 다각형인가」). 낱말만 바꾸면 「상수만 바꾼 것은 같은 문항」(R5)이고,
+ * 찍어도 절반이라 그 자체로 약한 문형이다.
+ *
+ * 표준이 이미 쓴 것을 피해 **묻는 방향**을 돌렸다:
+ *   2-6-1 표준은 «변 수 → 이름»·«이름 → 꼭짓점 수»  → 갈래는 «꼭짓점 수 → 이름»
+ *   2-6-2 표준은 «한 변 ↔ 모든 변의 합» **양방향**   → 갈래는 «합과 한 변 → 변의 수»
+ *   2-6-3 표준은 «이름 → 개수» 둘                    → 갈래는 «개수 → 이름», «개수 → 개수»
+ *
+ * ⚠️ **그림은 아직 안 붙였다.** ② 확장이 정n각형 모양은 그리지만 `sides`·`angles` 에
+ * **값을 적으면 던진다**(비율 수리 전 임시 차단, elem-figures 2026-08-23). 2-6-2 는
+ * 한 변 길이를 적는 갈래가 대부분이라 지금 붙이면 던진다. 수리 뒤 2-4 넷과 함께 얹는다.
+ * 그리고 정n각형은 ⑧「고르기」목록에 **없다** — 윤곽으로 안 갈린다(정칠↔정팔 2.18px).
+ */
+
+/**
+ * 대각선 수 표 — `n(n-3)/2`. **다섯 값이 서로 달라서** 역산이 하나로 정해진다.
+ * 엔진의 그림 쪽 잠금과 같은 값이다(square 2 · pentagon 5 · hexagon 9 · octagon 20).
+ */
+const DIAGONALS: readonly { sides: number; total: number; each: number }[] = [
+  4, 5, 6, 7, 8,
+].map((s) => ({ sides: s, total: (s * (s - 3)) / 2, each: s - 3 }));
+
+/** **2-6-1 1단 — 꼭짓점 수에서 이름으로.** 표준은 **변** 수를 준다(방향이 다르다). */
+function tier261Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ `sino` 표가 **십이까지**다 — 그 위를 뽑으면 던진다.
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `꼭짓점이 ${n(sides)}개인 다각형의 이름을 쓰시오.`
+      : `어떤 다각형의 꼭짓점이 ${n(sides)}개입니다. 이 다각형을 무엇이라고 하는가?`,
+    polyName(sides),
+    `다각형은 변의 수와 꼭짓점의 수가 같습니다. 꼭짓점이 ${n(sides)}개이면 변도 ` +
+      `${n(sides)}개이므로 ${polyName(sides)}입니다.`,
+  );
+}
+
+/** **2-6-1 2단 — 변과 꼭짓점의 «합»에서 이름으로.** 둘이 같다는 것을 알아야 반으로 나눈다. */
+function tier261Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    intBetween(rng, 0, 1) === 0
+      ? `어떤 다각형의 변의 수와 꼭짓점의 수를 더하면 ${n(sides * 2)}입니다. ` +
+          `이 다각형의 이름을 쓰시오.`
+      : `변의 수와 꼭짓점의 수의 합이 ${n(sides * 2)}인 다각형이 있습니다. ` +
+          `이 다각형을 무엇이라고 하는가?`,
+    polyName(sides),
+    `다각형은 변의 수와 꼭짓점의 수가 같으므로 ` +
+      `${expr(`${sides * 2}\\div2=${sides}`)} 입니다. 변이 ${n(sides)}개이므로 ` +
+      `${polyName(sides)}입니다.`,
+  );
+}
+
+/** **2-6-1 3단 — 조건이 서로 다른 두 다각형.** 하나는 변으로, 하나는 꼭짓점으로 준다. */
+function tier261Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 9);
+  const b = intBetween(rng, 5, 9);
+  return make(
+    unit,
+    `다각형 ㉠은 변이 ${n(a)}개이고, 다각형 ㉡은 꼭짓점이 ${n(b)}개입니다. ` +
+      `두 다각형의 꼭짓점의 수의 합은 몇 개인가?`,
+    `${n(a + b)}개`,
+    `㉠은 변이 ${n(a)}개이므로 꼭짓점도 ${n(a)}개입니다. ㉡의 꼭짓점은 ${n(b)}개입니다. ` +
+      `${expr(`${a}+${b}=${a + b}`)} 이므로 ${n(a + b)}개입니다.`,
+  );
+}
+
+/**
+ * **2-6-1 4단 — 두 조건을 엮어 이름을 찾는다.**
+ *
+ * ㉡의 변을 $\square$ 로 두면 `□ + (□ + 차) = 합` 이다.
+ *
+ * ⚠️ **「차가 짝수라야 $\square$ 가 자연수」는 틀린 말이다.** 작은 쪽을 먼저 뽑고 합을
+ * 유도하므로 `합 − 차 = 작은 쪽 × 2` 라 **차의 홀짝은 아무것도 안 바꾼다.** 2-4-4 4단에
+ * 똑같이 틀린 주석을 적었다가 변이가 **초록으로** 짚어 줬고, 여기도 같았다. 짝수만 쓰는
+ * 까닭은 해설의 `□×2 = 합 − 차` 가 눈에 익은 꼴로 남게 하려는 것뿐이다.
+ */
+function tier261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ **둘 다 변이 $3$개 이상**이라야 다각형이고, 큰 쪽이 **$12$각형을 넘으면 던진다**
+  // (`sino` 표가 십이까지다). 합·차에서 유도하면 그 두 자리가 다 샌다 —
+  // **작은 쪽과 차를 먼저 뽑고 합을 유도**한다(D-66 ⒂).
+  const small = intBetween(rng, 3, 6);
+  const gap = intBetween(rng, 1, 2) * 2;
+  const big = small + gap;
+  return make(
+    unit,
+    `다각형 ㉠은 다각형 ㉡보다 변이 ${n(gap)}개 많고, 두 다각형의 변의 수의 합은 ` +
+      `${n(small + big)}개입니다. ㉠의 이름을 쓰시오.`,
+    polyName(big),
+    `㉡의 변의 수를 ${expr("\\square")}라고 하면 ㉠은 ${expr(`\\square+${gap}`)} 이므로 ` +
+      `${expr(`\\square+(\\square+${gap})=${small + big}`)} 입니다. ` +
+      `${expr(`\\square\\times2=${small + big}-${gap}=${small * 2}`)} 이므로 ㉡은 ` +
+      `${n(small)}개, ㉠은 ${expr(`${small}+${gap}=${big}`)} 개입니다. 따라서 ${polyName(big)}입니다.`,
+  );
+}
+
+/**
+ * **2-6-2 1단 — 합과 한 변에서 «변의 수»로.**
+ *
+ * 표준이 「한 변 → 합」과 「합 → 한 변」 **양방향**을 이미 쓴다. 남은 세 번째 방향이 이것이다.
+ */
+function tier262Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  const side = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `어떤 정다각형의 모든 변의 길이의 합이 ${cm(side * sides)}이고 한 변이 ${cm(side)}입니다. ` +
+      `이 정다각형의 이름을 쓰시오.`,
+    polyName(sides, true),
+    `정다각형은 모든 변의 길이가 같으므로 변의 수는 ` +
+      `${expr(`${side * sides}\\div${side}=${sides}`)} 개입니다. ` +
+      `따라서 ${polyName(sides, true)}입니다.`,
+  );
+}
+
+/** **2-6-2 2단 — 이름을 숨기고 성질로 준다.** 표준은 이름을 그대로 준다. */
+/** 그릴 수 있는 정n각형. **엔진에 `decagon` 이 없다**(실측: pentagon~nonagon 만). */
+const REGULAR_SHAPES: Record<number, string> = {
+  5: "pentagon",
+  6: "hexagon",
+  7: "heptagon",
+  8: "octagon",
+  9: "nonagon",
+};
+
+function tier262Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 그림을 붙이는 갈래라 **그릴 수 있는 변 수만** 뽑는다. 씨앗마다 그림이 있다 없다
+  // 하면 지면이 들쭉날쭉하고, 「못 그리면 빼기」는 그 사실을 조용히 덮는다.
+  const sides = intBetween(rng, 5, 9);
+  const side = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `변의 길이가 모두 같고 각의 크기도 모두 같은 다각형이 있습니다. 변이 ${n(sides)}개이고 ` +
+      `한 변이 ${cm(side)}일 때, 이 도형의 이름과 모든 변의 길이의 합을 각각 구하시오.`,
+    `${polyName(sides, true)}, ${cm(side * sides)}`,
+    `변의 길이가 모두 같고 각의 크기도 모두 같은 다각형은 정다각형이고, 변이 ${n(sides)}개이므로 ` +
+      `${polyName(sides, true)}입니다. ${expr(`${side}\\times${sides}=${side * sides}`)} 이므로 ` +
+      `${cm(side * sides)}입니다.`,
+    // 변의 수도 한 변의 길이도 **발문이 이미 말한다** — 그림이 답을 보여 주지 않는다.
+    // (이름과 합이 답인데 둘 다 그림에서 «바로» 읽히지 않는다.)
+    fig("markedShape", {
+      shape: REGULAR_SHAPES[sides]!,
+      sides: [`${side} cm`, ...Array<null>(sides - 1).fill(null)],
+    }),
+  );
+}
+
+/** **2-6-2 3단 — 모든 변의 합이 «같은» 다른 정다각형.** 중간값은 그 합이다. */
+function tier262Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 두 변의 수가 달라야 「다른 정다각형」이고, 합이 나누어떨어져야 한 변이 자연수다.
+  const from = pick(rng, [5, 6, 8, 10]);
+  const to = pick(
+    rng,
+    [3, 4, 5, 6].filter((v) => v !== from),
+  );
+  const side = intBetween(rng, 2, 5) * to;
+  const total = side * from;
+  return make(
+    unit,
+    `한 변이 ${cm(side)}인 ${polyName(from, true)}이 있습니다. 이 도형과 모든 변의 길이의 ` +
+      `합이 같은 ${polyName(to, true)}의 한 변은 몇 cm인가?`,
+    cm(total / to),
+    `${polyName(from, true)}의 모든 변의 길이의 합은 ` +
+      `${expr(`${side}\\times${from}=${total}`)} 입니다. ` +
+      `${polyName(to, true)}은 변이 ${n(to)}개이므로 ` +
+      `${expr(`${total}\\div${to}=${total / to}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-6-2 4단 — 정삼각형을 거쳐 정다각형의 이름까지.**
+ *
+ * 세 단계다: 정삼각형의 세 변의 합 → 그 한 변 → 그보다 $\square$ 긴 한 변 → 변의 수.
+ */
+function tier262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const triSide = intBetween(rng, 3, 8);
+  const more = intBetween(rng, 1, 4);
+  const side = triSide + more;
+  const sides = intBetween(rng, 5, 10);
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(triSide * 3)}인 정삼각형이 있습니다. 어떤 정다각형의 한 변은 ` +
+      `이 정삼각형의 한 변보다 ${cm(more)} 길고, 그 정다각형의 모든 변의 길이의 합은 ` +
+      `${cm(side * sides)}입니다. 이 정다각형의 이름을 쓰시오.`,
+    polyName(sides, true),
+    `정삼각형의 한 변은 ${expr(`${triSide * 3}\\div3=${triSide}`)} 이므로 정다각형의 한 변은 ` +
+      `${expr(`${triSide}+${more}=${side}`)} 입니다. 변의 수는 ` +
+      `${expr(`${side * sides}\\div${side}=${sides}`)} 개이므로 ${polyName(sides, true)}입니다.`,
+  );
+}
+
+/**
+ * **2-6-3 1단 — 한 꼭짓점의 대각선 수에서 되짚는다.** 표준은 「이름 → 개수」다.
+ *
+ * 풀이 다섯뿐이라 묻는 것을 **이름 / 꼭짓점 수** 둘로 갈라 변형을 낸다. 수를 억지로
+ * 넓히지 않는 까닭은 나중에 그림을 얹을 때 ② 가 그리는 정n각형이 $4$~$8$각형이기 때문이다.
+ */
+function tier263Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(rng, DIAGONALS);
+  const asksName = intBetween(rng, 0, 1) === 0;
+  const why =
+    `한 꼭짓점에서는 자기 자신과 이웃한 두 꼭짓점에 대각선을 그을 수 없으므로 ` +
+    `꼭짓점의 수는 ${expr(`${d.each}+3=${d.sides}`)} 개입니다.`;
+  return make(
+    unit,
+    `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
+      (asksName
+        ? `이 다각형의 이름을 쓰시오.`
+        : `이 다각형의 꼭짓점은 몇 개인가?`),
+    asksName ? polyName(d.sides) : `${n(d.sides)}개`,
+    asksName ? `${why} 따라서 ${polyName(d.sides)}입니다.` : why,
+  );
+}
+
+/** **2-6-3 2단 — 두 다각형의 «차».** 각각을 구하고 견준다. */
+function tier263Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const big = pick(
+    rng,
+    DIAGONALS.filter((d) => d.sides >= 6),
+  );
+  const small = pick(
+    rng,
+    DIAGONALS.filter((d) => d.sides < big.sides),
+  );
+  return make(
+    unit,
+    `${polyName(big.sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 ` +
+      `${polyName(small.sides)}보다 몇 개 더 많은가?`,
+    `${n(big.each - small.each)}개`,
+    `한 꼭짓점에서 그을 수 있는 대각선은 ${polyName(big.sides)}이 ` +
+      `${expr(`${big.sides}-3=${big.each}`)} 개, ${polyName(small.sides)}이 ` +
+      `${expr(`${small.sides}-3=${small.each}`)} 개입니다. ` +
+      `${expr(`${big.each}-${small.each}=${big.each - small.each}`)} 이므로 ` +
+      `${n(big.each - small.each)}개 더 많습니다.`,
+  );
+}
+
+/** **2-6-3 3단 — 한 꼭짓점에서 전체로.** 중간값은 꼭짓점의 수다. */
+function tier263Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(rng, DIAGONALS);
+  const withSides = intBetween(rng, 0, 1) === 0;
+  const count =
+    `꼭짓점의 수는 ${expr(`${d.each}+3=${d.sides}`)} 개입니다. 꼭짓점마다 ` +
+    `${n(d.each)}개씩 그을 수 있는데 대각선을 두 번씩 세었으므로 ` +
+    `${expr(`${d.sides}\\times${d.each}\\div2=${d.total}`)} 입니다.`;
+  return make(
+    unit,
+    `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
+      (withSides
+        ? `이 다각형의 변의 수와 대각선의 수를 더하면 얼마인가?`
+        : `이 다각형에 그을 수 있는 대각선은 모두 몇 개인가?`),
+    withSides ? `${n(d.sides + d.total)}개` : `${n(d.total)}개`,
+    withSides
+      ? `${count} 변은 ${n(d.sides)}개이므로 ` +
+          `${expr(`${d.sides}+${d.total}=${d.sides + d.total}`)} 입니다.`
+      : count,
+  );
+}
+
+/**
+ * **2-6-3 4단 — 전체 대각선 수에서 도형을 찾아 그 둘레까지.**
+ *
+ * $n(n-3)/2$ 는 $4$~$8$각형에서 $2·5·9·14·20$ 으로 **서로 달라** 도형이 하나로 정해진다.
+ * 초4 는 식을 못 푸니 **대입해 찾는 수밖에 없고**, 그래서 해설이 표를 세워 그 길을 보여 준다.
+ *
+ * ⚠️ **첫 판은 「전체 → 한 꼭짓점」이라 3단의 정확한 역이었다.** 같은 다섯 값 풀에서 뽑으니
+ * 같은 씨앗에서 **같은 수로 나란히** 섰다(실측: 씨앗 20260823 에서 둘 다 $5$개·$2$개).
+ * 한 시험지에 3·4단이 같이 실리면 티가 난다 — 그래서 4단은 **변의 수를 거쳐 둘레로** 간다.
+ * 되짚기는 그대로 있고 단계가 하나 더 붙는다.
+ */
+function tier263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(
+    rng,
+    DIAGONALS.filter((x) => x.sides >= 5),
+  );
+  const side = intBetween(rng, 3, 9);
+  const table = DIAGONALS.filter((x) => x.sides <= d.sides)
+    .map((x) => `${polyName(x.sides)} ${n(x.total)}개`)
+    .join(", ");
+  return make(
+    unit,
+    `어떤 정다각형에 그을 수 있는 대각선이 모두 ${n(d.total)}개입니다. ` +
+      `이 정다각형의 한 변이 ${cm(side)}일 때 모든 변의 길이의 합은 몇 cm인가?`,
+    cm(side * d.sides),
+    `대각선의 수를 차례로 세어 보면 ${table} 입니다. ` +
+      `${n(d.total)}개인 것은 ${polyName(d.sides)}이므로 변이 ${n(d.sides)}개입니다. ` +
+      `${expr(`${side}\\times${d.sides}=${side * d.sides}`)} 이므로 ${cm(side * d.sides)}입니다.`,
+  );
+}
+
 export const G4: Record<string, ChapterHandler> = {
   "초4|1-1 큰 수": bigNum,
   "초4|1-2 각도": angle,
@@ -2749,3 +9993,11 @@ export const G4: Record<string, ChapterHandler> = {
   "초4|2-5 꺾은선그래프": lineGraph,
   "초4|2-6 다각형": polygon,
 };
+
+// 셋째 파일럿(D-72)의 직접 호출 창구 — 등록은 끝났다. 넷 다 위 `G4_TIERS` 에 있고
+// generate.ts 가 병합하며, 4단의 「지워진 막대」(`unknown: true`)도 렌더러가 그린다
+// (elem-figures 확장 6a19b9b8). 이 셋은 단위 시험(elemTiersG4.test.ts)이 갈래를
+// 이름으로 직접 부르는 데만 쓴다 — 심화는 시험이 `G4_TIERS` 에서 꺼낸다.
+export const G4_TIER_CALC = tier53Calc;
+export const G4_TIER_BASIC = tier53Basic;
+export const G4_TIER_APPLY = tier53Apply;

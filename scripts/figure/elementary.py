@@ -30,6 +30,14 @@ DIM_OFF = 12.0
 FIT_PAD = 2.0
 KIND_FIELDS: dict[str, frozenset[str]] = {
     "numberCards": frozenset({"cards"}),
+    # ② 도형 위 표시 — 성질 문항. 고르기(`namedShapes`)와 **모양 목록을 공유**한다.
+    "markedShape": frozenset({"shape"}),
+    # ③ 두 직선의 관계 — 수직·평행(+ 평행선 사이 거리). 초4 2-4-1·2·3.
+    "lineRelation": frozenset({"relation"}),
+    # ⑥ 조각과 목표를 나란히 — **채운 모습은 안 그린다**(답이 샌다). 초4 2-6-4.
+    "tiling": frozenset({"piece", "target"}),
+    # ① 원과 그 부분 — 초3 2-3. **용어 라벨은 안 그린다**(그 용어가 답이다).
+    "circleParts": frozenset(),
     "placeValue": frozenset({"hundreds", "tens", "ones"}),
     "base10": frozenset({"rows"}),
     "opBox": frozenset({"input", "op"}),
@@ -56,6 +64,10 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
 }
 OPTIONAL: dict[str, frozenset[str]] = {
     "base10": frozenset({"equation"}),
+    "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
+    "lineRelation": frozenset({"labels", "distance", "marks", "perpCount"}),
+    "tiling": frozenset({"pieceSide", "targetSide", "labels"}),
+    "circleParts": frozenset({"radius", "diameter", "center", "show"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -1435,6 +1447,34 @@ def _trap_four(spec: Mapping[str, Any]) -> str:
     return _svg(pad * 2 + 3 * u, pad * 2 + u, "".join(parts))
 
 
+# 정n각형 — **② `markedShape` 전용**이다. ⑧ `namedShapes`(고르기)에는 **넣지 않는다.**
+#
+# 🔴 이유는 취향이 아니라 **실측**이다 (2026-08-23, `measure-shape-distance.py --all`,
+#    슬롯 44). 정n각형을 ⑧ 목록에 넣으면 **7쌍이 문턱(6px) 아래**로 떨어진다:
+#
+#      heptagon ↔ octagon   2.18px      ← 바닥
+#      heptagon ↔ hexagon   2.89px
+#      hexagon  ↔ octagon   2.95px
+#      heptagon ↔ pentagon  4.12px
+#      hexagon  ↔ pentagon  4.20px
+#      octagon  ↔ pentagon  4.20px
+#      diamond  ↔ hexagon   5.72px      ← 기존 도형까지 같이 좁아진다
+#
+#    변 수만 다르고 윤곽이 **원에 수렴**하니 「이 중에서 고르시오」가 성립하지 않는다.
+#    ⑧ 만 두면 바닥은 `para↔rect` 7.92px(여유 +1.92px)로 지금 그대로다.
+#    반면 성질 문항(「정팔각형의 한 변이 4 cm 이면 둘레는?」)은 **도형이 하나뿐**이라
+#    잴 쌍이 없다. 초4 2-6 발문 전수(씨앗 200)가 전부 그 부류였다.
+#
+# ⚠️ 「그럼 목록이 두 벌 아닌가」 — 아니다. `_MARKED_KINDS` 가 `_SHAPE_KINDS` 를
+#    **포함**하므로 ⑧ 에 도형을 더하면 ② 는 자동으로 따라온다. 한 방향 의존이다.
+_NGON_SIDES: dict[str, int] = {
+    "pentagon": 5,
+    "hexagon": 6,
+    "heptagon": 7,
+    "octagon": 8,
+    "nonagon": 9,
+}
+_NGON_KINDS = frozenset(_NGON_SIDES)
 _SHAPE_KINDS = frozenset(
     {
         "square",
@@ -1450,6 +1490,13 @@ _SHAPE_KINDS = frozenset(
         "irregQuad",
     }
 )
+# **모든 변이 정의상 같은** 도형 — `sides` 를 줘도 비율이 이미 맞다.
+# 실측(슬롯 100)으로 정했다: square 100×4 · diamond 71×4 · tallDiamond 55×4 ·
+# 정n각형 n개가 전부 같다. 「한 변이 5 cm 인 마름모의 네 변의 합은?」이 이 자리다.
+# ⚠️ 목록을 손으로 적지 않고 **좌표에서 확인**할 수도 있지만, 그러면 렌더할 때마다
+#    재게 된다. 대신 시험이 「이 목록의 도형은 정말 변이 다 같은가」를 잰다.
+_EQUILATERAL = frozenset({"square", "diamond", "tallDiamond"}) | _NGON_KINDS
+_MARKED_KINDS = _SHAPE_KINDS | _NGON_KINDS
 # 도형 항목의 허용 키. 오타(`mark`)가 조용히 무시되면 「옵션을 껐는데 왜 그대로냐」가 된다.
 _SHAPE_ITEM_KEYS = frozenset({"shape", "label", "marks"})
 # 이등변삼각형 밑변 (슬롯 한 변 대비). 정삼각형과 **윤곽으로** 갈려야 한다 — 09 §4-19.
@@ -1497,6 +1544,85 @@ def _right_mark(
     )
 
 
+def _ngon_points(n: int, ox: float, oy: float, s: float) -> list[tuple[float, float]]:
+    """정n각형 — 슬롯에 내접. 꼭짓점 하나를 **맨 위**에 둔다(교과서 배치).
+
+    변 길이·내각이 모두 같은 것은 「정n각형」의 정의라 **좌표에서 자동으로 참**이다 —
+    시험이 그것을 재서 확인한다(지어낸 좌표를 넣으면 빨개진다).
+    """
+    cx, cy, r = ox + s / 2, oy + s / 2, s / 2
+    return [
+        (
+            cx + r * math.sin(2 * math.pi * i / n),
+            cy - r * math.cos(2 * math.pi * i / n),
+        )
+        for i in range(n)
+    ]
+
+
+def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float, float]]:
+    """도형의 **꼭짓점**을 그리는 순서대로.
+
+    🔴 **`namedShapes`(고르기)와 `markedShape`(성질)가 이 하나를 쓴다.** 모양 목록이
+    두 벌이 되면 한쪽만 늘어나도 아무도 모른다 — 오늘 `allow_unknown` 이 정확히 그
+    모양이었다(막대에만 있고 꺾은선에는 없었다, CLAUDE.md 2026-08-18).
+
+    ⚠️ `square`·`rect` 는 지면에 여전히 `<rect>` 로 나간다(아래 `_draw_named_shape`).
+    여기서 점을 내는 것은 **재기 위해서**이지 그리는 방식을 바꾸려는 게 아니다.
+    """
+    if kind in _NGON_SIDES:
+        return _ngon_points(_NGON_SIDES[kind], ox, oy, s)
+    if kind == "square":
+        return [(ox, oy), (ox + s, oy), (ox + s, oy + s), (ox, oy + s)]
+    if kind == "rect":
+        x0, w = ox + s * 0.18, s * 0.64
+        return [(x0, oy), (x0 + w, oy), (x0 + w, oy + s), (x0, oy + s)]
+    if kind == "rightTri":
+        return [(ox, oy + s), (ox, oy), (ox + s, oy + s)]
+    if kind == "isoTri":
+        # 밑변을 좁힌다. 밑변 s·높이 s 이면 정삼각형(밑변 s·높이 0.866s)과 윤곽 거리가
+        # **3.93px** 뿐이라 tick 없이는 둘을 못 가른다 — 등변 표시를 옵트인으로 돌린
+        # 순간(원장님 결함 ⑤) 세 세션이 같은 자리에서 막혔다. 0.58s 로 좁히면 9.45px 가
+        # 되어 나머지 짝들(최소 7.92px) 사이에 묻힌다. 변 길이 비 1.12 → 1.80 (09 §4-19).
+        half = s * ISO_TRI_BASE / 2
+        return [(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)]
+    if kind == "wideTri":
+        return [(ox, oy + s), (ox + s / 2, oy + s * 0.42), (ox + s, oy + s)]
+    if kind == "eqTri":
+        h = s * math.sqrt(3) / 2
+        y0 = oy + (s - h) / 2
+        return [(ox, y0 + h), (ox + s / 2, y0), (ox + s, y0 + h)]
+    if kind == "diamond":
+        return [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]
+    if kind == "tallDiamond":
+        return [
+            (ox + s / 2, oy),
+            (ox + s * 0.72, oy + s / 2),
+            (ox + s / 2, oy + s),
+            (ox + s * 0.28, oy + s / 2),
+        ]
+    if kind == "trap":
+        return [
+            (ox + s * 0.2, oy + s * 0.12),
+            (ox + s * 0.8, oy + s * 0.12),
+            (ox + s, oy + s),
+            (ox, oy + s),
+        ]
+    if kind == "para":
+        return [
+            (ox + s * 0.28, oy),
+            (ox + s, oy),
+            (ox + s * 0.72, oy + s),
+            (ox, oy + s),
+        ]
+    return [
+        (ox + s * 0.08, oy + s * 0.22),
+        (ox + s * 0.92, oy),
+        (ox + s, oy + s * 0.62),
+        (ox + s * 0.18, oy + s),
+    ]
+
+
 def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = False) -> str:
     """`marks` 는 **등변 tick·직각 기호**를 그릴지다. 기본은 끈 쪽이다.
 
@@ -1505,68 +1631,19 @@ def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = F
     안전한 쪽을 기본값으로 두고, 성질을 **주고** 푸는 문항만 켠다. 도형 자체는 여전히
     정확한 정삼각형·직각삼각형이라 재면 알 수 있다.
     """
-    if kind == "square":
-        return _rect(ox, oy, s, s, sw=1.5)
-    if kind == "rect":
-        return _rect(ox + s * 0.18, oy, s * 0.64, s, sw=1.5)
+    pts = _shape_points(kind, ox, oy, s)
+    if kind in ("square", "rect"):
+        # 지면은 그대로 `<rect>` 다 — 점으로 가른 것은 재기 위해서다.
+        x0 = min(p[0] for p in pts)
+        y0 = min(p[1] for p in pts)
+        return _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
     if kind == "rightTri":
-        pts = [(ox, oy + s), (ox, oy), (ox + s, oy + s)]
         mark = _right_mark(pts[0], pts[1], pts[2]) if marks else ""
         return _poly_pts(pts) + mark
-    if kind == "isoTri":
-        # 밑변을 좁힌다. 밑변 s·높이 s 이면 정삼각형(밑변 s·높이 0.866s)과 윤곽 거리가
-        # **3.93px** 뿐이라 tick 없이는 둘을 못 가른다 — 등변 표시를 옵트인으로 돌린
-        # 순간(원장님 결함 ⑤) 세 세션이 같은 자리에서 막혔다. 0.58s 로 좁히면 9.45px 가
-        # 되어 나머지 짝들(최소 7.92px) 사이에 묻힌다. 변 길이 비 1.12 → 1.80 (09 §4-19).
-        half = s * ISO_TRI_BASE / 2
-        return _poly_pts([(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)])
-    if kind == "wideTri":
-        return _poly_pts([(ox, oy + s), (ox + s / 2, oy + s * 0.42), (ox + s, oy + s)])
     if kind == "eqTri":
-        h = s * math.sqrt(3) / 2
-        y0 = oy + (s - h) / 2
-        pts = [(ox, y0 + h), (ox + s / 2, y0), (ox + s, y0 + h)]
         ticks = "".join(_tick_at(pts[i], pts[(i + 1) % 3]) for i in range(3)) if marks else ""
         return _poly_pts(pts) + ticks
-    if kind == "diamond":
-        return _poly_pts(
-            [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]
-        )
-    if kind == "tallDiamond":
-        return _poly_pts(
-            [
-                (ox + s / 2, oy),
-                (ox + s * 0.72, oy + s / 2),
-                (ox + s / 2, oy + s),
-                (ox + s * 0.28, oy + s / 2),
-            ]
-        )
-    if kind == "trap":
-        return _poly_pts(
-            [
-                (ox + s * 0.2, oy + s * 0.12),
-                (ox + s * 0.8, oy + s * 0.12),
-                (ox + s, oy + s),
-                (ox, oy + s),
-            ]
-        )
-    if kind == "para":
-        return _poly_pts(
-            [
-                (ox + s * 0.28, oy),
-                (ox + s, oy),
-                (ox + s * 0.72, oy + s),
-                (ox, oy + s),
-            ]
-        )
-    return _poly_pts(
-        [
-            (ox + s * 0.08, oy + s * 0.22),
-            (ox + s * 0.92, oy),
-            (ox + s, oy + s * 0.62),
-            (ox + s * 0.18, oy + s),
-        ]
-    )
+    return _poly_pts(pts)
 
 
 def _named_shapes(spec: Mapping[str, Any]) -> str:
@@ -1607,8 +1684,565 @@ def _named_shapes(spec: Mapping[str, Any]) -> str:
     return _svg(width, height, "".join(parts))
 
 
+def _side_index(v: Any, name: str, n: int) -> int:
+    """변·꼭짓점 번호. 범위를 벗어나면 **던진다** — 조용히 감싸면 엉뚱한 변에 표시된다."""
+    if isinstance(v, bool) or not isinstance(v, int):
+        raise ValueError(f"{name} 의 번호는 정수여야 합니다: {v!r}")
+    if not 0 <= v < n:
+        raise ValueError(f"{name} 의 번호가 범위를 벗어났습니다: {v} (0~{n - 1})")
+    return v
+
+
+# 같은 무리의 변에 찍는 tick 개수. 무리가 둘이면 ‖ 와 ‖‖ 로 갈린다 — 개수가 곧 「무리」다.
+_EQUAL_TICKS = (1, 2, 3)
+
+
+_NUM_IN_LABEL = re.compile(r"[-+]?\d+(?:\.\d+)?")
+
+
+def _side_nums(labels: list[Any]) -> list[float | None]:
+    r"""라벨에서 **수**를 뽑는다. 「7 cm」→ 7 · 「$4\,\mathrm{cm}$」→ 4 · 수가 없으면 None.
+
+    라벨은 지면에 적히는 글자이고 여기서 필요한 것은 **비율**이라 수만 본다.
+    수가 없는 라벨(「가」 같은)은 비율에 안 쓴다 — 그건 배반할 값이 없다.
+    """
+    out: list[float | None] = []
+    for v in labels:
+        m = None if v is None else _NUM_IN_LABEL.search(str(v))
+        out.append(float(m.group()) if m else None)
+    return out
+
+
+def _angle_nums(labels: list[Any]) -> list[float | None]:
+    return _side_nums(labels)
+
+
+def _fit(pts: list[tuple[float, float]], pad: float, size: float) -> list[tuple[float, float]]:
+    """슬롯에 맞춰 키우고 가운데로. **비는 안 바뀐다** — 절대 크기는 원래 안 지킨다."""
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    w = max(xs) - min(xs) or 1.0
+    h = max(ys) - min(ys) or 1.0
+    k = size / max(w, h)
+    ox = pad + (size - w * k) / 2 - min(xs) * k
+    oy = pad + (size - h * k) / 2 - min(ys) * k
+    return [(x * k + ox, y * k + oy) for x, y in pts]
+
+
+def _triangle_points(
+    sides: list[float | None], angles: list[float | None], pad: float, size: float
+) -> list[tuple[float, float]] | None:
+    """적힌 값대로 삼각형을 잡는다. 값이 없으면 `None`(부르는 쪽이 관례 도형을 쓴다).
+
+    변 `i` 는 꼭짓점 `i`→`i+1`, 각 `i` 는 꼭짓점 `i` 다.
+    """
+    known_s = [v for v in sides if v is not None]
+    known_a = [v for v in angles if v is not None]
+    if not known_s and not known_a:
+        return None
+
+    # 🔴 **모순·불가능만 던진다.**
+    if len(known_a) == 3 and abs(sum(known_a) - 180.0) > 0.5:
+        raise ValueError(
+            f"세 각의 합이 {sum(known_a):g}° 입니다 — 삼각형은 180° 여야 합니다"
+        )
+    if len(known_s) == 3:
+        a, b, c = known_s
+        if a + b <= c or b + c <= a or c + a <= b:
+            raise ValueError(
+                f"세 변 {a:g}·{b:g}·{c:g} 로는 삼각형이 만들어지지 않습니다 "
+                f"(두 변의 합이 나머지 한 변보다 커야 합니다)"
+            )
+        # SSS — s0 를 밑변으로 놓고 셋째 꼭짓점을 푼다.
+        s0, s1, s2 = sides[0], sides[1], sides[2]
+        x = (s2 * s2 + s0 * s0 - s1 * s1) / (2 * s0)
+        y = math.sqrt(max(s2 * s2 - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s0, 0.0), (x, -y)], pad, size)
+
+    if len(known_a) >= 2:
+        # AA — 세 각이 정해지면 모양이 정해진다(크기는 자유). 사인법칙으로 변을 낸다.
+        aa = list(angles)
+        miss = [i for i, v in enumerate(aa) if v is None]
+        if len(miss) == 1:
+            aa[miss[0]] = 180.0 - sum(v for v in aa if v is not None)
+        if any(v is None or v <= 0 for v in aa):
+            return None
+        if abs(sum(aa) - 180.0) > 0.5:
+            raise ValueError(
+                f"세 각의 합이 {sum(aa):g}° 입니다 — 삼각형은 180° 여야 합니다"
+            )
+        # 변 i(=꼭짓점 i→i+1)는 그 둘이 아닌 **나머지 꼭짓점**의 각과 마주 본다.
+        s = [math.sin(math.radians(aa[(i + 2) % 3])) for i in range(3)]
+        x = (s[2] * s[2] + s[0] * s[0] - s[1] * s[1]) / (2 * s[0])
+        y = math.sqrt(max(s[2] * s[2] - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s[0], 0.0), (x, -y)], pad, size)
+
+    if len(known_s) == 2:
+        # 적힌 둘의 비만 지키면 된다 — 셋째는 관례값(지금 도형의 비를 쓴다).
+        i0 = sides.index(known_s[0])
+        i1 = len(sides) - 1 - sides[::-1].index(known_s[1])
+        base = [1.0, 1.0, ISO_TRI_BASE]
+        base[i0], base[i1] = known_s[0], known_s[1]
+        third = [i for i in range(3) if i not in (i0, i1)][0]
+        # 남은 변은 두 변 사이 어딘가 — 삼각부등식을 만족하는 값으로 둔다.
+        base[third] = (base[i0] + base[i1]) * 0.62
+        s0, s1, s2 = base
+        x = (s2 * s2 + s0 * s0 - s1 * s1) / (2 * s0)
+        y = math.sqrt(max(s2 * s2 - x * x, 1e-9))
+        return _fit([(0.0, 0.0), (s0, 0.0), (x, -y)], pad, size)
+    return None
+
+
+# 평행사변형의 관례 각 — 「이웃한 두 변이 4·6」처럼 **각이 안 적힌** 판에서 쓴다.
+# ⚠️ 너무 납작하면 지면에서 「이게 정말 4:6인가」가 안 읽힌다(리드 지적). 시험이 잠근다.
+PARA_DEFAULT_DEG = 65.0
+
+
+def _para_points(
+    sides: list[float | None],
+    angles: list[float | None],
+    pad: float,
+    size: float,
+    right: bool = False,
+) -> list[tuple[float, float]] | None:
+    """평행사변형·직사각형 — 이웃한 두 변의 비와 한 각을 반영한다. 둘 다 없으면 `None`.
+
+    `right` 면 각을 **늘 90°** 로 둔다(직사각형은 각이 자유롭지 않다). 그래서 `rect` 는
+    적힌 각이 90° 가 아니면 **모순**이다 — 조용히 90° 로 그리지 않고 던진다.
+    """
+    known_s = [v for v in sides if v is not None]
+    known_a = [v for v in angles if v is not None]
+    if not known_s and not known_a:
+        return None
+    if right and known_a and abs(known_a[0] - 90.0) > 0.5:
+        raise ValueError(
+            f"직사각형의 각은 90° 인데 {known_a[0]:g}° 가 적혔습니다"
+        )
+    if known_a and (known_a[0] <= 0 or known_a[0] >= 180):
+        raise ValueError(f"각 {known_a[0]:g}° 로는 평행사변형이 만들어지지 않습니다")
+    a = known_s[0] if known_s else 1.4
+    b = known_s[1] if len(known_s) > 1 else 1.0
+    deg = 90.0 if right else (known_a[0] if known_a else PARA_DEFAULT_DEG)
+    t = math.radians(deg)
+    return _fit(
+        [
+            (0.0, 0.0),
+            (a, 0.0),
+            (a + b * math.cos(t), -b * math.sin(t)),
+            (b * math.cos(t), -b * math.sin(t)),
+        ],
+        pad,
+        size,
+    )
+
+
+def _marked_shape(spec: Mapping[str, Any]) -> str:
+    """도형 **하나** 위에 각도·변 길이·등변 tick·직각 기호를 얹는다.
+
+    `namedShapes`(고르기)와 나누는 축은 「**도형이 몇 개인가**」가 아니라
+    「**무엇을 지키는 불변식인가**」다. 고르기는 도형 쌍이 윤곽으로 갈려야 하고
+    (`SHAPE_MIN_DISTANCE`, 09 §4-19), 성질 문항은 도형이 하나라 잴 쌍이 없다.
+    한 kind 에 두 규칙이 살면 가드 절반이 늘 헛돈다.
+
+    모양은 `_shape_points` 하나에서 온다 — 목록을 두 벌로 만들지 않는다.
+    치수는 전부 `_length_mark`(=`measured()`) 다 (09 §4-16).
+    """
+    # ⚠️ 키 검사를 여기서 **다시 하지 않는다.** `validate_elementary` 가 `KIND_FIELDS`·
+    #    `OPTIONAL` 로 이미 거른다("검증은 한 벌뿐이다"). 여기 목록을 하나 더 두면
+    #    필드를 늘릴 때 **한쪽만 늘어나고** 아무도 모른다 — 변이 시험이 그것을 잡았다
+    #    (「모르는 키 검사 끄기」가 초록이었다 = 그 검사는 아무것도 안 지켰다).
+    kind = str(spec.get("shape", ""))
+    # `areaPoly` 는 마름모를 `rhombus` 라 부르고 도형 목록은 `diamond` 라 부른다 —
+    # **이름이 두 벌**이라 학년 세션이 헷갈린다(elem-g4 가 `rhombus` 로 넣어 막혔다).
+    # 여기서 받아 준다. 이름을 통일하는 것이 옳지만 그건 `areaPoly` 까지 걸린 별건이다.
+    kind = {"rhombus": "diamond"}.get(kind, kind)
+    if kind not in _MARKED_KINDS:
+        raise ValueError(f"모르는 도형입니다: {kind}")
+
+    pad, size = 30.0, 104.0
+    pts = _shape_points(kind, pad, pad, size)
+    n = len(pts)
+
+    def _seq(name: str, limit: int) -> list[Any]:
+        raw = spec.get(name)
+        if raw is None:
+            return [None] * limit
+        if not isinstance(raw, list):
+            raise ValueError(f"{name} 은 배열이어야 합니다")
+        if len(raw) > limit:
+            raise ValueError(f"{name} 이 꼭짓점 수({limit})보다 깁니다")
+        return list(raw) + [None] * (limit - len(raw))
+
+    sides = _seq("sides", n)
+    angles = _seq("angles", n)
+
+    # ── 적힌 값을 그림에 반영한다 (2026-08-23 비율 수리) ──────────────────────
+    #
+    # **적힌 값은 반드시 그림에 반영한다. 안 적힌 것은 관례값으로 둔다.
+    #  적힌 값들이 서로 모순이거나 기하적으로 불가능할 때만 던진다.**
+    #
+    # 종전에는 `sides`·`angles` 를 **라벨로만** 얹고 도형은 고정이었다 — 「5,5,9」의
+    # 밑변을 제일 짧게 그렸다. **값은 맞고 그림이 그 값을 배반**했고, 09 §4-21 과 같은
+    # 부류라 스스로 신고하지 않았다(elem-g4 가 배선하며 렌더해 보고 찾았다).
+    #
+    # ⚠️ 「모양이 유일하게 안 정해지면 던진다」로 잡았다가 **되물렀다.** 실제 발문은
+    #    변만 주거나 각만 준다(초4 2-4-5) — 안 적힌 것까지 문제 삼으면 그 갈래를
+    #    통째로 막는다. 안 적힌 것은 배반할 것이 없으므로 관례값으로 둔다.
+    nums = _side_nums(sides)
+    angs = _angle_nums(angles)
+    if n == 3:
+        pts = _triangle_points(nums, angs, pad, size) or pts
+    elif kind in ("para", "rect"):
+        # 이웃한 두 변의 비 + 한 각. `rect` 는 각이 늘 90° 라 변만 본다.
+        pts = _para_points(nums, angs, pad, size, right=(kind == "rect")) or pts
+    elif kind in _EQUILATERAL:
+        # 🔴 **이미 모든 변이 같은 도형** — `sides` 를 줘도 비율이 이미 맞다(실측).
+        #    「한 변이 5 cm 인 마름모의 네 변의 합은?」류가 이 자리다. 던질 이유가 없다.
+        #    다만 **서로 다른 값**을 적었으면 그건 모순이라 던진다.
+        vals = [v for v in nums if v is not None]
+        if len(set(vals)) > 1:
+            raise ValueError(
+                f"«{kind}» 는 모든 변이 같은 도형인데 서로 다른 값이 적혔습니다: "
+                f"{' · '.join(f'{v:g}' for v in sorted(set(vals)))}"
+            )
+    elif any(v is not None for v in nums) or any(v is not None for v in angs):
+        # 아직 비율을 못 맞추는 도형 — 조용히 배반하느니 던진다.
+        raise ValueError(
+            f"«{kind}» 는 아직 sides·angles 를 그림에 반영하지 못합니다 — "
+            f"값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
+        )
+    cxr = sum(p[0] for p in pts) / n
+    cyr = sum(p[1] for p in pts) / n
+
+    parts: list[str] = []
+    if kind in ("square", "rect"):
+        x0 = min(p[0] for p in pts)
+        y0 = min(p[1] for p in pts)
+        parts.append(
+            _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
+        )
+    else:
+        parts.append(_poly_pts(pts))
+
+    # 등변 tick — 무리마다 개수를 달리해 «어느 변끼리 같은가»가 보이게 한다.
+    equal = spec.get("equal")
+    if equal is not None:
+        if not isinstance(equal, list):
+            raise ValueError("equal 은 배열이어야 합니다")
+        for g, group in enumerate(equal):
+            if not isinstance(group, list) or len(group) < 2:
+                raise ValueError("equal 의 각 무리는 변 번호 2개 이상이어야 합니다")
+            count = _EQUAL_TICKS[min(g, len(_EQUAL_TICKS) - 1)]
+            for si in group:
+                i = _side_index(si, "equal", n)
+                a, b = pts[i], pts[(i + 1) % n]
+                for k in range(count):
+                    # 여러 개면 중점 둘레로 살짝 벌린다.
+                    parts.append(_tick_span(a, b, 0.5 + (k - (count - 1) / 2) * 0.055))
+
+    # 대각선 — **이웃하지 않은** 꼭짓점만 잇는다. 그은 개수가 발문의 답과 같아야 하므로
+    # 「n(n-3)/2」가 좌표에서 **자동으로** 나오게 둔다(손으로 세지 않는다).
+    # 값을 묻는 문항(「팔각형에 그을 수 있는 대각선은 몇 개?」)이 이 그림을 쓴다.
+    if spec.get("diagonals"):
+        if spec["diagonals"] is not True:
+            raise ValueError("diagonals 는 참·거짓이어야 합니다")
+        if n < 4:
+            raise ValueError("삼각형에는 대각선이 없습니다")
+        for i in range(n):
+            for j in range(i + 2, n):
+                if i == 0 and j == n - 1:
+                    continue  # 이웃(첫 점과 끝 점)
+                parts.append(_seg(pts[i], pts[j], sw=1.0, dash="4 3"))
+
+    # 직각 기호 — **작은 정사각형**이다. 엔진 A 는 이 자리를 호로 그린다(09 §2.1 주).
+    right = spec.get("right")
+    if right is not None:
+        if not isinstance(right, list):
+            raise ValueError("right 는 배열이어야 합니다")
+        for ri in right:
+            i = _side_index(ri, "right", n)
+            parts.append(_right_mark(pts[i], pts[(i - 1) % n], pts[(i + 1) % n]))
+
+    # 변 길이 — `measured()`. 도형 **바깥**으로 벌린다.
+    cx = sum(p[0] for p in pts) / n
+    cy = sum(p[1] for p in pts) / n
+    for i, label in enumerate(sides):
+        if label is None:
+            continue
+        a, b = pts[i], pts[(i + 1) % n]
+        mx, my = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
+        # 무게중심 반대쪽이 바깥이다 — `measured` 의 off 부호로 정한다.
+        nx, ny = -(b[1] - a[1]), b[0] - a[0]
+        outward = (mx - cx) * nx + (my - cy) * ny
+        parts.append(
+            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)
+        )
+
+    # 각 — 꼭짓점에서 **안쪽**으로 들여 적는다.
+    for i, label in enumerate(angles):
+        if label is None:
+            continue
+        px, py = pts[i]
+        dx, dy = cx - px, cy - py
+        hyp = math.hypot(dx, dy) or 1.0
+        parts.append(_text(px + dx / hyp * 22, py + dy / hyp * 22 + 4, str(label), size=12))
+
+    return _svg(pad * 2 + size, pad * 2 + size, "".join(parts))
+
+
+def _seg(
+    a: tuple[float, float],
+    b: tuple[float, float],
+    *,
+    sw: float = 1.2,
+    dash: str | None = None,
+) -> str:
+    """두 점을 잇는 선 하나. `elementary.py` 에는 범용 선 함수가 없어 kind 마다
+    `<line>` 을 손으로 조립하고 있었다 — 대각선처럼 **여러 개**를 긋는 자리에는 둔다."""
+    d = f' stroke-dasharray="{_esc(dash)}"' if dash else ""
+    return (
+        f'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" y2="{_n(b[1])}" '
+        f'stroke="{INK}" stroke-width="{_n(sw)}"{d}/>'
+    )
+
+
+def _tick_span(
+    a: tuple[float, float], b: tuple[float, float], t: float, length: float = 3.4
+) -> str:
+    """변 `a→b` 의 위치 `t` 에 수직 tick 하나. `_tick_at` 의 t 를 옮길 수 있는 판."""
+    mx, my = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    hyp = math.hypot(dx, dy) or 1.0
+    nx, ny = (-dy / hyp) * length, (dx / hyp) * length
+    return (
+        f'<line x1="{_n(mx - nx)}" y1="{_n(my - ny)}" x2="{_n(mx + nx)}" y2="{_n(my + ny)}" '
+        f'stroke="{INK}" stroke-width="1.2"/>'
+    )
+
+
+# 평행 표시(겹화살표)의 크기 — 두 직선에 **같은 개수**를 찍어 「이 둘이 평행」을 말한다.
+_PARA_MARK = 5.0
+
+
+def _para_mark(mx: float, my: float, dx: float, dy: float, k: int) -> str:
+    """평행 표시 — 진행 방향으로 벌어진 「>」 를 `k` 개. 두 직선에 **같은 수**를 찍는다."""
+    out: list[str] = []
+    for i in range(k):
+        ox = mx + (i - (k - 1) / 2) * _PARA_MARK * 1.3 * dx
+        oy = my + (i - (k - 1) / 2) * _PARA_MARK * 1.3 * dy
+        # 「>」 = 뒤로 벌어진 두 선분. 화살촉을 채우지 않는다(직각 기호와 헷갈리지 않게).
+        nx, ny = -dy, dx
+        out.append(
+            f'<polyline points="{_n(ox - _PARA_MARK * dx + nx * _PARA_MARK * 0.7)},'
+            f'{_n(oy - _PARA_MARK * dy + ny * _PARA_MARK * 0.7)} {_n(ox)},{_n(oy)} '
+            f'{_n(ox - _PARA_MARK * dx - nx * _PARA_MARK * 0.7)},'
+            f'{_n(oy - _PARA_MARK * dy - ny * _PARA_MARK * 0.7)}" '
+            f'fill="none" stroke="{INK}" stroke-width="1.15"/>'
+        )
+    return "".join(out)
+
+
+def _line_relation(spec: Mapping[str, Any]) -> str:
+    """두 직선의 관계 — **수직**·**평행**(+ 평행선 사이 거리). 초4 2-4-1·2·3.
+
+    ## 왜 `parallel` 뿐인가 (2026-08-24)
+
+    처음에 `perpendicular`·`bothPerpendicular` 도 만들었다가 **지웠다.** 초4 2-4-1·2 의
+    발문을 다시 보니 **묻는 것이 곧 그림이 보여 주는 것**이었다:
+
+    | 발문 | 답 | 그림이 그리면 |
+    |---|---|---|
+    | 「수선은 몇 도를 이루며 만나는가」 | 90° | 직각 기호가 **답을 말한다** |
+    | 「두 직선이 직각일 때 서로 무엇인가」 | 수직 | 〃 |
+    | 「한 직선에 수직인 두 직선은 어떤 관계인가」 | 평행 | 평행하게 그리면 **답을 말한다** |
+
+    D-66 ⑺ 의 그 자리다. 게다가 그 두 갈래는 **스펙 값을 하나도 안 받아**(좌표가 전부
+    상수) 씨앗이 달라도 그림이 한 픽셀도 안 바뀐다(R9-b). 그리고 g4 가 2-4-1·2 를
+    **글로 된 사다리**(꺾인 횟수의 홀짝)로 세우기로 해 **부를 갈래도 없다.**
+
+    → 값을 싣고 답을 안 보이는 쓰임이 생기면 그때 되살린다. 「직사각형에서 한 변에
+      수직인 변은 몇 개」류는 **도형 위**라 `markedShape`(②) 쪽이지 여기가 아니다.
+
+    🔴 **「표시가 있다」가 아니라 「정말 그러한가」가 불변식이다.** 수직은 두 방향 벡터의
+    내적이 0, 평행은 외적이 0 — 시험이 그린 좌표에서 그것을 잰다. 표시는 그 사실을
+    **보여 주는** 것이지 그것을 대신하지 않는다.
+
+    ⚠️ 엔진 A(FigureSpec v2)로 그리면 **직각이 호**가 된다(09 §2.1 주). 초등 교과서의
+       직각은 **작은 정사각형**이라 여기서 `_right_mark` 로 그린다.
+    """
+    rel = str(spec.get("relation", ""))
+    if rel != "parallel":
+        raise ValueError(
+            f"모르는 관계입니다: {rel} — 지금은 parallel 뿐입니다"
+        )
+    labels = spec.get("labels")
+    if labels is not None and (not isinstance(labels, list) or len(labels) != 2):
+        raise ValueError("labels 는 직선 이름 2개여야 합니다")
+    dist = spec.get("distance")
+
+    pad, w, h = 26.0, 150.0, 110.0
+    parts: list[str] = []
+    y0 = pad + h * 0.3
+    y1 = pad + h * 0.72
+    parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
+    parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
+    # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
+    k = _side_index(spec.get("marks", 1), "marks", 4) or 1
+    parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
+    parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
+    # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
+    # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
+    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
+    for i in range(npp):
+        x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
+        parts.append(_seg((x, y0), (x, y1), sw=1.05))
+        parts.append(_right_mark((x, y0), (pad + w, y0), (x, y1), size=5.0))
+    if dist is not None:
+        # 평행선 사이 거리는 **수선으로만** 잰다 — 비스듬한 선분이 아니다.
+        mx = pad + w * 0.3
+        parts.append(_length_mark(mx, y0, mx, y1, str(dist), off=-11.0))
+    name_at = [(pad, y0), (pad, y1)]  # **서로 다른** 두 직선의 왼끝
+
+    if labels:
+        # 🔴 **갈래마다 «두 직선의 대표점»이 다르다.** 조건 하나로 뒤집으면 틀린다 —
+        #    실제로 `parallel` 은 한 직선의 양 끝에, `bothPerpendicular` 은 세로선 하나와
+        #    밑선에 이름이 붙어 있었다(리드가 좌표로 잡았다). 「직선 가와 나는 평행하다」와
+        #    **정면으로 어긋나는** 그림이었고, 기하 축(내적·외적)은 그것을 못 본다.
+        #    그래서 이름 자리는 **갈래마다 `name_at` 으로 따로 정한다** — 네 끝점을 한
+        #    목록에 쌓아 두고 「앞 둘」을 쓰는 식으로 하면, 갈래가 늘 때 그 순서가 조용히
+        #    어긋난다(그렇게 짰다가 틀렸다. 지금은 쓰지 않는 `ends` 를 지웠다).
+        for (lx, ly), t in zip(name_at, labels):
+            parts.append(_text(lx, ly - 8, str(t), size=12))
+    return _svg(pad * 2 + w, pad * 2 + h, "".join(parts))
+
+
+def _num_or(v: Any, default: float) -> float:
+    """수면 그 값, 없으면 기본값. 문자열이면 수를 뽑는다(「5 cm」→ 5)."""
+    if v is None:
+        return default
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    got = _side_nums([v])[0]
+    if got is None:
+        raise ValueError(f"수를 읽지 못했습니다: {v!r}")
+    return got
+
+
+def _tiling(spec: Mapping[str, Any]) -> str:
+    """조각과 목표 도형을 **나란히** 놓는다 — 초4 2-6-4 「모양 만들기와 채우기」.
+
+    ## 🔴 채운 모습을 그리지 않는다 — 그러면 **답이 샌다**
+
+    발문 셋이 전부 「조각이 **몇 개** 필요한가」다(씨앗 200 전수). 조각을 다 그리면
+    **세면 답이 나온다**(D-66 ⑺) — ③ 에서 `perpendicular` 을 지운 것과 같은 자리다.
+
+    그래서 **조각 하나와 목표 하나만** 나란히 놓고, **크기 비**를 발문의 값대로 그린다.
+    「한 변 5 조각으로 한 변 10 을 채우려면」이면 1:2 로 그려지고, 학생은 그 비에서
+    넓이비 4 를 구한다. **그림은 견줄 것을 주지 답을 주지 않는다.**
+
+    ⚠️ 「정육각형을 정삼각형 몇 개로」는 크기가 아니라 **배치**라 이 그림이 답을 못
+       준다 — 해롭지도 않다(조각과 목표가 무엇인지는 보여 준다). 배치를 보여 주는
+       그림은 곧 답이므로 만들지 않는다.
+    """
+    piece = str(spec.get("piece", ""))
+    target = str(spec.get("target", ""))
+    for k in (piece, target):
+        if k not in _MARKED_KINDS:
+            raise ValueError(f"모르는 도형입니다: {k}")
+    ps = _num_or(spec.get("pieceSide"), 1.0)
+    ts = _num_or(spec.get("targetSide"), 2.0)
+    if ps <= 0 or ts <= 0:
+        raise ValueError("pieceSide·targetSide 는 0보다 커야 합니다")
+    if ps > ts:
+        raise ValueError(
+            f"조각({ps:g})이 목표({ts:g})보다 큽니다 — 채울 수 없습니다"
+        )
+
+    pad, big, gap = 22.0, 86.0, 26.0
+    small = big * ps / ts  # **크기 비가 발문의 값과 같다** — 시험이 이것을 잰다
+    parts: list[str] = []
+    py = pad + (big - small) / 2
+    parts.append(_poly_pts(_shape_points(piece, pad, py, small)))
+    parts.append(_poly_pts(_shape_points(target, pad + small + gap, pad, big)))
+    if spec.get("labels") is not False:
+        parts.append(_text(pad + small / 2, pad + big + 14, "조각", size=12))
+        parts.append(_text(pad + small + gap + big / 2, pad + big + 14, "만들 모양", size=12))
+    return _svg(pad * 2 + small + gap + big, pad * 2 + big + 18, "".join(parts))
+
+
+def _circle_parts(spec: Mapping[str, Any]) -> str:
+    """원과 그 부분 — 중심 · 반지름 · 지름. 초3 2-3.
+
+    ## 🔴 **용어를 적지 않는다** — 2-3-1 이 그 용어를 묻는다
+
+    발문 셋이 「원의 중심과 원 위의 한 점을 이은 선분을 **무엇이라고 하는지**」다.
+    그림에 「반지름」이라 적으면 **그것이 곧 답**이다(D-66 ⑺). 그래서 용어 라벨은
+    **아예 안 그린다** — 옵션으로도 두지 않는다. 「끄면 되지」로 두면 켠 채 나간다.
+
+    ## 🔴 **주어진 값만 적는다** — 묻는 값은 부르는 쪽이 안 넘긴다
+
+    2-3-2 는 「지름 10 인 원의 **반지름**은?」이고 2-3-3 은 「컴퍼스를 8 벌려 그렸다,
+    **지름**은?」이다. 둘 다 적으면 답이 지면에 있다. 엔진은 **받은 것만** 그리고,
+    무엇을 넘길지는 갈래가 정한다 — 다만 **둘 다 값을 주면 던진다**(그 조합은
+    「구하라」 문항이 될 수 없다).
+
+    그린 것이 값을 배반하지 않게 **지름 = 반지름 × 2 를 좌표에서** 지킨다.
+    """
+    r_lab = spec.get("radius")
+    d_lab = spec.get("diameter")
+    if r_lab is not None and d_lab is not None:
+        raise ValueError(
+            "radius 와 diameter 를 **둘 다** 적으면 그림이 답을 말합니다 — "
+            "주어진 쪽만 넘기십시오"
+        )
+    pad, rad = 26.0, 62.0
+    cx, cy = pad + rad, pad + rad
+    parts: list[str] = [
+        f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="{_n(rad)}" '
+        f'fill="none" stroke="{INK}" stroke-width="1.5"/>'
+    ]
+    # 중심점 — 「무엇에서 잰 길이인가」가 보이려면 점이 있어야 한다(09 §4-16).
+    if spec.get("center", True):
+        parts.append(
+            f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="2.2" fill="{INK}"/>'
+        )
+    # `show` — **치수 없이 선분만** 그린다. 2-3-1 이 「이 선분을 무엇이라 하는지」를
+    # 묻는데, 그 선분이 지면에 없으면 그림이 아무 말도 안 한다. 답은 **낱말**이라
+    # 선분을 그려도 새지 않는다 — 오히려 안 그리는 쪽이 문항을 약하게 만든다.
+    #
+    # 🔴 **여기서 「그린다」와 「적는다」가 갈라진다.** 그전에는 둘이 묶여 있어서
+    #    「용어를 안 그린다」가 **공짜로** 지켜졌다. 푸는 순간 그것을 지킬 사람이
+    #    새로 필요하다 — `show` 만 준 그림에 `<text>` 가 하나라도 있으면 안 된다.
+    #    시험이 그 축을 따로 문다(리드 지적, 2026-08-24).
+    show = spec.get("show")
+    if show is not None and show not in ("radius", "diameter"):
+        raise ValueError('show 는 "radius" 또는 "diameter" 여야 합니다')
+    if show == "radius" and r_lab is not None:
+        raise ValueError("show 와 radius 를 같이 주지 마십시오 — radius 가 이미 선분을 그립니다")
+    if show == "diameter" and d_lab is not None:
+        raise ValueError("show 와 diameter 를 같이 주지 마십시오 — diameter 가 이미 선분을 그립니다")
+
+    if r_lab is not None or show == "radius":
+        # 반지름 — 중심에서 원 위 한 점까지. 비스듬히 그어 지름과 눈으로 갈리게.
+        ang = math.radians(-35.0)
+        ex, ey = cx + rad * math.cos(ang), cy + rad * math.sin(ang)
+        parts.append(_seg((cx, cy), (ex, ey), sw=1.3))
+        if r_lab is not None:
+            parts.append(_length_mark(cx, cy, ex, ey, str(r_lab), off=-10.0))
+    if d_lab is not None or show == "diameter":
+        # 지름 — **중심을 지나는** 현. 좌표가 대칭이라 그 성질이 자동으로 참이다.
+        parts.append(_seg((cx - rad, cy), (cx + rad, cy), sw=1.3))
+        if d_lab is not None:
+            parts.append(_length_mark(cx - rad, cy, cx + rad, cy, str(d_lab), off=12.0))
+    return _svg(pad * 2 + rad * 2, pad * 2 + rad * 2, "".join(parts))
+
+
 _RENDER = {
     "numberCards": _number_cards,
+    "circleParts": _circle_parts,
+    "tiling": _tiling,
+    "lineRelation": _line_relation,
+    "markedShape": _marked_shape,
     "placeValue": _place_value,
     "base10": _base10,
     "opBox": _op_box,

@@ -2,6 +2,7 @@
  * 초등 그림 스펙(elem-1) + 기존 FigureSpec v2.
  * 엔진이 실제로 SVG 를 내는지 본다. 모킹하지 않는다 — 없는 축은 변이시킬 수 없다.
  */
+import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -14,6 +15,7 @@ import {
   FIGURE_SVG_PAIR_MM,
   figureSvgFrameClass,
   figureSvgSize,
+  figureSvgViewBoxWidth,
 } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 
@@ -1338,6 +1340,18 @@ describe.skipIf(!hasEngine)(
       expect(new Set(sizes).size, "r 이 달라도 원 크기는 같다").toBe(1);
     });
 
+    /**
+     * ⚠️ **이 목록은 손 목록이고, 그래서 샌다.** 09 §4-22 가 적은 그대로다 —
+     * `sphere` 를 놓쳤던 자리이고, 2026-08-23 에 `markedShape` 를 새로 넣었을 때
+     * **또 놓쳤다**(변이 「변 라벨을 날 텍스트로」가 초록이었다).
+     *
+     * 표본(`probe-elem-figure.py --specs`)을 정본으로 읽게 고쳐 봤으나, **vitest 안에서만**
+     * 변이가 반영되지 않는 현상을 못 밝혔다(커맨드라인에서는 날 텍스트가 확실히 나오고,
+     * `drawn` 98→84 로 vitest 가 변이 자체는 본다). 원인 불명인 채로 두면 「검사된다」고
+     * 읽히므로 **손 목록으로 되돌리고 새 kind 를 직접 추가**했다.
+     * 새 kind 를 넣는 사람은 **여기에도 넣어야 한다** — 그리고 그 사실이 문제다.
+     * (미해결 자리: `docs/planning/tracks/elem-figure-demand-20260823.md` §10)
+     */
     it("어느 kind 든 cm 라벨은 halo 치수 글자다 — 날 텍스트가 없다", async () => {
       const bare: string[] = [];
       for (const spec of [
@@ -1367,6 +1381,14 @@ describe.skipIf(!hasEngine)(
           kind: "stackCubes",
           voxels: [[0, 0, 0]],
           views: ["iso"],
+        },
+        // ② markedShape (2026-08-23) — 변 길이를 적는 kind 라 반드시 여기 있어야 한다.
+        {
+          version: "elem-1",
+          kind: "markedShape",
+          shape: "isoTri",
+          sides: ["7 cm", "7 cm", "5 cm"],
+          equal: [[0, 1]],
         },
       ]) {
         const r = await renderFigureSpec(spec);
@@ -1544,19 +1566,15 @@ describe.skipIf(!hasEngine)(
      * 두 무리 사이가 훤히 비어 있어 6px 문턱은 그 틈에 놓인다.
      */
     it("서로 다른 도형은 표시 없이도 윤곽으로 갈린다", async () => {
-      const kinds = [
-        "square",
-        "rect",
-        "rightTri",
-        "isoTri",
-        "wideTri",
-        "eqTri",
-        "diamond",
-        "tallDiamond",
-        "trap",
-        "para",
-        "irregQuad",
-      ];
+      // 🔴 **훑을 목록을 손으로 적지 않는다.** 손 목록이면 ⑧ 에 도형을 더해도 이 검사가
+      //    자동으로 안 늘어난다 — 09 §4-22 「손 목록은 샌다」. 엔진의 `_SHAPE_KINDS`
+      //    (⑧ 이 실제로 받는 목록)를 소스에서 읽는다.
+      //
+      //    ⚠️ `_MARKED_KINDS`(② 목록)가 아니라 `_SHAPE_KINDS` 다. 정n각형은 ② 전용이고
+      //       **윤곽으로 안 갈린다**(heptagon↔octagon 2.18px, 실측) — ⑧ 에 넣으면 안 된다.
+      //       그 사실은 아래 「정n각형은 고르기 목록에 없다」가 따로 잠근다.
+      const kinds = shapeKindsFromEngine();
+      expect(kinds.length, "⑧ 도형 종류").toBeGreaterThanOrEqual(11);
       const r = await renderFigureSpec({
         version: "elem-1",
         kind: "namedShapes",
@@ -1581,6 +1599,22 @@ describe.skipIf(!hasEngine)(
       expect(floor, "가장 닮은 짝을 재지 못했다").toBeGreaterThan(6);
       expect(floor, "재는 자가 실제 px 를 읽고 있지 않다").toBeLessThan(10);
       expect(close).toEqual([]);
+    });
+
+    /**
+     * ⑧(고르기)에 정n각형을 넣으면 **문제가 성립하지 않는다.**
+     * 실측(`measure-shape-distance.py --all`, 슬롯 44): 넣으면 7쌍이 문턱 아래로 떨어지고
+     * 바닥이 7.92px → **2.18px**(`heptagon↔octagon`)이 된다. 기존 짝까지 좁아진다
+     * (`diamond↔hexagon` 5.72px).
+     *
+     * 위 검사는 `_SHAPE_KINDS` 를 읽으므로 **누가 정n각형을 거기 넣으면 저절로 빨개진다.**
+     * 이 검사는 그 이유를 **말로 남기는** 자리다 — 빨강만 보면 「문턱을 내리면 되잖아」가 된다.
+     */
+    it("정n각형은 ⑧ 고르기 목록에 **없다** — 윤곽으로 안 갈린다", () => {
+      const kinds = shapeKindsFromEngine();
+      for (const ngon of ["pentagon", "hexagon", "heptagon", "octagon"]) {
+        expect(kinds, `${ngon} 은 ② 전용이다`).not.toContain(ngon);
+      }
     });
 
     /**
@@ -2251,10 +2285,14 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
     );
     expect(py).toMatch(new RegExp(`PAIR_FRAME_MM = ${FIGURE_SVG_PAIR_MM}\\.0`));
     // 프레임 클래스도 같은 수여야 한다(문자열이라 따로 샌다).
-    expect(figureSvgFrameClass('<svg viewBox="0 0 405 206">')).toContain(
+    // ⚠️ 등급은 이제 **폭이 아니라 표식**으로 정한다(2026-08-23) — 종전에는 여기에
+    //    `viewBox 405` 를 넣었는데, 그 폭이 380 을 넘는 짝만 걸려서 **실제 짝 53장 중
+    //    17장(32%)이 mid 로 떨어지고 있었다.** 폭을 넣으면 그 결함이 되살아난다.
+    const pairSvg = '<svg viewBox="0 0 405 206"><desc>chartPair</desc>';
+    expect(figureSvgFrameClass(pairSvg)).toContain(
       `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
     );
-    expect(figureSvgFrameClass('<svg viewBox="0 0 405 206">')).toContain(
+    expect(figureSvgFrameClass(pairSvg)).toContain(
       `print:max-w-[${FIGURE_SVG_PAIR_MM}mm]`,
     );
   });
@@ -2342,6 +2380,181 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
       });
       expect(r.ok).toBe(false);
     }
+  });
+});
+
+/* ── 지워진 막대(unknown)와 값 0 (D-72 자료형 심화) ─────────────────────────── */
+const UNKNOWN_DASH = "4 3";
+/** 점선 상자 = fill 없는 rect. 값 막대(색 채움)와 갈린다. */
+function dashedBoxes(svg: string): string[] {
+  return [...svg.matchAll(/<rect [^>]*>/g)]
+    .map((m) => m[0])
+    .filter((r) => r.includes(`stroke-dasharray="${UNKNOWN_DASH}"`));
+}
+
+describe.skipIf(!hasEngine)("[초등 그림] 지워진 막대 · 값 0", () => {
+  const withUnknown = (orient?: string, values?: unknown[]) => ({
+    version: "elem-1",
+    kind: "barChart",
+    ...(orient ? { orient } : {}),
+    yMax: 30,
+    yStep: 5,
+    yLabel: "(명)",
+    values: values ?? [
+      { label: "가", value: 25 },
+      { label: "나", unknown: true },
+      { label: "다", value: 10 },
+      { label: "라", value: 20 },
+    ],
+  });
+
+  it.each(["vertical", "horizontal"])(
+    "%s — 지워진 막대는 점선 상자 + ? 로 그린다",
+    async (orient) => {
+      const r = await renderFigureSpec(
+        withUnknown(orient === "horizontal" ? "horizontal" : undefined),
+      );
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(dashedBoxes(r.svg)).toHaveLength(1);
+      const box = dashedBoxes(r.svg)[0]!;
+      expect(box).toContain('fill="none"');
+      expect(r.svg).toContain(">?<");
+
+      // ⚠️ **상자는 값 축 «전체»를 덮어야 한다.** 절반이면 「이 정도 값」으로 읽혀
+      //    그림이 없는 답을 암시한다. 「기하가 서로 같다」만 잠그면 둘 다 똑같이
+      //    틀린 높이여도 초록이라, 축에 대고 **자리까지** 재야 한다.
+      const at = (a: string) =>
+        Number(box.match(new RegExp(`${a}="([0-9.]+)"`))![1]);
+      if (orient === "horizontal") {
+        const xs = xTicks(r.svg);
+        expect(at("x")).toBeCloseTo(xs[0]!.x, 1);
+        expect(at("x") + at("width")).toBeCloseTo(xs[xs.length - 1]!.x, 1);
+      } else {
+        const ys = yTicks(r.svg);
+        const top = Math.min(...ys.map((t) => t.y));
+        const zero = Math.max(...ys.map((t) => t.y));
+        expect(at("y")).toBeCloseTo(top, 1);
+        expect(at("y") + at("height")).toBeCloseTo(zero, 1);
+      }
+    },
+  );
+
+  // ⚠️ 이 시험이 **계약을 잠근다.** 스펙에 참값이 없으니 기하가 같은 것은 «자동»이지만,
+  // 나중에 누가 value 를 「편의로」 되살리면 그림이 답을 흘린다(D-66 ⑺).
+  it("숨긴 값이 달라도 **점선 상자 기하가 같다** — 다른 값이 바뀌어도", async () => {
+    const a = await renderFigureSpec(withUnknown());
+    const b = await renderFigureSpec(
+      withUnknown(undefined, [
+        { label: "가", value: 5 },
+        { label: "나", unknown: true },
+        { label: "다", value: 30 },
+        { label: "라", value: 15 },
+      ]),
+    );
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    expect(dashedBoxes(a.svg)).toEqual(dashedBoxes(b.svg));
+  });
+
+  it("unknown 에 value 를 같이 실으면 **던진다** — 참값이 스펙에 있으면 답이 샌다", async () => {
+    const r = await renderFigureSpec(
+      withUnknown(undefined, [
+        { label: "가", value: 25 },
+        { label: "나", unknown: true, value: 15 },
+      ]),
+    );
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(/unknown|참값/);
+  });
+
+  it.each([
+    ["전부 unknown — 축 맨 위를 못 정한다", [{ label: "가", unknown: true }]],
+    [
+      "전부 0 — 막대가 하나도 안 그려진다",
+      [
+        { label: "가", value: 0 },
+        { label: "나", value: 0 },
+      ],
+    ],
+    [
+      "unknown: false 는 못 쓴다",
+      [
+        { label: "가", value: 5 },
+        { label: "나", unknown: false },
+      ],
+    ],
+    [
+      "항목 오타 키는 조용히 무시되지 않는다",
+      [
+        { label: "가", value: 5 },
+        { label: "나", valeu: 3 },
+      ],
+    ],
+  ])("%s", async (_why, values) => {
+    const r = await renderFigureSpec(withUnknown(undefined, values));
+    expect(r.ok).toBe(false);
+  });
+
+  it("꺾은선은 지워진 막대를 못 그린다 — 조용히 건너뛰지 않고 던진다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineChart",
+      yMax: 30,
+      yLabel: "(명)",
+      values: [
+        { label: "가", value: 25 },
+        { label: "나", unknown: true },
+      ],
+    });
+    expect(r.ok).toBe(false);
+  });
+
+  // `value: 0` 은 정당한 자료인데 크기 0 rect 를 그리면 정제기가 던진다
+  // (`figure_quality`: 「height must be positive」). `r.ok` 가 곧 sanitize 통과다.
+  it.each(["vertical", "horizontal"])(
+    "%s — 값 0 은 막대를 안 그리고 이름표만 남긴다 (정제기가 던지지 않는다)",
+    async (orient) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "barChart",
+        ...(orient === "horizontal" ? { orient: "horizontal" } : {}),
+        yMax: 10,
+        yStep: 2,
+        yLabel: "(명)",
+        values: [
+          { label: "가", value: 0 },
+          { label: "나", value: 7 },
+          { label: "다", value: 3 },
+        ],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(r.svg).not.toMatch(/<rect[^>]*width="0"/);
+      expect(r.svg).not.toMatch(/<rect[^>]*height="0"/);
+      expect(r.svg).toContain(">0<");
+    },
+  );
+
+  it("짝(chartPair) 안에서도 지워진 막대가 그려진다", async () => {
+    const r = await renderFigureSpec(
+      pairSpec(
+        {
+          ...PAIR_SOLD,
+          values: [
+            { label: "딸기", value: 10 },
+            { label: "멜론", unknown: true },
+            { label: "초코", value: 20 },
+            { label: "바닐라", value: 30 },
+          ],
+        },
+        PAIR_PRICE,
+      ),
+    );
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(dashedBoxes(r.svg)).toHaveLength(1);
   });
 });
 
@@ -2777,3 +2990,995 @@ function shoelace(pts: string) {
   }
   return Math.abs(area) / 2;
 }
+
+/* ── ② markedShape — 도형 «위»의 표시 (2026-08-23, elem-figures) ─────────────
+ *
+ * 왜 `namedShapes` 와 다른 kind 인가: `namedShapes` 는 「가·나·다 중 고르시오」용이고
+ * 그 불변식은 **도형 쌍의 윤곽 거리**(`SHAPE_MIN_DISTANCE` 6px, 09 §4-19)다.
+ * 성질 문항은 도형이 **하나뿐**이라 잴 쌍이 없다 — 한 kind 에 두 규칙이 살면
+ * 가드 절반이 늘 헛돌고, 그게 「배선이 한쪽만」 자리다(CLAUDE.md 2026-08-18).
+ *
+ * 도형 **모양**은 두 kind 가 `_shape_points` 하나를 쓴다. 목록이 두 벌이 되면
+ * 「한쪽만 늘어난다」가 그 자리에서 열린다.
+ *
+ * 참은 **그려진 SVG** 에서 온다 — 스펙을 되읽지 않는다. 기대값은 리터럴이다
+ * (제품 상수에서 만들면 상수를 바꿀 때 기대값이 따라가 영원히 초록이다, 09 §4-20-d).
+ */
+const MARKED_ISO = {
+  version: "elem-1",
+  kind: "markedShape",
+  shape: "isoTri",
+
+  // ⚠️ `isoTri` 의 점은 [밑변왼, 꼭대기, 밑변오] 라 **같은 두 변은 0·1**(다리)이고
+  // 변 2 가 밑변이다. 처음에 [0,2] 로 썼다가 빨개졌다 — 시험이 도형 구조를 잡아 줬다.
+  sides: ["7 cm", "7 cm", null],
+  angles: [null, "63°", null],
+  equal: [[0, 1]],
+};
+
+describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시", () => {
+  it("그린다 — 변 라벨과 각 라벨이 지면에 나온다", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain("7 cm");
+    expect(r.svg).toContain("63°");
+  });
+
+  it("**같다고 표시한 변은 그린 길이도 같다** — tick 이 거짓말하지 않는다", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [corners] = shapeCorners(r.svg);
+    expect(corners).toBeDefined();
+    const at = (i: number) => corners![i % corners!.length]!;
+    const len = (i: number) =>
+      Math.hypot(at(i)[0] - at(i + 1)[0], at(i)[1] - at(i + 1)[1]);
+    // equal:[[0,1]] 이 주장하는 두 변. **음성 대조**: 밑변(2)은 이들과 달라야 한다 —
+    // 「전부 같다」로 통과하면 이 가드는 아무것도 안 지킨다.
+    expect(Math.abs(len(0) - len(1))).toBeLessThan(0.5);
+    expect(Math.abs(len(0) - len(2))).toBeGreaterThan(5);
+  });
+
+  it("**적힌 각의 합이 성립한다** — 삼각형 180°", async () => {
+    const r = await renderFigureSpec({
+      ...MARKED_ISO,
+      angles: ["63°", "54°", "63°"],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const nums = [...r.svg.matchAll(/(\d+)°/g)].map((m) => Number(m[1]));
+    expect(nums.length).toBe(3);
+    expect(nums.reduce((a, b) => a + b, 0)).toBe(180);
+  });
+
+  it("**직각 기호 자리는 실제로 90°** — 호가 아니라 꺾인 선이다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rightTri",
+      // 점이 [왼아래, 왼위, 오아래] 라 직각은 **0**. 처음에 1 로 썼다가 빨개졌다.
+      right: [0],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [corners] = shapeCorners(r.svg);
+    expect(corners).toBeDefined();
+    const at = (i: number) => corners![((i % 3) + 3) % 3]!;
+    const u = [at(1)[0] - at(0)[0], at(1)[1] - at(0)[1]];
+    const v = [at(2)[0] - at(0)[0], at(2)[1] - at(0)[1]];
+    expect(Math.abs(u[0]! * v[0]! + u[1]! * v[1]!)).toBeLessThan(1);
+    // 초등 직각은 **작은 정사각형**이다. 엔진 A 는 이 자리를 호로 그린다(09 §2.1 주).
+    expect(r.svg).toContain("<polyline");
+  });
+
+  it("**스펙이 준 치수를 하나도 안 빠뜨린다** (09 §4-20)", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // sides 2개 + angles 1개 = 3
+    expect([...r.svg.matchAll(/7 cm/g)].length).toBe(2);
+    expect([...r.svg.matchAll(/63°/g)].length).toBe(1);
+  });
+
+  it("**변 라벨은 `measured()` 다** — 치수 점선이 라벨 수만큼 있다 (09 §4-16)", async () => {
+    const r = await renderFigureSpec(MARKED_ISO);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // `_length_mark` 는 점선 `6 4` 를 낸다. 날 `<text>` 로 적으면 이 선이 사라진다.
+    // ⚠️ 「cm 라벨은 halo」 전 kind 검사가 이 kind 에서 왜 안 무는지 못 밝혔다
+    //    (문서 §10). 그래서 **같은 것을 다른 특징으로** 한 번 더 잰다.
+    const dashes = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
+    expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
+  });
+
+  it.each([
+    ["square", 4, 2],
+    ["pentagon", 5, 5],
+    ["hexagon", 6, 9],
+    ["octagon", 8, 20],
+  ])(
+    "**대각선 개수가 n(n-3)/2 다** — %s (꼭짓점 %i개 → %i개)",
+    async (shape, n, want) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+        diagonals: true,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 그은 개수가 **발문의 답**이다 — 「팔각형에 그을 수 있는 대각선은 몇 개?」
+      // 좌표에서 자동으로 나오게 두고(손으로 세지 않는다) 여기서 그 값을 확인한다.
+      const drawn = (r.svg.match(/stroke-dasharray="4 3"/g) ?? []).length;
+      expect(drawn, `${shape} 대각선`).toBe(want);
+      expect(want).toBe((n * (n - 3)) / 2); // 기대값 자체가 공식과 맞는지 (자가 검사)
+      // 꼭짓점 수도 맞아야 한다 — 정n각형을 엉뚱한 n 으로 그리면 개수만 우연히 맞을 수 있다.
+      expect(shapeCorners(r.svg)[0]!, `${shape} 꼭짓점`).toHaveLength(n);
+    },
+  );
+
+  it("**정n각형은 변 길이·내각이 모두 같다** — 정의가 좌표에서 참이어야 한다", async () => {
+    for (const [shape, n] of [
+      ["pentagon", 5],
+      ["hexagon", 6],
+      ["octagon", 8],
+    ] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const c = shapeCorners(r.svg)[0]!;
+      expect(c, `${shape} 꼭짓점`).toHaveLength(n);
+      const sides = c.map((_p, i) =>
+        Math.hypot(
+          c[i]![0] - c[(i + 1) % n]![0],
+          c[i]![1] - c[(i + 1) % n]![1],
+        ),
+      );
+      const spread = Math.max(...sides) - Math.min(...sides);
+      // 🔴 문턱 0.5px 은 **양쪽에서** 정했다 (2026-08-23 실측, 슬롯 104):
+      //      정상            변 편차 0.003px   (부동소수 오차뿐)
+      //      반지름 6% 흔듦   변 편차 2.36~2.96px
+      //    두 무리 사이가 훤히 비어 있어 0.5 는 그 틈이다 — **지금 값에서 유도한 것이
+      //    아니다.** 정상값(0.003)을 문턱으로 쓰면 제품이 정답을 정하는 그 함정이 된다.
+      //    변이 「정n각형을 찌그러뜨린다」가 이 단언 하나로 빨개지는 것을 확인했다.
+      expect(spread, `${shape} 변 길이 편차`).toBeLessThan(0.5);
+      // ⚠️ **중심각 편차 검사를 넣었다가 지웠다** — `_ngon_points` 는 늘 **원에 내접**하게
+      //    그리므로 변 = 2r·sin(중심각/2) 다. 반지름이 같으면 「변 길이 편차」와
+      //    「중심각 편차」는 **대수적으로 같은 말**이라 아무것도 더 안 갈라낸다.
+      //    실측으로 확인했다: 각을 흔드는 변이에서도 **변 길이 편차가 먼저** 걸린다
+      //    (10.09px). 죽은 검사를 남기면 「두 축이 지킨다」는 착시를 준다
+      //    (CLAUDE.md 2026-08-18 「대수적으로 같은 말이라 지웠다」와 같은 자리).
+      //    ⑴ `_ngon_points` 가 내접을 그만두거나 ⑵ 꼭짓점을 개별로 받게 되면
+      //    그때는 두 축이 갈라지므로 다시 넣어야 한다.
+    }
+  });
+
+  /* ⓪ 임시 차단(2026-08-23)은 **걷어냈다** — 비율 수리가 그 자리를 대신한다.
+   * 그 차단은 「값을 적으면 던진다」였고, 시험이 **「비율 수리 전」이라는 낱말을
+   * 붙들고** 있었다. 수리하며 엔진에서 그 문구를 지우자 **그 시험이 정확히 빨개져**
+   * 이 블록을 같이 지우게 됐다 — 임시 조치가 스스로를 청소한 것이다(리드 제안).
+   * 지금 그 자리를 지키는 것은 위쪽 「그린 변의 비가 sides 와 같다」 셋과
+   * 「3·4·5 는 정말 직각이다」·「모순·불가능한 값은 던진다」다.
+   */
+
+  it("**음성 대조군** — 표시를 안 주면 tick·직각이 나오지 않는다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).not.toContain("<polyline");
+    expect(r.svg).not.toContain("cm");
+    expect(r.svg).not.toContain("°");
+  });
+
+  /* ── 비율 수리 (2026-08-23) ────────────────────────────────────────────────
+   * **적힌 값은 반드시 그림에 반영한다.** ⓪ 임시 차단을 이 검사들이 대신한다.
+   * ⚠️ 「5,5,9」(밑변이 가장 긴)와 「7,7,4」(다리가 긴)를 **둘 다** 넣는다 —
+   *    한쪽만이면 고정 도형과 구분이 안 돼 구조적으로 0이다.
+   */
+  it.each([
+    ["7,7,4 다리가 김", [7, 7, 4]],
+    ["5,5,9 밑변이 가장 김", [5, 5, 9]],
+    ["4,6,8 셋이 다름", [4, 6, 8]],
+  ])("**그린 변의 비가 sides 와 같다** — %s", async (_w, want) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      sides: want.map((v) => `${v} cm`),
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    const drawn = c.map((_p, i) =>
+      Math.hypot(c[i]![0] - c[(i + 1) % 3]![0], c[i]![1] - c[(i + 1) % 3]![1]),
+    );
+    // 비로 견준다 — 절대 크기는 슬롯에 맞추므로 자유다.
+    const k = drawn[0]! / want[0]!;
+    for (let i = 0; i < 3; i += 1) {
+      expect(drawn[i]! / k, `변 ${i}`).toBeCloseTo(want[i]!, 1);
+    }
+  });
+
+  it("**적힌 각이 그림에 반영된다** — 3·4·5 는 정말 직각이다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      sides: ["3 cm", "4 cm", "5 cm"],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    // 변 0(=3)과 변 1(=4) 사이 꼭짓점 1 이 직각이어야 한다 — **내적으로** 잰다.
+    const u = [c[0]![0] - c[1]![0], c[0]![1] - c[1]![1]];
+    const v = [c[2]![0] - c[1]![0], c[2]![1] - c[1]![1]];
+    const cos =
+      (u[0]! * v[0]! + u[1]! * v[1]!) /
+      (Math.hypot(u[0]!, u[1]!) * Math.hypot(v[0]!, v[1]!));
+    expect(Math.abs(cos), "3·4·5 의 직각").toBeLessThan(0.02);
+  });
+
+  it.each([
+    ["삼각부등식 위반", { sides: ["3 cm", "4 cm", "9 cm"] }, /삼각형/],
+    ["각의 합이 180°가 아님", { angles: ["70°", "70°", "70°"] }, /180/],
+  ])("**모순·불가능한 값은 던진다** — %s", async (_w, extra, why) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+      ...extra,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(why);
+  });
+
+  it("**관례값이 지면에서 읽히는 범위 안이다** — 납작한 평행사변형 금지", async () => {
+    // ⚠️ 각이 안 적힌 판(「이웃한 두 변이 4·6」)에서 관례 각을 쓴다. 그 각이 너무
+    //    납작하면 지면에서 **「이게 정말 4:6인가」가 안 읽힌다**(리드 지적).
+    //    적힌 값을 반영하는 것만으로는 부족하고, **안 적힌 것의 범위**도 지켜야 한다.
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "para",
+      sides: ["4 cm", "6 cm", null, null],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = shapeCorners(r.svg)[0]!;
+    const u = [c[1]![0] - c[0]![0], c[1]![1] - c[0]![1]];
+    const v = [c[3]![0] - c[0]![0], c[3]![1] - c[0]![1]];
+    const cos =
+      (u[0]! * v[0]! + u[1]! * v[1]!) /
+      (Math.hypot(u[0]!, u[1]!) * Math.hypot(v[0]!, v[1]!));
+    const deg = (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+    // 너무 납작하지도(<40°) 직사각형에 가깝지도(>80°) 않아야 한다 —
+    // 직사각형처럼 보이면 「평행사변형」임이 안 읽힌다.
+    expect(deg, "관례 각").toBeGreaterThan(40);
+    expect(deg, "관례 각").toBeLessThan(80);
+    // 그리고 적힌 비는 그대로 지켜야 한다.
+    const a = Math.hypot(u[0]!, u[1]!);
+    const b = Math.hypot(v[0]!, v[1]!);
+    expect(Math.max(a, b) / Math.min(a, b), "4:6 비").toBeCloseTo(1.5, 1);
+  });
+
+  it("**«모든 변이 같은 도형» 목록이 거짓말하지 않는다** — 좌표로 검산", async () => {
+    // 🔴 **목록을 여기 손으로 적지 않는다.** 처음에 다섯을 하드코딩했더니
+    //    「`_EQUILATERAL` 에 `trap` 을 넣는」 변이가 **초록**이었다 — 시험이 그 목록을
+    //    안 읽으니 무엇을 넣든 안 보였다. 09 §4-22 「손 목록은 샌다」가 **이 검사에**
+    //    또 걸린 것이다(오늘 세 번째 자리: sphere · markedShape · 여기).
+    //
+    //    엔진의 `_EQUILATERAL` 을 읽어 **그 안의 모든 도형**을 좌표로 잰다. 목록에
+    //    넣기만 하고 실제로 변이 다르면 「한 변만 줘도 된다」가 곧 배반이 된다.
+    const kinds = equilateralFromEngine();
+    expect(kinds.length, "등변 도형 수").toBeGreaterThanOrEqual(7);
+    for (const shape of kinds) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+        sides: ["5 cm"],
+      });
+      expect(r.ok, `${shape} 는 한 변만 줘도 그려져야 한다`).toBe(true);
+      if (!r.ok) return;
+      const c = shapeCorners(r.svg)[0]!;
+      const n = c.length;
+      const sides = c.map((_p, i) =>
+        Math.hypot(
+          c[i]![0] - c[(i + 1) % n]![0],
+          c[i]![1] - c[(i + 1) % n]![1],
+        ),
+      );
+      expect(
+        Math.max(...sides) - Math.min(...sides),
+        `${shape} 변 편차 — 이 도형은 «모든 변이 같다»로 등록돼 있다`,
+      ).toBeLessThan(0.5);
+    }
+  }, 60_000);
+
+  it("**직사각형은 이웃한 두 변의 비를 지킨다** — 4:7", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rect",
+      sides: ["4 cm", "7 cm", null, null],
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const m = /<rect[^>]*width="([\d.]+)"[^>]*height="([\d.]+)"/.exec(r.svg);
+    expect(m, "rect 태그").not.toBeNull();
+    const w = Number(m![1]);
+    const h = Number(m![2]);
+    expect(Math.max(w, h) / Math.min(w, h), "4:7").toBeCloseTo(1.75, 2);
+  });
+
+  it.each([
+    [
+      "같은 변 도형에 서로 다른 값",
+      { shape: "square", sides: ["8 cm", "5 cm"] },
+      /모든 변이 같은/,
+    ],
+    ["직사각형에 90°가 아닌 각", { shape: "rect", angles: ["70°"] }, /90/],
+  ])("**모순은 던진다** — %s", async (_w, extra, why) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      ...extra,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(why);
+  });
+
+  it("`rhombus` 는 `diamond` 의 별칭이다 — 이름이 두 벌이라 받아 준다", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "rhombus",
+    });
+    const b = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "diamond",
+    });
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    expect(a.svg).toBe(b.svg);
+  });
+
+  it("**음성 대조군** — 값을 안 주면 지금 모양 그대로다 (회귀 방지)", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "isoTri",
+    });
+    expect(a.ok).toBe(true);
+    if (!a.ok) return;
+    const c = shapeCorners(a.svg)[0]!;
+    const drawn = c.map((_p, i) =>
+      Math.hypot(c[i]![0] - c[(i + 1) % 3]![0], c[i]![1] - c[(i + 1) % 3]![1]),
+    );
+    // `ISO_TRI_BASE` 0.58 — 다리 둘이 같고 밑변이 좁다(09 §4-19).
+    expect(drawn[0]).toBeCloseTo(drawn[1]!, 1);
+    expect(drawn[2]! / drawn[0]!, "밑변/다리").toBeLessThan(0.7);
+  });
+
+  it("**모르는 키·모르는 도형은 예외** — 오타가 조용히 무시되지 않는다", async () => {
+    const bad = await renderFigureSpec({ ...MARKED_ISO, sidez: ["1"] });
+    expect(bad.ok).toBe(false);
+    const badShape = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "노형",
+    });
+    expect(badShape.ok).toBe(false);
+  });
+
+  it("**⑧과 같은 도형 함수를 쓴다** — 목록이 두 벌이 아니다", async () => {
+    const a = await renderFigureSpec({
+      version: "elem-1",
+      kind: "markedShape",
+      shape: "eqTri",
+    });
+    const b = await renderFigureSpec({
+      version: "elem-1",
+      kind: "namedShapes",
+      items: [{ shape: "eqTri", label: "가" }],
+    });
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    const ra = rigidSignature(shapeCorners(a.svg)[0]!);
+    const rb = rigidSignature(shapeCorners(b.svg)[0]!);
+    // 자세·크기가 아니라 **모양**이 같아야 한다 — 변 길이 비로 견준다.
+    const norm = (s: number[]) => s.map((v) => v / s[s.length - 1]!);
+    expect(norm(ra.sides).map((v) => v.toFixed(3))).toEqual(
+      norm(rb.sides).map((v) => v.toFixed(3)),
+    );
+  });
+});
+
+/* ── 짝의 화면 폭 등급 — 파이썬과 TS 를 **잇는** 확인 (2026-08-23, elem-figures) ──
+ *
+ * `figureSvgFrame.test.ts` 는 순수 함수만 본다(문자열을 손으로 만든다). 그것만으로는
+ * **「엔진이 실제로 그 표식을 심는가」**를 못 본다 — 한쪽만 고쳐도 초록이다.
+ * 여기서는 진짜로 렌더해서 잇는다.
+ */
+describe.skipIf(!hasEngine)(
+  "[초등 그림] 그래프 짝은 지면에서 pair 등급이다",
+  () => {
+    const pair = (labels: string[]) => ({
+      version: "elem-1",
+      kind: "chartPair",
+      charts: [
+        {
+          kind: "barChart",
+          orient: "horizontal",
+          title: "팔린 수",
+          yMax: 40,
+          yStep: 10,
+          yLabel: "(개)",
+          values: labels.map((l, i) => ({ label: l, value: (i + 1) * 10 })),
+        },
+        {
+          kind: "barChart",
+          title: "값",
+          yMax: 800,
+          yStep: 100,
+          yLabel: "(원)",
+          values: labels.map((l, i) => ({ label: l, value: (i + 1) * 100 })),
+        },
+      ],
+    });
+
+    it("엔진이 표식을 심고, 지면이 그것을 보고 pair 로 보낸다", async () => {
+      const r = await renderFigureSpec(
+        pair(["딸기", "멜론", "초코", "바닐라"]),
+      );
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 파이썬이 심는다 (`sanitize_svg` 가 desc 를 통과시키되 속성은 안 받는다)
+      expect(r.svg).toContain("<desc>chartPair</desc>");
+      // TS 가 그것을 본다
+      expect(figureSvgSize(r.svg)).toBe("pair");
+      expect(figureSvgFrameClass(r.svg)).toContain(
+        `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
+      );
+    });
+
+    it("**좁은 짝**도 pair 다 — 폭으로 가르면 놓치는 자리", async () => {
+      // 항목이 둘뿐이라 좁다. 종전 규칙(viewBox > 380)이면 mid/wide 로 떨어진다.
+      const r = await renderFigureSpec(pair(["딸기", "멜론"]));
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const width = figureSvgViewBoxWidth(r.svg)!;
+      expect(width, "좁은 짝의 viewBox").toBeLessThan(380);
+      expect(figureSvgSize(r.svg), `viewBox ${width}`).toBe("pair");
+    });
+
+    it("**음성 대조군** — 단독 그래프는 표식이 없고 pair 도 아니다", async () => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "barChart",
+        yMax: 40,
+        yStep: 10,
+        yLabel: "(개)",
+        values: [
+          { label: "딸기", value: 10 },
+          { label: "멜론", value: 40 },
+        ],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(r.svg).not.toContain("<desc>");
+      expect(figureSvgSize(r.svg)).not.toBe("pair");
+    });
+  },
+);
+
+/* ── 차트의 «가려진 값» — **선언이 한 곳인가** (2026-08-23, elem-figures) ────────
+ *
+ * 값만 보는 시험은 이 축을 **구조적으로 못 본다.** 「막대는 받고 꺾은선은 막는다」는
+ * 호출부가 각자 `allow_unknown` 을 손으로 정해도 똑같이 나온다 — 갈라지는 것은
+ * 「`CHART_ACCEPTS_UNKNOWN` 을 뒤집었을 때 두 호출부가 같이 뒤집히는가」뿐이다.
+ *
+ * 그 뒤집기는 파이썬 안에서만 할 수 있어 `probe-chart-unknown.py`(g4 작성)가 맡는다.
+ * 여기서는 **그 판정기를 실제로 돌려** 통과하는지 본다 — 판정기가 저장소에 있는데
+ * 아무도 안 부르면 그것은 가드가 아니라 문서다.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] 가려진 값 선언은 한 곳이다", () => {
+  it("`probe-chart-unknown.py` 가 통과한다 — 표를 뒤집으면 두 호출부가 따라온다", () => {
+    const out = spawnSync("python", ["scripts/qa/probe-chart-unknown.py"], {
+      encoding: "utf-8",
+      maxBuffer: 8 * 1024 * 1024,
+      env: { ...process.env, PYTHONIOENCODING: "utf-8" },
+    });
+    // 판정기가 **죽어도** 0 이 아니다 — 「깨끗함」과 「판정 못 함」이 안 갈리면 안 된다.
+    expect(out.status, out.stdout + out.stderr).toBe(0);
+    expect(out.stdout).toContain("선언 한 곳을 두 호출부가 읽는다");
+    // 눈금 건수가 줄면 판정기가 조용히 약해진 것이다.
+    expect(out.stdout).toMatch(/눈금 (\d+)건/);
+    const n = Number(/눈금 (\d+)건/.exec(out.stdout)![1]);
+    expect(n, "판정기 눈금 건수").toBeGreaterThanOrEqual(8);
+  }, 60_000);
+});
+
+/**
+ * ⑧ `namedShapes` 가 실제로 받는 도형 목록을 **엔진 소스에서** 읽는다.
+ * 시험이 자기 손 목록을 두면 도형을 더해도 검사가 안 늘어난다(09 §4-22).
+ */
+/**
+ * 엔진의 `_EQUILATERAL`(모든 변이 같다고 **선언된** 도형)을 읽는다.
+ * `frozenset({...}) | _NGON_KINDS` 라 두 조각을 합친다 — 정n각형은 `_NGON_SIDES` 에서.
+ */
+function equilateralFromEngine(): string[] {
+  const src = readFileSync(
+    path.join(process.cwd(), "scripts", "figure", "elementary.py"),
+    "utf8",
+  );
+  const m = /_EQUILATERAL = frozenset\(\s*\{([^}]*)\}/.exec(src);
+  if (!m) throw new Error("_EQUILATERAL 을 못 읽었다");
+  const base = [...m[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  const g = /_NGON_SIDES: dict\[str, int\] = \{([^}]*)\}/.exec(src);
+  if (!g) throw new Error("_NGON_SIDES 를 못 읽었다");
+  const ngon = [...g[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  return [...base, ...ngon];
+}
+
+function shapeKindsFromEngine(): string[] {
+  const src = readFileSync(
+    path.join(process.cwd(), "scripts", "figure", "elementary.py"),
+    "utf8",
+  );
+  // ⚠️ **한 겹만 본다** — 소스의 **첫** `frozenset({...})` 만 읽는다. 뒤에 재할당
+  //    (`_SHAPE_KINDS = _SHAPE_KINDS | ...`)이 붙으면 그건 **안 보인다.**
+  //    2026-08-23 변이에서 실제로 그렇게 초록이 났다. 「목록을 손으로 안 적는다」는
+  //    지켰지만 **유도가 한 겹**이라 생긴 구멍이다. 엔진에 직접 물으려면 python 을
+  //    띄워야 하는데, 그 경로는 이 파일에서 다른 결함을 겪어(§10) 지금은 소스를 읽는다.
+  //    → 도형을 더할 때는 **`frozenset` 안에** 적어라. 밖에서 합치면 이 검사가 못 본다.
+  const m = /_SHAPE_KINDS = frozenset\(\s*\{([^}]*)\}/.exec(src);
+  if (!m) throw new Error("_SHAPE_KINDS 를 못 읽었다");
+  const kinds = [...m[1]!.matchAll(/"([a-zA-Z]+)"/g)].map((x) => x[1]!);
+  if (kinds.length < 5) throw new Error(`도형이 너무 적다: ${kinds.length}`);
+  return kinds;
+}
+
+/* ── ③ lineRelation — 두 직선의 관계 (2026-08-24, elem-figures) ───────────────
+ *
+ * 초4 2-4-1(수직과 수선) · 2-4-2(평행과 평행선) · 2-4-3(평행선 사이의 거리).
+ *
+ * 🔴 **「표시가 있다」가 아니라 「정말 그러한가」를 잰다** — 리드가 ②에서 묶어 준 축이다.
+ *    ②에서 「대각선 개수」는 참인데 도형이 찌그러져도 개수는 그대로였다.
+ *    **셀 수 있는 것만 재면 모양은 샌다.** 그래서 수직은 **내적**, 평행은 **외적**으로 잰다.
+ *
+ * ⚠️ 엔진 A(FigureSpec v2)로 가면 안 된다 — 직각을 **호**로 그린다(09 §2.1 주).
+ *    초등 교과서의 직각은 **작은 정사각형**이다.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] lineRelation — 두 직선의 관계", () => {
+  /** SVG 의 `<line>` 을 방향 벡터로. */
+  function segs(svg: string): { p: number[]; q: number[]; len: number }[] {
+    return [
+      ...svg.matchAll(
+        /<line x1="(-?[\d.]+)" y1="(-?[\d.]+)" x2="(-?[\d.]+)" y2="(-?[\d.]+)"/g,
+      ),
+    ].map((m) => {
+      const p = [Number(m[1]), Number(m[2])];
+      const q = [Number(m[3]), Number(m[4])];
+      return { p, q, len: Math.hypot(q[0]! - p[0]!, q[1]! - p[1]!) };
+    });
+  }
+  const dir = (s: { p: number[]; q: number[]; len: number }) => [
+    (s.q[0]! - s.p[0]!) / s.len,
+    (s.q[1]! - s.p[1]!) / s.len,
+  ];
+
+  it("**평행은 정말 평행하다** — 외적이 0", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const main = segs(r.svg)
+      .filter((x) => x.len > 40)
+      .slice(0, 2);
+    expect(main, "긴 직선 둘").toHaveLength(2);
+    const [u, v] = [dir(main[0]!), dir(main[1]!)];
+    expect(Math.abs(u[0]! * v[1]! - u[1]! * v[0]!), "외적").toBeLessThan(0.02);
+  });
+
+  it("**평행선 사이 거리는 수선으로 잰다** — 그 선이 두 직선에 수직", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      distance: "10 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain("10 cm");
+    // 치수는 `measured()` 가 낸다 — halo + 점선 `6 4` (09 §4-16)
+    expect(r.svg).toContain('paint-order="stroke"');
+    expect(r.svg).toContain('stroke-dasharray="6 4"');
+  });
+
+  it("**음성 대조군** — 평행 표시는 두 직선에 «같은 수»로 찍힌다", async () => {
+    // 한쪽에만 찍으면 「이 둘이 평행」이라는 뜻이 안 된다.
+    const one = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+    });
+    const two = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      marks: 2,
+    });
+    expect(one.ok && two.ok).toBe(true);
+    if (!one.ok || !two.ok) return;
+    expect((one.svg.match(/<polyline/g) ?? []).length, "1개씩 두 줄").toBe(2);
+    expect((two.svg.match(/<polyline/g) ?? []).length, "2개씩 두 줄").toBe(4);
+  });
+
+  it("**수선 여러 개는 길이가 정말 같다** — 그게 발문의 답이다", async () => {
+    // 「수선을 5개 그었습니다. 이 수선들의 길이는 서로 어떠한가?」(초4 2-4-3)
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      perpCount: 5,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const all = segs(r.svg);
+    const rails = all.filter(
+      (x) => x.len > 40 && Math.abs(x.p[1]! - x.q[1]!) < 0.5,
+    );
+    expect(rails, "평행선 둘").toHaveLength(2);
+    const perps = all.filter(
+      (x) => Math.abs(x.p[0]! - x.q[0]!) < 0.5 && x.len > 10,
+    );
+    expect(perps, "수선 다섯").toHaveLength(5);
+    const lens = perps.map((x) => x.len);
+    expect(
+      Math.max(...lens) - Math.min(...lens),
+      "수선 길이 편차",
+    ).toBeLessThan(0.5);
+  });
+
+  /**
+   * 🔴 **모양을 쟀는데 «이름»이 샜다** (리드가 좌표로 잡았다, 2026-08-24).
+   *
+   * 위 검사 여섯은 전부 **기하**를 잰다 — 내적·외적·직각 기호·수선 길이·관계·음성 대조.
+   * 그런데 **「이 이름이 어느 선에 붙었나」는 잴 자리가 아예 없었다.** 실제로
+   * `parallel` 은 **한 직선의 양 끝**에 「가」·「나」가 붙어 있었고
+   * (「직선 가와 나는 서로 평행합니다」와 **정면으로 어긋난다**),
+   * `bothPerpendicular` 은 세로선 하나와 **밑선**에 붙어 발문이 가리키는 둘 중
+   * 하나를 놓쳤다. 기하 축은 이것을 **구조적으로 못 본다** — 선은 멀쩡하니까.
+   *
+   * 「셀 수 있는 것만 재면 모양이 샌다」의 **다음 겹**이다: 모양이 맞아도 이름이 샌다.
+   */
+  it.each([["parallel", false]])(
+    "**두 이름이 서로 다른 직선에 붙는다** — %s",
+    async (relation, bothVertical) => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "lineRelation",
+        relation,
+        labels: ["가", "나"],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const lines = segs(r.svg).filter((x) => x.len > 40);
+      const texts = [
+        ...r.svg.matchAll(
+          /<text x="(-?[\d.]+)" y="(-?[\d.]+)"[^>]*>([^<]+)<\/text>/g,
+        ),
+      ].map((m) => ({ x: Number(m[1]), y: Number(m[2]), t: m[3]! }));
+      expect(texts, "이름 둘").toHaveLength(2);
+      // 라벨에서 가장 가까운 선분을 임자로 삼는다.
+      const owner = (tx: number, ty: number) => {
+        let best = Infinity;
+        let bi = -1;
+        lines.forEach((L, i) => {
+          const dx = L.q[0]! - L.p[0]!;
+          const dy = L.q[1]! - L.p[1]!;
+          const t = Math.max(
+            0,
+            Math.min(
+              1,
+              ((tx - L.p[0]!) * dx + (ty - L.p[1]!) * dy) / (dx * dx + dy * dy),
+            ),
+          );
+          const d = Math.hypot(
+            tx - (L.p[0]! + t * dx),
+            ty - (L.p[1]! + t * dy),
+          );
+          if (d < best) {
+            best = d;
+            bi = i;
+          }
+        });
+        return bi;
+      };
+      const owners = texts.map((x) => owner(x.x, x.y));
+      expect(
+        new Set(owners).size,
+        `${relation}: 두 이름이 같은 선에 붙었다`,
+      ).toBe(2);
+      if (bothVertical) {
+        // 「한 직선에 수직인 **두** 직선」이 가리키는 것은 그 둘이지 밑선이 아니다.
+        for (const i of owners) {
+          const L = lines[i]!;
+          expect(
+            Math.abs(L.p[0]! - L.q[0]!),
+            "이름은 세로선에 붙어야 한다",
+          ).toBeLessThan(0.5);
+        }
+      }
+    },
+  );
+
+  it("**모르는 관계·키는 던진다**", async () => {
+    const bad = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "skew",
+    });
+    expect(bad.ok).toBe(false);
+    const badKey = await renderFigureSpec({
+      version: "elem-1",
+      kind: "lineRelation",
+      relation: "parallel",
+      distanc: "10 cm",
+    });
+    expect(badKey.ok).toBe(false);
+  });
+});
+
+/* ── ⑥ tiling — 조각과 목표 (2026-08-24, elem-figures) ────────────────────────
+ *
+ * 초4 2-6-4 「모양 만들기와 채우기」. 발문 셋이 전부 「조각이 **몇 개** 필요한가」다.
+ *
+ * 🔴 **채운 모습을 그리면 답이 샌다**(D-66 ⑺) — 세면 나온다. ③ 에서 `perpendicular` 을
+ *    지운 것과 같은 자리다. 그래서 **조각 하나와 목표 하나만** 나란히 놓고 **크기 비**를
+ *    발문의 값대로 그린다. 그림은 **견줄 것을 주지 답을 주지 않는다.**
+ */
+describe.skipIf(!hasEngine)("[초등 그림] tiling — 조각과 목표", () => {
+  const polys = (svg: string) =>
+    [...svg.matchAll(/<polygon points="([^"]+)"/g)].map((m) =>
+      m[1]!.split(" ").map((q) => q.split(",").map(Number) as [number, number]),
+    );
+  const side1 = (p: [number, number][]) =>
+    Math.hypot(p[0]![0] - p[1]![0], p[0]![1] - p[1]![1]);
+
+  it.each([
+    ["5 → 10", 5, 10, 0.5],
+    ["6 → 18", 6, 18, 1 / 3],
+    ["3 → 12", 3, 12, 0.25],
+  ])("**크기 비가 발문의 값과 같다** — %s", async (_w, ps, ts, want) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: ps,
+      targetSide: ts,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [a, b] = polys(r.svg);
+    expect(a && b, "조각과 목표 둘").toBeTruthy();
+    expect(side1(a!) / side1(b!), "조각/목표").toBeCloseTo(want, 2);
+  });
+
+  it("**채운 모습을 그리지 않는다** — 도형이 «둘»뿐이다 (답이 새면 안 된다)", async () => {
+    // 조각 4개를 그리면 세면 답이다. 조각 하나 + 목표 하나 = **폴리곤 둘**이어야 한다.
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: 5,
+      targetSide: 10,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(polys(r.svg), "조각 하나 + 목표 하나").toHaveLength(2);
+    // 내부 분할선도 없어야 한다 — 그것도 세면 답이다.
+    expect((r.svg.match(/<line/g) ?? []).length, "분할선 없음").toBe(0);
+  });
+
+  it("**조각이 목표보다 크면 던진다** — 채울 수 없다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: 10,
+      targetSide: 5,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(/채울 수 없/);
+  });
+
+  it("**서로 다른 도형도 된다** — 정삼각형으로 정육각형", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "hexagon",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const p = polys(r.svg);
+    expect(p, "둘").toHaveLength(2);
+    expect(p[0]!.length, "조각은 삼각형").toBe(3);
+    expect(p[1]!.length, "목표는 육각형").toBe(6);
+  });
+});
+
+/* ── ① circleParts — 원과 그 부분 (2026-08-24, elem-figures) ─────────────────
+ *
+ * 초3 2-3-1(중심·지름·반지름) · 2-3-2(원의 성질) · 2-3-3(원 그리기).
+ *
+ * 🔴 **이 소단원은 「묻는 것」과 「그리는 것」이 같아지기 쉽다**(리드 경고).
+ *    2-3-1 은 **용어 자체**를 묻고(「이은 선분을 무엇이라 하는가」 → 반지름),
+ *    2-3-2·3 은 **묻는 값**을 적으면 답이다(「지름 10 인 원의 반지름은?」).
+ *    그래서 엔진이 ㉠ 용어 라벨을 **아예 안 그리고** ㉡ 반지름·지름을 **둘 다 받으면 던진다**.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분", () => {
+  const texts = (svg: string) =>
+    [...svg.matchAll(/>([^<]+)<\/text>/g)].map((m) => m[1]!);
+
+  it("**용어를 적지 않는다** — 그 용어가 2-3-1 의 답이다", async () => {
+    for (const spec of [{ radius: "5 cm" }, { diameter: "10 cm" }, {}]) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        ...spec,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      for (const word of ["반지름", "지름", "원의 중심", "중심"]) {
+        expect(
+          r.svg,
+          `«${word}» 이 지면에 있으면 2-3-1 의 답이다`,
+        ).not.toContain(word);
+      }
+    }
+  });
+
+  it("**주어진 값만 적는다** — 둘 다 주면 던진다", async () => {
+    const both = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+      diameter: "10 cm",
+    });
+    expect(both.ok, "둘 다 적으면 답이 지면에 있다").toBe(false);
+    // 하나씩은 된다 — 그리고 **적은 것만** 나온다.
+    const onlyR = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    expect(onlyR.ok).toBe(true);
+    if (!onlyR.ok) return;
+    expect(texts(onlyR.svg)).toEqual(["5 cm"]);
+  });
+
+  it("**지름은 중심을 지난다** — 좌표에서 잰다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      diameter: "10 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const c = /<circle cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"/.exec(r.svg)!;
+    const [cx, cy, rad] = [Number(c[1]), Number(c[2]), Number(c[3])];
+    const L =
+      /<line x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)"/.exec(
+        r.svg,
+      )!;
+    const [x1, y1, x2, y2] = [1, 2, 3, 4].map((i) => Number(L[i]));
+    // 지름의 중점이 원의 중심이어야 한다.
+    expect(
+      Math.hypot((x1! + x2!) / 2 - cx, (y1! + y2!) / 2 - cy),
+      "중점=중심",
+    ).toBeLessThan(0.5);
+    // 그리고 그 길이가 반지름의 **두 배**여야 한다 — 그림이 값을 배반하지 않는다.
+    expect(Math.hypot(x2! - x1!, y2! - y1!) / rad, "지름/반지름").toBeCloseTo(
+      2,
+      1,
+    );
+  });
+
+  it("**중심에 점이 있다** — 무엇에서 잰 길이인지 보이게 (09 §4-16)", async () => {
+    const on = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    const off = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+      center: false,
+    });
+    expect(on.ok && off.ok).toBe(true);
+    if (!on.ok || !off.ok) return;
+    expect((on.svg.match(/<circle/g) ?? []).length, "원 + 중심점").toBe(2);
+    expect((off.svg.match(/<circle/g) ?? []).length, "원만").toBe(1);
+  });
+
+  /* 🔴 **`show` 는 「그린다」와 「적는다」를 갈랐다** (2026-08-24, 리드 지적).
+   *
+   * 그전에는 둘이 묶여 있어서 「용어·치수를 안 그린다」가 **공짜로** 지켜졌다 —
+   * 선분을 그리는 유일한 길이 라벨을 주는 것이었기 때문이다. `show` 로 그것을 푼
+   * 순간 **그 약속을 지킬 사람이 새로 필요해졌다.** 아래 셋이 그 사람이다.
+   */
+  it("**show 는 선분만 그린다** — 글자가 하나도 없어야 한다", async () => {
+    for (const which of ["radius", "diameter"] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        show: which,
+      });
+      expect(r.ok, which).toBe(true);
+      if (!r.ok) return;
+      // ㉠ 선분은 **그려진다** — 2-3-1 이 「이 선분」을 묻는다
+      expect((r.svg.match(/<line/g) ?? []).length, `${which} 선분`).toBe(1);
+      // ㉡ 그런데 글자는 **하나도 없다** — 용어도 치수도
+      expect(texts(r.svg), `${which} — show 만 줬는데 글자가 있다`).toEqual([]);
+    }
+  });
+
+  it("**show 와 라벨을 같이 주면 던진다** — 선분을 두 번 그릴 길이 없다", async () => {
+    for (const [which, key] of [
+      ["radius", "radius"],
+      ["diameter", "diameter"],
+    ] as const) {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "circleParts",
+        show: which,
+        [key]: "5 cm",
+      });
+      expect(r.ok, `${which} + ${key}`).toBe(false);
+    }
+  });
+
+  it("**show 는 두 값만 받는다** — 모르는 값은 던진다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      show: "chord",
+    });
+    expect(r.ok).toBe(false);
+  });
+
+  it("**치수는 measured() 다** — halo + 점선 (09 §4-16)", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "circleParts",
+      radius: "5 cm",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.svg).toContain('paint-order="stroke"');
+    expect(r.svg).toContain('stroke-dasharray="6 4"');
+  });
+});
