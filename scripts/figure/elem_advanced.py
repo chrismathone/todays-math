@@ -12,6 +12,7 @@ from typing import Any, Mapping
 
 from elementary import (
     DIM_OFF,
+    FIT_PAD,
     GRID,
     GRID_SW,
     INK,
@@ -317,8 +318,13 @@ def _digits_half(value: int) -> float:
     return TICK_DIGIT_W * len(str(int(value))) / 2
 
 
-def _assert_ticks_fit(ticks: list[int], plot_w: float) -> None:
+def _assert_ticks_fit(ticks: list, plot_w: float, intervals: int | None = None) -> None:
     """가로형 값 눈금이 **옆으로 늘어서므로** 숫자끼리 겹칠 수 있다.
+
+    ⚠️ `intervals` — 눈금 **사이 칸의 수**. 안 주면 `len(ticks) - 1` 로 본다(눈금이
+    칸을 꽉 채우는 경우). 도수분포다각형처럼 **눈금 밖으로 칸이 더 있는** 그림은
+    그 수가 다르다 — 짐작한 분모로 재면 간격을 실제보다 넓게 봐서 겹침을 놓친다
+    (2026-08-17 「임계값을 물려받을 때는 분모가 같은지부터 볼 것」).
 
     세로형은 눈금이 위아래로 쌓여 이 결함이 없다 — **방향이 만드는 차이**다.
     실측(커밋 7d3edc42): 값 축 140단위에 세 자리 눈금 9개를 그리면
@@ -330,7 +336,7 @@ def _assert_ticks_fit(ticks: list[int], plot_w: float) -> None:
     if len(ticks) < 2:
         return
     widest = TICK_DIGIT_W * max(len(str(t)) for t in ticks)
-    pitch = plot_w / (len(ticks) - 1)
+    pitch = plot_w / (len(ticks) - 1 if intervals is None else intervals)
     if pitch < widest + TICK_MIN_GAP:
         raise ValueError(
             f"값 축 {plot_w:g} 단위에 눈금 {len(ticks)}개를 그리면 숫자가 겹칩니다 "
@@ -620,6 +626,464 @@ def _line_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
     else:
         w = min(TABLE_VIEWBOX_MAX, left + plot_w + 8)
     return _svg(w, top + plot_h + pad_b, "".join(parts))
+
+
+# ── 통계 그림 — 히스토그램·도수분포다각형 (중1 IV. 통계, 2026-08-23) ──────────
+#
+# 정본은 RPM 중학 1-2 p152(개념)·p153(09-3·09-4)·p157(유형06)·p164(두 집단)의
+# 원본 지면이다. 렌더해서 **모양을 대조**했다 — 구조만 가져왔고 본문·수치는 안 베꼈다.
+#
+# ## 왜 barChart·lineChart 로 안 되나 (넷 + 하나)
+#
+# `barChart` 는 ⑴ 막대 사이에 **틈**이 있고 ⑵ 막대마다 색이 다르고 ⑶ 막대 위에 값
+# 숫자를 적고 ⑷ 항목 라벨이 **막대 가운데**에 온다. 히스토그램은 넷 다 반대다 —
+# **틈이 없고**(직사각형의 넓이가 도수에 비례한다는 근거가 여기서 나온다) 한 색이고
+# 값을 안 적고(그림에서 **읽어 내는 것**이 문항이다) 라벨은 **계급의 양 끝 값**,
+# 즉 눈금 자리에 온다. `lineChart` 는 ⑸ **양끝 0 연장이 없다** — 도수분포다각형은
+# 계급 하나 바깥의 도수 0 으로 내려 닫아야 넓이가 히스토그램과 같아진다.
+#
+# ## 그림이 곧 검산이다
+#
+# 계급 폭이 다르면 «넓이 ∝ 도수» 가 깨진다 → **던진다**. `total` 이 도수의 합과
+# 다르면 발문이 그림과 다른 말을 한다 → **던진다**. 「일부가 안 보이는」 유형은
+# 총합이 없으면 아무도 못 푼다 → `hidden` 이 있으면 `total` 을 **요구한다**.
+#
+# ## 지면 폭을 박는다
+#
+# viewBox 폭 하나로 지면 등급(140/240/360px)이 갈린다. 안 박으면 내용에 따라 폭이
+# 떠다녀 **도형마다 눈금 글자 크기가 뒤집힌다**(CLAUDE.md 2026-08-23). 240 으로
+# 박고, 라벨이 넘쳐 벌어지면 **던진다** — 조용히 넓히면 그 그림만 작아진다.
+STAT_VIEWBOX = TABLE_VIEWBOX_MAX
+# 계급 수 상한. 경계 눈금이 계급 수 + 1 개라 이 위는 숫자가 겹친다(`_assert_ticks_fit`).
+STAT_MAX_CLASSES = 9
+# 그림 칸의 최소 가로. 이보다 좁으면 계급이 실오라기가 된다.
+STAT_MIN_PLOT_W = 90.0
+STAT_PLOT_H = 118.0
+# 히스토그램 직사각형 — **한 색**이다. 계급마다 색을 바꾸면 막대그래프가 된다.
+HIST_FILL = "#c5d4e8"
+# 2계열 둘째 계열의 파선. 실선과 눈에 띄게 갈려야 흑백 지면에서 두 집단이 구분된다.
+STAT_DASH_2 = "5 3"
+# 찢긴 가장자리의 물결 폭·마디 길이(단위). RPM 1-2 유형06 「찢어져 보이지 않는」 자국.
+TEAR_AMP = 2.4
+TEAR_SEG = 7.0
+TEAR_INK = "#8a8a8a"
+# 소수 눈금 자릿수 상한. 상대도수(0.24 등)까지가 교과 범위다.
+STAT_MAX_DECIMALS = 2
+
+
+def _grid_line(a: tuple[float, float], b: tuple[float, float]) -> str:
+    return (
+        f'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" y2="{_n(b[1])}" '
+        f'stroke="{GRID}" stroke-width="{_n(GRID_SW)}"/>'
+    )
+
+
+def _stat_decimals(nums: list[float]) -> int:
+    """이 수들을 정확히 적는 데 필요한 소수 자릿수. 넘으면 던진다.
+
+    도수는 정수지만 **상대도수**는 0.24 처럼 소수다. 자릿수를 알면 전부 10^d 배 해서
+    **정수 축 규칙 한 벌**(`_axis_top`·`_y_step`·9줄 상한)을 그대로 태울 수 있다 —
+    소수용 사다리를 따로 만들면 규칙이 두 벌이 되어 한쪽만 고쳐진다.
+    """
+    for d in range(STAT_MAX_DECIMALS + 1):
+        k = 10**d
+        if all(abs(v * k - round(v * k)) < 1e-7 for v in nums):
+            return d
+    raise ValueError(
+        f"도수는 소수 {STAT_MAX_DECIMALS}자리까지만 그립니다 — 값을 반올림해 주십시오"
+    )
+
+
+def _stat_axis(values: list[float], spec: Mapping[str, Any]) -> tuple[int, int, int]:
+    """값 축을 **정수로 환산해** `_axis_top` 에 넘긴다. 돌려주는 것은 (맨 위, 걸음, 배율).
+
+    `yStep` 이 오면 그 걸음 그대로 긋는다(D-70) — 여기서 다시 고르면 「한 칸 몇 명」
+    발문이 그림과 다른 말을 한다. 못 그리면 `_axis_top` 이 던진다.
+    """
+    data_max = max(values)
+    y_max_raw = spec.get("yMax", data_max if data_max > 0 else 1)
+    y_max = _num(y_max_raw, "yMax", 0.01, 10000)
+    step_raw = spec.get("yStep")
+    y_step = None if step_raw is None else _num(step_raw, "yStep", 0.01, 10000)
+    pool = list(values) + [y_max] + ([] if y_step is None else [y_step])
+    k = 10 ** _stat_decimals(pool)
+    top_i, step_i = _axis_top(
+        round(y_max * k),
+        round(data_max * k),
+        None if y_step is None else round(y_step * k),
+    )
+    return int(round(top_i)), int(step_i), k
+
+
+def _stat_fmt(value_i: int, k: int) -> str:
+    """정수로 환산한 눈금을 사람이 읽는 글자로.
+
+    자릿수는 **걸음이 정한다** — `_n` 이 꼬리 0을 떼므로 걸음 0.1 이면 「0.1」,
+    0.05 면 「0.05」, 0 은 그냥 「0」 이다. 데이터의 자릿수로 맞추면 걸음이 0.1인데
+    눈금이 「0.10」 으로 찍힌다(교과서는 그렇게 안 쓴다).
+    """
+    return _n(value_i / k)
+
+
+def _stat_classes(spec: Mapping[str, Any]) -> tuple[list[float], float]:
+    """계급의 양 끝 값과 **계급의 크기**. 폭이 다르면 던진다 — 그림이 곧 검산이다.
+
+    히스토그램에서 「직사각형의 넓이 = 계급의 크기 × 도수」가 성립하는 근거가
+    **폭이 같다**는 것이다. 폭이 다른 것을 그려 놓고 넓이를 묻는 문항을 내면 답이
+    없다. 조용히 그리지 않고 던진다.
+    """
+    raw = spec["classes"]
+    if not isinstance(raw, list) or not (3 <= len(raw) <= STAT_MAX_CLASSES + 1):
+        raise ValueError(
+            f"classes 는 계급의 양 끝 값 3~{STAT_MAX_CLASSES + 1}개여야 합니다 "
+            f"(계급 {STAT_MAX_CLASSES}개까지)"
+        )
+    vals = [_num(v, f"classes[{i}]", -10000, 10000) for i, v in enumerate(raw)]
+    width = vals[1] - vals[0]
+    if width <= 0:
+        raise ValueError("classes 는 작은 값부터 커지는 순서여야 합니다")
+    for i in range(len(vals) - 1):
+        gap = vals[i + 1] - vals[i]
+        if abs(gap - width) > 1e-7:
+            raise ValueError(
+                f"계급의 크기가 다릅니다 ({i + 1}번째 계급 {gap:g}, 첫 계급 {width:g}) — "
+                f"히스토그램은 폭이 같아야 넓이가 도수에 비례합니다"
+            )
+    return vals, width
+
+
+def _stat_series(raw: Any, n: int, name: str) -> list[float]:
+    if not isinstance(raw, list) or len(raw) != n:
+        raise ValueError(f"{name} 는 계급 수({n})와 같은 길이의 배열이어야 합니다")
+    return [_num(v, f"{name}[{i}]", 0, 10000) for i, v in enumerate(raw)]
+
+
+def _stat_total(spec: Mapping[str, Any], values: list[float], name: str) -> None:
+    """도수의 합이 `total` 과 같은가. 다르면 던진다 — 발문이 그림과 다른 말을 한다."""
+    if "total" not in spec:
+        return
+    total = _num(spec["total"], f"{name}total", 0, 100000)
+    got = sum(values)
+    if abs(got - total) > 1e-7:
+        raise ValueError(
+            f"{name}도수의 합 {got:g} 이 total {total:g} 과 다릅니다 — "
+            f"그림과 발문이 다른 말을 합니다"
+        )
+
+
+def _stat_second(spec: Mapping[str, Any], n: int) -> tuple[list[float], str, str] | None:
+    """두 집단 비교용 둘째 계열. 있으면 **두 계열 다 이름이 있어야 한다**.
+
+    이름 없이 둘을 겹쳐 그리면 어느 것이 어느 반인지 지면에서 알 수 없다
+    (RPM 1-2 p164 는 그래프마다 이름표를 단다).
+    """
+    raw = spec.get("series2")
+    if raw is None:
+        return None
+    if not isinstance(raw, Mapping):
+        raise ValueError("series2 는 객체여야 합니다")
+    extra = set(raw) - {"values", "label", "total"}
+    if extra:
+        raise ValueError(
+            f"series2 에 허용되지 않은 키: {', '.join(sorted(str(k) for k in extra))}"
+        )
+    values = _stat_series(raw.get("values"), n, "series2.values")
+    _stat_total(raw, values, "series2 ")
+    label2 = str(raw.get("label", ""))
+    label1 = str(spec.get("label", ""))
+    if not label1 or not label2:
+        raise ValueError("두 집단을 겹쳐 그리려면 label 과 series2.label 이 둘 다 있어야 합니다")
+    return values, label1, label2
+
+
+def _stat_hidden(spec: Mapping[str, Any], n: int) -> list[int]:
+    """찢어져 보이지 않는 계급. 있으면 `total` 을 **요구한다**.
+
+    총합이 없으면 「보이지 않는 계급의 도수」를 구할 근거가 그림에도 발문에도 없다 —
+    풀 수 없는 문항이 조용히 나간다(RPM 1-2 유형06).
+    """
+    raw = spec.get("hidden")
+    if raw is None:
+        return []
+    if not isinstance(raw, list) or not raw:
+        raise ValueError("hidden 은 비어 있지 않은 계급 번호 배열이어야 합니다")
+    idx = sorted({_int(h, "hidden[]", 0, n - 1) for h in raw})
+    if len(idx) >= n:
+        raise ValueError("hidden 이 모든 계급을 가립니다 — 읽을 것이 남지 않습니다")
+    if "total" not in spec:
+        raise ValueError(
+            "hidden 을 쓰면 total 이 있어야 합니다 — 총합이 없으면 보이지 않는 계급의 "
+            "도수를 구할 근거가 없습니다"
+        )
+    return idx
+
+
+def _tear_edge(x: float, y0: float, y1: float) -> str:
+    """찢긴 세로 가장자리 — 물결선. 마디가 고정이라 **같은 스펙이면 같은 그림**이다."""
+    steps = max(4, int(round((y1 - y0) / TEAR_SEG)))
+    pts = [
+        (x + (TEAR_AMP if j % 2 else -TEAR_AMP), y0 + (y1 - y0) * j / steps)
+        for j in range(steps + 1)
+    ]
+    s = " ".join(f"{_n(px)},{_n(py)}" for px, py in pts)
+    return f'<polyline points="{s}" fill="none" stroke="{TEAR_INK}" stroke-width="1"/>'
+
+
+def _axis_break(x: float, y: float) -> str:
+    """가로축이 0 이 아닌 값에서 시작할 때의 **생략 표시**. 교과서 규약이다."""
+    return (
+        f'<polyline points="{_n(x)},{_n(y + 4)} {_n(x + 3)},{_n(y - 1)} '
+        f'{_n(x + 1)},{_n(y - 5)}" fill="none" stroke="{INK}" stroke-width="1"/>'
+        f'<polyline points="{_n(x + 4)},{_n(y + 4)} {_n(x + 7)},{_n(y - 1)} '
+        f'{_n(x + 5)},{_n(y - 5)}" fill="none" stroke="{INK}" stroke-width="1"/>'
+    )
+
+
+def _stat_dot(x: float, y: float, hollow: bool) -> str:
+    fill = PAPER if hollow else INK
+    return (
+        f'<circle cx="{_n(x)}" cy="{_n(y)}" r="2.6" fill="{fill}" '
+        f'stroke="{INK}" stroke-width="1"/>'
+    )
+
+
+def _stat_frame(
+    y_labels: list[str], x_labels: list[str], ylab: str, xlab: str, x_frac: float
+) -> tuple[float, float]:
+    """왼쪽 여백과 그림 칸 가로. **폭이 240 에 박혀 있으므로 여백이 칸을 정한다.**
+
+    왼쪽은 세로 눈금 숫자와 단위 라벨(`(명)`) 중 넓은 쪽이 정한다.
+
+    오른쪽은 **마지막 가로 눈금이 칸의 어디에 있는가**로 푼다. 그 숫자는 가운데
+    정렬이라 오른쪽으로 절반을 뻗고, 가로 단위(`(m)`)가 그 뒤에 붙는다. 히스토그램은
+    마지막 눈금이 칸의 오른쪽 끝(`x_frac = 1`)이지만 **도수분포다각형은 계급 하나
+    바깥까지 그리므로 안쪽**이다(`x_frac = (n+1)/(n+2)`). 그 차이를 안 보고 여백을
+    빼면 칸이 실제보다 좁아져 **멀쩡한 그림이 거절된다** — 실측으로 계급 6개짜리
+    다각형이 154단위로 좁아져 눈금 「10 12 14」가 붙었다.
+    """
+    left = max(
+        (_label_w_max(ylab) + 7 + FIT_PAD) if ylab else 0.0,
+        max(_label_w_max(t) for t in y_labels) + 9.0,
+        30.0,
+    )
+    tail = _label_w_max(x_labels[-1]) / 2 + FIT_PAD
+    if xlab:
+        tail += UNIT_GAP + _label_w_max(xlab)
+    plot_w = min(
+        (STAT_VIEWBOX - FIT_PAD - left - tail) / x_frac,
+        STAT_VIEWBOX - left - FIT_PAD,
+    )
+    if plot_w < STAT_MIN_PLOT_W:
+        raise ValueError(
+            f"라벨이 넓어 그림 칸이 {plot_w:.0f}단위밖에 안 남습니다 "
+            f"({STAT_MIN_PLOT_W:.0f} 이상이어야 합니다). 단위 이름을 줄이십시오"
+        )
+    return left, plot_w
+
+
+def _stat_svg(height: float, body: str) -> str:
+    """**폭을 박아** 내보낸다. 벌어졌으면 던진다.
+
+    `_svg` 는 그린 것이 넘치면 viewBox 를 **넓혀** 준다. 그것은 잘림을 막는 좋은
+    성질이지만, 여기서는 폭이 곧 지면 등급이라 넓어지는 순간 이 그림만 화면에서
+    작아진다 — 그리고 아무 에러도 안 난다. 그래서 넓어졌으면 멈춘다.
+    """
+    svg = _svg(STAT_VIEWBOX, height, body)
+    m = _SVG_SPLIT.match(svg)
+    if m is None:  # pragma: no cover — 우리 렌더러 산출물이라 늘 맞는다
+        raise ValueError("통계 그림 SVG 를 읽지 못했습니다")
+    got = float(m.group(1))
+    if abs(got - STAT_VIEWBOX) > 0.51:
+        raise ValueError(
+            f"통계 그림 폭이 {got:.0f}단위로 벌어졌습니다 "
+            f"({STAT_VIEWBOX:.0f} 이어야 합니다) — 지면 등급이 바뀝니다. 라벨을 줄이십시오"
+        )
+    return svg
+
+
+def _stat_legend(
+    cx: float, y: float, entries: list[tuple[str, str]], plot_w: float
+) -> list[str]:
+    """두 집단 이름표. 넘치면 던진다 — 겹치면 어느 것이 어느 반인지 사라진다.
+
+    `entries` 는 (이름, 모양) 이고 모양은 "fill1"·"fill2"·"line1"·"line2".
+    """
+    swatch, gap, pitch = 16.0, 5.0, 14.0
+    widths = [swatch + gap + _label_w_max(name) for name, _ in entries]
+    total = sum(widths) + pitch * (len(entries) - 1)
+    if total > plot_w:
+        raise ValueError(
+            f"이름표가 그림보다 넓습니다 ({total:.0f} > {plot_w:.0f}단위) — 이름을 줄이십시오"
+        )
+    parts: list[str] = []
+    x = cx - total / 2
+    for (name, mode), w in zip(entries, widths):
+        if mode == "fill1":
+            parts.append(_rect(x, y - 5, swatch, 10, fill=HIST_FILL, sw=1.05))
+        elif mode == "fill2":
+            # 실제 막대가 `fill="none"` 이므로 견본도 비운다 — 색을 칠하면
+            # **이름표가 그림과 다른 말을 한다**.
+            parts.append(
+                _rect(x, y - 5, swatch, 10, fill="none", sw=1.4, dash=STAT_DASH_2)
+            )
+        else:
+            parts.append(
+                _line((x, y), (x + swatch, y), sw=1.5,
+                      dash=STAT_DASH_2 if mode == "line2" else None)
+            )
+            parts.append(_stat_dot(x + swatch / 2, y, mode == "line2"))
+        parts.append(_text(x + swatch + gap, y, name, size=13, anchor="start"))
+        x += w + pitch
+    return parts
+
+
+def _stat_chart(spec: Mapping[str, Any], kind: str) -> str:
+    """히스토그램과 도수분포다각형의 **한 벌**. 다른 것은 셋뿐이다.
+
+    ⑴ 가로 범위 — 다각형은 양끝에 도수 0 인 계급을 **하나씩 더** 둔다.
+    ⑵ 그리는 것 — 직사각형이냐 꺾은선이냐(다각형은 `bars` 로 히스토그램을 깔 수 있다).
+    ⑶ 찢김(`hidden`) 은 히스토그램 유형에만 있다.
+
+    축·모눈·눈금·이름표·폭 박기는 **같은 코드**가 낸다. 각자 그리면 규칙이 두 벌이
+    되어, 하필 「넓이가 같다」를 보이려고 겹쳐 그린 그림에서 두 자가 어긋난다.
+    """
+    classes, width = _stat_classes(spec)
+    n = len(classes) - 1
+    values = _stat_series(spec["values"], n, "values")
+    _stat_total(spec, values, "")
+    second = _stat_second(spec, n)
+    hidden = _stat_hidden(spec, n) if kind == "histogram" else []
+    bars = kind == "histogram" or bool(spec.get("bars", False))
+    if kind == "freqPolygon" and not isinstance(spec.get("bars", False), bool):
+        raise ValueError("bars 는 참·거짓이어야 합니다")
+
+    # ⑴ 가로 범위. 다각형은 계급 하나 바깥까지 — 거기서 도수 0 으로 내려 닫는다.
+    pad_cls = width if kind == "freqPolygon" else 0.0
+    x_lo, x_hi = classes[0] - pad_cls, classes[-1] + pad_cls
+
+    pool = values + (list(second[0]) if second else [])
+    top_i, step_i, k = _stat_axis(pool, spec)
+    y_labels = [_stat_fmt(v, k) for v in _tick_values(top_i, step_i)]
+    x_labels = [_n(c) for c in classes]
+    ylab, xlab = str(spec.get("yLabel", "")), str(spec.get("xLabel", ""))
+    title = str(spec.get("title", ""))
+    x_frac = (classes[-1] - x_lo) / (x_hi - x_lo)
+    left, plot_w = _stat_frame(y_labels, x_labels, ylab, xlab, x_frac)
+    _assert_ticks_fit(x_labels, plot_w, round((x_hi - x_lo) / width))
+    top = 50.0 if title else 30.0
+    plot_h = STAT_PLOT_H
+    bottom = top + plot_h
+
+    def px(v: float) -> float:
+        return left + plot_w * (v - x_lo) / (x_hi - x_lo)
+
+    def py(v: float) -> float:
+        return bottom - plot_h * (v * k) / top_i
+
+    parts: list[str] = []
+    # ── 모눈. 세로는 계급의 양 끝 값과 **가운데 값**(다각형 꼭짓점 자리),
+    #    가로는 눈금과 그 절반(걸음이 짝수일 때만 — 홀수면 반 칸이 안 읽힌다).
+    v = x_lo
+    while v <= x_hi + 1e-7:
+        parts.append(_grid_line((px(v), top), (px(v), bottom)))
+        v += width / 2
+    minor = step_i // 2 if step_i % 2 == 0 else step_i
+    gy = 0
+    while gy <= top_i + 1e-7:
+        parts.append(_grid_line((left, py(gy / k)), (left + plot_w, py(gy / k))))
+        gy += minor
+    parts.append(_grid_line((left, top), (left + plot_w, top)))
+    parts.append(_grid_line((left + plot_w, top), (left + plot_w, bottom)))
+
+    # ── 찢긴 자리. 모눈을 지우고 막대를 안 그린다. 축보다 **먼저** 덮어야
+    #    가로축이 살아남는다(찢겨도 축은 남는다 — RPM 유형06 지면 그대로).
+    for i in hidden:
+        x0, x1 = px(classes[i]), px(classes[i + 1])
+        parts.append(
+            _rect(x0, top, x1 - x0, plot_h, fill=PAPER, stroke="none", sw=0)
+        )
+
+    # ── 직사각형. **틈이 없다** — 넓이가 도수에 비례한다는 근거가 여기다.
+    if bars:
+        for i, val in enumerate(values):
+            if i in hidden:
+                continue
+            x0, x1 = px(classes[i]), px(classes[i + 1])
+            y = py(val)
+            parts.append(_rect(x0, y, x1 - x0, bottom - y, fill=HIST_FILL, sw=1.15))
+        if second is not None and kind == "histogram":
+            for i, val in enumerate(second[0]):
+                if i in hidden:
+                    continue
+                x0, x1 = px(classes[i]), px(classes[i + 1])
+                y = py(val)
+                parts.append(
+                    _rect(x0, y, x1 - x0, bottom - y, fill="none", sw=1.5,
+                          dash=STAT_DASH_2)
+                )
+
+    # ── 꺾은선. 양끝을 계급 하나 바깥의 **도수 0** 으로 내려 닫는다.
+    if kind == "freqPolygon":
+        mids = [(classes[i] + classes[i + 1]) / 2 for i in range(n)]
+        for si, series in enumerate(
+            [values] + ([list(second[0])] if second else [])
+        ):
+            pts = (
+                [(px(mids[0] - width), py(0))]
+                + [(px(m), py(val)) for m, val in zip(mids, series)]
+                + [(px(mids[-1] + width), py(0))]
+            )
+            parts.append(
+                _polyline(pts, sw=1.6, dash=STAT_DASH_2 if si else None)
+            )
+            parts.extend(_stat_dot(x, y, bool(si)) for x, y in pts)
+
+    # ── 축 두 줄과 눈금. 축은 찢김·막대 **위**에 그린다.
+    parts.append(_line((left, top), (left, bottom)))
+    parts.append(_line((left, bottom), (left + plot_w, bottom)))
+    for i, val_i in enumerate(_tick_values(top_i, step_i)):
+        y = py(val_i / k)
+        parts.append(_line((left - 4, y), (left, y), sw=0.9))
+        parts.append(_text(left - 7, y, y_labels[i], size=14, anchor="end"))
+    for c, lab in zip(classes, x_labels):
+        x = px(c)
+        parts.append(_line((x, bottom), (x, bottom + 4), sw=0.9))
+        parts.append(_text(x, bottom + 14, lab, size=14))
+    # 가로축이 0 에서 시작하지 않으면 **생략 표시**를 단다 (교과서 규약).
+    if x_lo > 1e-7:
+        parts.append(_axis_break(left + 2, bottom - 5))
+    # 찢긴 가장자리는 맨 위에 — 막대·모눈·축을 가로질러야 「찢겼다」로 읽힌다.
+    for i in hidden:
+        parts.append(_tear_edge(px(classes[i]), top, bottom))
+        parts.append(_tear_edge(px(classes[i + 1]), top, bottom))
+
+    parts.append(_unit_label(left, top, ylab))
+    if xlab:
+        x_unit = px(classes[-1]) + _label_w_max(x_labels[-1]) / 2 + UNIT_GAP
+        parts.append(_text(x_unit, bottom + 14, xlab, size=13, anchor="start"))
+    parts.append(_chart_title(title, left + plot_w / 2, plot_w, y=18.0))
+
+    pad_b = 24.0
+    if second is not None:
+        mode1, mode2 = ("fill1", "fill2") if kind == "histogram" else ("line1", "line2")
+        parts.extend(
+            _stat_legend(
+                left + plot_w / 2,
+                bottom + 34,
+                [(second[1], mode1), (second[2], mode2)],
+                plot_w,
+            )
+        )
+        pad_b = 46.0
+    return _stat_svg(bottom + pad_b, "".join(parts))
+
+
+def _histogram(spec: Mapping[str, Any]) -> str:
+    return _stat_chart(spec, "histogram")
+
+
+def _freq_polygon(spec: Mapping[str, Any]) -> str:
+    return _stat_chart(spec, "freqPolygon")
 
 
 def _pictograph(spec: Mapping[str, Any]) -> str:
@@ -2816,6 +3280,9 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     "revolvePlan": frozenset({"pieces"}),
     # 교과 좌표평면 일차함수 (물결 2C, RPM 2-1 일차함수) — 위 절 참조.
     "linearGraph": frozenset({"lines", "xRange", "yRange"}),
+    # 중1 통계 (물결 3A, RPM 1-2 도수분포표와 상대도수) — 위 절 참조.
+    "histogram": frozenset({"classes", "values"}),
+    "freqPolygon": frozenset({"classes", "values"}),
 }
 ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"fill"}),
@@ -2834,6 +3301,16 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "prism": frozenset({"net"}),
     "revolvePlan": frozenset({"gap"}),
     "linearGraph": frozenset({"marks", "grid"}),
+    # `total` — 도수의 총합. 합과 다르면 **던진다**(그림이 곧 검산).
+    # `hidden` — 찢어져 안 보이는 계급 번호. 쓰면 `total` 이 **있어야 한다**.
+    # `series2`·`label` — 두 집단 비교. 둘 다 이름이 있어야 한다.
+    "histogram": frozenset(
+        {"yMax", "yStep", "yLabel", "xLabel", "title", "total", "hidden", "series2", "label"}
+    ),
+    # `bars` — 히스토그램을 깔고 그 위에 겹쳐 그린다(넓이가 같다는 것을 보이는 그림).
+    "freqPolygon": frozenset(
+        {"yMax", "yStep", "yLabel", "xLabel", "title", "total", "bars", "series2", "label"}
+    ),
 }
 ADV_RENDER = {
     "fracBars": _frac_bars,
@@ -2861,4 +3338,6 @@ ADV_RENDER = {
     "cutCuboid": _cut_cuboid,
     "revolvePlan": _revolve_plan,
     "linearGraph": _linear_graph,
+    "histogram": _histogram,
+    "freqPolygon": _freq_polygon,
 }
