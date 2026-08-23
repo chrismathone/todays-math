@@ -34,6 +34,8 @@ KIND_FIELDS: dict[str, frozenset[str]] = {
     "markedShape": frozenset({"shape"}),
     # ③ 두 직선의 관계 — 수직·평행(+ 평행선 사이 거리). 초4 2-4-1·2·3.
     "lineRelation": frozenset({"relation"}),
+    # ⑥ 조각과 목표를 나란히 — **채운 모습은 안 그린다**(답이 샌다). 초4 2-6-4.
+    "tiling": frozenset({"piece", "target"}),
     "placeValue": frozenset({"hundreds", "tens", "ones"}),
     "base10": frozenset({"rows"}),
     "opBox": frozenset({"input", "op"}),
@@ -62,6 +64,7 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "base10": frozenset({"equation"}),
     "markedShape": frozenset({"sides", "angles", "equal", "right", "diagonals"}),
     "lineRelation": frozenset({"labels", "distance", "marks", "perpCount"}),
+    "tiling": frozenset({"pieceSide", "targetSide", "labels"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
     "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
@@ -2011,8 +2014,63 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
     return _svg(pad * 2 + w, pad * 2 + h, "".join(parts))
 
 
+def _num_or(v: Any, default: float) -> float:
+    """수면 그 값, 없으면 기본값. 문자열이면 수를 뽑는다(「5 cm」→ 5)."""
+    if v is None:
+        return default
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    got = _side_nums([v])[0]
+    if got is None:
+        raise ValueError(f"수를 읽지 못했습니다: {v!r}")
+    return got
+
+
+def _tiling(spec: Mapping[str, Any]) -> str:
+    """조각과 목표 도형을 **나란히** 놓는다 — 초4 2-6-4 「모양 만들기와 채우기」.
+
+    ## 🔴 채운 모습을 그리지 않는다 — 그러면 **답이 샌다**
+
+    발문 셋이 전부 「조각이 **몇 개** 필요한가」다(씨앗 200 전수). 조각을 다 그리면
+    **세면 답이 나온다**(D-66 ⑺) — ③ 에서 `perpendicular` 을 지운 것과 같은 자리다.
+
+    그래서 **조각 하나와 목표 하나만** 나란히 놓고, **크기 비**를 발문의 값대로 그린다.
+    「한 변 5 조각으로 한 변 10 을 채우려면」이면 1:2 로 그려지고, 학생은 그 비에서
+    넓이비 4 를 구한다. **그림은 견줄 것을 주지 답을 주지 않는다.**
+
+    ⚠️ 「정육각형을 정삼각형 몇 개로」는 크기가 아니라 **배치**라 이 그림이 답을 못
+       준다 — 해롭지도 않다(조각과 목표가 무엇인지는 보여 준다). 배치를 보여 주는
+       그림은 곧 답이므로 만들지 않는다.
+    """
+    piece = str(spec.get("piece", ""))
+    target = str(spec.get("target", ""))
+    for k in (piece, target):
+        if k not in _MARKED_KINDS:
+            raise ValueError(f"모르는 도형입니다: {k}")
+    ps = _num_or(spec.get("pieceSide"), 1.0)
+    ts = _num_or(spec.get("targetSide"), 2.0)
+    if ps <= 0 or ts <= 0:
+        raise ValueError("pieceSide·targetSide 는 0보다 커야 합니다")
+    if ps > ts:
+        raise ValueError(
+            f"조각({ps:g})이 목표({ts:g})보다 큽니다 — 채울 수 없습니다"
+        )
+
+    pad, big, gap = 22.0, 86.0, 26.0
+    small = big * ps / ts  # **크기 비가 발문의 값과 같다** — 시험이 이것을 잰다
+    parts: list[str] = []
+    py = pad + (big - small) / 2
+    parts.append(_poly_pts(_shape_points(piece, pad, py, small)))
+    parts.append(_poly_pts(_shape_points(target, pad + small + gap, pad, big)))
+    if spec.get("labels") is not False:
+        parts.append(_text(pad + small / 2, pad + big + 14, "조각", size=12))
+        parts.append(_text(pad + small + gap + big / 2, pad + big + 14, "만들 모양", size=12))
+    return _svg(pad * 2 + small + gap + big, pad * 2 + big + 18, "".join(parts))
+
+
 _RENDER = {
     "numberCards": _number_cards,
+    "tiling": _tiling,
     "lineRelation": _line_relation,
     "markedShape": _marked_shape,
     "placeValue": _place_value,

@@ -3745,3 +3745,86 @@ describe.skipIf(!hasEngine)("[초등 그림] lineRelation — 두 직선의 관�
     expect(badKey.ok).toBe(false);
   });
 });
+
+/* ── ⑥ tiling — 조각과 목표 (2026-08-24, elem-figures) ────────────────────────
+ *
+ * 초4 2-6-4 「모양 만들기와 채우기」. 발문 셋이 전부 「조각이 **몇 개** 필요한가」다.
+ *
+ * 🔴 **채운 모습을 그리면 답이 샌다**(D-66 ⑺) — 세면 나온다. ③ 에서 `perpendicular` 을
+ *    지운 것과 같은 자리다. 그래서 **조각 하나와 목표 하나만** 나란히 놓고 **크기 비**를
+ *    발문의 값대로 그린다. 그림은 **견줄 것을 주지 답을 주지 않는다.**
+ */
+describe.skipIf(!hasEngine)("[초등 그림] tiling — 조각과 목표", () => {
+  const polys = (svg: string) =>
+    [...svg.matchAll(/<polygon points="([^"]+)"/g)].map((m) =>
+      m[1]!.split(" ").map((q) => q.split(",").map(Number) as [number, number]),
+    );
+  const side1 = (p: [number, number][]) =>
+    Math.hypot(p[0]![0] - p[1]![0], p[0]![1] - p[1]![1]);
+
+  it.each([
+    ["5 → 10", 5, 10, 0.5],
+    ["6 → 18", 6, 18, 1 / 3],
+    ["3 → 12", 3, 12, 0.25],
+  ])("**크기 비가 발문의 값과 같다** — %s", async (_w, ps, ts, want) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: ps,
+      targetSide: ts,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const [a, b] = polys(r.svg);
+    expect(a && b, "조각과 목표 둘").toBeTruthy();
+    expect(side1(a!) / side1(b!), "조각/목표").toBeCloseTo(want, 2);
+  });
+
+  it("**채운 모습을 그리지 않는다** — 도형이 «둘»뿐이다 (답이 새면 안 된다)", async () => {
+    // 조각 4개를 그리면 세면 답이다. 조각 하나 + 목표 하나 = **폴리곤 둘**이어야 한다.
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: 5,
+      targetSide: 10,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(polys(r.svg), "조각 하나 + 목표 하나").toHaveLength(2);
+    // 내부 분할선도 없어야 한다 — 그것도 세면 답이다.
+    expect((r.svg.match(/<line/g) ?? []).length, "분할선 없음").toBe(0);
+  });
+
+  it("**조각이 목표보다 크면 던진다** — 채울 수 없다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: 10,
+      targetSide: 5,
+    });
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.error).toMatch(/채울 수 없/);
+  });
+
+  it("**서로 다른 도형도 된다** — 정삼각형으로 정육각형", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "tiling",
+      piece: "eqTri",
+      target: "hexagon",
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const p = polys(r.svg);
+    expect(p, "둘").toHaveLength(2);
+    expect(p[0]!.length, "조각은 삼각형").toBe(3);
+    expect(p[1]!.length, "목표는 육각형").toBe(6);
+  });
+});

@@ -154,6 +154,12 @@ SPECS: list[dict] = [
     {"version": "elem-1", "kind": "lineRelation", "relation": "parallel",
      "distance": "10 cm"},
     {"version": "elem-1", "kind": "lineRelation", "relation": "parallel", "perpCount": 5},
+    # ⑥ tiling (2026-08-24) — 조각과 목표를 나란히. **채운 모습은 안 그린다**.
+    {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "eqTri",
+     "pieceSide": 5, "targetSide": 10},
+    {"version": "elem-1", "kind": "tiling", "piece": "square", "target": "square",
+     "pieceSide": 6, "targetSide": 18},
+    {"version": "elem-1", "kind": "tiling", "piece": "eqTri", "target": "hexagon"},
     # 오타 키 — 지금은 예외다. 가드를 빼면 그려지므로 산출물이 바뀐다.
     # 표본이 그 자리를 안 건드리면 가드를 꺼도 산출물이 그대로라 판정할 수 없다.
     {"version": "elem-1", "kind": "namedShapes", "items": [{"shape": "eqTri", "mark": True}]},
