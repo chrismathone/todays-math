@@ -146,7 +146,9 @@ describe("중1 일차방정식의 활용 22유형", () => {
     );
   });
 
-  for (const e of registeredTypes()) {
+  // entries(이 파일 담당 22유형)만 돈다 — registeredTypes() 전체를 돌면
+  // 병렬 세션이 등록한 다른 학년 유형에 이 파일의 VERIFY(번호 키)를 들이대게 된다.
+  for (const e of entries) {
     describe(`${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260823);
