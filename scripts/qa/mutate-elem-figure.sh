@@ -58,6 +58,11 @@ BEFORE=$(mktemp)
 # 조용히 잘려 「몇 개 돌았나」가 사라진다 — 2026-08-22 에 21개 중 15개만 보고할 뻔했다.
 # 「N passed」가 N이 전부인지 말해 주지 않는 것과 같은 자리다(CLAUDE.md 2026-08-19).
 SUMMARY=$(mktemp)
+# 변이 python 의 stderr 를 모으는 자리. **버리지 않는다** — 거른 회차에서는 안 돌릴
+# 변이의 앵커 assert 가 터지는 것이 정상인데, 그 트레이스백이 출력에 섞이면 다음 사람이
+# 「뭔가 깨졌나」 한다(거짓 경보가 가드를 끄는 그 사촌, 2026-08-20). 그래서 접어 두고
+# **「앵커가 없다」로 판정될 때만** 꺼내 보여 준다 — 그때가 실제로 필요한 순간이다.
+PYERR=$(mktemp)
 cp "$ADV" "$BAK_ADV"
 cp "$BASE" "$BAK_BASE"
 
@@ -117,7 +122,11 @@ run() { # $1=이름
   local after; after=$(mktemp)
   if [ -n "$ONLY" ] && [ "${1#*"$ONLY"}" = "$1" ]; then restore; return; fi
   if cmp -s "$BAK_ADV" "$ADV" && cmp -s "$BAK_BASE" "$BASE"; then
-    echo "[$1] 🔴 **파일이 안 바뀌었다 — 앵커가 없다.** 판정 안 함" | tee -a "$SUMMARY"; restore; return
+    echo "[$1] 🔴 **파일이 안 바뀌었다 — 앵커가 없다.** 판정 안 함" | tee -a "$SUMMARY"
+    # 앵커가 죽었는지 python 문법이 틀렸는지 갈라 준다 — 둘은 고치는 자리가 다르다.
+    tail -3 "$PYERR" 2>/dev/null | sed 's/^/       /'
+    : > "$PYERR"
+    restore; return
   fi
   python scripts/qa/probe-elem-figure.py > "$after" 2>&1
   if cmp -s "$BEFORE" "$after"; then
@@ -136,7 +145,7 @@ run() { # $1=이름
 }
 
 # ① 숨은 모서리를 면 **뒤**에 깐다 (원래 결함: 칠에 덮여 막힌 덩어리)
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = """    parts = (
@@ -155,7 +164,7 @@ PY
 run "각기둥 숨은 모서리를 면 뒤로"
 
 # ② 모선(꼭대기에 닿는) 숨은 모서리를 빼먹는다 — 원장님이 찍으신 「모선 점선이 없음」
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    return sorted(e for e, flags in seen.items() if len(flags) == 2 and all(flags))"
@@ -168,7 +177,7 @@ PY
 run "모선 숨은 모서리 빼먹기"
 
 # ③ 원기둥·원뿔을 사방(45°) 투영으로 되돌린다 — 밑면이 기울어 「타원기둥」이 된다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "ROUND_DEG = 90.0"
@@ -178,7 +187,7 @@ PY
 run "원기둥 밑면을 기운 타원으로"
 
 # ④ 원기둥 옆면을 네 점 사각형으로 — 밑면을 가로지르는 실선이 남는다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        _poly(near_top + near_bot, FACE_FRONT, 1.15),"
@@ -190,7 +199,7 @@ PY
 run "원기둥 옆면을 네 점 사각형으로"
 
 # ⑤ viewBox 맞춤을 끈다 — 전개도 꼭짓점이 다시 잘려야 한다
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    box = _body_bbox(body)\n    if box is not None:"
@@ -204,7 +213,7 @@ run "viewBox 맞춤 끄기"
 # ⑥ 마름모에 라벨을 되돌린다 — 원장님이 「너저분하다」고 빼기로 하신 그것
 #    (예전 변이는 「날 텍스트로 되돌리기」였는데 그 코드가 통째로 사라져 앵커가 죽었다.
 #     변이는 **지금 지키는 규칙**을 겨눠야 낡지 않는다.)
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '        parts.append(_line(pts[1], pts[3], sw=1.05, dash="5 4"))'
@@ -215,7 +224,7 @@ PY
 run "마름모에 라벨 되돌리기"
 
 # ⑮ 마름모 대각선 점선을 뺀다 — 라벨을 뺐으니 이 선마저 없으면 넓이 규칙이 안 보인다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '        parts.append(_line(pts[0], pts[2], sw=1.05, dash="5 4"))\n'
@@ -227,7 +236,7 @@ run "마름모 대각선 점선 빼기"
 # ⑦ 등변 tick·직각 기호를 기본으로 켠다 — 그림이 답을 알려 준다
 #    ⚠️ 함수 기본값(`marks: bool = False`)을 바꾸는 변이는 **산출물이 그대로**다 —
 #       부르는 쪽이 늘 값을 넘기므로 기본값을 안 탄다. 부르는 자리를 바꿔야 한다.
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '        marks = item.get("marks", False)'
@@ -239,7 +248,7 @@ PY
 run "등변 tick 기본 켜기"
 
 # ⑧ 겹침 회피 회전을 끈다 — 숨은 점선이 실선 모서리에 달라붙어야 한다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    base += _spread_rotation(n, base, ratio, deg, apex_h)"
@@ -249,7 +258,7 @@ PY
 run "꼭짓점 겹침 회피 회전 끄기"
 
 # ⑨ 도형 항목 키 검사를 뺀다 — 오타가 조용히 무시된다
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        extra = set(item) - _SHAPE_ITEM_KEYS"
@@ -260,7 +269,7 @@ run "도형 항목 오타 키 허용"
 
 # ⑩ viewBox 는 넓히되 **내용은 안 민다** — 음수 쪽으로 나간 것은 그대로 잘린다.
 #    ⑤ 가 초록이어도 이쪽이 안 걸리면 「넓히기」만 지키고 「밀기」는 안 지키는 것이다.
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "            body = _shift_body(body, dx, dy)"
@@ -270,7 +279,7 @@ PY
 run "내용 밀기 끄기 (넓히기만)"
 
 # ⑪ 이등변삼각형 밑변을 되돌린다 — 표시가 꺼진 채로 정삼각형과 안 갈린다(실측 3.93px)
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "ISO_TRI_BASE = 0.58"
@@ -280,7 +289,7 @@ PY
 run "이등변삼각형 밑변 되돌리기"
 
 # ⑫ 사다리꼴 높이 값을 뺀다 — 지면에 설명 없는 점선이 남는다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, re, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 m = re.search(r"        parts\.append\(\n            _length_mark\(hx.*?\n        \)\n", s, re.S)
@@ -290,7 +299,7 @@ PY
 run "사다리꼴 높이 값 빼기"
 
 # ⑬ 마름모 세로를 다시 `height` 로 — 적힌 `d2` 와 그림이 갈린다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '    vertical = _num(spec.get("d2", height), "d2", 0.5, 40) if shape == "rhombus" else height'
@@ -302,7 +311,7 @@ run "마름모 세로를 height 로 되돌리기"
 # ⑭ `diamond` 를 키워 **정사각형을 45° 돌린 것**과 합동으로 만든다.
 #    이 변이의 값어치: **하우스도르프 거리는 9.1px 로 초록**이다(자세가 달라 멀어 보인다).
 #    회전 불변 지문만 이것을 잡는다 — 두 축이 서로를 갈음하지 못한다는 증거다.
-python - "$BASE" <<'PY'
+python - "$BASE" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "            [(ox + s / 2, oy), (ox + s, oy + s / 2), (ox + s / 2, oy + s), (ox, oy + s / 2)]"
@@ -314,7 +323,7 @@ PY
 run "마름모를 돌린 정사각형과 합동으로"
 
 # ⑯ 원기둥에 반지름 라벨을 되돌린다 — 원장님이 「이중표기」라 빼기로 하신 것
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    _ = rim\n    return _svg(svg_w, svg_h,"
@@ -329,7 +338,7 @@ PY
 run "원기둥에 반지름 라벨 되돌리기"
 
 # ⑰ 원기둥 **높이까지** 뺀다 — 발문에 없는 값이라 남겨야 한다(설명 없는 점선 방지)
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, re, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 m = re.search(r"    parts\.append\(\n        _length_mark\(\n            tl\[0\].*?\n    \)\n", s, re.S)
@@ -339,7 +348,7 @@ PY
 run "원기둥 높이까지 빼기"
 
 # ⑱ 구에 날 텍스트 반지름을 되돌린다 — §4-16 위반이 다시 나야 한다
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    _ = r\n    return _svg(140, 120,"
@@ -354,7 +363,7 @@ run "구에 날 텍스트 반지름 되돌리기"
 #    **원뿔 자가 죽어 있어도 원기둥이 빨개져 🔴 로 찍힌다** — 파일 단위 판정은 「어느
 #    단언이 죽었나」를 말해 주지 않는다(team-lead 지적). 상수를 늘리지 않고 **부르는
 #    자리**를 겨눠 나눈다. 앞 인자가 서로 달라 앵커가 갈린다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "bot3 + top3, scale, (40.0, 24.0, 30.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG"
@@ -365,7 +374,7 @@ io.open(p, "w", encoding="utf-8").write(
 PY
 run "원기둥만 비율 되돌리기 (0.15 → 0.30)"
 
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "base3 + [apex3], scale, (18.0, 20.0, 18.0, 16.0), ratio=ROUND_RATIO, deg=ROUND_DEG"
@@ -378,7 +387,7 @@ run "원뿔만 비율 되돌리기 (0.15 → 0.30)"
 
 # ⑳ 구의 적도만 상수에서 떼어 낸다 — **배선이 한쪽만** 되던 그 자리를 지킨다.
 #    예전에는 여기가 날 리터럴 `0.32` 라 `ROUND_RATIO` 를 조여도 구는 안 따라왔다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = 'ry="{_n(pr * ROUND_RATIO)}"'
@@ -389,7 +398,7 @@ run "구만 상수에서 떼어 내기 (0.15 → 0.32)"
 
 # ㉑ 걸음 사다리를 못 올라가게 한다 — 옛 규칙(`≤8→1 · ≤12→2 · 그 위 5`)으로 되돌린다.
 #    「눈금 231줄」이 바로 이 상태다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = """    base = 1 if y_max <= 8 else (2 if y_max <= 12 else 5)
@@ -406,7 +415,7 @@ run "걸음 사다리 끄기 (옛 규칙으로)"
 
 # ㉒ 상한을 8로 낮춘다 — **결함이 아닌 장 829장**을 같이 바꾸는 변이다.
 #    「9는 읽기 좋은 수가 아니라 지금 규칙이 내는 최대」를 지킨다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "MAX_Y_TICKS = 9"
@@ -416,7 +425,7 @@ PY
 run "눈금 상한 9 → 8 (멀쩡한 장까지 바꾼다)"
 
 # ㉓ 축 맨 위를 안 올린다 — `yMax` 를 그대로 쓴다. 제일 높은 점이 눈금 위로 뜬다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        if need <= top:\n            return top, step\n        top = float(need)"
@@ -426,7 +435,7 @@ PY
 run "축 맨 위 안 올리기 (yMax 를 그대로)"
 
 # ㉔ 되풀이를 한 번만 — 걸음이 커지면서 필요한 높이가 또 달라지는 맞물림을 놓친다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    for _ in range(len(NICE_STEPS) + 1):"
@@ -437,7 +446,7 @@ run "축·걸음 맞물림 한 번만 돌기"
 
 # ㉕ 눈금만 새 축을 쓰고 **막대는 옛 yMax 로** 그린다 — 배선이 한쪽만 된 상태.
 #    값으로만 재는 검사는 이걸 통과시킨다. 픽셀로 재야 걸린다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        h = 0 if axis_top <= 0 else min(plot_h, plot_h * val / axis_top)"
@@ -449,7 +458,7 @@ PY
 run "막대만 옛 자로 그리기 (눈금은 새 축)"
 
 # ㉖ 꺾은선도 같은 자리 — 막대만 배선하고 꺾은선을 잊는 것을 지킨다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        y = top + plot_h - (0 if axis_top <= 0 else min(plot_h, plot_h * val / axis_top))"
@@ -465,7 +474,7 @@ run "꺾은선만 옛 자로 그리기 (눈금은 새 축)"
 #    (옛 앵커는 인라인 `v = 0` 루프였는데 눈금이 `_plot_axes`/`_tick_values` 로
 #     리팩터링되며 죽었다 — 2026-08-23 재수리. 변이는 **지금 지키는 규칙**을 겨눈다:
 #     `_plot_axes` 주석이 「여기서 `_y_step` 을 다시 부르면 안 된다」인 바로 그 자리.)
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = """    for v in _tick_values(axis_top, step):"""
@@ -477,7 +486,7 @@ PY
 run "눈금이 yStep 을 버리고 _y_step 을 다시 부른다"
 
 # ㉘ `_axis_top` 이 yStep 을 통째로 무시하고 사다리를 탄다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    if y_step is not None:"
@@ -488,7 +497,7 @@ run "축 계산이 yStep 을 통째로 무시한다"
 
 # ㉙ 못 그리는 yStep 에서 **던지는 대신 조용히 사다리로** 올린다 — D-67 이 그 유형을
 #    뺐던 바로 그 결함이다. 에러가 안 나고 학생만 틀린다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = """        if ticks > MAX_Y_TICKS:
@@ -503,7 +512,7 @@ PY
 run "못 그리는 yStep 을 던지지 않고 사다리로 올린다"
 
 # ㉚ 단위 라벨을 **옛 자리**(축 끝 +6)로 되돌린다 — 마지막 눈금 숫자와 겹친다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        unit_x = left + plot_w + _digits_half(last) + UNIT_GAP"
@@ -513,7 +522,7 @@ PY
 run "가로형 단위 라벨을 눈금 위로 되돌리기 (겹침)"
 
 # ㉛ 눈금 겹침 가드를 끈다 — 「0100200300…」 덩어리가 지면으로 나간다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    _assert_ticks_fit(_tick_values(axis_top, step), plot_w)\n"
@@ -523,7 +532,7 @@ PY
 run "값 눈금 겹침 가드 끄기"
 
 # ㉜ 단위 라벨 몫으로 viewBox 를 넓히지 않는다 — 닫는 괄호가 잘린다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        width = max(width, unit_x + _label_w_max(ylab) + 4)\n"
@@ -533,7 +542,7 @@ PY
 run "가로형 viewBox 를 단위 라벨만큼 안 넓히기 (잘림)"
 
 # ㉝ 짝의 「눈금 글자가 본문 이상인가」 가드를 끈다 — 열에 넣으면 작아지는 그림이 나간다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    _assert_ticks_readable(total_w)\n"
@@ -544,7 +553,7 @@ run "짝 눈금 글자 크기 가드 끄기"
 
 # ㉞ **`TICK_MIN_GAP` 을 3 → 4 로.** 짝의 여유가 0.06px 뿐이라 이 상수가 움직이면
 #    눈금 글자가 본문 아래로 내려간다. 가드가 그 상수에서 계산되는지 확인하는 변이다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "TICK_MIN_GAP = 3.0"
@@ -554,7 +563,7 @@ PY
 run "눈금 사이 틈 3 → 4 (짝이 본문 아래로)"
 
 # ㉟ 제목 폭 가드를 끈다 — 긴 제목이 옆 그래프를 침범한다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    if want > plot_w:"
@@ -564,7 +573,7 @@ PY
 run "제목 폭 가드 끄기"
 
 # ㊱ 안쪽 그래프를 **단독 폭**으로 그린다(compact 를 안 쓴다) — 짝이 498단위가 된다.
-python - "$ADV" <<'PY'
+python - "$ADV" 2>>"$PYERR" <<'PY'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = 'svg = ADV_RENDER[kind]({**inner, "version": "elem-1"}, compact=True)'
@@ -577,7 +586,7 @@ run "짝 안쪽을 단독 폭으로 그리기"
 
 # ㊲ 지워진 막대를 **축 절반 높이**로 굳힌다 — 점선 상자는 값 축 전체여야 한다.
 #    절반이면 「이 정도 값」으로 읽혀 그림이 없는 답을 암시한다.
-python - "$ADV" <<'MUT'
+python - "$ADV" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '            parts.append(_rect(x, top, bw, plot_h, fill="none", sw=1.05, dash=UNKNOWN_DASH))'
@@ -588,7 +597,7 @@ MUT
 run "지워진 막대를 축 절반 높이로"
 
 # ㊳ unknown 과 value 를 같이 실어도 통과시킨다 — **참값이 스펙에 들어온다**(답이 샌다).
-python - "$ADV" <<'MUT'
+python - "$ADV" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = '            if "value" in item:'
@@ -598,7 +607,7 @@ MUT
 run "unknown 에 value 를 같이 실어도 통과"
 
 # ㊴ 값 0 에서도 rect 를 그린다 — 정제기가 던져 **그림이 통째로 안 나간다**.
-python - "$ADV" <<'MUT'
+python - "$ADV" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "            if h > 0:\n                parts.append(_rect(x, y, bw, h, fill=CHART[i % len(CHART)], sw=1.05))"
@@ -610,7 +619,7 @@ run "값 0 에서도 크기 0 막대를 그린다"
 
 # ㊵ **markedShape**(② 도형 위 표시) — 같은 무리로 묶은 두 변의 **길이를 어긋낸다**.
 #    tick 은 그대로 찍히므로 「표시가 거짓말하는」 그림이 된다. 값 검산으로는 안 보인다.
-python - "$BASE" <<'MUT'
+python - "$BASE" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "        return [(ox + s / 2 - half, oy + s), (ox + s / 2, oy), (ox + s / 2 + half, oy + s)]"
@@ -622,7 +631,7 @@ MUT
 run "markedShape 다리 두 변을 어긋냄 (tick 은 그대로)"
 
 # ㊶ 직각 기호를 안 그린다 — 초등 직각은 **작은 정사각형**이다(엔진 A 는 호로 그린다).
-python - "$BASE" <<'MUT'
+python - "$BASE" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "            parts.append(_right_mark(pts[i], pts[(i - 1) % n], pts[(i + 1) % n]))"
@@ -634,7 +643,7 @@ run "markedShape 직각 기호 안 그리기"
 # ㊷ 변 라벨을 `measured()` 가 아니라 **날 텍스트**로 (09 §4-16 위반).
 #    ⚠️ 이 변이는 describe **밖**의 「어느 kind 든 cm 라벨은 halo」가 잡는다 —
 #       `-t` 로 이름을 좁히면 그 검사가 안 돌아 «가드가 아니다»로 보인다. 실제로 속았다.
-python - "$BASE" <<'MUT'
+python - "$BASE" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)"
@@ -647,7 +656,7 @@ run "markedShape 변 라벨을 날 텍스트로"
 
 # ㊸ **모양 목록을 ⑧(namedShapes)과 갈라 놓는다** — 두 kind 가 `_shape_points` 하나를
 #    쓰는 것이 이 설계의 핵심이다. 갈라지면 한쪽만 늘어나도 아무도 모른다.
-python - "$BASE" <<'MUT'
+python - "$BASE" 2>>"$PYERR" <<'MUT'
 import io, sys
 p = sys.argv[1]; s = io.open(p, encoding="utf-8").read()
 old = "    pts = _shape_points(kind, pad, pad, size)"
@@ -656,6 +665,12 @@ new = "    pts = [(x, y * 0.8) for x, y in _shape_points(kind, pad, pad, size)] 
 io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
 MUT
 run "markedShape 모양 목록을 namedShapes 와 갈라 놓기"
+
+# ⚠️ 차트의 «가려진 값» 선언(`CHART_ACCEPTS_UNKNOWN`) 변이는 **여기 없다.**
+#    그 축은 **산출물을 안 바꾼다** — 값은 똑같이 나오고 갈라지는 것은 「표를 뒤집었을 때
+#    두 호출부가 따라오는가」뿐이다. 이 하네스의 ⑵단계(산출물이 바뀌었나)가 그것을
+#    「동작을 안 바꾸는 변이」로 **옳게** 걸러 낸다. 판정 수단이 다르므로 자리도 다르다:
+#    → `scripts/qa/mutate-chart-unknown.sh` (판정은 `probe-chart-unknown.py`)
 
 restore
 judged=$(grep -c "^\[" "$SUMMARY")

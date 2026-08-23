@@ -2,6 +2,7 @@
  * 초등 그림 스펙(elem-1) + 기존 FigureSpec v2.
  * 엔진이 실제로 SVG 를 내는지 본다. 모킹하지 않는다 — 없는 축은 변이시킬 수 없다.
  */
+import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -3202,3 +3203,30 @@ describe.skipIf(!hasEngine)(
     });
   },
 );
+
+/* ── 차트의 «가려진 값» — **선언이 한 곳인가** (2026-08-23, elem-figures) ────────
+ *
+ * 값만 보는 시험은 이 축을 **구조적으로 못 본다.** 「막대는 받고 꺾은선은 막는다」는
+ * 호출부가 각자 `allow_unknown` 을 손으로 정해도 똑같이 나온다 — 갈라지는 것은
+ * 「`CHART_ACCEPTS_UNKNOWN` 을 뒤집었을 때 두 호출부가 같이 뒤집히는가」뿐이다.
+ *
+ * 그 뒤집기는 파이썬 안에서만 할 수 있어 `probe-chart-unknown.py`(g4 작성)가 맡는다.
+ * 여기서는 **그 판정기를 실제로 돌려** 통과하는지 본다 — 판정기가 저장소에 있는데
+ * 아무도 안 부르면 그것은 가드가 아니라 문서다.
+ */
+describe.skipIf(!hasEngine)("[초등 그림] 가려진 값 선언은 한 곳이다", () => {
+  it("`probe-chart-unknown.py` 가 통과한다 — 표를 뒤집으면 두 호출부가 따라온다", () => {
+    const out = spawnSync("python", ["scripts/qa/probe-chart-unknown.py"], {
+      encoding: "utf-8",
+      maxBuffer: 8 * 1024 * 1024,
+      env: { ...process.env, PYTHONIOENCODING: "utf-8" },
+    });
+    // 판정기가 **죽어도** 0 이 아니다 — 「깨끗함」과 「판정 못 함」이 안 갈리면 안 된다.
+    expect(out.status, out.stdout + out.stderr).toBe(0);
+    expect(out.stdout).toContain("선언 한 곳을 두 호출부가 읽는다");
+    // 눈금 건수가 줄면 판정기가 조용히 약해진 것이다.
+    expect(out.stdout).toMatch(/눈금 (\d+)건/);
+    const n = Number(/눈금 (\d+)건/.exec(out.stdout)![1]);
+    expect(n, "판정기 눈금 건수").toBeGreaterThanOrEqual(8);
+  }, 60_000);
+});

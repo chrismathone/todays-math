@@ -19,8 +19,13 @@
 `_line_chart` 는 y 를 못 정해 죽는다. 그것은 지면 모양 결정(D-07)이라 여기 밖이다.
 아래 ③ 이 그 사실 자체를 못 박는다(「열려면 렌더러부터」를 다음 사람이 알게).
 """
+import io
 import sys
 from pathlib import Path
+
+# Windows 기본 코드페이지(cp949)에서 ✅/❌ 가 UnicodeEncodeError 로 죽는다 —
+# **판정기가 판정을 못 하고 죽으면 「깨끗함」과 구분이 안 된다.** 여기서 못 박는다.
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "figure"))

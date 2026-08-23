@@ -145,6 +145,42 @@ def _frac_bars(spec: Mapping[str, Any]) -> str:
 # 항목의 허용 키. 오타가 조용히 무시되면 「지웠는데 왜 그대로냐」가 된다 (namedShapes 와 같다).
 _VALUE_ITEM_KEYS = frozenset({"label", "value", "unknown"})
 
+# 🔴 **「이 차트가 «가려진 값»을 받는가」는 여기서 한 번만 정한다.**
+#
+# 예전에는 `_bar_chart` 만 `allow_unknown=True` 를 손으로 넘기고 `_line_chart` 는 안
+# 넘겼다. 값은 맞았지만 **자리가 둘**이라, 세 번째 차트 종류가 생기면 같은 구멍이 또
+# 열린다 — 새 차트를 만드는 사람이 **이 축이 있다는 것조차 모르기 때문**이다.
+# (2026-08-23 실측: 저장소 전체에서 `allow_unknown=True` 는 호출부 **한 곳**뿐이었고,
+#  그 한쪽을 만든 것이 이 세션이다. 막대에 넣으면서 꺾은선을 안 봤다.)
+#
+# 「같은 규칙을 쓰는 자리가 둘이면 **한 숫자를 두 곳이 쓰게** 하고, 한쪽만 옮기면
+#  빨개지는 시험을 같이 둘 것」(CLAUDE.md 2026-08-18) — 그 후반부가 `mutate-elem-figure.sh`
+#  의 「호출부가 표를 안 읽는다」 변이와 `probe-chart-unknown.py` 다.
+#
+# ⚠️ **꺾은선을 `True` 로 바꾸는 것만으로는 안 열린다.** 렌더러가 「값 없는 점」의 y 를
+#    못 정해 죽는다. 그것은 지면 모양 결정(D-07)이라 여기 밖이다 — 표만 바꾸지 말 것.
+CHART_ACCEPTS_UNKNOWN: dict[str, bool] = {
+    "barChart": True,  # 점선 상자로 값 축 전체를 두른다 (D-72 자료형 심화)
+    "lineChart": False,  # 점을 못 찍는다 — 지면 모양이 아직 안 정해졌다
+}
+
+
+def _chart_values_of(
+    kind: str, raw: Any, name: str
+) -> list[tuple[str, float | None]]:
+    """차트 종류로 «가려진 값» 허용 여부를 **표에서 찾아** 값을 읽는다.
+
+    호출부가 `allow_unknown` 을 손으로 정하지 않게 하는 것이 목적이다.
+    표에 없는 종류는 **던진다** — 조용히 `False` 로 두면 새 차트가 이 축을 모른 채
+    지나가고, 그것이 정확히 지난번 결함의 모양이다.
+    """
+    if kind not in CHART_ACCEPTS_UNKNOWN:
+        raise ValueError(
+            f"«{kind}» 가 가려진 값을 받는지 안 정해졌습니다 — "
+            f"CHART_ACCEPTS_UNKNOWN 에 적으십시오"
+        )
+    return _chart_values(raw, name, allow_unknown=CHART_ACCEPTS_UNKNOWN[kind])
+
 
 def _chart_values(
     raw: Any, name: str, allow_unknown: bool = False
@@ -619,8 +655,8 @@ def _chart_pair(spec: Mapping[str, Any]) -> str:
 
 
 def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
-    # 지워진 막대는 **막대그래프에서만** 그린다 — 꺾은선은 점을 못 찍는다.
-    values = _chart_values(spec["values"], "values", allow_unknown=True)
+    # 「가려진 값을 받는가」는 **여기서 정하지 않는다** — `CHART_ACCEPTS_UNKNOWN` 이 정한다.
+    values = _chart_values_of("barChart", spec["values"], "values")
     data_max = max(v for _, v in values if v is not None)
     y_max = _num(spec.get("yMax", data_max or 1), "yMax", 1, 10000)
     # 축 규칙은 **방향보다 위**에 있다 — 사다리·9줄·yStep·인상·던짐이 한 벌뿐이다.
@@ -677,7 +713,7 @@ def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
 
 
 def _line_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
-    values = _chart_values(spec["values"], "values")
+    values = _chart_values_of("lineChart", spec["values"], "values")
     data_max = max(v for _, v in values if v is not None)
     y_max = _num(spec.get("yMax", data_max or 1), "yMax", 1, 10000)
     axis_top, step = _axis_top(y_max, data_max, _y_step_spec(spec))
