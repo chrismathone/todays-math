@@ -2315,3 +2315,426 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════ 8차분 — 2-2 소수의 나눗셈 ══════════
+//
+// ⑴ 소수는 ×10/×100 정수로 다시 세어 검산한다 — 시험도 부동소수점을 안 쓴다.
+// ⑵ 2-2-5 는 **몫이 자연수·나머지가 나누어지는 수와 같은 소수 자리**여야 한다(초등 규약).
+//    값만 맞고 자리가 틀리면 뜻이 달라지므로 **자리까지** 대조한다.
+// ⑶ 2-2-4 는 판정기 검사(몫이 그 자리에서 딱 떨어지면 위반)와 **같은 조건을 시험도** 잰다 —
+//    엔진이 그 검사에 스스로 걸리지 않는지 여기서 먼저 빨개진다.
+
+const G6_22_CODES = ["2-2-1", "2-2-2", "2-2-3", "2-2-4", "2-2-5"] as const;
+
+/** `12.34` → {scaled: 1234, dp: 2}. 글자로 세므로 `7.0` 도 dp=1 로 잡힌다. */
+function scaledOf(tok: string): { scaled: number; dp: number } | null {
+  const m = tok.match(/^(\d+)(?:\.(\d+))?$/);
+  if (!m) return null;
+  const frac = m[2] ?? "";
+  return { scaled: Number(`${m[1]}${frac}`), dp: frac.length };
+}
+
+/** 발문의 `$...$` 안 수를 «자릿수까지» 뽑는다. */
+function scaledNumsIn(text: string): { scaled: number; dp: number }[] {
+  const out: { scaled: number; dp: number }[] = [];
+  for (const m of text.matchAll(/\$([^$]*)\$/g)) {
+    const tok = m[1]!
+      .replace(/\\,|\\;|\\!|\\%/g, "")
+      .replace(/\\mathrm\{[a-zA-Z]+\}(\^\d)?/g, "")
+      .replace(/\\div|\\times|\\square|\\ldots|=/g, " ")
+      .trim();
+    for (const piece of tok.split(/\s+/)) {
+      const v = scaledOf(piece);
+      if (v) out.push(v);
+    }
+  }
+  return out;
+}
+
+/** 유리수로 옮긴다 — 10^dp 를 분모로 두므로 부동소수점을 안 거친다. */
+const asRat = (v: { scaled: number; dp: number }) => rat(v.scaled, 10 ** v.dp);
+
+/** 발문이 말하는 값의 참 — 못 읽으면 null(위반). */
+function truthOf22(content: string): R | null {
+  const ns = scaledNumsIn(content).map(asRat);
+  const at = (i: number) => ns[i] ?? null;
+
+  // 심화 2-2-2·3 — `\square` 가 나누어지는 수 / 나누는 수
+  if (content.includes("알맞은 수")) {
+    const asDividend = content.match(
+      /\\square\\div(\d+(?:\.\d+)?)=(\d+(?:\.\d+)?)/,
+    );
+    if (asDividend) {
+      return rmul(
+        asRat(scaledOf(asDividend[1]!)!),
+        asRat(scaledOf(asDividend[2]!)!),
+      );
+    }
+    const asDivisor = content.match(
+      /(\d+(?:\.\d+)?)\\div\\square=(\d+(?:\.\d+)?)/,
+    );
+    if (asDivisor) {
+      return rdiv(
+        asRat(scaledOf(asDivisor[1]!)!),
+        asRat(scaledOf(asDivisor[2]!)!),
+      );
+    }
+    return null;
+  }
+  // 심화 2-2-1 — 곱을 나눗셈으로 되돌린다: [곱한 수, 결과]
+  if (content.includes("곱했더니")) {
+    const [b, a] = [at(0), at(1)];
+    return b && a ? rdiv(a, b) : null;
+  }
+  // 2-2-5 심화 — 몫과 남는 수에서 처음 양을 되짚는다: [1인분, 사람 수, 남는 수]
+  if (content.includes("처음에 있던")) {
+    const [per, people, rem] = [at(0), at(1), at(2)];
+    return per && people && rem
+      ? rat(per.n * people.n * rem.d + rem.n, rem.d)
+      : null;
+  }
+  // 2-2-5 응용 — 한 사람 몫을 채우는 데 모자란 양: [전체, 1인분]
+  if (content.includes("더 필요합니까")) {
+    const [total, per] = [at(0), at(1)];
+    if (!total || !per) return null;
+    const q = Math.floor((total.n * per.d) / (total.d * per.n) + 1e-9);
+    const remN = total.n * per.d - q * per.n * total.d; // 분모 total.d*per.d
+    return rsub(per, rat(remN, total.d * per.d));
+  }
+  // 응용 2-2-1·2·3 — 쓰고 남은 양을 나눈다: [전체, 쓴 양, 1인분]
+  if (content.includes("중에서") || content.includes("사서")) {
+    const [total, used, per] = [at(0), at(1), at(2)];
+    return total && used && per ? rdiv(rsub(total, used), per) : null;
+  }
+  // 기본·연산 — 두 수를 그대로 나눈다
+  const [a, b] = [at(0), at(1)];
+  if (!a || !b || ns.length > 2) return null;
+  return rdiv(a, b);
+}
+
+describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
+  it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_22_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (시험이 ×10 정수로 다시 계산)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_22_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          // 2-2-4 는 답이 «반올림한 값»이라 값 검산을 따로 한다(아래 전용 검사).
+          if (code === "2-2-4") continue;
+          // 2-2-5 의 몫·나머지 쌍도 전용 검사가 본다.
+          if (/몫과 남는 수|몇 명에게 나누어 줄 수 있고/.test(p.content)) {
+            continue;
+          }
+          const want = truthOf22(p.content);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          checked += 1;
+          const got = readMixedAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${rshow(want)} 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    // 2-2-4 전량(64)과 2-2-5 의 몫·나머지 갈래(연산·기본 32)는 전용 검사 몫이다.
+    expect(checked).toBe(
+      G6_22_CODES.length * ELEM_TIERS.length * SEEDS.length - 64 - 32,
+    );
+  });
+
+  it("2-2-4 는 반올림이 뜻을 가진다 — 그 자리에서 딱 떨어지지 않고, 값도 맞다", () => {
+    const bad: string[] = [];
+    const unit = unitOf("2-2-4");
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const where = `2-2-4 ${tier} seed=${seed}`;
+        // 문장형 갈래(기본·응용)는 발문에 식이 없다 — 그때는 «앞 수 ÷ 뒤 수»로 읽는다.
+        const m = p.content.match(/\$(\d+)\\div(\d+)\$/);
+        const nums = scaledNumsIn(p.content);
+        if (!m && (nums.length < 2 || nums.some((v) => v.dp !== 0))) {
+          bad.push(`${where}: 나눗셈의 두 수를 못 읽음 — ${p.content}`);
+          continue;
+        }
+        const [a, b] = m
+          ? [Number(m[1]), Number(m[2])]
+          : [nums[0]!.scaled, nums[1]!.scaled];
+        const place = /둘째 자리까지/.test(p.content) ? 2 : 1;
+        // ⑴ 반올림이 뜻을 가지는가 — 요구 자리에서 딱 떨어지면 판정기가 위반으로 본다.
+        if ((a * 10 ** place) % b === 0) {
+          bad.push(
+            `${where}: 몫이 소수 ${place}자리에서 딱 떨어진다 — ${p.content}`,
+          );
+        }
+        // ⑴-b 해설이 «한 자리 더 보이고 `\ldots`» 라고 적는다 — 거기서 끝나면 그 말이 거짓이다.
+        //
+        // ⚠️ ⑴ 만으로는 이 자리를 **못 본다**(두 조건은 다른 자리를 잰다). 변이
+        // 「반올림 뜻 훼손」이 구성에서 이 필터만 빼자 시험이 **초록**이었다 — 사각지대였다.
+        if (
+          p.solution.includes("\\ldots") &&
+          (a * 10 ** (place + 1)) % b === 0
+        ) {
+          bad.push(
+            `${where}: 몫이 소수 ${place + 1}자리에서 끝나는데 해설이 \\ldots 라 적는다 — ${p.solution}`,
+          );
+        }
+        // ⑵ 값 — 시험이 정수 나눗셈으로 반올림을 다시 짓는다(부동소수 없음).
+        const scale = a * 10 ** place;
+        const cut = Math.floor(scale / b) + ((scale % b) * 2 >= b ? 1 : 0);
+        // 심화는 두 자리의 «차»를 묻는다 — 그 갈래만 따로 짓는다.
+        if (/차를 구하시오/.test(p.content)) {
+          const s2 = a * 100;
+          const cut2 = Math.floor(s2 / b) + ((s2 % b) * 2 >= b ? 1 : 0);
+          const c1 =
+            Math.floor((a * 10) / b) + (((a * 10) % b) * 2 >= b ? 1 : 0);
+          const want = rat(Math.abs(cut2 - c1 * 10), 100);
+          if (!req(want, readMixedAnswer(p.answer))) {
+            bad.push(`${where}: 차 ${p.answer} (${rshow(want)} 이어야)`);
+          }
+          continue;
+        }
+        const want = rat(cut, 10 ** place);
+        if (!req(want, readMixedAnswer(p.answer))) {
+          bad.push(
+            `${where}: 답 ${p.answer} (${rshow(want)} 이어야) — ${p.content}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("2-2-5 는 몫이 자연수이고 남는 수는 나누어지는 수와 같은 소수 자리다", () => {
+    const bad: string[] = [];
+    const unit = unitOf("2-2-5");
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const where = `2-2-5 ${tier} seed=${seed}`;
+        const nums = scaledNumsIn(p.content);
+        // 몫·나머지를 함께 답하는 갈래만 이 규약을 잰다.
+        const pair = p.answer.match(
+          /^(?:몫 )?\$(\d+)\$(?:명)?, (?:남는 수 )?\$(\d+(?:\.\d+)?)\$/,
+        );
+        if (!pair) continue;
+        const total = nums[0]!;
+        const per = nums[1]!;
+        const q = Number(pair[1]);
+        const rem = scaledOf(pair[2]!)!;
+        // ⑴ 몫은 자연수 — 문자열에 소수점이 없어야 한다.
+        if (!/^\d+$/.test(pair[1]!)) {
+          bad.push(`${where}: 몫이 자연수가 아니다 — ${p.answer}`);
+        }
+        // ⑵ 남는 수의 소수 자리 = 나누어지는 수의 소수 자리 (초등 규약)
+        if (rem.dp !== total.dp) {
+          bad.push(
+            `${where}: 남는 수 자리 ${rem.dp} ≠ 나누어지는 수 자리 ${total.dp} — ${p.answer}`,
+          );
+        }
+        // ⑶ 값 — 전체 = 1인분 × 몫 + 남는 수, 그리고 남는 수 < 1인분
+        const lhs = total.scaled;
+        const rhs = per.scaled * 10 ** (total.dp - per.dp) * q + rem.scaled;
+        if (lhs !== rhs) {
+          bad.push(`${where}: ${lhs} ≠ ${rhs} — ${p.content} / ${p.answer}`);
+        }
+        if (rem.scaled >= per.scaled * 10 ** (total.dp - per.dp)) {
+          bad.push(`${where}: 남는 수가 1인분보다 크다 — ${p.answer}`);
+        }
+        if (rem.scaled === 0) {
+          bad.push(`${where}: 남는 수가 0 — «남는 양»이 뜻을 잃는다`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("소단원이 약속한 종류·자릿수가 **지면에** 선다 (□ 뒤에 숨지 않는다)", () => {
+    // 값 검산은 이 축을 구조적으로 못 본다 — 답은 늘 옳기 때문이다. 판정기도 □ 를
+    // 와일드카드로 세므로 통과시킨다. 그런데 학생은 지면만 본다: 조건이 되는 종류가
+    // □ 뒤에 숨으면 그 문항은 그 소단원이 아니다(2-2-2·2-2-3 심화가 실측으로 걸렸다).
+    const bad: string[] = [];
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const at = (code: string) =>
+          generateElementaryProblem(unitOf(code), seed, tier).content;
+        const dpsOf = (c: string) =>
+          scaledNumsIn(c)
+            .filter((v) => v.dp > 0)
+            .map((v) => v.dp);
+        // 2-2-1 — 소수 둘 이상이 보이고 자릿수가 전부 같다.
+        const d1 = dpsOf(at("2-2-1"));
+        if (d1.length < 2 || d1.some((d) => d !== d1[0])) {
+          bad.push(
+            `2-2-1 ${tier} seed=${seed}: 같은 자릿수 소수 둘이 안 보인다`,
+          );
+        }
+        // 2-2-2 — 소수 둘 이상이 보이고 **자릿수가 다른** 것이 있다.
+        const d2 = dpsOf(at("2-2-2"));
+        if (d2.length < 2 || new Set(d2).size < 2) {
+          bad.push(
+            `2-2-2 ${tier} seed=${seed}: 자릿수가 다른 소수가 안 보인다`,
+          );
+        }
+        // 2-2-3 — 자연수와 소수가 **둘 다** 보인다.
+        const c3 = at("2-2-3");
+        const n3 = scaledNumsIn(c3);
+        if (!n3.some((v) => v.dp === 0) || !n3.some((v) => v.dp > 0)) {
+          bad.push(
+            `2-2-3 ${tier} seed=${seed}: 자연수·소수 짝이 안 보인다 — ${c3}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("순서를 주장하는 낱말은 값의 순서와 맞는다 — 씨앗 0~1999 전수", () => {
+    // ⚠️ **씨앗 16개로는 구조적으로 안 보이는 부류다.** 리드 검수가 씨앗 0~1999 에서
+    // 7건(0.35%)을 찾았다 — 「긴 막대가 $11$ cm, 짧은 막대가 $13$ cm」. 값·판정기·
+    // 시험·변이가 전부 통과한다(값은 옳고 **낱말만** 거짓말한다). 그래서 이 잠금만은
+    // 표본이 아니라 **전수**로 쓴다.
+    //
+    // 낱말 목록은 손이라 샌다 — 그래서 엔진의 `ordered` 표시를 안 보고 **지면의 낱말**로
+    // 잰다. 새 순서 낱말이 들어오면 여기 추가해야 하지만, 최소한 지금 쓰는 것은 잠긴다.
+    const ORDERED_WORDS: [RegExp, RegExp][] = [
+      [/긴 /, /짧은 /],
+      [/무거운 /, /가벼운 /],
+      [/많은 /, /적은 /],
+      [/큰 /, /작은 /],
+    ];
+    const bad: string[] = [];
+    const unit = unitOf("2-2-4");
+    for (const tier of ELEM_TIERS) {
+      for (let seed = 0; seed < 2000; seed += 1) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const hit = ORDERED_WORDS.find(
+          ([big, small]) => big.test(p.content) && small.test(p.content),
+        );
+        if (!hit) continue;
+        const nums = scaledNumsIn(p.content);
+        if (nums.length < 2) {
+          bad.push(
+            `2-2-4 ${tier} seed=${seed}: 두 수를 못 읽음 — ${p.content}`,
+          );
+          continue;
+        }
+        // 앞에 적힌 것이 «큰 쪽»을 주장하는 낱말이므로 값도 앞이 커야 한다.
+        if (nums[0]!.scaled <= nums[1]!.scaled) {
+          bad.push(
+            `2-2-4 ${tier} seed=${seed}: 낱말과 값이 어긋난다 — ${p.content}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "2-2-1": /^다음 나눗셈의 몫을 구하시오/,
+      "2-2-2": /^다음 나눗셈의 몫을 구하시오/,
+      "2-2-3": /^다음 나눗셈의 몫을 구하시오/,
+      "2-2-4": /^다음 나눗셈의 몫을 반올림하여/,
+      "2-2-5": /몫과 남는 수를 구하시오\.$/,
+    };
+    const DEEP = /어떤 수|알맞은 수|처음에 있던|차를 구하시오/;
+    for (const code of G6_22_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        expect(
+          CALC_SHAPE[code]!.test(calc.content),
+          `${code} 연산 seed=${seed}: ${calc.content}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(basic.content),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${basic.content}`,
+        ).toBe(false);
+        expect(
+          DEEP.test(deep.content),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        expect(
+          DEEP.test(apply.content),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_22_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·꼬리 0·분수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_22_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            // 초등 지면은 «7.0» 을 안 쓴다.
+            const trailing = field.match(/\d+\.\d*0(?![\d])/g);
+            if (trailing)
+              bad.push(`${where} ${name}: 꼬리 0 — ${trailing.join(",")}`);
+            // 이 대단원에 분수가 나오면 2-1 과 종류가 섞인 것이다.
+            if (field.includes("\\frac"))
+              bad.push(`${where} ${name}: 분수가 섞였다`);
+            const runaway = field.match(/\d+\.\d{4,}/g);
+            if (runaway) bad.push(`${where} ${name}: 샌 소수 ${runaway[0]}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});

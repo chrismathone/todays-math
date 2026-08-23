@@ -194,6 +194,81 @@ G5_MUTS = [
         "  const hi = lo + sd;",
         "  const hi = lo + sd + sd;",
     ),
+    # ── 6차분 (1-5 분수의 덧셈과 뺄셈) ──
+    (
+        "음수 구성 훼손 — 1-5-4 연산 빼는 대분수의 자연수부가 더 클 수 있다 (⑶)",
+        "  const w2 = intBetween(rng, 1, w1 - 2);\n  const L = lcm(d1, d2);\n  const [num, den] = subFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);",
+        "  const w2 = intBetween(rng, 1, w1 + 2);\n  const L = lcm(d1, d2);\n  const [num, den] = subFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);",
+    ),
+    (
+        "음수 구성 훼손 — 1-5-3 진분수 뺄셈이 큰 쪽·작은 쪽을 뒤바꾼다 (⑶)",
+        "  return a * d2 > b * d1\n    ? { big: [a, d1], small: [b, d2] }\n    : { big: [b, d2], small: [a, d1] };",
+        "  return a * d2 > b * d1\n    ? { big: [b, d2], small: [a, d1] }\n    : { big: [a, d1], small: [b, d2] };",
+    ),
+    (
+        "받아내림 훼손 — 1-5-4 응용이 자연수부를 빼먹어 진분수를 뺀다",
+        "  const [num, den] = subFrac(whole, 1, w2 * d2 + b, d2);",
+        "  const [num, den] = subFrac(whole, 1, b, d2);",
+    ),
+    (
+        "검산 훼손 — 1-5-1 응용이 셋째 분수를 안 더한다",
+        "  const [num, den] = addFrac(s1, sd1, n3, d3);",
+        "  const [num, den] = addFrac(s1, sd1, 0, 1);",
+    ),
+    (
+        # 이 변이는 씨앗 16개 시험이 아니라 **씨앗 0~999 전수 throw 쓸기**가 문다
+        # (리드 지시로 넣은 그 검사 — 손 목록이면 2×넓이=98 에서 후보가 빈다).
+        "손 목록 회귀 — 1-6-4 심화 밑변 후보를 고정 목록으로 되돌린다",
+        "  const tbCands = divisors(2 * area).filter(\n    (v) => v >= 4 && v <= 20 && (2 * area) / v <= 30,\n  );",
+        "  const tbCands = [4, 5, 6, 8, 10, 12, 15, 16, 20].filter(\n    (v) => (2 * area) % v === 0,\n  );",
+    ),
+    (
+        "소재-동사 짝 훼손 — 1-5-3 응용이 색종이를 «먹는다» (g4 회송 결함)",
+        "\"색종이\", \"한 장\", \"쓰고\", \"썼습니다\", \"쓴\"",
+        "\"색종이\", \"한 장\", \"먹고\", \"먹었습니다\", \"먹은\"",
+    ),
+    # ── 7차분 (2-1 수의 범위와 어림하기) ──
+    (
+        "뜻 없는 어림 — 어림할 수의 아래 자리가 0 이 될 수 있다 (㉡ 구성 보장)",
+        "  const below = intBetween(rng, 1, place - 1); // 1 이상 — 절대 0이 아니다",
+        "  const below = intBetween(rng, 0, place - 1); // 1 이상 — 절대 0이 아니다",
+    ),
+    (
+        # 양방향 검사(«바깥값도 그 어림값이 되는가»)가 무는 자리다 — 안쪽만 보면
+        # 넓게 틀려도 조용하다(2026-08-23 리드 지적).
+        "역산 범위 훼손 — 올림 역산의 아래끝을 한 칸 넓힌다",
+        "    nums([up - place + 1, up]),",
+        "    nums([up - place, up]),",
+    ),
+    (
+        "역산 범위 훼손 — 반올림 역산의 위끝을 한 칸 넓힌다",
+        "  const hi = r + place / 2 - 1;",
+        "  const hi = r + place / 2;",
+    ),
+    (
+        "조건 조합 무력화 — 2-1-5 심화의 두 어림이 같은 값을 가리켜 한쪽이 논다",
+        "  const u = d + place;",
+        "  const u = d;",
+    ),
+    (
+        # 경계값이 없으면 «이상»과 «초과»가 **같은 답**을 낸다 — 낱말을 바꿔치기해도
+        # 안 걸리는 자리이므로 이 변이가 그 사각지대를 지킨다.
+        "경계값 누락 — 2-1-3 장면의 값 넷에서 경계값 자신을 뺀다",
+        "    limit, // 경계값 자신 — 이 하나가 두 낱말의 답을 가른다",
+        "    limit + 1, // 경계값 자신 — 이 하나가 두 낱말의 답을 가른다",
+    ),
+    (
+        "경계 방향 훼손 — 2-1-3 기본의 «초과» 가 경계값을 포함한다",
+        "  const ok = s.values.filter((v) => v > s.limit);",
+        "  const ok = s.values.filter((v) => v >= s.limit);",
+    ),
+    (
+        # 이름과 무는 자리가 어긋나면 다음 사람이 속는다 — 위 «2-1-3» 것과 달리
+        # 이 변이는 2-1-1·2-1-2 의 후보 목록(boundaryPool)을 문다.
+        "경계값 누락 — 2-1-1·2-1-2 후보에서 아래 경계를 한 칸 밀어낸다",
+        "  return shuffled(rng, [a, b, inner, below, above]);",
+        "  return shuffled(rng, [a + 1, b, inner, below, above]);",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -328,6 +403,42 @@ G6_MUTS = [
         "    심화: mixedFracDeep,",
         "    심화: mixedFracCalc,",
     ),
+    # ── 8차분 (2-2 소수의 나눗셈) — 반올림 구성·남는 수 자리·소수점 옮기기를 문다.
+    (
+        "반올림 뜻 훼손 — 딱 떨어지는 몫도 반올림 문항이 된다",
+        "      if (a % b === 0) continue;\n      if ((a * 10 ** (place + 1)) % b === 0) continue;",
+        "      if (a % b === 0) continue;",
+    ),
+    (
+        "남는 수 자리 훼손 — 나머지를 몫의 자리(자연수)로 적는다",
+        "  const rem10 = intBetween(rng, 0, per - 1) * 10 + intBetween(rng, 1, 9);\n  return { per, people, total10: people * per * 10 + rem10, rem10 };",
+        "  const rem10 = intBetween(rng, 1, per - 1) * 10;\n  return { per, people, total10: people * per * 10 + rem10, rem10 };",
+    ),
+    (
+        # 리드 검수 반려분(2026-08-23) — 「긴 막대 11 cm, 짧은 막대 13 cm」.
+        # 0.35%(7/2000) 라 **씨앗 16개로는 구조적으로 안 보인다** — 잠금 시험은 전수 쓸기다.
+        "낱말 거짓말 — 2-2-4 응용이 소재를 값보다 먼저 뽑는다(순서 낱말이 값과 어긋남)",
+        """  const p = pick(
+    rng,
+    ROUND_PAIRS.filter((pair) => !pair.ordered || c.a > c.b),
+  );""",
+        "  const p = pick(rng, ROUND_PAIRS);",
+    ),
+    (
+        # 값은 옳고 판정기도 □ 를 와일드카드로 세어 통과시킨다 — «지면에 서는가» 축만 문다.
+        "종류 은닉 — 2-2-3 심화가 □ 를 나누는 수에 두어 소수가 안 보인다",
+        """    `${expr("\\\\square")} 안에 알맞은 수를 구하시오.\\n\\n${expr(`\\\\square\\\\div${b}=${c.q}`)}`,
+    num(c.a),""",
+        """    `${expr("\\\\square")} 안에 알맞은 수를 구하시오.\\n\\n${expr(`${c.a}\\\\div\\\\square=${c.q}`)}`,
+    expr(b),""",
+    ),
+    (
+        "검산 훼손 — 2-2-3 연산이 소수점을 한 자리만 옮긴 값을 답으로",
+        """    `다음 나눗셈의 몫을 구하시오.\\n\\n${expr(`${c.a}\\\\div${b}=\\\\square`)}`,
+    num(c.q),""",
+        """    `다음 나눗셈의 몫을 구하시오.\\n\\n${expr(`${c.a}\\\\div${b}=\\\\square`)}`,
+    num(c.a),""",
+    ),
 ]
 
 TARGETS = {
@@ -362,7 +473,18 @@ TARGETS = {
             "1-4-3",
             "1-4-4",
             "1-4-5",
+            "1-5-1",
+            "1-5-2",
+            "1-5-3",
+            "1-5-4",
             "1-6-3",
+            "1-6-4",
+            "2-1-1",
+            "2-1-2",
+            "2-1-3",
+            "2-1-4",
+            "2-1-5",
+            "2-1-6",
         ],
         "muts": G5_MUTS,
     },
@@ -402,6 +524,11 @@ TARGETS = {
             "2-1-3",
             "2-1-4",
             "2-1-5",
+            "2-2-1",
+            "2-2-2",
+            "2-2-3",
+            "2-2-4",
+            "2-2-5",
         ],
         "muts": G6_MUTS,
     },

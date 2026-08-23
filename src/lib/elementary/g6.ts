@@ -4544,6 +4544,504 @@ function mixedFracDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   throw new Error("2-1-5 심화: 조건을 만족하는 짝을 못 만들었습니다");
 }
 
+// ── 난이도 갈래 (D-72 확대 8차분) — 초6 `2-2 소수의 나눗셈` (5소단원 · 20갈래) ────
+//
+// ⑴ 수는 전량 **×10/×100 정수**로 들고 다니고 지면에 적을 때만 `fromCents`·`decStr` —
+//    부동소수점이 지면에 새지 않는다. 꼬리 0(`7.0`)은 시험이 전 필드에서 막는다.
+// ⑵ 2-2-5 «남는 양»의 초등 규약: **몫은 자연수, 나머지는 나누어지는 수와 같은 소수 자리.**
+//    나머지를 몫의 자리로 적으면 뜻이 달라진다 — 시험이 자리까지 대조한다.
+// ⑶ 2-2-4 는 이 트랜치에서 내가 판정기에 얹은 검사(몫이 그 자리에서 딱 떨어지면 위반)에
+//    **스스로 걸리지 않게** 구성이 보장한다. 문장형 갈래는 해설에 식을 남겨 폴백이 읽는다.
+// ⑷ 2-1(분수)과 낱말·종류를 가른다 — 이 대단원에 분수가 나오면 시험이 빨개진다.
+//
+// 「자릿수가 같은/다른」 조건은 판정기가 **식**으로만 재던 축이라 문장형 갈래가 전량
+// 위반이었다. 발문의 소수들에서 직접 잴 수 있으므로 그쪽에 loose 를 얹었다(같은 커밋).
+
+/** 소수 나눗셈 소재 — 담기·자르기. 2-1 의 「도막」과 겹치지 않게 그릇·모양을 쓴다. */
+const DEC_POUR = [
+  { thing: "간장", unit: "L", into: "병" },
+  { thing: "참기름", unit: "L", into: "병" },
+  { thing: "꿀", unit: "kg", into: "통" },
+] as const;
+
+/** 2-2-3 소재 — 자연수 양을 소수씩 나눈다. */
+const DEC_PACK = [
+  { thing: "밀가루", unit: "kg", into: "봉지" },
+  { thing: "소금", unit: "kg", into: "봉지" },
+  { thing: "보리쌀", unit: "kg", into: "자루" },
+] as const;
+
+/** 2-2-4 반올림 갈래의 소재 — 「몇 배인지 반올림하여」. */
+/**
+ * 2-2-4 응용의 두 물건.
+ *
+ * `ordered` 는 **낱말이 값의 순서를 주장하는가**다 — 「긴 막대·짧은 막대」는 앞이 더
+ * 길다고 말하므로 `a > b` 일 때만 쓸 수 있다. 색으로만 가르는 짝은 순서를 주장하지
+ * 않으므로 「몇 배」가 1보다 작아도 옳다(0.9배는 초6 에 맞는 값이다).
+ */
+const ROUND_PAIRS = [
+  { x: "노란 끈", y: "파란 끈", ordered: false },
+  { x: "빨간 테이프", y: "초록 테이프", ordered: false },
+  { x: "긴 막대", y: "짧은 막대", ordered: true },
+] as const;
+
+// ── 2-2-1 자릿수가 같은 (소수)÷(소수) ──
+
+/** 연산 — 식 그대로. 소수점을 함께 옮겨 자연수 나눗셈으로 만든다. */
+function sameDpCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  const a = decStr(c.a, 1);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    num(c.q),
+    `두 수의 소수점을 오른쪽으로 한 자리씩 옮기면 ${expr(`${c.a}\\div${c.b}=${c.q}`)} 이므로 몫은 ${num(c.q)}입니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 소수 두 개가 지면에 서서 「자릿수가 같은」이 판정기에도 보인다. */
+function sameDpWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(
+    rng,
+    SAME_DIGIT.filter((x) => x.a <= 300 && x.q <= 9),
+  );
+  const a = decStr(c.a, 1);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(a, s.unit)}를 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
+      `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
+    num(c.q),
+    `전체를 한 ${s.into}에 담는 양으로 나눕니다. ${expr(`${a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 쓰고 남은 양을 나눈다(중간값이 소수 한 자리로 남게 구성이 보장). */
+function sameDpApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(
+    rng,
+    SAME_DIGIT.filter((x) => x.a <= 300 && x.q <= 9),
+  );
+  // ⚠️ 쓴 양을 **자연수**로 두면 «(소수)÷(소수)» 종류 규칙(요구 밖 자연수 금지)에 걸린다
+  //    — 판정기가 40/40 으로 잡았다. 쓴 양도 소수 한 자리로 두면 세 수의 자릿수가 모두
+  //    같아 「자릿수가 같은」까지 지면에서 선다(규칙이 옳고 내 문형이 틀렸던 자리).
+  // 합계의 끝자리가 0 이면 지면에 «17.0» 이 나간다 — 구성이 막는다(시험이 잡았다).
+  const u10 = pick(
+    rng,
+    Array.from({ length: 39 }, (_, i) => i + 11).filter(
+      (v) => v % 10 !== 0 && (c.a + v) % 10 !== 0,
+    ),
+  );
+  const total = c.a + u10;
+  const a = decStr(c.a, 1);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(decStr(total, 1), s.unit)} 중에서 ${unitNum(decStr(u10, 1), s.unit)}를 쓰고, ` +
+      `남은 ${s.thing}${josa(s.thing, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담았습니다. ` +
+      `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
+    num(c.q),
+    `남은 ${s.thing}${josa(s.thing, "은", "는")} ${expr(`${decStr(total, 1)}-${decStr(u10, 1)}=${a}`)} 입니다. ` +
+      `${expr(`${a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
+  );
+}
+
+/** 심화 — 역산. 곱을 나눗셈으로 되돌린다(발문에 소수 둘, 자릿수도 같다). */
+function sameDpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    SAME_DIGIT.filter((x) => x.a <= 500),
+  );
+  const a = decStr(c.a, 1);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    // ⚠️ `unitNum(b, "")` 은 `\mathrm{}` 빈 단위를 지면에 내보낸다(시험이 잡았다) — 맨 수는 `num`.
+    `어떤 수에 ${num(b)}${centsJosa(c.b, "을", "를")} 곱했더니 ${num(a)}${centsJosa(c.a, "이", "가")} 되었습니다. ` +
+      `어떤 수는 얼마입니까?`,
+    num(c.q),
+    `곱셈을 나눗셈으로 되돌립니다. ${expr(`${a}\\div${b}=${c.q}`)} 입니다.`,
+  );
+}
+
+// ── 2-2-2 자릿수가 다른 (소수)÷(소수) ──
+
+/** 연산 — 식 그대로. 나누는 수가 자연수가 되도록 함께 옮긴다. */
+function diffDpCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  const a = decStr(c.a, 2);
+  const b = decStr(c.b, 1);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    expr(q),
+    `나누는 수가 자연수가 되도록 두 수의 소수점을 함께 한 자리씩 옮겨 ` +
+      `${expr(`${decStr(c.a, 1)}\\div${c.b}`)} 로 계산합니다. ${expr(`${a}\\div${b}=${q}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 넓이를 가로로 나눠 세로를 구한다(소수 자릿수가 다르다). */
+function diffDpWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    DIFF_DIGIT.filter((x) => x.a <= 2000 && x.q % 10 === 0),
+  );
+  const a = decStr(c.a, 2);
+  const b = decStr(c.b, 1);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    // ⚠️ `unitNum(a, "m")}²` 는 지면에 `$4.83\,\mathrm{m}$²` 로 나가 위첨자가 수식 밖에 선다
+    //    (표본 육안이 잡았다). 넓이 단위는 다른 대단원처럼 **글자로** 적는다.
+    `넓이가 ${num(a)} m²이고 가로가 ${unitNum(b, "m")} 인 직사각형 모양 화단이 있습니다. ` +
+      `이 화단의 세로는 몇 m입니까?`,
+    expr(q),
+    `(세로)=(넓이)÷(가로)입니다. ${expr(`${a}\\div${b}=${q}`)}`,
+  );
+}
+
+/**
+ * 응용 — 두 걸음. 전체 넓이에서 한 부분을 빼고, 남은 직사각형의 세로를 구한다.
+ *
+ * ⚠️ 처음에는 「…씩 나누어 담으면 몇 개」로 썼는데 **몫이 소수라 「2.3개」가 나왔다**
+ * (표본 육안이 잡았다 — 값 검산은 통과한다). 이 소단원의 몫은 소수이므로 **개수를 묻는
+ * 문형 자체를 쓸 수 없다.** `DIFF_DIGIT` 에는 몫이 자연수인 짝이 아예 없다(`a%10!==0`
+ * 조건과 상충). 그래서 세로처럼 **소수로 답하는 것이 자연스러운 양**을 묻는다.
+ */
+function diffDpApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    DIFF_DIGIT.filter((x) => x.a <= 1500 && x.q % 10 === 0),
+  );
+  // 쓴 양도 소수로 — 위 2-2-1 응용과 같은 까닭(요구 밖 자연수 금지). 여기서는 두 자리로
+  // 두어 나누는 수(한 자리)와 **자릿수가 다른** 것이 발문에 그대로 선다.
+  const u100 = pick(
+    rng,
+    Array.from({ length: 289 }, (_, i) => i + 111).filter(
+      (v) => v % 10 !== 0 && (c.a + v) % 10 !== 0,
+    ),
+  );
+  const total = c.a + u100;
+  const a = decStr(c.a, 2);
+  const b = decStr(c.b, 1);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `넓이가 ${num(decStr(total, 2))} m²인 밭 중에서 ${num(decStr(u100, 2))} m²에 창고를 세우고, ` +
+      `남은 부분은 가로가 ${unitNum(b, "m")} 인 직사각형 모양으로 두었습니다. ` +
+      `남은 부분의 세로는 몇 m입니까?`,
+    expr(q),
+    `남은 부분의 넓이는 ${expr(`${decStr(total, 2)}-${decStr(u100, 2)}=${a}`)} 입니다. ` +
+      `(세로)=(넓이)÷(가로)이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산. `\square` 가 **나누는 수**다.
+ *
+ * ⚠️ 처음에는 `\square` 를 나누어지는 수로 두었는데(`\square\div1.5=5.7`), 그러면
+ * 지면에 보이는 두 소수의 자릿수가 **같아져** 「자릿수가 다른」 소단원이 아니게 된다
+ * (판정기가 40/40 으로 잡았다 — 답 8.55 는 두 자리지만 학생은 그것을 못 본다).
+ * 나누는 수를 묻게 뒤집으면 `8.55\div\square=5.7` 이라 자릿수 차이가 발문에 선다.
+ */
+function diffDpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    DIFF_DIGIT.filter((x) => x.a <= 2000 && x.q % 10 === 0),
+  );
+  const a = decStr(c.a, 2);
+  const b = decStr(c.b, 1);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 구하시오.\n\n${expr(`${a}\\div\\square=${q}`)}`,
+    expr(b),
+    `나누어지는 수를 몫으로 나누면 나누는 수가 나옵니다. ` +
+      `${expr(`${a}\\div${q}=${b}`)} 이므로 ${expr("\\square")} 는 ${num(b)}입니다.`,
+  );
+}
+
+// ── 2-2-3 (자연수)÷(소수) ──
+
+/** 연산 — 식 그대로. */
+function natDpCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${c.a}\\div${b}=\\square`)}`,
+    num(c.q),
+    `두 수의 소수점을 오른쪽으로 한 자리씩 옮기면 ${expr(`${c.a * 10}\\div${c.b}=${c.q}`)} 이므로 몫은 ${num(c.q)}입니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 자연수 양을 소수씩 나눈다. */
+function natDpWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_PACK);
+  const c = pick(
+    rng,
+    NAT_BY_DEC.filter((x) => x.a <= 60 && x.q <= 12),
+  );
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(c.a, s.unit)}을 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담으려고 합니다. ` +
+      `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
+    num(c.q),
+    `전체를 한 ${s.into}에 담는 양으로 나눕니다. ${expr(`${c.a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 쓰고 남은 자연수 양을 소수로 나눈다. */
+function natDpApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_PACK);
+  const c = pick(
+    rng,
+    NAT_BY_DEC.filter((x) => x.a <= 40 && x.q <= 12),
+  );
+  const u = intBetween(rng, 1, 5);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(c.a + u, s.unit)}을 사서 ${unitNum(u, s.unit)}을 쓰고, ` +
+      `남은 ${s.thing}${josa(s.thing, "을", "를")} 한 ${s.into}에 ${unitNum(b, s.unit)}씩 나누어 담았습니다. ` +
+      `${s.into}${josa(s.into, "은", "는")} 몇 개 필요합니까?`,
+    num(c.q),
+    `남은 ${s.thing}${josa(s.thing, "은", "는")} ${expr(`${c.a + u}-${u}=${c.a}`)} 입니다. ` +
+      `${expr(`${c.a}\\div${b}=${c.q}`)} 이므로 ${num(c.q)}개입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산. `\square` 가 **나누어지는 자연수**다.
+ *
+ * ⚠️ 처음에는 나누는 수를 물었는데(`17\div\square=10`), 그러면 지면에 소수가 **하나도**
+ * 없어 「(자연수)÷(소수)」가 사라진다(표본 육안이 잡았다 — 판정기는 □ 를 와일드카드로
+ * 세어 통과시킨다). 2-2-2 심화와 **반대 방향**의 같은 결함이다:
+ * 조건이 되는 종류가 □ 뒤에 숨으면 학생은 그 성질을 못 본다.
+ */
+function natDpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  const b = decStr(c.b, 1);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 구하시오.\n\n${expr(`\\square\\div${b}=${c.q}`)}`,
+    num(c.a),
+    `나눗셈을 곱셈으로 되돌립니다. ${expr(`${c.q}\\times${b}=${c.a}`)} 이므로 ` +
+      `${expr("\\square")} 는 ${num(c.a)}입니다.`,
+  );
+}
+
+// ── 2-2-4 몫을 반올림하여 나타내기 ──
+
+/**
+ * 반올림 재료 — `place` 자리까지 나타낼 때 **그 자리에서 딱 떨어지지 않는** 짝.
+ *
+ * 판정기(이 커밋에서 내가 얹은 「몫을 반올림하여」 검사)가 «딱 떨어지면 위반»으로 보므로
+ * 구성이 그 조건을 보장한다 — 표준 `decDiv62` 의 `usable()` 과 같은 뜻을 풀로 만든 것이다.
+ * `shown` 은 해설에 적을 «한 자리 더» 값(×10^(place+1) 내림), `cut` 은 반올림한 값.
+ */
+function roundCase(
+  rng: Rng,
+  place: number,
+): { a: number; b: number; shown: number; cut: number } {
+  const pool: { a: number; b: number; shown: number; cut: number }[] = [];
+  for (const b of ROUND_DIVISORS) {
+    for (let a = 11; a <= 99; a += 1) {
+      const scale = a * 10 ** place;
+      const shown = Math.floor((a * 10 ** (place + 1)) / b);
+      const cut = Math.floor(scale / b) + ((scale % b) * 2 >= b ? 1 : 0);
+      // ㉠ 딱 떨어지면 반올림이 뜻이 없다 ㉡ 보일 자리에서 끝나도 `\ldots` 가 거짓말이 된다
+      // ㉢·㉣ 꼬리 0 은 초등 지면에 안 쓴다
+      if (a % b === 0) continue;
+      if ((a * 10 ** (place + 1)) % b === 0) continue;
+      if (shown % 10 === 0 || cut % 10 === 0) continue;
+      pool.push({ a, b, shown, cut });
+    }
+  }
+  return pick(rng, pool);
+}
+
+/** 연산 — 식이 주어진다. 반올림 절차 한 번. */
+function roundCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  const placeName = place === 1 ? "첫" : "둘";
+  const nextName = place === 1 ? "둘" : "셋";
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 반올림하여 소수 ${placeName}째 자리까지 나타내시오.\n\n${expr(`${c.a}\\div${c.b}`)}`,
+    expr(decStr(c.cut, place)),
+    `몫은 ${expr(`${decStr(c.shown, place + 1)}\\ldots`)} 입니다. 소수 ${nextName}째 자리에서 반올림하면 ` +
+      `${expr(decStr(c.cut, place))} 입니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 나눗셈을 세운 뒤 반올림한다(해설에 식이 남아 판정기가 읽는다). */
+function roundWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_PACK);
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  const placeName = place === 1 ? "첫" : "둘";
+  const nextName = place === 1 ? "둘" : "셋";
+  return make(
+    unit,
+    `${s.thing} ${unitNum(c.a, s.unit)}을 ${num(c.b)}개의 ${s.into}에 똑같이 나누어 담으려고 합니다. ` +
+      // 단위는 소재에서 가져온다 — `kg` 를 박아 두면 L 소재가 하나 들어오는 날 조용히 틀린다.
+      `한 ${s.into}에 담기는 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}인지 반올림하여 소수 ${placeName}째 자리까지 나타내시오.`,
+    expr(decStr(c.cut, place)),
+    `전체를 ${s.into} 수로 나눕니다. ${expr(`${c.a}\\div${c.b}`)} 의 몫은 ${expr(`${decStr(c.shown, place + 1)}\\ldots`)} 이므로 ` +
+      `소수 ${nextName}째 자리에서 반올림하면 ${expr(decStr(c.cut, place))} 입니다.`,
+  );
+}
+
+/**
+ * 응용 — 두 걸음. 두 길이의 «몇 배»를 구해 반올림한다(다른 개념 결합).
+ *
+ * ⚠️ **소재를 값보다 먼저 뽑으면 낱말이 거짓말을 한다.** 처음에는 그렇게 짜서
+ * 「긴 막대가 $11$ cm, 짧은 막대가 $13$ cm」가 나왔다(씨앗 0~1999 중 7건 · 0.35%).
+ * 값·판정기·시험·변이가 **전부 통과**하는 부류다 — 값은 옳고 낱말만 틀리기 때문이다.
+ * 그래서 **값을 정한 뒤에** 소재를 고르고, 순서를 주장하는 짝은 `a > b` 일 때만 쓴다.
+ * (걸러 내는 쪽 — `a > b` 인 짝만 만들기 — 은 「몇 배가 1보다 작은」 문항을 통째로
+ *  없애므로 안 쓴다. 그 값 자체는 옳다.)
+ */
+function roundApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  const p = pick(
+    rng,
+    ROUND_PAIRS.filter((pair) => !pair.ordered || c.a > c.b),
+  );
+  const placeName = place === 1 ? "첫" : "둘";
+  const nextName = place === 1 ? "둘" : "셋";
+  return make(
+    unit,
+    `${p.x}${josa(p.x, "이", "가")} ${unitNum(c.a, "cm")}, ${p.y}${josa(p.y, "이", "가")} ${unitNum(c.b, "cm")} 입니다. ` +
+      `${p.x} 길이는 ${p.y} 길이의 몇 배인지 반올림하여 소수 ${placeName}째 자리까지 나타내시오.`,
+    expr(decStr(c.cut, place)),
+    `${p.x} 길이를 ${p.y} 길이로 나눕니다. ${expr(`${c.a}\\div${c.b}`)} 의 몫은 ` +
+      `${expr(`${decStr(c.shown, place + 1)}\\ldots`)} 이므로 소수 ${nextName}째 자리에서 반올림하면 ` +
+      `${expr(decStr(c.cut, place))} 입니다.`,
+  );
+}
+
+/** 심화 — 두 자리로 각각 반올림해 견준다(같은 몫을 다른 자리로 보는 눈). */
+function roundDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 두 자리 모두 조건을 만족해야 한다 — 한쪽만 보면 다른 쪽이 딱 떨어질 수 있다.
+  for (let t = 0; t < 200; t += 1) {
+    const c = roundCase(rng, 1);
+    const scale2 = c.a * 100;
+    const shown2 = Math.floor((c.a * 1000) / c.b);
+    const cut2 = Math.floor(scale2 / c.b) + ((scale2 % c.b) * 2 >= c.b ? 1 : 0);
+    if (c.a % c.b === 0 || (c.a * 1000) % c.b === 0) continue;
+    if (shown2 % 10 === 0 || cut2 % 10 === 0) continue;
+    const diff = cut2 - c.cut * 10; // ×100 자리에서의 차 — 정수로 남는다
+    if (diff === 0) continue; // 두 값이 같으면 「어느 쪽이 큰가」가 뜻을 잃는다
+    return make(
+      unit,
+      `${expr(`${c.a}\\div${c.b}`)} 의 몫을 반올림하여 소수 첫째 자리까지 나타낸 값과 ` +
+        `소수 둘째 자리까지 나타낸 값의 차를 구하시오.`,
+      expr(decStr(Math.abs(diff), 2)),
+      // ⚠️ 뺄셈식의 두 항은 **각자의 자리**로 적는다 — 첫째 자리 값을 두 자리로 적으면
+      //    `6.70` 같은 꼬리 0 이 지면에 나간다(시험이 잡았다).
+      `소수 첫째 자리까지 나타내면 ${expr(decStr(c.cut, 1))}, 소수 둘째 자리까지 나타내면 ` +
+        `${expr(decStr(cut2, 2))} 입니다. ` +
+        `${expr(
+          diff > 0
+            ? `${decStr(cut2, 2)}-${decStr(c.cut, 1)}=${decStr(diff, 2)}`
+            : `${decStr(c.cut, 1)}-${decStr(cut2, 2)}=${decStr(-diff, 2)}`,
+        )}`,
+    );
+  }
+  throw new Error(
+    "2-2-4 심화: 두 자리 모두 반올림이 뜻을 갖는 짝을 못 만들었습니다",
+  );
+}
+
+// ── 2-2-5 나누어 주고 남는 양 알아보기 ──
+
+/**
+ * 남는 양 재료 — **몫은 자연수, 나머지는 나누어지는 수와 같은 소수 한 자리.**
+ * `total10`·`rem10` 은 ×10 정수. 나머지가 0 이면 「남는 양」이 뜻을 잃으므로 1 이상이다.
+ */
+function shareRemainder(
+  rng: Rng,
+  perMax = 6,
+): { per: number; people: number; total10: number; rem10: number } {
+  const per = intBetween(rng, 2, perMax);
+  const people = intBetween(rng, 3, 7);
+  const rem10 = intBetween(rng, 0, per - 1) * 10 + intBetween(rng, 1, 9);
+  return { per, people, total10: people * per * 10 + rem10, rem10 };
+}
+
+/** 연산 — 식이 주어진다. 몫과 나머지를 함께 답한다. */
+function remCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  const total = decStr(r.total10, 1);
+  const rem = decStr(r.rem10, 1);
+  return make(
+    unit,
+    `${expr(`${total}\\div${r.per}`)} 에서 몫을 자연수까지 구할 때 몫과 남는 수를 구하시오.`,
+    `몫 ${num(r.people)}, 남는 수 ${num(rem)}`,
+    `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 이므로 몫은 ${num(r.people)}이고, ` +
+      `${expr(`${total}-${r.per * r.people}=${rem}`)} 이므로 남는 수는 ${num(rem)}입니다.`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 몇 사람에게 주고 몇이 남는가. */
+function remWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const r = shareRemainder(rng);
+  const total = decStr(r.total10, 1);
+  const rem = decStr(r.rem10, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(total, s.unit)}를 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주려고 합니다. ` +
+      `몇 명에게 나누어 줄 수 있고 몇 ${s.unit}가 남습니까?`,
+    `${num(r.people)}명, ${unitNum(rem, s.unit)}`,
+    `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 이므로 ${num(r.people)}명에게 줄 수 있고, ` +
+      `${expr(`${total}-${r.per * r.people}=${rem}`)} 이므로 ${unitNum(rem, s.unit)} 가 남습니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 남는 양을 채우려면 얼마가 더 필요한가(뺄셈 한 겹 더). */
+function remApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const r = shareRemainder(rng);
+  const total = decStr(r.total10, 1);
+  const rem = decStr(r.rem10, 1);
+  const need10 = r.per * 10 - r.rem10; // 한 사람 몫을 채우는 데 모자란 양
+  return make(
+    unit,
+    `${s.thing} ${unitNum(total, s.unit)}를 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주었더니 조금 남았습니다. ` +
+      `남은 ${s.thing}${josa(s.thing, "으로", "로")} 한 사람에게 더 주려면 ${s.thing}${josa(s.thing, "이", "가")} 몇 ${s.unit} 더 필요합니까?`,
+    expr(decStr(need10, 1)),
+    `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 이므로 ${num(r.people)}명에게 주고 ` +
+      `${expr(`${total}-${r.per * r.people}=${rem}`)} 만큼 남습니다. ` +
+      `${expr(`${r.per}-${rem}=${decStr(need10, 1)}`)} 이므로 ${num(decStr(need10, 1))} ${s.unit} 더 필요합니다.`,
+  );
+}
+
+/** 심화 — 역산. 몫과 남는 수에서 처음 양을 되짚는다. */
+function remDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const r = shareRemainder(rng);
+  const total = decStr(r.total10, 1);
+  const rem = decStr(r.rem10, 1);
+  return make(
+    unit,
+    `${s.thing}${josa(s.thing, "을", "를")} 한 사람에게 ${unitNum(r.per, s.unit)}씩 나누어 주었더니 ` +
+      `${num(r.people)}명에게 줄 수 있고 ${unitNum(rem, s.unit)} 가 남았습니다. 처음에 있던 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(total),
+    `나누어 준 양은 ${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 입니다. ` +
+      `남은 양을 더하면 ${expr(`${r.per * r.people}+${rem}=${total}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -4740,6 +5238,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: mixedFracWord,
     응용: mixedFracApply,
     심화: mixedFracDeep,
+  },
+  "초6|2-2-1": {
+    연산: sameDpCalc,
+    기본: sameDpWord,
+    응용: sameDpApply,
+    심화: sameDpDeep,
+  },
+  "초6|2-2-2": {
+    연산: diffDpCalc,
+    기본: diffDpWord,
+    응용: diffDpApply,
+    심화: diffDpDeep,
+  },
+  "초6|2-2-3": {
+    연산: natDpCalc,
+    기본: natDpWord,
+    응용: natDpApply,
+    심화: natDpDeep,
+  },
+  "초6|2-2-4": {
+    연산: roundCalc,
+    기본: roundWord,
+    응용: roundApply,
+    심화: roundDeep,
+  },
+  "초6|2-2-5": {
+    연산: remCalc,
+    기본: remWord,
+    응용: remApply,
+    심화: remDeep,
   },
 };
 
