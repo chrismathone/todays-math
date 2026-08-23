@@ -14,12 +14,17 @@
  * 순환소수 `\overline` 표기는 **실제 렌더러**로 그려 repeat-dot(점 표기)과
  * 붉은 글자(#cc0000)·raw 폴백 부재를 확인한다 (CLAUDE.md 2026-08-14 교훈).
  */
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import path, { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
+import {
+  figureSvgSize,
+  figureSvgViewBoxWidth,
+} from "../../lib/figure/figureSvgFrame";
+import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -36,6 +41,11 @@ import { renderMathHtml } from "../../lib/math/renderMathHtml";
 const BIG10 = BigInt(10);
 
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
+
+/** 도형 엔진이 이 컴퓨터에 있는가 (figureRegions.test.ts 와 같은 판정). */
+const hasFigureEngine =
+  existsSync(path.join(process.cwd(), "vendor", "figure-engine")) ||
+  existsSync(process.env.FIGURE_ENGINE_PATH ?? "F:\시험지변환기");
 const ALL = [...M2_RATIONAL, ...M2_COUNTING, ...M2_PROB];
 
 // ── 검산 소품 (생성기와 다른 방법) ─────────────────────
@@ -274,6 +284,230 @@ function countPaths(
   };
   walk(0, 0, false);
   return cnt;
+}
+
+// ── 채색 그림 되읽기 (유형 15 색칠하기 · 회전판) ─────────
+//
+// **그림이 곧 검산이다.** 생성기가 무엇을 세었는지 묻지 않고, `figureSpec` 에서
+// ⑴ 영역이 나눠 갖는 경계 조각으로 **이웃 그래프**를, ⑵ 영역 안에 놓인 이름표로
+// **칸에 적힌 글자**를 되읽어 답을 **다시 만든다**. 그림을 잘못 그리면 여기서
+// 갈라진다 — 발문·정답만 보는 검산은 그 자리를 구조적으로 못 본다.
+
+type Pt = [number, number];
+type ArcRef = { circle: string; from: string; to: string; dir: string };
+type Piece = { seg?: [string, string]; arc?: ArcRef };
+type FigSpec = {
+  version: number;
+  canvas?: { width: number; height: number };
+  points: Record<string, Pt | { type: string; circle: string; angle: number }>;
+  circles?: Record<string, { center: string; radius: number }>;
+  regions: Record<string, { boundary: Piece[]; fill: string }>;
+  labels: Record<string, { text: string } | string>;
+};
+
+const TAU = Math.PI * 2;
+
+/** `on_circle` 점을 좌표로 편다 — SVG 는 y 가 아래로 자란다(각은 화면 기준). */
+function resolvePoints(spec: FigSpec): Record<string, Pt> {
+  const out: Record<string, Pt> = {};
+  for (const [name, v] of Object.entries(spec.points)) {
+    if (Array.isArray(v)) out[name] = [v[0], v[1]];
+  }
+  for (const [name, v] of Object.entries(spec.points)) {
+    if (Array.isArray(v)) continue;
+    const circle = spec.circles![v.circle]!;
+    const ctr = out[circle.center]!;
+    const a = (v.angle * Math.PI) / 180;
+    out[name] = [
+      ctr[0] + circle.radius * Math.cos(a),
+      ctr[1] - circle.radius * Math.sin(a),
+    ];
+  }
+  return out;
+}
+
+/** 화면 각(y 아래로 자람 보정) — 0 은 오른쪽, 반시계가 양수. */
+function angleAt(p: Pt, c: Pt): number {
+  return Math.atan2(-(p[1] - c[1]), p[0] - c[0]);
+}
+
+/** 경계 조각의 한가운데 — 선분은 중점, 호는 호의 중앙. */
+function pieceMid(piece: Piece, pts: Record<string, Pt>, spec: FigSpec): Pt {
+  if (piece.seg) {
+    const [a, b] = piece.seg;
+    return [(pts[a]![0] + pts[b]![0]) / 2, (pts[a]![1] + pts[b]![1]) / 2];
+  }
+  const arc = piece.arc!;
+  const circle = spec.circles![arc.circle]!;
+  const ctr = pts[circle.center]!;
+  const a0 = angleAt(pts[arc.from]!, ctr);
+  const a1 = angleAt(pts[arc.to]!, ctr);
+  const ccw = (((a1 - a0) % TAU) + TAU) % TAU;
+  const m = a0 + (arc.dir === "ccw" ? ccw : ccw - TAU) / 2;
+  return [
+    ctr[0] + circle.radius * Math.cos(m),
+    ctr[1] - circle.radius * Math.sin(m),
+  ];
+}
+
+/**
+ * 영역 안쪽을 대표하는 점 — 경계 조각 한가운데들의 평균.
+ * 꼭짓점 평균으로는 안 된다: 고리 부채꼴처럼 넓은 조각에서 안쪽 원 쪽으로
+ * 끌려가 가운데 영역의 이름표와 거리가 같아진다(실측 k=3 에서 정확히 동점).
+ */
+function regionInside(
+  name: string,
+  spec: FigSpec,
+  pts: Record<string, Pt>,
+): Pt {
+  const mids = spec.regions[name]!.boundary.map((p) => pieceMid(p, pts, spec));
+  const n = mids.length;
+  return [
+    mids.reduce((s, m) => s + m[0], 0) / n,
+    mids.reduce((s, m) => s + m[1], 0) / n,
+  ];
+}
+
+/** 경계 조각의 신원 — 같은 두 점(차례 무시)의 선분/호이면 같은 조각이다. */
+function pieceKey(p: Piece): string {
+  if (p.seg) return `seg:${[...p.seg].sort().join("-")}`;
+  const a = p.arc!;
+  return `arc:${a.circle}:${[a.from, a.to].sort().join("-")}`;
+}
+
+/** 조각 하나를 나눠 가지면 이웃 — 그림에서 되읽은 이웃 그래프. */
+function adjacencyFromFigure(
+  spec: FigSpec,
+  names: readonly string[],
+): number[][] {
+  const sets = names.map(
+    (n) => new Set(spec.regions[n]!.boundary.map(pieceKey)),
+  );
+  const adj: number[][] = names.map(() => []);
+  for (let i = 0; i < names.length; i += 1) {
+    for (let j = i + 1; j < names.length; j += 1) {
+      if ([...sets[i]!].some((key) => sets[j]!.has(key))) {
+        adj[i]!.push(j);
+        adj[j]!.push(i);
+      }
+    }
+  }
+  for (const row of adj) row.sort((a, b) => a - b);
+  return adj;
+}
+
+/** 영역마다 그 안에 놓인 이름표 — 대표 점에서 가장 가까운 라벨의 글자. */
+function regionLabels(spec: FigSpec, names: readonly string[]): string[] {
+  const pts = resolvePoints(spec);
+  const marks = Object.entries(spec.labels).map(([point, v]) => ({
+    text: typeof v === "string" ? v : v.text,
+    at: pts[point]!,
+  }));
+  return names.map((name) => {
+    const inside = regionInside(name, spec, pts);
+    let best = marks[0]!;
+    let bestD = Number.POSITIVE_INFINITY;
+    for (const m of marks) {
+      const d = Math.hypot(m.at[0] - inside[0], m.at[1] - inside[1]);
+      if (d < bestD) {
+        bestD = d;
+        best = m;
+      }
+    }
+    return best.text;
+  });
+}
+
+/**
+ * 도형 종류별 이웃 — **모듈을 안 보고 여기에 따로 적는다**(이중 기입).
+ * 0 원판 k등분 · 1 가로 띠 k칸 · 2 위 한 칸+아래 k칸 · 3 가운데 원+둘레 k등분.
+ */
+function expectedAdjacency(shape: number, k: number): number[][] {
+  const parts = shape === 0 || shape === 1 ? k : k + 1;
+  const adj: number[][] = Array.from({ length: parts }, () => []);
+  const link = (a: number, b: number): void => {
+    adj[a]!.push(b);
+    adj[b]!.push(a);
+  };
+  if (shape === 0) {
+    for (let i = 0; i < k; i += 1) link(i, (i + 1) % k);
+  } else if (shape === 1) {
+    for (let i = 0; i + 1 < k; i += 1) link(i, i + 1);
+  } else if (shape === 2) {
+    for (let i = 1; i <= k; i += 1) link(0, i);
+    for (let i = 1; i < k; i += 1) link(i, i + 1);
+  } else {
+    for (let i = 1; i <= k; i += 1) link(0, i);
+    for (let i = 1; i <= k; i += 1) link(i, (i % k) + 1);
+  }
+  for (const row of adj) row.sort((a, b) => a - b);
+  return adj;
+}
+
+/**
+ * 색칠 가짓수 — **전수 나열**. 생성기는 곱셈식 하나로 세므로 방법이 다르다.
+ * `allDistinct` 면 모든 부분의 색이 서로 달라야 하고, 아니면 이웃만 다르면 된다.
+ */
+function countColorings(
+  adj: readonly number[][],
+  n: number,
+  allDistinct: boolean,
+): number {
+  const color: number[] = [];
+  let cnt = 0;
+  const rec = (i: number): void => {
+    if (i === adj.length) {
+      cnt += 1;
+      return;
+    }
+    for (let c = 0; c < n; c += 1) {
+      const clash = allDistinct
+        ? color.includes(c)
+        : adj[i]!.some((j) => j < i && color[j] === c);
+      if (clash) continue;
+      color.push(c);
+      rec(i + 1);
+      color.pop();
+    }
+  };
+  rec(0);
+  return cnt;
+}
+
+/** 이 파일의 그림은 모두 폭 224 — 제품이 viewBox 폭으로 등급을 정한다. */
+const SHADE_CANVAS_W = 224;
+
+/**
+ * 회전판 그림에서 칸에 적힌 수를 칸 차례대로 되읽는다.
+ * 「크기가 같은 $k$개의 부분」이라는 발문의 주장도 여기서 함께 잰다 —
+ * 중심각이 하나라도 다르면 그 발문은 거짓이 된다.
+ */
+function spinnerNumbers(p: MidProblem): number[] {
+  const spec = p.figureSpec as unknown as FigSpec;
+  expect(spec.version).toBe(2);
+  expect(spec.canvas?.width).toBe(SHADE_CANVAS_W);
+  const k = p.facts.k!;
+  const names = Array.from({ length: k }, (_v, i) => `s${i}`);
+  // 영역 이름을 **전부** 견준다 — 접두사로 거르면 새로 는 영역이 조용히 샌다
+  expect(new Set(Object.keys(spec.regions))).toEqual(
+    new Set([...names, "ptr"]),
+  );
+  const pts = resolvePoints(spec);
+  const circle = spec.circles!.c!;
+  const ctr = pts[circle.center]!;
+  for (let i = 0; i < k; i += 1) {
+    const a0 = angleAt(pts[`A${i}`]!, ctr);
+    const a1 = angleAt(pts[`A${(i + 1) % k}`]!, ctr);
+    const cw = (((a0 - a1) % TAU) + TAU) % TAU;
+    expect((cw * 180) / Math.PI).toBeCloseTo(360 / k, 6);
+  }
+  const nums = regionLabels(spec, names).map((t) => Number(t));
+  // 발문이 «$1$부터 $k$까지» 라고 했으니 그림도 그래야 한다
+  expect([...nums].sort((a, b) => a - b)).toEqual(
+    Array.from({ length: k }, (_v, i) => i + 1),
+  );
+  expect(p.content).toContain(`$1$부터 $${k}$까지의 자연수`);
+  return nums;
 }
 
 /** 유형 18 — 이 파일의 자체 진리표 (모듈과 별도로 적었다 — 이중 기입). */
@@ -776,6 +1010,35 @@ const CHECKS: Record<string, Check> = {
     expect(cnt).toBe(f.ans);
     expect(p.answer).toBe(`$${f.ans}$`);
   },
+  [`${C}|15`]: (p) => {
+    const f = p.facts;
+    const spec = p.figureSpec as unknown as FigSpec;
+    expect(spec.version).toBe(2);
+    expect(spec.canvas?.width).toBe(SHADE_CANVAS_W);
+    const letters = ["A", "B", "C", "D", "E"].slice(0, f.parts!);
+    const names = Array.from({ length: f.parts! }, (_v, i) => `g${i}`);
+    expect(new Set(Object.keys(spec.regions))).toEqual(new Set(names));
+    // 이름표가 영역 차례대로 A, B, C, … 여야 해설의 «B 는 A 와 이웃하므로» 가 맞다
+    expect(regionLabels(spec, names)).toEqual(letters);
+    // 그림에서 되읽은 이웃 그래프가 발문이 말하는 도형과 같은가
+    const drawn = adjacencyFromFigure(spec, names);
+    expect(drawn, `shape=${f.shape} k=${f.k}`).toEqual(
+      expectedAdjacency(f.shape!, f.k!),
+    );
+    // 정답은 **그림에서 되읽은 그래프**로 전수 나열해 다시 만든다
+    expect(countColorings(drawn, f.colors!, f.rule === 0)).toBe(f.ans);
+    expect(p.answer).toBe(`$${f.ans}$`);
+    // 발문이 그림과 같은 말을 하는가 — 부분 이름은 있고 그다음 글자는 없어야 한다
+    expect(p.content).toContain(`$${f.colors}$가지 색`);
+    for (const L of letters) expect(p.content, L).toContain(L);
+    const extra = ["A", "B", "C", "D", "E"][f.parts!];
+    if (extra) expect(p.content, extra).not.toContain(extra);
+    // 두 갈래가 서로 다른 문구를 쓴다 (규칙이 바뀌면 발문도 바뀐다)
+    expect(p.content.includes("모두 다른 색을 칠하는")).toBe(f.rule === 0);
+    expect(p.content.includes("이웃하는 부분에는 서로 다른 색")).toBe(
+      f.rule === 1,
+    );
+  },
   [`${C}|16`]: (p) => {
     const f = p.facts;
     const via = f.via === 1 ? { px: f.px!, py: f.py! } : null;
@@ -821,6 +1084,19 @@ const CHECKS: Record<string, Check> = {
   // ── 확률 ─────────────────────────────────────────
   [`${P}|01`]: (p) => {
     const f = p.facts;
+    if (f.kind === 2) {
+      // 회전판 — 분자는 **그림에서 되읽은 칸 숫자**로 다시 센다
+      const nums = spinnerNumbers(p);
+      const hit = nums.filter((v) => v % f.m! === 0).length;
+      const g0 = gcdT(hit, nums.length);
+      expect({ n: hit / g0, d: nums.length / g0 }).toEqual({
+        n: f.num,
+        d: f.den,
+      });
+      expect(parseFrac(p.answer)).toEqual({ n: f.num, d: f.den });
+      expect(p.content).toContain(`$${f.m}$의 배수`);
+      return;
+    }
     let cnt = 0;
     for (let a = 1; a <= 6; a += 1) {
       for (let b = 1; b <= 6; b += 1) {
@@ -843,6 +1119,15 @@ const CHECKS: Record<string, Check> = {
   },
   [`${P}|03`]: (p) => {
     const f = p.facts;
+    if (f.kind === 1) {
+      // 회전판 — «절대로 일어나지 않는다/반드시 일어난다» 를 그림에서 확인한다
+      const nums = spinnerNumbers(p);
+      expect(nums.filter((v) => v >= f.k! + 1).length).toBe(0);
+      expect(nums.filter((v) => v <= f.k!).length).toBe(nums.length);
+      expect(f.ans).toBe(1);
+      expect(p.answer).toBe("$1$");
+      return;
+    }
     // 표본공간을 실제로 나열 — 노란 공은 0개, 빨강∪파랑이 전부
     const balls = [
       ...Array.from({ length: f.r! }, () => "빨"),
@@ -892,6 +1177,20 @@ const CHECKS: Record<string, Check> = {
     const f = p.facts;
     let num = 0;
     let den = 0;
+    if (f.kind === 2) {
+      // 회전판 — 분자와 «동시에 일어나지 않는다» 를 둘 다 그림에서 확인한다
+      const nums = spinnerNumbers(p);
+      expect(
+        nums.filter((v) => v % f.a! === 0 && v % f.b! === 0).length,
+        "두 배수 사건이 겹친다 — 발문의 «동시에 일어나지 않는다» 가 거짓",
+      ).toBe(0);
+      num = nums.filter((v) => v % f.a! === 0 || v % f.b! === 0).length;
+      den = nums.length;
+      const g2 = gcdT(num, den);
+      expect({ n: num / g2, d: den / g2 }).toEqual({ n: f.num, d: f.den });
+      expect(parseFrac(p.answer)).toEqual({ n: f.num, d: f.den });
+      return;
+    }
     if (f.kind === 0) {
       den = f.N!;
       for (let v = 1; v <= f.N!; v += 1) {
@@ -1020,9 +1319,9 @@ const CHECKS: Record<string, Check> = {
 
 type CatalogType = { minor: string; number: string; title: string };
 
-describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
-  it("48유형이 등록돼 있고 유형 번호가 계획과 같다", () => {
-    expect(ALL.length).toBe(48);
+describe("중2 수·확률 49유형 (2A-중2수확률 + 2E-회전판색칠)", () => {
+  it("49유형이 등록돼 있고 유형 번호가 계획과 같다", () => {
+    expect(ALL.length).toBe(49);
     const nums = (minor: string): string[] =>
       ALL.filter((e) => e.rpmMinor === minor)
         .map((e) => e.rpmType)
@@ -1030,10 +1329,10 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
     expect(nums("유리수와 순환소수")).toEqual(
       Array.from({ length: 20 }, (_v, i) => String(i + 1).padStart(2, "0")),
     );
-    expect(nums("경우의 수")).toEqual([
-      ...Array.from({ length: 14 }, (_v, i) => String(i + 1).padStart(2, "0")),
-      "16", // 15 색칠하기는 2B 대기 (영역 채색 필요 — m2Counting 머리 주석)
-    ]);
+    // 15 색칠하기가 들어와 경우의 수는 01~16 전량이 됐다 (세션 2E, 채색 축)
+    expect(nums("경우의 수")).toEqual(
+      Array.from({ length: 16 }, (_v, i) => String(i + 1).padStart(2, "0")),
+    );
     expect(nums("확률")).toEqual(
       Array.from({ length: 13 }, (_v, i) => String(i + 1).padStart(2, "0")),
     );
@@ -1068,7 +1367,7 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
         ["순환소수의 분수 표현", 4],
         ["순환소수를 포함한 식의 계산", 4],
         ["경우의 수", 7],
-        ["여러 가지 경우의 수", 8],
+        ["여러 가지 경우의 수", 9],
         ["확률의 뜻과 성질", 5],
         ["확률의 계산", 8],
       ]),
@@ -1206,7 +1505,7 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
       }
     }
     // 목록이 아닌 유형은 보기로 읽히면 안 된다 (반대쪽 표본)
-    for (const key of [`${R}|03`, `${C}|16`, `${P}|07`]) {
+    for (const key of [`${R}|03`, `${C}|15`, `${C}|16`, `${P}|07`]) {
       const parsed = parseProblemContent(
         generateMiddleProblem(key, 20260823).content,
       );
@@ -1214,14 +1513,74 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
     }
   });
 
-  it("그림은 최단거리(16)에만 있고 나머지는 없다", () => {
+  /**
+   * 그림이 **있어야 할 자리에만** 있는가 — 씨앗·변형을 전수로 훑는다.
+   *
+   * 「16 에만 있다」로 못 박아 두면 갈래가 늘 때 조용히 어긋난다. 그래서
+   * ⑴ 늘 그림이 있는 유형 ⑵ 회전판 갈래일 때만 있는 유형 ⑶ 없어야 하는
+   * 나머지를 나누고, ⑵ 는 **발문이 회전판인가**와 그림 유무가 같은지를 본다.
+   */
+  it("그림은 있어야 할 유형에만 있다 (씨앗·변형 전수)", () => {
+    const ALWAYS = new Set([`${C}|15`, `${C}|16`]);
+    const SPINNER_TYPES = new Set([`${P}|01`, `${P}|03`, `${P}|06`]);
+    let spinnerSeen = 0;
     for (const e of ALL) {
-      const p = generateMiddleProblem(e.key, 20260823);
-      if (e.key === `${C}|16`) {
-        expect(p.figureSpec).toBeTruthy();
-      } else {
-        expect(p.figureSpec ?? null, e.key).toBeNull();
+      for (const seed of SEEDS) {
+        for (let v = 0; v < 8; v += 1) {
+          const p = generateMiddleProblem(e.key, seed, v);
+          const has = Boolean(p.figureSpec);
+          if (ALWAYS.has(e.key)) {
+            expect(has, `${e.key} v=${v}`).toBe(true);
+          } else if (SPINNER_TYPES.has(e.key)) {
+            expect(has, `${e.key} seed=${seed} v=${v}`).toBe(
+              p.content.includes("원판"),
+            );
+            if (has) spinnerSeen += 1;
+          } else {
+            expect(p.figureSpec ?? null, `${e.key} v=${v}`).toBeNull();
+          }
+        }
       }
     }
+    // 표본이 회전판 자리를 실제로 밟는가 — 0이면 이 검사는 아무것도 못 잰다
+    expect(spinnerSeen).toBeGreaterThan(20);
+  });
+
+  /**
+   * 채색 그림이 **실제 엔진**으로 그려지는가 — 모킹하지 않는다.
+   * (없는 축은 변이시킬 수 없다: CLAUDE.md 2026-08-19·20)
+   *
+   * 지면 등급도 같이 잰다. 제품은 `viewBox` **폭 하나로** 그림 폭을 정하므로
+   * (`figureSvgFrame`), 폭이 내용 따라 정해지면 같은 유형인데 지면 글자 크기가
+   * 갈린다 — 실측 첫 판이 11.57~16.14px 로 갈렸고 셋은 본문 12.5px 아래였다.
+   */
+  describe.skipIf(!hasFigureEngine)("채색 그림 실렌더", () => {
+    it("실제로 나가는 그림이 모두 그려지고 지면 등급이 하나다", async () => {
+      const seen = new Map<string, Record<string, unknown>>();
+      for (const key of [`${C}|15`, `${P}|01`, `${P}|03`, `${P}|06`]) {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 12; v += 1) {
+            const p = generateMiddleProblem(key, seed, v);
+            if (!p.figureSpec) continue;
+            seen.set(JSON.stringify(p.figureSpec), p.figureSpec);
+          }
+        }
+      }
+      // 표본이 도형 갈래를 넓게 밟는가 (원판·띠·위아래·고리 × 회전판 칸 수)
+      expect(seen.size).toBeGreaterThanOrEqual(12);
+      for (const spec of seen.values()) {
+        const r = await renderFigureSpec(spec);
+        expect(r.ok, r.ok ? "" : r.error).toBe(true);
+        if (!r.ok) continue;
+        expect(figureSvgViewBoxWidth(r.svg)).toBe(SHADE_CANVAS_W);
+        expect(figureSvgSize(r.svg)).toBe("mid");
+        // 채색 레이어가 스펙의 영역 수만큼 실제로 깔렸는가
+        const filled = r.svg.match(/stroke="none"/g)?.length ?? 0;
+        const wanted = Object.keys(
+          (spec as { regions: Record<string, unknown> }).regions,
+        ).length;
+        expect(filled, "채색 영역 수가 스펙과 다르다").toBe(wanted);
+      }
+    }, 180_000);
   });
 });
