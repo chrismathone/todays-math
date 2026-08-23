@@ -10,6 +10,7 @@
  */
 import { createRng } from "../elementary/rng";
 
+import { M1_CALC } from "./m1Calc";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_NUM } from "./m1Num";
@@ -24,6 +25,7 @@ const ALL: TypeEntry[] = [
   ...M1_LINEAR_APPLY,
   ...M1EXTRA_TYPES,
   ...M1_NUM,
+  ...M1_CALC,
   ...M1_REAL,
   ...M2_TYPES,
   ...M3_TYPES,
