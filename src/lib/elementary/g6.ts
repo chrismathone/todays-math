@@ -4116,6 +4116,434 @@ function cubicDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 7차분) — 초6 `2-1 분수의 나눗셈` (5소단원 · 20갈래) ────
+//
+// ⑴ 답 분수는 표준과 같은 규약 — `fmtFrac`(기약, 가분수는 대분수로). 시험이 gcd 로
+//    독립 검산한다(발문 분수 기약 · 대분수 정본 꼴 포함).
+// ⑵ 「분모가 같은/다른」 판정기 검사는 loose 가 없다 — **문장형 갈래도 발문에 분수
+//    두 개가 실제로 보이는 문형**만 쓴다(심화 = 「어떤 수에 $\frac{b}{d}$ 를 곱했더니
+//    $\frac{a}{d}$」 — 곱을 나눗셈으로 되돌리는 역산이면서 같은 분모 둘이 지면에 선다).
+// ⑶ 2-1-4 는 답이 **식**인 갈래가 있다(곱셈식으로 나타내기) — 검산은 값이 아니라
+//    「뒤 분수가 뒤집혔는가」 구조로 본다. 뒤집기 누락이 이 단원의 고전 오류다.
+
+/** 분모 `d` 와 서로소이고 서로 다른 진분수 분자 둘. */
+function twoCoprimeTops(rng: Rng, d: number): [number, number] {
+  const a = coprimeTop(rng, d);
+  let b = coprimeTop(rng, d);
+  for (let t = 0; t < 20 && b === a; t += 1) b = coprimeTop(rng, d);
+  if (b === a) b = a === 1 ? (d > 2 ? d - 1 : 1) : 1;
+  return [a, b];
+}
+
+/** 같은 분모 나눗셈 소재 — 「…씩 …에 나누어」. */
+const FRAC_CUT = [
+  { thing: "철사", unit: "m", how: "도막으로 자르면", count: "도막" },
+  { thing: "리본", unit: "m", how: "도막으로 자르면", count: "도막" },
+  { thing: "끈", unit: "m", how: "도막으로 자르면", count: "도막" },
+] as const;
+
+/** 2-1-2 기본 — 두 양을 견주는 짝(단위가 같아야 배가 선다). */
+const CMP_DRINKS = [
+  { x: "주스", y: "우유" },
+  { x: "물", y: "식혜" },
+  { x: "우유", y: "주스" },
+] as const;
+
+/** 2-1-5 기본 — 무게 짝. */
+const CMP_WEIGHTS = [
+  { x: "감자", y: "양파" },
+  { x: "쌀", y: "콩" },
+  { x: "고구마", y: "당근" },
+] as const;
+
+// ── 2-1-1 분모가 같은 (분수)÷(분수) ──
+
+/** 연산 — 식 그대로. 분자끼리 나누면 끝난다. */
+function sameDenCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}=\\square`)}`,
+    expr(fmtFrac(a, b)),
+    `분모가 같으면 분자끼리 나눕니다. ${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}=${a}\\div${b}=${fmtFrac(a, b)}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 「…씩 자르면 몇 도막」 — 구성이 자연수 몫을 보장한다. */
+function sameDenWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, FRAC_CUT);
+  // a = k·b 이고 a·b 둘 다 d 와 서로소여야 발문 분수가 기약이다 — 훑어서 고른다.
+  for (let t = 0; t < 200; t += 1) {
+    const d = intBetween(rng, 5, 9);
+    const b = intBetween(rng, 1, 3);
+    const k = intBetween(rng, 2, 4);
+    const a = k * b;
+    if (a >= d || gcd(a, d) !== 1 || gcd(b, d) !== 1) continue;
+    return make(
+      unit,
+      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit}를 ${expr(`\\frac{${b}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
+      num(k),
+      `분모가 같으므로 분자끼리 나눕니다. ${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}=${a}\\div${b}=${k}`)}`,
+    );
+  }
+  throw new Error("2-1-1 기본: 기약 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+/** 응용 — 두 걸음. 쓰고 남은 양을 같은 분모 분수로 나눈다. */
+function sameDenApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, FRAC_CUT);
+  for (let t = 0; t < 200; t += 1) {
+    const d = intBetween(rng, 7, 9);
+    const b = intBetween(rng, 1, 2);
+    const k = intBetween(rng, 2, 3);
+    const u = intBetween(rng, 1, 2);
+    const a = k * b + u;
+    if (a >= d) continue;
+    if (gcd(a, d) !== 1 || gcd(u, d) !== 1 || gcd(b, d) !== 1) continue;
+    return make(
+      unit,
+      `${s.thing} ${expr(`\\frac{${a}}{${d}}`)} ${s.unit} 중에서 ${expr(`\\frac{${u}}{${d}}`)} ${s.unit}를 사용하고, ` +
+        `남은 ${s.thing}${josa(s.thing, "을", "를")} ${expr(`\\frac{${b}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
+      num(k),
+      `남은 ${s.thing}${josa(s.thing, "은", "는")} ${expr(`\\frac{${a}}{${d}}-\\frac{${u}}{${d}}=\\frac{${k * b}}{${d}}`)} 입니다. ` +
+        `${expr(`\\frac{${k * b}}{${d}}\\div\\frac{${b}}{${d}}=${k * b}\\div${b}=${k}`)} 입니다.`,
+    );
+  }
+  throw new Error("2-1-1 응용: 기약 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+/** 심화 — 역산. 곱을 나눗셈으로 되돌린다 — 같은 분모 둘이 지면에 선다. */
+function sameDenDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  const [p, q] = divFrac(a, d, b, d);
+  return make(
+    unit,
+    `어떤 수에 ${expr(`\\frac{${b}}{${d}}`)}${numJosa(b, "을", "를")} 곱했더니 ${expr(`\\frac{${a}}{${d}}`)}${numJosa(a, "이", "가")} 되었습니다. 어떤 수는 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `곱셈을 나눗셈으로 되돌립니다. ${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}=${a}\\div${b}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+// ── 2-1-2 분모가 다른 (분수)÷(분수) ──
+
+/** 서로 다른 분모 둘과 기약 분자 — 발문 분수가 늘 기약·다른 분모다. */
+function twoDiffFracs(rng: Rng): {
+  n1: number;
+  d1: number;
+  n2: number;
+  d2: number;
+} {
+  const d1 = intBetween(rng, 2, 7);
+  let d2 = intBetween(rng, 3, 9);
+  for (let t = 0; t < 20 && d2 === d1; t += 1) d2 = intBetween(rng, 3, 9);
+  if (d2 === d1) d2 = d1 === 9 ? 8 : d1 + 1;
+  // 나누는 수의 분자는 2 이상 — 1 이면 역수가 `\frac{d}{1}` 로 서서 지면에 분모 1 이 나온다
+  // (표본 육안 실측: $\frac{3}{4}\times\frac{6}{1}$).
+  return { n1: coprimeTop(rng, d1), d1, n2: coprimeTop(rng, d2, 2), d2 };
+}
+
+/** 연산 — 식 그대로. 통분하거나 곱셈으로 바꾸어 계산한다. */
+function diffDenCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}=\\square`)}`,
+    expr(fmtFrac(p, q)),
+    `나누는 수의 분모와 분자를 바꾸어 곱합니다. ` +
+      `${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}=${fmtFrac(p, q)}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 「…의 몇 배」 — 나눗셈의 뜻을 문장에서 세운다. */
+function diffDenWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, CMP_DRINKS);
+  const f = twoDiffFracs(rng);
+  const [pn, pd] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${p.x}${josa(p.x, "이", "가")} ${expr(`\\frac{${f.n1}}{${f.d1}}`)} L, ${p.y}${josa(p.y, "이", "가")} ${expr(`\\frac{${f.n2}}{${f.d2}}`)} L 있습니다. ` +
+      `${p.x} 양은 ${p.y} 양의 몇 배입니까?`,
+    expr(fmtFrac(pn, pd)),
+    `${p.x} 양을 ${p.y} 양으로 나눕니다. ${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}=\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}=${fmtFrac(pn, pd)}`)}`,
+  );
+}
+
+/** 응용 — 결합. 직사각형의 넓이와 가로에서 세로를 구한다. */
+function diffDenApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  for (let t = 0; t < 200; t += 1) {
+    const wd = intBetween(rng, 2, 5);
+    const wn = coprimeTop(rng, wd);
+    const hd = intBetween(rng, 3, 7);
+    const hn = coprimeTop(rng, hd);
+    const [an, ad] = mulFrac(wn, wd, hn, hd);
+    // 넓이가 진분수이고 가로와 분모가 달라야 「분모가 다른」 이 지면에 선다.
+    if (an >= ad || ad === wd) continue;
+    return make(
+      unit,
+      `넓이가 ${expr(`\\frac{${an}}{${ad}}`)} m²이고 가로가 ${expr(`\\frac{${wn}}{${wd}}`)} m인 직사각형이 있습니다. ` +
+        `이 직사각형의 세로는 몇 m입니까?`,
+      expr(fmtFrac(hn, hd)),
+      `(세로)=(넓이)÷(가로)입니다. ${expr(`\\frac{${an}}{${ad}}\\div\\frac{${wn}}{${wd}}=\\frac{${an}}{${ad}}\\times\\frac{${wd}}{${wn}}=${fmtFrac(hn, hd)}`)}`,
+    );
+  }
+  throw new Error("2-1-2 응용: 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+/** 심화 — 역산. 나눈 몫에서 어떤 수를 되짚는다(몫과 나누는 수의 분모가 다르다). */
+function diffDenDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  for (let t = 0; t < 200; t += 1) {
+    const dd = intBetween(rng, 2, 6);
+    const dn = coprimeTop(rng, dd);
+    const qd = intBetween(rng, 3, 8);
+    if (qd === dd) continue;
+    const qn = coprimeTop(rng, qd);
+    const [xn, xd] = mulFrac(qn, qd, dn, dd);
+    if (xn >= xd) continue; // 어떤 수가 진분수로 남아야 대분수 표기가 안 끼어든다
+    return make(
+      unit,
+      `어떤 수를 ${expr(`\\frac{${dn}}{${dd}}`)}${numRo(dn)} 나누었더니 ${expr(`\\frac{${qn}}{${qd}}`)}${numJosa(qn, "이", "가")} 되었습니다. 어떤 수는 얼마입니까?`,
+      expr(fmtFrac(xn, xd)),
+      `나눗셈을 곱셈으로 되돌립니다. ${expr(`\\frac{${qn}}{${qd}}\\times\\frac{${dn}}{${dd}}=${fmtFrac(xn, xd)}`)} 입니다.`,
+    );
+  }
+  throw new Error("2-1-2 심화: 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+// ── 2-1-3 (자연수)÷(분수) ──
+
+/** 연산 — 식 그대로. */
+function natFracCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  const [p, q] = divFrac(k, 1, n, d);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${k}\\div\\frac{${n}}{${d}}=\\square`)}`,
+    expr(fmtFrac(p, q)),
+    `나누는 수의 분모와 분자를 바꾸어 곱합니다. ${expr(`${k}\\times\\frac{${d}}{${n}}=${fmtFrac(p, q)}`)}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 「…씩 자르면 몇 도막」 — 구성이 자연수 몫을 보장한다. */
+function natFracWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, FRAC_CUT);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  const m = intBetween(rng, 1, 2);
+  const k = m * n;
+  return make(
+    unit,
+    `${s.thing} ${num(k)} ${s.unit}를 ${expr(`\\frac{${n}}{${d}}`)} ${s.unit}씩 ${s.how} 몇 ${s.count}이 됩니까?`,
+    num(m * d),
+    `${expr(`${k}\\div\\frac{${n}}{${d}}=${k}\\times\\frac{${d}}{${n}}=${m * d}`)} 이므로 ${num(m * d)}${s.count}입니다.`,
+  );
+}
+
+/** 응용 — 두 걸음. 쓰고 남은 자연수 양을 분수로 나눈다. */
+function natFracApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  const m = intBetween(rng, 1, 2);
+  const left = m * n;
+  const u = intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `설탕 ${num(left + u)} kg 중에서 ${num(u)} kg을 사용하고, 남은 설탕을 ${expr(`\\frac{${n}}{${d}}`)} kg씩 봉지에 나누어 담으면 ` +
+      `몇 봉지가 됩니까?`,
+    num(m * d),
+    `남은 설탕은 ${expr(`${left + u}-${u}=${left}`)} 이므로 ${num(left)} kg입니다. ` +
+      `${expr(`${left}\\div\\frac{${n}}{${d}}=${left}\\times\\frac{${d}}{${n}}=${m * d}`)} 이므로 ${num(m * d)}봉지입니다.`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 나눈 몫에서 어떤 수를 되짚는다. ⓑ `\square` 가 나누어지는 수다. */
+function natFracDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  const m = intBetween(rng, 1, 3);
+  const q = m * d;
+  const x = m * n;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어떤 수를 ${expr(`\\frac{${n}}{${d}}`)}${numRo(n)} 나누었더니 ${num(q)}${numJosa(q, "이", "가")} 되었습니다. 어떤 수는 얼마입니까?`,
+      num(x),
+      `나눗셈을 곱셈으로 되돌립니다. ${expr(`${q}\\times\\frac{${n}}{${d}}=${x}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 구하시오.\n\n${expr(`\\square\\div\\frac{${n}}{${d}}=${q}`)}`,
+    num(x),
+    `나눗셈을 곱셈으로 되돌립니다. ${expr(`${q}\\times\\frac{${n}}{${d}}=${x}`)} 이므로 ${expr("\\square")} 는 ${num(x)}입니다.`,
+  );
+}
+
+// ── 2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기 ──
+
+/** 연산 — 식 변환만. 답이 곱셈식이다(값이 아니다). */
+function flipCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}${numJosa(f.n2, "을", "를")} 곱셈식으로 나타내시오.`,
+    expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`),
+    `나누는 수 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수를 곱합니다.`,
+  );
+}
+
+/** 기본 — 변환한 뒤 계산까지. */
+function flipWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}${numJosa(f.n2, "을", "를")} 곱셈식으로 나타내어 계산하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}=\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}=${fmtFrac(p, q)}`)}`,
+  );
+}
+
+/**
+ * 응용 — 문장 상황에서 나눗셈을 세우고 곱셈으로 바꾸어 계산한다.
+ *
+ * ⚠️ 「$1$ m²당」류 단위량 문형은 못 쓴다 — 발문의 $1$ 이 «(분수)÷(분수)» 종류 규칙
+ * (요구 밖 자연수 금지)에 걸린다(실측 40/40). 「한 개」처럼 수사 없는 문장으로 세운다.
+ */
+function flipApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  for (let t = 0; t < 200; t += 1) {
+    const cd = intBetween(rng, 5, 9);
+    const cn = coprimeTop(rng, cd);
+    const k = intBetween(rng, 2, 4);
+    const an = k * cn;
+    if (an >= cd || gcd(an, cd) !== 1) continue; // 전체 양도 기약 진분수로 서야 한다
+    return make(
+      unit,
+      `팔찌 한 개를 만드는 데 털실 ${expr(`\\frac{${cn}}{${cd}}`)} m가 필요합니다. ` +
+        `털실 ${expr(`\\frac{${an}}{${cd}}`)} m로는 팔찌를 몇 개 만들 수 있습니까?`,
+      num(k),
+      `전체 털실을 한 개 몫으로 나눕니다. ` +
+        `${expr(`\\frac{${an}}{${cd}}\\div\\frac{${cn}}{${cd}}=\\frac{${an}}{${cd}}\\times\\frac{${cd}}{${cn}}=${k}`)} 이므로 ${num(k)}개입니다.`,
+    );
+  }
+  throw new Error("2-1-4 응용: 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+/** 심화 — 역산. ⓐ 「…를 곱하는 것」에서 어떤 분수로 나누는지 되짚는다. ⓑ 곱셈식에서 나눗셈식을 쓴다. */
+function flipDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `어떤 분수로 나누는 것은 ${expr(`\\frac{${f.d2}}{${f.n2}}`)}${numJosa(f.d2, "을", "를")} 곱하는 것과 같습니다. 어떤 분수는 무엇입니까?`,
+      expr(`\\frac{${f.n2}}{${f.d2}}`),
+      `나누는 수의 분모와 분자를 바꾼 수를 곱하는 것이므로, 어떤 분수는 그것을 되돌린 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `곱셈식이 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)}${numJosa(f.n2, "이", "가")} 되는 나눗셈식을 쓰시오.`,
+    expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`),
+    `곱한 수 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 의 분모와 분자를 되돌리면 나누는 수 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 입니다.`,
+  );
+}
+
+// ── 2-1-5 (가분수)÷(분수), (대분수)÷(분수) ──
+
+/** 연산 — 식 그대로. ⓐ 가분수 ⓑ 대분수 — 소단원 이름이 내건 둘을 씨앗이 가른다. */
+function mixedFracCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 2, 6);
+  const t1 = coprimeTop(rng, d1);
+  const w = intBetween(rng, 1, 3);
+  const imp = w * d1 + t1;
+  const d2 = intBetween(rng, 3, 8);
+  const n2 = coprimeTop(rng, d2, 2);
+  const [p, q] = divFrac(imp, d1, n2, d2);
+  const flip = expr(
+    `\\frac{${imp}}{${d1}}\\times\\frac{${d2}}{${n2}}=${fmtFrac(p, q)}`,
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `다음 나눗셈의 몫을 구하시오.\n\n${expr(`\\frac{${imp}}{${d1}}\\div\\frac{${n2}}{${d2}}=\\square`)}`,
+      expr(fmtFrac(p, q)),
+      `가분수는 그대로 두고 나누는 수의 분모와 분자를 바꾸어 곱합니다. ${flip}`,
+    );
+  }
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${w}\\frac{${t1}}{${d1}}\\div\\frac{${n2}}{${d2}}=\\square`)}`,
+    expr(fmtFrac(p, q)),
+    `대분수를 가분수로 고칩니다. ${expr(`${w}\\frac{${t1}}{${d1}}=\\frac{${imp}}{${d1}}`)} 이므로 ` +
+      `나누는 수의 분모와 분자를 바꾸어 곱합니다. ${flip}`,
+  );
+}
+
+/** 기본 — 문장 한 겹. 대분수 양을 분수 양으로 견준다(몇 배). */
+function mixedFracWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, CMP_WEIGHTS);
+  const d1 = intBetween(rng, 2, 6);
+  const t1 = coprimeTop(rng, d1);
+  const w = intBetween(rng, 1, 3);
+  const imp = w * d1 + t1;
+  const d2 = intBetween(rng, 3, 8);
+  const n2 = coprimeTop(rng, d2, 2);
+  const [pn, pd] = divFrac(imp, d1, n2, d2);
+  return make(
+    unit,
+    `${p.x} ${expr(`${w}\\frac{${t1}}{${d1}}`)} kg과 ${p.y} ${expr(`\\frac{${n2}}{${d2}}`)} kg이 있습니다. ` +
+      `${p.x} 무게는 ${p.y} 무게의 몇 배입니까?`,
+    expr(fmtFrac(pn, pd)),
+    `대분수를 가분수로 고쳐 나눕니다. ${expr(`\\frac{${imp}}{${d1}}\\times\\frac{${d2}}{${n2}}=${fmtFrac(pn, pd)}`)}`,
+  );
+}
+
+/** 응용 — 결합. 평행사변형의 넓이와 밑변에서 높이를 구한다. */
+function mixedFracApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  for (let t = 0; t < 200; t += 1) {
+    // ⚠️ coprimeTop(bd, 2) 는 bd=2 에서 풀이 비어 폴백 2 를 낸다 — \frac{2}{2} 가
+    //    지면에 섰다(시험 실측). 분자 하한을 1 로 두면 늘 안전하다.
+    const bd = intBetween(rng, 2, 6);
+    const bn = coprimeTop(rng, bd);
+    const hd = intBetween(rng, 2, 6);
+    const hn = coprimeTop(rng, hd, hd + 1, hd + 5); // 높이는 가분수 — 넓이가 1을 넘게
+    const [an, ad] = mulFrac(bn, bd, hn, hd);
+    if (an <= ad || ad === 1) continue; // 넓이가 **대분수**로 서야 한다 — 정수로 접히면 안 된다
+    const [rn, rd] = divFrac(an, ad, bn, bd); // 기약으로 접힌 높이 — 값은 hn/hd 와 같다
+    return make(
+      unit,
+      `넓이가 ${expr(fmtFrac(an, ad))} m²이고 밑변의 길이가 ${expr(`\\frac{${bn}}{${bd}}`)} m인 평행사변형이 있습니다. ` +
+        `이 평행사변형의 높이는 몇 m입니까?`,
+      expr(fmtFrac(rn, rd)),
+      `(높이)=(넓이)÷(밑변의 길이)입니다. ${expr(`${fmtFrac(an, ad)}\\div\\frac{${bn}}{${bd}}=${fmtFrac(rn, rd)}`)}`,
+    );
+  }
+  throw new Error("2-1-5 응용: 조건을 만족하는 짝을 못 만들었습니다");
+}
+
+/** 심화 — 역산. 곱을 나눗셈으로 되돌린다 — 결과가 대분수다. */
+function mixedFracDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  for (let t = 0; t < 200; t += 1) {
+    const d2 = intBetween(rng, 3, 8);
+    const n2 = coprimeTop(rng, d2, 2);
+    const xd = intBetween(rng, 2, 6);
+    const xn = coprimeTop(rng, xd, xd + 1, xd + 6); // 어떤 수는 가분수
+    const [wn, wd] = mulFrac(xn, xd, n2, d2);
+    if (wn <= wd || wd === 1) continue; // 곱한 결과가 **대분수**로 서야 발문에 대분수가 남는다
+    return make(
+      unit,
+      `어떤 수에 ${expr(`\\frac{${n2}}{${d2}}`)}${numJosa(n2, "을", "를")} 곱했더니 ${expr(fmtFrac(wn, wd))}${numJosa(lastSpokenNumber(fmtFrac(wn, wd)), "이", "가")} 되었습니다. 어떤 수는 얼마입니까?`,
+      expr(fmtFrac(xn, xd)),
+      `곱셈을 나눗셈으로 되돌립니다. ${expr(`${fmtFrac(wn, wd)}\\div\\frac{${n2}}{${d2}}=${fmtFrac(wn, wd)}\\times\\frac{${d2}}{${n2}}=${fmtFrac(xn, xd)}`)} 입니다.`,
+    );
+  }
+  throw new Error("2-1-5 심화: 조건을 만족하는 짝을 못 만들었습니다");
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -4282,6 +4710,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: cubicWord,
     응용: cubicApply,
     심화: cubicDeep,
+  },
+  "초6|2-1-1": {
+    연산: sameDenCalc,
+    기본: sameDenWord,
+    응용: sameDenApply,
+    심화: sameDenDeep,
+  },
+  "초6|2-1-2": {
+    연산: diffDenCalc,
+    기본: diffDenWord,
+    응용: diffDenApply,
+    심화: diffDenDeep,
+  },
+  "초6|2-1-3": {
+    연산: natFracCalc,
+    기본: natFracWord,
+    응용: natFracApply,
+    심화: natFracDeep,
+  },
+  "초6|2-1-4": {
+    연산: flipCalc,
+    기본: flipWord,
+    응용: flipApply,
+    심화: flipDeep,
+  },
+  "초6|2-1-5": {
+    연산: mixedFracCalc,
+    기본: mixedFracWord,
+    응용: mixedFracApply,
+    심화: mixedFracDeep,
   },
 };
 

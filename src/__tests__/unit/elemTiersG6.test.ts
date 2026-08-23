@@ -2009,3 +2009,309 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════ 7차분 — 2-1 분수의 나눗셈 ══════════
+//
+// ⑴ 답 분수는 기약·대분수 정본 꼴 — 시험이 gcd 로 독립 검산한다(엔진의 fmtFrac 을 안 믿는다).
+// ⑵ 「분모가 같은/다른」 소단원 조건을 시험에도 미러한다 — 판정기 loose 가 없는 축이라
+//    발문에 분수 둘이 실제로 보여야 하고, 그 분모 관계가 이름 그대로여야 한다.
+// ⑶ 2-1-4 는 답이 식인 갈래가 있다 — 값이 아니라 **뒤 분수가 뒤집혔는가**(구조)로 검산한다.
+
+const G6_21_CODES = ["2-1-1", "2-1-2", "2-1-3", "2-1-4", "2-1-5"] as const;
+
+/** 발문·정답의 `\frac{a}{b}` 짝 전부(대분수의 분수 부분 포함). */
+function fracPairsIn(text: string): [number, number][] {
+  return [...text.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+    Number(m[1]),
+    Number(m[2]),
+  ]);
+}
+
+/** 발문이 말하는 값을 유리수로 다시 만든다 — 못 읽으면 null(위반). */
+function truthOf21(content: string): R | null {
+  const ns = numbersIn(content);
+  const at = (i: number) => ns[i] ?? null;
+
+  // 2-1-4 심화 ⓐ — 역수 관계를 되짚는다
+  if (content.includes("어떤 분수")) {
+    const f = at(0);
+    return f ? rdiv(rat(1), f) : null;
+  }
+  // 2-1-1·5 심화 — 곱을 나눗셈으로 되돌린다: [곱한 수, 결과]
+  if (content.includes("곱했더니") && content.includes("어떤 수는")) {
+    const [b, a] = [at(0), at(1)];
+    return b && a ? rdiv(a, b) : null;
+  }
+  // 2-1-2·3 심화 ⓐ — 나눈 몫에서 되짚는다: [나누는 수, 몫]
+  if (content.includes("나누었더니") && content.includes("어떤 수는")) {
+    const [x, q] = [at(0), at(1)];
+    return x && q ? rmul(q, x) : null;
+  }
+  // 2-1-3 심화 ⓑ — `\square` 가 나누어지는 수다
+  if (content.includes("알맞은 수")) {
+    const m = content.match(/\\square\\div\\frac\{(\d+)\}\{(\d+)\}=(\d+)/);
+    return m ? rmul(rat(Number(m[3])), rat(Number(m[1]), Number(m[2]))) : null;
+  }
+  // 2-1-1·3 응용 — 쓰고 남은 양을 나눈다
+  if (content.includes("중에서") && content.includes("남은")) {
+    const [a, u, b] = [at(0), at(1), at(2)];
+    return a && u && b ? rdiv(rsub(a, u), b) : null;
+  }
+  // 응용 2-1-4 — 한 개 몫이 먼저, 전체가 뒤에 온다: (전체)÷(한 개 몫)
+  if (content.includes("만드는 데")) {
+    const [per, total] = [at(0), at(1)];
+    return per && total ? rdiv(total, per) : null;
+  }
+  // 넓이 결합 — (세로·높이)=(넓이)÷(가로·밑변)
+  if (content.includes("넓이가")) {
+    const [area, base] = [at(0), at(1)];
+    return area && base ? rdiv(area, base) : null;
+  }
+  // 기본 — 몇 배·몇 도막·몇 봉지 · 연산 — 식 그대로 (두 수를 나눈다)
+  const [a, b] = [at(0), at(1)];
+  if (!a || !b || ns.length > 2) return null;
+  return rdiv(a, b);
+}
+
+describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
+  it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_21_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (식 답은 «뒤집혔는가» 구조로 본다)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_21_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const flat = p.content.replace(/\n+/g, " ");
+          // 답이 곱셈식 — 발문 나눗셈식의 나누는 수가 뒤집혀 곱해져야 한다.
+          const mulAns = p.answer.match(
+            /^\$\\frac\{(\d+)\}\{(\d+)\}\\times\\frac\{(\d+)\}\{(\d+)\}\$$/,
+          );
+          if (mulAns) {
+            const src = p.content.match(
+              /\\frac\{(\d+)\}\{(\d+)\}\\div\\frac\{(\d+)\}\{(\d+)\}/,
+            );
+            checked += 1;
+            if (
+              !src ||
+              mulAns[1] !== src[1] ||
+              mulAns[2] !== src[2] ||
+              mulAns[3] !== src[4] ||
+              mulAns[4] !== src[3]
+            ) {
+              bad.push(`${where}: 뒤집기가 틀렸다 — ${p.answer} ← ${flat}`);
+            }
+            continue;
+          }
+          // 답이 나눗셈식 — 발문 곱셈식의 곱한 수를 되돌린 나눗셈이어야 한다.
+          const divAns = p.answer.match(
+            /^\$\\frac\{(\d+)\}\{(\d+)\}\\div\\frac\{(\d+)\}\{(\d+)\}\$$/,
+          );
+          if (divAns) {
+            const src = p.content.match(
+              /\\frac\{(\d+)\}\{(\d+)\}\\times\\frac\{(\d+)\}\{(\d+)\}/,
+            );
+            checked += 1;
+            if (
+              !src ||
+              divAns[1] !== src[1] ||
+              divAns[2] !== src[2] ||
+              divAns[3] !== src[4] ||
+              divAns[4] !== src[3]
+            ) {
+              bad.push(`${where}: 되돌리기가 틀렸다 — ${p.answer} ← ${flat}`);
+            }
+            continue;
+          }
+          const want = truthOf21(p.content);
+          if (!want) {
+            bad.push(`${where}: 발문을 못 읽음 — ${flat}`);
+            continue;
+          }
+          checked += 1;
+          const got = readAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${rshow(want)} 이어야) — ${flat}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_21_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("답·발문 분수는 기약이고 대분수는 정본 꼴이다 (시험이 gcd 로 직접 잰다)", () => {
+    const bad: string[] = [];
+    for (const code of G6_21_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          // 해설은 통분·가분수 전개 과정을 보여야 하므로 뺀다(1-1 선례).
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+          ] as const) {
+            for (const [n, d] of fracPairsIn(field)) {
+              if (gcd(n, d) !== 1) {
+                bad.push(`${where} ${name}: 약분이 남았다 \\frac{${n}}{${d}}`);
+              }
+              // 분모 1 은 분수로 적지 않는다 — 역수가 \frac{6}{1} 로 선 실측 결함의 잠금.
+              if (d === 1) {
+                bad.push(`${where} ${name}: 분모 1 — \\frac{${n}}{${d}}`);
+              }
+            }
+            // 대분수 정본 꼴 — 분수 부분이 진분수·기약이어야 한다.
+            for (const m of field.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/g)) {
+              const [t, d] = [Number(m[2]), Number(m[3])];
+              if (t >= d || gcd(t, d) !== 1) {
+                bad.push(`${where} ${name}: 대분수 꼴이 틀렸다 ${m[0]}`);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("소단원 이름의 분모·피연산자 조건을 갈래 넷이 지면에서 지킨다", () => {
+    const bad: string[] = [];
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SEEDS) {
+        const at = (code: string) =>
+          generateElementaryProblem(unitOf(code), seed, tier).content;
+        // 2-1-1 «분모가 같은» — 발문 분수가 둘 이상이고 분모가 전부 같다.
+        const c1 = fracPairsIn(at("2-1-1"));
+        if (c1.length < 2 || c1.some(([, d]) => d !== c1[0]![1])) {
+          bad.push(`2-1-1 ${tier} seed=${seed}: 분모가 어긋났다`);
+        }
+        // 2-1-2 «분모가 다른» — 서로 다른 분모가 둘 이상.
+        const c2 = fracPairsIn(at("2-1-2"));
+        if (c2.length < 2 || new Set(c2.map(([, d]) => d)).size < 2) {
+          bad.push(`2-1-2 ${tier} seed=${seed}: 분모가 전부 같다`);
+        }
+        // 2-1-3 «(자연수)÷(분수)» — 자연수와 분수가 함께 보인다(□·어떤 수 포함).
+        const c3raw = at("2-1-3");
+        const c3 = numbersIn(c3raw);
+        const hasNat =
+          c3.some((v) => v.d === 1) ||
+          c3raw.includes("\\square") ||
+          c3raw.includes("어떤 수");
+        if (!hasNat || !c3.some((v) => v.d > 1)) {
+          bad.push(
+            `2-1-3 ${tier} seed=${seed}: 자연수·분수 짝이 없다 — ${c3raw}`,
+          );
+        }
+        // 2-1-5 «(가분수), (대분수)» — 어느 한쪽은 지면에 선다.
+        const c5 = at("2-1-5");
+        const hasMixed = /\d+\\frac\{/.test(c5);
+        const hasImproper = fracPairsIn(c5).some(([n, d]) => n >= d);
+        if (!hasMixed && !hasImproper) {
+          bad.push(
+            `2-1-5 ${tier} seed=${seed}: 가분수도 대분수도 없다 — ${c5}`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "2-1-1": /^다음 나눗셈의 몫을 구하시오/,
+      "2-1-2": /^다음 나눗셈의 몫을 구하시오/,
+      "2-1-3": /^다음 나눗셈의 몫을 구하시오/,
+      "2-1-4": /[을를] 곱셈식으로 나타내시오\.$/,
+      "2-1-5": /^다음 나눗셈의 몫을 구하시오/,
+    };
+    const DEEP = /어떤 수|알맞은 수|어떤 분수|나눗셈식을 쓰시오/;
+    for (const code of G6_21_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        expect(
+          CALC_SHAPE[code]!.test(calc.content),
+          `${code} 연산 seed=${seed}: ${calc.content}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(basic.content),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${basic.content}`,
+        ).toBe(false);
+        expect(
+          DEEP.test(deep.content),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        expect(
+          DEEP.test(apply.content),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_21_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·소수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_21_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            // 이 대단원에 소수가 나오면 종류가 샌 것이다(2-2 와 섞였다).
+            if (/\d+\.\d+/.test(field))
+              bad.push(`${where} ${name}: 소수가 섞였다`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});

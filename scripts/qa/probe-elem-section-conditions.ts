@@ -521,6 +521,23 @@ const CHECKS: Check[] = [
     (s) => !s.includes("십의 자리와"),
   ),
   mulCarryCheck("십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)", "both"),
+  {
+    // 초6 2-2-4 «몫을 반올림하여 나타내기» — 발견기 빚 목록 첫 상환 (2026-08-23).
+    // 몫이 요구한 자리 안에서 딱 떨어지면 반올림이 뜻이 없다($2.5$ 를 «반올림»시키는 문항).
+    // needle 을 «몫을 반올림하여» 로 좁혀 초5 «반올림 알아보기»(어림 일반)에는 안 붙인다.
+    // 문장형 갈래가 생기면 올림 검사처럼 해설 폴백으로 읽는다.
+    needle: "몫을 반올림하여",
+    ok: (c, _s, solution) => {
+      const read = (t: string) => {
+        const m = t.match(/\$(\d+(?:\.\d+)?)\\div(\d+(?:\.\d+)?)\$/);
+        return m ? Number(m[1]) / Number(m[2]) : null;
+      };
+      const q = read(c) ?? read(solution ?? "");
+      const place = c.match(/소수 (첫|둘)째 자리/);
+      if (q === null || !place) return false;
+      return quotientDp(q) > (place[1] === "첫" ? 1 : 2);
+    },
+  },
 ];
 
 /**
@@ -898,6 +915,26 @@ const FIXTURES: Fixture[] = [
     want: false,
     loose: true,
     why: "«어떤 수»도 □ 도 없이 세 자리가 빠졌다 — 음성 대조",
+  },
+
+  // ── 초6 2-2-4 몫을 반올림 (2026-08-23, 발견기 빚 목록 첫 상환) ─────────────
+  {
+    section: "2-2-4 몫을 반올림하여 나타내기",
+    content: "$10\\div4$ 의 몫을 반올림하여 소수 첫째 자리까지 나타내시오.",
+    want: false,
+    why: "몫 2.5 — 첫째 자리에서 이미 끝나 반올림이 뜻이 없다",
+  },
+  {
+    section: "2-2-4 몫을 반올림하여 나타내기",
+    content: "$10\\div8$ 의 몫을 반올림하여 소수 둘째 자리까지 나타내시오.",
+    want: false,
+    why: "몫 1.25 — 둘째 자리에서 끝난다",
+  },
+  {
+    section: "2-2-4 몫을 반올림하여 나타내기",
+    content: "$10\\div3$ 의 몫을 반올림하여 소수 첫째 자리까지 나타내시오.",
+    want: true,
+    why: "몫 3.33… — 둘째 자리에서 반올림한다",
   },
 ];
 
