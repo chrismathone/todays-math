@@ -10,6 +10,7 @@ import {
   type UnitSeed,
 } from "../../../prisma/seed-data/units";
 
+import type { ElemTierMap } from "./difficulty";
 import { expr, n, polyName, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
 import { fig, make } from "./make";
@@ -993,8 +994,14 @@ const BAR_THEMES: readonly BarTheme[] = [
   { item: "색", unit: "명", labels: ["보라", "주황", "분홍", "연두"] },
 ];
 
-function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = code(unit);
+/**
+ * 막대그래프 한 장의 **재료**. 표준 갈래(1-5-1~3)와 난이도 갈래(`G4_TIERS`)가 **같은 것**을
+ * 쓰게 하려고 뽑아 두었다 — 재료 만들기를 두 벌로 두면 한쪽만 고쳐도 아무도 모른다.
+ *
+ * ⚠️ `rng` 를 부르는 **차례가 곧 계약**이다. 여기서 순서를 바꾸면 같은 씨앗이 다른 그림을
+ * 내므로 «표준 갈래의 산출이 그대로인가»를 지문으로 확인하고 고쳐야 한다(실제로 확인했다).
+ */
+function barData(unit: UnitSeed, rng: Rng) {
   const theme = pick(rng, themeShare(unit, BAR_THEMES));
   const scale = pick(rng, BAR_SCALES);
   const total = pick(rng, scale.totals);
@@ -1035,6 +1042,47 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     yStep: scale.step,
     yLabel: theme.unit,
   });
+  return {
+    theme,
+    scale,
+    total,
+    picked,
+    values,
+    max,
+    min,
+    top,
+    bottom,
+    one,
+    ranked,
+    second,
+    secondValue,
+    pairA,
+    pairB,
+    intro,
+    figure,
+  };
+}
+
+function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = code(unit);
+  const {
+    theme,
+    scale,
+    total,
+    picked,
+    values,
+    max,
+    min,
+    top,
+    bottom,
+    one,
+    second,
+    secondValue,
+    pairA,
+    pairB,
+    intro,
+    figure,
+  } = barData(unit, rng);
 
   if (c === "1-5-1") {
     if (intBetween(rng, 0, 1) === 0) {
@@ -1441,6 +1489,172 @@ function saleChartSpecs(c: SaleCombo): {
 function saleFigure(c: SaleCombo): Record<string, unknown> {
   return fig("chartPair", { charts: saleChartSpecs(c).map((x) => x.spec) });
 }
+
+/* ──────────────── 1-5-3 난이도 4단 (D-72, 셋째 파일럿) ────────────────
+ *
+ * 축은 D-72 확정본 그대로다 — 소단원이 달라도 **같은 잣대**:
+ *   연산 절차 한 번 · 기본 식을 스스로 세움 · 응용 두 단계(다른 개념 결합) · 심화 역산.
+ * 자료형만 **1단이 「계산」이 아니라 「값 읽기」**다(D-72 ⑶).
+ *
+ * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로로 그대로 둔다.** 여기 넷은
+ * 별개 핸들러다 — 재료(`barData`·`buildSaleCombo`)만 같이 쓴다.
+ */
+
+/**
+ * **1단 연산 — 값 읽기.** 막대 하나를 눈금으로 읽으면 끝난다(계산 없음).
+ *
+ * ⚠️ **원장님 확정 2026-08-23: 「결합 그래프에서」.** 1-5-3 의 값 읽기는 단일 막대그래프가
+ * 아니라 **이 소단원 고유 소재(판매 결합 두 그래프)**에서 읽는다. 그래야 1-5-1
+ * 「막대그래프 알아보기」의 값 읽기와 **확실히 갈린다** — 소재가 다르고, 읽을 그래프를
+ * 둘 중에서 골라야 한다. 절차는 여전히 **한 번**이라 1단이 맞다.
+ *
+ * ⚠️ 「제일 쉬운 문항에 큰 그림(짝, 364단위)이 실린다」는 비용은 **선택지에 명시된 채로
+ * 원장님이 고르신 것**이다. 구현에서 이 비용을 우회하지 말 것(그림을 한 장으로 줄이는 등) —
+ * 그러면 1-5-1 과 가르는 근거가 사라진다. 자료형 소단원 전체가 이 결정을 모범으로 삼는다.
+ */
+function tier53Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = buildSaleCombo(rng);
+  const at = intBetween(rng, 0, 2);
+  const label = c.theme.labels[at]!;
+  const name = `${label} ${c.theme.goods}`;
+  const intro =
+    `${c.theme.place}에서 오늘 팔린 종류별 ${josa(c.theme.goods, "의", "의")} 수와 ` +
+    `${c.theme.goods} 한 ${c.theme.counter}의 가격을 조사하여 나타낸 막대그래프입니다.`;
+  // 어느 그래프를 읽는지 씨앗으로 가른다 — 둘 다 «막대 하나 읽기»라 같은 단이다.
+  if (intBetween(rng, 0, 1) === 0) {
+    const v = c.counts[at]!;
+    return make(
+      unit,
+      `${intro} 오늘 ${josa(name, "은", "는")} 몇 ${c.theme.counter} 팔렸는가?`,
+      `${n(v)}${c.theme.counter}`,
+      `「팔린 수」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ${n(v)}에 닿아 있으므로 ` +
+        `${n(v)}${c.theme.counter}입니다.`,
+      saleFigure(c),
+    );
+  }
+  const v = c.prices[at]!;
+  return make(
+    unit,
+    `${intro} ${name} 한 ${c.theme.counter}의 가격은 얼마인가?`,
+    `${n(v)}원`,
+    `「한 ${c.theme.counter}의 가격」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ` +
+      `${n(v)}에 닿아 있으므로 ${n(v)}원입니다.`,
+    saleFigure(c),
+  );
+}
+
+/**
+ * **2단 기본 — 비교 한 겹.** 그래프에서 최대·최소를 «골라» 한 번 뺀다.
+ *
+ * 1단과 갈리는 것은 **고르는 일이 한 겹 붙는다**는 점이다 — 값이 발문에 없고, 어느 막대를
+ * 볼지 스스로 정해야 식이 선다. 뺄셈 자체는 한 번뿐이라 3단은 아니다.
+ */
+function tier53Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 몇 명 더 많은가?`,
+    `${n(d.max - d.min)}명`,
+    `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+      `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
+      `${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 이므로 ${n(d.max - d.min)}명 더 많습니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **3단 응용 — 다른 개념과 결합.** 그래프 읽기에 **나눗셈(몇 배)** 또는 **눈금 한 칸**(D-70)이
+ * 한 겹 더 붙는다. 두 단계를 밟아야 답이 나온다.
+ *
+ * ⚠️ 「몇 배」는 **나누어떨어질 때만** 묻는다. 막대 값은 걸음의 배수라 배수 관계가 늘 서지는
+ * 않는다 — 안 떨어지면 눈금 유형으로 간다(답이 자연수가 아닌 문항을 내지 않는다).
+ */
+function tier53Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const times = d.max / d.min;
+  if (Number.isInteger(times) && times >= 2 && intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}의 몇 배인가?`,
+      `${n(times)}배`,
+      `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
+        `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
+        `${expr(`${d.max}\\div${d.min}=${times}`)} 이므로 ${n(times)}배입니다.`,
+      d.figure,
+    );
+  }
+  // 눈금 결합 — 「한 칸이 몇 명인가」를 먼저 알아야 「몇 칸인가」가 나온다(두 단계).
+  const cells = d.one.value / d.scale.step;
+  return make(
+    unit,
+    `${d.intro} ${josa(d.one.label, "의", "의")} 막대는 눈금 몇 칸인가?`,
+    `${n(cells)}칸`,
+    `세로 눈금 한 칸은 ${n(d.scale.step)}명이고 ${josa(d.one.label, "은", "는")} ` +
+      `${n(d.one.value)}명이므로 ${expr(`${d.one.value}\\div${d.scale.step}=${cells}`)} 칸입니다.`,
+    d.figure,
+  );
+}
+
+/**
+ * **4단 심화 — 역산.** 그래프에 **없는** 값을 전체에서 되돌려 구한다.
+ *
+ * 계약(2026-08-23, elem-figures 확장): `values` 항목은 `{ label, value }` **또는**
+ * `{ label, unknown: true }` 이고 **unknown 항목에는 `value` 필드가 아예 없다.**
+ * 참값이 스펙에 실리지 않으므로 **그림이 답을 흘리는 것이 구조적으로 불가능**하다(D-66 ⑺).
+ * 점선 상자 높이는 값과 무관한 고정값이고 그건 렌더러 몫이다.
+ *
+ * ⚠️ **시안(186행)을 문자 그대로 옮기면 안 된다.** 거기 점선 상자는 `y=70 height=68` 로
+ * **참값과 똑같은 높이**여서, 눈금에 대고 윗변을 읽으면 답이 나온다 — 손그림 예시의 결함이다.
+ * 원장님 확정 대상은 「지워진 자리 + ? + 전체에서 역산」이라는 **형태**지 그 높이가 아니다.
+ *
+ * ⚠️ **숨기는 것은 최댓값이 아니다.** `yMax` 는 그려진 값에서 나오는데, 최댓값을 숨기면
+ * 축이 보이는 막대들보다 높이 서서 **숨긴 값의 크기를 귀띔한다.** 그래서 최댓값이 아닌
+ * 항목만 고르고, `yMax` 도 **보이는 값**으로만 계산한다 — 안 그리는 값이 축에 남으면 안 된다.
+ */
+function tier53Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  // 최댓값이 아닌 자리 중에서 고른다(위 ⚠️).
+  const hideable = d.values.filter((v) => v.value !== d.max);
+  const hidden = pick(rng, hideable);
+  const shown = d.values.filter((v) => v !== hidden);
+  const rest = shown.reduce((a, v) => a + v.value, 0);
+  const figure = fig("barChart", {
+    values: d.values.map((v) =>
+      v === hidden
+        ? { label: v.label, unknown: true }
+        : { label: v.label, value: v.value },
+    ),
+    // **보이는 값**으로만 축을 세운다 — 숨긴 값은 축에도 남기지 않는다.
+    yMax: Math.max(...shown.map((v) => v.value)) + 1,
+    yStep: d.scale.step,
+    yLabel: d.theme.unit,
+  });
+  return make(
+    unit,
+    `${d.intro} 조사한 학생이 모두 ${n(d.total)}명일 때, ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(hidden.value)}명`,
+    `그래프에 나타난 ${shown.map((v) => v.label).join(", ")}의 학생 수를 더하면 ` +
+      `${expr(`${shown.map((v) => v.value).join("+")}=${rest}`)} 입니다. ` +
+      `전체가 ${n(d.total)}명이므로 ${expr(`${d.total}-${rest}=${hidden.value}`)} 이고, ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 ${n(hidden.value)}명입니다.`,
+    figure,
+  );
+}
+
+/**
+ * 초4 난이도 갈래 등록 (D-72 · 셋째 파일럿).
+ *
+ * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 넷은 별개다.
+ */
+export const G4_TIERS: ElemTierMap = {
+  "초4|1-5-3": {
+    연산: tier53Calc,
+    기본: tier53Basic,
+    응용: tier53Apply,
+    심화: tier53Deep,
+  },
+};
 
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
 
@@ -2749,3 +2963,10 @@ export const G4: Record<string, ChapterHandler> = {
   "초4|2-5 꺾은선그래프": lineGraph,
   "초4|2-6 다각형": polygon,
 };
+
+// 셋째 파일럿(D-72) — **아직 `G4_TIERS` 로 등록하지 않았다.** `TierVariants` 가 넷을 컴파일로
+// 강제하는데 4단(역산)이 「지워진 막대」를 필요로 하고, 그 그림은 지금 `barChart` 가 못 그린다
+// (elem-1 kind 확장 여부가 팀장 판단 대기 중). 그때까지 셋을 **직접 호출**로 시험한다.
+export const G4_TIER_CALC = tier53Calc;
+export const G4_TIER_BASIC = tier53Basic;
+export const G4_TIER_APPLY = tier53Apply;

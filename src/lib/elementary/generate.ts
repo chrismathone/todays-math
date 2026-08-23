@@ -11,7 +11,7 @@ import {
   type ElemTierMap,
 } from "./difficulty";
 import { G3, G3_TIERS } from "./g3";
-import { G4 } from "./g4";
+import { G4, G4_TIERS } from "./g4";
 import { G5, G5_TIERS } from "./g5";
 import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
@@ -19,9 +19,14 @@ import { ELEM_GRADES, type ElemProblem } from "./types";
 
 const HANDLERS = { ...G3, ...G4, ...G5, ...G6 };
 
-// 난이도 갈래 (D-71 축 · D-72 확대). 파일럿 g3·g5 에 이어 g6 은 `1-1` 부터 얹었다 —
-// g4 는 다음 차다 (g4.ts 는 눈금 유형 작업이 커밋될 때까지 이 자리에서 건드리지 않는다).
-const TIERS: ElemTierMap = { ...G3_TIERS, ...G5_TIERS, ...G6_TIERS };
+// 난이도 갈래 (D-71 축 · D-72 확대). 파일럿 g3·g5 에 이어 g6 은 `1-1` 부터,
+// g4 는 **셋째 파일럿**(1-5-3, 자료형 변주 검증용)으로 얹었다.
+const TIERS: ElemTierMap = {
+  ...G3_TIERS,
+  ...G4_TIERS,
+  ...G5_TIERS,
+  ...G6_TIERS,
+};
 
 export function elementaryUnits(): UnitSeed[] {
   return CURRICULUM_UNITS.filter((unit) =>

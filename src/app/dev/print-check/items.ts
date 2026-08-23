@@ -241,6 +241,31 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-23",
   },
   {
+    id: "chart-unknown-bar",
+    title: "지워진 막대(unknown) — 점선 상자와 「?」가 종이에서 읽히는가",
+    changed:
+      "초4 1-5-3 심화(D-72)가 막대 하나를 지우고 전체에서 역산하게 한다. 지워진 항목은 " +
+      "값 축 전체를 점선 상자(무늬 4 3 — 겨냥도 숨은 모서리 5 4 와 다른 무늬)로 두르고 " +
+      "가운데 「?」를 넣는다(원장님 확정 2026-08-23). 값 0 인 막대는 rect 없이 이름표 「0」만 " +
+      "그린다. 둘 다 지면에 처음 나가는 표현이다.",
+    look:
+      "① 점선이 종이에서 점선으로 보이는가 — 무늬 4 3 이 인쇄 해상도에서 실선으로 뭉개지지 " +
+      "않는가. ② 「?」가 눈금 숫자·격자선과 겹쳐 읽기 어렵지 않은가. ③ 점선 상자와 이웃 " +
+      "막대의 간격이 종이에서 구분되는가. ④ 값 0 항목의 이름표 「0」이 축과 겹치지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/figure/elem_advanced.py (UNKNOWN_DASH · _bar_chart · _bar_chart_h)",
+      "src/lib/elementary/g4.ts (tier53Deep — 지워진 막대 스펙)",
+      "docs/planning/07-coding-convention.md D-72 · D-66⑺",
+    ],
+    scale:
+      "초4 1-5-3 심화 갈래 전량 — 갈래가 출제에 실리는 순간부터 지면에 나간다",
+    needs:
+      "심화 갈래 문항이 든 시험지를 실제로 뽑아야 한다. 점선 인쇄 품질은 화면으로 대신할 수 없다",
+    status: "대기",
+    changedOn: "2026-08-23",
+  },
+  {
     id: "figure-svg-inline",
     title:
       "AI 변형이 새로 그린 도형(SVG)의 지면 배치 — 처음 종이에 나가는 갈래",
