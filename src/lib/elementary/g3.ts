@@ -1014,7 +1014,7 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
     // 실측 $45\div3$, 씨앗 12/40 (probe-elem-section-conditions). 가드로 거르지 않고
     // **아래끝을 b 에서 유도**한다(threeSum 과 같은 태도): $b\times q\ge100$ 이 되는
     // 첫 몫부터 뽑는다. 위끝은 $9\times48=432\le999$ 라 그대로 세 자리 안이다.
-    const q = intBetween(rng, 12, 48);
+    const q = intBetween(rng, Math.ceil(100 / b), 48);
     const a = b * q;
     return make(
       unit,
