@@ -4448,6 +4448,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier237Apply,
     심화: tier237Deep,
   },
+  "초4|2-5-1": {
+    연산: tier251Calc,
+    기본: tier251Basic,
+    응용: tier251Apply,
+    심화: tier251Deep,
+  },
+  "초4|2-5-2": {
+    연산: tier252Calc,
+    기본: tier252Basic,
+    응용: tier252Apply,
+    심화: tier252Deep,
+  },
+  "초4|2-5-3": {
+    연산: tier253Calc,
+    기본: tier253Basic,
+    응용: tier253Apply,
+    심화: tier253Deep,
+  },
 };
 
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
@@ -7474,8 +7492,11 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `${intro} ${theme.topic}의 값이 가장 많이 변한 때는 어느 때와 어느 때 사이인가?`,
-        `${theme.labels[at]!.math}과 ${theme.labels[at + 1]!.math} 사이`,
-        `${theme.labels[at]!.math}과 ${theme.labels[at + 1]!.math} 사이에서 선이 가장 가파릅니다. ` +
+        // 때 이름 뒤 「과/와」는 **낱말의 받침**이 정한다 — 「$3$월과」·「$9$시와」.
+        // 「과」로 박아 두어 「$12$시과」가 나가고 있었다(2-5 갈래 작업 중 실측, 695자리 중 1).
+        // 수 뒤 조사(R조사)는 이 자리를 구조적으로 못 본다 — 조사가 붙은 것이 수가 아니라 낱말이다.
+        `${josa(theme.labels[at]!.math, "과", "와")} ${theme.labels[at + 1]!.math} 사이`,
+        `${josa(theme.labels[at]!.math, "과", "와")} ${theme.labels[at + 1]!.math} 사이에서 선이 가장 가파릅니다. ` +
           `${expr(`${Math.max(nums[at]!, nums[at + 1]!)}-${Math.min(nums[at]!, nums[at + 1]!)}=${change}`)} 만큼 변했습니다.`,
         figure,
       );
@@ -7531,6 +7552,420 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-5 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **자료형이라 1단은 「계산」이 아니라 「값 읽기」다**(D-72 ⑶).
+ *
+ * ⚠️ **「값이 가려진 꺾은선」은 만들지 않는다.** `_bar_chart` 만 `allow_unknown=True` 로
+ * 부르고 `_line_chart` 는 안 부른다(`elem_advanced.py:612` 대 `:669`). 지금 물으면 값을
+ * `values` 에 넣어야 하고, 넣으면 **그 값이 그려져** 답이 지면에 그대로 나온다.
+ *
+ * ⚠️ **`chartPair`(두 그래프 견주기)도 지금은 안 쓴다.** 짝의 폭 등급이 파이썬 가드와
+ * 어긋나 있다 — 파이썬은 짝이 늘 364px 틀에 든다고 보고 판정하는데(`PAIR_FRAME_PX`),
+ * TS `figureSvgSize` 는 viewBox 폭으로 등급을 정해 초4 의 짝(293~360단위)이 `pair`(380 초과)에
+ * **한 번도 안 걸린다.** 293단위짜리는 `mid`(240px)로 떨어져 눈금 글자가 **11.45px** 로
+ * 본문(12.5px) 아래가 된다. 고쳐지면 그때 짝 갈래를 따로 얹는다(리드 보고 2026-08-23).
+ *
+ * 표준과 겹치지 않게 **묻는 방향**을 갈랐다 — 표준이 「가장 큰 때는 **언제**」면 갈래는
+ * 「가장 작은 때의 **값**」, 표준이 때→값이면 갈래는 값→때.
+ */
+
+/**
+ * 2-5-1 3단용 — 한가운데 값을 읽으려면 **이웃한 두 값의 합이 짝수**여야 한다.
+ *
+ * 그런 이웃 짝은 **반드시 있다**: 걸음은 `1`~`6` 중 **서로 다른 넷**인데 홀수는 셋뿐이라
+ * 넷을 고르면 짝수가 적어도 하나 들어간다. 걸음이 짝수면 그 이웃의 두 값은 같은 홀짝이라
+ * 합이 짝수다(부호는 홀짝을 안 바꾼다). `theme.step` 이 짝수면 걸음이 전부 짝수라 더 넉넉하다.
+ */
+function evenSumPairs(nums: readonly number[]): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < nums.length - 1; i += 1) {
+    if ((nums[i]! + nums[i + 1]!) % 2 === 0) out.push(i);
+  }
+  return out;
+}
+
+/**
+ * 2-5-2 4단용 — **오른 뒤 반드시 한 번 내려간다.**
+ *
+ * 「값이 처음으로 $T$ 이상이 된 때」가 뜻을 가지려면 그 뒤에 오르내림이 있어야 한다
+ * (리드 2026-08-23) — 늘 오르기만 하면 「처음으로」가 빈 말이다. 표준 `lineValues` 는
+ * 내림 여부를 씨앗에 맡기므로 여기서 따로 만든다.
+ *
+ * 셋째 걸음만 내림이고 **그 폭을 둘째 오름보다 작게** 잡는다(`m2 < m1`). 그러면
+ * `v0 < v1 < v3 < v2` 이고 `v4 > v1` 이라 다섯 값이 모두 다르고 음수도 안 나온다 —
+ * 다시 뽑는 고리 없이 구성만으로 선다. 2-5-2 몫의 소재 셋은 모두 `rising` 이 아니라 내려가도 된다.
+ */
+function dipLineValues(rng: Rng, theme: LineTheme): number[] {
+  const m1 = intBetween(rng, 2, 6);
+  const m2 = intBetween(rng, 1, m1 - 1);
+  const rest = [1, 2, 3, 4, 5, 6].filter((v) => v !== m1 && v !== m2);
+  const m0 = rest.splice(intBetween(rng, 0, rest.length - 1), 1)[0]!;
+  const m3 = pick(rng, rest);
+  const first = intBetween(rng, theme.base[0], theme.base[1]) * theme.step;
+  const v1 = first + m0 * theme.step;
+  const v2 = v1 + m1 * theme.step;
+  const v3 = v2 - m2 * theme.step;
+  return [first, v1, v2, v3, v3 + m3 * theme.step];
+}
+
+/** 갈래가 쓰는 꺾은선 그림. 표준과 같은 규약(`yMax` 는 하한, 걸음은 `theme.yStep`). */
+function lineFigure(
+  theme: LineTheme,
+  nums: readonly number[],
+): Record<string, unknown> {
+  return fig("lineChart", {
+    values: theme.labels.map((label, i) => ({
+      label: label.text,
+      value: nums[i]!,
+    })),
+    yMax: Math.max(...nums) + 3,
+    yStep: theme.yStep,
+    yLabel: theme.unit,
+  });
+}
+
+/** 갈래 발문의 첫 문장 — 그림이 꺾은선일 때. */
+function lineIntro(theme: LineTheme): string {
+  return `${josa(theme.topic, "을", "를")} 조사하여 나타낸 꺾은선그래프입니다.`;
+}
+
+/**
+ * **2-5-1 1단 연산 — 값 읽기.** 표준은 「가장 큰 때는 **언제**」(답이 때), 여기는 **값**이다.
+ *
+ * ⚠️ 두 때를 **발문에 적어** 견주게 한다. 처음에는 「가장 작은 때의 값은?」이라고만 물었는데
+ * 발문에 수가 하나도 없어 **씨앗을 바꿔도 소재 셋뿐**이었다(변형 3가지). 자료형은 값이
+ * 그림에 있어 발문이 비기 쉽다 — 읽을 자리를 발문이 지목해야 갈린다.
+ */
+function tier251Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const a = intBetween(rng, 0, nums.length - 2);
+  const b = intBetween(rng, a + 1, nums.length - 1);
+  const lower = nums[a]! < nums[b]! ? a : b;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.labels[a]!.math, "과", "와")} ` +
+      `${theme.labels[b]!.math} 중 ${josa(theme.topic, "이", "가")} 더 작은 때의 값은 ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(nums[lower]!)}${theme.unit}`,
+    `${theme.labels[a]!.math}의 값은 ${n(nums[a]!)}${theme.unit}, ` +
+      `${theme.labels[b]!.math}의 값은 ${n(nums[b]!)}${theme.unit}입니다. ` +
+      `더 작은 쪽은 ${theme.labels[lower]!.math}이고 그 값은 ${n(nums[lower]!)}${theme.unit}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 1단 연산 — 값 읽기(역방향).** 표준은 때 → 값, 여기는 **값 → 때**다. */
+function tier252Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
+    theme.labels[at]!.math,
+    `세로축에서 ${n(nums[at]!)}${theme.unit}인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 ` +
+      `${theme.labels[at]!.math}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 2단 기본 — 기준과 견주어 센다.** 한 때를 기준으로 잡고 전량을 훑는다. */
+function tier251Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 기준은 **최대도 최소도 아닌** 때로 잡는다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sorted = [...nums].sort((a, b) => a - b);
+  const at = nums.indexOf(pick(rng, sorted.slice(1, -1)));
+  const more = nums.filter((v) => v > nums[at]!).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 ${theme.labels[at]!.math}의 값보다 ` +
+      `큰 때는 모두 몇 번인가?`,
+    `${n(more)}번`,
+    `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
+      `점이 그보다 높이 찍힌 때를 세면 ${n(more)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 3단 응용 — 한가운데 값 어림.** 두 점을 이은 선분이라 한가운데를 읽을 수 있다. */
+function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 이웃 합이 짝수인 짝은 **반드시 있다**(위 `evenSumPairs` 주석의 홀짝 셈).
+  const at = pick(rng, evenSumPairs(nums));
+  const lo = nums[at]!;
+  const hi = nums[at + 1]!;
+  const mid = (lo + hi) / 2;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
+      `${theme.labels[at + 1]!.math}의 한가운데 때의 값은 약 몇 ${theme.unit}인가?`,
+    `${n(mid)}${theme.unit}`,
+    // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
+    `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +
+      `읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 ` +
+      `${expr(`(${lo}+${hi})\\div2=${mid}`)} 이므로 약 ${n(mid)}${theme.unit}입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-1 4단 심화 — 늘어난 만큼만 모은다.** 표준은 늘어난 «구간 수»를 센다. */
+function tier251Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 세기 시작하는 때를 발문에 적는다 — 안 적으면 발문에 수가 없어 변형이 소재 수로 묶인다.
+  const from = intBetween(rng, 0, nums.length - 3);
+  const rises = nums
+    .slice(from + 1)
+    .map((v, i) => v - nums[from + i]!)
+    .filter((d) => d > 0);
+  const total = rises.reduce((s, d) => s + d, 0);
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.labels[from]!.math}부터 마지막 때까지에서 ` +
+      `${josa(theme.topic, "이", "가")} 늘어난 구간만 골라 늘어난 양을 모두 더하면 ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(total)}${theme.unit}`,
+    `${theme.labels[from]!.math} 뒤로 선이 오른쪽 위로 올라간 구간만 봅니다. 늘어난 양은 ` +
+      `${rises.map((d) => n(d)).join(", ")}${theme.unit}이고, 모두 더하면 ` +
+      `${expr(`${rises.join("+")}=${total}`)} 입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-2 2단 기본 — 문턱을 넘은 때 세기.**
+ *
+ * ⚠️ 처음에는 「⟨때⟩의 값은 ⟨때⟩의 값보다 몇 … 더 큰가?」였는데 **표준과 골격이 글자까지
+ * 같았다** — 표준은 처음·마지막을 견주고 갈래는 가운데를 견줄 뿐, 수를 가리면 한 문장이다.
+ * 자리(index)만 옮긴 것은 같은 문항이라 **묻는 일 자체를** 바꿨다.
+ */
+function tier252Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  // 문턱은 **실제로 나온 값들 사이**에서 고른다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sorted = [...nums].sort((a, b) => a - b);
+  const bar = sorted[intBetween(rng, 0, sorted.length - 2)]!;
+  const over = nums.filter((v) => v > bar).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(bar)}${theme.unit}보다 ` +
+      `높은 때는 모두 몇 번인가?`,
+    `${n(over)}번`,
+    `세로축에서 ${n(bar)}${theme.unit}인 곳을 찾아 그보다 위에 찍힌 점을 세면 ` +
+      `${n(over)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 3단 응용 — 문턱을 넘는 구간 세기.** 구간마다 변화를 재고 문턱과 견준다. */
+function tier252Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const gaps = nums.slice(1).map((v, i) => Math.abs(v - nums[i]!));
+  // 문턱은 **실제로 나온 변화들 사이**에서 고른다 — 그래야 답이 $0$ 도 전부도 아니다.
+  const sortedGaps = [...gaps].sort((a, b) => a - b);
+  const bar = sortedGaps[intBetween(rng, 0, sortedGaps.length - 2)]!;
+  const over = gaps.filter((g) => g > bar).length;
+  return make(
+    unit,
+    `${lineIntro(theme)} 이웃한 두 때 사이에서 ${theme.topic}의 값이 ` +
+      `${n(bar)}${theme.unit}보다 많이 변한 구간은 모두 몇 번인가?`,
+    `${n(over)}번`,
+    `이웃한 두 점의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
+      `이 중 ${n(bar)}${theme.unit}보다 큰 것은 ${n(over)}개이므로 ${n(over)}번입니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/** **2-5-2 4단 심화 — 문턱을 처음 넘은 때부터 끝까지.** 때를 찾고 다시 변화를 잰다. */
+function tier252Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  // 오른 뒤 반드시 한 번 내려간다 — 「처음으로」가 뜻을 가지려면 뒤에 오르내림이 있어야 한다.
+  const nums = dipLineValues(rng, theme);
+  const bar = nums[1]!;
+  const last = nums[nums.length - 1]!;
+  return make(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 처음으로 ${n(bar)}${theme.unit} 이상이 된 ` +
+      `때부터 마지막 때까지 값은 몇 ${theme.unit} 늘었는가?`,
+    `${n(last - bar)}${theme.unit}`,
+    `값이 ${n(bar)}${theme.unit} 이상이 된 것은 ` +
+      `${josa(theme.labels[1]!.math, "이", "가")} 처음입니다` +
+      `(${theme.labels[0]!.math}의 값은 ${n(nums[0]!)}${theme.unit}로 그보다 작습니다). ` +
+      `그때부터 마지막 ${theme.labels[nums.length - 1]!.math}까지 보면 ` +
+      `${expr(`${last}-${bar}=${last - bar}`)} 이므로 ${n(last - bar)}${theme.unit} 늘었습니다.`,
+    lineFigure(theme, nums),
+  );
+}
+
+/* ── 2-5-3 그리기와 활용 ──
+ *
+ * 그림이 **표**다(그리기 갈래의 정체성 — 1-5-2 선례). 그래서 발문은 **표만** 가리킨다:
+ * 「그래프에서」·「그림과 같이」를 **한 번도** 쓰지 않는다(리드 조건 ⑴, 시험이 전수로 잠근다).
+ *
+ * ⚠️ **D-70 과 부딪히지 않는다**(리드 판정 2026-08-23, 07 §D-70 원문 대조).
+ * D-70 이 막은 것은 「**그려진 점**이 몇째 눈금인가」다 — 꺾은선 값은 `theme.step` 의 배수인데
+ * 눈금은 `yStep` 이라 점이 눈금선 위에 안 앉기 때문이다. 여기는 지면에 **꺾은선이 아예 없고**
+ * (그림이 표), 답을 표의 수로 **세어서** 낸다. 읽을 점이 없으니 어긋날 것도 없다.
+ * D-70 자체가 원장님의 「눈금 몇 칸 유형도 넣어」에서 나온 결정이라 방향도 «넓히자» 쪽이다.
+ * **이 주석을 지우지 말 것** — 다음 사람이 「D-70 위반 아닌가」로 열 자리다.
+ */
+
+/**
+ * 2-5-3 값 — 모두 `theme.step` 의 **배수**이고 오름차순이며 이웃 차가 **서로 다르다.**
+ *
+ * 세 성질이 각각 무엇을 보장하는지:
+ *  · 배수  → 「한 칸이 `step` 일 때 몇 칸」·「물결선 위 몇째」가 **늘 자연수**다(구성 보장).
+ *  · 오름차순 → 최댓값이 마지막이라 칸 셈이 그것만 보면 된다.
+ *  · 차가 다름 → 「가장 가파른/완만한 구간」이 각각 **하나로 선다.**
+ *
+ * ⚠️ 걸음 수를 `yStep` 이 아니라 **`step`** 으로 잡는다. 처음에 `yStep`(10·200)으로 짰더니
+ * 「강낭콩의 키 $150$cm」가 나왔다 — 소재가 감당 못 하는 크기다. `step` 은 소재가 정한
+ * 값의 단위라 `theme.base` 와 같은 자리에 머문다(강낭콩 26~36cm · 박물관 650~900명).
+ */
+function tableValues(rng: Rng, theme: LineTheme): number[] {
+  const rest = [1, 2, 3, 4];
+  const mags: number[] = [];
+  for (let i = 0; i < 4; i += 1) {
+    mags.push(rest.splice(intBetween(rng, 0, rest.length - 1), 1)[0]!);
+  }
+  /*
+   * 첫 값은 **소재가 정한 띠**(`theme.base`)에서 뽑는다 — 표준 `lineValues` 와 같은 자리다.
+   * 그래야 「강낭콩의 키 $150$cm」 같은 값이 안 나온다. `base[0] ≥ 3` 이라 첫 값이 걸음
+   * 3칸 이상이고, 물결선 시작값을 그 아래에 놓을 자리가 반드시 남는다.
+   * 걸음 넷의 합은 늘 $1+2+3+4=10$ 이므로 가장 큰 값은 첫 값보다 걸음 10칸 위다.
+   */
+  const out = [intBetween(rng, theme.base[0], theme.base[1]) * theme.step];
+  for (const m of mags) out.push(out[out.length - 1]! + m * theme.step);
+  return out;
+}
+
+/** 2-5-3 갈래의 그림 — 표. 발문도 표만 가리킨다. */
+function tableFigure(
+  theme: LineTheme,
+  nums: readonly number[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: ["구분", ...theme.labels.map((l) => l.text)],
+    rows: [[`${theme.topic}(${theme.unit})`, ...nums.map((v) => String(v))]],
+  });
+}
+
+/** 2-5-3 갈래 발문의 첫 문장 — **표**를 가리킨다(그래프가 아니다). */
+function tableIntro(theme: LineTheme): string {
+  return `${josa(theme.topic, "을", "를")} 조사하여 나타낸 표입니다.`;
+}
+
+/** **2-5-3 1단 연산 — 값 읽기.** 표에서 한 때의 값을 읽는다. */
+function tier253Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  return make(
+    unit,
+    `${tableIntro(theme)} ${theme.labels[at]!.math}의 ${josa(theme.topic, "은", "는")} ` +
+      `몇 ${theme.unit}인가?`,
+    `${n(nums[at]!)}${theme.unit}`,
+    `표에서 ${theme.labels[at]!.math} 칸의 수를 읽으면 ${n(nums[at]!)}${theme.unit}입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-3 2단 기본 — 눈금이 몇 칸 필요한가.** 값이 모두 걸음의 배수라 답이 **늘 자연수**다.
+ *
+ * 어느 때의 값을 나타낼지 발문이 지목한다 — 「가장 큰 값」이라고만 하면 발문에 수가 없어
+ * 변형이 소재 수(셋)로 묶인다.
+ */
+function tier253Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const at = intBetween(rng, 0, nums.length - 1);
+  const ticks = nums[at]! / theme.step;
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타내려고 합니다. 세로 눈금 한 칸이 ` +
+      `${n(theme.step)}${theme.unit}일 때 ${theme.labels[at]!.math}의 값을 나타내려면 ` +
+      `눈금이 아래에서부터 몇 칸 올라가야 하는가?`,
+    `${n(ticks)}칸`,
+    `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
+      `한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
+      `${expr(`${nums[at]!}\\div${theme.step}=${ticks}`)} 이고 ${n(ticks)}칸입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/** **2-5-3 3단 응용 — 물결선.** 아래를 접고 시작한 축에서 몇째 눈금인지 센다(두 단계). */
+function tier253Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const min = Math.min(...nums);
+  /*
+   * 물결선 위 시작값. **$0$ 이면 안 된다** — 아래를 접으려고 넣는 것이 물결선인데
+   * $0$ 부터 시작하면 접은 것이 없다(첫 판에서 「$0$cm부터 시작」이 나왔다).
+   * 가장 작은 값 **아래**이면서 $0$ **위**인 걸음의 배수로 잡는다. 값도 시작값도 걸음의
+   * 배수라 `(값 − start) ÷ 걸음` 은 **늘 자연수**다(`tableValues` 가 칸을 13 이상으로
+   * 두어 이 자리가 반드시 남는다).
+   */
+  const start = intBetween(rng, 1, min / theme.step - 1) * theme.step;
+  // 어느 값을 찍는지도 갈린다 — 「가장 큰 값」만 물으면 발문의 수가 시작값 하나뿐이라 변형이 얇다.
+  const at = intBetween(rng, 0, nums.length - 1);
+  const target = intBetween(rng, 0, 1) === 0 ? Math.max(...nums) : nums[at]!;
+  const named = target !== Math.max(...nums) || intBetween(rng, 0, 1) === 0;
+  const which = named
+    ? `${theme.labels[nums.indexOf(target)]!.math}의 값`
+    : "가장 큰 값";
+  const nth = (target - start) / theme.step;
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때 물결선을 넣어 세로 눈금을 ` +
+      `${n(start)}${theme.unit}부터 시작하려고 합니다. 세로 눈금 한 칸은 ` +
+      `${n(theme.step)}${theme.unit}입니다. ${which}은 물결선 위로 몇째 눈금에 찍히는가?`,
+    `${n(nth)}째`,
+    `${which}은 ${n(target)}${theme.unit}이고 눈금은 ${n(start)}${theme.unit}부터 시작합니다. ` +
+      `${expr(`${target}-${start}=${target - start}`)} 이고 한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
+      `${expr(`${target - start}\\div${theme.step}=${nth}`)} 이고 ${n(nth)}째 눈금입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-3 4단 심화 — 가장 가파른 구간과 견주기.** 전 구간을 재고 지목된 구간과 견준다.
+ *
+ * 견줄 구간을 발문이 지목한다 — 「가장 가파른 것과 가장 완만한 것의 차」라고만 하면
+ * 발문에 수가 없어 변형이 소재 수(셋)로 묶인다.
+ */
+function tier253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const gaps = nums.slice(1).map((v, i) => v - nums[i]!);
+  const most = Math.max(...gaps);
+  const top = gaps.indexOf(most);
+  // 가장 가파른 구간 **말고** 하나를 골라 견준다 — 답이 $0$ 이 되지 않는다.
+  const other = pick(
+    rng,
+    gaps.map((_, i) => i).filter((i) => i !== top),
+  );
+  return make(
+    unit,
+    `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때, 선이 가장 가파른 구간의 ` +
+      `변화량은 ${josa(theme.labels[other]!.math, "과", "와")} ` +
+      `${theme.labels[other + 1]!.math} 사이의 변화량보다 몇 ${theme.unit} 더 큰가?`,
+    `${n(most - gaps[other]!)}${theme.unit}`,
+    `이웃한 두 때의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
+      `가장 가파른 구간은 ${josa(theme.labels[top]!.math, "과", "와")} ` +
+      `${theme.labels[top + 1]!.math} 사이로 ${n(most)}${theme.unit}이고, ` +
+      `${josa(theme.labels[other]!.math, "과", "와")} ${theme.labels[other + 1]!.math} 사이는 ` +
+      `${n(gaps[other]!)}${theme.unit}입니다. ` +
+      `${expr(`${most}-${gaps[other]!}=${most - gaps[other]!}`)}`,
+    tableFigure(theme, nums),
+  );
+}
+
 /* ───────────────────────── 2-6 다각형 ─────────────────────────
  *
  * 도형 이름은 **한자 수사**로만 쓴다(R4) — `polyName` 을 거치면 `8각형`·`정n각형` 이 나올 수 없다.
