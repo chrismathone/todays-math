@@ -1,6 +1,10 @@
 /**
  * 중1 실물 맥락 유형 — `assetScene` 그림을 실은 3유형 (물결 2D).
  *
+ * 이 트랙의 배선은 `generate.ts` 한 줄이다 — `m1Extra.ts`(중1 세션의 **합본**)에
+ * 끼우면 `middleM1Extra.test.ts` 의 「30유형」 단정이 깨진다. 각 세션의 시험은
+ * 자기 유형만 훑는다는 규약(middleTypeCoverage.test.ts 머리 주석) 때문이다.
+ *
  * 병렬 세션 소유 모듈 — 이 파일과 `realScene.ts` 는 **이 세션만** 만진다
  * (docs/planning/tracks/middle-engine-parallel-20260823.md 의 파일 소유권 규칙).
  *
