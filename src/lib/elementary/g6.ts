@@ -5734,7 +5734,7 @@ function fromTenths(tenths: number): string {
   return tenths % 10 === 0 ? String(tenths / 10) : decStr(tenths, 1);
 }
 
-/** 2-5-1·2-5-3 — 원 안팎에 «꼭 맞게» 그리는 도형의 조건절. 도형마다 조건이 다르다. 도형마다 조건이 다르다.
+/** 2-5-1·2-5-3 — 원 안팎에 «꼭 맞게» 그리는 도형의 조건절. 도형마다 조건이 다르다.
  *
  * ⚠️ 조건이 **둘** 필요한 갈래에서는 「단, …」을 두 번 쓰지 않는다(지면에서 어색하다).
  * 안쪽 도형을 「단, 」으로 먼저, 바깥 도형을 「또, 」로 뒤에 둔다. 순서를 뒤집지 말 것 —
@@ -5843,7 +5843,7 @@ function circPiDeep(unit: UnitSeed, rng: Rng): ElemProblem {
 /**
  * 연산 — 지름에서 원주 한 번.
  *
- * ⚠️ **원주율은 난이도 축에 건다 — D-73**(원장님 확정 2026-08-23:
+ * ⚠️ **원주율은 난이도 축에 건다 — D-74**(원장님 확정 2026-08-23:
  * 「원주율은 소수의 계산이 필요한 혼합문제에서 3.14까지 확장. 단순 계산 필요없이
  * 단순하게 하려면 3이나 3.1로. **난이도에 따라 문제 복잡도에 따라**」).
  *
@@ -5906,7 +5906,7 @@ function circLenDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 9);
   const turns = intBetween(rng, 3, 12);
   // 역산이 $3.14$ 로 나누므로 **답에서 거꾸로 짓는다** — 앞에서 뽑아 나누면
-  // 딱 안 떨어진다(D-73 ㉠). 반지름을 먼저 정하고 굴러간 거리를 만든다.
+  // 딱 안 떨어진다(D-74 ㉠). 반지름을 먼저 정하고 굴러간 거리를 만든다.
   const perTurn = 628 * r; // 원주(센트) = 지름 × 3.14
   const total = perTurn * turns;
   return make(
@@ -6042,7 +6042,7 @@ function circAreaApply(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 심화 — 역산. 넓이에서 ⓐ 반지름 ⓑ 지름을 되짚는다. */
 function circAreaDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 13);
-  // 넓이를 **답에서 거꾸로** 짓는다 — $3.14$ 로 나눠 떨어져야 한다(D-73 ㉠).
+  // 넓이를 **답에서 거꾸로** 짓는다 — $3.14$ 로 나눠 떨어져야 한다(D-74 ㉠).
   const area = fromCents(314 * r * r);
   if (intBetween(rng, 0, 1) === 0) {
     return make(
@@ -6522,6 +6522,292 @@ function cubeMakeDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 12차분) — 초6 `2-6 원기둥, 원뿔, 구` (4소단원 · 16갈래) ──
+//
+// ⑴ **그림이 값을 안 적는다 — 렌더러를 열어 확인했다.** `_cylinder`·`_cone`·`_sphere`
+//    ·`_net_cylinder`(`scripts/figure/elem_advanced.py`) 넷 다 `_text` 호출이 **하나도
+//    없다.** `netCylinder` 가 `pi` 를 받지만 옆면 **가로의 길이를 정하는 데만** 쓰고
+//    지면에 적지는 않는다. 그래서 1-5 원그래프에서 난 「그림이 역산의 답을 알려 준다」가
+//    이 단원에는 **구조적으로** 없다(그 단원은 `pct` 를 부채꼴과 범례 두 곳에 찍었다).
+// ⑵ 그래도 **`netCylinder` 의 `pi` 는 발문에 적은 값과 맞춘다.** 안 맞추면 그린
+//    직사각형의 가로 비율이 발문과 어긋난다 — 값은 맞고 **그림만 틀리는** 부류다.
+// ⑶ **모선은 안 쓴다.** 모선·높이·반지름은 피타고라스로 얽히는데 초6 과정 밖이다.
+//    쓸 수 있는 것은 「앞에서 본 모양」이다 — 원기둥은 직사각형, 원뿔은 이등변삼각형.
+// ⑷ D-74 원주율 — 연산 `$3$` · 기본 `$3$` · 응용 `$3.1$` · 심화 `$3.14$`.
+//    원주율이 필요 없는 소단원(2-6-1 · 2-6-3)은 **아예 안 적는다** — 안 쓰는 값을
+//    적으면 학생이 그 값을 어디에 쓰는지 찾게 된다.
+// ⑸ 심화 넷은 **그림이 없다**(역산이라 그림이 답을 보이면 되짚을 것이 없어진다).
+//    그리고 원장님 지시대로 **여러 입체를 한 장면에 두지 않는다** — 갈래마다 입체 하나다.
+
+/** 원기둥 모양 물건 — 2-6-1·2-6-2 기본. */
+const CYL_THINGS = ["통조림 통", "물통", "연필꽂이", "북"] as const;
+/** 원뿔 모양 물건 — 2-6-3 기본. */
+const CONE_THINGS = ["고깔모자", "아이스크림콘", "깔때기"] as const;
+/** 구 모양 물건 — 2-6-4 기본. */
+const BALL_THINGS = ["농구공", "지구본", "구슬", "수박"] as const;
+
+// ── 2-6-1 원기둥 알아보기 ──
+
+/** 연산 — 밑면의 반지름에서 지름. 절차 한 번. */
+function cylKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    // ⚠️ 높이를 안 쓰는 발문이지만 **적는다.** `cylinder` 렌더러는 높이를 「$9$ cm」
+    // 처럼 **글자로 찍는다**(실제로 그려 보고 알았다 — 원문 grep 으로는 안 보였다).
+    // 발문이 그 값을 말하지 않으면 지면에 **본문에 없는 수**가 하나 떠 있게 된다.
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. ` +
+      `이 원기둥의 밑면의 지름은 몇 cm인가?`,
+    num(2 * r),
+    `지름은 반지름의 두 배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("cylinder", { r, h }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 앞에서 본 직사각형의 넓이. */
+function cylKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CYL_THINGS);
+  const r = intBetween(rng, 2, 10);
+  const h = intBetween(rng, 3, 15);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²인가?`,
+    num(d * h),
+    `원기둥을 앞에서 보면 가로가 밑면의 지름과 같고 세로가 높이와 같은 직사각형입니다. ` +
+      `${expr(`${d}\\times${h}=${d * h}`)}`,
+    fig("cylinder", { r, h }),
+  );
+}
+
+/** 응용 — 두 걸음. 반지름에서 지름을 구한 뒤 앞에서 본 직사각형의 둘레. */
+function cylKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 18);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥을 ` +
+      `앞에서 본 모양의 둘레는 몇 cm인가?`,
+    num(2 * (d + h)),
+    `앞에서 본 모양은 직사각형입니다. 가로는 밑면의 지름이므로 ${expr(`${r}\\times2=${d}`)} 이고 ` +
+      `세로는 높이인 ${num(h)} 입니다. 둘레는 ${expr(`(${d}+${h})\\times2=${2 * (d + h)}`)} 입니다.`,
+    fig("cylinder", { r, h }),
+  );
+}
+
+/** 심화 — 역산. 앞에서 본 직사각형의 둘레와 높이에서 밑면의 반지름을 되짚는다(그림 없음). */
+function cylKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 18);
+  const half = 2 * r + h;
+  return make(
+    unit,
+    `어떤 원기둥을 앞에서 본 모양은 둘레가 ${unitNum(2 * half, "cm")} 인 직사각형입니다. ` +
+      `이 원기둥의 높이가 ${unitNum(h, "cm")} 일 때 밑면의 반지름은 몇 cm인가?`,
+    num(r),
+    `직사각형의 가로와 세로의 합은 ${expr(`${2 * half}\\div2=${half}`)} 입니다. ` +
+      `세로가 높이 ${num(h)} 이므로 가로는 ${expr(`${half}-${h}=${2 * r}`)} 이고, 이것이 밑면의 지름입니다. ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
+  );
+}
+
+// ── 2-6-2 원기둥의 전개도 알아보기 ──
+
+/** 연산 — 옆면인 직사각형의 가로(= 밑면의 둘레). 표준은 반지름을 주므로 여기서는 **지름**을 준다. */
+function cylNetCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(d, "cm")} 인 원기둥의 전개도입니다. ` +
+      `옆면인 직사각형의 가로는 몇 cm인가? (원주율: ${num(3)})`,
+    num(d * 3),
+    `옆면의 가로는 밑면의 둘레와 같습니다. ${expr(`${d}\\times3=${d * 3}`)}`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 옆면에 두를 색종이의 가로. */
+function cylNetWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CYL_THINGS);
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 4, 18);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥 모양 ${thing}의 옆면에 색종이를 빈틈없이 두르려고 합니다. ` +
+      `색종이의 가로는 몇 cm여야 하는가? (원주율: ${num(3)})`,
+    num(2 * r * 3),
+    `옆면을 펼치면 직사각형이고, 그 가로는 밑면의 둘레와 같습니다. ` +
+      `${expr(`2\\times${r}\\times3=${2 * r * 3}`)}`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+
+/** 응용 — 두 걸음. 가로를 구한 뒤 옆면의 넓이. 원주율 `$3.1$`. */
+function cylNetApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 10);
+  const h = intBetween(rng, 3, 12);
+  // 십분의 일 단위 정수로만 셈해 부동소수점을 안 거친다(R2).
+  const latT = 2 * r * 31;
+  const areaT = latT * h;
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 ` +
+      `옆면의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,
+    num(fromTenths(areaT)),
+    `옆면의 가로는 밑면의 둘레와 같으므로 ${expr(`2\\times${r}\\times3.1=${fromTenths(latT)}`)} 이고, ` +
+      `세로는 높이인 ${num(h)} 입니다. ` +
+      `${expr(`${fromTenths(latT)}\\times${h}=${fromTenths(areaT)}`)}`,
+    fig("netCylinder", { r, h, pi: 3.1, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+
+/** 심화 — 역산. 옆면의 넓이와 높이에서 밑면의 반지름(그림 없음). 원주율 `$3.14$`. */
+function cylNetDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const h = intBetween(rng, 3, 12);
+  // 백분의 일 단위 정수. 답(반지름)에서 거꾸로 지어 나눗셈이 딱 떨어지게 한다.
+  const circC = 2 * r * 314;
+  const areaC = circC * h;
+  return make(
+    unit,
+    `어떤 원기둥의 전개도에서 옆면의 넓이가 ${num(fromCents(areaC))} cm²이고 ` +
+      `이 원기둥의 높이가 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+    num(r),
+    `옆면의 가로는 ${expr(`${fromCents(areaC)}\\div${h}=${fromCents(circC)}`)} 이고, 이것이 밑면의 둘레입니다. ` +
+      `밑면의 지름은 ${expr(`${fromCents(circC)}\\div3.14=${2 * r}`)} 이므로 ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
+  );
+}
+
+// ── 2-6-3 원뿔 알아보기 ──
+
+/** 연산 — 앞에서 본 이등변삼각형의 밑변(= 밑면의 지름). 절차 한 번. */
+function coneKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원뿔입니다. ` +
+      `이 원뿔을 앞에서 본 모양은 삼각형인데, 그 삼각형의 밑변은 몇 cm인가?`,
+    num(2 * r),
+    `원뿔을 앞에서 보면 이등변삼각형이고, 그 밑변은 밑면의 지름과 같습니다. ` +
+      `${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("cone", { r, h }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 지름과 높이를 주고 앞에서 본 삼각형의 넓이. */
+function coneKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CONE_THINGS);
+  const r = intBetween(rng, 2, 10);
+  const h = intBetween(rng, 3, 15);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²인가?`,
+    num(r * h),
+    `앞에서 본 모양은 밑변이 ${num(d)} 이고 높이가 ${num(h)} 인 삼각형입니다. ` +
+      `${expr(`${d}\\times${h}\\div2=${r * h}`)}`,
+    fig("cone", { r, h }),
+  );
+}
+
+/** 응용 — 두 걸음. 반지름에서 밑변을 구한 뒤 앞에서 본 삼각형의 넓이. */
+function coneKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 16);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 ` +
+      `앞에서 본 모양의 넓이는 몇 cm²인가?`,
+    num(r * h),
+    `앞에서 본 모양은 이등변삼각형이고 밑변은 밑면의 지름이므로 ${expr(`${r}\\times2=${d}`)} 입니다. ` +
+      `넓이는 ${expr(`${d}\\times${h}\\div2=${r * h}`)} 입니다.`,
+    fig("cone", { r, h }),
+  );
+}
+
+/** 심화 — 역산. 앞에서 본 삼각형의 넓이와 높이에서 밑면의 반지름(그림 없음). */
+function coneKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 16);
+  const area = r * h;
+  return make(
+    unit,
+    `어떤 원뿔을 앞에서 본 모양은 넓이가 ${num(area)} cm²인 삼각형이고, ` +
+      `이 원뿔의 높이는 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm인가?`,
+    num(r),
+    `삼각형의 밑변은 ${expr(`${area}\\times2\\div${h}=${2 * r}`)} 이고, 이것이 밑면의 지름입니다. ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
+  );
+}
+
+// ── 2-6-4 구 알아보기와 여러 가지 모양 만들기 ──
+
+/** 연산 — 구의 지름에서 반지름. 절차 한 번. */
+function ballKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 25);
+  return make(
+    unit,
+    `지름이 ${unitNum(2 * r, "cm")} 인 구입니다. 이 구의 반지름은 몇 cm인가?`,
+    num(r),
+    `반지름은 지름의 반입니다. ${expr(`${2 * r}\\div2=${r}`)}`,
+    fig("sphere", { r }),
+  );
+}
+
+/** 기본 — 한 겹 문장제. 반지름에서 지름. */
+function ballKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, BALL_THINGS);
+  const r = intBetween(rng, 3, 18);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}의 지름은 몇 cm인가?`,
+    num(2 * r),
+    `지름은 반지름의 두 배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("sphere", { r }),
+  );
+}
+
+/** 응용 — 두 걸음. 구의 중심을 지나게 자른 단면의 둘레. 원주율 `$3.1$`. */
+function ballKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 25);
+  const d = 2 * r;
+  const circT = d * 31;
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. ` +
+      `잘린 면의 둘레는 몇 cm인가? (원주율: ${num("3.1")})`,
+    num(fromTenths(circT)),
+    `구를 중심을 지나게 자르면 잘린 면은 구와 반지름이 같은 원입니다. ` +
+      `지름은 ${expr(`${r}\\times2=${d}`)} 이므로 둘레는 ${expr(`${d}\\times3.1=${fromTenths(circT)}`)} 입니다.`,
+    fig("sphere", { r }),
+  );
+}
+
+/** 심화 — 역산. 단면의 둘레에서 구의 반지름(그림 없음). 원주율 `$3.14$`. */
+function ballKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 25);
+  const circC = 2 * r * 314;
+  return make(
+    unit,
+    `어떤 구를 중심을 지나게 잘랐더니 잘린 면의 둘레가 ${unitNum(fromCents(circC), "cm")} 였습니다. ` +
+      `이 구의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+    num(r),
+    `잘린 면은 구와 반지름이 같은 원입니다. 그 원의 지름은 ` +
+      `${expr(`${fromCents(circC)}\\div3.14=${2 * r}`)} 이므로 ` +
+      `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -6838,6 +7124,30 @@ export const G6_TIERS: ElemTierMap = {
     기본: cubeMakeWord,
     응용: cubeMakeApply,
     심화: cubeMakeDeep,
+  },
+  "초6|2-6-1": {
+    연산: cylKnowCalc,
+    기본: cylKnowWord,
+    응용: cylKnowApply,
+    심화: cylKnowDeep,
+  },
+  "초6|2-6-2": {
+    연산: cylNetCalc,
+    기본: cylNetWord,
+    응용: cylNetApply,
+    심화: cylNetDeep,
+  },
+  "초6|2-6-3": {
+    연산: coneKnowCalc,
+    기본: coneKnowWord,
+    응용: coneKnowApply,
+    심화: coneKnowDeep,
+  },
+  "초6|2-6-4": {
+    연산: ballKnowCalc,
+    기본: ballKnowWord,
+    응용: ballKnowApply,
+    심화: ballKnowDeep,
   },
 };
 
