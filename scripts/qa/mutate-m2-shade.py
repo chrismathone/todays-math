@@ -13,8 +13,11 @@
 ⑵ 에서 안 바뀌면 «판정 거부»로 찍고 넘어간다. 멀쩡한 가드를 의심하고 고치러
 가는 것이 가드가 없는 것보다 나쁘다.
 
-되돌리기는 `git show HEAD:<경로>` 를 **바이너리로** 쓴다 — 파이썬 텍스트 쓰기가
-Windows 에서 LF 를 CRLF 로 바꿔 파일이 조용히 달라지기 때문이다.
+되돌리기는 **시작할 때 읽어 둔 바이트 그대로** 쓴다. `git show HEAD:` 로 되돌리면
+안 된다 — 2026-08-23 첫 판이 그렇게 짜여 있었고, **커밋하지 않은 수정이 통째로
+날아갔다**(git 블롭은 LF, 작업 트리는 CRLF 라 되돌리기 대조도 늘 실패한다).
+그래서 시작할 때 **대상 파일이 커밋돼 있는지 먼저 확인하고, 아니면 멈춘다** —
+이 스크립트는 대상 파일을 덮어쓰므로 안 커밋된 수정이 있으면 위험하다.
 """
 
 from __future__ import annotations
@@ -94,14 +97,15 @@ def write_bytes(path: str, data: bytes) -> None:
         fh.write(data)
 
 
-def restore(path: str) -> None:
-    """HEAD 의 바이트를 그대로 되돌린다 — 텍스트로 쓰면 줄끝이 조용히 바뀐다."""
-    blob = subprocess.run(
-        ["git", "show", f"HEAD:{path}"],
-        capture_output=True,
-        check=True,
-    ).stdout
-    write_bytes(path, blob)
+def restore(path: str, original: bytes) -> None:
+    """**시작할 때 읽어 둔 바이트 그대로** 되돌린다.
+
+    `git show HEAD:<경로>` 로 되돌리면 안 된다 — git 은 블롭을 LF 로 담고
+    작업 트리는 CRLF 라(autocrlf), 내용은 같은데 **줄끝이 통째로 바뀐다.**
+    실제로 첫 판이 그 자리에서 「되돌리기 실패」로 멈췄다. 텍스트로 쓰는 것도
+    안 된다(파이썬이 Windows 에서 LF→CRLF 로 바꾼다) — 그래서 바이너리다.
+    """
+    write_bytes(path, original)
 
 
 def meter() -> str | None:
@@ -125,7 +129,24 @@ def run_tests() -> bool:
     return r.returncode == 0
 
 
+def dirty_targets() -> list[str]:
+    """대상 파일 중 커밋 안 된 것 — 이 스크립트가 덮어쓰므로 있으면 멈춘다."""
+    r = subprocess.run(
+        ["git", "status", "--porcelain", "--", COUNTING, PROB, SHADE],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return [line[3:] for line in r.stdout.splitlines() if line.strip()]
+
+
 def main() -> int:
+    dirty = dirty_targets()
+    if dirty:
+        print("대상 파일에 커밋 안 된 수정이 있습니다 — 먼저 커밋하십시오:")
+        for name in dirty:
+            print(f"  {name}")
+        return 2
     base_files = {p: read_bytes(p) for p in (COUNTING, PROB, SHADE)}
     base_hash = meter()
     if base_hash is None:
@@ -139,13 +160,16 @@ def main() -> int:
     bad = 0
     for name, path, old, new in MUTANTS:
         original = base_files[path]
+        # 찾을 것은 LF 로 적혀 있는데 작업 트리는 CRLF 일 수 있다 — 줄끝을
+        # 맞춰 놓고 찾는다. 되돌릴 때는 어차피 «원래 바이트»를 그대로 쓴다.
+        norm = original.replace(b"\r\n", b"\n")
         old_b, new_b = old.encode("utf-8"), new.encode("utf-8")
-        count = original.count(old_b)
+        count = norm.count(old_b)
         if count != 1:
             print(f"❓ {name}: 찾을 것이 {count}번 나옵니다 — 변이를 고치십시오")
             bad += 1
             continue
-        write_bytes(path, original.replace(old_b, new_b))
+        write_bytes(path, norm.replace(old_b, new_b))
         try:
             after = read_bytes(path)
             if after == original:
@@ -166,7 +190,7 @@ def main() -> int:
             else:
                 print(f"🔴 {name}: 시험이 빨강 ← 가드")
         finally:
-            restore(path)
+            restore(path, original)
             if read_bytes(path) != original:
                 print(f"‼ {path} 되돌리기 실패 — 손으로 확인하십시오")
                 return 2
