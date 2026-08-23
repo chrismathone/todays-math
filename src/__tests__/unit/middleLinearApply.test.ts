@@ -146,8 +146,9 @@ describe("중1 일차방정식의 활용 22유형", () => {
     );
   });
 
-  // entries(이 파일 담당 22유형)만 돈다 — registeredTypes() 전체를 돌면
-  // 병렬 세션이 등록한 다른 학년 유형에 이 파일의 VERIFY(번호 키)를 들이대게 된다.
+  // ⚠️ registeredTypes() 전량이 아니라 이 중단원 것만 돈다 — 병렬 세션이 다른
+  // 중단원 유형을 등록하는 순간 VERIFY["01"] 이 남의 유형에 들이대진다
+  // (2026-08-23 중3 세션이 실제로 밟음. 검산표의 키는 rpmType 번호뿐이다).
   for (const e of entries) {
     describe(`${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
