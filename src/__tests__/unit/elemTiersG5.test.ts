@@ -1968,3 +1968,554 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
     }
   });
 });
+
+/* ── 1-4 약분과 통분 (D-72 5차) — 재검산 도우미 ── */
+
+const CODES14 = ["1-4-1", "1-4-2", "1-4-3", "1-4-4", "1-4-5"] as const;
+
+/** 본문·답에 나온 `\frac{a}{b}` 전부 — 순서대로. */
+const fracChunks = (t: string): [number, number][] =>
+  [...t.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+    Number(m[1]),
+    Number(m[2]),
+  ]);
+
+/** 답이 분수 하나인 갈래 — 진분수(R2)까지 잠근다. */
+function answerFrac(answer: string, label: string): [number, number] {
+  const m = /^\$\\frac\{(\d+)\}\{(\d+)\}\$$/.exec(answer);
+  expect(m, `${label}: 분수 답이 아니다 — ${answer}`).not.toBeNull();
+  const num = Number(m![1]);
+  const den = Number(m![2]);
+  expect(num, `${label}: 진분수가 아니다(R2) — ${answer}`).toBeLessThan(den);
+  return [num, den];
+}
+
+/** 답이 소수 하나인 갈래 — 1 미만까지 잠근다. */
+function answerDec(answer: string, label: string): number {
+  const m = /^\$(0\.\d+)\$$/.exec(answer);
+  expect(m, `${label}: 소수 답이 아니다 — ${answer}`).not.toBeNull();
+  return Number(m![1]);
+}
+
+/** 기약형 — 시험은 엔진의 simplify 를 부르지 않는다. */
+const simp2 = (a: number, b: number): [number, number] => [
+  a / gcd2(a, b),
+  b / gcd2(a, b),
+];
+
+describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
+  it("다섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES14) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES14) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(
+          new Set(rows).size,
+          `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        const answers = new Set(
+          SEEDS.map((s) => problem(code, tier, s).answer),
+        );
+        expect(
+          answers.size,
+          `${code} ${tier} 답이 한 가지뿐이다`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed} 그림`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("낱말 축 (D-66⑸) — 약분·통분·크기가 같은·소수가 제 소단원에만 나온다", () => {
+    const axes: [RegExp, string][] = [
+      [/크기가 같은/, "1-4-1"],
+      [/약분|기약/, "1-4-2"],
+      [/통분|공통분모/, "1-4-3"],
+      [/소수/, "1-4-5"],
+    ];
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          for (const [re, ownerCode] of axes) {
+            if (code !== ownerCode)
+              expect(
+                re.test(c),
+                `${code} ${tier} @${seed} 에 «${re.source}»\n${c}`,
+              ).toBe(false);
+          }
+        }
+      }
+    }
+    // 주인 소단원 쪽 필수 낱말
+    for (const seed of SEEDS) {
+      for (const tier of ELEM_TIERS) {
+        expect(/약분|기약/.test(problem("1-4-2", tier, seed).content)).toBe(
+          true,
+        );
+        expect(/통분|공통분모/.test(problem("1-4-3", tier, seed).content)).toBe(
+          true,
+        );
+        expect(/소수|0\./.test(problem("1-4-5", tier, seed).content)).toBe(
+          true,
+        );
+      }
+    }
+  });
+
+  /* ── 산술 독립 검산 — 참은 찍힌 발문·답에서 (gcd·lcm 은 시험 것) ── */
+
+  it("1-4-1 — 크기가 같음이 교차곱으로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      // 연산 — 빈칸을 채우면 등식이 성립한다
+      const calc = problem("1-4-1", "연산", seed);
+      const m1 = /\\frac\{(\d+)\}\{(\d+)\}=\\frac\{\\square\}\{(\d+)\}/.exec(
+        calc.content,
+      );
+      const m2 = /\\frac\{(\d+)\}\{(\d+)\}=\\frac\{(\d+)\}\{\\square\}/.exec(
+        calc.content,
+      );
+      const ansC = answerNumber(calc.answer, "1-4-1 연산");
+      if (m1) {
+        expect(Number(m1[1]) * Number(m1[3]), calc.content).toBe(
+          ansC * Number(m1[2]),
+        );
+      } else {
+        expect(m2, `빈칸 꼴이 아니다\n${calc.content}`).not.toBeNull();
+        expect(Number(m2![1]) * ansC, calc.content).toBe(
+          Number(m2![3]) * Number(m2![2]),
+        );
+      }
+
+      // 기본 — 나눈 수 / 지정 분모의 분자
+      const read = problem("1-4-1", "기본", seed);
+      const rf = fracChunks(read.content);
+      const ansR = answerNumber(read.answer, "1-4-1 기본");
+      if (read.content.includes("나눈 수를")) {
+        const [[A, B], [sn, sd]] = [rf[0]!, rf[1]!];
+        expect(A, read.content).toBe(sn * ansR);
+        expect(B, read.content).toBe(sd * ansR);
+      } else {
+        expect(read.content).toContain("분자를 구하시오");
+        const [sn, sd] = rf[0]!;
+        const den = Number(/분모가 \$(\d+)\$인/.exec(read.content)![1]);
+        expect(sn * den, read.content).toBe(ansR * sd);
+      }
+
+      // 응용 — 합·차 조건과 값이 함께 선다
+      const ap = problem("1-4-1", "응용", seed);
+      const [sn, sd] = fracChunks(ap.content)[0]!;
+      const cond = Number(
+        /(?:합|차)가? ?이? ?\$(\d+)\$인/.exec(ap.content)?.[1] ??
+          /\$(\d+)\$인 분수를 구하시오/.exec(ap.content)![1],
+      );
+      const [x, y] = answerFrac(ap.answer, "1-4-1 응용");
+      expect(sn * y, ap.content).toBe(x * sd);
+      if (ap.content.includes("합이")) expect(x + y, ap.content).toBe(cond);
+      else expect(y - x, ap.content).toBe(cond);
+
+      // 심화 — 더한 수 역산 / 범위 속 유일한 분모
+      const dp = problem("1-4-1", "심화", seed);
+      const [dn, dd] = fracChunks(dp.content)[0]!;
+      if (dp.content.includes("더했습니다")) {
+        const add = Number(/분모에 \$(\d+)\$[을를]/.exec(dp.content)![1]);
+        const ansD = answerNumber(dp.answer, "1-4-1 심화");
+        expect(dn * (dd + add), dp.content).toBe(dd * (dn + ansD));
+      } else {
+        const [, loS, hiS] = /\$(\d+)\$보다 크고 \$(\d+)\$보다 작은/.exec(
+          dp.content,
+        )!;
+        const lo = Number(loS);
+        const hi = Number(hiS);
+        const [x2, y2] = answerFrac(dp.answer, "1-4-1 심화");
+        expect(dn * y2, dp.content).toBe(x2 * dd);
+        expect(y2, dp.content).toBeGreaterThan(lo);
+        expect(y2, dp.content).toBeLessThan(hi);
+        // 범위 속 분모 후보(dd 의 배수)가 정확히 하나 — 답이 하나로 좁혀졌는가
+        let cands = 0;
+        for (let v = lo + 1; v < hi; v += 1) if (v % dd === 0) cands += 1;
+        expect(cands, `${dp.content} 범위 속 분모 후보`).toBe(1);
+      }
+    }
+  });
+
+  it("1-4-2 — 약분·기약이 gcd 로 다시 선다 (⑴)", () => {
+    for (const seed of SEEDS) {
+      // 연산 — 지정 수로 나눈 결과 그대로
+      const calc = problem("1-4-2", "연산", seed);
+      const [A, B] = fracChunks(calc.content)[0]!;
+      const t = Number(/\$(\d+)\$[으]?로 약분/.exec(calc.content)![1]);
+      const [x, y] = answerFrac(calc.answer, "1-4-2 연산");
+      expect(A, calc.content).toBe(x * t);
+      expect(B, calc.content).toBe(y * t);
+
+      // 기본 — 가장 큰 수 = gcd / 만들 수 있는 분수 수 = gcd 약수 − 1
+      const read = problem("1-4-2", "기본", seed);
+      const [rA, rB] = fracChunks(read.content)[0]!;
+      const ansR = answerNumber(read.answer, "1-4-2 기본");
+      if (read.content.includes("가장 큰 수")) {
+        expect(ansR, read.content).toBe(gcd2(rA, rB));
+      } else {
+        expect(read.content).toContain("몇 개");
+        expect(ansR, read.content).toBe(divs(gcd2(rA, rB)).length - 1);
+      }
+
+      // 응용 — 기약분수의 합 / 약분 전 분수
+      const ap = problem("1-4-2", "응용", seed);
+      if (ap.content.includes("기약분수로 나타냈을 때")) {
+        const [aA, aB] = fracChunks(ap.content)[0]!;
+        const [rn, rd] = simp2(aA, aB);
+        expect(gcd2(rn, rd), `기약이 아니다: ${ap.content}`).toBe(1);
+        expect(answerNumber(ap.answer, "1-4-2 응용"), ap.content).toBe(rn + rd);
+      } else {
+        const den = Number(/분모가 \$(\d+)\$인/.exec(ap.content)![1]);
+        const [sn, sd] = fracChunks(ap.content)[0]!;
+        expect(gcd2(sn, sd), `목표가 기약이 아니다: ${ap.content}`).toBe(1);
+        const [x2, y2] = answerFrac(ap.answer, "1-4-2 응용");
+        expect(y2, ap.content).toBe(den);
+        expect(simp2(x2, y2), ap.content).toEqual([sn, sd]);
+      }
+
+      // 심화 — 약분 전 합 역산 / 약분되는 진분수 전수
+      const dp = problem("1-4-2", "심화", seed);
+      const ansD = answerNumber(dp.answer, "1-4-2 심화");
+      if (dp.content.includes("어떤 분수의")) {
+        const t2 = Number(/각각 \$(\d+)\$[으]?로 나누어/.exec(dp.content)![1]);
+        const [sn, sd] = fracChunks(dp.content)[0]!;
+        expect(ansD, dp.content).toBe(t2 * (sn + sd));
+      } else {
+        const den = Number(/분모가 \$(\d+)\$인 진분수/.exec(dp.content)![1]);
+        let count = 0;
+        for (let m = 1; m < den; m += 1) if (gcd2(m, den) > 1) count += 1;
+        expect(ansD, dp.content).toBe(count);
+      }
+    }
+  });
+
+  it("1-4-3 — 발문의 방식 낱말과 답의 공통분모가 일치한다 (⑵)", () => {
+    for (const seed of SEEDS) {
+      // 연산 — «두 분모의 곱» 방식
+      const calc = problem("1-4-3", "연산", seed);
+      expect(calc.content, "연산은 곱 방식을 말해야 한다").toContain(
+        "두 분모의 곱",
+      );
+      const [[a, d1], [b, d2]] = fracChunks(calc.content);
+      const got = fracChunks(calc.answer);
+      expect(got.length, calc.answer).toBe(2);
+      expect(got[0], calc.content).toEqual([a * d2, d1 * d2]);
+      expect(got[1], calc.content).toEqual([b * d1, d1 * d2]);
+
+      // 기본 — «최소공배수» 방식 + 두 방식이 실제로 갈리는 짝
+      const read = problem("1-4-3", "기본", seed);
+      expect(read.content, "기본은 최소공배수 방식을 말해야 한다").toContain(
+        "최소공배수",
+      );
+      const [[ra, rd1], [rb, rd2]] = fracChunks(read.content);
+      expect(
+        gcd2(rd1, rd2),
+        `두 방식이 갈리지 않는 짝: ${read.content}`,
+      ).toBeGreaterThan(1);
+      const L = lcm2(rd1, rd2);
+      const rGot = fracChunks(read.answer);
+      expect(rGot[0], read.content).toEqual([(ra * L) / rd1, L]);
+      expect(rGot[1], read.content).toEqual([(rb * L) / rd2, L]);
+
+      // 응용 — 통분한 분자의 합·차
+      const ap = problem("1-4-3", "응용", seed);
+      expect(ap.content).toContain("최소공배수");
+      const [[pa, pd1], [pb, pd2]] = fracChunks(ap.content);
+      expect(gcd2(pd1, pd2), ap.content).toBeGreaterThan(1);
+      const pL = lcm2(pd1, pd2);
+      const p = (pa * pL) / pd1;
+      const q = (pb * pL) / pd2;
+      const ansA = answerNumber(ap.answer, "1-4-3 응용");
+      if (ap.content.includes("분자의 합"))
+        expect(ansA, ap.content).toBe(p + q);
+      else expect(ansA, ap.content).toBe(Math.abs(p - q));
+
+      // 심화 — 원분수 역산 / 공통분모 개수
+      const dp = problem("1-4-3", "심화", seed);
+      if (dp.content.includes("어떤 분수를 구하시오")) {
+        const [da, dd1] = fracChunks(dp.content)[0]!;
+        const den2 = Number(/분모가 \$(\d+)\$인/.exec(dp.content)![1]);
+        const [, pS, qS] =
+          /분자가 각각 \$(\d+)\$[과와] \$(\d+)\$[이가] 되었습니다/.exec(
+            dp.content,
+          )!;
+        const dL = lcm2(dd1, den2);
+        expect(Number(pS), dp.content).toBe((da * dL) / dd1);
+        const [x, y] = answerFrac(dp.answer, "1-4-3 심화");
+        expect(y, dp.content).toBe(den2);
+        expect([x, y], dp.content).toEqual(simp2(Number(qS), dL));
+      } else {
+        const [[, cd1], [, cd2]] = fracChunks(dp.content);
+        expect(answerNumber(dp.answer, "1-4-3 심화"), dp.content).toBe(
+          Math.floor(99 / lcm2(cd1, cd2)),
+        );
+      }
+    }
+  });
+
+  it("1-4-4 — 비교가 교차곱으로 다시 서고 동률이 없다 (⑶)", () => {
+    const cross = (f: [number, number], g: [number, number]): number =>
+      f[0] * g[1] - g[0] * f[1];
+    for (const seed of SEEDS) {
+      // 연산 — 같은 분모 «더 큰» / 단위분수 «더 작은»
+      const calc = problem("1-4-4", "연산", seed);
+      const cf = fracChunks(calc.content).slice(0, 2);
+      expect(cross(cf[0]!, cf[1]!), `동률: ${calc.content}`).not.toBe(0);
+      if (calc.content.includes("더 큰")) {
+        expect(cf[0]![1], "같은 분모여야 한다").toBe(cf[1]![1]);
+        const big = cross(cf[0]!, cf[1]!) > 0 ? cf[0]! : cf[1]!;
+        expect(answerFrac(calc.answer, "1-4-4 연산"), calc.content).toEqual(
+          big,
+        );
+      } else {
+        expect(cf[0]![0], "단위분수여야 한다").toBe(1);
+        expect(cf[1]![0], "단위분수여야 한다").toBe(1);
+        const small = cross(cf[0]!, cf[1]!) < 0 ? cf[0]! : cf[1]!;
+        expect(answerFrac(calc.answer, "1-4-4 연산"), calc.content).toEqual(
+          small,
+        );
+      }
+
+      // 기본 — 다른 분모 «더 작은»
+      const read = problem("1-4-4", "기본", seed);
+      const rf = fracChunks(read.content).slice(0, 2);
+      expect(rf[0]![1], `분모가 같다: ${read.content}`).not.toBe(rf[1]![1]);
+      expect(cross(rf[0]!, rf[1]!), `동률: ${read.content}`).not.toBe(0);
+      const small = cross(rf[0]!, rf[1]!) < 0 ? rf[0]! : rf[1]!;
+      expect(answerFrac(read.answer, "1-4-4 기본"), read.content).toEqual(
+        small,
+      );
+
+      // 응용 — 세 분수, 전부 다른 값
+      const ap = problem("1-4-4", "응용", seed);
+      const af = fracChunks(ap.content).slice(0, 3);
+      for (let i = 0; i < 3; i += 1)
+        for (let j = i + 1; j < 3; j += 1)
+          expect(cross(af[i]!, af[j]!), `동률: ${ap.content}`).not.toBe(0);
+      const sorted = [...af].sort(cross);
+      const want = ap.content.includes("가장 큰") ? sorted[2]! : sorted[0]!;
+      expect(answerFrac(ap.answer, "1-4-4 응용"), ap.content).toEqual(want);
+
+      // 심화 — □ 개수를 전수로 다시 센다
+      const dp = problem("1-4-4", "심화", seed);
+      const ansD = answerNumber(dp.answer, "1-4-4 심화");
+      let la: number;
+      let ld: number;
+      let ha: number;
+      let hd: number;
+      let e: number;
+      const m =
+        /\\frac\{(\d+)\}\{(\d+)\}<\\frac\{\\square\}\{(\d+)\}<\\frac\{(\d+)\}\{(\d+)\}/.exec(
+          dp.content,
+        );
+      if (m) {
+        [la, ld, e, ha, hd] = [
+          Number(m[1]),
+          Number(m[2]),
+          Number(m[3]),
+          Number(m[4]),
+          Number(m[5]),
+        ];
+      } else {
+        const fm = fracChunks(dp.content).slice(0, 2);
+        [la, ld] = fm[0]!;
+        [ha, hd] = fm[1]!;
+        e = Number(/분모가 \$(\d+)\$인/.exec(dp.content)![1]);
+      }
+      let count = 0;
+      for (let v = 1; v < e; v += 1)
+        if (la * e < v * ld && v * hd < ha * e) count += 1;
+      expect(ansD, dp.content).toBe(count);
+      expect(count, `범위가 비었다: ${dp.content}`).toBeGreaterThanOrEqual(1);
+      // 아래 경계는 약분된 꼴 — 통분 한 겹이 살아 있어야 심화다
+      expect(ld, `경계가 그대로 /${e} 다: ${dp.content}`).toBeLessThan(e);
+    }
+  });
+
+  it("1-4-5 — 분수·소수 값이 천분율로 다시 선다", () => {
+    for (const seed of SEEDS) {
+      // 연산 — 변환
+      const calc = problem("1-4-5", "연산", seed);
+      const [fn, fd] = fracChunks(calc.content)[0]!;
+      expect((fn * 1000) % fd, `유한소수가 아니다: ${calc.content}`).toBe(0);
+      expect(
+        Math.round(answerDec(calc.answer, "1-4-5 연산") * 1000),
+        calc.content,
+      ).toBe((fn * 1000) / fd);
+
+      // 기본 — 소수 먼저 «더 작은»
+      const read = problem("1-4-5", "기본", seed);
+      const dm = /\$(0\.\d+)\$/.exec(read.content)!;
+      const decMilli = Math.round(Number(dm[1]) * 1000);
+      const [rn, rd] = fracChunks(read.content)[0]!;
+      const fracMilli = (rn * 1000) / rd;
+      expect(decMilli, `동률: ${read.content}`).not.toBe(fracMilli);
+      const wantChunk =
+        decMilli < fracMilli ? `$${dm[1]}$` : `$\\frac{${rn}}{${rd}}$`;
+      expect(read.answer, read.content).toBe(wantChunk);
+
+      // 응용 — 세 수 비교
+      const ap = problem("1-4-5", "응용", seed);
+      const [an, ad] = fracChunks(ap.content)[0]!;
+      const decsRaw = [...ap.content.matchAll(/\$(0\.\d+)\$/g)].map(
+        (x) => x[1]!,
+      );
+      expect(decsRaw.length, ap.content).toBe(2);
+      const items: [number, string][] = [
+        [(an * 1000) / ad, `$\\frac{${an}}{${ad}}$`],
+        [Math.round(Number(decsRaw[0]) * 1000), `$${decsRaw[0]}$`],
+        [Math.round(Number(decsRaw[1]) * 1000), `$${decsRaw[1]}$`],
+      ];
+      const vals = items.map(([v]) => v);
+      expect(new Set(vals).size, `동률: ${ap.content}`).toBe(3);
+      const sorted = [...items].sort((x2, y2) => x2[0] - y2[0]);
+      const want = ap.content.includes("가장 큰") ? sorted[2]! : sorted[0]!;
+      expect(ap.answer, ap.content).toBe(want[1]);
+
+      // 심화 — 소수 경계 사이 □/d 를 전수로 다시 센다
+      const dp = problem("1-4-5", "심화", seed);
+      const dmDeep = /0\.(\d)<\\frac\{\\square\}\{(\d+)\}<0\.(\d)/.exec(
+        dp.content,
+      )!;
+      const h = Number(dmDeep[1]);
+      const den = Number(dmDeep[2]);
+      const k = Number(dmDeep[3]);
+      let count = 0;
+      for (let v = 1; v <= den; v += 1)
+        if (v * 10 > h * den && v * 10 < k * den) count += 1;
+      expect(answerNumber(dp.answer, "1-4-5 심화"), dp.content).toBe(count);
+      expect(count, `범위가 비었다: ${dp.content}`).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it("경계 쓸기 200 — 동률 없음·범위 비지 않음·유일성 (구성 보장)", () => {
+    let hitUnique = 0;
+    for (let seed = 1; seed <= 200; seed += 1) {
+      // 1-4-4 기본 — 동률이 나오면 구성이 깨진 것
+      const r4 = problem("1-4-4", "기본", seed);
+      const rf = fracChunks(r4.content).slice(0, 2);
+      expect(rf[0]![0] * rf[1]![1], `동률: ${r4.content}`).not.toBe(
+        rf[1]![0] * rf[0]![1],
+      );
+      // 1-4-4 심화 — 답 ≥ 1
+      const d4 = problem("1-4-4", "심화", seed);
+      expect(
+        answerNumber(d4.answer, `@${seed}`),
+        `범위가 비었다: ${d4.content}`,
+      ).toBeGreaterThanOrEqual(1);
+      // 1-4-5 심화 — 답 ≥ 1
+      const d5 = problem("1-4-5", "심화", seed);
+      expect(
+        answerNumber(d5.answer, `@${seed}`),
+        `범위가 비었다: ${d5.content}`,
+      ).toBeGreaterThanOrEqual(1);
+      // 1-4-1 심화 범위 갈래 — 범위 속 분모 후보가 정확히 하나
+      const d1 = problem("1-4-1", "심화", seed);
+      if (d1.content.includes("보다 크고")) {
+        hitUnique += 1;
+        const [, dd] = fracChunks(d1.content)[0]!;
+        const [, loS, hiS] = /\$(\d+)\$보다 크고 \$(\d+)\$보다 작은/.exec(
+          d1.content,
+        )!;
+        let cands = 0;
+        for (let v = Number(loS) + 1; v < Number(hiS); v += 1)
+          if (v % dd === 0) cands += 1;
+        expect(cands, d1.content).toBe(1);
+      }
+    }
+    expect(hitUnique, "1-4-1 범위 갈래가 쓸기에 안 걸렸다").toBeGreaterThan(20);
+  });
+
+  it("\\frac 가 붉음 없이 그려진다 (렌더 ⑷)", () => {
+    for (const code of CODES14) {
+      const p = problem(code, "연산", 11);
+      const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
+      expect(html, code).not.toContain("katex-error");
+      expect(html, code).not.toMatch(/color:\s*#cc0000/i);
+    }
+    // 빈칸 낀 분수 꼴도 — 1-4-1 연산·1-4-4 심화가 쓰는 모양 그대로
+    for (const tex of [
+      "$\\frac{4}{5}=\\frac{\\square}{20}$",
+      "$\\frac{1}{4}<\\frac{\\square}{8}<\\frac{3}{4}$",
+    ]) {
+      const html = renderMathHtml(tex);
+      expect(html, tex).not.toContain("katex-error");
+      expect(html, tex).not.toMatch(/color:\s*#cc0000/i);
+    }
+  });
+
+  it("1-4 다섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
+    const seen = new Map<string, string>();
+    for (const code of CODES14) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const owner = `${code} «${tier}»`;
+          const prev = seen.get(p.content);
+          if (prev !== undefined && prev !== owner) {
+            expect(
+              prev,
+              `다른 소단원이 같은 발문을 낸다: ${prev} / ${owner}\n  ${p.content}`,
+            ).toBe(owner);
+          }
+          seen.set(p.content, owner);
+        }
+      }
+    }
+  });
+});

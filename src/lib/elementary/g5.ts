@@ -3682,6 +3682,545 @@ function corr133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-4 약분과 통분 — 난이도 4단 (D-72 확대 5차) ──────────
+ *
+ * 이웃 축(D-66⑸, 발문 낱말): «크기가 같은»은 1-4-1 만 · «약분»·«기약»은 1-4-2 만 ·
+ * «통분»·«공통분모»는 1-4-3 만 · «소수»는 1-4-5 만. 1-4-4 는 분수끼리의 비교만 한다.
+ * 옛 표준(reduce)의 발문과도 다르게 짰다(R5 — 표준↔갈래 중복도 결함).
+ *
+ * 수 규모는 축이 아니다: 답 분수는 전부 진분수(R2 자동 충족)·답 분모 ≤ 24 ·
+ * 발문 분모 ≤ 48. 크기 비교는 기약+다른 분모(또는 같은 분모+다른 분자)로 뽑아
+ * **동률이 구성상 불가능**하다. 통분은 두 정본 방식(분모의 곱·최소공배수)을 발문이
+ * 명시하고, 최소공배수 방식 갈래는 gcd(d1,d2)>1 로 뽑아 두 방식이 실제로 갈린다.
+ */
+
+/** 분수 한 덩어리. */
+const fr = (num: number, den: number): string => expr(`\\frac{${num}}{${den}}`);
+
+/** 분수 뒤 조사 — 읽은 소리는 **분자**로 끝난다(«사분의 삼»). */
+function frj(
+  num: number,
+  den: number,
+  withFinal: string,
+  without: string,
+): string {
+  return `${fr(num, den)}${FINAL_DIGITS.has(lastDigit(num)) ? withFinal : without}`;
+}
+
+/** 소수 표기 뒤 조사 — 마지막 숫자 소리로 정한다(«영 점 오오»). */
+function dj(decText: string, withFinal: string, without: string): string {
+  return `${expr(decText)}${FINAL_DIGITS.has(lastDigit(decText)) ? withFinal : without}`;
+}
+
+/** 소수 표기 뒤 (으)로 — 일·칠·팔은 ㄹ받침이라 «로»다(«0.7로»). */
+function dro(decText: string): string {
+  const d = lastDigit(decText);
+  return FINAL_DIGITS.has(d) && !RIEUL_DIGITS.has(d) ? "으로" : "로";
+}
+
+/** 분모와 서로소인 분자 하나(min 이상) — 기약 진분수를 분모 고정으로 뽑는다. */
+function coprimeTop(rng: Rng, den: number, min = 1): number {
+  const tops: number[] = [];
+  for (let t = min; t < den; t += 1) if (gcd(t, den) === 1) tops.push(t);
+  return pick(rng, tops);
+}
+
+/* ── 1-4-1 크기가 같은 분수 — 분모·분자에 같은 수를 곱하고 나눈다 ── */
+
+/** 연산 — 크기가 같은 두 분수의 빈칸 하나(절차 한 번). */
+function eq141Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `크기가 같은 두 분수입니다. □ 안에 알맞은 수를 구하시오.  ${expr(`\\frac{${sn}}{${sd}}=\\frac{\\square}{${sd * g}}`)}`,
+      n(sn * g),
+      `분모가 ${n(sd)}에서 ${nro(sd * g)} ${n(g)}배가 되었으므로 분자도 ${n(g)}배가 됩니다. ${expr(`${sn}\\times${g}=${sn * g}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `크기가 같은 두 분수입니다. □ 안에 알맞은 수를 구하시오.  ${expr(`\\frac{${sn}}{${sd}}=\\frac{${sn * g}}{\\square}`)}`,
+    n(sd * g),
+    `분자가 ${n(sn)}에서 ${nro(sn * g)} ${n(g)}배가 되었으므로 분모도 ${n(g)}배가 됩니다. ${expr(`${sd}\\times${g}=${sd * g}`)}입니다.`,
+  );
+}
+
+/** 기본 — 무엇으로 나누었는지·지정 분모의 분자를 **판별**한다(한 겹). */
+function eq141Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${fr(sn * g, sd * g)}의 분모와 분자를 각각 같은 수로 나누어 ${frj(sn, sd, "을", "를")} 만들었습니다. 나눈 수를 구하시오.`,
+      n(g),
+      `분모 ${nj(sd * g, "을", "를")} ${nro(g)} 나누면 ${n(sd)}이고 분자 ${nj(sn * g, "을", "를")} ${nro(g)} 나누면 ${n(sn)}이므로, 나눈 수는 ${n(g)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모가 ${n(sd * g)}인 분수의 분자를 구하시오.`,
+    n(sn * g),
+    `분모가 ${n(g)}배가 되었으므로 분자도 ${n(g)}배가 됩니다. ${expr(`${sn}\\times${g}=${sn * g}`)}입니다.`,
+  );
+}
+
+/** 응용 — 합·차 조건에서 몇 배인지 먼저 찾아야 한다(두 단계). */
+function eq141Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    const sum = (sn + sd) * g;
+    return make(
+      unit,
+      `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모와 분자의 합이 ${n(sum)}인 분수를 구하시오.`,
+      fr(sn * g, sd * g),
+      `${fr(sn, sd)}의 분모와 분자의 합은 ${n(sn + sd)}이고 ${expr(`${sum}\\div${sn + sd}=${g}`)}이므로, 분모와 분자에 각각 ${nj(g, "을", "를")} 곱한 ${fr(sn * g, sd * g)}입니다.`,
+    );
+  }
+  const diff = (sd - sn) * g;
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모와 분자의 차가 ${n(diff)}인 분수를 구하시오.`,
+    fr(sn * g, sd * g),
+    `${fr(sn, sd)}의 분모와 분자의 차는 ${n(sd - sn)}이고 ${expr(`${diff}\\div${sd - sn}=${g}`)}이므로, 분모와 분자에 각각 ${nj(g, "을", "를")} 곱한 ${fr(sn * g, sd * g)}입니다.`,
+  );
+}
+
+/** 심화 — 분모에 더한 수에서 배를 **역산**하거나, 범위 조건으로 분모를 하나로 좁힌다. */
+function eq141Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5].filter((x) => sd * x <= 24),
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    const addDen = sd * (g - 1);
+    const addNum = sn * (g - 1);
+    return make(
+      unit,
+      `${fr(sn, sd)}의 분모에 ${nj(addDen, "을", "를")} 더했습니다. 분수의 크기가 변하지 않게 하려면 분자에 얼마를 더해야 합니까?`,
+      n(addNum),
+      `분모가 ${expr(`${sd}+${addDen}=${sd * g}`)}로 ${n(g)}배가 되었으므로 분자도 ${n(g)}배인 ${nj(sn * g, "이", "가")} 되어야 합니다. 더할 수는 ${expr(`${sn * g}-${sn}=${addNum}`)}입니다.`,
+    );
+  }
+  // 범위 (lo, lo+sd) 안의 sd 배수는 정확히 하나(sd·g)다 — 답이 하나로 좁혀진다.
+  const r1 = intBetween(rng, 1, sd - 1);
+  const lo = sd * g - r1;
+  const hi = lo + sd;
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모가 ${n(lo)}보다 크고 ${n(hi)}보다 작은 분수를 구하시오.`,
+    fr(sn * g, sd * g),
+    `분모는 ${n(sd)}의 배수 중 ${n(lo)}보다 크고 ${n(hi)}보다 작은 수인 ${n(sd * g)}뿐입니다. 분모와 분자에 각각 ${nj(g, "을", "를")} 곱한 ${fr(sn * g, sd * g)}입니다.`,
+  );
+}
+
+/* ── 1-4-2 분수를 간단하게 나타내기 — 약분·기약분수는 여기서만 말한다 ── */
+
+/** 연산 — 지정한 수로 한 번 약분한다(절차 한 번). */
+function sim142Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5]);
+  const t = pick(rng, [2, 3, 4]);
+  const u = pick(
+    rng,
+    [1, 2, 3].filter((x) => sd * t * x <= 48),
+  );
+  const g = t * u;
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} ${nro(t)} 약분하시오.`,
+    fr((sn * g) / t, (sd * g) / t),
+    `분모와 분자를 각각 ${nro(t)} 나눕니다. ${expr(`\\frac{${sn * g}}{${sd * g}}=\\frac{${(sn * g) / t}}{${(sd * g) / t}}`)}입니다.`,
+  );
+}
+
+/** 기본 — 약분할 수 있는 가장 큰 수·만들 수 있는 분수의 개수를 **판별**한다. */
+function sim142Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  if (intBetween(rng, 0, 1) === 0) {
+    const g = pick(
+      rng,
+      [4, 6, 8, 9, 10, 12].filter((x) => sd * x <= 48),
+    );
+    return make(
+      unit,
+      `${fr(sn * g, sd * g)}의 분모와 분자를 나누어 약분할 수 있는 수 중에서 가장 큰 수를 구하시오.`,
+      n(g),
+      `분모 ${nj(sd * g, "과", "와")} 분자 ${nj(sn * g, "을", "를")} 함께 나눌 수 있는 가장 큰 수는 ${n(g)}입니다.`,
+    );
+  }
+  const g = pick(
+    rng,
+    [4, 6, 8, 9, 10, 12].filter((x) => sd * x <= 48),
+  );
+  const count = divisors(g).length - 1;
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} 약분하여 만들 수 있는 분수는 모두 몇 개입니까?`,
+    n(count),
+    `분모와 분자를 함께 나눌 수 있는 ${n(1)}보다 큰 수는 ${nums(divisors(g).filter((d) => d > 1))}로 ${n(count)}개이고, 각각으로 약분하면 서로 다른 분수가 ${n(count)}개 나옵니다.`,
+  );
+}
+
+/** 응용 — 기약분수로 만든 뒤 그 합을 묻거나, 약분 결과에서 원래 분수를 찾는다(두 단계). */
+function sim142Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [3, 4, 5, 6, 7, 8]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+  );
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타냈을 때, 분모와 분자의 합을 구하시오.`,
+      n(sn + sd),
+      `분모와 분자의 최대공약수 ${nro(g)} 나누면 기약분수 ${fr(sn, sd)}입니다. 합은 ${expr(`${sd}+${sn}=${sn + sd}`)}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `분모가 ${n(sd * g)}인 분수 중에서 약분하면 ${frj(sn, sd, "이", "가")} 되는 분수를 구하시오.`,
+    fr(sn * g, sd * g),
+    `분모가 ${n(sd)}의 ${n(g)}배이므로 분자도 ${n(sn)}의 ${n(g)}배입니다. ${fr(sn * g, sd * g)}입니다.`,
+  );
+}
+
+/** 심화 — 약분 결과에서 원래를 **역산**하거나, 약분되는 분수를 전수로 센다. */
+function sim142Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const [sn, sd] = properFrac(rng, [3, 4, 5, 6, 7, 8]);
+    const t = pick(
+      rng,
+      [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+    );
+    return make(
+      unit,
+      `어떤 분수의 분모와 분자를 각각 ${nro(t)} 나누어 약분했더니 ${frj(sn, sd, "이", "가")} 되었습니다. 어떤 분수의 분모와 분자의 합을 구하시오.`,
+      n(t * (sn + sd)),
+      `어떤 분수는 ${fr(sn, sd)}의 분모와 분자에 각각 ${nj(t, "을", "를")} 곱한 ${fr(sn * t, sd * t)}입니다. 합은 ${expr(`${sd * t}+${sn * t}=${t * (sn + sd)}`)}입니다.`,
+    );
+  }
+  const den = pick(rng, [8, 9, 10, 12, 14, 15, 16, 18]);
+  let count = 0;
+  for (let m = 1; m < den; m += 1) if (gcd(m, den) > 1) count += 1;
+  return make(
+    unit,
+    `분모가 ${n(den)}인 진분수 중에서 약분할 수 있는 분수는 모두 몇 개입니까?`,
+    n(count),
+    `분자가 ${nj(den, "과", "와")} ${n(1)}이 아닌 공통 약수를 가지면 약분할 수 있습니다. 분자 ${n(1)}부터 ${n(den - 1)}까지 중 그런 수는 ${n(count)}개입니다.`,
+  );
+}
+
+/* ── 1-4-3 통분 — 두 정본 방식(분모의 곱·최소공배수)을 발문이 명시한다 ── */
+
+/** 곱 방식용 분모 짝 — 곱이 48 이하. */
+const PROD_PAIRS = [
+  [2, 3],
+  [3, 4],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+  [2, 7],
+  [5, 6],
+  [3, 8],
+  [4, 6],
+  [2, 9],
+] as const;
+
+/** 최소공배수 방식용 분모 짝 — gcd>1 이라 두 방식이 실제로 갈린다. L ≤ 36. */
+const COM_PAIRS = [
+  [4, 6],
+  [6, 8],
+  [6, 9],
+  [8, 12],
+  [4, 10],
+  [9, 12],
+  [10, 15],
+  [6, 10],
+  [12, 18],
+] as const;
+
+/** 연산 — 두 분모의 **곱**을 공통분모로(절차 한 번). */
+function com143Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, PROD_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const p = d1 * d2;
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 곱을 공통분모로 하여 통분하시오.`,
+    nums([`\\frac{${a * d2}}{${p}}`, `\\frac{${b * d1}}{${p}}`]),
+    `공통분모는 ${expr(`${d1}\\times${d2}=${p}`)}입니다. ${expr(`\\frac{${a}}{${d1}}=\\frac{${a * d2}}{${p}}`)}, ${expr(`\\frac{${b}}{${d2}}=\\frac{${b * d1}}{${p}}`)}입니다.`,
+  );
+}
+
+/** 기본 — 두 분모의 **최소공배수**를 공통분모로(최소공배수 구하기가 한 겹 낀다). */
+function com143Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const L = lcm(d1, d2);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분하시오.`,
+    nums([`\\frac{${(a * L) / d1}}{${L}}`, `\\frac{${(b * L) / d2}}{${L}}`]),
+    `두 분모의 최소공배수는 ${n(L)}입니다. ${expr(`\\frac{${a}}{${d1}}=\\frac{${(a * L) / d1}}{${L}}`)}, ${expr(`\\frac{${b}}{${d2}}=\\frac{${(b * L) / d2}}{${L}}`)}입니다.`,
+  );
+}
+
+/** 응용 — 통분한 두 분자의 합·차(통분 뒤 셈이 한 단계 더 온다). */
+function com143Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const L = lcm(d1, d2);
+  const p = (a * L) / d1;
+  const q = (b * L) / d2;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분했을 때, 두 분자의 합을 구하시오.`,
+      n(p + q),
+      `공통분모는 ${n(L)}이고 통분하면 ${fr(p, L)}과 ${fr(q, L)}입니다. 분자의 합은 ${expr(`${p}+${q}=${p + q}`)}입니다.`,
+    );
+  }
+  const big = Math.max(p, q);
+  const small = Math.min(p, q);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분했을 때, 두 분자의 차를 구하시오.`,
+    n(big - small),
+    `공통분모는 ${n(L)}이고 통분하면 ${fr(p, L)}과 ${fr(q, L)}입니다. 분자의 차는 ${expr(`${big}-${small}=${big - small}`)}입니다.`,
+  );
+}
+
+/** 심화 — 통분 결과에서 원래 분수를 **역산**하거나, 공통분모가 될 수 있는 수를 센다. */
+function com143Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const L = lcm(d1, d2);
+  if (intBetween(rng, 0, 1) === 0) {
+    const q = (b * L) / d2;
+    return make(
+      unit,
+      `${frj(a, d1, "과", "와")} 분모가 ${n(d2)}인 어떤 분수를 두 분모의 최소공배수를 공통분모로 하여 통분했더니 분자가 각각 ${nj((a * L) / d1, "과", "와")} ${nj(q, "이", "가")} 되었습니다. 어떤 분수를 구하시오.`,
+      fr(b, d2),
+      `공통분모는 ${n(L)}이므로 어떤 분수를 통분한 결과는 ${fr(q, L)}입니다. 분모를 ${nro(d2)} 되돌리면 ${expr(`\\frac{${q}}{${L}}=\\frac{${b}}{${d2}}`)}입니다.`,
+    );
+  }
+  const count = Math.floor(99 / L);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 통분할 때 공통분모가 될 수 있는 수 중에서 ${n(100)}보다 작은 수는 모두 몇 개입니까?`,
+    n(count),
+    `공통분모는 두 분모의 공배수, 곧 최소공배수 ${n(L)}의 배수입니다. ${n(100)}보다 작은 ${n(L)}의 배수는 ${n(count)}개입니다.`,
+  );
+}
+
+/* ── 1-4-4 분수의 크기 비교 — 동률은 구성상 나오지 않는다 ── */
+
+/** 연산 — 같은 분모·단위분수(절차 한 번). */
+function cmp144Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const den = intBetween(rng, 5, 12);
+    const tops = pickSome(
+      rng,
+      Array.from({ length: den - 1 }, (_, i) => i + 1),
+      2,
+    );
+    const big = Math.max(tops[0]!, tops[1]!);
+    return make(
+      unit,
+      `${frj(tops[0]!, den, "과", "와")} ${fr(tops[1]!, den)} 중 더 큰 분수를 쓰시오.`,
+      fr(big, den),
+      `분모가 같으므로 분자가 큰 쪽이 더 큽니다. ${expr(`\\frac{${big}}{${den}}`)}입니다.`,
+    );
+  }
+  const dens = pickSome(rng, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 2);
+  const small = Math.max(dens[0]!, dens[1]!);
+  return make(
+    unit,
+    `${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중 더 작은 분수를 쓰시오.`,
+    fr(1, small),
+    `분자가 ${n(1)}로 같으므로 분모가 큰 쪽이 더 작습니다. ${expr(`\\frac{1}{${small}}`)}입니다.`,
+  );
+}
+
+/** 기본 — 분모가 다른 두 분수(통분 판단이 한 겹). 옛 표준과 반대로 «더 작은» 쪽을 묻는다. */
+function cmp144Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [4, 5, 6, 7, 8, 9, 10], 2);
+  const a = coprimeTop(rng, dens[0]!, 2);
+  const b = coprimeTop(rng, dens[1]!, 2);
+  const leftSmall = a * dens[1]! < b * dens[0]!;
+  return make(
+    unit,
+    `${frj(a, dens[0]!, "과", "와")} ${fr(b, dens[1]!)} 중 더 작은 분수를 쓰시오.`,
+    leftSmall ? fr(a, dens[0]!) : fr(b, dens[1]!),
+    `통분하면 ${fr(a * dens[1]!, dens[0]! * dens[1]!)}과 ${fr(b * dens[0]!, dens[0]! * dens[1]!)}이므로 분자가 작은 쪽이 더 작습니다.`,
+  );
+}
+
+/** 응용 — 세 분수의 비교(두 번 견줘야 한다). */
+function cmp144Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [3, 4, 5, 6, 7, 8, 9, 10], 3);
+  const fracs = dens.map((d) => [coprimeTop(rng, d), d] as const);
+  const byValue = [...fracs].sort((x, y) => x[0] * y[1] - y[0] * x[1]);
+  const list = `${fr(fracs[0]![0], fracs[0]![1])}, ${fr(fracs[1]![0], fracs[1]![1])}, ${fr(fracs[2]![0], fracs[2]![1])}`;
+  if (intBetween(rng, 0, 1) === 0) {
+    const top = byValue[2]!;
+    return make(
+      unit,
+      `${list} 중에서 가장 큰 분수를 쓰시오.`,
+      fr(top[0], top[1]),
+      `세 분수를 두 개씩 통분하여 견주면 ${fr(top[0], top[1])}이 가장 큽니다.`,
+    );
+  }
+  const bottom = byValue[0]!;
+  return make(
+    unit,
+    `${list} 중에서 가장 작은 분수를 쓰시오.`,
+    fr(bottom[0], bottom[1]),
+    `세 분수를 두 개씩 통분하여 견주면 ${fr(bottom[0], bottom[1])}이 가장 작습니다.`,
+  );
+}
+
+/** 심화 — 두 분수 사이의 □ 자연수 개수(범위가 비지 않게 구성). */
+function cmp144Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = pick(rng, [8, 9, 10, 12]);
+  // 아래 경계는 약분되는 자리만 — 두 경계가 다 /e 그대로면 통분 한 겹이 사라져 심화가 아니다.
+  const lows: number[] = [];
+  for (let v = 1; v <= e - 4; v += 1) if (gcd(v, e) > 1) lows.push(v);
+  const lo = pick(rng, lows);
+  const gap = intBetween(rng, 2, Math.min(4, e - 1 - lo));
+  const hi = lo + gap;
+  const [la, ld] = simplify(lo, e);
+  const [ha, hd] = simplify(hi, e);
+  const count = gap - 1;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `□ 안에 들어갈 수 있는 자연수는 모두 몇 개입니까?  ${expr(`\\frac{${la}}{${ld}}<\\frac{\\square}{${e}}<\\frac{${ha}}{${hd}}`)}`,
+      n(count),
+      `분모를 ${nro(e)} 맞추면 ${expr(`\\frac{${lo}}{${e}}<\\frac{\\square}{${e}}<\\frac{${hi}}{${e}}`)}이므로 □는 ${n(lo)}보다 크고 ${n(hi)}보다 작은 자연수입니다. 모두 ${n(count)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${frj(la, ld, "보다", "보다")} 크고 ${fr(ha, hd)}보다 작은 분수 중에서 분모가 ${n(e)}인 분수는 모두 몇 개입니까?`,
+    n(count),
+    `분모를 ${nro(e)} 맞추면 분자는 ${n(lo)}보다 크고 ${n(hi)}보다 작은 자연수이므로 모두 ${n(count)}개입니다.`,
+  );
+}
+
+/* ── 1-4-5 분수와 소수의 크기 비교 — «소수»는 여기서만 말한다 ── */
+
+/** 소수로 딱 떨어지는 분수(천분의 일 정수) — 옛 표준 풀에 분모 10·20·25 를 더했다. */
+const FD145_PAIRS = [
+  ...FRAC_DEC_PAIRS,
+  [1, 10, 100],
+  [3, 10, 300],
+  [9, 10, 900],
+  [7, 20, 350],
+  [1, 25, 40],
+  [3, 25, 120],
+] as const;
+
+/** 소수 쪽 값 풀(천분의 일 정수). */
+const DEC_MILLIS = [
+  100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
+  850, 900,
+] as const;
+
+/** 연산 — 분수를 소수로 나타낸다(절차 한 번). */
+function fd145Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  return make(
+    unit,
+    `${frj(fn, fd, "을", "를")} 소수로 나타내시오.`,
+    expr(dec(milli, 3)),
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}입니다.`,
+  );
+}
+
+/** 기본 — 분수와 소수를 견준다(한 겹). 옛 표준과 반대로 «더 작은» 쪽·소수 먼저. */
+function fd145Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const decMilli = pick(
+    rng,
+    DEC_MILLIS.filter((v) => v !== milli),
+  );
+  const decText = dec(decMilli, 3);
+  const smaller = milli < decMilli ? fr(fn, fd) : expr(decText);
+  return make(
+    unit,
+    `${dj(decText, "과", "와")} ${fr(fn, fd)} 중 더 작은 수를 쓰시오.`,
+    smaller,
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이고 ${expr(`${dec(Math.min(milli, decMilli), 3)}<${dec(Math.max(milli, decMilli), 3)}`)}이므로 ${smaller}입니다.`,
+  );
+}
+
+/** 응용 — 분수·소수 섞인 세 수의 비교(변환 뒤 두 번 견준다). */
+function fd145Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const decs = pickSome(
+    rng,
+    DEC_MILLIS.filter((v) => v !== milli),
+    2,
+  );
+  const items: [number, string][] = [
+    [milli, fr(fn, fd)],
+    [decs[0]!, expr(dec(decs[0]!, 3))],
+    [decs[1]!, expr(dec(decs[1]!, 3))],
+  ];
+  const list = `${items[0]![1]}, ${items[1]![1]}, ${items[2]![1]}`;
+  const sorted = [...items].sort((x, y) => x[0] - y[0]);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${list} 중에서 가장 큰 수를 쓰시오.`,
+      sorted[2]![1],
+      `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}${dro(dec(milli, 3))} 고쳐 견주면 가장 큰 수는 ${sorted[2]![1]}입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${list} 중에서 가장 작은 수를 쓰시오.`,
+    sorted[0]![1],
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}${dro(dec(milli, 3))} 고쳐 견주면 가장 작은 수는 ${sorted[0]![1]}입니다.`,
+  );
+}
+
+/** 심화 — 소수 사이의 □/d 자연수 개수(범위가 비지 않게 구성·개수는 전수로 센다). */
+function fd145Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, [4, 5, 8, 10, 20]);
+  const minGap = Math.ceil(20 / den);
+  const h = intBetween(rng, 1, 9 - minGap);
+  const k = h + intBetween(rng, minGap, Math.min(9 - h, minGap + 3));
+  let count = 0;
+  for (let m = 1; m <= den; m += 1) {
+    if (m * 10 > h * den && m * 10 < k * den) count += 1;
+  }
+  return make(
+    unit,
+    `□ 안에 들어갈 수 있는 자연수는 모두 몇 개입니까?  ${expr(`0.${h}<\\frac{\\square}{${den}}<0.${k}`)}`,
+    n(count),
+    `${expr(`0.${h}=\\frac{${h * den}}{${den * 10}}`)}, ${expr(`0.${k}=\\frac{${k * den}}{${den * 10}}`)}이므로 □가 ${n(10)}배가 된 ${expr(`\\square\\times10`)}은 ${n(h * den)}보다 크고 ${n(k * den)}보다 작아야 합니다. 그런 자연수 □는 모두 ${n(count)}개입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -3761,6 +4300,36 @@ export const G5_TIERS: ElemTierMap = {
     기본: corr133Read,
     응용: corr133Apply,
     심화: corr133Deep,
+  },
+  "초5|1-4-1": {
+    연산: eq141Calc,
+    기본: eq141Read,
+    응용: eq141Apply,
+    심화: eq141Deep,
+  },
+  "초5|1-4-2": {
+    연산: sim142Calc,
+    기본: sim142Read,
+    응용: sim142Apply,
+    심화: sim142Deep,
+  },
+  "초5|1-4-3": {
+    연산: com143Calc,
+    기본: com143Read,
+    응용: com143Apply,
+    심화: com143Deep,
+  },
+  "초5|1-4-4": {
+    연산: cmp144Calc,
+    기본: cmp144Read,
+    응용: cmp144Apply,
+    심화: cmp144Deep,
+  },
+  "초5|1-4-5": {
+    연산: fd145Calc,
+    기본: fd145Read,
+    응용: fd145Apply,
+    심화: fd145Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,
