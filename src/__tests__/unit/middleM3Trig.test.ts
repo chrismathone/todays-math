@@ -817,9 +817,15 @@ describe("등식 판정기 — 틀린 계산 줄을 실제로 잡는가", () => 
 });
 
 describe("전처리 판정기 — 지면이 수를 고쳐 쓰는가", () => {
-  it("가분수·접힘을 실제로 잡는다 (양성 대조군)", () => {
-    expect(preprocessRewrites("$x-\\dfrac{3}{2}y$")).toHaveLength(1);
-    expect(preprocessRewrites("$\\dfrac{6}{3}=2$")).toHaveLength(1);
+  it("이 판정기의 «찾기» 가 살아 있다 — 제품을 거치지 않고 본다", () => {
+    // 2026-08-24 D-73 으로 제품은 더 이상 가분수를 대분수로 바꾸지 않는다.
+    // 그래서 「제품이 바꾸나」로는 이 자를 **못 잰다** — 구조적으로 0 이다.
+    // (원래 여기 있던 양성 대조군이 그 규칙을 없애자 빨갛게 났다.)
+    // 살아 있음은 **손으로 만든 «이미 바뀐 글»** 로 확인한다.
+    expect(countMixed(String.raw`1\dfrac{1}{2}y`)).toBe(1);
+    expect(countMixed(String.raw`\dfrac{3}{2}y`)).toBe(0);
+    expect(countFrac(String.raw`\dfrac{6}{3}=2`)).toBe(1);
+    expect(countFrac("2=2")).toBe(0);
   });
   it("멀쩡한 진분수·근호 분수는 안 잡는다 (음성 대조군)", () => {
     expect(preprocessRewrites("$\\dfrac{1}{2}+\\dfrac{\\sqrt{3}}{2}$")).toEqual(
