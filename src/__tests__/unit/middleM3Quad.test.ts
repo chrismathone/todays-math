@@ -714,6 +714,36 @@ describe("중3 이차방정식 31유형 (3-1 이차방정식의 풀이·활용)"
   });
 
   /**
+   * 활용 06 은 답이 **부등식**이다 — 수만 맞고 부등호가 뒤집히면 검산식(판별식 부호)은
+   * 그대로 초록이다. 그 축이 시험에 없으면 방향은 아무도 안 본다.
+   */
+  it("활용 06: 답의 부등호가 facts 의 방향과 같다", () => {
+    const e = entries.find((t) => t.key === "3-1|이차방정식의 활용|06")!;
+    for (const seed of SEEDS) {
+      for (let v = 0; v < 10; v += 1) {
+        const p = generateMiddleProblem(e.key, seed, v);
+        const f = p.facts;
+        if (f.mode === 3) {
+          expect(p.answer, "mode 3 은 정수 한 개다").toMatch(/^\$-?\d+\$$/);
+          continue;
+        }
+        const sym =
+          f.strict === 1
+            ? f.less === 1
+              ? "<"
+              : ">"
+            : f.less === 1
+              ? "\\leq"
+              : "\\geq";
+        expect(
+          p.answer.startsWith(`$p${sym} `),
+          `seed ${seed} v${v} 답 ${p.answer} vs less=${f.less} strict=${f.strict}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  /**
    * 활용 갈래는 **버리는 근**이 있다. 해설이 그 근을 실제로 적었는지 본다 —
    * 「답이 맞다」만 보면 «왜 다른 근을 버렸는가»가 지면에서 사라진다.
    */
