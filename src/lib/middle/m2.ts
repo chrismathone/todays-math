@@ -12,6 +12,7 @@ import { M2_GEO_TRI } from "./m2GeoTri";
 import { M2_INEQ_APPLY } from "./m2IneqApply";
 import { M2_PROB } from "./m2Prob";
 import { M2_RATIONAL } from "./m2Rational";
+import { M2_REAL } from "./m2Real";
 import { M2_SYSTEM_APPLY } from "./m2SystemApply";
 import type { TypeEntry } from "./types";
 
@@ -24,4 +25,5 @@ export const M2_TYPES: TypeEntry[] = [
   ...M2_FUNC,
   ...M2_GEO_TRI,
   ...M2_GEO_SIM,
+  ...M2_REAL,
 ];
