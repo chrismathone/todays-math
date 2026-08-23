@@ -4406,6 +4406,48 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier214Apply,
     심화: tier214Deep,
   },
+  "초4|2-3-1": {
+    연산: tier231Calc,
+    기본: tier231Basic,
+    응용: tier231Apply,
+    심화: tier231Deep,
+  },
+  "초4|2-3-2": {
+    연산: tier232Calc,
+    기본: tier232Basic,
+    응용: tier232Apply,
+    심화: tier232Deep,
+  },
+  "초4|2-3-3": {
+    연산: tier233Calc,
+    기본: tier233Basic,
+    응용: tier233Apply,
+    심화: tier233Deep,
+  },
+  "초4|2-3-4": {
+    연산: tier234Calc,
+    기본: tier234Basic,
+    응용: tier234Apply,
+    심화: tier234Deep,
+  },
+  "초4|2-3-5": {
+    연산: tier235Calc,
+    기본: tier235Basic,
+    응용: tier235Apply,
+    심화: tier235Deep,
+  },
+  "초4|2-3-6": {
+    연산: tier236Calc,
+    기본: tier236Basic,
+    응용: tier236Apply,
+    심화: tier236Deep,
+  },
+  "초4|2-3-7": {
+    연산: tier237Calc,
+    기본: tier237Basic,
+    응용: tier237Apply,
+    심화: tier237Deep,
+  },
 };
 
 /* ───────────────────────── 1-6 규칙 찾기 ───────────────────────── */
@@ -6068,7 +6110,16 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
 
   if (c === "2-3-2") {
     const x = hundredths(rng, 10, 89);
-    const y = x + intBetween(rng, 1, 40);
+    // 더한 값의 끝자리가 $0$ 이면 「$1.90$」이 되어 꼬리 $0$ 이 지면에 나간다 —
+    // `x` 는 끝자리를 지키는데 `x+d` 는 안 지켜서 새고 있었다(갈래 쓸기가 실측, 2026-08-23).
+    const y =
+      x +
+      pick(
+        rng,
+        Array.from({ length: 40 }, (_, i) => i + 1).filter(
+          (d) => (x + d) % 10 !== 0,
+        ),
+      );
     const sx = dec2(x);
     const sy = dec2(y);
     const at = firstDiffPlace(x, y);
@@ -6175,6 +6226,759 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+/* ──────────── 2-3 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **소수는 정수로 들고 다니다 `dec1`·`dec2`·`dec3` 로만 찍는다.** 부동소수점이 지면에 새면
+ * 「$0.30000000000000004$」가 나간다. 그리고 **끝자리가 $0$ 이면 안 된다** —
+ * 「$7.0$」·「$0.30$」은 초등 지면에 안 쓴다. 구성으로 막고(끝자리 $1$~$9$) 시험이
+ * **발문·정답·해설 셋 다**에서 센다.
+ *
+ * ⚠️ **자릿수 약속을 「전부 같은 dp」로 잠그지 않았다.** 잠금 기준은
+ * 「**가장 깊은 자리 = 이름이 약속한 자리**, 그보다 깊은 것 없음」이다. 「전부 같은 dp」로
+ * 조이면 **이 대단원이 가르치려는 오개념 문항이 죽는다** — 「$5.63$ 에서 $0.4$ 를 빼야 할 것을
+ * 잘못하여 $0.04$ 를 뺐다」는 dp 1 과 2 가 **섞여야** 성립한다. 이름의 약속은 「그 자리까지
+ * 다룬다」이지 「모두 그 자리다」가 아니다. **더 엄하게 조이지 말 것**(리드 승인 2026-08-23).
+ *
+ * ⚠️ **2-3-3 은 연산이 자릿수를 «만들어 낸다».** 위 잠금은 발문으로 **들어오는** 깊이만
+ * 막는데, $\frac{1}{100}$ 을 걸면 결과가 두 자리 깊어진다($0.53$ → $0.0053$ 은 **네 자리**로
+ * 초4 밖이다). 그래서 2-3-3 은 **출발 수의 깊이를 연산에 맞춰** 제한하고, 잠금을 정답·해설까지
+ * 댄다. 「값은 맞는데 학년 밖」이라 값 검산이 구조적으로 못 보는 부류다(리드 지적).
+ *
+ * ⚠️ **해설에 소수의 곱셈·나눗셈을 쓰지 않는다**(R3, 초5-2·초6 진도). `$0.53\times10$` 이라고
+ * 쓰면 판정기가 「소수의 곱셈」으로 잡는다 — 표준처럼 **자릿값과 소수점 이동**으로 말한다.
+ *
+ * ⚠️ **초3 1-6-6 「소수 알아보기」·1-6-7 「소수의 크기 비교」와 이름이 닮았다.** 설계 때
+ * 실제로 뽑아 보니 내 초안 둘이 **그대로 초3 것이었다**(「세 소수 중 가장 큰 수」·「$0.\square$
+ * 부등식」). 가르는 것은 **자릿수**다 — 초3 은 실측으로 **소수 한 자리뿐**이고 2-3-1·2-3-2 는
+ * 두 자리 이상을 낸다. 시험이 초3 을 실제로 뽑아 골격을 대조하고, 그 판별자에는
+ * 「초3 쪽은 한 자리뿐」이라는 음성 대조군을 붙인다.
+ *
+ * 값 만들기는 파일 위쪽 `tenths` 를 그대로 쓴다(끝자리 ≠ 0 인 정수 만들기). 어느 자릿수인지는
+ * **`decN` 이 정한다** — 같은 일을 하는 이름을 하나 더 만들지 않는다.
+ */
+
+/** 소수 한 자리 후보(십분위 정수). 끝자리가 $0$ 이 아니다 — 「$7.0$」을 안 만든다. */
+const DEC1_POOL: number[] = Array.from({ length: 8 }, (_, w) => w + 1).flatMap(
+  (w) => Array.from({ length: 9 }, (_, j) => w * 10 + j + 1),
+);
+
+/**
+ * 소수 두 자리 후보(백분위 정수). 끝자리가 $0$ 이 아니다 — 「$0.30$」을 안 만든다.
+ *
+ * 자연수 부분 $0$ 부터 넣는다 — 「빈 병의 무게 $0.36$ kg」처럼 **$1$ 보다 작은 값**이
+ * 있어야 하는 자리가 있다. $1$ 부터 시작하면 그런 무리가 **통째로 비어 `pick` 이 던진다**
+ * (전수 쓸기가 실측했다: 2-3-6 기본·응용이 씨앗 1000/1000 에서 던지고 있었다).
+ */
+const DEC2_POOL: number[] = Array.from({ length: 9 }, (_, w) => w).flatMap(
+  (w) =>
+    Array.from({ length: 10 }, (_, t) => t).flatMap((t) =>
+      Array.from({ length: 9 }, (_, h) => w * 100 + t * 10 + h + 1),
+    ),
+);
+
+/** **2-3-1 1단 연산 — $0.001$이 몇 개인 수.** 표준은 $0.01$ 까지만 센다. */
+function tier231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * **방향이 표준과 반대다.** 표준은 「$0.01$이 N개인 수를 쓰시오」(개수 → 수)인데
+   * 갈래는 「이 수는 $0.001$이 몇 개인가」(수 → 개수)를 묻는다.
+   *
+   * 자리만 $0.01$ → $0.001$ 로 옮긴 첫 판은 **골격이 표준과 글자까지 같았다**
+   * (수를 가리면 둘 다 「⟨수⟩이 ⟨수⟩개인 수를 소수로 쓰시오」). 표준과 갈래는 **같은
+   * 시험지에 함께 실린다** — 자리만 다른 같은 문장은 학생에게 같은 문항이다.
+   */
+  const v = tenths(rng, 10, 899);
+  return make(
+    unit,
+    `${josaNum(dec3(v), "은", "는")} ${n("0.001")}이 몇 개인 수입니까?`,
+    `${n(v)}개`,
+    `${n(1)}은 ${n("0.001")}이 ${n(1000)}개, ${n("0.1")}은 ${n(100)}개, ` +
+      `${n("0.01")}은 ${n(10)}개입니다. 그러므로 ${josaNum(dec3(v), "은", "는")} ` +
+      `${n("0.001")}이 ${n(v)}개인 수입니다.`,
+  );
+}
+
+/** **2-3-1 2단 기본 — 자릿값 셋을 모아 한 수로.** 자리마다 몇 개인지를 합쳐 쓴다. */
+function tier231Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 9);
+  const b = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 1, 9);
+  const value = dec3(a * 100 + b * 10 + c);
+  return make(
+    unit,
+    `${n("0.1")}이 ${n(a)}개, ${n("0.01")}이 ${n(b)}개, ${n("0.001")}이 ${n(c)}개인 수를 ` +
+      `소수로 쓰시오.`,
+    n(value),
+    `${n("0.1")}이 ${n(a)}개이면 소수 첫째 자리 숫자가 ${n(a)}, ` +
+      `${n("0.01")}이 ${n(b)}개이면 소수 둘째 자리 숫자가 ${n(b)}, ` +
+      `${n("0.001")}이 ${n(c)}개이면 소수 셋째 자리 숫자가 ${josaNum(c, "이", "가")} 됩니다. ` +
+      `그러므로 ${n(value)}입니다.`,
+  );
+}
+
+/** **2-3-1 3단 응용 — 두 자리의 자릿값을 각각 읽어 더한다.** 중간값 둘을 거친다. */
+function tier231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 9);
+  const a = intBetween(rng, 1, 9);
+  const b = intBetween(rng, 1, 9);
+  const c = intBetween(rng, 1, 9);
+  const value = `${w}.${a}${b}${c}`;
+  // 소수 둘째 자리 값은 `dec2` 로 찍는다 — `dec3(b*10)` 은 「$0.030$」이라 꼬리 $0$ 이다.
+  const second = dec2(b);
+  const third = dec3(c);
+  return make(
+    unit,
+    `${n(value)}에서 소수 둘째 자리 숫자가 나타내는 수와 소수 셋째 자리 숫자가 ` +
+      `나타내는 수의 합을 소수로 쓰시오.`,
+    n(dec3(b * 10 + c)),
+    `소수 둘째 자리 숫자 ${josaNum(b, "은", "는")} ${josaNum(second, "을", "를")} 나타내고, ` +
+      `소수 셋째 자리 숫자 ${josaNum(c, "은", "는")} ${josaNum(third, "을", "를")} 나타냅니다. ` +
+      `두 수를 더하면 ${n(dec3(b * 10 + c))}입니다.`,
+  );
+}
+
+/** **2-3-1 4단 심화 — 조건으로 소수 세 자리 수 만들기.** 자리마다 걸린 조건을 엮는다. */
+function tier231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 4);
+  const a = intBetween(rng, 1, 9 - k);
+  const b = a + k;
+  const j = intBetween(rng, 1, b - 1);
+  const c = b - j;
+  const w = intBetween(rng, 1, 9);
+  const value = dec3(w * 1000 + a * 100 + b * 10 + c);
+  /*
+   * 딸린 «맞지 않는 보기» 한 벌은 꾸밈이 아니다 — 소단원 이름이 약속하는 **소수 세 자리가
+   * 지면에 서야** 한다. 처음 판에는 「소수 세 자리 수」라는 **낱말**만 있고 세 자리 소수가
+   * 하나도 없어서 조건 판정기가 씨앗 40/40 을 걸었다(2-1-3 심화와 같은 자리다).
+   * 보기는 `w.aaa` 로 잡는다 — `k ≥ 1` 이므로 첫 조건에서 **반드시** 어긋나고, 답을 안 흘린다.
+   */
+  const counter = `${w}.${a}${a}${a}`;
+  return make(
+    unit,
+    `조건에 맞는 소수 세 자리 수를 쓰시오. ` +
+      `자연수 부분은 ${n(w)}이고, 소수 첫째 자리 숫자는 ${n(a)}입니다. ` +
+      `소수 둘째 자리 숫자는 소수 첫째 자리 숫자보다 ${n(k)} 큰 수이고, ` +
+      `소수 셋째 자리 숫자는 소수 둘째 자리 숫자보다 ${n(j)} 작은 수입니다. ` +
+      `예를 들어 ${josaNum(counter, "은", "는")} 소수 둘째 자리 숫자가 소수 첫째 자리 ` +
+      `숫자보다 크지 않으므로 조건에 맞지 않습니다.`,
+    n(value),
+    `소수 둘째 자리 숫자는 ${expr(`${a}+${k}=${b}`)} 이므로 ${n(b)}이고, ` +
+      `소수 셋째 자리 숫자는 ${expr(`${b}-${j}=${c}`)} 이므로 ${n(c)}입니다. ` +
+      `그러므로 구하는 수는 ${n(value)}입니다.`,
+  );
+}
+
+/** 2-3-2 무게를 견주는 소재 — 「자릿수가 많으면 큰 수」 오개념을 보이는 자리. */
+const WEIGH_PAIRS = [
+  ["호박", "무"],
+  ["수박", "참외"],
+  ["배추", "양파"],
+] as const;
+
+/** **2-3-2 1단 연산 — 큰 것부터 차례로.** 초3 은 «가장 큰 하나»를 고른다(그쪽과 다른 일). */
+function tier232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const picked: number[] = [];
+  while (picked.length < 3) {
+    const v = pick(rng, DEC2_POOL);
+    if (!picked.includes(v)) picked.push(v);
+  }
+  const sorted = [...picked].sort((x, y) => y - x);
+  return make(
+    unit,
+    `다음 소수를 큰 것부터 차례로 쓰시오.\n\n` +
+      `${picked.map((v) => n(dec2(v))).join(", ")}`,
+    sorted.map((v) => n(dec2(v))).join(", "),
+    `소수의 크기는 자연수 부분부터, 그다음 소수 첫째 자리, 소수 둘째 자리 차례로 ` +
+      `비교합니다. 큰 것부터 쓰면 ${sorted.map((v) => n(dec2(v))).join(", ")}입니다.`,
+  );
+}
+
+/** **2-3-2 2단 기본 — 자릿수가 다른 두 수.** 「자리가 많으면 큰 수」가 이 소단원의 오개념이다. */
+function tier232Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, WEIGH_PAIRS);
+  const w = intBetween(rng, 1, 8);
+  const t1 = intBetween(rng, 1, 8);
+  const t2 = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 1).filter((v) => v !== t1),
+  );
+  const x = w * 100 + t1 * 10 + intBetween(rng, 1, 9);
+  const y = w * 10 + t2;
+  const heavier = x > y * 10 ? first : second;
+  return make(
+    unit,
+    `${first}의 무게는 ${n(dec2(x))} kg이고, ${second}의 무게는 ${n(dec1(y))} kg입니다. ` +
+      `더 무거운 것은 무엇입니까?`,
+    heavier,
+    `자연수 부분이 ${roJosa(w)} 같으므로 소수 첫째 자리를 비교합니다. ` +
+      `${josaNum(t1, "과", "와")} ${n(t2)} 중 ${josaNum(Math.max(t1, t2), "이", "가")} 크므로 ` +
+      `${josa(heavier, "이", "가")} 더 무겁습니다. 소수는 자리 수가 많다고 큰 수가 아닙니다.`,
+  );
+}
+
+/** **2-3-2 3단 응용 — 두 수 사이에 든 소수 두 자리 수의 개수.** */
+function tier232Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 양 끝을 **두 자리 소수**로 준다 — 「소수 두 자리 수」가 낱말로만 있으면 그 약속이
+  // 지면에 안 선다(초3 과 가르는 판별자이기도 하다). 끝자리를 골라 `lo+1`·`hi-1` 도
+  // 꼬리 $0$ 이 되지 않게 한다.
+  const w = intBetween(rng, 1, 8);
+  const t = intBetween(rng, 0, 5);
+  const lo = (w * 10 + t) * 10 + intBetween(rng, 1, 8);
+  const hi = (w * 10 + t + intBetween(rng, 1, 3)) * 10 + intBetween(rng, 2, 9);
+  const count = hi - lo - 1;
+  return make(
+    unit,
+    `${n(dec2(lo))}보다 크고 ${n(dec2(hi))}보다 작은 ` +
+      `소수 두 자리 수는 모두 몇 개입니까?`,
+    `${n(count)}개`,
+    `양 끝의 두 수는 넣지 않으므로 ${n(dec2(lo + 1))}부터 ${n(dec2(hi - 1))}까지입니다. ` +
+      `소수 둘째 자리 숫자를 ${n(1)}씩 세면 ` +
+      `${expr(`${hi - 1}-${lo + 1}+1=${count}`)} 이므로 ${n(count)}개입니다.`,
+  );
+}
+
+/** **2-3-2 4단 심화 — 범위와 자릿수 조건을 함께.** 초3 의 「$0.\square$ 몇 개」와 다른 일이다. */
+function tier232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * 양 끝을 **두 자리 소수**로 준다 — 「소수 두 자리 수」가 낱말로만 있으면 그 약속이
+   * 지면에 안 선다(2-3-2 응용과 같은 자리에서 잡혔다).
+   *
+   * 답이 몇 개인지를 **먼저 정하고** 범위를 짠다. 범위를 먼저 잡고 세면 0개·전부인 씨앗이
+   * 섞인다. 양 끝은 답이 될 수 없게 한 칸씩 비켜 놓고, 끝자리가 $0$ 이 안 되게 고른다.
+   */
+  const w = intBetween(rng, 1, 8);
+  const d = intBetween(rng, 1, 9);
+  const m = intBetween(rng, 2, 3);
+  const t1 = intBetween(rng, 1, 8 - m);
+  const nine = Array.from({ length: 9 }, (_, i) => i + 1);
+  const k = pick(
+    rng,
+    nine.filter((v) => v !== d),
+  );
+  const j = pick(
+    rng,
+    nine.filter((v) => v !== 10 - d),
+  );
+  const lo = w * 100 + t1 * 10 + d - k;
+  const hi = w * 100 + (t1 + m - 1) * 10 + d + j;
+  const found: number[] = [];
+  for (let v = lo + 1; v < hi; v += 1) if (v % 10 === d) found.push(v);
+  return make(
+    unit,
+    `${n(dec2(lo))}보다 크고 ${n(dec2(hi))}보다 작은 소수 두 자리 수 중에서 ` +
+      `소수 둘째 자리 숫자가 ${n(d)}인 수를 모두 쓰시오.`,
+    found.map((v) => n(dec2(v))).join(", "),
+    `소수 둘째 자리 숫자가 ${n(d)}이므로 소수 첫째 자리 숫자를 하나씩 늘려 가며 찾습니다. ` +
+      `${found.map((v) => n(dec2(v))).join(", ")}입니다. 모두 ${n(found.length)}개입니다.`,
+  );
+}
+
+/**
+ * **2-3-3 1단 연산 — 관계 자체를 묻는다.** 두 수를 주고 「몇 배인가」를 세운다.
+ *
+ * ⚠️ 처음에는 「$x$ 의 $\frac{1}{100}$ 은?」이었는데 **골격이 표준과 글자까지 같았다**
+ * (표준은 $\frac{1}{10}$ — 수를 가리면 둘 다 「⟨수⟩의 ⟨수⟩은 얼마인가?」). 표준과 갈래는
+ * 같은 시험지에 함께 실리므로 **상수만 바꾼 것은 같은 문항**이다. 묻는 방향을 바꿨다.
+ */
+function tier233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  const hundred = intBetween(rng, 0, 1) === 0;
+  const small = hundred ? dec3(x) : dec2(x);
+  return make(
+    unit,
+    `${josaNum(dec1(x), "은", "는")} ${n(small)}의 몇 배입니까?`,
+    `${n(hundred ? 100 : 10)}배`,
+    `${n(small)}에서 소수점이 오른쪽으로 ${hundred ? "두" : "한"} 자리 옮겨지면 ` +
+      `${n(dec1(x))}입니다. 소수점이 오른쪽으로 한 자리 옮겨질 때마다 ${n(10)}배가 되므로 ` +
+      `${n(hundred ? 100 : 10)}배입니다.`,
+  );
+}
+
+/** **2-3-3 2단 기본 — 되짚어 어떤 수를 찾는다.** 표준은 늘 정방향이다. */
+function tier233Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  const hundred = intBetween(rng, 0, 1) === 0;
+  // 어떤 수를 $10$배·$100$배 하면 `dec1(x)` 가 된다 — 출발이 세 자리를 안 넘게 묶여 있다.
+  const answer = hundred ? dec3(x) : dec2(x);
+  return make(
+    unit,
+    `어떤 수의 ${n(hundred ? 100 : 10)}배가 ${josaNum(dec1(x), "입니다", "입니다")}. ` +
+      `어떤 수는 얼마입니까?`,
+    n(answer),
+    `${n(hundred ? 100 : 10)}배를 하면 소수점이 오른쪽으로 ` +
+      `${hundred ? "두" : "한"} 자리 옮겨집니다. 되짚으려면 소수점을 왼쪽으로 ` +
+      `${hundred ? "두" : "한"} 자리 옮기면 되므로 어떤 수는 ${n(answer)}입니다.`,
+  );
+}
+
+/** **2-3-3 3단 응용 — 두 번 옮긴다.** $10$배 뒤 $\frac{1}{100}$ (두 단계). */
+function tier233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 출발은 **소수 두 자리**까지 — 알짜로 한 자리만 깊어지므로 세 자리에서 멈춘다.
+  const x = pick(rng, DEC2_POOL);
+  const mid = dec1(x);
+  return make(
+    unit,
+    `${n(dec2(x))}의 ${n(10)}배의 $\\frac{1}{100}$은 얼마인가?`,
+    n(dec3(x)),
+    `${n(10)}배를 하면 소수점이 오른쪽으로 한 자리 옮겨져 ${n(mid)}입니다. ` +
+      `여기에 $\\frac{1}{100}$을 하면 소수점이 왼쪽으로 두 자리 옮겨져 ${n(dec3(x))}입니다.`,
+  );
+}
+
+/** **2-3-3 4단 심화 — 되짚었다가 다시 간다.** 어떤 수를 찾은 뒤 반대쪽으로 옮긴다. */
+function tier233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 어떤 수의 1/10 이 dec2(x) → 어떤 수는 dec1(x), 그 10배는 정수 x.
+    return make(
+      unit,
+      `어떤 수의 $\\frac{1}{10}$이 ${n(dec2(x))}입니다. ` +
+        `어떤 수의 ${n(10)}배는 얼마입니까?`,
+      n(x),
+      `$\\frac{1}{10}$을 하면 소수점이 왼쪽으로 한 자리 옮겨지므로, 되짚으면 어떤 수는 ` +
+        `${n(dec1(x))}입니다. 여기에 ${n(10)}배를 하면 소수점이 오른쪽으로 한 자리 옮겨져 ` +
+        `${n(x)}입니다.`,
+    );
+  }
+  // 어떤 수의 100 배가 정수 x → 어떤 수는 dec2(x), 그 1/10 은 dec3(x).
+  return make(
+    unit,
+    `어떤 수의 ${n(100)}배가 ${n(x)}입니다. ` +
+      `어떤 수의 $\\frac{1}{10}$은 얼마입니까?`,
+    n(dec3(x)),
+    `${n(100)}배를 하면 소수점이 오른쪽으로 두 자리 옮겨지므로, 되짚으면 어떤 수는 ` +
+      `${n(dec2(x))}입니다. 여기에 $\\frac{1}{10}$을 하면 소수점이 왼쪽으로 한 자리 옮겨져 ` +
+      `${n(dec3(x))}입니다.`,
+  );
+}
+
+/** **2-3-4 1단 연산 — 소수 한 자리 수의 합.** 표준은 `=\square` 꼴이다. */
+function tier234Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `다음 두 소수의 합을 구하시오.\n\n${expr(`${dec1(a)}+${dec1(b)}`)}`,
+    n(dec1(a + b)),
+    `소수점끼리 자리를 맞추어 같은 자리 수끼리 더합니다. ` +
+      `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)}`,
+  );
+}
+
+/** **2-3-4 2단 기본 — 두 날의 거리를 합친다.** */
+function tier234Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `어제 ${n(dec1(a))} km를 걷고, 오늘 ${n(dec1(b))} km를 걸었습니다. ` +
+      `이틀 동안 걸은 거리는 몇 km입니까?`,
+    n(dec1(a + b)),
+    `이틀 동안 걸은 거리는 두 거리를 더한 것입니다. ` +
+      `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)}`,
+  );
+}
+
+/** **2-3-4 3단 응용 — 세 값을 잇는다.** 두 번 더하며 중간값을 거친다. */
+function tier234Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  // 중간값 `a+b` 도 해설에 나가므로 끝자리가 $0$ 이면 안 된다. 조건을 **뽑는 단계마다**
+  // 나눠 건다 — 한 filter 에 몰면 `v` 와 무관한 항이 거짓일 때 풀이 통째로 비어 던진다.
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const c = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + b + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `나무 도막 세 개의 길이가 각각 ${n(dec1(a))} m, ${n(dec1(b))} m, ${n(dec1(c))} m입니다. ` +
+      `세 도막을 겹치지 않게 이으면 길이는 몇 m입니까?`,
+    n(dec1(a + b + c)),
+    `앞의 두 도막을 먼저 이으면 ${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다. ` +
+      `여기에 나머지 한 도막을 이으면 ` +
+      `${expr(`${dec1(a + b)}+${dec1(c)}=${dec1(a + b + c)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2-3-4 4단 — 수 카드 넉 장. **작은 두 장의 합이 $10$ 의 배수면** 최대 합의 끝자리가 $0$ 이
+ * 되어 「$14.0$」이 나간다. 씨앗을 다시 뽑지 않고 **넉 장 조합을 전수 열거해** 그것만 뺀다.
+ */
+const CARD_QUADS: number[][] = (() => {
+  const out: number[][] = [];
+  for (let a = 1; a <= 9; a += 1) {
+    for (let b = a + 1; b <= 9; b += 1) {
+      if ((a + b) % 10 === 0) continue; // a·b 가 가장 작은 둘 — 소수 첫째 자리로 간다
+      for (let c = b + 1; c <= 9; c += 1) {
+        for (let d = c + 1; d <= 9; d += 1) out.push([a, b, c, d]);
+      }
+    }
+  }
+  return out;
+})();
+
+/** **2-3-4 4단 심화 — 수 카드로 합을 가장 크게.** 큰 숫자를 일의 자리에 놓아야 한다. */
+function tier234Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [s1, s2, s3, s4] = pick(rng, CARD_QUADS) as [
+    number,
+    number,
+    number,
+    number,
+  ];
+  // 큰 것부터: m1 > m2 > m3 > m4. 최대 합은 큰 둘을 일의 자리에 놓은 것이다.
+  const [m1, m2, m3, m4] = [s4, s3, s2, s1];
+  const best = (m1 + m2) * 10 + m3 + m4;
+  const shown = pick(rng, [
+    [s2, s4, s1, s3],
+    [s3, s1, s4, s2],
+    [s4, s2, s3, s1],
+  ]);
+  // 보기로 드는 한 벌은 **일의 자리가 `m1`·`m3`** 이라 최대가 아니다(최대는 `m1`·`m2`).
+  return make(
+    unit,
+    `${n(4)}장의 수 카드 ${nums(shown)}${tail(shown[3]!, "을", "를")} 한 번씩 모두 사용하여 소수 한 자리 수 ` +
+      `두 개를 만들려고 합니다. 예를 들어 ${n(`${m1}.${m2}`)}${tail(m2, "과", "와")} ${n(`${m3}.${m4}`)}처럼 ` +
+      `만듭니다. 두 수의 합이 가장 클 때의 합을 구하시오.`,
+    n(dec1(best)),
+    `일의 자리는 소수 첫째 자리보다 ${n(10)}배 큰 자리이므로 큰 숫자 두 개를 ` +
+      `일의 자리에 놓아야 합니다. ${josaNum(m1, "과", "와")} ${josaNum(m2, "을", "를")} 일의 자리에, ` +
+      `${josaNum(m3, "과", "와")} ${josaNum(m4, "을", "를")} 소수 첫째 자리에 놓으면 ` +
+      `${expr(`${m1}+${m2}=${m1 + m2}`)} 이고 ` +
+      `${expr(`${dec1(m3)}+${dec1(m4)}=${dec1(m3 + m4)}`)} 이므로 합은 ${n(dec1(best))}입니다.`,
+  );
+}
+
+/** 두 수 사이의 «폭» 후보(백분위 정수 $0.11$~$0.99$). 끝자리가 $0$ 이 아니다. */
+const GAP_POOL: number[] = Array.from({ length: 9 }, (_, t) => t + 1).flatMap(
+  (t) => Array.from({ length: 9 }, (_, u) => t * 10 + u + 1),
+);
+
+/** `a` 보다 작으면서 차의 끝자리가 $0$ 이 아닌 값들. 뺄셈 짝을 **풀에서** 고른다. */
+function belowWithCleanDiff(pool: number[], a: number): number[] {
+  return pool.filter((v) => v < a && (a - v) % 10 !== 0);
+}
+
+/** **2-3-5 1단 연산 — 소수 한 자리 수의 차.** 표준은 `=\square` 꼴이다. */
+function tier235Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 가장 작은 값이 뽑히면 「더 작은 수」가 없어 풀이 빈다 — 뽑는 쪽에서 미리 잘라 둔다.
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 21),
+  );
+  const b = pick(rng, belowWithCleanDiff(DEC1_POOL, a));
+  return make(
+    unit,
+    `다음 두 소수의 차를 구하시오.\n\n${expr(`${dec1(a)}-${dec1(b)}`)}`,
+    n(dec1(a - b)),
+    `소수점끼리 자리를 맞추어 같은 자리 수끼리 뺍니다. ` +
+      `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)}`,
+  );
+}
+
+/** **2-3-5 2단 기본 — 가득 채우려면 얼마나 더.** 전체와 지금의 차를 세운다. */
+function tier235Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const full = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 31),
+  );
+  const now = pick(rng, belowWithCleanDiff(DEC1_POOL, full));
+  return make(
+    unit,
+    `들이가 ${n(dec1(full))} L인 양동이에 물이 ${n(dec1(now))} L 들어 있습니다. ` +
+      `양동이를 가득 채우려면 물을 몇 L 더 부어야 합니까?`,
+    n(dec1(full - now)),
+    `더 부어야 하는 양은 들이에서 지금 들어 있는 양을 뺀 것입니다. ` +
+      `${expr(`${dec1(full)}-${dec1(now)}=${dec1(full - now)}`)}`,
+  );
+}
+
+/** **2-3-5 3단 응용 — 기준 수의 위아래.** 두 수를 각각 구한 뒤 차를 낸다(두 단계). */
+function tier235Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 41),
+  );
+  const down = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < base - 10 && (base - v) % 10 !== 0),
+  );
+  const up = pick(
+    rng,
+    DEC1_POOL.filter(
+      (v) =>
+        v !== down && // 폭이 같으면 두 조건이 글자까지 같아진다
+        (base + v) % 10 !== 0 &&
+        (down + v) % 10 !== 0 &&
+        base + v < 200,
+    ),
+  );
+  const lower = base - down;
+  const upper = base + up;
+  return make(
+    unit,
+    `${n(dec1(base))}보다 ${n(dec1(down))} 작은 수와 ${n(dec1(base))}보다 ` +
+      `${n(dec1(up))} 큰 수가 있습니다. 두 수의 차는 얼마입니까?`,
+    n(dec1(upper - lower)),
+    `작은 쪽은 ${expr(`${dec1(base)}-${dec1(down)}=${dec1(lower)}`)} 이고, ` +
+      `큰 쪽은 ${expr(`${dec1(base)}+${dec1(up)}=${dec1(upper)}`)} 입니다. ` +
+      `두 수의 차는 ${expr(`${dec1(upper)}-${dec1(lower)}=${dec1(upper - lower)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-5 4단 심화 — 잘못 계산했더니.** 뺄 것을 더했으니 되짚어 두 번 뺀다. */
+function tier235Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sub = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 39),
+  );
+  // 잘못 계산한 값에서 두 번 빼야 하므로 넉넉히 큰 것만 쓴다.
+  const wrong = pick(
+    rng,
+    DEC1_POOL.filter(
+      (v) =>
+        v - sub >= 21 &&
+        (v - sub) % 10 !== 0 &&
+        (v - sub * 2) % 10 !== 0 &&
+        v - sub * 2 >= 1,
+    ),
+  );
+  const some = wrong - sub;
+  const right = some - sub;
+  return make(
+    unit,
+    `어떤 수에서 ${josaNum(dec1(sub), "을", "를")} 빼야 할 것을 잘못하여 더했더니 ` +
+      `${josaNum(dec1(wrong), "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    n(dec1(right)),
+    `더했더니 ${josaNum(dec1(wrong), "이", "가")} 되었으므로 어떤 수는 ` +
+      `${expr(`${dec1(wrong)}-${dec1(sub)}=${dec1(some)}`)} 입니다. ` +
+      `바르게 계산하면 ${expr(`${dec1(some)}-${dec1(sub)}=${dec1(right)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-6 1단 연산 — 소수 두 자리 수의 합.** 2-3-4 와 묻는 말을 달리한다. */
+function tier236Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC2_POOL);
+  const b = pick(
+    rng,
+    DEC2_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `다음 덧셈의 값을 소수로 나타내시오.\n\n${expr(`${dec2(a)}+${dec2(b)}`)}`,
+    n(dec2(a + b)),
+    `소수점끼리 자리를 맞추어 소수 둘째 자리부터 차례로 더합니다. ` +
+      `${expr(`${dec2(a)}+${dec2(b)}=${dec2(a + b)}`)}`,
+  );
+}
+
+/** **2-3-6 2단 기본 — 그릇과 담긴 것.** 두 무게를 합쳐 전체를 만든다. */
+function tier236Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const empty = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 100),
+  );
+  const inside = pick(
+    rng,
+    DEC2_POOL.filter((v) => (empty + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `빈 병의 무게는 ${n(dec2(empty))} kg이고, 병에 담긴 꿀의 무게는 ` +
+      `${n(dec2(inside))} kg입니다. 꿀이 담긴 병의 무게는 몇 kg입니까?`,
+    n(dec2(empty + inside)),
+    `꿀이 담긴 병의 무게는 빈 병의 무게와 꿀의 무게를 더한 것입니다. ` +
+      `${expr(`${dec2(empty)}+${dec2(inside)}=${dec2(empty + inside)}`)}`,
+  );
+}
+
+/** **2-3-6 3단 응용 — 되짚었다가 더한다.** 어떤 수를 먼저 찾아야 합을 낼 수 있다. */
+function tier236Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const gap = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 100),
+  );
+  const known = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) => v - gap >= 100 && (v - gap) % 10 !== 0 && (v * 2 - gap) % 10 !== 0,
+    ),
+  );
+  const some = known - gap;
+  return make(
+    unit,
+    `어떤 수보다 ${n(dec2(gap))} 큰 수가 ` +
+      `${josaNum(dec2(known), "입니다", "입니다")}. 어떤 수와 ${n(dec2(known))}의 합은 ` +
+      `얼마입니까?`,
+    n(dec2(some + known)),
+    `어떤 수는 ${expr(`${dec2(known)}-${dec2(gap)}=${dec2(some)}`)} 입니다. ` +
+      `두 수를 더하면 ${expr(`${dec2(some)}+${dec2(known)}=${dec2(some + known)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2-3-6 4단 — **소수 둘째 자리와 첫째 자리를 바꿔 쓴** 오류. `w.ab` 대신 `w.ba` 를 더했다.
+ * 두 자리가 달라야 오류가 성립하므로 `a !== b` 인 짝만 열거한다.
+ */
+const SWAP_PAIRS: [number, number][] = (() => {
+  const out: [number, number][] = [];
+  for (let a = 1; a <= 9; a += 1) {
+    for (let b = 1; b <= 9; b += 1) if (a !== b) out.push([a, b]);
+  }
+  return out;
+})();
+
+/** **2-3-6 4단 심화 — 잘못 계산했더니.** 두 자리를 바꿔 쓴 값으로 더했다. */
+function tier236Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, SWAP_PAIRS);
+  const w = intBetween(rng, 1, 3);
+  const right = w * 100 + a * 10 + b;
+  const wrongAdd = w * 100 + b * 10 + a;
+  const got = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) =>
+        v - wrongAdd >= 100 &&
+        (v - wrongAdd) % 10 !== 0 &&
+        (v - wrongAdd + right) % 10 !== 0,
+    ),
+  );
+  const some = got - wrongAdd;
+  return make(
+    unit,
+    `어떤 수에 ${josaNum(dec2(right), "을", "를")} 더해야 할 것을 잘못하여 ` +
+      `${josaNum(dec2(wrongAdd), "을", "를")} 더했더니 ` +
+      `${josaNum(dec2(got), "이", "가")} 되었습니다. 바르게 계산한 값은 얼마입니까?`,
+    n(dec2(some + right)),
+    `잘못하여 더한 수가 ${josaNum(dec2(wrongAdd), "이", "가")} 이므로 어떤 수는 ` +
+      `${expr(`${dec2(got)}-${dec2(wrongAdd)}=${dec2(some)}`)} 입니다. ` +
+      `바르게 계산하면 ` +
+      `${expr(`${dec2(some)}+${dec2(right)}=${dec2(some + right)}`)} 입니다.`,
+  );
+}
+
+/** **2-3-7 1단 연산 — 소수 두 자리 수의 차.** 2-3-5 와 묻는 말을 달리한다. */
+function tier237Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC2_POOL.filter((v) => v >= 201),
+  );
+  const b = pick(rng, belowWithCleanDiff(DEC2_POOL, a));
+  return make(
+    unit,
+    `다음 뺄셈의 값을 소수로 나타내시오.\n\n${expr(`${dec2(a)}-${dec2(b)}`)}`,
+    n(dec2(a - b)),
+    `소수점끼리 자리를 맞추어 소수 둘째 자리부터 차례로 뺍니다. ` +
+      `${expr(`${dec2(a)}-${dec2(b)}=${dec2(a - b)}`)}`,
+  );
+}
+
+/** **2-3-7 2단 기본 — 목표까지 남은 만큼.** 자릿수가 다른 두 수를 맞추어 뺀다. */
+function tier237Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 목표는 **소수 한 자리**, 달린 거리는 두 자리 — 자리를 맞추어 빼는 것이 이 소단원이다.
+  const goal = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 41),
+  );
+  const done = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < goal * 10 - 20 && (goal * 10 - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `오늘 달릴 거리는 ${n(dec1(goal))} km입니다. 지금까지 ${n(dec2(done))} km를 ` +
+      `달렸다면 앞으로 몇 km를 더 달려야 합니까?`,
+    n(dec2(goal * 10 - done)),
+    `더 달려야 하는 거리는 목표에서 지금까지 달린 거리를 뺀 것입니다. ` +
+      `${expr(`${dec1(goal)}-${dec2(done)}=${dec2(goal * 10 - done)}`)}`,
+  );
+}
+
+/** **2-3-7 3단 응용 — 되짚었다가 뺀다.** 어떤 수를 먼저 찾아야 다음 뺄셈을 할 수 있다. */
+function tier237Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const first = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < 200),
+  );
+  const left = pick(
+    rng,
+    // 되짚은 「어떤 수」도 해설에 나가므로 끝자리가 $0$ 이면 안 된다(「$2.80$」).
+    DEC2_POOL.filter((v) => v < 300 && (first + v) % 10 !== 0),
+  );
+  const some = first + left;
+  const second = pick(
+    rng,
+    DEC2_POOL.filter((v) => v < some && (some - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `어떤 수에서 ${josaNum(dec2(first), "을", "를")} 뺐더니 ` +
+      `${josaNum(dec2(left), "이", "가")} 되었습니다. 어떤 수에서 ` +
+      `${josaNum(dec2(second), "을", "를")} 빼면 얼마입니까?`,
+    n(dec2(some - second)),
+    `어떤 수는 ${expr(`${dec2(left)}+${dec2(first)}=${dec2(some)}`)} 입니다. ` +
+      `${expr(`${dec2(some)}-${dec2(second)}=${dec2(some - second)}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-3-7 4단 심화 — 차가 가장 작은 짝.** 세 수에서 두 개를 골라 본다.
+ * 2-3-4 심화의 「합이 가장 크게」와 방향이 대비된다.
+ */
+function tier237Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  /*
+   * 가장 작은 차를 **먼저 정하고** 세 수를 짠다 — 세 수를 먼저 뽑아 재면 최솟값이 겹치거나
+   * 끝자리가 $0$ 이 되는 씨앗이 섞인다.
+   *
+   * 끝자리 $0$ 을 막을 곳이 **넷**이다 — 두 차(`small`·`wide`)와 가운데·가장 큰 수.
+   * 처음에는 두 차만 막아서 「$7.70$」이 발문에 나갔다(쓸기가 실측).
+   */
+  const small = pick(
+    rng,
+    GAP_POOL.filter((v) => v <= 60),
+  );
+  const wide = pick(
+    rng,
+    GAP_POOL.filter((v) => v > small), // 최솟값이 하나로 서게 «더 넓은» 쪽만
+  );
+  const lo = pick(
+    rng,
+    DEC2_POOL.filter(
+      (v) =>
+        v + small + wide < 900 &&
+        (v + small) % 10 !== 0 &&
+        (v + small + wide) % 10 !== 0,
+    ),
+  );
+  const mid = lo + small;
+  const hi = mid + wide;
+  const order = pick(rng, [
+    [mid, hi, lo],
+    [hi, lo, mid],
+    [lo, hi, mid],
+  ]);
+  return make(
+    unit,
+    `세 소수 ${order.map((v) => n(dec2(v))).join(", ")} 중에서 두 수를 골라 차를 ` +
+      `구하려고 합니다. 차가 가장 작을 때의 값을 구하시오.`,
+    n(dec2(small)),
+    `차가 가장 작으려면 크기가 가장 가까운 두 수를 골라야 합니다. ` +
+      `크기 순으로 늘어놓고 이웃한 두 수끼리만 견주면 됩니다. ` +
+      `${josaNum(dec2(lo), "과", "와")} ${n(dec2(mid))}, ` +
+      `${josaNum(dec2(mid), "과", "와")} ${n(dec2(hi))}의 차를 견주면 ` +
+      `${expr(`${dec2(mid)}-${dec2(lo)}=${dec2(small)}`)} 이고 ` +
+      `${expr(`${dec2(hi)}-${dec2(mid)}=${dec2(wide)}`)} 이므로 ` +
+      `가장 작은 차는 ${n(dec2(small))}입니다.`,
+  );
+}
+
 /* ───────────────────────── 2-4 사각형 ───────────────────────── */
 
 function quad(unit: UnitSeed, rng: Rng): ElemProblem {
