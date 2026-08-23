@@ -4396,3 +4396,330 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     }
   });
 });
+
+/* ── 2-6 평균과 가능성 (D-72 10차) ────────────────────────────────────────── */
+
+const CODES26 = ["2-6-1", "2-6-2", "2-6-3"] as const;
+
+/** `$\frac{a}{b}$` 를 `[a, b]` 로. 없으면 null. */
+function fracIn(text: string): [number, number] | null {
+  const m = /\$\\frac\{(\d+)\}\{(\d+)\}\$/.exec(text);
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
+  it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES26) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES26) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES26) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
+    for (const code of CODES26) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("답의 가짓수가 넉넉하다 (씨앗 500 · 가짓수 ≥4 · 최빈 ≤45%)", () => {
+    const N = 500;
+    const bad: string[] = [];
+    for (const code of CODES26) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45)
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
+    const bad: string[] = [];
+    for (const code of CODES26) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── 산술 독립 검산 ── */
+
+  it("2-6-1 — 평균이 자료에서 다시 선다 (연산·기본·응용)", () => {
+    for (const seed of SEEDS) {
+      // 연산: 「$n$개의 수의 합이 $S$」 → 답은 S ÷ n
+      const c = problem("2-6-1", "연산", seed);
+      const [size, sum] = intsIn(c.content);
+      expect(sum! % size!, `2-6-1 연산 @${seed} 합이 개수로 안 나뉜다`).toBe(0);
+      expect(answerNumber(c.answer, `2-6-1 연산 @${seed}`)).toBe(sum! / size!);
+
+      // 기본: 나열된 자료의 평균이 정확히 답이다
+      const r = problem("2-6-1", "기본", seed);
+      const vals = intsIn(r.content);
+      const total = vals.reduce((a, b) => a + b, 0);
+      expect(
+        total % vals.length,
+        `2-6-1 기본 @${seed} 평균이 정수가 아니다`,
+      ).toBe(0);
+      expect(answerNumber(r.answer, `2-6-1 기본 @${seed}`)).toBe(
+        total / vals.length,
+      );
+    }
+  });
+
+  it("2-6-1 응용 — 평균보다 많은 날이 실제로 그 수이고, **하나도 없지 않다**", () => {
+    // ⚠️ 하나도 없으면 묻는 것이 사라진다(답이 늘 0). 구성이 보장하므로 **전량**이다.
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-6-1", "응용", seed);
+      const label = `2-6-1 응용 @${seed}`;
+      const nums = intsIn(p.content);
+      const size = nums[0]!;
+      const vals = nums.slice(1);
+      expect(
+        vals.length,
+        `${label} 자료 수가 발문과 다르다\n${p.content}`,
+      ).toBe(size);
+      const total = vals.reduce((a, b) => a + b, 0);
+      expect(total % size, `${label} 평균이 정수가 아니다`).toBe(0);
+      const avg = total / size;
+      const over = vals.filter((v) => v > avg).length;
+      expect(
+        over,
+        `${label} 평균보다 많은 날이 없다\n${p.content}`,
+      ).toBeGreaterThan(0);
+      expect(answerNumber(p.answer, label), p.content).toBe(over);
+    }
+  });
+
+  it("2-6-1 심화 — **두 모둠의 인원이 다르다** (같으면 «평균의 평균»이 정답이 된다)", () => {
+    // ⚠️ 이 갈래의 알맹이는 「평균을 그냥 더해 2로 나누면 안 된다」이다. 인원이 같으면
+    //    그 오답이 **정답과 같아져** 갈래가 통째로 뜻을 잃는다 — 값 검산은 그때도 초록이다.
+    //    구성이 보장하므로 **전량**으로 잰다.
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-6-1", "심화", seed);
+      const label = `2-6-1 심화 @${seed}`;
+      // $1$모둠 $n1$명 … $a1$점 … $2$모둠 $n2$명 … $a2$점
+      const v = intsIn(p.content);
+      const [, n1, a1, , n2, a2] = v;
+      expect(n1, `${label} 발문을 못 읽었다\n${p.content}`).toBeGreaterThan(0);
+      expect(
+        n1,
+        `${label} 두 모둠 인원이 같다 — 평균의 평균이 정답이 된다`,
+      ).not.toBe(n2);
+      const sum = n1! * a1! + n2! * a2!;
+      expect(sum % (n1! + n2!), `${label} 전체 평균이 정수가 아니다`).toBe(0);
+      expect(answerNumber(p.answer, label), p.content).toBe(sum / (n1! + n2!));
+      // 「평균의 평균」은 답과 **달라야** 한다 — 그래야 이 문항이 무언가를 묻는다
+      expect(
+        (a1! + a2!) / 2,
+        `${label} 평균의 평균이 정답과 같다 — 오개념을 안 가른다`,
+      ).not.toBe(sum / (n1! + n2!));
+    }
+  });
+
+  it("2-6-2 — 합·마지막 경기·최소 점수가 전부 다시 선다", () => {
+    for (const seed of SEEDS) {
+      // 연산: 평균 × 개수
+      const c = problem("2-6-2", "연산", seed);
+      const [avg, count] = intsIn(c.content);
+      expect(answerNumber(c.answer, `2-6-2 연산 @${seed}`)).toBe(avg! * count!);
+
+      // 기본: 경기 수 × 평균
+      const r = problem("2-6-2", "기본", seed);
+      const [games, ravg] = intsIn(r.content);
+      expect(answerNumber(r.answer, `2-6-2 기본 @${seed}`)).toBe(
+        games! * ravg!,
+      );
+
+      // 응용: t·(k+1) − a·k
+      const ap = problem("2-6-2", "응용", seed);
+      const [k, a, k1, t] = intsIn(ap.content);
+      expect(k1, `2-6-2 응용 @${seed} 경기 수가 안 맞는다`).toBe(k! + 1);
+      expect(answerNumber(ap.answer, `2-6-2 응용 @${seed}`), ap.content).toBe(
+        t! * (k! + 1) - a! * k!,
+      );
+    }
+  });
+
+  it("2-6-2 심화 — 「최소 몇 점」이 **자연수이고 양수다** (구성 보장)", () => {
+    // ⚠️ 「적어도 몇 점」은 답이 자연수라야 뜻이 선다. `t·(k+m) − a·k` 는 넷이 다
+    //    정수라 언제나 정수이고 `t > a` 라 언제나 양수다 — 그러니 **전량**이다.
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-6-2", "심화", seed);
+      const label = `2-6-2 심화 @${seed}`;
+      const [k, a, m, total, t] = intsIn(p.content);
+      expect(total, `${label} 전체 경기 수가 안 맞는다\n${p.content}`).toBe(
+        k! + m!,
+      );
+      expect(t, `${label} 목표 평균이 지금 평균보다 높지 않다`).toBeGreaterThan(
+        a!,
+      );
+      const need = t! * (k! + m!) - a! * k!;
+      expect(Number.isInteger(need), `${label} 답이 정수가 아니다`).toBe(true);
+      expect(need, `${label} 답이 0 이하다`).toBeGreaterThan(0);
+      expect(answerNumber(p.answer, label), p.content).toBe(need);
+    }
+  });
+
+  it("2-6-3 — 가능성이 자료에서 다시 선다 (기본·응용)", () => {
+    for (const seed of SEEDS) {
+      // 기본: 빨강 / 전체
+      const r = problem("2-6-3", "기본", seed);
+      const [red, blue] = intsIn(r.content);
+      const got = fracIn(r.answer);
+      expect(
+        got,
+        `2-6-3 기본 @${seed} 분수 답이 아니다 — ${r.answer}`,
+      ).not.toBeNull();
+      expect(
+        got![0] * (red! + blue!),
+        `2-6-3 기본 @${seed}\n${r.content}`,
+      ).toBe(got![1] * red!);
+
+      // 응용: 노랑 / 전체 (빨강도 파랑도 아닌 것)
+      const ap = problem("2-6-3", "응용", seed);
+      const [r2, b2, y2] = intsIn(ap.content);
+      const g2 = fracIn(ap.answer)!;
+      expect(
+        g2[0] * (r2! + b2! + y2!),
+        `2-6-3 응용 @${seed}\n${ap.content}`,
+      ).toBe(g2[1] * y2!);
+    }
+  });
+
+  it("2-6-3 심화 — 발문이 **무엇을 더하는지** 못 박고, 넣으면 목표에 정확히 닿는다", () => {
+    // ⚠️ 「몇 개 더」는 더하는 대상이 안 정해지면 **답이 둘**이다(빨강을 넣는가,
+    //    전체를 늘리는가). 발문에 「빨간 구슬만」이 반드시 있어야 한다.
+    //    그리고 답을 먼저 잡고 파랑을 유도하므로 검산은 **항등식**이다 — 전량으로 잰다.
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-6-3", "심화", seed);
+      const label = `2-6-3 심화 @${seed}`;
+      expect(
+        /빨간 구슬만 더 넣어/.test(p.content),
+        `${label} 무엇을 더하는지 발문이 안 정한다 — 답이 둘이 된다\n${p.content}`,
+      ).toBe(true);
+      const [red, blue] = intsIn(p.content);
+      const target = fracIn(p.content)!;
+      const add = answerNumber(p.answer, label);
+      expect(
+        (red! + add) * target[1],
+        `${label} 넣은 뒤 가능성이 목표와 다르다\n${p.content}`,
+      ).toBe((red! + blue! + add) * target[0]);
+      expect(add, `${label} 더 넣을 개수가 0 이하다`).toBeGreaterThan(0);
+    }
+  });
+
+  it("2-6-1 자료에 **0 이하가 없다** — 「$-3$ 쪽을 읽었다」가 안 나온다", () => {
+    // ⚠️ 마지막 치우침은 나머지의 합에 음수를 붙인 것이라 `spread·(size−1)` 까지 커진다.
+    //    `avg` 가 그보다 작으면 자료에 **음수**가 섞이는데, 평균도 답도 맞아서
+    //    산술 검산은 **초록이다.** 표준은 이걸 주석으로만 막아 뒀고 갈래가 안 물려받아
+    //    실제로 났다(2026-08-23, 씨앗 25). 구성이 보장하므로 **전량**으로 잰다.
+    for (let seed = 0; seed < 300; seed += 1) {
+      for (const tier of ["기본", "응용"] as const) {
+        const p = problem("2-6-1", tier, seed);
+        for (const v of intsIn(p.content)) {
+          expect(
+            v,
+            `2-6-1 ${tier} @${seed} 자료에 0 이하가 있다\n${p.content}`,
+          ).toBeGreaterThan(0);
+        }
+        expect(
+          /-\d/.test(p.content),
+          `2-6-1 ${tier} @${seed} 발문에 음수가 있다\n${p.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  /* ── R5 · 이웃 ── */
+
+  it("표준 문항과 발문이 겹치지 않는다 (R5) — 골격까지", () => {
+    const skeleton = (t: string) => t.replace(/\d+/g, "#");
+    const std = new Map<string, string>();
+    for (const code of CODES26) {
+      const u = unitOf(code);
+      for (let seed = 1; seed <= 40; seed += 1) {
+        const c = generateElementaryProblem(u, seed).content;
+        std.set(c, code);
+        std.set(`SKEL:${skeleton(c)}`, code);
+      }
+    }
+    expect(std.size, "표준 모집단이 비었다").toBeGreaterThan(20);
+
+    const clash: string[] = [];
+    for (const code of CODES26) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          if (std.get(c)) clash.push(`완전 일치 ${code} ${tier}\n    ${c}`);
+          if (std.get(`SKEL:${skeleton(c)}`))
+            clash.push(`골격 일치 ${code} ${tier}\n    ${c}`);
+        }
+      }
+    }
+    expect(clash.slice(0, 3), `표준과 겹친 발문 ${clash.length}건`).toEqual([]);
+  });
+
+  it("소재의 수가 세상에서 그럴듯하다 (AVG_TOPICS 교훈)", () => {
+    // ⚠️ 「선수 $5$명의 **키**가 평균 $33$ cm」는 산술·표기·조건이 다 맞아서 **어느
+    //    가드도 못 본다.** 수가 그 낱말과 어울리는지는 코드가 아니라 세상이 정한다.
+    const bad: string[] = [];
+    for (let seed = 0; seed < 200; seed += 1) {
+      const deep = problem("2-6-1", "심화", seed);
+      for (const v of intsIn(deep.content).filter((x) => x > 20)) {
+        if (v < 40 || v > 100) bad.push(`2-6-1 심화 @${seed} 점수 ${v}`);
+      }
+      const pages = problem("2-6-1", "기본", seed);
+      for (const v of intsIn(pages.content)) {
+        if (v > 60) bad.push(`2-6-1 기본 @${seed} 쪽수 ${v}`);
+      }
+      const marbles = problem("2-6-3", "심화", seed);
+      for (const v of intsIn(marbles.content)) {
+        if (v > 30) bad.push(`2-6-3 심화 @${seed} 구슬 ${v}개`);
+      }
+    }
+    expect(bad.slice(0, 5), `그럴듯하지 않은 수 ${bad.length}건`).toEqual([]);
+  });
+});

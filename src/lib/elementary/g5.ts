@@ -6079,6 +6079,304 @@ function dm247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 2-6 평균과 가능성 — 난이도 4단 (D-72 확대 10차) ──────────
+ *
+ * ⚠️ **이 대단원은 소단원 이름이 갈래 축과 겹친다.** 2-6-2 가 「평균을 **이용하여**
+ *    문제해결」 — 곧 **역산**이다. 그래서 2-6-1 의 심화를 역산으로 짜면 그것이 통째로
+ *    2-6-2 가 된다(D-66 ⑼). D-72 의 4단은 「역산 **또는** 조건 조합」이므로 2-6-1 은
+ *    **조건 조합**(두 모둠을 합친 평균)으로 오르고, 2-6-2 는 자기 본령인 역산의
+ *    **깊이**로 오른다(맨 식 → 문장 → 평균이 바뀐다 → 목표 평균). 2026-08-23 리드 승인.
+ *
+ * ⚠️ **역산 갈래는 «답에서 거꾸로» 짓는다.** 앞에서 뽑고 「답이 정수인가」로 거르면
+ *    후보가 비고, 폴백이 조건을 깨고, 그 깨짐은 **값 검산으로 안 잡힌다**(2-4 의
+ *    `sumPairOverOne` 이 그 자리였다). 2-6-3 심화는 답 `x` 를 **먼저** 잡고 파랑 개수를
+ *    유도하므로 「정수인가」를 물을 자리가 아예 없다.
+ *
+ * ⚠️ `AVG_TOPICS` 의 교훈을 그대로 물려받는다 — 「선수 $5$명의 **키**가 평균 $33$ cm」는
+ *    산술·표기·조건이 다 맞아서 **어느 가드도 못 본다.** 수가 그 낱말과 어울리는지는
+ *    코드가 아니라 세상이 정하므로, 소재마다 그럴듯한 범위를 딸려 둔다.
+ */
+
+/**
+ * 평균이 **정확히** `avg` 인 자료 — 치우침의 합을 0으로 만든다.
+ * `high` 가 참이면 **적어도 하나는 평균보다 크다**(그 축을 묻는 갈래가 있다).
+ */
+function aroundMean(
+  rng: Rng,
+  avg: number,
+  size: number,
+  spread: number,
+  high = false,
+): number[] {
+  const offsets: number[] = [];
+  let acc = 0;
+  if (high) {
+    // ⚠️ 「평균보다 많은 날」을 묻는 갈래는 **하나도 없으면 묻는 것이 사라진다.**
+    //    뽑고 거르지 않고, 양수 치우침 하나를 **먼저 박아** 구성으로 보장한다.
+    const up = intBetween(rng, 1, spread);
+    offsets.push(up);
+    acc += up;
+  }
+  for (let i = offsets.length; i < size - 1; i += 1) {
+    const off = intBetween(rng, -spread, spread);
+    offsets.push(off);
+    acc += off;
+  }
+  offsets.push(-acc);
+  return shuffled(rng, offsets).map((o) => avg + o);
+}
+
+/* ── 2-6-1 평균 알아보기 — 평균을 «구한다» ── */
+
+/** 연산 — 합과 개수가 그대로 주어진다(나눗셈 한 번). */
+function avg261Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const size = intBetween(rng, 4, 8);
+  const avg = intBetween(rng, 12, 40);
+  const sum = size * avg;
+  return make(
+    unit,
+    `${n(size)}개의 수의 합이 ${n(sum)}입니다. 이 수들의 평균을 구하시오.`,
+    n(avg),
+    `평균은 자료의 합을 자료의 수로 나눈 값입니다. ${expr(`${sum}\\div${size}=${avg}`)}이므로 평균은 ${n(avg)}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 자료를 읽어 **스스로** 식을 세운다(한 겹). */
+function avg261Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 마지막 치우침은 «나머지의 합에 음수를 붙인 것」이라 크기가 `spread·(size−1)`
+  //    까지 간다. `avg` 가 그보다 작으면 **쪽수가 음수**가 된다 — 표준이 주석으로
+  //    막아 둔 자리인데(「가장 큰 치우침보다 avg 를 크게 잡아」) 갈래가 안 물려받았다.
+  //    여기서는 `3·4=12` 보다 `avg` 하한이 크다.
+  const avg = intBetween(rng, 20, 35);
+  const values = aroundMean(rng, avg, 5, 3);
+  const sum = values.reduce((a, b) => a + b, 0);
+  return make(
+    unit,
+    `월요일부터 금요일까지 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 하루 평균 몇 쪽을 읽었습니까?`,
+    n(avg),
+    `모두 더하면 ${n(sum)} 쪽이고 날수가 ${n(5)}일이므로 ${expr(`${sum}\\div5=${avg}`)}입니다.`,
+  );
+}
+
+/** 응용 — 평균을 구한 **뒤** 그것과 견준다(두 단계). */
+function avg261Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const size = intBetween(rng, 4, 6);
+  // ⚠️ 치우침 최대 `3·(6−1)=15` 보다 `avg` 하한을 크게 잡아 **음수 쪽수를 막는다.**
+  const avg = intBetween(rng, 20, 35);
+  const values = aroundMean(rng, avg, size, 3, true);
+  const sum = values.reduce((a, b) => a + b, 0);
+  const overs = values.filter((v) => v > avg);
+  return make(
+    unit,
+    `${n(size)}일 동안 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 하루 평균보다 많이 읽은 날은 며칠입니까?`,
+    n(overs.length),
+    `먼저 평균을 구하면 ${expr(`${sum}\\div${size}=${avg}`)} 쪽입니다. ${n(avg)} 쪽보다 많이 읽은 날은 ${nums(overs)} 쪽인 ${n(overs.length)}일입니다.`,
+  );
+}
+
+/**
+ * 심화 — **조건 조합**: 두 모둠을 합친 평균.
+ *
+ * ⚠️ **두 모둠의 인원이 다르다(`n1 !== n2`)** — 같으면 「평균의 평균」이 그대로 정답이
+ *    되어 이 갈래의 알맹이가 사라진다. 그게 이 소단원에서 가장 흔한 오개념이라,
+ *    인원이 갈리는 것이 **구성 불변식**이다.
+ *
+ * 전체 평균은 `A` 로 **구성해서** 정확히 떨어진다:
+ *   `a1 = A − n2·t` · `a2 = A + n1·t`  →  `n1·a1 + n2·a2 = A(n1+n2)`
+ */
+function avg261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const A = intBetween(rng, 75, 85);
+  const n1 = intBetween(rng, 2, 5);
+  const n2 = pick(
+    rng,
+    [2, 3, 4, 5].filter((v) => v !== n1),
+  );
+  const t = intBetween(rng, 1, 2);
+  const a1 = A - n2 * t;
+  const a2 = A + n1 * t;
+  const sum = n1 * a1 + n2 * a2;
+  return make(
+    unit,
+    `${n(1)}모둠 ${n(n1)}명의 수학 점수 평균은 ${n(a1)}점이고, ${n(2)}모둠 ${n(n2)}명의 평균은 ${n(a2)}점입니다. 두 모둠 전체의 평균은 몇 점입니까?`,
+    n(A),
+    `모둠마다 인원이 다르므로 두 평균을 더해 ${n(2)}로 나누면 안 됩니다. 점수의 합을 구해 전체 인원으로 나눕니다. ${expr(`${n1}\\times${a1}=${n1 * a1}`)}, ${expr(`${n2}\\times${a2}=${n2 * a2}`)}이므로 합은 ${n(sum)}점이고, 전체 인원이 ${n(n1 + n2)}명이므로 ${expr(`${sum}\\div${n1 + n2}=${A}`)}입니다.`,
+  );
+}
+
+/* ── 2-6-2 평균을 이용하여 문제해결 — 이 소단원의 본령이 «역산»이다 ── */
+
+/** 연산 — 평균과 개수에서 합을 되찾는다(곱셈 한 번). */
+function avg262Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 4, 9);
+  const avg = intBetween(rng, 6, 20);
+  return make(
+    unit,
+    `평균이 ${n(avg)}인 자료가 ${n(count)}개 있습니다. 자료의 합을 구하시오.`,
+    n(avg * count),
+    `자료의 합은 평균에 자료의 수를 곱해 구합니다. ${expr(`${avg}\\times${count}=${avg * count}`)}입니다.`,
+  );
+}
+
+/** 기본 — 문장에서 **스스로** 세운다(한 겹). 소재는 표준(«조사했더니»)과 갈랐다. */
+function avg262Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const games = intBetween(rng, 4, 7);
+  const avg = intBetween(rng, 5, 12);
+  const who = pick(rng, FRAC_NAMES);
+  return make(
+    unit,
+    `${wj(who, "이", "가")} ${n(games)}경기에서 평균 ${n(avg)}점을 얻었습니다. 얻은 점수는 모두 몇 점입니까?`,
+    n(avg * games),
+    `전체 점수는 평균에 경기 수를 곱한 값입니다. ${expr(`${avg}\\times${games}=${avg * games}`)}이므로 ${n(avg * games)}점입니다.`,
+  );
+}
+
+/**
+ * 응용 — **평균이 바뀐다**(두 단계): 한 경기를 더 치른 뒤 평균이 올랐다.
+ * 마지막 경기 점수 `= t·(k+1) − a·k` — 넷이 다 정수라 **답도 정수다**(거르지 않는다).
+ */
+function avg262Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 3, 6);
+  const a = intBetween(rng, 5, 10);
+  const t = a + intBetween(rng, 1, 3);
+  const score = t * (k + 1) - a * k;
+  const who = pick(rng, FRAC_NAMES);
+  return make(
+    unit,
+    `${wj(who, "은", "는")} ${n(k)}경기까지 평균 ${n(a)}점이었는데, ${n(k + 1)}경기째를 마치고 나니 평균이 ${n(t)}점이 되었습니다. ${n(k + 1)}경기째에 얻은 점수는 몇 점입니까?`,
+    n(score),
+    `${n(k + 1)}경기 전체 점수는 ${expr(`${t}\\times${k + 1}=${t * (k + 1)}`)}점이고, ${n(k)}경기까지의 점수는 ${expr(`${a}\\times${k}=${a * k}`)}점입니다. 그 차가 마지막 경기 점수이므로 ${expr(`${t * (k + 1)}-${a * k}=${score}`)}점입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산 + «이상» 조건**: 목표 평균에 닿으려면 남은 경기에서 최소 몇 점인가.
+ *
+ * ⚠️ 「최소 몇 점」은 **답이 자연수라야** 뜻이 선다. `t·(k+m) − a·k` 는 넷이 다 정수라
+ *    언제나 정수이고, `t > a` 이므로 언제나 양수다 — **구성이 보장한다.** 평균을 먼저
+ *    뽑고 「정수인가」로 거르지 않는다(거르면 후보가 비는 씨앗이 생긴다).
+ */
+function avg262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 3, 5);
+  const a = intBetween(rng, 5, 9);
+  const m = intBetween(rng, 2, 3);
+  const t = a + intBetween(rng, 1, 3);
+  const need = t * (k + m) - a * k;
+  const who = pick(rng, FRAC_NAMES);
+  return make(
+    unit,
+    `${wj(who, "은", "는")} ${n(k)}경기까지 평균 ${n(a)}점을 얻었습니다. 남은 ${n(m)}경기를 마쳤을 때 ${n(k + m)}경기 전체 평균이 ${n(t)}점 이상이 되려면, 남은 ${n(m)}경기에서 적어도 몇 점을 더 얻어야 합니까?`,
+    n(need),
+    `${n(k + m)}경기 평균이 ${n(t)}점이 되려면 전체 점수가 ${expr(`${t}\\times${k + m}=${t * (k + m)}`)}점이어야 합니다. 지금까지 얻은 점수가 ${expr(`${a}\\times${k}=${a * k}`)}점이므로 적어도 ${expr(`${t * (k + m)}-${a * k}=${need}`)}점이 더 필요합니다.`,
+  );
+}
+
+/* ── 2-6-3 일이 일어날 가능성 — 표준이 쓰는 주사위·카드를 피해 «주머니»로 간다 ── */
+
+/** 연산 — 교육과정의 다섯 낱말로 **말하게** 한다(판정 한 번). */
+function pos263Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = pick(rng, [6, 8, 10]);
+  const half = total / 2;
+  const kind = intBetween(rng, 0, 4);
+  if (kind === 0)
+    return make(
+      unit,
+      `파란 구슬만 ${n(total)}개 든 주머니에서 구슬 한 개를 꺼낼 때, 꺼낸 구슬이 빨간색일 가능성을 말로 표현하시오.`,
+      "불가능하다",
+      `주머니에 빨간 구슬이 하나도 없으므로 빨간 구슬을 꺼내는 일은 일어날 수 없습니다.`,
+    );
+  if (kind === 4)
+    return make(
+      unit,
+      `빨간 구슬만 ${n(total)}개 든 주머니에서 구슬 한 개를 꺼낼 때, 꺼낸 구슬이 빨간색일 가능성을 말로 표현하시오.`,
+      "확실하다",
+      `주머니에 든 구슬이 모두 빨간색이므로 어느 것을 꺼내도 빨간색입니다.`,
+    );
+  const red =
+    kind === 2
+      ? half
+      : kind === 1
+        ? intBetween(rng, 1, half - 1)
+        : intBetween(rng, half + 1, total - 1);
+  const answer =
+    kind === 2
+      ? "반반이다"
+      : kind === 1
+        ? "빨간색이 아닐 것 같다"
+        : "빨간색일 것 같다";
+  const why =
+    kind === 2
+      ? `빨간 구슬과 파란 구슬이 ${n(half)}개로 같습니다.`
+      : kind === 1
+        ? `빨간 구슬 ${n(red)}개가 파란 구슬 ${n(total - red)}개보다 적습니다.`
+        : `빨간 구슬 ${n(red)}개가 파란 구슬 ${n(total - red)}개보다 많습니다.`;
+  return make(
+    unit,
+    `빨간 구슬 ${n(red)}개와 파란 구슬 ${n(total - red)}개가 든 주머니에서 구슬 한 개를 꺼낼 때, 꺼낸 구슬이 빨간색일 가능성을 말로 표현하시오.`,
+    answer,
+    why,
+  );
+}
+
+/** 기본 — 문장의 상황을 분수로 옮긴다(한 겹). */
+function pos263Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const red = intBetween(rng, 2, 7);
+  const blue = intBetween(rng, 2, 9);
+  const total = red + blue;
+  const [num, den] = simplify(red, total);
+  const same = red === num && total === den;
+  return make(
+    unit,
+    `빨간 구슬 ${n(red)}개와 파란 구슬 ${n(blue)}개가 든 주머니에서 구슬 한 개를 꺼낼 때, 꺼낸 구슬이 빨간색일 가능성을 분수로 나타내시오.`,
+    fr(num, den),
+    `구슬은 모두 ${n(total)}개이고 그중 빨간 구슬이 ${n(red)}개이므로 ${expr(`\\frac{${red}}{${total}}${same ? "" : `=\\frac{${num}}{${den}}`}`)}입니다.`,
+  );
+}
+
+/** 응용 — **아닐** 가능성(두 단계): 두 색을 합치고 나머지를 센다. */
+function pos263Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const red = intBetween(rng, 1, 5);
+  const blue = intBetween(rng, 1, 5);
+  const yellow = intBetween(rng, 2, 8);
+  const total = red + blue + yellow;
+  const [num, den] = simplify(yellow, total);
+  const same = yellow === num && total === den;
+  return make(
+    unit,
+    `빨간 구슬 ${n(red)}개, 파란 구슬 ${n(blue)}개, 노란 구슬 ${n(yellow)}개가 든 주머니에서 구슬 한 개를 꺼낼 때, 꺼낸 구슬이 빨간색도 파란색도 아닐 가능성을 분수로 나타내시오.`,
+    fr(num, den),
+    `빨간색과 파란색이 모두 ${expr(`${red}+${blue}=${red + blue}`)}개이므로 둘 다 아닌 것은 노란 구슬 ${n(yellow)}개입니다. 구슬이 모두 ${n(total)}개이므로 ${expr(`\\frac{${yellow}}{${total}}${same ? "" : `=\\frac{${num}}{${den}}`}`)}입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산**: 목표 가능성이 되게 몇 개를 더 넣어야 하는가.
+ *
+ * ⚠️ **발문이 «무엇을 더하는지» 못 박는다**(「빨간 구슬만 더 넣어」). 안 그러면 빨강을
+ *    넣는 것과 전체를 늘리는 것이 갈리지 않아 **답이 둘**이 된다(2026-08-23 리드 지적).
+ *
+ * ⚠️ **답 `add` 를 먼저 잡고 파랑 개수를 유도한다** — `blue = (add+red)(q−1)` 이면
+ *    전체가 `(red+add)·q` 라 가능성이 정확히 `1/q` 다. 가능성을 먼저 잡고 `add` 를 풀면
+ *    정수가 아닐 수 있고, 그때 거르면 후보가 비는 씨앗이 생긴다.
+ *
+ * ⚠️ 그래서 이 갈래의 가능성은 **언제나 `1/q` 꼴**(분자 1)이다 — 초5 교육과정의 표준
+ *    표기라 문제는 없지만, 「왜 $\frac23$ 은 안 나오나」의 답은 «구성이 그렇다»다.
+ *    그리고 `blue` 가 곱으로 커지므로 상한을 뒤에 걸어 거르지 말고 **뽑는 범위에서**
+ *    갈라 둔다(`q=3` 이면 `red`·`add` 를 좁게).
+ */
+function pos263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const q = pick(rng, [2, 3]);
+  const red = q === 2 ? intBetween(rng, 2, 6) : intBetween(rng, 2, 4);
+  const add = q === 2 ? intBetween(rng, 2, 8) : intBetween(rng, 2, 5);
+  const blue = (red + add) * (q - 1);
+  const total = (red + add) * q;
+  return make(
+    unit,
+    `빨간 구슬 ${n(red)}개와 파란 구슬 ${n(blue)}개가 든 주머니가 있습니다. 이 주머니에 빨간 구슬만 더 넣어, 구슬 한 개를 꺼낼 때 빨간색일 가능성이 ${frj(1, q, "이", "가")} 되게 하려고 합니다. 빨간 구슬을 몇 개 더 넣어야 합니까?`,
+    n(add),
+    `빨간 구슬을 ${n(add)}개 더 넣으면 빨간 구슬은 ${expr(`${red}+${add}=${red + add}`)}개, 전체는 ${expr(`${red + add}+${blue}=${total}`)}개가 되어 ${expr(`\\frac{${red + add}}{${total}}=\\frac{1}{${q}}`)}입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -6314,6 +6612,24 @@ export const G5_TIERS: ElemTierMap = {
     기본: dm247Read,
     응용: dm247Apply,
     심화: dm247Deep,
+  },
+  "초5|2-6-1": {
+    연산: avg261Calc,
+    기본: avg261Read,
+    응용: avg261Apply,
+    심화: avg261Deep,
+  },
+  "초5|2-6-2": {
+    연산: avg262Calc,
+    기본: avg262Read,
+    응용: avg262Apply,
+    심화: avg262Deep,
+  },
+  "초5|2-6-3": {
+    연산: pos263Calc,
+    기본: pos263Read,
+    응용: pos263Apply,
+    심화: pos263Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,
