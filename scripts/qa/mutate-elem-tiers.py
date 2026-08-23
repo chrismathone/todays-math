@@ -580,6 +580,42 @@ G5_MUTS = [
         "`□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\\\square\\\\times${dec(t, 1)}=${dec(k * t, 1)}`)}`,",
         "`□ 안에 알맞은 소수를 구하시오.  ${expr(`${k}\\\\times\\\\square=${dec(k * t, 1)}`)}`,",
     ),
+    # ── 12차분 (2-3 합동과 대칭) ──
+    (
+        # 발문·정답·해설은 멀쩡하고 **그림에만** 빈 이름이 찍힌다 — 값 검산도 R1 도 초록이다.
+        "기호 부족 — 2-3-1 이 공용 라벨 다섯으로 돌아가 여섯째부터 이름이 빈다",
+        "const CONG_LABELS = [\"가\", \"나\", \"다\", \"라\", \"마\", \"바\", \"사\", \"아\"] as const;",
+        "const CONG_LABELS = [\"가\", \"나\", \"다\", \"라\", \"마\"] as const;",
+    ),
+    (
+        # 「정확히 두 쌍」은 여전히 만족한다 — **틀린 답이 없어서** 값 검산이 통과한다.
+        "답이 여럿 — 2-3-1 심화에 짝 없는 도형이 둘이 되어 어느 것과 같게 해도 조건을 만족한다",
+        "  const kinds = pickSome(rng, CONG_SHAPES, 3);\n  const [twin, lone, target] = kinds;\n  const items = shuffled(rng, [\n    { shape: twin!, tag: \"twin\" },\n    { shape: twin!, tag: \"twin\" },\n    { shape: lone!, tag: \"lone\" },\n    { shape: target!, tag: \"target\" },\n  ]).map((it, i) => ({ ...it, label: CONG_LABELS[i]! }));",
+        "  const kinds = pickSome(rng, CONG_SHAPES, 4);\n  const [twin, lone, target, extra] = kinds;\n  const items = shuffled(rng, [\n    { shape: twin!, tag: \"twin\" },\n    { shape: twin!, tag: \"twin\" },\n    { shape: lone!, tag: \"lone\" },\n    { shape: extra!, tag: \"lone\" },\n    { shape: target!, tag: \"target\" },\n  ]).map((it, i) => ({ ...it, label: CONG_LABELS[i]! }));",
+    ),
+    (
+        # 둘레도 답도 산술적으로 맞다. **세상에 없는 삼각형**인 것만 틀렸다.
+        "삼각부등식 훼손 — 2-3-2 심화의 밑변이 두 변의 합을 넘어 그릴 수 없는 삼각형이 된다",
+        "  const base = intBetween(rng, 3, 2 * leg - 1);\n  const total = leg * 2 + base;",
+        "  const base = intBetween(rng, 3, 2 * leg + 6);\n  const total = leg * 2 + base;",
+    ),
+    (
+        "0칸 — 2-3-3 격자의 칸이 전부 대칭축 위에 앉아 「몇 칸 더」가 0이 된다",
+        "    const col =\n      i === 0\n        ? intBetween(rng, 0, Math.floor(mid) - 1)\n        : intBetween(rng, 0, Math.floor(mid));",
+        "    const col = intBetween(rng, 0, Math.floor(mid));",
+    ),
+    (
+        # 가운데 칸은 제 짝이라 더 칠할 필요가 없다 — 답이 하나 많아진다.
+        "가운데 칸 — 2-3-4 연산이 대칭의 중심 칸을 써서 「칸 수 = 더 칠할 칸 수」가 깨진다",
+        "  const rows = shuffled(rng, [0, 1]).slice(0, 2);",
+        "  const rows = shuffled(rng, [0, 1, 2]).slice(0, 2);",
+    ),
+    (
+        # 둘레는 여전히 짝수이고 답도 «가장 짧은 변»이다 — 발문의 «연속»만 거짓이 된다.
+        "연속 조건 훼손 — 2-3-4 심화의 세 변이 연속이 아니게 되어 발문이 거짓말을 한다",
+        "  const half = k + (k + 1) + (k + 2);",
+        "  const half = k + (k + 1) + (k + 3);",
+    ),
     # ── 11차분 (2-6 평균과 가능성) ──
     (
         # 인원이 같으면 «평균을 더해 2로 나누기»가 **정답과 같아진다** — 값 검산은 그때도 초록이다.
@@ -1115,6 +1151,10 @@ TARGETS = {
             "2-6-1",
             "2-6-2",
             "2-6-3",
+            "2-3-1",
+            "2-3-2",
+            "2-3-3",
+            "2-3-4",
         ],
         "muts": G5_MUTS,
     },

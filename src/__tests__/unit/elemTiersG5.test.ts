@@ -4723,3 +4723,346 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     expect(bad.slice(0, 5), `그럴듯하지 않은 수 ${bad.length}건`).toEqual([]);
   });
 });
+
+/* ── 2-3 합동과 대칭 (D-72 12차) ──────────────────────────────────────────── */
+
+const CODES23 = ["2-3-1", "2-3-2", "2-3-3", "2-3-4"] as const;
+
+/** 그림 스펙의 kind. 그림이 없으면 null. */
+function figKind(p: { figureSpec: unknown }): string | null {
+  const f = p.figureSpec as { kind?: string } | null;
+  return f?.kind ?? null;
+}
+
+/** `namedShapes` 항목들. 다른 kind 면 빈 배열. */
+function shapeItems(p: {
+  figureSpec: unknown;
+}): { shape?: string; label?: unknown }[] {
+  const f = p.figureSpec as { kind?: string; items?: unknown } | null;
+  return f?.kind === "namedShapes" && Array.isArray(f.items)
+    ? (f.items as { shape?: string; label?: unknown }[])
+    : [];
+}
+
+describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
+  it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
+    for (const code of CODES23) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        const a = problem(code, tier, 11);
+        const b = problem(code, tier, 11);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+      }
+    }
+  });
+
+  it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
+    for (const code of CODES23) {
+      for (const seed of SEEDS) {
+        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+      }
+    }
+  });
+
+  it("갈래마다 씨앗 16개에서 서로 다른 문항이 8개 이상이다 (변형 8+ — **그림까지 센다**)", () => {
+    // ⚠️ 이 대단원은 수가 **그림에만** 있는 갈래가 있다(2-3-2 연산은 세 변이 전부
+    //    `markedShape` 안에 있어 발문이 늘 같은 한 문장이다). 발문 글자만 세면 그
+    //    갈래는 «변형 1»로 찍히는데, 학생이 보는 지면은 씨앗마다 **다른 삼각형**이다.
+    //    「무엇이 학생에게 달라 보이는가」가 이 규칙이 지키려는 것이므로 **그림도 센다**
+    //    — 「그림도 R5 다」와 같은 자리다(2026-08-23).
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = problem(code, tier, s);
+            return `${p.content} ${JSON.stringify(p.figureSpec ?? null)}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("그림이 **없는** 갈래는 발문 글자만으로 갈린다 (그림 뒤에 숨지 않는다)", () => {
+    // ⚠️ 위 시험이 그림을 세므로, 그림 없는 갈래까지 느슨해지면 안 된다. 그림이 없는
+    //    갈래는 예전 잣대(발문 글자)를 **그대로** 지킨다.
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        const some = problem(code, tier, SEEDS[0]!);
+        if (some.figureSpec) continue;
+        const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
+        expect(rows.size, `${code} ${tier} (그림 없음)`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("답의 가짓수가 넉넉하다 (씨앗 500 · 가짓수 ≥4 · 최빈 ≤45%)", () => {
+    const N = 500;
+    const bad: string[] = [];
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        const seen = new Map<string, number>();
+        for (let seed = 0; seed < N; seed += 1) {
+          const ans = problem(code, tier, seed).answer;
+          seen.set(ans, (seen.get(ans) ?? 0) + 1);
+        }
+        const top = Math.max(...seen.values());
+        if (seen.size < 4 || top / N > 0.45)
+          bad.push(
+            `${code} ${tier}: 가짓수 ${seen.size} · 최빈 ${((top / N) * 100).toFixed(1)}%`,
+          );
+      }
+    }
+    expect(bad, "답의 폭이 좁은 갈래").toEqual([]);
+  });
+
+  it("모든 수가 KaTeX 안에 있다 (R1)", () => {
+    const bad: string[] = [];
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const [where, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const loose = bare(text);
+            if (loose.length)
+              bad.push(`${code} ${tier} @${seed} ${where}: ${loose.join(",")}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /* ── 그림 불변식 ── */
+
+  it("도형마다 **기호가 붙는다** — 공용 라벨이 모자라 빈 이름이 새던 자리", () => {
+    // ⚠️ 공용 `LABELS` 는 다섯(가~마)뿐인데 이 소단원은 여덟까지 그린다. 여섯째부터
+    //    `undefined` 가 라벨로 들어가 그림에 **빈 이름**이 찍혔다(2026-08-23 실측
+    //    28/40 씨앗). 발문·정답·해설은 멀쩡해서 **값 검산도 R1 도 전부 초록이었다** —
+    //    그림을 직접 들여다봐야만 보이는 부류다. 구성이 보장하므로 **전량**으로 잰다.
+    let seen = 0;
+    for (const tier of ELEM_TIERS) {
+      for (let seed = 0; seed < 200; seed += 1) {
+        const p = problem("2-3-1", tier, seed);
+        const items = shapeItems(p);
+        expect(
+          items.length,
+          `2-3-1 ${tier} @${seed} 그림에 도형이 없다`,
+        ).toBeGreaterThan(0);
+        for (const it of items) {
+          seen += 1;
+          expect(
+            typeof it.label === "string" && it.label.length > 0,
+            `2-3-1 ${tier} @${seed} 기호 없는 도형이 있다`,
+          ).toBe(true);
+        }
+      }
+    }
+    expect(seen, "도형을 하나도 못 셌다").toBeGreaterThan(1000);
+  });
+
+  it("2-3-1 심화 — 답이 **유일하다**: 짝 없는 도형이 정확히 하나다", () => {
+    // ⚠️ 「~이 되게 하려면 어느 것과 같게 하나」는 짝 없는 도형이 둘 이상이면 **답이
+    //    여럿**이 된다. 값 검산으로는 안 보인다 — 어느 답을 대도 조건을 만족하니까.
+    for (let seed = 0; seed < 200; seed += 1) {
+      const p = problem("2-3-1", "심화", seed);
+      const items = shapeItems(p);
+      expect(items.length, `2-3-1 심화 @${seed}`).toBe(4);
+      const count = new Map<string, number>();
+      for (const it of items)
+        count.set(it.shape!, (count.get(it.shape!) ?? 0) + 1);
+      const pairs = [...count.values()].filter((v) => v === 2).length;
+      const lonely = [...count.values()].filter((v) => v === 1).length;
+      expect(pairs, `2-3-1 심화 @${seed} 쌍이 하나가 아니다`).toBe(1);
+      // 홑 둘 = 바꿀 것 + 짝 없는 것 하나. 셋이면 답이 여럿이 된다.
+      expect(
+        lonely,
+        `2-3-1 심화 @${seed} 홑이 둘이 아니다 — 답이 여럿이다`,
+      ).toBe(2);
+      expect(
+        items.some((it) => it.label === p.answer),
+        `2-3-1 심화 @${seed} 답이 기호 목록에 없다\n${p.answer}`,
+      ).toBe(true);
+    }
+  });
+
+  /* ── 산술 독립 검산 ── */
+
+  it("2-3-2 — 둘레·각·역산이 모두 다시 선다", () => {
+    for (const seed of SEEDS) {
+      // 연산: 그림의 세 변의 합
+      const c = problem("2-3-2", "연산", seed);
+      const sides = ((c.figureSpec as { sides?: string[] }).sides ?? []).map(
+        (t) => Number(/\d+/.exec(t)![0]),
+      );
+      expect(sides.length, `2-3-2 연산 @${seed} 변이 셋이 아니다`).toBe(3);
+      expect(answerNumber(c.answer, `2-3-2 연산 @${seed}`)).toBe(
+        sides.reduce((x, y) => x + y, 0),
+      );
+
+      // 기본: 세 각의 합이 180
+      const r = problem("2-3-2", "기본", seed);
+      const degs = [...r.content.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) =>
+        Number(m[1]),
+      );
+      const got = Number(/\$(\d+)\^\\circ\$/.exec(r.answer)![1]);
+      expect(degs.reduce((x, y) => x + y, 0) + got, `2-3-2 기본 @${seed}`).toBe(
+        180,
+      );
+
+      // 응용: 둘레의 합 ÷ 2 − 두 변
+      const ap = problem("2-3-2", "응용", seed);
+      const [both, s1, s2] = intsIn(ap.content);
+      expect(both! % 2, `2-3-2 응용 @${seed} 둘레의 합이 홀수다`).toBe(0);
+      expect(answerNumber(ap.answer, `2-3-2 응용 @${seed}`), ap.content).toBe(
+        both! / 2 - s1! - s2!,
+      );
+
+      // 심화: (둘레 − 밑변) ÷ 2 — **자연수여야** 「각각 몇 cm」가 뜻을 가진다
+      const d = problem("2-3-2", "심화", seed);
+      const [total, base] = intsIn(d.content);
+      expect(
+        (total! - base!) % 2,
+        `2-3-2 심화 @${seed} 답이 정수가 아니다`,
+      ).toBe(0);
+      expect(answerNumber(d.answer, `2-3-2 심화 @${seed}`), d.content).toBe(
+        (total! - base!) / 2,
+      );
+      // 삼각부등식 — 그려질 수 있는 삼각형이어야 한다
+      expect(base, `2-3-2 심화 @${seed} 삼각부등식 위반`).toBeLessThan(
+        total! - base!,
+      );
+    }
+  });
+
+  it("2-3-3 — 칸 수가 격자 그림과 맞는다 (기본·응용)", () => {
+    for (let seed = 0; seed < 120; seed += 1) {
+      const mid = 2; // n = 5 → 대칭축은 가운데 열
+      for (const tier of ["기본", "응용"] as const) {
+        const p = problem("2-3-3", tier, seed);
+        const cells = (p.figureSpec as { cells?: [number, number][] }).cells!;
+        const off = cells.filter(([c]) => c !== mid).length;
+        const on = cells.length - off;
+        expect(
+          off,
+          `2-3-3 ${tier} @${seed} 더 칠할 칸이 0 — 묻는 것이 사라진다`,
+        ).toBeGreaterThan(0);
+        const want = tier === "기본" ? off : off * 2 + on;
+        expect(
+          answerNumber(p.answer, `2-3-3 ${tier} @${seed}`),
+          p.content,
+        ).toBe(want);
+      }
+      // 심화: 완성 = 2·off + on 이므로 (완성 − 축 위) 가 **짝수**여야 한다
+      const d = problem("2-3-3", "심화", seed);
+      const [done, on] = intsIn(d.content);
+      expect((done! - on!) % 2, `2-3-3 심화 @${seed} 절반이 안 나뉜다`).toBe(0);
+      expect(answerNumber(d.answer, `2-3-3 심화 @${seed}`), d.content).toBe(
+        (done! - on!) / 2 + on!,
+      );
+    }
+  });
+
+  it("2-3-4 — 점대칭 칸·둘레가 다시 선다", () => {
+    for (let seed = 0; seed < 120; seed += 1) {
+      // 연산: 가운데 칸이 없으므로 「칸 수 = 더 칠할 칸 수」
+      const c = problem("2-3-4", "연산", seed);
+      const cells = (c.figureSpec as { cells?: [number, number][] }).cells!;
+      expect(
+        cells.every(([, r]) => r < 2),
+        `2-3-4 연산 @${seed} 가운데 칸이 끼면 답이 칸 수와 달라진다`,
+      ).toBe(true);
+      expect(answerNumber(c.answer, `2-3-4 연산 @${seed}`)).toBe(cells.length);
+
+      // 기본: (세 변의 합) × 2
+      const r = problem("2-3-4", "기본", seed);
+      const s3 = intsIn(r.content);
+      expect(answerNumber(r.answer, `2-3-4 기본 @${seed}`), r.content).toBe(
+        s3.reduce((x, y) => x + y, 0) * 2,
+      );
+
+      // 심화: 연속한 세 자연수 — 둘레 ÷ 2 가 **3의 배수**여야 한다
+      const d = problem("2-3-4", "심화", seed);
+      const [round] = intsIn(d.content);
+      expect(round! % 2, `2-3-4 심화 @${seed} 둘레가 홀수다`).toBe(0);
+      expect(
+        (round! / 2) % 3,
+        `2-3-4 심화 @${seed} 연속 세 수로 안 나뉜다`,
+      ).toBe(0);
+      const k = answerNumber(d.answer, `2-3-4 심화 @${seed}`);
+      expect(k + (k + 1) + (k + 2), d.content).toBe(round! / 2);
+    }
+  });
+
+  /* ── R5 — 발문 **그리고 그림** ── */
+
+  it("표준과 발문이 겹치지 않고, **그림 종류도 다르다** (R5)", () => {
+    // ⚠️ 그림 문항은 지면에서 겹치는 것이 발문보다 **그림**이다. 표준 2-3-3·2-3-4 는
+    //    `symmetry` 를 `motif` 로만 쓰고, 갈래는 **격자 모드**(`cells`)를 쓴다.
+    //    「발문이 다르다」만 보면 지면이 똑같아 보이는 짝을 놓친다.
+    const skeleton = (t: string) => t.replace(/\d+/g, "#");
+    const std = new Map<string, string>();
+    const stdMotif = new Set<string>();
+    for (const code of CODES23) {
+      const u = unitOf(code);
+      for (let seed = 1; seed <= 40; seed += 1) {
+        const p = generateElementaryProblem(u, seed);
+        std.set(`SKEL:${skeleton(p.content)}`, code);
+        const f = p.figureSpec as { kind?: string; motif?: string } | null;
+        if (f?.kind === "symmetry" && f.motif) stdMotif.add(f.motif);
+      }
+    }
+    expect(std.size, "표준 모집단이 비었다").toBeGreaterThan(10);
+
+    const clash: string[] = [];
+    for (const code of CODES23) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          if (std.get(`SKEL:${skeleton(p.content)}`))
+            clash.push(`골격 일치 ${code} ${tier}\n    ${p.content}`);
+          // 표준이 쓰는 motif 를 갈래가 다시 쓰면 지면이 같아 보인다
+          const f = p.figureSpec as { kind?: string; motif?: string } | null;
+          if (f?.kind === "symmetry" && f.motif && stdMotif.has(f.motif))
+            clash.push(`그림 일치 ${code} ${tier} motif=${f.motif}`);
+        }
+      }
+    }
+    expect(clash.slice(0, 3), `표준과 겹친 것 ${clash.length}건`).toEqual([]);
+  });
+
+  it("2-3-3·2-3-4 는 표준이 안 쓰는 **격자 모드**를 쓴다", () => {
+    for (const [code, tier] of [
+      ["2-3-3", "기본"],
+      ["2-3-3", "응용"],
+      ["2-3-4", "연산"],
+    ] as const) {
+      for (const seed of SEEDS) {
+        const p = problem(code, tier, seed);
+        expect(figKind(p), `${code} ${tier} @${seed}`).toBe("symmetry");
+        const f = p.figureSpec as { cells?: unknown; motif?: unknown };
+        expect(
+          Array.isArray(f.cells),
+          `${code} ${tier} @${seed} 격자가 아니다`,
+        ).toBe(true);
+        expect(
+          f.motif,
+          `${code} ${tier} @${seed} motif 를 쓰고 있다`,
+        ).toBeUndefined();
+      }
+    }
+  });
+});

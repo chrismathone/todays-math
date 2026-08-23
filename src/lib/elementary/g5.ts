@@ -875,9 +875,9 @@ function estimate(unit: UnitSeed, rng: Rng): ElemProblem {
     const ok = values.filter((v) => v >= limit).length;
     return make(
       unit,
-      `${wj(place, "을", "를")} 타려면 ${wj(what, "이", "가")} ${n(limit)} ${unitName} 이상이어야 합니다. 네 사람의 ${what}가 ${nums(values)} ${unitName}일 때 탈 수 있는 사람은 몇 명인가?`,
+      `${wj(place, "을", "를")} 타려면 ${wj(what, "이", "가")} ${n(limit)} ${unitName} 이상이어야 합니다. 네 사람의 ${wj(what, "이", "가")} ${nums(values)} ${unitName}일 때 탈 수 있는 사람은 몇 명인가?`,
       n(ok),
-      `${n(limit)} ${unitName} 이상인 ${what}를 셉니다. ${nums(values.filter((v) => v >= limit))} ${unitName}이므로 ${n(ok)}명입니다.`,
+      `${n(limit)} ${unitName} 이상인 ${wj(what, "을", "를")} 셉니다. ${nums(values.filter((v) => v >= limit))} ${unitName}이므로 ${n(ok)}명입니다.`,
     );
   }
 
@@ -4909,7 +4909,7 @@ function rangeScene(rng: Rng): {
     ...rest,
   ]);
   return {
-    head: `${place}에서 ${cond} ${what}가`,
+    head: `${place}에서 ${cond} ${wj(what, "이", "가")}`,
     what,
     unitName,
     who,
@@ -4925,7 +4925,7 @@ function rng213Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const ok = s.values.filter((v) => v >= s.limit);
   return make(
     unit,
-    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${s.what}가 ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
     n(ok.length),
     `${n(s.limit)} ${s.unitName}인 것도 «이상»에 들어갑니다. 맞는 것은 ${nums([...ok].sort((p, q) => p - q))} ${uro(s.unitName)} ${n(ok.length)}${s.countUnit}입니다.`,
   );
@@ -4937,7 +4937,7 @@ function rng213Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const ok = s.values.filter((v) => v > s.limit);
   return make(
     unit,
-    `${s.head} ${n(s.limit)} ${s.unitName} 초과여야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${s.what}가 ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
+    `${s.head} ${n(s.limit)} ${s.unitName} 초과여야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때 조건에 맞는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
     n(ok.length),
     `${n(s.limit)} ${s.unitName}인 것은 «초과»에 들어가지 않습니다. 맞는 것은 ${nums([...ok].sort((p, q) => p - q))} ${uro(s.unitName)} ${n(ok.length)}${s.countUnit}입니다.`,
   );
@@ -5005,9 +5005,13 @@ function up214Read(unit: UnitSeed, rng: Rng): ElemProblem {
   ] as const);
   return make(
     unit,
-    `${thing} ${n(total)}${counter}를 한 ${box}에 ${n(per)}${counter}씩 담으려고 합니다. ${wj(thing, "을", "를")} 모두 담으려면 ${wj(box, "은", "는")} 적어도 몇 개 필요합니까?`,
+    // ⚠️ **세는 말 뒤 조사도 계산해야 한다.** 소재에 딸린 값이라 씨앗마다 바뀌는데
+    //    조사를 손으로 박아 두면 「색종이 $278$장**를**」·「$8$장**가**」가 그대로
+    //    지면에 나간다(장 ㅇ받침 · 권 ㄴ받침 → 을/이). 실측 92자리가 어긋나 있었다
+    //    (2026-08-23 g3 적발). `wj` 가 한글에서 받침을 **계산**한다 — 손 표를 쓰지 말 것.
+    `${thing} ${n(total)}${wj(counter, "을", "를")} 한 ${box}에 ${n(per)}${counter}씩 담으려고 합니다. ${wj(thing, "을", "를")} 모두 담으려면 ${wj(box, "은", "는")} 적어도 몇 개 필요합니까?`,
     n(boxes + 1),
-    `${n(per)}${counter}씩 ${n(boxes)}${box}에 담으면 ${n(left)}${counter}가 남고, 남은 것도 담아야 하므로 ${wj(box, "이", "가")} 하나 더 필요합니다. 올림하여 ${n(boxes + 1)}${box}입니다.`,
+    `${n(per)}${counter}씩 ${n(boxes)}${box}에 담으면 ${n(left)}${wj(counter, "이", "가")} 남고, 남은 것도 담아야 하므로 ${wj(box, "이", "가")} 하나 더 필요합니다. 올림하여 ${n(boxes + 1)}${box}입니다.`,
   );
 }
 
@@ -5066,9 +5070,11 @@ function down215Read(unit: UnitSeed, rng: Rng): ElemProblem {
   ] as const);
   return make(
     unit,
-    `${thing} ${n(total)}${counter}를 한 ${box}에 ${n(per)}${counter}씩 담아 팔려고 합니다. 팔 수 있는 ${wj(thing, "은", "는")} 모두 몇 ${counter}입니까?`,
+    // ⚠️ 세는 말(`counter`)도 담는 말(`box`)도 씨앗마다 받침이 갈린다 — 조사를 손으로
+    //    박으면 「$278$장**를**」·「$14$봉지**을**」·「$8$장**가**」가 나간다. 전부 계산한다.
+    `${thing} ${n(total)}${wj(counter, "을", "를")} 한 ${box}에 ${n(per)}${counter}씩 담아 팔려고 합니다. 팔 수 있는 ${wj(thing, "은", "는")} 모두 몇 ${counter}입니까?`,
     n(bundles * per),
-    `${n(per)}${counter}씩 ${n(bundles)}${box}을 담으면 ${n(left)}${counter}가 남고, 남은 것은 팔 수 없습니다. 버림하여 ${expr(`${bundles}\\times${per}=${bundles * per}`)}${counter}입니다.`,
+    `${n(per)}${counter}씩 ${n(bundles)}${wj(box, "을", "를")} 담으면 ${n(left)}${wj(counter, "이", "가")} 남고, 남은 것은 팔 수 없습니다. 버림하여 ${expr(`${bundles}\\times${per}=${bundles * per}`)}${counter}입니다.`,
   );
 }
 
@@ -6377,6 +6383,418 @@ function pos263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 2-3 합동과 대칭 — 난이도 4단 (D-72 확대 12차) ──────────
+ *
+ * ⚠️ **그림도 R5 다.** 지금까지 「표준과 겹치나」는 발문만 봤는데, 그림 문항은 지면에서
+ *    겹치는 것이 발문보다 **그림**이다. 표준 2-3-3·2-3-4 는 `symmetry` 를 `motif` 로만
+ *    쓰므로, 갈래는 **격자 모드**(`n`·`cells`)로 간다 — 발문도 그림도 갈린다.
+ *    (2026-08-23 리드가 팀 규약으로 돌리기로 한 관찰.)
+ *
+ * ⚠️ **스펙은 지어내지 말고 돌려 봤다.** 실측(`render_spec` 경로 · `vendor/figure-engine`
+ *    을 `sys.path` 에 넣어야 한다):
+ *      `markedShape` + `sides` → **`rightTri`·`isoTri`·`eqTri`·`para` 만** 값을 그림에
+ *      반영한다. `square`·`rect`·`pentagon` 은 **의도적으로 던진다** — 네 변만으로는
+ *      사각형 모양이 안 정해지기 때문이다. 그래서 사각형 갈래는 수를 **발문에** 적는다.
+ *      `markedShape` 는 도형을 **하나만** 담는다(`KIND_FIELDS` 가 `{"shape"}`) — 「가·나
+ *      중 합동인 것」류는 `namedShapes` 몫이고 거기엔 값을 안 적는다.
+ *
+ * ⚠️ **2-3-1 은 이 대단원에서 가장 얇다.** 묻는 것이 「합동인가 아닌가」 하나뿐이라
+ *    1단이 예/아니오로 흐르고 4단은 거슬러 갈 값이 없다. 그래서 **개수 축**으로 세우되,
+ *    4단만은 세기가 아니라 **조건 조합**(「정확히 두 쌍이 되게」)으로 만들었다 —
+ *    거기가 이 소단원의 알맹이다(2026-08-23 리드 지시).
+ */
+
+/**
+ * 이 소단원 전용 기호 — 공용 `LABELS` 는 **다섯(가~마)뿐**이라 여섯째부터 라벨이
+ * `undefined` 로 새어 그림에 빈 이름이 찍혔다(2026-08-23 실측 28/40 씨앗).
+ * `namedShapes` 는 여덟까지 그린다(실측 7·8개에서 두 줄로 접힌다).
+ */
+const CONG_LABELS = ["가", "나", "다", "라", "마", "바", "사", "아"] as const;
+
+/** 같은 kind 는 같은 크기로 그려지므로 «같은 kind 한 쌍» 이 곧 합동이다. */
+function congSet(
+  rng: Rng,
+  pairs: number,
+  singles: number,
+): { shape: string; label: string }[] {
+  const kinds = pickSome(rng, CONG_SHAPES, pairs + singles);
+  const twins = kinds.slice(0, pairs);
+  const alone = kinds.slice(pairs);
+  const all = [...twins, ...twins, ...alone];
+  if (all.length > CONG_LABELS.length)
+    throw new Error(`도형이 기호보다 많습니다: ${all.length}`);
+  return shuffled(rng, all).map((shape, i) => ({
+    shape,
+    label: CONG_LABELS[i]!,
+  }));
+}
+
+/* ── 2-3-1 도형의 합동 알아보기 ── */
+
+/** 연산 — 합동인 짝이 **몇 쌍**인지 센다(절차 한 번). */
+function cong231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pairs = intBetween(rng, 1, 4);
+  // 여덟 칸을 넘기지 않게 홑의 수를 **뽑는 범위에서** 가른다(뒤에 걸어 거르지 않는다).
+  const singles = intBetween(rng, 0, Math.min(2, 8 - pairs * 2));
+  const items = congSet(rng, pairs, singles);
+  // ⚠️ 발문이 도형 수로만 갈리면 씨앗 16개에서 **여섯 가지**뿐이다(변형 8+ 미달).
+  //    표준이 같은 소단원에서 쓰는 말투 묶음을 갈래에도 둔다.
+  const ask = pick(rng, [
+    "서로 합동인 두 도형은 모두 몇 쌍입니까?",
+    "포개었을 때 완전히 겹치는 두 도형은 모두 몇 쌍입니까?",
+    "모양과 크기가 같은 두 도형은 모두 몇 쌍입니까?",
+  ]);
+  return make(
+    unit,
+    `도형 ${n(items.length)}개 중에서 ${ask}`,
+    n(pairs),
+    `모양과 크기가 같아 포개면 완전히 겹치는 두 도형이 합동입니다. 같은 모양끼리 짝을 지으면 ${n(pairs)}쌍이고, 짝이 없는 도형이 ${n(singles)}개 남습니다.`,
+    fig("namedShapes", { items }),
+  );
+}
+
+/** 기본 — 지정한 도형의 짝을 **스스로** 찾는다(한 겹). */
+function cong231Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const singles = intBetween(rng, 2, Math.min(4, 8 - 2));
+  const items = congSet(rng, 1, singles);
+  const twinKind = items.find(
+    (it, i) => items.findIndex((o) => o.shape === it.shape) !== i,
+  )!.shape;
+  const [first, second] = items.filter((it) => it.shape === twinKind);
+  // 발문이 기호 하나로만 갈리면 씨앗 16개에서 다섯 가지뿐이다(변형 8+ 미달).
+  const ask = pick(rng, [
+    "어느 도형과 서로 합동입니까? 기호를 쓰시오.",
+    "어느 도형과 포개면 완전히 겹칩니까? 기호를 쓰시오.",
+    "어느 도형과 모양·크기가 같습니까? 기호를 쓰시오.",
+  ]);
+  return make(
+    unit,
+    `도형 ${wj(first!.label, "은", "는")} ${ask}`,
+    second!.label,
+    `도형 ${first!.label}와 모양·크기가 같아 포개면 완전히 겹치는 것은 도형 ${second!.label}입니다.`,
+    fig("namedShapes", { items }),
+  );
+}
+
+/** 응용 — 짝을 지은 **뒤** 남는 것을 센다(두 단계). */
+function cong231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pairs = intBetween(rng, 1, 3);
+  const singles = intBetween(rng, 1, Math.min(4, 8 - pairs * 2));
+  const items = congSet(rng, pairs, singles);
+  const ask = pick(rng, [
+    "자기와 합동인 도형이 하나도 없는 도형은 몇 개입니까?",
+    "짝을 지을 수 없는 도형은 몇 개입니까?",
+    "포개어 겹칠 도형이 없는 도형은 몇 개입니까?",
+  ]);
+  return make(
+    unit,
+    `도형 ${n(items.length)}개 중에서 ${ask}`,
+    n(singles),
+    `먼저 같은 모양끼리 짝을 지으면 ${n(pairs)}쌍, 곧 ${n(pairs * 2)}개가 짝을 이룹니다. 전체 ${n(items.length)}개에서 빼면 ${expr(`${items.length}-${pairs * 2}=${singles}`)}이므로 ${n(singles)}개입니다.`,
+    fig("namedShapes", { items }),
+  );
+}
+
+/**
+ * 심화 — **조건 조합**: 「정확히 두 쌍」이 되게 하려면 무엇과 같아야 하는가.
+ *
+ * ⚠️ **답이 유일한지 구성이 보장한다**(D-66 ⒂). 도형은 «한 쌍 + 홑 하나 + 바꿀 것»
+ *    셋뿐이다. 바꿀 것을 **홑**과 같게 하면 두 쌍이고, **이미 쌍인 것**과 같게 하면
+ *    같은 모양이 셋이 되어 짝이 **세 쌍**(셋 중 둘을 고르는 경우의 수)이라 조건을 깬다.
+ *    홑이 둘 이상이면 답이 여럿이 되므로 **홑은 정확히 하나**다.
+ */
+function cong231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kinds = pickSome(rng, CONG_SHAPES, 3);
+  const [twin, lone, target] = kinds;
+  const items = shuffled(rng, [
+    { shape: twin!, tag: "twin" },
+    { shape: twin!, tag: "twin" },
+    { shape: lone!, tag: "lone" },
+    { shape: target!, tag: "target" },
+  ]).map((it, i) => ({ ...it, label: CONG_LABELS[i]! }));
+  const targetLabel = items.find((it) => it.tag === "target")!.label;
+  const loneLabel = items.find((it) => it.tag === "lone")!.label;
+  const twinLabels = items
+    .filter((it) => it.tag === "twin")
+    .map((it) => it.label);
+  return make(
+    unit,
+    `도형 ${n(4)}개 중 서로 합동인 것은 한 쌍뿐입니다. 도형 ${wj(targetLabel, "을", "를")} ${pick(rng, ["다른 도형 하나와 같은 모양으로 바꾸어", "다른 도형 하나와 포개면 겹치도록 바꾸어", "다른 도형 하나와 모양·크기가 같도록 바꾸어"])} 합동인 두 도형이 정확히 두 쌍이 되게 하려고 합니다. 어느 도형과 같은 모양으로 바꾸어야 합니까? 기호를 쓰시오.`,
+    loneLabel,
+    `지금 합동인 것은 ${twinLabels[0]}와 ${twinLabels[1]}뿐입니다. 도형 ${wj(targetLabel, "을", "를")} 짝이 없는 도형 ${loneLabel}와 같게 하면 새 짝이 하나 생겨 정확히 두 쌍이 됩니다. ${twinLabels[0]}와 같게 하면 같은 모양이 셋이 되어 그중 둘을 고르는 짝이 세 쌍이 되므로 조건에 맞지 않습니다.`,
+    fig("namedShapes", {
+      items: items.map(({ shape, label }) => ({ shape, label })),
+    }),
+  );
+}
+
+/* ── 2-3-2 합동인 도형의 성질 — 삼각형은 `sides` 가 그림에 반영된다 ── */
+
+/** 세 변이 삼각부등식을 만족하는 삼각형 — 그림이 그려질 수 있어야 한다. */
+function triSides(rng: Rng): [number, number, number] {
+  const a = intBetween(rng, 5, 12);
+  const b = intBetween(rng, 5, 12);
+  const c = intBetween(rng, Math.abs(a - b) + 1, a + b - 1);
+  return [a, b, c];
+}
+
+/** 연산 — 합동이면 둘레도 같다(절차 한 번: 합). */
+function cong232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ `isoTri` 에 부등변 세 변을 주면 **이름과 그림이 어긋난다** — 비율을 반영하는
+  //    엔진이라 이등변으로 안 그려진다. 두 변을 같게 지어 그림과 수를 맞춘다.
+  const leg = intBetween(rng, 6, 13);
+  const base = intBetween(rng, 3, 2 * leg - 1);
+  const [a, b, c] = [base, leg, leg];
+  return make(
+    unit,
+    `그림의 삼각형과 서로 합동인 삼각형이 있습니다. ${pick(rng, [
+      "그 삼각형의 둘레는 몇 cm입니까?",
+      "합동인 삼각형의 세 변의 길이의 합은 몇 cm입니까?",
+      "포개면 겹치는 그 삼각형의 둘레를 구하시오.",
+    ])}`,
+    n(a + b + c),
+    `합동인 두 도형에서 대응하는 변의 길이는 서로 같으므로 둘레도 같습니다. ${expr(`${a}+${b}+${c}=${a + b + c}`)}이므로 ${n(a + b + c)} cm입니다.`,
+    fig("markedShape", {
+      shape: "isoTri",
+      sides: [`${a} cm`, `${b} cm`, `${c} cm`],
+    }),
+  );
+}
+
+/** 기본 — 대응각을 옮긴 뒤 내각의 합으로 나머지를 구한다(한 겹). */
+function cong232Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 35, 80);
+  const y = intBetween(rng, 35, 180 - x - 20);
+  const z = 180 - x - y;
+  return make(
+    unit,
+    `두 삼각형은 서로 합동입니다. 한 삼각형의 두 각이 ${expr(`${x}^\\circ`)}, ${expr(`${y}^\\circ`)}일 때, 다른 삼각형의 나머지 한 각의 크기는 몇 도입니까?`,
+    expr(`${z}^\\circ`),
+    `합동인 두 도형에서 대응하는 각의 크기는 서로 같습니다. 삼각형의 세 각의 합은 ${expr("180^\\circ")}이므로 ${expr(`180-${x}-${y}=${z}`)}, 곧 ${expr(`${z}^\\circ`)}입니다.`,
+  );
+}
+
+/** 응용 — 두 도형의 둘레의 합에서 한 변을 되찾는다(두 단계). */
+function cong232Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, c] = triSides(rng);
+  const both = (a + b + c) * 2;
+  return make(
+    unit,
+    `서로 합동인 두 삼각형이 있습니다. 두 삼각형의 둘레의 합이 ${n(both)} cm이고, 한 삼각형의 두 변이 ${n(a)} cm, ${n(b)} cm일 때 나머지 한 변은 몇 cm입니까?`,
+    n(c),
+    `두 삼각형이 합동이므로 둘레가 서로 같습니다. 한 삼각형의 둘레는 ${expr(`${both}\\div2=${a + b + c}`)} cm입니다. 여기서 두 변을 빼면 ${expr(`${a + b + c}-${a}-${b}=${c}`)}이므로 ${n(c)} cm입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산 + 조건**: 이등변삼각형이라는 조건이 답을 하나로 만든다.
+ *
+ * ⚠️ **답에서 거꾸로 짓는다**(D-66 ⒂) — 같은 두 변 `leg` 를 먼저 잡고 둘레를 만든다.
+ *    둘레를 먼저 뽑아 `(둘레−밑변)/2` 를 구하면 홀짝이 어긋나 답이 정수가 아닐 수 있고,
+ *    그때 거르면 후보가 비는 씨앗이 생긴다.
+ */
+function cong232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const leg = intBetween(rng, 6, 14);
+  // 삼각부등식: 밑변 < 두 변의 합. 밑변을 `2·leg` 미만으로 잡으면 언제나 그려진다.
+  const base = intBetween(rng, 3, 2 * leg - 1);
+  const total = leg * 2 + base;
+  return make(
+    unit,
+    `어떤 이등변삼각형과 합동인 삼각형의 둘레가 ${n(total)} cm입니다. 이 이등변삼각형의 밑변이 ${n(base)} cm일 때, 길이가 같은 두 변은 각각 몇 cm입니까?`,
+    n(leg),
+    `합동인 두 도형은 둘레가 같으므로 이 이등변삼각형의 둘레도 ${n(total)} cm입니다. 밑변을 빼면 ${expr(`${total}-${base}=${2 * leg}`)} cm이고, 이것이 길이가 같은 두 변의 합이므로 ${expr(`${2 * leg}\\div2=${leg}`)}, 곧 ${n(leg)} cm입니다.`,
+    fig("markedShape", {
+      shape: "isoTri",
+      sides: [`${base} cm`, `${leg} cm`, `${leg} cm`],
+      equal: [[1, 2]],
+    }),
+  );
+}
+
+/* ── 2-3-3 선대칭도형과 그 성질 — 격자 모드(표준은 motif 만 쓴다) ── */
+
+/** 대칭축 개수가 알려진 도형들 — 답이 2~6 으로 갈린다. */
+const AXIS_COUNTS = [
+  ["isoTri", "이등변삼각형", 1],
+  ["rect", "직사각형", 2],
+  ["eqTri", "정삼각형", 3],
+  ["square", "정사각형", 4],
+  ["pentagon", "정오각형", 5],
+  ["hexagon", "정육각형", 6],
+  ["octagon", "정팔각형", 8],
+] as const;
+
+/** 연산 — 대칭축이 몇 개인지 센다(절차 한 번). */
+function sym233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [shape, name, count] = pick(rng, AXIS_COUNTS);
+  const ask = pick(rng, [
+    "대칭축은 모두 몇 개입니까?",
+    "접었을 때 완전히 겹치는 직선은 모두 몇 개입니까?",
+  ]);
+  return make(
+    unit,
+    `${name}의 ${ask}`,
+    n(count),
+    `${name}은 접었을 때 완전히 겹치는 직선이 ${n(count)}개 있으므로 대칭축은 ${n(count)}개입니다.`,
+    fig("markedShape", { shape }),
+  );
+}
+
+/** 왼쪽 절반에만 칸을 찍는다 — 대칭축은 세로 가운데. */
+function halfCells(
+  rng: Rng,
+  n: number,
+): { cells: [number, number][]; off: number; on: number } {
+  const mid = (n - 1) / 2;
+  const cells: [number, number][] = [];
+  let off = 0;
+  let on = 0;
+  const rows = shuffled(rng, [...Array(n).keys()]).slice(
+    0,
+    intBetween(rng, 3, Math.min(5, n)),
+  );
+  for (const [i, row] of rows.entries()) {
+    // ⚠️ 전부 대칭축 위에 앉으면 「몇 칸 더 색칠하나」가 **0**이 되어 묻는 것이 사라진다.
+    //    첫 칸은 축 **밖**으로 박아 구성으로 막는다(뽑고 거르지 않는다).
+    const col =
+      i === 0
+        ? intBetween(rng, 0, Math.floor(mid) - 1)
+        : intBetween(rng, 0, Math.floor(mid));
+    cells.push([col, row]);
+    if (col === mid) on += 1;
+    else off += 1;
+  }
+  return { cells, off, on };
+}
+
+/** 기본 — 선대칭이 되려면 **몇 칸 더** 색칠해야 하는가(한 겹). */
+function sym233Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const size = 5;
+  const { cells, off } = halfCells(rng, size);
+  return make(
+    unit,
+    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. ${pick(rng, [
+      "몇 칸을 더 색칠해야 합니까?",
+      "색칠해야 할 칸은 몇 칸입니까?",
+      "더 칠할 칸의 수를 구하시오.",
+    ])}`,
+    n(off),
+    `대칭축 위에 있는 칸은 그대로 겹치지만, 대칭축에서 떨어진 칸은 반대쪽에도 하나씩 있어야 합니다. 떨어진 칸이 ${n(off)}칸이므로 ${n(off)}칸을 더 색칠해야 합니다.`,
+    fig("symmetry", { axis: "v", n: size, cells }),
+  );
+}
+
+/** 응용 — 더 칠한 **뒤** 전체가 몇 칸인지(두 단계). */
+function sym233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const size = 5;
+  const { cells, off, on } = halfCells(rng, size);
+  const now = off + on;
+  const done = off * 2 + on;
+  return make(
+    unit,
+    `점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. ${pick(rng, [
+      "완성했을 때 색칠된 칸은 모두 몇 칸입니까?",
+      "완성한 도형의 색칠된 칸 수를 구하시오.",
+      "다 칠하고 나면 색칠된 칸은 모두 몇 칸입니까?",
+    ])}`,
+    n(done),
+    `지금 색칠된 칸은 ${n(now)}칸이고, 그중 대칭축에서 떨어진 ${n(off)}칸은 반대쪽에도 하나씩 필요합니다. 따라서 ${expr(`${now}+${off}=${done}`)}이므로 ${n(done)}칸입니다.`,
+    fig("symmetry", { axis: "v", n: size, cells }),
+  );
+}
+
+/**
+ * 심화 — **역산**: 완성본에서 처음을 거슬러 구한다.
+ * 완성 칸 `= 2·off + on` 이므로 `off = (done − on) / 2` — `done − on` 이 짝수인 것이
+ * **구성으로** 보장된다(`off`·`on` 을 먼저 잡는다).
+ */
+function sym233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const off = intBetween(rng, 2, 6);
+  const on = intBetween(rng, 1, 3);
+  const done = off * 2 + on;
+  return make(
+    unit,
+    `선대칭도형을 완성했더니 색칠된 칸이 모두 ${n(done)}칸이었고, 그중 대칭축 위에 있는 칸이 ${n(on)}칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?`,
+    n(off + on),
+    `대칭축 위의 ${n(on)}칸을 빼면 ${expr(`${done}-${on}=${off * 2}`)}칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 ${expr(`${off * 2}\\div2=${off}`)}칸입니다. 완성 전에는 한쪽 ${n(off)}칸과 대칭축 위 ${n(on)}칸이 색칠되어 있었으므로 ${expr(`${off}+${on}=${off + on}`)}칸입니다.`,
+  );
+}
+
+/* ── 2-3-4 점대칭도형과 그 성질 — 표준이 «한 변 ↔ 대응변» 하나만 쓰므로 «둘레» 축으로 ── */
+
+/** 연산 — 점대칭 격자를 완성하는 데 몇 칸 더(절차 한 번). 표준에 없는 그림이다. */
+function sym234Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const size = 5;
+  // ⚠️ 가운데 칸은 ${"180"}도 돌려도 제자리라 **제 짝**이다. 그 칸이 끼면
+  //    「칸 수 = 더 칠할 칸 수」가 깨진다. 위쪽 절반(행 < 가운데)에만 두어
+  //    그 예외를 **구성으로** 없앤다 — 그러면 답이 언제나 칸 수와 같다.
+  const rows = shuffled(rng, [0, 1]).slice(0, 2);
+  const cells: [number, number][] = [];
+  for (const row of rows)
+    for (const col of shuffled(rng, [0, 1, 2, 3, 4]).slice(
+      0,
+      intBetween(rng, 1, 3),
+    ))
+      cells.push([col, row]);
+  return make(
+    unit,
+    `가운데 점을 대칭의 중심으로 하는 점대칭도형을 만들려고 합니다. ${pick(
+      rng,
+      [
+        "몇 칸을 더 색칠해야 합니까?",
+        "색칠해야 할 칸은 몇 칸입니까?",
+        "더 칠할 칸의 수를 구하시오.",
+      ],
+    )}`,
+    n(cells.length),
+    `점대칭도형은 가운데 점을 중심으로 ${expr("180^\\circ")} 돌렸을 때 처음과 겹칩니다. 색칠된 ${n(cells.length)}칸마다 마주 보는 자리에 하나씩 필요하므로 ${n(cells.length)}칸을 더 색칠해야 합니다.`,
+    fig("symmetry", { axis: "point", n: size, cells }),
+  );
+}
+
+/** 기본 — 마주 보는 변이 서로 같으므로 절반만 알면 둘레가 선다(한 겹). */
+function sym234Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, c] = triSides(rng);
+  return make(
+    unit,
+    `점대칭인 육각형의 마주 보는 변은 서로 길이가 같습니다. 이웃한 세 변이 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm일 때 이 육각형의 둘레는 몇 cm입니까?`,
+    n((a + b + c) * 2),
+    `점대칭도형에서 대응하는 변의 길이는 서로 같으므로 나머지 세 변도 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm입니다. 둘레는 ${expr(`(${a}+${b}+${c})\\times2=${(a + b + c) * 2}`)}이므로 ${n((a + b + c) * 2)} cm입니다.`,
+  );
+}
+
+/** 응용 — 둘레에서 나머지 한 변을 되찾는다(두 단계). */
+function sym234Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, c] = triSides(rng);
+  const round = (a + b + c) * 2;
+  return make(
+    unit,
+    `둘레가 ${n(round)} cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 같고 이웃한 세 변 중 둘이 ${n(a)} cm, ${n(b)} cm일 때, 나머지 한 변은 몇 cm입니까?`,
+    n(c),
+    `마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 ${expr(`${round}\\div2=${a + b + c}`)} cm입니다. 여기서 두 변을 빼면 ${expr(`${a + b + c}-${a}-${b}=${c}`)}이므로 ${n(c)} cm입니다.`,
+  );
+}
+
+/**
+ * 심화 — **역산 + 조건**: 둘레와 「연속한 자연수」 조건이 세 변을 하나로 정한다.
+ *
+ * ⚠️ 표준 2-3-4 가 이미 「대칭의 중심에서 대응점까지의 거리」를 쓴다(R5) — 그래서
+ *    거리 축은 피하고 **둘레 + 연속 조건**으로 간다.
+ * ⚠️ **답에서 거꾸로 짓는다**(D-66 ⒂): 가장 짧은 변 `k` 를 먼저 잡고 둘레를 만든다.
+ *    둘레를 먼저 뽑으면 `둘레/2` 가 3의 배수가 아닐 수 있어 답이 정수가 아니게 된다.
+ */
+function sym234Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 3, 12);
+  const half = k + (k + 1) + (k + 2);
+  const round = half * 2;
+  return make(
+    unit,
+    `둘레가 ${n(round)} cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 길이가 같고, 이웃한 세 변의 길이가 연속한 세 자연수일 때 가장 짧은 변은 몇 cm입니까?`,
+    n(k),
+    `마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 ${expr(`${round}\div2=${half}`)} cm입니다. 연속한 세 자연수의 합이 ${n(half)}이므로 가운데 수는 ${expr(`${half}\div3=${k + 1}`)}이고, 가장 짧은 변은 ${expr(`${k + 1}-1=${k}`)}, 곧 ${n(k)} cm입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -6630,6 +7048,30 @@ export const G5_TIERS: ElemTierMap = {
     기본: pos263Read,
     응용: pos263Apply,
     심화: pos263Deep,
+  },
+  "초5|2-3-1": {
+    연산: cong231Calc,
+    기본: cong231Read,
+    응용: cong231Apply,
+    심화: cong231Deep,
+  },
+  "초5|2-3-2": {
+    연산: cong232Calc,
+    기본: cong232Read,
+    응용: cong232Apply,
+    심화: cong232Deep,
+  },
+  "초5|2-3-3": {
+    연산: sym233Calc,
+    기본: sym233Read,
+    응용: sym233Apply,
+    심화: sym233Deep,
+  },
+  "초5|2-3-4": {
+    연산: sym234Calc,
+    기본: sym234Read,
+    응용: sym234Apply,
+    심화: sym234Deep,
   },
   "초5|1-6-1": {
     연산: per61Calc,
