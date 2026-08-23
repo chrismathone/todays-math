@@ -142,8 +142,16 @@ MUTATIONS: list[tuple[str, str, str, str]] = [
     (
         "그림 13 — 묻지 않은 각에도 «x» 를 적는다 (지면에서 어느 것을 묻는지 안 갈린다)",
         ANGLE,
-        '          label: mode === 0 ? "x" : deg(t),',
-        '          label: "x",',
+        """        angATB: {
+          vertex: "T",
+          points: ["A", "B"],
+          label: mode === 0 ? "x" : deg(t),
+        },""",
+        """        angATB: {
+          vertex: "T",
+          points: ["A", "B"],
+          label: "x",
+        },""",
     ),
     (
         "그림 폭 고정을 끈다 (지면 등급이 내용에 따라 떠다닌다)",
