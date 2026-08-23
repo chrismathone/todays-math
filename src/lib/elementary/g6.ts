@@ -1934,8 +1934,471 @@ function mixedNatDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 2차분) — 초6 `1-2 각기둥과 각뿔` ────────────────
+//
+// 도형 대단원이라 1-1 과 두 가지가 다르다.
+//
+// ⑴ **수가 `sides` 하나뿐이다**(3~8, 여섯 값). 그대로면 갈래당 변형이 6가지라 모자란다 —
+//    g5 파일럿의 `AREA_THINGS` 처럼 **소재 풀**을 달아 소재 × sides × 묻는 요소로 벌린다.
+// ⑵ **R5 발문중복이 표준 문항까지 견준다**(`probe-elem-rules.ts` 가 표준+4단을 한 사전에 넣는다).
+//    수 공간이 좁아 표준 문형을 그대로 쓰면 바로 충돌한다. 그래서 표준이 쓰는
+//    「…은 모두 몇 개인가?」·「…의 이름을 쓰시오.」·「…을 무엇이라고 하는가?」를 **피하고**
+//    갈래는 「…의 수를 구하시오.」·「다음 … 몇 개입니까?」로 적는다.
+//
+// 유형 재료는 `cube-concept-catalog.md` 초6 1-2 에서 채집했다 — 실력 6-1 「조건을 만족하는
+// 입체도형 알아보기」·「모든 모서리의 길이의 합 구하기」, 응용 6-1 「각기둥(각뿔)의 구성 요소
+// 사이의 관계」·「밑면의 모양이 같은 각기둥과 각뿔」이 **심화가 거꾸로 묻는 것**이다.
+//
+// 그림은 겨냥도(`prism`·`pyramid`)를 붙인다. 원장님 ⑪(숨은 모서리 점선)이 고쳐져
+// 시험으로 잠겼으므로 **「그림을 보고 세기」를 물을 수 있다.** 겨냥도는 치수를 안 적어 R6 도 안전하다.
+
+/** 각기둥 모양 소재 — 「기둥처럼 곧은」 것만. */
+const PRISM_THINGS = [
+  "상자",
+  "필통",
+  "사물함",
+  "케이크 상자",
+  "연필꽂이",
+  "포장 상자",
+] as const;
+
+/** 각뿔 모양 소재 — 「뿔처럼 뾰족한」 것만. */
+const PYRAMID_THINGS = [
+  "텐트",
+  "지붕",
+  "모형 탑",
+  "종이 고깔",
+  "피라미드 모형",
+] as const;
+
+/** 갈래가 쓰는 밑면 변의 수. `polyName`·`sino` 표 안이고 겨냥도 엔진이 받는 범위(3~8)다. */
+const TIER_SIDES = [3, 4, 5, 6, 7, 8] as const;
+
+/** 각기둥·각뿔의 구성 요소 수 — **공식을 한곳에** 둔다(갈래 넷이 같은 것을 봐야 한다). */
+const prismParts = (n: number) => ({ 꼭짓점: 2 * n, 모서리: 3 * n, 면: n + 2 });
+const pyramidParts = (n: number) => ({
+  꼭짓점: n + 1,
+  모서리: 2 * n,
+  면: n + 1,
+});
+
+/** 구성 요소 이름 — 조사가 낱말마다 달라 함께 든다. */
+const PART_KEYS = ["꼭짓점", "모서리", "면"] as const;
+type PartKey = (typeof PART_KEYS)[number];
+
+// ── 1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면 ──
+
+/** 연산 — 이름이 주어진다. 「옆면의 수 = 밑면의 변의 수」를 한 번 쓰면 끝난다. */
+function prismFaceCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const byName = intBetween(rng, 0, 1) === 0;
+  const subject = byName
+    ? `${sino(n)}각기둥`
+    : `밑면이 ${polyName(n)}인 각기둥`;
+  return make(
+    unit,
+    `${subject}의 옆면의 수를 구하시오.`,
+    num(n),
+    `각기둥의 옆면은 밑면의 변 하나마다 하나씩 생깁니다. ` +
+      `밑면이 ${polyName(n)}이므로 옆면은 ${num(n)}개입니다.`,
+    fig("prism", { sides: n, h: 3 }),
+  );
+}
+
+/** 기본 — 그림 한 겹. 발문이 밑면 모양을 **안 알려 준다** — 겨냥도에서 읽어야 한다. */
+function prismFaceRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 옆면은 몇 개입니까?`,
+    num(n),
+    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. 옆면의 수는 밑면의 변의 수와 같으므로 ${num(n)}개입니다.`,
+    fig("prism", { sides: n, h: 3 }),
+  );
+}
+
 /**
- * 난이도 갈래 (D-72 확대 1차분) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
+ * 응용 — 두 걸음. 옆면 하나의 넓이를 만든 뒤 옆면 수만큼 곱한다(직사각형 넓이와 결합).
+ *
+ * ⚠️ 「**정사각형** … **한 변이** … **넓이는 몇**」으로 쓰면 `probe-elem-arithmetic` 의
+ * 정사각형 넓이 규칙(⑧)이 밑면 넓이 `a\times a` 를 참값으로 읽어 **거짓 경보**가 난다.
+ * 여기서 묻는 것은 밑면이 아니라 **옆면 전체**다. 판정기 규칙 자체는 옳으므로 이쪽 문구를
+ * 「변의 길이가 모두 같은」으로 바꿔 어긋남을 없앴다 — 뜻은 그대로고 오히려 더 일반적이다.
+ */
+function prismFaceApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥이 있습니다. ` +
+      `이 각기둥의 높이가 ${unitNum(h, "cm")} 일 때 옆면 전체의 넓이는 몇 cm²입니까?`,
+    num(n * a * h),
+    `옆면 하나는 가로 ${unitNum(a, "cm")}, 세로 ${unitNum(h, "cm")} 인 직사각형이므로 넓이는 ` +
+      `${expr(`${a}\\times${h}=${a * h}`)} 입니다. 옆면이 ${num(n)}개이므로 ` +
+      `${expr(`${a * h}\\times${n}=${n * a * h}`)} 입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산·조건.
+ * ⓐ 옆면 전체의 넓이에서 **높이를 거꾸로** 구한다. ⓑ 옆면의 수에서 **밑면의 모양**을 되짚는다.
+ */
+function prismFaceDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 3, 9);
+    const h = intBetween(rng, 4, 12);
+    return make(
+      unit,
+      `밑면이 ${polyName(n)}인 각기둥의 옆면 전체의 넓이가 ${num(n * a * h)} cm²입니다. ` +
+        `밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같을 때, 이 각기둥의 높이는 몇 cm입니까?`,
+      num(h),
+      `옆면이 ${num(n)}개이므로 옆면 하나의 넓이는 ${expr(`${n * a * h}\\div${n}=${a * h}`)} 입니다. ` +
+        `옆면은 가로가 ${unitNum(a, "cm")} 인 직사각형이므로 높이는 ${expr(`${a * h}\\div${a}=${h}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `어떤 각기둥의 옆면이 ${num(n)}개입니다. 이 각기둥의 밑면은 몇 각형입니까?`,
+    polyName(n),
+    `옆면의 수는 밑면의 변의 수와 같습니다. 옆면이 ${num(n)}개이므로 밑면은 변이 ${num(n)}개인 ${polyName(n)}입니다.`,
+  );
+}
+
+// ── 1-2-2 각기둥의 이름과 구성 요소 ──
+
+/** 연산 — 이름이 주어진다. 구성 요소 공식을 한 번 쓴다. */
+function prismPartCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const key: PartKey = pick(rng, PART_KEYS);
+  const parts = prismParts(n);
+  const how: Record<PartKey, string> = {
+    꼭짓점: `두 밑면의 꼭짓점을 더합니다. ${expr(`${n}\\times2=${parts.꼭짓점}`)}`,
+    모서리: `두 밑면의 모서리 ${num(2 * n)}개와 옆면의 모서리 ${num(n)}개를 더합니다. ${expr(`${2 * n}+${n}=${parts.모서리}`)}`,
+    면: `밑면 ${num(2)}개와 옆면 ${num(n)}개를 더합니다. ${expr(`2+${n}=${parts.면}`)}`,
+  };
+  return make(
+    unit,
+    `${sino(n)}각기둥의 ${key}의 수를 구하시오.`,
+    num(parts[key]),
+    how[key],
+    fig("prism", { sides: n, h: 3 }),
+  );
+}
+
+/** 기본 — 그림 한 겹. 밑면 모양을 겨냥도에서 읽고 구성 요소를 센다. */
+function prismPartRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const key: PartKey = pick(rng, PART_KEYS);
+  const thing = pick(rng, PRISM_THINGS);
+  const parts = prismParts(n);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. ${key}${josa(key, "은", "는")} 몇 개입니까?`,
+    num(parts[key]),
+    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. ${sino(n)}각기둥의 ${key}${josa(key, "은", "는")} ${num(parts[key])}개입니다.`,
+    fig("prism", { sides: n, h: 3 }),
+  );
+}
+
+/** 응용 — 두 걸음. 두 구성 요소를 각각 구한 뒤 견준다(카탈로그 「구성 요소 사이의 관계」). */
+function prismPartApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const parts = prismParts(n);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `밑면이 ${polyName(n)}인 각기둥의 모서리의 수는 꼭짓점의 수보다 몇 개 더 많습니까?`,
+      num(parts.모서리 - parts.꼭짓점),
+      `모서리는 ${expr(`${n}\\times3=${parts.모서리}`)} 개이고 꼭짓점은 ${expr(`${n}\\times2=${parts.꼭짓점}`)} 개입니다. ` +
+        `${expr(`${parts.모서리}-${parts.꼭짓점}=${parts.모서리 - parts.꼭짓점}`)} 이므로 ${num(parts.모서리 - parts.꼭짓점)}개 더 많습니다.`,
+    );
+  }
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}인 각기둥의 꼭짓점의 수와 면의 수를 더하면 얼마입니까?`,
+    num(parts.꼭짓점 + parts.면),
+    `꼭짓점은 ${expr(`${n}\\times2=${parts.꼭짓점}`)} 개이고 면은 ${expr(`${n}+2=${parts.면}`)} 개입니다. ` +
+      `${expr(`${parts.꼭짓점}+${parts.면}=${parts.꼭짓점 + parts.면}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 역산. 구성 요소 하나에서 밑면의 변의 수를 되짚고 **다른 구성 요소**를 구한다. */
+function prismPartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const parts = prismParts(n);
+  const given: PartKey = pick(rng, ["모서리", "꼭짓점"] as const);
+  const asked: PartKey = given === "모서리" ? "면" : "모서리";
+  const back =
+    given === "모서리"
+      ? `모서리는 밑면의 변의 수의 ${num(3)}배이므로 ${expr(`${parts.모서리}\\div3=${n}`)} 에서 밑면은 ${polyName(n)}입니다.`
+      : `꼭짓점은 밑면의 변의 수의 ${num(2)}배이므로 ${expr(`${parts.꼭짓점}\\div2=${n}`)} 에서 밑면은 ${polyName(n)}입니다.`;
+  const forward =
+    asked === "면"
+      ? `${sino(n)}각기둥의 면은 밑면 ${num(2)}개와 옆면 ${num(n)}개를 더한 ${expr(`2+${n}=${parts.면}`)} 개입니다.`
+      : `${sino(n)}각기둥의 모서리는 ${expr(`${n}\\times3=${parts.모서리}`)} 개입니다.`;
+  return make(
+    unit,
+    `${given}${josa(given, "이", "가")} ${num(parts[given])}개인 각기둥이 있습니다. 이 각기둥의 ${asked}${josa(asked, "은", "는")} 몇 개입니까?`,
+    num(parts[asked]),
+    `${back} ${forward}`,
+  );
+}
+
+// ── 1-2-3 각기둥의 전개도 ──
+
+/**
+ * 연산 — 이름이 주어진다. 전개도의 옆면 수를 한 번에 센다.
+ *
+ * 밑면을 «입체 이름»으로도 «밑면 모양»으로도 적는다 — `sides` 가 여섯 값뿐이라
+ * 한 문형만 쓰면 변형이 6가지에 그친다(시험이 갈래당 8가지를 요구한다).
+ */
+function netCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const byName = intBetween(rng, 0, 1) === 0;
+  const subject = byName
+    ? `${sino(n)}각기둥`
+    : `밑면이 ${polyName(n)}인 각기둥`;
+  return make(
+    unit,
+    `${subject}의 전개도에서 옆면의 수를 구하시오.`,
+    num(n),
+    `전개도의 옆면은 밑면의 변 하나마다 직사각형 하나입니다. 밑면이 ${polyName(n)}이므로 ${num(n)}개입니다.`,
+    fig("prism", { sides: n, h: 3, net: true }),
+  );
+}
+
+/** 기본 — 그림 한 겹. 전개도만 보고 접었을 때의 입체를 알아낸다. */
+function netRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 그림입니다. 이 전개도를 접으면 만들어지는 입체도형은 무엇입니까?`,
+    `${sino(n)}각기둥`,
+    `밑면이 ${polyName(n)} 둘이고 옆면이 직사각형 ${num(n)}개이므로 접으면 ${sino(n)}각기둥이 됩니다.`,
+    fig("prism", { sides: n, h: 3, net: true }),
+  );
+}
+
+/** 응용 — 두 걸음. 옆면이 이어 붙은 전체 가로가 **밑면의 둘레**와 같다는 것을 쓴다. */
+function netApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥의 전개도입니다. ` +
+      `옆면 전체의 가로 길이는 몇 cm입니까?`,
+    num(n * a),
+    `옆면 ${num(n)}개가 나란히 붙어 있으므로 가로 전체는 밑면의 둘레와 같습니다. ` +
+      `${expr(`${a}\\times${n}=${n * a}`)} 입니다.`,
+    fig("prism", { sides: n, h: 3, net: true }),
+  );
+}
+
+/** 심화 — 역산. 전개도의 옆면 수에서 밑면을 되짚고 겨냥도의 구성 요소를 구한다. */
+function netDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const parts = prismParts(n);
+  const asked: PartKey = pick(rng, ["꼭짓점", "모서리"] as const);
+  return make(
+    unit,
+    `어떤 각기둥의 전개도에서 옆면인 직사각형이 ${num(n)}개입니다. ` +
+      `이 전개도를 접어 만든 각기둥의 ${asked}${josa(asked, "은", "는")} 몇 개입니까?`,
+    num(parts[asked]),
+    `옆면이 ${num(n)}개이므로 밑면은 ${polyName(n)}이고, 접으면 ${sino(n)}각기둥이 됩니다. ` +
+      (asked === "꼭짓점"
+        ? `꼭짓점은 ${expr(`${n}\\times2=${parts.꼭짓점}`)} 개입니다.`
+        : `모서리는 ${expr(`${n}\\times3=${parts.모서리}`)} 개입니다.`),
+  );
+}
+
+// ── 1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면 ──
+
+/** 연산 — 이름이 주어진다. 옆면의 수를 한 번에 센다. */
+function pyrFaceCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const byName = intBetween(rng, 0, 1) === 0;
+  const subject = byName ? `${sino(n)}각뿔` : `밑면이 ${polyName(n)}인 각뿔`;
+  return make(
+    unit,
+    `${subject}의 옆면의 수를 구하시오.`,
+    num(n),
+    `각뿔의 옆면은 밑면의 변 하나와 각뿔의 꼭짓점을 이은 삼각형입니다. ` +
+      `밑면이 ${polyName(n)}이므로 옆면은 ${num(n)}개입니다.`,
+    fig("pyramid", { sides: n, h: 3 }),
+  );
+}
+
+/** 기본 — 그림 한 겹. 밑면 모양을 겨냥도에서 읽는다. */
+function pyrFaceRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PYRAMID_THINGS);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. 옆면은 몇 개입니까?`,
+    num(n),
+    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. 옆면인 삼각형은 밑면의 변마다 하나씩이므로 ${num(n)}개입니다.`,
+    fig("pyramid", { sides: n, h: 3 }),
+  );
+}
+
+/**
+ * 응용 — 두 걸음. 옆면인 **삼각형** 하나의 넓이를 만든 뒤 옆면 수만큼 곱한다.
+ * `a\times h` 를 짝수로 골라 삼각형 넓이가 자연수로 떨어지는 것을 **구성이** 보장한다.
+ */
+function pyrFaceApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 4).filter((v) => (a * v) % 2 === 0),
+  );
+  const one = (a * h) / 2;
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각뿔이 있습니다. ` +
+      `옆면인 삼각형의 높이가 ${unitNum(h, "cm")} 일 때 옆면 전체의 넓이는 몇 cm²입니까?`,
+    num(n * one),
+    `옆면 하나는 밑변 ${unitNum(a, "cm")}, 높이 ${unitNum(h, "cm")} 인 삼각형이므로 넓이는 ` +
+      `${expr(`${a}\\times${h}\\div2=${one}`)} 입니다. 옆면이 ${num(n)}개이므로 ` +
+      `${expr(`${one}\\times${n}=${n * one}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 조건 조합. 밑면이 같은 각기둥과 각뿔을 오간다(카탈로그 유형 그대로). */
+function pyrFaceDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const pyr = pyramidParts(n);
+  const prism = prismParts(n);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 묻는 요소를 셋으로 벌린다 — 「모양 둘 × 밑면 여섯」만으로는 씨앗 16개에서
+    // 변형이 요구선(8가지)에 딱 붙어 여유가 없다(실측 8).
+    const asked: PartKey = pick(rng, PART_KEYS);
+    const how: Record<PartKey, string> = {
+      면: `밑면 ${num(1)}개와 옆면 ${num(n)}개를 더한 ${expr(`1+${n}=${pyr.면}`)} 개입니다.`,
+      꼭짓점: `밑면의 꼭짓점 ${num(n)}개에 각뿔의 꼭짓점 ${num(1)}개를 더한 ${expr(`${n}+1=${pyr.꼭짓점}`)} 개입니다.`,
+      모서리: `밑면의 모서리 ${num(n)}개와 옆면의 모서리 ${num(n)}개를 더한 ${expr(`${n}+${n}=${pyr.모서리}`)} 개입니다.`,
+    };
+    return make(
+      unit,
+      `밑면의 모양이 같은 각기둥과 각뿔이 있습니다. 각기둥의 옆면이 ${num(n)}개일 때, ` +
+        `각뿔의 ${asked}${josa(asked, "은", "는")} 몇 개입니까?`,
+      num(pyr[asked]),
+      `각기둥의 옆면이 ${num(n)}개이므로 밑면은 ${polyName(n)}입니다. ` +
+        `밑면이 같은 각뿔의 ${asked}${josa(asked, "은", "는")} ${how[asked]}`,
+    );
+  }
+  return make(
+    unit,
+    `밑면의 모양이 같은 각기둥과 각뿔이 있습니다. 각뿔의 옆면이 ${num(n)}개일 때, ` +
+      `각기둥의 면은 각뿔의 면보다 몇 개 더 많습니까?`,
+    num(prism.면 - pyr.면),
+    `각뿔의 옆면이 ${num(n)}개이므로 밑면은 ${polyName(n)}입니다. ` +
+      `각기둥의 면은 ${expr(`2+${n}=${prism.면}`)} 개, 각뿔의 면은 ${expr(`1+${n}=${pyr.면}`)} 개이므로 ` +
+      `${expr(`${prism.면}-${pyr.면}=${prism.면 - pyr.면}`)} 개 더 많습니다.`,
+  );
+}
+
+// ── 1-2-5 각뿔의 이름과 구성 요소 ──
+
+/** 연산 — 이름이 주어진다. 구성 요소 공식을 한 번 쓴다. */
+function pyrPartCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const key: PartKey = pick(rng, PART_KEYS);
+  const parts = pyramidParts(n);
+  const how: Record<PartKey, string> = {
+    꼭짓점: `밑면의 꼭짓점 ${num(n)}개에 각뿔의 꼭짓점 ${num(1)}개를 더합니다. ${expr(`${n}+1=${parts.꼭짓점}`)}`,
+    모서리: `밑면의 모서리 ${num(n)}개와 옆면의 모서리 ${num(n)}개를 더합니다. ${expr(`${n}+${n}=${parts.모서리}`)}`,
+    면: `밑면 ${num(1)}개와 옆면 ${num(n)}개를 더합니다. ${expr(`1+${n}=${parts.면}`)}`,
+  };
+  return make(
+    unit,
+    `${sino(n)}각뿔의 ${key}의 수를 구하시오.`,
+    num(parts[key]),
+    how[key],
+    fig("pyramid", { sides: n, h: 3 }),
+  );
+}
+
+/** 기본 — 그림 한 겹. */
+function pyrPartRead(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const key: PartKey = pick(rng, PART_KEYS);
+  const thing = pick(rng, PYRAMID_THINGS);
+  const parts = pyramidParts(n);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. ${key}${josa(key, "은", "는")} 몇 개입니까?`,
+    num(parts[key]),
+    `겨냥도에서 밑면이 ${polyName(n)}임을 읽습니다. ${sino(n)}각뿔의 ${key}${josa(key, "은", "는")} ${num(parts[key])}개입니다.`,
+    fig("pyramid", { sides: n, h: 3 }),
+  );
+}
+
+/** 응용 — 두 걸음. 두 구성 요소를 각각 구한 뒤 견준다. */
+function pyrPartApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const parts = pyramidParts(n);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `밑면이 ${polyName(n)}인 각뿔의 모서리의 수는 면의 수보다 몇 개 더 많습니까?`,
+      num(parts.모서리 - parts.면),
+      `모서리는 ${expr(`${n}\\times2=${parts.모서리}`)} 개이고 면은 ${expr(`1+${n}=${parts.면}`)} 개입니다. ` +
+        `${expr(`${parts.모서리}-${parts.면}=${parts.모서리 - parts.면}`)} 이므로 ${num(parts.모서리 - parts.면)}개 더 많습니다.`,
+    );
+  }
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}인 각뿔의 꼭짓점의 수와 모서리의 수를 더하면 얼마입니까?`,
+    num(parts.꼭짓점 + parts.모서리),
+    `꼭짓점은 ${expr(`${n}+1=${parts.꼭짓점}`)} 개이고 모서리는 ${expr(`${n}\\times2=${parts.모서리}`)} 개입니다. ` +
+      `${expr(`${parts.꼭짓점}+${parts.모서리}=${parts.꼭짓점 + parts.모서리}`)} 입니다.`,
+  );
+}
+
+/**
+ * 심화 — 역산. 구성 요소 하나에서 밑면을 되짚고 다른 구성 요소를 구한다.
+ *
+ * ⚠️ 각뿔은 **꼭짓점과 면의 수가 같다**(둘 다 `n+1`). 그 둘을 짝지으면
+ * 「면이 $7$개인 각뿔의 꼭짓점은?」 → $7$ 이라 되짚을 것이 없는 문항이 된다 — 짝에서 뺀다.
+ */
+const PYR_DEEP_PAIRS = [
+  ["모서리", "꼭짓점"],
+  ["모서리", "면"],
+  ["면", "모서리"],
+  ["꼭짓점", "모서리"],
+] as const;
+
+function pyrPartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const parts = pyramidParts(n);
+  const [given, asked] = pick(rng, PYR_DEEP_PAIRS);
+  const backOf: Record<PartKey, string> = {
+    모서리: `모서리는 밑면의 변의 수의 ${num(2)}배이므로 ${expr(`${parts.모서리}\\div2=${n}`)} 에서 밑면은 ${polyName(n)}입니다.`,
+    면: `면은 밑면 ${num(1)}개와 옆면을 더한 것이므로 ${expr(`${parts.면}-1=${n}`)} 에서 밑면은 ${polyName(n)}입니다.`,
+    꼭짓점: `꼭짓점은 밑면의 꼭짓점에 각뿔의 꼭짓점 ${num(1)}개를 더한 것이므로 ${expr(`${parts.꼭짓점}-1=${n}`)} 에서 밑면은 ${polyName(n)}입니다.`,
+  };
+  const forwardOf: Record<PartKey, string> = {
+    꼭짓점: `${sino(n)}각뿔의 꼭짓점은 ${expr(`${n}+1=${parts.꼭짓점}`)} 개입니다.`,
+    모서리: `${sino(n)}각뿔의 모서리는 ${expr(`${n}\\times2=${parts.모서리}`)} 개입니다.`,
+    면: `${sino(n)}각뿔의 면은 밑면 ${num(1)}개와 옆면 ${num(n)}개를 더한 ${expr(`1+${n}=${parts.면}`)} 개입니다.`,
+  };
+  const back = backOf[given];
+  const forward = forwardOf[asked];
+  return make(
+    unit,
+    `${given}${josa(given, "이", "가")} ${num(parts[given])}개인 각뿔이 있습니다. 이 각뿔의 ${asked}${josa(asked, "은", "는")} 몇 개입니까?`,
+    num(parts[asked]),
+    `${back} ${forward}`,
+  );
+}
+
+/**
+ * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
  */
 export const G6_TIERS: ElemTierMap = {
@@ -1956,6 +2419,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: mixedNatWord,
     응용: mixedNatApply,
     심화: mixedNatDeep,
+  },
+  "초6|1-2-1": {
+    연산: prismFaceCalc,
+    기본: prismFaceRead,
+    응용: prismFaceApply,
+    심화: prismFaceDeep,
+  },
+  "초6|1-2-2": {
+    연산: prismPartCalc,
+    기본: prismPartRead,
+    응용: prismPartApply,
+    심화: prismPartDeep,
+  },
+  "초6|1-2-3": {
+    연산: netCalc,
+    기본: netRead,
+    응용: netApply,
+    심화: netDeep,
+  },
+  "초6|1-2-4": {
+    연산: pyrFaceCalc,
+    기본: pyrFaceRead,
+    응용: pyrFaceApply,
+    심화: pyrFaceDeep,
+  },
+  "초6|1-2-5": {
+    연산: pyrPartCalc,
+    기본: pyrPartRead,
+    응용: pyrPartApply,
+    심화: pyrPartDeep,
   },
 };
 
