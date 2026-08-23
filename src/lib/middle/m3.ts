@@ -40,6 +40,7 @@ import {
   figTriSine,
   figTwoChords,
 } from "./m3Figures";
+import { M3_ROOT } from "./m3Root";
 import { M3_TANGENT_TYPES } from "./m3Tangent";
 import { M3_TRIG } from "./m3Trig";
 import type { MidProblem, TypeEntry } from "./types";
@@ -440,6 +441,7 @@ export const M3_TYPES: TypeEntry[] = [
   ),
   ...M3_TANGENT_TYPES,
   ...M3_TRIG,
+  ...M3_ROOT,
 ];
 
 // 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해
