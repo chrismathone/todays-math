@@ -22,9 +22,11 @@ import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
 const BOOK = "2-1";
-// 색인의 실제 문자열 — ⑴⑵ 앞이 두 칸 띄어쓰기다.
-const MINOR_G1 = "일차함수와 그 그래프  ⑴";
-const MINOR_G2 = "일차함수와 그 그래프  ⑵";
+// 색인의 실제 문자열 — ⑴⑵ 앞은 **얇은 공백(U+2009) + 보통 공백**이다.
+// 보통 공백 둘로 적으면 어디서도 안 걸린다(2026-08-23 실제 결함) —
+// middleTypeCoverage.test.ts 가 정본과 글자 그대로 대조해 막는다.
+const MINOR_G1 = "일차함수와 그 그래프  ⑴";
+const MINOR_G2 = "일차함수와 그 그래프  ⑵";
 const MINOR_REL = "일차함수와 일차방정식의 관계";
 
 /** 우리 Unit.section 정확한 이름 (공유 DB 실측 2026-08-23) */

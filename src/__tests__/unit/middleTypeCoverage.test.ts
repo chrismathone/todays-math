@@ -61,6 +61,45 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
     ).toEqual([]);
   });
 
+  it("등록 유형의 책·중단원·번호·제목이 RPM 색인 정본과 글자 그대로 같다", () => {
+    // 왜: 세션마다 중단원 이름을 **손으로 적는다**. 정본은 「일차함수와 그 그래프」
+    // 뒤에 **얇은 공백(U+2009)** 을 쓰는데 보통 공백으로 적으면 어디서도 안 걸린다 —
+    // 실제로 m2Func 가 그렇게 등록돼 있었고, 그 자리를 고치는 날 다른 시험의
+    // 중단원 필터가 남의 유형을 쓸어 담아 빨개진다(2026-08-23 물결 2D 가 발견).
+    // 「손 목록은 샌다」 — 정본 하나에 대고 전량 대조한다.
+    const raw = readFileSync(
+      path.resolve(process.cwd(), "scripts/rpm/rpm-type-catalog.json"),
+      "utf8",
+    );
+    const catalog = JSON.parse(raw) as Record<
+      string,
+      { types: { minor: string; number: string; title: string }[] }
+    >;
+    const bad: string[] = [];
+    for (const e of registeredTypes()) {
+      const book = catalog[e.rpmBook];
+      if (!book) {
+        bad.push(`${e.key}: 색인에 없는 책 ${e.rpmBook}`);
+        continue;
+      }
+      const hit = book.types.find(
+        (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
+      );
+      if (!hit) {
+        bad.push(
+          `${e.key}: 색인에 없는 중단원·번호 (${JSON.stringify(e.rpmMinor)})`,
+        );
+        continue;
+      }
+      if (hit.title !== e.rpmTitle) {
+        bad.push(
+          `${e.key}: 제목이 다름 — 색인 ${hit.title} vs 등록 ${e.rpmTitle}`,
+        );
+      }
+    }
+    expect(bad.slice(0, 8), `정본과 다른 유형 ${bad.length}개`).toEqual([]);
+  });
+
   it("등록 key 는 겹치지 않고 `책|중단원|번호` 꼴이다", () => {
     const keys = registeredTypes().map((e) => e.key);
     expect(new Set(keys).size, "key 겹침").toBe(keys.length);

@@ -16,6 +16,7 @@ import { describe, expect, it } from "vitest";
 
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
+import { M2_FUNC } from "../../lib/middle/m2Func";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -25,8 +26,8 @@ import type { MidProblem } from "../../lib/middle/types";
 
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
-const MINOR_G1 = "일차함수와 그 그래프  ⑴";
-const MINOR_G2 = "일차함수와 그 그래프  ⑵";
+const MINOR_G1 = "일차함수와 그 그래프  ⑴";
+const MINOR_G2 = "일차함수와 그 그래프  ⑵";
 const MINOR_REL = "일차함수와 일차방정식의 관계";
 
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -127,12 +128,10 @@ function firstNumber(text: string): number {
 }
 
 describe("중2 일차함수 함수 유형 18개", () => {
-  const entries = registeredTypes().filter(
-    (e) =>
-      e.rpmMinor === MINOR_G1 ||
-      e.rpmMinor === MINOR_G2 ||
-      e.rpmMinor === MINOR_REL,
-  );
+  // ⚠️ 중단원 이름으로 고르면 **같은 중단원의 남의 유형**까지 쓸어 담는다 —
+  //    물결 2D 가 2-1 ⑵ 11·12 에 실물 맥락 유형을 냈다. 자기 모듈을 직접 훑는다
+  //    (자기 유형은 자기 시험이 지킨다 — middleM2.test.ts 와 같은 규칙).
+  const entries = M2_FUNC;
 
   it("18유형이 등록돼 있다 — ⑴ 11개 · ⑵ 6개 · 관계 1개", () => {
     expect(entries.length).toBe(18);
