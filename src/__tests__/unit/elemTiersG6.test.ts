@@ -1767,3 +1767,245 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 });
+
+// ══════════ 6차분 — 1-6 직육면체의 겉넓이와 부피 (초6 1학기 마감) ══════════
+//
+// 참은 발문의 **이름표 붙은 치수**(가로/세로/높이·한 모서리)에서 나온다. 겉넓이·부피
+// 공식과 단위 환산(1 m³ = 1000000 cm³)을 시험이 직접 들고, 단위 표기(cm²·cm³·m³)가
+// 묻는 것과 맞는지도 잰다 — 넓이에 cm³ 를 쓰는 결함은 값 검산이 못 본다.
+
+const G6_16_CODES = ["1-6-1", "1-6-2", "1-6-3"] as const;
+
+/** 발문이 말하는 값을 다시 만든다 — 공식을 여기서 직접 든다(엔진을 안 부른다). */
+function truthOf16(content: string): R | null {
+  const ns = decNumbersIn(content);
+  const at = (i: number) => ns[i] ?? null;
+
+  // 1-6-1 심화 ⓐ — 두 변과 겉넓이에서 높이: h = (S − 2wd) ÷ (2(w+d))
+  if (content.includes("겉넓이가") && content.includes("높이는")) {
+    const [w, d, S] = [at(0), at(1), at(2)];
+    if (!w || !d || !S) return null;
+    return rat(S.n - 2 * w.n * d.n, 2 * (w.n + d.n));
+  }
+  // 1-6-1 심화 ⓑ — 정육면체 겉넓이에서 한 면
+  if (content.includes("겉넓이가") && content.includes("한 면의 넓이")) {
+    const S = at(0);
+    return S ? rat(S.n, 6) : null;
+  }
+  // 1-6-3 심화 — cm³ 부피와 m 단위 두 변에서 높이(m): 환산이 걸음이다
+  if (content.includes("부피가") && content.includes("높이는 몇 m입니까")) {
+    const [V, w, d] = [at(0), at(1), at(2)];
+    return V && w && d ? rat(V.n, 1000000 * w.n * d.n) : null;
+  }
+  // 1-6-2 심화 ⓐ — 부피와 두 변에서 높이(cm)
+  if (content.includes("부피가") && content.includes("높이는 몇 cm입니까")) {
+    const [V, w, d] = [at(0), at(1), at(2)];
+    return V && w && d ? rat(V.n, w.n * d.n) : null;
+  }
+  // 1-6-2 심화 ⓑ — 쌓기나무 층수 (첫 수는 모서리 1 cm)
+  if (content.includes("쌓기나무")) {
+    const [, count, w, d] = [at(0), at(1), at(2), at(3)];
+    return count && w && d ? rat(count.n, w.n * d.n) : null;
+  }
+  // 1-6-1 응용 — 뚜껑 없는 상자의 다섯 면
+  if (content.includes("뚜껑이 없는")) {
+    const [w, d, h] = [at(0), at(1), at(2)];
+    if (!w || !d || !h) return null;
+    return rat(w.n * d.n + 2 * (d.n * h.n + h.n * w.n));
+  }
+  // 1-6-2 응용 — 두 변을 늘이면 부피는 곱의 배
+  if (content.includes("몇 배가 됩니까")) {
+    const [k1, k2] = [at(0), at(1)];
+    return k1 && k2 ? rat(k1.n * k2.n) : null;
+  }
+  // 1-6-3 연산 — 환산 두 방향
+  if (/m³는 몇 cm³/.test(content)) {
+    const k = at(0);
+    return k ? rat(k.n * 1000000) : null;
+  }
+  if (/cm³는 몇 m³/.test(content)) {
+    const k = at(0);
+    return k ? rat(k.n, 1000000) : null;
+  }
+  // 1-6-3 응용 — cm 로 준 변을 m 로 바꿔 부피(m³)
+  if (content.includes("cm}") && content.includes("몇 m³")) {
+    const [wCm, d, h] = [at(0), at(1), at(2)];
+    return wCm && d && h ? rat(wCm.n * d.n * h.n, 100) : null;
+  }
+  // 겉넓이 — 정육면체(수 하나)면 6a², 직육면체(수 셋)면 2(wd+dh+hw)
+  if (content.includes("겉넓이는 몇")) {
+    if (ns.length === 1) return rat(6 * ns[0]!.n * ns[0]!.n);
+    const [w, d, h] = [at(0), at(1), at(2)];
+    if (!w || !d || !h) return null;
+    return rat(2 * (w.n * d.n + d.n * h.n + h.n * w.n));
+  }
+  // 부피 — 정육면체(수 하나)면 a³, 직육면체(수 셋)면 wdh
+  if (content.includes("부피는 몇")) {
+    if (ns.length === 1) return rat(ns[0]!.n ** 3);
+    const [w, d, h] = [at(0), at(1), at(2)];
+    return w && d && h ? rat(w.n * d.n * h.n) : null;
+  }
+  return null;
+}
+
+describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
+  it("소단원 셋이 갈래 넷을 전부 낸다", () => {
+    for (const code of G6_16_CODES) {
+      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("정답은 발문이 말하는 값과 같다 (시험이 공식·환산을 직접 든다)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const code of G6_16_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const want = truthOf16(p.content);
+          if (!want) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 발문을 못 읽음 — ${p.content.replace(/\n+/g, " ")}`,
+            );
+            continue;
+          }
+          checked += 1;
+          const got = readMixedAnswer(p.answer);
+          if (!req(want, got)) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 답 ${p.answer} (${rshow(want)} 이어야) — ${p.content.replace(/\n+/g, " ")}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    expect(checked).toBe(G6_16_CODES.length * ELEM_TIERS.length * SEEDS.length);
+  });
+
+  it("단위 표기가 묻는 것과 맞는다 — 넓이는 cm², 부피는 cm³·m³", () => {
+    const bad: string[] = [];
+    for (const code of G6_16_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ["연산", "기본"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          if (code === "1-6-1" && !p.content.includes("cm²")) {
+            bad.push(`${where}: 겉넓이인데 cm² 가 없다 — ${p.content}`);
+          }
+          if (code === "1-6-2" && !p.content.includes("cm³")) {
+            bad.push(`${where}: 부피인데 cm³ 가 없다 — ${p.content}`);
+          }
+          if (code === "1-6-3" && !/[cm ]m³/.test(p.content)) {
+            bad.push(`${where}: m³ 가 없다 — ${p.content}`);
+          }
+          // 넓이 발문에 부피 단위가, 부피 발문에 넓이 단위가 섞이면 안 된다.
+          if (code === "1-6-1" && p.content.includes("cm³")) {
+            bad.push(`${where}: 겉넓이인데 cm³ — ${p.content}`);
+          }
+          if (code !== "1-6-1" && p.content.includes("cm²")) {
+            bad.push(`${where}: 부피인데 cm² — ${p.content}`);
+          }
+        }
+      }
+      // 1-6-3 응용은 단위 혼합이 알맹이다 — cm 변과 m³ 물음이 같이 있어야 한다.
+      for (const seed of SEEDS) {
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        if (code === "1-6-3") {
+          expect(
+            apply.content.includes("cm}") && apply.content.includes("몇 m³"),
+            `1-6-3 응용 seed=${seed}: 단위 혼합이 없다 — ${apply.content}`,
+          ).toBe(true);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
+    const CALC_SHAPE: Record<string, RegExp> = {
+      "1-6-1": /^가로가 .+ 높이가 .+ 겉넓이는 몇 cm²입니까\?$/,
+      "1-6-2": /^가로가 .+ 높이가 .+ 부피는 몇 cm³입니까\?$/,
+      "1-6-3": /^\$\d+\$ (?:m|cm)³는 몇/,
+    };
+    const DEEP = /겉넓이가|부피가|쌓기나무/;
+    for (const code of G6_16_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const basic = generateElementaryProblem(unit, seed, "기본");
+        const apply = generateElementaryProblem(unit, seed, "응용");
+        const deep = generateElementaryProblem(unit, seed, "심화");
+        expect(
+          CALC_SHAPE[code]!.test(calc.content.replace(/\n+/g, " ")),
+          `${code} 연산 seed=${seed}: ${calc.content}`,
+        ).toBe(true);
+        expect(
+          CALC_SHAPE[code]!.test(basic.content.replace(/\n+/g, " ")),
+          `${code} 기본 seed=${seed}: 연산 문형이다 — ${basic.content}`,
+        ).toBe(false);
+        expect(
+          DEEP.test(deep.content),
+          `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,
+        ).toBe(true);
+        expect(
+          DEEP.test(apply.content),
+          `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("갈래 넷은 같은 씨앗에서도 서로 다르고, 씨앗 16개면 갈래마다 8가지 이상이다", () => {
+    for (const code of G6_16_CODES) {
+      const unit = unitOf(code);
+      for (const seed of SEEDS) {
+        const shown = ELEM_TIERS.map(
+          (t) => generateElementaryProblem(unit, seed, t).content,
+        );
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+      }
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(unit, 4242, tier);
+        const b = generateElementaryProblem(unit, 4242, tier);
+        expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
+        const rows = new Set(
+          SEEDS.map((s) => {
+            const p = generateElementaryProblem(unit, s, tier);
+            return `${p.content}||${p.answer}`;
+          }),
+        );
+        expect(rows.size, `${code} ${tier} 다양성`).toBeGreaterThanOrEqual(8);
+      }
+    }
+  });
+
+  it("갈래 문항도 D-66 표기를 지킨다 — KaTeX 밖 숫자·샌 소수·분수 없음", () => {
+    const bad: string[] = [];
+    for (const code of G6_16_CODES) {
+      const unit = unitOf(code);
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          for (const [name, field] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const bare = field
+              .replace(/\$[^$]*\$/g, " ")
+              .match(/\d+(?:\.\d+)?/g);
+            if (bare)
+              bad.push(`${where} ${name}: KaTeX 밖 숫자 ${bare.join(",")}`);
+            if (field.includes("\\frac"))
+              bad.push(`${where} ${name}: 분수가 섞였다`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+});

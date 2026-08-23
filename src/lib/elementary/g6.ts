@@ -3881,6 +3881,241 @@ function cmpChartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 난이도 갈래 (D-72 확대 6차분) — 초6 `1-6 직육면체의 겉넓이와 부피` (3소단원 · 12갈래) ──
+//
+// 초6 1학기 마지막 대단원. 그림은 기존 `cuboid` 만 쓴다(새 kind 0 · 전개도 불필요 설계).
+// 연산·기본은 치수를 **가로/세로/높이 이름표**로 적는다 — `probe-elem-arithmetic` ⑧이
+// 그 이름표로 직육면체 부피·겉넓이를 독립 재계산하므로 검산이 한 겹 공짜로 는다.
+// 단위 혼합(1-6-3 응용)은 그 판정기의 lengthUnits 가드가 **일부러 안 읽는** 자리다 —
+// 시험(elemTiersG6)이 전담한다. 심화의 역산은 제곱근·세제곱근이 필요 없는 꼴만 고른다
+// (두 변+겉넓이→나머지 변 · 겉넓이→한 면 · 부피+두 변→높이 · 쌓기나무 층수).
+
+/** 정육면체 모양 물건 — 1-6-1 기본(겉넓이)과 1-6-2 기본(부피)이 서로 다른 풀을 쓴다. */
+const CUBE_THINGS_AREA = ["주사위", "각설탕", "선물 상자"] as const;
+const CUBE_THINGS_VOL = ["블록", "두부", "상자"] as const;
+
+/** m³ 로 재는 큰 물건 — 1-6-3. */
+const BIG_THINGS = ["컨테이너", "창고", "물탱크"] as const;
+
+// ── 1-6-1 직육면체의 겉넓이 구하는 방법 ──
+
+/** 연산 — 세 치수가 이름표로 주어진다. 공식 한 번. */
+function surfCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 2, 6);
+  const h = intBetween(rng, 2, 7);
+  const area = 2 * (w * d + d * h + h * w);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체가 있습니다. ` +
+      `겉넓이는 몇 cm²입니까?`,
+    num(area),
+    `세 종류의 면을 더해 ${num(2)}배 합니다. ${expr(`(${w}\\times${d}+${d}\\times${h}+${h}\\times${w})\\times2=${area}`)}`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 정육면체 모양 물건. 한 모서리에서 여섯 면을 센다. */
+function surfWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CUBE_THINGS_AREA);
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `한 모서리의 길이가 ${unitNum(a, "cm")} 인 정육면체 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}의 겉넓이는 몇 cm²입니까?`,
+    num(6 * a * a),
+    `정육면체의 여섯 면은 모두 합동입니다. ${expr(`${a}\\times${a}\\times6=${6 * a * a}`)}`,
+    fig("cuboid", { w: a, d: a, h: a }),
+  );
+}
+
+/** 응용 — 뚜껑 없는 상자. 겉넓이에서 윗면을 빼는 걸음이 하나 더 있다. */
+function surfApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 3, 9);
+  const d = intBetween(rng, 2, 6);
+  const h = intBetween(rng, 2, 7);
+  const five = w * d + 2 * (d * h + h * w);
+  return make(
+    unit,
+    `뚜껑이 없는 직육면체 모양 상자가 있습니다. 가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, ` +
+      `높이가 ${unitNum(h, "cm")} 일 때, 상자의 바깥쪽 다섯 면에 색종이를 빈틈없이 붙이려면 ` +
+      `색종이는 모두 몇 cm²가 필요합니까?`,
+    num(five),
+    `뚜껑이 없으므로 바닥 한 면과 옆면 네 면을 더합니다. ` +
+      `${expr(`${w}\\times${d}=${w * d}`)} 이고 옆면은 ${expr(`(${d}\\times${h}+${h}\\times${w})\\times2=${2 * (d * h + h * w)}`)} 이므로 ` +
+      `${expr(`${w * d}+${2 * (d * h + h * w)}=${five}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 심화 — 역산. ⓐ 두 변과 겉넓이에서 나머지 변을 되짚는다. ⓑ 정육면체 겉넓이에서 한 면을. */
+function surfDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const w = intBetween(rng, 2, 7);
+    const d = intBetween(rng, 2, 6);
+    const h = intBetween(rng, 2, 9);
+    const area = 2 * (w * d + d * h + h * w);
+    return make(
+      unit,
+      `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")} 인 직육면체의 겉넓이가 ${num(area)} cm²입니다. ` +
+        `이 직육면체의 높이는 몇 cm입니까?`,
+      num(h),
+      `두 밑면의 넓이는 ${expr(`${w}\\times${d}\\times2=${2 * w * d}`)} 이므로 옆면 네 면의 넓이는 ` +
+        `${expr(`${area}-${2 * w * d}=${area - 2 * w * d}`)} 입니다. 옆면의 가로 합은 둘레 ${expr(`(${w}+${d})\\times2=${2 * (w + d)}`)} 이므로 ` +
+        `높이는 ${expr(`${area - 2 * w * d}\\div${2 * (w + d)}=${h}`)} 입니다.`,
+    );
+  }
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `겉넓이가 ${num(6 * a * a)} cm²인 정육면체가 있습니다. 이 정육면체의 한 면의 넓이는 몇 cm²입니까?`,
+    num(a * a),
+    `정육면체의 여섯 면은 모두 합동이므로 겉넓이를 ${num(6)}으로 나눕니다. ${expr(`${6 * a * a}\\div6=${a * a}`)}`,
+  );
+}
+
+// ── 1-6-2 직육면체의 부피 비교와 부피 구하는 방법 ──
+
+/** 연산 — 세 치수가 이름표로 주어진다. 공식 한 번. */
+function volCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 2, 6);
+  const h = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체가 있습니다. ` +
+      `부피는 몇 cm³입니까?`,
+    num(w * d * h),
+    `(부피)=(가로)×(세로)×(높이)입니다. ${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)}`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 기본 — 정육면체 모양 물건의 부피. */
+function volWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CUBE_THINGS_VOL);
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `한 모서리의 길이가 ${unitNum(a, "cm")} 인 정육면체 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}의 부피는 몇 cm³입니까?`,
+    num(a * a * a),
+    `정육면체의 세 모서리는 길이가 같습니다. ${expr(`${a}\\times${a}\\times${a}=${a * a * a}`)}`,
+    fig("cuboid", { w: a, d: a, h: a }),
+  );
+}
+
+/** 응용 — 부피 «비교»(소단원 이름의 그 축). 두 변을 늘이면 부피가 몇 배가 되는가. */
+function volApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dims = pick(rng, [
+    ["가로", "세로"],
+    ["가로", "높이"],
+    ["세로", "높이"],
+  ] as const);
+  const k1 = intBetween(rng, 2, 4);
+  const k2 = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `직육면체의 ${dims[0]}${josa(dims[0], "을", "를")} ${num(k1)}배, ${dims[1]}${josa(dims[1], "을", "를")} ${num(k2)}배로 늘이면 ` +
+      `부피는 처음의 몇 배가 됩니까?`,
+    num(k1 * k2),
+    `부피는 세 모서리 길이의 곱이므로 늘인 배수끼리 곱합니다. ${expr(`${k1}\\times${k2}=${k1 * k2}`)}`,
+  );
+}
+
+/** 심화 — 역산. ⓐ 부피와 두 변에서 높이를 되짚는다. ⓑ 쌓기나무 층수. */
+function volDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 6);
+  const d = intBetween(rng, 2, 5);
+  const h = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `부피가 ${num(w * d * h)} cm³이고 가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")} 인 직육면체가 있습니다. ` +
+        `이 직육면체의 높이는 몇 cm입니까?`,
+      num(h),
+      `밑면의 넓이는 ${expr(`${w}\\times${d}=${w * d}`)} 입니다. 높이는 ${expr(`${w * d * h}\\div${w * d}=${h}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `한 모서리의 길이가 ${unitNum(1, "cm")} 인 쌓기나무 ${num(w * d * h)}개를 가로로 ${num(w)}개, 세로로 ${num(d)}개씩 놓아 ` +
+      `직육면체 모양으로 빈틈없이 쌓았습니다. 몇 층으로 쌓았습니까?`,
+    num(h),
+    `한 층에 놓이는 쌓기나무는 ${expr(`${w}\\times${d}=${w * d}`)} 개입니다. ${expr(`${w * d * h}\\div${w * d}=${h}`)} 이므로 ${num(h)}층입니다.`,
+  );
+}
+
+// ── 1-6-3 ㎥ 알아보기 ──
+
+/** 연산 — 문장형 환산(표준의 «□ 안에 알맞은 수» 꼴과 가른다). */
+function cubicCalc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `${num(k)} m³는 몇 cm³입니까?`,
+      num(k * 1000000),
+      `${expr("1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3")} 이므로 ${expr(`${k}\\times1000000=${k * 1000000}`)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${num(k * 1000000)} cm³는 몇 m³입니까?`,
+    num(k),
+    `${expr("1000000\\,\\mathrm{cm}^3=1\\,\\mathrm{m}^3")} 이므로 ${expr(`${k * 1000000}\\div1000000=${k}`)} 입니다.`,
+  );
+}
+
+/** 기본 — m 단위 직육면체의 부피. */
+function cubicWord(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, BIG_THINGS);
+  const w = intBetween(rng, 2, 6);
+  const d = intBetween(rng, 2, 5);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "m")}, 세로가 ${unitNum(d, "m")}, 높이가 ${unitNum(h, "m")} 인 직육면체 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `이 ${thing}의 부피는 몇 m³입니까?`,
+    num(w * d * h),
+    `(부피)=(가로)×(세로)×(높이)입니다. ${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)}`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 응용 — 단위 혼합. cm 로 준 변을 m 로 바꿔야 부피가 선다(산술 판정기가 일부러 안 읽는 자리). */
+function cubicApply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wCm = intBetween(rng, 2, 5) * 100;
+  const d = intBetween(rng, 2, 5);
+  const h = intBetween(rng, 2, 4);
+  const wM = wCm / 100;
+  return make(
+    unit,
+    `가로가 ${unitNum(wCm, "cm")}, 세로가 ${unitNum(d, "m")}, 높이가 ${unitNum(h, "m")} 인 직육면체가 있습니다. ` +
+      `이 직육면체의 부피는 몇 m³입니까?`,
+    num(wM * d * h),
+    `단위를 m 로 맞춥니다. ${expr(`${wCm}\\,\\mathrm{cm}=${wM}\\,\\mathrm{m}`)} 이므로 ` +
+      `${expr(`${wM}\\times${d}\\times${h}=${wM * d * h}`)} 입니다.`,
+  );
+}
+
+/** 심화 — 환산 + 역산. cm³ 부피와 m 단위 두 변에서 높이를 m 로 되짚는다. */
+function cubicDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, BIG_THINGS);
+  const w = intBetween(rng, 2, 4);
+  const d = intBetween(rng, 2, 3);
+  const h = intBetween(rng, 2, 4);
+  const vCm = w * d * h * 1000000;
+  return make(
+    unit,
+    `부피가 ${num(vCm)} cm³인 직육면체 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
+      `가로가 ${unitNum(w, "m")}, 세로가 ${unitNum(d, "m")} 일 때, 이 ${thing}의 높이는 몇 m입니까?`,
+    num(h),
+    `${expr(`${vCm}\\,\\mathrm{cm}^3=${w * d * h}\\,\\mathrm{m}^3`)} 입니다. 밑면의 넓이가 ` +
+      `${expr(`${w}\\times${d}=${w * d}`)} 이므로 높이는 ${expr(`${w * d * h}\\div${w * d}=${h}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -4029,6 +4264,24 @@ export const G6_TIERS: ElemTierMap = {
     기본: cmpChartWord,
     응용: cmpChartApply,
     심화: cmpChartDeep,
+  },
+  "초6|1-6-1": {
+    연산: surfCalc,
+    기본: surfWord,
+    응용: surfApply,
+    심화: surfDeep,
+  },
+  "초6|1-6-2": {
+    연산: volCalc,
+    기본: volWord,
+    응용: volApply,
+    심화: volDeep,
+  },
+  "초6|1-6-3": {
+    연산: cubicCalc,
+    기본: cubicWord,
+    응용: cubicApply,
+    심화: cubicDeep,
   },
 };
 

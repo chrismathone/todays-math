@@ -191,9 +191,48 @@ type Check = {
    * 2026-08-23 에 갈래를 순회에 넣자마자 그 부류로 **거짓 경보 6건**이 났다.
    * **거짓 경보는 가드를 끈다** — 그래서 구조 대신 **종류가 있는가**로 떨어뜨린다.
    * 사각지대로 두지는 않는다: 종류가 없으면 여전히 위반이다.
+   *
+   * 둘째 인자 `alt` 는 쉼표로 가른 소단원 이름 한 토막 — 자리수 loose 가 «이 대안이
+   * 요구하는 자릿수 전부»를 알아야 와일드카드 한도를 대안 전체에서 지킬 수 있다.
    */
-  loose?: (content: string) => boolean;
+  loose?: (content: string, alt: string) => boolean;
 };
+
+/**
+ * 발문의 와일드카드 수 — `\square`·`□` 낱개 + 「어떤 수」 는 **하나**로 친다.
+ *
+ * 「어떤 수」 는 역산형 심화의 산문 미지수다(g4 초4 1-3-2 실측: «어떤 수에 $41$을
+ * 곱해야 할 것을…» 의 어떤 수 = 439 가 세 자리 조건을 지키는데 발문엔 안 적힌다).
+ * □ 와 같은 자격, 같은 한도(하나만) — 원장님·리드 승인 2026-08-23.
+ */
+function wildcardsIn(c: string): number {
+  return (
+    (c.match(/\\square|□/g) ?? []).length + (c.includes("어떤 수") ? 1 : 0)
+  );
+}
+
+/** 자리수 범위 — «한/두/세 자리 수» (정수 문맥). */
+const DIGIT_RANGE: Record<string, [number, number]> = {
+  한: [1, 9],
+  두: [10, 99],
+  세: [100, 999],
+};
+
+/**
+ * 자리수 검사의 loose — 이 대안이 요구하는 자릿수들 중 발문에 없는 것 **전부**를
+ * 와일드카드가 덮어야 한다. 세 검사가 같은 식을 계산하므로 한도(□ 낱개 + 어떤 수 1)가
+ * 대안 전체에서 지켜진다 — 검사마다 따로 세면 와일드카드 하나가 두 번 쓰인다.
+ */
+function digitLoose(c: string, alt: string): boolean {
+  const wanted = [...alt.matchAll(/([한두세])\s*자리\s*수/g)].map((m) => m[1]!);
+  const missing = new Set(
+    wanted.filter((w) => {
+      const [lo, hi] = DIGIT_RANGE[w]!;
+      return !numbers(c).some((v) => Number.isInteger(v) && v >= lo && v <= hi);
+    }),
+  );
+  return missing.size <= wildcardsIn(c);
+}
 
 const notDecimalContext = (s: string) => !s.includes("소수");
 const decimalContext = (s: string) => s.includes("소수");
@@ -280,7 +319,8 @@ function kindsPresent(
   const wanted = new Set<Operand["kind"]>([left, right]);
   return (c) => {
     const have = kindCounts(c);
-    let wild = have.미지수;
+    // «어떤 수» 도 □ 와 같은 자격의 와일드카드다(하나만) — wildcardsIn 주석 참조.
+    let wild = wildcardsIn(c);
     for (const k of wanted) {
       if (have[k] > 0) continue;
       if (wild > 0) {
@@ -356,17 +396,20 @@ const CHECKS: Check[] = [
     ok: (c) =>
       numbers(c).some((v) => Number.isInteger(v) && v >= 100 && v <= 999),
     when: notDecimalContext,
+    loose: digitLoose,
   },
   {
     needle: "두 자리 수",
     ok: (c) =>
       numbers(c).some((v) => Number.isInteger(v) && v >= 10 && v <= 99),
     when: notDecimalContext,
+    loose: digitLoose,
   },
   {
     needle: "한 자리 수",
     ok: (c) => numbers(c).some((v) => Number.isInteger(v) && v >= 1 && v <= 9),
     when: notDecimalContext,
+    loose: digitLoose,
   },
   // 소수 문맥에서의 「N 자리 수」 — 자릿수가 아니라 **소수점 아래 자리**로 읽는다.
   // 소단원이 나열한 자리 **가운데 하나**면 통과. 나열이 하나뿐이면 그 하나를 요구하므로
@@ -839,6 +882,23 @@ const FIXTURES: Fixture[] = [
     loose: true,
     why: "문장형 — 식은 해설에서 읽는다",
   },
+
+  // ── «어떤 수» 와일드카드 (2026-08-23, g4 초4 1-3-2 심화 거짓 경보 40/40) ──
+  {
+    section: "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    content:
+      "어떤 수에 $41$을 곱해야 할 것을 잘못하여 $14$를 곱했더니 $6146$이 되었습니다. 바르게 계산한 값은 얼마입니까?",
+    want: true,
+    loose: true,
+    why: "«어떤 수»(=439)가 안 적힌 세 자리 몫을 갈음한다 — g4 심화 역산형 그대로",
+  },
+  {
+    section: "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    content: "$41$을 $14$배 한 값은 얼마입니까?",
+    want: false,
+    loose: true,
+    why: "«어떤 수»도 □ 도 없이 세 자리가 빠졌다 — 음성 대조",
+  },
 ];
 
 /**
@@ -864,7 +924,7 @@ function verdict(
   const seen: string[] = [];
   const pass = (c: Check, alt: string) =>
     c.ok(content, alt, solution) ||
-    (allowLoose && (c.loose?.(content) ?? false));
+    (allowLoose && (c.loose?.(content, alt) ?? false));
   for (const alt of section.split(/\s*,\s*/)) {
     const checks = CHECKS.filter(
       (c) => alt.includes(c.needle) && (c.when?.(section) ?? true),
@@ -875,6 +935,28 @@ function verdict(
       return { kind: "통과", needles: seen };
   }
   return { kind: seen.length > 0 ? "위반" : "미판정", needles: seen };
+}
+
+// ── 미커버 발견기 (2026-08-23) ────────────────────────────────────────────
+//
+// 초3 1-4(올림)·초4 1-3-5/6(몇십몇)이 **같은 무늬로** 침묵했다 — CHECKS 는 손 목록이라
+// 새고, 목록에 없는 부류는 영영 0 이다. 그래서 「이름이 조건을 약속하는데 검사가 하나도
+// 안 붙는 소단원」을 전수로 찍는다. **게이트가 아니라 빚 목록이다**(exit 코드 불변).
+//
+// ⚠️ 이 어휘 목록도 손 목록이다 — 여기 없는 조건어 부류는 발견기도 못 본다.
+// 그래도 「검사 없는 조건어」 한 층은 스스로 드러나게 된다(0 이면 0 이라고 찍는다).
+const CONDITION_VOCAB =
+  /받아올림|받아내림|올림|내림|버림|나누어떨어|나머지|자리 수|몇십몇|몇십|몇백|1보다 (?:작은|큰)|[이가] (?:없는|있는)/;
+
+/** 이 소단원에 실제로 붙는 검사 수 — when 게이트까지 통과한 것만 센다. */
+function attachedChecks(section: string): number {
+  let n = 0;
+  for (const alt of section.split(/\s*,\s*/)) {
+    n += CHECKS.filter(
+      (c) => alt.includes(c.needle) && (c.when?.(section) ?? true),
+    ).length;
+  }
+  return n;
 }
 
 if (process.argv.includes("--selftest")) {
@@ -893,12 +975,31 @@ if (process.argv.includes("--selftest")) {
       `  ${mark} ${f.want ? "통과해야" : "걸려야"}${f.loose ? " «문장형»" : ""} — ${f.why}\n       ${f.section}\n       ${f.content}`,
     );
   }
+  // 발견기 눈금 — 0 이 «깨끗»인지 «못 셈»인지 가르는 자리다. 미커버 양성은 일부러
+  // **가짜 이름**(받아내림 뺄셈 — 검사가 아직 없다)으로 만든다.
+  // ⚠️ 이름에 «(두 자리 수)» 를 넣으면 자리수 검사가 붙어 미커버가 아니게 된다 —
+  //    실측으로 걸렸다. 이것이 이 발견기의 한계이기도 하다: 검사가 **하나라도** 붙으면
+  //    빚 목록에서 빠지므로, 자리수만 커버되고 받아내림 약속은 침묵인 소단원은 못 본다.
+  const fake = "9-9-9 받아내림이 있는 뺄셈 알아보기";
+  for (const [why, got] of [
+    [
+      "발견기: 커버된 이름(초3 1-4-2)은 검사가 붙는다",
+      attachedChecks("1-4-2 올림이 없는 (몇십몇)×(몇)") > 0,
+    ],
+    [
+      "발견기: 미커버 양성(가짜 «받아내림») — 조건어인데 검사 0 이어야",
+      attachedChecks(fake) === 0 && CONDITION_VOCAB.test(fake),
+    ],
+  ] as const) {
+    if (!got) failed += 1;
+    console.log(`  ${got ? "✅" : "❌"} ${why}`);
+  }
   // 개수를 손으로 적으면 fixture 를 늘릴 때마다 거짓말이 된다 — 세어서 찍는다.
   const positives = FIXTURES.filter((f) => !f.want).length;
   const loose = FIXTURES.filter((f) => f.loose).length;
   console.log(
     failed === 0
-      ? `\n✅ 눈금 ${FIXTURES.length}건 전부 맞다 (양성 ${positives} · 음성 ${FIXTURES.length - positives} · 그중 문장형 ${loose})`
+      ? `\n✅ 눈금 ${FIXTURES.length}건 + 발견기 2건 전부 맞다 (양성 ${positives} · 음성 ${FIXTURES.length - positives} · 그중 문장형 ${loose})`
       : `\n❌ 눈금 ${failed}건 어긋남 — **가드를 믿을 수 없다**`,
   );
   process.exit(failed === 0 ? 0 : 1);
@@ -970,4 +1071,17 @@ if (unjudged.length > 0) {
   );
   for (const u of unjudged) console.log(`  · ${u}`);
 }
+
+// 미커버 발견기 — 게이트가 아니라 빚 목록이다(0 이어도 0 이라고 찍는다).
+const uncovered = units.filter(
+  (u) => CONDITION_VOCAB.test(u.section) && attachedChecks(u.section) === 0,
+);
+console.log(
+  `\n조건어 미커버 ${uncovered.length}건` +
+    (uncovered.length > 0
+      ? " — 이름이 조건을 약속하는데 검사가 하나도 안 붙는다(빚 목록, 게이트 아님):"
+      : ""),
+);
+for (const u of uncovered) console.log(`  · ${u.grade} ${u.section}`);
+
 process.exitCode = broken.length === 0 ? 0 : 1;
