@@ -137,7 +137,9 @@ type GridShape = {
   side?: string;
 };
 
-const SHAPE_LABELS = ["가", "나", "다"] as const;
+// ⚠️ 「라」는 1-2-2·1-2-3 심화가 **덧붙이는 사각형**의 기호이기도 하다. 그 두 함수는
+// 반드시 count ≤ 3 으로 부를 것 — 4개를 깔고 라를 또 붙이면 기호가 겹친다.
+const SHAPE_LABELS = ["가", "나", "다", "라"] as const;
 
 function onGrid(p: Pt, cols: number, rows: number): Pt {
   if (p[0] < 0 || p[0] > cols || p[1] < 0 || p[1] > rows) {
@@ -2119,7 +2121,8 @@ function angle122Calc(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 각 여러 개를 늘어놓고 **직각인 것의 수**를 함께 돌려준다. */
 function angleRow(rng: Rng, count: number, rightCount: number) {
-  const gap = count === 3 ? 4 : 5;
+  // 4개일 때도 간격 4 — 폭이 14로 rectRow(3개, 14)와 같은 상한이다. 2·3개는 예전 값 그대로.
+  const gap = count === 2 ? 5 : 4;
   const cols = (count - 1) * gap + 2;
   const rightSlots = new Set<number>();
   while (rightSlots.size < rightCount)
@@ -2179,8 +2182,12 @@ function angle122Word(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 3단 — 직각인 것과 아닌 것을 **각각 세고** 차를 구한다(두 단계). */
 function angle122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
-  const count = 3;
-  const rightCount = intBetween(rng, 1, 2);
+  // 「3도형 중 직각 1~2」로 고정하면 답이 늘 $1$ 이다(|1-2| — 씨앗 무관). 심화 상수답과
+  // 같은 부류라(g6 pyrFaceDeep, 7604dee6) **견주는 두 무리를 벌린다** — 도형 수 3·4 와
+  // 직각 수를 함께 흔들어 답이 $1$·$2$·$3$·$4$ 로 갈린다. 4도형에 직각 2는 차가 $0$ 이라
+  // 뽑는 범위에서 뺀다(답 $0$ 은 「차를 쓰시오」에 어색하다).
+  const count = intBetween(rng, 3, 4);
+  const rightCount = count === 3 ? pick(rng, [1, 2, 3]) : pick(rng, [1, 3, 4]);
   const row = angleRow(rng, count, rightCount);
   const other = count - rightCount;
   return make(
@@ -2196,7 +2203,11 @@ function angle122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
       `${row.labels.join(", ")} 에서 직각의 수가 직각이 아닌 각의 수보다 몇 개 많고 적은지 그 차를 쓰시오.`,
     ]),
     n(Math.abs(rightCount - other)),
-    `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, 나머지 ${n(other)}개는 직각이 아닙니다. ${expr(`${Math.max(rightCount, other)}-${Math.min(rightCount, other)}=${Math.abs(rightCount - other)}`)} 이므로 차는 ${n(Math.abs(rightCount - other))}개입니다.`,
+    `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, ${
+      other === 0
+        ? `직각이 아닌 각은 ${n(0)}개입니다.`
+        : `나머지 ${n(other)}개는 직각이 아닙니다.`
+    } ${expr(`${Math.max(rightCount, other)}-${Math.min(rightCount, other)}=${Math.abs(rightCount - other)}`)} 이므로 차는 ${n(Math.abs(rightCount - other))}개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -2582,6 +2593,448 @@ function sq125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 1-3 나눗셈 (D-72 확대) ────────────────────────────────────────────
+//
+// 나눗셈 도입 대단원 — 모든 나눗셈이 **곱셈구구 안**이다: 나누는 수·몫 2..9,
+// 나뉘는 수 ≤ 81, 나머지 없음(나머지는 2-2 가 맡는다). 표준 `division` 이
+// 소단원마다 한 틀뿐이므로 갈래 말투는 따로 둔다(1-2 와 같은 이유).
+//
+// 몫과 나누는 수가 같으면($25\div5$) 발문에 답이 보인다 — 표준의 회피 이유 그대로,
+// 여기서는 재추첨 가드가 아니라 **뽑는 범위에서** 뺀다(2-2-4 수리와 같은 태도).
+// 지면에 찍히는 **모든** 나눗셈이 몫≠나누는 수다 — 시험이 전 갈래에서 잠근다.
+
+/** 곱셈구구 안의 나눗셈 한 벌 — $a=b\times q$, $q\ne b$. */
+function divTriple(rng: Rng): { a: number; b: number; q: number } {
+  const b = intBetween(rng, 2, 9);
+  // 몫은 2..9 여덟 값에서 b 를 건너뛴다 — 2..8 로 뽑고 b 이상이면 한 칸 민다.
+  const qq = intBetween(rng, 2, 8);
+  const q = qq >= b ? qq + 1 : qq;
+  return { a: b * q, b, q };
+}
+
+/**
+ * 한 수를 서로 다른 두 수로 나누는 조합 — $a=b\times q_1=c\times q_2$, 넷 다 2..9,
+ * 두 나눗셈 모두 몫≠나누는 수. 심화 세 갈래(몫 비교·다시 담기·어떤 수)가
+ * **같은 풀 하나**를 쓴다 — 목록을 손으로 적지 않고 전수 열거로 만든다.
+ */
+function divCombos(): {
+  a: number;
+  b: number;
+  c: number;
+  q1: number;
+  q2: number;
+}[] {
+  const out: { a: number; b: number; c: number; q1: number; q2: number }[] = [];
+  for (let b = 2; b <= 9; b += 1) {
+    for (let q1 = 2; q1 <= 9; q1 += 1) {
+      if (q1 === b) continue;
+      const a = b * q1;
+      for (let c = 2; c <= 9; c += 1) {
+        if (c === b || a % c !== 0) continue;
+        const q2 = a / c;
+        if (q2 < 2 || q2 > 9 || q2 === c) continue;
+        // ⚠️ c 가 옛 몫과 같으면($a=b\times q_1=q_1\times b$) 새 몫이 옛 나누는 수 b 라서
+        //    **답이 발문에 그대로 보인다**(표본 눈검수 실측: 「4개씩 7묶음 → 7개씩?」의 답 4).
+        if (c === q1) continue;
+        out.push({ a, b, c, q1, q2 });
+      }
+    }
+  }
+  if (out.length === 0) throw new Error("나눗셈 조합 풀이 비었습니다");
+  return out;
+}
+
+const DIV_COMBOS = divCombos();
+/** 몫 비교용 — $b<c$ 면 몫의 차가 늘 양수라 「몇 개 더 많은가」가 선다. */
+const DIV_COMBOS_LT = DIV_COMBOS.filter((v) => v.b < v.c);
+if (DIV_COMBOS_LT.length === 0) throw new Error("나눗셈 비교 풀이 비었습니다");
+
+/** 등분 이야기 소재(1-3-1) — 사람·바구니에게 나눠 준다. */
+const SHARE_STUFF = [
+  "귤",
+  "구슬",
+  "색종이",
+  "딱지",
+  "연필",
+  "붙임딱지",
+  "초콜릿",
+  "지우개",
+] as const;
+
+/** 묶음 이야기 소재(1-3-3) — 봉지·상자에 «씩» 담는다. */
+const PACK_STUFF = [
+  "쿠키",
+  "사탕",
+  "도넛",
+  "방울토마토",
+  "클립",
+  "단추",
+  "젤리",
+  "빵",
+] as const;
+
+// ── 1-3-1 똑같이 나누기 ──
+
+/** 1단 — 식 그대로. 표준(사탕 묶음 그림 문장)과 겹치지 않게 식 틀만 따로 돌린다. */
+function div131Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `다음을 계산하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `나눗셈 ${expr(`${a}\\div${b}`)} 의 몫을 구하시오.`,
+    `${expr(`${a}\\div${b}`)} 의 값을 쓰시오.`,
+    `${expr(`\\square`)} 에 알맞은 수를 쓰시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `몫을 구하시오.\n\n${expr(`${a}\\div${b}`)}`,
+    `나눗셈식 ${expr(`${a}\\div${b}=\\square`)} 에서 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `다음 나눗셈의 몫을 쓰시오.\n\n${expr(`${a}\\div${b}`)}`,
+    `빈칸에 알맞은 수를 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 몫은 ${n(q)} 입니다.`,
+  );
+}
+
+/** 2단 — 등분 문장. 식은 학생이 세운다(발문에 나눗셈 기호가 없다). */
+function div131Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가지려고 합니다. 한 명이 몇 개씩 가지면 되는지 쓰시오.`,
+    `${thing} ${n(a)}개를 바구니 ${n(b)}개에 똑같이 나누어 담으면 한 바구니에 몇 개씩 담기는지 쓰시오.`,
+    `친구 ${n(b)}명이 ${thing} ${n(a)}개를 남김없이 똑같이 나누어 가졌습니다. 한 명이 가진 ${thing}${josa(thing, "은", "는")} 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 접시 ${n(b)}개에 남김없이 똑같이 나누어 놓으려고 합니다. 접시 한 개에 몇 개씩 놓아야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(a)}개를 ${n(b)}곳으로 똑같이 나누는 식은 ${expr(`${a}\\div${b}`)} 입니다. ${expr(`${a}\\div${b}=${q}`)} 이므로 한 곳에 ${n(q)}개씩입니다.`,
+  );
+}
+
+/** 3단 — 두 곳의 것을 **합친 뒤** 나눈다(두 단계). */
+function div131Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  // 「$1$개를 가져왔습니다」는 어색하다 — 두 몫 다 2개 이상으로 뽑는다(a ≥ 6 이라 늘 된다).
+  const x = intBetween(rng, 2, a - 2);
+  const y = a - x;
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `상자에 ${thing} ${n(x)}개, 주머니에 ${n(y)}개가 있습니다. 모두 모아 ${n(b)}명이 똑같이 나누어 가지면 한 명이 몇 개씩 가지는지 쓰시오.`,
+    `${thing}${josa(thing, "이", "가")} 책상 위에 ${n(x)}개, 서랍 안에 ${n(y)}개 있습니다. 전부 모아 ${n(b)}명이 똑같이 나누면 한 명의 몫은 몇 개인지 쓰시오.`,
+    `언니가 ${thing} ${n(x)}개, 동생이 ${n(y)}개를 가져왔습니다. 둘이 가져온 것을 모두 ${n(b)}명이 똑같이 나누어 가지면 한 명이 몇 개씩 받는지 쓰시오.`,
+    `${thing} ${n(x)}개가 든 봉지와 ${n(y)}개가 든 봉지가 있습니다. 두 봉지를 합쳐 ${n(b)}명에게 똑같이 나누어 주면 한 명에게 몇 개씩 줄 수 있는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `먼저 모두 모읍니다. ${expr(`${x}+${y}=${a}`)} 입니다. ${expr(`${a}\\div${b}=${q}`)} 이므로 한 명이 ${n(q)}개씩 가집니다.`,
+  );
+}
+
+/** 4단 — 조건 조합: 같은 것을 두 가지 수로 나눠 **몫을 견준다**. */
+function div131Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS_LT);
+  const d = q1 - q2;
+  const thing = pick(rng, SHARE_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 ${n(b)}명이 똑같이 나눌 때와 ${n(c)}명이 똑같이 나눌 때, 한 명이 가지는 개수의 차는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개가 있습니다. ${n(b)}명이 나누면 ${n(c)}명이 나눌 때보다 한 명이 몇 개 더 가지는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}묶음으로 나눌 때와 ${n(c)}묶음으로 나눌 때, 한 묶음의 개수는 몇 개 차이 나는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}명에게 똑같이 나누어 주다가, 마음을 바꿔 ${n(c)}명에게 똑같이 나누어 주었습니다. 한 명이 받는 개수가 몇 개 줄었는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(d),
+    // 발문이 명·묶음을 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${a}\\div${b}=${q1}`)} 이고 ${expr(`${a}\\div${c}=${q2}`)} 입니다. 한 몫의 차는 ${expr(`${q1}-${q2}=${d}`)} 이므로 ${n(d)}개입니다.`,
+  );
+}
+
+// ── 1-3-2 곱셈과 나눗셈의 관계 ──
+
+/** 1단 — 곱셈식 하나에서 나눗셈 몫을 바로 읽는다. 어느 쪽 수를 물을지도 갈래다. */
+function div132Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const askQ = intBetween(rng, 0, 1) === 0;
+  const div = askQ ? `${a}\\div${b}` : `${a}\\div${q}`;
+  const ans = askQ ? q : b;
+  const mul = expr(`${b}\\times${q}=${a}`);
+  const stem = pick(rng, [
+    `곱셈식이 ${mul} 일 때, ${expr(div)} 의 몫을 구하시오.`,
+    `${mul} 입니다. ${expr(div)} 의 값을 쓰시오.`,
+    `곱셈식 ${mul} 에서 만든 나눗셈식 ${expr(`${div}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${mul} 이므로 ${expr(div)} 의 몫을 바로 알 수 있습니다. 그 몫을 쓰시오.`,
+    `곱셈과 나눗셈의 관계를 이용하여 ${expr(div)} 의 몫을 구하시오. (${mul})`,
+    `${expr(`${div}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 곱셈식 ${mul} 에서 찾아 쓰시오.`,
+    `곱셈식 ${mul} 의 세 수로 나눗셈식을 만들면 ${expr(`${div}=\\square`)} 입니다. ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${mul} 에서 ${expr(div)} 의 몫을 찾아 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(ans),
+    `곱셈식과 나눗셈식은 같은 세 수를 씁니다. ${mul} 이므로 ${expr(`${div}=${ans}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 관계를 문장으로: 곱과 한 수를 알고 다른 수를 찾는다. */
+function div132Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `어떤 두 수의 곱이 ${n(a)} 입니다. 한 수가 ${n(b)} 일 때 다른 한 수를 쓰시오.`,
+    `${n(b)} 에 어떤 수를 곱한 결과가 ${n(a)} 입니다. 어떤 수를 쓰시오.`,
+    `어떤 수와 ${n(b)} 의 곱이 ${n(a)} 입니다. 어떤 수를 구하시오.`,
+    `곱이 ${n(a)} 인 두 수 중에서 한 수가 ${n(b)} 입니다. 나머지 한 수를 쓰시오.`,
+    `수 카드 두 장의 수를 곱했더니 ${n(a)} 입니다. 한 장의 수가 ${n(b)} 일 때 다른 한 장의 수를 쓰시오.`,
+    `${n(b)} 씩 몇 묶음을 모았더니 모두 ${n(a)}개입니다. 몇 묶음인지 쓰시오.`,
+    `한 봉지에 ${n(b)}개씩 들어 있는 과자 몇 봉지가 모두 ${n(a)}개입니다. 몇 봉지인지 쓰시오.`,
+    `${n(b)}명이 똑같이 나누어 가진 구슬이 모두 ${n(a)}개입니다. 한 명이 가진 구슬은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `곱하는 수는 나눗셈으로 구합니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 곱셈식 하나에서 나눗셈식 **둘**을 만들어 두 몫을 더한다(두 단계). */
+function div132Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const s = q + b;
+  const mul = expr(`${b}\\times${q}=${a}`);
+  // ⚠️ 발문에 `$a\div b$ 의 몫` 을 인라인하지 않는다 — 산술 판독기가 그 식을 «값 질문»으로
+  //    읽어 합(答)과 어긋난다고 봤다(실측: 씨앗 5/8). 나눗셈식은 학생이 만들게 두는 쪽이
+  //    3단 취지에도 맞다.
+  const stem = pick(rng, [
+    `곱셈식 ${mul} 에서 나눗셈식 두 개를 만들 수 있습니다. 두 나눗셈식의 몫의 합을 쓰시오.`,
+    `${mul} 에서 만들 수 있는 나눗셈식 두 개의 몫을 더한 값을 쓰시오.`,
+    `곱셈식 ${mul} 의 세 수로 나눗셈식 두 개를 만들고, 그 두 몫의 합을 구하시오.`,
+    `${mul} 입니다. 이 곱셈식에서 나온 나눗셈식 두 개의 몫을 더하면 얼마인지 쓰시오.`,
+    `곱셈식 ${mul} 에서 나눗셈식 두 개를 만들고, 두 몫을 더한 값을 구하시오.`,
+    `${mul} 에서 나온 두 나눗셈식의 몫을 모두 더하면 얼마인지 쓰시오.`,
+    `곱셈식이 ${mul} 일 때, 만들 수 있는 나눗셈식 두 개의 몫의 합을 구하시오.`,
+    `${mul} 의 세 수로 만들 수 있는 나눗셈식 두 개의 몫의 합을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(s),
+    `${expr(`${a}\\div${b}=${q}`)} 이고 ${expr(`${a}\\div${q}=${b}`)} 입니다. ${expr(`${q}+${b}=${s}`)} 이므로 합은 ${n(s)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 둘: 「나눠야 할 것을 잘못 뺐다」와 「나누는 수 되짚기」. */
+function div132Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const x = a - b;
+    const stem = pick(rng, [
+      `어떤 수를 ${n(b)} 씩 똑같이 나누어야 하는데 잘못하여 ${n(b)} 만큼 뺐더니 결과가 ${n(x)} 입니다. 바르게 계산한 몫을 쓰시오.`,
+      `어떤 수에서 ${n(b)} 만큼 빼면 ${n(x)} 입니다. 이 어떤 수를 ${n(b)} 씩 나누면 몫이 얼마인지 쓰시오.`,
+      `${n(b)} 씩 나누어야 할 수에서 잘못하여 ${n(b)} 만큼 뺐더니 ${n(x)} 만 남았습니다. 바르게 나눈 몫을 쓰시오.`,
+      `어떤 수를 ${n(b)} 씩 나누는 대신 ${n(b)} 만큼 빼는 실수를 했더니 결과가 ${n(x)} 입니다. 바르게 계산했을 때의 몫을 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q),
+      `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `${n(a)}개를 몇 명이 똑같이 나누었더니 한 명이 ${n(q)}개씩 가졌습니다. 몇 명이 나누었는지 쓰시오.`,
+    `나뉘는 수가 ${n(a)}, 몫이 ${n(q)} 인 나눗셈식이 있습니다. 나누는 수를 쓰시오.`,
+    `구슬 ${n(a)}개를 똑같이 나누어 담았더니 주머니마다 ${n(q)}개씩 꼭 맞게 들어갔습니다. 주머니는 몇 개인지 쓰시오.`,
+    `사탕 ${n(a)}개를 접시마다 ${n(q)}개씩 나누어 놓았더니 남는 것이 없었습니다. 접시는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b),
+    // 발문이 명·주머니·접시·나눗셈식을 오가므로 「구하는 수」로 고정한다.
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 구하는 수는 ${n(b)} 입니다. 검산하면 ${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+// ── 1-3-3 나눗셈의 몫을 곱셈식으로 구하기 ──
+
+/** 1단 — $b\times\square=a$ 꼴에서 몫을 읽는다. 표준($\square\times b$)과 자리를 바꿔 둔다. */
+function div133Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const box = expr(`${b}\\times\\square=${a}`);
+  const dv = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${box} 의 ${expr(`\\square`)} 에 알맞은 수를 구하여 ${dv} 의 몫을 쓰시오.`,
+    `곱셈식 ${box} 에서 ${dv} 의 몫을 구하시오.`,
+    `${dv} 의 몫은 ${box} 의 ${expr(`\\square`)} 입니다. 그 수를 쓰시오.`,
+    `${expr(`${b}\\times${q}=${a}`)} 입니다. ${dv} 의 몫을 쓰시오.`,
+    `곱셈식을 이용하여 ${dv} 의 몫을 구하시오.`,
+    `${expr(`${a}\\div${b}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 ${box} 에서 찾아 쓰시오.`,
+    `나눗셈 ${dv} 의 몫을 곱셈식으로 구하려고 합니다. ${box} 의 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${dv} 의 몫을 구하는 곱셈식은 ${box} 입니다. 몫을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «씩 담기» 문장. 몇 묶음인지 곱셈식으로 찾는다. */
+function div133Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 봉지 한 개에 ${n(b)}개씩 담으려고 합니다. 봉지는 몇 개 필요한지 쓰시오.`,
+    `${thing} ${n(a)}개를 한 접시에 ${n(b)}개씩 나누어 담으면 접시 몇 개에 담을 수 있는지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}개씩 묶으면 몇 묶음이 되는지 쓰시오.`,
+    `상자 한 개에 ${thing}${josa(thing, "을", "를")} ${n(b)}개씩 담아 모두 ${n(a)}개를 담으려고 합니다. 상자는 몇 개 있어야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}개씩 몇 묶음이 ${n(a)}개가 되는지 곱셈식으로 찾습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 나눠 담고 나서 **몇 묶음을 덜어낸다**(두 단계). */
+function div133Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, q - 1);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing} ${n(a)}개를 한 봉지에 ${n(b)}개씩 모두 담은 뒤, 그중 ${n(c)}봉지를 이웃에게 주었습니다. 남은 봉지는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 ${n(b)}개씩 묶어 묶음을 만들고, ${n(c)}묶음을 동생에게 주면 몇 묶음이 남는지 쓰시오.`,
+    `${thing} ${n(a)}개를 접시 한 개에 ${n(b)}개씩 담았습니다. 그중 ${n(c)}접시를 손님상에 내면 남는 접시는 몇 개인지 쓰시오.`,
+    `${thing} ${n(a)}개를 상자 한 개에 ${n(b)}개씩 담아 두었다가 ${n(c)}상자를 팔았습니다. 남은 상자는 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    // 발문이 봉지·묶음·접시·상자를 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다. 여기서 ${expr(`${q}-${c}=${q - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산+조합: 담긴 수로 **전체를 되짚고** 다른 크기로 다시 담는다. */
+function div133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS);
+  const thing = pick(rng, PACK_STUFF);
+  const stem = pick(rng, [
+    `${thing}${josa(thing, "을", "를")} 한 봉지에 ${n(b)}개씩 담았더니 남김없이 ${n(q1)}봉지가 되었습니다. 다시 한 봉지에 ${n(c)}개씩 담으면 몇 봉지가 되는지 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} ${n(b)}개씩 묶었더니 꼭 ${n(q1)}묶음이었습니다. 같은 ${thing}${josa(thing, "을", "를")} ${n(c)}개씩 다시 묶으면 몇 묶음인지 쓰시오.`,
+    `한 상자에 ${n(b)}개씩 ${n(q1)}상자에 꼭 맞게 담긴 ${thing}${josa(thing, "이", "가")} 있습니다. 이것을 한 상자에 ${n(c)}개씩 옮겨 담으면 상자 몇 개가 되는지 쓰시오.`,
+    `${thing} 전부를 ${n(b)}개씩 담아 ${n(q1)}봉지를 만들었습니다. 처음부터 ${n(c)}개씩 담았다면 몇 봉지가 되었을지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q2),
+    `먼저 전체 수를 되짚습니다. ${expr(`${b}\\times${q1}=${a}`)} 이므로 모두 ${n(a)}개입니다. ${expr(`${a}\\div${c}=${q2}`)} 입니다.`,
+  );
+}
+
+// ── 1-3-4 나눗셈의 몫을 곱셈구구로 구하기 ──
+
+/** 1단 — 구구단 이름을 앞세운 식 틀. 표준(「곱셈구구로 구하시오」 한 틀)과 갈라 둔다. */
+function div134Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const dv = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${n(b)}단 곱셈구구를 이용하여 ${dv} 의 몫을 구하시오.`,
+    `${n(b)}단 곱셈구구에서 곱이 ${n(a)} 인 곱셈식을 찾아 ${dv} 의 몫을 쓰시오.`,
+    `곱셈구구를 이용하여 다음 나눗셈의 몫을 구하시오.\n\n${dv}`,
+    `${expr(`${a}\\div${b}=\\square`)} 의 ${expr(`\\square`)} 에 알맞은 수를 ${n(b)}단 곱셈구구에서 찾아 쓰시오.`,
+    `${n(b)}단 곱셈구구를 떠올려 ${dv} 의 값을 쓰시오.`,
+    `곱셈구구로 다음을 계산하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times\\square=${a}`)} 의 ${expr(`\\square`)} 에 알맞은 수를 찾아 몫을 쓰시오.`,
+    `다음 나눗셈의 몫을 곱셈구구에서 찾아 쓰시오.\n\n${dv}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «씩» 반복 문장(읽기·자르기·마시기). 구구단으로 몫을 찾는다. */
+function div134Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const stem = pick(rng, [
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 며칠 만에 다 읽는지 쓰시오.`,
+    `길이가 ${n(a)} cm 인 색 테이프를 ${n(b)} cm 씩 자르면 몇 도막이 되는지 쓰시오.`,
+    `우유 ${n(a)}컵을 하루에 ${n(b)}컵씩 마시면 며칠 동안 마실 수 있는지 쓰시오.`,
+    `계단 ${n(a)}칸을 한 번에 ${n(b)}칸씩 오르면 몇 번 만에 다 오르는지 쓰시오.`,
+    `구슬 ${n(a)}개를 한 줄에 ${n(b)}개씩 꿰면 몇 줄이 되는지 쓰시오.`,
+    `문제집 ${n(a)}문제를 하루에 ${n(b)}문제씩 풀면 며칠 만에 다 푸는지 쓰시오.`,
+    `색종이 ${n(a)}장을 한 사람에게 ${n(b)}장씩 주면 몇 명에게 줄 수 있는지 쓰시오.`,
+    `쌓기나무 ${n(a)}개로 한 층에 ${n(b)}개씩 쌓으면 몇 층이 되는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${n(b)}단 곱셈구구에서 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 몫을 구하고 **거기에 더한다**(두 단계). */
+function div134Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, 5);
+  const [p1, p2] = pick(rng, [
+    ["동화책", "위인전"],
+    ["만화책", "과학책"],
+    ["동시집", "소설책"],
+    ["그림책", "역사책"],
+  ] as const);
+  const stem = pick(rng, [
+    `${p1} ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽습니다. ${p2}${josa(p2, "은", "는")} ${p1}보다 ${n(c)}일 더 걸립니다. ${p2}${josa(p2, "을", "를")} 다 읽는 데 며칠 걸리는지 쓰시오.`,
+    `${p1} ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽어 다 읽었습니다. ${p2}${josa(p2, "은", "는")} 그보다 ${n(c)}일 더 걸렸습니다. ${p2}${josa(p2, "은", "는")} 며칠 만에 다 읽었는지 쓰시오.`,
+    `하루에 ${n(b)}쪽씩 ${p1} ${n(a)}쪽을 다 읽은 뒤, ${n(c)}일 더 걸려 ${p2}${josa(p2, "을", "를")} 마쳤습니다. ${p2}${josa(p2, "을", "를")} 읽는 데 걸린 날수를 쓰시오.`,
+    `${p1} ${n(a)}쪽은 하루 ${n(b)}쪽씩 읽어 며칠 만에 끝냈고, ${p2}${josa(p2, "은", "는")} 그보다 ${n(c)}일이 더 걸렸습니다. ${p2}에 걸린 날수는 며칠인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q + c),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${p1}${josa(p1, "은", "는")} ${n(q)}일 걸립니다. ${expr(`${q}+${c}=${q + c}`)} 이므로 ${p2}${josa(p2, "은", "는")} ${n(q + c)}일 걸립니다.`,
+  );
+}
+
+/** 4단 — «어떤 수» 두 겹: 묶음 수로 어떤 수를 되짚고, 다른 크기로 다시 묶는다. */
+function div134Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS);
+  const boxEq = expr(`\\square\\div${b}=${q1}`);
+  const stem = pick(rng, [
+    `어떤 수를 ${n(b)} 씩 묶었더니 남김없이 ${n(q1)} 묶음이 되었습니다. 같은 수를 ${n(c)} 씩 묶으면 몇 묶음이 되는지 쓰시오.`,
+    `어떤 수를 ${n(b)} 씩 덜어 내면 꼭 ${n(q1)} 번 만에 없어집니다. 같은 수를 ${n(c)} 씩 덜어 내면 몇 번 만에 없어지는지 쓰시오.`,
+    `나누는 수가 ${n(b)} 이고 몫이 ${n(q1)} 인 나눗셈이 있습니다. 나뉘는 수는 그대로 두고 나누는 수만 ${n(c)} 이라고 하면 몫이 얼마인지 쓰시오.`,
+    `나눗셈의 몫이 ${n(q1)}, 나누는 수가 ${n(b)} 입니다. 나뉘는 수를 먼저 구하고, 그 수를 ${n(c)} 씩 나누었을 때의 몫을 쓰시오.`,
+    `${boxEq} 에서 ${expr(`\\square`)} 에 알맞은 수를 찾고, 그 수를 ${n(c)} 씩 묶으면 몇 묶음인지 쓰시오.`,
+    `${boxEq} 의 ${expr(`\\square`)} 에 알맞은 수를 구한 다음, 같은 수를 ${n(c)} 씩 덜어 내면 몇 번 만에 없어지는지 쓰시오.`,
+    `곱셈구구로 ${boxEq} 의 ${expr(`\\square`)} 에 알맞은 수를 구하고, 이어서 그 수를 ${n(c)} 씩 나눈 몫을 쓰시오.`,
+    `어떤 수는 ${n(b)} 단 곱셈구구의 값이고, ${boxEq} 의 ${expr(`\\square`)} 입니다. 이 수를 ${n(c)} 씩 나눈 몫을 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q2),
+    // 발문이 묶음·번·몫을 오가므로 해설은 단위 낱말을 고정하지 않는다.
+    `${expr(`${b}\\times${q1}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. ${expr(`${a}\\div${c}=${q2}`)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -2616,6 +3069,30 @@ export const G3_TIERS: ElemTierMap = {
     기본: sq125Word,
     응용: sq125Apply,
     심화: sq125Deep,
+  },
+  "초3|1-3-1": {
+    연산: div131Calc,
+    기본: div131Word,
+    응용: div131Apply,
+    심화: div131Deep,
+  },
+  "초3|1-3-2": {
+    연산: div132Calc,
+    기본: div132Word,
+    응용: div132Apply,
+    심화: div132Deep,
+  },
+  "초3|1-3-3": {
+    연산: div133Calc,
+    기본: div133Word,
+    응용: div133Apply,
+    심화: div133Deep,
+  },
+  "초3|1-3-4": {
+    연산: div134Calc,
+    기본: div134Word,
+    응용: div134Apply,
+    심화: div134Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,

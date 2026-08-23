@@ -402,6 +402,7 @@ function isSquare(g: { pts: XY[] }): boolean {
 }
 
 const PLANE = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5"] as const;
+const DIVISION = ["1-3-1", "1-3-2", "1-3-3", "1-3-4"] as const;
 
 function planeUnit(code: string) {
   return elementaryUnits().find(
@@ -618,6 +619,20 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     }
   });
 
+  it("1-2-2 응용의 답이 씨앗에 따라 갈린다 — 상수답 금지", () => {
+    // 예전엔 «3도형 중 직각 1~2» 구조라 답이 씨앗 무관 늘 $1$ 이었다(|1-2|).
+    // g6 pyrFaceDeep 상수답(7604dee6)과 같은 부류 — 도형 수·직각 수를 벌린 약속을 잠근다.
+    const answers = new Set<number>();
+    for (let seed = 0; seed < 40; seed += 1) {
+      answers.add(
+        answerOf(
+          generateElementaryProblem(planeUnit("1-2-2"), seed, "응용").answer,
+        ),
+      );
+    }
+    expect(answers.size, [...answers].join(",")).toBeGreaterThanOrEqual(3);
+  });
+
   it("1-2-4 «표준»도 직사각형을 낸다 — 개명(직각삼각형→직사각형)이 표준 경로까지 닿는다", () => {
     // 갈래 키(`초3|1-2-4`)는 소단원 **번호**라 units.ts 이름이 되돌아가도 갈래는 멀쩡하다.
     // 이름이 가르는 것은 **표준 라우팅**(plane) 하나뿐이므로, 여기를 안 잠그면
@@ -702,8 +717,8 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
     // 같은 발문을 내는 것을 판정기가 잡았는데, 나머지 셋도 같은 자리가 있었고
     // 씨앗이 안 맞아 안 걸렸을 뿐이다 — 여기서 씨앗을 넓혀 잠근다.
     const bad: string[] = [];
-    // 1-1(계산)까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
-    for (const code of [...CODES, ...PLANE]) {
+    // 1-1(계산)·1-3(나눗셈)까지 함께 본다 — 같은 함정이 어느 대단원에서나 난다.
+    for (const code of [...CODES, ...PLANE, ...DIVISION]) {
       for (const seed of SEEDS) {
         const plain = generateElementaryProblem(planeUnit(code), seed).content;
         const seen = new Map<string, string>();
@@ -784,5 +799,274 @@ describe("[초3 표준] 2-2-4 (세 자리 수)÷(한 자리 수)", () => {
       expect(a % b, `seed ${seed}: 나누어떨어지지 않는다`).toBe(0);
       expect(answerOf(p.answer), `seed ${seed}`).toBe(a / b);
     }
+  });
+});
+
+/**
+ * 초3 1-3 나눗셈 4단 확대 (D-72) — 네 소단원 전부.
+ *
+ * 나눗셈 도입 대단원의 약속: 모든 나눗셈이 **곱셈구구 안**(나누는 수·몫 2..9, 나뉘는 수
+ * ≤ 81, 나머지 없음)이고, 지면의 어느 나눗셈도 **몫과 나누는 수가 같지 않다**
+ * (같으면 발문에 답이 보인다 — 표준 `division` 의 회피 이유 그대로).
+ * 참은 해설에 실제로 찍힌 식에서 온다 — 생성기의 범위 상수를 다시 부르지 않는다.
+ */
+
+/** 해설의 사칙 스텝을 나온 순서대로 — `$A÷B=C$`·`$A×B=C$`·`$A±B=C$`. */
+function divSteps(
+  solution: string,
+): { a: number; op: "+" | "-" | "×" | "÷"; b: number; c: number }[] {
+  return [
+    ...solution.matchAll(/\$(\d+)(\\times|\\div|\+|-)(\d+)=(\d+)\$/g),
+  ].map((m) => ({
+    a: Number(m[1]),
+    op:
+      m[2] === "\\times"
+        ? ("×" as const)
+        : m[2] === "\\div"
+          ? ("÷" as const)
+          : (m[2] as "+" | "-"),
+    b: Number(m[3]),
+    c: Number(m[4]),
+  }));
+}
+
+describe("[초3 4단] 1-3 나눗셈 — 네 소단원", () => {
+  it("네 소단원이 네 갈래를 전부 낸다", () => {
+    for (const code of DIVISION) {
+      expect(supportedTiers(planeUnit(code)), code).toEqual(ELEM_TIERS);
+    }
+  });
+
+  it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        const a = generateElementaryProblem(planeUnit(code), 4242, tier);
+        const b = generateElementaryProblem(planeUnit(code), 4242, tier);
+        expect(a.content, `${code} ${tier}`).toBe(b.content);
+        expect(a.answer, `${code} ${tier}`).toBe(b.answer);
+        expect(a.solution, `${code} ${tier}`).toBe(b.solution);
+      }
+    }
+  });
+
+  it("해설의 모든 셈이 맞고, 나눗셈은 곱셈구구 안이며 몫≠나누는 수다", () => {
+    const bad: string[] = [];
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const st = divSteps(p.solution);
+          expect(
+            st.length,
+            `${code} ${tier} seed ${seed}: 해설에 식이 없다`,
+          ).toBeGreaterThan(0);
+          for (const s of st) {
+            const want =
+              s.op === "+"
+                ? s.a + s.b
+                : s.op === "-"
+                  ? s.a - s.b
+                  : s.op === "×"
+                    ? s.a * s.b
+                    : s.a / s.b;
+            if (want !== s.c)
+              bad.push(
+                `${code} ${tier} seed ${seed}: ${s.a}${s.op}${s.b}=${s.c} (참 ${want})`,
+              );
+            if (s.op === "÷") {
+              if (s.b < 2 || s.b > 9 || s.c < 2 || s.c > 9 || s.a > 81)
+                bad.push(
+                  `${code} ${tier} seed ${seed}: ${s.a}÷${s.b}=${s.c} — 곱셈구구 밖`,
+                );
+              if (s.c === s.b)
+                bad.push(
+                  `${code} ${tier} seed ${seed}: ${s.a}÷${s.b} — 몫과 나누는 수가 같다`,
+                );
+            }
+            if (s.op === "×" && (s.a < 2 || s.a > 9 || s.b < 2 || s.b > 9))
+              bad.push(
+                `${code} ${tier} seed ${seed}: ${s.a}×${s.b} — 곱셈구구 밖`,
+              );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("정답은 해설의 마지막 «곱셈 아닌» 스텝의 값과 같다", () => {
+    // 곱셈 스텝은 되짚기·검산이라 답이 아니다 — 나눗셈·덧뺄셈의 마지막 값이 곧 답이어야
+    // 「되짚지 않고 그대로 답한다」는 훼손이 침묵으로 지나가지 않는다(1-2-5 와 같은 자리).
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          const nonMul = divSteps(p.solution).filter((s) => s.op !== "×");
+          expect(
+            nonMul.length,
+            `${code} ${tier} seed ${seed}: 곱셈뿐인 해설`,
+          ).toBeGreaterThan(0);
+          expect(
+            answerOf(p.answer),
+            `${code} ${tier} seed ${seed}: ${p.solution}`,
+          ).toBe(nonMul[nonMul.length - 1]!.c);
+        }
+      }
+    }
+  });
+
+  it("모든 갈래의 답이 $1$ 이상이다 — 「남은 것 $0$개」류 함정을 내지 않는다", () => {
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          expect(
+            answerOf(p.answer),
+            `${code} ${tier} seed ${seed}: ${p.content}`,
+          ).toBeGreaterThanOrEqual(1);
+        }
+      }
+    }
+  });
+
+  it("1-3-3·1-3-4 심화 — 다시 나누는 수가 처음 몫과 다르다(답이 발문에 보이면 안 된다)", () => {
+    // $a=b\times q_1$ 에서 새 나누는 수 c 가 옛 몫 $q_1$ 이면 새 몫이 옛 나누는 수 b 다 —
+    // 「$4$개씩 $7$묶음 → $7$개씩 몇 묶음?」의 답 $4$ 가 발문에 그대로 보인다(표본 실측).
+    for (const code of ["1-3-3", "1-3-4"] as const) {
+      for (const seed of SEEDS) {
+        const st = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "심화").solution,
+        );
+        const mul = st.find((s) => s.op === "×")!;
+        const div = st.find((s) => s.op === "÷")!;
+        expect(mul, `${code} seed ${seed}: 되짚는 곱셈이 없다`).toBeTruthy();
+        expect(
+          div,
+          `${code} seed ${seed}: 다시 나누는 스텝이 없다`,
+        ).toBeTruthy();
+        expect(div.b, `${code} seed ${seed}: c 가 옛 몫과 같다`).not.toBe(
+          mul.b,
+        );
+        expect(div.c, `${code} seed ${seed}: 새 몫이 옛 나누는 수다`).not.toBe(
+          mul.a,
+        );
+      }
+    }
+  });
+
+  it("D-72 축 — 1단 나눗셈 한 번 · 2단 문장 · 3단 이어지는 두 단계 · 4단 되짚기·조합", () => {
+    for (const code of DIVISION) {
+      for (const seed of SEEDS) {
+        // 1단: 나눗셈 스텝이 정확히 하나, 덧뺄셈은 없다(곱셈은 «관계» 소단원의 본질이라 허용).
+        const calc = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "연산").solution,
+        );
+        expect(
+          calc.filter((s) => s.op === "÷").length,
+          `${code} 연산 seed ${seed}`,
+        ).toBe(1);
+        expect(
+          calc.filter((s) => s.op === "+" || s.op === "-").length,
+          `${code} 연산 seed ${seed}`,
+        ).toBe(0);
+
+        // 2단: 발문이 문장이다 — 식 기호가 없다.
+        const word = generateElementaryProblem(planeUnit(code), seed, "기본");
+        expect(word.content, `${code} 기본 seed ${seed}`).not.toMatch(
+          /\\div|\\times|\\square/,
+        );
+
+        // 3단: 두 단계 이상이고, 앞 스텝의 결과가 뒤 스텝에 들어간다.
+        const apply = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "응용").solution,
+        );
+        expect(
+          apply.length,
+          `${code} 응용 seed ${seed}`,
+        ).toBeGreaterThanOrEqual(2);
+        expect(
+          apply.some((s, i) =>
+            apply.slice(i + 1).some((t) => t.a === s.c || t.b === s.c),
+          ),
+          `${code} 응용 seed ${seed}: 중간값이 안 이어진다`,
+        ).toBe(true);
+
+        // 4단: 되짚는 곱셈·덧셈이 있거나, 나눗셈이 두 번(조건 조합)이다.
+        const deep = divSteps(
+          generateElementaryProblem(planeUnit(code), seed, "심화").solution,
+        );
+        expect(
+          deep.some((s) => s.op === "×" || s.op === "+") ||
+            deep.filter((s) => s.op === "÷").length >= 2,
+          `${code} 심화 seed ${seed}: 되짚는 스텝이 없다`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        const stems = new Set<string>();
+        for (let seed = 0; seed < 240; seed += 1) {
+          stems.add(
+            generateElementaryProblem(
+              planeUnit(code),
+              seed,
+              tier,
+            ).content.replace(/\$[^$]*\$/g, "#"),
+          );
+        }
+        expect(stems.size, `${code} ${tier} 변형 공간`).toBeGreaterThanOrEqual(
+          8,
+        );
+      }
+    }
+  });
+
+  it("네 갈래 발문 틀이 서로 갈린다", () => {
+    for (const code of DIVISION) {
+      for (const seed of SEEDS) {
+        const stems = ELEM_TIERS.map((t) =>
+          generateElementaryProblem(planeUnit(code), seed, t).content.replace(
+            /\$[^$]*\$/g,
+            "#",
+          ),
+        );
+        expect(
+          new Set(stems).size,
+          `${code} seed ${seed}: ${stems.join(" | ")}`,
+        ).toBe(4);
+      }
+    }
+  });
+
+  it("모든 갈래의 수가 KaTeX 안에 있고, 수 뒤에 조사를 붙이지 않는다", () => {
+    const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
+    const bad: string[] = [];
+    for (const code of DIVISION) {
+      for (const tier of ELEM_TIERS) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(planeUnit(code), seed, tier);
+          for (const [label, text] of [
+            ["발문", p.content],
+            ["정답", p.answer],
+            ["해설", p.solution],
+          ] as const) {
+            const outside = text.replace(/\$[^$]*\$/g, " ").match(/\d+/g);
+            if (outside)
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: 날 숫자 ${outside.join(",")}`,
+              );
+            if (risk.test(text) && !/\\mathrm/.test(text)) {
+              bad.push(
+                `${code} ${tier} seed ${seed} ${label}: ${text.match(risk)![0]}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
   });
 });
