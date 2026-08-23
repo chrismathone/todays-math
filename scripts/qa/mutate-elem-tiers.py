@@ -580,6 +580,41 @@ G5_MUTS = [
         "`□ 안에 알맞은 자연수를 구하시오.  ${expr(`\\\\square\\\\times${dec(t, 1)}=${dec(k * t, 1)}`)}`,",
         "`□ 안에 알맞은 소수를 구하시오.  ${expr(`${k}\\\\times\\\\square=${dec(k * t, 1)}`)}`,",
     ),
+    # ── 11차분 (2-6 평균과 가능성) ──
+    (
+        # 인원이 같으면 «평균을 더해 2로 나누기»가 **정답과 같아진다** — 값 검산은 그때도 초록이다.
+        "평균의 평균 — 2-6-1 심화의 두 모둠 인원이 같아져 오개념을 안 가른다",
+        "  const n2 = pick(\n    rng,\n    [2, 3, 4, 5].filter((v) => v !== n1),\n  );",
+        "  const n2 = n1;",
+    ),
+    (
+        # 평균도 답도 맞다. 세상에 없는 값인 것만 틀렸다 — 산술 검산이 구조적으로 못 본다.
+        "음수 자료 — 2-6-1 기본의 치우침이 평균보다 커져 「$-3$ 쪽을 읽었다」가 나온다",
+        "  const values = aroundMean(rng, avg, 5, 3);",
+        "  const values = aroundMean(rng, avg, 5, 12);",
+    ),
+    (
+        "경계 훼손 — 2-6-1 응용이 평균과 «같은» 날도 «많은» 날로 센다",
+        "  const overs = values.filter((v) => v > avg);",
+        "  const overs = values.filter((v) => v >= avg);",
+    ),
+    (
+        # 빨강을 넣는 것과 전체를 늘리는 것이 갈리지 않는다. 값은 여전히 «한 답»에 맞는다.
+        "모호해짐 — 2-6-3 심화가 «무엇을 더하는지» 안 정해 답이 둘이 된다",
+        "이 주머니에 빨간 구슬만 더 넣어,",
+        "이 주머니에 구슬을 더 넣어,",
+    ),
+    (
+        # 「적어도 몇 점 더」인데 목표가 지금보다 낮으면 답이 음수가 되어 물음이 무너진다.
+        "역산 훼손 — 2-6-2 심화의 목표 평균이 지금 평균보다 낮아진다",
+        "  const m = intBetween(rng, 2, 3);\n  const t = a + intBetween(rng, 1, 3);\n  const need = t * (k + m) - a * k;",
+        "  const m = intBetween(rng, 2, 3);\n  const t = a - intBetween(rng, 1, 3);\n  const need = t * (k + m) - a * k;",
+    ),
+    (
+        "여집합 훼손 — 2-6-3 응용이 «아닌 것» 대신 빨간 구슬을 센다",
+        "  const [num, den] = simplify(yellow, total);",
+        "  const [num, den] = simplify(red, total);",
+    ),
     (
         "진분수 약속 훼손 — 2-2-3 에 대분수가 든다 (소단원 이름)",
         "`계산하시오.  ${expr(`\\\\frac{${a}}{${d}}\\\\times\\\\frac{${b}}{${e}}`)}`,",
@@ -911,14 +946,14 @@ G4_MUTS = [
         "  return gap > 0;",
     ),
     (
-        "2-4-4 4단 훼손 — 평행한 두 변의 차를 홀수도 뽑는다(짧은 변이 자연수가 아니다)",
-        "    Array.from({ length: leg - 1 }, (_, i) => (i + 1) * 2).filter((g) =>",
-        "    Array.from({ length: leg * 2 - 1 }, (_, i) => i + 1).filter((g) =>",
+        "2-4-4 4단 훼손 — 사다리꼴 걸름을 지운다(차가 두 다리의 합을 넘는다)",
+        "    Array.from({ length: leg + 3 }, (_, i) => (i + 1) * 2).filter((g) =>\n      isTrapezoid(short, short + g, leg, leg),\n    ),",
+        "    Array.from({ length: leg + 3 }, (_, i) => (i + 1) * 2),",
     ),
     (
-        "2-4-6 2단 훼손 — 두 도형의 합이 같은 짝도 뽑는다(«더 긴 쪽»이 없다)",
-        "    Array.from({ length: 12 }, (_, i) => i + 4).filter(\n      (v) => v * 3 !== rhombus * 4,\n    ),",
-        "    Array.from({ length: 12 }, (_, i) => i + 4),",
+        "2-4-6 2단 훼손 — 더 긴 쪽을 거꾸로 고른다",
+        "  const bigger = rhombus * 4 > triangle * 3 ? \"마름모\" : \"정삼각형\";",
+        "  const bigger = rhombus * 4 > triangle * 3 ? \"정삼각형\" : \"마름모\";",
     ),
     (
         "2-4-7 4단 훼손 — 합의 차가 $4$의 배수가 아니어도 된다(한 변이 자연수가 아니다)",
@@ -1025,6 +1060,9 @@ TARGETS = {
             "2-4-3",
             "2-4-5",
             "2-4-7",
+            "2-6-1",
+            "2-6-2",
+            "2-6-3",
         ],
         "muts": G5_MUTS,
     },

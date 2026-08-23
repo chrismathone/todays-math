@@ -4478,6 +4478,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier237Apply,
     심화: tier237Deep,
   },
+  "초4|2-4-4": {
+    연산: tier244Calc,
+    기본: tier244Basic,
+    응용: tier244Apply,
+    심화: tier244Deep,
+  },
+  "초4|2-4-6": {
+    연산: tier246Calc,
+    기본: tier246Basic,
+    응용: tier246Apply,
+    심화: tier246Deep,
+  },
+  "초4|2-4-7": {
+    연산: tier247Calc,
+    기본: tier247Basic,
+    응용: tier247Apply,
+    심화: tier247Deep,
+  },
   "초4|2-5-1": {
     연산: tier251Calc,
     기본: tier251Basic,
@@ -7883,6 +7901,388 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
 
   return noBranch(unit);
 }
+
+/* ──────────── 2-4 난이도 4단 (D-72 확대, 2026-08-23) ────────────
+ *
+ * **사각형 소단원도 1단은 「성질 한 번 적용」이다**(2-2 와 같은 자리, D-72 ⑶).
+ *
+ * ⚠️ **표준 2-4-5(평행사변형)를 피해서 짰다.** 그 소단원이 「한 각이 $N$ 도 → 이웃한 각 /
+ * 마주 보는 각」과 「이웃한 두 변 → 네 변의 합」을 이미 쓴다. 마름모도 그 성질을
+ * 물려받으므로 2-4-6 에 각 갈래를 넣으면 **낱말만 바뀐 같은 문형**이 나란히 선다.
+ * R5 시험은 **소단원 안에서만** 견주므로 이 겹침을 구조적으로 못 본다 —
+ * 그래서 2-4-6 은 **변 축**(마름모 자신의 정의)으로만 간다.
+ *
+ * ⚠️ **「A는 B라고 할 수 있는가? 예/아니요」 문형은 한 갈래도 안 만든다.** 표준
+ * 2-4-4·2-4-7 이 그 문형을 셋 쓴다. 낱말만 바꾸면 R5 가 말하는 「상수만 바꾼 것」이다.
+ * 2-4-7 1단을 **개수 세기**로 돌린 것이 그 때문이다 — 같은 개념을 묻되 문형이 다르고,
+ * 「예/아니요」는 찍어도 절반이라 그 자체로 약한 문형이다(리드 확인 2026-08-23).
+ *
+ * ⚠️ **철사·끈 맥락을 안 쓴다.** 2-2-3(정삼각형) 3·4단이 이미 그 소재라 한 시험지에
+ * 나란히 서면 같은 문형이 된다.
+ *
+ * 「네 변의 길이의 합」은 둘레 **공식**이 아니라 덧셈·곱셈이라 초4 범위 안으로 본다 —
+ * 표준이 이미 세 자리에서 그렇게 쓰고 있다(평행사변형·마름모·정사각형).
+ *
+ * ⚠️ **그림은 아직 안 붙였다.** `namedShapes` 로 되는 소단원이지만 엔진의 «그린 도형이
+ * 라벨과 무관하게 고정» 결함이 안 고쳐졌다(실측 2026-08-23: `[5,5,9]` 도 `[7,7,4]` 와
+ * 똑같이 그려진다). 그림 세션이 **「값을 적으면 던지게」**를 넣는 중이고, 그게 서면
+ * 실수로 치수를 적어도 조용히 안 나간다. **그때 얹는다**(리드 판단 2026-08-23).
+ */
+
+/** 사다리꼴 소재 — 「평행한 두 변」이 실제로 있는 물건. */
+const TRAP_ITEMS = ["밭", "화단", "표지판", "창문"] as const;
+
+/**
+ * 그 네 변으로 **사다리꼴이 실제로 그려지는가.**
+ *
+ * 평행한 두 변의 **차**를 밑변으로 삼고 평행하지 않은 두 변을 두 변으로 하는 삼각형이
+ * 서야 한다 — 그래서 조건이 `|a-b| < 긴 변 − 짧은 변 < a+b` 다(삼각형 부등식 그대로).
+ *
+ * ⚠️ **`isTriangle` 과 똑같은 부류의 결함을 여기서도 냈다.** 첫 판이 네 변을 따로따로
+ * 뽑아 `11, 4, 14, 8` 을 냈다 — 평행한 두 변의 차가 $3$ 인데 나머지 두 변의 차가 $4$ 라
+ * **그런 사다리꼴은 없다.** 네 수의 합도 맞고 「한 쌍만 평행」도 맞아 **값 검산으로는
+ * 안 잡힌다.** 존재하지 않는 도형일 뿐이다. 판정을 갈래마다 적지 않고 **여기 한 곳**에 둔다.
+ *
+ * 초4 는 이 조건을 배우지 않으므로 학생이 가려낼 수도 없다 — 우리가 안 내는 수밖에 없다.
+ */
+function isTrapezoid(
+  short: number,
+  long: number,
+  legA: number,
+  legB: number,
+): boolean {
+  const gap = long - short;
+  return gap > 0 && Math.abs(legA - legB) < gap && gap < legA + legB;
+}
+
+/**
+ * 사다리꼴 네 변 — **평행한 두 변**(길이가 다르다)과 평행하지 않은 두 변.
+ *
+ * 평행한 두 변이 같으면 평행사변형이 되어 「한 쌍만 평행」이 거짓이 되므로 **다르게** 뽑고,
+ * 차는 `isTrapezoid` 가 허락하는 폭에서만 고른다 — 뽑고 거르지 않고 **못 뽑을 자리를
+ * 안 만든다**. 두 변의 차가 $0$ 이면(둘이 같으면) 차가 $1$ 부터 서므로 늘 하나는 있다.
+ */
+function trapSides(rng: Rng): {
+  short: number;
+  long: number;
+  legA: number;
+  legB: number;
+} {
+  const legA = intBetween(rng, 3, 10);
+  const legB = intBetween(rng, 3, 10);
+  const short = intBetween(rng, 4, 11);
+  const gap = pick(
+    rng,
+    Array.from({ length: legA + legB - 1 }, (_, i) => i + 1).filter((g) =>
+      isTrapezoid(short, short + g, legA, legB),
+    ),
+  );
+  return { short, long: short + gap, legA, legB };
+}
+
+/** **2-4-4 1단 — 네 변의 합.** 평행한 두 변을 발문이 짚어 소단원 약속이 지면에 남는다. */
+function tier244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, TRAP_ITEMS);
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 평행한 두 변의 길이가 ` +
+      `${cm(short)}, ${cm(long)}이고 나머지 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
+      `네 변의 길이의 합은 몇 cm인가?`,
+    cm(total),
+    `${expr(`${short}+${long}+${legA}+${legB}=${total}`)} 이므로 ${cm(total)}입니다.`,
+  );
+}
+
+/** **2-4-4 2단 — 이름을 «판별하고» 재기.** 표준은 이름만 묻는다. */
+function tier244Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `어떤 사각형은 마주 보는 두 변 중 한 쌍만 서로 평행합니다. 이 사각형의 이름을 쓰고, ` +
+      `네 변의 길이가 ${cm(short)}, ${cm(legA)}, ${cm(long)}, ${cm(legB)}일 때 ` +
+      `네 변의 길이의 합을 구하시오.`,
+    `사다리꼴, ${cm(total)}`,
+    `평행한 변이 한 쌍이라도 있는 사각형은 사다리꼴입니다. ` +
+      `${expr(`${short}+${legA}+${long}+${legB}=${total}`)} 이므로 ${cm(total)}입니다.`,
+  );
+}
+
+/** **2-4-4 3단 — 평행한 두 변의 «합».** 중간값은 평행하지 않은 두 변의 합이다. */
+function tier244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, TRAP_ITEMS);
+  const { short, long, legA, legB } = trapSides(rng);
+  const total = short + long + legA + legB;
+  return make(
+    unit,
+    `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ${cm(total)}이고, ` +
+      `평행하지 않은 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
+      `평행한 두 변의 길이의 합은 몇 cm인가?`,
+    cm(short + long),
+    `평행하지 않은 두 변의 길이의 합은 ${expr(`${legA}+${legB}=${legA + legB}`)} 입니다. ` +
+      `${expr(`${total}-${legA + legB}=${short + long}`)} 이므로 ${cm(short + long)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-4 4단 — 세 조건을 엮어 긴 변을 찾는다.**
+ *
+ * 네 변의 합에서 평행하지 않은 두 변을 빼면 평행한 두 변의 합이고, 거기에 «차»가
+ * 있어야 각각이 정해진다. 짧은 변을 $\square$ 로 두면
+ * `□ + (□ + 차) = 평행한 두 변의 합` 이다.
+ */
+function tier244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const short = intBetween(rng, 4, 12);
+  const leg = intBetween(rng, 3, 10);
+  // 평행하지 않은 두 변이 **같으므로** 두 변의 차가 $0$ 이고, 조건은 `0 < 차 < 2×다리` 다.
+  //
+  // ⚠️ **첫 판은 후보를 `2×(다리−1)` 까지만 만들어 걸름이 아무것도 안 걸렀다.** 그러면
+  // 그 `filter` 는 **장식**이고, 지워도 아무 일이 없다(변이가 초록으로 그것을 짚어 줬다).
+  // 후보를 조건 밖까지 만들어 **걸름이 실제로 일하게** 한다.
+  // (그리고 첫 판 주석은 「짝수라야 짧은 변이 자연수」라고 적었는데 **틀렸다** —
+  //  짧은 변을 먼저 뽑으므로 차의 홀짝은 아무것도 안 바꾼다. 짝수만 쓰는 까닭은
+  //  해설의 `□×2 = 합 − 차` 가 눈에 익은 꼴로 남게 하려는 것뿐이다.)
+  const gap = pick(
+    rng,
+    Array.from({ length: leg + 3 }, (_, i) => (i + 1) * 2).filter((g) =>
+      isTrapezoid(short, short + g, leg, leg),
+    ),
+  );
+  const long = short + gap;
+  const total = short + long + leg * 2;
+  return make(
+    unit,
+    `사다리꼴의 네 변의 길이의 합이 ${cm(total)}입니다. 평행하지 않은 두 변의 길이는 ` +
+      `각각 ${cm(leg)}로 같고, 평행한 두 변 중 긴 변은 짧은 변보다 ${cm(gap)} 깁니다. ` +
+      `긴 변의 길이는 몇 cm인가?`,
+    cm(long),
+    `평행한 두 변의 길이의 합은 ${expr(`${total}-${leg}-${leg}=${short + long}`)} 입니다. ` +
+      `짧은 변을 ${expr("\\square")}라고 하면 ` +
+      `${expr(`\\square+(\\square+${gap})=${short + long}`)} 이므로 ` +
+      `${expr(`\\square\\times2=${short + long}-${gap}=${short * 2}`)} 이고 ` +
+      `짧은 변은 ${cm(short)}입니다. 긴 변은 ${expr(`${short}+${gap}=${long}`)} 입니다.`,
+  );
+}
+
+/** 마름모 모양으로 나올 만한 물건. 수만으로는 변형이 열둘뿐이라 소재로 넓힌다. */
+const RHOMBUS_ITEMS = ["연", "타일", "장식", "무늬"] as const;
+
+/** **2-4-6 1단 — 네 변의 합에서 한 변으로.** 표준은 한 변→합, 여기는 **역방향**이다. */
+function tier246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, RHOMBUS_ITEMS);
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `마름모 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ` +
+      `${cm(side * 4)}일 때 한 변의 길이는 몇 cm인가?`,
+    cm(side),
+    `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side * 4}\\div4=${side}`)} 입니다.`,
+  );
+}
+
+/** **2-4-6 2단 — 두 도형을 재어 견준다.** 각각은 한 단계이고 판단이 하나 더 있다. */
+function tier246Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rhombus = intBetween(rng, 4, 12);
+  // 두 합이 같으면 「더 긴 쪽」이 없다 — 그런 짝을 **아예 안 뽑는다**.
+  const triangle = pick(
+    rng,
+    Array.from({ length: 12 }, (_, i) => i + 4).filter(
+      (v) => v * 3 !== rhombus * 4,
+    ),
+  );
+  const bigger = rhombus * 4 > triangle * 3 ? "마름모" : "정삼각형";
+  return make(
+    unit,
+    `한 변의 길이가 ${cm(rhombus)}인 마름모와 한 변의 길이가 ${cm(triangle)}인 정삼각형이 ` +
+      `있습니다. 두 도형 중 모든 변의 길이의 합이 더 긴 것은 무엇인가?`,
+    bigger,
+    `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${rhombus}\\times4=${rhombus * 4}`)}, ` +
+      `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${triangle}\\times3=${triangle * 3}`)} 입니다. ` +
+      `${expr(`${Math.max(rhombus * 4, triangle * 3)}>${Math.min(rhombus * 4, triangle * 3)}`)} 이므로 ` +
+      `${bigger}입니다.`,
+  );
+}
+
+/** **2-4-6 3단 — 마름모의 한 변을 거쳐 정삼각형으로.** 중간값은 그 한 변이다. */
+function tier246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `마름모의 네 변의 길이의 합이 ${cm(side * 4)}입니다. 이 마름모의 한 변과 길이가 같은 ` +
+      `변을 가진 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+    cm(side * 3),
+    `마름모의 한 변은 ${expr(`${side * 4}\\div4=${side}`)} 입니다. ` +
+      `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${side}\\times3=${side * 3}`)} 입니다.`,
+  );
+}
+
+/**
+ * **2-4-6 4단 — 늘인 뒤의 합에서 처음 한 변을 되짚는다.**
+ *
+ * ⚠️ **첫 판은 «늘인 뒤의 합을 구하기»(정방향)였다.** 그러면 「네 변이 각각 $\square$ 씩
+ * 늘었으니 합이 $\square\times4$ 만큼 는다」는 **지름길**이 있어 한 단계로 끝난다 —
+ * 4단이 3단보다 가벼워지는 자리다(리드가 미리 짚었고, 초6 2-5-3·2-5-4 가 오늘 같은
+ * 이유로 고쳐졌다). 방향을 뒤집으니 지름길이 사라지고 4단 표지(역산)도 선다.
+ */
+function tier246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 5, 14);
+  const more = intBetween(rng, 2, 6);
+  const grown = (side + more) * 4;
+  return make(
+    unit,
+    `어떤 마름모의 각 변을 ${cm(more)}씩 늘여 새로운 마름모를 만들었더니 ` +
+      `네 변의 길이의 합이 ${cm(grown)}가 되었습니다. ` +
+      `처음 마름모의 한 변의 길이는 몇 cm인가?`,
+    cm(side),
+    `새로운 마름모의 한 변은 ${expr(`${grown}\\div4=${side + more}`)} 입니다. ` +
+      `각 변을 ${cm(more)}씩 늘인 것이므로 처음 마름모의 한 변은 ` +
+      `${expr(`${side + more}-${more}=${side}`)} 입니다.`,
+  );
+}
+
+/** 사각형 이름과 그것이 «무엇이라고도 할 수 있는지». 포함 관계의 정본이다. */
+const QUAD_KINDS = [
+  { name: "정사각형", also: ["사다리꼴", "평행사변형", "마름모", "직사각형"] },
+  { name: "마름모", also: ["사다리꼴", "평행사변형"] },
+  { name: "직사각형", also: ["사다리꼴", "평행사변형"] },
+  { name: "평행사변형", also: ["사다리꼴"] },
+] as const;
+
+/** 낱말 목록을 「가, 나, 다가」처럼 잇는다 — 마지막 낱말에만 조사를 붙인다. */
+function listWithJosa(
+  words: readonly string[],
+  withEnd: string,
+  withoutEnd: string,
+): string {
+  const last = words[words.length - 1]!;
+  const head = words.slice(0, -1);
+  return head.length > 0
+    ? `${head.join(", ")}, ${josa(last, withEnd, withoutEnd)}`
+    : josa(last, withEnd, withoutEnd);
+}
+
+/**
+ * **2-4-7 1단 — 포함 관계를 «세거나 대거나».**
+ *
+ * ⚠️ 표준이 「A는 B라고 할 수 있는가? 예/아니요」를 **셋** 쓴다. 낱말만 바꾸면
+ * 「상수만 바꾼 것은 같은 문항」(R5)이 된다. 같은 개념을 묻되 **개수**와 **이름**으로
+ * 돌렸다 — 찍을 수 없고, 답이 $4$·$2$·$1$ 로 갈린다.
+ *
+ * 이 소단원은 관계가 알맹이라 수가 안 나온다. 그래서 변형은 **주어 넷 × 묻는 방식 둘**
+ * 로 낸다 — 수를 억지로 끼워 넣어 변형을 부풀리지 않는다(안 쓰는 수는 함정일 뿐이다).
+ */
+function tier247Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const q = pick(rng, QUAD_KINDS);
+  const others = ["사다리꼴", "평행사변형", "마름모", "직사각형"].filter(
+    (v) => v !== q.name,
+  );
+  const asksCount = intBetween(rng, 0, 1) === 0;
+  const why = `${josa(q.name, "은", "는")} ${listWithJosa(q.also, "이", "가")} 될 수 있습니다.`;
+  return make(
+    unit,
+    `${josa(q.name, "은", "는")} ${others.join(", ")} 중에서 ` +
+      (asksCount
+        ? "몇 가지라고 할 수 있는가?"
+        : "무엇이라고도 할 수 있는가? 모두 쓰시오."),
+    asksCount ? `${n(q.also.length)}가지` : q.also.join(", "),
+    asksCount ? `${why} 그러므로 ${n(q.also.length)}가지입니다.` : why,
+  );
+}
+
+/**
+ * 조건으로 이름이 **하나로** 정해지는 짝.
+ *
+ * ⚠️ **포함 관계 때문에 «가진 성질»만 나열하면 답이 하나로 안 정해진다.** 첫 판이
+ * 「마주 보는 두 쌍의 변이 평행하고 이웃한 두 변의 길이가 다르다 → 평행사변형」이었는데,
+ * **직사각형도 그 둘을 다 만족한다**(가로세로가 다른 직사각형). 「네 변의 길이가 모두
+ * 같다 → 마름모」도 정사각형이 걸린다. 그래서 **«아닌 것»을 함께 말해** 좁힌다.
+ */
+const QUAD_CLUES = [
+  {
+    has: "네 변의 길이가 모두 같",
+    not: "네 각의 크기는 모두 같지 않습니다",
+    name: "마름모",
+    why: "네 변의 길이가 모두 같은 사각형은 마름모이고, 그중 네 각까지 같은 것이 정사각형입니다",
+  },
+  {
+    has: "네 각의 크기가 모두 같",
+    not: "네 변의 길이는 모두 같지 않습니다",
+    name: "직사각형",
+    why: "네 각의 크기가 모두 같은 사각형은 직사각형이고, 그중 네 변까지 같은 것이 정사각형입니다",
+  },
+  {
+    has: "마주 보는 두 쌍의 변이 서로 평행하",
+    not: "네 변의 길이도 네 각의 크기도 모두 같지는 않습니다",
+    name: "평행사변형",
+    why: "마주 보는 두 쌍의 변이 평행한 사각형은 평행사변형이고, 그중 네 변이 같으면 마름모, 네 각이 같으면 직사각형입니다",
+  },
+  {
+    has: "마주 보는 한 쌍의 변만 서로 평행하",
+    not: "다른 한 쌍의 변은 서로 평행하지 않습니다",
+    name: "사다리꼴",
+    why: "평행한 변이 한 쌍이라도 있으면 사다리꼴이고, 두 쌍이 모두 평행하면 평행사변형입니다",
+  },
+] as const;
+
+/** **2-4-7 2단 — 「가진 것」과 「아닌 것」으로 이름을 좁힌다.** 표준은 정의만 묻는다. */
+function tier247Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, QUAD_CLUES);
+  const asksName = intBetween(rng, 0, 1) === 0;
+  const stem = `어떤 사각형은 ${c.has}지만 ${c.not}.`;
+  return make(
+    unit,
+    asksName
+      ? `${stem} 이 사각형의 이름을 쓰시오.`
+      : `${stem} 이 사각형을 무엇이라고 하는지 쓰시오.`,
+    c.name,
+    `${c.why}. 그러므로 이 사각형은 ${c.name}입니다.`,
+  );
+}
+
+/** **2-4-7 3단 — 이름을 가린 뒤 한 변까지.** 판별이 서야 계산이 선다. */
+function tier247Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `어떤 사각형은 네 변의 길이가 모두 같고 네 각의 크기도 모두 같습니다. ` +
+      `이 사각형의 네 변의 길이의 합이 ${cm(side * 4)}일 때, ` +
+      `이 사각형의 이름과 한 변의 길이를 각각 구하시오.`,
+    `정사각형, ${cm(side)}`,
+    `네 각의 크기가 모두 같은 사각형은 직사각형이고, 네 변의 길이까지 같으므로 정사각형입니다. ` +
+      `${expr(`${side * 4}\\div4=${side}`)} 이므로 한 변은 ${cm(side)}입니다.`,
+  );
+}
+
+/**
+ * **2-4-7 4단 — 반례 조건 + 다른 도형을 거쳐 되짚는다.**
+ *
+ * 「네 변의 길이가 모두 같다」만으로는 마름모와 정사각형이 안 갈린다 — 「한 각이
+ * $90^\circ$ 가 **아니다**」가 정사각형을 지운다(포함 관계의 **경계**).
+ * 그 위에 「어떤 마름모보다 $\square$ cm 더 길다」가 얹혀 세 단계가 된다:
+ * 그 마름모의 합을 구하고 → 차를 더해 이 사각형의 합을 얻고 → $4$ 로 나눈다.
+ * 3단이 「조건 → 이름 → $\div4$」 두 단계인 자리와 이렇게 갈린다.
+ */
+function tier247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const other = intBetween(rng, 4, 12);
+  const gap = intBetween(rng, 1, 8) * 4; // 합의 차가 $4$의 배수라야 한 변이 자연수다
+  const side = other + gap / 4;
+  return make(
+    unit,
+    `어떤 사각형은 네 변의 길이가 모두 같고, 한 각의 크기가 ${deg(90)}가 아닙니다. ` +
+      `이 사각형의 네 변의 길이의 합은 한 변이 ${cm(other)}인 마름모의 네 변의 길이의 ` +
+      `합보다 ${cm(gap)} 더 깁니다. 이 사각형의 이름과 한 변의 길이를 각각 구하시오.`,
+    `마름모, ${cm(side)}`,
+    `네 변의 길이가 모두 같은 사각형은 마름모입니다. 그중 네 각이 모두 ${deg(90)}인 것이 ` +
+      `정사각형인데 한 각이 ${deg(90)}가 아니므로 정사각형은 아닙니다. ` +
+      `한 변이 ${cm(other)}인 마름모의 네 변의 길이의 합은 ` +
+      `${expr(`${other}\\times4=${other * 4}`)} 이므로 이 사각형의 네 변의 길이의 합은 ` +
+      `${expr(`${other * 4}+${gap}=${side * 4}`)} 입니다. ` +
+      `${expr(`${side * 4}\\div4=${side}`)} 이므로 한 변은 ${cm(side)}입니다.`,
+  );
+}
+
 /* ─────────────────────── 2-5 꺾은선그래프 ─────────────────────── */
 
 type TimeLabel = { text: string; math: string };

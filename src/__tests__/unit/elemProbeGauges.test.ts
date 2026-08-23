@@ -16,7 +16,11 @@
  *
  * ⑴ 각 판정기의 `--selftest` 를 **실제로 돌린다**(exit ≠ 0 이면 빨강).
  *    판정기가 **죽어도** 0 이 아니다 — 「깨끗함」과 「판정 못 함」이 안 갈리면 안 된다.
- * ⑵ **눈금 건수의 하한**을 박는다. 줄면 판정기가 조용히 약해진 것이다.
+ * ⑵ **눈금 건수를 «정확히»** 박는다 — **하한이 아니다.**
+ *    하한이면 「74 이상」이 「107 이 74 로 줄어도 초록」과 같은 말이라 **여유가 곧
+ *    사각지대**가 된다. 「늘렸으면 하한도 올린다」는 **사람이 기억할 일**이고, 그 사람이
+ *    잊는 날 여유가 다시 생긴다. 그래서 **늘려도 빨개지게** 한다 — 한 줄 고치는 대가로
+ *    눈금이 조용히 마르는 일이 **구조적으로** 사라진다 (2026-08-23 리드 판단).
  * ⑶ 요약이 말하는 수를 **그냥 믿지 않는다** — 실제로 찍힌 판정 줄(`✅`/`❌`)을 세어
  *    요약 수보다 적지 않은지 본다. 요약 수를 손으로 적어 두면 눈금을 늘려도 그 숫자가
  *    그대로라 거짓말이 된다(실제로 이 저장소에서 8 → 10 일 때 라벨이 「양성 2·음성 6」
@@ -43,13 +47,17 @@ const execFileAsync = promisify(execFile);
 const QA_DIR = path.join(process.cwd(), "scripts", "qa");
 
 /**
- * 눈금을 가진 판정기와 **그 하한**. 실측(2026-08-23)으로 박았다 — 줄이려면 일부러 줄이는
- * 것이므로 이 수도 같이 고쳐야 한다.
+ * 판정기와 **그 눈금 수 — «정확히»**. 실측(2026-08-23)으로 박았다.
+ *
+ * ⚠️ **판정기 일곱은 각각 다른 세션 소유다.** 그래서 이 시험은 **남의 차분에서도**
+ * 빨개진다. 그건 결함이 아니라 이 시험이 하는 일이다 — 실패 문구를
+ * 「너의 변경이 잘못됐다」가 아니라 **「수를 갱신하라」**로 쓴 까닭이 그것이다.
+ * **거짓 경보로 읽히면 그 시험이 꺼진다.**
  */
-const GAUGED: [name: string, floor: number][] = [
+const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-josa-source", 10],
   ["probe-elem-rules", 23],
-  ["probe-elem-section-conditions", 74],
+  ["probe-elem-section-conditions", 111],
   ["probe-elem-equations", 25],
   ["probe-elem-arithmetic", 44],
   ["probe-elem-routing", 4],
@@ -135,8 +143,8 @@ describe("[초등 판정기] 눈금이 자동으로 돈다", () => {
     expect(onDisk.length, "판정기를 하나도 못 찾았다").toBeGreaterThan(5);
   });
 
-  for (const [name, floor] of GAUGED) {
-    it(`${name} — 눈금이 통과하고 건수가 ${floor} 아래로 안 내려간다`, () => {
+  for (const [name, gauges] of GAUGED) {
+    it(`${name} — 눈금이 통과하고 건수가 정확히 ${gauges} 다`, () => {
       const out = results.get(name);
       expect(out, `${name} 를 못 돌렸다 — 결과가 없다`).toBeDefined();
       if (!out) return;
@@ -151,8 +159,12 @@ describe("[초등 판정기] 눈금이 자동으로 돈다", () => {
       const reported = Number(m![1]);
       expect(
         reported,
-        "눈금 건수가 줄었다 — 판정기가 조용히 약해졌다",
-      ).toBeGreaterThanOrEqual(floor);
+        `${name} 눈금이 ${gauges} → ${reported} 다.
+` +
+          `   늘린 것이 맞으면 elemProbeGauges 의 이 수를 ${reported} 로 고쳐라.
+` +
+          `   줄인 것이면 왜 줄였는지부터 보라 — 눈금은 재현율의 분모다.`,
+      ).toBe(gauges);
 
       // 요약이 말하는 수를 **그냥 믿지 않는다** — 실제 판정 줄을 센다.
       const verdicts = out.text
