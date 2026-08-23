@@ -14,6 +14,7 @@ import {
   FIGURE_SVG_PAIR_MM,
   figureSvgFrameClass,
   figureSvgSize,
+  figureSvgViewBoxWidth,
 } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 
@@ -2271,10 +2272,14 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
     );
     expect(py).toMatch(new RegExp(`PAIR_FRAME_MM = ${FIGURE_SVG_PAIR_MM}\\.0`));
     // 프레임 클래스도 같은 수여야 한다(문자열이라 따로 샌다).
-    expect(figureSvgFrameClass('<svg viewBox="0 0 405 206">')).toContain(
+    // ⚠️ 등급은 이제 **폭이 아니라 표식**으로 정한다(2026-08-23) — 종전에는 여기에
+    //    `viewBox 405` 를 넣었는데, 그 폭이 380 을 넘는 짝만 걸려서 **실제 짝 53장 중
+    //    17장(32%)이 mid 로 떨어지고 있었다.** 폭을 넣으면 그 결함이 되살아난다.
+    const pairSvg = '<svg viewBox="0 0 405 206"><desc>chartPair</desc>';
+    expect(figureSvgFrameClass(pairSvg)).toContain(
       `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
     );
-    expect(figureSvgFrameClass('<svg viewBox="0 0 405 206">')).toContain(
+    expect(figureSvgFrameClass(pairSvg)).toContain(
       `print:max-w-[${FIGURE_SVG_PAIR_MM}mm]`,
     );
   });
@@ -3119,3 +3124,81 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     );
   });
 });
+
+/* ── 짝의 화면 폭 등급 — 파이썬과 TS 를 **잇는** 확인 (2026-08-23, elem-figures) ──
+ *
+ * `figureSvgFrame.test.ts` 는 순수 함수만 본다(문자열을 손으로 만든다). 그것만으로는
+ * **「엔진이 실제로 그 표식을 심는가」**를 못 본다 — 한쪽만 고쳐도 초록이다.
+ * 여기서는 진짜로 렌더해서 잇는다.
+ */
+describe.skipIf(!hasEngine)(
+  "[초등 그림] 그래프 짝은 지면에서 pair 등급이다",
+  () => {
+    const pair = (labels: string[]) => ({
+      version: "elem-1",
+      kind: "chartPair",
+      charts: [
+        {
+          kind: "barChart",
+          orient: "horizontal",
+          title: "팔린 수",
+          yMax: 40,
+          yStep: 10,
+          yLabel: "(개)",
+          values: labels.map((l, i) => ({ label: l, value: (i + 1) * 10 })),
+        },
+        {
+          kind: "barChart",
+          title: "값",
+          yMax: 800,
+          yStep: 100,
+          yLabel: "(원)",
+          values: labels.map((l, i) => ({ label: l, value: (i + 1) * 100 })),
+        },
+      ],
+    });
+
+    it("엔진이 표식을 심고, 지면이 그것을 보고 pair 로 보낸다", async () => {
+      const r = await renderFigureSpec(
+        pair(["딸기", "멜론", "초코", "바닐라"]),
+      );
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 파이썬이 심는다 (`sanitize_svg` 가 desc 를 통과시키되 속성은 안 받는다)
+      expect(r.svg).toContain("<desc>chartPair</desc>");
+      // TS 가 그것을 본다
+      expect(figureSvgSize(r.svg)).toBe("pair");
+      expect(figureSvgFrameClass(r.svg)).toContain(
+        `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
+      );
+    });
+
+    it("**좁은 짝**도 pair 다 — 폭으로 가르면 놓치는 자리", async () => {
+      // 항목이 둘뿐이라 좁다. 종전 규칙(viewBox > 380)이면 mid/wide 로 떨어진다.
+      const r = await renderFigureSpec(pair(["딸기", "멜론"]));
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      const width = figureSvgViewBoxWidth(r.svg)!;
+      expect(width, "좁은 짝의 viewBox").toBeLessThan(380);
+      expect(figureSvgSize(r.svg), `viewBox ${width}`).toBe("pair");
+    });
+
+    it("**음성 대조군** — 단독 그래프는 표식이 없고 pair 도 아니다", async () => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "barChart",
+        yMax: 40,
+        yStep: 10,
+        yLabel: "(개)",
+        values: [
+          { label: "딸기", value: 10 },
+          { label: "멜론", value: 40 },
+        ],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(r.svg).not.toContain("<desc>");
+      expect(figureSvgSize(r.svg)).not.toBe("pair");
+    });
+  },
+);

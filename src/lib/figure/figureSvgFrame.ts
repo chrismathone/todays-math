@@ -29,12 +29,45 @@ export const FIGURE_SVG_MID_VIEWBOX = 320;
  *    실제로 그려지는 폭은 여기가 정한다. 어긋나면 **가드가 통과시킨 그림이 지면에서
  *    작아진다.** `elementaryFigure.test.ts` 가 두 파일의 숫자를 대조한다.
  *
- * 띠를 380 부터 잡은 이유: 지금 나오는 그림 중 가장 넓은 것이 336(`pills`)이라
- * **이 띠는 오늘 비어 있다** — 짝 말고는 등급이 안 바뀐다(실측 확인, 시험이 잠근다).
+ * ~~띠를 380 부터 잡은 이유: 지금 나오는 그림 중 가장 넓은 것이 336(`pills`)이라
+ * 이 띠는 오늘 비어 있다 — 짝 말고는 등급이 안 바뀐다(실측 확인, 시험이 잠근다).~~
+ *
+ * 🔴 **위 실측이 낡아서 그 예언이 그대로 실현됐다** (2026-08-23).
+ *    같은 문단이 「어긋나면 **가드가 통과시킨 그림이 지면에서 작아진다**」고 경고했는데
+ *    바로 그 일이 났다. 짝의 실제 viewBox 는 **273.21~359.61** 로 **380 을 한 번도
+ *    안 넘어서** `pair` 등급이 **구조적으로 0**이었다. 파이썬은 `PAIR_FRAME_PX`(364)로
+ *    「눈금 글자가 본문 이상인가」를 판정해 통과시키는데, 지면에서는 `mid`(240px)로
+ *    그려져 최악 **11.45px**(본문 12.5px 미만). 초4 1-5-3 짝 53장 중 **17장(32%)**.
+ *
+ *    ⚠️ 그리고 **폭으로는 애초에 못 가른다**: 네 학년 스펙 2,924개를 렌더한 실측에서
+ *    단독 `cuboid` 가 **128.17~324.97** 이라 짝(273.21~)과 **겹친다.** 어느 문턱을
+ *    놓아도 「좁은 짝」이나 「넓은 단독」 한쪽이 틀린다 — 문턱이 아니라 **축이 틀렸다**
+ *    (09 §4-18). 그래서 **kind 로 가른다**(아래 `PAIR_DESC`).
+ *
+ *    ⚠️ 그 실측의 **1차 판은 「겹침 0」이었다** — 586개를 못 그리고 버렸는데 그 실패가
+ *    무작위가 아니라 **3D 종류**였다(엔진 경로 문제). **빠진 표본을 안 세면 0이 나온다.**
+ *    다음에 이 수를 갱신하는 사람은 **잰 날짜·표본 수·못 그린 수**를 같이 적어라.
+ *
+ * 이 문단을 지우지 마라. 「실측이 낡으면 가드가 통과시킨다」는 문장이 다음 사람에게도
+ * 필요하고, 그 실례가 바로 위에 있다.
  */
 export const FIGURE_SVG_PAIR_MAX_PX = 364;
 export const FIGURE_SVG_PAIR_MM = 97;
+/**
+ * @deprecated 폭으로 짝을 가르지 않는다(위 문단). 옛 규칙을 되살리지 못하게 남겨 둔
+ * 값이며, 등급 판정은 `PAIR_DESC` 를 본다. 시험이 「좁은 짝도 pair」를 잠근다.
+ */
 export const FIGURE_SVG_PAIR_VIEWBOX = 380;
+
+/**
+ * 그리는 쪽이 심는 표식. `scripts/figure/elem_advanced.py` 의 `_chart_pair` 가
+ * `<desc>chartPair</desc>` 를 낸다 — `sanitize_svg` 의 `_ALLOWED_TAGS` 에 `desc` 가
+ * 있고 **속성은 허용되지 않아**(`"desc": frozenset()`) 빈 태그로만 통과한다.
+ *
+ * **판정과 그리기가 같은 값을 본다** — 지면 폭을 어림해 되짚지 않는다. 이번 결함의
+ * 뿌리가 「파이썬은 364 를 믿고 TS 는 폭으로 정한다」였다.
+ */
+const PAIR_DESC = /<desc>\s*chartPair\s*<\/desc>/;
 
 export type FigureSvgSize = "compact" | "mid" | "wide" | "pair";
 
@@ -48,11 +81,13 @@ export function figureSvgViewBoxWidth(svg: string): number | null {
 }
 
 export function figureSvgSize(svg: string): FigureSvgSize {
+  // 🔴 **폭보다 먼저 kind 를 본다.** 짝은 좁아도 열을 통째로 써야 한다 —
+  //    폭으로 가르면 「좁은 짝(273)」과 「넓은 단독 cuboid(325)」가 겹쳐 못 갈린다.
+  if (PAIR_DESC.test(svg)) return "pair";
   const width = figureSvgViewBoxWidth(svg);
   if (width === null) return "wide";
   if (width <= FIGURE_SVG_COMPACT_VIEWBOX) return "compact";
   if (width <= FIGURE_SVG_MID_VIEWBOX) return "mid";
-  if (width > FIGURE_SVG_PAIR_VIEWBOX) return "pair";
   return "wide";
 }
 

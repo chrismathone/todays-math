@@ -604,7 +604,18 @@ def _chart_pair(spec: Mapping[str, Any]) -> str:
         _shift_body(b, x, total_h - b_h)
         for x, (b_w, b_h, b) in zip((0.0, boxes[0][0] + PAIR_GAP), boxes)
     )
-    return _svg_raw(total_w, total_h, body)
+    # 🔴 **화면 폭 등급을 정하는 표식.** 지면 쪽(`figureSvgFrame.ts`)이 이것을 **먼저**
+    #    보고 `pair`(문항 열 전체)로 보낸다. 폭으로는 못 가른다 — 실측에서 짝
+    #    273.21~359.61 과 단독 `cuboid` 128.17~324.97 이 **겹친다**(2026-08-23).
+    #    종전 규칙(viewBox > 380)은 짝이 380 을 한 번도 안 넘어 **구조적으로 0**이었고,
+    #    그래서 파이썬 가드(`_assert_ticks_readable`, PAIR_FRAME_PX=364)는 통과시키는데
+    #    지면은 `mid`(240px)로 그려 눈금 글자가 최악 11.45px 이 됐다(본문 12.5px 미만).
+    #
+    #    ⚠️ `sanitize_svg` 는 `desc` 를 허용하지만 **속성은 하나도 안 받는다**
+    #       (`_ALLOWED_TAGS` · `"desc": frozenset()`). 빈 태그로만 쓴다.
+    #    ⚠️ 이 문자열은 `figureSvgFrame.ts` 의 `PAIR_DESC` 와 **같아야 한다.**
+    #       한쪽만 고치면 짝이 조용히 `mid` 로 돌아간다 — 시험이 양쪽을 대조한다.
+    return _svg_raw(total_w, total_h, "<desc>chartPair</desc>" + body)
 
 
 def _bar_chart(spec: Mapping[str, Any], compact: bool = False) -> str:
