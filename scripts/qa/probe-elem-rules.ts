@@ -14,6 +14,7 @@ import {
   generateElementaryProblem,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
+import { openFence } from "./elemProbeFence";
 import {
   arabicPolygons,
   bareNumbers,
@@ -209,6 +210,10 @@ if (process.argv.includes("--selftest")) {
   process.exit(bad === 0 ? 0 : 1);
 }
 
+// 재는 동안 생성기가 쓰이면 이 수치는 못 쓴다. 2026-08-23 에 이 판정기가 **반쯤 고쳐진**
+// g3.ts 를 읽고 **거짓 빨강**을 냈고, 그것이 남을 「이미 고친 것」을 다시 고치게 만들었다.
+// 거짓 초록은 결함을 숨기고, 거짓 빨강은 **남의 시간을 태운다** — 둘 다 이 울타리가 막는다.
+const fence = openFence({ grades: gradeArg ? [gradeArg] : undefined });
 const units = elementaryUnits().filter(
   (u) => !gradeArg || u.grade === gradeArg,
 );
@@ -348,9 +353,12 @@ for (const h of hits) {
   byRule.get(h.rule)!.push(h);
 }
 
+// **찍기 전에** 닫는다 — 뒤에 닫으면 못 쓸 수치를 이미 내보낸 뒤다.
+fence.close();
+
 console.log(
   `대상 소단원 ${units.length}${gradeArg ? ` (${gradeArg})` : ""} · ` +
-    `훑은 갈래 ${visited}개 (표준 + 등록된 난이도 4단)\n`,
+    `훑은 갈래 ${visited}개 (표준 + 등록된 난이도 4단) · ${fence.scopeLine()}\n`,
 );
 if (hits.length === 0) {
   console.log("✅ 전 규칙 0");

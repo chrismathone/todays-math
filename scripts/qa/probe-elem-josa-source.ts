@@ -66,21 +66,54 @@ function wordsInArray(src: string): string[] {
 }
 
 /**
- * `const <이름> = pick(rng, [ … 한글 … ])` 과
- * `const <이름> = pick(rng, <모듈 상수>)` 를 모아 **뽑히는 낱말 변수**를 만든다.
+ * 최상위 `function 이름(` 의 시작점 — **함수 경계**를 알아야 변수를 옳게 푼다.
+ * (`probe-elem-routing` 이 같은 이유로 같은 자리를 잡는다.)
  */
-export function pickedWordVars(src: string): Map<string, string[]> {
-  const consts = new Map<string, string[]>();
+function functionBounds(src: string): { at: number }[] {
+  return [...src.matchAll(/^(?:export\s+)?function\s+\w+\s*\(/gm)].map((m) => ({
+    at: m.index!,
+  }));
+}
+
+/** 모듈 상수 `const NAME = [ … ] as const` — 파일 어디서나 참조된다. */
+function modulePools(src: string): Map<string, string[]> {
+  const out = new Map<string, string[]>();
   for (const m of src.matchAll(
     /const\s+([A-Za-z_$][\w$]*)\s*=\s*\[([\s\S]{0,600}?)\]\s*as const/g,
   )) {
     const ws = wordsInArray(m[2]!);
-    if (ws.length > 0) consts.set(m[1]!, ws);
+    if (ws.length > 0) out.set(m[1]!, ws);
   }
+  return out;
+}
+
+/**
+ * `const <이름> = pick(rng, …)` 를 **그 자리가 속한 함수 안에서만** 찾는다.
+ *
+ * ⚠️ **파일 전체에서 이름으로 찾으면 안 된다.** 2026-08-23 실전 첫 실행에서 4건 중
+ * **3건이 거짓**이었다 — `g6.ts` 의 두 함수가 둘 다 `const thing = pick(rng, …)` 을
+ * 쓰는데, 한쪽은 `CMP_SHEETS`(색종이·딱지·카드 — 받침 **없음**), 다른 쪽은
+ * `CUT_STUFF`(끈·리본·철사… — **섞임**)였다. 이름으로 모으니 **둘이 합쳐져** 받침이
+ * 섞인 것처럼 보였고, 「가/는」이 늘 옳은 자리가 결함으로 찍혔다.
+ *
+ * 「같은 이름의 다른 풀」은 **글자로 안 갈리고 자리로 갈린다** — 문턱이 아니라 축이
+ * 틀렸던 것이다. 못 풀면 **「모름」으로 두고 걸지 않는다**(거짓 경보보다 낫다).
+ */
+/** 한 함수 몸통 안의 `const X = pick(rng, …)` 만 모은다. */
+function poolsInRange(
+  src: string,
+  start: number,
+  end: number,
+  pools: Map<string, string[]>,
+): Map<string, string[]> {
   const out = new Map<string, string[]>();
-  for (const m of src.matchAll(
-    /const\s+([A-Za-z_$][\w$]*)\s*=\s*pick\(\s*rng\s*,\s*([\s\S]{0,600}?)\);/g,
-  )) {
+  // ⚠️ `pick(rng, POOL)[0]` 꼴을 같이 본다 — `);` 로만 끝을 잡으면 이 꼴이 통째로
+  //   「모름」이 되고, 실측으로 그게 못 푼 자리의 가장 큰 덩어리였다(g4 `dir` 24자리).
+  for (const m of src
+    .slice(start, end)
+    .matchAll(
+      /const\s+([A-Za-z_$][\w$]*)\s*=\s*pick\(\s*rng\s*,\s*([\s\S]{0,600}?)\)\s*(?:\[\s*\d+\s*\])?\s*;/g,
+    )) {
     const name = m[1]!;
     const arg = m[2]!;
     const direct = wordsInArray(arg);
@@ -89,17 +122,37 @@ export function pickedWordVars(src: string): Map<string, string[]> {
       continue;
     }
     const ref = /^([A-Za-z_$][\w$]*)\s*$/.exec(arg.trim())?.[1];
-    const fromConst = ref ? consts.get(ref) : undefined;
-    if (fromConst) out.set(name, [...(out.get(name) ?? []), ...fromConst]);
+    const fromPool = ref ? pools.get(ref) : undefined;
+    if (fromPool) out.set(name, [...(out.get(name) ?? []), ...fromPool]);
   }
   return out;
 }
 
 export type Fault = { file: string; line: number; text: string; why: string };
 
+/**
+ * **판정한 자리 / 모르는 자리** — 「위반 0」이 «깨끗»인지 «못 셈»인지 가르는 분모.
+ *
+ * 스코프로 좁힌 뒤에는 **못 푸는 자리**가 생긴다(그 함수 밖에서 온 변수 · 조건문으로
+ * 고른 낱말). 그걸 조용히 통과시키면 좁힌 것이 곧 사각지대가 된다 — 그래서 센다.
+ */
+export type Judged = { judged: number; unknown: number };
+const judgedTally: Judged = { judged: 0, unknown: 0 };
+export const judgedSoFar = (): Judged => ({ ...judgedTally });
+/** 못 푼 자리 — 「모름」이 한 덩어리면 좁힌 것이 곧 사각지대다. `--unknown` 으로 본다. */
+const unknownNames = new Map<string, number>();
+export const unknownSoFar = (): Map<string, number> => new Map(unknownNames);
+
 /** 보간 바로 뒤에 조사를 손으로 적은 자리 — **후보의 받침이 섞인 것만**. */
 export function faultsIn(file: string, src: string): Fault[] {
-  const vars = pickedWordVars(src);
+  const pools = modulePools(src);
+  const bounds = functionBounds(src);
+  /** 그 자리를 감싸는 함수 안의 풀만 본다 — 파일 전체에서 이름으로 찾으면 섞인다. */
+  const varsAt = (index: number): Map<string, string[]> => {
+    const start = bounds.filter((b) => b.at <= index).pop()?.at ?? 0;
+    const end = bounds.find((b) => b.at > index)?.at ?? src.length;
+    return poolsInRange(src, start, end, pools);
+  };
   const out: Fault[] = [];
   const re = new RegExp(
     `\\$\\{\\s*([A-Za-z_$][\\w$]*)\\s*\\}(${PARTICLES.join("|")})(?![가-힣])`,
@@ -108,8 +161,19 @@ export function faultsIn(file: string, src: string): Fault[] {
   for (const m of src.matchAll(re)) {
     const name = m[1]!;
     const particle = m[2]!;
-    const words = vars.get(name);
-    if (!words) continue; // 낱말 변수가 아니다 — 수 뒤 조사는 R-조사가 본다
+    // ⚠️ **그 자리의 스코프**에서 푼다. 못 풀면 「모름」이고, 모르면 **안 건다** —
+    //   거짓 경보 하나가 판정기 전체의 신뢰를 깎는다(실전 첫 실행 4건 중 3건이 그랬다).
+    const words = varsAt(m.index!).get(name);
+    if (!words) {
+      judgedTally.unknown += 1;
+      // **무엇을 못 봤는지** 모아 둔다 — 「모름」이 한 덩어리면 좁힌 것이 사각지대가 된다.
+      unknownNames.set(
+        `${file}  \${${name}}${particle}`,
+        (unknownNames.get(`${file}  \${${name}}${particle}`) ?? 0) + 1,
+      );
+      continue; // 낱말 변수가 아니거나 이 함수 밖에서 왔다 — 판정하지 않는다
+    }
+    judgedTally.judged += 1;
     const forRo = particle === "로" || particle === "으로";
     const kinds = new Set(words.map((w) => hasBatchim(w, forRo)));
     if (kinds.size < 2) continue; // 받침이 다 같으면 손으로 적은 조사가 늘 옳다
@@ -173,6 +237,38 @@ const GAUGE: [string, string, number][] = [
     'const stuff = pick(rng, ["사탕", "딱지"]);\nreturn `${stuff} 상자에 있는 것`;',
     0,
   ],
+  // ── 실데이터가 잡아 준 축 (2026-08-23) ─────────────────────────────
+  // 같은 이름의 변수를 두 함수가 **다른 풀**로 뽑는다. 파일 전체에서 이름으로 모으면
+  // 둘이 합쳐져 받침이 섞인 것처럼 보이고, 「가/는」이 늘 옳은 자리가 결함으로 찍힌다.
+  // 실전 첫 실행에서 **4건 중 3건**이 이 부류였다 — 픽스처에 이 모양이 없었다.
+  [
+    "음성 — 같은 파일 **다른 함수**에 받침 섞인 풀이 있어도, 이 자리 풀이 받침 없으면",
+    'const CUT_STUFF = ["끈", "리본", "철사"] as const;\n' +
+      "function cut(rng: Rng) {\n" +
+      "  const thing = pick(rng, CUT_STUFF);\n" +
+      '  return `${thing}${josa(thing, "을", "를")} 자른다`;\n' +
+      "}\n" +
+      'const CMP_SHEETS = ["색종이", "딱지", "카드"] as const;\n' +
+      "function cmp(rng: Rng) {\n" +
+      "  const thing = pick(rng, CMP_SHEETS);\n" +
+      "  return `파란 ${thing}가 있습니다`;\n" +
+      "}",
+    0,
+  ],
+  [
+    "양성 — **이 자리 스코프**의 풀에 받침이 섞였을 때만",
+    'const CMP_SHEETS = ["색종이", "딱지", "카드"] as const;\n' +
+      "function cmp(rng: Rng) {\n" +
+      "  const thing = pick(rng, CMP_SHEETS);\n" +
+      "  return `파란 ${thing}가 있습니다`;\n" +
+      "}\n" +
+      'const CUT_STUFF = ["끈", "리본", "철사"] as const;\n' +
+      "function cut(rng: Rng) {\n" +
+      "  const thing = pick(rng, CUT_STUFF);\n" +
+      "  return `${thing}를 자른다`;\n" +
+      "}",
+    1,
+  ],
 ];
 
 if (process.argv.includes("--selftest")) {
@@ -183,9 +279,12 @@ if (process.argv.includes("--selftest")) {
     if (!ok) bad += 1;
     console.log(`  ${ok ? "✅" : "❌"} ${why} — 기대 ${want} / 실제 ${got}`);
   }
+  // ⚠️ 양성·음성 수를 **손으로 적지 않는다** — 눈금을 늘리면 그 숫자가 곧 거짓말이 된다.
+  //   실제로 2026-08-23 에 눈금 8 → 10 으로 늘렸는데 라벨은 「양성 2 · 음성 6」이었다.
+  const pos = GAUGE.filter(([, , want]) => want > 0).length;
   console.log(
     bad === 0
-      ? `\n✅ 눈금 ${GAUGE.length}건 전부 맞다 (양성 2 · 음성 6)`
+      ? `\n✅ 눈금 ${GAUGE.length}건 전부 맞다 (양성 ${pos} · 음성 ${GAUGE.length - pos})`
       : `\n❌ 눈금 ${bad}건 어긋남 — **가드를 믿을 수 없다**`,
   );
   process.exit(bad === 0 ? 0 : 1);
@@ -202,16 +301,36 @@ for (const f of files) {
 }
 fence.close();
 
+const jt = judgedSoFar();
 console.log(
   `훑은 것 — 파일 ${files.length} · 보간 ${interpolations}자리 · ${fence.scopeLine()}\n` +
+    `조사가 붙은 보간 ${jt.judged + jt.unknown}자리 중 **판정 ${jt.judged}** · ` +
+    `**모름 ${jt.unknown}**(그 함수 밖에서 온 변수·수 뒤 조사)\n` +
     "(수 뒤 조사는 안 본다 — probe-elem-rules 의 R-조사 몫. " +
     "josa() 인자가 뒤집힌 것도 안 본다 — 산출물 검사 몫)\n",
 );
+if (jt.judged === 0) {
+  console.log(
+    "⛔ **한 자리도 판정하지 못했다** — 「위반 0」은 «깨끗»이 아니라 «못 셈»이다.\n" +
+      "   스코프 해결이 깨졌는지(함수 경계 정규식) 보라.",
+  );
+  process.exit(2);
+}
 if (interpolations === 0) {
   console.log(
     "⛔ 보간을 한 자리도 못 읽었다 — 「위반 0」은 «깨끗»이 아니라 «못 셈»이다.",
   );
   process.exit(2);
+}
+if (process.argv.includes("--unknown")) {
+  console.log(
+    "못 푼 자리 — 빈도순 20 (대부분 `n()`·`expr()` 로 수를 넣은 것이라 R-조사 몫이다):",
+  );
+  for (const [k, c] of [...unknownSoFar()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20))
+    console.log(`  ${String(c).padStart(4)}  ${k}`);
+  console.log("");
 }
 if (all.length === 0) {
   console.log("✅ 뽑히는 낱말 뒤 손 조사 0");
