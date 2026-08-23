@@ -458,6 +458,23 @@ describe.skipIf(!hasEngine)("[통계 kind] freqPolygon", () => {
     expect(viewBoxW(svg)).toBe(PINNED_VIEWBOX);
   });
 
+  it("눈금 칸 수를 짐작하지 않는다 — 계급 9개는 붙어서 던진다", async () => {
+    // 다각형은 눈금 **밖으로 칸이 둘 더** 있다(양끝 연장). 칸 수를 `눈금-1` 로
+    // 짐작하면 간격을 실제보다 25% 넓게 봐서 겹침을 못 본다 — 이 스펙이 정확히
+    // 그 자리다(짐작하면 통과, 제대로 재면 던진다).
+    expect(
+      await reason({
+        version: "elem-1",
+        kind: "freqPolygon",
+        classes: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+        values: [2, 4, 7, 11, 9, 5, 3, 1],
+        yLabel: "(명)",
+        xLabel: "(점)",
+        total: 42,
+      }),
+    ).toContain("겹칩니다");
+  });
+
   it("이름 없이 두 집단을 겹치면 던진다", async () => {
     expect(
       await reason({ ...POLY, series2: { values: POLY.values } }),
