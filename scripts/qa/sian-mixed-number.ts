@@ -159,8 +159,12 @@ async function main(): Promise<void> {
   try {
     const { renderMathHtml: now } =
       await import("../../src/lib/math/renderMathHtml");
-    const { renderMathHtml: off } =
-      await import("../../src/lib/math/__sianRenderMathHtml");
+    // 임시 사본은 **이 스크립트가 방금 만든 파일**이라 tsc 가 정적으로 못 찾는다.
+    // 경로를 변수로 만들어 정적 해석을 피한다(런타임 동작은 같다).
+    const offSpecifier = "../../src/lib/math/" + REN_TMP.split("/").pop();
+    const { renderMathHtml: off } = (await import(offSpecifier)) as {
+      renderMathHtml: (t: string) => string;
+    };
     const cards = rows
       .map(
         (r) => `<section class="card">
