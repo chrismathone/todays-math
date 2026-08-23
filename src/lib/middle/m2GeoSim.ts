@@ -1078,6 +1078,12 @@ function figThreeParallel08(
     lB: { text: "l", italic: true },
     mB: { text: "m", italic: true },
     nB: { text: "n", italic: true },
+    P1: "A",
+    P2: "B",
+    P3: "C",
+    Q1: "D",
+    Q2: "E",
+    Q3: "F",
   };
   const anchors: Record<string, XY> = {
     a: [(P1[0] + P2[0]) / 2 - 22, (P1[1] + P2[1]) / 2],
@@ -1295,7 +1301,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
         content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위의 점이다. $\\overline{AD}=${p}\\,\\mathrm{cm}$, $\\overline{DB}=${ab - p}\\,\\mathrm{cm}$, $\\overline{AE}=${r}\\,\\mathrm{cm}$, $\\overline{EC}=${ac - r}\\,\\mathrm{cm}$, $\\overline{DE}=${m}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
         solution: `$\\overline{AB}=${p}+${ab - p}=${ab}\\,(\\mathrm{cm})$, $\\overline{AC}=${r}+${ac - r}=${ac}\\,(\\mathrm{cm})$이다.\n삼각형 $ADE$와 삼각형 $ACB$에서 $\\angle A$는 공통이고 $\\overline{AD}:\\overline{AC}=${p}:${ac}=1:${k}$, $\\overline{AE}:\\overline{AB}=${r}:${ab}=1:${k}$이므로 두 삼각형은 $\\mathrm{SAS}$ 닮음이다.\n따라서 $\\overline{BC}=${k}\\times\\overline{DE}=${k}\\times${m}=${x}\\,(\\mathrm{cm})$이다.`,
-        facts: { mode: 0, k, p, r, ab, ac, m, x },
+        facts: { mode: 0, k, p, r, ab, ac, m, x, db: ab - p, ec: ac - r },
         figureSpec: figSasInner10(p, ab, r, ac, {
           ad: `${p} cm`,
           db: `${ab - p} cm`,
@@ -1507,15 +1513,14 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const c = (a / g) * t;
       const x = (b / g) * t;
       return {
-        content: `그림에서 $l\\parallel m\\parallel n$일 때, $x$의 값을 구하시오. (단, 길이의 단위는 $\\mathrm{cm}$이다.)`,
-        answer: `$${x}$`,
-        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $${a}:${b}=${c}:x$이다.\n$${a}x=${b}\\times${c}=${b * c}$이므로 $x=${x}$이다.`,
+        content: `그림과 같이 세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 각각 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\overline{AB}=${a}\,\mathrm{cm}$, $\overline{BC}=${b}\,\mathrm{cm}$, $\overline{DE}=${c}\,\mathrm{cm}$일 때, $\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $\overline{AB}:\overline{BC}=\overline{DE}:\overline{EF}$이다.\n$${a}:${b}=${c}:\overline{EF}$에서 $${a}\times\overline{EF}=${b}\times${c}=${b * c}$이므로 $\overline{EF}=${x}\,\mathrm{cm}$이다.`,
         facts: { mode: 0, a, b, c, x },
         figureSpec: figThreeParallel08(a, b, {
-          a: `${a}`,
-          b: `${b}`,
-          c: `${c}`,
-          x: { text: "x", italic: true } as unknown as string,
+          a: `${a} cm`,
+          b: `${b} cm`,
+          c: `${c} cm`,
         }),
       };
     },
