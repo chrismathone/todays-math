@@ -1,0 +1,241 @@
+{
+ "measuredOn": "2026-08-24",
+ "bodyPx": 12.5,
+ "pxPerMm": 3.75,
+ "frame": {
+  "compact": {
+   "screenPx": 140,
+   "paperMm": 37
+  },
+  "mid": {
+   "screenPx": 240,
+   "paperMm": 64
+  },
+  "wide": {
+   "screenPx": 360,
+   "paperMm": 70
+  },
+  "pair": {
+   "screenPx": 364,
+   "paperMm": 97
+  }
+ },
+ "cuts": {
+  "compact": 160,
+  "mid": 320
+ },
+ "totalSpecs": 7989,
+ "drawn": 7989,
+ "withText": 70,
+ "belowBody": 35,
+ "samples": [
+  {
+   "grade": "초4",
+   "section": "1-2-3 각의 크기에 따라 분류하기",
+   "kind": "clocks",
+   "tier": "응용",
+   "seed": 1,
+   "viewBox": 252.0,
+   "fontUnits": 8.0,
+   "size": "mid",
+   "screenPx": 7.62,
+   "paperPx": 7.62,
+   "svg": "<svg viewBox=\"0 0 252 132\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"62\" cy=\"76\" r=\"42\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"2\"/><circle cx=\"62\" cy=\"76\" r=\"46\" fill=\"none\" stroke=\"#7a9e86\" stroke-width=\"5\"/><line x1=\"62\" y1=\"41\" x2=\"62\" y2=\"36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"62\" y=\"48\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">12</text><line x1=\"79.5\" y1=\"45.69\" x2=\"82\" y2=\"41.36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"76\" y=\"51.75\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">1</text><line x1=\"92.31\" y1=\"58.5\" x2=\"96.64\" y2=\"56\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"86.25\" y=\"62\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">2</text><line x1=\"97\" y1=\"76\" x2=\"102\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"90\" y=\"76\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">3</text><line x1=\"92.31\" y1=\"93.5\" x2=\"96.64\" y2=\"96\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"86.25\" y=\"90\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">4</text><line x1=\"79.5\" y1=\"106.31\" x2=\"82\" y2=\"110.64\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"76\" y=\"100.25\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">5</text><line x1=\"62\" y1=\"111\" x2=\"62\" y2=\"116\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"62\" y=\"104\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">6</text><line x1=\"44.5\" y1=\"106.31\" x2=\"42\" y2=\"110.64\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"48\" y=\"100.25\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">7</text><line x1=\"31.69\" y1=\"93.5\" x2=\"27.36\" y2=\"96\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"37.75\" y=\"90\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">8</text><line x1=\"27\" y1=\"76\" x2=\"22\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"34\" y=\"76\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">9</text><line x1=\"31.69\" y1=\"58.5\" x2=\"27.36\" y2=\"56\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"37.75\" y=\"62\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">10</text><line x1=\"44.5\" y1=\"45.69\" x2=\"42\" y2=\"41.36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"48\" y=\"51.75\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">11</text><line x1=\"62\" y1=\"76\" x2=\"45.63\" y2=\"85.45\" stroke=\"#111111\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><line x1=\"62\" y1=\"76\" x2=\"62\" y2=\"47.44\" stroke=\"#111111\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><circle cx=\"62\" cy=\"76\" r=\"2.2\" fill=\"#111111\"/><text x=\"122\" y=\"76\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">→</text><circle cx=\"190\" cy=\"76\" r=\"42\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"2\"/><circle cx=\"190\" cy=\"76\" r=\"46\" fill=\"none\" stroke=\"#7a9e86\" stroke-width=\"5\"/><line x1=\"190\" y1=\"41\" x2=\"190\" y2=\"36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"190\" y=\"48\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">12</text><line x1=\"207.5\" y1=\"45.69\" x2=\"210\" y2=\"41.36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"204\" y=\"51.75\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">1</text><line x1=\"220.31\" y1=\"58.5\" x2=\"224.64\" y2=\"56\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"214.25\" y=\"62\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">2</text><line x1=\"225\" y1=\"76\" x2=\"230\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"218\" y=\"76\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">3</text><line x1=\"220.31\" y1=\"93.5\" x2=\"224.64\" y2=\"96\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"214.25\" y=\"90\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">4</text><line x1=\"207.5\" y1=\"106.31\" x2=\"210\" y2=\"110.64\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"204\" y=\"100.25\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">5</text><line x1=\"190\" y1=\"111\" x2=\"190\" y2=\"116\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"190\" y=\"104\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">6</text><line x1=\"172.5\" y1=\"106.31\" x2=\"170\" y2=\"110.64\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"176\" y=\"100.25\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">7</text><line x1=\"159.69\" y1=\"93.5\" x2=\"155.36\" y2=\"96\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"165.75\" y=\"90\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">8</text><line x1=\"155\" y1=\"76\" x2=\"150\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"162\" y=\"76\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">9</text><line x1=\"159.69\" y1=\"58.5\" x2=\"155.36\" y2=\"56\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"165.75\" y=\"62\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">10</text><line x1=\"172.5\" y1=\"45.69\" x2=\"170\" y2=\"41.36\" stroke=\"#111111\" stroke-width=\"1.2\"/><text x=\"176\" y=\"51.75\" fill=\"#111111\" font-size=\"8\" font-family=\"Batang, serif\" font-weight=\"600\" text-anchor=\"middle\" dominant-baseline=\"middle\">11</text><line x1=\"190\" y1=\"76\" x2=\"180.55\" y2=\"59.63\" stroke=\"#111111\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><line x1=\"190\" y1=\"76\" x2=\"190\" y2=\"47.44\" stroke=\"#111111\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><circle cx=\"190\" cy=\"76\" r=\"2.2\" fill=\"#111111\"/></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-5-1 직사각형 6개로 둘러싸인 도형",
+   "kind": "cuboid",
+   "tier": "연산",
+   "seed": 38,
+   "viewBox": 396.97,
+   "fontUnits": 12.0,
+   "size": "wide",
+   "screenPx": 10.88,
+   "paperPx": 7.94,
+   "svg": "<svg viewBox=\"0 0 396.97 202.97\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,158.97 328,158.97 328,38.97 40,38.97\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"328,158.97 344.97,142 344.97,22 328,38.97\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"40,38.97 328,38.97 344.97,22 56.97,22\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"40\" y1=\"158.97\" x2=\"56.97\" y2=\"142\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"142\" x2=\"56.97\" y2=\"22\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"142\" x2=\"344.97\" y2=\"142\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><path d=\"M 40.0 160.5 Q 184.0 181.5 328.0 160.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"184.0\" y=\"175.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">12 cm</text><path d=\"M 38.5 159.0 Q 17.5 99.0 38.5 39.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"21.1\" y=\"103.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">5 cm</text><path d=\"M 329.1 160.0 Q 360.9 174.9 346.0 143.1\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"349.2\" y=\"167.4\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">2 cm</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-5-3 직육면체의 성질",
+   "kind": "cuboid",
+   "tier": "연산",
+   "seed": 49,
+   "viewBox": 372.97,
+   "fontUnits": 12.0,
+   "size": "wide",
+   "screenPx": 11.58,
+   "paperPx": 8.45,
+   "svg": "<svg viewBox=\"0 0 372.97 226.97\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,182.97 304,182.97 304,38.97 40,38.97\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"304,182.97 320.97,166 320.97,22 304,38.97\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"40,38.97 304,38.97 320.97,22 56.97,22\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"40\" y1=\"182.97\" x2=\"56.97\" y2=\"166\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"166\" x2=\"56.97\" y2=\"22\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"166\" x2=\"320.97\" y2=\"166\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><path d=\"M 40.0 184.5 Q 172.0 205.5 304.0 184.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"172.0\" y=\"199.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">11 cm</text><path d=\"M 38.5 183.0 Q 17.5 111.0 38.5 39.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"21.1\" y=\"115.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">6 cm</text><path d=\"M 305.1 184.0 Q 336.9 198.9 322.0 167.1\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"325.2\" y=\"191.4\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">2 cm</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-5-4 직육면체의 겨냥도",
+   "kind": "cuboid",
+   "tier": "기본",
+   "seed": 45,
+   "viewBox": 372.97,
+   "fontUnits": 12.0,
+   "size": "wide",
+   "screenPx": 11.58,
+   "paperPx": 8.45,
+   "svg": "<svg viewBox=\"0 0 372.97 298.97\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,254.97 304,254.97 304,38.97 40,38.97\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"304,254.97 320.97,238 320.97,22 304,38.97\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"40,38.97 304,38.97 320.97,22 56.97,22\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"40\" y1=\"254.97\" x2=\"56.97\" y2=\"238\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"238\" x2=\"56.97\" y2=\"22\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"238\" x2=\"320.97\" y2=\"238\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><path d=\"M 40.0 256.5 Q 172.0 277.5 304.0 256.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"172.0\" y=\"271.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">11 cm</text><path d=\"M 38.5 255.0 Q 17.5 147.0 38.5 39.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"21.1\" y=\"151.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">9 cm</text><path d=\"M 305.1 256.0 Q 336.9 270.9 322.0 239.1\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"325.2\" y=\"263.4\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">2 cm</text></svg>"
+  },
+  {
+   "grade": "초6",
+   "section": "1-5-1 띠그래프",
+   "kind": "stripChart",
+   "tier": "표준",
+   "seed": 0,
+   "viewBox": 240.0,
+   "fontUnits": 9.0,
+   "size": "mid",
+   "screenPx": 9.0,
+   "paperPx": 9.0,
+   "svg": "<svg viewBox=\"0 0 240 60\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"8\" y=\"8\" width=\"224\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.2\"/><rect x=\"8\" y=\"8\" width=\"89.6\" height=\"28\" rx=\"0\" fill=\"#c5d6c2\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"52.8\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">사과 40%</text><rect x=\"97.6\" y=\"8\" width=\"67.2\" height=\"28\" rx=\"0\" fill=\"#d7c2e4\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"131.2\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">배 30%</text><rect x=\"164.8\" y=\"8\" width=\"67.2\" height=\"28\" rx=\"0\" fill=\"#e2b48a\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"198.4\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">포도 30%</text></svg>"
+  },
+  {
+   "grade": "초6",
+   "section": "1-5-2 띠그래프로 나타내기",
+   "kind": "stripChart",
+   "tier": "표준",
+   "seed": 43,
+   "viewBox": 240.0,
+   "fontUnits": 9.0,
+   "size": "mid",
+   "screenPx": 9.0,
+   "paperPx": 9.0,
+   "svg": "<svg viewBox=\"0 0 240 60\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"8\" y=\"8\" width=\"224\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.2\"/><rect x=\"8\" y=\"8\" width=\"78.4\" height=\"28\" rx=\"0\" fill=\"#c5d6c2\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"47.2\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">축구 35%</text><rect x=\"86.4\" y=\"8\" width=\"33.6\" height=\"28\" rx=\"0\" fill=\"#d7c2e4\" stroke=\"#111111\" stroke-width=\"0.8\"/><rect x=\"120\" y=\"8\" width=\"44.8\" height=\"28\" rx=\"0\" fill=\"#e2b48a\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"142.4\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">배구 20%</text><rect x=\"164.8\" y=\"8\" width=\"67.2\" height=\"28\" rx=\"0\" fill=\"#c5d4e8\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"198.4\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">야구 30%</text><text x=\"64\" y=\"50\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">농구 15%</text></svg>"
+  },
+  {
+   "grade": "초6",
+   "section": "1-5-5 여러 가지 그래프 비교하기",
+   "kind": "stripChart",
+   "tier": "표준",
+   "seed": 11,
+   "viewBox": 240.0,
+   "fontUnits": 9.0,
+   "size": "mid",
+   "screenPx": 9.0,
+   "paperPx": 9.0,
+   "svg": "<svg viewBox=\"0 0 240 60\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"8\" y=\"8\" width=\"224\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.2\"/><rect x=\"8\" y=\"8\" width=\"33.6\" height=\"28\" rx=\"0\" fill=\"#c5d6c2\" stroke=\"#111111\" stroke-width=\"0.8\"/><rect x=\"41.6\" y=\"8\" width=\"67.2\" height=\"28\" rx=\"0\" fill=\"#d7c2e4\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"75.2\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">과학 30%</text><rect x=\"108.8\" y=\"8\" width=\"89.6\" height=\"28\" rx=\"0\" fill=\"#e2b48a\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"153.6\" y=\"22\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">역사 40%</text><rect x=\"198.4\" y=\"8\" width=\"33.6\" height=\"28\" rx=\"0\" fill=\"#c5d4e8\" stroke=\"#111111\" stroke-width=\"0.8\"/><text x=\"8\" y=\"50\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">동화 15%</text><text x=\"176\" y=\"50\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">만화 15%</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-5-6 직육면체의 전개도",
+   "kind": "netCuboid",
+   "tier": "기본",
+   "seed": 2,
+   "viewBox": 159.47,
+   "fontUnits": 11.0,
+   "size": "compact",
+   "screenPx": 9.66,
+   "paperPx": 9.57,
+   "svg": "<svg viewBox=\"0 0 159.47 200\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"72.53\" y=\"16\" width=\"30.4\" height=\"40.53\" rx=\"0\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.15\"/><rect x=\"32\" y=\"56.53\" width=\"40.53\" height=\"35.47\" rx=\"0\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.15\"/><rect x=\"72.53\" y=\"56.53\" width=\"30.4\" height=\"35.47\" rx=\"0\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.15\"/><rect x=\"102.93\" y=\"56.53\" width=\"40.53\" height=\"35.47\" rx=\"0\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.15\"/><rect x=\"72.53\" y=\"92\" width=\"30.4\" height=\"40.53\" rx=\"0\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.15\"/><rect x=\"72.53\" y=\"132.53\" width=\"30.4\" height=\"35.47\" rx=\"0\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.15\"/><path d=\"M 72.5 169.5 Q 87.7 190.5 102.9 169.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"87.7\" y=\"183.8\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">6 cm</text><path d=\"M 71.0 16.0 Q 50.0 36.3 71.0 56.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"55.1\" y=\"40.1\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">8 cm</text><path d=\"M 30.5 56.5 Q 9.5 74.3 30.5 92.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"14.6\" y=\"78.1\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">7 cm</text></svg>"
+  },
+  {
+   "grade": "초6",
+   "section": "1-6-1 직육면체의 겉넓이 구하는 방법",
+   "kind": "cuboid",
+   "tier": "연산",
+   "seed": 28,
+   "viewBox": 300.97,
+   "fontUnits": 12.0,
+   "size": "mid",
+   "screenPx": 9.57,
+   "paperPx": 9.57,
+   "svg": "<svg viewBox=\"0 0 300.97 202.97\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,158.97 232,158.97 232,38.97 40,38.97\" fill=\"#e4d3b8\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"232,158.97 248.97,142 248.97,22 232,38.97\" fill=\"#d4c09e\" stroke=\"#111111\" stroke-width=\"1.3\"/><polygon points=\"40,38.97 232,38.97 248.97,22 56.97,22\" fill=\"#f2e6d4\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"40\" y1=\"158.97\" x2=\"56.97\" y2=\"142\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"142\" x2=\"56.97\" y2=\"22\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><line x1=\"56.97\" y1=\"142\" x2=\"248.97\" y2=\"142\" stroke=\"#111111\" stroke-width=\"1\" stroke-dasharray=\"5 4\"/><path d=\"M 40.0 160.5 Q 136.0 181.5 232.0 160.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"136.0\" y=\"175.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">8 cm</text><path d=\"M 38.5 159.0 Q 17.5 99.0 38.5 39.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"21.1\" y=\"103.2\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">5 cm</text><path d=\"M 233.1 160.0 Q 264.9 174.9 250.0 143.1\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"253.2\" y=\"167.4\" font-size=\"12\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">2 cm</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "1-6-4 평행사변형과 삼각형의 넓이",
+   "kind": "areaPoly",
+   "tier": "표준",
+   "seed": 12,
+   "viewBox": 156.0,
+   "fontUnits": 11.0,
+   "size": "compact",
+   "screenPx": 9.87,
+   "paperPx": 9.78,
+   "svg": "<svg viewBox=\"0 0 156 160\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"16,126 116,126 61,16\" fill=\"#f4efe6\" stroke=\"#111111\" stroke-width=\"1.4\"/><path d=\"M 16.0 127.5 Q 66.0 148.5 116.0 127.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"66.0\" y=\"141.8\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">10 cm</text><line x1=\"61\" y1=\"16\" x2=\"61\" y2=\"126\" stroke=\"#111111\" stroke-width=\"1.05\" stroke-dasharray=\"5 4\"/><path d=\"M 62.5 16.0 Q 83.5 71.0 62.5 126.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"81.8\" y=\"74.8\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">11 cm</text></svg>"
+  },
+  {
+   "grade": "초4",
+   "section": "1-2-2 각의 크기 재기",
+   "kind": "protractor",
+   "tier": "표준",
+   "seed": 0,
+   "viewBox": 220.0,
+   "fontUnits": 9.0,
+   "size": "mid",
+   "screenPx": 9.82,
+   "paperPx": 9.82,
+   "svg": "<svg viewBox=\"0 0 220 110\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M38 88 A72 72 0 0 1 182 88\" fill=\"#f4efe6\" stroke=\"#111111\" stroke-width=\"1.4\"/><line x1=\"38\" y1=\"88\" x2=\"182\" y2=\"88\" stroke=\"#111111\" stroke-width=\"1.2\"/><line x1=\"38\" y1=\"88\" x2=\"46\" y2=\"88\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"27\" y=\"88\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">0</text><line x1=\"39.09\" y1=\"75.5\" x2=\"43.03\" y2=\"76.19\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"42.34\" y1=\"63.37\" x2=\"46.1\" y2=\"64.74\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"47.65\" y1=\"52\" x2=\"54.57\" y2=\"56\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.12\" y=\"46.5\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">30</text><line x1=\"54.84\" y1=\"41.72\" x2=\"57.91\" y2=\"44.29\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"63.72\" y1=\"32.84\" x2=\"66.29\" y2=\"35.91\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"74\" y1=\"25.65\" x2=\"78\" y2=\"32.57\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"68.5\" y=\"16.12\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"85.37\" y1=\"20.34\" x2=\"86.74\" y2=\"24.1\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"97.5\" y1=\"17.09\" x2=\"98.19\" y2=\"21.03\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"110\" y1=\"16\" x2=\"110\" y2=\"24\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"110\" y=\"5\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">90</text><line x1=\"122.5\" y1=\"17.09\" x2=\"121.81\" y2=\"21.03\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"134.63\" y1=\"20.34\" x2=\"133.26\" y2=\"24.1\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"146\" y1=\"25.65\" x2=\"142\" y2=\"32.57\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"151.5\" y=\"16.12\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">120</text><line x1=\"156.28\" y1=\"32.84\" x2=\"153.71\" y2=\"35.91\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"165.16\" y1=\"41.72\" x2=\"162.09\" y2=\"44.29\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"172.35\" y1=\"52\" x2=\"165.43\" y2=\"56\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.88\" y=\"46.5\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">150</text><line x1=\"177.66\" y1=\"63.37\" x2=\"173.9\" y2=\"64.74\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"180.91\" y1=\"75.5\" x2=\"176.97\" y2=\"76.19\" stroke=\"#111111\" stroke-width=\"0.9\"/><line x1=\"182\" y1=\"88\" x2=\"174\" y2=\"88\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"193\" y=\"88\" fill=\"#111111\" font-size=\"9\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">180</text><line x1=\"110\" y1=\"88\" x2=\"182\" y2=\"88\" stroke=\"#111111\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"88\" x2=\"85.37\" y2=\"20.34\" stroke=\"#111111\" stroke-width=\"1.5\"/><circle cx=\"110\" cy=\"88\" r=\"2.2\" fill=\"#111111\"/></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "1-6-1 정다각형과 사각형의 둘레",
+   "kind": "areaPoly",
+   "tier": "표준",
+   "seed": 10,
+   "viewBox": 154.0,
+   "fontUnits": 11.0,
+   "size": "compact",
+   "screenPx": 10.0,
+   "paperPx": 9.91,
+   "svg": "<svg viewBox=\"0 0 154 106\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"16\" y=\"16\" width=\"98\" height=\"56\" rx=\"0\" fill=\"#f4efe6\" stroke=\"#111111\" stroke-width=\"1.4\"/><path d=\"M 16.0 73.5 Q 65.0 94.5 114.0 73.5\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"65.0\" y=\"87.8\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">7 cm</text><path d=\"M 115.5 16.0 Q 136.5 44.0 115.5 72.0\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/>\n<text x=\"131.4\" y=\"47.9\" font-size=\"11\" font-family=\"Times New Roman, Batang, serif\" text-anchor=\"middle\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\">4 cm</text></svg>"
+  },
+  {
+   "grade": "초4",
+   "section": "2-4-4 사다리꼴",
+   "kind": "namedShapes",
+   "tier": "표준",
+   "seed": 0,
+   "viewBox": 142.0,
+   "fontUnits": 13.0,
+   "size": "compact",
+   "screenPx": 12.82,
+   "paperPx": 12.7,
+   "svg": "<svg viewBox=\"0 0 142 90\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"23.8,13.28 50.2,13.28 59,52 15,52\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"37\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">가</text><polygon points=\"86.52,17.68 123.48,8 127,35.28 90.92,52\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"105\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">나</text></svg>"
+  },
+  {
+   "grade": "초4",
+   "section": "2-4-6 마름모",
+   "kind": "namedShapes",
+   "tier": "표준",
+   "seed": 1,
+   "viewBox": 142.0,
+   "fontUnits": 13.0,
+   "size": "compact",
+   "screenPx": 12.82,
+   "paperPx": 12.7,
+   "svg": "<svg viewBox=\"0 0 142 90\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"37,8 46.68,30 37,52 27.32,30\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"37\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">가</text><rect x=\"90.92\" y=\"8\" width=\"28.16\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"105\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">나</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-3-1 도형의 합동 알아보기",
+   "kind": "namedShapes",
+   "tier": "연산",
+   "seed": 10,
+   "viewBox": 142.0,
+   "fontUnits": 13.0,
+   "size": "compact",
+   "screenPx": 12.82,
+   "paperPx": 12.7,
+   "svg": "<svg viewBox=\"0 0 142 90\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"27.32,8 59,8 46.68,52 15,52\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"37\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">가</text><polygon points=\"95.32,8 127,8 114.68,52 83,52\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"105\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">나</text></svg>"
+  },
+  {
+   "grade": "초5",
+   "section": "2-3-2 합동인 도형의 성질 알아보기",
+   "kind": "namedShapes",
+   "tier": "표준",
+   "seed": 2,
+   "viewBox": 142.0,
+   "fontUnits": 13.0,
+   "size": "compact",
+   "screenPx": 12.82,
+   "paperPx": 12.7,
+   "svg": "<svg viewBox=\"0 0 142 90\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"22.92\" y=\"8\" width=\"28.16\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"37\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">가</text><rect x=\"90.92\" y=\"8\" width=\"28.16\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"105\" y=\"64\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">나</text></svg>"
+  }
+ ]
+}
