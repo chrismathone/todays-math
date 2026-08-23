@@ -71,6 +71,15 @@ MUTATIONS = [
         "content: `두 유리수 $${leftTex}$와 $${rightTex}$ ${ask}`,",
     ),
     (
+        "M9 분수를 아무 분자로 뽑는다 (새 가드: 기약인가)",
+        "const [num, den] = pick(rng, PROPER_FRACS);",
+        "const den = pick(rng, [2, 3, 4, 5] as const);"
+        + chr(10)
+        + "        const num = intBetween(rng, 1, den * 3);"
+        + chr(10)
+        + "        if (num % den === 0) return null;",
+    ),
+    (
         "M7 수 뒤 조사를 손으로 박는다 (새 가드: 조사가 읽기와 맞나)",
         "$${N}$${waGwa(N)} 서로소인 수의 개수를 구하시오.",
         "$${N}$과 서로소인 수의 개수를 구하시오.",
