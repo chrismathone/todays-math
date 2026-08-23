@@ -48,10 +48,38 @@ function r4(v: number): number {
   return Math.round(v * 10000) / 10000;
 }
 
-/** 회전판 반지름 — 이름표가 칸 안(0.6R)에 들어가고 지면에서 안 작아지는 크기. */
-const SPIN_R = 62;
-/** 색칠하기 원 반지름. */
-const DISC_R = 58;
+/**
+ * 이 파일의 그림은 **모두 폭 224 의 고정 캔버스**에 그린다.
+ *
+ * 왜 고정인가 — 제품이 그림 폭을 `viewBox` **폭 하나로** 등급 짓기 때문이다
+ * (`figureSvgFrame.ts`: <=160 이면 140px, <=320 이면 240px). 캔버스를 안 박으면
+ * 폭이 내용에 따라 정해져 도형마다 등급이 갈리고, 그러면 **같은 유형인데 지면
+ * 글자 크기가 제각각**이 된다. 첫 판 실측이 그랬다 —
+ * 회전판 12.19px · 원판 12.88px · 위칸+아래칸(k=4) 15.50px 로 갈렸고,
+ * 그중 셋은 본문 12.5px **아래**였다(지면에서 이름표가 발문보다 작다).
+ *
+ * 224 를 고른 이유: `mid` 띠(161~320) 한가운데라 조금 흔들려도 등급이 안 바뀌고,
+ * 240 ÷ 224 = 1.071 배로 그려져 엔진 기본 글자 13 이 지면에서 **13.9px** 이 된다
+ * (본문 12.5px 위). 이 성질은 테스트가 실렌더로 잠근다.
+ */
+const CANVAS_W = 224;
+/** 원형 도형(회전판·원판·고리)의 캔버스 높이 — 정사각. */
+const CANVAS_ROUND_H = 224;
+/** 네모 도형의 좌우·위아래 여백. */
+const BOX_MARGIN = 12;
+/** 네모 도형이 쓰는 가로 폭. */
+const BOX_SPAN = CANVAS_W - 2 * BOX_MARGIN;
+
+/** 회전판 반지름과 중심 — 위쪽 바늘 자리를 남긴 배치. */
+const SPIN_R = 88;
+const SPIN_CY = 118;
+/** 색칠하기 원판 반지름. */
+const DISC_R = 95;
+/** 색칠하기 고리(가운데 원 + 둘레) 반지름. */
+const RING_OUT = 95;
+const RING_IN = 38;
+/** 원형 도형의 중심 x — 캔버스 한가운데. */
+const CX = CANVAS_W / 2;
 
 /**
  * 회전판 — 원을 `k` 등분해 칸마다 다른 옅은 색을 깔고 칸 안에 `texts[i]` 를 적는다.
@@ -68,7 +96,7 @@ export function spinnerSpec(k: number, texts: readonly string[]): Spec {
       `회전판 칸 수와 적을 글자 수가 다릅니다: ${k} ≠ ${texts.length}`,
     );
   }
-  const points: Record<string, unknown> = { O: [0, 0] };
+  const points: Record<string, unknown> = { O: [CX, SPIN_CY] };
   const segments: Record<string, unknown> = {};
   const regions: Record<string, unknown> = {};
   const labels: Record<string, unknown> = {};
@@ -90,17 +118,14 @@ export function spinnerSpec(k: number, texts: readonly string[]): Spec {
       ],
       fill: SPIN_FILLS[i]!,
     };
-    const mid = ((90 - (i + 0.5) * (360 / k)) * Math.PI) / 180;
-    points[`L${i}`] = [
-      r4(0.6 * SPIN_R * Math.cos(mid)),
-      r4(-0.6 * SPIN_R * Math.sin(mid)),
-    ];
+    points[`L${i}`] = sectorLabelPoint(CX, SPIN_CY, 0.6 * SPIN_R, i, k);
     labels[`L${i}`] = { text: texts[i]!, dx: 0, dy: 0 };
   }
   // 고정 바늘 — 원 밖 위쪽의 작은 삼각형. 끝이 첫 경계선을 가리킨다.
-  points.T1 = [-7, -SPIN_R - 13];
-  points.T2 = [7, -SPIN_R - 13];
-  points.T3 = [0, -SPIN_R + 3];
+  const rim = SPIN_CY - SPIN_R;
+  points.T1 = [CX - 7, rim - 13];
+  points.T2 = [CX + 7, rim - 13];
+  points.T3 = [CX, rim + 3];
   segments.t1 = ["T1", "T2"];
   segments.t2 = ["T2", "T3"];
   segments.t3 = ["T3", "T1"];
@@ -114,12 +139,25 @@ export function spinnerSpec(k: number, texts: readonly string[]): Spec {
   };
   return {
     version: 2,
+    canvas: { width: CANVAS_W, height: CANVAS_ROUND_H },
     points,
     circles: { c: { center: "O", radius: SPIN_R } },
     segments,
     regions,
     labels,
   };
+}
+
+/** `i` 번째 부채꼴 한가운데(반지름 `r` 자리)의 점 — SVG 는 y 가 아래로 자란다. */
+function sectorLabelPoint(
+  cx: number,
+  cy: number,
+  r: number,
+  i: number,
+  k: number,
+): [number, number] {
+  const mid = ((90 - (i + 0.5) * (360 / k)) * Math.PI) / 180;
+  return [r4(cx + r * Math.cos(mid)), r4(cy - r * Math.sin(mid))];
 }
 
 /** 색칠하기 도형의 종류. */
@@ -157,7 +195,8 @@ export function shadeAdjacency(shape: ShadeShape, k: number): number[][] {
 }
 
 function discSpec(k: number): Spec {
-  const points: Record<string, unknown> = { O: [0, 0] };
+  const cy = CANVAS_ROUND_H / 2;
+  const points: Record<string, unknown> = { O: [CX, cy] };
   const segments: Record<string, unknown> = {};
   const regions: Record<string, unknown> = {};
   const labels: Record<string, unknown> = {};
@@ -179,15 +218,12 @@ function discSpec(k: number): Spec {
       ],
       fill: SHADE_TINT,
     };
-    const mid = ((90 - (i + 0.5) * (360 / k)) * Math.PI) / 180;
-    points[`L${i}`] = [
-      r4(0.6 * DISC_R * Math.cos(mid)),
-      r4(-0.6 * DISC_R * Math.sin(mid)),
-    ];
+    points[`L${i}`] = sectorLabelPoint(CX, cy, 0.6 * DISC_R, i, k);
     labels[`L${i}`] = { text: PART_LETTERS[i]!, dx: 0, dy: 0 };
   }
   return {
     version: 2,
+    canvas: { width: CANVAS_W, height: CANVAS_ROUND_H },
     points,
     circles: { c: { center: "O", radius: DISC_R } },
     segments,
@@ -197,15 +233,17 @@ function discSpec(k: number): Spec {
 }
 
 function stripSpec(k: number): Spec {
-  const W = 42;
-  const H = 48;
+  const cell = BOX_SPAN / k;
+  const top = BOX_MARGIN;
+  const bottom = BOX_MARGIN + 56;
   const points: Record<string, unknown> = {};
   const segments: Record<string, unknown> = {};
   const regions: Record<string, unknown> = {};
   const labels: Record<string, unknown> = {};
   for (let i = 0; i <= k; i += 1) {
-    points[`T${i}`] = [i * W, 0];
-    points[`B${i}`] = [i * W, H];
+    const x = r4(BOX_MARGIN + i * cell);
+    points[`T${i}`] = [x, top];
+    points[`B${i}`] = [x, bottom];
     segments[`v${i}`] = [`T${i}`, `B${i}`];
   }
   segments.top = ["T0", `T${k}`];
@@ -220,27 +258,36 @@ function stripSpec(k: number): Spec {
       ],
       fill: SHADE_TINT,
     };
-    points[`L${i}`] = [i * W + W / 2, H / 2];
+    points[`L${i}`] = [r4(BOX_MARGIN + (i + 0.5) * cell), (top + bottom) / 2];
     labels[`L${i}`] = { text: PART_LETTERS[i]!, dx: 0, dy: 0 };
   }
-  return { version: 2, points, segments, regions, labels };
+  return {
+    version: 2,
+    canvas: { width: CANVAS_W, height: bottom + BOX_MARGIN },
+    points,
+    segments,
+    regions,
+    labels,
+  };
 }
 
 function fanSpec(k: number): Spec {
-  const W = 44;
-  const HT = 40;
-  const HB = 44;
+  const cell = BOX_SPAN / k;
+  const top = BOX_MARGIN;
+  const mid = BOX_MARGIN + 46;
+  const bottom = mid + 52;
   const points: Record<string, unknown> = {};
   const segments: Record<string, unknown> = {};
   const regions: Record<string, unknown> = {};
   const labels: Record<string, unknown> = {};
   for (let i = 0; i <= k; i += 1) {
-    points[`M${i}`] = [i * W, 0];
-    points[`B${i}`] = [i * W, HB];
+    const x = r4(BOX_MARGIN + i * cell);
+    points[`M${i}`] = [x, mid];
+    points[`B${i}`] = [x, bottom];
     segments[`v${i}`] = [`M${i}`, `B${i}`];
   }
-  points.T0 = [0, -HT];
-  points[`T${k}`] = [k * W, -HT];
+  points.T0 = [BOX_MARGIN, top];
+  points[`T${k}`] = [BOX_MARGIN + BOX_SPAN, top];
   segments.top = ["T0", `T${k}`];
   segments.left = ["T0", "M0"];
   segments.right = [`T${k}`, `M${k}`];
@@ -255,7 +302,7 @@ function fanSpec(k: number): Spec {
   topBoundary.push({ seg: [`T${k}`, "T0"] });
   topBoundary.push({ seg: ["T0", "M0"] });
   regions.g0 = { boundary: topBoundary, fill: SHADE_TINT };
-  points.L0 = [(k * W) / 2, -HT / 2];
+  points.L0 = [CX, (top + mid) / 2];
   labels.L0 = { text: PART_LETTERS[0]!, dx: 0, dy: 0 };
   for (let i = 0; i < k; i += 1) {
     regions[`g${i + 1}`] = {
@@ -267,16 +314,27 @@ function fanSpec(k: number): Spec {
       ],
       fill: SHADE_TINT,
     };
-    points[`L${i + 1}`] = [i * W + W / 2, HB / 2];
+    points[`L${i + 1}`] = [
+      r4(BOX_MARGIN + (i + 0.5) * cell),
+      (mid + bottom) / 2,
+    ];
     labels[`L${i + 1}`] = { text: PART_LETTERS[i + 1]!, dx: 0, dy: 0 };
   }
-  return { version: 2, points, segments, regions, labels };
+  return {
+    version: 2,
+    canvas: { width: CANVAS_W, height: bottom + BOX_MARGIN },
+    points,
+    segments,
+    regions,
+    labels,
+  };
 }
 
 function wheelSpec(k: number): Spec {
-  const RO = 66;
-  const RI = 26;
-  const points: Record<string, unknown> = { O: [0, 0] };
+  const RO = RING_OUT;
+  const RI = RING_IN;
+  const cy = CANVAS_ROUND_H / 2;
+  const points: Record<string, unknown> = { O: [CX, cy] };
   const segments: Record<string, unknown> = {};
   const regions: Record<string, unknown> = {};
   const labels: Record<string, unknown> = {};
@@ -306,13 +364,12 @@ function wheelSpec(k: number): Spec {
       ],
       fill: SHADE_TINT,
     };
-    const mid = ((90 - (i + 0.5) * (360 / k)) * Math.PI) / 180;
-    const rr = (RO + RI) / 2;
-    points[`L${i}`] = [r4(rr * Math.cos(mid)), r4(-rr * Math.sin(mid))];
+    points[`L${i}`] = sectorLabelPoint(CX, cy, (RO + RI) / 2, i, k);
     labels[`L${i}`] = { text: PART_LETTERS[i + 1]!, dx: 0, dy: 0 };
   }
   return {
     version: 2,
+    canvas: { width: CANVAS_W, height: CANVAS_ROUND_H },
     points,
     circles: {
       out: { center: "O", radius: RO },
