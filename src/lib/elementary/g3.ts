@@ -650,7 +650,9 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("곱셈식")) {
     return make(
       unit,
-      `곱셈식 $\\square\\times${b}=${a}$ 를 이용하여 $${a}\\div${b}$ 의 몫을 구하시오.`,
+      // «$…=18$ 를» → 십팔이라 «을» 이어야 한다. 수 뒤에서는 조사를 **고르지 말고
+      // 안 붙인다**(읽는 소리로 갈려 글자만 봐서는 못 정한다) — 「에서」로 받는다.
+      `곱셈식 $\\square\\times${b}=${a}$ 에서 $${a}\\div${b}$ 의 몫을 구하시오.`,
       n(q),
       `$${q}\\times${b}=${a}$ 이므로 $${a}\\div${b}$ 의 몫은 ${n(q)} 입니다.`,
     );
@@ -1050,13 +1052,41 @@ function div2(rng: Rng, wantCarryDown: boolean): [number, number, number] {
   return wantCarryDown ? [52, 4, 13] : [48, 4, 12];
 }
 
+/**
+ * 나머지가 있는 (몇십몇)÷(몇) 한 벌 — 표준과 갈래가 **이 함수 하나**로 뽑는다.
+ *
+ * ⚠️ $a=b\times q+r$ 로 **조립한 뒤 일의 자리를 안 보면** $70\div8$·$10\div3$ 같은
+ * (몇십)÷(몇) 이 나온다 — 소단원 이름이 약속한 «몇십몇» 이 아니다(실측 20/200).
+ * 가드로 거르지 않고 **뽑는 범위에서 뺀다**: $b,q$ 가 정해지면 $r$ 은 연속 $b-1(\le8)$
+ * 개라 $bq+r$ 이 십의 배수가 되는 $r$ 은 **많아야 하나**다. 그 하나가 범위 안일 때만
+ * 한 칸 짧게 뽑아 그 지점부터 밀어 준다(전단사). 없으면 종전 그대로다.
+ * 그래서 두 자리($11\le a\le79$ — $9\times8+8=80$ 은 일의 자리가 0 이라 걸러진다)와
+ * $1\le r<b$ 가 구성으로 남는다.
+ *
+ * ⚠️ **$b$ 의 아래끝을 3 보다 낮추지 말 것.** $b=2$ 면 좋은 $r$ 이 $b-2=0$ 개라
+ * `intBetween(1, 0)` 이 던진다. 지금은 안 일어난다 — $b=2$ 는 $r=1$ 뿐이고 $2q+1$ 은
+ * 홀수라 십의 배수가 될 수 없어 `bad` 가 아예 없고 「없으면 종전대로」 갈래를 탄다.
+ * 그 근거가 **코드가 아니라 수학에 있으므로**, 범위를 넓히면 이 자리가 조용히 깨진다.
+ */
+function div2Rem(rng: Rng): [number, number, number, number] {
+  const b = intBetween(rng, 3, 9);
+  const q = intBetween(rng, 3, 8);
+  let bad = -1;
+  for (let v = 1; v <= b - 1; v += 1) if ((b * q + v) % 10 === 0) bad = v;
+  let r: number;
+  if (bad === -1) {
+    r = intBetween(rng, 1, b - 1);
+  } else {
+    r = intBetween(rng, 1, b - 2);
+    if (r >= bad) r += 1;
+  }
+  return [b * q + r, b, q, r];
+}
+
 function div32(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = unit.section;
   if (s.includes("나머지")) {
-    const b = intBetween(rng, 3, 9);
-    const q = intBetween(rng, 3, 8);
-    const r = intBetween(rng, 1, b - 1);
-    const a = b * q + r;
+    const [a, b, q, r] = div2Rem(rng);
     return make(
       unit,
       `$${a}\\div${b}$ 의 몫과 나머지를 쓰시오.`,
@@ -1221,7 +1251,9 @@ function frac32(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `다음 가분수를 대분수로 나타내시오.\n\n$\\frac{${num}}{${den}}$`,
       expr(fracLatex(num, den)),
-      `$${num}\\div${den}=${whole}$ 이고 나머지가 ${n(rest)} 이므로 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.`,
+      // ⚠️ 나머지가 있는 나눗셈을 **등식**으로 적지 않는다 — `$17\div6=2$` 는 참이 아니다.
+      // 곱하고 빼서 몫·나머지를 보이는 꼴로 쓴다(2-2-3 해설과 같은 표기).
+      `${expr(`${den}\\times${whole}=${den * whole}`)} 이고 ${expr(`${num}-${den * whole}=${rest}`)} 이므로 ${expr(`${num}\\div${den}`)} 의 몫은 ${n(whole)}, 나머지는 ${n(rest)} 입니다. 대분수로 나타내면 ${expr(fracLatex(num, den))} 입니다.`,
     );
   }
   const den = intBetween(rng, 6, 9);
@@ -5287,6 +5319,394 @@ function mul214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 2-2 나눗셈 (D-72 확대) ───────────────────────────────────────────────
+//
+// 이름 약속: 2-2-1·2-2-2 는 (몇십)÷(몇)·(몇십몇)÷(몇) 이고 **내림 유무**가 갈린다,
+// 2-2-3 은 **나머지가 있는** (몇십몇)÷(몇), 2-2-4 는 (세 자리)÷(한 자리).
+// 수 뽑기는 표준이 쓰는 함수를 **그대로 쓴다**(div2 · div2Rem · div3Exact) —
+// 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+// 곱셈은 2-1 에서 배웠으므로 해설에 **곱셈 검산**을 쓴다(D-66⑶ 반대 방향).
+
+/** 소단원 이름이 약속한 내림 유무 — 갈림의 **단 하나의 자리**. */
+function carryDown22(section: string): boolean {
+  return section.includes("내림이 있는");
+}
+
+/** (세 자리)÷(한 자리), 나머지 없음 — 표준 div32 와 **같은 함수**로 뽑는다. */
+function div3Exact(rng: Rng): [number, number, number] {
+  const b = intBetween(rng, 3, 9);
+  const q = intBetween(rng, Math.ceil(100 / b), 48);
+  return [b * q, b, q];
+}
+
+/** 1단 — 나눗셈 한 번. 표준(「다음을 계산하시오」)과 틀을 갈라 둔다. */
+function div22Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const eq = expr(`${a}\\div${b}`);
+  const eqBox = expr(`${a}\\div${b}=\\square`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `나눗셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 몫을 구하시오.`,
+    `${sq} 에 알맞은 수를 쓰시오.\n\n${eqBox}`,
+    `나눗셈식 ${eqBox} 에서 ${sq} 에 알맞은 수를 구하시오.`,
+    `다음 나눗셈의 몫을 쓰시오.\n\n${eq}`,
+    `${eq} 의 값을 계산하시오.`,
+    `몫을 구하여 ${sq} 에 써넣으시오.\n\n${eqBox}`,
+    `다음 나눗셈식을 계산하시오.\n\n${eqBox}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — «똑같이 나누기» 문장. 식은 학생이 세운다. */
+function div22Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const stem = pick(rng, [
+    `색종이 ${n(a)}장을 ${n(b)}명에게 똑같이 나누어 주려고 합니다. 한 명이 몇 장씩 받는지 쓰시오.`,
+    `사탕 ${n(a)}개를 ${n(b)}봉지에 똑같이 나누어 담으면 한 봉지에 몇 개씩 담기는지 쓰시오.`,
+    `연필 ${n(a)}자루를 ${n(b)}상자에 똑같이 나누어 넣으면 한 상자에 몇 자루씩 들어가는지 쓰시오.`,
+    `구슬 ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가지면 한 사람이 몇 개씩 갖는지 쓰시오.`,
+    `쿠키 ${n(a)}개를 접시 ${n(b)}개에 똑같이 나누어 놓으면 한 접시에 몇 개씩 놓이는지 쓰시오.`,
+    `동화책 ${n(a)}쪽을 ${n(b)}일 동안 똑같이 나누어 읽으면 하루에 몇 쪽씩 읽어야 하는지 쓰시오.`,
+    `끈 ${n(a)}도막을 ${n(b)}묶음으로 똑같이 나누면 한 묶음이 몇 도막인지 쓰시오.`,
+    `학생 ${n(a)}명을 ${n(b)}모둠으로 똑같이 나누면 한 모둠이 몇 명인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `똑같이 나누므로 나눗셈으로 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 맞습니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 곱하거나 덜어내는 두 단계. */
+function div22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  // ⚠️ 「그중 $c$ 묶음」 틀은 $c<b$ 여야 말이 된다. $b=2$ 면 $[2,1]$ 로 **범위가
+  // 뒤집혀 던진다** — 되뽑기가 아니라 **그때는 그 틀을 안 쓴다**(구성으로 회피).
+  if (b >= 3 && intBetween(rng, 0, 1) === 0) {
+    const c = intBetween(rng, 2, b - 1);
+    const stem = pick(rng, [
+      `공책 ${n(a)}권을 ${n(b)}반에 똑같이 나누어 주었습니다. 그중 ${n(c)}반이 받은 공책은 모두 몇 권인지 쓰시오.`,
+      `색연필 ${n(a)}자루를 ${n(b)}모둠에 똑같이 나누어 주었습니다. ${n(c)}모둠이 받은 색연필은 모두 몇 자루인지 쓰시오.`,
+      `귤 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담았습니다. ${n(c)}상자에 담긴 귤은 모두 몇 개인지 쓰시오.`,
+      `사탕 ${n(a)}개를 ${n(b)}봉지에 똑같이 나누어 담았습니다. ${n(c)}봉지에 든 사탕은 모두 몇 개인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q * c),
+      `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${q}\\times${c}=${q * c}`)} 이므로 답은 ${n(q * c)} 입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const stem = pick(rng, [
+    `딱지 ${n(a)}장을 ${n(b)}명이 똑같이 나누어 가진 뒤, 한 사람이 ${n(c)}장을 잃어버렸습니다. 그 사람에게 남은 딱지는 몇 장인지 쓰시오.`,
+    `구슬 ${n(a)}개를 ${n(b)}명이 똑같이 나누어 가진 뒤, 한 사람이 ${n(c)}개를 동생에게 주었습니다. 그 사람에게 남은 구슬은 몇 개인지 쓰시오.`,
+    `쿠키 ${n(a)}개를 접시 ${n(b)}개에 똑같이 나누어 놓은 뒤, 한 접시에서 ${n(c)}개를 먹었습니다. 그 접시에 남은 쿠키는 몇 개인지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}모둠에 똑같이 나누어 준 뒤, 한 모둠이 ${n(c)}장을 썼습니다. 그 모둠에 남은 색종이는 몇 장인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${q}-${c}=${q - c}`)} 이므로 답은 ${n(q - c)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 두 틀. ㉠ 나뉘는 수 되짚기 ㉡ 잘못 곱한 결과에서 바른 몫 찾기. */
+function div22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const sq = expr(`\\square`);
+  if (intBetween(rng, 0, 1) === 0) {
+    const eqD = expr(`\\square\\div${b}=${q}`);
+    const stem = pick(rng, [
+      `나눗셈식의 ${sq} 에 알맞은 수를 구하시오.\n\n${eqD}`,
+      `${eqD} 에서 ${sq} 에 알맞은 수를 쓰시오.`,
+      // ⚠️ «$4$ 로 나누어» 처럼 **수 뒤에 조사**를 붙이지 않는다(읽는 소리로 갈린다).
+      // 「나누는 수가 $4$ 인」 처럼 조사가 안 붙는 자리로 문장을 돌린다.
+      `나누는 수가 ${n(b)} 인 나눗셈의 몫이 ${n(q)} 입니다. 나뉘는 수를 구하시오.\n\n${eqD}`,
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)} 인 나눗셈이 있습니다. 나뉘는 수를 쓰시오.\n\n${eqD}`,
+      `${sq} 에 알맞은 두 자리 수를 구하시오.\n\n${eqD}`,
+      `다음 나눗셈식이 맞으려면 ${sq} 에 어떤 수가 들어가야 하는지 쓰시오.\n\n${eqD}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,
+    );
+  }
+  const wrong = a * b;
+  // 바르게 할 나눗셈을 지면에 세운다 — 나뉘는 수는 가린 채로(답이 보이면 안 된다).
+  // 그래야 소단원 이름이 약속한 «(몇십몇)÷(몇)» 꼴이 발문에 실제로 선다.
+  const right = expr(`\\square\\div${b}`);
+  const stem = pick(rng, [
+    `나누는 수가 ${n(b)} 인 나눗셈을 해야 하는데 잘못하여 곱했더니 ${n(wrong)} 입니다. 바르게 계산한 몫을 쓰시오.\n\n${right}`,
+    `어떤 수를 ${n(b)} 만큼씩 나누어야 할 것을 잘못하여 ${n(b)} 배 했더니 ${n(wrong)} 입니다. 바르게 계산한 몫을 구하시오.\n\n${right}`,
+    `나눗셈을 해야 할 것을 곱셈으로 잘못 계산하여 나온 값이 ${n(wrong)} 입니다. 두 계산에 쓴 수가 모두 ${n(b)} 일 때, 바른 몫을 쓰시오.\n\n${right}`,
+    `어떤 수의 ${n(b)} 배가 ${n(wrong)} 입니다. 그 어떤 수의 몫을 구하시오.\n\n${right}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${b}\\times${a}=${wrong}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 1단 — 몫과 나머지. 정답은 표준과 같은 «몫 ~, 나머지 ~» 꼴이다. */
+function rem223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  const eq = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `나눗셈을 하여 몫과 나머지를 쓰시오.\n\n${eq}`,
+    `${eq} 의 몫과 나머지를 차례로 구하시오.`,
+    `다음 나눗셈의 몫과 나머지를 각각 구하시오.\n\n${eq}`,
+    `${eq} 에서 몫과 나머지를 쓰시오.`,
+    `나눗셈식 ${eq} 의 몫과 나머지를 구하시오.`,
+    `다음을 계산하여 몫과 나머지를 쓰시오.\n\n${eq}`,
+    `${eq} 의 몫과 나머지는 각각 얼마인지 구하시오.`,
+    `나눗셈 ${eq} 에서 나머지까지 구하시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    `몫 ${n(q)}, 나머지 ${n(r)}`,
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장. 남는 것이 몇인지, 또는 몇 묶음이 되는지를 묻는다. */
+function rem223Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으려고 합니다. 봉지에 담고 남는 사탕은 몇 개인지 쓰시오.`,
+      `색종이 ${n(a)}장을 ${n(b)}명에게 똑같이 나누어 줄 때 남는 색종이는 몇 장인지 쓰시오.`,
+      `구슬 ${n(a)}개를 한 통에 ${n(b)}개씩 담으면 남는 구슬은 몇 개인지 쓰시오.`,
+      `연필 ${n(a)}자루를 ${n(b)}자루씩 묶으면 묶고 남는 연필은 몇 자루인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(r),
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. ${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${b * q}+${r}=${a}`)} 이므로 맞습니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `귤 ${n(a)}개를 한 상자에 ${n(b)}개씩 담습니다. 가득 채운 상자는 몇 상자인지 쓰시오.`,
+    `쿠키 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담습니다. 가득 채운 봉지는 몇 봉지인지 쓰시오.`,
+    `공책 ${n(a)}권을 한 묶음에 ${n(b)}권씩 묶습니다. 만들 수 있는 묶음은 몇 묶음인지 쓰시오.`,
+    `달걀 ${n(a)}개를 한 판에 ${n(b)}개씩 담습니다. 가득 채운 판은 몇 판인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 가득 채운 것은 몫이므로 ${n(q)} 입니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 남는 것까지 함께 쓰는 두 단계. */
+function rem223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 남는 것까지 담으려면 한 묶음이 더 필요하다 — 몫에 하나를 더한다.
+    const stem = pick(rng, [
+      `학생 ${n(a)}명이 한 대에 ${n(b)}명씩 타는 배를 타려고 합니다. 모두 타려면 배는 적어도 몇 대 필요한지 쓰시오.`,
+      `사과 ${n(a)}개를 한 상자에 ${n(b)}개씩 담아 모두 담으려고 합니다. 상자는 적어도 몇 상자 필요한지 쓰시오.`,
+      `공 ${n(a)}개를 한 바구니에 ${n(b)}개씩 넣어 모두 담으려면 바구니는 적어도 몇 개 필요한지 쓰시오.`,
+      `책 ${n(a)}권을 한 칸에 ${n(b)}권씩 꽂아 모두 꽂으려면 칸은 적어도 몇 칸 필요한지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q + 1),
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 남는 것도 담아야 하므로 ${expr(`${q}+1=${q + 1}`)} 입니다.`,
+    );
+  }
+  // 남는 것을 채우려면 얼마가 더 있어야 하는가 — 나누는 수에서 나머지를 뺀다.
+  const stem = pick(rng, [
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았더니 마지막 봉지가 다 차지 않았습니다. 마지막 봉지를 가득 채우려면 사탕이 몇 개 더 필요한지 쓰시오.`,
+    `구슬 ${n(a)}개를 한 통에 ${n(b)}개씩 담았더니 마지막 통이 다 차지 않았습니다. 마지막 통을 가득 채우려면 구슬이 몇 개 더 필요한지 쓰시오.`,
+    `달걀 ${n(a)}개를 한 판에 ${n(b)}개씩 담았더니 마지막 판이 다 차지 않았습니다. 마지막 판을 채우려면 달걀이 몇 개 더 필요한지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}장씩 묶었더니 마지막 묶음이 다 차지 않았습니다. 마지막 묶음을 채우려면 색종이가 몇 장 더 필요한지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b - r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 한 묶음이 ${n(b)} 이므로 ${expr(`${b}-${r}=${b - r}`)} 만큼 더 필요합니다.`,
+  );
+}
+
+/** 4단 — 역산·조건 조합 두 틀. ㉠ 몫·나머지에서 나뉘는 수 ㉡ 나누어떨어지게 하려면. */
+function rem223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  if (intBetween(rng, 0, 1) === 0) {
+    // 나뉘는 수는 가린 채로 나눗셈을 지면에 세운다 — 이름이 약속한 꼴이 서면서
+    // 답(나뉘는 수)은 발문에 안 보인다.
+    const box = expr(`\\square\\div${b}`);
+    const stem = pick(rng, [
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)}, 나머지가 ${n(r)} 인 나눗셈이 있습니다. 나뉘는 수를 구하시오.\n\n${box}`,
+      `어떤 수를 ${n(b)} 씩 나누었더니 몫이 ${n(q)} 이고 나머지가 ${n(r)} 입니다. 어떤 수를 쓰시오.\n\n${box}`,
+      `몫이 ${n(q)}, 나머지가 ${n(r)} 인 나눗셈에서 나누는 수가 ${n(b)} 일 때, 나뉘는 수를 구하시오.\n\n${box}`,
+      `나누는 수가 ${n(b)} 인 나눗셈의 몫이 ${n(q)}, 나머지가 ${n(r)} 일 때 나뉘는 수는 얼마인지 구하시오.\n\n${box}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나뉘는 수는 곱한 뒤 나머지를 더해 되짚습니다. ${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${a}`)} 이므로 ${n(a)} 입니다.`,
+    );
+  }
+  const eq = expr(`${a}\\div${b}`);
+  const stem = pick(rng, [
+    `${eq} 에서 나누어떨어지게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 구하시오.`,
+    `나눗셈 ${eq} 에서 나누어떨어지도록 나뉘는 수를 늘리려고 합니다. 적어도 얼마를 더해야 하는지 쓰시오.`,
+    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.\n\n${eq}`,
+    `${eq} 에서 나머지가 없게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(b - r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. 나누는 수가 ${n(b)} 이므로 ${expr(`${b}-${r}=${b - r}`)} 만큼 더하면 나누어떨어집니다.`,
+  );
+}
+
+/** 1단 — (세 자리)÷(한 자리) 식 그대로. */
+function div224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const eq = expr(`${a}\\div${b}`);
+  const eqBox = expr(`${a}\\div${b}=\\square`);
+  const sq = expr(`\\square`);
+  // 문구는 2-2-1·2-2-2 와 **겹치지 않게** 따로 짠다 — 자리 수만 다른 같은 문장이
+  // 두 소단원에 서면 지면에서 같은 문항으로 읽힌다(D-66⑸ 취지).
+  const stem = pick(rng, [
+    `세 자리 수의 나눗셈을 하시오.\n\n${eqBox}`,
+    `${eq} 의 계산에서 몫은 얼마인지 쓰시오.`,
+    `계산하여 ${sq} 에 알맞은 수를 써넣으시오.\n\n${eqBox}`,
+    `다음 나눗셈에서 몫을 구하시오.\n\n${eq}`,
+    `${eq} 의 계산 결과를 쓰시오.`,
+    `나눗셈식 ${eqBox} 의 ${sq} 에 알맞은 수를 쓰시오.`,
+    `세로로 계산하여 몫을 구하시오.\n\n${eq}`,
+    `다음 식의 몫을 구하여 쓰시오.\n\n${eqBox}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
+  );
+}
+
+/** 2단 — 문장. 세 자리 수가 자연스러운 소재를 쓴다(2-2-1·2 와 소재를 갈라 둔다). */
+function div224Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const stem = pick(rng, [
+    `색종이 ${n(a)}장을 ${n(b)}반에 똑같이 나누어 주면 한 반이 몇 장씩 받는지 쓰시오.`,
+    `공장에서 만든 인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담으면 한 상자에 몇 개씩 들어가는지 쓰시오.`,
+    `위인전 ${n(a)}쪽을 ${n(b)}주 동안 똑같이 나누어 읽으면 한 주에 몇 쪽씩 읽어야 하는지 쓰시오.`,
+    `과수원에서 딴 사과 ${n(a)}개를 ${n(b)}수레에 똑같이 나누어 실으면 한 수레에 몇 개씩 실리는지 쓰시오.`,
+    `물 ${n(a)}병을 ${n(b)}묶음으로 똑같이 나누면 한 묶음이 몇 병인지 쓰시오.`,
+    `학생 ${n(a)}명을 ${n(b)}줄로 똑같이 세우면 한 줄에 몇 명씩 서는지 쓰시오.`,
+    `달걀 ${n(a)}개를 ${n(b)}판에 똑같이 나누어 담으면 한 판에 몇 개씩 담기는지 쓰시오.`,
+    `도서관에 있는 책 ${n(a)}권을 책꽂이 ${n(b)}칸에 똑같이 나누어 꽂으면 한 칸에 몇 권씩 꽂히는지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q),
+    `똑같이 나누므로 나눗셈으로 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 맞습니다.`,
+  );
+}
+
+/** 3단 — 나눈 뒤 더하거나 덜어내는 두 단계. */
+function div224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const c = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 0) {
+    const stem = pick(rng, [
+      `위인전 ${n(a)}쪽을 ${n(b)}주에 똑같이 나누어 읽기로 한 뒤, 첫 주에 ${n(c)}쪽을 더 읽었습니다. 첫 주에 읽은 쪽수는 몇 쪽인지 쓰시오.`,
+      `사과 ${n(a)}개를 ${n(b)}수레에 똑같이 나누어 실은 뒤, 한 수레에 ${n(c)}개를 더 실었습니다. 그 수레에 실린 사과는 몇 개인지 쓰시오.`,
+      `인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담은 뒤, 한 상자에 ${n(c)}개를 더 넣었습니다. 그 상자에 든 인형은 몇 개인지 쓰시오.`,
+      `책 ${n(a)}권을 책꽂이 ${n(b)}칸에 똑같이 나누어 꽂은 뒤, 한 칸에 ${n(c)}권을 더 꽂았습니다. 그 칸에 꽂힌 책은 몇 권인지 쓰시오.`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(q + c),
+      `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. 더 받은 것까지 더하면 ${expr(`${q}+${c}=${q + c}`)} 입니다.`,
+    );
+  }
+  const stem = pick(rng, [
+    `인형 ${n(a)}개를 ${n(b)}상자에 똑같이 나누어 담은 뒤, 한 상자에서 ${n(c)}개를 꺼내 팔았습니다. 그 상자에 남은 인형은 몇 개인지 쓰시오.`,
+    `색종이 ${n(a)}장을 ${n(b)}반에 똑같이 나누어 준 뒤, 한 반이 ${n(c)}장을 썼습니다. 그 반에 남은 색종이는 몇 장인지 쓰시오.`,
+    `물 ${n(a)}병을 ${n(b)}묶음으로 똑같이 나눈 뒤, 한 묶음에서 ${n(c)}병을 마셨습니다. 그 묶음에 남은 물은 몇 병인지 쓰시오.`,
+    `달걀 ${n(a)}개를 ${n(b)}판에 똑같이 나누어 담은 뒤, 한 판에서 ${n(c)}개를 요리에 썼습니다. 그 판에 남은 달걀은 몇 개인지 쓰시오.`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(q - c),
+    `한 몫을 먼저 구합니다. ${expr(`${a}\\div${b}=${q}`)} 입니다. 쓴 만큼 빼면 ${expr(`${q}-${c}=${q - c}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 역산 두 틀. ㉠ 나뉘는 수 되짚기 ㉡ 나뉘는 수의 가린 자리 복원. */
+function div224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const sq = expr(`\\square`);
+  if (intBetween(rng, 0, 1) === 0) {
+    const eqD = expr(`\\square\\div${b}=${q}`);
+    const stem = pick(rng, [
+      `${sq} 에 알맞은 세 자리 수를 구하시오.\n\n${eqD}`,
+      `${eqD} 의 ${sq} 에 알맞은 수를 쓰시오.`,
+      `나누는 수가 ${n(b)} 이고 몫이 ${n(q)} 인 세 자리 수를 구하시오.\n\n${eqD}`,
+      `어떤 세 자리 수를 ${n(b)} 씩 나누었더니 몫이 ${n(q)} 입니다. 그 세 자리 수를 쓰시오.\n\n${eqD}`,
+      `나눗셈식이 맞도록 ${sq} 에 알맞은 세 자리 수를 써넣으시오.\n\n${eqD}`,
+      `몫이 ${n(q)} 인 나눗셈식입니다. 나뉘는 수를 구하시오.\n\n${eqD}`,
+    ]);
+    return make(
+      unit,
+      stem,
+      n(a),
+      `나누어지는 수는 곱으로 되짚습니다. ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 수는 ${n(a)} 입니다.`,
+    );
+  }
+  // 가린 자리 하나.
+  // ⚠️ **일의 자리는 가리지 않는다.** 2-2-3 에서 나머지를 배운 뒤라 「몫이 $47$」은
+  // 나누어떨어지지 않는 수까지 뜻할 수 있다 — $141\div3$ 도 $142\div3$ 도 몫이 $47$ 이라
+  // 답이 하나가 아니다. 십·백의 자리는 한 칸 바뀌면 나뉘는 수가 $10$ 이상 달라져
+  // 몫이 반드시 달라지므로($10\div b\ge10\div9>1$) 답이 **구성으로** 하나다.
+  const pos = intBetween(rng, 1, 2);
+  const hidden = Math.floor(a / 10 ** pos) % 10;
+  const masked = [2, 1, 0]
+    .map((d) => (d === pos ? "\\square" : String(Math.floor(a / 10 ** d) % 10)))
+    .join("");
+  const eqH = expr(`${masked}\\div${b}=${q}`);
+  const place = pos === 0 ? "일" : pos === 1 ? "십" : "백";
+  const stem = pick(rng, [
+    `${sq} 에 알맞은 숫자를 구하시오.\n\n${eqH}`,
+    `나눗셈식이 맞도록 ${sq} 에 알맞은 숫자를 써넣으시오.\n\n${eqH}`,
+    `가려진 ${place}의 자리 숫자를 구하시오.\n\n${eqH}`,
+    `다음 나눗셈식에서 ${sq} 에 들어갈 숫자를 쓰시오.\n\n${eqH}`,
+  ]);
+  return make(
+    unit,
+    stem,
+    n(hidden),
+    `나누어지는 수를 곱으로 찾으면 ${expr(`${b}\\times${q}=${a}`)} 이므로 ${sq} 에 알맞은 숫자는 ${n(hidden)} 입니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -5477,6 +5897,30 @@ export const G3_TIERS: ElemTierMap = {
     기본: mul214Word,
     응용: mul214Apply,
     심화: mul214Deep,
+  },
+  "초3|2-2-1": {
+    연산: div22Calc,
+    기본: div22Word,
+    응용: div22Apply,
+    심화: div22Deep,
+  },
+  "초3|2-2-2": {
+    연산: div22Calc,
+    기본: div22Word,
+    응용: div22Apply,
+    심화: div22Deep,
+  },
+  "초3|2-2-3": {
+    연산: rem223Calc,
+    기본: rem223Word,
+    응용: rem223Apply,
+    심화: rem223Deep,
+  },
+  "초3|2-2-4": {
+    연산: div224Calc,
+    기본: div224Word,
+    응용: div224Apply,
+    심화: div224Deep,
   },
   "초3|1-1-1": {
     연산: sub111Calc,
