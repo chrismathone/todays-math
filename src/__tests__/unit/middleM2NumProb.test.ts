@@ -28,6 +28,7 @@ import {
 import { M2_COUNTING } from "../../lib/middle/m2Counting";
 import { M2_PROB } from "../../lib/middle/m2Prob";
 import { M2_RATIONAL } from "../../lib/middle/m2Rational";
+import { parseProblemContent } from "../../lib/problem/parseProblemContent";
 import type { MidProblem } from "../../lib/middle/types";
 import { renderMathHtml } from "../../lib/math/renderMathHtml";
 
@@ -151,7 +152,8 @@ function expandRep(
   return { int, pre: digits.slice(0, k), cyc: digits.slice(k) };
 }
 
-const LETTERS = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"] as const;
+/** 보기 표식 — 제품이 줄바꿈으로 읽는 문자(BODY_CHOICE_CLASS)여야 한다. */
+const LETTERS = ["①", "②", "③", "④", "⑤"] as const;
 
 function lettersOf(mask: number, count: number): string {
   const out: string[] = [];
@@ -313,7 +315,7 @@ const CHECKS: Record<string, Check> = {
     for (let i = 0; i < 5; i += 1) {
       const n = f[`n${i + 1}`]!;
       const d = f[`d${i + 1}`]!;
-      expect(p.content).toContain(`${LETTERS[i]}. $\\dfrac{${n}}{${d}}$`);
+      expect(p.content).toContain(`${LETTERS[i]} $\\dfrac{${n}}{${d}}$`);
       if (terminates(n, d)) mask |= 1 << i;
     }
     expect(mask).toBe(f.mask);
@@ -370,7 +372,7 @@ const CHECKS: Record<string, Check> = {
     for (let i = 0; i < 5; i += 1) {
       const n = f[`n${i + 1}`]!;
       const d = f[`d${i + 1}`]!;
-      expect(p.content).toContain(`${LETTERS[i]}. $\\dfrac{${n}}{${d}}$`);
+      expect(p.content).toContain(`${LETTERS[i]} $\\dfrac{${n}}{${d}}$`);
       expect(gcdT(n, d), "기약 아님을 보여야 하는 유형").toBeGreaterThan(1);
       if (terminates(n, d)) mask |= 1 << i;
     }
@@ -545,7 +547,7 @@ const CHECKS: Record<string, Check> = {
     expect(lines.length).toBe(4);
     let mask = 0;
     lines.forEach((line, i) => {
-      const text = line.replace(`${LETTERS[i]}. `, "");
+      const text = line.replace(`${LETTERS[i]} `, "");
       const truth = FACT_TRUTHS[text];
       expect(truth, `진리표에 없는 명제: ${text}`).toBeDefined();
       if (truth) mask |= 1 << i;
@@ -795,6 +797,15 @@ const CHECKS: Record<string, Check> = {
     expect(vs.length).toBe(f.m! + 1);
     expect(spec.labels.P00).toBe("A");
     expect(spec.labels[`P${f.m}${f.n}`]).toBe("B");
+    // 지점 표시 — 라벨이 붙은 교차점마다 점이 하나씩 (원본 지면과 같은 문법)
+    const marks = (
+      p.figureSpec as unknown as {
+        circles: Record<string, { center: string; radius: number }>;
+      }
+    ).circles;
+    const marked = new Set(Object.values(marks).map((c) => c.center));
+    expect(marked).toEqual(new Set(Object.keys(spec.labels)));
+    for (const c of Object.values(marks)) expect(c.radius).toBe(2);
     if (via) {
       expect(spec.labels[`P${via.px}${via.py}`]).toBe("P");
     } else {
@@ -1168,6 +1179,39 @@ describe("중2 수·확률 48유형 (2A-중2수확률)", () => {
     }
     // 표본이 그 자리를 실제로 밟는지 — 0이면 이 검사는 아무것도 못 잰다
     expect(seen).toBeGreaterThan(200);
+  });
+
+  /**
+   * 보기 목록 유형이 **제품 조판에서 실제로 목록이 되는가**.
+   *
+   * `renderMathHtml` 은 개행 뒤에 ①~⑮ 나 `1.` 이 올 때만 줄을 바꾼다
+   * (`BODY_CHOICE_CLASS`). 「ㄱ. ㄴ.」로 쓰면 보기 다섯이 한 줄로 죽 이어지는데
+   * **테스트는 초록이었다** — 2026-08-23 실렌더로 눈으로 보고서야 드러났다.
+   * 그래서 여기서는 제품 파서에 직접 물어 「보기로 읽히는가」를 잠근다.
+   */
+  it("보기 목록 유형은 제품 파서가 보기로 읽는다 (표식이 줄바꿈 문자여야 한다)", () => {
+    const EXPECT: Record<string, number> = {
+      [`${R}|01`]: 5,
+      [`${R}|06`]: 5,
+      [`${R}|17`]: 4,
+      [`${R}|18`]: 4,
+    };
+    for (const [key, n] of Object.entries(EXPECT)) {
+      for (const seed of SEEDS) {
+        const p = generateMiddleProblem(key, seed);
+        const parsed = parseProblemContent(p.content);
+        expect(parsed.choices.length, `${key} seed=${seed}`).toBe(n);
+        // 발문에 보기 본문이 섞여 들어가면 «한 줄로 이어진» 것이다
+        expect(parsed.question, key).not.toContain(LETTERS[1]);
+      }
+    }
+    // 목록이 아닌 유형은 보기로 읽히면 안 된다 (반대쪽 표본)
+    for (const key of [`${R}|03`, `${C}|16`, `${P}|07`]) {
+      const parsed = parseProblemContent(
+        generateMiddleProblem(key, 20260823).content,
+      );
+      expect(parsed.choices.length, key).toBe(0);
+    }
   });
 
   it("그림은 최단거리(16)에만 있고 나머지는 없다", () => {

@@ -238,7 +238,13 @@ function repFacts(prefix: string, r: Rep): Record<string, number> {
   };
 }
 
-const LETTERS = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"] as const;
+/**
+ * 보기 표식 — 제품 렌더러가 **줄바꿈으로 읽는 문자**만 쓴다.
+ * `renderMathHtml` 은 개행 뒤에 ①~⑮ 또는 `1.` 이 올 때만 줄을 바꿄다
+ * (`BODY_CHOICE_CLASS`). 「ㄱ. ㄴ.」로 쓰면 보기 다섯이 **한 줄로 죽 이어진다**
+ * — 2026-08-23 실렌더로 확인했고, RPM 원본도 ①~⑤ 를 쓴다.
+ */
+const LETTERS = ["①", "②", "③", "④", "⑤"] as const;
 
 function lettersOfMask(mask: number, count: number): string {
   const out: string[] = [];
@@ -341,7 +347,7 @@ export const M2_RATIONAL: TypeEntry[] = [
       if (it.term) mask |= 1 << i;
     });
     const lines = items
-      .map((it, i) => `${LETTERS[i]}. $\\dfrac{${it.n}}{${it.d}}$`)
+      .map((it, i) => `${LETTERS[i]} $\\dfrac{${it.n}}{${it.d}}$`)
       .join("\n");
     const facts: Record<string, number> = { mask };
     items.forEach((it, i) => {
@@ -457,7 +463,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         if (it.term) mask |= 1 << i;
       });
       const lines = items
-        .map((it, i) => `${LETTERS[i]}. $\\dfrac{${it.n}}{${it.d}}$`)
+        .map((it, i) => `${LETTERS[i]} $\\dfrac{${it.n}}{${it.d}}$`)
         .join("\n");
       const facts: Record<string, number> = { mask };
       items.forEach((it, i) => {
@@ -872,7 +878,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
       const lines = stmts
         .map(
           (s, i) =>
-            `${LETTERS[i]}. $${s.texL}${s.shown === 0 ? "<" : ">"}${s.texR}$`,
+            `${LETTERS[i]} $${s.texL}${s.shown === 0 ? "<" : ">"}${s.texR}$`,
         )
         .join("\n");
       const facts: Record<string, number> = { mask };
@@ -900,7 +906,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
       const cnt = idxs.reduce((acc, _v, i) => acc + ((mask >> i) & 1), 0);
       if (cnt === 0 || cnt === 4) return null;
       const lines = idxs
-        .map((idx, i) => `${LETTERS[i]}. ${RATIONAL_FACT_POOL[idx]!.text}`)
+        .map((idx, i) => `${LETTERS[i]} ${RATIONAL_FACT_POOL[idx]!.text}`)
         .join("\n");
       const facts: Record<string, number> = { mask };
       idxs.forEach((idx, i) => {

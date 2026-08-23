@@ -146,7 +146,15 @@ export function gridFigureSpec(
   for (let x = 0; x <= m; x += 1) segments[`v${x}`] = [`P${x}0`, `P${x}${n}`];
   const labels: Record<string, string> = { P00: "A", [`P${m}${n}`]: "B" };
   if (via) labels[`P${via.px}${via.py}`] = "P";
-  return { version: 2, points, segments, labels };
+  // 지점 표시 — RPM 원본 지면도 A·B·P 교차점에 점을 찍는다.
+  // 이게 없으면 라벨이 칸 안쪽으로 밀려 «어느 교차점인가»가
+  // 애매해진다 (2026-08-23 실렌더로 둘을 견줘 고른 것).
+  const marks: Record<string, { center: string; radius: number }> = {
+    mA: { center: "P00", radius: 2 },
+    mB: { center: `P${m}${n}`, radius: 2 },
+  };
+  if (via) marks.mP = { center: `P${via.px}${via.py}`, radius: 2 };
+  return { version: 2, points, segments, labels, circles: marks };
 }
 
 export const M2_COUNTING: TypeEntry[] = [
