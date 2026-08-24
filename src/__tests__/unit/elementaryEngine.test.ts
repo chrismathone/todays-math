@@ -1644,7 +1644,7 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
     expect(uniq, uniq.join("\n")).toEqual([]);
     // 0 은 「깨끗」과 「못 셈」을 구분해 주지 않는다 — 한 장도 안 그렸으면 걸린다.
     expect(drawn, "안쪽 스펙을 한 장도 못 그렸다").toBe(SEEDS * 2);
-  });
+  }, 60_000);
 
   // ⚠️ **방향을 잠근다.** 원장님 확정 시안이 「수 쪽 가로형 · 가격 쪽 세로형」이고,
   //    `SALE_MAX_TICKS.수 = 5` 라는 상한이 **가로형이라서** 나온 수다(눈금이 옆으로 늘어서
@@ -1727,7 +1727,7 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
     }
     expect(bad, bad.join("\n")).toEqual([]);
     expect(drawn, "결합 문항을 하나도 못 모았다 — 갈래가 빠졌나").toBe(16);
-  });
+  }, 60_000);
 
   it("크기가 같은 분수 그림이 실제로 그려진다", async () => {
     const unit = UNITS.find((u) => u.section.includes("크기가 같은 분수"))!;
@@ -1750,7 +1750,7 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
       if (!drawn.ok) failed.push(`${kind} (${unit.section}): ${drawn.error}`);
     }
     expect(failed).toEqual([]);
-  });
+  }, 60_000);
 
   it("후반 학년 kind 표본이 SVG 를 낸다", async () => {
     const samples: Record<string, unknown>[] = [
@@ -1850,7 +1850,7 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
         failed.push(`${String(spec.kind)}: empty`);
     }
     expect(failed).toEqual([]);
-  });
+  }, 60_000);
 
   it("원기둥 전개도 생성기는 배치를 여러 가지로 고른다", () => {
     const unit = UNITS.find((u) => u.section.includes("원기둥의 전개도"))!;

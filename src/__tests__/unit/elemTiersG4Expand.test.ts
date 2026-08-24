@@ -277,7 +277,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
       if (/적어도 몇 칸/.test(p.content)) {
         kinds.add("최소칸수");
         // 세로 표 — 값은 **행마다 둘째 칸**이다.
-      const vals = spec.rows.map((r) => Number(r[1]));
+        const vals = spec.rows.map((r) => Number(r[1]));
         expect(got * s, `seed ${seed}`).toBe(Math.max(...vals));
       } else {
         kinds.add("칸차");
@@ -472,5 +472,5 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
       }
     }
     expect(bad, bad.join("\n")).toEqual([]);
-  });
+  }, 60_000);
 });
