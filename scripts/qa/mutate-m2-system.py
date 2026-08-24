@@ -99,8 +99,11 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "연립 07 — 계수 행렬식이 0 인 연립(해가 무수히 많다)을 그대로 낸다",
-        "      const det = a1 * b2 - a2 * b1;\n      if (det === 0) return null;",
-        "      const det = a1 * b2 - a2 * b1;\n      if (det === 12345) return null;",
+        # ⚠️ 들여쓰기는 **prettier 가 정한다.** 2026-08-24 에 이 앵커가 6칸이었다가
+        #    def(...) 가 길어지며 8칸으로 바뀌어 「앵커 0개」가 났다. 커밋(포맷) 뒤에
+        #    앵커를 다시 세는 것이 순서다.
+        "        const det = a1 * b2 - a2 * b1;\n        if (det === 0) return null;",
+        "        const det = a1 * b2 - a2 * b1;\n        if (det === 12345) return null;",
     ),
     (
         "연립 08 — 괄호를 풀 때 $y$의 계수 부호를 안 바꾼다",
