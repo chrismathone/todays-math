@@ -34,6 +34,7 @@ export default async function ReviewPage() {
       label: q.label,
       why: q.why,
       look: q.look,
+      emphasize: q.emphasize,
       remaining: await db.problem.count({
         where: unreviewedWhere(q.key, session.id),
       }),

@@ -12,7 +12,13 @@
  *  4. Escape 가 신고 패널을 닫는다 (예전엔 2가 토글이었지만 이제 2는 사유다).
  */
 import { describe, expect, it } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import {
+  cleanup,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 
@@ -21,6 +27,7 @@ import {
   type ConsoleProblem,
   type ConsoleQueue,
 } from "@/components/review/ReviewConsole";
+import { REASON_LABELS } from "@/components/review/reasonLabels";
 import { server } from "@/mocks/server";
 
 const QUEUES: ConsoleQueue[] = [
@@ -274,5 +281,84 @@ describe("검수 콘솔 — 원본 메타데이터 (2026-08-24)", () => {
     const meta = screen.getByLabelText("원본 정보");
     expect(meta.textContent).not.toContain("past_exam");
     expect(meta).toHaveTextContent("해설 없음");
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — **대기열이 신고 사유를 강조한다** (원장님 확정 2026-08-24, 「가」안).
+ *
+ * 「대기열에 따라 위에서 신고 내용이 달라져야 할 것 같다」는 요청에 두 갈래를 냈다:
+ *   가. 순서는 **고정**하고 그 대기열에 해당하는 사유만 강조
+ *   나. 대기열마다 순서를 재배치
+ *
+ * ⚠️ **「가」를 고른 이유가 이 테스트의 핵심이다.** 신고 패널은 「숫자 키·탭 즉시 신고」다.
+ *    순서를 대기열마다 바꾸면 **숫자 키의 뜻이 같이 바뀐다** — 손에 익은 채로 다른 대기열에
+ *    가면 엉뚱한 사유로 신고가 들어가고, 그건 **에러 없이 조용히 틀린다.** 그래서 순서는
+ *    어느 대기열에서도 고정이고, 강조만 바뀐다.
+ */
+describe("검수 콘솔 — 대기열별 사유 강조 (2026-08-24)", () => {
+  function renderQueue(q: Partial<ConsoleQueue>) {
+    return render(
+      <ReviewConsole
+        queues={[{ ...QUEUES[0]!, ...q }]}
+        initialKey={(q.key ?? "figure") as ConsoleQueue["key"]}
+        initialRows={[problem(1)]}
+        reviewedByMe={0}
+      />,
+    );
+  }
+
+  /**
+   * 사유 줄을 **번호 → 사유 라벨**로 읽는다.
+   *
+   * ⚠️ 글자 전체를 견주면 안 된다 — 강조된 줄에는 「이 대기열」이 덧붙어 대기열마다
+   *    글자가 달라진다. 이 검사가 지키려는 것은 **숫자 키의 뜻**(순서)이지 꾸밈이 아니다.
+   */
+  const reasonOrder = () =>
+    within(screen.getByText("무엇이 이상한가").closest("div")!)
+      .getAllByRole("button")
+      .filter((b) => /[1-6]$/.test((b.textContent ?? "").trim()))
+      .map((b) => {
+        const t = (b.textContent ?? "").trim();
+        const label = Object.values(REASON_LABELS).find((l) => t.startsWith(l));
+        return `${t.slice(-1)}:${label ?? t}`;
+      });
+
+  it("숫자 키의 뜻은 어느 대기열에서도 같다 — 순서 고정", async () => {
+    arm();
+    const user = userEvent.setup();
+
+    renderQueue({ key: "figure", emphasize: ["figure"] });
+    await user.keyboard("2");
+    const a = reasonOrder();
+    cleanup();
+
+    renderQueue({ key: "nosolution", emphasize: ["solution"] });
+    await user.keyboard("2");
+    const b = reasonOrder();
+
+    expect(a).toEqual(b);
+  });
+
+  it("그 대기열이 가리키는 사유를 강조한다", async () => {
+    arm();
+    const user = userEvent.setup();
+    renderQueue({ key: "nosolution", emphasize: ["solution"] });
+    await user.keyboard("2");
+
+    const solution = screen.getByRole("button", { name: /해설이 없다·틀렸다/ });
+    const unit = screen.getByRole("button", { name: /단원이 틀렸다/ });
+    expect(solution).toHaveAttribute("data-emphasis", "true");
+    expect(unit).not.toHaveAttribute("data-emphasis", "true");
+  });
+
+  it("강조는 색만으로 알리지 않는다 — 말로도 적는다", async () => {
+    arm();
+    const user = userEvent.setup();
+    renderQueue({ key: "nosolution", emphasize: ["solution"] });
+    await user.keyboard("2");
+
+    const solution = screen.getByRole("button", { name: /해설이 없다·틀렸다/ });
+    expect(solution.textContent).toContain("이 대기열");
   });
 });

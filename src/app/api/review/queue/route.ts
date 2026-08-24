@@ -58,6 +58,7 @@ export async function GET(request: NextRequest) {
         label: queue.label,
         why: queue.why,
         look: queue.look,
+        emphasize: [...queue.emphasize],
         remaining,
       },
       reviewedByMe,

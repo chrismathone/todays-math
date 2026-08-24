@@ -46,6 +46,8 @@ export type ConsoleQueue = {
   why: string;
   look: string;
   remaining: number;
+  /** 이 대기열이 가리키는 신고 사유 — 순서는 그대로 두고 **강조만** 한다(D-102). */
+  emphasize?: readonly ReportReason[];
 };
 
 const n = (v: number) => v.toLocaleString("ko-KR");
@@ -379,27 +381,45 @@ export function ReviewConsole({
               {/* 1행 1라벨 — 누르는 즉시 신고하고 다음 (모바일은 이 탭 하나로 끝).
                   「그 밖의 것」만 설명이 필수라 골라 두고 아래에 적는다. */}
               <div className="mt-2 flex flex-col gap-1.5">
-                {REASON_ORDER.map((r, i) => (
-                  <button
-                    key={r}
-                    type="button"
-                    disabled={busy}
-                    aria-pressed={reason === r}
-                    onClick={() => {
-                      if (r === "other") setReason(r);
-                      else void submit("defect", r, note);
-                    }}
-                    className={
-                      "flex w-full cursor-pointer items-center justify-between rounded-md border px-3 py-2 text-left text-[13px] transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
-                      (reason === r
-                        ? "border-ink bg-ink text-white"
-                        : "border-control bg-surface hover:bg-side")
-                    }
-                  >
-                    <span>{REASON_LABELS[r]}</span>
-                    <kbd className="font-normal opacity-60">{i + 1}</kbd>
-                  </button>
-                ))}
+                {/* ⚠️ **순서는 `REASON_ORDER` 하나로 고정**이다 — 대기열마다 재배치하면
+                    「숫자 키 즉시 신고」의 뜻이 같이 바뀌어, 손에 익은 채로 다른 대기열에
+                    가면 엉뚱한 사유가 들어간다(에러 없이 조용히 틀린다). 대기열은 **강조만**
+                    바꾼다 (D-102, 원장님 「가」안 확정 2026-08-24). */}
+                {REASON_ORDER.map((r, i) => {
+                  const hot = queue.emphasize?.includes(r) ?? false;
+                  return (
+                    <button
+                      key={r}
+                      type="button"
+                      disabled={busy}
+                      aria-pressed={reason === r}
+                      data-emphasis={hot ? "true" : undefined}
+                      onClick={() => {
+                        if (r === "other") setReason(r);
+                        else void submit("defect", r, note);
+                      }}
+                      className={
+                        "flex w-full cursor-pointer items-center justify-between rounded-md border px-3 py-2 text-left text-[13px] transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
+                        (reason === r
+                          ? "border-ink bg-ink text-white"
+                          : hot
+                            ? "border-ink border-2 bg-surface font-bold hover:bg-side"
+                            : "border-control bg-surface hover:bg-side")
+                      }
+                    >
+                      <span>
+                        {REASON_LABELS[r]}
+                        {/* 강조를 **색·굵기만으로 알리지 않는다**(05 §5) — 왜 굵은지 말로 적는다. */}
+                        {hot ? (
+                          <span className="ml-1.5 font-normal text-[11px] text-text-3">
+                            이 대기열
+                          </span>
+                        ) : null}
+                      </span>
+                      <kbd className="font-normal opacity-60">{i + 1}</kbd>
+                    </button>
+                  );
+                })}
               </div>
               <label className="mt-2 block">
                 <span className="sr-only">덧붙일 말</span>
