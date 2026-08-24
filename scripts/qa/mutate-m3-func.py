@@ -23,9 +23,11 @@
 from __future__ import annotations
 
 import io
+import json
 import os
 import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FUNC = os.path.join(ROOT, "src", "lib", "middle", "m3Func.ts")
@@ -48,6 +50,37 @@ def run(cmd: list[str]) -> tuple[int, str]:
 def npx(*args: str) -> tuple[int, str]:
     exe = "npx.cmd" if os.name == "nt" else "npx"
     return run([exe, *args])
+
+
+def vitest() -> tuple[int, list[str], list[str]]:
+    """시험을 돌리고 **실패한 시험 이름과 사유**까지 받아 온다.
+
+    ⚠️ 「빨갛다」만 보면 안 된다. 다중 세션으로 부하가 걸린 날에는 **시간 초과**가
+    빨강으로 나오고, 그러면 가드와 아무 상관 없는 변이도 «가드가 산다» 로 찍힌다
+    (CLAUDE.md 2026-08-23 — 빨간데 실패한 시험을 못 대면 판정을 거부한다).
+    """
+    out_dir = tempfile.mkdtemp(prefix="mut-m3func-")
+    out_json = os.path.join(out_dir, "result.json").replace(os.sep, "/")
+    code, _ = npx(
+        "vitest",
+        "run",
+        *TESTS,
+        "--pool=threads",
+        "--reporter=json",
+        "--outputFile.json=" + out_json,
+    )
+    names: list[str] = []
+    reasons: list[str] = []
+    try:
+        data = json.load(io.open(out_json, encoding="utf-8"))
+        for f in data.get("testResults", []):
+            for a in f.get("assertionResults", []):
+                if a.get("status") == "failed":
+                    names.append(a.get("fullName") or a.get("title") or "?")
+                    reasons.append(" ".join(a.get("failureMessages") or []))
+    except Exception:
+        pass
+    return code, names, reasons
 
 
 # (제목, 찾을 것, 바꿀 것) — 각 변이는 «이 시험이 지키는 것 하나»를 겨눈다.
@@ -192,9 +225,10 @@ def main() -> int:
 
     # 음성 대조 — 변이를 넣기 **전에** 시험이 초록인지 본다. 이게 없으면
     # 「늘 빨강」인 도장도 「가드가 산다」로 찍힌다 (2026-08-23).
-    code, _ = npx("vitest", "run", *TESTS, "--pool=threads")
+    code, names, _ = vitest()
     if code != 0:
         print("멈춘다 — **기준 시험이 이미 빨갛다.** 변이 판정이 무의미하다.")
+        print("  " + " · ".join(names[:5]))
         return 2
     print("기준 시험 초록\n")
 
@@ -234,11 +268,19 @@ def main() -> int:
                 )
                 io.open(FUNC, "wb").write(original)
                 continue
-            # ⑶ 시험이 빨개지나
-            code, _ = npx("vitest", "run", *TESTS, "--pool=threads")
-            mark = "🔴 빨강 ← 가드가 산다" if code != 0 else "🟢 초록 ← 가드가 아니다"
+            # ⑶ 시험이 빨개지나 — **그리고 어느 시험이 깨졌는지 댈 수 있나**
+            code, names, reasons = vitest()
+            if code == 0:
+                mark = "🟢 초록 ← 가드가 아니다"
+            elif not names:
+                mark = "⚠️  빨간데 실패한 시험을 못 댄다 — 판정 거부"
+            elif all("timed out" in r for r in reasons):
+                mark = "⚠️  시간 초과뿐이다(부하) — 판정 거부"
+            else:
+                mark = "🔴 빨강 ← 가드가 산다"
             verdicts.append((title, mark))
-            print("[%d] %s\n    %s" % (i, title, mark))
+            detail = ("\n        ↳ " + names[0][:90]) if names else ""
+            print("[%d] %s\n    %s%s" % (i, title, mark, detail))
             io.open(FUNC, "wb").write(original)
     finally:
         io.open(FUNC, "wb").write(original)
