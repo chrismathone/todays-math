@@ -99,6 +99,31 @@ describe("[AppChrome]", () => {
     ).not.toHaveAttribute("aria-current");
   });
 
+  /**
+   * 2026-08-24 D-77 — 계정 구역 **배선**을 잠근다.
+   *
+   * AccountBadge 자체의 계약은 AccountBadge.test.tsx 가 지킨다. 여기서 잠그는 것은
+   * **그것이 헤더에 실제로 걸려 있는가** 하나다 — 이게 없으면 `<AccountBadge />` 를
+   * 지워도 아무 테스트도 빨개지지 않는다.
+   *
+   * 그리고 이 기능이 존재하는 이유 자체가 «호출처 한 곳이 빠져 계정이 조용히 안 뜨는 것»
+   * 을 막는 것이다. 그 실패 모양을 테스트가 못 보면 안 된다.
+   */
+  it("계정 구역이 헤더에 걸려 있다 (D-77)", async () => {
+    render(
+      <AppChrome>
+        <p>본문</p>
+      </AppChrome>,
+    );
+
+    expect(
+      await screen.findByRole("button", { name: "로그아웃" }),
+    ).toBeInTheDocument();
+    expect(await screen.findByTestId("account-email")).toHaveTextContent(
+      "teacher@example.com",
+    );
+  });
+
   it("날짜·남은 작업 크롬은 두 탭이 공유한다", () => {
     render(
       <AppChrome tab="exam" dateLabel="2026-08-16 일" remaining={3}>
