@@ -22,7 +22,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { bareNumbers } from "../../lib/elementary/rules";
+import { bareNumbers, josaFaults } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import {
   generateMiddleProblem,
@@ -424,6 +424,28 @@ describe("중2 일차함수와 일차방정식 24유형", () => {
       }
     }
     expect(bad.slice(0, 5), `지면 냄새 ${bad.length}자리`).toEqual([]);
+  });
+
+  /**
+   * 수식 뒤 조사 — 「$y=x+1$와」·「$x=3$를」은 KaTeX 도 bareNumbers 도 통과한다.
+   * 판정은 **이 저장소가 이미 가진** `rules.ts` 의 `josaFaults` 로 한다 — 모듈의
+   * `fixJosa` 와 다른 구현이라 한쪽이 틀리면 갈라진다(같은 함수를 부르면 동어반복).
+   * 초판은 203자리가 틀려 있었다 — 발문마다 손으로 고르면 반드시 샌다.
+   */
+  it("수식 뒤 조사가 읽는 소리와 맞는다", () => {
+    const bad: string[] = [];
+    for (const e of entries) {
+      for (const seed of SEEDS) {
+        for (const p of generateMiddleSet(e.key, seed, 4)) {
+          for (const text of [p.content, p.answer, p.solution]) {
+            for (const f of josaFaults(text)) {
+              bad.push(`${e.rpmMinor}|${e.rpmType} «${f}»`);
+            }
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 5), `조사가 어긋난 자리 ${bad.length}개`).toEqual([]);
   });
 
   it("해설의 분수는 약분됐거나 그 자리에서 약분된다 — 4/2 로 끝나지 않는다", () => {

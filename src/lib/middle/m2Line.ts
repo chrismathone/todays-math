@@ -165,6 +165,80 @@ function quadNotPassed(m: number, n: number): number {
 
 const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;
 
+// ── 수식 뒤 조사 — 한 곳에서 고친다 ────────────────────────────────
+//
+// 「$y=x+1$와」·「$x=3$를」은 KaTeX·bareNumbers 를 **전부 통과한다**. 값도 맞다.
+// 지면에서만 걸린다 — 그래서 발문마다 손으로 고르면 반드시 샌다(실측: 이 모듈
+// 초판에서 203자리). 규칙을 여기 하나만 두고 모든 발문이 이것을 지나가게 한다.
+// 시험은 `rules.ts` 의 `josaFaults`(이 모듈과 **다른 구현**)로 0 인지 다시 잰다.
+
+/** 끝 숫자를 한자 수사로 읽었을 때 받침이 있는가. 영·일·삼·육·칠·팔 만 있다. */
+const DIGIT_BATCHIM: Record<string, boolean> = {
+  "0": true,
+  "1": true,
+  "2": false,
+  "3": true,
+  "4": false,
+  "5": false,
+  "6": true,
+  "7": true,
+  "8": true,
+  "9": false,
+};
+
+/**
+ * 알파벳 이름의 받침 — **엘·엠·엔만** 있다.
+ * `x` 는 「엑스」라 끝소리에 받침이 없다(「엑」의 ㄱ 은 끝 음절이 아니다) — 그래서
+ * 「$y=2x$와」가 맞다. 여기를 헷갈리면 이 모듈 전체가 한 방향으로 틀린다.
+ */
+const LETTER_BATCHIM: Record<string, boolean> = { l: true, m: true, n: true };
+
+const JOSA_PAIR: Record<string, readonly [string, string]> = {
+  을: ["을", "를"],
+  를: ["을", "를"],
+  이: ["이", "가"],
+  가: ["이", "가"],
+  과: ["과", "와"],
+  와: ["과", "와"],
+  은: ["은", "는"],
+  는: ["은", "는"],
+};
+
+const JOSA_RE = /\$([^$]*)\$( ?)(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+
+/**
+ * 단위로 **끝나는** 수식 — 소리의 끝을 낱말이 정하므로 이 규칙 밖이다.
+ * ⚠️ 「`\mathrm` 이 들어 있으면 건너뛴다」로 쓰면 안 된다 — 꼭짓점 이름
+ * `$\mathrm{B}(3, 6)$` 처럼 **가운데** 있는 것까지 놓쳐 24자리가 안 고쳐졌다.
+ */
+const UNIT_TAIL_RE = /(?:\\mathrm\{[^{}]*\}|\\degree)\s*$/;
+
+/**
+ * `$...$` 바로 뒤 조사를 읽는 소리에 맞춘다. **못 읽는 것은 손대지 않는다** —
+ * 단위(`\mathrm{cm}`·`\degree`)는 낱말이 소리의 끝을 정하므로 이 규칙 밖이다
+ * (`rules.ts` 의 `josaFaults` 도 같은 이유로 그 자리를 «안 잰다»고 적어 두었다).
+ */
+function fixJosa(text: string): string {
+  return text.replace(
+    JOSA_RE,
+    (whole, span: string, gap: string, j: string) => {
+      if (UNIT_TAIL_RE.test(span)) return whole;
+      const cleaned = span.replace(/[)\]}\s]+$/, "");
+      const digit = cleaned.match(/(\d)$/);
+      let batchim: boolean;
+      if (digit) {
+        batchim = DIGIT_BATCHIM[digit[1]!]!;
+      } else {
+        const letter = cleaned.slice(-1).toLowerCase();
+        if (!/[a-z]/.test(letter)) return whole;
+        batchim = LETTER_BATCHIM[letter] ?? false;
+      }
+      const pair = JOSA_PAIR[j]!;
+      return `$${span}$${gap}${batchim ? pair[0] : pair[1]}`;
+    },
+  );
+}
+
 type Body = Pick<MidProblem, "content" | "answer" | "solution" | "facts"> & {
   figureSpec?: MidProblem["figureSpec"];
 };
@@ -185,16 +259,23 @@ function def(
     rpmMinor,
     rpmType,
     rpmTitle,
-    handler: (rng) => ({
-      grade: GRADE,
-      unitSection,
-      rpmBook: BOOK,
-      rpmMinor,
-      rpmType,
-      rpmTitle,
-      difficulty,
-      ...gen(rng),
-    }),
+    handler: (rng) => {
+      const body = gen(rng);
+      return {
+        grade: GRADE,
+        unitSection,
+        rpmBook: BOOK,
+        rpmMinor,
+        rpmType,
+        rpmTitle,
+        difficulty,
+        ...body,
+        // 조사는 **여기 한 곳**에서만 맞춘다 — 발문마다 고르면 반드시 샌다.
+        content: fixJosa(body.content),
+        answer: fixJosa(body.answer),
+        solution: fixJosa(body.solution),
+      };
+    },
   };
 }
 
