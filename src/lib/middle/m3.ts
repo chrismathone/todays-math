@@ -41,6 +41,7 @@ import {
   figTwoChords,
 } from "./m3Figures";
 import { M3_ANGLE_APPLY } from "./m3AngleApply";
+import { M3_FUNC } from "./m3Func";
 import { M3_POLY } from "./m3Poly";
 import { M3_QUAD } from "./m3Quad";
 import { M3_ROOT } from "./m3Root";
@@ -448,6 +449,7 @@ export const M3_TYPES: TypeEntry[] = [
   ...M3_ROOT,
   ...M3_QUAD,
   ...M3_ANGLE_APPLY,
+  ...M3_FUNC,
 ];
 
 // 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해
