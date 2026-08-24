@@ -204,6 +204,37 @@ const JOSA_PAIR: Record<string, readonly [string, string]> = {
   는: ["은", "는"],
 };
 
+/**
+ * 「로 / 으로」는 **표가 다르다** — 받침이 없을 때뿐 아니라 **ㄹ받침**에서도 「로」다
+ * (일로·칠로·팔로). 위 표를 그대로 쓰면 「$y=3$로」는 고쳐도 「$x=1$으로」를 만든다.
+ * 그래서 한자 수사별로 따로 적는다: 으로가 필요한 것은 영(ㅇ)·삼(ㅁ)·육(ㄱ) 뿐이다.
+ */
+const RO_NEEDS_EURO: Record<string, boolean> = {
+  "0": true,
+  "1": false,
+  "2": false,
+  "3": true,
+  "4": false,
+  "5": false,
+  "6": true,
+  "7": false,
+  "8": false,
+  "9": false,
+};
+
+const RO_RE = /\$([^$]*)\$( ?)(으로|로)(?![가-힣])/g;
+
+/** 「$y=3$로」 → 「$y=3$으로」. 수로 끝나는 것만 고친다(문자는 소리를 못 정한다). */
+function fixRo(text: string): string {
+  return text.replace(RO_RE, (whole, span: string, gap: string) => {
+    if (UNIT_TAIL_RE.test(span)) return whole;
+    const cleaned = span.replace(/[)\]}\s]+$/, "");
+    const digit = cleaned.match(/(\d)$/);
+    if (!digit) return whole;
+    return `$${span}$${gap}${RO_NEEDS_EURO[digit[1]!] ? "으로" : "로"}`;
+  });
+}
+
 const JOSA_RE = /\$([^$]*)\$( ?)(을|를|이|가|과|와|은|는)(?![가-힣])/g;
 
 /**
@@ -271,9 +302,9 @@ function def(
         difficulty,
         ...body,
         // 조사는 **여기 한 곳**에서만 맞춘다 — 발문마다 고르면 반드시 샌다.
-        content: fixJosa(body.content),
-        answer: fixJosa(body.answer),
-        solution: fixJosa(body.solution),
+        content: fixRo(fixJosa(body.content)),
+        answer: fixRo(fixJosa(body.answer)),
+        solution: fixRo(fixJosa(body.solution)),
       };
     },
   };
@@ -346,7 +377,7 @@ export const M2_LINE: TypeEntry[] = [
           solution:
             `두 그래프의 $y$절편이 모두 $${c}$이므로 두 그래프는 점 $(0, ${c})$에서 만난다.\n` +
             `$y=${linear(m1, c)}$의 $x$절편은 $${x1}$, $y=${linear(m2, c)}$의 $x$절편은 $${x2}$이다.\n` +
-            `밑변의 길이가 $${Math.abs(x2 - x1)}$, 높이가 $${Math.abs(c)}$인 삼각형이므로 넓이는 $\\dfrac{1}{2}\\times${Math.abs(x2 - x1)}\\times${Math.abs(c)}=${area}$이다.`,
+            `밑변의 길이가 $${Math.abs(x2 - x1)}$, 높이가 $${Math.abs(c)}$인 삼각형이므로 넓이는 $\\dfrac{1}{2}\\times ${Math.abs(x2 - x1)}\\times ${Math.abs(c)}=${area}$이다.`,
           facts: { c, x1, x2, m1, m2, area },
           figureSpec: {
             version: "elem-1",
@@ -552,7 +583,7 @@ export const M2_LINE: TypeEntry[] = [
             `출발한 지 $x$초 후의 삼각형 $\\mathrm{ABP}$의 넓이를 $y\\,\\mathrm{cm^2}$라 할 때, 삼각형 $\\mathrm{ABP}$의 넓이가 $${S}\\,\\mathrm{cm^2}$가 되는 것은 출발한 지 몇 초 후인지 구하시오.`,
           answer: `$${t}$초 후`,
           solution:
-            `$x$초 후 $\\overline{\\mathrm{BP}}=${monoVar(v, "x")}\\,\\mathrm{cm}$이므로 $y=\\dfrac{1}{2}\\times${monoVar(v, "x")}\\times${h}=${monoVar(coef, "x")}$이다.\n` +
+            `$x$초 후 $\\overline{\\mathrm{BP}}=${monoVar(v, "x")}\\,\\mathrm{cm}$이므로 $y=\\dfrac{1}{2}\\times ${monoVar(v, "x")}\\times ${h}=${monoVar(coef, "x")}$이다.\n` +
             `$y=${S}$일 때 $${monoVar(coef, "x")}=${S}$이므로 $x=${t}$이다.\n` +
             `이때 $\\overline{\\mathrm{BP}}=${v * t}\\,\\mathrm{cm}$로 $\\overline{\\mathrm{BC}}$를 넘지 않으므로 답은 $${t}$초 후이다.`,
           facts: { h, w, v, coef, t, S },
@@ -856,7 +887,7 @@ export const M2_LINE: TypeEntry[] = [
           solution:
             `$x=${x1}$과 $x=${x2}$는 $y$축에 평행한 두 직선이고 그 사이의 거리는 $${w}$이다.\n` +
             `$y=${y1}$과 $y=${y2}$는 $x$축에 평행한 두 직선이고 그 사이의 거리는 $${h}$이다.\n` +
-            `둘러싸인 도형은 직사각형이므로 넓이는 $${w}\\times${h}=${area}$이다.`,
+            `둘러싸인 도형은 직사각형이므로 넓이는 $${w}\\times ${h}=${area}$이다.`,
           facts: { x1, x2, y1, y2, w, h, area },
         };
       }),
@@ -993,17 +1024,21 @@ export const M2_LINE: TypeEntry[] = [
         if (c1 === 0) return null;
         const tail =
           many === 1
-            ? `이때 $${c1}=${paren(c2)}\\times${paren(lam)}$이므로 두 그래프는 실제로 일치한다.`
-            : `이때 $${c1}\\ne${lam * c2}=${paren(c2)}\\times${paren(lam)}$이므로 두 그래프는 실제로 평행하다.`;
+            ? `이때 $${c1}=${paren(c2)}\\times ${paren(lam)}$이므로 두 그래프는 실제로 일치한다.`
+            : `이때 $${c1}\\ne${lam * c2}=${paren(c2)}\\times ${paren(lam)}$이므로 두 그래프는 실제로 평행하다.`;
         return {
           content:
             `연립방정식 $\\begin{cases}ax${contTerm(b1, "y")}=${c1}\\\\${abTex(a2, b2)}=${c2}\\end{cases}$의 해가 ` +
             `${many === 1 ? "무수히 많을" : "없을"} 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
           solution:
-            `두 일차방정식의 그래프가 ${many === 1 ? "일치하면 해가 무수히 많다" : "평행하면 해가 없다"}. 어느 쪽이든 $x$의 계수와 $y$의 계수의 비는 같아야 한다.\n` +
-            `$y$의 계수에서 $${b1}=${paren(b2)}\\times${paren(lam)}$이므로 두 식의 비는 $${lam}$이다.\n` +
-            `따라서 $a=${paren(a2)}\\times${paren(lam)}=${a}$이다. ${tail}`,
+            `${
+              many === 1
+                ? "두 일차방정식의 그래프가 일치하면 해가 무수히 많고, 그러려면 $x$의 계수·$y$의 계수·상수항의 비가 모두 같아야 한다."
+                : "두 일차방정식의 그래프가 평행하면 해가 없고, 그러려면 $x$의 계수와 $y$의 계수의 비는 같고 상수항의 비만 달라야 한다."
+            }\n` +
+            `$y$의 계수에서 $${b1}=${paren(b2)}\\times ${paren(lam)}$이므로 두 식의 비는 $${lam}$이다.\n` +
+            `따라서 $a=${paren(a2)}\\times ${paren(lam)}=${a}$이다. ${tail}`,
           facts: { a, b1, c1, a2, b2, c2, lam, many },
         };
       }),
@@ -1045,7 +1080,7 @@ export const M2_LINE: TypeEntry[] = [
           solution:
             `두 직선을 $y$에 대하여 풀면 $y=${linear(m1, b1)}$, $y=${linear(m2, b2)}$이다.\n` +
             `두 직선이 $y$축과 만나는 점은 $(0, ${b1})$, $(0, ${b2})$이고, 두 직선의 교점은 $(${p}, ${q})$이다.\n` +
-            `밑변의 길이가 $${Math.abs(b1 - b2)}$, 높이가 $${Math.abs(p)}$인 삼각형이므로 넓이는 $\\dfrac{1}{2}\\times${Math.abs(b1 - b2)}\\times${Math.abs(p)}=${area}$이다.`,
+            `밑변의 길이가 $${Math.abs(b1 - b2)}$, 높이가 $${Math.abs(p)}$인 삼각형이므로 넓이는 $\\dfrac{1}{2}\\times ${Math.abs(b1 - b2)}\\times ${Math.abs(p)}=${area}$이다.`,
           facts: { m1, b1, m2, b2, p, q, area },
           figureSpec: {
             version: "elem-1",

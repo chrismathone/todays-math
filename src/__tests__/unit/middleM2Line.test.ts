@@ -24,6 +24,7 @@ import { describe, expect, it } from "vitest";
 
 import { bareNumbers, josaFaults } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
+import { renderMathHtml } from "../../lib/math/renderMathHtml";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -375,6 +376,22 @@ describe("중2 일차함수와 일차방정식 24유형", () => {
         }
       });
 
+      it("실제 렌더러가 붉은 글자·raw 폴백 없이 그린다", () => {
+        // KaTeX 는 unknown command 를 «에러»가 아니라 **#cc0000 붉은 글자**로 그린다
+        // (CLAUDE.md 2026-08-14). 그래서 성공 여부는 실제 렌더로만 잰다 —
+        // 이 검사가 `\times` 뒤에 글자가 붙어 생긴 `\timesx` 를 잡았다(⑵13, 실측).
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 3; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const part of [p.content, p.answer, p.solution]) {
+              const html = renderMathHtml(part);
+              expect(/#cc0000/i.test(html), part).toBe(false);
+              expect(html.includes("math-raw"), part).toBe(false);
+            }
+          }
+        }
+      });
+
       it("숫자가 KaTeX 밖에 없다 (본문·정답·해설)", () => {
         for (const seed of SEEDS) {
           const p = generateMiddleProblem(e.key, seed);
@@ -446,6 +463,52 @@ describe("중2 일차함수와 일차방정식 24유형", () => {
       }
     }
     expect(bad.slice(0, 5), `조사가 어긋난 자리 ${bad.length}개`).toEqual([]);
+  });
+
+  /**
+   * 「로 / 으로」는 `rules.ts` 의 `josaFaults` 가 **안 본다** — 그래서 여기 따로 센다.
+   * 「$y=3$로 둘러싸인」은 KaTeX 도 값 검사도 통과하고 지면에서만 걸린다.
+   *
+   * ⚠️ 이 표는 **한자 수사의 받침**이지 위 조사표가 아니다 — ㄹ받침(일·칠·팔)도
+   * 「로」다. 조사표를 그대로 쓰면 「$x=1$으로」를 만든다.
+   */
+  it("수식 뒤 「로/으로」가 읽는 소리와 맞는다", () => {
+    const RO_EXPECT: Record<string, string> = {
+      "0": "으로", // 영 — ㅇ받침
+      "1": "로", //  일 — ㄹ받침
+      "2": "로", //  이
+      "3": "으로", // 삼 — ㅁ받침
+      "4": "로", //  사
+      "5": "로", //  오
+      "6": "으로", // 육 — ㄱ받침
+      "7": "로", //  칠 — ㄹ받침
+      "8": "로", //  팔 — ㄹ받침
+      "9": "로", //  구
+    };
+    const RO = /\$([^$]*)\$ ?(으로|로)(?![가-힣])/g;
+    const bad: string[] = [];
+    for (const e of entries) {
+      for (const seed of SEEDS) {
+        for (const p of generateMiddleSet(e.key, seed, 4)) {
+          for (const text of [p.content, p.answer, p.solution]) {
+            for (const m of text.matchAll(RO)) {
+              const span = m[1]!;
+              // 단위(`\mathrm{cm}`)는 낱말이 소리의 끝을 정한다 — 이 규칙 밖이다.
+              if (span.includes("\\mathrm")) continue;
+              const d = span.replace(/[)\]}\s]+$/, "").match(/(\d)$/);
+              if (!d) continue;
+              if (RO_EXPECT[d[1]!] !== m[2]) {
+                bad.push(`${e.rpmMinor}|${e.rpmType} «${m[0]}»`);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(
+      bad.slice(0, 5),
+      `「로/으로」가 어긋난 자리 ${bad.length}개`,
+    ).toEqual([]);
   });
 
   it("해설의 분수는 약분됐거나 그 자리에서 약분된다 — 4/2 로 끝나지 않는다", () => {
