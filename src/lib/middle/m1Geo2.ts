@@ -925,7 +925,8 @@ const M1_POLY_BASIC: TypeEntry[] = [
  * ──────────────────────────────────────────────────────────────────────── */
 
 const VALID_N_19: readonly number[] = [3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20];
-const EVEN_N_21: readonly number[] = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
+// n=4(정사각형)는 k=1 이 되어 "몇 배"를 묻기엔 자명하다 — 뺀다.
+const EVEN_N_21: readonly number[] = [6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 
 const M1_POLY_ANGLE: TypeEntry[] = [
   def(
