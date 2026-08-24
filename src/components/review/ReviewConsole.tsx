@@ -16,7 +16,13 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
+import {
+  SOLUTION_SOURCE_LABELS,
+  SOURCE_LABELS,
+  type ReviewConsoleRow,
+} from "@/lib/review/consoleRow";
 import { REASON_LABELS, REASON_ORDER } from "@/components/review/reasonLabels";
 import type { ReportReason } from "@/contracts/problemReport.contract";
 import type {
@@ -24,19 +30,15 @@ import type {
   ReviewVerdict,
 } from "@/contracts/review.contract";
 
-export type ConsoleProblem = {
-  id: string;
-  problemCode: string;
-  content: string;
-  answer: string;
-  solution: string | null;
-  questionType: string | null;
-  figureUrls: string[];
-  figureDims: number[];
-  figureSourceMm: number[];
-  directUseAllowed: boolean;
-  unitName: string;
-};
+/**
+ * 검수 콘솔이 받는 한 행.
+ *
+ * ⚠️ **모양을 여기서 따로 적지 않는다.** 서버 페이지와 더 불러오는 API 가 `toConsoleRow`
+ *    하나를 쓰고, 이 타입은 그 산출물을 그대로 가리킨다. 예전에는 여기 손으로 적어 두고
+ *    API 는 `serializeProblem`(다른 모양)을 썼는데, 클라이언트가 응답을 캐스팅해 받아
+ *    **타입이 그 차이를 못 잡았다** — 더 불러온 문항부터 그림 치수·단원명이 조용히 사라졌다.
+ */
+export type ConsoleProblem = ReviewConsoleRow;
 
 export type ConsoleQueue = {
   key: ReviewQueueKey;
@@ -260,9 +262,14 @@ export function ReviewConsole({
               <div className="mt-5 border-t border-divider pt-3">
                 <div className="flex flex-wrap items-baseline gap-x-3">
                   <span className="text-[13px] text-text-2">정답</span>
-                  <span className="text-[15px] font-semibold">
-                    {row.answer}
-                  </span>
+                  {/* 정답도 **본문·해설과 같은 렌더 경로**를 탄다 (MathText 머리주석의
+                      「렌더 경로 분기 금지」). 날 문자열로 그리면 `$\frac{12}{13}$` 가
+                      글자 그대로 새고, `④` 는 렌더러를 탄 보기와 글꼴이 갈린다
+                      (원장님이 화면에서 둘 다 찾아 주셨다, 2026-08-24). */}
+                  <MathText
+                    text={row.answer}
+                    className="text-[15px] font-semibold"
+                  />
                 </div>
                 {row.solution ? (
                   <details className="mt-2">
@@ -278,6 +285,45 @@ export function ReviewConsole({
                     해설이 없다 — 이 화면만으로는 답을 검산할 수 없다.
                   </p>
                 )}
+
+                {/* 원본이 어디서 왔나 (원장님 요청 2026-08-24). 검수자가 이상한 문항을
+                    만났을 때 **원본을 열어 대 보려면** 경로가 화면에 있어야 한다.
+                    경로는 길어서 줄바꿈을 허용하고, 글자는 본문보다 물러나 둔다. */}
+                <dl
+                  aria-label="원본 정보"
+                  className="mt-4 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 border-t border-divider pt-3 text-[12px] text-text-3"
+                >
+                  <dt className="font-semibold">출처</dt>
+                  <dd className="min-w-0">
+                    {SOURCE_LABELS[row.source] ?? row.source}
+                    {row.school ? ` · ${row.school}` : ""}
+                    {row.subject ? ` · ${row.subject}` : ""}
+                    {row.questionNumber !== null
+                      ? ` · ${row.questionNumber}번`
+                      : ""}
+                  </dd>
+
+                  <dt className="font-semibold">해설</dt>
+                  <dd className="min-w-0">
+                    {SOLUTION_SOURCE_LABELS[row.solutionSource] ??
+                      row.solutionSource}
+                  </dd>
+
+                  {row.sourceFile ? (
+                    <>
+                      <dt className="font-semibold">원본 파일</dt>
+                      <dd className="min-w-0 break-all font-mono text-[11.5px]">
+                        {row.sourceFile}
+                      </dd>
+                    </>
+                  ) : null}
+
+                  <dt className="font-semibold">문항 코드</dt>
+                  <dd className="min-w-0 font-mono text-[11.5px]">
+                    {row.problemCode}
+                    {row.examId ? ` · ${row.examId}` : ""}
+                  </dd>
+                </dl>
               </div>
             </article>
           ) : (

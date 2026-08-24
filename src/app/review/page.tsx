@@ -7,6 +7,7 @@ import type {
 } from "@/components/review/ReviewConsole";
 import type { ReviewQueueKey } from "@/contracts/review.contract";
 import { db } from "@/lib/db";
+import { toConsoleRow } from "@/lib/review/consoleRow";
 import { REVIEW_QUEUES, unreviewedWhere } from "@/lib/review/queues";
 import { getSessionUser } from "@/lib/session";
 
@@ -58,19 +59,9 @@ export default async function ReviewPage() {
     db.problemReviewLog.count({ where: { reviewerId: session.id } }),
   ]);
 
-  const initialRows: ConsoleProblem[] = rows.map((p) => ({
-    id: p.id,
-    problemCode: p.problemCode,
-    content: p.content,
-    answer: p.answer,
-    solution: p.solution,
-    questionType: p.questionType,
-    figureUrls: p.figureUrls,
-    figureDims: p.figureDims,
-    figureSourceMm: p.figureSourceMm,
-    directUseAllowed: p.directUseAllowed,
-    unitName: p.unit ? `${p.unit.grade} · ${p.unit.section}` : "—",
-  }));
+  // 매퍼는 `consoleRow.ts` 하나뿐이다 — 더 불러오는 API 도 같은 것을 쓴다.
+  // 손으로 옮겨 적으면 두 경로가 갈리고, 클라이언트 캐스팅이 그 차이를 못 잡는다.
+  const initialRows: ConsoleProblem[] = rows.map(toConsoleRow);
 
   return (
     <ReviewConsole
