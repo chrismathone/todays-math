@@ -43,7 +43,9 @@ type Judged = { readonly answer: string; readonly figureSpec?: unknown };
  */
 export function answersLookAlike(items: readonly Judged[]): boolean {
   const withFig = items.filter((i) => i.figureSpec != null);
-  return withFig.length >= 2 && new Set(withFig.map((i) => i.answer)).size === 1;
+  return (
+    withFig.length >= 2 && new Set(withFig.map((i) => i.answer)).size === 1
+  );
 }
 
 /**

@@ -37,6 +37,7 @@
  * 안 붙는다**는 것만 틀렸다. 스펙은 씨앗마다 **갈리므로** 넓힌 R9 도 안 잡는다.
  * **「R9 를 넓혔으니 그림은 검사된다」고 읽지 말 것** — 그건 다른 축이다.
  */
+import { answerSkewAmongFigures, answersLookAlike } from "./answerSkewRule";
 import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -108,38 +109,16 @@ const listAll = process.argv.includes("--list");
  * ⚠️ **그림이 하나뿐이면 판정하지 않는다** — 견줄 짝이 없으면 «고정»과 «못 셈»이
  * 안 갈린다.
  */
-/** 한 답이 이만큼을 넘으면 「찍으면 맞는」 문항이다. g4 실측으로 정한 값. */
-export const ANSWER_SKEW_MAX = 0.8;
-
-/**
- * **싼 1차 걸름** — 넓게 되재 볼 만한 셀인가.
- *
- * 🔴 여기서 «넷 이상»을 요구하면 안 된다. 그림이 셋에 하나꼴로 붙는 셀은 씨앗 8개에서
- * 평균 2.7건이라 **넓혀 재는 데까지 못 간다** — 실제로 그렇게 초4 2-2-1·2-4-6 을
- * 놓쳤다(2-4-4 만 우연히 넷을 넘겨 걸렸다). 1차는 **둘만 있어도 통과**시키고,
- * 「쏠렸나」의 판정은 **120씨앗으로 되잰 뒤**에만 한다.
- */
-export function answersLookAlike(
-  items: readonly { answer: string; figureSpec?: unknown }[],
-): boolean {
-  const withFig = items.filter((i) => i.figureSpec != null);
-  return withFig.length >= 2 && new Set(withFig.map((i) => i.answer)).size === 1;
-}
-
-export function answerSkewAmongFigures(
-  items: readonly { answer: string; figureSpec?: unknown }[],
-): { answer: string; share: number; n: number } | null {
-  const withFig = items.filter((i) => i.figureSpec != null);
-  // ⚠️ 견줄 짝이 없으면 **판정하지 않는다** — «쏠림»과 «못 셈»이 안 갈린다.
-  if (withFig.length < 4) return null;
-  const tally = new Map<string, number>();
-  for (const i of withFig) tally.set(i.answer, (tally.get(i.answer) ?? 0) + 1);
-  const [answer, hits] = [...tally].sort((a, b) => b[1] - a[1])[0]!;
-  const share = hits / withFig.length;
-  return share > ANSWER_SKEW_MAX
-    ? { answer, share, n: withFig.length }
-    : null;
-}
+// ⚠️ 문턱과 셈은 **순수 모듈 한 곳**에 있다(`answerSkewRule.ts`). 여기 다시 적지 말 것 —
+// 이 파일은 최상단에서 전량 쓸기를 돌고 `process.exitCode` 까지 쓰므로 **시험이
+// import 할 수 없다.** 그래서 규칙만 내려 두고 여기서는 가져다 쓴다.
+export {
+  ANSWER_SKEW_MAX,
+  SKEW_MIN_SAMPLES,
+  answersLookAlike,
+  answerSkewAmongFigures,
+  topAnswerShare,
+} from "./answerSkewRule";
 
 export function figureIsFixed(specs: (unknown | null)[]): boolean {
   const json = specs.map((s) => JSON.stringify(s ?? null));

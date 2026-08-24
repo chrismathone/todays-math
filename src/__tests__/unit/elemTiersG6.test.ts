@@ -18,6 +18,16 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
+// ⚠️ 문턱(`0.8`)도 **세는 함수도** 판정기와 **같은 모듈**에서 가져온다.
+// 여기에 숫자를 다시 적으면 한쪽만 옮겨도 아무도 모른다.
+// (판정기 `probe-elem-rules.ts` 자체는 import 하면 안 된다 — 최상단에서 전량 쓸기를
+//  돌고 `process.exitCode` 를 쓴다. 그래서 규칙만 순수 모듈로 내려 두었다.)
+import {
+  ANSWER_SKEW_MAX,
+  answerSkewAmongFigures,
+  topAnswerShare,
+} from "../../../scripts/qa/answerSkewRule";
+
 const CODES = ["1-1-1", "1-1-2", "1-1-3"] as const;
 const SEEDS = Array.from({ length: 16 }, (_, i) => i * 31 + 11);
 
@@ -4799,65 +4809,64 @@ describe("[초6 그래프] 역산의 답이 지면에 찍히지 않는다", () =
 // ══════════════════════════════════════════════════════════════════════════
 
 describe("[초6 전량] 정답 쏠림", () => {
-  it("그림이 붙은 갈래에서 한 답이 8할을 넘지 않는다 — 씨앗 0~399", () => {
+  it("그림이 붙은 갈래에서 한 답이 문턱을 넘지 않는다 — 씨앗 0~399", () => {
     const over: string[] = [];
     let cells = 0;
     let worst = 0;
     let worstAt = "";
-    const g233 = { counts: new Map<string, number>(), n: 0 };
+    let g233: { answer: string; share: number; n: number } | null = null;
+    let g233Set: string[] = [];
     for (const u of elementaryUnits().filter((x) => x.grade === "초6")) {
       const tiers =
         supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
       for (const tier of tiers) {
-        const c = new Map<string, number>();
-        let n = 0;
-        for (let seed = 0; seed < 400; seed += 1) {
+        const items = Array.from({ length: 400 }, (_, seed) => {
           const p = generateElementaryProblem(u, seed, tier);
-          if (!p.figureSpec) continue;
-          n += 1;
-          c.set(p.answer, (c.get(p.answer) ?? 0) + 1);
-        }
-        if (n < 4) continue;
+          return { answer: p.answer, figureSpec: p.figureSpec };
+        });
+        // 판정도 셈도 판정기와 **같은 함수**다. 「넷 미만이면 판정 안 함」도 그 안에 있다.
+        const top = topAnswerShare(items);
+        if (!top) continue;
         cells += 1;
-        const share = Math.max(...c.values()) / n;
         const at = `${u.section.slice(0, 5)} ${tier ?? "표준"}`;
-        if (share > worst) {
-          worst = share;
+        if (top.share > worst) {
+          worst = top.share;
           worstAt = at;
         }
-        if (share > 0.8)
+        const hit = answerSkewAmongFigures(items);
+        if (hit)
           over.push(
-            `${at}: 최다 답이 ${(share * 100).toFixed(1)}% — ` +
-              [...c.entries()]
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 3)
-                .map(([a, k]) => `${a}:${k}`)
-                .join(" "),
+            `${at}: 최다 답 ${hit.answer} 이 ${(hit.share * 100).toFixed(1)}% (${hit.n}건)`,
           );
         if (at === "2-3-3 기본") {
-          g233.counts = c;
-          g233.n = n;
+          g233 = top;
+          g233Set = [
+            ...new Set(
+              items.filter((i) => i.figureSpec != null).map((i) => i.answer),
+            ),
+          ].sort();
         }
       }
     }
     expect(over).toEqual([]);
     // 분모 — 잰 셀이 정말 있는가. 0 이면 이 검사는 아무것도 증명하지 않는다.
     expect(cells).toBeGreaterThan(20);
-    // 실측 기록(2026-08-24): 가장 쏠린 자리가 `1-5-3 응용` 52.5% 다. 8할과 사이가
-    // 넉넉한지 같이 본다 — 여기가 8할에 붙기 시작하면 문턱이 장식이 되어 간다는 뜻이다.
-    expect(worst, `가장 쏠린 자리 ${worstAt}`).toBeLessThan(0.7);
+
+    // 여유 — 가장 쏠린 자리가 문턱에 **붙어 가는지** 본다. 보통 가드는 「지금 넘었나」만
+    // 보는데, 이 줄은 **가드가 장식이 되어 가는 것**을 미리 알려 준다.
+    // 실측(2026-08-24): 가장 쏠린 자리가 `1-5-3 응용` 52.5% 로 문턱과 사이가 넉넉하다.
+    expect(worst, `가장 쏠린 자리 ${worstAt}`).toBeLessThan(
+      ANSWER_SKEW_MAX - 0.1,
+    );
 
     // ── 고친 자리를 따로 못 박는다 ────────────────────────────────────
-    // 「두 가지 나오니 됐다」로 $90:10$ 이 다시 통과하지 않게, **이 자리만** 더 좁게 건다.
-    // 고치기 전 90.3% · 고친 뒤 실측 34.0%($2$ 132 / $3$ 132 / $4$ 136).
-    const top233 = Math.max(...g233.counts.values()) / g233.n;
-    expect(
-      { 가짓수: [...g233.counts.keys()].sort(), 최다: top233 < 0.5 },
-      `2-3-3 기본 분포 ${[...g233.counts.entries()]
-        .sort()
-        .map(([a, k]) => `${a}:${k}`)
-        .join(" ")}`,
-    ).toEqual({ 가짓수: ["$2$", "$3$", "$4$"], 최다: true });
+    // 「두 가지 나오니 됐다」로 $90:10$ 이 다시 통과하지 않게 **이 자리만** 더 좁게 건다.
+    // 고치기 전 90.3%($3$ 361 / $2$ 39) · 고친 뒤 34.0%($2$ 132 / $3$ 132 / $4$ 136).
+    expect(g233, "2-3-3 기본을 못 쟀다").not.toBeNull();
+    expect({ 가짓수: g233Set, 반쪽넘음: (g233?.share ?? 1) >= 0.5 }).toEqual({
+      가짓수: ["$2$", "$3$", "$4$"],
+      반쪽넘음: false,
+    });
   });
 });
 // ══════════════════════════════════════════════════════════════════════════
