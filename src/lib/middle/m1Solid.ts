@@ -177,6 +177,17 @@ function piTerm(k: number): string {
   return k === 1 ? "\\pi" : `${k}\\pi`;
 }
 
+/**
+ * 보조사 「은/는」 — 「원뿔대은(는)」이 지면에 나가지 않게.
+ * `m1Stat` 의 `obj`(을/를)·`subj`(이/가) 와 같은 판단이지만 조사가 달라 여기 하나 더 둔다.
+ * 도형 이름은 전부 한글 음절로 끝난다 — 숫자 뒤 조사는 `m2Josa` 가 따로 본다.
+ */
+function topic(word: string): string {
+  const ch = word.charCodeAt(word.length - 1);
+  const hasFinal = ch >= 0xac00 && ch <= 0xd7a3 && (ch - 0xac00) % 28 !== 0;
+  return `${word}${hasFinal ? "은" : "는"}`;
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  다면체와 회전체 — RPM 1-2 「다면체와 회전체」 01~20
 // ═══════════════════════════════════════════════════════════════════
@@ -297,7 +308,7 @@ export const M1_POLY: TypeEntry[] = [
       return {
         content: `다음 입체도형 중 다면체는 모두 몇 개인지 구하시오.\n\n${items.join(", ")}`,
         answer: `$${k}$개`,
-        solution: `다면체는 다각형인 면으로만 둘러싸인 입체도형이다.\n${round.join(", ")}${round.length > 0 ? "은(는)" : ""} 곡면으로 둘러싸여 있으므로 다면체가 아니다.\n따라서 다면체는 ${poly.join(", ")}의 $${k}$개이다.`,
+        solution: `다면체는 다각형인 면으로만 둘러싸인 입체도형이다.\n${topic(round.join(", "))} 곡면으로 둘러싸여 있으므로 다면체가 아니다.\n따라서 다면체는 ${poly.join(", ")}의 $${k}$개이다.`,
         facts: { k, m, ans: k },
       };
     }),
@@ -344,7 +355,7 @@ export const M1_POLY: TypeEntry[] = [
       return {
         content: `면의 개수가 $${f}$인 ${`각${FAM[fam]!}`}의 밑면은 몇 각형인지, 그 변의 개수를 구하시오.`,
         answer: `$${n}$`,
-        solution: `밑면을 ${koNum(n)}각형이라 하면 면의 개수는 $${fam === 1 ? "n+1" : "n+2"}$이므로 $${fam === 1 ? `n+1=${f}` : `n+2=${f}`}$에서 $n=${n}$이다.\n따라서 밑면은 ${koNum(n)}각형이고 변의 개수는 $${n}$이다.`,
+        solution: `밑면을 $n$각형이라 하면 면의 개수는 $${fam === 1 ? "n+1" : "n+2"}$이므로 $${fam === 1 ? `n+1=${f}` : `n+2=${f}`}$에서 $n=${n}$이다.\n따라서 밑면은 ${koNum(n)}각형이고 변의 개수는 $${n}$이다.`,
         facts: { branch, n, fam, f, ans: n },
       };
     }),
@@ -388,18 +399,41 @@ export const M1_POLY: TypeEntry[] = [
         const fam = pick(rng, [0, 1, 2] as const);
         const n = intBetween(rng, 5, 12);
         // 주어지는 개수는 $n$ 을 혼자 결정해야 한다 — 셋 다 그렇다.
-        const given = pick(rng, [0, 1, 2] as const);
+        const given = fam === 1 ? 0 : pick(rng, [0, 1, 2] as const);
         const g = countOf(n, fam, given);
         const rest = [0, 1, 2].filter((q) => q !== given);
-        // 각뿔은 면의 개수와 꼭짓점의 개수가 같다 — 그 짝을 물으면 문항이 아니다.
-        if (fam === 1 && given !== 1) return null;
         const x = countOf(n, fam, rest[0]!);
         const y = countOf(n, fam, rest[1]!);
+        const nEq =
+          given === 0
+            ? fam === 1
+              ? "n+1"
+              : "n+2"
+            : given === 1
+              ? fam === 1
+                ? "2n"
+                : "3n"
+              : fam === 1
+                ? "n+1"
+                : "2n";
+        // 각뿔은 면의 개수와 꼭짓점의 개수가 **같다**. 그 둘을 더하게 하면 문항이
+        // 아니므로(RPM 0699 도 각뿔에서는 뺀다) 각뿔만 $x-y$ 를 묻는다.
+        if (fam === 1) {
+          const a = countOf(n, fam, 1); // 모서리 $2n$
+          const b = countOf(n, fam, 2); // 꼭짓점 $n+1$
+          const diff = a - b;
+          return {
+            content: `면의 개수가 $${g}$인 각뿔의 모서리의 개수를 $a$, 꼭짓점의 개수를 $b$라 할 때, $a-b$의 값을 구하시오.`,
+            answer: `$${diff}$`,
+            solution: `밑면을 $n$각형이라 하면 각뿔의 면의 개수는 $n+1$이므로 $n+1=${g}$에서 $n=${n}$이다.\n따라서 $a=2\\times${n}=${a}$, $b=${n}+1=${b}$이므로 $a-b=${a}-${b}=${diff}$이다.`,
+            facts: { fam, n, given, g, x: a, y: b, ans: diff },
+          };
+        }
         const total = x + y;
         return {
           content: `${COUNT_KO[given]!}의 개수가 $${g}$인 ${`각${FAM[fam]!}`}의 ${COUNT_KO[rest[0]!]!}의 개수를 $x$, ${COUNT_KO[rest[1]!]!}의 개수를 $y$라 할 때, $x+y$의 값을 구하시오.`,
           answer: `$${total}$`,
-          solution: `밑면을 ${koNum(n)}각형이라 하면 ${COUNT_KO[given]!}의 개수는 $${given === 0 ? (fam === 1 ? "n+1" : "n+2") : given === 1 ? (fam === 1 ? "2n" : "3n") : fam === 1 ? "n+1" : "2n"}$이므로 $n=${n}$이다.\n따라서 $x=${x}$, $y=${y}$이므로 $x+y=${x}+${y}=${total}$이다.`,
+          solution: `밑면을 $n$각형이라 하면 ${`각${FAM[fam]!}`}의 ${COUNT_KO[given]!}의 개수는 $${nEq}$이므로 $n=${n}$, 즉 ${solidName(n, fam)}이다.\n따라서 $x=${x}$, $y=${y}$이므로 $x+y=${x}+${y}=${total}$이다.`,
           facts: { fam, n, given, g, x, y, ans: total },
         };
       }),
@@ -437,64 +471,74 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "06", "다면체의 이해", SEC.다면체, "mid", (rng) =>
-    attempt(120, (): Body | null => {
-      // 「$n$각기둥의 모서리의 개수는 $k$이다」 꼴 넷. 참·거짓을 시험이 다시 센다.
-      const picks: { n: number; fam: number; q: number; k: number }[] = [];
-      const seen = new Set<string>();
-      for (let i = 0; i < 4; i += 1) {
-        const n = intBetween(rng, 4, 11);
-        const fam = pick(rng, [0, 1, 2] as const);
-        const q = pick(rng, [0, 1, 2] as const);
-        const tag = `${n}|${fam}|${q}`;
-        if (seen.has(tag)) return null;
-        seen.add(tag);
-        const real = countOf(n, fam, q);
-        const wrong = rng() < 0.5;
-        const off = pick(rng, [1, 2, 3, -1, -2] as const);
-        const k = wrong ? real + off : real;
-        if (k <= 0) return null;
-        picks.push({ n, fam, q, k });
-      }
-      const ans = picks.filter((s) => s.k === countOf(s.n, s.fam, s.q)).length;
-      if (ans === 0 || ans === 4) return null; // 전부 참·전부 거짓이면 셀 것이 없다
-      const lines = picks
-        .map(
-          (s, i) =>
-            `${BOGI[i]!}. ${solidName(s.n, s.fam)}의 ${COUNT_KO[s.q]!}의 개수는 $${s.k}$이다.`,
-        )
-        .join("\n");
-      const truth = picks
-        .map(
-          (s, i) =>
-            `${BOGI[i]!}. ${solidName(s.n, s.fam)}의 ${COUNT_KO[s.q]!}의 개수는 $${countOf(s.n, s.fam, s.q)}$이므로 ${s.k === countOf(s.n, s.fam, s.q) ? "옳다" : "옳지 않다"}.`,
-        )
-        .join("\n");
-      return {
-        content: `다음 보기 중 옳은 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
-        answer: `$${ans}$개`,
-        solution: `${truth}\n따라서 옳은 것은 $${ans}$개이다.`,
-        facts: {
-          n0: picks[0]!.n,
-          c0: picks[0]!.fam,
-          q0: picks[0]!.q,
-          k0: picks[0]!.k,
-          n1: picks[1]!.n,
-          c1: picks[1]!.fam,
-          q1: picks[1]!.q,
-          k1: picks[1]!.k,
-          n2: picks[2]!.n,
-          c2: picks[2]!.fam,
-          q2: picks[2]!.q,
-          k2: picks[2]!.k,
-          n3: picks[3]!.n,
-          c3: picks[3]!.fam,
-          q3: picks[3]!.q,
-          k3: picks[3]!.k,
-          ans,
-        },
-      };
-    }),
+  def(
+    MINOR_POLY,
+    "06",
+    "다면체의 이해",
+    SEC.다면체,
+    "mid",
+    (rng) =>
+      attempt(120, (): Body | null => {
+        // 「$n$각기둥의 모서리의 개수는 $k$이다」 꼴 넷. 참·거짓을 시험이 다시 센다.
+        const picks: { n: number; fam: number; q: number; k: number }[] = [];
+        const seen = new Set<string>();
+        for (let i = 0; i < 4; i += 1) {
+          const n = intBetween(rng, 4, 11);
+          const fam = pick(rng, [0, 1, 2] as const);
+          const q = pick(rng, [0, 1, 2] as const);
+          const tag = `${n}|${fam}|${q}`;
+          if (seen.has(tag)) return null;
+          seen.add(tag);
+          const real = countOf(n, fam, q);
+          const wrong = rng() < 0.5;
+          const off = pick(rng, [1, 2, 3, -1, -2] as const);
+          const k = wrong ? real + off : real;
+          if (k <= 0) return null;
+          picks.push({ n, fam, q, k });
+        }
+        const ans = picks.filter(
+          (s) => s.k === countOf(s.n, s.fam, s.q),
+        ).length;
+        if (ans === 0 || ans === 4) return null; // 전부 참·전부 거짓이면 셀 것이 없다
+        const lines = picks
+          .map(
+            (s, i) =>
+              `${BOGI[i]!}. ${solidName(s.n, s.fam)}의 ${COUNT_KO[s.q]!}의 개수는 $${s.k}$이다.`,
+          )
+          .join("\n");
+        const truth = picks
+          .map(
+            (s, i) =>
+              `${BOGI[i]!}. ${solidName(s.n, s.fam)}의 ${COUNT_KO[s.q]!}의 개수는 $${countOf(s.n, s.fam, s.q)}$이므로 ${s.k === countOf(s.n, s.fam, s.q) ? "옳다" : "옳지 않다"}.`,
+          )
+          .join("\n");
+        return {
+          content: `다음 보기 중 옳은 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
+          answer: `$${ans}$개`,
+          solution: `${truth}\n따라서 옳은 것은 $${ans}$개이다.`,
+          facts: {
+            n0: picks[0]!.n,
+            c0: picks[0]!.fam,
+            q0: picks[0]!.q,
+            k0: picks[0]!.k,
+            n1: picks[1]!.n,
+            c1: picks[1]!.fam,
+            q1: picks[1]!.q,
+            k1: picks[1]!.k,
+            n2: picks[2]!.n,
+            c2: picks[2]!.fam,
+            q2: picks[2]!.q,
+            k2: picks[2]!.k,
+            n3: picks[3]!.n,
+            c3: picks[3]!.fam,
+            q3: picks[3]!.q,
+            k3: picks[3]!.k,
+            ans,
+          },
+        };
+      }),
+    // 「몇 개인가」 유형은 답이 보기 안의 수와 우연히 같기 마련이다 — 새는 게 아니다.
+    () => [],
   ),
 
   def(
@@ -523,44 +567,52 @@ export const M1_POLY: TypeEntry[] = [
         return {
           content: `다음 조건을 모두 만족시키는 입체도형의 ${COUNT_KO[asked]!}의 개수를 구하시오.\n\n${cond}\n㈐ ${COUNT_KO[given]!}의 개수는 $${g}$이다.`,
           answer: `$${a}$`,
-          solution: `㈎, ㈏에서 이 입체도형은 ${`각${FAM[fam]!}`}이다.\n밑면을 ${koNum(n)}각형이라 하면 ${COUNT_KO[given]!}의 개수가 $${g}$이므로 $n=${n}$, 즉 ${solidName(n, fam)}이다.\n따라서 ${COUNT_KO[asked]!}의 개수는 $${a}$이다.`,
+          solution: `㈎, ㈏에서 이 입체도형은 ${`각${FAM[fam]!}`}이다.\n밑면을 $n$각형이라 하면 ${COUNT_KO[given]!}의 개수가 $${g}$이므로 $n=${n}$, 즉 ${solidName(n, fam)}이다.\n따라서 ${COUNT_KO[asked]!}의 개수는 $${a}$이다.`,
           facts: { fam, n, given, g, asked, ans: a },
         };
       }),
   ),
 
-  def(MINOR_POLY, "08", "정다면체", SEC.정다면체, "easy", (rng) =>
-    attempt(80, (): Body | null => {
-      const branch = pick(rng, [0, 1, 2] as const);
-      if (branch === 0) {
-        const p = pick(rng, [3, 4, 5] as const);
-        const hit = PLATO.filter((s) => s.p === p);
+  def(
+    MINOR_POLY,
+    "08",
+    "정다면체",
+    SEC.정다면체,
+    "easy",
+    (rng) =>
+      attempt(80, (): Body | null => {
+        const branch = pick(rng, [0, 1, 2] as const);
+        if (branch === 0) {
+          const p = pick(rng, [3, 4, 5] as const);
+          const hit = PLATO.filter((s) => s.p === p);
+          return {
+            content: `정다면체 중에서 면의 모양이 ${p === 3 ? "정삼각형" : p === 4 ? "정사각형" : "정오각형"}인 것은 모두 몇 가지인지 구하시오.`,
+            answer: `$${hit.length}$가지`,
+            solution: `정다면체는 정사면체, 정육면체, 정팔면체, 정십이면체, 정이십면체의 다섯 가지뿐이다.\n이 중 면의 모양이 ${p === 3 ? "정삼각형" : p === 4 ? "정사각형" : "정오각형"}인 것은 ${hit.map((s) => s.name).join(", ")}이다.\n따라서 $${hit.length}$가지이다.`,
+            facts: { branch, p, ans: hit.length },
+          };
+        }
+        if (branch === 1) {
+          const q = pick(rng, [3, 4, 5] as const);
+          const hit = PLATO.filter((s) => s.q === q);
+          return {
+            content: `정다면체 중에서 한 꼭짓점에 모인 면의 개수가 $${q}$인 것은 모두 몇 가지인지 구하시오.`,
+            answer: `$${hit.length}$가지`,
+            solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n따라서 $${q}$인 것은 ${hit.map((s) => s.name).join(", ")}의 $${hit.length}$가지이다.`,
+            facts: { branch, q, ans: hit.length },
+          };
+        }
+        const q = pick(rng, [4, 5] as const);
+        const hit = PLATO.filter((s) => s.q >= q);
         return {
-          content: `정다면체 중에서 면의 모양이 ${p === 3 ? "정삼각형" : p === 4 ? "정사각형" : "정오각형"}인 것은 모두 몇 가지인지 구하시오.`,
+          content: `정다면체 중에서 한 꼭짓점에 모인 면의 개수가 $${q}$ 이상인 것은 모두 몇 가지인지 구하시오.`,
           answer: `$${hit.length}$가지`,
-          solution: `정다면체는 정사면체, 정육면체, 정팔면체, 정십이면체, 정이십면체의 다섯 가지뿐이다.\n이 중 면의 모양이 ${p === 3 ? "정삼각형" : p === 4 ? "정사각형" : "정오각형"}인 것은 ${hit.map((s) => s.name).join(", ")}이다.\n따라서 $${hit.length}$가지이다.`,
-          facts: { branch, p, ans: hit.length },
-        };
-      }
-      if (branch === 1) {
-        const q = pick(rng, [3, 4, 5] as const);
-        const hit = PLATO.filter((s) => s.q === q);
-        return {
-          content: `정다면체 중에서 한 꼭짓점에 모인 면의 개수가 $${q}$인 것은 모두 몇 가지인지 구하시오.`,
-          answer: `$${hit.length}$가지`,
-          solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n따라서 $${q}$인 것은 ${hit.map((s) => s.name).join(", ")}의 $${hit.length}$가지이다.`,
+          solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n따라서 $${q}$ 이상인 것은 ${hit.map((s) => s.name).join(", ")}의 $${hit.length}$가지이다.`,
           facts: { branch, q, ans: hit.length },
         };
-      }
-      const q = pick(rng, [4, 5] as const);
-      const hit = PLATO.filter((s) => s.q >= q);
-      return {
-        content: `정다면체 중에서 한 꼭짓점에 모인 면의 개수가 $${q}$ 이상인 것은 모두 몇 가지인지 구하시오.`,
-        answer: `$${hit.length}$가지`,
-        solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n따라서 $${q}$ 이상인 것은 ${hit.map((s) => s.name).join(", ")}의 $${hit.length}$가지이다.`,
-        facts: { branch, q, ans: hit.length },
-      };
-    }),
+      }),
+    // 「몇 가지인가」의 답($1$~$3$)은 발문의 $p$·$q$($3$~$5$)와 겹치기 마련이다.
+    () => [],
   ),
 
   def(
@@ -575,7 +627,7 @@ export const M1_POLY: TypeEntry[] = [
         const sb = pick(rng, PLATO);
         const qa = pick(rng, [0, 1, 2] as const);
         const qb = pick(rng, [0, 1, 2] as const);
-        if (sa.name === sb.name && qa === qb) return null;
+        if (sa.name === sb.name) return null;
         const a = platoCount(sa, qa);
         const b = platoCount(sb, qb);
         const total = a + b;
@@ -588,51 +640,59 @@ export const M1_POLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_POLY, "10", "정다면체의 이해", SEC.정다면체, "mid", (rng) =>
-    attempt(120, (): Body | null => {
-      const branch = pick(rng, [0, 1] as const);
-      if (branch === 0) {
-        const s = pick(rng, PLATO);
-        const q = pick(rng, [0, 1, 2] as const);
-        const a = platoCount(s, q);
+  def(
+    MINOR_POLY,
+    "10",
+    "정다면체의 이해",
+    SEC.정다면체,
+    "mid",
+    (rng) =>
+      attempt(120, (): Body | null => {
+        const branch = pick(rng, [0, 1] as const);
+        if (branch === 0) {
+          const s = pick(rng, PLATO);
+          const q = pick(rng, [0, 1, 2] as const);
+          const a = platoCount(s, q);
+          return {
+            content: `면의 모양이 ${s.face}이고 한 꼭짓점에 모인 면의 개수가 $${s.q}$인 정다면체가 있다. 이 정다면체의 ${COUNT_KO[q]!}의 개수를 구하시오.`,
+            answer: `$${a}$`,
+            solution: `면의 모양이 ${s.face}이고 한 꼭짓점에 모인 면의 개수가 $${s.q}$인 정다면체는 ${s.name}이다.\n${s.name}의 면의 개수는 $${s.f}$, 모서리의 개수는 $${s.e}$, 꼭짓점의 개수는 $${s.v}$이다.\n따라서 ${COUNT_KO[q]!}의 개수는 $${a}$이다.`,
+            facts: { branch, p: s.p, q: s.q, ask: q, ans: a },
+          };
+        }
+        // 「정다면체 — 면의 모양 — 한 꼭짓점에 모인 면의 개수」 짝이 몇 개 맞는가.
+        const idx = distinctIndices(rng, PLATO.length, 4);
+        const rows = idx.map((i) => {
+          const s = PLATO[i]!;
+          const bad = rng() < 0.5;
+          const q = bad ? (s.q === 3 ? 4 : 3) : s.q;
+          return { i, s, q, ok: q === s.q };
+        });
+        const ans = rows.filter((r) => r.ok).length;
+        if (ans === 0 || ans === 4) return null;
+        const lines = rows
+          .map((r, k) => `${BOGI[k]!}. ${r.s.name} — ${r.s.face} — $${r.q}$`)
+          .join("\n");
         return {
-          content: `면의 모양이 ${s.face}이고 한 꼭짓점에 모인 면의 개수가 $${s.q}$인 정다면체가 있다. 이 정다면체의 ${COUNT_KO[q]!}의 개수를 구하시오.`,
-          answer: `$${a}$`,
-          solution: `면의 모양이 ${s.face}이고 한 꼭짓점에 모인 면의 개수가 $${s.q}$인 정다면체는 ${s.name}이다.\n${s.name}의 면의 개수는 $${s.f}$, 모서리의 개수는 $${s.e}$, 꼭짓점의 개수는 $${s.v}$이다.\n따라서 ${COUNT_KO[q]!}의 개수는 $${a}$이다.`,
-          facts: { branch, p: s.p, q: s.q, ask: q, ans: a },
+          content: `다음은 정다면체와 그 면의 모양, 한 꼭짓점에 모인 면의 개수를 짝지은 것이다. 바르게 짝지어진 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
+          answer: `$${ans}$개`,
+          solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n${rows.map((r, k) => `${BOGI[k]!}. ${topic(r.s.name)} $${r.s.q}$이므로 ${r.ok ? "옳다" : "옳지 않다"}.`).join("\n")}\n따라서 바르게 짝지어진 것은 $${ans}$개이다.`,
+          facts: {
+            branch,
+            f0: rows[0]!.s.f,
+            d0: rows[0]!.q,
+            f1: rows[1]!.s.f,
+            d1: rows[1]!.q,
+            f2: rows[2]!.s.f,
+            d2: rows[2]!.q,
+            f3: rows[3]!.s.f,
+            d3: rows[3]!.q,
+            ans,
+          },
         };
-      }
-      // 「정다면체 — 면의 모양 — 한 꼭짓점에 모인 면의 개수」 짝이 몇 개 맞는가.
-      const idx = distinctIndices(rng, PLATO.length, 4);
-      const rows = idx.map((i) => {
-        const s = PLATO[i]!;
-        const bad = rng() < 0.5;
-        const q = bad ? (s.q === 3 ? 4 : 3) : s.q;
-        return { i, s, q, ok: q === s.q };
-      });
-      const ans = rows.filter((r) => r.ok).length;
-      if (ans === 0 || ans === 4) return null;
-      const lines = rows
-        .map((r, k) => `${BOGI[k]!}. ${r.s.name} — ${r.s.face} — $${r.q}$`)
-        .join("\n");
-      return {
-        content: `다음은 정다면체와 그 면의 모양, 한 꼭짓점에 모인 면의 개수를 짝지은 것이다. 바르게 짝지어진 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
-        answer: `$${ans}$개`,
-        solution: `한 꼭짓점에 모인 면의 개수는 정사면체 $3$, 정육면체 $3$, 정팔면체 $4$, 정십이면체 $3$, 정이십면체 $5$이다.\n${rows.map((r, k) => `${BOGI[k]!}. ${r.s.name}은(는) $${r.s.q}$이므로 ${r.ok ? "옳다" : "옳지 않다"}.`).join("\n")}\n따라서 바르게 짝지어진 것은 $${ans}$개이다.`,
-        facts: {
-          branch,
-          f0: rows[0]!.s.f,
-          d0: rows[0]!.q,
-          f1: rows[1]!.s.f,
-          d1: rows[1]!.q,
-          f2: rows[2]!.s.f,
-          d2: rows[2]!.q,
-          f3: rows[3]!.s.f,
-          d3: rows[3]!.q,
-          ans,
-        },
-      };
-    }),
+      }),
+    // 갈래 1 은 보기에 $3$·$4$·$5$ 가 늘어서므로 「몇 개인가」의 답과 겹친다.
+    () => [],
   ),
 
   def(MINOR_POLY, "11", "정다면체의 전개도", SEC.정다면체, "mid", (rng) =>
@@ -704,7 +764,7 @@ export const M1_POLY: TypeEntry[] = [
       return {
         content: `다음 입체도형 중 회전체는 모두 몇 개인지 구하시오.\n\n${all.join(", ")}`,
         answer: `$${k}$개`,
-        solution: `회전체는 평면도형을 한 직선을 축으로 하여 $1$회전 시킬 때 생기는 입체도형이다.\n${poly.join(", ")}은(는) 다면체이므로 회전체가 아니다.\n따라서 회전체는 ${round.join(", ")}의 $${k}$개이다.`,
+        solution: `회전체는 평면도형을 한 직선을 축으로 하여 $1$회전 시킬 때 생기는 입체도형이다.\n${topic(poly.join(", "))} 다면체이므로 회전체가 아니다.\n따라서 회전체는 ${round.join(", ")}의 $${k}$개이다.`,
         facts: { k, m, ans: k },
       };
     }),
@@ -749,10 +809,11 @@ export const M1_POLY: TypeEntry[] = [
             : shape === 1
               ? { shape: "rightTri", w: r, h }
               : { shape: "rightTrap", w: a, w2, h: b };
+        const baseKo = shape === 2 ? "큰 밑면인 원" : "밑면인 원";
         return {
-          content: `오른쪽 그림과 같이 ${plan}을 ${axisText}을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 이름을 말하고, 이 회전체의 가장 큰 밑면인 원의 넓이를 구하시오.`,
+          content: `오른쪽 그림과 같이 ${plan}을 ${axisText}을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 이름을 말하고, 이 회전체의 ${baseKo}의 넓이를 구하시오.`,
           answer: `${name}, $${piTerm(area)}\\,\\mathrm{cm}^2$`,
-          solution: `${axisText}을 회전축으로 하면 ${name}이 생긴다.\n회전축에서 가장 멀리 떨어진 변까지의 거리가 $${r}\\,\\mathrm{cm}$이므로 가장 큰 밑면인 원의 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.\n따라서 그 넓이는 $\\pi\\times${r}^{2}=${piTerm(area)}\\,(\\mathrm{cm}^2)$이다.`,
+          solution: `${axisText}을 회전축으로 하면 ${name}이 생긴다.\n회전축에서 가장 멀리 떨어진 변까지의 거리가 $${r}\\,\\mathrm{cm}$이므로 ${baseKo}의 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.\n따라서 그 넓이는 $\\pi\\times${r}^{2}=${piTerm(area)}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { shape, a, b, w2, axis, r, area, ans: area },
           figureSpec: {
             version: "elem-1",
@@ -761,7 +822,6 @@ export const M1_POLY: TypeEntry[] = [
           },
         };
       }),
-    () => [],
   ),
 
   def(MINOR_POLY, "15", "회전체의 단면의 모양", SEC.회전체, "mid", (rng) =>
@@ -1044,7 +1104,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const S = 2 * (w * d + d * h + h * w);
         const V = w * d * h;
         return {
-          content: `오른쪽 그림과 같은 전개도로 만들어지는 직육면체의 겉넓이와 부피를 차례로 구하시오.`,
+          content: `오른쪽 그림은 밑면이 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$인 직사각형인 사각기둥의 전개도이다. 이 전개도로 만들어지는 사각기둥의 겉넓이와 부피를 차례로 구하시오.`,
           answer: `겉넓이 $${S}\\,\\mathrm{cm}^2$, 부피 $${V}\\,\\mathrm{cm}^3$`,
           solution: `전개도를 접으면 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$인 직육면체가 된다.\n(겉넓이)$=2\\times(${w}\\times${d}+${d}\\times${h}+${h}\\times${w})=${S}$이다.\n(부피)$=${w}\\times${d}\\times${h}=${V}$이다.`,
           facts: { branch, w, d, h, S, V, ans: S },
@@ -1089,7 +1149,9 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           facts: { branch, r, deg, h, base, arc, pi, flat, ans: pi },
         };
       }),
-    () => [],
+    // 답이 발문의 **중심각**과 우연히 같은 수가 되는 일이 있다($r=6$·$90^\circ$·$h=10$
+    // 이면 부피가 $90\pi$). 수학은 맞지만 지면에서는 답을 적어 준 것처럼 읽힌다.
+    (f) => (f.branch === 0 ? [f.V!] : [f.pi!, f.flat!]),
   ),
 
   def(
@@ -1110,7 +1172,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           const V = (R * R - r * r) * h;
           const val = ask === 0 ? S : V;
           return {
-            content: `오른쪽 그림과 같이 원기둥 모양의 구멍이 뚫린 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
+            content: `오른쪽 그림은 밑면인 원의 반지름의 길이가 $${R}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 원기둥의 한가운데에 원기둥 모양의 구멍을 뚫은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
             answer: `$${piTerm(val)}\\,\\mathrm{cm}^${ask === 0 ? 2 : 3}$`,
             solution: `큰 원기둥의 밑면인 원의 반지름의 길이는 $${R}\\,\\mathrm{cm}$, 구멍의 반지름의 길이는 $${r}\\,\\mathrm{cm}$, 높이는 $${h}\\,\\mathrm{cm}$이다.\n밑넓이는 $\\pi\\times${R}^{2}-\\pi\\times${r}^{2}=${piTerm(R * R - r * r)}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\pi\\times${R}\\times${h}=${piTerm(2 * R * h)}$과 안쪽 $2\\pi\\times${r}\\times${h}=${piTerm(2 * r * h)}$의 합이다.\n따라서 겉넓이는 $2\\times${piTerm(R * R - r * r)}+${piTerm(2 * R * h)}+${piTerm(2 * r * h)}=${piTerm(S)}$이다.` : `따라서 부피는 $${piTerm(R * R - r * r)}\\times${h}=${piTerm(V)}$이다.`}`,
             facts: { shape, ask, R, r, h, S, V, ans: val },
@@ -1131,7 +1193,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const V = (w * d - iw * id) * h;
         const val = ask === 0 ? S : V;
         return {
-          content: `오른쪽 그림과 같이 직육면체 모양의 구멍이 뚫린 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
+          content: `오른쪽 그림은 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$인 직육면체의 한가운데에 직육면체 모양의 구멍을 뚫은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
           answer: `$${val}\\,\\mathrm{cm}^${ask === 0 ? 2 : 3}$`,
           solution: `바깥 직육면체는 가로 $${w}\\,\\mathrm{cm}$, 세로 $${d}\\,\\mathrm{cm}$, 높이 $${h}\\,\\mathrm{cm}$이고 구멍은 가로 $${iw}\\,\\mathrm{cm}$, 세로 $${id}\\,\\mathrm{cm}$이다.\n밑넓이는 $${w}\\times${d}-${iw}\\times${id}=${w * d - iw * id}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\times(${w}+${d})\\times${h}=${2 * (w + d) * h}$과 안쪽 $2\\times(${iw}+${id})\\times${h}=${2 * (iw + id) * h}$의 합이다.\n따라서 겉넓이는 $2\\times${w * d - iw * id}+${2 * (w + d) * h}+${2 * (iw + id) * h}=${S}$이다.` : `따라서 부피는 $${w * d - iw * id}\\times${h}=${V}$이다.`}`,
           facts: { shape, ask, w, d, h, iw, id, S, V, ans: val },
@@ -1166,7 +1228,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const V = w * d * h - cw * cd * ch;
         const val = ask === 0 ? S : V;
         return {
-          content: `오른쪽 그림은 직육면체에서 작은 직육면체를 잘라 내고 남은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
+          content: `오른쪽 그림은 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$인 직육면체에서 한 꼭짓점을 포함하는 작은 직육면체를 잘라 내고 남은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
           answer: `$${val}\\,\\mathrm{cm}^${ask === 0 ? 2 : 3}$`,
           solution: `잘라 내기 전 직육면체는 가로 $${w}\\,\\mathrm{cm}$, 세로 $${d}\\,\\mathrm{cm}$, 높이 $${h}\\,\\mathrm{cm}$이고, 잘라 낸 직육면체는 $${cw}\\,\\mathrm{cm}$, $${cd}\\,\\mathrm{cm}$, $${ch}\\,\\mathrm{cm}$이다.\n${ask === 0 ? `없어진 세 면의 넓이의 합과 새로 생긴 세 면의 넓이의 합이 같으므로 겉넓이는 잘라 내기 전과 같다.\n따라서 겉넓이는 $2\\times(${w}\\times${d}+${d}\\times${h}+${h}\\times${w})=${S}$이다.` : `(부피)$=${w}\\times${d}\\times${h}-${cw}\\times${cd}\\times${ch}=${w * d * h}-${cw * cd * ch}=${V}$이다.`}`,
           facts: { ask, w, d, h, cw, cd, ch, S, V, ans: val },
@@ -1249,10 +1311,11 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         };
       }
       // 사각뿔 — 밑면의 한 변의 절반·높이·옆면의 높이가 정수 직각삼각형이라
-      // 겨냥도의 높이를 지어내지 않는다.
+      // 겨냥도의 높이를 지어내지 않는다. 한 변이 $16\,\mathrm{cm}$ 를 넘으면
+      // 겉넓이가 네 자리로 커져 중1 지면에 안 어울린다 — 그런 쌍은 버린다.
       const [m, H, l] = pick(rng, TRIPLES);
       const a = 2 * m;
-      if (H > 20) return null;
+      if (H > 20 || a > 16) return null;
       const S = a * a + 2 * a * l;
       if (branch === 0) {
         return {
@@ -1564,12 +1627,25 @@ export const M1_SOLID_AREA: TypeEntry[] = [
               : "밑면인 원의 반지름의 길이";
         const unit = ask === 2 ? "\\,\\mathrm{cm}" : "\\,\\mathrm{cm}^2";
         const body = ask === 2 ? `$${val}${unit}$` : `$${piTerm(val)}${unit}$`;
+        const tail =
+          ask === 2
+            ? ""
+            : ask === 1
+              ? `\n옆넓이는 $\\pi\\times${r}\\times${l}=${piTerm(side)}$이다.`
+              : `\n밑넓이는 $\\pi\\times${r}^{2}=${piTerm(r * r)}$이고 옆넓이는 $\\pi\\times${r}\\times${l}=${piTerm(side)}$이므로 겉넓이는 $${piTerm(r * r)}+${piTerm(side)}=${piTerm(S)}$이다.`;
         return {
-          content: `오른쪽 그림은 어떤 원뿔의 전개도이다. 이 원뿔의 ${askKo}를 구하시오.`,
+          content: `오른쪽 그림은 모선의 길이가 $${l}\\,\\mathrm{cm}$인 원뿔의 전개도이다. 이 원뿔의 ${askKo}를 구하시오.`,
           answer: body,
-          solution: `옆면인 부채꼴의 호의 길이는 밑면인 원의 둘레의 길이와 같다.\n밑면인 원의 반지름의 길이를 $x\\,\\mathrm{cm}$라 하면 $2\\pi\\times${l}\\times\\dfrac{${deg}}{360}=2\\pi x$에서 $x=${r}$이다.\n옆넓이는 $\\pi\\times${r}\\times${l}=${piTerm(side)}$이고 밑넓이는 $\\pi\\times${r}^{2}=${piTerm(r * r)}$이므로 겉넓이는 $${piTerm(S)}$이다.\n따라서 ${askKo}는 ${body}이다.`,
+          solution: `옆면인 부채꼴의 호의 길이는 밑면인 원의 둘레의 길이와 같다.\n부채꼴의 반지름의 길이는 $${l}\\,\\mathrm{cm}$, 중심각의 크기는 $${deg}^\\circ$이므로 밑면인 원의 반지름의 길이를 $x\\,\\mathrm{cm}$라 하면 $2\\pi\\times${l}\\times\\dfrac{${deg}}{360}=2\\pi x$에서 $x=${r}$이다.${tail}\n따라서 ${askKo}는 ${body}이다.`,
           facts: { ask, r, l, deg, side, S, ans: val },
-          figureSpec: { version: "elem-1", kind: "netCone", r, l },
+          // 모선은 **발문이 말했으므로** 그림은 중심각만 적는다 (09 §4-20-b).
+          figureSpec: {
+            version: "elem-1",
+            kind: "netCone",
+            r,
+            l,
+            labels: ["angle"],
+          },
         };
       }),
   ),
