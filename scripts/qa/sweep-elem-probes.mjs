@@ -51,7 +51,7 @@ const TSX = path.join("node_modules", "tsx", "dist", "cli.mjs");
 function noVerdictNames() {
   const src = readFileSync(GAUGE_TEST, "utf-8");
   // 눈금 목록은 `["probe-elem-rules", 27]`(수) · 판정 안 함은 `["probe-elem-charts", "…"]`(글).
-  const re = new RegExp('\\["(probe-elem-[a-z-]+)",\\s*"', "g");
+  const re = new RegExp('\\["(probe-(?:elem|middle)-[a-z-]+)",\\s*"', "g");
   return new Set([...src.matchAll(re)].map((m) => m[1]));
 }
 
@@ -69,7 +69,7 @@ function noVerdictNames() {
  */
 function probeNames() {
   const skip = noVerdictNames();
-  const re = new RegExp("^probe-elem-[a-z-]+\\.(ts|py)$");
+  const re = new RegExp("^probe-(elem|middle)-[a-z-]+\\.(ts|py)$");
   return readdirSync("scripts/qa")
     .filter((f) => re.test(f))
     .filter((f) => !skip.has(f.replace(new RegExp("\\.(ts|py)$"), "")))
@@ -85,7 +85,7 @@ if (process.argv.includes("--list")) {
 }
 
 if (names.length === 0) {
-  console.error("\n🔴 초등 판정기를 하나도 못 찾았다 — 쓸기가 «못 셈»이다.");
+  console.error("\n🔴 판정기를 하나도 못 찾았다 — 쓸기가 «못 셈»이다.");
   process.exit(3);
 }
 

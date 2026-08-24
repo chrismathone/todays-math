@@ -25,12 +25,13 @@
  *    요약 수보다 적지 않은지 본다. 요약 수를 손으로 적어 두면 눈금을 늘려도 그 숫자가
  *    그대로라 거짓말이 된다(실제로 이 저장소에서 8 → 10 일 때 라벨이 「양성 2·음성 6」
  *    으로 남아 있었다).
- * ⑷ **판정기 목록을 손으로 두지 않는다** — `scripts/qa/probe-elem-*.ts` 를 훑어
+ * ⑷ **판정기 목록을 손으로 두지 않는다** — `scripts/qa/probe-{elem,middle}-*.ts` 를 훑어
  *    아래 두 표에 **없는 파일이 있으면 빨강**이다. 손 목록은 새 판정기를 조용히 뺀다.
  *
  * ## 울타리에 안 걸린다
  *
- * `--selftest` 는 픽스처 문자열만 보고 `src/lib/elementary/` 를 **안 읽는다**(그 경로는
+ * `--selftest` 는 픽스처 문자열만 보고 `src/lib/elementary/` 를 **안 읽는다**(중등 판정기도
+ * 눈금은 문자열만 본다). (그 경로는
  * 울타리를 열기 **전에** `process.exit` 한다). 그래서 남의 변이 하네스가 도는 중에도
  * 이 시험은 빨개지지 않는다 — **거짓 경보가 가드를 끄는 것**을 막으려면 이 성질이 필요하다.
  * 쓸기(`초3` 같은 인자)는 여기서 **부르지 않는다.**
@@ -49,7 +50,7 @@ const QA_DIR = path.join(process.cwd(), "scripts", "qa");
 /**
  * 판정기와 **그 눈금 수 — «정확히»**. 실측(2026-08-23)으로 박았다.
  *
- * ⚠️ **판정기 일곱은 각각 다른 세션 소유다.** 그래서 이 시험은 **남의 차분에서도**
+ * ⚠️ **판정기는 각각 다른 세션 소유다.** 그래서 이 시험은 **남의 차분에서도**
  * 빨개진다. 그건 결함이 아니라 이 시험이 하는 일이다 — 실패 문구를
  * 「너의 변경이 잘못됐다」가 아니라 **「수를 갱신하라」**로 쓴 까닭이 그것이다.
  * **거짓 경보로 읽히면 그 시험이 꺼진다.**
@@ -64,6 +65,10 @@ const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-routing", 4],
   ["probe-elem-tier-ladder", 14],
   ["probe-elem-unit-josa", 12],
+  // ── 중등 (2026-08-24, 미분류 133건을 읽다 나온 결함에서 태어났다) ──
+  ["probe-middle-uniqueness", 3],
+  ["probe-middle-page-smells", 9],
+  ["probe-middle-duplicate-statements", 9],
 ];
 
 /**
@@ -74,6 +79,10 @@ const UNGAUGED: [name: string, why: string][] = [
   ["probe-elem-charts", "그래프 스펙 전수 덤프 — 판정하지 않는다"],
   ["probe-elem-figure-demand", "그림 요구 전수 쓸기 — 판정하지 않는다"],
   ["probe-elem-throw", "전수 throw 쓸기 — 던지는 씨앗을 찾는다"],
+  [
+    "probe-middle-combo",
+    "873유형 결합형 분류 — 저장소 밖(C:/tmp) 말뭉치를 읽는다. 없으면 울타리(2)로 끝난다",
+  ],
 ];
 
 type Result = { status: number; text: string };
@@ -115,7 +124,7 @@ async function runSelftest(name: string): Promise<Result> {
 
 const results = new Map<string, Result>();
 
-describe("[초등 판정기] 눈금이 자동으로 돈다", () => {
+describe("[초등·중등 판정기] 눈금이 자동으로 돈다", () => {
   beforeAll(async () => {
     const done = await Promise.all(
       GAUGED.map(async ([name]) => [name, await runSelftest(name)] as const),
@@ -125,7 +134,7 @@ describe("[초등 판정기] 눈금이 자동으로 돈다", () => {
 
   it("판정기 목록이 새지 않는다 — 디렉터리에 있는 것이 두 표에 다 있다", () => {
     const onDisk = readdirSync(QA_DIR)
-      .filter((f) => /^probe-elem-.*\.ts$/.test(f))
+      .filter((f) => /^probe-(elem|middle)-.*\.ts$/.test(f))
       .map((f) => f.replace(/\.ts$/, ""))
       .sort();
     const known = [

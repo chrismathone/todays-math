@@ -8,7 +8,7 @@
  *   npx tsx scripts/qa/probe-middle-combo.ts
  *   npx tsx scripts/qa/probe-middle-combo.ts --census
  */
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { registeredTypes } from "../../src/lib/middle/generate";
@@ -1667,6 +1667,21 @@ function main(): void {
   const jsonPath = resolve(argValue("json") ?? DEFAULT_JSON);
   const reportPath = resolve(argValue("out") ?? DEFAULT_REPORT);
   const baselinePath = resolve(argValue("baseline") ?? DEFAULT_BASELINE);
+  // ⚠️ 이 판정기는 저장소 밖(`C:/tmp`)의 말뭉치·어휘를 읽는다 — `build-middle-corpus.ts` ·
+  //    `census-middle-solution-vocab.ts` 가 먼저 돌아야 한다. 새 컴퓨터에는 없다.
+  //    그럴 때 **던지면 관문이 컴퓨터마다 빨개진다.** 「못 돌았다」는 「깨끗하다」도
+  //    「빨갛다」도 아니므로 **울타리(2)** 로 끝낸다 — 쓸기가 그렇게 세어 찍는다.
+  const missing = [corpusPath, vocabPath, baselinePath].filter(
+    (f) => !existsSync(f),
+  );
+  if (missing.length > 0) {
+    console.log(
+      `울타리 — 말뭉치가 없어 못 돈다 (${missing.length}개 없음: ${missing[0]})\n` +
+        `   먼저: npx tsx scripts/qa/build-middle-corpus.ts` +
+        ` && npx tsx scripts/qa/census-middle-solution-vocab.ts`,
+    );
+    process.exit(2);
+  }
   const corpus = JSON.parse(readFileSync(corpusPath, "utf8")) as CorpusFile;
   const census = JSON.parse(readFileSync(vocabPath, "utf8")) as CensusFile;
   const baseline = JSON.parse(

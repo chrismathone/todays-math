@@ -64,17 +64,17 @@ const CALIBRATION: [string, boolean][] = [
 ];
 
 function calibrate(): boolean {
-  const wrong = CALIBRATION.filter(
-    ([line, want]) => (repeatedStatement(line) !== null) !== want,
-  );
-  const pos = CALIBRATION.filter(([, w]) => w).length;
-  console.log(
-    wrong.length === 0
-      ? `눈금 — 양성 ${pos}/${pos} 잡음 · 음성 ${CALIBRATION.length - pos}/${CALIBRATION.length - pos} 안 걸림`
-      : `🔴 눈금이 안 맞는다 (${wrong.length}건) — 판정을 믿을 수 없다`,
-  );
-  for (const [line] of wrong) console.log("   어긋남: " + line.slice(0, 120));
-  return wrong.length === 0;
+  console.log(`눈금 ${CALIBRATION.length}건`);
+  let bad = 0;
+  for (const [line, want] of CALIBRATION) {
+    const ok = (repeatedStatement(line) !== null) === want;
+    if (!ok) bad += 1;
+    console.log(
+      `${ok ? "✅" : "❌"} ${want ? "되풀이" : "정상"} — ${line.slice(0, 70)}`,
+    );
+  }
+  if (bad) console.log(`🔴 눈금이 안 맞는다 (${bad}건) — 판정을 믿을 수 없다`);
+  return bad === 0;
 }
 
 function main() {
@@ -82,6 +82,8 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  // `--selftest` 는 **눈금만** 본다 — 관문의 눈금 시험이 이 꼴로 부른다.
+  if (process.argv.includes("--selftest")) return;
   const i = process.argv.indexOf("--seeds");
   const seeds = i >= 0 ? Number(process.argv[i + 1]) : 120;
   const types = registeredTypes();
@@ -108,7 +110,7 @@ function main() {
   console.log(`같은 말을 두 번 쓰는 유형 ${rows.length}건\n`);
   for (const r of rows) {
     console.log(
-      `  ${r.key}  ${r.n}/${seeds} (${((r.n / seeds) * 100).toFixed(1)}%)`,
+      `   · ${r.key} ${r.n}/${seeds} (${((r.n / seeds) * 100).toFixed(1)}%) :: ${r.line.slice(0, 90)}`,
     );
     console.log(`     ${r.line.slice(0, 180)}`);
   }

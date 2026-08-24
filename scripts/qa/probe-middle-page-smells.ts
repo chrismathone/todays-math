@@ -105,13 +105,10 @@ function calibrate(terms: string[]): boolean {
       "「원주각의」는 「원주각」으로 걸린다",
     ],
   ];
+  console.log(`눈금 ${checks.length}건 (중3 전용 소단원 ${terms.length}개)`);
+  for (const [ok, what] of checks) console.log(`${ok ? "✅" : "❌"} ${what}`);
   const bad = checks.filter(([ok]) => !ok);
-  console.log(
-    bad.length === 0
-      ? `눈금 — ${checks.length}/${checks.length} 통과 (중3 전용 소단원 ${terms.length}개)`
-      : `🔴 눈금이 안 맞는다 — 판정을 믿을 수 없다`,
-  );
-  for (const [, what] of bad) console.log("   어긋남: " + what);
+  if (bad.length) console.log("🔴 눈금이 안 맞는다 — 판정을 믿을 수 없다");
   return bad.length === 0;
 }
 
@@ -121,6 +118,8 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  // `--selftest` 는 **눈금만** 본다 — 관문의 눈금 시험이 이 꼴로 부른다.
+  if (process.argv.includes("--selftest")) return;
   const i = process.argv.indexOf("--seeds");
   const seeds = i >= 0 ? Number(process.argv[i + 1]) : 120;
 
@@ -165,11 +164,11 @@ function main() {
     `\n⑴ 중1·중2 지면에 중3 전용 소단원 이름 — 유형 ${upper.length}건`,
   );
   for (const u of upper.sort((a, b) => b.n - a.n))
-    console.log(`   ${u.key}  ${u.n}/${seeds}  「${u.word}」 :: ${u.line}`);
+    console.log(`   · ${u.key} ${u.n}/${seeds} 「${u.word}」 :: ${u.line}`);
 
   console.log(`\n⑵ 이중 부호 — 유형 ${signs.length}건`);
   for (const s of signs.sort((a, b) => b.n - a.n))
-    console.log(`   ${s.key}  ${s.n}/${seeds}  :: ${s.hit}`);
+    console.log(`   · ${s.key} ${s.n}/${seeds} 이중 부호 :: ${s.hit}`);
 
   const bad = upper.length + signs.length;
   console.log(bad === 0 ? "\n✅ 깨끗하다" : `\n🔴 ${bad}유형`);

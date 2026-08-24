@@ -45,23 +45,35 @@ export function isUnderdetermined(solution: string): boolean {
 
 const TYPES = ["3-1|이차함수의 그래프 ⑵|11"] as const;
 
+/** 눈금 — 양성 1 · 음성 2. 실제로 지면에 나온 줄이다. */
+const CALIBRATION: [label: string, line: string, want: boolean][] = [
+  [
+    "축에 대칭인 두 점 — 조건이 하나뿐이라 답이 무수히 많다",
+    "두 점의 좌표를 대입하면 $9a+q=17$, $9a+q=17$이다.",
+    true,
+  ],
+  [
+    "두 조건이 다른 식 — 정상",
+    "두 점의 좌표를 대입하면 $a+q=7$, $9a+q=15$이다.",
+    false,
+  ],
+  [
+    "이 문형이 아닌 풀이 — 정상",
+    "좌변을 인수분해하면 $(x-1)(x-2)=0$이다.",
+    false,
+  ],
+];
+
 function calibrate(): boolean {
-  // 양성 — 두 조건이 같은 식 (축에 대칭인 두 점)
-  const positive = "두 점의 좌표를 대입하면 $9a+q=17$, $9a+q=17$이다.";
-  // 음성 — 두 조건이 다른 식
-  const negative = "두 점의 좌표를 대입하면 $a+q=7$, $9a+q=15$이다.";
-  // 음성 — 아예 이 문형이 아닌 풀이
-  const other = "좌변을 인수분해하면 $(x-1)(x-2)=0$이다.";
-  const ok =
-    isUnderdetermined(positive) &&
-    !isUnderdetermined(negative) &&
-    !isUnderdetermined(other);
-  console.log(
-    ok
-      ? "눈금 — 양성 1/1 잡음 · 음성 2/2 안 걸림"
-      : "🔴 눈금이 안 맞는다 — 판정을 믿을 수 없다",
-  );
-  return ok;
+  console.log(`눈금 ${CALIBRATION.length}건`);
+  let bad = 0;
+  for (const [label, line, want] of CALIBRATION) {
+    const got = isUnderdetermined(line);
+    if (got !== want) bad += 1;
+    console.log(`${got === want ? "✅" : "❌"} ${label}`);
+  }
+  if (bad) console.log("🔴 눈금이 안 맞는다 — 판정을 믿을 수 없다");
+  return bad === 0;
 }
 
 function main() {
@@ -69,6 +81,8 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  // `--selftest` 는 **눈금만** 본다 — 관문의 눈금 시험이 이 꼴로 부른다.
+  if (process.argv.includes("--selftest")) return;
   const i = process.argv.indexOf("--seeds");
   const seeds = i >= 0 ? Number(process.argv[i + 1]) : 400;
 
@@ -87,7 +101,7 @@ function main() {
       }
     }
     console.log(
-      `${key} — 씨앗 ${seeds}개 중 답이 하나로 안 정해지는 것 ${hit}건 (${((hit / seeds) * 100).toFixed(1)}%)`,
+      `   · ${key} — 씨앗 ${seeds}개 중 답이 하나로 안 정해지는 것 ${hit}건 (${((hit / seeds) * 100).toFixed(1)}%)`,
     );
     for (const e of examples) console.log("   " + e.slice(0, 170));
   }
