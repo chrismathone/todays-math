@@ -15,6 +15,7 @@ import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_EXPR } from "./m1Expr";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_NUM } from "./m1Num";
+import { M1_PROP } from "./m1Prop";
 import { M1_REAL } from "./m1Real";
 import { M1_STAT_TYPES } from "./m1Stat";
 import { M1_STAT_FIG } from "./m1StatFig";
@@ -28,6 +29,7 @@ const ALL: TypeEntry[] = [
   ...M1_LINEAR_APPLY,
   ...M1EXTRA_TYPES,
   ...M1_NUM,
+  ...M1_PROP,
   ...M1_CALC,
   ...M1_EXPR,
   ...M1_REAL,
