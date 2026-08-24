@@ -16,6 +16,10 @@ import { dirname, resolve } from "node:path";
 
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import {
+  generateMiddleComboSet,
+  middleComboDefinitions,
+} from "../../src/lib/middle/combo";
+import {
   generateMiddleSet,
   registeredTypes,
   typesForSection,
@@ -86,6 +90,29 @@ function printList(f: { grade?: string; book?: string; q?: string }): void {
  * 단원 목록 — 「어느 단원을 낼까요」를 묻기 전에 **고를 수 있는 크기**로 줄인다.
  * 찍는 이름은 `--section` 에 그대로 넣을 수 있는 값이다.
  */
+/**
+ * 승인된 결합형 목록. 「무엇이 승인됐나」와 **왜 중등 범위인가**를 같이 보여 준다 —
+ * 근거를 안 보여 주면 다음 사람이 여기에 손으로 하나 더 넣는다(D-07 위반).
+ */
+function printCombos(): void {
+  const defs = middleComboDefinitions();
+  console.log(
+    `승인된 결합형 ${defs.length}개 (원장님 승인분만 — 조합기가 아니다)\n`,
+  );
+  for (const d of defs) {
+    console.log(`  ${d.id}`);
+    console.log(`    앵커      ${d.anchorGrade} · ${d.anchorSection}`);
+    console.log(`    원천 유형  ${d.conceptKeys.join("  +  ")}`);
+    console.log(`    문형      ${d.familyIds.join(", ")}`);
+    console.log(`    학년 경계  ${d.gradeBoundary}`);
+    console.log(`    교과 근거  ${d.curriculumBasis}`);
+    console.log(`    상위 침범  ${d.laterConceptReview}\n`);
+  }
+  console.log(
+    `  뽑기: npx tsx scripts/middle/gen-cli.ts --combo "${defs[0]?.id}" --count 3 --seed 20260824`,
+  );
+}
+
 function printSections(f: { grade?: string; book?: string; q?: string }): void {
   const rows = sectionSummary(filterEntries(registeredTypes(), f));
   let lastGrade = "";
@@ -183,9 +210,28 @@ async function main() {
     printList(pick);
     return;
   }
+  if (args["list-combos"]) {
+    printCombos();
+    return;
+  }
 
   const seed = Number(args.seed ?? 20260823);
   const count = Number(args.count ?? 4);
+
+  // 결합형은 RPM 유형이 아니라 **승인 등록부**에서 나온다 (D-100). 그래서 경로가 다르다.
+  if (typeof args.combo === "string") {
+    if (typeof args.type === "string" || typeof args.section === "string") {
+      throw new Error("--combo 는 --type/--section 과 같이 못 씁니다");
+    }
+    const set = generateMiddleComboSet(args.combo, seed, count);
+    console.log(`결합형 ${set.length}문항 (seed ${seed}) — ${args.combo}`);
+    for (const p of set) {
+      console.log(`\n  ${p.content}`);
+      console.log(`  정답: ${p.answer}`);
+      console.log(`  풀이: ${p.solution.replace(/\n/g, "\n        ")}`);
+    }
+    return;
+  }
 
   let items: MidProblem[] = [];
   if (typeof args.type === "string") {
