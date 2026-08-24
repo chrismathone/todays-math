@@ -92,7 +92,11 @@ MUTATIONS = [
         "answer: `$${sd + 1}$`,",
     ),
     (
-        "M09 01(상자그림) 제1·제3사분위수 이름표를 바꿔 단다",
+        # ⚠️ 객체 구조분해는 키 이름이 매칭 기준이라 **나열 순서를 바꾸는 것은
+        # 아무 효과가 없다**(배열 구조분해와 다르다 — m2Pytha 의 03번 [w,h,d]
+        # 순서 변이는 배열이라 유효했다). 실제로 값을 바꿔치기하려면 별칭
+        # (`q1: q3`) 구문이 필요하다 — 처음엔 이걸 놓쳐 「산출물 그대로」를 봤다.
+        "M09 01(상자그림) 제1·제3사분위수 값을 바꿔 단다",
         'def(MINOR_BOX, "01", "사분위수", SEC.상자, "mid", (rng) => {'
         + NL
         + "    const sorted = distinctSorted(rng, 7, 5, 60);"
@@ -102,7 +106,7 @@ MUTATIONS = [
         + NL
         + "    const sorted = distinctSorted(rng, 7, 5, 60);"
         + NL
-        + "    const { min, q3, med, q1, max } = quartiles7(sorted);",
+        + "    const { min, q1: q3, med, q3: q1, max } = quartiles7(sorted);",
     ),
     (
         "M10 02(상자그림) x 답에 1을 더한다",
@@ -110,7 +114,7 @@ MUTATIONS = [
         "const facts: Record<string, number> = { x: q1 + 1 };",
     ),
     (
-        "M11 03(상자그림) 제1·제3사분위수 이름표를 바꿔 단다",
+        "M11 03(상자그림) 제1·제3사분위수 값을 바꿔 단다",
         'def(MINOR_BOX, "03", "상자그림으로 나타내기", SEC.상자, "mid", (rng) =>'
         + NL
         + "    attempt(200, () => {"
@@ -124,7 +128,7 @@ MUTATIONS = [
         + NL
         + "      const sorted = distinctSorted(rng, 7, 10, 70);"
         + NL
-        + "      const { min, q3, med, q1, max } = quartiles7(sorted);",
+        + "      const { min, q1: q3, med, q3: q1, max } = quartiles7(sorted);",
     ),
     (
         "M12 04(상자그림) 사분위수범위에서 1을 뺀다",
