@@ -381,6 +381,31 @@ TICK_FONT = 14.0
 _SVG_SPLIT = re.compile(r'^<svg viewBox="0 0 ([0-9.]+) ([0-9.]+)"[^>]*>(.*)</svg>$', re.S)
 
 
+def _fixed_width_svg(width: float, height: float, body: str, what: str, hint: str) -> str:
+    """**폭을 박아** 내보낸다. 벌어졌으면 던진다.
+
+    `_svg` 는 그린 것이 넘치면 viewBox 를 **넓혀** 준다. 잘림을 막는 좋은 성질이지만,
+    폭이 곧 지면 등급(≤160 → 140px · ≤320 → 240px)인 kind 에서는 넓어지는 순간
+    **그 그림만 화면에서 작아지고 아무 에러도 안 난다**(09 §4-24 ㉠).
+
+    ⚠️ 폭을 박는 kind 가 셋(통계·좌표평면·원뿔 전개도)이라 **여기 한 곳**만 본다 —
+       각자 적으면 한쪽만 고쳐진다(2026-08-18 「한 숫자를 두 곳이 쓰게 하라」).
+       그리고 `_svg` 는 `<text>` 의 **닻점만** 세므로 글자 폭은 여기 안 잡힌다.
+       그 몫은 부르는 쪽이 `_label_w_max` 로 재서 미리 자리를 빼야 한다.
+    """
+    svg = _svg(width, height, body)
+    m = _SVG_SPLIT.match(svg)
+    if m is None:  # pragma: no cover — 우리 렌더러 산출물이라 늘 맞는다
+        raise ValueError(f"{what} SVG 를 읽지 못했습니다")
+    got = float(m.group(1))
+    if abs(got - width) > 0.51:
+        raise ValueError(
+            f"{what} 폭이 {got:.0f}단위로 벌어졌습니다 ({width:.0f} 이어야 합니다) — "
+            f"지면 등급이 바뀝니다. {hint}"
+        )
+    return svg
+
+
 def _assert_ticks_readable(total_w: float) -> None:
     """짝이 화면에서 줄어든 뒤에도 **눈금 글자가 본문 이상**인가.
 
@@ -1015,17 +1040,7 @@ def _stat_svg(height: float, body: str) -> str:
     **프레임 밖으로 한 단위라도 더 그리는 순간 걸린다** — 앞으로 요소를 하나 더할 때
     지면 등급이 조용히 뒤집히는 것을 막는 그물이 이것뿐이다.
     """
-    svg = _svg(STAT_VIEWBOX, height, body)
-    m = _SVG_SPLIT.match(svg)
-    if m is None:  # pragma: no cover — 우리 렌더러 산출물이라 늘 맞는다
-        raise ValueError("통계 그림 SVG 를 읽지 못했습니다")
-    got = float(m.group(1))
-    if abs(got - STAT_VIEWBOX) > 0.51:
-        raise ValueError(
-            f"통계 그림 폭이 {got:.0f}단위로 벌어졌습니다 "
-            f"({STAT_VIEWBOX:.0f} 이어야 합니다) — 지면 등급이 바뀝니다. 라벨을 줄이십시오"
-        )
-    return svg
+    return _fixed_width_svg(STAT_VIEWBOX, height, body, "통계 그림", "라벨을 줄이십시오")
 
 
 def _stat_legend(
@@ -2240,6 +2255,139 @@ def _net_cylinder(spec: Mapping[str, Any]) -> str:
         )
     return _svg(max(xs) - minx + pad * 2, max(ys) - miny + pad * 2, "".join(parts))
 
+# ═══════════════════════════════════════════════════════════════════════════
+# netCone — 원뿔의 전개도 (물결 4A, 2026-08-24)
+#
+# 막고 있던 것: RPM 1-2 「17 회전체의 전개도」와 「19 전개도가 주어진 원뿔의 겉넓이와
+# 부피」. 정본은 RPM 1-2 0887·0888(p133)·0801(p121) — **모양만** 본다.
+#   · 옆면은 부채꼴, 밑면은 원. 원은 호에 **닿아** 있다(0801). 떨어뜨리면 어디에
+#     붙는 원인지 안 보인다(`netCylinder` 의 §4-12 와 같은 결함).
+#   · 부채꼴은 꼭짓점이 **위**, 호가 아래.
+#   · 치수는 **모선과 중심각**만 적는다 — 밑면 반지름은 그 둘이 정하므로 이중표기다
+#     (§4-16 · `sphere` 의 선례). 0887·0888 도 모선만 적는다.
+#     발문이 반지름을 이미 말한 갈래를 위해 `labels` 로 켤 수는 있다(§4-20-b).
+#
+# ## 중심각은 임의가 아니다 — **r 과 l 이 정한다**
+#
+#     (중심각) = (밑면 둘레) ÷ (모선이 반지름인 원의 둘레) × 360 = 360 r / l
+#
+# 그래서 **한 배율**(`u`)로 부채꼴 반지름 `l·u` 와 밑면 반지름 `r·u` 를 그리면
+# 호의 길이와 밑면 둘레가 **저절로 같아진다.** 시험이 그 둘을 재서 견준다 —
+# 그림이 곧 검산이다(좌표를 손으로 맞추면 이 성질이 조용히 깨진다).
+#
+# ## 던지는 것 (D-70)
+#
+#   · `l <= r` — 중심각이 360° 이상이 되어 원뿔이 아니다(모선은 밑면 반지름보다 길다).
+#   · 중심각이 **정수 도가 아니면** — 교과 전개도는 전부 정수 도이고, 소수 도는
+#     각도기로 못 읽는다. 그런 (r, l) 은 전개도가 아니라 겨냥도(`cone`)로 내야 한다.
+#   · 중심각이 `NC_DEG_MIN` 미만 / `NC_DEG_MAX` 초과 — 실오라기이거나 거의 닫힌 원이라
+#     부채꼴로 안 읽힌다.
+#
+# ## 지면 폭을 박는다
+#
+# 중심각이 움직이면 경계 상자가 크게 달라져 폭이 떠다닌다 — 그러면 같은 kind 인데
+# 지면 등급이 그림마다 뒤집힌다(09 §4-24 ㉠). `NC_VIEWBOX` 로 박고, 그 안에 들어가게
+# 배율을 정한 다음 가운데에 놓는다.
+# ═══════════════════════════════════════════════════════════════════════════
+
+NC_VIEWBOX = 240.0      # 지면 등급 mid — `CP_VIEWBOX` 와 같은 이유다
+NC_DEG_MIN = 30.0       # 중심각 하한 — 이보다 좁으면 부채꼴이 실오라기다
+NC_DEG_MAX = 330.0      # 중심각 상한 — 이보다 넓으면 거의 닫힌 원이 된다
+NC_PAD = 10.0           # 그림 둘레 여백
+NC_LABEL_FS = 11.0      # 치수 글자 — `netCuboid` 와 같은 값
+NC_ANG_R = 20.0         # 꼭짓점 각 표시 호의 반지름(화면 단위)
+NC_LABELS = ("slant", "angle", "radius")
+
+
+def _nc_polar(deg: float, rad: float) -> tuple[float, float]:
+    """화면 좌표계 극좌표 — 아래가 +y 이므로 90° 가 «아래»다."""
+    return rad * math.cos(math.radians(deg)), rad * math.sin(math.radians(deg))
+
+
+def _nc_arc_d(cx: float, cy: float, rad: float, a0: float, a1: float) -> str:
+    """중심 (cx,cy)·반지름 rad 인 원호를 a0 → a1(도) 로 그리는 path 조각(`A ...`)."""
+    x1, y1 = _nc_polar(a1, rad)
+    large = 1 if a1 - a0 > 180 else 0
+    return f"A {_n(rad)} {_n(rad)} 0 {large} 1 {_n(cx + x1)} {_n(cy + y1)}"
+
+
+def _net_cone(spec: Mapping[str, Any]) -> str:
+    r = _num(spec["r"], "r", 0.5, 20)
+    l = _num(spec["l"], "l", 0.5, 40)
+    if l <= r:
+        raise ValueError(
+            f"모선 {_n(l)} 이 밑면 반지름 {_n(r)} 이하입니다 — 원뿔이 아닙니다 (l > r 이어야 합니다)"
+        )
+    deg = 360.0 * r / l
+    if abs(deg - round(deg)) > 1e-9:
+        raise ValueError(
+            f"중심각이 {deg:.4f}° 라 정수 도가 아닙니다 — 전개도로 못 냅니다. "
+            "360r/l 이 정수가 되는 r·l 을 고르거나 겨냥도(cone)를 쓰십시오"
+        )
+    deg = float(round(deg))
+    if not NC_DEG_MIN <= deg <= NC_DEG_MAX:
+        raise ValueError(
+            f"중심각 {deg:.0f}° 는 {NC_DEG_MIN:.0f}~{NC_DEG_MAX:.0f}° 밖입니다 — 부채꼴로 안 읽힙니다"
+        )
+
+    raw = spec.get("labels", ["slant", "angle"])
+    if not isinstance(raw, list) or any(v not in NC_LABELS for v in raw):
+        raise ValueError(f"labels 는 {', '.join(NC_LABELS)} 중에서 고른 배열이어야 합니다")
+    labels = set(raw)
+
+    # ── cm 자리 (부채꼴 꼭짓점이 원점, 아래로 벌어진다) ───────────────
+    a0, a1 = 90.0 - deg / 2, 90.0 + deg / 2
+    base_cy = l + r  # 밑면 원은 호 한가운데(꼭짓점 바로 아래)에 **닿는다**
+    xs = [0.0, -r, r]
+    ys = [0.0, base_cy - r, base_cy + r]
+    for d in (a0, a1, 0.0, 90.0, 180.0, 270.0):
+        if a0 - 1e-9 <= d <= a1 + 1e-9:
+            x, y = _nc_polar(d, l)
+            xs.append(x)
+            ys.append(y)
+    minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)
+
+    # 배율 — **박힌 폭** 안에 들어가게. 치수 글자 자리를 미리 뺀다. `_svg` 는 `<text>` 의
+    # 닻점만 세므로 여기서 안 잡으면 지면에서 글자가 프레임 밖으로 나간다.
+    room = _label_w_max(f"{_n(l)} cm", NC_LABEL_FS) if "slant" in labels else 0.0
+    avail_w = NC_VIEWBOX - 2 * NC_PAD - 2 * room
+    avail_h = NC_VIEWBOX - 2 * NC_PAD
+    u = min(avail_w / (maxx - minx), avail_h / (maxy - miny))
+    ox = (NC_VIEWBOX - (maxx - minx) * u) / 2 - minx * u
+    oy = NC_PAD - miny * u
+
+    def scr(d: float, rad: float) -> tuple[float, float]:
+        x, y = _nc_polar(d, rad)
+        return ox + x * u, oy + y * u
+
+    px0, py0 = scr(a0, l)
+    parts = [
+        f'<path d="M {_n(ox)} {_n(oy)} L {_n(px0)} {_n(py0)} '
+        f'{_nc_arc_d(ox, oy, l * u, a0, a1)} Z" '
+        f'fill="{FACE_FRONT}" stroke="{INK}" stroke-width="1.15"/>',
+        f'<circle cx="{_n(ox)}" cy="{_n(oy + base_cy * u)}" r="{_n(r * u)}" '
+        f'fill="{FACE_TOP}" stroke="{INK}" stroke-width="1.15"/>',
+    ]
+    if "slant" in labels:
+        # 모선은 **왼쪽** 직선 변에 적는다(0887 과 같은 자리).
+        parts.append(_length_mark(px0, py0, ox, oy, f"{_n(l)} cm", off=12, fs=NC_LABEL_FS))
+    if "angle" in labels:
+        parts.append(
+            f'<path d="M {_n(ox + _nc_polar(a0, NC_ANG_R)[0])} '
+            f'{_n(oy + _nc_polar(a0, NC_ANG_R)[1])} {_nc_arc_d(ox, oy, NC_ANG_R, a0, a1)}" '
+            f'fill="none" stroke="{INK}" stroke-width="1.0"/>'
+        )
+        lx, ly = scr(90.0, (NC_ANG_R + 11.0) / u)
+        parts.append(_text(lx, ly, f"{deg:.0f}°", size=NC_LABEL_FS, weight="400"))
+    if "radius" in labels:
+        cy = oy + base_cy * u
+        parts.append(_length_mark(ox, cy, ox + r * u, cy, f"{_n(r)} cm", off=-9, fs=NC_LABEL_FS))
+
+    return _fixed_width_svg(
+        NC_VIEWBOX, oy + maxy * u + NC_PAD, "".join(parts), "원뿔 전개도", "치수 글자를 줄이십시오"
+    )
+
+
 
 def _area_box(base: float, height: float) -> tuple[float, float]:
     """cm 비율을 유지한다. 고정 140×70 이면 4×5와 9×8이 같은 직사각형이 된다."""
@@ -3135,56 +3283,216 @@ def _rev_label_edges(piece: Mapping[str, Any], geom) -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# linearGraph — 교과 좌표평면 위 일차함수 직선 1~3개 (물결 2C, 2026-08-23)
+# 좌표평면 **한 벌** — `linearGraph`(직선) 과 `curveGraph`(쌍곡선·포물선) 이 같이 쓴다
+# (물결 2C 2026-08-23 → 물결 4A 2026-08-24)
 #
-# 정본은 RPM 중학 2-1 일차함수 단원 원본 지면이다(본문·수치는 베끼지 않고 **모양만**):
-#   · 0891(p132) — 직선 하나 + 점 (4,3)·(-4,-1) 을 **점선 안내선**으로 축에 잇고
-#     그 발치에만 숫자. 점 자체에는 표식이 없다(원본도 없다).
-#   · 0974(p144) — 절편 숫자는 직선이 축을 지나는 자리 **옆에** 적는다(6·2).
-#   · 0882(p130)·0975(p144) — 두 직선 교점·평행. 식 라벨은 직선 위끝 부근.
+# 정본은 RPM 원본 지면이다(본문·수치는 베끼지 않고 **모양만**):
+#   · 2-1 일차함수 0891(p132) — 직선 하나 + 점 (4,3)·(-4,-1) 을 **점선 안내선**으로
+#     축에 잇고 그 발치에만 숫자. 점 자체에는 표식이 없다(원본도 없다).
+#   · 2-1 0974(p144) — 절편 숫자는 직선이 축을 지나는 자리 **옆에** 적는다(6·2).
+#   · 2-1 0882(p130)·0975(p144) — 두 직선 교점·평행. 식 라벨은 직선 위끝 부근.
+#   · 1-1 정비례와 반비례 1077(p146) — 쌍곡선 **두 가지**(1·3사분면), 곡선이 축보다
+#     굵고, 점에서 두 축으로 점선 안내선, 식 라벨은 위 가지 옆.
+#   · 3-1 이차함수 0962·1070(p137·p154) — 포물선의 꼭짓점을 **같은 점선 안내선**으로
+#     축에 잇고 숫자만 적는다. 축(x=p)을 따로 긋는 것은 개념 상자의 문법이고,
+#     문항 지면은 안 긋는다 — 그래서 kind 에도 안 넣었다.
 #
-# 문법(계획서 §3): 축 화살촉(양의 방향만) · 원점 O · 정수 눈금 짧은 획
-# (숫자는 marks 가 가리키는 곳만) · 직선은 **범위 경계까지** · 두 직선 교점 지원.
+# ## 왜 한 벌인가
 #
-# ## 던지는 것 (D-70 — 못 담으면 조용히 구겨 넣지 않는다)
+# 중1 「정비례와 반비례」는 **같은 중단원에** 직선(정비례)과 쌍곡선(반비례)이 있다 —
+# 한 시험지에 나란히 실린다. 규칙이 두 벌이면 축·눈금·화살촉·글자 크기가 그래프마다
+# 달라지고, 한쪽만 고쳐진다(이 저장소의 되풀이되는 결함).
 #
-#   · marks 의 점이 어느 직선 위에도 없으면 — **검산 겸용이다.** 생성기가 역산을
-#     틀리면 그림이 먼저 던진다. 그래서 marks 는 정수만 받는다(부동소수 «위에 있음»
-#     판정은 지어낸 참이 되기 쉽다 — 정수·정수 기울기·정수 절편이면 판정이 정확하다).
-#   · 기울기 극단(|m|>6 또는 |m|<1/6) — 축과 겹쳐 보인다.
-#   · 범위가 원점을 안 품으면 — 원점 O·화살촉 문법이 성립하지 않는다.
-#   · 직선의 보이는 토막이 짧으면(구석 스침) — 직선이 아니라 흠집으로 보인다.
+# ## 지면 폭을 박는다 — 안 박으면 **글자 크기가 그래프마다 뒤집힌다**
+#
+# `viewBox` 폭 하나로 지면 등급(≤160 → 140px · ≤320 → 240px · 그 위)이 갈린다.
+# 폭을 내용이 정하게 두면 같은 kind 인데 범위가 한 칸 바뀔 때마다 등급이 넘나든다.
+#
+# **실측(2026-08-24, 이 저장소가 이미 내보내던 값)**: 옛 `linearGraph` 는 범위·라벨에
+# 따라 viewBox 폭이 126~238 로 떠다녔고, 눈금 글자가 지면에서 **10.50px ~ 17.78px**
+# 이었다. 그중 셋(폭 142·144·160)은 본문 12.5px **아래**다 — 에러는 안 났다.
+# 그래서 폭을 `CP_VIEWBOX` 로 **박고**, 벌어지면 던진다(`_cp_svg`).
 #
 # ## 등척이다 — x·y 한 칸이 같은 px
 #
 # 두 축의 칸이 다르면 「기울기 1」이 45°로 안 보인다 — 그린 값이 적힌 값이어야
 # 한다(09 §4-21). 시험이 «기울기 m 직선의 화면 dx/dy == 1/m» 을 잠근다.
+#
+# ## 던지는 것 (D-70 — 못 담으면 조용히 구겨 넣지 않는다)
+#
+#   · `marks` 의 점이 어느 직선·곡선 위에도 없으면 — **검산 겸용이다.** 생성기가
+#     역산을 틀리면 그림이 먼저 던진다. 그래서 marks 는 정수만 받는다.
+#   · 범위가 원점을 안 품으면 — 원점 O·화살촉 문법이 성립하지 않는다.
+#   · 식 라벨이 그림보다 넓으면 — 잘린 라벨은 지면에서 티가 안 난다.
 # ═══════════════════════════════════════════════════════════════════════════
 
-LG_UNIT = 18.0          # 한 칸(px). 범위가 넓으면 아래에서 14 로 줄인다.
-LG_UNIT_SMALL = 14.0
-LG_WIDE_SPAN = 9        # 이 칸수를 넘으면 작은 칸을 쓴다
-LG_TICK = 2.6           # 정수 눈금 짧은 획 절반 길이
-LG_AXIS_OVER = 11.0     # 축이 범위 밖으로 나가는 길이(화살촉 앞)
-LG_ARROW = 7.0          # 화살촉 길이
-LG_GUIDE_DASH = "4 3"   # 점선 안내선 (숨은 모서리 "5 4"·치수 "6 4" 와 구분)
-LG_SLOPE_MAX = 6.0      # 기울기 극단 상한 — tan⁻¹6 ≈ 80.5° (0882 의 3 이 실측 최대급)
-LG_MIN_SEG = 0.45       # 보이는 토막 최소 길이(짧은 범위 변 대비 비율)
+# 지면 폭을 박는 값. **`src/lib/figure/figureSvgFrame.ts` 와 맞물린다** —
+# `CP_VIEWBOX` 는 `FIGURE_SVG_MID_VIEWBOX`(320) 이하라 «mid» 등급이 되고,
+# 그때 실제로 그려지는 폭이 `CP_FRAME_PX`(= `FIGURE_SVG_MID_MAX_PX`) 다.
+# 어긋나면 가드가 통과시킨 그림이 지면에서 작아진다 — `figureCurveGraph.test.ts`
+# 가 두 파일의 숫자를 대조한다(한쪽만 고치면 빨개진다).
+CP_VIEWBOX = 240.0
+CP_FRAME_PX = 240.0
+# 눈금 숫자·식 라벨 크기(그림 단위). 폭을 박았으므로 **지면 px = CP_FONT × 배율** 이고
+# 배율은 CP_FRAME_PX / CP_VIEWBOX = 1 이다. 본문(BODY_TEXT_PX) 아래로 내려가면 던진다
+# (`_cp_assert_readable`) — 옛 12 는 폭 240 에서 정확히 12.0px 이라 본문보다 작았다.
+CP_FONT = 13.0
+CP_MAX_H = 240.0        # 세로 상한. 폭과 달리 등급과 무관하지만 지면에서 길어지면 못 쓴다
+CP_PAD_L = 26.0         # 축 왼쪽 최소 여백(y축 눈금 숫자 자리)
+CP_PAD_T = 24.0
+CP_PAD_R = 26.0         # 화살촉 뒤 여백(식 라벨 자리)
+CP_PAD_B = 8.0
+CP_TICK = 2.6           # 정수 눈금 짧은 획 절반 길이
+CP_AXIS_OVER = 11.0     # 축이 범위 밖으로 나가는 길이(화살촉 앞)
+CP_ARROW = 7.0          # 화살촉 길이
+CP_GUIDE_DASH = "4 3"   # 점선 안내선 (숨은 모서리 "5 4"·치수 "6 4" 와 구분)
+CP_SLOPE_MAX = 6.0      # 기울기 극단 상한 — tan⁻¹6 ≈ 80.5° (0882 의 3 이 실측 최대급)
+CP_MIN_SEG = 0.45       # 직선의 보이는 토막 최소 길이(짧은 범위 변 대비 비율)
+CP_SPAN_MIN = 4         # 범위 폭(칸)
+CP_SPAN_MAX = 12
+CP_GRAPH_SW = 1.9       # 직선·곡선 굵기. 축(1.0)·눈금(0.9)보다 굵다 — 원본과 같은 위계
+CP_LABEL_GAP = 26.0     # 라벨이 축에 겹칠 때 비키는 거리
+# marks 가 그래프 위인가 — 잔차 허용치. **반올림한 손 좌표를 걸러 내는 값이다.**
+# 이 자리에 있을 수 있는 오차는 배정도 부동소수의 반올림뿐이라(값이 20 이하면 ~1e-15)
+# 1e-9 는 그보다 여섯 자리 넉넉하고, 소수 여섯째 자리 어긋남(1e-6)도 확실히 막는다.
+# 시험이 양쪽을 다 못 박는다: 1e-6 어긋난 점은 던지고, 1/3 같은 유리수 격자점은 통과한다.
+CP_ON_EPS = 1e-9
 
 
-def _lg_text(x: float, y: float, t: Any, *, size: float = 12, anchor: str = "middle",
-             italic: bool = False) -> str:
-    """좌표평면 글자 — 원본 지면처럼 **가는 명조**다(발문 굵기가 아니다)."""
+def _cp_assert_readable() -> None:
+    """눈금 글자가 **지면에서** 본문 이상인가. 폭을 박았으니 배율이 곧 답이다.
+
+    참을 어림으로 만들지 않는다 — 그림을 그리는 그 상수(`CP_FONT`)와 지면이 정하는
+    폭(`CP_FRAME_PX`/`CP_VIEWBOX`)에서 바로 계산한다(`_assert_ticks_readable` 와 같은 무늬).
+    """
+    px = CP_FONT * CP_FRAME_PX / CP_VIEWBOX
+    if px < BODY_TEXT_PX:
+        raise ValueError(
+            f"좌표평면 눈금 글자가 지면에서 {px:.2f}px 이 됩니다 "
+            f"(본문 {BODY_TEXT_PX}px 이상이어야 합니다) — CP_FONT 또는 CP_VIEWBOX 를 고치십시오"
+        )
+
+
+def _cp_text(x: float, y: float, t: Any, *, anchor: str = "middle", italic: bool = False) -> str:
+    """좌표평면 글자 — 원본 지면처럼 **가는 명조**다(발문 굵기가 아니다).
+
+    크기는 **한 값**(`CP_FONT`)뿐이다. 눈금 숫자와 식 라벨이 따로 놀면 한쪽만
+    본문 아래로 내려가도 아무도 모른다.
+    """
     style = ' font-style="italic"' if italic else ""
     return (
-        f'<text x="{_n(x)}" y="{_n(y)}" fill="{INK}" font-size="{_n(size)}" '
+        f'<text x="{_n(x)}" y="{_n(y)}" fill="{INK}" font-size="{_n(CP_FONT)}" '
         f'font-family="Batang, serif" font-weight="400"{style} text-anchor="{anchor}" '
         f'dominant-baseline="middle">{_esc(t)}</text>'
     )
 
 
-def _lg_clip(m: float, b: float, xlo: float, xhi: float, ylo: float, yhi: float):
+class _Plane:
+    """좌표평면 한 장의 배치. **폭이 박혀 있으므로 칸(u)은 범위가 정한다.**"""
+
+    __slots__ = ("xlo", "xhi", "ylo", "yhi", "u", "pad_l", "height")
+
+    def __init__(self, xlo: int, xhi: int, ylo: int, yhi: int) -> None:
+        self.xlo, self.xhi, self.ylo, self.yhi = xlo, xhi, ylo, yhi
+        span_x, span_y = xhi - xlo, yhi - ylo
+        # 가로는 **박힌 폭**이, 세로는 상한이 칸을 정한다. 둘 중 작은 쪽 — 등척이다.
+        #
+        # 칸 크기에 따로 상한을 두지 않는다. 두면 좁은 범위에서 그림이 프레임 한가운데
+        # 작게 뜨고 양옆이 빈다 — 폭을 박은 뒤에는 **채우는 쪽**이 지면에서 낫다
+        # (실렌더로 견줬다). 범위가 다르면 칸이 다른 것은 당연하고, 한 그림 안에서
+        # x·y 칸이 같은 것(등척)만 지키면 된다.
+        avail_w = CP_VIEWBOX - CP_PAD_L - CP_AXIS_OVER - CP_ARROW - CP_PAD_R
+        avail_h = CP_MAX_H - CP_PAD_T - CP_AXIS_OVER - CP_PAD_B
+        self.u = min(avail_w / span_x, avail_h / span_y)
+        # 그린 것(왼쪽 축 끝 ~ 화살촉 끝)을 프레임 한가운데에 놓는다.
+        ink = span_x * self.u + 2 * CP_AXIS_OVER + CP_ARROW
+        self.pad_l = max(CP_PAD_L, (CP_VIEWBOX - ink) / 2 + CP_AXIS_OVER)
+        self.height = CP_PAD_T + span_y * self.u + CP_AXIS_OVER + CP_PAD_B
+
+    def sx(self, x: float) -> float:
+        return self.pad_l + (x - self.xlo) * self.u
+
+    def sy(self, y: float) -> float:
+        return CP_PAD_T + (self.yhi - y) * self.u
+
+    @property
+    def ax(self) -> float:
+        return self.sx(0.0)
+
+    @property
+    def ay(self) -> float:
+        return self.sy(0.0)
+
+    @property
+    def x_end(self) -> float:
+        return self.sx(self.xhi) + CP_AXIS_OVER
+
+    @property
+    def y_end(self) -> float:
+        return self.sy(self.yhi) - CP_AXIS_OVER
+
+    def inside(self, x: float, y: float) -> bool:
+        e = 1e-9
+        return self.xlo - e <= x <= self.xhi + e and self.ylo - e <= y <= self.yhi + e
+
+
+def _cp_range(spec: Mapping[str, Any], name: str) -> tuple[int, int]:
+    rng = spec[name]
+    if not isinstance(rng, list) or len(rng) != 2:
+        raise ValueError(f"{name} 은 [lo, hi] 여야 합니다")
+    lo = _int(rng[0], f"{name}[0]", -20, 20)
+    hi = _int(rng[1], f"{name}[1]", -20, 20)
+    if lo > -1 or hi < 1:
+        raise ValueError(f"{name} 은 원점을 품어야 합니다 (lo ≤ -1, hi ≥ 1)")
+    if not CP_SPAN_MIN <= hi - lo <= CP_SPAN_MAX:
+        raise ValueError(f"{name} 폭은 {CP_SPAN_MIN}~{CP_SPAN_MAX}칸이어야 합니다")
+    return lo, hi
+
+
+def _cp_plane(spec: Mapping[str, Any]) -> _Plane:
+    _cp_assert_readable()
+    xlo, xhi = _cp_range(spec, "xRange")
+    ylo, yhi = _cp_range(spec, "yRange")
+    return _Plane(xlo, xhi, ylo, yhi)
+
+
+def _cp_label(raw: Any, name: str) -> str | None:
+    if raw is None:
+        return None
+    if not isinstance(raw, str) or not 1 <= len(raw) <= 20:
+        raise ValueError(f"{name} 은 1~20자 문자열이어야 합니다")
+    if _label_w_max(raw, CP_FONT) > CP_VIEWBOX - 2 * FIT_PAD:
+        raise ValueError(f"{name} 이 그림보다 넓습니다 — 식을 줄이십시오")
+    return raw
+
+
+def _cp_lines(spec: Mapping[str, Any]) -> list[tuple[float, float, str | None]]:
+    """`lines` — 기울기·y절편·식 라벨. `linearGraph` 와 `curveGraph` 가 같이 쓴다."""
+    lines = spec.get("lines", [])
+    if not isinstance(lines, list) or len(lines) > 3:
+        raise ValueError("lines 는 최대 3개의 객체 목록이어야 합니다")
+    parsed: list[tuple[float, float, str | None]] = []
+    for i, ln in enumerate(lines):
+        if not isinstance(ln, Mapping):
+            raise ValueError(f"lines[{i}] 는 객체여야 합니다")
+        extra = set(ln) - {"slope", "yIntercept", "label"}
+        if extra:
+            raise ValueError(f"lines[{i}] 허용되지 않은 키: {', '.join(sorted(map(str, extra)))}")
+        m = _num(ln.get("slope"), f"lines[{i}].slope", -CP_SLOPE_MAX, CP_SLOPE_MAX)
+        if abs(m) < 1.0 / CP_SLOPE_MAX:
+            raise ValueError(f"lines[{i}].slope 이 극단입니다 — 축과 겹쳐 보입니다 (|m| 은 1/6~6)")
+        b = _num(ln.get("yIntercept"), f"lines[{i}].yIntercept", -20, 20)
+        label = _cp_label(ln.get("label"), f"lines[{i}].label")
+        for pm, pb, _pl in parsed:
+            if abs(pm - m) < 1e-12 and abs(pb - b) < 1e-12:
+                raise ValueError("같은 직선이 두 번 있습니다")
+        parsed.append((m, b, label))
+    return parsed
+
+
+def _cp_clip_line(m: float, b: float, pl: _Plane):
     """직선 y=mx+b 를 범위 상자에 자른 토막 — 없으면 None. 끝점은 경계 위다."""
+    xlo, xhi, ylo, yhi = pl.xlo, pl.xhi, pl.ylo, pl.yhi
     if m > 0:
         xa = max(xlo, (ylo - b) / m)
         xb = min(xhi, (yhi - b) / m)
@@ -3196,187 +3504,494 @@ def _lg_clip(m: float, b: float, xlo: float, xhi: float, ylo: float, yhi: float)
     return (xa, m * xa + b), (xb, m * xb + b)
 
 
-def _linear_graph(spec: Mapping[str, Any]) -> str:
-    lines = spec["lines"]
-    if not isinstance(lines, list) or not 1 <= len(lines) <= 3:
-        raise ValueError("lines 는 1~3개여야 합니다")
-    parsed: list[tuple[float, float, str | None]] = []
-    for i, ln in enumerate(lines):
-        if not isinstance(ln, Mapping):
-            raise ValueError(f"lines[{i}] 는 객체여야 합니다")
-        extra = set(ln) - {"slope", "yIntercept", "label"}
-        if extra:
-            raise ValueError(f"lines[{i}] 허용되지 않은 키: {', '.join(sorted(map(str, extra)))}")
-        m = _num(ln.get("slope"), f"lines[{i}].slope", -LG_SLOPE_MAX, LG_SLOPE_MAX)
-        if abs(m) < 1.0 / LG_SLOPE_MAX:
-            raise ValueError(f"lines[{i}].slope 이 극단입니다 — 축과 겹쳐 보입니다 (|m| 은 1/6~6)")
-        b = _num(ln.get("yIntercept"), f"lines[{i}].yIntercept", -20, 20)
-        label = ln.get("label")
-        if label is not None and (not isinstance(label, str) or not 1 <= len(label) <= 20):
-            raise ValueError(f"lines[{i}].label 은 1~20자 문자열이어야 합니다")
-        for pm, pb, _pl in parsed:
-            if abs(pm - m) < 1e-12 and abs(pb - b) < 1e-12:
-                raise ValueError("같은 직선이 두 번 있습니다")
-        parsed.append((m, b, label))
-
-    def _range(name: str) -> tuple[int, int]:
-        rng = spec[name]
-        if not isinstance(rng, list) or len(rng) != 2:
-            raise ValueError(f"{name} 은 [lo, hi] 여야 합니다")
-        lo = _int(rng[0], f"{name}[0]", -20, 20)
-        hi = _int(rng[1], f"{name}[1]", -20, 20)
-        if lo > -1 or hi < 1:
-            raise ValueError(f"{name} 은 원점을 품어야 합니다 (lo ≤ -1, hi ≥ 1)")
-        if not 4 <= hi - lo <= 12:
-            raise ValueError(f"{name} 폭은 4~12칸이어야 합니다")
-        return lo, hi
-
-    xlo, xhi = _range("xRange")
-    ylo, yhi = _range("yRange")
-
-    marks_raw = spec.get("marks", [])
-    if not isinstance(marks_raw, list) or len(marks_raw) > 4:
-        raise ValueError("marks 는 최대 4개의 [x, y] 목록이어야 합니다")
-    marks: list[tuple[int, int]] = []
-    for i, mk in enumerate(marks_raw):
-        if not isinstance(mk, list) or len(mk) != 2:
-            raise ValueError(f"marks[{i}] 는 [x, y] 여야 합니다")
-        mx = _int(mk[0], f"marks[{i}][0]", xlo, xhi)
-        my = _int(mk[1], f"marks[{i}][1]", ylo, yhi)
-        if mx == 0 and my == 0:
-            raise ValueError(f"marks[{i}] 가 원점입니다 — 원점은 O 로 이미 표기합니다")
-        # 검산 겸용 — 어느 직선 위에도 없으면 생성기가 역산을 틀린 것이다.
-        if not any(abs(my - (m * mx + b)) < 1e-9 for m, b, _l in parsed):
-            raise ValueError(f"marks[{i}] = ({mx}, {my}) 가 어느 직선 위에도 없습니다")
-        marks.append((mx, my))
-
-    grid = spec.get("grid", False)
-    if not isinstance(grid, bool):
-        raise ValueError("grid 는 true/false 여야 합니다")
-
-    span_x, span_y = xhi - xlo, yhi - ylo
-    u = LG_UNIT if max(span_x, span_y) <= LG_WIDE_SPAN else LG_UNIT_SMALL
-    pad_l, pad_t = 26.0, 24.0
-
-    def sx(x: float) -> float:
-        return pad_l + (x - xlo) * u
-
-    def sy(y: float) -> float:
-        return pad_t + (yhi - y) * u
-
-    ax, ay = sx(0.0), sy(0.0)  # 축 화면 좌표
-
-    # 보이는 토막 — 없거나 짧으면 던진다 (구석 스침은 직선으로 안 보인다).
-    segs: list[tuple[tuple[float, float], tuple[float, float]]] = []
-    for m, b, _l in parsed:
-        seg = _lg_clip(m, b, xlo, xhi, ylo, yhi)
+def _cp_line_segs(pl: _Plane, lines) -> list:
+    """직선을 상자에 자른다. 없거나 구석만 스치면 던진다(직선이 아니라 흠집으로 보인다)."""
+    segs = []
+    for m, b, _l in lines:
+        seg = _cp_clip_line(m, b, pl)
         if seg is None:
             raise ValueError(f"직선 y={_n(m)}x{b:+g} 이 범위 안에 없습니다")
         (xa, ya), (xb, yb) = seg
-        if math.hypot(xb - xa, yb - ya) < LG_MIN_SEG * min(span_x, span_y):
+        if math.hypot(xb - xa, yb - ya) < CP_MIN_SEG * min(pl.xhi - pl.xlo, pl.yhi - pl.ylo):
             raise ValueError(f"직선 y={_n(m)}x{b:+g} 이 범위 구석만 스칩니다 — 범위를 옮기십시오")
         segs.append(seg)
+    return segs
 
+
+def _cp_marks(spec: Mapping[str, Any], pl: _Plane, on_graph) -> list[tuple[int, int]]:
+    """`marks` — 정수 격자점. **어느 그래프 위에도 없으면 던진다**(검산 겸용).
+
+    부동소수 «위에 있음» 판정은 지어낸 참이 되기 쉬워서 좌표는 정수만 받는다.
+    잔차 허용치는 `on_graph` 가 정하고, 시험이 그 값을 못 박는다.
+    """
+    raw = spec.get("marks", [])
+    if not isinstance(raw, list) or len(raw) > 4:
+        raise ValueError("marks 는 최대 4개의 [x, y] 목록이어야 합니다")
+    out: list[tuple[int, int]] = []
+    for i, mk in enumerate(raw):
+        if not isinstance(mk, list) or len(mk) != 2:
+            raise ValueError(f"marks[{i}] 는 [x, y] 여야 합니다")
+        mx = _int(mk[0], f"marks[{i}][0]", pl.xlo, pl.xhi)
+        my = _int(mk[1], f"marks[{i}][1]", pl.ylo, pl.yhi)
+        if mx == 0 and my == 0:
+            raise ValueError(f"marks[{i}] 가 원점입니다 — 원점은 O 로 이미 표기합니다")
+        if not on_graph(mx, my):
+            raise ValueError(f"marks[{i}] = ({mx}, {my}) 가 어느 그래프 위에도 없습니다")
+        out.append((mx, my))
+    return out
+
+
+def _cp_grid_flag(spec: Mapping[str, Any]) -> bool:
+    grid = spec.get("grid", False)
+    if not isinstance(grid, bool):
+        raise ValueError("grid 는 true/false 여야 합니다")
+    return grid
+
+
+def _cp_frame_parts(pl: _Plane, grid: bool) -> list[str]:
+    """모눈 → 축·화살촉·라벨 x·y·O → 정수 눈금 짧은 획. **이 셋이 한 벌이다.**"""
     parts: list[str] = []
-
-    # ① 모눈 (요청 시에만) — 축 밑에 깔린다.
     if grid:
-        for gx in range(xlo, xhi + 1):
+        for gx in range(pl.xlo, pl.xhi + 1):
             if gx == 0:
                 continue
-            parts.append(
-                f'<line x1="{_n(sx(gx))}" y1="{_n(sy(yhi))}" x2="{_n(sx(gx))}" '
-                f'y2="{_n(sy(ylo))}" stroke="{GRID}" stroke-width="{_n(GRID_SW)}"/>'
-            )
-        for gy in range(ylo, yhi + 1):
+            parts.append(_grid_line((pl.sx(gx), pl.sy(pl.yhi)), (pl.sx(gx), pl.sy(pl.ylo))))
+        for gy in range(pl.ylo, pl.yhi + 1):
             if gy == 0:
                 continue
-            parts.append(
-                f'<line x1="{_n(sx(xlo))}" y1="{_n(sy(gy))}" x2="{_n(sx(xhi))}" '
-                f'y2="{_n(sy(gy))}" stroke="{GRID}" stroke-width="{_n(GRID_SW)}"/>'
-            )
+            parts.append(_grid_line((pl.sx(pl.xlo), pl.sy(gy)), (pl.sx(pl.xhi), pl.sy(gy))))
 
-    # ② 축 + 화살촉(양의 방향만) + 라벨 x·y·O — 원본 0974 배치.
-    x_end = sx(xhi) + LG_AXIS_OVER
-    y_end = sy(yhi) - LG_AXIS_OVER
-    parts.append(_line((sx(xlo) - LG_AXIS_OVER, ay), (x_end, ay), sw=1.0))
-    parts.append(_line((ax, sy(ylo) + LG_AXIS_OVER), (ax, y_end), sw=1.0))
+    ax, ay, x_end, y_end = pl.ax, pl.ay, pl.x_end, pl.y_end
+    parts.append(_line((pl.sx(pl.xlo) - CP_AXIS_OVER, ay), (x_end, ay), sw=1.0))
+    parts.append(_line((ax, pl.sy(pl.ylo) + CP_AXIS_OVER), (ax, y_end), sw=1.0))
     parts.append(
-        f'<polygon points="{_n(x_end + LG_ARROW)},{_n(ay)} {_n(x_end)},{_n(ay - 2.8)} '
+        f'<polygon points="{_n(x_end + CP_ARROW)},{_n(ay)} {_n(x_end)},{_n(ay - 2.8)} '
         f'{_n(x_end)},{_n(ay + 2.8)}" fill="{INK}"/>'
     )
     parts.append(
-        f'<polygon points="{_n(ax)},{_n(y_end - LG_ARROW)} {_n(ax - 2.8)},{_n(y_end)} '
+        f'<polygon points="{_n(ax)},{_n(y_end - CP_ARROW)} {_n(ax - 2.8)},{_n(y_end)} '
         f'{_n(ax + 2.8)},{_n(y_end)}" fill="{INK}"/>'
     )
-    parts.append(_lg_text(x_end + 4.0, ay + 12.0, "x", size=13, italic=True))
-    parts.append(_lg_text(ax - 9.0, y_end - 4.0, "y", size=13, italic=True))
-    parts.append(_lg_text(ax - 7.0, ay + 10.0, "O", size=12.5))
+    parts.append(_cp_text(x_end + 4.0, ay + 12.0, "x", italic=True))
+    parts.append(_cp_text(ax - 9.0, y_end - 4.0, "y", italic=True))
+    parts.append(_cp_text(ax - 7.0, ay + 10.0, "O"))
 
-    # ③ 정수 눈금 짧은 획 — 숫자는 marks 가 가리키는 곳만 (계획서 §3).
-    for gx in range(xlo, xhi + 1):
+    for gx in range(pl.xlo, pl.xhi + 1):
         if gx == 0:
             continue
-        parts.append(_line((sx(gx), ay - LG_TICK), (sx(gx), ay + LG_TICK), sw=0.9))
-    for gy in range(ylo, yhi + 1):
+        parts.append(_line((pl.sx(gx), ay - CP_TICK), (pl.sx(gx), ay + CP_TICK), sw=0.9))
+    for gy in range(pl.ylo, pl.yhi + 1):
         if gy == 0:
             continue
-        parts.append(_line((ax - LG_TICK, sy(gy)), (ax + LG_TICK, sy(gy)), sw=0.9))
+        parts.append(_line((ax - CP_TICK, pl.sy(gy)), (ax + CP_TICK, pl.sy(gy)), sw=0.9))
+    return parts
 
-    # ④ 점선 안내선 + 숫자 — 0891 문법. 축 위의 점(절편)은 안내선 없이 숫자만(0974).
+
+def _cp_mark_parts(pl: _Plane, marks: list[tuple[int, int]]) -> list[str]:
+    """점선 안내선 + 숫자 — 0891 문법. 축 위의 점(절편)은 안내선 없이 숫자만(0974)."""
+    parts: list[str] = []
+    ax, ay = pl.ax, pl.ay
     done: set[tuple[str, int]] = set()
     for mx, my in marks:
         if mx != 0 and my != 0:
             parts.append(
-                _polyline([(sx(mx), ay), (sx(mx), sy(my)), (ax, sy(my))],
-                          sw=0.9, dash=LG_GUIDE_DASH)
+                _polyline([(pl.sx(mx), ay), (pl.sx(mx), pl.sy(my)), (ax, pl.sy(my))],
+                          sw=0.9, dash=CP_GUIDE_DASH)
             )
         if mx != 0 and ("x", mx) not in done:
             done.add(("x", mx))
             # 숫자는 안내선 반대쪽 — 점이 위면 축 아래(0891 의 4), 아래면 축 위(0891 의 -4).
             ny = ay + 11.0 if my >= 0 else ay - 8.0
-            parts.append(_lg_text(sx(mx) + (-5.0 if mx > 0 else 5.0), ny, mx))
+            parts.append(_cp_text(pl.sx(mx) + (-5.0 if mx > 0 else 5.0), ny, mx))
         if my != 0 and ("y", my) not in done:
             done.add(("y", my))
             if mx >= 0:
-                parts.append(_lg_text(ax - 5.0, sy(my) + 1.0, my, anchor="end"))
+                parts.append(_cp_text(ax - 5.0, pl.sy(my) + 1.0, my, anchor="end"))
             else:
-                parts.append(_lg_text(ax + 5.0, sy(my) + 1.0, my, anchor="start"))
+                parts.append(_cp_text(ax + 5.0, pl.sy(my) + 1.0, my, anchor="start"))
+    return parts
 
-    # ⑤ 직선 — 범위 경계까지, 축보다 굵게(원본과 같은 위계).
-    for (xa, ya), (xb, yb) in segs:
-        parts.append(_line((sx(xa), sy(ya)), (sx(xb), sy(yb)), sw=1.9))
 
-    # ⑥ 식 라벨 — 직선 위끝 부근(0882). 축과 겹치면 기울기의 빈 쪽으로 비키고,
-    #    앞 라벨과 겹치면 **그 직선의 아래끝**으로 옮긴다 — 두 직선이 위 경계를
-    #    가까이서 나가면 위끝 라벨 둘이 포개져 못 읽는다(실사 미리보기에서 확인).
-    has_label = False
+def _cp_fit_label(pl: _Plane, spot: tuple[float, float], half: float) -> tuple[float, float]:
+    """라벨 닻점을 프레임 안으로 당긴다 — **잘린 라벨은 지면에서 티가 안 난다.**
+
+    `_svg` 는 `<text>` 의 닻점만 세므로 글자가 밖으로 나가도 viewBox 가 안 넓어진다.
+    그래서 여기서 글자 폭(`half`)까지 재서 넣는다.
+    """
+    lo, hi = FIT_PAD + half, CP_VIEWBOX - FIT_PAD - half
+    x = min(max(spot[0], min(max(30.0, lo), hi)), max(min(pl.x_end - 4.0, hi), lo))
+    return min(max(x, lo), hi), spot[1]
+
+
+def _cp_label_parts(pl: _Plane, items: list) -> list[str]:
+    """식 라벨 — 앞 라벨과 겹치면 **대안 자리**로 옮긴다. 둘이 위 경계를 가까이서
+    나가면 위끝 라벨이 포개져 못 읽는다(실사 미리보기에서 확인).
+
+    `items` 는 (라벨, 우선 자리, 대안 자리). **자리는 모양이 정한다** — 직선은 위끝의
+    기울기가 비는 쪽(0882), 곡선은 위끝에서 y축 반대쪽(1077). 겹침·프레임 처리만
+    여기 한 곳에 있다.
+    """
+    parts: list[str] = []
     placed: list[tuple[float, float]] = []
+    for label, first, second in items:
+        half = _label_w_max(label, CP_FONT) / 2
+        cand = _cp_fit_label(pl, first, half)
+        if any(abs(cand[0] - px) < 46.0 and abs(cand[1] - py) < 14.0 for px, py in placed):
+            cand = _cp_fit_label(pl, second, half)
+        placed.append(cand)
+        parts.append(_cp_text(cand[0], cand[1], label, italic=True))
+    return parts
 
-    def _label_spot(m: float, end: tuple[float, float], at_top: bool) -> tuple[float, float]:
+
+def _cp_line_label_items(pl: _Plane, lines, segs) -> list:
+    """직선 라벨 자리 — 직선 위끝 부근(0882). 축과 겹치면 **기울기의 빈 쪽**으로 비킨다."""
+
+    def spot(m: float, end: tuple[float, float], at_top: bool) -> tuple[float, float]:
         ex, ey = end
-        if abs(ex - ax) < 28.0:
+        if abs(ex - pl.ax) < CP_LABEL_GAP + 2.0:
             free_right = (m > 0) == at_top  # 위끝은 기울기 쪽이, 아래끝은 반대쪽이 빈다
-            ex += 26.0 if free_right else -26.0
-        ex = min(max(ex, 30.0), x_end - 4.0)
+            ex += CP_LABEL_GAP if free_right else -CP_LABEL_GAP
         return ex, (ey - 8.0 if at_top else ey + 12.0)
 
-    for (m, b, label), ((xa, ya), (xb, yb)) in zip(parsed, segs):
+    items = []
+    for (m, _b, label), ((xa, ya), (xb, yb)) in zip(lines, segs):
         if not label:
             continue
-        has_label = True
-        top, bot = ((sx(xa), sy(ya)), (sx(xb), sy(yb)))
+        top, bot = (pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb))
         if top[1] > bot[1]:
             top, bot = bot, top
-        cand = _label_spot(m, top, True)
-        if any(abs(cand[0] - px) < 46.0 and abs(cand[1] - py) < 14.0 for px, py in placed):
-            cand = _label_spot(m, bot, False)
-        placed.append(cand)
-        parts.append(_lg_text(cand[0], cand[1], label, italic=True))
+        items.append((label, spot(m, top, True), spot(-m, bot, False)))
+    return items
 
-    w = x_end + LG_ARROW + (26.0 if has_label else 10.0)
-    h = sy(ylo) + LG_AXIS_OVER + 8.0
-    return _svg(w, h, "".join(parts))
+
+def _cp_svg(pl: _Plane, parts: list[str]) -> str:
+    """**폭을 박아** 내보낸다. 벌어졌으면 던진다.
+
+    `_svg` 는 그린 것이 넘치면 viewBox 를 **넓혀** 준다. 잘림을 막는 좋은 성질이지만
+    여기서는 폭이 곧 지면 등급이라 넓어지는 순간 이 그림만 화면에서 작아진다 —
+    그리고 아무 에러도 안 난다. 그래서 넓어졌으면 멈춘다(`_stat_svg` 와 같은 무늬).
+
+    ⚠️ `_svg` 는 `<text>` 의 **닻점만** 세므로 라벨 글자 폭은 여기 안 잡힌다.
+       그 몫은 `_cp_label_parts` 가 `_label_w_max` 로 재서 안쪽으로 당긴다.
+    """
+    return _fixed_width_svg(
+        CP_VIEWBOX, pl.height, "".join(parts), "좌표평면", "범위를 좁히십시오"
+    )
+
+
+def _linear_graph(spec: Mapping[str, Any]) -> str:
+    lines = _cp_lines(spec)
+    if not lines:
+        raise ValueError("lines 는 1~3개여야 합니다")
+    pl = _cp_plane(spec)
+
+    def on_line(x: float, y: float) -> bool:
+        return any(abs(y - (m * x + b)) < CP_ON_EPS for m, b, _l in lines)
+
+    marks = _cp_marks(spec, pl, on_line)
+    grid = _cp_grid_flag(spec)
+    segs = _cp_line_segs(pl, lines)
+
+    parts = _cp_frame_parts(pl, grid)
+    parts += _cp_mark_parts(pl, marks)
+    for (xa, ya), (xb, yb) in segs:
+        parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))
+    parts += _cp_label_parts(pl, _cp_line_label_items(pl, lines, segs))
+    return _cp_svg(pl, parts)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# curveGraph — 쌍곡선(반비례)·포물선(이차함수)·직선을 **한 kind** 로 (물결 4A, 2026-08-24)
+#
+# 막고 있던 것: 중1 「정비례와 반비례」 21유형 + 중3 「이차함수의 그래프 ⑴⑵」 42유형.
+# 둘을 따로 파면 축·눈금·화살촉·라벨 규칙이 두 벌이 되어 한쪽만 고쳐진다 —
+# 그래서 위 좌표평면 한 벌(`_cp_*`)을 그대로 쓰고, 여기서는 **곡선만** 더한다.
+#
+# ## 곡선을 자르는 법 — 종류마다 손으로 풀지 않는다
+#
+# 「어디까지 보이나」를 종류별 닫힌 식으로 풀면 종류를 더할 때마다 규칙이 는다.
+# 대신 x 를 촘촘히 훑어 **범위 안에 있는 토막**을 찾고 경계를 이분법으로 다듬는다
+# (`_cg_runs`). 그래서 쌍곡선의 「두 가지」도, 꼭짓점이 밖인 포물선도 같은 코드가 본다.
+# 그리는 점은 **꺾임이 안 보일 만큼만** 남긴다(`_cg_thin`) — 촘촘히 찍으면 지면
+# 마크업이 곡선 하나에 5KB 를 먹는다.
+#
+# ## 던지는 것 (D-70)
+#
+#   · `marks` 가 어느 곡선·직선 위에도 없으면 — 검산 겸용(위 `_cp_marks`).
+#     허용치 `CP_ON_EPS` 는 **반올림한 손 좌표를 걸러 내는** 값이다.
+#   · 쌍곡선이 **두 가지로 안 보이면** — 한 가지만 그리면 반비례가 아니다.
+#   · 가지·팔이 축에 너무 붙거나(`CG_ASYM_GAP`) 실오라기면(`CG_MIN_ARC`) — 곡선이
+#     점근선에 닿은 것처럼 보이거나 흠집으로 보인다.
+#   · 포물선의 꼭짓점이 범위 밖이면 — 그림이 포물선으로 안 읽힌다.
+#   · 포물선이 범위 안에서 거의 안 휘면(`CG_PARA_RISE`) — 직선과 구별이 안 된다.
+# ═══════════════════════════════════════════════════════════════════════════
+
+CG_MAX_CURVES = 3
+CG_SCAN = 1200          # 「어디까지 보이나」를 찾는 훑기 표본 수
+CG_SAMPLES = 400        # 토막 하나를 뜨는 표본 수 (아래에서 솎는다)
+CG_THIN_PX = 0.12       # 솎기 허용 오차(화면 단위). 선 굵기 1.9 의 1/16 이라 눈에 안 띈다
+CG_REFINE = 40          # 경계 이분법 횟수 — 2^-40 칸이면 화면 픽셀의 1조분의 1이다
+CG_ASYM_GAP = 0.5       # 곡선이 좌표축에서 떨어져 있어야 하는 최소 칸수
+CG_MIN_ARC = 1.2        # 토막 하나의 최소 가로 칸수
+CG_PARA_RISE = 1.0      # 포물선이 범위 안에서 휘어야 하는 최소 세로 칸수
+CG_K_MAX = 60           # 반비례 상수 |k| 상한
+CG_A_MAX = 8.0          # 이차항 계수 |a| 상한 (하한은 1/8)
+
+
+def _cg_curves(spec: Mapping[str, Any]) -> list[dict]:
+    raw = spec["curves"]
+    if not isinstance(raw, list) or not 1 <= len(raw) <= CG_MAX_CURVES:
+        raise ValueError(f"curves 는 1~{CG_MAX_CURVES}개여야 합니다")
+    out: list[dict] = []
+    for i, c in enumerate(raw):
+        if not isinstance(c, Mapping):
+            raise ValueError(f"curves[{i}] 는 객체여야 합니다")
+        kind = c.get("type")
+        if kind == "inverse":
+            extra = set(c) - {"type", "k", "label"}
+            if extra:
+                raise ValueError(
+                    f"curves[{i}] 허용되지 않은 키: {', '.join(sorted(map(str, extra)))}"
+                )
+            k = _int(c.get("k"), f"curves[{i}].k", -CG_K_MAX, CG_K_MAX)
+            if k == 0:
+                raise ValueError(f"curves[{i}].k 가 0 입니다 — 반비례가 아닙니다")
+            item: dict = {"type": "inverse", "k": float(k), "p": 0.0, "q": 0.0, "a": 0.0}
+        elif kind == "quadratic":
+            extra = set(c) - {"type", "a", "p", "q", "label"}
+            if extra:
+                raise ValueError(
+                    f"curves[{i}] 허용되지 않은 키: {', '.join(sorted(map(str, extra)))}"
+                )
+            a = _num(c.get("a"), f"curves[{i}].a", -CG_A_MAX, CG_A_MAX)
+            if abs(a) < 1.0 / CG_A_MAX:
+                raise ValueError(f"curves[{i}].a 가 극단입니다 — 직선처럼 보입니다 (|a| 은 1/8~8)")
+            p = _int(c.get("p", 0), f"curves[{i}].p", -12, 12)
+            q = _int(c.get("q", 0), f"curves[{i}].q", -20, 20)
+            item = {"type": "quadratic", "a": a, "p": float(p), "q": float(q), "k": 0.0}
+        else:
+            raise ValueError(f"curves[{i}].type 은 inverse 또는 quadratic 이어야 합니다")
+        item["label"] = _cp_label(c.get("label"), f"curves[{i}].label")
+        for prev in out:
+            if all(prev[key] == item[key] for key in ("type", "k", "a", "p", "q")):
+                raise ValueError("같은 곡선이 두 번 있습니다")
+        out.append(item)
+    return out
+
+
+def _cg_fn(curve: Mapping[str, Any]):
+    if curve["type"] == "inverse":
+        k = curve["k"]
+        return lambda x: None if abs(x) < 1e-12 else k / x
+    a, p, q = curve["a"], curve["p"], curve["q"]
+    return lambda x: a * (x - p) * (x - p) + q
+
+
+def _cg_desc(curve: Mapping[str, Any]) -> str:
+    if curve["type"] == "inverse":
+        return f"쌍곡선 y={_n(curve['k'])}/x"
+    return f"포물선 (꼭짓점 {_n(curve['p'])}, {_n(curve['q'])} · a={_n(curve['a'])})"
+
+
+def _cg_runs(fn, pl: _Plane) -> list[tuple[float, float]]:
+    """`fn` 이 범위 상자 **안**에 있는 x 토막들. 경계는 이분법으로 다듬는다.
+
+    종류마다 닫힌 식으로 풀지 않는다 — 그러면 곡선을 더할 때마다 규칙이 는다.
+    """
+    xlo, xhi = float(pl.xlo), float(pl.xhi)
+    step = (xhi - xlo) / CG_SCAN
+
+    def ok(x: float) -> bool:
+        y = fn(x)
+        return y is not None and pl.ylo - 1e-12 <= y <= pl.yhi + 1e-12
+
+    def edge(inside: float, outside: float) -> float:
+        for _ in range(CG_REFINE):
+            mid = (inside + outside) / 2
+            if ok(mid):
+                inside = mid
+            else:
+                outside = mid
+        return inside
+
+    runs: list[tuple[float, float]] = []
+    start: float | None = None   # 지금 토막의 왼쪽 끝
+    last_in: float | None = None # 마지막으로 «안»이던 x
+    last_out: float | None = None  # 마지막으로 «밖»이던 x
+    for i in range(CG_SCAN + 1):
+        x = xlo + i * step
+        if ok(x):
+            if start is None:
+                start = x if last_out is None else edge(x, last_out)
+            last_in = x
+        else:
+            if start is not None and last_in is not None:
+                runs.append((start, edge(last_in, x)))
+            start = None
+            last_out = x
+    if start is not None and last_in is not None:
+        runs.append((start, last_in))
+    return runs
+
+
+def _cg_check(curve: Mapping[str, Any], fn, runs: list[tuple[float, float]], pl: _Plane) -> None:
+    """그림이 곧 검산이다 — 그려서 **말이 되는가**를 여기서 가른다."""
+    what = _cg_desc(curve)
+    if curve["type"] == "inverse":
+        left = [r for r in runs if r[1] <= 0]
+        right = [r for r in runs if r[0] >= 0]
+        if len(left) != 1 or len(right) != 1:
+            raise ValueError(
+                f"{what} 가 두 가지로 안 보입니다 — 한 가지만 그리면 반비례가 아닙니다. "
+                "범위를 넓히거나 k 를 줄이십시오"
+            )
+        for run in (left[0], right[0]):
+            _cg_arc_check(what, run, "가지")
+            near_x = min(abs(run[0]), abs(run[1]))
+            near_y = min(abs(fn(run[0])), abs(fn(run[1])))
+            if near_x < CG_ASYM_GAP or near_y < CG_ASYM_GAP:
+                raise ValueError(
+                    f"{what} 가 좌표축에 {min(near_x, near_y):.2f}칸까지 붙습니다 "
+                    f"({CG_ASYM_GAP}칸 이상 떨어져야 합니다) — 점근선에 닿은 것처럼 보입니다"
+                )
+        return
+
+    p, q = curve["p"], curve["q"]
+    if not pl.inside(p, q):
+        raise ValueError(
+            f"{what} 의 꼭짓점이 범위 밖입니다 — 그림이 포물선으로 안 읽힙니다"
+        )
+    if len(runs) != 1:
+        raise ValueError(f"{what} 의 보이는 토막이 {len(runs)}개입니다 — 범위를 옮기십시오")
+    _cg_arc_check(what, runs[0], "팔")
+    a, b = runs[0]
+    ys = [fn(a), fn(b), q]
+    if max(ys) - min(ys) < CG_PARA_RISE:
+        raise ValueError(
+            f"{what} 가 범위 안에서 {max(ys) - min(ys):.2f}칸밖에 안 휩니다 "
+            f"({CG_PARA_RISE}칸 이상이어야 합니다) — 직선과 구별이 안 됩니다"
+        )
+
+
+def _cg_arc_check(what: str, run: tuple[float, float], noun: str) -> None:
+    if run[1] - run[0] < CG_MIN_ARC:
+        raise ValueError(
+            f"{what} 의 {noun}가 {run[1] - run[0]:.2f}칸밖에 안 보입니다 "
+            f"({CG_MIN_ARC}칸 이상이어야 합니다) — 곡선이 아니라 흠집으로 보입니다"
+        )
+
+
+def _cg_thin(pts: list[tuple[float, float]], eps: float) -> list[tuple[float, float]]:
+    """꺾임이 `eps` 아래인 점을 솎는다 (Ramer–Douglas–Peucker, 되풀이 없이 쌓기)."""
+    if len(pts) < 3:
+        return pts
+    keep = [False] * len(pts)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        i, j = stack.pop()
+        if j - i < 2:
+            continue
+        x0, y0 = pts[i]
+        x1, y1 = pts[j]
+        dx, dy = x1 - x0, y1 - y0
+        norm = math.hypot(dx, dy) or 1.0
+        best, at = -1.0, -1
+        for t in range(i + 1, j):
+            px, py = pts[t]
+            d = abs(dy * (px - x0) - dx * (py - y0)) / norm
+            if d > best:
+                best, at = d, t
+        if best > eps and at > 0:
+            keep[at] = True
+            stack.append((i, at))
+            stack.append((at, j))
+    return [p for p, k in zip(pts, keep) if k]
+
+
+def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
+    a, b = run
+    pts: list[tuple[float, float]] = []
+    for i in range(CG_SAMPLES + 1):
+        x = a + (b - a) * i / CG_SAMPLES
+        y = fn(x)
+        if y is None:  # pragma: no cover — 토막은 이미 범위 안이다
+            continue
+        # 이분법 잔차가 경계를 몇 자리 넘길 수 있다. **그리기 전에** 상자로 다시 조인다 —
+        # 프레임 밖으로 새는 곡선은 지면에서 옆 문항을 덮는다.
+        y = min(max(y, float(pl.ylo)), float(pl.yhi))
+        pts.append((pl.sx(x), pl.sy(y)))
+    return _polyline(_cg_thin(pts, CG_THIN_PX), sw=CP_GRAPH_SW)
+
+
+def _cg_label_item(pl: _Plane, curve, fn, runs) -> tuple:
+    """곡선 라벨 자리 — **위끝에서 y축 반대쪽**(1077 의 위 가지 옆).
+
+    왜 「기울기의 빈 쪽」(직선 규칙)이 아닌가: 쌍곡선의 위끝은 **점근선 바로 옆**이라
+    거기서 기울기가 거의 수직이다. 그 규칙을 그대로 대면 라벨이 y축 위로 올라앉는다
+    (실렌더로 확인했다). 곡선이 비켜 갈 쪽은 기울기가 아니라 **어느 사분면에 있나**가
+    정한다 — 위끝이 오른쪽이면 오른쪽이, 왼쪽이면 왼쪽이 빈다.
+    """
+    half = _label_w_max(curve["label"], CP_FONT) / 2
+    mid_y = (pl.sy(pl.ylo) + pl.sy(pl.yhi)) / 2
+
+    def spot(end: tuple[float, tuple[float, float]]) -> tuple[float, float]:
+        gx, (ex, ey) = end
+        side = 1.0 if gx >= 0 else -1.0
+        # 세로로는 **가운데 쪽**으로 민다 — 위 경계에 붙은 끝은 아래로, 아래 끝은 위로.
+        return ex + side * (half + 9.0), ey + (7.0 if ey < mid_y else -7.0)
+
+    ends = [
+        (x, (pl.sx(x), pl.sy(min(max(fn(x), float(pl.ylo)), float(pl.yhi)))))
+        for run in runs
+        for x in run
+    ]
+    top = min(ends, key=lambda e: (round(e[1][1], 3), -abs(e[0])))
+    bot = max(ends, key=lambda e: (round(e[1][1], 3), -abs(e[0])))
+    return (curve["label"], spot(top), spot(bot))
+
+
+def _curve_graph(spec: Mapping[str, Any]) -> str:
+    curves = _cg_curves(spec)
+    lines = _cp_lines(spec)
+    if len(curves) + len(lines) > 4:
+        raise ValueError("곡선과 직선을 합쳐 4개까지입니다")
+    pl = _cp_plane(spec)
+    fns = [_cg_fn(c) for c in curves]
+
+    def on_graph(x: float, y: float) -> bool:
+        for fn in fns:
+            fy = fn(x)
+            if fy is not None and abs(y - fy) < CP_ON_EPS:
+                return True
+        return any(abs(y - (m * x + b)) < CP_ON_EPS for m, b, _l in lines)
+
+    marks = _cp_marks(spec, pl, on_graph)
+    grid = _cp_grid_flag(spec)
+
+    runs_by_curve = []
+    for curve, fn in zip(curves, fns):
+        runs = _cg_runs(fn, pl)
+        _cg_check(curve, fn, runs, pl)
+        runs_by_curve.append(runs)
+    segs = _cp_line_segs(pl, lines)
+
+    parts = _cp_frame_parts(pl, grid)
+    parts += _cp_mark_parts(pl, marks)
+    for (xa, ya), (xb, yb) in segs:
+        parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))
+    for fn, runs in zip(fns, runs_by_curve):
+        for run in runs:
+            parts.append(_cg_polyline(fn, run, pl))
+
+    items = [
+        _cg_label_item(pl, curve, fn, runs)
+        for curve, fn, runs in zip(curves, fns, runs_by_curve)
+        if curve["label"]
+    ]
+    items += _cp_line_label_items(pl, lines, segs)
+    parts += _cp_label_parts(pl, items)
+    return _cp_svg(pl, parts)
 
 
 ADV_FIELDS: dict[str, frozenset[str]] = {
@@ -3407,6 +4022,10 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     "revolvePlan": frozenset({"pieces"}),
     # 교과 좌표평면 일차함수 (물결 2C, RPM 2-1 일차함수) — 위 절 참조.
     "linearGraph": frozenset({"lines", "xRange", "yRange"}),
+    # 쌍곡선·포물선 (물결 4A, RPM 1-1 정비례와 반비례 · 3-1 이차함수) — 위 절 참조.
+    "curveGraph": frozenset({"curves", "xRange", "yRange"}),
+    # 원뿔 전개도 (물결 4A, RPM 1-2 회전체의 전개도 · 겉넓이와 부피) — 위 절 참조.
+    "netCone": frozenset({"r", "l"}),
     # 중1 통계 (물결 3A, RPM 1-2 도수분포표와 상대도수) — 위 절 참조.
     "histogram": frozenset({"classes", "values"}),
     "freqPolygon": frozenset({"classes", "values"}),
@@ -3428,6 +4047,12 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "prism": frozenset({"net"}),
     "revolvePlan": frozenset({"gap"}),
     "linearGraph": frozenset({"marks", "grid"}),
+    # `lines` — 곡선과 겹쳐 그리는 직선(정비례·교점 유형). `linearGraph` 와 같은 문법이다.
+    # `marks`·`grid` 도 같다 — 좌표평면 규칙은 **한 벌**이다.
+    "curveGraph": frozenset({"lines", "marks", "grid"}),
+    # `labels` — 무엇을 적을지. "slant"·"angle"·"radius" 의 부분집합이고 값은 **엔진이 쓴다**
+    # (스펙이 글자를 실어 나르면 그림이 r·l 과 다른 말을 할 수 있다). 기본은 슬랜트+중심각.
+    "netCone": frozenset({"labels"}),
     # `total` — 도수의 총합. 합과 다르면 **던진다**(그림이 곧 검산).
     # `hidden` — 찢어져 안 보이는 계급 번호. 쓰면 `total` 이 **있어야 한다**.
     # `series2`·`label` — 두 집단 비교. 둘 다 이름이 있어야 한다.
@@ -3465,6 +4090,8 @@ ADV_RENDER = {
     "cutCuboid": _cut_cuboid,
     "revolvePlan": _revolve_plan,
     "linearGraph": _linear_graph,
+    "curveGraph": _curve_graph,
+    "netCone": _net_cone,
     "histogram": _histogram,
     "freqPolygon": _freq_polygon,
 }

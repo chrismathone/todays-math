@@ -56,7 +56,10 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 28: m2-shade-figures 추가 (2026-08-23 — 채색 축 회전판·색칠하기 도형이 처음
     //     지면에 나간다. 폭 224 고정이라 등급은 mid 하나지만 **종이에서 잰 값은 아니다**).
     // 16: figure-svg-inline 추가 (D-55, 2026-08-19 — figureSvg 가 처음 지면에 나간다)
-    expect(ITEMS.length).toBe(30);
+    // 31: curve-graph-frame 추가 (2026-08-24 — curveGraph·netCone 이 처음 나가고,
+    //     **이미 나가 있던 linearGraph 의 지면 크기가 같이 바뀐다**: 폭이 126~238 로
+    //     떠다니던 것을 240 에 박았다. 옛 그림 중 셋은 눈금 글자가 본문보다 작았다).
+    expect(ITEMS.length).toBe(31);
   });
 
   /**

@@ -745,6 +745,48 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-23",
   },
   {
+    id: "curve-graph-frame",
+    title:
+      "좌표평면 그래프와 원뿔 전개도가 종이에서 읽히는가 (중1 반비례·중3 이차함수)",
+    changed:
+      "`curveGraph`(쌍곡선·포물선·직선)와 `netCone`(원뿔 전개도) kind 를 새로 냈고, " +
+      "그러면서 **이미 나가 있던 `linearGraph` 의 지면 크기가 바뀐다.** " +
+      "옛 `linearGraph` 는 viewBox 폭이 범위·라벨에 따라 **126~238 로 떠다녀** " +
+      "눈금 글자가 지면에서 10.50px ~ 17.78px 이었고, 그중 셋(폭 142·144·160)은 " +
+      "본문 12.5px **아래**였다(실측 1,314장). 이제 셋 다 폭 **240 고정**이라 " +
+      "제품 등급이 `mid`(64mm) 하나이고 글자는 13단위 → 지면 13px 이다. " +
+      "즉 **좁은 범위 그래프는 커지고, 넓은 범위 그래프는 글자가 조금 커진다.** " +
+      "다만 이 수치는 전부 **화면 계산이지 종이에서 잰 것이 아니다.**",
+    look:
+      "① 좌표평면의 **눈금 숫자와 식 라벨이 발문 글자보다 작지 않은가** — 이게 이 " +
+      "변경의 목적이다(옛 그림 중 셋은 작았다). ② 반비례 그래프가 **두 가지**로 " +
+      "보이고 좌표축에 닿지 않는가. ③ 포물선의 곡선이 **각지지 않고** 매끄러운가 " +
+      "(꺾은선으로 그리므로 확대하면 각이 보일 수 있다). ④ 축 화살촉·원점 O·x·y 가 " +
+      "흑백에서 또렷한가. ⑤ 좁은 범위 그래프(±2)와 넓은 범위 그래프(±6)가 **한 " +
+      "지면에 섞여** 있을 때 칸 크기가 달라 보이는 것이 어색하지 않은가 — 폭을 " +
+      "박았으므로 칸(한 눈금 간격)은 범위에 따라 달라진다. ⑥ 원뿔 전개도의 밑면 " +
+      "원이 부채꼴 호에 **붙어** 보이는가, 「9 cm」·「120°」가 도형에 안 겹치는가.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/figure/elem_advanced.py (_cp_*, _curve_graph, _net_cone)",
+      "src/lib/figure/figureSvgFrame.ts",
+      "src/__tests__/unit/figureCurveGraph.test.ts",
+      "src/__tests__/unit/figureNetCone.test.ts",
+      "docs/planning/09-figure-engine-guide.md §4-25",
+    ],
+    scale:
+      "중1 「정비례와 반비례」 21유형 + 중3 「이차함수의 그래프 ⑴⑵」 42유형 + " +
+      "회전체·겉넓이의 원뿔 전개도 2유형이 이 그림으로 열린다. " +
+      "**이미 나가 있던 `m2Func` 의 linearGraph 세 갈래도 크기가 바뀐다.**",
+    needs:
+      "**이 유형이 DB 에 적재된 뒤**라야 시험지에 실린다(지금은 엔진까지, D-22·D-31). " +
+      "그전에는 `python scripts/figure/probe-curve-graph.py` 가 남기는 " +
+      "`docs/planning/tracks/wave4a-curve-sheet/index.html` 을 인쇄해 본다 — " +
+      "지면 등급을 실제로 적용하고 본문 12.5px 을 옆에 나란히 찍는다.",
+    status: "대기",
+    changedOn: "2026-08-24",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",
