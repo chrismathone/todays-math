@@ -106,7 +106,7 @@ export async function generateDraftTest(
   // 두 조회는 서로를 전혀 참조하지 않는다(풀은 단원, 최근 출제는 날짜로만 좁힌다).
   // 순차로 await 하면 그냥 두 왕복이 더해진다.
   const [eligible, recentProblemIds] = await Promise.all([
-    findEligibleProblems({ userId: session.id, unitIds }),
+    findEligibleProblems({ unitIds }),
     loadRecentProblemIds(session.id, input.testDate),
   ]);
 
@@ -159,6 +159,7 @@ export async function generateDraftTest(
   const created = await db.$transaction(async (tx) => {
     const test = await tx.test.create({
       data: {
+        // 시험지는 **소유자가 있다** — 없앤 것은 문항 소유자뿐이다(D-101). 섞지 말 것.
         userId: session.id,
         classId: input.classId,
         studentId: input.studentId ?? null,

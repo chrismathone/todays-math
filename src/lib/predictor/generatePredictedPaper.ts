@@ -319,7 +319,7 @@ export async function generatePredictedPaper(
       : await db.problem.findMany({
           where: {
             AND: [
-              problemVisibleWhere(input.userId),
+              problemVisibleWhere(),
               {
                 unitId: { in: input.unitIds },
                 reviewStatus: "approved",

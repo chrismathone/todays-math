@@ -1,0 +1,78 @@
+[
+ {
+  "at": "2026-08-24T10:30:58.145Z",
+  "reason": "원장님 확정 2026-08-24 — 계정 재편(test_s/t/o/c + test_m), 비밀번호 통일",
+  "deleted": [
+   {
+    "email": "prodsmoke.1786926310@todaysmath.test",
+    "id": "188e7099-45d3-4916-8a8d-7d614b1d743d",
+    "held": {
+     "classes": 0,
+     "students": 0,
+     "progress": 0,
+     "tests": 0,
+     "problems": 0,
+     "predictionRuns": 0
+    }
+   },
+   {
+    "email": "prodsmoke.20260817@todaysmath.test",
+    "id": "11b636e7-1901-4d47-b018-176f92cf59d8",
+    "held": {
+     "classes": 1,
+     "students": 1,
+     "progress": 2,
+     "tests": 1,
+     "problems": 0,
+     "predictionRuns": 0
+    }
+   },
+   {
+    "email": "smoke-reviewer@todaysmath.test",
+    "id": "bb5e19ff-2981-4675-8464-2f37fdc90bc6",
+    "held": {
+     "classes": 0,
+     "students": 0,
+     "progress": 0,
+     "tests": 0,
+     "problems": 0,
+     "predictionRuns": 0
+    }
+   },
+   {
+    "email": "smoke-f@todaysmath.test",
+    "id": "e439c4d1-1d83-4b70-8c58-3336ad25e9f8",
+    "held": {
+     "classes": 0,
+     "students": 0,
+     "progress": 0,
+     "tests": 0,
+     "problems": 0,
+     "predictionRuns": 0
+    }
+   }
+  ],
+  "created": [
+   {
+    "id": "fb1b2be0-464c-4538-a40c-f144cf27ad51",
+    "email": "test_o@osu.com"
+   },
+   {
+    "id": "95058d47-777b-4c46-84e9-72c183f809e4",
+    "email": "test_c@osu.com"
+   }
+  ],
+  "renamed": {
+   "id": "abd81fd6-47bf-4012-92c2-0b0da3fea42a",
+   "from": "import@todays-math.local",
+   "to": "test_m@osu.com"
+  },
+  "passwordUnified": [
+   "test_t@osu.com",
+   "test_s@osu.com",
+   "test_o@osu.com",
+   "test_c@osu.com",
+   "test_m@osu.com"
+  ]
+ }
+]

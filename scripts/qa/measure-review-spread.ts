@@ -106,7 +106,6 @@ async function main() {
           units,
         });
         const pool = await findEligibleProblems({
-          userId: cls.userId,
           unitIds: range.unitIds,
         });
         const unitsWithProblems = new Set(pool.map((p) => p.unitId)).size;

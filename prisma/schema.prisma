@@ -326,9 +326,19 @@ model Progress {
 // ─────────────────────────────────────────────
 
 model Problem {
-  id     String @id @default(uuid()) @db.Uuid
-  userId String @map("user_id") @db.Uuid
-  unitId String @map("unit_id") @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
+
+  /// **문항에는 소유자가 없다** (D-101, 원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
+  ///
+  /// 남겨 둔 이유는 «누가 넣었나»를 나중에 다시 쓸 수 있게 하기 위해서다 — 지금은 전부 NULL 이고
+  /// 어떤 조회·권한도 이 값을 보지 않는다. 되살리려면 컬럼을 다시 채우면 되고 마이그레이션이
+  /// 필요 없다.
+  ///
+  /// ⚠️ **`onDelete: SetNull` 이 핵심이다.** 예전에는 `Cascade` 라 **계정 하나를 지우면
+  ///    Postgres 가 그 계정의 문항을 전부 같이 지웠다** — 47,006개가 한 계정에 매달려 있었다.
+  ///    앱을 안 거치고 DB 가 직접 하는 일이라 코드로는 못 막는다. 다시 Cascade 로 돌리지 말 것.
+  userId String? @map("user_id") @db.Uuid
+  unitId String  @map("unit_id") @db.Uuid
 
   source          ProblemSource
   /// 변형 문제의 원본 참조 (원본 삭제 시 참조만 해제 — 변형본은 독립 자산으로 유지)
@@ -425,7 +435,8 @@ model Problem {
   createdAt        DateTime     @default(now()) @map("created_at")
   updatedAt        DateTime     @updatedAt @map("updated_at")
 
-  user                User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// ⚠️ **SetNull 이다 — Cascade 로 되돌리지 말 것** (D-101). 위 `userId` 주석 참조.
+  user                User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
   unit                Unit               @relation(fields: [unitId], references: [id], onDelete: Restrict)
   originProblem       Problem?           @relation("ProblemOrigin", fields: [originProblemId], references: [id], onDelete: SetNull)
   transformedProblems Problem[]          @relation("ProblemOrigin")

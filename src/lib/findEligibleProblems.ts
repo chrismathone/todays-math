@@ -49,8 +49,9 @@ export interface EligibleProblem extends SelectableProblem {
 }
 
 export interface FindEligibleProblemsParams {
-  /** 출제자(강사) — 공용 풀 + 본인 private만 본다 (D-31). */
-  userId: string;
+  // ⚠️ **`userId` 를 다시 넣지 말 것** (D-101). 예전에는 「공용 풀 + 본인 private」이라
+  //    출제자를 받았지만, 문항에는 이제 소유자가 없다 — 출제 풀은 **누가 부르든 같다.**
+  //    인자를 남겨 두면 읽는 사람이 「출제가 계정별로 다르다」고 오해한다.
   /** 출제 대상 단원 id 목록(반의 진도 범위 등에서 산출) — 비어 있으면 빈 배열을 즉시 반환한다. */
   unitIds: string[];
   /** 특정 난이도만 좁혀 조회할 때 사용 — 생략 시 전 난이도(easy/mid/hard)를 대상으로 한다
@@ -66,7 +67,7 @@ export interface FindEligibleProblemsParams {
 export function eligibleProblemsWhere(params: FindEligibleProblemsParams) {
   return {
     AND: [
-      problemVisibleWhere(params.userId),
+      problemVisibleWhere(),
       {
         unitId: { in: params.unitIds },
         reviewStatus: "approved" as const,

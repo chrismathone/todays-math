@@ -87,7 +87,7 @@ export function unreviewedWhere(
 ): Prisma.ProblemWhereInput {
   return {
     AND: [
-      problemVisibleWhere(userId),
+      problemVisibleWhere(),
       findQueue(key).where,
       { reviewLogs: { none: { reviewerId: userId } } },
     ],

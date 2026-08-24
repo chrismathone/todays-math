@@ -164,7 +164,6 @@ export async function GET(request: NextRequest) {
       unitCount: g.unitIds.length,
       neededCount: g.neededCount,
       poolTotal: await countEligibleProblems({
-        userId: session.id,
         unitIds: g.unitIds,
       }),
       students: g.students,

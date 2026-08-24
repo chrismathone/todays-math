@@ -79,30 +79,23 @@ export async function requireOwnedStudentInClass(
   return owned;
 }
 
-/** 문제가 존재하고, 로그인 사용자(userId) 소유인지 확인한다(Problem.userId 직접 소유). */
-export async function requireOwnedProblem(
-  problemId: string,
-  userId: string,
-): Promise<OwnershipResult<ProblemRow>> {
-  const problem = await db.problem.findUnique({ where: { id: problemId } });
-  if (!problem) return { ok: false, response: notFoundError("문제") };
-  if (problem.userId !== userId) {
-    return { ok: false, response: forbiddenError() };
-  }
-  return { ok: true, data: problem };
-}
-
 /**
- * 문제가 존재하고, 공용 풀이거나 로그인 사용자 소유인지 확인한다 (D-31).
- * 은행 단건 조회·수정·삭제·검수·변형 원본에 쓴다. private는 소유자만.
+ * 문제가 존재하고 공용 풀에 있는지 확인한다 (D-31 → D-101).
+ * 은행 단건 조회·수정·삭제·검수·변형 원본에 쓴다.
+ *
+ * ⚠️ **소유자는 묻지 않는다** — 문항에 소유자가 없다(원장님 확정 2026-08-24).
+ *    짝이던 `requireOwnedProblem`(문항 소유자 일치를 요구하던 것)은 **이 확정 시점에
+ *    이미 아무도 호출하지 않는 죽은 함수**여서 같이 지웠다. 되살릴 일이 생기면
+ *    `problem.userId` 가 nullable 로 남아 있으니 마이그레이션 없이 다시 채우면 된다.
  */
 export async function requireAccessibleProblem(
   problemId: string,
   userId: string,
 ): Promise<OwnershipResult<ProblemRow>> {
+  void userId; // 소유자를 안 보지만 호출부 서명을 흔들지 않으려고 받아만 둔다.
   const problem = await db.problem.findUnique({ where: { id: problemId } });
   if (!problem) return { ok: false, response: notFoundError("문제") };
-  if (!isProblemAccessible(problem, userId)) {
+  if (!isProblemAccessible(problem)) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: problem };

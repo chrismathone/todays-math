@@ -554,7 +554,6 @@ describe("[T3.1] PATCH /api/problems/{id}/review-status — 검수 승격(D-22)"
 describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
   it("unitIds가 비어 있으면 빈 배열을 반환한다", async () => {
     const rows = await findEligibleProblems({
-      userId: USER_TEACHER_ID,
       unitIds: [],
     });
     expect(rows).toEqual([]);
@@ -562,7 +561,6 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
 
   it("approved 문제만 반환하고 타 사용자 private는 제외하며 공용 풀은 포함한다", async () => {
     const rows = await findEligibleProblems({
-      userId: USER_TEACHER_ID,
       unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],
     });
     expect(rows.length).toBeGreaterThan(0);
@@ -583,7 +581,6 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
   it("정답이 없는 문항((정답 없음) 센티널)은 출제 풀에서 제외한다", async () => {
     // OCR 이관분 5,781건(62.9%)이 이 상태였고, 출제되면 정답지가 비어 채점 불가.
     const rows = await findEligibleProblems({
-      userId: USER_TEACHER_ID,
       unitIds: [MOCK_PROBLEM_MISSING_ANSWER.unitId],
     });
     expect(rows.some((p) => p.id === MOCK_PROBLEM_MISSING_ANSWER.id)).toBe(
@@ -602,7 +599,6 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
 
   it("difficulty를 주면 해당 난이도만 반환한다", async () => {
     const rows = await findEligibleProblems({
-      userId: USER_TEACHER_ID,
       unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],
       difficulty: "easy",
     });
@@ -617,7 +613,6 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
    */
   it("지면 판정에 필요한 본문·그림을 같이 읽는다 (⑷ 배선)", async () => {
     const rows = await findEligibleProblems({
-      userId: USER_TEACHER_ID,
       unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],
     });
     expect(rows.length).toBeGreaterThan(0);

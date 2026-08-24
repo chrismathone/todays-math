@@ -92,7 +92,12 @@ export const problemSchema = z.strictObject({
    *    코드로 단원을 읽지 마라. 단원은 `unitId` 가 진실이다.
    */
   problemCode: problemCodeSchema,
-  userId: uuidSchema,
+  /**
+   * ⚠️ **문항에는 소유자가 없다 — 늘 `null` 이다** (D-101, 원장님 확정 2026-08-24).
+   * 권한을 이 값으로 판단하지 마라. 컬럼을 남긴 것은 «누가 넣었나»를 나중에 되살릴 때
+   * 마이그레이션을 다시 하지 않으려는 것뿐이다.
+   */
+  userId: uuidSchema.nullable(),
   unitId: uuidSchema,
   source: problemSourceSchema,
   originProblemId: uuidSchema.nullable(),
