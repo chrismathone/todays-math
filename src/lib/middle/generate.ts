@@ -14,6 +14,7 @@ import { M1_CALC } from "./m1Calc";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_EXPR } from "./m1Expr";
 import { M1_GEO1 } from "./m1Geo1";
+import { M1_GEO2 } from "./m1Geo2";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_NUM } from "./m1Num";
 import { M1_PROP } from "./m1Prop";
@@ -35,6 +36,7 @@ const ALL: TypeEntry[] = [
   ...M1_CALC,
   ...M1_EXPR,
   ...M1_GEO1,
+  ...M1_GEO2,
   ...M1_REAL,
   ...M1_SOLID_TYPES,
   ...M1_STAT_TYPES,
