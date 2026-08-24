@@ -18,6 +18,7 @@ import {
   TEST_CONFIRMED_ID,
   TEST_DRAFT_ID,
   TEST_PRINTED_ID,
+  USER_TEACHER_ID,
   testProblemId,
 } from "./ids";
 import { MOCK_PROBLEMS } from "./problems";
@@ -46,7 +47,7 @@ function toTestProblemItems(
 // ─────────────────────────────────────────────
 export const MOCK_TEST_DRAFT: TestEntity = {
   id: TEST_DRAFT_ID,
-  userId: MOCK_PROBLEMS[0]!.userId,
+  userId: USER_TEACHER_ID,
   classId: CLASS_A_ID,
   studentId: null,
   testType: "daily",
@@ -69,7 +70,7 @@ export const MOCK_TEST_DRAFT_PROBLEMS: TestProblemItem[] = toTestProblemItems(
 // ─────────────────────────────────────────────
 export const MOCK_TEST_CONFIRMED: TestEntity = {
   id: TEST_CONFIRMED_ID,
-  userId: MOCK_PROBLEMS[0]!.userId,
+  userId: USER_TEACHER_ID,
   classId: CLASS_B_ID,
   studentId: null,
   testType: "review",
@@ -90,7 +91,7 @@ export const MOCK_TEST_CONFIRMED_PROBLEMS: TestProblemItem[] =
 // ─────────────────────────────────────────────
 export const MOCK_TEST_PRINTED: TestEntity = {
   id: TEST_PRINTED_ID,
-  userId: MOCK_PROBLEMS[0]!.userId,
+  userId: USER_TEACHER_ID,
   classId: CLASS_A_ID,
   studentId: STUDENT_IDS[2]!,
   testType: "daily",

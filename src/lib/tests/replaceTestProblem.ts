@@ -73,7 +73,6 @@ export async function replaceTestProblemAtSeq(
   let replacementId: string | undefined;
   for (const difficulty of difficulties) {
     const pool = await findEligibleProblems({
-      userId: session.id,
       unitIds: [target.problem.unitId],
       difficulty,
     });

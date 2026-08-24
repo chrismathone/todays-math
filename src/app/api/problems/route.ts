@@ -211,7 +211,7 @@ export async function GET(request: NextRequest) {
       : [];
   const where = {
     AND: [
-      problemVisibleWhere(session.id),
+      problemVisibleWhere(),
       filters,
       ...(Object.keys(unitWhere).length > 0 ? [{ unit: unitWhere }] : []),
       ...rangeWhere,

@@ -281,7 +281,6 @@ async function main() {
       (u) => u.orderIndex >= start.orderIndex && u.orderIndex <= end.orderIndex,
     );
     const pool = await findEligibleProblems({
-      userId: owner.id,
       unitIds: rangeUnits.map((u) => u.id),
     });
     out.push({
