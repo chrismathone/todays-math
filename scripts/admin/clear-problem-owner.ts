@@ -1,5 +1,5 @@
 /**
- * 문항 소유자 비우기 — D-78 (원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
+ * 문항 소유자 비우기 — D-101 (원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
  *
  *   npx tsx scripts/admin/clear-problem-owner.ts                  # 드라이런
  *   ALLOW_CLEAR_PROBLEM_OWNER=1 npx tsx scripts/admin/clear-problem-owner.ts --apply
@@ -121,7 +121,7 @@ async function main() {
   const ledger: Ledger = {
     at: new Date().toISOString(),
     reason:
-      "원장님 확정 2026-08-24 — 문항 소유자 제거(D-78). 되돌리려면 --revert.",
+      "원장님 확정 2026-08-24 — 문항 소유자 제거(D-101). 되돌리려면 --revert.",
     before,
   };
   mkdirSync(dirname(LEDGER), { recursive: true });

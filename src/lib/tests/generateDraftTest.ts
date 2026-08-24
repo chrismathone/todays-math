@@ -159,7 +159,7 @@ export async function generateDraftTest(
   const created = await db.$transaction(async (tx) => {
     const test = await tx.test.create({
       data: {
-        // 시험지는 **소유자가 있다** — 없앤 것은 문항 소유자뿐이다(D-78). 섞지 말 것.
+        // 시험지는 **소유자가 있다** — 없앤 것은 문항 소유자뿐이다(D-101). 섞지 말 것.
         userId: session.id,
         classId: input.classId,
         studentId: input.studentId ?? null,

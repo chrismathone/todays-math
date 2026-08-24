@@ -328,7 +328,7 @@ model Progress {
 model Problem {
   id String @id @default(uuid()) @db.Uuid
 
-  /// **문항에는 소유자가 없다** (D-78, 원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
+  /// **문항에는 소유자가 없다** (D-101, 원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
   ///
   /// 남겨 둔 이유는 «누가 넣었나»를 나중에 다시 쓸 수 있게 하기 위해서다 — 지금은 전부 NULL 이고
   /// 어떤 조회·권한도 이 값을 보지 않는다. 되살리려면 컬럼을 다시 채우면 되고 마이그레이션이
@@ -435,7 +435,7 @@ model Problem {
   createdAt        DateTime     @default(now()) @map("created_at")
   updatedAt        DateTime     @updatedAt @map("updated_at")
 
-  /// ⚠️ **SetNull 이다 — Cascade 로 되돌리지 말 것** (D-78). 위 `userId` 주석 참조.
+  /// ⚠️ **SetNull 이다 — Cascade 로 되돌리지 말 것** (D-101). 위 `userId` 주석 참조.
   user                User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
   unit                Unit               @relation(fields: [unitId], references: [id], onDelete: Restrict)
   originProblem       Problem?           @relation("ProblemOrigin", fields: [originProblemId], references: [id], onDelete: SetNull)

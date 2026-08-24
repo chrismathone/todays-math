@@ -111,7 +111,7 @@ interface ProblemRow {
   id: string;
   /** 문항 코드 (D-53) — 실제 DB 는 BEFORE INSERT 트리거가 붙인다. 여기서는 그 동작을 흉내 낸다. */
   problemCode: string;
-  /** 문항에는 소유자가 없다 — 늘 `null` 이다 (D-78). 권한을 이 값으로 판단하지 마라. */
+  /** 문항에는 소유자가 없다 — 늘 `null` 이다 (D-101). 권한을 이 값으로 판단하지 마라. */
   userId: string | null;
   unitId: string;
   source: ProblemSource;

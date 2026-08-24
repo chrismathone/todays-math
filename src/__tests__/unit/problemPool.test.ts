@@ -1,5 +1,5 @@
 /**
- * 공용 풀 조회 조건 — D-31 → **D-78** (원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
+ * 공용 풀 조회 조건 — D-31 → **D-101** (원장님 확정 2026-08-24: 「소유자 필요없고 전체 공유」).
  *
  * 종전 계약은 「shared **또는 본인 소유**」였다. 확정 시점에 문항 47,014개가 **전부
  * `shared`** 라 그 «본인 소유» 갈래는 아무것도 더 보여 주지 않고 있었고, 소유자를 없애며
@@ -13,7 +13,7 @@ import { describe, expect, it } from "vitest";
 
 import { isProblemAccessible, problemVisibleWhere } from "@/lib/problemPool";
 
-describe("[D-78] 공용 풀 조회 조건 — 소유자를 묻지 않는다", () => {
+describe("[D-101] 공용 풀 조회 조건 — 소유자를 묻지 않는다", () => {
   it("조회 조건은 pool=shared 하나다 (소유자 갈래 없음)", () => {
     expect(problemVisibleWhere()).toEqual({ pool: "shared" });
   });
