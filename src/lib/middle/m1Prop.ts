@@ -21,7 +21,7 @@
  * 그래서 계수를 역산하다 틀리면 **그림이 먼저 빨개진다.**
  *
  * **「좌표와 그래프」 07·08·09·11 에는 그림을 안 붙였다.** 이유는 취향이 아니라
- * 실렌더다(2026-08-24, `qa/probe-5b-1-sheet/`):
+ * 실렌더다(2026-08-24, `qa/m1-prop-sheet/`):
  *   ⑴ 이 넷은 물통·이동거리처럼 **꺾은선**인데, 좌표평면 한 벌에는 선분·꺾은선
  *      문법이 없다. `lines` 는 범위 경계까지 **끝까지 뻗는 직선**이다.
  *   ⑵ 억지로 `linearGraph` 를 쓰면 `xRange` 가 원점을 품어야 하므로(`_cp_range`)
@@ -35,6 +35,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중1";
@@ -130,6 +131,39 @@ function coef(a: number, sym: string): string {
   if (a === 1) return sym;
   if (a === -1) return `-${sym}`;
   return `${a}${sym}`;
+}
+
+/**
+ * `a\\times x` 대입 — 계수 $\\pm1$ 은 곱셈 기호를 안 쓰고, **양수에는 괄호를 안 친다.**
+ * 「$y=1\\times6$」·「$y=-1\\times(7)$」은 값이 맞고 KaTeX 도 초록이라 어느 가드도
+ * 안 울지만, 지면에서는 그냥 틀린 글이다(계약 9).
+ */
+function evalTex(a: number, x: number, ans: number): string {
+  if (a === 1) return `${ans}`;
+  if (a === -1) return `-${paren(x)}=${ans}`;
+  return `${a}\\times${paren(x)}=${ans}`;
+}
+
+/** `\\dfrac{k}{r}=값` — 분모가 $\\pm1$ 이면 분수를 안 쓴다(`\\dfrac{-6}{1}` 금지). */
+function fracEval(k: number, r: number): string {
+  return Math.abs(r) === 1 ? `${k / r}` : `\\dfrac{${k}}{${r}}=${k / r}`;
+}
+
+/** 한가운데 — `\\dfrac{4}{2}` 가 지면에 나가지 않게 약분해 적는다. */
+function halfTex(n: number): string {
+  return n % 2 === 0 ? `${n / 2}` : `\\dfrac{${n}}{2}`;
+}
+
+/**
+ * 주격 조사 — 「$(2, -1)$**이**」·「$(2, 4)$**가**」. 규칙을 옮겨 적지 않고
+ * 정본(`eulReul`)이 낸 답에서 뒤집는다: 받침이 있으면 «을»이고 «이»다.
+ *
+ * ⚠️ 괄호로 닫힌 순서쌍도 **읽을 때는 마지막 수**로 끝난다 — 「$(2a-3, b-3)$」 은
+ * 「…비 빼기 **삼**」이라 «과»다. `josaFaults` 는 `$...$` 가 **숫자로 끝날 때만**
+ * 재므로 이 자리를 구조적으로 못 본다. 그래서 여기서 그 수를 넘겨 정한다.
+ */
+function iGa(n: number): "이" | "가" {
+  return eulReul(n) === "를" ? "가" : "이";
 }
 
 /** 음수는 괄호로 — `\div-3` 같은 지면이 나가지 않게. */
@@ -248,7 +282,7 @@ const COORD: TypeEntry[] = [
           const d = a - b;
           if (s === 0 || d === 0) return null;
           return {
-            content: `두 순서쌍 $(a-b, ${s})$와 $(${d}, a+b)$가 서로 같을 때, 순서쌍 $(a, b)$를 구하시오.`,
+            content: `두 순서쌍 $(a-b, ${s})$${waGwa(s)} $(${d}, a+b)$가 서로 같을 때, 순서쌍 $(a, b)$를 구하시오.`,
             answer: `$(${a}, ${b})$`,
             solution:
               `두 순서쌍이 서로 같으므로 $a-b=${d}$, $a+b=${s}$이다.\n` +
@@ -264,7 +298,7 @@ const COORD: TypeEntry[] = [
         const ans = branch === 0 ? a + b : a * b;
         return {
           content:
-            `두 순서쌍 $(2a${signed(c)}, b${signed(-dd)})$와 $(${u}, ${v})$가 서로 같을 때, ` +
+            `두 순서쌍 $(2a${signed(c)}, b${signed(-dd)})$${waGwa(dd)} $(${u}, ${v})$${iGa(v)} 서로 같을 때, ` +
             `${branch === 0 ? "$a+b$" : "$ab$"}의 값을 구하시오.`,
           answer: `$${ans}$`,
           solution:
@@ -301,23 +335,24 @@ const COORD: TypeEntry[] = [
         const px = axis === 0 ? other : 0;
         const py = axis === 0 ? 0 : other;
         const axisName = axis === 0 ? "$x$축" : "$y$축";
+        const solveLine =
+          Math.abs(r) === 1
+            ? `$a=${t}$이다.`
+            : `$${coef(r, "a")}=${-s}$에서 $a=${t}$이다.`;
         const zeroName = axis === 0 ? "$y$좌표" : "$x$좌표";
         const branch = axis * 2 + ask;
         return {
           content:
-            `점 $\\mathrm{P}(${xTex}, ${yTex})$가 ${axisName} 위의 점일 때, ` +
+            `점 $\\mathrm{P}(${xTex}, ${yTex})$${iGa(axis === 0 ? s : q)} ${axisName} 위의 점일 때, ` +
             (ask === 0
               ? "점 $\\mathrm{P}$의 좌표를 구하시오."
               : "$a$의 값을 구하시오."),
           answer: ask === 0 ? `$(${px}, ${py})$` : `$${t}$`,
           solution:
             `${axisName} 위의 점은 ${zeroName}가 $0$이므로 $${zeroTex}=0$이다.\n` +
-            (Math.abs(r) === 1
-              ? `이 식을 풀면 $a=${t}$이다.\n`
-              : `$${coef(r, "a")}=${-s}$에서 $a=${t}$이다.\n`) +
             (ask === 0
-              ? `이때 나머지 좌표는 $${otherTex}=${other}$이므로 점 $\\mathrm{P}$의 좌표는 $(${px}, ${py})$이다.`
-              : `따라서 $a=${t}$이다.`),
+              ? `${solveLine}\n이때 나머지 좌표는 $${otherTex}=${other}$이므로 점 $\\mathrm{P}$의 좌표는 $(${px}, ${py})$이다.`
+              : `따라서 ${solveLine}`),
           facts: {
             t,
             axis,
@@ -546,8 +581,8 @@ const COORD: TypeEntry[] = [
         const head =
           `형과 동생이 집에서 동시에 출발하여 같은 길로 $${bigD}$ km 떨어진 도서관까지 갔다. ` +
           `출발한 지 $x$분 후에 집에서 떨어진 거리를 $y$ km라 할 때, ` +
-          `동생의 그래프는 두 점 $(0, 0)$, $(${tA}, ${bigD})$를 이은 선분이고, ` +
-          `형의 그래프는 세 점 $(0, 0)$, $(${t1}, ${d1})$, $(${tB}, ${bigD})$을 차례로 선분으로 이은 것이다. `;
+          `동생의 그래프는 두 점 $(0, 0)$, $(${tA}, ${bigD})$${eulReul(bigD)} 이은 선분이고, ` +
+          `형의 그래프는 세 점 $(0, 0)$, $(${t1}, ${d1})$, $(${tB}, ${bigD})$${eulReul(bigD)} 차례로 선분으로 이은 것이다. `;
         if (branch === 0) {
           const ans = tA - tB;
           return {
@@ -619,7 +654,7 @@ const PROP: TypeEntry[] = [
             `$x=B$일 때 $y=${y3}$이다. 이때 $A+B$의 값을 구하시오.`,
           answer: `$${ans}$`,
           solution:
-            `$y$가 $x$에 정비례하므로 $\\dfrac{y}{x}$의 값이 일정하고, 그 값은 $\\dfrac{${y1}}{${x1}}=${a}$이다.\n` +
+            `$y$가 $x$에 정비례하므로 $\\dfrac{y}{x}$의 값이 일정하고, 그 값은 $${fracEval(y1, x1)}$이다.\n` +
             `$x=${x2}$일 때 $A=${a}\\times${x2}=${bigA}$이고, $y=${y3}$일 때 $B=${y3}\\div${paren(a)}=${x3}$이다.\n` +
             `따라서 $A+B=${bigA}${signed(x3)}=${ans}$이다.`,
           facts: { a, x1, y1, x2, bigA, x3, y3, branch, ans },
@@ -666,7 +701,7 @@ const PROP: TypeEntry[] = [
         return {
           content: `${head}$x=${r}$일 때 $y$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `${setup}$x=${r}$를 대입하면 $y=${a}\\times(${r})=${ans}$이다.`,
+          solution: `${setup}$x=${r}$${eulReul(r)} 대입하면 $y=${evalTex(a, r, ans)}$이다.`,
           facts: { a, p, q, r, branch, ans },
         };
       }
@@ -675,7 +710,7 @@ const PROP: TypeEntry[] = [
       return {
         content: `${head}$y=${s}$일 때 $x$의 값을 구하시오.`,
         answer: `$${x0}$`,
-        solution: `${setup}$y=${s}$를 대입하면 $${s}=${mono(a)}$에서 $x=${x0}$이다.`,
+        solution: `${setup}$y=${s}$${eulReul(s)} 대입하면 $${s}=${mono(a)}$에서 $x=${x0}$이다.`,
         facts: { a, p, q, s, branch, ans: x0 },
       };
     }),
@@ -746,13 +781,13 @@ const PROP: TypeEntry[] = [
       const ans = a * p;
       return {
         content:
-          `정비례 관계 $${propTex(a, 1)}$의 그래프는 오른쪽 그림과 같이 원점과 점 $(${m}, ${a * m})$을 지나는 직선이다. ` +
+          `정비례 관계 $${propTex(a, 1)}$의 그래프는 오른쪽 그림과 같이 원점과 점 $(${m}, ${a * m})$${eulReul(a * m)} 지나는 직선이다. ` +
           `이 그래프 위의 점 중 $x$좌표가 $${p}$인 점의 $y$좌표를 구하시오.`,
         answer: `$${ans}$`,
         solution:
-          `그래프 위의 점은 $${propTex(a, 1)}$을 만족한다.\n` +
-          `$x=${p}$를 대입하면 $y=${a}\\times(${p})=${ans}$이다.`,
-        facts: { a, m, p, branch: 0, ans },
+          `그래프 위의 점에서는 $${propTex(a, 1)}$이 성립한다.\n` +
+          `$x=${p}$${eulReul(p)} 대입하면 $y=${evalTex(a, p, ans)}$이다.`,
+        facts: { a, num: a, den: 1, m, p, branch: 0, ans },
         figureSpec: linearSpec([a], [[m, a * m]]),
       };
     }),
@@ -813,11 +848,11 @@ const PROP: TypeEntry[] = [
           const p = nonZero(rng, -8, 8);
           const q = a * p;
           return {
-            content: `정비례 관계 $y=ax$의 그래프가 점 $(${p}, ${q})$를 지날 때, 상수 $a$의 값을 구하시오.`,
+            content: `정비례 관계 $y=ax$의 그래프가 점 $(${p}, ${q})$${eulReul(q)} 지날 때, 상수 $a$의 값을 구하시오.`,
             answer: `$${a}$`,
             solution:
-              `그래프가 점 $(${p}, ${q})$를 지나므로 $y=ax$에 $x=${p}$, $y=${q}$를 대입하면\n` +
-              `$${q}=a\\times(${p})$에서 $a=${a}$이다.`,
+              `그래프가 점 $(${p}, ${q})$${eulReul(q)} 지나므로 $y=ax$에 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면\n` +
+              `$${q}=a\\times${paren(p)}$에서 $a=${a}$이다.`,
             facts: { a, p, q, branch, ans: a },
           };
         }
@@ -828,16 +863,16 @@ const PROP: TypeEntry[] = [
             content: `정비례 관계 $${propTex(a, 1)}$의 그래프가 점 $(${m}, t)$를 지날 때, $t$의 값을 구하시오.`,
             answer: `$${k}$`,
             solution:
-              `그래프가 점 $(${m}, t)$를 지나므로 $${propTex(a, 1)}$에 $x=${m}$을 대입하면\n` +
-              `$t=${a}\\times${paren(m)}=${k}$이다.`,
+              `그래프가 점 $(${m}, t)$를 지나므로 $${propTex(a, 1)}$에 $x=${m}$${eulReul(m)} 대입하면\n` +
+              `$t=${evalTex(a, m, k)}$이다.`,
             facts: { a, m, k, branch, ans: k },
           };
         }
         return {
-          content: `정비례 관계 $${propTex(a, 1)}$의 그래프가 점 $(t, ${k})$를 지날 때, $t$의 값을 구하시오.`,
+          content: `정비례 관계 $${propTex(a, 1)}$의 그래프가 점 $(t, ${k})$${eulReul(k)} 지날 때, $t$의 값을 구하시오.`,
           answer: `$${m}$`,
           solution:
-            `그래프가 점 $(t, ${k})$를 지나므로 $${propTex(a, 1)}$에 $y=${k}$를 대입하면\n` +
+            `그래프가 점 $(t, ${k})$${eulReul(k)} 지나므로 $${propTex(a, 1)}$에 $y=${k}$${eulReul(k)} 대입하면\n` +
             `$${k}=${coef(a, "t")}$에서 $t=${m}$이다.`,
           facts: { a, m, k, branch, ans: m },
         };
@@ -900,18 +935,20 @@ const PROP: TypeEntry[] = [
         const a = nonZero(rng, -5, 5);
         const p = nonZero(rng, -5, 5);
         const q = a * p;
+        // 원점 바로 옆에 찍으면 안내선과 숫자가 «O» 와 뭉친다(실렌더로 확인).
+        if (Math.abs(p) < 2 || Math.abs(q) < 2) return null;
         if (Math.abs(q) > 6) return null;
         const branch = intBetween(rng, 0, 1);
-        const head = `오른쪽 그림과 같이 정비례 관계의 그래프가 원점과 점 $(${p}, ${q})$를 지나는 직선일 때, `;
+        const head = `오른쪽 그림과 같이 정비례 관계의 그래프가 원점과 점 $(${p}, ${q})$${eulReul(q)} 지나는 직선일 때, `;
         const setup =
           `그래프가 원점을 지나는 직선이므로 $y=ax$로 놓을 수 있다.\n` +
-          `점 $(${p}, ${q})$를 지나므로 $${q}=a\\times(${p})$에서 $a=${a}$, 즉 $${propTex(a, 1)}$이다.\n`;
+          `점 $(${p}, ${q})$${eulReul(q)} 지나므로 $${q}=a\\times${paren(p)}$에서 $a=${a}$, 즉 $${propTex(a, 1)}$이다.\n`;
         if (branch === 0) {
           return {
             content: `${head}$x$와 $y$ 사이의 관계를 식으로 나타내시오.`,
             answer: `$${propTex(a, 1)}$`,
             solution: `${setup}따라서 구하는 식은 $${propTex(a, 1)}$이다.`,
-            facts: { a, p, q, branch, ans: a },
+            facts: { a, num: a, den: 1, p, q, branch, ans: a },
             figureSpec: linearSpec([a], [[p, q]]),
           };
         }
@@ -921,8 +958,8 @@ const PROP: TypeEntry[] = [
         return {
           content: `${head}이 그래프가 점 $(${r}, k)$를 지난다고 한다. $k$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `${setup}$x=${r}$를 대입하면 $k=${a}\\times(${r})=${ans}$이다.`,
-          facts: { a, p, q, r, branch, ans },
+          solution: `${setup}$x=${r}$${eulReul(r)} 대입하면 $k=${evalTex(a, r, ans)}$이다.`,
+          facts: { a, num: a, den: 1, p, q, r, branch, ans },
           figureSpec: linearSpec([a], [[p, q]]),
         };
       }),
@@ -936,40 +973,50 @@ const PROP: TypeEntry[] = [
     "hard",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
-        const a = intBetween(rng, 1, 3);
+        // 기울기를 «정수 셋»으로만 두면 조합이 여덟뿐이라 같은 문항이 되풀이된다.
+        // 분모를 허용해 넓히되, 찍는 점 $(p,\ q)$ 는 여전히 격자점이다.
+        const den = pick(rng, [1, 1, 1, 2, 3] as const);
+        const num = intBetween(rng, 1, 3);
+        if (gcd(num, den) !== 1) return null;
         const p = intBetween(rng, 2, 6);
-        const q = a * p;
-        if (q > 6) return null;
+        if (p % den !== 0) return null;
+        const q = (num * p) / den;
+        if (q < 1 || q > 6) return null;
         if ((p * q) % 2 !== 0) return null;
         const branch = intBetween(rng, 0, 1);
         const tri = (p * q) / 2;
+        const eq = propTex(num, den);
+        const plug =
+          den === 1
+            ? evalTex(num, p, q)
+            : `\\dfrac{${num}}{${den}}\\times${p}=${q}`;
         if (branch === 0) {
           return {
             content:
-              `오른쪽 그림과 같이 정비례 관계 $${propTex(a, 1)}$의 그래프 위의 점 $\\mathrm{P}$의 $x$좌표가 $${p}$이다. ` +
+              `오른쪽 그림과 같이 정비례 관계 $${eq}$의 그래프 위의 점 $\\mathrm{P}$의 $x$좌표가 $${p}$이다. ` +
               `점 $\\mathrm{P}$에서 $x$축에 내린 수선의 발을 $\\mathrm{H}$라 할 때, 삼각형 $\\mathrm{POH}$의 넓이를 구하시오. ` +
               `(단, $\\mathrm{O}$는 원점이다.)`,
             answer: `$${tri}$`,
             solution:
-              `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$를 대입하면 $y=${a}\\times${p}=${q}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
+              `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$${eulReul(p)} 대입하면 $y=${plug}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
               `수선의 발은 $\\mathrm{H}(${p}, 0)$이므로 $\\overline{\\mathrm{OH}}=${p}$, $\\overline{\\mathrm{PH}}=${q}$이다.\n` +
               `따라서 삼각형 $\\mathrm{POH}$의 넓이는 $\\dfrac{1}{2}\\times${p}\\times${q}=${tri}$이다.`,
-            facts: { a, p, q, branch, ans: tri },
-            figureSpec: linearSpec([a], [[p, q]]),
+            facts: { num, den, p, q, branch, ans: tri },
+            figureSpec: linearSpec([num / den], [[p, q]]),
           };
         }
         return {
           content:
-            `오른쪽 그림과 같이 정비례 관계 $${propTex(a, 1)}$의 그래프 위의 점 $\\mathrm{P}$의 $x$좌표가 $${p}$이다. ` +
+            `오른쪽 그림과 같이 정비례 관계 $${eq}$의 그래프 위의 점 $\\mathrm{P}$의 $x$좌표가 $${p}$이다. ` +
             `점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{A}$, $\\mathrm{B}$라 할 때, ` +
             `직사각형 $\\mathrm{OAPB}$의 넓이를 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
           answer: `$${p * q}$`,
           solution:
-            `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$를 대입하면 $y=${a}\\times${p}=${q}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
+            `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$${eulReul(p)} 대입하면 $y=${plug}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
             `$\\overline{\\mathrm{OA}}=${p}$, $\\overline{\\mathrm{OB}}=${q}$이다.\n` +
             `따라서 직사각형 $\\mathrm{OAPB}$의 넓이는 $${p}\\times${q}=${p * q}$이다.`,
-          facts: { a, p, q, branch, ans: p * q },
-          figureSpec: linearSpec([a], [[p, q]]),
+          facts: { num, den, p, q, branch, ans: p * q },
+          figureSpec: linearSpec([num / den], [[p, q]]),
         };
       }),
   ),
@@ -988,12 +1035,12 @@ const PROP: TypeEntry[] = [
           const h = intBetween(rng, 2, 9);
           return {
             content:
-              `좌표평면 위에 네 점 $\\mathrm{O}(0, 0)$, $\\mathrm{A}(${w}, 0)$, $\\mathrm{B}(${w}, ${h})$, $\\mathrm{C}(0, ${h})$를 ` +
+              `좌표평면 위에 네 점 $\\mathrm{O}(0, 0)$, $\\mathrm{A}(${w}, 0)$, $\\mathrm{B}(${w}, ${h})$, $\\mathrm{C}(0, ${h})$${eulReul(h)} ` +
               `꼭짓점으로 하는 직사각형이 있다. 원점을 지나면서 이 직사각형의 넓이를 이등분하는 직선의 식을 구하시오.`,
             answer: `$${propTex(h, w)}$`,
             solution:
               `직사각형의 넓이를 이등분하는 직선은 두 대각선의 교점, 즉 직사각형의 중심을 지난다.\n` +
-              `중심은 $\\mathrm{O}$와 $\\mathrm{B}$의 한가운데인 점 $\\left(\\dfrac{${w}}{2}, \\dfrac{${h}}{2}\\right)$이다.\n` +
+              `중심은 $\\mathrm{O}$와 $\\mathrm{B}$의 한가운데인 점 $\\left(${halfTex(w)}, ${halfTex(h)}\\right)$이다.\n` +
               `원점을 지나므로 $y=ax$로 놓고 이 점을 대입하면 $a=${h}\\div${w}$이다.\n` +
               `따라서 구하는 직선의 식은 $${propTex(h, w)}$이다.`,
             facts: { w, h, branch, num: h / gcd(h, w), den: w / gcd(h, w) },
@@ -1008,12 +1055,12 @@ const PROP: TypeEntry[] = [
           const den = x1 + x2;
           return {
             content:
-              `좌표평면 위에 네 점 $\\mathrm{A}(${x1}, ${y1})$, $\\mathrm{B}(${x2}, ${y1})$, $\\mathrm{C}(${x2}, ${y2})$, $\\mathrm{D}(${x1}, ${y2})$를 ` +
+              `좌표평면 위에 네 점 $\\mathrm{A}(${x1}, ${y1})$, $\\mathrm{B}(${x2}, ${y1})$, $\\mathrm{C}(${x2}, ${y2})$, $\\mathrm{D}(${x1}, ${y2})$${eulReul(y2)} ` +
               `꼭짓점으로 하는 직사각형이 있다. 원점을 지나면서 이 직사각형의 넓이를 이등분하는 직선의 식을 구하시오.`,
             answer: `$${propTex(num, den)}$`,
             solution:
               `직사각형의 넓이를 이등분하는 직선은 직사각형의 중심을 지난다.\n` +
-              `중심은 $\\mathrm{A}$와 $\\mathrm{C}$의 한가운데인 점 $\\left(\\dfrac{${den}}{2}, \\dfrac{${num}}{2}\\right)$이다.\n` +
+              `중심은 $\\mathrm{A}$와 $\\mathrm{C}$의 한가운데인 점 $\\left(${halfTex(den)}, ${halfTex(num)}\\right)$이다.\n` +
               `원점을 지나므로 $y=ax$로 놓고 이 점을 대입하면 $a=${num}\\div${den}$이다.\n` +
               `따라서 구하는 직선의 식은 $${propTex(num, den)}$이다.`,
             facts: {
@@ -1033,13 +1080,13 @@ const PROP: TypeEntry[] = [
         const den = 2 * w;
         return {
           content:
-            `좌표평면 위에 세 점 $\\mathrm{O}(0, 0)$, $\\mathrm{A}(${w}, 0)$, $\\mathrm{B}(${w}, ${h})$를 꼭짓점으로 하는 삼각형이 있다. ` +
+            `좌표평면 위에 세 점 $\\mathrm{O}(0, 0)$, $\\mathrm{A}(${w}, 0)$, $\\mathrm{B}(${w}, ${h})$${eulReul(h)} 꼭짓점으로 하는 삼각형이 있다. ` +
             `원점을 지나면서 이 삼각형의 넓이를 이등분하는 직선의 식을 구하시오.`,
           answer: `$${propTex(num, den)}$`,
           solution:
             `꼭짓점 $\\mathrm{O}$를 지나는 직선이 삼각형의 넓이를 이등분하려면 마주 보는 변 $\\mathrm{AB}$의 중점을 지나야 한다.\n` +
-            `그 중점은 점 $\\left(${w}, \\dfrac{${h}}{2}\\right)$이다.\n` +
-            `원점을 지나므로 $y=ax$로 놓고 이 점을 대입하면 $a=\\dfrac{${h}}{2}\\div${w}$이다.\n` +
+            `그 중점은 점 $\\left(${w}, ${halfTex(h)}\\right)$이다.\n` +
+            `원점을 지나므로 $y=ax$로 놓고 이 점을 대입하면 $a=${halfTex(h)}\\div${w}$이다.\n` +
             `따라서 구하는 직선의 식은 $${propTex(num, den)}$이다.`,
           facts: {
             w,
@@ -1062,7 +1109,9 @@ const PROP: TypeEntry[] = [
       attempt<Body>(400, (): Body | null => {
         const magA = intBetween(rng, 1, 5);
         const magB = intBetween(rng, 1, 5);
-        if (magA === magB) return null;
+        // 「$3$ 과 $4$」는 지면에서 두 직선이 겹쳐 보인다 — 실렌더로 확인하고 벌렸다
+        // (`qa/m1-prop-sheet/`). 어느 쪽이 $y$축에 가까운지 **눈으로** 갈려야 한다.
+        if (Math.abs(magA - magB) < 2) return null;
         const sa = intBetween(rng, 0, 1) === 1 ? 1 : -1;
         const sb = intBetween(rng, 0, 1) === 1 ? 1 : -1;
         const a = sa * magA;
@@ -1070,19 +1119,20 @@ const PROP: TypeEntry[] = [
         const pa = intBetween(rng, 1, 5);
         const pb = intBetween(rng, 1, 5);
         if (Math.abs(a * pa) > 6 || Math.abs(b * pb) > 6) return null;
-        if (pa === pb && a === b) return null;
+        // 두 점의 $x$좌표가 같으면 세로 안내선이 겹쳐 어느 점이 어느 직선인지 안 갈린다.
+        if (pa === pb) return null;
         const branch = intBetween(rng, 0, 1);
         const nearY = branch === 0;
         const win = nearY ? (magA > magB ? a : b) : magA < magB ? a : b;
         const winName = win === a ? "$y=ax$" : "$y=bx$";
         return {
           content:
-            `오른쪽 그림과 같이 두 정비례 관계 $y=ax$, $y=bx$의 그래프가 각각 점 $(${pa}, ${a * pa})$, 점 $(${pb}, ${b * pb})$를 지난다. ` +
+            `오른쪽 그림과 같이 두 정비례 관계 $y=ax$, $y=bx$의 그래프가 각각 점 $(${pa}, ${a * pa})$, 점 $(${pb}, ${b * pb})$${eulReul(b * pb)} 지난다. ` +
             `두 그래프 중 ${nearY ? "$y$축" : "$x$축"}에 더 가까운 것을 $y=ax$, $y=bx$ 중에서 고르시오.`,
           answer: winName,
           solution:
-            `$y=ax$의 그래프가 점 $(${pa}, ${a * pa})$를 지나므로 $a=${a}$이고, ` +
-            `$y=bx$의 그래프가 점 $(${pb}, ${b * pb})$를 지나므로 $b=${b}$이다.\n` +
+            `$y=ax$의 그래프가 점 $(${pa}, ${a * pa})$${eulReul(a * pa)} 지나므로 $a=${a}$이고, ` +
+            `$y=bx$의 그래프가 점 $(${pb}, ${b * pb})$${eulReul(b * pb)} 지나므로 $b=${b}$이다.\n` +
             `$|a|=${magA}$, $|b|=${magB}$이고, 정비례 관계의 그래프는 계수의 절댓값이 클수록 $y$축에 가깝다.\n` +
             `따라서 ${nearY ? "$y$축" : "$x$축"}에 더 가까운 것은 ${winName}이다.`,
           facts: { a, b, pa, pb, branch, ans: win },
@@ -1171,7 +1221,7 @@ const INV: TypeEntry[] = [
       const branch = intBetween(rng, 0, 2);
       const head = `$y$가 $x$에 반비례하고 $x=${p}$일 때 $y=${q}$이다. `;
       const setup =
-        `$y$가 $x$에 반비례하므로 $y=\\dfrac{a}{x}$로 놓으면 $${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times(${q})=${k}$이다.\n` +
+        `$y$가 $x$에 반비례하므로 $y=\\dfrac{a}{x}$로 놓으면 $${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times${paren(q)}=${k}$이다.\n` +
         `즉 $${invTex(k)}$이다.\n`;
       if (branch === 0) {
         return {
@@ -1188,7 +1238,7 @@ const INV: TypeEntry[] = [
         return {
           content: `${head}$x=${r}$일 때 $y$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `${setup}$x=${r}$를 대입하면 $y=\\dfrac{${k}}{${r}}=${ans}$이다.`,
+          solution: `${setup}$x=${r}$${eulReul(r)} 대입하면 $y=${fracEval(k, r)}$이다.`,
           facts: { p, q, k, r, branch, ans },
         };
       }
@@ -1198,7 +1248,7 @@ const INV: TypeEntry[] = [
       return {
         content: `${head}$y=${s}$일 때 $x$의 값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `${setup}$y=${s}$를 대입하면 $${s}=\\dfrac{${k}}{x}$에서 $x=\\dfrac{${k}}{${s}}=${ans}$이다.`,
+        solution: `${setup}$y=${s}$${eulReul(s)} 대입하면 $${s}=\\dfrac{${k}}{x}$에서 $x=${fracEval(k, s)}$이다.`,
         facts: { p, q, k, s, branch, ans },
       };
     }),
@@ -1274,12 +1324,12 @@ const INV: TypeEntry[] = [
       const ans = k / p;
       return {
         content:
-          `반비례 관계 $${invTex(k)}$의 그래프는 오른쪽 그림과 같이 점 $(${m}, ${k / m})$을 지난다. ` +
+          `반비례 관계 $${invTex(k)}$의 그래프는 오른쪽 그림과 같이 점 $(${m}, ${k / m})$${eulReul(k / m)} 지난다. ` +
           `이 그래프 위의 점 중 $x$좌표가 $${p}$인 점의 $y$좌표를 구하시오.`,
         answer: `$${ans}$`,
         solution:
-          `그래프 위의 점은 $${invTex(k)}$를 만족한다.\n` +
-          `$x=${p}$를 대입하면 $y=\\dfrac{${k}}{${p}}=${ans}$이다.`,
+          `그래프 위의 점에서는 $${invTex(k)}$가 성립한다.\n` +
+          `$x=${p}$${eulReul(p)} 대입하면 $y=${fracEval(k, p)}$이다.`,
         facts: { k, m, p, branch: 0, ans },
         figureSpec: inverseSpec(k, [[m, k / m]]),
       };
@@ -1341,11 +1391,11 @@ const INV: TypeEntry[] = [
         const branch = intBetween(rng, 0, 2);
         if (branch === 2) {
           return {
-            content: `반비례 관계 $y=\\dfrac{a}{x}$의 그래프가 점 $(${p}, ${q})$를 지날 때, 상수 $a$의 값을 구하시오.`,
+            content: `반비례 관계 $y=\\dfrac{a}{x}$의 그래프가 점 $(${p}, ${q})$${eulReul(q)} 지날 때, 상수 $a$의 값을 구하시오.`,
             answer: `$${k}$`,
             solution:
-              `그래프가 점 $(${p}, ${q})$를 지나므로 $y=\\dfrac{a}{x}$에 $x=${p}$, $y=${q}$를 대입하면\n` +
-              `$${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times(${q})=${k}$이다.`,
+              `그래프가 점 $(${p}, ${q})$${eulReul(q)} 지나므로 $y=\\dfrac{a}{x}$에 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면\n` +
+              `$${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times${paren(q)}=${k}$이다.`,
             facts: { p, q, k, branch, ans: k },
           };
         }
@@ -1358,17 +1408,17 @@ const INV: TypeEntry[] = [
             content: `반비례 관계 $${invTex(k)}$의 그래프가 점 $(${m}, t)$를 지날 때, $t$의 값을 구하시오.`,
             answer: `$${n}$`,
             solution:
-              `그래프가 점 $(${m}, t)$를 지나므로 $${invTex(k)}$에 $x=${m}$을 대입하면\n` +
-              `$t=\\dfrac{${k}}{${m}}=${n}$이다.`,
+              `그래프가 점 $(${m}, t)$를 지나므로 $${invTex(k)}$에 $x=${m}$${eulReul(m)} 대입하면\n` +
+              `$t=${fracEval(k, m)}$이다.`,
             facts: { p, q, k, m, n, branch, ans: n },
           };
         }
         return {
-          content: `반비례 관계 $${invTex(k)}$의 그래프가 점 $(t, ${n})$을 지날 때, $t$의 값을 구하시오.`,
+          content: `반비례 관계 $${invTex(k)}$의 그래프가 점 $(t, ${n})$${eulReul(n)} 지날 때, $t$의 값을 구하시오.`,
           answer: `$${m}$`,
           solution:
-            `그래프가 점 $(t, ${n})$을 지나므로 $${invTex(k)}$에 $y=${n}$을 대입하면\n` +
-            `$${n}=\\dfrac{${k}}{t}$에서 $t=\\dfrac{${k}}{${n}}=${m}$이다.`,
+            `그래프가 점 $(t, ${n})$${eulReul(n)} 지나므로 $${invTex(k)}$에 $y=${n}$${eulReul(n)} 대입하면\n` +
+            `$${n}=\\dfrac{${k}}{t}$에서 $t=${fracEval(k, n)}$이다.`,
           facts: { p, q, k, m, n, branch, ans: m },
         };
       }),
@@ -1435,10 +1485,10 @@ const INV: TypeEntry[] = [
         const p = div[intBetween(rng, 0, div.length - 1)]!;
         const q = k / p;
         const branch = intBetween(rng, 0, 1);
-        const head = `오른쪽 그림과 같이 반비례 관계의 그래프가 점 $(${p}, ${q})$를 지날 때, `;
+        const head = `오른쪽 그림과 같이 반비례 관계의 그래프가 점 $(${p}, ${q})$${eulReul(q)} 지날 때, `;
         const setup =
           `그래프가 원점에 대하여 대칭인 한 쌍의 곡선이므로 $y=\\dfrac{a}{x}$로 놓을 수 있다.\n` +
-          `점 $(${p}, ${q})$를 지나므로 $${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times(${q})=${k}$, 즉 $${invTex(k)}$이다.\n`;
+          `점 $(${p}, ${q})$${eulReul(q)} 지나므로 $${q}=\\dfrac{a}{${p}}$에서 $a=${p}\\times${paren(q)}=${k}$, 즉 $${invTex(k)}$이다.\n`;
         if (branch === 0) {
           return {
             content: `${head}$x$와 $y$ 사이의 관계를 식으로 나타내시오.`,
@@ -1454,7 +1504,7 @@ const INV: TypeEntry[] = [
         return {
           content: `${head}이 그래프가 점 $(${r}, t)$를 지난다고 한다. $t$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `${setup}$x=${r}$를 대입하면 $t=\\dfrac{${k}}{${r}}=${ans}$이다.`,
+          solution: `${setup}$x=${r}$${eulReul(r)} 대입하면 $t=${fracEval(k, r)}$이다.`,
           facts: { k, p, q, r, branch, ans },
           figureSpec: inverseSpec(k, [[p, q]]),
         };
@@ -1482,7 +1532,7 @@ const INV: TypeEntry[] = [
               `직사각형 $\\mathrm{OAPB}$의 넓이를 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
             answer: `$${k}$`,
             solution:
-              `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$를 대입하면 $y=\\dfrac{${k}}{${p}}=${q}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
+              `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$${eulReul(p)} 대입하면 $y=${fracEval(k, p)}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
               `$\\overline{\\mathrm{OA}}=${p}$, $\\overline{\\mathrm{OB}}=${q}$이다.\n` +
               `따라서 직사각형 $\\mathrm{OAPB}$의 넓이는 $${p}\\times${q}=${k}$이다.`,
             facts: { k, p, q, branch, ans: k },
@@ -1497,7 +1547,7 @@ const INV: TypeEntry[] = [
             `(단, $\\mathrm{O}$는 원점이다.)`,
           answer: `$${k / 2}$`,
           solution:
-            `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$를 대입하면 $y=\\dfrac{${k}}{${p}}=${q}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
+            `점 $\\mathrm{P}$는 그래프 위의 점이므로 $x=${p}$${eulReul(p)} 대입하면 $y=${fracEval(k, p)}$, 즉 $\\mathrm{P}(${p}, ${q})$이다.\n` +
             `$\\overline{\\mathrm{OA}}=${p}$, $\\overline{\\mathrm{PA}}=${q}$이다.\n` +
             `따라서 삼각형 $\\mathrm{POA}$의 넓이는 $\\dfrac{1}{2}\\times${p}\\times${q}=${k / 2}$이다.`,
           facts: { k, p, q, branch, ans: k / 2 },
@@ -1538,7 +1588,7 @@ const INV: TypeEntry[] = [
             content: `${head}상수 $a$의 값을 구하시오.`,
             answer: `$${den === 1 ? num : `\\dfrac{${num}}{${den}}`}$`,
             solution:
-              `$y=ax$의 그래프가 점 $(${p}, ${q})$를 지나므로 $${q}=a\\times${p}$이다.\n` +
+              `$y=ax$의 그래프가 점 $(${p}, ${q})$${eulReul(q)} 지나므로 $${q}=a\\times${p}$이다.\n` +
               `따라서 $a=${q}\\div${p}=${den === 1 ? num : `\\dfrac{${num}}{${den}}`}$이다.`,
             facts: { p, q, k, num, den, branch, ans: num },
             figureSpec: spec,
@@ -1549,7 +1599,7 @@ const INV: TypeEntry[] = [
             content: `${head}상수 $b$의 값을 구하시오.`,
             answer: `$${k}$`,
             solution:
-              `$y=\\dfrac{b}{x}$의 그래프가 점 $(${p}, ${q})$를 지나므로 $${q}=\\dfrac{b}{${p}}$이다.\n` +
+              `$y=\\dfrac{b}{x}$의 그래프가 점 $(${p}, ${q})$${eulReul(q)} 지나므로 $${q}=\\dfrac{b}{${p}}$이다.\n` +
               `따라서 $b=${p}\\times${q}=${k}$이다.`,
             facts: { p, q, k, num, den, branch, ans: k },
             figureSpec: spec,
@@ -1560,7 +1610,7 @@ const INV: TypeEntry[] = [
           answer: `$(${-p}, ${-q})$`,
           solution:
             `정비례 관계의 그래프와 반비례 관계의 그래프는 모두 원점에 대하여 대칭이다.\n` +
-            `따라서 두 그래프가 만나는 다른 한 점은 점 $(${p}, ${q})$와 원점에 대하여 대칭인 점 $(${-p}, ${-q})$이다.`,
+            `따라서 두 그래프가 만나는 다른 한 점은 점 $(${p}, ${q})$${waGwa(q)} 원점에 대하여 대칭인 점 $(${-p}, ${-q})$이다.`,
           facts: { p, q, k, num, den, branch, ans: -p },
           figureSpec: spec,
         };

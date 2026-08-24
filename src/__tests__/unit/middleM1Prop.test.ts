@@ -30,6 +30,7 @@ import {
   generateMiddleSet,
   registeredTypes,
 } from "../../lib/middle/generate";
+import { eulReul } from "../../lib/middle/m2Josa";
 import { INV_K, M1_PROP, invLattice } from "../../lib/middle/m1Prop";
 import { preprocessMathText } from "../../lib/math/textPreprocess";
 import type { MidProblem } from "../../lib/middle/types";
@@ -76,6 +77,42 @@ const FIGURE_TYPES = ["05", "09", "10", "23", "15", "19", "20", "21"];
 const FIGURE_KEYS = new Set(
   FIGURE_TYPES.map((t) => `1-1|정비례와 반비례|${t}`),
 );
+
+/**
+ * `$...$` 뒤 조사가 **읽는 소리**와 맞는가 — 잡힌 자리와 «잰 자리 수»를 같이 돌려준다.
+ *
+ * 왜 `josaFaults`(정본)를 안 쓰고 여기 하나 더 두는가: 그 함수는 수식이 **숫자로
+ * 끝날 때만** 잰다. 이 단원의 발문은 「$(2a-3,\ b-3)$」처럼 **괄호로 닫힌 순서쌍**이
+ * 대부분이라 거기서는 구조적으로 0이 된다 — 실제로 첫 미리보기에 「$(2a-3, b-3)$**와**」
+ * 「$\mathrm{P}(2a+4,\ a-1)$**가**」가 그대로 나갔고 어느 가드도 안 울었다.
+ * 그래서 **닫는 괄호를 벗기고** 마지막 수를 본다. 소리를 모르는 것(문자·분수로 끝나는
+ * 것)은 «통과»가 아니라 **안 잰 것**이므로 세지 않는다.
+ */
+function josaCheck(text: string): { bad: string[]; measured: number } {
+  const bad: string[] = [];
+  let measured = 0;
+  const re = /\$([^$]*)\$ ?(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+  for (const m of text.matchAll(re)) {
+    const span = m[1]!.replace(/[)\]\s]+$/, "");
+    const tail = /(\d+)$/.exec(span);
+    if (!tail) continue; // 소리를 모른다 — 「안 잼」이지 「통과」가 아니다
+    measured += 1;
+    const n = Number(tail[1]);
+    const vowel = eulReul(n) === "를";
+    const want: Record<string, boolean> = {
+      을: false,
+      를: true,
+      이: false,
+      가: true,
+      과: false,
+      와: true,
+      은: false,
+      는: true,
+    };
+    if (want[m[2]!] !== vowel) bad.push(m[0]!);
+  }
+  return { bad, measured };
+}
 
 const quadrantOf = (x: number, y: number): number =>
   x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3;
@@ -285,7 +322,8 @@ const PROP_VERIFY: Record<string, Check> = {
     expect(ansInt(p.answer)).toBe(f.a! * f.r!);
   },
   "10": (f, p) => {
-    expect(f.a! * f.p!).toBe(f.q);
+    // 기울기가 분수일 수 있으므로 **곱셈으로만** 견준다(부동소수 반올림 금지).
+    expect(f.num! * f.p!).toBe(f.den! * f.q!);
     const v = ansInt(p.answer);
     // 삼각형은 직사각형의 절반이다 — 두 갈래를 **한 관계식**으로 견준다.
     expect(f.branch === 0 ? 2 * v : v).toBe(f.p! * f.q!);
@@ -467,7 +505,8 @@ function checkFigure(type: string, f: F, spec: Spec) {
       expect(lines.map((l) => l.slope).sort()).toEqual([f.a!, f.b!].sort());
     } else {
       expect(lines).toHaveLength(1);
-      expect(lines[0]!.slope).toBe(f.a);
+      // 기울기는 «분수 그대로» 견준다 — `f.a` 는 정수 갈래에만 있다.
+      expect(lines[0]!.slope).toBe(f.num! / f.den!);
     }
     return;
   }
@@ -551,7 +590,7 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
 
   it("그림을 붙인 자리와 안 붙인 자리가 못 박혀 있다", () => {
     // 「좌표와 그래프」 07·08·09·11 은 **꺾은선**이라 좌표평면 한 벌로 그리면
-    // 시각이 음수인 자리까지 직선이 뻗는다(실렌더 `qa/probe-5b-1-sheet/`).
+    // 시각이 음수인 자리까지 직선이 뻗는다(실렌더 `qa/m1-prop-sheet/`).
     // 이 판단이 코드에만 있으면 다음 사람이 그림을 붙여도 아무도 모른다.
     const withFig = M1_PROP.filter(
       (e) => generateMiddleProblem(e.key, 20260824).figureSpec != null,
@@ -662,6 +701,30 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
         checkFigure(e.rpmType, p.facts, p.figureSpec as Spec);
       }
     }
+  });
+
+  it("수식 뒤 조사가 **읽는 소리**와 맞는다", () => {
+    const bad: string[] = [];
+    let measured = 0;
+    for (const e of M1_PROP) {
+      for (let s = 0; s < 40; s += 1) {
+        const p = generateMiddleProblem(e.key, s * 7919 + 13);
+        for (const field of [p.content, p.answer, p.solution]) {
+          const r = josaCheck(field);
+          measured += r.measured;
+          bad.push(...r.bad.map((x) => `${e.key}: ${x}`));
+        }
+      }
+    }
+    // 0 은 「깨끗」과 「못 셈」을 안 가른다 — 몇 자리를 실제로 쟀는지 먼저 못 박는다.
+    expect(
+      measured,
+      "아무 조사도 안 쟀다면 이 검사는 장식이다",
+    ).toBeGreaterThan(500);
+    expect(
+      [...new Set(bad)].slice(0, 8),
+      `조사 오류 ${bad.length}자리`,
+    ).toEqual([]);
   });
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
