@@ -82,6 +82,33 @@ function polylines(svg: string): Poly[] {
   );
 }
 
+type Circ = { cx: number; cy: number; r: number };
+type Ln = { x1: number; y1: number; x2: number; y2: number; dash: boolean };
+
+function circles(svg: string): Circ[] {
+  return [...svg.matchAll(/<circle ([^>]*?)\/>/g)].map((m) => {
+    const a = m[1]!;
+    const get = (k: string) =>
+      Number(new RegExp(`\\b${k}="([-\\d.]+)"`).exec(a)?.[1] ?? NaN);
+    return { cx: get("cx"), cy: get("cy"), r: get("r") };
+  });
+}
+
+function lines(svg: string): Ln[] {
+  return [...svg.matchAll(/<line ([^>]*?)\/>/g)].map((m) => {
+    const a = m[1]!;
+    const get = (k: string) =>
+      Number(new RegExp(`\\b${k}="([-\\d.]+)"`).exec(a)?.[1] ?? NaN);
+    return {
+      x1: get("x1"),
+      y1: get("y1"),
+      x2: get("x2"),
+      y2: get("y2"),
+      dash: /stroke-dasharray=/.test(a),
+    };
+  });
+}
+
 function viewBoxW(svg: string): number {
   return Number(/viewBox="0 0 ([\d.]+)/.exec(svg)![1]);
 }
@@ -562,5 +589,179 @@ describe.skipIf(!hasEngine)("[통계 kind] 값 축 규칙을 한 벌로 쓴다",
         yLabel: "(비율)",
       }),
     ).toContain("소수");
+  });
+});
+
+// ── boxPlot · scatterPlot (물결 6E, RPM 3-2 산포도·상자그림과 산점도) ──────────
+const BOX = {
+  version: "elem-1",
+  kind: "boxPlot",
+  values: [62, 74, 80, 88, 96],
+  axisMin: 60,
+  axisMax: 100,
+  axisStep: 10,
+  xLabel: "(점)",
+};
+
+describe.skipIf(!hasEngine)("[통계 kind] boxPlot", () => {
+  it("상자·수염의 가로 위치가 눈금과 같은 자로 잰 값과 같다 (생성기와 다른 식)", async () => {
+    const svg = await draw(BOX);
+    const ticks = texts(svg).filter(
+      (t) => t.anchor === "middle" && /^\d+$/.test(t.t),
+    );
+    const t60 = ticks.find((t) => t.t === "60")!;
+    const t100 = ticks.find((t) => t.t === "100")!;
+    const scale = (t100.x - t60.x) / 40;
+    const xOf = (v: number) => t60.x + (v - 60) * scale;
+
+    const box = rects(svg).find((r) => r.fill === "#ffffff" && r.h > 0)!;
+    expect(box.x).toBeCloseTo(xOf(74), 0); // Q1
+    expect(box.x + box.w).toBeCloseTo(xOf(88), 0); // Q3
+
+    const straight = lines(svg).filter((l) => l.y1 === l.y2);
+    expect(
+      straight.some(
+        (l) => Math.abs(l.x1 - xOf(62)) < 1 && Math.abs(l.x2 - xOf(74)) < 1,
+      ),
+      "왼쪽 수염 62→74",
+    ).toBe(true);
+    expect(
+      straight.some(
+        (l) => Math.abs(l.x1 - xOf(88)) < 1 && Math.abs(l.x2 - xOf(96)) < 1,
+      ),
+      "오른쪽 수염 88→96",
+    ).toBe(true);
+
+    // 중앙값 세로선 — 상자 높이(20)만큼이라 수염 끝 표시(12)와 길이로 갈린다.
+    const median = lines(svg).find(
+      (l) => l.x1 === l.x2 && Math.abs(l.y2 - l.y1) === 20,
+    );
+    expect(median, "중앙값 선").toBeDefined();
+    expect(median!.x1).toBeCloseTo(xOf(80), 0);
+  });
+
+  it("다섯 수가 순서대로가 아니면 던진다 — 뒤집힌 상자를 그리지 않는다", async () => {
+    expect(await reason({ ...BOX, values: [62, 80, 74, 88, 96] })).toContain(
+      "순서",
+    );
+  });
+
+  it("값이 축 범위 밖이면 던진다 — 그림이 자료를 못 담는다", async () => {
+    expect(await reason({ ...BOX, axisMin: 65 })).toContain("축 범위");
+  });
+
+  it("axisStep 이 axisMin~axisMax 를 안 나눠떨어지면 던진다", async () => {
+    expect(await reason({ ...BOX, axisStep: 7 })).toContain("나누어떨어지지");
+  });
+
+  it("series2 로 두 상자를 겹쳐 그리면 두 이름표가 세로로 쌓인다", async () => {
+    const svg = await draw({
+      ...BOX,
+      axisMin: 50,
+      label: "A반",
+      series2: { values: [55, 68, 76, 84, 92], label: "B반" },
+    });
+    const shown = texts(svg).map((t) => t.t);
+    expect(shown).toContain("A반");
+    expect(shown).toContain("B반");
+    const boxes = rects(svg).filter((r) => r.fill === "#ffffff" && r.h > 0);
+    expect(boxes).toHaveLength(2);
+    expect(Math.abs(boxes[0]!.y - boxes[1]!.y)).toBeGreaterThan(10);
+  });
+
+  it("label 만 주고 series2 가 없으면 던진다", async () => {
+    expect(await reason({ ...BOX, label: "A반" })).toContain("series2");
+  });
+
+  it("series2 만 주고 label 이 없으면 던진다", async () => {
+    expect(
+      await reason({
+        ...BOX,
+        series2: { values: [55, 68, 76, 84, 92], label: "B반" },
+      }),
+    ).toContain("label");
+  });
+
+  it("지면 폭이 240 에 박혀 있다", async () => {
+    expect(viewBoxW(await draw(BOX))).toBe(PINNED_VIEWBOX);
+  });
+});
+
+const SCATTER = {
+  version: "elem-1",
+  kind: "scatterPlot",
+  points: [
+    [10, 20],
+    [20, 35],
+    [30, 40],
+    [40, 55],
+    [50, 60],
+    [60, 75],
+  ],
+  xMin: 0,
+  xMax: 60,
+  xStep: 10,
+  yMin: 0,
+  yMax: 80,
+  yStep: 10,
+  xLabel: "(회)",
+  yLabel: "(점)",
+};
+
+describe.skipIf(!hasEngine)("[통계 kind] scatterPlot", () => {
+  it("점 개수만큼 circle 이 찍힌다", async () => {
+    const svg = await draw(SCATTER);
+    expect(circles(svg)).toHaveLength(SCATTER.points.length);
+  });
+
+  it("점의 화면 좌표가 눈금과 같은 자로 잰 값과 같다 (생성기와 다른 식)", async () => {
+    const svg = await draw(SCATTER);
+    const xTicks = texts(svg).filter(
+      (t) => t.anchor === "middle" && /^\d+$/.test(t.t),
+    );
+    const yTicks = texts(svg).filter(
+      (t) => t.anchor === "end" && /^\d+$/.test(t.t),
+    );
+    const x0 = xTicks.find((t) => t.t === "0")!;
+    const x60 = xTicks.find((t) => t.t === "60")!;
+    const y0 = yTicks.find((t) => t.t === "0")!;
+    const y80 = yTicks.find((t) => t.t === "80")!;
+    const xOf = (v: number) => x0.x + v * ((x60.x - x0.x) / 60);
+    const yOf = (v: number) => y0.y + v * ((y80.y - y0.y) / 80);
+    const cs = circles(svg);
+    for (const [px_, py_] of SCATTER.points) {
+      const hit = cs.some(
+        (c) => Math.abs(c.cx - xOf(px_)) < 1 && Math.abs(c.cy - yOf(py_)) < 1,
+      );
+      expect(hit, `점 (${px_},${py_})`).toBe(true);
+    }
+  });
+
+  it("점이 축 범위 밖이면 던진다 — 그림이 곧 검산이다", async () => {
+    expect(
+      await reason({ ...SCATTER, points: [...SCATTER.points, [70, 10]] }),
+    ).toContain("축 범위");
+  });
+
+  it("점이 2개 미만이면 던진다", async () => {
+    expect(await reason({ ...SCATTER, points: [[10, 20]] })).toContain(
+      "points",
+    );
+  });
+
+  it("xStep 이 xMin~xMax 를 안 나눠떨어지면 던진다", async () => {
+    expect(await reason({ ...SCATTER, xStep: 7 })).toContain("나누어떨어지지");
+  });
+
+  it("지면 폭이 240 에 박혀 있다", async () => {
+    expect(viewBoxW(await draw(SCATTER))).toBe(PINNED_VIEWBOX);
+  });
+
+  it("xLabel·yLabel·title 이 그림에 나온다", async () => {
+    const svg = await draw({ ...SCATTER, title: "국어와 영어 점수" });
+    const shown = texts(svg).map((t) => t.t);
+    expect(shown).toContain("(회)");
+    expect(shown).toContain("(점)");
+    expect(shown).toContain("국어와 영어 점수");
   });
 });

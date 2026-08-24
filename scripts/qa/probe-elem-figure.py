@@ -304,6 +304,17 @@ SPECS: list[dict] = [
      "cut": {"x": 3, "w": 5, "d": 3, "h": 6}},
     {"version": "elem-1", "kind": "revolvePlan",
      "pieces": [{"shape": "rightTri", "w": 5, "h": 7, "wLabel": "5 cm", "hLabel": "7 cm"}]},
+    # boxPlot · scatterPlot (2026-08-24, 물결 6E) — 이 표본은 그 kind 가 잡는
+    # 던지는 조건(뒤집힌 상자·범위 밖 값)이 아니라 «정상 그림 하나»만 확인한다.
+    # 던지는 조건은 6E 의 변이 하네스(scripts/qa/mutate-m3-stat2.py)가 잰다.
+    {"version": "elem-1", "kind": "boxPlot",
+     "values": [12, 18, 24, 30, 40], "label": "A 반",
+     "series2": {"values": [10, 20, 25, 35, 42], "label": "B 반"},
+     "axisMin": 0, "axisMax": 50, "axisStep": 10},
+    {"version": "elem-1", "kind": "scatterPlot",
+     "points": [[1, 2], [2, 3], [3, 5], [4, 6], [5, 8], [6, 9]],
+     "xMin": 0, "xMax": 8, "xStep": 2, "yMin": 0, "yMax": 10, "yStep": 2,
+     "xLabel": "키(cm)", "yLabel": "몸무게(kg)"},
 ]
 
 

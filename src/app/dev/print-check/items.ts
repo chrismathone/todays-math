@@ -787,6 +787,42 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-24",
   },
   {
+    id: "wave6-geometry-stat-frame",
+    title:
+      "작도 컴퍼스 자국·부채꼴 색칠·상자그림·산점도가 종이에서 읽히는가 (중1·2 기하 + 중3 통계)",
+    changed:
+      "물결 6 으로 FigureSpec v2 기하가 **처음** 실사용됐다(1-2·2-2, 141유형) — " +
+      "맞꼭지각·평행선과 엇각(`parallel`)·**작도 컴퍼스 자국**(`arcs`+`draw:false` " +
+      "원)·다각형 대각선·부채꼴 색칠(`regions`)·외접원·평행사변형·무게중심·" +
+      "피타고라스. 착수 전 실렌더 판정(양성 9·음성 4)으로 전량 그려짐을 확인했지만 " +
+      "그 판정은 **화면 SVG 이지 종이가 아니다.** 더해 `boxPlot`·`scatterPlot` " +
+      "kind 를 새로 냈다(3-2 통계 17유형) — 이 저장소에서 **첫 통계 차트**다.",
+    look:
+      "① 작도 문항의 **컴퍼스 호 자국이 실선과 구별되는가**(점선·가는 선인지) — " +
+      "지금은 실선과 같은 굵기다. ② 부채꼴 색칠(`regions`)이 **흑백 인쇄에서도 " +
+      "칠해진 부분과 안 칠해진 부분이 구별되는가**(옅은 회색이 흑백에서 안 보일 " +
+      "수 있다). ③ 상자그림의 **상자·수염·중앙값 선이 겹쳐 보이지 않는가**, 두 " +
+      "반을 비교하는 상자그림(`series2`)이 세로로 안 붙어 보이는가. ④ 산점도의 " +
+      "**점이 흑백에서 뭉개지지 않는가**(점 반지름 2.6px, 6개 이상 겹치면). ⑤ " +
+      "외심·무게중심 그림의 **점 이름표(O·G·M)가 선에 안 겹치는가**.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/figure/probe-wave6-geometry.py",
+      "docs/planning/tracks/wave6-geometry-sheet/index.html",
+      "scripts/figure/elem_advanced.py (_box_plot, _scatter_plot)",
+      "docs/planning/09-figure-engine-guide.md (boxPlot·scatterPlot 항목, §4-26·§4-27)",
+    ],
+    scale:
+      "1-2 기하 84유형 + 2-2 기하 57유형 + 3-2 통계 17유형 = 158유형 " +
+      "(이 물결로 중학 엔진이 873/873 전량 등록 완료됐다).",
+    needs:
+      "**이 유형이 DB 에 적재된 뒤**라야 시험지에 실린다(지금은 엔진까지, D-22·D-31). " +
+      "그전에는 `docs/planning/tracks/wave6-geometry-sheet/index.html` 과 각 세션이 " +
+      "남긴 미리보기(6A~6E 커밋의 preview/*.html)를 인쇄해 본다.",
+    status: "대기",
+    changedOn: "2026-08-24",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",
