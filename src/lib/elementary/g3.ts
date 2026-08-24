@@ -7160,6 +7160,241 @@ function graph262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ── 2-3 원 (D-72 확대) ──────────────────────────────────────────────────
+//
+// **그림 결정은 09 §2.2 결정표를 갈래마다 다시 물어서 정했다.** 「심화가 그림을 더
+// 많이 쓴다」가 아니다 — 갈래가 바꾸는 것은 «학생이 할 일»이고 그림은 그 일을
+// 대신하면 안 된다. 실측(elem-figures, 2026-08-24)으로 **갈래에 그림이 없는 것이
+// 섞이는 소단원이 76%** 다. 「이 갈래엔 그림이 없다」는 결함이 아니다.
+//
+// | 갈래 | 2-3-1 용어 | 2-3-2 성질 | 2-3-3 원 그리기 |
+// |---|---|---|---|
+// | 연산 | `show` 선분 | 준 쪽 치수 | **없음** |
+// | 기본 | **없음** | 준 쪽 치수 | **없음** |
+// | 응용 | **없음** | 준 쪽 치수 | **없음** |
+// | 심화 | **없음** | 준 쪽 치수 | **없음** |
+//
+// **까닭 — ①②를 무는 일반 판정기가 없다.** 값 검산도 렌더도 KaTeX 도 다 초록이다.
+// 그래서 여기 적어 둔다. 다음 사람이 되돌리는 것을 막는 유일한 장치다(09 §2.2).
+//
+//  · **2-3-1** — 답이 «낱말»이라 `show`(선분만, 글자 없음)가 안전하다(규칙 ⑤).
+//    「그 선분이 무엇인지 **알아내는 것**」이 문제의 일부가 아니라 **이름을 붙이는 것**이
+//    일이기 때문이다. ⚠️ 2·3·4단은 **말로만** 성질을 묻는다 — 그리면 나를 것이 없다(③).
+//  · **2-3-2** — 준 쪽만 적는다(①). 묻는 쪽을 적으면 답이 지면에 있다.
+//    4단은 원이 둘인데 `circleParts` 는 하나뿐이라 **큰 원의 준 값만** 적는다.
+//  · **2-3-3** — 어느 갈래에도 **안 붙인다.** 「벌린 길이 = 반지름」이 숨은 첫 단계라
+//    치수를 적으면 그림이 그 단계를 대신하고(②), 안 적으면 맨 원이라 나를 것이 없다(③).
+
+/* ── 2-3-1 원의 중심, 지름, 반지름 ── */
+
+/** 1단 — 그려 놓고 **이름을 묻는다.** 그림이 답을 말하지 않는다(답이 낱말이다). */
+function circ231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const isDia = intBetween(rng, 0, 1) === 1;
+  return make(
+    unit,
+    `그림에서 굵게 그린 선분의 이름을 쓰시오.`,
+    isDia ? "지름" : "반지름",
+    isDia
+      ? "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다."
+      : "원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.",
+    circleFig(isDia ? "showDiameter" : "showRadius"),
+  );
+}
+
+/**
+ * 2단 — **성질을 말로** 묻는다. 그림을 안 붙인다.
+ *
+ * 「한 원에서 반지름은 모두 같다」는 **여러 개를 그려야** 보이는데 `circleParts` 는
+ * 선분을 하나만 그린다. 하나만 그리면 나를 것이 없다(③).
+ */
+function circ231Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 3, 6);
+  const isDia = intBetween(rng, 0, 1) === 1;
+  const name = isDia ? "지름" : "반지름";
+  return make(
+    unit,
+    `한 원에 ${name}${josa(name, "을", "를")} ${n(many)}개 그었습니다. 그은 선분들의 길이는 어떠한지 쓰시오.`,
+    "모두 같습니다",
+    `한 원에서 ${name}${josa(name, "은", "는")} 모두 길이가 같습니다. 따라서 ${n(many)}개의 길이가 모두 같습니다.`,
+  );
+}
+
+/** 3단 — 성질에서 **거꾸로 이름을 찾는다**(두 단계). */
+function circ231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `한 원에 지름을 ${n(many)}개 그었더니 ${n(many)}개가 모두 한 점에서 만났습니다. 이 점을 무엇이라고 하는지 쓰시오.`,
+    "원의 중심",
+    `지름은 원의 중심을 지나는 선분입니다. 그러므로 지름을 여러 개 그으면 모두 원의 중심에서 만납니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 **둘**을 겹쳐 이름을 찾고, 그 성질까지 묻는다.
+ *
+ * ⚠️ 「두 조건」이라 부르고 조건을 안 적으면 `elemStemSelfContained` 가 문다.
+ *    여기서는 조건을 발문이 **글자로** 다 적는다.
+ */
+function circ231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `어떤 선분이 「원 위의 두 점을 잇는다」와 「원의 중심을 지난다」를 모두 만족합니다. 이 선분의 이름을 쓰고, 한 원에 이런 선분을 ${n(many)}개 그었을 때 그 길이가 어떠한지 함께 쓰시오.`,
+    "지름, 모두 같습니다",
+    `원 위의 두 점을 이으면서 원의 중심을 지나는 선분이 지름입니다. 한 원에서 지름은 모두 길이가 같으므로 ${n(many)}개의 길이가 모두 같습니다.`,
+  );
+}
+
+/* ── 2-3-2 원의 성질 ── */
+
+/** 1단 — 관계를 한 번 쓴다. 그림은 **준 쪽만** 적는다(①). */
+function circ232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 1) {
+    return make(
+      unit,
+      `$\\square$ 안에 알맞은 수를 쓰시오.\n\n반지름이 ${unitNum(r, "cm")} 인 원의 지름은 $\\square\\,\\mathrm{cm}$ 입니다.`,
+      n(r * 2),
+      `지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+      circleFig("radius", r),
+    );
+  }
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n지름이 ${unitNum(r * 2, "cm")} 인 원의 반지름은 $\\square\\,\\mathrm{cm}$ 입니다.`,
+    n(r),
+    `반지름은 지름의 반이므로 ${expr(`${r * 2}\\div2=${r}`)} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/** 2단 — 소재를 얹어 문장으로. 그림은 여전히 **준 쪽만**. */
+function circ232Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, [
+    "접시",
+    "시계",
+    "동전",
+    "단추",
+    "쟁반",
+    "탬버린",
+    "거울",
+    "표지판",
+  ]);
+  const r = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 1) {
+    return make(
+      unit,
+      `${thing}의 모양이 원입니다. 반지름이 ${unitNum(r, "cm")} 일 때 지름은 몇 cm인지 쓰시오.`,
+      n(r * 2),
+      `한 원에서 지름은 반지름의 $2$ 배입니다. ${expr(`${r}\\times2=${r * 2}`)} 이므로 지름은 ${unitNum(r * 2, "cm")} 입니다.`,
+      circleFig("radius", r),
+    );
+  }
+  return make(
+    unit,
+    `${thing}의 모양이 원입니다. 지름이 ${unitNum(r * 2, "cm")} 일 때 반지름은 몇 cm인지 쓰시오.`,
+    n(r),
+    `한 원에서 반지름은 지름의 반입니다. ${expr(`${r * 2}\\div2=${r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/** 3단 — 관계를 쓰고 **한 걸음 더** 간다(두 단계). */
+function circ232Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 9);
+  // 🔴 `extra === r` 이면 답 `r + extra` 가 **그림에 적힌 지름 `r * 2` 와 같아진다.**
+  //    그러면 그림이 답을 말한다(09 §2.2 규칙 ①). 잠금 ⑵ 가 씨앗 11 에서 잡았다 —
+  //    값 검산은 통과하던 자리다(답 자체는 맞으니까). 그 하나를 뽑기에서 뺀다.
+  const extra = pick(
+    rng,
+    [1, 2, 3, 4, 5, 6].filter((v) => v !== r),
+  );
+  return make(
+    unit,
+    `지름이 ${unitNum(r * 2, "cm")} 인 원이 있습니다. 이 원의 반지름보다 ${unitNum(extra, "cm")} 더 긴 선분의 길이는 몇 cm인지 쓰시오.`,
+    n(r + extra),
+    `반지름은 지름의 반이므로 ${expr(`${r * 2}\\div2=${r}`)} 입니다. 여기에 ${unitNum(extra, "cm")}${josa("미터", "을", "를")} 더하면 ${expr(`${r}+${extra}=${r + extra}`)} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/**
+ * 4단 — 원 **둘**을 잇는 조건에서 되짚는다.
+ *
+ * ⚠️ `circleParts` 는 원을 **하나만** 그린다. 그래서 큰 원의 **준 값**만 적는다 —
+ *    작은 원을 그릴 방법이 없고, 억지로 큰 원에 작은 원의 값을 적으면 그것이 곧
+ *    풀이의 가운데 단계다(②).
+ */
+function circ232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const small = intBetween(rng, 2, 6);
+  const bigDia = small * 4;
+  return make(
+    unit,
+    `큰 원의 반지름이 작은 원의 지름과 같습니다. 큰 원의 지름이 ${unitNum(bigDia, "cm")} 일 때 작은 원의 반지름은 몇 cm인지 쓰시오.`,
+    n(small),
+    `큰 원의 반지름은 ${expr(`${bigDia}\\div2=${bigDia / 2}`)} 입니다. 이것이 작은 원의 지름이므로 작은 원의 반지름은 ${expr(`${bigDia / 2}\\div2=${small}`)} 입니다.`,
+    circleFig("diameter", bigDia),
+  );
+}
+
+/* ── 2-3-3 원 그리기 — **어느 갈래에도 그림을 안 붙인다** ── */
+
+/** 1단 — 벌린 길이에서 지름을 구한다(한 단계). */
+function circ233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인지 쓰시오.`,
+    n(r * 2),
+    `컴퍼스를 벌린 길이가 원의 반지름이 됩니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2단 — 같은 셈을 **문장 소재**로 세운다.
+ *
+ * ⚠️ 첫 판은 「반지름 r 인 원을 그리려면 몇 cm 벌리나」였다 — 답이 곧 `r` 이라
+ *    **한 단계도 없고 1단(×2)보다 쉬웠다.** 사다리가 거꾸로 선 것이다.
+ *    `probe-elem-tier-ladder` 는 **심화만** 보므로 이 뒤집힘은 안 잡힌다 —
+ *    지면을 넷 나란히 놓고 눈으로 봐서 찾았다(2026-08-24).
+ */
+function circ233Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const thing = pick(rng, ["도화지", "공책", "칠판", "모래밭", "종이", "마당"]);
+  return make(
+    unit,
+    `${thing}에 컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 그린 원의 지름은 몇 cm인지 쓰시오.`,
+    n(r * 2),
+    `컴퍼스를 벌린 길이가 원의 반지름입니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 지금 원에서 **더 큰 원**으로 옮겨 간다(지름 두 번 + 되짚기 한 번). */
+function circ233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 7);
+  const more = intBetween(rng, 1, 5) * 2; // 새 지름이 짝수여야 반지름이 정수다
+  const newDia = r * 2 + more;
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원보다 지름이 ${unitNum(more, "cm")} 더 긴 원을 그리려면 컴퍼스를 몇 cm만큼 벌려야 하는지 쓰시오.`,
+    n(newDia / 2),
+    `처음 원의 지름은 ${expr(`${r}\\times2=${r * 2}`)} 입니다. 새 원의 지름은 ${expr(`${r * 2}+${more}=${newDia}`)} 이고, 벌릴 길이는 그 반이므로 ${expr(`${newDia}\\div2=${newDia / 2}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 원 **둘**의 조건을 겹쳐 벌릴 길이를 되짚는다. */
+function circ233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const small = intBetween(rng, 2, 6);
+  const times = intBetween(rng, 2, 3);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(small, "cm")} 만큼 벌려서 작은 원을 그렸습니다. 큰 원의 지름이 작은 원의 지름의 ${n(times)} 배가 되게 그리려면 컴퍼스를 몇 cm만큼 벌려야 하는지 쓰시오.`,
+    n(small * times),
+    `작은 원의 반지름이 ${unitNum(small, "cm")} 이므로 지름은 ${expr(`${small}\\times2=${small * 2}`)} 입니다. 큰 원의 지름은 ${expr(`${small * 2}\\times${times}=${small * 2 * times}`)} 이고, 큰 원의 반지름은 ${expr(`${small * 2 * times}\\div2=${small * times}`)} 이므로 그만큼 벌립니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -7483,5 +7718,23 @@ export const G3_TIERS: ElemTierMap = {
     기본: graph262Word,
     응용: graph262Apply,
     심화: graph262Deep,
+  },
+  "초3|2-3-1": {
+    연산: circ231Calc,
+    기본: circ231Word,
+    응용: circ231Apply,
+    심화: circ231Deep,
+  },
+  "초3|2-3-2": {
+    연산: circ232Calc,
+    기본: circ232Word,
+    응용: circ232Apply,
+    심화: circ232Deep,
+  },
+  "초3|2-3-3": {
+    연산: circ233Calc,
+    기본: circ233Word,
+    응용: circ233Apply,
+    심화: circ233Deep,
   },
 };

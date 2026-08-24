@@ -4481,19 +4481,71 @@ describe("[초3 D-73] 견줄 상대가 «정수로 읽히는 분수»가 아니�
  */
 describe("[초3 그림] 2-3 원 — 그림이 답도 풀이 단계도 말하지 않는다", () => {
   const CIRCLE_SEEDS = Array.from({ length: 120 }, (_, i) => i);
-  const specOf = (code: string, seed: number) =>
-    generateElementaryProblem(planeUnit(code), seed).figureSpec as Record<
+
+  /**
+   * **표준과 갈래를 다 돈다.** 그물을 갈래까지 넓힌 자리다(2026-08-24).
+   *
+   * ⚠️ 처음 판은 갈래 인자를 안 줘서 **표준만** 봤다. 그 상태로 2-3 에 4단을 얹으면
+   *    갈래 넷의 그림은 **아무도 안 본다** — 하필 4단이 역산이라 답과 그림이 가장
+   *    가까워지는 자리인데(09 §2.2 「심화는 ①에 가장 자주 걸린다」) 그물이 없다.
+   *    지금은 갈래가 없어 `[undefined]` 하나만 돌지만, **등록되는 순간 자동으로 문다.**
+   */
+  const circleVariants = (code: string) => {
+    const u = planeUnit(code);
+    return [
+      undefined,
+      ...(supportedTiers(u).length > 0 ? ELEM_TIERS : []),
+    ] as const;
+  };
+  const specOf = (
+    code: string,
+    seed: number,
+    tier?: (typeof ELEM_TIERS)[number],
+  ) =>
+    generateElementaryProblem(planeUnit(code), seed, tier).figureSpec as Record<
       string,
       unknown
     > | null;
 
-  it("⑴ 2-3-1·2-3-2 에는 원 그림이 붙는다", () => {
+  /**
+   * **그림이 어느 갈래에 붙는지를 «표»로 못 박는다.**
+   *
+   * ⚠️ 첫 판은 「2-3-1 전 갈래에 그림이 붙는다」였고, 갈래를 등록하자마자 빨개졌다 —
+   *    **결함이 아니라 내 전제가 틀린 것**이었다. 실측(09 §2.2)으로 **갈래에 그림이
+   *    없는 것이 섞이는 소단원이 76%** 다. 「어떤 갈래에 그림이 없다」는 정상이다.
+   *
+   * 그렇다고 「있으면 보고 없으면 넘긴다」로 느슨하게 두면, **4단에 그림을 새로 붙여
+   * 답을 새게 하는 회귀**가 그물을 그냥 지나간다. 그래서 **있고 없음 자체를 적는다.**
+   *
+   *   · 2-3-2 — 전 갈래에 붙는다(늘 «준 쪽» 치수를 적을 것이 있다)
+   *   · 2-3-1 — **표준·연산만.** 그 둘은 선분을 그려 놓고 이름을 묻는다(⑤).
+   *     2·3·4단은 성질을 **말로** 묻는 문항이라 그릴 것이 없다(③).
+   *   · 2-3-3 — 전 갈래에 **없다**(⑴-b 가 따로 본다).
+   */
+  const CIRCLE_HAS_FIG: Record<string, readonly (string | undefined)[]> = {
+    "2-3-1": [undefined, "연산"],
+    "2-3-2": [undefined, "연산", "기본", "응용", "심화"],
+  };
+
+  it("⑴ 그림이 붙는 갈래가 정해진 그대로다", () => {
+    const bad: string[] = [];
     for (const code of ["2-3-1", "2-3-2"] as const)
-      for (const seed of CIRCLE_SEEDS.slice(0, 40))
-        expect(specOf(code, seed), `${code} 씨앗 ${seed}`).toMatchObject({
-          version: "elem-1",
-          kind: "circleParts",
-        });
+      for (const tier of circleVariants(code))
+        for (const seed of CIRCLE_SEEDS.slice(0, 40)) {
+          const spec = specOf(code, seed, tier);
+          const want = CIRCLE_HAS_FIG[code]!.includes(tier);
+          const got = spec !== null && spec !== undefined;
+          if (got !== want)
+            bad.push(
+              `${code} «${tier ?? "표준"}» 씨앗 ${seed}: 그림이 ${got ? "있다" : "없다"} — ${want ? "있어야" : "없어야"} 한다`,
+            );
+          if (got && want)
+            expect(
+              spec,
+              `${code} «${tier ?? "표준"}» 씨앗 ${seed}`,
+            ).toMatchObject({ version: "elem-1", kind: "circleParts" });
+        }
+    expect(bad.slice(0, 5)).toEqual([]);
   });
 
   /**
@@ -4504,11 +4556,14 @@ describe("[초3 그림] 2-3 원 — 그림이 답도 풀이 단계도 말하지 
    */
   it("⑴-b 2-3-3 에는 그림이 **없다** — 나를 정보가 없다", () => {
     const bad: string[] = [];
-    for (const seed of CIRCLE_SEEDS) {
-      const spec = specOf("2-3-3", seed);
-      if (spec !== null && spec !== undefined)
-        bad.push(`씨앗 ${seed}: 그림이 붙었다 — ${JSON.stringify(spec)}`);
-    }
+    for (const tier of circleVariants("2-3-3"))
+      for (const seed of CIRCLE_SEEDS) {
+        const spec = specOf("2-3-3", seed, tier);
+        if (spec !== null && spec !== undefined)
+          bad.push(
+            `«${tier ?? "표준"}» 씨앗 ${seed}: 그림이 붙었다 — ${JSON.stringify(spec)}`,
+          );
+      }
     expect(bad.slice(0, 5)).toEqual([]);
     // 분모 — 「그림이 없다」가 «소단원이 사라져서»면 안 된다.
     expect(
@@ -4520,48 +4575,51 @@ describe("[초3 그림] 2-3 원 — 그림이 답도 풀이 단계도 말하지 
   it("⑵ 2-3-2 는 **준 값**만 적는다 — 적힌 수가 답이면 안 된다", () => {
     const bad: string[] = [];
     let looked = 0;
-    for (const seed of CIRCLE_SEEDS) {
-      const p = generateElementaryProblem(planeUnit("2-3-2"), seed);
-      const spec = p.figureSpec as Record<string, unknown>;
-      const labeled = (spec.radius ?? spec.diameter) as string | undefined;
-      if (labeled === undefined) {
-        bad.push(`씨앗 ${seed}: 준 쪽을 안 그렸다`);
-        continue;
+    for (const tier of circleVariants("2-3-2"))
+      for (const seed of CIRCLE_SEEDS) {
+        const p = generateElementaryProblem(planeUnit("2-3-2"), seed, tier);
+        const spec = p.figureSpec as Record<string, unknown>;
+        const labeled = (spec.radius ?? spec.diameter) as string | undefined;
+        if (labeled === undefined) {
+          bad.push(`씨앗 ${seed}: 준 쪽을 안 그렸다`);
+          continue;
+        }
+        looked += 1;
+        const num = String(labeled).replace(/[^\d.]/g, "");
+        // ㉠ 적힌 수는 **발문에 있는 수**여야 한다(준 값이다).
+        if (!p.content.includes(num))
+          bad.push(`씨앗 ${seed}: 그림의 ${num} 이 발문에 없다`);
+        // ㉡ 그리고 **답이면 안 된다.**
+        if (num === p.answer.replace(/[^\d.]/g, ""))
+          bad.push(`씨앗 ${seed}: 그림이 답(${num})을 말한다`);
+        // ㉢ 둘을 같이 적으면 엔진이 던진다 — 여기서도 막는다.
+        if (spec.radius !== undefined && spec.diameter !== undefined)
+          bad.push(`씨앗 ${seed}: 반지름과 지름을 둘 다 적었다`);
       }
-      looked += 1;
-      const num = String(labeled).replace(/[^\d.]/g, "");
-      // ㉠ 적힌 수는 **발문에 있는 수**여야 한다(준 값이다).
-      if (!p.content.includes(num))
-        bad.push(`씨앗 ${seed}: 그림의 ${num} 이 발문에 없다`);
-      // ㉡ 그리고 **답이면 안 된다.**
-      if (num === p.answer.replace(/[^\d.]/g, ""))
-        bad.push(`씨앗 ${seed}: 그림이 답(${num})을 말한다`);
-      // ㉢ 둘을 같이 적으면 엔진이 던진다 — 여기서도 막는다.
-      if (spec.radius !== undefined && spec.diameter !== undefined)
-        bad.push(`씨앗 ${seed}: 반지름과 지름을 둘 다 적었다`);
-    }
     expect(bad.slice(0, 5)).toEqual([]);
     expect(looked, "치수가 적힌 그림을 하나도 못 봤다 — 축이 사라졌다").toBe(
-      CIRCLE_SEEDS.length,
+      CIRCLE_SEEDS.length * circleVariants("2-3-2").length,
     );
   });
 
   it("⑷ 2-3-1 은 치수를 안 적는다 — 답이 낱말이라 수는 쓸 데가 없다", () => {
     const bad: string[] = [];
     let looked = 0;
-    for (const seed of CIRCLE_SEEDS) {
-      const spec = specOf("2-3-1", seed);
-      if (!spec) {
-        bad.push(`씨앗 ${seed}: 그림이 없다`);
-        continue;
+    // 그림이 **붙는 갈래에서만** 본다 — 어느 갈래에 붙는지는 ⑴ 이 따로 못 박는다.
+    for (const tier of circleVariants("2-3-1"))
+      for (const seed of CIRCLE_SEEDS) {
+        const spec = specOf("2-3-1", seed, tier);
+        if (!spec) continue;
+        looked += 1;
+        if (spec.radius !== undefined || spec.diameter !== undefined)
+          bad.push(
+            `«${tier ?? "표준"}» 씨앗 ${seed}: 답이 낱말인데 치수를 적었다`,
+          );
       }
-      looked += 1;
-      if (spec.radius !== undefined || spec.diameter !== undefined)
-        bad.push(`씨앗 ${seed}: 답이 낱말인데 치수를 적었다`);
-    }
     expect(bad.slice(0, 5)).toEqual([]);
+    // 분모 — 그림이 붙는 갈래 수만큼은 봐야 한다. 0 이면 «못 셈»이다.
     expect(looked, "2-3-1 그림을 하나도 못 봤다 — 축이 사라졌다").toBe(
-      CIRCLE_SEEDS.length,
+      CIRCLE_SEEDS.length * CIRCLE_HAS_FIG["2-3-1"]!.length,
     );
   });
 });
