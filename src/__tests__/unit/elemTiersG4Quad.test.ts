@@ -910,3 +910,41 @@ describe("[초4 표준] 그림에서 기호를 고르는 문항", () => {
     counted(looked, "그림 라벨 대조");
   });
 });
+
+/* ────── 2-4-2 · 2-4-3 그림 배선 (2026-08-24) ──────
+ *
+ * 09 §2.2 **규칙 ①(묻는 값을 그림에 적지 마라)은 무는 판정기가 없다.** 값 검산도
+ * 렌더 검사도 다 초록이다 — 여기서 잠근다.
+ */
+describe("[초4 2-4-2·2-4-3] 그림 배선", () => {
+  it("**2-4-3 그림에 치수가 없다** — 그 값이 곧 답이다 (09 §2.2 ①)", () => {
+    let withFig = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed);
+      const spec = p.figureSpec as Record<string, unknown> | undefined;
+      if (!spec) continue;
+      withFig += 1;
+      expect(spec.kind, `씨앗 ${seed}`).toBe("lineRelation");
+      // `distance` 를 실으면 발문이 준 길이가 그림에 찍히고, 그게 곧 정답이다.
+      expect(
+        spec.distance,
+        `씨앗 ${seed} 그림에 치수가 실렸다 — 그 값이 답이다`,
+      ).toBeUndefined();
+      expect(spec.relation, `씨앗 ${seed}`).toBe("parallel");
+    }
+    counted(withFig, "2-4-3 그림 붙은 문항");
+  });
+
+  it("**2-4-2 는 그림을 하나도 안 붙인다** — 붙일 수 있는 갈래의 답이 고정이라", () => {
+    // 🔴 한 번 붙였다가 **R9-c 가 물었다**: 「그림 붙은 26문항에서 «평행선» 100%」.
+    //    나머지 세 갈래는 답을 보여 줘서 못 붙이므로, **그림의 있고 없음 자체가
+    //    답을 알려 준다.** 되살리려면 답이 갈리는 발문을 먼저 만들어야 한다.
+    let looked = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed);
+      expect(p.figureSpec, `씨앗 ${seed}`).toBeFalsy();
+      looked += 1;
+    }
+    counted(looked, "2-4-2 표준 전량");
+  });
+});
