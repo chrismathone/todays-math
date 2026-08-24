@@ -113,6 +113,33 @@ function quartiles7(sorted: readonly number[]): {
   };
 }
 
+/** 숫자를 한자 수사로 읽었을 때 받침이 있는가(0~9) — `src/lib/elementary/rules.ts`
+ * 의 `JOSA_BATCHIM` 표와 같은 값이다(이 파일은 그 정본을 import 하지 않고 이
+ * 저장소의 다른 조사 처리와 같은 무늬로 로컬에 둔다).
+ */
+const NUM_BATCHIM = [
+  true,
+  true,
+  false,
+  true,
+  false,
+  false,
+  true,
+  true,
+  true,
+  false,
+] as const;
+function eulReul(n: number): "을" | "를" {
+  return NUM_BATCHIM[Math.abs(n) % 10] ? "을" : "를";
+}
+
+/** 한글 단어의 마지막 음절에 받침이 있는가. */
+function hasBatchim(word: string): boolean {
+  const code = word.charCodeAt(word.length - 1) - 0xac00;
+  if (code < 0 || code > 11171) return false;
+  return code % 28 !== 0;
+}
+
 function packValues(
   prefix: string,
   values: readonly number[],
@@ -218,7 +245,7 @@ export const M3_STAT2: TypeEntry[] = [
       return {
         content: `학생 $5$명의 수학 점수의 편차가 각각 $${knowns.map((d) => (d >= 0 ? `+${d}` : `${d}`)).join("$점, $")}$점, $x$점이다. 편차의 합은 항상 $0$임을 이용하여 $x$의 값을 구하시오.`,
         answer: `$x=${x}$`,
-        solution: `편차의 합은 항상 $0$이므로 $${knowns.join("+")}+x=0$이다.\n따라서 $x=${x}$이다.`,
+        solution: `편차의 합은 항상 $0$이므로 $${knowns.map((d, i) => (i === 0 ? `${d}` : d >= 0 ? `+${d}` : `${d}`)).join("")}+x=0$이다.\n따라서 $x=${x}$이다.`,
         facts,
         figureSpec: null,
       };
@@ -258,7 +285,7 @@ export const M3_STAT2: TypeEntry[] = [
       const b = nonZero(rng, 1, 5);
       const newVar = a * a * variance;
       return {
-        content: `어떤 자료의 분산이 $${variance}$일 때, 이 자료의 각 변량을 $${a}$배 하고 ${b >= 0 ? `$${b}$을 더한` : `$${-b}$을 뺀`} 새로운 자료의 분산을 구하시오.`,
+        content: `어떤 자료의 분산이 $${variance}$일 때, 이 자료의 각 변량을 $${a}$배 하고 ${b >= 0 ? `$${b}$${eulReul(b)} 더한` : `$${-b}$${eulReul(-b)} 뺀`} 새로운 자료의 분산을 구하시오.`,
         answer: `$${newVar}$`,
         solution: `변량을 $${a}$배 하면 분산은 $${a}^2=${a * a}$배가 되고, 상수를 더하거나 빼는 것은 분산에 영향을 주지 않는다.\n따라서 새로운 자료의 분산은 $${a}^2\\times${variance}=${newVar}$이다.`,
         facts: { variance, a, b, newVar },
@@ -322,7 +349,7 @@ export const M3_STAT2: TypeEntry[] = [
       if (mode === 0) {
         const c = nonZero(rng, 1, 8);
         return {
-          content: `어떤 자료의 표준편차가 $${sd}$일 때, 각 변량에 ${c >= 0 ? `$${c}$을 더한` : `$${-c}$을 뺀`} 새로운 자료의 표준편차를 구하시오.`,
+          content: `어떤 자료의 표준편차가 $${sd}$일 때, 각 변량에 ${c >= 0 ? `$${c}$${eulReul(c)} 더한` : `$${-c}$${eulReul(-c)} 뺀`} 새로운 자료의 표준편차를 구하시오.`,
           answer: `$${sd}$`,
           solution: `모든 변량에 같은 수를 더하거나 빼도 변량 사이의 흩어진 정도는 변하지 않으므로 분산과 표준편차는 변하지 않는다.\n따라서 새로운 자료의 표준편차는 $${sd}$로 처음과 같다.`,
           facts: { sd, mode, c, k: 0, newSd: sd },
@@ -406,9 +433,9 @@ export const M3_STAT2: TypeEntry[] = [
       };
       packValues("v", sorted, facts);
       return {
-        content: `다음은 어느 자료를 작은 값부터 크기순으로 나열한 것이다. ${sorted.map((v) => `$${v}$`).join(", ")}\n이 자료를 상자그림으로 나타낼 때, ${name}를 구하시오.`,
+        content: `다음은 어느 자료를 작은 값부터 크기순으로 나열한 것이다. ${sorted.map((v) => `$${v}$`).join(", ")}\n이 자료를 상자그림으로 나타낼 때, ${name}${hasBatchim(name) ? "을" : "를"} 구하시오.`,
         answer: `$${ans}$`,
-        solution: `자료를 크기순으로 나열하여 다섯 수 요약(최솟값 $${min}$, 제$1$사분위수 $${q1}$, 중앙값 $${med}$, 제$3$사분위수 $${q3}$, 최댓값 $${max}$)을 구하면 상자그림을 그릴 수 있다.\n따라서 ${name}는 $${ans}$이다.`,
+        solution: `자료를 크기순으로 나열하여 다섯 수 요약(최솟값 $${min}$, 제$1$사분위수 $${q1}$, 중앙값 $${med}$, 제$3$사분위수 $${q3}$, 최댓값 $${max}$)을 구하면 상자그림을 그릴 수 있다.\n따라서 ${name}${hasBatchim(name) ? "은" : "는"} $${ans}$이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
@@ -659,7 +686,7 @@ export const M3_STAT2: TypeEntry[] = [
       return {
         content: `다음은 학생 $${pts.length}$명의 국어 점수(x)와 수학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n국어 점수가 가장 낮은 학생과 가장 높은 학생을 좌표평면 위의 두 점이라 할 때, 이 두 점 사이의 거리를 구하시오.`,
         answer: `$${dist}$`,
-        solution: `국어 점수가 가장 낮은 학생의 점은 $(${x0}, ${y0})$, 가장 높은 학생의 점은 $(${x0 + dx}, ${y0 + dy})$이다.\n두 점 사이의 거리는 피타고라스 정리에 의해 $\\sqrt{(${dx})^2+(${dy})^2}=${dist}$이다.`,
+        solution: `국어 점수가 가장 낮은 학생의 점은 $(${x0}, ${y0})$, 가장 높은 학생의 점은 $(${x0 + dx}, ${y0 + dy})$이다.\n두 점 사이의 거리는 피타고라스 정리에 의해 $\\sqrt{${dx}^2+${dy}^2}=${dist}$이다.`,
         facts,
         figureSpec: {
           version: "elem-1",

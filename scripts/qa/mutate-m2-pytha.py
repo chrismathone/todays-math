@@ -57,29 +57,53 @@ MUTATIONS = [
     ),
     (
         "M06 05 빗변 제곱에 1을 더한다 (유클리드 증명 답)",
-        'def("05", "피타고라스 정리의 증명 유클리드의 방법", SEC.정리, "mid", (rng) => {'
+        '"피타고라스 정리의 증명 유클리드의 방법",'
         + NL
-        + "    const [a, b, c] = pick(rng, TRIPLES);"
+        + "    SEC.정리,"
         + NL
-        + "    const c2 = c * c;",
-        'def("05", "피타고라스 정리의 증명 유클리드의 방법", SEC.정리, "mid", (rng) => {'
+        + '    "mid",'
         + NL
-        + "    const [a, b, c] = pick(rng, TRIPLES);"
+        + "    (rng) => {"
         + NL
-        + "    const c2 = c * c + 1;",
+        + "      const [a, b, c] = pick(rng, TRIPLES);"
+        + NL
+        + "      const c2 = c * c;",
+        '"피타고라스 정리의 증명 유클리드의 방법",'
+        + NL
+        + "    SEC.정리,"
+        + NL
+        + '    "mid",'
+        + NL
+        + "    (rng) => {"
+        + NL
+        + "      const [a, b, c] = pick(rng, TRIPLES);"
+        + NL
+        + "      const c2 = c * c + 1;",
     ),
     (
         "M07 06 빗변 제곱에 1을 더한다 (피타고라스 증명 답)",
-        'def("06", "피타고라스 정리의 증명 피타고라스의 방법", SEC.정리, "mid", (rng) => {'
+        '"피타고라스 정리의 증명 피타고라스의 방법",'
         + NL
-        + "    const [a, b, c] = pick(rng, TRIPLES);"
+        + "    SEC.정리,"
         + NL
-        + "    const c2 = c * c;",
-        'def("06", "피타고라스 정리의 증명 피타고라스의 방법", SEC.정리, "mid", (rng) => {'
+        + '    "mid",'
         + NL
-        + "    const [a, b, c] = pick(rng, TRIPLES);"
+        + "    (rng) => {"
         + NL
-        + "    const c2 = c * c + 1;",
+        + "      const [a, b, c] = pick(rng, TRIPLES);"
+        + NL
+        + "      const c2 = c * c;",
+        '"피타고라스 정리의 증명 피타고라스의 방법",'
+        + NL
+        + "    SEC.정리,"
+        + NL
+        + '    "mid",'
+        + NL
+        + "    (rng) => {"
+        + NL
+        + "      const [a, b, c] = pick(rng, TRIPLES);"
+        + NL
+        + "      const c2 = c * c + 1;",
     ),
     (
         "M08 07 답을 r 대신 q 로 (역의 조건 오답)",
