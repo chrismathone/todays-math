@@ -200,6 +200,8 @@ FigureSpec v2 에 **없는 것**: 수 모형, 수 카드, 연산 상자, 곱셈�
 | `curveGraph` | 쌍곡선(반비례)·포물선(이차함수)·직선을 **한 kind** 로(중1 정비례와 반비례,<br>중3 이차함수). `curves`=[{type:"inverse",k}\|{type:"quadratic",a,p,q}] 1~3개<br>+ `lines`(`linearGraph` 와 같은 문법) + `xRange`·`yRange`·`marks`·`grid`.<br>축·눈금·화살촉·글자는 `linearGraph` 와 **같은 코드**다(`_cp_*`).<br>던짐: marks 가 그래프 위 아님 · 쌍곡선이 두 가지로 안 보임 · 좌표축에 붙음<br>· 가지·팔이 1.2칸 미만 · 꼭짓점이 범위 밖 · 포물선이 1칸 미만으로 휨 · 라벨 과대 |
 | `histogram` | 히스토그램(중1). `classes`=계급의 양 끝 값(등간격) · `values`=도수.<br>**틈 없음 · 한 색 · 값 숫자 안 적음 · 경계값이 눈금** — barChart 와 넷이 다르다.<br>`hidden`(찢긴 자국, `total` 필수) · `series2`+`label`(두 집단) · `total`(합 검산) |
 | `freqPolygon` | 도수분포다각형(중1). 양끝을 **계급 하나 바깥의 도수 0** 으로 내려 닫는다<br>(그래서 넓이가 히스토그램과 같다). `bars:true` 로 겹쳐 그리기 · `series2` 2계열 |
+| `boxPlot` | 상자그림(중3). `values`=[최솟값,Q1,중앙값,Q3,최댓값](**순서 아니면 던짐**) +<br>`axisMin`/`axisMax`/`axisStep`(축은 **부르는 쪽이 정한다** — histogram 의 `classes`<br>와 같은 무늬). `series2`+`label` 로 두 상자 비교(유형05). |
+| `scatterPlot` | 산점도(중3). `points`=[[x,y],…] 2~40개(**축 범위 밖이면 던짐** — 그림이 곧<br>검산) + `xMin`/`xMax`/`xStep`·`yMin`/`yMax`/`yStep`. 상관관계는 점 배치로 —<br>양·음·무상관 판정은 시험이 점을 세어서 한다(엔진은 좌표만 검산). |
 
 ### 안 만든 kind — **왜 안 만들었는지**를 적어 둔다 (물결 5E, 2026-08-24)
 
@@ -250,6 +252,22 @@ FigureSpec v2 에 **없는 것**: 수 모형, 수 카드, 연산 상자, 곱셈�
     상대도수(소수)는 10^d 배 해서 **같은 사다리**를 탄다 — 소수용 규칙을 따로 안 만든다.
   · 시험 `figureStatKinds.test.ts` · 변이 `scripts/qa/mutate-stat-kinds.sh` ·
     실증 렌더 `node scripts/qa/probe-stat-kinds.mjs`(지면 등급을 실제로 적용해 찍는다).
+- **`boxPlot`·`scatterPlot`** (물결 6E, 2026-08-24 — RPM 3-2 산포도·상자그림과 산점도):
+  · **지면 폭 240 에 박는다**(`_stat_svg`, histogram 과 같은 함수). 라벨이 넘쳐 벌어지면
+    던진다 — kind 를 새로 만들 때 폭이 내용에 따라 떠다니면 안 된다는 것을 §4-25 가
+    이미 지적했다. 새 kind 둘도 처음부터 박아서 냈다.
+  · **축은 부르는 쪽이 정한다**(`axisMin`/`axisMax`/`axisStep`,
+    `xMin`/`xMax`/`xStep`·`yMin`/`yMax`/`yStep`) — histogram 의 `classes` 와 같은 무늬다.
+    엔진이 「예쁜 눈금」을 데이터에서 지어내면 발문의 다른 수치와 갈릴 수 있어서,
+    여기서는 **범위 밖 값·안 나눠떨어지는 걸음만 검산**한다(둘 다 던진다).
+  · **`boxPlot` 다섯 수가 순서가 아니면 던진다**(최솟값 ≤ Q1 ≤ 중앙값 ≤ Q3 ≤ 최댓값) —
+    조용히 뒤집힌 상자를 그리지 않는다. `series2`+`label` 로 두 상자를 겹쳐 그릴 때는
+    histogram 의 두 집단 규칙과 같이 **둘 다 이름이 있어야 한다.**
+  · **`scatterPlot` 점이 축 범위 밖이면 던진다** — 그림이 곧 검산이다. 상관관계
+    (양의/음의/없음)는 엔진이 판정하지 않는다 — **점을 세어 상관관계를 확인하는
+    코드를 시험에 넣는다**(엔진은 좌표가 범위 안인지만 본다).
+  · 시험 `figureStatKinds.test.ts`(같은 파일, boxPlot/scatterPlot 케이스 추가) ·
+    실렌더 `docs/planning/tracks/wave6e-pytha-stat-sheet/index.html`.
 - **좌표평면 한 벌 — `linearGraph`·`curveGraph`** (물결 4A, 2026-08-24 — RPM 1-1 1077 ·
   2-1 0891·0974·0882 · 3-1 0962·1070 대조):
   · **축·눈금·화살촉·원점 O·안내선·글자 크기가 한 코드**(`_cp_*`)다. 두 kind 는 같은

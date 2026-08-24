@@ -1228,6 +1228,240 @@ def _freq_polygon(spec: Mapping[str, Any]) -> str:
     return _stat_chart(spec, "freqPolygon")
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# boxPlot · scatterPlot — 산포도·상자그림과 산점도 (물결 6E, 2026-08-24)
+#
+# 막고 있던 것: 3-2 「산포도」 7 + 「상자그림과 산점도」 10 = 17유형. `stripChart`(pct
+# 문법)·`pointGrid`(찍힌 점에만 라벨)로는 못 그린다 — 다섯 수 요약과 (x,y) 실수좌표는
+# 그 kind 들의 허용 키가 아니다(물결 3 조사 §0㉢).
+#
+# ## 축은 **부르는 쪽이 정한다** — `histogram` 의 `classes` 와 같은 무늬
+#
+# 「예쁜 눈금」을 여기서 지어내면(예: 데이터 범위로 축을 자동 계산) 발문의 다른
+# 수치(평균·분산 등)와 눈금이 갈릴 수 있다. TS 쪽이 이미 문제에 쓸 정수를 들고
+# 있으므로, 축 범위·걸음(`axisMin`/`axisMax`/`axisStep`, `xRange`/`xStep` 등)은
+# 필수 키로 받아 **여기서는 검산만** 한다(범위 밖 값·안 나눠떨어지는 걸음은 던진다).
+# ═══════════════════════════════════════════════════════════════════════════
+
+BOX_H = 20.0           # 상자 높이
+BOX_ROW_H = 40.0       # 집단 하나가 차지하는 세로 칸(상자 + 위아래 여백)
+BOX_CAP_H = 12.0       # 수염 끝 세로 표시 높이
+BOX_LABEL_GAP = 8.0    # 집단 이름표와 축 사이 간격
+AXIS_MAX_TICKS = 20    # 눈금 상한 — 이 위는 숫자가 붙어 안 읽힌다
+SCATTER_R = 2.6        # 산점도 점 반지름
+SCATTER_MAX_POINTS = 40
+SCATTER_PAD_L = 30.0
+SCATTER_PAD_T = 14.0
+SCATTER_PAD_R = 10.0
+
+
+def _axis_from_spec(
+    lo_key: str, hi_key: str, step_key: str, spec: Mapping[str, Any], pool: list[float]
+) -> tuple[float, float, float, list[float]]:
+    """부르는 쪽이 실어 온 축 범위·걸음을 **검산만** 한다 — 여기서 새로 고르지 않는다.
+
+    범위 밖 값은 던진다(그림이 자료를 못 담는다는 뜻). 걸음이 범위를 나누어떨어지지
+    않아도 던진다 — 조용히 반올림하면 마지막 눈금이 축 끝과 어긋난 그림이 나간다.
+    """
+    lo = _num(spec[lo_key], lo_key, -100000, 100000)
+    hi = _num(spec[hi_key], hi_key, -100000, 100000)
+    if hi <= lo:
+        raise ValueError(f"{hi_key} 는 {lo_key} 보다 커야 합니다")
+    step = _num(spec[step_key], step_key, 1e-6, 100000)
+    for v in pool:
+        if v < lo - 1e-7 or v > hi + 1e-7:
+            raise ValueError(
+                f"값 {_n(v)} 가 축 범위 [{_n(lo)}, {_n(hi)}] 밖입니다 — "
+                f"그림이 자료를 못 담습니다"
+            )
+    n = (hi - lo) / step
+    if abs(n - round(n)) > 1e-6:
+        raise ValueError(f"{step_key} 이 {lo_key}~{hi_key} 를 나누어떨어지지 않습니다")
+    ticks_n = int(round(n))
+    if not 1 <= ticks_n <= AXIS_MAX_TICKS:
+        raise ValueError(f"눈금이 {ticks_n}개입니다 (1~{AXIS_MAX_TICKS}개여야 합니다)")
+    return lo, hi, step, [lo + i * step for i in range(ticks_n + 1)]
+
+
+def _box_five(raw: Any, name: str) -> list[float]:
+    """다섯 수 요약(최솟값·Q1·중앙값·Q3·최댓값). **순서가 아니면 던진다** — 조용히
+    뒤집힌 상자를 그리지 않는다(물결 계약 §「boxPlot」).
+    """
+    if not isinstance(raw, list) or len(raw) != 5:
+        raise ValueError(f"{name} 는 다섯 수(최솟값·Q1·중앙값·Q3·최댓값)여야 합니다")
+    nums = [_num(v, f"{name}[{i}]", -100000, 100000) for i, v in enumerate(raw)]
+    for i in range(4):
+        if nums[i] > nums[i + 1] + 1e-7:
+            raise ValueError(
+                f"{name} 는 최솟값 ≤ 제1사분위수 ≤ 중앙값 ≤ 제3사분위수 ≤ 최댓값 순서여야 "
+                f"합니다 ({', '.join(_n(v) for v in nums)})"
+            )
+    return nums
+
+
+def _box_row(px, y: float, five: list[float]) -> list[str]:
+    lo, q1, med, q3, hi = five
+    half = BOX_H / 2
+    cap = BOX_CAP_H / 2
+    return [
+        _line((px(lo), y), (px(q1), y), sw=1.3),
+        _line((px(q3), y), (px(hi), y), sw=1.3),
+        _line((px(lo), y - cap), (px(lo), y + cap), sw=1.3),
+        _line((px(hi), y - cap), (px(hi), y + cap), sw=1.3),
+        _rect(px(q1), y - half, px(q3) - px(q1), BOX_H, fill=PAPER, sw=1.4),
+        _line((px(med), y - half), (px(med), y + half), sw=1.4),
+    ]
+
+
+def _box_plot(spec: Mapping[str, Any]) -> str:
+    values1 = _box_five(spec["values"], "values")
+    label1 = str(spec.get("label", ""))
+    rows, labels = [values1], [label1]
+
+    second = spec.get("series2")
+    if second is not None:
+        if not isinstance(second, Mapping):
+            raise ValueError("series2 는 객체여야 합니다")
+        extra = set(second) - {"values", "label"}
+        if extra:
+            raise ValueError(
+                f"series2 에 허용되지 않은 키: {', '.join(sorted(str(k) for k in extra))}"
+            )
+        values2 = _box_five(second.get("values"), "series2.values")
+        label2 = str(second.get("label", ""))
+        if not label1 or not label2:
+            raise ValueError(
+                "두 상자그림을 겹쳐 그리려면 label 과 series2.label 이 둘 다 있어야 합니다"
+            )
+        rows.append(values2)
+        labels.append(label2)
+    elif label1:
+        raise ValueError("label 은 series2 와 함께 씁니다 — 한 상자에는 이름표를 안 답니다")
+
+    pool = [v for row in rows for v in row]
+    lo, hi, _step, ticks = _axis_from_spec("axisMin", "axisMax", "axisStep", spec, pool)
+    tick_labels = [_n(v) for v in ticks]
+    xlab = str(spec.get("xLabel", ""))
+
+    left = max(
+        (max(_label_w_max(lb) for lb in labels) + BOX_LABEL_GAP) if label1 else 0.0,
+        _label_w_max(tick_labels[0]) / 2 + FIT_PAD,
+        12.0,
+    )
+    tail = _label_w_max(tick_labels[-1]) / 2 + FIT_PAD
+    if xlab:
+        tail += UNIT_GAP + _label_w_max(xlab)
+    plot_w = STAT_VIEWBOX - left - tail
+    if plot_w < STAT_MIN_PLOT_W:
+        raise ValueError(
+            f"이름표가 넓어 그림 칸이 {plot_w:.0f}단위밖에 안 남습니다 "
+            f"({STAT_MIN_PLOT_W:.0f} 이상이어야 합니다) — 이름을 줄이십시오"
+        )
+
+    def px(v: float) -> float:
+        return left + plot_w * (v - lo) / (hi - lo)
+
+    top = 14.0
+    parts: list[str] = []
+    for i, (row, lb) in enumerate(zip(rows, labels)):
+        y = top + BOX_ROW_H * i + BOX_ROW_H / 2
+        parts += _box_row(px, y, row)
+        if lb:
+            parts.append(_text(left - BOX_LABEL_GAP, y, lb, size=13, anchor="end"))
+    axis_y = top + BOX_ROW_H * len(rows)
+    parts.append(_line((left, axis_y), (left + plot_w, axis_y), sw=1.0))
+    for v, lb in zip(ticks, tick_labels):
+        x = px(v)
+        parts.append(_line((x, axis_y), (x, axis_y + 4), sw=0.9))
+        parts.append(_text(x, axis_y + 14, lb, size=14))
+    if xlab:
+        x_unit = px(ticks[-1]) + _label_w_max(tick_labels[-1]) / 2 + UNIT_GAP
+        parts.append(_text(x_unit, axis_y + 14, xlab, size=13, anchor="start"))
+    return _stat_svg(axis_y + 24.0, "".join(parts))
+
+
+def _scatter_points(
+    raw: Any, xr: tuple[float, float], yr: tuple[float, float]
+) -> list[tuple[float, float]]:
+    if not isinstance(raw, list) or not 2 <= len(raw) <= SCATTER_MAX_POINTS:
+        raise ValueError(f"points 는 2~{SCATTER_MAX_POINTS}개의 [x, y] 목록이어야 합니다")
+    xlo, xhi = xr
+    ylo, yhi = yr
+    out: list[tuple[float, float]] = []
+    for i, p in enumerate(raw):
+        if not isinstance(p, list) or len(p) != 2:
+            raise ValueError(f"points[{i}] 는 [x, y] 여야 합니다")
+        x = _num(p[0], f"points[{i}][0]", -100000, 100000)
+        y = _num(p[1], f"points[{i}][1]", -100000, 100000)
+        if not (xlo - 1e-7 <= x <= xhi + 1e-7 and ylo - 1e-7 <= y <= yhi + 1e-7):
+            raise ValueError(
+                f"points[{i}] = ({_n(x)}, {_n(y)}) 가 축 범위 밖입니다 — "
+                f"그림이 자료를 못 담습니다"
+            )
+        out.append((x, y))
+    return out
+
+
+def _scatter_plot(spec: Mapping[str, Any]) -> str:
+    xlo, xhi, _xstep, xticks = _axis_from_spec("xMin", "xMax", "xStep", spec, [])
+    ylo, yhi, _ystep, yticks = _axis_from_spec("yMin", "yMax", "yStep", spec, [])
+    pts = _scatter_points(spec["points"], (xlo, xhi), (ylo, yhi))
+    x_labels = [_n(v) for v in xticks]
+    y_labels = [_n(v) for v in yticks]
+    xlab = str(spec.get("xLabel", ""))
+    ylab = str(spec.get("yLabel", ""))
+    title = str(spec.get("title", ""))
+
+    left = max(
+        (_label_w_max(ylab) + 7 + FIT_PAD) if ylab else 0.0,
+        max(_label_w_max(t) for t in y_labels) + 9.0,
+        SCATTER_PAD_L,
+    )
+    tail = _label_w_max(x_labels[-1]) / 2 + FIT_PAD
+    plot_w = STAT_VIEWBOX - left - tail - SCATTER_PAD_R
+    if plot_w < STAT_MIN_PLOT_W:
+        raise ValueError(
+            f"라벨이 넓어 그림 칸이 {plot_w:.0f}단위밖에 안 남습니다 "
+            f"({STAT_MIN_PLOT_W:.0f} 이상이어야 합니다)"
+        )
+    top = 30.0 if title else SCATTER_PAD_T
+    plot_h = STAT_PLOT_H
+    bottom = top + plot_h
+
+    def px(v: float) -> float:
+        return left + plot_w * (v - xlo) / (xhi - xlo)
+
+    def py(v: float) -> float:
+        return bottom - plot_h * (v - ylo) / (yhi - ylo)
+
+    parts: list[str] = []
+    for v in xticks[1:-1]:
+        parts.append(_grid_line((px(v), top), (px(v), bottom)))
+    for v in yticks[1:-1]:
+        parts.append(_grid_line((left, py(v)), (left + plot_w, py(v))))
+    parts.append(_line((left, top), (left, bottom)))
+    parts.append(_line((left, bottom), (left + plot_w, bottom)))
+    for v, lb in zip(xticks, x_labels):
+        x = px(v)
+        parts.append(_line((x, bottom), (x, bottom + 4), sw=0.9))
+        parts.append(_text(x, bottom + 14, lb, size=14))
+    for v, lb in zip(yticks, y_labels):
+        y = py(v)
+        parts.append(_line((left - 4, y), (left, y), sw=0.9))
+        parts.append(_text(left - 7, y, lb, size=14, anchor="end"))
+    # 점은 축·모눈 **위**에 그린다 — 겹치면 자료가 격자에 가려 안 보인다.
+    parts += [
+        f'<circle cx="{_n(px(x))}" cy="{_n(py(y))}" r="{_n(SCATTER_R)}" fill="{INK}"/>'
+        for x, y in pts
+    ]
+    parts.append(_unit_label(left, top, ylab))
+    if xlab:
+        x_unit = px(xticks[-1]) + _label_w_max(x_labels[-1]) / 2 + UNIT_GAP
+        parts.append(_text(x_unit, bottom + 14, xlab, size=13, anchor="start"))
+    parts.append(_chart_title(title, left + plot_w / 2, plot_w, y=18.0))
+    return _stat_svg(bottom + 24.0, "".join(parts))
+
+
 def _pictograph(spec: Mapping[str, Any]) -> str:
     unit = _int(spec["unit"], "unit", 1, 100)
     items = spec["items"]
@@ -4029,6 +4263,9 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     # 중1 통계 (물결 3A, RPM 1-2 도수분포표와 상대도수) — 위 절 참조.
     "histogram": frozenset({"classes", "values"}),
     "freqPolygon": frozenset({"classes", "values"}),
+    # 중3 통계 (물결 6E, RPM 3-2 산포도·상자그림과 산점도) — 위 절 참조.
+    "boxPlot": frozenset({"values", "axisMin", "axisMax", "axisStep"}),
+    "scatterPlot": frozenset({"points", "xMin", "xMax", "xStep", "yMin", "yMax", "yStep"}),
 }
 ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "fracBars": frozenset({"fill"}),
@@ -4063,6 +4300,10 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "freqPolygon": frozenset(
         {"yMax", "yStep", "yLabel", "xLabel", "title", "total", "bars", "series2", "label"}
     ),
+    # `series2`·`label` — 상자그림 두 개를 겹쳐 그려 두 자료를 비교한다(유형05).
+    # 둘 다 이름이 있어야 한다(histogram 의 같은 규칙과 무늬가 같다).
+    "boxPlot": frozenset({"series2", "label", "xLabel"}),
+    "scatterPlot": frozenset({"xLabel", "yLabel", "title"}),
 }
 ADV_RENDER = {
     "fracBars": _frac_bars,
@@ -4094,4 +4335,6 @@ ADV_RENDER = {
     "netCone": _net_cone,
     "histogram": _histogram,
     "freqPolygon": _freq_polygon,
+    "boxPlot": _box_plot,
+    "scatterPlot": _scatter_plot,
 }
