@@ -1802,6 +1802,26 @@ def _parse_voxels(spec: Mapping[str, Any]) -> list[tuple[int, int, int]]:
     return out
 
 
+def paint_order(voxels: list[tuple[int, int, int]]) -> list[tuple[int, int, int]]:
+    """쌓기나무를 **먼 것부터** 늘어놓는다 (화가 알고리즘).
+
+    카메라는 `View.direction` 이 말하듯 **+x · -y · +z** 쪽에 있다 — 그래서
+    `_iso_cube` 가 위·오른쪽·앞면만 그린다. 그러면 큐브 B 가 A 를 가리는 조건은
+    **세 축 모두에서 앞**일 때다:  `B.x >= A.x and B.y <= A.y and B.z >= A.z`.
+    이때 `x - y + z` 는 B 쪽이 **반드시** 더 크다. 그래서 그 값 오름차순이 곧
+    「가려지는 것 먼저」다(값이 같으면 서로 가릴 수 없어 순서가 자유롭다).
+
+    🔴 종전 키는 `(y, x, z)` **내림차순**이었다. y 는 맞았지만 **x·z 가 거꾸로**라
+       앞의 큐브를 먼저 그리고 뒤의 큐브를 그 위에 덮었다. 지면에서는 앞쪽 낮은
+       큐브의 **윗면이 옆 높은 기둥의 앞면을 뚫고** 나와 계단 모양으로 파였다
+       (원장님 2026-08-25 지적, 초6 2-3 공간과 입체 여섯 문항 중 **다섯**).
+
+    ⚠️ 이 함수를 고치면 `scripts/qa/probe-elem-cube-order.py` 가 빨개진다.
+       그 판정기는 **이 함수를 그대로 불러** 재므로 규칙이 두 벌이 되지 않는다.
+    """
+    return sorted(voxels, key=lambda v: (v[0] - v[1] + v[2], v[1], v[0]))
+
+
 def _iso_cube(view: Any, x: int, y: int, z: int, occ: set[tuple[int, int, int]]) -> str:
     def p(dx: float, dy: float, dz: float) -> tuple[float, float]:
         return view((x + dx, y + dy, z + dz))
@@ -1901,7 +1921,8 @@ def _stack_cubes(spec: Mapping[str, Any]) -> str:
         miny = min(c[1] for c in corners)
         maxy = max(c[1] for c in corners)
         view = View(0.5, 45, scale, (x_cursor - minx, pad - miny))
-        ordered = sorted(voxels, key=lambda v: (v[1], v[0], v[2]), reverse=True)
+        # 순서 규칙은 `paint_order` 한 곳에 있다 — 판정기가 그것을 그대로 부른다.
+        ordered = paint_order(voxels)
         for vx, vy, vz in ordered:
             parts.append(_iso_cube(view, vx, vy, vz, occ))
         x_cursor += (maxx - minx) + gap
