@@ -455,6 +455,68 @@ describe("중3 원주각의 활용 14유형 (3-2)", () => {
     expect(bad.slice(0, 4), `대분수 꼴 ${bad.length}건`).toEqual([]);
   });
 
+  /**
+   * 🔴 **풀이는 주어진 것에서 앞으로 가야 한다.**
+   *
+   * 2026-08-24 미분류 133건을 읽다가 찾았다. 「접선과 현이 이루는 각」 계열(10·12·13)은
+   * 한 유형이 **세 갈래**를 낸다 — 무엇을 주고 무엇을 묻는지가 갈래마다 다르다. 그런데
+   * 풀이 본이 **한 갈래로만** 쓰여 있어서, 그 각을 «묻는» 갈래에서 첫 줄이 답을 못박았다:
+   *
+   * > 발문: … $\angle APT=38^\circ$일 때, $\angle ATP$의 크기를 구하시오.
+   * > 풀이: … 같으므로 $\angle ABT=\angle ATP=26^\circ$이다.
+   *
+   * $26^\circ$ 가 어디서 나왔는지 아무 데도 없다. 학생은 그 줄을 따라갈 수 없다.
+   * **값 검사는 이걸 통과시킨다** — 답은 맞다. KaTeX 도 초록이다.
+   *
+   * ⚠️ 이 검사를 **저장소 전체**에 대는 판정기로 만들어 봤다가 버렸다. 정상 풀이도 각을
+   *    자주 단언하므로(특수각 · 이등변의 절반 · 「합이 $180^\circ$이므로」) 27유형이 걸렸고
+   *    그중 24가 거짓이었다 — **거짓 경보는 가드를 끈다**(2026-08-20). 그래서 아홉 갈래를
+   *    눈으로 다 확인한 **이 세 유형에만** 못 박는다.
+   */
+  it("🔴 「접선과 현이 이루는 각」 계열은 첫 줄이 답을 미리 못박지 않는다", () => {
+    const FAMILY = [
+      "3-2|원주각의 활용|10",
+      "3-2|원주각의 활용|12",
+      "3-2|원주각의 활용|13",
+    ];
+    const degrees = (t: string) =>
+      new Set([...t.matchAll(/(\d+)\^\\circ/g)].map((m) => m[1]!));
+    const bad: string[] = [];
+    const modesSeen = new Map<string, Set<number>>();
+    for (const key of FAMILY) {
+      modesSeen.set(key, new Set());
+      for (let seed = 1; seed <= 300; seed += 1) {
+        const p = generateMiddleProblem(key, seed);
+        modesSeen.get(key)!.add(Number((p.facts as F).mode));
+        const answer = degrees(p.answer);
+        const given = degrees(p.content);
+        const first = p.solution.split("\n")[0]!;
+        // ⚠️ 「첫 줄에 정답 값이 있다」만으로는 못 가른다 — 유형 13 의 한 갈래는 첫 줄이
+        //    그 값을 **계산한다**($\angle ABT=180^\circ-37^\circ-102^\circ=41^\circ$).
+        //    가르는 것은 **그 덩어리 안에 계산이 있는가**다.
+        for (const m of first.matchAll(/\$([^$]*)\$/g)) {
+          const span = m[1]!;
+          if (/[-+]|\\times|\\div|\\d?frac|\\sqrt/.test(span)) continue;
+          const asserted = [...degrees(span)].some(
+            (d) => answer.has(d) && !given.has(d),
+          );
+          if (asserted) {
+            bad.push(`${key} seed=${seed}: ${first.slice(0, 110)}`);
+            break;
+          }
+        }
+      }
+    }
+    // ⚠️ 세 갈래를 다 돌지 않았으면 이 검사는 「걸리는 갈래를 안 본 것」일 수 있다.
+    //    그러면 초록이 아무것도 증명하지 않는다.
+    for (const [key, seen] of modesSeen) {
+      expect(seen.size, `${key} 의 갈래를 다 못 봤다`).toBe(3);
+    }
+    expect(bad.slice(0, 4), `답을 미리 못박은 풀이 ${bad.length}건`).toEqual(
+      [],
+    );
+  });
+
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
     for (const e of entries) {
       const set = generateMiddleSet(e.key, 20260824, 4);

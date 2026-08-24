@@ -1489,9 +1489,24 @@ $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 이등변삼각형�
         return {
           content: `$\\overline{AB}$가 원 $O$의 지름이고 직선 $PT$는 원 $O$의 접선이며 점 $T$는 접점이다. 세 점 $P$, $A$, $B$는 이 순서대로 한 직선 위에 있다. ${given}일 때, $${ask}$의 크기를 구하시오.`,
           answer: angAnswer(value),
-          solution: `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle ABT=\\angle ATP=${a}^\\circ$이다.
-$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ATB=90^\\circ$이고, 삼각형 $ABT$에서 $\\angle TAB=90^\\circ-${a}^\\circ=${90 - a}^\\circ$이다.
-$\\angle TAP=180^\\circ-${90 - a}^\\circ=${90 + a}^\\circ$이므로 삼각형 $APT$에서 $\\angle APT=180^\\circ-${90 + a}^\\circ-${a}^\\circ=${p}^\\circ$이다.`,
+          // ⚠️ 풀이는 **주어진 것에서 앞으로** 가야 한다. mode 2 는 $\angle APT$ 를 주고
+          //    $\angle ATP$ 를 묻는데, 앞의 두 갈래와 같은 본을 쓰면 첫 줄이 **답을 이미
+          //    단언**한다(「$\angle ABT=\angle ATP=26^\circ$이다」). 학생이 그 줄을 따라갈 수 없다.
+          //    2026-08-24 미분류 133건을 읽다 찾았다. 값이 맞아 시험은 통과시킨다.
+          solution:
+            mode === 2
+              ? `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle ABT=\\angle ATP$이다. 이 크기를 $x$라 하자.
+$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ATB=90^\\circ$이고, 삼각형 $ABT$에서 $\\angle TAB=90^\\circ-x$이다.
+$\\angle TAP=180^\\circ-(90^\\circ-x)=90^\\circ+x$이므로 삼각형 $APT$에서 $\\angle APT=180^\\circ-(90^\\circ+x)-x=90^\\circ-2x$이다.
+$90^\\circ-2x=${p}^\\circ$에서 $x=${a}^\\circ$이다.`
+              : `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle ABT=\\angle ATP=${a}^\\circ$이다.
+$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ATB=90^\\circ$이고, 삼각형 $ABT$에서 $\\angle TAB=90^\\circ-${a}^\\circ=${90 - a}^\\circ$이다.${
+                  // mode 0 은 $\angle TAB$ 를 묻는다 — 거기서 끝난다. 한 줄을 더 붙이면
+                  // **묻지 않은 각**을 구하고 끝나 학생이 무엇이 답인지 헷갈린다.
+                  mode === 0
+                    ? ""
+                    : `\n$\\angle TAP=180^\\circ-${90 - a}^\\circ=${90 + a}^\\circ$이므로 삼각형 $APT$에서 $\\angle APT=180^\\circ-${90 + a}^\\circ-${a}^\\circ=${p}^\\circ$이다.`
+                }`,
           facts: { a, p, mode, x: value },
           figureSpec: figTangentDiameter({ a, angles }),
         };
@@ -1587,9 +1602,20 @@ $\\angle BDE=\\dfrac{1}{2}(180^\\circ-${b}^\\circ)=${90 - b / 2}^\\circ$이고, 
       return {
         content: `두 원이 점 $T$에서 접하고 직선 $EF$는 두 원의 공통인 접선이다. 세 점 $A$, $T$, $D$와 세 점 $B$, $T$, $C$가 각각 한 직선 위에 있고 두 점 $A$, $B$는 한 원 위에, 두 점 $C$, $D$는 다른 원 위에 있다. ${given}일 때, $${ask}$의 크기를 구하시오.`,
         answer: angAnswer(value),
-        solution: `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle BTF=\\angle BAT=${a}^\\circ$, $\\angle DTF=\\angle DCT=${c}^\\circ$이다.
+        // ⚠️ 갈래마다 **주어진 것이 다르다.** 한 본을 세 갈래에 쓰면 mode 1·2 에서 첫 줄이
+        //    묻는 각을 이미 단언한다(「$\angle BTF=\angle BAT=51^\circ$」 — 그 $51^\circ$ 가 답이다).
+        //    2026-08-24 미분류 133건을 읽다 찾았다. 값이 맞아 시험은 통과시킨다.
+        solution: [
+          `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle BTF=\\angle BAT=${a}^\\circ$, $\\angle DTF=\\angle DCT=${c}^\\circ$이다.
 $\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=${c}^\\circ$이다.
-직선 $EF$ 위에서 $\\angle ATE+\\angle ATB+\\angle BTF=180^\\circ$이므로 $\\angle ATB=180^\\circ-${a}^\\circ-${c}^\\circ=${t}^\\circ$이고, $${ask}=${value}^\\circ$이다.`,
+직선 $EF$ 위에서 $\\angle ATE+\\angle ATB+\\angle BTF=180^\\circ$이므로 $\\angle ATB=180^\\circ-${a}^\\circ-${c}^\\circ=${t}^\\circ$이다.`,
+          `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle BTF=\\angle BAT=${a}^\\circ$이고, $\\angle DTF=\\angle DCT$이다.
+$\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=\\angle DCT$이다.
+직선 $EF$ 위에서 $\\angle ATE+\\angle ATB+\\angle BTF=180^\\circ$이므로 $\\angle DCT=180^\\circ-${t}^\\circ-${a}^\\circ=${c}^\\circ$이다.`,
+          `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle DTF=\\angle DCT=${c}^\\circ$이고, $\\angle BTF=\\angle BAT$이다.
+$\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=${c}^\\circ$이다.
+직선 $EF$ 위에서 $\\angle ATE+\\angle ATB+\\angle BTF=180^\\circ$이므로 $\\angle BAT=180^\\circ-${c}^\\circ-${t}^\\circ=${a}^\\circ$이다.`,
+        ][mode]!,
         facts: { a, c, t, mode, x: value },
         figureSpec: figTwoCirclesTangent({ a, c, angles }),
       };
@@ -1632,9 +1658,18 @@ $\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=${c}^\\circ
       return {
         content: `두 원이 점 $T$에서 접하고 직선 $PQ$는 두 원의 공통인 접선이다. 세 점 $A$, $C$, $T$와 세 점 $B$, $D$, $T$가 각각 한 직선 위에 있고 두 점 $A$, $B$는 큰 원 위에, 두 점 $C$, $D$는 작은 원 위에 있다. ${given}일 때, $${ask}$의 크기를 구하시오.`,
         answer: angAnswer(value),
-        solution: `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 큰 원에서 $\\angle ABT=\\angle ATP=${b}^\\circ$이다.
-삼각형 $ABT$에서 $\\angle ATB=180^\\circ-${a}^\\circ-${b}^\\circ=${t}^\\circ$이다.
-작은 원에서도 같은 성질이 성립하여 $\\angle TCD=\\angle TAB$, $\\angle TDC=\\angle TBA$이므로 $\\overline{AB}\\parallel\\overline{CD}$이고 $${ask}=${value}^\\circ$이다.`,
+        // ⚠️ 갈래마다 주어진 것이 다르다. 한 본을 세 갈래에 쓰면 mode 1 은 둘째 줄에서
+        //    답($\angle TAB$)을 이미 쓰고, mode 2 는 첫 줄에서 답($\angle ATP$)을 단언한다.
+        //    2026-08-24 미분류 133건을 읽다 찾았다.
+        solution: [
+          `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 큰 원에서 $\\angle ABT=\\angle ATP=${b}^\\circ$이다.
+삼각형 $ABT$에서 $\\angle ATB=180^\\circ-${a}^\\circ-${b}^\\circ=${t}^\\circ$이다.`,
+          `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 큰 원에서 $\\angle ABT=\\angle ATP=${b}^\\circ$이다.
+삼각형 $ABT$에서 $\\angle TAB=180^\\circ-${t}^\\circ-${b}^\\circ=${a}^\\circ$이다.`,
+          `삼각형 $ABT$에서 $\\angle ABT=180^\\circ-${a}^\\circ-${t}^\\circ=${b}^\\circ$이다.
+작은 원에서도 접선과 현이 이루는 각의 성질이 성립하여 $\\angle TCD=\\angle TAB$, $\\angle TDC=\\angle TBA$이므로 $\\overline{AB}\\parallel\\overline{CD}$이다.
+따라서 $\\angle TDC=\\angle ABT=${b}^\\circ$이다.`,
+        ][mode]!,
         facts: { a, b, t, mode, x: value },
         figureSpec: figTwoCirclesInner({ a, b, angles }),
       };
