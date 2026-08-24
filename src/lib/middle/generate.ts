@@ -13,6 +13,7 @@ import { createRng } from "../elementary/rng";
 import { M1_CALC } from "./m1Calc";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_EXPR } from "./m1Expr";
+import { M1_GEO3 } from "./m1Geo3";
 import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_NUM } from "./m1Num";
 import { M1_PROP } from "./m1Prop";
@@ -37,6 +38,7 @@ const ALL: TypeEntry[] = [
   ...M1_SOLID_TYPES,
   ...M1_STAT_TYPES,
   ...M1_STAT_FIG,
+  ...M1_GEO3,
   ...M2_TYPES,
   ...M3_TYPES,
 ];
