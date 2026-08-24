@@ -18,7 +18,7 @@ import {
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { findQueue, unreviewedWhere } from "@/lib/review/queues";
-import { serializeProblem } from "@/lib/serializers";
+import { toConsoleRow } from "@/lib/review/consoleRow";
 import { getSessionUser } from "@/lib/session";
 
 export async function GET(request: NextRequest) {
@@ -41,13 +41,17 @@ export async function GET(request: NextRequest) {
       take: limit,
       // 가장 오래 방치된 것부터. 새로 들어온 것이 늘 앞에 서면 뒤가 영영 안 온다.
       orderBy: { updatedAt: "asc" },
+      // 단원명은 화면이 늘 보여 준다 — 안 읽어 오면 **더 불러온 문항만** «—» 가 된다.
+      include: { unit: { select: { grade: true, section: true } } },
     }),
     db.problem.count({ where }),
     db.problemReviewLog.count({ where: { reviewerId: session.id } }),
   ]);
 
   return jsonOk(reviewQueueResponseSchema, {
-    data: rows.map(serializeProblem),
+    // 서버 페이지(/review)와 **같은 매퍼**를 쓴다. 손으로 옮겨 적으면 두 모양이 갈리고,
+    // 클라이언트는 응답을 캐스팅해 받으므로 그 차이를 타입이 못 잡는다(2026-08-24 실측).
+    data: rows.map(toConsoleRow),
     meta: {
       queue: {
         key: queue.key,

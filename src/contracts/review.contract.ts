@@ -109,8 +109,38 @@ export const reviewQueueSummarySchema = z.strictObject({
   remaining: z.number().int().nonnegative(),
 });
 
+/**
+ * 검수 콘솔이 받는 한 행 — 일반 문항 계약(`problemSchema`)과 **다른 모양**이다.
+ *
+ * 🔴 예전에는 여기가 `problemSchema` 였는데, 화면이 실제로 쓰는 `questionType`·
+ *    `figureDims`·`figureSourceMm`·`unitName` 이 거기 없었다. 클라이언트가 응답을
+ *    캐스팅해 받으므로 **타입이 그 차이를 못 잡았고**, 더 불러온 문항부터 그림 치수와
+ *    단원명이 조용히 사라졌다. 만드는 쪽은 `lib/review/consoleRow.ts` 매퍼 하나다.
+ */
+export const reviewConsoleRowSchema = z.strictObject({
+  id: z.string(),
+  problemCode: z.string(),
+  content: z.string(),
+  answer: z.string(),
+  solution: z.string().nullable(),
+  questionType: z.string().nullable(),
+  figureUrls: z.array(z.string()),
+  figureDims: z.array(z.number()),
+  figureSourceMm: z.array(z.number()),
+  directUseAllowed: z.boolean(),
+  unitName: z.string(),
+  /** 원본이 어디서 왔나 — 검수자가 원본을 열어 대 볼 수 있게 (원장님 요청 2026-08-24). */
+  source: z.string(),
+  sourceFile: z.string().nullable(),
+  school: z.string().nullable(),
+  subject: z.string().nullable(),
+  examId: z.string().nullable(),
+  questionNumber: z.number().int().nullable(),
+  solutionSource: z.string(),
+});
+
 export const reviewQueueResponseSchema = z.strictObject({
-  data: z.array(problemSchema),
+  data: z.array(reviewConsoleRowSchema),
   meta: z.strictObject({
     queue: reviewQueueSummarySchema,
     /** 내가 오늘까지 이 대기열에서 판정한 수 — 「얼마나 했나」. */

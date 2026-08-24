@@ -45,6 +45,15 @@ const problem = (i: number): ConsoleProblem => ({
   figureSourceMm: [],
   directUseAllowed: true,
   unitName: "테스트 단원",
+  // 원본 메타데이터 (2026-08-24). 타입이 이걸 요구하는 것이 **의도한 가드**다 —
+  // 예전에는 API 응답을 캐스팅해 받아 모양이 갈려도 아무도 몰랐다.
+  source: "past_exam",
+  sourceFile: "N:/기출/테스트.PDF",
+  school: "테스트중",
+  subject: null,
+  examId: null,
+  questionNumber: i,
+  solutionSource: "none",
 });
 
 function arm() {
@@ -165,5 +174,105 @@ describe("검수 콘솔 — 신고 가속 (2026-08-22)", () => {
     await user.keyboard("1");
     await waitFor(() => expect(posts).toHaveLength(1));
     expect(posts[0]!.body).toMatchObject({ verdict: "pass" });
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — **정답도 수식 렌더러를 탄다** (원장님 관찰 2026-08-24).
+ *
+ * 원장님이 두 가지를 화면에서 찾아 주셨다:
+ *   ⑴ 정답이 `$\frac{12}{13}$` **날 글자 그대로** 나온다.
+ *   ⑵ 정답의 `④` 가 보기의 `④` 와 **글꼴이 다르다**.
+ *
+ * 뿌리가 하나다 — 본문·해설은 렌더러를 타는데 **정답만 `{row.answer}` 날 문자열**이었다.
+ * 그래서 수식은 안 그려지고, 글꼴도 렌더러를 탄 보기와 갈렸다.
+ *
+ * ⚠️ `MathText` 의 머리주석이 이미 그 규칙을 적어 두고 있었다 —
+ *    「**정답**·해설 등 단문 수식 렌더러 … 검수(S-05)·문제은행(S-08)·인쇄(S-06)가
+ *    **이 경로만 쓴다 — 렌더 경로 분기 금지**」. 검수 화면이 그 규칙을 어기고 있었다.
+ *    규칙을 문서에만 적어 두면 이렇게 조용히 갈라진다. 그래서 여기서 잠근다.
+ */
+describe("검수 콘솔 — 정답 렌더 (2026-08-24)", () => {
+  /**
+   * ⚠️ 역슬래시를 **코드로 만든다.** 이 저장소가 여러 번 겪은 자리다 — 셸 heredoc·
+   *    정규식·JSON 을 거치며 역슬래시가 한 겹 붙거나 사라진다. 실제로 이 테스트를
+   *    처음 쓸 때 `"$\\frac…"` 가 파일에 `"$\frac…"` 로 들어갔고, JS 는 그것을
+   *    **폼피드(`\f`)** 로 읽어 KaTeX 에 `rac{12}{13}` 이 갔다. 그래서 **제품이 아니라
+   *    픽스처가 빨간불을 냈다.** 코드로 만들면 그 축이 아예 없어진다.
+   */
+  const BS = String.fromCharCode(92);
+  const FRAC = `$${BS}frac{12}{13}$`;
+
+  const withAnswer = (answer: string): ConsoleProblem => ({
+    ...problem(1),
+    answer,
+  });
+
+  function renderWith(answer: string) {
+    return render(
+      <ReviewConsole
+        queues={QUEUES}
+        initialKey="figure"
+        initialRows={[withAnswer(answer)]}
+        reviewedByMe={0}
+      />,
+    );
+  }
+
+  it("정답의 수식이 날 LaTeX 로 새지 않는다", () => {
+    arm();
+    renderWith(FRAC);
+
+    // 화면 어디에도 `\frac` 이나 감싼 `$` 가 글자로 남으면 안 된다.
+    expect(document.body.textContent).not.toContain(BS + "frac");
+    expect(document.body.textContent).not.toContain("$");
+  });
+
+  it("정답도 본문과 같은 렌더 경로(KaTeX)를 탄다", () => {
+    arm();
+    const { container } = renderWith(FRAC);
+
+    // 본문이 쓰는 것과 같은 렌더러라면 KaTeX 산출물이 정답 자리에도 생긴다.
+    const label = screen.getByText("정답");
+    const row = label.parentElement!;
+    expect(row.querySelector(".katex")).not.toBeNull();
+    expect(container.textContent).toContain("12");
+  });
+
+  it("수식이 아닌 정답(④)도 같은 경로로 그린다 — 보기와 글꼴이 갈리지 않게", () => {
+    arm();
+    renderWith("④");
+
+    const row = screen.getByText("정답").parentElement!;
+    expect(row.textContent).toContain("④");
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — **원본 메타데이터를 하단에 보여 준다** (원장님 요청 2026-08-24:
+ * 「검수 계정은 원본이 어디에 있는지 원본 메타데이터도 하단에 나오게」).
+ *
+ * 검수자가 이상한 문항을 만났을 때 **원본을 열어 대 보려면** 경로가 화면에 있어야 한다.
+ * 값이 화면에 안 뜨면 검수는 「이상하다」까지만 하고 원인을 못 짚는다.
+ */
+describe("검수 콘솔 — 원본 메타데이터 (2026-08-24)", () => {
+  it("출처·원본 파일·문항 코드를 하단에 보여 준다", () => {
+    arm();
+    renderConsole();
+
+    const meta = screen.getByLabelText("원본 정보");
+    expect(meta).toHaveTextContent("기출");
+    expect(meta).toHaveTextContent("테스트중");
+    expect(meta).toHaveTextContent("N:/기출/테스트.PDF");
+    expect(meta).toHaveTextContent("T-0001");
+  });
+
+  it("기계 키를 날것으로 내보이지 않는다", () => {
+    arm();
+    renderConsole();
+
+    const meta = screen.getByLabelText("원본 정보");
+    expect(meta.textContent).not.toContain("past_exam");
+    expect(meta).toHaveTextContent("해설 없음");
   });
 });
