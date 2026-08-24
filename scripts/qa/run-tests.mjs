@@ -132,7 +132,14 @@ if (!args.some((a) => IS_TEST_FILE.test(a))) {
   const sweep = spawnSync(process.execPath, ["scripts/qa/sweep-elem-probes.mjs"], {
     stdio: "inherit",
   });
-  if (sweep.status !== 0)
+  // ⚠️ **4 는 울타리다 — 결함이 아니지만 «전부 깨끗»도 아니다.** 그 회차로는 밀지 않는다.
+  //    이것을 통과시키면 「못 잰 것」이 「깨끗」으로 세어진다(2026-08-24 실제로 그랬다).
+  if (sweep.status === 4)
+    문제.push(
+      "초등 판정기 일부를 **못 쟀다**(울타리 — 다른 세션이 엔진을 쓰는 중). " +
+        "결함이 아니지만 이 회차는 «전부 깨끗»이 아니다 — 창이 닫힌 뒤 다시 돌려라.",
+    );
+  else if (sweep.status !== 0)
     문제.push(
       `초등 판정기 쓸기가 막았다 (종료 ${sweep.status}) — 위 «판정기가 결함을 찾았다» 줄을 보라`,
     );
