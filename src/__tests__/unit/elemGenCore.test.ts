@@ -18,9 +18,13 @@ import {
 import {
   allocateByPreset,
   findUnit,
+  generateComboSet,
   generateSet,
+  listCombos,
   listCoverage,
 } from "../../../scripts/elem/gen-core";
+
+const AREA_FRACTION_COMBO = "초5|2-2-3::초5|1-6-2";
 
 describe("[초등 출제 CLI] 커버리지 목록", () => {
   it("커버리지는 엔진 등록부에서 유도된다 — 손 목록이 아니다", () => {
@@ -50,6 +54,17 @@ describe("[초등 출제 CLI] 커버리지 목록", () => {
 
   it("없는 소단원 코드는 던진다", () => {
     expect(() => findUnit("초4", "9-9-9")).toThrow(/9-9-9/);
+  });
+
+  it("결합형 목록도 엔진 등록부에서 유도된다", () => {
+    expect(listCombos()).toEqual([
+      {
+        id: AREA_FRACTION_COMBO,
+        anchorKey: "초5|2-2-3",
+        prerequisiteKeys: ["초5|1-6-2"],
+        familyIds: ["nested-part", "remainder-part"],
+      },
+    ]);
   });
 });
 
@@ -92,21 +107,21 @@ describe("[초등 출제 CLI] 프리셋 배분 (D-71 안A)", () => {
 });
 
 /**
- * 「갈래 미등록 소단원」 픽스처를 커버리지에서 **뽑는다** — 손으로 박으면
- * (처음엔 초4 1-5-3 이었다) 그 소단원에 갈래가 달리는 날 이 시험이 엉뚱하게
- * 빨개진다. 230개 전부 등록되는 날에는 이 픽스처가 없어지는 게 맞고,
- * 그때는 아래 시험들이 지킬 대상 자체가 사라진 것이니 같이 걷어 낸다.
+ * **그날이 왔다 — 2026-08-24 에 230개 전부 등록됐다.**
+ *
+ * 여기 있던 `tierlessFixture()` 는 커버리지에서 「갈래 없는 소단원」을 뽑아
+ * 「프리셋을 물으면 던지는가」를 재던 것이다. 그 픽스처가 **모집단에서 사라져**
+ * 스스로 던지며 「걷어 낼 때다」라고 알려 왔고(초4 2-4-1·2-6-4 가 마지막이었다),
+ * 지시대로 그 둘을 걷어 냈다.
+ *
+ * 🔴 **그런데 가드는 안 걷어 냈다.** `gen-core.ts` 의 `needTierRegistry()` 와
+ * `generate.ts` 의 「난이도 갈래가 없는 소단원입니다」는 그대로 있다 — 오늘 도달할 수
+ * 없을 뿐 **죽은 코드가 아니다.** units.ts 에 소단원이 하나 늘거나 학년이 늘면 그날
+ * 다시 살아난다. 시험만 지우면 그 가드는 «아무도 안 재는 것»이 되므로,
+ * 재는 자리를 **분모 쪽으로 옮긴다** — 아래 「230개 전부 갈래가 있다」가 그것이다.
+ * 갈래 없는 소단원이 다시 생기면 **그 시험이 먼저 빨개지고**, 그때 이 두 시험을
+ * 되살릴 자리가 어디였는지는 이 주석이 가리킨다.
  */
-function tierlessFixture(): { grade: string; code: string } {
-  const row = listCoverage().find((r) => r.tiers.length === 0);
-  if (!row) {
-    throw new Error(
-      "갈래 없는 소단원이 더 없다 — 230개 전부 등록됐다면 이 픽스처와 «갈래 없음» 시험들을 걷어 낼 때다",
-    );
-  }
-  return { grade: row.grade, code: row.code };
-}
-
 describe("[초등 출제 CLI] 세트 생성", () => {
   it("같은 씨앗은 같은 세트다 — 재현 가능", () => {
     const a = generateSet({
@@ -136,11 +151,16 @@ describe("[초등 출제 CLI] 세트 생성", () => {
     expect(new Set(keys).size).toBe(6);
   });
 
-  it("갈래 없는 소단원에 프리셋을 물으면 던진다 — 조용히 기본 문항을 내지 않는다", () => {
-    const { grade, code } = tierlessFixture();
-    expect(() =>
-      generateSet({ grade, code, count: 4, seed: 1, preset: "중위반" }),
-    ).toThrow(/갈래/);
+  it("소단원 230개가 전부 갈래 넷을 낸다 — «갈래 없음» 가드의 분모", () => {
+    const rows = listCoverage();
+    const tierless = rows.filter((r) => r.tiers.length !== 4);
+    expect(
+      tierless.map((r) => `${r.grade} ${r.code}`),
+      "갈래가 넷이 아닌 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
+        "`generate.ts` 의 「난이도 갈래가 없는 소단원입니다」가 그날 다시 살아난다. " +
+        "위 주석이 가리키는 두 시험을 되살려 그 가드를 다시 재라",
+    ).toEqual([]);
+    expect(rows).toHaveLength(230);
   });
 
   it("tier 와 preset 을 같이 주면 던진다", () => {
@@ -181,13 +201,6 @@ describe("[초등 출제 CLI] 세트 생성", () => {
         tierCounts: { 연산: 1, 기본: 1 },
       }),
     ).toThrow(/합/);
-  });
-
-  it("갈래 없는 소단원에 직접 배분이면 던진다", () => {
-    const { grade, code } = tierlessFixture();
-    expect(() =>
-      generateSet({ grade, code, seed: 1, tierCounts: { 기본: 2 } }),
-    ).toThrow(/갈래/);
   });
 
   it("직접 배분과 preset/tier 를 섞으면 던진다", () => {
@@ -246,5 +259,29 @@ describe("[초등 출제 CLI] 세트 생성", () => {
       expect(item.problem.answer.length).toBeGreaterThan(0);
     }
     expect(got).toEqual({ 연산: 3, 기본: 3, 응용: 2 });
+  });
+
+  it("결합형 세트는 명시한 id로만 재현 가능하게 생성된다", () => {
+    const options = {
+      comboId: AREA_FRACTION_COMBO,
+      count: 6,
+      seed: 20260824,
+    };
+    const a = generateComboSet(options);
+    const b = generateComboSet(options);
+    expect(a).toEqual(b);
+    expect(a).toHaveLength(6);
+    expect(a.every((item) => item.tier === null)).toBe(true);
+    expect(a.every((item) => item.problem.kind === "combo")).toBe(true);
+    expect(
+      new Set(a.map((item) => `${item.problem.content}|${item.problem.answer}`))
+        .size,
+    ).toBe(6);
+  });
+
+  it("미등록 결합형 id는 세트에서도 던진다", () => {
+    expect(() =>
+      generateComboSet({ comboId: "초6|9-9-9::초3|1-1-1", count: 2, seed: 1 }),
+    ).toThrow(/등록되지 않은 결합형/);
   });
 });

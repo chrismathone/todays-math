@@ -49,7 +49,7 @@ vi.mock("@/lib/db", async () => {
   return { db };
 });
 
-// D-76 — 헤더 계정 구역(AccountBadge)이 로그아웃 **서버 액션**을 물고 들어온다.
+// D-77 — 헤더 계정 구역(AccountBadge)이 로그아웃 **서버 액션**을 물고 들어온다.
 // 그 모듈은 `@/lib/auth`(NextAuth v5)를 import 하는데, Next 번들러 밖에서는
 // `next/server` 해석이 깨져 **AppChrome 을 렌더하는 모든 테스트가 적재 단계에서
 // 죽는다**(AppChrome·ClassManage·ProblemBank…). 위 `@/lib/db` 전역 모킹과 같은

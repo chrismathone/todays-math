@@ -54,6 +54,18 @@ export function unitNum(value: number | string, unit: string): string {
   return `$${value}\\,\\mathrm{${unit}}$`;
 }
 
+/** 한글 낱말의 마지막 음절에 받침이 있으면 앞 조사, 없으면 뒤 조사를 고른다. */
+export function josa(
+  word: string,
+  withBatchim: string,
+  withoutBatchim: string,
+): string {
+  const trimmed = word.trim();
+  const code = trimmed.charCodeAt(trimmed.length - 1);
+  if (!(code >= 0xac00 && code <= 0xd7a3)) return withoutBatchim;
+  return (code - 0xac00) % 28 === 0 ? withoutBatchim : withBatchim;
+}
+
 /**
  * 분수를 **대분수**로. 초등은 가분수를 대분수로 고쳐 답한다.
  *

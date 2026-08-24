@@ -17,7 +17,7 @@ export const authHandlers: HttpHandler[] = [
   /**
    * GET /api/auth/session — Auth.js(NextAuth v5) 표준 세션 조회.
    *
-   * 헤더 계정 구역(AccountBadge, D-76)이 «지금 누구인가»를 이 경로로 묻는다.
+   * 헤더 계정 구역(AccountBadge, D-77)이 «지금 누구인가»를 이 경로로 묻는다.
    * 계약 파일이 아니라 **Auth.js 가 정하는 모양**이라 여기서 그 모양 그대로 흉내낸다
    * (`{ user: { id, email, name }, expires }`).
    */

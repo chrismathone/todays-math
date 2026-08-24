@@ -76,19 +76,25 @@ describe("난이도 계약 (D-71)", () => {
     expect(a.answer).toBe(b.answer);
   });
 
-  it("미등록 소단원에 tier 를 물으면 소단원·갈래를 말하며 던진다", () => {
-    // 등록이 «없는» 소단원을 supportedTiers 로 찾는다 — 파일럿이 채워져도 이 시험은 산다.
-    const bare = UNITS.find((u) => supportedTiers(u).length === 0);
-    expect(
-      bare,
-      "전 소단원이 등록되면 이 시험을 «등록 후 계약»으로 바꿀 것",
-    ).toBeDefined();
+  it("**등록 후 계약** — 2026-08-24 에 230개 전부 등록되며 실제 미등록 소단원이 사라졌다", () => {
+    // 위 예고대로 옮겨 적는다: 「전 소단원이 등록되면 이 시험을 «등록 후 계약»으로
+    // 바꿀 것」. 미등록 소단원을 UNITS 에서 더는 못 찾으므로(전부 4단이다),
+    // **합성 unit**으로 같은 코드 경로(`generate.ts` 의 「난이도 갈래가 없는
+    // 소단원입니다」 던짐)를 직접 잰다. 실제 소단원이 없어도 그 경로 자체는
+    // units.ts 에 소단원이 하나 늘면 다시 밟히므로 죽은 코드가 아니다.
+    const real = UNITS.find(
+      (u) => u.grade === "초3" && u.section.startsWith("1-1-2"),
+    )!;
+    // handler(grade|chapter)는 진짜라 통과하고, tier 등록(grade|sectionCode)만
+    // 없는 자리를 만든다 — `chapter` 는 그대로 두고 `section` 번호만 바꾼다.
+    const fake = { ...real, section: "1-1-99 없는 소단원" };
+    expect(supportedTiers(fake)).toEqual([]);
     expect(() =>
-      generateElementaryProblem(bare!, 20260822, "심화"),
+      generateElementaryProblem(fake, 20260822, "심화"),
     ).toThrowError(/난이도 갈래가 없는 소단원/);
     expect(() =>
-      generateElementaryProblem(bare!, 20260822, "심화"),
-    ).toThrowError(new RegExp(bare!.grade));
+      generateElementaryProblem(fake, 20260822, "심화"),
+    ).toThrowError(new RegExp(fake.grade));
   });
 
   it("supportedTiers 는 전부(4)이거나 없음(0)이다 — 일부 등록은 타입이 막는다", () => {

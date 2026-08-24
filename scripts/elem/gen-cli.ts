@@ -3,6 +3,8 @@
  *
  * 사용:
  *   npx tsx scripts/elem/gen-cli.ts --list [--grade 초4]
+ *   npx tsx scripts/elem/gen-cli.ts --list-combos
+ *   npx tsx scripts/elem/gen-cli.ts --combo "초5|2-2-3::초5|1-6-2" --count 6 --seed 20260824
  *   npx tsx scripts/elem/gen-cli.ts --grade 초4 --section 1-5-1 --count 6 --seed 20260823 \
  *       [--tier 기본 | --preset 중위반] [--out set.json] [--html preview.html]
  *
@@ -21,7 +23,13 @@ import {
 } from "../../src/lib/elementary/difficulty";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { renderMathHtml } from "../../src/lib/math/renderMathHtml";
-import { generateSet, listCoverage, type GenItem } from "./gen-core";
+import {
+  generateComboSet,
+  generateSet,
+  listCombos,
+  listCoverage,
+  type GenItem,
+} from "./gen-core";
 
 type Args = Record<string, string | true>;
 
@@ -64,6 +72,16 @@ function printCoverage(gradeFilter?: string): void {
   console.log(`\n소단원 ${rows.length}개 · 난이도 갈래 등록 ${withTiers}개`);
 }
 
+function printCombos(): void {
+  const rows = listCombos();
+  for (const row of rows) {
+    console.log(
+      `${row.id}\n  anchor: ${row.anchorKey}\n  prerequisites: ${row.prerequisiteKeys.join(" · ")}\n  families: ${row.familyIds.join(" · ")}`,
+    );
+  }
+  console.log(`\n결합형 ${rows.length}개`);
+}
+
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -91,8 +109,10 @@ async function buildHtml(
         figure = `<div class="fig err">그림 실패: ${esc(r.error)}</div>`;
       }
     }
+    const kind =
+      "kind" in problem && problem.kind === "combo" ? "[결합형] " : "";
     blocks.push(`<article>
-<header><b>${i + 1}.</b> <span class="meta">${tier ? `[${esc(tier)}] ` : ""}씨앗 ${seed} · ${esc(problem.section)}</span></header>
+<header><b>${i + 1}.</b> <span class="meta">${kind}${tier ? `[${esc(tier)}] ` : ""}씨앗 ${seed} · ${esc(problem.section)}</span></header>
 <div class="content">${renderMathHtml(problem.content)}</div>
 ${figure}
 <details><summary>정답·풀이</summary>
@@ -127,6 +147,58 @@ async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   if (args.list) {
     printCoverage(typeof args.grade === "string" ? args.grade : undefined);
+    return;
+  }
+  if (args["list-combos"]) {
+    printCombos();
+    return;
+  }
+
+  if (typeof args.combo === "string") {
+    const conflicts = ["grade", "section", "tier", "preset", "mix"].filter(
+      (key) => args[key] !== undefined,
+    );
+    if (conflicts.length > 0) {
+      throw new Error(
+        `결합형 --combo는 기존 단일 소단원 옵션과 같이 쓸 수 없습니다: ${conflicts.map((key) => `--${key}`).join(" · ")}`,
+      );
+    }
+    const seed = Number(args.seed ?? 20260824);
+    const count = Number(args.count ?? 6);
+    const items = generateComboSet({ comboId: args.combo, count, seed });
+    const first = items[0]!.problem;
+    const payload = {
+      meta: {
+        grade: first.grade,
+        section: first.section,
+        comboId: args.combo,
+        count: items.length,
+        seed,
+        generatedAt: new Date().toISOString(),
+      },
+      items,
+    };
+    const json = JSON.stringify(payload, null, 2);
+    if (typeof args.out === "string") {
+      mkdirSync(dirname(resolve(args.out)), { recursive: true });
+      writeFileSync(args.out, json, "utf-8");
+      console.log(`JSON: ${resolve(args.out)}`);
+    } else {
+      console.log(json);
+    }
+    if (typeof args.html === "string") {
+      const title = `${first.grade} 결합형 ${args.combo} — ${items.length}문항 (씨앗 ${seed})`;
+      const { html, figureErrors } = await buildHtml(title, items);
+      mkdirSync(dirname(resolve(args.html)), { recursive: true });
+      writeFileSync(args.html, html, "utf-8");
+      console.log(`HTML: ${resolve(args.html)}`);
+      if (figureErrors.length > 0) {
+        console.error(
+          `그림 실패 ${figureErrors.length}건:\n  ${figureErrors.join("\n  ")}`,
+        );
+        process.exitCode = 1;
+      }
+    }
     return;
   }
 
