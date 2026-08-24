@@ -4516,6 +4516,12 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier237Apply,
     심화: tier237Deep,
   },
+  "초4|2-4-1": {
+    연산: tier241Calc,
+    기본: tier241Basic,
+    응용: tier241Apply,
+    심화: tier241Deep,
+  },
   "초4|2-4-2": {
     연산: tier242Calc,
     기본: tier242Basic,
@@ -4569,6 +4575,12 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier263Basic,
     응용: tier263Apply,
     심화: tier263Deep,
+  },
+  "초4|2-6-4": {
+    연산: tier264Calc,
+    기본: tier264Basic,
+    응용: tier264Apply,
+    심화: tier264Deep,
   },
   "초4|2-5-1": {
     연산: tier251Calc,
@@ -6046,7 +6058,11 @@ function labelledPick(
   rng: Rng,
   answerShape: string,
   others: readonly string[],
-): { answer: string; other: string; items: { shape: string; label: string }[] } {
+): {
+  answer: string;
+  other: string;
+  items: { shape: string; label: string }[];
+} {
   if (others.length + 1 > PICK_LABELS.length) {
     throw new Error(
       `기호가 모자랍니다: 도형 ${others.length + 1}개 — PICK_LABELS 를 늘려라`,
@@ -8079,6 +8095,179 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
  * 똑같이 그려진다). 그림 세션이 **「값을 적으면 던지게」**를 넣는 중이고, 그게 서면
  * 실수로 치수를 적어도 조용히 안 나간다. **그때 얹는다**(리드 판단 2026-08-23).
  */
+/* ──────── 2-4-1 수직과 수선 (2026-08-24, 「직각이 몇 개 생기나」로 센다) ────────
+ *
+ * **이 소단원의 셈할 수 있는 축은 「수선 한 개마다 직각이 넷」이다.** 교과서가 나란히
+ * 적어 두는 두 문장을 곱하면 축이 선다 —
+ *   ㉠ 두 직선이 수직으로 만나면 **네 각이 모두 직각**이다.
+ *   ㉡ 한 점을 지나 한 직선에 수직인 직선은 **하나뿐**이다.
+ * ㉡ 이 「수선마다 만나는 점이 서로 다르다」를 보장한다(같은 점을 지나면 그 둘은 같은
+ * 직선이다). 그래서 수선 $k$ 개면 직각은 **정확히** $4k$ 개다. 2-4-2 가 「꺾인 횟수의
+ * 홀짝」으로 연 것과 같은 수법이다 — 교과서가 정성적으로만 묻는 소단원에서 개념 자체가
+ * 허락하는 셈을 찾아낸다.
+ *
+ * ⚠️ **각도로 사다리를 세우지 않는다.** 2-4-3 이 적어 둔 그 자리다 — 「직각을 세 각으로
+ * 나누면」류로 열면 1-2-4(각도의 합과 차)와 **같은 산술**이 된다. 여기서 세는 것은
+ * **직각의 개수**이지 각도가 아니고, 네 갈래 어느 해설에도 도를 더하거나 빼는 자리가 없다.
+ * 표준 `quad()` 의 2-4-1 은 「나머지 세 각 중 두 각의 합」으로 $90\times k$ 를 쓰는데
+ * 그건 각도 산술이다 — **문형만 보고 축은 새로 세웠다**(2-4-3 과 같은 처방).
+ *
+ * ⚠️ **그림을 안 붙인다.** 엔진의 `lineRelation` 이 `parallel` 하나만 그리는 까닭이
+ * 바로 이 소단원이다 — 수선을 그리면 **직각 기호를 함께 그려야** 하고, 그러면 세기만
+ * 해도 답이 나온다(09 §2.2 ①②). 엔진 쪽 `_line_relation` 주석이 그 판단을 이미
+ * 적어 두었다(「직각 기호가 **답을 말한다**」). 되살리지 말 것.
+ *
+ * ⚠️ **직선 이름의 시작 자리를 씨앗마다 옮긴다** — 2-4-2 와 같은 처방. 1단은 수가 아예
+ * 안 들어가는 갈래가 둘이라, 이름을 안 옮기면 R9 가 요구하는 다양성이 안 난다.
+ * (이름 도우미 `LINE_NAMES`·`lineName`·`lineJosa`·`lineBase` 는 바로 아래 2-4-2 블록에
+ *  있다 — 두 소단원이 같은 이름표를 쓰므로 한 벌만 둔다.)
+ */
+
+/**
+ * **2-4-1 1단 — 정의를 한 번 쓴다.** 산술이 없거나 있어도 한 번이다(D-72 ⑶).
+ *
+ * 세 갈래가 정의를 서로 다른 방향으로 쓴다 — 직각의 **수** · **수선**이라는 이름 ·
+ * 수선 관계가 **서로 맞바뀐다**는 것. 표준이 「두 직선을 서로 무엇이라 하는가 → 수직」을
+ * 이미 쓰므로 갈래는 **수선** 쪽으로 돌렸다(같은 개념을 묻되 묻는 낱말이 다르다).
+ */
+function tier241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 2);
+  const kind = intBetween(rng, 0, 2);
+  if (kind === 0) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 서로 수직으로 ` +
+        `만납니다. 두 직선이 만나서 이루는 각 중 직각은 몇 개인가?`,
+      `${n(4)}개`,
+      `두 직선이 만나면 만나는 점에 각이 ${n(4)}개 생깁니다. 두 직선이 서로 수직이면 ` +
+        `그 네 각이 모두 직각이므로 직각은 ${n(4)}개입니다.`,
+    );
+  }
+  if (kind === 1) {
+    return make(
+      unit,
+      `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 만나서 이루는 각이 ` +
+        `직각입니다. ${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 무엇인가?`,
+      "수선",
+      `두 직선이 서로 수직으로 만날 때 한 직선을 다른 직선에 대한 수선이라고 합니다. ` +
+        `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 직각으로 만나므로 ` +
+        `${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 수선입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 수선입니다. ` +
+      `${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 대한 무엇인가?`,
+    "수선",
+    `${lineJosa(b + 1, "이", "가")} ${lineName(b)}에 대한 수선이면 두 직선은 서로 ` +
+      `수직입니다. 수직인 두 직선은 어느 쪽에서 보아도 직각으로 만나므로 ` +
+      `${lineName(b)}도 ${lineName(b + 1)}에 대한 수선입니다.`,
+  );
+}
+
+/**
+ * **2-4-1 2단 — 스스로 식을 세운다.**
+ *
+ * 발문은 수선의 **개수**만 준다. 세울 식은 곱셈 하나인데, 거기 닿으려면 ㉡(한 점을
+ * 지나는 수선은 하나뿐)을 써서 **만나는 점이 서로 다르다**는 것을 먼저 알아야 한다.
+ * D-72 가 말하는 「식을 스스로 세움」이 바로 그 번역이다 — 계산 걸음이 하나뿐인 것은
+ * 2단의 **정의**지 결함이 아니다(`probe-elem-tier-ladder` 머리말 ㉡-b).
+ */
+function tier241Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 1);
+  const k = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `${lineName(b)}에 수선을 ${n(k)}개 그었습니다. 이때 생기는 직각은 모두 몇 개인가?`,
+    `${n(4 * k)}개`,
+    `한 점을 지나 ${lineName(b)}에 수직인 직선은 하나뿐이므로 수선 ${n(k)}개는 서로 ` +
+      `다른 ${n(k)}개의 점에서 ${lineJosa(b, "과", "와")} 만납니다. 만나는 점마다 ` +
+      `직각이 ${n(4)}개씩 생기므로 ${expr(`4\\times${k}=${4 * k}`)} 이고 ` +
+      `${n(4 * k)}개입니다.`,
+  );
+}
+
+/**
+ * **2-4-1 3단 — 두 단계.** 곱한 뒤에 한 번 더 셈한다.
+ *
+ * 두 갈래가 **둘째 셈을 다르게** 쓴다 — 하나는 빼고 하나는 먼저 더한다. 2단이 곱셈
+ * 하나로 끝나는 것과 걸음 수로 갈린다.
+ *
+ * ⚠️ 색칠 갈래에서 색칠한 수는 **전체보다 작게** 뽑는다. 뽑고 거르지 않고 범위를
+ * 전체에서 만든다 — 못 뽑을 자리를 아예 안 만든다(`trapSides` 와 같은 원칙).
+ */
+function tier241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 1);
+  const k = intBetween(rng, 3, 8);
+  const total = 4 * k;
+  if (pick(rng, [true, false])) {
+    const painted = intBetween(rng, 2, total - 2);
+    return make(
+      unit,
+      `${lineName(b)}에 수선을 ${n(k)}개 그었습니다. 이때 생긴 직각 중 ` +
+        `${n(painted)}개에 색칠했습니다. 색칠하지 않은 직각은 몇 개인가?`,
+      `${n(total - painted)}개`,
+      `수선 한 개마다 직각이 ${n(4)}개씩 생기므로 직각은 모두 ` +
+        `${expr(`4\\times${k}=${total}`)} 개입니다. ` +
+        `${expr(`${total}-${painted}=${total - painted}`)} 이므로 ` +
+        `${n(total - painted)}개입니다.`,
+    );
+  }
+  const more = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${lineName(b)}에 수선을 ${n(k)}개 그은 다음 수선을 ${n(more)}개 더 ` +
+      `그었습니다. ${lineName(b)}에 생긴 직각은 모두 몇 개인가?`,
+    `${n(4 * (k + more))}개`,
+    `그은 수선은 모두 ${expr(`${k}+${more}=${k + more}`)} 개입니다. 수선 한 개마다 ` +
+      `직각이 ${n(4)}개씩 생기므로 ${expr(`4\\times${k + more}=${4 * (k + more)}`)} ` +
+      `이고 ${n(4 * (k + more))}개입니다.`,
+  );
+}
+
+/**
+ * **2-4-1 4단 — 직각의 수에서 수선의 수를 되짚는다.**
+ *
+ * 🔴 **묻는 것의 단위가 «직각»이 아니라 «수선·점»이다.** 그래서 $\div4$ 를 건너뛸 수
+ * 없다. 이 구별이 이 갈래의 전부다 — 처음에 「직각이 $\bigcirc$ 개인데 수선을 $\triangle$
+ * 개 더 그으면 직각은 몇 개인가」로 썼다가 버렸다. 그 답은 $\bigcirc+4\triangle$ 이라
+ * **되짚지 않고도 나온다**(관계가 곱셈 하나라 앞뒤가 선형이다). 4단인 척하는 3단이 된다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다** — 수선의 수를 먼저 뽑고 직각의 수를 거기서 만든다.
+ * 직각 수를 뽑아 $4$ 로 나누면 나누어떨어지지 않는 자리가 생기고, 그걸 거르면 그 걸름이
+ * 장식인지 아닌지를 다시 재야 한다.
+ */
+function tier241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = lineBase(rng, 1);
+  const first = intBetween(rng, 2, 7);
+  const extra = intBetween(rng, 2, 6);
+  const had = 4 * first;
+  if (pick(rng, [true, false])) {
+    return make(
+      unit,
+      `${lineName(b)}에 수선을 몇 개 그었더니 직각이 모두 ${n(had)}개 생겼습니다. ` +
+        `여기에 수선을 ${n(extra)}개 더 그으면 수선이 ${lineJosa(b, "과", "와")} ` +
+        `만나는 점은 모두 몇 개가 되는가?`,
+      `${n(first + extra)}개`,
+      `수선 한 개마다 직각이 ${n(4)}개씩 생기므로 처음에 그은 수선은 ` +
+        `${expr(`${had}\\div4=${first}`)} 개입니다. 여기에 ${n(extra)}개를 더 그으면 ` +
+        `수선은 ${expr(`${first}+${extra}=${first + extra}`)} 개이고, 한 점을 지나 ` +
+        `${lineName(b)}에 수직인 직선은 하나뿐이므로 만나는 점도 ` +
+        `${n(first + extra)}개입니다.`,
+    );
+  }
+  const want = 4 * (first + extra);
+  return make(
+    unit,
+    `${lineName(b)}에 수선을 몇 개 그었더니 직각이 모두 ${n(had)}개 생겼습니다. ` +
+      `직각이 모두 ${n(want)}개가 되게 하려면 수선을 몇 개 더 그어야 하는가?`,
+    `${n(extra)}개`,
+    `더 생겨야 하는 직각은 ${expr(`${want}-${had}=${4 * extra}`)} 개입니다. 수선 한 ` +
+      `개마다 직각이 ${n(4)}개씩 생기므로 ${expr(`${4 * extra}\\div4=${extra}`)} 이고 ` +
+      `${n(extra)}개를 더 그어야 합니다.`,
+  );
+}
+
 /* ──────── 2-4-2 평행과 평행선 (2026-08-24, 관계를 «이어 붙인다») ────────
  *
  * **이 소단원의 셈할 수 있는 축은 「한 직선에 수직인 두 직선은 서로 평행하다」이다** —
@@ -9726,6 +9915,18 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "2-6-4") {
+    /* ─── `tiling`(⑥)을 여기 붙인다 — **비가 곧 발문의 값인 자리** (2026-08-24) ───
+     *
+     * 엔진이 그리는 것은 조각과 목표의 **한 변의 비**다. 이 세 갈래는 발문이 두 변의
+     * 길이를 직접 주므로 그림이 **주는 값만** 적는다(09 §2.2 ①). 그리고 조각을 다
+     * 그리지 않으므로 **세면 답이 나오는** 일도 없다(엔진 쪽 `_tiling` 머리말).
+     * 답을 내려면 「한 변이 $k$ 배면 조각은 $k\times k$ 개」를 알아야 하므로 ⑥ 도 통과다.
+     *
+     * ⚠️ 셋째 갈래(정육각형↔정삼각형)는 기본값 $1:2$ 가 **정확히 맞다** — `eqTri` 는
+     * 상자 크기가 곧 한 변이고 `hexagon` 은 한 변이 상자의 절반이다(좌표로 확인).
+     * 그래서 세 갈래의 답이 $4\cdot9\cdot6$ 으로 갈려 R9-c 쏠림도 나지 않는다.
+     * 갈래(D-72) 쪽은 조각 등가 축이라 **그림을 안 붙인다** — 까닭은 그 블록에 있다.
+     */
     const side = intBetween(rng, 2, 6);
     const kind = intBetween(rng, 0, 2);
     if (kind === 0) {
@@ -9735,6 +9936,12 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
           `빈틈없이 채우려면 조각이 몇 개 필요한가?`,
         n(4),
         `한 변이 ${n(2)}배가 되면 조각은 ${expr("2\\times2=4")} 개가 필요합니다.`,
+        fig("tiling", {
+          piece: "eqTri",
+          target: "eqTri",
+          pieceSide: side,
+          targetSide: side * 2,
+        }),
       );
     }
     if (kind === 1) {
@@ -9744,6 +9951,12 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
           `빈틈없이 채우려면 조각이 몇 개 필요한가?`,
         n(9),
         `한 변이 ${n(3)}배가 되면 조각은 ${expr("3\\times3=9")} 개가 필요합니다.`,
+        fig("tiling", {
+          piece: "square",
+          target: "square",
+          pieceSide: side,
+          targetSide: side * 3,
+        }),
       );
     }
     return make(
@@ -9751,6 +9964,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
       `${polyName(6, true)} 모양은 정삼각형 모양 조각 몇 개로 빈틈없이 채울 수 있는가?`,
       `${n(6)}개`,
       `${polyName(6, true)}의 한가운데에서 각 꼭짓점으로 선분을 그으면 정삼각형이 ${n(6)}개 생깁니다.`,
+      fig("tiling", { piece: "eqTri", target: "hexagon" }),
     );
   }
 
@@ -10053,6 +10267,178 @@ function tier263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `대각선의 수를 차례로 세어 보면 ${table} 입니다. ` +
       `${n(d.total)}개인 것은 ${polyName(d.sides)}이므로 변이 ${n(d.sides)}개입니다. ` +
       `${expr(`${side}\\times${d.sides}=${side * d.sides}`)} 이므로 ${cm(side * d.sides)}입니다.`,
+  );
+}
+
+/* ──────── 2-6-4 모양 만들기와 채우기 (2026-08-24, 조각을 «바꿔 센다») ────────
+ *
+ * **이 소단원의 셈할 수 있는 축은 「조각 한 개가 다른 조각 몇 개와 같은가」이다.**
+ * 교과서 모양 조각은 한 변의 길이가 같아서 정삼각형을 자로 삼으면 마름모는 둘,
+ * 사다리꼴은 셋, 정육각형은 여섯이다. 이 관계를 **이어 붙이고 되짚으면** 사다리가 선다.
+ *
+ * ⚠️ 🔴 **쓰는 관계는 발문이 준다.** 「사다리꼴」은 일반 사다리꼴도 가리키므로, 그림 없이
+ * 「사다리꼴 조각은 정삼각형 몇 개인가」만 물으면 **답이 하나로 안 정해진다.** 그래서
+ * 발문에 관계를 적고 **거기서 파생되는 것**을 묻는다(발문 자족, `elemStemSelfContained`).
+ * 1단조차 그렇다 — 관계를 «상식»으로 두면 그 갈래는 학생이 풀 수 없는 문항이 된다.
+ *
+ * ⚠️ **그림을 안 붙인다 — `tiling`(⑥)이 이 소단원용으로 서 있는데도 그렇다.**
+ * 엔진이 그리는 것은 조각과 목표의 **한 변의 비**다. 좌표로 확인했다(`_shape_points`):
+ * `eqTri` 는 상자 크기가 곧 한 변이고 `hexagon` 은 한 변이 상자의 절반이라 정삼각형↔
+ * 정육각형 짝은 기본값 $1:2$ 로 **제대로** 그려진다. 그런데 `diamond` 는 정사각형을
+ * 돌린 마름모($60^\circ$ 가 아니다)이고 `trap` 은 반육각형 사다리꼴이 아니다 —
+ * **모양 조각을 배반한다.** 그러면 그릴 수 있는 짝이 정삼각형↔정육각형 하나뿐이고,
+ * 그 짝의 답은 늘 여섯이라 **그림 붙은 문항의 정답이 하나**가 된다(09 §2.2 ⑥ ·
+ * R9-c). 2-4-2 에서 「그림이 있으면 답은 평행선 $100\%$」로 걸린 그 자리다.
+ * 표준 경로의 「한 변이 몇 배」 갈래는 비가 곧 값이라 `tiling` 이 맞는다 — 그쪽에 붙였다.
+ *
+ * ⚠️ **2-6-1~3 과 겹치지 않는다.** 저쪽은 변·꼭짓점·대각선의 **수**를 세고 여기는
+ * 조각의 **개수**를 바꿔 센다. 정다각형의 한 각은 초4 범위 밖이라 여기서도 안 쓴다.
+ */
+
+/** 모양 조각 — 한 변의 길이가 같을 때 **정삼각형 조각 몇 개인가**. 교과서 조각 세트. */
+const PIECE_TRIS: readonly { name: string; tris: number }[] = [
+  { name: "마름모", tris: 2 },
+  { name: "사다리꼴", tris: 3 },
+  { name: polyName(6, true), tris: 6 },
+];
+
+/** 「$3$개로 빈틈없이 채울 수 있습니다」 — 관계 한 줄. 네 갈래가 이 한 곳을 쓴다. */
+function pieceRule(name: string, tris: number): string {
+  return (
+    `${name} 모양 조각 한 개는 ${polyName(3, true)} 모양 조각 ${n(tris)}개로 ` +
+    `빈틈없이 채울 수 있습니다.`
+  );
+}
+
+/**
+ * **2-6-4 1단 — 관계를 한 번 쓴다.** 곱셈 하나로 끝난다(D-72 ⑶).
+ *
+ * 조각 종류가 셋이라 답이 씨앗마다 갈린다. 관계는 발문이 주므로 학생이 할 일은
+ * 「$k$ 개면 $k$ 배」 하나다.
+ */
+function tier264Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, [...PIECE_TRIS]);
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `모양 조각으로 모양을 빈틈없이 채웁니다. ${pieceRule(p.name, p.tris)} ` +
+      `${p.name} 모양 조각 ${n(k)}개는 ${polyName(3, true)} 모양 조각 몇 개로 ` +
+      `채울 수 있는가?`,
+    `${n(p.tris * k)}개`,
+    `${p.name} 모양 조각 한 개가 ${polyName(3, true)} 모양 조각 ${n(p.tris)}개이므로 ` +
+      `${n(k)}개이면 ${expr(`${p.tris}\\times${k}=${p.tris * k}`)} 이고 ` +
+      `${n(p.tris * k)}개입니다.`,
+  );
+}
+
+/**
+ * **2-6-4 2단 — 주어지지 않은 관계를 스스로 만든다.**
+ *
+ * 🔴 **1단과 갈리는 자리는 «관계를 주는가»다.** 1단은 쓸 관계를 발문이 그대로 준다.
+ * 여기서 주는 것은 **정삼각형을 자로 삼은** 두 관계뿐이고, 묻는 것은 그 둘 **사이의**
+ * 관계다 — 학생이 먼저 세워야 하는 나눗셈이 발문 어디에도 없다. `dump-elem-tiers`
+ * 머리말 ㉡ 이 말하는 「식을 그냥 주면 1단이다」가 그 잣대다.
+ *
+ * ⚠️ 큰 쪽을 늘 정육각형으로 둔다 — 마름모(둘)와 사다리꼴(셋)은 서로 나누어떨어지지
+ * 않는다. 뽑고 거르지 않고 **못 뽑을 자리를 안 만든다**.
+ */
+function tier264Basic(unit: UnitSeed, rng: Rng): ElemProblem {
+  const whole = PIECE_TRIS[2]!;
+  const part = pick(rng, [PIECE_TRIS[0]!, PIECE_TRIS[1]!]);
+  const times = whole.tris / part.tris;
+  const k = intBetween(rng, 2, 9);
+  const given = `${pieceRule(whole.name, whole.tris)} 또 ${pieceRule(part.name, part.tris)}`;
+  const why =
+    `${whole.name} 모양 조각 한 개는 ${polyName(3, true)} 모양 조각 ` +
+    `${n(whole.tris)}개와 같고, ${part.name} 모양 조각 한 개는 ${polyName(3, true)} ` +
+    `모양 조각 ${n(part.tris)}개와 같습니다. 그러므로 ${whole.name} 모양 조각 한 개는 ` +
+    `${part.name} 모양 조각 ${expr(`${whole.tris}\\div${part.tris}=${times}`)} 개로 ` +
+    `채울 수 있습니다.`;
+  if (pick(rng, [true, false])) {
+    return make(
+      unit,
+      `${given} ${whole.name} 모양 조각 ${n(k)}개는 ${part.name} 모양 조각 몇 개로 ` +
+        `빈틈없이 채울 수 있는가?`,
+      `${n(times * k)}개`,
+      `${why} ${n(k)}개이면 ${expr(`${times}\\times${k}=${times * k}`)} 이고 ` +
+        `${n(times * k)}개입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `${given} ${part.name} 모양 조각 몇 개를 모으면 ${whole.name} 모양 조각 ${n(k)}개를 ` +
+      `빈틈없이 채울 수 있는가?`,
+    `${n(times * k)}개`,
+    `${why} ${whole.name} 모양 조각이 ${n(k)}개이므로 ` +
+      `${expr(`${times}\\times${k}=${times * k}`)} 이고 ${n(times * k)}개를 모아야 합니다.`,
+  );
+}
+
+/**
+ * **2-6-4 3단 — 두 단계.** 두 종류를 각각 바꾼 뒤 합친다.
+ *
+ * 1·2단은 조각 한 종류만 본다. 여기서는 두 종류를 각각 정삼각형으로 옮겨 놓고 더해야
+ * 하므로 중간값이 둘 생긴다.
+ */
+function tier264Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, [
+    [PIECE_TRIS[2]!, PIECE_TRIS[0]!],
+    [PIECE_TRIS[2]!, PIECE_TRIS[1]!],
+    [PIECE_TRIS[1]!, PIECE_TRIS[0]!],
+  ]);
+  const a = intBetween(rng, 2, 7);
+  const b = intBetween(rng, 2, 7);
+  const left = first.tris * a;
+  const right = second.tris * b;
+  return make(
+    unit,
+    `${pieceRule(first.name, first.tris)} 또 ${pieceRule(second.name, second.tris)} ` +
+      `${first.name} 모양 조각 ${n(a)}개와 ${second.name} 모양 조각 ${n(b)}개를 모두 ` +
+      `${polyName(3, true)} 모양 조각으로 바꾸면 ${polyName(3, true)} 모양 조각은 ` +
+      `모두 몇 개인가?`,
+    `${n(left + right)}개`,
+    `${first.name} 모양 조각 ${n(a)}개는 ${expr(`${first.tris}\\times${a}=${left}`)} ` +
+      `개이고, ${second.name} 모양 조각 ${n(b)}개는 ` +
+      `${expr(`${second.tris}\\times${b}=${right}`)} 개입니다. ` +
+      `${expr(`${left}+${right}=${left + right}`)} 이므로 ${n(left + right)}개입니다.`,
+  );
+}
+
+/**
+ * **2-6-4 4단 — 채운 모양은 그대로 두고 «조각만» 바꾼다.**
+ *
+ * 채운 모양이 무엇인지는 끝까지 안 나온다. 학생이 붙잡을 것은 **정삼각형으로 센 넓이가
+ * 바뀌지 않는다**는 것뿐이고, 그것을 중간값으로 삼아 한 번 곱하고 한 번 나눠야 한다.
+ *
+ * ⚠️ **D-66 ⒂ 대로 답부터 골랐다.** 주어지는 개수를 먼저 뽑으면 정삼각형 수가 상대
+ * 조각으로 **나누어떨어지지 않는 자리**가 생긴다($5$ 마름모 $=10$ 정삼각형, 사다리꼴로는
+ * 못 채운다). 답 쪽을 $q\times(\text{주는 쪽 조각})$ 로 만들면 그 자리가 아예 안 생긴다 —
+ * 뽑고 거르지 않는다(`trapSides` 와 같은 원칙).
+ */
+function tier264Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [from, to] = pick(rng, [
+    [PIECE_TRIS[0]!, PIECE_TRIS[1]!],
+    [PIECE_TRIS[1]!, PIECE_TRIS[0]!],
+    [PIECE_TRIS[1]!, PIECE_TRIS[2]!],
+    [PIECE_TRIS[0]!, PIECE_TRIS[2]!],
+  ]);
+  const q = intBetween(rng, 2, 5);
+  const have = q * to.tris;
+  const want = q * from.tris;
+  const tris = have * from.tris;
+  return make(
+    unit,
+    `${from.name} 모양 조각 ${n(have)}개로 빈틈없이 채운 모양이 있습니다. ` +
+      `${pieceRule(from.name, from.tris)} 또 ${pieceRule(to.name, to.tris)} ` +
+      `같은 모양을 ${to.name} 모양 조각만으로 빈틈없이 채우려면 ${to.name} 모양 조각은 ` +
+      `몇 개 필요한가?`,
+    `${n(want)}개`,
+    `${from.name} 모양 조각 ${n(have)}개는 ${polyName(3, true)} 모양 조각 ` +
+      `${expr(`${from.tris}\\times${have}=${tris}`)} 개와 같습니다. 채운 모양이 같으므로 ` +
+      `${to.name} 모양 조각으로 채워도 ${polyName(3, true)} 모양 조각 ${n(tris)}개와 ` +
+      `같습니다. ${to.name} 모양 조각 한 개가 ${polyName(3, true)} 모양 조각 ` +
+      `${n(to.tris)}개이므로 ${expr(`${tris}\\div${to.tris}=${want}`)} 이고 ` +
+      `${n(want)}개 필요합니다.`,
   );
 }
 

@@ -59,11 +59,14 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 31: curve-graph-frame 추가 (2026-08-24 — curveGraph·netCone 이 처음 나가고,
     //     **이미 나가 있던 linearGraph 의 지면 크기가 같이 바뀐다**: 폭이 126~238 로
     //     떠다니던 것을 240 에 박았다. 옛 그림 중 셋은 눈금 글자가 본문보다 작았다).
+    // 33: elem-line-tiling-figures 추가 (2026-08-24 — 초등 난이도 갈래에 `lineRelation`
+    //     (초4 2-4-2·2-4-3, 이미 배선)·`tiling`(초4 2-6-4 표준, 오늘 배선)이 처음
+    //     지면에 나간다. 둘 다 위젯 폭(140px/37mm) 등급이라 종이에서 처음 확인된다).
     // 32: wave6-geometry-stat-frame 추가 (2026-08-24 — FigureSpec v2 기하가 처음
     //     실사용됐다(작도 컴퍼스 자국·부채꼴 색칠·외심·무게중심). boxPlot·scatterPlot
     //     도 이 저장소의 첫 통계 차트로 처음 지면에 나간다. 이 물결로 중학 엔진
     //     873/873 전량 등록 완료).
-    expect(ITEMS.length).toBe(32);
+    expect(ITEMS.length).toBe(33);
   });
 
   /**
