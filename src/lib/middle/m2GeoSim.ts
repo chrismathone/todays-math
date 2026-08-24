@@ -1324,7 +1324,13 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const e = attempt(40, () => {
         const v = intBetween(rng, 3, 9);
         // d=e 면 BA=BC 라 DE∥AC 가 되어 «엇각 닮음»이 아닌 다른 유형이 된다.
-        return v !== d ? v : null;
+        if (v === d) return null;
+        // ⚠️ 점 $D$ 는 $\overline{AB}$ **위**, $E$ 는 $\overline{BC}$ **위**의 점이다. 그러니
+        //    $\overline{DA}=ke-d$ 와 $\overline{EC}=kd-e$ 가 **둘 다 양수**여야 한다.
+        //    안 그러면 발문에 「$\overline{DA}=-2\,\mathrm{cm}$」 같은 **음수 길이**가 나가고
+        //    그림도 그렇게 그려진다(실측 2026-08-24: 씨앗 60개 중 4). 값이 «맞는» 결함이라
+        //    지면을 봐야 드러난다 — `probe-middle-page-smells.ts` 가 `+-` 로 걸어 줬다.
+        return k * v - d >= 1 && k * d - v >= 1 ? v : null;
       });
       const a = k * e - d;
       const bc = k * d;

@@ -1742,6 +1742,11 @@ const TYPES_G2: TypeEntry[] = [
         const q = intBetween(rng, -8, 8);
         const s1 = pick(rng, [-3, -2, -1] as const);
         const s2 = pick(rng, [1, 2, 3] as const);
+        // ⚠️ 두 점이 **축에 대칭**이면(|s1|=|s2|) 대입한 두 식이 글자까지 같아진다.
+        //    조건이 하나뿐이므로 $a$ 가 안 정해지고 **답이 무수히 많다** — 그런데
+        //    적힌 답도 조건을 만족하니 **값 검사는 통과한다.** 9가지 중 3가지라
+        //    실측 33.3% 가 그랬다(2026-08-24). `probe-middle-uniqueness.ts` 가 잡아 준다.
+        if (s1 * s1 === s2 * s2) return null;
         const m1 = p + s1;
         const m2 = p + s2;
         const v1 = a * s1 * s1 + q;

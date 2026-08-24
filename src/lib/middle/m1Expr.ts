@@ -1000,7 +1000,9 @@ const EQ_TYPES: TypeEntry[] = [
             ? `${lin(a, b)}=${c}`
             : t === 1
               ? `${Math.abs(a)}+${Math.abs(b)}=${Math.abs(a) + Math.abs(b)}`
-              : `${lin(a, 0)}+${lin(b, 0)}=${lin(a + b, 0)}`,
+              : // ⚠️ `+${lin(b, 0)}` 로 이어 붙이면 $b<0$ 일 때 지면에 **`7x+-4x`** 가 나간다
+                //    (실측 2026-08-24). 부호를 직접 골라 붙인다 — 바로 아래 $y$ 항과 같은 꼴이다.
+                `${lin(a, 0)}${b < 0 ? "-" : "+"}${Math.abs(b) === 1 ? "" : Math.abs(b)}x=${lin(a + b, 0)}`,
         );
         kinds.push(0);
       }

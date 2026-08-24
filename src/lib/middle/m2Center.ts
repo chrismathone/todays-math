@@ -779,7 +779,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
       return {
         content: `그림과 같이 점 $O$가 $\\triangle ABC$의 외심일 때, $\\angle OAB=${p}^\\circ$, $\\angle OAC=${q}^\\circ$이다. 이때 $\\angle BOC$의 크기를 구하시오.`,
         answer: `$${x}^\\circ$`,
-        solution: `$\\angle A=\\angle OAB+\\angle OAC=${p}^\\circ+${q}^\\circ$이다.\n한 호에 대한 중심각의 크기는 원주각의 크기의 $2$배이므로 $\\angle BOC=2\\angle A=${x}^\\circ$이다.`,
+        solution: `$\\angle A=\\angle OAB+\\angle OAC=${p}^\\circ+${q}^\\circ$이다.\n외심에서 세 꼭짓점까지의 거리가 같아 세 삼각형이 모두 이등변삼각형이므로 $\\angle BOC=2\\angle A=${x}^\\circ$이다.`,
         facts: { angA, angB, angC, p, q, x },
         figureSpec: figCircum04(angA, angB, angC, p, q),
       };
@@ -803,7 +803,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
       return {
         content: `그림과 같이 점 $O$가 $\\triangle ABC$의 외심일 때, $\\angle B=${angB}^\\circ$, $\\angle C=${angC}^\\circ$이다. 이때 $\\angle BOC$의 크기를 구하시오.`,
         answer: `$${x}^\\circ$`,
-        solution: `삼각형의 세 내각의 합이 $180^\\circ$이므로 $\\angle A=180^\\circ-${angB}^\\circ-${angC}^\\circ=${angA}^\\circ$이다.\n한 호에 대한 중심각의 크기는 원주각의 크기의 $2$배이므로 $\\angle BOC=2\\angle A=${x}^\\circ$이다.`,
+        solution: `삼각형의 세 내각의 합이 $180^\\circ$이므로 $\\angle A=180^\\circ-${angB}^\\circ-${angC}^\\circ=${angA}^\\circ$이다.\n외심에서 세 꼭짓점까지의 거리가 같아 세 삼각형이 모두 이등변삼각형이므로 $\\angle BOC=2\\angle A=${x}^\\circ$이다.`,
         facts: { angA, angB, angC, x },
         figureSpec: figCircum05(angA, angB, angC, angB, angC),
       };

@@ -2143,7 +2143,11 @@ const 정수_TYPES: TypeEntry[] = [
         answer: `$${answer}$`,
         solution: `$a$의 절댓값을 $t$라 하면 $b$의 절댓값은 $${k}t$이다.\n$a<0$, $b>0$이므로 두 점 사이의 거리는 $t+${k}t=${
           k + 1
-        }t$이고, $${k + 1}t=${dist}$에서 $t=${t}$이다.\n따라서 $a=${a}$, $b=${b}$이므로 $${askTex}=${answer}$이다.`,
+        }t$이고, $${k + 1}t=${dist}$에서 $t=${t}$이다.\n따라서 $a=${a}$, $b=${b}$${
+          // 묻는 것이 $a$ 나 $b$ 자체면 「$a=-2$, $b=4$이므로 $a=-2$이다」가 되어
+          // 같은 말을 두 번 한다. $a+b$ 를 물을 때만 한 걸음이 더 있다.
+          askTex === "a+b" ? `이므로 $a+b=${answer}$` : ""
+        }이다.`,
         facts: { kind, t, k, a, b, dist, answer },
       };
     }),

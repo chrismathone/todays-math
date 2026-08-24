@@ -768,7 +768,7 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
             `$${p - d}$`,
             `중근을 가지려면 우변이 $0$이어야 하므로 $k${term(d, "")}=0$에서 $k=${-d}$이다.
 이때 $(x${term(-p, "")})^2=0$이므로 $a=${p}$이다.
-따라서 $k+a=${-d}+${p}=${p - d}$이다.`,
+따라서 $k+a=${-d}+(${p})=${p - d}$이다.`,
             { p, d, mode, x: p - d },
           );
         }
@@ -1268,12 +1268,16 @@ $p>${m * m}$이므로 이를 만족시키는 가장 작은 정수는 $${m * m + 
           mode
         ]!;
         const dText = ["$b^2-4ac>0$", "$b^2-4ac\\geq 0$", "$b^2-4ac<0$"][mode]!;
-        const constText = `${alpha === 1 ? "" : "-"}p${term(beta, "")}`;
+        // ⚠️ alpha=-1 이면 이 상수항은 `-p…` 로 시작한다. 앞에 `+` 를 붙여 쓰면
+        //    지면에 **`+-p`** 가 그대로 나간다(실측 2026-08-24). 그래서 두 꼴로 나눈다 —
+        //    **이어 붙일 때**는 부호를 지닌 `constText`, **홑으로 설 때**는 `constBody`.
+        const constBody = `${alpha === 1 ? "" : "-"}p${term(beta, "")}`;
+        const constText = `${alpha === 1 ? "+" : ""}${constBody}`;
         return body(
-          `이차방정식 $x^2-${2 * m}x+${constText}=0$이 ${label} 때, 상수 $p$의 값의 범위를 구하시오.`,
+          `이차방정식 $x^2-${2 * m}x${constText}=0$이 ${label} 때, 상수 $p$의 값의 범위를 구하시오.`,
           `$p${sym} ${bound}$`,
           `${label} 조건은 ${dText}이다.
-$(-${2 * m})^2-4(${constText})${strict ? (wantPositive ? ">" : "<") : "\\geq"} 0$에서 $${constText}${wantPositive ? (strict ? "<" : "\\leq") : ">"} ${m * m}$이다.
+$(-${2 * m})^2-4(${constBody})${strict ? (wantPositive ? ">" : "<") : "\\geq"} 0$에서 $${constBody}${wantPositive ? (strict ? "<" : "\\leq") : ">"} ${m * m}$이다.
 따라서 $p${sym} ${bound}$이다.`,
           {
             m,

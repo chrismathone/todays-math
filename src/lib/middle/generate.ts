@@ -10,6 +10,8 @@
  */
 import { createRng } from "../elementary/rng";
 
+import { tidySolution } from "./solutionText";
+
 import { M1_CALC } from "./m1Calc";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_EXPR } from "./m1Expr";
@@ -83,7 +85,12 @@ export function generateMiddleProblem(
       `등록되지 않은 유형입니다: ${key} — registeredTypes() 로 먼저 확인`,
     );
   }
-  return entry.handler(createRng(seed + keySalt(key) + variant * 0x9e37));
+  const p = entry.handler(createRng(seed + keySalt(key) + variant * 0x9e37));
+  // 지면 다듬기는 **여기 한 곳**에서 한다. 유형마다 조건을 달면 열 벌이 되고
+  // 한쪽만 옮겨도 아무도 모른다 (`solutionText.ts` 머리말 참조). 뜻은 안 바뀐다 —
+  // 글자까지 똑같은 되풀이를 지우는 것뿐이다.
+  const tidied = tidySolution(p.solution);
+  return tidied === p.solution ? p : { ...p, solution: tidied };
 }
 
 /**
