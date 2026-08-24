@@ -91,6 +91,21 @@ def die(msg: str) -> None:
     raise SystemExit(1)
 
 
+def fence(msg: str) -> None:
+    """**결함이 아니라 울타리** — `exit 2`.
+
+    이 판정기가 공용 관문(`npm run test`)에 들어가면, 다른 세션이 변이 회차를 도는
+    동안 **모두의 관문이 빨개진다.** 그건 결함이 아니라 「지금은 못 잰다」이다.
+    둘을 같은 코드로 내보내면 다음 사람이 **빨간데 근거가 없는** 것을 보고,
+    몇 번 겪으면 이 검사를 끈다(2026-08-20 「거짓 경보는 가드를 끈다」).
+
+    `exit 2` 는 이 저장소의 쓸기가 이미 「울타리」로 따로 세는 코드다.
+    """
+    sys.stdout.write(f"\n\U0001f7e1 {msg}\n")
+    sys.stdout.flush()
+    raise SystemExit(2)
+
+
 def refuse_during_mutation() -> None:
     """**변이 회차 중에는 판정하지 않는다.**
 
@@ -124,7 +139,7 @@ def refuse_during_mutation() -> None:
         #    그 경보가 「살아 있는 회차의 표지를 지워라」라고 시킨다 — 없느니만 못하다
         #    (2026-08-20 「거짓 경보는 가드를 끈다」).
         #    표지 안에 **같은 셸에서 돌릴 `kill -0` 한 줄**이 이미 적혀 있다. 그쪽이 옳다.
-        die(
+        fence(
             "**변이 회차 표지가 있다** — 지금 재면 변이본을 잰다.\n"
             + "\n".join(lines)
             + "\n   회차가 끝난 뒤에 돌려라.\n"
@@ -168,10 +183,28 @@ def check_probe_covers_every_kind() -> int:
     blob = (out.stdout or "") + (out.stderr or "")
     if "표본에 빠진 kind" in blob:
         missing = blob.split("변이 시험이 못 봅니다:", 1)[-1].strip().splitlines()[0]
+        # 🔴 **이 문구는 「나는 초등 세션이 아닌데」에 답해야 한다.**
+        #    이 검사는 공용 관문에 있어서, 중학 트랙이 kind 를 더한 날 **그쪽이** 막힌다.
+        #    그 사람은 이 파일이 뭔지 모르고 자기 시험은 다 초록이다. 「왜 막나」와
+        #    「어떻게 빠져나가나」가 그 줄에 없으면 **훅을 우회하거나 이 검사를 끈다** —
+        #    거짓 경보가 아닌데도 결과가 같다(2026-08-20 의 사촌).
         die(
             f"**표본이 못 덮는 kind 가 있다: {missing}**\n"
-            "   그 kind 는 변이 시험 밖에 있다. `scripts/qa/probe-elem-figure.py` 에\n"
-            "   표본을 넣어라 — 안 넣으면 그 자리를 망가뜨려도 아무도 모른다."
+            "\n"
+            "   · 왜 막나 — 표본에 없는 kind 는 **변이 시험 밖**이라 그 코드를\n"
+            "     망가뜨려도 아무 시험도 안 운다. 그 상태의 「전량 초록」은 참이 아니다.\n"
+            "     막는 것은 그 트랙의 결함이라서가 아니라, **관문이 초록을 낼 자격이\n"
+            "     없어서**다.\n"
+            "\n"
+            "   · 고치는 법 — `scripts/qa/probe-elem-figure.py` 의 목록에 그 kind 표본\n"
+            "     **한 줄**. 규격은 짐작하지 말고 **엔진 소스에서 읽어** 맞춰라\n"
+            "     (`elementary.py` 의 `KIND_FIELDS`·`OPTIONAL`, `elem_advanced.py` 의\n"
+            "     `ADV_FIELDS`·`ADV_OPTIONAL` 이 키를 갖고, 값 범위는 그리는 함수의\n"
+            "     `raise` 문에 있다).\n"
+            "     넣은 뒤 이 판정기를 다시 돌리면 그 자리가 닫힌다.\n"
+            "\n"
+            "   · 내 일이 아니면 — **elem-figures 세션에 알려라. 30초면 넣는다.**\n"
+            "     기다리는 동안 막히는 것이 곤란하면 그렇게 말하고 넘겨라."
         )
     n = blob.count("### ")
     if out.returncode != 0 or n == 0:

@@ -48,12 +48,24 @@ function noVerdictNames() {
   return new Set([...src.matchAll(re)].map((m) => m[1]));
 }
 
+/**
+ * 판정기 목록 — **`.ts` 와 `.py` 를 같이** 훑는다.
+ *
+ * 🔴 파이썬 쪽을 빼 두면 `probe-elem-render-all.py`(갈래가 내는 그림이 전부
+ * 그려지는가)와 `probe-elem-figure.py`(표본이 전 kind 를 덮는가)가 **관문 밖**이다.
+ * 2026-08-24 에 병합이 kind 를 더한 날 그 둘이 빨간 채로 있었고, 누군가 손으로
+ * 돌릴 때까지 아무도 몰랐다 — **하루에 두 번** 그랬다.
+ *
+ * ⚠️ 다른 트랙이 kind 를 더한 날 이 관문이 빨개진다. **그게 맞다** — 표본에 없는
+ * kind 는 변이 시험 밖이라, 그 상태의 「전량 초록」은 참이 아니다. 막는 쪽 판정기가
+ * **왜 막는지·어떻게 고치는지·내 일이 아니면 누구에게 알리는지**를 같이 찍는다.
+ */
 function probeNames() {
   const skip = noVerdictNames();
+  const re = new RegExp("^probe-elem-[a-z-]+\\.(ts|py)$");
   return readdirSync("scripts/qa")
-    .filter((f) => new RegExp("^probe-elem-[a-z-]+\\.ts$").test(f))
-    .map((f) => f.replace(new RegExp("\\.ts$"), ""))
-    .filter((n) => !skip.has(n))
+    .filter((f) => re.test(f))
+    .filter((f) => !skip.has(f.replace(new RegExp("\\.(ts|py)$"), "")))
     .sort();
 }
 
@@ -74,10 +86,14 @@ const 문제 = [];
 const 울타리 = [];
 
 for (const name of names) {
-  const r = spawnSync(process.execPath, [TSX, `scripts/qa/${name}.ts`], {
-    encoding: "utf-8",
-    env: { ...process.env, PYTHONIOENCODING: "utf-8" },
-  });
+  // `.py` 는 파이썬으로, `.ts` 는 tsx 로. **이름에 확장자가 그대로 들어 있다** —
+  // 어느 쪽인지 따로 목록을 두면 그 목록이 또 샌다.
+  const isPy = name.endsWith(".py");
+  const r = spawnSync(
+    isPy ? "python" : process.execPath,
+    isPy ? [`scripts/qa/${name}`] : [TSX, `scripts/qa/${name}`],
+    { encoding: "utf-8", env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
+  );
   if (r.status === 2) {
     울타리.push(name);
     continue;

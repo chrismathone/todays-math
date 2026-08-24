@@ -170,6 +170,17 @@ SPECS: list[dict] = [
      "classes": [10, 20, 30, 40, 50], "values": [3, 7, 5, 2]},
     {"version": "elem-1", "kind": "freqPolygon",
      "classes": [0, 10, 20, 30], "values": [4, 9, 6], "bars": True},
+    # 물결 4A 가 들여온 둘 (2026-08-24) — **하루 만에 같은 구멍이 두 번째**다.
+    # 다른 트랙은 kind 를 더할 때 여기 표본을 안 더한다(그쪽은 자기 픽스처로 돈다).
+    # 그런데 이 하네스가 `elem_advanced.py` 를 되쓸므로 **우리 사정권**이다.
+    {"version": "elem-1", "kind": "curveGraph",
+     "curves": [{"type": "inverse", "k": 6}], "xRange": [-6, 6], "yRange": [-6, 6]},
+    {"version": "elem-1", "kind": "curveGraph",
+     "curves": [{"type": "quadratic", "a": 1, "p": 0, "q": 0}],
+     "xRange": [-4, 4], "yRange": [-2, 8]},
+    {"version": "elem-1", "kind": "netCone", "r": 3, "l": 9},
+    # 던져야 하는 것 — 모선이 반지름 이하면 원뿔이 아니다
+    {"version": "elem-1", "kind": "netCone", "r": 2, "l": 2},
     {"version": "elem-1", "kind": "linearGraph",
      "lines": [{"slope": 2, "yIntercept": -1}], "xRange": [-5, 5], "yRange": [-5, 5]},
     {"version": "elem-1", "kind": "assetScene",
