@@ -6025,6 +6025,45 @@ function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 const TRI_DISTRACTORS = ["isoTri", "rightTri", "wideTri"] as const;
 
+/** 「그림에서 …의 기호를 쓰시오」에 쓰는 기호 — 자리 순서 그대로 붙는다. */
+const PICK_LABELS = ["가", "나", "다"] as const;
+
+/**
+ * **정답 도형의 자리를 씨앗마다 섞는다.**
+ *
+ * 🔴 옛 판은 정답 도형을 늘 **첫 자리**에 놓아 기호 「가」를 붙였다. 그러면
+ * **발문을 안 읽고 「가」라고 써도 맞는다** — 실측 2026-08-24 로 세 소단원
+ * (2-2-1 · 2-4-4 · 2-4-6) 174건이 전량 «가» 였다.
+ *
+ * ⚠️ **값 검산은 이 부류를 구조적으로 못 본다** — 답이 늘 «맞기» 때문이다. 그리고
+ * R9 는 «발문 + 그림»만 보므로 정답 축이 아예 없었다. 2-2-1 은 그림 스펙이 **6가지로
+ * 갈리는데도** 답이 늘 「가」였다 — 「그림을 씨앗마다 다르게」로는 안 갚아진다.
+ *
+ * 라벨은 **자리 순서 그대로** 가·나·다다(건너뛰면 지면이 이상해진다). 섞는 것은
+ * 「정답 도형이 몇째 자리에 오는가」뿐이다.
+ */
+function labelledPick(
+  rng: Rng,
+  answerShape: string,
+  others: readonly string[],
+): { answer: string; other: string; items: { shape: string; label: string }[] } {
+  if (others.length + 1 > PICK_LABELS.length) {
+    throw new Error(
+      `기호가 모자랍니다: 도형 ${others.length + 1}개 — PICK_LABELS 를 늘려라`,
+    );
+  }
+  const at = intBetween(rng, 0, others.length);
+  const ordered = [...others];
+  ordered.splice(at, 0, answerShape);
+  const items = ordered.map((shape, i) => ({ shape, label: PICK_LABELS[i]! }));
+  const answer = PICK_LABELS[at]!;
+  return {
+    answer,
+    other: items.find((x) => x.label !== answer)!.label,
+    items,
+  };
+}
+
 function triClass(a: number, b: number, c: number): string {
   const big = Math.max(a, b, c);
   return big > 90 ? "둔각삼각형" : big === 90 ? "직각삼각형" : "예각삼각형";
@@ -6053,18 +6092,13 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     const others = [...TRI_DISTRACTORS];
     const second = others.splice(intBetween(rng, 0, others.length - 1), 1)[0]!;
     const third = others[intBetween(rng, 0, others.length - 1)]!;
+    const put = labelledPick(rng, "eqTri", [second, third]);
     return make(
       unit,
       "그림에서 정삼각형의 기호를 쓰시오.",
-      "가",
-      "가는 세 변의 길이가 모두 같습니다. 세 변의 길이가 같은 삼각형을 정삼각형이라고 합니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "eqTri", label: "가" },
-          { shape: second, label: "나" },
-          { shape: third, label: "다" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 세 변의 길이가 모두 같습니다. 세 변의 길이가 같은 삼각형을 정삼각형이라고 합니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 
@@ -7782,6 +7816,37 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "2-4-2") {
+    /* ─── 그림은 **첫 갈래에만** 붙는다 (2026-08-24, 리드 확정) ───────────────
+     *
+     * 09 §2.2 규칙 ①·②는 **무는 판정기가 없다.** 값 검산도 렌더 검사도 다 초록이다.
+     * 그러니 까닭을 여기 적어 두는 것이 다음 사람을 지키는 유일한 장치다.
+     *
+     * 🔴 **결론: 이 소단원은 그림을 하나도 안 붙인다.** 붙일 수 있는 갈래가 하나뿐인데,
+     *    그 하나 때문에 **「그림이 있으면 답은 «평행선»」이 100% 가 된다.**
+     *
+     * ❗ 「서로 만나지 않는 두 직선을 **무엇이라고** 하는가 → 평행선」
+     *    「답이 **낱말**이라 그림이 이름을 안 쓴다」까지는 맞다. 그래서 한 번 붙였다.
+     *    그런데 **R9-c 가 곧바로 물었다**(2026-08-24, 리드가 그날 세운 축) —
+     *    「씨앗 120 중 그림 붙은 26문항에서 «평행선» 가 **100%**」.
+     *    나머지 세 갈래는 아래 까닭으로 그림을 못 붙이므로, **그림의 있고 없음 자체가
+     *    답을 알려 준다.** 「언제나 가」와 같은 부류이고 문이 다를 뿐이다.
+     *    → 갈래 하나만 그림을 받을 수 있는 소단원에서는, 그 갈래의 답이 **고정이면**
+     *      붙이지 않는다. (2-4-3 은 답이 길이라 씨앗마다 갈려서 붙일 수 있다.)
+     *
+     * ❌ 「한 직선에 수직인 두 직선은 서로 **어떤 관계**인가 → 평행」
+     *    옳은 그림은 **반드시 두 직선을 평행하게 그린다.** 그리는 순간 답이 지면에 있다.
+     *    2-4-3 의 「수선들의 길이는 서로 어떠한가 → 모두 같다」와 **같은 구조**다.
+     *
+     * ❌ 「아무리 늘이면 만나는 점은 몇 개 → $0$」
+     *    알맹이인 「아무리 늘여도」는 **유한한 그림에 안 보이는데**, 답 $0$ 은
+     *    그림만 봐도 나온다. 그림이 알맹이는 안 돕고 답만 준다.
+     *
+     * ❌ 「직사각형에서 서로 평행한 변은 몇 쌍 → $2$」
+     *    ⚠️ **「평행은 눈으로 못 보니 괜찮다」가 아니다** — 평행선은 평행하게 **보인다**
+     *    (첫 판에 그렇게 적었다가 리드가 짚었다. 그 근거를 남기면 다음 사람이 그것으로
+     *    둘째 갈래를 되살린다). 진짜 까닭은 **아는 학생은 그림이 필요 없고, 모르는
+     *    학생은 그림에서 세어 버린다** — 어느 쪽에도 도움이 안 된다.
+     */
     const kind = intBetween(rng, 0, 3);
     if (kind === 3) {
       return make(
@@ -7816,6 +7881,20 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
   }
 
   if (c === "2-4-3") {
+    /* ─── 그림은 **첫 갈래에만** (2026-08-24, figures 지시 + 리드 확정) ────────
+     *
+     * ✅ 「수선을 그었더니 길이가 $N$. 평행선 사이의 거리는?」
+     *    ⚠️ **치수를 안 적는다.** 답이 준 값과 **같아서** 적으면 그림이 답을 말한다.
+     *    치수 없는 그림은 「거리는 수선으로 잰다」는 **배치**만 보인다.
+     *
+     * ❌ 「수선을 $N$개 그었다. 길이는 서로 어떠한가 → 모두 같다」
+     *    엔진이 그 수선들을 **정말 같게 그린다**(`_line_relation` 주석: 「길이가 같다는
+     *    것이 답이므로 정말 같게 그린다」). kind 를 만들 때는 「그림이 답과 어긋나면
+     *    안 된다」는 뜻이었는데 **문항에 붙이는 순간 뜻이 뒤집힌다** — 학생이 보고 쓴다.
+     *
+     * ❌ 「거리가 $N$일 때 비스듬한 선분은 $N$보다 긴가 짧은가 → 길다」
+     *    비스듬한 선분을 그리면 **눈으로 보인다.**
+     */
     const dist = intBetween(rng, 3, 12);
     const kind = intBetween(rng, 0, 2);
     if (kind === 0) {
@@ -7824,6 +7903,10 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
         `평행한 두 직선 사이에 수선을 그었더니 길이가 ${cm(dist)}였습니다. 이 평행선 사이의 거리는 몇 cm인가?`,
         cm(dist),
         `평행선 사이의 거리는 평행선 사이에 그은 수선의 길이입니다. 그러므로 ${cm(dist)}입니다.`,
+        // ⚠️ **`distance` 를 안 싣는다** — 그 값이 곧 답이다. `perpCount: 1` 만 실어
+        //    「거리는 수선으로 잰다」는 배치만 보인다. 2-4-2 첫 갈래와 같이 이 그림도
+        //    씨앗마다 같고, 같은 까닭으로 R9-b 를 통과한다(다른 갈래에 그림이 없다).
+        fig("lineRelation", { relation: "parallel", perpCount: 1 }),
       );
     }
     if (kind === 1) {
@@ -7862,17 +7945,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
         "평행사변형은 평행한 변이 두 쌍이므로 한 쌍이라도 평행하다는 조건을 만족합니다. 그러므로 사다리꼴입니다.",
       );
     }
+    const put = labelledPick(rng, "trap", ["irregQuad"]);
     return make(
       unit,
       "그림에서 사다리꼴의 기호를 쓰시오.",
-      "가",
-      "가는 위쪽 변과 아래쪽 변이 서로 평행합니다. 나는 평행한 변이 한 쌍도 없습니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "trap", label: "가" },
-          { shape: "irregQuad", label: "나" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 위쪽 변과 아래쪽 변이 서로 평행합니다. ` +
+        `${put.other}는 평행한 변이 한 쌍도 없습니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 
@@ -7924,17 +8004,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
         `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side}\\times4=${side * 4}`)} 입니다.`,
       );
     }
+    const put = labelledPick(rng, "tallDiamond", ["rect"]);
     return make(
       unit,
       "그림에서 네 변의 길이가 모두 같은 사각형의 기호를 쓰시오.",
-      "가",
-      "가는 네 변의 길이가 모두 같습니다. 나는 이웃한 두 변의 길이가 다릅니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "tallDiamond", label: "가" },
-          { shape: "rect", label: "나" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 네 변의 길이가 모두 같습니다. ` +
+        `${put.other}는 이웃한 두 변의 길이가 다릅니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 

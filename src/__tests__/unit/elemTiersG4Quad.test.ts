@@ -827,3 +827,124 @@ describe("[초4 2-4-2] 평행과 평행선", () => {
     counted(counted0, "조사 전량");
   });
 });
+
+/* ────── 「그림에서 ○○의 기호를 쓰시오」 — 정답 자리가 씨앗마다 섞이는가 ──────
+ *
+ * 🔴 **옛 판은 정답이 «언제나 가» 였다.** 발문을 안 읽고 「가」라고 써도 맞는다
+ *    (실측 2026-08-24: 2-2-1 51건 · 2-4-4 65건 · 2-4-6 58건, 전량 «가»).
+ *
+ * ⚠️ **왜 아무 검사도 못 봤나 — 세 겹이다.**
+ *   ㉠ R9 는 «발문 + 그림»만 본다. **정답 축이 아예 없다.**
+ *   ㉡ 그림이 일부 씨앗에만 붙으면 스펙 집합에 `null` 이 섞여 크기가 $2$ 가 되고
+ *      「고정 아님」으로 통과한다 — **붙을 때는 늘 같은 그림인데도.**
+ *   ㉢ 셀 전체로 세면 그림 없는 씨앗들이 답을 갈라 **0건**이 된다.
+ *      그래서 **「그림이 붙은 씨앗 안에서」**로 좁혀야 드러난다.
+ *   그리고 **값 검산은 이 부류를 구조적으로 못 본다** — 답이 늘 맞기 때문이다.
+ *
+ * ⚠️ 2-2-1 은 **그림 스펙이 6가지로 갈리는데도** 답이 늘 「가」였다. 「그림을 씨앗마다
+ *    다르게」로는 안 갚아진다 — **정답 자리 자체**를 섞어야 한다.
+ */
+describe("[초4 표준] 그림에서 기호를 고르는 문항", () => {
+  const PICK_CODES = ["2-2-1", "2-4-4", "2-4-6"] as const;
+
+  it("**정답이 «언제나 가» 가 아니다** — 그림이 붙은 문항 안에서 센다", () => {
+    for (const code of PICK_CODES) {
+      const answers = new Map<string, number>();
+      let withFig = 0;
+      for (const seed of SWEEP) {
+        const p = gen(code, seed);
+        // ㉡·㉢ — **그림이 붙은 씨앗만** 모은다. 안 좁히면 0건이 된다.
+        if (!p.figureSpec) continue;
+        if (!/기호를 쓰시오/.test(p.content)) continue;
+        withFig += 1;
+        answers.set(p.answer, (answers.get(p.answer) ?? 0) + 1);
+      }
+      counted(withFig, `${code} 그림 붙은 «기호» 문항`);
+      expect(
+        answers.size,
+        `${code}: 정답이 «${[...answers.keys()].join("·")}» 하나뿐 — 발문을 안 읽어도 맞는다`,
+      ).toBeGreaterThan(1);
+      // 한쪽으로 심하게 쏠려도 찍기가 통한다. 가장 흔한 답이 8할을 넘으면 막는다.
+      const top = Math.max(...answers.values());
+      expect(
+        top / withFig,
+        `${code}: 정답이 «${[...answers].sort((a, b) => b[1] - a[1])[0]![0]}» 로 쏠렸다`,
+      ).toBeLessThan(0.8);
+    }
+  });
+
+  it("**해설이 가리키는 기호가 정답과 같다**", () => {
+    let looked = 0;
+    for (const code of PICK_CODES) {
+      for (const seed of SWEEP) {
+        const p = gen(code, seed);
+        if (!p.figureSpec || !/기호를 쓰시오/.test(p.content)) continue;
+        // 해설 첫 문장이 「○는 …」 으로 시작한다 — 그 ○ 가 정답이어야 한다.
+        const head = /^([가나다])는/.exec(p.solution);
+        expect(head, `${code} 씨앗 ${seed} 해설이 기호로 시작하지 않는다`).toBeTruthy();
+        expect(head![1], `${code} 씨앗 ${seed} 해설이 딴 기호를 짚는다`).toBe(p.answer);
+        looked += 1;
+      }
+    }
+    counted(looked, "해설-정답 대조");
+  });
+
+  it("**그림의 라벨이 정답 기호를 담고 있다**", () => {
+    let looked = 0;
+    for (const code of PICK_CODES) {
+      for (const seed of SWEEP) {
+        const p = gen(code, seed);
+        if (!p.figureSpec || !/기호를 쓰시오/.test(p.content)) continue;
+        const spec = p.figureSpec as { items?: { label?: string }[] };
+        const labels = (spec.items ?? []).map((x) => String(x.label));
+        expect(labels, `${code} 씨앗 ${seed} 그림에 정답 기호가 없다`).toContain(
+          p.answer,
+        );
+        // 라벨은 자리 순서 그대로 가·나·다 여야 한다(건너뛰면 지면이 이상해진다).
+        expect(labels, `${code} 씨앗 ${seed} 라벨 차례가 어긋난다`).toEqual(
+          ["가", "나", "다"].slice(0, labels.length),
+        );
+        looked += 1;
+      }
+    }
+    counted(looked, "그림 라벨 대조");
+  });
+});
+
+/* ────── 2-4-2 · 2-4-3 그림 배선 (2026-08-24) ──────
+ *
+ * 09 §2.2 **규칙 ①(묻는 값을 그림에 적지 마라)은 무는 판정기가 없다.** 값 검산도
+ * 렌더 검사도 다 초록이다 — 여기서 잠근다.
+ */
+describe("[초4 2-4-2·2-4-3] 그림 배선", () => {
+  it("**2-4-3 그림에 치수가 없다** — 그 값이 곧 답이다 (09 §2.2 ①)", () => {
+    let withFig = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-3", seed);
+      const spec = p.figureSpec as Record<string, unknown> | undefined;
+      if (!spec) continue;
+      withFig += 1;
+      expect(spec.kind, `씨앗 ${seed}`).toBe("lineRelation");
+      // `distance` 를 실으면 발문이 준 길이가 그림에 찍히고, 그게 곧 정답이다.
+      expect(
+        spec.distance,
+        `씨앗 ${seed} 그림에 치수가 실렸다 — 그 값이 답이다`,
+      ).toBeUndefined();
+      expect(spec.relation, `씨앗 ${seed}`).toBe("parallel");
+    }
+    counted(withFig, "2-4-3 그림 붙은 문항");
+  });
+
+  it("**2-4-2 는 그림을 하나도 안 붙인다** — 붙일 수 있는 갈래의 답이 고정이라", () => {
+    // 🔴 한 번 붙였다가 **R9-c 가 물었다**: 「그림 붙은 26문항에서 «평행선» 100%」.
+    //    나머지 세 갈래는 답을 보여 줘서 못 붙이므로, **그림의 있고 없음 자체가
+    //    답을 알려 준다.** 되살리려면 답이 갈리는 발문을 먼저 만들어야 한다.
+    let looked = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-2", seed);
+      expect(p.figureSpec, `씨앗 ${seed}`).toBeFalsy();
+      looked += 1;
+    }
+    counted(looked, "2-4-2 표준 전량");
+  });
+});

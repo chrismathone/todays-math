@@ -88,7 +88,12 @@ for (const sec of sections) {
     // 열 개 다 그런 격자라 「구멍을 안 뚫는다」·「구멍 뚫기 전 격자를 그린다」
     // 두 변이가 산출물을 못 바꿔 ⑵ 에서 판정 거부됐다. 씨앗 2,000개를 실제로
     // 갈라 보니 **240개(12%)**가 민감했고 19 가 그 첫째다.
-    for (const seed of [20260821, 7, 1234, 1, 2, 3, 4, 79, 23, 68, 19]) {
+    //
+    // 9 는 초4 2-4 가 넣었다. 표준 2-4-2 는 갈래가 넷인데 앞 열하나가 **「서로 만나지
+    // 않는 두 직선을 무엇이라고 하는가」를 한 번도 안 밟는다**(수직 6 · 만나는 점 2 ·
+    // 직사각형 1). 그래서 그 갈래에 그림을 붙이는 변이가 «산출물이 그대로다»로 판정
+    // 거부됐다. 씨앗 0~400 을 갈라 그 갈래를 밟는 첫째가 9 다(9·11·16·24·31 …).
+    for (const seed of [20260821, 7, 1234, 1, 2, 3, 4, 79, 23, 68, 19, 9]) {
       try {
         const p = generateElementaryProblem(unit, seed, tier);
         out.push(
@@ -1124,6 +1129,15 @@ G6_MUTS = [
         '`앞에서 본 모양의 넓이는 몇 cm²인가?`,\n    num(r * h),',
         '`앞에서 본 모양의 넓이는 몇 cm²인가?`,\n    num(2 * r * h),',
     ),
+    (
+        # ⚠️ **어떤 값 검산도 이 부류를 못 본다** — 답은 언제나 옳다. 「한 가지뿐인가」
+        # 축에도 안 걸린다(두 가지는 나온다). 되돌리면 `2-3-3 기본` 의 답이 다시
+        # $3$ 으로 **90.3%** 쏠린다 — 학생이 안 풀고 «$3$» 이라 써도 열에 아홉 맞는다.
+        # 잡는 것은 «쏠림» 축뿐이다(시험의 「정답 쏠림」 · 판정기의 R9-c 정답고정).
+        "쏠림 되돌리기 — 2-3-3 기본이 최댓값을 먼저 안 뽑는다 (답이 $3$ 으로 굳는다)",
+        '  const b = stackBaseTopped(rng);\n  const maxH = b.top;',
+        '  const b = stackBase(rng);\n  const maxH = Math.max(...b.h.flat());',
+    ),
 ]
 
 G4_MUTS = [
@@ -1374,6 +1388,40 @@ G4_MUTS = [
         "      `관계여야 하는가?`,",
         "      `관계여야 하는가? (단, 꺾인 횟수는 $2$번보다 많고 $5$번보다 적다.)`,",
     ),
+    # ── 초4 표 폭 · 정답 고정 · 그림 배선 (2026-08-24, elem-g4) ─────────────
+    #
+    # 이 여섯은 **손으로 망가뜨려 확인만 하고 원장에 안 남아 있던 것**이다
+    # (`mutate-elem-tiers.py` 가 다른 세션 창이었다). 여기 못 박는다.
+    (
+        "1-5-2 표 훼손 — 표를 다시 가로로 눕힌다(첫 열에 긴 이름이 들어가 지면을 넘는다)",
+        '    headers: [d.theme.item, "학생 수(명)"],\n    rows: d.values.map((v) => [v.label, String(v.value)]),',
+        '    headers: [d.theme.item, ...d.values.map((v) => v.label)],\n    rows: [["학생 수(명)", ...d.values.map((v) => String(v.value))]],',
+    ),
+    (
+        "2-5-3 표 훼손 — 표를 다시 가로로 눕힌다",
+        '    headers: ["구분", `${theme.short ?? theme.topic}(${theme.unit})`],\n    rows: theme.labels.map((l, i) => [l.text, String(nums[i] ?? "")]),',
+        '    headers: ["구분", ...theme.labels.map((l) => l.text)],\n    rows: [[`${theme.short ?? theme.topic}(${theme.unit})`, ...nums.map((v) => String(v))]],',
+    ),
+    (
+        "2-5-3 표 훼손 — 짧은 이름을 안 쓴다(「하루 동안 내린 비의 양(mm)」이 표 칸에 들어간다)",
+        'headers: ["구분", `${theme.short ?? theme.topic}(${theme.unit})`],',
+        'headers: ["구분", `${theme.topic}(${theme.unit})`],',
+    ),
+    (
+        "표준 그림 훼손 — 정답 도형을 늘 첫 자리에(「가」라고만 써도 맞는다)",
+        "  const at = intBetween(rng, 0, others.length);",
+        "  const at = 0;",
+    ),
+    (
+        "2-4-3 그림 훼손 — 치수를 싣는다(그 값이 곧 답이다, 09 §2.2 ①)",
+        'fig("lineRelation", { relation: "parallel", perpCount: 1 }),',
+        'fig("lineRelation", { relation: "parallel", perpCount: 1, distance: String(dist) }),',
+    ),
+    (
+        "2-4-2 그림 훼손 — 첫 갈래에 그림을 붙인다(그림이 붙으면 답은 늘 「평행선」)",
+        '        "한 평면에서 아무리 늘여도 만나지 않는 두 직선을 평행하다고 하고, 그 두 직선을 평행선이라고 합니다.",\n      );',
+        '        "한 평면에서 아무리 늘여도 만나지 않는 두 직선을 평행하다고 하고, 그 두 직선을 평행선이라고 합니다.",\n        fig("lineRelation", { relation: "parallel" }),\n      );',
+    ),
 ]
 
 TARGETS = {
@@ -1485,6 +1533,7 @@ TARGETS = {
         ],
         "grade": "초4",
         "sections": [
+            "1-5-2",
             "2-2-1",
             "2-2-2",
             "2-2-3",

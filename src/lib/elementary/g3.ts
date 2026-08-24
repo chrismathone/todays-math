@@ -1218,9 +1218,15 @@ function div32(unit: UnitSeed, rng: Rng): ElemProblem {
  *    맨 원 + 중심점이면 새는 것이 없다. 발문이 선분을 말로 다 설명한다.
  *  · **2-3-2(성질)** — 한쪽 치수를 주고 다른 쪽을 묻는다. **준 쪽만** 적는다.
  *    묻는 쪽을 적으면 답이 지면에 있다(엔진이 둘 다 받으면 던진다).
- *  · **2-3-3(원 그리기)** — 「컴퍼스를 8cm 벌렸다 → 지름은?」. 숨은 단계가
- *    **«벌린 길이 = 반지름»** 이다. 반지름을 8cm 라 적으면 **그 단계를 그림이
- *    대신한다.** 그래서 치수를 안 적는다 — 2-3-2 와 겉보기가 같아도 이유가 다르다.
+ *  · **2-3-3(원 그리기)** — 그림을 **안 붙인다.** 「컴퍼스를 8cm 벌렸다 → 지름은?」
+ *    에서 갈리는 것은 **벌린 길이 하나**뿐인데, 그것을 그림이 나를 길이 둘 다 막힌다:
+ *      ㉠ 치수로 적으면 숨은 단계(**«벌린 길이 = 반지름»**)를 **그림이 대신한다.**
+ *      ㉡ 원 크기로 나타내면 — 이 kind 는 **고정 62px 도식**이라 값을 안 따른다.
+ *    남는 것은 맨 원이고, 맨 원은 **나르는 것이 없다.** `R9-b` 가 「전 씨앗 동일」로
+ *    잡은 자리다(2026-08-24).
+ *    ⚠️ **뜻 없는 변화(원 크기 흔들기)로 통과시키지 마라** — R9 가 묻는 것은
+ *    「씨앗마다 다른가」가 아니라 **「그림이 정보를 나르는가」**다. 2-3-2 와 겉보기가
+ *    같아도 이유가 다르다: 저쪽은 **답**이라서 안 적고, 여기는 **나를 것이 없어서** 안 붙인다.
  */
 function circleFig(
   kind: "bare" | "showRadius" | "showDiameter" | "radius" | "diameter",
@@ -1289,7 +1295,6 @@ function circle32(unit: UnitSeed, rng: Rng): ElemProblem {
     `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인지 쓰시오.`,
     n(r * 2),
     `컴퍼스를 벌린 길이가 원의 반지름이 됩니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
-    circleFig("bare"),
   );
 }
 
@@ -6887,6 +6892,509 @@ function capSumDeepOf(cfg: CapCfg) {
   };
 }
 
+// ── 2-6 그림그래프 (D-72 확대) ───────────────────────────────────────────
+//
+// 두 소단원이 **반대 방향**이다 — 2-6-1 은 그림그래프를 **읽고**, 2-6-2 는 표를 보고
+// 그림그래프로 **나타낸다**. 그래서 공장을 나눠 쓰지 않는다(2-5 와 다른 점이다).
+//
+// ⚠️ **그림이 답을 말하지 않게** 하는 자리가 둘이다. elem-figures 가 2-3 에서 잡은
+//    것과 같은 부류다(2026-08-24):
+//      · 2-6-2 는 **큰·작은 그림을 그리지 않는다.** 그려 놓고 「몇 개 그려야 하나」를
+//        물으면 **세면 답**이다. 표만 주고 개수를 «수»로 답하게 한다.
+//      · 2-6-1 심화는 묻는 곳을 **그림에서 뺀다.** 그려 두고 「몇 개인가」를 물으면
+//        칸을 세면 끝이라 역산이 아니다.
+//
+// ⚠️ **한 아이콘(`□ = N`)만 쓴다.** 「큰 그림/작은 그림」 두 아이콘 범례는 엔진에
+//    아직 없다(elem-figures 확인, 2026-08-24). 2-6-2 가 큰·작은을 다루지만 그것은
+//    **발문의 규약**이지 그림이 아니다 — 위 이유로 그리지 않는 편이 옳기도 하다.
+//
+// ⚠️ **칸 수·항목 수를 스스로 묶는다.** 렌더러는 `count` 0~12 · `items` 1~6 을 받고
+//    넘쳐도 안 던진다(`_svg` 가 viewBox 를 넓힌다). 그런데 넓어지면 두 단 지면에서
+//    **줄어들어 아이콘이 작아진다** — 실측으로 `count` 8부터 240 → 356 이다.
+//    그래서 여기서 **`count` ≤ 7 · `items` ≤ 4** 로 묶어 240 에 머물게 한다.
+
+const GRAPH_MAX_COUNT = 7;
+const GRAPH_LABELS = ["가", "나", "다", "라"] as const;
+
+/** `□ = N` 한 아이콘짜리 그림그래프. **칸 수 상한을 여기서 지킨다.** */
+function graphSpec(
+  step: number,
+  rows: readonly { label: string; count: number }[],
+): Record<string, unknown> {
+  for (const r of rows) {
+    if (r.count < 1 || r.count > GRAPH_MAX_COUNT) {
+      throw new Error(
+        `그림그래프 칸 수가 ${r.count} 입니다 — 1~${GRAPH_MAX_COUNT} 로 잡으십시오(넘치면 지면에서 줄어듭니다)`,
+      );
+    }
+  }
+  return fig("pictograph", {
+    unit: step,
+    items: rows.map((r) => ({ label: r.label, count: r.count })),
+  });
+}
+
+/** 한 칸이 나타내는 수. 초3 은 $2$·$5$·$10$ 만 쓴다. */
+function graphStep(rng: Rng): number {
+  return pick(rng, [2, 5, 10]);
+}
+
+/* ── 2-6-1 그림그래프 알아보기 — **읽는다** ── */
+
+/** 1단 — 칸을 세어 곱한다(한 단계). */
+function graph261Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const at = intBetween(rng, 0, 2);
+  const count = counts[at]!;
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. ${GRAPH_LABELS[at]} ${place}의 ${stuff.name} 수는 몇 ${stuff.unit}인지 쓰시오.`,
+    n(count * step),
+    `${GRAPH_LABELS[at]} ${place}${josa(place, "은", "는")} □가 ${n(count)}칸이므로 ${expr(`${step}\\times${count}=${count * step}`)} 입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+/**
+ * 2단 — **이름 대신 성질로** 묻는다(D-72). 「가 마을」이 아니라 「가장 많은 곳」이다.
+ *
+ * 그래서 답이 **기호**다 — 칸을 세어 견주는 일이 알맹이고, 곱셈은 안 든다.
+ */
+function graph261Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  // 칸 수가 겹치면 「가장 많은 곳」이 하나로 안 정해진다 — 셋을 다르게 뽑는다.
+  // 셋을 벌리면 최대가 base+4 다 — 상한 7 을 넘지 않게 base 를 3 까지만.
+  const base = intBetween(rng, 2, 3);
+  const counts = [base, base + intBetween(rng, 1, 2), 0];
+  counts[2] = counts[1]! + intBetween(rng, 1, 2);
+  const order = pick(rng, CAP_PERMS);
+  const shown = order.map((i) => counts[i]!);
+  const askMost = intBetween(rng, 0, 1) === 1;
+  const target = askMost ? Math.max(...shown) : Math.min(...shown);
+  const at = shown.indexOf(target);
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. ${stuff.name} 수가 가장 ${askMost ? "많은" : "적은"} ${place}의 기호를 쓰시오.`,
+    GRAPH_LABELS[at]!,
+    `□ 칸 수를 견주면 ${shown.map((c, i) => `${GRAPH_LABELS[i]} ${n(c)}칸`).join(", ")} 입니다. 가장 ${askMost ? "많은" : "적은"} 것은 ${GRAPH_LABELS[at]} ${place}입니다.`,
+    graphSpec(
+      step,
+      shown.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+/** 3단 — 두 곳을 각각 환산해 합하거나 뺀다(두 단계). */
+function graph261Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  let i = intBetween(rng, 0, 2);
+  let j = intBetween(rng, 0, 1);
+  if (j >= i) j += 1;
+  // 발문이 「나 … 가 …」로 거꾸로 읽히지 않게 라벨 차례로 세운다.
+  if (j < i) [i, j] = [j, i];
+  // 두 칸 수가 같으면 **차가 $0$** 이라 「차는 몇 개인가」가 문항이 안 된다.
+  // 그때는 합으로 돌린다 — 뽑기를 다시 하면 씨앗마다 문항이 흔들린다.
+  const isSum = counts[i] === counts[j] || intBetween(rng, 0, 1) === 1;
+  const [hi, lo] =
+    counts[i]! >= counts[j]!
+      ? [counts[i]!, counts[j]!]
+      : [counts[j]!, counts[i]!];
+  const value = isSum ? (counts[i]! + counts[j]!) * step : (hi - lo) * step;
+  return make(
+    unit,
+    isSum
+      ? `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. ${GRAPH_LABELS[i]} ${place}${josa(place, "과", "와")} ${GRAPH_LABELS[j]} ${place}의 ${stuff.name} 수를 더하면 몇 ${stuff.unit}인지 쓰시오.`
+      : `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. ${GRAPH_LABELS[i]} ${place}${josa(place, "과", "와")} ${GRAPH_LABELS[j]} ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}인지 쓰시오.`,
+    n(value),
+    isSum
+      ? `${GRAPH_LABELS[i]} ${place}${josa(place, "은", "는")} ${expr(`${step}\\times${counts[i]}=${counts[i]! * step}`)}, ${GRAPH_LABELS[j]} ${place}${josa(place, "은", "는")} ${expr(`${step}\\times${counts[j]}=${counts[j]! * step}`)} 입니다. ${expr(`${counts[i]! * step}+${counts[j]! * step}=${value}`)} 입니다.`
+      : `${GRAPH_LABELS[i]} ${place}${josa(place, "은", "는")} ${expr(`${step}\\times${counts[i]}=${counts[i]! * step}`)}, ${GRAPH_LABELS[j]} ${place}${josa(place, "은", "는")} ${expr(`${step}\\times${counts[j]}=${counts[j]! * step}`)} 입니다. ${expr(`${hi * step}-${lo * step}=${value}`)} 입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, k) => ({ label: GRAPH_LABELS[k]!, count: c })),
+    ),
+  );
+}
+
+/**
+ * 4단 — **전체에서 되짚는다.** 묻는 곳은 그림에 **없다.**
+ *
+ * ⚠️ 그 곳을 그려 놓고 물으면 칸을 세면 끝이라 역산이 아니다. 교과서도 「찢어져
+ *    보이지 않는다」로 낸다. 그림에 셋만 두고 넷째를 묻는다.
+ */
+function graph261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const shown = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const missing = intBetween(rng, 2, GRAPH_MAX_COUNT);
+  const shownSum = shown.reduce((a, b) => a + b, 0) * step;
+  const total = shownSum + missing * step;
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. 라 ${place}의 그림그래프는 찢어져 보이지 않습니다. 네 ${place}의 ${stuff.name} 수를 모두 더한 전체가 ${n(total)}${stuff.unit}일 때, 라 ${place}의 ${stuff.name} 수는 몇 ${stuff.unit}인지 쓰시오.`,
+    n(missing * step),
+    `보이는 세 ${place}${josa(place, "은", "는")} ${shown.map((c, i) => `${GRAPH_LABELS[i]} ${expr(`${step}\\times${c}=${c * step}`)}`).join(", ")} 이므로 합이 ${n(shownSum)}${stuff.unit}입니다. 전체가 ${n(total)}${stuff.unit}이므로 ${expr(`${total}-${shownSum}=${missing * step}`)} 입니다.`,
+    graphSpec(
+      step,
+      shown.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+/* ── 2-6-2 그림그래프로 나타내기 — **나타낸다** ── */
+//
+// ⚠️ 넷 다 **표**를 주고 **큰·작은 그림 개수를 «수»로** 답하게 한다. 그림그래프를
+//    그려 주면 세면 답이라 문항이 죽는다(위 머리말 참조).
+
+/** 표 한 줄짜리 그림. 라벨이 길면 렌더러가 **던지므로**(D-70) 짧게 유지한다. */
+function graphTable(
+  place: string,
+  name: string,
+  labels: readonly string[],
+  values: readonly (number | string)[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: [place, ...labels],
+    rows: [[name, ...values.map((v) => String(v))]],
+  });
+}
+
+/** 1단 — 값을 자릿값으로 가른다(한 단계). */
+function graph262Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const labels = GRAPH_LABELS.slice(0, 3);
+  // 일의 자리를 비우지 않는다 — 「작은 그림 $0$개」가 답이 되면 문항이 싱겁다.
+  const values = labels.map(
+    () => intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9),
+  );
+  const at = intBetween(rng, 0, labels.length - 1);
+  const value = values[at]!;
+  const tens = Math.floor(value / 10);
+  const ones = value % 10;
+  return make(
+    unit,
+    `표를 보고 그림그래프로 나타내려고 합니다. 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}입니다. ${labels[at]} ${place}${josa(place, "은", "는")} 큰 그림과 작은 그림을 각각 몇 개 그려야 하는지 쓰시오.`,
+    `큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개`,
+    `${labels[at]} ${place}의 ${stuff.name} 수는 ${n(value)}${stuff.unit}입니다. ${expr(`${value}=10\\times${tens}+${ones}`)} 이므로 큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개를 그립니다.`,
+    graphTable(place, stuff.name, labels, values),
+  );
+}
+
+/**
+ * 2단 — **문장으로** 값을 받아 나타낸다. 표를 안 쓴다.
+ *
+ * ⚠️ 처음엔 표를 곁들였는데, 값이 발문에 있으니 **표의 수를 아무도 안 썼다.**
+ *    지면에 «쓰지 않는 수»가 서 있으면 학생이 그것을 찾다가 길을 잃는다.
+ *    그러면 발문의 「표를 보고」도 거짓말이 된다 — 둘을 같이 뺐다(2026-08-24).
+ *    2단의 축은 「문장으로 받는다」라 표가 없어도 성립한다.
+ */
+function graph262Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const value = intBetween(rng, 1, 5) * 10 + intBetween(rng, 1, 9);
+  const tens = Math.floor(value / 10);
+  const ones = value % 10;
+  return make(
+    unit,
+    `그림그래프로 나타내려고 합니다. 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}입니다. 다 ${place}의 ${stuff.name} 수는 ${n(value)}${stuff.unit}입니다. 다 ${place}${josa(place, "은", "는")} 큰 그림과 작은 그림을 각각 몇 개 그려야 하는지 쓰시오.`,
+    `큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개`,
+    `다 ${place}의 ${stuff.name} 수는 ${n(value)}${stuff.unit}입니다. ${expr(`${value}=10\\times${tens}+${ones}`)} 이므로 큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개를 그립니다.`,
+  );
+}
+
+/** 3단 — 표의 한 칸이 비었다. 합계에서 그 값을 구한 **뒤** 그림 개수로 옮긴다. */
+function graph262Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const labels = GRAPH_LABELS.slice(0, 3);
+  const known = [0, 1].map(
+    () => intBetween(rng, 1, 3) * 10 + intBetween(rng, 1, 9),
+  );
+  const value = intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9);
+  const total = known[0]! + known[1]! + value;
+  const tens = Math.floor(value / 10);
+  const ones = value % 10;
+  return make(
+    unit,
+    `표를 보고 그림그래프로 나타내려고 합니다. 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}입니다. 세 ${place}의 ${stuff.name} 수를 모두 더하면 ${n(total)}${stuff.unit}입니다. 다 ${place}${josa(place, "은", "는")} 큰 그림과 작은 그림을 각각 몇 개 그려야 하는지 쓰시오.`,
+    `큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개`,
+    `가와 나의 합은 ${expr(`${known[0]}+${known[1]}=${known[0]! + known[1]!}`)} 입니다. 전체가 ${n(total)}${stuff.unit}이므로 다 ${place}${josa(place, "은", "는")} ${expr(`${total}-${known[0]! + known[1]!}=${value}`)} 입니다. ${expr(`${value}=10\\times${tens}+${ones}`)} 이므로 큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개를 그립니다.`,
+    graphTable(place, stuff.name, labels, [...known.map(String), "?"]),
+  );
+}
+
+/**
+ * 4단 — **그림 개수에서 값을 되짚고**, 조건을 하나 겹친다.
+ *
+ * 「큰 그림 a개·작은 그림 b개」로 나타낸 곳이 있고, 묻는 곳은 그보다 얼마 많다.
+ * 자릿값을 거꾸로 읽는 것이 4단의 역산이고, 「보다 몇 많다」가 겹친 조건이다.
+ */
+function graph262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const bigA = intBetween(rng, 1, 4);
+  const smallA = intBetween(rng, 1, 8);
+  const base = bigA * 10 + smallA;
+  const gap = intBetween(rng, 1, 3) * 10 + intBetween(rng, 1, 9 - smallA);
+  const value = base + gap;
+  const tens = Math.floor(value / 10);
+  const ones = value % 10;
+  return make(
+    unit,
+    `그림그래프로 나타낼 때 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. 가 ${place}의 ${stuff.name} 수를 큰 그림 ${n(bigA)}개와 작은 그림 ${n(smallA)}개로 나타냈습니다. 나 ${place}${josa(place, "은", "는")} 가 ${place}보다 ${n(gap)}${stuff.unit} 더 많습니다. 나 ${place}${josa(place, "은", "는")} 큰 그림과 작은 그림을 각각 몇 개 그려야 하는지 쓰시오.`,
+    `큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개`,
+    `가 ${place}${josa(place, "은", "는")} ${expr(`10\\times${bigA}+${smallA}=${base}`)} 입니다. 나 ${place}${josa(place, "은", "는")} ${expr(`${base}+${gap}=${value}`)} 이고, ${expr(`${value}=10\\times${tens}+${ones}`)} 이므로 큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개를 그립니다.`,
+  );
+}
+
+// ── 2-3 원 (D-72 확대) ──────────────────────────────────────────────────
+//
+// **그림 결정은 09 §2.2 결정표를 갈래마다 다시 물어서 정했다.** 「심화가 그림을 더
+// 많이 쓴다」가 아니다 — 갈래가 바꾸는 것은 «학생이 할 일»이고 그림은 그 일을
+// 대신하면 안 된다. 실측(elem-figures, 2026-08-24)으로 **갈래에 그림이 없는 것이
+// 섞이는 소단원이 76%** 다. 「이 갈래엔 그림이 없다」는 결함이 아니다.
+//
+// | 갈래 | 2-3-1 용어 | 2-3-2 성질 | 2-3-3 원 그리기 |
+// |---|---|---|---|
+// | 연산 | `show` 선분 | 준 쪽 치수 | **없음** |
+// | 기본 | **없음** | 준 쪽 치수 | **없음** |
+// | 응용 | **없음** | 준 쪽 치수 | **없음** |
+// | 심화 | **없음** | 준 쪽 치수 | **없음** |
+//
+// **까닭 — ①②를 무는 일반 판정기가 없다.** 값 검산도 렌더도 KaTeX 도 다 초록이다.
+// 그래서 여기 적어 둔다. 다음 사람이 되돌리는 것을 막는 유일한 장치다(09 §2.2).
+//
+//  · **2-3-1** — 답이 «낱말»이라 `show`(선분만, 글자 없음)가 안전하다(규칙 ⑤).
+//    「그 선분이 무엇인지 **알아내는 것**」이 문제의 일부가 아니라 **이름을 붙이는 것**이
+//    일이기 때문이다. ⚠️ 2·3·4단은 **말로만** 성질을 묻는다 — 그리면 나를 것이 없다(③).
+//  · **2-3-2** — 준 쪽만 적는다(①). 묻는 쪽을 적으면 답이 지면에 있다.
+//    4단은 원이 둘인데 `circleParts` 는 하나뿐이라 **큰 원의 준 값만** 적는다.
+//  · **2-3-3** — 어느 갈래에도 **안 붙인다.** 「벌린 길이 = 반지름」이 숨은 첫 단계라
+//    치수를 적으면 그림이 그 단계를 대신하고(②), 안 적으면 맨 원이라 나를 것이 없다(③).
+
+/* ── 2-3-1 원의 중심, 지름, 반지름 ── */
+
+/** 1단 — 그려 놓고 **이름을 묻는다.** 그림이 답을 말하지 않는다(답이 낱말이다). */
+function circ231Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const isDia = intBetween(rng, 0, 1) === 1;
+  return make(
+    unit,
+    `그림에서 굵게 그린 선분의 이름을 쓰시오.`,
+    isDia ? "지름" : "반지름",
+    isDia
+      ? "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다."
+      : "원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.",
+    circleFig(isDia ? "showDiameter" : "showRadius"),
+  );
+}
+
+/**
+ * 2단 — **성질을 말로** 묻는다. 그림을 안 붙인다.
+ *
+ * 「한 원에서 반지름은 모두 같다」는 **여러 개를 그려야** 보이는데 `circleParts` 는
+ * 선분을 하나만 그린다. 하나만 그리면 나를 것이 없다(③).
+ */
+function circ231Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 3, 6);
+  const isDia = intBetween(rng, 0, 1) === 1;
+  const name = isDia ? "지름" : "반지름";
+  return make(
+    unit,
+    `한 원에 ${name}${josa(name, "을", "를")} ${n(many)}개 그었습니다. 그은 선분들의 길이는 어떠한지 쓰시오.`,
+    "모두 같습니다",
+    `한 원에서 ${name}${josa(name, "은", "는")} 모두 길이가 같습니다. 따라서 ${n(many)}개의 길이가 모두 같습니다.`,
+  );
+}
+
+/** 3단 — 성질에서 **거꾸로 이름을 찾는다**(두 단계). */
+function circ231Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `한 원에 지름을 ${n(many)}개 그었더니 ${n(many)}개가 모두 한 점에서 만났습니다. 이 점을 무엇이라고 하는지 쓰시오.`,
+    "원의 중심",
+    `지름은 원의 중심을 지나는 선분입니다. 그러므로 지름을 여러 개 그으면 모두 원의 중심에서 만납니다.`,
+  );
+}
+
+/**
+ * 4단 — 조건 **둘**을 겹쳐 이름을 찾고, 그 성질까지 묻는다.
+ *
+ * ⚠️ 「두 조건」이라 부르고 조건을 안 적으면 `elemStemSelfContained` 가 문다.
+ *    여기서는 조건을 발문이 **글자로** 다 적는다.
+ */
+function circ231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `어떤 선분이 「원 위의 두 점을 잇는다」와 「원의 중심을 지난다」를 모두 만족합니다. 이 선분의 이름을 쓰고, 한 원에 이런 선분을 ${n(many)}개 그었을 때 그 길이가 어떠한지 함께 쓰시오.`,
+    "지름, 모두 같습니다",
+    `원 위의 두 점을 이으면서 원의 중심을 지나는 선분이 지름입니다. 한 원에서 지름은 모두 길이가 같으므로 ${n(many)}개의 길이가 모두 같습니다.`,
+  );
+}
+
+/* ── 2-3-2 원의 성질 ── */
+
+/** 1단 — 관계를 한 번 쓴다. 그림은 **준 쪽만** 적는다(①). */
+function circ232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 1) {
+    return make(
+      unit,
+      `$\\square$ 안에 알맞은 수를 쓰시오.\n\n반지름이 ${unitNum(r, "cm")} 인 원의 지름은 $\\square\\,\\mathrm{cm}$ 입니다.`,
+      n(r * 2),
+      `지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+      circleFig("radius", r),
+    );
+  }
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n지름이 ${unitNum(r * 2, "cm")} 인 원의 반지름은 $\\square\\,\\mathrm{cm}$ 입니다.`,
+    n(r),
+    `반지름은 지름의 반이므로 ${expr(`${r * 2}\\div2=${r}`)} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/** 2단 — 소재를 얹어 문장으로. 그림은 여전히 **준 쪽만**. */
+function circ232Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, [
+    "접시",
+    "시계",
+    "동전",
+    "단추",
+    "쟁반",
+    "탬버린",
+    "거울",
+    "표지판",
+  ]);
+  const r = intBetween(rng, 2, 9);
+  if (intBetween(rng, 0, 1) === 1) {
+    return make(
+      unit,
+      `${thing}의 모양이 원입니다. 반지름이 ${unitNum(r, "cm")} 일 때 지름은 몇 cm인지 쓰시오.`,
+      n(r * 2),
+      `한 원에서 지름은 반지름의 $2$ 배입니다. ${expr(`${r}\\times2=${r * 2}`)} 이므로 지름은 ${unitNum(r * 2, "cm")} 입니다.`,
+      circleFig("radius", r),
+    );
+  }
+  return make(
+    unit,
+    `${thing}의 모양이 원입니다. 지름이 ${unitNum(r * 2, "cm")} 일 때 반지름은 몇 cm인지 쓰시오.`,
+    n(r),
+    `한 원에서 반지름은 지름의 반입니다. ${expr(`${r * 2}\\div2=${r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/** 3단 — 관계를 쓰고 **한 걸음 더** 간다(두 단계). */
+function circ232Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 9);
+  // 🔴 `extra === r` 이면 답 `r + extra` 가 **그림에 적힌 지름 `r * 2` 와 같아진다.**
+  //    그러면 그림이 답을 말한다(09 §2.2 규칙 ①). 잠금 ⑵ 가 씨앗 11 에서 잡았다 —
+  //    값 검산은 통과하던 자리다(답 자체는 맞으니까). 그 하나를 뽑기에서 뺀다.
+  const extra = pick(
+    rng,
+    [1, 2, 3, 4, 5, 6].filter((v) => v !== r),
+  );
+  return make(
+    unit,
+    `지름이 ${unitNum(r * 2, "cm")} 인 원이 있습니다. 이 원의 반지름보다 ${unitNum(extra, "cm")} 더 긴 선분의 길이는 몇 cm인지 쓰시오.`,
+    n(r + extra),
+    `반지름은 지름의 반이므로 ${expr(`${r * 2}\\div2=${r}`)} 입니다. 여기에 ${unitNum(extra, "cm")}${josa("미터", "을", "를")} 더하면 ${expr(`${r}+${extra}=${r + extra}`)} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+/**
+ * 4단 — 원 **둘**을 잇는 조건에서 되짚는다.
+ *
+ * ⚠️ `circleParts` 는 원을 **하나만** 그린다. 그래서 큰 원의 **준 값**만 적는다 —
+ *    작은 원을 그릴 방법이 없고, 억지로 큰 원에 작은 원의 값을 적으면 그것이 곧
+ *    풀이의 가운데 단계다(②).
+ */
+function circ232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const small = intBetween(rng, 2, 6);
+  const bigDia = small * 4;
+  return make(
+    unit,
+    `큰 원의 반지름이 작은 원의 지름과 같습니다. 큰 원의 지름이 ${unitNum(bigDia, "cm")} 일 때 작은 원의 반지름은 몇 cm인지 쓰시오.`,
+    n(small),
+    `큰 원의 반지름은 ${expr(`${bigDia}\\div2=${bigDia / 2}`)} 입니다. 이것이 작은 원의 지름이므로 작은 원의 반지름은 ${expr(`${bigDia / 2}\\div2=${small}`)} 입니다.`,
+    circleFig("diameter", bigDia),
+  );
+}
+
+/* ── 2-3-3 원 그리기 — **어느 갈래에도 그림을 안 붙인다** ── */
+
+/** 1단 — 벌린 길이에서 지름을 구한다(한 단계). */
+function circ233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인지 쓰시오.`,
+    n(r * 2),
+    `컴퍼스를 벌린 길이가 원의 반지름이 됩니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+  );
+}
+
+/**
+ * 2단 — 같은 셈을 **문장 소재**로 세운다.
+ *
+ * ⚠️ 첫 판은 「반지름 r 인 원을 그리려면 몇 cm 벌리나」였다 — 답이 곧 `r` 이라
+ *    **한 단계도 없고 1단(×2)보다 쉬웠다.** 사다리가 거꾸로 선 것이다.
+ *    `probe-elem-tier-ladder` 는 **심화만** 보므로 이 뒤집힘은 안 잡힌다 —
+ *    지면을 넷 나란히 놓고 눈으로 봐서 찾았다(2026-08-24).
+ */
+function circ233Word(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const thing = pick(rng, ["도화지", "공책", "칠판", "모래밭", "종이", "마당"]);
+  return make(
+    unit,
+    `${thing}에 컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 그린 원의 지름은 몇 cm인지 쓰시오.`,
+    n(r * 2),
+    `컴퍼스를 벌린 길이가 원의 반지름입니다. 지름은 반지름의 $2$ 배이므로 ${expr(`${r}\\times2=${r * 2}`)} 입니다.`,
+  );
+}
+
+/** 3단 — 지금 원에서 **더 큰 원**으로 옮겨 간다(지름 두 번 + 되짚기 한 번). */
+function circ233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 7);
+  const more = intBetween(rng, 1, 5) * 2; // 새 지름이 짝수여야 반지름이 정수다
+  const newDia = r * 2 + more;
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려서 원을 그렸습니다. 이 원보다 지름이 ${unitNum(more, "cm")} 더 긴 원을 그리려면 컴퍼스를 몇 cm만큼 벌려야 하는지 쓰시오.`,
+    n(newDia / 2),
+    `처음 원의 지름은 ${expr(`${r}\\times2=${r * 2}`)} 입니다. 새 원의 지름은 ${expr(`${r * 2}+${more}=${newDia}`)} 이고, 벌릴 길이는 그 반이므로 ${expr(`${newDia}\\div2=${newDia / 2}`)} 입니다.`,
+  );
+}
+
+/** 4단 — 원 **둘**의 조건을 겹쳐 벌릴 길이를 되짚는다. */
+function circ233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const small = intBetween(rng, 2, 6);
+  const times = intBetween(rng, 2, 3);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(small, "cm")} 만큼 벌려서 작은 원을 그렸습니다. 큰 원의 지름이 작은 원의 지름의 ${n(times)} 배가 되게 그리려면 컴퍼스를 몇 cm만큼 벌려야 하는지 쓰시오.`,
+    n(small * times),
+    `작은 원의 반지름이 ${unitNum(small, "cm")} 이므로 지름은 ${expr(`${small}\\times2=${small * 2}`)} 입니다. 큰 원의 지름은 ${expr(`${small * 2}\\times${times}=${small * 2 * times}`)} 이고, 큰 원의 반지름은 ${expr(`${small * 2 * times}\\div2=${small * times}`)} 이므로 그만큼 벌립니다.`,
+  );
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 → D-72 확대) — 키는 `tierKey` 형식(`"초3|1-1-2"`), 값은 넷 전부.
  * 축은 D-72(1단 절차 한 번 · 2단 식을 스스로 세움 · 3단 두 단계 · 4단 역산·조건 조합)를 따른다.
@@ -7198,5 +7706,35 @@ export const G3_TIERS: ElemTierMap = {
     기본: capSumWordOf(CAP_KG),
     응용: capSumApplyOf(CAP_KG),
     심화: capSumDeepOf(CAP_KG),
+  },
+  "초3|2-6-1": {
+    연산: graph261Calc,
+    기본: graph261Word,
+    응용: graph261Apply,
+    심화: graph261Deep,
+  },
+  "초3|2-6-2": {
+    연산: graph262Calc,
+    기본: graph262Word,
+    응용: graph262Apply,
+    심화: graph262Deep,
+  },
+  "초3|2-3-1": {
+    연산: circ231Calc,
+    기본: circ231Word,
+    응용: circ231Apply,
+    심화: circ231Deep,
+  },
+  "초3|2-3-2": {
+    연산: circ232Calc,
+    기본: circ232Word,
+    응용: circ232Apply,
+    심화: circ232Deep,
+  },
+  "초3|2-3-3": {
+    연산: circ233Calc,
+    기본: circ233Word,
+    응용: circ233Apply,
+    심화: circ233Deep,
   },
 };

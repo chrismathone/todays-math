@@ -18,6 +18,16 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
+// ⚠️ 문턱(`0.8`)도 **세는 함수도** 판정기와 **같은 모듈**에서 가져온다.
+// 여기에 숫자를 다시 적으면 한쪽만 옮겨도 아무도 모른다.
+// (판정기 `probe-elem-rules.ts` 자체는 import 하면 안 된다 — 최상단에서 전량 쓸기를
+//  돌고 `process.exitCode` 를 쓴다. 그래서 규칙만 순수 모듈로 내려 두었다.)
+import {
+  ANSWER_SKEW_MAX,
+  answerSkewAmongFigures,
+  topAnswerShare,
+} from "../../../scripts/qa/answerSkewRule";
+
 const CODES = ["1-1-1", "1-1-2", "1-1-3"] as const;
 const SEEDS = Array.from({ length: 16 }, (_, i) => i * 31 + 11);
 
@@ -4782,6 +4792,83 @@ describe("[초6 그래프] 역산의 답이 지면에 찍히지 않는다", () =
 //  · 「$2.4\,\mathrm{kg}$**를**」·「$0.6\,\mathrm{kg}$ **가**」 — **KaTeX 로 감싼** 자리 6곳.
 //    이쪽은 R-조사도 g3 의 소스 판정기도 구조적으로 못 본다(하나는 판정 밖, 하나는
 //    `josa()` 호출이 아니라 리터럴이라). **셋이 서로의 사각지대를 덮는다.**
+// ══════════════════════════════════════════════════════════════════════════
+// 초6 **전량** — 정답이 한쪽으로 쏠리지 않는다
+//
+// 2026-08-24: `2-3-3 기본`(가장 높이 쌓은 자리는 몇 층인가)의 답이 **$3$ 이 90.3%**
+// 였다($3$ 361 / $2$ 39, 씨앗 400). 학생이 문제를 안 풀고 «$3$» 이라 써도 열에 아홉
+// 맞는다. 원인은 `heightGrid` 가 칸마다 $0$~$3$ 을 **따로** 뽑는 것이었다 — 칸이 넷만
+// 넘으면 그 최댓값은 거의 늘 $3$ 이다.
+//
+// ⚠️ **어떤 값 검산도 이 부류를 못 본다** — 답은 언제나 옳다. 「한 가지뿐인가」에도
+// 안 걸린다(두 가지는 나온다). **분포**를 봐야 보이고, 그 축이 아예 없었다.
+//
+// ⚠️ **문턱 $0.8$ 이 두 곳에 있다** — 여기와 `probe-elem-rules` 의 `R9-c 정답고정`.
+//    옮기게 되면 **둘 다** 옮길 것. 한쪽만 고치면 갈라져도 아무도 모른다.
+// ⚠️ 그림이 넷 미만인 자리는 **판정하지 않는다** — 「쏠림」과 「못 셈」이 안 갈린다.
+// ══════════════════════════════════════════════════════════════════════════
+
+describe("[초6 전량] 정답 쏠림", () => {
+  it("그림이 붙은 갈래에서 한 답이 문턱을 넘지 않는다 — 씨앗 0~399", () => {
+    const over: string[] = [];
+    let cells = 0;
+    let worst = 0;
+    let worstAt = "";
+    let g233: { answer: string; share: number; n: number } | null = null;
+    let g233Set: string[] = [];
+    for (const u of elementaryUnits().filter((x) => x.grade === "초6")) {
+      const tiers =
+        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+      for (const tier of tiers) {
+        const items = Array.from({ length: 400 }, (_, seed) => {
+          const p = generateElementaryProblem(u, seed, tier);
+          return { answer: p.answer, figureSpec: p.figureSpec };
+        });
+        // 판정도 셈도 판정기와 **같은 함수**다. 「넷 미만이면 판정 안 함」도 그 안에 있다.
+        const top = topAnswerShare(items);
+        if (!top) continue;
+        cells += 1;
+        const at = `${u.section.slice(0, 5)} ${tier ?? "표준"}`;
+        if (top.share > worst) {
+          worst = top.share;
+          worstAt = at;
+        }
+        const hit = answerSkewAmongFigures(items);
+        if (hit)
+          over.push(
+            `${at}: 최다 답 ${hit.answer} 이 ${(hit.share * 100).toFixed(1)}% (${hit.n}건)`,
+          );
+        if (at === "2-3-3 기본") {
+          g233 = top;
+          g233Set = [
+            ...new Set(
+              items.filter((i) => i.figureSpec != null).map((i) => i.answer),
+            ),
+          ].sort();
+        }
+      }
+    }
+    expect(over).toEqual([]);
+    // 분모 — 잰 셀이 정말 있는가. 0 이면 이 검사는 아무것도 증명하지 않는다.
+    expect(cells).toBeGreaterThan(20);
+
+    // 여유 — 가장 쏠린 자리가 문턱에 **붙어 가는지** 본다. 보통 가드는 「지금 넘었나」만
+    // 보는데, 이 줄은 **가드가 장식이 되어 가는 것**을 미리 알려 준다.
+    // 실측(2026-08-24): 가장 쏠린 자리가 `1-5-3 응용` 52.5% 로 문턱과 사이가 넉넉하다.
+    expect(worst, `가장 쏠린 자리 ${worstAt}`).toBeLessThan(
+      ANSWER_SKEW_MAX - 0.1,
+    );
+
+    // ── 고친 자리를 따로 못 박는다 ────────────────────────────────────
+    // 「두 가지 나오니 됐다」로 $90:10$ 이 다시 통과하지 않게 **이 자리만** 더 좁게 건다.
+    // 고치기 전 90.3%($3$ 361 / $2$ 39) · 고친 뒤 34.0%($2$ 132 / $3$ 132 / $4$ 136).
+    expect(g233, "2-3-3 기본을 못 쟀다").not.toBeNull();
+    expect({ 가짓수: g233Set, 반쪽넘음: (g233?.share ?? 1) >= 0.5 }).toEqual({
+      가짓수: ["$2$", "$3$", "$4$"],
+      반쪽넘음: false,
+    });
+  });
+});
 // ══════════════════════════════════════════════════════════════════════════
 
 describe("[초6 전량] 단위 뒤 조사", () => {

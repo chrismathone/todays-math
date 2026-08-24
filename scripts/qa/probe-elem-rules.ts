@@ -37,6 +37,7 @@
  * 안 붙는다**는 것만 틀렸다. 스펙은 씨앗마다 **갈리므로** 넓힌 R9 도 안 잡는다.
  * **「R9 를 넓혔으니 그림은 검사된다」고 읽지 말 것** — 그건 다른 축이다.
  */
+import { answerSkewAmongFigures, answersLookAlike } from "./answerSkewRule";
 import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -85,6 +86,40 @@ const listAll = process.argv.includes("--list");
  * 전량 검사만으로는 **이 규칙이 걸릴 수 있는지조차 알 수 없다.**
  * 0은 「깨끗」과 「못 셈」을 구분해 주지 않으므로 아래 `--selftest` 로 직접 시험한다.
  */
+/**
+ * **R9-c — 그림이 붙은 문항끼리 정답이 갈리나.**
+ *
+ * 🔴 「가·나·다 중에서 사다리꼴의 기호를 쓰시오」류에서 **정답이 늘 «가»** 이면,
+ * 학생이 **발문을 안 읽고 «가»라고 써도 맞는다.** 실측(2026-08-24, figures 발견):
+ * 초4 2-2-1 · 2-4-4 · 2-4-6 에서 그림 붙은 문항 **180건 전부 정답 «가»**.
+ *
+ * ## 왜 기존 축이 셋 다 못 봤나
+ *
+ * ㉠ R9·R9-b 는 **발문과 그림**만 본다 — `answer` 는 수 검사에만 쓰였다.
+ * ㉡ `figureIsFixed` 는 그림이 **일부 씨앗에만** 붙으면 `"null"` 이 섞여 집합 크기가
+ *    2가 되어 통과한다. 붙을 때는 늘 같은 그림인데도.
+ * ㉢ **셀 전체**로 세면 그림 없는 씨앗들이 답을 갈라 0건이 된다.
+ *    **「그림이 붙은 문항 안에서」로 좁혀야** 드러난다.
+ *
+ * ⚠️ **`figureIsFixed` 를 «null 무시»로 고치지 않았다.** 그러면 눈금
+ * 「한 씨앗만 그림이 없다 — 걸리면 안 됨」과 **정면으로 부딪힌다**(일부러 그렇게
+ * 박아 둔 자리다). 그리고 이 축이 더 세다 — 2-2-1 은 스펙이 **6가지로 갈리는데도**
+ * 답이 늘 «가»라 그쪽으로는 구조적으로 안 잡힌다.
+ *
+ * ⚠️ **그림이 하나뿐이면 판정하지 않는다** — 견줄 짝이 없으면 «고정»과 «못 셈»이
+ * 안 갈린다.
+ */
+// ⚠️ 문턱과 셈은 **순수 모듈 한 곳**에 있다(`answerSkewRule.ts`). 여기 다시 적지 말 것 —
+// 이 파일은 최상단에서 전량 쓸기를 돌고 `process.exitCode` 까지 쓰므로 **시험이
+// import 할 수 없다.** 그래서 규칙만 내려 두고 여기서는 가져다 쓴다.
+export {
+  ANSWER_SKEW_MAX,
+  SKEW_MIN_SAMPLES,
+  answersLookAlike,
+  answerSkewAmongFigures,
+  topAnswerShare,
+} from "./answerSkewRule";
+
 export function figureIsFixed(specs: (unknown | null)[]): boolean {
   const json = specs.map((s) => JSON.stringify(s ?? null));
   return json.some((j) => j !== "null") && new Set(json).size === 1;
@@ -129,6 +164,45 @@ if (process.argv.includes("--selftest")) {
       false,
     ],
     ["그림이 아예 없다 — 통과해야", figureIsFixed([null, null, null]), false],
+    // ── R9-c 눈금 (2026-08-24) — 「가」만 쓰면 맞는 문항을 막는다 ──────
+    [
+      "R9-c: 그림 붙은 문항의 답이 늘 같다 — 걸려야",
+      !!answerSkewAmongFigures([
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "가", figureSpec: { kind: "a" } },
+      ]),
+      true,
+    ],
+    [
+      "R9-c: 그림이 갈려도 **답이 늘 같으면** 걸려야 (2-2-1 이 그 모양)",
+      !!answerSkewAmongFigures([
+        { answer: "가", figureSpec: { kind: "a", n: 1 } },
+        { answer: "가", figureSpec: { kind: "a", n: 2 } },
+        { answer: "가", figureSpec: { kind: "a", n: 3 } },
+        { answer: "가", figureSpec: { kind: "a", n: 4 } },
+      ]),
+      true,
+    ],
+    [
+      "R9-c: 답이 갈리면 통과해야",
+      !!answerSkewAmongFigures([
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "나", figureSpec: { kind: "a" } },
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "나", figureSpec: { kind: "a" } },
+      ]),
+      false,
+    ],
+    [
+      "R9-c: 그림 붙은 것이 넷 미만이면 **판정하지 않는다**(못 셈과 쏠림을 안 가른다)",
+      !!answerSkewAmongFigures([
+        { answer: "가", figureSpec: { kind: "a" } },
+        { answer: "가" },
+      ]),
+      false,
+    ],
     [
       "한 씨앗만 그림이 없다 — 걸리면 안 됨",
       figureIsFixed([{ kind: "a" }, null, { kind: "a" }]),
@@ -441,6 +515,34 @@ function checkOne(unit: Unit, tier: ElemTier | undefined): void {
       where,
       `발문 ${variants.size}가지인데 그림은 씨앗 ${SEEDS.length}개 전부 동일`,
     );
+  }
+
+  // R9-c — **그림이 붙은 문항끼리 정답이 갈려야 한다**(함수 머리말 참조).
+  //    「가」만 쓰면 맞는 문항을 막는다.
+  //
+  // 🔴 **걸리면 넓게 다시 잰다 — 씨앗 8개로는 «쏠림»과 «고정»이 안 갈린다.**
+  //    실측(2026-08-24): 초6 2-3-3 «기본» 은 답 분포가 $3$×361 · $2$×39 인데,
+  //    8개를 뽑으면 전부 $3$ 일 확률이 **43%** 다. 그대로 두면 거짓 경보가 나고,
+  //    거짓 경보는 가드를 끈다(2026-08-20). 그래서 의심스러운 셀만 **120씨앗**으로
+  //    되재고, 그때도 하나뿐이면 **구조적으로 고정**이다.
+  if (answersLookAlike(items)) {
+    const wide: { answer: string; figureSpec?: unknown }[] = [];
+    for (let seed = 0; seed < 120; seed += 1) {
+      try {
+        wide.push(generateElementaryProblem(unit, seed, tier));
+      } catch {
+        /* 던지는 씨앗은 `probe-elem-throw` 가 따로 본다 */
+      }
+    }
+    // ⚠️ 넓혀서 그림이 2건 미만이면 **판정하지 않는다** — 못 셈과 고정이 안 갈린다.
+    const skew = answerSkewAmongFigures(wide);
+    if (skew) {
+      add(
+        "R9-c 정답고정",
+        where,
+        `씨앗 120 중 그림 붙은 ${skew.n}문항에서 «${skew.answer}» 가 ${Math.round(skew.share * 100)}% — 찍으면 맞는다`,
+      );
+    }
   }
 }
 
