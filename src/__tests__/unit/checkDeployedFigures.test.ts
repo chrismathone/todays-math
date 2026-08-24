@@ -12,10 +12,16 @@
  * DB 는 그 URL 을 알고 배포본에는 파일이 없다 — **코드를 한 줄도 안 고쳐도 깨진다.**
  * 그리고 이 결함은 스스로 신고하지 않는다. 원장님이 화면에서 찾아 줄 때까지 0이다.
  */
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
+
+import { APP_VISIBLE_PROBLEM_POOL } from "@/lib/problemVisibility";
 
 import {
   FIGURE_URL_COLUMNS,
+  appVisible,
   brokenRows,
   figureRepoPath,
   presentFilesFromLsTree,
@@ -144,5 +150,74 @@ describe("거짓 경보도 결함이다", () => {
       { code: "A", figureUrls: ["/figures-svg/rpm/a/0.svg"], ok: true },
     ];
     expect(brokenRows(rows, present)).toHaveLength(0);
+  });
+});
+
+describe("격리된 문항은 이 검사의 대상이 아니다 (외벽)", () => {
+  /**
+   * 격리된 문항은 어떤 화면에도 안 나오므로 그 그림이 없어도 지면이 안 깨진다.
+   * 그런데 세면 ⑴ 분모가 부풀고 ⑵ 격리된 행 하나가 깨져 있으면 **영영 밀 수 없다** —
+   * 그러면 다음 사람이 훅을 우회하고, 그때부터 진짜도 같이 안 보인다.
+   */
+  it("깨진 그림이라도 격리돼 있으면 대상에서 뺀다", () => {
+    const rows = [
+      {
+        code: "보임",
+        figureUrls: ["/figures/a/1.png"],
+        ok: true,
+        visible: true,
+      },
+      {
+        code: "격리",
+        figureUrls: ["/figures/b/2.png"],
+        ok: true,
+        visible: false,
+      },
+    ];
+    const kept = appVisible(rows);
+    expect(kept.map((r) => r.code)).toEqual(["보임"]);
+    // 반대쪽도 못 박는다 — 「전부 뺀다」로 바뀌면 이 검사가 통째로 죽는다.
+    expect(kept).toHaveLength(1);
+  });
+
+  /**
+   * ⚠️ 경계를 **손으로 베끼면** 앱과 갈라진다. 두 벌이 되면 한쪽만 옮겨도 아무도 모르고,
+   * 그때 이 검사는 «앱이 못 보는 것을 세면서 초록»을 낸다.
+   */
+  it("앱과 **같은 상수**를 쓴다 — 'shared' 를 손으로 적지 않는다", () => {
+    const src = readFileSync(
+      resolve(process.cwd(), "scripts/qa/checkDeployedFigures.ts"),
+      "utf-8",
+    );
+    expect(src).toContain("APP_VISIBLE_PROBLEM_POOL");
+    expect(src).toContain('from "../../src/lib/problemVisibility"');
+    // ⚠️ 낱말 순서에 기대지 마라. 처음엔 `/pool[^\n]*['"]shared['"]/` 로 썼는데,
+    //    변이가 `"shared", // pool …` 로 순서를 바꾸자 **초록이 났다**(가드가 아니었다).
+    //    이 파일에 `"shared"` 리터럴이 있을 이유가 없으니 **아예 없어야** 한다.
+    expect(src).not.toMatch(/["']shared["']/);
+  });
+
+  /**
+   * 앱이 무엇을 볼 수 있는지는 이 상수 하나가 정한다. 바꾸면 **화면·출제·이 검사가
+   * 한꺼번에** 다른 것을 보게 되는데, 그 변화는 어디서도 에러를 안 낸다.
+   * 그래서 값 자체를 못 박는다 — 바꾸려면 이 시험을 같이 고쳐야 한다(그게 의도다).
+   */
+  it("앱의 가시 경계는 `shared` 다 — 조용히 바뀌면 안 된다", () => {
+    expect(APP_VISIBLE_PROBLEM_POOL).toBe("shared");
+  });
+
+  /**
+   * ⚠️ `appVisible` 이 옳게 걸러도 **본체가 그걸 안 부르면** 아무 소용이 없다.
+   * 그런데 그 배선은 `main()` 안이라 단위 시험이 못 본다 — 「없는 축은 변이시킬 수
+   * 없다」의 그 자리다. 그래서 배선 자체를 못 박는다.
+   */
+  it("본체가 실제로 걸러 쓴다 — 배선이 빠지면 알아차린다", () => {
+    const src = readFileSync(
+      resolve(process.cwd(), "scripts/qa/checkDeployedFigures.ts"),
+      "utf-8",
+    );
+    expect(src).toContain("appVisible(all)");
+    // 「0건이면 아무것도 증명 못 했다」를 말하는 자리도 있어야 한다.
+    expect(src).toContain("아무것도 증명하지 않았다");
   });
 });

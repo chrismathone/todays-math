@@ -1,5 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 
+import { APP_VISIBLE_PROBLEM_POOL } from "./problemVisibility";
+
 /**
  * Prisma 클라이언트 싱글턴.
  *
@@ -54,7 +56,7 @@ export const db = baseDb.$extends({
           scopedArgs.where = {
             AND: [
               ...(scopedArgs.where ? [scopedArgs.where] : []),
-              { pool: "shared" },
+              { pool: APP_VISIBLE_PROBLEM_POOL },
             ],
           };
         }

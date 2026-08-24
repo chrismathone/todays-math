@@ -36,6 +36,7 @@ import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
 
+import { APP_VISIBLE_PROBLEM_POOL } from "../../src/lib/problemVisibility";
 import { isDirectScript } from "../import/isDirectScript";
 
 /**
@@ -97,6 +98,19 @@ export function brokenRows(
  * (git 을 부르는 쪽과 갈라 두어야 이 규칙을 시험할 수 있다. 시험할 수 없는 가드는
  *  장식이다 — CLAUDE.md 2026-08-18.)
  */
+/**
+ * 앱이 볼 수 있는 행만 남긴다.
+ *
+ * 격리된 문항(외벽)은 어떤 화면에도 안 나오므로 그 그림이 없어도 지면이 안 깨진다.
+ * 그것까지 세면 ⑴ 분모가 부풀고 ⑵ 격리된 행 하나가 깨져 있으면 **영영 밀 수 없다** —
+ * 그러면 다음 사람이 훅을 우회하고, 그때부터 «진짜»도 같이 안 보인다.
+ */
+export function appVisible<T extends { visible: boolean }>(
+  all: readonly T[],
+): T[] {
+  return all.filter((r) => r.visible);
+}
+
 export function presentFilesFromLsTree(raw: string): Set<string> {
   const files = new Set<string>();
   for (const line of raw.split("\n")) {
@@ -199,11 +213,20 @@ async function main(): Promise<void> {
   try {
     await assertFigureColumns(prisma);
 
-    const rows = (await prisma.$queryRawUnsafe(
+    // ⚠️ **앱이 볼 수 있는 문항만 센다.** 격리된 문항(D-104 외벽)은 어떤 화면에도
+    //    안 나오므로 그 그림이 없어도 지면이 안 깨진다. 그것까지 세면 ⑴ 분모가 부풀고
+    //    ⑵ 격리된 행 하나가 깨져 있으면 **영영 밀 수 없게** 된다 — 그러면 다음 사람이
+    //    훅을 우회하고, 그때부터 «진짜»도 같이 안 보인다(2026-08-20 에 실제로 겪었다).
+    //    경계는 손으로 베끼지 않고 앱과 **같은 상수**를 쓴다.
+    const all = (await prisma.$queryRawUnsafe(
       `SELECT problem_code AS code, figure_urls AS "figureUrls",
-              direct_use_allowed AS ok
+              direct_use_allowed AS ok,
+              pool::text = $1 AS visible
          FROM problem WHERE array_length(figure_urls, 1) > 0`,
-    )) as FigureRow[];
+      APP_VISIBLE_PROBLEM_POOL,
+    )) as Array<FigureRow & { visible: boolean }>;
+    const rows: FigureRow[] = appVisible(all);
+    const quarantined = all.length - rows.length;
 
     const where = useLocal ? "내 작업 트리" : `배포본(${ref})`;
     const present = useLocal
@@ -212,8 +235,19 @@ async function main(): Promise<void> {
     const broken = brokenRows(rows, present);
 
     console.log(
-      `그림을 쓰는 문항 ${rows.length.toLocaleString()}건 · 대조 대상 ${where}`,
+      `그림을 쓰는 문항 ${rows.length.toLocaleString()}건 (앱이 볼 수 있는 것) · ` +
+        `격리되어 안 센 것 ${quarantined.toLocaleString()}건 · 대조 대상 ${where}`,
     );
+    if (rows.length === 0) {
+      // 🔴 **0은 «깨끗»과 «볼 게 없다»를 안 가른다.** 여기서 ✅ 를 찍으면 그때부터
+      //    이 검사는 아무것도 증명하지 않으면서 초록만 낸다. 막지는 않는다 —
+      //    은행을 비워 둔 것이 정상 상태일 수 있고, 여기서 막으면 훅이 꺼진다.
+      console.log(
+        "⚠️ 앱이 볼 수 있는 그림 문항이 **0건**이다 — 이 검사는 이번 회차에 " +
+          "아무것도 증명하지 않았다. 문항을 적재한 뒤 다시 볼 것.",
+      );
+      return;
+    }
     if (broken.length === 0) {
       console.log("✅ 빠진 그림 없음.");
       return;
