@@ -58,8 +58,25 @@ const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 
 const SEEDS = [20260824, 1, 7777, 424242, 99991, 31337, 5150, 60613];
 
+/**
+ * 넓은 씨앗 훑기 — **여덟 씨앗으로는 갈래를 다 못 밟는다.**
+ *
+ * 2026-08-24 변이 [9](「원기둥 전개도의 가로를 반지름으로」)가 **초록**이었다.
+ * 검산식은 멀쩡했는데 위 여덟 씨앗이 「겉넓이와 부피 05」의 **갈래 0 을 한 번도
+ * 안 뽑아서** 그 검사가 구조적으로 0 이었다. 실측으로 모든 갈래는 이 계열의
+ * 앞 열 개 안에 나오지만, 갈래가 늘어날 것을 보고 넉넉히 잡는다.
+ * (「없는 축은 변이시킬 수 없다」의 사촌 — 축은 있는데 **표본이 그 자리를 안 건드렸다**.)
+ */
+const SWEEP = Array.from({ length: 120 }, (_, i) => i * 7919 + 13);
+const ALL_SEEDS = [...SEEDS, ...SWEEP];
+
 type F = Record<string, number>;
 type Spec = Record<string, unknown>;
+
+/** 갈래 번호 — 유형마다 이름이 다르다(`branch`·`shape`·`ask`·`target`·`fam`). */
+function branchOf(f: F): number {
+  return (f.branch ?? f.shape ?? f.ask ?? f.target ?? f.fam ?? 0) as number;
+}
 
 /* ────────────────────────────────────────────────────────────────────────
  * 다면체의 개수 — 생성기의 표를 안 쓰고 «차수 + 오일러» 로 다시 만든다
@@ -555,7 +572,8 @@ const VERIFY_AREA: Record<string, Check> = {
     f.box! === f.a! * f.b! * f.c! &&
     6 * f.cut! === f.box! &&
     f.rest! === f.box! - f.cut! &&
-    f.ans! === (f.branch === 0 ? f.cut! : f.branch === 1 ? f.rest! : 6),
+    f.rest! === 5 * f.cut! &&
+    f.ans! === (f.branch === 0 ? f.cut! : f.branch === 1 ? f.rest! : 5),
   // 17 그릇에 남은 물 — 삼각기둥은 $\frac12$, 삼각뿔은 $\frac16$.
   "17": (f) => {
     if (f.branch === 0)
@@ -931,18 +949,34 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
         it("씨앗별 독립 검산 — 발문 수치가 조건식을 만족한다", () => {
           const check = verify[e.rpmType];
           expect(check, `검산식 누락: ${tag}${e.rpmType}`).toBeDefined();
-          for (const seed of SEEDS) {
+          const seen = new Set<number>();
+          for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
+            seen.add(branchOf(p.facts));
             expect(
               check!(p.facts, p),
               `seed ${seed} 검산 실패: ${JSON.stringify(p.facts)}\n${p.content}`,
             ).toBe(true);
           }
+          // 🔴 **이 검산이 모든 갈래를 실제로 밟았는가.** 안 밟은 갈래의 검산식은
+          //    «초록인 장식» 이다 — 2026-08-24 변이 [9] 가 정확히 그 자리에서
+          //    초록이었다(위 `SWEEP` 주석). 그래서 표본을 넓히는 것으로 끝내지 않고
+          //    **더 넓은 훑기가 내놓는 갈래를 다 밟았는지** 여기서 센다.
+          const all = new Set<number>();
+          for (let s = 0; s < 400; s += 1) {
+            all.add(
+              branchOf(generateMiddleProblem(e.key, s * 7919 + 13).facts),
+            );
+          }
+          expect(
+            [...all].filter((b) => !seen.has(b)).sort(),
+            `${e.key}: 검산이 한 번도 안 밟은 갈래`,
+          ).toEqual([]);
         });
 
         it("답의 수가 facts 와 일치한다", () => {
           const want = answers[e.rpmType]!;
-          for (const seed of SEEDS) {
+          for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
             expect(valueNumbers(p.answer), `${e.key} / ${p.answer}`).toEqual(
               want(p.facts),
@@ -951,7 +985,7 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
         });
 
         it("숫자가 KaTeX 밖에 없다 (본문·정답·해설)", () => {
-          for (const seed of SEEDS) {
+          for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
             expect(bareNumbers(p.content), p.content).toEqual([]);
             expect(bareNumbers(p.answer), p.answer).toEqual([]);
@@ -961,7 +995,7 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
 
         it("답이 발문에 그대로 적혀 있지 않다", () => {
           if (NO_LEAK_CHECK.has(`${tag}${e.rpmType}`)) return;
-          for (const seed of SEEDS) {
+          for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
             const inContent = valueNumbers(p.content);
             for (const v of answers[e.rpmType]!(p.facts)) {
@@ -974,7 +1008,7 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
         });
 
         it("해설이 답의 수를 담는다", () => {
-          for (const seed of SEEDS) {
+          for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
             const inSolution = valueNumbers(p.solution);
             for (const v of answers[e.rpmType]!(p.facts)) {
@@ -1038,9 +1072,8 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
       const k = key(e);
       seen[k] = new Set();
       for (let s = 0; s < 400; s += 1) {
-        const f = generateMiddleProblem(e.key, s * 7919 + 13).facts as F;
         seen[k]!.add(
-          (f.branch ?? f.shape ?? f.ask ?? f.target ?? f.fam ?? 0) as number,
+          branchOf(generateMiddleProblem(e.key, s * 7919 + 13).facts),
         );
       }
     }

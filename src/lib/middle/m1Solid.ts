@@ -1550,10 +1550,10 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           };
         }
         return {
-          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$, 높이가 $${c}\\,\\mathrm{cm}$인 직육면체를 한 꼭짓점과 그 꼭짓점에 이웃한 세 꼭짓점을 지나는 평면으로 잘랐다. 잘라 낸 삼각뿔의 부피는 직육면체의 부피의 몇 분의 몇인지 그 분모를 구하시오.`,
-          answer: `$6$`,
-          solution: `잘라 낸 삼각뿔의 부피는 $\\dfrac{1}{3}\\times\\dfrac{1}{2}\\times${a}\\times${b}\\times${c}=${cut}$이고 직육면체의 부피는 $${box}$이다.\n$${cut}\\div${box}=\\dfrac{1}{6}$이므로 분모는 $6$이다.`,
-          facts: { branch, a, b, c, box, cut, rest, ans: 6 },
+          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$, 높이가 $${c}\\,\\mathrm{cm}$인 직육면체를 한 꼭짓점과 그 꼭짓점에 이웃한 세 꼭짓점을 지나는 평면으로 잘랐다. 남은 입체도형의 부피는 잘라 낸 삼각뿔의 부피의 몇 배인지 구하시오.`,
+          answer: `$5$배`,
+          solution: `잘라 낸 삼각뿔의 부피는 $\\dfrac{1}{3}\\times\\dfrac{1}{2}\\times${a}\\times${b}\\times${c}=${cut}$이고 직육면체의 부피는 $${box}$이다.\n남은 입체도형의 부피는 $${box}-${cut}=${rest}$이다.\n따라서 $${rest}\\div${cut}=5$이므로 $5$배이다.`,
+          facts: { branch, a, b, c, box, cut, rest, ans: 5 },
         };
       }),
     () => [],
