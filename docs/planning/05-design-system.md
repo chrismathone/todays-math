@@ -145,11 +145,19 @@
 
 | 용도 | 선택 | 대안 | 상태 |
 |------|------|------|------|
-| 화면 본문 | `Pretendard, "Malgun Gothic", system-ui, sans-serif` | H5 시안은 Malgun | [확정 — D-29] |
+| 화면 본문 | `var(--font-pretendard)` → Pretendard 가변, 폴백 `"Malgun Gothic"` | H5 시안은 Malgun | [확정 — D-29. **적재 완료 2026-08-24**] |
 | **시험지 인쇄** | 명조 — `KoPubBatang` / `Nanum Myeongjo` / `Noto Serif KR` (Mathgen `PAPER_FONTS.serifKR`) | 고딕(Pretendard)은 Hi-fi H3에서 탈락 | [확정 — 2026-08-14 T5.1. 실물 가독성은 T5.2 인쇄 검수] |
 | 수식 | KaTeX 기본 (Computer Modern 계열) | — | 사실상 확정 (수식 표준) |
 
 > **시험지 폰트는 화면 폰트보다 중요한 결정입니다.** 실제 인쇄물을 놓고 비교해서 정합니다.
+
+> ⚠️ **2026-08-24까지 화면 폰트가 실제로는 실리지 않았다.** `font-family: Pretendard` 를
+> 선언만 하고 `next/font` 도 `@font-face` 도 없어 Windows 에서 조용히 맑은고딕으로
+> 대체됐다 — 팔레트를 정밀하게 맞춰도 글자는 의도한 서체가 아니었다. `src/app/fonts.ts`
+> (`next/font/local`) + `public/fonts/PretendardVariable.woff2` 로 적재했고,
+> `src/__tests__/unit/fontLoading.test.ts` 가 배선이 끊기면 실패한다.
+> **시험지 명조(`PAPER_FONTS.serifKR`)는 아직 미적재다** — 실물 파일이 사내에 없어
+> 조달이 필요하다. 지금 인쇄물은 Windows 기본 바탕체로 나간다.
 
 ### 3.2 타입 스케일 `[확정 — H5 최종안 기준]`
 

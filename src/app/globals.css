@@ -83,7 +83,7 @@
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: Pretendard, "Malgun Gothic", system-ui, sans-serif;
+  font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif;
 }
 
 /* 손가락은 실제 조작 가능한 컨트롤만. 카드·행 본체에는 쓰지 않는다. */
