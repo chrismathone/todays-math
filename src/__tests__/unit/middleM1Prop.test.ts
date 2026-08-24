@@ -114,6 +114,47 @@ function josaCheck(text: string): { bad: string[]; measured: number } {
   return { bad, measured };
 }
 
+/**
+ * 갈래를 훑는 씨앗 수. **검산도 이만큼 훑는다** — 여덟 씨앗만 보면 드물게 나오는
+ * 갈래의 검산식이 통째로 «안 도는 줄»이 되고, 그건 빨강이 아니라 **침묵**이다.
+ */
+const BRANCH_SWEEP = 400;
+
+/**
+ * 유형마다 실제로 나오는 갈래 — 표를 **한 곳**에만 둔다.
+ * 「모든 갈래가 나온다」 검사와 「씨앗별 독립 검산」이 같은 것을 봐야,
+ * 갈래를 하나 더 만들고 검산식을 안 쓴 경우가 드러난다.
+ */
+const BRANCHES: Record<string, Set<number>> = {
+  좌표01: new Set([0, 1, 2]),
+  좌표02: new Set([0, 1, 2, 3]),
+  좌표07: new Set([0, 1, 2]),
+  좌표08: new Set([0, 1, 2]),
+  좌표09: new Set([0, 1, 2]),
+  좌표11: new Set([0, 1, 2]),
+  정비01: new Set([0, 1]),
+  정비02: new Set([0, 1, 2]),
+  정비03: new Set([0, 1, 2, 3]),
+  정비05: new Set([0]),
+  정비06: new Set([0, 1]),
+  정비07: new Set([0, 1, 2]),
+  정비08: new Set([0, 1, 2]),
+  정비09: new Set([0, 1]),
+  정비10: new Set([0, 1]),
+  정비11: new Set([0, 1]),
+  정비12: new Set([0, 1, 2]),
+  정비13: new Set([0, 1, 2, 3]),
+  정비15: new Set([0]),
+  정비16: new Set([0, 1]),
+  정비17: new Set([0, 1, 2]),
+  정비18: new Set([0, 1, 2]),
+  정비19: new Set([0, 1]),
+  정비20: new Set([0, 1]),
+  정비21: new Set([0, 1, 2]),
+  정비22: new Set([0, 1, 2]),
+  정비23: new Set([0, 1]),
+};
+
 const quadrantOf = (x: number, y: number): number =>
   x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3;
 
@@ -651,12 +692,27 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
       });
 
       it("씨앗별 독립 검산 — 발문 수치에서 답을 되푼다", () => {
+        // ⚠️ **넓게 훑는다.** 씨앗 여덟만 보면 드물게 나오는 갈래의 검산식이
+        // 통째로 «장식»이 되는데, 그건 «빨강»이 아니라 **안 도는 줄**이라 침묵한다.
+        // 2026-08-24 변이 [12](정비 22 삼각형 이등분)가 정확히 그렇게 초록이었다 —
+        // 그 유형은 여덟 씨앗에서 갈래 0·1 만 나오고 2 는 한 번도 안 나온다.
+        // 그래서 「모든 갈래가 나온다」 검사와 **같은 훑기**로 검산한다.
         const verify = VERIFY[e.rpmMinor]![e.rpmType];
         expect(verify, `검산식 누락: ${e.rpmMinor} ${e.rpmType}`).toBeDefined();
-        for (const seed of SEEDS) {
+        const seen = new Set<number>();
+        const seeds = [
+          ...SEEDS,
+          ...Array.from({ length: BRANCH_SWEEP }, (_, s) => s * 7919 + 13),
+        ];
+        for (const seed of seeds) {
           const p = generateMiddleProblem(e.key, seed);
           verify!(p.facts, p);
+          seen.add((p.facts.branch ?? 0) as number);
         }
+        expect(
+          seen.size,
+          "검산한 갈래가 하나뿐이면 갈래별 가지가 안 돈 것이다",
+        ).toBe(BRANCHES[`${e.rpmMinor.slice(0, 2)}${e.rpmType}`]!.size);
       });
 
       it("숫자가 KaTeX 밖에 없다 (본문·정답·해설)", () => {
@@ -748,45 +804,20 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
   });
 
   it("모든 갈래가 실제로 나온다 — 죽은 갈래가 없다", () => {
-    const seen: Record<string, Set<number>> = {};
+    // 표(`BRANCHES`)는 위에 하나뿐이다 — 검산도 그것을 본다. 갈래를 더하고
+    // 검산식을 안 쓰면 **검산 쪽이** 먼저 빨개진다.
+    expect(Object.keys(BRANCHES).sort()).toEqual(
+      M1_PROP.map((e) => `${e.rpmMinor.slice(0, 2)}${e.rpmType}`).sort(),
+    );
     for (const e of M1_PROP) {
       const key = `${e.rpmMinor.slice(0, 2)}${e.rpmType}`;
-      seen[key] = new Set();
-      for (let s = 0; s < 400; s += 1) {
+      const seen = new Set<number>();
+      for (let s = 0; s < BRANCH_SWEEP; s += 1) {
         const f = generateMiddleProblem(e.key, s * 7919 + 13).facts as F;
-        seen[key]!.add((f.branch ?? 0) as number);
+        seen.add((f.branch ?? 0) as number);
       }
+      expect(seen, key).toEqual(BRANCHES[key]);
     }
-    const three = new Set([0, 1, 2]);
-    const two = new Set([0, 1]);
-    const four = new Set([0, 1, 2, 3]);
-    expect(seen["좌표01"]).toEqual(three);
-    expect(seen["좌표02"]).toEqual(four);
-    expect(seen["좌표07"]).toEqual(three);
-    expect(seen["좌표08"]).toEqual(three);
-    expect(seen["좌표09"]).toEqual(three);
-    expect(seen["좌표11"]).toEqual(three);
-    expect(seen["정비01"]).toEqual(two);
-    expect(seen["정비02"]).toEqual(three);
-    expect(seen["정비03"]).toEqual(four);
-    expect(seen["정비05"]).toEqual(new Set([0]));
-    expect(seen["정비06"]).toEqual(two);
-    expect(seen["정비07"]).toEqual(three);
-    expect(seen["정비08"]).toEqual(three);
-    expect(seen["정비09"]).toEqual(two);
-    expect(seen["정비10"]).toEqual(two);
-    expect(seen["정비11"]).toEqual(two);
-    expect(seen["정비12"]).toEqual(three);
-    expect(seen["정비13"]).toEqual(four);
-    expect(seen["정비15"]).toEqual(new Set([0]));
-    expect(seen["정비16"]).toEqual(two);
-    expect(seen["정비17"]).toEqual(three);
-    expect(seen["정비18"]).toEqual(three);
-    expect(seen["정비19"]).toEqual(two);
-    expect(seen["정비20"]).toEqual(two);
-    expect(seen["정비21"]).toEqual(three);
-    expect(seen["정비22"]).toEqual(three);
-    expect(seen["정비23"]).toEqual(two);
   });
 
   it("정비례와 반비례가 발문에서 **섞이지 않는다**", () => {
