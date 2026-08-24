@@ -106,8 +106,12 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "10 맞꼭지각 등식에서 부호를 뒤집는다(더하기를 빼기로)",
-        "        const q = val - b2 * x;",
-        "        const q = val + b2 * x;",
+        "      const val = a * x + p;\n"
+        "      const q = val - b2 * x;\n"
+        "      if (q < 0 || q > 170 || val <= 0 || val >= 180) return null;",
+        "      const val = a * x + p;\n"
+        "      const q = val + b2 * x;\n"
+        "      if (q < 0 || q > 170 || val <= 0 || val >= 180) return null;",
     ),
     (
         "12 맞꼭지각 쌍의 개수를 n(n-1) 대신 n(n-1)/2 로",
@@ -116,8 +120,14 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "13 «점 A 와 직선 사이의 거리는 AH 보다 항상 짧다» 를 참으로 뒤집는다",
-        "        [`점 $A$와 직선 $l$ 사이의 거리는 $\\\\overline{AH}$의 길이보다 항상 짧다.`, false],",
-        "        [`점 $A$와 직선 $l$ 사이의 거리는 $\\\\overline{AH}$의 길이보다 항상 짧다.`, true],",
+        "          [\n"
+        "            `점 $A$와 직선 $l$ 사이의 거리는 $\\\\overline{AH}$의 길이보다 항상 짧다.`,\n"
+        "            false,\n"
+        "          ],",
+        "          [\n"
+        "            `점 $A$와 직선 $l$ 사이의 거리는 $\\\\overline{AH}$의 길이보다 항상 짧다.`,\n"
+        "            true,\n"
+        "          ],",
     ),
     (
         "14 시계 시침의 분당 각속도를 1° 로 (실제는 0.5°)",
@@ -150,9 +160,8 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "위치05 삼각기둥에서 수직 판정 조건을 하나 빠뜨린다(같은 인덱스만 인정)",
-        "  const shares = vert.i === tri.i || (vert.i + 2) % 3 === tri.i;\n"
-        "  return shares ? \"perp\" : \"skew\";",
-        "  const shares = vert.i === tri.i;\n  return shares ? \"perp\" : \"skew\";",
+        '  return vert.i === tri.i || vert.i === (tri.i + 1) % 3 ? "perp" : "skew";',
+        '  return vert.i === tri.i ? "perp" : "skew";',
     ),
     (
         "위치09 잘라낸 입체에서 «축이 같다」 판정을 늘 참으로",
@@ -165,13 +174,13 @@ MUTATIONS: list[tuple[str, str, str]] = [
         '  CE: "CE",\n  CF: "C*",',
     ),
     (
-        "위치11·기본10 맞꼭지각 등식(x 풀이)에서 부호를 뒤집는다",
-        "        const val = a * x + p;\n"
-        "        const q = val - b2 * x;\n"
-        "        if (q < 0 || q > 170 || val <= 10 || val >= 170) return null;",
-        "        const val = a * x + p;\n"
-        "        const q = val + b2 * x;\n"
-        "        if (q < 0 || q > 170 || val <= 10 || val >= 170) return null;",
+        "위치11 동위각·엇각 등식(x 풀이)에서 부호를 뒤집는다",
+        "      const val = a * x + p;\n"
+        "      const q = val - b2 * x;\n"
+        "      if (q < 0 || q > 170 || val <= 10 || val >= 170) return null;",
+        "      const val = a * x + p;\n"
+        "      const q = val + b2 * x;\n"
+        "      if (q < 0 || q > 170 || val <= 10 || val >= 170) return null;",
     ),
     (
         "위치12 이웃각(평각) 계산에서 180 대신 90 을 쓴다",
@@ -204,8 +213,8 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "위치17 네 꺾인각의 합(180)에서 한 항을 빠뜨린다",
-        "        const x = 180 - a - b - c;",
-        "        const x = 180 - a - b;",
+        "      const x = 180 - a - b - c;",
+        "      const x = 180 - a - b;",
     ),
     (
         "위치18 접은 각(90-β)을 β 그대로 돌려준다",
@@ -214,8 +223,8 @@ MUTATIONS: list[tuple[str, str, str]] = [
     ),
     (
         "위치20 180/n 공식에서 n 대신 (n-1) 을 쓴다",
-        "      const ans = 180 / n;",
-        "      const ans = 180 / (n - 1);",
+        "    const ans = 180 / n;",
+        "    const ans = 180 / (n - 1);",
     ),
 ]
 

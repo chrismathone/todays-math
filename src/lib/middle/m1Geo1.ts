@@ -217,6 +217,13 @@ const M1_GEO1_BASE: TypeEntry[] = [
       }
       const posOf = (name: string): number =>
         pos[posIdxOfLabel[labels.indexOf(name)]!]!;
+      // 왼쪽부터 실제 순서 — 발문이 알파벳 순(A,B,C,D)으로 고정 나열하면서
+      // 좌표만 무작위로 섞으면 발문과 정답이 어긋난다(무엇이 왼쪽인지 학생이
+      // 알 길이 없다). 그래서 발문 자체가 **실제 순서**를 말하게 한다.
+      const labelAtPos: string[] = [];
+      posIdxOfLabel.forEach((posIdx, li) => {
+        labelAtPos[posIdx] = labels[li]!;
+      });
 
       type ObjKind = "ray" | "seg" | "line";
       function isEqual(
@@ -275,10 +282,17 @@ const M1_GEO1_BASE: TypeEntry[] = [
         )
         .join("\n");
       return {
-        content: `직선 $l$ 위에 순서대로 있는 서로 다른 네 점 $A$, $B$, $C$, $D$가 있다. 다음 보기 중 ${kindWord} $${notate(ta!, tb!)}$와(과) 같은 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
+        content: `직선 $l$ 위에 왼쪽부터 순서대로 서로 다른 네 점 $${labelAtPos[0]}$, $${labelAtPos[1]}$, $${labelAtPos[2]}$, $${labelAtPos[3]}$가 있다. 다음 보기 중 ${kindWord} $${notate(ta!, tb!)}$와(과) 같은 것은 모두 몇 개인지 구하시오.\n\n${lines}`,
         answer: `$${ans}$개`,
         solution: `${kindWord}는 시작점과 뻗는 방향(선분은 두 끝점, 직선은 지나는 한 직선 전체)이 같아야 서로 같다.\n${truth}\n따라서 같은 것은 $${ans}$개이다.`,
-        facts: { kind: kind === "ray" ? 0 : kind === "seg" ? 1 : 2, ans },
+        facts: {
+          kind: kind === "ray" ? 0 : kind === "seg" ? 1 : 2,
+          p0: labels.indexOf(labelAtPos[0]!),
+          p1: labels.indexOf(labelAtPos[1]!),
+          p2: labels.indexOf(labelAtPos[2]!),
+          p3: labels.indexOf(labelAtPos[3]!),
+          ans,
+        },
       };
     }),
   ),

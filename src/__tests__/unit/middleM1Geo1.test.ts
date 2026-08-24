@@ -291,14 +291,60 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
   },
   "1-2|기본 도형|02": (p) => {
     const f = p.facts;
+    const labels = ["A", "B", "C", "D"];
+    // 발문의 「왼쪽부터 순서대로 …」 절에서 실제 좌표 순서를 되찾는다 —
+    // facts.p0~p3 를 그대로 믿지 않고 발문 자체와 대조한다.
+    const orderMatch = p.content.match(
+      /왼쪽부터 순서대로 서로 다른 네 점 \$([A-D])\$, \$([A-D])\$, \$([A-D])\$, \$([A-D])\$가 있다/,
+    );
+    expect(orderMatch, p.content).not.toBeNull();
+    const order = [
+      orderMatch![1]!,
+      orderMatch![2]!,
+      orderMatch![3]!,
+      orderMatch![4]!,
+    ];
+    expect(order).toEqual([f.p0!, f.p1!, f.p2!, f.p3!].map((i) => labels[i]!));
+    const posOf = (name: string): number => order.indexOf(name);
+
+    const NOTATE = /\\(overrightarrow|overline)\{([A-D])([A-D])\}/;
+    const targetMatch = p.content.match(
+      new RegExp(`같은 것은 모두 몇 개인지 구하시오`),
+    );
+    expect(targetMatch, p.content).not.toBeNull();
+    const beforeTarget = p.content.slice(0, p.content.indexOf("같은 것은"));
+    const tMatch = [...beforeTarget.matchAll(new RegExp(NOTATE, "g"))].pop();
+    expect(tMatch, p.content).not.toBeUndefined();
+    const [, tKind, ta, tb] = tMatch!;
+
+    function isEqualIndep(
+      k1: string,
+      p1: string,
+      q1: string,
+      k2: string,
+      p2: string,
+      q2: string,
+    ): boolean {
+      if (k1 !== k2) return false;
+      if (k1 === "overline") {
+        return (p1 === p2 && q1 === q2) || (p1 === q2 && q1 === p2);
+      }
+      const d1 = Math.sign(posOf(q1) - posOf(p1));
+      const d2 = Math.sign(posOf(q2) - posOf(p2));
+      return p1 === p2 && d1 === d2;
+    }
+
     const rows = bogiLines(p.content);
     expect(rows.length).toBe(4);
-    // 대상·보기 표기가 같은 종류(반직선/선분/직선)인지만 재확인 — 참·거짓 개수는
-    // 발문 밖 정보(좌표)로는 못 재구성하므로 개수의 범위만 검산한다.
-    expect([0, 1, 2]).toContain(f.kind);
+    let expected = 0;
+    for (const line of rows) {
+      const m = line.match(NOTATE);
+      expect(m, line).not.toBeNull();
+      const [, kind, cp, cq] = m!;
+      if (isEqualIndep(tKind!, ta!, tb!, kind!, cp!, cq!)) expected += 1;
+    }
+    expect(expected).toBe(f.ans);
     expect(firstNumber(p.answer)).toBe(f.ans);
-    expect(f.ans!).toBeGreaterThan(0);
-    expect(f.ans!).toBeLessThan(4);
   },
   "1-2|기본 도형|03": (p) => {
     const f = p.facts;
