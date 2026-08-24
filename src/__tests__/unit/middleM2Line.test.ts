@@ -567,17 +567,30 @@ describe("중2 일차함수와 일차방정식 24유형", () => {
       }
     });
 
+    /**
+     * ⚠️ 여기만 **씨앗을 넓게** 훑는다. 다른 검사와 같은 5씨앗으로 재면
+     * 이 가드는 **장식이다** — 실측(2026-08-24 변이 M15): `nonZero` 를 `intBetween`
+     * 으로 바꿔 $b=0$ 을 열어도 5씨앗 35표본에서는 **한 번도 안 나오고**(넓은
+     * 표본 1600 중 230, 14.4%) 시험이 초록이었다.
+     * 「없는 축은 변이시킬 수 없다」의 사촌 — **표본이 경계를 안 지나면 못 센다.**
+     */
     it("관계01·02 — $y$ 의 계수가 $0$ 이면 세로선이라 일차함수가 아니다", () => {
+      const bad: string[] = [];
       for (const num of ["01", "02"]) {
         const e = entries.find(
           (x) => x.rpmMinor === MINOR_REL && x.rpmType === num,
         )!;
-        for (const seed of SEEDS) {
-          for (const p of generateMiddleSet(e.key, seed, 4)) {
-            expect(p.facts.b, `${num} seed ${seed}`).not.toBe(0);
+        for (let seed = 1; seed <= 200; seed += 1) {
+          for (let v = 0; v < 4; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            if (p.facts.b === 0) bad.push(`${num} seed ${seed}/${v}`);
           }
         }
       }
+      expect(
+        bad.slice(0, 5),
+        `$y$ 의 계수가 $0$ 인 자리 ${bad.length}개 — 그 그래프는 세로선이라 일차함수가 아니다`,
+      ).toEqual([]);
     });
 
     it("관계05 — $x=t$ 는 세로선이라 함수가 아니고, $y=s$ 는 가로선이라 함수다", () => {

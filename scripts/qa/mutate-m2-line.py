@@ -15,7 +15,11 @@
 전용 가드만 잡는 자리다(조사 · 로/으로 · `\\times` 뒤 공백 · 그림 mark).
 그래야 그 가드들이 장식이 아니라는 것을 안다.
 
-    python scripts/qa/mutate-m2-line.py
+    python scripts/qa/mutate-m2-line.py            # 전량
+    python scripts/qa/mutate-m2-line.py M15        # 이름에 그 글자가 든 것만
+
+⚠️ 거른 판이라도 **판정 경로는 같다**(같은 함수·같은 리포터). 낱개용 스크립트를
+따로 파면 씨앗·리포터 이름이 갈라져 «도장»이 된다(2026-08-23 `--reporter=basic` 사건).
 """
 
 import hashlib
@@ -198,9 +202,16 @@ def main():
     print("기준: 시험 초록 · 산출물 지문 " + base_probe[:12])
     print("")
 
+    only = sys.argv[1] if len(sys.argv) > 1 else ""
+    picked = [m for m in MUTATIONS if not only or only in m[0]]
+    if not picked:
+        sys.exit("고른 변이가 없다: " + only)
+    if only:
+        print("거름: «%s» — %d / %d 개만 판정한다" % (only, len(picked), len(MUTATIONS)))
+
     results = []
     try:
-        for name, old, new in MUTATIONS:
+        for name, old, new in picked:
             hits = src.count(old)
             if hits != 1:
                 results.append((name, "앵커 %d개 — 변이 못 함" % hits, False))
@@ -259,8 +270,8 @@ def main():
     for name, verdict, _ in results:
         print("  %-72s %s" % (name, verdict))
     print("")
-    print("빨강 %d / %d" % (red_count, len(MUTATIONS)))
-    if red_count < len(MUTATIONS):
+    print("빨강 %d / %d" % (red_count, len(picked)))
+    if red_count < len(picked):
         sys.exit("빨강이 전부가 아니다 — 시험이 무엇을 지키는지 다시 볼 것")
 
 
