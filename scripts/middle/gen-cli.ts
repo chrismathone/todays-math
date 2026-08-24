@@ -20,6 +20,7 @@ import {
   registeredTypes,
   typesForSection,
 } from "../../src/lib/middle/generate";
+import { filterEntries, sectionSummary } from "./listing";
 import type { MidProblem } from "../../src/lib/middle/types";
 import { renderMathHtml } from "../../src/lib/math/renderMathHtml";
 
@@ -63,16 +64,43 @@ function parseArgs(argv: string[]): Args {
   return out;
 }
 
-function printList(): void {
+function printList(f: { grade?: string; book?: string; q?: string }): void {
+  const picked = filterEntries(registeredTypes(), f);
   let lastSection = "";
-  for (const e of registeredTypes()) {
+  for (const e of picked) {
     if (e.unitSection !== lastSection) {
       console.log(`\n${e.grade} ${e.unitSection}`);
       lastSection = e.unitSection;
     }
     console.log(`  ${e.key}  ${e.rpmTitle}  [${e.rpmBook} p기준 ${e.rpmType}]`);
   }
-  console.log(`\n등록 유형 ${registeredTypes().length}개`);
+  const total = registeredTypes().length;
+  console.log(
+    picked.length === total
+      ? `\n등록 유형 ${total}개`
+      : `\n${picked.length}개 (등록 ${total}개 중)`,
+  );
+}
+
+/**
+ * 단원 목록 — 「어느 단원을 낼까요」를 묻기 전에 **고를 수 있는 크기**로 줄인다.
+ * 찍는 이름은 `--section` 에 그대로 넣을 수 있는 값이다.
+ */
+function printSections(f: { grade?: string; book?: string; q?: string }): void {
+  const rows = sectionSummary(filterEntries(registeredTypes(), f));
+  let lastGrade = "";
+  for (const r of rows) {
+    if (r.grade !== lastGrade) {
+      console.log(`\n[${r.grade}]`);
+      lastGrade = r.grade;
+    }
+    console.log(
+      `  ${String(r.count).padStart(3)}유형  ${r.unitSection}   (${r.books.join(",")})`,
+    );
+  }
+  console.log(
+    `\n단원 ${rows.length}개 · 유형 ${rows.reduce((a, r) => a + r.count, 0)}개`,
+  );
 }
 
 function esc(s: string): string {
@@ -141,8 +169,18 @@ ${rows}
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
+  const pick = {
+    grade: typeof args.grade === "string" ? args.grade : undefined,
+    book: typeof args.book === "string" ? args.book : undefined,
+    q: typeof args.q === "string" ? args.q : undefined,
+  };
+
+  if (args.sections) {
+    printSections(pick);
+    return;
+  }
   if (args.list) {
-    printList();
+    printList(pick);
     return;
   }
 
