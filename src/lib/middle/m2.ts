@@ -15,6 +15,7 @@ import { M2_INEQ_APPLY } from "./m2IneqApply";
 import { M2_LINE } from "./m2Line";
 import { M2_MONO } from "./m2Mono";
 import { M2_PROB } from "./m2Prob";
+import { M2_PYTHA } from "./m2Pytha";
 import { M2_QUAD } from "./m2Quad";
 import { M2_RATIONAL } from "./m2Rational";
 import { M2_REAL } from "./m2Real";
@@ -38,4 +39,5 @@ export const M2_TYPES: TypeEntry[] = [
   ...M2_REAL,
   ...M2_MONO,
   ...M2_CENTER,
+  ...M2_PYTHA,
 ];
