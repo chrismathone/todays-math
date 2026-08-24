@@ -49,6 +49,19 @@ vi.mock("@/lib/db", async () => {
   return { db };
 });
 
+// D-76 — 헤더 계정 구역(AccountBadge)이 로그아웃 **서버 액션**을 물고 들어온다.
+// 그 모듈은 `@/lib/auth`(NextAuth v5)를 import 하는데, Next 번들러 밖에서는
+// `next/server` 해석이 깨져 **AppChrome 을 렌더하는 모든 테스트가 적재 단계에서
+// 죽는다**(AppChrome·ClassManage·ProblemBank…). 위 `@/lib/db` 전역 모킹과 같은
+// 성질의 차단이다 — 테스트가 실제 인증/쿠키를 건드리면 안 된다.
+//
+// ⚠️ 그래서 **이 액션이 실제로 로그아웃시키는지는 단위 테스트가 못 지킨다.**
+//    프레임워크가 읽는 자리는 실물로 확인해야 한다(2026-08-20 교훈, 절대 규칙 6과
+//    같은 성격) — `scripts/qa/smoke-logout.sh` 가 그 몫이다.
+vi.mock("@/app/actions/auth", () => ({
+  signOutAction: vi.fn(async () => {}),
+}));
+
 // MSW: 등록되지 않은 요청은 에러로 처리 — 실제 네트워크/AI 호출이 테스트에
 // 몰래 나가는 것을 원천 차단한다 (Claude API 포함, 07-coding-convention §5).
 beforeAll(() => {

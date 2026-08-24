@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AccountBadge } from "@/components/chrome/AccountBadge";
 import { formatMastheadDate } from "@/lib/main/pipeline";
 
 /**
@@ -79,6 +80,7 @@ export function AppChrome({
           <Link href="/">메인</Link>
           <Link href="/classes">반</Link>
           <Link href="/problems">문제은행</Link>
+          <AccountBadge />
         </nav>
       </header>
       {children}
