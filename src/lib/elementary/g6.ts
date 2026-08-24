@@ -6273,10 +6273,48 @@ function cubeTwoCalc(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 /** 기본 — 한 겹 문장제. 가장 높이 쌓은 자리의 층수를 읽는다. */
+/**
+ * 「가장 높은 층수」를 묻는 갈래 전용 격자 — **최댓값을 먼저 뽑는다.**
+ *
+ * ⚠️ `heightGrid` 는 칸마다 $0$~$3$ 을 **따로** 뽑는다. 그러면 칸이 넷만 넘어도
+ * **최댓값이 거의 늘 $3$** 이다 — 실측 **90.3%**($3$ 361 / $2$ 39, 씨앗 400).
+ * 「최댓값을 묻는 문항」에서 그것은 답이 사실상 하나로 굳었다는 뜻이고,
+ * 학생이 안 풀고 «$3$» 이라 써도 열에 아홉 맞는다.
+ *
+ * **값 검산은 이 부류를 구조적으로 못 본다** — 답은 언제나 옳기 때문이다.
+ * 「한 가지뿐인가」 축에도 안 걸린다(답이 두 가지는 된다). **쏠림**을 봐야 보인다.
+ *
+ * ⚠️ **범위를 넓히는 것은 고침이 아니다.** $0$~$4$ 로 넓히면 쏠림이 $3$ 에서 $4$ 로
+ * 옮겨 갈 뿐이다. 최댓값이 여러 칸의 최댓값이라는 **구조**가 원인이므로,
+ * 최댓값을 먼저 정하고 격자를 거기에 맞춘다.
+ *
+ * 쌓기나무 수는 최대 $11	imes3+4=37$ 개라 엔진 한도($48$)에 안 닿는다.
+ */
+function stackBaseTopped(rng: Rng): {
+  cols: number;
+  rows: number;
+  h: number[][];
+  grid: string;
+  top: number;
+} {
+  const b = stackBase(rng);
+  const top = intBetween(rng, 2, 4);
+  const h = b.h.map((row) => row.map((v) => Math.min(v, top)));
+  // 최댓값이 실제로 `top` 이 되게 — 쌓기나무가 놓인 칸 하나를 그 높이로 올린다.
+  // (자르기는 $0$ 을 안 만들고 올리기도 $0$ 을 안 만들어 가장자리 줄이 안 빈다.)
+  const filled: [number, number][] = [];
+  for (let y = 0; y < h.length; y += 1)
+    for (let x = 0; x < h[y]!.length; x += 1)
+      if (h[y]![x]! > 0) filled.push([x, y]);
+  const [px, py] = filled[intBetween(rng, 0, filled.length - 1)]!;
+  h[py]![px] = top;
+  return { cols: b.cols, rows: b.rows, h, grid: b.grid, top };
+}
+
 function cubeTwoWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const place = pick(rng, STACK_PLACES);
-  const b = stackBase(rng);
-  const maxH = Math.max(...b.h.flat());
+  const b = stackBaseTopped(rng);
+  const maxH = b.top;
   return make(
     unit,
     `${place}에 상자를 ${b.grid} 바닥 위에 쌓고, 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
