@@ -25,17 +25,23 @@
  * 그림 없이 성립하는 발문이 원본에 실제로 있다(0730 「단면의 모양이 될 수 없는 것」,
  * 0757·0758 쌍대, 0724 를 뒤집은 「전개도가 정삼각형 여덟 장」). 안 쓰는 kind 는 빚이다.
  *
- * 대신 **이미 있는 kind 만** 쓴다. 붙인 자리와 근거:
+ * 대신 **이미 있는 kind 만** 쓴다. 붙일지 말지는 한 문장으로 갈랐다 —
  *
- * | 유형 | kind | 왜 붙였나 |
+ * > 그림은 ㉠ **수를 충실히 나르거나** ㉡ **말로 못 하는 배치를 보일 때**만 붙인다.
+ *
+ * | 유형 | kind | 어느 쪽인가 |
  * |---|---|---|
- * | 회전체 14·16 · 겉넓이 09·20 | `revolvePlan` | 「무엇을 무엇을 축으로」가 이 유형의 전부다 |
- * | 회전체 17 · 겉넓이 05 | `netCylinder`·`prism{net}`·`netCuboid` | 전개도 유형은 펼친 그림이 발문이다 |
- * | 겉넓이 07 | `hollowSolid` | 이 유형(RPM 07)을 위해 만든 kind다 |
- * | 겉넓이 08 | `cutCuboid` | 이 유형(RPM 08)을 위해 만든 kind다 |
- * | 겉넓이 10·13 | `pyramid` | 치수를 안 그리므로 발문과 이중표기가 안 난다 |
- * | 겉넓이 14·19 | `cone`·`netCone` | `cone` 은 $(r,h)$ 를 그대로 받는다 |
+ * | 회전체 14·16 · 겉넓이 09·20 | `revolvePlan` | ㉡ 「무엇을 무엇을 축으로」 — 이 유형의 전부다 |
+ * | 회전체 17 · 겉넓이 05 | `netCylinder`·`prism{net}`·`netCuboid` | ㉡ 어느 면이 어디에 붙는가 |
+ * | 겉넓이 07 | `hollowSolid` | ㉠ 이 유형(RPM 07)을 위해 만든 kind다 |
+ * | 겉넓이 08 | `cutCuboid` | ㉠ 이 유형(RPM 08)을 위해 만든 kind다 |
+ * | 겉넓이 14 | `cone` | ㉠ $(r,h)$ 를 그대로 받아 비율까지 맞는다 |
+ * | 겉넓이 19 | `netCone` | ㉠ 모선·중심각을 엔진이 쓴다 |
  *
+ * ⚠️ **`pyramid` 는 안 붙였다**(겉넓이 10·13). `_pyramid` 는 스펙의 `h` 를 **그리기에
+ * 안 쓴다**(`r, h = 1.0, 1.45` 리터럴). 그러니 「높이가 $3\,\mathrm{cm}$ 인 사각뿔」에
+ * 붙이면 지면에는 **밑변만 한 높이의 뿔**이 그려진다 — ㉠ 도 ㉡ 도 아니다(이름은
+ * 발문이 이미 말한다). 미리보기를 눈으로 보고서 뗐다.
  * ⚠️ **`cone` 을 「모선이 주어진」 갈래(11·20)에 붙이지 않았다.** `cone` 은 $(r,h)$ 만
  * 받는데 그 유형이 주는 것은 $(r,l)$ 이라, $h=\sqrt{l^2-r^2}$ 를 우리가 지어내면
  * 그림이 발문과 다른 입체를 그린다. 20 은 세 변이 다 정수인 직각삼각형이라
@@ -59,7 +65,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { attempt, def } from "./m1Stat";
+import { attempt, def, subj } from "./m1Stat";
 import type { Body } from "./m1Stat";
 import type { TypeEntry } from "./types";
 
@@ -322,7 +328,7 @@ export const M1_POLY: TypeEntry[] = [
         const n = intBetween(rng, 5, 12);
         const f = facesOf(n, fam);
         return {
-          content: `${solidName(n, fam)}는 몇 면체인지 구하시오.`,
+          content: `${topic(solidName(n, fam))} 몇 면체인지 구하시오.`,
           answer: `$${f}$면체`,
           solution: `${solidName(n, fam)}의 옆면은 $${n}$개이고 밑면은 $${fam === 1 ? 1 : 2}$개이므로 면의 개수는 $${n}+${fam === 1 ? 1 : 2}=${f}$이다.\n따라서 $${f}$면체이다.`,
           facts: { branch, n, fam, f, ans: f },
@@ -813,7 +819,7 @@ export const M1_POLY: TypeEntry[] = [
         return {
           content: `오른쪽 그림과 같이 ${plan}을 ${axisText}을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 이름을 말하고, 이 회전체의 ${baseKo}의 넓이를 구하시오.`,
           answer: `${name}, $${piTerm(area)}\\,\\mathrm{cm}^2$`,
-          solution: `${axisText}을 회전축으로 하면 ${name}이 생긴다.\n회전축에서 가장 멀리 떨어진 변까지의 거리가 $${r}\\,\\mathrm{cm}$이므로 ${baseKo}의 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.\n따라서 그 넓이는 $\\pi\\times${r}^{2}=${piTerm(area)}\\,(\\mathrm{cm}^2)$이다.`,
+          solution: `${axisText}을 회전축으로 하면 ${subj(name)} 생긴다.\n회전축에서 가장 멀리 떨어진 변까지의 거리가 $${r}\\,\\mathrm{cm}$이므로 ${baseKo}의 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.\n따라서 그 넓이는 $\\pi\\times${r}^{2}=${piTerm(area)}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { shape, a, b, w2, axis, r, area, ans: area },
           figureSpec: {
             version: "elem-1",
@@ -1068,6 +1074,9 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           const w = 2 * r;
           const S = 2 * r * (r + h);
           const V = r * r * h;
+          // 겉넓이와 부피가 **같은 수**면 지면에 「겉넓이 96pi, 부피 96pi」로 나가
+          // 어느 것이 어느 것인지 안 갈린다(단위만 다르다). 다시 뽑는다.
+          if (S === V) return null;
           return {
             content: `오른쪽 그림과 같이 옆면인 직사각형의 가로의 길이가 $${piTerm(w)}\\,\\mathrm{cm}$, 세로의 길이가 $${h}\\,\\mathrm{cm}$인 전개도로 만들어지는 원기둥의 겉넓이와 부피를 차례로 구하시오.`,
             answer: `겉넓이 $${piTerm(S)}\\,\\mathrm{cm}^2$, 부피 $${piTerm(V)}\\,\\mathrm{cm}^3$`,
@@ -1081,10 +1090,15 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           const [a, b, c] = pick(rng, TRIPLES);
           const h = intBetween(rng, 3, 12);
           const base = (a * b) / 2;
+          // 밑넓이와 밑면의 둘레가 **같은 수**면 해설에 그 수가 다른 뜻으로 두 번 나온다
+          // (실측 $8,6,10$: 밑넓이 $24$ = 둘레 $24$ 라 「옆넓이 $192$」와 「부피 $192$」가
+          //  나란히 선다). 값은 맞지만 지면에서 읽는 사람을 헷갈리게 한다.
+          if (base === a + b + c) return null;
           const S = 2 * base + (a + b + c) * h;
           const V = base * h;
+          if (S === V) return null;
           return {
-            content: `밑면인 직각삼각형의 세 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$, $${c}\\,\\mathrm{cm}$이고 옆면인 직사각형의 세로의 길이가 $${h}\\,\\mathrm{cm}$인 오른쪽 그림과 같은 전개도가 있다. 이 전개도로 만들어지는 삼각기둥의 겉넓이와 부피를 차례로 구하시오.`,
+            content: `오른쪽 그림은 어떤 삼각기둥의 전개도이다. 밑면인 직각삼각형의 세 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$, $${c}\\,\\mathrm{cm}$이고 옆면인 직사각형의 세로의 길이가 $${h}\\,\\mathrm{cm}$일 때, 이 삼각기둥의 겉넓이와 부피를 차례로 구하시오.`,
             answer: `겉넓이 $${S}\\,\\mathrm{cm}^2$, 부피 $${V}\\,\\mathrm{cm}^3$`,
             solution: `밑넓이는 $\\dfrac{1}{2}\\times${a}\\times${b}=${base}$이다.\n옆면인 직사각형의 가로의 길이는 밑면의 둘레의 길이와 같으므로 $${a}+${b}+${c}=${a + b + c}$이고, 옆넓이는 $${a + b + c}\\times${h}=${(a + b + c) * h}$이다.\n따라서 겉넓이는 $2\\times${base}+${(a + b + c) * h}=${S}$이고, 부피는 $${base}\\times${h}=${V}$이다.`,
             facts: { branch, a, b, c, h, base, S, V, ans: S },
@@ -1103,6 +1117,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const h = intBetween(rng, 3, 12);
         const S = 2 * (w * d + d * h + h * w);
         const V = w * d * h;
+        if (S === V) return null;
         return {
           content: `오른쪽 그림은 밑면이 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$인 직사각형인 사각기둥의 전개도이다. 이 전개도로 만들어지는 사각기둥의 겉넓이와 부피를 차례로 구하시오.`,
           answer: `겉넓이 $${S}\\,\\mathrm{cm}^2$, 부피 $${V}\\,\\mathrm{cm}^3$`,
@@ -1165,8 +1180,10 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const shape = pick(rng, [0, 1] as const);
         const ask = pick(rng, [0, 1] as const); // 0 겉넓이 · 1 부피
         if (shape === 0) {
-          const R = intBetween(rng, 3, 9);
-          const r = intBetween(rng, 1, R - 2);
+          // 구멍이 $1\,\mathrm{cm}$ 이면 지면에서 **머리카락 같은 실틈**이 된다 —
+          // 미리보기를 눈으로 보고서 하한을 $2$ 로 올렸다(값 검사는 다 초록이었다).
+          const R = intBetween(rng, 5, 9);
+          const r = intBetween(rng, 2, R - 2);
           const h = intBetween(rng, 4, 14);
           const S = 2 * (R * R - r * r) + 2 * R * h + 2 * r * h;
           const V = (R * R - r * r) * h;
@@ -1184,11 +1201,12 @@ export const M1_SOLID_AREA: TypeEntry[] = [
             },
           };
         }
-        const w = intBetween(rng, 4, 12);
-        const d = intBetween(rng, 4, 12);
+        const w = intBetween(rng, 6, 12);
+        const d = intBetween(rng, 6, 12);
         const h = intBetween(rng, 4, 12);
-        const iw = intBetween(rng, 1, w - 2);
-        const id = intBetween(rng, 1, d - 2);
+        // 구멍은 벽을 $2$ 이상 남긴다 — 실틈은 지면에서 안 읽힌다(미리보기 육안).
+        const iw = intBetween(rng, 2, w - 3);
+        const id = intBetween(rng, 2, d - 3);
         const S = 2 * (w * d - iw * id) + 2 * (w + d) * h + 2 * (iw + id) * h;
         const V = (w * d - iw * id) * h;
         const val = ask === 0 ? S : V;
@@ -1216,12 +1234,13 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     (rng) =>
       attempt(200, (): Body | null => {
         const ask = pick(rng, [0, 1] as const);
-        const w = intBetween(rng, 5, 14);
-        const d = intBetween(rng, 5, 14);
-        const h = intBetween(rng, 5, 14);
-        const cw = intBetween(rng, 1, w - 2);
-        const cd = intBetween(rng, 1, d - 2);
-        const ch = intBetween(rng, 1, h - 2);
+        const w = intBetween(rng, 6, 14);
+        const d = intBetween(rng, 6, 14);
+        const h = intBetween(rng, 6, 14);
+        // 잘라 내는 조각도 $2$ 이상 — $1\,\mathrm{cm}$ 홈은 지면에서 실금으로만 보인다.
+        const cw = intBetween(rng, 2, w - 3);
+        const cd = intBetween(rng, 2, d - 3);
+        const ch = intBetween(rng, 2, h - 3);
         // 한 꼭짓점에 붙은 작은 직육면체를 떼면 없어진 세 면과 새로 생긴 세 면의
         // 넓이가 같다 — 겉넓이는 잘라 내기 전과 **똑같다**.
         const S = 2 * (w * d + d * h + h * w);
@@ -1259,6 +1278,9 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           if (r === h) return null;
           const S = 2 * r * (r + h);
           const V = r * r * h;
+          // 겉넓이와 부피가 **같은 수**면 지면에 「겉넓이 96pi, 부피 96pi」로 나가
+          // 어느 것이 어느 것인지 안 갈린다(단위만 다르다). 다시 뽑는다.
+          if (S === V) return null;
           return {
             content: `오른쪽 그림과 같이 가로의 길이가 $${r}\\,\\mathrm{cm}$, 세로의 길이가 $${h}\\,\\mathrm{cm}$인 직사각형을 직선 $l$을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 겉넓이와 부피를 차례로 구하시오.`,
             answer: `겉넓이 $${piTerm(S)}\\,\\mathrm{cm}^2$, 부피 $${piTerm(V)}\\,\\mathrm{cm}^3$`,
@@ -1278,6 +1300,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const R = g + t;
         const S = 2 * (R * R - g * g) + 2 * R * h + 2 * g * h;
         const V = (R * R - g * g) * h;
+        if (S === V) return null;
         return {
           content: `오른쪽 그림과 같이 회전축인 직선 $l$에서 $${g}\\,\\mathrm{cm}$만큼 떨어진 곳에 가로의 길이가 $${t}\\,\\mathrm{cm}$, 세로의 길이가 $${h}\\,\\mathrm{cm}$인 직사각형이 있다. 이 직사각형을 직선 $l$을 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 겉넓이와 부피를 차례로 구하시오.`,
           answer: `겉넓이 $${piTerm(S)}\\,\\mathrm{cm}^2$, 부피 $${piTerm(V)}\\,\\mathrm{cm}^3$`,
@@ -1319,19 +1342,17 @@ export const M1_SOLID_AREA: TypeEntry[] = [
       const S = a * a + 2 * a * l;
       if (branch === 0) {
         return {
-          content: `오른쪽 그림과 같이 밑면은 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 옆면은 모두 높이가 $${l}\\,\\mathrm{cm}$인 합동인 이등변삼각형인 사각뿔의 겉넓이를 구하시오.`,
+          content: `밑면은 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 옆면은 모두 높이가 $${l}\\,\\mathrm{cm}$인 합동인 이등변삼각형인 사각뿔의 겉넓이를 구하시오.`,
           answer: `$${S}\\,\\mathrm{cm}^2$`,
           solution: `밑넓이는 $${a}\\times${a}=${a * a}$이다.\n옆면인 이등변삼각형 한 개의 넓이는 $\\dfrac{1}{2}\\times${a}\\times${l}=${(a * l) / 2}$이고 옆면은 $4$개이므로 옆넓이는 $4\\times${(a * l) / 2}=${2 * a * l}$이다.\n따라서 겉넓이는 $${a * a}+${2 * a * l}=${S}$이다.`,
           facts: { branch, a, l, H, S, ans: S },
-          figureSpec: { version: "elem-1", kind: "pyramid", sides: 4, h: H },
         };
       }
       return {
-        content: `오른쪽 그림과 같이 밑면은 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 옆면은 모두 합동인 이등변삼각형인 사각뿔이 있다. 이 사각뿔의 겉넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 옆면인 이등변삼각형의 높이를 구하시오.`,
+        content: `밑면은 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 옆면은 모두 합동인 이등변삼각형인 사각뿔이 있다. 이 사각뿔의 겉넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 옆면인 이등변삼각형의 높이를 구하시오.`,
         answer: `$${l}\\,\\mathrm{cm}$`,
         solution: `밑넓이는 $${a}\\times${a}=${a * a}$이므로 옆넓이는 $${S}-${a * a}=${2 * a * l}$이다.\n옆면인 이등변삼각형의 높이를 $x\\,\\mathrm{cm}$라 하면 $4\\times\\dfrac{1}{2}\\times${a}\\times x=${2 * a * l}$이다.\n따라서 $x=${l}$이므로 $${l}\\,\\mathrm{cm}$이다.`,
         facts: { branch, a, l, H, S, ans: l },
-        figureSpec: { version: "elem-1", kind: "pyramid", sides: 4, h: H },
       };
     }),
   ),
@@ -1375,6 +1396,8 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const a = intBetween(rng, 6, 16); // 아래 밑면 한 변
         const b = intBetween(rng, 2, a - 2); // 위 밑면 한 변
         const m = intBetween(rng, 3, 12); // 옆면인 사다리꼴의 높이
+        // 옆면인 사다리꼴 한 개의 넓이를 해설이 찍는다 — 정수가 아니면 소수가 새어 나간다.
+        if (((a + b) * m) % 2 !== 0) return null;
         const S = a * a + b * b + 2 * (a + b) * m;
         return {
           content: `두 밑면이 각각 한 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$인 정사각형이고 옆면은 모두 높이가 $${m}\\,\\mathrm{cm}$인 합동인 사다리꼴인 사각뿔대의 겉넓이를 구하시오.`,
@@ -1412,34 +1435,36 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const q = intBetween(rng, 3, 12);
         const h = intBetween(rng, 3, 15);
         if ((p * q * h) % 6 !== 0) return null;
+        // 해설이 밑넓이 $\frac12pq$ 를 글자로 찍는다 — 홀수 곱이면 소수가 나간다.
+        if ((p * q) % 2 !== 0) return null;
         const V = (p * q * h) / 6;
         return {
           content: `밑면이 직각을 낀 두 변의 길이가 각각 $${p}\\,\\mathrm{cm}$, $${q}\\,\\mathrm{cm}$인 직각삼각형이고 높이가 $${h}\\,\\mathrm{cm}$인 삼각뿔의 부피를 구하시오.`,
           answer: `$${V}\\,\\mathrm{cm}^3$`,
           solution: `밑넓이는 $\\dfrac{1}{2}\\times${p}\\times${q}=${(p * q) / 2}$이다.\n(부피)$=\\dfrac{1}{3}\\times$(밑넓이)$\\times$(높이)$=\\dfrac{1}{3}\\times${(p * q) / 2}\\times${h}=${V}$이다.`,
           facts: { branch, p, q, h, V, ans: V },
-          figureSpec: { version: "elem-1", kind: "pyramid", sides: 3, h },
         };
       }
       const a = intBetween(rng, 3, 14);
       const h = intBetween(rng, 3, 18);
       if ((a * a * h) % 3 !== 0) return null;
       const V = (a * a * h) / 3;
+      // 높이가 $3$ 이면 부피가 밑넓이와 **같은 수**가 되어 해설에 「$121$」이 두 뜻으로
+      // 나란히 선다(밑넓이 $121$ · 부피 $121$). 값은 맞지만 지면에서 헷갈린다.
+      if (V === a * a) return null;
       if (branch === 0) {
         return {
-          content: `오른쪽 그림과 같이 밑면이 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 높이가 $${h}\\,\\mathrm{cm}$인 사각뿔의 부피를 구하시오.`,
+          content: `밑면이 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형이고 높이가 $${h}\\,\\mathrm{cm}$인 사각뿔의 부피를 구하시오.`,
           answer: `$${V}\\,\\mathrm{cm}^3$`,
           solution: `밑넓이는 $${a}\\times${a}=${a * a}$이다.\n(부피)$=\\dfrac{1}{3}\\times${a * a}\\times${h}=${V}$이다.`,
           facts: { branch, a, h, V, ans: V },
-          figureSpec: { version: "elem-1", kind: "pyramid", sides: 4, h },
         };
       }
       return {
-        content: `오른쪽 그림과 같이 밑면이 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형인 사각뿔의 부피가 $${V}\\,\\mathrm{cm}^3$일 때, 이 사각뿔의 높이를 구하시오.`,
+        content: `밑면이 한 변의 길이가 $${a}\\,\\mathrm{cm}$인 정사각형인 사각뿔의 부피가 $${V}\\,\\mathrm{cm}^3$일 때, 이 사각뿔의 높이를 구하시오.`,
         answer: `$${h}\\,\\mathrm{cm}$`,
         solution: `밑넓이는 $${a}\\times${a}=${a * a}$이다.\n높이를 $x\\,\\mathrm{cm}$라 하면 $\\dfrac{1}{3}\\times${a * a}\\times x=${V}$이다.\n따라서 $x=${h}$이므로 $${h}\\,\\mathrm{cm}$이다.`,
         facts: { branch, a, h, V, ans: h },
-        figureSpec: { version: "elem-1", kind: "pyramid", sides: 4, h },
       };
     }),
   ),
@@ -1495,7 +1520,9 @@ export const M1_SOLID_AREA: TypeEntry[] = [
       if (branch === 0) {
         const big = a * a * Hb;
         const small = b * b * Hs;
-        if ((big - small) % 3 !== 0) return null;
+        // 해설이 큰 뿔·작은 뿔의 부피를 **각각** 찍는다 — 차만 정수면 소수가 새어 나간다
+        // (실측: $682.6666666666666$ 이 지면에 나갔다).
+        if (big % 3 !== 0 || small % 3 !== 0) return null;
         const V = (big - small) / 3;
         return {
           content: `두 밑면이 각각 한 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$인 정사각형이고 높이가 $${hh}\\,\\mathrm{cm}$인 사각뿔대의 부피를 구하시오.`,
@@ -1506,7 +1533,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
       }
       const big = a * a * Hb;
       const small = b * b * Hs;
-      if ((big - small) % 3 !== 0) return null;
+      if (big % 3 !== 0 || small % 3 !== 0) return null;
       const V = (big - small) / 3;
       return {
         content: `두 밑면인 원의 반지름의 길이가 각각 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$이고 높이가 $${hh}\\,\\mathrm{cm}$인 원뿔대의 부피를 구하시오.`,
@@ -1530,6 +1557,8 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const b = intBetween(rng, 3, 14);
         const c = intBetween(rng, 3, 14);
         if ((a * b * c) % 6 !== 0) return null;
+        // 해설이 밑넓이 $\frac12ab$ 를 찍는 갈래가 있다.
+        if ((a * b) % 2 !== 0) return null;
         const box = a * b * c;
         const cut = box / 6;
         const rest = box - cut;
@@ -1582,6 +1611,8 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           };
         }
         if ((a * b * c) % 6 !== 0) return null;
+        // 해설이 밑넓이 $\frac12ab$ 를 찍는다.
+        if ((a * b) % 2 !== 0) return null;
         const V = (a * b * c) / 6;
         if (branch === 1) {
           return {
@@ -1663,6 +1694,8 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const ask = pick(rng, [0, 1, 2] as const);
         const S = r * (r + l);
         const V = (r * r * h) / 3;
+        // 갈래 0 은 둘을 나란히 답으로 내므로 같은 수면 안 된다(위와 같은 이유).
+        if (ask === 0 && S === V) return null;
         const cyl = r * r * h; // 같은 밑면·높이의 원기둥 부피 — 시험이 이것으로 검산한다
         const head = `오른쪽 그림과 같이 직각을 낀 두 변의 길이가 각각 $${r}\\,\\mathrm{cm}$, $${h}\\,\\mathrm{cm}$이고 빗변의 길이가 $${l}\\,\\mathrm{cm}$인 직각삼각형을 길이가 $${h}\\,\\mathrm{cm}$인 변을 회전축으로 하여 $1$회전 시켰다.`;
         const shape = `이때 생기는 회전체는 밑면인 원의 반지름의 길이가 $${r}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$, 모선의 길이가 $${l}\\,\\mathrm{cm}$인 원뿔이다.`;

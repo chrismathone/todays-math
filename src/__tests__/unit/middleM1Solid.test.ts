@@ -38,7 +38,12 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
-import { bareNumbers } from "../../lib/elementary/rules";
+import {
+  arabicPolygons,
+  bareNumbers,
+  runawayDecimals,
+  unfilledPlaceholders,
+} from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import { preprocessMathText } from "../../lib/math/textPreprocess";
 import {
@@ -788,11 +793,9 @@ const FIG_AREA: Record<string, FigCheck> = {
     }
     return s.gap === f.g! && p.shape === "rect" && p.w === f.t! && p.h === f.h!;
   },
-  "10": (f, s) => s.kind === "pyramid" && s.sides === 4 && s.h === f.H!,
-  "13": (f, s) =>
-    s.kind === "pyramid" &&
-    s.sides === (f.branch === 1 ? 3 : 4) &&
-    s.h === f.h!,
+  // 10·13(각뿔)에는 그림이 **없다** — `pyramid` 는 스펙의 `h` 를 그리기에 안 쓰므로
+  // (`_pyramid`: `r, h = 1.0, 1.45` 리터럴) 발문이 높이를 말하는 유형에 붙이면
+  // 그림이 그 높이와 다른 비율을 그린다. 아래 「그림이 없어야 한다」가 지킨다.
   "14": (f, s) => s.kind === "cone" && s.r === f.r! && s.h === f.h!,
   "19": (f, s) =>
     s.kind === "netCone" &&
@@ -806,8 +809,47 @@ const FIG_AREA: Record<string, FigCheck> = {
   },
 };
 
-/** 그림이 **반드시 있어야** 하는 유형 (갈래에 따라 없는 것은 아래 예외로). */
-const FIG_OPTIONAL = new Set(["A11", "A13", "A14", "A10"]);
+/**
+ * 그림이 갈래에 따라 **없기도** 한 유형.
+ * `A14` 는 갈래 1(밑면의 둘레가 주어진 원뿔)만 그림이 없다.
+ */
+const FIG_OPTIONAL = new Set(["A14"]);
+
+/**
+ * 그림을 **일부러 안 붙인** 유형 — 여기 있으면 `figureSpec` 이 늘 `null` 이어야 한다.
+ *
+ * 왜 목록이 필요한가: 「그림 대조식이 없으면 그림도 없어야 한다」만으로는
+ * **대조식을 깜빡 안 쓴 것**과 **일부러 안 붙인 것**이 구분되지 않는다.
+ * 그러면 그림을 붙이면서 대조식을 안 쓴 날 아무도 안 잡는다.
+ */
+const NO_FIGURE = new Set([
+  "P01",
+  "P02",
+  "P03",
+  "P04",
+  "P05",
+  "P06",
+  "P07",
+  "P08",
+  "P09",
+  "P10",
+  "P11",
+  "P12",
+  "P13",
+  "P15",
+  "P18",
+  "P19",
+  "P20",
+  "A06",
+  // 10·13 은 각뿔 겨냥도가 발문의 높이와 다른 비율을 그려서 뗐다(위 주석).
+  "A10",
+  "A11",
+  "A12",
+  "A13",
+  "A15",
+  "A16",
+  "A17",
+]);
 
 /* ────────────────────────────────────────────────────────────────────────
  * 시험
@@ -914,6 +956,21 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
     }
   });
 
+  it("도형 이름을 아라비아 숫자로 쓰지 않았다 · 안 채운 자리가 없다", () => {
+    // 원장님: 「$8$각형이 아니라 팔각형」(`arabicPolygons`). 이 단원은 이름이 전부
+    // 「$n$각기둥」 꼴이라 특히 새기 쉽다. `unfilledPlaceholders` 는 틀의 `n각형` 이
+    // 그대로 나가는 것을 막는다 — 해설에서 실제로 `$n$각형` 을 쓴다.
+    for (const e of M1_SOLID_TYPES) {
+      for (const seed of ALL_SEEDS) {
+        const p = generateMiddleProblem(e.key, seed);
+        for (const field of [p.content, p.answer, p.solution]) {
+          expect(arabicPolygons(field), `${e.key}: ${field}`).toEqual([]);
+          expect(unfilledPlaceholders(field), `${e.key}: ${field}`).toEqual([]);
+        }
+      }
+    }
+  });
+
   it("대분수를 직접 쓰지 않았다 (D-73)", () => {
     // 제품이 가분수를 대분수로 안 바꾸므로, 대분수는 **우리가 써야만** 나온다.
     for (const e of M1_SOLID_TYPES) {
@@ -984,12 +1041,51 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
           }
         });
 
+        it("답을 둘 내면 그 둘이 **다른 수**다", () => {
+          // 「겉넓이 $96\pi\,\mathrm{cm}^2$, 부피 $96\pi\,\mathrm{cm}^3$」는 값이 맞아도
+          // 지면에서 어느 것이 어느 것인지 안 갈린다(단위만 다르다). 미리보기를
+          // 눈으로 보고 나왔다 — 값 검사는 전부 초록이었다.
+          //
+          // ⚠️ A06 은 **한 값**을 두 항으로 적는다(`$(144\pi+144)\,\mathrm{cm}^2$`).
+          //    두 항이 같아도 헷갈릴 것이 없으므로 뺀다 — 이 검사가 겨누는 것은
+          //    「답이 둘인데 그 둘이 같은 수」다.
+          if (`${tag}${e.rpmType}` === "A06") return;
+          for (const seed of ALL_SEEDS) {
+            const p = generateMiddleProblem(e.key, seed);
+            const nums = answers[e.rpmType]!(p.facts);
+            if (nums.length < 2) continue;
+            expect(
+              new Set(nums).size,
+              `${e.key} 답의 두 수가 같다: ${p.answer}`,
+            ).toBe(nums.length);
+          }
+        });
+
         it("숫자가 KaTeX 밖에 없다 (본문·정답·해설)", () => {
           for (const seed of ALL_SEEDS) {
             const p = generateMiddleProblem(e.key, seed);
             expect(bareNumbers(p.content), p.content).toEqual([]);
             expect(bareNumbers(p.answer), p.answer).toEqual([]);
             expect(bareNumbers(p.solution), p.solution).toEqual([]);
+          }
+        });
+
+        it("지면에 소수가 없다 — 이 단원의 수는 전부 정수(또는 정수$\\pi$)다", () => {
+          // 🔴 **값 검사가 다 초록이어도 지면은 흉할 수 있다**(물결 계약 §9).
+          //    `facts` 의 답은 정수인데 **해설이 중간 단계를 글자로 찍으면서** 나눗셈이
+          //    깨졌다 — 실측으로 다섯 유형에서 새어 나갔다(12·13·15·16·17).
+          //    가장 나쁜 것은 $682.6666666666666$ 이 그대로 지면에 나간 것이다.
+          //    `runawayDecimals` 는 소수 네 자리 이상만 세므로 $13.5$ 를 구조적으로 못 본다.
+          //    이 단원은 소수가 **아예 없어야** 하니 그렇게 못 박는다.
+          for (const seed of ALL_SEEDS) {
+            const p = generateMiddleProblem(e.key, seed);
+            for (const field of [p.content, p.answer, p.solution]) {
+              expect(
+                field.match(/\d+\.\d+/g) ?? [],
+                `${e.key} 지면에 소수: ${field}`,
+              ).toEqual([]);
+              expect(runawayDecimals(field), `${e.key}: ${field}`).toEqual([]);
+            }
           }
         });
 
@@ -1020,19 +1116,27 @@ describe("중1 5E — 다면체와 회전체 · 입체도형의 겉넓이와 부
         });
 
         it("그림이 있으면 발문과 **같은 수**를 말한다", () => {
+          const id = `${tag}${e.rpmType}`;
           const fig = figs[e.rpmType];
+          // 안 붙이기로 한 유형과 붙이기로 한 유형을 **먼저** 갈라 둔다 — 그래야
+          // 「그림을 붙이면서 대조식을 안 썼다」가 조용히 통과하지 않는다.
+          expect(
+            NO_FIGURE.has(id) !== (fig !== undefined),
+            `${id}: 그림 목록과 대조식이 어긋난다`,
+          ).toBe(true);
           for (let s = 0; s < 80; s += 1) {
             const p = generateMiddleProblem(e.key, s * 7919 + 13);
             if (!p.figureSpec) {
-              // 그림을 안 붙이기로 한 유형은 계속 안 붙어야 한다. 갈래에 따라
-              // 없는 것은 예외 목록으로 열어 둔다(위 `FIG_OPTIONAL`).
               expect(
-                fig === undefined || FIG_OPTIONAL.has(`${tag}${e.rpmType}`),
+                NO_FIGURE.has(id) || FIG_OPTIONAL.has(id),
                 `${e.key}: 그림이 있어야 하는 유형인데 없다`,
               ).toBe(true);
               continue;
             }
-            expect(fig, `${e.key}: 그림 대조식이 없다`).toBeDefined();
+            expect(
+              NO_FIGURE.has(id),
+              `${e.key}: 안 붙이기로 한 유형에 그림이 붙었다`,
+            ).toBe(false);
             expect(p.figureSpec!.version, e.key).toBe("elem-1");
             expect(
               fig!(p.facts, p.figureSpec as Spec),
