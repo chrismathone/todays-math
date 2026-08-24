@@ -6025,6 +6025,45 @@ function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 const TRI_DISTRACTORS = ["isoTri", "rightTri", "wideTri"] as const;
 
+/** 「그림에서 …의 기호를 쓰시오」에 쓰는 기호 — 자리 순서 그대로 붙는다. */
+const PICK_LABELS = ["가", "나", "다"] as const;
+
+/**
+ * **정답 도형의 자리를 씨앗마다 섞는다.**
+ *
+ * 🔴 옛 판은 정답 도형을 늘 **첫 자리**에 놓아 기호 「가」를 붙였다. 그러면
+ * **발문을 안 읽고 「가」라고 써도 맞는다** — 실측 2026-08-24 로 세 소단원
+ * (2-2-1 · 2-4-4 · 2-4-6) 174건이 전량 «가» 였다.
+ *
+ * ⚠️ **값 검산은 이 부류를 구조적으로 못 본다** — 답이 늘 «맞기» 때문이다. 그리고
+ * R9 는 «발문 + 그림»만 보므로 정답 축이 아예 없었다. 2-2-1 은 그림 스펙이 **6가지로
+ * 갈리는데도** 답이 늘 「가」였다 — 「그림을 씨앗마다 다르게」로는 안 갚아진다.
+ *
+ * 라벨은 **자리 순서 그대로** 가·나·다다(건너뛰면 지면이 이상해진다). 섞는 것은
+ * 「정답 도형이 몇째 자리에 오는가」뿐이다.
+ */
+function labelledPick(
+  rng: Rng,
+  answerShape: string,
+  others: readonly string[],
+): { answer: string; other: string; items: { shape: string; label: string }[] } {
+  if (others.length + 1 > PICK_LABELS.length) {
+    throw new Error(
+      `기호가 모자랍니다: 도형 ${others.length + 1}개 — PICK_LABELS 를 늘려라`,
+    );
+  }
+  const at = intBetween(rng, 0, others.length);
+  const ordered = [...others];
+  ordered.splice(at, 0, answerShape);
+  const items = ordered.map((shape, i) => ({ shape, label: PICK_LABELS[i]! }));
+  const answer = PICK_LABELS[at]!;
+  return {
+    answer,
+    other: items.find((x) => x.label !== answer)!.label,
+    items,
+  };
+}
+
 function triClass(a: number, b: number, c: number): string {
   const big = Math.max(a, b, c);
   return big > 90 ? "둔각삼각형" : big === 90 ? "직각삼각형" : "예각삼각형";
@@ -6053,18 +6092,13 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     const others = [...TRI_DISTRACTORS];
     const second = others.splice(intBetween(rng, 0, others.length - 1), 1)[0]!;
     const third = others[intBetween(rng, 0, others.length - 1)]!;
+    const put = labelledPick(rng, "eqTri", [second, third]);
     return make(
       unit,
       "그림에서 정삼각형의 기호를 쓰시오.",
-      "가",
-      "가는 세 변의 길이가 모두 같습니다. 세 변의 길이가 같은 삼각형을 정삼각형이라고 합니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "eqTri", label: "가" },
-          { shape: second, label: "나" },
-          { shape: third, label: "다" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 세 변의 길이가 모두 같습니다. 세 변의 길이가 같은 삼각형을 정삼각형이라고 합니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 
@@ -7862,17 +7896,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
         "평행사변형은 평행한 변이 두 쌍이므로 한 쌍이라도 평행하다는 조건을 만족합니다. 그러므로 사다리꼴입니다.",
       );
     }
+    const put = labelledPick(rng, "trap", ["irregQuad"]);
     return make(
       unit,
       "그림에서 사다리꼴의 기호를 쓰시오.",
-      "가",
-      "가는 위쪽 변과 아래쪽 변이 서로 평행합니다. 나는 평행한 변이 한 쌍도 없습니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "trap", label: "가" },
-          { shape: "irregQuad", label: "나" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 위쪽 변과 아래쪽 변이 서로 평행합니다. ` +
+        `${put.other}는 평행한 변이 한 쌍도 없습니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 
@@ -7924,17 +7955,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
         `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side}\\times4=${side * 4}`)} 입니다.`,
       );
     }
+    const put = labelledPick(rng, "tallDiamond", ["rect"]);
     return make(
       unit,
       "그림에서 네 변의 길이가 모두 같은 사각형의 기호를 쓰시오.",
-      "가",
-      "가는 네 변의 길이가 모두 같습니다. 나는 이웃한 두 변의 길이가 다릅니다.",
-      fig("namedShapes", {
-        items: [
-          { shape: "tallDiamond", label: "가" },
-          { shape: "rect", label: "나" },
-        ],
-      }),
+      put.answer,
+      `${put.answer}는 네 변의 길이가 모두 같습니다. ` +
+        `${put.other}는 이웃한 두 변의 길이가 다릅니다.`,
+      fig("namedShapes", { items: put.items }),
     );
   }
 
