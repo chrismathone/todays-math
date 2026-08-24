@@ -101,16 +101,16 @@ async function main() {
         const data = { ...r } as Record<string, unknown>;
         for (const k of ["createdAt", "updatedAt"])
           if (data[k]) data[k] = new Date(data[k] as string);
-        // exam-wiring: 기출아님 — 원장 1,336행이 **전부 `source=transformed`**(RPM 교재)이고
-        // `school` 은 전량 NULL 이다. 그리고 삭제 전 `exam_question` 이 이 id 들을 가리킨 것은
-        // **0건**이었다(실측 2026-08-24) — 이번 원장에는 되돌릴 링크 자체가 없다.
-        // ⚠️ 이 표시가 참인 근거는 «원장의 내용»이므로, 이 스크립트를 **기출을 담은 원장에
-        // 재사용하면 표시부터 다시 봐야 한다.**
-        //
-        // 되살릴 때는 원장의 행을 **그대로** 넣는다. 새 기출이 아니므로 편을 다시 짓지
-        // 않는다(`syncExamMetadata` 는 편을 «지금 문항»으로 다시 지어 짝이 다른 편에 있는
-        // 문항을 통째로 날린다). 링크가 있는 원장이면 아래에서 `exam_question` 을 원래대로
-        // 돌려놓는다 — 그 컬럼에는 FK 가 없어 **끊겨도 오류가 안 난다.**
+        // 원장의 행을 **그대로** 넣는다. 새 기출이 아니므로 편을 다시 짓지 않는다
+        // (`syncExamMetadata` 는 편을 «지금 문항»으로 다시 지어 짝이 다른 편에 있는 문항을
+        // 통째로 날린다). 링크가 있는 원장이면 아래에서 `exam_question` 을 원래대로 돌린다 —
+        // 그 컬럼에는 FK 가 없어 **끊겨도 오류가 안 난다.**
+        // ⚠️ 아래 표시가 참인 근거는 «원장의 내용»이다 — **기출을 담은 원장에 재사용하면
+        //    표시부터 다시 봐야 한다.**
+        // ⚠️ 표시는 호출에서 **8줄 안**에 있어야 한다(`MARKER_LOOKBACK`). 설명을 늘리려면
+        //    표시 **위**로 올릴 것 — 아래로 밀면 판정이 「판단불가」가 된다(실제로 그랬다).
+        // exam-wiring: 기출아님 — 원장 1,336행이 전부 `source=transformed`(RPM 교재)이고
+        // `school` 은 전량 NULL, 삭제 전 `exam_question` 링크는 **0건**이었다(실측 2026-08-24).
         await prisma.problem.create({ data: data as never });
       }
       back++;

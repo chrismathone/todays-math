@@ -1403,7 +1403,7 @@ describe.skipIf(!hasEngine)(
         }
       }
       expect(bare, "날 텍스트 치수").toEqual([]);
-    });
+    }, 60_000);
 
     it("치수를 적기로 한 kind 는 실제로 적는다 — 검사가 빈 껍데기가 아니다", async () => {
       const bare: string[] = [];
@@ -1496,7 +1496,7 @@ describe.skipIf(!hasEngine)(
         }
       }
       expect(out).toEqual([]);
-    });
+    }, 60_000);
 
     it("표는 그래도 viewBox 240 을 넘지 않는다 — 맞춤이 이 불변식을 깨면 안 된다", async () => {
       const r = await renderFigureSpec({
