@@ -156,7 +156,7 @@ interface ProblemRow {
    * `undefined` 가 나가고, 응답 계약(review.contract.ts:139)이 string 을 요구해 던진다.
    * 컬럼을 늘릴 때 대역을 같이 안 늘리면 라우트 시험만 빨개진다 — 화면은 멀쩡해 보인다.
    */
-  solutionSource: string;
+  solutionSource: "none" | "original" | "ai";
   createdAt: Date;
   updatedAt: Date;
 }

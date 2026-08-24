@@ -875,7 +875,7 @@ export const ITEMS: PrintCheckItem[] = [
     evidence: [
       "src/app/globals.css (--op-limit-scale · .katex .mop .sizing)",
       "src/__tests__/unit/opLimitScale.test.ts",
-      "docs/planning/07-coding-convention.md (D-102)",
+      "docs/planning/07-coding-convention.md (D-104)",
     ],
     scale:
       "고등 문항 전량 — 미적분·수열의 ∫·lim·∑ 이 든 문항. 중등에는 이 기호가 없어 " +

@@ -13,6 +13,8 @@
  */
 import type { Prisma } from "@prisma/client";
 
+import type { ReportReason } from "@/contracts/problemReport.contract";
+
 import type { ReviewQueueKey } from "@/contracts/review.contract";
 import { problemVisibleWhere } from "@/lib/problemPool";
 
@@ -23,6 +25,15 @@ export type ReviewQueueDef = {
   why: string;
   /** 이 대기열에서 **무엇을 봐야 하나**. */
   look: string;
+  /**
+   * 이 대기열에서 **가장 나올 법한 신고 사유**. 화면이 그 줄을 강조한다(D-102, 「가」안).
+   *
+   * ⚠️ **순서를 바꾸는 데 쓰지 않는다.** 신고 패널은 「숫자 키 즉시 신고」라, 대기열마다
+   *    순서가 바뀌면 **숫자 키의 뜻도 바뀌어** 손에 익은 채로 다른 대기열에 가면 엉뚱한
+   *    사유가 들어간다 — 에러 없이 조용히 틀린다. 순서는 `REASON_ORDER` 하나로 고정이고
+   *    여기서는 **강조만** 한다.
+   */
+  emphasize: readonly ReportReason[];
   where: Prisma.ProblemWhereInput;
 };
 
@@ -32,6 +43,7 @@ export const REVIEW_QUEUES: readonly ReviewQueueDef[] = [
     label: "그림 크기를 모른다",
     why: "그림은 붙어 있는데 원본 지면에서 몇 mm 였는지가 없다. 인쇄 크기가 추측이라 종이에서 커지거나 작아진다.",
     look: "그림이 문항에 견주어 지나치게 크거나 작지 않은가",
+    emphasize: ["figure"],
     where: {
       NOT: { figureUrls: { isEmpty: true } },
       figureSourceMm: { isEmpty: true },
@@ -42,6 +54,7 @@ export const REVIEW_QUEUES: readonly ReviewQueueDef[] = [
     label: "사람이 아직 안 봤다",
     why: "만들어진 뒤로 아무도 승격하지 않은 문항이다. 출제 풀에 못 들어간다.",
     look: "발문·보기·정답이 서로 맞는가",
+    emphasize: ["content", "answer"],
     where: { reviewStatus: "pending" },
   },
   {
@@ -49,6 +62,7 @@ export const REVIEW_QUEUES: readonly ReviewQueueDef[] = [
     label: "출제에서 빠져 있다",
     why: "그림이 없거나 짝을 못 찾아 출제 대상에서 잠갔다. 되살릴 수 있으면 되살린다.",
     look: "지금 화면만으로 학생이 풀 수 있는가",
+    emphasize: ["figure", "content"],
     where: { directUseAllowed: false },
   },
   {
@@ -56,6 +70,7 @@ export const REVIEW_QUEUES: readonly ReviewQueueDef[] = [
     label: "그림을 보라",
     why: "그림이 붙은 문항 전부다. 화질이 낮은 래스터·지면과 다른 스타일·해설 그림이 본문에 딸려 온 것을 가려낸다 (2026-08-21 원장님: 그림 문제를 한번에 검수).",
     look: "그림이 흐리지 않은가 · 흑백 지면 스타일인가 · 둘째 그림이 해설 그림은 아닌가. 이상하면 «신고 → 그림»",
+    emphasize: ["figure"],
     where: { NOT: { figureUrls: { isEmpty: true } } },
   },
   {
@@ -63,6 +78,7 @@ export const REVIEW_QUEUES: readonly ReviewQueueDef[] = [
     label: "해설이 없다",
     why: "정답만 있고 풀이가 없다. 답이 맞는지 이 화면에서 검산할 수 없다.",
     look: "정답이 그럴듯한가. 아니면 «판단 못 하겠다»로 넘겨라",
+    emphasize: ["solution", "answer"],
     where: { OR: [{ solution: null }, { solution: "" }] },
   },
 ];

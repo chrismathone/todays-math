@@ -103,17 +103,41 @@ async function main() {
           if (data[k]) data[k] = new Date(data[k] as string);
         // exam-wiring: 기출아님 — 원장 1,336행이 **전부 `source=transformed`**(RPM 교재)이고
         // `school` 은 전량 NULL 이다. 그리고 삭제 전 `exam_question` 이 이 id 들을 가리킨 것은
-        // **0건**이었다(실측 2026-08-24) — 되돌릴 링크 자체가 없다. 그래서 이 경로는 기출을
-        // 넣지 않고 `syncExamMetadata` 도 필요 없다. ⚠️ 이 표시가 참인 근거는 «원장의 내용»
-        // 이므로, 이 스크립트를 **기출을 담은 원장에 재사용하면 표시부터 다시 봐야 한다.**
+        // **0건**이었다(실측 2026-08-24) — 이번 원장에는 되돌릴 링크 자체가 없다.
+        // ⚠️ 이 표시가 참인 근거는 «원장의 내용»이므로, 이 스크립트를 **기출을 담은 원장에
+        // 재사용하면 표시부터 다시 봐야 한다.**
+        //
+        // 되살릴 때는 원장의 행을 **그대로** 넣는다. 새 기출이 아니므로 편을 다시 짓지
+        // 않는다(`syncExamMetadata` 는 편을 «지금 문항»으로 다시 지어 짝이 다른 편에 있는
+        // 문항을 통째로 날린다). 링크가 있는 원장이면 아래에서 `exam_question` 을 원래대로
+        // 돌려놓는다 — 그 컬럼에는 FK 가 없어 **끊겨도 오류가 안 난다.**
         await prisma.problem.create({ data: data as never });
       }
       back++;
     }
+    // `exam_question.problem_id` 되살리기 — FK 가 없어 끊겨도 조용하다. 원장이 들고
+    // 있는 짝을 그대로 되돌린다(문항이 실제로 되살아난 것만).
+    const links =
+      (rows as unknown as { examLinks?: { id: string; problemId: string }[] })
+        .examLinks ?? [];
+    let relinked = 0;
+    for (const l of links) {
+      const exists = await prisma.problem.findUnique({
+        where: { id: l.problemId },
+        select: { id: true },
+      });
+      if (!exists) continue;
+      if (APPLY)
+        await prisma.examQuestion.updateMany({
+          where: { id: l.id, problemId: null },
+          data: { problemId: l.problemId },
+        });
+      relinked++;
+    }
     console.log(
       APPLY
-        ? `되살림 ${back}건 · 이미 있어 건너뜀 ${skipped}건`
-        : `되살릴 것 ${back}건 · 이미 있어 건너뜀 ${skipped}건 (드라이런)`,
+        ? `되살림 ${back}건 · 이미 있어 건너뜀 ${skipped}건 · 편 링크 ${relinked}건`
+        : `되살릴 것 ${back}건 · 이미 있어 건너뜀 ${skipped}건 · 편 링크 ${relinked}건 (드라이런)`,
     );
     return;
   }
@@ -182,6 +206,18 @@ async function main() {
     throw new Error(
       `원장 행수(${rows.length}) != 삭제 대상(${deletable.length}) — 중단`,
     );
+  // ⚠️ **`exam_question.problem_id` 는 FK 가 없다 — 끊겨도 오류가 안 난다.**
+  //    지우기 전에 짝을 원장에 적어 두지 않으면 되돌릴 수가 없다. 이번 대상(RPM 교재)은
+  //    편에 안 들어가 실측 0건이었지만, **다음 실행이 다른 자료에 걸리면 끊긴다.**
+  //    (`scripts/qa/audit-exam-wiring.ts` 가 이 자리를 잡아 줬다.)
+  const examLinks = await prisma.examQuestion.findMany({
+    where: { problemId: { in: deletable } },
+    select: { id: true, problemId: true },
+  });
+  console.log(
+    `편(exam_question) 링크 ${examLinks.length}건을 원장에 적고 끊는다`,
+  );
+
   mkdirSync(dirname(LEDGER), { recursive: true });
   writeFileSync(
     LEDGER,
@@ -191,10 +227,17 @@ async function main() {
         reason:
           "원장님 확정 2026-08-24 — RPM 교과서문제 정복하기 삭제. 되돌리려면 --revert.",
         blocked: [...blocked],
+        examLinks,
         rows,
       }),
     ),
   );
+
+  if (examLinks.length)
+    await prisma.examQuestion.updateMany({
+      where: { id: { in: examLinks.map((l) => l.id) } },
+      data: { problemId: null },
+    });
   console.log(`\n되돌리기 원장 → ${LEDGER} (${rows.length}행 전체 기록)`);
 
   let done = 0;

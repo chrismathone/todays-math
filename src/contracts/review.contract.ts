@@ -107,6 +107,14 @@ export const reviewQueueSummarySchema = z.strictObject({
   look: z.string(),
   /** 이 사람이 **아직 안 본** 문항 수. 전체 건수가 아니다. */
   remaining: z.number().int().nonnegative(),
+  /**
+   * 이 대기열에서 **가장 나올 법한 신고 사유** — 화면이 그 줄을 강조한다(D-102).
+   *
+   * ⚠️ **순서를 바꾸는 값이 아니다.** 신고 패널은 「숫자 키 즉시 신고」라, 대기열마다
+   *    순서가 바뀌면 **숫자 키의 뜻도 바뀌어** 손에 익은 채로 다른 대기열에 가면
+   *    엉뚱한 사유가 들어간다 — 에러 없이 조용히 틀린다.
+   */
+  emphasize: z.array(reportReasonSchema),
 });
 
 /**
