@@ -17,6 +17,7 @@ import { M1_LINEAR_APPLY } from "./m1LinearApply";
 import { M1_NUM } from "./m1Num";
 import { M1_PROP } from "./m1Prop";
 import { M1_REAL } from "./m1Real";
+import { M1_SOLID_TYPES } from "./m1Solid";
 import { M1_STAT_TYPES } from "./m1Stat";
 import { M1_STAT_FIG } from "./m1StatFig";
 import { M2_TYPES } from "./m2";
@@ -33,6 +34,7 @@ const ALL: TypeEntry[] = [
   ...M1_CALC,
   ...M1_EXPR,
   ...M1_REAL,
+  ...M1_SOLID_TYPES,
   ...M1_STAT_TYPES,
   ...M1_STAT_FIG,
   ...M2_TYPES,
