@@ -53,17 +53,6 @@ function attempt<T>(tries: number, f: () => T | null): T {
   throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
 }
 
-function gcd(a: number, b: number): number {
-  let x = Math.abs(a);
-  let y = Math.abs(b);
-  while (y !== 0) {
-    const t = x % y;
-    x = y;
-    y = t;
-  }
-  return x === 0 ? 1 : x;
-}
-
 /** 0 이 아닌 정수를 [-hi, -lo] ∪ [lo, hi] 에서 뽑는다. */
 function nonZero(rng: Rng, lo: number, hi: number): number {
   const v = intBetween(rng, lo, hi);
