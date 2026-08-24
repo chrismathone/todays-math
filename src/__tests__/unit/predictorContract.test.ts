@@ -105,11 +105,11 @@ describe("[예측기 계약] L0 시험지", () => {
     expect(result.success).toBe(true);
   });
 
-  it("examQuestionSchema — 난이도 라벨에 easy/mid/hard를 넣으면 거부한다", () => {
-    // 시험지 원본 라벨(상/중/하)과 문제은행 난이도(easy/mid/hard)는 다른 축이다.
+  it("examQuestionSchema — 난이도 라벨에 문제은행 4단을 넣으면 거부한다", () => {
+    // 시험지 원본 라벨(상/중/하)과 문제은행 난이도(연산/기본/응용/심화)는 다른 축이다.
     const result = examQuestionSchema.safeParse({
       ...question,
-      difficultyLabel: "easy",
+      difficultyLabel: "기본",
     });
     expect(result.success).toBe(false);
   });
@@ -159,9 +159,7 @@ describe("[예측기 계약] L1 청사진", () => {
   it("blueprintSchema — 매핑 안 된 단원도 원문 표기로 남길 수 있다", () => {
     const result = blueprintSchema.safeParse({
       ...blueprint,
-      unitMix: [
-        { unitId: null, topicRaw: "미정계수법", count: 2, score: 7 },
-      ],
+      unitMix: [{ unitId: null, topicRaw: "미정계수법", count: 2, score: 7 }],
     });
     expect(result.success).toBe(true);
   });
@@ -350,12 +348,7 @@ describe("[예측기 계약] 시점 정렬", () => {
       .sort(comparePeriod)
       .map(periodSortKey);
 
-    expect(sorted).toEqual([
-      "2024-1-1",
-      "2024-1-2",
-      "2025-1-2",
-      "2025-2-1",
-    ]);
+    expect(sorted).toEqual(["2024-1-1", "2024-1-2", "2025-1-2", "2025-2-1"]);
   });
 
   it("seriesKeyString — 학교·학교급학년·과목을 한 키로 묶는다", () => {

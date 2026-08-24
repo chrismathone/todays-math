@@ -201,7 +201,7 @@
 **작업 내용**:
 - API 테스트 뼈대: `src/__tests__/api/{auth,class,problem,test}.test.ts` — 계약 기반, 전부 실패(RED) 상태
 - 출제 엔진 단위 테스트: `src/__tests__/unit/generator.test.ts`
-  - 난이도 배분 (예: 8문항 = easy 3 / mid 4 / hard 1)
+  - 난이도 배분 (예: 8문항 = 연산 1 / 기본 3 / 응용 3 / 심화 1 — D-106)
   - 최근 14일 중복 제외 (D-20)
   - 확인테스트 범위 계산 (order_index 기반)
   - 문제 부족 시 폴백 (INSUFFICIENT_PROBLEMS)
@@ -427,7 +427,7 @@ cd ../testautocreator-phase3-import
    - ⚠️ figure 블록은 크롭 이미지 또는 **재작도 SVG** — 재작도는 `core/figure_svg`+`figure_solid`만 사용하고 `figure_quality.sanitize_svg`를 통과한 것만 적재. 라벨·접선은 손으로 좌표를 찍지 말 것(핸드오프 `docs/HANDOFF_FIGURE_ENGINE.md`)
    - ⚠️ `db\extracted\*.json`(HWP-EQ 표기)은 사용 금지. HWP 수식이 들어오면 `core/hwpeq_to_latex.py`로 LaTeX 변환 후 KaTeX 게이트를 통과시킬 것
 2. **자작 시드 ~753문항**: `F:\math_test\backend\app\seeds\` (Python dict — 파싱 스크립트로 추출)
-   - source=`manual`, directUseAllowed=true, 난이도 1~10 → easy/mid/hard 매핑 규칙 정의
+   - source=`manual`, directUseAllowed=true, 난이도 1~10 → 기본/응용/심화 매핑 규칙 정의 (D-106: 바깥 자료는 `연산` 을 가른 적이 없어 위 세 칸만 낸다)
 3. **RPM 5,035문항**: sumaek Supabase에서 **읽기 전용 SELECT**로 추출 (sumaek .env의 접속 정보 사용, 쓰기 절대 금지)
    - source=`transformed`의 원본으로 쓸 수 있게 별도 source 값 또는 기존 값 + **directUseAllowed=false** 적재
    - 단원 매핑: sumaek의 개념 매핑 활용

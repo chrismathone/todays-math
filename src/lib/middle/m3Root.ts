@@ -267,7 +267,7 @@ const MULT_SF = [2, 3, 5, 6, 7, 10, 15] as const;
 // ══════════════════════════════════════════════════════════════════
 
 const SQRT_TYPES: TypeEntry[] = [
-  def(MINOR_SQRT, "01", "제곱근의 뜻", SEC.제곱근, "easy", (rng) =>
+  def(MINOR_SQRT, "01", "제곱근의 뜻", SEC.제곱근, "기본", (rng) =>
     attempt(60, () => {
       const branch = intBetween(rng, 0, 1);
       if (branch === 0) {
@@ -292,7 +292,7 @@ const SQRT_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SQRT, "02", "제곱근의 표현", SEC.제곱근, "easy", (rng) =>
+  def(MINOR_SQRT, "02", "제곱근의 표현", SEC.제곱근, "기본", (rng) =>
     attempt(60, () => {
       const n = pick(rng, SQUAREFREE);
       const branch = intBetween(rng, 0, 2);
@@ -322,7 +322,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "03",
     "근호를 사용하지 않고 나타내기",
     SEC.제곱근,
-    "easy",
+    "기본",
     (rng) =>
       attempt(60, () => {
         const branch = intBetween(rng, 0, 3);
@@ -360,7 +360,7 @@ const SQRT_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SQRT, "04", "제곱근 구하기", SEC.제곱근, "mid", (rng) =>
+  def(MINOR_SQRT, "04", "제곱근 구하기", SEC.제곱근, "응용", (rng) =>
     attempt(60, () => {
       const k = intBetween(rng, 2, 7);
       const a = k * k * k * k;
@@ -384,7 +384,7 @@ const SQRT_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SQRT, "05", "제곱근과 도형", SEC.제곱근, "mid", (rng) =>
+  def(MINOR_SQRT, "05", "제곱근과 도형", SEC.제곱근, "응용", (rng) =>
     attempt(80, () => {
       const branch = intBetween(rng, 0, 1);
       if (branch === 0) {
@@ -415,7 +415,7 @@ const SQRT_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SQRT, "06", "제곱근의 성질", SEC.제곱근, "easy", (rng) =>
+  def(MINOR_SQRT, "06", "제곱근의 성질", SEC.제곱근, "기본", (rng) =>
     attempt(80, () => {
       const a = intBetween(rng, 2, 12);
       const b = intBetween(rng, 2, 12);
@@ -437,7 +437,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "07",
     "제곱근의 성질을 이용한 식의 계산",
     SEC.제곱근,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const a = intBetween(rng, 2, 12);
@@ -456,7 +456,7 @@ const SQRT_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SQRT, "08", "의 성질", SEC.제곱근, "mid", (rng) =>
+  def(MINOR_SQRT, "08", "의 성질", SEC.제곱근, "응용", (rng) =>
     attempt(80, () => {
       const p = intBetween(rng, 1, 5);
       const q = intBetween(rng, 1, 5);
@@ -485,7 +485,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "09",
     "의 꼴을 포함한 식을 간단히 하기",
     SEC.제곱근,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const a = intBetween(rng, 1, 7);
@@ -518,7 +518,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "10",
     "의 꼴을 포함한 식을 간단히 하기",
     SEC.제곱근,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const p = intBetween(rng, 1, 5);
@@ -555,7 +555,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "11",
     "가 자연수가 되도록 하는 자연수 의 값 구하기",
     SEC.제곱근,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, () => {
         const m = intBetween(rng, 2, 7);
@@ -576,7 +576,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "12",
     "가 자연수가 되도록 하는 자연수 의",
     SEC.제곱근,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, () => {
         const m = intBetween(rng, 3, 8);
@@ -598,7 +598,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "13",
     "가 자연수가 되도록 하는 자연수 의 값 구하기",
     SEC.제곱근,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const a = intBetween(rng, 20, 200);
@@ -620,7 +620,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "14",
     "가 정수 또는 자연수가 되도록 하는 자연수 의 값 구하기",
     SEC.제곱근,
-    "hard",
+    "심화",
     (rng) =>
       attempt(60, () => {
         const a = intBetween(rng, 20, 200);
@@ -636,7 +636,7 @@ const SQRT_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SQRT, "15", "제곱근의 대소 관계", SEC.제곱근, "mid", (rng) =>
+  def(MINOR_SQRT, "15", "제곱근의 대소 관계", SEC.제곱근, "응용", (rng) =>
     attempt(120, () => {
       const p = pick(rng, SQUAREFREE);
       const r = pick(rng, SQUAREFREE);
@@ -668,7 +668,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "16",
     "제곱근의 성질과 대소 관계",
     SEC.제곱근,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const a = intBetween(rng, 2, 8);
@@ -687,7 +687,7 @@ const SQRT_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SQRT, "17", "제곱근을 포함한 부등식", SEC.제곱근, "mid", (rng) =>
+  def(MINOR_SQRT, "17", "제곱근을 포함한 부등식", SEC.제곱근, "응용", (rng) =>
     attempt(60, () => {
       const a = intBetween(rng, 1, 6);
       const b = a + intBetween(rng, 1, 3);
@@ -705,7 +705,7 @@ const SQRT_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SQRT, "18", "이하의 자연수 구하기", SEC.제곱근, "hard", (rng) =>
+  def(MINOR_SQRT, "18", "이하의 자연수 구하기", SEC.제곱근, "심화", (rng) =>
     attempt(60, () => {
       const n = intBetween(rng, 10, 30);
       let total = 0;
@@ -773,7 +773,7 @@ function numberListItems(
 }
 
 const IRR_TYPES: TypeEntry[] = [
-  def(MINOR_IRR, "01", "유리수와 무리수의 구별", SEC.무리수, "easy", (rng) =>
+  def(MINOR_IRR, "01", "유리수와 무리수의 구별", SEC.무리수, "기본", (rng) =>
     attempt(60, () => {
       const items = numberListItems(rng, 5);
       const count = items.filter((t) => t.irrational).length;
@@ -788,7 +788,7 @@ const IRR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_IRR, "02", "무리수의 이해", SEC.무리수, "mid", (rng) =>
+  def(MINOR_IRR, "02", "무리수의 이해", SEC.무리수, "응용", (rng) =>
     attempt(60, () => {
       const n = intBetween(rng, 20, 60);
       const squares = Math.floor(Math.sqrt(n));
@@ -803,7 +803,7 @@ const IRR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_IRR, "03", "실수의 이해", SEC.무리수, "mid", (rng) =>
+  def(MINOR_IRR, "03", "실수의 이해", SEC.무리수, "응용", (rng) =>
     attempt(60, () => {
       const items = numberListItems(rng, 5);
       const irr = items.filter((t) => t.irrational).length;
@@ -825,7 +825,7 @@ const IRR_TYPES: TypeEntry[] = [
     "04",
     "무리수를 수직선 위에 나타내기",
     SEC.무리수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const c = intBetween(rng, -5, 5);
@@ -848,7 +848,7 @@ const IRR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_IRR, "05", "실수와 수직선", SEC.무리수, "easy", (rng) =>
+  def(MINOR_IRR, "05", "실수와 수직선", SEC.무리수, "기본", (rng) =>
     attempt(80, () => {
       const n = pick(rng, SQUAREFREE);
       if (n < 5) return null;
@@ -868,7 +868,7 @@ const IRR_TYPES: TypeEntry[] = [
     "06",
     "수직선에서 대응하는 점 찾기",
     SEC.무리수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const m = intBetween(rng, -3, 4);
@@ -891,7 +891,7 @@ const IRR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_IRR, "07", "두 실수의 대소 관계", SEC.무리수, "mid", (rng) =>
+  def(MINOR_IRR, "07", "두 실수의 대소 관계", SEC.무리수, "응용", (rng) =>
     attempt(120, () => {
       const k = intBetween(rng, 2, 6);
       const m = pick(rng, SQUAREFREE);
@@ -910,7 +910,7 @@ const IRR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_IRR, "08", "세 실수의 대소 관계", SEC.무리수, "hard", (rng) =>
+  def(MINOR_IRR, "08", "세 실수의 대소 관계", SEC.무리수, "심화", (rng) =>
     attempt(200, () => {
       const parts = [0, 1, 2].map(() => {
         const useRad = intBetween(rng, 0, 3) > 0;
@@ -955,7 +955,7 @@ const IRR_TYPES: TypeEntry[] = [
     "09",
     "제곱근표를 이용하여 제곱근의 값 구하기",
     SEC.무리수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, () => {
         const a2 = intBetween(rng, 100, 999);
@@ -974,7 +974,7 @@ const IRR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_IRR, "10", "두 실수 사이의 수", SEC.무리수, "mid", (rng) =>
+  def(MINOR_IRR, "10", "두 실수 사이의 수", SEC.무리수, "응용", (rng) =>
     attempt(120, () => {
       const a = pick(rng, SQUAREFREE);
       const b = pick(rng, SQUAREFREE);
@@ -999,7 +999,7 @@ const IRR_TYPES: TypeEntry[] = [
 // ══════════════════════════════════════════════════════════════════
 
 const CALC_TYPES: TypeEntry[] = [
-  def(MINOR_CALC, "01", "제곱근의 곱셈", SEC.근호계산, "easy", (rng) =>
+  def(MINOR_CALC, "01", "제곱근의 곱셈", SEC.근호계산, "기본", (rng) =>
     attempt(120, () => {
       const p = intBetween(rng, 1, 5);
       const q = intBetween(rng, 1, 5);
@@ -1019,7 +1019,7 @@ const CALC_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_CALC, "02", "제곱근의 나눗셈", SEC.근호계산, "easy", (rng) =>
+  def(MINOR_CALC, "02", "제곱근의 나눗셈", SEC.근호계산, "기본", (rng) =>
     attempt(200, () => {
       // 답(정리된 꼴)을 먼저 정하고 나눠지는 수를 만든다 — 역산하지 않는다.
       const inner = pick(rng, SMALL_SF);
@@ -1041,7 +1041,7 @@ const CALC_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_CALC, "03", "를 이용한 식의 변형", SEC.근호계산, "easy", (rng) =>
+  def(MINOR_CALC, "03", "를 이용한 식의 변형", SEC.근호계산, "기본", (rng) =>
     attempt(60, () => {
       const m = intBetween(rng, 2, 7);
       const s = pick(rng, SMALL_SF);
@@ -1056,7 +1056,7 @@ const CALC_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_CALC, "04", "를 이용한 식의 변형", SEC.근호계산, "easy", (rng) =>
+  def(MINOR_CALC, "04", "를 이용한 식의 변형", SEC.근호계산, "기본", (rng) =>
     attempt(60, () => {
       const k = intBetween(rng, 2, 6);
       const m = pick(rng, SMALL_SF);
@@ -1076,7 +1076,7 @@ const CALC_TYPES: TypeEntry[] = [
     "05",
     "제곱근표에 없는 수의 제곱근의 값 구하기",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, () => {
         const a = pick(rng, [2, 3, 5, 6, 7, 10] as const);
@@ -1100,7 +1100,7 @@ const CALC_TYPES: TypeEntry[] = [
     "06",
     "제곱근을 문자를 사용하여 나타내기",
     SEC.근호계산,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, () => {
         const x = intBetween(rng, 1, 4);
@@ -1127,7 +1127,7 @@ const CALC_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_CALC, "07", "분모의 유리화", SEC.근호계산, "mid", (rng) =>
+  def(MINOR_CALC, "07", "분모의 유리화", SEC.근호계산, "응용", (rng) =>
     attempt(120, () => {
       const p = intBetween(rng, 2, 12);
       const m = pick(rng, SMALL_SF);
@@ -1154,7 +1154,7 @@ const CALC_TYPES: TypeEntry[] = [
     "08",
     "제곱근의 곱셈과 나눗셈의 혼합 계산",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const a = pick(rng, SMALL_SF);
@@ -1186,7 +1186,7 @@ const CALC_TYPES: TypeEntry[] = [
     "09",
     "제곱근의 곱셈과 나눗셈의 도형에의 활용",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const p = intBetween(rng, 1, 5);
@@ -1221,7 +1221,7 @@ const CALC_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_CALC, "10", "제곱근의 덧셈과 뺄셈", SEC.근호계산, "easy", (rng) =>
+  def(MINOR_CALC, "10", "제곱근의 덧셈과 뺄셈", SEC.근호계산, "기본", (rng) =>
     attempt(120, () => {
       const m = pick(rng, SQUAREFREE);
       const n = pick(rng, SQUAREFREE);
@@ -1250,7 +1250,7 @@ const CALC_TYPES: TypeEntry[] = [
     "11",
     "를 이용한 제곱근의 덧셈과 뺄셈",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const s = pick(rng, SMALL_SF);
@@ -1279,7 +1279,7 @@ const CALC_TYPES: TypeEntry[] = [
     "12",
     "분모의 유리화를 이용한 제곱근의 덧셈과 뺄셈",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const p = intBetween(rng, 2, 12);
@@ -1305,7 +1305,7 @@ const CALC_TYPES: TypeEntry[] = [
     "13",
     "제곱근의 덧셈과 뺄셈의 수직선에의 활용",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const c = intBetween(rng, -4, 6);
@@ -1332,7 +1332,7 @@ const CALC_TYPES: TypeEntry[] = [
     "14",
     "분배법칙을 이용한 근호를 포함한 식의 계산",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const a = pick(rng, MULT_SF);
@@ -1372,7 +1372,7 @@ const CALC_TYPES: TypeEntry[] = [
     "15",
     "분배법칙을 이용한 분모의 유리화",
     SEC.근호계산,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const a = pick(rng, MULT_SF);
@@ -1417,7 +1417,7 @@ const CALC_TYPES: TypeEntry[] = [
     "16",
     "근호를 포함한 식의 혼합 계산",
     SEC.근호계산,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const p = intBetween(rng, 1, 4);
@@ -1446,7 +1446,7 @@ const CALC_TYPES: TypeEntry[] = [
     "17",
     "제곱근의 계산 결과가 유리수가 될 조건",
     SEC.근호계산,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, () => {
         const k = intBetween(rng, 1, 4);
@@ -1469,7 +1469,7 @@ const CALC_TYPES: TypeEntry[] = [
     "18",
     "제곱근의 덧셈과 뺄셈의 도형에의 활용",
     SEC.근호계산,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const s = pick(rng, [2, 3, 5, 6, 7] as const);
@@ -1490,7 +1490,7 @@ const CALC_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_CALC, "19", "실수의 대소 관계", SEC.근호계산, "mid", (rng) =>
+  def(MINOR_CALC, "19", "실수의 대소 관계", SEC.근호계산, "응용", (rng) =>
     attempt(120, () => {
       const p = intBetween(rng, 1, 5);
       const q = intBetween(rng, 1, 5);
@@ -1517,7 +1517,7 @@ const CALC_TYPES: TypeEntry[] = [
     "20",
     "무리수의 정수 부분과 소수 부분",
     SEC.근호계산,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const n = pick(rng, SQUAREFREE);

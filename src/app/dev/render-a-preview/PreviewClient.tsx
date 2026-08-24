@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
@@ -123,9 +124,11 @@ export function PreviewClient() {
           </FieldSelect>
           <FieldSelect label="난이도" defaultValue="">
             <option value="">전체</option>
-            <option value="easy">쉬움</option>
-            <option value="mid">보통</option>
-            <option value="hard">어려움</option>
+            {DIFFICULTY_LADDER.map((tier) => (
+              <option key={tier} value={tier}>
+                {tier}
+              </option>
+            ))}
           </FieldSelect>
           <FieldSelect label="유형" defaultValue="">
             <option value="">전체</option>

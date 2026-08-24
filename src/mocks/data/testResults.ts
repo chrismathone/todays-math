@@ -9,7 +9,11 @@
  * 대응 API 경로: POST /api/tests/{id}/submit, GET /api/tests/{id}/results,
  * GET /api/tests/{id}/results/{studentId} (src/contracts/testresult.contract.ts)
  */
-import type { Difficulty, TestStatus, TestType } from "@/contracts/common.contract";
+import type {
+  Difficulty,
+  TestStatus,
+  TestType,
+} from "@/contracts/common.contract";
 import type { ProblemType } from "@/contracts/problem.contract";
 
 import {
@@ -53,7 +57,7 @@ export const MOCK_TEST_RESULT_PROBLEM_OBJECTIVE_CORRECT: FixtureProblemRow = {
   unitId: MOCK_UNITS[0]!.id,
   source: "manual",
   originProblemId: null,
-  difficulty: "easy",
+  difficulty: "기본",
   problemType: "개념",
   content: "다음 중 옳은 것은? (채점 테스트 전용 객관식 문항)",
   answer: "2",
@@ -73,7 +77,7 @@ export const MOCK_TEST_RESULT_PROBLEM_OBJECTIVE_WRONG: FixtureProblemRow = {
   unitId: MOCK_UNITS[1]!.id,
   source: "manual",
   originProblemId: null,
-  difficulty: "hard",
+  difficulty: "심화",
   problemType: "개념",
   content: "다음 중 옳은 것은? (채점 테스트 전용 객관식 문항, 상 난이도)",
   answer: "4",
@@ -93,7 +97,7 @@ export const MOCK_TEST_RESULT_PROBLEM_ESSAY: FixtureProblemRow = {
   unitId: MOCK_UNITS[0]!.id,
   source: "manual",
   originProblemId: null,
-  difficulty: "mid",
+  difficulty: "응용",
   problemType: "서술형",
   content: "풀이 과정을 서술하여라. (채점 테스트 전용 서술형 문항)",
   answer: "풀이 과정은 채점자가 직접 확인한다.",

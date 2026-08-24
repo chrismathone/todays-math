@@ -30,7 +30,7 @@ import {
   MOCK_UNITS_SUWASIK,
 } from "@/mocks/data";
 
-// "수와 식" 8개 차시(24문항, 난이도별 8/8/8 = easy/mid/hard 균등) — 배분 테스트용 풀.
+// "수와 식" 8개 차시(24문항, 난이도별 8/8/8 = 기본/응용/심화 균등) — 배분 테스트용 풀.
 const BALANCED_POOL = MOCK_UNITS_SUWASIK.flatMap(
   (u) => MOCK_PROBLEMS_BY_UNIT[u.id] ?? [],
 );
@@ -61,23 +61,23 @@ describe("[T4.1] 난이도 배분 (balanceDifficulty)", () => {
   it("8문항 요청(easy:3, mid:4, hard:1)이 요청 배분을 그대로 채운다", () => {
     const result = balanceDifficulty(
       BALANCED_POOL,
-      { easy: 3, mid: 4, hard: 1 },
+      { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       8,
     ) as BalanceDifficultyResult;
-    const counts = { easy: 0, mid: 0, hard: 0 };
+    const counts = { 연산: 0, 기본: 0, 응용: 0, 심화: 0 };
     for (const p of result.selected) counts[p.difficulty]++;
-    expect(counts).toEqual({ easy: 3, mid: 4, hard: 1 });
+    expect(counts).toEqual({ 연산: 0, 기본: 3, 응용: 4, 심화: 1 });
     expect(result.selected).toHaveLength(8);
   });
 
   it("특정 난이도가 부족하면 인접 난이도로 대체하고 그 사실을 보고한다", () => {
     // hard 문항이 1개뿐인 풀에서 hard:3을 요청하면 2개는 인접(mid)으로 대체되어야 한다.
     const scarcePool = MOCK_PROBLEMS.filter(
-      (p) => p.difficulty !== "hard" || p.id === MOCK_PROBLEMS[2]!.id,
+      (p) => p.difficulty !== "심화" || p.id === MOCK_PROBLEMS[2]!.id,
     );
     const result = balanceDifficulty(
       scarcePool,
-      { easy: 0, mid: 0, hard: 3 },
+      { 연산: 0, 기본: 0, 응용: 0, 심화: 3 },
       3,
     ) as BalanceDifficultyResult;
     expect(result.selected).toHaveLength(3);
@@ -88,7 +88,7 @@ describe("[T4.1] 난이도 배분 (balanceDifficulty)", () => {
     const tinyPool = MOCK_PROBLEMS.slice(0, 2);
     const result = balanceDifficulty(
       tinyPool,
-      { easy: 3, mid: 4, hard: 1 },
+      { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       8,
     ) as BalanceDifficultyResult;
     expect(result.selected.length).toBeLessThan(8);
@@ -100,7 +100,7 @@ describe("[T4.1] 유형 배분 — 같은 유형 연속 배치 방지 (selectPro
   it("선정된 문항 목록에서 같은 problemType이 3개 연속으로 배치되지 않는다", () => {
     const { problems } = selectProblems({
       pool: BALANCED_POOL,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       count: 8,
       recentProblemIds: [],
       seed: "test-seed-1",
@@ -170,7 +170,7 @@ describe("[T4.1] 문제 부족 판정 (INSUFFICIENT_PROBLEMS)", () => {
     const tinyPool = MOCK_PROBLEMS.slice(0, 2);
     const result = selectProblems({
       pool: tinyPool,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       count: 8,
       recentProblemIds: [],
       seed: "test-seed-2",
@@ -187,7 +187,7 @@ describe("[T4.1] 결정론 — 같은 시드는 같은 결과를 반환한다", 
   it("같은 pool/정책/시드로 두 번 호출하면 완전히 같은 문제 목록을 반환한다", () => {
     const args = {
       pool: BALANCED_POOL,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       count: 8,
       recentProblemIds: [],
       seed: "deterministic-seed",
@@ -202,7 +202,7 @@ describe("[T4.1] 결정론 — 같은 시드는 같은 결과를 반환한다", 
   it("다른 시드를 쓰면 결과가 달라질 수 있다(완전히 동일하지 않음을 확인)", () => {
     const base = {
       pool: BALANCED_POOL,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       count: 8,
       recentProblemIds: [],
     };
@@ -229,7 +229,7 @@ describe("[D-26] RPM 원본 잠금 — directUseAllowed=false 문항 제외", ()
     };
     const result = selectProblems({
       pool: [locked, ...BALANCED_POOL],
-      difficultyRatio: { easy: 1, mid: 0, hard: 0 },
+      difficultyRatio: { 연산: 0, 기본: 1, 응용: 0, 심화: 0 },
       count: 1,
       recentProblemIds: [],
       seed: "d26",

@@ -110,9 +110,9 @@ describe("[T3.0] blocksToLatex", () => {
 
 describe("[T3.0] 난이도 매핑", () => {
   it("1~10을 easy/mid/hard로 나눈다", () => {
-    expect(mapNumericDifficulty(2)).toBe("easy");
-    expect(mapNumericDifficulty(5)).toBe("mid");
-    expect(mapNumericDifficulty(9)).toBe("hard");
+    expect(mapNumericDifficulty(2)).toBe("기본");
+    expect(mapNumericDifficulty(5)).toBe("응용");
+    expect(mapNumericDifficulty(9)).toBe("심화");
   });
 });
 
@@ -160,7 +160,7 @@ describe("[T3.0] 자작 시드 변환", () => {
     });
     expect(draft.source).toBe("manual");
     expect(draft.directUseAllowed).toBe(true);
-    expect(draft.difficulty).toBe("easy");
+    expect(draft.difficulty).toBe("기본");
     expect(draft.problemType).toBe("계산");
     expect(draft.content).toContain("유한소수");
   });
@@ -341,7 +341,7 @@ describe("[T3.0] 기출 header 정규화 + RPM 구조화", () => {
           externalId: "ok-1",
           source: "manual",
           directUseAllowed: true,
-          difficulty: "easy",
+          difficulty: "기본",
           problemType: "계산",
           content: "본문",
           answer: "1",
@@ -354,7 +354,7 @@ describe("[T3.0] 기출 header 정규화 + RPM 구조화", () => {
           externalId: "empty",
           source: "manual",
           directUseAllowed: true,
-          difficulty: "easy",
+          difficulty: "기본",
           problemType: "계산",
           content: "   ",
           answer: "1",
@@ -379,7 +379,7 @@ function figureDraft(externalId: string) {
     externalId,
     source: "past_exam" as const,
     directUseAllowed: true,
-    difficulty: "mid" as const,
+    difficulty: "응용" as const,
     problemType: "개념" as const,
     content: "[그림] 좌표평면\n\n다음 중 옳은 것은?",
     answer: "1",
@@ -644,9 +644,24 @@ describe("[T3.0] 단원 매핑 + 미분류 리포트", () => {
   // bigram 이 0 이라 하한을 낮춰도 안 붙는다. 그래서 원장님이 직접 배정하셨다
   // (2026-08-16): 위치 관계 자체는 (1), 이루는 각은 (2).
   const 기하단원 = [
-    { id: "u-pos1", grade: "기하", chapter: "2. 공간도형과 공간좌표", section: "공간도형-위치관계(1)" },
-    { id: "u-pos2", grade: "기하", chapter: "2. 공간도형과 공간좌표", section: "공간도형-위치관계(2)" },
-    { id: "u-three", grade: "기하", chapter: "2. 공간도형과 공간좌표", section: "삼수선 정리" },
+    {
+      id: "u-pos1",
+      grade: "기하",
+      chapter: "2. 공간도형과 공간좌표",
+      section: "공간도형-위치관계(1)",
+    },
+    {
+      id: "u-pos2",
+      grade: "기하",
+      chapter: "2. 공간도형과 공간좌표",
+      section: "공간도형-위치관계(2)",
+    },
+    {
+      id: "u-three",
+      grade: "기하",
+      chapter: "2. 공간도형과 공간좌표",
+      section: "삼수선 정리",
+    },
   ];
 
   it.each([
@@ -656,16 +671,23 @@ describe("[T3.0] 단원 매핑 + 미분류 리포트", () => {
     ["직선과 평면의 평행과 수직", "u-pos1"],
     ["두 직선이 이루는 각의 크기", "u-pos2"],
     ["두 평면이 이루는 각의 크기", "u-pos2"],
-  ])("기하 위치관계 별칭 — '%s' → %s (원장님 확정 2026-08-16)", (hint, expected) => {
-    const result = mapUnitHint(hint, 기하단원, "기하");
-    expect(result.status).toBe("mapped");
-    if (result.status === "mapped") expect(result.unitId).toBe(expected);
-  });
+  ])(
+    "기하 위치관계 별칭 — '%s' → %s (원장님 확정 2026-08-16)",
+    (hint, expected) => {
+      const result = mapUnitHint(hint, 기하단원, "기하");
+      expect(result.status).toBe("mapped");
+      if (result.status === "mapped") expect(result.unitId).toBe(expected);
+    },
+  );
 
   // 별칭 표는 전역이라 넓게 걸리면 엉뚱한 곳이 움직인다. 학년이 기하가 아니면
   // 쓰지 않는다 — 실측으로도 이미 적재된 35,706행의 판정이 하나도 안 바뀌었다.
   it("기하 위치관계 별칭은 학년이 기하가 아니면 쓰지 않는다", () => {
-    const result = mapUnitHint("두 직선이 이루는 각의 크기", 기하단원, "공통수학2");
+    const result = mapUnitHint(
+      "두 직선이 이루는 각의 크기",
+      기하단원,
+      "공통수학2",
+    );
     expect(result.status).toBe("unclassified");
   });
 
@@ -911,7 +933,7 @@ describe("[T3.0] 단원 매핑 + 미분류 리포트", () => {
           externalId: "1-1",
           source: "past_exam",
           directUseAllowed: true,
-          difficulty: "mid",
+          difficulty: "응용",
           problemType: "개념",
           content: "ok",
           answer: "1",
@@ -923,7 +945,7 @@ describe("[T3.0] 단원 매핑 + 미분류 리포트", () => {
           externalId: "1-2",
           source: "past_exam",
           directUseAllowed: true,
-          difficulty: "mid",
+          difficulty: "응용",
           problemType: "개념",
           content: "nope",
           answer: "1",
@@ -935,7 +957,7 @@ describe("[T3.0] 단원 매핑 + 미분류 리포트", () => {
           externalId: "1-3",
           source: "past_exam",
           directUseAllowed: true,
-          difficulty: "mid",
+          difficulty: "응용",
           problemType: "개념",
           content: "fig",
           answer: "1",

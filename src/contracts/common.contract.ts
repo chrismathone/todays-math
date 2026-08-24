@@ -14,6 +14,11 @@
  *   각 계약 파일에서 개별 오버라이드한다.
  */
 import { z } from "zod";
+
+import {
+  DIFFICULTY_LADDER as DIFFICULTY_LADDER_VALUES,
+  type Difficulty,
+} from "./difficulty";
 import { ko } from "zod/locales";
 
 // 전역 에러 메시지 로케일 — 이 모듈이 최초 import되는 시점에 1회 적용된다(모듈 캐시로 멱등).
@@ -27,10 +32,21 @@ z.config(ko());
 //    문자열이 정확히 일치해야 한다.
 // ─────────────────────────────────────────────
 
-export const difficultySchema = z.enum(["easy", "mid", "hard"], {
+/**
+ * 난이도 — **하나뿐인 축** (D-106, 원장님 확정 2026-08-25). 값·순서의 SSOT 는
+ * `src/contracts/difficulty.ts` 다(화면이 zod 없이 읽어야 해서 따로 뺐다).
+ * 여기서는 그것으로 zod enum 을 만들고 **그대로 다시 내보낸다.**
+ */
+export {
+  DIFFICULTY_LADDER,
+  DEFAULT_DIFFICULTY_RATIO,
+  type Difficulty,
+  type DifficultyRatio,
+} from "./difficulty";
+
+export const difficultySchema = z.enum(DIFFICULTY_LADDER_VALUES, {
   error: "난이도 값이 올바르지 않습니다.",
 });
-export type Difficulty = z.infer<typeof difficultySchema>;
 
 export const problemSourceSchema = z.enum(
   ["manual", "past_exam", "transformed", "ai_generated"],
@@ -81,14 +97,15 @@ export const idParamSchema = z.strictObject({ id: uuidSchema });
 
 /**
  * 난이도 배분 — Class.difficultyRatio(jsonb) 기본값 및 출제 요청의 배분 오버라이드가 공유하는 형태.
- * 예: {easy:3, mid:4, hard:1} (04-database-design.md §2.6)
+ * 예: {연산:1, 기본:3, 응용:3, 심화:1} (04-database-design.md §2.6 · D-106)
+ *
+ * ⚠️ 갈래를 **손으로 적지 않는다.** 사다리에서 만들어야 갈래가 늘 때 여기가 저절로 따라온다.
  */
-export const difficultyRatioSchema = z.strictObject({
-  easy: z.number().int().min(0),
-  mid: z.number().int().min(0),
-  hard: z.number().int().min(0),
-});
-export type DifficultyRatio = z.infer<typeof difficultyRatioSchema>;
+export const difficultyRatioSchema = z.strictObject(
+  Object.fromEntries(
+    DIFFICULTY_LADDER_VALUES.map((tier) => [tier, z.number().int().min(0)]),
+  ) as Record<Difficulty, z.ZodNumber>,
+);
 
 // ─────────────────────────────────────────────
 // 에러 응답 (02-trd.md §8.2)

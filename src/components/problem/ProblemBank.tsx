@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import { Button } from "@/components/ui/Button";
@@ -409,9 +410,11 @@ export function ProblemBank() {
           }}
         >
           <option value="">전체</option>
-          <option value="easy">쉬움</option>
-          <option value="mid">보통</option>
-          <option value="hard">어려움</option>
+          {DIFFICULTY_LADDER.map((tier) => (
+            <option key={tier} value={tier}>
+              {tier}
+            </option>
+          ))}
         </FieldSelect>
         <FieldSelect
           label="유형"

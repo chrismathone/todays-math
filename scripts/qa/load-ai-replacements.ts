@@ -29,6 +29,7 @@
  * `approved` 만 보므로, 원장님이 검수 화면에서 승격하기 전에는 시험지에 안 나간다.
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import type { Difficulty } from "../../src/contracts/difficulty";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -58,7 +59,7 @@ if ((APPLY || REVERT) && process.env.ALLOW_SHARED_IMPORT !== "1") {
 export interface Draft {
   /** 어느 자리를 채우는가 — `plan-ai-replacements.ts` 의 묶음에서 온다. */
   unitId: string;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   questionType: "객관식" | "단답형" | "서술형";
   problemType: string;
   /** 보기는 본문 안에 `①`~`⑤` 줄머리로 넣는다(`parseProblemContent` 규약). */

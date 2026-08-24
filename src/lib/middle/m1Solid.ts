@@ -293,7 +293,7 @@ const REV_CLAIMS: readonly (readonly [string, boolean])[] = [
 ] as const;
 
 export const M1_POLY: TypeEntry[] = [
-  def(MINOR_POLY, "01", "다면체", SEC.다면체, "easy", (rng) =>
+  def(MINOR_POLY, "01", "다면체", SEC.다면체, "기본", (rng) =>
     attempt(60, (): Body | null => {
       const k = intBetween(rng, 3, 4);
       const m = intBetween(rng, 2, 3);
@@ -320,7 +320,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "02", "다면체의 면의 개수", SEC.다면체, "easy", (rng) =>
+  def(MINOR_POLY, "02", "다면체의 면의 개수", SEC.다면체, "기본", (rng) =>
     attempt(80, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       if (branch === 0) {
@@ -372,7 +372,7 @@ export const M1_POLY: TypeEntry[] = [
     "03",
     "다면체의 모서리 꼭짓점의 개수",
     SEC.다면체,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, (): Body | null => {
         const fa = pick(rng, [0, 1, 2] as const);
@@ -399,7 +399,7 @@ export const M1_POLY: TypeEntry[] = [
     "04",
     "다면체의 면 모서리 꼭짓점의 개수의 활용",
     SEC.다면체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, (): Body | null => {
         const fam = pick(rng, [0, 1, 2] as const);
@@ -445,7 +445,7 @@ export const M1_POLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_POLY, "05", "다면체의 옆면의 모양", SEC.다면체, "easy", (rng) =>
+  def(MINOR_POLY, "05", "다면체의 옆면의 모양", SEC.다면체, "기본", (rng) =>
     attempt(80, (): Body | null => {
       const target = pick(rng, [0, 1, 2] as const);
       const idx = distinctIndices(rng, POLY_POOL.length, 5);
@@ -482,7 +482,7 @@ export const M1_POLY: TypeEntry[] = [
     "06",
     "다면체의 이해",
     SEC.다면체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         // 「$n$각기둥의 모서리의 개수는 $k$이다」 꼴 넷. 참·거짓을 시험이 다시 센다.
@@ -552,7 +552,7 @@ export const M1_POLY: TypeEntry[] = [
     "07",
     "주어진 조건을 만족시키는 다면체",
     SEC.다면체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, (): Body | null => {
         const fam = pick(rng, [0, 1, 2] as const);
@@ -584,7 +584,7 @@ export const M1_POLY: TypeEntry[] = [
     "08",
     "정다면체",
     SEC.정다면체,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -626,7 +626,7 @@ export const M1_POLY: TypeEntry[] = [
     "09",
     "정다면체의 면 모서리 꼭짓점의 개수",
     SEC.정다면체,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, (): Body | null => {
         const sa = pick(rng, PLATO);
@@ -651,7 +651,7 @@ export const M1_POLY: TypeEntry[] = [
     "10",
     "정다면체의 이해",
     SEC.정다면체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         const branch = pick(rng, [0, 1] as const);
@@ -701,7 +701,7 @@ export const M1_POLY: TypeEntry[] = [
     () => [],
   ),
 
-  def(MINOR_POLY, "11", "정다면체의 전개도", SEC.정다면체, "mid", (rng) =>
+  def(MINOR_POLY, "11", "정다면체의 전개도", SEC.정다면체, "응용", (rng) =>
     attempt(80, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       const s = pick(rng, PLATO);
@@ -724,7 +724,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "12", "정다면체의 단면", SEC.정다면체, "mid", (rng) =>
+  def(MINOR_POLY, "12", "정다면체의 단면", SEC.정다면체, "응용", (rng) =>
     attempt(80, (): Body | null => {
       const nBad = intBetween(rng, 1, 3);
       const nOk = intBetween(rng, 2, 4);
@@ -750,7 +750,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "13", "회전체", SEC.회전체, "easy", (rng) =>
+  def(MINOR_POLY, "13", "회전체", SEC.회전체, "기본", (rng) =>
     attempt(80, (): Body | null => {
       const k = intBetween(rng, 2, 4);
       const m = intBetween(rng, 2, 4);
@@ -781,7 +781,7 @@ export const M1_POLY: TypeEntry[] = [
     "14",
     "평면도형을 회전시킬 때 생기는 회전체",
     SEC.회전체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         // 「무엇을 무엇을 축으로」가 이 유형의 전부다 — 축을 facts 에 싣는다.
@@ -830,7 +830,7 @@ export const M1_POLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_POLY, "15", "회전체의 단면의 모양", SEC.회전체, "mid", (rng) =>
+  def(MINOR_POLY, "15", "회전체의 단면의 모양", SEC.회전체, "응용", (rng) =>
     attempt(120, (): Body | null => {
       const idx = distinctIndices(rng, AXIAL_SECTION.length, 4);
       const rows = idx.map((i) => {
@@ -856,7 +856,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "16", "회전체의 단면의 넓이", SEC.회전체, "mid", (rng) =>
+  def(MINOR_POLY, "16", "회전체의 단면의 넓이", SEC.회전체, "응용", (rng) =>
     attempt(120, (): Body | null => {
       const shape = pick(rng, [0, 1, 2] as const); // 0 직사각형 · 1 직각삼각형 · 2 사다리꼴
       const a = intBetween(rng, 2, 9); // 축에서 가장 먼 거리 = 반지름
@@ -904,7 +904,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "17", "회전체의 전개도", SEC.회전체, "mid", (rng) =>
+  def(MINOR_POLY, "17", "회전체의 전개도", SEC.회전체, "응용", (rng) =>
     attempt(120, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       if (branch === 0) {
@@ -941,7 +941,7 @@ export const M1_POLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_POLY, "18", "회전체의 이해", SEC.회전체, "mid", (rng) =>
+  def(MINOR_POLY, "18", "회전체의 이해", SEC.회전체, "응용", (rng) =>
     attempt(120, (): Body | null => {
       const idx = distinctIndices(rng, REV_CLAIMS.length, 4);
       const rows = idx.map((i) => REV_CLAIMS[i]!);
@@ -962,7 +962,7 @@ export const M1_POLY: TypeEntry[] = [
     "19",
     "다면체의 꼭짓점 모서리 면의 개수 사이의 관계",
     SEC.다면체,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -1015,7 +1015,7 @@ export const M1_POLY: TypeEntry[] = [
     "20",
     "정다면체의 각 면의 한가운데 점을 연결하여 만든 입체도형",
     SEC.정다면체,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, (): Body | null => {
         const s = pick(rng, PLATO);
@@ -1063,7 +1063,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "05",
     "전개도가 주어진 기둥의 겉넓이와 부피",
     SEC.기둥,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -1134,7 +1134,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "06",
     "밑면이 부채꼴인 기둥의 겉넓이와 부피",
     SEC.기둥,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, (): Body | null => {
         const branch = pick(rng, [0, 1] as const);
@@ -1174,7 +1174,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "07",
     "구멍이 뚫린 기둥의 겉넓이와 부피",
     SEC.기둥,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, (): Body | null => {
         const shape = pick(rng, [0, 1] as const);
@@ -1230,7 +1230,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "08",
     "일부분을 잘라 낸 입체도형의 겉넓이와 부피",
     SEC.기둥,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const ask = pick(rng, [0, 1] as const);
@@ -1268,7 +1268,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "09",
     "회전체의 겉넓이와 부피 원기둥",
     SEC.기둥,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const branch = pick(rng, [0, 1] as const);
@@ -1317,7 +1317,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     (f) => [f.S!, f.V!],
   ),
 
-  def(MINOR_AREA, "10", "각뿔의 겉넓이", SEC.뿔, "mid", (rng) =>
+  def(MINOR_AREA, "10", "각뿔의 겉넓이", SEC.뿔, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       if (branch === 1) {
@@ -1357,7 +1357,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "11", "원뿔의 겉넓이", SEC.뿔, "mid", (rng) =>
+  def(MINOR_AREA, "11", "원뿔의 겉넓이", SEC.뿔, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       const r = intBetween(rng, 2, 10);
@@ -1389,7 +1389,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "12", "뿔대의 겉넓이", SEC.뿔, "hard", (rng) =>
+  def(MINOR_AREA, "12", "뿔대의 겉넓이", SEC.뿔, "심화", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       if (branch === 0) {
@@ -1427,7 +1427,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "13", "각뿔의 부피", SEC.뿔, "mid", (rng) =>
+  def(MINOR_AREA, "13", "각뿔의 부피", SEC.뿔, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       if (branch === 1) {
@@ -1469,7 +1469,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "14", "원뿔의 부피", SEC.뿔, "mid", (rng) =>
+  def(MINOR_AREA, "14", "원뿔의 부피", SEC.뿔, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       const r = intBetween(rng, 2, 12);
@@ -1504,7 +1504,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "15", "뿔대의 부피", SEC.뿔, "hard", (rng) =>
+  def(MINOR_AREA, "15", "뿔대의 부피", SEC.뿔, "심화", (rng) =>
     attempt(300, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       // 닮음비 $b:a$ 로 잘린 뿔대 — 큰 뿔의 높이 `Hb`, 작은 뿔의 높이 `Hs`.
@@ -1549,7 +1549,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "16",
     "잘라 낸 각뿔의 부피",
     SEC.뿔,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -1593,7 +1593,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "17",
     "직육면체 모양의 그릇에 담긴 물의 부피",
     SEC.기둥,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -1638,7 +1638,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "19",
     "전개도가 주어진 원뿔의 겉넓이와 부피",
     SEC.뿔,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         // 치수는 **엔진이 쓴다**(모선·중심각) — 발문은 수를 한 자도 안 적는다.
@@ -1686,7 +1686,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "20",
     "회전체의 겉넓이와 부피 원뿔",
     SEC.뿔,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const [r, h, l] = pick(rng, TRIPLES);

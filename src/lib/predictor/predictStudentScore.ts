@@ -36,16 +36,24 @@
  * 후속 작업: predictor 엔진(A)을 이 프로젝트로 이식하고, B(능력 추정)를 실제로 설계·구현하는
  * 별도 태스크가 필요하다. 그 전까지 이 함수의 결과는 "예상 점수(잠정)"로만 표기해야 한다.
  */
-import type { Difficulty } from "@/contracts/common.contract";
+import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 
 import type { GradedAnswer } from "@/lib/testResults/gradeAnswers";
 
-/** 오답 문항 난이도별 보정 방향 — 상(어려움)은 +, 하(쉬움)는 -, 중은 0. */
-const DIFFICULTY_WEIGHT: Record<Difficulty, number> = {
-  easy: -1,
-  mid: 0,
-  hard: 1,
-};
+/**
+ * 오답 문항 난이도별 보정 방향 — 어려운 갈래를 틀렸으면 +, 쉬운 갈래를 틀렸으면 −.
+ *
+ * ⚠️ 2026-08-25(D-106) 에 갈래가 넷이 되었다. 예전 셋(−1 / 0 / +1)을 그대로 옮기면
+ *    밑단이 하나 늘어난 만큼 아래가 비어 버린다. 사다리 위치를 −1 … +1 에 고르게
+ *    놓는다 — 연산 −1 · 기본 −⅓ · 응용 +⅓ · 심화 +1.
+ *    (v0 잠정치라 정밀한 값이 아니다. 방향과 폭만 지킨다.)
+ */
+const DIFFICULTY_WEIGHT: Record<Difficulty, number> = Object.fromEntries(
+  DIFFICULTY_LADDER.map((tier, i) => [
+    tier,
+    (2 * i) / (DIFFICULTY_LADDER.length - 1) - 1,
+  ]),
+) as Record<Difficulty, number>;
 
 /** 보정 폭 상한(점) — 근거가 얇은 v0 추정치가 실채점 점수와 크게 어긋나지 않도록 제한한다. */
 export const MAX_ADJUSTMENT = 5;
@@ -72,7 +80,11 @@ export function predictStudentScore(
   const avgWeight =
     wrong.reduce((sum, g) => sum + DIFFICULTY_WEIGHT[g.difficulty], 0) /
     wrong.length;
-  const adjustment = clamp(avgWeight * MAX_ADJUSTMENT, -MAX_ADJUSTMENT, MAX_ADJUSTMENT);
+  const adjustment = clamp(
+    avgWeight * MAX_ADJUSTMENT,
+    -MAX_ADJUSTMENT,
+    MAX_ADJUSTMENT,
+  );
 
   return round2(clamp(score + adjustment, 0, 100));
 }

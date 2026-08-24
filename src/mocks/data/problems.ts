@@ -52,7 +52,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 0 (413 유리수와 소수) ──
   {
     unitIdx: 0,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -63,7 +63,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 0,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "개념",
     source: "past_exam",
     reviewStatus: "approved",
@@ -76,7 +76,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 0,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "활용",
     source: "manual",
     reviewStatus: "pending",
@@ -89,7 +89,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 1 (414 순환소수) ──
   {
     unitIdx: 1,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -101,7 +101,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 1,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -112,7 +112,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 1,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -125,7 +125,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 2 (415 순환소수의 분수 표현) ──
   {
     unitIdx: 2,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "개념",
     source: "manual",
     reviewStatus: "approved",
@@ -137,7 +137,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 2,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -149,7 +149,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 2,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "rejected",
@@ -162,7 +162,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 3 (416 순환소수를 포함한 식의 계산 — daily 현재 진도) ──
   {
     unitIdx: 3,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -173,7 +173,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 3,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "활용",
     source: "past_exam",
     reviewStatus: "approved",
@@ -184,7 +184,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 3,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -197,7 +197,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 4 (417 지수법칙) — 지수 LaTeX 필수 케이스 ──
   {
     unitIdx: 4,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -208,7 +208,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 4,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -219,7 +219,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 4,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -231,7 +231,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 5 (418 단항식의 곱셈과 나눗셈) ──
   {
     unitIdx: 5,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -242,7 +242,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 5,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -253,7 +253,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 5,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "pending",
@@ -266,7 +266,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 6 (419 다항식의 덧셈과 뺄셈) ──
   {
     unitIdx: 6,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -277,7 +277,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 6,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -288,7 +288,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 6,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -301,7 +301,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 7 (420 다항식의 곱셈과 나눗셈 — review 범위 끝) ──
   {
     unitIdx: 7,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     source: "manual",
     reviewStatus: "approved",
@@ -312,7 +312,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 7,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -323,7 +323,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 7,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -335,7 +335,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 8 (421 부등식) ──
   {
     unitIdx: 8,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "개념",
     source: "manual",
     reviewStatus: "approved",
@@ -348,7 +348,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 9 (422 일차부등식의 풀이) — 루트 LaTeX 필수 케이스 ──
   {
     unitIdx: 9,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     source: "past_exam",
     reviewStatus: "approved",
@@ -361,7 +361,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 10 (423 일차부등식의 응용) ──
   {
     unitIdx: 10,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -373,7 +373,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 11 (424 일차부등식의 활용(수, 평균, 정가)) ──
   {
     unitIdx: 11,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -386,7 +386,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 12 (425 일차부등식의 활용(개수, 예금액, 유리한 방법)) ──
   {
     unitIdx: 12,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "활용",
     source: "past_exam",
     reviewStatus: "approved",
@@ -399,7 +399,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 13 (426 일차부등식의 활용(속력, 도형, 기타)) — 도형 기호 LaTeX 필수 케이스 ──
   {
     unitIdx: 13,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -471,7 +471,7 @@ export const MOCK_PROBLEM_OTHER_USER: ProblemEntity = {
   unitId: MOCK_UNITS[0]!.id,
   source: "manual",
   originProblemId: null,
-  difficulty: "easy",
+  difficulty: "기본",
   problemType: "계산",
   content: "타 사용자 소유 문제 — 접근 차단 검증용.",
   answer: "0",
@@ -497,7 +497,7 @@ export const MOCK_PROBLEM_MISSING_ANSWER: ProblemEntity = {
   unitId: MOCK_UNITS[0]!.id,
   source: "transformed",
   originProblemId: null,
-  difficulty: "easy",
+  difficulty: "기본",
   problemType: "계산",
   content: "정답이 이관되지 않은 문항.",
   answer: "(정답 없음)",
@@ -528,9 +528,10 @@ export const MOCK_PROBLEM_WITH_FIGURE: ProblemEntity = {
   unitId: MOCK_UNITS[0]!.id,
   source: "past_exam",
   originProblemId: null,
-  difficulty: "mid",
+  difficulty: "응용",
   problemType: "활용",
-  content: "다음 그림과 같이 $AC=4$, $BC=8$ 인 직각삼각형 ABC 의 넓이를 구하여라.",
+  content:
+    "다음 그림과 같이 $AC=4$, $BC=8$ 인 직각삼각형 ABC 의 넓이를 구하여라.",
   answer: "16",
   solution: null,
   reviewStatus: "approved",
@@ -550,7 +551,7 @@ export const MOCK_PROBLEM_OTHER_SHARED: ProblemEntity = {
   unitId: MOCK_UNITS[0]!.id,
   source: "past_exam",
   originProblemId: null,
-  difficulty: "easy",
+  difficulty: "기본",
   problemType: "계산",
   content: "타 사용자 등록 공용 문항.",
   answer: "1",

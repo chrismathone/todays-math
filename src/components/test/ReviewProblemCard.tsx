@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/Button";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 import { splitSolutionSteps } from "@/lib/solutionSteps";
 
-import { DIFFICULTY_LABEL } from "./labels";
-
 type Props = {
   orderIndex: number;
   problem: ProblemEntity;
@@ -47,7 +45,7 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
           문 {orderIndex}
         </p>
         <p className={`mt-1 ${MICRO}`}>
-          <span>{DIFFICULTY_LABEL[problem.difficulty]}</span>
+          <span>{problem.difficulty}</span>
           <span className="ml-2">{problem.problemType}</span>
         </p>
       </div>

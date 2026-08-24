@@ -80,7 +80,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "10",
     "의 계수가 문자인 일차부등식의 풀이",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) => {
       const c = intBetween(rng, 2, 9);
       const gt = pick(rng, [1, 0] as const); // 1: ax-ca>0 (해 x<c) · 0: ax-ca<0 (해 x>c)
@@ -100,7 +100,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "11",
     "부등식의 해가 주어진 경우 미지수의 값 구하기 ⑴",
     SEC.응용,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, () => {
         const m = intBetween(rng, 2, 5);
@@ -122,7 +122,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "12",
     "해가 서로 같은 두 일차부등식",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const s = intBetween(rng, 2, 9);
@@ -145,7 +145,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "13",
     "부등식의 해가 주어진 경우 미지수의 값 구하기⑵",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(50, () => {
         const a = -intBetween(rng, 1, 6);
@@ -165,7 +165,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "14",
     "부등식의 해의 조건이 주어진 경우",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) => {
       const d = intBetween(rng, 1, 6);
       const n = intBetween(rng, 3, 8);
@@ -180,7 +180,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
   ),
 
   // ── 일차부등식의 활용 (수, 평균, 정가) ───────────────
-  def(MINOR_APPLY, "01", "수에 대한 문제", SEC.수평균정가, "easy", (rng) => {
+  def(MINOR_APPLY, "01", "수에 대한 문제", SEC.수평균정가, "기본", (rng) => {
     const b = intBetween(rng, 1, 9);
     const c = intBetween(rng, 1, 9);
     const m = b + c + 1;
@@ -192,7 +192,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_APPLY, "03", "평균에 대한 문제", SEC.수평균정가, "easy", (rng) =>
+  def(MINOR_APPLY, "03", "평균에 대한 문제", SEC.수평균정가, "기본", (rng) =>
     attempt(200, () => {
       const m = intBetween(rng, 80, 90);
       const x0 = intBetween(rng, m + 2, 100);
@@ -215,7 +215,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "09",
     "원가 정가에 대한 문제",
     SEC.수평균정가,
-    "hard",
+    "심화",
     (rng) => {
       const m = pick(rng, [20, 25, 30, 40] as const);
       const k = pick(rng, [5, 10, 15] as const);
@@ -232,7 +232,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
   ),
 
   // ── 일차부등식의 활용 (개수, 예금액, 유리한 방법) ────
-  def(MINOR_APPLY, "02", "예금액에 대한 문제", SEC.개수예금, "mid", (rng) => {
+  def(MINOR_APPLY, "02", "예금액에 대한 문제", SEC.개수예금, "응용", (rng) => {
     const q = pick(rng, [1000, 1500, 2000, 2500] as const);
     const dp = pick(rng, [500, 1000, 1500] as const);
     const p = q + dp;
@@ -254,7 +254,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "04",
     "최대 개수에 대한 문제",
     SEC.개수예금,
-    "easy",
+    "기본",
     (rng) => {
       const p = pick(rng, [800, 1000, 1200, 1500] as const);
       const f = pick(rng, [2000, 2500, 3000] as const);
@@ -275,7 +275,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "05",
     "추가 요금에 대한 문제",
     SEC.개수예금,
-    "mid",
+    "응용",
     (rng) => {
       const base = pick(rng, [30, 60] as const);
       const F = pick(rng, [2000, 3000] as const);
@@ -297,7 +297,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "06",
     "유리한 방법을 선택하는 문제⑴",
     SEC.개수예금,
-    "mid",
+    "응용",
     (rng) => {
       const b = pick(rng, [700, 800, 1000, 1200] as const);
       const d = pick(rng, [200, 300, 500] as const);
@@ -319,7 +319,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "07",
     "유리한 방법을 선택하는 문제⑵",
     SEC.개수예금,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, () => {
         const p = pick(rng, [5000, 8000, 10000, 12000] as const);
@@ -338,7 +338,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
   ),
 
   // ── 일차부등식의 활용 (속력, 도형, 기타) ─────────────
-  def(MINOR_APPLY, "08", "도형에 대한 문제", SEC.속력도형, "easy", (rng) => {
+  def(MINOR_APPLY, "08", "도형에 대한 문제", SEC.속력도형, "기본", (rng) => {
     const b = pick(rng, [4, 6, 8, 10, 12, 14, 16] as const);
     const h = intBetween(rng, 3, 15);
     const S = (b * h) / 2;
@@ -355,7 +355,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "10",
     "거리 속력 시간에 대한 문제 ⑴",
     SEC.속력도형,
-    "hard",
+    "심화",
     (rng) => {
       const [v1, v2] = pick(rng, [
         [2, 3],
@@ -381,7 +381,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "11",
     "거리 속력 시간에 대한 문제 ⑵",
     SEC.속력도형,
-    "hard",
+    "심화",
     (rng) => {
       const v = pick(rng, [50, 60, 80] as const);
       const s = pick(rng, [10, 15, 20] as const);
@@ -403,7 +403,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "12",
     "농도에 대한 문제 물을 넣거나 증발시키는 경우",
     SEC.농도,
-    "mid",
+    "응용",
     (rng) => {
       const C = pick(rng, [4, 5, 6, 8, 10] as const);
       const A = C + intBetween(rng, 2, 6);
@@ -424,7 +424,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "13",
     "농도에 대한 문제 두 소금물을 섞는 경우",
     SEC.농도,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, () => {
         const a = pick(rng, [8, 10, 12, 15] as const);
@@ -445,7 +445,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_APPLY, "14", "합금 식품에 대한 문제", SEC.농도, "hard", (rng) => {
+  def(MINOR_APPLY, "14", "합금 식품에 대한 문제", SEC.농도, "심화", (rng) => {
     const mat = pick(rng, [
       { noun: "구리", eul: "를", ga: "가", thing: "합금" },
       { noun: "단백질", eul: "을", ga: "이", thing: "식품" },

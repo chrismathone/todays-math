@@ -206,7 +206,7 @@ function body(
 // ══════════════════════════════════════════════════════════════════════
 
 const SOLVE: TypeEntry[] = [
-  def(MINOR_SOLVE, "01", "이차방정식의 뜻", SEC.풀이, "easy", (rng) =>
+  def(MINOR_SOLVE, "01", "이차방정식의 뜻", SEC.풀이, "기본", (rng) =>
     attempt(60, () => {
       const mode = pick(rng, [0, 1] as const);
       if (mode === 0) {
@@ -240,7 +240,7 @@ $x^2$의 계수는 $k-${a}$이므로 $k-${a}\\neq 0$이다.
     }),
   ),
 
-  def(MINOR_SOLVE, "02", "이차방정식의 해", SEC.풀이, "easy", (rng) =>
+  def(MINOR_SOLVE, "02", "이차방정식의 해", SEC.풀이, "기본", (rng) =>
     attempt(60, () => {
       const r1 = intBetween(rng, 1, 4);
       const r2 = intBetween(rng, r1 + 2, 9);
@@ -275,7 +275,7 @@ $${quadEq(1, -s, p)}$에서 $(x-${r1})(x-${r2})=0$이므로 $x=${r1}$ 또는 $x=
     "03",
     "이차방정식의 한 근이 주어졌을 때 미지수의 값 구하기",
     SEC.풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, () => {
         const bigA = intBetween(rng, 1, 3);
@@ -315,7 +315,7 @@ $${bigA}\\times(${t})^2-(${b0}+a)\\times(${t})${term(bigC, "")}=0$에서 $${b0}+
     "04",
     "이차방정식의 한 근이 문자로 주어졌을 때 식의 값 구하기",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const b = nonZero(rng, 1, 9);
@@ -358,7 +358,7 @@ $\\alpha\\neq 0$이므로 양변을 $\\alpha$로 나누면 $\\alpha${term(b, "")
     "05",
     "의 성질을 이용한 이차방정식의 풀이",
     SEC.풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(120, () => {
         const a = intBetween(rng, 1, 3);
@@ -419,7 +419,7 @@ $${term(a, "x", true)}${term(-b, "")}=0$ 또는 $${term(c, "x", true)}${term(-d,
     "06",
     "인수분해를 이용한 이차방정식의 풀이",
     SEC.풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(120, () => {
         const p = intBetween(rng, -6, 3);
@@ -468,7 +468,7 @@ $\\alpha>\\beta$이므로 $\\alpha=${q}$, $\\beta=${p}$이다.
     "07",
     "한 근이 주어졌을 때 다른 한 근 구하기",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const p = nonZero(rng, 1, 6);
@@ -515,7 +515,7 @@ $x^2${term(a, "x")}${term(cc, "")}=0$에서 $(x${term(-p, "")})(x${term(-q, "")}
     "08",
     "한 근이 다른 이차방정식의 한 근일 때",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const p = nonZero(rng, 1, 6);
@@ -543,7 +543,7 @@ $${bigA}\\times(${t})^2+(a${term(m, "")})\\times(${t})${term(bigC, "")}=0$이다
       }),
   ),
 
-  def(MINOR_SOLVE, "09", "두 이차방정식의 공통인 근", SEC.풀이, "mid", (rng) =>
+  def(MINOR_SOLVE, "09", "두 이차방정식의 공통인 근", SEC.풀이, "응용", (rng) =>
     attempt(120, () => {
       const t = nonZero(rng, 1, 5);
       const u = nonZero(rng, 1, 6);
@@ -577,7 +577,7 @@ $${quadEq(a2, b2, c2)}$에서 $${lead(bigA)}(x${term(-t, "")})(x${term(-v, "")})
     }),
   ),
 
-  def(MINOR_SOLVE, "10", "중근을 갖는 이차방정식", SEC.풀이, "mid", (rng) =>
+  def(MINOR_SOLVE, "10", "중근을 갖는 이차방정식", SEC.풀이, "응용", (rng) =>
     attempt(120, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       if (mode === 2) {
@@ -648,7 +648,7 @@ $(x${term(m, "")})^2=0$이므로 $x${term(m, "")}=0$이다.
     "11",
     "이차방정식이 중근을 가질 조건",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -708,7 +708,7 @@ $${constText}=${m * m}$에서 $${alpha === 1 ? "" : alpha}p=${m * m - beta}$이�
     "12",
     "제곱근을 이용한 이차방정식의 풀이",
     SEC.풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(120, () => {
         // 계수 1 은 쓰지 않는다 — 해설이 「양변을 $1$로 나누면」이 되어 버린다.
@@ -755,7 +755,7 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
     "13",
     "이차방정식 가 근을 가질 조건",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const p = nonZero(rng, 1, 6);
@@ -791,30 +791,36 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
       }),
   ),
 
-  def(MINOR_SOLVE, "14", "완전제곱식의 꼴로 나타내기", SEC.풀이, "mid", (rng) =>
-    attempt(120, () => {
-      const bigA = intBetween(rng, 1, 3);
-      const aa = nonZero(rng, 1, 6);
-      const bb = intBetween(rng, 1, 12);
-      const bigB = 2 * bigA * aa;
-      const bigC = bigA * (aa * aa - bb);
-      const mode = pick(rng, [0, 1, 2] as const);
-      const askText = ["a+b", "ab", "b-a"][mode]!;
-      const value = [aa + bb, aa * bb, bb - aa][mode]!;
-      const divided = `x^2${term(2 * aa, "x")}${term(aa * aa - bb, "")}=0`;
-      const firstLine =
-        bigA === 1
-          ? `$x^2$의 계수가 $1$이므로 그대로 정리하면 $${divided}$이다.`
-          : `양변을 $${bigA}$로 나누면 $${divided}$이다.`;
-      return body(
-        `이차방정식 $${quadEq(bigA, bigB, bigC)}$을 $(x+a)^2=b$의 꼴로 나타낼 때, 상수 $a$, $b$에 대하여 $${askText}$의 값을 구하시오.`,
-        `$${value}$`,
-        `${firstLine}
+  def(
+    MINOR_SOLVE,
+    "14",
+    "완전제곱식의 꼴로 나타내기",
+    SEC.풀이,
+    "응용",
+    (rng) =>
+      attempt(120, () => {
+        const bigA = intBetween(rng, 1, 3);
+        const aa = nonZero(rng, 1, 6);
+        const bb = intBetween(rng, 1, 12);
+        const bigB = 2 * bigA * aa;
+        const bigC = bigA * (aa * aa - bb);
+        const mode = pick(rng, [0, 1, 2] as const);
+        const askText = ["a+b", "ab", "b-a"][mode]!;
+        const value = [aa + bb, aa * bb, bb - aa][mode]!;
+        const divided = `x^2${term(2 * aa, "x")}${term(aa * aa - bb, "")}=0`;
+        const firstLine =
+          bigA === 1
+            ? `$x^2$의 계수가 $1$이므로 그대로 정리하면 $${divided}$이다.`
+            : `양변을 $${bigA}$로 나누면 $${divided}$이다.`;
+        return body(
+          `이차방정식 $${quadEq(bigA, bigB, bigC)}$을 $(x+a)^2=b$의 꼴로 나타낼 때, 상수 $a$, $b$에 대하여 $${askText}$의 값을 구하시오.`,
+          `$${value}$`,
+          `${firstLine}
 상수항을 이항하고 양변에 $\\left(\\dfrac{${2 * aa}}{2}\\right)^2=${aa * aa}$을 더하면 $(x${term(aa, "")})^2=${bb}$이다.
 따라서 $a=${aa}$, $b=${bb}$이므로 $${askText}=${value}$이다.`,
-        { A: bigA, B: bigB, C: bigC, a: aa, b: bb, mode, x: value },
-      );
-    }),
+          { A: bigA, B: bigB, C: bigC, a: aa, b: bb, mode, x: value },
+        );
+      }),
   ),
 
   def(
@@ -822,7 +828,7 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
     "15",
     "완전제곱식을 이용한 이차방정식의 풀이",
     SEC.풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const m = nonZero(rng, 1, 6);
@@ -858,7 +864,7 @@ $x=${m}\\pm\\sqrt{${n}}$이므로 $m=${m}$, $n=${n}$이다.
     "16",
     "해에 대한 조건이 주어진 경우",
     SEC.풀이,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -911,7 +917,7 @@ $a$가 자연수이므로 $${m * m}-a=t^2$ $(t=0,\\,1,\\,\\cdots,\\,${m - 1})$�
 // ══════════════════════════════════════════════════════════════════════
 
 const APPLY: TypeEntry[] = [
-  def(MINOR_APPLY, "01", "이차방정식의 근의 공식", SEC.공식, "easy", (rng) =>
+  def(MINOR_APPLY, "01", "이차방정식의 근의 공식", SEC.공식, "기본", (rng) =>
     attempt(200, () => {
       const a = intBetween(rng, 1, 3);
       const b = nonZero(rng, 1, 9);
@@ -946,7 +952,7 @@ $x=\\dfrac{${bigA}\\pm\\sqrt{${bigD}}}{${2 * a}}$이므로 $A=${bigA}$, $B=${big
     }),
   ),
 
-  def(MINOR_APPLY, "02", "복잡한 이차방정식의 풀이", SEC.공식, "mid", (rng) =>
+  def(MINOR_APPLY, "02", "복잡한 이차방정식의 풀이", SEC.공식, "응용", (rng) =>
     attempt(200, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       if (mode === 0) {
@@ -1047,7 +1053,7 @@ $x=\\dfrac{${bigA}\\pm\\sqrt{${bigD}}}{${2 * a}}$이므로 $A=${bigA}$, $B=${big
     "03",
     "공통부분이 있는 이차방정식의 풀이",
     SEC.공식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1109,7 +1115,7 @@ $A=x${term(p, "")}$이므로 $x=${r1}$ 또는 $x=${r2}$이고, $\\alpha<\\beta$�
       }),
   ),
 
-  def(MINOR_APPLY, "04", "이차방정식의 근의 개수", SEC.공식, "easy", (rng) =>
+  def(MINOR_APPLY, "04", "이차방정식의 근의 개수", SEC.공식, "기본", (rng) =>
     attempt(200, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       const ca = intBetween(rng, 1, 3);
@@ -1146,7 +1152,7 @@ $b^2-4ac${bigD > 0 ? ">" : "<"}0$이므로 근의 개수는 $${count}$이다.`,
     "05",
     "이차방정식이 중근을 가질 조건",
     SEC.공식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1229,7 +1235,7 @@ $(a${term(p, "")})^2=${4 * s * s}$이므로 $a${term(p, "")}=${2 * s}$ 또는 $a
     "06",
     "근을 가질 조건에 따른 미지수의 값의 범위 구하기",
     SEC.공식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2, 3] as const);
@@ -1299,7 +1305,7 @@ $(-${2 * m})^2-4(${constBody})${strict ? (wantPositive ? ">" : "<") : "\\geq"} 0
     "07",
     "두 근이 주어질 때 이차방정식 구하기",
     SEC.공식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1356,7 +1362,7 @@ $${k === 1 ? "" : k}(${lead(d1)}x${term(-n1, "")})(${lead(d2)}x${term(-n2, "")})
     "08",
     "이차방정식의 활용 식이 주어진 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1402,7 +1408,7 @@ $n$은 자연수이므로 $n=${1 - n}$은 버린다. 따라서 회원 수는 $${
     "09",
     "이차방정식의 활용 수에 대한 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2, 3] as const);
@@ -1473,7 +1479,7 @@ $k$는 자연수이므로 $k=${4 - n}$은 버린다. 따라서 구하는 자연�
     "10",
     "이차방정식의 활용 실생활에 대한 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1522,7 +1528,7 @@ $k$는 자연수이므로 $k=${4 - n}$은 버린다. 따라서 구하는 자연�
     "11",
     "이차방정식의 활용 쏘아 올린 물체에 대한 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1570,7 +1576,7 @@ $x=${t2}$는 내려오면서 다시 그 높이가 되는 때이므로 버린다.
     "12",
     "이차방정식의 활용 도형에 대한 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1667,7 +1673,7 @@ $0<k<${bigAB}$이고 $2k\\leq ${bigBC}$이므로 두 값 모두 조건을 만족
     "13",
     "이차방정식의 활용 길의 폭에 대한 문제",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1751,7 +1757,7 @@ $0<k<${Math.min(a, b)}$이어야 하므로 $k=${a + b - w}$은 버린다. 따라
     "14",
     "이차방정식의 활용 상자를 만드는 문제",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1845,7 +1851,7 @@ $0<k<${half}$인 두 값 모두 조건을 만족시키므로 높이는 $${h1}\\,
     "15",
     "이차방정식의 활용 닮음을 이용한 문제",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const mode = pick(rng, [0, 1, 2] as const);

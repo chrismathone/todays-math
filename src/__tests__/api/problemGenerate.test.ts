@@ -54,7 +54,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
     mockGenerateProblems.mockResolvedValueOnce([
       {
         unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "생성된 문제",
         answer: "1",
@@ -68,7 +68,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
     const res = await generateProblemsRoute(
       jsonRequest("http://localhost/api/problems/generate", {
         unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
-        difficulty: "easy",
+        difficulty: "기본",
         count: 1,
       }),
     );
@@ -83,7 +83,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
   it("unitId가 없으면 VALIDATION_ERROR(400)를 반환한다", async () => {
     const res = await generateProblemsRoute(
       jsonRequest("http://localhost/api/problems/generate", {
-        difficulty: "easy",
+        difficulty: "기본",
       }),
     );
     expect(res.status).toBe(400);
@@ -95,7 +95,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
     const res = await generateProblemsRoute(
       jsonRequest("http://localhost/api/problems/generate", {
         unitId: NOT_FOUND_ID,
-        difficulty: "easy",
+        difficulty: "기본",
       }),
     );
     expect(res.status).toBe(404);
@@ -112,7 +112,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
     const res = await generateProblemsRoute(
       jsonRequest("http://localhost/api/problems/generate", {
         unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
-        difficulty: "easy",
+        difficulty: "기본",
         count: 1,
       }),
     );
@@ -128,7 +128,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
     mockGenerateProblems.mockResolvedValueOnce(
       ["첫 번째", "두 번째"].map((content) => ({
         unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content,
         answer: "1",
@@ -158,7 +158,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
         generateProblemsRoute(
           jsonRequest("http://localhost/api/problems/generate", {
             unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
-            difficulty: "easy",
+            difficulty: "기본",
             count: 2,
           }),
         ),

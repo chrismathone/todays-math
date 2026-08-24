@@ -203,7 +203,7 @@ const NAMES5 = ["A", "B", "C", "D", "E"] as const;
 
 export const M3_STAT2: TypeEntry[] = [
   // ══════════════ 산포도 (01~07) — SEC.산포도 「대푯값과 산포도」 ══════════════
-  def(MINOR_DISP, "01", "편차", SEC.산포도, "easy", (rng) => {
+  def(MINOR_DISP, "01", "편차", SEC.산포도, "기본", (rng) => {
     const mean = intBetween(rng, 60, 90);
     const devs = devsSumZero(rng, 5, 15);
     const values = devs.map((d) => mean + d);
@@ -225,7 +225,7 @@ export const M3_STAT2: TypeEntry[] = [
     "02",
     "편차를 이용하여 변량 구하기",
     SEC.산포도,
-    "mid",
+    "응용",
     (rng) => {
       const knowns = devsSumZero(rng, 5, 15).slice(0, 4);
       const x = -knowns.reduce((s, v) => s + v, 0);
@@ -241,7 +241,7 @@ export const M3_STAT2: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_DISP, "03", "분산과 표준편차", SEC.산포도, "mid", (rng) =>
+  def(MINOR_DISP, "03", "분산과 표준편차", SEC.산포도, "응용", (rng) =>
     attempt(200, () => {
       const devs = devsSumZero(rng, 5, 9);
       const sumSq = devs.reduce((s, d) => s + d * d, 0);
@@ -267,7 +267,7 @@ export const M3_STAT2: TypeEntry[] = [
     "04",
     "평균과 분산을 이용하여 식의 값 구하기",
     SEC.산포도,
-    "mid",
+    "응용",
     (rng) => {
       const variance = intBetween(rng, 2, 20);
       const a = intBetween(rng, 2, 4);
@@ -283,7 +283,7 @@ export const M3_STAT2: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_DISP, "05", "자료의 이해", SEC.산포도, "easy", (rng) =>
+  def(MINOR_DISP, "05", "자료의 이해", SEC.산포도, "기본", (rng) =>
     attempt(200, () => {
       const values = distinctSorted(rng, 5, 40, 90);
       const sum = values.reduce((s, v) => s + v, 0);
@@ -306,7 +306,7 @@ export const M3_STAT2: TypeEntry[] = [
     "06",
     "두 집단 전체의 평균 분산 표준편차",
     SEC.산포도,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const n1 = intBetween(rng, 4, 8);
@@ -331,7 +331,7 @@ export const M3_STAT2: TypeEntry[] = [
     "07",
     "변화된 변량의 평균 분산 표준편차",
     SEC.산포도,
-    "mid",
+    "응용",
     (rng) => {
       const sd = intBetween(rng, 2, 10);
       const mode = pick(rng, [0, 1] as const);
@@ -358,7 +358,7 @@ export const M3_STAT2: TypeEntry[] = [
   ),
 
   // ══ 상자그림과 산점도 01~05 (상자그림) — SEC.상자 「상자그림」 ══
-  def(MINOR_BOX, "01", "사분위수", SEC.상자, "mid", (rng) => {
+  def(MINOR_BOX, "01", "사분위수", SEC.상자, "응용", (rng) => {
     const sorted = distinctSorted(rng, 7, 5, 60);
     const { min, q1, med, q3, max } = quartiles7(sorted);
     const which = pick(rng, ["q1", "med", "q3"] as const);
@@ -384,7 +384,7 @@ export const M3_STAT2: TypeEntry[] = [
     "02",
     "사분위수가 주어질 때 변량 구하기",
     SEC.상자,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const sorted = distinctSorted(rng, 7, 5, 60);
@@ -401,7 +401,7 @@ export const M3_STAT2: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_BOX, "03", "상자그림으로 나타내기", SEC.상자, "mid", (rng) =>
+  def(MINOR_BOX, "03", "상자그림으로 나타내기", SEC.상자, "응용", (rng) =>
     attempt(200, () => {
       const sorted = distinctSorted(rng, 7, 10, 70);
       const { min, q1, med, q3, max } = quartiles7(sorted);
@@ -438,7 +438,7 @@ export const M3_STAT2: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_BOX, "04", "상자그림의 이해", SEC.상자, "mid", (rng) =>
+  def(MINOR_BOX, "04", "상자그림의 이해", SEC.상자, "응용", (rng) =>
     attempt(200, () => {
       const sorted = distinctSorted(rng, 7, 10, 70);
       const { min, q1, med, q3, max } = quartiles7(sorted);
@@ -466,7 +466,7 @@ export const M3_STAT2: TypeEntry[] = [
     "05",
     "상자그림을 이용한 두 자료의 비교",
     SEC.상자,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const sortedA = distinctSorted(rng, 7, 10, 70);
@@ -514,7 +514,7 @@ export const M3_STAT2: TypeEntry[] = [
   ),
 
   // ══ 상자그림과 산점도 06~10 (산점도) — SEC.산점도 「산점도와 상관관계」 ══
-  def(MINOR_BOX, "06", "산점도의 이해 ⑴", SEC.산점도, "easy", (rng) =>
+  def(MINOR_BOX, "06", "산점도의 이해 ⑴", SEC.산점도, "기본", (rng) =>
     attempt(200, () => {
       const xs = distinctSorted(rng, 7, 40, 95);
       const ys = xs.map(() => intBetween(rng, 40, 95));
@@ -547,7 +547,7 @@ export const M3_STAT2: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_BOX, "07", "산점도의 이해 ⑵", SEC.산점도, "mid", (rng) =>
+  def(MINOR_BOX, "07", "산점도의 이해 ⑵", SEC.산점도, "응용", (rng) =>
     attempt(200, () => {
       const xs = distinctSorted(rng, 7, 40, 95);
       const ys = xs.map(() =>
@@ -588,7 +588,7 @@ export const M3_STAT2: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_BOX, "08", "산점도와 상관관계", SEC.산점도, "mid", (rng) => {
+  def(MINOR_BOX, "08", "산점도와 상관관계", SEC.산점도, "응용", (rng) => {
     const xs = [30, 40, 50, 60, 70, 80];
     const kind = pick(rng, ["pos", "neg", "none"] as const);
     // 순위 순열 — 부합쌍(concordant pair) 비율로 상관을 확정한다(모듈 주석 참고).
@@ -649,7 +649,7 @@ export const M3_STAT2: TypeEntry[] = [
    *   06 한 축 기준 세기 · 07 대각선 기준 세기(x>y) · 08 상관관계 · 10 평균
    * 두 축을 **함께** 보게 하므로 hard 자리도 그대로다.
    */
-  def(MINOR_BOX, "09", "산점도의 분석", SEC.산점도, "hard", (rng) =>
+  def(MINOR_BOX, "09", "산점도의 분석", SEC.산점도, "심화", (rng) =>
     attempt(200, () => {
       const n = 8;
       const pts: [number, number][] = [];
@@ -708,7 +708,7 @@ export const M3_STAT2: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_BOX, "10", "산점도에서 평균 구하기", SEC.산점도, "mid", (rng) =>
+  def(MINOR_BOX, "10", "산점도에서 평균 구하기", SEC.산점도, "응용", (rng) =>
     attempt(200, () => {
       const xs = distinctSorted(rng, 5, 40, 90);
       const sum = xs.reduce((s, v) => s + v, 0);

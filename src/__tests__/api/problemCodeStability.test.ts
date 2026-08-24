@@ -131,7 +131,7 @@ describe("[D-53] 새 문항은 코드를 «받아서» 나온다 — 요청이 �
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: unit.id,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "새 문항.",
         answer: "1",
@@ -153,7 +153,7 @@ describe("[D-53] 새 문항은 코드를 «받아서» 나온다 — 요청이 �
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: unit.id,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "코드를 직접 정하려는 요청.",
         answer: "1",
@@ -171,7 +171,7 @@ describe("[D-53] 새 문항은 코드를 «받아서» 나온다 — 요청이 �
         jsonRequest("http://localhost/api/problems", "POST", {
           unitId: unit.id,
           source: "manual",
-          difficulty: "easy",
+          difficulty: "기본",
           problemType: "계산",
           content: `연속 등록 ${i}.`,
           answer: "1",

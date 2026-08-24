@@ -34,11 +34,16 @@ enum ProblemSource {
   @@map("problem_source")
 }
 
-/// 난이도
+/// 난이도 — **하나뿐인 축** (D-106, 원장님 확정 2026-08-25). 사다리 순서대로 적는다.
+///
+/// 이름이 곧 값이다 — 지면·반 프리셋·상담에서 같은 말을 쓰므로 매핑이 없다(D-71 과 같은 뜻).
+/// 예전 `easy/mid/hard` 는 `20260825120000_difficulty_four_tier` 가 **이름만** 바꿨다
+/// (기본/응용/심화). 행은 한 줄도 UPDATE 되지 않았고 `연산` 은 새 밑단이라 옛 행이 없다.
 enum Difficulty {
-  easy
-  mid
-  hard
+  연산
+  기본
+  응용
+  심화
 
   @@map("difficulty")
 }

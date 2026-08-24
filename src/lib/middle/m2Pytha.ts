@@ -350,7 +350,7 @@ function figFoldRect(w: number, h: number, e: number): Record<string, unknown> {
 
 export const M2_PYTHA: TypeEntry[] = [
   // ── 01 직각삼각형의 변의 길이 ───────────────────────────────────────
-  def("01", "직각삼각형의 변의 길이", SEC.정리, "easy", (rng) => {
+  def("01", "직각삼각형의 변의 길이", SEC.정리, "기본", (rng) => {
     const [p, q, r] = pick(rng, TRIPLES);
     const mode = pick(rng, [0, 1] as const);
     if (mode === 0) {
@@ -389,7 +389,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 02 삼각형에서 피타고라스 정리의 이용 (이등변삼각형의 높이) ──────
-  def("02", "삼각형에서 피타고라스 정리의 이용", SEC.정리, "mid", (rng) => {
+  def("02", "삼각형에서 피타고라스 정리의 이용", SEC.정리, "응용", (rng) => {
     const [half, h, leg] = pick(rng, TRIPLES);
     const base = 2 * half;
     const area = half * h;
@@ -426,7 +426,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 03 직사각형의 대각선의 길이 ──────────────────────────────────────
-  def("03", "직사각형의 대각선의 길이", SEC.정리, "easy", (rng) => {
+  def("03", "직사각형의 대각선의 길이", SEC.정리, "기본", (rng) => {
     const [w, h, d] = pick(rng, TRIPLES);
     return {
       content: `직사각형 ABCD에서 $\\overline{AB}=${w}\\,\\mathrm{cm}$, $\\overline{BC}=${h}\\,\\mathrm{cm}$일 때, 대각선 $\\overline{AC}$의 길이를 구하시오.`,
@@ -438,7 +438,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 04 사각형에서 피타고라스 정리의 이용 (마름모의 한 변) ───────────
-  def("04", "사각형에서 피타고라스 정리의 이용", SEC.정리, "mid", (rng) =>
+  def("04", "사각형에서 피타고라스 정리의 이용", SEC.정리, "응용", (rng) =>
     attempt(60, () => {
       const [hp, hq, side] = pick(rng, TRIPLES);
       // 두 반대각선의 비가 너무 크면(마름모가 아주 좁고 길어지면) 세로 대각선
@@ -463,7 +463,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "05",
     "피타고라스 정리의 증명 유클리드의 방법",
     SEC.정리,
-    "mid",
+    "응용",
     (rng) => {
       const [a, b, c] = pick(rng, TRIPLES);
       const c2 = c * c;
@@ -482,7 +482,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "06",
     "피타고라스 정리의 증명 피타고라스의 방법",
     SEC.정리,
-    "mid",
+    "응용",
     (rng) => {
       const [a, b, c] = pick(rng, TRIPLES);
       const c2 = c * c;
@@ -497,7 +497,7 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 07 직각삼각형이 되기 위한 조건 (역) ──────────────────────────────
-  def("07", "직각삼각형이 되기 위한 조건", SEC.정리, "mid", (rng) => {
+  def("07", "직각삼각형이 되기 위한 조건", SEC.정리, "응용", (rng) => {
     const [p, q, r] = pick(rng, TRIPLES);
     return {
       content: `세 변의 길이가 각각 $${p}\\,\\mathrm{cm}$, $${q}\\,\\mathrm{cm}$, $x\\,\\mathrm{cm}$인 삼각형이 직각삼각형이 되도록 하는 자연수 $x$의 값을 구하시오. (단, $x$는 가장 긴 변의 길이이다.)`,
@@ -513,7 +513,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "08",
     "삼각형의 변의 길이와 각의 크기 사이의 관계",
     SEC.정리,
-    "hard",
+    "심화",
     (rng) =>
       attempt(60, () => {
         const [p, q, r] = pick(rng, TRIPLES);
@@ -548,7 +548,7 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 09 직각삼각형의 닮음과 피타고라스 정리 (빗변 위의 수선) ─────────
-  def("09", "직각삼각형의 닮음과 피타고라스 정리", SEC.정리, "hard", (rng) => {
+  def("09", "직각삼각형의 닮음과 피타고라스 정리", SEC.정리, "심화", (rng) => {
     const [a, b, c] = pick(rng, TRIPLES);
     // △ABC(∠C=90°) 넓이를 두 가지로: (1/2)ab = (1/2)*c*h → h = ab/c.
     const h = frac(a * b, c);
@@ -572,7 +572,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "10",
     "피타고라스 정리를 이용한 직각삼각형의 성질",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) => {
       const [a, b, c] = pick(rng, TRIPLES);
       // ∠C=90°, 수선의 발 D. AB^2 = AD*AC 대신 BC^2 = BD*BA (BD = a^2/c) 를 쓴다.
@@ -598,7 +598,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "11",
     "피타고라스 정리를 이용한 사각형의 성질 ⑴",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) => {
       const QUADS = [
         [10, 15, 6, 17],
@@ -623,7 +623,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "12",
     "피타고라스 정리를 이용한 사각형의 성질 ⑵",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) => {
       const QUADS = [
         [10, 15, 6, 17],
@@ -644,7 +644,7 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 13 직각삼각형에서 세 반원 사이의 관계 ────────────────────────────
-  def("13", "직각삼각형에서 세 반원 사이의 관계", SEC.활용, "mid", (rng) => {
+  def("13", "직각삼각형에서 세 반원 사이의 관계", SEC.활용, "응용", (rng) => {
     const [a, b, c] = pick(rng, TRIPLES);
     const num = a * a + b * b; // = c^2
     const [n, d] = [num, 8];
@@ -662,7 +662,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 14 히포크라테스의 원의 넓이 ──────────────────────────────────────
-  def("14", "히포크라테스의 원의 넓이", SEC.활용, "hard", (rng) => {
+  def("14", "히포크라테스의 원의 넓이", SEC.활용, "심화", (rng) => {
     const [a, b, c] = pick(rng, TRIPLES);
     const area = (a * b) / 2;
     return {
@@ -675,7 +675,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 15 입체도형에서의 최단 거리 (직육면체 표면) ─────────────────────
-  def("15", "입체도형에서의 최단 거리", SEC.활용, "hard", (rng) =>
+  def("15", "입체도형에서의 최단 거리", SEC.활용, "심화", (rng) =>
     attempt(60, () => {
       const [leg, q, r] = pick(rng, TRIPLES);
       const split = intBetween(rng, 1, leg - 1);
@@ -692,7 +692,7 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 16 피타고라스 정리 종이접기 ──────────────────────────────────────
-  def("16", "피타고라스 정리 종이접기", SEC.활용, "hard", (rng) => {
+  def("16", "피타고라스 정리 종이접기", SEC.활용, "심화", (rng) => {
     const [p, q, r] = pick(rng, TRIPLES);
     const w = r + p; // AB
     const h = q; // AD = BC

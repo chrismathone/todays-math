@@ -5,6 +5,13 @@ import { useRouter } from "next/navigation";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
 import type { TestType } from "@/contracts/common.contract";
+// 값이지만 **zod 를 안 물고 오는 최소 모듈**이라 정적으로 가져와도 된다 (아래 C-1 주석 참조).
+import {
+  DEFAULT_DIFFICULTY_RATIO,
+  DIFFICULTY_LADDER,
+  fitDifficultyRatio,
+  type DifficultyRatio,
+} from "@/contracts/difficulty";
 import type { UnitEntity } from "@/contracts/unit.contract";
 
 /**
@@ -42,44 +49,11 @@ function todayIso() {
 function applyClass(
   cls: ClassEntity | undefined,
   setProblemCount: (n: number) => void,
-  setEasy: (n: number) => void,
-  setMid: (n: number) => void,
-  setHard: (n: number) => void,
+  setRatio: (r: DifficultyRatio) => void,
 ) {
   if (!cls) return;
   setProblemCount(cls.defaultProblemCount);
-  setEasy(cls.difficultyRatio.easy);
-  setMid(cls.difficultyRatio.mid);
-  setHard(cls.difficultyRatio.hard);
-}
-
-function fitDifficultyRatio(
-  ratio: { easy: number; mid: number; hard: number },
-  count: number,
-) {
-  const keys = ["easy", "mid", "hard"] as const;
-  const total = keys.reduce((sum, key) => sum + ratio[key], 0);
-  if (total <= 0) return { easy: 0, mid: count, hard: 0 };
-
-  const scaled = keys.map((key) => ({
-    key,
-    exact: (ratio[key] * count) / total,
-  }));
-  const result = {
-    easy: Math.floor(scaled[0]!.exact),
-    mid: Math.floor(scaled[1]!.exact),
-    hard: Math.floor(scaled[2]!.exact),
-  };
-  let remaining = count - result.easy - result.mid - result.hard;
-  scaled
-    .sort((a, b) => (b.exact % 1) - (a.exact % 1))
-    .forEach(({ key }) => {
-      if (remaining > 0) {
-        result[key] += 1;
-        remaining -= 1;
-      }
-    });
-  return result;
+  setRatio(cls.difficultyRatio);
 }
 
 export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
@@ -94,9 +68,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   const [testType, setTestType] = useState<TestType>("daily");
   const [testDate, setTestDate] = useState(todayIso);
   const [problemCount, setProblemCount] = useState(8);
-  const [easy, setEasy] = useState(3);
-  const [mid, setMid] = useState(4);
-  const [hard, setHard] = useState(1);
+  const [difficultyRatio, setDifficultyRatio] = useState<DifficultyRatio>(
+    DEFAULT_DIFFICULTY_RATIO,
+  );
   const [rangeStartUnitId, setRangeStartUnitId] = useState("");
   const [rangeEndUnitId, setRangeEndUnitId] = useState("");
   /** 「고치기」를 눌러 3열 피커를 펼쳤는가 (S-04 C안 — 평소에는 한 줄이다). */
@@ -147,7 +121,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
           classBody.data[0];
         if (nextClass) {
           setClassId(nextClass.id);
-          applyClass(nextClass, setProblemCount, setEasy, setMid, setHard);
+          applyClass(nextClass, setProblemCount, setDifficultyRatio);
         }
         // ⚠️ 여기서 범위 기본값을 **정하지 않는다.** 예전에는 `units[0]`(초1 첫
         //    소단원) ~ `units[마지막]`(미적분2 마지막)을 넣었다 — 그게 전 교육과정
@@ -241,9 +215,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       applyClass(
         classes.find((item) => item.id === nextId),
         setProblemCount,
-        setEasy,
-        setMid,
-        setHard,
+        setDifficultyRatio,
       );
       setInsufficient(null);
       setSubmitError(null);
@@ -273,15 +245,13 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     async (countOverride?: number) => {
       if (!classId) return;
       const count = countOverride ?? problemCount;
-      const difficultyRatio =
+      const nextRatio =
         countOverride === undefined
-          ? { easy, mid, hard }
-          : fitDifficultyRatio({ easy, mid, hard }, count);
+          ? difficultyRatio
+          : fitDifficultyRatio(difficultyRatio, count);
       if (countOverride !== undefined) {
         setProblemCount(countOverride);
-        setEasy(difficultyRatio.easy);
-        setMid(difficultyRatio.mid);
-        setHard(difficultyRatio.hard);
+        setDifficultyRatio(nextRatio);
       }
       // 범위가 아직 안 왔으면(반을 막 바꿨다) **이전 반의 값이 남아 있다** — 그대로
       // 보내면 다른 반의 범위로 출제된다. 단원 id 는 반과 무관하게 유효해서 서버도
@@ -299,7 +269,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
         return;
       }
       if (
-        difficultyRatio.easy + difficultyRatio.mid + difficultyRatio.hard !==
+        DIFFICULTY_LADDER.reduce((sum, tier) => sum + nextRatio[tier], 0) !==
         count
       ) {
         setInsufficient(null);
@@ -369,9 +339,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       testType,
       testDate,
       problemCount,
-      easy,
-      mid,
-      hard,
+      difficultyRatio,
       rangeStartUnitId,
       rangeEndUnitId,
       rangeLoading,
@@ -393,7 +361,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           unitId: insufficient.unitId,
-          difficulty: "mid",
+          difficulty: "응용",
           count,
         }),
       });
@@ -427,9 +395,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     testType,
     testDate,
     problemCount,
-    easy,
-    mid,
-    hard,
+    difficultyRatio,
     rangeStartUnitId,
     rangeEndUnitId,
     rangeEditing,
@@ -444,9 +410,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     setTestType,
     setTestDate,
     setProblemCount,
-    setEasy,
-    setMid,
-    setHard,
+    setDifficultyRatio,
     setRange,
     setRangeEditing,
     selectClass,

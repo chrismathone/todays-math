@@ -1,6 +1,7 @@
 // T0.5.1 계약 스모크 테스트 — 각 Zod 스키마가 유효 샘플을 parse하고 무효 샘플을 reject하는지만
 // 확인한다. 도메인 시나리오(비즈니스 규칙) 테스트는 T0.5.3(RED 테스트)에서 작성한다.
 import { describe, expect, it } from "vitest";
+import { DEFAULT_DIFFICULTY_RATIO } from "@/contracts/difficulty";
 
 import {
   authLoginRequestSchema,
@@ -104,7 +105,7 @@ describe("[T0.5.1] class.contract", () => {
     expect(result.success).toBe(true);
     if (result.success) {
       expect(result.data.defaultProblemCount).toBe(8);
-      expect(result.data.difficultyRatio).toEqual({ easy: 3, mid: 4, hard: 1 });
+      expect(result.data.difficultyRatio).toEqual(DEFAULT_DIFFICULTY_RATIO);
     }
   });
 
@@ -146,7 +147,7 @@ describe("[T0.5.1] problem.contract", () => {
     const result = problemCreateRequestSchema.parse({
       unitId: UUID_1,
       source: "manual",
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "계산",
       content: "$1+1=?$",
       answer: "2",
@@ -162,7 +163,7 @@ describe("[T0.5.1] problem.contract", () => {
       unitId: UUID_2,
       source: "manual",
       originProblemId: null,
-      difficulty: "easy",
+      difficulty: "기본",
       problemType: "계산",
       content: "본문",
       answer: "1",
@@ -179,7 +180,7 @@ describe("[T0.5.1] problem.contract", () => {
     const result = problemCreateRequestSchema.safeParse({
       unitId: UUID_1,
       source: "manual",
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "계산",
       content: "$1+1=?$",
       answer: "2",
@@ -191,7 +192,7 @@ describe("[T0.5.1] problem.contract", () => {
     const result = problemCreateRequestSchema.safeParse({
       unitId: UUID_1,
       source: "manual",
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "암기",
       content: "$1+1=?$",
       answer: "2",
@@ -203,7 +204,7 @@ describe("[T0.5.1] problem.contract", () => {
     const result = problemCreateRequestSchema.safeParse({
       unitId: UUID_1,
       source: "ai_generated",
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "계산",
       content: "$1+1=?$",
       answer: "2",
@@ -222,7 +223,7 @@ describe("[T0.5.1] problem.contract", () => {
   it("problemGenerateRequestSchema — count 상한(10) 초과 시 reject한다", () => {
     const result = problemGenerateRequestSchema.safeParse({
       unitId: UUID_1,
-      difficulty: "hard",
+      difficulty: "심화",
       count: 11,
     });
     expect(result.success).toBe(false);
@@ -262,7 +263,7 @@ describe("[T0.5.1] test.contract", () => {
       testType: "daily",
       testDate: "2026-08-13",
       problemCount: 9,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
     });
     expect(result.success).toBe(false);
   });

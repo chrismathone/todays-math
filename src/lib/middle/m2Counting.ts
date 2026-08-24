@@ -265,7 +265,7 @@ function timesTex(xs: readonly number[]): string {
 
 export const M2_COUNTING: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
-  def("01", "경우의 수", SEC.경우의수, "easy", (rng): Body => {
+  def("01", "경우의 수", SEC.경우의수, "기본", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 0) {
       const S = intBetween(rng, 4, 10);
@@ -299,7 +299,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  def("02", "돈을 지불하는 방법의 수", SEC.경우의수, "hard", (rng) =>
+  def("02", "돈을 지불하는 방법의 수", SEC.경우의수, "심화", (rng) =>
     attempt(400, (): Body | null => {
       const useBig = pick(rng, [0, 1] as const); // 1: 500원 포함 3종
       const c500 = useBig === 1 ? intBetween(rng, 1, 3) : 0;
@@ -344,7 +344,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "03",
     "경우의 수의 합 수를 뽑거나 주사위를 던지는 경우",
     SEC.경우의수,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = pick(rng, [0, 1] as const);
@@ -382,7 +382,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "04",
     "경우의 수의 합 교통수단 또는 물건을 선택하는 경우",
     SEC.경우의수,
-    "easy",
+    "기본",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       const m = intBetween(rng, 2, 6);
@@ -413,7 +413,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "05",
     "경우의 수의 곱 길을 선택하는 경우",
     SEC.경우의수,
-    "easy",
+    "기본",
     (rng): Body => {
       const legs = pick(rng, [2, 2, 3] as const);
       const m = intBetween(rng, 2, 5);
@@ -443,7 +443,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "06",
     "경우의 수의 곱 물건을 선택하는 경우",
     SEC.경우의수,
-    "easy",
+    "기본",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       const m = intBetween(rng, 2, 6);
@@ -473,7 +473,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "07",
     "경우의 수의 곱 동전 또는 주사위를 던지는 경우",
     SEC.경우의수,
-    "mid",
+    "응용",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       if (kind === 0) {
@@ -502,7 +502,7 @@ export const M2_COUNTING: TypeEntry[] = [
   ),
 
   // 08 ─────────────────────────────────────────────
-  def("08", "한 줄로 세우는 경우의 수", SEC.여러가지, "easy", (rng): Body => {
+  def("08", "한 줄로 세우는 경우의 수", SEC.여러가지, "기본", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 0) {
       const n = intBetween(rng, 4, 6);
@@ -541,7 +541,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "09",
     "한 줄로 세우는 경우의 수 이웃하는 경우",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = intBetween(rng, 4, 6);
       const g = pick(rng, n === 4 ? ([2] as const) : ([2, 3] as const));
@@ -562,7 +562,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "10",
     "자연수의 개수을 포함하지 않는 경우",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng): Body => {
       const k = intBetween(rng, 4, 6);
       const r = pick(rng, [2, 3] as const);
@@ -595,7 +595,7 @@ export const M2_COUNTING: TypeEntry[] = [
     "11",
     "자연수의 개수을 포함하는 경우",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng): Body => {
       const k = intBetween(rng, 3, 5);
       const r = pick(rng, [2, 3] as const);
@@ -622,7 +622,7 @@ export const M2_COUNTING: TypeEntry[] = [
   ),
 
   // 12 ─────────────────────────────────────────────
-  def("12", "대표 뽑기 자격이 다른 경우", SEC.여러가지, "easy", (rng): Body => {
+  def("12", "대표 뽑기 자격이 다른 경우", SEC.여러가지, "기본", (rng): Body => {
     const r = pick(rng, [2, 3] as const);
     const n = intBetween(rng, 5, r === 2 ? 9 : 8);
     const ans = perm(n, r);
@@ -639,7 +639,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 13 ─────────────────────────────────────────────
-  def("13", "대표 뽑기 자격이 같은 경우", SEC.여러가지, "mid", (rng): Body => {
+  def("13", "대표 뽑기 자격이 같은 경우", SEC.여러가지, "응용", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 0) {
       const n = intBetween(rng, 5, 10);
@@ -673,7 +673,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 14 ─────────────────────────────────────────────
-  def("14", "선분 또는 삼각형의 개수", SEC.여러가지, "mid", (rng): Body => {
+  def("14", "선분 또는 삼각형의 개수", SEC.여러가지, "응용", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 0) {
       const n = intBetween(rng, 5, 8);
@@ -707,7 +707,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 15 ─────────────────────────────────────────────
-  def("15", "색칠하는 경우의 수", SEC.여러가지, "hard", (rng): Body => {
+  def("15", "색칠하는 경우의 수", SEC.여러가지, "심화", (rng): Body => {
     const rule = pick(rng, [0, 1] as const); // 0: 모두 다른 색 · 1: 이웃만 다르게
     const [shape, k, nLo] =
       rule === 0 ? [...pick(rng, DISTINCT_PAIRS), 0] : pick(rng, ADJ_PAIRS);
@@ -768,7 +768,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 16 ─────────────────────────────────────────────
-  def("16", "최단 거리로 가는 경우의 수", SEC.여러가지, "hard", (rng): Body => {
+  def("16", "최단 거리로 가는 경우의 수", SEC.여러가지, "심화", (rng): Body => {
     const m = pick(rng, [3, 3, 4] as const);
     const n = m === 4 ? 2 : pick(rng, [2, 3] as const);
     const via = pick(rng, [0, 1] as const);

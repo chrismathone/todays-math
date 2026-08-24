@@ -8,7 +8,7 @@ import paper from "@/components/print/TestPrint.module.css";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
-import { DIFFICULTY_LABEL, REVIEW_STATUS_LABEL } from "./labels";
+import { REVIEW_STATUS_LABEL } from "./labels";
 import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
 
 /** 마이크로 라벨 — 검수 카드(`ReviewProblemCard`)와 같은 규격을 쓴다. */
@@ -114,9 +114,7 @@ export const ProblemCard = memo(function ProblemCard({
         {/* 난이도·유형·상태는 **마이크로 라벨**이다 (05 §8.6 확정, 원장님 재확인 2026-08-18).
             알약 칩은 면색을 세 개 더 만들어 팔레트를 흐린다. 위계는 글자 명도로 낸다. */}
         <span className={`ml-auto flex flex-wrap items-center gap-3 ${MICRO}`}>
-          <span className="text-ink">
-            {DIFFICULTY_LABEL[problem.difficulty]}
-          </span>
+          <span className="text-ink">{problem.difficulty}</span>
           <span className="text-text-2">{problem.problemType}</span>
           <span
             data-review-status={problem.reviewStatus}

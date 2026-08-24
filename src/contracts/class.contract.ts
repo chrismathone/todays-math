@@ -27,6 +27,7 @@ import { z } from "zod";
 
 import {
   dataResponseSchema,
+  DEFAULT_DIFFICULTY_RATIO,
   difficultyRatioSchema,
   isoDateSchema,
   isoDateTimeSchema,
@@ -62,7 +63,7 @@ export const classCreateRequestSchema = z.strictObject({
   name: classNameSchema,
   grade: classGradeSchema,
   defaultProblemCount: defaultProblemCountSchema.default(8),
-  difficultyRatio: difficultyRatioSchema.default({ easy: 3, mid: 4, hard: 1 }),
+  difficultyRatio: difficultyRatioSchema.default(DEFAULT_DIFFICULTY_RATIO),
 });
 export type ClassCreateRequest = z.infer<typeof classCreateRequestSchema>;
 

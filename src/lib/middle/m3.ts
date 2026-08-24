@@ -120,7 +120,7 @@ function def(
 
 export const M3_TYPES: TypeEntry[] = [
   // ── 원과 직선 (우리 단원: 원과 현) ───────────────────
-  def("원과 직선", "01", "현의 수직이등분선⑴", SEC.현, "easy", (rng) => {
+  def("원과 직선", "01", "현의 수직이등분선⑴", SEC.현, "기본", (rng) => {
     const [l1, l2, r] = pick(rng, TRIPLES);
     const [d, h] = pick(rng, [
       [l1, l2],
@@ -136,7 +136,7 @@ export const M3_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("원과 직선", "02", "현의 수직이등분선⑵", SEC.현, "mid", (rng) => {
+  def("원과 직선", "02", "현의 수직이등분선⑵", SEC.현, "응용", (rng) => {
     const [l1, l2, r] = pick(rng, TRIPLES);
     const [d, h] = pick(rng, [
       [l1, l2],
@@ -157,7 +157,7 @@ export const M3_TYPES: TypeEntry[] = [
     "03",
     "현의 수직이등분선 원의 일부분이 주어진 경우",
     SEC.현,
-    "hard",
+    "심화",
     (rng) => {
       const [d, h, r] = pick(rng, TRIPLES);
       const c = r - d;
@@ -177,7 +177,7 @@ export const M3_TYPES: TypeEntry[] = [
     "04",
     "현의 수직이등분선 원이 접힌 경우",
     SEC.현,
-    "hard",
+    "심화",
     (rng) => {
       // 접힌 호 그림은 FigureSpec v2 에 없다(09 §1) — 발문이 그림 없이 완결된다.
       const om = intBetween(rng, 2, 9);
@@ -193,7 +193,7 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("원과 직선", "05", "현의 길이", SEC.현, "mid", (rng) => {
+  def("원과 직선", "05", "현의 길이", SEC.현, "응용", (rng) => {
     // 두 현 그림이라 d < h 로 고정 — d/r 가 1 에 가까우면 현이 가장자리에 붙어
     // 그림이 읽기 어렵다 (2026-08-23 미리보기 육안).
     const [d, h, r] = pick(rng, TRIPLES);
@@ -212,7 +212,7 @@ export const M3_TYPES: TypeEntry[] = [
     "06",
     "현의 길이 삼각형이 주어진 경우",
     SEC.현,
-    "mid",
+    "응용",
     (rng) => {
       const a = 2 * intBetween(rng, 20, 40);
       const x = (180 - a) / 2;
@@ -227,7 +227,7 @@ export const M3_TYPES: TypeEntry[] = [
   ),
 
   // ── 원주각 (우리 단원: 원주각) ───────────────────────
-  def("원주각", "01", "원주각과 중심각의 크기 ⑴", SEC.원주각, "easy", (rng) => {
+  def("원주각", "01", "원주각과 중심각의 크기 ⑴", SEC.원주각, "기본", (rng) => {
     const a = intBetween(rng, 20, 80);
     const c = 2 * a;
     const mode = pick(rng, [0, 1] as const);
@@ -260,7 +260,7 @@ export const M3_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("원주각", "02", "원주각과 중심각의 크기 ⑵", SEC.원주각, "mid", (rng) => {
+  def("원주각", "02", "원주각과 중심각의 크기 ⑵", SEC.원주각, "응용", (rng) => {
     const c = 2 * intBetween(rng, 50, 80);
     const x = 180 - c / 2;
     return {
@@ -282,7 +282,7 @@ export const M3_TYPES: TypeEntry[] = [
     "03",
     "원주각과 중심각의 크기 두 접선이 주어진 경우",
     SEC.원주각,
-    "hard",
+    "심화",
     (rng) => {
       const p = 2 * intBetween(rng, 20, 36);
       const aob = 180 - p;
@@ -297,7 +297,7 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("원주각", "04", "원주각의 성질", SEC.원주각, "mid", (rng) => {
+  def("원주각", "04", "원주각의 성질", SEC.원주각, "응용", (rng) => {
     const a = intBetween(rng, 20, 40);
     const x = intBetween(rng, 25, 50);
     const p = a + x;
@@ -315,7 +315,7 @@ export const M3_TYPES: TypeEntry[] = [
     "05",
     "반원에 대한 원주각의 크기",
     SEC.원주각,
-    "easy",
+    "기본",
     (rng) => {
       const a = intBetween(rng, 20, 70);
       const x = 90 - a;
@@ -334,7 +334,7 @@ export const M3_TYPES: TypeEntry[] = [
     "06",
     "원주각의 성질과 삼각비의 값",
     SEC.원주각,
-    "hard",
+    "심화",
     (rng) => {
       const [bc, r, num, den] = pick(rng, [
         [6, 5, 3, 5],
@@ -356,7 +356,7 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("원주각", "07", "원주각의 크기와 호의 길이⑴", SEC.원주각, "mid", (rng) =>
+  def("원주각", "07", "원주각의 크기와 호의 길이⑴", SEC.원주각, "응용", (rng) =>
     // 호 강조 표시는 FigureSpec v2 에 없다(09 §1) — 발문이 그림 없이 완결된다.
     attempt(80, () => {
       const m = intBetween(rng, 2, 6);
@@ -381,7 +381,7 @@ export const M3_TYPES: TypeEntry[] = [
     "08",
     "원주각의 크기와 호의 길이⑵",
     SEC.원주각,
-    "mid",
+    "응용",
     (rng) => {
       const [p, q, r] = pick(rng, [
         [1, 2, 3],
@@ -407,7 +407,7 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("원주각", "09", "원주각의 크기와 호의 길이⑶", SEC.원주각, "hard", (rng) =>
+  def("원주각", "09", "원주각의 크기와 호의 길이⑶", SEC.원주각, "심화", (rng) =>
     attempt(80, () => {
       const pool = [4, 5, 6, 9, 10, 12] as const;
       const m = pick(rng, pool);
@@ -431,7 +431,7 @@ export const M3_TYPES: TypeEntry[] = [
     "10",
     "반원에 대한 원주각의 크기의 응용",
     SEC.원주각,
-    "hard",
+    "심화",
     (rng) => {
       const a = intBetween(rng, 15, 40);
       const x = 90 + a;

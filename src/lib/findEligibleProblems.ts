@@ -54,7 +54,7 @@ export interface FindEligibleProblemsParams {
   //    인자를 남겨 두면 읽는 사람이 「출제가 계정별로 다르다」고 오해한다.
   /** 출제 대상 단원 id 목록(반의 진도 범위 등에서 산출) — 비어 있으면 빈 배열을 즉시 반환한다. */
   unitIds: string[];
-  /** 특정 난이도만 좁혀 조회할 때 사용 — 생략 시 전 난이도(easy/mid/hard)를 대상으로 한다
+  /** 특정 난이도만 좁혀 조회할 때 사용 — 생략 시 전 난이도(연산/기본/응용/심화)를 대상으로 한다
    *  (난이도 배분 자체는 selectProblems가 pool 전체를 받아 처리한다). */
   difficulty?: Difficulty;
 }

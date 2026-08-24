@@ -118,7 +118,7 @@ describe("[S-04] GET /api/tests/default-range — 확인테스트 기본 범위"
           testType: "review",
           testDate: "2026-08-13",
           problemCount: 4,
-          difficultyRatio: { easy: 2, mid: 2, hard: 0 },
+          difficultyRatio: { 연산: 0, 기본: 2, 응용: 2, 심화: 0 },
           rangeStartUnitId: MOCK_UNITS[0]!.id,
           rangeEndUnitId: MOCK_UNITS[3]!.id,
         }),

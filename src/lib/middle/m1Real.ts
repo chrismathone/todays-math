@@ -202,7 +202,7 @@ export const M1_REAL: TypeEntry[] = [
     "04",
     "정비례 관계 의 활용",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const speed = intBetween(rng, 12, 30); // 초속 m — 정비례 상수 a
@@ -241,7 +241,7 @@ export const M1_REAL: TypeEntry[] = [
     "14",
     "반비례 관계 의 활용",
     SEC.반비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const speed = intBetween(rng, 12, 32); // 초속 m
@@ -277,7 +277,7 @@ export const M1_REAL: TypeEntry[] = [
     "18",
     "원뿔 모양의 그릇에 담긴 물의 부피",
     SEC.뿔,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const radius = pick(rng, [3, 6, 9, 12] as const);

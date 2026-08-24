@@ -91,7 +91,7 @@ export const analysisReportSchema = z.strictObject({
   predictedScore: z.number(),
   /** {unitId: 정답률(0~100)} */
   unitScores: z.record(uuidSchema, z.number()),
-  /** {difficulty(easy|mid|hard): {correct, total}} */
+  /** {difficulty(연산|기본|응용|심화): {correct, total}} — 네 갈래가 **전부** 있어야 한다 (D-106) */
   difficultyDistribution: z.record(
     difficultySchema,
     difficultyDistributionEntrySchema,

@@ -278,7 +278,7 @@ const sum = (a: readonly number[]) => a.reduce((x, y) => x + y, 0);
 
 export const M1_STAT_FIG: TypeEntry[] = [
   // ── 01 줄기와 잎 그림 ────────────────────────────────
-  def(MINOR, "01", "줄기와 잎 그림의 이해", SEC.줄기와잎, "easy", (rng) =>
+  def(MINOR, "01", "줄기와 잎 그림의 이해", SEC.줄기와잎, "기본", (rng) =>
     attempt(120, (): Body | null => {
       const t = pick(
         rng,
@@ -352,7 +352,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
   ),
 
   // ── 04·05·06 히스토그램 ─────────────────────────────
-  def(MINOR, "04", "히스토그램의 이해", SEC.히스토그램, "easy", (rng) =>
+  def(MINOR, "04", "히스토그램의 이해", SEC.히스토그램, "기본", (rng) =>
     attempt(120, (): Body | null => {
       const n = intBetween(rng, 5, 6);
       const t = topicFor(rng, n);
@@ -407,7 +407,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "05",
     "히스토그램에서 직사각형의 넓이",
     SEC.히스토그램,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         const n = intBetween(rng, 5, 6);
@@ -461,7 +461,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "06",
     "일부가 보이지 않는 히스토그램",
     SEC.히스토그램,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const n = intBetween(rng, 5, 6);
@@ -506,7 +506,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
   ),
 
   // ── 07·08·10 도수분포다각형 ─────────────────────────
-  def(MINOR, "07", "도수분포다각형의 이해", SEC.다각형, "easy", (rng) =>
+  def(MINOR, "07", "도수분포다각형의 이해", SEC.다각형, "기본", (rng) =>
     attempt(120, (): Body | null => {
       // 다각형은 양끝에 계급이 하나씩 더 붙어 가로 눈금이 촘촘하다 — 5개까지.
       const n = intBetween(rng, 4, 5);
@@ -557,7 +557,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR, "08", "도수분포다각형의 넓이", SEC.다각형, "mid", (rng) =>
+  def(MINOR, "08", "도수분포다각형의 넓이", SEC.다각형, "응용", (rng) =>
     attempt(120, (): Body | null => {
       const n = intBetween(rng, 4, 5);
       const t = topicFor(rng, n);
@@ -590,7 +590,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR, "10", "두 도수분포다각형의 비교", SEC.다각형, "mid", (rng) =>
+  def(MINOR, "10", "두 도수분포다각형의 비교", SEC.다각형, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const n = intBetween(rng, 4, 5);
       const t = topicFor(rng, n);
@@ -648,7 +648,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
   ),
 
   // ── 12·13·14·17·18·19 상대도수 ──────────────────────
-  def(MINOR, "12", "상대도수 구하기", SEC.상대도수, "mid", (rng) =>
+  def(MINOR, "12", "상대도수 구하기", SEC.상대도수, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       const n = intBetween(rng, 4, 5);
@@ -692,7 +692,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR, "13", "상대도수의 분포표의 이해", SEC.상대도수, "mid", (rng) =>
+  def(MINOR, "13", "상대도수의 분포표의 이해", SEC.상대도수, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const n = intBetween(rng, 4, 5);
       const t = topicFor(rng, n);
@@ -750,7 +750,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "14",
     "일부가 보이지 않는 상대도수의 분포표",
     SEC.상대도수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const t = pick(rng, GTOPICS);
@@ -783,7 +783,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "17",
     "상대도수의 분포를 나타낸 그래프",
     SEC.상대도수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const n = 4;
@@ -837,7 +837,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "18",
     "일부가 보이지 않는 상대도수의 분포를 나타낸 그래프",
     SEC.상대도수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, (): Body | null => {
         const n = 5;
@@ -885,7 +885,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "19",
     "도수의 총합이 다른 두 집단의 비교",
     SEC.상대도수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, (): Body | null => {
         const n = 4;

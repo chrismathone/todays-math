@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
 import { Button } from "@/components/ui/Button";
@@ -219,34 +220,31 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             />
           </label>
 
-          <div className="grid grid-cols-3 gap-3">
-            <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
-              하
-              <Input
-                type="number"
-                min={0}
-                value={form.easy}
-                onChange={(event) => form.setEasy(Number(event.target.value))}
-              />
-            </label>
-            <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
-              중
-              <Input
-                type="number"
-                min={0}
-                value={form.mid}
-                onChange={(event) => form.setMid(Number(event.target.value))}
-              />
-            </label>
-            <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
-              상
-              <Input
-                type="number"
-                min={0}
-                value={form.hard}
-                onChange={(event) => form.setHard(Number(event.target.value))}
-              />
-            </label>
+          {/*
+            난이도 배분 — 갈래를 **손으로 적지 않는다**(D-106). 사다리를 돌면
+            갈래가 늘거나 이름이 바뀔 때 이 칸이 저절로 따라온다. 예전에는 하·중·상을
+            세 번 적어 두어서 화면과 계약이 갈릴 자리가 셋이었다.
+          */}
+          <div className="grid grid-cols-4 gap-3">
+            {DIFFICULTY_LADDER.map((tier) => (
+              <label
+                key={tier}
+                className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2"
+              >
+                {tier}
+                <Input
+                  type="number"
+                  min={0}
+                  value={form.difficultyRatio[tier]}
+                  onChange={(event) =>
+                    form.setDifficultyRatio({
+                      ...form.difficultyRatio,
+                      [tier]: Number(event.target.value),
+                    })
+                  }
+                />
+              </label>
+            ))}
           </div>
 
           {form.testType === "review" ? (

@@ -22,7 +22,7 @@ export const MOCK_CLASS_A: ClassEntity = {
   name: "중2 심화반",
   grade: "중2",
   defaultProblemCount: 8,
-  difficultyRatio: { easy: 2, mid: 4, hard: 2 },
+  difficultyRatio: { 연산: 1, 기본: 2, 응용: 3, 심화: 2 },
   createdAt: "2026-06-01T09:00:00Z",
   updatedAt: "2026-06-01T09:00:00Z",
 };
@@ -34,7 +34,7 @@ export const MOCK_CLASS_B: ClassEntity = {
   name: "중2 기초반",
   grade: "중2",
   defaultProblemCount: 6,
-  difficultyRatio: { easy: 4, mid: 2, hard: 0 },
+  difficultyRatio: { 연산: 2, 기본: 3, 응용: 1, 심화: 0 },
   createdAt: "2026-06-02T09:00:00Z",
   updatedAt: "2026-07-15T09:00:00Z",
 };
@@ -46,7 +46,7 @@ export const MOCK_CLASS_OTHER_USER: ClassEntity = {
   name: "박강사의 반",
   grade: "중3",
   defaultProblemCount: 8,
-  difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+  difficultyRatio: { 연산: 1, 기본: 3, 응용: 3, 심화: 1 },
   createdAt: "2026-05-01T09:00:00Z",
   updatedAt: "2026-05-01T09:00:00Z",
 };
@@ -62,7 +62,7 @@ export const MOCK_CLASS_STARVED: ClassEntity = {
   name: "중2 문제부족반(테스트용)",
   grade: "중2",
   defaultProblemCount: 8,
-  difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+  difficultyRatio: { 연산: 1, 기본: 3, 응용: 3, 심화: 1 },
   createdAt: "2026-08-01T09:00:00Z",
   updatedAt: "2026-08-01T09:00:00Z",
 };

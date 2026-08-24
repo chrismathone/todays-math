@@ -184,7 +184,7 @@ function edgesOf01(n: number, fam: number): number {
 const FAM01 = ["기둥", "뿔", "뿔대"] as const;
 
 const M1_GEO1_BASE: TypeEntry[] = [
-  def(MINOR_BASE, "01", "교점 교선의 개수", SEC.점선면, "easy", (rng) =>
+  def(MINOR_BASE, "01", "교점 교선의 개수", SEC.점선면, "기본", (rng) =>
     attempt(80, (): Body | null => {
       const fam = pick(rng, [0, 1, 2] as const);
       const n = intBetween(rng, 4, 10);
@@ -203,7 +203,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 02 — 직선 l 위 서로 다른 네 점. 반직선/선분/직선의 같음을 좌표(순서)로 판정.
-  def(MINOR_BASE, "02", "직선 반직선 선분", SEC.점선면, "mid", (rng) =>
+  def(MINOR_BASE, "02", "직선 반직선 선분", SEC.점선면, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const labels = ["A", "B", "C", "D"];
       const pos = distinctIndices(rng, 40, 4).map((v) => v * 3); // 좌표(오름차순)
@@ -303,7 +303,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "03",
     "직선 반직선 선분의 개수 (1)",
     SEC.점선면,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, (): Body | null => {
         const n = intBetween(rng, 3, 6);
@@ -327,7 +327,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "04",
     "직선 반직선 선분의 개수 (2)",
     SEC.점선면,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, (): Body | null => {
         const n = intBetween(rng, 3, 7);
@@ -345,7 +345,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 05 — 선분의 중점 연쇄. AB 의 중점 M, MB 의 중점 N.
-  def(MINOR_BASE, "05", "선분의 중점", SEC.점선면, "mid", (rng) =>
+  def(MINOR_BASE, "05", "선분의 중점", SEC.점선면, "응용", (rng) =>
     attempt(80, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       if (branch === 0) {
@@ -371,7 +371,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 06 — 두 점 사이의 거리. M,N 은 각각 AB,BC 의 중점 ⇒ MN = AC/2 (B 위치 무관).
-  def(MINOR_BASE, "06", "두 점 사이의 거리", SEC.점선면, "mid", (rng) =>
+  def(MINOR_BASE, "06", "두 점 사이의 거리", SEC.점선면, "응용", (rng) =>
     attempt(80, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       if (branch === 0) {
@@ -415,7 +415,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "07",
     "평각 또는 직각을 이용하여 각의 크기 구하기",
     SEC.각,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const total = pick(rng, [90, 180] as const);
@@ -439,7 +439,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "08",
     "각의 크기 사이의 조건이 주어진 경우 각의 크기 구하기",
     SEC.각,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const k = pick(rng, [2, 3, 4] as const);
@@ -465,7 +465,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "09",
     "각의 크기의 비가 주어진 경우 각의 크기 구하기",
     SEC.각,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, (): Body | null => {
         const ratios: [number, number, number][] = [
@@ -494,7 +494,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 10 — 맞꼭지각의 성질 (1). 두 식이 같다 ⇒ x. 그림 부착.
-  def(MINOR_BASE, "10", "맞꼭지각의 성질 (1)", SEC.각, "easy", (rng) =>
+  def(MINOR_BASE, "10", "맞꼭지각의 성질 (1)", SEC.각, "기본", (rng) =>
     attempt(200, (): Body | null => {
       const a = pick(rng, [2, 3, 4] as const);
       const b2 = pick(rng, [2, 3, 5] as const);
@@ -516,7 +516,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 11 — 맞꼭지각의 성질 (2): ∠a+∠b=∠c (한 직선 위 인접각의 합이 맞꼭지각).
-  def(MINOR_BASE, "11", "맞꼭지각의 성질 (2)", SEC.각, "mid", (rng) =>
+  def(MINOR_BASE, "11", "맞꼭지각의 성질 (2)", SEC.각, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const a1 = pick(rng, [1, 2, 3] as const);
       const b1 = intBetween(rng, 5, 40);
@@ -538,7 +538,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 12 — n 개의 직선이 한 점에서 만날 때 맞꼭지각 쌍의 개수 = n(n-1).
-  def(MINOR_BASE, "12", "맞꼭지각의 쌍의 개수", SEC.각, "mid", (rng) => {
+  def(MINOR_BASE, "12", "맞꼭지각의 쌍의 개수", SEC.각, "응용", (rng) => {
     const n = intBetween(rng, 2, 8);
     const ans = n * (n - 1);
     return {
@@ -555,7 +555,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "13",
     "수직과 수선",
     SEC.각,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         // 점 A 에서 직선 l 에 내린 수선의 발이 H, AH=d. 서술 넷.
@@ -590,7 +590,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
   ),
 
   // 14 — 시계에서 각의 계산. h시 m분(m 짝수), 작은 쪽 각.
-  def(MINOR_BASE, "14", "시계에서 각의 계산", SEC.각, "mid", (rng) =>
+  def(MINOR_BASE, "14", "시계에서 각의 계산", SEC.각, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const h = intBetween(rng, 1, 11);
       const m = intBetween(rng, 0, 29) * 2;
@@ -783,7 +783,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "01",
     "점과 직선 점과 평면의 위치 관계",
     SEC.두직선,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, (): Body | null => {
         const kind = pick(rng, [0, 1] as const);
@@ -821,7 +821,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "02",
     "평면에서 두 직선의 위치 관계",
     SEC.두직선,
-    "mid",
+    "응용",
     (rng) => {
       const n = intBetween(rng, 5, 12);
       const even = n % 2 === 0;
@@ -844,7 +844,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "03",
     "평면이 하나로 정해질 조건",
     SEC.두직선,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const idx = distinctIndices(rng, PLANE_COND.length, 4);
@@ -862,7 +862,7 @@ const M1_GEO1_POS: TypeEntry[] = [
   ),
 
   // 04 — 사면체 ABCD 의 꼬인 위치(위상적 사실 — 나머지 두 글자).
-  def(MINOR_POS, "04", "꼬인 위치", SEC.두직선, "easy", (rng) => {
+  def(MINOR_POS, "04", "꼬인 위치", SEC.두직선, "기본", (rng) => {
     const idx = distinctIndices(rng, 4, 2);
     const x = TETRA_LETTERS[idx[0]!]!;
     const y = TETRA_LETTERS[idx[1]!]!;
@@ -881,7 +881,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "05",
     "공간에서 두 직선의 위치 관계",
     SEC.두직선,
-    "mid",
+    "응용",
     (rng) => {
       const refIdx = intBetween(rng, 0, PRISM_EDGES.length - 1);
       const ref = PRISM_EDGES[refIdx]!;
@@ -911,7 +911,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "09",
     "일부를 잘라 낸 입체도형에서의 위치 관계",
     SEC.공간평면,
-    "hard",
+    "심화",
     (rng) => {
       const refIdx = intBetween(rng, 0, ALL_EDGES_09.length - 1);
       const ref = ALL_EDGES_09[refIdx]!;
@@ -936,7 +936,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "10",
     "전개도가 주어졌을 때의 위치 관계",
     SEC.공간평면,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, (): Body | null => {
         const pairs: [string, string][] = [];
@@ -975,7 +975,7 @@ const M1_GEO1_POS: TypeEntry[] = [
   ),
 
   // 11 — 동위각과 엇각(정의) — l∥m 일 때 두 식이 같다 ⇒ x.
-  def(MINOR_POS, "11", "동위각과 엇각", SEC.평행선, "mid", (rng) =>
+  def(MINOR_POS, "11", "동위각과 엇각", SEC.평행선, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const relKind = pick(rng, [0, 1] as const);
       const a = pick(rng, [2, 3, 4] as const);
@@ -1003,7 +1003,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "12",
     "평행선에서 동위각 엇각의 크기",
     SEC.평행선,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, (): Body | null => {
         const relKind = pick(rng, [0, 1] as const);
@@ -1027,7 +1027,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "13",
     "두 직선이 평행할 조건",
     SEC.평행선,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const idx = distinctIndices(rng, PARALLEL_COND.length, 4);
@@ -1051,7 +1051,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "14",
     "평행선에서 각의 크기 구하기 삼각형의 성질 이용",
     SEC.평행선,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const a = intBetween(rng, 15, 80);
@@ -1073,7 +1073,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "15",
     "평행선에서 각의 크기 구하기 평행한 보조선을 긋는 경우 (1)",
     SEC.평행선,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const a = intBetween(rng, 10, 50);
@@ -1096,7 +1096,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "16",
     "평행선에서 각의 크기 구하기 평행한 보조선을 긋는 경우 (2)",
     SEC.평행선,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, (): Body | null => {
         const a = intBetween(rng, 10, 50);
@@ -1114,7 +1114,7 @@ const M1_GEO1_POS: TypeEntry[] = [
   ),
 
   // 17 — 평행선에서의 활용(1): 네 꺾인 각의 합 = 180.
-  def(MINOR_POS, "17", "평행선에서의 활용 (1)", SEC.평행선, "mid", (rng) =>
+  def(MINOR_POS, "17", "평행선에서의 활용 (1)", SEC.평행선, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const a = intBetween(rng, 10, 50);
       const b = intBetween(rng, 10, 50);
@@ -1136,7 +1136,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "18",
     "직사각형 모양의 종이를 접은 경우",
     SEC.평행선,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const beta = intBetween(rng, 10, 80);
@@ -1157,7 +1157,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "19",
     "공간에서 여러 가지 위치 관계",
     SEC.공간평면,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, (): Body | null => {
         const idx = distinctIndices(rng, SPACE_CLAIMS.length, 4);
@@ -1176,7 +1176,7 @@ const M1_GEO1_POS: TypeEntry[] = [
 
   // 20 — 평행선에서의 활용(2): 두 평행선 위 점에서 각을 1:(n-1)로 나눌 때
   // 교점의 각 = 180/n (n=2 는 이등분선의 직각 성질과 같은 자리).
-  def(MINOR_POS, "20", "평행선에서의 활용 (2)", SEC.평행선, "hard", (rng) => {
+  def(MINOR_POS, "20", "평행선에서의 활용 (2)", SEC.평행선, "심화", (rng) => {
     const n = pick(rng, [2, 3, 4, 5, 6] as const);
     const ans = 180 / n;
     return {

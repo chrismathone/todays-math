@@ -87,19 +87,24 @@ import { partitionTrusted } from "./paperTrust";
 import { largestRemainder, normalizeScores } from "./scoreNormalizer";
 
 /**
- * 두 난이도 축 사이의 다리. 청사진은 시험지 원본 라벨(하/중/상)을 쓰고 문제은행은
- * easy/mid/hard 를 쓴다 — 계약상 **다른 축**이라 섞지 않지만, 칸을 채우려면 대응이 필요하다.
- * 이 대응은 후보 선택에만 쓰고 저장하지 않는다.
+ * 두 난이도 축 사이의 다리. 청사진은 **시험지 원본의 사람 라벨**(하/중/상)을 쓰고
+ * 문제은행은 우리 4단(연산·기본·응용·심화)을 쓴다 — 다른 축이라 섞지 않지만,
+ * 칸을 채우려면 대응이 필요하다. 이 대응은 후보 선택에만 쓰고 **저장하지 않는다.**
+ *
+ * ⚠️ `연산` 은 라벨 쪽에 짝이 없다 — 기출 시험지가 「순수 계산」을 따로 표시한 적이
+ *    없기 때문이다. 그래서 `하` 를 되돌릴 때는 `기본` 으로 간다(연산이 아니라).
+ *    거꾸로 우리 `연산` 문항은 라벨 `하` 로 읽힌다. 없는 칸을 지어내지 않는다.
  */
 const LABEL_TO_DIFFICULTY: Record<DifficultyLabel, Difficulty> = {
-  하: "easy",
-  중: "mid",
-  상: "hard",
+  하: "기본",
+  중: "응용",
+  상: "심화",
 };
 const DIFFICULTY_TO_LABEL: Record<Difficulty, DifficultyLabel> = {
-  easy: "하",
-  mid: "중",
-  hard: "상",
+  연산: "하",
+  기본: "하",
+  응용: "중",
+  심화: "상",
 };
 
 /** 완화 비용 — 범위(단원)가 어긋나는 것이 가장 나쁘다. 시험 범위가 다르면 시험이 아니다. */

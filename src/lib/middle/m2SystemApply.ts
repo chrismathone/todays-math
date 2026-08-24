@@ -94,24 +94,30 @@ function def(
 
 export const M2_SYSTEM_APPLY: TypeEntry[] = [
   // ── 연립일차방정식 (풀이의 응용: 해의 조건·계수 결정) ─
-  def(MINOR_SYS, "12", "연립방정식의 해가 주어질 때⑵", SEC.응용, "mid", (rng) =>
-    attempt(120, () => {
-      const a = nonzero(rng, 1, 5);
-      const b = nonzero(rng, 1, 5);
-      if (a === b) return null;
-      const x0 = nonzero(rng, 2, 5);
-      const y0 = nonzero(rng, 2, 5);
-      if (Math.abs(x0) === Math.abs(y0)) return null;
-      const c1 = a * x0 + b * y0;
-      const c2 = b * x0 + a * y0;
-      const S = a + b;
-      return {
-        content: `연립방정식 $\\begin{cases}ax+by=${c1}\\\\bx+ay=${c2}\\end{cases}$ 의 해가 $x=${x0}$, $y=${y0}$ 일 때, 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.`,
-        answer: `$${S}$`,
-        solution: `주어진 해를 두 식에 대입하면 $${mc(x0, "a")}${sc(y0, "b")}=${c1}$, $${mc(x0, "b")}${sc(y0, "a")}=${c2}$이다.\n두 식을 변끼리 더하면 $${x0 + y0}(a+b)=${c1 + c2}$이므로 $a+b=${S}$이다.`,
-        facts: { a, b, x0, y0, c1, c2, S },
-      };
-    }),
+  def(
+    MINOR_SYS,
+    "12",
+    "연립방정식의 해가 주어질 때⑵",
+    SEC.응용,
+    "응용",
+    (rng) =>
+      attempt(120, () => {
+        const a = nonzero(rng, 1, 5);
+        const b = nonzero(rng, 1, 5);
+        if (a === b) return null;
+        const x0 = nonzero(rng, 2, 5);
+        const y0 = nonzero(rng, 2, 5);
+        if (Math.abs(x0) === Math.abs(y0)) return null;
+        const c1 = a * x0 + b * y0;
+        const c2 = b * x0 + a * y0;
+        const S = a + b;
+        return {
+          content: `연립방정식 $\\begin{cases}ax+by=${c1}\\\\bx+ay=${c2}\\end{cases}$ 의 해가 $x=${x0}$, $y=${y0}$ 일 때, 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.`,
+          answer: `$${S}$`,
+          solution: `주어진 해를 두 식에 대입하면 $${mc(x0, "a")}${sc(y0, "b")}=${c1}$, $${mc(x0, "b")}${sc(y0, "a")}=${c2}$이다.\n두 식을 변끼리 더하면 $${x0 + y0}(a+b)=${c1 + c2}$이므로 $a+b=${S}$이다.`,
+          facts: { a, b, x0, y0, c1, c2, S },
+        };
+      }),
   ),
 
   def(
@@ -119,7 +125,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "13",
     "연립방정식의 해가 다른 일차방정식을 만족시킬 때",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -139,7 +145,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SYS, "14", "해에 대한 조건이 주어질 때", SEC.응용, "mid", (rng) =>
+  def(MINOR_SYS, "14", "해에 대한 조건이 주어질 때", SEC.응용, "응용", (rng) =>
     attempt(120, () => {
       const x0 = nonzero(rng, 1, 5);
       const y0 = nonzero(rng, 1, 5);
@@ -162,7 +168,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "15",
     "두 연립방정식의 해가 서로 같을 때",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -188,7 +194,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "16",
     "계수 또는 상수항을 잘못 보고 구한 해",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const a = nonzero(rng, 2, 4);
@@ -220,7 +226,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "17",
     "해가 무수히 많은 연립방정식",
     SEC.특수,
-    "mid",
+    "응용",
     (rng) => {
       const p = intBetween(rng, 2, 4);
       const q = nonzero(rng, 1, 5);
@@ -236,7 +242,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_SYS, "18", "해가 없는 연립방정식", SEC.특수, "mid", (rng) =>
+  def(MINOR_SYS, "18", "해가 없는 연립방정식", SEC.특수, "응용", (rng) =>
     attempt(80, () => {
       const p = intBetween(rng, 2, 4);
       const q = nonzero(rng, 1, 5);
@@ -255,7 +261,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
   ),
 
   // ── 연립일차방정식의 활용 (일, 속력) ─────────────────
-  def(MINOR_APPLY, "09", "일에 대한 문제", SEC.일속력, "hard", (rng) =>
+  def(MINOR_APPLY, "09", "일에 대한 문제", SEC.일속력, "심화", (rng) =>
     attempt(400, () => {
       const T = intBetween(rng, 2, 8);
       const m = T + intBetween(rng, 1, 24);
@@ -280,7 +286,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "11",
     "거리 속력 시간에 대한 문제 속력이 바뀌는 경우",
     SEC.일속력,
-    "mid",
+    "응용",
     (rng) => {
       const [v1, v2] = pick(rng, [
         [3, 4],
@@ -310,7 +316,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "12",
     "거리 속력 시간에 대한 문제 만나는 경우",
     SEC.일속력,
-    "easy",
+    "기본",
     (rng) =>
       attempt(50, () => {
         const p = intBetween(rng, 2, 6);
@@ -334,7 +340,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "13",
     "거리 속력 시간에 대한 문제 둘레를 도는 경우",
     SEC.일속력,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const p = intBetween(rng, 4, 9);
@@ -358,7 +364,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "14",
     "거리 속력 시간에 대한 문제 강물과 배의 속력에 대한 경우",
     SEC.일속력,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const bb = intBetween(rng, 4, 12);
@@ -382,7 +388,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "17",
     "거리 속력 시간에 대한 문제 기차가 다리 또는 터널을 지나는 경우",
     SEC.일속력,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const v = pick(rng, [15, 20, 25, 30] as const);
@@ -403,7 +409,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
   ),
 
   // ── 연립일차방정식의 활용 (농도, 비율, 합금) ─────────
-  def(MINOR_APPLY, "10", "비율에 대한 문제", SEC.농도비율, "mid", (rng) =>
+  def(MINOR_APPLY, "10", "비율에 대한 문제", SEC.농도비율, "응용", (rng) =>
     attempt(50, () => {
       const a = pick(rng, [10, 20, 25, 30, 40, 50] as const);
       const b = pick(rng, [10, 20, 25, 30, 40, 50] as const);
@@ -426,7 +432,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "15",
     "농도에 대한 문제 소금물 또는 소금의 양을 구하는 경우",
     SEC.농도비율,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const a = pick(rng, [8, 10, 12, 15] as const);
@@ -452,7 +458,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "16",
     "농도에 대한 문제 농도를 구하는 경우",
     SEC.농도비율,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const a = intBetween(rng, 2, 15);
@@ -474,7 +480,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_APPLY, "18", "합금 식품에 대한 문제", SEC.농도비율, "hard", (rng) =>
+  def(MINOR_APPLY, "18", "합금 식품에 대한 문제", SEC.농도비율, "심화", (rng) =>
     attempt(50, () => {
       const p1 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);
       const p2 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);

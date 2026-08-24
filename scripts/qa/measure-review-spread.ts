@@ -27,6 +27,7 @@
  * 전후 비교는 **같은 시드·같은 범위**로 두 번 돌려 표를 견준다.
  */
 import { PrismaClient } from "@prisma/client";
+import { defaultRatioFor } from "../../src/contracts/difficulty";
 
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
 import { resolveRange } from "@/lib/generator/resolveRange";
@@ -60,8 +61,7 @@ const ROUNDS = [1, 2] as const;
 
 /** 문항 수에 맞춘 난이도 배분 — 반 기본값(3/4/1)을 비례로 늘린 것. */
 function ratioFor(count: number) {
-  if (count === 8) return { easy: 3, mid: 4, hard: 1 };
-  return { easy: 9, mid: 12, hard: 4 };
+  return defaultRatioFor(count);
 }
 
 function hasThreeInARow(types: string[]): boolean {

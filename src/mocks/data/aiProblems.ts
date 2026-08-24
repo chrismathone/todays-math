@@ -52,7 +52,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     content:
       "$5\\%$의 소금물 $200\\text{g}$에 물을 더 넣어 농도를 $2\\%$ 이하로 만들려고 한다. 더 넣어야 하는 물의 양의 범위를 구하시오.",
@@ -74,7 +74,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "개념",
     content:
       "소금물의 농도를 구하는 식 $\\frac{\\text{소금의 양}}{\\text{소금물의 양}} \\times 100$에서, 소금물의 양이 늘어나고 소금의 양이 일정하면 농도는 어떻게 변하는지 서술하시오.",
@@ -95,7 +95,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     content:
       "$8\\%$의 소금물 $300\\text{g}$에서 물을 증발시켜 농도를 $12\\%$ 이상으로 만들려고 한다. 증발시켜야 하는 물의 양의 범위를 구하시오.",
@@ -117,7 +117,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "활용",
     content:
       "$10\\%$의 소금물과 $4\\%$의 소금물을 섞어 $6\\%$ 이상 $8\\%$ 이하의 소금물 $300\\text{g}$을 만들려고 한다. 필요한 $10\\%$ 소금물의 양의 범위를 구하시오.",
@@ -138,7 +138,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "서술형",
     content:
       "농도를 알 수 없는 소금물 $A$ $200\\text{g}$과 $15\\%$ 소금물 $B$ $100\\text{g}$을 섞었더니 $10\\%$ 소금물이 되었다. 소금물 $A$의 농도를 구하는 풀이 과정을 서술하시오.",

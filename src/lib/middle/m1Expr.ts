@@ -237,7 +237,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "01",
     "곱셈 기호와 나눗셈 기호의 생략",
     SEC.식의값,
-    "easy",
+    "기본",
     (rng): Body => {
       const sgn = pick(rng, [1, -1] as const);
       const k = intBetween(rng, 2, 9);
@@ -265,7 +265,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "02",
     "문자를 사용한 식으로 나타내기 수 단위 금액",
     SEC.식의값,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 4);
       if (mode === 0) {
@@ -321,7 +321,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "03",
     "문자를 사용한 식으로 나타내기 도형",
     SEC.식의값,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 3);
       if (mode === 0) {
@@ -370,7 +370,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "04",
     "문자를 사용한 식으로 나타내기 속력 농도",
     SEC.식의값,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 4);
       if (mode === 0) {
@@ -420,7 +420,7 @@ const EXPR_TYPES: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_EXPR, "05", "식의 값 구하기", SEC.식의값, "easy", (rng) =>
+  def(MINOR_EXPR, "05", "식의 값 구하기", SEC.식의값, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 2);
       if (mode === 0) {
@@ -472,7 +472,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "06",
     "식의 값 구하기 분모에 분수 대입하기",
     SEC.식의값,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(400, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -513,7 +513,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "07",
     "식의 값의 활용 식이 주어진 경우",
     SEC.식의값,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 3);
       if (mode === 0) {
@@ -571,7 +571,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "08",
     "식의 값의 활용 식이 주어지지 않은 경우",
     SEC.식의값,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 3);
       if (mode === 0) {
@@ -622,7 +622,7 @@ const EXPR_TYPES: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_EXPR, "11", "일차식과 수의 곱셈 나눗셈", SEC.일차2, "easy", (rng) =>
+  def(MINOR_EXPR, "11", "일차식과 수의 곱셈 나눗셈", SEC.일차2, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 2);
       if (mode === 0) {
@@ -686,7 +686,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "14",
     "괄호가 여러 개인 일차식의 덧셈과 뺄셈",
     SEC.일차2,
-    "mid",
+    "응용",
     (rng) =>
       attempt(600, (): Body | null => {
         // 답을 먼저: 상수항 q = -C·F 를 C·F 로 잡고, x의 계수 p 에 맞춰 A 를 역산한다.
@@ -718,7 +718,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "15",
     "분수 꼴인 일차식의 덧셈과 뺄셈",
     SEC.일차2,
-    "mid",
+    "응용",
     (rng) =>
       attempt(800, (): Body | null => {
         // 답(p, q)을 먼저 뽑고, 두 분수의 분자를 역산한다.
@@ -750,7 +750,7 @@ const EXPR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_EXPR, "16", "문자에 일차식을 대입하기", SEC.일차2, "mid", (rng) =>
+  def(MINOR_EXPR, "16", "문자에 일차식을 대입하기", SEC.일차2, "응용", (rng) =>
     attempt(800, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const p = intNonzero(rng, -9, 9);
@@ -792,7 +792,7 @@ const EXPR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EXPR, "17", "어떤 식 구하기", SEC.일차2, "mid", (rng) =>
+  def(MINOR_EXPR, "17", "어떤 식 구하기", SEC.일차2, "응용", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const hasY = rng() < 0.5;
@@ -824,7 +824,7 @@ const EXPR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EXPR, "18", "바르게 계산한 식 구하기", SEC.일차2, "hard", (rng) =>
+  def(MINOR_EXPR, "18", "바르게 계산한 식 구하기", SEC.일차2, "심화", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const hasY = rng() < 0.5;
@@ -867,7 +867,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "19",
     "도형에서의 일차식의 덧셈과 뺄셈의 활용",
     SEC.일차2,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const mode = intBetween(rng, 0, 2);
@@ -920,7 +920,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "20",
     "의 꼴이 포함된 일차식의 계산",
     SEC.일차2,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         // ctx 0: n이 자연수 · 1: n이 홀수 · 2: n이 짝수
@@ -985,7 +985,7 @@ function itemLine(rng: Rng, items: readonly string[]): string | null {
 }
 
 const EQ_TYPES: TypeEntry[] = [
-  def(MINOR_EQ, "01", "등식", SEC.방정식해, "easy", (rng) =>
+  def(MINOR_EQ, "01", "등식", SEC.방정식해, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
       const kinds: number[] = [];
@@ -1046,7 +1046,7 @@ const EQ_TYPES: TypeEntry[] = [
     "02",
     "문장을 등식으로 나타내기",
     SEC.방정식해,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 4);
       if (mode === 0) {
@@ -1108,7 +1108,7 @@ const EQ_TYPES: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_EQ, "03", "방정식의 해", SEC.방정식해, "mid", (rng) =>
+  def(MINOR_EQ, "03", "방정식의 해", SEC.방정식해, "응용", (rng) =>
     attempt(400, (): Body | null => {
       const k = intBetween(rng, 2, 8);
       const r = pick(rng, [k, -k] as const);
@@ -1129,7 +1129,7 @@ const EQ_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EQ, "04", "항등식", SEC.방정식해, "mid", (rng) =>
+  def(MINOR_EQ, "04", "항등식", SEC.방정식해, "응용", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
       const items: string[] = [];
@@ -1180,7 +1180,7 @@ const EQ_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EQ, "06", "등식의 성질", SEC.등식성질, "easy", (rng) =>
+  def(MINOR_EQ, "06", "등식의 성질", SEC.등식성질, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
       const items: string[] = [];
@@ -1228,7 +1228,7 @@ const EQ_TYPES: TypeEntry[] = [
     "07",
     "등식의 성질을 이용한 방정식의 풀이",
     SEC.등식성질,
-    "easy",
+    "기본",
     (rng) =>
       attempt(400, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -1269,7 +1269,7 @@ const EQ_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_EQ, "08", "이항", SEC.등식성질, "mid", (rng) =>
+  def(MINOR_EQ, "08", "이항", SEC.등식성질, "응용", (rng) =>
     attempt(400, (): Body | null => {
       // 답(a+b)을 먼저: a>0 와 b 를 뽑고 양변을 역산한다.
       const a = intBetween(rng, 2, 9);
@@ -1288,7 +1288,7 @@ const EQ_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EQ, "09", "일차방정식", SEC.일차방정식, "mid", (rng) =>
+  def(MINOR_EQ, "09", "일차방정식", SEC.일차방정식, "응용", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
       const items: string[] = [];
@@ -1326,7 +1326,7 @@ const EQ_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EQ, "10", "일차방정식의 풀이", SEC.일차방정식, "easy", (rng) =>
+  def(MINOR_EQ, "10", "일차방정식의 풀이", SEC.일차방정식, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const r = intNonzero(rng, -9, 9);
       const a1 = intBetween(rng, 2, 8);
@@ -1356,7 +1356,7 @@ const EQ_TYPES: TypeEntry[] = [
     "11",
     "계수가 소수인 일차방정식의 풀이",
     SEC.일차방정식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(600, (): Body | null => {
         const r = intNonzero(rng, -9, 9);
@@ -1382,7 +1382,7 @@ const EQ_TYPES: TypeEntry[] = [
     "12",
     "계수가 분수인 일차방정식의 풀이",
     SEC.일차방정식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(800, (): Body | null => {
         const r = intNonzero(rng, -9, 9);
@@ -1417,7 +1417,7 @@ const EQ_TYPES: TypeEntry[] = [
     "13",
     "계수에 소수와 분수가 섞인 일차방정식의 풀이",
     SEC.일차방정식,
-    "hard",
+    "심화",
     (rng) =>
       attempt(800, (): Body | null => {
         const r = intNonzero(rng, -9, 9);
@@ -1445,7 +1445,7 @@ const EQ_TYPES: TypeEntry[] = [
     "14",
     "비례식으로 주어진 일차방정식의 풀이",
     SEC.일차방정식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(600, (): Body | null => {
         const r = intNonzero(rng, -9, 9);
@@ -1473,7 +1473,7 @@ const EQ_TYPES: TypeEntry[] = [
     "15",
     "일차방정식의 해가 주어진 경우",
     SEC.해응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -1513,7 +1513,7 @@ const EQ_TYPES: TypeEntry[] = [
     "16",
     "두 일차방정식의 해가 서로 같은 경우",
     SEC.해응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         // 두 방정식이 공유하는 해 r 을 먼저 뽑고, 양쪽을 그 해에 맞춰 역산한다.
@@ -1546,7 +1546,7 @@ const EQ_TYPES: TypeEntry[] = [
     "17",
     "해에 대한 조건이 주어진 경우",
     SEC.해응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(600, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -1584,7 +1584,7 @@ const EQ_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_EQ, "18", "특수한 해를 갖는 경우", SEC.해응용, "hard", (rng) =>
+  def(MINOR_EQ, "18", "특수한 해를 갖는 경우", SEC.해응용, "심화", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {

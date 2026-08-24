@@ -1,8 +1,9 @@
 /**
  * 난이도 배분 — 요청된 difficultyRatio에 맞춰 pool에서 문제를 선정하는 순수 함수.
  *
- * - 목표 난이도의 후보가 부족하면 인접 난이도(easy↔mid, mid↔hard)에서 대체하고
- *   substitutions에 그 사실을 기록한다(easy↔hard 직접 대체는 하지 않는다).
+ * - 목표 난이도의 후보가 부족하면 **사다리에서 한 칸 옆**(연산↔기본, 기본↔응용,
+ *   응용↔심화)에서 대체하고 substitutions에 그 사실을 기록한다. 두 칸 이상 건너뛰지
+ *   않는다 — 「연산을 못 채워 심화를 넣었다」는 대체가 아니라 다른 시험지다.
  * - 대체로도 못 채우면 조용히 넘어가지 않고 shortfall에 기록한다 — 계약
  *   test.contract.ts의 shortfallItemSchema 형태(unitId/difficulty/available/required).
  * - 유형(problemType) 편중을 줄이기 위해 선택 시점부터 유형 사용 빈도가 낮은 문제를
@@ -12,7 +13,8 @@
  * 참조: docs/planning/06-tasks.md T4.1, sumaek packages/core/src/assessment/select.ts
  *       (결정론적 선택 + shortfall 보고 아이디어 참조 — 그대로 복사가 아닌 재구성)
  */
-import type { Difficulty, DifficultyRatio } from "@/contracts/common.contract";
+import type { DifficultyRatio } from "@/contracts/common.contract";
+import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 import type { ShortfallItem } from "@/contracts/test.contract";
 
@@ -65,23 +67,34 @@ export interface BalanceDifficultyResult<
   shortfall: ShortfallItem[];
 }
 
-const DIFFICULTY_ORDER: Difficulty[] = ["easy", "mid", "hard"];
+const DIFFICULTY_ORDER: readonly Difficulty[] = DIFFICULTY_LADDER;
 
-/** 난이도별 인접 대체 우선순위 — 한 단계 차이만 허용한다(easy↔hard 직접 대체 없음). */
-const ADJACENT_DIFFICULTY: Record<Difficulty, Difficulty[]> = {
-  easy: ["mid"],
-  mid: ["easy", "hard"],
-  hard: ["mid"],
-};
+/**
+ * 난이도별 인접 대체 우선순위 — **사다리에서 만든다**(D-106).
+ *
+ * ⚠️ 손으로 적지 않는다. 예전에는 세 갈래를 손으로 적어 두었는데, 갈래가 넷이 되면
+ *    「연산」 행이 **조용히 빠진다** — 그러면 연산이 부족해도 대체를 아예 안 하고
+ *    shortfall 만 쌓인다. 에러가 아니라 시험지가 얇아질 뿐이라 아무도 못 본다.
+ *
+ * 아래·위 한 칸씩. **아래(쉬운 쪽)를 먼저** 본다 — 못 채운 칸을 더 쉬운 문항으로
+ * 메우는 편이 학생에게 안전하다.
+ */
+const ADJACENT_DIFFICULTY: Record<Difficulty, Difficulty[]> =
+  Object.fromEntries(
+    DIFFICULTY_LADDER.map((tier, i) => [
+      tier,
+      [DIFFICULTY_LADDER[i - 1], DIFFICULTY_LADDER[i + 1]].filter(
+        (x): x is Difficulty => x !== undefined,
+      ),
+    ]),
+  ) as Record<Difficulty, Difficulty[]>;
 
 function groupByDifficulty<T extends SelectableProblem>(
   pool: T[],
 ): Record<Difficulty, T[]> {
-  const grouped: Record<Difficulty, T[]> = {
-    easy: [],
-    mid: [],
-    hard: [],
-  };
+  const grouped = Object.fromEntries(
+    DIFFICULTY_LADDER.map((tier) => [tier, [] as T[]]),
+  ) as Record<Difficulty, T[]>;
   for (const problem of pool) {
     grouped[problem.difficulty].push(problem);
   }

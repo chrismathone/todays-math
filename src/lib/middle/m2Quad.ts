@@ -361,7 +361,7 @@ function distinctIndices(rng: Rng, total: number, count: number): number[] {
 // ── 유형 ────────────────────────────────────────────────────────────────
 
 export const M2_QUAD: TypeEntry[] = [
-  def("01", "평행사변형의 뜻", SEC.성질, "easy", (rng): Body => {
+  def("01", "평행사변형의 뜻", SEC.성질, "기본", (rng): Body => {
     const idx = distinctIndices(rng, PARA01_CLAIMS.length, 5);
     const x = idx.filter((i) => PARA01_CLAIMS[i]![1]).length;
     const lines = idx
@@ -388,7 +388,7 @@ export const M2_QUAD: TypeEntry[] = [
     };
   }),
 
-  def("02", "평행사변형의 성질⑴", SEC.성질, "easy", (rng): Body => {
+  def("02", "평행사변형의 성질⑴", SEC.성질, "기본", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const p = intBetween(rng, 2, 4);
@@ -422,7 +422,7 @@ export const M2_QUAD: TypeEntry[] = [
     };
   }),
 
-  def("03", "평행사변형의 성질⑵", SEC.성질, "easy", (rng): Body => {
+  def("03", "평행사변형의 성질⑵", SEC.성질, "기본", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const p = intBetween(rng, 2, 5);
@@ -462,7 +462,7 @@ export const M2_QUAD: TypeEntry[] = [
     "04",
     "평행사변형의 성질의 응용 대변의 길이",
     SEC.성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const m = intBetween(rng, 4, 10);
       const n = attempt(60, () => {
@@ -484,7 +484,7 @@ export const M2_QUAD: TypeEntry[] = [
     "05",
     "평행사변형의 성질의 응용 대각의 크기",
     SEC.성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const b = 2 * intBetween(rng, 20, 70);
       const m = intBetween(rng, 5, 9);
@@ -505,7 +505,7 @@ export const M2_QUAD: TypeEntry[] = [
     "06",
     "평행사변형의 성질의 응용 대각선의 성질",
     SEC.성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const s = intBetween(rng, 4, 14);
       const T = intBetween(rng, 6, 20);
@@ -521,7 +521,7 @@ export const M2_QUAD: TypeEntry[] = [
     },
   ),
 
-  def("07", "평행사변형이 되는 조건⑴", SEC.조건, "mid", (rng): Body => {
+  def("07", "평행사변형이 되는 조건⑴", SEC.조건, "응용", (rng): Body => {
     const p = intBetween(rng, 2, 5);
     const x = intBetween(rng, 3, 12);
     const q = intBetween(rng, 1, 9);
@@ -535,7 +535,7 @@ export const M2_QUAD: TypeEntry[] = [
     };
   }),
 
-  def("08", "평행사변형이 되는 조건 ⑵", SEC.조건, "mid", (rng): Body => {
+  def("08", "평행사변형이 되는 조건 ⑵", SEC.조건, "응용", (rng): Body => {
     const p = intBetween(rng, 2, 5);
     const x = intBetween(rng, 5, 15);
     const q = intBetween(rng, 1, 20);
@@ -549,7 +549,7 @@ export const M2_QUAD: TypeEntry[] = [
     };
   }),
 
-  def("09", "평행사변형이 되는 조건의 응용⑴", SEC.조건, "mid", (rng): Body => {
+  def("09", "평행사변형이 되는 조건의 응용⑴", SEC.조건, "응용", (rng): Body => {
     const p = intBetween(rng, 2, 4);
     const x = intBetween(rng, 4, 12);
     const q = intBetween(rng, 1, 8);
@@ -569,7 +569,7 @@ export const M2_QUAD: TypeEntry[] = [
     "10",
     "평행사변형과 넓이 대각선에 의해 나누어지는 경우",
     SEC.성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const branch = intBetween(rng, 0, 2);
       if (branch === 0) {
@@ -610,7 +610,7 @@ export const M2_QUAD: TypeEntry[] = [
     "11",
     "평행사변형과 넓이 내부의 한 점이 주어지는 경우",
     SEC.성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const jx = intBetween(rng, -15, 15) / 100;
       const jy = intBetween(rng, -10, 10) / 100;
@@ -644,7 +644,7 @@ export const M2_QUAD: TypeEntry[] = [
     "12",
     "평행사변형의 성질의 응용 두 내각의 이등분선이 주어진 경우",
     SEC.성질,
-    "hard",
+    "심화",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -678,7 +678,7 @@ export const M2_QUAD: TypeEntry[] = [
     "13",
     "평행사변형이 되는 조건의 응용 ⑵",
     SEC.조건,
-    "hard",
+    "심화",
     (rng): Body => {
       const s = intBetween(rng, 5, 16);
       const T = intBetween(rng, 6, 22);

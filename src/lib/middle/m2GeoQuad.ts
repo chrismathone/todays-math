@@ -557,7 +557,7 @@ function distinctIndices(rng: Rng, total: number, count: number): number[] {
 // ── 유형 ────────────────────────────────────────────────────────────────
 
 export const M2_GEO_QUAD: TypeEntry[] = [
-  def("01", "직사각형의 뜻과 성질", SEC.직사각형류, "easy", (rng): Body => {
+  def("01", "직사각형의 뜻과 성질", SEC.직사각형류, "기본", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const a = intBetween(rng, 24, 66);
@@ -585,7 +585,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "02",
     "평행사변형이 직사각형이 되는 조건",
     SEC.직사각형류,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -621,7 +621,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     },
   ),
 
-  def("03", "마름모의 뜻과 성질", SEC.직사각형류, "mid", (rng): Body => {
+  def("03", "마름모의 뜻과 성질", SEC.직사각형류, "응용", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const a = intBetween(rng, 26, 70);
@@ -653,7 +653,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "04",
     "평행사변형이 마름모가 되는 조건",
     SEC.직사각형류,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -687,7 +687,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     },
   ),
 
-  def("05", "정사각형의 뜻과 성질", SEC.직사각형류, "mid", (rng): Body => {
+  def("05", "정사각형의 뜻과 성질", SEC.직사각형류, "응용", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const d = 2 * intBetween(rng, 3, 11);
@@ -711,7 +711,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     };
   }),
 
-  def("06", "정사각형이 되는 조건", SEC.직사각형류, "mid", (rng): Body => {
+  def("06", "정사각형이 되는 조건", SEC.직사각형류, "응용", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const p = intBetween(rng, 2, 4);
@@ -747,7 +747,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "07",
     "등변사다리꼴의 뜻과 성질",
     SEC.등변사다리꼴,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -784,7 +784,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "08",
     "등변사다리꼴의 성질의 응용",
     SEC.등변사다리꼴,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -825,7 +825,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "09",
     "여러 가지 사각형의 판별 ⑴",
     SEC.등변사다리꼴,
-    "hard",
+    "심화",
     (rng): Body => {
       const s = intBetween(rng, 7, 16);
       const t = attempt(60, () => {
@@ -847,7 +847,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "10",
     "여러 가지 사각형 사이의 관계",
     SEC.등변사다리꼴,
-    "mid",
+    "응용",
     (rng): Body => {
       const idx = distinctIndices(rng, QUAD10_CLAIMS.length, 5);
       const x = idx.filter((i) => QUAD10_CLAIMS[i]![1]).length;
@@ -882,7 +882,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "11",
     "여러 가지 사각형의 대각선의 성질",
     SEC.등변사다리꼴,
-    "mid",
+    "응용",
     (rng): Body => {
       const count = intBetween(rng, 4, QUAD11_SHAPES.length);
       const idx = distinctIndices(rng, QUAD11_SHAPES.length, count);
@@ -927,7 +927,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "12",
     "사각형의 각 변의 중점을 연결하여 만든 사각형",
     SEC.등변사다리꼴,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -962,7 +962,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "17",
     "여러 가지 사각형의 판별 ⑵",
     SEC.등변사다리꼴,
-    "hard",
+    "심화",
     (rng): Body => {
       const q = intBetween(rng, 2, 9);
       const p = attempt(60, () => {

@@ -1,14 +1,9 @@
-import type {
-  Difficulty,
-  ProblemSource,
-  ReviewStatus,
-} from "@/contracts/common.contract";
+import type { ProblemSource, ReviewStatus } from "@/contracts/common.contract";
 
-export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
-  easy: "쉬움",
-  mid: "보통",
-  hard: "어려움",
-};
+// 🔴 `DIFFICULTY_LABEL` 은 없앴다 (D-106, 2026-08-25).
+//    난이도 값이 이미 사람이 읽는 말(`연산`·`기본`·`응용`·`심화`)이라 이름표가
+//    **값을 한 번 더 적는 표**가 된다. 그런 표는 값이 늘 때 조용히 뒤처진다.
+//    화면은 `problem.difficulty` 를 그대로 그린다.
 
 export const REVIEW_STATUS_LABEL: Record<ReviewStatus, string> = {
   pending: "대기",

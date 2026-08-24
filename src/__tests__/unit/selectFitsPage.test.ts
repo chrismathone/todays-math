@@ -53,7 +53,7 @@ const withFigureHeight = (
 ): SelectableProblem & { content: string } => ({
   id,
   unitId: "u1",
-  difficulty: "mid",
+  difficulty: "응용",
   problemType: "계산",
   directUseAllowed: true,
   content: "짧은 발문이다.",
@@ -95,7 +95,7 @@ const pick = (
 ) =>
   selectProblems({
     pool,
-    difficultyRatio: { easy: 0, mid: count, hard: 0 },
+    difficultyRatio: { 연산: 0, 기본: 0, 응용: count, 심화: 0 },
     count,
     recentProblemIds: [],
     seed: "fit-select",
@@ -146,22 +146,22 @@ describe("[⑷] 출제가 «칸에 안 들어가는 문항»을 후순위로 돌
   it("난이도 배분은 지면 때문에 흔들리지 않는다 — 대체하지 않는다", () => {
     // hard 는 전부 안 들어가고 easy 는 전부 들어간다. 그래도 hard 자리는 hard 로 채운다.
     const pool = [
-      small("e-1", { difficulty: "easy" }),
-      small("e-2", { difficulty: "easy" }),
-      small("e-3", { difficulty: "easy" }),
-      tall("h-1", { difficulty: "hard" }),
-      tall("h-2", { difficulty: "hard" }),
-      tall("h-3", { difficulty: "hard" }),
+      small("e-1", { difficulty: "기본" }),
+      small("e-2", { difficulty: "기본" }),
+      small("e-3", { difficulty: "기본" }),
+      tall("h-1", { difficulty: "심화" }),
+      tall("h-2", { difficulty: "심화" }),
+      tall("h-3", { difficulty: "심화" }),
     ];
     const { problems, substitutions } = selectProblems({
       pool,
-      difficultyRatio: { easy: 1, mid: 0, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 1, 응용: 0, 심화: 1 },
       count: 2,
       recentProblemIds: [],
       seed: "fit-select",
     });
 
-    expect(problems.map((p) => p.difficulty).sort()).toEqual(["easy", "hard"]);
+    expect(problems.map((p) => p.difficulty).sort()).toEqual(["기본", "심화"]);
     expect(substitutions).toEqual([]);
   });
 
@@ -202,13 +202,13 @@ describe("[⑷] 출제가 «칸에 안 들어가는 문항»을 후순위로 돌
 
   it("같은 난이도 안에서는 들어가는 것을 먼저 고른다", () => {
     const pool = [
-      tall("h-big", { difficulty: "hard" }),
-      small("h-ok", { difficulty: "hard" }),
-      small("e-1", { difficulty: "easy" }),
+      tall("h-big", { difficulty: "심화" }),
+      small("h-ok", { difficulty: "심화" }),
+      small("e-1", { difficulty: "기본" }),
     ];
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { easy: 1, mid: 0, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 1, 응용: 0, 심화: 1 },
       count: 2,
       recentProblemIds: [],
       seed: "fit-select",
@@ -235,7 +235,7 @@ describe("[⑷] 「모른다」는 «안 넘친다»로 미끄러지지 않는�
   const blind = (id: string): SelectableProblem => ({
     id,
     unitId: "u1",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     directUseAllowed: true,
   });

@@ -515,7 +515,7 @@ function toStdLines(a: number, p: number, q: number): string[] {
  * ──────────────────────────────────────────────────────────────────────── */
 
 const TYPES_G1: TypeEntry[] = [
-  g1("01", "이차함수의 뜻", "easy", (rng) =>
+  g1("01", "이차함수의 뜻", "기본", (rng) =>
     attempt(60, (): Body | null => {
       const idx = distinctIndices(rng, QUAD_DEF_POOL.length, 5);
       // 진리값은 여기서 세지 않는다 — 시험이 지면 글자로 판정한다.
@@ -554,7 +554,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("02", "이차함수가 되도록 하는 조건", "mid", (rng): Body => {
+  g1("02", "이차함수가 되도록 하는 조건", "응용", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     const u = intBetween(rng, 1, 5);
     const m = intBetween(rng, 1, 6);
@@ -575,7 +575,7 @@ const TYPES_G1: TypeEntry[] = [
     };
   }),
 
-  g1("03", "이차함수의 함숫값", "easy", (rng) =>
+  g1("03", "이차함수의 함숫값", "기본", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2, 3, -3] as const);
       const h = intBetween(rng, -3, 3);
@@ -606,7 +606,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("04", "이차함수 의 그래프", "easy", (rng) =>
+  g1("04", "이차함수 의 그래프", "기본", (rng) =>
     attempt(60, (): Body | null => {
       const idx = distinctIndices(rng, A_MAGS.length, 4);
       const mags = idx.map((i) => A_MAGS[i]!);
@@ -646,7 +646,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("05", "두 이차함수 의 그래프의 관계", "easy", (rng): Body => {
+  g1("05", "두 이차함수 의 그래프의 관계", "기본", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       const a = pickA(rng);
@@ -680,7 +680,7 @@ const TYPES_G1: TypeEntry[] = [
     };
   }),
 
-  g1("06", "이차함수 의 그래프의 성질", "mid", (rng) =>
+  g1("06", "이차함수 의 그래프의 성질", "응용", (rng) =>
     attempt(80, (): Body | null => {
       const a = pickA(rng);
       const av = rVal(a);
@@ -728,7 +728,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("07", "이차함수 의 그래프 위의 점", "mid", (rng) =>
+  g1("07", "이차함수 의 그래프 위의 점", "응용", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       // 표식이 $x=\pm1$ 이면 숫자가 원점 글자 `O` 와 겹친다 (`markCollidesWithOrigin`).
@@ -765,7 +765,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("08", "이차함수의 식 구하기", "mid", (rng) =>
+  g1("08", "이차함수의 식 구하기", "응용", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const a = pickA(rng);
@@ -796,7 +796,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("09", "이차함수 의 그래프", "easy", (rng) =>
+  g1("09", "이차함수 의 그래프", "기본", (rng) =>
     attempt(60, (): Body | null => {
       const a = pickA(rng);
       const q = intBetween(rng, 1, 9) * pick(rng, SIGNS);
@@ -832,7 +832,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("10", "이차함수 의 그래프의 성질", "mid", (rng) =>
+  g1("10", "이차함수 의 그래프의 성질", "응용", (rng) =>
     attempt(80, (): Body | null => {
       const a = pickA(rng);
       const av = rVal(a);
@@ -881,7 +881,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("11", "이차함수의 식 구하기", "mid", (rng) =>
+  g1("11", "이차함수의 식 구하기", "응용", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const a = pickA(rng);
@@ -912,7 +912,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("12", "이차함수 의 그래프", "easy", (rng) =>
+  g1("12", "이차함수 의 그래프", "기본", (rng) =>
     attempt(60, (): Body | null => {
       const a = pickA(rng);
       const p = intBetween(rng, 1, 6) * pick(rng, SIGNS);
@@ -949,7 +949,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("13", "이차함수 의 그래프의 성질", "mid", (rng) =>
+  g1("13", "이차함수 의 그래프의 성질", "응용", (rng) =>
     attempt(80, (): Body | null => {
       const a = pickA(rng);
       const av = rVal(a);
@@ -1015,7 +1015,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("14", "이차함수의 식 구하기", "mid", (rng) =>
+  g1("14", "이차함수의 식 구하기", "응용", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const a = pickA(rng);
@@ -1043,7 +1043,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("15", "이차함수 의 그래프", "mid", (rng) =>
+  g1("15", "이차함수 의 그래프", "응용", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 2);
       const a = pickA(rng);
@@ -1101,7 +1101,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("16", "이차함수 의 증가와 감소", "mid", (rng): Body => {
+  g1("16", "이차함수 의 증가와 감소", "응용", (rng): Body => {
     const a = pickA(rng);
     const av = rVal(a);
     const p = intBetween(rng, 1, 6) * pick(rng, SIGNS);
@@ -1122,7 +1122,7 @@ const TYPES_G1: TypeEntry[] = [
     };
   }),
 
-  g1("17", "이차함수 의 그래프의 성질", "mid", (rng) =>
+  g1("17", "이차함수 의 그래프의 성질", "응용", (rng) =>
     attempt(80, (): Body | null => {
       const a = pickA(rng);
       const av = rVal(a);
@@ -1178,7 +1178,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("18", "이차함수의 식 구하기", "mid", (rng) =>
+  g1("18", "이차함수의 식 구하기", "응용", (rng) =>
     attempt(200, (): Body | null => {
       const a = pick(rng, [
         [1, 1],
@@ -1213,7 +1213,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("19", "이차함수 의 그래프의 평행이동", "mid", (rng) =>
+  g1("19", "이차함수 의 그래프의 평행이동", "응용", (rng) =>
     attempt(60, (): Body | null => {
       const a = pickA(rng);
       const p = intBetween(rng, -5, 5);
@@ -1252,7 +1252,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("20", "이차함수 의 그래프에서 의 부호", "hard", (rng) =>
+  g1("20", "이차함수 의 그래프에서 의 부호", "심화", (rng) =>
     attempt(200, (): Body | null => {
       const a = pick(rng, [
         [1, 1],
@@ -1341,7 +1341,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("21", "이차함수의 그래프의 활용", "hard", (rng) =>
+  g1("21", "이차함수의 그래프의 활용", "심화", (rng) =>
     attempt(200, (): Body | null => {
       const a = pickA(rng);
       if (rVal(a) < 0) return null; // 제1사분면 위의 점이라야 직사각형이 그려진다
@@ -1379,7 +1379,7 @@ const TYPES_G1: TypeEntry[] = [
 const A_INT = [1, -1, 2, -2, 3, -3, 4, -4] as const;
 
 const TYPES_G2: TypeEntry[] = [
-  g2("01", "이차함수 를 의 꼴로 고치기", SEC.일반형, "easy", (rng) =>
+  g2("01", "이차함수 를 의 꼴로 고치기", SEC.일반형, "기본", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
@@ -1396,7 +1396,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("02", "이차함수 의 그래프의 꼭짓점과 축", SEC.일반형, "easy", (rng) =>
+  g2("02", "이차함수 의 그래프의 꼭짓점과 축", SEC.일반형, "기본", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
@@ -1423,7 +1423,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("03", "이차함수 의 그래프 그리기", SEC.일반형, "mid", (rng) =>
+  g2("03", "이차함수 의 그래프 그리기", SEC.일반형, "응용", (rng) =>
     attempt(200, (): Body | null => {
       // 지나지 않는 사분면이 정확히 하나가 되도록 (a, p, q, c) 의 부호를 짠다.
       const cfg = intBetween(rng, 0, 3);
@@ -1446,7 +1446,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("04", "이차함수 의 증가와 감소", SEC.일반형, "mid", (rng) =>
+  g2("04", "이차함수 의 증가와 감소", SEC.일반형, "응용", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
@@ -1468,7 +1468,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("05", "이차함수의 그래프와 축축과의 교점", SEC.일반형, "mid", (rng) =>
+  g2("05", "이차함수의 그래프와 축축과의 교점", SEC.일반형, "응용", (rng) =>
     attempt(120, (): Body | null => {
       // 근을 먼저 고른다 — 판별식이 제곱수라 근호가 지면에 안 나간다.
       const a = pick(rng, [1, -1, 2, -2] as const);
@@ -1498,7 +1498,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("06", "이차함수 의 그래프의 성질", SEC.일반형, "mid", (rng) =>
+  g2("06", "이차함수 의 그래프의 성질", SEC.일반형, "응용", (rng) =>
     attempt(80, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
@@ -1550,7 +1550,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("07", "이차함수 의 그래프의 평행이동", SEC.일반형, "mid", (rng) =>
+  g2("07", "이차함수 의 그래프의 평행이동", SEC.일반형, "응용", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
@@ -1587,7 +1587,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "hard", (rng) =>
+  g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "심화", (rng) =>
     attempt(300, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2] as const);
       const r1 = intBetween(rng, -5, 1);
@@ -1620,7 +1620,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("09", "이차함수 의 그래프에서 의 부호", SEC.일반형, "hard", (rng) =>
+  g2("09", "이차함수 의 그래프에서 의 부호", SEC.일반형, "심화", (rng) =>
     attempt(300, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2] as const);
       const p = intBetween(rng, 1, 3) * pick(rng, SIGNS);
@@ -1708,7 +1708,7 @@ const TYPES_G2: TypeEntry[] = [
     "10",
     "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
     SEC.일반형,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1734,7 +1734,7 @@ const TYPES_G2: TypeEntry[] = [
     "11",
     "이차함수의 식 구하기 축의 방정식과 두 점을 알 때",
     SEC.일반형,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1768,7 +1768,7 @@ const TYPES_G2: TypeEntry[] = [
     "12",
     "이차함수의 식 구하기 서로 다른 세 점을 알 때",
     SEC.일반형,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1796,7 +1796,7 @@ const TYPES_G2: TypeEntry[] = [
     "13",
     "이차함수의 식 구하기 축과의 두 교점과 다른 한 점을 알 때",
     SEC.일반형,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1825,7 +1825,7 @@ const TYPES_G2: TypeEntry[] = [
       }),
   ),
 
-  g2("14", "이차함수의 최댓값과 최솟값", SEC.최대최소, "mid", (rng) =>
+  g2("14", "이차함수의 최댓값과 최솟값", SEC.최대최소, "응용", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
       const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
@@ -1849,7 +1849,7 @@ const TYPES_G2: TypeEntry[] = [
     "15",
     "이차함수의 최댓값 또는 최솟값이 주어질 때 미지수의 값 구하기 ⑴",
     SEC.최대최소,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1873,7 +1873,7 @@ const TYPES_G2: TypeEntry[] = [
     "16",
     "이차함수의 최댓값 또는 최솟값이 주어질 때 미지수의 값 구하기 ⑵",
     SEC.최대최소,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const a = pick(rng, A_INT);
@@ -1907,7 +1907,7 @@ const TYPES_G2: TypeEntry[] = [
     "17",
     "이차함수의 활용 합 또는 차가 일정한 두 수의 곱",
     SEC.최대최소,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 2);
       const h = intBetween(rng, 3, 12);
@@ -1948,7 +1948,7 @@ const TYPES_G2: TypeEntry[] = [
     "18",
     "이차함수의 활용 쏘아 올린 물체",
     SEC.최대최소,
-    "mid",
+    "응용",
     (rng): Body => {
       const k = intBetween(rng, 2, 8);
       const v = 10 * k;
@@ -1984,7 +1984,7 @@ const TYPES_G2: TypeEntry[] = [
     },
   ),
 
-  g2("19", "이차함수의 활용 도형의 넓이", SEC.최대최소, "hard", (rng): Body => {
+  g2("19", "이차함수의 활용 도형의 넓이", SEC.최대최소, "심화", (rng): Body => {
     const h = intBetween(rng, 3, 14);
     const mode = intBetween(rng, 0, 2);
     if (mode === 0) {
@@ -2019,7 +2019,7 @@ const TYPES_G2: TypeEntry[] = [
     "20",
     "최댓값의 최솟값 또는 최솟값의 최댓값",
     SEC.최대최소,
-    "hard",
+    "심화",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -2049,7 +2049,7 @@ const TYPES_G2: TypeEntry[] = [
     "21",
     "이차함수의 활용 내접하는 도형의 넓이",
     SEC.최대최소,
-    "hard",
+    "심화",
     (rng): Body => {
       const mode = intBetween(rng, 0, 2);
       if (mode === 0) {

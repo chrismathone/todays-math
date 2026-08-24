@@ -48,6 +48,7 @@ import {
   supportedTiers,
 } from "../../src/lib/elementary/generate";
 import type { ElemTier } from "../../src/lib/elementary/difficulty";
+import type { Difficulty } from "../../src/contracts/difficulty";
 import {
   generateMiddleProblem,
   typesForSection,
@@ -104,19 +105,18 @@ type Row = {
   content: string;
   answer: string;
   solution: string;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   problemType: string;
   questionType: string;
   figureSpec: Record<string, unknown> | null;
   origin: string; // 어느 갈래/유형에서 나왔나 (원장에 적는다)
 };
 
-const TIER_DIFFICULTY: Record<Tier, "easy" | "mid" | "hard"> = {
-  연산: "easy",
-  기본: "easy",
-  응용: "mid",
-  심화: "hard",
-};
+// 🔴 `TIER_DIFFICULTY` 는 없앴다 (D-106, 2026-08-25).
+//    이 표가 **`연산` 과 `기본` 을 둘 다 `easy` 로 접고** 있었다 — 축이 둘이라
+//    어쩔 수 없었지만, 접고 나면 화면에서 「이건 연산인가 기본인가」를 되물을
+//    방법이 없다. 원장님이 문제은행에서 그것을 보시고 축을 하나로 하라고 하셨다.
+//    이제 엔진의 갈래가 곧 `difficulty` 다.
 
 const TIER_PROBLEM_TYPE: Record<Tier, string> = {
   연산: "계산",
@@ -167,7 +167,7 @@ function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
           content: p.content,
           answer: p.answer,
           solution: p.solution,
-          difficulty: TIER_DIFFICULTY[tier],
+          difficulty: tier,
           problemType: TIER_PROBLEM_TYPE[tier],
           questionType: "단답형",
           figureSpec: p.figureSpec,
@@ -203,7 +203,10 @@ function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
         answer: p.answer,
         solution: p.solution,
         difficulty: p.difficulty,
-        problemType: p.difficulty === "easy" ? "계산" : "활용",
+        // 유형은 난이도와 **다른 축**이지만 중등 엔진이 유형을 따로 안 내므로
+        // 갈래에서 어림한다. 밑 두 칸(연산·기본)은 계산, 위 두 칸은 활용.
+        problemType:
+          p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
         questionType: "단답형",
         figureSpec: (p.figureSpec as Record<string, unknown> | null) ?? null,
         origin: `중등 ${entry.key} ${entry.rpmTitle}`,

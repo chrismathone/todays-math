@@ -1,3 +1,5 @@
+import type { Difficulty } from "@/contracts/common.contract";
+
 import type { Rng } from "../elementary/types";
 
 /**
@@ -18,7 +20,7 @@ export type MidProblem = {
   content: string;
   answer: string;
   solution: string;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   facts: Record<string, number>;
   /**
    * 도형이 필요한 유형만 채운다 — FigureSpec v2 (09-figure-engine-guide §1 계층 A).

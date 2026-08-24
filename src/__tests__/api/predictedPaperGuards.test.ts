@@ -95,7 +95,7 @@ async function seedExam(
 }
 
 async function seedCandidates(count: number) {
-  const difficulties = ["easy", "mid", "hard"] as const;
+  const difficulties = ["기본", "응용", "심화"] as const;
   for (let i = 0; i < count; i += 1) {
     // exam-wiring: 테스트 — 픽스처다. 제품 적재 경로가 아니다
     await db.problem.create({

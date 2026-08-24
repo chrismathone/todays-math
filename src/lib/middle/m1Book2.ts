@@ -130,7 +130,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "07",
     "삼각형의 세 내각의 크기의 합",
     SEC2.삼각형,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const kind = pick(rng, [0, 1] as const);
@@ -166,7 +166,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "08",
     "삼각형의 내각과 외각 사이의 관계",
     SEC2.삼각형,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const p = intBetween(rng, 4, 17) * 5;
@@ -183,7 +183,7 @@ export const M1_BOOK2: TypeEntry[] = [
   ),
 
   // ── 대푯값 ────────────────────────────────────────────
-  defType(BOOK, "대푯값", "01", "평균", SEC2.대푯값, "easy", (rng) =>
+  defType(BOOK, "대푯값", "01", "평균", SEC2.대푯값, "기본", (rng) =>
     attempt(400, () => {
       const M = intBetween(rng, 65, 92);
       const head: number[] = [];
@@ -212,7 +212,7 @@ export const M1_BOOK2: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, "대푯값", "02", "중앙값", SEC2.대푯값, "easy", (rng) =>
+  defType(BOOK, "대푯값", "02", "중앙값", SEC2.대푯값, "기본", (rng) =>
     attempt(400, () => {
       const n = pick(rng, [5, 6, 7] as const);
       const pool: number[] = [];
@@ -246,7 +246,7 @@ export const M1_BOOK2: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, "대푯값", "03", "최빈값", SEC2.대푯값, "easy", (rng) =>
+  defType(BOOK, "대푯값", "03", "최빈값", SEC2.대푯값, "기본", (rng) =>
     attempt(400, () => {
       const modeCnt = pick(rng, [2, 3] as const);
       const others = 6 - modeCnt;
@@ -275,7 +275,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "04",
     "적절한 대푯값 찾기",
     SEC2.대푯값,
-    "mid",
+    "응용",
     (rng) => {
       const pool: number[] = [];
       for (let v = 230; v <= 280; v += 5) pool.push(v);
@@ -304,7 +304,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "05",
     "대푯값이 주어졌을 때 변량 구하기",
     SEC2.대푯값,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const M = intBetween(rng, 10, 30);
@@ -330,7 +330,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "06",
     "새로운 변량을 추가했을 때 대푯값 구하기",
     SEC2.대푯값,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const n = intBetween(rng, 4, 9);
@@ -354,7 +354,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "01",
     "각기둥의 겉넓이",
     SEC2.기둥,
-    "easy",
+    "기본",
     (rng) => {
       const a = intBetween(rng, 2, 10);
       const b = intBetween(rng, 2, 10);
@@ -375,7 +375,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "02",
     "원기둥의 겉넓이",
     SEC2.기둥,
-    "mid",
+    "응용",
     (rng) => {
       const r = intBetween(rng, 2, 7);
       const h = intBetween(rng, 3, 12);
@@ -395,7 +395,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "03",
     "각기둥의 부피",
     SEC2.기둥,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const a = intBetween(rng, 3, 10);
@@ -419,7 +419,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "04",
     "원기둥의 부피",
     SEC2.기둥,
-    "easy",
+    "기본",
     (rng) => {
       const r = intBetween(rng, 2, 6);
       const h = intBetween(rng, 3, 12);
@@ -440,7 +440,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "09",
     "원의 둘레의 길이와 넓이",
     SEC2.부채꼴,
-    "mid",
+    "응용",
     (rng) => {
       const r = intBetween(rng, 3, 12);
       const A = r * r;
@@ -460,7 +460,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "10",
     "부채꼴의 호의 길이와 넓이",
     SEC2.부채꼴,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const r = intBetween(rng, 2, 12);
@@ -486,7 +486,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "06",
     "공간에서 직선과 평면의 위치 관계",
     SEC2.위치,
-    "mid",
+    "응용",
     (rng) => {
       const kind = intBetween(rng, 0, REL_KINDS.length - 1);
       const rel = REL_KINDS[kind]!;
@@ -515,7 +515,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "07",
     "점과 평면 사이의 거리",
     SEC2.위치,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const dims = pickDistinct(
@@ -552,7 +552,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "08",
     "공간에서 두 평면의 위치 관계",
     SEC2.위치,
-    "easy",
+    "기본",
     (rng) => {
       const kind = pick(rng, [0, 1] as const); // 0 평행 · 1 수직
       const fi = intBetween(rng, 0, CUBE_FACES.length - 1);

@@ -856,7 +856,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "06",
     "직각삼각형의 합동 조건",
     SEC.직각합동,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const acute = 2 * intBetween(rng, 15, 37);
@@ -885,7 +885,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "07",
     "직각삼각형의 합동 조건의 응용 합동",
     SEC.직각합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const p = intBetween(rng, 3, 9);
       const q = attempt(40, () => {
@@ -908,7 +908,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "08",
     "직각삼각형의 합동 조건의 응용 합동",
     SEC.직각합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const [a, b, c] = pick(rng, PYTH_LEGS);
       const x = a + c - b;
@@ -927,7 +927,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "12",
     "폭이 일정한 종이접기",
     SEC.이등변,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -972,7 +972,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "01",
     "이등변삼각형의 성질 ⑴",
     SEC.이등변,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1010,7 +1010,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "02",
     "이등변삼각형의 성질 ⑵",
     SEC.이등변,
-    "mid",
+    "응용",
     (rng): Body => {
       const t = intBetween(rng, 20, 40);
       const d = intBetween(rng, 2, 7);
@@ -1032,7 +1032,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "03",
     "이등변삼각형의 성질의 응용 이웃한 이등변삼각형",
     SEC.이등변,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const a = intBetween(rng, 20, 34);
@@ -1063,7 +1063,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "04",
     "이등변삼각형의 성질의 응용 각의 이등분선",
     SEC.이등변,
-    "hard",
+    "심화",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const a = 2 * intBetween(rng, 20, 40);
@@ -1094,7 +1094,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "05",
     "이등변삼각형이 되는 조건",
     SEC.이등변,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1132,7 +1132,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "09",
     "각의 이등분선의 성질",
     SEC.직각합동,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const w = 2 * intBetween(rng, 20, 40);
@@ -1162,7 +1162,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "10",
     "각의 이등분선의 성질의 응용",
     SEC.직각합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const [ab, bc, ac, bd] = pick(rng, TRI10_SETS);
       const s = (ac * bd) / 2;
@@ -1181,7 +1181,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "11",
     "합동인 삼각형을 찾아 각의 크기 구하기",
     SEC.이등변,
-    "hard",
+    "심화",
     (rng): Body => {
       const a = 2 * intBetween(rng, 20, 36);
       const x = 90 - a / 2;
@@ -1201,7 +1201,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "13",
     "평행선과 삼각형의 넓이",
     SEC.평삼넓이,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1237,7 +1237,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "14",
     "높이가 같은 두 삼각형의 넓이",
     SEC.평삼넓이,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1273,7 +1273,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "15",
     "평행사변형에서 높이가 같은 두 삼각형의 넓이",
     SEC.평삼넓이,
-    "mid",
+    "응용",
     (rng): Body => {
       const [m, n] = pick(rng, RATIOS_14);
       const k = intBetween(rng, 2, 6);
@@ -1294,7 +1294,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "16",
     "사다리꼴에서 높이가 같은 두 삼각형의 넓이",
     SEC.평삼넓이,
-    "hard",
+    "심화",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {

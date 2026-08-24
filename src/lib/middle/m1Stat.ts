@@ -196,7 +196,7 @@ function coef(n: number, sym: string): string {
 const R3: readonly number[] = [3, 6, 9, 12];
 
 export const M1_SPHERE: TypeEntry[] = [
-  def(MINOR_SOLID, "21", "구의 겉넓이", SEC.구, "easy", (rng) =>
+  def(MINOR_SOLID, "21", "구의 겉넓이", SEC.구, "기본", (rng) =>
     attempt(60, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       const r = intBetween(rng, 2, 12);
@@ -232,7 +232,7 @@ export const M1_SPHERE: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SOLID, "22", "구의 부피", SEC.구, "easy", (rng) =>
+  def(MINOR_SOLID, "22", "구의 부피", SEC.구, "기본", (rng) =>
     attempt(60, (): Body | null => {
       const branch = pick(rng, [0, 1, 2, 3] as const);
       const r = pick(rng, R3);
@@ -278,7 +278,7 @@ export const M1_SPHERE: TypeEntry[] = [
     "23",
     "구의 일부분을 잘라 낸 입체도형의 겉넓이와 부피",
     SEC.구,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, (): Body | null => {
         // $\frac1n$ 을 잘라 내면 자른 면은 «반평면» $\log_2 n$ 장이고
@@ -311,7 +311,7 @@ export const M1_SPHERE: TypeEntry[] = [
     "24",
     "회전체의 겉넓이와 부피 구",
     SEC.구,
-    "mid",
+    "응용",
     (rng) =>
       attempt(60, (): Body | null => {
         const half = pick(rng, [0, 1] as const);
@@ -338,7 +338,7 @@ export const M1_SPHERE: TypeEntry[] = [
     (f) => [f.A, f.V].filter((v): v is number => v !== undefined),
   ),
 
-  def(MINOR_SOLID, "25", "원뿔 구 원기둥의 부피의 비", SEC.구, "mid", (rng) =>
+  def(MINOR_SOLID, "25", "원뿔 구 원기둥의 부피의 비", SEC.구, "응용", (rng) =>
     attempt(60, (): Body | null => {
       const branch = pick(rng, [0, 1, 2] as const);
       const r = pick(rng, R3);
@@ -377,7 +377,7 @@ export const M1_SPHERE: TypeEntry[] = [
     "26",
     "입체도형에 꼭 맞게 들어가는 입체도형",
     SEC.구,
-    "hard",
+    "심화",
     (rng) =>
       attempt(60, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -497,7 +497,7 @@ const RATES: readonly number[] = [
 const RATES5: readonly number[] = [5, 10, 15, 20, 25, 30, 35, 40];
 
 export const M1_FREQ: TypeEntry[] = [
-  def(MINOR_FREQ, "02", "도수분포표의 이해", SEC.도수분포표, "easy", (rng) =>
+  def(MINOR_FREQ, "02", "도수분포표의 이해", SEC.도수분포표, "기본", (rng) =>
     attempt(80, (): Body | null => {
       const t = pick(rng, TOPICS);
       const branch = pick(rng, [0, 1, 2] as const);
@@ -544,7 +544,7 @@ export const M1_FREQ: TypeEntry[] = [
     "03",
     "도수분포표에서 특정 계급의 백분율",
     SEC.도수분포표,
-    "easy",
+    "기본",
     (rng) =>
       attempt(120, (): Body | null => {
         const t = pick(rng, TOPICS);
@@ -584,7 +584,7 @@ export const M1_FREQ: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_FREQ, "11", "상대도수", SEC.상대도수, "mid", (rng) =>
+  def(MINOR_FREQ, "11", "상대도수", SEC.상대도수, "응용", (rng) =>
     attempt(150, (): Body | null => {
       const branch = pick(rng, [0, 1, 2, 3] as const);
       const T = pick(rng, TOTALS);
@@ -634,7 +634,7 @@ export const M1_FREQ: TypeEntry[] = [
     "15",
     "도수의 총합이 다른 두 집단의 상대도수",
     SEC.상대도수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, (): Body | null => {
         const t = pick(rng, TOPICS);
@@ -702,7 +702,7 @@ export const M1_FREQ: TypeEntry[] = [
     "16",
     "도수의 총합이 다른 두 집단의 상대도수의 비",
     SEC.상대도수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, (): Body | null => {
         const t = pick(rng, TOPICS);

@@ -18,6 +18,8 @@
  * ## 지금 등록된 것
  * 하나뿐이다. **문형을 늘리려면 원장님 승인이 먼저다**(D-07) — 여기에 손으로 더하지 말 것.
  */
+import type { Difficulty } from "@/contracts/common.contract";
+
 import { createRng, intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
@@ -33,7 +35,7 @@ export type MidComboProblem = {
   content: string;
   answer: string;
   solution: string;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   facts: Record<string, number>;
 };
 
@@ -119,7 +121,7 @@ const quadraticCircle: ComboFamily = {
         `인수분해하면 $(x-${p})(x+${q})=0$ 이므로 $x=${p}$ 또는 $x=-${q}$ 이다.\n` +
         `$x$ 는 양수이므로 $x=${p}$ 이다. ` +
         `(이때 원주각은 $${inscribed}^\\circ$, 중심각은 $${central}^\\circ$ 이다.)`,
-      difficulty: "hard",
+      difficulty: "심화",
       facts: { p, q, a, b, e, f, inscribed, central },
     };
   },

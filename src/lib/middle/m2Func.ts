@@ -154,7 +154,7 @@ function pickDistinct(rng: Rng, size: number, n: number): number[] {
 
 export const M2_FUNC: TypeEntry[] = [
   // ── 일차함수와 그 그래프 ⑴ ─────────────────────────────
-  def(MINOR_G1, "01", "함수", SEC.함숫값, "easy", (rng) => {
+  def(MINOR_G1, "01", "함수", SEC.함숫값, "기본", (rng) => {
     const idx = pickDistinct(rng, FUNC_POOL.length, 4);
     const ans = idx.filter((i) => FUNC_POOL[i]!.isFunc).length;
     const items = idx
@@ -173,7 +173,7 @@ export const M2_FUNC: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_G1, "02", "함숫값", SEC.함숫값, "easy", (rng) => {
+  def(MINOR_G1, "02", "함숫값", SEC.함숫값, "기본", (rng) => {
     const a = nonZero(rng, -5, 5);
     const b = intBetween(rng, -6, 6);
     const p = nonZero(rng, -5, 5);
@@ -190,7 +190,7 @@ export const M2_FUNC: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_G1, "03", "일차함수", SEC.함숫값, "easy", (rng) => {
+  def(MINOR_G1, "03", "일차함수", SEC.함숫값, "기본", (rng) => {
     const idx = pickDistinct(rng, LINEAR_POOL.length, 5);
     const ans = idx.filter((i) => LINEAR_POOL[i]!.isLinear).length;
     const items = idx
@@ -216,7 +216,7 @@ export const M2_FUNC: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_G1, "04", "일차함수의 그래프 위의 점", SEC.함숫값, "easy", (rng) =>
+  def(MINOR_G1, "04", "일차함수의 그래프 위의 점", SEC.함숫값, "기본", (rng) =>
     attempt(80, () => {
       const a = nonZero(rng, -4, 4);
       const k = nonZero(rng, -5, 5);
@@ -232,7 +232,7 @@ export const M2_FUNC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_G1, "05", "일차함수의 그래프의 평행이동", SEC.성질, "mid", (rng) =>
+  def(MINOR_G1, "05", "일차함수의 그래프의 평행이동", SEC.성질, "응용", (rng) =>
     attempt(80, () => {
       const a = nonZero(rng, -4, 4);
       const p = nonZero(rng, -4, 4);
@@ -248,7 +248,7 @@ export const M2_FUNC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_G1, "06", "일차함수의 그래프의 절편절편", SEC.절편, "mid", (rng) =>
+  def(MINOR_G1, "06", "일차함수의 그래프의 절편절편", SEC.절편, "응용", (rng) =>
     attempt(120, () => {
       const m = nonZero(rng, -4, 4);
       const x0 = nonZero(rng, -6, 6);
@@ -264,7 +264,7 @@ export const M2_FUNC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_G1, "07", "일차함수의 그래프의 기울기", SEC.기울기, "mid", (rng) =>
+  def(MINOR_G1, "07", "일차함수의 그래프의 기울기", SEC.기울기, "응용", (rng) =>
     attempt(200, () => {
       // 그림이 직선을 말한다 — 격자점 두 개를 점선 안내선으로 찍는다(0891 문법).
       const [num, den] = pick(rng, [
@@ -315,7 +315,7 @@ export const M2_FUNC: TypeEntry[] = [
     "08",
     "두 점을 지나는 일차함수의 그래프의 기울기",
     SEC.기울기,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -4, 4);
@@ -339,7 +339,7 @@ export const M2_FUNC: TypeEntry[] = [
     "09",
     "세 점이 한 직선 위에 있을 조건",
     SEC.기울기,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -3, 3);
@@ -366,7 +366,7 @@ export const M2_FUNC: TypeEntry[] = [
     "11",
     "일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이",
     SEC.절편,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const x0 = nonZero(rng, -5, 5);
@@ -409,7 +409,7 @@ export const M2_FUNC: TypeEntry[] = [
     "12",
     "함숫값을 이용하여 일차함수의 그래프의 기울기 구하기",
     SEC.기울기,
-    "hard",
+    "심화",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -4, 4);
@@ -430,7 +430,7 @@ export const M2_FUNC: TypeEntry[] = [
   ),
 
   // ── 일차함수와 그 그래프 ⑵ ─────────────────────────────
-  def(MINOR_G2, "03", "두 일차함수의 그래프의 평행", SEC.성질, "mid", (rng) =>
+  def(MINOR_G2, "03", "두 일차함수의 그래프의 평행", SEC.성질, "응용", (rng) =>
     attempt(80, () => {
       const a = nonZero(rng, -4, 4);
       const mult = intBetween(rng, 2, 3);
@@ -456,7 +456,7 @@ export const M2_FUNC: TypeEntry[] = [
     "05",
     "일차함수의 식 구하기 기울기와 절편이 주어질 때",
     SEC.식구하기,
-    "easy",
+    "기본",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -4, 4);
@@ -478,7 +478,7 @@ export const M2_FUNC: TypeEntry[] = [
     "06",
     "일차함수의 식 구하기 기울기와 한 점의 좌표가 주어질 때",
     SEC.식구하기,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -4, 4);
@@ -500,7 +500,7 @@ export const M2_FUNC: TypeEntry[] = [
     "07",
     "일차함수의 식 구하기 두 점의 좌표가 주어질 때",
     SEC.식구하기,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -3, 3);
@@ -525,7 +525,7 @@ export const M2_FUNC: TypeEntry[] = [
     "09",
     "일차함수의 활용 온도에 대한 문제",
     SEC.온도길이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const t0 = intBetween(rng, 16, 30);
@@ -547,7 +547,7 @@ export const M2_FUNC: TypeEntry[] = [
     "10",
     "일차함수의 활용 길이에 대한 문제",
     SEC.온도길이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const L0 = intBetween(rng, 20, 30);
@@ -570,7 +570,7 @@ export const M2_FUNC: TypeEntry[] = [
     "07",
     "연립방정식의 해와 그래프의 교점",
     SEC.연립해,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const m1 = nonZero(rng, -3, 3);

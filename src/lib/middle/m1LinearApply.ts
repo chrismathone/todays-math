@@ -74,7 +74,7 @@ function def(
 
 export const M1_LINEAR_APPLY: TypeEntry[] = [
   // ── (수) ──────────────────────────────────────────────
-  def("01", "어떤 수에 대한 문제", SEC.수, "easy", (rng) =>
+  def("01", "어떤 수에 대한 문제", SEC.수, "기본", (rng) =>
     attempt(50, () => {
       const x = intBetween(rng, 2, 12);
       const a = intBetween(rng, 2, 5);
@@ -94,7 +94,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("02", "연속하는 자연수에 대한 문제", SEC.수, "easy", (rng) => {
+  def("02", "연속하는 자연수에 대한 문제", SEC.수, "기본", (rng) => {
     const m = intBetween(rng, 6, 40);
     const S = 3 * m;
     return {
@@ -105,7 +105,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("03", "자릿수에 대한 문제", SEC.수, "mid", (rng) => {
+  def("03", "자릿수에 대한 문제", SEC.수, "응용", (rng) => {
     const a = intBetween(rng, 1, 8);
     const b = intBetween(rng, a + 1, 9);
     const s = a + b;
@@ -119,7 +119,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("06", "개수의 합이 일정한 문제", SEC.수, "easy", (rng) =>
+  def("06", "개수의 합이 일정한 문제", SEC.수, "기본", (rng) =>
     attempt(50, () => {
       const x = intBetween(rng, 3, 12);
       const T = x + intBetween(rng, 2, 10);
@@ -137,7 +137,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   ),
 
   // ── (나이, 과부족, 예금) ─────────────────────────────
-  def("04", "나이에 대한 문제", SEC.나이, "mid", (rng) =>
+  def("04", "나이에 대한 문제", SEC.나이, "응용", (rng) =>
     attempt(80, () => {
       const s = intBetween(rng, 8, 15);
       const m = intBetween(rng, 2, 3);
@@ -153,7 +153,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("05", "예금에 대한 문제", SEC.나이, "mid", (rng) =>
+  def("05", "예금에 대한 문제", SEC.나이, "응용", (rng) =>
     attempt(120, () => {
       const n = intBetween(rng, 3, 12);
       const q = intBetween(rng, 2, 6) * 500;
@@ -171,7 +171,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("08", "과부족에 대한 문제", SEC.나이, "mid", (rng) =>
+  def("08", "과부족에 대한 문제", SEC.나이, "응용", (rng) =>
     attempt(80, () => {
       const n = intBetween(rng, 5, 20);
       const a = intBetween(rng, 2, 6);
@@ -189,7 +189,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("20", "긴 의자에 대한 문제", SEC.나이, "hard", (rng) =>
+  def("20", "긴 의자에 대한 문제", SEC.나이, "심화", (rng) =>
     attempt(300, () => {
       const b = intBetween(rng, 5, 8);
       const a = b - intBetween(rng, 1, 2);
@@ -210,7 +210,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   ),
 
   // ── (증가와 감소, 원가와 정가) ───────────────────────
-  def("09", "증가 감소에 대한 문제", SEC.증감, "hard", (rng) =>
+  def("09", "증가 감소에 대한 문제", SEC.증감, "심화", (rng) =>
     attempt(80, () => {
       const a = pick(rng, [5, 10] as const);
       const b = pick(rng, [5, 10] as const);
@@ -229,7 +229,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("18", "원가 정가에 대한 문제", SEC.증감, "mid", (rng) =>
+  def("18", "원가 정가에 대한 문제", SEC.증감, "응용", (rng) =>
     attempt(80, () => {
       const x = intBetween(rng, 2, 20) * 1000;
       const m = pick(rng, [20, 25, 30, 40] as const);
@@ -253,7 +253,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "11",
     "거리 속력 시간에 대한 문제 속력이 바뀌는 경우",
     SEC.거리,
-    "hard",
+    "심화",
     (rng) => {
       const [v1, v2] = pick(rng, [
         [2, 3],
@@ -278,7 +278,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "12",
     "거리 속력 시간에 대한 문제 시간 차가 발생하는 경우",
     SEC.거리,
-    "hard",
+    "심화",
     (rng) => {
       const [v1, v2, coef] = pick(rng, [
         [3, 4, 5],
@@ -301,7 +301,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "13",
     "거리 속력 시간에 대한 문제 시간 차를 두고 출발하는 경우",
     SEC.거리,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const u = pick(rng, [40, 50, 60, 80] as const);
@@ -324,7 +324,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "14",
     "거리 속력 시간에 대한 문제 마주 보고 가거나 둘레를 도는 경우",
     SEC.거리,
-    "mid",
+    "응용",
     (rng) => {
       const t = intBetween(rng, 4, 15);
       const p = intBetween(rng, 5, 9) * 10;
@@ -343,7 +343,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "22",
     "거리 속력 시간에 대한 문제 기차가 다리 또는 터널을 지나는 경우",
     SEC.거리,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         const v = pick(rng, [15, 20, 25, 30] as const);
@@ -364,7 +364,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   ),
 
   // ── (도형, 농도, 일) ─────────────────────────────────
-  def("07", "도형에 대한 문제", SEC.도형, "easy", (rng) => {
+  def("07", "도형에 대한 문제", SEC.도형, "기본", (rng) => {
     const h = intBetween(rng, 4, 15);
     const d = intBetween(rng, 2, 8);
     const w = h + d;
@@ -381,7 +381,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "15",
     "농도에 대한 문제 물을 넣거나 증발시키는 경우",
     SEC.도형,
-    "mid",
+    "응용",
     (rng) => {
       const C = pick(rng, [4, 5, 6, 8, 10] as const);
       const A = C + intBetween(rng, 2, 6);
@@ -397,7 +397,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     },
   ),
 
-  def("16", "농도에 대한 문제 소금을 더 넣는 경우", SEC.도형, "hard", (rng) =>
+  def("16", "농도에 대한 문제 소금을 더 넣는 경우", SEC.도형, "심화", (rng) =>
     attempt(400, () => {
       const A = pick(rng, [5, 8, 10] as const);
       const C = pick(rng, [10, 20, 25] as const);
@@ -420,7 +420,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "17",
     "농도에 대한 문제 농도가 다른 두 소금물을 섞는 경우",
     SEC.도형,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, () => {
         const a = pick(rng, [6, 8, 10, 12, 15] as const);
@@ -441,7 +441,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def("19", "일에 대한 문제", SEC.도형, "mid", (rng) => {
+  def("19", "일에 대한 문제", SEC.도형, "응용", (rng) => {
     const [a, b, x] = pick(rng, [
       [3, 6, 2],
       [4, 12, 3],
@@ -461,7 +461,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   }),
 
   // ── (비율, 시계, 규칙) ───────────────────────────────
-  def("10", "전체의 양에 대한 문제", SEC.비율, "mid", (rng) => {
+  def("10", "전체의 양에 대한 문제", SEC.비율, "응용", (rng) => {
     const a = intBetween(rng, 2, 4);
     const b = intBetween(rng, 2, 4);
     const k = intBetween(rng, 6, 30);
@@ -475,7 +475,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("21", "규칙을 찾는 문제", SEC.비율, "easy", (rng) => {
+  def("21", "규칙을 찾는 문제", SEC.비율, "기본", (rng) => {
     const n = intBetween(rng, 8, 30);
     const M = 2 * n + 1;
     return {

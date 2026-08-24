@@ -316,7 +316,7 @@ function figParallel04(theta: number): Fig {
 }
 
 const M1_CONSTR: TypeEntry[] = [
-  def(MINOR_CONSTR, "01", "작도", SEC.작도, "easy", (rng): Body => {
+  def(MINOR_CONSTR, "01", "작도", SEC.작도, "기본", (rng): Body => {
     const { lines, ans } = truthPick(rng, BANK_01);
     return {
       content: `작도에 대한 다음 설명 중 옳은 것을 모두 고를 때, 그 개수를 구하시오.\n${lines}`,
@@ -331,7 +331,7 @@ const M1_CONSTR: TypeEntry[] = [
     "02",
     "길이가 같은 선분의 작도",
     SEC.작도,
-    "easy",
+    "기본",
     (rng): Body =>
       attempt(200, () => {
         const mode = intBetween(rng, 0, 1);
@@ -366,7 +366,7 @@ const M1_CONSTR: TypeEntry[] = [
     "03",
     "크기가 같은 각의 작도",
     SEC.작도,
-    "easy",
+    "기본",
     (rng): Body =>
       attempt(200, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -396,7 +396,7 @@ const M1_CONSTR: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_CONSTR, "04", "평행선의 작도", SEC.작도, "mid", (rng): Body => {
+  def(MINOR_CONSTR, "04", "평행선의 작도", SEC.작도, "응용", (rng): Body => {
     const theta = intBetween(rng, 8, 17) * 5;
     const x = 180 - theta;
     return {
@@ -413,7 +413,7 @@ const M1_CONSTR: TypeEntry[] = [
     "05",
     "삼각형의 세 변의 길이 사이의 관계",
     SEC.작도,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const b = intBetween(rng, 3, 9);
@@ -431,7 +431,7 @@ const M1_CONSTR: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_CONSTR, "06", "삼각형의 작도", SEC.작도, "mid", (rng): Body => {
+  def(MINOR_CONSTR, "06", "삼각형의 작도", SEC.작도, "응용", (rng): Body => {
     const facts: Record<string, number> = {};
     const lines: string[] = [];
     let ans = 0;
@@ -469,7 +469,7 @@ const M1_CONSTR: TypeEntry[] = [
     "07",
     "삼각형이 하나로 정해질 조건",
     SEC.작도,
-    "mid",
+    "응용",
     (rng): Body => {
       const { lines, ans } = truthPick(rng, BANK_07);
       return {
@@ -497,7 +497,7 @@ const PERM3: readonly (readonly [number, number, number])[] = [
 ];
 
 const M1_JOINT: TypeEntry[] = [
-  def(MINOR_CONSTR, "08", "합동인 도형의 성질", SEC.합동, "easy", (rng): Body =>
+  def(MINOR_CONSTR, "08", "합동인 도형의 성질", SEC.합동, "기본", (rng): Body =>
     attempt(200, () => {
       const p = intBetween(rng, 60, 130);
       const q = intBetween(rng, 60, 130);
@@ -518,7 +518,7 @@ const M1_JOINT: TypeEntry[] = [
     "09",
     "합동인 삼각형 찾기",
     SEC.합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const facts: Record<string, number> = {};
       const lines: string[] = [];
@@ -570,7 +570,7 @@ const M1_JOINT: TypeEntry[] = [
     "10",
     "두 삼각형이 합동이 되기 위한 조건",
     SEC.합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const config = intBetween(rng, 0, 2);
       // config 0: AB=DE, BC=EF 가 이미 같다 → 끼인각은 ∠B(=∠E).
@@ -630,7 +630,7 @@ const M1_JOINT: TypeEntry[] = [
     "11",
     "삼각형의 합동 조건합동",
     SEC.합동,
-    "easy",
+    "기본",
     (rng): Body => {
       const a = intBetween(rng, 4, 12);
       const b = intBetween(rng, 4, 12);
@@ -663,7 +663,7 @@ const M1_JOINT: TypeEntry[] = [
     "12",
     "삼각형의 합동 조건 합동",
     SEC.합동,
-    "easy",
+    "기본",
     (rng): Body => {
       const a = intBetween(rng, 4, 14);
       const b = intBetween(rng, 4, 14);
@@ -686,7 +686,7 @@ const M1_JOINT: TypeEntry[] = [
     "13",
     "삼각형의 합동 조건 합동",
     SEC.합동,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const a = intBetween(rng, 30, 80);
@@ -710,7 +710,7 @@ const M1_JOINT: TypeEntry[] = [
     "14",
     "삼각형의 합동의 활용",
     SEC.합동,
-    "mid",
+    "응용",
     (rng): Body => {
       const x = intBetween(rng, 12, 90);
       const mode = intBetween(rng, 0, 1);
@@ -803,7 +803,7 @@ function figPolygonAllDiagonals(n: number): Fig {
 }
 
 const M1_POLY_BASIC: TypeEntry[] = [
-  def(MINOR_POLY, "01", "다각형", SEC.다각형, "easy", (rng): Body => {
+  def(MINOR_POLY, "01", "다각형", SEC.다각형, "기본", (rng): Body => {
     const { lines, ans } = truthPick(rng, BANK_POLY01);
     return {
       content: `다음 중 다각형인 것을 모두 고를 때, 그 개수를 구하시오.\n${lines}`,
@@ -818,7 +818,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
     "02",
     "다각형의 내각과 외각",
     SEC.다각형내외각,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const known = intBetween(rng, 20, 160);
@@ -840,7 +840,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_POLY, "03", "정다각형", SEC.다각형, "easy", (rng): Body => {
+  def(MINOR_POLY, "03", "정다각형", SEC.다각형, "기본", (rng): Body => {
     const { lines, ans } = truthPick(rng, BANK_POLY03);
     return {
       content: `다음 중 정다각형인 것을 모두 고를 때, 그 개수를 구하시오.\n${lines}`,
@@ -855,7 +855,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
     "04",
     "한 꼭짓점에서 그을 수 있는 대각선의 개수",
     SEC.다각형,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const n = intBetween(rng, 5, 12);
@@ -887,7 +887,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
     "05",
     "다각형의 대각선의 개수",
     SEC.다각형,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = intBetween(rng, 5, 12);
       const d = (n * (n - 3)) / 2;
@@ -906,7 +906,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
     "06",
     "대각선의 개수가 주어질 때 다각형 구하기",
     SEC.다각형,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = intBetween(rng, 4, 15);
       const d = (n * (n - 3)) / 2;
@@ -934,7 +934,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "09",
     "삼각형의 한 내각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const B = 2 * intBetween(rng, 10, 60);
@@ -961,7 +961,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "10",
     "삼각형의 두 내각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "mid",
+    "응용",
     (rng): Body => {
       const A = 2 * intBetween(rng, 5, 60);
       const ans = 90 + A / 2;
@@ -979,7 +979,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "11",
     "삼각형의 한 내각의 이등분선과 한 외각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "hard",
+    "심화",
     (rng): Body => {
       const A = 2 * intBetween(rng, 5, 60);
       const ans = A / 2;
@@ -997,7 +997,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "12",
     "이등변삼각형의 성질을 이용하여 각의 크기 구하기",
     SEC.삼각형내외각,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1035,7 +1035,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "13",
     "모양의 도형에서 각의 크기 구하기",
     SEC.삼각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const a = intBetween(rng, 20, 90);
@@ -1057,7 +1057,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "14",
     "별 모양의 도형에서 각의 크기 구하기",
     SEC.삼각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const a = intBetween(rng, 15, 45);
@@ -1080,7 +1080,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "15",
     "다각형의 내각의 크기의 합",
     SEC.다각형내외각,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const n = intBetween(rng, 4, 15);
@@ -1107,7 +1107,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "16",
     "다각형의 내각의 크기 구하기",
     SEC.다각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const n = intBetween(rng, 4, 8);
@@ -1135,7 +1135,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "17",
     "다각형의 외각의 크기 구하기",
     SEC.다각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const n = intBetween(rng, 4, 8);
@@ -1162,7 +1162,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "18",
     "다각형의 내각의 크기의 합의 활용",
     SEC.다각형내외각,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = intBetween(rng, 5, 12);
       const s = (n - 2) * 180;
@@ -1191,7 +1191,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "19",
     "정다각형의 한 내각의 크기와 한 외각의 크기",
     SEC.다각형내외각,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const n = pick(rng, VALID_N_19);
@@ -1223,7 +1223,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "20",
     "정다각형에서 각의 크기 구하기 ⑴",
     SEC.다각형내외각,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = intBetween(rng, 4, 20);
       const m = intBetween(rng, 1, 4);
@@ -1243,7 +1243,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "21",
     "정다각형에서 각의 크기 구하기 ⑵",
     SEC.다각형내외각,
-    "mid",
+    "응용",
     (rng): Body => {
       const n = pick(rng, EVEN_N_21);
       const k = (n - 2) / 2;
@@ -1261,7 +1261,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "22",
     "다각형의 대각선의 개수의 활용",
     SEC.다각형,
-    "hard",
+    "심화",
     (rng): Body => {
       const n = intBetween(rng, 4, 15);
       const K = (n * (n - 1)) / 2;
@@ -1279,7 +1279,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "23",
     "삼각형의 두 외각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "hard",
+    "심화",
     (rng): Body => {
       const A = 2 * intBetween(rng, 5, 60);
       const ans = 90 - A / 2;
@@ -1297,7 +1297,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "24",
     "삼각형의 외각의 성질을 이용하여 각의 크기 구하기",
     SEC.삼각형내외각,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(200, () => {
         const a = intBetween(rng, 15, 55);

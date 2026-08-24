@@ -187,7 +187,7 @@ function reduceTex(n: number, d: number): string {
 
 export const M2_PROB: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
-  def("01", "확률", SEC.뜻과성질, "easy", (rng): Body => {
+  def("01", "확률", SEC.뜻과성질, "기본", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 2) {
       // 회전판 — 칸에 적힌 수가 m 의 배수
@@ -229,7 +229,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  def("02", "방정식 부등식에서의 확률", SEC.뜻과성질, "mid", (rng) =>
+  def("02", "방정식 부등식에서의 확률", SEC.뜻과성질, "응용", (rng) =>
     attempt(200, (): Body | null => {
       const c = pick(rng, [2, 3] as const);
       const k = intBetween(rng, 1, 6);
@@ -251,7 +251,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 03 ─────────────────────────────────────────────
-  def("03", "확률의 성질", SEC.뜻과성질, "easy", (rng): Body => {
+  def("03", "확률의 성질", SEC.뜻과성질, "기본", (rng): Body => {
     const kind = pick(rng, [0, 1] as const);
     if (kind === 1) {
       // 회전판 — 절대로 일어나지 않는 사건(원판에 없는 수)과 반드시 일어나는 사건
@@ -279,7 +279,7 @@ export const M2_PROB: TypeEntry[] = [
     "04",
     "어떤 사건이 일어나지 않을 확률",
     SEC.뜻과성질,
-    "mid",
+    "응용",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       if (kind === 0) {
@@ -305,7 +305,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 05 ─────────────────────────────────────────────
-  def("05", "적어도 하나는 일 확률", SEC.뜻과성질, "mid", (rng): Body => {
+  def("05", "적어도 하나는 일 확률", SEC.뜻과성질, "응용", (rng): Body => {
     const kind = pick(rng, [0, 1, 2] as const);
     if (kind === 0) {
       const c = intBetween(rng, 2, 4);
@@ -339,7 +339,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 06 ─────────────────────────────────────────────
-  def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "mid", (rng) => {
+  def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "응용", (rng) => {
     // 갈래를 **재시도 밖에서** 뽑는다 — 안에서 뽑으면 조건이 까다로운 갈래
     // (회전판: 최소공배수가 칸 수를 넘어야 한다)가 재시도마다 밀려나
     // 지면에 거의 안 나온다. 실측으로 6문항 중 0회였다.
@@ -394,7 +394,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 07 ─────────────────────────────────────────────
-  def("07", "두 사건 가 동시에 일어날 확률", SEC.계산, "mid", (rng): Body => {
+  def("07", "두 사건 가 동시에 일어날 확률", SEC.계산, "응용", (rng): Body => {
     const w1 = intBetween(rng, 2, 5);
     const b1 = intBetween(rng, 2, 5);
     const w2 = intBetween(rng, 2, 5);
@@ -409,7 +409,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 08 ─────────────────────────────────────────────
-  def("08", "두 사건 중 적어도 하나가 일어날 확률", SEC.계산, "mid", (rng) =>
+  def("08", "두 사건 중 적어도 하나가 일어날 확률", SEC.계산, "응용", (rng) =>
     attempt(100, (): Body | null => {
       const pa = pick(rng, NICE_PROBS);
       const pb = pick(rng, NICE_PROBS);
@@ -428,7 +428,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 09 ─────────────────────────────────────────────
-  def("09", "확률의 덧셈과 곱셈", SEC.계산, "hard", (rng) =>
+  def("09", "확률의 덧셈과 곱셈", SEC.계산, "심화", (rng) =>
     attempt(100, (): Body | null => {
       const a1 = intBetween(rng, 1, 4);
       const a2 = intBetween(rng, 1, 4);
@@ -453,7 +453,7 @@ export const M2_PROB: TypeEntry[] = [
     "10",
     "연속하여 꺼내는 경우의 확률 꺼낸 것을 다시 넣는 경우",
     SEC.계산,
-    "mid",
+    "응용",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       if (kind === 0) {
@@ -492,7 +492,7 @@ export const M2_PROB: TypeEntry[] = [
     "11",
     "연속하여 꺼내는 경우의 확률 꺼낸 것을 다시 넣지 않는 경우",
     SEC.계산,
-    "mid",
+    "응용",
     (rng): Body => {
       const kind = pick(rng, [0, 1] as const);
       if (kind === 0) {
@@ -521,7 +521,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 12 ─────────────────────────────────────────────
-  def("12", "승패에 대한 확률", SEC.계산, "hard", (rng): Body => {
+  def("12", "승패에 대한 확률", SEC.계산, "심화", (rng): Body => {
     const cond = pick(rng, [0, 1, 2, 3, 4] as const);
     const who = pick(rng, [0, 1] as const); // 0: A(1·3회), 1: B(2·4회)
     const c = DICE_CONDS[cond]!;
@@ -546,7 +546,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 13 ─────────────────────────────────────────────
-  def("13", "이전 사건에 영향을 받는 확률", SEC.계산, "hard", (rng) =>
+  def("13", "이전 사건에 영향을 받는 확률", SEC.계산, "심화", (rng) =>
     attempt(100, (): Body | null => {
       const pw = pick(rng, NICE_PROBS);
       const pl = pick(rng, NICE_PROBS);

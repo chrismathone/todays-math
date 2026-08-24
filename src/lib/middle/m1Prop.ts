@@ -270,7 +270,7 @@ const COORD: TypeEntry[] = [
     "01",
     "순서쌍과 좌표평면 위의 점의 좌표",
     SEC.좌표기본,
-    "easy",
+    "기본",
     (rng) =>
       attempt<Body>(200, (): Body | null => {
         const a = nonZero(rng, -6, 6);
@@ -315,7 +315,7 @@ const COORD: TypeEntry[] = [
     "02",
     "축 또는 축 위의 점의 좌표",
     SEC.좌표기본,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const t = nonZero(rng, -5, 5); // 정답이 되는 문자의 값 — **먼저 정한다**
@@ -374,7 +374,7 @@ const COORD: TypeEntry[] = [
     "07",
     "상황을 그래프로 나타내기",
     SEC.그래프이해,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         // 아래가 넓고 위가 좁은 그릇 — 처음엔 천천히, 나중엔 빨리 오른다.
@@ -434,7 +434,7 @@ const COORD: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_COORD, "08", "그래프의 해석", SEC.그래프이해, "mid", (rng) =>
+  def(MINOR_COORD, "08", "그래프의 해석", SEC.그래프이해, "응용", (rng) =>
     attempt<Body>(400, (): Body | null => {
       // 속력을 60 의 약수로 잡으면 «분»과 «시속»이 둘 다 정수가 된다.
       const SPEED = [6, 10, 12, 15, 20, 30] as const;
@@ -492,7 +492,7 @@ const COORD: TypeEntry[] = [
     "09",
     "주기적 변화를 나타내는 그래프",
     SEC.그래프이해,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const half = intBetween(rng, 3, 10);
@@ -561,7 +561,7 @@ const COORD: TypeEntry[] = [
     "11",
     "그래프의 해석 두 그래프의 비교",
     SEC.그래프이해,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Body>(500, (): Body | null => {
         const SPEED = [6, 10, 12, 15, 20, 30] as const;
@@ -634,7 +634,7 @@ const COORD: TypeEntry[] = [
 // ── 정비례 ───────────────────────────────────────────────────────────
 
 const PROP: TypeEntry[] = [
-  def(MINOR_PROP, "01", "정비례 관계", SEC.정비례, "easy", (rng) =>
+  def(MINOR_PROP, "01", "정비례 관계", SEC.정비례, "기본", (rng) =>
     attempt<Body>(300, (): Body | null => {
       const a = nonZero(rng, -6, 6);
       const branch = intBetween(rng, 0, 1);
@@ -677,7 +677,7 @@ const PROP: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_PROP, "02", "정비례 관계의 식 구하기", SEC.정비례, "easy", (rng) =>
+  def(MINOR_PROP, "02", "정비례 관계의 식 구하기", SEC.정비례, "기본", (rng) =>
     attempt<Body>(300, (): Body | null => {
       const a = nonZero(rng, -6, 6);
       const p = intBetween(rng, 2, 8);
@@ -721,7 +721,7 @@ const PROP: TypeEntry[] = [
     "03",
     "정비례 관계 의 활용 와 사이의 관계를 나타내는 식 구하기",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(200, (): Body | null => {
         const sc = intBetween(rng, 0, 3);
@@ -771,7 +771,7 @@ const PROP: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_PROP, "05", "정비례 관계 의 그래프", SEC.정비례, "easy", (rng) =>
+  def(MINOR_PROP, "05", "정비례 관계 의 그래프", SEC.정비례, "기본", (rng) =>
     attempt<Body>(300, (): Body | null => {
       const a = nonZero(rng, -5, 5);
       const m = intBetween(rng, 1, 5); // 그림이 찍는 점의 $x$좌표
@@ -798,7 +798,7 @@ const PROP: TypeEntry[] = [
     "06",
     "정비례 관계 의 그래프와 의 절댓값 사이의 관계",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const mags = [1, 2, 3, 4, 5, 6];
@@ -839,7 +839,7 @@ const PROP: TypeEntry[] = [
     "07",
     "정비례 관계 의 그래프가 지나는 점",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const a = nonZero(rng, -6, 6);
@@ -884,7 +884,7 @@ const PROP: TypeEntry[] = [
     "08",
     "정비례 관계 의 그래프의 성질",
     SEC.정비례,
-    "easy",
+    "기본",
     (rng) => {
       const a = nonZero(rng, -6, 6);
       const branch = intBetween(rng, 0, 2);
@@ -929,7 +929,7 @@ const PROP: TypeEntry[] = [
     "09",
     "정비례 관계의 그래프가 주어진 경우",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const a = nonZero(rng, -5, 5);
@@ -970,7 +970,7 @@ const PROP: TypeEntry[] = [
     "10",
     "정비례 관계 의 그래프와 도형의 넓이",
     SEC.정비례,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         // 기울기를 «정수 셋»으로만 두면 조합이 여덟뿐이라 같은 문항이 되풀이된다.
@@ -1026,7 +1026,7 @@ const PROP: TypeEntry[] = [
     "22",
     "도형의 넓이를 이등분하는 직선",
     SEC.정비례,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const branch = intBetween(rng, 0, 2);
@@ -1104,7 +1104,7 @@ const PROP: TypeEntry[] = [
     "23",
     "두 정비례 관계의 그래프 비교하기",
     SEC.정비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const magA = intBetween(rng, 1, 5);
@@ -1151,7 +1151,7 @@ const PROP: TypeEntry[] = [
 // ── 반비례 ───────────────────────────────────────────────────────────
 
 const INV: TypeEntry[] = [
-  def(MINOR_PROP, "11", "반비례 관계", SEC.반비례, "easy", (rng) =>
+  def(MINOR_PROP, "11", "반비례 관계", SEC.반비례, "기본", (rng) =>
     attempt<Body>(400, (): Body | null => {
       // 이 유형은 **그림이 없다** — 그래서 `INV_K`(그림이 되는 $k$)에 매이지 않고
       // 약수가 많은 수를 쓴다. 그림 있는 유형과 문턱을 같이 쓰면 표가 셋뿐이 된다.
@@ -1211,7 +1211,7 @@ const INV: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_PROP, "12", "반비례 관계의 식 구하기", SEC.반비례, "easy", (rng) =>
+  def(MINOR_PROP, "12", "반비례 관계의 식 구하기", SEC.반비례, "기본", (rng) =>
     attempt<Body>(400, (): Body | null => {
       // **답을 먼저** — 지나는 점 $(p, q)$ 를 고르면 $a=pq$ 라 상수가 늘 정수다.
       const p = nonZero(rng, -8, 8);
@@ -1259,7 +1259,7 @@ const INV: TypeEntry[] = [
     "13",
     "반비례 관계 의 활용 와 사이의 관계를 나타내는 식 구하기",
     SEC.반비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(200, (): Body | null => {
         const sc = intBetween(rng, 0, 3);
@@ -1312,7 +1312,7 @@ const INV: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_PROP, "15", "반비례 관계 의 그래프", SEC.반비례, "easy", (rng) =>
+  def(MINOR_PROP, "15", "반비례 관계 의 그래프", SEC.반비례, "기본", (rng) =>
     attempt<Body>(400, (): Body | null => {
       const k = pick(rng, INV_K) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
       const div = invLattice(Math.abs(k));
@@ -1341,7 +1341,7 @@ const INV: TypeEntry[] = [
     "16",
     "반비례 관계 의 그래프와 의 절댓값 사이의 관계",
     SEC.반비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(300, (): Body | null => {
         const mags = [2, 3, 4, 6, 8, 12];
@@ -1381,7 +1381,7 @@ const INV: TypeEntry[] = [
     "17",
     "반비례 관계 의 그래프가 지나는 점",
     SEC.반비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const p = nonZero(rng, -8, 8);
@@ -1429,7 +1429,7 @@ const INV: TypeEntry[] = [
     "18",
     "반비례 관계 의 그래프의 성질",
     SEC.반비례,
-    "easy",
+    "기본",
     (rng) => {
       const k = nonZero(rng, -12, 12);
       const branch = intBetween(rng, 0, 2);
@@ -1477,7 +1477,7 @@ const INV: TypeEntry[] = [
     "19",
     "반비례 관계의 그래프가 주어진 경우",
     SEC.반비례,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const k = pick(rng, INV_K) * (intBetween(rng, 0, 1) === 1 ? 1 : -1);
@@ -1516,7 +1516,7 @@ const INV: TypeEntry[] = [
     "20",
     "반비례 관계 의 그래프와 도형의 넓이",
     SEC.반비례,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const k = pick(rng, INV_K);
@@ -1561,7 +1561,7 @@ const INV: TypeEntry[] = [
     "21",
     "정비례 관계와 반비례 관계의 그래프가 만나는 점",
     SEC.반비례,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Body>(500, (): Body | null => {
         // 만나는 점 $(p, q)$ 를 **먼저** 정하면 $a=\dfrac{q}{p}$, $b=pq$ 가 함께 정해진다.

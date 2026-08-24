@@ -902,7 +902,7 @@ const SIDE_STEP: Record<string, { div: boolean; fn: number }> = {
 export const M3_TRIG: TypeEntry[] = [
   /* ── 삼각비 01~07 → 우리 단원 「삼각비의 뜻」 ───────────────────── */
 
-  def("삼각비", "01", "삼각비의 값", SEC.뜻, "easy", (rng) => {
+  def("삼각비", "01", "삼각비의 값", SEC.뜻, "기본", (rng) => {
     const [p, q, r] = pick(rng, TRIPLES);
     const mode = intBetween(rng, 0, 2);
     // $\angle B=90^\circ$ — $\overline{BC}$ 가 $\angle A$ 의 대변, $\overline{AB}$ 가 이웃변.
@@ -940,7 +940,7 @@ export const M3_TRIG: TypeEntry[] = [
     "02",
     "삼각비를 이용하여 삼각형의 변의 길이 구하기",
     SEC.뜻,
-    "easy",
+    "기본",
     (rng) =>
       attempt(120, () => {
         const [p, q, r] = pick(rng, TRIPLES);
@@ -981,7 +981,7 @@ export const M3_TRIG: TypeEntry[] = [
     "03",
     "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기",
     SEC.뜻,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         // 세 쌍을 **기약으로** 줄인다 — 안 그러면 발문의 `tan A=3/4` 와 해설의
@@ -1014,7 +1014,7 @@ export const M3_TRIG: TypeEntry[] = [
       }),
   ),
 
-  def("삼각비", "04", "직각삼각형의 닮음과 삼각비⑴", SEC.뜻, "mid", (rng) =>
+  def("삼각비", "04", "직각삼각형의 닮음과 삼각비⑴", SEC.뜻, "응용", (rng) =>
     attempt(120, () => {
       const [p, q, r] = pick(rng, TRIPLES);
       const swap = rng() < 0.5;
@@ -1054,7 +1054,7 @@ export const M3_TRIG: TypeEntry[] = [
     }),
   ),
 
-  def("삼각비", "05", "직각삼각형의 닮음과 삼각비⑵", SEC.뜻, "hard", (rng) =>
+  def("삼각비", "05", "직각삼각형의 닮음과 삼각비⑵", SEC.뜻, "심화", (rng) =>
     attempt(120, () => {
       const [p, q, r] = pick(rng, TRIPLES);
       const swap = rng() < 0.5;
@@ -1096,7 +1096,7 @@ export const M3_TRIG: TypeEntry[] = [
     }),
   ),
 
-  def("삼각비", "06", "직선의 방정식과 삼각비", SEC.뜻, "mid", (rng) =>
+  def("삼각비", "06", "직선의 방정식과 삼각비", SEC.뜻, "응용", (rng) =>
     attempt(120, () => {
       const [p, q, r] = pick(rng, TRIPLES);
       // 기울기 $\tan a=\dfrac{p}{q}$ 는 **진분수**만 쓴다 — 가분수는 지면에서 대분수가 된다.
@@ -1120,7 +1120,7 @@ export const M3_TRIG: TypeEntry[] = [
     "07",
     "입체도형에서 삼각비의 값 구하기",
     SEC.뜻,
-    "hard",
+    "심화",
     (rng) =>
       attempt(120, () => {
         // $[가로, 세로, 밑면의 대각선, 높이, 직육면체의 대각선]$ —
@@ -1156,7 +1156,7 @@ export const M3_TRIG: TypeEntry[] = [
 
   /* ── 삼각비 08~18 → 우리 단원 「삼각비의 값」 ────────────────────── */
 
-  def("삼각비", "08", "의 삼각비의 값", SEC.값, "easy", (rng) =>
+  def("삼각비", "08", "의 삼각비의 값", SEC.값, "기본", (rng) =>
     attempt(300, () => {
       const angles = [30, 45, 60] as const;
       const a1 = pick(rng, angles);
@@ -1187,7 +1187,7 @@ export const M3_TRIG: TypeEntry[] = [
     "09",
     "의 삼각비의 값을 이용하여 각의 크기 구하기",
     SEC.값,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, () => {
         const fn = intBetween(rng, 0, 2);
@@ -1217,7 +1217,7 @@ export const M3_TRIG: TypeEntry[] = [
     "10",
     "의 삼각비의 값을 이용하여 변의 길이 구하기",
     SEC.값,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const theta = pick(rng, [30, 45, 60] as const);
@@ -1271,7 +1271,7 @@ export const M3_TRIG: TypeEntry[] = [
       }),
   ),
 
-  def("삼각비", "11", "직선의 기울기와 삼각비", SEC.값, "mid", (rng) =>
+  def("삼각비", "11", "직선의 기울기와 삼각비", SEC.값, "응용", (rng) =>
     attempt<Body>(120, () => {
       const mode = intBetween(rng, 0, 1);
       const ang = pick(rng, [30, 45, 60] as const);
@@ -1307,7 +1307,7 @@ export const M3_TRIG: TypeEntry[] = [
     "12",
     "사분원을 이용하여 삼각비의 값 구하기",
     SEC.값,
-    "mid",
+    "응용",
     (rng) => {
       const ang = intBetween(rng, 25, 65);
       const rad = ang * DEG;
@@ -1335,7 +1335,7 @@ export const M3_TRIG: TypeEntry[] = [
     },
   ),
 
-  def("삼각비", "13", "의 삼각비의 값", SEC.값, "easy", (rng) =>
+  def("삼각비", "13", "의 삼각비의 값", SEC.값, "기본", (rng) =>
     attempt(300, () => {
       const angles = [0, 30, 45, 60, 90] as const;
       const a1 = pick(rng, angles);
@@ -1363,7 +1363,7 @@ export const M3_TRIG: TypeEntry[] = [
     }),
   ),
 
-  def("삼각비", "14", "삼각비의 값의 대소 관계", SEC.값, "mid", (rng) => {
+  def("삼각비", "14", "삼각비의 값의 대소 관계", SEC.값, "응용", (rng) => {
     // $45^\circ$ 부근은 두 값이 붙어 대소가 «학생이 아는 근거»로 안 갈린다 —
     // 양쪽으로 떼어 놓는다($\cos A$ 와 $\tan A$ 는 $38.17^\circ$ 부근에서 뒤집힌다).
     const ang = rng() < 0.5 ? intBetween(rng, 10, 35) : intBetween(rng, 55, 80);
@@ -1394,7 +1394,7 @@ export const M3_TRIG: TypeEntry[] = [
     "15",
     "삼각비의 값의 대소 관계를 이용한 식의 계산",
     SEC.값,
-    "hard",
+    "심화",
     (rng) => {
       const mode = intBetween(rng, 0, 4);
       const spec = [
@@ -1484,7 +1484,7 @@ export const M3_TRIG: TypeEntry[] = [
     "16",
     "삼각비의 표를 이용하여 삼각비의 값 구하기",
     SEC.값,
-    "easy",
+    "기본",
     (rng) => {
       const b = intBetween(rng, 30, 58);
       const fn = intBetween(rng, 0, 2);
@@ -1532,7 +1532,7 @@ export const M3_TRIG: TypeEntry[] = [
     "17",
     "삼각비의 표를 이용하여 변의 길이 구하기",
     SEC.값,
-    "mid",
+    "응용",
     (rng) => {
       const ang = intBetween(rng, 20, 70);
       const sv = tableValue(0, ang);
@@ -1571,7 +1571,7 @@ export const M3_TRIG: TypeEntry[] = [
     "18",
     "의 삼각비의 값을 이용하여 다른 삼각비의 값 구하기",
     SEC.값,
-    "hard",
+    "심화",
     (rng) => {
       const a = pick(
         rng,
@@ -1609,7 +1609,7 @@ export const M3_TRIG: TypeEntry[] = [
     "01",
     "직각삼각형의 변의 길이 구하기",
     SEC.활용,
-    "easy",
+    "기본",
     (rng) =>
       attempt<Body>(200, () => {
         const theta = pick(rng, [30, 45, 60] as const);
@@ -1670,7 +1670,7 @@ export const M3_TRIG: TypeEntry[] = [
     "02",
     "입체도형에서 직각삼각형의 변의 길이의 활용",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const theta = pick(rng, [30, 45, 60] as const);
@@ -1710,7 +1710,7 @@ export const M3_TRIG: TypeEntry[] = [
     "03",
     "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const theta = pick(rng, [30, 45, 60] as const);
@@ -1771,7 +1771,7 @@ export const M3_TRIG: TypeEntry[] = [
     "04",
     "일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) => {
       // $[\overline{AB}$의 계수·근호, $\overline{BC}$, $\angle B$, $\overline{BH}$,
       //  $\overline{AH}$의 계수·근호, $\overline{HC}$, $\overline{AC}]$ —
@@ -1823,7 +1823,7 @@ export const M3_TRIG: TypeEntry[] = [
     "05",
     "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) => {
       const k = intBetween(rng, 1, 6);
       const cfg = pick(rng, [
@@ -1930,7 +1930,7 @@ export const M3_TRIG: TypeEntry[] = [
     "06",
     "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) => {
       const k = intBetween(rng, 1, 6);
       const cfg = pick(rng, [
@@ -1963,7 +1963,7 @@ export const M3_TRIG: TypeEntry[] = [
     "07",
     "삼각형의 높이 구하기 주어진 각 중 한 각이 둔각인 경우",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) => {
       const k = intBetween(rng, 1, 6);
       const cfg = pick(rng, [
@@ -2002,7 +2002,7 @@ export const M3_TRIG: TypeEntry[] = [
     "08",
     "삼각형의 넓이 예각이 주어진 경우",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) => triangleArea(rng, [30, 45, 60]),
   ),
 
@@ -2011,11 +2011,11 @@ export const M3_TRIG: TypeEntry[] = [
     "09",
     "삼각형의 넓이 둔각이 주어진 경우",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) => triangleArea(rng, [120, 135, 150]),
   ),
 
-  def("삼각비의 활용", "10", "다각형의 넓이", SEC.활용, "hard", (rng) => {
+  def("삼각비의 활용", "10", "다각형의 넓이", SEC.활용, "심화", (rng) => {
     // $\overline{AC}$ 가 양쪽 삼각형에서 **같은 값**이 되도록 짝지은 표다 —
     // 안 그러면 사각형이 닫히지 않아 그림이 거짓말을 한다.
     const [ab, bc, ad, dc, ac] = pick(rng, [
@@ -2053,7 +2053,7 @@ export const M3_TRIG: TypeEntry[] = [
     };
   }),
 
-  def("삼각비의 활용", "11", "평행사변형의 넓이", SEC.활용, "mid", (rng) =>
+  def("삼각비의 활용", "11", "평행사변형의 넓이", SEC.활용, "응용", (rng) =>
     attempt(200, () => {
       const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);
       const a = intBetween(rng, 3, 14);
@@ -2093,7 +2093,7 @@ export const M3_TRIG: TypeEntry[] = [
     }),
   ),
 
-  def("삼각비의 활용", "12", "사각형의 넓이", SEC.활용, "mid", (rng) =>
+  def("삼각비의 활용", "12", "사각형의 넓이", SEC.활용, "응용", (rng) =>
     attempt(200, () => {
       const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);
       const d1 = intBetween(rng, 4, 16);
@@ -2128,7 +2128,7 @@ export const M3_TRIG: TypeEntry[] = [
     "13",
     "실생활에서 직각삼각형의 변의 길이의 활용 ⑵",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) => {
       const k = intBetween(rng, 1, 8);
       const cfg = pick(rng, [
@@ -2154,7 +2154,7 @@ export const M3_TRIG: TypeEntry[] = [
     },
   ),
 
-  def("삼각비의 활용", "14", "정다각형의 넓이", SEC.활용, "hard", (rng) =>
+  def("삼각비의 활용", "14", "정다각형의 넓이", SEC.활용, "심화", (rng) =>
     attempt(200, () => {
       const n = pick(rng, [3, 4, 6, 8, 12] as const);
       const R = intBetween(rng, 2, 12);

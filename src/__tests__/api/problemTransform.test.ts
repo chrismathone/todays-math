@@ -98,13 +98,14 @@ beforeEach(() => {
 
 describe("shiftDifficulty — 난이도 사다리 (계약 SSOT)", () => {
   it("한 단계 올리고 내리며, 양 끝에서는 제자리다", () => {
-    expect(shiftDifficulty("easy", "up")).toBe("mid");
-    expect(shiftDifficulty("mid", "up")).toBe("hard");
-    expect(shiftDifficulty("hard", "up")).toBe("hard"); // 상한
-    expect(shiftDifficulty("hard", "down")).toBe("mid");
-    expect(shiftDifficulty("mid", "down")).toBe("easy");
-    expect(shiftDifficulty("easy", "down")).toBe("easy"); // 하한
-    expect(shiftDifficulty("mid", "keep")).toBe("mid");
+    expect(shiftDifficulty("기본", "up")).toBe("응용");
+    expect(shiftDifficulty("응용", "up")).toBe("심화");
+    expect(shiftDifficulty("심화", "up")).toBe("심화"); // 상한
+    expect(shiftDifficulty("심화", "down")).toBe("응용");
+    expect(shiftDifficulty("응용", "down")).toBe("기본");
+    expect(shiftDifficulty("기본", "down")).toBe("연산");
+    expect(shiftDifficulty("연산", "down")).toBe("연산"); // 하한 (D-106: 밑단은 연산)
+    expect(shiftDifficulty("응용", "keep")).toBe("응용");
   });
 });
 

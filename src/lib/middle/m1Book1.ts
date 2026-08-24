@@ -136,7 +136,7 @@ function renderTerm(co: number, kind: number): string {
 
 export const M1_BOOK1: TypeEntry[] = [
   // ── 소인수분해 → 소수와 거듭제곱 ───────────────────────
-  defType(BOOK, "소인수분해", "01", "소수와 합성수", SEC1.소수, "easy", (rng) =>
+  defType(BOOK, "소인수분해", "01", "소수와 합성수", SEC1.소수, "기본", (rng) =>
     attempt(300, () => {
       const pool: number[] = [];
       for (let v = 1; v <= 48; v += 1) pool.push(v);
@@ -171,7 +171,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "02",
     "소수와 합성수의 성질",
     SEC1.소수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const kind = pick(rng, [0, 1] as const); // 0 소수 세기 · 1 합성수 세기
@@ -202,7 +202,7 @@ export const M1_BOOK1: TypeEntry[] = [
       }),
   ),
 
-  defType(BOOK, "소인수분해", "03", "거듭제곱", SEC1.소수, "easy", (rng) => {
+  defType(BOOK, "소인수분해", "03", "거듭제곱", SEC1.소수, "기본", (rng) => {
     const [p, q] = pickDistinct(rng, [2, 3, 5, 7] as const, 2).sort(
       (x, y) => x - y,
     ) as [number, number];
@@ -224,7 +224,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "09",
     "다항식",
     SEC1.일차1,
-    "easy",
+    "기본",
     (rng) => {
       const a = intBetween(rng, 2, 7);
       const b = (rng() < 0.5 ? -1 : 1) * intBetween(rng, 2, 9);
@@ -245,7 +245,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "10",
     "일차식",
     SEC1.일차1,
-    "easy",
+    "기본",
     (rng) =>
       attempt(400, () => {
         const L = intBetween(rng, 2, 3);
@@ -297,7 +297,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "12",
     "동류항",
     SEC1.일차2,
-    "easy",
+    "기본",
     (rng) =>
       attempt(400, () => {
         const k = (rng() < 0.5 ? -1 : 1) * intBetween(rng, 2, 8);
@@ -339,7 +339,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "13",
     "일차식의 덧셈과 뺄셈",
     SEC1.일차2,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const a = intNonzero(rng, -7, 7);
@@ -369,7 +369,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "03",
     "좌표평면 위의 도형의 넓이",
     SEC1.좌표응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(500, () => {
         const by = intBetween(rng, -4, 4);
@@ -399,7 +399,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "04",
     "사분면",
     SEC1.좌표응용,
-    "easy",
+    "기본",
     (rng) => {
       const a = intNonzero(rng, -8, 8);
       const b = intNonzero(rng, -8, 8);
@@ -419,7 +419,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "05",
     "사분면 위의 점 점 가 속한 사분면이 주어진 경우",
     SEC1.좌표응용,
-    "mid",
+    "응용",
     (rng) => {
       const t = intBetween(rng, 1, PT_TRANS.length - 1);
       const trans = PT_TRANS[t]!;
@@ -444,7 +444,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "06",
     "사분면 위의 점 두 수의 부호를 이용하는 경우",
     SEC1.좌표응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(100, () => {
         const c = intBetween(rng, 0, SIGN_CONDS.length - 1);
@@ -470,7 +470,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "10",
     "대칭인 점의 좌표",
     SEC1.좌표응용,
-    "easy",
+    "기본",
     (rng) => {
       const a = intNonzero(rng, -9, 9);
       const b = intNonzero(rng, -9, 9);
@@ -500,7 +500,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "05",
     "항등식이 되는 조건",
     SEC1.방정식해,
-    "mid",
+    "응용",
     (rng) => {
       const p = (rng() < 0.5 ? -1 : 1) * intBetween(rng, 2, 8);
       const k = (rng() < 0.5 ? -1 : 1) * intBetween(rng, 2, 5);

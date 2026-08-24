@@ -161,15 +161,15 @@ describe("[T7.1] POST /api/tests/{id}/submit — 자동 채점 + 예상 점수 �
 
     // 분석 리포트 — 단원별 성적 + 난이도 분포 + 복습 추천.
     const report = body.data.analysisReport;
-    expect(report.difficultyDistribution.easy).toEqual({
+    expect(report.difficultyDistribution.기본).toEqual({
       correct: 1,
       total: 1,
     });
-    expect(report.difficultyDistribution.hard).toEqual({
+    expect(report.difficultyDistribution.심화).toEqual({
       correct: 0,
       total: 1,
     });
-    expect(report.difficultyDistribution.mid).toEqual({
+    expect(report.difficultyDistribution.응용).toEqual({
       correct: 1,
       total: 1,
     });

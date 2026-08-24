@@ -316,7 +316,7 @@ export const M2_LINE: TypeEntry[] = [
    * ⑴10 그래프 그리기 — 기울기와 $y$절편으로 «다음 점»을 찾는 그 동작 자체를 묻는다.
    * ⑴04(그래프 위의 점)·⑴06(절편)과 겹치지 않게 «이동한 점»을 답으로 둔다.
    */
-  def(MINOR_G1, "10", "일차함수의 그래프 그리기", SEC.기울기, "mid", (rng) =>
+  def(MINOR_G1, "10", "일차함수의 그래프 그리기", SEC.기울기, "응용", (rng) =>
     attempt(200, () => {
       const den = pick(rng, [1, 2, 3] as const);
       const num = nonZero(rng, -5, 5);
@@ -351,7 +351,7 @@ export const M2_LINE: TypeEntry[] = [
     "13",
     "두 일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이",
     SEC.절편,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const c = nonZero(rng, -6, 6);
@@ -404,7 +404,7 @@ export const M2_LINE: TypeEntry[] = [
    * 흔들고, 시험은 그 다섯을 **따로** 다시 판정해 개수를 맞댄다.
    * ㉤(사분면)은 시험이 부호표가 아니라 **점을 찍어** 확인한다.
    */
-  def(MINOR_G2, "01", "일차함수 의 그래프의 성질", SEC.성질, "mid", (rng) =>
+  def(MINOR_G2, "01", "일차함수 의 그래프의 성질", SEC.성질, "응용", (rng) =>
     attempt(200, () => {
       const a = nonZero(rng, -4, 4);
       const b = nonZero(rng, -6, 6);
@@ -457,7 +457,7 @@ export const M2_LINE: TypeEntry[] = [
    * (주어진 $y=ax+b$ 자신은 뺀다). 발문이 한 가지뿐이면 한 유형에서 여러 문항을
    * 못 뽑는다 — 실제로 4문항을 못 채워 던졌다.
    */
-  def(MINOR_G2, "02", "일차함수 의 그래프와 의 부호", SEC.성질, "hard", (rng) =>
+  def(MINOR_G2, "02", "일차함수 의 그래프와 의 부호", SEC.성질, "심화", (rng) =>
     attempt(120, () => {
       const a = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
       const b = pick(rng, [-4, -3, -2, -1, 1, 2, 3, 4] as const);
@@ -499,7 +499,7 @@ export const M2_LINE: TypeEntry[] = [
    * ⑵04 두 그래프의 일치 — 기울기뿐 아니라 $y$절편까지 같아야 한다.
    * ⑵03(평행)은 절편이 **다를** 것을 요구한다 — 그 차이가 이 유형의 요지다.
    */
-  def(MINOR_G2, "04", "두 일차함수의 그래프의 일치", SEC.성질, "mid", (rng) =>
+  def(MINOR_G2, "04", "두 일차함수의 그래프의 일치", SEC.성질, "응용", (rng) =>
     attempt(150, () => {
       const a = nonZero(rng, -4, 4);
       const mult = intBetween(rng, 2, 3);
@@ -531,7 +531,7 @@ export const M2_LINE: TypeEntry[] = [
     "08",
     "일차함수의 식 구하기 절편절편이 주어질 때",
     SEC.식구하기,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -4, 4);
@@ -565,7 +565,7 @@ export const M2_LINE: TypeEntry[] = [
     "13",
     "일차함수의 활용 도형에서의 문제",
     SEC.활용기타,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const h = intBetween(rng, 4, 10);
@@ -602,7 +602,7 @@ export const M2_LINE: TypeEntry[] = [
     "14",
     "일차함수의 활용 그래프가 주어진 경우의 문제",
     SEC.활용기타,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const m = pick(rng, [1, 2] as const);
@@ -653,7 +653,7 @@ export const M2_LINE: TypeEntry[] = [
     "15",
     "두 일차함수의 그래프가 축과 만나는 두 점 사이의 거리가 주어진 경우",
     SEC.절편,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const m1 = nonZero(rng, -4, 4);
@@ -692,7 +692,7 @@ export const M2_LINE: TypeEntry[] = [
     "16",
     "일차함수의 활용 여러 가지 활용 문제",
     SEC.활용기타,
-    "mid",
+    "응용",
     (rng) =>
       attempt(120, () => {
         const c = intBetween(rng, 2, 6) * 10000;
@@ -724,7 +724,7 @@ export const M2_LINE: TypeEntry[] = [
     "01",
     "일차함수와 일차방정식의 관계",
     SEC.일차방정식,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -4, 4);
@@ -752,7 +752,7 @@ export const M2_LINE: TypeEntry[] = [
     "02",
     "일차방정식의 그래프 위의 점",
     SEC.일차방정식,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const a = nonZero(rng, -5, 5);
@@ -784,7 +784,7 @@ export const M2_LINE: TypeEntry[] = [
     //    middleTypeCoverage.test.ts 가 글자 그대로 대조하므로 지우면 빨개진다.
     "일차방정식 의 그래프와\u0008 의 부호",
     SEC.일차방정식,
-    "hard",
+    "심화",
     (rng) =>
       attempt(60, () => {
         const sa = pick(rng, [1, -1] as const);
@@ -810,7 +810,7 @@ export const M2_LINE: TypeEntry[] = [
    * 관계04 — 두 점을 지나는 직선을 $ax+by+c=0$ 꼴로. 일반형은 상수배만큼
    * 자유롭기 때문에 $x$ 의 계수를 못 박아 $b$, $c$ 가 하나로 정해지게 했다.
    */
-  def(MINOR_REL, "04", "직선의 방정식 구하기", SEC.일차방정식, "mid", (rng) =>
+  def(MINOR_REL, "04", "직선의 방정식 구하기", SEC.일차방정식, "응용", (rng) =>
     attempt(250, () => {
       const m = nonZero(rng, -4, 4);
       const n = nonZero(rng, -6, 6);
@@ -844,7 +844,7 @@ export const M2_LINE: TypeEntry[] = [
    * 관계05 — $x=k$ 는 세로선이라 **함수가 아니다**. $y=k$ 는 가로선이다.
    * 둘을 뒤집어 쓰는 실수가 이 유형의 표적이라 시험이 $s$·$t$ 를 따로 맞댄다.
    */
-  def(MINOR_REL, "05", "방정식 의 그래프", SEC.일차방정식, "easy", (rng) =>
+  def(MINOR_REL, "05", "방정식 의 그래프", SEC.일차방정식, "기본", (rng) =>
     attempt(80, () => {
       const p = nonZero(rng, -6, 6);
       const q = nonZero(rng, -6, 6);
@@ -871,7 +871,7 @@ export const M2_LINE: TypeEntry[] = [
     "06",
     "좌표축에 평행한 네 직선으로 둘러싸인 도형의 넓이",
     SEC.일차방정식,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const x1 = intBetween(rng, -6, 0);
@@ -899,7 +899,7 @@ export const M2_LINE: TypeEntry[] = [
     "08",
     "두 일차방정식의 그래프의 교점의 좌표를 이용하여 미지수의 값 구하기",
     SEC.연립해,
-    "mid",
+    "응용",
     (rng) =>
       attempt(250, () => {
         const p = nonZero(rng, -4, 4);
@@ -935,7 +935,7 @@ export const M2_LINE: TypeEntry[] = [
     "09",
     "두 일차방정식의 그래프의 교점을 지나는 직선의 방정식",
     SEC.연립해,
-    "hard",
+    "심화",
     (rng) =>
       attempt(250, () => {
         const p = nonZero(rng, -4, 4);
@@ -971,7 +971,7 @@ export const M2_LINE: TypeEntry[] = [
     "10",
     "세 직선이 한 점에서 만날 때",
     SEC.연립해,
-    "hard",
+    "심화",
     (rng) =>
       attempt(250, () => {
         const p = nonZero(rng, -4, 4);
@@ -1007,7 +1007,7 @@ export const M2_LINE: TypeEntry[] = [
     "11",
     "연립방정식의 해의 개수와 교점의 개수",
     SEC.연립해,
-    "mid",
+    "응용",
     (rng) =>
       attempt(250, () => {
         const a2 = nonZero(rng, -4, 4);
@@ -1053,7 +1053,7 @@ export const M2_LINE: TypeEntry[] = [
     "12",
     "직선으로 둘러싸인 도형의 넓이",
     SEC.연립해,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const p = nonZero(rng, -3, 3);
@@ -1102,7 +1102,7 @@ export const M2_LINE: TypeEntry[] = [
   ),
 
   /** 관계13 — 직선 위에서 $x$좌표와 $y$좌표가 같은 점. $a+b\ne0$ 이어야 정해진다. */
-  def(MINOR_REL, "13", "직선의 방정식의 활용", SEC.일차방정식, "mid", (rng) =>
+  def(MINOR_REL, "13", "직선의 방정식의 활용", SEC.일차방정식, "응용", (rng) =>
     attempt(250, () => {
       const k = nonZero(rng, -6, 6);
       const a = nonZero(rng, -5, 5);
@@ -1131,7 +1131,7 @@ export const M2_LINE: TypeEntry[] = [
     "14",
     "직선과 선분이 만날 조건",
     SEC.일차방정식,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const xa = intBetween(rng, 1, 5);
@@ -1167,7 +1167,7 @@ export const M2_LINE: TypeEntry[] = [
     "15",
     "도형의 넓이를 이등분하는 직선",
     SEC.일차방정식,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const cx = attempt(60, () => {

@@ -15,7 +15,7 @@ import {
 
 const 온전한: Draft = {
   unitId: "c1fe36b6-8f97-46e5-be13-f022636211f8",
-  difficulty: "mid",
+  difficulty: "응용",
   questionType: "객관식",
   problemType: "개념",
   content:

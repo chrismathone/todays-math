@@ -20,14 +20,13 @@ async function addProblem(over: Record<string, unknown> = {}) {
     prisma as unknown as {
       problem: { create: (a: unknown) => Promise<unknown> };
     }
-  )// exam-wiring: 테스트 — 이 배선 자체를 검증하는 테스트다
-  .problem
+  ).problem // exam-wiring: 테스트 — 이 배선 자체를 검증하는 테스트다
     .create({
       data: {
         userId: USER_ID,
         unitId: UNIT_ID,
         source: "past_exam",
-        difficulty: "mid",
+        difficulty: "응용",
         problemType: "계산",
         questionType: "객관식",
         content: "다음 중 옳은 것은?",

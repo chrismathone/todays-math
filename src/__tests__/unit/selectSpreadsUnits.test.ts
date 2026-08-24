@@ -40,7 +40,7 @@ const problem = (
 ): SelectableProblem & { content: string } => ({
   id,
   unitId,
-  difficulty: "mid",
+  difficulty: "응용",
   problemType: "계산",
   directUseAllowed: true,
   content: "짧은 발문이다.",
@@ -99,7 +99,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 20; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { easy: 0, mid: 4, hard: 0 },
+        difficultyRatio: { 연산: 0, 기본: 0, 응용: 4, 심화: 0 },
         count: 4,
         recentProblemIds: [],
         seed: `spread-${seed}`,
@@ -122,7 +122,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { easy: 0, mid: 5, hard: 0 },
+      difficultyRatio: { 연산: 0, 기본: 0, 응용: 5, 심화: 0 },
       count: 5,
       recentProblemIds: [],
       seed: "many-units",
@@ -141,7 +141,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
   it("단원이 하나뿐이면 고르는 순서가 예전 그대로다", () => {
     const { problems } = selectProblems({
       pool: DAILY_POOL,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
       count: 8,
       recentProblemIds: [],
       seed: "daily:2026-08-19",
@@ -169,7 +169,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { easy: 0, mid: 2, hard: 0 },
+      difficultyRatio: { 연산: 0, 기본: 0, 응용: 2, 심화: 0 },
       count: 2,
       recentProblemIds: [],
       seed: "seat-beats-unit",
@@ -195,8 +195,8 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
    */
   it("«단원만» 보지 않는다 — 단원·유형을 합쳐 제일 덜 쓴 것을 고른다", () => {
     const pool = [
-      problem("e-a", "u-a", { difficulty: "easy" }),
-      problem("e-c", "u-c", { difficulty: "easy" }),
+      problem("e-a", "u-a", { difficulty: "기본" }),
+      problem("e-c", "u-c", { difficulty: "기본" }),
       problem("x", "u-a", { problemType: "개념" }),
       problem("y", "u-b", { problemType: "계산" }),
     ];
@@ -204,7 +204,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 10; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { easy: 2, mid: 1, hard: 0 },
+        difficultyRatio: { 연산: 0, 기본: 2, 응용: 1, 심화: 0 },
         count: 3,
         recentProblemIds: [],
         seed: `sum-not-unit-${seed}`,
@@ -225,8 +225,8 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
    */
   it("«유형만» 보지도 않는다 — 합이 같으면 단원이 적은 쪽이다", () => {
     const pool = [
-      problem("e-a1", "u-a", { difficulty: "easy" }),
-      problem("e-a2", "u-a", { difficulty: "easy" }),
+      problem("e-a1", "u-a", { difficulty: "기본" }),
+      problem("e-a2", "u-a", { difficulty: "기본" }),
       problem("x", "u-a", { problemType: "개념" }),
       problem("y", "u-b", { problemType: "계산" }),
     ];
@@ -234,7 +234,7 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 10; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { easy: 2, mid: 1, hard: 0 },
+        difficultyRatio: { 연산: 0, 기본: 2, 응용: 1, 심화: 0 },
         count: 3,
         recentProblemIds: [],
         seed: `sum-not-type-${seed}`,
@@ -247,40 +247,40 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
   it("난이도 배분은 단원 분산 때문에 흔들리지 않는다 — 대체하지 않는다", () => {
     const pool = [
-      problem("e-1", "u-a", { difficulty: "easy" }),
-      problem("e-2", "u-a", { difficulty: "easy" }),
-      problem("m-1", "u-b", { difficulty: "mid" }),
-      problem("m-2", "u-c", { difficulty: "mid" }),
+      problem("e-1", "u-a", { difficulty: "기본" }),
+      problem("e-2", "u-a", { difficulty: "기본" }),
+      problem("m-1", "u-b", { difficulty: "응용" }),
+      problem("m-2", "u-c", { difficulty: "응용" }),
     ];
 
     const { problems, substitutions } = selectProblems({
       pool,
-      difficultyRatio: { easy: 2, mid: 0, hard: 0 },
+      difficultyRatio: { 연산: 0, 기본: 2, 응용: 0, 심화: 0 },
       count: 2,
       recentProblemIds: [],
       seed: "ratio-holds",
     });
 
     // 단원을 늘리려고 mid 를 끌어오면 안 된다 — 배분이 먼저다.
-    expect(problems.map((p) => p.difficulty)).toEqual(["easy", "easy"]);
+    expect(problems.map((p) => p.difficulty)).toEqual(["기본", "기본"]);
     expect(substitutions).toEqual([]);
   });
 });
 
 /** 일일테스트 불변 픽스처 — 단원 하나, 유형·난이도는 섞여 있다. */
 const DAILY_POOL: SelectableProblem[] = [
-  problem("d-01", "u-only", { difficulty: "easy", problemType: "계산" }),
-  problem("d-02", "u-only", { difficulty: "easy", problemType: "개념" }),
-  problem("d-03", "u-only", { difficulty: "easy", problemType: "활용" }),
-  problem("d-04", "u-only", { difficulty: "easy", problemType: "계산" }),
-  problem("d-05", "u-only", { difficulty: "mid", problemType: "계산" }),
-  problem("d-06", "u-only", { difficulty: "mid", problemType: "개념" }),
-  problem("d-07", "u-only", { difficulty: "mid", problemType: "활용" }),
-  problem("d-08", "u-only", { difficulty: "mid", problemType: "서술형" }),
-  problem("d-09", "u-only", { difficulty: "mid", problemType: "계산" }),
-  problem("d-10", "u-only", { difficulty: "hard", problemType: "활용" }),
-  problem("d-11", "u-only", { difficulty: "hard", problemType: "서술형" }),
-  problem("d-12", "u-only", { difficulty: "hard", problemType: "개념" }),
+  problem("d-01", "u-only", { difficulty: "기본", problemType: "계산" }),
+  problem("d-02", "u-only", { difficulty: "기본", problemType: "개념" }),
+  problem("d-03", "u-only", { difficulty: "기본", problemType: "활용" }),
+  problem("d-04", "u-only", { difficulty: "기본", problemType: "계산" }),
+  problem("d-05", "u-only", { difficulty: "응용", problemType: "계산" }),
+  problem("d-06", "u-only", { difficulty: "응용", problemType: "개념" }),
+  problem("d-07", "u-only", { difficulty: "응용", problemType: "활용" }),
+  problem("d-08", "u-only", { difficulty: "응용", problemType: "서술형" }),
+  problem("d-09", "u-only", { difficulty: "응용", problemType: "계산" }),
+  problem("d-10", "u-only", { difficulty: "심화", problemType: "활용" }),
+  problem("d-11", "u-only", { difficulty: "심화", problemType: "서술형" }),
+  problem("d-12", "u-only", { difficulty: "심화", problemType: "개념" }),
 ];
 
 /**

@@ -17,6 +17,7 @@ import { z } from "zod";
 
 import {
   dataResponseSchema,
+  DIFFICULTY_LADDER,
   difficultyRatioSchema,
   difficultySchema,
   errorCodeSchema,
@@ -68,10 +69,10 @@ export const testGenerateRequestSchema = z
     (value) =>
       value.problemCount === undefined ||
       value.difficultyRatio === undefined ||
-      value.difficultyRatio.easy +
-        value.difficultyRatio.mid +
-        value.difficultyRatio.hard ===
-        value.problemCount,
+      DIFFICULTY_LADDER.reduce(
+        (sum, tier) => sum + value.difficultyRatio![tier],
+        0,
+      ) === value.problemCount,
     {
       error: "난이도 배분의 합이 문항 수와 같아야 합니다.",
       path: ["difficultyRatio"],

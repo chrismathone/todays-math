@@ -408,7 +408,7 @@ function mixedToks(rng: Rng, n: number): NumTok[] | null {
 // ═══════════════════════════════════════════════════════════
 
 const 소인수분해_TYPES: TypeEntry[] = [
-  defType(BOOK, MIN_소인수, "04", "소인수분해", SEC.소인수, "easy", (rng) =>
+  defType(BOOK, MIN_소인수, "04", "소인수분해", SEC.소인수, "기본", (rng) =>
     attempt(300, (): Body | null => {
       // 역산: 지수를 먼저 뽑아 N 을 만든다 — 답(소인수분해 꼴)이 먼저 있다.
       const kind = intBetween(rng, 0, 1);
@@ -449,7 +449,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, MIN_소인수, "05", "소인수 구하기", SEC.소인수, "easy", (rng) =>
+  defType(BOOK, MIN_소인수, "05", "소인수 구하기", SEC.소인수, "기본", (rng) =>
     attempt(300, (): Body | null => {
       const kind = intBetween(rng, 0, 2); // 0 합 · 1 가장 큰 소인수 · 2 개수
       const k = intBetween(rng, 2, 3);
@@ -489,7 +489,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, MIN_소인수, "06", "약수 구하기", SEC.소인수, "mid", (rng) =>
+  defType(BOOK, MIN_소인수, "06", "약수 구하기", SEC.소인수, "응용", (rng) =>
     attempt(300, (): Body | null => {
       const kind = intBetween(rng, 0, 2); // 0 두 번째로 큰 약수 · 1 제곱수인 약수 · 2 가장 큰 홀수
       // 2 를 반드시 넣는다 — kind 2(가장 큰 홀수)가 성립해야 한다.
@@ -543,7 +543,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     "07",
     "약수의 개수 구하기",
     SEC.소인수,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         // 역산: 지수를 먼저 뽑으면 약수의 개수가 곱으로 따라 나온다.
@@ -581,7 +581,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     "08",
     "약수의 개수가 주어질 때 지수 구하기",
     SEC.소인수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 지수 하나 · 1 지수 둘(a>b)
@@ -631,7 +631,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     "09",
     "제곱인 수 만들기",
     SEC.소인수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 곱하기 · 1 나누기 · 2 곱한 뒤 제곱근
@@ -681,7 +681,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
     "10",
     "약수의 개수가 주어질 때  안에 들어 갈 수 있는 자연수 구하기",
     SEC.소인수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         // 역산: □ 에 들어갈 답 x 를 먼저 뽑고, 그 x 에서 약수의 개수 k 를 만든다.
@@ -712,7 +712,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
 // ═══════════════════════════════════════════════════════════
 
 const 최대최소_TYPES: TypeEntry[] = [
-  defType(BOOK, MIN_최대최소, "01", "서로소", SEC.최대, "easy", (rng) =>
+  defType(BOOK, MIN_최대최소, "01", "서로소", SEC.최대, "기본", (rng) =>
     attempt(300, (): Body | null => {
       // 역산: 「N 과 서로소인 수」의 개수를 셀 범위를 먼저 정하고, N 은 소인수를
       // 우리가 고른 수로 만든다 — 세는 일은 발문 그대로 남는다.
@@ -755,7 +755,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "02",
     "최대공약수 구하기",
     SEC.최대,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 소인수분해 꼴 제시 · 1 수로 제시
@@ -782,7 +782,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "03",
     "공약수와 최대공약수",
     SEC.최대,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 개수 · 1 가장 큰 수 · 2 두 번째로 큰 수
@@ -828,7 +828,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "04",
     "최대공약수의 활용 일정한 양을 가능한 한 많은 사람에게 나누어 주기",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 사람 수 · 1 한 사람 몫(앞) · 2 두 몫의 합
@@ -869,7 +869,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "05",
     "최대공약수의 활용 직사각형 직육면체 채우기",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 한 변 · 1 개수(직사각형) · 2 개수(직육면체)
@@ -917,7 +917,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "06",
     "최대공약수의 활용 일정한 간격으로 놓기",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 개수 · 1 간격
@@ -957,7 +957,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "07",
     "최소공배수 구하기",
     SEC.최소,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 소인수분해 꼴 제시 · 1 수로 제시
@@ -983,7 +983,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "08",
     "공배수와 최소공배수",
     SEC.최소,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 범위 안 개수 · 1 가장 작은 세 자리 · 2 k번째
@@ -1042,7 +1042,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "09",
     "최대공약수와 최소공배수가 주어질 때 지수 구하기",
     SEC.최소,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         // 역산: 답 (a, b) 를 먼저 뽑고 최대공약수·최소공배수를 만든다.
@@ -1124,7 +1124,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "10",
     "미지수가 포함된 세 수의 최소공배수",
     SEC.최소,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 x 구하기 · 1 세 수의 최대공약수
@@ -1182,7 +1182,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "11",
     "최소공배수가 주어질 때 미지수 구하기",
     SEC.최소,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 가장 작은 N · 1 가능한 N 의 개수
@@ -1241,7 +1241,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "12",
     "최소공배수의 활용 정사각형 정육면체 만들기",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 한 변 · 1 필요한 장수
@@ -1281,7 +1281,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "13",
     "최소공배수의 활용 동시에 출발하여 다시 만나는 경우",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 몇 분 후 · 1 시각 · 2 횟수
@@ -1348,7 +1348,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "14",
     "최소공배수의 활용 맞물려 도는 톱니바퀴",
     SEC.활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 A 회전 수 · 1 맞물린 톱니 수 · 2 B 회전 수
@@ -1391,7 +1391,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "15",
     "최대공약수와 최소공배수의 관계",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 가장 큰 N · 1 가장 큰 것과 가장 작은 것의 합 · 2 개수
@@ -1466,7 +1466,7 @@ const 최대최소_TYPES: TypeEntry[] = [
     "16",
     "최대공약수와 최소공배수가 주어질 때  두 수의 합과 차 구하기",
     SEC.활용,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 합→차 · 1 차→합 · 2 합→큰 수
@@ -1654,7 +1654,7 @@ const 정수_TYPES: TypeEntry[] = [
     "01",
     "부호를 사용하여 나타내기",
     SEC.정수,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 a+b · 1 b-a
@@ -1678,7 +1678,7 @@ const 정수_TYPES: TypeEntry[] = [
       }),
   ),
 
-  defType(BOOK, MIN_정수, "02", "정수의 분류", SEC.정수, "easy", (rng) =>
+  defType(BOOK, MIN_정수, "02", "정수의 분류", SEC.정수, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const kind = intBetween(rng, 0, 3); // 0 양의 정수 · 1 음의 정수 · 2 정수 · 3 정수가 아닌 유리수
       const n = intBetween(rng, 6, 7);
@@ -1719,7 +1719,7 @@ const 정수_TYPES: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, MIN_정수, "03", "유리수의 분류", SEC.정수, "easy", (rng) =>
+  defType(BOOK, MIN_정수, "03", "유리수의 분류", SEC.정수, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const kind = intBetween(rng, 0, 3); // 0 정수가 아닌 유리수 · 1 양의 유리수 · 2 음의 유리수 · 3 정수
       const n = intBetween(rng, 6, 7);
@@ -1767,7 +1767,7 @@ const 정수_TYPES: TypeEntry[] = [
     "04",
     "정수와 유리수의 성질",
     SEC.정수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         // 역산: 「옳은 것의 개수」를 먼저 정하고 그만큼 참인 문장을 고른다.
@@ -1804,7 +1804,7 @@ const 정수_TYPES: TypeEntry[] = [
     "05",
     "수를 수직선 위에 나타내기",
     SEC.정수,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 오른쪽 · 1 왼쪽 · 2 두 점 사이 거리
@@ -1842,7 +1842,7 @@ const 정수_TYPES: TypeEntry[] = [
     "06",
     "수직선 위의 두 점으로부터 같은 거리에 있는 점",
     SEC.정수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 1); // 0 한가운데 점 · 1 두 수 중 큰 수
@@ -1870,7 +1870,7 @@ const 정수_TYPES: TypeEntry[] = [
       }),
   ),
 
-  defType(BOOK, MIN_정수, "07", "절댓값", SEC.정수, "easy", (rng) =>
+  defType(BOOK, MIN_정수, "07", "절댓값", SEC.정수, "기본", (rng) =>
     attempt(300, (): Body | null => {
       const kind = intBetween(rng, 0, 2); // 0 a+b · 1 a-b · 2 a×b
       const sign = intBetween(rng, 0, 1); // b 가 양수(0) 인가 음수(1) 인가
@@ -1891,7 +1891,7 @@ const 정수_TYPES: TypeEntry[] = [
     }),
   ),
 
-  defType(BOOK, MIN_정수, "08", "절댓값의 성질", SEC.정수, "mid", (rng) =>
+  defType(BOOK, MIN_정수, "08", "절댓값의 성질", SEC.정수, "응용", (rng) =>
     attempt(300, (): Body | null => {
       const kind = intBetween(rng, 0, 2); // 0 n 이하 · 1 n 미만 · 2 m 이상 n 이하
       if (kind === 2) {
@@ -1931,7 +1931,7 @@ const 정수_TYPES: TypeEntry[] = [
     "09",
     "절댓값을 이용하여 수 찾기",
     SEC.정수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 두 점 사이 거리 · 1 두 수의 합 · 2 두 수의 곱
@@ -1972,7 +1972,7 @@ const 정수_TYPES: TypeEntry[] = [
     "10",
     "절댓값이 같고 부호가 반대인 두 수",
     SEC.정수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 큰 수 · 1 작은 수 · 2 거리
@@ -1998,7 +1998,7 @@ const 정수_TYPES: TypeEntry[] = [
       }),
   ),
 
-  defType(BOOK, MIN_정수, "11", "수의 대소 관계", SEC.대소, "mid", (rng) =>
+  defType(BOOK, MIN_정수, "11", "수의 대소 관계", SEC.대소, "응용", (rng) =>
     attempt(400, (): Body | null => {
       const kind = intBetween(rng, 0, 1); // 0 작은 것부터 · 1 큰 것부터
       const n = intBetween(rng, 4, 5);
@@ -2027,7 +2027,7 @@ const 정수_TYPES: TypeEntry[] = [
     "12",
     "부등호를 사용하여 나타내기",
     SEC.대소,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, (): Body | null => {
         // 역산: 부등호 두 개를 먼저 정하고 그에 맞는 말을 고른다.
@@ -2075,7 +2075,7 @@ const 정수_TYPES: TypeEntry[] = [
     "13",
     "두 유리수 사이에 있는 정수",
     SEC.대소,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, (): Body | null => {
         const kind = intBetween(rng, 0, 2); // 0 개수 · 1 가장 큰 정수 · 2 정수의 합
@@ -2127,7 +2127,7 @@ const 정수_TYPES: TypeEntry[] = [
       }),
   ),
 
-  defType(BOOK, MIN_정수, "14", "절댓값의 응용", SEC.정수, "hard", (rng) =>
+  defType(BOOK, MIN_정수, "14", "절댓값의 응용", SEC.정수, "심화", (rng) =>
     attempt(300, (): Body | null => {
       const kind = intBetween(rng, 0, 2); // 0 b · 1 a · 2 a+b
       // 역산: |a| = t, |b| = k×t 를 먼저 정하면 두 점 사이의 거리가 t(1+k) 다.
@@ -2159,7 +2159,7 @@ const 정수_TYPES: TypeEntry[] = [
     "15",
     "조건을 만족시키는 수의 대소 관계",
     SEC.대소,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, (): Body | null => {
         // 역산: 실제 값 a, b, c 를 먼저 뽑고, 그 값에서 참인 조건만 골라 낸다.

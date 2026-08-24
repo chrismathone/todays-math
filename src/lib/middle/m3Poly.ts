@@ -236,7 +236,7 @@ const FACTOR = "다음 식을 인수분해하시오.";
  * ──────────────────────────────────────────────────────────────────────── */
 
 const MUL: TypeEntry[] = [
-  def(MINOR_MUL, "01", "다항식다항식의 전개", SEC.곱셈, "easy", (rng) =>
+  def(MINOR_MUL, "01", "다항식다항식의 전개", SEC.곱셈, "기본", (rng) =>
     // (ax+by)(cx+dy+e) — 분배법칙만으로 다섯 항이 나온다.
     attempt<Gen>(80, () => {
       const a = intBetween(rng, 2, 4);
@@ -276,7 +276,7 @@ const MUL: TypeEntry[] = [
     "02",
     "전개식에서 특정한 항의 계수 구하기",
     SEC.곱셈,
-    "mid",
+    "응용",
     (rng) =>
       // (ax+b)(cx^2+dx+e) 의 x^2 또는 x 의 계수. 전개식을 다 쓰지 않고 필요한 항만 센다.
       attempt<Gen>(80, () => {
@@ -325,7 +325,7 @@ const MUL: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_MUL, "03", "의 전개", SEC.곱셈, "easy", (rng) =>
+  def(MINOR_MUL, "03", "의 전개", SEC.곱셈, "기본", (rng) =>
     // (a±b)^2 = a^2 ± 2ab + b^2
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
@@ -366,7 +366,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "04", "의 전개", SEC.곱셈, "easy", (rng) =>
+  def(MINOR_MUL, "04", "의 전개", SEC.곱셈, "기본", (rng) =>
     // (a+b)(a-b) = a^2-b^2. 세 번째 모드는 순서를 뒤집어 부호를 헷갈리게 한다.
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1, 2] as const);
@@ -415,7 +415,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "05", "의 전개", SEC.곱셈, "easy", (rng) =>
+  def(MINOR_MUL, "05", "의 전개", SEC.곱셈, "기본", (rng) =>
     // (x+a)(x+b) = x^2+(a+b)x+ab
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
@@ -457,7 +457,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "06", "의 전개", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "06", "의 전개", SEC.곱셈, "응용", (rng) =>
     // (ax+b)(cx+d) = acx^2+(ad+bc)x+bd
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
@@ -500,7 +500,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "07", "곱셈 공식 종합", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "07", "곱셈 공식 종합", SEC.곱셈, "응용", (rng) =>
     // 완전제곱식 - 합차공식 — 공식 둘을 한 식에서 함께 쓴다.
     attempt<Gen>(80, () => {
       const a = intBetween(rng, 2, 5);
@@ -536,7 +536,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "08", "곱셈 공식의 도형에의 활용 ⑴", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "08", "곱셈 공식의 도형에의 활용 ⑴", SEC.곱셈, "응용", (rng) =>
     // 직사각형의 가로를 늘이고 세로를 줄인다 — 그림 없이 발문이 조건을 다 말한다.
     attempt<Gen>(80, () => {
       const a = intBetween(rng, 2, 6);
@@ -572,7 +572,7 @@ const MUL: TypeEntry[] = [
     "09",
     "곱셈 공식의 도형에의 활용 ⑵",
     SEC.곱셈,
-    "hard",
+    "심화",
     (rng) => {
       // 폭이 일정한 길을 가장자리로 몰면 (ax-w)(bx-w) 짜리 직사각형이 남는다.
       const a = intBetween(rng, 2, 6);
@@ -604,7 +604,7 @@ const MUL: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_MUL, "10", "공통부분이 있는 식의 전개", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "10", "공통부분이 있는 식의 전개", SEC.곱셈, "응용", (rng) =>
     // x+y 를 한 문자로 묶는다.
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
@@ -682,7 +682,7 @@ const MUL: TypeEntry[] = [
     "11",
     "곱셈 공식을 이용한 수의 계산",
     SEC.곱셈,
-    "mid",
+    "응용",
     (rng) => {
       const base = pick(rng, [100, 1000] as const);
       const mode = pick(rng, [0, 1, 2] as const);
@@ -740,7 +740,7 @@ const MUL: TypeEntry[] = [
     "12",
     "곱셈 공식을 이용한 근호를 포함한 식의 계산",
     SEC.곱셈,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(80, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -802,7 +802,7 @@ const MUL: TypeEntry[] = [
     "13",
     "곱셈 공식을 이용한 분모의 유리화",
     SEC.곱셈,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -879,7 +879,7 @@ const MUL: TypeEntry[] = [
     "14",
     "의 꼴이 주어질 때 식의 값 구하기",
     SEC.곱셈,
-    "hard",
+    "심화",
     (rng) => {
       // x=a±√b 이면 (x-a)^2=b — 발문의 식을 (x-a)^2 꼴로 몰아서 값을 낸다.
       const a = intBetween(rng, 1, 6);
@@ -909,7 +909,7 @@ const MUL: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_MUL, "15", "곱셈 공식의 변형 ⑴", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "15", "곱셈 공식의 변형 ⑴", SEC.곱셈, "응용", (rng) =>
     attempt<Gen>(120, () => {
       const mode = pick(rng, [0, 1, 2, 3] as const);
       const p = nonZero(rng, -12, 12);
@@ -948,7 +948,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "16", "곱셈 공식의 변형 ⑵", SEC.곱셈, "mid", (rng) =>
+  def(MINOR_MUL, "16", "곱셈 공식의 변형 ⑵", SEC.곱셈, "응용", (rng) =>
     attempt<Gen>(120, () => {
       const mode = pick(rng, [0, 1, 2, 3] as const);
       const t = nonZero(rng, -9, 9);
@@ -991,7 +991,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "17", "의 꼴의 전개", SEC.곱셈, "hard", (rng) =>
+  def(MINOR_MUL, "17", "의 꼴의 전개", SEC.곱셈, "심화", (rng) =>
     // 상수항의 합이 같아지도록 둘씩 짝지으면 x^2+sx 가 공통부분이 된다.
     attempt<Gen>(120, () => {
       const d = nonZero(rng, -4, 4);
@@ -1047,7 +1047,7 @@ const MUL: TypeEntry[] = [
     "18",
     "의 꼴이 주어질 때 식의 값 구하기",
     SEC.곱셈,
-    "hard",
+    "심화",
     (rng) =>
       // x^2+ax±1=0 의 양변을 x 로 나누면 x±1/x 의 값이 나온다.
       attempt<Gen>(120, () => {
@@ -1087,7 +1087,7 @@ const MUL: TypeEntry[] = [
  * ──────────────────────────────────────────────────────────────────────── */
 
 const FAC: TypeEntry[] = [
-  def(MINOR_FAC, "01", "인수", SEC.인수, "easy", (rng) =>
+  def(MINOR_FAC, "01", "인수", SEC.인수, "기본", (rng) =>
     attempt<Gen>(80, () => {
       const a = nonZero(rng, -9, 9);
       const b = nonZero(rng, -9, 9);
@@ -1119,7 +1119,7 @@ const FAC: TypeEntry[] = [
     "02",
     "공통인 인수로 묶어 인수분해하기",
     SEC.인수,
-    "easy",
+    "기본",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -1175,7 +1175,7 @@ const FAC: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_FAC, "03", "의 인수분해", SEC.인수, "easy", (rng) =>
+  def(MINOR_FAC, "03", "의 인수분해", SEC.인수, "기본", (rng) =>
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
       if (mode === 0) {
@@ -1239,7 +1239,7 @@ const FAC: TypeEntry[] = [
     "04",
     "완전제곱식이 되도록 하는 미지수의 값 구하기",
     SEC.인수,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(80, () => {
         const mode = pick(rng, [0, 1, 2] as const);
@@ -1304,7 +1304,7 @@ const FAC: TypeEntry[] = [
     "05",
     "근호 안이 완전제곱식으로 인수분해되는 식",
     SEC.인수,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Gen>(80, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -1341,7 +1341,7 @@ const FAC: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_FAC, "06", "의 인수분해", SEC.인수, "easy", (rng) =>
+  def(MINOR_FAC, "06", "의 인수분해", SEC.인수, "기본", (rng) =>
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
       if (mode === 0) {
@@ -1389,7 +1389,7 @@ const FAC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_FAC, "07", "의 인수분해", SEC.인수, "easy", (rng) =>
+  def(MINOR_FAC, "07", "의 인수분해", SEC.인수, "기본", (rng) =>
     attempt<Gen>(80, () => {
       const mode = pick(rng, [0, 1] as const);
       const a = nonZero(rng, -9, 9);
@@ -1433,7 +1433,7 @@ const FAC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_FAC, "08", "의 인수분해", SEC.인수, "mid", (rng) =>
+  def(MINOR_FAC, "08", "의 인수분해", SEC.인수, "응용", (rng) =>
     attempt<Gen>(120, () => {
       const a = intBetween(rng, 1, 5);
       const b = nonZero(rng, -7, 7);
@@ -1465,7 +1465,7 @@ const FAC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_FAC, "09", "인수분해 공식 종합", SEC.인수, "mid", (rng) =>
+  def(MINOR_FAC, "09", "인수분해 공식 종합", SEC.인수, "응용", (rng) =>
     // 공통인수를 먼저 묶고 그 안을 다시 인수분해한다 — 두 단계를 한 문항에서 쓴다.
     attempt<Gen>(120, () => {
       const k = intBetween(rng, 2, 5);
@@ -1508,7 +1508,7 @@ const FAC: TypeEntry[] = [
     "10",
     "두 다항식의 공통인 인수 구하기",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(120, () => {
         // 공통인수 (x+n) 을 먼저 정하고 두 이차식을 그 배수로 짓는다.
@@ -1552,7 +1552,7 @@ const FAC: TypeEntry[] = [
     "11",
     "인수가 주어진 이차식의 미지수의 값 구하기",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(80, () => {
         const A = intBetween(rng, 1, 4);
@@ -1582,7 +1582,7 @@ const FAC: TypeEntry[] = [
     "12",
     "계수 또는 상수항을 잘못 보고 인수분해한 경우",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Gen>(200, () => {
         // 바른 이차식 (x+m)(x+n) 을 먼저 정한다 — 잘못 본 두 답은 그것에서 만든다.
@@ -1633,7 +1633,7 @@ const FAC: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_FAC, "13", "인수분해의 도형에의 활용 ⑴", SEC.응용, "mid", (rng) =>
+  def(MINOR_FAC, "13", "인수분해의 도형에의 활용 ⑴", SEC.응용, "응용", (rng) =>
     attempt<Gen>(80, () => {
       // 넓이가 x^2·x·1 인 조각을 붙여 만든 직사각형 — 그림 대신 개수를 글로 준다.
       const p = intBetween(rng, 1, 6);
@@ -1671,7 +1671,7 @@ const FAC: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_FAC, "14", "인수분해의 도형에의 활용 ⑵", SEC.응용, "mid", (rng) =>
+  def(MINOR_FAC, "14", "인수분해의 도형에의 활용 ⑵", SEC.응용, "응용", (rng) =>
     attempt<Gen>(120, () => {
       const a = intBetween(rng, 1, 4);
       // 두 변이 모두 «길이» 이므로 상수항을 양수로 둔다 — `2x-5` 를 가로라고
@@ -1708,7 +1708,7 @@ const FAC: TypeEntry[] = [
     "15",
     "공통부분이 있는 식의 인수분해 ⑴",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(120, () => {
         const t = nonZero(rng, -5, 5);
@@ -1750,7 +1750,7 @@ const FAC: TypeEntry[] = [
     "16",
     "공통부분이 있는 식의 인수분해 ⑵",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(120, () => {
         const p = nonZero(rng, -5, 5);
@@ -1784,7 +1784,7 @@ const FAC: TypeEntry[] = [
     "17",
     "항이 개인 식의 인수분해 개의 항씩 묶기",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -1837,7 +1837,7 @@ const FAC: TypeEntry[] = [
     "18",
     "항이 개인 식의 인수분해 개의 항씩 묶기",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -1909,7 +1909,7 @@ const FAC: TypeEntry[] = [
     "19",
     "인수분해 공식을 이용한 수의 계산",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) => {
       const mode = pick(rng, [0, 1, 2] as const);
       if (mode === 0) {
@@ -1975,7 +1975,7 @@ const FAC: TypeEntry[] = [
     "20",
     "인수분해 공식을 이용하여 식의 값 구하기",
     SEC.응용,
-    "mid",
+    "응용",
     (rng) => {
       const mode = pick(rng, [0, 1, 2] as const);
       if (mode === 0) {
@@ -2037,7 +2037,7 @@ const FAC: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_FAC, "21", "의 꼴의 인수분해", SEC.응용, "hard", (rng) =>
+  def(MINOR_FAC, "21", "의 꼴의 인수분해", SEC.응용, "심화", (rng) =>
     // 상수항의 합이 같도록 둘씩 묶으면 x^2+sx 가 공통부분이 된다.
     attempt<Gen>(200, () => {
       const d = nonZero(rng, -3, 3);
@@ -2104,7 +2104,7 @@ const FAC: TypeEntry[] = [
     "22",
     "항이 개 이상인 식의 인수분해",
     SEC.응용,
-    "hard",
+    "심화",
     (rng) =>
       attempt<Gen>(120, () => {
         // 차수가 낮은 문자 y 에 대해 내림차순으로 정리하면 (x+a) 가 공통으로 묶인다.

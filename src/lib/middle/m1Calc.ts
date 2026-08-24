@@ -374,7 +374,7 @@ function signText(s: number): string {
 export const M1_CALC: TypeEntry[] = [
   // ══ 유리수의 덧셈과 뺄셈 (01~11) ════════════════════════════════════
 
-  def("01", "유리수의 덧셈", SEC.덧뺄, "easy", (rng) =>
+  def("01", "유리수의 덧셈", SEC.덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const S = q(intBetween(rng, -24, 24), m); // ← 답을 먼저 뽑는다
@@ -394,7 +394,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("02", "덧셈의 계산 법칙", SEC.덧뺄, "easy", (rng) =>
+  def("02", "덧셈의 계산 법칙", SEC.덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const m = pick(rng, [3, 4, 5, 6, 8, 10] as const);
       const S = q(intBetween(rng, -20, 20), m); // ← 답을 먼저
@@ -427,7 +427,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("03", "유리수의 뺄셈", SEC.덧뺄, "easy", (rng) =>
+  def("03", "유리수의 뺄셈", SEC.덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const S = q(intBetween(rng, -24, 24), m); // ← 답을 먼저
@@ -449,7 +449,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("04", "덧셈과 뺄셈의 혼합 계산", SEC.덧뺄, "mid", (rng) =>
+  def("04", "덧셈과 뺄셈의 혼합 계산", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const S = q(intBetween(rng, -20, 20), m); // ← 답을 먼저
@@ -481,7 +481,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("05", "부호가 생략된 수의 덧셈과 뺄셈", SEC.덧뺄, "mid", (rng) =>
+  def("05", "부호가 생략된 수의 덧셈과 뺄셈", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const S = q(intBetween(rng, -20, 20), m); // ← 답을 먼저
@@ -516,7 +516,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("06", "어떤 수보다 만큼 큰 수 또는 작은 수", SEC.덧뺄, "mid", (rng) =>
+  def("06", "어떤 수보다 만큼 큰 수 또는 작은 수", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const A = q(intBetween(rng, -18, 18), m); // ← 두 수를 먼저 정한다
@@ -555,7 +555,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("07", "덧셈과 뺄셈 사이의 관계", SEC.덧뺄, "mid", (rng) =>
+  def("07", "덧셈과 뺄셈 사이의 관계", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, DENS);
       const A = q(intBetween(rng, -18, 18), m); // ← 두 수(=답의 재료)를 먼저
@@ -590,7 +590,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("08", "바르게 계산한 답 구하기 덧셈 뺄셈", SEC.덧뺄, "mid", (rng) =>
+  def("08", "바르게 계산한 답 구하기 덧셈 뺄셈", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const X = randQ(rng, DENS, 18); // ← 「어떤 유리수」를 먼저 정한다
       const A = randFrac(rng, DENS, 14);
@@ -625,7 +625,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("09", "절댓값이 주어진 두 수의 덧셈과 뺄셈", SEC.덧뺄, "mid", (rng) =>
+  def("09", "절댓값이 주어진 두 수의 덧셈과 뺄셈", SEC.덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const M = randQ(rng, DENS, 14);
       const N = randQ(rng, DENS, 14);
@@ -666,7 +666,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("10", "덧셈과 뺄셈의 활용 ⑴", SEC.덧뺄, "easy", (rng) =>
+  def("10", "덧셈과 뺄셈의 활용 ⑴", SEC.덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const base = intBetween(rng, 3, 12) * 100; // 수요일 입장객
       const final = intBetween(rng, 3, 14) * 100; // ← 답(일요일 입장객)을 먼저
@@ -704,7 +704,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("11", "덧셈과 뺄셈의 활용 ⑵", SEC.덧뺄, "hard", (rng) =>
+  def("11", "덧셈과 뺄셈의 활용 ⑵", SEC.덧뺄, "심화", (rng) =>
     attempt(200, () => {
       const S = intBetween(rng, -8, 8); // ← 세 줄의 공통 합을 먼저
       const p1 = intBetween(rng, -9, 9);
@@ -741,7 +741,7 @@ export const M1_CALC: TypeEntry[] = [
 
   // ══ 유리수의 곱셈 (12~17) ═══════════════════════════════════════════
 
-  def("12", "유리수의 곱셈", SEC.곱, "easy", (rng) =>
+  def("12", "유리수의 곱셈", SEC.곱, "기본", (rng) =>
     attempt(200, () => {
       const P = randQ(rng, DENS, 20); // ← 답을 먼저
       const A = randFrac(rng, DENS, 12);
@@ -759,7 +759,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("13", "곱셈의 계산 법칙", SEC.곱, "mid", (rng) =>
+  def("13", "곱셈의 계산 법칙", SEC.곱, "응용", (rng) =>
     attempt(200, () => {
       const P = randQ(rng, [2, 3, 4, 5, 6] as const, 24); // ← 답을 먼저
       const A = randFrac(rng, DENS, 10);
@@ -788,7 +788,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("14", "네 유리수 중에서 세 수를 뽑아 곱하기", SEC.곱, "hard", (rng) =>
+  def("14", "네 유리수 중에서 세 수를 뽑아 곱하기", SEC.곱, "심화", (rng) =>
     attempt(300, () => {
       // 역산이 없는 유형 — 네 수를 뽑고 «극값이 유일하고 깔끔한가»를 조건으로 건다.
       const vs = [
@@ -840,7 +840,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("15", "거듭제곱의 계산", SEC.곱, "mid", (rng) =>
+  def("15", "거듭제곱의 계산", SEC.곱, "응용", (rng) =>
     attempt(300, () => {
       // 역산이 없는 유형 — 밑과 지수를 뽑고 «답이 깔끔한가»를 조건으로 건다.
       const base1 = randFrac(rng, [2, 3, 4, 5] as const, 5);
@@ -880,7 +880,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("16", "의 계산", SEC.곱, "hard", (rng) =>
+  def("16", "의 계산", SEC.곱, "심화", (rng) =>
     attempt<Body>(200, (): Body | null => {
       // 역산이 없는 유형 — 홀짝 규칙으로 접는다. 테스트는 구체적인 $n$ 을 넣어 센다.
       const shape = rng() < 0.35 ? 1 : 2;
@@ -947,7 +947,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("17", "분배법칙", SEC.곱, "mid", (rng) =>
+  def("17", "분배법칙", SEC.곱, "응용", (rng) =>
     attempt(200, () => {
       const S = q(intBetween(rng, -30, 30)); // ← 답을 먼저
       if (S.n === 0) return null;
@@ -983,7 +983,7 @@ export const M1_CALC: TypeEntry[] = [
 
   // ══ 유리수의 나눗셈 (18~27) ═════════════════════════════════════════
 
-  def("18", "역수", SEC.나눗, "easy", (rng) =>
+  def("18", "역수", SEC.나눗, "기본", (rng) =>
     attempt(200, () => {
       const A = randFrac(rng, [2, 3, 4, 5, 6, 7] as const, 9); // ← 역수(=답의 재료)를 먼저
       const B = randFrac(rng, [2, 3, 4, 5, 6, 7] as const, 9);
@@ -1011,7 +1011,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("19", "유리수의 나눗셈", SEC.나눗, "easy", (rng) =>
+  def("19", "유리수의 나눗셈", SEC.나눗, "기본", (rng) =>
     attempt(200, () => {
       const S = randQ(rng, DENS, 18); // ← 답(몫)을 먼저
       const B = randFrac(rng, DENS, 12); // 나누는 수
@@ -1030,7 +1030,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("20", "곱셈과 나눗셈의 혼합 계산", SEC.나눗, "mid", (rng) =>
+  def("20", "곱셈과 나눗셈의 혼합 계산", SEC.나눗, "응용", (rng) =>
     attempt(300, () => {
       const S = randQ(rng, [2, 3, 4, 5, 6, 8] as const, 16); // ← 답을 먼저
       const base = randFrac(rng, [2, 3, 4, 5] as const, 4);
@@ -1060,7 +1060,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("21", "덧셈 뺄셈 곱셈 나눗셈의 혼합 계산", SEC.나눗, "hard", (rng) =>
+  def("21", "덧셈 뺄셈 곱셈 나눗셈의 혼합 계산", SEC.나눗, "심화", (rng) =>
     attempt(300, () => {
       // 뼈대: $\dfrac{1}{A}\times\left[B-\left\{C^{2}+\left(\dfrac{p}{u}-\dfrac{r}{w}\right)\times D\right\}\right]+E$
       const T = intBetween(rng, -9, 9); // ← 답을 먼저
@@ -1102,7 +1102,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("22", "곱셈과 나눗셈 사이의 관계", SEC.나눗, "mid", (rng) =>
+  def("22", "곱셈과 나눗셈 사이의 관계", SEC.나눗, "응용", (rng) =>
     attempt(200, () => {
       const A = randFrac(rng, [2, 3, 4, 5, 6] as const, 9); // ← 두 수를 먼저
       const B = randFrac(rng, [2, 3, 4, 5, 6] as const, 9);
@@ -1135,7 +1135,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("23", "바르게 계산한 답 구하기 곱셈 나눗셈", SEC.나눗, "mid", (rng) =>
+  def("23", "바르게 계산한 답 구하기 곱셈 나눗셈", SEC.나눗, "응용", (rng) =>
     attempt(200, () => {
       const X = randQ(rng, [2, 3, 4, 5, 6] as const, 12); // ← 「어떤 유리수」를 먼저
       const A = randFrac(rng, [2, 3, 4, 5, 6] as const, 9);
@@ -1168,7 +1168,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("24", "유리수의 부호 결정", SEC.나눗, "hard", (rng) =>
+  def("24", "유리수의 부호 결정", SEC.나눗, "심화", (rng) =>
     attempt(200, () => {
       // 역산이 없는 유형 — 부호를 먼저 정하고 그 부호만 남기는 조건을 고른다.
       const sa = rng() < 0.5 ? 1 : -1;
@@ -1210,7 +1210,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("25", "문자로 주어진 수의 대소 관계", SEC.나눗, "hard", (rng) =>
+  def("25", "문자로 주어진 수의 대소 관계", SEC.나눗, "심화", (rng) =>
     attempt(300, () => {
       // 역산이 없는 유형 — 구간의 표본점에 실제로 대입해 «늘 그 하나가 극값인가»를 본다.
       const r = pick(rng, RANGES);
@@ -1278,7 +1278,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("26", "실생활에서 유리수의 혼합 계산의 활용", SEC.나눗, "mid", (rng) =>
+  def("26", "실생활에서 유리수의 혼합 계산의 활용", SEC.나눗, "응용", (rng) =>
     attempt(200, () => {
       const win = intBetween(rng, 2, 6); // 이겼을 때 점수
       const lose = -intBetween(rng, 1, 3); // 졌을 때 점수
@@ -1305,7 +1305,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("27", "수직선에서 유리수의 혼합 계산의 활용", SEC.나눗, "hard", (rng) =>
+  def("27", "수직선에서 유리수의 혼합 계산의 활용", SEC.나눗, "심화", (rng) =>
     attempt(300, () => {
       const m = intBetween(rng, 1, 4);
       const nRatio = intBetween(rng, 1, 4);

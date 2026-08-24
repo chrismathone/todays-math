@@ -1,3 +1,8 @@
+import {
+  DIFFICULTY_LADDER,
+  type Difficulty,
+} from "@/contracts/common.contract";
+
 import type { UnitSeed } from "../../../prisma/seed-data/units";
 
 import type { ChapterHandler } from "./types";
@@ -6,10 +11,18 @@ import type { ChapterHandler } from "./types";
  * 초등 난이도 4단 (D-71, 원장님 확정 2026-08-22).
  *
  * 이름이 곧 값이다 — 지면·반 프리셋·상담에서 같은 말을 쓰므로 매핑이 없다.
- * 중·고등 `easy/mid/hard` 와는 **다른 축**이다. 억지로 잇지 말 것 (D-71).
+ *
+ * 🔴 **2026-08-25(D-106)부터 이것이 제품의 유일한 난이도 축이다.** 예전 주석은
+ *    「중·고등 `easy/mid/hard` 와는 다른 축이다. 억지로 잇지 말 것」이라고 적어
+ *    두었는데, 축이 둘이라 적재기가 `연산`과 `기본`을 **둘 다 `easy` 로 접었고**
+ *    화면에서는 그 둘을 되물을 방법이 없었다. 원장님이 문제은행에서 그것을 보시고
+ *    「우리 엔진의 난이도와 통일시켜」라고 하셔서 DB·화면을 이 넷으로 옮겼다.
+ *
+ * ⚠️ 그래서 이제 `ElemTier` 는 계약의 `Difficulty` **바로 그것**이다 — 별칭만 남긴다.
+ *    두 벌로 적으면 한쪽만 고쳐도 아무도 모른다.
  */
-export type ElemTier = "연산" | "기본" | "응용" | "심화";
-export const ELEM_TIERS = ["연산", "기본", "응용", "심화"] as const;
+export type ElemTier = Difficulty;
+export const ELEM_TIERS = DIFFICULTY_LADDER;
 
 /**
  * 반 프리셋 안A (%, D-71). 원장님이 언제든 숫자를 조정한다 —

@@ -1237,7 +1237,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "09",
     "삼각형의 닮음 조건",
     SEC.닮음조건,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1282,7 +1282,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "10",
     "삼각형의 닮음을 이용하여 변의 길이 구하기 닮음",
     SEC.닮음조건,
-    "mid",
+    "응용",
     (rng): Body => {
       const k = intBetween(rng, 2, 3);
       const p = intBetween(rng, 3, 8);
@@ -1315,7 +1315,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "11",
     "삼각형의 닮음을 이용하여 변의 길이 구하기 닮음",
     SEC.닮음조건,
-    "mid",
+    "응용",
     (rng): Body => {
       // 닮음비 1:k 로 **구성**한다 — BC=k·BD, BA=k·BE 면 BD·BA=BE·BC 가 항상 성립.
       // 「나누어떨어질 때까지 다시 뽑기」로 하면 던진다(실측: 씨앗 하나가 소진).
@@ -1354,7 +1354,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "12",
     "직각삼각형의 닮음",
     SEC.닮음조건,
-    "mid",
+    "응용",
     (rng): Body => {
       // 닮음비 j:i 로 **구성**한다 — AD=j·s·BE=i·s·EC=i·t·BD=j·t 면
       // AD:BE = DB:EC = j:i 가 항상 성립한다. 「나누어떨어질 때까지 다시
@@ -1400,7 +1400,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "13",
     "직각삼각형의 닮음의 응용",
     SEC.닮음조건,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1440,7 +1440,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_SIM, "14", "닮음의 활용", SEC.닮음조건, "mid", (rng): Body => {
+  def(MINOR_SIM, "14", "닮음의 활용", SEC.닮음조건, "응용", (rng): Body => {
     const mode = intBetween(rng, 0, 1);
     if (mode === 0) {
       // 나무 높이를 cm 로 재면 지면이 우스워진다 — 전부 m 로 쓰고,
@@ -1479,7 +1479,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "15",
     "접은 도형에서의 닮은 삼각형",
     SEC.닮음조건,
-    "hard",
+    "심화",
     (rng): Body => {
       const [p, q, cd] = pick(rng, SIM15_FOLDS);
       const x = (p * cd) / q;
@@ -1503,7 +1503,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "08",
     "평행선 사이의 선분의 길이의 비",
     SEC.평행선비,
-    "easy",
+    "기본",
     (rng): Body => {
       const a = intBetween(rng, 3, 12);
       const b = attempt(40, () => {
@@ -1534,7 +1534,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "09",
     "사다리꼴에서 평행선 사이의 선분의 길이의 비",
     SEC.평행선비,
-    "mid",
+    "응용",
     (rng): Body => {
       const m = intBetween(rng, 2, 9);
       const n = intBetween(rng, 2, 9);
@@ -1566,7 +1566,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "10",
     "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
     SEC.평행선비,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1603,7 +1603,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "11",
     "평행선 사이의 선분의 길이의 비의 응용",
     SEC.평행선비,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -1642,7 +1642,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
   ),
 
   // ── 도형의 닮음 ───────────────────────────────────────────
-  def(MINOR_SIM, "01", "닮은 도형", SEC.닮은도형, "easy", (rng): Body => {
+  def(MINOR_SIM, "01", "닮은 도형", SEC.닮은도형, "기본", (rng): Body => {
     const perm = intBetween(rng, 0, 5);
     const si = intBetween(rng, 0, 2);
     const ai = intBetween(rng, 0, 2);
@@ -1672,7 +1672,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "02",
     "평면도형에서 닮음의 성질",
     SEC.닮은도형,
-    "easy",
+    "기본",
     (rng): Body => {
       const [p, q] = pick(rng, COPRIME_UP);
       const k1 = intBetween(rng, 2, 5);
@@ -1701,7 +1701,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "03",
     "입체도형에서 닮음의 성질",
     SEC.닮은도형,
-    "mid",
+    "응용",
     (rng): Body => {
       const [p, q] = pick(rng, COPRIME_UP);
       const k = intBetween(rng, 2, 4);
@@ -1727,7 +1727,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "04",
     "원뿔 또는 원기둥의 닮음비",
     SEC.닮은도형,
-    "mid",
+    "응용",
     (rng): Body => {
       const [m, n] = pick(rng, [
         [1, 2],
@@ -1756,7 +1756,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "05",
     "닮은 두 평면도형의 넓이의 비",
     SEC.넓이부피비,
-    "easy",
+    "기본",
     (rng): Body => {
       const [p, q] = pick(rng, COPRIME_UP);
       const t = intBetween(rng, 2, 4);
@@ -1780,7 +1780,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "06",
     "닮은 두 입체도형의 겉넓이의 비와 부피의 비",
     SEC.넓이부피비,
-    "mid",
+    "응용",
     (rng): Body => {
       const [p, q] = pick(rng, [
         [2, 3],
@@ -1810,7 +1810,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "07",
     "닮은 두 평면도형의 넓이의 비의 활용",
     SEC.넓이부피비,
-    "easy",
+    "기본",
     (rng): Body => {
       const [p, q] = pick(rng, [
         [4, 5],
@@ -1841,7 +1841,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "08",
     "닮은 두 입체도형의 겉넓이의 비와 부피의 비의 활용",
     SEC.넓이부피비,
-    "hard",
+    "심화",
     (rng): Body => {
       const m = intBetween(rng, 2, 4);
       const v = intBetween(rng, 1, 5);
@@ -1862,7 +1862,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "01",
     "삼각형에서 평행선 사이의 선분의 길이의 비⑴",
     SEC.삼평행비,
-    "easy",
+    "기본",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const [p, q] = pick(rng, COPRIME_UP);
@@ -1911,7 +1911,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "02",
     "삼각형에서 평행선 사이의 선분의 길이의 비⑵",
     SEC.삼평행비,
-    "mid",
+    "응용",
     (rng): Body => {
       const [p, q] = pick(rng, COPRIME_UP);
       const t = intBetween(rng, 1, 3);
@@ -1940,7 +1940,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "03",
     "삼각형에서 평행선 사이의 선분의 길이의 비의 응용 ⑴",
     SEC.삼평행비,
-    "hard",
+    "심화",
     (rng): Body => {
       const [g1u, g2u] = pick(rng, COPRIME_UP);
       const m = intBetween(rng, 2, 4);
@@ -1968,7 +1968,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "04",
     "삼각형에서 평행선 사이의 선분의 길이의 비의 응용⑵",
     SEC.삼평행비,
-    "hard",
+    "심화",
     (rng): Body => {
       const [f1, f2] = pick(rng, [
         [9, 3],
@@ -1997,7 +1997,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "05",
     "삼각형에서 평행한 선분 찾기",
     SEC.삼평행비,
-    "mid",
+    "응용",
     (rng): Body => {
       const [p, q] = pick(rng, COPRIME_UP);
       const t = intBetween(rng, 1, 3);
@@ -2021,7 +2021,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "06",
     "삼각형의 내각의 이등분선의 성질",
     SEC.각이등분,
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const [pu, qu] = pick(rng, [
@@ -2070,7 +2070,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "07",
     "삼각형의 외각의 이등분선의 성질",
     SEC.각이등분,
-    "hard",
+    "심화",
     (rng): Body => {
       const r = intBetween(rng, 1, 4);
       const t = intBetween(rng, 1, 3);

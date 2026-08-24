@@ -550,7 +550,7 @@ function pickAnnulusArea(rng: Rng): { r1: number; r2: number; x: number } {
 // ═══════════════════════════════════════════════════════════════════
 
 const SECTOR_TYPES: TypeEntry[] = [
-  def("01", "원과 부채꼴", SEC.기본, "easy", (rng): Body => {
+  def("01", "원과 부채꼴", SEC.기본, "기본", (rng): Body => {
     const idx = distinctIndices(rng, SECTOR01_CLAIMS.length, 5);
     const x = idx.filter((i) => SECTOR01_CLAIMS[i]![1]).length;
     const lines = idx
@@ -578,7 +578,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("02", "중심각의 크기와 호의 길이", SEC.기본, "mid", (rng): Body => {
+  def("02", "중심각의 크기와 호의 길이", SEC.기본, "응용", (rng): Body => {
     const [a2, x2] = pick(rng, PROP_RATIOS);
     const k = pick(rng, [2, 3, 4] as const);
     const a = 10 * a2;
@@ -608,7 +608,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     "03",
     "호의 길이의 비가 주어질 때 중심각의 크기 구하기",
     SEC.기본,
-    "mid",
+    "응용",
     (rng): Body =>
       attempt(300, (): Body | null => {
         const total = pick(rng, [6, 8, 9, 10, 12, 15, 18] as const);
@@ -631,7 +631,7 @@ const SECTOR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def("04", "보조선을 그어 호의 길이 구하기", SEC.기본, "hard", (rng): Body =>
+  def("04", "보조선을 그어 호의 길이 구하기", SEC.기본, "심화", (rng): Body =>
     attempt(200, (): Body | null => {
       const x = intBetween(rng, 6, 20);
       const c1 = intBetween(rng, 1, 4);
@@ -658,7 +658,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def("05", "중심각의 크기와 부채꼴의 넓이", SEC.기본, "mid", (rng): Body => {
+  def("05", "중심각의 크기와 부채꼴의 넓이", SEC.기본, "응용", (rng): Body => {
     const [a2, x2] = pick(rng, PROP_RATIOS);
     const k = pick(rng, [2, 3, 4] as const);
     const a = 10 * a2;
@@ -684,7 +684,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("06", "중심각의 크기와 현의 길이", SEC.기본, "mid", (rng): Body => {
+  def("06", "중심각의 크기와 현의 길이", SEC.기본, "응용", (rng): Body => {
     const branch = intBetween(rng, 0, 1);
     if (branch === 0) {
       return attempt(200, (): Body | null => {
@@ -723,7 +723,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("07", "중심각의 크기에 정비례하는 것", SEC.기본, "mid", (rng): Body => {
+  def("07", "중심각의 크기에 정비례하는 것", SEC.기본, "응용", (rng): Body => {
     const count = intBetween(rng, 4, SECTOR07_CLAIMS.length);
     const idx = distinctIndices(rng, SECTOR07_CLAIMS.length, count);
     const x = idx.filter((i) => SECTOR07_CLAIMS[i]![1]).length;
@@ -758,7 +758,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     "08",
     "도형의 성질을 이용하여 호의 길이 구하기",
     SEC.기본,
-    "mid",
+    "응용",
     (rng): Body => {
       const k = intBetween(rng, 2, 8);
       const r = 3 * k;
@@ -777,7 +777,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     "11",
     "부채꼴에서 색칠한 부분의 둘레의 길이와 넓이",
     SEC.응용,
-    "mid",
+    "응용",
     (rng): Body => {
       const { r, x } = pickSectorRX(rng);
       const arcCoef = (r * x) / 180;
@@ -792,7 +792,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("12", "색칠한 부분의 둘레의 길이", SEC.응용, "mid", (rng): Body => {
+  def("12", "색칠한 부분의 둘레의 길이", SEC.응용, "응용", (rng): Body => {
     const { r1, r2, x } = pickAnnulusPerimeter(rng);
     const outerCoef = (r2 * x) / 180;
     const innerCoef = (r1 * x) / 180;
@@ -807,7 +807,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("13", "색칠한 부분의 넓이 (1)", SEC.응용, "mid", (rng): Body => {
+  def("13", "색칠한 부분의 넓이 (1)", SEC.응용, "응용", (rng): Body => {
     const { r1, r2, x } = pickAnnulusArea(rng);
     const areaCoef = ((r2 * r2 - r1 * r1) * x) / 360;
     return {
@@ -819,7 +819,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("14", "색칠한 부분의 넓이 (2)", SEC.응용, "mid", (rng): Body => {
+  def("14", "색칠한 부분의 넓이 (2)", SEC.응용, "응용", (rng): Body => {
     const r1 = intBetween(rng, 2, 9);
     const r2 = intBetween(rng, 2, 9);
     const areaCoef = r1 * r2;
@@ -832,7 +832,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("15", "색칠한 부분의 넓이 (3)", SEC.응용, "mid", (rng): Body => {
+  def("15", "색칠한 부분의 넓이 (3)", SEC.응용, "응용", (rng): Body => {
     const s = 2 * intBetween(rng, 3, 10);
     const half = (s * s) / 2;
     const sq = s * s;
@@ -845,7 +845,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("16", "끈의 길이", SEC.응용, "mid", (rng): Body => {
+  def("16", "끈의 길이", SEC.응용, "응용", (rng): Body => {
     const n = intBetween(rng, 2, 4);
     const r = intBetween(rng, 3, 10);
     const straight = 4 * r * (n - 1);
@@ -858,7 +858,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("17", "원이 지나간 자리의 넓이", SEC.응용, "mid", (rng): Body => {
+  def("17", "원이 지나간 자리의 넓이", SEC.응용, "응용", (rng): Body => {
     // 표준 결과로 채택 — 「(직사각형 바깥으로 반지름 r 만큼 부푼 둥근 사각형)
     // − (원래 직사각형)」로 독립 재도출해 확인했다: (p+2r)(q+2r)+πr² − pq
     // = 2r(p+q) + πr². 종이/화이트보드 재검증은 안 했으나 두 방법(둘레×반지름
@@ -877,7 +877,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("18", "도형을 회전시켰을 때 움직인 거리", SEC.응용, "mid", (rng): Body =>
+  def("18", "도형을 회전시켰을 때 움직인 거리", SEC.응용, "응용", (rng): Body =>
     attempt(200, (): Body | null => {
       const a = intBetween(rng, 3, 15);
       const theta = pick(rng, [60, 90, 120, 150, 180] as const);
@@ -945,7 +945,7 @@ const STAT_TYPE: TypeEntry = defStat(
   "09",
   "일부가 보이지 않는 도수분포다각형",
   "도수분포다각형",
-  "mid",
+  "응용",
   (rng) =>
     attemptStat(200, (): StatBody | null => {
       const t = pick(rng, STAT_TOPICS);

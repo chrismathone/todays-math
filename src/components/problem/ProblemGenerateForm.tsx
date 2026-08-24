@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { asDifficulty, DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { Button } from "@/components/ui/Button";
-import type { Difficulty } from "@/contracts/common.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import { generateProblems } from "@/lib/problem/problemApi";
 
@@ -30,14 +30,12 @@ export function ProblemGenerateForm({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const difficulty = form.get("difficulty");
+    const difficulty = asDifficulty(form.get("difficulty"));
     setPending(true);
     try {
       const body = await generateProblems({
         unitId: String(form.get("unitId") ?? ""),
-        difficulty: (difficulty === "hard" || difficulty === "mid"
-          ? difficulty
-          : "easy") as Difficulty,
+        difficulty,
         count: 1,
       });
       onCreated(body.data.length, body.data);
@@ -70,12 +68,14 @@ export function ProblemGenerateForm({
         <FieldSelect
           name="difficulty"
           label="난이도"
-          defaultValue="easy"
+          defaultValue="기본"
           required
         >
-          <option value="easy">쉬움</option>
-          <option value="mid">보통</option>
-          <option value="hard">어려움</option>
+          {DIFFICULTY_LADDER.map((tier) => (
+            <option key={tier} value={tier}>
+              {tier}
+            </option>
+          ))}
         </FieldSelect>
       </div>
       <div className="mt-4">

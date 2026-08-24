@@ -84,11 +84,11 @@ describe("[T7.9] 배점 보정기 — 짜깁기 시험지의 만점 100 (D-42, 1
   it("기출+자작을 섞으면 gradeAnswers 만점이 100 이 아니다 — 11 §10.1 의 실제 버그", () => {
     // 11 §10.1 의 예 그대로: 5문항 중 2개가 3.5점(기출), 3개가 NULL(자작).
     const problems: GradingProblem[] = [
-      { id: "p1", unitId: UNIT, difficulty: "mid", answer: "1", score: 3.5 },
-      { id: "p2", unitId: UNIT, difficulty: "mid", answer: "1", score: 3.5 },
-      { id: "p3", unitId: UNIT, difficulty: "mid", answer: "1", score: null },
-      { id: "p4", unitId: UNIT, difficulty: "mid", answer: "1", score: null },
-      { id: "p5", unitId: UNIT, difficulty: "mid", answer: "1", score: null },
+      { id: "p1", unitId: UNIT, difficulty: "응용", answer: "1", score: 3.5 },
+      { id: "p2", unitId: UNIT, difficulty: "응용", answer: "1", score: 3.5 },
+      { id: "p3", unitId: UNIT, difficulty: "응용", answer: "1", score: null },
+      { id: "p4", unitId: UNIT, difficulty: "응용", answer: "1", score: null },
+      { id: "p5", unitId: UNIT, difficulty: "응용", answer: "1", score: null },
     ];
     const answers: AnswerInput[] = problems.map((p, i) => ({
       problemId: p.id,
@@ -282,7 +282,8 @@ describe("[T7.9] 배점 보정기 — 짜깁기 시험지의 만점 100 (D-42, 1
     expect(result.totalScore).toBe(100);
     expect(sumScores(result.questions.map((r) => r.score))).toBe(100);
     const grid = new Set(histogram.map((h) => h.score));
-    for (const item of result.questions) expect(grid.has(item.score)).toBe(true);
+    for (const item of result.questions)
+      expect(grid.has(item.score)).toBe(true);
   });
 
   it("눈금 집합이 비면 지어내지 않고 판단 불가를 돌려준다", () => {

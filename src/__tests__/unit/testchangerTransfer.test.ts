@@ -29,7 +29,7 @@ describe("시험지변환기 포팅 계약", () => {
       externalId: "sample-1",
       source: "past_exam",
       directUseAllowed: true,
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "계산",
       content: "$x+1$",
       answer: "2",

@@ -30,7 +30,7 @@ const draft = (over: Partial<ImportDraft> = {}) =>
     externalId: "e1",
     unitId: "11111111-1111-4111-8111-111111111111",
     source: "manual",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     content: "그림을 보고 답하시오.",
     answer: "1",

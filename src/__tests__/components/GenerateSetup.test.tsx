@@ -7,6 +7,7 @@
  * 확정: docs/planning/05-design-system.md §8.6 S-04
  */
 import { http, HttpResponse } from "msw";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -55,9 +56,11 @@ describe("[T4.3 S-04] 출제 설정 — 폼 골격", () => {
     expect(screen.getByRole("radio", { name: "일일테스트" })).toBeChecked();
     expect(screen.getByRole("radio", { name: "확인테스트" })).not.toBeChecked();
     expect(screen.getByLabelText("문항 수")).toBeInTheDocument();
-    expect(screen.getByLabelText("하")).toBeInTheDocument();
-    expect(screen.getByLabelText("중")).toBeInTheDocument();
-    expect(screen.getByLabelText("상")).toBeInTheDocument();
+    // 난이도 칸은 **사다리 그대로 넷**이다 (D-106). 손으로 세 개만 적어 두면
+    // 갈래가 늘어도 이 검사는 초록이라, 새 칸이 화면에서 빠져도 아무도 못 본다.
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(screen.getByLabelText(tier)).toBeInTheDocument();
+    }
     expect(screen.getByRole("button", { name: "출제" })).toBeInTheDocument();
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -73,30 +76,22 @@ describe("[T4.3 S-04] 출제 설정 — 폼 골격", () => {
     expect(screen.getByLabelText("문항 수")).toHaveValue(
       MOCK_CLASS_A.defaultProblemCount,
     );
-    expect(screen.getByLabelText("하")).toHaveValue(
-      MOCK_CLASS_A.difficultyRatio.easy,
-    );
-    expect(screen.getByLabelText("중")).toHaveValue(
-      MOCK_CLASS_A.difficultyRatio.mid,
-    );
-    expect(screen.getByLabelText("상")).toHaveValue(
-      MOCK_CLASS_A.difficultyRatio.hard,
-    );
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(screen.getByLabelText(tier)).toHaveValue(
+        MOCK_CLASS_A.difficultyRatio[tier],
+      );
+    }
 
     await user.selectOptions(classSelect, CLASS_B_ID);
 
     expect(screen.getByLabelText("문항 수")).toHaveValue(
       MOCK_CLASS_B.defaultProblemCount,
     );
-    expect(screen.getByLabelText("하")).toHaveValue(
-      MOCK_CLASS_B.difficultyRatio.easy,
-    );
-    expect(screen.getByLabelText("중")).toHaveValue(
-      MOCK_CLASS_B.difficultyRatio.mid,
-    );
-    expect(screen.getByLabelText("상")).toHaveValue(
-      MOCK_CLASS_B.difficultyRatio.hard,
-    );
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(screen.getByLabelText(tier)).toHaveValue(
+        MOCK_CLASS_B.difficultyRatio[tier],
+      );
+    }
   });
 
   it("query classId가 있으면 그 반을 미리 고른다", async () => {

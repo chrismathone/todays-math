@@ -169,7 +169,7 @@ export const M2_REAL: TypeEntry[] = [
     "11",
     "일차함수의 활용 물의 양에 대한 문제",
     SEC.일차함수활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const capacity = pick(rng, [40, 50, 60, 80, 100, 120] as const);
@@ -210,7 +210,7 @@ export const M2_REAL: TypeEntry[] = [
     "12",
     "일차함수의 활용 속력에 대한 문제",
     SEC.일차함수활용,
-    "mid",
+    "응용",
     (rng) =>
       attempt(80, () => {
         const speedA = intBetween(rng, 4, 9) * 10;

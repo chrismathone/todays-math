@@ -12,7 +12,7 @@
  * - 시험지 원문 표기(`topicRaw`, `subjectRaw`)는 **절대 버리지 않는다**. 학교마다 단원을
  *   부르는 이름이 다르고, 그 표기 자체가 출제 패턴 신호다(11 §5).
  * - 난이도는 두 축을 구분한다. `difficultyLabel`(상/중/하)은 시험지 원본의 사람 라벨이고,
- *   `Difficulty`(easy/mid/hard)는 우리 문제은행의 값이다. 섞지 않는다.
+ *   `Difficulty`(연산/기본/응용/심화, D-106)는 우리 문제은행의 값이다. 섞지 않는다.
  */
 import { z } from "zod";
 
@@ -70,7 +70,7 @@ export const questionTypeSchema = z.enum(["객관식", "단답형", "서술형"]
 });
 export type QuestionType = z.infer<typeof questionTypeSchema>;
 
-/** 시험지 원본의 사람 난이도 라벨. 우리 문제은행의 easy/mid/hard와 다른 축이다. */
+/** 시험지 원본의 사람 난이도 라벨. 우리 문제은행의 4단(D-106)과 **다른 축**이다. */
 export const difficultyLabelSchema = z.enum(["하", "중", "상"], {
   error: "난이도 라벨은 하/중/상 중 하나여야 합니다.",
 });
@@ -225,7 +225,7 @@ export type Blueprint = z.infer<typeof blueprintSchema>;
  * 그래서 **의도적으로 약한 조건**을 여러 단 두고 조건별 정답률 벡터를 만든다(11 §3 L2).
  */
 export const solverProfileSchema = z.strictObject({
-  /** 조건 이름(예: "strong", "mid", "weak"). 회귀 검증에서 특징 이름이 된다. */
+  /** 조건 이름(예: "strong", "응용", "weak"). 회귀 검증에서 특징 이름이 된다. */
   name: z.string().min(1).max(30),
   model: z.string().min(1).max(60),
   /** 추론 예산 등급. 낮출수록 인간 난이도와의 상관이 올라갈 것으로 본다(검증 대상). */

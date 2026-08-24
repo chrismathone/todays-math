@@ -77,7 +77,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content,
         answer: "0.28",
@@ -93,7 +93,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "ai_generated",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "$1+1=?$",
         answer: "2",
@@ -118,7 +118,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: NOT_FOUND_ID,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "$1+1=?$",
         answer: "2",
@@ -134,7 +134,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "past_exam",
-        difficulty: "mid",
+        difficulty: "응용",
         problemType: "개념",
         content: "기출 본문 $1+1$",
         answer: "2",
@@ -152,7 +152,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "공용 기본 등록",
         answer: "1",
@@ -169,7 +169,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "$1+1$",
         answer: "2",
@@ -185,7 +185,7 @@ describe("[T3.1] GET /api/problems — 단원/난이도/유형/출처/검수상�
   it("unitId/difficulty/problemType 조합으로 필터링한다", async () => {
     const res = await listProblems(
       jsonRequest(
-        `http://localhost/api/problems?unitId=${MOCK_PROBLEM_WITH_FRACTION.unitId}&difficulty=easy&problemType=계산`,
+        `http://localhost/api/problems?unitId=${MOCK_PROBLEM_WITH_FRACTION.unitId}&difficulty=기본&problemType=계산`,
         "GET",
       ),
     );
@@ -195,7 +195,7 @@ describe("[T3.1] GET /api/problems — 단원/난이도/유형/출처/검수상�
       body.data.every(
         (p) =>
           p.unitId === MOCK_PROBLEM_WITH_FRACTION.unitId &&
-          p.difficulty === "easy",
+          p.difficulty === "기본",
       ),
     ).toBe(true);
   });
@@ -471,7 +471,7 @@ describe("[T3.1] DELETE /api/problems/{id}", () => {
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
         source: "manual",
-        difficulty: "easy",
+        difficulty: "기본",
         problemType: "계산",
         content: "아직 출제되지 않은 문제",
         answer: "1",
@@ -600,9 +600,9 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
   it("difficulty를 주면 해당 난이도만 반환한다", async () => {
     const rows = await findEligibleProblems({
       unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],
-      difficulty: "easy",
+      difficulty: "기본",
     });
-    expect(rows.every((p) => p.difficulty === "easy")).toBe(true);
+    expect(rows.every((p) => p.difficulty === "기본")).toBe(true);
   });
 
   /**
@@ -854,7 +854,7 @@ describe("[S-08] GET /api/problems — 검색이 닿는 칸", () => {
           jsonRequest("http://localhost/api/problems", "POST", {
             unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
             source: "past_exam",
-            difficulty: "mid",
+            difficulty: "응용",
             problemType: "개념",
             content: "본문에는 그 낱말이 없다 $1+1$",
             answer: "2",
@@ -874,7 +874,7 @@ describe("[S-08] GET /api/problems — 검색이 닿는 칸", () => {
           jsonRequest("http://localhost/api/problems", "POST", {
             unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
             source: "past_exam",
-            difficulty: "mid",
+            difficulty: "응용",
             problemType: "개념",
             content: "정답에만 있는 값을 묻는다",
             answer: "정답에만있는값",
@@ -958,7 +958,7 @@ describe("[S-08] GET /api/problems — 단원 범위", () => {
 
   it("범위는 다른 필터와 **같이** 걸린다 — 서로를 지우지 않는다", async () => {
     const [a, b] = [정렬단원[0]!, 정렬단원[정렬단원.length - 1]!];
-    const body = await 목록(`unitFrom=${a.id}&unitTo=${b.id}&difficulty=easy`);
-    for (const p of body.data) expect(p.difficulty).toBe("easy");
+    const body = await 목록(`unitFrom=${a.id}&unitTo=${b.id}&difficulty=기본`);
+    for (const p of body.data) expect(p.difficulty).toBe("기본");
   });
 });

@@ -26,9 +26,7 @@ vi.mock("openai", () => ({
 }));
 
 import { generateProblems } from "@/lib/ai/generator";
-import {
-  transformProblem,
-} from "@/lib/ai/transformer";
+import { transformProblem } from "@/lib/ai/transformer";
 import { verifiesOriginalReproduction } from "@/lib/ai/originalReproduction";
 import { buildTransformSystemPrompt } from "@/lib/ai/prompts/transform";
 import { AiCapacityError, AiGenerationError } from "@/lib/ai/errors";
@@ -78,14 +76,14 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const drafts = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "일차부등식의 활용(농도)",
-      difficulty: "easy",
+      difficulty: "기본",
       count: 3,
     });
 
     expect(drafts).toHaveLength(3);
     for (const draft of drafts) {
       expect(draft.unitId).toBe(GENERATE_UNIT_ID);
-      expect(draft.difficulty).toBe("easy");
+      expect(draft.difficulty).toBe("기본");
       expect(draft.source).toBe("ai_generated");
       expect(draft.originProblemId).toBeNull();
       expect(draft.reviewStatus).toBe("pending");
@@ -113,12 +111,12 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const [draft] = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "일차부등식의 활용(농도)",
-      difficulty: "hard",
+      difficulty: "심화",
       count: 1,
     });
 
     expect(draft!.unitId).toBe(GENERATE_UNIT_ID);
-    expect(draft!.difficulty).toBe("hard");
+    expect(draft!.difficulty).toBe("심화");
   });
 
   it("응답이 마크다운 코드펜스 + LaTeX 백슬래시가 깨진 형태로 와도 salvage해 파싱한다", async () => {
@@ -134,7 +132,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const drafts = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "이차방정식",
-      difficulty: "mid",
+      difficulty: "응용",
       count: 1,
     });
 
@@ -160,7 +158,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const [draft] = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "유리수와 소수",
-      difficulty: "easy",
+      difficulty: "기본",
       count: 1,
     });
 
@@ -179,7 +177,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const drafts = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "일차부등식의 활용(농도)",
-      difficulty: "easy",
+      difficulty: "기본",
       count: 1,
     });
 
@@ -196,7 +194,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
       generateProblems({
         unitId: GENERATE_UNIT_ID,
         unitLabel: "일차부등식의 활용(농도)",
-        difficulty: "easy",
+        difficulty: "기본",
         count: 1,
       }),
     ).rejects.toBeInstanceOf(AiGenerationError);
@@ -215,7 +213,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
       generateProblems({
         unitId: GENERATE_UNIT_ID,
         unitLabel: "일차부등식의 활용(농도)",
-        difficulty: "easy",
+        difficulty: "기본",
         count: 2,
       }),
     ).rejects.toBeInstanceOf(AiGenerationError);
@@ -243,7 +241,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const drafts = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "일차부등식의 활용(농도)",
-      difficulty: "easy",
+      difficulty: "기본",
       count: 1,
     });
 
@@ -258,7 +256,7 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
       generateProblems({
         unitId: GENERATE_UNIT_ID,
         unitLabel: "일차부등식의 활용(농도)",
-        difficulty: "easy",
+        difficulty: "기본",
         count: 1,
       }),
     ).rejects.toBeInstanceOf(AiGenerationError);
@@ -417,7 +415,10 @@ describe("transformProblem — AI 문제 변형(후보 반환, 2026-08-19 고도
       choices: [
         {
           finish_reason: "length",
-          message: { content: "", reasoning_content: "우리는 한국어로 된 지시를…" },
+          message: {
+            content: "",
+            reasoning_content: "우리는 한국어로 된 지시를…",
+          },
         },
       ],
     });

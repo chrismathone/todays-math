@@ -219,7 +219,7 @@ describe("[T0.5.2] MSW ↔ 계약 — problem/AI 생성·변형", () => {
     const res = await postJson("/api/problems", {
       unitId: MOCK_PROBLEMS[0]!.unitId,
       source: "manual",
-      difficulty: "mid",
+      difficulty: "응용",
       problemType: "계산",
       content: "$1+1=?$",
       answer: "2",
@@ -264,7 +264,7 @@ describe("[T0.5.2] MSW ↔ 계약 — problem/AI 생성·변형", () => {
   it("POST /api/problems/generate 성공 응답은 problemGenerateResponseSchema를 통과한다", async () => {
     const res = await postJson("/api/problems/generate", {
       unitId: MOCK_PROBLEMS[0]!.unitId,
-      difficulty: "mid",
+      difficulty: "응용",
       count: 3,
     });
     expect(res.status).toBe(201);
@@ -274,7 +274,7 @@ describe("[T0.5.2] MSW ↔ 계약 — problem/AI 생성·변형", () => {
   it("POST /api/problems/generate AI 생성 실패는 AI_GENERATION_FAILED를 반환한다", async () => {
     const res = await postJson("/api/problems/generate", {
       unitId: AI_GENERATION_FAILURE_UNIT_ID,
-      difficulty: "mid",
+      difficulty: "응용",
       count: 1,
     });
     expect(res.status).toBe(502);

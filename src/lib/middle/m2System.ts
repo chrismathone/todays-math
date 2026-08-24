@@ -332,7 +332,7 @@ const PHRASES = [
 
 export const M2_SYSTEM: TypeEntry[] = [
   // ══ 일차부등식 01~05 (단원: 부등식) ═════════════════
-  def(MINOR_INEQ, "01", "부등식의 뜻", SEC.부등식, "easy", (rng) => {
+  def(MINOR_INEQ, "01", "부등식의 뜻", SEC.부등식, "기본", (rng) => {
     const { items, mask } = fiveItems(rng, INEQ_YES, INEQ_NO, 2, 4);
     const yes = items
       .map((it, i) => ({ it, i }))
@@ -346,7 +346,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_INEQ, "02", "부등식으로 나타내기", SEC.부등식, "easy", (rng) => {
+  def(MINOR_INEQ, "02", "부등식으로 나타내기", SEC.부등식, "기본", (rng) => {
     const scn = intBetween(rng, 0, 4);
     const ph = pick(rng, PHRASES);
     const rel = ph.rel;
@@ -402,7 +402,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_INEQ, "03", "부등식의 해", SEC.부등식, "easy", (rng) =>
+  def(MINOR_INEQ, "03", "부등식의 해", SEC.부등식, "기본", (rng) =>
     attempt(200, () => {
       const t = intBetween(rng, -1, 1);
       const ansRel = pick(rng, REL_CODES);
@@ -424,7 +424,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_INEQ, "04", "부등식의 성질", SEC.부등식, "easy", (rng) =>
+  def(MINOR_INEQ, "04", "부등식의 성질", SEC.부등식, "기본", (rng) =>
     attempt(200, () => {
       const seen = new Set<string>();
       const items: PoolItem[] = [];
@@ -460,7 +460,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "05",
     "부등식의 성질을 이용하여 식의 값의 범위 구하기",
     SEC.부등식,
-    "mid",
+    "응용",
     (rng) => {
       const lo = intBetween(rng, -6, 2);
       const hi = lo + intBetween(rng, 2, 7);
@@ -485,7 +485,7 @@ export const M2_SYSTEM: TypeEntry[] = [
   ),
 
   // ══ 일차부등식 06~09 (단원: 일차부등식의 풀이) ══════
-  def(MINOR_INEQ, "06", "일차부등식의 뜻", SEC.부등식풀이, "easy", (rng) => {
+  def(MINOR_INEQ, "06", "일차부등식의 뜻", SEC.부등식풀이, "기본", (rng) => {
     const { items, mask } = fiveItems(rng, LINEQ_YES, LINEQ_NO, 2, 3);
     return {
       content: `다음 보기 중 일차부등식인 것을 모두 고르시오.\n${itemLines(items)}`,
@@ -495,7 +495,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_INEQ, "07", "일차부등식의 풀이", SEC.부등식풀이, "easy", (rng) =>
+  def(MINOR_INEQ, "07", "일차부등식의 풀이", SEC.부등식풀이, "기본", (rng) =>
     attempt(200, () => {
       const s = intBetween(rng, -8, 8);
       const ansRel = pick(rng, REL_CODES);
@@ -523,7 +523,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "08",
     "괄호가 있는 일차부등식의 풀이",
     SEC.부등식풀이,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const s = intBetween(rng, -7, 7);
@@ -555,7 +555,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "09",
     "계수가 소수 또는 분수인 일차부등식의 풀이",
     SEC.부등식풀이,
-    "mid",
+    "응용",
     (rng) => {
       const useDec = pick(rng, [true, false] as const);
       if (useDec) {
@@ -617,7 +617,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "01",
     "미지수가 개인 일차방정식",
     SEC.미지수2,
-    "easy",
+    "기본",
     (rng) => {
       const { items, mask } = fiveItems(rng, TWOVAR_YES, TWOVAR_NO, 2, 3);
       return {
@@ -634,7 +634,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "02",
     "미지수가 개인 일차방정식의 해",
     SEC.미지수2,
-    "easy",
+    "기본",
     (rng) =>
       attempt(400, () => {
         const a = intBetween(rng, 2, 5);
@@ -663,7 +663,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "03",
     "일차방정식의 해가 주어질 때",
     SEC.미지수2,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -681,7 +681,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SYS, "04", "연립방정식과 그 해", SEC.미지수2, "easy", (rng) =>
+  def(MINOR_SYS, "04", "연립방정식과 그 해", SEC.미지수2, "기본", (rng) =>
     attempt(400, () => {
       const x0 = nonzero(rng, 1, 5);
       const y0 = nonzero(rng, 1, 5);
@@ -733,7 +733,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "05",
     "연립방정식의 해가 주어질 때⑴",
     SEC.미지수2,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -760,7 +760,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "06",
     "연립방정식의 풀이 대입법",
     SEC.연립풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 6);
@@ -789,7 +789,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "07",
     "연립방정식의 풀이 가감법",
     SEC.연립풀이,
-    "easy",
+    "기본",
     (rng) =>
       attempt(300, () => {
         const x0 = nonzero(rng, 1, 6);
@@ -827,7 +827,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "08",
     "괄호가 있는 연립방정식의 풀이",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng) =>
       attempt(400, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -861,7 +861,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "09",
     "계수가 소수 또는 분수인 연립방정식의 풀이",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng) => {
       const useDec = pick(rng, [true, false] as const);
       if (useDec) {
@@ -924,7 +924,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "10",
     "비례식을 포함한 연립방정식의 풀이",
     SEC.여러가지,
-    "mid",
+    "응용",
     (rng) =>
       attempt(600, () => {
         const m = intBetween(rng, 2, 5);
@@ -959,7 +959,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_SYS, "11", "의 꼴의 방정식의 풀이", SEC.여러가지, "mid", (rng) =>
+  def(MINOR_SYS, "11", "의 꼴의 방정식의 풀이", SEC.여러가지, "응용", (rng) =>
     attempt(300, () => {
       const x0 = nonzero(rng, 1, 5);
       const y0 = nonzero(rng, 1, 5);
@@ -990,7 +990,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "19",
     "계수가 순환소수인 연립방정식",
     SEC.여러가지,
-    "hard",
+    "심화",
     (rng) =>
       attempt(8000, () => {
         const x0 = nonzero(rng, 1, 6);
@@ -1044,7 +1044,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "20",
     "지수법칙을 이용한 연립방정식",
     SEC.여러가지,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const b1 = pick(rng, [2, 3, 5] as const);
@@ -1065,7 +1065,7 @@ export const M2_SYSTEM: TypeEntry[] = [
   ),
 
   // ══ 연립일차방정식의 활용 01~03 (수, 평균, 나이) ═════
-  def(MINOR_APPLY, "01", "수에 대한 문제", SEC.수나이, "easy", (rng) =>
+  def(MINOR_APPLY, "01", "수에 대한 문제", SEC.수나이, "기본", (rng) =>
     attempt(300, () => {
       const small = intBetween(rng, 3, 20);
       const k = intBetween(rng, 2, 4);
@@ -1083,7 +1083,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "02", "자연수에 대한 문제", SEC.수나이, "mid", (rng) =>
+  def(MINOR_APPLY, "02", "자연수에 대한 문제", SEC.수나이, "응용", (rng) =>
     attempt(300, () => {
       const tens = intBetween(rng, 1, 7);
       const units = intBetween(rng, tens + 1, 9);
@@ -1106,7 +1106,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "03", "나이에 대한 문제", SEC.수나이, "mid", (rng) =>
+  def(MINOR_APPLY, "03", "나이에 대한 문제", SEC.수나이, "응용", (rng) =>
     attempt(400, () => {
       const son = intBetween(rng, 8, 18);
       const father = intBetween(rng, son + 22, son + 38);
@@ -1125,7 +1125,7 @@ export const M2_SYSTEM: TypeEntry[] = [
   ),
 
   // ══ 연립일차방정식의 활용 04~08 (가격, 개수, 증감, 도형) ══
-  def(MINOR_APPLY, "04", "가격 개수에 대한 문제", SEC.가격도형, "easy", (rng) =>
+  def(MINOR_APPLY, "04", "가격 개수에 대한 문제", SEC.가격도형, "기본", (rng) =>
     attempt(300, () => {
       const p = pick(rng, [500, 700, 800, 900, 1200] as const);
       // 두 풀은 서로소라 $p\ne q$ 가 보장된다 — 그래서 계수 행렬식이 0 이 아니다.
@@ -1143,7 +1143,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "05", "도형에 대한 문제", SEC.가격도형, "easy", (rng) =>
+  def(MINOR_APPLY, "05", "도형에 대한 문제", SEC.가격도형, "기본", (rng) =>
     attempt(200, () => {
       const h = intBetween(rng, 3, 20);
       const d = intBetween(rng, 1, 12);
@@ -1158,7 +1158,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "06", "득점 감점에 대한 문제", SEC.가격도형, "mid", (rng) =>
+  def(MINOR_APPLY, "06", "득점 감점에 대한 문제", SEC.가격도형, "응용", (rng) =>
     attempt(200, () => {
       const N = pick(rng, [15, 20, 25, 30] as const);
       const p = intBetween(rng, 3, 6);
@@ -1176,7 +1176,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "07", "증가 감소에 대한 문제", SEC.가격도형, "hard", (rng) =>
+  def(MINOR_APPLY, "07", "증가 감소에 대한 문제", SEC.가격도형, "심화", (rng) =>
     attempt(400, () => {
       const a = pick(rng, [4, 5, 6, 8, 10, 20] as const);
       const b = pick(rng, [4, 5, 6, 8, 10, 20] as const);
@@ -1198,7 +1198,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "hard", (rng) =>
+  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "심화", (rng) =>
     attempt(400, () => {
       const a = pick(rng, [5, 10, 15, 20, 25, 30] as const);
       const b = pick(rng, [5, 10, 15, 20, 25, 30] as const);

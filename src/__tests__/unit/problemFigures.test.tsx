@@ -142,7 +142,7 @@ describe("[그림] 직렬화 — API 응답까지 전달", () => {
     unitId: "33333333-3333-4333-8333-333333333333",
     source: "past_exam",
     originProblemId: null,
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     content: STEM,
     answer: "$200$",

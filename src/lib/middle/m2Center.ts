@@ -711,7 +711,7 @@ function figParallelogram15(d: number, ex: number, ey: number): Fig {
 // ─────────────────────────────────────────────────────────────
 
 export const M2_CENTER_CIRC: TypeEntry[] = [
-  def(MINOR_CIRC, "01", "삼각형의 외심", SEC.외심, "easy", (rng): Body => {
+  def(MINOR_CIRC, "01", "삼각형의 외심", SEC.외심, "기본", (rng): Body => {
     const { angA, angB, angC } = attempt(200, () => {
       const a = intBetween(rng, 30, 80);
       const b = intBetween(rng, 30, 80);
@@ -730,7 +730,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_CIRC, "02", "직각삼각형의 외심", SEC.외심, "easy", (rng): Body => {
+  def(MINOR_CIRC, "02", "직각삼각형의 외심", SEC.외심, "기본", (rng): Body => {
     const [p, q, c] = pick(rng, RIGHT_EVEN_HYP);
     const x = c / 2;
     return {
@@ -742,7 +742,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_CIRC, "03", "둔각삼각형의 외심", SEC.외심, "mid", (rng): Body => {
+  def(MINOR_CIRC, "03", "둔각삼각형의 외심", SEC.외심, "응용", (rng): Body => {
     const { angA, angB, angC } = attempt(200, () => {
       const a = intBetween(rng, 100, 150);
       const rem = 180 - a;
@@ -765,7 +765,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "04",
     "삼각형의 외심이 주어질 때 각의 크기 구하기 ⑴",
     SEC.외심,
-    "mid",
+    "응용",
     (rng): Body => {
       const { angA, angB, angC } = attempt(200, () => {
         const a = intBetween(rng, 30, 80);
@@ -791,7 +791,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "05",
     "삼각형의 외심이 주어질 때 각의 크기 구하기 ⑵",
     SEC.외심,
-    "mid",
+    "응용",
     (rng): Body => {
       const { angA, angB, angC } = attempt(200, () => {
         const b = intBetween(rng, 20, 70);
@@ -810,7 +810,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_CIRC, "06", "삼각형의 내심", SEC.내심, "easy", (rng): Body => {
+  def(MINOR_CIRC, "06", "삼각형의 내심", SEC.내심, "기본", (rng): Body => {
     const { angB, angC } = attempt(200, () => {
       const b = evenBetween(rng, 30, 70);
       const c = evenBetween(rng, 30, 70);
@@ -835,7 +835,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "07",
     "삼각형의 내심이 주어질 때 각의 크기 구하기 ⑴",
     SEC.내심,
-    "mid",
+    "응용",
     (rng): Body => {
       const angA = evenBetween(rng, 30, 120);
       const rem = 180 - angA;
@@ -857,7 +857,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "08",
     "삼각형의 내심이 주어질 때 각의 크기 구하기 ⑵",
     SEC.내심,
-    "mid",
+    "응용",
     (rng): Body => {
       const angA = evenBetween(rng, 30, 120);
       const rem = 180 - angA;
@@ -880,7 +880,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "09",
     "삼각형의 내심과 평행선",
     SEC.내심,
-    "mid",
+    "응용",
     (rng): Body => {
       const c = intBetween(rng, 6, 16);
       const b = attempt(60, () => {
@@ -903,7 +903,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "10",
     "삼각형의 넓이와 내접원의 반지름의 길이",
     SEC.내심,
-    "mid",
+    "응용",
     (rng): Body => {
       const [p, q, h] = pick(rng, RIGHT_EVEN_HYP);
       const x = (p + q - h) / 2;
@@ -922,7 +922,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "11",
     "삼각형의 내접원과 접선의 길이",
     SEC.내심,
-    "hard",
+    "심화",
     (rng): Body => {
       const [p, q, h] = pick(rng, RIGHT_EVEN_HYP);
       const r = (p + q - h) / 2;
@@ -942,7 +942,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "12",
     "삼각형의 외심과 내심",
     SEC.내심,
-    "hard",
+    "심화",
     (rng): Body => {
       const { b, c } = attempt(200, () => {
         const bb = evenBetween(rng, 40, 90);
@@ -965,7 +965,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "13",
     "직각삼각형의 외접원과 내접원",
     SEC.외심,
-    "hard",
+    "심화",
     (rng): Body => {
       const EVEN_SUM: readonly (readonly [number, number, number])[] = [
         [6, 8, 10],
@@ -1002,7 +1002,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "01",
     "삼각형의 두 변의 중점을 연결한 선분의 성질⑴",
     SEC.중점연결,
-    "easy",
+    "기본",
     (rng): Body => {
       const a = evenBetween(rng, 12, 40);
       const h = intBetween(rng, 60, 100);
@@ -1023,7 +1023,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "02",
     "삼각형의 두 변의 중점을 연결한 선분의 성질⑵",
     SEC.중점연결,
-    "easy",
+    "기본",
     (rng): Body => {
       const n = intBetween(rng, 6, 20);
       const h = intBetween(rng, 60, 100);
@@ -1043,7 +1043,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "03",
     "삼각형의 두 변의 중점을 연결한 선분의 성질의 응용⑴",
     SEC.중점연결,
-    "mid",
+    "응용",
     (rng): Body => {
       const h = evenBetween(rng, 20, 80);
       const w = intBetween(rng, 30, 70);
@@ -1063,7 +1063,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "04",
     "삼각형의 두 변의 중점을 연결한 선분의 성질의 응용⑵",
     SEC.중점연결,
-    "mid",
+    "응용",
     (rng): Body => {
       const a = 4 * intBetween(rng, 4, 15);
       const h = intBetween(rng, 60, 100);
@@ -1084,7 +1084,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "05",
     "삼각형의 세 변의 중점을 연결하여 만든 삼각형",
     SEC.중점연결,
-    "mid",
+    "응용",
     (rng): Body => {
       const [a, b, c] = attempt(300, () => {
         const aa = evenBetween(rng, 10, 30);
@@ -1110,7 +1110,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "06",
     "사각형의 네 변의 중점을 연결하여 만든 사각형",
     SEC.중점연결,
-    "mid",
+    "응용",
     (rng): Body => {
       const p = evenBetween(rng, 10, 30);
       const q = evenBetween(rng, 10, 30);
@@ -1130,7 +1130,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "07",
     "사다리꼴의 두 변의 중점을 연결한 선분의 성질",
     SEC.중점연결,
-    "mid",
+    "응용",
     (rng): Body => {
       const { p, q } = attempt(200, () => {
         const pp = evenBetween(rng, 10, 30);
@@ -1153,7 +1153,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "08",
     "삼각형의 중선의 성질",
     SEC.무게중심,
-    "easy",
+    "기본",
     (rng): Body => {
       const w = intBetween(rng, 5, 15);
       const h = evenBetween(rng, 8, 24);
@@ -1174,7 +1174,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "09",
     "삼각형의 무게중심의 성질",
     SEC.무게중심,
-    "easy",
+    "기본",
     (rng): Body => {
       const h = 3 * intBetween(rng, 4, 16);
       const w = intBetween(rng, 30, 70);
@@ -1194,7 +1194,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "10",
     "두 삼각형의 무게중심 길이",
     SEC.무게중심,
-    "hard",
+    "심화",
     (rng): Body => {
       const [m, n] = pick(rng, [
         [1, 1],
@@ -1225,7 +1225,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "11",
     "삼각형의 무게중심의 응용 ⑴",
     SEC.무게중심,
-    "mid",
+    "응용",
     (rng): Body => {
       const s = intBetween(rng, 1, 6);
       const t = 2 * s;
@@ -1249,7 +1249,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "12",
     "삼각형의 무게중심의 응용 ⑵",
     SEC.무게중심,
-    "mid",
+    "응용",
     (rng): Body => {
       const w = 3 * intBetween(rng, 4, 14);
       const h = intBetween(rng, 40, 90);
@@ -1270,7 +1270,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "13",
     "삼각형의 무게중심과 넓이",
     SEC.무게중심,
-    "mid",
+    "응용",
     (rng): Body => {
       const w = 3 * intBetween(rng, 3, 10);
       const h = intBetween(rng, 10, 30);
@@ -1291,7 +1291,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "14",
     "두 삼각형의 무게중심 넓이",
     SEC.무게중심,
-    "mid",
+    "응용",
     (rng): Body => {
       const w = 6 * intBetween(rng, 2, 8);
       const h = intBetween(rng, 8, 24);
@@ -1312,7 +1312,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "15",
     "평행사변형에서 삼각형의 무게중심의 응용",
     SEC.무게중심,
-    "hard",
+    "심화",
     (rng): Body => {
       const d = 3 * intBetween(rng, 4, 20);
       const ex = intBetween(rng, 20, 50);

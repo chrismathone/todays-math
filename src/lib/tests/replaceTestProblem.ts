@@ -1,7 +1,8 @@
 /**
  * PUT /api/tests/{id}/problems/{seq} — 동일 단원/난이도 + 최근 14일 중복 제외로 1클릭 교체.
  */
-import type { Difficulty, DifficultyRatio } from "@/contracts/common.contract";
+import type { DifficultyRatio } from "@/contracts/common.contract";
+import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import {
   insufficientProblemsErrorResponseSchema,
   testProblemReplaceResponseSchema,
@@ -16,19 +17,22 @@ import type { SessionUser } from "@/lib/session";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
 
+/** 그 갈래 하나만 1인 배분 — 사다리에서 만든다(갈래가 늘면 저절로 따라온다, D-106). */
 function ratioFor(difficulty: Difficulty): DifficultyRatio {
-  return {
-    easy: difficulty === "easy" ? 1 : 0,
-    mid: difficulty === "mid" ? 1 : 0,
-    hard: difficulty === "hard" ? 1 : 0,
-  };
+  return Object.fromEntries(
+    DIFFICULTY_LADDER.map((tier) => [tier, tier === difficulty ? 1 : 0]),
+  ) as DifficultyRatio;
 }
 
-const ADJACENT: Record<Difficulty, Difficulty[]> = {
-  easy: ["mid"],
-  mid: ["easy", "hard"],
-  hard: ["mid"],
-};
+/** 사다리에서 한 칸 옆. `balanceDifficulty` 의 것과 **같은 규칙**이다. */
+const ADJACENT: Record<Difficulty, Difficulty[]> = Object.fromEntries(
+  DIFFICULTY_LADDER.map((tier, i) => [
+    tier,
+    [DIFFICULTY_LADDER[i - 1], DIFFICULTY_LADDER[i + 1]].filter(
+      (x): x is Difficulty => x !== undefined,
+    ),
+  ]),
+) as Record<Difficulty, Difficulty[]>;
 
 export async function replaceTestProblemAtSeq(
   session: SessionUser,

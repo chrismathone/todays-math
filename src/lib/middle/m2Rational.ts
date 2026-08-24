@@ -340,7 +340,7 @@ function mixedFracItems(rng: Rng): { n: number; d: number; term: boolean }[] {
 
 export const M2_RATIONAL: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
-  def("01", "유한소수와 무한소수", SEC.유리수와소수, "easy", (rng) => {
+  def("01", "유한소수와 무한소수", SEC.유리수와소수, "기본", (rng) => {
     const items = mixedFracItems(rng);
     let mask = 0;
     items.forEach((it, i) => {
@@ -371,7 +371,7 @@ export const M2_RATIONAL: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  def("02", "순환소수의 표현", SEC.순환소수, "easy", (rng) => {
+  def("02", "순환소수의 표현", SEC.순환소수, "기본", (rng) => {
     const preLen = pick(rng, [0, 0, 1] as const);
     const cycLen = pick(rng, [2, 3] as const);
     const r = randRep(rng, 3, preLen, cycLen);
@@ -384,7 +384,7 @@ export const M2_RATIONAL: TypeEntry[] = [
   }),
 
   // 03 ─────────────────────────────────────────────
-  def("03", "분수를 순환소수로 나타내기", SEC.순환소수, "easy", (rng) =>
+  def("03", "분수를 순환소수로 나타내기", SEC.순환소수, "기본", (rng) =>
     attempt(200, () => {
       const preLen = pick(rng, [0, 0, 1] as const);
       const cycLen = pick(rng, [1, 2] as const);
@@ -401,25 +401,30 @@ export const M2_RATIONAL: TypeEntry[] = [
   ),
 
   // 04 ─────────────────────────────────────────────
-  def("04", "소수점 아래 번째 자리의 숫자 구하기", SEC.순환소수, "mid", (rng) =>
-    attempt(200, () => {
-      const preLen = pick(rng, [0, 1] as const);
-      const cycLen = pick(rng, [2, 3] as const);
-      const r = randRep(rng, 0, preLen, cycLen);
-      const { n, d } = fracOfRep(r);
-      if (n === 0 || d > 999) return null;
-      const N = intBetween(rng, 20, 80);
-      const idx = (N - r.pre.length - 1) % r.cyc.length;
-      const ans = Number(r.cyc[idx]);
-      const diff = N - r.pre.length;
-      return {
-        content: `분수 $\\dfrac{${n}}{${d}}$ ${eulReul(n)} 소수로 나타낼 때, 소수점 아래 $${N}$번째 자리의 숫자를 구하시오.`,
-        answer: `$${ans}$`,
-        solution: `$\\dfrac{${n}}{${d}}=${texOfRep(r)}$ 이므로 ${r.pre.length > 0 ? `소수점 아래 $${r.pre.length}$번째 자리까지는 $${r.pre}$ 이고 그 뒤로는 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다` : `소수점 아래에서 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다`}.
+  def(
+    "04",
+    "소수점 아래 번째 자리의 숫자 구하기",
+    SEC.순환소수,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const preLen = pick(rng, [0, 1] as const);
+        const cycLen = pick(rng, [2, 3] as const);
+        const r = randRep(rng, 0, preLen, cycLen);
+        const { n, d } = fracOfRep(r);
+        if (n === 0 || d > 999) return null;
+        const N = intBetween(rng, 20, 80);
+        const idx = (N - r.pre.length - 1) % r.cyc.length;
+        const ans = Number(r.cyc[idx]);
+        const diff = N - r.pre.length;
+        return {
+          content: `분수 $\\dfrac{${n}}{${d}}$ ${eulReul(n)} 소수로 나타낼 때, 소수점 아래 $${N}$번째 자리의 숫자를 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `$\\dfrac{${n}}{${d}}=${texOfRep(r)}$ 이므로 ${r.pre.length > 0 ? `소수점 아래 $${r.pre.length}$번째 자리까지는 $${r.pre}$ 이고 그 뒤로는 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다` : `소수점 아래에서 순환마디 $${r.cyc}$ 의 $${r.cyc.length}$개 숫자가 되풀이된다`}.
 ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$${eulReul(N)}`} $${r.cyc.length}$${euRo(r.cyc.length)} 나눈 나머지가 $${diff % r.cyc.length}$ 이므로 구하는 숫자는 $${ans}$ 이다.`,
-        facts: { n, d, N, ans, ...repFacts("r", r) },
-      };
-    }),
+          facts: { n, d, N, ans, ...repFacts("r", r) },
+        };
+      }),
   ),
 
   // 05 ─────────────────────────────────────────────
@@ -427,7 +432,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "05",
     "의 거듭제곱을 이용하여 분수를 유한소수로 나타내기",
     SEC.유리수와소수,
-    "easy",
+    "기본",
     (rng) =>
       attempt(200, () => {
         const i = intBetween(rng, 0, 3);
@@ -451,7 +456,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 06 ─────────────────────────────────────────────
-  def("06", "유한소수로 나타낼 수 있는 분수", SEC.유리수와소수, "mid", (rng) =>
+  def("06", "유한소수로 나타낼 수 있는 분수", SEC.유리수와소수, "응용", (rng) =>
     attempt(200, () => {
       const items = mixedFracItems(rng).map((it) => {
         const c = pick(rng, UNREDUCE);
@@ -490,7 +495,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 07 ─────────────────────────────────────────────
-  def("07", "가 유한소수가 되도록 하는 의", SEC.유리수와소수, "mid", (rng) =>
+  def("07", "가 유한소수가 되도록 하는 의", SEC.유리수와소수, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, OBSTRUCTIONS);
       const a = intBetween(rng, 1, 3);
@@ -515,7 +520,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "08",
     "두 분수가 모두 유한소수가 되도록 하는 값 구하기",
     SEC.유리수와소수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const m1 = pick(rng, OBSTRUCTIONS);
@@ -544,7 +549,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 09 ─────────────────────────────────────────────
-  def("09", "가 유한소수가 되도록 하는 의", SEC.유리수와소수, "mid", (rng) =>
+  def("09", "가 유한소수가 되도록 하는 의", SEC.유리수와소수, "응용", (rng) =>
     attempt(200, () => {
       const m = pick(rng, [3, 7, 11, 13] as const);
       const i = intBetween(rng, 1, 3);
@@ -568,7 +573,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "10",
     "유한소수가 되도록 하는 미지수의 값과 기약분수",
     SEC.유리수와소수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(200, () => {
         const k = pick(rng, [8, 10, 16, 20, 25, 40, 50] as const);
@@ -589,7 +594,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "11",
     "순환소수가 되도록 하는 미지수의 값 구하기",
     SEC.순환소수,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const n = pick(rng, [3, 7, 9, 11, 21, 27, 33, 49, 63] as const);
@@ -617,7 +622,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "12",
     "순환소수를 분수로 나타내기 의 거듭제곱 이용",
     SEC.분수표현,
-    "easy",
+    "기본",
     (rng) => {
       const r = attempt(200, () => {
         const cand: Rep = {
@@ -646,7 +651,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "13",
     "순환소수를 분수로 나타내기; 공식 이용",
     SEC.분수표현,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const preLen = pick(rng, [0, 1] as const);
@@ -668,7 +673,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "14",
     "순환소수에 적당한 수를 곱하여 유한소수 만들기",
     SEC.분수표현,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const preLen = pick(rng, [0, 1] as const);
@@ -692,7 +697,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "15",
     "기약분수의 분모 분자를 잘못 보고 소수로 나타낸 경우",
     SEC.분수표현,
-    "hard",
+    "심화",
     (rng) =>
       attempt(500, () => {
         const a = pick(rng, SHORT_PERIOD_DENS);
@@ -737,7 +742,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 16 ─────────────────────────────────────────────
-  def("16", "순환소수가 포함된 식의 계산 ⑴", SEC.식계산, "mid", (rng) =>
+  def("16", "순환소수가 포함된 식의 계산 ⑴", SEC.식계산, "응용", (rng) =>
     attempt(200, () => {
       const x: Rep = {
         int: intBetween(rng, 1, 7),
@@ -778,7 +783,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 17 ─────────────────────────────────────────────
-  def("17", "순환소수의 대소 관계", SEC.식계산, "hard", (rng) =>
+  def("17", "순환소수의 대소 관계", SEC.식계산, "심화", (rng) =>
     attempt(300, () => {
       // 명제 네 개 — 각각 (좌, 우) 값과 표기된 부등호. 값 비교는 분수 교차곱.
       type Stmt = {
@@ -893,7 +898,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 18 ─────────────────────────────────────────────
-  def("18", "유리수와 소수의 관계", SEC.식계산, "easy", (rng) =>
+  def("18", "유리수와 소수의 관계", SEC.식계산, "기본", (rng) =>
     attempt(200, () => {
       const idxs = shuffle(
         rng,
@@ -926,7 +931,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "19",
     "두 분수 사이에 있는 유한소수의 개수",
     SEC.유리수와소수,
-    "hard",
+    "심화",
     (rng) =>
       attempt(400, () => {
         const A = pick(rng, [3, 4, 5, 6] as const);
@@ -952,7 +957,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 20 ─────────────────────────────────────────────
-  def("20", "순환소수가 포함된 식의 계산 ⑵", SEC.식계산, "hard", (rng) =>
+  def("20", "순환소수가 포함된 식의 계산 ⑵", SEC.식계산, "심화", (rng) =>
     attempt(200, () => {
       const A = intBetween(rng, 1, 9);
       const B = intBetween(rng, 1, 9);

@@ -116,7 +116,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
         () => new HttpResponse("broken", { status: 500 }),
       ),
     );
-    await user.selectOptions(screen.getByLabelText("난이도"), "hard");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
 
     expect(
       await screen.findByText("목록을 불러오지 못했습니다"),
@@ -180,7 +180,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
     const emptyComboUnit = MOCK_UNITS[8]!;
 
     await pickUnit(user, emptyComboUnit.id);
-    await user.selectOptions(screen.getByLabelText("난이도"), "hard");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
 
     await waitFor(() => {
       expect(screen.getByText("등록된 문제가 없습니다")).toBeInTheDocument();
@@ -299,7 +299,7 @@ describe("[S-08] 문제은행 — 단원 범위 (MSW)", () => {
     const form = await screen.findByRole("form", { name: "등록" });
     await user.selectOptions(within(form).getByLabelText("단원"), b.id);
     await user.selectOptions(within(form).getByLabelText("출처"), "manual");
-    await user.selectOptions(within(form).getByLabelText("난이도"), "easy");
+    await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
     await user.selectOptions(within(form).getByLabelText("유형"), "계산");
     await user.type(within(form).getByLabelText("본문"), "범위 밖 문항");
     await user.type(within(form).getByLabelText("정답"), "1");
@@ -361,7 +361,7 @@ describe("[T3.3 S-08] 문제은행 — 페이지네이션", () => {
     await user.click(screen.getAllByRole("button", { name: "다음" })[0]!);
     await screen.findByText(/밑변의 길이가/);
 
-    await user.selectOptions(screen.getByLabelText("난이도"), "easy");
+    await user.selectOptions(screen.getByLabelText("난이도"), "기본");
 
     await screen.findByText(/를 유한소수로 나타내어라/);
     expect(screen.getAllByText(/^1 \/ \d+ 페이지$/).length).toBeGreaterThan(0);
@@ -372,14 +372,14 @@ describe("[T3.3 S-08] 문제은행 — 페이지네이션", () => {
 describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
   it("활성 필터와 다른 새 문제를 결과 목록에 끼워 넣지 않는다", async () => {
     const { user } = await renderBank();
-    await user.selectOptions(screen.getByLabelText("난이도"), "hard");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
     await screen.findByText(/밑변의 길이가/);
     await user.click(screen.getByRole("button", { name: "등록" }));
 
     // 패널은 지연 청크다(ProblemPanelsLazy) — 단언은 그대로 두고 대기만 붙인다.
     const form = await screen.findByRole("form", { name: "등록" });
     await user.selectOptions(within(form).getByLabelText("출처"), "manual");
-    await user.selectOptions(within(form).getByLabelText("난이도"), "easy");
+    await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
     await user.selectOptions(within(form).getByLabelText("유형"), "계산");
     await user.type(
       within(form).getByLabelText("본문"),
@@ -404,7 +404,7 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
       MOCK_PROBLEM_WITH_FRACTION.unitId,
     );
     await user.selectOptions(within(form).getByLabelText("출처"), "manual");
-    await user.selectOptions(within(form).getByLabelText("난이도"), "easy");
+    await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
     await user.selectOptions(within(form).getByLabelText("유형"), "계산");
     await user.type(within(form).getByLabelText("본문"), "등록 본문 $1+1$");
     await user.type(within(form).getByLabelText("정답"), "2");
@@ -429,7 +429,7 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
       within(form).getByLabelText("단원"),
       MOCK_PROBLEM_WITH_FRACTION.unitId,
     );
-    await user.selectOptions(within(form).getByLabelText("난이도"), "easy");
+    await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
     await user.click(within(form).getByRole("button", { name: "생성하기" }));
 
     await screen.findByText("1건 생성");

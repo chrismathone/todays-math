@@ -70,7 +70,7 @@ describe("[T3.3 S-08] ProblemCard — 대표 수식 4종 (MathText)", () => {
 
   it("난이도·유형을 마이크로 라벨로 보여 준다", () => {
     render(<ProblemCard problem={MOCK_PROBLEM_WITH_FRACTION} />);
-    expect(screen.getByText("쉬움")).toBeInTheDocument();
+    expect(screen.getByText("기본")).toBeInTheDocument();
     expect(screen.getByText("계산")).toBeInTheDocument();
   });
 
@@ -99,7 +99,7 @@ describe("[S-08] ProblemCard — 팔레트 정리", () => {
 
   it("난이도·유형은 알약 칩이 아니라 마이크로 라벨이다", () => {
     render(<ProblemCard problem={MOCK_PROBLEM_WITH_FRACTION} />);
-    const level = screen.getByText("쉬움");
+    const level = screen.getByText("기본");
     const type = screen.getByText("계산");
     for (const el of [level, type]) {
       // 알약이 아니다 — 둥근 테두리도 면색도 없다.
@@ -183,4 +183,3 @@ describe("[D-55] ProblemCard — 도형 SVG", () => {
     expect(midFrame?.className).toContain("max-w-[240px]");
   });
 });
-

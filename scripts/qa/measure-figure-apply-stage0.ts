@@ -8,6 +8,8 @@
  * 높이 규칙을 여기 다시 적지 않는다.
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import type { Difficulty } from "../../src/contracts/difficulty";
+import { defaultRatioFor } from "../../src/contracts/difficulty";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -37,7 +39,7 @@ interface DbRow {
   grade: string;
   section: string;
   orderIndex: number;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   problemType: string;
   content: string;
   figureUrls: string[];
@@ -48,9 +50,7 @@ interface DbRow {
 type LedgerKind = "usable" | "partial" | "none" | "url-odd";
 
 function ratioFor(count: number): DifficultyRatio {
-  const easy = Math.round((count * 3) / 8);
-  const hard = Math.round((count * 1) / 8);
-  return { easy, hard, mid: count - easy - hard };
+  return defaultRatioFor(count);
 }
 
 function ledgerLookup(

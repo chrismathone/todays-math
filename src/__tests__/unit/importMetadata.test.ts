@@ -105,7 +105,7 @@ describe("[이관] externalId 기반 중복 차단", () => {
     const base = {
       unitId: "11111111-1111-4111-8111-111111111111",
       source: "past_exam" as const,
-      difficulty: "easy" as const,
+      difficulty: "기본" as const,
       problemType: "계산" as const,
       content: "본문",
       solution: null,
@@ -137,7 +137,7 @@ describe("[이관] externalId 기반 중복 차단", () => {
     const base = {
       unitId: "11111111-1111-4111-8111-111111111111",
       source: "manual" as const,
-      difficulty: "easy" as const,
+      difficulty: "기본" as const,
       problemType: "계산" as const,
       content: "본문2",
       answer: "1",

@@ -45,7 +45,7 @@ erDiagram
         string name "반 이름 (예: 중2-A)"
         string grade "학년 (예: 중2)"
         int default_problem_count "기본 문항 수 (기본 8)"
-        jsonb difficulty_ratio "난이도 배분 (예: {easy:3, mid:4, hard:1})"
+        jsonb difficulty_ratio "난이도 배분 (예: {연산:1, 기본:3, 응용:3, 심화:1})"
         datetime created_at
         datetime updated_at
     }
@@ -86,7 +86,7 @@ erDiagram
         uuid unit_id FK "단원"
         string source "출처: manual | past_exam | transformed | ai_generated"
         uuid origin_problem_id FK "변형 시 원본 문제 (NULL 가능)"
-        string difficulty "난이도: easy | mid | hard"
+        string difficulty "난이도: 연산 | 기본 | 응용 | 심화 (D-106)"
         string problem_type "유형: 계산 | 개념 | 활용 | 서술형"
         text content "문제 본문 (LaTeX 포함 마크다운)"
         text answer "정답"
@@ -241,7 +241,8 @@ erDiagram
 ### 2.6 CLASS / STUDENT / PROGRESS - FEAT-4
 
 **CLASS**: 반 이름, 학년, 출제 기본값(문항 수, 난이도 배분 jsonb)을 보유.
-난이도 배분 기본값 `{easy: 3, mid: 4, hard: 1}` (8문항 기준) — 반 수준에 따라 조절 가능.
+난이도 배분 기본값 `{연산: 1, 기본: 3, 응용: 3, 심화: 1}` (8문항 기준, D-106) — 반 수준에 따라 조절 가능.
+값의 SSOT 는 `src/contracts/difficulty.ts` 의 `DEFAULT_DIFFICULTY_RATIO` 다.
 
 **STUDENT**: 이름만 수집. `use_individual_progress = true`면 반 진도 대신 개별 진도 적용.
 

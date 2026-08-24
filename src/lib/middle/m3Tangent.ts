@@ -838,7 +838,7 @@ function attempt<T>(tries: number, f: () => T | null): T {
 }
 
 export const M3_TANGENT_TYPES: TypeEntry[] = [
-  def("07", "원의 접선과 반지름", "easy", (rng): Body => {
+  def("07", "원의 접선과 반지름", "기본", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3] as const);
     if (mode === 3) {
       const r = intBetween(rng, 3, 10);
@@ -875,7 +875,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
   def(
     "08",
     "원의 접선과 반지름 중심이 같은 원이 주어진 경우",
-    "mid",
+    "응용",
     (rng): Body => {
       const mode = pick(rng, [0, 1, 2, 3] as const);
       const [h, rs, rb] = pick(rng, T8);
@@ -919,7 +919,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("09", "원의 접선의 성질", "mid", (rng): Body => {
+  def("09", "원의 접선의 성질", "응용", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3, 4] as const);
     if (mode === 0 || mode === 1) {
       const p = 2 * intBetween(rng, 15, 35);
@@ -987,7 +987,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("10", "원의 접선의 성질의 응용", "mid", (rng): Body => {
+  def("10", "원의 접선의 성질의 응용", "응용", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3, 4] as const);
     if (mode === 3) {
       const [r, ae, oa] = pick(rng, T10);
@@ -1028,7 +1028,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     });
   }),
 
-  def("11", "반원에서의 접선", "hard", (rng): Body => {
+  def("11", "반원에서의 접선", "심화", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3, 4] as const);
     const [a, b, r] = pick(rng, T11);
     const ab = 2 * r;
@@ -1083,7 +1083,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("12", "삼각형의 내접원", "mid", (rng): Body => {
+  def("12", "삼각형의 내접원", "응용", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3] as const);
     // 접선 길이가 겹치면 이등변·정삼각형이 되어 발문이 시시해진다 — 셋을 가른다.
     const [t1, t2, t3] = attempt(80, () => {
@@ -1145,7 +1145,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("13", "직각삼각형의 내접원", "hard", (rng): Body => {
+  def("13", "직각삼각형의 내접원", "심화", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3] as const);
     const [g1, g2, hyp] = pick(rng, T13);
     const r = (g1 + g2 - hyp) / 2;
@@ -1213,7 +1213,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("14", "원에 외접하는 사각형의 성질⑴", "mid", (rng): Body => {
+  def("14", "원에 외접하는 사각형의 성질⑴", "응용", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3, 4] as const);
     if (mode === 0) {
       const tA = intBetween(rng, 2, 8);
@@ -1315,7 +1315,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("15", "원에 외접하는 사각형의 성질⑵", "hard", (rng): Body => {
+  def("15", "원에 외접하는 사각형의 성질⑵", "심화", (rng): Body => {
     const mode = pick(rng, [0, 1, 2] as const);
     if (mode === 0) {
       return attempt(80, () => {
@@ -1380,7 +1380,7 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
     });
   }),
 
-  def("16", "원에 외접하는 사각형의 응용", "hard", (rng): Body => {
+  def("16", "원에 외접하는 사각형의 응용", "심화", (rng): Body => {
     const mode = pick(rng, [0, 1, 2, 3, 4] as const);
     if (mode === 3) {
       const [r, tD, tC] = pick(rng, T16T);

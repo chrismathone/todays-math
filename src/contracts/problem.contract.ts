@@ -28,6 +28,7 @@ import type { Difficulty } from "./common.contract";
 import { problemCodeSchema } from "./problemCode.contract";
 import {
   dataResponseSchema,
+  DIFFICULTY_LADDER,
   difficultySchema,
   isoDateTimeSchema,
   listResponseSchema,
@@ -244,13 +245,10 @@ export type TransformMode = z.infer<typeof transformModeSchema>;
 
 /**
  * 난이도 조정 (원장님 확정 2026-08-19). 원본 난이도에서 한 단계 올리거나 내린다.
- * 끝(hard 에서 up, easy 에서 down)은 제자리다 — `shiftDifficulty` 가 SSOT.
+ * 끝(심화 에서 up, 연산 에서 down)은 제자리다 — `shiftDifficulty` 가 SSOT.
  */
 export const difficultyShiftSchema = z.enum(["keep", "up", "down"]);
 export type DifficultyShift = z.infer<typeof difficultyShiftSchema>;
-
-/** 난이도 사다리 — 오름차순. `shiftDifficulty` 만 쓴다. */
-const DIFFICULTY_LADDER = ["easy", "mid", "hard"] as const;
 
 /**
  * 난이도 한 단계 이동 — **여기가 유일한 구현**이다.

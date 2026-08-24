@@ -55,6 +55,8 @@
  *    문항마다 제각각이면(=배치가 문항 내용을 건드린다는 뜻) **멈춘다.**
  */
 import { readFileSync } from "node:fs";
+import type { Difficulty } from "../../src/contracts/difficulty";
+import { defaultRatioFor } from "../../src/contracts/difficulty";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -92,7 +94,7 @@ interface Height {
 interface Row {
   id: string;
   unitId: string;
-  difficulty: "easy" | "mid" | "hard";
+  difficulty: Difficulty;
   problemType: string;
   directUseAllowed: boolean;
   content?: string;
@@ -181,12 +183,10 @@ function consecutiveViolations(order: Row[]): number {
 
 /**
  * 난이도 배분은 **개수**이고 합이 문항 수와 같아야 한다(`test.contract.ts`).
- * 반 기본값 `{easy:3, mid:4, hard:1}`(=8문항)의 비율을 그대로 늘린다.
+ * 반 기본값 `{연산:1, 기본:3, 응용:3, 심화:1}`(=8문항)의 비율을 그대로 늘린다 (D-106).
  */
 function ratioFor(count: number): DifficultyRatio {
-  const easy = Math.round((count * 3) / 8);
-  const hard = Math.round((count * 1) / 8);
-  return { easy, hard, mid: count - easy - hard };
+  return defaultRatioFor(count);
 }
 
 interface Arm {
@@ -605,8 +605,8 @@ async function main() {
     let thinUnits = 0;
     /**
      * 정원을 못 채운 시험지 — **조용히 버리지 않고 센다.**
-     * 원인은 ⑷ 가 아니라 난이도 구성이다(hard 의 인접은 mid 뿐이라, 문항이 한
-     * 난이도에 몰린 단원은 hard 자리를 못 채운다 — D-20 `INSUFFICIENT_PROBLEMS`).
+     * 원인은 ⑷ 가 아니라 난이도 구성이다(심화 의 인접은 응용 뿐이라, 문항이 한
+     * 난이도에 몰린 단원은 심화 자리를 못 채운다 — D-20 `INSUFFICIENT_PROBLEMS`).
      * 옛 엔진으로 같은 것을 재면 **건수가 같다**. 그래도 세어 두지 않으면 이 표가
      * 「전부 만들어 봤다」로 읽힌다.
      */

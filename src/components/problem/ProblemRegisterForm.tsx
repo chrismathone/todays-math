@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { asDifficulty, DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -35,12 +36,7 @@ export function ProblemRegisterForm({
     const input: ProblemCreateRequest = {
       unitId: String(form.get("unitId") ?? ""),
       source: form.get("source") === "past_exam" ? "past_exam" : "manual",
-      difficulty:
-        form.get("difficulty") === "hard"
-          ? "hard"
-          : form.get("difficulty") === "mid"
-            ? "mid"
-            : "easy",
+      difficulty: asDifficulty(form.get("difficulty")),
       problemType:
         (form.get("problemType") as ProblemCreateRequest["problemType"]) ??
         "계산",
@@ -85,12 +81,14 @@ export function ProblemRegisterForm({
         <FieldSelect
           name="difficulty"
           label="난이도"
-          defaultValue="easy"
+          defaultValue="기본"
           required
         >
-          <option value="easy">쉬움</option>
-          <option value="mid">보통</option>
-          <option value="hard">어려움</option>
+          {DIFFICULTY_LADDER.map((tier) => (
+            <option key={tier} value={tier}>
+              {tier}
+            </option>
+          ))}
         </FieldSelect>
         <FieldSelect
           name="problemType"

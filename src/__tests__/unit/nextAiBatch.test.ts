@@ -12,7 +12,7 @@ import { subtract } from "../../../scripts/qa/next-ai-batch";
 const 자리 = (over: Partial<Parameters<typeof subtract>[0][number]> = {}) => ({
   unitId: "u1",
   unitName: "중2 부등식",
-  difficulty: "mid",
+  difficulty: "응용",
   questionType: "객관식" as string | null,
   problemType: "개념",
   개수: 2,
@@ -27,7 +27,7 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
       [
         {
           unitId: "u1",
-          difficulty: "mid",
+          difficulty: "응용",
           questionType: "객관식",
           problemType: "개념",
         },
@@ -43,7 +43,7 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
       [
         {
           unitId: "u1",
-          difficulty: "mid",
+          difficulty: "응용",
           questionType: "객관식",
           problemType: "개념",
         },
@@ -59,7 +59,7 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
       [
         {
           unitId: "u1",
-          difficulty: "mid",
+          difficulty: "응용",
           questionType: "객관식",
           problemType: "개념",
         },
@@ -72,19 +72,19 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
     const made = [
       {
         unitId: "u2",
-        difficulty: "mid",
+        difficulty: "응용",
         questionType: "객관식",
         problemType: "개념",
       },
       {
         unitId: "u1",
-        difficulty: "hard",
+        difficulty: "심화",
         questionType: "객관식",
         problemType: "개념",
       },
       {
         unitId: "u1",
-        difficulty: "mid",
+        difficulty: "응용",
         questionType: "객관식",
         problemType: "계산",
       },
@@ -95,7 +95,7 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
   it("다 채운 자리는 목록에서 사라진다", () => {
     const 한건 = {
       unitId: "u1",
-      difficulty: "mid",
+      difficulty: "응용",
       questionType: "객관식",
       problemType: "개념",
     };

@@ -391,15 +391,15 @@ function extraEligibleProblems(): ProblemEntity[] {
     seq += 1;
   };
 
-  for (let i = 0; i < 2; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "easy");
-  for (let i = 0; i < 4; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "mid");
-  for (let i = 0; i < 2; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "hard");
+  for (let i = 0; i < 2; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "기본");
+  for (let i = 0; i < 4; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "응용");
+  for (let i = 0; i < 2; i++) push(MOCK_CURRENT_PROGRESS_UNIT.id, "심화");
   const unit0 = MOCK_UNITS[0]!.id;
   const unit1 = MOCK_UNITS[1]!.id;
-  push(unit0, "easy");
-  push(unit0, "easy");
-  push(unit1, "easy");
-  push(unit1, "easy");
+  push(unit0, "기본");
+  push(unit0, "기본");
+  push(unit1, "기본");
+  push(unit1, "기본");
   return extras;
 }
 

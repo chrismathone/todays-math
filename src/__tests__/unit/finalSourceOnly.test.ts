@@ -16,7 +16,7 @@ import { toLoadRows } from "@/lib/import/toLoadRows";
 const BASE = {
   unitId: "11111111-1111-4111-8111-111111111111",
   source: "past_exam" as const,
-  difficulty: "easy" as const,
+  difficulty: "기본" as const,
   problemType: "계산" as const,
   content: "본문",
   answer: "3",

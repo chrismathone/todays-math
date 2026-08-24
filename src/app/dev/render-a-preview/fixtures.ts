@@ -20,7 +20,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a1",
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "계산",
     reviewStatus: "approved",
     content: "$\\frac{7}{25}$를 유한소수로 나타내어라.",
@@ -30,7 +30,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a2",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "개념",
     reviewStatus: "approved",
     content:
@@ -41,7 +41,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a3",
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "계산",
     reviewStatus: "pending",
     content:
@@ -52,7 +52,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a4",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "계산",
     reviewStatus: "approved",
     content:
@@ -63,7 +63,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a5",
-    difficulty: "easy",
+    difficulty: "기본",
     problemType: "개념",
     reviewStatus: "approved",
     content:
@@ -74,7 +74,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a6",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "활용",
     reviewStatus: "approved",
     content:
@@ -85,7 +85,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a7",
-    difficulty: "hard",
+    difficulty: "심화",
     problemType: "계산",
     reviewStatus: "approved",
     content:
@@ -96,7 +96,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a8",
-    difficulty: "mid",
+    difficulty: "응용",
     problemType: "개념",
     reviewStatus: "approved",
     content:

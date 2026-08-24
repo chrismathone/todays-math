@@ -6,18 +6,27 @@
  * - recommendedUnits: 정답률이 RECOMMEND_THRESHOLD(60%) 미만인 단원을 낮은 순으로 최대
  *   RECOMMEND_LIMIT(3)개 추천한다. 전부 임계값 이상이면 빈 배열.
  */
-import type { Difficulty } from "@/contracts/common.contract";
+import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 
 import type { GradedAnswer } from "./gradeAnswers";
 
 export const RECOMMEND_THRESHOLD = 0.6;
 export const RECOMMEND_LIMIT = 3;
 
-const DIFFICULTY_KEYS: Difficulty[] = ["easy", "mid", "hard"];
+/**
+ * ⚠️ **손으로 나열하지 않는다** (D-106). 2026-08-25 에 갈래가 넷이 되었을 때
+ *    여기가 셋으로 남아 `연산` 칸이 통째로 빠졌고, 그러면 계약(`z.record(difficultySchema,…)`)
+ *    검증이 상세 조회에서 500 을 냈다. 타입이 `Difficulty[]` 라 **셋만 적어도 컴파일은
+ *    통과한다** — 배열 길이는 타입이 안 세기 때문이다.
+ */
+const DIFFICULTY_KEYS: readonly Difficulty[] = DIFFICULTY_LADDER;
 
 export interface AnalysisReportData {
   unitScores: Record<string, number>;
-  difficultyDistribution: Record<Difficulty, { correct: number; total: number }>;
+  difficultyDistribution: Record<
+    Difficulty,
+    { correct: number; total: number }
+  >;
   recommendedUnits: string[];
 }
 
@@ -25,7 +34,9 @@ function round1(value: number): number {
   return Math.round(value * 10) / 10;
 }
 
-export function buildAnalysisReport(graded: GradedAnswer[]): AnalysisReportData {
+export function buildAnalysisReport(
+  graded: GradedAnswer[],
+): AnalysisReportData {
   const unitAgg = new Map<string, { earned: number; possible: number }>();
   const difficultyDistribution = Object.fromEntries(
     DIFFICULTY_KEYS.map((d) => [d, { correct: 0, total: 0 }]),

@@ -36,7 +36,7 @@ describe("[T4.3 S-05] 검수 — 문제 카드", () => {
     const { container } = await renderReview(TEST_DRAFT_ID);
 
     const first = await screen.findByRole("article", { name: "문 1" });
-    expect(first).toHaveTextContent("하");
+    expect(first).toHaveTextContent("기본");
     expect(first).toHaveTextContent("계산");
     expect(first.querySelector(".katex")).not.toBeNull();
     expect(first.querySelector(".katex-error")).toBeNull();

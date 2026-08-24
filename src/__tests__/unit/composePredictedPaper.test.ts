@@ -111,16 +111,16 @@ function candidate(
 /** 청사진의 10칸에 정확히 대응하는 후보들. */
 function exactCandidates(): PaperCandidate[] {
   return [
-    candidate(1, UNIT_A, "easy", "객관식", { score: 3.5 }),
-    candidate(2, UNIT_A, "easy", "객관식", { score: 3.5 }),
-    candidate(3, UNIT_A, "easy", "객관식"),
-    candidate(4, UNIT_A, "easy", "객관식"),
-    candidate(5, UNIT_A, "mid", "객관식", { score: 4.2 }),
-    candidate(6, UNIT_B, "mid", "객관식"),
-    candidate(7, UNIT_B, "mid", "객관식"),
-    candidate(8, UNIT_B, "mid", "객관식"),
-    candidate(9, UNIT_B, "hard", "서술형", { score: 10 }),
-    candidate(10, UNIT_B, "hard", "서술형"),
+    candidate(1, UNIT_A, "기본", "객관식", { score: 3.5 }),
+    candidate(2, UNIT_A, "기본", "객관식", { score: 3.5 }),
+    candidate(3, UNIT_A, "기본", "객관식"),
+    candidate(4, UNIT_A, "기본", "객관식"),
+    candidate(5, UNIT_A, "응용", "객관식", { score: 4.2 }),
+    candidate(6, UNIT_B, "응용", "객관식"),
+    candidate(7, UNIT_B, "응용", "객관식"),
+    candidate(8, UNIT_B, "응용", "객관식"),
+    candidate(9, UNIT_B, "심화", "서술형", { score: 10 }),
+    candidate(10, UNIT_B, "심화", "서술형"),
   ];
 }
 
@@ -193,13 +193,13 @@ describe("[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10)", () => {
 
     for (const q of paper.questions) expect(q.relaxed).toEqual([]);
     expect(paper.questions.filter((q) => q.qtype === "서술형")).toHaveLength(2);
-    expect(paper.questions.filter((q) => q.difficulty === "easy")).toHaveLength(
+    expect(paper.questions.filter((q) => q.difficulty === "기본")).toHaveLength(
       4,
     );
   });
 
   it("그 학교가 과거에 낸 문항을 먼저 고른다 (11 §3 L6 우선순위 ①)", () => {
-    const reused = candidate(90, UNIT_A, "easy", "객관식");
+    const reused = candidate(90, UNIT_A, "기본", "객관식");
     const reference = pastPaper({
       externalExamId: "past-reuse",
       questions: pastPaper().questions.map((q) =>
@@ -224,7 +224,7 @@ describe("[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10)", () => {
   });
 
   it("만점 100 가드에 걸린 과거 시험지는 재료에서 뺀다 (11 §11, D-45)", () => {
-    const reused = candidate(90, UNIT_A, "easy", "객관식");
+    const reused = candidate(90, UNIT_A, "기본", "객관식");
     // 배점이 잘려 총점 67 인 편 — 그 학교 관행으로 배우면 안 된다.
     const broken = pastPaper({
       externalExamId: "past-broken",
@@ -287,7 +287,7 @@ describe("[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10)", () => {
       candidates: [
         ...exactCandidates().slice(0, 9),
         // 마지막 서술형 칸에 단원·난이도가 다른 객관식만 남았다.
-        candidate(50, UNIT_A, "easy", "객관식"),
+        candidate(50, UNIT_A, "기본", "객관식"),
       ],
     });
 
@@ -377,11 +377,11 @@ describe("예측 문제지 — 재료 우선순위(11 §3 L6)", () => {
     const paper = composePredictedPaper({
       blueprint: blueprint(),
       candidates: contested(
-        candidate(AI_VARIANT, UNIT_A, "easy", "객관식", {
+        candidate(AI_VARIANT, UNIT_A, "기본", "객관식", {
           source: "transformed",
           originProblemId: pid(1),
         }),
-        candidate(RPM, UNIT_A, "easy", "객관식", {
+        candidate(RPM, UNIT_A, "기본", "객관식", {
           source: "transformed",
           originProblemId: null,
         }),
@@ -402,11 +402,11 @@ describe("예측 문제지 — 재료 우선순위(11 §3 L6)", () => {
     const paper = composePredictedPaper({
       blueprint: blueprint(),
       candidates: contested(
-        candidate(RPM, UNIT_A, "easy", "객관식", {
+        candidate(RPM, UNIT_A, "기본", "객관식", {
           source: "transformed",
           originProblemId: null,
         }),
-        candidate(PAST, UNIT_A, "easy", "객관식", { source: "past_exam" }),
+        candidate(PAST, UNIT_A, "기본", "객관식", { source: "past_exam" }),
       ),
     });
     expect(paper.ok).toBe(true);
@@ -422,11 +422,11 @@ describe("예측 문제지 — 재료 우선순위(11 §3 L6)", () => {
     const paper = composePredictedPaper({
       blueprint: blueprint(),
       candidates: contested(
-        candidate(AI_GEN, UNIT_A, "easy", "객관식", {
+        candidate(AI_GEN, UNIT_A, "기본", "객관식", {
           source: "ai_generated",
           originProblemId: null,
         }),
-        candidate(AI_VARIANT, UNIT_A, "easy", "객관식", {
+        candidate(AI_VARIANT, UNIT_A, "기본", "객관식", {
           source: "transformed",
           originProblemId: pid(1),
         }),
@@ -444,11 +444,11 @@ describe("예측 문제지 — 재료 우선순위(11 §3 L6)", () => {
     const paper = composePredictedPaper({
       blueprint: blueprint(),
       candidates: contested(
-        candidate(RPM, UNIT_A, "easy", "객관식", {
+        candidate(RPM, UNIT_A, "기본", "객관식", {
           source: "transformed",
           originProblemId: null,
         }),
-        candidate(MANUAL, UNIT_A, "easy", "객관식", { source: "manual" }),
+        candidate(MANUAL, UNIT_A, "기본", "객관식", { source: "manual" }),
       ),
     });
 

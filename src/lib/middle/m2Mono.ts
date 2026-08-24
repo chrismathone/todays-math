@@ -435,7 +435,7 @@ function monoSane(m: Mono, maxAbs = 4096, maxExp = 14): boolean {
 
 export const M2_MONO_TYPES: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
-  defMono("01", "지수법칙 ⑴", SEC.지수법칙, "easy", (rng): Body => {
+  defMono("01", "지수법칙 ⑴", SEC.지수법칙, "기본", (rng): Body => {
     const [v0, v1] = pickVars(rng);
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
@@ -464,7 +464,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  defMono("02", "지수법칙 ⑵", SEC.지수법칙, "easy", (rng): Body => {
+  defMono("02", "지수법칙 ⑵", SEC.지수법칙, "기본", (rng): Body => {
     const [v0, v1] = pickVars(rng);
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
@@ -495,7 +495,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
 
   // 03 ─────────────────────────────────────────────
   // 세 갈래를 **모두** 낸다 — `m<n` 이면 분모에 남는다(음의 지수 미학습).
-  defMono("03", "지수법칙 ⑶", SEC.지수법칙, "easy", (rng) => {
+  defMono("03", "지수법칙 ⑶", SEC.지수법칙, "기본", (rng) => {
     const v = pick(rng, ["a", "x", "b", "y"] as const);
     const kind = intBetween(rng, 0, 2);
     if (kind === 1) {
@@ -529,7 +529,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
     "04",
     "지수법칙 ⑷ 곱의 거듭제곱",
     SEC.지수법칙,
-    "easy",
+    "기본",
     (rng): Body => {
       const [v0, v1] = pickVars(rng);
       const kind = intBetween(rng, 0, 1);
@@ -569,7 +569,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 05 ─────────────────────────────────────────────
-  defMono("05", "지수법칙 ⑷ 몫의 거듭제곱", SEC.지수법칙, "mid", (rng) =>
+  defMono("05", "지수법칙 ⑷ 몫의 거듭제곱", SEC.지수법칙, "응용", (rng) =>
     attempt(200, () => {
       const [v0, v1] = pickVars(rng);
       const cn = pick(rng, [1, 2, 3, -1, -2, -3] as const);
@@ -593,7 +593,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 06 ─────────────────────────────────────────────
-  defMono("06", "지수법칙의 응용 ⑴", SEC.지수법칙, "mid", (rng): Body => {
+  defMono("06", "지수법칙의 응용 ⑴", SEC.지수법칙, "응용", (rng): Body => {
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
       const p = pick(rng, [2, 3, 5] as const);
@@ -630,7 +630,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   // 07 ─────────────────────────────────────────────
   // 문자는 **소문자** `a` 를 쓴다 — 홑 대문자 수식은 전처리가 직립 Roman 으로
   // 바꿔(`PURE_LABEL_REGEX`) 같은 지면에서 기울임과 섞인다.
-  defMono("07", "지수법칙의 응용 ⑵", SEC.지수법칙, "hard", (rng) =>
+  defMono("07", "지수법칙의 응용 ⑵", SEC.지수법칙, "심화", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 5] as const);
       const s = intBetween(rng, 0, 2);
@@ -655,7 +655,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 08 ─────────────────────────────────────────────
-  defMono("08", "자릿수 구하기", SEC.지수법칙, "mid", (rng) =>
+  defMono("08", "자릿수 구하기", SEC.지수법칙, "응용", (rng) =>
     attempt(200, () => {
       const m = intBetween(rng, 5, 14);
       const n = intBetween(rng, 5, 14);
@@ -674,7 +674,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 09 ─────────────────────────────────────────────
-  defMono("09", "지수법칙의 활용", SEC.지수법칙, "mid", (rng): Body => {
+  defMono("09", "지수법칙의 활용", SEC.지수법칙, "응용", (rng): Body => {
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
       const p = pick(rng, [2, 3] as const);
@@ -699,7 +699,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   }),
 
   // 10 ─────────────────────────────────────────────
-  defMono("10", "단항식의 곱셈", SEC.단항곱나눗, "easy", (rng) =>
+  defMono("10", "단항식의 곱셈", SEC.단항곱나눗, "기본", (rng) =>
     attempt(300, () => {
       const [v0, v1] = pickVars(rng);
       const m1 = randMono(rng, [v0, v1], 3);
@@ -727,7 +727,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   // 11 ─────────────────────────────────────────────
   // **몫을 먼저 정하고** 피제수를 만든다 — 그래야 나누어떨어지고, 분모에
   // 남는 갈래도 의도대로 나온다.
-  defMono("11", "단항식의 나눗셈", SEC.단항곱나눗, "mid", (rng) =>
+  defMono("11", "단항식의 나눗셈", SEC.단항곱나눗, "응용", (rng) =>
     attempt(300, () => {
       const [v0, v1] = pickVars(rng);
       const divisor = randMono(rng, [v0, v1], 2, [2, 3, -2, -3, 4] as const);
@@ -766,7 +766,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
     "12",
     "단항식의 곱셈과 나눗셈의 혼합 계산",
     SEC.단항곱나눗,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const [v0, v1] = pickVars(rng);
@@ -804,7 +804,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
 
   // 13 ─────────────────────────────────────────────
   // □ 를 **먼저 정하고** 우변을 만든다.
-  defMono("13", " 안에 알맞은 식 구하기", SEC.단항곱나눗, "hard", (rng) =>
+  defMono("13", " 안에 알맞은 식 구하기", SEC.단항곱나눗, "심화", (rng) =>
     attempt(300, () => {
       const [v0, v1] = pickVars(rng);
       const box = randMono(rng, [v0, v1], 2, [2, 3, 4, 5, -2, -3, -4] as const);
@@ -841,64 +841,69 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 14 ─────────────────────────────────────────────
-  defMono("14", "단항식의 곱셈과 나눗셈의 활용", SEC.단항곱나눗, "mid", (rng) =>
-    attempt(300, (): Body | null => {
-      const [v0, v1] = pickVars(rng);
-      const kind = intBetween(rng, 0, 2);
-      if (kind === 0) {
-        const base = randMono(rng, [v0, v1], 2, [2, 4, 6, 8] as const);
-        const height = randMono(rng, [v0, v1], 2, [3, 5, 7, 9] as const);
-        const ans = mono(qMul(q(1, 2), qMul(base.c, height.c)), {
-          [v0]: base.e[v0]! + height.e[v0]!,
-          [v1]: base.e[v1]! + height.e[v1]!,
-        });
-        if (!monoSane(ans, 512, 8)) return null;
-        if (ans.c.d !== 1) return null;
+  defMono(
+    "14",
+    "단항식의 곱셈과 나눗셈의 활용",
+    SEC.단항곱나눗,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const [v0, v1] = pickVars(rng);
+        const kind = intBetween(rng, 0, 2);
+        if (kind === 0) {
+          const base = randMono(rng, [v0, v1], 2, [2, 4, 6, 8] as const);
+          const height = randMono(rng, [v0, v1], 2, [3, 5, 7, 9] as const);
+          const ans = mono(qMul(q(1, 2), qMul(base.c, height.c)), {
+            [v0]: base.e[v0]! + height.e[v0]!,
+            [v1]: base.e[v1]! + height.e[v1]!,
+          });
+          if (!monoSane(ans, 512, 8)) return null;
+          if (ans.c.d !== 1) return null;
+          return {
+            content: `밑변의 길이가 $${monoTex(base)}$, 높이가 $${monoTex(height)}$ 인 삼각형의 넓이를 구하시오.`,
+            answer: `$${monoTex(ans)}$`,
+            solution: `(삼각형의 넓이)$=\\dfrac{1}{2}\\times$(밑변의 길이)$\\times$(높이) 이므로\n$\\dfrac{1}{2}\\times ${monoTex(base)}\\times ${monoTex(height)}=${monoTex(ans)}$ 이다.`,
+            facts: {
+              kind,
+              ...monoFacts("base", base),
+              ...monoFacts("height", height),
+            },
+          };
+        }
+        if (kind === 1) {
+          const bottom = randMono(rng, [v0, v1], 2, [2, 3, 4, 5] as const);
+          const height = randMono(rng, [v0, v1], 2, [2, 3, 4] as const);
+          const volume = monoMul(bottom, height);
+          if (!monoSane(volume, 512, 8)) return null;
+          return {
+            content: `밑넓이가 $${monoTex(bottom)}$ 이고 부피가 $${monoTex(volume)}$ 인 각기둥의 높이를 구하시오.`,
+            answer: `$${monoTex(height)}$`,
+            solution: `(기둥의 부피)$=$(밑넓이)$\\times$(높이) 이므로 (높이)$=$(부피)$\\div$(밑넓이) 이다.\n$${monoTex(volume)}\\div ${monoTex(bottom)}=${monoTex(height)}$`,
+            facts: {
+              kind,
+              ...monoFacts("bottom", bottom),
+              ...monoFacts("height", height),
+            },
+          };
+        }
+        const rc = pick(rng, [3, 6] as const);
+        const rv = pick(rng, [v0, v1] as const);
+        const re = intBetween(rng, 1, 2);
+        const radius = mono(q(rc), { [rv]: re });
+        const ansC = qMul(q(4, 3), qPow(radius.c, 3));
+        const ans = mono(ansC, { π: 1, [rv]: re * 3 });
+        if (!monoSane(ans, 4096, 8)) return null;
         return {
-          content: `밑변의 길이가 $${monoTex(base)}$, 높이가 $${monoTex(height)}$ 인 삼각형의 넓이를 구하시오.`,
+          content: `반지름의 길이가 $${monoTex(radius)}$ 인 구의 부피를 구하시오.`,
           answer: `$${monoTex(ans)}$`,
-          solution: `(삼각형의 넓이)$=\\dfrac{1}{2}\\times$(밑변의 길이)$\\times$(높이) 이므로\n$\\dfrac{1}{2}\\times ${monoTex(base)}\\times ${monoTex(height)}=${monoTex(ans)}$ 이다.`,
-          facts: {
-            kind,
-            ...monoFacts("base", base),
-            ...monoFacts("height", height),
-          },
+          solution: `(구의 부피)$=\\dfrac{4}{3}\\pi \\times$(반지름의 길이)$^{3}$ 이므로\n$\\dfrac{4}{3}\\pi \\times \\left(${monoTex(radius)}\\right)^{3}=${monoTex(ans)}$ 이다.`,
+          facts: { kind, rc, re },
         };
-      }
-      if (kind === 1) {
-        const bottom = randMono(rng, [v0, v1], 2, [2, 3, 4, 5] as const);
-        const height = randMono(rng, [v0, v1], 2, [2, 3, 4] as const);
-        const volume = monoMul(bottom, height);
-        if (!monoSane(volume, 512, 8)) return null;
-        return {
-          content: `밑넓이가 $${monoTex(bottom)}$ 이고 부피가 $${monoTex(volume)}$ 인 각기둥의 높이를 구하시오.`,
-          answer: `$${monoTex(height)}$`,
-          solution: `(기둥의 부피)$=$(밑넓이)$\\times$(높이) 이므로 (높이)$=$(부피)$\\div$(밑넓이) 이다.\n$${monoTex(volume)}\\div ${monoTex(bottom)}=${monoTex(height)}$`,
-          facts: {
-            kind,
-            ...monoFacts("bottom", bottom),
-            ...monoFacts("height", height),
-          },
-        };
-      }
-      const rc = pick(rng, [3, 6] as const);
-      const rv = pick(rng, [v0, v1] as const);
-      const re = intBetween(rng, 1, 2);
-      const radius = mono(q(rc), { [rv]: re });
-      const ansC = qMul(q(4, 3), qPow(radius.c, 3));
-      const ans = mono(ansC, { π: 1, [rv]: re * 3 });
-      if (!monoSane(ans, 4096, 8)) return null;
-      return {
-        content: `반지름의 길이가 $${monoTex(radius)}$ 인 구의 부피를 구하시오.`,
-        answer: `$${monoTex(ans)}$`,
-        solution: `(구의 부피)$=\\dfrac{4}{3}\\pi \\times$(반지름의 길이)$^{3}$ 이므로\n$\\dfrac{4}{3}\\pi \\times \\left(${monoTex(radius)}\\right)^{3}=${monoTex(ans)}$ 이다.`,
-        facts: { kind, rc, re },
-      };
-    }),
+      }),
   ),
 
   // 15 ─────────────────────────────────────────────
-  defMono("15", "지수법칙의 응용 ⑶", SEC.지수법칙, "hard", (rng) =>
+  defMono("15", "지수법칙의 응용 ⑶", SEC.지수법칙, "심화", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 5, 7] as const);
       const terms = intBetween(rng, 2, 3);
@@ -927,7 +932,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 16 ─────────────────────────────────────────────
-  defMono("16", "일의 자리의 숫자 구하기", SEC.지수법칙, "hard", (rng) =>
+  defMono("16", "일의 자리의 숫자 구하기", SEC.지수법칙, "심화", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 7, 8] as const);
       const k = intBetween(rng, 2, 3);
@@ -958,7 +963,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
 
 export const M2_POLY_TYPES: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
-  defPoly("01", "다항식의 덧셈과 뺄셈", SEC.다항덧뺄, "easy", (rng): Body => {
+  defPoly("01", "다항식의 덧셈과 뺄셈", SEC.다항덧뺄, "기본", (rng): Body => {
     const [v0, v1] = pickVars(rng);
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
@@ -997,7 +1002,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  defPoly("02", "이차식의 덧셈과 뺄셈", SEC.다항덧뺄, "easy", (rng) =>
+  defPoly("02", "이차식의 덧셈과 뺄셈", SEC.다항덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const v = pick(rng, ["x", "a"] as const);
       const p1 = randQuadratic(rng, v);
@@ -1023,7 +1028,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
     "03",
     "괄호가 여러 개인 다항식의 덧셈과 뺄셈",
     SEC.다항덧뺄,
-    "mid",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const [v0, v1] = pickVars(rng);
@@ -1049,7 +1054,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 04 ─────────────────────────────────────────────
-  defPoly("04", "어떤 식 구하기", SEC.다항덧뺄, "easy", (rng) =>
+  defPoly("04", "어떤 식 구하기", SEC.다항덧뺄, "기본", (rng) =>
     attempt(200, () => {
       const v = pick(rng, ["x", "a"] as const);
       const other = v === "x" ? "y" : "b";
@@ -1076,7 +1081,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 05 ─────────────────────────────────────────────
-  defPoly("05", "바르게 계산한 식 구하기", SEC.다항덧뺄, "mid", (rng) =>
+  defPoly("05", "바르게 계산한 식 구하기", SEC.다항덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const v = pick(rng, ["x", "a"] as const);
       const other = v === "x" ? "y" : "b";
@@ -1109,7 +1114,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 06 ─────────────────────────────────────────────
-  defPoly("06", "단항식다항식", SEC.다항곱나눗, "easy", (rng) =>
+  defPoly("06", "단항식다항식", SEC.다항곱나눗, "기본", (rng) =>
     attempt(200, () => {
       const [v0, v1] = pickVars(rng);
       const m = randMono(rng, [v0, v1], 2, [
@@ -1135,7 +1140,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
 
   // 07 ─────────────────────────────────────────────
   // **몫을 먼저 정하고** 피제수를 만든다 — 나누어떨어지게 하려면 그 수밖에 없다.
-  defPoly("07", "다항식단항식", SEC.다항곱나눗, "mid", (rng) =>
+  defPoly("07", "다항식단항식", SEC.다항곱나눗, "응용", (rng) =>
     attempt(200, () => {
       const [v0, v1] = pickVars(rng);
       const kind = intBetween(rng, 0, 1);
@@ -1169,7 +1174,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
     "08",
     "덧셈 뺄셈 곱셈 나눗셈이 혼합된 식의 계산",
     SEC.다항곱나눗,
-    "hard",
+    "심화",
     (rng) =>
       attempt(300, () => {
         const [v0, v1] = pickVars(rng);
@@ -1201,7 +1206,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
     "09",
     "단항식과 다항식의 곱셈과 나눗셈의 활용",
     SEC.다항곱나눗,
-    "mid",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const [v0, v1] = pickVars(rng);
@@ -1251,7 +1256,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 10 ─────────────────────────────────────────────
-  defPoly("10", "식의 값 ⑴", SEC.다항곱나눗, "mid", (rng) =>
+  defPoly("10", "식의 값 ⑴", SEC.다항곱나눗, "응용", (rng) =>
     attempt(300, () => {
       const [v0, v1] = pickVars(rng);
       const q1 = randLinear(rng, [v0, v1]);
@@ -1291,7 +1296,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 11 ─────────────────────────────────────────────
-  defPoly("11", "식의 대입", SEC.다항덧뺄, "mid", (rng) =>
+  defPoly("11", "식의 대입", SEC.다항덧뺄, "응용", (rng) =>
     attempt(200, () => {
       const [v0, v1] = pickVars(rng);
       const defA = randLinear(rng, [v0, v1]);
@@ -1311,7 +1316,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   ),
 
   // 12 ─────────────────────────────────────────────
-  defPoly("12", "규칙 찾기", SEC.다항덧뺄, "mid", (rng) => {
+  defPoly("12", "규칙 찾기", SEC.다항덧뺄, "응용", (rng) => {
     const [v0, v1] = pickVars(rng);
     const kind = intBetween(rng, 0, 1);
     if (kind === 0) {
@@ -1348,7 +1353,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   }),
 
   // 13 ─────────────────────────────────────────────
-  defPoly("13", "식의 값 ⑵", SEC.다항곱나눗, "hard", (rng) =>
+  defPoly("13", "식의 값 ⑵", SEC.다항곱나눗, "심화", (rng) =>
     attempt(200, () => {
       const base = pick(rng, [-3, -2, 2, 3] as const);
       const b = intBetween(rng, 2, 3);

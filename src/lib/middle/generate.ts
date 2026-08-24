@@ -11,6 +11,7 @@
 import { createRng } from "../elementary/rng";
 
 import { tidySolution } from "./solutionText";
+import { resolveMiddleTier } from "./tier";
 import { wrapDanClause } from "../problemText";
 
 import { M1_CALC } from "./m1Calc";
@@ -96,8 +97,17 @@ export function generateMiddleProblem(
   // 실측으로 중등은 이미 33유형 전부 괄호를 치고 있어 지금은 0건이 바뀐다.
   // 그래도 걸어 둔다: 새 유형이 괄호를 빠뜨려도 여기서 잡힌다.
   const content = wrapDanClause(p.content);
-  if (tidied === p.solution && content === p.content) return p;
-  return { ...p, solution: tidied, content };
+  // 밑단(`연산`)은 유형에 안 적혀 있다 — 발문 모양에서 가려낸다 (D-106).
+  // 규칙과 그 근거는 `tier.ts`, 지금 무엇을 잡는지는 `middleTierYeonsan.test.ts` 가 잠근다.
+  const difficulty = resolveMiddleTier(p.difficulty, content, !!p.figureSpec);
+  if (
+    tidied === p.solution &&
+    content === p.content &&
+    difficulty === p.difficulty
+  ) {
+    return p;
+  }
+  return { ...p, solution: tidied, content, difficulty };
 }
 
 /**
