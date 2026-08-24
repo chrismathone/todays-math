@@ -222,11 +222,36 @@ describe("[parseProblemContent] 기입 칸·세로셈 줄바꿈", () => {
     expect(paras[1]).toContain("\\begin{array}");
   });
 
-  it("인라인 가로셈은 한 문장으로 둔다", () => {
+  /**
+   * 🔴 **2026-08-25 정책이 뒤집혔다** — 원장님 지시:
+   *    *「"하시오." 하고 줄바꿔서 수식이 있어야 문제답다」*.
+   *
+   * 종전에는 이 모양을 한 문장으로 붙였다(`계산해 보세요. $126+745$`). 그런데 우리
+   * 엔진이 내는 발문이 바로 이 모양이고(`다음 식을 계산하시오.\n$2\sqrt{11}…$`),
+   * 원장님이 문제은행에서 그것이 붙어 나오는 것을 보시고 나누라고 하셨다.
+   *
+   * ⚠️ **아무 개행이나 나누는 것이 아니다.** 「앞이 문장으로 끝나고 · 수식이 글의
+   *    마지막이고 · 홑수식 줄이 하나뿐일 때」만이다. 아래 두 검사가 그 경계를 지킨다
+   *    (문장 중간 수식 · 표시 없는 보기). 셋 중 하나라도 빼면 멀쩡한 OCR 문항이 갈린다.
+   */
+  it("발문이 문장으로 끝나고 수식이 뒤에 오면 **문단을 나눈다**", () => {
     const raw = "계산해 보세요.\n\n$126+745$";
     expect(parseProblemContent(raw).question).toBe(
-      "계산해 보세요. $126+745$",
+      "계산해 보세요.\n\n$126+745$",
     );
+  });
+
+  it("문장 **중간**에 낀 수식은 안 나눈다 — OCR 이 한 문장을 끊어 놓은 것이다", () => {
+    const raw = "다음 조건을 만족시키는 자연수\n\n$m,n$\n\n의 개수는?";
+    expect(parseProblemContent(raw).question).toBe(
+      "다음 조건을 만족시키는 자연수 $m,n$ 의 개수는?",
+    );
+  });
+
+  it("홑수식 줄이 여럿이면 안 나눈다 — 표시 없는 보기다", () => {
+    const raw = "다음 중 옳은 것은?\n$x=1$\n$x=2$\n$x=3$";
+    const { question } = parseProblemContent(raw);
+    expect(question.split(/\n\s*\n/)).toHaveLength(1);
   });
 
   it("문장 속 네모 빈칸은 (1)(2) 와 같이 있어도 단어를 쪼개지 않는다", () => {
@@ -234,9 +259,8 @@ describe("[parseProblemContent] 기입 칸·세로셈 줄바꿈", () => {
       "보기에서 고르세요.\n\n(1) 자의 길이는 약 $\\square$입니다.\n\n(2) 우리 집에서 이모 댁까지의 거리는 약 $\\square$입니다.";
     const question = parseProblemContent(raw).question;
     expect(question).toContain("우리 집에서 이모 댁까지의 거리");
-    expect(question.split(/\n\s*\n/).some((p) => p.startsWith("(2) 우리 집"))).toBe(
-      true,
-    );
+    expect(
+      question.split(/\n\s*\n/).some((p) => p.startsWith("(2) 우리 집")),
+    ).toBe(true);
   });
 });
-

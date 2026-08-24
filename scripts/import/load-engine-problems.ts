@@ -92,6 +92,11 @@ type Plan = {
 
 type Row = {
   externalId: string;
+  /**
+   * **이 문항이 어느 문항류인가** (D-105). 같은 키 = 코드의 같은 `A01` 자리 =
+   * 숫자만 바꾼 아류. DB 트리거가 이 값으로 `-001`, `-002` 를 이어 준다.
+   */
+  familyKey: string;
   unitKey: string; // 사람이 읽을 단원 표시 — 못 찾았을 때 무엇이 없는지 적으려고
   grade: string;
   section: string;
@@ -152,6 +157,9 @@ function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
         const p = generateElementaryProblem(unit, seed, tier);
         rows.push({
           externalId: `engine-elem:${unit.grade}|${unit.chapter}|${unit.section}|${tier}|s${seed}`,
+          // 초등의 문항류 = **소단원 + 갈래**. 그 한 벌이 한 «문제 틀»이고,
+          // 씨앗만 바꾼 것들이 그 틀의 아류다.
+          familyKey: `elem:${unit.grade}|${unit.section}|${tier}`,
           unitKey: `${unit.grade} / ${unit.chapter} / ${unit.section}`,
           grade: unit.grade,
           chapter: unit.chapter,
@@ -186,6 +194,8 @@ function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
       const p = generateMiddleProblem(entry.key, seedBase, v);
       rows.push({
         externalId: `engine-mid:${entry.key}|s${seedBase}|v${v}`,
+        // 중등의 문항류 = **RPM 유형 키** 그 자체. 변형(v0·v1·…)은 같은 유형의 아류다.
+        familyKey: `mid:${entry.key}`,
         unitKey: `${entry.grade} / ${entry.unitSection}`,
         grade: entry.grade,
         section: entry.unitSection,
@@ -293,6 +303,39 @@ async function apply(planFile: string, doApply: boolean) {
   }
   console.log(`\n생성 ${rows.length}문항`);
 
+  // ── 🔴 **같은 문항이 다른 번호를 받는 것**을 여기서 막는다 ────────────────────
+  // 원장님 2026-08-25: 「같은 문제가 사실상 생성되었는데 문제번호가 다름」.
+  // 변형 두 벌(v0·v1)이 **같은 수를 뽑는 일**이 실제로 있다 — 뽑을 수 있는 값이
+  // 적은 유형에서 그렇다. 그때 두 행은 본문·정답이 글자까지 같은데 코드만 다르다.
+  //
+  // 열쇠는 **본문 + 정답**이다. 본문만 보면 「답이 여럿인 문항」을 한 건으로 뭉개고,
+  // 정답만 보면 다른 문항이 우연히 같은 답을 낸 것을 지운다.
+  const seen = new Map<string, Row>();
+  const dropped: string[] = [];
+  const unique: Row[] = [];
+  for (const r of rows) {
+    const key = `${r.content.replace(/\s+/g, " ").trim()}||${r.answer.replace(/\s+/g, " ").trim()}`;
+    const first = seen.get(key);
+    if (first) {
+      dropped.push(`${r.origin} ← ${first.origin} 과 같음`);
+      continue;
+    }
+    seen.set(key, r);
+    unique.push(r);
+  }
+  if (dropped.length > 0) {
+    console.log(
+      `   ⚠️ 같은 문항 ${dropped.length}건을 뺐다 (본문+정답이 같다)`,
+    );
+    for (const d of dropped.slice(0, 5)) console.log(`      · ${d}`);
+  }
+  // 분모를 못 맞추면 멈춘다 — 조용히 줄면 「전부 넣었다」로 읽힌다.
+  if (unique.length + dropped.length !== rows.length)
+    throw new Error("중복 제거에서 분모가 안 맞는다 — 멈춘다");
+  rows.length = 0;
+  rows.push(...unique);
+  console.log(`서로 다른 문항 ${rows.length}건`);
+
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
   const units = await prisma.unit.findMany({
     select: { id: true, grade: true, chapter: true, section: true },
@@ -333,6 +376,36 @@ async function apply(planFile: string, doApply: boolean) {
   );
   if (ready.length !== fresh.length + existing.size)
     throw new Error("분모가 안 맞는다 — 멈춘다");
+
+  // ── **DB 에 이미 있는 같은 문항**도 막는다 ────────────────────────────────
+  // 위의 중복 제거는 이번 회차 **안**만 본다. 다른 씨앗으로 다시 돌리면 같은 문항이
+  // 또 나올 수 있고(뽑을 값이 적은 유형), 그러면 원장님이 지적하신 그 모양이 된다.
+  // 대조 범위를 **같은 문항류**로 좁힌다 — 다른 유형끼리는 본문이 같을 수 없다.
+  const families = [...new Set(fresh.map((r) => r.familyKey))];
+  const already = await prisma.problem.findMany({
+    where: { familyKey: { in: families } },
+    select: { familyKey: true, content: true, answer: true, problemCode: true },
+  });
+  const seenInDb = new Map<string, string>();
+  for (const p of already)
+    seenInDb.set(
+      `${p.content.replace(/\s+/g, " ").trim()}||${p.answer.replace(/\s+/g, " ").trim()}`,
+      p.problemCode,
+    );
+  const beforeDbDedupe = fresh.length;
+  const kept = fresh.filter((r) => {
+    const code = seenInDb.get(
+      `${r.content.replace(/\s+/g, " ").trim()}||${r.answer.replace(/\s+/g, " ").trim()}`,
+    );
+    if (code) console.log(`   ⚠️ DB 에 이미 있다 (${code}): ${r.origin}`);
+    return !code;
+  });
+  if (kept.length !== beforeDbDedupe)
+    console.log(
+      `   DB 중복 ${beforeDbDedupe - kept.length}건을 뺐다 · 남은 것 ${kept.length}`,
+    );
+  fresh.length = 0;
+  fresh.push(...kept);
 
   if (!doApply) {
     const withFig = fresh.filter((r) => r.figureSpec).length;
@@ -376,6 +449,8 @@ async function apply(planFile: string, doApply: boolean) {
 
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
+    // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
+    // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
     const made = await prisma.problem.create({
       data: {
         unitId: r.unitId,
@@ -389,6 +464,9 @@ async function apply(planFile: string, doApply: boolean) {
         figureSvg: svg,
         figureSource: svg ? "engine" : null,
         externalId: r.externalId,
+        // 문항류 (D-105) — 트리거가 이 값으로 `J30103-A01-001` 의 `A01` 자리와
+        // 아류 번호를 정한다. 비워 두면 문항마다 혼자 한 무리가 된다.
+        familyKey: r.familyKey,
         reviewStatus: "approved",
         directUseAllowed: true,
         pool: "shared",
@@ -465,6 +543,20 @@ async function revert(ledgerFile: string) {
     where: { id: { in: mine.map((m) => m.problemId) } },
   });
   console.log(`지웠다 ${r.count} / ${mine.length}`);
+
+  // 🔴 **빈 문항류도 같이 치운다.** 대장(`problem_family`)은 `next_seq` 를 들고 있어서,
+  //    문항만 지우면 다음 회차가 `-001` 이 아니라 `-003` 부터 시작하고 문항류 글자도
+  //    그 자리를 건너뛴다. 「되돌렸다」고 하면서 자국이 남는 것이다.
+  //    ⚠️ **문항이 하나도 안 남은 무리만** 지운다 — 남아 있는 무리를 지우면 그 무리의
+  //    다음 문항이 이미 쓴 번호를 다시 받는다(코드가 두 문항을 가리킨다).
+  const emptied = await prisma.$executeRawUnsafe(`
+    DELETE FROM "problem_family" f
+     WHERE NOT EXISTS (
+       SELECT 1 FROM "problem" p
+        WHERE p."unit_id" = f."unit_id" AND p."family_key" = f."family_key"
+     )
+  `);
+  console.log(`빈 문항류 ${emptied}개를 치웠다`);
 }
 
 async function main() {

@@ -283,11 +283,35 @@ model Unit {
   progresses     Progress[]
   problems       Problem[]
   examQuestions  ExamQuestion[]
-  testRangeStart Test[]         @relation("TestRangeStartUnit")
-  testRangeEnd   Test[]         @relation("TestRangeEndUnit")
+  testRangeStart Test[]          @relation("TestRangeStartUnit")
+  testRangeEnd   Test[]          @relation("TestRangeEndUnit")
+  problemFamily  ProblemFamily[]
 
   @@index([grade, orderIndex])
   @@map("unit")
+}
+
+/// **단원 안의 문항류 대장** (D-105, 2026-08-25). 문항 코드의 `A01` 자리가 여기서 나오고
+/// 아류 번호(`-001`)도 여기서 센다.
+///
+/// ⚠️ `nextSeq` 를 이 표에 두는 이유: 문항 표를 세어 번호를 매기면 **동시에 두 건이
+///    들어올 때 같은 번호**를 받는다. `UPDATE … RETURNING` 은 행 잠금이라 안 겹친다.
+///    부여는 전부 `problem_family_take()` 한 곳을 지난다.
+model ProblemFamily {
+  unitId     String   @map("unit_id") @db.Uuid
+  /// 엔진이 적는 유형 정체. `Problem.familyKey` 와 같은 값이다.
+  familyKey  String   @map("family_key")
+  /// `A01`~`Z99`. 글자는 «비슷한 문항류를 한 무리로 묶는» 자리다(원장님 의도).
+  familyCode String   @map("family_code") @db.Char(3)
+  /// 다음에 줄 아류 번호. 1부터.
+  nextSeq    Int      @default(1) @map("next_seq")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Restrict)
+
+  @@id([unitId, familyKey])
+  @@unique([unitId, familyCode])
+  @@map("problem_family")
 }
 
 // ─────────────────────────────────────────────
@@ -423,7 +447,18 @@ model Problem {
   directUseAllowed Boolean      @default(true) @map("direct_use_allowed")
   /// 공용 풀이 기본 (D-31). private는 소유자만 조회.
   pool             ProblemPool  @default(shared)
-  /// 문항 코드 — 원장님이 문항을 **지목**하는 값 (D-53). 예: `J31402-K7M2` · `HC10305-Q4XZ`.
+  /// **이 문항이 어느 «문항류»인가** — 엔진이 적는 자기 유형 정체 (D-105, 2026-08-25).
+  ///   중등 `mid:3-1|근호를 포함한 식의 계산|06`
+  ///   초등 `elem:초6|2-5-1 원주와 원주율 알아보기|연산`
+  /// 같은 키 = 같은 문항류 = 문항 코드의 같은 `A01` 자리. 그래서 **숫자만 바꾼 아류**가
+  /// 자동으로 한 무리에 모이고 `-001`, `-002` 로 번호가 이어진다.
+  ///
+  /// ⚠️ 비면 **자기 혼자 한 무리**를 차지한다(`solo:<uuid>`, 트리거가 채운다).
+  ///    번호 형식이 한 가지로 유지되게 하려는 것이다 — 나중에 「이건 저 무리」로 옮길 수 있다.
+  familyKey        String?      @map("family_key")
+  /// 문항 코드 — 원장님이 문항을 **지목**하는 값 (D-53 · D-105). 예: `J30103-A01-001`.
+  /// 옛 형식(`J31402-K7M2`, 무작위 4자)을 단 행이 45,374건 남아 있다 — 격리 대상이고
+  /// freeze 트리거가 UPDATE 를 막으므로 영영 그대로다. CHECK 는 둘 다 받는다.
   ///
   /// ⚠️ **파생이 아니라 저장이다.** 뜻 부분은 부여 당시의 스냅샷이고 진실은 `unitId` 다.
   ///    단원이 재배정되면(관측 149건) 코드는 **그대로 두고** 화면이 현재 단원을 같이 보인다.
@@ -465,6 +500,8 @@ model Problem {
   @@index([unitId, createdAt(sort: Desc), id(sort: Desc)])
   // 검수 대기 목록 — reviewStatus 로 좁힌 뒤 최신순.
   @@index([reviewStatus, createdAt(sort: Desc)])
+  // 「이 문항과 같은 류가 몇 개인가」 — 아류 묶어 보기(D-105).
+  @@index([unitId, familyKey])
   @@map("problem")
 }
 

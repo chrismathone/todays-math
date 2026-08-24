@@ -11,6 +11,7 @@
 import { createRng } from "../elementary/rng";
 
 import { tidySolution } from "./solutionText";
+import { wrapDanClause } from "../problemText";
 
 import { M1_CALC } from "./m1Calc";
 import { M1EXTRA_TYPES } from "./m1Extra";
@@ -90,7 +91,13 @@ export function generateMiddleProblem(
   // 한쪽만 옮겨도 아무도 모른다 (`solutionText.ts` 머리말 참조). 뜻은 안 바뀐다 —
   // 글자까지 똑같은 되풀이를 지우는 것뿐이다.
   const tidied = tidySolution(p.solution);
-  return tidied === p.solution ? p : { ...p, solution: tidied };
+  // 「단, …」 조건절은 괄호 안으로 (원장님 2026-08-25). **초등 엔진과 같은 함수**를
+  // 부른다 — 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+  // 실측으로 중등은 이미 33유형 전부 괄호를 치고 있어 지금은 0건이 바뀐다.
+  // 그래도 걸어 둔다: 새 유형이 괄호를 빠뜨려도 여기서 잡힌다.
+  const content = wrapDanClause(p.content);
+  if (tidied === p.solution && content === p.content) return p;
+  return { ...p, solution: tidied, content };
 }
 
 /**

@@ -4,6 +4,7 @@ import { memo, useState } from "react";
 
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
+import paper from "@/components/print/TestPrint.module.css";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
@@ -195,9 +196,15 @@ export const ProblemCard = memo(function ProblemCard({
                 지면의 핵심 개념 박스처럼 **왼쪽 굵은 바**로 표시한다. */}
             <div className="border-l-[3px] border-ink bg-side p-6">
               <h4 className={`mb-2 ${MICRO}`}>정답</h4>
+              {/* 🔴 **문제·정답·해설이 한 크기다** (원장님 지시 2026-08-25:
+                  「문제은행에서 문제/정답/해설의 폰트가 전부 똑같이 일치하게」).
+                  종전에는 정답 `text-lg` · 해설 `text-base` · 발문은 지면 12.5px 이라
+                  셋이 다 달랐다. 이제 셋 다 **발문과 같은 클래스**(`paper.problemText`)를
+                  쓴다 — 지면 크기를 고치면 셋이 **같이** 따라간다. 크기를 각자 적으면
+                  한쪽만 고쳐도 아무도 모른다. */}
               <MathText
                 as="div"
-                className="text-lg font-medium text-ink"
+                className={`${paper.problemText} font-medium`}
                 text={problem.answer}
               />
             </div>
@@ -206,7 +213,7 @@ export const ProblemCard = memo(function ProblemCard({
                 <h4 className={`mb-2 ${MICRO}`}>상세 풀이</h4>
                 <MathText
                   as="div"
-                  className="text-base leading-relaxed text-text-2"
+                  className={paper.problemText}
                   text={problem.solution}
                 />
               </div>

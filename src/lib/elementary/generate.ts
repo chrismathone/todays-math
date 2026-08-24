@@ -16,6 +16,7 @@ import { G5, G5_TIERS } from "./g5";
 import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
 import { ELEM_GRADES, type ElemProblem } from "./types";
+import { wrapDanClause } from "../problemText";
 
 export {
   elementaryComboDefinitions,
@@ -78,13 +79,25 @@ export function generateElementaryProblem(
         `난이도 갈래가 없는 소단원입니다: ${unit.grade} ${unit.section} — «${tier}» (supportedTiers 로 먼저 확인)`,
       );
     }
-    return variants[tier](
-      unit,
-      createRng(seed + unit.orderIndex * 17 + TIER_SALT[tier]),
+    return tidy(
+      variants[tier](
+        unit,
+        createRng(seed + unit.orderIndex * 17 + TIER_SALT[tier]),
+      ),
     );
   }
   // tier 를 안 주면 예전 그대로다 — 기존 관문(230 소단원 × 씨앗 1,260)이 이 경로를 지킨다.
-  return handler(unit, createRng(seed + unit.orderIndex * 17));
+  return tidy(handler(unit, createRng(seed + unit.orderIndex * 17)));
+}
+
+/**
+ * 발문 다듬기를 **나가는 자리 한 곳**에서 건다 — 갈래 handler 가 920개라
+ * 각자 고치면 반드시 몇 개를 빠뜨린다(이 저장소가 「손 목록은 샌다」로 여러 번 데인 자리).
+ * 규칙 자체는 `src/lib/problemText.ts` 에 있고 중등 엔진도 같은 것을 부른다.
+ */
+function tidy(p: ElemProblem): ElemProblem {
+  const content = wrapDanClause(p.content);
+  return content === p.content ? p : { ...p, content };
 }
 
 export function generateElementaryChapter(

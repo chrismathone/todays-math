@@ -887,6 +887,38 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-24",
   },
   {
+    id: "stem-formula-break",
+    title:
+      "발문 다음 줄에 수식이 서는가 — 그리고 한 줄이 늘어난 만큼 칸이 버티는가",
+    changed:
+      '원장님 지시 2026-08-25 「"하시오." 하고 줄바꿔서 수식이 있어야 문제답다」. ' +
+      "엔진은 이미 줄바꿈을 넣고 있었는데 `collapseWhitespace` 가 **모든 개행을 공백으로** " +
+      "녹여(OCR 이관본의 줄바꿈은 글줄 넘김이라 뜻이 없다) 화면·지면이 붙여 그렸다. " +
+      "이제 「앞이 문장으로 끝나고 · 수식이 글의 마지막이고 · 홑수식 줄이 하나뿐」인 " +
+      "경우에만 문단을 나눈다(`markStandaloneFormula`). " +
+      "⚠️ **문항마다 한 줄이 늘어난다** — 칸이 빠듯하던 시험지가 넘칠 수 있다. " +
+      "자(`estimateProblemPx`)는 같은 파서를 부르므로 갈라지지는 않는다.",
+    look:
+      "① 「다음 식을 계산하시오.」 같은 발문 **다음 줄**에 수식이 서는가. " +
+      "② 문장 **중간**에 낀 수식(「자연수 $m,n$ 의 개수는?」)은 **안 갈려야** 한다 — " +
+      "갈렸으면 규칙이 넓은 것이다. ③ 표시 없는 보기(수식 여러 줄)가 발문에서 " +
+      "떨어져 나가지 않았는가. ④ **문항이 칸을 넘지 않는가** — 한 줄이 늘었으므로 " +
+      "마지막 문항이 잘리거나 다음 장으로 밀렸는지 본다.",
+    lookFromSource: true,
+    evidence: [
+      "src/lib/problem/parseProblemContent.ts (markStandaloneFormula)",
+      "src/__tests__/unit/parseProblemContent.test.ts (경계 3건)",
+      "src/__tests__/unit/renderParity.test.tsx (20키 전부 무변화 확인)",
+    ],
+    scale:
+      "엔진이 낸 문항 전부(발문 뒤 수식이 표준 문형이다). OCR 이관본은 실측으로 " +
+      "renderParity 20키가 **한 글자도 안 바뀌었다** — 좁힌 열쇠가 그것들을 안 건드린다.",
+    needs:
+      "엔진 문항이 실린 시험지. 파일럿(초5 MS1A · 초6 MS2A)을 뽑으면 그대로 드러난다.",
+    status: "대기",
+    changedOn: "2026-08-25",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",

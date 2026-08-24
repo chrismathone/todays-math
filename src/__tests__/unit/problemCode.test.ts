@@ -30,13 +30,18 @@ import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
   GRADE_CODE_SEGMENT,
   PROBLEM_CODE_ALPHABET,
+  PROBLEM_CODE_ANY_PATTERN,
   PROBLEM_CODE_PATTERN,
   PROBLEM_CODE_SUFFIX_LENGTH,
+  PROBLEM_FAMILY_MAX,
+  PROBLEM_SEQ_MAX,
   problemCodeSchema,
   unitCodePrefixSchema,
 } from "@/contracts/problemCode.contract";
 import {
   buildUnitCodePrefixes,
+  familyCodeFromIndex,
+  formatProblemCode,
   renderUnitCodePrefixSql,
 } from "@/lib/problemCode";
 
@@ -236,40 +241,105 @@ describe("[D-53] 마이그레이션 SQL 은 이 규칙의 산출물이다", () =
     expect(sql).toContain(renderUnitCodePrefixSql(CURRICULUM_UNITS));
   });
 
-  it("SQL 이 쓰는 무작위 집합이 계약과 같은 한 벌이다", () => {
+  it("1세대가 쓰던 무작위 집합이 계약의 옛 형식과 같은 한 벌이다", () => {
+    // 이 글자 집합은 아직 살아 있다 — 격리된 45,374건의 코드가 이 형식이고
+    // `LEGACY_PROBLEM_CODE_PATTERN` 이 그것을 읽는다.
     expect(sql).toContain(`'${PROBLEM_CODE_ALPHABET}'`);
-  });
-
-  it("SQL 의 형식 검사가 계약의 정규식과 같다", () => {
-    expect(sql).toContain(PROBLEM_CODE_PATTERN);
-  });
-
-  it("코드는 INSERT 때만 붙는다 — UPDATE 로 다시 계산하는 트리거가 없다", () => {
-    expect(sql).toMatch(/BEFORE INSERT ON "problem"/);
-    expect(sql).not.toMatch(/BEFORE INSERT OR UPDATE ON "problem"/);
-  });
-
-  /**
-   * ⚠️ 이 검사는 처음에 `toMatch(/LOOP/)` + `toMatch(/RAISE EXCEPTION/)` 였다.
-   *    **재시도 고리를 통째로 지워도 초록이었다** — 무작위 4자를 뽑는 함수에도
-   *    `LOOP` 가 있고, 단원 코드 검사에도 `RAISE EXCEPTION` 이 있기 때문이다.
-   *    가드가 아니라 장식이었다(적대적 리뷰 ④ §H 와 같은 부류). 망가뜨려 보고 알았다.
-   *    이제는 **재시도 고리 자체의 모양**을 본다.
-   *    DB 에서 「재시도가 없으면 정말 겹치는가」는 verify-problem-code-wiring 의 B10 이 잰다.
-   */
-  it("충돌 재시도 고리가 있다 — 뽑고, 이미 있으면, 다시 뽑는다", () => {
-    expect(sql).toMatch(/FOR i IN 1\.\.v_tries LOOP/);
-    expect(sql).toMatch(
-      /PERFORM 1 FROM "problem" p WHERE p\."problem_code" = v_code/,
-    );
-    expect(sql).toMatch(/IF NOT FOUND THEN\s*\n\s*RETURN v_code;/);
-  });
-
-  it("재시도가 다 실패하면 조용히 넘기지 않고 멈춘다", () => {
-    expect(sql).toMatch(/전부 겹쳤다/);
   });
 
   it("한 번 붙은 코드는 못 바꾼다 — 불변 트리거가 있다", () => {
     expect(sql).toMatch(/BEFORE UPDATE ON "problem"/);
+  });
+});
+
+/**
+ * **2세대 — `J30103-A01-001`** (D-105, 원장님 확정 2026-08-25).
+ *
+ * 1세대는 무작위 4자였다. 그래서 「$x^2+8x-1=0$ 일 때…」와 「$x^2-9x+1=0$ 일 때…」가
+ * **같은 유형인지 코드로 알 방법이 없었다.** 2세대는 그 자리를 문항류로 바꾼다.
+ *
+ * ⚠️ 여기서 보는 것은 **지금 도는 규칙**이다. 1세대 블록은 이제 «옛 형식을 읽을 수
+ *    있는가»만 지킨다 — 부여 경로는 전부 이 마이그레이션으로 옮겨졌다.
+ */
+describe("[D-105] 문항 코드 2세대 — 문항류 + 아류 번호", () => {
+  const MIGRATION2 = join(
+    process.cwd(),
+    "prisma/migrations/20260825020000_problem_family_code/migration.sql",
+  );
+  const sql2 = readFileSync(MIGRATION2, "utf8").replaceAll("\r", "");
+
+  it("SQL 의 형식 검사가 계약의 정규식과 같다 — 옛 것과 새 것을 둘 다 받는다", () => {
+    expect(sql2).toContain(PROBLEM_CODE_ANY_PATTERN);
+  });
+
+  it("새 코드 형식이 계약대로다", () => {
+    const re = new RegExp(PROBLEM_CODE_PATTERN);
+    expect(re.test("J30103-A01-001")).toBe(true);
+    expect(re.test("HC10305-B12-007")).toBe(true);
+    // 자리 수가 다르면 안 받는다 — 「A1-001」·「A01-01」 같은 손글씨 실수.
+    expect(re.test("J30103-A1-001")).toBe(false);
+    expect(re.test("J30103-A01-01")).toBe(false);
+    // 옛 형식은 새 정규식으로는 안 걸린다(그 몫은 LEGACY 쪽이다).
+    expect(re.test("J30103-4NSK")).toBe(false);
+  });
+
+  it("옛 코드도 여전히 읽힌다 — 격리된 45,374건이 그 형식이다", () => {
+    const any = new RegExp(`^${PROBLEM_CODE_ANY_PATTERN}$`);
+    expect(any.test("J30103-4NSK")).toBe(true);
+    expect(any.test("J30103-A01-001")).toBe(true);
+    // 헷갈려서 뺀 글자(`0 O 1 I`)는 안 받는다 — 받아 적은 코드가 다른 문항을 가리키지 않게.
+    expect(any.test("J30103-OOOO")).toBe(false);
+    expect(any.test("J30103-1I0O")).toBe(false);
+  });
+
+  it("문항류 규칙이 «숫자를 먼저, 글자를 나중에» 채운다", () => {
+    // 원장님 의도가 「비슷한 문항류를 한 글자로 묶는」 것이라, 글자가 «무리»다.
+    // 글자를 먼저 넘기면 A01·B01·C01 로 흩어져 글자가 아무 뜻도 못 갖는다.
+    expect(familyCodeFromIndex(1)).toBe("A01");
+    expect(familyCodeFromIndex(2)).toBe("A02");
+    expect(familyCodeFromIndex(99)).toBe("A99");
+    expect(familyCodeFromIndex(100)).toBe("B01");
+    expect(familyCodeFromIndex(PROBLEM_FAMILY_MAX)).toBe("Z99");
+  });
+
+  it("자리를 넘으면 조용히 겹치지 않고 멈춘다", () => {
+    expect(() => familyCodeFromIndex(PROBLEM_FAMILY_MAX + 1)).toThrow(/문항류/);
+    expect(() => familyCodeFromIndex(0)).toThrow();
+    expect(() => formatProblemCode("J30103", "A01", 0)).toThrow(/아류/);
+    expect(() =>
+      formatProblemCode("J30103", "A01", PROBLEM_SEQ_MAX + 1),
+    ).toThrow(/아류/);
+    // SQL 쪽도 같은 자리에서 멈춰야 한다 — 문구를 본다(값 대조는 DB 배선 검사가 한다).
+    expect(sql2).toMatch(/문항류가 2574 를 넘었다/);
+    expect(sql2).toMatch(/아류가 999 를 넘었다/);
+  });
+
+  it("코드 짓는 자리가 한 곳이다", () => {
+    expect(formatProblemCode("J30103", "A01", 7)).toBe("J30103-A01-007");
+  });
+
+  it("코드는 INSERT 때만 붙는다 — UPDATE 로 다시 계산하는 트리거가 없다", () => {
+    expect(sql2).toMatch(/BEFORE INSERT ON "problem"/);
+    expect(sql2).not.toMatch(/BEFORE INSERT OR UPDATE ON "problem"/);
+  });
+
+  /**
+   * ⚠️ 낱말이 아니라 **그 구조의 모양**을 본다. 2026-08-18 에 `toMatch(/LOOP/)` 로
+   *    재시도를 지키려다 «장식»을 만든 적이 있다 — 같은 파일 다른 곳에도 그 낱말이 있었다.
+   */
+  it("무리 자리를 다투면 다시 읽는다 — 조용히 아무 코드나 쓰지 않는다", () => {
+    expect(sql2).toMatch(/EXCEPTION WHEN unique_violation THEN/);
+    expect(sql2).toMatch(/EXIT WHEN v_code IS NOT NULL/);
+    expect(sql2).toMatch(/무리 자리를 % 번 다퉜는데 못 잡았다/);
+  });
+
+  it("아류 번호는 세지 않고 행 잠금으로 뽑는다 — 동시 삽입이 같은 번호를 안 받게", () => {
+    expect(sql2).toMatch(/SET "next_seq" = f\."next_seq" \+ 1/);
+    expect(sql2).toMatch(/RETURNING f\."next_seq" - 1 INTO v_seq/);
+  });
+
+  it("옛 한-인자 부여 함수를 남겨 두지 않는다 — 남으면 옛 형식이 계속 나온다", () => {
+    expect(sql2).toMatch(/DROP FUNCTION IF EXISTS "problem_code_next"\(uuid\)/);
+    expect(sql2).toMatch(/DROP FUNCTION IF EXISTS "problem_code_suffix"\(\)/);
   });
 });

@@ -84,8 +84,49 @@ const GRADE_SEGMENT_PATTERN = `(?:E[1-6]|J[1-3]|H(?:C1|C2|AL|M1|M2|PS|GE))`;
  */
 export const UNIT_CODE_PATTERN = `^${GRADE_SEGMENT_PATTERN}[0-9]{4}$`;
 
-/** 문항 코드 전체 정규식 — 마이그레이션의 CHECK 제약이 이 문자열을 그대로 쓴다. */
-export const PROBLEM_CODE_PATTERN = `^${GRADE_SEGMENT_PATTERN}[0-9]{4}-[${PROBLEM_CODE_ALPHABET}]{${PROBLEM_CODE_SUFFIX_LENGTH}}$`;
+/**
+ * **문항류** 자리 — `A01`~`Z99` (원장님 확정 2026-08-25: 「J30103-A01-001 이런 식」).
+ *
+ * 글자는 **비슷한 문항류를 한 무리로 묶는** 자리다(원장님 의도: 「혹시나 비슷한
+ * 문항류는 A01 A02 하려고」). 지금은 단원마다 `A01` 부터 차례로 붙이고, 나중에
+ * 「이 셋은 한 무리」라고 정해지면 그때 글자를 나눈다.
+ *
+ * 한 단원에 26 × 99 = **2,574 갈래**. 실측으로 한 소단원의 RPM 유형은 최대 30 남짓이라
+ * 넉넉하다.
+ */
+export const PROBLEM_FAMILY_PATTERN = `[A-Z][0-9]{2}`;
+
+/** 문항류 한 자리에 들어가는 **아류 번호** — `001`~`999`. 숫자만 바꾼 변형이 여기 쌓인다. */
+export const PROBLEM_SEQ_PATTERN = `[0-9]{3}`;
+
+/** 한 문항류가 담을 수 있는 아류 수. 넘으면 부여가 **멈춘다**(조용히 겹치지 않는다). */
+export const PROBLEM_SEQ_MAX = 999;
+
+/** 한 단원이 담을 수 있는 문항류 수 — 26 × 99. */
+export const PROBLEM_FAMILY_MAX = 26 * 99;
+
+/**
+ * 문항 코드 전체 정규식 — 마이그레이션의 CHECK 제약이 이 문자열을 그대로 쓴다.
+ *
+ * 예: `J30103-A01-001` · `HC10305-B12-007`
+ */
+export const PROBLEM_CODE_PATTERN = `^${GRADE_SEGMENT_PATTERN}[0-9]{4}-${PROBLEM_FAMILY_PATTERN}-${PROBLEM_SEQ_PATTERN}$`;
+
+/**
+ * 🔴 **옛 형식** — `J31402-K7M2` 처럼 무작위 4자. 2026-08-25 이전에 부여된 코드다.
+ *
+ * 지우지 마라. 이 형식을 단 행이 **45,374건** 남아 있고(바깥벽 격리 대상),
+ * 코드는 `problem_code_freeze` 트리거가 UPDATE 를 막으므로 **영영 그대로**다.
+ * DB 의 CHECK 는 그래서 «옛 것 또는 새 것»을 받는다 — 하나만 받게 하면 격리된
+ * 45,374건이 통째로 제약 위반이 되어 어떤 UPDATE 도 못 한다.
+ *
+ * ⚠️ 새로 **부여**되는 코드는 언제나 새 형식이다. 그 성질은 정규식이 아니라
+ *    `problem_code_assign` 트리거가 지키고, `verify-problem-code-wiring.ts` 가 잰다.
+ */
+export const LEGACY_PROBLEM_CODE_PATTERN = `^${GRADE_SEGMENT_PATTERN}[0-9]{4}-[${PROBLEM_CODE_ALPHABET}]{${PROBLEM_CODE_SUFFIX_LENGTH}}$`;
+
+/** DB CHECK 가 쓰는 정규식 — 옛 형식과 새 형식을 **둘 다** 받는다. */
+export const PROBLEM_CODE_ANY_PATTERN = `(?:${PROBLEM_CODE_PATTERN.slice(1, -1)}|${LEGACY_PROBLEM_CODE_PATTERN.slice(1, -1)})`;
 
 export const unitCodePrefixSchema = z
   .string()
@@ -93,13 +134,17 @@ export const unitCodePrefixSchema = z
     error: "단원 코드 형식이 아닙니다.",
   });
 
+/**
+ * 화면·API 가 받는 코드 — **옛 것도 받는다.** 격리된 45,374건이 옛 형식이고,
+ * 「문항 코드로 찾기」는 그것들도 찾을 수 있어야 한다(조회는 격리와 다른 축이다).
+ */
 export const problemCodeSchema = z
   .string()
-  .regex(new RegExp(PROBLEM_CODE_PATTERN), {
+  .regex(new RegExp(`^${PROBLEM_CODE_ANY_PATTERN}$`), {
     error: "문항 코드 형식이 아닙니다.",
   });
 
 export type ProblemCode = z.infer<typeof problemCodeSchema>;
 
-/** 코드 전체 길이 상한 — 고등(3+4+1+4=12). 컬럼은 VarChar(16). */
-export const PROBLEM_CODE_MAX_LENGTH = 12;
+/** 코드 전체 길이 상한 — 고등(3+4+1+3+1+3=15). 컬럼은 VarChar(16). */
+export const PROBLEM_CODE_MAX_LENGTH = 15;
