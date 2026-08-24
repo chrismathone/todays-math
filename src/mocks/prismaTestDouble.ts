@@ -150,6 +150,13 @@ interface ProblemRow {
   examId: string | null;
   questionNumber: number | null;
   figureSvg: string | null;
+  /**
+   * 해설이 어디서 왔나(`none`/`original`/`ai`). 검수 화면이 원본 메타와 함께 보여 준다.
+   * ⚠️ 이 컬럼은 **NOT NULL + 기본값 `none`** 이라(schema.prisma:447) 대역이 안 주면
+   * `undefined` 가 나가고, 응답 계약(review.contract.ts:139)이 string 을 요구해 던진다.
+   * 컬럼을 늘릴 때 대역을 같이 안 늘리면 라우트 시험만 빨개진다 — 화면은 멀쩡해 보인다.
+   */
+  solutionSource: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -163,6 +170,8 @@ const PROBLEM_SOURCE_META_DEFAULTS = {
   examId: null,
   questionNumber: null,
   figureSvg: null,
+  // 이것만 NULL 이 아니다 — DB 기본값이 `none` 이다(schema.prisma:447).
+  solutionSource: "none",
 } as const;
 
 interface TestResultRow {

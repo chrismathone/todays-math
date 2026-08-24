@@ -101,6 +101,11 @@ async function main() {
         const data = { ...r } as Record<string, unknown>;
         for (const k of ["createdAt", "updatedAt"])
           if (data[k]) data[k] = new Date(data[k] as string);
+        // exam-wiring: 기출아님 — 원장 1,336행이 **전부 `source=transformed`**(RPM 교재)이고
+        // `school` 은 전량 NULL 이다. 그리고 삭제 전 `exam_question` 이 이 id 들을 가리킨 것은
+        // **0건**이었다(실측 2026-08-24) — 되돌릴 링크 자체가 없다. 그래서 이 경로는 기출을
+        // 넣지 않고 `syncExamMetadata` 도 필요 없다. ⚠️ 이 표시가 참인 근거는 «원장의 내용»
+        // 이므로, 이 스크립트를 **기출을 담은 원장에 재사용하면 표시부터 다시 봐야 한다.**
         await prisma.problem.create({ data: data as never });
       }
       back++;
