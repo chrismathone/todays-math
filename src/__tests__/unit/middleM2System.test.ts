@@ -763,7 +763,8 @@ const CHECKS: Record<string, Check> = {
         `$x=${x}$ 에서 좌변이 상황과 다르다: ${p.content} → ${p.answer}`,
       ).toBe(value(f, x));
     }
-    expectPrinted(p.content, [f.q!]);
+    // 정삼각형(scn 1)만 계수 $3$ 이 낱말에 숨어 있다 — 나머지는 발문에 수로 찍힌다
+    expectPrinted(p.content, f.scn === 1 ? [f.q!] : [f.p!, f.q!]);
   },
 
   [`${IQ}|03`]: (p) => {
@@ -777,6 +778,23 @@ const CHECKS: Record<string, Check> = {
     expect(said, `${p.content} → ${p.answer}`).toEqual(got);
     // 발문의 정의역이 실제로 그 다섯 수인가
     for (const v of dom) expect(p.content).toContain(`$${v}$`);
+    // ⚠️ 이 유형의 답은 **인쇄된 부등식을 대입해** 얻으므로, 부등호를 잘못 인쇄해도
+    //    답과 서로 어긋나지 않는다. 어긋나는 것은 **해설이 유도한 범위**뿐이다
+    //    (변이 [1] 이 실제로 그렇게 초록이었다). 그래서 해설을 따로 푼다.
+    const derived = mathBlocks(p.solution).find((b) =>
+      /^x(<|>|\\le|\\ge)/.test(b),
+    );
+    expect(derived, `해설에 유도한 범위가 없다: ${p.solution}`).toBeDefined();
+    const dch = parseChain(derived!);
+    expect(dch.rels.length, derived).toBe(1);
+    const want = solveLinIneq(pSub(ch.polys[0]!, ch.polys[1]!), ch.rels[0]!);
+    expect(dch.rels[0], `해설의 부등호 (${p.content} → ${derived})`).toBe(
+      want.rel,
+    );
+    expect(
+      req(pCoef(dch.polys[1]!, 0, 0), want.s),
+      `해설의 경계값 (${p.content} → ${derived})`,
+    ).toBe(true);
   },
 
   [`${IQ}|04`]: (p) => {

@@ -382,7 +382,8 @@ export const M2_SYSTEM: TypeEntry[] = [
     }
     if (scn === 3) {
       const p = intBetween(rng, 4, 15);
-      const q = intBetween(rng, 20, 70);
+      // 한계값이 가로 두 변의 합보다 작으면 조건이 사실상 없는 것과 같다 — 넉넉히 띄운다.
+      const q = 2 * p + intBetween(rng, 6, 40);
       return {
         content: `가로의 길이가 $${p}\\,\\mathrm{cm}$, 세로의 길이가 $x\\,\\mathrm{cm}$인 직사각형의 둘레의 길이는 $${q}\\,\\mathrm{cm}$ ${ph.w}이다. 이를 부등식으로 나타내시오.`,
         answer: `$2(${p}+x)${relSym}${q}$`,
@@ -585,6 +586,7 @@ export const M2_SYSTEM: TypeEntry[] = [
         const ansRel = pick(rng, REL_CODES);
         const d = pick(rng, [2, 3, 4, 6] as const);
         const e = pick(rng, [2, 3, 4, 6] as const);
+        if (d === e) return null;
         const m = intBetween(rng, 1, 4);
         const s2 = pick(rng, [1, -1] as const);
         const u = intBetween(rng, -6, 6);
@@ -637,7 +639,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       attempt(400, () => {
         const a = intBetween(rng, 2, 5);
         const b = intBetween(rng, 2, 5);
-        if (a === b) return null;
+        if (a === b || gcd(a, b) !== 1) return null;
         const x0 = intBetween(rng, 1, 8);
         const y0 = intBetween(rng, 1, 8);
         const c = a * x0 + b * y0;
@@ -1019,10 +1021,19 @@ export const M2_SYSTEM: TypeEntry[] = [
         if (Math.abs(c2) > 15) return null;
         const row1 = `0.\\overline{${p}}x+0.\\overline{${q}}y=${c1}`;
         const row2 = `${i2}.\\overline{${r2}}x${s2 > 0 ? "+" : "-"}0.\\overline{${q2}}y=${c2}`;
+        // 같은 순환소수가 두 번 나오면 해설에 같은 줄이 두 번 찍힌다 — 한 번만 적는다.
+        const conv = [
+          ...new Set([
+            `$0.\\overline{${p}}=\\dfrac{${p}}{9}$`,
+            `$0.\\overline{${q}}=\\dfrac{${q}}{9}$`,
+            `$${i2}.\\overline{${r2}}=\\dfrac{${A2}}{9}$`,
+            `$0.\\overline{${q2}}=\\dfrac{${q2}}{9}$`,
+          ]),
+        ].join(", ");
         return {
           content: `연립방정식 $\\begin{cases}${row1}\\\\${row2}\\end{cases}$ 의 해를 구하시오.`,
           answer: `$x=${x0}$, $y=${y0}$`,
-          solution: `순환소수를 분수로 고치면 $0.\\overline{${p}}=\\dfrac{${p}}{9}$, $0.\\overline{${q}}=\\dfrac{${q}}{9}$, $${i2}.\\overline{${r2}}=\\dfrac{${A2}}{9}$, $0.\\overline{${q2}}=\\dfrac{${q2}}{9}$이다.\n두 식의 양변에 $9$를 곱하면 $${mc(p, "x")}${sc(q, "y")}=${9 * c1}$, $${mc(A2, "x")}${sc(B2, "y")}=${9 * c2}$이다.\n두 식을 연립하여 풀면 $x=${x0}$, $y=${y0}$이다.`,
+          solution: `순환소수를 분수로 고치면 ${conv}이다.\n두 식의 양변에 $9$를 곱하면 $${mc(p, "x")}${sc(q, "y")}=${9 * c1}$, $${mc(A2, "x")}${sc(B2, "y")}=${9 * c2}$이다.\n두 식을 연립하여 풀면 $x=${x0}$, $y=${y0}$이다.`,
           facts: { p, q, c1, i2, r2, A2, q2, s2, B2, c2, x0, y0 },
         };
       }),
@@ -1159,7 +1170,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `$${N}$개의 문제가 출제된 시험에서 한 문제를 맞히면 $${p}$점을 얻고, 틀리면 $${q}$점을 잃는다. 이 시험에서 $${T}$점을 얻었을 때, 맞힌 문제는 몇 개인지 구하시오. (단, 모든 문제에 답하였다.)`,
         answer: `$${right}$개`,
-        solution: `맞힌 문제를 $x$개, 틀린 문제를 $y$개라 하면 $x+y=${N}$, $${mc(p, "x")}${sc(-q, "y")}=${T}$이다.\n첫째 식에 $${q}$${eulReul(q)} 곱하여 둘째 식에 더하면 $${p + q}x=${T + q * N}$이므로 $x=${right}$이다.\n따라서 맞힌 문제는 $${right}$개이다.`,
+        solution: `맞힌 문제를 $x$개, 틀린 문제를 $y$개라 하면 $x+y=${N}$, $${mc(p, "x")}${sc(-q, "y")}=${T}$이다.\n${q === 1 ? "두 식을 변끼리 더하면" : `첫째 식에 $${q}$${eulReul(q)} 곱하여 둘째 식에 더하면`} $${p + q}x=${T + q * N}$이므로 $x=${right}$이다.\n따라서 맞힌 문제는 $${right}$개이다.`,
         facts: { N, p, q, T, right, wrong },
       };
     }),
