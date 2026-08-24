@@ -150,6 +150,8 @@ interface ProblemRow {
   examId: string | null;
   questionNumber: number | null;
   figureSvg: string | null;
+  /** 해설이 어디서 왔나. 검수 화면이 「원본 해설 / AI 해설」로 보여 준다(D-101 배선). */
+  solutionSource: "none" | "original" | "ai";
   createdAt: Date;
   updatedAt: Date;
 }
@@ -163,6 +165,7 @@ const PROBLEM_SOURCE_META_DEFAULTS = {
   examId: null,
   questionNumber: null,
   figureSvg: null,
+  solutionSource: "none",
 } as const;
 
 interface TestResultRow {

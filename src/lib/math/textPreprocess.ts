@@ -667,6 +667,126 @@ const repeatingDigitsToDots = (math: string): string =>
     .replace(/(\d)\u0305/g, (_m, digit: string) => repeatDotTex(digit))
     .replace(/(\d)\u0304/g, (_m, digit: string) => repeatDotTex(digit));
 
+/**
+ * 이미 **정자인 구간** — 여기 안의 대문자는 다시 감싸면 안 된다
+ * (`\mathrm{\mathrm{AB}}` · `\text{선분 \mathrm{AB}}`).
+ */
+const UPRIGHT_WRAPPERS = [
+  "\\mathrm{",
+  "\\text{",
+  "\\textrm{",
+  "\\operatorname{",
+];
+
+/**
+ * 도형 라벨(**연속 대문자 2자 이상**)을 정자로 — testchanger
+ * `core/latex_to_hwpeq.py` 의 `_apply_roman_labels` 를 그대로 옮긴 것이다.
+ *
+ *     _ROMAN_LABEL_RE = r"(?<![A-Za-z])((?:[A-Z]'*){2,})(?![A-Za-z])"
+ *     "변수(x, a, **단일 대문자**)는 그대로 두고, 선분/삼각형/사각형 라벨
+ *      (AB, ABC, ABCD)만 정자로 만든다."
+ *
+ * ⚠️ **원본과 다른 예외가 둘 필요하다 — 우리는 HWP 스크립트가 아니라 LaTeX 다.**
+ *   ㉠ 원본의 제외 목록(`LEFT`·`SUM`·`LEQ` …)은 **HWP 스크립트 키워드**라 우리와 무관하다.
+ *      대신 **LaTeX 명령 이름**(`\AA`)을 피해야 한다 → 앞이 `\` 면 건너뛴다.
+ *   ㉡ 이미 정자인 구간(`\mathrm{}`·`\text{}`)은 **가려 두고** 적용한다. 안 그러면
+ *      두 번 감싼다.
+ *
+ * ⚠️ 이 함수는 `uprightGeometryLabels` 의 **맨 끝**에서 돈다. 앞 규칙들이 만든
+ *    `\mathrm{…}` 이 ㉡ 의 가림막에 걸려 보호되기 때문이다 — 순서를 바꾸지 말 것.
+ */
+const ROMAN_LABEL_RE = /(?<![A-Za-z\\])((?:[A-Z]'*){2,})(?![A-Za-z])/g;
+
+/**
+ * 단위 목록 — testchanger `_UNITS` 그대로.
+ * `℃`·`℉`·`°` 는 여기 **없다**: 이미 정자 글리프라 `\mathrm` 이 불필요하고,
+ * 얇은 간격이 붙으면 `90 °` 처럼 벌어져 원본 인쇄와 어긋난다(원본 주석).
+ * `L`(리터)은 단독 변수 `L` 과 충돌해 **숫자 직결 꼬리에서만** 단위로 본다.
+ */
+const UNITS = [
+  "kcal",
+  "min",
+  "km",
+  "cm",
+  "mm",
+  "kg",
+  "mg",
+  "mL",
+  "dL",
+  "kL",
+  "g",
+];
+const NUM_TAIL_UNITS = [...UNITS, "L", "ℓ"];
+
+/**
+ * 숫자 뒤 단위를 **정자 + 얇은 간격**으로 — testchanger `_romanize_units` 이식.
+ *
+ *     _UNIT_RE = r"(\d)[\s`]*(단위)(?![A-Za-z0-9(])"
+ *
+ * ⚠️ **`(` 를 부정전망에 넣는 것이 핵심**이다. `2g(x)` 는 **함수 호출**(계수 2 × 함수 g)
+ *    이지 단위가 아니다 — 원본이 실제 문항(경산여고 수2 #9)으로 못 박은 갈래다.
+ *    글자·숫자 부정전망은 변수 `5x` 를 지킨다.
+ *
+ * ⚠️ HWP 의 백틱(1/4칸)에 해당하는 것은 LaTeX 에서 `\,` 다.
+ */
+const UNIT_RE = new RegExp(
+  `(\\d)\\s*(${NUM_TAIL_UNITS.join("|")})(?![A-Za-z0-9(])`,
+  "g",
+);
+
+/** `\text{cm}` 처럼 **단위만** 감싼 `\text` — 수식 안에서는 `\mathrm` 이 제 자리다. */
+const TEXT_UNIT_RE = new RegExp(
+  `\\\\text\\{(${NUM_TAIL_UNITS.join("|")})\\}`,
+  "g",
+);
+
+/**
+ * 이미 `\mathrm{}` 로 감싸진 단위 앞의 얇은 간격 — testchanger `_backtick_rm_units` 이식.
+ *
+ * 원본: 「`a\mathrm{cm}` → `a rm cm`(렌더상 "a㎝" 붙음) → `a rm\`cm`(얇은 간격)」.
+ * 맨 `5cm` 은 위 `UNIT_RE` 가 이미 간격을 넣지만, **`\mathrm{}` 로 들어온 단위**
+ * (자료가 `\text{cm}` 으로 저장한 것 포함)는 그 경로로 안 빠져 붙어 버린다.
+ *
+ * ⚠️ **단위에만** 건다 — `\triangle \mathrm{ABC}` 같은 라벨에 간격을 넣으면 안 된다.
+ */
+const RM_UNIT_GAP_RE = new RegExp(
+  `([0-9A-Za-z}])(?<!\\\\,)\\\\mathrm\\{(${NUM_TAIL_UNITS.join("|")})\\}`,
+  "g",
+);
+
+const romanizeUnits = (inner: string): string =>
+  inner
+    .replace(TEXT_UNIT_RE, (_m, u: string) => `\\mathrm{${u}}`)
+    .replace(UNIT_RE, (_m, d: string, u: string) => `${d}\\,\\mathrm{${u}}`)
+    .replace(
+      RM_UNIT_GAP_RE,
+      (_m, p: string, u: string) => `${p}\\,\\mathrm{${u}}`,
+    );
+
+export const romanizeBareLabels = (inner: string): string => {
+  // ㉡ 이미 정자인 구간을 가린다. 중첩 중괄호를 세어 정확히 끝을 찾는다.
+  const masked: string[] = [];
+  let work = "";
+  for (let i = 0; i < inner.length;) {
+    const w = UPRIGHT_WRAPPERS.find((p) => inner.startsWith(p, i));
+    if (w) {
+      const close = findBraceClose(inner, i + w.length - 1);
+      if (close !== -1) {
+        masked.push(inner.slice(i, close + 1));
+        work += ` ${masked.length - 1} `;
+        i = close + 1;
+        continue;
+      }
+    }
+    work += inner[i];
+    i++;
+  }
+
+  work = work.replace(ROMAN_LABEL_RE, (_m, run: string) => `\\mathrm{${run}}`);
+
+  return work.replace(/ (\d+) /g, (_m, n: string) => masked[+n]!);
+};
+
 const uprightGeometryLabels = (inner: string): string => {
   let out = inner;
   // (3a) 호 케이스 먼저 — \widehat 2글자+ 와 \overset{\frown}{}를 \overgroup으로 통합.
@@ -707,7 +827,12 @@ const uprightGeometryLabels = (inner: string): string => {
   // (4) 전체가 단독 대문자 라벨인 경우만 통째로 Roman 처리.
   const pure = out.match(PURE_LABEL_REGEX);
   if (pure) out = `\\mathrm{${pure[1]}}`;
-  return out;
+  // (5) 단위를 먼저 정자화한다 — 라벨 규칙보다 **앞서야** `10kg` 의 `kg` 가 소문자라
+  //     서로 안 부딪히고, `\mathrm{kg}` 이 되어 (6)의 가림막에 보호된다.
+  out = romanizeUnits(out);
+  // (6) 남은 **맨 라벨** — 자리를 안 가린다. 위 (1)~(4)는 전부 «어디에 있나»에 매여
+  //     있어서, `∠` 가 수식 밖인 기출 원본(`$IBA=42\degree$`)은 하나도 안 걸렸다.
+  return romanizeBareLabels(out);
 };
 
 /* ───────────────────────────────────────────────────────────────────────────
