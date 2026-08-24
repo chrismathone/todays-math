@@ -1,6 +1,6 @@
 ---
 name: elem-gen
-description: 자체 초등 엔진(초3~초6, AI 아님)과 난이도 4단(D-71)으로 초등 문항 세트를 생성·검수한다. 원장님이 초등 문항 생성·샘플·난이도별 출제를 요청할 때 사용. 바로 생성하지 말고 질문으로 세부를 확정한 뒤 생성한다.
+description: 자체 초등 엔진(초3~초6, AI 아님)의 난이도 4단(D-71)과 승인 결합형(D-75)으로 초등 문항 세트를 생성·검수한다. 원장님이 초등 문항 생성·샘플·난이도별·다중 개념 출제를 요청할 때 사용. 바로 생성하지 말고 질문으로 세부를 확정한 뒤 생성한다.
 ---
 
 # 초등 출제 (elem-gen)
@@ -17,6 +17,7 @@ description: 자체 초등 엔진(초3~초6, AI 아님)과 난이도 4단(D-71)�
 
 ```bash
 npx tsx scripts/elem/gen-cli.ts --list --grade 초4   # 학년별 소단원·갈래 등록 현황
+npx tsx scripts/elem/gen-cli.ts --list-combos        # 승인된 다중 개념 결합형
 ```
 
 **② AskUserQuestion 으로 세부를 확정한다.** 원장님이 **이미 말한 것은 다시 묻지 않는다**
@@ -25,9 +26,10 @@ npx tsx scripts/elem/gen-cli.ts --list --grade 초4   # 학년별 소단원·갈
 1. **범위** — 학년과 소단원. 원장님이 주제로 말하면(「막대그래프」) 커버리지에서 맞는
    소단원들을 찾아 선택지로 낸다 (교재 유형 참고: `docs/planning/tracks/cube-concept-catalog.md`).
 2. **문항 수** — 4 / 6 / 8 / 12 같은 선택지.
-3. **난이도 방식** — ㉠ 표준(갈래 없이) ㉡ 갈래 하나(연산·기본·응용·심화) ㉢ 반 프리셋
+3. **출제 방식** — ㉠ 표준(갈래 없이) ㉡ 갈래 하나(연산·기본·응용·심화) ㉢ 반 프리셋
    (하위반 40/40/20/0 · 중위반 15/40/30/15 · 상위반 0/25/40/35, D-71 안A)
-   ㉣ **직접 배분**(갈래별 개수를 손으로 — 예: 연산1·기본3·응용2).
+   ㉣ **직접 배분**(갈래별 개수를 손으로 — 예: 연산1·기본3·응용2)
+   ㉤ **결합형**(`--list-combos`에 등록된 승인 id 하나, D-75).
    ⚠️ 갈래 등록이 안 된 소단원이면 ㉡㉢㉣ 을 선택지로 내지 말 것 — `--list` 가 알려 준다.
 4. **출력** — HTML 미리보기(기본) / JSON / 둘 다.
 
@@ -45,6 +47,7 @@ npx tsx scripts/elem/gen-cli.ts --list --grade 초4   # 학년별 소단원·갈
 ```bash
 # 커버리지
 npx tsx scripts/elem/gen-cli.ts --list [--grade 초4]
+npx tsx scripts/elem/gen-cli.ts --list-combos
 
 # 표준 세트 (JSON + 검수용 HTML)
 npx tsx scripts/elem/gen-cli.ts --grade 초4 --section 1-5-1 --count 6 \
@@ -57,10 +60,15 @@ npx tsx scripts/elem/gen-cli.ts --grade 초3 --section 1-1-2 --count 8 \
 # 직접 배분 — 합이 곧 개수라 --count 는 생략
 npx tsx scripts/elem/gen-cli.ts --grade 초3 --section 1-1-2 \
   --mix "연산:1,기본:3,응용:2" --seed 20260823 --html preview.html
+
+# 다중 개념 결합형 — 등록된 exact id만 가능, 4단 옵션과 함께 쓰지 않는다
+npx tsx scripts/elem/gen-cli.ts --combo "초5|2-2-3::초5|1-6-2" --count 6 \
+  --seed 20260824 --out combo.json --html combo.html
 ```
 
 - 세트 안 중복(발문+정답)은 자동으로 피하고, 변형 공간이 좁으면 **던진다.**
-- 여러 소단원에 걸친 세트는 소단원마다 한 번씩 부른다 (범위 혼합은 아직 CLI 밖).
+- 여러 소단원의 **일반 문항을 한 세트에 섞는 것**은 소단원마다 한 번씩 부른다
+  (범위 혼합은 아직 CLI 밖). **한 문항 안에서** 개념을 섞는 것은 승인된 `--combo`만 쓴다.
 
 ## 규칙 (어기면 안 되는 것)
 
@@ -76,9 +84,13 @@ npx tsx scripts/elem/gen-cli.ts --grade 초3 --section 1-1-2 \
    있으면 elem-1 kind(스키마) 쪽을 고친다.
 5. 유형 재료가 필요하면 `docs/planning/tracks/cube-concept-catalog.md` (큐브 24권
    대단원별 유형 색인), 진행 상태는 `docs/planning/10-handoff.md` §10.2.
+6. **결합형 id를 조립해 만들지 않는다.** `--list-combos`의 등록부만 생성할 수 있다.
+   `--combo`는 `--grade`/`--section`/`--tier`/`--preset`/`--mix`와 함께 쓸 수 없다.
+   새 조합·문형은 D-07 실물 시안 확정과 `units.ts`의 후속 정식 개념 검토가 먼저다.
 
 ## 구조
 
 - `scripts/elem/gen-core.ts` — 커버리지·배분·세트 생성 (시험: `src/__tests__/unit/elemGenCore.test.ts`)
 - `scripts/elem/gen-cli.ts` — 인자 처리 + JSON/HTML 출력 (수식은 제품 렌더러
   `renderMathHtml`, 그림은 `renderFigureSpec` — 지면과 같은 것을 본다)
+- `src/lib/elementary/combo.ts` — 승인된 결합 id·선수 metadata·family와 결정적 생성기

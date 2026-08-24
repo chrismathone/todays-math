@@ -18,9 +18,13 @@ import {
 import {
   allocateByPreset,
   findUnit,
+  generateComboSet,
   generateSet,
+  listCombos,
   listCoverage,
 } from "../../../scripts/elem/gen-core";
+
+const AREA_FRACTION_COMBO = "초5|2-2-3::초5|1-6-2";
 
 describe("[초등 출제 CLI] 커버리지 목록", () => {
   it("커버리지는 엔진 등록부에서 유도된다 — 손 목록이 아니다", () => {
@@ -50,6 +54,17 @@ describe("[초등 출제 CLI] 커버리지 목록", () => {
 
   it("없는 소단원 코드는 던진다", () => {
     expect(() => findUnit("초4", "9-9-9")).toThrow(/9-9-9/);
+  });
+
+  it("결합형 목록도 엔진 등록부에서 유도된다", () => {
+    expect(listCombos()).toEqual([
+      {
+        id: AREA_FRACTION_COMBO,
+        anchorKey: "초5|2-2-3",
+        prerequisiteKeys: ["초5|1-6-2"],
+        familyIds: ["nested-part", "remainder-part"],
+      },
+    ]);
   });
 });
 
@@ -244,5 +259,29 @@ describe("[초등 출제 CLI] 세트 생성", () => {
       expect(item.problem.answer.length).toBeGreaterThan(0);
     }
     expect(got).toEqual({ 연산: 3, 기본: 3, 응용: 2 });
+  });
+
+  it("결합형 세트는 명시한 id로만 재현 가능하게 생성된다", () => {
+    const options = {
+      comboId: AREA_FRACTION_COMBO,
+      count: 6,
+      seed: 20260824,
+    };
+    const a = generateComboSet(options);
+    const b = generateComboSet(options);
+    expect(a).toEqual(b);
+    expect(a).toHaveLength(6);
+    expect(a.every((item) => item.tier === null)).toBe(true);
+    expect(a.every((item) => item.problem.kind === "combo")).toBe(true);
+    expect(
+      new Set(a.map((item) => `${item.problem.content}|${item.problem.answer}`))
+        .size,
+    ).toBe(6);
+  });
+
+  it("미등록 결합형 id는 세트에서도 던진다", () => {
+    expect(() =>
+      generateComboSet({ comboId: "초6|9-9-9::초3|1-1-1", count: 2, seed: 1 }),
+    ).toThrow(/등록되지 않은 결합형/);
   });
 });
