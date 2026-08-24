@@ -152,8 +152,13 @@ $26^\circ$ 가 **구하려는 값**인데 첫 줄이 그걸 이미 못박습니�
 
 | 자리 | 무엇 |
 |---|---|
-| `scripts/qa/probe-middle-uniqueness.ts` | ⑴ 「답이 하나로 정해지나」 판정기 |
+| `scripts/qa/probe-middle-uniqueness.ts` | ⑴ 「답이 하나로 정해지나」 |
 | `scripts/qa/probe-middle-page-smells.ts` | ⑵⑷ 상위 학년 용어 · 이중 부호 |
-| `scripts/qa/sweep-middle-duplicate-conditions.ts` | ⑸ 되풀이 훑개 |
+| `scripts/qa/probe-middle-duplicate-statements.ts` | ⑸ 같은 말 두 번 |
 | `src/__tests__/unit/middleM3AngleApply.test.ts` | ⑶ 「첫 줄이 답을 못박지 않는다」 |
-| `middle-combo-원장님-요약.md` §2·§3 | 결합형 30건 지도 — **이 문서의 §2 로 갱신 필요** |
+| `middle-combo-원장님-요약.md` §2·§3 | 결합형 지도 — **이 문서의 §2 로 갱신했다** |
+
+**셋 다 관문(`npm run test`)이 매번 돌립니다.** 판정기가 11개 → **15개**가 됐습니다.
+안 물리면 장식이 되는 자리라(이 저장소가 하루에 두 번 겪었다) 배선까지가 완료 조건입니다.
+변이 셋(고친 것을 도로 망가뜨림)을 대 보니 **관문이 셋 다 물고, 무엇이 어디서 몇 %인지
+근거까지 찍습니다.**
