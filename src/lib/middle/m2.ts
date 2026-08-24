@@ -5,6 +5,7 @@
  * 이 파일만은 예외로 여러 세션이 자기 줄 하나씩을 더한다 — 병합 때 충돌하면
  * **어느 쪽도 지우지 말고 전부 남긴다**(2026-08-23 물결 2 실제 충돌 3회).
  */
+import { M2_CENTER } from "./m2Center";
 import { M2_COUNTING } from "./m2Counting";
 import { M2_FUNC } from "./m2Func";
 import { M2_GEO_QUAD } from "./m2GeoQuad";
@@ -34,4 +35,5 @@ export const M2_TYPES: TypeEntry[] = [
   ...M2_GEO_QUAD,
   ...M2_REAL,
   ...M2_MONO,
+  ...M2_CENTER,
 ];
