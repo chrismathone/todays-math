@@ -17,12 +17,17 @@ import {
   type ElemTier,
 } from "../../src/lib/elementary/difficulty";
 import {
+  elementaryComboDefinitions,
   elementaryUnits,
+  generateElementaryComboProblem,
   generateElementaryProblem,
   handlerKeys,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
-import type { ElemProblem } from "../../src/lib/elementary/types";
+import type {
+  ElemComboProblem,
+  ElemProblem,
+} from "../../src/lib/elementary/types";
 
 export type CoverageRow = {
   grade: string;
@@ -30,6 +35,13 @@ export type CoverageRow = {
   section: string;
   code: string;
   tiers: readonly ElemTier[];
+};
+
+export type ComboCoverageRow = {
+  id: string;
+  anchorKey: string;
+  prerequisiteKeys: readonly string[];
+  familyIds: readonly string[];
 };
 
 /** 생성기가 있는 소단원 전부 — 엔진 등록부에서 유도. */
@@ -44,6 +56,16 @@ export function listCoverage(): CoverageRow[] {
       code: sectionCode(unit),
       tiers: supportedTiers(unit),
     }));
+}
+
+/** 승인된 결합형 전부 — 별도 손 목록 없이 엔진 등록부에서 유도한다. */
+export function listCombos(): ComboCoverageRow[] {
+  return elementaryComboDefinitions().map((definition) => ({
+    id: definition.id,
+    anchorKey: definition.anchorKey,
+    prerequisiteKeys: definition.prerequisiteKeys,
+    familyIds: definition.familyIds,
+  }));
 }
 
 /** 학년+소단원 코드로 시드 행을 찾는다. 없으면 이웃 후보를 함께 말하고 던진다. */
@@ -105,6 +127,12 @@ export type GenItem = {
   problem: ElemProblem;
 };
 
+export type GenComboItem = {
+  tier: null;
+  seed: number;
+  problem: ElemComboProblem;
+};
+
 export type GenSetOptions = {
   grade: string;
   code: string;
@@ -115,6 +143,12 @@ export type GenSetOptions = {
   preset?: ClassPreset;
   /** 갈래별 개수 직접 배분 (예: {연산:1, 응용:2}) — 프리셋 비율 대신 손으로 정할 때. */
   tierCounts?: Partial<Record<ElemTier, number>>;
+};
+
+export type GenComboSetOptions = {
+  comboId: string;
+  count: number;
+  seed: number;
 };
 
 /** 씨앗 보폭. 엔진이 안에서 orderIndex·소금을 다시 섞으므로 서로 다르기만 하면 된다. */
@@ -224,5 +258,38 @@ export function generateSet(opts: GenSetOptions): GenItem[] {
       itemSeed += DEDUPE_STRIDE;
     }
   });
+  return items;
+}
+
+/**
+ * 승인 등록부의 결합형 한 종류에서 세트를 뽑는다. 기존 tier/preset 세트에는
+ * 조용히 섞지 않으며, 호출자가 combo id를 명시해야만 이 경로가 열린다.
+ */
+export function generateComboSet(opts: GenComboSetOptions): GenComboItem[] {
+  if (!Number.isInteger(opts.count) || opts.count <= 0) {
+    throw new Error(`문항 수가 이상합니다: ${opts.count}`);
+  }
+
+  const items: GenComboItem[] = [];
+  const seen = new Set<string>();
+  for (let i = 0; i < opts.count; i += 1) {
+    let itemSeed = opts.seed + i * SEED_STRIDE;
+    for (let tryNo = 0; ; tryNo += 1) {
+      const problem = generateElementaryComboProblem(opts.comboId, itemSeed);
+      const key = `${problem.familyId}|${problem.content}|${problem.answer}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        items.push({ tier: null, seed: itemSeed, problem });
+        break;
+      }
+      if (tryNo >= DEDUPE_TRIES) {
+        throw new Error(
+          `결합형 ${opts.comboId}의 변형 공간이 좁아 ${opts.count}문항을 ` +
+            `겹침 없이 못 냅니다 (${items.length}개까지 나옴) — 문항 수를 줄이십시오`,
+        );
+      }
+      itemSeed += DEDUPE_STRIDE;
+    }
+  }
   return items;
 }

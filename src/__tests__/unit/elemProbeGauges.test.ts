@@ -55,6 +55,7 @@ const QA_DIR = path.join(process.cwd(), "scripts", "qa");
  * **거짓 경보로 읽히면 그 시험이 꺼진다.**
  */
 const GAUGED: [name: string, gauges: number][] = [
+  ["probe-elem-combos", 7],
   ["probe-elem-josa-source", 10],
   ["probe-elem-rules", 31],
   ["probe-elem-section-conditions", 119],

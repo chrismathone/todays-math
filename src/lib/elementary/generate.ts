@@ -17,6 +17,14 @@ import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
 import { ELEM_GRADES, type ElemProblem } from "./types";
 
+export {
+  elementaryComboDefinitions,
+  generateElementaryComboProblem,
+  supportedCombos,
+  validateElementaryComboDefinition,
+} from "./combo";
+export type { ElemComboDefinition } from "./combo";
+
 const HANDLERS = { ...G3, ...G4, ...G5, ...G6 };
 
 // 난이도 갈래 (D-71 축 · D-72 확대). 파일럿 g3·g5 에 이어 g6 은 `1-1` 부터,

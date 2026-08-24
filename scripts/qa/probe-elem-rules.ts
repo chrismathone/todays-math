@@ -260,8 +260,8 @@ if (process.argv.includes("--selftest")) {
    * `probe-elem-arithmetic` 몫이고 여기서는 구조적으로 안 잡힌다 — 그 경계도 아래에서 못 박는다.
    */
   const withTiers = elementaryUnits().find((u) => supportedTiers(u).length > 0);
-  const withoutTiers = elementaryUnits().find(
-    (u) => supportedTiers(u).length === 0,
+  const allUnitsHaveTiers = elementaryUnits().every(
+    (u) => supportedTiers(u).length === ELEM_TIERS.length,
   );
   rows.push(
     [
@@ -269,11 +269,7 @@ if (process.argv.includes("--selftest")) {
       variantsOf(withTiers!).length === 5,
       true,
     ],
-    [
-      "갈래 없는 소단원은 표준 1가지만",
-      variantsOf(withoutTiers!).length === 1,
-      true,
-    ],
+    ["230개 전 소단원이 표준 + 4단을 훑는다", allUnitsHaveTiers, true],
     // 양성 — 갈래 문항에 심었던 그 결함을 R1 이 잡아야 한다
     ["정답을 KaTeX 로 안 감쌌다 — 걸려야", bareNumbers("117").length > 0, true],
     [

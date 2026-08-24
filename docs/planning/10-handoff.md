@@ -836,10 +836,10 @@ B단계로 새로 뽑은 시험지의 그림을 얻으려면 그 PDF 도 캐시�
 없을 뿐 죽은 코드가 아니다. 재는 자리를 **「230개 전부 갈래가 넷이다」**로 옮겨
 두었으니, 갈래 없는 소단원이 다시 생기면 그 시험이 먼저 빨개진다.
 
-### 🔴 학년 손 뗌 관문 — **아홉을 다 돌린다** (2026-08-24)
+### 🔴 초등 엔진 손 뗌 관문 — **열을 다 돌린다** (2026-08-24)
 
 ```
-throw · equations · arithmetic · rules · routing
+combos · throw · equations · arithmetic · rules · routing
 section-conditions · tier-ladder · unit-josa · josa-source
 ```
 
@@ -926,6 +926,16 @@ g3 이 figures 에게 창을 열어 배선이 시작돼 있었다. 리드의 **�
   `docs/planning/tracks/cube-concept-catalog.md` (재생성:
   `python scripts/qa/build-cube-type-catalog.py`). 난이도 사다리 실측은
   `tracks/elem-difficulty-textbook-survey-20260823.md`.
+- **결합형(combo) 별도 경로 파일럿**(D-75, 2026-08-24): 5번째 tier가 아니라
+  승인된 자연스러운 개념 쌍만 넣는 희소 등록부다. 첫 등록은 초5 `2-2-3`
+  진분수의 곱(anchor) × `1-6-2` 직사각형 넓이(prerequisite), 문장 뼈대는
+  `nested-part`·`remainder-part` 둘이다. `generateElementaryComboProblem(comboId, seed)`와
+  CLI `--combo`는 등록 id만 받고, 기존 `generateElementaryProblem`·4단·반 프리셋에는
+  섞이지 않는다. `probe-elem-combos`가 등록부 전량을 씨앗 96개씩 훑고,
+  `mutate-elem-combos.py`의 family 도달/병합·공식·선수 metadata/순서·family 최소 수·
+  후속 개념 대조·소재 조사 변이 **9/9 빨강**을 확인했다. 초6 「원기둥 겉넓이」 시안은 중1 개념 합성이라
+  **폐기**. 교체 제안(원기둥 옆면 직사각형 둘레에서 원주를 빼 높이 역산)은
+  아직 등록하지 않았고 재확정 대기다.
 
 **남은 것 (이 순서로 — 축은 확정됐다, D-72)**:
 1. **230 소단원 확대 진행 중 (2026-08-23 착수)** — 검증된 축부터 학년 병렬:
