@@ -34,6 +34,7 @@ import { describe, expect, it } from "vitest";
 
 import { bareNumbers, josaFaults } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
+import { renderMathHtml } from "../../lib/math/renderMathHtml";
 import { preprocessMathText } from "../../lib/math/textPreprocess";
 import {
   generateMiddleProblem,
@@ -1283,6 +1284,21 @@ describe("이 시험의 판정기들이 «아니오»를 낼 수 있는가", () 
     expect(countMixed("$\\dfrac{11}{9}$")).toBe(0);
   });
 
+  it("KaTeX 실패 탐지가 살아 있다 — 모르는 명령은 붉거나 중립 폴백이 된다", () => {
+    // 양성 대조군이 없으면 「붉은 글씨 0」이 «깨끗»인지 «못 셈»인지 안 갈린다.
+    const bad = renderMathHtml("$\\notacommand{2}$");
+    expect(
+      /#cc0000/i.test(bad) ||
+        bad.includes("katex-error") ||
+        bad.includes("math-raw"),
+      bad.slice(0, 200),
+    ).toBe(true);
+    // 음성 대조군 — 멀쩡한 수식은 안 걸린다
+    const good = renderMathHtml("$y=\\dfrac{3}{4}x^2-2$");
+    expect(/#cc0000/i.test(good)).toBe(false);
+    expect(good.includes("math-raw")).toBe(false);
+  });
+
   it("quadrantOf — 축 위는 0", () => {
     expect(quadrantOf(1, 1)).toBe(1);
     expect(quadrantOf(-1, 1)).toBe(2);
@@ -1494,9 +1510,13 @@ describe("중3 이차함수 42유형", () => {
                   false,
                 );
                 expect(/\^1(?![0-9])/.test(seg), `지수 1: ${seg}`).toBe(false);
-                expect(/[+\-]\(\d+\)/.test(seg), `군더더기 괄호: ${seg}`).toBe(
-                  false,
-                );
+                // 음수를 빼는 `3-(-2)` 는 괄호가 **필요하다** — 그것까지 잡으면
+                // 거짓 경보가 되고, 거짓 경보는 가드를 끈다(2026-08-20).
+                // 군더더기는 `+(4)`·`+(-8)`(→ `-8`)·`3-(4)`·`2-(0)` 뿐이다.
+                expect(
+                  /\+\(-?\d+\)|-\(\d+\)/.test(seg),
+                  `군더더기 괄호: ${seg}`,
+                ).toBe(false);
                 expect(/\btimes\(\d+\)\^/.test(seg), `양수 괄호: ${seg}`).toBe(
                   false,
                 );
@@ -1525,6 +1545,66 @@ describe("중3 이차함수 42유형", () => {
               expect(spec.kind).toBe("curveGraph");
               expect(spec.version).toBe("elem-1");
             }
+          }
+        }
+      });
+
+      it("표식이 원점 글자와 겹치는 자리에 안 온다", () => {
+        // 엔진은 $x$ 숫자를 눈금에서 원점 쪽으로 밀어 적어 $x=\pm1$ 이면 `O` 위에
+        // 올라앉는다 — 지면에서 「$-10$」으로 읽힌다(2026-08-24 실렌더 육안).
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 6; v += 1) {
+            const spec = generateMiddleProblem(e.key, seed, v).figureSpec as {
+              marks?: number[][];
+            } | null;
+            for (const [mx, my] of spec?.marks ?? []) {
+              expect(Math.abs(mx!), `${e.key} 표식 x=${mx}`).not.toBe(1);
+              expect(my, `${e.key} 표식 y=${my}`).not.toBe(-1);
+            }
+          }
+        }
+      });
+
+      it("모든 수식이 실제로 KaTeX 로 그려진다 (붉은 글씨·중립 폴백 없음)", () => {
+        // 제품과 **같은 경로**로 그려 본다. KaTeX 0.16 은 모르는 명령을
+        // `.katex-error` 가 아니라 `color:#cc0000` 으로 그리고(CLAUDE.md 2026-08-14),
+        // 3단 방어가 실패하면 `.math-raw` 중립 폴백이 남는다 — 둘 다 잡는다.
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 4; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const text of [p.content, p.answer, p.solution]) {
+              const html = renderMathHtml(text);
+              expect(/#cc0000/i.test(html), `붉은 글씨: ${text}`).toBe(false);
+              expect(html.includes("katex-error"), `katex-error: ${text}`).toBe(
+                false,
+              );
+              expect(html.includes("math-raw"), `중립 폴백: ${text}`).toBe(
+                false,
+              );
+            }
+          }
+        }
+      });
+
+      it("근호가 지면에 안 나간다 — 무리수 근을 내는 갈래가 없다", () => {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 6; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const text of [p.content, p.answer, p.solution]) {
+              expect(text.includes("\\sqrt"), `${e.key}: ${text}`).toBe(false);
+            }
+          }
+        }
+      });
+
+      it("한 문항에 평행이동과 대칭이동을 섞지 않는다 (부호가 두 번 뒤집힌다)", () => {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < 6; v += 1) {
+            const c = generateMiddleProblem(e.key, seed, v).content;
+            expect(
+              c.includes("평행이동") && c.includes("대칭"),
+              `${e.key}: ${c}`,
+            ).toBe(false);
           }
         }
       });

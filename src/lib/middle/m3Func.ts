@@ -209,6 +209,15 @@ function shiftedVarTex(v: string, t: number): string {
 /** 엔진이 요구하는 것보다 **여유를 두고** 잡는다 — 경계에 딱 붙으면 흠집으로 보인다. */
 const FIG_MIN_ARC = 1.6; // 엔진 하한 1.2
 const FIG_MIN_RISE = 1.4; // 엔진 하한 1.0
+/**
+ * 꼭짓점 **양쪽**으로 보여야 하는 칸수.
+ *
+ * 엔진은 「꼭짓점이 범위 안」까지만 본다. 그런데 꼭짓점이 범위의 **모서리**에 있으면
+ * 팔이 한쪽만 그려져 **포물선으로 안 읽힌다** — 「그림에서 $p$, $q$ 의 부호를
+ * 읽으시오」류는 그 순간 답을 못 구하는 문항이 된다(2026-08-24 실렌더 육안:
+ * ⑴20·⑵09 가 그렇게 났다). 그래서 여기서 한 겹 더 좁힌다.
+ */
+const FIG_MIN_SIDE = 1.0;
 
 /** 범위 후보 — 원점을 품고 폭 4~12칸, 필요한 값이 다 들어가는 것. */
 function rangeCandidates(needLo: number, needHi: number): [number, number][] {
@@ -231,17 +240,38 @@ function rangeCandidates(needLo: number, needHi: number): [number, number][] {
 }
 
 /**
+ * 표식 숫자가 **원점 글자 `O` 와 겹치는 자리**인가.
+ *
+ * 엔진은 표식의 $x$ 숫자를 눈금에서 $5$ 만큼 **원점 쪽으로** 밀어 적고
+ * (`_cp_mark_parts`), `O` 는 축 왼쪽 아래 $7$ 에 적는다. 그래서 $x=\pm1$ 인 표식은
+ * 칸 크기가 작을 때 `O` 위에 올라앉아 지면에서 **`-10` 으로 읽힌다**
+ * (2026-08-24 실렌더 육안 — ⑵08·⑴18 에서 실제로 났다). $y=-1$ 도 같은 자리다.
+ *
+ * 엔진은 5E 소유라 여기서 고치지 않는다 — 그런 자리를 **안 쓴다**.
+ * (겹침 회피는 엔진에 있어야 할 규칙이므로 main 세션에 알린다.)
+ */
+function markCollidesWithOrigin(mx: number, my: number): boolean {
+  return Math.abs(mx) === 1 || my === -1;
+}
+
+/**
  * 포물선 그림 한 장. 못 그리는 조합이면 **`null`** 을 돌려 갈래를 다시 뽑게 한다
  * (조용히 그림 없이 내보내지 않는다).
  *
  * 여기서 재는 것은 엔진이 던지는 조건과 **같은 성질**이되 여유가 더 크다 —
  * 정본은 엔진이고, 시험이 이 스펙을 **실제 엔진으로 그려서** 확인한다.
+ *
+ * `coverX` 를 주면 **그 구간이 보이는 토막 안에** 들어와야 한다. 「$y$축과의 교점으로
+ * $c$ 의 부호를 읽으시오」류는 곡선이 $x=0$ 에서 상자 밖으로 나가 있으면 **발문이
+ * 묻는 것이 그림에 없다** — 값 검사로는 안 잡히고 실렌더를 눈으로 봐야 나온다
+ * (2026-08-24 ⑵09 에서 실제로 났다).
  */
 function parabolaFig(
   a: Rat,
   p: number,
   q: number,
   marks: readonly (readonly [number, number])[],
+  coverX?: readonly [number, number],
 ): Record<string, unknown> | null {
   const av = rVal(a);
   if (Math.abs(av) < 1 / 8 || Math.abs(av) > 8) return null;
@@ -249,13 +279,22 @@ function parabolaFig(
   for (const [mx, my] of marks) {
     if (!Number.isInteger(mx) || !Number.isInteger(my)) return null;
     if (mx === 0 && my === 0) return null; // 원점은 O 로 이미 적힌다
+    if (markCollidesWithOrigin(mx, my)) return null;
     if (Math.abs(my - (av * (mx - p) * (mx - p) + q)) > 1e-9) return null;
   }
+  const f = (x: number): number => av * (x - p) * (x - p) + q;
   const xsNeed = [p, ...marks.map((m) => m[0])];
   const ysNeed = [q, ...marks.map((m) => m[1])];
-  const yCands = rangeCandidates(Math.min(...ysNeed), Math.max(...ysNeed));
+  if (coverX) {
+    xsNeed.push(coverX[0], coverX[1]);
+    ysNeed.push(f(coverX[0]), f(coverX[1]));
+    if (!ysNeed.every(Number.isFinite)) return null;
+  }
+  const yCands = rangeCandidates(
+    Math.floor(Math.min(...ysNeed)),
+    Math.ceil(Math.max(...ysNeed)),
+  );
   const xCands = rangeCandidates(Math.min(...xsNeed), Math.max(...xsNeed));
-  const f = (x: number): number => av * (x - p) * (x - p) + q;
   for (const [ylo, yhi] of yCands) {
     // 꼭짓점 위(아래)로 남은 세로 여유가 곧 보이는 팔의 길이를 정한다.
     const head = av > 0 ? yhi - q : q - ylo;
@@ -265,8 +304,11 @@ function parabolaFig(
       const ra = Math.max(xlo, p - w);
       const rb = Math.min(xhi, p + w);
       if (rb - ra < FIG_MIN_ARC) continue;
+      // 꼭짓점이 모서리에 붙으면 팔이 한쪽만 그려져 포물선으로 안 읽힌다.
+      if (p - ra < FIG_MIN_SIDE || rb - p < FIG_MIN_SIDE) continue;
       const rise = Math.max(Math.abs(f(ra) - q), Math.abs(f(rb) - q));
       if (rise < FIG_MIN_RISE) continue;
+      if (coverX && (ra > coverX[0] + 1e-9 || rb < coverX[1] - 1e-9)) continue;
       return {
         version: "elem-1",
         kind: "curveGraph",
@@ -689,7 +731,8 @@ const TYPES_G1: TypeEntry[] = [
   g1("07", "이차함수 의 그래프 위의 점", "mid", (rng) =>
     attempt(120, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
-      const m = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      // 표식이 $x=\pm1$ 이면 숫자가 원점 글자 `O` 와 겹친다 (`markCollidesWithOrigin`).
+      const m = intBetween(rng, 2, 4) * pick(rng, SIGNS);
       const a = pickA(rng);
       const v = rMul(a, rInt(m * m));
       if (v[1] !== 1) return null; // 지나는 점은 격자점이어야 그림에 찍힌다
@@ -1221,7 +1264,8 @@ const TYPES_G1: TypeEntry[] = [
       ] as const) as Rat;
       const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
       const q = intBetween(rng, 1, 5) * pick(rng, SIGNS);
-      const fig = parabolaFig(a, p, q, []);
+      // $y$축을 지나는 자리가 보여야 「좌표평면 위의 그래프」로 읽힌다.
+      const fig = parabolaFig(a, p, q, [], [0, 0]);
       if (fig === null) return null;
       const av = rVal(a);
       const sa = av > 0 ? ">" : "<";
@@ -1301,7 +1345,7 @@ const TYPES_G1: TypeEntry[] = [
     attempt(200, (): Body | null => {
       const a = pickA(rng);
       if (rVal(a) < 0) return null; // 제1사분면 위의 점이라야 직사각형이 그려진다
-      const m = intBetween(rng, 1, 4);
+      const m = intBetween(rng, 2, 4); // 표식이 $x=1$ 이면 원점 글자와 겹친다
       const h = rMul(a, rInt(m * m));
       if (h[1] !== 1 || h[0] < 1 || h[0] > 12) return null;
       const fig = parabolaFig(a, 0, 0, [[m, h[0]]]);
@@ -1546,9 +1590,9 @@ const TYPES_G2: TypeEntry[] = [
   g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "hard", (rng) =>
     attempt(300, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2] as const);
-      const r1 = intBetween(rng, -4, 0);
+      const r1 = intBetween(rng, -5, 1);
       const r2 = r1 + pick(rng, [2, 4, 6] as const);
-      if (Math.abs(r2) > 5) return null;
+      if (Math.abs(r2) > 6) return null;
       if (r1 === 0 || r2 === 0) return null; // y절편이 0 이면 삼각형이 안 생긴다
       const A = rInt(a);
       const B = rInt(-a * (r1 + r2));
@@ -1584,7 +1628,9 @@ const TYPES_G2: TypeEntry[] = [
       const { C } = expand(rInt(a), p, q);
       if (C[0] === 0) return null;
       const b = -2 * a * p;
-      const fig = parabolaFig(rInt(a), p, q, []);
+      // 묻는 것이 $c=f(0)$ · $a+b+c=f(1)$ · $a-b+c=f(-1)$ 이다 —
+      // 그 자리가 프레임 밖이면 **발문이 묻는 것이 그림에 없다**.
+      const fig = parabolaFig(rInt(a), p, q, [], [-1, 1]);
       if (fig === null) return null;
       const sa = a > 0 ? ">" : "<";
       const sb = b > 0 ? ">" : "<";
