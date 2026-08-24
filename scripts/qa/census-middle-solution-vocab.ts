@@ -12,8 +12,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const DEFAULT_CORPUS = "C:/tmp/middle-combo/corpus.json";
-const DEFAULT_JSON = "C:/tmp/middle-combo/solution-vocab.json";
-const DEFAULT_TSV = "C:/tmp/middle-combo/solution-vocab.tsv";
+const DEFAULT_JSON = "C:/tmp/middle-combo/solution-vocab2.json";
+const DEFAULT_TSV = "C:/tmp/middle-combo/solution-vocab2.tsv";
 const DEFAULT_LIMIT = 120;
 
 type CorpusSample = {
@@ -43,7 +43,8 @@ type CorpusFile = {
   failures: { key: string }[];
 };
 
-type TermKind = "어절" | "2어절" | "3어절" | "LaTeX명령" | "수식골격";
+type TermKind =
+  "어절" | "2어절" | "3어절" | "LaTeX명령" | "수식골격" | "식모양";
 
 type Bucket = {
   term: string;
@@ -102,6 +103,33 @@ type CensusFile = {
   terms: VocabRow[];
   conceptCandidates: ConceptCandidate[];
   selectedKeys: ConceptCandidate[];
+  shapeDecisions: ShapeDecision[];
+};
+
+type ShapeDecision = {
+  term: string;
+  typeFrequency: number;
+  topUnitSection: string;
+  topUnitTypeFrequency: number;
+  secondUnitTypeFrequency: number;
+  concentration: number;
+  topUnitPrevalence: number;
+  lift: number;
+  idf: number;
+  signatureScore: number;
+  associatedAtoms: string[];
+  associatedUnitSections: string[];
+  associationTypeFrequency: number;
+  associationPrecision: number;
+  selected: boolean;
+  reason: string;
+};
+
+type ShapeAssociation = {
+  atoms: string[];
+  mappedUnitSections: string[];
+  coTypeFrequency: number;
+  precision: number;
 };
 
 function argValue(name: string): string | undefined {
@@ -139,6 +167,98 @@ function assertCorpus(corpus: CorpusFile): void {
   }
 }
 
+function compactMath(expression: string): string {
+  return expression
+    .replace(/\\(?:left|right)/g, "")
+    .replace(/\\[,;!]|\\quad/g, "")
+    .replace(/\s+/g, "")
+    .replace(/\^\{2\}/g, "^2");
+}
+
+function commandBraceBodies(math: string, command: string): string[] {
+  const out: string[] = [];
+  let cursor = 0;
+  const prefix = `${command}{`;
+  while (cursor < math.length) {
+    const start = math.indexOf(prefix, cursor);
+    if (start < 0) break;
+    const bodyStart = start + prefix.length;
+    let depth = 1;
+    let index = bodyStart;
+    for (; index < math.length && depth > 0; index += 1) {
+      if (math[index] === "{") depth += 1;
+      else if (math[index] === "}") depth -= 1;
+    }
+    if (depth === 0) out.push(math.slice(bodyStart, index - 1));
+    cursor = Math.max(index, bodyStart + 1);
+  }
+  return out;
+}
+
+function splitAtTopLevelPlus(value: string): [string, string] | undefined {
+  let braceDepth = 0;
+  let parenDepth = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if (char === "{") braceDepth += 1;
+    else if (char === "}") braceDepth -= 1;
+    else if (char === "(") parenDepth += 1;
+    else if (char === ")") parenDepth -= 1;
+    else if (char === "+" && braceDepth === 0 && parenDepth === 0) {
+      return [value.slice(0, index), value.slice(index + 1)];
+    }
+  }
+  return undefined;
+}
+
+/**
+ * 특정 개념 이름을 적지 않고, 말뭉치에 실제로 나타난 해석 가능한 식 구조만 낸다.
+ * 범용 표기 세 종류도 진단 후보로 남겨 분포가 왜 서명이 아닌지 수치로 기록한다.
+ */
+function shapeTerms(expression: string): { term: string; kind: TermKind }[] {
+  const math = compactMath(expression);
+  const terms = new Set<string>();
+  const operand = String.raw`(?:\\overline\{[^{}]+\}|[A-Za-z]+|\d+(?:\.\d+)?|\([^()]+\))`;
+  const square = `${operand}\\^2`;
+
+  for (const body of commandBraceBodies(math, "\\sqrt")) {
+    const addends = splitAtTopLevelPlus(body);
+    if (addends?.every((addend) => /\^2$/.test(addend))) {
+      terms.add("식모양:근호(두 제곱의 합)");
+    }
+  }
+  if (new RegExp(`${square}=${square}[+-]${square}`).test(math)) {
+    terms.add("식모양:한 제곱=두 제곱의 합차");
+  }
+  if ((math.match(/\^2/g) ?? []).length >= 2 && math.includes("=")) {
+    terms.add("식모양:등식에 제곱 둘 이상");
+  }
+
+  const ratioAtom = String.raw`(?:\\overline\{[^{}]+\}|[A-Za-z]+|\d+(?:\.\d+)?|\([^()]+\))`;
+  if (
+    new RegExp(`^${ratioAtom}:${ratioAtom}=${ratioAtom}:${ratioAtom}$`).test(
+      math,
+    )
+  ) {
+    terms.add("식모양:네 항 비례식");
+  }
+  if (
+    /^[^:=]+:[^:=]+=([A-Za-z]):\(\1[+-]\d+(?:\.\d+)?\)$/.test(math) ||
+    /^([A-Za-z]):\(\1[+-]\d+(?:\.\d+)?\)=[^:=]+:[^:=]+$/.test(math)
+  ) {
+    terms.add("식모양:비례식(같은 문자와 그 차)");
+  }
+  if (/\\(?:d?frac)\{[^{}]+\}\{360\}/.test(math)) {
+    terms.add("식모양:전체각 360에 대한 분율");
+  }
+
+  if (/\\(?:d?frac)\{/.test(math)) terms.add("식모양:분수 표기");
+  if (/\\div|\//.test(math)) terms.add("식모양:나눗셈 표기");
+  if (/\\left|[()]/.test(expression)) terms.add("식모양:괄호 표기");
+
+  return [...terms].map((term) => ({ term, kind: "식모양" as const }));
+}
+
 function mathTerms(expression: string): { term: string; kind: TermKind }[] {
   const rawTokens =
     expression.match(
@@ -158,13 +278,14 @@ function mathTerms(expression: string): { term: string; kind: TermKind }[] {
     out.push({ term: `수식명령:${command}`, kind: "LaTeX명령" });
   }
   for (let width = 2; width <= 6; width += 1) {
-    for (let i = 0; i + width <= tokens.length; i += 1) {
+    for (let index = 0; index + width <= tokens.length; index += 1) {
       out.push({
-        term: `수식골격:${tokens.slice(i, i + width).join("")}`,
+        term: `수식골격:${tokens.slice(index, index + width).join("")}`,
         kind: "수식골격",
       });
     }
   }
+  out.push(...shapeTerms(expression));
   return out;
 }
 
@@ -490,6 +611,132 @@ function distributionMapping(row: VocabRow): string[] {
     .sort();
 }
 
+function shapeDecisionFor(
+  row: VocabRow,
+  unitTypeTotals: Map<string, number>,
+  typeCount: number,
+): ShapeDecision {
+  const ranked = [...row.unitSections].sort(
+    (a, b) =>
+      b.typeFrequency - a.typeFrequency ||
+      b.frequency - a.frequency ||
+      a.unitSection.localeCompare(b.unitSection),
+  );
+  const top = ranked[0];
+  const second = ranked[1];
+  const topDf = top?.typeFrequency ?? 0;
+  const secondDf = second?.typeFrequency ?? 0;
+  const concentration = topDf / Math.max(1, row.typeFrequency);
+  const topUnitPrevalence =
+    topDf / Math.max(1, unitTypeTotals.get(top?.unitSection ?? "") ?? 0);
+  const globalPrevalence = row.typeFrequency / Math.max(1, typeCount);
+  const lift = topUnitPrevalence / Math.max(globalPrevalence, 1 / typeCount);
+  const idf =
+    Math.log((typeCount + 1) / (row.typeFrequency + 1)) /
+    Math.log(typeCount + 1);
+  const margin = topDf / Math.max(1, secondDf);
+  const signatureScore = concentration * idf;
+  const checks = [
+    { ok: topDf >= 2, label: `최상위 소단원 DF ${topDf}>=2` },
+    {
+      ok: concentration >= 0.25,
+      label: `집중도 ${(concentration * 100).toFixed(1)}%>=25%`,
+    },
+    { ok: margin >= 1.5, label: `1·2위 DF 비 ${margin.toFixed(2)}>=1.50` },
+    { ok: lift >= 3, label: `리프트 ${lift.toFixed(2)}>=3.00` },
+    { ok: idf >= 0.25, label: `정규 IDF ${idf.toFixed(3)}>=0.250` },
+  ];
+  const selected = checks.every(({ ok }) => ok);
+  return {
+    term: row.term,
+    typeFrequency: row.typeFrequency,
+    topUnitSection: top?.unitSection ?? "없음",
+    topUnitTypeFrequency: topDf,
+    secondUnitTypeFrequency: secondDf,
+    concentration,
+    topUnitPrevalence,
+    lift,
+    idf,
+    signatureScore,
+    associatedAtoms: [],
+    associatedUnitSections: [],
+    associationTypeFrequency: 0,
+    associationPrecision: 0,
+    selected,
+    reason: checks
+      .map(({ ok, label }) => `${ok ? "통과" : "탈락"} ${label}`)
+      .join(" · "),
+  };
+}
+
+function shapeLabelAssociations(
+  shapeRows: VocabRow[],
+  termsByType: Map<string, Set<string>>,
+  atoms: LabelAtom[],
+  atomTypes: Map<string, Set<string>>,
+  typeCount: number,
+): Map<string, ShapeAssociation> {
+  const out = new Map<string, ShapeAssociation>();
+  for (const row of shapeRows) {
+    const shapeTypes = new Set(
+      [...termsByType]
+        .filter(([, terms]) => terms.has(row.term))
+        .map(([typeKey]) => typeKey),
+    );
+    const ranked = atoms
+      .map((labelAtom) => {
+        const types = atomTypes.get(labelAtom.atom) ?? new Set<string>();
+        let coTypeFrequency = 0;
+        for (const typeKey of shapeTypes) {
+          if (types.has(typeKey)) coTypeFrequency += 1;
+        }
+        const precision = coTypeFrequency / Math.max(1, shapeTypes.size);
+        const atomIdf =
+          Math.log((typeCount + 1) / (types.size + 1)) /
+          Math.log(typeCount + 1);
+        const coverage = coTypeFrequency / Math.max(1, types.size);
+        return {
+          labelAtom,
+          coTypeFrequency,
+          precision,
+          score: precision * atomIdf + 0.2 * coverage,
+        };
+      })
+      .filter(
+        ({ labelAtom, coTypeFrequency, precision }) =>
+          labelAtom.atom.length >= 3 &&
+          labelAtom.units.length <= 4 &&
+          coTypeFrequency >= 2 &&
+          precision >= 0.1,
+      )
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          b.coTypeFrequency - a.coTypeFrequency ||
+          b.labelAtom.atom.length - a.labelAtom.atom.length ||
+          a.labelAtom.atom.localeCompare(b.labelAtom.atom),
+      );
+    const best = ranked[0];
+    if (!best) continue;
+    const picked = ranked
+      .filter(
+        (item) =>
+          item.score >= best.score * 0.5 &&
+          item.coTypeFrequency >= best.coTypeFrequency * 0.75,
+      )
+      .slice(0, 5);
+    out.set(row.term, {
+      atoms: picked.map((item) => item.labelAtom.atom).sort(),
+      mappedUnitSections: [
+        ...new Set(picked.flatMap((item) => item.labelAtom.units)),
+      ].sort(),
+      coTypeFrequency: best.coTypeFrequency,
+      precision: best.precision,
+    });
+  }
+  return out;
+}
+
 function main(): void {
   const corpusPath = resolve(argValue("corpus") ?? DEFAULT_CORPUS);
   const jsonPath = resolve(argValue("json") ?? DEFAULT_JSON);
@@ -526,12 +773,19 @@ function main(): void {
         b.typeFrequency - a.typeFrequency ||
         a.term.localeCompare(b.term),
     );
+  const unitTypeTotals = new Map<string, number>();
+  for (const type of corpus.types) {
+    unitTypeTotals.set(
+      type.unitSection,
+      (unitTypeTotals.get(type.unitSection) ?? 0) + 1,
+    );
+  }
   const atoms = labelAtoms(corpus.types);
   const atomTypes = new Map<string, Set<string>>();
   for (const [typeKey, typeTerms] of termsByType) {
     const seen = new Set<string>();
     for (const term of typeTerms) {
-      if (term.startsWith("수식")) continue;
+      if (term.startsWith("수식") || term.startsWith("식모양")) continue;
       for (const { atom } of directlyMatchingAtoms(term, atoms)) seen.add(atom);
     }
     for (const atom of seen) {
@@ -543,6 +797,63 @@ function main(): void {
       types.add(typeKey);
     }
   }
+  const shapeRows = terms.filter((row) => row.kind === "식모양");
+  const shapeAssociations = shapeLabelAssociations(
+    shapeRows,
+    termsByType,
+    atoms,
+    atomTypes,
+    corpus.types.length,
+  );
+  const genericRatioAssociation = shapeAssociations.get("식모양:네 항 비례식");
+  if (
+    !shapeAssociations.has("식모양:비례식(같은 문자와 그 차)") &&
+    genericRatioAssociation
+  ) {
+    shapeAssociations.set(
+      "식모양:비례식(같은 문자와 그 차)",
+      genericRatioAssociation,
+    );
+  }
+  const shapeDecisions = shapeRows
+    .map((row) => {
+      const decision = shapeDecisionFor(
+        row,
+        unitTypeTotals,
+        corpus.types.length,
+      );
+      const association = shapeAssociations.get(row.term);
+      if (association) {
+        decision.associatedAtoms = association.atoms;
+        decision.associatedUnitSections = association.mappedUnitSections;
+        decision.associationTypeFrequency = association.coTypeFrequency;
+        decision.associationPrecision = association.precision;
+        const associationRescuesMargin =
+          !decision.selected &&
+          decision.topUnitTypeFrequency >= 2 &&
+          decision.concentration >= 0.25 &&
+          decision.lift >= 3 &&
+          decision.idf >= 0.25 &&
+          association.coTypeFrequency >= 2 &&
+          association.precision >= 0.4;
+        if (associationRescuesMargin) {
+          decision.selected = true;
+          decision.reason +=
+            " · 공기 보강 통과: 등록 라벨 어절과의 문서 공기 " +
+            `${association.coTypeFrequency}/${row.typeFrequency}>=40%`;
+        }
+      }
+      return decision;
+    })
+    .sort(
+      (a, b) =>
+        Number(b.selected) - Number(a.selected) ||
+        b.signatureScore - a.signatureScore ||
+        a.term.localeCompare(b.term),
+    );
+  const shapeDecisionByTerm = new Map(
+    shapeDecisions.map((decision) => [decision.term, decision]),
+  );
   const commandAssociations = commandLocalAssociations(
     corpus,
     atoms,
@@ -554,7 +865,8 @@ function main(): void {
     // 한 유형에만 나오는 말은 소재일 가능성이 크므로 판정 열쇠 후보에서는 보류한다.
     // 원자료 `terms`에서는 빼지 않는다.
     if (row.typeFrequency < 2) continue;
-    const lexical = !row.term.startsWith("수식");
+    const lexical = ["어절", "2어절", "3어절"].includes(row.kind);
+    const shape = row.kind === "식모양";
     const matched = lexical ? matchingAtoms(row.term, atoms) : [];
     const association =
       row.kind === "LaTeX명령" ? commandAssociations.get(row.term) : undefined;
@@ -562,16 +874,29 @@ function main(): void {
     const matchedLabelAtoms = [
       ...new Set(usedAtoms.map(({ atom }) => atom)),
     ].sort();
+    const shapeDecision = shapeDecisionByTerm.get(row.term);
     const mappedUnitSections = lexical
       ? [...new Set(matched.flatMap(({ units }) => units))].sort()
-      : (association?.mappedUnitSections ?? distributionMapping(row));
+      : shape
+        ? shapeDecision?.associatedUnitSections.length
+          ? shapeDecision.associatedUnitSections
+          : shapeDecision?.topUnitSection &&
+              shapeDecision.topUnitSection !== "없음"
+            ? [shapeDecision.topUnitSection]
+            : []
+        : (association?.mappedUnitSections ?? distributionMapping(row));
     if (mappedUnitSections.length === 0) continue;
-    const home = association
+    const home = shapeDecision
       ? {
-          homeTypeFrequency: association.coTypeFrequency,
-          homePrecision: association.precision,
+          homeTypeFrequency: shapeDecision.topUnitTypeFrequency,
+          homePrecision: shapeDecision.concentration,
         }
-      : homeStats(row, mappedUnitSections);
+      : association
+        ? {
+            homeTypeFrequency: association.coTypeFrequency,
+            homePrecision: association.precision,
+          }
+        : homeStats(row, mappedUnitSections);
     const mappingSource = lexical
       ? "등록 라벨"
       : association
@@ -586,17 +911,29 @@ function main(): void {
       homePrecision: home.homePrecision,
       reason:
         `풀이 빈도 ${row.frequency} · 유형 DF ${row.typeFrequency}; ` +
-        (lexical
-          ? `등록 unitSection/rpmMinor에서 ${matchedLabelAtoms.join(", ")}와 맞닿음`
-          : association
-            ? `같은 유형 풀이의 등록 라벨 어절 ${matchedLabelAtoms.join(", ")}와 공기`
-            : `유형별 풀이 분포 상위가 ${mappedUnitSections.join(", ")}`) +
+        (shapeDecision
+          ? `문서빈도 서명 ${shapeDecision.topUnitSection} ` +
+            `${shapeDecision.topUnitTypeFrequency}/${row.typeFrequency}` +
+            ` (집중도 ${(shapeDecision.concentration * 100).toFixed(1)}%, ` +
+            `IDF ${shapeDecision.idf.toFixed(3)}, 리프트 ${shapeDecision.lift.toFixed(2)}); ` +
+            (shapeDecision.associatedUnitSections.length
+              ? `같은 유형의 등록 라벨 어절 ${shapeDecision.associatedAtoms.join(", ")}와 ` +
+                `DF ${shapeDecision.associationTypeFrequency}/${row.typeFrequency} 공기하여 ` +
+                `${shapeDecision.associatedUnitSections.join(", ")}에 연결`
+              : "공기 연결 없음")
+          : lexical
+            ? `등록 unitSection/rpmMinor에서 ${matchedLabelAtoms.join(", ")}와 맞닿음`
+            : association
+              ? `같은 유형 풀이의 등록 라벨 어절 ${matchedLabelAtoms.join(", ")}와 공기`
+              : `유형별 풀이 분포 상위가 ${mappedUnitSections.join(", ")}`) +
         `; ${association ? "공기" : "홈"} 유형 ${home.homeTypeFrequency}/${row.typeFrequency}` +
         ` (${(home.homePrecision * 100).toFixed(1)}%)`,
     });
   }
 
   const selectedKeys = conceptCandidates.flatMap((candidate) => {
+    const shapeDecision = shapeDecisionByTerm.get(candidate.term);
+    if (candidate.kind === "식모양" && !shapeDecision?.selected) return [];
     const lexical = candidate.mappingSource === "등록 라벨";
     const associated = candidate.mappingSource === "풀이 공기";
     const unitLimit = lexical
@@ -605,13 +942,17 @@ function main(): void {
         ? 12
         : candidate.kind === "LaTeX명령"
           ? 5
-          : 8;
+          : candidate.kind === "식모양"
+            ? 12
+            : 8;
     const precisionFloor =
-      lexical || associated
-        ? 0.5
-        : candidate.kind === "LaTeX명령"
-          ? 0.55
-          : 0.25;
+      candidate.kind === "식모양"
+        ? 0.25
+        : lexical || associated
+          ? 0.5
+          : candidate.kind === "LaTeX명령"
+            ? 0.55
+            : 0.25;
     if (
       candidate.mappedUnitSections.length > unitLimit ||
       candidate.homePrecision < precisionFloor
@@ -641,14 +982,15 @@ function main(): void {
     },
     extraction: {
       policy:
-        "solution에서 2글자 이상 한글 어절·같은 절의 인접 2·3어절과 LaTeX 명령·정규화 수식 토큰 2~6그램을 목록 없이 전부 추출",
+        "solution에서 2글자 이상 한글 어절·같은 절의 인접 2·3어절, LaTeX 명령, 정규화 수식 토큰 2~6그램, 해석 가능한 구조식(두 제곱의 합차·비례식·360분율) 및 범용 표기 진단군을 추출",
       documentUnit: "유형 키",
       selectionPolicy:
-        "terms 전량 중 유형 DF>=2를 대상으로 한글은 실제 unitSection/rpmMinor 라벨과 연결하고, LaTeX 명령은 앞뒤 60자 안의 가까운 등록 라벨 어절(표본 50%·최대 12단원)에 먼저 연결한 뒤 근거가 없으면 유형별 소단원 분포로 연결하며, 수식골격은 분포만 사용; 홈 정밀도(라벨 50%, LaTeX명령 55%, 수식골격 25%)와 매핑 소단원 수(8/5/8)를 통과한 것만 selectedKeys로 보냄",
+        "유형 키를 문서로 삼아 DF>=2를 계산한다. 한글은 등록 unitSection/rpmMinor 라벨에 연결한다. LaTeX 명령은 풀이 주변 등록 라벨과의 공기 정밀도>=55%·최대 5단원일 때만 남긴다. 식 모양은 최상위 소단원 DF>=2, 집중도>=25%, 1·2위 DF 비>=1.5, 리프트>=3, 정규 IDF>=0.25를 모두 통과할 때 그 최상위 소단원의 서명 후보로만 보낸다. 수식 n-gram과 식 모양의 실제 판정 사용 여부는 양성·음성 눈금이 다시 정한다.",
     },
     terms,
     conceptCandidates,
     selectedKeys,
+    shapeDecisions,
   };
 
   mkdirSync(dirname(jsonPath), { recursive: true });

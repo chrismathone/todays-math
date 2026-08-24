@@ -168,6 +168,29 @@ summary::-webkit-details-marker {
   pointer-events: none;
 }
 
+/* 연산자(∫ ∑ lim …)의 첨자를 지수보다 한 단계 더 줄인다 — 원장님 지시 2026-08-24.
+ *
+ * KaTeX 기본은 연산자 첨자와 지수가 **같은 0.7배**다(scriptstyle). 그래서 ∫·lim 의
+ * 위·아래끝이 본문과 비슷한 무게로 읽힌다 — 지수는 «올라가 있어» 작아 보이는데
+ * 연산자 첨자는 옆이나 아래에 나란히 서기 때문이다.
+ *
+ * 가르는 열쇠는 조상 요소다(실측):
+ *   연산자 첨자 → .mop  안 (∫ 는 .mop > .msupsub, ∑·lim 은 .mop.op-limits)
+ *   지수·아래첨자 → .mord 안
+ * 그래서 .mop 만 잡으면 $x^2$·$a_n$ 은 건드리지 않는다.
+ *
+ * 값은 KaTeX 크기 사다리의 한 칸 아래(size2 = 0.6). 지면 문항 본문 12.5px 기준
+ * 8.75px → 7.5px 다. 더 줄이려면 --op-limit-scale 하나만 고치면 된다.
+ * ⚠️ 종이에서 확인해야 끝난다 — /dev/print-check 「op-limit-scale」 항목.
+ */
+:root {
+  --op-limit-scale: 0.6em;
+}
+.katex .mop .sizing.reset-size6.size3,
+.katex .mop .sizing.reset-size6.size2 {
+  font-size: var(--op-limit-scale);
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
