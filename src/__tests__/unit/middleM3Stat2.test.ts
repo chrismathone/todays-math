@@ -323,13 +323,36 @@ describe("중3 산포도·상자그림과 산점도 17유형", () => {
     }
   });
 
-  it("09 산점도의 분석 — 두 점 사이 거리가 피타고라스 정리와 일치한다", () => {
+  /**
+   * 2026-08-24 발문을 바꿨다(D-100 ⑶ — 좌표기하는 중등 불허). 옛 시험은 피타고라스로
+   * 잰 거리를 봤는데, 그 문형 자체가 사라졌다.
+   *
+   * ⚠️ 새 시험은 **지면에 찍힌 점**에서 답을 다시 센다 — `facts` 의 값을 그대로 믿지
+   * 않는다. 생성기가 `facts` 와 `content` 를 따로 만들므로, 둘이 갈라지면 지면과
+   * 정답이 다른 문항이 나가는데 facts 만 보는 시험은 그걸 구조적으로 못 본다.
+   */
+  it("09 산점도의 분석 — 지면에 찍힌 점으로 다시 세면 정답과 같다", () => {
     for (const seed of SEEDS) {
       const p = generateMiddleProblem("3-2|상자그림과 산점도|09", seed);
-      expect(p.facts.dx! * p.facts.dx! + p.facts.dy! * p.facts.dy!).toBe(
-        p.facts.dist! * p.facts.dist!,
+
+      // 발문에서 점과 문턱을 직접 읽는다.
+      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+        (m) => [Number(m[1]), Number(m[2])] as const,
       );
-      expect(firstNumber(p.answer)).toBe(p.facts.dist);
+      const k = Number(/합이 \$(\d+)\$점 이상/.exec(p.content)?.[1]);
+      expect(pts).toHaveLength(p.facts.n!);
+      expect(k).toBe(p.facts.k);
+
+      const counted = pts.filter(([x, y]) => x + y >= k).length;
+      expect(firstNumber(p.answer)).toBe(counted);
+
+      // 물음이 죽지 않았는가 — 0명이나 전원이면 셀 것이 없다.
+      expect(counted).toBeGreaterThanOrEqual(2);
+      expect(counted).toBeLessThan(pts.length);
+
+      // 좌표기하로 되돌아가지 않았는가 (D-100 ⑶).
+      expect(p.content).not.toContain("좌표평면");
+      expect(p.solution).not.toContain("피타고라스");
     }
   });
 

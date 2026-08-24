@@ -636,31 +636,41 @@ export const M3_STAT2: TypeEntry[] = [
     };
   }),
 
+  /**
+   * ⚠️ 2026-08-24 발문을 바꿨다 — 원장님 지시 「상위학년 개념은 배제, 하위는 허용」.
+   *
+   * 옛 발문은 「가장 낮은 학생과 가장 높은 학생을 **좌표평면 위의 두 점**이라 할 때
+   * 두 점 사이의 거리」였다. 그것은 **공통수학2 「도형의 방정식 — 두 점 사이의 거리」**
+   * 다(`prisma/seed-data/units.ts:3328`). D-100 ⑶ 이 중등에서 좌표기하를 불허하므로
+   * 이 유형 하나가 그 규칙을 어기고 있었다(873 전량을 좌표 표지로 훑어 확인 —
+   * 8건이 걸렸지만 나머지 7은 **수직선 위의 거리**라 해당하지 않았다).
+   *
+   * 새 발문은 「두 점수의 **합**이 $k$점 이상인 학생 수」다. 형제 유형과 안 겹친다:
+   *   06 한 축 기준 세기 · 07 대각선 기준 세기(x>y) · 08 상관관계 · 10 평균
+   * 두 축을 **함께** 보게 하므로 hard 자리도 그대로다.
+   */
   def(MINOR_BOX, "09", "산점도의 분석", SEC.산점도, "hard", (rng) =>
-    attempt(60, () => {
-      const TRIPLES = [
-        [3, 4, 5],
-        [6, 8, 10],
-        [5, 12, 13],
-        [9, 12, 15],
-        [8, 15, 17],
-      ] as const;
-      const [dx, dy, dist] = pick(rng, TRIPLES);
-      const x0 = intBetween(rng, 30, 50);
-      const y0 = intBetween(rng, 30, 60);
-      const xMinPt: [number, number] = [x0, y0];
-      const xMaxPt: [number, number] = [x0 + dx, y0 + dy];
-      const others: [number, number][] = [];
-      for (let i = 0; i < 4; i += 1) {
-        others.push([
-          intBetween(rng, x0 + 1, x0 + dx - 1),
-          intBetween(rng, 30, 95),
-        ]);
+    attempt(200, () => {
+      const n = 8;
+      const pts: [number, number][] = [];
+      const seen = new Set<string>();
+      for (let i = 0; i < n; i += 1) {
+        const x = intBetween(rng, 30, 95);
+        const y = intBetween(rng, 30, 95);
+        if (seen.has(`${x},${y}`)) return null; // 같은 점이 겹치면 산점도가 거짓말을 한다
+        seen.add(`${x},${y}`);
+        pts.push([x, y]);
       }
-      const pts = [xMinPt, ...others, xMaxPt];
-      const xs = pts.map((p) => p[0]);
-      if (new Set(xs).size !== xs.length) return null;
-      const facts: Record<string, number> = { dx, dy, dist, x0, y0 };
+      const sums = pts.map(([x, y]) => x + y);
+      const desc = [...sums].sort((a, b) => b - a);
+      // 걸리는 인원이 2~5명이 되게 문턱을 고른다 — 0명이나 8명 전원이면 물음이 죽는다.
+      const want = intBetween(rng, 2, 5);
+      const k = desc[want - 1]!;
+      if (desc[want] === k) return null; // 문턱에 동점이 걸치면 답이 흐려진다
+      const hit = pts.filter(([x, y]) => x + y >= k);
+      if (hit.length !== want) return null;
+
+      const facts: Record<string, number> = { n, k, count: hit.length };
       packValues(
         "px",
         pts.map((p) => p[0]),
@@ -673,9 +683,13 @@ export const M3_STAT2: TypeEntry[] = [
       );
       const axis = niceAxis(20, 100);
       return {
-        content: `다음은 학생 $${pts.length}$명의 국어 점수(x)와 수학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n국어 점수가 가장 낮은 학생과 가장 높은 학생을 좌표평면 위의 두 점이라 할 때, 이 두 점 사이의 거리를 구하시오.`,
-        answer: `$${dist}$`,
-        solution: `국어 점수가 가장 낮은 학생의 점은 $(${x0}, ${y0})$, 가장 높은 학생의 점은 $(${x0 + dx}, ${y0 + dy})$이다.\n두 점 사이의 거리는 피타고라스 정리에 의해 $\\sqrt{${dx}^2+${dy}^2}=${dist}$이다.`,
+        content: `다음은 학생 $${pts.length}$명의 국어 점수(x)와 수학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n국어 점수와 수학 점수의 합이 $${k}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
+        answer: `$${hit.length}$명`,
+        solution: `두 점수의 합이 $${k}$점 이상인 학생의 점은 ${hit
+          .map(([x, y]) => `$(${x},\\,${y})$`)
+          .join(", ")}이고, 각각의 합은 ${hit
+          .map(([x, y]) => `$${x + y}$`)
+          .join(", ")}이다.\n따라서 구하는 학생은 $${hit.length}$명이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
