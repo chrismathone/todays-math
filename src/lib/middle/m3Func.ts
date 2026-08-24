@@ -157,6 +157,14 @@ function expand(a: Rat, p: number, q: number): { A: Rat; B: Rat; C: Rat } {
   };
 }
 
+/**
+ * 식 안에서 다른 수 뒤에 오는 수 — **음수만** 괄호로 싼다.
+ * `2	imes(2)^2` 처럼 양수를 싸면 지면이 흉하다(값 검사는 통과한다 — 2026-08-24).
+ */
+function baseTex(v: number): string {
+  return v < 0 ? `(${v})` : String(v);
+}
+
 /** 좌표 `(m, n)`. */
 function pt(m: number, n: number): string {
   return `(${m}, ${n})`;
@@ -441,17 +449,23 @@ function squareTex(a: number, p: number, C: number): string {
  * 지면에 분수가 안 낀다) — ⑵ 계열은 전부 정수 `a` 로 만든다.
  */
 function toStdLines(a: number, p: number, q: number): string[] {
-  const C = a * p * p + q;
-  const lines: string[] = [];
-  if (Math.abs(a) !== 1 && p !== 0) {
-    lines.push(
-      `$x^2$의 계수 $${a}$${euroRo(a)} 묶으면 $y=${groupTex(a, p, C)}$이다.`,
-    );
+  if (p === 0) {
+    throw new Error("일반형 → 표준형 풀이는 일차항이 있는 갈래에만 씁니다");
   }
-  lines.push(
-    `완전제곱식으로 고치면 $y=${squareTex(a, p, C)}$이므로 $y=${stdRhs(rInt(a), p, q)}$이다.`,
-  );
-  return lines;
+  const C = a * p * p + q;
+  const std = stdRhs(rInt(a), p, q);
+  // ⚠️ **항상 두 줄이다.** $|a|=1$ 일 때 묶는 줄을 건너뛰면 해설이 한 줄로 뭉쳐
+  //    「단계 사이 줄바꿈」 가드에 걸린다(2026-08-24 시험이 잡았다).
+  if (Math.abs(a) === 1) {
+    return [
+      `$x$의 계수의 절반의 제곱인 $${p * p}$${eulReul(p * p)} 더하고 빼면 $y=${squareTex(a, p, C)}$이다.`,
+      `따라서 $y=${std}$이다.`,
+    ];
+  }
+  return [
+    `$x^2$의 계수 $${a}$${euroRo(a)} 묶으면 $y=${groupTex(a, p, C)}$이다.`,
+    `완전제곱식으로 고치면 $y=${squareTex(a, p, C)}$이므로 $y=${std}$이다.`,
+  ];
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -687,7 +701,7 @@ const TYPES_G1: TypeEntry[] = [
         return {
           content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지날 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${ratTex(a)}$`,
-          solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $${n}=a\\times(${m})^2$이다.\n즉 $${termTex(rInt(m * m), "a", true)}=${n}$이므로 $a=${ratTex(a)}$이다.`,
+          solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $${n}=a\\times${baseTex(m)}^2$이다.\n즉 $${termTex(rInt(m * m), "a", true)}=${n}$이므로 $a=${ratTex(a)}$이다.`,
           facts: { mode, m, n, aN: a[0], aD: a[1] },
           figureSpec: fig,
         };
@@ -701,7 +715,7 @@ const TYPES_G1: TypeEntry[] = [
       return {
         content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지난다. 이 그래프가 점 $(${k}, t)$${eulReul(k)} 지날 때, $t$의 값을 구하시오.`,
         answer: `$${t[0]}$`,
-        solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $a=${ratTex(a)}$이다.\n$y=${termTex(a, "x^2", true)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${ratTex(a)}\\times(${k})^2=${t[0]}$이다.`,
+        solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $a=${ratTex(a)}$이다.\n$y=${termTex(a, "x^2", true)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${ratTex(a)}\\times${baseTex(k)}^2=${t[0]}$이다.`,
         facts: { mode, m, n, k, t: t[0], aN: a[0], aD: a[1] },
         figureSpec: fig,
       };
@@ -885,7 +899,7 @@ const TYPES_G1: TypeEntry[] = [
       return {
         content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프가 점 $(${m}, v)$${eulReul(m)} 지날 때, $v$의 값을 구하시오.`,
         answer: `$${v[0]}$`,
-        solution: `$y=${stdRhs(a, p, 0)}$에 $x=${m}$${eulReul(m)} 대입하면 $v=${ratTex(a)}\\times(${m - p})^2=${v[0]}$이다.`,
+        solution: `$y=${stdRhs(a, p, 0)}$에 $x=${m}$${eulReul(m)} 대입하면 $v=${ratTex(a)}\\times${baseTex(m - p)}^2=${v[0]}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], p, m, v: v[0], mx: p, q: 0 },
         figureSpec: null,
       };
@@ -1037,7 +1051,7 @@ const TYPES_G1: TypeEntry[] = [
       return {
         content: `이차함수 $y=${termTex(a, "(x+p)^2", true)}+q$의 그래프의 축의 방정식이 $x=${p}$이고 꼭짓점이 직선 $y=${termTex(rInt(c), "x", true)}${termTex(rInt(d), "")}$ 위에 있을 때, 상수 $p$, $q$에 대하여 $p+q$의 값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `축의 방정식이 $x=-p$이므로 $-p=${p}$에서 $p=${pp}$이다.\n꼭짓점의 좌표는 $(${p}, q)$이고 이 점이 직선 위에 있으므로 $q=${termTex(rInt(c), "", true)}\\times(${p})${termTex(rInt(d), "")}=${q}$이다.\n따라서 $p+q=${ans}$이다.`,
+        solution: `축의 방정식이 $x=-p$이므로 $-p=${p}$에서 $p=${pp}$이다.\n꼭짓점의 좌표는 $(${p}, q)$이고 이 점이 직선 위에 있으므로 $q=${termTex(rInt(c), "", true)}\\times${baseTex(p)}${termTex(rInt(d), "")}=${q}$이다.\n따라서 $p+q=${ans}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], p, q, c, d, pp, ans },
         figureSpec: null,
       };
@@ -1214,20 +1228,70 @@ const TYPES_G1: TypeEntry[] = [
       const sp = p > 0 ? ">" : "<";
       const sq = q > 0 ? ">" : "<";
       const quad = p > 0 ? (q > 0 ? 1 : 4) : q > 0 ? 2 : 3;
+      // ⚠️ 이 유형은 **그림이 문항의 전부**라 발문이 늘 같은 글자가 된다. 그러면
+      //    `generateMiddleSet` 의 「발문이 같으면 버린다」에 걸려 한 시험지에
+      //    한 문항밖에 못 낸다(실측: 40변형에서 발문 1가지). 그래서 **묻는 것**을 돌린다.
+      const mode = intBetween(rng, 0, 4);
+      const stem = `오른쪽 그림은 이차함수 $y=a(x-p)^2+q$의 그래프이다.`;
+      const opened = `그래프가 ${av > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이고, 꼭짓점 $(p, q)$가 제$${quad}$사분면 위에 있으므로 $p${sp}0$, $q${sq}0$이다.`;
+      const facts = {
+        mode,
+        aN: a[0],
+        aD: a[1],
+        p,
+        q,
+        sa: av > 0 ? 1 : -1,
+        sp: p > 0 ? 1 : -1,
+        sq: q > 0 ? 1 : -1,
+        quad,
+      };
+      const sign = (v: number): string => (v > 0 ? ">" : "<");
+      if (mode === 1) {
+        // 꼭짓점이 $(p, a)$ 인 다른 이차함수 — 부호만으로 사분면이 정해진다.
+        const quad2 = p > 0 ? (av > 0 ? 1 : 4) : av > 0 ? 2 : 3;
+        return {
+          content: `${stem} 이차함수 $y=q(x-p)^2+a$의 그래프의 꼭짓점은 제몇 사분면 위에 있는지 구하시오.`,
+          answer: `제$${quad2}$사분면`,
+          solution: `${opened}\n$y=q(x-p)^2+a$의 그래프의 꼭짓점의 좌표는 $(p, a)$이고 $p${sp}0$, $a${sa}0$이다.\n따라서 꼭짓점은 제$${quad2}$사분면 위에 있다.`,
+          facts: { ...facts, quad2 },
+          figureSpec: fig,
+        };
+      }
+      if (mode === 2) {
+        const s2 = sign(av * p);
+        return {
+          content: `${stem} $ap$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$ap${s2}0$`,
+          solution: `${opened}\n$a${sa}0$, $p${sp}0$이므로 두 수의 부호는 ${av * p > 0 ? "같다" : "서로 다르다"}.\n따라서 $ap${s2}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 3) {
+        const s3 = sign(av * p * q);
+        return {
+          content: `${stem} $apq$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$apq${s3}0$`,
+          solution: `${opened}\n음수인 것의 개수가 $${[av, p, q].filter((v) => v < 0).length}$개이다.\n따라서 $apq${s3}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 4) {
+        const s4 = sign(q / av);
+        return {
+          content: `${stem} $\\dfrac{q}{a}$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$\\dfrac{q}{a}${s4}0$`,
+          solution: `${opened}\n$a${sa}0$, $q${sq}0$이므로 두 수의 부호는 ${q * av > 0 ? "같다" : "서로 다르다"}.\n따라서 $\\dfrac{q}{a}${s4}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
       return {
-        content: `오른쪽 그림은 이차함수 $y=a(x-p)^2+q$의 그래프이다. 상수 $a$, $p$, $q$의 부호를 각각 부등호를 사용하여 나타내시오.`,
+        content: `${stem} 상수 $a$, $p$, $q$의 부호를 각각 부등호를 사용하여 나타내시오.`,
         answer: `$a${sa}0$, $p${sp}0$, $q${sq}0$`,
         solution: `그래프가 ${av > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이다.\n꼭짓점 $(p, q)$가 제$${quad}$사분면 위에 있으므로 $p${sp}0$, $q${sq}0$이다.`,
-        facts: {
-          aN: a[0],
-          aD: a[1],
-          p,
-          q,
-          sa: av > 0 ? 1 : -1,
-          sp: p > 0 ? 1 : -1,
-          sq: q > 0 ? 1 : -1,
-          quad,
-        },
+        facts,
         figureSpec: fig,
       };
     }),
@@ -1375,7 +1439,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 만나는 두 점을 각각 $\\mathrm{A}$, $\\mathrm{B}$라 할 때, 선분 $\\mathrm{AB}$의 길이를 구하시오.`,
           answer: `$${r2 - r1}$`,
-          solution: `$y=0$${eulReul(0)} 대입하면 $${genRhs(A, B, C)}=0$이고, 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\n즉 $x=${r1}$ 또는 $x=${r2}$이므로 두 점의 좌표는 $${pt(r1, 0)}$, $${pt(r2, 0)}$이다.\n따라서 선분 $\\mathrm{AB}$의 길이는 $${r2}-(${r1})=${r2 - r1}$이다.`,
+          solution: `$y=0$${eulReul(0)} 대입하면 $${genRhs(A, B, C)}=0$이고, 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\n즉 $x=${r1}$ 또는 $x=${r2}$이므로 두 점의 좌표는 $${pt(r1, 0)}$, $${pt(r2, 0)}$이다.\n따라서 선분 $\\mathrm{AB}$의 길이는 $${r2}-${baseTex(r1)}=${r2 - r1}$이다.`,
           facts: { mode, a, r1, r2, B: B[0], C: C[0], ans: r2 - r1 },
           figureSpec: null,
         };
@@ -1445,7 +1509,7 @@ const TYPES_G2: TypeEntry[] = [
   g2("07", "이차함수 의 그래프의 평행이동", SEC.일반형, "mid", (rng) =>
     attempt(60, (): Body | null => {
       const a = pick(rng, A_INT);
-      const p = intBetween(rng, -4, 4);
+      const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
       const q = intBetween(rng, -8, 8);
       const mx = intBetween(rng, 1, 4) * pick(rng, SIGNS);
       const my = intBetween(rng, 1, 5) * pick(rng, SIGNS);
@@ -1525,20 +1589,70 @@ const TYPES_G2: TypeEntry[] = [
       const sa = a > 0 ? ">" : "<";
       const sb = b > 0 ? ">" : "<";
       const sc = C[0] > 0 ? ">" : "<";
+      // $f(1)=a+b+c$ · $f(-1)=a-b+c$ 를 묻는 갈래가 있으므로 $0$ 이 되면 안 된다.
+      const f1 = a + b + C[0];
+      const fm1 = a - b + C[0];
+      if (f1 === 0 || fm1 === 0) return null;
+      // ⑴20 과 같은 이유로 **묻는 것**을 돌린다 — 그림이 문항의 전부라
+      // 발문이 늘 같으면 한 시험지에 한 문항밖에 못 낸다.
+      const mode = intBetween(rng, 0, 4);
+      const stem = `오른쪽 그림은 이차함수 $y=ax^2+bx+c$의 그래프이다.`;
+      const opened = `그래프가 ${a > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이고, 축이 $y$축의 ${p > 0 ? "오른쪽" : "왼쪽"}에 있으므로 $b${sb}0$이며, $y$축과의 교점이 원점의 ${C[0] > 0 ? "위쪽" : "아래쪽"}에 있으므로 $c${sc}0$이다.`;
+      const facts = {
+        mode,
+        a,
+        p,
+        q,
+        b,
+        c: C[0],
+        f1,
+        fm1,
+        sa: a > 0 ? 1 : -1,
+        sb: b > 0 ? 1 : -1,
+        sc: C[0] > 0 ? 1 : -1,
+      };
+      const sign = (v: number): string => (v > 0 ? ">" : "<");
+      if (mode === 1) {
+        return {
+          content: `${stem} $abc$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$abc${sign(a * b * C[0])}0$`,
+          solution: `${opened}\n음수인 것의 개수가 $${[a, b, C[0]].filter((v) => v < 0).length}$개이다.\n따라서 $abc${sign(a * b * C[0])}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `${stem} $a+b+c$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$a+b+c${sign(f1)}0$`,
+          solution: `$a+b+c$는 $x=1$일 때의 $y$의 값이다.\n그래프에서 $x=1$인 점이 $x$축의 ${f1 > 0 ? "위쪽" : "아래쪽"}에 있다.\n따라서 $a+b+c${sign(f1)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `${stem} $a-b+c$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$a-b+c${sign(fm1)}0$`,
+          solution: `$a-b+c$는 $x=-1$일 때의 $y$의 값이다.\n그래프에서 $x=-1$인 점이 $x$축의 ${fm1 > 0 ? "위쪽" : "아래쪽"}에 있다.\n따라서 $a-b+c${sign(fm1)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 4) {
+        return {
+          content: `${stem} $\\dfrac{b}{a}$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$\\dfrac{b}{a}${sign(b / a)}0$`,
+          solution: `${opened}\n$a${sa}0$, $b${sb}0$이므로 두 수의 부호는 ${a * b > 0 ? "같다" : "서로 다르다"}.\n따라서 $\\dfrac{b}{a}${sign(b / a)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
       return {
-        content: `오른쪽 그림은 이차함수 $y=ax^2+bx+c$의 그래프이다. 상수 $a$, $b$, $c$의 부호를 각각 부등호를 사용하여 나타내시오.`,
+        content: `${stem} 상수 $a$, $b$, $c$의 부호를 각각 부등호를 사용하여 나타내시오.`,
         answer: `$a${sa}0$, $b${sb}0$, $c${sc}0$`,
         solution: `그래프가 ${a > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이다.\n축이 $y$축의 ${p > 0 ? "오른쪽" : "왼쪽"}에 있으므로 $-\\dfrac{b}{2a}${p > 0 ? ">" : "<"}0$에서 $a$와 $b$의 부호는 ${p > 0 ? "서로 다르다" : "같다"}. 따라서 $b${sb}0$이다.\n$y$축과의 교점이 원점의 ${C[0] > 0 ? "위쪽" : "아래쪽"}에 있으므로 $c${sc}0$이다.`,
-        facts: {
-          a,
-          p,
-          q,
-          b,
-          c: C[0],
-          sa: a > 0 ? 1 : -1,
-          sb: b > 0 ? 1 : -1,
-          sc: C[0] > 0 ? 1 : -1,
-        },
+        facts,
         figureSpec: fig,
       };
     }),
@@ -1918,7 +2032,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직각삼각형 $\\mathrm{PRQ}$의 넓이의 최댓값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$라 하면 $\\overline{\\mathrm{PR}}=x$, $\\overline{\\mathrm{PQ}}=-${m}x+${b}$이다.\n넓이를 $y$라 하면 $y=\\dfrac{1}{2}x(-${m}x+${b})=-${m / 2}(x-${h})^2+${ans}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,
+        solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$라 하면 $\\overline{\\mathrm{PR}}=x$, $\\overline{\\mathrm{PQ}}=-${m}x+${b}$이다.\n넓이를 $y$라 하면 $y=\\dfrac{1}{2}x(-${m}x+${b})=${termTex(rInt(-m / 2), `(x-${h})^2`, true)}${termTex(rInt(ans), "")}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,
         facts: { mode, m, b, h, ans },
         figureSpec: null,
       };
