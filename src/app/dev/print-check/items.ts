@@ -787,6 +787,37 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-24",
   },
   {
+    id: "elem-line-tiling-figures",
+    title:
+      "초등 4단 그림 둘 — 두 직선 관계(`lineRelation`) · 조각 채우기(`tiling`)",
+    changed:
+      "초등 난이도 갈래(D-72)에 그림 종류 둘이 처음 이어졌다. `lineRelation` 은 " +
+      "초4 2-4-2·2-4-3(평행 표시·수선·평행선 사이 거리)에 이미 배선됐고, `tiling` 은 " +
+      "이번에 초4 2-6-4 «표준»(갈래 없는 기본 문항) 세 갈래에 배선했다 — 조각 하나와 " +
+      "목표 도형 하나를 크기 비대로 나란히 그린다. 2-6-4 의 난이도 갈래(연산·기본·응용· " +
+      "심화)에는 그림이 없다 — 그릴 수 있는 짝(정삼각형↔정육각형)이 하나뿐이라 붙이면 " +
+      "그림 있는 문항의 정답이 늘 «육각형 여섯 개」로 굳는다(09 §2.2 ⑥, R9-c).",
+    look:
+      "① `lineRelation` — 평행 표시(겹화살표)가 두 직선에 같은 개수로 찍히는가, " +
+      "수선(세로선)이 있는 문항에서 직각 기호가 뚜렷한가, 직선 이름(가·나…)이 " +
+      "글자와 안 겹치는가. ② `tiling` — 조각과 «만들 모양» 두 도형이 나란히 서고 " +
+      "크기 차이가 발문의 배수(2배·3배)와 눈으로 맞아 보이는가, 도형 아래 «조각»· " +
+      "«만들 모양» 글자가 도형과 안 겹치는가. ③ 둘 다 위젯 폭(140px/37mm) 등급이라 " +
+      "본문 글자보다 작게 나가지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/figure/elementary.py (_line_relation · _tiling)",
+      "src/lib/elementary/g4.ts (tier242Calc·tier243Calc·quad() 2-6-4)",
+      "docs/planning/09-figure-engine-guide.md §2.2 규칙 ①~⑥",
+    ],
+    scale:
+      "출제 가능 문항 기준 — 씨앗 200 표본으로 2-4-2 26문항 · 2-4-3 다수 · 2-6-4 표준 3갈래 전량",
+    needs:
+      "DB 적재 뒤에 시험지에 실린다(지금은 엔진까지, D-22·D-31). 그전에는 `/dev/figure-glyph-size` 나 `dump-elem-tiers.ts` 로 SVG만 눈으로 볼 수 있다",
+    status: "대기",
+    changedOn: "2026-08-24",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",

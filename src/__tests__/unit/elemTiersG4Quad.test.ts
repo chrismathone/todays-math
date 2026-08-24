@@ -30,7 +30,15 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
-const CODES = ["2-4-2", "2-4-3", "2-4-4", "2-4-5", "2-4-6", "2-4-7"] as const;
+const CODES = [
+  "2-4-1",
+  "2-4-2",
+  "2-4-3",
+  "2-4-4",
+  "2-4-5",
+  "2-4-6",
+  "2-4-7",
+] as const;
 const SWEEP = Array.from({ length: 600 }, (_, i) => i * 7919 + 13);
 
 function unitOf(code: string) {
@@ -881,8 +889,13 @@ describe("[초4 표준] 그림에서 기호를 고르는 문항", () => {
         if (!p.figureSpec || !/기호를 쓰시오/.test(p.content)) continue;
         // 해설 첫 문장이 「○는 …」 으로 시작한다 — 그 ○ 가 정답이어야 한다.
         const head = /^([가나다])는/.exec(p.solution);
-        expect(head, `${code} 씨앗 ${seed} 해설이 기호로 시작하지 않는다`).toBeTruthy();
-        expect(head![1], `${code} 씨앗 ${seed} 해설이 딴 기호를 짚는다`).toBe(p.answer);
+        expect(
+          head,
+          `${code} 씨앗 ${seed} 해설이 기호로 시작하지 않는다`,
+        ).toBeTruthy();
+        expect(head![1], `${code} 씨앗 ${seed} 해설이 딴 기호를 짚는다`).toBe(
+          p.answer,
+        );
         looked += 1;
       }
     }
@@ -897,9 +910,10 @@ describe("[초4 표준] 그림에서 기호를 고르는 문항", () => {
         if (!p.figureSpec || !/기호를 쓰시오/.test(p.content)) continue;
         const spec = p.figureSpec as { items?: { label?: string }[] };
         const labels = (spec.items ?? []).map((x) => String(x.label));
-        expect(labels, `${code} 씨앗 ${seed} 그림에 정답 기호가 없다`).toContain(
-          p.answer,
-        );
+        expect(
+          labels,
+          `${code} 씨앗 ${seed} 그림에 정답 기호가 없다`,
+        ).toContain(p.answer);
         // 라벨은 자리 순서 그대로 가·나·다 여야 한다(건너뛰면 지면이 이상해진다).
         expect(labels, `${code} 씨앗 ${seed} 라벨 차례가 어긋난다`).toEqual(
           ["가", "나", "다"].slice(0, labels.length),
@@ -935,6 +949,23 @@ describe("[초4 2-4-2·2-4-3] 그림 배선", () => {
     counted(withFig, "2-4-3 그림 붙은 문항");
   });
 
+  it("**2-4-1 도 그림을 하나도 안 붙인다** — 직각 기호가 곧 답이라 (09 §2.2 ①②)", () => {
+    // 이 소단원은 「직각이 몇 개인가」를 센다. 수선을 그리면 직각 기호를 함께 그려야
+    // 하고, 그러면 **세기만 해도 답이 나온다.** 엔진의 `lineRelation` 이 `parallel`
+    // 하나만 그리는 까닭이 바로 이것이다(`_line_relation` 머리말).
+    let looked = 0;
+    for (const seed of SWEEP) {
+      for (const tier of [undefined, ...ELEM_TIERS] as const) {
+        expect(
+          gen("2-4-1", seed, tier).figureSpec,
+          `«${tier}» 씨앗 ${seed}`,
+        ).toBeFalsy();
+        looked += 1;
+      }
+    }
+    counted(looked, "2-4-1 전량");
+  });
+
   it("**2-4-2 는 그림을 하나도 안 붙인다** — 붙일 수 있는 갈래의 답이 고정이라", () => {
     // 🔴 한 번 붙였다가 **R9-c 가 물었다**: 「그림 붙은 26문항에서 «평행선» 100%」.
     //    나머지 세 갈래는 답을 보여 줘서 못 붙이므로, **그림의 있고 없음 자체가
@@ -946,5 +977,175 @@ describe("[초4 2-4-2·2-4-3] 그림 배선", () => {
       looked += 1;
     }
     counted(looked, "2-4-2 표준 전량");
+  });
+});
+
+/* ──────────────────── 2-4-1 수직과 수선 ────────────────────
+ *
+ * **참은 「수선 한 개마다 직각이 넷」에서 온다** — 발문에 적힌 수선·직각의 수를 뽑아
+ * 답을 다시 정한다. 곱하는 수 $4$ 는 제품에서 읽어 오지 않고 **여기서 다시 적는다**.
+ *
+ * 이 소단원이 지켜야 하는 것 —
+ *  ㉠ **직각 수 = 수선 수 × $4$.** 2·3단이 그 곱을 앞으로 쓰고 4단이 거꾸로 쓴다.
+ *  ㉡ 🔴 **4단이 묻는 것의 단위가 «직각»이 아니다.** 관계가 곱셈 하나뿐이라 앞뒤가
+ *     선형이다 — 「직각이 모두 몇 개가 되는가」로 물으면 답이 $\bigcirc+4\triangle$ 이라
+ *     **되짚기를 건너뛰고도 나온다.** 그러면 4단인 척하는 3단이다. 처음 판이 실제로
+ *     그랬고 전량으로 막는다.
+ *  ㉢ **각도가 한 자리도 안 나온다.** 표준 2-4-1 이 $90\times k$ 로 각도를 **더하고**,
+ *     1-2-4(각도의 합과 차)가 그 산술을 쓴다. 갈래가 세는 것은 **직각의 개수**다.
+ *  ㉣ **조사.** 직선 이름 가~자는 모두 받침이 없다(2-4-2 와 같은 자리).
+ */
+describe("[초4 2-4-1] 수직과 수선", () => {
+  /** 「수선을 $5$개 그었습니다/그은」 — 처음 그은 수. */
+  const drawn = (t: string): number | null => {
+    const m = t.match(/수선을 \$(\d+)\$개 그(었습니다|은)/);
+    return m ? Number(m[1]) : null;
+  };
+  /** 「직각이 모두 $20$개 생겼습니다」 — 되짚을 값. */
+  const madeRight = (t: string): number | null => {
+    const m = t.match(/직각이 모두 \$(\d+)\$개 생겼습니다/);
+    return m ? Number(m[1]) : null;
+  };
+
+  it("**1단 — 정의를 한 번 쓴다. 세 갈래가 다 선다**", () => {
+    const kinds = { 직각수: 0, 이름: 0, 맞바뀜: 0 };
+    const answers = new Set<string>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-1", seed, "연산");
+      if (/직각은 몇 개인가/.test(p.content)) {
+        expect(p.answer, `씨앗 ${seed}`).toBe("$4$개");
+        kinds.직각수 += 1;
+      } else if (/만나서 이루는 각이 직각입니다/.test(p.content)) {
+        expect(p.answer, `씨앗 ${seed}`).toBe("수선");
+        kinds.이름 += 1;
+      } else {
+        expect(p.content, `씨앗 ${seed}`).toMatch(/에 대한 수선입니다/);
+        expect(p.answer, `씨앗 ${seed}`).toBe("수선");
+        kinds.맞바뀜 += 1;
+      }
+      // 세 직선이 아니라 **두 직선**만 본다 — 이어 붙이기는 2-4-2 의 일이다.
+      const names = new Set(
+        [...p.content.matchAll(/직선 ([가-힣])/g)].map((m) => m[1]),
+      );
+      expect(names.size, `씨앗 ${seed} 직선이 둘이어야`).toBe(2);
+      answers.add(p.answer);
+    }
+    for (const [why, got] of Object.entries(kinds)) counted(got, `1단 ${why}`);
+    expect(answers).toEqual(new Set(["$4$개", "수선"]));
+  });
+
+  it("**2단 — 직각 수 = 수선 수 × $4$** (㉠)", () => {
+    let looked = 0;
+    const seen = new Set<number>();
+    for (const seed of SWEEP) {
+      const p = gen("2-4-1", seed, "기본");
+      const k = drawn(p.content);
+      expect(k, `씨앗 ${seed} 수선 개수를 못 읽음`).toBeTruthy();
+      // **참을 여기서 다시 정한다** — 만나는 점마다 직각이 넷.
+      expect(p.answer, `씨앗 ${seed} 수선 ${k}개`).toBe(`$${k! * 4}$개`);
+      seen.add(k!);
+      looked += 1;
+    }
+    counted(looked, "2단 전량");
+    expect(seen.size, "수선 수가 한 가지뿐이면 답도 한 가지다").toBeGreaterThan(
+      1,
+    );
+  });
+
+  it("**3단 — 곱한 뒤 한 번 더 셈한다. 두 문형이 둘 다 선다**", () => {
+    let painted = 0;
+    let added = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-1", seed, "응용");
+      const k = drawn(p.content);
+      expect(k, `씨앗 ${seed} 수선 개수를 못 읽음`).toBeTruthy();
+      const pm = p.content.match(/직각 중 \$(\d+)\$개에 색칠/);
+      if (pm) {
+        const c = Number(pm[1]);
+        expect(c, `씨앗 ${seed} 색칠한 수가 전체 이상이다`).toBeLessThan(
+          k! * 4,
+        );
+        expect(p.answer, `씨앗 ${seed}`).toBe(`$${k! * 4 - c}$개`);
+        painted += 1;
+      } else {
+        const mm = p.content.match(/수선을 \$(\d+)\$개 더 그었습니다/);
+        expect(mm, `씨앗 ${seed} 더 그은 수를 못 읽음`).toBeTruthy();
+        expect(p.answer, `씨앗 ${seed}`).toBe(
+          `$${(k! + Number(mm![1])) * 4}$개`,
+        );
+        added += 1;
+      }
+    }
+    counted(painted, "3단 색칠 갈래");
+    counted(added, "3단 더 긋기 갈래");
+  });
+
+  it("**4단 — 되짚어 «수선·점»의 수를 구한다. «직각이 몇 개»로 묻지 않는다** (㉡)", () => {
+    let byPoints = 0;
+    let byMore = 0;
+    for (const seed of SWEEP) {
+      const p = gen("2-4-1", seed, "심화");
+      const had = madeRight(p.content);
+      expect(had, `씨앗 ${seed} 되짚을 직각 수를 못 읽음`).toBeTruthy();
+      expect(
+        had! % 4,
+        `씨앗 ${seed} 직각 ${had}개가 $4$ 로 안 나누어떨어진다`,
+      ).toBe(0);
+      // 🔴 ㉡ — 묻는 단위가 «직각»이면 $\div4$ 없이도 답이 나온다.
+      expect(p.content, `씨앗 ${seed} 4단이 직각 수를 묻고 있다`).not.toMatch(
+        /직각은 (모두 )?몇 개/,
+      );
+      // 되짚기가 해설에도 보여야 한다 — 답만 맞고 걸음이 없으면 학생이 못 따라간다.
+      expect(p.solution, `씨앗 ${seed}`).toMatch(/\\div4/);
+      if (/만나는 점은 모두 몇 개/.test(p.content)) {
+        const em = p.content.match(/수선을 \$(\d+)\$개 더 그으면/);
+        expect(em, `씨앗 ${seed} 더 그을 수를 못 읽음`).toBeTruthy();
+        expect(p.answer, `씨앗 ${seed}`).toBe(
+          `$${had! / 4 + Number(em![1])}$개`,
+        );
+        byPoints += 1;
+      } else {
+        const wm = p.content.match(/직각이 모두 \$(\d+)\$개가 되게/);
+        expect(wm, `씨앗 ${seed} 목표 직각 수를 못 읽음`).toBeTruthy();
+        const want = Number(wm![1]);
+        expect(want, `씨앗 ${seed} 목표가 지금보다 커야`).toBeGreaterThan(had!);
+        expect((want - had!) % 4, `씨앗 ${seed}`).toBe(0);
+        expect(p.answer, `씨앗 ${seed}`).toBe(`$${(want - had!) / 4}$개`);
+        byMore += 1;
+      }
+    }
+    counted(byPoints, "4단 점 갈래");
+    counted(byMore, "4단 더 긋기 갈래");
+  });
+
+  it("**각도가 한 자리도 안 나온다** (㉢ 표준은 $90\\times k$ 를 쓴다)", () => {
+    let looked = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-1", seed, tier);
+        expect(
+          degsIn(p.content).length + degsIn(p.solution).length,
+          `«${tier}» 씨앗 ${seed} 각도가 들어왔다`,
+        ).toBe(0);
+        looked += 1;
+      }
+    }
+    counted(looked, "2-4-1 각도 전량");
+  });
+
+  it("**직선 이름 뒤 조사가 맞는다** (㉣ 가~자는 모두 받침이 없다)", () => {
+    let looked = 0;
+    for (const tier of ELEM_TIERS) {
+      for (const seed of SWEEP) {
+        const p = gen("2-4-1", seed, tier);
+        for (const page of [p.content, p.solution]) {
+          expect(page, `«${tier}» 씨앗 ${seed}`).not.toMatch(
+            /직선 [가나다라마바사아자](과|은|이)(?![가-힣])/,
+          );
+        }
+        looked += 1;
+      }
+    }
+    counted(looked, "2-4-1 조사 전량");
   });
 });
