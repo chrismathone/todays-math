@@ -102,8 +102,19 @@ MUTATIONS: list[tuple[str, str, str]] = [
         # ⚠️ 들여쓰기는 **prettier 가 정한다.** 2026-08-24 에 이 앵커가 6칸이었다가
         #    def(...) 가 길어지며 8칸으로 바뀌어 「앵커 0개」가 났다. 커밋(포맷) 뒤에
         #    앵커를 다시 세는 것이 순서다.
-        "        const det = a1 * b2 - a2 * b1;\n        if (det === 0) return null;",
-        "        const det = a1 * b2 - a2 * b1;\n        if (det === 12345) return null;",
+        #
+        # ⚠️ 가드만 끄면 **아무 일도 안 일어난다** — 무작위로 뽑은 계수가 우연히
+        #    행렬식 0 이 되는 일이 표본에 없어서 산출물이 그대로다(1차에 실제로
+        #    「산출물이 그대로 — 판정 거부」가 났다). 그래서 둘째 식을 **첫째 식의
+        #    두 배로 못 박아** 반드시 그 자리에 닿게 한 뒤 가드를 끈다.
+        "        const a2 = nonzero(rng, 1, 5);\n"
+        "        const b2 = nonzero(rng, 1, 5);\n"
+        "        const det = a1 * b2 - a2 * b1;\n"
+        "        if (det === 0) return null;",
+        "        const a2 = 2 * a1;\n"
+        "        const b2 = 2 * b1;\n"
+        "        const det = a1 * b2 - a2 * b1;\n"
+        "        if (det === 12345) return null;",
     ),
     (
         "연립 08 — 괄호를 풀 때 $y$의 계수 부호를 안 바꾼다",
