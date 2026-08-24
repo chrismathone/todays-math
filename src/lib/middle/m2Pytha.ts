@@ -192,19 +192,22 @@ function figRectDiag(
 }
 
 /** 마름모 ABCD(대각선 AC·BD가 O에서 수직) + 두 대각선 치수. */
-function figRhombusDiag(
-  p: number,
-  q: number,
-  dimP: string,
-  dimQ: string,
-): Record<string, unknown> {
+/** 마름모 ABCD(대각선 AC·BD가 O에서 수직). **치수선을 안 단다** — 세로
+ * 대각선 위에 곡선 치수선을 놓을 여백이 마름모의 뾰족한 꼭짓점 근처에는
+ * 없어 v2 엔진이 "collision-free layout" 을 못 찾고 던진다(실렌더로 확인,
+ * side·inset을 바꿔도 여러 종횡비에서 재현). 두 대각선 값은 발문이 이미
+ * 말하므로(09 §4-20-b) 그림은 직각 표시만 보여준다.
+ */
+function figRhombusDiag(p: number, q: number): Record<string, unknown> {
   // p = 가로 대각선(BD) 전체 길이, q = 세로 대각선(AC) 전체 길이.
   const s = Math.min(14, 160 / Math.max(p, q));
-  const cx = (p / 2) * s;
-  const cy = (q / 2) * s;
+  const shortSide = Math.min(p, q);
+  const s2 = shortSide * s < 90 ? 90 / shortSide : s;
+  const cx = (p / 2) * s2;
+  const cy = (q / 2) * s2;
   const A: XY = [cx, 0];
-  const B: XY = [p * s, cy];
-  const C: XY = [cx, q * s];
+  const B: XY = [p * s2, cy];
+  const C: XY = [cx, q * s2];
   const D: XY = [0, cy];
   return {
     version: 2,
@@ -224,10 +227,7 @@ function figRhombusDiag(
       BD: ["B", "D"],
     },
     angles: { o: { vertex: "O", points: ["A", "B"], right: true } },
-    dimensions: {
-      bd: { points: ["B", "D"], label: dimP, side: "auto" },
-      ac: { points: ["A", "C"], label: dimQ, side: "auto" },
-    },
+    dimensions: {},
     labels: { A: "A", B: "B", C: "C", D: "D" },
   };
 }
@@ -238,7 +238,10 @@ function figRhombusDiag(
  * 정확히 a:b 로 나누는 좌표다(손으로 어림한 위치가 아니다).
  */
 function figPinwheel(a: number, b: number): Record<string, unknown> {
-  const s = Math.min(7, 170 / (a + b));
+  // 상한을 14 로 둔다(7 이었을 때는 가장 작은 TRIPLES 쌍(3,4,5, 바깥 정사각형
+  // 한 변 7)에서 도형이 49×49 로 작아져 다리 치수선 'as' 를 놓을 여백이
+  // 없어 v2 엔진이 던졌다 — 실렌더로 확인, scale=14부터 안전).
+  const s = Math.min(14, 170 / (a + b));
   const side = (a + b) * s;
   const A: XY = [0, side];
   const B: XY = [side, side];
@@ -339,8 +342,8 @@ function figFoldRect(w: number, h: number, e: number): Record<string, unknown> {
     },
     angles: { b: { vertex: "B", points: ["E", "C"], right: true } },
     dimensions: {
-      ab: { points: ["A", "B"], label: `${w}\\,\\mathrm{cm}`, side: "auto" },
-      bc: { points: ["B", "C"], label: `${h}\\,\\mathrm{cm}`, side: "auto" },
+      ab: { points: ["A", "B"], label: `${w} cm`, side: "auto" },
+      bc: { points: ["B", "C"], label: `${h} cm`, side: "auto" },
     },
     labels: { A: "A", B: "B", C: "C", D: "D", E: "E" },
   };
@@ -364,8 +367,8 @@ export const M2_PYTHA: TypeEntry[] = [
           labelA: "A",
           labelB: "B",
           labelC: "C",
-          dimAB: `${p}\\,\\mathrm{cm}`,
-          dimAC: `${q}\\,\\mathrm{cm}`,
+          dimAB: `${p} cm`,
+          dimAC: `${q} cm`,
         }),
       };
     }
@@ -381,7 +384,7 @@ export const M2_PYTHA: TypeEntry[] = [
         labelA: "A",
         labelB: "B",
         labelC: "C",
-        dimAB: `${p}\\,\\mathrm{cm}`,
+        dimAB: `${p} cm`,
       }),
     };
   }),
@@ -408,12 +411,12 @@ export const M2_PYTHA: TypeEntry[] = [
           dimensions: {
             ab: {
               points: ["A", "B"],
-              label: `${leg}\\,\\mathrm{cm}`,
+              label: `${leg} cm`,
               side: "auto",
             },
             bc: {
               points: ["B", "C"],
-              label: `${base}\\,\\mathrm{cm}`,
+              label: `${base} cm`,
               side: "auto",
             },
           },
@@ -431,33 +434,30 @@ export const M2_PYTHA: TypeEntry[] = [
       answer: `$${d}\\,\\mathrm{cm}$`,
       solution: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$이므로 피타고라스 정리에 의해 $\\overline{AC}=\\sqrt{\\overline{AB}^2+\\overline{BC}^2}=\\sqrt{${w}^2+${h}^2}=${d}\\,\\mathrm{cm}$이다.`,
       facts: { w, h, d },
-      figureSpec: figRectDiag(
-        w,
-        h,
-        `${w}\\,\\mathrm{cm}`,
-        `${h}\\,\\mathrm{cm}`,
-      ),
+      figureSpec: figRectDiag(w, h, `${w} cm`, `${h} cm`),
     };
   }),
 
   // ── 04 사각형에서 피타고라스 정리의 이용 (마름모의 한 변) ───────────
-  def("04", "사각형에서 피타고라스 정리의 이용", SEC.정리, "mid", (rng) => {
-    const [hp, hq, side] = pick(rng, TRIPLES);
-    const p = 2 * hp;
-    const q = 2 * hq;
-    return {
-      content: `마름모 ABCD의 두 대각선의 길이가 각각 $\\overline{BD}=${p}\\,\\mathrm{cm}$, $\\overline{AC}=${q}\\,\\mathrm{cm}$일 때, 마름모의 한 변의 길이를 구하시오.`,
-      answer: `$${side}\\,\\mathrm{cm}$`,
-      solution: `마름모의 두 대각선은 서로 다른 것을 수직이등분하므로 두 대각선의 교점을 $O$라 하면 $\\overline{BO}=${hp}\\,\\mathrm{cm}$, $\\overline{AO}=${hq}\\,\\mathrm{cm}$이다.\n직각삼각형 $ABO$에서 피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${hp}^2+${hq}^2}=${side}\\,\\mathrm{cm}$이다.\n마름모는 네 변의 길이가 같으므로 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.`,
-      facts: { hp, hq, side, p, q },
-      figureSpec: figRhombusDiag(
-        p,
-        q,
-        `${p}\\,\\mathrm{cm}`,
-        `${q}\\,\\mathrm{cm}`,
-      ),
-    };
-  }),
+  def("04", "사각형에서 피타고라스 정리의 이용", SEC.정리, "mid", (rng) =>
+    attempt(60, () => {
+      const [hp, hq, side] = pick(rng, TRIPLES);
+      // 두 반대각선의 비가 너무 크면(마름모가 아주 좁고 길어지면) 세로 대각선
+      // 치수선을 놓을 옆 여백이 없어 v2 엔진이 "collision-free layout" 을 못
+      // 찾고 던진다(실렌더로 확인 — 7,24 쌍에서 재현). 조용히 그림 없이 내는
+      // 대신 비율을 걸러 다시 뽑는다 — 대부분의 TRIPLES 는 이 조건을 만족한다.
+      if (Math.max(hp, hq) / Math.min(hp, hq) > 3) return null;
+      const p = 2 * hp;
+      const q = 2 * hq;
+      return {
+        content: `마름모 ABCD의 두 대각선의 길이가 각각 $\\overline{BD}=${p}\\,\\mathrm{cm}$, $\\overline{AC}=${q}\\,\\mathrm{cm}$일 때, 마름모의 한 변의 길이를 구하시오.`,
+        answer: `$${side}\\,\\mathrm{cm}$`,
+        solution: `마름모의 두 대각선은 서로 다른 것을 수직이등분하므로 두 대각선의 교점을 $O$라 하면 $\\overline{BO}=${hp}\\,\\mathrm{cm}$, $\\overline{AO}=${hq}\\,\\mathrm{cm}$이다.\n직각삼각형 $ABO$에서 피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${hp}^2+${hq}^2}=${side}\\,\\mathrm{cm}$이다.\n마름모는 네 변의 길이가 같으므로 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.`,
+        facts: { hp, hq, side, p, q },
+        figureSpec: figRhombusDiag(p, q),
+      };
+    }),
+  ),
 
   // ── 05 피타고라스 정리의 증명 유클리드의 방법 ───────────────────────
   def(
@@ -562,8 +562,8 @@ export const M2_PYTHA: TypeEntry[] = [
         legA: b,
         legB: a,
         hyp: c,
-        dimA: `${b}\\,\\mathrm{cm}`,
-        dimB: `${a}\\,\\mathrm{cm}`,
+        dimA: `${b} cm`,
+        dimB: `${a} cm`,
       }),
     };
   }),
@@ -587,8 +587,8 @@ export const M2_PYTHA: TypeEntry[] = [
           legA: b,
           legB: a,
           hyp: c,
-          dimA: `${b}\\,\\mathrm{cm}`,
-          dimB: `${a}\\,\\mathrm{cm}`,
+          dimA: `${b} cm`,
+          dimB: `${a} cm`,
         }),
       };
     },
