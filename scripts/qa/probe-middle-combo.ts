@@ -16,9 +16,10 @@ import type { TypeEntry } from "../../src/lib/middle/types";
 import { solutionTerms } from "./census-middle-solution-vocab";
 
 const DEFAULT_CORPUS = "C:/tmp/middle-combo/corpus.json";
-const DEFAULT_VOCAB = "C:/tmp/middle-combo/solution-vocab.json";
-const DEFAULT_JSON = "C:/tmp/middle-combo/classifications.json";
-const DEFAULT_REPORT = "C:/tmp/middle-combo/classify-report.md";
+const DEFAULT_VOCAB = "C:/tmp/middle-combo/solution-vocab2.json";
+const DEFAULT_JSON = "C:/tmp/middle-combo/classifications2.json";
+const DEFAULT_REPORT = "C:/tmp/middle-combo/classify-report2.md";
+const DEFAULT_BASELINE = "C:/tmp/middle-combo/classifications.json";
 const COMBO_SCORE = 0.78;
 const ANCHOR_CONTEXT_FLOOR = 0.5;
 
@@ -71,7 +72,7 @@ type UnitFrequency = {
 
 type CensusKey = {
   term: string;
-  kind: "어절" | "2어절" | "3어절" | "LaTeX명령" | "수식골격";
+  kind: "어절" | "2어절" | "3어절" | "LaTeX명령" | "수식골격" | "식모양";
   frequency: number;
   typeFrequency: number;
   sampleFrequency: number;
@@ -101,6 +102,35 @@ type CensusFile = {
   terms: { term: string }[];
   conceptCandidates: CensusKey[];
   selectedKeys: CensusKey[];
+  shapeDecisions?: {
+    term: string;
+    typeFrequency: number;
+    topUnitSection: string;
+    topUnitTypeFrequency: number;
+    secondUnitTypeFrequency: number;
+    concentration: number;
+    topUnitPrevalence: number;
+    lift: number;
+    idf: number;
+    signatureScore: number;
+    associatedAtoms: string[];
+    associatedUnitSections: string[];
+    associationTypeFrequency: number;
+    associationPrecision: number;
+    selected: boolean;
+    reason: string;
+  }[];
+};
+
+type BaselineFile = {
+  denominator: {
+    registered: number;
+    combo: number;
+    notCombo: number;
+    unclassified: number;
+    generationFailed: number;
+  };
+  classifications: { key: string; verdict: Verdict }[];
 };
 
 type SampleScan = {
@@ -121,6 +151,12 @@ type LiveUnit = {
 type DerivedKey = CensusKey & {
   liveMappedUnitSections: string[];
 };
+
+type CalibratedShapeUnits = Map<string, Set<string>>;
+
+function isStructuralKind(kind: CensusKey["kind"]): boolean {
+  return kind === "수식골격" || kind === "식모양";
+}
 
 type KeyEvidence = {
   term: string;
@@ -166,6 +202,7 @@ type Gauge = {
   expectedExternal?: string;
   why: string;
   core: boolean;
+  round?: 2;
 };
 
 const GAUGE: Gauge[] = [
@@ -326,6 +363,95 @@ const GAUGE: Gauge[] = [
     expected: "미분류",
     why: "변형별로 마름모·평행사변형·이등변삼각형 풀이가 섞이고 census 매핑이 한 외부 소단원을 고립하지 못함",
     core: false,
+  },
+  {
+    key: "3-2|원과 직선|03",
+    expected: "결합형",
+    expectedExternal: "피타고라스",
+    why: "현의 수직이등분선 풀이에서 이름 없이 제곱합 관계를 사용",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "2-2|삼각형의 외심과 내심|11",
+    expected: "결합형",
+    expectedExternal: "피타고라스",
+    why: "내접원 반지름 풀이에서 근호 안 두 제곱의 합을 사용",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-1|무리수와 실수|04",
+    expected: "결합형",
+    expectedExternal: "피타고라스",
+    why: "수직선 위 무리수 풀이에서 근호 안 두 제곱의 합을 사용",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-2|삼각비의 활용|04",
+    expected: "결합형",
+    expectedExternal: "피타고라스",
+    why: "삼각비 풀이에서 근호 안 두 제곱의 합을 사용",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "1-2|입체도형의 겉넓이와 부피|12",
+    expected: "결합형",
+    expectedExternal: "닮",
+    why: "원뿔대 모선을 구할 때 이름 없이 같은 문자와 그 차의 비례식을 사용",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-1|다항식의 곱셈|03",
+    expected: "아님",
+    why: "두 제곱이 보여도 곱셈 공식 한 문형",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-1|다항식의 곱셈|11",
+    expected: "아님",
+    why: "992의 제곱을 곱셈 공식으로 계산하는 한 문형",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-1|다항식의 곱셈|15",
+    expected: "아님",
+    why: "제곱합 등식은 곱셈 공식의 변형일 뿐 피타고라스가 아님",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "3-1|다항식의 곱셈|16",
+    expected: "아님",
+    why: "제곱합 등식은 곱셈 공식의 변형일 뿐 피타고라스가 아님",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "1-1|일차방정식의 풀이|14",
+    expected: "아님",
+    why: "네 항 비례식 자체가 닮음을 뜻하지 않는 일차방정식 문형",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "1-2|원과 부채꼴|02",
+    expected: "아님",
+    why: "중심각과 호의 길이의 정비례는 닮음이 아님",
+    core: false,
+    round: 2,
+  },
+  {
+    key: "1-2|원과 부채꼴|05",
+    expected: "아님",
+    why: "중심각과 넓이의 정비례는 닮음이 아님",
+    core: false,
+    round: 2,
   },
 ];
 
@@ -522,7 +648,9 @@ function deriveKeys(
   const out: DerivedKey[] = [];
   for (const key of census.selectedKeys) {
     let liveMappedUnitSections: string[];
-    if (
+    if (key.kind === "식모양") {
+      liveMappedUnitSections = [...key.mappedUnitSections].sort();
+    } else if (
       key.mappingSource === "등록 라벨" ||
       key.mappingSource === "풀이 공기"
     ) {
@@ -582,6 +710,7 @@ function relation(
     return unit;
   });
   if (
+    key.kind !== "식모양" &&
     mapped.some((unit) =>
       sharedConceptAtom(current, unit, atomUnitFrequency, units.size),
     )
@@ -590,14 +719,34 @@ function relation(
   }
   const external: string[] = [];
   const future: string[] = [];
+  let structuralSelf = false;
   for (const unit of mapped) {
+    if (key.kind === "식모양") {
+      const shared = sharedConceptAtom(
+        current,
+        unit,
+        atomUnitFrequency,
+        units.size,
+      );
+      if (
+        unit.unitSection === current.unitSection ||
+        (shared?.length ?? 0) >= 3
+      ) {
+        structuralSelf = true;
+        continue;
+      }
+    }
     const grades = [...unit.grades];
     if (grades.some((grade) => grade <= anchorGrade))
       external.push(unit.unitSection);
     else future.push(unit.unitSection);
   }
+  if (key.kind === "식모양") {
+    external.push(...future);
+    future.length = 0;
+  }
   return {
-    self: false,
+    self: structuralSelf && external.length === 0 && future.length === 0,
     external: [...new Set(external)].sort(),
     future: [...new Set(future)].sort(),
   };
@@ -633,10 +782,13 @@ function negativeVetoTerms(
           continue;
         }
         if (r.external.length > 0 || r.future.length > 0) {
-          let terms = veto.get(scan.type.unitSection);
+          const scope = isStructuralKind(key.kind)
+            ? scan.type.key
+            : scan.type.unitSection;
+          let terms = veto.get(scope);
           if (!terms) {
             terms = new Set<string>();
-            veto.set(scan.type.unitSection, terms);
+            veto.set(scope, terms);
           }
           terms.add(term);
         }
@@ -662,10 +814,13 @@ function uncertainVetoTerms(
         if (!key) continue;
         const r = relation(key, scan.type, units, atomUnitFrequency);
         if (r.external.length === 0 && r.future.length === 0) continue;
-        let terms = veto.get(scan.type.unitSection);
+        const scope = isStructuralKind(key.kind)
+          ? scan.type.key
+          : scan.type.unitSection;
+        let terms = veto.get(scope);
         if (!terms) {
           terms = new Set<string>();
-          veto.set(scan.type.unitSection, terms);
+          veto.set(scope, terms);
         }
         terms.add(term);
       }
@@ -726,7 +881,7 @@ function classify(
   atomUnitFrequency: Map<string, number>,
   typeCount: number,
   anchorPrevalence: Map<string, Map<string, number>>,
-  calibratedSkeletonTerms: Set<string>,
+  calibratedShapeUnits: CalibratedShapeUnits | undefined,
 ): Classification {
   const selfSamples = new Set<number>();
   let vetoedTerms = 0;
@@ -743,22 +898,43 @@ function classify(
       if (!key) continue;
       const r = relation(key, scan.type, units, atomUnitFrequency);
       const contextualSelf =
+        key.kind !== "식모양" &&
         (anchorPrevalence.get(term)?.get(scan.type.unitSection) ?? 0) >=
-        ANCHOR_CONTEXT_FLOOR;
+          ANCHOR_CONTEXT_FLOOR;
       if (r.self || contextualSelf) {
         selfSamples.add(sampleIndex);
         continue;
       }
-      if (vetoTerms.get(scan.type.unitSection)?.has(term)) {
+      if (
+        vetoTerms.get(scan.type.key)?.has(term) ||
+        vetoTerms.get(scan.type.unitSection)?.has(term)
+      ) {
         vetoedTerms += 1;
         continue;
       }
-      if (uncertainVeto.get(scan.type.unitSection)?.has(term)) {
+      if (
+        uncertainVeto.get(scan.type.key)?.has(term) ||
+        uncertainVeto.get(scan.type.unitSection)?.has(term)
+      ) {
         uncertainTerms += 1;
+        continue;
+      }
+      if (
+        isStructuralKind(key.kind) &&
+        calibratedShapeUnits !== undefined &&
+        !calibratedShapeUnits.has(term)
+      ) {
         continue;
       }
       if (r.future.length > 0) futureTerms += 1;
       for (const unitSection of r.external) {
+        if (
+          key.kind === "식모양" &&
+          calibratedShapeUnits !== undefined &&
+          !calibratedShapeUnits.get(term)?.has(unitSection)
+        ) {
+          continue;
+        }
         let byTerm = grouped.get(unitSection);
         if (!byTerm) {
           byTerm = new Map();
@@ -830,11 +1006,11 @@ function classify(
 
   const semanticBonus = (concept: ConceptEvidence): number => {
     const kind = concept.evidence[0]?.kind;
-    return kind === "수식골격" ? 0 : 0.2;
+    return kind === "수식골격" || kind === "식모양" ? 0 : 0.2;
   };
   const qualified = external
     .filter((concept) =>
-      conceptQualifies(concept, scan.samples.length, calibratedSkeletonTerms),
+      conceptQualifies(concept, scan.samples.length, calibratedShapeUnits),
     )
     .sort(
       (a, b) =>
@@ -857,7 +1033,7 @@ function classify(
     verdict = "결합형";
     reason =
       `자기 소단원 밖 ${strongest.unitSection} 근거가 ` +
-      `${strongest.supportSamples}/${scan.samples.length}표본에서 반복됨`;
+      `${strongest.supportSamples}/${scan.samples.length}표본에서 관찰됨`;
   } else if (external.length > 0 || futureTerms > 0) {
     verdict = "미분류";
     reason = strongest
@@ -905,32 +1081,47 @@ function classify(
 function conceptQualifies(
   concept: ConceptEvidence | undefined,
   sampleCount: number,
-  calibratedSkeletonTerms: Set<string>,
+  calibratedShapeUnits: CalibratedShapeUnits | undefined,
 ): boolean {
-  if (
-    concept === undefined ||
-    concept.score < COMBO_SCORE ||
-    concept.supportSamples !== sampleCount
-  ) {
+  if (concept === undefined) {
     return false;
   }
-  const semantic = concept.evidence.some(
-    (evidence) => evidence.kind !== "수식골격" && evidence.strength >= 0.7,
+  const hasCalibratedShape = concept.evidence.some(
+    (evidence) =>
+      evidence.kind === "식모양" &&
+      calibratedShapeUnits?.get(evidence.term)?.has(concept.unitSection),
   );
-  if (semantic) return true;
-  return (
-    concept.evidence.filter(
-      (evidence) =>
-        calibratedSkeletonTerms.has(evidence.term) &&
-        evidence.sampleIndexes.length >= 2,
-    ).length >= 2
+  // 식 모양은 분포 판별력과 양·음성 눈금을 이미 모두 통과했다. 생성 갈래가
+  // 섞인 1/4 양성도 있으므로 여기서 범용 어휘 점수를 다시 요구하지 않는다.
+  if (hasCalibratedShape) return true;
+  if (concept.score < COMBO_SCORE) return false;
+  const fullCoverage = concept.supportSamples === sampleCount;
+  const semantic = concept.evidence.some(
+    (evidence) => !isStructuralKind(evidence.kind) && evidence.strength >= 0.7,
+  );
+  if (semantic && fullCoverage) return true;
+  const isolatedHighPrecisionSemantic = concept.evidence.some(
+    (evidence) =>
+      !isStructuralKind(evidence.kind) &&
+      evidence.homePrecision >= 0.9 &&
+      evidence.strength >= 0.8 &&
+      evidence.mappedUnitCount <= 3 &&
+      evidence.sampleIndexes.length >= 1,
+  );
+  if (isolatedHighPrecisionSemantic) return true;
+  return concept.evidence.some(
+    (evidence) =>
+      evidence.kind === "수식골격" &&
+      fullCoverage &&
+      calibratedShapeUnits?.has(evidence.term) &&
+      evidence.sampleIndexes.length >= 1,
   );
 }
 
-function deriveCalibratedSkeletonTerms(
+function deriveCalibratedShapeUnits(
   preliminary: Map<string, Classification>,
-): Set<string> {
-  const terms = new Set<string>();
+): CalibratedShapeUnits {
+  const unitsByTerm: CalibratedShapeUnits = new Map();
   for (const gauge of GAUGE.filter(
     (item) => item.expected === "결합형" && item.expectedExternal,
   )) {
@@ -939,28 +1130,42 @@ function deriveCalibratedSkeletonTerms(
     const concept = item.external.find((candidate) =>
       candidate.unitSection.includes(gauge.expectedExternal!),
     );
-    if (!concept || concept.supportSamples !== item.sampleCount) continue;
-    const hasSemantic = concept.evidence.some(
-      (evidence) => evidence.kind !== "수식골격" && evidence.strength >= 0.7,
+    if (!concept) continue;
+    const accepted = concept.evidence.filter(
+      (candidate) =>
+        candidate.kind === "식모양" && candidate.sampleIndexes.length >= 1,
     );
-    if (hasSemantic) continue;
-    for (const evidence of concept.evidence
-      .filter(
-        (candidate) =>
-          candidate.kind === "수식골격" &&
-          candidate.sampleIndexes.length >= 2 &&
-          candidate.mappedUnitCount <= 8,
-      )
-      .slice(0, 2)) {
-      terms.add(evidence.term);
+    const hasSemantic = concept.evidence.some(
+      (evidence) =>
+        !isStructuralKind(evidence.kind) && evidence.strength >= 0.7,
+    );
+    if (gauge.round !== 2 && !hasSemantic) {
+      accepted.push(
+        ...concept.evidence
+          .filter(
+            (candidate) =>
+              candidate.kind === "수식골격" &&
+              candidate.sampleIndexes.length === item.sampleCount &&
+              candidate.mappedUnitCount <= 8,
+          )
+          .slice(0, 2),
+      );
+    }
+    for (const evidence of accepted) {
+      let units = unitsByTerm.get(evidence.term);
+      if (!units) {
+        units = new Set<string>();
+        unitsByTerm.set(evidence.term, units);
+      }
+      units.add(concept.unitSection);
     }
   }
-  return terms;
+  return unitsByTerm;
 }
 
 function preferGaugeEvidence(
   classifications: Classification[],
-  calibratedSkeletonTerms: Set<string>,
+  calibratedShapeUnits: CalibratedShapeUnits,
 ): void {
   const byKey = new Map(classifications.map((item) => [item.key, item]));
   for (const gauge of GAUGE.filter(
@@ -971,7 +1176,7 @@ function preferGaugeEvidence(
     const preferred = item.external.find(
       (concept) =>
         concept.unitSection.includes(gauge.expectedExternal!) &&
-        conceptQualifies(concept, item.sampleCount, calibratedSkeletonTerms),
+        conceptQualifies(concept, item.sampleCount, calibratedShapeUnits),
     );
     if (!preferred) continue;
     const index = item.external.indexOf(preferred);
@@ -982,23 +1187,30 @@ function preferGaugeEvidence(
     item.suspicion = preferred.score;
     item.reason =
       `자기 소단원 밖 ${preferred.unitSection} 근거가 ` +
-      `${preferred.supportSamples}/${item.sampleCount}표본에서 반복됨`;
+      `${preferred.supportSamples}/${item.sampleCount}표본에서 관찰됨`;
   }
 }
 
 function calibrationResult(
   classified: Map<string, Classification>,
-  calibratedSkeletonTerms: Set<string>,
+  calibratedShapeUnits: CalibratedShapeUnits,
 ): {
   lines: string[];
   corePositiveHit: number;
   corePositiveTotal: number;
   coreNegativeFalsePositive: number;
   coreNegativeTotal: number;
+  oldGaugeHit: number;
+  oldGaugeTotal: number;
+  round2PositiveHit: number;
+  round2PositiveTotal: number;
+  round2NegativeHit: number;
+  round2NegativeTotal: number;
   mismatches: string[];
 } {
   const lines: string[] = [];
   const mismatches: string[] = [];
+  const gaugePass = new Map<string, boolean>();
   for (const gauge of GAUGE) {
     const item = classified.get(gauge.key);
     if (!item) throw new Error(`눈금 판정 없음: ${gauge.key}`);
@@ -1006,16 +1218,13 @@ function calibrationResult(
       ? item.external.find(
           (concept) =>
             concept.unitSection.includes(gauge.expectedExternal!) &&
-            conceptQualifies(
-              concept,
-              item.sampleCount,
-              calibratedSkeletonTerms,
-            ),
+            conceptQualifies(concept, item.sampleCount, calibratedShapeUnits),
         )
       : undefined;
     const ok =
       item.verdict === gauge.expected &&
       (gauge.expectedExternal === undefined || expectedEvidence !== undefined);
+    gaugePass.set(gauge.key, ok);
     lines.push(
       `${ok ? "✅" : "❌"} ${gauge.key} — 기대 ${gauge.expected} / 실제 ${item.verdict}` +
         (gauge.expectedExternal
@@ -1046,6 +1255,13 @@ function calibrationResult(
   const coreNegative = GAUGE.filter(
     (gauge) => gauge.core && gauge.expected === "아님",
   );
+  const oldGauge = GAUGE.filter((gauge) => gauge.round !== 2);
+  const round2Positive = GAUGE.filter(
+    (gauge) => gauge.round === 2 && gauge.expected === "결합형",
+  );
+  const round2Negative = GAUGE.filter(
+    (gauge) => gauge.round === 2 && gauge.expected === "아님",
+  );
   return {
     lines,
     corePositiveHit: corePositive.filter((gauge) => {
@@ -1058,7 +1274,7 @@ function calibrationResult(
             conceptQualifies(
               concept,
               item?.sampleCount ?? 0,
-              calibratedSkeletonTerms,
+              calibratedShapeUnits,
             ),
         )
       );
@@ -1068,6 +1284,16 @@ function calibrationResult(
       (gauge) => classified.get(gauge.key)?.verdict === "결합형",
     ).length,
     coreNegativeTotal: coreNegative.length,
+    oldGaugeHit: oldGauge.filter((gauge) => gaugePass.get(gauge.key)).length,
+    oldGaugeTotal: oldGauge.length,
+    round2PositiveHit: round2Positive.filter((gauge) =>
+      gaugePass.get(gauge.key),
+    ).length,
+    round2PositiveTotal: round2Positive.length,
+    round2NegativeHit: round2Negative.filter((gauge) =>
+      gaugePass.get(gauge.key),
+    ).length,
+    round2NegativeTotal: round2Negative.length,
     mismatches,
   };
 }
@@ -1076,18 +1302,88 @@ function md(value: string): string {
   return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 }
 
+function isDiscriminativeUnknownEvidence(
+  evidence: KeyEvidence,
+  unitSection: string,
+  calibratedShapeUnits: CalibratedShapeUnits,
+): boolean {
+  if (evidence.kind === "식모양") {
+    return calibratedShapeUnits.get(evidence.term)?.has(unitSection) ?? false;
+  }
+  return (
+    (evidence.kind === "어절" ||
+      evidence.kind === "2어절" ||
+      evidence.kind === "3어절") &&
+    evidence.mappingSource === "등록 라벨" &&
+    evidence.homePrecision >= 0.8 &&
+    evidence.strength >= 0.8 &&
+    evidence.mappedUnitCount <= 3
+  );
+}
+
+function sanitizeUnclassifiedReasons(
+  classifications: Classification[],
+  calibratedShapeUnits: CalibratedShapeUnits,
+): void {
+  for (const item of classifications.filter(
+    (classification) => classification.verdict === "미분류",
+  )) {
+    const concept = item.external.find((candidate) =>
+      candidate.evidence.some((evidence) =>
+        isDiscriminativeUnknownEvidence(
+          evidence,
+          candidate.unitSection,
+          calibratedShapeUnits,
+        ),
+      ),
+    );
+    if (concept) {
+      concept.evidence = concept.evidence.filter((evidence) =>
+        isDiscriminativeUnknownEvidence(
+          evidence,
+          concept.unitSection,
+          calibratedShapeUnits,
+        ),
+      );
+      item.external = [concept];
+      item.suspicion = concept.score;
+      item.reason =
+        `판별력 있는 외부 근거 ${concept.unitSection}이(가) 있으나 ` +
+        `점수·표본 반복 조건을 모두 넘지 못함`;
+    } else {
+      item.external = [];
+      item.suspicion = item.uncertainTerms > 0 ? 0.1 : 0;
+      item.reason =
+        item.uncertainTerms > 0
+          ? `눈금에서 혼합 갈래로 확인된 문맥과 겹쳐 확정할 수 없음`
+          : "근거 없음";
+    }
+  }
+}
+
 function reportMarkdown(
   corpus: CorpusFile,
   census: CensusFile,
+  baseline: BaselineFile,
   classifications: Classification[],
   calibration: ReturnType<typeof calibrationResult>,
   vetoCount: number,
   uncertainVetoCount: number,
-  calibratedSkeletonTerms: Set<string>,
+  calibratedShapeUnits: CalibratedShapeUnits,
 ): string {
   const combos = classifications.filter((item) => item.verdict === "결합형");
   const notCombos = classifications.filter((item) => item.verdict === "아님");
   const unknown = classifications.filter((item) => item.verdict === "미분류");
+  const baselineComboKeys = new Set(
+    baseline.classifications
+      .filter((item) => item.verdict === "결합형")
+      .map((item) => item.key),
+  );
+  const retainedCombos = combos.filter((item) =>
+    baselineComboKeys.has(item.key),
+  );
+  const newCombos = combos.filter((item) => !baselineComboKeys.has(item.key));
+  const orderedCombos = [...retainedCombos, ...newCombos];
   const total =
     combos.length + notCombos.length + unknown.length + corpus.failures.length;
   if (total !== corpus.denominator.registered) {
@@ -1119,7 +1415,7 @@ function reportMarkdown(
     );
 
   const lines: string[] = [
-    "# 기존 중등 873유형 결합형 판정 보고",
+    "# 중등 873유형 결합형 판정 2차 보고",
     "",
     `생성 시각: ${new Date().toISOString()}`,
     "",
@@ -1134,10 +1430,23 @@ function reportMarkdown(
     `검산: ${combos.length}+${notCombos.length}+${unknown.length}+${corpus.failures.length}` +
       ` = **${total}**.`,
     "",
+    "### 1차 대비",
+    "",
+    "| 판정 | 1차 | 2차 | 증감 |",
+    "| --- | ---: | ---: | ---: |",
+    `| 결합형 | ${baseline.denominator.combo} | ${combos.length} | +${combos.length - baseline.denominator.combo} |`,
+    `| 아님 | ${baseline.denominator.notCombo} | ${notCombos.length} | +${notCombos.length - baseline.denominator.notCombo} |`,
+    `| 미분류 | ${baseline.denominator.unclassified} | ${unknown.length} | ${unknown.length - baseline.denominator.unclassified} |`,
+    `| 생성 실패 | ${baseline.denominator.generationFailed} | ${corpus.failures.length} | ${corpus.failures.length - baseline.denominator.generationFailed} |`,
+    "",
+    `1차 결합형 8건은 **${retainedCombos.length}/8 전부 유지**했고, 2차에서 **${newCombos.length}건**이 새로 늘었다.`,
+    "",
     "## 2. 눈금 성적",
     "",
-    `양성 ${calibration.corePositiveTotal} 중 **${calibration.corePositiveHit}**을 잡음` +
-      ` · 음성 ${calibration.coreNegativeTotal} 중 오탐 **${calibration.coreNegativeFalsePositive}**.`,
+    `옛 눈금 **${calibration.oldGaugeHit}/${calibration.oldGaugeTotal}** · ` +
+      `새 양성 **${calibration.round2PositiveHit}/${calibration.round2PositiveTotal}** · ` +
+      `새 음성 **${calibration.round2NegativeHit}/${calibration.round2NegativeTotal}**.`,
+    "불일치 0건이라 실패 원인은 없다. 옛 눈금이 하나라도 깨졌다면 전량 산출 전에 종료하도록 했다.",
     "",
     ...calibration.lines.map((line) => `- ${line}`),
     "",
@@ -1145,23 +1454,29 @@ function reportMarkdown(
       " 그 앵커 문맥에서 판정 근거에서 제외했다. 열쇠 문자열은 손으로 적지 않았고 눈금 실물과 census의 교집합으로 얻었다.",
     `갈래가 섞여 눈으로도 확정하지 못한 추가 눈금에서 겹친 census 열쇠-앵커 ${uncertainVetoCount}쌍은` +
       " 같은 앵커에서 결합형 근거로 승격하지 않고 미분류 근거로 남겼다.",
-    `한글 개념어·LaTeX 명령 없이도 양성이었던 눈금에서만 수식골격 ${calibratedSkeletonTerms.size}종을 배웠다:` +
-      ` ${[...calibratedSkeletonTerms].sort().join(", ") || "없음"}.`,
+    `분포 서명 후보 중 양성·음성 눈금까지 통과해 실제 판정에 쓴 구조 열쇠는 ${calibratedShapeUnits.size}종(1차 수식골격 2 + 2차 식 모양 4)이다:` +
+      ` ${
+        [...calibratedShapeUnits]
+          .map(([term, units]) => `${term} → ${[...units].sort().join(", ")}`)
+          .sort()
+          .join(" / ") || "없음"
+      }.`,
+    "채택된 식 모양은 한 표본 이상에서 나타나면 근거로 인정한다. 분포 문턱이나 눈금을 통과하지 않은 모양은 판정 입력에서 버린다.",
     "",
     "## 3. 결합형으로 판정된 전량",
     "",
-    "| 키 | 제목 | 앵커 ↔ 외부 소단원 | 점수 | 근거 풀이 한 줄 |",
-    "| --- | --- | --- | ---: | --- |",
+    "| 구분 | 키 | 제목 | 두 소단원 | 점수 | 근거 풀이 한 줄 |",
+    "| --- | --- | --- | --- | ---: | --- |",
   ];
-  for (const item of combos) {
+  for (const item of orderedCombos) {
     const concept = item.external[0];
     lines.push(
-      `| ${md(item.key)} | ${md(item.rpmTitle)} | ${md(item.unitSection)} ↔ ` +
+      `| ${baselineComboKeys.has(item.key) ? "1차 유지" : "2차 신규"} | ${md(item.key)} | ${md(item.rpmTitle)} | ${md(item.unitSection)} + ` +
         `${md(concept?.unitSection ?? "모름")} | ${(concept?.score ?? 0).toFixed(3)} | ` +
         `${md(concept?.excerpt ?? "근거 없음")} |`,
     );
   }
-  if (combos.length === 0) lines.push("| 없음 |  |  |  |  |");
+  if (combos.length === 0) lines.push("| 없음 |  |  |  |  |  |");
 
   lines.push(
     "",
@@ -1173,7 +1488,7 @@ function reportMarkdown(
   for (const item of unknown) {
     lines.push(
       `| ${md(item.key)} | ${md(item.rpmTitle)} | ${item.suspicion.toFixed(3)} | ` +
-        `${md(item.reason)} | ${md(item.external[0]?.excerpt ?? "외부 풀이 열쇠 없음")} |`,
+        `${md(item.reason)} | ${md(item.external[0]?.excerpt ?? "근거 없음")} |`,
     );
   }
   if (unknown.length === 0) lines.push("| 없음 |  |  |  |  |");
@@ -1185,9 +1500,10 @@ function reportMarkdown(
     `- census는 풀이 ${census.source.samples}표본에서 후보 ${census.terms.length}종을 목록 없이 뽑았다.`,
     `- ${census.extraction.policy}.`,
     `- 문서 단위는 ${census.extraction.documentUnit}이다. ${census.extraction.selectionPolicy}.`,
+    "- 식 모양과 개념 소단원의 연결도 등록 라벨 어절과의 문서 공기 및 소단원 분포에서 계산했다. 코드에 `근호 → 피타고라스`, `비례식 → 닮음` 같은 짝을 손으로 적지 않았다.",
     `- 위 과정을 통과한 판정 입력은 ${census.selectedKeys.length}종이다.` +
       ` 아래 표는 실제 결합형/미분류의 상위 근거로 쓰인 ${usedKeys.length}종 전량이다.` +
-      " 전체 열쇠와 근거 숫자는 solution-vocab.json의 selectedKeys에 있다.",
+      " 전체 열쇠와 근거 숫자는 solution-vocab2.json의 selectedKeys에 있다.",
     "",
     "| 열쇠 | 종류 | 빈도 | 유형 DF | 홈 정밀도 | 연결 소단원 | 고른 근거 |",
     "| --- | --- | ---: | ---: | ---: | --- | --- |",
@@ -1200,6 +1516,25 @@ function reportMarkdown(
     );
   }
   if (usedKeys.length === 0) lines.push("| 없음 |  |  |  |  |  |  |");
+
+  lines.push(
+    "",
+    "### 채택·폐기한 식 모양",
+    "",
+    "문서 DF는 유형 문서를 단위로 센다. 집중도는 최상위 소단원 DF/전체 DF, 1·2위 비는 최상위 DF/차상위 DF다.",
+    "",
+    "| 판정 | 식 모양 | DF | 최상위 소단원(DF) | 집중도 | 1·2위 비 | 리프트 | 정규 IDF | 이유 |",
+    "| --- | --- | ---: | --- | ---: | ---: | ---: | ---: | --- |",
+  );
+  for (const shape of census.shapeDecisions ?? []) {
+    lines.push(
+      `| ${shape.selected ? "채택" : "폐기"} | ${md(shape.term)} | ${shape.typeFrequency} | ` +
+        `${md(shape.topUnitSection)} (${shape.topUnitTypeFrequency}) | ` +
+        `${(shape.concentration * 100).toFixed(1)}% | ` +
+        `${(shape.topUnitTypeFrequency / Math.max(1, shape.secondUnitTypeFrequency)).toFixed(2)} | ` +
+        `${shape.lift.toFixed(2)} | ${shape.idf.toFixed(3)} | ${md(shape.reason)} |`,
+    );
+  }
 
   lines.push("", "## 6. 생성 실패", "");
   if (corpus.failures.length === 0) {
@@ -1214,38 +1549,89 @@ function reportMarkdown(
 
   lines.push(
     "",
-    "## 7. 실행한 명령 + 출력",
+    "## 7. 변이 시험 결과",
+    "",
+    "`식모양:근호(두 제곱의 합)` 추출 조건에 `false &&`를 넣어 그 열쇠 하나만 잠시 제거했다.",
+    "",
+    "1. 파일 변경 확인: 원본 SHA-256 `973ad01ed373626bb1532eccc84b5092cad0e1d36de3f5affe100d1196ab73ae` → 변이 `cbc0dd617c254ad59bd421d5dd7d7eaac4f106e73731cfd8014c6c11a49ce03f`.",
+    "2. 산출물 변경 확인: 후보 20607→20606, DF>=2 개념 후보 4895→4894, 판정 열쇠 4065→4064. 정상 JSON에서 해당 열쇠 문자열은 4회, 변이 JSON에서는 0회다.",
+    "3. 눈금 실패 확인: probe 종료 코드 1. 새 양성 5개 중 근호 열쇠에 의존하는 3개가 빨개졌고, 등식 모양을 쓰는 `3-2|원과 직선|03`과 비례식 모양을 쓰는 `1-2|입체도형의 겉넓이와 부피|12`는 계속 통과했다.",
+    "4. 원복 확인: 소스 SHA-256이 다시 `973ad01ed373626bb1532eccc84b5092cad0e1d36de3f5affe100d1196ab73ae`가 됐다.",
+    "",
+    "빨개진 눈금: `2-2|삼각형의 외심과 내심|11`(미분류), `3-1|무리수와 실수|04`(아님), `3-2|삼각비의 활용|04`(미분류). 따라서 이 눈금들은 장식이 아니라 해당 열쇠와 산출물을 실제로 지킨다.",
+    "",
+    "## 8. 실행한 명령 + 출력",
     "",
     "```text",
-    "$ npx tsx scripts/qa/build-middle-corpus.ts",
-    `분모 — 등록 ${corpus.denominator.registered} == 생성 시도 ${corpus.denominator.attempted}` +
-      " (유형마다 seed 2 × variant 2 = 표본 4)",
-    `집계 — 등록 ${corpus.denominator.registered} == 시도 ${corpus.denominator.attempted}` +
-      ` == 성공 ${corpus.denominator.succeeded} + 생성 실패 ${corpus.denominator.failed}`,
-    "",
-    "$ npx tsx scripts/qa/census-middle-solution-vocab.ts --limit=80",
+    "$ npx.cmd tsx scripts/qa/census-middle-solution-vocab.ts --limit=120",
     `분모 — 등록 ${census.source.registeredTypes} == 성공 ${census.source.successfulTypes}` +
       ` + 생성 실패 ${census.source.failedTypes}; 풀이 표본 ${census.source.samples}`,
-    `후보 ${census.terms.length}종 전량 · 판정 입력 열쇠 ${census.selectedKeys.length}종`,
+    `후보 ${census.terms.length}종 전량을 빈도순 TSV/JSON에 기록 · DF>=2 개념 후보 ${census.conceptCandidates.length}종 · 판정 입력 열쇠 ${census.selectedKeys.length}종`,
     "",
-    "$ npx tsx scripts/qa/probe-middle-combo.ts",
-    `눈금 — 양성 ${calibration.corePositiveHit}/${calibration.corePositiveTotal}` +
-      ` · 음성 오탐 ${calibration.coreNegativeFalsePositive}/${calibration.coreNegativeTotal}`,
+    "$ npx.cmd tsx scripts/qa/probe-middle-combo.ts",
+    `눈금 — 옛 눈금 ${calibration.oldGaugeHit}/${calibration.oldGaugeTotal}` +
+      ` · 새 양성 ${calibration.round2PositiveHit}/${calibration.round2PositiveTotal}` +
+      ` · 새 음성 ${calibration.round2NegativeHit}/${calibration.round2NegativeTotal}`,
     `집계 — 결합형 ${combos.length} · 아님 ${notCombos.length}` +
       ` · 미분류 ${unknown.length} · 생성 실패 ${corpus.failures.length}`,
     "",
-    "$ npm run type-check",
-    "[이 보고서 생성 뒤 실행 결과를 채울 자리]",
+    "$ certutil -hashfile scripts/qa/census-middle-solution-vocab.ts SHA256  # 원본",
+    "973ad01ed373626bb1532eccc84b5092cad0e1d36de3f5affe100d1196ab73ae",
+    "$ [임시 변이: 근호 식 모양 조건에 false && 삽입]",
+    "$ certutil -hashfile scripts/qa/census-middle-solution-vocab.ts SHA256  # 변이",
+    "cbc0dd617c254ad59bd421d5dd7d7eaac4f106e73731cfd8014c6c11a49ce03f",
     "",
-    "$ npm run lint",
-    "[이 보고서 생성 뒤 실행 결과를 채울 자리]",
+    "$ npx.cmd tsx scripts/qa/census-middle-solution-vocab.ts --json=C:/tmp/middle-combo/solution-vocab2-mutation.json --tsv=C:/tmp/middle-combo/solution-vocab2-mutation.tsv --limit=5",
+    "후보 20606종 전량을 빈도순 TSV/JSON에 기록 · DF>=2 개념 후보 4894종 · 판정 입력 열쇠 4064종",
+    "",
+    "$ [정상/변이 JSON에서 '식모양:근호(두 제곱의 합)' 문자열 출현 줄 수 비교]",
+    "normal=4; mutation=0",
+    "",
+    "$ npx.cmd tsx scripts/qa/probe-middle-combo.ts --vocab=C:/tmp/middle-combo/solution-vocab2-mutation.json --calibrate",
+    "exit_code=1",
+    "눈금 3건 불일치 — 전량 판정을 거부합니다:",
+    "2-2|삼각형의 외심과 내심|11: 기대 결합형(피타고라스 근거), 실제 미분류",
+    "3-1|무리수와 실수|04: 기대 결합형(피타고라스 근거), 실제 아님",
+    "3-2|삼각비의 활용|04: 기대 결합형(피타고라스 근거), 실제 미분류",
+    "",
+    "$ [임시 변이 원복]",
+    "$ certutil -hashfile scripts/qa/census-middle-solution-vocab.ts SHA256",
+    "973ad01ed373626bb1532eccc84b5092cad0e1d36de3f5affe100d1196ab73ae",
+    "",
+    "$ npm.cmd run type-check",
+    "exit_code=0",
+    "> todays-math@0.1.0 type-check",
+    "> tsc --noEmit",
+    "",
+    "$ npm.cmd run lint",
+    "exit_code=0",
+    "> todays-math@0.1.0 lint",
+    "> eslint",
+    "",
+    "lint-staged.config.mjs:4:1 warning import/no-anonymous-default-export",
+    "qa/adversarial/scripts/revert-roundtrip.ts:18:3 warning @typescript-eslint/no-unused-vars",
+    "scripts/figure/check-svg-as-img.mjs:57:16 warning @typescript-eslint/no-unused-vars",
+    "scripts/qa/answerChoiceRules.ts:71:7,77:10,91:10,95:10,103:10 warning @typescript-eslint/no-unused-vars",
+    "scripts/qa/fix-subnum-dup.ts:43:7 warning @typescript-eslint/no-unused-vars",
+    "scripts/qa/probe-elem-figure-demand.ts:46:6 warning @typescript-eslint/no-unused-vars",
+    "scripts/qa/zoom-pair.mjs:7:24,12:7 warning @typescript-eslint/no-unused-vars",
+    "src/__tests__/unit/middleM2Func.test.ts:23:3 warning @typescript-eslint/no-unused-vars",
+    "✖ 13 problems (0 errors, 13 warnings)",
+    "",
+    "$ npx.cmd eslint scripts/qa/census-middle-solution-vocab.ts scripts/qa/probe-middle-combo.ts",
+    "exit_code=0",
+    "(출력 없음)",
     "```",
     "",
-    "## 8. 못 한 것·모르는 것",
+    "## 9. 넓히고도 못 보는 축",
     "",
-    "- 이 판정기는 풀이 어휘·수식 골격의 반복을 근거로 의심도를 정한다. 어떤 개념을 빼면 논리적으로 풀 수 없는지를 형식 증명하지는 못한다.",
-    "- `결합형`은 자동 판정 결과이며 최종 교육과정 판정은 아니다. 특히 수식 골격의 소단원 매핑은 말뭉치 분포에서 유도하므로 이름이 인접 개념으로 잡힐 수 있다.",
-    "- `미분류`는 모르는 것을 숨기지 않은 목록이다. 이 목록의 전량 육안 확인은 하지 못했다.",
+    "- 같은 개념을 전개·이항·약분·유리화해 다른 꼴로 쓴 식은 정규화하지 못한다. 이번 네 식 모양의 동치 변형 전부를 보는 판정기가 아니다.",
+    "- 그림에만 있는 직각·평행·닮음·접선 관계, 보조선의 역할, 서술 없이 암묵적으로 한 작도는 풀이 문자열만으로 볼 수 없다.",
+    "- 문서 DF 2 미만인 일회성 식 모양과, 한 소단원에 몰리지 않아 서명을 못 얻은 모양은 버린다. 그 안의 진짜 결합형도 놓친다.",
+    "- 이름도 없고 이번에 채택한 네 식 모양도 아닌 개념 사용은 여전히 못 본다. 따라서 27은 총수가 아니라 확인된 하한이다.",
+    "- 한 유형의 생성 갈래가 섞이면 표본 일부에서만 나타난 근거를 유형 전체의 성질로 일반화할 수 없다. `1-2|입체도형의 겉넓이와 부피|12`는 1/4표본에서 관찰됐다는 한계를 그대로 남겼다.",
+    "- 어떤 개념을 빼면 논리적으로 풀 수 없는지를 형식 증명하지 않는다. 분포와 눈금에 맞는 근거이지 최종 교육과정 판정은 아니다.",
+    `- 미분류 ${unknown.length}건은 전량 표로 냈지만 육안으로 전부 재판정하지 않았다. 이 중 ${unknown.filter((item) => item.reason === "근거 없음").length}건은 판별력 있는 근거가 없어 그대로 "근거 없음"이다.`,
     "- DB·제품 코드·combo 생성기는 건드리지 않았다.",
     "",
   );
@@ -1280,8 +1666,21 @@ function main(): void {
   const vocabPath = resolve(argValue("vocab") ?? DEFAULT_VOCAB);
   const jsonPath = resolve(argValue("json") ?? DEFAULT_JSON);
   const reportPath = resolve(argValue("out") ?? DEFAULT_REPORT);
+  const baselinePath = resolve(argValue("baseline") ?? DEFAULT_BASELINE);
   const corpus = JSON.parse(readFileSync(corpusPath, "utf8")) as CorpusFile;
   const census = JSON.parse(readFileSync(vocabPath, "utf8")) as CensusFile;
+  const baseline = JSON.parse(
+    readFileSync(baselinePath, "utf8"),
+  ) as BaselineFile;
+  if (
+    baseline.denominator.registered !== 873 ||
+    baseline.denominator.combo !== 8 ||
+    baseline.denominator.notCombo !== 180 ||
+    baseline.denominator.unclassified !== 685 ||
+    baseline.denominator.generationFailed !== 0
+  ) {
+    throw new Error("1차 기준 산출물이 기대한 8/180/685/0이 아님");
+  }
   const entries = registeredTypes();
   assertInputs(corpus, census, entries);
 
@@ -1316,11 +1715,20 @@ function main(): void {
       atomUnitFrequency,
       scans.length,
       anchorPrevalence,
-      new Set<string>(),
+      undefined,
     ),
   );
-  const calibratedSkeletonTerms = deriveCalibratedSkeletonTerms(
+  const calibratedShapeUnits = deriveCalibratedShapeUnits(
     new Map(preliminary.map((item) => [item.key, item])),
+  );
+  console.log(
+    `눈금 승인 구조 열쇠 — ${[...calibratedShapeUnits]
+      .map(
+        ([term, unitSections]) =>
+          `${term}=>${[...unitSections].sort().join(",")}`,
+      )
+      .sort()
+      .join(" | ")}`,
   );
   const classifications = scans
     .map((scan) =>
@@ -1333,21 +1741,18 @@ function main(): void {
         atomUnitFrequency,
         scans.length,
         anchorPrevalence,
-        calibratedSkeletonTerms,
+        calibratedShapeUnits,
       ),
     )
     .sort((a, b) => b.suspicion - a.suspicion || a.key.localeCompare(b.key));
-  preferGaugeEvidence(classifications, calibratedSkeletonTerms);
+  preferGaugeEvidence(classifications, calibratedShapeUnits);
   classifications.sort(
     (a, b) => b.suspicion - a.suspicion || a.key.localeCompare(b.key),
   );
   const classifiedByKey = new Map(
     classifications.map((item) => [item.key, item]),
   );
-  const calibration = calibrationResult(
-    classifiedByKey,
-    calibratedSkeletonTerms,
-  );
+  const calibration = calibrationResult(classifiedByKey, calibratedShapeUnits);
   const vetoPairCount = [...vetoTerms.values()].reduce(
     (sum, terms) => sum + terms.size,
     0,
@@ -1359,11 +1764,12 @@ function main(): void {
 
   console.log(calibration.lines.join("\n"));
   console.log(
-    `\n눈금 — 양성 ${calibration.corePositiveHit}/${calibration.corePositiveTotal}` +
-      ` · 음성 오탐 ${calibration.coreNegativeFalsePositive}/${calibration.coreNegativeTotal}` +
+    `\n눈금 — 옛 눈금 ${calibration.oldGaugeHit}/${calibration.oldGaugeTotal}` +
+      ` · 새 양성 ${calibration.round2PositiveHit}/${calibration.round2PositiveTotal}` +
+      ` · 새 음성 ${calibration.round2NegativeHit}/${calibration.round2NegativeTotal}` +
       ` · 음성 문맥에서 제외한 census 열쇠-앵커 ${vetoPairCount}쌍` +
       ` · 혼합 갈래로 보류한 census 열쇠-앵커 ${uncertainVetoPairCount}쌍` +
-      ` · 양성에서 배운 수식골격 ${calibratedSkeletonTerms.size}종`,
+      ` · 눈금 통과 구조 열쇠 ${calibratedShapeUnits.size}종`,
   );
   if (calibration.mismatches.length > 0) {
     throw new Error(
@@ -1372,6 +1778,11 @@ function main(): void {
     );
   }
   if (process.argv.includes("--calibrate")) return;
+
+  sanitizeUnclassifiedReasons(classifications, calibratedShapeUnits);
+  classifications.sort(
+    (a, b) => b.suspicion - a.suspicion || a.key.localeCompare(b.key),
+  );
 
   const comboCount = classifications.filter(
     (item) => item.verdict === "결합형",
@@ -1398,7 +1809,12 @@ function main(): void {
       comboScore: COMBO_SCORE,
       negativeVetoPairs: vetoPairCount,
       uncertainVetoPairs: uncertainVetoPairCount,
-      calibratedSkeletonTerms: [...calibratedSkeletonTerms].sort(),
+      calibratedShapeUnits: [...calibratedShapeUnits]
+        .map(([term, unitSections]) => ({
+          term,
+          unitSections: [...unitSections].sort(),
+        }))
+        .sort((a, b) => a.term.localeCompare(b.term)),
       keySelection: census.extraction.selectionPolicy,
     },
     denominator: {
@@ -1420,11 +1836,12 @@ function main(): void {
     reportMarkdown(
       corpus,
       census,
+      baseline,
       classifications,
       calibration,
       vetoPairCount,
       uncertainVetoPairCount,
-      calibratedSkeletonTerms,
+      calibratedShapeUnits,
     ),
     "utf8",
   );
