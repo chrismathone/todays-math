@@ -132,6 +132,10 @@ scripts/qa/reports/*
 !scripts/qa/reports/figure-swap-ledger.json
 # SVG 채택 되돌리기 원장 — figureUrls 의 **옛 경로**가 여기에만 있다.
 !scripts/qa/reports/figure-svg-adopt.json
+# 「배치가 정해지는가」 판정의 **시험 분모**. 공유 DB(D-31)는 다른 트랙이 같은 순간에도
+# 고치고 있어(2026-08-25 모두고르시오가 보기 ⑤를 붙이는 것을 실측했다) 살아 있는 수치를
+# 시험에 박으면 남의 작업이 내 시험을 빨갛게 만든다. 그래서 스냅숏을 커밋해 시험을 밀봉한다.
+!scripts/qa/reports/figure-dependent-snapshot.json
 # 단원 오배정 되돌리기 원장.
 !scripts/qa/reports/basic-figure-unit-fix.json
 # 날 LaTeX 문항 제외 되돌리기 원장 — 고친 뒤 되돌릴 근거가 여기에만 있다.
