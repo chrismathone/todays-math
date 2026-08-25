@@ -11,7 +11,12 @@
  * 그리고 계정 이메일은 **클라이언트에서 `/api/auth/session` 을 받아** 그린다.
  * 그래서 curl 로는 구조적으로 안 보인다 — 반드시 실제 브라우저여야 한다.
  *
- *   node scripts/qa/smoke-logout.mjs [포트] [이메일]
+ *   node scripts/qa/smoke-logout.mjs [포트] [이메일] [경로]
+ *
+ * ⚠️ **경로를 반드시 두 개 이상 확인할 것.** 계정 구역은 `AppChrome` 이 그리는데
+ *    `/review` 는 그 크롬을 **안 쓴다**. 그래서 `/` 만 보면 「로그아웃이 있다」가
+ *    초록인데 검수 계정에는 **나갈 방법이 없다**(2026-08-25 원장님이 화면에서 찾으셨다).
+ *    화면마다 크롬이 다르면 이 검사는 **그 화면을 안 열어 본 만큼 눈이 먼다.**
  *
  * 비밀번호 없이 확인할 수 있게 세션 쿠키를 `AUTH_SECRET` 으로 **직접 발급**한다
  * (로그인 흐름 자체는 `smoke-role-gate.sh` 가 이미 실물로 지킨다 — 여기서 겹쳐
@@ -25,6 +30,8 @@ config();
 
 const PORT = process.argv[2] ?? "3000";
 const EMAIL = process.argv[3] ?? "test_t@osu.com";
+/** 어느 화면을 볼까. 크롬이 화면마다 다르므로 **경로마다 따로 확인해야 한다.** */
+const PATHNAME = process.argv[4] ?? "/";
 const BASE = `http://localhost:${PORT}`;
 const COOKIE = "authjs.session-token"; // http(dev) 는 __Secure- 접두사가 없다
 
@@ -60,6 +67,44 @@ const token = await encode({
   salt: COOKIE,
 });
 
+/**
+ * ⚠️ **Git Bash 가 `/review` 를 윈도 경로로 바꾼다.** 그대로 두면 Playwright 가
+ *    `http://localhost:3177C:/Program Files/Git/review` 로 가서 「invalid URL」이라고만
+ *    말한다 — 원인이 안 보인다. 앞에 `MSYS_NO_PATHCONV=1` 을 붙여야 한다.
+ */
+if (!PATHNAME.startsWith("/") || PATHNAME.includes(":")) {
+  console.error(
+    `🔴 경로가 이상하다: "${PATHNAME}"
+` +
+      `   Git Bash 가 경로를 바꿨을 수 있다. 이렇게 부를 것:
+` +
+      `   MSYS_NO_PATHCONV=1 node scripts/qa/smoke-logout.mjs ${PORT} ${EMAIL} /review`,
+  );
+  process.exit(1);
+}
+
+/**
+ * ⚠️ **그 포트가 «우리 앱»인지 먼저 확인한다.** 2026-08-25 에 `:3000` 이 전혀 다른
+ *    프로젝트(`지출결의서-칸넘침`)를 띄우고 있어서, 그 앱을 검사하고 「로그아웃이 없다」는
+ *    **거짓 진단**을 낼 뻔했다. 2026-08-20 에도 같은 자리에서 오진했다.
+ *    우리 앱에만 있는 경로로 한 번 물어본다.
+ */
+{
+  const probe = await fetch(`${BASE}/api/units`, { redirect: "manual" }).catch(
+    () => null,
+  );
+  if (!probe) {
+    console.error(`🔴 ${BASE} 에 아무도 없다 — dev 서버를 먼저 띄울 것`);
+    process.exit(1);
+  }
+  if (probe.status === 404) {
+    console.error(
+      `🔴 ${BASE} 는 **다른 앱**이다 (/api/units 가 404). 우리 dev 서버 포트를 줄 것`,
+    );
+    process.exit(1);
+  }
+}
+
 const browser = await chromium.launch();
 const ctx = await browser.newContext();
 await ctx.addCookies([
@@ -67,19 +112,19 @@ await ctx.addCookies([
 ]);
 const page = await ctx.newPage();
 
-console.log(`계정 구역 실물 확인 — ${EMAIL} @ ${BASE}`);
+console.log(`계정 구역 실물 확인 — ${EMAIL} @ ${BASE}${PATHNAME}`);
 
 // ⚠️ **예열 먼저.** dev 서버의 첫 요청은 그 라우트를 컴파일하느라 15초를 넘길 수 있다.
 // 예열 없이 재면 «계정이 안 뜬다» 는 **거짓 경보**가 나온다(실제로 첫 실행에서 났다).
 // 이 저장소가 적어 둔 그 자리다 — 거짓 경보는 가드를 끈다(2026-08-20).
-await page.goto(`${BASE}/`, { waitUntil: "networkidle", timeout: 120000 });
+await page.goto(`${BASE}${PATHNAME}`, { waitUntil: "networkidle", timeout: 120000 });
 
-// ① 메인이 열리는가 (세션이 먹었는가)
-const res = await page.goto(`${BASE}/`, { waitUntil: "networkidle", timeout: 60000 });
+// ① 그 화면이 열리는가 (세션이 먹었는가)
+const res = await page.goto(`${BASE}${PATHNAME}`, { waitUntil: "networkidle", timeout: 60000 });
 if (res && res.status() < 400 && !page.url().includes("/login")) {
-  ok(`메인이 열린다 (${res.status()})`);
+  ok(`${PATHNAME} 이 열린다 (${res.status()})`);
 } else {
-  bad(`메인이 안 열린다 — status=${res?.status()} url=${page.url()}`);
+  bad(`${PATHNAME} 이 안 열린다 — status=${res?.status()} url=${page.url()}`);
 }
 
 // ② 계정 이메일이 **화면에 보이는가** — 이게 이 기능의 존재 이유다.

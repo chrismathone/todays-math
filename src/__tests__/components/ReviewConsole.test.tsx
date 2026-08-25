@@ -362,3 +362,55 @@ describe("검수 콘솔 — 대기열별 사유 강조 (2026-08-24)", () => {
     expect(solution.textContent).toContain("이 대기열");
   });
 });
+
+/**
+ * 🔴 검수 계정에 **나갈 방법이 없었다** (원장님 지적 2026-08-25).
+ *
+ * `/review` 는 `AppChrome` 을 안 쓴다 — 검수 계정은 메인·반·문제은행에 못 들어가므로
+ * 그 nav 를 그리면 눌러도 「권한 없음」인 링크가 된다(D-30). 그래서 크롬 전체가 아니라
+ * **계정 구역만** 가져왔다. D-77 이 막으려던 모양 그대로였다: *「잘못된 계정에 갇히면 안 된다」*.
+ *
+ * ⚠️ **이 검사가 못 보는 것**: 로그아웃이 실제로 세션을 지우는지는 못 본다
+ *    (`vitest.setup.ts` 가 서버 액션을 전역 모킹한다). 그 축은 실물 검사의 몫이고,
+ *    게이트 쪽은 `routeAccess.test.ts` 가 «POST /review 가 열려 있나»로 따로 지킨다 —
+ *    **그게 없으면 화면에는 단추가 보이는데 눌러도 막힌다.**
+ */
+describe("[D-77] 검수 화면에도 계정·로그아웃이 있다", () => {
+  // 헬퍼를 이 블록 안에 따로 둔다 — 다른 describe 의 것을 빌려 쓰면 그쪽이 바뀔 때
+  // 이 검사가 «관계없는 이유로» 같이 깨진다.
+  function renderConsole() {
+    return render(
+      <ReviewConsole
+        queues={QUEUES}
+        initialKey="figure"
+        initialRows={[problem(1)]}
+        reviewedByMe={0}
+      />,
+    );
+  }
+
+  it("헤더에 지금 계정과 로그아웃이 보인다", async () => {
+    arm();
+    renderConsole();
+
+    const header = screen.getByRole("banner");
+    expect(
+      await within(header).findByRole("button", { name: "로그아웃" }),
+    ).toBeInTheDocument();
+    expect(
+      await within(header).findByTestId("account-email"),
+    ).toHaveTextContent(/@/);
+  });
+
+  it("세션 조회가 실패해도 로그아웃은 남는다 — 갇히면 안 된다", async () => {
+    arm();
+    server.use(http.get("/api/auth/session", () => HttpResponse.error()));
+    renderConsole();
+
+    const header = screen.getByRole("banner");
+    expect(
+      await within(header).findByRole("button", { name: "로그아웃" }),
+    ).toBeInTheDocument();
+    expect(within(header).queryByTestId("account-email")).toBeNull();
+  });
+});
