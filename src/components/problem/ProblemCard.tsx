@@ -9,6 +9,8 @@ import { PAPER_CSS_VARIABLES } from "@/components/print/tokens";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
+import { provenanceBadges } from "@/lib/problem/provenance";
+
 import { REVIEW_STATUS_LABEL } from "./labels";
 import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
 
@@ -116,8 +118,37 @@ export const ProblemCard = memo(function ProblemCard({
         <span className="font-semibold tabular-nums text-text-2">
           {problem.problemCode}
         </span>
+        {/* 출처 라벨 — 원장님 지시 2026-08-25 「이게 어떤걸로 인해 생성되었고 가져왔고
+            이런걸 다 분류해야겠어」. **코드 바로 오른쪽**에 두는 것은 D-53 이 이미 적어 둔
+            요구다 — 「화면은 코드 옆에 현재 단원·**출처**를 항상 같이 보여야 한다」.
+            검수 상태(색 있는 글자)는 `ml-auto` 오른쪽 무리라 자리가 갈린다.
+
+            판정·라벨·색은 `src/lib/problem/provenance.ts` 하나가 정한다. 여기서 조건을
+            다시 쓰지 마라 — 두 벌이 되는 순간 한쪽만 고쳐도 아무도 모른다.
+
+            `abbr` 인 이유: `[초]` 는 줄임말이고 풀어 쓴 말이 `title` 에 있어야 색이 안
+            보이는 사람도 읽는다(05 §5 — 색만으로 뜻을 전달하지 않는다). 밑줄은 10px
+            굵은 글씨에서 얼룩이라 끈다. **누르는 것이 아니다** — 손가락 커서·hover 배경
+            금지(D-30).
+
+            `print:hidden` 인 이유: 지면을 바꾸면 실물 인쇄 검수까지가 완료 조건이다
+            (절대 규칙 6). 이 라벨은 화면에서 분류를 보려는 것이라 지면은 그대로 둔다.
+            종이에도 필요하다고 정해지면 `/dev/print-check` 에 항목을 세우고 넣는다. */}
+        {provenanceBadges(problem).map((badge) => (
+          <abbr
+            key={badge.axis}
+            data-provenance={badge.kind}
+            data-provenance-axis={badge.axis}
+            title={badge.name}
+            className={`${MICRO} no-underline ${badge.className} print:hidden`}
+          >
+            {badge.text}
+          </abbr>
+        ))}
         {/* 난이도·유형·상태는 **마이크로 라벨**이다 (05 §8.6 확정, 원장님 재확인 2026-08-18).
-            알약 칩은 면색을 세 개 더 만들어 팔레트를 흐린다. 위계는 글자 명도로 낸다. */}
+            알약 칩은 면색을 세 개 더 만들어 팔레트를 흐린다. 위계는 글자 명도로 낸다.
+            ⚠️ 위 출처 라벨이 «색을 쓰면서도» 이 결정을 안 어기는 근거는 provenance.ts
+               「색을 어떻게 정했나」에 있다 — 한 줄로 줄이면 **면색이 아니라 글자색**이다. */}
         <span className={`ml-auto flex flex-wrap items-center gap-3 ${MICRO}`}>
           <span className="text-ink">{problem.difficulty}</span>
           <span className="text-text-2">{problem.problemType}</span>

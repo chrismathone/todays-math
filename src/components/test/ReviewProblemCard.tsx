@@ -6,6 +6,7 @@ import { MathText } from "@/components/math/MathText";
 import { ProblemExcerpt } from "@/components/problem/ProblemExcerpt";
 import { Button } from "@/components/ui/Button";
 import type { ProblemEntity } from "@/contracts/problem.contract";
+import { provenanceBadges } from "@/lib/problem/provenance";
 import { splitSolutionSteps } from "@/lib/solutionSteps";
 
 type Props = {
@@ -15,7 +16,15 @@ type Props = {
   replacing?: boolean;
 };
 
-const MICRO = "text-[10px] font-extrabold tracking-[1.2px] text-text-2";
+/**
+ * 마이크로 라벨의 **크기·굵기만** — 색은 안 정한다.
+ *
+ * ⚠️ 출처 라벨은 자기 글자색을 쓰므로 `text-text-2` 가 섞이면 안 된다. 두 색 유틸리티가
+ *    한 요소에 있으면 이기는 쪽은 클래스 문자열 순서가 아니라 **CSS 파일 순서**라,
+ *    「나중에 썼으니 내 색이 이긴다」가 참이 아니다. 그래서 색을 아예 뺀 짝을 둔다.
+ */
+const MICRO_PLAIN = "text-[10px] font-extrabold tracking-[1.2px]";
+const MICRO = `${MICRO_PLAIN} text-text-2`;
 
 /**
  * `memo` 인 이유: 검수는 한 화면에 최대 30카드이고 카드마다 본문·답·해설 KaTeX
@@ -47,6 +56,24 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
         <p className={`mt-1 ${MICRO}`}>
           <span>{problem.difficulty}</span>
           <span className="ml-2">{problem.problemType}</span>
+        </p>
+        {/* 출처 라벨 — 문제은행 카드와 **같은 판정·같은 색**을 쓴다
+            (`src/lib/problem/provenance.ts`). 검수는 「이 문항이 어디서 왔나」를 알아야
+            이상한 것을 만났을 때 어디를 열어 볼지 정할 수 있다.
+            조건을 여기서 다시 쓰지 마라 — 두 화면이 갈라지면 아무도 모른다.
+            누르는 것이 아니다(D-30). 밑줄은 10px 굵은 글씨에서 얼룩이라 끈다. */}
+        <p className="mt-1 flex flex-wrap items-center gap-2">
+          {provenanceBadges(problem).map((badge) => (
+            <abbr
+              key={badge.axis}
+              data-provenance={badge.kind}
+              data-provenance-axis={badge.axis}
+              title={badge.name}
+              className={`${MICRO_PLAIN} no-underline ${badge.className}`}
+            >
+              {badge.text}
+            </abbr>
+          ))}
         </p>
       </div>
       <div

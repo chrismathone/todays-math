@@ -52,6 +52,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
+    familyKey: null,
     difficulty: "기본",
     problemType: "계산",
     content:
@@ -74,6 +75,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
+    familyKey: null,
     difficulty: "기본",
     problemType: "개념",
     content:
@@ -95,6 +97,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
+    familyKey: null,
     difficulty: "응용",
     problemType: "계산",
     content:
@@ -117,6 +120,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
+    familyKey: null,
     difficulty: "응용",
     problemType: "활용",
     content:
@@ -138,6 +142,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     unitId: GENERATED_UNIT_ID,
     source: "ai_generated",
     originProblemId: null,
+    familyKey: null,
     difficulty: "심화",
     problemType: "서술형",
     content:
@@ -163,6 +168,7 @@ export const MOCK_AI_TRANSFORMED_PROBLEMS: ProblemEntity[] = [
     unitId: MOCK_PROBLEMS[0]!.unitId, // 원본: 유리수와 소수(분수 문제) 변형
     source: "transformed",
     originProblemId: MOCK_PROBLEMS[0]!.id,
+    familyKey: null,
     difficulty: MOCK_PROBLEMS[0]!.difficulty,
     problemType: MOCK_PROBLEMS[0]!.problemType,
     content: "$\\frac{11}{40}$을 유한소수로 나타내어라.",
@@ -183,6 +189,7 @@ export const MOCK_AI_TRANSFORMED_PROBLEMS: ProblemEntity[] = [
     unitId: MOCK_PROBLEMS[13]!.unitId, // 원본: 지수법칙 문제 변형
     source: "transformed",
     originProblemId: MOCK_PROBLEMS[13]!.id,
+    familyKey: null,
     difficulty: MOCK_PROBLEMS[13]!.difficulty,
     problemType: MOCK_PROBLEMS[13]!.problemType,
     content: "$a^{4} \\times a^{3} \\div a^{5}$을 간단히 하여라.",
@@ -203,6 +210,7 @@ export const MOCK_AI_TRANSFORMED_PROBLEMS: ProblemEntity[] = [
     unitId: MOCK_PROBLEMS[21]!.unitId, // 원본: 다항식의 곱셈 문제 변형
     source: "transformed",
     originProblemId: MOCK_PROBLEMS[21]!.id,
+    familyKey: null,
     difficulty: MOCK_PROBLEMS[21]!.difficulty,
     problemType: MOCK_PROBLEMS[21]!.problemType,
     content: "$(x+4)(x-2)$를 전개하여라.",

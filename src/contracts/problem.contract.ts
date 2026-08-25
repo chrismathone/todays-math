@@ -102,6 +102,20 @@ export const problemSchema = z.strictObject({
   unitId: uuidSchema,
   source: problemSourceSchema,
   originProblemId: uuidSchema.nullable(),
+  /**
+   * **이 문항이 어느 «문항류»인가** — 엔진이 적는 자기 유형 정체 (D-105).
+   * `elem:초6|2-5-1 원주와 원주율 알아보기|연산` · `mid:3-1|근호를 포함한 식의 계산|06`.
+   * 사람이 넣은 것·AI 변형은 트리거가 `solo:<uuid>` 로 채우고, 표지가 생기기 전의 옛 행은
+   * 널이다.
+   *
+   * ⚠️ **화면이 이 값으로 출처 라벨을 판정한다**(`src/lib/problem/provenance.ts`).
+   *    문항 코드 모양으로는 못 가른다 — 코드 트리거는 손 등록에도 같은 형식을 붙이므로
+   *    코드로 판정하면 **손 등록이 [초] 초등 엔진으로 조용히 잘못 붙는다.**
+   *    그래서 이 값은 **널이 될 수는 있어도 빠질 수는 없다**: 어느 경로가 안 실어 보내면
+   *    엔진 문항 2,410건이 통째로 미분류가 되는데 에러가 안 난다. 필드를 옵셔널로
+   *    바꾸지 말 것(`consoleRow.ts` 가 그 방식으로 조용히 값을 잃은 전례가 있다).
+   */
+  familyKey: z.string().nullable(),
   difficulty: difficultySchema,
   problemType: problemTypeSchema,
   content: problemTextSchema("문제 본문"),

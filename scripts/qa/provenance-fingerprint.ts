@@ -1,0 +1,150 @@
+/**
+ * 출처 판정·팔레트의 **지문** — 변이 하네스의 ⑶ 단계(「동작이 바뀌었나」)가 쓴다.
+ *
+ *     npx tsx scripts/qa/provenance-fingerprint.ts
+ *
+ * ## 왜 필요한가
+ *
+ * 「파일이 바뀌었다」와 「동작이 바뀌었다」는 다른 말이다. 이 저장소는 그 한 겹을
+ * 빠뜨려 **멀쩡한 가드를 의심하고 고치러 갈 뻔했다**(CLAUDE.md 2026-08-21):
+ * 치환은 먹었는데 뜻이 그대로라 시험이 초록이고, 하네스는 그것을 「가드가 아니다」로
+ * 찍는다. 그래서 변이를 넣은 뒤 이 지문을 다시 찍어 **달라졌는지 먼저 확인**하고,
+ * 안 달라졌으면 판정을 **거부**한다.
+ *
+ * ## 무엇을 찍나
+ *
+ *  ⑴ 판정 — 모든 갈래를 내는 말뭉치에 판정기를 돌린 결과(갈래·라벨 글자·색 클래스)
+ *  ⑵ 팔레트 — `globals.css` 가 갈래마다 실제로 내주는 hex 와 `@theme` 연결 여부
+ *
+ * ⚠️ **컴포넌트 배선(`ProblemCard`·`ReviewProblemCard`)은 여기 없다.** 그쪽은 CSS 모듈을
+ *    물고 있어 이 스크립트에서 못 그린다. 그래서 변이 하네스는 그 두 파일에 대해서만
+ *    ⑶ 을 «구조»로 표시하고 넘어간다 — 숨기지 않으려고 여기에 적어 둔다.
+ */
+import { readFileSync } from "node:fs";
+import path from "node:path";
+
+import {
+  classifyFigure,
+  classifyFormat,
+  classifyOrigin,
+  provenanceBadges,
+  provenanceColorToken,
+  FIGURE_ORIGINS,
+  PROBLEM_FORMATS,
+  PROBLEM_ORIGINS,
+  type ProvenanceInput,
+} from "../../src/lib/problem/provenance";
+
+const BLANK: ProvenanceInput = {
+  source: "manual",
+  familyKey: null,
+  originProblemId: null,
+  figureUrls: [],
+  figureSvg: null,
+  // 형식 축의 바닥값 — 보기 없음 + 정답이 글 = 서술형.
+  content: "다음을 계산하시오. $1+1$",
+  answer: "$2$",
+};
+
+/**
+ * 말뭉치 — **모든 갈래를 적어도 한 번씩 낸다.** 여기에 없는 자리는 변이를 넣어도
+ * 지문이 안 바뀌고, 그러면 하네스가 판정을 거부한다(그게 옳다 — 시험이 그 자리를
+ * 구조적으로 못 보고 있다는 뜻이니 말뭉치부터 넓혀야 한다).
+ */
+/** 보기 다섯이 달린 본문 — 실측 33,857건의 모양이다. */
+const MCQ = ["다음 중 옳은 것은?", "① 가", "② 나", "③ 다", "④ 라", "⑤ 마"].join(
+  "\n",
+);
+
+const CORPUS: ReadonlyArray<readonly [string, ProvenanceInput]> = [
+  ["기출", { ...BLANK, source: "past_exam" }],
+  [
+    "기출+스캔",
+    { ...BLANK, source: "past_exam", figureUrls: ["/figures/a/q1.jpg"] },
+  ],
+  [
+    "기출+SVG",
+    { ...BLANK, source: "past_exam", figureUrls: ["/figures-svg/a/q1.svg"] },
+  ],
+  ["문제집", { ...BLANK, source: "transformed" }],
+  [
+    "AI변형",
+    {
+      ...BLANK,
+      source: "transformed",
+      originProblemId: "00000000-0000-4000-8000-00000000a001",
+    },
+  ],
+  ["AI생성", { ...BLANK, source: "ai_generated" }],
+  [
+    "초등",
+    { ...BLANK, familyKey: "elem:초6|2-5-1 원주와 원주율 알아보기|연산" },
+  ],
+  [
+    "초등+도형",
+    {
+      ...BLANK,
+      familyKey: "elem:초5|2-2-4 분수의 곱셈|응용",
+      figureSvg: "<svg/>",
+    },
+  ],
+  ["중등", { ...BLANK, familyKey: "mid:3-1|근호를 포함한 식의 계산|06" }],
+  [
+    "중등+도형",
+    { ...BLANK, familyKey: "mid:2-2|피타고라스 정리|09", figureSvg: "<svg/>" },
+  ],
+  ["옛수동(미분류)", { ...BLANK, familyKey: null }],
+  [
+    "손등록(solo)",
+    { ...BLANK, familyKey: "solo:11111111-2222-4333-8444-555555555555" },
+  ],
+  ["그림빈문자열", { ...BLANK, figureSvg: "" }],
+  ["아는뿌리밖", { ...BLANK, figureUrls: ["/figures-300/a.png"] }],
+  ["빈배열", { ...BLANK, figureUrls: [] }],
+  ["객관식", { ...BLANK, content: MCQ, answer: "③" }],
+  ["객관식-복수답", { ...BLANK, content: MCQ, answer: "②, ⑤" }],
+  ["형식모름-보기만", { ...BLANK, content: MCQ, answer: "풀이참조" }],
+  ["형식모름-정답만", { ...BLANK, answer: "③" }],
+  // ⚠️ 아래 둘은 **변이 하네스가 있어야 한다고 알려 준 자리**다. 없을 때 「보기 문턱을
+  //    1로 내린다」·「원문자 계열을 ①~⑤ 로 좁힌다」 변이가 지문을 안 바꿔서 하네스가
+  //    판정을 **거부**했다 — 말뭉치가 그 자리를 구조적으로 못 보고 있었다는 뜻이다.
+  ["보기하나", { ...BLANK, content: "물음\n① 가", answer: "①" }],
+  ["비표준원문자", { ...BLANK, content: MCQ, answer: "➂" }],
+];
+
+const CSS = readFileSync(
+  path.join(process.cwd(), "src/app/globals.css"),
+  "utf8",
+);
+const ROOT_BLOCK = /:root\s*\{([\s\S]*?)\n\}/.exec(CSS)?.[1] ?? "";
+const THEME_BLOCK = /@theme inline\s*\{([\s\S]*?)\n\}/.exec(CSS)?.[1] ?? "";
+const declared = (block: string, name: string) =>
+  new RegExp(`(?:^|\\n)\\s*${name}:\\s*([^;]+);`).exec(block)?.[1]?.trim() ??
+  "(없음)";
+
+const lines: string[] = ["## 판정"];
+for (const [name, input] of CORPUS) {
+  const badges = provenanceBadges(input)
+    .map((b) => `${b.axis}/${b.kind}:${b.text}:${b.className}`)
+    .join(" ");
+  lines.push(
+    `${name} | origin=${classifyOrigin(input)} | figure=${classifyFigure(input) ?? "없음"} | format=${classifyFormat(input)} | ${badges}`,
+  );
+}
+
+lines.push("", "## 팔레트");
+const AXES = [
+  ["origin", PROBLEM_ORIGINS],
+  ["figure", FIGURE_ORIGINS],
+  ["format", PROBLEM_FORMATS],
+] as const;
+for (const [axis, kinds] of AXES)
+  for (const kind of kinds) {
+    const themeName = provenanceColorToken(axis, kind);
+    const rootName = themeName.replace("--color-", "--");
+    lines.push(
+      `${axis}/${kind} | ${rootName}=${declared(ROOT_BLOCK, rootName)} | ${themeName}=${declared(THEME_BLOCK, themeName)}`,
+    );
+  }
+
+process.stdout.write(lines.join("\n") + "\n");

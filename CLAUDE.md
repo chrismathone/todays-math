@@ -1371,3 +1371,34 @@ docker compose up -d # 로컬 PostgreSQL
   산출물이 아니라 틀에서 세라.** (3) **물려받은 대조군을 검산하라.** (4) 변이 시험의
   ⑶ 은 **지문이 충분히 넓을 때만** 참이다. (5) 단위 시험이 무엇을 import 하는지가
   **다른 파일의 성적**을 바꾼다.
+
+### [2026-08-25] 한글 이름 워크트리에서는 **테스트가 한 줄도 안 돈다** — Node 가 `#imports` 를 못 읽는다
+- **상황**: `출처라벨` 워크트리에서 `npm run test` 를 돌렸더니 **파일마다 전량 실패**했다.
+  `Cannot find module '#main-entry-point'` — `node_modules/.prisma/client/default.js`.
+  내 코드와 아무 상관이 없고, 메인 워크트리(`D:\todays-math`)에서는 **같은 시험이 통과**한다.
+- **가짜 단서 둘을 먼저 기각했다.** ⑴ 「vite/vitest 탓」 — 아니다. **맨 `node -e "require('@prisma/client')"`
+  도 똑같이 죽는다. ⑵ 「이 워크트리의 설치가 깨졌다」 — 아니다. `@prisma/client`·`prisma`·
+  `tsx`·`vite`·`vitest` 버전이 메인과 **전부 같고**, `.prisma/client/default.js` 와
+  `package.json` 이 **바이트까지 같다**(md5 대조).
+- **진짜 원인**: **Node v22.17.1(win32)은 경로에 비ASCII가 있으면 package.json 의 `imports`
+  (서브패스 임포트)를 해석하지 못한다.** 최소 재현 — 같은 `package.json`(`{"imports":{"#x":…}}`)
+  과 `index.js` 를 두 폴더에 두고 `require("#x")`:
+  `C:\tmp\imp-ascii` **성공** · `C:\tmp\imp-한글` **MODULE_NOT_FOUND**.
+  2026-08-19 의 `fs.rmSync` 건과 **같은 부류**다(그때는 Node v24 였다 — 버전이 아니라
+  **win32 + 비ASCII 경로**가 축이다).
+- **함정 — 정션(junction)으로는 반증이 안 된다.** ASCII 이름으로 junction 을 걸고 돌려도
+  똑같이 죽는다. Node 는 기본으로 **심볼릭 링크를 실제 경로로 풀기** 때문에 결국 한글
+  경로를 본다. 「ASCII 로 돌려도 죽으니 경로 탓이 아니다」로 **한 번 잘못 기각했다.**
+  가설을 기각할 때는 **그 실험이 정말 가설을 건드리는지**부터 확인하라.
+- **왜 하필 지금 터졌나**: 이 자리는 prisma 클라이언트가 **생성돼 있을 때만** 나온다.
+  생성이 안 돼 있으면 한 단계 앞에서 `Cannot find module '.prisma/client/default'` 로 죽는다.
+  둘 다 「테스트가 통째로 안 돈다」로 보이지만 **다른 고장**이다.
+- **당장의 해결(이 워크트리 한정, `node_modules` 는 커밋 대상이 아니다)**:
+  `node_modules/.prisma/client/default.js` 의 `require('#main-entry-point')` 를
+  `require('./index.js')` 로 바꾼다. 그 package.json 의 `#main-entry-point.require.node`
+  값이 곧 `./index.js` 라 **뜻이 같다**. 원본은 `default.js.orig` 로 남겨 둔다.
+  (`prisma generate` 를 다시 돌리면 덮어써지므로 그때 다시 해야 한다.)
+- **교훈**: **워크트리 이름에 한글을 쓰지 마라.** 이 저장소에서 win32 + 비ASCII 경로로
+  깨진 것이 이제 둘이다(`fs.rmSync` · `#imports`). 그리고 「환경 문제」로 이름 붙이기 전에
+  **두 환경의 차이를 하나씩 지워 최소 재현을 만들어라** — 여기서는 package.json 두 줄과
+  폴더 이름 하나면 끝났다(2026-08-19 와 같은 교훈, 같은 축).
