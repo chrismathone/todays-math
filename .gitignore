@@ -54,6 +54,10 @@ scripts/qa/reports/*
 # (2026-08-18 적대적 리뷰: 잠금 원장이 커밋되지 않아 다른 컴퓨터에서 되돌릴 수 없었다.)
 # 조사 산출물은 예외 — 다시 뽑으려면 수 분이 걸리고 다른 컴퓨터가 바로 읽어야 한다.
 !scripts/qa/reports/topic-coverage.json
+# 심화 4단 검토 원장 — **사람이 무엇을 보고 「4단이다/아니다」라고 했는지가 여기에만 있다.**
+# 판정기 둘(probe-elem-tier-4dan · probe-middle-tier-4dan)이 이 파일을 읽어 «미검토»를
+# 가르므로, 없으면 다른 컴퓨터에서 관문이 통째로 빨개지고 판정을 처음부터 다시 해야 한다.
+!scripts/qa/reports/tier4-review.json
 # 그림 유실 잠금 원장 — **공유 DB 를 되돌리는 유일한 근거다.**
 # 여기 없으면 다른 컴퓨터에서 790건을 되돌릴 방법이 없다(적대적 리뷰 지적).
 !scripts/qa/reports/missing-figure-lock.json
@@ -132,6 +136,10 @@ scripts/qa/reports/*
 !scripts/qa/reports/figure-swap-ledger.json
 # SVG 채택 되돌리기 원장 — figureUrls 의 **옛 경로**가 여기에만 있다.
 !scripts/qa/reports/figure-svg-adopt.json
+# 「배치가 정해지는가」 판정의 **시험 분모**. 공유 DB(D-31)는 다른 트랙이 같은 순간에도
+# 고치고 있어(2026-08-25 모두고르시오가 보기 ⑤를 붙이는 것을 실측했다) 살아 있는 수치를
+# 시험에 박으면 남의 작업이 내 시험을 빨갛게 만든다. 그래서 스냅숏을 커밋해 시험을 밀봉한다.
+!scripts/qa/reports/figure-dependent-snapshot.json
 # 단원 오배정 되돌리기 원장.
 !scripts/qa/reports/basic-figure-unit-fix.json
 # 날 LaTeX 문항 제외 되돌리기 원장 — 고친 뒤 되돌릴 근거가 여기에만 있다.

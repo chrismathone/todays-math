@@ -78,6 +78,9 @@ export function serializeProblem(row: ProblemRow): ProblemEntity {
     unitId: row.unitId,
     source: row.source,
     originProblemId: row.originProblemId,
+    // 엔진이 적은 «자기 유형 정체». 화면의 출처 라벨이 **이 값으로** 엔진을 가른다
+    // (`src/lib/problem/provenance.ts`) — 빠뜨리면 엔진 문항이 통째로 미분류가 된다.
+    familyKey: row.familyKey,
     difficulty: row.difficulty,
     // Problem.problemType은 DB에서 자유 문자열(VarChar)이지만 앱 계약은 4종으로 좁힌다
     // (07-coding-convention.md §2.3, problem.contract.ts 상단 주석 참조).
