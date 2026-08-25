@@ -20,6 +20,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
+import { CHOICE_COUNT } from "../problem/choiceCountRule";
 
 import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
@@ -287,6 +288,11 @@ export const RATIONAL_FACT_POOL: readonly {
     truth: true,
   },
   { text: "무한소수 중에는 순환소수가 아닌 것도 있다.", truth: true },
+  { text: "모든 유리수는 유한소수로 나타낼 수 있다.", truth: false },
+  {
+    text: "기약분수의 분모가 $2$나 $5$만을 소인수로 가지면 순환소수로 나타낼 수 있다.",
+    truth: false,
+  },
   {
     text: "기약분수의 분모가 $2$나 $5$ 이외의 소인수를 가지면 유한소수로 나타낼 수 없다.",
     truth: true,
@@ -867,9 +873,17 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
           },
         };
       };
-      const kinds = shuffle(rng, [0, 1, 2, pick(rng, [0, 1, 2] as const)]);
+      // 🔴 보기는 **정확히 다섯** (원장님 2026-08-25). 예전에는 넷이었다.
+      const kinds = shuffle(rng, [
+        0,
+        1,
+        2,
+        ...Array.from({ length: CHOICE_COUNT - 3 }, () =>
+          pick(rng, [0, 1, 2] as const),
+        ),
+      ]);
       const stmts: Stmt[] = [];
-      for (let i = 0; i < 4; i += 1) {
+      for (let i = 0; i < CHOICE_COUNT; i += 1) {
         const s = mk(kinds[i]!, i + 1);
         if (s === null) return null;
         stmts.push(s);
@@ -895,8 +909,8 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
       stmts.forEach((s) => Object.assign(facts, s.facts));
       return {
         content: `다음 중 두 수의 대소 관계가 옳은 것을 모두 고르시오.\n${lines}`,
-        answer: lettersOfMask(mask, 4),
-        solution: `순환소수를 소수점 아래로 몇 자리 펼쳐 처음으로 달라지는 자리를 견주거나, 분수로 나타내어 비교한다.\n각 보기를 이렇게 확인하면 옳은 것은 ${lettersOfMask(mask, 4)}이다.`,
+        answer: lettersOfMask(mask, CHOICE_COUNT),
+        solution: `순환소수를 소수점 아래로 몇 자리 펼쳐 처음으로 달라지는 자리를 견주거나, 분수로 나타내어 비교한다.\n각 보기를 이렇게 확인하면 옳은 것은 ${lettersOfMask(mask, CHOICE_COUNT)}이다.`,
         facts,
       };
     }),
@@ -921,7 +935,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
           .slice(0, need)
           .map((r) => r.i),
         ...shuffle(rng, falses)
-          .slice(0, 4 - need)
+          .slice(0, CHOICE_COUNT - need)
           .map((r) => r.i),
       ]);
       let mask = 0;
@@ -937,8 +951,8 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
       });
       return {
         content: `다음 보기에서 옳은 것을 모두 고르시오.\n${lines}`,
-        answer: lettersOfMask(mask, 4),
-        solution: `유한소수와 순환소수는 모두 분수로 나타낼 수 있으므로 유리수이고, 순환소수가 아닌 무한소수는 유리수가 아니다.\n이를 근거로 보기를 살피면 옳은 것은 ${lettersOfMask(mask, 4)}이다.`,
+        answer: lettersOfMask(mask, CHOICE_COUNT),
+        solution: `유한소수와 순환소수는 모두 분수로 나타낼 수 있으므로 유리수이고, 순환소수가 아닌 무한소수는 유리수가 아니다.\n이를 근거로 보기를 살피면 옳은 것은 ${lettersOfMask(mask, CHOICE_COUNT)}이다.`,
         facts,
       };
     }),

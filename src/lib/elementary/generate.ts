@@ -17,6 +17,7 @@ import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
 import { ELEM_GRADES, type ElemProblem } from "./types";
 import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
+import { assertChoiceCount } from "../problem/choiceCountRule";
 import { wrapDanClause } from "../problemText";
 
 export {
@@ -103,6 +104,7 @@ function tidy(p: ElemProblem): ElemProblem {
   // 관문을 여기 걸어 두어야 나중에 생기는 유형이 조용히 규칙 밖으로 못 나간다.
   // 「가장 큰 것을 고르시오」류는 「모두」가 없어 대상이 아니다.
   assertChooseAllAnswerCount(content, p.answer, `초등 ${p.grade} ${p.section}`);
+  assertChoiceCount(content, `초등 ${p.grade} ${p.section}`);
   return content === p.content ? p : { ...p, content };
 }
 

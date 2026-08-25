@@ -43,6 +43,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
+import { CHOICE_COUNT } from "../problem/choiceCountRule";
 
 import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
@@ -648,7 +649,9 @@ const TYPES_G1: TypeEntry[] = [
 
   g1("04", "이차함수 의 그래프", "기본", (rng) =>
     attempt(60, (): Body | null => {
-      const idx = distinctIndices(rng, A_MAGS.length, 4);
+      // 🔴 보기는 **정확히 다섯** (원장님 2026-08-25: 「4지선다를 5지선다로」).
+      //    예전에는 넷이었다 — `CHOICE_COUNT` 한 곳에서 온다.
+      const idx = distinctIndices(rng, A_MAGS.length, CHOICE_COUNT);
       const mags = idx.map((i) => A_MAGS[i]!);
       const coefs = mags.map((m) => (pick(rng, SIGNS) === 1 ? m : rNeg(m)));
       const abs = coefs.map((c) => Math.abs(rVal(c)));
@@ -677,6 +680,8 @@ const TYPES_G1: TypeEntry[] = [
           d2: coefs[2]![1],
           n3: coefs[3]![0],
           d3: coefs[3]![1],
+          n4: coefs[4]![0],
+          d4: coefs[4]![1],
           at,
           ansN: ansR[0],
           ansD: ansR[1],

@@ -521,6 +521,8 @@ const FACT_TRUTHS: Record<string, boolean> = {
   "유한소수로 나타낼 수 없는 기약분수는 순환소수로 나타낼 수 있다.": true,
   "정수가 아닌 유리수는 유한소수 또는 순환소수로 나타낼 수 있다.": true,
   "무한소수 중에는 순환소수가 아닌 것도 있다.": true,
+  "모든 유리수는 유한소수로 나타낼 수 있다.": false,
+  "기약분수의 분모가 $2$나 $5$만을 소인수로 가지면 순환소수로 나타낼 수 있다.": false,
   "기약분수의 분모가 $2$나 $5$ 이외의 소인수를 가지면 유한소수로 나타낼 수 없다.": true,
 };
 
@@ -739,7 +741,7 @@ const CHECKS: Record<string, Check> = {
     const f = p.facts;
     const LEN = 40;
     let mask = 0;
-    for (let i = 1; i <= 4; i += 1) {
+    for (let i = 1; i <= 5; i += 1) {
       const kind = f[`s${i}Kind`]!;
       let intL = 0;
       let intRt = 0;
@@ -771,14 +773,14 @@ const CHECKS: Record<string, Check> = {
       if (truth) mask |= 1 << (i - 1);
     }
     expect(mask).toBe(f.mask);
-    const cnt = [0, 1, 2, 3].filter((i) => mask & (1 << i)).length;
+    const cnt = [0, 1, 2, 3, 4].filter((i) => mask & (1 << i)).length;
     expect(cnt).toBeGreaterThan(0);
-    expect(cnt).toBeLessThan(4);
-    expect(p.answer).toBe(lettersOf(mask, 4));
+    expect(cnt).toBeLessThan(5);
+    expect(p.answer).toBe(lettersOf(mask, 5));
   },
   [`${R}|18`]: (p) => {
     const lines = p.content.split("\n").slice(1);
-    expect(lines.length).toBe(4);
+    expect(lines.length).toBe(5);
     let mask = 0;
     lines.forEach((line, i) => {
       const text = line.replace(`${LETTERS[i]} `, "");
@@ -787,7 +789,7 @@ const CHECKS: Record<string, Check> = {
       if (truth) mask |= 1 << i;
     });
     expect(mask).toBe(p.facts.mask);
-    expect(p.answer).toBe(lettersOf(mask, 4));
+    expect(p.answer).toBe(lettersOf(mask, 5));
   },
   [`${R}|19`]: (p) => {
     const f = p.facts;
@@ -1492,8 +1494,9 @@ describe("중2 수·확률 49유형 (2A-중2수확률 + 2E-회전판색칠)", ()
     const EXPECT: Record<string, number> = {
       [`${R}|01`]: 5,
       [`${R}|06`]: 5,
-      [`${R}|17`]: 4,
-      [`${R}|18`]: 4,
+      // 🔴 2026-08-25 넷 → 다섯 (원장님: 「4지선다를 5지선다로」).
+      [`${R}|17`]: 5,
+      [`${R}|18`]: 5,
     };
     for (const [key, n] of Object.entries(EXPECT)) {
       for (const seed of SEEDS) {

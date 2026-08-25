@@ -22,6 +22,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { CHOICE_COUNT } from "../problem/choiceCountRule";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중1";
@@ -582,6 +583,12 @@ const M1_JOINT: TypeEntry[] = [
         angle: string;
         thirdOwn: string;
         thirdOther: string;
+        /**
+         * 🔴 **확실히 모자란** 변 조건 — 대응이 어긋난 짝이다.
+         * 이미 같다고 준 변과 짝지어져 「그 삼각형이 이등변이다」만 뜻하므로
+         * 합동을 못 준다. (남은 변끼리 같다고 하면 SSS 가 되어 **정답이 된다.**)
+         */
+        wrongSide: string;
       }[] = [
         {
           known:
@@ -589,6 +596,8 @@ const M1_JOINT: TypeEntry[] = [
           angle: "B",
           thirdOwn: "CA",
           thirdOther: "FD",
+          // $\overline{EF}=\overline{BC}$ 는 이미 같다 → 「$\overline{CA}=\overline{BC}$」일 뿐.
+          wrongSide: "$\\overline{CA}=\\overline{EF}$",
         },
         {
           known:
@@ -596,6 +605,8 @@ const M1_JOINT: TypeEntry[] = [
           angle: "A",
           thirdOwn: "BC",
           thirdOther: "EF",
+          // $\overline{FD}=\overline{CA}$ 는 이미 같다 → 「$\overline{BC}=\overline{CA}$」일 뿐.
+          wrongSide: "$\\overline{BC}=\\overline{FD}$",
         },
         {
           known:
@@ -603,17 +614,34 @@ const M1_JOINT: TypeEntry[] = [
           angle: "C",
           thirdOwn: "AB",
           thirdOther: "DE",
+          // $\overline{FD}=\overline{CA}$ 는 이미 같다 → 「$\overline{AB}=\overline{CA}$」일 뿐.
+          wrongSide: "$\\overline{AB}=\\overline{FD}$",
         },
       ];
       const cfg = CONFIGS[config]!;
       const OTHERS = ["A", "B", "C"].filter((a) => a !== cfg.angle);
       const correctText = `$\\angle ${cfg.angle}=\\angle ${CORR[cfg.angle]}$`;
+      // 🔴 보기는 **정확히 다섯** (원장님 2026-08-25) — `CHOICE_COUNT` 한 곳에서 온다.
+      //
+      // 🔴 그리고 예전 넷째 보기 `$\overline{thirdOwn}=\overline{thirdOther}$` 는
+      //    **빼야 한다.** 두 쌍의 변이 이미 같은데 남은 한 쌍까지 같으면 그건 SSS 라
+      //    **실제로 합동이 된다** — 정답이 둘인 문항이었다(2026-08-25 발견).
+      //    대신 «확실히 모자란» 조건 둘로 갈음한다.
       const options = shuffle(rng, [
         correctText,
         `$\\angle ${OTHERS[0]}=\\angle ${CORR[OTHERS[0]!]}$`,
         `$\\angle ${OTHERS[1]}=\\angle ${CORR[OTHERS[1]!]}$`,
-        `$\\overline{${cfg.thirdOwn}}=\\overline{${cfg.thirdOther}}$`,
+        // 대응이 어긋난 끼인각 — 크기가 같아도 «서로 대응하는 끼인각»이 아니다.
+        `$\\angle ${cfg.angle}=\\angle ${CORR[OTHERS[0]!]}$`,
+        // 대응이 어긋난 변 — 이미 같다고 준 변과 짝지어져 «그 삼각형이 이등변이다»만
+        // 뜻한다. 합동을 못 준다.
+        cfg.wrongSide,
       ]);
+      if (options.length !== CHOICE_COUNT) {
+        throw new Error(
+          `보기가 ${options.length}개다 — ${CHOICE_COUNT}개여야 한다`,
+        );
+      }
       const correctPos = options.indexOf(correctText);
       const lines = options.map((o, i) => `${CIRCLED[i]} ${o}`).join("\n");
       return {

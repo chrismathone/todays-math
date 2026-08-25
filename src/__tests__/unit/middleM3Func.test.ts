@@ -632,10 +632,11 @@ const VERIFY: Record<string, (p: MidProblem) => void> = {
 
   [`${M1}|04`]: (p) => {
     const items = maths(p.content).filter((s) => s.startsWith("y="));
-    expect(items).toHaveLength(4);
+    // 🔴 2026-08-25 넷 → 다섯 (원장님: 「4지선다를 5지선다로」).
+    expect(items).toHaveLength(5);
     const coefs = items.map((s) => evalLatex(rhsOf(s), { x: 1 }));
     const abs = coefs.map(Math.abs);
-    expect(new Set(abs).size).toBe(4);
+    expect(new Set(abs).size).toBe(5);
     const want = p.facts.mode === 0 ? Math.min(...abs) : Math.max(...abs);
     expect(near(ansNum(p), coefs[abs.indexOf(want)]!)).toBe(true);
   },

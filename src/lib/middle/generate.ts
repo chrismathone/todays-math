@@ -11,6 +11,7 @@
 import { createRng } from "../elementary/rng";
 
 import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
+import { assertChoiceCount } from "../problem/choiceCountRule";
 
 import { tidySolution } from "./solutionText";
 import { resolveMiddleTier } from "./tier";
@@ -105,6 +106,8 @@ export function generateMiddleProblem(
   // 「모두 고르시오」의 정답은 정확히 2개 (원장님 2026-08-25). 생성기마다 지키면
   // 새 유형이 늘 때 빠뜨려도 아무도 모른다 — **여기 한 곳**에서 다시 보고 던진다.
   assertChooseAllAnswerCount(content, p.answer, `중등 유형 ${key}`);
+  // 보기가 있으면 정확히 다섯 (원장님 2026-08-25, D-80). 같은 이유로 여기 한 곳이다.
+  assertChoiceCount(content, `중등 유형 ${key}`);
   if (
     tidied === p.solution &&
     content === p.content &&
