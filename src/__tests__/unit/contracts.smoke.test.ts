@@ -163,6 +163,9 @@ describe("[T0.5.1] problem.contract", () => {
       unitId: UUID_2,
       source: "manual",
       originProblemId: null,
+      // 엔진 표지(D-105). **널이 될 수는 있어도 빠질 수는 없다** — 화면의 출처 라벨이
+      // 이 값으로 엔진을 가르므로, 빠뜨린 경로는 조용히 미분류를 내는 대신 여기서 죽는다.
+      familyKey: null,
       difficulty: "기본",
       problemType: "계산",
       content: "본문",
