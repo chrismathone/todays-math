@@ -35,8 +35,10 @@ import { PrismaClient } from "@prisma/client";
 
 import {
   classifyFigure,
+  classifyFormat,
   classifyOrigin,
   FIGURE_ORIGINS,
+  PROBLEM_FORMATS,
   PROBLEM_ORIGINS,
   type ProvenanceInput,
 } from "../../src/lib/problem/provenance";
@@ -52,6 +54,11 @@ type Row = ProvenanceInput & {
   problemCode: string;
   /** 적재기가 적어 둔 그림 출처 — 우리 판정의 **독립 대조군**이다. */
   figureSource: string | null;
+  /**
+   * 사람·이관기가 적어 둔 출제 형식 — 형식 판정의 **독립 대조군**이다.
+   * ⚠️ **열쇠로 쓰지 않는다.** 정답이 `①` 인데 «서술형»이라 적힌 행이 있다(실측).
+   */
+  questionType: string | null;
 };
 
 const KNOWN_FAMILY_PREFIX = ["elem:", "mid:", "solo:"];
@@ -65,8 +72,10 @@ export async function loadRows(prisma: PrismaClient): Promise<Row[]> {
            "figure_urls"                                     AS "figureUrls",
            CASE WHEN "figure_svg" IS NOT NULL AND "figure_svg" <> ''
                 THEN '<svg/>' ELSE NULL END                  AS "figureSvg",
+           "content", "answer",
            "problem_code"                                    AS "problemCode",
-           "figure_source"                                   AS "figureSource"
+           "figure_source"                                   AS "figureSource",
+           "question_type"                                   AS "questionType"
       FROM "problem"
   `;
 }
@@ -84,6 +93,7 @@ function legacyProxyOrigin(row: Row): string {
 export interface ProbeResult {
   total: number;
   origin: Record<string, number>;
+  format: Record<string, number>;
   figure: Record<string, number>;
   /** 구조가 깨진 자리 — 하나라도 있으면 0이 아닌 코드로 끝난다. */
   breakages: { kind: string; detail: string; codes: string[] }[];
@@ -92,19 +102,50 @@ export interface ProbeResult {
 }
 
 export function probe(rows: readonly Row[]): ProbeResult {
-  const origin = Object.fromEntries(PROBLEM_ORIGINS.map((k) => [k, 0]));
-  const figure = Object.fromEntries(
+  const origin: Record<string, number> = Object.fromEntries(
+    PROBLEM_ORIGINS.map((k) => [k, 0]),
+  );
+  const format: Record<string, number> = Object.fromEntries(
+    PROBLEM_FORMATS.map((k) => [k, 0]),
+  );
+  const figure: Record<string, number> = Object.fromEntries(
     [...FIGURE_ORIGINS, "none"].map((k) => [k, 0]),
   );
   const unknownFamily: string[] = [];
   const unknownRoot: string[] = [];
   const figureMismatch: string[] = [];
   const proxyMismatch: string[] = [];
+  const questionTypeMismatch: string[] = [];
 
   for (const row of rows) {
     origin[classifyOrigin(row)]! += 1;
+    const fmt = classifyFormat(row);
+    format[fmt]! += 1;
     const fig = classifyFigure(row);
     figure[fig ?? "none"]! += 1;
+
+    // 형식의 대조군 ㉢ — `question_type` 과 갈리는 자리. **실패가 아니라 정보**다:
+    // 표본을 열어 보면 어긋난 자리에서 우리 쪽이 맞다(정답이 번호인데 «서술형»).
+    const recorded =
+      fmt === "multiple_choice"
+        ? "객관식"
+        : fmt === "written"
+          ? null // 단답형·서술형 둘 다 될 수 있다 — 한쪽으로 단정하지 않는다
+          : "(모름)";
+    if (
+      recorded === "객관식" &&
+      row.questionType &&
+      row.questionType !== "객관식"
+    ) {
+      questionTypeMismatch.push(
+        `${row.problemCode} 우리=객관식 question_type=${row.questionType}`,
+      );
+    }
+    if (fmt === "written" && row.questionType === "객관식") {
+      questionTypeMismatch.push(
+        `${row.problemCode} 우리=서술형 question_type=객관식`,
+      );
+    }
 
     // ⑵ 엔진이 새 표지를 쓰기 시작했나
     if (
@@ -143,7 +184,15 @@ export function probe(rows: readonly Row[]): ProbeResult {
 
   const breakages: ProbeResult["breakages"] = [];
   const sumOrigin = Object.values(origin).reduce((a, b) => a + b, 0);
+  const sumFormat = Object.values(format).reduce((a, b) => a + b, 0);
   const sumFigure = Object.values(figure).reduce((a, b) => a + b, 0);
+  if (sumFormat !== rows.length) {
+    breakages.push({
+      kind: "분모",
+      detail: `형식 합 ${sumFormat} != 전체 ${rows.length}`,
+      codes: [],
+    });
+  }
   if (sumOrigin !== rows.length) {
     breakages.push({
       kind: "분모",
@@ -181,6 +230,13 @@ export function probe(rows: readonly Row[]): ProbeResult {
   }
 
   const divergence: ProbeResult["divergence"] = [];
+  if (questionTypeMismatch.length) {
+    divergence.push({
+      kind: "question_type 대조",
+      detail: `기록된 형식과 갈린 ${questionTypeMismatch.length}건 (표본에서는 우리 쪽이 맞다 — 그래서 열쇠로 안 쓴다)`,
+      codes: questionTypeMismatch,
+    });
+  }
   if (proxyMismatch.length) {
     divergence.push({
       kind: "대리 규칙",
@@ -188,7 +244,7 @@ export function probe(rows: readonly Row[]): ProbeResult {
       codes: proxyMismatch,
     });
   }
-  return { total: rows.length, origin, figure, breakages, divergence };
+  return { total: rows.length, origin, format, figure, breakages, divergence };
 }
 
 function line(label: string, now: number, base: number): string {
@@ -213,6 +269,13 @@ async function main() {
         line(k, r.origin[k]!, BASE.origin[k as keyof typeof BASE.origin]),
       );
     }
+    console.log("\n형식");
+    for (const k of PROBLEM_FORMATS) {
+      console.log(
+        line(k, r.format[k]!, BASE.format[k as keyof typeof BASE.format]),
+      );
+    }
+
     console.log("\n그림 출처");
     for (const k of [...FIGURE_ORIGINS, "none"]) {
       console.log(
@@ -221,10 +284,15 @@ async function main() {
     }
 
     // 미분류가 0이면 「깨끗」이 아니라 「못 셈」일 수 있다 — 조용히 넘기지 않는다.
-    if (r.origin.unknown === 0) {
-      console.log(
-        "\n⚠️ 문항 출처 미분류가 0이다. 정말 전부 분류된 것인지, 열쇠가 눈먼 것인지 사람이 봐야 한다.",
-      );
+    for (const [축, n] of [
+      ["문항 출처", r.origin.unknown!],
+      ["형식", r.format.unknown!],
+    ] as const) {
+      if (n === 0) {
+        console.log(
+          `\n⚠️ ${축} 미분류가 0이다. 정말 전부 분류된 것인지, 열쇠가 눈먼 것인지 사람이 봐야 한다.`,
+        );
+      }
     }
 
     for (const d of r.divergence) {

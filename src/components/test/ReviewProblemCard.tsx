@@ -65,8 +65,9 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
         <p className="mt-1 flex flex-wrap items-center gap-2">
           {provenanceBadges(problem).map((badge) => (
             <abbr
-              key={badge.kind}
+              key={badge.axis}
               data-provenance={badge.kind}
+              data-provenance-axis={badge.axis}
               title={badge.name}
               className={`${MICRO_PLAIN} no-underline ${badge.className}`}
             >

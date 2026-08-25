@@ -25,10 +25,12 @@ import path from "node:path";
 
 import {
   classifyFigure,
+  classifyFormat,
   classifyOrigin,
   provenanceBadges,
   provenanceColorToken,
   FIGURE_ORIGINS,
+  PROBLEM_FORMATS,
   PROBLEM_ORIGINS,
   type ProvenanceInput,
 } from "../../src/lib/problem/provenance";
@@ -39,6 +41,9 @@ const BLANK: ProvenanceInput = {
   originProblemId: null,
   figureUrls: [],
   figureSvg: null,
+  // 형식 축의 바닥값 — 보기 없음 + 정답이 글 = 서술형.
+  content: "다음을 계산하시오. $1+1$",
+  answer: "$2$",
 };
 
 /**
@@ -46,6 +51,11 @@ const BLANK: ProvenanceInput = {
  * 지문이 안 바뀌고, 그러면 하네스가 판정을 거부한다(그게 옳다 — 시험이 그 자리를
  * 구조적으로 못 보고 있다는 뜻이니 말뭉치부터 넓혀야 한다).
  */
+/** 보기 다섯이 달린 본문 — 실측 33,857건의 모양이다. */
+const MCQ = ["다음 중 옳은 것은?", "① 가", "② 나", "③ 다", "④ 라", "⑤ 마"].join(
+  "\n",
+);
+
 const CORPUS: ReadonlyArray<readonly [string, ProvenanceInput]> = [
   ["기출", { ...BLANK, source: "past_exam" }],
   [
@@ -91,6 +101,10 @@ const CORPUS: ReadonlyArray<readonly [string, ProvenanceInput]> = [
   ["그림빈문자열", { ...BLANK, figureSvg: "" }],
   ["아는뿌리밖", { ...BLANK, figureUrls: ["/figures-300/a.png"] }],
   ["빈배열", { ...BLANK, figureUrls: [] }],
+  ["객관식", { ...BLANK, content: MCQ, answer: "③" }],
+  ["객관식-복수답", { ...BLANK, content: MCQ, answer: "②, ⑤" }],
+  ["형식모름-보기만", { ...BLANK, content: MCQ, answer: "풀이참조" }],
+  ["형식모름-정답만", { ...BLANK, answer: "③" }],
 ];
 
 const CSS = readFileSync(
@@ -106,20 +120,26 @@ const declared = (block: string, name: string) =>
 const lines: string[] = ["## 판정"];
 for (const [name, input] of CORPUS) {
   const badges = provenanceBadges(input)
-    .map((b) => `${b.kind}:${b.text}:${b.className}`)
+    .map((b) => `${b.axis}/${b.kind}:${b.text}:${b.className}`)
     .join(" ");
   lines.push(
-    `${name} | origin=${classifyOrigin(input)} | figure=${classifyFigure(input) ?? "없음"} | ${badges}`,
+    `${name} | origin=${classifyOrigin(input)} | figure=${classifyFigure(input) ?? "없음"} | format=${classifyFormat(input)} | ${badges}`,
   );
 }
 
 lines.push("", "## 팔레트");
-for (const kind of [...PROBLEM_ORIGINS, ...FIGURE_ORIGINS]) {
-  const themeName = provenanceColorToken(kind);
-  const rootName = themeName.replace("--color-", "--");
-  lines.push(
-    `${kind} | ${rootName}=${declared(ROOT_BLOCK, rootName)} | ${themeName}=${declared(THEME_BLOCK, themeName)}`,
-  );
-}
+const AXES = [
+  ["origin", PROBLEM_ORIGINS],
+  ["figure", FIGURE_ORIGINS],
+  ["format", PROBLEM_FORMATS],
+] as const;
+for (const [axis, kinds] of AXES)
+  for (const kind of kinds) {
+    const themeName = provenanceColorToken(axis, kind);
+    const rootName = themeName.replace("--color-", "--");
+    lines.push(
+      `${axis}/${kind} | ${rootName}=${declared(ROOT_BLOCK, rootName)} | ${themeName}=${declared(THEME_BLOCK, themeName)}`,
+    );
+  }
 
 process.stdout.write(lines.join("\n") + "\n");

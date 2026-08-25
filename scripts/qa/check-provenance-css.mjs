@@ -32,13 +32,15 @@ import postcss from "postcss";
 
 const ENTRY = "src/app/globals.css";
 
-/** 갈래 아홉의 글자색 클래스 — `provenance.ts` 의 `className` 과 같은 목록이다. */
+/** 갈래 열의 글자색 클래스 — `provenance.ts` 의 `className` 과 같은 목록이다. */
 const CLASSES = [
   "text-src-past-exam",
   "text-src-workbook",
   "text-src-elem",
   "text-src-middle",
   "text-src-ai",
+  "text-src-mcq",
+  "text-src-written",
   "text-src-figure",
   "text-src-svg",
   "text-src-scan",
@@ -47,8 +49,8 @@ const CLASSES = [
   "print:hidden",
 ];
 
-/** 값이 실렸는지 보는 표본 — 셋이면 충분하다(전부 같은 경로로 만들어진다). */
-const HEXES = ["#5e41a9", "#2c6600", "#903261"];
+/** 값이 실렸는지 보는 표본 — 축마다 하나씩(전부 같은 경로로 만들어진다). */
+const HEXES = ["#7f5eca", "#1e6200", "#90325d", "#5f5521", "#687a00"];
 
 const cssSelector = (cls) => "." + cls.split(":").join("\\:");
 

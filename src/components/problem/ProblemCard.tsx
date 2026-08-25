@@ -136,8 +136,9 @@ export const ProblemCard = memo(function ProblemCard({
             종이에도 필요하다고 정해지면 `/dev/print-check` 에 항목을 세우고 넣는다. */}
         {provenanceBadges(problem).map((badge) => (
           <abbr
-            key={badge.kind}
+            key={badge.axis}
             data-provenance={badge.kind}
+            data-provenance-axis={badge.axis}
             title={badge.name}
             className={`${MICRO} no-underline ${badge.className} print:hidden`}
           >

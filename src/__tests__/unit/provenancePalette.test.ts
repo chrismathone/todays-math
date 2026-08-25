@@ -32,6 +32,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   FIGURE_ORIGINS,
+  PROBLEM_FORMATS,
   PROBLEM_ORIGINS,
   provenanceColorToken,
 } from "@/lib/problem/provenance";
@@ -144,17 +145,35 @@ function deltaE2000(hexA: string, hexB: string): number {
 }
 
 // ── 잰 값 ────────────────────────────────────────────────────────────
-/** 이름 붙은 여덟 갈래 — 「모른다」 둘은 색을 새로 만들지 않으므로 뺀다. */
-const NAMED = [
-  ...PROBLEM_ORIGINS.filter((k) => k !== "unknown"),
-  ...FIGURE_ORIGINS.filter((k) => k !== "unknown"),
-];
+/**
+ * 축 셋 전량. 「모른다」 셋은 색을 새로 만들지 않으므로 이름 붙은 것만 남긴다.
+ * 목록을 손으로 적지 않는다 — 갈래를 하나 더하고 여기를 잊으면 그 색은 **구조적으로
+ * 안 재진다**(D-106 「타입은 배열 길이를 안 센다」와 같은 자리).
+ */
+const AXES = [
+  ["origin", PROBLEM_ORIGINS],
+  ["figure", FIGURE_ORIGINS],
+  ["format", PROBLEM_FORMATS],
+] as const;
+
+/** `축/갈래` 로 지목한다 — 세 축이 «모른다»에 같은 이름을 써서 갈래만으로는 안 갈린다. */
+const NAMED = AXES.flatMap(([axis, kinds]) =>
+  kinds.filter((k) => k !== "unknown").map((k) => `${axis}/${k}`),
+);
+
+const tokenOf = (id: string) => {
+  const [axis, kind] = id.split("/") as [
+    "origin" | "figure" | "format",
+    string,
+  ];
+  return provenanceColorToken(axis, kind);
+};
 
 /** 갈래 → `:root` 에 적힌 hex. 토큰 이름은 `provenance.ts` 에서 가져온다(두 벌 금지). */
 const NAMED_HEX = new Map(
-  NAMED.map((kind) => {
-    const token = provenanceColorToken(kind).replace("--color-", "--");
-    return [kind, declaredValue(ROOT_BLOCK, token)] as const;
+  NAMED.map((id) => {
+    const token = tokenOf(id).replace("--color-", "--");
+    return [id, declaredValue(ROOT_BLOCK, token)] as const;
   }),
 );
 
@@ -171,18 +190,16 @@ describe("[출처 팔레트] 토큰이 실제로 연결되어 있는가", () => 
     expect(THEME_BLOCK).toContain("--color-ink:");
   });
 
-  it.each(NAMED)("%s 의 색이 `:root` 에 hex 로 적혀 있다", (kind) => {
-    const hex = NAMED_HEX.get(kind);
-    expect(hex, `${provenanceColorToken(kind)} 가 :root 에 없다`).toMatch(
-      /^#[0-9a-f]{6}$/i,
-    );
+  it.each(NAMED)("%s 의 색이 `:root` 에 hex 로 적혀 있다", (id) => {
+    const hex = NAMED_HEX.get(id);
+    expect(hex, `${tokenOf(id)} 가 :root 에 없다`).toMatch(/^#[0-9a-f]{6}$/i);
   });
 
   // 🔴 05 §2.2.1 의 함정 — 여기가 비면 `text-src-*` 가 **아무 색도 안 내면서 에러도 안 난다.**
-  it.each([...NAMED, "unknown"] as const)(
+  it.each([...NAMED, "origin/unknown"] as const)(
     "%s 의 색이 `@theme inline` 에도 이어져 있다",
-    (kind) => {
-      const themeName = provenanceColorToken(kind);
+    (id) => {
+      const themeName = tokenOf(id);
       const value = declaredValue(THEME_BLOCK, themeName);
       expect(value, `${themeName} 가 @theme inline 에 없다`).not.toBeNull();
       // 리터럴을 한 벌 더 두지 않는다 — 반드시 `:root` 토큰을 가리켜야 한다.
@@ -197,13 +214,13 @@ describe("[출처 팔레트] 토큰이 실제로 연결되어 있는가", () => 
 });
 
 describe("[출처 팔레트] 원장님 지시 「색상 전부 다르게」 — 재서 지킨다", () => {
-  it("여덟 갈래의 색값이 서로 다른 문자열이다", () => {
+  it("열 갈래의 색값이 서로 다른 문자열이다", () => {
     const hexes = NAMED.map((k) => NAMED_HEX.get(k)!.toLowerCase());
-    expect(hexes).toHaveLength(8);
-    expect(new Set(hexes).size).toBe(8);
+    expect(hexes).toHaveLength(10);
+    expect(new Set(hexes).size).toBe(10);
   });
 
-  it(`여덟 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
+  it(`열 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
     const 가까운짝: string[] = [];
     for (let i = 0; i < NAMED.length; i += 1) {
       for (let j = i + 1; j < NAMED.length; j += 1) {
@@ -238,8 +255,8 @@ describe("[출처 팔레트] 원장님 지시 「색상 전부 다르게」 — 
 });
 
 describe("[출처 팔레트] 05 §6.1 대비 · §2.2 명도 계단이 아님", () => {
-  it.each(NAMED)("%s 는 흰 바탕에서 대비 4.5:1 이상이다", (kind) => {
-    expect(contrastOnWhite(NAMED_HEX.get(kind)!)).toBeGreaterThanOrEqual(4.5);
+  it.each(NAMED)("%s 는 흰 바탕에서 대비 4.5:1 이상이다", (id) => {
+    expect(contrastOnWhite(NAMED_HEX.get(id)!)).toBeGreaterThanOrEqual(4.5);
   });
 
   /**
@@ -247,7 +264,7 @@ describe("[출처 팔레트] 05 §6.1 대비 · §2.2 명도 계단이 아님", 
    * **분류**축이라 계단이면 안 된다 — 곁눈질로 「이게 더 나아간 상태」로 읽힌다.
    * 그래서 여덟 색을 한 띠 안에 가둔다(실측 4.81~7.49, 폭 1.56배).
    */
-  it("여덟 색의 대비가 한 띠 안에 있다 — 계단을 만들지 않는다", () => {
+  it("열 색의 대비가 한 띠 안에 있다 — 계단을 만들지 않는다", () => {
     const ratios = NAMED.map((k) => contrastOnWhite(NAMED_HEX.get(k)!));
     const span = Math.max(...ratios) / Math.min(...ratios);
     expect(span).toBeLessThan(2);

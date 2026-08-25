@@ -6,15 +6,19 @@
  * [SVG], 기출 문제 추출 [기] 같은 라벨 붙여줘. 라벨 색상 전부 다르게. 이게 어떤걸로 인해
  * 생성되었고 가져왔고 이런걸 다 분류해야겠어」 + 「문제집 추출 = [문]」.
  *
- * ## 축이 둘이고, 둘은 직교한다
+ * 추가 지시 2026-08-25: 「**객관식 = [객] · 서술형 = [서]**. 이건 출처 축과 다른 축이다」.
+ *
+ * ## 축이 셋이고, 셋은 직교한다
  *
  * ```
  *   문항 출처 — 문항 «본문»을 무엇이 만들었나    [기] [문] [초] [중] [AI] [?]
+ *   형식      — 「보기를 고르는가 써서 내는가」   [객] [서] [?형식]
  *   그림 출처 — 문항에 붙은 «그림»은 어디서 왔나  [도] [SVG] [스캔] (없으면 라벨 없음)
  * ```
  *
- * 겹친다. 초등 엔진이 낸 문항에 도형 엔진이 그림을 그리면 `[초] [도]` 다(실측 365건).
- * 그래서 하나의 열거형으로 뭉치지 않는다 — 뭉치면 둘 중 하나가 반드시 사라진다.
+ * 겹친다. 초등 엔진이 낸 문항에 도형 엔진이 그림을 그리고 그것이 객관식이면
+ * `[초] [도] [객]` 이다(실측 [초]+[도] 365건). 그래서 하나의 열거형으로 뭉치지
+ * 않는다 — 뭉치면 셋 중 둘이 반드시 사라진다.
  *
  * ## 판정의 «참»은 **기록된 컬럼**에서 온다 — 코드 모양에서 뽑지 않는다
  *
@@ -55,9 +59,25 @@
  * | `[AI]` ai·변형     |      0 | | (그림 없음)             | 37,921 |
  * | `[?]` 미분류       |    764 | |                         |        |
  *
+ * | 형식 | 건수 |
+ * |---|---|
+ * | `[객]` 객관식   | 33,857 |
+ * | `[서]` 서술형   | 13,616 |
+ * | `[?형식]` 미분류 |    311 |
+ *
  * 한 문항이 `figureSvg` 와 `figureUrls` 를 **같이** 갖는 일은 없고(실측 0건), 한 문항의
  * `figureUrls` 가 `/figures-svg/` 와 `/figures/` 를 섞는 일도 없다(실측 0건).
  */
+
+import { ANSWER_CIRCLED_CLASS } from "@/lib/math/circledNumber";
+
+import { parseProblemContent } from "./parseProblemContent";
+
+/**
+ * 정답 칸에 «보기 번호»가 있나. 계열 목록을 손으로 쓰지 않고 정본에서 가져온다 —
+ * `➀`(U+2780) 계열이 든 행이 **「원문자가 없다」로 읽히던** 전례가 있다(circledNumber.ts).
+ */
+const ANSWER_CHOICE_NUMBER = new RegExp(`[${ANSWER_CIRCLED_CLASS}]`);
 
 /** 문항 «본문»을 무엇이 만들었나 / 어디서 가져왔나. 문항마다 **정확히 하나**다. */
 export type ProblemOrigin =
@@ -65,6 +85,16 @@ export type ProblemOrigin =
 
 /** 문항에 붙은 «그림»이 어디서 왔나. 그림이 없으면 `null`. */
 export type FigureOrigin = "figure_engine" | "svg_engine" | "scan" | "unknown";
+
+/**
+ * 「보기를 고르는가, 써서 내는가」. 문항마다 **정확히 하나**다.
+ *
+ * ⚠️ 원장님이 부른 이름은 «객관식/서술형» 둘이다. 교과의 «단답형»은 따로 두지 않는다 —
+ *    원장님이 실물로 짚어 준 두 건(`J30402-A10-002`·`J30402-A09-002`)이 `question_type`
+ *    으로는 **단답형**인데 「보기가 없는 서술형」이라고 하셨다. 즉 이 축이 가르는 것은
+ *    «보기를 고르는가»이고, 그 반대쪽이 `[서]` 다. 없는 갈래를 지어내지 않는다.
+ */
+export type ProblemFormat = "multiple_choice" | "written" | "unknown";
 
 /**
  * 판정에 필요한 최소 모양 — `ProblemEntity` 가 그대로 들어맞고, 스크립트가 DB 행을
@@ -85,6 +115,10 @@ export type ProvenanceInput = {
   originProblemId: string | null;
   figureUrls: readonly string[];
   figureSvg: string | null;
+  /** 형식 판정이 **보기**를 세는 자리. 지면 파서와 같은 함수를 쓴다. */
+  content: string;
+  /** 형식 판정이 **정답 모양**을 보는 자리. */
+  answer: string;
 };
 
 /** 엔진이 `familyKey` 앞에 붙이는 표지. 엔진 말고는 아무도 이 접두사를 안 쓴다(D-105). */
@@ -140,10 +174,47 @@ export function classifyFigure(problem: ProvenanceInput): FigureOrigin | null {
   return "unknown";
 }
 
+/**
+ * 형식 판정 — **`question_type` 컬럼을 열쇠로 쓰지 않는다.**
+ *
+ * 🔴 그 컬럼은 틀린다. CLAUDE.md 2026-08-18 이 적어 둔 대로 **정답이 `①` 인데 «서술형»
+ *    이라 적힌 행이 36건**이고, 이번에 우리 열쇠와 전수로 맞대 보니 **44건**이 어긋난다
+ *    (표본을 열어 보면 어긋난 자리에서 **우리 쪽이 맞다** — `J30303-Q9BJ` 정답 `①` /
+ *    `question_type` 서술형, `J20301-ZC3K` 정답 `x=5, y=1` / `question_type` 객관식).
+ *    그래서 그 컬럼은 **대조군**으로만 쓰고(`scripts/qa/probe-provenance.ts`), 판정은
+ *    본문·정답 **두 컬럼**으로 한다.
+ *
+ * 열쇠 둘:
+ *   ㉠ **보기가 있나** — 지면과 **같은 파서**(`parseProblemContent`)로 센다. 규칙을 옮겨
+ *      적지 않는다(옮겨 적으면 지면이 보는 보기와 판정이 보는 보기가 갈린다).
+ *   ㉡ **정답이 보기 번호인가** — 원문자(`①`·`➀`·`❶`…)가 정답에 있나.
+ *      낱글자 목록을 손으로 쓰지 않고 `circledNumber.ts` 의 **정답 판독용 전 계열**을
+ *      쓴다(그쪽이 「정답에서는 넓히고 본문 마커는 좁게」를 실측으로 정해 둔 자리다).
+ *
+ * ⚠️ **둘이 어긋나면 «모른다»로 낸다.** 실측 311건 — 「보기가 있는데 정답에 번호가
+ *    없다」 200건, 「보기가 없는데 정답이 번호다」 111건. 뒤엣것은 보기가 **그림**이라
+ *    글자 파서가 못 세는 부류이고(이 저장소가 이미 겪은 자리), 앞엣것은 정답 칸이
+ *    「풀이참조」 같은 것이다. 한쪽으로 밀면 **그럴듯하게 틀린다** — 그래서 안 민다.
+ */
+export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
+  const choices = parseProblemContent(problem.content).choices.length;
+  const answerHasChoiceNumber = ANSWER_CHOICE_NUMBER.test(problem.answer);
+  if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";
+  if (choices === 0 && !answerHasChoiceNumber) return "written";
+  return "unknown";
+}
+
 /** 화면이 그리는 라벨 한 장. */
 export type ProvenanceBadge = {
-  /** 갈래 키 — 시험·조사가 지목하는 값. */
-  kind: ProblemOrigin | FigureOrigin;
+  /**
+   * 어느 축의 말인가. **한 문항에 축마다 최대 한 장**이므로 이 값이 곧 화면의 키다.
+   *
+   * ⚠️ `kind` 를 키로 쓰지 마라 — 세 축이 «모른다»에 **같은 이름(`unknown`)**을 쓴다.
+   *    출처도 형식도 모르는 문항이면 `kind` 가 둘 다 `unknown` 이라 React 키가 겹친다.
+   */
+  axis: "origin" | "figure" | "format";
+  /** 갈래 키 — 시험·조사가 지목하는 값. 축이 다르면 같은 이름이 있을 수 있다. */
+  kind: ProblemOrigin | FigureOrigin | ProblemFormat;
   /** 원장님이 지시한 대괄호 표기. */
   text: string;
   /** 라벨만으로 안 읽히는 사람에게 주는 말 (05 §5 — 색 단독으로 뜻을 전달하지 않는다). */
@@ -151,6 +222,9 @@ export type ProvenanceBadge = {
   /** 글자색 유틸리티. 면색이 아니다 — 아래 「색을 어떻게 정했나」 참조. */
   className: string;
 };
+
+/** 라벨의 «얼굴» — 축·갈래를 뺀 나머지. 표 셋이 같은 모양을 쓴다. */
+type BadgeFace = Omit<ProvenanceBadge, "kind" | "axis">;
 
 /**
  * ## 색을 어떻게 정했나 — 원장님 지시와 기존 결정의 화해
@@ -194,9 +268,7 @@ export type ProvenanceBadge = {
  *    두지 마라), `provenancePalette.test.ts` 가 그 파일을 읽어 대비·ΔE 를 **다시 잰다.**
  *    색을 바꾸면 그 시험이 빨개진다.
  */
-const ORIGIN_BADGE: Readonly<
-  Record<ProblemOrigin, Omit<ProvenanceBadge, "kind">>
-> = {
+const ORIGIN_BADGE: Readonly<Record<ProblemOrigin, BadgeFace>> = {
   past_exam: {
     text: "[기]",
     name: "기출 추출",
@@ -221,9 +293,17 @@ const ORIGIN_BADGE: Readonly<
   unknown: { text: "[?]", name: "출처 미분류", className: "text-src-unknown" },
 };
 
-const FIGURE_BADGE: Readonly<
-  Record<FigureOrigin, Omit<ProvenanceBadge, "kind">>
-> = {
+const FORMAT_BADGE: Readonly<Record<ProblemFormat, BadgeFace>> = {
+  multiple_choice: { text: "[객]", name: "객관식", className: "text-src-mcq" },
+  written: { text: "[서]", name: "서술형", className: "text-src-written" },
+  unknown: {
+    text: "[?형식]",
+    name: "형식 미분류",
+    className: "text-src-unknown",
+  },
+};
+
+const FIGURE_BADGE: Readonly<Record<FigureOrigin, BadgeFace>> = {
   figure_engine: {
     text: "[도]",
     name: "도형 엔진 생성",
@@ -247,31 +327,48 @@ const FIGURE_BADGE: Readonly<
 };
 
 /**
- * 카드가 그리는 라벨 목록 — **문항 출처는 언제나 하나**, 그림 출처는 그림이 있을 때만.
+ * 카드가 그리는 라벨 목록 — **문항 출처와 형식은 언제나 하나씩**, 그림 출처는 그림이
+ * 있을 때만. 차례는 원장님이 부른 차례다(`[초] [도] [객]` → 출처 · 그림 · 형식).
  *
- * 「모른다」는 두 축에서 뜻이 같으므로 **색도 하나**(회색)를 쓴다. 「전부 다르게」는
+ * 「모른다」는 세 축에서 뜻이 같으므로 **색도 하나**(회색)를 쓴다. 「전부 다르게」는
  * 원장님이 이름 붙인 **갈래**들 사이의 규칙이지, «모른다»까지 색을 하나 더 만들라는
  * 말이 아니다 — 모른다에 고유색을 주면 그것이 하나의 «분류»처럼 읽힌다.
  */
 export function provenanceBadges(problem: ProvenanceInput): ProvenanceBadge[] {
   const origin = classifyOrigin(problem);
-  const badges: ProvenanceBadge[] = [{ kind: origin, ...ORIGIN_BADGE[origin] }];
+  const badges: ProvenanceBadge[] = [
+    { axis: "origin", kind: origin, ...ORIGIN_BADGE[origin] },
+  ];
   const figure = classifyFigure(problem);
-  if (figure !== null) badges.push({ kind: figure, ...FIGURE_BADGE[figure] });
+  if (figure !== null) {
+    badges.push({ axis: "figure", kind: figure, ...FIGURE_BADGE[figure] });
+  }
+  const format = classifyFormat(problem);
+  badges.push({ axis: "format", kind: format, ...FORMAT_BADGE[format] });
   return badges;
 }
 
 /** 갈래 전량 — 조사·시험이 손으로 다시 나열하지 않게 여기서 뽑아 쓴다(D-106 교훈). */
 export const PROBLEM_ORIGINS = Object.keys(ORIGIN_BADGE) as ProblemOrigin[];
 export const FIGURE_ORIGINS = Object.keys(FIGURE_BADGE) as FigureOrigin[];
+export const PROBLEM_FORMATS = Object.keys(FORMAT_BADGE) as ProblemFormat[];
 
-/** 갈래 → 색 토큰 이름. 팔레트 시험이 `globals.css` 를 대조할 때 쓴다. */
+/**
+ * 갈래 → 색 토큰 이름. 팔레트 시험이 `globals.css` 를 대조할 때 쓴다.
+ *
+ * ⚠️ 세 축이 «모른다»에 같은 이름을 쓰므로 축을 같이 받아야 한다 — 안 그러면 어느
+ *    표를 볼지 순서가 정하고, 표를 하나 더하는 날 조용히 다른 색을 가리킨다.
+ */
 export function provenanceColorToken(
-  kind: ProblemOrigin | FigureOrigin,
+  axis: ProvenanceBadge["axis"],
+  kind: string,
 ): string {
-  const table: Record<string, Omit<ProvenanceBadge, "kind">> = {
-    ...ORIGIN_BADGE,
-    ...FIGURE_BADGE,
-  };
+  const table = (
+    axis === "origin"
+      ? ORIGIN_BADGE
+      : axis === "figure"
+        ? FIGURE_BADGE
+        : FORMAT_BADGE
+  ) as Record<string, Omit<ProvenanceBadge, "kind" | "axis">>;
   return table[kind]!.className.replace(/^text-/, "--color-");
 }
