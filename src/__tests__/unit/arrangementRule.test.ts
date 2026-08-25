@@ -100,11 +100,26 @@ describe("배치 판정 — 열쇠", () => {
     ).toEqual([]);
   });
 
-  it("수식 명령을 먼저 지운다 — `\\square AEFD` 의 라벨을 놓치면 안 된다", () => {
-    // `\square` 를 안 지우면 `AEFD` 앞의 백슬래시 낱말이 붙어 라벨을 못 뽑는다.
+  it("`\\square AEFD` 처럼 명령이 앞에 붙어도 라벨을 뽑는다", () => {
     expect(
       sharedVertexShapes("$\\square AEFD$는 정사각형이고 $\\square ABCD$이다"),
     ).toEqual(expect.arrayContaining(["AEFD", "ABCD"]));
+  });
+
+  it("역슬래시 뒤 전부 대문자인 명령은 꼭짓점 이름이 아니다", () => {
+    // 이것이 명령 지우기의 **진짜** 이유다. 주석은 오래 다른 이유를 적고 있었고,
+    // 변이 시험이 「판정 그대로」로 거부해서 그 사실이 드러났다.
+    // 이 저장소에는 `LEFT`·`RIGHT` HWP 잔재가 실제로 있었다(CLAUDE.md 2026-08-21).
+    expect(sharedVertexShapes("$\\LEFT x$ 와 $\\RIGHT y$")).toEqual([]);
+  });
+
+  it("글자를 나눠 쓰지 않는 라벨 둘은 얽힘이 아니다", () => {
+    // 변이 시험이 이 자리를 **초록**으로 찍어서(가드가 없었다) 알게 됐다.
+    // 서로 관계없는 두 도형이 한 발문에 있다고 배치가 얽히는 것은 아니다.
+    expect(sharedVertexShapes("사각형 $ABCD$와 오각형 $PQRST$가 있다")).toEqual([]);
+    expect(classifyArrangement("사각형 $ABCD$와 오각형 $PQRST$가 있다")).toBe(
+      "얽힘없음",
+    );
   });
 
   it("«배치미정» 은 «못 푼다» 가 아니다 — 묻는 값이 배치와 무관할 수 있다", () => {
