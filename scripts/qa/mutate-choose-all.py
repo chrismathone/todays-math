@@ -42,8 +42,11 @@ ELEM_GEN = os.path.join(ROOT, "src", "lib", "elementary", "generate.ts")
 SYSTEM = os.path.join(ROOT, "src", "lib", "middle", "m2System.ts")
 RATIONAL = os.path.join(ROOT, "src", "lib", "middle", "m2Rational.ts")
 FUNC = os.path.join(ROOT, "src", "lib", "middle", "m3Func.ts")
+COUNT_RULE = os.path.join(ROOT, "src", "lib", "problem", "choiceCountRule.ts")
+M2FUNC = os.path.join(ROOT, "src", "lib", "middle", "m2Func.ts")
+M2LINE = os.path.join(ROOT, "src", "lib", "middle", "m2Line.ts")
 
-TARGETS = [RULE, MID_GEN, ELEM_GEN, SYSTEM, RATIONAL, FUNC]
+TARGETS = [RULE, MID_GEN, ELEM_GEN, SYSTEM, RATIONAL, FUNC, COUNT_RULE, M2FUNC, M2LINE]
 # 이 파일들을 지키는 시험 **전부**를 돌린다. 규칙 시험 하나만 돌리면 「보기 명제의
 # 진리표」 같은 다른 축의 가드가 있는데도 «초록 ← 가드가 아니다» 로 찍힌다
 # (2026-08-25 변이 [15] 가 실제로 그랬다 — 진리표는 middleM3Func 가 들고 있다).
@@ -52,6 +55,9 @@ TESTS = [
     "src/__tests__/unit/middleM3Func.test.ts",
     "src/__tests__/unit/middleM2NumProb.test.ts",
     "src/__tests__/unit/middleM2System.test.ts",
+    "src/__tests__/unit/choiceCountRule.test.ts",
+    "src/__tests__/unit/middleM2Func.test.ts",
+    "src/__tests__/unit/middleM2Line.test.ts",
 ]
 
 ENV = dict(os.environ, PYTHONIOENCODING="utf-8")
@@ -70,6 +76,27 @@ def run(cmd: list[str]) -> tuple[int, str]:
 def npx(*args: str) -> tuple[int, str]:
     exe = "npx.cmd" if os.name == "nt" else "npx"
     return run([exe, *args])
+
+
+def fingerprint() -> tuple[int, str]:
+    """산출물 지문 — **두 축**을 합친다.
+
+    ⚠️ `probe-choose-all.ts` 하나로는 **표식 축을 못 본다.** 표식을 ㉠ 으로
+       되돌려도 그 지문은 한 글자도 안 변한다 — 그 유형들은 「모두 몇 개인지
+       구하시오」라 「모두 고르시오」 판정 **밖**이기 때문이다. 그러면 표식 변이가
+       전부 «산출물이 그대로 — 판정 거부» 로 찍혀 **아무것도 못 잰다.**
+       축이 없으면 변이시킬 수 없다 — 그래서 표식 지문을 따로 붙인다.
+    """
+    parts: list[str] = []
+    for cmd in (
+        ["tsx", "scripts/qa/probe-choose-all.ts"],
+        ["tsx", "scripts/qa/census-choice-marks.ts", "--fingerprint"],
+    ):
+        code, out = npx(*cmd)
+        if code != 0:
+            return code, out
+        parts.append(out.strip().splitlines()[-1])
+    return 0, "+".join(parts)
 
 
 # (제목, 파일, 찾을 것, 바꿀 것) — 각 변이는 «이 시험이 지키는 것 하나»를 겨눈다.
@@ -187,6 +214,46 @@ MUTATIONS: list[tuple[str, str, str, str]] = [
         "        { text: `그래프는 점 $(1, 0)$을 지난다.`, ok: false },",
         "        { text: `그래프는 점 $(1, 0)$을 지난다.`, ok: true },",
     ),
+    # ── 표식 축 (원장님 확정 2026-08-25 「보기번호는 바꾸고」) ──────────
+    #
+    # 이 여섯은 **개수 축과 다른 것**을 겨눈다. ㉠ 다섯 줄은 개수 관문을 통과하므로
+    # 개수 시험만 있으면 여섯 다 초록이다 — 축이 있어야 변이시킬 수 있다.
+    (
+        "표식 SSOT — ①~⑤ 를 ㉠~㉤ 로 되돌린다 (지면이 보기로 안 읽는다)",
+        COUNT_RULE,
+        'export const CHOICE_MARKS = ["①", "②", "③", "④", "⑤"] as const;',
+        'export const CHOICE_MARKS = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;',
+    ),
+    (
+        "표식 관문 — 「파서가 같은 수를 읽나」 판정을 무력화한다",
+        COUNT_RULE,
+        "  const read = choiceCountOf(content);\n  if (read === m) return;",
+        "  const read = choiceCountOf(content);\n  if (read === m || true) return;",
+    ),
+    (
+        "표식 관문 — 중등 엔진 진입점에서 호출을 지운다",
+        MID_GEN,
+        "  assertChoiceMarks(content, `중등 유형 ${key}`);\n",
+        "",
+    ),
+    (
+        "표식 관문 — 초등 엔진 진입점에서 호출을 지운다",
+        ELEM_GEN,
+        "  assertChoiceMarks(content, `초등 ${p.grade} ${p.section}`);\n",
+        "",
+    ),
+    (
+        "m2Func — 표식을 다시 **손으로** 적는다 (SSOT 를 안 읽는다)",
+        M2FUNC,
+        "const CIRCLED = CHOICE_MARKS;",
+        'const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;',
+    ),
+    (
+        "m2Line — 표식을 다시 **손으로** 적는다 (SSOT 를 안 읽는다)",
+        M2LINE,
+        "const CIRCLED = CHOICE_MARKS;",
+        'const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;',
+    ),
 ]
 
 
@@ -207,11 +274,11 @@ def main() -> int:
 
     original = {path: io.open(path, "rb").read() for path in TARGETS}
 
-    code, base_out = npx("tsx", "scripts/qa/probe-choose-all.ts")
+    code, base_out = fingerprint()
     if code != 0:
         print("기준 지문을 못 얻었다:\n" + base_out)
         return 2
-    baseline = base_out.strip().splitlines()[-1]
+    baseline = base_out
     print("기준 지문 " + baseline[:16] + "…")
 
     # ㉠ 음성 대조 — 이 도구가 «초록»을 낼 수 있음을 회차마다 구성으로 증명한다.
@@ -241,8 +308,9 @@ def main() -> int:
                 verdicts.append((title, "⚠️  파일이 안 바뀜 — 판정 불가"))
                 continue
             # ⑵ 산출물이 바뀌었나
-            code, probe_out = npx("tsx", "scripts/qa/probe-choose-all.ts")
-            digest = probe_out.strip().splitlines()[-1] if code == 0 else "PROBE-FAIL"
+            code, digest = fingerprint()
+            if code != 0:
+                digest = "PROBE-FAIL"
             if digest == baseline:
                 verdicts.append((title, "⚠️  산출물이 그대로 — 판정 거부"))
                 print("[%d] %s\n    ⚠️  뜻이 안 바뀌었다. 이 변이로는 아무것도 못 잰다." % (i, title))

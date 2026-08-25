@@ -11,7 +11,10 @@
 import { createRng } from "../elementary/rng";
 
 import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
-import { assertChoiceCount } from "../problem/choiceCountRule";
+import {
+  assertChoiceCount,
+  assertChoiceMarks,
+} from "../problem/choiceCountRule";
 
 import { tidySolution } from "./solutionText";
 import { resolveMiddleTier } from "./tier";
@@ -108,6 +111,7 @@ export function generateMiddleProblem(
   assertChooseAllAnswerCount(content, p.answer, `중등 유형 ${key}`);
   // 보기가 있으면 정확히 다섯 (원장님 2026-08-25, D-80). 같은 이유로 여기 한 곳이다.
   assertChoiceCount(content, `중등 유형 ${key}`);
+  assertChoiceMarks(content, `중등 유형 ${key}`);
   if (
     tidied === p.solution &&
     content === p.content &&

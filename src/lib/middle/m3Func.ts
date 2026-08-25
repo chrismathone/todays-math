@@ -43,7 +43,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
-import { CHOICE_COUNT } from "../problem/choiceCountRule";
+import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
 import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
@@ -332,7 +332,8 @@ function parabolaFig(
  * (m2Rational 이 2026-08-23 실렌더로 확인).
  * ──────────────────────────────────────────────────────────────────────── */
 
-const MARKS = ["①", "②", "③", "④", "⑤"] as const;
+/** 표식은 `choiceCountRule` 한 곳에서 온다 — 세 모듈이 각자 적으면 한쪽만 고쳐진다. */
+const MARKS = CHOICE_MARKS;
 
 function listTex(items: readonly string[]): string {
   return items.map((t, i) => `${MARKS[i]!} ${t}`).join("\n");

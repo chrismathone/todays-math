@@ -23,14 +23,20 @@ import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
 import {
   anyChoiceCount,
   assertChoiceCount,
+  assertChoiceMarks,
   CHOICE_COUNT,
+  CHOICE_MARKS,
   choiceCountOf,
   hasChoices,
+  lineHeadMarks,
   markListCount,
 } from "@/lib/problem/choiceCountRule";
 
 /** 🔴 기대값은 **리터럴**이다 — 제품 상수를 그대로 쓰면 상수를 바꿔도 초록이다. */
 const EXPECTED = 5;
+
+/** 🔴 표식도 **리터럴**이다 — `CHOICE_MARKS` 를 그대로 쓰면 바꿔도 초록이다. */
+const EXPECTED_MARKS = ["①", "②", "③", "④", "⑤"];
 
 const SEEDS = 200;
 const SEED0 = 20260825;
@@ -127,18 +133,119 @@ describe("관문이 **엔진 진입점에 배선돼 있다**", () => {
     );
     expect(middle).toContain("assertChoiceCount(content,");
     expect(elem).toContain("assertChoiceCount(content,");
+    expect(middle).toContain("assertChoiceMarks(content,");
+    expect(elem).toContain("assertChoiceMarks(content,");
+  });
+});
+
+/**
+ * 🔴 **표식 축** — 원장님 확정 2026-08-25 「보기번호는 바꾸고」.
+ *
+ * 이 축은 **개수 축과 다른 것을 잰다.** ㉠~㉤ 다섯 줄은 개수 관문을 **통과한다** —
+ * 다섯이니까. 그런데 제품 파서는 그 목록을 보기로 안 읽어서 지면에서 보기 대접을
+ * 못 받는다. 개수만 재면 이 부류가 **구조적으로 0** 이다.
+ */
+describe("보기 표식 규칙", () => {
+  const withMarks = (marks: readonly string[]) =>
+    ["다음 중 옳은 것을 모두 고르시오."]
+      .concat(marks.map((m, i) => `${m} 보기 ${i + 1}`))
+      .join("\n");
+
+  it("제품 표식이 원장님 확정값과 같다", () => {
+    expect([...CHOICE_MARKS]).toEqual(EXPECTED_MARKS);
+  });
+
+  it("줄머리 표식은 **산출물에서 뽑는다** — 손 목록이 아니다", () => {
+    // 아무도 목록에 안 적은 표식(❶)도 그대로 잡혀 신고문에 실린다.
+    expect(lineHeadMarks(withMarks(["❶", "❷"]))).toEqual(["❶", "❷"]);
+    expect(lineHeadMarks("평균을 구하시오.")).toEqual([]);
+  });
+
+  it("🔴 ①~⑤ 목록은 지나가고 ㉠~㉤ 목록은 **던진다**", () => {
+    expect(() =>
+      assertChoiceMarks(withMarks(EXPECTED_MARKS), "시험"),
+    ).not.toThrow();
+    expect(() =>
+      assertChoiceMarks(withMarks(["㉠", "㉡", "㉢", "㉣", "㉤"]), "시험"),
+    ).toThrow(/보기 표식/);
+  });
+
+  it("개수 관문은 ㉠ 목록을 **통과시킨다** — 그래서 축이 둘이어야 한다", () => {
+    // 이 한 줄이 「왜 관문을 하나 더 두는가」의 전부다. 개수 관문만 두면
+    // ㉠ 다섯 줄이 조용히 나간다(2026-08-25 실측 DB 6건).
+    const hangul = withMarks(["㉠", "㉡", "㉢", "㉣", "㉤"]);
+    expect(() => assertChoiceCount(hangul, "시험")).not.toThrow();
+    expect(() => assertChoiceMarks(hangul, "시험")).toThrow();
+  });
+
+  it("보기가 없는 문항은 지나간다 (음성 대조군)", () => {
+    expect(() => assertChoiceMarks("평균을 구하시오.", "시험")).not.toThrow();
+    expect(() =>
+      assertChoiceMarks("세 상자 ㉠, ㉡, ㉢에 수가 들어 있다.", "시험"),
+    ).not.toThrow();
+  });
+
+  it("표식 목록을 **손으로 다시 적은 모듈이 없다**", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { resolve } = await import("node:path");
+    // 세 모듈이 각자 적고 있었다. 한 벌만 고치면 나머지는 조용히 남는다.
+    for (const rel of ["m2Func.ts", "m2Line.ts", "m3Func.ts"]) {
+      const src = readFileSync(
+        resolve(__dirname, "../../lib/middle", rel),
+        "utf-8",
+      );
+      const handWritten = /\[\s*"[①-⑮㉠-㉾]"\s*,/.test(src);
+      expect(handWritten, `${rel} 가 표식을 손으로 다시 적었다`).toBe(false);
+      expect(src).toContain("CHOICE_MARKS");
+    }
   });
 });
 
 describe(`중등 엔진 — 보기가 있으면 언제나 ${EXPECTED}개 (씨앗 ${SEEDS})`, () => {
   const counts: { key: string; n: number }[] = [];
+  /** 표식 축 — 「지면이 이 목록을 보기로 읽는가」. 개수 축과 **다른 것**을 잰다. */
+  const marks: { key: string; heads: string; read: number; listed: number }[] =
+    [];
   for (const t of registeredTypes()) {
     for (let s = 0; s < SEEDS; s += 1) {
       const p = generateMiddleProblem(t.key, SEED0 + s * SEED_STEP);
       const n = anyChoiceCount(p.content);
       if (n > 0) counts.push({ key: t.key, n });
+      const listed = markListCount(p.content);
+      if (listed > 0) {
+        marks.push({
+          key: t.key,
+          heads: [...new Set(lineHeadMarks(p.content))].join(""),
+          read: choiceCountOf(p.content),
+          listed,
+        });
+      }
     }
   }
+
+  it("표식 훑기가 실제로 목록을 만났다 — 축이 있어야 변이시킬 수 있다", () => {
+    // 실측 2026-08-25: 20유형. 유형이 줄면 아래 「어긋난 것 0」이 공짜 초록이 된다.
+    expect(new Set(marks.map((m) => m.key)).size).toBeGreaterThanOrEqual(20);
+  });
+
+  it("🔴 표식이 전부 ①~⑤ 이고 지면이 **보기로 읽는다**", () => {
+    const bad = marks.filter(
+      (m) =>
+        m.read !== m.listed ||
+        [...m.heads].some((c) => !EXPECTED_MARKS.includes(c)),
+    );
+    const summary = [
+      ...new Set(
+        bad.map(
+          (b) => `${b.key} «${b.heads}» ${b.listed}줄 중 ${b.read}개만 읽힘`,
+        ),
+      ),
+    ].slice(0, 12);
+    expect(
+      bad.length,
+      `어긋난 산출물 ${bad.length}건: ${summary.join(" · ")}`,
+    ).toBe(0);
+  });
 
   it("훑기가 실제로 보기 있는 문항을 만났다 — 축이 있어야 변이시킬 수 있다", () => {
     // 실측 2026-08-25: 20유형 × 200씨앗 = 4,000건. 유형이 줄면 여기가 **먼저** 빨개진다.

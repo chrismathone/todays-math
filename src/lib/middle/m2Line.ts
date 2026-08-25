@@ -40,6 +40,7 @@
  */
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
+import { CHOICE_MARKS } from "../problem/choiceCountRule";
 
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -163,7 +164,8 @@ function quadNotPassed(m: number, n: number): number {
   return n > 0 ? 3 : 1;
 }
 
-const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;
+/** 표식은 `choiceCountRule` 한 곳에서 온다 — 세 모듈이 각자 적으면 한쪽만 고쳐진다. */
+const CIRCLED = CHOICE_MARKS;
 
 // ── 수식 뒤 조사 — 한 곳에서 고친다 ────────────────────────────────
 //

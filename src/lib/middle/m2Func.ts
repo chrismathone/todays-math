@@ -18,7 +18,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { CHOICE_COUNT } from "../problem/choiceCountRule";
+import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -141,7 +141,8 @@ export const LINEAR_POOL: readonly { text: string; isLinear: boolean }[] = [
   { text: "$y=5-2x$", isLinear: true },
 ];
 
-const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;
+/** 표식은 `choiceCountRule` 한 곳에서 온다 — 세 모듈이 각자 적으면 한쪽만 고쳐진다. */
+const CIRCLED = CHOICE_MARKS;
 
 /** 겹치지 않게 n개 뽑기 — 순서도 무작위. */
 function pickDistinct(rng: Rng, size: number, n: number): number[] {

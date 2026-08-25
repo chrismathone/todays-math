@@ -39,8 +39,12 @@ export function hasChoices(content: string): boolean {
  *
  * `choiceCountOf` 만 보면 **못 보는 부류**가 있다. 제품 렌더러는 개행 뒤에 `①~⑮`
  * 또는 `1.` 이 올 때만 보기로 읽는데, 엔진에는 `㉠~㉤` 로 목록을 내는 유형이 있다
- * (`2-1|일차함수와 그 그래프 ⑴|01·03` 등). 그 목록은 파서에게 **보기 0개**로 보이고
- * — 지면에서도 한 줄로 죽 이어진다 — 그래서 「보기 넷」이 개수 세는 자에 안 걸렸다.
+ * (`2-1|일차함수와 그 그래프 ⑴|01·03` 등). 그 목록은 파서에게 **보기 0개**로 보여서
+ * 「보기 넷」이 개수 세는 자에 안 걸렸다.
+ *
+ * ⚠️ 여기 처음 적었던 「지면에서 한 줄로 죽 이어진다」는 **틀린 말이었다** — 실물을
+ *    `/dev/choice-marks` 로 그려 세어 보고 알았다(2026-08-25). 줄은 `hardBreaks` 로
+ *    이미 바뀐다. 남는 차이는 «보기 목록 대접을 받는가» 다 — 아래 `assertChoiceMarks`.
  * 실제로 원장님 지시를 재는 동안 여기서 **4개짜리 목록 하나**가 더 나왔다.
  *
  * ## 왜 «둥근» 표식만인가 — 손 목록이 아니라 유니코드 블록이다
@@ -63,11 +67,23 @@ function isRoundMark(ch: string): boolean {
   );
 }
 
-export function markListCount(content: string): number {
-  return content.split("\n").filter((line) => {
+/**
+ * 줄머리에 **실제로 쓰인** 표식 글자들 — 나온 순서대로.
+ *
+ * 「무엇이 나쁜 표식인가」를 미리 나열하지 않는다. 산출물에서 뽑아 그대로 보여
+ * 주므로, 아무도 목록에 안 적은 표식(❶ · ⓐ …)도 신고문에 그대로 실린다.
+ */
+export function lineHeadMarks(content: string): string[] {
+  const out: string[] = [];
+  for (const line of content.split("\n")) {
     const t = line.trimStart();
-    return t.length > 0 && isRoundMark(t[0]!);
-  }).length;
+    if (t.length > 0 && isRoundMark(t[0]!)) out.push(t[0]!);
+  }
+  return out;
+}
+
+export function markListCount(content: string): number {
+  return lineHeadMarks(content).length;
 }
 
 /**
@@ -94,5 +110,42 @@ export function assertChoiceCount(content: string, where: string): void {
   if (n === 0 || n === CHOICE_COUNT) return;
   throw new Error(
     `보기는 ${CHOICE_COUNT}개여야 합니다 — ${where} 가 ${n}개짜리 보기를 냈습니다`,
+  );
+}
+
+/**
+ * 🔴 **표식 SSOT** — 보기 줄머리에 붙는 글자 (원장님 확정 2026-08-25).
+ *
+ * 엔진 세 모듈이 각자 손으로 `["①","②",…]` 를 적고 있었고(`m2Func`·`m2Line` 은
+ * `㉠~㉤`, `m3Func` 은 `①~⑤`), 그래서 **같은 것을 세 벌** 두고 있었다. 한 벌만
+ * 고치면 나머지는 조용히 남는다 — 이 저장소가 여러 번 적은 그 자리다.
+ */
+export const CHOICE_MARKS = ["①", "②", "③", "④", "⑤"] as const;
+
+/**
+ * 🔴 **관문 둘째 축** — 「보기 목록이 지면에서 **보기 대접을 받는가**」.
+ *
+ * `assertChoiceCount` 는 **개수**만 본다. ㉠~㉤ 다섯 줄은 개수가 다섯이라 그
+ * 관문을 **통과한다.** 그런데 제품 파서는 개행 뒤 `①~⑮`·`1.` 만 보기로 읽으므로
+ * 그 목록은 그냥 **본문 글줄**이 되고, 지면에서 ㉠ 표식이 제 자리에 서지 않아
+ * 넘친 줄이 표식 아래로 파고들며 인쇄에서 두 단으로도 안 앉는다.
+ *
+ * **「개수가 맞나」로는 이 부류를 구조적으로 못 센다 — 축이 다르다.**
+ * 그래서 두 자를 **맞대어** 본다: 줄머리 표식 목록이 있으면, 제품 파서도
+ * **같은 수**를 읽어야 한다. 열쇠를 손으로 정하지 않는 판정이다(무엇이 나쁜
+ * 표식인지 미리 나열하지 않는다 — 파서가 못 읽으면 그것이 나쁜 표식이다).
+ *
+ * 실측 2026-08-25: 엔진 1,103유형 × 40씨앗에서 어기는 유형 **3** (전부 ㉠ 목록),
+ * 공유 DB 출제 가능 2,410건 중 **6건**. `scripts/qa/census-choice-marks.ts` 가 센다.
+ */
+export function assertChoiceMarks(content: string, where: string): void {
+  const m = markListCount(content);
+  if (m === 0) return;
+  const read = choiceCountOf(content);
+  if (read === m) return;
+  const heads = [...new Set(lineHeadMarks(content))].join("");
+  throw new Error(
+    `보기 표식은 ${CHOICE_MARKS.join("")} 여야 합니다 — ${where} 가 «${heads}» 로 ` +
+      `${m}줄을 냈는데 지면은 ${read}개만 보기로 읽습니다`,
   );
 }

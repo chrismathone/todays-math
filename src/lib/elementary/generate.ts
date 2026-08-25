@@ -17,7 +17,10 @@ import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
 import { ELEM_GRADES, type ElemProblem } from "./types";
 import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
-import { assertChoiceCount } from "../problem/choiceCountRule";
+import {
+  assertChoiceCount,
+  assertChoiceMarks,
+} from "../problem/choiceCountRule";
 import { wrapDanClause } from "../problemText";
 
 export {
@@ -105,6 +108,7 @@ function tidy(p: ElemProblem): ElemProblem {
   // 「가장 큰 것을 고르시오」류는 「모두」가 없어 대상이 아니다.
   assertChooseAllAnswerCount(content, p.answer, `초등 ${p.grade} ${p.section}`);
   assertChoiceCount(content, `초등 ${p.grade} ${p.section}`);
+  assertChoiceMarks(content, `초등 ${p.grade} ${p.section}`);
   return content === p.content ? p : { ...p, content };
 }
 
