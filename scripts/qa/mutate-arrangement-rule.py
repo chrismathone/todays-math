@@ -93,12 +93,17 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess:
 
 
 def selftest_signature() -> str | None:
-    """눈금 열 줄의 판정만 뽑는다. 못 돌면 None."""
-    p = run(["node", "node_modules/tsx/dist/cli.mjs", "scripts/qa/probe-figure-dependent.ts", "--selftest"])
-    if p.returncode not in (0, 1):
+    """**행동 지문** — 눈금 + 커밋된 스냅숏 357행의 판정 + 라벨 축의 산출. 못 돌면 None.
+
+    ⚠️ 처음엔 **눈금 열 줄만** 봤다. 그러면 `sharedVertexShapes` 를 통째로 망가뜨리는
+       변이 셋이 「판정이 그대로다」로 **판정 거부**됐다 — 양성 픽스처가 `닮은` 으로도
+       걸려서 라벨 축이 죽어도 판정이 안 바뀌기 때문이다(조각끼리 서로 가린다).
+       **좁은 지문은 「가드가 아니다」를 거짓으로 만든다.** 지문을 넓혀야 한다.
+    """
+    p = run(["node", "node_modules/tsx/dist/cli.mjs", "scripts/qa/probe-figure-dependent.ts", "--signature"])
+    if p.returncode != 0 or not p.stdout.strip():
         return None
-    lines = [l for l in p.stdout.splitlines() if "→" in l]
-    return "\n".join(lines) if lines else None
+    return p.stdout
 
 
 def vitest() -> tuple[bool, list[str]]:

@@ -42,7 +42,7 @@
  *     부르는가」를 센다. 이 도구는 **DB 쪽**에서 「나간 문항이 그림 없이 풀리는가」를
  *     센다. 분모가 다르므로 두 숫자를 견주지 말 것.
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -50,6 +50,7 @@ import {
   classifyArrangement,
   ENTANGLED,
   PINNED,
+  sharedVertexShapes,
   type ArrangementVerdict,
 } from "../../src/lib/figure/arrangementRule";
 import { classifyFigure } from "../../src/lib/figure/missingFigureRule";
@@ -142,6 +143,39 @@ export function runSelfTest(): { ok: boolean; lines: string[] } {
   return { ok, lines };
 }
 
+/**
+ * **변이 하네스가 「뜻이 바뀌었나」를 재는 지문.** DB 없이 돈다.
+ *
+ * ⚠️ 지문이 눈금 열 줄뿐이면 **너무 좁다.** 실제로 `sharedVertexShapes` 를 망가뜨리는
+ *    변이 셋이 「판정 그대로」로 거부됐다 — 양성 픽스처가 `닮은` 으로도 걸려서
+ *    라벨 축이 죽어도 판정이 안 바뀌기 때문이다(조각끼리 서로 가린다).
+ *    그래서 지문에 ⑴ 눈금 ⑵ **커밋된 스냅숏 357행의 판정** ⑶ 라벨 축의 산출을
+ *    같이 넣는다. 좁은 지문은 「가드가 아니다」를 **거짓으로** 만든다.
+ */
+export function behaviourSignature(): string {
+  const probes = [
+    "두 직사각형 $ABCD$와 $BCFE$는 정사각형이다",
+    "$\\square AEFD$는 정사각형이고 $\\square ABCD$이다",
+    "직각삼각형 $ABC$에서 $\\overline{AB}=20$",
+    "사각형 $ABCD$와 오각형 $PQRST$가 있다",
+  ];
+  const parts = [
+    runSelfTest().lines.join("\n"),
+    probes.map((p) => p + " → " + JSON.stringify(sharedVertexShapes(p))).join("\n"),
+  ];
+  try {
+    const snap = JSON.parse(
+      readFileSync("scripts/qa/reports/figure-dependent-snapshot.json", "utf8"),
+    ) as { 목록: { code: string; content: string }[] };
+    parts.push(
+      snap.목록.map((r) => r.code + ":" + classifyArrangement(r.content)).join("\n"),
+    );
+  } catch {
+    parts.push("(스냅숏 없음)");
+  }
+  return parts.join("\n--\n");
+}
+
 /* ──────────────────────────────────────────────────────────────────────────── */
 
 type Row = {
@@ -155,6 +189,10 @@ type Row = {
 async function main() {
   const args = process.argv.slice(2);
   const selftestOnly = args.includes("--selftest");
+  if (args.includes("--signature")) {
+    console.log(behaviourSignature());
+    return;
+  }
   const list = args.includes("--list");
   const json = args.includes("--json");
 
