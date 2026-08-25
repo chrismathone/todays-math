@@ -4,7 +4,7 @@ import type { ElemTierMap } from "./difficulty";
 
 import { expr, fracLatex, n, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
-import { fig, make } from "./make";
+import { fig, make, makeDeep } from "./make";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
 
@@ -1958,14 +1958,35 @@ function sub111Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 function sub111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = pick(rng, GAIN_STORY);
+  // ⚠️ 예전에는 **상자 둘**이라 「전체 $-$ 아는 쪽」 뺄셈 **한 번**이었다.
+  //    같은 소단원 응용이 세 곳의 합(덧셈 두 번)이라 사다리가 뒤집혀 있었다.
+  //    상자를 셋으로 늘려 **아는 둘을 먼저 더한 뒤** 되짚는다.
   if (intBetween(rng, 0, 1) === 0) {
-    const [a, b] = addWithCarries(rng, intBetween(rng, 0, 1), 1);
-    const total = a + b;
-    return make(
+    const [a, c] = addWithCarries(rng, intBetween(rng, 0, 1), 1);
+    const known = a + c;
+    // ⚠️ 셋째 상자는 **받아올림이 하나도 없게** 자릿수마다 골라 뽑는다.
+    //    합이 네 자리가 되거나 받아올림이 두 번이면 소단원(«받아올림이 없는, 한 번 있는»)
+    //    밖이다 — 문턱으로 걸러 내지 말고 **뽑는 범위**에서 막는다.
+    const kd = [
+      Math.floor(known / 100) % 10,
+      Math.floor(known / 10) % 10,
+      known % 10,
+    ];
+    const b =
+      intBetween(rng, 1, Math.max(1, 9 - kd[0]!)) * 100 +
+      intBetween(rng, 0, 9 - kd[1]!) * 10 +
+      intBetween(rng, 0, 9 - kd[2]!);
+    const total = known + b;
+    return makeDeep(
       unit,
-      `${s.thing} 상자 두 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. 한 상자에 ${n(a)}${s.unit}${josa(s.unit, "이", "가")} 들어 있다면 다른 상자에는 몇 ${s.unit}${josa(s.unit, "이", "가")} 들어 있습니까?`,
+      `${s.thing} 상자 세 개에 든 ${s.thing}${josa(s.thing, "은", "는")} 모두 ${n(total)}${s.unit}입니다. ` +
+        `첫째 상자에 ${n(a)}${s.unit}, 둘째 상자에 ${n(c)}${s.unit}${josa(s.unit, "이", "가")} 들어 있다면 ` +
+        `셋째 상자에는 몇 ${s.unit}${josa(s.unit, "이", "가")} 들어 있습니까?`,
       n(b),
-      `전체에서 아는 쪽을 덜어 냅니다. ${expr(`${total}-${a}=${b}`)} 이므로 ${n(b)}${s.unit}입니다.`,
+      [
+        `아는 두 상자를 먼저 더합니다. ${expr(`${a}+${c}=${known}`)} 입니다.`,
+        `전체에서 덜어 내면 ${expr(`${total}-${known}=${b}`)} 이므로 ${n(b)}${s.unit}입니다.`,
+      ],
     );
   }
   const r = reverseAddLight(rng);
@@ -2298,24 +2319,32 @@ function line121Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 4단 — 선분과 반직선을 **함께** 센다(조건 조합). 반직선은 방향이 있어 두 배다. */
 function line121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전에는 「반직선의 수 $-$ 선분의 수」였다 — 두 번 세고 빼는 세 걸음인데, 그 차는
+  //    늘 «선분의 수»와 같아서(반직선 = 선분의 두 배) **실은 한 가지만 세면 된다.**
+  //    게다가 역산도 조건 조합도 없다. 이제 **점을 하나 더 찍는 가정**을 얹는다 —
+  //    새 점은 기존 점마다 선분 하나를 더 만든다(조건 + 두 걸음).
   const layout = pick(rng, DOT_LAYOUTS);
   const k = layout.length;
   const segs = (k * (k - 1)) / 2;
-  const rays = k * (k - 1);
-  return make(
+  return makeDeep(
     unit,
     pick(rng, [
-      `그림의 점 중 두 점을 이어 선분과 반직선을 그으려고 합니다. 그을 수 있는 반직선의 수와 선분의 수의 차는 몇 개인지 쓰시오.`,
-      `그림의 점으로 반직선과 선분을 모두 그었을 때, 두 수의 차는 몇 개인지 쓰시오.`,
-      `선분은 짝마다 하나, 반직선은 짝마다 둘입니다. 그림에서 그 수의 차는 몇 개인지 쓰시오.`,
-      `그림의 점을 이어 그을 수 있는 반직선의 수에서 선분의 수를 뺀 값을 쓰시오.`,
-      `그림에서 반직선의 수와 선분의 수를 각각 세어, 큰 수에서 작은 수를 뺀 값을 쓰시오.`,
-      `그림의 점으로 그을 수 있는 반직선은 선분보다 몇 개 더 많은지 쓰시오.`,
-      `반직선 ㄱㄴ과 반직선 ㄴㄱ은 서로 다릅니다. 그림의 점으로 그을 수 있는 반직선의 수에서 선분의 수를 빼면 몇 개인지 쓰시오.`,
-      `그림의 점을 이어 선분과 반직선을 모두 그었습니다. 반직선이 선분보다 몇 개 더 많은지 쓰시오.`,
+      `그림의 점을 이어 선분을 모두 그었습니다. 여기에 점을 하나 더 찍고 다시 두 점을 잇는 선분을 모두 그으면 선분은 모두 몇 개가 되는지 쓰시오.`,
+      `그림의 점으로 그을 수 있는 선분을 모두 그었습니다. 점 하나를 더 찍어 같은 방법으로 다시 그으면 선분은 모두 몇 개인지 쓰시오.`,
+      `그림에 점을 하나 더 찍으려고 합니다. 그 뒤 두 점을 잇는 선분을 모두 그으면 선분은 모두 몇 개가 되는지 쓰시오.`,
+      `그림의 점에 점 하나를 더 보태고 두 점씩 이어 선분을 모두 그으면 선분의 수는 몇 개인지 쓰시오.`,
+      `그림처럼 점이 놓여 있습니다. 점을 하나 더 놓은 다음 두 점을 잇는 선분을 빠짐없이 그으면 선분은 몇 개인지 쓰시오.`,
+      `그림의 점들 옆에 점을 하나 더 찍었습니다. 이제 두 점을 잇는 선분을 모두 그으면 선분은 모두 몇 개인지 쓰시오.`,
+      `그림의 점에 새 점 하나를 더한 뒤, 두 점씩 짝지어 선분을 모두 그었습니다. 그은 선분은 모두 몇 개인지 쓰시오.`,
+      `점을 하나 더 찍어 그림보다 점이 하나 많아졌습니다. 두 점을 잇는 선분을 모두 그으면 몇 개인지 쓰시오.`,
     ]),
-    n(rays - segs),
-    `선분은 두 점의 짝마다 하나이므로 ${n(segs)}개입니다. 반직선은 시작하는 점이 어디냐에 따라 달라 짝마다 둘이므로 ${n(rays)}개입니다. ${expr(`${rays}-${segs}=${rays - segs}`)} 이므로 차는 ${n(rays - segs)}개입니다.`,
+    n(segs + k),
+    [
+      `선분은 두 점의 짝마다 하나이므로 지금은 ` +
+        `${expr(`${k}\\times${k - 1}\\div2=${segs}`)} 개입니다.`,
+      `점을 하나 더 찍으면 그 점과 원래 점 ${n(k)}개를 잇는 선분이 ${n(k)}개 더 생기므로 ` +
+        `${expr(`${segs}+${k}=${segs + k}`)} 개입니다.`,
+    ],
     dotsOnly(layout, LINE_LETTERS.slice(0, k)),
   );
 }
@@ -2457,21 +2486,29 @@ function angle122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     ],
     "라",
   );
+  // ⚠️ 예전에는 「직각은 통틀어 몇 개」로 **세면 끝**이었다 — 같은 소단원 응용
+  //    (「직각과 직각이 아닌 각의 수를 세어 그 차」)이 오히려 두 걸음이라 사다리가 뒤집혔다.
+  //    이제 **직사각형을 하나 더 그리는 가정**을 얹는다(조건 + 두 걸음).
   const total = rightCount + 4;
-  return make(
+  const addRects = intBetween(rng, 1, 3);
+  const after = total + addRects * 4;
+  return makeDeep(
     unit,
     pick(rng, [
-      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 그림 전체에서 직각은 모두 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 그림에 있는 직각을 모두 세어 그 수를 쓰시오.`,
-      `각 ${row.labels.join(", ")} 와 직사각형 라 에서 직각이 몇 개인지 각각 세어 더한 값을 쓰시오.`,
-      `${row.labels.join(", ")} 는 각이고 라는 직사각형일 때, 직각의 개수를 모두 더하면 몇 개인지 쓰시오.`,
-      `그림에는 각 ${row.labels.join(", ")} 와 직사각형 라 가 있습니다. 직각은 통틀어 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 각에 있는 직각과 직사각형에 있는 직각을 모두 세면 몇 개인지 쓰시오.`,
-      `그림에서 ${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직각을 하나도 빠뜨리지 말고 세어 그 수를 쓰시오.`,
-      `${row.labels.join(", ")} 와 직사각형 라 를 함께 보고, 직각이 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 여기에 직사각형을 ${n(addRects)}개 더 그리면 그림의 직각은 모두 몇 개가 되는지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직사각형 ${n(addRects)}개를 더 그린다면 직각은 통틀어 몇 개인지 쓰시오.`,
+      `그림에는 각 ${row.labels.join(", ")} 와 직사각형 라 가 있습니다. 라와 같은 직사각형 ${n(addRects)}개를 더 그리면 직각은 모두 몇 개인지 쓰시오.`,
+      `그림의 각 ${row.labels.join(", ")} 와 직사각형 라 옆에 직사각형 ${n(addRects)}개를 더 그렸습니다. 이제 직각은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직사각형을 ${n(addRects)}개 더 붙여 그리면 그림에 있는 직각의 수는 몇 개인지 쓰시오.`,
+      `각 ${row.labels.join(", ")} 와 직사각형 라 가 그려져 있습니다. 직사각형 ${n(addRects)}개를 더 그린 뒤 직각을 모두 세면 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 같은 직사각형 ${n(addRects)}개를 더 그렸을 때 직각은 통틀어 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")} 와 직사각형 라 에 직사각형 ${n(addRects)}개를 더 보태 그리면 직각은 모두 몇 개가 되는지 쓰시오.`,
     ]),
-    n(total),
-    `각 ${row.labels.join(", ")} 중 직각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 직사각형은 네 각이 모두 직각이므로 ${n(4)}개입니다. ${expr(`${rightCount}+4=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+    n(after),
+    [
+      `각 ${row.labels.join(", ")} 중 직각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, 직사각형은 네 각이 모두 직각이므로 ${expr(`${rightCount}+4=${total}`)} 개입니다.`,
+      `직사각형 ${n(addRects)}개에는 직각이 ${expr(`4\\times${addRects}=${addRects * 4}`)} 개 있으므로 ${expr(`${total}+${addRects * 4}=${after}`)} 개입니다.`,
+    ],
     pointGridSpec(c0 + w, 2, [...row.shapes, rect]),
   );
 }
@@ -2787,10 +2824,12 @@ function sq125Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 4단 — **역산**. 네 변의 길이의 합에서 한 변을 되짚는다. 도형에서 역산이 서는 자리다. */
+/**
+ * 4단 — **역산 두 걸음**. 늘인 뒤의 합에서 처음 한 변을 되짚거나(㈟),
+ * 둘레가 같은 직사각형에서 정사각형 한 변을 구한다(㈠).
+ */
 function sq125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const side = intBetween(rng, 3, 9);
-  const total = side * 4;
   const thing = pick(rng, [
     "색종이",
     "손수건",
@@ -2801,12 +2840,21 @@ function sq125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     "창문",
     "스케치북",
   ]);
+  // ⚠️ 예전에는 「네 변의 합 $20$ → 한 변」이라 $20\div4$ **한 걸음**이었다.
+  //    같은 소단원 응용(「한 변 $9$ → 합」)도 한 걸음이라 사다리가 아예 안 올랐다.
+  //    이제 **늘인 뒤의 합**을 주고 처음 한 변을 되짚는다(두 걸음).
   if (intBetween(rng, 0, 1) === 0) {
-    return make(
+    const grow = intBetween(rng, 1, 5);
+    const grown = (side + grow) * 4;
+    return makeDeep(
       unit,
-      `네 변의 길이의 합이 ${n(total)} cm인 정사각형 모양 ${thing}${josa(thing, "이", "가")} 있습니다. 이 ${thing}의 한 변의 길이는 몇 cm인지 쓰시오.`,
+      `정사각형 모양 ${thing}의 한 변을 ${n(grow)} cm씩 늘였더니 네 변의 길이의 합이 ` +
+        `${n(grown)} cm가 되었습니다. 처음 ${thing}의 한 변의 길이는 몇 cm인지 쓰시오.`,
       n(side),
-      `정사각형은 네 변의 길이가 모두 같으므로 합을 넷으로 똑같이 나눕니다. ${expr(`${total}\\div4=${side}`)} 이므로 한 변은 ${n(side)} cm입니다.`,
+      [
+        `늘인 뒤의 한 변은 ${expr(`${grown}\\div4=${side + grow}`)} cm입니다.`,
+        `처음 한 변은 ${expr(`${side + grow}-${grow}=${side}`)} 이므로 ${n(side)} cm입니다.`,
+      ],
     );
   }
   // 가로와 세로의 **합이 짝수**라야 네 변의 합이 $4$ 로 나누어떨어진다.
@@ -2966,21 +3014,31 @@ function div131Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 4단 — 조건 조합: 같은 것을 두 가지 수로 나눠 **몫을 견준다**. */
 function div131Deep(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { a, b, c, q1, q2 } = pick(rng, DIV_COMBOS_LT);
-  const d = q1 - q2;
+  // ⚠️ 예전에는 「$b$묶음일 때와 $c$묶음일 때 한 묶음의 차」였다 — 나눗셈 둘과 뺄셈이라
+  //    걸음은 셋인데, 같은 소단원 응용(두 봉지를 합쳐 나눈다)과 **하는 일이 같다**.
+  //    이제 나눈 뒤 **일부를 주고 남은 것**을 묻는다 — 나눗셈 뒤에 곱셈이 온다.
+  // ⚠️ 준 묶음이 하나면 곱셈이 `$q\times1$` 이라 **곱셈구구 밖**이고(이 소단원의 잠금),
+  //    남는 묶음이 하나여도 마찬가지다. 그래서 묶음은 넷 이상, 주는 것은 둘 이상 —
+  //    남는 것도 둘 이상이 되게 뽑는다.
+  const { a, b, q1 } = pick(
+    rng,
+    DIV_COMBOS_LT.filter((v) => v.b >= 4),
+  );
+  const give = intBetween(rng, 2, b - 2);
   const thing = pick(rng, SHARE_STUFF);
-  const stem = pick(rng, [
-    `${thing} ${n(a)}개를 ${n(b)}명이 똑같이 나눌 때와 ${n(c)}명이 똑같이 나눌 때, 한 명이 가지는 개수의 차는 몇 개인지 쓰시오.`,
-    `${thing} ${n(a)}개가 있습니다. ${n(b)}명이 나누면 ${n(c)}명이 나눌 때보다 한 명이 몇 개 더 가지는지 쓰시오.`,
-    `${thing} ${n(a)}개를 ${n(b)}묶음으로 나눌 때와 ${n(c)}묶음으로 나눌 때, 한 묶음의 개수는 몇 개 차이 나는지 쓰시오.`,
-    `${thing} ${n(a)}개를 ${n(b)}명에게 똑같이 나누어 주다가, 마음을 바꿔 ${n(c)}명에게 똑같이 나누어 주었습니다. 한 명이 받는 개수가 몇 개 줄었는지 쓰시오.`,
-  ]);
-  return make(
+  const left = q1 * (b - give);
+  return makeDeep(
     unit,
-    stem,
-    n(d),
-    // 발문이 명·묶음을 오가므로 해설은 단위 낱말을 고정하지 않는다.
-    `${expr(`${a}\\div${b}=${q1}`)} 이고 ${expr(`${a}\\div${c}=${q2}`)} 입니다. 한 몫의 차는 ${expr(`${q1}-${q2}=${d}`)} 이므로 ${n(d)}개입니다.`,
+    `${thing} ${n(a)}개를 ${n(b)}묶음으로 똑같이 나누었습니다. ` +
+      `그중 ${n(give)}묶음을 동생에게 주면 남는 ${thing}${josa(thing, "은", "는")} 몇 개인지 쓰시오.`,
+    n(left),
+    [
+      `한 묶음은 ${expr(`${a}\\div${b}=${q1}`)} 개입니다.`,
+      // ⚠️ 마지막 걸음을 **뺄셈**으로 맺는다 — 이 소단원의 잠금이 「정답은 해설의 마지막
+      //    «곱셈 아닌» 스텝의 값」이다(곱셈은 되짚기·검산으로 본다).
+      `동생에게 준 것은 ${expr(`${q1}\\times${give}=${q1 * give}`)} 개이므로 ` +
+        `남는 것은 ${expr(`${a}-${q1 * give}=${left}`)} 개입니다.`,
+    ],
   );
 }
 
@@ -3076,19 +3134,51 @@ function div132Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
     );
   }
-  const stem = pick(rng, [
-    `${n(a)}개를 몇 명이 똑같이 나누었더니 한 명이 ${n(q)}개씩 가졌습니다. 몇 명이 나누었는지 쓰시오.`,
-    `나뉘는 수가 ${n(a)}, 몫이 ${n(q)} 인 나눗셈식이 있습니다. 나누는 수를 쓰시오.`,
-    `구슬 ${n(a)}개를 똑같이 나누어 담았더니 주머니마다 ${n(q)}개씩 꼭 맞게 들어갔습니다. 주머니는 몇 개인지 쓰시오.`,
-    `사탕 ${n(a)}개를 접시마다 ${n(q)}개씩 나누어 놓았더니 남는 것이 없었습니다. 접시는 몇 개인지 쓰시오.`,
-  ]);
-  return make(
-    unit,
-    stem,
-    n(b),
-    // 발문이 명·주머니·접시·나눗셈식을 오가므로 「구하는 수」로 고정한다.
-    `${expr(`${a}\\div${q}=${b}`)} 이므로 구하는 수는 ${n(b)} 입니다. 검산하면 ${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  // ⚠️ 예전에는 「$a$개를 몇 명이 나누니 $q$개씩」 = $a\div q$ **한 걸음 역산**이었다.
+  //    되짚기는 맞는데 한 번이라 4단이 아니다 — 되짚은 뒤 **한 걸음 더** 간다.
+  // ⚠️ 더 넣는 수는 **나누는 수의 배수**여야 몫이 자연수로 떨어진다 —
+  //    $q$ 의 배수로 두면 $(a+add)\div b$ 가 소수가 된다(실제로 `$8.25$` 가 나왔다).
+  //    그리고 새 몫 $q+m$ 은 **곱셈구구 안**($\le 9$)이면서 나누는 수와 달라야 한다
+  //    (이 소단원의 잠금 둘). 못 고르면 되짚기 갈래를 안 쓴다.
+  // ⚠️ 새 몫 $q+m$ 은 **곱셈구구 안**($1\le q+m\le 9$)이면서 나누는 수와 달라야 한다
+  //    (몫 $1$ 도 곱셈구구 밖이다). 그래서 **더 넣기와 덜어 내기 양쪽**에서 고른다 —
+  //    한쪽만 두면 $q$ 가 클 때 고를 것이 없어진다.
+  const m = pick(
+    rng,
+    [1, 2, 3, -1, -2, -3].filter(
+      (v) => q + v >= 2 && q + v <= 9 && q + v !== b,
+    ),
   );
+  const move = b * Math.abs(m);
+  const nowQ = q + m;
+  const nowA = a + b * m;
+  const stem =
+    m > 0
+      ? pick(rng, [
+          `${n(a)}개를 몇 명이 똑같이 나누었더니 한 명이 ${n(q)}개씩 가졌습니다. ` +
+            `여기에 ${n(move)}개를 더 놓고 같은 사람 수로 나누면 한 명이 몇 개씩 가지는지 쓰시오.`,
+          `구슬 ${n(a)}개를 똑같이 나누어 담았더니 주머니마다 ${n(q)}개씩 꼭 맞게 들어갔습니다. ` +
+            `구슬 ${n(move)}개를 더 넣고 같은 수의 주머니에 나누면 한 주머니에 몇 개씩 들어가는지 쓰시오.`,
+          `사탕 ${n(a)}개를 접시마다 ${n(q)}개씩 남김없이 놓았습니다. ` +
+            `사탕 ${n(move)}개를 더 가져와 같은 수의 접시에 나누면 한 접시에 몇 개씩 놓이는지 쓰시오.`,
+          `색종이 ${n(a)}장을 모둠마다 ${n(q)}장씩 꼭 맞게 나누어 주었습니다. ` +
+            `색종이 ${n(move)}장을 더 받아 같은 수의 모둠에 나누면 한 모둠이 몇 장씩 받는지 쓰시오.`,
+        ])
+      : pick(rng, [
+          `${n(a)}개를 몇 명이 똑같이 나누었더니 한 명이 ${n(q)}개씩 가졌습니다. ` +
+            `여기에서 ${n(move)}개를 덜어 내고 같은 사람 수로 나누면 한 명이 몇 개씩 가지는지 쓰시오.`,
+          `구슬 ${n(a)}개를 똑같이 나누어 담았더니 주머니마다 ${n(q)}개씩 꼭 맞게 들어갔습니다. ` +
+            `구슬 ${n(move)}개를 빼고 같은 수의 주머니에 나누면 한 주머니에 몇 개씩 들어가는지 쓰시오.`,
+          `사탕 ${n(a)}개를 접시마다 ${n(q)}개씩 남김없이 놓았습니다. ` +
+            `사탕 ${n(move)}개를 덜어 내고 같은 수의 접시에 나누면 한 접시에 몇 개씩 놓이는지 쓰시오.`,
+          `색종이 ${n(a)}장을 모둠마다 ${n(q)}장씩 꼭 맞게 나누어 주었습니다. ` +
+            `색종이 ${n(move)}장을 빼고 같은 수의 모둠에 나누면 한 모둠이 몇 장씩 받는지 쓰시오.`,
+        ]);
+  return makeDeep(unit, stem, n(nowQ), [
+    `먼저 몇으로 나누었는지 되짚습니다. ${expr(`${a}\\div${q}=${b}`)} 입니다.`,
+    `${expr(m > 0 ? `${a}+${move}=${nowA}` : `${a}-${move}=${nowA}`)} 이고 ` +
+      `${expr(`${nowA}\\div${b}=${nowQ}`)} 이므로 ${n(nowQ)}개씩입니다.`,
+  ]);
 }
 
 // ── 1-3-3 나눗셈의 몫을 곱셈식으로 구하기 ──
@@ -3544,42 +3634,55 @@ function lenApplyOf(cfg: LenCfg) {
   };
 }
 
-/** 4단 — 역산: 전체에서 한 부분을 되짚어 뺀다. */
+/**
+ * 4단 — **두 도막을 이은 뒤** 일부를 덜어 낸다. 환산이 둘, 셈이 둘이다.
+ *
+ * ⚠️ 예전에는 「전체 $W$ 에서 한 도막 $x$ cm $y$ mm 를 뺀다」였다 — 환산 한 번 + 뺄셈인데,
+ *    같은 소단원 **응용이 환산 두 번 + 덧셈**이라 사다리가 뒤집혀 있었다(3.3 ㉢ 부류).
+ *    이제 응용이 하는 일을 다 하고 **한 걸음 더** 간다.
+ */
 function lenDeepOf(cfg: LenCfg) {
   return (unit: UnitSeed, rng: Rng): ElemProblem => {
-    const k = intBetween(rng, 1, 4);
-    const e = cfg.smallPick(rng);
-    const part = k * cfg.mul + e;
-    const rest = intBetween(rng, 2, 9) * (cfg.mul === 10 ? 1 : 100) + cfg.mul;
-    const whole = part + rest;
+    const k1 = intBetween(rng, 1, 4);
+    const e1 = cfg.smallPick(rng);
+    const k2 = intBetween(rng, 1, 4);
+    const e2 = cfg.smallPick(rng);
+    const t1 = k1 * cfg.mul + e1;
+    const t2 = k2 * cfg.mul + e2;
+    const joined = t1 + t2;
+    const cut = intBetween(rng, 2, 9) * (cfg.mul === 10 ? 1 : 100);
+    const left = joined - cut;
+    const A = mixedLen(cfg, k1, e1);
+    const B = mixedLen(cfg, k2, e2);
+    const C = unitNum(cut, cfg.small);
     const stem =
       cfg.big === "cm"
         ? pick(rng, [
-            `길이가 ${unitNum(whole, cfg.small)} 인 철사를 두 도막으로 잘랐습니다. 한 도막이 ${mixedLen(cfg, k, e)} 라면 다른 도막은 몇 mm인지 쓰시오.`,
-            `${unitNum(whole, cfg.small)} 인 색 테이프에서 ${mixedLen(cfg, k, e)} 를 잘라 썼습니다. 남은 길이는 몇 mm인지 쓰시오.`,
-            `리본 ${unitNum(whole, cfg.small)} 중에서 ${mixedLen(cfg, k, e)} 를 선물 포장에 썼습니다. 남은 리본은 몇 mm인지 쓰시오.`,
-            `끈 ${unitNum(whole, cfg.small)} 를 두 도막으로 나누었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 나머지 한 도막은 몇 mm인지 쓰시오.`,
-            `털실 ${unitNum(whole, cfg.small)} 에서 ${mixedLen(cfg, k, e)} 만큼 잘라 냈습니다. 남은 털실은 몇 mm인지 쓰시오.`,
-            `길이가 ${unitNum(whole, cfg.small)} 인 빨대에서 ${mixedLen(cfg, k, e)} 를 잘라 냈습니다. 남은 빨대는 몇 mm인지 쓰시오.`,
-            `테이프 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 만큼 이미 썼습니다. 아직 남은 테이프는 몇 mm인지 쓰시오.`,
-            `실 ${unitNum(whole, cfg.small)} 를 두 도막 내었더니 한 도막이 ${mixedLen(cfg, k, e)} 였습니다. 남은 한 도막은 몇 mm인지 쓰시오.`,
+            `색 테이프 ${A} 와 ${B} 를 겹치지 않게 이은 뒤 ${C} 를 잘라 냈습니다. 남은 길이는 몇 mm인지 쓰시오.`,
+            `끈 ${A} 와 ${B} 를 이어 붙이고 ${C} 만큼 잘라 썼습니다. 남은 끈은 몇 mm인지 쓰시오.`,
+            `리본 ${A} 와 ${B} 를 이은 다음 ${C} 를 선물 포장에 썼습니다. 남은 리본은 몇 mm인지 쓰시오.`,
+            `털실 ${A} 와 ${B} 를 이어 놓고 ${C} 만큼 잘라 냈습니다. 남은 털실은 몇 mm인지 쓰시오.`,
+            `철사 ${A} 와 ${B} 를 이어 붙인 뒤 ${C} 를 잘라 버렸습니다. 남은 철사는 몇 mm인지 쓰시오.`,
+            `실 ${A} 와 ${B} 를 이었습니다. 그중 ${C} 를 이미 썼다면 남은 실은 몇 mm인지 쓰시오.`,
+            `빨대 ${A} 와 ${B} 를 이어 하나로 만들고 ${C} 만큼 잘라 냈습니다. 남은 빨대는 몇 mm인지 쓰시오.`,
+            `테이프 ${A} 와 ${B} 를 겹치지 않게 붙인 다음 ${C} 를 떼어 냈습니다. 남은 테이프는 몇 mm인지 쓰시오.`,
           ])
         : pick(rng, [
-            `집에서 공원까지의 거리는 ${unitNum(whole, cfg.small)} 입니다. 그중 ${mixedLen(cfg, k, e)} 를 걸었다면 남은 거리는 몇 m인지 쓰시오.`,
-            `전체 ${unitNum(whole, cfg.small)} 인 산책로에서 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸어야 하는 거리는 몇 m인지 쓰시오.`,
-            `마라톤 연습으로 ${unitNum(whole, cfg.small)} 를 달리기로 했습니다. 지금까지 ${mixedLen(cfg, k, e)} 를 달렸다면 남은 거리는 몇 m인지 쓰시오.`,
-            `자전거 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 지점을 지났습니다. 끝까지 남은 거리는 몇 m인지 쓰시오.`,
-            `둘레가 ${unitNum(whole, cfg.small)} 인 호수에서 ${mixedLen(cfg, k, e)} 만큼 걸었습니다. 한 바퀴까지 남은 거리는 몇 m인지 쓰시오.`,
-            `기차가 갈 길 ${unitNum(whole, cfg.small)} 중 ${mixedLen(cfg, k, e)} 를 이미 왔습니다. 남은 거리는 몇 m인지 쓰시오.`,
-            `등굣길 ${unitNum(whole, cfg.small)} 가운데 ${mixedLen(cfg, k, e)} 를 걸어왔습니다. 학교까지 남은 거리는 몇 m인지 쓰시오.`,
-            `산책로 전체는 ${unitNum(whole, cfg.small)} 이고, 지금까지 ${mixedLen(cfg, k, e)} 를 걸었습니다. 더 걸을 거리는 몇 m인지 쓰시오.`,
+            `집에서 학교까지 ${A}, 학교에서 공원까지 ${B} 입니다. 그중 ${C} 를 버스로 갔다면 걸은 거리는 몇 m인지 쓰시오.`,
+            `산책로의 앞 구간이 ${A}, 뒤 구간이 ${B} 입니다. 지금까지 ${C} 를 걸었다면 남은 거리는 몇 m인지 쓰시오.`,
+            `자전거로 ${A} 를 가고 이어서 ${B} 를 더 갔습니다. 그중 ${C} 는 내리막이었다면 내리막이 아닌 거리는 몇 m인지 쓰시오.`,
+            `강 상류 구간 ${A} 와 하류 구간 ${B} 를 이어 배를 타기로 했습니다. 이미 ${C} 를 갔다면 남은 거리는 몇 m인지 쓰시오.`,
+            `등굣길 앞쪽이 ${A}, 뒤쪽이 ${B} 입니다. ${C} 를 이미 걸어왔다면 학교까지 남은 거리는 몇 m인지 쓰시오.`,
+            `기차가 갈 길이 ${A} 와 ${B} 로 이어져 있습니다. 지금까지 ${C} 를 왔다면 남은 거리는 몇 m인지 쓰시오.`,
+            `호수 둘레의 한쪽이 ${A}, 다른 쪽이 ${B} 입니다. ${C} 만큼 걸었다면 한 바퀴까지 남은 거리는 몇 m인지 쓰시오.`,
+            `마라톤 연습 구간이 ${A} 와 ${B} 입니다. 지금까지 ${C} 를 달렸다면 남은 거리는 몇 m인지 쓰시오.`,
           ]);
-    return make(
-      unit,
-      stem,
-      n(rest),
-      `${mixedLen(cfg, k, e)} 는 ${unitNum(part, cfg.small)} 입니다. ${expr(`${whole}-${part}=${rest}`)} 입니다.`,
-    );
+    return makeDeep(unit, stem, n(left), [
+      `${A} 는 ${expr(`${k1}\\times${cfg.mul}+${e1}=${t1}`)} 이고 ` +
+        `${B} 는 ${expr(`${k2}\\times${cfg.mul}+${e2}=${t2}`)} 입니다 (단위: ${cfg.small}).`,
+      `이으면 ${expr(`${t1}+${t2}=${joined}`)} 이고, ` +
+        `${expr(`${joined}-${cut}=${left}`)} 이므로 ${unitNum(left, cfg.small)} 입니다.`,
+    ]);
   };
 }
 
@@ -3670,19 +3773,34 @@ function guessApply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 4단 — 역산: 어림값과 「몇 mm 길다·짧다」에서 실제 길이를 되짚는다. */
 function guessDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전에는 어림값에서 한 번 더하거나 빼면 끝이었다(환산 + 셈 한 번). 같은 소단원
+  //    응용이 **두 사람의 어림을 실제와 각각 견주는 세 걸음**이라 사다리가 뒤집혀 있었다.
+  //    이제 한 사람의 어림에서 실제를 되짚고, **다른 사람의 어림과 다시 견준다**.
   const thing = pick(rng, GUESS_THINGS);
   const g = intBetween(rng, 4, 9);
   const d = intBetween(rng, 2, 9);
   const longer = intBetween(rng, 0, 1) === 0;
   const real = g * 10 + (longer ? d : -d);
-  return make(
+  // 둘째 어림은 실제보다 **길게** 잡는다 — 답이 음수가 되지 않게.
+  const g2 = intBetween(rng, Math.max(g + 1, Math.floor(real / 10) + 1), 13);
+  const gap = g2 * 10 - real;
+  return makeDeep(
     unit,
     pick(rng, [
-      `${thing}의 길이를 약 ${unitNum(g, "cm")} 로 어림했는데, 실제 길이는 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "깁니다" : "짧습니다"}. 실제 길이는 몇 mm인지 쓰시오.`,
-      `${thing}${josa(thing, "을", "를")} 약 ${unitNum(g, "cm")} 로 어림했습니다. 자로 재면 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "길다고" : "짧다고"} 합니다. 실제 길이는 몇 mm인지 쓰시오.`,
+      `${thing}의 길이를 형은 약 ${unitNum(g, "cm")} 로 어림했는데, 실제 길이는 형의 어림보다 ` +
+        `${unitNum(d, "mm")} 더 ${longer ? "깁니다" : "짧습니다"}. 동생은 약 ${unitNum(g2, "cm")} 로 ` +
+        `어림했다면, 동생의 어림은 실제 길이보다 몇 mm 더 긴지 쓰시오.`,
+      `${thing}${josa(thing, "을", "를")} 형은 약 ${unitNum(g, "cm")} 로 어림했고, 자로 재니 ` +
+        `형의 어림보다 ${unitNum(d, "mm")} 더 ${longer ? "길었습니다" : "짧았습니다"}. ` +
+        `동생의 어림 약 ${unitNum(g2, "cm")} 는 실제 길이보다 몇 mm 더 긴지 쓰시오.`,
     ]),
-    n(real),
-    `어림한 ${unitNum(g, "cm")} 는 ${unitNum(g * 10, "mm")} 입니다. ${expr(longer ? `${g * 10}+${d}=${real}` : `${g * 10}-${d}=${real}`)} 이므로 실제 길이는 ${unitNum(real, "mm")} 입니다.`,
+    n(gap),
+    [
+      `형이 어림한 ${unitNum(g, "cm")} 는 ${unitNum(g * 10, "mm")} 이므로 실제 길이는 ` +
+        `${expr(longer ? `${g * 10}+${d}=${real}` : `${g * 10}-${d}=${real}`)} 입니다.`,
+      `동생이 어림한 ${unitNum(g2, "cm")} 는 ${unitNum(g2 * 10, "mm")} 이므로 ` +
+        `${expr(`${g2 * 10}-${real}=${gap}`)} 입니다.`,
+    ],
   );
 }
 
@@ -3865,24 +3983,36 @@ function sec154Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 4단 — 역산: 목표한 분에서 이미 한 초를 되짚어 뺀다. */
 function sec154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전에는 「$M$분 중 $t$초 지남 → 몇 초 더」로 환산 한 번 + 뺄셈이었다.
+  //    이제 **분과 초가 섞인 시간**을 주고, 답도 **분과 초로 되돌린다**(환산이 양쪽에 온다).
   const M = intBetween(rng, 2, 5);
-  const t = intBetween(rng, 30, M * 60 - 30);
-  const remain = M * 60 - t;
+  const S = intBetween(rng, 5, 55);
+  const whole = M * 60 + S;
+  const t0 = intBetween(rng, 30, whole - 70);
+  // 남은 시간이 딱 몇 분이면 답이 「$2$분 $0$초」가 된다 — 뽑을 때 막는다.
+  const t = (whole - t0) % 60 === 0 ? t0 + 1 : t0;
+  const remain = whole - t;
   const stem = pick(rng, [
-    `줄넘기를 ${n(M)}분 동안 하기로 했습니다. 지금까지 ${n(t)}초 했다면 몇 초 더 해야 하는지 쓰시오.`,
-    `명상을 ${n(M)}분 동안 하려고 합니다. 벌써 ${n(t)}초가 지났다면 남은 시간은 몇 초인지 쓰시오.`,
-    `${n(M)}분짜리 모래시계가 있습니다. 모래가 떨어지기 시작한 지 ${n(t)}초가 지났다면 몇 초 뒤에 다 떨어지는지 쓰시오.`,
-    `발표 시간은 ${n(M)}분입니다. 지금까지 ${n(t)}초 발표했다면 남은 발표 시간은 몇 초인지 쓰시오.`,
-    `노래 한 곡은 ${n(M)}분짜리입니다. ${n(t)}초가 지났다면 노래가 몇 초 뒤에 끝나는지 쓰시오.`,
-    `체험 시간은 ${n(M)}분입니다. 시작한 지 ${n(t)}초가 지났다면 남은 체험 시간은 몇 초인지 쓰시오.`,
-    `타이머를 ${n(M)}분에 맞추었습니다. ${n(t)}초가 지난 지금, 몇 초 뒤에 울리는지 쓰시오.`,
-    `라면을 ${n(M)}분 동안 끓여야 합니다. 지금까지 ${n(t)}초 끓였다면 몇 초 더 끓여야 하는지 쓰시오.`,
+    `줄넘기를 ${n(M)}분 ${n(S)}초 동안 하기로 했습니다. 지금까지 ${n(t)}초 했다면 몇 분 몇 초 더 해야 하는지 쓰시오.`,
+    `명상을 ${n(M)}분 ${n(S)}초 동안 하려고 합니다. 벌써 ${n(t)}초가 지났다면 남은 시간은 몇 분 몇 초인지 쓰시오.`,
+    `${n(M)}분 ${n(S)}초짜리 모래시계가 있습니다. ${n(t)}초가 지났다면 몇 분 몇 초 뒤에 다 떨어지는지 쓰시오.`,
+    `타이머를 ${n(M)}분 ${n(S)}초에 맞추었습니다. ${n(t)}초가 지난 지금, 몇 분 몇 초 뒤에 울리는지 쓰시오.`,
+    `발표 시간은 ${n(M)}분 ${n(S)}초입니다. 지금까지 ${n(t)}초 발표했다면 남은 시간은 몇 분 몇 초인지 쓰시오.`,
+    `체험 시간은 ${n(M)}분 ${n(S)}초입니다. 시작한 지 ${n(t)}초가 지났다면 남은 시간은 몇 분 몇 초인지 쓰시오.`,
+    `라면을 ${n(M)}분 ${n(S)}초 동안 끓여야 합니다. 지금까지 ${n(t)}초 끓였다면 몇 분 몇 초 더 끓여야 하는지 쓰시오.`,
+    `노래 한 곡은 ${n(M)}분 ${n(S)}초짜리입니다. ${n(t)}초가 지났다면 몇 분 몇 초 뒤에 끝나는지 쓰시오.`,
   ]);
-  return make(
+  return makeDeep(
     unit,
     stem,
-    n(remain),
-    `${n(M)}분은 ${expr(`60\\times${M}=${M * 60}`)} 초입니다. ${expr(`${M * 60}-${t}=${remain}`)} 이므로 ${n(remain)}초 남았습니다.`,
+    `${n(Math.floor(remain / 60))}분 ${n(remain % 60)}초`,
+    [
+      `${n(M)}분 ${n(S)}초는 ${expr(`60\\times${M}+${S}=${whole}`)} 초입니다.`,
+      `${expr(`${whole}-${t}=${remain}`)} 초입니다. ` +
+        `${expr(`60\\times${Math.floor(remain / 60)}=${Math.floor(remain / 60) * 60}`)} 이고 ` +
+        `${expr(`${remain}-${Math.floor(remain / 60) * 60}=${remain % 60}`)} 이므로 ` +
+        `${n(Math.floor(remain / 60))}분 ${n(remain % 60)}초입니다.`,
+    ],
   );
 }
 
@@ -3978,7 +4108,8 @@ function time155Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 function time155Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const h1 = intBetween(rng, 1, 2);
   const h2 = intBetween(rng, 1, 2);
-  const h3 = intBetween(rng, 0, 1);
+  // 되짚어 구하는 셋째 시간도 «몇 시간 몇 분» 이어야 한다 — $0$ 시간이면 형식이 깨진다.
+  const h3 = 1;
   const m1 = intBetween(rng, 15, 55);
   const m2 = intBetween(rng, 15, 55);
   let m3 = intBetween(rng, 15, 55);
@@ -3990,24 +4121,30 @@ function time155Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts: [string, string, string] = [
     hmStr(h1, m1),
     hmStr(h2, m2),
-    h3 === 0 ? `${n(m3)}분` : hmStr(h3, m3),
+    hmStr(h3, m3),
   ];
+  // ⚠️ 예전에는 **세 시간을 그냥 더했다** — 응용(시각 + 시간)에 항을 하나 더한 것이라
+  //    계산량만 늘었다(3.3 ㉡ 부류). 이제 **전체를 주고 셋째를 되짚는다** — 둘을 더한 뒤
+  //    전체에서 뺀다. 60 경계는 양쪽(더할 때·뺄 때)에 다 걸린다.
   const stem = pick(rng, [
-    `독서를 ${parts[0]}, 운동을 ${parts[1]}, 산책을 ${parts[2]} 동안 했습니다. 세 활동을 한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
-    `기차를 ${parts[0]}, 버스를 ${parts[1]}, 지하철을 ${parts[2]} 동안 탔습니다. 탈것을 탄 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
-    `오전 공부 ${parts[0]}, 오후 공부 ${parts[1]}, 저녁 공부 ${parts[2]} — 하루에 공부한 시간은 모두 몇 시간 몇 분인지 쓰시오.`,
-    `청소 ${parts[0]}, 빨래 ${parts[1]}, 설거지 ${parts[2]} 만큼 걸렸습니다. 집안일에 걸린 시간을 모두 더하면 몇 시간 몇 분인지 쓰시오.`,
+    `독서를 ${parts[0]}, 운동을 ${parts[1]} 동안 했습니다. 여기에 산책까지 더해 모두 ${hmStr(hh, mm)} 동안 움직였다면 산책은 몇 시간 몇 분 동안 했는지 쓰시오.`,
+    `기차를 ${parts[0]}, 버스를 ${parts[1]} 동안 탔습니다. 지하철까지 더해 탈것을 탄 시간이 모두 ${hmStr(hh, mm)}이라면 지하철을 탄 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `영화를 ${parts[0]}, 드라마를 ${parts[1]} 보고 만화도 보았습니다. 본 시간이 모두 ${hmStr(hh, mm)}이라면 만화를 본 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `달리기를 ${parts[0]}, 자전거를 ${parts[1]} 타고 수영도 했습니다. 운동한 시간이 모두 ${hmStr(hh, mm)}이라면 수영한 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `오전 공부 ${parts[0]}, 오후 공부 ${parts[1]}을 하고 저녁에도 공부했습니다. 하루에 공부한 시간이 모두 ${hmStr(hh, mm)}이라면 저녁 공부는 몇 시간 몇 분인지 쓰시오.`,
+    `청소 ${parts[0]}, 빨래 ${parts[1]}에 이어 설거지까지 했더니 집안일에 걸린 시간이 모두 ${hmStr(hh, mm)}이었습니다. 설거지에 걸린 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `만들기 ${parts[0]}, 색칠 ${parts[1]}에 이어 정리도 했습니다. 걸린 시간이 모두 ${hmStr(hh, mm)}이라면 정리에 걸린 시간은 몇 시간 몇 분인지 쓰시오.`,
+    `등산에서 오르막 ${parts[0]}, 능선 ${parts[1]}을 걷고 내리막도 걸었습니다. 걸은 시간이 모두 ${hmStr(hh, mm)}이라면 내리막을 걸은 시간은 몇 시간 몇 분인지 쓰시오.`,
   ]);
-  return make(
-    unit,
-    stem,
-    hmStr(hh, mm),
-    `분끼리 모두 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 이고 ${expr(`${m1 + m2}+${m3}=${tm}`)} 입니다. ${
-      carry >= 1
-        ? `$60$ 분은 $1$ 시간이므로 ${n(tm)}분은 ${hmStr(carry, mm)}입니다. `
-        : ``
-    }시간끼리 더하면 ${expr(h3 === 0 ? `${h1}+${h2}=${h1 + h2}` : `${h1}+${h2}+${h3}=${h1 + h2 + h3}`)} 이므로 모두 ${hmStr(hh, mm)}입니다.`,
-  );
+  const two = m1 + m2;
+  const twoH = h1 + h2 + Math.floor(two / 60);
+  const twoM = two % 60;
+  return makeDeep(unit, stem, hmStr(h3, m3), [
+    `아는 두 시간을 먼저 더합니다. 분끼리 ${expr(`${m1}+${m2}=${two}`)} 이고 ` +
+      `시간끼리 ${expr(`${h1}+${h2}=${h1 + h2}`)} 이므로 ${hmStr(twoH, twoM)}입니다.`,
+    `전체에서 덜어 내면 ${expr(`${hh * 60 + mm}-${twoH * 60 + twoM}=${h3 * 60 + m3}`)} 분이므로 ` +
+      `${hmStr(h3, m3)}입니다.`,
+  ]);
 }
 
 // ── 1-5-6 시간의 뺄셈 ──
@@ -4361,18 +4498,21 @@ function frac162Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     "종이 띠",
     "케이크",
   ]);
+  // ⚠️ 예전에는 「색칠한 부분이 전체의 $\frac{a}{b}$ → 색칠 안 한 조각 수」로 **분모에서
+  //    분자를 빼면 끝**이었다(한 걸음). 같은 소단원 응용(두 사람의 조각을 더해 분수로)과
+  //    무게가 같았다. 이제 안 칠한 조각을 되짚은 **뒤 몇 조각을 더 칠해** 분수로 되돌린다.
+  const more = intBetween(rng, 1, rest - 1 > 0 ? rest - 1 : 1);
   const stem = pick(rng, [
-    `${thing}의 색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다. 색칠하지 않은 조각은 몇 조각인지 쓰시오.`,
-    `똑같이 나눈 ${thing}에서 사용한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 라면, 남은 조각은 몇 조각인지 쓰시오.`,
-    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 만큼 먹었습니다. 먹지 않은 조각의 수를 쓰시오.`,
-    `색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 색칠이 안 된 조각은 몇 조각인지 쓰시오.`,
+    `${thing}의 색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다. 색칠하지 않은 조각 중 ${n(more)}조각을 더 색칠하면 색칠한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 나눈 ${thing}에서 색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 입니다. 남은 조각에서 ${n(more)}조각을 더 색칠했다면 색칠한 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `색칠한 부분이 전체의 ${expr(`\\frac{${filled}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 색칠이 안 된 조각 가운데 ${n(more)}조각을 더 칠하면 색칠한 부분은 전체의 얼마인지 분수로 쓰시오.`,
   ]);
-  return make(
-    unit,
-    stem,
-    n(rest),
-    `분모가 전체 조각 수이고 분자가 색칠한 조각 수입니다. ${expr(`${parts}-${filled}=${rest}`)} 이므로 ${n(rest)}조각입니다.`,
-  );
+  return makeDeep(unit, stem, expr(`\\frac{${filled + more}}{${parts}}`), [
+    `분모가 전체 조각 수이고 분자가 색칠한 조각 수이므로 색칠하지 않은 조각은 ` +
+      `${expr(`${parts}-${filled}=${rest}`)} 조각입니다.`,
+    `${n(more)}조각을 더 칠하면 색칠한 조각은 ${expr(`${filled}+${more}=${filled + more}`)} 조각이므로 ` +
+      `${expr(`\\frac{${filled + more}}{${parts}}`)} 입니다.`,
+  ]);
 }
 
 // ── 1-6-3 분수 알아보기(2) ──
@@ -4461,7 +4601,8 @@ function frac163Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 4단 — 역산: 남은 부분의 분수에서 먹은 조각 수를 되짚는다. */
 function frac163Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 4, 9);
-  const rest = intBetween(rng, 1, parts - 2);
+  // 더 먹을 조각이 남아야 두 걸음이 산다 — 남은 조각이 하나면 분자가 $0$ 이 된다.
+  const rest = intBetween(rng, 2, parts - 2);
   const eaten = parts - rest;
   const thing = pick(rng, [
     "피자",
@@ -4473,19 +4614,21 @@ function frac163Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     "와플",
     "전",
   ]);
+  // ⚠️ 1-6-2 와 같은 자리였다 — 「남은 부분이 $\frac{a}{b}$ → 먹은 조각」은 뺄셈 한 번이다.
+  //    이제 먹은 조각을 되짚은 **뒤 몇 조각을 더 먹고** 남은 부분을 분수로 되돌린다.
+  //    (1-6-2 는 «더 칠한다», 여기는 «더 먹는다» — 방향이 반대라 발문이 안 겹친다.)
+  const more = intBetween(rng, 1, rest - 1 > 0 ? rest - 1 : 1);
   const stem = pick(rng, [
-    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 먹고 나니 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 먹은 조각은 몇 조각인지 쓰시오.`,
-    `똑같이 나눈 ${thing}의 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 라면, 이미 먹은 조각의 수를 쓰시오.`,
-    `팔고 남은 ${thing}${josa(thing, "이", "가")} 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 팔린 조각은 몇 조각인지 쓰시오.`,
-    `남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 인 ${thing}${josa(thing, "이", "가")} 있습니다. 없어진 조각의 수를 쓰시오.`,
+    `${thing}${josa(thing, "을", "를")} 똑같이 나누어 먹고 나니 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. 여기서 ${n(more)}조각을 더 먹으면 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `똑같이 나눈 ${thing}의 남은 부분이 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. ${n(more)}조각을 더 먹었다면 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
+    `팔고 남은 ${thing}${josa(thing, "이", "가")} 전체의 ${expr(`\\frac{${rest}}{${parts}}`)} 입니다. ${n(more)}조각이 더 팔리면 남은 부분은 전체의 얼마인지 분수로 쓰시오.`,
   ]);
-  return make(
-    unit,
-    stem,
-    n(eaten),
-    // 발문이 먹은·팔린·없어진 조각을 오가므로 해설은 동사를 고정하지 않는다.
-    `분모가 전체 조각 수이고 분자가 남은 조각 수입니다. ${expr(`${parts}-${rest}=${eaten}`)} 이므로 ${n(eaten)}조각입니다.`,
-  );
+  return makeDeep(unit, stem, expr(`\\frac{${rest - more}}{${parts}}`), [
+    `분모가 전체 조각 수이고 분자가 남은 조각 수이므로 이미 없어진 조각은 ` +
+      `${expr(`${parts}-${rest}=${eaten}`)} 조각입니다.`,
+    `${n(more)}조각이 더 없어지면 남은 조각은 ${expr(`${rest}-${more}=${rest - more}`)} 조각이므로 ` +
+      `${expr(`\\frac{${rest - more}}{${parts}}`)} 입니다.`,
+  ]);
 }
 
 // ── 1-6-4 분모가 같은 분수의 크기 비교 ──
@@ -4891,19 +5034,25 @@ function dec166Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `$1$ 짜리 ${n(w)}개는 $0.1$ 짜리 ${n(w * 10)}개와 같고, ${expr(`0.${t}`)} 만큼은 $0.1$ 짜리 ${n(t)}개입니다. ${expr(`${w * 10}+${t}=${total}`)} 이므로 ${n(total)}개입니다.`,
     );
   }
+  // ⚠️ 예전에는 「$w.t$ cm 는 몇 mm」로 **환산 한 번**이었다 — 같은 소단원 응용
+  //    (「$a$ cm $b$ mm 를 소수로」)보다도 쉬웠다. 이제 환산한 뒤 **덜어 내고 다시
+  //    소수로 되돌린다** — 응용이 하는 일을 안에 품고 한 걸음 더 간다.
   const thing = pick(rng, ["연필", "리본", "빨대", "막대"]);
+  // 남은 길이가 `$2.0$` 처럼 소수 자리가 $0$ 이면 소수로 쓸 까닭이 사라진다 — 뽑을 때 막는다.
+  const cut0 = intBetween(rng, 1, Math.max(1, total - 11));
+  const cut = (total - cut0) % 10 === 0 ? cut0 + 1 : cut0;
+  const left = total - cut;
   const stem = pick(rng, [
-    `${thing}의 길이는 ${expr(`${w}.${t}`)} cm입니다. 이 길이는 몇 mm인지 쓰시오.`,
-    `길이가 ${expr(`${w}.${t}`)} cm인 ${thing}${josa(thing, "이", "가")} 있습니다. mm 단위로 나타내시오.`,
-    `${expr(`${w}.${t}`)} cm짜리 ${thing}${josa(thing, "을", "를")} mm 로 재면 몇 mm인지 쓰시오.`,
-    `${thing}의 길이 ${expr(`${w}.${t}`)} cm를 mm 단위로 바꾸어 쓰시오.`,
+    `${thing}의 길이는 ${expr(`${w}.${t}`)} cm입니다. 여기서 ${n(cut)} mm를 잘라 내면 남은 길이는 몇 cm인지 소수로 쓰시오.`,
+    `길이가 ${expr(`${w}.${t}`)} cm인 ${thing}${josa(thing, "이", "가")} 있습니다. ${n(cut)} mm를 잘라 쓰고 남은 길이를 소수로 나타내시오.`,
+    `${expr(`${w}.${t}`)} cm짜리 ${thing}에서 ${n(cut)} mm를 잘라 냈습니다. 남은 길이는 몇 cm인지 소수로 쓰시오.`,
   ]);
-  return make(
-    unit,
-    stem,
-    n(total),
-    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${n(w)} cm 는 ${n(w * 10)} mm이고, ${expr(`0.${t}`)} cm 는 ${n(t)} mm입니다. ${expr(`${w * 10}+${t}=${total}`)} 입니다.`,
-  );
+  return makeDeep(unit, stem, expr(`${Math.floor(left / 10)}.${left % 10}`), [
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${expr(`${w}.${t}`)} cm 는 ` +
+      `${expr(`${w * 10}+${t}=${total}`)} mm입니다.`,
+    `${expr(`${total}-${cut}=${left}`)} mm이고, $10$ mm가 $1$ cm이므로 ` +
+      `${expr(`${Math.floor(left / 10)}.${left % 10}`)} cm입니다.`,
+  ]);
 }
 
 // ── 1-6-7 소수의 크기 비교 ──
