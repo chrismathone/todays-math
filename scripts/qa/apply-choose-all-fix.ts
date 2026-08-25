@@ -164,6 +164,11 @@ async function main() {
       answer: true,
       solution: true,
       externalId: true,
+      // recreate 가 새 행에 **그대로 옮겨 담을** 값들. 나중에 다시 물으면
+      // 그 사이 원본이 지워졌을 수 있다 — 지우기 전에 손에 들고 있어야 한다.
+      difficulty: true,
+      problemType: true,
+      questionType: true,
     },
   });
   const family = live.filter((p) => isChooseAll(p.content));
@@ -202,15 +207,23 @@ async function main() {
     where: { id: { in: unitIds } },
     select: { id: true, grade: true, section: true },
   });
+  // 문항 **수**는 안 준다(하나 빼고 하나 넣는다). 잃는 것은 «그 문항 자체»와,
+  // recreate 모드에서는 **문항 코드**다. 그래서 둘 다 찍는다 — 건수만 보면
+  // 「아무것도 안 잃는다」로 읽힌다.
   console.log("\n=== 무엇을 잃는가 (D-20) ===");
   for (const u of units) {
-    const before = await prisma.problem.count({
+    const pool = await prisma.problem.count({
       where: { unitId: u.id, directUseAllowed: true },
     });
-    const lose = targets.filter((t) => t.unitId === u.id).length;
-    const after = MODE === "replace" ? before : before - lose + lose;
+    const n = targets.filter((t) => t.unitId === u.id).length;
     console.log(
-      `  ${u.grade} ${u.section}: 출제 가능 ${before} → ${after} (이 단원에서 ${lose}건을 다시 만든다)`,
+      `  ${u.grade} ${u.section}: 출제 가능 ${pool}건 중 ${n}건을 다시 만든다 (총수는 그대로)`,
+    );
+  }
+  if (MODE === "recreate") {
+    console.log(
+      `  🔴 recreate — 문항 코드 ${targets.length}개가 **영영 바뀐다**: ` +
+        targets.map((t) => t.problemCode).join(", "),
     );
   }
   // FK 가 걸린 문항은 지울 수 없다 (`onDelete: Restrict`).
@@ -354,19 +367,9 @@ async function main() {
         data: {
           unitId: m.target.unitId,
           source: "manual",
-          difficulty: (
-            await prisma.problem.findUniqueOrThrow({
-              where: { id: m.target.id },
-              select: { difficulty: true },
-            })
-          ).difficulty,
-          problemType: (
-            await prisma.problem.findUniqueOrThrow({
-              where: { id: m.target.id },
-              select: { problemType: true },
-            })
-          ).problemType,
-          questionType: "단답형",
+          difficulty: m.target.difficulty,
+          problemType: m.target.problemType,
+          questionType: m.target.questionType,
           content: m.content,
           answer: m.answer,
           solution: m.solution,
@@ -385,8 +388,15 @@ async function main() {
       console.log(
         `  ${m.target.problemCode} → **${created.problemCode}** (코드가 바뀌었다)`,
       );
+      // 한 건 넣고 지울 때마다 원장을 **바로** 갱신한다 — 중간에 죽어도
+      // 「무엇을 새로 만들었나」가 남아야 되돌릴 수 있다.
+      // ⚠️ 회차(`runs`)는 위에서 한 번만 적었다. 여기서는 `createdId` 만 덧쓴다.
+      const cur = readLedger();
+      cur.rows = cur.rows.map((r) =>
+        r.problemId === row.problemId ? { ...r, createdId: created.id } : r,
+      );
+      writeFileSync(LEDGER, JSON.stringify(cur, null, 2), "utf-8");
     }
-    writeLedger(readLedger(), rows, MIN);
   }
 
   // ── 7. 되읽어 확인한다 ─────────────────────────────────────────────

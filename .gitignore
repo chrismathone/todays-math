@@ -74,6 +74,9 @@ scripts/qa/reports/*
 !scripts/qa/reports/middle-combo-baseline.json
 !scripts/qa/reports/ai-solution-mismatch.json
 !scripts/qa/reports/ai-solution-skip.json
+# 「모두 고르시오」 정답 개수 통일 원장 — **되돌리기가 이 파일 하나를 읽는다.**
+# 바꾸기 전 본문·정답·해설이 여기에만 있다(공유 DB 를 바꾸는 스크립트의 undo).
+!scripts/qa/reports/choose-all-fix-ledger.json
 # 중복 문항 삭제 원장 — **지운 행의 모든 컬럼**이 여기에만 있다.
 # 이게 없으면 `--revert` 가 아무것도 못 되살린다(영구 삭제가 된다).
 !scripts/qa/reports/duplicate-delete-ledger.json
