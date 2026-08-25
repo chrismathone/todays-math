@@ -1,7 +1,7 @@
 # 핸드오프 — 다른 컴퓨터에서 이어 작업
 
 작성: 2026-08-14  
-저장소: [BIGSHOL/todays-math](https://github.com/BIGSHOL/todays-math)  
+저장소: [chrismathone/todays-math](https://github.com/chrismathone/todays-math) (비공개)  
 기준 커밋: `d252960` (`main`, D-31 공용 풀 적재)
 
 이 문서만 읽고 새 머신에서 개발 서버까지 올릴 수 있게 쓴다. 기획 SSOT는 아래에 링크만 둔다.
@@ -54,7 +54,7 @@ Git에 없는 것:
 ### 클론
 
 ```powershell
-git clone https://github.com/BIGSHOL/todays-math.git
+git clone https://github.com/chrismathone/todays-math.git
 cd todays-math
 git checkout main
 git pull

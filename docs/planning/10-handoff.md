@@ -28,6 +28,13 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 함수 지역을 서울 icn1 로 고정한 뒤(8cd5da12); 그 전엔 iad1 에서 2분 4초였다).
 공개 도메인은 todays-math.vercel.app (–bigshoul-project 별칭은 Vercel SSO 가 막는 게 정상).
 
+> **2026-08-25 이후로 계정이 바뀌었다.** 저장소는 `chrismathone/todays-math`(**비공개**),
+> Vercel 은 **chrismathone Pro 팀**이다(옛 `bigshol` Hobby 아님). 바뀐 결과 셋:
+> ⑴ **함수 12개 한도가 없어졌다**(Pro = 무제한) — 위의 `turbopackIgnore` 수리는 그대로
+> 두되, 그것이 **없다고 배포가 죽지는 않는다.**
+> ⑵ `maxDuration = 300` 이 **실제로 300초가 됐다**(Hobby 에서는 60으로 깎이고 있었다).
+> ⑶ 그 대신 **커밋 작성자 규칙**이 생겼다 — §0-A.1 의 상자를 반드시 읽을 것.
+
 ## 0-A. 인수인계 (2026-08-25 — **최신. 다른 컴퓨터에서 이어할 때 여기부터**)
 
 `main` = **`37c800d7`** · `origin/main` 과 같음 · 작업 트리 깨끗 · 안 민 커밋 0.
@@ -36,7 +43,7 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 ### 0-A.1 새 컴퓨터에서 **처음 칠 명령** (순서대로)
 
 ```bash
-git clone https://github.com/BIGSHOL/todays-math
+git clone https://github.com/chrismathone/todays-math
 cd todays-math && npm install
 # .env 를 원장님께 받아 둔다 (§1.3)
 
@@ -46,8 +53,23 @@ ls .husky/_                        # 없으면 npm install 이 깨진 것
 git commit --allow-empty -m "훅 확인"   # lint-staged 출력이 보이면 산 것
 git reset --hard HEAD~1
 
+# ⚠️ 커밋 **작성자**를 맞춘다 — 이게 없으면 밀려도 **배포가 안 된다** (아래 상자)
+git config user.name  "chrismathone"
+git config user.email "250071752+chrismathone@users.noreply.github.com"
+git var GIT_AUTHOR_IDENT           # chrismathone 이 나와야 한다
+
 npm run type-check && npm run lint && npm run test
 ```
+
+> ⚠️ **커밋 작성자가 안 맞으면 Vercel 이 배포를 «조용히» 안 만든다** (2026-08-25).
+> 저장소가 **비공개**라, Vercel 문서의 엄격한 규칙이 걸린다 —
+> 「비공개 저장소의 커밋은 **커밋 작성자가 그 Vercel 프로젝트에 접근 권한이 있을 때만**
+> 배포된다. Pro 팀에서는 **작성자가 그 팀의 멤버**여야 한다.」
+> 그런데 **`user.email` 은 `.git/config` 에 있어 커밋되지 않는다** — 새로 clone 하면
+> 그 컴퓨터의 전역 신원으로 커밋되고, 밀면 GitHub 은 받는데 **Vercel 은 아무것도 안 만든다.**
+> 옛 배포가 계속 서빙되므로 **화면은 멀쩡해 보인다.** 밀고 나서 `npx vercel ls` 로
+> 최신이 Ready 인지 볼 것.
+> (Member 좌석을 하나 더 사면 다른 신원도 되지만 **$20/월**이다. 신원을 맞추는 쪽이 공짜다.)
 
 ### 0-A.2 ⚠️ **저장소 밖**이라 따라오지 않는 것 (오늘 새로 생긴 것 포함)
 
@@ -131,7 +153,7 @@ npm run type-check && npm run lint && npm run test
 ### 1.1 저장소
 
 ```bash
-git clone https://github.com/BIGSHOL/todays-math
+git clone https://github.com/chrismathone/todays-math
 cd todays-math && npm install
 ```
 
