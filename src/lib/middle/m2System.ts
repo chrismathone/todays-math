@@ -24,6 +24,8 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
+
 import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -192,17 +194,25 @@ function shuffle<T>(rng: Rng, items: readonly T[]): T[] {
 type PoolItem = { tex: string; ok: boolean };
 
 /**
- * 참 `t`개 + 거짓 `5-t`개를 뽑아 섞는다. 참의 개수를 [lo,hi] 로 잠근다 —
- * 「전부 참」·「전부 거짓」이면 보기 문제가 성립하지 않는다.
+ * 참 `CHOOSE_ALL_ANSWER_COUNT`개 + 거짓 나머지를 뽑아 섞는다.
+ *
+ * 🔴 참의 개수는 **범위가 아니라 상수**다 (원장님 2026-08-25: 「모두 고르시오」의
+ *    정답은 정확히 2개). 예전에는 `[lo,hi]` 를 씨앗이 골랐고, 그래서 같은 유형이
+ *    씨앗마다 정답 1~4개를 냈다(실측 2026-08-25: 01 은 2~4개, 04 는 1~3개).
+ *    **거르는 것이 아니라 만들 때 정한다** — 거르면 씨앗마다 성공률이 달라진다.
  */
 function fiveItems(
   rng: Rng,
   yes: readonly string[],
   no: readonly string[],
-  lo: number,
-  hi: number,
 ): { items: PoolItem[]; mask: number } {
-  const t = intBetween(rng, lo, hi);
+  const t = CHOOSE_ALL_ANSWER_COUNT;
+  if (yes.length < t || no.length < 5 - t) {
+    // 풀이 모자라면 조용히 적은 보기를 내지 않는다 — 「보기 5칸」은 지면 규약이다.
+    throw new Error(
+      `보기 풀이 모자랍니다: 참 ${yes.length}(필요 ${t}) · 거짓 ${no.length}(필요 ${5 - t})`,
+    );
+  }
   const picked = [
     ...shuffle(rng, yes)
       .slice(0, t)
@@ -333,7 +343,7 @@ const PHRASES = [
 export const M2_SYSTEM: TypeEntry[] = [
   // ══ 일차부등식 01~05 (단원: 부등식) ═════════════════
   def(MINOR_INEQ, "01", "부등식의 뜻", SEC.부등식, "기본", (rng) => {
-    const { items, mask } = fiveItems(rng, INEQ_YES, INEQ_NO, 2, 4);
+    const { items, mask } = fiveItems(rng, INEQ_YES, INEQ_NO);
     const yes = items
       .map((it, i) => ({ it, i }))
       .filter((r) => r.it.ok)
@@ -445,7 +455,11 @@ export const M2_SYSTEM: TypeEntry[] = [
         if (it.ok) mask |= 1 << i;
       });
       const t = items.filter((it) => it.ok).length;
-      if (t < 1 || t > 4) return null;
+      // 🔴 「모두 고르시오」의 정답은 **정확히 2개** (원장님 2026-08-25).
+      //    여기 보기는 무작위 계수에서 나와 참·거짓을 미리 고를 수 없으므로
+      //    거르는 수밖에 없다 — 참이 2개일 확률이 C(5,2)/2^5≈31% 라 attempt(200)
+      //    으로 충분하다(실패 확률 ~1e-32). 거르는 자리가 여기뿐이어야 한다.
+      if (t !== CHOOSE_ALL_ANSWER_COUNT) return null;
       return {
         content: `$a<b$ 일 때, 다음 보기 중 옳은 것을 모두 고르시오.\n${itemLines(items)}`,
         answer: lettersOfMask(mask, items.length),
@@ -486,7 +500,7 @@ export const M2_SYSTEM: TypeEntry[] = [
 
   // ══ 일차부등식 06~09 (단원: 일차부등식의 풀이) ══════
   def(MINOR_INEQ, "06", "일차부등식의 뜻", SEC.부등식풀이, "기본", (rng) => {
-    const { items, mask } = fiveItems(rng, LINEQ_YES, LINEQ_NO, 2, 3);
+    const { items, mask } = fiveItems(rng, LINEQ_YES, LINEQ_NO);
     return {
       content: `다음 보기 중 일차부등식인 것을 모두 고르시오.\n${itemLines(items)}`,
       answer: lettersOfMask(mask, items.length),
@@ -619,7 +633,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     SEC.미지수2,
     "기본",
     (rng) => {
-      const { items, mask } = fiveItems(rng, TWOVAR_YES, TWOVAR_NO, 2, 3);
+      const { items, mask } = fiveItems(rng, TWOVAR_YES, TWOVAR_NO);
       return {
         content: `다음 보기 중 미지수가 $2$개인 일차방정식인 것을 모두 고르시오.\n${itemLines(items)}`,
         answer: lettersOfMask(mask, items.length),
@@ -685,7 +699,8 @@ export const M2_SYSTEM: TypeEntry[] = [
     attempt(400, () => {
       const x0 = nonzero(rng, 1, 5);
       const y0 = nonzero(rng, 1, 5);
-      const t = intBetween(rng, 1, 3);
+      // 🔴 정답 개수는 씨앗이 고르지 않는다 — 정확히 2개 (원장님 2026-08-25).
+      const t = CHOOSE_ALL_ANSWER_COUNT;
       const flags = shuffle(rng, [
         ...Array.from({ length: t }, () => true),
         ...Array.from({ length: 5 - t }, () => false),

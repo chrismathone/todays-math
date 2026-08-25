@@ -46,8 +46,8 @@ const LINEAR_TRUTH = [true, false, true, false, false, true, false, true];
 const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   // ⑴01 함수 판별 — 뽑힌 소재의 진릿값 수 == 답
   [`${MINOR_G1}|01`]: (f) =>
-    [f.i0!, f.i1!, f.i2!, f.i3!].filter((i) => FUNC_TRUTH[i]!).length ===
-      f.ans! && new Set([f.i0, f.i1, f.i2, f.i3]).size === 4,
+    [f.i0!, f.i1!, f.i2!, f.i3!, f.i4!].filter((i) => FUNC_TRUTH[i]!).length ===
+      f.ans! && new Set([f.i0, f.i1, f.i2, f.i3, f.i4]).size === 5,
   // ⑴02 f(p)+f(q) == (ap+b)+(aq+b)
   [`${MINOR_G1}|02`]: (f) =>
     f.a! * f.p! + f.b! + (f.a! * f.q! + f.b!) === f.ans! && f.p !== f.q,

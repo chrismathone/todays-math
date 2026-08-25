@@ -286,7 +286,7 @@ const VERIFY_CONSTR: Record<string, Check> = {
     const angle = angleByConfig[f.config]!;
     const wantText = `$\\angle ${angle}=\\angle ${CORR[angle]}$`;
     const options = circledOptions(p.content);
-    if (options.length !== 4) return false;
+    if (options.length !== 5) return false;
     const idx = options.indexOf(wantText);
     return idx !== -1 && idx === f.correctPos;
   },

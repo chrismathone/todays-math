@@ -18,6 +18,8 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
+
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -139,7 +141,8 @@ export const LINEAR_POOL: readonly { text: string; isLinear: boolean }[] = [
   { text: "$y=5-2x$", isLinear: true },
 ];
 
-const CIRCLED = ["㉠", "㉡", "㉢", "㉣", "㉤"] as const;
+/** 표식은 `choiceCountRule` 한 곳에서 온다 — 세 모듈이 각자 적으면 한쪽만 고쳐진다. */
+const CIRCLED = CHOICE_MARKS;
 
 /** 겹치지 않게 n개 뽑기 — 순서도 무작위. */
 function pickDistinct(rng: Rng, size: number, n: number): number[] {
@@ -155,7 +158,9 @@ function pickDistinct(rng: Rng, size: number, n: number): number[] {
 export const M2_FUNC: TypeEntry[] = [
   // ── 일차함수와 그 그래프 ⑴ ─────────────────────────────
   def(MINOR_G1, "01", "함수", SEC.함숫값, "기본", (rng) => {
-    const idx = pickDistinct(rng, FUNC_POOL.length, 4);
+    // 🔴 보기는 **정확히 다섯** (원장님 2026-08-25). 예전에는 넷이었다 —
+    //    지면이 ㉠ 목록을 «보기»로 안 읽어서 개수 세는 자에도 안 걸렸다.
+    const idx = pickDistinct(rng, FUNC_POOL.length, CHOICE_COUNT);
     const ans = idx.filter((i) => FUNC_POOL[i]!.isFunc).length;
     const items = idx
       .map((i, k) => `${CIRCLED[k]} ${FUNC_POOL[i]!.text}`)
@@ -169,7 +174,14 @@ export const M2_FUNC: TypeEntry[] = [
       content: `다음 중 $y$가 $x$의 함수인 것은 모두 몇 개인지 구하시오.\n${items}`,
       answer: `$${ans}$개`,
       solution: `$x$의 값 하나에 $y$의 값이 오직 하나씩 대응하면 함수이다.\n함수인 것은 ${yes === "" ? "없다" : `${yes}이다`}.\n따라서 $${ans}$개이다.`,
-      facts: { i0: idx[0]!, i1: idx[1]!, i2: idx[2]!, i3: idx[3]!, ans },
+      facts: {
+        i0: idx[0]!,
+        i1: idx[1]!,
+        i2: idx[2]!,
+        i3: idx[3]!,
+        i4: idx[4]!,
+        ans,
+      },
     };
   }),
 

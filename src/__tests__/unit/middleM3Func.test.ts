@@ -436,6 +436,10 @@ const P06: readonly ((a: number) => boolean)[] = [
   (a) => Math.abs(a) > 1, // y=x^2 보다 폭이 좁다
   (a) => a > 0, // x>0 에서 증가
   (a) => a < 0, // 제3·4사분면
+  // ↓ 「참 2 · 거짓 3」을 담으려고 더한 거짓 쪽 (2026-08-25). 순서가 곧 색인이다.
+  (a) => Math.abs(a) < 1, // y=x^2 보다 폭이 넓다
+  () => false, // x축과 서로 다른 두 점 — y=ax^2 는 원점에서만 만난다
+  () => false, // 점 (1,0) 을 지난다 — y(1)=a≠0
 ];
 
 /** ⑴10 — $y=ax^2+q$ 의 성질. */
@@ -495,6 +499,10 @@ const PG06: readonly ((
   (a, _p, q) => (a > 0 && q < 0) || (a < 0 && q > 0), // x축과 두 점
   () => false, // 원점을 지난다 (c≠0)
   (a) => a < 0, // 위로 볼록
+  // ↓ 「참 2 · 거짓 3」을 담으려고 더한 거짓 쪽 (2026-08-25). 순서가 곧 색인이다.
+  (a, _p, q) => !((a > 0 && q < 0) || (a < 0 && q > 0)), // x축과 만나지 않는다
+  () => false, // x축과 한 점 — q≠0 이라 접하지 않는다
+  (a) => a < 0, // x<p 에서 증가
 ];
 
 const MARK_CHARS = ["①", "②", "③", "④", "⑤"] as const;
@@ -624,10 +632,11 @@ const VERIFY: Record<string, (p: MidProblem) => void> = {
 
   [`${M1}|04`]: (p) => {
     const items = maths(p.content).filter((s) => s.startsWith("y="));
-    expect(items).toHaveLength(4);
+    // 🔴 2026-08-25 넷 → 다섯 (원장님: 「4지선다를 5지선다로」).
+    expect(items).toHaveLength(5);
     const coefs = items.map((s) => evalLatex(rhsOf(s), { x: 1 }));
     const abs = coefs.map(Math.abs);
-    expect(new Set(abs).size).toBe(4);
+    expect(new Set(abs).size).toBe(5);
     const want = p.facts.mode === 0 ? Math.min(...abs) : Math.max(...abs);
     expect(near(ansNum(p), coefs[abs.indexOf(want)]!)).toBe(true);
   },

@@ -10,6 +10,12 @@
  */
 import { createRng } from "../elementary/rng";
 
+import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
+import {
+  assertChoiceCount,
+  assertChoiceMarks,
+} from "../problem/choiceCountRule";
+
 import { tidySolution } from "./solutionText";
 import { resolveMiddleTier } from "./tier";
 import { wrapDanClause } from "../problemText";
@@ -100,6 +106,12 @@ export function generateMiddleProblem(
   // 밑단(`연산`)은 유형에 안 적혀 있다 — 발문 모양에서 가려낸다 (D-106).
   // 규칙과 그 근거는 `tier.ts`, 지금 무엇을 잡는지는 `middleTierYeonsan.test.ts` 가 잠근다.
   const difficulty = resolveMiddleTier(p.difficulty, content, !!p.figureSpec);
+  // 「모두 고르시오」의 정답은 정확히 2개 (원장님 2026-08-25). 생성기마다 지키면
+  // 새 유형이 늘 때 빠뜨려도 아무도 모른다 — **여기 한 곳**에서 다시 보고 던진다.
+  assertChooseAllAnswerCount(content, p.answer, `중등 유형 ${key}`);
+  // 보기가 있으면 정확히 다섯 (원장님 2026-08-25, D-80). 같은 이유로 여기 한 곳이다.
+  assertChoiceCount(content, `중등 유형 ${key}`);
+  assertChoiceMarks(content, `중등 유형 ${key}`);
   if (
     tidied === p.solution &&
     content === p.content &&
