@@ -7,6 +7,7 @@ const base = {
   unitId: "00000000-0000-4000-8000-000000000002",
   source: "past_exam" as const,
   originProblemId: null,
+  familyKey: null,
   directUseAllowed: true,
   pool: "shared" as const,
   figureUrls: [] as string[],

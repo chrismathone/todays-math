@@ -35,6 +35,39 @@
   --yellow-text: #996b11;
   --red: #d96447;
   --red-text: #a62d1b;
+
+  /**
+   * 출처 라벨 — 문제은행 카드가 「이건 무엇이 만들었나」를 말하는 자리.
+   * 원장님 지시 2026-08-25 「라벨 색상 전부 다르게」.
+   *
+   * ⚠️ **기능색(G2)이 아니다.** §2.2 는 기능색을 네 의미로만 쓰라고 하고, 출처는 그
+   *    넷 중 어느 것도 아니다. 그래서 값을 따로 두고, 여덟 색 전부 위 G2 넷 + `ink` +
+   *    `text-2` 와 **CIE ΔE2000 >= 16.5** 떨어지게 잡았다 — 같은 카드 머리 줄에 검수
+   *    상태(초록·노랑·빨강 **글자**)가 있어서, 가까우면 「승인」과 「기출」이 같은 색으로
+   *    읽힌다.
+   *
+   * ⚠️ **명도가 계단이 아니라 띠다** (대비 4.81~7.49). G2 는 1.31~10.49 의 계단으로
+   *    「어디까지 왔나」를 나르는데, 출처는 위계가 없는 **분류**축이라 계단을 만들면
+   *    안 된다. 흑백 복사에서 순서가 안 생기는 것이 여기서는 **옳다**.
+   *
+   * ⚠️ **눈으로 고르지 마라.** 처음 눈대중으로 고른 여덟 색은 최소 ΔE 가 8.4 였다
+   *    (초↔중이 사실상 같은 색). 지금 값은 LCh 격자에서 「여덟 + 기존 여섯」의 최소
+   *    ΔE 를 최대화해 찾은 것이다(후보끼리 16.1 · 기존 색과 16.5).
+   *    `provenancePalette.test.ts` 가 **이 파일을 읽어** 대비와 ΔE 를 다시 잰다.
+   *
+   * 라벨·판정은 `src/lib/problem/provenance.ts` 하나가 정한다.
+   */
+  --src-past-exam: #903261; /* [기]   기출 추출 */
+  --src-workbook: #d13559; /* [문]   문제집 추출 */
+  --src-elem: #5e41a9; /* [초]   초등 엔진 */
+  --src-middle: #ad4aae; /* [중]   중등 엔진 */
+  --src-ai: #00825a; /* [AI]  AI 생성·변형 */
+  --src-figure: #2c6600; /* [도]   도형 엔진 */
+  --src-svg: #00797d; /* [SVG] SVG 엔진 */
+  --src-scan: #5f5521; /* [스캔] 원본 오려냄 */
+  /* 「모른다」는 분류가 아니다 — 고유색을 주면 하나의 갈래처럼 읽힌다. 회색을 **빌려** 쓴다. */
+  --src-unknown: var(--text-2);
+
   --background: var(--bg);
   --foreground: var(--ink);
 }
@@ -76,6 +109,16 @@
   --color-g-yellow-text: var(--yellow-text);
   --color-g-red: var(--red);
   --color-g-red-text: var(--red-text);
+  /* 출처 라벨 — `text-src-*` 로 쓴다. 값은 위 `:root` 하나가 정한다(§2.2.1). */
+  --color-src-past-exam: var(--src-past-exam);
+  --color-src-workbook: var(--src-workbook);
+  --color-src-elem: var(--src-elem);
+  --color-src-middle: var(--src-middle);
+  --color-src-ai: var(--src-ai);
+  --color-src-figure: var(--src-figure);
+  --color-src-svg: var(--src-svg);
+  --color-src-scan: var(--src-scan);
+  --color-src-unknown: var(--src-unknown);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }

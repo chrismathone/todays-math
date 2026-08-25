@@ -116,6 +116,12 @@ interface ProblemRow {
   unitId: string;
   source: ProblemSource;
   originProblemId: string | null;
+  /**
+   * 엔진이 적는 «자기 유형 정체» (D-105). 화면의 출처 라벨이 이 값으로 엔진을 가른다
+   * (`src/lib/problem/provenance.ts`). 실제 DB 는 트리거가 `solo:<uuid>` 로 채우지만,
+   * 이 대역은 **그 자동 채움을 흉내 내지 않는다** — 넣은 값이 그대로 나와야 판정을 잰다.
+   */
+  familyKey: string | null;
   difficulty: Difficulty;
   problemType: string;
   /** 출제 형식(객관식|단답형|서술형) — T7.6 백필 전이라 실데이터도 대부분 NULL 이다. */
@@ -375,6 +381,7 @@ function extraEligibleProblems(): ProblemEntity[] {
       unitId,
       source: "manual",
       originProblemId: null,
+      familyKey: null,
       difficulty,
       problemType: PROBLEM_TYPES[(seq - 1) % 4]!,
       content: `출제 풀 보강 문제 ${seq}`,
@@ -463,6 +470,8 @@ function toFixtureProblemRow(
     ...fixture,
     problemCode: assignProblemCode(fixture.unitId),
     questionType: null,
+    // 배점 채점용 픽스처라 엔진 표지가 없다 — 출처 판정에서는 미분류가 맞다.
+    familyKey: null,
     // 이 픽스처는 배점 채점용이라 그림 컬럼이 없다 — DB 기본값(`@default([])`)으로 채운다.
     figureUrls: [],
     figureSvg: null,
@@ -1236,6 +1245,7 @@ const prismaModels = {
         problemCode: data.problemCode ?? assignProblemCode(data.unitId),
         questionType: data.questionType ?? null,
         originProblemId: data.originProblemId ?? null,
+        familyKey: null,
         reviewStatus: data.reviewStatus ?? "pending",
         directUseAllowed: data.directUseAllowed ?? true,
         pool: data.pool ?? "shared",
@@ -1279,6 +1289,7 @@ const prismaModels = {
           problemCode: item.problemCode ?? assignProblemCode(item.unitId),
           questionType: item.questionType ?? null,
           originProblemId: item.originProblemId ?? null,
+          familyKey: null,
           reviewStatus: item.reviewStatus ?? "pending",
           directUseAllowed: item.directUseAllowed ?? true,
           pool: item.pool ?? "shared",
