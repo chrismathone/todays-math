@@ -1,4 +1,8 @@
-import type { ClassEntity, ProgressEntity } from "@/contracts/class.contract";
+import type {
+  ClassEntity,
+  ProgressEntity,
+  ProgressSuggestion,
+} from "@/contracts/class.contract";
 import type { WeeklyMetrics } from "@/contracts/metrics.contract";
 import type { TestEntity } from "@/contracts/test.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
@@ -7,6 +11,11 @@ export type MainDashboardData = {
   classes: ClassEntity[];
   tests: TestEntity[];
   progressByClass: Record<string, ProgressEntity | null>;
+  /**
+   * 반 진도가 **없는** 반의 시작점 제안 — 「차시이동」 화살표가 죽지 않게 한다.
+   * 🔴 제안은 진도가 아니다. 저장된 것이 아니라 «여기서부터 보라»는 힌트다.
+   */
+  suggestByClass: Record<string, ProgressSuggestion | null>;
   units: UnitEntity[];
   metrics: WeeklyMetrics;
 };
@@ -21,6 +30,7 @@ async function loadContracts() {
   return {
     classListResponseSchema: cls.classListResponseSchema,
     progressResponseSchema: cls.progressResponseSchema,
+    progressSuggestResponseSchema: cls.progressSuggestResponseSchema,
     testListResponseSchema: test.testListResponseSchema,
     unitListResponseSchema: unit.unitListResponseSchema,
     metricsResponseSchema: metrics.metricsResponseSchema,
@@ -52,6 +62,7 @@ export async function loadMainDashboard(): Promise<MainDashboardData> {
   const {
     classListResponseSchema,
     progressResponseSchema,
+    progressSuggestResponseSchema,
     testListResponseSchema,
     unitListResponseSchema,
     metricsResponseSchema,
@@ -73,17 +84,33 @@ export async function loadMainDashboard(): Promise<MainDashboardData> {
   const progressEntries = await Promise.all(
     classesBody.data.map(async (cls) => {
       const res = await fetch(`/api/progress?classId=${cls.id}`);
-      if (res.status === 404) return [cls.id, null] as const;
+      if (res.status === 404) {
+        // 반 진도가 없으면 **시작점만** 물어본다 — 없으면 차시이동이 죽는다.
+        // 실패해도 화면 전체를 죽이지 않는다(제안은 있으면 좋은 것이지 필수가 아니다).
+        try {
+          const hint = await fetch(`/api/progress/suggest?classId=${cls.id}`);
+          if (!hint.ok) return [cls.id, null, null] as const;
+          const body = progressSuggestResponseSchema.parse(await hint.json());
+          return [cls.id, null, body.data] as const;
+        } catch {
+          return [cls.id, null, null] as const;
+        }
+      }
       if (!res.ok) throw new Error("진도를 불러오지 못했습니다");
       const body = progressResponseSchema.parse(await res.json());
-      return [cls.id, body.data] as const;
+      return [cls.id, body.data, null] as const;
     }),
   );
 
   return {
     classes: classesBody.data,
     tests: testsBody.data,
-    progressByClass: Object.fromEntries(progressEntries),
+    progressByClass: Object.fromEntries(
+      progressEntries.map(([id, progress]) => [id, progress]),
+    ),
+    suggestByClass: Object.fromEntries(
+      progressEntries.map(([id, , suggest]) => [id, suggest]),
+    ),
     units: unitsBody.data,
     metrics: metricsBody.data,
   };

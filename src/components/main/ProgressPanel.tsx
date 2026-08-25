@@ -13,6 +13,12 @@ type Props = {
   error: string | null;
   /** 화면에 보이는 차시(열람 위치)가 실제 기록된 진도와 달라 "진도 기록"이 의미 있는 상태인가. */
   canRecord: boolean;
+  /**
+   * 반 진도가 **없을 때**의 시작점 제안. null 이면 제안이 없거나 이미 진도가 있다.
+   * 🔴 저장된 것이 아니다 — 그래서 화면이 「제안」이라고 **말해야** 한다.
+   *    말하지 않으면 원장님이 기록된 진도로 읽고, 안 눌러도 된다고 생각한다.
+   */
+  suggestion: { unitId: string | null; agree: number; students: number } | null;
   onSelectClass: (classId: string) => void;
   onStep: (unitId: string) => void;
   onRecord: () => void;
@@ -30,6 +36,7 @@ export function ProgressPanel({
   unmodifiedRate,
   error,
   canRecord,
+  suggestion,
   onSelectClass,
   onStep,
   onRecord,
@@ -97,6 +104,15 @@ export function ProgressPanel({
             &gt;
           </button>
         </div>
+        {suggestion?.unitId ? (
+          <p className="mt-1 text-[11px] leading-[1.5] text-text-3">
+            아직 반 진도가 없어{" "}
+            <b className="text-ink">
+              학생 {suggestion.students}명 중 {suggestion.agree}명
+            </b>
+            이 있는 차시를 보여 줍니다. 확인하고 아래 버튼으로 기록하십시오.
+          </p>
+        ) : null}
         {/* 차시이동 화살표는 "열람"만 한다(진도를 기록하지 않는다). 실제 진도 기록은 아래
             버튼으로 명시적으로 커밋한다 — 예전엔 화살표 클릭마다 진도가 쌓이는 버그가 있었다
             (원장 관찰, 2026-08-14). */}

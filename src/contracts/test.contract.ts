@@ -292,6 +292,9 @@ export const dailyReviewResponseSchema = dataResponseSchema(
       .strictObject({
         ranAt: z.string(),
         students: z.number().int(),
+        /** 동기화가 **본 반의 수**. 범위가 좁혀져 있으므로(`syncScope.ts`) 이 값을
+         *  안 보여 주면 화면이 「학원 전체를 가져왔다」로 읽힌다(원장님 지적 2026-08-25). */
+        classes: z.number().int(),
         progressRows: z.number().int(),
         unresolvedLines: z.number().int(),
         ambiguous: z.number().int(),

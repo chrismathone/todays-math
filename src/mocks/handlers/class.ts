@@ -21,6 +21,7 @@ import {
   progressQuerySchema,
   progressRecordRequestSchema,
   progressResponseSchema,
+  progressSuggestResponseSchema,
   studentCreateRequestSchema,
   studentListQuerySchema,
   studentListResponseSchema,
@@ -254,6 +255,38 @@ export const classHandlers: HttpHandler[] = [
     });
     if (!current) return notFoundError("진도 기록");
     return jsonOk(progressResponseSchema, { data: current });
+  }),
+
+  /**
+   * GET /api/progress/suggest — 반 진도가 없을 때의 시작점 제안 (2026-08-25).
+   * 픽스처에는 개별 진도가 거의 없으므로 대개 `unitId: null` 을 낸다 —
+   * **그게 실제 동작이다**(제안할 근거가 없으면 제안하지 않는다).
+   */
+  http.get("/api/progress/suggest", ({ request }) => {
+    const classId = new URL(request.url).searchParams.get("classId") ?? "";
+    const { entity, owned } = findClass(classId);
+    if (entity && !owned) return forbiddenError();
+    if (!entity) return notFoundError("반");
+    const rows = MOCK_PROGRESS.filter(
+      (p) => p.classId === classId && p.studentId !== null,
+    );
+    const latest = new Map<string, string>();
+    for (const row of rows)
+      if (row.studentId && !latest.has(row.studentId))
+        latest.set(row.studentId, row.unitId);
+    const count = new Map<string, number>();
+    for (const unit of latest.values())
+      count.set(unit, (count.get(unit) ?? 0) + 1);
+    let best: string | null = null;
+    for (const [unit, n] of count)
+      if (best === null || n > (count.get(best) ?? 0)) best = unit;
+    return jsonOk(progressSuggestResponseSchema, {
+      data: {
+        unitId: best,
+        agree: best === null ? 0 : (count.get(best) ?? 0),
+        students: latest.size,
+      },
+    });
   }),
 
   // POST /api/progress/advance — "다음 소단원 1클릭 진행"(order_index 기준, D-19)
