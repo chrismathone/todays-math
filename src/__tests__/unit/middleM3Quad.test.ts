@@ -17,6 +17,10 @@ import {
   generateMiddleSet,
 } from "../../lib/middle/generate";
 import { M3_QUAD } from "../../lib/middle/m3Quad";
+import {
+  REVIEWED_QUAD,
+  sweep,
+} from "../../../scripts/qa/probe-quad-arrangement";
 import type { MidProblem } from "../../lib/middle/types";
 
 const SEEDS = [20260824, 1, 7777, 424242, 99991, 31415];
@@ -771,5 +775,59 @@ describe("중3 이차방정식 31유형 (3-1 이차방정식의 풀이·활용)"
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
     }
+  });
+});
+
+/**
+ * **그림 없이 배치가 정해지는가** — 원장님 지적 2026-08-25 (`J30303-A08-002`).
+ *
+ * 이 31유형은 그림을 안 쓴다. 그러려면 발문이 배치를 말해야 하는데 **네 mode 가
+ * 안 말하고 있었다.** 파일 머리 주석은 「치수를 발문이 전부 말한다」고 단언했고
+ * 그 단언이 틀렸다 — 그래서 단언을 **여기 가드로 옮긴다.**
+ *
+ * ⚠️ 이 축은 **문항 하나 안**을 보는 다른 시험들이 구조적으로 못 본다. 값 검산은
+ *    `facts` 만 보고, 「버린 근」 검사는 해설만 본다. 「발문이 그림 없이 읽히는가」는
+ *    **아무도 안 묻고 있었다**(CLAUDE.md 2026-08-23 «난이도 사다리»와 같은 자리).
+ *
+ * ⚠️ **손 목록이 아니다.** 새 유형을 더해도 이 시험이 그것까지 훑는다. 얽히는데
+ *    배치를 안 적으면 `REVIEWED_QUAD` 에 없으므로 **빨개진다.**
+ */
+describe("중3 이차방정식 — 발문이 배치를 적는다", () => {
+  it("얽히는 갈래는 배치를 적거나, 사람이 보고 «멀쩡» 이라 적어 두었다", () => {
+    const unseen = sweep()
+      .filter((c) => (c.verdicts["배치미정"] ?? 0) > 0)
+      .filter((c) => !REVIEWED_QUAD[`${c.key}#${c.mode}`])
+      .map((c) => `${c.key} mode ${c.mode}`);
+    expect(
+      unseen,
+      "얽히는데 배치를 안 적는 갈래다. 발문에 자리를 적든지, 눈으로 보고 REVIEWED_QUAD 에 근거를 적어라.",
+    ).toEqual([]);
+  });
+
+  it("고친 네 mode 가 실제로 «배치확정» 이다 — 되돌리면 여기가 빨개진다", () => {
+    // 2026-08-25 수리 대상. 13 은 형제 mode 0 의 「십자 모양의」를 옮겨 적었고,
+    // 15 는 점 E·F 의 자리를 적는 절을 더했다. 값은 한 표본도 안 바뀌었다(실측).
+    const fixed = [
+      "3-1|이차방정식의 활용|13#1",
+      "3-1|이차방정식의 활용|13#2",
+      "3-1|이차방정식의 활용|15#0",
+      "3-1|이차방정식의 활용|15#1",
+    ];
+    const cells = new Map(sweep().map((c) => [`${c.key}#${c.mode}`, c]));
+    for (const id of fixed) {
+      const c = cells.get(id);
+      expect(c, `${id} 갈래가 표본에 안 나왔다 — 씨앗을 넓혀라`).toBeDefined();
+      expect(c!.verdicts["배치미정"] ?? 0, `${id} 가 배치를 안 적는다`).toBe(0);
+      expect(c!.verdicts["배치확정"] ?? 0, `${id}`).toBe(c!.hits);
+    }
+  });
+
+  it("이미 배치를 적던 형제는 그대로다 — 고치면서 남을 깨지 않았다", () => {
+    // 반대쪽 대조. 「빠진 것을 잡는가」만 보면 「있는 것을 없다고 하는가」는
+    // 구조적으로 안 보인다(CLAUDE.md 2026-08-20).
+    const cells = new Map(sweep().map((c) => [`${c.key}#${c.mode}`, c]));
+    const sib = cells.get("3-1|이차방정식의 활용|13#0");
+    expect(sib!.verdicts["배치확정"] ?? 0).toBe(sib!.hits);
+    expect(sib!.sample).toContain("십자 모양의");
   });
 });

@@ -37,6 +37,35 @@ import {
 const SEEDS = [20260825, 1, 7777, 424242, 99991];
 const VARIANTS = 50;
 
+/**
+ * **사람이 눈으로 본 갈래** — `유형키#mode` → 판정. 첫 낱말이 판정이다.
+ *
+ * 이 판정기는 얽힘을 넓게 잡는다(그래야 놓치지 않는다). 그 대가로 **멀쩡한데 걸리는**
+ * 갈래가 남는다. 그것을 그냥 두면 목록이 늘 빨갛고, **늘 우는 가드는 꺼진다**
+ * (CLAUDE.md 2026-08-20). 그렇다고 규칙을 좁히면 원래 잡던 진짜를 놓친다 —
+ * 이 저장소의 답은 늘 같다: **문턱을 옮기지 말고, 본 것을 적어 두어라.**
+ *
+ * ⚠️ 여기에 적는 것은 「규칙이 틀렸다」가 아니라 **「사람이 보고 멀쩡하다고 했다」** 다.
+ *    새 갈래가 «배치미정» 으로 올라오면 이 표에 없으므로 **경고로 튀어나온다.**
+ */
+export const REVIEWED_QUAD: Record<string, string> = {
+  "3-1|이차방정식의 활용|10#1":
+    "멀쩡 — 「**위아래로** 이웃한 두 날짜」. 달력에서 위아래는 7 차이로 정해진다. " +
+    "`이웃한` 이 얽힘으로 걸리지만 방향을 발문이 적고 있다.",
+  "3-1|이차방정식의 활용|12#2":
+    "멀쩡 — 점 $P$ 는 $\\overline{AB}$ 위, 점 $Q$ 는 $\\overline{BC}$ 위라고 " +
+    "발문이 **직접** 적는다. 라벨 `ABCD`·`PBQ` 가 $B$ 를 나눠 써서 얽힘으로 걸렸을 뿐이다.",
+  "3-1|이차방정식의 활용|14#2":
+    "멀쩡 — 「**양쪽을 같은 높이만큼 직각으로** 접어 올려」. 접는 자리가 정해진다. " +
+    "`접어` 가 얽힘으로 걸린다.",
+  "3-1|이차방정식의 활용|15#2":
+    "멀쩡 — 두 정사각형이 **서로 닿지 않는다**(넓이의 합만 묻는다). 배치라는 것이 " +
+    "아예 없다. `닮음비` 가 얽힘으로 걸릴 뿐이다. " +
+    "⚠️ 보고서 §5.1 표는 이 칸을 「얽힘 없음」이라 적었는데 **틀렸다** — " +
+    "판정기는 «배치미정» 을 낸다. DB 에 이 mode 행이 없어서 규칙을 **안 돌려 보고** " +
+    "발문만 읽고 적은 값이었다. 엔진 쪽에서 재고서야 드러났다.",
+};
+
 export type ModeCell = {
   key: string;
   mode: number;
@@ -129,16 +158,32 @@ function main() {
 
   // ⑵ 반대쪽 대조 — 31유형 전량에서 «배치미정» 이 어디에 남는가.
   const undetermined = cells.filter((c) => (c.verdicts["배치미정"] ?? 0) > 0);
-  console.log(`── «배치미정» 이 남은 갈래 ── ${undetermined.length}개`);
+  const unseen = undetermined.filter(
+    (c) => !REVIEWED_QUAD[`${c.key}#${c.mode}`],
+  );
+  console.log(
+    `── «배치미정» 이 남은 갈래 ── ${undetermined.length}개` +
+      ` (사람이 본 것 ${undetermined.length - unseen.length} · **아직 아무도 안 본 것 ${unseen.length}**)`,
+  );
   for (const c of undetermined) {
+    const seen = REVIEWED_QUAD[`${c.key}#${c.mode}`];
     const n = c.verdicts["배치미정"] ?? 0;
-    console.log(`  ${c.key} mode ${c.mode}  ${n}/${c.hits}회`);
+    console.log(
+      `  ${seen ? "·" : "🔴"} ${c.key} mode ${c.mode}  ${n}/${c.hits}회` +
+        (seen ? `  ← ${seen.split(" —")[0]}` : "  ← **아직 아무도 안 봤다**"),
+    );
     if (args.includes("--list")) {
       console.log(`      ${c.sample.replace(/^\[미정\]/, "").slice(0, 150)}`);
     }
   }
   if (undetermined.length === 0) {
     console.log("  (없다 — 31유형 어디에도 배치가 안 적힌 자리가 없다)");
+  }
+  if (unseen.length > 0) {
+    console.error(
+      "\n🔴 아무도 안 본 갈래가 있다 — 눈으로 보고 `REVIEWED_QUAD` 에 적어라.",
+    );
+    process.exitCode = 1;
   }
 
   const tally: Record<string, number> = {};
