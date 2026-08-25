@@ -105,13 +105,20 @@ npm run type-check && npm run lint && npm run test
 | 대상 | 경로 | 없으면 무슨 일이 나나 | 되살리는 법 |
 |---|---|---|---|
 | **중등 말뭉치** | `C:/tmp/middle-combo/corpus-0825.json` | `probe-middle-algebra-combo` 전량 판정이 **울타리(2)** 로 끝난다 — 도구가 되살리는 명령을 스스로 찍는다(눈금·`--selftest` 는 말뭉치 없이 돈다) | `npx tsx scripts/qa/build-middle-corpus.ts --out=C:/tmp/middle-combo/corpus-0825.json` — **약 1분, 토큰 0** |
-| 앞 트랙 말뭉치·분류 | `C:/tmp/middle-combo/*.json` | `probe-middle-combo` 가 **울타리(2)** 로 끝난다(관문은 그것을 정상으로 본다) | 같은 빌더로 다시 만든다 |
+| 앞 트랙 말뭉치·어휘 | `C:/tmp/middle-combo/corpus.json` · `solution-vocab2.json` | `probe-middle-combo` 가 **울타리(2)** 로 끝난다 | `npx tsx scripts/qa/build-middle-corpus.ts` 그리고 `npx tsx scripts/qa/census-middle-solution-vocab.ts` (각각 약 1분) |
+| 🔴 **1차 기준 분류** | `C:/tmp/middle-combo/classifications.json` | `probe-middle-combo` 가 **영영 울타리**다 | **되살릴 방법이 없다.** 어느 스크립트도 이 파일을 안 쓰고 git 에도 없다(2026-08-25 실측). 지금 코드로 다시 뽑으면 **2차 값**이 나와 단언(`873/8/180/685/0`)에 걸린다 — 1차를 돌린 컴퓨터에서 가져와야 한다 |
 | `.env` | — | DB·AI 아무것도 안 된다 | §1.3, 원장님께 |
 | **RPM 원본** | `C:/Creative/testautocreator/.rpm-src/` | 중등 유형을 새로 지을 때 참고할 지면이 없다 | 원장님께. **보기만 한다 — 본문·수치를 옮기지 말 것(저작권)** |
 | 스킬 zip · 엔진 zip | `C:/Creative/testautocreator-data/*.zip` | 없어도 된다 — **전달용 스냅샷**이지 작업 자리가 아니다 | §0-A.6 |
 
 ⚠️ **말뭉치는 날짜가 붙은 이유가 있다.** 어제 것을 쓰면 그 사이 바뀐 생성기를 못 본다.
 **이어받는 날 다시 만들 것.**
+
+🔴 **그래서 「판정기 17개 깨끗」은 그 컴퓨터에서만 참이다.** 새로 클론하면 위 1차 기준이
+없어 **16/17** 이고, 관문은 구조적으로 「전부 깨끗」을 못 낸다. 관문이 그것을 초록으로
+세지는 않는다(울타리를 «못 잰» 것으로 정직하게 찍는다) — 그래서 **다른 컴퓨터에서는
+관문이 늘 빨갛다.** 1차 기준은 **고정된 참조**이므로 `C:/tmp` 가 아니라 **git 에 있어야
+한다**(잔고 §0-A.5). 지어낼 수 있는 값이 아니다 — 단언이 걸려 있다.
 
 ### 0-A.3 오늘 착지한 것 (D-106 ~ D-110)
 
@@ -175,6 +182,14 @@ production 에서는 404 다(`ENABLE_RENDER_QA=1` 없으면). **엔진이 못 �
 5. **중등 `연산` 갈래** — 보류(D-107). 되살리려면 약 36소단원분
 6. **엔진의 웹/적재 경로** — §0-A.4. **원장님 결정(㉠/㉡) 전에는 착수하지 않는다**
 7. ~~eywa 이중 트랙(정규+특강) 분리~~ → 원장님 2026-08-25 「현재는 괜찮음」. 착수하지 않는다
+8. 🔴 **1차 기준 분류를 git 에 넣기** (`C:/tmp/middle-combo/classifications.json`).
+   지금은 **1차를 돌린 컴퓨터에만** 있어서, 다른 컴퓨터에서는 `probe-middle-combo` 가
+   영영 울타리고 **관문이 늘 빨갛다**(§0-A.2). 고정된 참조이므로 `C:/tmp` 가 아니라
+   저장소에 있어야 한다. ⚠️ **지어내면 안 된다** — 판정기가 그 안의 수치
+   (`873/8/180/685/0`)를 단언한다. 그 컴퓨터에서 파일을 옮겨 커밋하는 일이다.
+9. **`import` 계열 미커밋 작업이 타입을 깬다** — `import.test.ts` 가 D-106 이전 값
+   (`"mid"`·`"easy"`)을 쓴다. 미커밋이라 배포엔 영향이 없고 vitest 는 통과하지만
+   (타입을 안 본다), **그대로 커밋되면 빌드가 깨진다.** 그 작업을 하던 세션 몫이다
 
 ### 0-A.6 전달용 zip 둘 (`C:/Creative/testautocreator-data/`)
 
