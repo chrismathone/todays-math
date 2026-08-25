@@ -13,7 +13,7 @@ import {
 import type { ElemTierMap } from "./difficulty";
 import { expr, n, polyName, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
-import { fig, make } from "./make";
+import { fig, make, makeDeep } from "./make";
 import { fmtFrac, gcd } from "./math";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
@@ -516,20 +516,37 @@ function tier11Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  * 「1000이 10개인 수보다 k 작은 수」(구성을 먼저 밟아야 한다).
  */
 function tier11Deep(unit: UnitSeed, rng: Rng): ElemProblem {
-  const k = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  // ⚠️ 예전 두 갈래가 다 뺄셈 **한 번**이었다($10000-k$). 같은 소단원 응용이
+  //    「$1000$원 $a$장과 $100$원 $b$개를 모으면 얼마」로 **두 걸음**이라 사다리가 뒤집혔다.
+  //    그래서 그 응용을 **거꾸로** 돌린다 — 한쪽 묶음을 만들고 남은 몫을 되짚는다.
   if (intBetween(rng, 0, 1) === 0) {
-    return make(
+    const a = intBetween(rng, 2, 8);
+    const coins = (10000 - a * 1000) / 100;
+    return makeDeep(
       unit,
-      `어떤 수보다 ${n(k)} 큰 수가 ${n(10000)}입니다. 어떤 수를 쓰시오.`,
-      n(10000 - k),
-      `${expr(`10000-${k}=${10000 - k}`)} 이므로 어떤 수는 ${n(10000 - k)}입니다.`,
+      `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전을 모았더니 ${n(10000)}원이 되었습니다. ` +
+        `${n(100)}원짜리 동전은 몇 개인가?`,
+      n(coins),
+      [
+        `${n(1000)}원짜리 지폐 ${n(a)}장은 ${expr(`1000\\times${a}=${a * 1000}`)} 원입니다.`,
+        `남은 돈은 ${expr(`10000-${a * 1000}=${10000 - a * 1000}`)} 원이고, ` +
+          `${expr(`${10000 - a * 1000}\\div100=${coins}`)} 이므로 ${n(coins)}개입니다.`,
+      ],
     );
   }
-  return make(
+  const b = intBetween(rng, 1, 9);
+  const k = intBetween(rng, 1, 9) * pick(rng, [1, 10, 100]);
+  const base = b * 1000 + k;
+  return makeDeep(
     unit,
-    `${n(1000)}이 ${n(10)}개인 수보다 ${n(k)} 작은 수를 쓰시오.`,
-    n(10000 - k),
-    `${n(1000)}이 ${n(10)}개인 수는 ${n(10000)}입니다. ${expr(`10000-${k}=${10000 - k}`)} 입니다.`,
+    `${n(1000)}이 ${n(b)}개인 수보다 ${n(k)} 큰 수가 있습니다. ` +
+      `이 수에 얼마를 더하면 ${n(10000)}이 되는가?`,
+    n(10000 - base),
+    [
+      `${n(1000)}이 ${n(b)}개인 수는 ${n(b * 1000)}이므로 그 수는 ` +
+        `${expr(`${b * 1000}+${k}=${base}`)} 입니다.`,
+      `${expr(`10000-${base}=${10000 - base}`)} 이므로 ${josaNum(10000 - base, "을", "를")} 더하면 됩니다.`,
+    ],
   );
 }
 
@@ -704,24 +721,35 @@ function tier13Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  * 10000이 몇 개인가」 — 구성하고 다시 갈라야 한다(두 단계).
  */
 function tier13Deep(unit: UnitSeed, rng: Rng): ElemProblem {
-  const count = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
-  const value = 10000 * count;
+  // ⚠️ 예전 두 갈래는 **환산 한 번**이었다(「$10000$이 $80$개인 수는 $100$이 몇 개」).
+  //    자릿값을 **둘** 겹쳐야 응용(「$10000$원 $100$장 다발 $2$개는 얼마」)보다 위로 간다.
+  const a = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const b = intBetween(rng, 1, 9);
   if (intBetween(rng, 0, 1) === 0) {
-    const m = count * 10;
-    return make(
+    const ans = a * 100 + b * 10;
+    return makeDeep(
       unit,
-      `${n(1000)}이 ${n(m)}개인 수는 ${n(10000)}이 몇 개인 수인가?`,
-      n(count),
-      `${expr(`1000\\times${m}=${value}`)} 이고 ${expr(`${value}\\div10000=${count}`)} 이므로 ` +
-        `${n(10000)}이 ${n(count)}개인 수입니다.`,
+      `${n(10000)}이 ${n(a)}개, ${n(1000)}이 ${n(b)}개인 수는 ${n(100)}이 모두 몇 개인 수인가?`,
+      n(ans),
+      [
+        `${n(10000)}은 ${n(100)}이 ${n(100)}개이므로 ${n(10000)}이 ${n(a)}개이면 ` +
+          `${expr(`100\\times${a}=${a * 100}`)} 개입니다.`,
+        `${n(1000)}은 ${n(100)}이 ${n(10)}개이므로 ${expr(`10\\times${b}=${b * 10}`)} 개이고, ` +
+          `모두 ${expr(`${a * 100}+${b * 10}=${ans}`)} 개입니다.`,
+      ],
     );
   }
-  return make(
+  const hundreds = a * 100 + b * 10;
+  return makeDeep(
     unit,
-    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수인가?`,
-    n(count * 100),
-    `${expr(`10000\\times${count}=${value}`)} 이고 ${expr(`${value}\\div100=${count * 100}`)} 이므로 ` +
-      `${n(100)}이 ${n(count * 100)}개인 수입니다.`,
+    `${n(100)}이 ${n(hundreds)}개인 수는 ${n(10000)}이 ${n(a)}개, ${n(1000)}이 몇 개인 수인가?`,
+    n(b),
+    [
+      `${n(100)}이 ${n(hundreds)}개인 수는 ${expr(`100\\times${hundreds}=${hundreds * 100}`)} 입니다.`,
+      `${n(10000)}이 ${n(a)}개이면 ${n(a * 10000)}이므로 남는 것은 ` +
+        `${expr(`${hundreds * 100}-${a * 10000}=${b * 1000}`)} 이고, ` +
+        `${expr(`${b * 1000}\\div1000=${b}`)} 이므로 ${n(b)}개입니다.`,
+    ],
   );
 }
 
@@ -810,13 +838,19 @@ function tier14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
         `${expr(`${x * 100000000}-${d * 10000000}=${ans}`)} 이므로 어떤 수는 ${n(ans)}입니다.`,
     );
   }
-  const a = intBetween(rng, 2, 9);
-  const m = a * 10000;
-  return make(
+  // ⚠️ 예전에는 「만이 $30000$개인 수는 몇 억」이었다 — 나눗셈 **한 번**이다.
+  //    두 몫을 **더한 뒤** 자리를 옮겨야 응용(「$1000$만 원짜리 수표 $29$장」)보다 위로 간다.
+  const p = intBetween(rng, 1, 8) * 10;
+  const q = intBetween(rng, 1, 9 - p / 10) * 10;
+  return makeDeep(
     unit,
-    `만이 ${n(m)}개인 수는 몇 억인가?`,
-    `${n(a)}억`,
-    `만이 ${n(10000)}개이면 ${n(1)}억입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}억입니다.`,
+    `${n(1000)}만이 ${n(p)}개인 수보다 ${n(1000)}만이 ${n(q)}개 더 큰 수는 몇 억인가?`,
+    `${n((p + q) / 10)}억`,
+    [
+      `${n(1000)}만이 ${expr(`${p}+${q}=${p + q}`)} 개인 수입니다.`,
+      `${n(1000)}만이 ${n(10)}개이면 ${n(1)}억이므로 ` +
+        `${expr(`${p + q}\\div10=${(p + q) / 10}`)} 이라 ${n((p + q) / 10)}억입니다.`,
+    ],
   );
 }
 
@@ -909,13 +943,19 @@ function tier15Deep(unit: UnitSeed, rng: Rng): ElemProblem {
         `어떤 수는 ${n(ans)}입니다.`,
     );
   }
-  const a = intBetween(rng, 2, 9);
-  const m = a * 10000;
-  return make(
+  // ⚠️ 1-1-4 와 같은 자리였다 — 「억이 $80000$개인 수는 몇 조」는 나눗셈 한 번이다.
+  //    1-1-4 와 **나란한 구조**로 두되 자리만 조(兆)로 올린다.
+  const p = intBetween(rng, 1, 8) * 10;
+  const q = intBetween(rng, 1, 9 - p / 10) * 10;
+  return makeDeep(
     unit,
-    `억이 ${n(m)}개인 수는 몇 조인가?`,
-    `${n(a)}조`,
-    `억이 ${n(10000)}개이면 ${n(1)}조입니다. ${expr(`${m}\\div10000=${a}`)} 이므로 ${n(a)}조입니다.`,
+    `${n(1000)}억이 ${n(p)}개인 수보다 ${n(1000)}억이 ${n(q)}개 더 큰 수는 몇 조인가?`,
+    `${n((p + q) / 10)}조`,
+    [
+      `${n(1000)}억이 ${expr(`${p}+${q}=${p + q}`)} 개인 수입니다.`,
+      `${n(1000)}억이 ${n(10)}개이면 ${n(1)}조이므로 ` +
+        `${expr(`${p + q}\\div10=${(p + q) / 10}`)} 이라 ${n((p + q) / 10)}조입니다.`,
+    ],
   );
 }
 
@@ -1479,25 +1519,42 @@ function tier22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  * 눈금 유형은 수가 전부 발문에 있어 그림 없이 자족적이다(블록 머리말).
  */
 function tier22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전 두 갈래가 다 한 걸음이었다 — 「직각을 몇 개로 나누면 $15^\circ$」는 $90\div15$,
+  //    「눈금 $40$에서 $70^\circ$」는 $40+70$. 응용(직선의 각을 나눠 몇 개를 잇는다)이
+  //    두 걸음이라 사다리가 뒤집혔다. 그래서 둘 다 **한 걸음을 더 얹는다**.
   if (intBetween(rng, 0, 1) === 0) {
     const k = pick(rng, [2, 3, 5, 6, 9, 10]);
     const d = 90 / k;
-    return make(
+    const take = intBetween(rng, 2, Math.max(2, k - 1));
+    return makeDeep(
       unit,
       `직각을 똑같이 몇 개로 나누었더니 나누어진 한 각의 크기가 ${deg(d)}가 되었습니다. ` +
-        `몇 개로 나눈 것인가?`,
-      n(k),
-      `직각은 ${deg(90)}입니다. ${expr(`90\\div${d}=${k}`)} 이므로 ${n(k)}개로 나눈 것입니다.`,
+        `나누어진 각 ${n(take)}개를 겹치지 않게 이어 붙이면 몇 도인가?`,
+      deg(d * take),
+      [
+        `직각은 ${deg(90)}이므로 ${expr(`90\\div${d}=${k}`)} 에서 ${n(k)}개로 나눈 것입니다.`,
+        `한 각이 ${deg(d)}이므로 ${expr(`${d}\\times${take}=${d * take}`)} 입니다.`,
+      ],
     );
   }
   const a = pick(rng, [10, 20, 30, 40, 50]);
-  const d = pick(rng, [25, 35, 40, 55, 65, 70, 85, 95, 110, 125]);
-  return make(
+  // 직각 눈금($90$)을 **넘어야** 「얼마나 큰가」가 성립한다 — 안 거르면 답이 음수가 된다.
+  const d = pick(
+    rng,
+    [25, 35, 40, 55, 65, 70, 85, 95, 110, 125].filter(
+      (v) => a + v > 90 && a + v <= 180,
+    ),
+  );
+  return makeDeep(
     unit,
     `각도기로 각을 잴 때 각의 한 변이 눈금 ${josaNum(a, "을", "를")} 가리키고 있습니다. ` +
-      `각의 크기가 ${deg(d)}라면 같은 쪽 눈금에서 다른 변이 가리키는 눈금은 얼마인가?`,
-    n(a + d),
-    `한 변의 눈금에서 각의 크기만큼 나아간 눈금이므로 ${expr(`${a}+${d}=${a + d}`)} 입니다.`,
+      `각의 크기가 ${deg(d)}라면 같은 쪽 눈금에서 다른 변이 가리키는 눈금은 직각을 나타내는 ` +
+      `눈금보다 얼마나 큰가?`,
+    n(a + d - 90),
+    [
+      `다른 변이 가리키는 눈금은 ${expr(`${a}+${d}=${a + d}`)} 입니다.`,
+      `직각은 눈금 ${n(90)}이므로 ${expr(`${a + d}-90=${a + d - 90}`)} 만큼 큽니다.`,
+    ],
   );
 }
 
@@ -1763,11 +1820,21 @@ function tier25Deep(unit: UnitSeed, rng: Rng): ElemProblem {
         `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
     );
   }
-  return make(
+  // ⚠️ 예전에는 「세 각이 모두 같은 삼각형의 한 각」이었다 — $180\div3$ **한 걸음**이고
+  //    씨앗을 바꿔도 답이 늘 $60^\circ$ 라 사실상 한 문항이었다.
+  const a2 = intBetween(rng, 20, 70);
+  // 남는 각이 $0$ 이하가 되면 안 된다 — $2a+gap<180$.
+  const gap = intBetween(rng, 5, Math.min(40, 179 - 2 * a2));
+  const rest2 = 180 - a2 - (a2 + gap);
+  return makeDeep(
     unit,
-    `세 각의 크기가 모두 같은 삼각형의 한 각의 크기는 몇 도인가?`,
-    deg(60),
-    `세 각의 크기가 같으므로 ${expr("180\\div3=60")} 에서 ${deg(60)}입니다.`,
+    `삼각형의 한 각의 크기는 ${deg(a2)}이고, 다른 한 각은 그보다 ${deg(gap)} 더 큽니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(rest2),
+    [
+      `다른 한 각은 ${expr(`${a2}+${gap}=${a2 + gap}`)} 입니다.`,
+      `${expr(`180-${a2}-${a2 + gap}=${rest2}`)} 이므로 ${deg(rest2)}입니다.`,
+    ],
   );
 }
 
@@ -1829,11 +1896,19 @@ function tier26Deep(unit: UnitSeed, rng: Rng): ElemProblem {
         `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
     );
   }
-  return make(
+  // ⚠️ 예전에는 「네 각이 모두 같은 사각형의 한 각」이었다 — $360\div4$ 한 걸음이고
+  //    답이 늘 $90^\circ$ 였다. 이제 한 각만 주고 **나머지 셋이 같다**로 되짚는다.
+  const one = intBetween(rng, 20, 40) * 3;
+  const rest3 = 360 - one;
+  return makeDeep(
     unit,
-    `네 각의 크기가 모두 같은 사각형의 한 각의 크기는 몇 도인가?`,
-    deg(90),
-    `네 각의 크기가 같으므로 ${expr("360\\div4=90")} 에서 ${deg(90)}입니다.`,
+    `사각형의 한 각의 크기는 ${deg(one)}이고, 나머지 세 각의 크기는 서로 같습니다. ` +
+      `나머지 한 각의 크기는 몇 도인가?`,
+    deg(rest3 / 3),
+    [
+      `나머지 세 각의 크기의 합은 ${expr(`360-${one}=${rest3}`)} 입니다.`,
+      `세 각의 크기가 같으므로 ${expr(`${rest3}\\div3=${rest3 / 3}`)} 입니다.`,
+    ],
   );
 }
 
@@ -2477,19 +2552,25 @@ function tier37Apply(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 function tier37Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const bb = intBetween(rng, 2, 9) * 10;
+  // ⚠️ 예전 갈래는 「$85$는 몇십으로 어림하면 $80$이 되는가? 예/아니요」였다 —
+  //    **한 걸음 판정이고 찍어도 절반이 맞는다.** 4단으로 셀 수 없는 모양이다.
+  //    이제 어림한 몫과 **실제 몫**을 둘 다 구해 견준다(세 걸음).
   if (intBetween(rng, 0, 1) === 0) {
-    const delta = pick(rng, [-6, -5, 4, 5]);
-    const cand = bb + delta;
-    const rounded = Math.round(cand / 10) * 10;
-    const yes = rounded === bb;
-    const up = cand % 10 >= 5;
-    return make(
+    const b = bb + pick(rng, [-4, -3, -2, -1, 1, 2, 3, 4]);
+    const q = intBetween(rng, 3, 9);
+    const a = bb * q;
+    const real = Math.floor(a / b);
+    return makeDeep(
       unit,
-      `${josaNum(cand, "은", "는")} 몇십으로 어림하면 ${josaNum(bb, "이", "가")} 되는가? ` +
-        `'예' 또는 '아니요'로 답하시오.`,
-      yes ? "예" : "아니요",
-      `일의 자리 숫자가 ${n(cand % 10)}이므로 ${up ? "올리면" : "버리면"} ${n(rounded)}입니다. ` +
-        `${yes ? "그러므로 '예'입니다." : `${josaNum(bb, "이", "가")} 아니므로 '아니요'입니다.`}`,
+      `${expr(`${a}\\div${b}`)} 에서 나누는 수를 몇십으로 어림하여 몫을 어림했습니다. ` +
+        `어림한 몫과 실제 몫의 차는 얼마인가?`,
+      n(Math.abs(q - real)),
+      [
+        `${josaNum(b, "을", "를")} 몇십으로 어림하면 ${n(bb)}이므로 어림한 몫은 ` +
+          `${expr(`${a}\\div${bb}=${q}`)} 입니다.`,
+        `실제 몫은 ${expr(`${a}\\div${b}=${real}\\cdots${a - real * b}`)} 에서 ${n(real)}이므로 ` +
+          `차는 ${expr(`${Math.max(q, real)}-${Math.min(q, real)}=${Math.abs(q - real)}`)} 입니다.`,
+      ],
     );
   }
   return make(
@@ -4875,17 +4956,25 @@ function tier62Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** **1-6-2 4단 심화 — 첫째부터 넷째까지의 합.** 규칙을 잇고 더하는 다단계. */
 function tier62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전에는 「첫째부터 넷째까지 모두 몇 개」였다 — 규칙을 찾아 **더하기만** 한다.
+  //    그런데 같은 소단원 응용은 「모형이 $19$개인 것은 몇째인가」로 **되짚는다** —
+  //    사다리가 뒤집혀 있었다. 그래서 심화는 «누적»을 되짚는다(응용보다 한 겹 위).
   const s = intBetween(rng, 1, 5);
   const d = intBetween(rng, 2, 6);
-  const t = [s, s + d, s + d * 2, s + d * 3];
-  const total = t[0]! + t[1]! + t[2]! + t[3]!;
-  return make(
+  const upto = intBetween(rng, 4, 6);
+  const t = Array.from({ length: upto }, (_, i) => s + d * i);
+  const total = t.reduce((x, y) => x + y, 0);
+  return makeDeep(
     unit,
     `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
-      `셋째는 ${n(s + d * 2)}개입니다. 첫째부터 넷째까지 놓은 모형은 모두 몇 개인가?`,
-    `${n(total)}개`,
-    `${n(d)}개씩 늘어나므로 넷째는 ${expr(`${t[2]}+${d}=${t[3]}`)} 개입니다. ` +
-      `${expr(`${t[0]}+${t[1]}+${t[2]}+${t[3]}=${total}`)} 이므로 모두 ${n(total)}개입니다.`,
+      `셋째는 ${n(s + d * 2)}개입니다. 첫째부터 몇째까지 놓으면 모형이 모두 ` +
+      `${n(total)}개가 되는가?`,
+    ORDINAL[upto - 1]!,
+    [
+      `${n(d)}개씩 늘어나므로 넷째부터는 ${expr(`${t[2]}+${d}=${t[3]}`)} 개, ` +
+        `그다음은 ${n(d)}개씩 더 놓습니다.`,
+      `차례로 더하면 ${expr(`${t.join("+")}=${total}`)} 이므로 ${ORDINAL[upto - 1]!}까지입니다.`,
+    ],
   );
 }
 

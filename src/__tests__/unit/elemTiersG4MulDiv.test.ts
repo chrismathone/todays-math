@@ -594,15 +594,26 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
         const t = Number(m[1]);
         expect(deep.answer).toBe(`$${t - 5}$, $${t + 4}$`);
       } else {
-        deepKinds.add("경계판단");
+        // 예전 갈래는 「$85$는 몇십으로 어림하면 $80$이 되는가? 예/아니요」였다 —
+        // **한 걸음 판정이고 찍어도 절반이 맞는다.** 이제 어림한 몫과 실제 몫을 둘 다 구한다.
+        deepKinds.add("어림몫과 실제몫의 차");
         m = deep.content.match(
-          /^\$(\d+)\$[은는] 몇십으로 어림하면 \$(\d+)\$[이가] 되는가/,
+          /^\$(\d+)\\div(\d+)\$ 에서 나누는 수를 몇십으로 어림하여 몫을 어림했습니다/,
         );
         expect(m, deep.content).toBeTruthy();
-        const cand = Number(m![1]);
-        const t = Number(m![2]);
-        expect(deep.answer).toBe(
-          Math.round(cand / 10) * 10 === t ? "예" : "아니요",
+        const a = Number(m![1]);
+        const b = Number(m![2]);
+        const rounded = Math.round(b / 10) * 10;
+        expect(
+          rounded,
+          `몇십으로 어림한 값이 $0$ 이다: ${deep.content}`,
+        ).toBeGreaterThan(0);
+        expect(
+          a % rounded,
+          `어림한 몫이 자연수여야 한다: ${deep.content}`,
+        ).toBe(0);
+        expect(answerNum(deep.answer), deep.content).toBe(
+          Math.abs(a / rounded - Math.floor(a / b)),
         );
       }
     }
