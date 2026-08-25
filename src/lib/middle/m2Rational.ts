@@ -19,6 +19,8 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
+
 import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -879,7 +881,10 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         if (truth) mask |= 1 << i;
       });
       const cnt = stmts.reduce((acc, _s, i) => acc + ((mask >> i) & 1), 0);
-      if (cnt === 0 || cnt === 4) return null;
+      // 🔴 「모두 고르시오」의 정답은 **정확히 2개** (원장님 2026-08-25).
+      //    보기의 참·거짓이 무작위 수에서 나와 미리 고를 수 없으므로 거른다 —
+      //    참이 2개일 확률 C(4,2)/2^4=37.5%, attempt(200) 이면 실패 ~1e-41.
+      if (cnt !== CHOOSE_ALL_ANSWER_COUNT) return null;
       const lines = stmts
         .map(
           (s, i) =>
@@ -900,16 +905,29 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   // 18 ─────────────────────────────────────────────
   def("18", "유리수와 소수의 관계", SEC.식계산, "기본", (rng) =>
     attempt(200, () => {
-      const idxs = shuffle(
-        rng,
-        RATIONAL_FACT_POOL.map((_s, i) => i),
-      ).slice(0, 4);
+      // 🔴 정답 개수를 **만들 때 정한다** — 참 2개 + 거짓 2개 (원장님 2026-08-25).
+      //    예전에는 풀에서 4개를 그냥 뽑고 «전부 참/전부 거짓»만 걸렀다. 풀이
+      //    참 7·거짓 3 이라 뽑기가 참 쪽으로 쏠려 정답이 1~3개로 흩어졌다
+      //    (실측 2026-08-25: 2개는 36.5%뿐). 거르지 않고 **골라 담는다.**
+      const trues = RATIONAL_FACT_POOL.map((s, i) => ({ s, i })).filter(
+        (r) => r.s.truth,
+      );
+      const falses = RATIONAL_FACT_POOL.map((s, i) => ({ s, i })).filter(
+        (r) => !r.s.truth,
+      );
+      const need = CHOOSE_ALL_ANSWER_COUNT;
+      const idxs = shuffle(rng, [
+        ...shuffle(rng, trues)
+          .slice(0, need)
+          .map((r) => r.i),
+        ...shuffle(rng, falses)
+          .slice(0, 4 - need)
+          .map((r) => r.i),
+      ]);
       let mask = 0;
       idxs.forEach((idx, i) => {
         if (RATIONAL_FACT_POOL[idx]!.truth) mask |= 1 << i;
       });
-      const cnt = idxs.reduce((acc, _v, i) => acc + ((mask >> i) & 1), 0);
-      if (cnt === 0 || cnt === 4) return null;
       const lines = idxs
         .map((idx, i) => `${LETTERS[i]} ${RATIONAL_FACT_POOL[idx]!.text}`)
         .join("\n");

@@ -4,6 +4,7 @@
  *   npx tsx scripts/qa/census-choose-all.ts                  # 공유 DB (출제 가능분)
  *   npx tsx scripts/qa/census-choose-all.ts --all            # 격리분까지 — **반증용**
  *   npx tsx scripts/qa/census-choose-all.ts --engine         # 중등 엔진 등록 유형 × 씨앗
+ *   npx tsx scripts/qa/census-choose-all.ts --elem           # 초등 엔진 소단원 × 갈래 × 씨앗
  *   npx tsx scripts/qa/census-choose-all.ts --engine --seeds 200
  *   npx tsx scripts/qa/census-choose-all.ts --json <경로>    # 산출물 저장
  *   npx tsx scripts/qa/census-choose-all.ts --tails 200      # 지시 꼬리 더 보기
@@ -45,6 +46,7 @@ import {
 } from "../../src/lib/problem/chooseAllRule";
 
 const ENGINE = process.argv.includes("--engine");
+const ELEM = process.argv.includes("--elem");
 /**
  * 🔴 `--all` 은 **판정기를 반증하려고** 모집단을 넓히는 스위치다. 격리분 45,374건은
  *    출제에 안 나가므로 **처리 대상이 아니다.** 이 산출물을 삭제·재생성의 입력으로
@@ -128,12 +130,53 @@ async function engineRows(): Promise<{ rows: Row[]; note: string }> {
   };
 }
 
+async function elemRows(): Promise<{ rows: Row[]; note: string }> {
+  const { elementaryUnits, generateElementaryProblem, supportedTiers } =
+    await import("../../src/lib/elementary/generate");
+  const rows: Row[] = [];
+  let failed = 0;
+  for (const unit of elementaryUnits()) {
+    const tiers = supportedTiers(unit);
+    // 갈래가 없는 소단원은 갈래 없이 한 번 — 「등록 안 된 곳은 안 본다」로 두면
+    // 그쪽이 구조적으로 0이 된다.
+    const asks: (string | undefined)[] =
+      tiers.length > 0 ? [...tiers] : [undefined];
+    for (const tier of asks) {
+      for (let s = 0; s < SEEDS; s += 1) {
+        try {
+          const p = generateElementaryProblem(
+            unit,
+            20260825 + s * 7919,
+            tier as never,
+          );
+          rows.push({
+            id: `${unit.grade}|${unit.section}|${tier ?? "-"}#${s}`,
+            label: `${unit.grade} ${unit.section} ${tier ?? ""}`,
+            content: p.content,
+            answer: p.answer,
+          });
+        } catch {
+          failed += 1;
+        }
+      }
+    }
+  }
+  return {
+    rows,
+    note: `초등 엔진 · 소단원 ${elementaryUnits().length} × 갈래 × 씨앗 ${SEEDS} = ${rows.length}건 (생성 실패·미등록 ${failed})`,
+  };
+}
+
 function bump<K>(m: Map<K, number>, k: K) {
   m.set(k, (m.get(k) ?? 0) + 1);
 }
 
 async function main() {
-  const { rows, note } = ENGINE ? await engineRows() : await dbRows();
+  const { rows, note } = ELEM
+    ? await elemRows()
+    : ENGINE
+      ? await engineRows()
+      : await dbRows();
   console.log(note);
 
   const tails = new Map<string, { n: number; shapes: Map<string, number> }>();

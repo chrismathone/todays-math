@@ -163,3 +163,27 @@ export function chooseAllAnswerCount(answer: string): number {
 
 /** 원장님 확정 (2026-08-25): 「모두 고르시오」의 정답은 **정확히 2개**. */
 export const CHOOSE_ALL_ANSWER_COUNT = 2;
+
+/**
+ * 🔴 **관문** — 엔진이 낸 문항이 규칙을 어기면 **멈춘다.**
+ *
+ * 생성기마다 「정답 2개」를 따로 지키면 새 유형이 하나 늘 때마다 그 자리가 하나
+ * 더 생기고, 빠뜨려도 아무도 모른다. 그래서 **엔진 진입점 한 곳**이 산출물을
+ * 다시 보고 아니면 던진다 — 조용히 정답 셋짜리 문항을 내보내지 않는다.
+ *
+ * 「모두 고르시오」가 아닌 문항은 **그냥 지나간다** — 「모두 몇 개인지 구하시오」·
+ * 「…을 모두 쓰시오」는 다른 부류이고 이 규칙의 대상이 아니다.
+ */
+export function assertChooseAllAnswerCount(
+  content: string,
+  answer: string,
+  where: string,
+): void {
+  if (!isChooseAll(content)) return;
+  const n = chooseAllAnswerCount(answer);
+  if (n === CHOOSE_ALL_ANSWER_COUNT) return;
+  throw new Error(
+    `「모두 고르시오」의 정답은 ${CHOOSE_ALL_ANSWER_COUNT}개여야 합니다 — ` +
+      `${where} 가 ${n === UNCOUNTABLE ? "«셀 수 없는»" : `${n}개짜리`} 정답을 냈습니다 (정답 «${answer}»)`,
+  );
+}

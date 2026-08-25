@@ -42,6 +42,7 @@
  */
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
+import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
 
 import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
@@ -344,17 +345,56 @@ function marksOf(flags: readonly boolean[]): string {
   return out.join(", ");
 }
 
-/** 서로 다른 색인 `count` 개 — Fisher–Yates 로 섞는다(앞쪽 편중 방지). */
-function distinctIndices(rng: Rng, total: number, count: number): number[] {
-  if (count > total) throw new Error("뽑을 개수가 전체보다 많습니다");
-  const bag = Array.from({ length: total }, (_, i) => i);
-  for (let i = total - 1; i > 0; i -= 1) {
+/** 배열에서 `count` 개를 섞어 뽑는다 — Fisher–Yates(앞쪽 편중 방지). */
+function pickSome<T>(rng: Rng, items: readonly T[], count: number): T[] {
+  if (count > items.length) throw new Error("뽑을 개수가 전체보다 많습니다");
+  const bag = [...items];
+  for (let i = bag.length - 1; i > 0; i -= 1) {
     const j = intBetween(rng, 0, i);
     const t = bag[i]!;
     bag[i] = bag[j]!;
     bag[j] = t;
   }
   return bag.slice(0, count);
+}
+
+/** 서로 다른 색인 `count` 개 — Fisher–Yates 로 섞는다(앞쪽 편중 방지). */
+function distinctIndices(rng: Rng, total: number, count: number): number[] {
+  return pickSome(
+    rng,
+    Array.from({ length: total }, (_, i) => i),
+    count,
+  );
+}
+
+/**
+ * 「모두 고르시오」 보기 다섯 — **참 2개 + 거짓 3개**를 골라 담아 섞는다
+ * (원장님 2026-08-25, `CHOOSE_ALL_ANSWER_COUNT`).
+ *
+ * 🔴 **거르지 않고 만든다.** 예전에는 아홉 중 다섯을 그냥 뽑고 참이 1~4개면
+ *    받았다. 그런데 이 풀들은 참이 6~7개라, 계수 부호에 따라 **거짓이 두 개뿐인
+ *    구간**이 생긴다 — 거기서는 「참 2개」가 **아예 나올 수 없다**(실측
+ *    2026-08-25: ⑴06 은 2개가 7.0%, ⑵06 은 14.0%). 그래서 거르는 것으로는
+ *    못 고치고, 풀에 **거짓 명제를 더해** 언제나 셋을 고를 수 있게 했다.
+ *    풀이 모자라면 조용히 보기 넷을 내지 않고 **던진다.**
+ */
+function chooseFivePropIndices(
+  rng: Rng,
+  props: readonly { ok: boolean }[],
+): number[] {
+  const trueIdx = props.map((_p, i) => i).filter((i) => props[i]!.ok);
+  const falseIdx = props.map((_p, i) => i).filter((i) => !props[i]!.ok);
+  const need = CHOOSE_ALL_ANSWER_COUNT;
+  if (trueIdx.length < need || falseIdx.length < 5 - need) {
+    throw new Error(
+      `보기 풀이 모자랍니다: 참 ${trueIdx.length}(필요 ${need}) · 거짓 ${falseIdx.length}(필요 ${5 - need})`,
+    );
+  }
+  return pickSome(
+    rng,
+    [...pickSome(rng, trueIdx, need), ...pickSome(rng, falseIdx, 5 - need)],
+    5,
+  );
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -407,11 +447,11 @@ export const QUAD_DEF_POOL: readonly string[] = [
 /** 보기 명제 풀의 크기 — 시험의 판정표가 같은 길이인지 잠근다. */
 export const M3_FUNC_POOL_SIZES = {
   뜻: QUAD_DEF_POOL.length,
-  성질06: 9,
+  성질06: 12,
   성질10: 9,
   성질13: 11,
   성질17: 9,
-  성질G06: 9,
+  성질G06: 12,
 } as const;
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -704,11 +744,20 @@ const TYPES_G1: TypeEntry[] = [
           ok: av > 0,
         },
         { text: `제$3$사분면과 제$4$사분면을 지난다.`, ok: av < 0 },
+        // ── 아래 셋은 「참 2 · 거짓 3」을 언제나 담을 수 있게 더한 **거짓 쪽**이다.
+        //    위 아홉만으로는 $|a|>1$ 일 때 거짓이 **둘뿐**이라 정답 2개가
+        //    구조적으로 불가능했다(2026-08-25 실측 7.0%). 반드시 **끝에** 붙인다 —
+        //    앞 색인이 밀리면 시험의 손 판정표가 통째로 어긋난다.
+        {
+          text: `이차함수 $y=x^2$의 그래프보다 폭이 넓다.`,
+          ok: Math.abs(av) < 1,
+        },
+        { text: `$x$축과 서로 다른 두 점에서 만난다.`, ok: false },
+        { text: `그래프는 점 $(1, 0)$을 지난다.`, ok: false },
       ];
-      const idx = distinctIndices(rng, props.length, 5);
+      const idx = chooseFivePropIndices(rng, props);
       const flags = idx.map((i) => props[i]!.ok);
       const count = flags.filter(Boolean).length;
-      if (count < 1 || count > 4) return null;
       return {
         content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것을 모두 고르시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
         answer: marksOf(flags),
@@ -1524,11 +1573,23 @@ const TYPES_G2: TypeEntry[] = [
         },
         { text: `그래프는 원점을 지난다.`, ok: false },
         { text: `위로 볼록한 포물선이다.`, ok: a < 0 },
+        // ── 아래 셋은 「참 2 · 거짓 3」을 언제나 담을 수 있게 더한 **거짓 쪽**이다.
+        //    위 아홉만으로는 $a>0$·$q<0$ 일 때 거짓이 **둘뿐**이라 정답 2개가
+        //    구조적으로 불가능했다(2026-08-25 실측 14.0%). 반드시 **끝에** 붙인다.
+        {
+          text: `$x$축과 만나지 않는다.`,
+          ok: !((a > 0 && q < 0) || (a < 0 && q > 0)),
+        },
+        // $q\ne0$ 이므로 접하는 일이 없다 — 언제나 거짓이다.
+        { text: `$x$축과 한 점에서 만난다.`, ok: false },
+        {
+          text: `$x<${p}$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: a < 0,
+        },
       ];
-      const idx = distinctIndices(rng, props.length, 5);
+      const idx = chooseFivePropIndices(rng, props);
       const flags = idx.map((i) => props[i]!.ok);
       const count = flags.filter(Boolean).length;
-      if (count < 1 || count > 4) return null;
       return {
         content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것을 모두 고르시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
         answer: marksOf(flags),

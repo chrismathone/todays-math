@@ -16,6 +16,7 @@ import { G5, G5_TIERS } from "./g5";
 import { G6, G6_TIERS } from "./g6";
 import { createRng } from "./rng";
 import { ELEM_GRADES, type ElemProblem } from "./types";
+import { assertChooseAllAnswerCount } from "../problem/chooseAllRule";
 import { wrapDanClause } from "../problemText";
 
 export {
@@ -97,6 +98,11 @@ export function generateElementaryProblem(
  */
 function tidy(p: ElemProblem): ElemProblem {
   const content = wrapDanClause(p.content);
+  // 「모두 고르시오」의 정답은 정확히 2개 (원장님 2026-08-25). 초등 엔진은 오늘
+  // 그 부류를 **한 건도 내지 않지만**(실측: `census-choose-all.ts --elem` 0건),
+  // 관문을 여기 걸어 두어야 나중에 생기는 유형이 조용히 규칙 밖으로 못 나간다.
+  // 「가장 큰 것을 고르시오」류는 「모두」가 없어 대상이 아니다.
+  assertChooseAllAnswerCount(content, p.answer, `초등 ${p.grade} ${p.section}`);
   return content === p.content ? p : { ...p, content };
 }
 
