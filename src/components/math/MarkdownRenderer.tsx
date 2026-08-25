@@ -39,6 +39,7 @@ import type { PluggableList } from "unified";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
+import { applyHardBreaks } from "@/lib/math/hardBreaks";
 import { UI_KATEX_OPTIONS } from "@/lib/math/katexRender";
 import {
   decodeHtmlEntities,
@@ -228,9 +229,14 @@ function preprocess(content: string): string {
   const cached = preprocessCache.get(content);
   if (cached !== undefined) return cached;
 
-  const result = preprocessMathText(decodeHtmlEntities(content)).replace(
-    BARE_LIM,
-    "\\lim\\limits",
+  // ⚠️ 하드 브레이크는 **맨 마지막**이다. `preprocessMathText` 가 `\(…\)` → `$…$`,
+  //    `$…$` → `$$…$$` 승격 등으로 수식 경계를 바꾸므로, 그 전에 공백을 붙이면
+  //    「수식 밖인 줄 알았던 줄」이 수식 안이 되어 원문이 오염된다.
+  const result = applyHardBreaks(
+    preprocessMathText(decodeHtmlEntities(content)).replace(
+      BARE_LIM,
+      "\\lim\\limits",
+    ),
   );
 
   if (preprocessCache.size >= PREPROCESS_CACHE_LIMIT) {

@@ -778,9 +778,19 @@ export function quickAnswerBoxPx(answers: readonly string[]): number {
 export function estimateSolutionPx(solution: string | null): number {
   // 해설이 없으면 지면에 「해설이 등록되지 않았습니다.」 한 줄이 나간다.
   const text = normalizeOcrText(solution ?? "해설이 등록되지 않았습니다.");
+  // 🔴 홑 개행은 지면에서 **하드 브레이크**다(`applyHardBreaks`) — 줄마다 따로 센다.
+  //    2026-08-25 이전에는 `normalizeOcrText` 가 개행을 전부 녹여 늘 한 덩어리였다.
+  //    한 덩어리로 세면 실측 25,256건의 해설을 최대 44줄 **과소평가**하고, 해설 과소는
+  //    「조금 잘림」이 아니라 **해설 한 건이 통째로 사라짐**이다(아래 `findAnswerKeyRisks`).
   const lines = Math.max(
     1,
-    Math.ceil(displayWidth(text) / SOLUTION_UNITS_PER_LINE),
+    text
+      .split(/\r?\n/)
+      .reduce(
+        (sum, line) =>
+          sum + Math.max(1, Math.ceil(displayWidth(line) / SOLUTION_UNITS_PER_LINE)),
+        0,
+      ),
   );
   const tall = countTallMath(text);
   return (
