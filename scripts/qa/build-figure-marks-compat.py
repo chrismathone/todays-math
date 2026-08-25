@@ -40,6 +40,18 @@ def collect() -> dict[str, dict]:
 
     # ① round2 실증 — 임시 파일에서 리터럴만 안전 추출 (있으면).  기준선을
     #    이미 구운 뒤에는 임시 파일이 사라져도 기준선 JSON 이 정본이다.
+    #
+    # 🔴 **그 「정본이다」가 코드에 없었다** (2026-08-25). 임시 파일이 사라지면
+    #    round2 7종이 `specs` 에서 통째로 빠지고, `--check` 는 그것을 «바뀌었다»로
+    #    보고했다 — 「못 구웠다」와 「달라졌다」가 구분이 안 됐다. 그리고 그대로
+    #    다시 구우면 기준선에서 **7종이 조용히 사라진다.** 그래서 없으면
+    #    기준선 JSON 의 스펙을 그대로 물려받는다.
+    if not os.path.exists(ROUND2) and os.path.exists(FIXTURE):
+        old = json.loads(io.open(FIXTURE, encoding="utf-8").read())
+        for sid, entry in old.items():
+            if sid.startswith("round2-"):
+                specs[sid] = entry["spec"]
+        print(f"  (round2 원본 임시 파일이 없다 — 기준선에서 {len(specs)}종 물려받음)")
     if os.path.exists(ROUND2):
         source = io.open(ROUND2, encoding="utf-8").read()
         tree = ast.parse(source)

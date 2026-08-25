@@ -27,7 +27,7 @@
  * 「참」은 **그린 픽셀**에서 온다 — 스펙·상수를 안 본다(제품 상수로 정답을 정하면
  * 제품이 틀릴수록 점수가 오른다, CLAUDE.md 2026-08-18).
  *
- * `--selftest` 는 양성 5 · 음성 4 를 자기 안에서 만들어 대 본다. 양성만 대면
+ * `--selftest` 는 양성 5 · 음성 7 을 자기 안에서 만들어 대 본다. 양성만 대면
  * 재현율만 재고 **지어냄이 구조적으로 0**이 된다(CLAUDE.md 2026-08-20).
  */
 import { chromium } from "playwright";
@@ -66,18 +66,38 @@ export function hasRealHalo(element) {
   );
 }
 
-/** 몸통을 조각내어 «글자 i 만» · «글자 없음» · «점선까지 없음» 을 만든다. */
+const SHAPE_RE = /<(line|path|circle|ellipse|rect|polyline|polygon)\b/g;
+
+/**
+ * 칠을 벗겨 **획만** 남긴다.
+ *
+ * 🔴 이 함수가 이 판정기의 «축»이다. 원장님 규칙은 **「선 위」**에 관한 것이고
+ *    (2026-08-13 「선위에 겹쳐서 배경처리해버리면 도형 읽는데 애로사항 있음」),
+ *    **칠 위의 글자는 정상**이다 — 표 머리칸·띠그래프 조각·쌓기나무 면이 전부
+ *    그렇게 생겼다. 칠을 잉크로 세면 그 셋이 통째로 거짓 경보가 되고,
+ *    **거짓 경보는 가드를 끈다**(CLAUDE.md 2026-08-20).
+ *    실측: 이 축을 안 가르면 초6 공간과 입체 60 · 초6 여러 가지 그래프 46 ·
+ *    초5 대응 관계 32 = **138장이 전부 거짓**이었다(눈으로 확인).
+ */
+export function strokesOnly(fragment) {
+  return fragment.replace(/\sfill="[^"]*"/g, "").replace(SHAPE_RE, '<$1 fill="none"');
+}
+
+/** 몸통을 조각내어 «글자 i 만» · «획만» · «실선 획만» 을 만든다. */
 export function splitBody(svg) {
   const open = svg.indexOf(">", svg.indexOf("<svg")) + 1;
   const body = svg.slice(open, svg.lastIndexOf("</svg>"));
   const texts = body.match(TEXT_RE) ?? [];
   const geometry = body.replace(TEXT_RE, "");
-  // 점선(치수선·숨은 모서리)을 뺀 «실선만» — halo 가 지워도 되는 것은 점선뿐이다.
-  const solidOnly = geometry.replace(
-    /<(line|path|circle|ellipse|rect|polyline|polygon)\b[^>]*stroke-dasharray[^>]*?\/?>/g,
-    "",
+  const strokes = strokesOnly(geometry);
+  // 점선(치수선·숨은 모서리)을 뺀 «실선 획만» — halo 가 지워도 되는 것은 제 점선뿐이다.
+  const solidStrokes = strokesOnly(
+    geometry.replace(
+      /<(line|path|circle|ellipse|rect|polyline|polygon)\b[^>]*?stroke-dasharray[^>]*?\/?>/g,
+      "",
+    ),
   );
-  return { body, texts, geometry, solidOnly };
+  return { body, texts, geometry, strokes, solidStrokes };
 }
 
 /**
@@ -175,8 +195,19 @@ export async function measureSvg(page, svg, { scale = 2 } = {}) {
   if (!vb) return { error: "viewBox 파싱 실패", bad: true, findings: [] };
   const w = Number(vb[1]);
   const h = Number(vb[2]);
-  const { body, texts, geometry, solidOnly } = splitBody(svg);
-  const variants = [body, geometry, solidOnly, ...texts];
+  const { body, texts, strokes, solidStrokes } = splitBody(svg);
+  const allText = texts.join("");
+  // 글자마다 조각 둘 — «그 글자만» 과 «실선 획 + 그 글자». 뒤엣것이 있어야
+  // 「어느 라벨이 선을 지웠나」를 이름으로 댈 수 있다. 총계만 내면 고칠 자리를
+  // 못 짚고, 짚지 못하는 지표는 다음 사람에게 「깨끗」과 구분이 안 된다.
+  const variants = [
+    body,
+    strokes,
+    solidStrokes,
+    solidStrokes + allText,
+    ...texts,
+    ...texts.map((t) => solidStrokes + t),
+  ];
   const { W, masks } = await page.evaluate(rasterInPage, {
     variants,
     w,
@@ -184,7 +215,9 @@ export async function measureSvg(page, svg, { scale = 2 } = {}) {
     scale,
     pad: PAD,
   });
-  const [full, geom, solid, ...glyphs] = masks;
+  const [full, geom, solid, solidWithText] = masks;
+  const glyphs = masks.slice(4, 4 + texts.length);
+  const solidPlusOne = masks.slice(4 + texts.length);
 
   // ⑴ 잘림 — viewBox 밖 잉크
   const x0 = Math.round(PAD * scale);
@@ -205,8 +238,10 @@ export async function measureSvg(page, svg, { scale = 2 } = {}) {
       ]);
   }
 
-  // ⑷ halo 가 실선을 지웠나 — 실선만 그린 것과 최종을 견준다
-  const erased = minusCount(solid, full);
+  // ⑷ halo 가 실선을 지웠나 — 「실선 획만」과 「거기에 글자를 얹은 것」을 견준다.
+  //    최종 렌더와 견주면 **나중에 그린 칠**(격자 위의 산점도 점 등)까지
+  //    「지웠다」로 세어 halo 와 구별이 안 된다 — 축을 글자로 좁힌다.
+  const erased = minusCount(solid, solidWithText);
 
   const findings = [];
   const geomPts = geom.length > 0 ? inkPoints(geom, W, scale, PAD, 3) : [];
@@ -236,8 +271,10 @@ export async function measureSvg(page, svg, { scale = 2 } = {}) {
       }
       floating = best > NEAR_LINE;
     }
-    if (onLine > TOL || onLabel > TOL || floating) {
-      findings.push({ label, halo, onLine, onLabel, floating });
+    // ⑷ 그 글자 하나가 실선을 얼마나 지웠나
+    const erasedBy = minusCount(solid, solidPlusOne[i]);
+    if (onLine > TOL || onLabel > TOL || floating || erasedBy > TOL) {
+      findings.push({ label, halo, onLine, onLabel, floating, erasedBy });
     }
   }
   return { viewBox: [w, h], clip, clipAt, erased, findings, texts: texts.length };
@@ -256,7 +293,7 @@ export function verdictKeys(m) {
   return [...new Set(keys)];
 }
 
-/* ── 눈금 — 양성 5 · 음성 4 ───────────────────────────────────────────── */
+/* ── 눈금 — 양성 5 · 음성 7 ───────────────────────────────────────────── */
 const F = 'font-family="Batang, serif" font-size="14"';
 const MID = 'text-anchor="middle"';
 const HALO =
@@ -313,6 +350,23 @@ export const SELFTEST = [
   [
     "음성 가장자리 안쪽",
     `${HEAD}${BG}${LINE}<text x="88" y="12" ${F} text-anchor="end" fill="#111111">(점)</text></svg>`,
+    null,
+  ],
+  // 🔴 이 셋은 **실데이터가 가르쳐 준 음성**이다 — 칠을 잉크로 세던 1차 판이
+  //    이 모양 138장을 전부 결함이라 했다(전량 눈으로 확인, 전부 거짓).
+  [
+    "음성 칠한 칸 위의 글자 (표 머리)",
+    `${HEAD}${BG}<rect x="10" y="16" width="80" height="28" fill="#dce6f0" stroke="#111111" stroke-width="1.2" /><text x="50" y="35" ${F} ${MID} fill="#111111">7</text></svg>`,
+    null,
+  ],
+  [
+    "음성 띠 조각 위의 이름",
+    `${HEAD}${BG}<rect x="6" y="18" width="88" height="24" fill="#cfe0c8" stroke="#111111" stroke-width="1.4" /><text x="50" y="35" ${F} ${MID} fill="#111111">봄 40%</text></svg>`,
+    null,
+  ],
+  [
+    "음성 격자 위에 찍은 점",
+    `${HEAD}${BG}<line x1="10" y1="30" x2="90" y2="30" stroke="#c8d7e4" stroke-width="0.7" /><circle cx="50" cy="30" r="2.6" fill="#111111" /><text x="50" y="14" ${F} ${MID} fill="#111111">P</text></svg>`,
     null,
   ],
 ];
