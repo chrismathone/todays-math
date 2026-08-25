@@ -3,11 +3,14 @@
  *
  * ## 기대값이 어디서 오는가
  *
- * ⑴ **눈금(대조군)** — 발문 문자열을 **테스트에 리터럴로** 박는다. 살아 있는 DB 를
+ * ⑴ **눈금(대조군)** — 발문 문자열을 **리터럴로** 박는다. 살아 있는 DB 를
  *    보면 엔진이 그 발문을 고치는 순간 양성 대조군이 조용히 사라지고, 그러면
  *    재현율을 영영 못 잰다(CLAUDE.md 2026-08-23 난이도 사다리와 같은 자리).
- *    문자열은 `probe-figure-dependent.ts` 가 **정본**으로 들고 있고 여기서 그것을
- *    읽는다 — 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+ *    문자열은 `scripts/qa/arrangementFixtures.ts` 가 **정본**으로 들고 있고 도구와
+ *    시험이 둘 다 거기를 읽는다 — 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+ *    그 모듈은 **Prisma 를 안 문다**: 처음엔 픽스처가 도구 파일에 있어서 이 시험이
+ *    `@prisma/client` 를 vitest 워커에 통째로 끌고 들어왔고, 전량 관문에서
+ *    **엉뚱한 파일이 시간 초과로** 흔들렸다(회차마다 실패 파일이 달랐다).
  *
  * ⑵ **분모 수치** — 커밋된 스냅숏(`reports/figure-dependent-snapshot.json`)에서
  *    온다. **살아 있는 공유 DB 를 쓰지 않는다**: D-31 공유 풀은 다른 트랙이 같은
@@ -24,7 +27,7 @@ import {
   NEGATIVE_FIXTURES,
   POSITIVE_FIXTURES,
   runSelfTest,
-} from "../../../scripts/qa/probe-figure-dependent";
+} from "../../../scripts/qa/arrangementFixtures";
 import { REVIEWED_ARRANGEMENT } from "../../../scripts/qa/reviewedArrangement";
 import {
   classifyArrangement,
