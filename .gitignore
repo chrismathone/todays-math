@@ -68,6 +68,10 @@ scripts/qa/reports/*
 !scripts/qa/reports/cm-sup-2026-08-21.json
 # Claude 생성 해설 원장 — 되돌리기 자료. 커밋 필수 (2026-08-22)
 !scripts/qa/reports/ai-solution-ledger.json
+# probe-middle-combo 의 1차 기준선 — **다시 만들 수 없다**(빌더가 안 만든다).
+# C:/tmp 에 두었더니 다른 컴퓨터에서 영영 못 돌았다 (2026-08-25).
+# 원본 15.7MB 중 판정기가 읽는 것만 남긴 67KB 다.
+!scripts/qa/reports/middle-combo-baseline.json
 !scripts/qa/reports/ai-solution-mismatch.json
 !scripts/qa/reports/ai-solution-skip.json
 # 중복 문항 삭제 원장 — **지운 행의 모든 컬럼**이 여기에만 있다.

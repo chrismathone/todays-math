@@ -19,7 +19,22 @@ const DEFAULT_CORPUS = "C:/tmp/middle-combo/corpus.json";
 const DEFAULT_VOCAB = "C:/tmp/middle-combo/solution-vocab2.json";
 const DEFAULT_JSON = "C:/tmp/middle-combo/classifications2.json";
 const DEFAULT_REPORT = "C:/tmp/middle-combo/classify-report2.md";
-const DEFAULT_BASELINE = "C:/tmp/middle-combo/classifications.json";
+/**
+ * 1차 기준선은 **저장소 안**에 둔다 (2026-08-25).
+ *
+ * 이것만 성질이 다르다 — 말뭉치·어휘는 빌더가 다시 만들지만, 기준선은 **1차 산출물**이라
+ * 다시 만들 수 없다(지금 판정기는 2차인 `classifications2.json` 을 낸다). 그래서 `C:/tmp`
+ * 에 두면 다른 컴퓨터에서 **영영 못 돈다** — 울타리가 시키는 두 빌더를 아무리 돌려도
+ * 이 파일은 안 생긴다. 실제로 그렇게 막혔다.
+ *
+ * 원본 15.7MB 중 이 판정기가 읽는 것은 `denominator` 5개와 `{key, verdict}` 873개뿐이라
+ * 그만 남겨 67KB 로 커밋했다(`.gitignore` 에 `!` 예외).
+ */
+const DEFAULT_BASELINE = resolve(
+  __dirname,
+  "reports",
+  "middle-combo-baseline.json",
+);
 const COMBO_SCORE = 0.78;
 const ANCHOR_CONTEXT_FLOOR = 0.5;
 
@@ -1671,15 +1686,27 @@ function main(): void {
   //    `census-middle-solution-vocab.ts` 가 먼저 돌아야 한다. 새 컴퓨터에는 없다.
   //    그럴 때 **던지면 관문이 컴퓨터마다 빨개진다.** 「못 돌았다」는 「깨끗하다」도
   //    「빨갛다」도 아니므로 **울타리(2)** 로 끝낸다 — 쓸기가 그렇게 세어 찍는다.
-  const missing = [corpusPath, vocabPath, baselinePath].filter(
-    (f) => !existsSync(f),
-  );
+  // ⚠️ 무엇이 없는지와 **그것을 어떻게 되살리는지**를 짝지어 찍는다. 종전에는 셋을
+  //    검사하면서 빌더 **둘만** 알려 줬다 — 기준선은 그 둘이 안 만드는데도 그렇게 말해
+  //    다른 컴퓨터에서 「시킨 대로 해도 또 막히는」 막다른 길이 됐다 (2026-08-25).
+  const needs: { path: string; how: string }[] = [
+    { path: corpusPath, how: "npx tsx scripts/qa/build-middle-corpus.ts" },
+    {
+      path: vocabPath,
+      how: "npx tsx scripts/qa/census-middle-solution-vocab.ts",
+    },
+    {
+      path: baselinePath,
+      how:
+        "**다시 만들 수 없다** — 1차 산출물이다. 저장소의" +
+        " scripts/qa/reports/middle-combo-baseline.json 이 정본이니," +
+        " --baseline= 로 딴 데를 가리켰다면 그 값을 지워라",
+    },
+  ];
+  const missing = needs.filter((n) => !existsSync(n.path));
   if (missing.length > 0) {
-    console.log(
-      `울타리 — 말뭉치가 없어 못 돈다 (${missing.length}개 없음: ${missing[0]})\n` +
-        `   먼저: npx tsx scripts/qa/build-middle-corpus.ts` +
-        ` && npx tsx scripts/qa/census-middle-solution-vocab.ts`,
-    );
+    console.log(`울타리 — 입력이 없어 못 돈다 (${missing.length}개 없음)`);
+    for (const m of missing) console.log(`   없음: ${m.path}\n     → ${m.how}`);
     process.exit(2);
   }
   const corpus = JSON.parse(readFileSync(corpusPath, "utf8")) as CorpusFile;
