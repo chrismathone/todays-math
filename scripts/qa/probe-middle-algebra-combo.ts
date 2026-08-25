@@ -42,7 +42,7 @@
  *   npx tsx scripts/qa/probe-middle-algebra-combo.ts --selftest
  *   npx tsx scripts/qa/probe-middle-algebra-combo.ts --coord
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import { registeredTypes } from "../../src/lib/middle/generate";
 
@@ -238,7 +238,24 @@ const CALIBRATION: { key: string; expect: Verdict; note?: string }[] = [
   },
 ];
 
+/**
+ * 말뭉치는 **저장소 밖**(`C:/tmp`)이라 다른 컴퓨터에는 없다.
+ *
+ * ⚠️ 그냥 읽으면 **ENOENT 스택트레이스**가 나온다 — 다음 사람이 「무엇을 해야 하나」를
+ * 스택에서 읽어야 한다. 그래서 **울타리(2)** 로 끝내고 **되살리는 명령을 찍는다.**
+ * 실패와 「아직 잴 수 없음」은 다른 말이다(`probe-middle-combo` 와 같은 규약).
+ */
 function loadCorpus(path: string): CorpusType[] {
+  if (!existsSync(path)) {
+    console.log(`⛔ 울타리 — 말뭉치가 없다: ${path}`);
+    console.log(
+      `   이 판정기는 저장소 밖 말뭉치를 읽는다. 아래로 만든 뒤 다시 돌린다(약 1분 · 토큰 0):\n` +
+        `     npx tsx scripts/qa/build-middle-corpus.ts --out=${path}\n` +
+        `   ⚠️ 말뭉치는 **낡는다.** 생성기가 바뀐 뒤의 것을 써야 한다 — 이어받는 날 다시 만들 것.\n` +
+        `   (눈금은 말뭉치 없이 돈다: --selftest)`,
+    );
+    process.exit(2);
+  }
   const raw = JSON.parse(readFileSync(path, "utf8")) as { types: CorpusType[] };
   return raw.types;
 }
