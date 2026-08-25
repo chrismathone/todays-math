@@ -162,9 +162,22 @@ cd /c/tmp/impt-ascii  && node t.js               # 🟢 42
 「`fs.rmSync` 가 한글 경로에서 프로세스를 죽인다」와 **같은 부류**다.
 이 저장소는 워크트리 이름을 한글로 짓는 관례라 **다음 세션도 똑같이 걸린다.**
 
-임시 회피(이번에 쓴 것): 생성물 `node_modules/.prisma/client/default.js` 의
-`require('#main-entry-point')` 를 `require('./index.js')` 로 바꾼다.
-`npx prisma generate` 로 원상복구된다. **근본 대책은 워크트리 이름을 ASCII 로 짓는 것.**
+🔴 **게이트가 통째로 빨개진다.** 실측: 이 워크트리에서 우회를 걷어 내고 `npm run test`
+를 돌리면 **257파일 중 256파일 · 9,746 시험**이 죽는다 — 전부
+`Cannot find module '#main-entry-point'` 다(`db` 를 물고 오는 파일 전부).
+**코드와 무관하다.** 이걸 모르면 「내 변경이 게이트를 깼다」로 읽는다.
+
+회피를 스크립트로 남겼다:
+
+```
+node scripts/qa/fix-prisma-nonascii-path.mjs           # 진단
+node scripts/qa/fix-prisma-nonascii-path.mjs --apply   # 우회 적용
+```
+
+생성물의 `require('#main-entry-point')` 를 **그 `imports` 항목이 가리키는 파일**로
+바꾼다(값을 지어내지 않고 같은 `package.json` 에서 읽는다). `node_modules` 는 커밋
+대상이 아니므로 `npx prisma generate` 를 돌리면 사라진다 — 그때 다시 적용한다.
+**근본 대책은 워크트리 이름을 ASCII 로 짓는 것.**
 
 ### ㉡ `build-figure-marks-compat.py --check` 가 **「못 구웠다」를 「달라졌다」로** 말했다
 
@@ -183,3 +196,4 @@ cd /c/tmp/impt-ascii  && node t.js               # 🟢 42
 | 그림 다시 그리기·DB 반영·되돌리기 | `scripts/qa/regen-engine-figures.ts` |
 | 라벨 자리 가드 | `src/__tests__/unit/figureLabelPlacement.test.ts` (4) |
 | 변이 하네스 (3단 판정) | `scripts/qa/mutate-figure-label-placement.sh` — **빨강 3/3** |
+| 한글 워크트리에서 Prisma 살리기 | `scripts/qa/fix-prisma-nonascii-path.mjs` (§6 ㉠) |
