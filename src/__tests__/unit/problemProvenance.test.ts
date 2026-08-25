@@ -253,12 +253,12 @@ describe("[출처] 라벨 — 원장님 지시 「색상 전부 다르게」", (
 describe("[출처] 실측 전수(2026-08-25) — 분모가 맞는가", () => {
   // 분모를 먼저 검산한다(CLAUDE.md 2026-08-18). 합이 안 맞으면 어느 갈래를 못 센 것이다.
   it("문항 출처 갈래의 합이 전체와 같다", () => {
-    const sum = Object.values(CENSUS.origin).reduce((a, b) => a + b, 0);
+    const sum = Object.values(CENSUS.origin).reduce<number>((a, b) => a + b, 0);
     expect(sum).toBe(CENSUS.total);
   });
 
   it("그림 출처 갈래의 합이 전체와 같다 (그림 없음 포함)", () => {
-    const sum = Object.values(CENSUS.figure).reduce((a, b) => a + b, 0);
+    const sum = Object.values(CENSUS.figure).reduce<number>((a, b) => a + b, 0);
     expect(sum).toBe(CENSUS.total);
   });
 
