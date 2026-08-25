@@ -18,7 +18,7 @@
  *
  * ## 왜 「고칠것」으로는 안 빨개지나
  *
- * 오늘 원장에 `고칠것` 이 **33갈래** 있다(초등 230갈래 중). 그것으로 관문을 빨갛게 두면 그 잔고가
+ * 오늘 원장에 `고칠것` 이 **35갈래** 있다(초등 230갈래 중). 그것으로 관문을 빨갛게 두면 그 잔고가
  * 다 고쳐질 때까지 **다른 세션 전부**가 빨간 관문을 보게 되고, 그러면 훅을 우회한다 —
  * **늘 우는 가드는 꺼진다**(CLAUDE.md 2026-08-20). 그래서 잔고는 **시험이 «정확히»**
  * 잠근다(`src/__tests__/unit/tier4Ladder.test.ts`) — 늘어도 줄어도 빨개지므로
@@ -251,6 +251,17 @@ const 미검토: string[] = [];
 const 고칠것: string[] = [];
 const 검토됨: string[] = [];
 let 표지있음 = 0;
+/**
+ * **낡은 행** — 원장에는 있는데 이제 아무 갈래도 안 가리키는 키.
+ *
+ * 갈래를 고쳐 표지가 붙으면 그 행은 할 일이 없어진다. 그런데 그냥 두면 **잔고 수가
+ * 안 줄어** 「고쳤는데 표는 그대로」가 된다 — 이 저장소가 여러 번 겪은 「손 목록은
+ * 조용히 낡는다」다. 그래서 낡은 행도 **빨강**으로 만든다: 고쳤으면 행을 지워야 하고,
+ * 지우면 잔고 수가 줄어 시험이 갱신을 요구한다.
+ *
+ * ⚠️ 학년 인자로 좁혀 돌 때는 못 센다(다른 학년 행이 «안 쓰인 것»으로 보인다).
+ */
+const 쓰인키 = new Set<string>();
 
 for (const unit of units) {
   tally.count(unit.grade, unit.section, "심화", SEEDS.length);
@@ -270,9 +281,18 @@ for (const unit of units) {
       `\n      심화 ${bare[0]!.replace(/\n+/g, " ⏎ ").slice(0, 130)}`
     : "";
   if (v.판정 === "미검토") 미검토.push(`${자리}${보기}`);
-  else if (v.판정 === "고칠것") 고칠것.push(`${자리} — ${v.왜}${보기}`);
-  else 검토됨.push(`${자리} — ${v.왜}`);
+  else if (v.판정 === "고칠것") {
+    쓰인키.add(key);
+    고칠것.push(`${자리} — ${v.왜}${보기}`);
+  } else {
+    쓰인키.add(key);
+    검토됨.push(`${자리} — ${v.왜}`);
+  }
 }
+
+const 낡은행 = gradeArg
+  ? []
+  : Object.keys(ledger.초등).filter((k) => !쓰인키.has(k));
 
 tally.assertNonEmpty();
 fence.close();
@@ -307,8 +327,20 @@ if (미검토.length === 0) {
   );
   for (const f of 미검토) console.log(`  · ${f}`);
 }
+
+if (낡은행.length > 0) {
+  console.log(
+    `\n❌ 낡은 원장 행 ${낡은행.length} — 이제 표지가 붙어서 **아무 갈래도 안 가리킨다.**` +
+      `\n   고쳤으면 행을 지워라. 안 지우면 잔고 수가 안 줄어 「고쳤는데 표는 그대로」가 된다.`,
+  );
+  for (const k of 낡은행)
+    console.log(`  · ${k}  ${ledger.초등[k]?.이름 ?? ""}`);
+} else if (!gradeArg) {
+  console.log("✅ 낡은 원장 행 0");
+}
+
 console.log(
   "\n⚠️ 0 은 «깨끗»과 «못 셈»을 구분해 주지 않는다 — `--selftest` 로 이 판정기가" +
     "\n   걸릴 수 있는지부터 보고, 표지를 넓힐 때는 `--census` 를 먼저 볼 것.",
 );
-process.exitCode = 미검토.length === 0 ? 0 : 1;
+process.exitCode = 미검토.length === 0 && 낡은행.length === 0 ? 0 : 1;

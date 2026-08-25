@@ -39,7 +39,7 @@
  *
  * ## 이 가드가 지키는 것 — **앞으로**
  *
- * 오늘 걸리는 16유형은 전부 사람이 보고 판정했다. 값어치는 **새 유형**에 있다 —
+ * 오늘 걸리는 13유형은 전부 사람이 보고 판정했다. 값어치는 **새 유형**에 있다 —
  * 873유형 중 등록이 계속 늘고 있고, 새로 등록된 심화가 「지시 한 줄 + 쉬운 식」이면
  * 여기서 «미검토»로 빨개진다.
  */
@@ -51,29 +51,14 @@ import {
 } from "../../src/lib/middle/generate";
 import { loneInstruction } from "../../src/lib/middle/tier";
 
-import { TIER4_LEDGER_PATH, type Tier4Ledger } from "./tier4Rules";
+import {
+  OPERATION_INSTRUCTION_WORDS,
+  TIER4_LEDGER_PATH,
+  type Tier4Ledger,
+} from "./tier4Rules";
 
 /** 씨앗 셋 — 유형이 씨앗에 따라 던지는 일이 있어 하나로는 못 본다. */
 const SEEDS = [20260825, 5150131, 777003];
-
-/**
- * 「주어진 식을 바꿔 다시 써라」인 지시.
- *
- * ⚠️ **`tier.ts` 의 `OPERATION_INSTRUCTION` 과 같은 뜻이어야 한다.** 그쪽은 밑단을
- *    내리는 데 쓰고 이쪽은 사람 앞에 세우는 데 쓴다 — 목적이 달라 export 되어 있지
- *    않지만, 갈라지면 「연산으로 내려간 유형」과 「심화로 사람이 볼 유형」의 잣대가
- *    달라진다. 시험이 두 정규식의 **낱말 집합이 같은지** 잠근다.
- */
-export const OPERATION_INSTRUCTION_WORDS = [
-  "계산하시오",
-  "전개하시오",
-  "인수분해하시오",
-  "간단히 하시오",
-  "간단히 나타내시오",
-  "푸시오",
-  "유리화하시오",
-  "나타내시오",
-] as const;
 
 /** 「식만 주고 바꿔 쓰라고만 하는가」 — 맞으면 그 지시문, 아니면 `null`. */
 export function bareOperationInstruction(content: string): string | null {

@@ -64,6 +64,8 @@ const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-arithmetic", 44],
   ["probe-elem-routing", 4],
   ["probe-elem-tier-ladder", 14],
+  // 2026-08-25 — 「심화가 4단 모양인가」(D-72, 원장님 지적). 표지0 8 · 표지있음 8.
+  ["probe-elem-tier-4dan", 16],
   ["probe-elem-unit-josa", 12],
   // ── 중등 (2026-08-24, 미분류 133건을 읽다 나온 결함에서 태어났다) ──
   ["probe-middle-uniqueness", 3],
@@ -72,6 +74,8 @@ const GAUGED: [name: string, gauges: number][] = [
   // 2026-08-25 — 대수 결합형 훑기(D-109). 눈금이 **말뭉치 없이** 돈다: 픽스처
   // 문자열로 `judge()` 를 직접 댄다(양성 1 · 음성 4 · 회귀 1 · 핵심어 5).
   ["probe-middle-algebra-combo", 12],
+  // 중등은 축이 다르다 — 「지시 한 줄 + 식」인 심화를 사람 앞에 세운다(양성 3 · 음성 5).
+  ["probe-middle-tier-4dan", 8],
 ];
 
 /**
