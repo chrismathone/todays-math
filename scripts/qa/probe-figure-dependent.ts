@@ -160,7 +160,7 @@ export function behaviourSignature(): string {
     "사각형 $ABCD$와 오각형 $PQRST$가 있다",
     // 명령 지우기가 **실제로 무는** 자리. 이것이 지문에 없어서 그 변이가
     // 「판정 그대로」로 거부됐다 — 프로브가 경계를 안 가르면 변이는 재현되지 않는다.
-    "$\LEFT x$ 와 $\RIGHT y$",
+    "$\\LEFT x$ 와 $\\RIGHT y$",
   ];
   const parts = [
     runSelfTest().lines.join("\n"),
