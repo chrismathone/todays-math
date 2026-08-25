@@ -33,9 +33,8 @@ import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import {
+  anyChoiceCount,
   CHOICE_COUNT,
-  choiceCountOf,
-  hasChoices,
 } from "../../src/lib/problem/choiceCountRule";
 
 import { addFifthChoice } from "./fifthChoiceRules";
@@ -134,10 +133,10 @@ export function pickChoiceCountTargets<
   T extends { content: string; directUseAllowed: boolean },
 >(rows: readonly T[]): { targets: T[]; family: T[] } {
   const family = rows.filter(
-    (r) => r.directUseAllowed && hasChoices(r.content),
+    (r) => r.directUseAllowed && anyChoiceCount(r.content) > 0,
   );
   const targets = family.filter(
-    (r) => choiceCountOf(r.content) !== CHOICE_COUNT,
+    (r) => anyChoiceCount(r.content) !== CHOICE_COUNT,
   );
   return { targets, family };
 }
@@ -173,7 +172,7 @@ async function main() {
   const { targets, family } = pickChoiceCountTargets(live);
   const dist = new Map<number, number>();
   for (const r of family) {
-    const n = choiceCountOf(r.content);
+    const n = anyChoiceCount(r.content);
     dist.set(n, (dist.get(n) ?? 0) + 1);
   }
   console.log(
@@ -213,10 +212,10 @@ async function main() {
       continue;
     }
     // 보탠 뒤 지면이 정말 다섯을 그리는지 **제품 파서로** 다시 본다.
-    if (choiceCountOf(res.content) !== CHOICE_COUNT) {
+    if (anyChoiceCount(res.content) !== CHOICE_COUNT) {
       left.push({
         row: r,
-        why: `보탰는데 지면이 ${choiceCountOf(res.content)}개로 읽는다`,
+        why: `보탰는데 지면이 ${anyChoiceCount(res.content)}개로 읽는다`,
       });
       continue;
     }
@@ -303,8 +302,8 @@ async function main() {
   const bad: string[] = [];
   for (const b of back) {
     const m = made.find((x) => x.row.problemCode === b.problemCode)!;
-    if (choiceCountOf(b.content) !== CHOICE_COUNT) {
-      bad.push(`${b.problemCode} 보기가 ${choiceCountOf(b.content)}개`);
+    if (anyChoiceCount(b.content) !== CHOICE_COUNT) {
+      bad.push(`${b.problemCode} 보기가 ${anyChoiceCount(b.content)}개`);
     }
     if (b.answer !== m.row.answer) bad.push(`${b.problemCode} 정답이 바뀌었다`);
     if (!b.content.startsWith(m.row.content)) {

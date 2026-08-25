@@ -1,1 +1,30 @@
-{"runs":[],"rows":[]}
+{
+  "runs": [
+    {
+      "at": "2026-08-25T10:24:46.221Z",
+      "count": 2
+    }
+  ],
+  "rows": [
+    {
+      "problemId": "99d8be51-af8a-40cf-a72b-03c13d1350c9",
+      "problemCode": "J30401-A04-001",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|04",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "beforeContent": "다음 보기의 이차함수의 그래프 중 폭이 가장 좁은 것의 $x^2$의 계수를 구하시오.\n① $y=4x^2$\n② $y=\\dfrac{5}{2}x^2$\n③ $y=\\dfrac{1}{4}x^2$\n④ $y=\\dfrac{1}{3}x^2$",
+      "afterContent": "다음 보기의 이차함수의 그래프 중 폭이 가장 좁은 것의 $x^2$의 계수를 구하시오.\n① $y=4x^2$\n② $y=\\dfrac{5}{2}x^2$\n③ $y=\\dfrac{1}{4}x^2$\n④ $y=\\dfrac{1}{3}x^2$\n⑤ $y=2x^2$",
+      "added": "⑤ $y=2x^2$",
+      "why": "|계수| 2/1 는 정답 쪽 극단을 안 넘는다"
+    },
+    {
+      "problemId": "02d55c8a-3974-41aa-887b-d97e077292a1",
+      "problemCode": "J30401-A04-002",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|04",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "beforeContent": "다음 보기의 이차함수의 그래프 중 폭이 가장 좁은 것의 $x^2$의 계수를 구하시오.\n① $y=\\dfrac{3}{2}x^2$\n② $y=-\\dfrac{3}{4}x^2$\n③ $y=\\dfrac{1}{3}x^2$\n④ $y=3x^2$",
+      "afterContent": "다음 보기의 이차함수의 그래프 중 폭이 가장 좁은 것의 $x^2$의 계수를 구하시오.\n① $y=\\dfrac{3}{2}x^2$\n② $y=-\\dfrac{3}{4}x^2$\n③ $y=\\dfrac{1}{3}x^2$\n④ $y=3x^2$\n⑤ $y=-\\dfrac{1}{2}x^2$",
+      "added": "⑤ $y=-\\dfrac{1}{2}x^2$",
+      "why": "|계수| 1/2 는 정답 쪽 극단을 안 넘는다"
+    }
+  ]
+}

@@ -33,9 +33,10 @@ import { PrismaClient } from "@prisma/client";
 
 import { enclosedAnswerMarks } from "../../src/lib/problem/chooseAllRule";
 import {
+  anyChoiceCount,
   CHOICE_COUNT,
   choiceCountOf,
-  hasChoices,
+  markListCount,
 } from "../../src/lib/problem/choiceCountRule";
 
 const ALL_ROWS = process.argv.includes("--all");
@@ -131,7 +132,7 @@ async function main() {
   const { rows, note } = ENGINE ? await engineRows() : await dbRows();
   console.log(note);
 
-  const choice = rows.filter((r) => hasChoices(r.content));
+  const choice = rows.filter((r) => anyChoiceCount(r.content) > 0);
   const markAnswered = rows.filter((r) => answerKind(r.answer) === "표식");
   const missedByMarkKey = choice.filter(
     (r) => answerKind(r.answer) !== "표식",
@@ -143,7 +144,7 @@ async function main() {
   );
 
   const markAnswerNoChoices = markAnswered.filter(
-    (r) => !hasChoices(r.content),
+    (r) => anyChoiceCount(r.content) === 0,
   );
   console.log(
     `  ⚠️ 정답이 표식인데 지면에 보기가 없다: ${markAnswerNoChoices.length}건`,
@@ -156,7 +157,7 @@ async function main() {
   for (const r of choice) {
     bump(
       cross,
-      `보기 ${choiceCountOf(r.content)} × 정답 ${answerKind(r.answer)}`,
+      `보기 ${anyChoiceCount(r.content)} × 정답 ${answerKind(r.answer)}`,
     );
   }
   console.log(`\n=== 보기 개수 × 정답 모양 ===`);
@@ -165,7 +166,7 @@ async function main() {
   }
 
   const byCount = new Map<number, number>();
-  for (const r of choice) bump(byCount, choiceCountOf(r.content));
+  for (const r of choice) bump(byCount, anyChoiceCount(r.content));
   console.log(`\n=== 보기 개수 분포 (보기 있는 문항 ${choice.length}건) ===`);
   for (const [n, c] of [...byCount.entries()].sort((a, b) => a[0] - b[0])) {
     const flag = n === CHOICE_COUNT ? "" : "   ← 다섯이 아니다";
@@ -174,7 +175,7 @@ async function main() {
     );
   }
 
-  const odd = choice.filter((r) => choiceCountOf(r.content) !== CHOICE_COUNT);
+  const odd = choice.filter((r) => anyChoiceCount(r.content) !== CHOICE_COUNT);
   console.log(`\n=== 보기가 다섯이 아닌 문항 ${odd.length}건 ===`);
   const byFamily = new Map<string, number>();
   for (const r of odd) bump(byFamily, `${r.familyKey}  |  ${r.unit}`);
@@ -184,7 +185,7 @@ async function main() {
   console.log(`\n  — 문항 목록 (앞 40) —`);
   for (const r of odd.slice(0, 40)) {
     console.log(
-      `  ${r.label}  보기 ${choiceCountOf(r.content)}  정답 «${r.answer}» (${answerKind(r.answer)})  ${r.familyKey}`,
+      `  ${r.label}  보기 ${anyChoiceCount(r.content)}  정답 «${r.answer}» (${answerKind(r.answer)})  ${r.familyKey}`,
     );
   }
 

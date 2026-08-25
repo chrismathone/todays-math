@@ -19,6 +19,8 @@
  * 「모르면 버리는 쪽」이다.
  */
 
+import { FUNC_POOL } from "../../src/lib/middle/m2Func";
+
 /** 기약 유리수 `[분자, 분모]`, 분모는 늘 양수. */
 export type Rat = readonly [number, number];
 
@@ -204,6 +206,100 @@ export function addFifthToWidthType(
 }
 
 /**
+ * 「다음 중 … 인 것은 **모두 몇 개**인지 구하시오」 — ㉠~㉤ 목록에 한 줄을 보탠다.
+ *
+ * 정답은 **참인 보기의 개수**다. 그러므로 보태는 보기는 반드시 **거짓**이어야 한다 —
+ * 참을 보태면 정답이 하나 늘어난다.
+ *
+ * ## 🔴 «거짓이다»의 근거를 엔진에서 가져오지 않는다
+ *
+ * 엔진의 소재 표(`FUNC_POOL`)에서 거짓 항목을 골라 오면 **판정과 검산이 같은 표**를
+ * 본다 — 그 표가 틀려도 영원히 초록이다(이 저장소의 「지표의 참이 제품에서 오면 안
+ * 된다」). 그래서 여기 **따로 적은** 소재만 쓰고, 그 근거를 사람이 읽을 수 있게
+ * 주석에 남긴다. 그리고 **본문에 이미 있는 문장**이면 안 쓴다(보기 둘이 같아진다).
+ */
+const NON_FUNCTION_FILLERS: readonly { text: string; why: string }[] = [
+  {
+    // $x=4$ 이면 $y$ 는 $1,2,4$ — 하나에 여럿이 대응하므로 함수가 아니다.
+    text: "자연수 $x$의 약수 $y$",
+    why: "$x$ 하나에 약수가 여럿 — 함수가 아니다",
+  },
+  {
+    // $x=3$ 이면 $y$ 는 $1$ 뿐이지만 $x=5$ 면 $1,3$ — 여럿이다.
+    text: "자연수 $x$보다 작은 홀수 $y$",
+    why: "$x$ 하나에 홀수가 여럿 — 함수가 아니다",
+  },
+  {
+    // 둘레가 같아도 가로·세로 비가 다르면 넓이가 달라진다.
+    text: "둘레의 길이가 $x$인 직사각형의 넓이 $y$",
+    why: "둘레가 같아도 넓이가 여럿 — 함수가 아니다",
+  },
+];
+
+export function addFifthToCountType(
+  content: string,
+  answer: string,
+  salt: string,
+): FifthChoiceResult {
+  const lines = content.split("\n");
+  if (!/모두 몇 개인지/.test(lines[0] ?? "")) {
+    return { ok: false, why: "「모두 몇 개인지」 발문이 아니다" };
+  }
+  const MARKS = ["㉠", "㉡", "㉢", "㉣", "㉤"];
+  const bodies: string[] = [];
+  for (let i = 1; i < lines.length; i += 1) {
+    const line = lines[i]!.trim();
+    if (line === "") continue;
+    const mk = MARKS.findIndex((m) => line.startsWith(m));
+    if (mk < 0)
+      return { ok: false, why: `보기 줄이 아닌 줄이 있다: «${line}»` };
+    if (mk !== bodies.length) {
+      return { ok: false, why: "표식 차례가 ㉠부터 이어지지 않는다" };
+    }
+    bodies.push(line.slice(MARKS[mk]!.length).trim());
+  }
+  if (bodies.length !== 4) {
+    return { ok: false, why: `보기가 ${bodies.length}개다 (넷이어야 한다)` };
+  }
+  // 「$3$개」 — 정답이 개수 꼴인지부터 본다.
+  const m = /^\$(\d+)\$개$/.exec(answer.trim());
+  if (!m) return { ok: false, why: `정답이 «$N$개» 꼴이 아니다: «${answer}»` };
+  const count = Number(m[1]);
+  const usable = NON_FUNCTION_FILLERS.filter((f) => !bodies.includes(f.text));
+  if (usable.length === 0) {
+    return { ok: false, why: "보탤 수 있는 «거짓» 소재가 본문에 이미 다 있다" };
+  }
+  const filler = pickDeterministic(usable, salt);
+
+  // 🔴 **두 출처가 맞대야 한다.** 「이 소재가 함수가 아니다」의 근거를 우리 손 표
+  //    하나에만 두면, 그 표가 틀려도 아무도 못 잡는다. 그래서 **엔진의 소재 표**에도
+  //    같은 문장이 있고 그쪽도 «함수 아님»이라고 하는지 본다. 둘이 어긋나면 멈춘다.
+  //
+  //    ⚠️ 「정답 문자열이 그대로인가」로는 못 잰다 — 우리가 정답을 안 건드리므로
+  //       그 검사는 **언제나 참**이다(동어반복). 실제로 처음엔 그렇게 써 놓았다.
+  const engineSays = FUNC_POOL.find((x) => x.text === filler.text);
+  if (!engineSays) {
+    return { ok: false, why: `엔진 소재 표에 없는 문장이다: «${filler.text}»` };
+  }
+  if (engineSays.isFunc) {
+    return {
+      ok: false,
+      why: `두 출처가 어긋난다 — 엔진은 «${filler.text}» 를 함수라고 한다`,
+    };
+  }
+  // 보태도 «참의 개수»는 그대로다: 보탠 것이 거짓이고 보기 수만 하나 는다.
+  if (count > bodies.length) {
+    return { ok: false, why: "정답이 보기 수보다 크다" };
+  }
+  return {
+    ok: true,
+    content: `${content}\n㉤ ${filler.text}`,
+    added: `㉤ ${filler.text}`,
+    why: filler.why,
+  };
+}
+
+/**
  * **등록부** — `familyKey` → 보태기 규칙. 등록이 없으면 안 건드린다.
  * 새 유형을 넣을 때는 반드시 **값 검산**을 함께 넣을 것.
  */
@@ -212,7 +308,24 @@ export const FIFTH_CHOICE_ADDERS: Record<
   (content: string, answer: string, salt: string) => FifthChoiceResult
 > = {
   "mid:3-1|이차함수의 그래프 ⑴|04": addFifthToWidthType,
+  // ⚠️ 이 키의 중단원 이름에는 **얇은 공백(U+2009)** 이 아니라 보통 공백이 둘 있다.
+  //    `census-choice-count.ts` 가 찍어 준 실측 문자열 그대로다.
+  "mid:2-1|일차함수와 그 그래프  ⑴|01": addFifthToCountType,
 };
+
+/**
+ * 🔴 **눈에 안 보이는 공백을 고른다.**
+ *
+ * 중단원 이름에는 **얇은 공백 U+2009** 가 섞여 있다 — `mid:2-1|일차함수와 그 그래프␉⑴|01`
+ * 의 `␉` 가 그것이다(실측 2026-08-25). 등록부 키에 그 글자를 그대로 적으면
+ * ⑴ 소스에서 안 보이고 ⑵ 다음 사람이 손으로 고치면 조용히 안 맞는다.
+ * 그래서 **양쪽을 보통 공백으로 눌러** 맞춘다. `load-engine-problems.ts` 도 같은
+ * 함정을 주석으로 경고하고 있다.
+ */
+function normalizeKey(key: string): string {
+  // 유니코드 «공백» 전량 → 보통 공백. 손 목록이 아니라 정규식 부류다.
+  return key.replace(/\s/g, " ");
+}
 
 export function addFifthChoice(
   familyKey: string,
@@ -220,9 +333,12 @@ export function addFifthChoice(
   answer: string,
   salt: string,
 ): FifthChoiceResult {
-  const adder = FIFTH_CHOICE_ADDERS[familyKey];
-  if (!adder) {
+  const want = normalizeKey(familyKey);
+  const hit = Object.entries(FIFTH_CHOICE_ADDERS).find(
+    ([k]) => normalizeKey(k) === want,
+  );
+  if (!hit) {
     return { ok: false, why: `이 문항류의 보태기 규칙이 없다: ${familyKey}` };
   }
-  return adder(content, answer, salt);
+  return hit[1](content, answer, salt);
 }

@@ -19,6 +19,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   addFifthChoice,
+  addFifthToCountType,
   addFifthToWidthType,
   cmpAbs,
   parseQuadCoef,
@@ -26,6 +27,7 @@ import {
   type Rat,
 } from "../../../scripts/qa/fifthChoiceRules";
 import { choiceCountOf } from "@/lib/problem/choiceCountRule";
+import { FUNC_POOL } from "@/lib/middle/m2Func";
 
 const KEY = "mid:3-1|이차함수의 그래프 ⑴|04";
 
@@ -261,5 +263,81 @@ describe("🔴 풀 전량 × 두 문항 — 규칙이 받아들이는 계수는 
       if (after === null || after[0] !== 4 || after[1] !== 1) harmful += 1;
     }
     expect(harmful).toBeGreaterThan(0);
+  });
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 「모두 몇 개인지」 유형 — ㉠~㉤ 목록
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** 실측 본문 (2026-08-25) — `J20401-A01-001`. 정답 `$2$개`. */
+const COUNT4 = [
+  "다음 중 $y$가 $x$의 함수인 것은 모두 몇 개인지 구하시오.",
+  "㉠ 자연수 $x$보다 작은 홀수 $y$",
+  "㉡ 한 개에 $500$원인 물건 $x$개의 값 $y$원",
+  "㉢ 자연수 $x$를 $3$으로 나눈 나머지 $y$",
+  "㉣ 절댓값이 $x$인 정수 $y$",
+].join("\n");
+
+/**
+ * 🔴 **손으로 적은 진리표** — 위 네 보기가 함수인가. 규칙도 엔진 표도 안 쓴다.
+ *   ㉠ $x=5$ 면 $y$ 는 $1,3$ — 여럿이다 → 거짓
+ *   ㉡ 값은 $500x$ 하나 → 참
+ *   ㉢ 나머지는 하나 → 참
+ *   ㉣ $x=3$ 이면 $y=\pm3$ — 여럿이다 → 거짓
+ */
+const COUNT4_TRUTH = [false, true, true, false];
+
+describe("「모두 몇 개인지」 유형 — 보태는 보기는 반드시 거짓이어야 한다", () => {
+  it("보태면 다섯이 되고 «참의 개수»가 그대로다 (손 진리표로 검산)", () => {
+    const r = addFifthToCountType(COUNT4, "$2$개", "J20401-A01-001");
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.content.split("\n").length).toBe(6); // 발문 1 + 보기 5
+    expect(r.content.startsWith(COUNT4)).toBe(true);
+    // 손 진리표의 참 개수가 저장된 정답과 같다 — 그러니 거짓 하나를 보태도 그대로다.
+    expect(COUNT4_TRUTH.filter(Boolean).length).toBe(2);
+    // 보탠 문장이 이미 있던 보기와 겹치지 않는다.
+    const bodies = COUNT4.split("\n").slice(1);
+    expect(
+      bodies.some((b) => b.slice(1).trim() === r.added.slice(1).trim()),
+    ).toBe(false);
+  });
+
+  it("🔴 «함수인» 소재는 절대 안 보탠다 — 두 출처가 맞대야 한다", () => {
+    // 규칙이 고르는 소재는 전부 엔진 표에서도 «함수 아님»이어야 한다.
+    for (const salt of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
+      const r = addFifthToCountType(COUNT4, "$2$개", salt);
+      expect(r.ok).toBe(true);
+      if (!r.ok) continue;
+      const text = r.added.replace(/^㉤\s*/, "");
+      const hit = FUNC_POOL.find((x) => x.text === text);
+      expect(hit, `엔진 표에 없는 소재: ${text}`).toBeDefined();
+      expect(hit!.isFunc, `함수인 소재를 보탰다: ${text}`).toBe(false);
+    }
+  });
+
+  it("발문이 「모두 몇 개인지」가 아니면 안 건드린다 (음성 대조군)", () => {
+    const r = addFifthToCountType(
+      COUNT4.replace("모두 몇 개인지 구하시오", "모두 고르시오"),
+      "$2$개",
+      "s",
+    );
+    expect(r.ok).toBe(false);
+  });
+
+  it("정답이 «$N$개» 꼴이 아니면 안 건드린다", () => {
+    const r = addFifthToCountType(COUNT4, "㉡, ㉢", "s");
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.why).toMatch(/개» 꼴이 아니다/);
+  });
+
+  it("표식 차례가 ㉠부터 안 이어지면 안 건드린다", () => {
+    const r = addFifthToCountType(
+      COUNT4.replace("㉢ 자연수", "㉤ 자연수"),
+      "$2$개",
+      "s",
+    );
+    expect(r.ok).toBe(false);
   });
 });
