@@ -46,13 +46,17 @@
  * 근본 해결은 **워크트리 이름을 ASCII 로** 만드는 것이다. 새 워크트리를 팔 때
  * 한글 이름을 쓰면 이 함정과 2026-08-19 의 `fs.rmSync` 함정을 같이 밟는다.
  */
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
 const 뿌리 = path.join(tmpdir(), "node-imports-nonascii-probe");
-rmSync(뿌리, { recursive: true, force: true });
+// ⚠️ **`rmSync` 금지** — 한글 경로에서 노드가 메시지 없이 죽는다
+//    (`noRmSync.test.ts` 가 막는다). 이 재현기는 **바로 그 한글 경로를 만든다** —
+//    제 발등을 찍을 뻔했고, 관문이 그것을 잡았다.
+await rm(뿌리, { recursive: true, force: true });
 
 const 이름들 = ["ascii", "가", "한글폴더", "도형라벨", "난이도사다리"];
 const 결과 = [];
@@ -77,7 +81,7 @@ for (const 이름 of 이름들) {
     결과.push([이름, e.message.split("\n")[0], false]);
   }
 }
-rmSync(뿌리, { recursive: true, force: true });
+await rm(뿌리, { recursive: true, force: true });
 
 console.log(`임시 경로 표본 (${뿌리}):`);
 for (const [이름, 말, 좋음] of 결과)
