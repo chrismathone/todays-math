@@ -31,6 +31,7 @@ import {
   registeredTypes,
 } from "../../src/lib/middle/generate";
 import {
+  assertChoiceMarks,
   choiceCountOf,
   markListCount,
 } from "../../src/lib/problem/choiceCountRule";
@@ -38,6 +39,18 @@ import {
 const SEEDS = Number(process.env.SEEDS ?? 40);
 const SEED0 = 20260825;
 const STEP = 7919;
+
+/**
+ * 관문이 «아니오»를 낼 수 있는 자리 — 엔진에는 **없는** 모양들.
+ * (어기는 목록 · 아무도 목록에 안 적은 표식 · 지켜야 정상 · 보기 없음 · 줄머리 아님)
+ */
+const RULE_CORPUS: readonly string[] = [
+  "다음 중 옳은 것은?\n㉠ 가\n㉡ 나\n㉢ 다\n㉣ 라\n㉤ 마",
+  "다음 중 옳은 것은?\n❶ 가\n❷ 나\n❸ 다\n❹ 라\n❺ 마",
+  "다음 중 옳은 것은?\n① 가\n② 나\n③ 다\n④ 라\n⑤ 마",
+  "이 자료의 평균을 구하시오.",
+  "세 상자 ㉠, ㉡, ㉢에 각각 세 개의 수가 들어 있다.",
+];
 
 /** 줄머리에 실제로 쓰인 표식 글자 — 미리 정하지 않고 산출물에서 뽑는다. */
 function headMarks(content: string): string[] {
@@ -127,6 +140,19 @@ async function main(): Promise<void> {
   if (process.argv.includes("--fingerprint")) {
     const { createHash } = await import("node:crypto");
     const h = createHash("sha256");
+    // ⚠️ **규칙 말뭉치** — 엔진 산출물만으로는 관문의 «판정»을 못 잰다.
+    //    지금은 어기는 유형이 하나도 없어서, 판정을 통째로 무력화해도 산출물이
+    //    한 글자도 안 변한다(2026-08-25 변이 [17] 이 실제로 그랬다). 그래서
+    //    **일부러 어기는 입력**을 여기 둔다 — 없으면 그 가드는 변이시킬 수 없다.
+    for (const c of RULE_CORPUS) {
+      let verdict = "지나감";
+      try {
+        assertChoiceMarks(c, "지문");
+      } catch (err) {
+        verdict = `던짐 ${String(err).slice(0, 80)}`;
+      }
+      h.update(`corpus ${verdict}`);
+    }
     for (const r of all.sort((a, b) => a.key.localeCompare(b.key))) {
       h.update(
         JSON.stringify([

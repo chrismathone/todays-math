@@ -230,6 +230,10 @@ MUTATIONS: list[tuple[str, str, str, str]] = [
         "  const read = choiceCountOf(content);\n  if (read === m) return;",
         "  const read = choiceCountOf(content);\n  if (read === m || true) return;",
     ),
+    # ⚠️ 아래 둘은 **지문이 못 보는 축**이다 — 지금은 어기는 유형이 하나도 없어서
+    #    호출을 지워도 산출물이 한 글자도 안 변한다(2026-08-25 실측: 둘 다 «판정 거부»).
+    #    그래서 배선은 `choiceCountRule.test.ts` 의 **텍스트 가드**가 지킨다.
+    #    거부는 «가드가 없다»가 아니라 «이 도구로는 못 잰다»는 뜻이다 — 남겨 둔다.
     (
         "표식 관문 — 중등 엔진 진입점에서 호출을 지운다",
         MID_GEN,
