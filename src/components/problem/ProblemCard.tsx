@@ -1,10 +1,11 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useState, type CSSProperties } from "react";
 
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import paper from "@/components/print/TestPrint.module.css";
+import { PAPER_CSS_VARIABLES } from "@/components/print/tokens";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
@@ -12,6 +13,10 @@ import { provenanceBadges } from "@/lib/problem/provenance";
 
 import { REVIEW_STATUS_LABEL } from "./labels";
 import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
+
+/** 지면 서체·잉크색 변수. `.problemText` 가 이 변수를 읽는다 —
+    정답·해설은 `.paperParity` 틀 밖이라 여기서 직접 얹어야 발문과 서체가 같아진다. */
+const paperVariables = PAPER_CSS_VARIABLES as CSSProperties;
 
 /** 마이크로 라벨 — 검수 카드(`ReviewProblemCard`)와 같은 규격을 쓴다. */
 const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
@@ -219,7 +224,13 @@ export const ProblemCard = memo(function ProblemCard({
         ) : null}
 
         {showSolution ? (
-          <div className="mt-4 space-y-4">
+          <div
+            className="mt-4 space-y-4"
+            /* 지면 변수(`--paper-ink`·`--paper-font-serif`)를 여기서 얹는다 —
+               `.problemText` 가 그 변수를 읽는데, 정답·해설은 `.paperParity` 틀
+               밖이라 조상 중 누구도 안 주고 있었다. */
+            style={paperVariables}
+          >
             {/* 「정답」은 G2 네 의미가 아니다 — 초록을 쓰면 게이지의 「끝난 단계」와 뜻이 충돌한다.
                 지면의 핵심 개념 박스처럼 **왼쪽 굵은 바**로 표시한다. */}
             <div className="border-l-[3px] border-ink bg-side p-6">
