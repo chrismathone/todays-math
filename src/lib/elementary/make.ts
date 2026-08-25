@@ -38,6 +38,15 @@ export function fig(
 const 계산걸음 = /\$[^$]*\d[^$]*(?:\\div|\\times|\\frac|[+\-])[^$]*=[^$]*\$/;
 
 /**
+ * 글 한 덩이에 **계산이 든 자리**가 몇 곳인가. `makeDeep` 의 잣대를 밖에서도 쓴다 —
+ * `scripts/qa/census-elem-deep-steps.ts` 가 이것으로 전 갈래를 훑는다.
+ * 두 벌을 두면 한쪽만 고쳐도 아무도 모른다.
+ */
+export function countCalcSteps(text: string): number {
+  return (text.match(new RegExp(계산걸음.source, "g")) ?? []).length;
+}
+
+/**
  * **4단(심화) 뼈대 — D-72.** 4단은 «되짚기 또는 조건 겹침» **그리고** «적어도 두 걸음»이다.
  * 한쪽만으로는 3단이다.
  *

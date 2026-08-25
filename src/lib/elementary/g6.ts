@@ -2109,28 +2109,40 @@ function prismFaceApply(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 /**
- * 심화 — 역산·조건.
- * ⓐ 옆면 전체의 넓이에서 **높이를 거꾸로** 구한다. ⓑ 옆면의 수에서 **밑면의 모양**을 되짚는다.
+ * 심화 — 역산 **두 걸음**. 둘 다 응용(넓이를 구한다)을 거꾸로 돌린 것이다.
+ * ⓐ 옆면 전체의 넓이에서 **높이**를 되짚는다. ⓑ 같은 넓이에서 **밑면의 모양**을 되짚는다.
+ *
+ * ⚠️ ⓑ 는 예전에 「옆면이 $n$개 → 밑면은 몇 각형」이었다 — 「옆면 수 = 밑면 변의 수」를
+ *    **이름만 바꿔 답하는 한 걸음**이라 연산·기본과 같은 무게였다.
  */
 function prismFaceDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = intBetween(rng, 4, 12);
+  const area = n * a * h;
   if (intBetween(rng, 0, 1) === 0) {
-    const a = intBetween(rng, 3, 9);
-    const h = intBetween(rng, 4, 12);
-    return make(
+    return makeDeep(
       unit,
-      `밑면이 ${polyName(n)}인 각기둥의 옆면 전체의 넓이가 ${num(n * a * h)} cm²입니다. ` +
+      `밑면이 ${polyName(n)}인 각기둥의 옆면 전체의 넓이가 ${num(area)} cm²입니다. ` +
         `밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같을 때, 이 각기둥의 높이는 몇 cm입니까?`,
       num(h),
-      `옆면이 ${num(n)}개이므로 옆면 하나의 넓이는 ${expr(`${n * a * h}\\div${n}=${a * h}`)} 입니다. ` +
+      [
+        `옆면이 ${num(n)}개이므로 옆면 하나의 넓이는 ${expr(`${area}\\div${n}=${a * h}`)} 입니다.`,
         `옆면은 가로가 ${unitNum(a, "cm")} 인 직사각형이므로 높이는 ${expr(`${a * h}\\div${a}=${h}`)} 입니다.`,
+      ],
     );
   }
-  return make(
+  return makeDeep(
     unit,
-    `어떤 각기둥의 옆면이 ${num(n)}개입니다. 이 각기둥의 밑면은 몇 각형입니까?`,
+    `밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같고 높이가 ${unitNum(h, "cm")} 인 각기둥이 있습니다. ` +
+      `옆면 전체의 넓이가 ${num(area)} cm²일 때 밑면은 몇 각형입니까?`,
     polyName(n),
-    `옆면의 수는 밑면의 변의 수와 같습니다. 옆면이 ${num(n)}개이므로 밑면은 변이 ${num(n)}개인 ${polyName(n)}입니다.`,
+    [
+      `옆면 하나는 가로 ${unitNum(a, "cm")}, 세로 ${unitNum(h, "cm")} 인 직사각형이므로 넓이는 ` +
+        `${expr(`${a}\\times${h}=${a * h}`)} 입니다.`,
+      `옆면의 수는 ${expr(`${area}\\div${a * h}=${n}`)} 이고, 옆면의 수는 밑면의 변의 수와 같으므로 ` +
+        `밑면은 ${polyName(n)}입니다.`,
+    ],
   );
 }
 
@@ -5384,9 +5396,33 @@ const MIX_STRINGS = [
  * 글자 `kg` 만 봐서는 못 고른다. 그래서 손으로 적는다.
  */
 const UNIT_MIX = [
-  { big: "m", small: "cm", per: 100, ro: "로", thing: "게시판" }, // 센티미터로
-  { big: "kg", small: "g", per: 1000, ro: "으로", thing: "상자" }, // 그램으로
-  { big: "L", small: "mL", per: 1000, ro: "로", thing: "물통" }, // 밀리리터로
+  // ⚠️ 소재(`names`)는 **그 단위로 잴 수 있는 것**이어야 한다 — 길이 단위에 「물통에 담은」을
+  //    쓰면 지면이 말이 안 된다. 그래서 소재를 단위와 한 줄에 묶어 둔다.
+  //    `names` 는 셋이다 — 심화가 「A:B 와 B, C 에서 A:C」로 **양 셋을 엮기** 때문이다.
+  {
+    big: "m",
+    small: "cm",
+    per: 100,
+    ro: "로",
+    noun: "길이",
+    names: ["빨간 끈", "파란 끈", "노란 끈"],
+  },
+  {
+    big: "kg",
+    small: "g",
+    per: 1000,
+    ro: "으로",
+    noun: "무게",
+    names: ["밀가루", "설탕", "소금"],
+  },
+  {
+    big: "L",
+    small: "mL",
+    per: 1000,
+    ro: "로",
+    noun: "양",
+    names: ["물", "주스", "우유"],
+  },
 ] as const;
 
 /** 연산 — 자연수 비 하나. 최대공약수로 나눈다. */
@@ -5447,27 +5483,51 @@ function simpleRatioApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 단위 맞추기·소수 없애기·약분 세 걸음이 겹친다. */
+/**
+ * 심화 — **양 셋을 엮는다.** ㉠ 단위를 맞추고 ㉡ 주어진 비로 첫째 양을 되짚은 뒤
+ * ㉢ 셋째 양과의 비를 간단히 한다.
+ *
+ * ⚠️ 예전에는 「$1.6$ L 와 $800$ mL 의 비」였다 — 단위 맞추기 + 약분 **두 걸음**인데
+ *    같은 소단원 응용도 소수 고치기 + 약분 두 걸음이라 **무게가 같았다.** 사다리가 안 올랐다.
+ *    그래서 문턱을 「걸음 수」가 아니라 **엮는 양의 수**로 올렸다 — 둘에서 셋으로.
+ */
 function simpleRatioDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const u = pick(rng, UNIT_MIX);
-  // 큰 단위 쪽은 늘 소수 한 자리다 — 10 의 배수는 뺀다(빼지 않으면 «소수» 걸음이 사라진다).
-  const big10 = pick(rng, [12, 14, 15, 16, 18, 24, 25] as const);
-  let small10 = pick(rng, [4, 5, 6, 8, 9, 12, 15] as const);
-  for (let i = 0; i < 20 && small10 === big10; i += 1) {
-    small10 = pick(rng, [4, 5, 6, 8, 9, 12, 15] as const);
-  }
+  const [x, y, z] = u.names;
+  const [a, b] = coprimePair(rng, 2, 9);
   const step = u.per / 10;
-  const A = big10 * step;
-  const B = small10 * step;
-  const g = gcd(A, B);
-  return make(
+  // 가운데 양은 큰 단위로 적는다 — 소수 한 자리가 늘 남게 10 의 배수인 짝은 뺀다(`2.0` 방지).
+  const k = pick(
+    rng,
+    [2, 3, 4, 5, 6, 8].filter((v) => (b * v) % 10 !== 0),
+  );
+  const mid = b * k * step; // 가운데 양 (작은 단위)
+  const first = a * k * step; // 되짚어 얻는 첫째 양
+  // ⚠️ 답이 **주어진 비와 같아지는** 셋째 양은 뺀다 — 되짚을 까닭이 사라져서
+  //    「그대로 옮겨 적으면 맞는」 문항이 된다(값은 맞으므로 검산으로는 안 잡힌다).
+  const third =
+    pick(
+      rng,
+      [2, 3, 4, 5, 6, 7, 8, 9].filter((c) => {
+        const gg = gcd(a * k, c);
+        return !((a * k) / gg === a && c / gg === b);
+      }),
+    ) * step;
+  const g = gcd(first, third);
+  return makeDeep(
     unit,
-    `${u.thing}에 담은 두 양을 재었더니 각각 ${unitNum(decStr(big10, 1), u.big)}, ${unitNum(B, u.small)} 이었습니다. ` +
-      `앞의 양과 뒤의 양의 비를 가장 간단한 자연수의 비로 나타내시오.`,
-    expr(`${A / g}:${B / g}`),
-    `${expr(`1\\,\\mathrm{${u.big}}=${u.per}\\,\\mathrm{${u.small}}`)} 이므로 ` +
-      `${expr(`${decStr(big10, 1)}\\times${u.per}=${A}`)} 입니다. 단위를 ${u.small}${u.ro} 맞추면 ` +
-      `${expr(`${A}:${B}`)} 입니다. ${simplifySentence(A, B)}`,
+    `${x}의 ${u.noun}${josa(u.noun, "과", "와")} ${y}의 ${u.noun}의 비는 ${expr(`${a}:${b}`)} 입니다. ` +
+      `${y}${josa(y, "이", "가")} ${unitNum(decStr(b * k, 1), u.big)} 이고 ` +
+      `${z}${josa(z, "이", "가")} ${unitNum(third, u.small)} 일 때, ` +
+      `${x}의 ${u.noun}${josa(u.noun, "과", "와")} ${z}의 ${u.noun}의 비를 가장 간단한 자연수의 비로 나타내시오.`,
+    expr(`${first / g}:${third / g}`),
+    [
+      `${expr(`1\\,\\mathrm{${u.big}}=${u.per}\\,\\mathrm{${u.small}}`)} 이므로 ${y}${josa(y, "은", "는")} ` +
+        `${expr(`${decStr(b * k, 1)}\\times${u.per}=${mid}`)} 입니다.`,
+      `비가 ${expr(`${a}:${b}`)} 이므로 한 몫은 ${expr(`${mid}\\div${b}=${k * step}`)} 이고, ` +
+        `${x}${josa(x, "은", "는")} ${expr(`${k * step}\\times${a}=${first}`)} 입니다.`,
+      `${expr(`${first}:${third}`)} 입니다. ${simplifySentence(first, third)}`,
+    ],
   );
 }
 
@@ -6347,13 +6407,17 @@ function cubeOneApply(unit: UnitSeed, rng: Rng): ElemProblem {
 function cubeOneDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = intBetween(rng, 5, 14);
   const copies = intBetween(rng, 3, 6);
-  return make(
+  const left = intBetween(rng, 2, 9);
+  const used = one * copies;
+  return makeDeep(
     unit,
-    `똑같은 모양 ${num(copies)}개를 만드는 데 쌓기나무를 모두 ${num(one * copies)}개 사용했습니다. ` +
+    `쌓기나무 ${num(used + left)}개로 똑같은 모양 ${num(copies)}개를 만들었더니 ${num(left)}개가 남았습니다. ` +
       `한 모양에 사용한 쌓기나무는 몇 개인가?`,
     num(one),
-    `모양 ${num(copies)}개에 쓴 쌓기나무를 똑같이 나눕니다. ` +
-      `${expr(`${one * copies}\\div${copies}=${one}`)} 개입니다.`,
+    [
+      `쓴 쌓기나무는 ${expr(`${used + left}-${left}=${used}`)} 개입니다.`,
+      `모양 ${num(copies)}개에 똑같이 나누면 ${expr(`${used}\\div${copies}=${one}`)} 개입니다.`,
+    ],
   );
 }
 
@@ -6510,14 +6574,20 @@ function cubeLayerApply(unit: UnitSeed, rng: Rng): ElemProblem {
 function cubeLayerDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const third = intBetween(rng, 1, 3);
   const second = third + intBetween(rng, 1, 4);
-  const first = second + intBetween(rng, 1, 4);
+  const gap = intBetween(rng, 1, 4);
+  const first = second + gap;
   const total = first + second + third;
-  return make(
+  return makeDeep(
     unit,
-    `쌓기나무로 만든 모양의 ${num(1)}층에는 ${num(first)}개, ${num(2)}층에는 ${num(second)}개, ` +
-      `${num(3)}층에는 ${num(third)}개가 놓여 있습니다. 사용한 쌓기나무는 모두 몇 개인가?`,
-    num(total),
-    `층마다 놓인 쌓기나무를 모두 더합니다. ${expr(`${first}+${second}+${third}=${total}`)}`,
+    `쌓기나무로 만든 모양의 ${num(1)}층에는 ${num(first)}개가 놓여 있고, ` +
+      `${num(2)}층은 ${num(1)}층보다 ${num(gap)}개 적습니다. ` +
+      `사용한 쌓기나무가 모두 ${num(total)}개일 때 ${num(3)}층에 놓인 쌓기나무는 몇 개인가?`,
+    num(third),
+    [
+      `${num(2)}층은 ${expr(`${first}-${gap}=${second}`)} 개입니다.`,
+      `${num(1)}층과 ${num(2)}층을 더하면 ${expr(`${first}+${second}=${first + second}`)} 개이므로 ` +
+        `${num(3)}층은 ${expr(`${total}-${first + second}=${third}`)} 개입니다.`,
+    ],
   );
 }
 

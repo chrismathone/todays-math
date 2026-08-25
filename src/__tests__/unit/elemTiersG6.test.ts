@@ -2894,6 +2894,27 @@ function truthOf24(
   }
 
   if (code === "2-4-2") {
+    // 심화 — **양 셋**을 엮는다: 「A:B 는 $a:b$ · B 는 큰 단위 · C 는 작은 단위 → A:C」.
+    // 단위 환산은 여기서 **다시** 적는다(엔진 값을 되받으면 값 복사라 같이 눈먼다).
+    const deep = c.match(
+      /의 비는 \$(\d+):(\d+)\$ 입니다\.[\s\S]*?\$([\d.]+)\\,\\mathrm\{([a-zA-Z]+)\}\$[\s\S]*?\$(\d+)\\,\\mathrm\{([a-zA-Z]+)\}\$ 일 때/,
+    );
+    if (deep) {
+      const PER: Record<string, { small: string; per: number }> = {
+        m: { small: "cm", per: 100 },
+        kg: { small: "g", per: 1000 },
+        L: { small: "mL", per: 1000 },
+      };
+      const [a, b] = [Number(deep[1]), Number(deep[2])];
+      const info = PER[deep[4]!];
+      if (!info || info.small !== deep[6]) return null;
+      const mid = Math.round(Number(deep[3]) * info.per);
+      if (mid % b !== 0) return null;
+      const first = (mid / b) * a;
+      const third = Number(deep[5]);
+      const g = gcd(first, third);
+      return asRatio(first / g, third / g);
+    }
     const bare = c.match(/\$(\d+):(\d+)\$/);
     if (bare) {
       const [A, B] = [Number(bare[1]), Number(bare[2])];
@@ -4047,10 +4068,13 @@ function truthOf23(
       return h && need(v) ? pair23(total, v[0]! - total) : null;
     }
     case "2-3-2 심화": {
+      // 준비한 것에서 **남은 것을 먼저 빼고** 나눈다(두 걸음). 예전에는 나눗셈 한 번이었다.
       const v = g(
-        /똑같은 모양 \$(\d+)\$개를 만드는 데 쌓기나무를 모두 \$(\d+)\$개/,
+        /쌓기나무 \$(\d+)\$개로 똑같은 모양 \$(\d+)\$개를 만들었더니 \$(\d+)\$개가 남았습니다/,
       );
-      return need(v) && v[1]! % v[0]! === 0 ? one23(v[1]! / v[0]!) : null;
+      if (!need(v)) return null;
+      const used = v[0]! - v[2]!;
+      return used > 0 && used % v[1]! === 0 ? one23(used / v[1]!) : null;
     }
 
     // ── 2-3-3 개수 (2) ──
@@ -4075,10 +4099,14 @@ function truthOf23(
     case "2-3-4 응용":
       return h ? one23(filled - tallN) : null;
     case "2-3-4 심화": {
+      // $2$층을 조건에서 먼저 만들고, 전체에서 두 층을 뺀다(두 걸음).
+      // 예전에는 세 수를 그냥 더하는 것이라 되짚기도 조건 겹침도 없었다.
       const v = g(
-        /\$1\$층에는 \$(\d+)\$개, \$2\$층에는 \$(\d+)\$개, \$3\$층에는 \$(\d+)\$개/,
+        /\$1\$층에는 \$(\d+)\$개가 놓여 있고, \$2\$층은 \$1\$층보다 \$(\d+)\$개 적습니다\. 사용한 쌓기나무가 모두 \$(\d+)\$개/,
       );
-      return need(v) ? one23(v[0]! + v[1]! + v[2]!) : null;
+      if (!need(v)) return null;
+      const second = v[0]! - v[1]!;
+      return one23(v[2]! - v[0]! - second);
     }
 
     // ── 2-3-5 개수 (4) — 직육면체 채우기 ──
