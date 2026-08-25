@@ -73,8 +73,13 @@ BASE_FP=$(npx tsx scripts/qa/provenance-fingerprint.ts | md5sum | cut -d' ' -f1)
 echo "   기준 지문 $BASE_FP"
 echo
 
+# 이름 조각을 주면 그 변이 **하나만** 돈다 — 전량은 오래 걸리고, 실제로 다시 물어야
+# 하는 것은 대개 하나다(`mutate-one.py` 가 같은 이유로 따로 있다).
+ONLY="${1:-}"
+
 mutate() {
   local name="$1" file="$2" from="$3" to="$4"
+  if [ -n "$ONLY" ] && [[ "$name" != *"$ONLY"* ]]; then return; fi
   for f in "${ALL_SRC[@]}"; do cp "$WORK/$(echo "$f" | tr '/' '_')" "$f"; done
   local before after
   before=$(md5sum "$file" | cut -d' ' -f1)
@@ -229,11 +234,27 @@ mutate "문제은행 카드에서 print:hidden 을 뺀다 (지면이 바뀐다)"
 mutate "문제은행 카드가 첫 라벨만 그린다 (그림 출처가 사라진다)" "$SRC_CARD" \
   '{provenanceBadges(problem).map((badge) => (' \
   '{provenanceBadges(problem).slice(0, 1).map((badge) => ('
+# 여는 태그만 바꾸면 JSX 가 안 닫혀 **컴파일 오류**가 난다 — 그건 «가드가 물었다»가
+# 아니라 «러너가 죽었다»라서 하네스가 판정을 거부한다(1차 실행에서 실제로 그렇게 나왔고,
+# 그 거부가 옳다). 그래서 요소를 통째로 갈아 끼운다.
 mutate "라벨을 abbr 대신 button 으로 (D-30 위반)" "$SRC_CARD" \
   '          <abbr
-            key={badge.kind}' \
+            key={badge.kind}
+            data-provenance={badge.kind}
+            title={badge.name}
+            className={`${MICRO} no-underline ${badge.className} print:hidden`}
+          >
+            {badge.text}
+          </abbr>' \
   '          <button
-            key={badge.kind}'
+            type="button"
+            key={badge.kind}
+            data-provenance={badge.kind}
+            title={badge.name}
+            className={`${MICRO} no-underline ${badge.className} print:hidden`}
+          >
+            {badge.text}
+          </button>'
 mutate "풀어 쓴 이름(title)을 뺀다" "$SRC_CARD" \
   '            title={badge.name}
             className={`${MICRO} no-underline ${badge.className} print:hidden`}' \
