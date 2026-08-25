@@ -105,6 +105,11 @@ const CORPUS: ReadonlyArray<readonly [string, ProvenanceInput]> = [
   ["객관식-복수답", { ...BLANK, content: MCQ, answer: "②, ⑤" }],
   ["형식모름-보기만", { ...BLANK, content: MCQ, answer: "풀이참조" }],
   ["형식모름-정답만", { ...BLANK, answer: "③" }],
+  // ⚠️ 아래 둘은 **변이 하네스가 있어야 한다고 알려 준 자리**다. 없을 때 「보기 문턱을
+  //    1로 내린다」·「원문자 계열을 ①~⑤ 로 좁힌다」 변이가 지문을 안 바꿔서 하네스가
+  //    판정을 **거부**했다 — 말뭉치가 그 자리를 구조적으로 못 보고 있었다는 뜻이다.
+  ["보기하나", { ...BLANK, content: "물음\n① 가", answer: "①" }],
+  ["비표준원문자", { ...BLANK, content: MCQ, answer: "➂" }],
 ];
 
 const CSS = readFileSync(

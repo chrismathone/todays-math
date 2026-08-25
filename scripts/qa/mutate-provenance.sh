@@ -236,17 +236,17 @@ mutate "[무효 변이 시험] 스캔 뿌리 검사 순서만 뒤집는다 (뜻�
 echo
 echo "── 팔레트 (globals.css) ───────────────────────────────────"
 mutate "[중] 색을 [초] 와 같게 (색이 겹친다)" "$SRC_CSS" \
-  '--src-middle: #ad4aae;' \
-  '--src-middle: #5e41a9;'
+  '--src-middle: #b645a4;' \
+  '--src-middle: #7f5eca;'
 mutate "[중] 색을 [초] 에 아주 가깝게 (문자열은 다르고 눈에는 같다)" "$SRC_CSS" \
-  '--src-middle: #ad4aae;' \
-  '--src-middle: #6243ab;'
+  '--src-middle: #b645a4;' \
+  '--src-middle: #8360cd;'
 mutate "[스캔] 색을 G2 노랑 글자색에 붙인다" "$SRC_CSS" \
-  '--src-scan: #5f5521;' \
-  '--src-scan: #97691a;'
+  '--src-scan: #007f81;' \
+  '--src-scan: #027d84;'
 mutate "[AI] 색을 옅게 (대비 4.5 미달)" "$SRC_CSS" \
-  '--src-ai: #00825a;' \
-  '--src-ai: #7fd6b6;'
+  '--src-ai: #7a4920;' \
+  '--src-ai: #d9a06a;'
 mutate "🔴 @theme 연결을 끊는다 (클래스가 조용히 아무 색도 안 낸다)" "$SRC_CSS" \
   '  --color-src-elem: var(--src-elem);' \
   ''
@@ -270,8 +270,9 @@ mutate "문제은행 카드가 첫 라벨만 그린다 (그림 출처가 사라�
 # 그 거부가 옳다). 그래서 요소를 통째로 갈아 끼운다.
 mutate "라벨을 abbr 대신 button 으로 (D-30 위반)" "$SRC_CARD" \
   '          <abbr
-            key={badge.kind}
+            key={badge.axis}
             data-provenance={badge.kind}
+            data-provenance-axis={badge.axis}
             title={badge.name}
             className={`${MICRO} no-underline ${badge.className} print:hidden`}
           >
@@ -279,13 +280,19 @@ mutate "라벨을 abbr 대신 button 으로 (D-30 위반)" "$SRC_CARD" \
           </abbr>' \
   '          <button
             type="button"
-            key={badge.kind}
+            key={badge.axis}
             data-provenance={badge.kind}
+            data-provenance-axis={badge.axis}
             title={badge.name}
             className={`${MICRO} no-underline ${badge.className} print:hidden`}
           >
             {badge.text}
           </button>'
+# 🔴 축이 셋이 되면서 «모른다»의 이름이 셋 다 `unknown` 이다 — 키를 `kind` 로 잡으면
+#    셋 다 모르는 문항에서 React 키가 겹친다. DOM 은 멀쩡해 보이고 경고만 나간다.
+mutate "React 키를 축 대신 갈래로 (셋 다 모르는 문항에서 키가 겹친다)" "$SRC_CARD" \
+  '            key={badge.axis}' \
+  '            key={badge.kind}'
 mutate "풀어 쓴 이름(title)을 뺀다" "$SRC_CARD" \
   '            title={badge.name}
             className={`${MICRO} no-underline ${badge.className} print:hidden`}' \
