@@ -233,6 +233,20 @@ ALLOW_SHARED_IMPORT=1 npx tsx scripts/qa/apply-choose-all-fix.ts --revert
 
 ---
 
+## 6.2 관문 — 전량 초록
+
+`npm run test` · **254파일 10,356시험 · 실패 0** · 실데이터 판정기 17개 전부 깨끗
+(2026-08-25 18:35, 250s). `npx tsc --noEmit` 0 · `npx eslint` 0.
+
+전체 관문이 이 작업의 결함을 **하나 잡았다** — 새 스크립트의 `prisma.problem.create`
+지점에 `// exam-wiring:` 표시가 없어 배선 감사기가 「판단불가」로 물었다. 자작 엔진
+산출물이라 세울 편도 되돌릴 `exam_question` 링크도 없다는 근거를 표시에 적었다.
+
+> ⚠️ 돌리는 도중에 **죽인** 회차 둘에서 113건이 빨갛게 나왔다. 전부 자식 프로세스를
+> 띄우는 시험(그림 렌더·CLI)이고 30ms 안에 죽었다 — 죽이면서 딸려 죽은 것이다.
+> 같은 시험을 따로 돌리면 초록이고, **안 죽인 회차는 전량 초록**이다.
+> 「죽은 실행의 실패 목록」을 결과로 읽지 말 것(CLAUDE.md 2026-08-24 와 같은 자리).
+
 ## 7. 곁가지 — 이 워크트리에서 Prisma 가 안 돌던 이유
 
 한글 이름 워크트리에서 `@prisma/client` 가 `Cannot find module '#main-entry-point'`
