@@ -42,6 +42,7 @@ function richDaily(syncRanAt: string) {
       sync: {
         ranAt: syncRanAt,
         students: 193,
+        classes: 2,
         progressRows: 13571,
         unresolvedLines: 3999,
         ambiguous: 97,

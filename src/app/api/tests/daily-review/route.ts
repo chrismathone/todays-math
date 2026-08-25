@@ -177,6 +177,7 @@ export async function GET(request: NextRequest) {
         ? {
             ranAt: syncRun.ranAt.toISOString(),
             students: syncRun.students,
+            classes: syncRun.classes,
             progressRows: syncRun.progressRows,
             unresolvedLines: syncRun.unresolvedLines,
             ambiguous: syncRun.ambiguous,

@@ -180,3 +180,21 @@ const progressSchema = z.strictObject({
 export type ProgressEntity = z.infer<typeof progressSchema>;
 
 export const progressResponseSchema = dataResponseSchema(progressSchema);
+
+/**
+ * 반 진도가 **없을 때** 어디서부터 보여 줄지 제안한다 (2026-08-25).
+ *
+ * 🔴 **제안은 진도가 아니다.** 아무것도 저장되지 않는다 — 원장님이 「이 차시로 진도
+ *    기록」을 눌러야 반 진도가 된다. 응답 이름을 `progress` 로 짓지 않은 이유다.
+ *    `agree`/`students` 는 화면이 **근거를 같이 보여 주라고** 있다(「10명 중 6명」).
+ */
+const progressSuggestSchema = z.strictObject({
+  unitId: uuidSchema.nullable(),
+  agree: z.number().int().min(0),
+  students: z.number().int().min(0),
+});
+export type ProgressSuggestion = z.infer<typeof progressSuggestSchema>;
+
+export const progressSuggestResponseSchema =
+  dataResponseSchema(progressSuggestSchema);
+

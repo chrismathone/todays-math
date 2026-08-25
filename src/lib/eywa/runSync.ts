@@ -23,6 +23,11 @@ import { createHash } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 
 import { createEywaClient } from "@/lib/eywa/client";
+import { groupReportsByClassStudent, splitKey } from "@/lib/eywa/groupReports";
+import {
+  assertNoIdCollision,
+  deriveClassProgress,
+} from "@/lib/eywa/deriveClassProgress";
 import { buildUnitIndex, type UnitRow } from "@/lib/eywa/resolveProgress";
 import {
   classGradeOf,
@@ -30,7 +35,6 @@ import {
   planStudentProgress,
   primaryClassOf,
   schoolFieldsOf,
-  type EywaReport,
 } from "@/lib/eywa/syncPlan";
 import { scopeNameMismatches, scopedClassIds } from "@/lib/eywa/syncScope";
 import {
@@ -185,21 +189,17 @@ export async function runEywaSync(opts: {
       classMembers.set(cls.id, entry);
     }
 
+  // 🔴 보고서를 **(반, 학생)** 으로 가른다 — 규칙과 실측 근거는 `groupReports.ts` 에.
+  //    예전에는 학생 단위로만 묶어 특강 진도가 본수업을 덮었다(원장님 지적 2026-08-25).
   const rosterIds = new Set(scopedRoster.students.map((s) => s.id));
-  const byStudentReports = new Map<string, EywaReport[]>();
-  let 명단밖진도 = 0;
-  const 명단밖학생 = new Set<string>();
-  for (const report of reports) {
-    if (!rosterIds.has(report.studentId)) {
-      // 진도는 있는데 활성 수학반 밖(실측 5명) — 건너뛰되 센다(codex #6).
-      명단밖진도 += 1;
-      명단밖학생.add(report.studentId);
-      continue;
-    }
-    const list = byStudentReports.get(report.studentId) ?? [];
-    list.push(report);
-    byStudentReports.set(report.studentId, list);
-  }
+  const {
+    byClassStudent,
+    byStudent: byStudentReports,
+    명단밖진도,
+    명단밖학생,
+    반없는보고서,
+    범위밖반보고서,
+  } = groupReportsByClassStudent(reports, rosterIds, 허용, 원본반이름);
 
   const progressPlans = new Map<
     string,
@@ -208,9 +208,9 @@ export async function runEywaSync(opts: {
   let 애매 = 0;
   let 시험기간만 = 0;
   const 미분류 = new Map<string, number>();
-  for (const [studentId, list] of byStudentReports) {
+  for (const [key, list] of byClassStudent) {
     const plan = planStudentProgress(index, list);
-    progressPlans.set(studentId, plan);
+    progressPlans.set(key, plan);
     애매 += plan.ambiguous;
     시험기간만 += plan.examOnly;
     for (const raw of plan.unresolved)
@@ -241,6 +241,16 @@ export async function runEywaSync(opts: {
   console.log(
     `반 ${classMembers.size}개 · 진도 보고서 ${reports.length}건 → 진도 행 ${plannedRows}개`,
   );
+  // 🔴 **버린 보고서를 세어 찍는다.** 조용히 빠지면 「전부 가져왔다」로 읽힌다.
+  //    특히 범위 밖 반(특강·개별반)은 **일부러** 버리는 것이라 근거가 보여야 한다.
+  console.log(
+    `버린 보고서: 반이 안 적힘 ${반없는보고서}건 · 범위 밖 반 ${[...범위밖반보고서.values()].reduce((a, b) => a + b, 0)}건`,
+  );
+  if (범위밖반보고서.size > 0)
+    for (const [이름, n] of [...범위밖반보고서]
+      .sort((x, y) => y[1] - x[1])
+      .slice(0, 8))
+      console.log(`    ${n}건  «${이름}»`);
   console.log(
     `애매(자동 선택 안 함) ${애매}건 · 시험기간만 적힌 보고서 ${시험기간만}건 · 명단 밖 진도 ${명단밖진도}건(학생 ${명단밖학생.size}명)`,
   );
@@ -411,13 +421,14 @@ export async function runEywaSync(opts: {
         recordedAt: Date;
         createdAt: Date;
       }> = [];
-      for (const [eywaStudentId, plan] of progressPlans) {
+      for (const [key, plan] of progressPlans) {
+        // 🔴 반은 **그 보고서가 적어 둔 반**이다. 예전에는 `primaryClassOf` 로 주반
+        //    하나에 몰아넣어 특강 진도가 본수업을 덮었다(원장님 지적 2026-08-25).
+        const { classId: eywaClassId, studentId: eywaStudentId } =
+          splitKey(key);
         const studentId = ourStudentId.get(eywaStudentId);
-        if (!studentId) continue;
-        const primary = primaryClassOf(
-          scopedRoster.students.find((s) => s.id === eywaStudentId)!.classes,
-        )!;
-        const classId = ourClassId.get(primary.id)!;
+        const classId = ourClassId.get(eywaClassId);
+        if (!studentId || !classId) continue;
         for (const row of plan.rows)
           rowsToCreate.push({
             eywaReportId: row.eywaReportId,
@@ -428,10 +439,31 @@ export async function runEywaSync(opts: {
             createdAt: row.createdAt,
           });
       }
-      for (let at = 0; at < rowsToCreate.length; at += 2000)
+      // 🔴 **반 진도를 여기서 유도한다.** eywa 에는 반 진도가 없고(원장님 확인)
+      //    우리 쪽 읽는 자리 셋은 전부 `studentId: null` 만 본다 — 그래서 개별 진도를
+      //    아무리 채워도 화면은 「어제 진도가 비어 있습니다」였고 출제는 404 였다.
+      //    읽는 쪽 셋을 각각 고치면 규칙이 세 벌이 되므로 **쓰는 쪽에서 한 번** 만든다.
+      //    학생마다 최신 단원이 갈리는 반(개별진도반)은 만들지 않는다.
+      const classToEywa = new Map(
+        [...ourClassId].map(([eywaId, ourId]) => [ourId, eywaId] as const),
+      );
+      const derived = deriveClassProgress(rowsToCreate, classToEywa);
+      assertNoIdCollision(rowsToCreate, derived.rows);
+      const allRows = [...rowsToCreate, ...derived.rows];
+      for (let at = 0; at < allRows.length; at += 2000)
         await tx.progress.createMany({
-          data: rowsToCreate.slice(at, at + 2000),
+          data: allRows.slice(at, at + 2000),
         });
+      if (derived.diverged.length > 0)
+        console.log(
+          `⚠️ 학생마다 최신 단원이 갈려 반 진도를 안 만든 반 ${derived.diverged.length}개 ` +
+            `— 개별진도반으로 봐야 한다: ${derived.diverged
+              .map(
+                (d) => `${d.classId}(단원 ${d.units}개/학생 ${d.students}명)`,
+              )
+              .join(", ")}`,
+        );
+      console.log(`유도한 반 진도 ${derived.rows.length}행`);
 
       // 실행 기록 — 화면의 「마지막 동기화」 스트립이 읽는다. 트랜잭션 안이라
       // 적용이 죽으면 기록도 남지 않는다(«성공한 실행»만 기록).
@@ -441,7 +473,7 @@ export async function runEywaSync(opts: {
           // 화면 「마지막 동기화」가 읽는 수 — 범위 안 재원이어야 실제와 맞는다.
           students: scopedRoster.students.length,
           classes: classMembers.size,
-          progressRows: rowsToCreate.length,
+          progressRows: allRows.length,
           unresolvedLines,
           ambiguous: 애매,
           examOnly: 시험기간만,
@@ -452,9 +484,13 @@ export async function runEywaSync(opts: {
       appliedCounts.students = ourStudentId.size;
       appliedCounts.withdrawn = withdrawn.count;
       appliedCounts.deleted = deleted.count;
-      appliedCounts.created = rowsToCreate.length;
+      // 🔴 **실제로 쓴 수**를 찍는다. 유도한 반 진도를 빼고 찍으면 원장·표·화면이
+      //    저마다 다른 수를 말한다 — 「분모가 셋이면 하나는 틀리다」의 자리다.
+      appliedCounts.created = allRows.length;
       console.log(
-        `적용: 반 ${ourClassId.size} · 학생 ${ourStudentId.size} · 퇴원 표시 ${withdrawn.count} · 진도 삭제 ${deleted.count} → 생성 ${rowsToCreate.length}`,
+        `적용: 반 ${ourClassId.size} · 학생 ${ourStudentId.size} · 퇴원 표시 ${withdrawn.count} · ` +
+          `진도 삭제 ${deleted.count} → 생성 ${allRows.length}` +
+          `(학생 ${rowsToCreate.length} + 유도한 반 ${derived.rows.length})`,
       );
     },
     { timeout: 300_000 },

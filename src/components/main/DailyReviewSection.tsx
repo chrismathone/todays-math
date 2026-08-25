@@ -455,8 +455,13 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
               ) : null}
             </span>
             <span className="text-text-3">
-              학생 {n(d.sync.students)} · 진도 {n(d.sync.progressRows)}행 ·
-              미분류 {n(d.sync.unresolvedLines)}줄
+              {/* 🔴 **반 수를 맨 앞에** 찍는다. 동기화 범위는 `syncScope.ts` 로
+                  좁혀져 있는데(원장님 확정: 이수진T 월·목 두 반) 그 사실이 화면에
+                  없으면 「지금 가져오기」가 학원 전체를 가져오는 것으로 읽힌다.
+                  「미분류」도 무슨 소린지 알 수 없어 «단원 못 찾음»으로 적는다. */}
+              반 {n(d.sync.classes)}개만 · 학생 {n(d.sync.students)} · 진도{" "}
+              {n(d.sync.progressRows)}행 · 단원 못 찾음{" "}
+              {n(d.sync.unresolvedLines)}줄
             </span>
           </>
         ) : (

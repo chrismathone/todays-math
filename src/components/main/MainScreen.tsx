@@ -3,7 +3,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
-import type { ClassEntity, ProgressEntity } from "@/contracts/class.contract";
+import type {
+  ClassEntity,
+  ProgressEntity,
+  ProgressSuggestion,
+} from "@/contracts/class.contract";
 import type { WeeklyMetrics } from "@/contracts/metrics.contract";
 import type { TestEntity } from "@/contracts/test.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
@@ -25,6 +29,7 @@ type LoadState =
       classes: ClassEntity[];
       tests: TestEntity[];
       progressByClass: Record<string, ProgressEntity | null>;
+      suggestByClass: Record<string, ProgressSuggestion | null>;
       units: UnitEntity[];
       metrics: WeeklyMetrics;
     };
@@ -87,8 +92,21 @@ export function MainScreen() {
     state.status === "ready"
       ? (state.progressByClass[selectedClassId]?.unitId ?? null)
       : null;
-  // 화면에 보여줄 차시 = 열람 중이면 그 차시, 아니면 현재 진도. (열람은 DB에 안 남는다)
-  const displayedUnitId = viewedUnitId ?? committedUnitId;
+  // 🔴 반 진도가 **없을 때**의 시작점 제안 (원장님 2026-08-25 「차시이동이 작동하지 않음」).
+  //    `adjacentUnitIds` 는 현재 단원이 null 이면 앞·뒤를 둘 다 null 로 돌려주어
+  //    화살표가 둘 다 죽는다. 학년 첫 단원에서 시작하면 백 번을 눌러야 하므로
+  //    그 반 학생들이 실제로 서 있는 자리를 제안한다.
+  //    ⚠️ **제안은 진도가 아니다** — 「이 차시로 진도 기록」을 눌러야 저장된다.
+  //       그래서 `committedUnitId` 에는 섞지 않는다(섞으면 «기록됨»으로 보인다).
+  const suggestion =
+    state.status === "ready"
+      ? (state.suggestByClass[selectedClassId] ?? null)
+      : null;
+  const suggestedUnitId = committedUnitId === null ? suggestion?.unitId : null;
+
+  // 화면에 보여줄 차시 = 열람 중이면 그 차시, 아니면 현재 진도, 그것도 없으면 제안.
+  const displayedUnitId =
+    viewedUnitId ?? committedUnitId ?? suggestedUnitId ?? null;
   const canRecord =
     displayedUnitId !== null && displayedUnitId !== committedUnitId;
 
@@ -192,6 +210,7 @@ export function MainScreen() {
           unmodifiedRate={Math.round((metrics?.unmodifiedRate ?? 0) * 100)}
           error={advanceError}
           canRecord={canRecord}
+          suggestion={committedUnitId === null ? suggestion : null}
           onSelectClass={handleSelectClass}
           onStep={handleStep}
           onRecord={() => {
