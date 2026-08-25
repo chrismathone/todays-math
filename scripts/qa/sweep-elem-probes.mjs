@@ -102,7 +102,19 @@ for (const name of names) {
     { encoding: "utf-8", env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
   );
   if (r.status === 2) {
-    울타리.push(name);
+    // ⚠️ **사유를 추측하지 않는다.** 울타리의 뜻은 판정기마다 다르다 — 초등은 「다른
+    //    세션이 엔진을 쓰는 중」이고, 중등 결합형은 「말뭉치가 없다」다. 고치는 법이
+    //    아예 다르다: 전자는 기다리면 풀리지만 **후자는 기다려도 영영 안 풀린다.**
+    //    2026-08-25 에 관문이 「창이 닫힌 뒤 다시 돌려라」라고만 말했는데 실제 사유는
+    //    말뭉치 부재였다 — 그 말대로 하면 **무한히 기다린다.** 그래서 판정기가 찍은
+    //    줄을 **그대로 옮긴다**(되살리는 명령까지 같이 나온다).
+    const 사유 = (r.stdout ?? "")
+      .split("\n")
+      .filter((l) => l.includes("울타리") || l.trim().startsWith("npx"))
+      .slice(0, 3)
+      .map((l) => l.trim())
+      .join("\n     ");
+    울타리.push({ name, 사유 });
     continue;
   }
   if (r.status === 0) continue;
@@ -126,10 +138,17 @@ console.log(
 
 if (울타리.length > 0) {
   console.error(
-    `\n⚠️ 울타리에 걸려 **못 잰** 판정기 ${울타리.length}개: ${울타리.join(", ")}` +
-      "\n   결함이 아니다 — 다른 세션이 `src/lib/elementary/` 를 쓰는 중이다." +
-      "\n   그 창이 닫힌 뒤 다시 돌려라. 이 회차는 그 판정기에 대해 «못 잰» 것이다.",
+    `\n⚠️ 울타리에 걸려 **못 잰** 판정기 ${울타리.length}개 —` +
+      " 결함이 아니지만 «깨끗»도 아니다. 사유는 판정기가 말한 그대로다:",
   );
+  for (const f of 울타리) {
+    console.error(
+      `   · ${f.name}` +
+        (f.사유
+          ? `\n     ${f.사유}`
+          : "\n     사유를 안 찍었다 — 그 판정기를 직접 돌려 볼 것"),
+    );
+  }
 }
 
 if (문제.length > 0) {

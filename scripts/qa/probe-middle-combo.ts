@@ -1675,10 +1675,26 @@ function main(): void {
     (f) => !existsSync(f),
   );
   if (missing.length > 0) {
+    // ⚠️ **안내는 «없는 그것»을 가리켜야 한다.** 예전 문구는 셋을 뭉뚱그려 두 명령만
+    //    적어 놨는데, 그 둘을 돌려도 **1차 기준(`classifications.json`)은 안 생긴다** —
+    //    어느 스크립트도 그 파일을 쓰지 않는다(2026-08-25 실측). 그걸 모르면
+    //    「명령을 시키는 대로 돌렸는데 계속 울타리」에 갇힌다.
+    const 되살리기 = missing
+      .map((f) =>
+        f === corpusPath
+          ? "   npx tsx scripts/qa/build-middle-corpus.ts"
+          : f === vocabPath
+            ? "   npx tsx scripts/qa/census-middle-solution-vocab.ts"
+            : "   🔴 " +
+              "1차 기준 산출물이다 — **만드는 명령이 없다.** 지금 코드로 다시 뽑으면 " +
+              "2차 값이 나와 단언(873/8/180/685/0)에 걸린다.\n" +
+              "      1차를 돌린 컴퓨터에서 가져오거나, 그 파일을 저장소에 넣어야 한다.",
+      )
+      .join("\n");
     console.log(
-      `울타리 — 말뭉치가 없어 못 돈다 (${missing.length}개 없음: ${missing[0]})\n` +
-        `   먼저: npx tsx scripts/qa/build-middle-corpus.ts` +
-        ` && npx tsx scripts/qa/census-middle-solution-vocab.ts`,
+      `울타리 — 읽을 파일이 없어 못 돈다 (${missing.length}개 없음)\n` +
+        missing.map((f) => `   · ${f}`).join("\n") +
+        `\n   먼저:\n${되살리기}`,
     );
     process.exit(2);
   }
