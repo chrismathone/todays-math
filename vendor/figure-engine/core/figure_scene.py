@@ -51,6 +51,9 @@ _CHEVRON_ARM = 6.5          # 평행 » 한 획 길이 (RPM 화살촉 5.4×3.4pt
 _CHEVRON_HALF_ANGLE_DEG = 30.0
 _CHEVRON_GAP = 4.0          # 이중 » 사이 간격
 _RIGHT_ANGLE_SCALE = 0.55   # 직각기호 한 변 = 호 반지름 × 0.55 (실측 0.45~0.55)
+# 치수 값 글자의 하한. 지면 등급 240px · viewBox 220 안팎에서 10 단위는 약 11px 이라
+# 본문(12.5px) 아래다 — 그래서 «더 줄이지 말고 던진다» 는 뜻의 바닥이다.
+_DIMENSION_MIN_FONT = 10.0
 _BOTH_MARKS_SHIFT = 6.0     # 한 선분에 tick·» 둘 다면 중점에서 서로 반대로 비킨다
 # 직각 마크는 검산을 겸한다 — 두 변이 90°±0.5° 밖이면 그림이 거짓말이므로 던진다.
 _RIGHT_ANGLE_COS_TOL = math.cos(math.radians(89.5))
@@ -284,6 +287,9 @@ class DimensionLayout:
     label_box: Box
     path_samples: tuple[Point, ...]
     font_size: float
+    # 값이 곡선 위 **어디에** 앉았나(0~1). 점선의 틈을 그 자리에 낸다 —
+    # 종전에는 틈이 늘 한가운데라, 값을 옆으로 옮기면 틈과 값이 갈라졌다.
+    label_t: float = 0.5
 
 
 @dataclass(frozen=True, slots=True)
@@ -600,7 +606,10 @@ def _dimension_gapped_path(layout: DimensionLayout, tx: float, ty: float) -> str
     box_height = layout.label_box[3] - layout.label_box[1]
     half_projection = (abs(ux) * box_width + abs(uy) * box_height) / 2.0
     delta = min(0.42, max(0.04, half_projection / visible_length + 0.015))
-    left_t, right_t = 0.5 - delta, 0.5 + delta
+    # 틈은 **값이 앉은 자리**에 낸다 — 한가운데로 박아 두면 값을 옆으로 옮겼을 때
+    # 틈과 값이 갈라져, 값 밑에는 점선이 그대로 지나가고 엉뚱한 데가 비어 있다.
+    centre = min(1.0 - delta, max(delta, layout.label_t))
+    left_t, right_t = centre - delta, centre + delta
 
     left_01 = _lerp_point("left:01", layout.start, layout.control, left_t)
     left_12 = _lerp_point("left:12", layout.control, layout.end, left_t)
@@ -1386,7 +1395,61 @@ class FigureScene:
                 raise GeometryValidationError(
                     f"label {label.point!r} font_size must be positive")
 
-    def _angle_label_layout(self, angle: AngleMark) -> tuple[tuple[float, float], Box] | None:
+    def _angle_mark_polylines(self, angle: AngleMark) -> list[tuple[Point, ...]]:
+        """각 표시(호 또는 직각 사각형)의 **잉크**를 폴리라인으로 돌려준다.
+
+        렌더·경계·충돌이 **한 좌표**를 쓰게 하려는 것이다(`_segment_mark_lines` 와
+        같은 무늬).  이것이 없던 동안 각 표시는 라벨 배치에 **보이지 않는 잉크**였고,
+        그래서 직각기호 위에 `H` 가 그대로 앉았다(원장님 지적 2026-08-25,
+        `J30503-A06-002`·`A07-002`).
+        """
+        vertex, p1, p2 = (self.points[angle.vertex], self.points[angle.p1],
+                          self.points[angle.p2])
+        radius = self.style.angle_radius if angle.radius is None else angle.radius
+        if angle.right:
+            length1 = math.hypot(p1.x - vertex.x, p1.y - vertex.y)
+            length2 = math.hypot(p2.x - vertex.x, p2.y - vertex.y)
+            if length1 <= _EPS or length2 <= _EPS:
+                return []
+            side = radius * _RIGHT_ANGLE_SCALE
+            u1x, u1y = (p1.x - vertex.x) / length1, (p1.y - vertex.y) / length1
+            u2x, u2y = (p2.x - vertex.x) / length2, (p2.y - vertex.y) / length2
+            return [(
+                Point(f"{angle.name}@0", vertex.x + side * u1x, vertex.y + side * u1y),
+                Point(f"{angle.name}@1", vertex.x + side * (u1x + u2x),
+                      vertex.y + side * (u1y + u2y)),
+                Point(f"{angle.name}@2", vertex.x + side * u2x, vertex.y + side * u2y),
+            )]
+        a0 = math.atan2(p1.y - vertex.y, p1.x - vertex.x)
+        a1 = math.atan2(p2.y - vertex.y, p2.x - vertex.x)
+        delta = (a1 - a0 + math.pi) % (2.0 * math.pi) - math.pi
+        out: list[tuple[Point, ...]] = []
+        for arc_index in range(angle.arcs):
+            r = radius - arc_index * _MARK_GAP
+            if r <= 0:
+                continue
+            out.append(tuple(
+                Point(f"{angle.name}@{arc_index}:{i}",
+                      vertex.x + r * math.cos(a0 + delta * i / 16.0),
+                      vertex.y + r * math.sin(a0 + delta * i / 16.0))
+                for i in range(17)))
+        return out
+
+    def _angle_label_layout(
+            self, angle: AngleMark,
+            occupied: Sequence[Box] = ()) -> tuple[tuple[float, float], Box] | None:
+        """각 라벨 자리 — 이등분선 위에서 **비켜설 수 있는 만큼** 비켜선다.
+
+        ⚠️ 종전에는 `angle_label_distance`(25) 한 값에 **무조건** 놓았다.  그 거리는
+        직각쯤에서만 맞는다 — 반각 φ 에서 이등분선 위 점과 두 변 사이 거리는
+        `d·sin φ` 라, $30^\\circ$ 각에서는 `25·sin 15° = 6.5` 로 글자 반높이(6.5)와
+        **같아진다.**  그래서 `45°`·`30°` 가 변 위에 앉고 흰 halo 가 실선을 지웠다
+        (원장님 지적 2026-08-25 「텍스트가 선을 침범한다」).
+
+        문턱을 옮기지 않는다 — **각이 좁으면 그만큼 멀리 놓는다**.  그리고 그 거리도
+        어림이 아니라 `_candidate_cost` 로 **실제 잉크와 견주어** 고른다.  못 비키면
+        던지지 않고 가장 덜 나쁜 자리를 쓴다(각 라벨은 늘 그려져야 한다).
+        """
         if not angle.label:
             return None
         vertex, p1, p2 = (self.points[angle.vertex], self.points[angle.p1],
@@ -1395,12 +1458,53 @@ class FigureScene:
         a1 = math.atan2(p2.y - vertex.y, p2.x - vertex.x)
         delta = (a1 - a0 + math.pi) % (2.0 * math.pi) - math.pi
         mid = a0 + delta / 2.0
-        distance = (self.style.angle_label_distance if angle.label_distance is None
-                    else angle.label_distance)
         fs = self.style.angle_font_size
-        x = vertex.x + distance * math.cos(mid)
-        y = vertex.y + distance * math.sin(mid) + 0.32 * fs
-        return (x, y), _text_box(x, y, angle.label, fs)
+        base = self.style.angle_label_distance
+        if angle.label_distance is not None:
+            # 부르는 쪽이 못 박았으면 그대로 둔다 — 스펙이 이긴다.
+            distances = [angle.label_distance]
+        else:
+            # 좁은 각일수록 멀리 나가야 두 변 사이에 들어간다 — 필요한 거리는 대략
+            # «글자 반폭 / sin(반각)» 이라 $30^\circ$ 에서 벌써 25 의 두 배가 넘는다
+            # (실측: 반각 15°·「30°」 상자에서 58 이 필요했다).
+            #
+            # 🔴 **그런데 무작정 밀면 안 된다.** 각 값은 «제 꼭짓점의 값»으로 읽혀야 하는데,
+            #    옆 꼭짓점 쪽으로 넘어가는 순간 **그 각의 값으로 읽힌다** — 그림이
+            #    거짓말을 한다. 실측: 원주각 그림(`J30604-A12-001`)에서 `44°`·`40°` 가
+            #    각각 A·C 를 떠나 가운데 교점 T 옆에 나란히 서 버렸다.
+            #
+            #    그래서 사다리를 **「가장 가까운 다른 이름 붙은 점까지의 절반」**에서 끊는다.
+            #    문턱을 지어낸 것이 아니라 «어느 꼭짓점 것인가»가 갈리는 자리다.
+            #    그 안에서 못 비키면 **가장 덜 나쁜 자리**를 쓴다(각 라벨은 늘 그려진다).
+            named = {name for name in self.labels}
+            named.update(angle_obj.vertex for angle_obj in self.angles.values())
+            gaps = [
+                math.hypot(self.points[name].x - vertex.x,
+                           self.points[name].y - vertex.y)
+                for name in sorted(named)
+                if name != angle.vertex and name in self.points
+            ]
+            reach = min(gaps) / 2.0 if gaps else float("inf")
+            step = max(3.5, 0.45 * fs)
+            distances = [base + index * step for index in range(10)]
+            distances = [d for d in distances if d <= reach] or [base]
+        # ⚠️ 견주는 상자는 **halo 까지** 넓힌 것이다. 흰 halo 는 잉크를 더하지 않지만
+        #    **밑의 실선을 지운다** — 글자 상자만 보면 「안 겹친다」인데 지면에서는
+        #    선이 끊긴다(lint_svg 규칙 7). 경계(viewBox)에는 안 넓힌 상자를 쓴다.
+        pad = self.style.halo_width / 2.0 + 0.5
+        best: tuple[tuple[int, float], tuple[float, float], Box] | None = None
+        for rank, distance in enumerate(distances):
+            x = vertex.x + distance * math.cos(mid)
+            y = vertex.y + distance * math.sin(mid) + 0.32 * fs
+            box = _text_box(x, y, angle.label, fs)
+            cost = self._candidate_cost("", _expand_box(box, pad), occupied, rank, 0,
+                                        own_angle=angle.name)
+            if best is None or cost < best[0]:
+                best = (cost, (x, y), box)
+            if cost[0] == 0:
+                break
+        assert best is not None
+        return best[1], best[2]
 
     def _label_vectors(self, label: PointLabel) -> list[tuple[float, float]]:
         point = self.points[label.point]
@@ -1461,7 +1565,9 @@ class FigureScene:
         return candidates
 
     def _candidate_cost(self, point_name: str, box: Box, occupied: Iterable[Box],
-                        rank: int, distance_rank: int = 0) -> tuple[int, float]:
+                        rank: int, distance_rank: int = 0,
+                        curves: Sequence[Sequence[Point]] = (),
+                        own_angle: str | None = None) -> tuple[int, float]:
         hard = 0
         cost = rank * 0.25 + distance_rank * 0.4
         for other in occupied:
@@ -1481,6 +1587,25 @@ class FigureScene:
         for arc_name in sorted(self.arcs):
             if _polyline_intersects_box(
                     self._arc_stroke_samples(self.arcs[arc_name]), box):
+                hard += 1
+                cost += 20.0
+        # 각 표시(호·직각 사각형)도 잉크다. 여기 없던 동안 라벨은 그것을 **못 봤고**
+        # 직각기호 위에 `H` 가 그대로 앉았다 (원장님 지적 2026-08-25).
+        #
+        # ⚠️ **자기 각의 표시는 뺀다.** 각 라벨은 그 호의 «설명»이라 호 바로 바깥에
+        #    앉는 것이 정상이다. 안 빼면 라벨이 제 호를 피하려고 꼭짓점에서 멀어지고,
+        #    그러면 어느 각의 값인지 알 수 없게 된다 (실측: `x` 가 25 → 62.8 로 밀렸다).
+        for angle_name in sorted(self.angles):
+            if angle_name == own_angle:
+                continue
+            for polyline in self._angle_mark_polylines(self.angles[angle_name]):
+                if _polyline_intersects_box(polyline, box):
+                    hard += 1
+                    cost += 20.0
+        # 치수 점선도 잉크다 — 치수를 먼저 놓고 점 이름을 나중에 놓기 때문에
+        # (자유도가 적은 것부터) 점 이름이 그 곡선을 피할 수 있어야 한다.
+        for samples in curves:
+            if _polyline_intersects_box(samples, box):
                 hard += 1
                 cost += 20.0
         cx, cy = (box[0] + box[2]) / 2.0, (box[1] + box[3]) / 2.0
@@ -1519,196 +1644,230 @@ class FigureScene:
             available = max(1.0, length - 2.0 * dimension.inset)
             font_size = min(
                 self.style.dimension_font_size,
-                max(10.0, 0.82 * available / width_units),
+                max(_DIMENSION_MIN_FONT, 0.82 * available / width_units),
             )
+            # 도형 **안**을 지나는 짧은 변(수선 등)은 옆으로 난 통로가 좁아, 값이
+            # 커서 안 들어가는 일이 있다. 그때는 곡선을 도형에서 멀리 밀어내는
+            # 것보다 값을 **조금 줄이는** 편이 낫다 — 다만 아래 하한 밑으로는 안
+            # 줄인다(지면에서 본문보다 작아지면 그건 결함이다, 09 §4-25).
+            fonts = [font_size]
+            smaller = max(_DIMENSION_MIN_FONT, 0.85 * font_size)
+            if smaller < font_size - 0.05:
+                fonts.append(smaller)
         else:
             font_size = dimension.font_size
+            fonts = [font_size]
         base_offset = (self.style.dimension_offset if dimension.offset is None
                        else dimension.offset)
+        # 벌어짐 사다리는 **기본 글꼴**로 한 번만 만든다 — 글꼴 후보마다 다르게
+        # 만들면 `offset_rank` 가 후보끼리 다른 것을 가리켜 비교가 안 된다.
         offset_step = max(4.0, 0.55 * font_size)
         offsets = [base_offset + index * offset_step for index in range(6)]
         sides = ([dimension.side] if dimension.side != "auto"
                  else ["left", "right"])
 
         candidates: list[tuple[tuple[int, int, int, int, int, int,
-                                          float, float, int, int],
+                                          float, float, int, int, int, int],
                                DimensionLayout]] = []
-        for offset_rank, offset in enumerate(offsets):
-            for side_rank, side in enumerate(sides):
-                sign = 1.0 if side == "left" else -1.0
-                control = Point(
-                    f"{dimension.name}:control",
-                    midpoint_x + nx * sign * 2.0 * offset,
-                    midpoint_y + ny * sign * 2.0 * offset,
-                )
-                samples = _quadratic_samples(dimension.name, start, control, end)
-                apex = samples[len(samples) // 2]
-                label_position = (apex.x, apex.y + 0.32 * font_size)
-                label_box = _expand_box(
-                    _text_box(*label_position, dimension.label, font_size),
-                    self.style.dimension_halo_width / 2.0 + 0.5,
-                )
-                projected_label_width = (
-                    abs(ux) * (label_box[2] - label_box[0])
-                    + abs(uy) * (label_box[3] - label_box[1])
-                )
-                visible_chord = math.hypot(end.x - start.x, end.y - start.y)
-                if projected_label_width > 0.72 * visible_chord:
-                    # A long value on a short side cannot leave meaningful
-                    # curve fragments around an inline gap.  Move it just
-                    # beyond the apex and keep the complete dashed curve.
-                    for factor in (0.75, 1.0, 1.3, 1.65, 2.0,
-                                   2.5, 3.1, 3.8, 4.6):
-                        shift = factor * font_size + self.style.dimension_halo_width / 2.0
-                        moved = (
-                            apex.x + nx * sign * shift,
-                            apex.y + ny * sign * shift + 0.32 * font_size,
-                        )
-                        moved_box = _expand_box(
-                            _text_box(*moved, dimension.label, font_size),
+        for font_rank, font_size in enumerate(fonts):
+            for offset_rank, offset in enumerate(offsets):
+                for side_rank, side in enumerate(sides):
+                    sign = 1.0 if side == "left" else -1.0
+                    control = Point(
+                        f"{dimension.name}:control",
+                        midpoint_x + nx * sign * 2.0 * offset,
+                        midpoint_y + ny * sign * 2.0 * offset,
+                    )
+                    samples = _quadratic_samples(dimension.name, start, control, end)
+
+                    def anchor_at(t: float) -> tuple[tuple[float, float], Box]:
+                        index = min(len(samples) - 1,
+                                    max(0, round(t * (len(samples) - 1))))
+                        on_curve = samples[index]
+                        position = (on_curve.x, on_curve.y + 0.32 * font_size)
+                        return position, _expand_box(
+                            _text_box(*position, dimension.label, font_size),
                             self.style.dimension_halo_width / 2.0 + 0.5,
                         )
-                        label_position, label_box = moved, moved_box
-                        if not _polyline_intersects_box(samples, moved_box):
-                            break
-                layout = DimensionLayout(
-                    dimension.name, side, start, control, end,
-                    label_position, label_box, samples, font_size,
-                )
 
-                curve_box = _expand_box(_merge_bounds(
-                    (sample.x, sample.y, sample.x, sample.y) for sample in samples
-                ), self.style.dimension_width / 2.0 + 0.75)
-                clipped = 0
-                if self.canvas is not None:
-                    for box in (curve_box, label_box):
-                        if (box[0] < 0 or box[1] < 0
-                                or box[2] > self.canvas.width
-                                or box[3] > self.canvas.height):
-                            clipped += 1
-
-                text_collisions = sum(
-                    1 for box in occupied
-                    if (_boxes_overlap(label_box, box, gap=1.0)
-                        or _polyline_intersects_box(samples, _expand_box(box, 1.0)))
-                )
-                point_collisions = 0
-                for point_name, point in self.points.items():
-                    if point_name in {dimension.p1, dimension.p2}:
-                        continue
-                    if not self.style.show_points:
-                        # Unmarked construction points (notably a circle's
-                        # center O) have no visible ink.  Their labels are
-                        # already represented by `occupied`, and rendered
-                        # segments/circles are checked separately below.
-                        continue
-                    if (_point_in_box(point.x, point.y, label_box, 1.0)
-                            or min(_distance_xy_to_segment(
-                                point.x, point.y, a, b)
-                                   for a, b in zip(samples, samples[1:])) < 2.25):
-                        point_collisions += 1
-
-                geometry_crossings = 0
-                near_geometry = 0
-                endpoint_pair = {dimension.p1, dimension.p2}
-                for segment in self.segments.values():
-                    a, b = self.points[segment.p1], self.points[segment.p2]
-                    chord_scale = math.hypot(b.x - a.x, b.y - a.y)
-                    chord_tolerance = max(1.0e-9, chord_scale * 1.0e-7)
-                    own_chord = {segment.p1, segment.p2} == endpoint_pair or (
-                        # 긴 변의 **일부**를 재는 치수(반지름 4 cm 가 지름 선분
-                        # 위에 있는 부채꼴 고리 등): 두 끝점이 같은 선분 위에
-                        # 있으면 곡선은 그 선분과 끝점에서만 닿는다 — 교차가
-                        # 아니라 자기 현이다.  이 배치는 종전에는 모든 오프셋
-                        # 후보가 «교차»로 죽어 아예 그릴 수 없었다.
-                        _distance_point_line(first, a, b) <= chord_tolerance
-                        and _distance_point_line(second, a, b) <= chord_tolerance
-                        and _point_within_segment(first, a, b, chord_tolerance)
-                        and _point_within_segment(second, a, b, chord_tolerance)
+                    apex = samples[len(samples) // 2]
+                    label_position, label_box = anchor_at(0.5)
+                    projected_label_width = (
+                        abs(ux) * (label_box[2] - label_box[0])
+                        + abs(uy) * (label_box[3] - label_box[1])
                     )
-                    if own_chord:
-                        # A one-sided quadratic meets its measured chord only
-                        # at the deliberately inset start/end points.  The
-                        # value label itself still needs genuine clearance.
-                        label_clearance = _expand_box(
-                            label_box,
-                            self.style.segment_width / 2.0 + 0.5,
+                    visible_chord = math.hypot(end.x - start.x, end.y - start.y)
+                    if projected_label_width > 0.72 * visible_chord:
+                        # A long value on a short side cannot leave meaningful
+                        # curve fragments around an inline gap.  Move it just
+                        # beyond the apex and keep the complete dashed curve.
+                        for factor in (0.75, 1.0, 1.3, 1.65, 2.0,
+                                       2.5, 3.1, 3.8, 4.6):
+                            shift = factor * font_size + self.style.dimension_halo_width / 2.0
+                            moved = (
+                                apex.x + nx * sign * shift,
+                                apex.y + ny * sign * shift + 0.32 * font_size,
+                            )
+                            moved_box = _expand_box(
+                                _text_box(*moved, dimension.label, font_size),
+                                self.style.dimension_halo_width / 2.0 + 0.5,
+                            )
+                            label_position, label_box = moved, moved_box
+                            if not _polyline_intersects_box(samples, moved_box):
+                                break
+                        anchors = [(0.5, label_position, label_box)]
+                    else:
+                        # 🔴 **값은 제 곡선 위 아무 데나 앉을 수 있다.** 가운데가 첫째지만,
+                        #    좁은 자리(도형 «안»을 지나는 수선 등)에서는 가운데가 두 변
+                        #    사이에 안 들어간다 — 그때 옆으로 미끄러지면 들어간다.
+                        #    종전에는 가운데 하나뿐이라 그런 치수를 **통째로 던졌고**,
+                        #    부르는 쪽은 치수를 포기하고 날 `<text>` 를 얹었다.
+                        #    틈은 `label_t` 를 따라가므로 값 밑에 정확히 난다.
+                        anchors = [(0.5, label_position, label_box)]
+                        for slide in (0.35, 0.65, 0.25, 0.75):
+                            anchors.append((slide, *anchor_at(slide)))
+                    for anchor_rank, (label_t, label_position, label_box) in enumerate(anchors):
+                        layout = DimensionLayout(
+                            dimension.name, side, start, control, end,
+                            label_position, label_box, samples, font_size, label_t,
                         )
-                        if _segment_intersects_box(a, b, label_clearance):
-                            geometry_crossings += 1
-                        continue
-                    if (_polyline_intersects_segment(samples, a, b)
-                            or _segment_intersects_box(a, b, label_box)):
-                        geometry_crossings += 1
-                    else:
-                        clearance = min(
-                            _distance_xy_to_segment(sample.x, sample.y, a, b)
-                            for sample in samples)
-                        if clearance < 3.0:
-                            near_geometry += 1
 
-                for arc_name in sorted(self.arcs):
-                    arc_samples = self._arc_stroke_samples(self.arcs[arc_name])
-                    if (_polylines_intersect(samples, arc_samples)
-                            or _polyline_intersects_box(arc_samples,
-                                                        _expand_box(label_box, 1.0))):
-                        geometry_crossings += 1
-                    else:
-                        clearance = min(
-                            _distance_xy_to_segment(sample.x, sample.y, a, b)
-                            for sample in samples
-                            for a, b in zip(arc_samples, arc_samples[1:]))
-                        if clearance < 3.0:
-                            near_geometry += 1
+                        curve_box = _expand_box(_merge_bounds(
+                            (sample.x, sample.y, sample.x, sample.y) for sample in samples
+                        ), self.style.dimension_width / 2.0 + 0.75)
+                        clipped = 0
+                        if self.canvas is not None:
+                            for box in (curve_box, label_box):
+                                if (box[0] < 0 or box[1] < 0
+                                        or box[2] > self.canvas.width
+                                        or box[3] > self.canvas.height):
+                                    clipped += 1
 
-                circle_crossings = 0
-                for circle_obj in self.circles.values():
-                    if not circle_obj.draw:
-                        # No ink on construction circles; dimension curves may
-                        # cross their circumference freely.
-                        continue
-                    center = self.points[circle_obj.center]
-                    if _box_intersects_circle(label_box, center, circle_obj.radius, 0.75):
-                        circle_crossings += 1
-                    else:
-                        residuals = [
-                            math.hypot(sample.x - center.x, sample.y - center.y)
-                            - circle_obj.radius for sample in samples
-                        ]
-                        # A chord dimension begins inside the circle near both
-                        # endpoints.  Only a real inside/outside transition is
-                        # a circumference crossing; mere endpoint proximity is
-                        # expected and must not reject the clean inner arc.
-                        if min(residuals) < -0.75 and max(residuals) > 0.75:
-                            circle_crossings += 1
+                        text_collisions = sum(
+                            1 for box in occupied
+                            if (_boxes_overlap(label_box, box, gap=1.0)
+                                or _polyline_intersects_box(samples, _expand_box(box, 1.0)))
+                        )
+                        point_collisions = 0
+                        for point_name, point in self.points.items():
+                            if point_name in {dimension.p1, dimension.p2}:
+                                continue
+                            if not self.style.show_points:
+                                # Unmarked construction points (notably a circle's
+                                # center O) have no visible ink.  Their labels are
+                                # already represented by `occupied`, and rendered
+                                # segments/circles are checked separately below.
+                                continue
+                            if (_point_in_box(point.x, point.y, label_box, 1.0)
+                                    or min(_distance_xy_to_segment(
+                                        point.x, point.y, a, b)
+                                           for a, b in zip(samples, samples[1:])) < 2.25):
+                                point_collisions += 1
 
-                earlier_collisions = 0
-                for other in earlier:
-                    if (_boxes_overlap(label_box, other.label_box, gap=1.0)
-                            or _polyline_intersects_box(samples,
-                                                        _expand_box(other.label_box, 1.0))
-                            or _polyline_intersects_box(other.path_samples,
-                                                        _expand_box(label_box, 1.0))
-                            or _polylines_intersect(samples, other.path_samples)):
-                        earlier_collisions += 1
+                        geometry_crossings = 0
+                        near_geometry = 0
+                        endpoint_pair = {dimension.p1, dimension.p2}
+                        for segment in self.segments.values():
+                            a, b = self.points[segment.p1], self.points[segment.p2]
+                            chord_scale = math.hypot(b.x - a.x, b.y - a.y)
+                            chord_tolerance = max(1.0e-9, chord_scale * 1.0e-7)
+                            own_chord = {segment.p1, segment.p2} == endpoint_pair or (
+                                # 긴 변의 **일부**를 재는 치수(반지름 4 cm 가 지름 선분
+                                # 위에 있는 부채꼴 고리 등): 두 끝점이 같은 선분 위에
+                                # 있으면 곡선은 그 선분과 끝점에서만 닿는다 — 교차가
+                                # 아니라 자기 현이다.  이 배치는 종전에는 모든 오프셋
+                                # 후보가 «교차»로 죽어 아예 그릴 수 없었다.
+                                _distance_point_line(first, a, b) <= chord_tolerance
+                                and _distance_point_line(second, a, b) <= chord_tolerance
+                                and _point_within_segment(first, a, b, chord_tolerance)
+                                and _point_within_segment(second, a, b, chord_tolerance)
+                            )
+                            if own_chord:
+                                # A one-sided quadratic meets its measured chord only
+                                # at the deliberately inset start/end points.  The
+                                # value label itself still needs genuine clearance.
+                                label_clearance = _expand_box(
+                                    label_box,
+                                    self.style.segment_width / 2.0 + 0.5,
+                                )
+                                if _segment_intersects_box(a, b, label_clearance):
+                                    geometry_crossings += 1
+                                continue
+                            if (_polyline_intersects_segment(samples, a, b)
+                                    or _segment_intersects_box(a, b, label_box)):
+                                geometry_crossings += 1
+                            else:
+                                clearance = min(
+                                    _distance_xy_to_segment(sample.x, sample.y, a, b)
+                                    for sample in samples)
+                                if clearance < 3.0:
+                                    near_geometry += 1
 
-                side_crowding = 0
-                for point_name, point in self.points.items():
-                    if point_name in {dimension.p1, dimension.p2}:
-                        continue
-                    along = (point.x - first.x) * ux + (point.y - first.y) * uy
-                    normal = ((point.x - first.x) * nx
-                              + (point.y - first.y) * ny) * sign
-                    if -0.15 * length <= along <= 1.15 * length and normal > 2.0:
-                        side_crowding += 1
+                        for arc_name in sorted(self.arcs):
+                            arc_samples = self._arc_stroke_samples(self.arcs[arc_name])
+                            if (_polylines_intersect(samples, arc_samples)
+                                    or _polyline_intersects_box(arc_samples,
+                                                                _expand_box(label_box, 1.0))):
+                                geometry_crossings += 1
+                            else:
+                                clearance = min(
+                                    _distance_xy_to_segment(sample.x, sample.y, a, b)
+                                    for sample in samples
+                                    for a, b in zip(arc_samples, arc_samples[1:]))
+                                if clearance < 3.0:
+                                    near_geometry += 1
 
-                score = (
-                    clipped, text_collisions, point_collisions,
-                    geometry_crossings, circle_crossings, earlier_collisions,
-                    float(side_crowding), float(near_geometry),
-                    offset_rank, side_rank,
-                )
-                candidates.append((score, layout))
+                        circle_crossings = 0
+                        for circle_obj in self.circles.values():
+                            if not circle_obj.draw:
+                                # No ink on construction circles; dimension curves may
+                                # cross their circumference freely.
+                                continue
+                            center = self.points[circle_obj.center]
+                            if _box_intersects_circle(label_box, center, circle_obj.radius, 0.75):
+                                circle_crossings += 1
+                            else:
+                                residuals = [
+                                    math.hypot(sample.x - center.x, sample.y - center.y)
+                                    - circle_obj.radius for sample in samples
+                                ]
+                                # A chord dimension begins inside the circle near both
+                                # endpoints.  Only a real inside/outside transition is
+                                # a circumference crossing; mere endpoint proximity is
+                                # expected and must not reject the clean inner arc.
+                                if min(residuals) < -0.75 and max(residuals) > 0.75:
+                                    circle_crossings += 1
+
+                        earlier_collisions = 0
+                        for other in earlier:
+                            if (_boxes_overlap(label_box, other.label_box, gap=1.0)
+                                    or _polyline_intersects_box(samples,
+                                                                _expand_box(other.label_box, 1.0))
+                                    or _polyline_intersects_box(other.path_samples,
+                                                                _expand_box(label_box, 1.0))
+                                    or _polylines_intersect(samples, other.path_samples)):
+                                earlier_collisions += 1
+
+                        side_crowding = 0
+                        for point_name, point in self.points.items():
+                            if point_name in {dimension.p1, dimension.p2}:
+                                continue
+                            along = (point.x - first.x) * ux + (point.y - first.y) * uy
+                            normal = ((point.x - first.x) * nx
+                                      + (point.y - first.y) * ny) * sign
+                            if -0.15 * length <= along <= 1.15 * length and normal > 2.0:
+                                side_crowding += 1
+
+                        score = (
+                            clipped, text_collisions, point_collisions,
+                            geometry_crossings, circle_crossings, earlier_collisions,
+                            float(side_crowding), float(near_geometry),
+                            # 곡선을 변에 **가깝게** 두는 것이 먼저고, 그다음이
+                            # 「값은 가운데」다 — 값을 옮겨서 될 일을 오프셋으로 풀면
+                            # 치수선이 도형에서 멀어져 무엇을 잰 것인지 흐려진다.
+                            font_rank, offset_rank, anchor_rank, side_rank,
+                        )
+                        candidates.append((score, layout))
 
         score, layout = min(candidates, key=lambda item: item[0])
         if any(score[:6]):
@@ -1725,16 +1884,41 @@ class FigureScene:
         label_boxes: dict[str, Box] = {}
         occupied: list[Box] = []
 
-        # Angle labels are fixed by the angle bisector and reserve their space
-        # before automatic point labels are evaluated.
+        # 🔴 **자리를 잡는 순서는 «자유도가 적은 것부터»다.**
+        #
+        #   각 라벨(이등분선 위 — 방향이 하나) → 치수(제 현을 붙들어야 한다,
+        #   쪽 2 × 벌어짐 6) → 점 이름(8방향 × 5거리 = 40).
+        #
+        # 종전에는 점 이름이 **둘째**였다. 점 이름은 늘 「그 꼭짓점 바로 바깥」을
+        # 집는데, 그 자리가 곧 치수 곡선이 지나갈 자리다. 그래서 삼각형에 치수를
+        # 둘 달면 `dimension … has no collision-free layout` 으로 **거의 늘 던졌고**,
+        # 그 때문에 `m3Trig.ts` 는 치수를 통째로 포기하고 날 `<text>` 를 얹고 있었다
+        # (그 파일의 `build()` 주석이 실측 19/60 실패를 적어 두었다).
+        # 원장님 지적 2026-08-25 「길이를 표현하는 치수선이 렌더링 안 된다」의 뿌리다.
+        #
+        # 자유도가 큰 쪽을 나중에 놓으면 둘 다 자리를 얻는다.
         for angle_name in sorted(self.angles):
             angle = self.angles[angle_name]
-            laid_out = self._angle_label_layout(angle)
+            laid_out = self._angle_label_layout(angle, occupied)
             if laid_out:
                 pos, box = laid_out
                 key = f"angle:{angle.name}"
                 label_positions[key], label_boxes[key] = pos, box
                 occupied.append(box)
+
+        dimension_layouts: dict[str, DimensionLayout] = {}
+        for dimension_name in sorted(self.dimensions):
+            dimension = self.dimensions[dimension_name]
+            layout = self._dimension_layout(
+                dimension, occupied, list(dimension_layouts.values()))
+            dimension_layouts[dimension.name] = layout
+            key = f"dimension:{dimension.name}"
+            label_positions[key] = layout.label_position
+            label_boxes[key] = layout.label_box
+            occupied.append(layout.label_box)
+
+        dimension_curves = [layout.path_samples
+                            for layout in dimension_layouts.values()]
 
         for point_name in sorted(self.labels):
             label = self.labels[point_name]
@@ -1746,7 +1930,8 @@ class FigureScene:
                 x, y = point.x + dx, point.y + dy + 0.32 * fs
                 box = _text_box(x, y, label.text, fs)
                 candidates = [((x, y), box,
-                               self._candidate_cost(label.point, box, occupied, 0, 0))]
+                               self._candidate_cost(label.point, box, occupied, 0, 0,
+                                                    dimension_curves))]
             else:
                 candidates = []
                 for rank, (ux, uy) in enumerate(self._label_vectors(label)):
@@ -1761,24 +1946,14 @@ class FigureScene:
                         candidates.append((
                             (x, y), box,
                             self._candidate_cost(
-                                label.point, box, occupied, rank, distance_rank)))
+                                label.point, box, occupied, rank, distance_rank,
+                                dimension_curves)))
             pos, box, cost = min(candidates, key=lambda item: item[2])
             if cost[0]:
                 raise GeometryValidationError(
                     f"label {label.point!r} has no line/circle/label-free position")
             label_positions[label.point], label_boxes[label.point] = pos, box
             occupied.append(box)
-
-        dimension_layouts: dict[str, DimensionLayout] = {}
-        for dimension_name in sorted(self.dimensions):
-            dimension = self.dimensions[dimension_name]
-            layout = self._dimension_layout(
-                dimension, occupied, list(dimension_layouts.values()))
-            dimension_layouts[dimension.name] = layout
-            key = f"dimension:{dimension.name}"
-            label_positions[key] = layout.label_position
-            label_boxes[key] = layout.label_box
-            occupied.append(layout.label_box)
 
         bounds: list[Box] = []
         stroke_pad = max(self.style.circle_width, self.style.segment_width,
@@ -1944,18 +2119,20 @@ class FigureScene:
             radius = style.angle_radius if angle.radius is None else angle.radius
             if angle.right:
                 # 직각기호 — 호 대신, 두 변 방향으로 놓인 작은 사각형의 두 변.
-                length1 = math.hypot(p1.x - vertex.x, p1.y - vertex.y)
-                length2 = math.hypot(p2.x - vertex.x, p2.y - vertex.y)
-                side = radius * _RIGHT_ANGLE_SCALE
-                u1x, u1y = ((p1.x - vertex.x) / length1, (p1.y - vertex.y) / length1)
-                u2x, u2y = ((p2.x - vertex.x) / length2, (p2.y - vertex.y) / length2)
+                # ⚠️ 좌표는 `_angle_mark_polylines` 가 정한다 — 충돌 판정과 **같은 값**을
+                #    써야 한다(`_segment_mark_lines` 와 같은 무늬). 두 벌이 되면
+                #    「비켰다」고 판정한 자리에 다른 것이 그려진다.
+                square = self._angle_mark_polylines(angle)
+                if not square:
+                    continue
+                corner_a, corner_b, corner_c = square[0]
                 marks.append(
-                    f'<path d="M {_fmt(vertex.x + side * u1x + tx)} '
-                    f'{_fmt(vertex.y + side * u1y + ty)} '
-                    f'L {_fmt(vertex.x + side * (u1x + u2x) + tx)} '
-                    f'{_fmt(vertex.y + side * (u1y + u2y) + ty)} '
-                    f'L {_fmt(vertex.x + side * u2x + tx)} '
-                    f'{_fmt(vertex.y + side * u2y + ty)}" fill="none" '
+                    f'<path d="M {_fmt(corner_a.x + tx)} '
+                    f'{_fmt(corner_a.y + ty)} '
+                    f'L {_fmt(corner_b.x + tx)} '
+                    f'{_fmt(corner_b.y + ty)} '
+                    f'L {_fmt(corner_c.x + tx)} '
+                    f'{_fmt(corner_c.y + ty)}" fill="none" '
                     f'stroke="{escape(style.stroke, quote=True)}" '
                     f'stroke-width="{_fmt(style.mark_width)}"/>')
                 continue

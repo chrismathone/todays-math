@@ -269,17 +269,28 @@ function def(
 /* ────────────────────────────────────────────────────────────────────────
  * FigureSpec v2 빌더 — 좌표만 계산한다. 스펙 검증은 엔진이 정본이다(09 §0.1).
  *
- * ⚠️ **치수는 `dimensions` 로 넣지 않는다.** 엔진의 치수 충돌 검사가 이 도형들에서
- * 자주 거부한다 — 실측(2026-08-23, `renderFigureSpec` 실렌더 60건): 19건 실패,
- * `offset` 18·24·30·38 × `side` auto·left·right **15가지를 전부** 대 봐도
- * 삼각비 05 · 활용 10·11·14 는 **0/15** 였다. 게다가 같은 빌더가 씨앗에 따라
- * 되기도 안 되기도 한다(활용 09 는 씨앗 0 은 되고 1 은 안 됐다) — 그러면
- * 「그림 실패 0」을 씨앗 운에 맡기는 셈이다. m3Figures.ts 도 같은 이유로
- * 치수선을 뺐다(「엔진의 dimension 충돌 검사는 … 항상 거부한다」).
+ * ## 치수는 **`dimensions`** 로 넣는다 (2026-08-25 원장님 지적으로 되돌림)
  *
- * 대신 **변 옆에 글자를 놓는다**(m2GeoSim 의 `n_` 앵커 방식). 자리는 **좌표를
- * 맞춘 뒤**(`fitPts` 이후) 픽셀로 계산하므로 도형 크기가 달라져도 벌어짐이 같다.
- * 값은 전부 생성기의 `facts` 에서 나온 것이고, 발문도 같은 값을 말한다.
+ * 원장님: 「**길이를 표현하는 치수선(점선/곡선)이 렌더링 안 된다**」
+ * (`J30503-A05-002` 는 길이 표시가 아예 없고 `A04-002` 는 $\overline{AB}$ 가 없다).
+ *
+ * ⚠️ 종전에는 여기 「치수는 `dimensions` 로 넣지 않는다」가 적혀 있었다. 실측 근거도
+ * 있었다 — 2026-08-23 실렌더 60건 중 19건이 `dimension … has no collision-free
+ * layout` 으로 던졌고, `offset`×`side` 15가지를 다 대 봐도 안 되는 유형이 있었다.
+ * **그 관찰은 사실이었지만 원인 진단이 없었다.**
+ *
+ * 뿌리는 엔진의 **배치 순서**였다: 점 이름(A·B·C)을 치수보다 **먼저** 놓는데,
+ * 점 이름은 늘 「그 꼭짓점 바로 바깥」을 집고 그 자리가 곧 치수 곡선이 지나갈 자리다.
+ * 자유도가 큰 쪽(8방향×5거리)이 먼저 자리를 차지하니 자유도가 작은 쪽(제 현을
+ * 붙들어야 하는 치수)이 갈 데가 없었다. `figure_scene.resolve()` 를
+ * **«자유도가 적은 것부터»** 로 바꾸자 같은 도형이 그대로 그려진다.
+ *
+ * 그래서 여기서는 **엔진에 치수를 맡긴다** — 점선 `6 4` + halo 는 이 저장소가 정한
+ * 치수 규격이고(09 §4-16), 날 `<text>` 는 「선에서 8px 도 안 떨어진 길이 표기」라는
+ * `lint_svg` 규칙 4 를 정면으로 어긴다.
+ *
+ * `dims` 의 키는 **두 점 이름**(`"BC"`)이고 엔진 이름은 `d_` 를 붙인다 — 기하 객체
+ * 이름은 한 네임스페이스를 쓴다(09 §4-2).
  * ──────────────────────────────────────────────────────────────────────── */
 
 type FigureSpec = Record<string, unknown>;
@@ -311,52 +322,47 @@ type Draft = {
   pts: Record<string, XY>;
   segments: Record<string, unknown>;
   angles?: Record<string, unknown>;
-  /** 변 이름(두 점) → 그 변 옆에 적을 글자. 예: `{ AB: "8 cm" }` */
+  /** 변 이름(두 점) → 그 변에 붙일 치수. 예: `{ AB: "8 cm" }` */
   dims?: Record<string, string>;
-  /** 안쪽으로 밀어야 하는 변(도형 안을 지나는 선). 값은 픽셀. */
-  push?: Record<string, number>;
+  /**
+   * 치수 쪽 고정 — `"left"`/`"right"`. 안 주면 `"auto"`(엔진이 둘 다 대 본다).
+   * ⚠️ 「도형 안을 지나는 선」(수선 등)에 auto 를 주면 엔진이 안쪽으로도 대 보다가
+   *    다른 변과 부딪혀 던질 수 있다 — 그런 변만 쪽을 못 박는다.
+   */
+  side?: Record<string, "left" | "right">;
   labels: Record<string, string>;
 };
 
-const NOTE_PUSH = 15;
-
 /**
- * 좌표를 맞추고, 변 옆 글자를 **픽셀 단위**로 붙인다.
- * 글자 앵커 이름은 `n_` 접두사 — 기하 객체 이름은 한 네임스페이스를 쓴다(09 §4-2).
+ * 좌표를 맞추고 치수를 붙인다.
+ *
+ * ⚠️ `label` 은 **plain text** 여야 한다 — `dimensions.label` 은 KaTeX 로 다시
+ *    렌더링되지 않는다(09 §4-26). `dimCm()` 이 그것을 지킨다.
  */
 function build(d: Draft): FigureSpec {
   const fitted = fitPts(d.pts);
-  const points: Record<string, unknown> = { ...fitted };
-  const labels: Record<string, string> = { ...d.labels };
-  const all = Object.values(fitted);
-  const cx = all.reduce((u, p) => u + p[0], 0) / all.length;
-  const cy = all.reduce((u, p) => u + p[1], 0) / all.length;
-  for (const [pair, text] of Object.entries(d.dims ?? {})) {
-    const p = fitted[pair[0]!];
-    const q = fitted[pair[1]!];
-    if (!p || !q) throw new Error(`치수 글자의 끝점이 없습니다: ${pair}`);
-    const mx = (p[0] + q[0]) / 2;
-    const my = (p[1] + q[1]) / 2;
-    let nx = -(q[1] - p[1]);
-    let ny = q[0] - p[0];
-    const len = Math.hypot(nx, ny) || 1;
-    nx /= len;
-    ny /= len;
-    // 무게중심 반대쪽 — 도형 밖으로 나가게 한다.
-    if ((mx - cx) * nx + (my - cy) * ny < 0) {
-      nx = -nx;
-      ny = -ny;
-    }
-    const push = d.push?.[pair] ?? NOTE_PUSH;
-    points[`n_${pair}`] = [r2(mx + nx * push), r2(my + ny * push)];
-    labels[`n_${pair}`] = text;
-  }
   const spec: FigureSpec = {
     version: 2,
-    points,
+    points: { ...fitted },
     segments: d.segments,
-    labels,
+    labels: { ...d.labels },
   };
+  const dims = Object.entries(d.dims ?? {});
+  if (dims.length > 0) {
+    const dimensions: Record<string, unknown> = {};
+    for (const [pair, text] of dims) {
+      const p = pair[0]!;
+      const q = pair[1]!;
+      if (!fitted[p] || !fitted[q])
+        throw new Error(`치수의 끝점이 없습니다: ${pair}`);
+      dimensions[`d_${pair}`] = {
+        points: [p, q],
+        label: text,
+        side: d.side?.[pair] ?? "auto",
+      };
+    }
+    spec.dimensions = dimensions;
+  }
   if (d.angles && Object.keys(d.angles).length > 0) spec.angles = d.angles;
   return spec;
 }
@@ -437,8 +443,6 @@ function figAltitude(opts: {
     },
     angles,
     dims: opts.dims,
-    // $\overline{AH}$ 는 도형 안을 지나므로 왼쪽으로 민다(무게중심 반대쪽이 안쪽이다).
-    push: { AH: -18, BH: 16 },
     labels: { A: "A", B: "B", C: "C", H: "H" },
   });
 }
@@ -723,8 +727,19 @@ function figQuadrant(opts: { ang: number }): FigureSpec {
   };
 }
 
-/** 반지름 `R` 인 원에 내접하는 정 `n` 각형 — 반지름 하나를 글자와 함께 긋는다. */
-function figRegularPoly(opts: { n: number; rLabel: string }): FigureSpec {
+/**
+ * 반지름 `R` 인 원에 내접하는 정 `n` 각형 — 중심 $O$ 와 반지름 하나를 긋는다.
+ *
+ * ⚠️ **반지름에 값은 안 적는다.** 두 가지가 겹친다.
+ *   ⑴ 발문이 이미 「반지름의 길이가 $R$ cm 인 원」이라 말한다 — 09 §4-20-b 의
+ *      「발문이 이미 말했는가」(원장님 확정 2026-08-22)에 그대로 해당한다.
+ *   ⑵ 그리고 **들어갈 자리가 없다.** 정 $n$ 각형 안에서 반지름 옆 통로는 대략
+ *      $R/2$ 인데 값 상자는 45단위쯤이다. 실측(반지름 82~120 × $n$=3·4·6·8·12):
+ *      **정삼각형은 어느 크기에서도 안 들어가고** 정사각형은 반지름 95부터 들어간다.
+ *      그렇다고 날 `<text>` 를 옆에 놓으면 그것은 「선에서 떨어진 맨 길이 표기」라
+ *      lint 규칙 4 위반이다 — 종전 `n_R` 이 바로 그것이었고, 이번 판정기가 물었다.
+ */
+function figRegularPoly(opts: { n: number }): FigureSpec {
   const names = Array.from({ length: opts.n }, (_, i) => `P${i + 1}`);
   const points: Record<string, unknown> = { O: [CX, CY] };
   const segments: Record<string, unknown> = {};
@@ -738,15 +753,12 @@ function figRegularPoly(opts: { n: number; rLabel: string }): FigureSpec {
     segments[`s${i + 1}`] = [names[i]!, names[(i + 1) % opts.n]!];
   }
   segments.r1 = ["O", names[0]!];
-  // 반지름 글자 자리는 «전 매개변수»(n 5가지 × R 2~12)를 실렌더로 훑어 골랐다 —
-  // 중점(dy=41)에 두면 정삼각형에서 R 이 두 자리일 때 밑변에 걸린다(실패 3/11).
-  points.n_R = [CX + 16, CY - 30];
   return {
     version: 2,
     points,
     circles: { c: { center: "O", radius: R_PX } },
     segments,
-    labels: { O: "O", n_R: opts.rLabel },
+    labels: { O: "O" },
   };
 }
 
@@ -814,9 +826,29 @@ function red(n: number, d: number): [number, number] {
   return [n / g, d / g];
 }
 
-/** 그림 치수 라벨 — SVG 는 LaTeX 가 아니라 **글자**다. */
+/**
+ * 그림 치수 라벨 — `dimensions.label` 은 **순수 SVG 글자**이지 KaTeX 가 아니다(09 §4-26).
+ *
+ * 발문에 쓰는 표기를 그대로 넣으면 **렌더는 성공하고 지면에 `3+\sqrt{3}` 이 날 것으로
+ * 찍힌다** — 스스로 신고하지 않는 부류다. 그래서 여기서 근호·분수·단위만 글자로 바꾸고,
+ * **못 바꾼 명령이 남으면 던진다.** 조용히 통과시키면 그 자리가 「렌더 성공한 오답」이 된다.
+ */
+function dimText(v: number | string, unit = "cm"): string {
+  const s = String(v)
+    .replace(/\\sqrt\{([^{}]+)\}/g, "√$1")
+    .replace(/\\d?frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
+    .replace(/\\mathrm\{([^{}]*)\}/g, "$1")
+    .replace(/\\,/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (s.includes("\\"))
+    throw new Error(`치수 라벨은 글자여야 한다 — 남은 LaTeX: ${s} (09 §4-26)`);
+  return unit ? `${s} ${unit}` : s;
+}
+
+/** 그림 치수 라벨(cm). */
 function dimCm(v: number | string): string {
-  return `${v} cm`;
+  return dimText(v, "cm");
 }
 
 /** `\sin A`·`\cos A`·`\tan A` (일반각 표기). */
@@ -1808,11 +1840,14 @@ export const M3_TRIG: TypeEntry[] = [
         answer: `$${cm(ac)}$`,
         solution: `${where} $\\overline{BH}=${abText}\\times\\cos ${outer}^\\circ=${bh}\\,(\\mathrm{cm})$, $\\overline{AH}=${abText}\\times\\sin ${outer}^\\circ=${ahText}\\,(\\mathrm{cm})$이다.\n$\\overline{HC}=${hc}\\,\\mathrm{cm}$이므로 직각삼각형 $AHC$에서 $\\overline{AC}=\\sqrt{(${ahText})^2+${hc}^2}=${ac}\\,(\\mathrm{cm})$이다.`,
         facts: { abC, abR, bc, ang, bh, hc, ac },
+        // 원장님 지적 2026-08-25 — `J30503-A04-002` 는 발문이 $\overline{AB}$·
+        // $\overline{BC}$ 를 둘 다 말하는데 그림엔 `6 cm` **하나뿐**이었다.
+        // 「받은 치수를 다 적는다」는 09 §4-20 이 이미 정한 규칙이다.
         figureSpec: figTwoSides({
           ab: abC * Math.sqrt(abR),
           bc,
           angB: ang,
-          dims: { BC: dimCm(bc) },
+          dims: { AB: dimCm(abText), BC: dimCm(bc) },
         }),
       };
     },
@@ -1916,10 +1951,13 @@ export const M3_TRIG: TypeEntry[] = [
           an: res.n,
           ar: res.r,
         },
+        // 원장님 지적 2026-08-25 — 이 유형은 **길이 표시가 하나도 없었다**
+        // (`J30503-A05-002`: 발문이 $\overline{BC}$ 를 말하는데 그림엔 각뿐).
         figureSpec: figTwoAngles({
           bc: bcVal,
           angB: cfg.b,
           angC: cfg.c,
+          dims: { BC: dimCm(paren) },
         }),
       };
     },
@@ -2172,7 +2210,7 @@ export const M3_TRIG: TypeEntry[] = [
         answer: `$${cm2(surdText(area))}$`,
         solution: `정${name}각형은 원의 중심을 꼭짓점으로 하는 합동인 이등변삼각형 ${n === 3 ? "세" : n === 4 ? "네" : n === 6 ? "여섯" : n === 8 ? "여덟" : "열두"} 개로 나뉘고, 각 삼각형의 꼭지각의 크기는 $\\dfrac{360^\\circ}{${n}}=${central}^\\circ$이다.\n따라서 넓이는 $${n}\\times\\dfrac{1}{2}\\times${R}\\times${R}\\times${shrink}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { n, R, central, an: area.n, ar: area.r },
-        figureSpec: figRegularPoly({ n, rLabel: dimCm(R) }),
+        figureSpec: figRegularPoly({ n }),
       };
     }),
   ),

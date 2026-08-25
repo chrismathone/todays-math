@@ -440,6 +440,40 @@ def _label_w_max(text: str, size: float = 13.0) -> float:
     )
 
 
+_TEXT_TAG_RE = re.compile(r"<text\b([^>]*)>(.*?)</text>", re.S)
+
+
+def _text_bboxes(body: str) -> list[tuple[float, float, float, float, str]]:
+    """그려진 `<text>` 의 **경계 상자**들. `_body_bbox` 는 닻점만 세므로 여기가 그 몫이다.
+
+    🔴 이것이 「그림이 잘린다」의 뿌리다 — `_svg` 는 글자를 **점 하나**로 보고
+       viewBox 를 맞춘다(그 함수 위 `_GEOM_TAGS` 주석이 그렇게 적어 두었다).
+       그래서 축 단위 이름표(`(점)`)가 프레임 밖으로 반쯤 나가도 **아무 에러가 안 난다**
+       (원장님 지적 2026-08-25, `J30702-A03-002`·`A04-002`).
+
+    폭은 `_label_w_max`(상한)를 쓴다 — 자리를 미리 빼는 부르는 쪽과 **같은 자**여야
+    「부르는 쪽은 넉넉히 뺐는데 검사는 좁게 재서 통과」가 안 생긴다.
+    """
+    out: list[tuple[float, float, float, float, str]] = []
+    for match in _TEXT_TAG_RE.finditer(body):
+        attrs = dict(_ATTR_RE.findall(match.group(1)))
+        text = re.sub(r"<[^>]+>", "", match.group(2))
+        if not text.strip():
+            continue
+        size = float(attrs.get("font-size", 13.0))
+        x = float(attrs.get("x", 0.0))
+        y = float(attrs.get("y", 0.0))
+        width = _label_w_max(text, size)
+        anchor = attrs.get("text-anchor", "start")
+        x0 = x - width if anchor == "end" else x - width / 2.0 if anchor == "middle" else x
+        if attrs.get("dominant-baseline") == "middle":
+            y0, y1 = y - size * 0.56, y + size * 0.56
+        else:
+            y0, y1 = y - size * 0.85, y + size * 0.25
+        out.append((x0, y0, x0 + width, y1, text))
+    return out
+
+
 def _arrow_down(x: float, y0: float, y1: float) -> str:
     return (
         f'<line x1="{_n(x)}" y1="{_n(y0)}" x2="{_n(x)}" y2="{_n(y1 - 4)}" '

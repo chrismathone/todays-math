@@ -21,6 +21,7 @@ from elementary import (
     _arrow_right,
     _esc,
     _label_w_max,
+    _text_bboxes,
     _length_mark,
     _n,
     _rect,
@@ -337,11 +338,27 @@ def _y_step_spec(spec: Mapping[str, Any]) -> int | None:
     return _int(spec["yStep"], "yStep", 1, 10000)
 
 
+# 세로축 단위 이름표는 맨 위 눈금보다 «한 줄 위»에 앉는다. 그 한 줄이 이 값이다.
+UNIT_LABEL_DROP = 20.0
+UNIT_LABEL_SIZE = 13.0
+
+
+def unit_label_min_top() -> float:
+    """세로축 단위를 넣을 때 **맨 위 눈금이 내려와 있어야 할 최소 높이**.
+
+    ⚠️ 이름표는 `dominant-baseline="middle"` 이라 닻점 위아래로 글자가 반씩 걸친다.
+       `_svg` 는 닻점만 보므로 이 몫을 부르는 쪽이 안 빼면 **프레임 위로 잘린다**
+       — `_scatter_plot` 이 실제로 그랬다(원장님 지적 2026-08-25).
+       그래서 「한 줄 위」를 눈대중으로 적지 않고 **여기서 계산**해 나눠 쓴다.
+    """
+    return UNIT_LABEL_DROP + UNIT_LABEL_SIZE * 0.56 + FIT_PAD
+
+
 def _unit_label(left: float, top: float, ylab: str) -> str:
     """세로축 단위는 눈금과 같은 열, 맨 위 눈금보다 한 줄 위."""
     if not ylab:
         return ""
-    return _text(left - 7, top - 20, ylab, size=13, anchor="end")
+    return _text(left - 7, top - UNIT_LABEL_DROP, ylab, size=UNIT_LABEL_SIZE, anchor="end")
 
 
 # 눈금 숫자 한 자의 폭(그림 단위, 14pt). **실측값이다** — 지면과 같은 렌더러
@@ -390,8 +407,17 @@ def _fixed_width_svg(width: float, height: float, body: str, what: str, hint: st
 
     ⚠️ 폭을 박는 kind 가 셋(통계·좌표평면·원뿔 전개도)이라 **여기 한 곳**만 본다 —
        각자 적으면 한쪽만 고쳐진다(2026-08-18 「한 숫자를 두 곳이 쓰게 하라」).
-       그리고 `_svg` 는 `<text>` 의 **닻점만** 세므로 글자 폭은 여기 안 잡힌다.
-       그 몫은 부르는 쪽이 `_label_w_max` 로 재서 미리 자리를 빼야 한다.
+
+    🔴 **그리고 글자가 프레임 밖으로 나가는지도 여기서 본다** (2026-08-25).
+       종전에는 이 자리에 「`_svg` 는 닻점만 세므로 글자 폭은 여기 안 잡힌다 —
+       그 몫은 부르는 쪽이 재서 미리 빼야 한다」고만 적혀 있었다. 그 말은 **옳지만
+       아무도 지키는지 확인하지 않았다**: `_scatter_plot` 이 x축 단위 이름표 몫을
+       안 빼고 있었고(`_stat_frame`·`_box_plot` 은 빼고 있었다), y축 단위는
+       프레임 위로 반쯤 나가 있었다. 그림은 그냥 잘렸고 **에러는 안 났다**
+       (원장님 지적 2026-08-25 `J30702-A03-002`·`A04-002`).
+
+       그래서 「부르는 쪽이 알아서」를 **검사로 바꾼다.** 폭은 늘리면 지면 등급이
+       뒤집히므로(위 문단) 늘리지 않고 **던진다** — 조용한 잘림보다 시끄러운 실패다.
     """
     svg = _svg(width, height, body)
     m = _SVG_SPLIT.match(svg)
@@ -403,6 +429,14 @@ def _fixed_width_svg(width: float, height: float, body: str, what: str, hint: st
             f"{what} 폭이 {got:.0f}단위로 벌어졌습니다 ({width:.0f} 이어야 합니다) — "
             f"지면 등급이 바뀝니다. {hint}"
         )
+    got_h = float(m.group(2))
+    for x0, y0, x1, y1, text in _text_bboxes(m.group(3)):
+        if x0 < -0.51 or x1 > got + 0.51 or y0 < -0.51 or y1 > got_h + 0.51:
+            raise ValueError(
+                f"{what} 의 글자 「{text}」가 프레임 밖으로 나갑니다 "
+                f"(글자 {x0:.0f}~{x1:.0f} × {y0:.0f}~{y1:.0f}, "
+                f"프레임 {got:.0f}×{got_h:.0f}) — {hint}"
+            )
     return svg
 
 
@@ -1418,13 +1452,20 @@ def _scatter_plot(spec: Mapping[str, Any]) -> str:
         SCATTER_PAD_L,
     )
     tail = _label_w_max(x_labels[-1]) / 2 + FIT_PAD
+    if xlab:
+        # ⚠️ 이 두 줄이 없어서 x축 단위 이름표가 **오른쪽에서 잘렸다**
+        #    (원장님 지적 2026-08-25 — 화면에 「100 (」 까지만 보였다).
+        #    `_stat_frame`(히스토그램)과 `_box_plot` 은 진작 빼고 있었고 여기만 빠져
+        #    있었다 — 같은 규칙을 쓰는 자리가 셋인데 하나만 안 고쳐진 그 자리다.
+        tail += UNIT_GAP + _label_w_max(xlab)
     plot_w = STAT_VIEWBOX - left - tail - SCATTER_PAD_R
     if plot_w < STAT_MIN_PLOT_W:
         raise ValueError(
             f"라벨이 넓어 그림 칸이 {plot_w:.0f}단위밖에 안 남습니다 "
             f"({STAT_MIN_PLOT_W:.0f} 이상이어야 합니다)"
         )
-    top = 30.0 if title else SCATTER_PAD_T
+    # 세로축 단위를 넣으면 맨 위 눈금이 그만큼 내려와야 한다 — 안 내리면 위가 잘린다.
+    top = max(30.0 if title else SCATTER_PAD_T, unit_label_min_top() if ylab else 0.0)
     plot_h = STAT_PLOT_H
     bottom = top + plot_h
 
