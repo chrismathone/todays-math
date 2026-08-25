@@ -187,22 +187,30 @@ b="$(behavior_probe narrow | tail -1)"
 verdict "② 각 라벨을 25 에 박음" "좁은 각의 값이 두 변을 덮지 않는다"
 restore
 
-# ── 변이 ③ 배치 순서를 되돌린다 — 점 이름을 치수보다 먼저 ──────────────────
-apply_mutation "        dimension_curves = [layout.path_samples
-                            for layout in dimension_layouts.values()]" \
-               "        dimension_curves = []
-        _unused_curves = [layout.path_samples
-                            for layout in dimension_layouts.values()]" || exit 3
+# ── 변이 ③ 치수를 아예 안 그린다 ────────────────────────────────────────────
+#
+# ⚠️ 「배치 순서」 자체는 여기서 변이로 못 만든다(블록을 통째로 옮기는 일이라
+#    한 줄 치환이 아니다). 대신 **옛 엔진으로 직접 재서** 확인했다:
+#
+#      $ git show HEAD~1:vendor/figure-engine/core/figure_scene.py …  (C:/tmp/figbase)
+#      HEAD 엔진: GeometryValidationError dimension 'd_BC' has no
+#                 collision-free layout (clip/text/point/…=(0, 1, 0, 0, 0, 0))
+#
+#    `text_collisions=1` — 먼저 놓인 **점 이름 상자**가 치수를 막았다는 뜻이고,
+#    그것이 곧 「치수선이 렌더링 안 된다」의 뿌리다. 지금 엔진은 같은 스펙을 그린다.
+#    (2026-08-18 「전후를 견줄 때는 분모를 먼저 검산하라」 — 추론이 아니라 측정이다.)
+apply_mutation "        for dimension_name in sorted(self.dimensions):
+            dimension = self.dimensions[dimension_name]
+            layout = self._dimension_layout(" \
+               "        for dimension_name in sorted({} if True else self.dimensions):
+            dimension = self.dimensions[dimension_name]
+            layout = self._dimension_layout(" || exit 3
 cmp -s "$TARGET" "$BACKUP" && { echo "변이 ③ 이 파일을 안 바꿨다"; exit 3; }
 b="$(behavior_probe twodims | tail -1)"
-if [ "$b" = "$BASE_T" ]; then
-  echo "🟡 변이 ③ 은 이 표본에서 동작을 안 바꾼다 (probe=$b) — 판정하지 않고 건너뛴다"
-  restore
-else
-  verdict "③ 점 이름이 치수 곡선을 못 봄" "치수 값은 제 점선"
-  restore
-fi
+[ "$b" != "$BASE_T" ] || { echo "변이 ③ 이 동작을 안 바꿨다 (probe=$b) — 판정하지 않는다"; exit 3; }
+verdict "③ 치수를 안 그림" "둘 다 점선 치수선을 얻는다"
+restore
 
 echo ""
 echo "═══ 빨강 $PASS · 문제 $FAIL ═══"
-[ $FAIL -eq 0 ] && [ $PASS -ge 2 ]
+[ $FAIL -eq 0 ] && [ $PASS -eq 3 ]
