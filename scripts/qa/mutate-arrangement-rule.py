@@ -46,7 +46,7 @@ MUTATIONS = [
         "if (labels.length < 3) return [];",
     ),
     (
-        "수식 명령을 안 지운다 (\\square AEFD 를 놓친다)",
+        "수식 명령을 안 지운다 (\\LEFT 가 꼭짓점 이름이 된다)",
         'const stripped = content.replace(/\\\\[A-Za-z]+/g, " ");',
         "const stripped = content;",
     ),
