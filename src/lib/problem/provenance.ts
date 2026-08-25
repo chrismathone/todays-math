@@ -199,6 +199,11 @@ export function classifyFigure(problem: ProvenanceInput): FigureOrigin | null {
 export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
   const choices = parseProblemContent(problem.content).choices.length;
   const answerHasChoiceNumber = ANSWER_CHOICE_NUMBER.test(problem.answer);
+  // ⚠️ **문턱 2 는 오늘 아무것도 안 가른다** — `parseProblemContent` 는 마커가 하나면
+  //    0을 낸다(실측: 줄머리 `① 가` 하나 → `choices=0`). 그래서 `>= 1` 로 바꿔도 결과가
+  //    같고, 변이 하네스가 그것을 잡아 «판정거부»를 낸다. 지우지 않은 이유는 파서가
+  //    나중에 1을 내기 시작하면 「마커 하나짜리는 고르는 문항이 아니다」가 옳아서다.
+  //    **지금은 안 물고 있다**는 사실을 숨기지 않으려고 여기 적어 둔다(죽은 규칙 금지).
   if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";
   if (choices === 0 && !answerHasChoiceNumber) return "written";
   return "unknown";
