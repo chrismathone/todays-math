@@ -10,7 +10,7 @@
  *    고치고 있어서, 기존 `ProblemCard.test.tsx` 를 같이 건드리면 충돌한다.
  */
 import { render, within } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { ProblemCard } from "@/components/problem/ProblemCard";
 import { ReviewProblemCard } from "@/components/test/ReviewProblemCard";
@@ -170,6 +170,29 @@ describe("[출처 배선] 문제은행 카드", () => {
     );
     expect(axes).toEqual(["origin", "format"]);
     expect(new Set(axes).size).toBe(axes.length);
+  });
+
+  /**
+   * 🔴 **React 키가 겹치면 DOM 은 그럴듯하게 나온다** — 경고만 콘솔로 나가고 화면은
+   * 멀쩡해 보인다. 그래서 DOM 으로는 못 잡고 **경고를 들어야** 잡힌다.
+   * 키를 `kind` 로 잡으면 「출처도 형식도 모르는 문항」에서 둘 다 `unknown` 이라 겹친다.
+   */
+  it("키가 겹치지 않는다 — 셋 다 «모른다» 인 문항에서도 React 경고가 없다", () => {
+    const 셋다모름 = problem({
+      figureUrls: ["/figures-300/a.png"],
+      content: MCQ,
+      answer: "풀이참조",
+    });
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      render(<ProblemCard problem={셋다모름} />);
+      const 키경고 = spy.mock.calls
+        .map((args) => String(args[0]))
+        .filter((msg) => msg.includes("same key") || msg.includes("unique"));
+      expect(키경고).toEqual([]);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });
 

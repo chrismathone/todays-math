@@ -165,15 +165,14 @@ mutate "미분류를 없애고 전부 초등 엔진이라 한다" "$SRC_RULE" \
 }
 
 /** 그림 출처 판정'
+# ⚠️ 앵커는 «그 함수 안에서만 있는 말»로 잡는다. `return "unknown";` 만으로는
+#    `classifyFigure` 와 `classifyFormat` 을 못 가른다 — 형식 축이 생기면서 실제로
+#    같은 자리를 가리키게 됐다(하네스가 잘못된 함수를 고칠 뻔했다).
 mutate "그림 미분류를 «스캔» 으로 뭉갠다" "$SRC_RULE" \
-  '  return "unknown";
-}
-
-/** 화면이 그리는 라벨 한 장. */' \
-  '  return "scan";
-}
-
-/** 화면이 그리는 라벨 한 장. */'
+  '  // 새 뿌리가 생기면 여기가 0이 아니게 되고, 그때 사람이 봐야 한다.
+  return "unknown";' \
+  '  // 새 뿌리가 생기면 여기가 0이 아니게 되고, 그때 사람이 봐야 한다.
+  return "scan";'
 mutate "그림 «없음» 을 «모른다» 로 뭉갠다" "$SRC_RULE" \
   'if (urls.length === 0) return null;' \
   'if (urls.length === 0) return "unknown";'
@@ -183,7 +182,7 @@ mutate "빈 문자열 figureSvg 를 도형 엔진으로 친다" "$SRC_RULE" \
 mutate "SVG 엔진 뿌리를 틀리게 적는다 (SVG 가 스캔으로)" "$SRC_RULE" \
   'const SVG_ENGINE_PREFIX = "/figures-svg/";' \
   'const SVG_ENGINE_PREFIX = "/figures-svg-nope/";'
-mutate "두 축의 «모른다» 에 서로 다른 색을 준다" "$SRC_RULE" \
+mutate "세 축의 «모른다» 에 서로 다른 색을 준다" "$SRC_RULE" \
   '    name: "그림 출처 미분류",
     className: "text-src-unknown",' \
   '    name: "그림 출처 미분류",
@@ -192,8 +191,40 @@ mutate "라벨에서 대괄호를 뺀다" "$SRC_RULE" \
   'text: "[초]",' \
   'text: "초",'
 mutate "그림 라벨을 아예 안 낸다" "$SRC_RULE" \
-  'if (figure !== null) badges.push({ kind: figure, ...FIGURE_BADGE[figure] });' \
-  'void figure;'
+  '    badges.push({ axis: "figure", kind: figure, ...FIGURE_BADGE[figure] });' \
+  '    void figure;'
+echo
+echo "── 형식 축 (provenance.ts) ────────────────────────────────"
+mutate "보기 문턱을 1로 내린다 (보기 하나도 객관식이라 한다)" "$SRC_RULE" \
+  '  if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";' \
+  '  if (choices >= 1 && answerHasChoiceNumber) return "multiple_choice";'
+mutate "정답 모양을 안 본다 (보기만 있으면 객관식)" "$SRC_RULE" \
+  '  if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";' \
+  '  if (choices >= 2) return "multiple_choice";'
+mutate "보기 없는 문항을 정답 모양과 무관하게 서술형이라 한다" "$SRC_RULE" \
+  '  if (choices === 0 && !answerHasChoiceNumber) return "written";' \
+  '  if (choices === 0) return "written";'
+mutate "형식 미분류를 서술형으로 뭉갠다" "$SRC_RULE" \
+  '  if (choices === 0 && !answerHasChoiceNumber) return "written";
+  return "unknown";' \
+  '  if (choices === 0 && !answerHasChoiceNumber) return "written";
+  return "written";'
+mutate "정답 원문자 계열을 ①~⑤ 로 좁힌다 (비표준 계열을 놓친다)" "$SRC_RULE" \
+  'const ANSWER_CHOICE_NUMBER = new RegExp(`[${ANSWER_CIRCLED_CLASS}]`);' \
+  'const ANSWER_CHOICE_NUMBER = /[①②③④⑤]/;'
+mutate "형식 라벨을 아예 안 낸다" "$SRC_RULE" \
+  '  badges.push({ axis: "format", kind: format, ...FORMAT_BADGE[format] });' \
+  '  void format;'
+mutate "형식 라벨의 축 이름을 출처와 같게 (React 키가 겹친다)" "$SRC_RULE" \
+  '  badges.push({ axis: "format", kind: format, ...FORMAT_BADGE[format] });' \
+  '  badges.push({ axis: "origin", kind: format, ...FORMAT_BADGE[format] });'
+mutate "[객] 색을 [서] 와 같게" "$SRC_CSS" \
+  '--src-mcq: #5f5521;' \
+  '--src-mcq: #687a00;'
+mutate "[객] 의 @theme 연결을 끊는다" "$SRC_CSS" \
+  '  --color-src-mcq: var(--src-mcq);' \
+  ''
+
 # ⑶ 이 «판정 거부» 를 내야 하는 무효 변이 — 하네스가 스스로 도장이 아님을 보인다.
 mutate "[무효 변이 시험] 스캔 뿌리 검사 순서만 뒤집는다 (뜻이 안 바뀐다)" "$SRC_RULE" \
   '  if (urls.some((u) => u.startsWith(SVG_ENGINE_PREFIX))) return "svg_engine";
