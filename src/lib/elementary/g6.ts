@@ -2,7 +2,7 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 
 import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
-import { fig, make } from "./make";
+import { fig, make, makeDeep } from "./make";
 import { divFrac, fmtFrac, gcd, lcm, mulFrac } from "./math";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
@@ -3070,6 +3070,35 @@ const PCT_TOTALS = [10, 20, 25, 50] as const;
 /** 1-4-6 — 돈 단위 풀. 백분율 곱이 늘 자연수가 되게 1000 의 배수만 쓴다. */
 const MONEY = [2000, 5000, 8000, 10000, 20000] as const;
 
+/**
+ * 1-4-5 심화 ⓑ — **백분율을 두 겹으로** 쓰는 수 짝. 「전체의 $p\%$ 의 $q\%$」다.
+ *
+ * ⚠️ 손으로 고른 값이 아니라 **두 곱이 모두 자연수로 떨어지는 것만 걸러 낸 것**이다.
+ *    사람이 고르면 $200\times25\%=50$, $50\times25\%=12.5$ 처럼 둘째 걸음에서 소수가
+ *    나오는 짝을 놓친다(초등 지면에 소수 인원이 나갈 수는 없다).
+ */
+const PCT_TWICE = (() => {
+  const rows: {
+    total: number;
+    p: number;
+    q: number;
+    mid: number;
+    last: number;
+  }[] = [];
+  for (const total of [40, 60, 80, 100, 120, 200, 240, 300]) {
+    for (const p of [20, 25, 50]) {
+      for (const q of [20, 25, 50]) {
+        const mid = (total * p) / 100;
+        const last = (mid * q) / 100;
+        if (Number.isInteger(mid) && Number.isInteger(last) && last >= 2) {
+          rows.push({ total, p, q, mid, last });
+        }
+      }
+    }
+  }
+  return rows;
+})();
+
 // ── 1-4-1 두 수 비교하기 ──
 
 /** 연산 — 수 둘만 준다. 나눗셈 한 번. */
@@ -3115,19 +3144,30 @@ function cmpApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 역산. ⓐ 배수 관계에서 기준을 되짚는다. ⓑ 어떤 수를 되짚어 다른 배를 구한다. */
+/**
+ * 심화 — 되짚기 **두 걸음**(D-72 4단). ⓐ 배수 조건과 **전체** 조건을 겹쳐 한쪽을 구한다.
+ * ⓑ 어떤 수를 되짚어 다른 배를 구한다.
+ *
+ * ⚠️ ⓐ 는 예전에 「귤이 사과의 $k$배, 귤이 $bk$개 → 사과」였다 — $bk\div k$ **한 걸음**이라
+ *    같은 소단원 응용(차를 구하고 나누는 두 걸음)보다 쉬웠다. 사다리가 뒤집혀 있었다.
+ */
 function cmpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 1) === 0) {
     const f = pick(rng, CMP_FRUITS);
     const base = intBetween(rng, 3, 9);
     const k = intBetween(rng, 2, 6);
-    return make(
+    const total = base * (k + 1);
+    return makeDeep(
       unit,
-      `${f.big} 수는 ${f.small} 수의 ${num(k)}배입니다. ${f.big}${josa(f.big, "이", "가")} ${num(base * k)}개일 때 ` +
+      `${f.big} 수는 ${f.small} 수의 ${num(k)}배입니다. ` +
+        `${f.big}${josa(f.big, "과", "와")} ${f.small} 전체가 ${num(total)}개일 때 ` +
         `${f.small}${josa(f.small, "은", "는")} 몇 개입니까?`,
       num(base),
-      `${f.small} 수를 ${expr("\\square")} 라 하면 ${expr(`\\square\\times${k}=${base * k}`)} 입니다. ` +
-        `${expr(`${base * k}\\div${k}=${base}`)} 이므로 ${num(base)}개입니다.`,
+      [
+        `${f.small} 수를 ${expr("\\square")} 라 하면 ${f.big} 수는 ${expr(`\\square\\times${k}`)} 이므로 ` +
+          `전체는 ${expr("\\square")} 가 ${expr(`${k}+1=${k + 1}`)} 묶음입니다.`,
+        `${expr(`${total}\\div${k + 1}=${base}`)} 이므로 ${num(base)}개입니다.`,
+      ],
     );
   }
   const k1 = intBetween(rng, 2, 5);
@@ -3136,11 +3176,14 @@ function cmpDeep(unit: UnitSeed, rng: Rng): ElemProblem {
     rng,
     Array.from({ length: 8 }, (_, i) => i + 2).filter((v) => v !== k1),
   );
-  return make(
+  return makeDeep(
     unit,
     `어떤 수의 ${num(k1)}배는 ${num(some * k1)}입니다. 어떤 수의 ${num(k2)}배는 얼마입니까?`,
     num(some * k2),
-    `어떤 수는 ${expr(`${some * k1}\\div${k1}=${some}`)} 입니다. ${expr(`${some}\\times${k2}=${some * k2}`)} 입니다.`,
+    [
+      `어떤 수는 ${expr(`${some * k1}\\div${k1}=${some}`)} 입니다.`,
+      `${expr(`${some}\\times${k2}=${some * k2}`)} 입니다.`,
+    ],
   );
 }
 
@@ -3191,18 +3234,29 @@ function biApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 조건 조합. 기준량과 「기준량보다 얼마만큼 큰(작은)」 조건에서 비를 세운다. */
+/**
+ * 심화 — 조건 **둘을 함께** 푼다(합과 차). 기준량이 안 주어지므로 먼저 되짚어야 한다.
+ *
+ * ⚠️ 예전에는 기준량을 **주고** 「기준량보다 $d$ 큰 비」를 물었다 — $b_0+d$ **한 걸음**이라
+ *    같은 소단원 응용(전체를 만든 뒤 비를 쓰는 두 걸음)보다도 쉬웠다.
+ */
 function biDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const b0 = intBetween(rng, 3, 9);
   const d = intBetween(rng, 1, b0 - 1);
   const bigger = intBetween(rng, 0, 1) === 0;
   const first = bigger ? b0 + d : b0 - d;
-  return make(
+  const sum = first + b0;
+  return makeDeep(
     unit,
-    `기준량이 ${num(b0)}이고 비교하는 양이 기준량보다 ${num(d)}만큼 ${bigger ? "큰" : "작은"} 비를 쓰시오.`,
+    `어떤 비의 두 항의 합이 ${num(sum)}이고, 비교하는 양이 기준량보다 ${num(d)}만큼 ` +
+      `${bigger ? "큽니다" : "작습니다"}. 이 비를 쓰시오.`,
     expr(`${first}:${b0}`),
-    `비교하는 양은 ${expr(`${b0}${bigger ? "+" : "-"}${d}=${first}`)} 입니다. ` +
+    [
+      `합에서 차를 ${bigger ? "빼면" : "더하면"} 기준량의 ${num(2)}배입니다. ` +
+        `${expr(`${sum}${bigger ? "-" : "+"}${d}=${2 * b0}`)} 이고 ${expr(`${2 * b0}\\div2=${b0}`)} 이므로 기준량은 ${num(b0)}입니다.`,
+      `비교하는 양은 ${expr(`${b0}${bigger ? "+" : "-"}${d}=${first}`)} 입니다.`,
       `비는 (비교하는 양):(기준량)이므로 ${expr(`${first}:${b0}`)} 입니다.`,
+    ],
   );
 }
 
@@ -3255,24 +3309,32 @@ function rateApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 역산. 비율을 주고 ⓐ 비교하는 양 ⓑ 기준량을 되짚는다(카탈로그 유형 그대로). */
+/**
+ * 심화 — 비율과 **합**을 겹쳐 비례배분한다(두 걸음). 묻는 쪽만 ⓐ 비교하는 양 ⓑ 기준량으로 벌린다.
+ *
+ * ⚠️ 예전에는 한쪽 양을 **주고** 반대쪽을 물었다 — 곱 하나(또는 나눗셈 하나) **한 걸음**이라
+ *    같은 소단원 응용(나머지를 구하고 비율을 만드는 두 걸음)보다 쉬웠다. 게다가 해설 첫 줄이
+ *    「(비교하는 양)=(기준량)×(비율)입니다」라는 **공식 문장**이라 두 줄처럼 보였을 뿐이다.
+ */
 function rateDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const fd = intBetween(rng, 2, 9);
   const fn = coprimeTop(rng, fd);
   const m = intBetween(rng, 2, 6);
-  if (intBetween(rng, 0, 1) === 0) {
-    return make(
-      unit,
-      `기준량이 ${num(fd * m)}이고 비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 인 비가 있습니다. 비교하는 양은 얼마입니까?`,
-      num(fn * m),
-      `(비교하는 양)=(기준량)×(비율)입니다. ${expr(`${fd * m}\\times\\frac{${fn}}{${fd}}=${fn * m}`)}`,
-    );
-  }
-  return make(
+  const parts = fn + fd;
+  const wantTop = intBetween(rng, 0, 1) === 0;
+  const want = wantTop ? fn * m : fd * m;
+  const name = wantTop ? "비교하는 양" : "기준량";
+  return makeDeep(
     unit,
-    `비교하는 양이 ${num(fn * m)}이고 비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 인 비가 있습니다. 기준량은 얼마입니까?`,
-    num(fd * m),
-    `(기준량)=(비교하는 양)÷(비율)입니다. ${expr(`${fn * m}\\div\\frac{${fn}}{${fd}}=${fn * m}\\times\\frac{${fd}}{${fn}}=${fd * m}`)}`,
+    `비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 인 비가 있습니다. ` +
+      `기준량과 비교하는 양의 합이 ${num(parts * m)}일 때 ${name}은 얼마입니까?`,
+    num(want),
+    [
+      `비율이 ${expr(`\\frac{${fn}}{${fd}}`)} 이므로 비교하는 양은 ${num(fn)}묶음, 기준량은 ${num(fd)}묶음이고 ` +
+        `합은 ${expr(`${fn}+${fd}=${parts}`)} 묶음입니다.`,
+      `한 묶음은 ${expr(`${parts * m}\\div${parts}=${m}`)} 입니다.`,
+      `${name}은 ${expr(`${m}\\times${wantTop ? fn : fd}=${want}`)} 입니다.`,
+    ],
   );
 }
 
@@ -3333,24 +3395,44 @@ function rateUseApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 역산. 비율(빠르기)을 주고 ⓐ 간 거리 ⓑ 걸린 시간을 되짚는다. */
+/**
+ * 심화 — 빠르기를 **주지 않는다**. 먼저 비율을 되짚고, 그것으로 ⓐ 거리 ⓑ 시간을 다시 구한다(두 걸음).
+ *
+ * ⚠️ 예전에는 비율을 **발문이 그대로 줬다** — 곱 하나 또는 나눗셈 하나 **한 걸음**이라
+ *    같은 소단원 응용(소금물 전체를 만든 뒤 비율을 내는 두 걸음)보다 쉬웠다.
+ */
 function rateUseDeep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, VEHICLES);
   const rate = pick(rng, SPEED_RATES);
   const h = intBetween(rng, 2, 5);
+  const h2 = pick(
+    rng,
+    Array.from({ length: 5 }, (_, i) => i + 2).filter((x) => x !== h),
+  );
+  const dist = rate * h;
+  const 되짚기 =
+    `걸린 시간에 대한 간 거리의 비율을 먼저 구합니다. ${expr(`${dist}\\div${h}=${rate}`)} 이므로 ` +
+    `한 시간에 ${unitNum(rate, "km")}를 갑니다.`;
+  const 상황 = `${v}${josa(v, "이", "가")} ${num(h)}시간 동안 ${unitNum(dist, "km")}를 갔습니다. 같은 빠르기로 `;
   if (intBetween(rng, 0, 1) === 0) {
-    return make(
+    return makeDeep(
       unit,
-      `걸린 시간에 대한 간 거리의 비율이 ${num(rate)}인 버스가 있습니다. ` +
-        `이 버스가 ${num(h)}시간 동안 간 거리는 몇 km입니까?`,
-      num(rate * h),
-      `비율이 ${num(rate)}이므로 한 시간에 ${unitNum(rate, "km")}를 갑니다. ${expr(`${rate}\\times${h}=${rate * h}`)}`,
+      `${상황}${num(h2)}시간 동안 가는 거리는 몇 km입니까?`,
+      num(rate * h2),
+      [
+        되짚기,
+        `${expr(`${rate}\\times${h2}=${rate * h2}`)} 이므로 ${unitNum(rate * h2, "km")}입니다.`,
+      ],
     );
   }
-  return make(
+  return makeDeep(
     unit,
-    `걸린 시간에 대한 간 거리의 비율이 ${num(rate)}인 버스가 ${unitNum(rate * h, "km")}를 가려면 몇 시간이 걸립니까?`,
-    num(h),
-    `비율이 ${num(rate)}이므로 한 시간에 ${unitNum(rate, "km")}를 갑니다. ${expr(`${rate * h}\\div${rate}=${h}`)}`,
+    `${상황}${unitNum(rate * h2, "km")}를 가려면 몇 시간이 걸립니까?`,
+    num(h2),
+    [
+      되짚기,
+      `${expr(`${rate * h2}\\div${rate}=${h2}`)} 이므로 ${num(h2)}시간입니다.`,
+    ],
   );
 }
 
@@ -3404,25 +3486,45 @@ function pctApply(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 심화 — 역산. ⓐ 백분율을 기약분수로 되돌린다. ⓑ 백분율과 기준량에서 비교하는 양을 구한다. */
+/**
+ * 심화 — ⓐ 어떤 수를 되짚어 **다른 백분율**을 다시 구한다. ⓑ 백분율을 **두 번 겹쳐** 쓴다.
+ *
+ * ⚠️ 예전 ⓐ 는 「$19\%$ 를 기약분수로」였다 — 한 걸음인 데다 **답의 수가 발문에 그대로**
+ *    있었다($19\%\to\frac{19}{100}$). ⓑ 도 기준량을 주어 곱 한 번이었다.
+ */
 function pctDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 1) === 0) {
-    const r = intBetween(rng, 1, 99);
-    return make(
+    // 어떤 수는 $20$의 배수, 백분율은 $5$의 배수 — 두 곱이 늘 자연수로 떨어진다.
+    const base = intBetween(rng, 1, 10) * 20;
+    const p = intBetween(rng, 1, 19) * 5;
+    const q = pick(
+      rng,
+      Array.from({ length: 19 }, (_, i) => (i + 1) * 5).filter((x) => x !== p),
+    );
+    return makeDeep(
       unit,
-      `어떤 비율을 백분율로 나타내었더니 ${expr(`${r}\\%`)} 였습니다. 이 비율을 기약분수로 나타내시오.`,
-      expr(fmtFrac(r, 100)),
-      `백분율을 ${num(100)}으로 나누면 비율입니다. ${expr(`\\frac{${r}}{100}=${fmtFrac(r, 100)}`)}`,
+      `어떤 수의 ${expr(`${p}\\%`)} 는 ${num((base * p) / 100)}입니다. ` +
+        `어떤 수의 ${expr(`${q}\\%`)} 는 얼마입니까?`,
+      num((base * q) / 100),
+      [
+        `어떤 수를 ${expr("\\square")} 라 하면 ${expr(`\\square\\times\\frac{${p}}{100}=${(base * p) / 100}`)} 이므로 ` +
+          `${expr(`${(base * p) / 100}\\div\\frac{${p}}{100}=${base}`)} 입니다.`,
+        `${expr(`${base}\\times\\frac{${q}}{100}=${(base * q) / 100}`)} 입니다.`,
+      ],
     );
   }
-  const base = pick(rng, [20, 40, 60, 80] as const);
-  const p = intBetween(rng, 1, 19) * 5;
-  return make(
+  // 두 백분율을 겹친다 — 뒤엣것은 **앞에서 구한 수**에 대한 백분율이다.
+  const c = pick(rng, PCT_TWICE);
+  const who = pick(rng, RATE_GROUPS);
+  return makeDeep(
     unit,
-    `기준량이 ${num(base)}인 비를 백분율로 나타내었더니 ${expr(`${p}\\%`)} 였습니다. 비교하는 양은 얼마입니까?`,
-    num((base * p) / 100),
-    `백분율이 ${expr(`${p}\\%`)} 이므로 비율은 ${expr(`\\frac{${p}}{100}`)} 입니다. ` +
-      `${expr(`${base}\\times\\frac{${p}}{100}=${(base * p) / 100}`)}`,
+    `어느 학교 학생 ${num(c.total)}명 중 ${who} 학생이 ${expr(`${c.p}\\%`)} 이고, ` +
+      `그중 ${expr(`${c.q}\\%`)} 가 남학생입니다. ${who} 남학생은 몇 명입니까?`,
+    num(c.last),
+    [
+      `${who} 학생은 ${expr(`${c.total}\\times\\frac{${c.p}}{100}=${c.mid}`)} 명입니다.`,
+      `그중 남학생은 ${expr(`${c.mid}\\times\\frac{${c.q}}{100}=${c.last}`)} 명입니다.`,
+    ],
   );
 }
 

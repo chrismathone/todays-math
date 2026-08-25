@@ -1076,12 +1076,18 @@ function namedCounts(content: string): { name: string; v: number }[] {
 function ratioTruthOf(content: string): [number, number] | null {
   const dae = content.match(/\$(\d+)\$ 대 \$(\d+)\$/);
   if (dae) return [Number(dae[1]), Number(dae[2])];
+  // 1-4-2 심화 — 「합이 $S$ 이고 비교하는 양이 기준량보다 $d$ 만큼 큽니다(작습니다)」.
+  // 기준량이 **주어지지 않으므로** 합과 차에서 함께 되짚는다(D-72 4단 — 조건 둘을 겹친다).
   if (content.includes("만큼")) {
     const ns = decNumbersIn(content);
     if (ns.length < 2 || ns[0]!.d !== 1 || ns[1]!.d !== 1) return null;
-    const b0 = ns[0]!.n;
+    const sum = ns[0]!.n;
     const d = ns[1]!.n;
-    return content.includes("큰") ? [b0 + d, b0] : [b0 - d, b0];
+    const bigger = content.includes("큽니다");
+    const twice = bigger ? sum - d : sum + d;
+    if (twice % 2 !== 0) return null;
+    const b0 = twice / 2;
+    return bigger ? [b0 + d, b0] : [b0 - d, b0];
   }
   const counts = namedCounts(content);
   const resolve = (label: string): number | null => {
@@ -1146,38 +1152,38 @@ function truthOf14(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
 
-  // 1-4-1 심화 ⓑ — 어떤 수를 되짚어 다른 배를 구한다
+  // 1-4-1 심화 ⓑ — 어떤 수를 되짚어 다른 배를 구한다.
+  // ⚠️ 1-4-5 심화 ⓐ(「어떤 수의 $p\%$ 는 $V$. 어떤 수의 $q\%$ 는?」)도 여기로 온다 —
+  //    되짚어 다시 적용하는 **같은 구조**라 $V\div p\times q$ 로 값이 맞다(`\%` 는 안 읽힌다).
   if (content.includes("어떤 수의")) {
     const [k1, v, k2] = [at(0), at(1), at(2)];
     return k1 && v && k2 ? rmul(rdiv(v, k1), k2) : null;
   }
-  // 1-4-1 심화 ⓐ — 배수 관계에서 기준을 되짚는다
+  // 1-4-5 심화 ⓑ — 백분율을 두 겹으로: 전체의 $p\%$ 의 $q\%$
+  if (content.includes("가 남학생입니다")) {
+    const [total, p, q] = [at(0), at(1), at(2)];
+    if (!total || !p || !q) return null;
+    return rmul(rmul(total, rdiv(p, rat(100))), rdiv(q, rat(100)));
+  }
+  // 1-4-1 심화 ⓐ — 배수 조건과 **전체** 조건을 겹친다: 전체는 작은 쪽의 $k+1$ 묶음이다
   if (content.includes("배입니다")) {
     const [k, total] = [at(0), at(1)];
-    return k && total ? rdiv(total, k) : null;
+    if (!k || !total || k.d !== 1) return null;
+    return rdiv(total, rat(k.n + 1));
   }
-  // 1-4-5 심화 — 백분율을 비율로 되돌린다 (ⓐ 기약분수 · ⓑ 비교하는 양)
-  if (content.includes("나타내었더니")) {
-    if (content.includes("기약분수")) {
-      const r = at(0);
-      return r ? rdiv(r, rat(100)) : null;
-    }
-    const [base, p] = [at(0), at(1)];
-    return base && p ? rmul(base, rdiv(p, rat(100))) : null;
+  // 1-4-3 심화 — 비율과 **합**을 겹쳐 비례배분한다 (묻는 쪽만 다르다)
+  if (/비율이 \$/.test(content) && content.includes("합이")) {
+    const [f, sum] = [at(0), at(1)];
+    if (!f || !sum) return null;
+    const parts = rat(f.n + f.d);
+    const want = content.includes("비교하는 양은") ? rat(f.n) : rat(f.d);
+    return rmul(rdiv(sum, parts), want);
   }
-  // 1-4-3 심화 — 비율에서 비교하는 양·기준량을 되짚는다
-  if (content.includes("기준량이") && content.includes("비교하는 양은")) {
-    const [base, f] = [at(0), at(1)];
-    return base && f ? rmul(base, f) : null;
-  }
-  if (content.includes("비교하는 양이") && content.includes("기준량은")) {
-    const [comp, f] = [at(0), at(1)];
-    return comp && f ? rdiv(comp, f) : null;
-  }
-  // 1-4-4 심화 — 비율(빠르기)에서 거리·시간을 되짚는다
-  if (/비율이 \$/.test(content)) {
-    const [rate, other] = [at(0), at(1)];
-    if (!rate || !other) return null;
+  // 1-4-4 심화 — 빠르기를 **먼저 되짚어** 거리·시간을 구한다 (발문은 비율을 안 준다)
+  if (content.includes("같은 빠르기로")) {
+    const [h, dist, other] = [at(0), at(1), at(2)];
+    if (!h || !dist || !other) return null;
+    const rate = rdiv(dist, h);
     return content.includes("몇 시간") ? rdiv(other, rate) : rmul(rate, other);
   }
   // 1-4-6 심화 ⓐ — 할인가에서 원래 가격을 되짚는다
@@ -1297,6 +1303,18 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
         want: [4, 9],
         why: "«전체 …»는 이름이 아니라 이름들의 합이다",
       },
+      {
+        content:
+          "어떤 비의 두 항의 합이 $10$이고, 비교하는 양이 기준량보다 $2$만큼 큽니다. 이 비를 쓰시오.",
+        want: [6, 4],
+        why: "심화 — 합과 차에서 함께 되짚는다: 기준량 $(10-2)\\div2=4$",
+      },
+      {
+        content:
+          "어떤 비의 두 항의 합이 $10$이고, 비교하는 양이 기준량보다 $2$만큼 작습니다. 이 비를 쓰시오.",
+        want: [4, 6],
+        why: "같은 문형, 반대 방향 — 방향이 안 갈리면 판독기가 아니다",
+      },
     ];
     for (const f of rows) {
       expect(ratioTruthOf(f.content), `${f.why} — ${f.content}`).toEqual(
@@ -1380,7 +1398,7 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
           `${code} seed=${seed}: 응용 등식 ${eqs(apply.solution)} · 기본 ${eqs(basic.solution)} — ${apply.solution}`,
         ).toBe(true);
         expect(
-          /어떤 수|배입니다|기준량이|비교하는 양이|나타내었더니|원래 가격|찬성률이|비율이 \$/.test(
+          /어떤 수|배입니다|비교하는 양이|같은 빠르기로|가 남학생입니다|원래 가격|찬성률이|비율이 \$/.test(
             apply.content,
           ),
           `${code} 응용 seed=${seed}: 심화처럼 되짚는다 — ${apply.content}`,
@@ -1395,7 +1413,7 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
       for (const seed of SEEDS) {
         const deep = generateElementaryProblem(unit, seed, "심화");
         expect(
-          /어떤 수|배입니다|기준량이|비교하는 양이|나타내었더니|원래 가격|찬성률이|비율이 \$/.test(
+          /어떤 수|배입니다|비교하는 양이|같은 빠르기로|가 남학생입니다|원래 가격|찬성률이|비율이 \$/.test(
             deep.content,
           ),
           `${code} 심화 seed=${seed}: 역산 표지가 없다 — ${deep.content}`,

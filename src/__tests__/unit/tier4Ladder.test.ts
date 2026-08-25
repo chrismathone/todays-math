@@ -158,10 +158,14 @@ describe("4단 표지 목록", () => {
 
 describe("검토 원장", () => {
   it("초등 잔고가 실측 그대로다 (2026-08-25) — 조용히 늘지 못한다", () => {
+    // 122행(4단 87 · 고칠것 35)에서 시작했다. 초6 1-4 다섯 갈래를 고쳐
+    //   · 1-4-1 은 발문이 「전체가 … 일 때」를 쓰게 되어 **표지가 붙었다** → 행을 지웠다(122→121)
+    //   · 1-4-2~1-4-5 는 표지 없이 두 걸음이 되었다 → 고칠것 → 4단 (35→30 · 87→91)
+    // 고친 갈래의 행을 안 지우면 판정기가 「낡은 행」으로 빨개진다(probe-elem-tier-4dan).
     const rows = Object.values(ledger.초등);
-    expect(rows.length).toBe(122);
-    expect(rows.filter((r) => r.판정 === "4단").length).toBe(87);
-    expect(rows.filter((r) => r.판정 === "고칠것").length).toBe(35);
+    expect(rows.length).toBe(121);
+    expect(rows.filter((r) => r.판정 === "4단").length).toBe(91);
+    expect(rows.filter((r) => r.판정 === "고칠것").length).toBe(30);
   });
 
   it("중등 잔고가 실측 그대로다 (2026-08-25)", () => {
