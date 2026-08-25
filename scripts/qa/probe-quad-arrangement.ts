@@ -74,8 +74,12 @@ export type ModeCell = {
   sample: string;
 };
 
+/** 씨앗이 고정이라 결과가 늘 같다 — 시험이 세 번 부르므로 한 번만 돌린다(실측 0.5초/회). */
+let cached: ModeCell[] | null = null;
+
 /** 유형×mode 별로 판정을 센다. `facts.mode` 가 곧 틀의 갈래다. */
 export function sweep(): ModeCell[] {
+  if (cached) return cached;
   const cells = new Map<string, ModeCell>();
   for (const e of M3_QUAD) {
     for (const seed of SEEDS) {
@@ -101,9 +105,10 @@ export function sweep(): ModeCell[] {
       }
     }
   }
-  return [...cells.values()].sort((a, b) =>
+  cached = [...cells.values()].sort((a, b) =>
     a.key === b.key ? a.mode - b.mode : a.key.localeCompare(b.key),
   );
+  return cached;
 }
 
 function main() {

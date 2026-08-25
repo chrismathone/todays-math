@@ -30,6 +30,12 @@
 > [`tracks/reports/figure-dependent.md`](tracks/reports/figure-dependent.md) ·
 > `npx tsx scripts/qa/probe-figure-dependent.ts`. **두 축을 하나로 합치지 말 것** —
 > 열쇠가 다르고, 합치면 한쪽이 다른 쪽 자리를 먹는다(그 사실을 시험이 잠그고 있다).
+>
+> ✅ **그 부류는 2026-08-25 오후에 끝났다** — 결함 3행 0. 다만 고친 것은 행이 아니라
+> **생성기 틀**(`m3Quad.ts` 의 mode 4개)이다. 나간 3행은 되돌릴 수 있게 원장을 남기고
+> 따로 고쳤다(`scripts/qa/fix-quad-arrangement-rows.ts --revert`).
+> ⚠️ **엔진 쪽을 재는 도구가 따로 있다** — `npx tsx scripts/qa/probe-quad-arrangement.ts`.
+> DB 를 분모로 쓰면 **아직 안 뽑힌 mode 는 구조적으로 0**이다(실제로 넷을 놓쳤었다).
 
 ## 1. 지금 상태 확인 — 이 명령 하나
 
