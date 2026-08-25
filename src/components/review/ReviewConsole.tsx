@@ -16,6 +16,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { AccountBadge } from "@/components/chrome/AccountBadge";
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import {
@@ -211,6 +212,13 @@ export function ReviewConsole({
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <h1 className="text-base font-semibold">문제은행 검수</h1>
           <p className="text-sm text-text-2">지금까지 {n(total)}문항을 봤다.</p>
+          {/* 계정·로그아웃 (D-77). 이 화면은 `AppChrome` 을 안 쓴다 — 검수 계정은
+              메인·반·문제은행에 못 들어가므로 그 nav 를 그리면 **눌러도 「권한 없음」인
+              링크**가 된다(D-30). 그래서 크롬 전체가 아니라 **계정 구역만** 가져온다.
+              ⚠️ 베끼지 않고 같은 컴포넌트를 쓴다 — 두 벌이 되면 한쪽만 고쳐진다. */}
+          <div className="ml-auto flex items-center gap-3">
+            <AccountBadge />
+          </div>
         </div>
       </header>
 

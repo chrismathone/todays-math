@@ -45,6 +45,9 @@ const 검수_가능 = [
   ["GET", "/api/units"],
   ["GET", "/review"],
   ["GET", "/review/queue"],
+  // 로그아웃. **서버 액션은 자기 페이지로 POST 한다** — 이게 막히면 검수 계정은
+  // 잘못된 계정에 갇힌다(D-77 이 막으려던 모양).
+  ["POST", "/review"],
   ["GET", "/login"],
   ["POST", "/api/auth/callback/credentials"],
 ] as const;
@@ -100,6 +103,17 @@ describe("역할 게이트 — 검수 계정", () => {
     ).toBe("deny");
   });
 
+  it("🔴 로그아웃으로 연 POST 는 `/review` **딱 하나**다 — 아래로 번지지 않는다", () => {
+    // 서버 액션은 자기 페이지로 POST 한다. 그래서 이 하나가 필요하다.
+    expect(routeAccessFor("reviewer", "POST", "/review")).toBe("allow");
+    // 그런데 `/review/**` 로 열면 **아직 없는 하위 화면의 서버 액션까지** 미리 열린다.
+    // 허용 목록은 잊으면 닫히는 쪽이어야 하므로 여기서 좁은지 못 박는다.
+    expect(routeAccessFor("reviewer", "POST", "/review/queue")).toBe("deny");
+    expect(routeAccessFor("reviewer", "POST", "/review/anything")).toBe("deny");
+    // 다른 메서드까지 딸려 열리지 않는다.
+    expect(routeAccessFor("reviewer", "DELETE", "/review")).toBe("deny");
+  });
+
   it("끝의 `/` 는 같은 경로다", () => {
     expect(routeAccessFor("reviewer", "GET", "/review/")).toBe("allow");
     expect(routeAccessFor("reviewer", "GET", "/api/problems/")).toBe("allow");
@@ -131,6 +145,10 @@ describe("검수 계정이 할 수 있는 일의 목록", () => {
       "GET /figures/**",
       "GET /figures-svg/**",
       "GET /review/**",
+      // 2026-08-25 에 **로그아웃**을 열었다. 서버 액션은 `/api/...` 가 아니라 **자기 페이지
+      // URL 로 POST** 하므로, `/api/auth/**` 가 열려 있어도 이게 없으면 검수 계정은
+      // **나갈 방법이 없다**(원장님 지적). `/review/**` 가 아니라 `/review` 하나다.
+      "POST /review",
       "GET /login",
     ]);
   });

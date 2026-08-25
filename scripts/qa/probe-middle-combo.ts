@@ -1697,15 +1697,20 @@ function main(): void {
     },
     {
       path: baselinePath,
+      // 저쪽 세션이 같은 날 따로 진단한 문장을 그대로 살렸다 — 「왜 못 만드나」가
+      // 「만들지 마라」보다 쓸모 있다. 지금은 저장소에 있으므로 «가져와라»가 아니라
+      // «어디를 보고 있는지 확인해라»가 답이다.
       how:
-        "**다시 만들 수 없다** — 1차 산출물이다. 저장소의" +
-        " scripts/qa/reports/middle-combo-baseline.json 이 정본이니," +
-        " --baseline= 로 딴 데를 가리켰다면 그 값을 지워라",
+        "🔴 1차 기준 산출물이라 **만드는 명령이 없다** — 지금 코드로 다시 뽑으면" +
+        " 2차 값이 나와 단언(873/8/180/685/0)에 걸린다.\n" +
+        "      정본은 저장소 안에 있다:" +
+        " scripts/qa/reports/middle-combo-baseline.json\n" +
+        "      --baseline= 로 딴 데를 가리켰다면 그 값을 지워라.",
     },
   ];
   const missing = needs.filter((n) => !existsSync(n.path));
   if (missing.length > 0) {
-    console.log(`울타리 — 입력이 없어 못 돈다 (${missing.length}개 없음)`);
+    console.log(`울타리 — 읽을 파일이 없어 못 돈다 (${missing.length}개 없음)`);
     for (const m of missing) console.log(`   없음: ${m.path}\n     → ${m.how}`);
     process.exit(2);
   }
