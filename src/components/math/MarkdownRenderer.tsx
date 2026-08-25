@@ -108,10 +108,20 @@ function textOf(node: ReactNode): string {
   return "";
 }
 
-/** 헤더에서 열 수 지정자를 지운다 — 지면에는 `<보기>` 만 나가야 한다. */
+/**
+ * 지면에 찍히는 라벨의 괄호 — **홑화살괄호**다(D-108, 2026-08-25).
+ *
+ * 본문 규약은 여전히 ASCII `<보기>` 이고(파서·DB·`BOX_HEADER_RE` 전부 그대로),
+ * **지면에 그리는 순간에만** 바꾼다. ASCII `<>` 를 그대로 찍으면 태그처럼 읽히고,
+ * 실제로 이 저장소에서 `<나열1>` 이 날문자로 지면에 나간 사고가 있었다.
+ */
+const LABEL_OPEN = "〈";
+const LABEL_CLOSE = "〉";
+
+/** 헤더에서 열 수 지정자를 지운다 — 지면에는 `〈보기〉` 만 나가야 한다. */
 function stripColumnHint(node: ReactNode, label: string): ReactNode {
   if (typeof node === "string")
-    return node.replace(BOX_HEADER_RE, `<${label}>`);
+    return node.replace(BOX_HEADER_RE, `${LABEL_OPEN}${label}${LABEL_CLOSE}`);
   if (Array.isArray(node))
     return node.map((child) => stripColumnHint(child, label));
   if (isValidElement(node)) {
@@ -161,7 +171,11 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   return (
     <div data-box-card className={BOX_CARD_CLASS}>
       {headerless ? null : (
-        <div data-box-header className="mb-2 font-semibold [&>p]:my-0">
+        // 라벨은 상자 위 **가운데**다(D-108) — 한국 시험지 관행.
+        <div
+          data-box-header
+          className="mb-2 text-center font-semibold [&>p]:my-0"
+        >
           {stripColumnHint(childrenOf(blocks[0]), label)}
         </div>
       )}

@@ -43,6 +43,13 @@ export default async function PrintCheckPage() {
   const undecided = ITEMS.filter((i) => i.status === "형태미확정").length;
   const passed = ITEMS.filter((i) => i.status === "통과").length;
 
+  // 「뭘 결정해야 하는지 하나도 모르겠다」(원장님 2026-08-25) — 목록이 **세 가지 다른
+  // 일**을 한 줄로 늘어놓고 있었다. 여기서 가른다. 셋의 합은 항상 ITEMS 전체다.
+  const toDecide = ITEMS.filter(
+    (i) => i.status === "형태미확정" && !i.blockedBy,
+  );
+  const blocked = ITEMS.filter((i) => i.status === "형태미확정" && i.blockedBy);
+
   return (
     <main className="mx-auto max-w-[860px] px-6 py-8">
       <header className="mb-6">
@@ -80,6 +87,59 @@ export default async function PrintCheckPage() {
             {passed}
           </div>
           <div className={`mt-1 ${MICRO} text-faint`}>검수 통과</div>
+        </div>
+      </section>
+
+      <section className="mb-6 border-[3px] border-ink bg-surface px-4 py-4">
+        <h2 className={`${MICRO} text-ink`}>지금 하실 일</h2>
+
+        <div className="mt-3 border-l-[3px] border-ink pl-3">
+          <div className="text-[13px] font-bold text-ink">
+            ① 종이 두 장을 뽑아 보신다 — {waiting}건이 여기서 판정된다
+          </div>
+          <p className="mt-1 text-[12.5px] leading-[1.75] text-text-2">
+            <a className="underline" href={SPECIMEN_ROUTE}>
+              <code className="bg-side px-1">{SPECIMEN_ROUTE}</code>
+            </a>{" "}
+            (그림 {SPECIMEN_ITEM_IDS.length}건 · 첫 장 100mm 자) 와{" "}
+            <a className="underline" href={PAPER_SPECIMEN_ROUTE}>
+              <code className="bg-side px-1">{PAPER_SPECIMEN_ROUTE}</code>
+            </a>{" "}
+            (나머지 · 25문항 견본 시험지). 반·진도·출제를 안 밟아도 된다.
+            <b>결정하실 것은 없다</b> — 이상하게 보이는 것만 알려 주시면 된다.
+          </p>
+          <p className="mt-1 text-[12.5px] leading-[1.75] text-text-2">
+            ⚠️ 견본지가 <b>못 채우는 자리</b>는 그 화면 맨 위에 크게 찍힌다. 그
+            항목은 이번 회차에 검수한 것이 아니다 — 종이에 안 나온 것을 통과로
+            적으면 안 된다.
+          </p>
+        </div>
+
+        <div className="mt-3 border-l-[3px] border-ink pl-3">
+          <div className="text-[13px] font-bold text-ink">
+            ② 정하실 것 — {toDecide.length}건
+          </div>
+          <p className="mt-1 text-[12.5px] leading-[1.75] text-text-2">
+            {toDecide.length === 0
+              ? "지금은 없다. 형태 결정 둘은 2026-08-25 에 원장님이 위임하셔서 정했다(D-108) — 바꾸고 싶으시면 그 항목을 보시면 된다."
+              : "아래 목록에서 「형태미확정」으로 표시된 것들이다."}
+          </p>
+        </div>
+
+        <div className="mt-3 border-l-[3px] border-divider pl-3">
+          <div className="text-[13px] font-bold text-faint">
+            ③ 아직 아무것도 못 하는 것 — {blocked.length}건
+          </div>
+          <ul className="mt-1 flex flex-col gap-1">
+            {blocked.map((item) => (
+              <li
+                key={item.id}
+                className="text-[12.5px] leading-[1.75] text-text-2"
+              >
+                <b>{item.title}</b> — {item.blockedBy}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

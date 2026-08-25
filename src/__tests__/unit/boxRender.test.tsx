@@ -26,7 +26,26 @@ describe("[상자 렌더] blockquote → 보기 카드", () => {
     expect(out.match(/data-box-item/g)).toHaveLength(2);
     // cols 지정자는 화면에 나오지 않는다.
     expect(out).not.toContain("보기1");
-    expect(out).toContain("&lt;보기&gt;");
+    // D-108 — 지면 라벨은 **홑화살괄호**다. ASCII `<보기>` 는 태그처럼 읽힌다.
+    expect(out).toContain("〈보기〉");
+    // 되돌아가면 빨개진다 — 이 줄이 없으면 D-108 이 조용히 죽는다.
+    expect(out).not.toContain("&lt;보기&gt;");
+  });
+
+  /**
+   * D-108 — 라벨은 상자 위 **가운데**다(한국 시험지 관행).
+   *
+   * ⚠️ 이 검사가 없으면 `text-center` 를 지워도 아무것도 안 빨개진다. 위 검사는
+   * **글자**만 보므로 위치를 구조적으로 못 본다 — 「지표가 실패를 셀 수 있는
+   * 형태인가」가 여기서도 그대로다.
+   */
+  it("라벨은 가운데 정렬이다 (D-108)", () => {
+    const out = html(
+      <MarkdownRenderer content={"> <보기1>\n>\n> ㄱ. 참\n>\n> ㄴ. 거짓"} />,
+    );
+    const header = /<div data-box-header="true" class="([^"]*)"/.exec(out);
+    expect(header).not.toBeNull();
+    expect(header![1]).toContain("text-center");
   });
 
   it("라벨 뒤 숫자가 열 수다 — `<보기2>` 는 두 열, `<보기1>` 은 한 열", () => {
@@ -53,7 +72,9 @@ describe("[상자 렌더] blockquote → 보기 카드", () => {
         <MarkdownRenderer content={`> <${label}1>\n>\n> 첫째\n>\n> 둘째`} />,
       );
       expect(out).toContain("data-box-card");
-      expect(out).toContain(`&lt;${label}&gt;`);
+      // 낱말은 **원본대로** 두고 괄호만 바꾼다(D-108) — 원본이 `<조건>` 이면 `〈조건〉`.
+      expect(out).toContain(`〈${label}〉`);
+      expect(out).not.toContain(`&lt;${label}&gt;`);
     }
   });
 
