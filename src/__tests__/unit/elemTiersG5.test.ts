@@ -1119,9 +1119,21 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
           answerNumber(deep.answer, "1-2-1 심화"),
         ]);
       } else {
-        const [num, m] = nums(deep.content) as [number, number];
-        expect(nums(deep.answer), deep.content).toEqual(
-          divs(num).filter((v) => v % m === 0),
+        // 「약수 목록 → 어떤 수 → 그 수의 배수를 센다」. **약수 쪽에서 배수 쪽으로 건너간다** —
+        // 예전의 「약수 중 $m$의 배수를 모두」는 응용과 똑같이 나열하고 거르는 것이었다.
+        const shownD = nums(deep.content);
+        const limit = shownD[shownD.length - 1]!;
+        const num = Math.max(...shownD.slice(0, -1));
+        expect(
+          divs(num),
+          `보인 목록이 약수 전량이 아니다: ${deep.content}`,
+        ).toEqual(shownD.slice(0, -1));
+        expect(
+          limit % num,
+          `경계가 배수에 앉으면 안 된다: ${deep.content}`,
+        ).not.toBe(0);
+        expect(answerNumber(deep.answer, "1-2-1 심화"), deep.content).toBe(
+          Math.floor(limit / num),
         );
       }
     }
@@ -1238,19 +1250,41 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         expect(nums(app.answer), app.content).toEqual(rest);
       }
 
+      // 심화 — 응용(「공약수를 모두 더하면」)을 **거꾸로** 돌리거나(합에서 최대공약수를
+      // 되짚는다) 공약수 안에서 **조건을 하나 더 겹친다**(짝수만 센다).
       const deep = problem("1-2-3", "심화", seed);
-      if (deep.content.includes("모두 쓰면")) {
-        const shown = nums(deep.content);
+      if (deep.content.includes("모두 더하면")) {
+        const [cnt, sum] = nums(deep.content) as [number, number];
         const g = answerNumber(deep.answer, "1-2-3 심화");
-        expect(shown, deep.content).toEqual(divs(g));
-      } else {
-        const [x, y, z] = nums(deep.content) as [number, number, number];
-        const g = gcd2(gcd2(x, y), z);
+        expect(divs(g).length, `약수의 개수가 다르다: ${deep.content}`).toBe(
+          cnt,
+        );
         expect(
-          g,
-          `세 수가 서로소면 물을 것이 없다: ${deep.content}`,
-        ).toBeGreaterThan(1);
-        expect(answerNumber(deep.answer, "1-2-3 심화"), deep.content).toBe(g);
+          divs(g).reduce((x, y) => x + y, 0),
+          `약수의 합이 발문의 수와 다르다: ${deep.content}`,
+        ).toBe(sum);
+        // 🔴 되짚을 수 있으려면 **답이 하나**여야 한다. 합만 주면 안 된다 —
+        //    $42$ 는 $20$·$26$·$41$ 셋의 약수의 합이다(이 검사가 실제로 잡았다).
+        const 맞는수 = [];
+        for (let v = 2; v <= 100; v += 1) {
+          const d = divs(v);
+          if (d.length === cnt && d.reduce((x, y) => x + y, 0) === sum) {
+            맞는수.push(v);
+          }
+        }
+        expect(맞는수, `조건에 맞는 수가 둘 이상이다: ${deep.content}`).toEqual(
+          [g],
+        );
+      } else {
+        const [g] = nums(deep.content) as [number];
+        const evens = divs(g).filter((v) => v % 2 === 0);
+        expect(
+          evens.length,
+          `짝수 공약수가 없으면 물을 것이 없다: ${deep.content}`,
+        ).toBeGreaterThan(0);
+        expect(answerNumber(deep.answer, "1-2-3 심화"), deep.content).toBe(
+          evens.length,
+        );
       }
     }
   });
@@ -1369,18 +1403,29 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         ).toBeLessThan(m);
       }
 
+      // 심화 — **최소공배수를 발문이 안 준다.** 「$k$번째로 작은 공배수」에서 되짚은 뒤
+      // 범위 안 공배수를 세거나(개수) 더한다(합). 여기서도 최소공배수를 **다시** 구한다.
       const deep = problem("1-2-5", "심화", seed);
-      if (deep.content.includes("세 번째로 작은 수가")) {
-        const [T] = nums(deep.content) as [number];
-        expect(answerNumber(deep.answer, "1-2-5 심화") * 3, deep.content).toBe(
-          T,
-        );
-      } else {
-        const [x, y, z] = nums(deep.content) as [number, number, number];
-        expect(answerNumber(deep.answer, "1-2-5 심화"), deep.content).toBe(
-          lcm2(lcm2(x, y), z),
-        );
-      }
+      const [k, kth, limit] = nums(deep.content) as [number, number, number];
+      expect(
+        kth % k,
+        `$k$번째 공배수가 $k$의 배수가 아니다: ${deep.content}`,
+      ).toBe(0);
+      const m = kth / k;
+      expect(
+        limit % m,
+        `경계가 공배수에 앉으면 안 된다: ${deep.content}`,
+      ).not.toBe(0);
+      const commons: number[] = [];
+      for (let v = m; v < limit; v += m) commons.push(v);
+      expect(
+        commons.length,
+        `범위 안 공배수가 둘 이상이어야 견줄 것이 생긴다: ${deep.content}`,
+      ).toBeGreaterThan(1);
+      const want = deep.content.includes("모두 더하면")
+        ? commons.reduce((s, v) => s + v, 0)
+        : commons.length;
+      expect(answerNumber(deep.answer, "1-2-5 심화"), deep.content).toBe(want);
     }
   });
 

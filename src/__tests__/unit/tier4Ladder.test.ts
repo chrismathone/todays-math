@@ -164,11 +164,13 @@ describe("검토 원장", () => {
     // 이어서 초6 나머지 넷(1-2-1 · 2-3-2 · 2-3-4 · 2-4-2)을 고쳤다 —
     //   2-3-2 는 「만들었더니 … 남았습니다」로 **표지가 붙어** 행을 지웠고(121→120),
     //   나머지 셋은 표지 없이 두 걸음이 되었다 (30→26 · 91→94).
+    // 초5 1-2 셋(1-2-1 · 1-2-3 · 1-2-5)도 고쳤다 — 셋 다 「어떤 수/어떤 두 수」
+    //   표지가 붙어 행을 지웠다 (120→117 · 고칠것 26→23).
     // 고친 갈래의 행을 안 지우면 판정기가 「낡은 행」으로 빨개진다(probe-elem-tier-4dan).
     const rows = Object.values(ledger.초등);
-    expect(rows.length).toBe(120);
+    expect(rows.length).toBe(117);
     expect(rows.filter((r) => r.판정 === "4단").length).toBe(94);
-    expect(rows.filter((r) => r.판정 === "고칠것").length).toBe(26);
+    expect(rows.filter((r) => r.판정 === "고칠것").length).toBe(23);
   });
 
   it("중등 잔고가 실측 그대로다 (2026-08-25)", () => {

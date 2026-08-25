@@ -72,11 +72,16 @@ export function makeDeep(
   걸음: readonly string[],
   figureSpec: Record<string, unknown> | null = null,
 ): ElemProblem {
-  const 셈 = 걸음.filter((s) => 계산걸음.test(s));
-  if (셈.length < 2) {
+  // **둘을 같이 요구한다.**
+  //   ⑴ 걸음이 둘 이상 — 되짚기·조건 정리처럼 **셈이 없는 걸음**도 걸음이다
+  //      (「약수 중 가장 큰 수가 어떤 수 자신이다」가 그렇다. 이걸 안 세면
+  //       멀쩡한 두 걸음짜리가 막힌다 — 실제로 초5 1-2-1 에서 그렇게 걸렸다).
+  //   ⑵ 계산식이 둘 이상 — 한 걸음에 몰려 있어도 좋다. 셈을 두 번 **적었는가**를 본다.
+  const 셈 = countCalcSteps(걸음.join(" "));
+  if (걸음.length < 2 || 셈 < 2) {
     throw new Error(
-      `심화는 계산이 든 걸음이 둘 이상이어야 한다 (D-72 4단) — ` +
-        `${unit.grade} ${unit.section}: 걸음 ${걸음.length}개 중 계산 ${셈.length}개\n` +
+      `심화는 걸음이 둘 이상이고 계산식도 둘 이상이어야 한다 (D-72 4단) — ` +
+        `${unit.grade} ${unit.section}: 걸음 ${걸음.length}개 · 계산식 ${셈}개\n` +
         걸음.map((s, i) => `  ${i + 1}. ${s}`).join("\n"),
     );
   }
