@@ -363,6 +363,10 @@ async function main() {
     }
   } else {
     for (const m of made) {
+      // exam-wiring: 기출아님 — 우리 중등 엔진이 낸 **자작** 문항이다(`source=manual`).
+      // 대체 대상도 같은 엔진 산출물이라 원본 시험지(`Exam`)가 아예 없다 — 세울 편도,
+      // 되돌릴 `exam_question` 링크도 없다. 실측으로 확인했다: 이 여덟 건은
+      // `external_id` 가 전부 `engine-mid:…` 이고 `source_file`·`exam_id` 가 비어 있다.
       const created = await prisma.problem.create({
         data: {
           unitId: m.target.unitId,
