@@ -69,6 +69,9 @@ const GAUGED: [name: string, gauges: number][] = [
   ["probe-middle-uniqueness", 3],
   ["probe-middle-page-smells", 9],
   ["probe-middle-duplicate-statements", 9],
+  // 2026-08-25 — 대수 결합형 훑기(D-109). 눈금이 **말뭉치 없이** 돈다: 픽스처
+  // 문자열로 `judge()` 를 직접 댄다(양성 1 · 음성 4 · 회귀 1 · 핵심어 5).
+  ["probe-middle-algebra-combo", 12],
 ];
 
 /**
