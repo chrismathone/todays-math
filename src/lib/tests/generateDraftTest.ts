@@ -4,6 +4,7 @@
  */
 import type { DifficultyRatio } from "@/contracts/common.contract";
 import type { TestGenerateRequest } from "@/contracts/test.contract";
+import { noProgressReason } from "@/lib/progress/noProgressReason";
 import {
   insufficientProblemsErrorResponseSchema,
   testGenerateResponseSchema,
@@ -71,7 +72,15 @@ export async function generateDraftTest(
     useIndividualProgress: student?.useIndividualProgress ?? false,
   });
   if (!current) {
-    return jsonError("VALIDATION_ERROR", "진도가 기록되지 않았습니다.", 400);
+    // 「진도가 없다」가 덮는 상태가 **둘**이고 원장님이 할 일이 다르다:
+    // 아무도 진도가 없는 것과, 학생마다 진도가 갈리는 것(개별진도반).
+    // 뒤엣것을 앞엣것으로 말하면 **있는 진도를 다시 입력하러 간다.**
+    // 실패 경로에서만 한 번 더 읽으므로 정상 출제는 그대로다.
+    return jsonError(
+      "VALIDATION_ERROR",
+      await noProgressReason(db, input.classId),
+      400,
+    );
   }
 
   const units = await db.unit.findMany();

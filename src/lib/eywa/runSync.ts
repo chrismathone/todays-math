@@ -23,6 +23,10 @@ import { createHash } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 
 import { createEywaClient } from "@/lib/eywa/client";
+import {
+  assertNoIdCollision,
+  deriveClassProgress,
+} from "@/lib/eywa/deriveClassProgress";
 import { buildUnitIndex, type UnitRow } from "@/lib/eywa/resolveProgress";
 import {
   classGradeOf,
@@ -428,10 +432,31 @@ export async function runEywaSync(opts: {
             createdAt: row.createdAt,
           });
       }
-      for (let at = 0; at < rowsToCreate.length; at += 2000)
+      // 🔴 **반 진도를 여기서 유도한다.** eywa 에는 반 진도가 없고(원장님 확인)
+      //    우리 쪽 읽는 자리 셋은 전부 `studentId: null` 만 본다 — 그래서 개별 진도를
+      //    아무리 채워도 화면은 「어제 진도가 비어 있습니다」였고 출제는 404 였다.
+      //    읽는 쪽 셋을 각각 고치면 규칙이 세 벌이 되므로 **쓰는 쪽에서 한 번** 만든다.
+      //    학생마다 최신 단원이 갈리는 반(개별진도반)은 만들지 않는다.
+      const classToEywa = new Map(
+        [...ourClassId].map(([eywaId, ourId]) => [ourId, eywaId] as const),
+      );
+      const derived = deriveClassProgress(rowsToCreate, classToEywa);
+      assertNoIdCollision(rowsToCreate, derived.rows);
+      const allRows = [...rowsToCreate, ...derived.rows];
+      for (let at = 0; at < allRows.length; at += 2000)
         await tx.progress.createMany({
-          data: rowsToCreate.slice(at, at + 2000),
+          data: allRows.slice(at, at + 2000),
         });
+      if (derived.diverged.length > 0)
+        console.log(
+          `⚠️ 학생마다 최신 단원이 갈려 반 진도를 안 만든 반 ${derived.diverged.length}개 ` +
+            `— 개별진도반으로 봐야 한다: ${derived.diverged
+              .map(
+                (d) => `${d.classId}(단원 ${d.units}개/학생 ${d.students}명)`,
+              )
+              .join(", ")}`,
+        );
+      console.log(`유도한 반 진도 ${derived.rows.length}행`);
 
       // 실행 기록 — 화면의 「마지막 동기화」 스트립이 읽는다. 트랜잭션 안이라
       // 적용이 죽으면 기록도 남지 않는다(«성공한 실행»만 기록).
@@ -441,7 +466,7 @@ export async function runEywaSync(opts: {
           // 화면 「마지막 동기화」가 읽는 수 — 범위 안 재원이어야 실제와 맞는다.
           students: scopedRoster.students.length,
           classes: classMembers.size,
-          progressRows: rowsToCreate.length,
+          progressRows: allRows.length,
           unresolvedLines,
           ambiguous: 애매,
           examOnly: 시험기간만,
@@ -452,9 +477,13 @@ export async function runEywaSync(opts: {
       appliedCounts.students = ourStudentId.size;
       appliedCounts.withdrawn = withdrawn.count;
       appliedCounts.deleted = deleted.count;
-      appliedCounts.created = rowsToCreate.length;
+      // 🔴 **실제로 쓴 수**를 찍는다. 유도한 반 진도를 빼고 찍으면 원장·표·화면이
+      //    저마다 다른 수를 말한다 — 「분모가 셋이면 하나는 틀리다」의 자리다.
+      appliedCounts.created = allRows.length;
       console.log(
-        `적용: 반 ${ourClassId.size} · 학생 ${ourStudentId.size} · 퇴원 표시 ${withdrawn.count} · 진도 삭제 ${deleted.count} → 생성 ${rowsToCreate.length}`,
+        `적용: 반 ${ourClassId.size} · 학생 ${ourStudentId.size} · 퇴원 표시 ${withdrawn.count} · ` +
+          `진도 삭제 ${deleted.count} → 생성 ${allRows.length}` +
+          `(학생 ${rowsToCreate.length} + 유도한 반 ${derived.rows.length})`,
       );
     },
     { timeout: 300_000 },
