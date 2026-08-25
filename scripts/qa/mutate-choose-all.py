@@ -44,7 +44,15 @@ RATIONAL = os.path.join(ROOT, "src", "lib", "middle", "m2Rational.ts")
 FUNC = os.path.join(ROOT, "src", "lib", "middle", "m3Func.ts")
 
 TARGETS = [RULE, MID_GEN, ELEM_GEN, SYSTEM, RATIONAL, FUNC]
-TESTS = ["src/__tests__/unit/chooseAllRule.test.ts"]
+# 이 파일들을 지키는 시험 **전부**를 돌린다. 규칙 시험 하나만 돌리면 「보기 명제의
+# 진리표」 같은 다른 축의 가드가 있는데도 «초록 ← 가드가 아니다» 로 찍힌다
+# (2026-08-25 변이 [15] 가 실제로 그랬다 — 진리표는 middleM3Func 가 들고 있다).
+TESTS = [
+    "src/__tests__/unit/chooseAllRule.test.ts",
+    "src/__tests__/unit/middleM3Func.test.ts",
+    "src/__tests__/unit/middleM2NumProb.test.ts",
+    "src/__tests__/unit/middleM2System.test.ts",
+]
 
 ENV = dict(os.environ, PYTHONIOENCODING="utf-8")
 
