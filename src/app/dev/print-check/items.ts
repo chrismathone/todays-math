@@ -964,6 +964,24 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-25",
   },
   {
+    id: "choice-marks",
+    title: "보기 표식 ㉠~㉤ → ①~⑤ — 지면이 **보기 목록으로** 그린다",
+    changed:
+      "일차함수 3유형(중2)이 보기를 ㉠~㉤ 로 내고 있었다. 제품 파서는 개행 뒤 ①~⑮·`1.` 만 보기로 읽으므로 그 목록은 **본문 글줄**로 그려졌다 — 표식이 제 자리에 서지 않고 인쇄 2단 배치도 안 걸린다. 원장님 확정(2026-08-25 「보기번호는 바꾸고」)으로 엔진 3유형과 공유 DB 6건을 ①~⑤ 로 맞췄다.",
+    look: "㉠ 보기 다섯 줄이 **표식 열을 맞춰** 서는가 (긴 보기가 두 줄이 될 때 넘친 줄이 표식 아래로 파고들지 않고 본문 왼쪽에 맞춰 들어가는가 — 이게 «본문 글줄»과 «보기 목록»의 차이다). ㉡ 보기가 짧으면 **두 단**으로 앉는가. ㉢ ① 이 발문 숫자와 헷갈리지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/problem/choiceCountRule.ts (CHOICE_MARKS · assertChoiceMarks)",
+      "scripts/qa/apply-choice-marks-fix.ts",
+      "docs/planning/07-coding-convention.md D-81",
+    ],
+    scale: "엔진 3유형 · 공유 DB 출제 가능 6건 (화면 대조는 /dev/choice-marks)",
+    needs:
+      "중2 4. 함수 단원 문항이 실린 시험지 — 「함수와 함숫값」·「일차함수의 그래프의 성질」.",
+    status: "대기",
+    changedOn: "2026-08-25",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",
