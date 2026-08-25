@@ -1,10 +1,18 @@
 # 핸드오프 — 다른 컴퓨터에서 이어 작업
 
+> 🛑 **이 문서는 낡았다(2026-08-14 · 기준 커밋 `d252960`).**
+> **`docs/planning/10-handoff.md` §0-A 가 최신이고, 이어할 때는 거기부터 읽는다.**
+> 그 뒤로 바뀐 것 중 이 문서가 **모르는** 것: 저장소·Vercel 계정 이전과
+> **커밋 작성자 규칙**(이걸 모르면 밀어도 배포가 조용히 안 된다) · 난이도 4단(D-106) ·
+> 자체 초·중등 출제 엔진과 엔진 문항 2,410건 적재 · 저장소 밖 말뭉치.
+> 아래 절차(클론·환경·DB)는 **뼈대는 아직 맞지만 숫자와 상태는 믿지 말 것.**
+
 작성: 2026-08-14  
-저장소: [BIGSHOL/todays-math](https://github.com/BIGSHOL/todays-math)  
+저장소: [chrismathone/todays-math](https://github.com/chrismathone/todays-math) (비공개)  
 기준 커밋: `d252960` (`main`, D-31 공용 풀 적재)
 
-이 문서만 읽고 새 머신에서 개발 서버까지 올릴 수 있게 쓴다. 기획 SSOT는 아래에 링크만 둔다.
+~~이 문서만 읽고 새 머신에서 개발 서버까지 올릴 수 있게 쓴다.~~ ← **더는 참이 아니다.**
+기획 SSOT는 아래에 링크만 둔다.
 
 ---
 
@@ -54,7 +62,7 @@ Git에 없는 것:
 ### 클론
 
 ```powershell
-git clone https://github.com/BIGSHOL/todays-math.git
+git clone https://github.com/chrismathone/todays-math.git
 cd todays-math
 git checkout main
 git pull
