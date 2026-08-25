@@ -58,7 +58,23 @@ async function pickUnit(
  *    거짓 경보는 가드를 끈다(2026-08-20). 여기서 재는 것은 «렌더 속도»가 아니라
  *    «렌더가 되는가»이므로 넉넉히 준다.
  */
-const RENDER_WAIT = { timeout: 20_000 } as const;
+const RENDER_WAIT = { timeout: 45_000 } as const;
+
+/**
+ * ⚠️ **숫자를 또 올리기 전에 읽어라.** 20초로도 관문에서 한 번 더 터졌다(2026-08-25,
+ *    워크트리 다섯이 동시에 돌던 회차). 그때 실측:
+ *      · 이 파일 단독 — 59/59 통과, 41초 (transform 1.3초)
+ *      · 같은 회차 관문 — 이 파일의 **첫 시험 하나만** 실패, 나머지 58건 통과
+ *      · 관문 전체 transform 82초 → **359초** (파일 260 → 266, node 프로세스 8개)
+ *
+ *    첫 시험만 지는 이유는 **그 시험이 모듈 초기화 비용을 혼자 문다**는 것이다
+ *    (`ProblemsPage` + MSW + KaTeX). 렌더가 안 되는 게 아니라 **차례가 안 온다.**
+ *
+ *    🔴 그러니 다음에 또 터지면 **숫자를 올리지 말고** 둘 중 하나를 해라:
+ *      ⑴ 관문을 다른 세션이 CPU 를 안 쓸 때 돌린다(가장 싸다),
+ *      ⑵ 이 스위트를 쪼개 첫 시험이 가장 무거운 시험이 아니게 만든다.
+ *    문턱을 세 번째 옮기게 되면 그건 문턱이 아니라 축이 틀린 것이다(2026-08-18).
+ */
 
 async function renderBank() {
   const user = userEvent.setup();
@@ -101,7 +117,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
     expect(
       screen.queryByRole("form", { name: "변형" }),
     ).not.toBeInTheDocument();
-  }, 60_000);
+  }, 120_000);
 
   it("목록에서 분수·도형 수식을 MathText로 렌더하고 [교체]는 없다", async () => {
     const { container } = await renderBank();
@@ -112,7 +128,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
       screen.queryByRole("button", { name: "교체" }),
     ).not.toBeInTheDocument();
     expect(container.textContent ?? "").not.toMatch(/[!！]/);
-  }, 60_000);
+  }, 120_000);
 });
 
 describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
@@ -170,7 +186,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
     // 패널은 지연 청크다(ProblemPanelsLazy) — 단언은 그대로 두고 대기만 붙인다.
     const form = await screen.findByRole("form", { name: "등록" });
     expect(within(form).getByLabelText("단원")).toHaveValue(liveUnit.id);
-  }, 60_000);
+  }, 120_000);
 
   it("유형·상태·소단원 필터를 조합하면 해당 문항만 남는다", async () => {
     const { user } = await renderBank();

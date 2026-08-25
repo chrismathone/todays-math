@@ -16,6 +16,13 @@ const APPLY = process.argv.includes("--apply");
 const TIMEOUT = "60_000";
 
 /**
+ * ⚠️ `ProblemBank.test.tsx` 는 **손으로 120_000** 을 달아 뒀다(2026-08-25).
+ *    이 스크립트를 다시 돌려도 「이미 달려 있음」으로 세어 덮지 않는다 —
+ *    덮으면 그 파일이 다시 관문에서만 진다. 왜 120초인지는 그 파일 머리 주석에.
+ */
+
+
+/**
  * audit-test-timeout-margin.mjs 가 게이트 출력에서 낸 것들.
  *  · 2026-08-24 회차 9건
  *  · 2026-08-25 회차 5건 — 워크트리 넷이 동시에 돌던 날 ProblemBank 가 실제로
