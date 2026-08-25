@@ -264,7 +264,18 @@ D-20 은 최근 14일 출제분을 뺀다. **심화가 2행뿐이면 2주 안에
 | `scripts/qa/reviewedArrangement.ts` | 사람이 본 131갈래의 판정 |
 | `scripts/qa/reports/figure-dependent-snapshot.json` | 시험의 분모(밀봉) |
 | `src/__tests__/unit/arrangementRule.test.ts` | 18건 |
+| `scripts/qa/arrangementFixtures.ts` | 눈금·행동 지문 (**Prisma 안 문다** — 아래 참조) |
 | `scripts/qa/mutate-arrangement-rule.py` | 변이 9개 — 전부 빨강 |
+
+**관문**: `node scripts/qa/run-tests.mjs` → **256파일 10,383테스트 통과 · 1 skipped ·
+실패 0 · 판정기 17개 전부 깨끗**(2026-08-25, 커밋 `93c8546f` 회차). DB 는 **한 행도
+안 바꿨다.**
+
+⚠️ **관문이 두 번 빨갰고, 원인이 내 시험이었다.** 시험이 픽스처를 정본으로 쓰려고
+도구 파일을 import 했는데 그 파일 최상단에 `@prisma/client` 가 있었다 — vitest 워커가
+DB 엔진을 통째로 올려 **엉뚱한 파일**이 시간 초과로 떨어졌고 **실패 파일이 회차마다
+달랐다**(1회차 4개 · 2회차 1개 · 따로 돌리면 둘 다 초록). 픽스처를 Prisma 안 무는
+모듈로 떼자 **700초 → 279초, 실패 0**. 「플래키」로 이름 붙이지 않아서 찾았다.
 
 ### 곁 — 이 워크트리에서 막혔던 것 (다른 컴퓨터에도 온다)
 
