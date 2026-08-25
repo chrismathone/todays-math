@@ -32,6 +32,7 @@ import {
   schoolFieldsOf,
   type EywaReport,
 } from "@/lib/eywa/syncPlan";
+import { scopeNameMismatches, scopedClassIds } from "@/lib/eywa/syncScope";
 import {
   fetchViaApi,
   fetchViaDb,
@@ -135,13 +136,48 @@ export async function runEywaSync(opts: {
       `EYWA_SYNC_OWNER_EMAIL 계정이 없다: ${process.env.EYWA_SYNC_OWNER_EMAIL}`,
     );
 
+  // ── ①-b 범위 (원장님 확정 2026-08-25) ────────────────────────
+  // 예전에는 「활성 수학반 전부」(68반·341명)를 매일 가져왔다. 지금은 **허용 목록**
+  // (`syncScope.ts`)에 적힌 반만 본다. ⚠️ **걸러 낸 것은 반드시 세어 찍는다** —
+  // 조용히 빠지면 요약이 「전부 가져왔다」로 읽힌다.
+  const 허용 = scopedClassIds();
+  const 원본반이름 = new Map<string, string>();
+  for (const s of roster.students)
+    for (const c of s.classes) 원본반이름.set(c.id, c.name);
+  const 범위밖반 = new Set(
+    [...원본반이름.keys()].filter((id) => !허용.has(id)),
+  );
+  // 목록이 낡았는지 **본문 밖 근거**로 본다 — 허용 id 가 원본에 아예 없으면 그 반이
+  // 사라졌거나 id 를 잘못 적은 것이다. 조용히 0건 동기화가 되는 것을 막는다.
+  const 원본에없는허용 = [...허용].filter((id) => !원본반이름.has(id));
+  for (const m of scopeNameMismatches(원본반이름))
+    console.warn(
+      `⚠️ 범위 목록의 이름이 원본과 다르다 — ${m.eywaClassId}: 적힌 이름 「${m.expected}」 ≠ 지금 「${m.actual}」. syncScope.ts 를 고칠 것`,
+    );
+  if (원본에없는허용.length > 0)
+    console.warn(
+      `⚠️ 허용 목록의 반 ${원본에없는허용.length}개가 **원본 명단에 없다**: ${원본에없는허용.join(", ")} — 종강했거나 id 가 틀렸다`,
+    );
+
+  const 범위밖학생 = roster.students.filter(
+    (s) => !s.classes.some((c) => 허용.has(c.id)),
+  ).length;
+  // 학생의 소속 반 목록도 허용분만 남긴다 — 안 그러면 `primaryClassOf` 가 범위 밖 반을
+  // 고를 수 있다(한 학생이 여러 반인 경우가 실측 69%다).
+  const scopedRoster = {
+    ...roster,
+    students: roster.students
+      .map((s) => ({ ...s, classes: s.classes.filter((c) => 허용.has(c.id)) }))
+      .filter((s) => s.classes.length > 0),
+  };
+
   // ── ② 계획 ──────────────────────────────────────────────────
-  // 반: roster 에 나온 활성 수학반 전부. 학년은 소속 학생 학년의 최빈값.
+  // 반: **범위 안** 활성 수학반. 학년은 소속 학생 학년의 최빈값.
   const classMembers = new Map<
     string,
     { name: string; grades: (string | null)[] }
   >();
-  for (const student of roster.students)
+  for (const student of scopedRoster.students)
     for (const cls of student.classes) {
       const entry = classMembers.get(cls.id) ?? { name: cls.name, grades: [] };
       entry.name = cls.name;
@@ -149,7 +185,7 @@ export async function runEywaSync(opts: {
       classMembers.set(cls.id, entry);
     }
 
-  const rosterIds = new Set(roster.students.map((s) => s.id));
+  const rosterIds = new Set(scopedRoster.students.map((s) => s.id));
   const byStudentReports = new Map<string, EywaReport[]>();
   let 명단밖진도 = 0;
   const 명단밖학생 = new Set<string>();
@@ -193,8 +229,14 @@ export async function runEywaSync(opts: {
   console.log(
     `\n=== eywa 동기화 ${apply ? "(실쓰기)" : "(dry-run)"} · ${runId} ===`,
   );
+  // 🔴 **범위를 분모 앞에 찍는다.** 이 줄이 없으면 「수학 재원 7명」이 «학원에 7명»으로
+  //    읽힌다 — 실제로는 341명 중 범위 안이 7명이다. 걸러 낸 수를 같이 적어야
+  //    「전부 가져왔다」로 안 읽힌다.
   console.log(
-    `분모 셋(grok #6): 수학 재원 ${roster.total}명 · 진도 보고서 있는 학생 ${byStudentReports.size}명 · 진도 행이 생기는 학생 ${진도있는학생}명`,
+    `범위: 반 ${허용.size}개만 본다 (거른 반 ${범위밖반.size}개 · 거른 학생 ${범위밖학생}명) — src/lib/eywa/syncScope.ts`,
+  );
+  console.log(
+    `분모 셋(grok #6): 범위 안 재원 ${scopedRoster.students.length}명 / 수학 재원 전체 ${roster.total}명 · 진도 보고서 있는 학생 ${byStudentReports.size}명 · 진도 행이 생기는 학생 ${진도있는학생}명`,
   );
   console.log(
     `반 ${classMembers.size}개 · 진도 보고서 ${reports.length}건 → 진도 행 ${plannedRows}개`,
@@ -210,7 +252,7 @@ export async function runEywaSync(opts: {
     runId,
     applied: false,
     transport: requiredTransport(),
-    rosterTotal: roster.total,
+    rosterTotal: scopedRoster.students.length,
     studentsWithReports: byStudentReports.size,
     studentsWithRows: 진도있는학생,
     classes: classMembers.size,
@@ -267,7 +309,8 @@ export async function runEywaSync(opts: {
     },
     planned: {
       classes: classMembers.size,
-      students: roster.total,
+      // 범위 안 재원. 전체(roster.total)를 쓰면 원장이 「341명을 계획했다」로 읽힌다.
+      students: scopedRoster.students.length,
       progressRows: plannedRows,
     },
   });
@@ -306,7 +349,7 @@ export async function runEywaSync(opts: {
 
       // 학생 upsert — 주반 규칙 + 학교 필드 + 개별 진도 켜기.
       const ourStudentId = new Map<string, string>();
-      for (const student of roster.students) {
+      for (const student of scopedRoster.students) {
         const primary = primaryClassOf(student.classes);
         if (!primary) continue; // 활성 수학반이 없으면 이 연계의 대상이 아니다
         const school = schoolFieldsOf(student.grade);
@@ -372,7 +415,7 @@ export async function runEywaSync(opts: {
         const studentId = ourStudentId.get(eywaStudentId);
         if (!studentId) continue;
         const primary = primaryClassOf(
-          roster.students.find((s) => s.id === eywaStudentId)!.classes,
+          scopedRoster.students.find((s) => s.id === eywaStudentId)!.classes,
         )!;
         const classId = ourClassId.get(primary.id)!;
         for (const row of plan.rows)
@@ -395,7 +438,8 @@ export async function runEywaSync(opts: {
       await tx.eywaSyncRun.create({
         data: {
           transport: requiredTransport(),
-          students: roster.total,
+          // 화면 「마지막 동기화」가 읽는 수 — 범위 안 재원이어야 실제와 맞는다.
+          students: scopedRoster.students.length,
           classes: classMembers.size,
           progressRows: rowsToCreate.length,
           unresolvedLines,
@@ -421,8 +465,13 @@ export async function runEywaSync(opts: {
     where: { eywaStudentId: { not: null }, eywaWithdrawnAt: null },
   });
   appliedCounts.linkedAfter = linked;
+  // ⚠️ 예전엔 `roster.total`(수학 재원 **전체**)과 댔다. 범위를 좁힌 뒤 그대로 두면
+  //    **늘 ❌** 라 거짓 경보가 되고, 거짓 경보는 가드를 끈다(2026-08-20).
+  //    분모를 **범위 안 재원**으로 맞춘다.
+  const 범위재원 = scopedRoster.students.length;
   console.log(
-    `\n검산: 연계 학생(활성) ${linked}명 == roster ${roster.total}명 → ${linked === roster.total ? "✅" : "❌"}`,
+    `\n검산: 연계 학생(활성) ${linked}명 == 범위 안 재원 ${범위재원}명 → ${linked === 범위재원 ? "✅" : "❌"}` +
+      `  (수학 재원 전체 ${roster.total}명 — 범위 밖은 연계하지 않는다)`,
   );
   return { ...summary, applied: true, appliedCounts };
 }
