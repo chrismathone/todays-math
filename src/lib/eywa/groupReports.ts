@@ -22,7 +22,7 @@
  *
  * 🔴 **버린 것은 반드시 센다.** 조용히 빠지면 요약이 「전부 가져왔다」로 읽힌다.
  */
-import type { EywaReport } from "@/lib/eywa/contract";
+import type { EywaReport } from "@/lib/eywa/syncPlan";
 
 export interface GroupedReports {
   /** `${classId}|${studentId}` → 그 반에서 그 학생의 보고서. 진도 계획의 단위다. */

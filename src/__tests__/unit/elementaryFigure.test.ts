@@ -802,7 +802,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       if (!r.ok) failed.push(`${it.id}: ${r.error}`);
     }
     expect(failed).toEqual([]);
-  });
+  }, 60_000);
 });
 
 /**

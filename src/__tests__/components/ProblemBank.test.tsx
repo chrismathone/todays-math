@@ -50,11 +50,21 @@ async function pickUnit(
   await user.click(screen.getByRole("button", { name: "접기" }));
 }
 
+/**
+ * 🔴 대기 시간을 **명시**한다. 기본값은 1초인데, 이 파일은 단독으로도 50초가
+ *    걸리는 무거운 스위트다(KaTeX 렌더 + 목록 전량). 다른 오르카 세션이 CPU 를
+ *    쓰는 동안 관문에서 돌면 1초 안에 첫 문항이 안 그려져 **관문에서만 빨개진다**
+ *    (2026-08-25 실제 발생 — 단독 실행은 59/59 통과였다).
+ *    거짓 경보는 가드를 끈다(2026-08-20). 여기서 재는 것은 «렌더 속도»가 아니라
+ *    «렌더가 되는가»이므로 넉넉히 준다.
+ */
+const RENDER_WAIT = { timeout: 20_000 } as const;
+
 async function renderBank() {
   const user = userEvent.setup();
   const view = render(<ProblemsPage />);
-  await screen.findByRole("heading", { name: "문제은행" });
-  await screen.findByText(/를 유한소수로 나타내어라/);
+  await screen.findByRole("heading", { name: "문제은행" }, RENDER_WAIT);
+  await screen.findByText(/를 유한소수로 나타내어라/, undefined, RENDER_WAIT);
   return { user, ...view };
 }
 
@@ -91,7 +101,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
     expect(
       screen.queryByRole("form", { name: "변형" }),
     ).not.toBeInTheDocument();
-  });
+  }, 60_000);
 
   it("목록에서 분수·도형 수식을 MathText로 렌더하고 [교체]는 없다", async () => {
     const { container } = await renderBank();
@@ -102,7 +112,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
       screen.queryByRole("button", { name: "교체" }),
     ).not.toBeInTheDocument();
     expect(container.textContent ?? "").not.toMatch(/[!！]/);
-  });
+  }, 60_000);
 });
 
 describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
@@ -160,7 +170,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
     // 패널은 지연 청크다(ProblemPanelsLazy) — 단언은 그대로 두고 대기만 붙인다.
     const form = await screen.findByRole("form", { name: "등록" });
     expect(within(form).getByLabelText("단원")).toHaveValue(liveUnit.id);
-  });
+  }, 60_000);
 
   it("유형·상태·소단원 필터를 조합하면 해당 문항만 남는다", async () => {
     const { user } = await renderBank();

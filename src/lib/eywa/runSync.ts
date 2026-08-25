@@ -23,6 +23,7 @@ import { createHash } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 
 import { createEywaClient } from "@/lib/eywa/client";
+import { groupReportsByClassStudent, splitKey } from "@/lib/eywa/groupReports";
 import {
   assertNoIdCollision,
   deriveClassProgress,
@@ -34,7 +35,6 @@ import {
   planStudentProgress,
   primaryClassOf,
   schoolFieldsOf,
-  type EywaReport,
 } from "@/lib/eywa/syncPlan";
 import { scopeNameMismatches, scopedClassIds } from "@/lib/eywa/syncScope";
 import {
@@ -189,21 +189,17 @@ export async function runEywaSync(opts: {
       classMembers.set(cls.id, entry);
     }
 
+  // 🔴 보고서를 **(반, 학생)** 으로 가른다 — 규칙과 실측 근거는 `groupReports.ts` 에.
+  //    예전에는 학생 단위로만 묶어 특강 진도가 본수업을 덮었다(원장님 지적 2026-08-25).
   const rosterIds = new Set(scopedRoster.students.map((s) => s.id));
-  const byStudentReports = new Map<string, EywaReport[]>();
-  let 명단밖진도 = 0;
-  const 명단밖학생 = new Set<string>();
-  for (const report of reports) {
-    if (!rosterIds.has(report.studentId)) {
-      // 진도는 있는데 활성 수학반 밖(실측 5명) — 건너뛰되 센다(codex #6).
-      명단밖진도 += 1;
-      명단밖학생.add(report.studentId);
-      continue;
-    }
-    const list = byStudentReports.get(report.studentId) ?? [];
-    list.push(report);
-    byStudentReports.set(report.studentId, list);
-  }
+  const {
+    byClassStudent,
+    byStudent: byStudentReports,
+    명단밖진도,
+    명단밖학생,
+    반없는보고서,
+    범위밖반보고서,
+  } = groupReportsByClassStudent(reports, rosterIds, 허용, 원본반이름);
 
   const progressPlans = new Map<
     string,
@@ -212,9 +208,9 @@ export async function runEywaSync(opts: {
   let 애매 = 0;
   let 시험기간만 = 0;
   const 미분류 = new Map<string, number>();
-  for (const [studentId, list] of byStudentReports) {
+  for (const [key, list] of byClassStudent) {
     const plan = planStudentProgress(index, list);
-    progressPlans.set(studentId, plan);
+    progressPlans.set(key, plan);
     애매 += plan.ambiguous;
     시험기간만 += plan.examOnly;
     for (const raw of plan.unresolved)
@@ -245,6 +241,16 @@ export async function runEywaSync(opts: {
   console.log(
     `반 ${classMembers.size}개 · 진도 보고서 ${reports.length}건 → 진도 행 ${plannedRows}개`,
   );
+  // 🔴 **버린 보고서를 세어 찍는다.** 조용히 빠지면 「전부 가져왔다」로 읽힌다.
+  //    특히 범위 밖 반(특강·개별반)은 **일부러** 버리는 것이라 근거가 보여야 한다.
+  console.log(
+    `버린 보고서: 반이 안 적힘 ${반없는보고서}건 · 범위 밖 반 ${[...범위밖반보고서.values()].reduce((a, b) => a + b, 0)}건`,
+  );
+  if (범위밖반보고서.size > 0)
+    for (const [이름, n] of [...범위밖반보고서]
+      .sort((x, y) => y[1] - x[1])
+      .slice(0, 8))
+      console.log(`    ${n}건  «${이름}»`);
   console.log(
     `애매(자동 선택 안 함) ${애매}건 · 시험기간만 적힌 보고서 ${시험기간만}건 · 명단 밖 진도 ${명단밖진도}건(학생 ${명단밖학생.size}명)`,
   );
@@ -415,13 +421,14 @@ export async function runEywaSync(opts: {
         recordedAt: Date;
         createdAt: Date;
       }> = [];
-      for (const [eywaStudentId, plan] of progressPlans) {
+      for (const [key, plan] of progressPlans) {
+        // 🔴 반은 **그 보고서가 적어 둔 반**이다. 예전에는 `primaryClassOf` 로 주반
+        //    하나에 몰아넣어 특강 진도가 본수업을 덮었다(원장님 지적 2026-08-25).
+        const { classId: eywaClassId, studentId: eywaStudentId } =
+          splitKey(key);
         const studentId = ourStudentId.get(eywaStudentId);
-        if (!studentId) continue;
-        const primary = primaryClassOf(
-          scopedRoster.students.find((s) => s.id === eywaStudentId)!.classes,
-        )!;
-        const classId = ourClassId.get(primary.id)!;
+        const classId = ourClassId.get(eywaClassId);
+        if (!studentId || !classId) continue;
         for (const row of plan.rows)
           rowsToCreate.push({
             eywaReportId: row.eywaReportId,

@@ -15,7 +15,12 @@ import { readFileSync, writeFileSync } from "node:fs";
 const APPLY = process.argv.includes("--apply");
 const TIMEOUT = "60_000";
 
-/** audit-test-timeout-margin.mjs 가 2026-08-24 게이트 출력에서 낸 9건. */
+/**
+ * audit-test-timeout-margin.mjs 가 게이트 출력에서 낸 것들.
+ *  · 2026-08-24 회차 9건
+ *  · 2026-08-25 회차 5건 — 워크트리 넷이 동시에 돌던 날 ProblemBank 가 실제로
+ *    관문에서만 빨개졌다(단독 59/59 통과). 그때 감사가 14.6초/13.4초를 짚었다.
+ */
 const TARGETS = [
   ["src/__tests__/unit/elementaryEngine.test.ts", "두 그래프 결합의 안쪽 스펙 두 장이 실제로 그려진다"],
   ["src/__tests__/unit/elementaryEngine.test.ts", "생성기가 붙인 그림 스펙은 모두 그려진다"],
@@ -26,6 +31,11 @@ const TARGETS = [
   ["src/__tests__/unit/middleM2Func.test.ts", "그림 유형 셋의 figureSpec 이 실제로 그려진다"],
   ["src/__tests__/unit/middleM2Line.test.ts", "그림 유형 넷의 figureSpec 이 실제로 그려진다"],
   ["src/__tests__/unit/elemTiersG4Expand.test.ts", "1-5-2 갈래의 표가 실제로 그려진다"],
+  ["src/__tests__/unit/middleM3Func.test.ts", "넓은 씨앗(60×3)에서도 42유형 전량이 던지지 않고 검산을 통과한다"],
+  ["src/__tests__/components/ProblemBank.test.tsx", "AppChrome 내비와 학년/중단원/소단원/난이도/유형/상태 필터, 등록·생성을 보여 준다"],
+  ["src/__tests__/components/ProblemBank.test.tsx", "목록에서 분수·도형 수식을 MathText로 렌더하고 [교체]는 없다"],
+  ["src/__tests__/components/ProblemBank.test.tsx", "API가 돌려준 실제 단원 ID를 범위 피커와 등록 폼에 사용한다"],
+  ["src/__tests__/unit/elementaryFigure.test.ts", "그림 스펙이 있는 무작위 문항은 전부 그려진다"],
 ];
 
 let changed = 0;
