@@ -14,11 +14,26 @@ import {
   isMiddleComboId,
   middleComboDefinitions,
 } from "@/lib/middle/combo";
-import { registeredTypes } from "@/lib/middle/generate";
+import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
 
 const ID = "중3|원주각::중3|이차방정식의 풀이";
 /** 후보 ㄱ — 원장님 승인 2026-08-25 (D-108 뒤, 대수 쪽 첫 결합형). */
 const LIN = "중2|일차함수의 활용::중2|일차부등식의 풀이";
+/** 곱셈 공식 × 근호 — 원장님 승인 2026-08-25 (D-110). 새 문형 둘. */
+const SQRT = "중3|다항식의 곱셈::중3|근호를 포함한 식의 계산";
+/**
+ * **위임 등록** — 이미 등록된 유형이 곧 그 결합형이다(D-110). 새 문형이 없다.
+ * `[결합형 id, 원천 유형 키]`.
+ */
+const DELEGATED_PAIRS: [string, string][] = [
+  [
+    "중2|여러 가지 연립방정식의 풀이::중2|순환소수의 분수 표현",
+    "2-1|연립일차방정식|19",
+  ],
+  ["중2|여러 가지 연립방정식의 풀이::중2|지수법칙", "2-1|연립일차방정식|20"],
+  ["중3|이차방정식의 풀이::중3|인수분해", "3-1|이차방정식의 풀이|06"],
+];
+const DELEGATED = DELEGATED_PAIRS.map(([id]) => id);
 const SEEDS = [1, 7, 20260824, 99991, 424242];
 
 /** 지면의 `(...)^\circ` 두 개에서 계수를 읽는다. */
@@ -45,9 +60,9 @@ function readAngles(content: string): { ins: number[]; cen: number[] } {
 describe("중등 결합형 — 등록부", () => {
   it("승인된 것만 있다 — 조합기가 아니다", () => {
     const defs = middleComboDefinitions();
-    expect(defs.map((d) => d.id)).toEqual([ID, LIN]);
-    expect(isMiddleComboId(ID)).toBe(true);
-    expect(isMiddleComboId(LIN)).toBe(true);
+    expect(defs.map((d) => d.id)).toEqual([ID, LIN, SQRT, ...DELEGATED]);
+    for (const id of [ID, LIN, SQRT, ...DELEGATED])
+      expect(isMiddleComboId(id), id).toBe(true);
     expect(isMiddleComboId("아무거나")).toBe(false);
   });
 
@@ -301,5 +316,173 @@ describe("중등 결합형 — 일차함수의 활용 × 일차부등식", () =>
     const b = generateMiddleComboSet(LIN, 20260825, 6);
     expect(a.map((x) => x.content)).toEqual(b.map((x) => x.content));
     expect(new Set(a.map((x) => x.content)).size).toBe(6);
+  });
+});
+
+/**
+ * 곱셈 공식 × 근호 (D-110).
+ *
+ * ⚠️ 검산은 **`facts` 를 안 본다.** 지면에 찍힌 수만 읽어 관계를 다시 세운다.
+ * 문형 ② 는 더 나아가 **되곱해서** 확인한다 — 유리화한 답에 원래 분모를 곱하면
+ * 원래 분자가 나와야 한다. 생성기가 나눈 것을 시험은 **곱해서** 본다.
+ */
+const SQRT_SEEDS = [1, 5, 42, 2026, 20260825, 99991, 777];
+
+function sqrtSet(count: number) {
+  return SQRT_SEEDS.flatMap((s) => generateMiddleComboSet(SQRT, s, count));
+}
+
+describe("중등 결합형 — 곱셈 공식 × 근호", () => {
+  it("문형이 둘 다 나온다 (D-75)", () => {
+    expect([...new Set(sqrtSet(6).map((p) => p.familyId))].sort()).toEqual([
+      "binomial-rationalize",
+      "sqrt-product-expand",
+    ]);
+  });
+
+  it("① 지면의 두 인수로 다시 전개하면 정답이 나온다", () => {
+    const items = sqrtSet(6).filter(
+      (p) => p.familyId === "sqrt-product-expand",
+    );
+    expect(items.length).toBeGreaterThan(0);
+    for (const p of items) {
+      const m =
+        /\$\(\\sqrt\{(\d+)\}([+-]\d+)\)\(\\sqrt\{\d+\}([+-]\d+)\)=p\+q\\sqrt\{\d+\}\$/.exec(
+          p.content,
+        );
+      expect(m, p.content).not.toBeNull();
+      const [a, b, c] = [Number(m![1]), Number(m![2]), Number(m![3])];
+      // $(\sqrt a+b)(\sqrt a+c) = (a+bc) + (b+c)\sqrt a$
+      const rp = a + b * c;
+      const rq = b + c;
+      expect(rq, "무리수 부분이 사라지면 묻는 것이 없어진다").not.toBe(0);
+      expect(b, "$b=c$ 이면 완전제곱꼴이라 다른 공식이다").not.toBe(c);
+      expect(Number(/\$(-?\d+)\$/.exec(p.answer)![1])).toBe(rp + rq);
+      expect(p.solution).toContain("곱셈 공식");
+      expect(p.solution).toContain(`(\\sqrt{${a}})^2=${a}`);
+    }
+  });
+
+  it("② 유리화한 답에 원래 분모를 되곱하면 원래 분자가 나온다", () => {
+    const items = sqrtSet(6).filter(
+      (p) => p.familyId === "binomial-rationalize",
+    );
+    expect(items.length).toBeGreaterThan(0);
+    for (const p of items) {
+      const q = /\$\\dfrac\{(\d+)\}\{\\sqrt\{(\d+)\}\+(\d+)\}\$/.exec(
+        p.content,
+      )!;
+      const [k, a, b] = [Number(q[1]), Number(q[2]), Number(q[3])];
+      const r = /\$(\d*)\\sqrt\{(\d+)\}-(\d+)\$/.exec(p.answer);
+      expect(r, p.answer).not.toBeNull();
+      const mm = r![1] === "" ? 1 : Number(r![1]);
+      expect(Number(r![2]), "답의 근호 속 수가 발문과 다르다").toBe(a);
+      expect(Number(r![3]), "답의 상수항이 $m\\times b$ 가 아니다").toBe(
+        mm * b,
+      );
+      // 되곱하기: $(m\sqrt a - mb)(\sqrt a + b) = m(a-b^2)$ 이 원래 분자 $k$ 여야 한다.
+      expect(mm * (a - b * b), `되곱한 값이 ${k} 가 아니다`).toBe(k);
+      expect(a, "분모가 $0$ 이 되면 안 된다").toBeGreaterThan(b * b);
+      expect(p.solution).toContain("(x+y)(x-y)=x^2-y^2");
+    }
+  });
+
+  it("숫자는 전부 수식 안에 있다", () => {
+    for (const p of sqrtSet(4)) {
+      expect(bareNumbers(p.content), p.content).toEqual([]);
+      expect(bareNumbers(p.answer)).toEqual([]);
+      expect(bareNumbers(p.solution), p.solution).toEqual([]);
+    }
+  });
+
+  /** 값이 맞아도 지면이 흉할 수 있다 — 첫 판에서 넷 다 지면에 나갔다. */
+  it("지면 냄새 — 계수 1, $0-$, 분모 1, 조사, 띄어쓰기", () => {
+    const READING = [
+      "십",
+      "일",
+      "이",
+      "삼",
+      "사",
+      "오",
+      "육",
+      "칠",
+      "팔",
+      "구",
+    ];
+    const expectedEul = (n: number): "을" | "를" => {
+      const jong = (READING[Math.abs(n) % 10]!.charCodeAt(0) - 0xac00) % 28;
+      return jong === 0 ? "를" : "을";
+    };
+    let checked = 0;
+    for (const p of sqrtSet(6)) {
+      const text = `${p.content} ${p.solution} ${p.answer}`;
+      expect(text, "계수 1 이 그대로 찍혔다").not.toMatch(/[^0-9]1\\sqrt/);
+      expect(text, "계수 1 이 그대로 찍혔다").not.toMatch(/[^0-9]1x/);
+      expect(text, "$0-$ 가 앞에 남았다").not.toMatch(/=0[+-]\\sqrt/);
+      expect(text, "분모 1 인 분수를 그렸다").not.toMatch(
+        /\\dfrac\{[^{}]*\}\{1\}/,
+      );
+      expect(text, "수식과 조사 사이가 벌어졌다").not.toMatch(
+        /\$ (이다|이고|이므로|에 의하여|일 때)/,
+      );
+      for (const m of text.matchAll(/\\sqrt\{(\d+)\}\$(을|를)/g)) {
+        expect(m[2], `${m[0]} — 「${m[1]}」 뒤의 조사`).toBe(
+          expectedEul(Number(m[1])),
+        );
+        checked += 1;
+      }
+    }
+    expect(checked, "조사를 한 번도 못 쟀다").toBeGreaterThan(0);
+  });
+});
+
+/**
+ * 위임 등록 (D-110) — **이미 등록된 유형이 곧 그 결합형**이다.
+ *
+ * ⚠️ 여기서 지켜야 하는 것은 「같은 수학을 두 벌 쓰지 않았다」이다. 새로 베껴 쓰면
+ * 값이 둘 다 맞은 채로 갈라질 수 있고, **그 갈라짐은 아무도 못 알아챈다.**
+ * 그래서 산출물이 원천 유형의 산출물과 **글자까지 같은지** 본다.
+ */
+describe("중등 결합형 — 위임 등록", () => {
+  it("새 문형을 만들지 않았다 — 문형 id 가 곧 원천 유형 키다", () => {
+    const byId = new Map(middleComboDefinitions().map((d) => [d.id, d]));
+    for (const [id, source] of DELEGATED_PAIRS) {
+      const d = byId.get(id);
+      expect(d, id).toBeDefined();
+      expect(d!.delegatesTo, `${id} 가 위임이 아니다`).toBe(source);
+      expect(d!.familyIds, `${id} 의 문형`).toEqual([source]);
+      expect(d!.conceptKeys[0], `${id} 의 앵커 원천`).toBe(source);
+    }
+  });
+
+  it("산출물이 원천 유형의 것과 **글자까지 같다** — 수학이 두 벌이 아니다", () => {
+    for (const [id, source] of DELEGATED_PAIRS) {
+      for (const seed of [3, 77, 20260825]) {
+        for (const variant of [0, 1, 2]) {
+          const c = generateMiddleComboProblem(id, seed, variant);
+          const origin = generateMiddleProblem(source, seed, variant);
+          // 이 세 줄이 이 파일에서 가장 중요한 검사다 — 위임이 **새 수학을 안 썼다**는
+          // 유일한 증거다. 베껴 쓰면 값이 둘 다 맞은 채로 갈라질 수 있고 아무도 못 본다.
+          expect(c.content, `${id} 발문`).toBe(origin.content);
+          expect(c.answer, `${id} 정답`).toBe(origin.answer);
+          expect(c.solution, `${id} 해설`).toBe(origin.solution);
+          expect(c.difficulty, `${id} 난이도`).toBe(origin.difficulty);
+          expect(c.familyId).toBe(source);
+          expect(c.conceptKeys).toContain(source);
+        }
+        const set = generateMiddleComboSet(id, seed, 3);
+        expect(new Set(set.map((x) => x.content)).size).toBe(3);
+      }
+    }
+  });
+
+  it("위임도 승인 근거 세 가지를 갖춘다", () => {
+    const byId = new Map(middleComboDefinitions().map((d) => [d.id, d]));
+    for (const id of DELEGATED) {
+      const d = byId.get(id)!;
+      expect(d.curriculumBasis.length).toBeGreaterThan(30);
+      expect(d.laterConceptReview.length).toBeGreaterThan(30);
+      expect(d.gradeBoundary.trim()).not.toBe("");
+    }
   });
 });
