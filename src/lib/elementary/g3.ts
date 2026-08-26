@@ -8548,6 +8548,468 @@ function div134GuguProduct(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function ten(
+  calc: ChapterHandler,
+  word: ChapterHandler,
+  apply: ChapterHandler,
+  deep: ChapterHandler,
+  f05: ChapterHandler,
+  f06: ChapterHandler,
+  f07: ChapterHandler,
+  f08: ChapterHandler,
+  f09: ChapterHandler,
+  f10: ChapterHandler,
+): readonly ElemForm[] {
+  return [
+    { id: "01", tier: "연산", generate: calc },
+    { id: "02", tier: "기본", generate: word },
+    { id: "03", tier: "응용", generate: apply },
+    { id: "04", tier: "심화", generate: deep },
+    { id: "05", tier: "기본", generate: f05 },
+    { id: "06", tier: "기본", generate: f06 },
+    { id: "07", tier: "기본", generate: f07 },
+    { id: "08", tier: "응용", generate: f08 },
+    { id: "09", tier: "응용", generate: f09 },
+    { id: "10", tier: "응용", generate: f10 },
+  ];
+}
+
+function mulCol(a: number, b: number): Record<string, unknown> {
+  return fig("columnOp", { top: String(a), op: "×", bottom: String(b) });
+}
+
+/** 1-4 공유 — 빈칸 곱하는 수. */
+function mul14Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\times\\square=${p}$`,
+    n(b),
+    `${expr(`${p}\\div${a}=${b}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+function mul14Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 일의 자리 숫자를 쓰시오.`,
+    n(p % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul14Plus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱보다 $${10}$ 큰 수를 쓰시오.`,
+    n(p + 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이고, ${expr(`${p}+10=${p + 10}`)} 입니다.`,
+  );
+}
+
+function mul14From100(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  let p = 0;
+  for (let k = 0; k < 40; k += 1) {
+    ({ a, b } = mulCaseOf(unit.section, rng));
+    p = a * b;
+    if (p !== 100) break;
+  }
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱과 $${100}$ 의 차는 얼마입니까?`,
+    n(Math.abs(p - 100)),
+    `${expr(`${a}\\times${b}=${p}`)} 이고, 차는 ${n(Math.abs(p - 100))} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul14EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  const even = p % 2 === 0;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱은 짝수입니까, 홀수입니까?`,
+    even ? "짝수" : "홀수",
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 ${even ? "짝수" : "홀수"}입니다.`,
+  );
+}
+
+function mul14OneMore(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = mulCaseOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `한 묶음에 ${n(a)}개씩 ${n(b)}묶음이 있습니다. 한 묶음을 더 모으면 모두 몇 개인지 쓰시오.`,
+    n(p + a),
+    `${expr(`${a}\\times${b}=${p}`)} 이고, ${expr(`${p}+${a}=${p + a}`)} 입니다.`,
+  );
+}
+
+const MUL14_FORMS = ten(
+  mul14Calc,
+  mul14Word,
+  mul14Apply,
+  mul14Deep,
+  mul14Missing,
+  mul14Ones,
+  mul14Plus10,
+  mul14From100,
+  mul14EvenOdd,
+  mul14OneMore,
+);
+
+function lenMissingBigOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    const total = k * cfg.mul + e;
+    return make(
+      unit,
+      `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square\\,\\mathrm{${cfg.big}}\\ ${e}\\,\\mathrm{${cfg.small}}=${total}\\,\\mathrm{${cfg.small}}$`,
+      n(k),
+      `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${n(k)} ${cfg.big}입니다.`,
+    );
+  };
+}
+
+function lenOnlySmallOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 2, 9);
+    const e = cfg.smallPick(rng);
+    return make(
+      unit,
+      `${mixedLen(cfg, k, e)} 에서 ${cfg.small} 단위의 수만큼만 쓰시오.`,
+      n(e),
+      `작은 단위 부분은 ${n(e)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function lenTimesMulOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 2, 9);
+    return make(
+      unit,
+      `$${k}\\,\\mathrm{${cfg.big}}$ 는 $${cfg.mul}\\,\\mathrm{${cfg.small}}$ 의 몇 배입니까?`,
+      n(k),
+      `$1\\,\\mathrm{${cfg.big}}=${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이므로 ${n(k)}배입니다.`,
+    );
+  };
+}
+
+function lenSumSmallOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 2, 6);
+    const e = cfg.smallPick(rng);
+    const j = intBetween(rng, 1, 4);
+    const f = cfg.smallPick(rng);
+    const t1 = k * cfg.mul + e;
+    const t2 = j * cfg.mul + f;
+    return make(
+      unit,
+      `${mixedLen(cfg, k, e)} 와 ${mixedLen(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
+      n(t1 + t2),
+      `${expr(`${t1}+${t2}=${t1 + t2}`)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function lenDiffSmallOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 3, 8);
+    const e = cfg.smallPick(rng);
+    const j = intBetween(rng, 1, k - 1);
+    const f = cfg.smallPick(rng);
+    const t1 = k * cfg.mul + e;
+    const t2 = j * cfg.mul + f;
+    const hi = Math.max(t1, t2);
+    const lo = Math.min(t1, t2);
+    return make(
+      unit,
+      `${mixedLen(cfg, k, e)} 과 ${mixedLen(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
+      n(hi - lo),
+      `${expr(`${hi}-${lo}=${hi - lo}`)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function lenHowManyBigOf(cfg: LenCfg): ChapterHandler {
+  return (unit, rng) => {
+    const k = intBetween(rng, 2, 9);
+    return make(
+      unit,
+      `$${k * cfg.mul}\\,\\mathrm{${cfg.small}}$ 안에는 $${cfg.mul}\\,\\mathrm{${cfg.small}}$ 이 몇 번 들어갑니까?`,
+      n(k),
+      `${expr(`${k * cfg.mul}\\div${cfg.mul}=${k}`)} 이므로 ${n(k)}번입니다.`,
+    );
+  };
+}
+
+function guessMmOfCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = intBetween(rng, 3, 9);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 어림한 길이 ${unitNum(g, "cm")} 는 ${unitNum(10, "mm")} 가 몇 번 들어간 길이입니까?`,
+    n(g),
+    `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${n(g)}번입니다.`,
+  );
+}
+
+function guessError(unit: UnitSeed, rng: Rng): ElemProblem {
+  const real = intBetween(rng, 40, 90);
+  const off = pick(rng, [2, 3, 4, 5, 6, 7]);
+  const g = real + off * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
+  return make(
+    unit,
+    `실제 길이가 ${unitNum(real, "mm")} 인데 ${unitNum(g, "mm")} 로 어림했습니다. 어림값과 실제 길이의 차는 몇 mm입니까?`,
+    n(Math.abs(g - real)),
+    `${expr(`${Math.max(g, real)}-${Math.min(g, real)}=${Math.abs(g - real)}`)} 입니다.`,
+  );
+}
+
+function guessSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 80);
+  const b = intBetween(rng, 20, 80);
+  return make(
+    unit,
+    `가은은 약 ${unitNum(a, "mm")}, 나윤은 약 ${unitNum(b, "mm")} 로 어림했습니다. 두 어림값의 합은 몇 mm입니까?`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function guessToCmMm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cm = intBetween(rng, 2, 9);
+  const mm = intBetween(rng, 1, 9);
+  const t = cm * 10 + mm;
+  return make(
+    unit,
+    `어림한 길이 ${unitNum(t, "mm")} 는 몇 cm 몇 mm입니까?`,
+    `${n(cm)} cm ${n(mm)} mm`,
+    `$10$ mm 는 $1$ cm 이므로 ${n(t)} mm 는 ${n(cm)} cm ${n(mm)} mm입니다.`,
+  );
+}
+
+function guessHowManyCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cm = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${unitNum(cm * 10, "mm")} 를 cm 로 나타내면 몇 cm입니까?`,
+    n(cm),
+    `${expr(`${cm * 10}\\div10=${cm}`)} 입니다.`,
+  );
+}
+
+function guessTwice(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `어림한 길이 ${unitNum(g, "cm")} 의 $2$ 배는 몇 mm입니까?`,
+    n(g * 20),
+    `${expr(`${g}\\times10=${g * 10}`)} mm 의 $2$ 배는 ${expr(`${g * 10}\\times2=${g * 20}`)} 입니다.`,
+  );
+}
+
+function secMissingMin(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 5);
+  const s = intBetween(rng, 1, 59);
+  const t = m * 60 + s;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 ${n(s)}초 $=${n(t)}$초`,
+    n(m),
+    `$60$ 초는 $1$ 분이므로 ${n(m)}분입니다.`,
+  );
+}
+
+function secOnlySec(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 5);
+  const s = intBetween(rng, 1, 59);
+  return make(
+    unit,
+    `${msStr(m, s)} 에서 초 단위의 수만큼만 쓰시오.`,
+    n(s),
+    `초 단위 부분은 ${n(s)}초입니다.`,
+  );
+}
+
+function secHowManyMin(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `${n(m * 60)}초 안에는 $60$초가 몇 번 들어갑니까?`,
+    n(m),
+    `${expr(`${m * 60}\\div60=${m}`)} 이므로 ${n(m)}번입니다.`,
+  );
+}
+
+function secSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 10, 50);
+  const b = intBetween(rng, 10, 50);
+  return make(
+    unit,
+    `${n(a)}초와 ${n(b)}초의 합은 몇 초입니까?`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function secDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 30, 80);
+  const b = intBetween(rng, 10, a - 5);
+  return make(
+    unit,
+    `${n(a)}초와 ${n(b)}초의 차는 몇 초입니까?`,
+    n(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+  );
+}
+
+function secPlusMin(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 2, 4);
+  const s = intBetween(rng, 5, 50);
+  return make(
+    unit,
+    `${n(m)}분에 ${n(s)}초를 더한 시간은 몇 초입니까?`,
+    n(m * 60 + s),
+    `${expr(`60\\times${m}=${m * 60}`)} 이고 ${expr(`${m * 60}+${s}=${m * 60 + s}`)} 입니다.`,
+  );
+}
+
+function time155MinutesOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2 } = addHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 에서 분끼리만 더한 값은 몇 분입니까?`,
+    n(m1 + m2),
+    `${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다.`,
+  );
+}
+
+function time155HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2 } = addHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 에서 시간끼리만 더한 값은 몇 시간입니까?`,
+    n(h1 + h2),
+    `${expr(`${h1}+${h2}=${h1 + h2}`)} 입니다.`,
+  );
+}
+
+function time155CarryQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2 } = addHm(rng);
+  const yes = m1 + m2 >= 60;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. ${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 을 더할 때 분에서 시간으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    yes ? "예" : "아니요",
+    `분끼리 더하면 ${n(m1 + m2)}분이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
+  );
+}
+
+function time155TotalMin(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1 } = addHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 은 모두 몇 분입니까?`,
+    n(h1 * 60 + m1),
+    `${expr(`60\\times${h1}=${h1 * 60}`)} 이고 ${expr(`${h1 * 60}+${m1}=${h1 * 60 + m1}`)} 입니다.`,
+  );
+}
+
+function time155AddOneHour(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1 } = addHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 에 $1$시간을 더하면 몇 시간 몇 분입니까?`,
+    hmStr(h1 + 1, m1),
+    `시간에 $1$을 더하면 ${hmStr(h1 + 1, m1)}입니다.`,
+  );
+}
+
+function time155SumHours(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, h2, m2, hh, mm } = addHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 의 합에서 시간 부분만 쓰시오.`,
+    n(hh),
+    `합은 ${hmStr(hh, mm)} 이므로 시간은 ${n(hh)}시간입니다.`,
+  );
+}
+
+function time156MinutesOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺀 결과의 분 부분만 쓰시오.`,
+    n(mm),
+    `차는 ${hmStr(hh, mm)} 이므로 분은 ${n(mm)}분입니다.`,
+  );
+}
+
+function time156HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm } = subHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때, 받아내림 전 시간끼리만 빼면 몇 시간입니까?`,
+    n(h1 - sh),
+    `${expr(`${h1}-${sh}=${h1 - sh}`)} 입니다.`,
+  );
+}
+
+function time156BorrowQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm } = subHm(rng);
+  const yes = m1 < sm;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. ${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때 분에서 받아내림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    yes ? "예" : "아니요",
+    `${n(m1)}분에서 ${n(sm)}분을 빼므로 ${yes ? "받아내림이 있습니다" : "받아내림이 없습니다"}.`,
+  );
+}
+
+function time156TotalMin(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1 } = subHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 은 모두 몇 분입니까?`,
+    n(h1 * 60 + m1),
+    `${expr(`60\\times${h1}+${m1}=${h1 * 60 + m1}`)} 입니다.`,
+  );
+}
+
+function time156MinusHour(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1 } = subHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 에서 $1$시간을 빼면 몇 시간 몇 분입니까?`,
+    hmStr(h1 - 1, m1),
+    `시간에서 $1$을 빼면 ${hmStr(h1 - 1, m1)}입니다.`,
+  );
+}
+
+function time156DiffHours(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { h1, m1, sh, sm, hh, mm } = subHm(rng);
+  return make(
+    unit,
+    `${hmStr(h1, m1)} 과 ${hmStr(sh, sm)} 의 차에서 시간 부분만 쓰시오.`,
+    n(hh),
+    `차는 ${hmStr(hh, mm)} 이므로 시간은 ${n(hh)}시간입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8705,6 +9167,83 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "09", tier: "응용", generate: div134DaysMinus },
     { id: "10", tier: "응용", generate: div134GuguProduct },
   ],
+  "초3|1-4-1": MUL14_FORMS,
+  "초3|1-4-2": MUL14_FORMS,
+  "초3|1-4-3": MUL14_FORMS,
+  "초3|1-4-4": MUL14_FORMS,
+  "초3|1-4-5": MUL14_FORMS,
+  "초3|1-5-1": ten(
+    lenCalcOf(LEN_CM),
+    lenWordOf(LEN_CM),
+    lenApplyOf(LEN_CM),
+    lenDeepOf(LEN_CM),
+    lenMissingBigOf(LEN_CM),
+    lenOnlySmallOf(LEN_CM),
+    lenTimesMulOf(LEN_CM),
+    lenSumSmallOf(LEN_CM),
+    lenDiffSmallOf(LEN_CM),
+    lenHowManyBigOf(LEN_CM),
+  ),
+  "초3|1-5-2": ten(
+    lenCalcOf(LEN_KM),
+    lenWordOf(LEN_KM),
+    lenApplyOf(LEN_KM),
+    lenDeepOf(LEN_KM),
+    lenMissingBigOf(LEN_KM),
+    lenOnlySmallOf(LEN_KM),
+    lenTimesMulOf(LEN_KM),
+    lenSumSmallOf(LEN_KM),
+    lenDiffSmallOf(LEN_KM),
+    lenHowManyBigOf(LEN_KM),
+  ),
+  "초3|1-5-3": ten(
+    guessCalc,
+    guessWord,
+    guessApply,
+    guessDeep,
+    guessMmOfCm,
+    guessError,
+    guessSum,
+    guessToCmMm,
+    guessHowManyCm,
+    guessTwice,
+  ),
+  "초3|1-5-4": ten(
+    sec154Calc,
+    sec154Word,
+    sec154Apply,
+    sec154Deep,
+    secMissingMin,
+    secOnlySec,
+    secHowManyMin,
+    secSum,
+    secDiff,
+    secPlusMin,
+  ),
+  "초3|1-5-5": ten(
+    time155Calc,
+    time155Word,
+    time155Apply,
+    time155Deep,
+    time155MinutesOnly,
+    time155HoursOnly,
+    time155CarryQ,
+    time155TotalMin,
+    time155AddOneHour,
+    time155SumHours,
+  ),
+  "초3|1-5-6": ten(
+    time156Calc,
+    time156Word,
+    time156Apply,
+    time156Deep,
+    time156MinutesOnly,
+    time156HoursOnly,
+    time156BorrowQ,
+    time156TotalMin,
+    time156MinusHour,
+    time156DiffHours,
+  ),
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
     { id: "02", tier: "기본", generate: circ231Word },
