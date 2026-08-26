@@ -21,6 +21,14 @@ function josa(word: string, withBatchim: string, without: string): string {
   return (code - 0xac00) % 28 !== 0 ? withBatchim : without;
 }
 
+/**
+ * 양자택일 문형의 갈래. 변형 셋이 한 답만 내지 않게 첫 뽑기로 고른다.
+ * `0..9` 의 홀짝 — `0..1` 동전은 검사 씨앗 셋이 한쪽으로 몰리는 자리가 있다.
+ */
+function altCase(rng: Rng): boolean {
+  return intBetween(rng, 0, 9) % 2 === 1;
+}
+
 function digits(n3: number): [number, number, number] {
   return [Math.floor(n3 / 100) % 10, Math.floor(n3 / 10) % 10, n3 % 10];
 }
@@ -7561,7 +7569,16 @@ function add111Plus100(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 10 — 합이 짝수인지 홀수인지. */
 function add111EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, b] = addWithCarries(rng, 0, 1);
+  const wantOdd = altCase(rng);
+  let a = 0;
+  let b = 0;
+  for (let k = 0; k < 80; k += 1) {
+    [a, b] = addWithCarries(rng, 0, 1);
+    if (((a + b) % 2 === 1) === wantOdd) break;
+  }
+  if (((a + b) % 2 === 1) !== wantOdd) {
+    a = a % 10 < 9 ? a + 1 : a - 1;
+  }
   const s = a + b;
   const even = s % 2 === 0;
   return make(
@@ -8632,7 +8649,21 @@ function mul14From100(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function mul14EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { a, b } = mulCaseOf(unit.section, rng);
+  const wantOdd = altCase(rng);
+  let a = 0;
+  let b = 0;
+  for (let k = 0; k < 40; k += 1) {
+    ({ a, b } = mulCaseOf(unit.section, rng));
+    if (((a * b) % 2 === 1) === wantOdd) break;
+  }
+  if (((a * b) % 2 === 1) !== wantOdd) {
+    if (wantOdd) {
+      a = intBetween(rng, 5, 14) * 2 + 1;
+      b = intBetween(rng, 1, 4) * 2 + 1;
+    } else if ((a * b) % 2 === 1) {
+      a += 1;
+    }
+  }
   const p = a * b;
   const even = p % 2 === 0;
   return make(
@@ -9313,14 +9344,25 @@ function cmp164SmallNum(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function cmp164SameDenQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const same = altCase(rng);
   const den = intBetween(rng, 5, 9);
-  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  let den2 = den;
+  if (!same) {
+    den2 = intBetween(rng, 5, 9);
+    if (den2 === den) den2 = den === 9 ? 5 : den + 1;
+  }
+  const [i, j] = distinctIdx(rng, Math.min(den, den2) - 1, 2) as [
+    number,
+    number,
+  ];
   const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. ${expr(`\\frac{${i + 1}}{${den}}`)} 과 ${expr(`\\frac{${j + 1}}{${den}}`)} 의 분모는 같습니까? 예 또는 아니요로 쓰시오.`,
-    "예",
-    `두 분수의 분모는 모두 ${n(den)} 으로 같습니다.`,
+    `${n(which)}번. ${expr(`\\frac{${i + 1}}{${den}}`)} 과 ${expr(`\\frac{${j + 1}}{${den2}}`)} 의 분모는 같습니까? 예 또는 아니요로 쓰시오.`,
+    same ? "예" : "아니요",
+    same
+      ? `두 분수의 분모는 모두 ${n(den)} 으로 같습니다.`
+      : `분모는 ${n(den)} 과 ${n(den2)} 으로 다릅니다.`,
   );
 }
 
@@ -9649,7 +9691,18 @@ function mul213Plus10(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function mul213EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, b] = mul213PairOf(rng);
+  const wantOdd = altCase(rng);
+  let a: number;
+  let b: number;
+  if (wantOdd) {
+    a = intBetween(rng, 1, 4) * 2 + 1;
+    b = tensOnes21(rng);
+    if (b % 2 === 0) b += 1;
+    if (b > 99) b -= 2;
+  } else {
+    [a, b] = mul213PairOf(rng);
+    if ((a * b) % 2 === 1) a += 1;
+  }
   const p = a * b;
   const even = p % 2 === 0;
   return make(
@@ -9871,13 +9924,16 @@ function rem223Check(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function rem223LessQ(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, b, q, r] = div2Rem(rng);
+  const wantYes = altCase(rng);
+  const [a, b, , r] = div2Rem(rng);
+  const k = wantYes ? b : r;
   const which = intBetween(rng, 1, 6);
+  const yes = r < k;
   return make(
     unit,
-    `${n(which)}번. $${a}\\div${b}$ 의 나머지는 나누는 수보다 작습니까? 예 또는 아니요로 쓰시오.`,
-    "예",
-    `나머지는 ${n(r)}, 나누는 수는 ${n(b)} 이므로 나머지가 더 작습니다.`,
+    `${n(which)}번. $${a}\\div${b}$ 의 나머지는 ${n(k)}보다 작습니까? 예 또는 아니요로 쓰시오.`,
+    yes ? "예" : "아니요",
+    `나머지는 ${n(r)} 이므로 ${yes ? `${n(k)}보다 작습니다` : `${n(k)}보다 작지 않습니다`}.`,
   );
 }
 
@@ -10284,13 +10340,20 @@ function kind244Den(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function kind244WholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantImproper = altCase(rng);
   const den = intBetween(rng, 3, 9);
+  const num = wantImproper
+    ? den + intBetween(rng, 0, 4)
+    : intBetween(rng, 1, den - 1);
   const which = intBetween(rng, 1, 6);
+  const yes = num >= den;
   return make(
     unit,
-    `${n(which)}번. ${expr(`\\frac{${den}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
-    "예",
-    `분자가 분모와 같으므로 가분수입니다.`,
+    `${n(which)}번. ${expr(`\\frac{${num}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
+    yes ? "예" : "아니요",
+    yes
+      ? `분자가 분모 이상이므로 가분수입니다.`
+      : `분자가 분모보다 작으므로 가분수가 아닙니다.`,
   );
 }
 
