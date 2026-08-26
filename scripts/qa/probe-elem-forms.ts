@@ -77,6 +77,51 @@ function shapeOf(frames: string[]): string {
   return out.join(" ");
 }
 
+/**
+ * ⑶-b **글은 다른데 셈이 같은** 두 문형.
+ *
+ * 앞의 지문 검사는 「$1^\circ$가 N개 모인 각」과 「눈금이 N칸인 각」을 못 가른다 —
+ * 글이 다르고 정답도 다르지만 **셈이 둘 다 항등**이다. 실측으로 초4 14곳에서
+ * 4건 나왔다(「두 각을 이어 붙인 합」과 「$a+b=\square$」가 같은 `n0+n1`).
+ *
+ * 열쇠를 손으로 적지 않는다 — 발문의 수와 정답 사이에 **씨앗 전량에서 성립하는
+ * 관계식**을 찾아 서명으로 쓴다. 서명이 같으면 같은 셈이다.
+ * 음성 대조: 파일럿 3곳(이미 좋다고 판정한 곳)은 **0건**이다.
+ */
+const RELATION_CONSTS = [90, 180, 360, 100, 1000, 10000, 12, 60, 24, 8, 4, 2];
+
+function numsIn(s: string): number[] {
+  return (s.match(/\d+/g) ?? []).map(Number);
+}
+
+function relationsOf(stem: number[], ans: number): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < stem.length; i += 1) {
+    const a = stem[i]!;
+    if (a === ans) out.push(`=n${i}`);
+    for (const k of RELATION_CONSTS) {
+      if (k - a === ans) out.push(`${k}-n${i}`);
+      if (a + k === ans) out.push(`n${i}+${k}`);
+      if (a - k === ans) out.push(`n${i}-${k}`);
+      if (a * k === ans) out.push(`n${i}*${k}`);
+      if (a !== 0 && k / a === ans) out.push(`${k}/n${i}`);
+      if (a / k === ans) out.push(`n${i}/${k}`);
+    }
+    for (let j = i + 1; j < stem.length; j += 1) {
+      const b = stem[j]!;
+      if (a + b === ans) out.push(`n${i}+n${j}`);
+      if (a - b === ans) out.push(`n${i}-n${j}`);
+      if (b - a === ans) out.push(`n${j}-n${i}`);
+      if (a * b === ans) out.push(`n${i}*n${j}`);
+      for (const k of RELATION_CONSTS) {
+        if (a + b - k === ans) out.push(`n${i}+n${j}-${k}`);
+        if (k - a - b === ans) out.push(`${k}-n${i}-n${j}`);
+      }
+    }
+  }
+  return out;
+}
+
 type Report = {
   grade: string;
   section: string;
@@ -87,6 +132,8 @@ type Report = {
 };
 
 const reports: Report[] = [];
+/** 막지 않는 참고 — 셈이 같은 짝. 「묻는 것이 같다」는 뜻이 아니다. */
+const advisories: string[] = [];
 
 for (const unit of elementaryUnits()) {
   if (supportedTiers(unit).length === 0) continue;
@@ -122,18 +169,35 @@ for (const unit of elementaryUnits()) {
   const shapes = new Map<string, string[]>();
   const shapeOfForm = new Map<string, string>();
   const answersOfForm = new Map<string, string>();
+  const relOfForm = new Map<string, string>();
   let figureForms = 0;
   const pool: SelectableProblem[] = [];
 
   for (const form of forms) {
     const frames: string[] = [];
     const answers: string[] = [];
+    let relSet: Set<string> | null = null;
     let sawFigure = false;
     for (let i = 0; i < SEEDS; i += 1) {
       try {
         const p = generateElementaryForm(unit, SEED0 + i * STEP, form.id);
         frames.push(rawFrame(p.content));
         answers.push(p.answer);
+        const ansNums = numsIn(p.answer);
+        const rels: string[] =
+          ansNums.length === 1
+            ? relationsOf(numsIn(p.content), ansNums[0]!)
+            : [];
+        if (relSet === null) {
+          relSet = new Set<string>(rels);
+        } else {
+          const keep = new Set<string>(rels);
+          const kept: string[] = [];
+          relSet.forEach((r) => {
+            if (keep.has(r)) kept.push(r);
+          });
+          relSet = new Set<string>(kept);
+        }
         if (p.figureSpec) sawFigure = true;
       } catch (err) {
         problems.push(
@@ -149,6 +213,8 @@ for (const unit of elementaryUnits()) {
     shapes.set(shape, owners);
     shapeOfForm.set(form.id, shape);
     answersOfForm.set(form.id, answers.join("|"));
+    if (relSet && relSet.size > 0)
+      relOfForm.set(form.id, [...relSet].sort().join(","));
 
     // ⑷ 변형 3개
     const familyKey = pilotFamilyKey(unit, form.id);
@@ -216,6 +282,24 @@ for (const unit of elementaryUnits()) {
     }
   }
 
+  // ⑶-b 글은 다른데 셈이 같은 짝
+  const relIds = [...relOfForm.keys()];
+  for (let a = 0; a < relIds.length; a += 1) {
+    for (let b = a + 1; b < relIds.length; b += 1) {
+      const ia = relIds[a]!;
+      const ib = relIds[b]!;
+      if (relOfForm.get(ia) !== relOfForm.get(ib)) continue;
+      // 🔴 **막지 않는다.** 셈이 같은 것과 묻는 것이 같은 것은 다르다 —
+      //    「23×2 를 계산하시오」와 「22개씩 3봉지는 몇 개인가」는 절차와 모델링이라
+      //    교과서가 둘 다 낸다. 「정사각형 둘레」와 「변의 개수」도 둘 다 n0*4 다.
+      //    실측: 초3 56곳에 막는 검사로 대니 19곳이 걸렸고 **표본이 전부 거짓**이었다.
+      //    거짓 경보는 가드를 끈다(2026-08-20). 사람이 볼 수 있게 적기만 한다.
+      advisories.push(
+        `${unit.grade} ${unit.section} 문형 ${ia}·${ib} 셈이 같다 (${relOfForm.get(ia)!.slice(0, 24)})`,
+      );
+    }
+  }
+
   // ⑸ 시험지 10문항·10갈래
   if (forms.length >= TARGET_FORMS) {
     try {
@@ -272,6 +356,11 @@ if (wantJson) {
   for (const [g, v] of [...byGrade].sort())
     console.log(`  ${g}  ${v.done} / ${v.n}`);
   console.log("");
+  if (advisories.length > 0) {
+    console.log(`참고 — 셈이 같은 짝 ${advisories.length}건 (막지 않는다):`);
+    for (const a of advisories.slice(0, 5)) console.log(`  ${a}`);
+    console.log("");
+  }
   const bad = started.filter((r) => !r.done).slice(0, 12);
   if (bad.length > 0) {
     console.log("착수했는데 아직 안 되는 곳 (앞 12):");
