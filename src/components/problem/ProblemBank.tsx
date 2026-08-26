@@ -10,7 +10,12 @@ import type {
   ProblemSource,
   ReviewStatus,
 } from "@/contracts/common.contract";
-import type { ProblemEntity, ProblemType } from "@/contracts/problem.contract";
+import type {
+  ProblemEntity,
+  ProblemFormatFilter,
+  ProblemType,
+} from "@/contracts/problem.contract";
+import { classifyFormat } from "@/lib/problem/provenance";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import {
   loadProblems,
@@ -35,7 +40,12 @@ import {
   FieldText,
   FIELD_SELECT_WIDTH,
 } from "./FieldSelect";
-import { PROBLEM_TYPES, SOURCE_LABEL, SOURCE_OPTIONS } from "./labels";
+import {
+  PROBLEM_FILTER_OPTIONS,
+  SOURCE_LABEL,
+  SOURCE_OPTIONS,
+  splitProblemFilterValue,
+} from "./labels";
 import { ProblemCard } from "./ProblemCardLazy";
 import { ProblemGenerateForm, ProblemRegisterForm } from "./ProblemPanelsLazy";
 
@@ -117,6 +127,10 @@ function matchesFilters(
   return (
     (!filters.difficulty || problem.difficulty === filters.difficulty) &&
     (!filters.problemType || problem.problemType === filters.problemType) &&
+    // 형식(`[단]`·`[서]`) — 서버가 거른 것과 **같은 함수**를 부른다. 카드의 라벨도
+    // 이 함수가 그린다(`provenanceBadges`) — 셋이 갈리면 「등록하자마자 목록에 있는데
+    // 새로고침하면 사라지는」 카드가 생긴다.
+    (!filters.format || classifyFormat(problem) === filters.format) &&
     (!filters.reviewStatus || problem.reviewStatus === filters.reviewStatus) &&
     (!filters.source || problem.source === filters.source)
   );
@@ -131,7 +145,10 @@ export function ProblemBank() {
   const [rangeEnd, setRangeEnd] = useState<string | null>(null);
   const [rangeEditing, setRangeEditing] = useState(false);
   const [difficulty, setDifficulty] = useState("");
-  const [problemType, setProblemType] = useState("");
+  // 「유형」 칸 하나가 **두 축**을 고른다 (원장님 지시 2026-08-26) — 계산·개념·활용은
+  // `problemType`, 단답형·서술형은 화면 라벨 `[단]`·[서] 와 같은 형식 축이다.
+  // 값을 그대로 들고 있다가 보낼 때만 가른다 — `<select>` 는 값이 하나여야 한다.
+  const [problemFilter, setProblemFilter] = useState("");
   const [reviewStatus, setReviewStatus] = useState("");
   // 출처 필터(2026-08-19 원장님 지시) — AI 생성물만 골라 검수하려면 이 칸이 필요하다.
   // 그 전에는 대기 271건(기출 144 · 변형 107 · AI 20)이 한 덩어리로 섞여 나왔다.
@@ -160,7 +177,10 @@ export function ProblemBank() {
       unitFrom: rangeStart ?? undefined,
       unitTo: rangeEnd ?? undefined,
       difficulty: (difficulty || undefined) as Difficulty | undefined,
-      problemType: (problemType || undefined) as ProblemType | undefined,
+      problemType: splitProblemFilterValue(problemFilter).problemType as
+        ProblemType | undefined,
+      format: splitProblemFilterValue(problemFilter).format as
+        ProblemFormatFilter | undefined,
       reviewStatus: (reviewStatus || undefined) as ReviewStatus | undefined,
       source: (source || undefined) as ProblemSource | undefined,
       q: q.trim() || undefined,
@@ -172,7 +192,7 @@ export function ProblemBank() {
       rangeStart,
       rangeEnd,
       difficulty,
-      problemType,
+      problemFilter,
       reviewStatus,
       source,
       q,
@@ -431,18 +451,24 @@ export function ProblemBank() {
             </option>
           ))}
         </FieldSelect>
+        {/*
+          유형 — 「어떻게 푸나」(계산·개념·활용)와 「어떻게 답을 내나」(단답형·서술형)가
+          한 칸에 있다. 원장님이 화면에서 보는 것이 라벨 `[단]`·`[서]` 라 **그 라벨로**
+          거를 수 있어야 한다는 지시(2026-08-26)를 그대로 따른 것이다.
+          어느 값이 어느 축인지는 `labels.ts` 가 정한다 — 여기서 문자열을 다시 자르지 않는다.
+        */}
         <FieldSelect
           label="유형"
-          value={problemType}
+          value={problemFilter}
           onChange={(event) => {
             resetToFirstPage();
-            setProblemType(event.target.value);
+            setProblemFilter(event.target.value);
           }}
         >
           <option value="">전체</option>
-          {PROBLEM_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type}
+          {PROBLEM_FILTER_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           ))}
         </FieldSelect>

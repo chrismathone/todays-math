@@ -7,6 +7,7 @@ import type {
   ProblemCreateRequest,
   ProblemGenerateRequest,
   ProblemTransformAdoptRequest,
+  ProblemFormatFilter,
   ProblemTransformRequest,
   ProblemType,
 } from "@/contracts/problem.contract";
@@ -46,6 +47,11 @@ export type ProblemListFilters = {
   hasAnswer?: boolean;
   difficulty?: Difficulty;
   problemType?: ProblemType;
+  /**
+   * 형식(`[단]`·`[서]`) — 화면의 「유형」 드롭다운이 `problemType` 과 **같은 칸**에서 보낸다
+   * (원장님 지시 2026-08-26). 둘은 다른 축이라 둘 다 실릴 수 있다.
+   */
+  format?: ProblemFormatFilter;
   reviewStatus?: ReviewStatus;
   /** 출처(2026-08-19 원장님 지시) — AI 생성물만 골라 검수할 수 있어야 한다. */
   source?: ProblemSource;
@@ -77,6 +83,7 @@ function listQuery(filters: ProblemListFilters, page: number) {
   }
   if (filters.difficulty) params.set("difficulty", filters.difficulty);
   if (filters.problemType) params.set("problemType", filters.problemType);
+  if (filters.format) params.set("format", filters.format);
   if (filters.reviewStatus) params.set("reviewStatus", filters.reviewStatus);
   if (filters.source) params.set("source", filters.source);
   return params.toString();

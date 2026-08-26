@@ -85,6 +85,14 @@ export function serializeProblem(row: ProblemRow): ProblemEntity {
     // Problem.problemType은 DB에서 자유 문자열(VarChar)이지만 앱 계약은 4종으로 좁힌다
     // (07-coding-convention.md §2.3, problem.contract.ts 상단 주석 참조).
     problemType: row.problemType as ProblemType,
+    // 🔴 **빠져 있었다** (2026-08-26). 화면의 형식 라벨 `[단]`·`[서]` 은 이 값을 **가장 먼저**
+    //    보는데(`classifyFormat`), 응답에 안 실려 화면에서는 늘 `undefined` 였다. 그래서
+    //    `question_type='단답형'` 인 기출 733건이 화면에서 `[?형식]` 으로 나가고, 조사
+    //    스크립트(DB 를 직접 읽는다)만 `[단]` 이라 하고 있었다 — **같은 문항을 두 자리가
+    //    다르게 부르고 있었다**(원장님 최우선 규칙 위반). 서버 필터도 이 값을 보므로,
+    //    안 실어 보내면 「필터에는 나오는데 라벨은 다른」 행이 그대로 생긴다.
+    //    계약(`problemSchema`)은 처음부터 이 필드를 갖고 있었다 — 빠진 것은 배선뿐이다.
+    questionType: row.questionType,
     content: row.content,
     answer: row.answer,
     solution: row.solution,

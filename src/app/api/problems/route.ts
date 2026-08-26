@@ -15,7 +15,13 @@ import {
   problemFilterQuerySchema,
   problemListResponseSchema,
   problemResponseSchema,
+  type ProblemFormatFilter,
 } from "@/contracts/problem.contract";
+import {
+  classifyFormat,
+  FORMAT_SUPERSET_WHERE,
+  formatWithoutContent,
+} from "@/lib/problem/provenance";
 import {
   jsonOk,
   notFoundError,
@@ -78,6 +84,77 @@ export async function POST(request: NextRequest) {
   );
 }
 
+/**
+ * **형식 필터(`[단]`·`[서]`)를 화면 라벨과 «똑같이» 푼다** — 원장님 지시 2026-08-26.
+ *
+ * 라벨은 파생값이라(`classifyFormat` 이 본문을 파싱해 보기 칸 수를 센다) Prisma `where` 로
+ * 바로 못 거른다. 후보 SQL 조건을 공유 DB 전량에 대고 재 보니 가장 가까운 것도 **278건**이
+ * 갈렸다(`scripts/qa/probe-format-filter.ts`). 필터와 라벨이 갈리는 것은 원장님의 최우선
+ * 규칙(「모든 화면에서 모든 문제가 똑같은 규칙으로 똑같이 보여야 한다」)을 깨는 것이다.
+ *
+ * 그래서 **정확히** 푼다. 전량을 메모리로 끌어오지 않고 세 걸음으로 좁힌다:
+ *
+ *   ⑴ SQL 이 **후보 집합**만 긁는다(`FORMAT_SUPERSET_WHERE` — 실측 단답형 3,146행 ·
+ *      서술형 7,819행). 본문은 **안 읽는다**.
+ *   ⑵ 후보 대부분은 본문 없이 판정이 끝난다(`formatWithoutContent`).
+ *   ⑶ 남은 것만 본문을 읽어 `classifyFormat` 을 부른다 — 실측 20행 · 45행.
+ *
+ * 그리고 최종 `where` 는 「후보 집합 **빼기** 어긋난 행」이다. 어긋난 행 목록이 작으므로
+ * (실측 20·16) `id NOT IN (...)` 이 짧게 유지된다 — 맞는 행 수천 개를 `IN` 으로 나열하는
+ * 반대 방향은 SQL 문이 수백 KB 가 된다.
+ *
+ * ⚠️ 후보 집합·본문 없는 판정이 `classifyFormat` 과 갈리면 이 전부가 무너진다.
+ *    그 둘은 `src/__tests__/unit/problemFormatFilter.test.ts` 가 입력 공간 전수로 잠근다.
+ */
+async function formatWhere(
+  format: ProblemFormatFilter | undefined,
+  base: Record<string, unknown>,
+): Promise<Record<string, unknown>[]> {
+  if (!format) return [];
+  const superset = FORMAT_SUPERSET_WHERE[format];
+  const candidates = await db.problem.findMany({
+    where: { AND: [base, superset] },
+    select: {
+      id: true,
+      answer: true,
+      questionType: true,
+      problemType: true,
+      familyKey: true,
+    },
+  });
+
+  // 본문을 읽어야만 갈리는 행만 골라 **그 행들의 본문만** 가져온다.
+  const undecided = candidates.filter(
+    (row) => formatWithoutContent(row) === null,
+  );
+  const contentById = new Map<string, string>(
+    undecided.length === 0
+      ? []
+      : (
+          await db.problem.findMany({
+            where: { id: { in: undecided.map((row) => row.id) } },
+            select: { id: true, content: true },
+          })
+        ).map((row) => [row.id, row.content]),
+  );
+
+  const rejected = candidates
+    .filter((row) => {
+      const quick = formatWithoutContent(row);
+      if (quick !== null) return quick !== format;
+      const content = contentById.get(row.id);
+      // 본문을 못 읽었다 = 두 조회 사이에 지워진 행이다. **남기지 않는다** —
+      // 라벨을 확인하지 못한 것을 보여 주면 필터와 화면이 갈린다.
+      if (content === undefined) return true;
+      return classifyFormat({ ...row, content }) !== format;
+    })
+    .map((row) => row.id);
+
+  return rejected.length === 0
+    ? [superset]
+    : [superset, { NOT: { id: { in: rejected } } }];
+}
+
 // GET /api/problems — 공용 풀 + 본인 private (필터 + 페이지네이션, D-31)
 export async function GET(request: NextRequest) {
   const session = await getSessionUser();
@@ -101,6 +178,9 @@ export async function GET(request: NextRequest) {
     hasFigure,
     hasSolution,
     hasAnswer,
+    // 🔴 `format` 은 **컬럼이 아니다** — 아래에서 따로 푼다. 남은 `filters` 는 그대로
+    //    Prisma 에 펼쳐지므로, 여기서 안 빼면 Prisma 가 모르는 필드로 던진다.
+    format,
     ...filters
   } = parsed.data;
   // 단원 범위(2026-08-19 원장님 지시) — 화면은 **id 만** 보내고 순서는 여기서 읽는다.
@@ -210,17 +290,23 @@ export async function GET(request: NextRequest) {
           },
         ]
       : [];
+  // ⚠️ **평평하게 둔다.** 형식 조건을 넣으려고 이 배열을 한 겹 더 감쌌더니 `where.AND` 의
+  //    모양을 재던 기존 시험 둘이 빨개졌다(관문 2026-08-26 — 「grade/chapterPrefix 는
+  //    unit relation 으로 보낸다」·「chapter 가 있으면 chapterPrefix 를 무시한다」).
+  //    조건을 **덧붙이기만** 하면 종전 모양이 그대로 유지된다.
+  const baseAnd = [
+    problemVisibleWhere(),
+    filters,
+    ...(Object.keys(unitWhere).length > 0 ? [{ unit: unitWhere }] : []),
+    ...rangeWhere,
+    ...figureWhere,
+    ...solutionWhere,
+    ...answerWhere,
+    ...searchWhere,
+  ];
+
   const where = {
-    AND: [
-      problemVisibleWhere(),
-      filters,
-      ...(Object.keys(unitWhere).length > 0 ? [{ unit: unitWhere }] : []),
-      ...rangeWhere,
-      ...figureWhere,
-      ...solutionWhere,
-      ...answerWhere,
-      ...searchWhere,
-    ],
+    AND: [...baseAnd, ...(await formatWhere(format, { AND: baseAnd }))],
   };
 
   const [rows, total] = await Promise.all([
