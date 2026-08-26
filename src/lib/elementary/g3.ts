@@ -7572,6 +7572,95 @@ function add111EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 합이 몇 자리인가. 1-1-1 의 백의 자리와 다른 물음. */
+function add112Digits(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 2, 3);
+  const s = a + b;
+  const digitsN = String(s).length;
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합은 몇 자리 수입니까?`,
+    n(digitsN),
+    `${expr(`${a}+${b}=${s}`)} 이므로 ${n(digitsN)} 자리 수입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 06 — 어떤 수에 a 를 더하면 s. 1-1-1 빈칸 식과 말투를 가른다. */
+function add112Unknown(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [x, a] = addWithCarries(rng, 2, 3);
+  const s = x + a;
+  return make(
+    unit,
+    `어떤 수에 $${a}$ 를 더했더니 $${s}$ 가 되었습니다. 어떤 수는 얼마입니까?`,
+    n(x),
+    `합에서 더한 수를 뺍니다. ${expr(`${s}-${a}=${x}`)} 이므로 어떤 수는 ${n(x)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 받아올림 횟수. 이 소단원은 두 번 또는 세 번. */
+function add112CarryCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 2, 3);
+  const c = carryCount(a, b);
+  return make(
+    unit,
+    `$${a}+${b}$ 를 계산할 때 받아올림은 몇 번 있습니까?`,
+    n(c),
+    `일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 ${n(c)} 번입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 08 — 합과 1000 의 차. */
+function add112From1000(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 2, 3);
+  const s = a + b;
+  const gap = Math.abs(1000 - s);
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합과 $${1000}$ 의 차는 얼마입니까?`,
+    n(gap),
+    `${expr(`${a}+${b}=${s}`)} 이고, ${s >= 1000 ? expr(`${s}-1000=${gap}`) : expr(`1000-${s}=${gap}`)} 입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 09 — 합보다 10 작은 수. 1-1-1 의 +100 과 방향을 가른다. */
+function add112Minus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 2, 3);
+  const s = a + b;
+  return make(
+    unit,
+    `$${a}$ 와 $${b}$ 의 합보다 $${10}$ 작은 수를 쓰시오.`,
+    n(s - 10),
+    `${expr(`${a}+${b}=${s}`)} 이고, ${expr(`${s}-10=${s - 10}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 합 가운데 더 큰 값. */
+function add112BiggerSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  let c = 0;
+  let d = 0;
+  let s1 = 0;
+  let s2 = 0;
+  for (let k = 0; k < 80; k += 1) {
+    [a, b] = addWithCarries(rng, 2, 3);
+    [c, d] = addWithCarries(rng, 2, 3);
+    s1 = a + b;
+    s2 = c + d;
+    if (s1 !== s2) break;
+  }
+  const big = Math.max(s1, s2);
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합과 $${c}+${d}$ 의 합 가운데 더 큰 수를 쓰시오.`,
+    n(big),
+    `${expr(`${a}+${b}=${s1}`)}, ${expr(`${c}+${d}=${s2}`)} 이므로 더 큰 수는 ${n(big)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -7584,6 +7673,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: add111HowMuchMore },
     { id: "09", tier: "응용", generate: add111Plus100 },
     { id: "10", tier: "응용", generate: add111EvenOdd },
+  ],
+  "초3|1-1-2": [
+    { id: "01", tier: "연산", generate: add3Calc },
+    { id: "02", tier: "기본", generate: add3Word },
+    { id: "03", tier: "응용", generate: add3TwoStep },
+    { id: "04", tier: "심화", generate: add3Reverse },
+    { id: "05", tier: "기본", generate: add112Digits },
+    { id: "06", tier: "기본", generate: add112Unknown },
+    { id: "07", tier: "기본", generate: add112CarryCount },
+    { id: "08", tier: "응용", generate: add112From1000 },
+    { id: "09", tier: "응용", generate: add112Minus10 },
+    { id: "10", tier: "응용", generate: add112BiggerSum },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
