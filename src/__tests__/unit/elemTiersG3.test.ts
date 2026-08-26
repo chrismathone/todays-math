@@ -517,17 +517,22 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
           `1-2-2 응용 seed ${seed}: 그림 |${r}-${o}| ≠ 정답 ${ap.answer}`,
         );
 
-      // 1-2-2 심화 — 각의 직각 + 직사각형의 직각 넷
+      // 1-2-2 심화 — 그림의 직각(각 + 직사각형)에 **더 그릴 직사각형**의 직각을 얹는다.
+      // 예전에는 그림의 직각을 세면 끝이라, 두 걸음인 응용보다 오히려 쉬웠다.
       const dp = generateElementaryProblem(planeUnit("1-2-2"), seed, "심화");
       const parts = shapesOf(dp.figureSpec as Record<string, unknown>);
       const rAng = parts.filter(
         (g) => g.edges.length === 2 && angleIsRight(g),
       ).length;
       const rects = parts.filter((g) => g.pts.length === 4).length;
-      if (answerOf(dp.answer) !== rAng + rects * 4)
+      const addM = dp.content.match(/직사각형[^.]*?\$(\d+)\$개를? 더/);
+      if (!addM) {
+        bad.push(`1-2-2 심화 seed ${seed}: 더 그릴 직사각형 수를 못 읽음`);
+      } else if (answerOf(dp.answer) !== rAng + (rects + Number(addM[1])) * 4) {
         bad.push(
-          `1-2-2 심화 seed ${seed}: 그림 ${rAng}+${rects * 4} ≠ 정답 ${dp.answer}`,
+          `1-2-2 심화 seed ${seed}: 그림 ${rAng}+(${rects}+${addM[1]})×4 ≠ 정답 ${dp.answer}`,
         );
+      }
 
       // 1-2-3 응용 — 직각삼각형이 **아닌** 것의 수
       const ap3 = generateElementaryProblem(planeUnit("1-2-3"), seed, "응용");
@@ -563,9 +568,11 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
 
       const deep = generateElementaryProblem(planeUnit("1-2-1"), seed, "심화");
       const d2 = ((deep.figureSpec as { dots: unknown[] }).dots ?? []).length;
-      // 반직선은 짝마다 둘, 선분은 하나 — 그 차는 곧 선분의 수와 같다.
+      // 심화 — **점을 하나 더 찍은 뒤**의 선분 수. 새 점은 기존 점마다 선분 하나를 만든다.
+      // (예전에는 「반직선 $-$ 선분」이었는데 그 차는 곧 선분의 수라, 실은 한 가지만 세면
+      //  되는 문항이었다.)
       expect(answerOf(deep.answer), `심화 seed ${seed}`).toBe(
-        (d2 * (d2 - 1)) / 2,
+        ((d2 + 1) * d2) / 2,
       );
     }
   });
@@ -1478,16 +1485,28 @@ describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
                 `${code} 응용 seed ${seed}: ${toks[0]!.small}+${toks[1]!.small} ≠ ${p.answer}`,
               );
           } else {
-            if (toks.length !== 2) {
+            // 심화 — **두 도막을 이은 뒤** 한 몫을 덜어 낸다(길이가 셋). 예전에는 전체에서
+            // 한 도막을 빼는 두 걸음이었는데, 응용(환산 둘 + 덧셈)보다 오히려 쉬웠다.
+            if (toks.length !== 3) {
               bad.push(`${code} 심화 seed ${seed}: 길이가 ${toks.length}개`);
               continue;
             }
-            const whole = toks.find((t) => !t.mixed)!;
-            const part = toks.find((t) => t.mixed)!;
-            if (answerOf(p.answer) !== whole.small - part.small)
+            const mixed = toks.filter((t) => t.mixed);
+            const plain = toks.filter((t) => !t.mixed);
+            if (mixed.length !== 2 || plain.length !== 1) {
               bad.push(
-                `${code} 심화 seed ${seed}: ${whole.small}-${part.small} ≠ ${p.answer}`,
+                `${code} 심화 seed ${seed}: 이을 두 도막과 덜어 낼 한 몫이어야 한다 — ${p.content}`,
               );
+              continue;
+            }
+            const want = mixed[0]!.small + mixed[1]!.small - plain[0]!.small;
+            if (want <= 0) {
+              bad.push(`${code} 심화 seed ${seed}: 남는 길이가 $0$ 이하다`);
+            } else if (answerOf(p.answer) !== want) {
+              bad.push(
+                `${code} 심화 seed ${seed}: ${mixed[0]!.small}+${mixed[1]!.small}-${plain[0]!.small} ≠ ${p.answer}`,
+              );
+            }
           }
         }
       }
@@ -1544,16 +1563,24 @@ describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
         if (want < 1) bad.push(`응용 seed ${seed}: 차이가 0`);
       } else bad.push(`응용 seed ${seed}: mm ${am.length}개`);
 
+      // 심화 — 한 사람의 어림에서 실제를 **되짚은 뒤 다른 사람의 어림과 다시 견준다**.
+      // 예전에는 되짚기 한 번으로 끝나 응용(차 둘을 내고 견주는 세 걸음)보다 쉬웠다.
       const deep = generateElementaryProblem(planeUnit("1-5-3"), seed, "심화");
-      const gcm = deep.content.match(/(\d+)\\,\\mathrm\{cm\}/);
+      const cms = [...deep.content.matchAll(/(\d+)\\,\\mathrm\{cm\}/g)].map(
+        (m) => Number(m[1]),
+      );
       const dmm = deep.content.match(/(\d+)\\,\\mathrm\{mm\}/);
-      const longer = /깁니다|길다고/.test(deep.content);
-      if (!gcm || !dmm) bad.push(`심화 seed ${seed}: 수를 못 읽음`);
-      else if (
-        answerOf(deep.answer) !==
-        Number(gcm[1]) * 10 + (longer ? 1 : -1) * Number(dmm[1])
-      )
-        bad.push(`심화 seed ${seed}: ${deep.content} / ${deep.answer}`);
+      const longer = /깁니다|길었습니다/.test(deep.content);
+      if (cms.length !== 2 || !dmm) {
+        bad.push(`심화 seed ${seed}: 어림 둘과 차를 못 읽음 — ${deep.content}`);
+      } else {
+        const real = cms[0]! * 10 + (longer ? 1 : -1) * Number(dmm[1]);
+        const want = cms[1]! * 10 - real;
+        if (want <= 0)
+          bad.push(`심화 seed ${seed}: 둘째 어림이 실제보다 짧다 — ${want}`);
+        else if (answerOf(deep.answer) !== want)
+          bad.push(`심화 seed ${seed}: ${want} ≠ ${deep.answer}`);
+      }
     }
     expect(bad.slice(0, 8)).toEqual([]);
   });
@@ -1605,18 +1632,25 @@ describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
       else if ((end.h * 60 + end.m) * 60 !== clock.sec + dur.sec)
         bad.push(`응용 seed ${seed}: 끝 시각이 어긋난다 — ${ap.content}`);
 
+      // 심화 — **전체를 주고 셋째를 되짚는다.** 예전에는 세 시간을 그냥 더해서, 응용에
+      // 항을 하나 더한 것과 같았다(계산량만 늘었다). 이제 마지막 시간이 «전체»다.
       const dp = generateElementaryProblem(planeUnit("1-5-5"), seed, "심화");
       const parts = timeTokens(dp.content).filter(
         (t) => t.kind === "hm" || t.kind === "m",
       );
       const da = hmAnswer(dp.answer);
-      if (parts.length !== 3)
+      if (parts.length !== 3) {
         bad.push(`심화 seed ${seed}: 시간이 ${parts.length}개 — ${dp.content}`);
-      else if (
-        (da.h * 60 + da.m) * 60 !==
-        parts[0]!.sec + parts[1]!.sec + parts[2]!.sec
-      )
-        bad.push(`심화 seed ${seed}: 세 시간 합이 어긋난다 — ${dp.content}`);
+      } else {
+        const whole = parts[2]!.sec;
+        const known = parts[0]!.sec + parts[1]!.sec;
+        if (whole <= known)
+          bad.push(
+            `심화 seed ${seed}: 전체가 아는 둘보다 작다 — ${dp.content}`,
+          );
+        else if ((da.h * 60 + da.m) * 60 !== whole - known)
+          bad.push(`심화 seed ${seed}: 되짚은 시간이 어긋난다 — ${dp.content}`);
+      }
     }
     expect(bad.slice(0, 8)).toEqual([]);
   });
@@ -1907,10 +1941,23 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
       if (a2f.den !== a2i[0] || a2f.num !== a2i[1]! + a2i[2]!)
         bad.push(`1-6-2 응용 seed ${seed}: ${a2.content} / ${a2.answer}`);
 
+      // 심화 — 안 칠한 조각을 되짚은 **뒤 몇 조각을 더 칠해** 분수로 되돌린다(두 걸음).
+      // 예전에는 «분모 $-$ 분자» 한 걸음이라 응용(두 조각을 더해 분수로)과 무게가 같았다.
       const d2 = generateElementaryProblem(planeUnit("1-6-2"), seed, "심화");
       const d2f = fracsOf(d2.content)[0]!;
-      if (answerOf(d2.answer) !== d2f.den - d2f.num)
+      const d2more = d2.content.match(/\$(\d+)\$조각을 더/);
+      const d2ans = fracsOf(d2.answer)[0];
+      if (!d2more || !d2ans) {
+        bad.push(
+          `1-6-2 심화 seed ${seed}: 더 칠할 조각 수를 못 읽음 — ${d2.content}`,
+        );
+      } else if (
+        d2ans.den !== d2f.den ||
+        d2ans.num !== d2f.num + Number(d2more[1]) ||
+        d2ans.num >= d2f.den
+      ) {
         bad.push(`1-6-2 심화 seed ${seed}: ${d2.content} / ${d2.answer}`);
+      }
 
       const w3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "기본");
       const w3i = fracDecNums(w3.content).ints;
@@ -1925,10 +1972,22 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
         bad.push(`1-6-3 응용 seed ${seed}: ${a3.content} / ${a3.answer}`);
       if (a3f.num < 1) bad.push(`1-6-3 응용 seed ${seed}: 남은 조각 0`);
 
+      // 심화 — 없어진 조각을 되짚은 **뒤 몇 조각을 더 먹고** 남은 부분을 분수로 되돌린다.
       const d3 = generateElementaryProblem(planeUnit("1-6-3"), seed, "심화");
       const d3f = fracsOf(d3.content)[0]!;
-      if (answerOf(d3.answer) !== d3f.den - d3f.num)
+      const d3more = d3.content.match(/\$(\d+)\$조각[이을] 더/);
+      const d3ans = fracsOf(d3.answer)[0];
+      if (!d3more || !d3ans) {
+        bad.push(
+          `1-6-3 심화 seed ${seed}: 더 먹을 조각 수를 못 읽음 — ${d3.content}`,
+        );
+      } else if (
+        d3ans.den !== d3f.den ||
+        d3ans.num !== d3f.num - Number(d3more[1]) ||
+        d3ans.num < 1
+      ) {
         bad.push(`1-6-3 심화 seed ${seed}: ${d3.content} / ${d3.answer}`);
+      }
     }
     expect(bad.slice(0, 8)).toEqual([]);
   });
@@ -2046,6 +2105,24 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
           const t = Math.round(decs[0]! * 10);
           if (af.den !== 10 || af.num !== t)
             bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+        } else if (/잘라|썼|떼어/.test(p.content)) {
+          // 심화 ⓑ — 소수를 mm 로 환산하고 **덜어 낸 뒤 다시 소수로** 되돌린다(세 걸음).
+          // 예전에는 「$w.t$ cm 는 몇 mm」로 환산 한 번이라 응용보다도 쉬웠다.
+          const target =
+            decs.map((v) => Math.round(v * 10)).find((v) => v >= 10) ?? null;
+          const cutM = p.content.match(/\$(\d+)\$ mm/);
+          const af2 = fracDecNums(p.answer).decs[0] ?? null;
+          if (target === null || !cutM || af2 === null) {
+            bad.push(`${tier} seed ${seed}: 수를 못 읽음 — ${p.content}`);
+          } else {
+            const left = target - Number(cutM[1]);
+            if (left < 1 || left % 10 === 0)
+              bad.push(
+                `${tier} seed ${seed}: 남은 길이가 소수로 안 선다 — ${left}`,
+              );
+            else if (Math.round(af2 * 10) !== left)
+              bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
+          }
         } else if (at !== null) {
           // 자리 만들기·변환 — 값 필터(1·10 제거)는 정당한 1 을 지운다. 형은 키워드·위치로 가른다.
           let want: number | null = null;
@@ -2064,7 +2141,7 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
           if (want === null || at !== want)
             bad.push(`${tier} seed ${seed}: ${p.content} / ${p.answer}`);
         } else {
-          // 심화 되짚기 — 답이 정수(개수·mm), 발문 «목표 소수»의 십분 총량과 같다.
+          // 심화 ⓐ 되짚기 — 답이 정수(개수), 발문 «목표 소수»의 십분 총량과 같다.
           // 발문에 $0.1$ 토큰이 함께 있으므로 십분값 10 이상(w ≥ 1)인 쪽이 목표다.
           const t =
             decs.map((v) => Math.round(v * 10)).find((v) => v >= 10) ?? null;

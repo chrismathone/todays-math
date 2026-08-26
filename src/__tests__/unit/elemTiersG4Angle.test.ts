@@ -334,18 +334,37 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
       expect(cnt, "조각 수는 등분 수보다 작아야 한다").toBeLessThan(k);
       expect(answerDeg(apply.answer)).toBe((base2 / k) * cnt);
 
+      // 심화 — 예전엔 둘 다 **한 걸음**이었다($90\div d$ · $a+d$). 이제 한 걸음을 더 얹어
+      // 응용(직선의 각을 나눠 몇 개를 잇는다)보다 위로 올린다.
       const deep = gen("1-2-2", seed, "심화");
-      m = deep.content.match(/한 각의 크기가 \$(\d+)\^\\circ\$가 되었습니다/);
+      m = deep.content.match(
+        /한 각의 크기가 \$(\d+)\^\\circ\$가 되었습니다\. 나누어진 각 \$(\d+)\$개를 겹치지 않게 이어 붙이면/,
+      );
       if (m) {
-        deepKinds.add("등분역산");
-        expect(answerNum(deep.answer) * Number(m[1])).toBe(90);
+        deepKinds.add("등분역산+잇기");
+        const one = Number(m[1]);
+        const take = Number(m[2]);
+        expect(90 % one, `직각을 등분한 각이 아니다: ${deep.content}`).toBe(0);
+        expect(take, "이어 붙이는 조각은 등분 수보다 적어야 한다").toBeLessThan(
+          90 / one,
+        );
+        expect(answerDeg(deep.answer), deep.content).toBe(one * take);
       } else {
-        deepKinds.add("눈금역산");
+        deepKinds.add("눈금역산+직각차");
         m = deep.content.match(
           /한 변이 눈금 \$(\d+)\$[을를] 가리키고 있습니다\. 각의 크기가 \$(\d+)\^\\circ\$라면/,
         );
         expect(m, deep.content).toBeTruthy();
-        expect(answerNum(deep.answer)).toBe(Number(m![1]) + Number(m![2]));
+        const mark = Number(m![1]) + Number(m![2]);
+        expect(
+          mark,
+          `눈금이 반원을 넘는다: ${deep.content}`,
+        ).toBeLessThanOrEqual(180);
+        expect(
+          mark,
+          `직각 눈금을 안 넘으면 답이 음수다: ${deep.content}`,
+        ).toBeGreaterThan(90);
+        expect(answerNum(deep.answer), deep.content).toBe(mark - 90);
       }
     }
     expect(deepKinds.size, `심화가 ${[...deepKinds]}뿐`).toBe(2);
@@ -501,18 +520,25 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(Math.abs(sum - 180), apply.content).toBeGreaterThanOrEqual(10);
       }
 
+      // 심화 — 예전 둘째 갈래는 「세 각이 모두 같은 삼각형」이라 답이 늘 $60^\circ$ 였다.
+      // 씨앗을 바꿔도 같은 문항이니 4단은커녕 갈래도 아니었다. 이제 두 각을 조건으로 엮는다.
       const deep = gen("1-2-5", seed, "심화");
-      const dm = deep.content.match(/한 각의 크기는 \$(\d+)\^\\circ\$이고/);
-      if (dm) {
-        const a = Number(dm[1]);
+      const dGap = deep.content.match(
+        /한 각의 크기는 \$(\d+)\^\\circ\$이고, 다른 한 각은 그보다 \$(\d+)\^\\circ\$ 더 큽니다/,
+      );
+      if (dGap) {
+        const a = Number(dGap[1]);
+        const rest = 180 - a - (a + Number(dGap[2]));
+        expect(rest, `남는 각이 $0$ 이하다: ${deep.content}`).toBeGreaterThan(
+          0,
+        );
+        expect(answerDeg(deep.answer), deep.content).toBe(rest);
+      } else {
+        const dm = deep.content.match(/한 각의 크기는 \$(\d+)\^\\circ\$이고/);
+        expect(dm, deep.content).toBeTruthy();
+        const a = Number(dm![1]);
         expect((180 - a) % 2, "두 각이 같으려면 짝수로 남아야 한다").toBe(0);
         expect(answerDeg(deep.answer)).toBe((180 - a) / 2);
-      } else {
-        expect(
-          /세 각의 크기가 모두 같은/.test(deep.content),
-          deep.content,
-        ).toBe(true);
-        expect(answerDeg(deep.answer)).toBe(60);
       }
     }
     expect(
@@ -542,6 +568,8 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         rest < 90 ? "예각" : rest === 90 ? "직각" : "둔각",
       );
 
+      // 심화 — 예전 둘째 갈래는 「네 각이 모두 같은 사각형」이라 답이 늘 $90^\circ$ 였다.
+      // 이제 한 각만 주고 **나머지 셋이 같다**로 되짚는다(두 걸음).
       const deep = gen("1-2-6", seed, "심화");
       const dd = degsOf(deep.content);
       if (dd.length === 2) {
@@ -550,10 +578,13 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(answerDeg(deep.answer)).toBe(rest2 / 2);
       } else {
         expect(
-          /네 각의 크기가 모두 같은/.test(deep.content),
+          /나머지 세 각의 크기는 서로 같습니다/.test(deep.content),
           deep.content,
         ).toBe(true);
-        expect(answerDeg(deep.answer)).toBe(90);
+        expect(dd.length, deep.content).toBe(1);
+        const rest3 = 360 - dd[0]!;
+        expect(rest3 % 3, "세 각이 같으려면 3으로 나누어떨어져야 한다").toBe(0);
+        expect(answerDeg(deep.answer), deep.content).toBe(rest3 / 3);
       }
     }
   });

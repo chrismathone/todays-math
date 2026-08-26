@@ -14,7 +14,7 @@ import type { ElemTierMap } from "./difficulty";
 
 import { decLatex, expr, fracLatex, n, polyName } from "./format";
 import { fracSpec } from "./fracFig";
-import { fig, make } from "./make";
+import { fig, make, makeDeep } from "./make";
 import { addFrac, divisors, gcd, lcm, simplify, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemProblem, Rng } from "./types";
@@ -2740,21 +2740,24 @@ function fac121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `약수 중 가장 큰 수가 어떤 수 자신이므로 어떤 수는 ${n(num)}입니다. ${n(num)}의 약수는 ${nums(d)}이므로 □는 ${n(d[hide]!)}입니다.`,
     );
   }
-  const m = pick(rng, [2, 3, 5]);
-  const num = pick(
-    rng,
-    FACTOR_NUMBERS.filter((x) => {
-      if (x % m !== 0) return false;
-      const cnt = divisors(x / m).length;
-      return cnt >= 2 && cnt <= 4;
-    }),
-  );
-  const vals = divisors(num / m).map((v) => v * m);
-  return make(
+  // ⚠️ 예전에는 「$30$의 약수 중에서 $5$의 배수를 모두」였다 — 나열하고 거르는 두 단계인데
+  //    같은 소단원 응용(「$20$의 약수 중 $5$보다 큰 수는 몇 개」)이 **똑같이** 나열하고
+  //    거른다. 걸음 수가 아니라 **하는 일**이 같아서 사다리가 안 올랐다.
+  //    그래서 약수에서 어떤 수를 **되짚은 뒤 배수 쪽으로 건너가게** 바꿨다 —
+  //    한 소단원의 두 낱말(약수·배수)을 한 문항에서 잇는다.
+  const num = pick(rng, [12, 16, 18, 20, 28, 32, 45]);
+  const cnt = intBetween(rng, 3, 6);
+  const limit = num * cnt + intBetween(rng, 1, num - 1);
+  return makeDeep(
     unit,
-    `${n(num)}의 약수 중에서 ${n(m)}의 배수를 모두 구하시오.`,
-    nums(vals),
-    `${n(num)}의 약수는 ${nums(divisors(num))}입니다. 이 중 ${n(m)}의 배수는 ${nums(vals)}입니다.`,
+    `어떤 수의 약수를 모두 쓰면 ${nums(divisors(num))}입니다. ` +
+      `어떤 수의 배수 중에서 ${n(limit)}보다 작은 수는 모두 몇 개입니까?`,
+    n(cnt),
+    [
+      `약수 중 가장 큰 수가 어떤 수 자신이므로 어떤 수는 ${n(num)}입니다.`,
+      `${expr(`${num}\\times${cnt}=${num * cnt}`)} 까지가 ${n(limit)}보다 작고 ` +
+        `${expr(`${num}\\times${cnt + 1}=${num * (cnt + 1)}`)} 부터는 크므로 모두 ${n(cnt)}개입니다.`,
+    ],
   );
 }
 
@@ -2951,29 +2954,40 @@ function comdiv123Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 심화 — 공약수 목록에서 최대공약수를 «되찾고», 수를 셋으로 늘려 조합한다. */
 function comdiv123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전 두 갈래가 다 3단이었다.
+  //    ㉠ 「공약수를 모두 쓰면 … 최대공약수는?」 — **가장 큰 수를 고르면 끝**(한 걸음).
+  //       표지(「어떤 두 수」)가 붙어 사람 눈에도 안 왔다 — census 가 찾아냈다.
+  //    ㉡ 「세 수의 최대공약수」 — 응용에 **수를 하나 더한 것**이라 계산량만 늘었다.
+  //    이 소단원의 응용은 이미 「공약수를 모두 더하면」이므로, 심화는 그것을 **거꾸로**
+  //    돌리거나(㉠) 공약수 안에서 **조건을 하나 더 겹친다**(㉡).
+  //
+  //    ⚠️ `makeDeep` 을 안 쓴다 — 이 부류는 «나열하고 따지기»라 해설에 계산식이 하나뿐이다.
+  //       계산 걸음으로 4단을 재는 자는 여기서 거짓 경보를 낸다(census 머리말 참조).
+  //       그래서 판정은 사람이 하고 `scripts/qa/reports/tier4-review.json` 에 남는다.
+  const g = pick(rng, GCD_GIVEN);
+  const ds = divisors(g);
   if (intBetween(rng, 0, 1) === 0) {
-    const g = pick(rng, GCD_GIVEN);
+    const sum = ds.reduce((s, v) => s + v, 0);
+    // ⚠️ **합만으로는 답이 하나가 아니다** — $42$ 는 $20$·$26$·$41$ 셋의 약수의 합이다.
+    //    개수 조건을 같이 줘야 하나로 정해진다(그리고 그래야 «조건 겹침»이 된다).
+    //    이 어긋남은 시험이 잡았다(「약수의 합이 같은 수가 둘이다」).
     return make(
       unit,
-      `어떤 두 수의 공약수를 모두 쓰면 ${nums(divisors(g))}입니다. 두 수의 최대공약수를 구하시오.`,
+      `어떤 두 수의 공약수는 모두 ${n(ds.length)}개이고, 그 공약수를 모두 더하면 ` +
+        `${nj(sum, "이", "가")} 됩니다. 두 수의 최대공약수를 구하시오.`,
       n(g),
-      `공약수 중 가장 큰 수가 최대공약수이므로 ${n(g)}입니다.`,
+      `공약수는 최대공약수의 약수입니다. 약수가 ${n(ds.length)}개이면서 그 합이 ` +
+        `${nj(sum, "이", "가")} 되는 수를 찾으면 ${n(g)}입니다. ` +
+        `${n(g)}의 약수는 ${nums(ds)}이고 ${expr(`${ds.join("+")}=${sum}`)} 입니다.`,
     );
   }
-  const [x, y, z] = pick(rng, [
-    [12, 18, 24],
-    [16, 24, 32],
-    [20, 30, 40],
-    [18, 27, 45],
-    [12, 20, 28],
-    [24, 36, 42],
-  ] as const);
-  const g = gcd(gcd(x, y), z);
+  const evens = ds.filter((v) => v % 2 === 0);
   return make(
     unit,
-    `세 수 ${n(x)}, ${n(y)}, ${n(z)}의 최대공약수를 구하시오.`,
-    n(g),
-    `${nj(x, "과", "와")} ${n(y)}의 최대공약수는 ${n(gcd(x, y))}이고, ${nj(gcd(x, y), "과", "와")} ${n(z)}의 최대공약수는 ${n(g)}입니다. 따라서 세 수의 최대공약수는 ${n(g)}입니다.`,
+    `어떤 두 수의 최대공약수가 ${n(g)}입니다. 두 수의 공약수 중에서 짝수는 모두 몇 개입니까?`,
+    n(evens.length),
+    `공약수는 최대공약수의 약수이므로 ${n(g)}의 약수인 ${nums(ds)}입니다. ` +
+      `이 중 짝수는 ${nums(evens)}이므로 모두 ${n(evens.length)}개입니다.`,
   );
 }
 
@@ -3159,30 +3173,48 @@ function commul125Apply(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 심화 — 집합에서 최소공배수를 «되찾고», 수를 셋으로 늘려 조합한다. */
 function commul125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
+  // ⚠️ 예전 두 갈래가 다 3단이었다.
+  //    ㉠ 「공배수 중 세 번째로 작은 수 → 최소공배수」 = $3m\div3$ **한 걸음**.
+  //    ㉡ 「세 수의 최소공배수」 — 응용에 수를 하나 더한 것.
+  //    이 소단원의 응용은 이미 「$1$~$N$ 중 두 수의 공배수는 몇 개」이므로, 심화는
+  //    최소공배수를 **되짚은 뒤** 세거나(㉠), 나머지 조건을 겹친다(㉡).
   if (intBetween(rng, 0, 1) === 0) {
     const m = pick(rng, LCM_GIVEN);
-    return make(
+    const k = intBetween(rng, 2, 4);
+    const cnt = intBetween(rng, 3, 7);
+    const limit = m * cnt + intBetween(rng, 1, m - 1);
+    return makeDeep(
       unit,
-      `어떤 두 수의 공배수 중에서 세 번째로 작은 수가 ${n(3 * m)}입니다. 두 수의 최소공배수를 구하시오.`,
-      n(m),
-      `공배수는 최소공배수의 배수이므로 세 번째로 작은 수는 최소공배수의 ${n(3)}배입니다. 따라서 최소공배수는 ${expr(`${3 * m}\\div3=${m}`)}입니다.`,
+      `어떤 두 수의 공배수 중에서 ${n(k)}번째로 작은 수가 ${n(k * m)}입니다. ` +
+        `두 수의 공배수 중에서 ${n(limit)}보다 작은 수는 모두 몇 개입니까?`,
+      n(cnt),
+      [
+        `공배수는 최소공배수의 배수이므로 ${n(k)}번째로 작은 수는 최소공배수의 ${n(k)}배입니다. ` +
+          `최소공배수는 ${expr(`${k * m}\\div${k}=${m}`)} 입니다.`,
+        `${expr(`${m}\\times${cnt}=${m * cnt}`)} 까지가 ${n(limit)}보다 작고 ` +
+          `${expr(`${m}\\times${cnt + 1}=${m * (cnt + 1)}`)} 부터는 크므로 모두 ${n(cnt)}개입니다.`,
+      ],
     );
   }
-  const [x, y, z] = pick(rng, [
-    [2, 3, 4],
-    [3, 4, 6],
-    [2, 5, 6],
-    [4, 5, 6],
-    [4, 6, 9],
-    [3, 5, 6],
-    [4, 6, 8],
-  ] as const);
-  const m = lcm(lcm(x, y), z);
-  return make(
+  // ⚠️ 「나머지가 같은 수」는 **1-2-6 이 이미 쓴다** — 여기 넣으면 두 소단원이 같은 것을
+  //    묻는다(R5). 그래서 같은 되짚기로 열되 **합**을 묻는다(A는 개수).
+  const m = pick(rng, LCM_GIVEN);
+  const k = intBetween(rng, 2, 4);
+  const cnt = intBetween(rng, 3, 5);
+  const limit = m * cnt + intBetween(rng, 1, m - 1);
+  const vals = Array.from({ length: cnt }, (_, i) => m * (i + 1));
+  const sum = vals.reduce((s, v) => s + v, 0);
+  return makeDeep(
     unit,
-    `세 수 ${n(x)}, ${n(y)}, ${n(z)}의 최소공배수를 구하시오.`,
-    n(m),
-    `${nj(x, "과", "와")} ${n(y)}의 최소공배수는 ${n(lcm(x, y))}이고, ${nj(lcm(x, y), "과", "와")} ${n(z)}의 최소공배수는 ${n(m)}입니다. 따라서 세 수의 최소공배수는 ${n(m)}입니다.`,
+    `어떤 두 수의 공배수 중에서 ${n(k)}번째로 작은 수가 ${n(k * m)}입니다. ` +
+      `두 수의 공배수 중에서 ${n(limit)}보다 작은 수를 모두 더하면 얼마입니까?`,
+    n(sum),
+    [
+      `공배수는 최소공배수의 배수이므로 ${n(k)}번째로 작은 수는 최소공배수의 ${n(k)}배입니다. ` +
+        `최소공배수는 ${expr(`${k * m}\\div${k}=${m}`)} 입니다.`,
+      `${n(limit)}보다 작은 공배수는 ${nums(vals)}이므로 ` +
+        `${expr(`${vals.join("+")}=${sum}`)} 입니다.`,
+    ],
   );
 }
 

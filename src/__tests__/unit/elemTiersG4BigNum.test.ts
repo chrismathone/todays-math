@@ -232,6 +232,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
   // ── 소단원별 독립 재계산 (참은 발문에서)
 
   it("1-1-1 — 네 갈래의 답을 발문에서 다시 구한다", () => {
+    const deepKinds = new Set<string>();
     const calcKinds = new Set<string>();
     const applyKinds = new Set<string>();
     for (const seed of SEEDS) {
@@ -281,13 +282,32 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
         expect(answerNum(apply.answer)).toBe(10 - Number(m2![1]));
       }
 
+      // 심화 — 응용을 **거꾸로** 돌린다. ⓐ 지폐 몫을 만들고 남은 돈을 동전 수로 되짚는다.
+      // ⓑ 자릿값으로 한 수를 세운 뒤 $10000$ 까지 모자란 몫을 구한다. 둘 다 두 걸음이다.
       const deep = gen("1-1-1", seed, "심화");
-      const dm = deep.content.match(/보다 \$(\d+)\$ (큰|작은) 수/);
-      expect(dm, deep.content).toBeTruthy();
-      expect(answerNum(deep.answer), deep.content).toBe(10000 - Number(dm![1]));
+      const coin = deep.content.match(
+        /^\$1000\$원짜리 지폐 \$(\d)\$장과 \$100\$원짜리 동전을 모았더니 \$10000\$원이 되었습니다/,
+      );
+      if (coin) {
+        deepKinds.add("동전 되짚기");
+        const rest = 10000 - 1000 * Number(coin[1]);
+        expect(rest, deep.content).toBeGreaterThan(0);
+        expect(rest % 100, deep.content).toBe(0);
+        expect(answerNum(deep.answer), deep.content).toBe(rest / 100);
+      } else {
+        deepKinds.add("모자란 몫");
+        const dm = deep.content.match(
+          /^\$1000\$이 \$(\d)\$개인 수보다 \$(\d+)\$ 큰 수가 있습니다/,
+        );
+        expect(dm, deep.content).toBeTruthy();
+        const base = 1000 * Number(dm![1]) + Number(dm![2]);
+        expect(base, deep.content).toBeLessThan(10000);
+        expect(answerNum(deep.answer), deep.content).toBe(10000 - base);
+      }
     }
     expect(calcKinds.size, `연산이 ${[...calcKinds]}뿐`).toBe(2);
     expect(applyKinds.size, `응용이 ${[...applyKinds]}뿐`).toBe(2);
+    expect(deepKinds.size, `심화가 ${[...deepKinds]}뿐`).toBe(2);
   });
 
   it("1-1-2 — 조립·문장·카드·조건의 답을 발문(그림)에서 다시 구한다", () => {
@@ -375,21 +395,26 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
         );
       }
 
+      // 심화 — 자릿값을 **둘** 겹친다. 예전엔 환산 한 번이라 응용과 무게가 같았다.
       const deep = gen("1-1-3", seed, "심화");
       m = deep.content.match(
-        /^\$1000\$이 \$(\d+)\$개인 수는 \$10000\$이 몇 개/,
+        /^\$10000\$이 \$(\d+)\$개, \$1000\$이 \$(\d)\$개인 수는 \$100\$이 모두 몇 개/,
       );
       if (m) {
-        deepKinds.add("천→만");
-        expect(Number(m[1]) % 10, deep.content).toBe(0);
-        expect(answerNum(deep.answer)).toBe(Number(m[1]) / 10);
+        deepKinds.add("두 자리 → 백");
+        expect(answerNum(deep.answer), deep.content).toBe(
+          100 * Number(m[1]) + 10 * Number(m[2]),
+        );
       } else {
-        deepKinds.add("만→백");
+        deepKinds.add("백 → 두 자리 되짚기");
         m = deep.content.match(
-          /^\$10000\$이 \$(\d+)\$개인 수는 \$100\$이 몇 개/,
+          /^\$100\$이 \$(\d+)\$개인 수는 \$10000\$이 \$(\d+)\$개, \$1000\$이 몇 개/,
         );
         expect(m, deep.content).toBeTruthy();
-        expect(answerNum(deep.answer)).toBe(100 * Number(m![1]));
+        const rest = 100 * Number(m![1]) - 10000 * Number(m![2]);
+        expect(rest, deep.content).toBeGreaterThan(0);
+        expect(rest % 1000, deep.content).toBe(0);
+        expect(answerNum(deep.answer), deep.content).toBe(rest / 1000);
       }
     }
     expect(applyKinds.size, `응용이 ${[...applyKinds]}뿐`).toBe(2);
@@ -438,9 +463,15 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
           Number(m[2]) * 100000000 - Number(m[1]) * 10000000,
         );
       } else {
-        m = deep.content.match(/^만이 \$(\d+)\$개인 수는 몇 억/);
+        // **두 몫을 더한 뒤** 자리를 옮긴다 — 예전 「만이 $30000$개인 수는 몇 억」은
+        // 나눗셈 한 번이라 응용(수표 $29$장)보다 쉬웠다.
+        m = deep.content.match(
+          /^\$1000\$만이 \$(\d+)\$개인 수보다 \$1000\$만이 \$(\d+)\$개 더 큰 수는 몇 억/,
+        );
         expect(m, deep.content).toBeTruthy();
-        expect(deep.answer).toBe(`$${Number(m![1]) / 10000}$억`);
+        const cnt = Number(m![1]) + Number(m![2]);
+        expect(cnt % 10, `억으로 딱 떨어져야 한다: ${deep.content}`).toBe(0);
+        expect(deep.answer, deep.content).toBe(`$${cnt / 10}$억`);
       }
     }
   });
@@ -497,9 +528,14 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
           target + Number(m[1]) * 100000000000,
         );
       } else {
-        m = deep.content.match(/^억이 \$(\d+)\$개인 수는 몇 조/);
+        // 1-1-4 와 나란한 구조 — 자리만 조(兆)로 올렸다.
+        m = deep.content.match(
+          /^\$1000\$억이 \$(\d+)\$개인 수보다 \$1000\$억이 \$(\d+)\$개 더 큰 수는 몇 조/,
+        );
         expect(m, deep.content).toBeTruthy();
-        expect(deep.answer).toBe(`$${Number(m![1]) / 10000}$조`);
+        const cnt = Number(m![1]) + Number(m![2]);
+        expect(cnt % 10, `조로 딱 떨어져야 한다: ${deep.content}`).toBe(0);
+        expect(deep.answer, deep.content).toBe(`$${cnt / 10}$조`);
       }
     }
   });

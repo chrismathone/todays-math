@@ -349,11 +349,30 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
       expect((target - t[0]!) % step, "몇째가 자연수여야 한다").toBe(0);
       expect(apply.answer).toBe(ORDINAL[(target - t[0]!) / step]!);
 
+      // 심화 — 예전엔 「첫째부터 넷째까지 모두 몇 개」로 **더하기만** 했다. 그런데 응용이
+      // 「모형이 $19$개인 것은 몇째」로 **되짚는다** — 사다리가 뒤집혀 있었다.
+      // 이제 «누적»을 되짚는다: 합이 주어지고 «몇째까지»를 묻는다.
       const deep = gen("1-6-2", seed, "심화");
-      t = bareTerms(deep.content).slice(0, 3);
+      const dt = bareTerms(deep.content);
+      t = dt.slice(0, 3);
       const d = t[1]! - t[0]!;
       expect(isArith(t), deep.content).toBe(true);
-      expect(answerNum(deep.answer)).toBe(t[0]! + t[1]! + t[2]! + (t[2]! + d));
+      const wantSum = dt[3]!;
+      let acc = 0;
+      let nth = 0;
+      while (acc < wantSum && nth < 30) {
+        nth += 1;
+        acc += t[0]! + d * (nth - 1);
+      }
+      expect(
+        acc,
+        `합이 항의 누적으로 딱 떨어지지 않는다: ${deep.content}`,
+      ).toBe(wantSum);
+      expect(
+        nth,
+        `되짚을 것이 없다(넷째 미만): ${deep.content}`,
+      ).toBeGreaterThan(3);
+      expect(deep.answer, deep.content).toBe(ORDINAL[nth - 1]!);
     }
   });
 
