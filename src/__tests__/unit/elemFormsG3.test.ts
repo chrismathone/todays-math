@@ -241,3 +241,95 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
     }
   });
 });
+
+describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", () => {
+  const unit = unitOf("1-1-3");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01·02 두 수의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]!);
+      const w = generateElementaryForm(unit, seed, "02");
+      const wn = katexInts(w.content);
+      expect(answerInt(w.answer)).toBe(wn[0]! - wn[1]!);
+    }
+  });
+
+  it("03 두 번 덜어낸 나머지", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const [a, b, c] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! - b! - c!);
+    }
+  });
+
+  it("04 역산 — 처음 수이거나 바른 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "04");
+      const nums = katexInts(p.content);
+      if (p.content.includes("잘못")) {
+        expect(answerInt(p.answer)).toBe(nums[2]! + nums[1]! - nums[0]!);
+      } else {
+        expect(nums.length).toBeGreaterThanOrEqual(2);
+        expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]!);
+      }
+    }
+  });
+
+  it("05 차의 백의 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.floor((a! - b!) / 100));
+    }
+  });
+
+  it("06 빈칸 피감수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$\\square-(\d+)=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) + Number(m![2]));
+    }
+  });
+
+  it("07 일의 자리끼리 뺀 값", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe((a! - b!) % 10);
+    }
+  });
+
+  it("08 차보다 10 큰 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const nums = katexInts(p.content);
+      expect(nums[2]).toBe(10);
+      expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]! + 10);
+    }
+  });
+
+  it("09 차가 어떤 수보다 얼마 큰가", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b, c] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! - b! - c!);
+    }
+  });
+
+  it("10 차의 각 자리 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b] = katexInts(p.content);
+      const d = a! - b!;
+      const sum = [...String(d)].reduce((s, ch) => s + Number(ch), 0);
+      expect(answerInt(p.answer)).toBe(sum);
+    }
+  });
+});

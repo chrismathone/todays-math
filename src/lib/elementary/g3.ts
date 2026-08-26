@@ -7661,6 +7661,86 @@ function add112BiggerSum(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 차의 백의 자리. */
+function sub113Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const d = a - b;
+  const h = Math.floor(d / 100);
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차에서 백의 자리 숫자를 쓰시오.`,
+    n(h),
+    `${expr(`${a}-${b}=${d}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
+    subCol(a, b),
+  );
+}
+
+/** 문형 06 — 빈칸 피감수. */
+function sub113MissingMinuend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const d = a - b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square-${b}=${d}$`,
+    n(a),
+    `차에 뺀 수를 더합니다. ${expr(`${d}+${b}=${a}`)} 이므로 ${n(a)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 일의 자리끼리 뺀 값(받아내림하면). 05 와 한 낱말만 다르지 않게. */
+function sub113OnesDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const ones = (a - b) % 10;
+  return make(
+    unit,
+    `$${a}$ 의 일의 자리 숫자에서 $${b}$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.`,
+    n(ones),
+    `차 ${expr(`${a}-${b}=${a - b}`)} 의 일의 자리와 같습니다. 값은 ${n(ones)} 입니다.`,
+    subCol(a, b),
+  );
+}
+
+/** 문형 08 — 차보다 10 큰 수. */
+function sub113Plus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const d = a - b;
+  return make(
+    unit,
+    `$${a}$ 에서 $${b}$ 를 뺀 값보다 $${10}$ 큰 수를 쓰시오.`,
+    n(d + 10),
+    `${expr(`${a}-${b}=${d}`)} 이고, ${expr(`${d}+10=${d + 10}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 차가 어떤 수보다 얼마 큰가. */
+function sub113HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const d = a - b;
+  const hi = Math.max(1, d - 1);
+  const lo = d > 40 ? intBetween(rng, 10, Math.min(100, d - 5)) : 0;
+  const c = lo === 0 ? intBetween(rng, 1, hi) : lo;
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차는 $${c}$ 보다 얼마 더 큽니까?`,
+    n(d - c),
+    `먼저 차를 구합니다. ${expr(`${a}-${b}=${d}`)} 입니다. 차는 ${expr(`${d}-${c}=${d - c}`)} 입니다.`,
+    subCol(a, b),
+  );
+}
+
+/** 문형 10 — 차의 각 자리 숫자의 합. */
+function sub113DigitSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 0, 1);
+  const d = a - b;
+  const sum = [...String(d)].reduce((s, ch) => s + Number(ch), 0);
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차에서 각 자리 숫자를 모두 더한 값을 쓰시오.`,
+    n(sum),
+    `${expr(`${a}-${b}=${d}`)} 이고, 각 자리 숫자의 합은 ${n(sum)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -7685,6 +7765,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: add112From1000 },
     { id: "09", tier: "응용", generate: add112Minus10 },
     { id: "10", tier: "응용", generate: add112BiggerSum },
+  ],
+  "초3|1-1-3": [
+    { id: "01", tier: "연산", generate: subCalcOf(0, 1) },
+    { id: "02", tier: "기본", generate: subWordOf(0, 1) },
+    { id: "03", tier: "응용", generate: subApplyOf(0, 1) },
+    { id: "04", tier: "심화", generate: subDeepOf(0, 1) },
+    { id: "05", tier: "기본", generate: sub113Hundreds },
+    { id: "06", tier: "기본", generate: sub113MissingMinuend },
+    { id: "07", tier: "기본", generate: sub113OnesDiff },
+    { id: "08", tier: "응용", generate: sub113Plus10 },
+    { id: "09", tier: "응용", generate: sub113HowMuchMore },
+    { id: "10", tier: "응용", generate: sub113DigitSum },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
