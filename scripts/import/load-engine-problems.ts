@@ -42,9 +42,13 @@ import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
 
+import { expandFamily } from "../../src/lib/engine/expandEngine";
 import {
+  elemProblemType,
   elementaryUnits,
+  generateElementaryForm,
   generateElementaryProblem,
+  listedForms,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
 import type { ElemTier } from "../../src/lib/elementary/difficulty";
@@ -139,45 +143,78 @@ function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
       `초등 단원을 못 찾았다: ${t.grade} / ${t.chapter}` +
         (t.sections ? ` / ${t.sections.join(",")}` : ""),
     );
-  const perTier = t.perTier ?? 2;
+  const variants = t.perTier ?? 3;
   const rows: Row[] = [];
   for (const unit of units) {
-    const available = supportedTiers(unit);
-    const want = (t.tiers ?? available).filter((x) => available.includes(x));
-    if (want.length === 0) {
+    if (supportedTiers(unit).length === 0) {
       // 갈래가 없는 소단원 — 조용히 건너뛰면 「냈다」가 거짓말이 된다.
       console.log(
         `   ⚠️ 갈래 없음, 건너뜀: ${unit.grade} ${unit.chapter} / ${unit.section}`,
       );
       continue;
     }
-    for (const tier of want) {
-      for (let i = 0; i < perTier; i += 1) {
-        const seed = seedBase + i * 1009;
-        const p = generateElementaryProblem(unit, seed, tier);
+    const forms = listedForms(unit);
+    if (forms.length === 0) {
+      // 🔴 문형 등록이 없으면 옛 4단으로 되돌아가지 않는다 — 그러면 갈래가 4로
+      //    남아 「한 시험지에 같은 문항류 하나만」 아래서 4문항이 상한이 된다.
+      console.log(
+        `   🔴 문형 등록 없음, 건너뜀: ${unit.grade} / ${unit.section}` +
+          ` — scripts/qa/probe-elem-forms.ts 를 보라`,
+      );
+      continue;
+    }
+    for (const form of forms) {
+      // 초등의 문항류 = **소단원 + 문형**. 난이도는 직교인 축이라 키에 안 넣는다
+      // (D-72/D-106, 원장님 확정 2026-08-26 안 3). 씨앗만 바꾼 것이 그 틀의 아류다.
+      const familyKey = `elem:${unit.grade}|${unit.section}|${form.id}`;
+      const problemType = elemProblemType(form.tier);
+      // 형식 3종은 **한 곳**에서 파생한다 — 생성기마다 손대지 않는다.
+      // 객관식은 정답이 수가 아니면 안 나오고, 그때는 건너뛴 수가 보고에 찍힌다.
+      const got = expandFamily((v) => {
+        const seed = seedBase + v * 1009;
+        const p = generateElementaryForm(unit, seed, form.id);
+        return {
+          content: p.content,
+          answer: p.answer,
+          solution: p.solution,
+          familyKey,
+          problemType,
+          figureSpec: p.figureSpec,
+          seed,
+        };
+      }, variants);
+      elemSkippedMcq += got.skippedMcq;
+      for (const item of got.items) {
+        const it = item as typeof item & {
+          figureSpec: Record<string, unknown> | null;
+          seed: number;
+        };
         rows.push({
-          externalId: `engine-elem:${unit.grade}|${unit.chapter}|${unit.section}|${tier}|s${seed}`,
-          // 초등의 문항류 = **소단원 + 갈래**. 그 한 벌이 한 «문제 틀»이고,
-          // 씨앗만 바꾼 것들이 그 틀의 아류다.
-          familyKey: `elem:${unit.grade}|${unit.section}|${tier}`,
+          externalId: `engine-elem:${unit.grade}|${unit.chapter}|${unit.section}|f${form.id}|${it.questionType}|s${it.seed}`,
+          familyKey,
           unitKey: `${unit.grade} / ${unit.chapter} / ${unit.section}`,
           grade: unit.grade,
           chapter: unit.chapter,
           section: unit.section,
-          content: p.content,
-          answer: p.answer,
-          solution: p.solution,
-          difficulty: tier,
-          problemType: TIER_PROBLEM_TYPE[tier],
-          questionType: "단답형",
-          figureSpec: p.figureSpec,
-          origin: `초등 ${tier}`,
+          content: it.content,
+          answer: it.answer,
+          solution: it.solution,
+          difficulty: form.tier,
+          problemType,
+          // 🔴 형식을 **여기서** 적는다. 안 적으면 화면에 `[?형식]` 이 뜬다
+          //    (원장님 지적 2026-08-26). 전에는 "단답형" 으로 박혀 있었다.
+          questionType: it.questionType,
+          figureSpec: it.figureSpec,
+          origin: `초등 문형 ${form.id}(${form.tier})`,
         });
       }
     }
   }
   return rows;
 }
+
+/** 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. 조용히 삼키지 않는다. */
+let elemSkippedMcq = 0;
 
 function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
   let types = typesForSection(t.unitSection).filter((e) => e.grade === t.grade);
@@ -338,6 +375,22 @@ async function apply(planFile: string, doApply: boolean) {
   rows.length = 0;
   rows.push(...unique);
   console.log(`서로 다른 문항 ${rows.length}건`);
+  // 원장님 목표가 「객관식/단답형/서술형으로 10문항씩」이다 — 그 분포를 **보이게** 찍는다.
+  // 그리고 객관식을 못 만들어 건너뛴 수도 같이 찍는다: 조용히 삼키면 「형식 3종을
+  // 다 냈다」가 거짓이 되고, 화면에서 원장님이 찾아 주실 때까지 아무도 모른다.
+  const byFormat = new Map<string, number>();
+  for (const r of rows)
+    byFormat.set(r.questionType, (byFormat.get(r.questionType) ?? 0) + 1);
+  console.log(
+    `   형식 — ${[...byFormat]
+      .sort()
+      .map(([k, v]) => `${k} ${v}`)
+      .join(" · ")}`,
+  );
+  if (elemSkippedMcq > 0)
+    console.log(
+      `   ⚠️ 객관식을 못 만든 변형 ${elemSkippedMcq}건 (정답이 수·분수·소수가 아니다) — 무작위 수로 안 채운다`,
+    );
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
   const units = await prisma.unit.findMany({
