@@ -112,6 +112,24 @@ describe("[말 대신 기호] 바꾸기", () => {
     );
   });
 
+  /**
+   * ⚠️ 위 시험은 **이 경계를 안 가른다** — `f(t-1),f(t+1)` 의 쉼표는 안쪽 괄호가
+   * 이미 닫힌 자리라 깊이가 0 이다. 변이(`depth === 0` 을 지움)를 걸었더니
+   * 산출물이 그대로였다. 안쪽에 쉼표가 **든** 표본이 있어야 갈린다.
+   */
+  it("**안쪽 괄호 속** 쉼표에서는 안 가른다 — 인자 수가 통째로 달라진다", () => {
+    const r = rewriteWordyOperators(tex("$§gcd(§gcd(12,18),30)=6$"));
+    expect(r.out).toBe(
+      tex("$((12,§,18§text{의 최대공약수}),§,30§text{의 최대공약수})=6$"),
+    );
+  });
+
+  it("**중괄호 속** 쉼표에서도 안 가른다", () => {
+    expect(rewriteWordyOperators(tex("$§max(§frac{a}{b},1)$")).out).toBe(
+      tex("$(§frac{a}{b},§,1§text{ 중 최댓값})$"),
+    );
+  });
+
   it("`\left(`·`\right)` 꼴도 받는다", () => {
     expect(
       rewriteWordyOperators(tex("$m=§max§left(0,§frac34§right)$")).out,

@@ -308,10 +308,20 @@ export function rewriteWordyOperators(text: string): RewriteResult {
       continue;
     }
 
+    // 인자 **안**에도 같은 부류가 들어앉는다(`\gcd(\gcd(12,18),30)`). 바깥만 바꾸면
+    // 안쪽이 그대로 남는데, 그 자리는 이미 우리가 삼킨 뒤라 **다시 안 걸린다** —
+    // 침묵하는 잔재가 된다. 인자는 원문보다 반드시 짧으므로 재귀는 끝난다.
+    const rewrittenArgs = args.map((a) => {
+      const r = rewriteWordyOperators(a);
+      changed += r.changed;
+      for (const s of r.skipped) skipped.push({ ...s, index: open + s.index });
+      return r.out;
+    });
+
     out += text.slice(cursor, hit.index);
     out +=
       "(" +
-      args.join("," + BS + ",") +
+      rewrittenArgs.join("," + BS + ",") +
       BS +
       "text{" +
       wordFor(hit.op, args.length) +
