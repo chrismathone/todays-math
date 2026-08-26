@@ -1762,6 +1762,79 @@ function area62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 넓이에서 세로. */
+function area62Height(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 6, 18);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `넓이가 ${n(w * h)} cm²인 직사각형의 가로가 ${n(w)} cm입니다. 세로는 몇 cm입니까?`,
+    n(h),
+    `${expr(`${w * h}\\div${w}=${h}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 1 cm² 타일로 덮는 장 수. */
+function area62Tiles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 5, 12);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형을 ${expr("1\\,\\mathrm{cm}^2")} 타일로 빈틈없이 덮으면 타일은 몇 장입니까?`,
+    n(w * h),
+    `넓이가 ${n(w * h)} cm²이므로 타일은 ${n(w * h)}장입니다.`,
+  );
+}
+
+/** 문형 07 — 큰 정사각형에서 작은 정사각형을 뺀 넓이. */
+function area62Frame(unit: UnitSeed, rng: Rng): ElemProblem {
+  const outer = intBetween(rng, 8, 16);
+  const inner = intBetween(rng, 3, outer - 3);
+  return make(
+    unit,
+    `한 변이 ${n(outer)} cm인 정사각형 안에 한 변이 ${n(inner)} cm인 정사각형이 있습니다. 두 넓이 차는 몇 cm²입니까?`,
+    n(outer * outer - inner * inner),
+    `${expr(`${outer}\\times${outer}=${outer * outer}`)}, ${expr(`${inner}\\times${inner}=${inner * inner}`)}이므로 차는 ${n(outer * outer - inner * inner)}입니다.`,
+  );
+}
+
+/** 문형 08 — 가로와 세로의 합. */
+function area62Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 6, 16);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 가로와 세로의 합은 몇 cm입니까?`,
+    n(w + h),
+    `${expr(`${w}+${h}=${w + h}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 두 직사각형 넓이의 합. */
+function area62TwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w1 = intBetween(rng, 5, 12);
+  const h1 = intBetween(rng, 3, w1 - 1);
+  const w2 = intBetween(rng, 5, 12);
+  const h2 = intBetween(rng, 3, w2 - 1);
+  return make(
+    unit,
+    `가로 ${n(w1)} cm·세로 ${n(h1)} cm인 직사각형과 가로 ${n(w2)} cm·세로 ${n(h2)} cm인 직사각형의 넓이의 합은 몇 cm²입니까?`,
+    n(w1 * h1 + w2 * h2),
+    `${expr(`${w1}\\times${h1}=${w1 * h1}`)}, ${expr(`${w2}\\times${h2}=${w2 * h2}`)}이므로 합은 ${n(w1 * h1 + w2 * h2)}입니다.`,
+  );
+}
+
+/** 문형 10 — 정사각형 넓이에서 한 변. */
+function area62Side(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 5, 12);
+  return make(
+    unit,
+    `넓이가 ${n(side * side)} cm²인 정사각형의 한 변의 길이는 몇 cm입니까?`,
+    n(side),
+    `${expr(`${side}\\times${side}=${side * side}`)}이므로 한 변은 ${n(side)} cm입니다.`,
+  );
+}
+
 /* ────────── 1-6-1 정다각형과 사각형의 둘레 ────────── */
 
 /** 둘레 문항의 생활 소재 — (무엇, 둘레에 두르는 것). */
@@ -1869,6 +1942,82 @@ function per61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 정다각형의 변의 개수. */
+function per61Sides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 8);
+  const side = intBetween(rng, 4, 16);
+  return make(
+    unit,
+    `한 변의 길이가 ${n(side)} cm이고 둘레가 ${n(sides * side)} cm인 정다각형의 변은 몇 개입니까?`,
+    n(sides),
+    `${expr(`${sides * side}\\div${side}=${sides}`)}이므로 변은 ${n(sides)}개입니다.`,
+  );
+}
+
+/** 문형 06 — 반둘레(가로+세로). */
+function per61Half(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 7, 18);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 가로와 세로의 합은 몇 cm입니까?`,
+    n(w + h),
+    `${expr(`${w}+${h}=${w + h}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 세 변만 두를 때. */
+function per61ThreeSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 7, 16);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형 화단의 한 가로변은 담에 붙어 있어 울타리를 안 칩니다. 울타리는 몇 cm 필요합니까?`,
+    n(w + 2 * h),
+    `두 세로와 한 가로이므로 ${expr(`${w}+${h}\\times2=${w + 2 * h}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — 정사각형과 직사각형 둘레의 차. */
+function per61PerDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 6, 14);
+  const w = intBetween(rng, 7, 16);
+  const h = intBetween(rng, 3, w - 1);
+  const sq = 4 * side;
+  const rect = 2 * (w + h);
+  return make(
+    unit,
+    `한 변이 ${n(side)} cm인 정사각형의 둘레와 가로 ${n(w)} cm·세로 ${n(h)} cm인 직사각형의 둘레의 차는 몇 cm입니까?`,
+    n(Math.abs(sq - rect)),
+    `정사각형 둘레는 ${n(sq)} cm, 직사각형 둘레는 ${n(rect)} cm이므로 차는 ${n(Math.abs(sq - rect))}입니다.`,
+  );
+}
+
+/** 문형 09 — 정다각형 한 변. */
+function per61PolySide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  const side = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `변이 ${n(sides)}개인 정다각형의 둘레가 ${n(sides * side)} cm입니다. 한 변의 길이는 몇 cm입니까?`,
+    n(side),
+    `${expr(`${sides * side}\\div${sides}=${side}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 가로만 늘린 둘레 증가. */
+function per61Grow(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 6, 14);
+  const h = intBetween(rng, 3, w - 1);
+  const dw = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형의 가로만 ${n(dw)} cm 늘이면 둘레는 몇 cm 늘어납니까?`,
+    n(2 * dw),
+    `가로가 양쪽에 있으므로 둘레는 ${expr(`${dw}\\times2=${2 * dw}`)} cm 늘어납니다.`,
+  );
+}
+
 /* ────────── 1-6-3 1cm²보다 더 큰 넓이의 단위 ────────── */
 
 const ROOM_THINGS = [
@@ -1934,6 +2083,87 @@ function unit63Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `넓이가 ${expr(`${w * h}\\,\\mathrm{m}^2`)}인 직사각형 모양 ${wj(place, "이", "가")} 있습니다. 가로가 ${n(w * 100)} cm일 때 세로는 몇 m입니까?`,
     n(h),
     `가로 ${n(w * 100)} cm는 ${expr("100\\,\\mathrm{cm}=1\\,\\mathrm{m}")}이므로 ${n(w)} m입니다. 넓이는 가로와 세로의 곱이므로 세로는 ${expr(`${w * h}\\div${w}=${h}`)}입니다.`,
+  );
+}
+
+/** 문형 05 — cm²를 m²로. */
+function unit63Down(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${k * 10000}\\,\\mathrm{cm}^2`)}는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
+    n(k),
+    `${expr("10000\\,\\mathrm{cm}^2=1\\,\\mathrm{m}^2")}이므로 ${expr(`${k * 10000}\\div10000=${k}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — m² → cm² 값이 맞는지 판정. */
+function unit63Fact(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? k * 10000 : k * 1000;
+  return make(
+    unit,
+    `${expr(`${k}\\,\\mathrm{m}^2`)}는 ${n(shown)} ${expr("\\mathrm{cm}^2")}입니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    `${expr("1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2")}이므로 ${expr(`${k}\\times10000=${k * 10000}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+  );
+}
+
+/** 문형 07 — m 치수 넓이를 cm²로. */
+function unit63ToCm2(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 6);
+  const h = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `가로 ${n(w)} m, 세로 ${n(h)} m인 직사각형의 넓이는 몇 ${expr("\\mathrm{cm}^2")}입니까?`,
+    n(w * h * 10000),
+    `넓이는 ${n(w * h)} m²이고 ${expr("1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2")}이므로 ${expr(`${w * h}\\times10000=${w * h * 10000}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — km² → m² 역산. */
+function unit63KmDown(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `${expr(`${k * 1000000}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{km}^2")}입니까?`,
+    n(k),
+    `${expr("1\\,\\mathrm{km}^2=1000000\\,\\mathrm{m}^2")}이므로 ${expr(`${k * 1000000}\\div1000000=${k}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 가로 cm, 세로 m 섞인 넓이 m². */
+function unit63Mixed(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 8);
+  const h = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `가로가 ${n(w * 100)} cm, 세로가 ${n(h)} m인 직사각형의 넓이는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
+    n(w * h),
+    `가로 ${n(w * 100)} cm는 ${n(w)} m이므로 넓이는 ${expr(`${w}\\times${h}=${w * h}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — m²와 cm²를 견준다. */
+function unit63Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 6);
+  const b = intBetweenExcept(rng, 2, 8, a);
+  const cm = b * 10000;
+  const m2Bigger = a > b;
+  const firstIsM2 = intBetween(rng, 0, 1) === 0;
+  const p1 = firstIsM2
+    ? expr(`${a}\\,\\mathrm{m}^2`)
+    : expr(`${cm}\\,\\mathrm{cm}^2`);
+  const p2 = firstIsM2
+    ? expr(`${cm}\\,\\mathrm{cm}^2`)
+    : expr(`${a}\\,\\mathrm{m}^2`);
+  const ans = firstIsM2 === m2Bigger ? "㉠" : "㉡";
+  return make(
+    unit,
+    `더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠ ${p1}  ㉡ ${p2}`,
+    ans,
+    `${expr(`${cm}\\,\\mathrm{cm}^2=${b}\\,\\mathrm{m}^2`)}이므로 더 넓은 쪽은 ${ans}입니다.`,
   );
 }
 
@@ -2039,6 +2269,80 @@ function area64Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 같은 밑변·높이에서 삼각형 넓이는 평행사변형의 반. */
+function area64Half(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 10) * 2;
+  const h = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `밑변 ${n(b)} cm, 높이 ${n(h)} cm인 평행사변형의 넓이는 몇 cm²이고, 같은 밑변과 높이를 가진 삼각형의 넓이는 몇 cm²입니까? 두 답을 차례로 쓰시오.`,
+    `${n(b * h)}, ${n((b * h) / 2)}`,
+    `평행사변형은 ${expr(`${b}\\times${h}=${b * h}`)}, 삼각형은 그 절반 ${n((b * h) / 2)}입니다.`,
+  );
+}
+
+/** 문형 06 — 삼각형 밑변 역산. */
+function area64TriBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 10) * 2;
+  const h = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `넓이가 ${n((b * h) / 2)} cm²인 삼각형의 높이가 ${n(h)} cm입니다. 밑변은 몇 cm입니까?`,
+    n(b),
+    `${expr(`${(b * h) / 2}\\times2=${b * h}`)}, ${expr(`${b * h}\\div${h}=${b}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 평행사변형 밑변. */
+function area64ParaBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 16);
+  const h = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `넓이가 ${n(b * h)} cm²인 평행사변형의 높이가 ${n(h)} cm입니다. 밑변은 몇 cm입니까?`,
+    n(b),
+    `${expr(`${b * h}\\div${h}=${b}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — 두 삼각형 넓이 합. */
+function area64TwoTri(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b1 = intBetween(rng, 3, 8) * 2;
+  const h1 = intBetween(rng, 3, 10);
+  const b2 = intBetween(rng, 3, 8) * 2;
+  const h2 = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    `밑변 ${n(b1)} cm·높이 ${n(h1)} cm인 삼각형과 밑변 ${n(b2)} cm·높이 ${n(h2)} cm인 삼각형의 넓이 합은 몇 cm²입니까?`,
+    n((b1 * h1) / 2 + (b2 * h2) / 2),
+    `${expr(`${b1}\\times${h1}\\div2=${(b1 * h1) / 2}`)}, ${expr(`${b2}\\times${h2}\\div2=${(b2 * h2) / 2}`)}이므로 합은 ${n((b1 * h1) / 2 + (b2 * h2) / 2)}입니다.`,
+  );
+}
+
+/** 문형 09 — 평행사변형 넓이에서 삼각형 넓이(같은 치수). */
+function area64ParaToTri(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 10) * 2;
+  const h = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `밑변 ${n(b)} cm, 높이 ${n(h)} cm인 평행사변형과 밑변·높이가 같은 삼각형이 있습니다. 삼각형의 넓이는 몇 cm²입니까?`,
+    n((b * h) / 2),
+    `평행사변형 넓이의 반이므로 ${expr(`${b}\\times${h}\\div2=${(b * h) / 2}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 높이만 두 배인 평행사변형. */
+function area64DoubleH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 12);
+  const h = intBetween(rng, 3, 8);
+  return make(
+    unit,
+    `밑변 ${n(b)} cm, 높이 ${n(h)} cm인 평행사변형의 높이만 ${n(2)}배로 늘이면 넓이는 몇 cm²입니까?`,
+    n(b * h * 2),
+    `새 높이는 ${n(2 * h)} cm이므로 ${expr(`${b}\\times${2 * h}=${b * 2 * h}`)}입니다.`,
+  );
+}
+
 /* ────────── 1-6-5 마름모와 사다리꼴의 넓이 ────────── */
 
 /** 연산 — 치수가 글로. */
@@ -2136,6 +2440,98 @@ function area65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `넓이가 ${n(area)} cm²이고 높이가 ${n(h)} cm인 사다리꼴이 있습니다. 아랫변이 윗변보다 ${n(d)} cm 더 길 때, 윗변은 몇 cm입니까?`,
     n(top),
     `넓이에 ${n(2)}를 곱하고 높이로 나누면 두 변의 합이므로 ${expr(`${area}\\times2\\div${h}=${top + bot}`)} cm입니다. 합에서 차를 빼고 반으로 나누면 짧은 변이므로 ${expr(`(${top + bot}-${d})\\div2=${top}`)}입니다.`,
+  );
+}
+
+/** 문형 05 — 두 대각선의 곱. */
+function area65DiagProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 3, 9) * 2;
+  const d2 = pick(
+    rng,
+    [4, 5, 6, 7, 8, 9, 10, 11].filter((v) => v !== d1),
+  );
+  return make(
+    unit,
+    `두 대각선이 ${n(d1)} cm, ${n(d2)} cm인 마름모에서 두 대각선의 곱은 얼마입니까?`,
+    n(d1 * d2),
+    `${expr(`${d1}\\times${d2}=${d1 * d2}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 사다리꼴 윗변+아랫변. */
+function area65Bases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  return make(
+    unit,
+    `윗변 ${n(top)} cm, 아랫변 ${n(bot)} cm, 높이 ${n(h)} cm인 사다리꼴에서 윗변과 아랫변의 합은 몇 cm입니까?`,
+    n(top + bot),
+    `${expr(`${top}+${bot}=${top + bot}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 마름모 넓이에서 ×2 (대각선 곱). */
+function area65Twice(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 3, 9) * 2;
+  const d2 = pick(
+    rng,
+    [4, 5, 6, 7, 8, 9, 10, 11].filter((v) => v !== d1),
+  );
+  const area = (d1 * d2) / 2;
+  return make(
+    unit,
+    `넓이가 ${n(area)} cm²인 마름모의 넓이에 ${n(2)}를 곱하면 얼마입니까?`,
+    n(d1 * d2),
+    `두 대각선의 곱과 같으므로 ${n(d1 * d2)}입니다.`,
+  );
+}
+
+/** 문형 08 — 사다리꼴 높이. */
+function area65TrapH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  const area = ((top + bot) * h) / 2;
+  return make(
+    unit,
+    `넓이가 ${n(area)} cm²인 사다리꼴의 윗변이 ${n(top)} cm, 아랫변이 ${n(bot)} cm입니다. 높이는 몇 cm입니까?`,
+    n(h),
+    `${expr(`${area}\\times2=${(top + bot) * h}`)}, ${expr(`${(top + bot) * h}\\div${top + bot}=${h}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 두 마름모 넓이 합. */
+function area65TwoRhomb(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a1 = intBetween(rng, 3, 6) * 2;
+  const a2 = pick(
+    rng,
+    [4, 6, 8, 10].filter((v) => v !== a1),
+  );
+  const b1 = intBetween(rng, 3, 6) * 2;
+  const b2 = pick(
+    rng,
+    [5, 7, 9, 11].filter((v) => v !== b1),
+  );
+  return make(
+    unit,
+    `대각선이 ${n(a1)} cm·${n(a2)} cm인 마름모와 대각선이 ${n(b1)} cm·${n(b2)} cm인 마름모의 넓이 합은 몇 cm²입니까?`,
+    n((a1 * a2) / 2 + (b1 * b2) / 2),
+    `${expr(`${a1}\\times${a2}\\div2=${(a1 * a2) / 2}`)}, ${expr(`${b1}\\times${b2}\\div2=${(b1 * b2) / 2}`)}이므로 합은 ${n((a1 * a2) / 2 + (b1 * b2) / 2)}입니다.`,
+  );
+}
+
+/** 문형 10 — 사다리꼴에서 아랫변. */
+function area65TrapBot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const top = intBetween(rng, 3, 8);
+  const bot = top + intBetween(rng, 3, 7);
+  const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
+  const area = ((top + bot) * h) / 2;
+  return make(
+    unit,
+    `넓이가 ${n(area)} cm²인 사다리꼴의 윗변이 ${n(top)} cm, 높이가 ${n(h)} cm입니다. 아랫변은 몇 cm입니까?`,
+    n(bot),
+    `${expr(`${area}\\times2\\div${h}=${top + bot}`)}, ${expr(`${top + bot}-${top}=${bot}`)}입니다.`,
   );
 }
 
@@ -9407,6 +9803,66 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: sub154Borrow },
     { id: "09", tier: "응용", generate: sub154Improper },
     { id: "10", tier: "응용", generate: sub154Check },
+  ],
+  "초5|1-6-1": [
+    { id: "01", tier: "연산", generate: per61Calc },
+    { id: "02", tier: "기본", generate: per61Read },
+    { id: "03", tier: "응용", generate: per61Apply },
+    { id: "04", tier: "심화", generate: per61Deep },
+    { id: "05", tier: "기본", generate: per61Sides },
+    { id: "06", tier: "기본", generate: per61Half },
+    { id: "07", tier: "기본", generate: per61ThreeSides },
+    { id: "08", tier: "응용", generate: per61PerDiff },
+    { id: "09", tier: "응용", generate: per61PolySide },
+    { id: "10", tier: "응용", generate: per61Grow },
+  ],
+  "초5|1-6-2": [
+    { id: "01", tier: "연산", generate: area62Calc },
+    { id: "02", tier: "기본", generate: area62Read },
+    { id: "03", tier: "응용", generate: area62Apply },
+    { id: "04", tier: "심화", generate: area62Deep },
+    { id: "05", tier: "기본", generate: area62Height },
+    { id: "06", tier: "기본", generate: area62Tiles },
+    { id: "07", tier: "기본", generate: area62Frame },
+    { id: "08", tier: "응용", generate: area62Sum },
+    { id: "09", tier: "응용", generate: area62TwoSum },
+    { id: "10", tier: "응용", generate: area62Side },
+  ],
+  "초5|1-6-3": [
+    { id: "01", tier: "연산", generate: unit63Calc },
+    { id: "02", tier: "기본", generate: unit63Read },
+    { id: "03", tier: "응용", generate: unit63Apply },
+    { id: "04", tier: "심화", generate: unit63Deep },
+    { id: "05", tier: "기본", generate: unit63Down },
+    { id: "06", tier: "기본", generate: unit63Fact },
+    { id: "07", tier: "기본", generate: unit63ToCm2 },
+    { id: "08", tier: "응용", generate: unit63KmDown },
+    { id: "09", tier: "응용", generate: unit63Mixed },
+    { id: "10", tier: "응용", generate: unit63Bigger },
+  ],
+  "초5|1-6-4": [
+    { id: "01", tier: "연산", generate: area64Calc },
+    { id: "02", tier: "기본", generate: area64Read },
+    { id: "03", tier: "응용", generate: area64Apply },
+    { id: "04", tier: "심화", generate: area64Deep },
+    { id: "05", tier: "기본", generate: area64Half },
+    { id: "06", tier: "기본", generate: area64TriBase },
+    { id: "07", tier: "기본", generate: area64ParaBase },
+    { id: "08", tier: "응용", generate: area64TwoTri },
+    { id: "09", tier: "응용", generate: area64ParaToTri },
+    { id: "10", tier: "응용", generate: area64DoubleH },
+  ],
+  "초5|1-6-5": [
+    { id: "01", tier: "연산", generate: area65Calc },
+    { id: "02", tier: "기본", generate: area65Read },
+    { id: "03", tier: "응용", generate: area65Apply },
+    { id: "04", tier: "심화", generate: area65Deep },
+    { id: "05", tier: "기본", generate: area65DiagProd },
+    { id: "06", tier: "기본", generate: area65Bases },
+    { id: "07", tier: "기본", generate: area65Twice },
+    { id: "08", tier: "응용", generate: area65TrapH },
+    { id: "09", tier: "응용", generate: area65TwoRhomb },
+    { id: "10", tier: "응용", generate: area65TrapBot },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
