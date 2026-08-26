@@ -41,6 +41,7 @@ import {
   errorResponseSchema,
 } from "@/contracts/common.contract";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
+import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
 import { getSessionUser } from "@/lib/session";
@@ -222,18 +223,18 @@ describe("[T3.1] GET /api/problems — 단원/난이도/유형/출처/검수상�
     expect(body.error.code).toBe("UNAUTHORIZED");
   });
 
-  // 이관 배치는 같은 초 안에 수천 건이 생겨 createdAt만으로는 순서가 유일하지 않다.
-  // 보조 정렬 키가 없으면 페이지 사이에 같은 문항이 겹치거나 빠진다(실서버 실측: 1↔2페이지 4건 중복).
-  it("createdAt이 같은 행이 많아도 페이지가 겹치지 않도록 id 보조 정렬 키를 쓴다", async () => {
+  // 정렬 규칙은 `src/lib/problem/problemOrder.ts` **한 곳**에 있다(원장님 지시 2026-08-26:
+  // 「1.학년 2.학기 3.단원순서 4.분류 5.번호」). 화면도 같은 목록을 읽으므로, 라우트가
+  // 자기 손으로 순서를 적으면 두 벌이 되고 **페이지 경계에서 순서가 깨진다.**
+  // 여기서 상수를 **import 해서** 대조하는 이유다 — 규칙을 옮겨 적으면 이 시험이 초록인
+  // 채로 갈라진다.
+  it("목록 정렬을 라우트가 직접 적지 않고 PROBLEM_BANK_ORDER_BY 를 그대로 쓴다", async () => {
     const spy = vi.spyOn(db.problem, "findMany");
     const res = await listProblems(
       jsonRequest("http://localhost/api/problems?page=1&pageSize=20", "GET"),
     );
     expect(res.status).toBe(200);
-    expect(spy.mock.calls.at(-1)![0]?.orderBy).toEqual([
-      { createdAt: "desc" },
-      { id: "desc" },
-    ]);
+    expect(spy.mock.calls.at(-1)![0]?.orderBy).toEqual(PROBLEM_BANK_ORDER_BY);
     spy.mockRestore();
   });
 

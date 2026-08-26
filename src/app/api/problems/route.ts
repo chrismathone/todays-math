@@ -26,6 +26,7 @@ import { db } from "@/lib/db";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { DEFAULT_PROBLEM_POOL, problemVisibleWhere } from "@/lib/problemPool";
+import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -227,8 +228,10 @@ export async function GET(request: NextRequest) {
       where,
       skip: (page - 1) * pageSize,
       take: pageSize,
-      // 이관 배치는 createdAt이 같은 행이 수천 건이라 id 보조 키 없이는 페이지가 겹친다.
-      orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+      // 정렬은 **여기서 정하지 않는다** — 규칙은 `PROBLEM_BANK_ORDER_BY` 한 곳에 있고
+      // 화면의 끼워넣기 비교기도 같은 열쇠 목록을 읽는다(원장님 지시 2026-08-26).
+      // 서버가 페이지를 나누므로 **서버 순서가 참이다.**
+      orderBy: PROBLEM_BANK_ORDER_BY,
     }),
     db.problem.count({ where }),
   ]);
