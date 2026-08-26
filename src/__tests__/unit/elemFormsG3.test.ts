@@ -629,3 +629,49 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
     }
   });
 });
+
+describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", () => {
+  const unit = unitOf("1-2-5");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("03 네 변의 합 = 4×한 변", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const side = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(4 * side);
+    }
+  });
+
+  it("07 정의는 정사각형", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("정사각형");
+    }
+  });
+
+  it("08 마주 보는 두 변의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const side = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(2 * side);
+    }
+  });
+
+  it("09 변의 수는 정사각형 수×4", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const many = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(4 * many);
+    }
+  });
+
+  it("10 네 변의 합에서 한 변을 뺀 값", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const side = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(3 * side);
+    }
+  });
+});

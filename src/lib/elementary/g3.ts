@@ -8186,6 +8186,91 @@ function rect124RightAngles(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+const SQ_THINGS = [
+  "색종이",
+  "손수건",
+  "액자",
+  "타일",
+  "방석",
+  "게시판",
+  "창문",
+  "스케치북",
+] as const;
+
+/** 문형 05 — 정사각형이 아닌 개수. */
+function sq125OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const other = row.labels.length - 1;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 정사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
+    n(other),
+    `정사각형은 ${row.answer} 하나이므로 아닌 도형은 ${n(other)}개입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 문형 06 — 정사각형이 아닌 기호. */
+function sq125NotSq(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = squareRow(rng);
+  const other = row.labels.filter((l) => l !== row.answer);
+  const ans = pick(rng, other);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 정사각형이 아닌 도형의 기호를 쓰시오.`,
+    ans,
+    `정사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 문형 07 — 정의. */
+function sq125Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형을 무엇이라고 합니까? 그런 사각형을 ${n(many)}개 그릴 수 있습니다.`,
+    "정사각형",
+    `네 각이 직각이고 네 변이 같은 사각형이 정사각형입니다.`,
+  );
+}
+
+/** 문형 08 — 마주 보는 두 변의 합. 03 은 네 변의 합. */
+function sq125OppSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const thing = pick(rng, SQ_THINGS);
+  return make(
+    unit,
+    `한 변의 길이가 ${n(side)} cm인 정사각형 모양 ${thing}에서 마주 보는 두 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    n(2 * side),
+    `마주 보는 두 변은 각각 ${n(side)} cm이므로 ${expr(`${side}+${side}=${2 * side}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 정사각형 n개의 변의 수. */
+function sq125SideCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `정사각형 ${n(many)}개의 변은 모두 몇 개인지 쓰시오.`,
+    n(4 * many),
+    `정사각형 한 개에 변이 4개이므로 ${expr(`${many}\\times4=${4 * many}`)} 개입니다.`,
+  );
+}
+
+/** 문형 10 — 네 변의 합에서 한 변을 뺀 값. */
+function sq125PerimMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const thing = pick(rng, SQ_THINGS);
+  return make(
+    unit,
+    `한 변의 길이가 ${n(side)} cm인 정사각형 모양 ${thing}의 네 변의 길이의 합에서 한 변의 길이를 빼면 몇 cm인지 쓰시오.`,
+    n(3 * side),
+    `네 변의 합은 ${expr(`${side}\\times4=${4 * side}`)} 이고, 한 변을 빼면 ${expr(`${4 * side}-${side}=${3 * side}`)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8282,6 +8367,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: rect124TwoWidths },
     { id: "09", tier: "응용", generate: rect124TwoHeights },
     { id: "10", tier: "응용", generate: rect124RightAngles },
+  ],
+  "초3|1-2-5": [
+    { id: "01", tier: "연산", generate: sq125Calc },
+    { id: "02", tier: "기본", generate: sq125Word },
+    { id: "03", tier: "응용", generate: sq125Apply },
+    { id: "04", tier: "심화", generate: sq125Deep },
+    { id: "05", tier: "기본", generate: sq125OtherCount },
+    { id: "06", tier: "기본", generate: sq125NotSq },
+    { id: "07", tier: "기본", generate: sq125Def },
+    { id: "08", tier: "응용", generate: sq125OppSum },
+    { id: "09", tier: "응용", generate: sq125SideCount },
+    { id: "10", tier: "응용", generate: sq125PerimMinus },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
