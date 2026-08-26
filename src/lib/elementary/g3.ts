@@ -7924,6 +7924,90 @@ function line121RayPlusSeg(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 직각인 각의 개수. 01 은 기호를 고른다. */
+function ang122RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 3, 4);
+  const rightCount = intBetween(rng, 1, count - 1);
+  const row = angleRow(rng, count, rightCount);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각인 각은 모두 몇 개인지 쓰시오.`,
+    n(rightCount),
+    `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 06 — 직각이 아닌 각의 기호. */
+function ang122NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 3, 4);
+  const rightCount = intBetween(rng, 1, count - 1);
+  const row = angleRow(rng, count, rightCount);
+  const other = row.labels.filter((l) => !row.rightLabels.includes(l));
+  const ans = pick(rng, other);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 직각이 아닌 각의 기호를 쓰시오.`,
+    ans,
+    `직각이 아닌 각은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 07 — 정의: 두 변이 반듯하게 만나는 각. */
+function ang122Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 ${n(many)}개 그릴 수 있습니다.`,
+    "직각",
+    `두 반직선이 반듯하게 만나 이루는 각이 직각입니다.`,
+  );
+}
+
+/** 문형 08 — 직각이 아닌 각의 개수. */
+function ang122OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 3, 4);
+  const rightCount = intBetween(rng, 1, count - 1);
+  const row = angleRow(rng, count, rightCount);
+  const other = count - rightCount;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각이 아닌 각은 모두 몇 개인지 쓰시오.`,
+    n(other),
+    `전체 ${n(count)}개에서 직각 ${n(rightCount)}개를 빼면 ${expr(`${count}-${rightCount}=${other}`)} 개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 09 — 직각인 각의 기호를 모두. 둘을 고르게 하여 01 과 가른다. */
+function ang122AllRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = angleRow(rng, 3, 2);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 직각인 각의 기호를 모두 쓰시오.`,
+    row.rightLabels.join(", "),
+    `직각인 각은 ${row.rightLabels.join(", ")} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 10 — 각을 이루는 변의 수. 각마다 변 둘. */
+function ang122Rays(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 4);
+  const rightCount = intBetween(rng, 1, Math.max(1, count - 1));
+  const row = angleRow(rng, count, rightCount);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.`,
+    n(2 * count),
+    `각 ${n(count)}개에 변이 각각 2개이므로 ${expr(`${count}\\times2=${2 * count}`)} 개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -7984,6 +8068,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: line121RayCount },
     { id: "09", tier: "응용", generate: line121RemovePoint },
     { id: "10", tier: "응용", generate: line121RayPlusSeg },
+  ],
+  "초3|1-2-2": [
+    { id: "01", tier: "연산", generate: angle122Calc },
+    { id: "02", tier: "기본", generate: angle122Word },
+    { id: "03", tier: "응용", generate: angle122Apply },
+    { id: "04", tier: "심화", generate: angle122Deep },
+    { id: "05", tier: "기본", generate: ang122RightCount },
+    { id: "06", tier: "기본", generate: ang122NotRight },
+    { id: "07", tier: "기본", generate: ang122Def },
+    { id: "08", tier: "응용", generate: ang122OtherCount },
+    { id: "09", tier: "응용", generate: ang122AllRight },
+    { id: "10", tier: "응용", generate: ang122Rays },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
