@@ -2619,6 +2619,204 @@ function mix112Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 앞에서부터 그냥 접은 값(곱·나눗셈을 나중에). */
+function mix112Ltr(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    const ltr = (a - b) * c + d;
+    return make(
+      unit,
+      `${lj(`${a}-${b}\\times${c}+${d}`, "을", "를")} 앞에서부터 차례로 계산하면 값은 얼마입니까?`,
+      n(ltr),
+      `앞에서부터 계산하면 ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}\\times${c}=${(a - b) * c}`)}, ${expr(`${(a - b) * c}+${d}=${ltr}`)}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const k = intBetween(rng, 2, 8);
+  const a = c * k;
+  const d = intBetweenExcept(rng, 2, Math.min(15, k + q - 1), q);
+  const ltr = (a + b) / c - d;
+  return make(
+    unit,
+    `${lj(`${a}+${b}\\div${c}-${d}`, "을", "를")} 앞에서부터 차례로 계산하면 값은 얼마입니까?`,
+    n(ltr),
+    `앞에서부터 계산하면 ${expr(`${a}+${b}=${a + b}`)}, ${expr(`${a + b}\\div${c}=${(a + b) / c}`)}, ${expr(`${(a + b) / c}-${d}=${ltr}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 곱셈·나눗셈을 먼저 한 첫 걸음. */
+function mix112FirstOp(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    return make(
+      unit,
+      `${lj(`${a}-${b}\\times${c}+${d}`, "을", "를")} 바르게 계산할 때, 가장 먼저 하는 계산의 결과는 얼마입니까?`,
+      n(b * c),
+      `곱셈을 먼저 계산합니다. ${expr(`${b}\\times${c}=${b * c}`)}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const a = intBetween(rng, 10, 50);
+  const d = intBetweenExcept(rng, 2, Math.min(15, a + q - 2), q);
+  return make(
+    unit,
+    `${lj(`${a}+${b}\\div${c}-${d}`, "을", "를")} 바르게 계산할 때, 가장 먼저 하는 계산의 결과는 얼마입니까?`,
+    n(q),
+    `나눗셈을 먼저 계산합니다. ${expr(`${b}\\div${c}=${q}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 주어진 값이 바른지 판정. */
+function mix112Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    const right = a - b * c + d;
+    const wrong = (a - b) * c + d;
+    const ok = intBetween(rng, 0, 1) === 0;
+    const shown = ok ? right : wrong;
+    return make(
+      unit,
+      `${expr(`${a}-${b}\\times${c}+${d}=${shown}`)} 계산이 맞습니까? (예, 아니요)`,
+      ok ? "예" : "아니요",
+      `곱셈을 먼저 계산하면 ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}-${b * c}+${d}=${right}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const a = intBetween(rng, 10, 50);
+  const d = intBetweenExcept(rng, 2, Math.min(15, a + q - 2), q);
+  const right = a + q - d;
+  const wrong = right + c;
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? right : wrong;
+  return make(
+    unit,
+    `${expr(`${a}+${b}\\div${c}-${d}=${shown}`)} 계산이 맞습니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    `나눗셈을 먼저 계산하면 ${expr(`${b}\\div${c}=${q}`)}이므로 ${expr(`${a}+${q}-${d}=${right}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+  );
+}
+
+/** 문형 08 — 앞에서부터 접은 값과 바른 값의 차. */
+function mix112OrderDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    const right = a - b * c + d;
+    const ltr = (a - b) * c + d;
+    const diff = Math.abs(ltr - right);
+    return make(
+      unit,
+      `${lj(`${a}-${b}\\times${c}+${d}`, "을", "를")} 앞에서부터 계산한 값과 바르게 계산한 값의 차는 얼마입니까?`,
+      n(diff),
+      `앞에서부터 계산하면 ${n(ltr)}이고, 곱셈을 먼저 하면 ${n(right)}입니다. 차는 ${n(diff)}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const k = intBetween(rng, 2, 8);
+  const a = c * k;
+  const d = intBetweenExcept(rng, 2, Math.min(15, k + q - 1), q);
+  const right = a + q - d;
+  const ltr = (a + b) / c - d;
+  const diff = Math.abs(ltr - right);
+  return make(
+    unit,
+    `${lj(`${a}+${b}\\div${c}-${d}`, "을", "를")} 앞에서부터 계산한 값과 바르게 계산한 값의 차는 얼마입니까?`,
+    n(diff),
+    `앞에서부터 계산하면 ${n(ltr)}이고, 나눗셈을 먼저 하면 ${n(right)}입니다. 차는 ${n(diff)}입니다.`,
+  );
+}
+
+/** 문형 09 — 바른 값을 구한 뒤 더한다(두 단계). 심화 □ 역산과 지문이 겹치지 않게. */
+function mix112ThenAdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 20);
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    const r = a - b * c + d;
+    return make(
+      unit,
+      `${expr(`${a}-${b}\\times${c}+${d}`)}의 값에 ${nj(k, "을", "를")} 더하면 얼마입니까?`,
+      n(r + k),
+      `곱셈을 먼저 하면 ${expr(`${b}\\times${c}=${b * c}`)}, ${expr(`${a}-${b * c}+${d}=${r}`)}입니다. 더하면 ${expr(`${r}+${k}=${r + k}`)}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const a = intBetween(rng, 10, 50);
+  const d = intBetweenExcept(rng, 2, Math.min(15, a + q - 2), q);
+  const r = a + q - d;
+  return make(
+    unit,
+    `${expr(`${a}+${b}\\div${c}-${d}`)}의 값에 ${nj(k, "을", "를")} 더하면 얼마입니까?`,
+    n(r + k),
+    `나눗셈을 먼저 하면 ${expr(`${b}\\div${c}=${q}`)}, ${expr(`${a}+${q}-${d}=${r}`)}입니다. 더하면 ${expr(`${r}+${k}=${r + k}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 앞에서부터 접은 식과 바른 식 중 값이 큰 것. */
+function mix112Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 3, 9);
+    const c = intBetween(rng, 2, 6);
+    const d = intBetweenExcept(rng, 4, 15, b * c);
+    const a = b * c + intBetween(rng, 5, 40);
+    const right = a - b * c + d;
+    const ltr = (a - b) * c + d;
+    const rightExpr = `${a}-(${b}\\times${c})+${d}`;
+    const ltrExpr = `(${a}-${b})\\times${c}+${d}`;
+    const firstIsLtr = intBetween(rng, 0, 1) === 0;
+    const [p1, p2] = firstIsLtr ? [ltrExpr, rightExpr] : [rightExpr, ltrExpr];
+    const ans = firstIsLtr ? "㉠" : "㉡";
+    return make(
+      unit,
+      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+      ans,
+      `${expr(`${ltrExpr}=${ltr}`)}, ${expr(`${rightExpr}=${right}`)}이므로 더 큰 것은 ${ans}입니다.`,
+    );
+  }
+  const c = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const b = c * q;
+  const k = intBetween(rng, 2, 8);
+  const a = c * k;
+  const d = intBetweenExcept(rng, 2, Math.min(15, k + q - 1), q);
+  const right = a + q - d;
+  const ltr = (a + b) / c - d;
+  const rightExpr = `${a}+(${b}\\div${c})-${d}`;
+  const ltrExpr = `(${a}+${b})\\div${c}-${d}`;
+  const firstIsRight = intBetween(rng, 0, 1) === 0;
+  const [p1, p2] = firstIsRight ? [rightExpr, ltrExpr] : [ltrExpr, rightExpr];
+  const ans = firstIsRight ? "㉠" : "㉡";
+  return make(
+    unit,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    ans,
+    `${expr(`${rightExpr}=${right}`)}, ${expr(`${ltrExpr}=${ltr}`)}이므로 더 큰 것은 ${ans}입니다.`,
+  );
+}
+
 /* ── 1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈 — 네 연산이 전부 든다 ── */
 
 /** 1-1-3 기본 ㉮ 통에 나누어 담는 것 (L). */
@@ -2758,6 +2956,119 @@ function mix113Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `□ 안에 알맞은 수를 구하시오.  ${expr(`(\\square-${b})\\div${c}+${m1}\\times${m2}=${r}`)}`,
     n(x),
     `거꾸로 계산합니다. ${expr(`${m1}\\times${m2}=${m1 * m2}`)}이므로 ${expr(`(\\square-${b})\\div${c}`)}의 값은 ${expr(`${r}-${m1 * m2}=${k}`)}입니다. ${expr(`\\square-${b}`)}의 값은 ${expr(`${k}\\times${c}=${c * k}`)}이므로 ${expr(`\\square=${c * k}+${b}=${x}`)}입니다.`,
+  );
+}
+
+/** 문형 05 — 곱셈만 먼저 한 결과. */
+function mix113MulFirst(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  const a = intBetween(rng, 3, 9);
+  const b = intBetween(rng, 3, 9);
+  const c = intBetweenExcept(rng, 5, 30, q);
+  return make(
+    unit,
+    `${lj(`${a}\\times${b}+${c}-${d}\\div${e}`, "을", "를")} 바르게 계산할 때, 곱셈의 결과는 얼마입니까?`,
+    n(a * b),
+    `곱셈과 나눗셈을 먼저 합니다. 곱셈은 ${expr(`${a}\\times${b}=${a * b}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 주어진 값이 바른지 판정. */
+function mix113Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  const a = intBetween(rng, 3, 9);
+  const b = intBetween(rng, 3, 9);
+  const c = intBetweenExcept(rng, 5, 30, q);
+  const right = a * b + c - q;
+  const wrong = right + e;
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? right : wrong;
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}+${c}-${d}\\div${e}=${shown}`)} 계산이 맞습니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    `곱셈과 나눗셈을 먼저 하면 ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${a * b}+${c}-${q}=${right}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+  );
+}
+
+/** 문형 07 — 앞에서부터 차례로 접은 값. 나눗셈이 딱 떨어지게 a×b+c-d 를 e의 배수로 잡는다. */
+function mix113Ltr(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const b = intBetween(rng, 3, 9);
+  const c = intBetween(rng, 2, 6);
+  const inner = intBetween(rng, 2, 9);
+  const a = b + inner;
+  const d = intBetween(rng, 2, 20);
+  const acc = (a - b) * c + d;
+  const pad = (e - (acc % e)) % e;
+  const d2 = d + pad;
+  const ltr = ((a - b) * c + d2) / e;
+  return make(
+    unit,
+    `${lj(`(${a}-${b})\\times${c}+${d2}\\div${e}`, "을", "를")} 앞에서부터 괄호 다음을 차례로 계산하면 값은 얼마입니까?`,
+    n(ltr),
+    `괄호 안은 ${expr(`${a}-${b}=${a - b}`)}입니다. 앞에서부터 이으면 ${expr(`${a - b}\\times${c}=${(a - b) * c}`)}, ${expr(`${(a - b) * c}+${d2}=${(a - b) * c + d2}`)}, ${expr(`${(a - b) * c + d2}\\div${e}=${ltr}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — 곱셈 결과와 나눗셈 결과의 합(두 단계). */
+function mix113MulDivSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  const a = intBetween(rng, 3, 9);
+  const b = intBetween(rng, 3, 9);
+  const c = intBetweenExcept(rng, 5, 30, q);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}+${c}-${d}\\div${e}`)}에서 곱셈의 결과와 나눗셈의 결과를 더하면 얼마입니까?`,
+    n(a * b + q),
+    `곱셈은 ${expr(`${a}\\times${b}=${a * b}`)}, 나눗셈은 ${expr(`${d}\\div${e}=${q}`)}입니다. 합은 ${expr(`${a * b}+${q}=${a * b + q}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 바른 값에 더한다. */
+function mix113ThenAdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  const a = intBetween(rng, 3, 9);
+  const b = intBetween(rng, 3, 9);
+  const c = intBetweenExcept(rng, 5, 30, q);
+  const r = a * b + c - q;
+  const k = intBetween(rng, 2, 20);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}+${c}-${d}\\div${e}`)}의 값에 ${nj(k, "을", "를")} 더하면 얼마입니까?`,
+    n(r + k),
+    `곱셈과 나눗셈을 먼저 하면 ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${d}\\div${e}=${q}`)}이므로 ${expr(`${a * b}+${c}-${q}=${r}`)}입니다. 더하면 ${expr(`${r}+${k}=${r + k}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 괄호 있는 식과 없는 식 중 값이 큰 것. */
+function mix113Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const e = intBetween(rng, 2, 6);
+  const q = intBetween(rng, 2, 9);
+  const d = e * q;
+  const b = intBetween(rng, 3, 9);
+  const c = intBetween(rng, 2, 5);
+  const a = b * c + intBetween(rng, 2, 40);
+  const withParen = (a - b) * c + q;
+  const noParen = a - b * c + q;
+  const pExpr = `(${a}-${b})\\times${c}+${d}\\div${e}`;
+  const nExpr = `${a}-${b}\\times${c}+${d}\\div${e}`;
+  const firstIsParen = intBetween(rng, 0, 1) === 0;
+  const [p1, p2] = firstIsParen ? [pExpr, nExpr] : [nExpr, pExpr];
+  const ans = firstIsParen ? "㉠" : "㉡";
+  return make(
+    unit,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    ans,
+    `${expr(`${pExpr}=${withParen}`)}, ${expr(`${nExpr}=${noParen}`)}이므로 더 큰 것은 ${ans}입니다.`,
   );
 }
 
@@ -7277,6 +7588,30 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: mix111OrderDiff },
     { id: "09", tier: "응용", generate: mix111Missing },
     { id: "10", tier: "응용", generate: mix111Bigger },
+  ],
+  "초5|1-1-2": [
+    { id: "01", tier: "연산", generate: mix112Calc },
+    { id: "02", tier: "기본", generate: mix112Read },
+    { id: "03", tier: "응용", generate: mix112Apply },
+    { id: "04", tier: "심화", generate: mix112Deep },
+    { id: "05", tier: "기본", generate: mix112Ltr },
+    { id: "06", tier: "기본", generate: mix112FirstOp },
+    { id: "07", tier: "기본", generate: mix112Judge },
+    { id: "08", tier: "응용", generate: mix112OrderDiff },
+    { id: "09", tier: "응용", generate: mix112ThenAdd },
+    { id: "10", tier: "응용", generate: mix112Bigger },
+  ],
+  "초5|1-1-3": [
+    { id: "01", tier: "연산", generate: mix113Calc },
+    { id: "02", tier: "기본", generate: mix113Read },
+    { id: "03", tier: "응용", generate: mix113Apply },
+    { id: "04", tier: "심화", generate: mix113Deep },
+    { id: "05", tier: "기본", generate: mix113MulFirst },
+    { id: "06", tier: "기본", generate: mix113Judge },
+    { id: "07", tier: "기본", generate: mix113Ltr },
+    { id: "08", tier: "응용", generate: mix113MulDivSum },
+    { id: "09", tier: "응용", generate: mix113ThenAdd },
+    { id: "10", tier: "응용", generate: mix113Bigger },
   ],
   "초5|2-5-1": [
     { id: "01", tier: "연산", generate: boxRectCalc },
