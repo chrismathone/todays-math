@@ -28,6 +28,7 @@ import {
   unauthorizedError,
   validationError,
 } from "@/lib/apiResponse";
+import { deriveQuestionType } from "@/lib/ai/questionType";
 import { db } from "@/lib/db";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
@@ -61,6 +62,19 @@ export async function POST(request: NextRequest) {
         source: parsed.data.source,
         difficulty: parsed.data.difficulty,
         problemType: parsed.data.problemType,
+        // 형식을 **여기서도** 적는다. 문항을 만드는 자리가 셋인데(생성·변형 채택·이 손등록)
+        // 하나라도 빠뜨리면 그 경로의 산출물만 화면에 `[?형식]` 으로 뜬다 —
+        // 오류가 안 나므로 원장님이 화면에서 찾아 줄 때까지 아무도 모른다(2026-08-26).
+        //
+        // 묻지 않고 **읽는다**: 형식은 그 문항이 실제로 쓴 글에 이미 다 적혀 있다
+        // (보기를 몇 칸 썼나 · 정답이 보기 번호인가). 등록 폼에 칸을 하나 더 두면
+        // 「고른 값과 지면이 어긋나는」 새 결함 자리가 생기고, 그 어긋남은
+        // 에러 없이 그럴듯한 값으로 나간다.
+        questionType: deriveQuestionType({
+          content: parsed.data.content,
+          answer: parsed.data.answer,
+          problemType: parsed.data.problemType,
+        }),
         content: parsed.data.content,
         answer: parsed.data.answer,
         solution: parsed.data.solution ?? null,
