@@ -5338,7 +5338,112 @@ function eq165Times(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형용 섞기 — 보기 순서가 답 순서가 되지 않게. */
+function shuffled<T>(rng: Rng, items: readonly T[]): T[] {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [a[i], a[j]] = [a[j]!, a[i]!];
+  }
+  return a;
+}
+
+/* ── 1-1-1 문형 05–10. 01–04 는 기존 4단을 감싼다. 규모는 10000 띠. ── */
+
+/** 문형 05 — 만이라고 읽는 수를 고른다. */
+function big111WhichMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const others = pickDistinct(rng, [1000, 2000, 5000, 9000, 9999], 2);
+  const shown = shuffled(rng, [10000, others[0]!, others[1]!]);
+  return make(
+    unit,
+    `다음 수 중 만이라고 읽는 수를 쓰시오. ${shown.map((v) => n(v)).join(", ")}`,
+    n(10000),
+    `${n(1000)}이 ${n(10)}개인 수가 만입니다. ${n(10000)}을 만이라고 읽습니다.`,
+  );
+}
+
+/** 문형 06 — 1000씩 몇 번 빼면 남는가. */
+function big111MinusThousands(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(10000)}에서 ${n(1000)}을 ${n(k)}번 빼면 얼마인가?`,
+    n(10000 - 1000 * k),
+    `${expr(`1000\\times${k}=${1000 * k}`)} 이고 ${expr(`10000-${1000 * k}=${10000 - 1000 * k}`)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 묶음 수(02 의 역방향). */
+function big111BundleCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = pick(rng, MAN_ITEMS);
+  const k = intBetween(rng, 2, 10);
+  const total = k * 1000;
+  return make(
+    unit,
+    `${josa(t.obj, "이", "가")} ${n(total)}${t.cnt} 있습니다. ${n(1000)}${t.cnt}씩 묶으면 몇 묶음인가?`,
+    `${n(k)}묶음`,
+    `${expr(`${total}\\div1000=${k}`)} 이므로 ${n(k)}묶음입니다.`,
+  );
+}
+
+/** 문형 08 — 10000원에 모자라는 금액. */
+function big111Shortfall(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 8);
+  const b = intBetween(rng, 1, 9);
+  const have = a * 1000 + b * 100;
+  const need = 10000 - have;
+  return make(
+    unit,
+    `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(b)}개를 모았습니다. ` +
+      `${n(10000)}원이 되려면 얼마가 모자라는가?`,
+    `${n(need)}원`,
+    `지금 모은 돈은 ${expr(`1000\\times${a}+100\\times${b}=${have}`)} 원입니다. ` +
+      `${expr(`10000-${have}=${need}`)} 이므로 ${n(need)}원 모자랍니다.`,
+  );
+}
+
+/** 문형 09 — 천 묶음과 백 묶음 중 더 큰 수. */
+function big111BiggerUnit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 10);
+  const b = intBetween(rng, 10, 90);
+  const x = 1000 * a;
+  const y = 100 * b;
+  const big = Math.max(x, y);
+  return make(
+    unit,
+    `${n(1000)}이 ${n(a)}개인 수와 ${n(100)}이 ${n(b)}개인 수 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `${n(1000)}이 ${n(a)}개인 수는 ${n(x)}, ${n(100)}이 ${n(b)}개인 수는 ${n(y)}입니다. ` +
+      `더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/** 문형 10 — 10000에서 덜어 낸 뒤 천이 몇 개인가. */
+function big111ThousandsLeft(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9) * 1000;
+  const left = 10000 - k;
+  return make(
+    unit,
+    `${n(10000)}보다 ${n(k)} 작은 수는 ${n(1000)}이 몇 개인 수인가?`,
+    n(left / 1000),
+    `${expr(`10000-${k}=${left}`)} 이고 ${expr(`${left}\\div1000=${left / 1000}`)} 이므로 ` +
+      `${n(1000)}이 ${n(left / 1000)}개인 수입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
+  "초4|1-1-1": [
+    { id: "01", tier: "연산", generate: tier11Calc },
+    { id: "02", tier: "기본", generate: tier11Basic },
+    { id: "03", tier: "응용", generate: tier11Apply },
+    { id: "04", tier: "심화", generate: tier11Deep },
+    { id: "05", tier: "기본", generate: big111WhichMan },
+    { id: "06", tier: "기본", generate: big111MinusThousands },
+    { id: "07", tier: "기본", generate: big111BundleCount },
+    { id: "08", tier: "응용", generate: big111Shortfall },
+    { id: "09", tier: "응용", generate: big111BiggerUnit },
+    { id: "10", tier: "응용", generate: big111ThousandsLeft },
+  ],
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
     { id: "02", tier: "기본", generate: tier65Basic },
