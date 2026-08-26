@@ -10,6 +10,7 @@ import {
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
+import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTest, serializeTestProblemItem } from "@/lib/serializers";
@@ -69,6 +70,24 @@ export async function replaceTestProblemAtSeq(
     ...new Set([...recentFromOtherTests, ...usedOnThisTest]),
   ];
 
+  /**
+   * 🔴 **교체가 규칙을 깨면 안 된다** (원장님 확정 2026-08-26 — 한 시험지에 같은 류는 1개).
+   *
+   * 위의 `recentProblemIds` 는 **문항 id** 만 거른다. 그것만으로는 「지금 5번 자리에
+   * 있는 문항의 **형제**」가 3번 자리로 들어올 수 있다 — 원장님이 보신 바로 그 모양
+   * (같은 발문, 숫자만 다름)이 **한 번 눌러서** 되살아난다. 출제에만 규칙을 걸고
+   * 교체에 안 걸면 정책이 조용히 새는 자리다.
+   *
+   * ⚠️ **바꾸려는 그 문항 자신의 류는 안 뺀다.** 그 자리는 비워지므로 시험지에 중복이
+   *    생기지 않는다. 여기까지 빼면 갈래가 얇은 소단원(실측 초5·초6 전 소단원이
+   *    정확히 4갈래)에서 **교체가 통째로 막힌다** — 규칙이 지키려는 것보다 잃는 게 크다.
+   */
+  const familiesOnOtherSeats = new Set(
+    items
+      .filter((item) => item.orderIndex !== seq && item.problem)
+      .map((item) => familyIdOf(item.problem!)),
+  );
+
   const difficulties: Difficulty[] = [
     target.problem.difficulty,
     ...ADJACENT[target.problem.difficulty],
@@ -82,7 +101,7 @@ export async function replaceTestProblemAtSeq(
     });
 
     const picked = selectProblems({
-      pool,
+      pool: pool.filter((p) => !familiesOnOtherSeats.has(familyIdOf(p))),
       difficultyRatio: ratioFor(difficulty),
       count: 1,
       recentProblemIds,

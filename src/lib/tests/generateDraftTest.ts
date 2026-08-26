@@ -12,6 +12,7 @@ import {
 import { jsonError, jsonOk } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
+import { countFamilies } from "@/lib/generator/familyKey";
 import { resolveRange } from "@/lib/generator/resolveRange";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
@@ -130,13 +131,31 @@ export async function generateDraftTest(
   if (selected.problems.length < count) {
     const recentSet = new Set(recentProblemIds);
     const usable = eligible.filter((p) => !recentSet.has(p.id));
+    /**
+     * **한 시험지에 담을 수 있는 진짜 상한** — 행이 아니라 **갈래**다
+     * (원장님 확정 2026-08-26, 같은 문항류는 1개).
+     *
+     * 🔴 여기를 행 수로 두면 화면의 「문항 수 줄이기」가 **덫이 된다.** 그 단추는
+     *    `available` 을 그대로 문항 수로 넣어 다시 출제하는데, 16행·4갈래인 단원에서
+     *    「가용 16」을 보여 주면 16으로 재시도해 **또 실패**한다. 원장님은 누를수록
+     *    안 되는 단추를 보게 된다.
+     *
+     * 갈래가 안 접히는 풀(기출처럼 키가 없는 행뿐인 경우)에서는 이 값이 `usable.length`
+     * 와 **같다** — 그래서 예전 동작과 한 글자도 다르지 않다.
+     */
+    const capacity = countFamilies(usable);
+    /** 행은 넉넉한데 갈래가 모자라서 막힌 것인가. 사유를 정확히 말해야 고칠 수 있다. */
+    const limitedByFamilies = capacity < usable.length && capacity < count;
     return jsonOk(
       insufficientProblemsErrorResponseSchema,
       {
         error: {
           code: "INSUFFICIENT_PROBLEMS",
-          message:
-            input.testType === "daily"
+          message: limitedByFamilies
+            ? input.testType === "daily"
+              ? "이 단원은 문항류가 부족합니다. 같은 문항류는 시험지에 하나만 들어갑니다."
+              : "이 범위는 문항류가 부족합니다. 같은 문항류는 시험지에 하나만 들어갑니다."
+            : input.testType === "daily"
               ? "이 단원에 등록된 문제가 부족합니다."
               : "이 범위에 등록된 문제가 부족합니다.",
           details: {
@@ -149,7 +168,7 @@ export async function generateDraftTest(
               input.testType === "daily"
                 ? current.unitId
                 : thinnestUnitId(unitIds, usable, current.unitId),
-            available: usable.length,
+            available: capacity,
             required: count,
           },
         },

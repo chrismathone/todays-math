@@ -597,6 +597,24 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
     expect(rows.some((p) => missingAnswerIds.has(p.id))).toBe(false);
   });
 
+  it("🔴 문항류 정체(`familyKey`)를 **실어 보낸다** — 안 실으면 규칙이 조용히 꺼진다", async () => {
+    // 「한 시험지에 같은 문항류는 1개」(원장님 확정 2026-08-26)는 선택기에서 판정한다.
+    // 그런데 이 조회가 `familyKey` 를 select 하지 않으면 전량이 «키 없음» 으로 도착하고,
+    // 순수 함수는 그것을 `solo:<id>`(각자 혼자)로 보므로 **규칙이 한 번도 안 걸린다.**
+    // 단위 시험은 전부 초록인 채로 제품에서만 정책이 꺼진다 — 「없는 축은 변이시킬 수
+    // 없다」가 이 저장소에서 네 번 난 자리다.
+    //
+    // 대역은 `select` 를 실제로 지키므로(그리고 없는 필드는 던진다), select 에서
+    // `familyKey` 를 빼면 이 시험이 빨개진다.
+    const rows = await findEligibleProblems({
+      unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],
+    });
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) {
+      expect(row).toHaveProperty("familyKey");
+    }
+  });
+
   it("difficulty를 주면 해당 난이도만 반환한다", async () => {
     const rows = await findEligibleProblems({
       unitIds: [MOCK_PROBLEM_WITH_FRACTION.unitId],

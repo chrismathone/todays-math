@@ -18,6 +18,8 @@ import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 import type { ShortfallItem } from "@/contracts/test.contract";
 
+import { countFamilies, familyIdOf } from "./familyKey";
+
 /**
  * 출제 엔진이 문항에 대해 **실제로 읽는 것 전부**.
  *
@@ -39,6 +41,16 @@ export interface SelectableProblem {
   problemType: string;
   /** false 면 변형 원본 전용 — 직접 출제하지 않는다(D-26). */
   directUseAllowed: boolean;
+  /**
+   * 엔진이 적는 **유형 정체**(D-105). 한 시험지에 같은 류는 **1개만** 들어간다
+   * (원장님 확정 2026-08-26). 판정은 `familyIdOf` 한 곳에서만 한다 — 여기서 다시
+   * 정하면 두 벌이 되고, 한쪽만 고쳐도 아무도 모른다.
+   *
+   * ⚠️ **선택(optional)이지만 「없으면 규칙이 꺼진다」는 뜻이 아니다.** 없는 행은
+   *    `solo:<id>` 로 환산되어 **각자 혼자 한 무리**가 된다(D-105). 그래서 키를 안
+   *    넘기는 옛 호출부는 예전과 한 글자도 다르지 않다.
+   */
+  familyKey?: string | null;
   /** 본문 — 지면에서 몇 줄을 먹는지 재는 근거(`estimateProblemPx`). */
   content?: string;
   /** 그림 경로들. 개수가 곧 `figureDims` 의 짝 수다. */
@@ -157,8 +169,17 @@ function pickTypeBalanced<T extends SelectableProblem>(
   typeUsage: Map<string, number>,
   unitUsage: Map<string, number>,
   seatRank: (problem: T) => number,
+  /**
+   * 이 시험지가 **이미 쓴 문항류**. 여기 있는 류는 다시 안 뽑는다
+   * (원장님 확정 2026-08-26 — 한 시험지에 같은 류는 1개).
+   *
+   * ⚠️ **호출자가 미리 걸러 주는 것만으로는 부족하다.** 이 함수는 한 번에 `target`
+   *    개를 집으므로, 같은 호출 **안에서** 같은 류를 두 번 집을 수 있다. 그래서 집을
+   *    때마다 여기에 적고 남은 후보에서 **그 류를 통째로 덜어 낸다.**
+   */
+  usedFamilies: Set<string>,
 ): T[] {
-  const remaining = [...candidates];
+  const remaining = candidates.filter((p) => !usedFamilies.has(familyIdOf(p)));
   const picked: T[] = [];
 
   while (picked.length < target && remaining.length > 0) {
@@ -192,6 +213,12 @@ function pickTypeBalanced<T extends SelectableProblem>(
       (typeUsage.get(chosen!.problemType) ?? 0) + 1,
     );
     unitUsage.set(chosen!.unitId, (unitUsage.get(chosen!.unitId) ?? 0) + 1);
+    // 이 류는 이 시험지에서 끝났다 — 남은 후보에서 통째로 덜어 낸다.
+    const family = familyIdOf(chosen!);
+    usedFamilies.add(family);
+    for (let i = remaining.length - 1; i >= 0; i -= 1) {
+      if (familyIdOf(remaining[i]!) === family) remaining.splice(i, 1);
+    }
   }
 
   return picked;
@@ -217,6 +244,13 @@ export function balanceDifficulty<T extends SelectableProblem>(
   const typeUsage = new Map<string, number>();
   /** 이 시험지에서 각 단원을 몇 개 썼는가 — 난이도 tier 를 가로질러 이어진다. */
   const unitUsage = new Map<string, number>();
+  /**
+   * 이 시험지가 이미 쓴 **문항류** — 난이도 tier 도, 인접 대체도 **가로질러** 이어진다.
+   *
+   * ⚠️ tier 마다 새로 만들면 규칙이 조용히 샌다. 「기본」에서 쓴 류가 「응용」에서 다시
+   *    나오는 것이 원장님이 보신 바로 그 모양이다(같은 발문, 숫자만 다름).
+   */
+  const usedFamilies = new Set<string>();
   // shortfall.unitId는 이 함수가 아는 유일한 단원 정보(pool[0])로 채운다 — 이 엔진은
   // 여러 단원이 섞인 범위 pool을 그대로 받을 수 있어 완벽한 단원별 귀속은 상위(T4.2
   // API 계층)가 단원별로 나눠 호출할 때 정확해진다.
@@ -235,6 +269,7 @@ export function balanceDifficulty<T extends SelectableProblem>(
       typeUsage,
       unitUsage,
       seatRank,
+      usedFamilies,
     );
     for (const p of picked) {
       selected.push(p);
@@ -253,6 +288,7 @@ export function balanceDifficulty<T extends SelectableProblem>(
         typeUsage,
         unitUsage,
         seatRank,
+        usedFamilies,
       );
       for (const p of altPicked) {
         selected.push(p);
@@ -270,7 +306,11 @@ export function balanceDifficulty<T extends SelectableProblem>(
       shortfall.push({
         unitId: fallbackUnitId,
         difficulty,
-        available: grouped[difficulty].length,
+        // 🔴 **행이 아니라 갈래를 센다.** 같은 류는 한 시험지에 하나뿐이므로
+        //    실제로 쓸 수 있는 수는 갈래 수다. 행으로 세면 「15개 있는데 8개를
+        //    못 냈다」는 앞뒤 안 맞는 안내가 원장님께 나간다 — 실측으로 가족 크기가
+        //    최대 4라 행은 **최대 네 배** 부풀려 센다.
+        available: countFamilies(grouped[difficulty]),
         required: target,
       });
     }

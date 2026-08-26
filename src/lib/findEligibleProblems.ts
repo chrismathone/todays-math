@@ -102,6 +102,12 @@ export async function findEligibleProblems(
       difficulty: true,
       problemType: true,
       directUseAllowed: true,
+      // 문항류 정체 (D-105) — 한 시험지에 같은 류는 1개만(원장님 확정 2026-08-26).
+      // 🔴 **이걸 안 읽으면 규칙이 제품에서 한 번도 안 걸린다.** 순수 함수는 키가
+      //    없는 행을 `solo:<id>`(각자 혼자)로 보므로, 안 실어 보내면 전량이 혼자가
+      //    되어 시험이 초록인 채로 정책만 조용히 꺼진다 — 「없는 축은 변이시킬 수
+      //    없다」가 이 저장소에서 네 번 난 자리다.
+      familyKey: true,
       // ── 지면을 보기 위한 넷 (⑷ · mm 은 2026-08-20) ─────────────────────
       // 엔진(`risksTightSeat`)이 이 넷으로 「칸에 들어가나」를 본다. 하나라도
       // 빠지면 그 문항의 높이를 «모른다»로 받아 **후순위**로 돌린다.
@@ -122,6 +128,7 @@ export async function findEligibleProblems(
     // (07-coding-convention.md §2.3, serializeProblem 과 같은 규칙).
     problemType: row.problemType as ProblemType,
     directUseAllowed: row.directUseAllowed,
+    familyKey: row.familyKey,
     content: row.content,
     figureUrls: row.figureUrls,
     figureDims: row.figureDims,
