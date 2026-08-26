@@ -44,18 +44,32 @@ const THEMES: Record<string, readonly string[]> = {
   "초5|2-5-1": ["상자", "색 끈", "테이프"],
 };
 
-describe("적재기 familyKey 는 그대로 소단원×난이도", () => {
-  it("로드 소스가 문형 id 를 안 실는다", () => {
+describe("적재기 familyKey 는 소단원×문형", () => {
+  /**
+   * 🔴 이 가드는 **뒤집혔다.** 파일럿 때는 「적재기가 문형 id 를 안 실는다」를
+   *    잠갔다 — 그때는 키를 옮기지 않기로 했기 때문이다. 원장님이 2026-08-26 에
+   *    안 3(최고안)을 고르셨고 2026-08-27 에 실제로 옮겼으므로
+   *    (`migrate-elem-family-keys.ts`, 공유 DB 1,751행), 이제 지켜야 할 것은
+   *    **되돌아가지 않는 것**이다.
+   *
+   *    옛 4단 키로 되돌아가면 갈래가 소단원당 4로 접히고, 「한 시험지에 같은
+   *    문항류 하나만」 아래서 초등은 **4문항이 상한**이 된다. 그 회귀를 여기서 막는다.
+   */
+  it("로드 소스가 문형 id 로 키를 만든다 — 옛 난이도 키로 안 돌아간다", () => {
     const src = readFileSync(
       path.join(process.cwd(), "scripts/import/load-engine-problems.ts"),
       "utf8",
     );
     expect(src).toMatch(
-      /familyKey: `elem:\$\{unit\.grade\}\|\$\{unit\.section\}\|\$\{tier\}`/,
+      /familyKey = `elem:\$\{unit\.grade\}\|\$\{unit\.section\}\|\$\{form\.id\}`/,
     );
-    expect(src).not.toMatch(/pilotFamilyKey/);
-    expect(src).not.toMatch(/listedForms/);
-    expect(src).not.toMatch(/generateElementaryForm/);
+    // 옛 꼬리(난이도)로 키를 만들면 빨개진다.
+    expect(src).not.toMatch(/familyKey: `elem:[^`]*\$\{tier\}`/);
+    // 문형을 실제로 부르는가 — 부르지 않으면 새 문형이 한 행도 안 들어간다.
+    expect(src).toMatch(/listedForms/);
+    expect(src).toMatch(/generateElementaryForm/);
+    // 형식 3종을 한 곳에서 파생하는가.
+    expect(src).toMatch(/expandFamily/);
   });
 });
 

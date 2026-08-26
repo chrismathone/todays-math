@@ -28,7 +28,10 @@ import {
   POSITIVE_FIXTURES,
   runSelfTest,
 } from "../../../scripts/qa/arrangementFixtures";
-import { REVIEWED_ARRANGEMENT } from "../../../scripts/qa/reviewedArrangement";
+import {
+  REVIEWED_ARRANGEMENT,
+  reviewedArrangementOf,
+} from "../../../scripts/qa/reviewedArrangement";
 import {
   classifyArrangement,
   sharedVertexShapes,
@@ -133,7 +136,7 @@ describe("배치 판정 — 열쇠", () => {
       "가로가 $15$ cm, 세로가 $8$ cm인 직사각형 모양 종이의 한 귀퉁이에서 가로가 $4$ cm, 세로가 $3$ cm인 직사각형을 잘라 냈습니다. 남은 도형의 둘레는 몇 cm입니까?";
     expect(classifyArrangement(c)).toBe("배치미정");
     expect(
-      REVIEWED_ARRANGEMENT["elem:초5|1-6-1 정다각형과 사각형의 둘레|심화"],
+      reviewedArrangementOf("elem:초5|1-6-1 정다각형과 사각형의 둘레|심화"),
     ).toMatch(/^멀쩡/);
   });
 });
@@ -173,7 +176,7 @@ describe("배치 판정 — 스냅숏 분모 (2026-08-25)", () => {
 describe("배치 판정 — 사람이 본 원장", () => {
   it("목록에 뜬 갈래는 전부 원장에 판정이 적혀 있다", () => {
     const missing = [...new Set(snap.목록.map((r) => r.fam))].filter(
-      (f) => !REVIEWED_ARRANGEMENT[f],
+      (f) => !reviewedArrangementOf(f),
     );
     expect(missing).toEqual([]);
   });
@@ -192,12 +195,12 @@ describe("배치 판정 — 사람이 본 원장", () => {
   it("원장님이 짚으신 문항이 «결함» 쪽에 들어 있다", () => {
     const row = snap.목록.find((r) => r.code === "J30303-A08-002");
     expect(row, "J30303-A08-002 가 목록에 없다").toBeDefined();
-    expect(REVIEWED_ARRANGEMENT[row!.fam]).toMatch(/^결함/);
+    expect(reviewedArrangementOf(row!.fam)).toMatch(/^결함/);
   });
 
   it("결함으로 잠긴 행은 3행뿐이다 — 「43이 433」이 되지 않게 분모를 못 박는다", () => {
     const bad = snap.목록.filter((r) =>
-      REVIEWED_ARRANGEMENT[r.fam]?.startsWith("결함"),
+      reviewedArrangementOf(r.fam)?.startsWith("결함"),
     );
     expect(bad.map((r) => r.code).sort()).toEqual([
       "J30303-A06-001",

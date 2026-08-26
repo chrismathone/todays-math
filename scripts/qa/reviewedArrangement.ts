@@ -20,6 +20,34 @@
  *
  * 값의 첫 낱말이 판정이다 — `결함` 으로 시작하면 도구가 붉게 따로 모아 찍는다.
  */
+/**
+ * ⚠️ **키를 정규화해서 찾아라.** 2026-08-27 에 초등 `family_key` 의 꼬리가
+ *    난이도 이름 → 문형 id 로 바뀌었다(`migrate-elem-family-keys.ts`).
+ *    아래 표는 새 키로 적혀 있는데, **옛 키로 찍힌 스냅숏**이 아직 증거로 남아
+ *    있다(다시 찍으면 「원장님이 짚으신 문항이 목록에 있었다」는 증거가 사라진다).
+ *    그래서 양쪽이 **이 함수 하나**를 거치게 한다 — 규칙이 두 벌이 되면
+ *    한쪽만 고쳐도 아무도 모른다.
+ */
+const TIER_TO_FORM: Record<string, string> = {
+  연산: "01",
+  기본: "02",
+  응용: "03",
+  심화: "04",
+};
+
+export function canonicalFamilyKey(fam: string): string {
+  if (!fam.startsWith("elem:")) return fam;
+  const at = fam.lastIndexOf("|");
+  if (at < 0) return fam;
+  const id = TIER_TO_FORM[fam.slice(at + 1)];
+  return id ? `${fam.slice(0, at)}|${id}` : fam;
+}
+
+/** 이 갈래를 사람이 보고 뭐라 했나. 옛 키로 물어도 찾아 준다. */
+export function reviewedArrangementOf(fam: string): string | undefined {
+  return REVIEWED_ARRANGEMENT[canonicalFamilyKey(fam)];
+}
+
 export const REVIEWED_ARRANGEMENT: Record<string, string> = {
   "elem:초5|1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식|02":
     "멀쩡 — 「자르다·이어 붙이다」가 도형이 아니라 길이 셈이다(얽힘 축의 오탐)",
