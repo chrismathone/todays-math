@@ -5730,6 +5730,97 @@ function cmp144Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 분모가 다른 두 분수 중 더 큰 것(기호). */
+function cmp144Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [4, 5, 6, 7, 8, 9, 10], 2);
+  const a = coprimeTop(rng, dens[0]!, 2);
+  const b = coprimeTop(rng, dens[1]!, 2);
+  const leftBig = a * dens[1]! > b * dens[0]!;
+  const firstIsLeft = intBetween(rng, 0, 1) === 0;
+  const [p1, p2] = firstIsLeft
+    ? [fr(a, dens[0]!), fr(b, dens[1]!)]
+    : [fr(b, dens[1]!), fr(a, dens[0]!)];
+  const ans = leftBig === firstIsLeft ? "㉠" : "㉡";
+  return make(
+    unit,
+    `값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠ ${p1}  ㉡ ${p2}`,
+    ans,
+    `통분하면 분자가 큰 쪽이 더 큽니다. 답은 ${ans}입니다.`,
+  );
+}
+
+/** 문형 06 — 같은 분모에서 더 작은 분수의 분자. */
+function cmp144SameDenSmall(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 12);
+  const tops = pickSome(
+    rng,
+    Array.from({ length: den - 1 }, (_, i) => i + 1),
+    2,
+  );
+  const small = Math.min(tops[0]!, tops[1]!);
+  return make(
+    unit,
+    `분모가 ${n(den)}으로 같은 ${frj(tops[0]!, den, "과", "와")} ${fr(tops[1]!, den)} 중에서 더 작은 분수의 분자를 구하시오.`,
+    n(small),
+    `분모가 같으므로 분자가 작은 ${n(small)} 쪽이 더 작습니다.`,
+  );
+}
+
+/** 문형 07 — 왼쪽이 더 큰지 판정. */
+function cmp144Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [4, 5, 6, 7, 8, 9, 10], 2);
+  const a = coprimeTop(rng, dens[0]!, 2);
+  const b = coprimeTop(rng, dens[1]!, 2);
+  const leftBig = a * dens[1]! > b * dens[0]!;
+  return make(
+    unit,
+    `${frj(a, dens[0]!, "이", "가")} ${fr(b, dens[1]!)}보다 큽니까? (예, 아니요)`,
+    leftBig ? "예" : "아니요",
+    `통분한 분자는 ${n(a * dens[1]!)}, ${n(b * dens[0]!)}입니다. 따라서 ${leftBig ? "맞습니다" : "아닙니다"}.`,
+  );
+}
+
+/** 문형 08 — 통분한 두 분자의 차. */
+function cmp144CrossDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [4, 5, 6, 7, 8, 9, 10], 2);
+  const a = coprimeTop(rng, dens[0]!, 2);
+  const b = coprimeTop(rng, dens[1]!, 2);
+  const diff = Math.abs(a * dens[1]! - b * dens[0]!);
+  return make(
+    unit,
+    `${frj(a, dens[0]!, "과", "와")} ${fr(b, dens[1]!)}을 두 분모의 곱으로 통분했을 때, 두 분자의 차는 얼마입니까?`,
+    n(diff),
+    `통분한 분자는 ${n(a * dens[1]!)}, ${n(b * dens[0]!)}이므로 차는 ${n(diff)}입니다.`,
+  );
+}
+
+/** 문형 09 — 세 분수 중 가운데. */
+function cmp144Middle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [3, 4, 5, 6, 7, 8, 9, 10], 3);
+  const fracs = dens.map((d) => [coprimeTop(rng, d), d] as const);
+  const byValue = [...fracs].sort((x, y) => x[0] * y[1] - y[0] * x[1]);
+  const mid = byValue[1]!;
+  const list = `${fr(fracs[0]![0], fracs[0]![1])}, ${fr(fracs[1]![0], fracs[1]![1])}, ${fr(fracs[2]![0], fracs[2]![1])}`;
+  return make(
+    unit,
+    `${list} 중에서 크기가 가운데인 분수를 쓰시오.`,
+    fr(mid[0], mid[1]),
+    `세 분수를 견주면 가운데는 ${fr(mid[0], mid[1])}입니다.`,
+  );
+}
+
+/** 문형 10 — 단위분수에서 분모가 작은 쪽(더 크다). */
+function cmp144UnitBig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dens = pickSome(rng, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 2);
+  const smallDen = Math.min(dens[0]!, dens[1]!);
+  return make(
+    unit,
+    `분자가 ${n(1)}인 ${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중에서 분모가 더 작은 분수의 분모를 구하시오.`,
+    n(smallDen),
+    `분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 ${n(smallDen)}입니다.`,
+  );
+}
+
 /* ── 1-4-5 분수와 소수의 크기 비교 — «소수»는 여기서만 말한다 ── */
 
 /** 소수로 딱 떨어지는 분수(천분의 일 정수) — 옛 표준 풀에 분모 10·20·25 를 더했다. */
@@ -5823,6 +5914,105 @@ function fd145Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `□ 안에 들어갈 수 있는 자연수는 모두 몇 개입니까?  ${expr(`0.${h}<\\frac{\\square}{${den}}<0.${k}`)}`,
     n(count),
     `${expr(`0.${h}=\\frac{${h * den}}{${den * 10}}`)}, ${expr(`0.${k}=\\frac{${k * den}}{${den * 10}}`)}이므로 □가 ${n(10)}배가 된 ${expr(`\\square\\times10`)}은 ${n(h * den)}보다 크고 ${n(k * den)}보다 작아야 합니다. 그런 자연수 □는 모두 ${n(count)}개입니다.`,
+  );
+}
+
+/** 문형 05 — 소수를 분수로. */
+function fd145DecToFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  return make(
+    unit,
+    `소수 ${expr(dec(milli, 3))}을 분수로 나타내시오.`,
+    fr(fn, fd),
+    `${expr(`${dec(milli, 3)}=\\frac{${fn}}{${fd}}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 분수와 소수 중 더 큰 수. */
+function fd145Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const decMilli = pick(
+    rng,
+    DEC_MILLIS.filter((v) => v !== milli),
+  );
+  const decText = dec(decMilli, 3);
+  const bigger = milli > decMilli ? fr(fn, fd) : expr(decText);
+  return make(
+    unit,
+    `${dj(decText, "과", "와")} ${fr(fn, fd)} 중 더 큰 수를 쓰시오.`,
+    bigger,
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이므로 더 큰 수는 ${bigger}입니다.`,
+  );
+}
+
+/** 문형 07 — 같은 값인지 판정. */
+function fd145Equal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok
+    ? milli
+    : pick(
+        rng,
+        DEC_MILLIS.filter((v) => v !== milli),
+      );
+  const decText = dec(shown, 3);
+  return make(
+    unit,
+    `${frj(fn, fd, "과", "와")} 소수 ${expr(decText)}은 크기가 같습니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이므로 ${ok ? "같습니다" : "다릅니다"}.`,
+  );
+}
+
+/** 문형 08 — 분수를 소수로 나타낸 값에서 1을 뺀 차(1보다 작은 소수). */
+function fd145ToOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const rest = 1000 - milli;
+  return make(
+    unit,
+    `${frj(fn, fd, "을", "를")} 소수로 나타낸 뒤 ${n(1)}에서 빼면 얼마입니까?`,
+    expr(dec(rest, 3)),
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}, ${expr(`1-${dec(milli, 3)}=${dec(rest, 3)}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 소수와 분수를 견준 차(천분의 일). */
+function fd145MilliDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const decMilli = pick(
+    rng,
+    DEC_MILLIS.filter((v) => v !== milli),
+  );
+  const decText = dec(decMilli, 3);
+  const diff = Math.abs(milli - decMilli);
+  return make(
+    unit,
+    `${frj(fn, fd, "과", "와")} 소수 ${expr(decText)}의 차는 얼마입니까?`,
+    expr(dec(diff, 3)),
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이므로 차는 ${expr(dec(diff, 3))}입니다.`,
+  );
+}
+
+/** 문형 10 — 세 수 중 가운데. */
+function fd145Middle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [fn, fd, milli] = pick(rng, FD145_PAIRS);
+  const decs = pickSome(
+    rng,
+    DEC_MILLIS.filter((v) => v !== milli),
+    2,
+  );
+  const items: [number, string][] = [
+    [milli, fr(fn, fd)],
+    [decs[0]!, expr(dec(decs[0]!, 3))],
+    [decs[1]!, expr(dec(decs[1]!, 3))],
+  ];
+  const list = `${items[0]![1]}, ${items[1]![1]}, ${items[2]![1]}`;
+  const sorted = [...items].sort((x, y) => x[0] - y[0]);
+  return make(
+    unit,
+    `${list} 중에서 크기가 가운데인 수를 쓰시오.`,
+    sorted[1]![1],
+    `분수 ${fr(fn, fd)}을 소수 ${expr(dec(milli, 3))}로 고쳐 견주면 가운데는 ${sorted[1]![1]}입니다.`,
   );
 }
 
@@ -5987,6 +6177,115 @@ function add151Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 통분한 공통분모. */
+function add151CommonDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const L = lcm(d1, d2);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}를 더할 때 공통분모는 얼마입니까?`,
+    n(L),
+    `두 분모의 최소공배수는 ${n(L)}입니다.`,
+  );
+}
+
+/** 문형 06 — 통분한 두 분자의 합(약분 전). */
+function add151NumSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const L = lcm(d1, d2);
+  const s = (a * L) / d1 + (b * L) / d2;
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}를 최소공배수로 통분하여 더할 때, 약분하기 전 분자의 합은 얼마입니까?`,
+    n(s),
+    `통분한 분자는 ${n((a * L) / d1)}, ${n((b * L) / d2)}이므로 합은 ${n(s)}입니다.`,
+  );
+}
+
+/** 문형 07 — 합이 1보다 큰지 판정. */
+function add151OverOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const [num, den] = addFrac(a, d1, b, d2);
+  const over = num > den;
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}의 합은 ${n(1)}보다 큽니까? (예, 아니요)`,
+    over ? "예" : "아니요",
+    `합은 ${expr(fracLatex(num, den))}이므로 ${over ? "1보다 큽니다" : "1보다 크지 않습니다"}.`,
+  );
+}
+
+/** 문형 08 — 합의 자연수 부분(대분수로 접었을 때). */
+function add151Whole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, [2, 3, 4, 5]);
+  const [b, d2] = properFrac(
+    rng,
+    [2, 3, 4, 5].filter((x) => x !== d1),
+  );
+  const [num, den] = addFrac(a, d1, b, d2);
+  const whole = Math.floor(num / den);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}의 합을 대분수로 나타낼 때 자연수 부분은 얼마입니까?`,
+    n(whole),
+    `합은 ${expr(fracLatex(num, den))}이므로 자연수 부분은 ${n(whole)}입니다.`,
+  );
+}
+
+/** 문형 09 — 두 분수를 더한 값에서 작은 쪽을 다시 뺀 값(큰 쪽). */
+function add151ThenSub(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, [3, 4, 5, 6, 8]);
+  return make(
+    unit,
+    `${frj(big[0], big[1], "과", "와")} ${fr(small[0], small[1])}를 더한 뒤 ${fr(small[0], small[1])}를 빼면 얼마입니까?`,
+    expr(fracLatex(big[0], big[1])),
+    `더했다가 같은 수를 빼면 처음 큰 쪽 ${expr(fracLatex(big[0], big[1]))}이 됩니다.`,
+  );
+}
+
+/** 문형 10 — 합이 1이 되려면 더해야 할 수. 합이 1 미만이 되게 뽑는다. */
+function add151ToOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 1;
+  let d1 = 3;
+  let b = 1;
+  let d2 = 4;
+  let num = 7;
+  let den = 12;
+  for (let i = 0; i < 24; i += 1) {
+    const x = properFrac(rng, [5, 6, 8, 10, 12]);
+    const y = properFrac(
+      rng,
+      [5, 6, 8, 10, 12].filter((v) => v !== x[1]),
+    );
+    const s = addFrac(x[0], x[1], y[0], y[1]);
+    if (s[0] < s[1]) {
+      [a, d1] = x;
+      [b, d2] = y;
+      [num, den] = s;
+      break;
+    }
+  }
+  const [rn, rd] = subFrac(1, 1, num, den);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}의 합에 얼마를 더해야 ${n(1)}이 됩니까?`,
+    expr(fracLatex(rn, rd)),
+    `합은 ${expr(fracLatex(num, den))}이므로 ${n(1)}이 되려면 ${expr(fracLatex(rn, rd))}를 더합니다.`,
+  );
+}
+
 /* ── 1-5-2 대분수의 덧셈 ── */
 
 /** 연산 — 대분수 둘을 더한다(절차 한 번). */
@@ -6072,6 +6371,107 @@ function add152Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 자연수부만 더한 값. */
+function add152WholeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}를 더할 때, 자연수부끼리 더한 값은 얼마입니까?`,
+    n(w1 + w2),
+    `${expr(`${w1}+${w2}=${w1 + w2}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 분수부만 더한 값. */
+function add152FracSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  const [num, den] = addFrac(a, d1, b, d2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}를 더할 때, 분수부끼리 더한 값은 얼마입니까?`,
+    expr(fracLatex(num, den)),
+    `${expr(`\\frac{${a}}{${d1}}+\\frac{${b}}{${d2}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 합의 자연수 부분. */
+function add152ResultWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  const [num, den] = addFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}의 합을 대분수로 나타낼 때 자연수 부분은 얼마입니까?`,
+    n(Math.floor(num / den)),
+    `합은 ${expr(fracLatex(num, den))}이므로 자연수 부분은 ${n(Math.floor(num / den))}입니다.`,
+  );
+}
+
+/** 문형 08 — 분수부의 합이 1 이상인지(받아올림). */
+function add152Carry(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  const [fn, fd] = addFrac(a, d1, b, d2);
+  const carry = fn >= fd;
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}를 더할 때 분수부의 합이 ${n(1)} 이상입니까? (예, 아니요)`,
+    carry ? "예" : "아니요",
+    `분수부의 합은 ${expr(fracLatex(fn, fd))}이므로 ${carry ? "1 이상입니다" : "1보다 작습니다"}.`,
+  );
+}
+
+/** 문형 09 — 대분수 하나를 가분수로. */
+function add152Improper(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const w1 = intBetween(rng, 1, 5);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "을", "를")} 가분수로 나타내면 분자는 얼마입니까?`,
+    n(w1 * d1 + a),
+    `${expr(`${w1}\\times${d1}+${a}=${w1 * d1 + a}`)}이므로 분자는 ${n(w1 * d1 + a)}입니다.`,
+  );
+}
+
+/** 문형 10 — 두 대분수를 가분수로 바꾼 분자 합. */
+function add152ImpNumSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 4);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}를 각각 가분수로 바꿀 때, 두 분자의 합은 얼마입니까?`,
+    n(w1 * d1 + a + w2 * d2 + b),
+    `분자는 ${n(w1 * d1 + a)}, ${n(w2 * d2 + b)}이므로 합은 ${n(w1 * d1 + a + w2 * d2 + b)}입니다.`,
+  );
+}
+
 /* ── 1-5-3 진분수의 뺄셈 — 결과가 양수임을 구성이 보장한다 ── */
 
 /** 연산 — 식이 그대로 주어진다(절차 한 번). */
@@ -6152,6 +6552,79 @@ function sub153Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 통분한 공통분모. */
+function sub153CommonDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const L = lcm(big[1], small[1]);
+  return make(
+    unit,
+    `${frj(big[0], big[1], "에서", "에서")} ${fr(small[0], small[1])}를 뺄 때 공통분모는 얼마입니까?`,
+    n(L),
+    `두 분모의 최소공배수는 ${n(L)}입니다.`,
+  );
+}
+
+/** 문형 06 — 통분한 두 분자의 차. */
+function sub153NumDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const L = lcm(big[1], small[1]);
+  const diff = (big[0] * L) / big[1] - (small[0] * L) / small[1];
+  return make(
+    unit,
+    `${frj(big[0], big[1], "에서", "에서")} ${fr(small[0], small[1])}를 최소공배수로 통분하여 뺄 때, 약분하기 전 분자의 차는 얼마입니까?`,
+    n(diff),
+    `통분한 분자는 ${n((big[0] * L) / big[1])}, ${n((small[0] * L) / small[1])}이므로 차는 ${n(diff)}입니다.`,
+  );
+}
+
+/** 문형 07 — 차가 1/2보다 큰지 판정. */
+function sub153VsHalf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+  const bigger = num * 2 > den;
+  return make(
+    unit,
+    `${frj(big[0], big[1], "에서", "에서")} ${fr(small[0], small[1])}를 뺀 값은 ${fr(1, 2)}보다 큽니까? (예, 아니요)`,
+    bigger ? "예" : "아니요",
+    `차는 ${expr(fracLatex(num, den))}이므로 ${bigger ? "1/2보다 큽니다" : "1/2보다 크지 않습니다"}.`,
+  );
+}
+
+/** 문형 08 — 1에서 진분수를 뺀 값. */
+function sub153FromOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d] = properFrac(rng, SUB_DENS);
+  const [num, den] = subFrac(1, 1, a, d);
+  return make(
+    unit,
+    `${n(1)}에서 ${frj(a, d, "을", "를")} 빼면 얼마입니까?`,
+    expr(fracLatex(num, den)),
+    `${expr(`1-\\frac{${a}}{${d}}=${fracLatex(num, den)}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 큰 쪽 분자의 통분값. */
+function sub153BigNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  const L = lcm(big[1], small[1]);
+  return make(
+    unit,
+    `${frj(big[0], big[1], "에서", "에서")} ${fr(small[0], small[1])}를 뺄 때, 큰 쪽을 통분한 분자는 얼마입니까?`,
+    n((big[0] * L) / big[1]),
+    `공통분모는 ${n(L)}이므로 큰 쪽 분자는 ${n((big[0] * L) / big[1])}입니다.`,
+  );
+}
+
+/** 문형 10 — 빼는 순서를 바꾸면 안 되는 이유 대신, 차 + 작은 쪽 = 큰 쪽 검산의 합. */
+function sub153CheckSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { big, small } = twoProperFracs(rng, SUB_DENS);
+  return make(
+    unit,
+    `${frj(big[0], big[1], "에서", "에서")} ${fr(small[0], small[1])}를 뺀 값에 ${fr(small[0], small[1])}를 다시 더하면 얼마입니까?`,
+    expr(fracLatex(big[0], big[1])),
+    `뺀 값을 도로 더하면 처음 큰 쪽 ${expr(fracLatex(big[0], big[1]))}입니다.`,
+  );
+}
+
 /* ── 1-5-4 대분수의 뺄셈 — 자연수부를 벌려 결과가 양수다 ── */
 
 /** 연산 — 대분수끼리 뺀다(절차 한 번). */
@@ -6225,6 +6698,106 @@ function sub154Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 수에서 ${mxj(w2, b, d2, "을", "를")} 뺐더니 ${lj(fracLatex(rn, rd), "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
     expr(fracLatex(w1 * d1 + a, d1)),
     `어떤 수는 결과에 뺀 수를 도로 더한 것입니다. ${expr(`${fracLatex(rn, rd)}+${mixedLatex(w2, b, d2)}=${fracLatex(w1 * d1 + a, d1)}`)}입니다.`,
+  );
+}
+
+/** 문형 05 — 자연수부의 차. */
+function sub154WholeDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?`,
+    n(w1 - w2),
+    `${expr(`${w1}-${w2}=${w1 - w2}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 가분수로 바꾼 두 분자의 차. */
+function sub154ImpDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "과", "와")} ${mx(w2, b, d2)}를 각각 가분수로 바꿀 때, 두 분자의 차는 얼마입니까?`,
+    n(w1 * d1 + a - (w2 * d2 + b)),
+    `분자는 ${n(w1 * d1 + a)}, ${n(w2 * d2 + b)}이므로 차는 ${n(w1 * d1 + a - (w2 * d2 + b))}입니다.`,
+  );
+}
+
+/** 문형 07 — 차의 자연수 부분. */
+function sub154ResultWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  const [num, den] = subFrac(w1 * d1 + a, d1, w2 * d2 + b, d2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺀 값을 대분수로 나타낼 때 자연수 부분은 얼마입니까?`,
+    n(Math.floor(num / den)),
+    `차는 ${expr(fracLatex(num, den))}이므로 자연수 부분은 ${n(Math.floor(num / den))}입니다.`,
+  );
+}
+
+/** 문형 08 — 받아내림이 필요한지. */
+function sub154Borrow(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  const L = lcm(d1, d2);
+  const need = (a * L) / d1 < (b * L) / d2;
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺄 때 자연수에서 ${n(1)}을 받아내려야 합니까? (예, 아니요)`,
+    need ? "예" : "아니요",
+    `분수부를 통분하면 ${need ? "빼는 쪽이 더 커서 받아내립니다" : "그대로 뺄 수 있습니다"}.`,
+  );
+}
+
+/** 문형 09 — 대분수를 가분수로 바꾼 분자. */
+function sub154Improper(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const w1 = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "을", "를")} 가분수로 나타내면 분자는 얼마입니까?`,
+    n(w1 * d1 + a),
+    `${expr(`${w1}\\times${d1}+${a}=${w1 * d1 + a}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 차 + 빼는 수 = 처음 수. */
+function sub154Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, d1] = properFrac(rng, FRAC_DENS);
+  const [b, d2] = properFrac(
+    rng,
+    FRAC_DENS.filter((x) => x !== d1),
+  );
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, w1 - 2);
+  return make(
+    unit,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺀 값에 ${mx(w2, b, d2)}를 다시 더하면 얼마입니까?`,
+    expr(fracLatex(w1 * d1 + a, d1)),
+    `뺀 값을 도로 더하면 처음 수 ${expr(fracLatex(w1 * d1 + a, d1))}입니다.`,
   );
 }
 
@@ -8762,6 +9335,78 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: com143NumProd },
     { id: "09", tier: "응용", generate: com143IsCommon },
     { id: "10", tier: "응용", generate: com143DenGap },
+  ],
+  "초5|1-4-4": [
+    { id: "01", tier: "연산", generate: cmp144Calc },
+    { id: "02", tier: "기본", generate: cmp144Read },
+    { id: "03", tier: "응용", generate: cmp144Apply },
+    { id: "04", tier: "심화", generate: cmp144Deep },
+    { id: "05", tier: "기본", generate: cmp144Bigger },
+    { id: "06", tier: "기본", generate: cmp144SameDenSmall },
+    { id: "07", tier: "기본", generate: cmp144Judge },
+    { id: "08", tier: "응용", generate: cmp144CrossDiff },
+    { id: "09", tier: "응용", generate: cmp144Middle },
+    { id: "10", tier: "응용", generate: cmp144UnitBig },
+  ],
+  "초5|1-4-5": [
+    { id: "01", tier: "연산", generate: fd145Calc },
+    { id: "02", tier: "기본", generate: fd145Read },
+    { id: "03", tier: "응용", generate: fd145Apply },
+    { id: "04", tier: "심화", generate: fd145Deep },
+    { id: "05", tier: "기본", generate: fd145DecToFrac },
+    { id: "06", tier: "기본", generate: fd145Bigger },
+    { id: "07", tier: "기본", generate: fd145Equal },
+    { id: "08", tier: "응용", generate: fd145ToOne },
+    { id: "09", tier: "응용", generate: fd145MilliDiff },
+    { id: "10", tier: "응용", generate: fd145Middle },
+  ],
+  "초5|1-5-1": [
+    { id: "01", tier: "연산", generate: add151Calc },
+    { id: "02", tier: "기본", generate: add151Read },
+    { id: "03", tier: "응용", generate: add151Apply },
+    { id: "04", tier: "심화", generate: add151Deep },
+    { id: "05", tier: "기본", generate: add151CommonDen },
+    { id: "06", tier: "기본", generate: add151NumSum },
+    { id: "07", tier: "기본", generate: add151OverOne },
+    { id: "08", tier: "응용", generate: add151Whole },
+    { id: "09", tier: "응용", generate: add151ThenSub },
+    { id: "10", tier: "응용", generate: add151ToOne },
+  ],
+  "초5|1-5-2": [
+    { id: "01", tier: "연산", generate: add152Calc },
+    { id: "02", tier: "기본", generate: add152Read },
+    { id: "03", tier: "응용", generate: add152Apply },
+    { id: "04", tier: "심화", generate: add152Deep },
+    { id: "05", tier: "기본", generate: add152WholeSum },
+    { id: "06", tier: "기본", generate: add152FracSum },
+    { id: "07", tier: "기본", generate: add152ResultWhole },
+    { id: "08", tier: "응용", generate: add152Carry },
+    { id: "09", tier: "응용", generate: add152Improper },
+    { id: "10", tier: "응용", generate: add152ImpNumSum },
+  ],
+  "초5|1-5-3": [
+    { id: "01", tier: "연산", generate: sub153Calc },
+    { id: "02", tier: "기본", generate: sub153Read },
+    { id: "03", tier: "응용", generate: sub153Apply },
+    { id: "04", tier: "심화", generate: sub153Deep },
+    { id: "05", tier: "기본", generate: sub153CommonDen },
+    { id: "06", tier: "기본", generate: sub153NumDiff },
+    { id: "07", tier: "기본", generate: sub153VsHalf },
+    { id: "08", tier: "응용", generate: sub153FromOne },
+    { id: "09", tier: "응용", generate: sub153BigNum },
+    { id: "10", tier: "응용", generate: sub153CheckSum },
+  ],
+  "초5|1-5-4": [
+    { id: "01", tier: "연산", generate: sub154Calc },
+    { id: "02", tier: "기본", generate: sub154Read },
+    { id: "03", tier: "응용", generate: sub154Apply },
+    { id: "04", tier: "심화", generate: sub154Deep },
+    { id: "05", tier: "기본", generate: sub154WholeDiff },
+    { id: "06", tier: "기본", generate: sub154ImpDiff },
+    { id: "07", tier: "기본", generate: sub154ResultWhole },
+    { id: "08", tier: "응용", generate: sub154Borrow },
+    { id: "09", tier: "응용", generate: sub154Improper },
+    { id: "10", tier: "응용", generate: sub154Check },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
