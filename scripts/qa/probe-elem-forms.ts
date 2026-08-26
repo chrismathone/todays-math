@@ -77,6 +77,51 @@ function shapeOf(frames: string[]): string {
   return out.join(" ");
 }
 
+/**
+ * ⑶-b **글은 다른데 셈이 같은** 두 문형.
+ *
+ * 앞의 지문 검사는 「$1^\circ$가 N개 모인 각」과 「눈금이 N칸인 각」을 못 가른다 —
+ * 글이 다르고 정답도 다르지만 **셈이 둘 다 항등**이다. 실측으로 초4 14곳에서
+ * 4건 나왔다(「두 각을 이어 붙인 합」과 「$a+b=\square$」가 같은 `n0+n1`).
+ *
+ * 열쇠를 손으로 적지 않는다 — 발문의 수와 정답 사이에 **씨앗 전량에서 성립하는
+ * 관계식**을 찾아 서명으로 쓴다. 서명이 같으면 같은 셈이다.
+ * 음성 대조: 파일럿 3곳(이미 좋다고 판정한 곳)은 **0건**이다.
+ */
+const RELATION_CONSTS = [90, 180, 360, 100, 1000, 10000, 12, 60, 24, 8, 4, 2];
+
+function numsIn(s: string): number[] {
+  return (s.match(/\d+/g) ?? []).map(Number);
+}
+
+function relationsOf(stem: number[], ans: number): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < stem.length; i += 1) {
+    const a = stem[i]!;
+    if (a === ans) out.push(`=n${i}`);
+    for (const k of RELATION_CONSTS) {
+      if (k - a === ans) out.push(`${k}-n${i}`);
+      if (a + k === ans) out.push(`n${i}+${k}`);
+      if (a - k === ans) out.push(`n${i}-${k}`);
+      if (a * k === ans) out.push(`n${i}*${k}`);
+      if (a !== 0 && k / a === ans) out.push(`${k}/n${i}`);
+      if (a / k === ans) out.push(`n${i}/${k}`);
+    }
+    for (let j = i + 1; j < stem.length; j += 1) {
+      const b = stem[j]!;
+      if (a + b === ans) out.push(`n${i}+n${j}`);
+      if (a - b === ans) out.push(`n${i}-n${j}`);
+      if (b - a === ans) out.push(`n${j}-n${i}`);
+      if (a * b === ans) out.push(`n${i}*n${j}`);
+      for (const k of RELATION_CONSTS) {
+        if (a + b - k === ans) out.push(`n${i}+n${j}-${k}`);
+        if (k - a - b === ans) out.push(`${k}-n${i}-n${j}`);
+      }
+    }
+  }
+  return out;
+}
+
 type Report = {
   grade: string;
   section: string;
@@ -122,18 +167,35 @@ for (const unit of elementaryUnits()) {
   const shapes = new Map<string, string[]>();
   const shapeOfForm = new Map<string, string>();
   const answersOfForm = new Map<string, string>();
+  const relOfForm = new Map<string, string>();
   let figureForms = 0;
   const pool: SelectableProblem[] = [];
 
   for (const form of forms) {
     const frames: string[] = [];
     const answers: string[] = [];
+    let relSet: Set<string> | null = null;
     let sawFigure = false;
     for (let i = 0; i < SEEDS; i += 1) {
       try {
         const p = generateElementaryForm(unit, SEED0 + i * STEP, form.id);
         frames.push(rawFrame(p.content));
         answers.push(p.answer);
+        const ansNums = numsIn(p.answer);
+        const rels: string[] =
+          ansNums.length === 1
+            ? relationsOf(numsIn(p.content), ansNums[0]!)
+            : [];
+        if (relSet === null) {
+          relSet = new Set<string>(rels);
+        } else {
+          const keep = new Set<string>(rels);
+          const kept: string[] = [];
+          relSet.forEach((r) => {
+            if (keep.has(r)) kept.push(r);
+          });
+          relSet = new Set<string>(kept);
+        }
         if (p.figureSpec) sawFigure = true;
       } catch (err) {
         problems.push(
@@ -149,6 +211,8 @@ for (const unit of elementaryUnits()) {
     shapes.set(shape, owners);
     shapeOfForm.set(form.id, shape);
     answersOfForm.set(form.id, answers.join("|"));
+    if (relSet && relSet.size > 0)
+      relOfForm.set(form.id, [...relSet].sort().join(","));
 
     // ⑷ 변형 3개
     const familyKey = pilotFamilyKey(unit, form.id);
@@ -213,6 +277,19 @@ for (const unit of elementaryUnits()) {
         problems.push(
           `문형 ${ia}·${ib} 이 **같은 물음**이다 — 낱말 ${diff}개만 다르고 정답이 씨앗마다 전부 같다`,
         );
+    }
+  }
+
+  // ⑶-b 글은 다른데 셈이 같은 짝
+  const relIds = [...relOfForm.keys()];
+  for (let a = 0; a < relIds.length; a += 1) {
+    for (let b = a + 1; b < relIds.length; b += 1) {
+      const ia = relIds[a]!;
+      const ib = relIds[b]!;
+      if (relOfForm.get(ia) !== relOfForm.get(ib)) continue;
+      problems.push(
+        `문형 ${ia}·${ib} 이 **셈이 같다** (${relOfForm.get(ia)!.slice(0, 30)}) — 글만 다르고 묻는 것이 같다`,
+      );
     }
   }
 
