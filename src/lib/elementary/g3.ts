@@ -6,7 +6,7 @@ import { expr, fracLatex, n, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
 import { fig, make, makeDeep } from "./make";
 import { intBetween, pick } from "./rng";
-import type { ChapterHandler, ElemProblem, Rng } from "./types";
+import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /**
  * 한글 낱말 뒤 조사. 받침이 있으면 앞쪽(`은`·`이`·`을`).
@@ -7394,6 +7394,102 @@ function circ231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `원 위의 두 점을 이으면서 원의 중심을 지나는 선분이 지름입니다. 한 원에서 지름은 모두 길이가 같으므로 ${n(many)}개의 길이가 모두 같습니다.`,
   );
 }
+
+/** 문형 01 — 그림에서 굵은 선분의 이름. 번호를 넣어 변형 3개를 채운다. */
+function circ231NameVar(unit: UnitSeed, rng: Rng): ElemProblem {
+  const isDia = intBetween(rng, 0, 1) === 1;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 굵게 그린 선분의 이름을 쓰시오.`,
+    isDia ? "지름" : "반지름",
+    isDia
+      ? "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다."
+      : "원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.",
+    circleFig(isDia ? "showDiameter" : "showRadius"),
+  );
+}
+
+/** 문형 05 — 정의: 중심과 원 위 한 점. */
+function circ231DefRadius(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `원의 중심과 원 위의 한 점을 이은 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    "반지름",
+    `원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.`,
+  );
+}
+
+/** 문형 06 — 정의: 원 위 두 점 + 중심을 지남. */
+function circ231DefDiameter(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `원 위의 두 점을 잇고 원의 중심을 지나는 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    "지름",
+    `원 위의 두 점을 잇고 원의 중심을 지나는 선분이 지름입니다.`,
+  );
+}
+
+/** 문형 07 — 지름의 중점. */
+function circ231Midpoint(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 원에 지름을 ${n(many)}개 그었습니다. 모든 지름의 중점을 무엇이라고 합니까?`,
+    "원의 중심",
+    `지름은 원의 중심을 지나므로 지름의 중점은 원의 중심입니다.`,
+  );
+}
+
+/** 문형 08 — 가장 긴 현. */
+function circ231Longest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 3, 7);
+  return make(
+    unit,
+    `한 원에 현을 ${n(many)}개 그었습니다. 이 가운데 가장 길 수 있는 현의 이름을 쓰시오.`,
+    "지름",
+    `한 원에서 가장 긴 현은 지름입니다.`,
+  );
+}
+
+/** 문형 09 — 반대 방향 반지름 둘을 이으면. */
+function circ231TwoRadii(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 원에 반지름을 ${n(many)}개 그었습니다. 그중 중심에서 서로 반대 방향인 두 개를 이은 선분을 무엇이라고 합니까?`,
+    "지름",
+    `중심에서 반대 방향인 반지름 두 개를 이으면 지름이 됩니다.`,
+  );
+}
+
+/** 문형 10 — 지름을 반으로 접으면. */
+function circ231FoldHalf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `한 원에 지름을 ${n(many)}개 그었습니다. 그중 하나를 중점에서 반으로 접으면 생기는 선분을 무엇이라고 합니까?`,
+    "반지름",
+    `지름의 중점은 원의 중심이므로 반으로 접은 선분은 반지름입니다.`,
+  );
+}
+
+export const G3_FORMS: Record<string, readonly ElemForm[]> = {
+  "초3|2-3-1": [
+    { id: "01", tier: "연산", generate: circ231NameVar },
+    { id: "02", tier: "기본", generate: circ231Word },
+    { id: "03", tier: "응용", generate: circ231Apply },
+    { id: "04", tier: "심화", generate: circ231Deep },
+    { id: "05", tier: "기본", generate: circ231DefRadius },
+    { id: "06", tier: "기본", generate: circ231DefDiameter },
+    { id: "07", tier: "기본", generate: circ231Midpoint },
+    { id: "08", tier: "응용", generate: circ231Longest },
+    { id: "09", tier: "응용", generate: circ231TwoRadii },
+    { id: "10", tier: "응용", generate: circ231FoldHalf },
+  ],
+};
 
 /* ── 2-3-2 원의 성질 ── */
 
