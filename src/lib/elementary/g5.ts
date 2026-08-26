@@ -2305,6 +2305,184 @@ function mix111Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 괄호를 치면 값이 갈린다. 묻는 것은 괄호 친 값(앞에서부터와 다름). */
+function mix111Paren(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 6, 20);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    const a = b + c + intBetween(rng, 8, 40);
+    return make(
+      unit,
+      `${expr(`${a}-${b}+${c}`)}에서 덧셈을 먼저 하려고 괄호를 치면 ${expr(`${a}-(${b}+${c})`)}가 됩니다. 괄호를 친 식의 값은 얼마입니까?`,
+      n(a - b - c),
+      `괄호 안을 먼저 계산합니다. ${expr(`${b}+${c}=${b + c}`)}이므로 ${expr(`${a}-${b + c}=${a - b - c}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 6);
+  const c = intBetweenExcept(rng, 2, 6, b);
+  const q = intBetween(rng, 2, 8);
+  const a = b * c * q;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}\\times${c}`)}에서 곱셈을 먼저 하려고 괄호를 치면 ${expr(`${a}\\div(${b}\\times${c})`)}가 됩니다. 괄호를 친 식의 값은 얼마입니까?`,
+    n(q),
+    `괄호 안을 먼저 계산합니다. ${expr(`${b}\\times${c}=${b * c}`)}이므로 ${expr(`${a}\\div${b * c}=${q}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 앞에서부터 첫 걸음의 결과(최종값이 아님). */
+function mix111FirstStep(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 25, 80);
+    const b = intBetween(rng, 7, a - 6);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    return make(
+      unit,
+      `${lj(`${a}-${b}+${c}`, "을", "를")} 앞에서부터 계산할 때, 첫 번째 계산의 결과는 얼마입니까?`,
+      n(a - b),
+      `덧셈과 뺄셈은 앞에서부터 계산합니다. 첫 번째는 ${expr(`${a}-${b}=${a - b}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  const c = intBetweenExcept(rng, 2, 9, b);
+  return make(
+    unit,
+    `${lj(`${a}\\div${b}\\times${c}`, "을", "를")} 앞에서부터 계산할 때, 첫 번째 계산의 결과는 얼마입니까?`,
+    n(q),
+    `곱셈과 나눗셈은 앞에서부터 계산합니다. 첫 번째는 ${expr(`${a}\\div${b}=${q}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 주어진 값이 바른지 판정(참·거짓). */
+function mix111Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 25, 80);
+    const b = intBetween(rng, 7, a - 6);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    const right = a - b + c;
+    const wrong = right + c;
+    const ok = intBetween(rng, 0, 1) === 0;
+    const shown = ok ? right : wrong;
+    return make(
+      unit,
+      `${expr(`${a}-${b}+${c}=${shown}`)} 계산이 맞습니까? (예, 아니요)`,
+      ok ? "예" : "아니요",
+      `앞에서부터 계산하면 ${expr(`${a}-${b}=${a - b}`)}, ${expr(`${a - b}+${c}=${right}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+    );
+  }
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  const c = intBetweenExcept(rng, 2, 9, b);
+  const right = q * c;
+  const wrong = q * b;
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? right : wrong;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}\\times${c}=${shown}`)} 계산이 맞습니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    `앞에서부터 계산하면 ${expr(`${a}\\div${b}=${q}`)}, ${expr(`${q}\\times${c}=${right}`)}입니다. 따라서 ${ok ? "맞습니다" : "틀렸습니다"}.`,
+  );
+}
+
+/** 문형 08 — 앞에서부터 계산한 값과 괄호를 친 값의 차. */
+function mix111OrderDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 6, 20);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    const a = b + c + intBetween(rng, 8, 40);
+    const left = a - b + c;
+    const paren = a - b - c;
+    return make(
+      unit,
+      `${lj(`${a}-${b}+${c}`, "을", "를")} 앞에서부터 계산한 값과 ${expr(`${a}-(${b}+${c})`)}의 값은 얼마만큼 다릅니까?`,
+      n(left - paren),
+      `앞에서부터 계산하면 ${expr(`${a}-${b}+${c}=${left}`)}이고, 괄호를 치면 ${expr(`${a}-(${b}+${c})=${paren}`)}입니다. 차는 ${expr(`${left}-${paren}=${left - paren}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 6);
+  const c = intBetweenExcept(rng, 2, 6, b);
+  const q = intBetween(rng, 2, 8);
+  const a = b * c * q;
+  const left = (a / b) * c;
+  const paren = a / (b * c);
+  return make(
+    unit,
+    `${lj(`${a}\\div${b}\\times${c}`, "을", "를")} 앞에서부터 계산한 값과 ${expr(`${a}\\div(${b}\\times${c})`)}의 값은 얼마만큼 다릅니까?`,
+    n(left - paren),
+    `앞에서부터 계산하면 ${expr(`${a}\\div${b}\\times${c}=${left}`)}이고, 괄호를 치면 ${expr(`${a}\\div(${b}\\times${c})=${paren}`)}입니다. 차는 ${expr(`${left}-${paren}=${left - paren}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 빠진 수(역산). 심화의 「잘못 계산」과 각도가 다르다. */
+function mix111Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const a = intBetween(rng, 25, 80);
+    const b = intBetween(rng, 7, a - 6);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    const r = a - b + c;
+    return make(
+      unit,
+      `□ 안에 알맞은 수를 구하시오.  ${expr(`${a}-\\square+${c}=${r}`)}`,
+      n(b),
+      `앞에서부터 계산하면 ${expr(`${a}-\\square`)}에 ${nj(c, "을", "를")} 더해 ${nj(r, "이", "가")} 됩니다. 따라서 ${expr(`${a}-\\square=${r}-${c}`)}, ${expr(`\\square=${a}-(${r}-${c})=${b}`)}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  const c = intBetweenExcept(rng, 2, 9, b);
+  const r = q * c;
+  return make(
+    unit,
+    `□ 안에 알맞은 수를 구하시오.  ${expr(`${a}\\div\\square\\times${c}=${r}`)}`,
+    n(b),
+    `${expr(`${a}\\div\\square=${r}\\div${c}`)}이므로 ${expr(`\\square=${a}\\div${q}=${b}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 두 식 중 값이 큰 것을 고른다. */
+function mix111Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  if (intBetween(rng, 0, 1) === 0) {
+    const b = intBetween(rng, 6, 20);
+    const c = intBetweenExcept(rng, 5, 20, b);
+    const a = b + c + intBetween(rng, 8, 40);
+    const left = a - b + c;
+    const paren = a - b - c;
+    const firstIsLeft = intBetween(rng, 0, 1) === 0;
+    const [p1, p2] = firstIsLeft
+      ? [`${a}-${b}+${c}`, `${a}-(${b}+${c})`]
+      : [`${a}-(${b}+${c})`, `${a}-${b}+${c}`];
+    const ans = firstIsLeft ? "㉠" : "㉡";
+    return make(
+      unit,
+      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+      ans,
+      `${expr(`${a}-${b}+${c}=${left}`)}, ${expr(`${a}-(${b}+${c})=${paren}`)}이므로 더 큰 것은 ${ans}입니다.`,
+    );
+  }
+  const b = intBetween(rng, 2, 6);
+  const c = intBetweenExcept(rng, 2, 6, b);
+  const q = intBetween(rng, 2, 8);
+  const a = b * c * q;
+  const left = (a / b) * c;
+  const paren = a / (b * c);
+  const firstIsLeft = intBetween(rng, 0, 1) === 0;
+  const [p1, p2] = firstIsLeft
+    ? [`${a}\\div${b}\\times${c}`, `${a}\\div(${b}\\times${c})`]
+    : [`${a}\\div(${b}\\times${c})`, `${a}\\div${b}\\times${c}`];
+  const ans = firstIsLeft ? "㉠" : "㉡";
+  return make(
+    unit,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    ans,
+    `${expr(`${a}\\div${b}\\times${c}=${left}`)}, ${expr(`${a}\\div(${b}\\times${c})=${paren}`)}이므로 더 큰 것은 ${ans}입니다.`,
+  );
+}
+
 /* ── 1-1-2 덧셈, 뺄셈, 곱셈(나눗셈) — ×와 ÷ 중 **하나만** 낀다(둘 다면 1-1-3 이다) ── */
 
 /** 1-1-2 기본 ㉮ 주고받는 것. */
@@ -7088,6 +7266,18 @@ function boxRectGivenFaceCount(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 export const G5_FORMS: Record<string, readonly ElemForm[]> = {
+  "초5|1-1-1": [
+    { id: "01", tier: "연산", generate: mix111Calc },
+    { id: "02", tier: "기본", generate: mix111Read },
+    { id: "03", tier: "응용", generate: mix111Apply },
+    { id: "04", tier: "심화", generate: mix111Deep },
+    { id: "05", tier: "기본", generate: mix111Paren },
+    { id: "06", tier: "기본", generate: mix111FirstStep },
+    { id: "07", tier: "기본", generate: mix111Judge },
+    { id: "08", tier: "응용", generate: mix111OrderDiff },
+    { id: "09", tier: "응용", generate: mix111Missing },
+    { id: "10", tier: "응용", generate: mix111Bigger },
+  ],
   "초5|2-5-1": [
     { id: "01", tier: "연산", generate: boxRectCalc },
     { id: "02", tier: "기본", generate: boxRectFaces },
