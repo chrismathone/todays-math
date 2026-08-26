@@ -74,6 +74,7 @@
   --src-workbook: #d13559; /* [문]   문제집 추출    — 문항 출처 */
   --src-ai: #7a4920; /* [AI]  AI 생성·변형   — 문항 출처 */
   --src-mcq: #5f5521; /* [객]   객관식         — 형식 */
+  --src-short: #5f4977; /* [단]   단답형         — 형식 */
   --src-written: #687a00; /* [서]   서술형         — 형식 */
   --src-figure: #1e6200; /* [도]   도형 엔진      — 그림 출처 */
   --src-svg: #008355; /* [SVG] SVG 엔진       — 그림 출처 */
@@ -129,6 +130,7 @@
   --color-src-middle: var(--src-middle);
   --color-src-ai: var(--src-ai);
   --color-src-mcq: var(--src-mcq);
+  --color-src-short: var(--src-short);
   --color-src-written: var(--src-written);
   --color-src-figure: var(--src-figure);
   --color-src-svg: var(--src-svg);

@@ -14,14 +14,14 @@
 
 /** 갈래별 건수. 키는 `ProblemOrigin` / `FigureOrigin` 과 같아야 한다(시험이 대조한다). */
 export const PROVENANCE_CENSUS_20260825 = {
-  measuredAt: "2026-08-25",
-  total: 47_784,
+  measuredAt: "2026-08-26",
+  total: 47_787,
   /** 문항 출처 — 문항마다 정확히 하나라 합이 `total` 이다. */
   origin: {
     past_exam: 41_084,
     workbook: 3_526,
     elem_engine: 1_751,
-    middle_engine: 659,
+    middle_engine: 662,
     /** 아직 한 건도 없다. **0을 「없다」로 읽지 마라** — 축이 살아 있는지는 시험이 본다. */
     ai: 0,
     /**
@@ -34,18 +34,17 @@ export const PROVENANCE_CENSUS_20260825 = {
   /**
    * 형식 — 문항마다 정확히 하나라 합이 `total` 이다.
    *
-   * ⚠️ 이 축은 **`question_type` 컬럼을 안 본다.** 그 컬럼과 우리 판정이 **44건** 어긋나고,
-   *    표본을 열어 보면 어긋난 자리에서 우리 쪽이 맞다(정답 `①` 인데 «서술형»이라 적힌 행).
-   *    그 44 는 조사기가 **정보로** 찍는다 — 실패가 아니다.
+   * 원장님 지시 2026-08-26: `[단]` 과 `[서]` 분리.
    */
   format: {
-    multiple_choice: 33_857,
-    written: 13_616,
+    multiple_choice: 33_860,
+    short_answer: 3_099,
+    descriptive: 7_743,
     /**
-     * 보기와 정답이 **서로 어긋나는** 행. 「보기 있는데 정답에 번호 없음」 200 +
-     * 「보기 없는데 정답이 번호」 111. 한쪽으로 밀면 **그럴듯하게 틀린다.**
+     * 보기와 정답이 서로 어긋나거나 `question_type` 이 누락되어 단답/서술을 확정할 수 없는 행.
+     * 한쪽으로 밀면 **그럴듯하게 틀린다.** 조용히 뭉개지 않고 미분류로 둔다.
      */
-    unknown: 311,
+    unknown: 3_085,
   },
   /** 그림 출처 — 그림이 없는 문항이 있어서 합은 `total - none` 이다. */
   figure: {
@@ -55,7 +54,7 @@ export const PROVENANCE_CENSUS_20260825 = {
     /** 아는 뿌리 밖의 그림. 0이면 «아직 새 뿌리가 없다»는 뜻이고, 늘면 사람이 봐야 한다. */
     unknown: 0,
     /** 그림이 아예 없는 문항 — 「모른다」와 다른 말이다. */
-    none: 37_921,
+    none: 37_924,
   },
 } as const;
 

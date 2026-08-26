@@ -61,9 +61,10 @@
  *
  * | 형식 | 건수 |
  * |---|---|
- * | `[객]` 객관식   | 33,857 |
- * | `[서]` 서술형   | 13,616 |
- * | `[?형식]` 미분류 |    311 |
+ * | `[객]` 객관식   | 33,860 |
+ * | `[단]` 단답형   |  3,099 |
+ * | `[서]` 서술형   |  7,743 |
+ * | `[?형식]` 미분류 |  3,085 |
  *
  * 한 문항이 `figureSvg` 와 `figureUrls` 를 **같이** 갖는 일은 없고(실측 0건), 한 문항의
  * `figureUrls` 가 `/figures-svg/` 와 `/figures/` 를 섞는 일도 없다(실측 0건).
@@ -87,14 +88,12 @@ export type ProblemOrigin =
 export type FigureOrigin = "figure_engine" | "svg_engine" | "scan" | "unknown";
 
 /**
- * 「보기를 고르는가, 써서 내는가」. 문항마다 **정확히 하나**다.
+ * 「보기를 고르는가, 써서 내는가 (단답형인가 서술형인가)」. 문항마다 **정확히 하나**다.
  *
- * ⚠️ 원장님이 부른 이름은 «객관식/서술형» 둘이다. 교과의 «단답형»은 따로 두지 않는다 —
- *    원장님이 실물로 짚어 준 두 건(`J30402-A10-002`·`J30402-A09-002`)이 `question_type`
- *    으로는 **단답형**인데 「보기가 없는 서술형」이라고 하셨다. 즉 이 축이 가르는 것은
- *    «보기를 고르는가»이고, 그 반대쪽이 `[서]` 다. 없는 갈래를 지어내지 않는다.
+ * 원장님 지시 2026-08-26: 「[서]가 단답형과 서술형 전부 같이 있을 것 같은데, [단]과 [서]를 분리하라」
  */
-export type ProblemFormat = "multiple_choice" | "written" | "unknown";
+export type ProblemFormat =
+  "multiple_choice" | "short_answer" | "descriptive" | "unknown";
 
 /**
  * 판정에 필요한 최소 모양 — `ProblemEntity` 가 그대로 들어맞고, 스크립트가 DB 행을
@@ -119,6 +118,10 @@ export type ProvenanceInput = {
   content: string;
   /** 형식 판정이 **정답 모양**을 보는 자리. */
   answer: string;
+  /** DB에 기록된 출제 형식 ('객관식' | '단답형' | '서술형' | null) */
+  questionType?: string | null;
+  /** DB에 기록된 문제 유형 ('계산' | '개념' | '활용' | '서술형' | null) */
+  problemType?: string | null;
 };
 
 /** 엔진이 `familyKey` 앞에 붙이는 표지. 엔진 말고는 아무도 이 접두사를 안 쓴다(D-105). */
@@ -175,37 +178,38 @@ export function classifyFigure(problem: ProvenanceInput): FigureOrigin | null {
 }
 
 /**
- * 형식 판정 — **`question_type` 컬럼을 열쇠로 쓰지 않는다.**
+ * 형식 판정 — `[객] [단] [서]` 로 가른다 (원장님 지시 2026-08-26).
  *
- * 🔴 그 컬럼은 틀린다. CLAUDE.md 2026-08-18 이 적어 둔 대로 **정답이 `①` 인데 «서술형»
- *    이라 적힌 행이 36건**이고, 이번에 우리 열쇠와 전수로 맞대 보니 **44건**이 어긋난다
- *    (표본을 열어 보면 어긋난 자리에서 **우리 쪽이 맞다** — `J30303-Q9BJ` 정답 `①` /
- *    `question_type` 서술형, `J20301-ZC3K` 정답 `x=5, y=1` / `question_type` 객관식).
- *    그래서 그 컬럼은 **대조군**으로만 쓰고(`scripts/qa/probe-provenance.ts`), 판정은
- *    본문·정답 **두 컬럼**으로 한다.
- *
- * 열쇠 둘:
- *   ㉠ **보기가 있나** — 지면과 **같은 파서**(`parseProblemContent`)로 센다. 규칙을 옮겨
- *      적지 않는다(옮겨 적으면 지면이 보는 보기와 판정이 보는 보기가 갈린다).
- *   ㉡ **정답이 보기 번호인가** — 원문자(`①`·`➀`·`❶`…)가 정답에 있나.
- *      낱글자 목록을 손으로 쓰지 않고 `circledNumber.ts` 의 **정답 판독용 전 계열**을
- *      쓴다(그쪽이 「정답에서는 넓히고 본문 마커는 좁게」를 실측으로 정해 둔 자리다).
- *
- * ⚠️ **둘이 어긋나면 «모른다»로 낸다.** 실측 311건 — 「보기가 있는데 정답에 번호가
- *    없다」 200건, 「보기가 없는데 정답이 번호다」 111건. 뒤엣것은 보기가 **그림**이라
- *    글자 파서가 못 세는 부류이고(이 저장소가 이미 겪은 자리), 앞엣것은 정답 칸이
- *    「풀이참조」 같은 것이다. 한쪽으로 밀면 **그럴듯하게 틀린다** — 그래서 안 민다.
+ * 1. 객관식(`multiple_choice`): 지면 파서 기준 보기가 2개 이상이고 정답이 보기 번호인 경우
+ * 2. 단답형(`short_answer`): 주관식(보기 없음 & 정답이 번호 아님)이면서
+ *    - `questionType === '단답형'` 이거나,
+ *    - `familyKey` 가 `elem:` / `mid:` 인 엔진 생성 문항(전량 단답형)
+ * 3. 서술형(`descriptive`): 주관식이면서
+ *    - `questionType === '서술형'` 이거나,
+ *    - `questionType` 이 null 이고 `problemType === '서술형'` 인 경우
+ * 4. 미분류(`unknown`):
+ *    - 보기/정답이 어긋나거나, `questionType` 이 누락되어 단답/서술을 확정할 수 없는 주관식(RPM 등)
+ *    - 조용히 한쪽으로 몰아넣지 않고 `[?형식]` 으로 드러낸다.
  */
 export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
   const choices = parseProblemContent(problem.content).choices.length;
   const answerHasChoiceNumber = ANSWER_CHOICE_NUMBER.test(problem.answer);
-  // ⚠️ **문턱 2 는 오늘 아무것도 안 가른다** — `parseProblemContent` 는 마커가 하나면
-  //    0을 낸다(실측: 줄머리 `① 가` 하나 → `choices=0`). 그래서 `>= 1` 로 바꿔도 결과가
-  //    같고, 변이 하네스가 그것을 잡아 «판정거부»를 낸다. 지우지 않은 이유는 파서가
-  //    나중에 1을 내기 시작하면 「마커 하나짜리는 고르는 문항이 아니다」가 옳아서다.
-  //    **지금은 안 물고 있다**는 사실을 숨기지 않으려고 여기 적어 둔다(죽은 규칙 금지).
+
   if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";
-  if (choices === 0 && !answerHasChoiceNumber) return "written";
+
+  if (choices === 0 && !answerHasChoiceNumber) {
+    if (problem.questionType === "단답형") return "short_answer";
+    if (problem.questionType === "서술형") return "descriptive";
+    const family = problem.familyKey ?? "";
+    if (family.startsWith("elem:") || family.startsWith("mid:")) {
+      return "short_answer";
+    }
+    if (!problem.questionType && problem.problemType === "서술형") {
+      return "descriptive";
+    }
+    return "unknown";
+  }
+
   return "unknown";
 }
 
@@ -300,7 +304,8 @@ const ORIGIN_BADGE: Readonly<Record<ProblemOrigin, BadgeFace>> = {
 
 const FORMAT_BADGE: Readonly<Record<ProblemFormat, BadgeFace>> = {
   multiple_choice: { text: "[객]", name: "객관식", className: "text-src-mcq" },
-  written: { text: "[서]", name: "서술형", className: "text-src-written" },
+  short_answer: { text: "[단]", name: "단답형", className: "text-src-short" },
+  descriptive: { text: "[서]", name: "서술형", className: "text-src-written" },
   unknown: {
     text: "[?형식]",
     name: "형식 미분류",

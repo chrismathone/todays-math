@@ -75,7 +75,8 @@ export async function loadRows(prisma: PrismaClient): Promise<Row[]> {
            "content", "answer",
            "problem_code"                                    AS "problemCode",
            "figure_source"                                   AS "figureSource",
-           "question_type"                                   AS "questionType"
+           "question_type"                                   AS "questionType",
+           "problem_type"                                    AS "problemType"
       FROM "problem"
   `;
 }
@@ -129,9 +130,11 @@ export function probe(rows: readonly Row[]): ProbeResult {
     const recorded =
       fmt === "multiple_choice"
         ? "객관식"
-        : fmt === "written"
-          ? null // 단답형·서술형 둘 다 될 수 있다 — 한쪽으로 단정하지 않는다
-          : "(모름)";
+        : fmt === "short_answer"
+          ? "단답형"
+          : fmt === "descriptive"
+            ? "서술형"
+            : "(모름)";
     if (
       recorded === "객관식" &&
       row.questionType &&
@@ -141,9 +144,12 @@ export function probe(rows: readonly Row[]): ProbeResult {
         `${row.problemCode} 우리=객관식 question_type=${row.questionType}`,
       );
     }
-    if (fmt === "written" && row.questionType === "객관식") {
+    if (
+      (fmt === "short_answer" || fmt === "descriptive") &&
+      row.questionType === "객관식"
+    ) {
       questionTypeMismatch.push(
-        `${row.problemCode} 우리=서술형 question_type=객관식`,
+        `${row.problemCode} 우리=${fmt === "short_answer" ? "단답형" : "서술형"} question_type=객관식`,
       );
     }
 

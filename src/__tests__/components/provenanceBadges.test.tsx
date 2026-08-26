@@ -42,18 +42,33 @@ function problem(patch: Partial<ProblemEntity>): ProblemEntity {
 
 const 초등엔진 = problem({
   familyKey: "elem:초6|2-5-1 원주와 원주율 알아보기|연산",
+  questionType: "단답형",
 });
 const 초등엔진_도형_객관식 = problem({
   familyKey: "elem:초5|2-2-4 분수의 곱셈|응용",
   figureSvg: "<svg viewBox='0 0 224 120'></svg>",
   content: MCQ,
   answer: "①",
+  questionType: "객관식",
 });
 const 기출_스캔_객관식 = problem({
   source: "past_exam",
   figureUrls: ["/figures/2023-donmun-2-1/q07.jpg"],
   content: MCQ,
   answer: "③",
+  questionType: "객관식",
+});
+const 기출_서술형 = problem({
+  source: "past_exam",
+  content: "풀이과정을 쓰시오.",
+  answer: "$12$",
+  questionType: "서술형",
+});
+const 기출_단답형 = problem({
+  source: "past_exam",
+  content: "값을 구하시오.",
+  answer: "$5$",
+  questionType: "단답형",
 });
 const 문제집_SVG = problem({
   source: "transformed",
@@ -62,9 +77,10 @@ const 문제집_SVG = problem({
 const AI변형 = problem({
   source: "transformed",
   originProblemId: "00000000-0000-4000-8000-0000000000a1",
+  questionType: "단답형",
 });
 /** 실측 764건 — `manual` 인데 엔진 표지가 없는 옛 행. */
-const 옛수동 = problem({ familyKey: null });
+const 옛수동 = problem({ familyKey: null, questionType: null });
 /** 실측 311건 — 보기와 정답이 어긋나 형식을 모르는 행. */
 const 형식모름 = problem({ content: MCQ, answer: "풀이참조" });
 
@@ -74,16 +90,18 @@ const badgesIn = (root: HTMLElement) =>
 
 describe("[출처 배선] 문제은행 카드", () => {
   it.each([
-    ["초등 엔진 · 보기 없음", 초등엔진, ["[초]", "[서]"]],
+    ["초등 엔진 · 보기 없음", 초등엔진, ["[초]", "[단]"]],
     [
       "초등 + 도형 엔진 + 객관식",
       초등엔진_도형_객관식,
       ["[초]", "[도]", "[객]"],
     ],
     ["기출 + 스캔 + 객관식", 기출_스캔_객관식, ["[기]", "[스캔]", "[객]"]],
-    ["문제집 + SVG 엔진", 문제집_SVG, ["[문]", "[SVG]", "[서]"]],
-    ["AI 변형", AI변형, ["[AI]", "[서]"]],
-    ["옛 수동(출처 미분류)", 옛수동, ["[?]", "[서]"]],
+    ["기출 + 서술형", 기출_서술형, ["[기]", "[서]"]],
+    ["기출 + 단답형", 기출_단답형, ["[기]", "[단]"]],
+    ["문제집 + SVG 엔진", 문제집_SVG, ["[문]", "[SVG]", "[?형식]"]],
+    ["AI 변형", AI변형, ["[AI]", "[단]"]],
+    ["옛 수동(출처 미분류)", 옛수동, ["[?]", "[?형식]"]],
     ["형식 미분류", 형식모름, ["[?]", "[?형식]"]],
   ] as const)("%s → %s", (_name, entity, expected) => {
     const { container } = render(<ProblemCard problem={entity} />);
