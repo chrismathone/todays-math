@@ -6,7 +6,6 @@ import { MathText } from "@/components/math/MathText";
 import { ProblemExcerpt } from "@/components/problem/ProblemExcerpt";
 import { Button } from "@/components/ui/Button";
 import type { ProblemEntity } from "@/contracts/problem.contract";
-import { provenanceBadges } from "@/lib/problem/provenance";
 import { splitSolutionSteps } from "@/lib/solutionSteps";
 
 type Props = {
@@ -56,24 +55,6 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
         <p className={`mt-1 ${MICRO}`}>
           <span>{problem.difficulty}</span>
           <span className="ml-2">{problem.problemType}</span>
-        </p>
-        {/* 출처 라벨 — 문제은행 카드와 **같은 판정·같은 색**을 쓴다
-            (`src/lib/problem/provenance.ts`). 검수는 「이 문항이 어디서 왔나」를 알아야
-            이상한 것을 만났을 때 어디를 열어 볼지 정할 수 있다.
-            조건을 여기서 다시 쓰지 마라 — 두 화면이 갈라지면 아무도 모른다.
-            누르는 것이 아니다(D-30). 밑줄은 10px 굵은 글씨에서 얼룩이라 끈다. */}
-        <p className="mt-1 flex flex-wrap items-center gap-2">
-          {provenanceBadges(problem).map((badge) => (
-            <abbr
-              key={badge.axis}
-              data-provenance={badge.kind}
-              data-provenance-axis={badge.axis}
-              title={badge.name}
-              className={`${MICRO_PLAIN} no-underline ${badge.className}`}
-            >
-              {badge.text}
-            </abbr>
-          ))}
         </p>
       </div>
       <div

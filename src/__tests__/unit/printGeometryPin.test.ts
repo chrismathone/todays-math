@@ -157,15 +157,15 @@ describe("[적대④] 지면 상수는 지면 원문에서 나온다", () => {
       "grid-template-columns: repeat(4, minmax(0, 1fr))",
     );
     expect(JASEUP_MEASURED_PX.quickAnswerColumns).toBe(4);
-    expect(rule("quickAnswerGrid")).toContain("gap: 6px");
-    expect(JASEUP_MEASURED_PX.quickAnswerRowGap).toBe(6);
+    expect(rule("quickAnswerGrid")).toContain("gap: 4px");
+    expect(JASEUP_MEASURED_PX.quickAnswerRowGap).toBe(4);
 
     const cell = rule("quickAnswerCell");
-    expect(cell).toContain("padding: 8px 8px 6px");
-    expect(JASEUP_MEASURED_PX.quickAnswerCellBase).toBe(8 + 6);
-    expect(cell).toContain("font-size: 11px");
-    expect(cell).toContain("line-height: 2.1");
-    expect(JASEUP_MEASURED_PX.quickAnswerCellLine).toBeCloseTo(11 * 2.1, 6);
+    expect(cell).toContain("padding: 4px 6px 3px");
+    expect(JASEUP_MEASURED_PX.quickAnswerCellBase).toBe(4 + 3);
+    expect(cell).toContain("font-size: 10.5px");
+    expect(cell).toContain("line-height: 1.6");
+    expect(JASEUP_MEASURED_PX.quickAnswerCellLine).toBeCloseTo(10.5 * 1.6, 6);
   });
 
   it("해설은 2단이다 — 판정과 지면이 같은 수를 쓴다", () => {
@@ -195,7 +195,7 @@ describe("[적대④] 실측으로만 아는 값은 리터럴로 못 박는다",
     expect(JASEUP_MEASURED_PX.solutionColumnWidth).toBe(331);
     expect(JASEUP_MEASURED_PX.quickAnswerTitle).toBe(49);
     expect(JASEUP_MEASURED_PX.quickAnswerCellUnits).toBe(16);
-    expect(JASEUP_MEASURED_PX.quickAnswerGap).toBe(16.5);
+    expect(JASEUP_MEASURED_PX.quickAnswerGap).toBe(14);
   });
 
   /**

@@ -40,6 +40,7 @@ const CLASSES = [
   "text-src-middle",
   "text-src-ai",
   "text-src-mcq",
+  "text-src-short",
   "text-src-written",
   "text-src-figure",
   "text-src-svg",
@@ -50,7 +51,7 @@ const CLASSES = [
 ];
 
 /** 값이 실렸는지 보는 표본 — 축마다 하나씩(전부 같은 경로로 만들어진다). */
-const HEXES = ["#7f5eca", "#1e6200", "#90325d", "#5f5521", "#687a00"];
+const HEXES = ["#7f5eca", "#1e6200", "#90325d", "#5f5521", "#5f4977", "#687a00"];
 
 const cssSelector = (cls) => "." + cls.split(":").join("\\:");
 

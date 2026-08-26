@@ -48,12 +48,12 @@ describe("[적대③-C] 「빠른 정답」 상자가 1쪽 해설 칸을 얼마�
   const plain = (n: number) => Array.from({ length: n }, (_, i) => `${i % 5}`);
 
   it("짧은 정답만 있으면 4열 · 4문항마다 한 행이다", () => {
-    // 실측(정답이 전부 한 글자): 8문항 129.2px · 12문항 172.3px ·
-    // 16문항 215.4px · 25문항 344.7px
-    expect(quickAnswerBoxPx(plain(8))).toBeCloseTo(129.2, 0);
-    expect(quickAnswerBoxPx(plain(12))).toBeCloseTo(172.3, 0);
-    expect(quickAnswerBoxPx(plain(16))).toBeCloseTo(215.4, 0);
-    expect(quickAnswerBoxPx(plain(25))).toBeCloseTo(344.7, 0);
+    // 실측(정답이 전부 한 글자 — 압축 후): 8문항 100.6px · 12문항 128.4px ·
+    // 16문항 156.2px · 25문항 239.6px
+    expect(quickAnswerBoxPx(plain(8))).toBeCloseTo(100.6, 0);
+    expect(quickAnswerBoxPx(plain(12))).toBeCloseTo(128.4, 0);
+    expect(quickAnswerBoxPx(plain(16))).toBeCloseTo(156.2, 0);
+    expect(quickAnswerBoxPx(plain(25))).toBeCloseTo(239.6, 0);
   });
 
   /**
@@ -131,10 +131,10 @@ describe("[적대③-C] 정답지 쪽에서 사라질 해설을 짚는다", () =
    * 2단이라 1,208px 어치가 한계인데, 8건이 전부 긴 해설이면 넘는다.
    */
   it("1쪽은 빠른 정답 상자만큼 좁다 — 같은 해설이 2쪽에서는 들어간다", () => {
-    // 한 건 약 8줄(195px). 1쪽 칸(604px)에는 단마다 3건, 2쪽 칸(965px)에는 4건 —
+    // 1쪽 1단에 빠른 정답 상자가 얹혀 1단 칸이 좁다.
     // 그래서 같은 해설이 1쪽에서만 밀린다.
     const medium = Array.from(
-      { length: 9 },
+      { length: 12 },
       (_, i) => `${i}단계에서 양변을 정리하면 값이 나온다.`,
     ).join(" ");
     const risks = assessAnswerKeyRisk(

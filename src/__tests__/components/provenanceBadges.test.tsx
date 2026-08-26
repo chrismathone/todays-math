@@ -42,18 +42,33 @@ function problem(patch: Partial<ProblemEntity>): ProblemEntity {
 
 const 초등엔진 = problem({
   familyKey: "elem:초6|2-5-1 원주와 원주율 알아보기|연산",
+  questionType: "단답형",
 });
 const 초등엔진_도형_객관식 = problem({
   familyKey: "elem:초5|2-2-4 분수의 곱셈|응용",
   figureSvg: "<svg viewBox='0 0 224 120'></svg>",
   content: MCQ,
   answer: "①",
+  questionType: "객관식",
 });
 const 기출_스캔_객관식 = problem({
   source: "past_exam",
   figureUrls: ["/figures/2023-donmun-2-1/q07.jpg"],
   content: MCQ,
   answer: "③",
+  questionType: "객관식",
+});
+const 기출_서술형 = problem({
+  source: "past_exam",
+  content: "풀이과정을 쓰시오.",
+  answer: "$12$",
+  questionType: "서술형",
+});
+const 기출_단답형 = problem({
+  source: "past_exam",
+  content: "값을 구하시오.",
+  answer: "$5$",
+  questionType: "단답형",
 });
 const 문제집_SVG = problem({
   source: "transformed",
@@ -62,9 +77,10 @@ const 문제집_SVG = problem({
 const AI변형 = problem({
   source: "transformed",
   originProblemId: "00000000-0000-4000-8000-0000000000a1",
+  questionType: "단답형",
 });
 /** 실측 764건 — `manual` 인데 엔진 표지가 없는 옛 행. */
-const 옛수동 = problem({ familyKey: null });
+const 옛수동 = problem({ familyKey: null, questionType: null });
 /** 실측 311건 — 보기와 정답이 어긋나 형식을 모르는 행. */
 const 형식모름 = problem({ content: MCQ, answer: "풀이참조" });
 
@@ -74,16 +90,18 @@ const badgesIn = (root: HTMLElement) =>
 
 describe("[출처 배선] 문제은행 카드", () => {
   it.each([
-    ["초등 엔진 · 보기 없음", 초등엔진, ["[초]", "[서]"]],
+    ["초등 엔진 · 보기 없음", 초등엔진, ["[초]", "[단]"]],
     [
       "초등 + 도형 엔진 + 객관식",
       초등엔진_도형_객관식,
       ["[초]", "[도]", "[객]"],
     ],
     ["기출 + 스캔 + 객관식", 기출_스캔_객관식, ["[기]", "[스캔]", "[객]"]],
-    ["문제집 + SVG 엔진", 문제집_SVG, ["[문]", "[SVG]", "[서]"]],
-    ["AI 변형", AI변형, ["[AI]", "[서]"]],
-    ["옛 수동(출처 미분류)", 옛수동, ["[?]", "[서]"]],
+    ["기출 + 서술형", 기출_서술형, ["[기]", "[서]"]],
+    ["기출 + 단답형", 기출_단답형, ["[기]", "[단]"]],
+    ["문제집 + SVG 엔진", 문제집_SVG, ["[문]", "[SVG]", "[?형식]"]],
+    ["AI 변형", AI변형, ["[AI]", "[단]"]],
+    ["옛 수동(출처 미분류)", 옛수동, ["[?]", "[?형식]"]],
     ["형식 미분류", 형식모름, ["[?]", "[?형식]"]],
   ] as const)("%s → %s", (_name, entity, expected) => {
     const { container } = render(<ProblemCard problem={entity} />);
@@ -196,44 +214,21 @@ describe("[출처 배선] 문제은행 카드", () => {
   });
 });
 
-describe("[출처 배선] 검수 카드 — 문제은행과 같은 판정을 그린다", () => {
+describe("[출처 배선] 검수 카드 — 원장님 지시 2026-08-26 「검수화면에는 라벨 안 나와도 됨」", () => {
   it.each([
     ["초등 + 도형 + 객관식", 초등엔진_도형_객관식],
     ["기출 + 스캔 + 객관식", 기출_스캔_객관식],
     ["옛 수동(미분류)", 옛수동],
     ["형식 미분류", 형식모름],
-  ] as const)("%s 에서 두 화면의 라벨이 같다", (_name, entity) => {
-    const bank = render(<ProblemCard problem={entity} />);
-    const review = render(
-      <ReviewProblemCard orderIndex={1} problem={entity} />,
-    );
-    expect(badgesIn(review.container).map((el) => el.textContent)).toEqual(
-      badgesIn(bank.container).map((el) => el.textContent),
-    );
-  });
-
-  it("검수 카드에서도 라벨은 컨트롤이 아니다", () => {
-    const { container } = render(
-      <ReviewProblemCard orderIndex={1} problem={초등엔진_도형_객관식} />,
-    );
-    expect(badgesIn(container)).toHaveLength(3);
-    for (const el of badgesIn(container)) {
-      expect(el.tagName).toBe("ABBR");
-      expect(el.className).not.toContain("cursor-pointer");
-      expect(el.closest("button, a[href]")).toBeNull();
-    }
-  });
-
-  // 검수 카드는 마이크로 라벨에 `text-text-2` 를 쓴다. 그 색이 같이 실리면 어느 쪽이
-  // 이기는지는 **CSS 파일 순서**가 정하므로, 출처 라벨에는 아예 안 실려야 한다.
-  it("검수 카드의 회색 마이크로 라벨 색이 라벨에 섞이지 않는다", () => {
-    const { container } = render(
-      <ReviewProblemCard orderIndex={1} problem={초등엔진_도형_객관식} />,
-    );
-    for (const el of badgesIn(container)) {
-      expect(el.className).not.toContain("text-text-2");
-    }
-  });
+  ] as const)(
+    "%s 에서 검수 카드는 대괄호 라벨을 그리지 않는다",
+    (_name, entity) => {
+      const review = render(
+        <ReviewProblemCard orderIndex={1} problem={entity} />,
+      );
+      expect(badgesIn(review.container)).toHaveLength(0);
+    },
+  );
 });
 
 describe("[출처 배선] 반대쪽 — 없는 것을 그리지 않는다", () => {

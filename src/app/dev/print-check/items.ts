@@ -982,6 +982,70 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-25",
   },
   {
+    id: "print-problem-code-badge",
+    title: "문제지: 문 N 옆 `[단답형1]` 이중번호 제거 → 문항번호(문항류) 표기",
+    changed:
+      "원장님 지시 2026-08-26(「인쇄화면에 문1 옆에 [단답형1] 이라고 되어있는데, 왜 굳이 이중번호를? 문1만 남기고 옆에 문항 번호를 적어」). " +
+      "문항 번호 뒤의 `[단답형1]` 배지를 제거하고, 문항 코드의 문항류(예: `A05`)를 번호 옆에 짧게 표기하도록 바꿨다.",
+    look:
+      "① 문제지 각 문항 번호 옆에 `[단답형1]` 같은 이중 번호 배지가 사라졌는가. " +
+      "② 문항 번호 뒤에 문항류(`A01`, `A05` 등)가 적절한 크기(11px)와 회색 톤으로 깔끔하게 들어갔는가. " +
+      "③ 1세대 옛 문항의 경우 전체 코드가 보존되어 표기되는가.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/print/templates/JaseupTemplate.tsx",
+      "src/components/print/TestPrint.module.css (.problemCodeBadge)",
+      "src/contracts/problemCode.contract.ts (formatShortProblemCode)",
+    ],
+    scale: "인쇄 시험지 전량",
+    needs: "단답형·서술형 문항이 포함된 시험지 인쇄",
+    status: "대기",
+    changedOn: "2026-08-26",
+  },
+  {
+    id: "print-answer-key-layout",
+    title:
+      "정답지: «1줄: 문항번호 / 2줄: 답 우측정렬 / 3줄: 해설» 3단 레이아웃",
+    changed:
+      "원장님 지시 2026-08-26(「정답지에도 문1 옆에 문항번호 적고, 두번째 줄에 우측정렬로 «답: 답안» 이런식으로 적고, 그 아래에 해설」). " +
+      "종전의 `문 1 · 답` 한 줄 표기를 1줄(문 1 + 문항번호), 2줄(우측 정렬 답안), 3줄(해설 본문)로 분리했다.",
+    look:
+      "① 첫 줄에 `문 1`과 문항번호(예: `A01`)가 좌우로 깔끔하게 정렬되는가. " +
+      "② 둘째 줄에 `답: ...`이 단 안에서 오른쪽 정렬되어 시선이 명확히 분리되는가. " +
+      "③ 셋째 줄부터 해설 본문이 좌측 골드 보더와 함께 정렬되는가. " +
+      "④ 긴 정답(수식·여러 값)에서도 우측 정렬이 깨지지 않고 2단 안에 들어오는가.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/print/PrintAnswerKeyPage.tsx",
+      "src/components/print/TestPrint.module.css (.solutionHeading, .solutionAnswerRow)",
+    ],
+    scale: "정답지 인쇄 지면 전량",
+    needs: "단답형·수식 정답·긴 정답이 포함된 시험지 정답지 인쇄",
+    status: "대기",
+    changedOn: "2026-08-26",
+  },
+  {
+    id: "print-quick-answer-1col",
+    title: "정답지: 빠른 정답 상자 1단 내 유연 격자(flex-wrap) 압축",
+    changed:
+      "원장님 지시 2026-08-26(「빠른 정답은 정답 길이에 따라 다르겠지만 더 압축시켜서 1단에만 오도록 해. 1행당 4개 해도 1단에 올 수 있을듯」). " +
+      "전폭(2단 폭)을 차지하던 빠른 정답 상자를 2단 흐름의 1단 상단으로 압축하고, 짧은 답은 행당 4개·긴 답은 자동 줄바꿈(flex-wrap)되도록 개선했다.",
+    look:
+      "① 빠른 정답 상자가 상단 전폭을 차지하지 않고 1단 상단에 깔끔하게 들어앉는가. " +
+      "② 8문항 시험지 기준 짧은 정답들이 1행 4개씩 2행으로 컴팩트하게 배치되는가. " +
+      "③ 긴 정답 문항이 있어도 깨지지 않고 자연스럽게 다음 행으로 접히는가. " +
+      "④ 1단 빠른 정답 아래로 해설들이 2단에 걸쳐 자연스럽게 이어지는가.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/print/PrintAnswerKeyPage.tsx",
+      "src/components/print/TestPrint.module.css (.quickAnswerBox, .quickAnswerGrid, .quickAnswerCell)",
+    ],
+    scale: "정답지 1페이지 전량",
+    needs: "8문항 및 25문항 시험지 정답지 인쇄",
+    status: "대기",
+    changedOn: "2026-08-26",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",

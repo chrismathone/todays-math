@@ -51,6 +51,8 @@ const BLANK: ProvenanceInput = {
   figureSvg: null,
   content: "다음을 계산하시오. $1+1$",
   answer: "$2$",
+  questionType: null,
+  problemType: null,
 };
 
 /**
@@ -168,58 +170,122 @@ describe("[출처] 대리 규칙(문항 코드 모양)과 갈리는 자리", () 
   });
 });
 
-describe("[형식] 보기와 정답 모양으로 가른다 — question_type 을 안 본다", () => {
+describe("[형식] 보기·정답 모양과 questionType으로 [객]·[단]·[서]를 가른다", () => {
   it.each([
     [
       "보기 다섯 + 정답이 번호",
-      { content: MCQ, answer: "③" },
+      { content: MCQ, answer: "③", questionType: "객관식" },
       "multiple_choice",
     ],
     [
       "복수 정답(모두 고르시오)",
-      { content: MCQ, answer: "②, ⑤" },
+      { content: MCQ, answer: "②, ⑤", questionType: "객관식" },
       "multiple_choice",
     ],
-    ["번호 + 말이 같이", { content: MCQ, answer: "④ 76분" }, "multiple_choice"],
     [
-      "보기 없음 + 정답이 글",
-      { content: "값을 구하시오.", answer: "$12$" },
-      "written",
+      "번호 + 말이 같이",
+      { content: MCQ, answer: "④ 76분", questionType: "객관식" },
+      "multiple_choice",
+    ],
+    [
+      "보기 없음 + questionType 단답형",
+      { content: "값을 구하시오.", answer: "$12$", questionType: "단답형" },
+      "short_answer",
+    ],
+    [
+      "보기 없음 + questionType 서술형",
+      {
+        content: "풀이과정을 서술하시오.",
+        answer: "$12$",
+        questionType: "서술형",
+      },
+      "descriptive",
+    ],
+    [
+      "초등 엔진(familyKey) → 단답형",
+      {
+        content: "값을 구하시오.",
+        answer: "$12$",
+        familyKey: "elem:초6|단원|연산",
+      },
+      "short_answer",
+    ],
+    [
+      "중등 엔진(familyKey) → 단답형",
+      {
+        content: "값을 구하시오.",
+        answer: "$12$",
+        familyKey: "mid:3-1|단원|01",
+      },
+      "short_answer",
+    ],
+    [
+      "questionType null이나 problemType 서술형 → 서술형",
+      {
+        content: "서술하시오.",
+        answer: "$12$",
+        questionType: null,
+        problemType: "서술형",
+      },
+      "descriptive",
     ],
   ] as const)("%s → %s", (_name, patch, expected) => {
     expect(classifyFormat({ ...BLANK, ...patch })).toBe(expected);
   });
 
   /**
-   * 🔴 원장님이 실물로 짚어 준 두 건. `question_type` 으로는 **단답형**인데
-   * 「보기가 없는 서술형」이라고 하셨다 — 이 축이 가르는 것은 «보기를 고르는가»다.
+   * 🔴 원장님이 찾으신 결함 4문항 — questionType이 단답형인데 [서]로 나가던 것.
+   * 이제 정확히 [단](short_answer)으로 판정된다.
    */
-  it("원장님이 짚은 두 건(J30402-A10-002 · J30402-A09-002) 은 서술형이다", () => {
-    const a10 = {
+  it.each([
+    ["J30101-A02-002", { questionType: "단답형", problemType: "계산" }],
+    ["J30101-A05-002", { questionType: "단답형", problemType: "활용" }],
+    ["J30101-A06-002", { questionType: "단답형", problemType: "계산" }],
+    ["J30101-A07-002", { questionType: "단답형", problemType: "활용" }],
+  ] as const)("원장님 지목 결함 %s 는 [단] 단답형이다", (_code, patch) => {
+    const input: ProvenanceInput = {
       ...BLANK,
-      content:
-        "꼭짓점의 좌표가 $(0, -2)$이고 점 $(1, -1)$을 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오.",
-      answer: "$y=x^2-2$",
+      content: "다음을 계산하시오.",
+      answer: "$4$",
+      ...patch,
     };
-    const a09 = {
-      ...BLANK,
-      content:
-        "오른쪽 그림은 이차함수 $y=ax^2+bx+c$의 그래프이다. 상수 $a$, $b$, $c$의 부호를 각각 부등호를 사용하여 나타내시오.",
-      answer: "$a>0$, $b>0$, $c>0$",
-    };
-    expect(classifyFormat(a10)).toBe("written");
-    expect(classifyFormat(a09)).toBe("written");
+    expect(classifyFormat(input)).toBe("short_answer");
   });
 
-  // 양성 대조군 — 미분류가 **실제로 나온다**. 실측 311건이 이 두 모양이다.
+  /**
+   * 「다음 중 ~인 것은 몇 개인지 구하시오」 유형 — 보기(①②③④⑤)가 있지만
+   * 정답은 번호가 아니라 `$2$개` 같은 개수다. questionType='단답형'이 명시적이면 [단].
+   */
+  it("보기가 있어도 questionType=단답형이면 [단]이다 (몇 개 유형)", () => {
+    expect(
+      classifyFormat({
+        ...BLANK,
+        content:
+          "다음 중 $y$가 $x$에 대한 일차함수인 것은 몇 개인지 구하시오.\n① $y=3x-1$\n② $y=x(x-1)$\n③ $y=5/x$\n④ $y=x^2$\n⑤ $y=-2x+3$",
+        answer: "$2$개",
+        questionType: "단답형",
+      }),
+    ).toBe("short_answer");
+  });
+
+  // 양성 대조군 — 미분류가 **실제로 나온다**.
   it.each([
     [
-      "보기 있는데 정답에 번호 없음(200건)",
+      "보기 있는데 정답에 번호 없음(206건)",
       { content: MCQ, answer: "풀이참조" },
     ],
     [
       "보기 없는데 정답이 번호(111건)",
       { content: "값을 구하시오.", answer: "②" },
+    ],
+    [
+      "보기 없고 questionType=null 인 교재 문항(1,992건)",
+      {
+        content: "값을 구하시오.",
+        answer: "$12$",
+        questionType: null,
+        problemType: "개념",
+      },
     ],
   ] as const)("%s → 미분류", (_name, patch) => {
     expect(classifyFormat({ ...BLANK, ...patch })).toBe("unknown");
@@ -231,7 +297,6 @@ describe("[형식] 보기와 정답 모양으로 가른다 — question_type 을
 
   /**
    * 🔴 **비표준 원문자 계열**(`➂` U+2782 등)을 놓치면 그 행이 조용히 미분류가 된다.
-   * `circledNumber.ts` 가 실측으로 「정답에서는 전 계열을 본다」를 정해 둔 자리다.
    */
   it("정답의 원문자는 계열을 가리지 않는다 — ➂ 도 보기 번호다", () => {
     expect(classifyFormat({ ...BLANK, content: MCQ, answer: "➂" })).toBe(
@@ -240,17 +305,17 @@ describe("[형식] 보기와 정답 모양으로 가른다 — question_type 을
   });
 
   /**
-   * 반대쪽: **괄호 번호(`⑴⑵`)는 보기 번호가 아니다.** 서술형의 소문항 표시라
-   * 이것까지 «번호»로 세면 서술형이 통째로 미분류가 된다(실측에 그런 행이 있다).
+   * 괄호 번호(`⑴⑵`)가 든 서술형 — questionType='서술형' 이면 descriptive
    */
-  it("괄호 번호 ⑴⑵ 는 보기 번호가 아니다 — 서술형이 미분류로 안 밀린다", () => {
+  it("괄호 번호 ⑴⑵ 가 든 서술형 문항은 [서]로 판정된다", () => {
     expect(
       classifyFormat({
         ...BLANK,
-        content: "값을 구하시오.",
+        content: "풀이 과정을 쓰시오.",
         answer: "⑴ f(0)=0 ⑵ f′(0)=1",
+        questionType: "서술형",
       }),
-    ).toBe("written");
+    ).toBe("descriptive");
   });
 
   // 보기가 하나뿐이면 «고르는 문항»이 아니다 — 한쪽으로 밀지 않고 모른다고 한다.
@@ -344,7 +409,7 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
       ...FIGURE_ORIGINS.map((k) => badgeOf("figure", k)),
       ...PROBLEM_FORMATS.map((k) => badgeOf("format", k)),
     ];
-    expect(전량).toHaveLength(13);
+    expect(전량).toHaveLength(14);
     for (const badge of 전량) {
       expect(badge.text).toMatch(/^\[.+\]$/);
       expect(badge.name.length).toBeGreaterThan(0);
@@ -353,11 +418,11 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
   });
 
   /**
-   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열은 색이 전부 달라야 한다.**
+   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열하나는 색이 전부 달라야 한다.**
    * 「모른다」 셋은 뜻이 같으므로 한 색을 같이 쓴다. 색값 자체는
    * `provenancePalette.test.ts` 가 `globals.css` 를 읽어 대비·ΔE 로 잰다.
    */
-  it("이름 붙은 열 갈래의 색 클래스가 서로 다르다", () => {
+  it("이름 붙은 열한 갈래의 색 클래스가 서로 다르다", () => {
     const 이름붙은 = [
       ...PROBLEM_ORIGINS.filter((k) => k !== "unknown").map((k) =>
         badgeOf("origin", k),
@@ -369,8 +434,8 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
         badgeOf("format", k),
       ),
     ].map((b) => b.className);
-    expect(이름붙은).toHaveLength(10);
-    expect(new Set(이름붙은).size).toBe(10);
+    expect(이름붙은).toHaveLength(11);
+    expect(new Set(이름붙은).size).toBe(11);
   });
 
   it("세 축의 「모른다」는 같은 색을 쓴다 — 모른다는 분류가 아니다", () => {
@@ -384,7 +449,7 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
   });
 });
 
-describe("[실측] 전수(2026-08-25) — 분모가 맞는가", () => {
+describe("[실측] 전수(2026-08-26) — 분모가 맞는가", () => {
   // 분모를 먼저 검산한다(CLAUDE.md 2026-08-18). 합이 안 맞으면 어느 갈래를 못 센 것이다.
   it.each(["origin", "format", "figure"] as const)(
     "%s 갈래의 합이 전체와 같다",
@@ -451,9 +516,19 @@ function shapeFor(axis: string, kind: string): Partial<ProvenanceInput> {
   }
   switch (kind) {
     case "multiple_choice":
-      return { content: MCQ, answer: "③" };
-    case "written":
-      return { content: "값을 구하시오.", answer: "$12$" };
+      return { content: MCQ, answer: "③", questionType: "객관식" };
+    case "short_answer":
+      return {
+        content: "값을 구하시오.",
+        answer: "$12$",
+        questionType: "단답형",
+      };
+    case "descriptive":
+      return {
+        content: "풀이 과정을 쓰시오.",
+        answer: "$12$",
+        questionType: "서술형",
+      };
     default:
       return { content: MCQ, answer: "풀이참조" };
   }

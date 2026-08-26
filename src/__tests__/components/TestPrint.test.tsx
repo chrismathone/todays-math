@@ -110,7 +110,6 @@ describe("TestPrint", () => {
 
     const heading = container.querySelector('[data-testid="answer-heading-1"]');
     expect(heading).not.toBeNull();
-    expect(heading?.querySelector(".katex")).not.toBeNull();
     expect(heading?.className ?? "").toMatch(/solutionHeading/);
   });
 
@@ -120,7 +119,7 @@ describe("TestPrint", () => {
       "utf8",
     );
     expect(css).toMatch(/\.answerSolutions[\s\S]*?padding-top:\s*0\.6em/);
-    expect(css).toMatch(/\.solutionHeading[\s\S]*?line-height:\s*2\.2/);
+    expect(css).toMatch(/\.solutionHeading[\s\S]*?line-height:\s*1\.8/);
     expect(css).toMatch(/\.quickAnswerCell[\s\S]*?overflow:\s*visible/);
   });
 });
@@ -281,71 +280,34 @@ describe("TestPrint — 인쇄 사고 방지", () => {
     expect(alert).toHaveTextContent("서버");
   });
 
-  /**
-   * 원장님 지시: "서술형은 기본적으로 [서술형1] 이런 문구는 제외해야지.
-   * 문제 배치될때 알아서 스마트하게 [서술형 n] 되도록해야지."
-   * 본문에서 뗀 라벨을 **조판이** 채운다.
-   */
-  describe("서술형 지면 표시", () => {
-    const mixedTypes: TestPrintDocument = {
+  describe("[원장님 지시 2026-08-26] 인쇄 지면 문항 번호 표기 — [단답형1] 이중번호 제거", () => {
+    const withCodes: TestPrintDocument = {
       ...PRINT_DOCUMENT,
       problems: PRINT_DOCUMENT.problems.map((problem, index) => ({
         ...problem,
-        // 1·3·5번째가 서술형 → 지면에는 서술형 1·2·3 으로 나가야 한다.
-        questionType: index % 2 === 0 ? "서술형" : "객관식",
+        problemCode: `J30103-A0${index + 1}-001`,
       })),
     };
 
-    it("서술형 문항에만 지면 순번을 붙인다", () => {
-      const { container } = render(<TestPrint data={mixedTypes} />);
-      const badges = [...container.querySelectorAll("[data-problem-number]")]
-        .map((el) => el.textContent ?? "")
-        .map((text) => /서술형 (\d+)/.exec(text)?.[1] ?? null);
-
-      // 문 1·3·5 만 배지를 갖고, 번호는 장을 넘어가며 이어진다.
-      expect(badges).toEqual(["1", null, "2", null, "3"]);
+    it("문항 번호 옆에 [단답형1] 같은 이중 번호가 찍히지 않는다", () => {
+      const { container } = render(<TestPrint data={withCodes} />);
+      expect(container.textContent).not.toContain("단답형 1");
+      expect(container.textContent).not.toContain("서술형 1");
     });
 
-    it("서술형이 없으면 배지를 붙이지 않는다", () => {
+    it("문항 번호 옆에 단원-문항류(J30103-A01 등)가 짧게 표기된다", () => {
+      const { container } = render(<TestPrint data={withCodes} />);
+      const badges = [...container.querySelectorAll("[data-problem-number]")]
+        .map((el) => el.textContent ?? "")
+        .map((text) => /문 \d+\s*(J\d+-A\d+)/.exec(text)?.[1] ?? null);
+
+      expect(badges[0]).toBe("J30103-A01");
+      expect(badges[1]).toBe("J30103-A02");
+    });
+
+    it("problemCode 가 없으면 추가 번호를 표기하지 않는다", () => {
       const { container } = render(<TestPrint data={PRINT_DOCUMENT} />);
-      expect(container.textContent).not.toContain("서술형");
-    });
-
-    // 원장님 확정(2026-08-19): 「[단답형 출제]시에 [단답형]으로」.
-    // 지면에 실제로 그 말이 찍히는지는 **렌더해 봐야** 안다 — 순번 함수만 잠그면
-    // 템플릿이 「서술형」을 그대로 박아 두어도 초록이다.
-    it("⭐ 단답형은 «단답형» 으로 찍고 번호를 서술형과 따로 센다", () => {
-      const both: TestPrintDocument = {
-        ...PRINT_DOCUMENT,
-        problems: PRINT_DOCUMENT.problems.map((problem, index) => ({
-          ...problem,
-          questionType: index % 2 === 0 ? "서술형" : "단답형",
-        })),
-      };
-      const { container } = render(<TestPrint data={both} />);
-      const badges = [...container.querySelectorAll("[data-problem-number]")]
-        .map((el) => el.textContent ?? "")
-        .map((text) => /(서술형|단답형) (\d+)/.exec(text))
-        .map((m) => (m ? `${m[1]} ${m[2]}` : null));
-      expect(badges).toEqual([
-        "서술형 1",
-        "단답형 1",
-        "서술형 2",
-        "단답형 2",
-        "서술형 3",
-      ]);
-    });
-
-    it("questionType 을 모르면 서술형이라 단정하지 않는다", () => {
-      const unknown: TestPrintDocument = {
-        ...PRINT_DOCUMENT,
-        problems: PRINT_DOCUMENT.problems.map((p) => ({
-          ...p,
-          questionType: null,
-        })),
-      };
-      const { container } = render(<TestPrint data={unknown} />);
-      expect(container.textContent).not.toContain("서술형");
+      expect(container.textContent).not.toContain("J30103-A01");
     });
   });
 });

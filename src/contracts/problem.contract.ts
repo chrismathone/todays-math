@@ -118,6 +118,8 @@ export const problemSchema = z.strictObject({
   familyKey: z.string().nullable(),
   difficulty: difficultySchema,
   problemType: problemTypeSchema,
+  /** 출제 형식 — 객관식 | 단답형 | 서술형. null 허용 */
+  questionType: z.string().nullable().optional(),
   content: problemTextSchema("문제 본문"),
   answer: problemTextSchema("정답"),
   solution: problemTextSchema("풀이").nullable(),

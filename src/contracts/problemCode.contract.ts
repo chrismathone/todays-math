@@ -148,3 +148,19 @@ export type ProblemCode = z.infer<typeof problemCodeSchema>;
 
 /** 코드 전체 길이 상한 — 고등(3+4+1+3+1+3=15). 컬럼은 VarChar(16). */
 export const PROBLEM_CODE_MAX_LENGTH = 15;
+
+/**
+ * 문항 코드에서 **단원 및 문항류(예: J30103-A01)** 까지만 축약한다 (원장님 확정 2026-08-26 시안 ㉡).
+ * - 2세대 새 코드(`J30103-A01-001`):
+ *   - mode="unit_family" (기본): `J30103-A01` (단원코드 + 문항류)
+ *   - mode="family_only": `A01` (문항류만)
+ * - 1세대 옛 코드(`J30103-4NSK`): 문항류 자리가 없으므로 전체 코드 유지
+ */
+export function formatShortProblemCode(
+  code: string,
+  mode: "unit_family" | "family_only" = "unit_family",
+): string {
+  const match = code.match(/^([A-Z0-9]+)-([A-Z][0-9]{2})-[0-9]{3}$/);
+  if (!match) return code;
+  return mode === "unit_family" ? `${match[1]}-${match[2]}` : match[2]!;
+}

@@ -5,6 +5,7 @@ import type {
   JaseupPrintMeta,
   TestPrintProblem,
 } from "@/components/print/types";
+import { formatShortProblemCode } from "@/contracts/problemCode.contract";
 
 import type { SubjectiveLabel } from "@/lib/tests/essayLabels";
 
@@ -88,7 +89,6 @@ export const JaseupTemplate = memo(function JaseupTemplate({
       <BodyContainer>
         {problems.map((problem, index) => {
           const problemNumber = startingNumber + index;
-          const subjective = essayLabels?.get(problem.id);
           return (
             <article
               className={styles.problemItem}
@@ -98,11 +98,9 @@ export const JaseupTemplate = memo(function JaseupTemplate({
               <div className={styles.questionArea}>
                 <div className={styles.questionNumber}>
                   문 {problemNumber}
-                  {subjective ? (
-                    // 말은 `questionType` 에서 온다 — 「서술형」/「단답형」을 여기에
-                    // 다시 적으면 유형이 늘 때 지면만 눈이 먼다(원장님 확정 2026-08-19).
-                    <span className={styles.essayBadge}>
-                      {subjective.kind} {subjective.n}
+                  {problem.problemCode ? (
+                    <span className={styles.problemCodeBadge}>
+                      {formatShortProblemCode(problem.problemCode)}
                     </span>
                   ) : null}
                 </div>
