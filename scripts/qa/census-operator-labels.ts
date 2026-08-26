@@ -14,8 +14,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const BS = String.fromCharCode(92);
+// ⚠️ **`String.raw` 없이 백틱에 정규식을 쓰면 `\s` 가 `s` 로 죽는다.** 처음에 그렇게
+//    썼고(heredoc 이 역슬래시를 한 겹 먹었다) `\mathrm {cm}` 처럼 **사이에 공백이 있는**
+//    꼴을 통째로 못 봤다. `regexTemplateEscape.test.ts` 가 잡아 줬다.
 const LABEL = new RegExp(
-  `${BS}${BS}(text|mathrm|mathit|operatorname|mbox|rm)\s*\{([^{}]{1,24})\}`,
+  BS +
+    BS +
+    String.raw`(text|mathrm|mathit|operatorname|mbox|rm)\s*\{([^{}]{1,24})\}`,
   "g",
 );
 const FIELDS = ["content", "answer", "solution"] as const;

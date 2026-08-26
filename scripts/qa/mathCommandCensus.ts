@@ -17,8 +17,10 @@ const BS = String.fromCharCode(92);
 const COMMAND = new RegExp(BS + BS + "([A-Za-z@]+)", "g");
 
 /** `\operatorname{lcm}` · `\operatorname*{argmax}` 의 **인자**까지 이름으로 본다. */
+// ⚠️ 둘 다 처음에 틀렸다. ㉠ 백틱에 `String.raw` 를 안 붙여 `\s`·`\{` 가 죽었고,
+//    ㉡ `\operatorname*` 의 별표를 `BS + BS + "*?"` 로 적어 **역슬래시 반복**이 됐다.
 const OPERATORNAME = new RegExp(
-  BS + BS + "operatorname" + BS + BS + "*?" + `\s*\{([^{}]*)\}`,
+  BS + BS + "operatorname" + String.raw`\*?\s*\{([^{}]*)\}`,
   "g",
 );
 
