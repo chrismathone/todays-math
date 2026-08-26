@@ -582,3 +582,82 @@ describe("초5 1-2-2 약수와 배수의 관계", () => {
     }
   });
 });
+
+describe("초5 1-2-3 공약수와 최대공약수", () => {
+  const unit = unitOf("1-2-3");
+
+  function gcdOf(x: number, y: number): number {
+    let a = x;
+    let b = y;
+    while (b !== 0) {
+      const t = a % b;
+      a = b;
+      b = t;
+    }
+    return a;
+  }
+
+  it("05 최대공약수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 최대공약수/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(gcdOf(Number(m![1]), Number(m![2])));
+    }
+  });
+
+  it("06 가장 작은 공약수는 1", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(p.content).toMatch(/가장 작은/);
+      expect(answerInt(p.answer)).toBe(1);
+    }
+  });
+
+  it("07 홀수 공약수 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 공약수 중에서 홀수/);
+      expect(m, p.content).toBeTruthy();
+      const g = gcdOf(Number(m![1]), Number(m![2]));
+      expect(answerInt(p.answer)).toBe(
+        ownDivisors(g).filter((v) => v % 2 === 1).length,
+      );
+    }
+  });
+
+  it("08 몫의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$를 최대공약수/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const g = gcdOf(a, b);
+      expect(answerInt(p.answer)).toBe(a / g + b / g);
+    }
+  });
+
+  it("09 짝수 공약수 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 공약수 중에서 짝수/);
+      expect(m, p.content).toBeTruthy();
+      const g = gcdOf(Number(m![1]), Number(m![2]));
+      expect(answerInt(p.answer)).toBe(
+        ownDivisors(g)
+          .filter((v) => v % 2 === 0)
+          .reduce((s, v) => s + v, 0),
+      );
+    }
+  });
+
+  it("10 가장 큰 공약수와 가장 작은 공약수의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 공약수 중에서 가장 큰/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(gcdOf(Number(m![1]), Number(m![2])) + 1);
+    }
+  });
+});

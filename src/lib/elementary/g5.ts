@@ -3644,6 +3644,87 @@ function comdiv123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 최대공약수 값. */
+function comdiv123Gcd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  const g = gcd(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 최대공약수를 구하시오.`,
+    n(g),
+    `공약수는 ${nums(divisors(g))}이고, 이 중 가장 큰 수가 최대공약수이므로 ${n(g)}입니다.`,
+  );
+}
+
+/** 문형 06 — 가장 작은 공약수는 1(정의). */
+function comdiv123Smallest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 가장 작은 수를 구하시오.`,
+    n(1),
+    `모든 자연수의 공약수에는 ${n(1)}이 들어 있으므로 가장 작은 공약수는 ${n(1)}입니다.`,
+  );
+}
+
+/** 문형 07 — 홀수인 공약수 개수. */
+function comdiv123OddCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  const odds = divisors(gcd(a, b)).filter((v) => v % 2 === 1);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 홀수는 모두 몇 개입니까?`,
+    n(odds.length),
+    `공약수는 ${nums(divisors(gcd(a, b)))}입니다. 이 중 홀수는 ${nums(odds)}이므로 ${n(odds.length)}개입니다.`,
+  );
+}
+
+/** 문형 08 — 두 수를 최대공약수로 나눈 몫의 합. */
+function comdiv123QuotientSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  const g = gcd(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}를 최대공약수로 각각 나누면 몫이 나옵니다. 두 몫의 합은 얼마입니까?`,
+    n(a / g + b / g),
+    `최대공약수는 ${n(g)}이므로 몫은 ${n(a / g)}, ${n(b / g)}입니다. 합은 ${expr(`${a / g}+${b / g}=${a / g + b / g}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 공약수 중 짝수의 합. */
+function comdiv123EvenSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  for (let i = 0; i < 20; i += 1) {
+    const pair = pairWithRichGcd(rng);
+    if (gcd(pair[0], pair[1]) % 2 === 0) {
+      [a, b] = pair;
+      break;
+    }
+  }
+  if (a === 0) [a, b] = [24, 36];
+  const evens = divisors(gcd(a, b)).filter((v) => v % 2 === 0);
+  const sum = evens.reduce((x, y) => x + y, 0);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 짝수를 모두 더하면 얼마입니까?`,
+    n(sum),
+    `공약수 중 짝수는 ${evens.length === 0 ? "없습니다" : nums(evens)}입니다. 합은 ${n(sum)}입니다.`,
+  );
+}
+
+/** 문형 10 — 가장 큰 공약수와 가장 작은 공약수의 합. */
+function comdiv123MinMaxSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pairWithRichGcd(rng);
+  const g = gcd(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공약수 중에서 가장 큰 수와 가장 작은 수의 합은 얼마입니까?`,
+    n(g + 1),
+    `가장 큰 공약수는 최대공약수 ${n(g)}이고 가장 작은 공약수는 ${n(1)}이므로 합은 ${expr(`${g}+1=${g + 1}`)}입니다.`,
+  );
+}
+
 /* ── 1-2-4 최대공약수 구하는 방법 — 나누기·자르기 문장은 이 소단원만 쓴다 ── */
 
 /** 연산 — 최대공약수 값을 구한다(해설이 나눗셈법을 보인다 — 표준의 약수 나열과 다른 길). */
@@ -3742,6 +3823,96 @@ function gcd124Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${nj(a, "과", "와")} ${nj(b, "을", "를")} 어떤 수로 나누면 두 수 모두 나누어떨어집니다. 어떤 수가 될 수 있는 수는 모두 몇 개입니까?`,
     n(divisors(g).length),
     `어떤 수는 두 수의 공약수입니다. 최대공약수 ${n(g)}의 약수인 ${nums(divisors(g))}이므로 모두 ${n(divisors(g).length)}개입니다.`,
+  );
+}
+
+/** 문형 05 — 두 몫 중 더 큰 수. */
+function gcd124BiggerQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  const hi = Math.max(a / g, b / g);
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}를 최대공약수로 나누면 몫이 둘 나옵니다. 더 큰 몫은 얼마입니까?`,
+    n(hi),
+    `최대공약수는 ${n(g)}이므로 몫은 ${n(a / g)}, ${n(b / g)}입니다. 더 큰 몫은 ${n(hi)}입니다.`,
+  );
+}
+
+/** 문형 06 — 최대공약수로 나누면 나머지는 0. */
+function gcd124Remainder(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  const x = intBetween(rng, 0, 1) === 0 ? a : b;
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}의 최대공약수로 ${nj(x, "을", "를")} 나누면 나머지는 얼마입니까?`,
+    n(0),
+    `최대공약수는 ${n(g)}이고 ${expr(`${x}\\div${g}=${x / g}`)}이므로 나머지는 ${n(0)}입니다.`,
+  );
+}
+
+/** 문형 07 — 세 수의 최대공약수. */
+function gcd124Three(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = pick(rng, [4, 6, 8, 9]);
+  const p = pick(rng, [2, 3, 4, 5]);
+  const q = pick(
+    rng,
+    [2, 3, 4, 5, 7].filter((v) => v !== p),
+  );
+  const r = pick(
+    rng,
+    [2, 3, 5, 7].filter((v) => v !== p && v !== q),
+  );
+  const a = g * p;
+  const b = g * q;
+  const c = g * r;
+  return make(
+    unit,
+    `세 수 ${n(a)}, ${n(b)}, ${n(c)}의 최대공약수를 구하시오.`,
+    n(g),
+    `세 수를 ${nro(g)} 나누면 몫이 ${n(p)}, ${n(q)}, ${n(r)}이고 이 몫들의 공약수는 ${n(1)}뿐입니다. 따라서 최대공약수는 ${n(g)}입니다.`,
+  );
+}
+
+/** 문형 08 — 어떤 수가 두 수를 모두 나누는가. */
+function gcd124DividesBoth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const d = ok ? g : g + 1;
+  return make(
+    unit,
+    `${nj(d, "은", "는")} ${n(a)}와 ${n(b)}를 모두 나누어떨어지게 합니까? (예, 아니요)`,
+    a % d === 0 && b % d === 0 ? "예" : "아니요",
+    a % d === 0 && b % d === 0
+      ? `${nj(d, "은", "는")} 두 수의 공약수입니다.`
+      : `${nj(d, "은", "는")} 두 수를 모두 나누지 못합니다.`,
+  );
+}
+
+/** 문형 09 — 두 몫의 차. */
+function gcd124QuotDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  const diff = Math.abs(a / g - b / g);
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}를 최대공약수로 나눈 두 몫의 차는 얼마입니까?`,
+    n(diff),
+    `몫은 ${n(a / g)}, ${n(b / g)}이므로 차는 ${n(diff)}입니다.`,
+  );
+}
+
+/** 문형 10 — 최대공약수와 한 몫의 곱은 원래 수. */
+function gcd124Recover(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, GCD_PAIRS);
+  const g = gcd(a, b);
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}의 최대공약수와, ${n(a)}을 최대공약수로 나눈 몫을 곱하면 얼마입니까?`,
+    n(a),
+    `최대공약수는 ${n(g)}, 몫은 ${n(a / g)}이므로 ${expr(`${g}\\times${a / g}=${a}`)}입니다.`,
   );
 }
 
@@ -7776,6 +7947,18 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: mix113MulDivSum },
     { id: "09", tier: "응용", generate: mix113ThenAdd },
     { id: "10", tier: "응용", generate: mix113Bigger },
+  ],
+  "초5|1-2-3": [
+    { id: "01", tier: "연산", generate: comdiv123Calc },
+    { id: "02", tier: "기본", generate: comdiv123Read },
+    { id: "03", tier: "응용", generate: comdiv123Apply },
+    { id: "04", tier: "심화", generate: comdiv123Deep },
+    { id: "05", tier: "기본", generate: comdiv123Gcd },
+    { id: "06", tier: "기본", generate: comdiv123Smallest },
+    { id: "07", tier: "기본", generate: comdiv123OddCount },
+    { id: "08", tier: "응용", generate: comdiv123QuotientSum },
+    { id: "09", tier: "응용", generate: comdiv123EvenSum },
+    { id: "10", tier: "응용", generate: comdiv123MinMaxSum },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
