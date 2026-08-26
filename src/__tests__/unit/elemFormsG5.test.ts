@@ -519,3 +519,66 @@ describe("초5 1-2-1 약수와 배수", () => {
     }
   });
 });
+
+describe("초5 1-2-2 약수와 배수의 관계", () => {
+  const unit = unitOf("1-2-2");
+
+  it("05 배수 판정", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 배수입니까/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(
+        Number(m![1]) % Number(m![2]) === 0 ? "예" : "아니요",
+      );
+    }
+  });
+
+  it("06 몫", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 배수입니다.*나누면 몫/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) / Number(m![2]));
+    }
+  });
+
+  it("07 두 수의 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 약수입니다\. 두 수/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+    }
+  });
+
+  it("08 L보다 큰 가장 작은 배수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$의 배수 중에서 \$(\d+)\$보다 큰/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const L = Number(m![2]);
+      expect(answerInt(p.answer)).toBe(Math.ceil((L + 1) / a) * a);
+    }
+  });
+
+  it("09 나머지", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$.*나머지/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) % Number(m![2]));
+    }
+  });
+
+  it("10 곱셈식에서 알 수 있는 약수 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\$(\d+)\\times(\d+)=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      const uniq = new Set([1, Number(m![1]), Number(m![2]), Number(m![3])]);
+      expect(answerInt(p.answer)).toBe(uniq.size);
+    }
+  });
+});

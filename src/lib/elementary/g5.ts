@@ -3439,6 +3439,94 @@ function rel122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 배수인지 판정. */
+function rel122IsMultiple(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 9);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const c = ok
+    ? a * intBetween(rng, 2, 6)
+    : a * intBetween(rng, 2, 6) + intBetween(rng, 1, a - 1);
+  return make(
+    unit,
+    `${nj(c, "은", "는")} ${n(a)}의 배수입니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    ok
+      ? `${expr(`${c}\\div${a}=${c / a}`)}이므로 ${nj(c, "은", "는")} ${n(a)}의 배수입니다.`
+      : `${nj(c, "은", "는")} ${nro(a)} 나누어떨어지지 않으므로 배수가 아닙니다.`,
+  );
+}
+
+/** 문형 06 — 나누어떨어질 때의 몫. */
+function rel122Quotient(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 12);
+  const b = intBetween(rng, 3, 9);
+  const c = a * b;
+  return make(
+    unit,
+    `${nj(c, "은", "는")} ${n(a)}의 배수입니다. ${nj(c, "을", "를")} ${nro(a)} 나누면 몫은 얼마입니까?`,
+    n(b),
+    `${expr(`${c}\\div${a}=${b}`)}이므로 몫은 ${n(b)}입니다.`,
+  );
+}
+
+/** 문형 07 — 관계인 두 수의 곱. */
+function rel122Product(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 12);
+  const b = intBetween(rng, 3, 9);
+  const c = a * b;
+  return make(
+    unit,
+    `${nj(a, "은", "는")} ${n(c)}의 약수입니다. 두 수 ${nj(a, "과", "와")} ${n(c)}의 곱은 얼마입니까?`,
+    n(a * c),
+    `${expr(`${a}\\times${c}=${a * c}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — L보다 큰 가장 작은 배수. */
+function rel122NextMultiple(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 4, 9);
+  const k = intBetween(rng, 3, 7);
+  const L = a * k + intBetween(rng, 1, a - 1);
+  return make(
+    unit,
+    `${n(a)}의 배수 중에서 ${n(L)}보다 큰 수 중 가장 작은 수를 구하시오.`,
+    n(a * (k + 1)),
+    `${expr(`${a}\\times${k}=${a * k}`)}은 ${n(L)} 이하이고, 바로 다음 배수는 ${expr(`${a}\\times${k + 1}=${a * (k + 1)}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 나눗셈의 나머지(05는 배수 판정). */
+function rel122Remainder(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 9);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const c = a * intBetween(rng, 3, 8);
+  const x = ok ? a : a + intBetween(rng, 1, Math.min(4, a - 1));
+  const rem = c % x;
+  return make(
+    unit,
+    `${nj(c, "을", "를")} ${nro(x)} 나누면 나머지는 얼마입니까?`,
+    n(rem),
+    `${expr(`${c}\\div${x}`)}의 몫은 ${n(Math.floor(c / x))}이고 나머지는 ${n(rem)}입니다.`,
+  );
+}
+
+/** 문형 10 — 곱셈식에서 알 수 있는 약수의 개수. */
+function rel122FactorCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = intBetween(rng, 2, 8);
+  const q = pick(
+    rng,
+    [2, 3, 4, 5, 6, 7, 8].filter((v) => v !== p),
+  );
+  const c = p * q;
+  const uniq = [...new Set([1, Math.min(p, q), Math.max(p, q), c])];
+  return make(
+    unit,
+    `${expr(`${p}\\times${q}=${c}`)}에서 알 수 있는 ${n(c)}의 약수는 모두 몇 개입니까?`,
+    n(uniq.length),
+    `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 약수는 ${nums(uniq)}의 ${n(uniq.length)}개입니다.`,
+  );
+}
+
 /* ── 1-2-3 공약수와 최대공약수 — 공약수를 «집합»으로 다룬다(공약수 = 최대공약수의 약수) ── */
 
 /** 연산 — 두 번째로 큰 공약수를 짚거나, 최대공약수에서 공약수 전부를 편다. */
@@ -7688,6 +7776,18 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: mix113MulDivSum },
     { id: "09", tier: "응용", generate: mix113ThenAdd },
     { id: "10", tier: "응용", generate: mix113Bigger },
+  ],
+  "초5|1-2-2": [
+    { id: "01", tier: "연산", generate: rel122Calc },
+    { id: "02", tier: "기본", generate: rel122Read },
+    { id: "03", tier: "응용", generate: rel122Apply },
+    { id: "04", tier: "심화", generate: rel122Deep },
+    { id: "05", tier: "기본", generate: rel122IsMultiple },
+    { id: "06", tier: "기본", generate: rel122Quotient },
+    { id: "07", tier: "기본", generate: rel122Product },
+    { id: "08", tier: "응용", generate: rel122NextMultiple },
+    { id: "09", tier: "응용", generate: rel122Remainder },
+    { id: "10", tier: "응용", generate: rel122FactorCount },
   ],
   "초5|1-2-1": [
     { id: "01", tier: "연산", generate: fac121Calc },
