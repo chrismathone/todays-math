@@ -8008,6 +8008,90 @@ function ang122Rays(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 직각삼각형 개수. 01 은 기호를 고른다. */
+function tri123RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각삼각형은 모두 몇 개인지 쓰시오.`,
+    n(rightCount),
+    `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 06 — 직각삼각형이 아닌 기호. */
+function tri123NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const other = row.labels.filter((l) => !row.rightLabels.includes(l));
+  const ans = pick(rng, other);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형의 기호를 쓰시오.`,
+    ans,
+    `직각삼각형이 아닌 것은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 07 — 정의. */
+function tri123Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 각이 직각인 삼각형을 무엇이라고 합니까? 그런 삼각형을 ${n(many)}개 그릴 수 있습니다.`,
+    "직각삼각형",
+    `한 각이 직각인 삼각형이 직각삼각형입니다.`,
+  );
+}
+
+/** 문형 08 — 직각삼각형만 모아 변의 수. 03 은 아닌 개수, 10 은 모든 꼭짓점. */
+function tri123RightSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = 3;
+  const rightCount = intBetween(rng, 1, 2);
+  const row = triangleRow(rng, count, rightCount);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각삼각형의 변은 모두 몇 개인지 쓰시오.`,
+    n(3 * rightCount),
+    `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, 변은 각각 3개이므로 ${expr(`${rightCount}\\times3=${3 * rightCount}`)} 개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 09 — 직각삼각형 기호를 모두. 둘을 고르게 한다. */
+function tri123AllRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = triangleRow(rng, 3, 2);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 직각삼각형의 기호를 모두 쓰시오.`,
+    row.rightLabels.join(", "),
+    `직각삼각형은 ${row.rightLabels.join(", ")} 입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
+/** 문형 10 — 꼭짓점 수. 삼각형마다 셋. */
+function tri123Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 3);
+  const rightCount = intBetween(rng, 1, Math.max(1, count - 1));
+  const row = triangleRow(rng, count, rightCount);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 삼각형 ${n(count)}개의 꼭짓점은 모두 몇 개인지 쓰시오.`,
+    n(3 * count),
+    `삼각형 ${n(count)}개에 꼭짓점이 각각 3개이므로 ${expr(`${count}\\times3=${3 * count}`)} 개입니다.`,
+    pointGridSpec(row.cols, 2, row.shapes),
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8080,6 +8164,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: ang122OtherCount },
     { id: "09", tier: "응용", generate: ang122AllRight },
     { id: "10", tier: "응용", generate: ang122Rays },
+  ],
+  "초3|1-2-3": [
+    { id: "01", tier: "연산", generate: tri123Calc },
+    { id: "02", tier: "기본", generate: tri123Word },
+    { id: "03", tier: "응용", generate: tri123Apply },
+    { id: "04", tier: "심화", generate: tri123Deep },
+    { id: "05", tier: "기본", generate: tri123RightCount },
+    { id: "06", tier: "기본", generate: tri123NotRight },
+    { id: "07", tier: "기본", generate: tri123Def },
+    { id: "08", tier: "응용", generate: tri123RightSides },
+    { id: "09", tier: "응용", generate: tri123AllRight },
+    { id: "10", tier: "응용", generate: tri123Vertices },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },

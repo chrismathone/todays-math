@@ -518,3 +518,58 @@ describe("초3 1-2-2 각·직각 — 세는 대상이 답이다", () => {
     }
   });
 });
+
+describe("초3 1-2-3 직각삼각형 — 세는 대상이 답이다", () => {
+  const unit = unitOf("1-2-3");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("07 정의는 직각삼각형", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe(
+        "직각삼각형",
+      );
+    }
+  });
+
+  it("05 직각삼각형 개수는 1 또는 2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect([1, 2]).toContain(answerInt(p.answer));
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("06 아닌 기호는 가나다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(["가", "나", "다"]).toContain(p.answer);
+    }
+  });
+
+  it("08 직각삼각형 변의 수는 3의 배수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const sides = answerInt(p.answer);
+      expect(sides % 3).toBe(0);
+      expect(sides).toBeGreaterThan(0);
+    }
+  });
+
+  it("09 직각삼각형 기호가 둘", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      expect(p.answer).toMatch(/^[가나다], [가나다]$/);
+    }
+  });
+
+  it("10 꼭짓점은 삼각형 수×3", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const count = katexInts(p.content)[1]!;
+      expect(answerInt(p.answer)).toBe(3 * count);
+    }
+  });
+});
