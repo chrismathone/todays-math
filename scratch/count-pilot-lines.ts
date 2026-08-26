@@ -76,7 +76,9 @@ for (const g of groups) {
   const rows = g.names.map((name) => ({
     name,
     lines: fnLines(src, name),
-    fig: g.figNames.includes(name),
+    // `as const` 라 그림이 없는 무리의 `figNames` 는 빈 튜플(=never[])이다.
+    // 그대로 `includes` 하면 tsc 가 TS2345 로 문다 — **관문(vitest)은 타입을 안 본다.**
+    fig: (g.figNames as readonly string[]).includes(name),
   }));
   const sum = rows.reduce((s, r) => s + r.lines, 0);
   console.log(
