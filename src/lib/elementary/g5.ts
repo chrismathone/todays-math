@@ -12273,14 +12273,14 @@ function box253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 05 — 가로·높이 면과 평행한 면의 넓이. 세 치수를 다 세워 연산(n0*n1)과 셈을 가른다. */
+/** 문형 05 — 한 면과 수직인 모서리(높이) 넷의 합. 01은 평행한 면의 넓이라 면 이름만 바꾸면 같은 물음이다. */
 function box253WHParallel(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = boxDims(rng);
   return make(
     unit,
-    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서 가로와 높이로 이루어진 면과 서로 평행한 면의 넓이는 몇 cm²입니까?`,
-    n(w * h),
-    `가로와 높이로 이루어진 면과 평행한 면은 합동이므로 넓이도 ${expr(`${w}\\times${h}=${w * h}`)} cm²입니다.`,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서, 가로와 세로로 이루어진 면과 수직인 모서리의 길이의 합은 몇 cm입니까?`,
+    n(4 * h),
+    `그 면과 수직인 모서리는 높이 모서리이고 ${n(4)}개입니다. 합은 ${expr(`${h}\\times4=${4 * h}`)}이므로 ${n(4 * h)} cm입니다.`,
     fig("cuboid", { w, d, h }),
   );
 }
