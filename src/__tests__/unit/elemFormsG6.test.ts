@@ -679,3 +679,58 @@ describe("초6 1-2-4 각뿔 밑면과 옆면 — 밑면 1 · 옆면 삼각형", 
     }
   });
 });
+
+describe("초6 1-2-5 각뿔 이름과 구성 요소 — 밑면과 꼭짓점을 가른다", () => {
+  const unit = unitOf("1-2-5");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("05 이름 앞의 수가 밑면 변의 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const n = sinoFrom(p.content);
+      expect(n, p.content).toBeTruthy();
+      expect(p.content).toMatch(/변/);
+      expect(answerInt(p.answer)).toBe(n);
+    }
+  });
+
+  it("06 꼭짓점+면−모서리 = 2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(p.content).toMatch(/빼면/);
+      expect(answerInt(p.answer)).toBe(2);
+    }
+  });
+
+  it("07 밑면 위 꼭짓점 = 변의 수 · 08 옆모서리 = 변의 수", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "07");
+      const n = sinoFrom(a.content);
+      expect(n, a.content).toBeTruthy();
+      expect(a.content).toMatch(/밑면 위에 놓인 꼭짓점/);
+      expect(answerInt(a.answer)).toBe(n);
+      const b = generateElementaryForm(unit, seed, "08");
+      const n2 = sinoFrom(b.content);
+      expect(n2, b.content).toBeTruthy();
+      expect(b.content).toMatch(/잇는 모서리/);
+      expect(answerInt(b.answer)).toBe(n2);
+    }
+  });
+
+  it("09 밑면을 이루는 모서리 · 10 밑면에 없는 꼭짓점 1", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "09");
+      const n = sinoFrom(a.content);
+      expect(n, a.content).toBeTruthy();
+      expect(a.content).toMatch(/밑면을 이루는 모서리/);
+      expect(answerInt(a.answer)).toBe(n);
+      const b = generateElementaryForm(unit, seed, "10");
+      expect(b.content).toMatch(/밑면에 있지 않은 꼭짓점/);
+      expect(answerInt(b.answer)).toBe(1);
+      expect(b.figureSpec).toBeTruthy();
+    }
+  });
+});

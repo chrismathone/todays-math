@@ -8040,6 +8040,81 @@ function pyrFaceFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 이름에서 밑면의 변의 수. 1-2-4 07 은 도형 이름. */
+function pyrPartFormBaseSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `각뿔의 이름이 ${sino(n)}각뿔이려면 밑면의 변은 몇 개여야 합니까?`,
+    num(n),
+    `각뿔의 이름 앞의 수는 밑면의 변의 수입니다. ${sino(n)}각뿔이므로 변은 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 06 — 꼭짓점+면−모서리 = 2. */
+function pyrPartFormEuler(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const p = pyramidParts(n);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 꼭짓점의 수와 면의 수를 더한 값에서 모서리의 수를 빼면 얼마입니까?`,
+    num(2),
+    `꼭짓점 ${num(p.꼭짓점)}개와 면 ${num(p.면)}개를 더하면 ${num(p.꼭짓점 + p.면)}이고, ` +
+      `모서리 ${num(p.모서리)}개를 빼면 ${expr(`${p.꼭짓점}+${p.면}-${p.모서리}=2`)} 입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 07 — 밑면에 있는 꼭짓점(각뿔의 꼭짓점 제외). */
+function pyrPartFormBaseVerts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 밑면 위에 놓인 꼭짓점은 몇 개입니까?`,
+    num(n),
+    `밑면은 ${polyName(n)}이므로 밑면의 꼭짓점은 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 08 — 각뿔의 꼭짓점에서 만나는 모서리 = n. */
+function pyrPartFormApexEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 각뿔의 꼭짓점과 밑면을 잇는 모서리는 몇 개입니까?`,
+    num(n),
+    `각뿔의 꼭짓점과 밑면의 각 꼭짓점을 잇는 옆모서리가 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 09 — 밑면에 있는 모서리. */
+function pyrPartFormBaseEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔의 밑면을 이루는 모서리는 몇 개입니까?`,
+    num(n),
+    `밑면은 ${polyName(n)}이므로 모서리는 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 10 — 밑면에 있지 않은 꼭짓점(각뿔의 꼭짓점)은 하나. */
+function pyrPartFormApex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PYRAMID_THINGS);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. 밑면에 있지 않은 꼭짓점은 몇 개입니까?`,
+    num(1),
+    `각뿔의 꼭짓점은 밑면 위에 있지 않습니다. 그런 꼭짓점은 ${num(1)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -8114,5 +8189,13 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a8: pyrFaceFormOneArea,
     a9: pyrFaceFormBasePerim,
     a10: pyrFaceFormSideMinusBase,
+  }),
+  "초6|1-2-5": forms10(pyrPartCalc, pyrPartRead, pyrPartApply, pyrPartDeep, {
+    b5: pyrPartFormBaseSides,
+    b6: pyrPartFormEuler,
+    b7: pyrPartFormBaseVerts,
+    a8: pyrPartFormApexEdges,
+    a9: pyrPartFormBaseEdges,
+    a10: pyrPartFormApex,
   }),
 };
