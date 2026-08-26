@@ -3,7 +3,7 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make, makeDeep } from "./make";
-import { divFrac, fmtFrac, gcd, lcm, mulFrac } from "./math";
+import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
@@ -7388,5 +7388,4708 @@ export const G6: Record<string, ChapterHandler> = {
 /**
  * 초6 문형 등록부. 소단원마다 문형 10개 (원장님 확정 2026-08-26 안 3 최고안).
  * 진척은 `npx tsx scripts/qa/probe-elem-forms.ts --grade 초6` 이 센다.
+ *
+ * 배분은 제품 `defaultRatioFor(10)` = 연산1·기본4·응용4·심화1.
+ * 01–04 는 기존 4단 핸들러를 **감싸기만** 한다(고치면 적재분이 달라진다).
  */
-export const G6_FORMS: Record<string, readonly ElemForm[]> = {};
+function forms10(
+  calc: ChapterHandler,
+  basic: ChapterHandler,
+  apply: ChapterHandler,
+  deep: ChapterHandler,
+  extra: {
+    b5: ChapterHandler;
+    b6: ChapterHandler;
+    b7: ChapterHandler;
+    a8: ChapterHandler;
+    a9: ChapterHandler;
+    a10: ChapterHandler;
+  },
+): readonly ElemForm[] {
+  return [
+    { id: "01", tier: "연산", generate: calc },
+    { id: "02", tier: "기본", generate: basic },
+    { id: "03", tier: "응용", generate: apply },
+    { id: "04", tier: "심화", generate: deep },
+    { id: "05", tier: "기본", generate: extra.b5 },
+    { id: "06", tier: "기본", generate: extra.b6 },
+    { id: "07", tier: "기본", generate: extra.b7 },
+    { id: "08", tier: "응용", generate: extra.a8 },
+    { id: "09", tier: "응용", generate: extra.a9 },
+    { id: "10", tier: "응용", generate: extra.a10 },
+  ];
+}
+
+/** 1-1-1 재료 — 몫이 진분수가 되게 `a < b`. */
+function natPair(rng: Rng): { a: number; b: number } {
+  const b = intBetween(rng, 3, 9);
+  return { a: intBetween(rng, 2, b - 1), b };
+}
+
+/** 문형 05 — 몫이 아니라 **분모**(나누는 수)를 묻는다. */
+function natDivFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 를 분수로 나타낼 때 분모는 얼마입니까?`,
+    num(b),
+    `나누는 수가 분모입니다. ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 이므로 분모는 ${num(b)}입니다.`,
+  );
+}
+
+/** 문형 06 — **분자**(나누어지는 수). 05 와 한 낱말만 바꾸면 안 되므로 식의 자리를 다르게 적는다. */
+function natDivFormNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `나누어지는 수가 ${num(a)}, 나누는 수가 ${num(b)}인 나눗셈의 몫을 분수로 나타낼 때, 분자는 얼마입니까?`,
+    num(a),
+    `나누어지는 수가 분자입니다. ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 이므로 분자는 ${num(a)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 흔한 거꾸로 표기(`b/a`)가 **틀렸다**는 참·거짓.
+ * 수가 바뀌어도 답은 「아니요」다 — 묻는 것은 표기 규칙이지 값이 아니다.
+ */
+function natDivFormReciprocalTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${b}=\\frac{${b}}{${a}}`)}`,
+    "아니요",
+    `나누어지는 수가 분자, 나누는 수가 분모이므로 ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 입니다. ` +
+      `${expr(`\\frac{${b}}{${a}}`)} 는 나누는 수와 나누어지는 수를 바꾼 것입니다.`,
+  );
+}
+
+/** 문형 08 — 분모가 같은 두 나눗셈 몫의 **합**(두 걸음). */
+function natDivFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 9);
+  const a = intBetween(rng, 1, b - 1);
+  const c = intBetween(rng, 1, b - 1);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${a}\\div${b}`)}, ${expr(`${c}\\div${b}`)}`,
+    expr(fmtFrac(a + c, b)),
+    `몫은 ${expr(`\\frac{${a}}{${b}}`)} 와 ${expr(`\\frac{${c}}{${b}}`)} 입니다. ` +
+      `분모가 같으므로 ${expr(`\\frac{${a}+${c}}{${b}}=${fmtFrac(a + c, b)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 문형 09 — 나누고 **그 몫의 절반**을 남긴다.
+ * 03 은 「빼고 나눈다」. 여기는 순서가 반대다.
+ */
+function natDivFormHalfShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const people = intBetween(rng, 3, 8);
+  const amount = intBetween(rng, 2, people - 1);
+  const [p, q] = divFrac(amount, people, 2, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(amount, s.unit)}${s.unitJosa} ${num(people)}명이 똑같이 ${s.verb} 합니다. ` +
+      `한 사람이 자기 몫의 절반만 가졌습니다. 그 사람이 가진 양은 몇 ${s.unit}입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 사람의 몫은 ${expr(`${amount}\\div${people}=${fmtFrac(amount, people)}`)} ${s.unit}입니다. ` +
+      `절반은 ${expr(`${fmtFrac(amount, people)}\\div2=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 나눗셈 중 **큰 몫**. 답이 식 번호가 아니라 그 몫이다. */
+function natDivFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p1 = natPair(rng);
+  let p2 = natPair(rng);
+  for (let t = 0; t < 24 && p1.a * p2.b === p2.a * p1.b; t += 1)
+    p2 = natPair(rng);
+  if (p1.a * p2.b === p2.a * p1.b) {
+    p2 = { a: p1.a, b: p1.b + 1 <= 9 ? p1.b + 1 : p1.b - 1 };
+  }
+  const leftBigger = p1.a * p2.b > p2.a * p1.b;
+  const win = leftBigger ? p1 : p2;
+  return make(
+    unit,
+    `다음 두 나눗셈 가운데 몫이 더 큰 쪽의 몫을 분수로 나타내시오.\n\n${expr(`${p1.a}\\div${p1.b}`)}\n${expr(`${p2.a}\\div${p2.b}`)}`,
+    expr(fmtFrac(win.a, win.b)),
+    `${expr(`${p1.a}\\div${p1.b}=${fmtFrac(p1.a, p1.b)}`)}, ` +
+      `${expr(`${p2.a}\\div${p2.b}=${fmtFrac(p2.a, p2.b)}`)} 입니다. ` +
+      `더 큰 몫은 ${expr(fmtFrac(win.a, win.b))} 입니다.`,
+  );
+}
+
+/** 1-1-2 재료 — 진분수 ÷ 자연수. */
+function fracNatPair(rng: Rng): { top: number; d: number; k: number } {
+  const d = intBetween(rng, 2, 9);
+  return { top: coprimeTop(rng, d), d, k: intBetween(rng, 2, 7) };
+}
+
+/** 문형 05 — 분모에 **곱하는 수**(나누는 수). 몫이 아니다. */
+function fracNatFormMulDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `다음 나눗셈에서 분모에 곱하는 자연수는 얼마입니까?\n\n${expr(`\\frac{${top}}{${d}}\\div${k}`)}`,
+    num(k),
+    `분수는 자연수로 나눌 때 분자는 그대로 두고 분모에 나누는 수를 곱합니다. 나누는 수는 ${num(k)}입니다.`,
+  );
+}
+
+/** 문형 06 — 그대로 두는 **분자**. */
+function fracNatFormKeepNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${top}}{${d}}`)} 를 ${num(k)}${numRo(k)} 나눌 때 그대로 두는 분자의 값은 얼마입니까?`,
+    num(top),
+    `분자는 그대로 두고 분모에만 곱합니다. 분자는 ${num(top)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 초등 규칙의 반대(분자에 곱한다)가 **틀렸다**.
+ * 원장님이 잡으신 자리(해설은 분자에 곱한다, 식은 분모에 곱한다)를 학생이 고른다.
+ */
+function fracNatFormWrongRuleTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${top}}{${d}}\\div${k}=\\frac{${top}\\times${k}}{${d}}`)}`,
+    "아니요",
+    `분자는 그대로 두고 분모에 곱합니다. ${expr(`\\frac{${top}}{${d}}\\div${k}=\\frac{${top}}{${d}\\times${k}}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 같은 분수 구조 두 몫의 **합**. */
+function fracNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 8);
+  const k = intBetween(rng, 2, 5);
+  const a = coprimeTop(rng, d);
+  const c = coprimeTop(rng, d);
+  const [p, q] = addFrac(a, d * k, c, d * k);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${d}}\\div${k}`)}, ${expr(`\\frac{${c}}{${d}}\\div${k}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(`\\frac{${a}}{${d}\\times${k}}`)} 와 ${expr(`\\frac{${c}}{${d}\\times${k}}`)} 입니다. ` +
+      `합은 ${expr(`\\frac{${a}+${c}}{${d * k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 도막을 구한 뒤 **몇 배를 이어 붙인다**(두 걸음). 03 은 두 번 자른다. */
+function fracNatFormTimesPiece(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CUT_STUFF);
+  const { top, d, k } = fracNatPair(rng);
+  const times = pick(
+    rng,
+    [2, 3, 4].filter((t) => t !== k).length > 0
+      ? [2, 3, 4].filter((t) => t !== k)
+      : ([3] as const),
+  );
+  const [oneN, oneD] = divFrac(top, d, k, 1);
+  const [p, q] = mulFrac(oneN, oneD, times, 1);
+  return make(
+    unit,
+    `길이가 ${expr(`\\frac{${top}}{${d}}`)} m인 ${thing}${josa(thing, "을", "를")} 똑같이 ${num(k)}도막으로 잘랐습니다. ` +
+      `그중 ${num(times)}도막을 이어 붙이면 몇 m입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 도막은 ${expr(`\\frac{${top}}{${d}}\\div${k}=${fmtFrac(oneN, oneD)}`)} m입니다. ` +
+      `${num(times)}도막은 ${expr(`${fmtFrac(oneN, oneD)}\\times${times}=${fmtFrac(p, q)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 같은 분수를 다른 수로 나눈 두 몫의 **차**. 1-1-1 의 「큰 몫」과 가른다. */
+function fracNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 8);
+  const top = coprimeTop(rng, d);
+  const k = intBetween(rng, 2, 4);
+  const m = intBetween(rng, k + 1, 7);
+  const [p, q] = subFrac(top, d * k, top, d * m);
+  return make(
+    unit,
+    `${expr(`\\frac{${top}}{${d}}`)} 를 ${num(k)}${numRo(k)} 나눈 몫에서 ${num(m)}${numRo(m)} 나눈 몫을 뺀 값은 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${top}}{${d}}\\div${k}=${fmtFrac(top, d * k)}`)}, ` +
+      `${expr(`\\frac{${top}}{${d}}\\div${m}=${fmtFrac(top, d * m)}`)} 입니다. ` +
+      `차는 ${expr(`${fmtFrac(top, d * k)}-${fmtFrac(top, d * m)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+function mixedLatex(m: { w: number; t: number; d: number }): string {
+  return `${m.w}\\frac{${m.t}}{${m.d}}`;
+}
+
+/** 문형 05 — 가분수로 고친 **분자**. 몫이 아니다. */
+function mixedNatFormImpNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 가분수로 고칠 때 분자는 얼마입니까?`,
+    num(m.imp),
+    `자연수 부분에 분모를 곱하고 분자를 더합니다. ${expr(`${m.w}\\times${m.d}+${m.t}=${m.imp}`)} 이므로 분자는 ${num(m.imp)}입니다.`,
+  );
+}
+
+/** 문형 06 — 대분수의 **자연수 부분**. */
+function mixedNatFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  return make(
+    unit,
+    `대분수 ${expr(mixedLatex(m))} 에서 자연수 부분은 얼마입니까?`,
+    num(m.w),
+    `대분수 ${expr(mixedLatex(m))} 의 자연수 부분은 ${num(m.w)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 자연수 부분은 그대로 두고 분수 부분만 나눈 식이 **틀렸다**.
+ */
+function mixedNatFormHalfConvertTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  const k = intBetween(rng, 2, 6);
+  const [p, q] = divFrac(m.imp, m.d, k, 1);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${mixedLatex(m)}\\div${k}=${m.w}\\frac{${m.t}}{${m.d}\\times${k}}`)}`,
+    "아니요",
+    `대분수는 먼저 가분수로 고칩니다. ${expr(`${mixedLatex(m)}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ` +
+      `${expr(`\\frac{${m.imp}}{${m.d}\\times${k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 두 대분수÷같은 수의 몫의 **합**. */
+function mixedNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = mixedParts(rng, 3);
+  const b = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 5);
+  const [p1, q1] = divFrac(a.imp, a.d, k, 1);
+  const [p2, q2] = divFrac(b.imp, b.d, k, 1);
+  const [p, q] = addFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${mixedLatex(a)}\\div${k}`)}, ${expr(`${mixedLatex(b)}\\div${k}`)}`,
+    expr(fmtFrac(p, q)),
+    `각각 가분수로 고쳐 나누면 ${expr(fmtFrac(p1, q1))} 와 ${expr(fmtFrac(p2, q2))} 입니다. ` +
+      `합은 ${expr(`${fmtFrac(p1, q1)}+${fmtFrac(p2, q2)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 문형 09 — 한 도막이 정다각형의 한 변이 될 때 **둘레**(두 걸음).
+ * 03 은 둘레에서 한 변을 구한다. 여기는 반대다.
+ */
+function mixedNatFormPolyPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 5);
+  const sides = pick(rng, POLY_SIDES);
+  const [oneN, oneD] = divFrac(m.imp, m.d, k, 1);
+  const [p, q] = mulFrac(oneN, oneD, sides, 1);
+  return make(
+    unit,
+    `길이가 ${expr(mixedLatex(m))} m인 색 끈을 똑같이 ${num(k)}도막으로 잘라 ` +
+      `${polyName(sides, true)}의 한 변으로 썼습니다. 이 도형의 둘레는 몇 m입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 변은 ${expr(`${mixedLatex(m)}\\div${k}=${fmtFrac(oneN, oneD)}`)} m입니다. ` +
+      `변의 수가 ${num(sides)}이므로 둘레는 ${expr(`${fmtFrac(oneN, oneD)}\\times${sides}=${fmtFrac(p, q)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 같은 대분수를 다른 수로 나눈 몫의 **차**. */
+function mixedNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 4);
+  const n2 = intBetween(rng, k + 1, 7);
+  const [p1, q1] = divFrac(m.imp, m.d, k, 1);
+  const [p2, q2] = divFrac(m.imp, m.d, n2, 1);
+  const [p, q] = subFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 ${num(k)}${numRo(k)} 나눈 몫에서 ${num(n2)}${numRo(n2)} 나눈 몫을 뺀 값은 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `${expr(`${mixedLatex(m)}\\div${k}=${fmtFrac(p1, q1)}`)}, ` +
+      `${expr(`${mixedLatex(m)}\\div${n2}=${fmtFrac(p2, q2)}`)} 입니다. ` +
+      `차는 ${expr(`${fmtFrac(p1, q1)}-${fmtFrac(p2, q2)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+function prismFigOf(n: number) {
+  return fig("prism", { sides: n, h: 3 });
+}
+
+/** 문형 05 — 밑면은 **둘**. 02 는 옆면 수. */
+function prismFaceFormBaseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 밑면은 몇 개입니까?`,
+    num(2),
+    `각기둥의 밑면은 서로 평행하고 합동인 두 면입니다. 밑면은 ${num(2)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 06 — 옆면의 **모양**. 개수가 아니다. */
+function prismFaceFormSideShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 옆면은 어떤 도형입니까?`,
+    "직사각형",
+    `각기둥의 옆면은 밑면의 한 변을 높이로 세운 직사각형입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 07 — 이름에서 **밑면의 모양**. 01 은 옆면의 수. */
+function prismFaceFormBaseShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 밑면은 어떤 도형입니까?`,
+    polyName(n),
+    `각기둥의 이름은 밑면의 모양으로 정합니다. ${sino(n)}각기둥이므로 밑면은 ${polyName(n)}입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 08 — 옆면 **하나**의 넓이. 03 은 옆면 전체. */
+function prismFaceFormOneArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 한 변의 길이가 ${unitNum(a, "cm")}, 높이가 ${unitNum(h, "cm")} 인 각기둥이 있습니다. ` +
+      `옆면 하나의 넓이는 몇 cm²입니까?`,
+    num(a * h),
+    `옆면 하나는 가로 ${unitNum(a, "cm")}, 세로 ${unitNum(h, "cm")} 인 직사각형이므로 ` +
+      `${expr(`${a}\\times${h}=${a * h}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 09 — 밑면의 **둘레**. */
+function prismFaceFormBasePerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥이 있습니다. ` +
+      `밑면 하나의 둘레는 몇 cm입니까?`,
+    num(n * a),
+    `밑면은 ${polyName(n)}이므로 둘레는 ${expr(`${a}\\times${n}=${n * a}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 10 — 옆면 수에서 밑면 수를 뺀 값. */
+function prismFaceFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 옆면의 수는 밑면의 수보다 몇 개 더 많습니까?`,
+    num(n - 2),
+    `옆면은 ${num(n)}개, 밑면은 ${num(2)}개이므로 ${expr(`${n}-2=${n - 2}`)} 개 더 많습니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 05 — 이름에서 밑면의 **변의 수**. 1-2-1 07 은 밑면의 도형 이름. */
+function prismPartFormBaseSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `각기둥의 이름이 ${sino(n)}각기둥이려면 밑면의 변은 몇 개여야 합니까?`,
+    num(n),
+    `각기둥의 이름 앞의 수는 밑면의 변의 수입니다. ${sino(n)}각기둥이므로 변은 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 06 — 꼭짓점+면−모서리 = 2 (오일러). 답이 상수여도 묻는 관계가 다르다. */
+function prismPartFormEuler(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const p = prismParts(n);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 꼭짓점의 수와 면의 수를 더한 값에서 모서리의 수를 빼면 얼마입니까?`,
+    num(2),
+    `꼭짓점 ${num(p.꼭짓점)}개와 면 ${num(p.면)}개를 더하면 ${num(p.꼭짓점 + p.면)}이고, ` +
+      `모서리 ${num(p.모서리)}개를 빼면 ${expr(`${p.꼭짓점}+${p.면}-${p.모서리}=2`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 07 — 한 밑면에 있는 꼭짓점. 전체 꼭짓점(2n)이 아니다. */
+function prismPartFormBaseVerts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 한 밑면에 있는 꼭짓점은 몇 개입니까?`,
+    num(n),
+    `한 밑면은 ${polyName(n)}이므로 꼭짓점은 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 08 — 두 밑면을 잇는 옆모서리. */
+function prismPartFormVertical(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 두 밑면을 잇는 모서리는 몇 개입니까?`,
+    num(n),
+    `밑면의 꼭짓점마다 옆모서리가 하나씩 있으므로 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 09 — 두 밑면에 있는 모서리만 (옆모서리 제외). */
+function prismPartFormBaseEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 밑면에 있는 모서리는 모두 몇 개입니까?`,
+    num(2 * n),
+    `밑면이 ${num(2)}개이고 각 밑면의 모서리는 ${num(n)}개이므로 ${expr(`${n}\\times2=${2 * n}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 10 — 한 꼭짓점에서 만나는 모서리. 답이 늘 3. */
+function prismPartFormMeet(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 한 꼭짓점에서 만나는 모서리는 몇 개입니까?`,
+    num(3),
+    `각기둥의 한 꼭짓점에는 밑면의 모서리 ${num(2)}개와 옆모서리 ${num(1)}개가 모이므로 ${num(3)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+function netFigOf(n: number) {
+  return fig("prism", { sides: n, h: 3, net: true });
+}
+
+/** 문형 05 — 전개도에서 밑면은 **둘**. */
+function netFormBaseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 밑면이 되는 면은 몇 개입니까?`,
+    num(2),
+    `각기둥의 전개도에는 밑면이 ${num(2)}개 있습니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 06 — 전개도의 옆면 모양. */
+function netFormSideShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 옆면이 되는 면은 어떤 도형입니까?`,
+    "직사각형",
+    `각기둥 전개도의 옆면은 직사각형입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 07 — 전개도의 면 전체 수 = n+2. */
+function netFormFaceTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 전개도에서 면은 모두 몇 개입니까?`,
+    num(n + 2),
+    `밑면 ${num(2)}개와 옆면 ${num(n)}개를 더하면 ${expr(`2+${n}=${n + 2}`)} 입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 08 — 전개도에서 밑면 둘의 둘레 합. 03 은 옆면 가로(밑면 하나 둘레). */
+function netFormTwoBasePerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥의 전개도입니다. ` +
+      `밑면이 되는 두 면의 둘레의 합은 몇 cm입니까?`,
+    num(2 * n * a),
+    `밑면 하나의 둘레는 ${expr(`${a}\\times${n}=${n * a}`)} cm이고, 밑면이 ${num(2)}개이므로 ` +
+      `${expr(`${n * a}\\times2=${2 * n * a}`)} 입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 09 — 접으면 밑면은 몇 각형. 02 는 입체 이름. */
+function netFormFoldedBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 이 전개도를 접으면 밑면은 몇 각형입니까?`,
+    polyName(n),
+    `옆면인 직사각형이 ${num(n)}개이므로 밑면은 ${polyName(n)}입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 10 — 전개도의 옆면 수에서 밑면 수를 뺀 값. */
+function netFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 전개도에서 옆면의 수는 밑면의 수보다 몇 개 더 많습니까?`,
+    num(n - 2),
+    `옆면 ${num(n)}개, 밑면 ${num(2)}개이므로 ${expr(`${n}-2=${n - 2}`)} 개 더 많습니다.`,
+    netFigOf(n),
+  );
+}
+
+function pyrFigOf(n: number) {
+  return fig("pyramid", { sides: n, h: 3 });
+}
+
+/** 문형 05 — 각뿔의 밑면은 **하나**. 각기둥(2)과 답이 다르다. */
+function pyrFaceFormBaseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PYRAMID_THINGS);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. 밑면은 몇 개입니까?`,
+    num(1),
+    `각뿔의 밑면은 ${num(1)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 06 — 옆면은 **삼각형**. 각기둥의 직사각형과 답이 다르다. */
+function pyrFaceFormSideShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PYRAMID_THINGS);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. 옆면은 어떤 도형입니까?`,
+    "삼각형",
+    `각뿔의 옆면은 밑면의 한 변과 각뿔의 꼭짓점을 이은 삼각형입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 07 — 이름에서 밑면의 모양. */
+function pyrFaceFormBaseShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔의 밑면은 어떤 도형입니까?`,
+    polyName(n),
+    `각뿔의 이름은 밑면의 모양으로 정합니다. ${sino(n)}각뿔이므로 밑면은 ${polyName(n)}입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 08 — 옆면 **하나**의 넓이(삼각형). 03 은 옆면 전체. */
+function pyrFaceFormOneArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = pick(
+    rng,
+    Array.from({ length: 9 }, (_, i) => i + 4).filter((v) => (a * v) % 2 === 0),
+  );
+  const one = (a * h) / 2;
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 한 변의 길이가 ${unitNum(a, "cm")}, ` +
+      `옆면인 삼각형의 높이가 ${unitNum(h, "cm")} 인 각뿔이 있습니다. 옆면 하나의 넓이는 몇 cm²입니까?`,
+    num(one),
+    `옆면 하나는 밑변 ${unitNum(a, "cm")}, 높이 ${unitNum(h, "cm")} 인 삼각형이므로 ` +
+      `${expr(`${a}\\times${h}\\div2=${one}`)} 입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 09 — 밑면의 둘레. */
+function pyrFaceFormBasePerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각뿔이 있습니다. ` +
+      `밑면의 둘레는 몇 cm입니까?`,
+    num(n * a),
+    `밑면은 ${polyName(n)}이므로 둘레는 ${expr(`${a}\\times${n}=${n * a}`)} 입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 10 — 옆면 수에서 밑면 수를 뺀 값 = n−1. 각기둥은 n−2. */
+function pyrFaceFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔의 옆면의 수는 밑면의 수보다 몇 개 더 많습니까?`,
+    num(n - 1),
+    `옆면은 ${num(n)}개, 밑면은 ${num(1)}개이므로 ${expr(`${n}-1=${n - 1}`)} 개 더 많습니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 05 — 이름에서 밑면의 변의 수. 1-2-4 07 은 도형 이름. */
+function pyrPartFormBaseSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `각뿔의 이름이 ${sino(n)}각뿔이려면 밑면의 변은 몇 개여야 합니까?`,
+    num(n),
+    `각뿔의 이름 앞의 수는 밑면의 변의 수입니다. ${sino(n)}각뿔이므로 변은 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 06 — 꼭짓점+면−모서리 = 2. */
+function pyrPartFormEuler(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const p = pyramidParts(n);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 꼭짓점의 수와 면의 수를 더한 값에서 모서리의 수를 빼면 얼마입니까?`,
+    num(2),
+    `꼭짓점 ${num(p.꼭짓점)}개와 면 ${num(p.면)}개를 더하면 ${num(p.꼭짓점 + p.면)}이고, ` +
+      `모서리 ${num(p.모서리)}개를 빼면 ${expr(`${p.꼭짓점}+${p.면}-${p.모서리}=2`)} 입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 07 — 밑면에 있는 꼭짓점(각뿔의 꼭짓점 제외). */
+function pyrPartFormBaseVerts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 밑면 위에 놓인 꼭짓점은 몇 개입니까?`,
+    num(n),
+    `밑면은 ${polyName(n)}이므로 밑면의 꼭짓점은 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 08 — 각뿔의 꼭짓점에서 만나는 모서리 = n. */
+function pyrPartFormApexEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔에서 각뿔의 꼭짓점과 밑면을 잇는 모서리는 몇 개입니까?`,
+    num(n),
+    `각뿔의 꼭짓점과 밑면의 각 꼭짓점을 잇는 옆모서리가 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 09 — 밑면에 있는 모서리. */
+function pyrPartFormBaseEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각뿔의 밑면을 이루는 모서리는 몇 개입니까?`,
+    num(n),
+    `밑면은 ${polyName(n)}이므로 모서리는 ${num(n)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 10 — 밑면에 있지 않은 꼭짓점(각뿔의 꼭짓점)은 하나. */
+function pyrPartFormApex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PYRAMID_THINGS);
+  return make(
+    unit,
+    `다음은 각뿔 모양 ${thing}입니다. 밑면에 있지 않은 꼭짓점은 몇 개입니까?`,
+    num(1),
+    `각뿔의 꼭짓점은 밑면 위에 있지 않습니다. 그런 꼭짓점은 ${num(1)}개입니다.`,
+    pyrFigOf(n),
+  );
+}
+
+/** 문형 05 — 나누는 수. 몫이 아니다. */
+function decNatFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${expr(`${a}\\div${c.b}`)} 의 오른쪽 수 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 **정수 부분**. */
+function decNatFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  const whole = Math.floor(c.q / 100);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 정수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}=${q}`)}`,
+    num(whole),
+    `몫은 ${num(q)}이므로 정수 부분은 ${num(whole)}입니다.`,
+  );
+}
+
+/** 문형 07 — 이 소단원의 몫은 1보다 크다. 「작다」는 틀렸다. */
+function decNatFormUnderTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 작다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 큽니다.`,
+  );
+}
+
+/** 문형 08 — 두 나눗셈 몫의 합. 센트 정수로 더한다. */
+function decNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.plain);
+  const y = pick(rng, DEC_DIV.plain);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 나눈 한 몫에서 일부를 쓰고 남은 양(두 걸음). 03 은 빼고 나눈다. */
+function decNatFormAfterShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    DEC_DIV.plain.filter((x) => x.q >= 40 && x.a <= 2000),
+  );
+  const s = pick(rng, POUR_STUFF);
+  const used = pick(
+    rng,
+    [10, 20, 30].filter((u) => u < c.q),
+  );
+  const left = c.q - used;
+  return make(
+    unit,
+    `${s.thing} ${unitNum(fromCents(c.a), s.unit)}${s.unitJosa} ${s.into} ${num(c.b)}개에 똑같이 나누어 담았습니다. ` +
+      `${s.into} 한 개에서 ${unitNum(fromCents(used), s.unit)}${s.unitJosa} 썼습니다. 남은 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(fromCents(left)),
+    `한 ${s.into}에 담은 양은 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} ${s.unit}입니다. ` +
+      `남은 양은 ${expr(`${fromCents(c.q)}-${fromCents(used)}=${fromCents(left)}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. 큰 쪽에서 작은 쪽을 뺀다. */
+function decNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.plain);
+  let y = pick(rng, DEC_DIV.plain);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, DEC_DIV.plain);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — 몫<1 이므로 자연수 부분은 0. 1-3-1 06 은 정수 부분이 1 이상. */
+function decUnderFormWholeZero(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 자연수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}=\\square`)}`,
+    num(0),
+    `나누어지는 수 ${num(a)}${centsJosa(c.a, "이", "가")} 나누는 수 ${num(c.b)}보다 작으므로 ` +
+      `몫의 자연수 부분은 ${num(0)}입니다.`,
+  );
+}
+
+/** 문형 06 — 나누어지는 수가 더 작다는 규칙이 **맞다**. */
+function decUnderFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
+    "예",
+    `나누어지는 수가 더 작으면 몫의 자연수 부분에 ${num(0)}을 씁니다.`,
+  );
+}
+
+/** 문형 07 — 이 소단원의 몫은 1보다 작다. 「크다」는 틀렸다. */
+function decUnderFormOverTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 크다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
+  );
+}
+
+/** 문형 08 — 몫이 1보다 작은 두 나눗셈의 합. */
+function decUnderFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.underOne);
+  const y = pick(rng, DEC_DIV.underOne);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 몫은 모두 ${num(1)}보다 작습니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 도막을 구한 뒤 몇 배를 이어 붙인다. 02 는 한 도막만. */
+function decUnderFormTimesPiece(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const thing = pick(rng, CUT_STUFF);
+  const times = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `${thing} ${unitNum(fromCents(c.a), "m")}를 똑같이 ${num(c.b)}도막으로 잘랐습니다. ` +
+      `그중 ${num(times)}도막을 이어 붙이면 몇 m입니까?`,
+    expr(fromCents(c.q * times)),
+    `한 도막은 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m입니다. ` +
+      `${num(times)}도막은 ${expr(`${fromCents(c.q)}\\times${times}=${fromCents(c.q * times)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 몫이 1보다 작은 두 나눗셈의 차. */
+function decUnderFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.underOne);
+  let y = pick(rng, DEC_DIV.underOne);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1)
+    y = pick(rng, DEC_DIV.underOne);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 두 몫은 모두 ${num(1)}보다 작습니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — 0을 내려 계산하는 나눗셈의 나누는 수. */
+function decBringFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `소수점 아래 ${num(0)}을 내려 계산하는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 소수 둘째 자리 숫자. */
+function decBringFormHundredth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 소수점 아래 둘째 자리 숫자는 얼마입니까?\n\n${expr(`${a}\\div${c.b}=${q}`)}`,
+    num(c.q % 10),
+    `몫 ${num(q)}의 소수점 아래 둘째 자리 숫자는 ${num(c.q % 10)}입니다.`,
+  );
+}
+
+/** 문형 07 — 나누어떨어지지 않으면 0을 내린다. 맞다. */
+function decBringFormZeroTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 를 계산할 때 나누어떨어지지 않으면 소수점 아래에 ${num(0)}을 내려 계속 나눈다.`,
+    "예",
+    `소수점 아래에서 나누어떨어지지 않으면 ${num(0)}을 내려 계산을 계속합니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function decBringFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_BRING_PURE);
+  const y = pick(rng, DEC_BRING_PURE);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 소수점 아래 ${num(0)}을 내려 계산합니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 하루에 가는 거리를 구한 뒤 이틀치. 02 는 하루만. */
+function decBringFormTwoDays(unit: UnitSeed, rng: Rng): ElemProblem {
+  const how = pick(rng, ["자전거로", "걸어서"] as const);
+  const c = pick(
+    rng,
+    DEC_BRING_PURE.filter((x) => x.a <= 3000),
+  );
+  return make(
+    unit,
+    `${how} ${unitNum(fromCents(c.a), "km")}를 ${num(c.b)}일 동안 매일 같은 거리씩 가려고 합니다. ` +
+      `${num(2)}일 동안 가는 거리는 몇 km입니까?`,
+    expr(fromCents(c.q * 2)),
+    `하루에 가는 거리는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} km입니다. ` +
+      `${num(2)}일 동안은 ${expr(`${fromCents(c.q)}\\times2=${fromCents(c.q * 2)}`)} km입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function decBringFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_BRING_PURE);
+  let y = pick(rng, DEC_BRING_PURE);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, DEC_BRING_PURE);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 둘 다 소수점 아래 ${num(0)}을 내려 계산합니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — 소수 첫째 자리에 0이 있는 나눗셈의 나누는 수. */
+function decZeroFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  return make(
+    unit,
+    `몫의 소수 첫째 자리에 ${num(0)}이 있는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 소수 첫째 자리 숫자는 0. */
+function decZeroFormTenthZero(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 소수점 아래 첫째 자리 숫자는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${c.b}=${q}`)}`,
+    num(0),
+    `몫 ${num(q)}의 소수점 아래 첫째 자리 숫자는 ${num(0)}입니다.`,
+  );
+}
+
+/** 문형 07 — 나눌 수 없는 자리에 0을 쓴다. 맞다. */
+function decZeroFormPlaceTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${fromCents(c.a)}\\div${c.b}=${q}`)} 에서 나누어야 할 수가 나누는 수보다 작은 자리의 몫에는 ${num(0)}을 쓴다.`,
+    "예",
+    `나누어야 할 수가 더 작은 자리에는 몫에 ${num(0)}을 씁니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function decZeroFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.zeroTenth);
+  const y = pick(rng, DEC_DIV.zeroTenth);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 몫의 소수 첫째 자리는 ${num(0)}입니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 상자 하나 길이 × 상자 수 검산. 02 는 한 상자만. */
+function decZeroFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, TIE_STUFF);
+  const c = pick(
+    rng,
+    DEC_DIV.zeroTenth.filter((x) => x.a <= 3000),
+  );
+  return make(
+    unit,
+    `${thing} ${unitNum(fromCents(c.a), "m")}를 모두 사용하여 크기가 같은 선물 상자 ${num(c.b)}개를 묶었습니다. ` +
+      `상자 한 개를 묶는 데 쓴 ${thing}의 길이와 상자 수를 곱하면 몇 m입니까?`,
+    expr(fromCents(c.a)),
+    `한 상자에 쓴 길이는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m입니다. ` +
+      `검산하면 ${expr(`${fromCents(c.q)}\\times${c.b}=${fromCents(c.a)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function decZeroFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.zeroTenth);
+  let y = pick(rng, DEC_DIV.zeroTenth);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1)
+    y = pick(rng, DEC_DIV.zeroTenth);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 두 몫의 소수 첫째 자리는 ${num(0)}입니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — (자연수)÷(자연수)의 나누는 수. */
+function natDecFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수는 얼마입니까? 몫은 소수로 나타냅니다.\n\n${expr(`${c.n}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 나누어지는 수는 자연수. */
+function natDecFormNaturalTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.n}\\div${c.b}`)} 에서 나누어지는 수는 자연수이다.`,
+    "예",
+    `나누어지는 수 ${num(c.n)}${numJosa(c.n, "은", "는")} 자연수입니다. 몫만 소수입니다.`,
+  );
+}
+
+/** 문형 07 — 몫은 자연수가 아니다. */
+function natDecFormQuotientNatTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.n}\\div${c.b}=${q}`)} 의 몫은 자연수이다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} 소수입니다. 나누어떨어지지 않습니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function natDecFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_DEC);
+  const y = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 소수로 나타내시오.\n\n${expr(`${x.n}\\div${x.b}`)}, ${expr(`${y.n}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 사람 몫의 두 배. 02 는 한 사람만. */
+function natDecFormDoubleShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const c = pick(
+    rng,
+    NAT_DEC.filter((x) => x.n <= 20 && x.n > x.b),
+  );
+  return make(
+    unit,
+    `${s.thing} ${unitNum(c.n, s.unit)}${s.unitJosa} ${num(c.b)}명이 똑같이 ${s.verb} 합니다. ` +
+      `두 사람이 갖는 ${s.thing}의 합은 몇 ${s.unit}인지 소수로 나타내시오.`,
+    expr(fromCents(c.q * 2)),
+    `한 사람은 ${expr(`${c.n}\\div${c.b}=${fromCents(c.q)}`)} ${s.unit}입니다. ` +
+      `두 사람은 ${expr(`${fromCents(c.q)}\\times2=${fromCents(c.q * 2)}`)} ${s.unit}입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function natDecFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_DEC);
+  let y = pick(rng, NAT_DEC);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, NAT_DEC);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 소수로 나타내시오.\n\n${expr(`${x.n}\\div${x.b}`)}, ${expr(`${y.n}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+function cmpPair(rng: Rng): { b: number; k: number; big: number } {
+  const b = intBetween(rng, 2, 9);
+  const k = intBetween(rng, 2, 9);
+  return { b, k, big: b * k };
+}
+
+/** 1-4-1 05 — 몇 배가 아니라 **작은 수**(역산). */
+function cmpFormSmall(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `${num(big)}${numJosa(big, "은", "는")} 어떤 수의 ${num(k)}배입니다. 어떤 수는 얼마입니까?`,
+    num(b),
+    `${expr(`${big}\\div${k}=${b}`)} 이므로 어떤 수는 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-1 06 — 두 수의 **곱**. */
+function cmpFormProduct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `${num(b)}의 ${num(k)}배는 얼마입니까?`,
+    num(big),
+    `${expr(`${b}\\times${k}=${big}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 07 — 작은 수가 큰 수의 몇 배라는 말은 **틀렸다**. */
+function cmpFormReverseTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(b)}${numJosa(b, "은", "는")} ${num(big)}의 ${num(k)}배이다.`,
+    "아니요",
+    `큰 수를 작은 수로 나눕니다. ${expr(`${big}\\div${b}=${k}`)} 이므로 ${num(big)}이 ${num(b)}의 ${num(k)}배입니다.`,
+  );
+}
+
+/** 1-4-1 08 — 두 번 몇 배를 겹친 배수. */
+function cmpFormChain(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  const m = intBetween(rng, 2, 5);
+  const c = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `가 수는 나 수의 ${num(k)}배이고, 나 수는 다 수의 ${num(m)}배입니다. 다 수가 ${num(c)}일 때 가 수는 얼마입니까?`,
+    num(c * m * k),
+    `나 수는 ${expr(`${c}\\times${m}=${c * m}`)} 이고, 가 수는 ${expr(`${c * m}\\times${k}=${c * m * k}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 09 — 합과 배수에서 **큰 수**. 04 심화는 작은 쪽을 묻는다. */
+function cmpFormLargerFromSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const k = intBetween(rng, 2, 6);
+  const total = b * (k + 1);
+  return make(
+    unit,
+    `두 수의 합이 ${num(total)}이고 큰 수는 작은 수의 ${num(k)}배입니다. 큰 수는 얼마입니까?`,
+    num(b * k),
+    `작은 수를 ${expr("\\square")} 라 하면 합은 ${expr(`\\square\\times${k + 1}=${total}`)} 이므로 ` +
+      `작은 수는 ${expr(`${total}\\div${k + 1}=${b}`)}, 큰 수는 ${expr(`${b}\\times${k}=${b * k}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 10 — 두 비교의 몇 배를 **더한다**. */
+function cmpFormTwoKSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k1 = intBetween(rng, 2, 6);
+  const k2 = intBetween(rng, 2, 6);
+  const b1 = intBetween(rng, 2, 8);
+  const b2 = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `${num(b1 * k1)}는 ${num(b1)}의 몇 배이고, ${num(b2 * k2)}는 ${num(b2)}의 몇 배입니까? 그 두 배수를 더하시오.`,
+    num(k1 + k2),
+    `${expr(`${b1 * k1}\\div${b1}=${k1}`)}, ${expr(`${b2 * k2}\\div${b2}=${k2}`)} 이므로 합은 ${expr(`${k1}+${k2}=${k1 + k2}`)} 입니다.`,
+  );
+}
+
+function biPair(rng: Rng): { a: number; b: number } {
+  const a = intBetween(rng, 2, 9);
+  let b = intBetween(rng, 2, 9);
+  for (let t = 0; t < 20 && b === a; t += 1) b = intBetween(rng, 2, 9);
+  if (b === a) b = a === 9 ? 8 : a + 1;
+  return { a, b };
+}
+
+/** 1-4-2 05 — **역비**. 02 는 차례 그대로. */
+function biFormInverse(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  const p = pick(rng, BI_PAIRS);
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `${p.y} 수에 대한 ${p.x} 수의 비를 쓰시오.`,
+    expr(`${a}:${b}`),
+    `「에 대한」 앞이 비교하는 양, 뒤가 기준량이므로 ${expr(`${a}:${b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 06 — 비의 **앞항**. */
+function biFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 비교하는 양(앞항)은 얼마입니까?`,
+    num(a),
+    `비는 (비교하는 양):(기준량)이므로 앞항은 ${num(a)}입니다.`,
+  );
+}
+
+/** 1-4-2 07 — 비의 **뒷항**. */
+function biFormBack(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 기준량(뒷항)은 얼마입니까?`,
+    num(b),
+    `비는 (비교하는 양):(기준량)이므로 뒷항은 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-2 08 — 두 항의 합. */
+function biFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 두 항의 합은 얼마입니까?`,
+    num(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 09 — 두 항의 차. */
+function biFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  const hi = Math.max(a, b);
+  const lo = Math.min(a, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 두 항의 차는 얼마입니까?`,
+    num(hi - lo),
+    `${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 10 — 전체에 대한 **둘째** 무리의 비. 03 은 첫째 무리. */
+function biFormWholeSecond(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, BI_PAIRS);
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `전체 ${p.whole} 수에 대한 ${p.y} 수의 비를 쓰시오.`,
+    expr(`${b}:${a + b}`),
+    `전체는 ${expr(`${a}+${b}=${a + b}`)} 입니다. ${expr(`${b}:${a + b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 05 — 비를 **분수** 비율로. 01 은 소수. */
+function rateFormFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 비율을 분수로 나타내시오.`,
+    expr(`\\frac{${a}}{${b}}`),
+    `(비율)=(비교하는 양)÷(기준량)이므로 ${expr(`\\frac{${a}}{${b}}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 06 — 기준량. */
+function rateFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 기준량은 얼마입니까?`,
+    num(b),
+    `비의 뒷항이 기준량이므로 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-3 07 — 비교하는 양. */
+function rateFormCompare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 비교하는 양은 얼마입니까?`,
+    num(a),
+    `비의 앞항이 비교하는 양이므로 ${num(a)}입니다.`,
+  );
+}
+
+/** 1-4-3 08 — 비율×기준량 = 비교하는 양. */
+function rateFormTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, [2, 4, 5] as const);
+  const m = intBetween(rng, 2, 6);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비율이 ${expr(`\\frac{${a}}{${b}}`)} 이고 기준량이 ${num(b * m)}일 때 비교하는 양은 얼마입니까?`,
+    num(a * m),
+    `${expr(`${b * m}\\times\\frac{${a}}{${b}}=${a * m}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 09 — 나머지 부분의 비율. */
+function rateFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 6, 12);
+  const a = intBetween(rng, 1, r - 1);
+  return make(
+    unit,
+    `바구니에 구슬이 ${num(r)}개 있고 그중 빨간 구슬이 ${num(a)}개입니다. ` +
+      `전체 구슬 수에 대한 빨간 구슬 수의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(a, r)),
+    `비율은 ${expr(`\\frac{${a}}{${r}}=${fmtFrac(a, r)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 10 — 두 비율 중 **큰** 쪽을 분수로. */
+function rateFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 9);
+  const a = coprimeTop(rng, b);
+  let d = intBetween(rng, 4, 9);
+  let c = coprimeTop(rng, d);
+  for (let t = 0; t < 16 && a * d === c * b; t += 1) {
+    d = intBetween(rng, 4, 9);
+    c = coprimeTop(rng, d);
+  }
+  const left = a * d > c * b;
+  const win = left ? [a, b] : [c, d];
+  return make(
+    unit,
+    `두 비율 ${expr(`\\frac{${a}}{${b}}`)} 와 ${expr(`\\frac{${c}}{${d}}`)} 중 더 큰 것을 기약분수로 쓰시오.`,
+    expr(fmtFrac(win[0]!, win[1]!)),
+    `더 큰 비율은 ${expr(fmtFrac(win[0]!, win[1]!))} 입니다.`,
+  );
+}
+
+/** 1-4-4 05 — 빠르기와 거리에서 **시간**. */
+function rateUseFormTime(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `한 시간에 ${unitNum(rate, "km")}를 가는 기차가 ${unitNum(rate * h, "km")}를 가려면 몇 시간이 걸립니까?`,
+    num(h),
+    `${expr(`${rate * h}\\div${rate}=${h}`)} 이므로 ${num(h)}시간입니다.`,
+  );
+}
+
+/** 1-4-4 06 — 기준량은 걸린 시간. */
+function rateUseFormBaseTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, VEHICLES);
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${v}${josa(v, "이", "가")} ${num(h)}시간 동안 ${unitNum(rate * h, "km")}를 갔을 때, ` +
+      `걸린 시간에 대한 간 거리의 비율에서 기준량은 걸린 시간이다.`,
+    "예",
+    `「에 대한」 앞에 있는 걸린 시간이 기준량입니다.`,
+  );
+}
+
+/** 1-4-4 07 — 인구밀도에서 **넓이**. */
+function rateUseFormArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 8);
+  const per = pick(rng, [120, 150, 200, 250] as const);
+  return make(
+    unit,
+    `인구가 ${num(a * per)}명이고 넓이에 대한 인구의 비율이 ${num(per)}일 때, 이 마을의 넓이는 몇 km²입니까?`,
+    num(a),
+    `${expr(`${a * per}\\div${per}=${a}`)} 이므로 ${num(a)} km²입니다.`,
+  );
+}
+
+/** 1-4-4 08 — 소금물에 대한 **물**의 비율. 03 은 소금. */
+function rateUseFormWater(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = pick(rng, [200, 250, 400, 500] as const);
+  const salt = pick(
+    rng,
+    ([20, 30, 40, 50] as const).filter((s) => s < total),
+  );
+  const water = total - salt;
+  return make(
+    unit,
+    `물 ${num(water)} g에 소금 ${num(salt)} g을 모두 녹여 소금물을 만들었습니다. ` +
+      `소금물 양에 대한 물 양의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(water, total)),
+    `소금물은 ${expr(`${water}+${salt}=${total}`)} 입니다. 비율은 ${expr(`\\frac{${water}}{${total}}=${fmtFrac(water, total)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-4 09 — 같은 빠르기로 두 번 간 거리의 **합**. */
+function rateUseFormTwoLegs(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, VEHICLES);
+  const rate = pick(rng, SPEED_RATES);
+  const h1 = intBetween(rng, 2, 4);
+  const h2 = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `${v}${josa(v, "이", "가")} 한 시간에 ${unitNum(rate, "km")}를 갑니다. ` +
+      `${num(h1)}시간 가고, 이어서 ${num(h2)}시간 더 가면 간 거리는 모두 몇 km입니까?`,
+    num(rate * (h1 + h2)),
+    `${expr(`${rate}\\times${h1}=${rate * h1}`)}, ${expr(`${rate}\\times${h2}=${rate * h2}`)} 이므로 ` +
+      `합은 ${expr(`${rate * h1}+${rate * h2}=${rate * (h1 + h2)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-4 10 — 두 빠르기의 **차**. */
+function rateUseFormSpeedDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r1 = pick(rng, SPEED_RATES);
+  let r2 = pick(rng, SPEED_RATES);
+  for (let t = 0; t < 8 && r2 === r1; t += 1) r2 = pick(rng, SPEED_RATES);
+  if (r2 === r1) r2 = r1 === 90 ? 60 : 90;
+  const h = intBetween(rng, 2, 3);
+  return make(
+    unit,
+    `한 기차는 ${num(h)}시간에 ${unitNum(r1 * h, "km")}, 다른 기차는 ${num(h)}시간에 ${unitNum(r2 * h, "km")}를 갔습니다. ` +
+      `두 기차의 빠르기의 차는 얼마입니까?`,
+    num(Math.abs(r1 - r2)),
+    `빠르기는 ${num(r1)} 와 ${num(r2)} 이므로 차는 ${expr(`${Math.max(r1, r2)}-${Math.min(r1, r2)}=${Math.abs(r1 - r2)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 05 — 분수를 백분율로. 01 은 소수 비율. */
+function pctFormFromFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, PCT_DENOMS);
+  const top = coprimeTop(rng, den);
+  const pct = (top * 100) / den;
+  return make(
+    unit,
+    `비율 ${expr(`\\frac{${top}}{${den}}`)} 를 백분율로 나타내시오.`,
+    num(pct),
+    `${expr(`\\frac{${top}}{${den}}\\times100=${pct}`)} 이므로 ${expr(`${pct}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 06 — 백분율을 기약분수로. */
+function pctFormToFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, PCT_DENOMS);
+  const top = coprimeTop(rng, den);
+  const pct = (top * 100) / den;
+  return make(
+    unit,
+    `${expr(`${pct}\\%`)} 를 기약분수로 나타내시오.`,
+    expr(fmtFrac(top, den)),
+    `${expr(`\\frac{${pct}}{100}=${fmtFrac(top, den)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 07 — 백분율을 소수로. */
+function pctFormToDec(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 1, 99);
+  return make(
+    unit,
+    `${expr(`${c}\\%`)} 를 소수로 나타내시오.`,
+    expr(fromCents(c)),
+    `${expr(`\\frac{${c}}{100}=${fromCents(c)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 08 — 두 백분율의 합. */
+function pctFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = intBetween(rng, 10, 40);
+  const q = intBetween(rng, 10, 40);
+  return make(
+    unit,
+    `${expr(`${p}\\%`)} 와 ${expr(`${q}\\%`)} 의 합은 몇 %입니까?`,
+    num(p + q),
+    `${expr(`${p}+${q}=${p + q}`)} 이므로 ${expr(`${p + q}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 09 — 전체에 대한 나머지 %. */
+function pctFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, [10, 20, 25, 30, 40, 50] as const);
+  return make(
+    unit,
+    `어떤 양의 ${expr(`${p}\\%`)} 를 사용했습니다. 남은 양은 전체의 몇 %입니까?`,
+    num(100 - p),
+    `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 10 — 두 백분율 중 큰 것. */
+function pctFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, [20, 25, 40, 50] as const);
+  const q = pick(
+    rng,
+    ([20, 25, 40, 50, 60] as const).filter((v) => v !== p),
+  );
+  return make(
+    unit,
+    `${expr(`${p}\\%`)} 와 ${expr(`${q}\\%`)} 중 더 큰 것은 몇 %입니까?`,
+    num(Math.max(p, q)),
+    `더 큰 것은 ${expr(`${Math.max(p, q)}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 05 — 정가와 할인가에서 **할인율**. */
+function pctUseFormRate(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r = pick(rng, [10, 20, 25, 40] as const);
+  const paid = p - (p * r) / 100;
+  return make(
+    unit,
+    `정가 ${num(p)}원짜리 물건을 ${num(paid)}원에 샀습니다. 할인율은 몇 %입니까?`,
+    num(r),
+    `할인 금액은 ${expr(`${p}-${paid}=${(p * r) / 100}`)} 원입니다. ` +
+      `${expr(`\\frac{${(p * r) / 100}}{${p}}\\times100=${r}`)} 이므로 ${expr(`${r}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 06 — 할인 **금액**. */
+function pctUseFormCut(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r = pick(rng, [10, 20, 25, 30] as const);
+  const cut = (p * r) / 100;
+  return make(
+    unit,
+    `정가가 ${num(p)}원인 물건을 ${expr(`${r}\\%`)} 할인합니다. 할인 금액은 얼마입니까?`,
+    num(cut),
+    `${expr(`${p}\\times\\frac{${r}}{100}=${cut}`)} 이므로 ${num(cut)}원입니다.`,
+  );
+}
+
+/** 1-4-6 07 — **이자** 금액. 01 은 이자율. */
+function pctUseFormInterest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pr = pick(rng, [10000, 20000, 50000] as const);
+  const r = pick(rng, [4, 5, 6, 8, 10] as const);
+  return make(
+    unit,
+    `예금한 돈 ${num(pr)}원에 대한 이자율이 ${expr(`${r}\\%`)} 일 때, 이자는 얼마입니까?`,
+    num((pr * r) / 100),
+    `${expr(`${pr}\\times\\frac{${r}}{100}=${(pr * r) / 100}`)} 이므로 ${num((pr * r) / 100)}원입니다.`,
+  );
+}
+
+/** 1-4-6 08 — 원금과 이자의 **합**. */
+function pctUseFormPrincipalPlus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pr = pick(rng, [10000, 20000, 50000] as const);
+  const r = pick(rng, [4, 5, 10] as const);
+  const interest = (pr * r) / 100;
+  return make(
+    unit,
+    `예금한 돈 ${num(pr)}원에 이자율 ${expr(`${r}\\%`)} 로 이자를 받았습니다. 원금과 이자의 합은 얼마입니까?`,
+    num(pr + interest),
+    `이자는 ${expr(`${pr}\\times\\frac{${r}}{100}=${interest}`)} 원이므로 합은 ${expr(`${pr}+${interest}=${pr + interest}`)} 원입니다.`,
+  );
+}
+
+/** 1-4-6 09 — 반대 의견 비율. */
+function pctUseFormNo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, [40, 50, 60, 80] as const);
+  const total = pick(rng, [200, 250, 400] as const);
+  const yes = (total * rate) / 100;
+  return make(
+    unit,
+    `투표한 학생 ${num(total)}명 중 ${num(yes)}명이 찬성했습니다. 찬성하지 않은 학생의 비율은 몇 %입니까?`,
+    num(100 - rate),
+    `찬성률은 ${expr(`\\frac{${yes}}{${total}}\\times100=${rate}`)} 이므로 ` +
+      `찬성하지 않은 비율은 ${expr(`100-${rate}=${100 - rate}`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 10 — 두 할인가의 차. */
+function pctUseFormPaidDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r1 = pick(rng, [10, 20] as const);
+  const r2 = pick(rng, [25, 40] as const);
+  const paid1 = p - (p * r1) / 100;
+  const paid2 = p - (p * r2) / 100;
+  return make(
+    unit,
+    `정가 ${num(p)}원짜리 물건을 ${expr(`${r1}\\%`)} 할인할 때와 ${expr(`${r2}\\%`)} 할인할 때, 지불 금액의 차는 얼마입니까?`,
+    num(Math.abs(paid1 - paid2)),
+    `지불액은 ${num(paid1)}원과 ${num(paid2)}원이므로 차는 ${num(Math.abs(paid1 - paid2))}원입니다.`,
+  );
+}
+
+function stripFig(items: { label: string; pct: number }[]) {
+  return fig("stripChart", { segments: items });
+}
+function pieFig(items: { label: string; pct: number }[]) {
+  return fig("pieChart", { slices: items });
+}
+
+/** 1-5-1 05 — 항목 수. */
+function stripReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
+    num(items.length),
+    `띠그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-1 06 — 가장 적은 항목. 02 는 가장 많은 항목. */
+function stripReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
+    low.label,
+    `가장 좁은 부분은 비율 ${expr(`${low.pct}\\%`)} 인 ${low.label}입니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 07 — 모든 비율의 합은 100. */
+function stripReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `띠그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-1 08 — 두 항목 비율의 합. */
+function stripReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const [a, b] = twoLabels(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    num(a.pct + b.pct),
+    `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 09 — 가장 큰 비율(숫자). 02 는 항목 이름. */
+function stripReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    num(top.pct),
+    `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 10 — 한 항목을 뺀 나머지 비율. */
+function stripReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}을 고르지 않은 학생의 비율은 몇 %입니까?`,
+    num(100 - one.pct),
+    `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-2 05 — 나머지 비율. */
+function stripDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생들의 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `띠그래프로 나타낼 때 ${item}이 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
+    num(100 - p),
+    `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-2 06 — 두 명수의 합. */
+function stripDrawFormTwoCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const total = pick(rng, CHART_TOTALS);
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목을 고른 학생은 모두 몇 명입니까?`,
+    num((total * (pa + pb)) / 100),
+    `${expr(`${total}\\times\\frac{${pa + pb}}{100}=${(total * (pa + pb)) / 100}`)} 이므로 ${num((total * (pa + pb)) / 100)}명입니다.`,
+  );
+}
+
+/** 1-5-2 07 — 전체 띠 길이에서 한 항목 길이를 뺀 나머지. */
+function stripDrawFormLenRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  const w = pick(rng, [20, 40] as const);
+  const len = (w * p) / 100;
+  return make(
+    unit,
+    `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}이 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
+    num(w - len),
+    `${item}은 ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
+  );
+}
+
+/** 1-5-2 08 — 두 비율의 차. */
+function stripDrawFormPctDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v !== pa),
+  );
+  return make(
+    unit,
+    `띠그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 비율의 차는 몇 %입니까?`,
+    num(Math.abs(pa - pb)),
+    `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 이므로 ${expr(`${Math.abs(pa - pb)}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-2 09 — 비율에서 명수. */
+function stripDrawFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 띠그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item}${josa(item, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num((total * p) / 100),
+    `${expr(`${total}\\times\\frac{${p}}{100}=${(total * p) / 100}`)} 이므로 ${num((total * p) / 100)}명입니다.`,
+  );
+}
+
+/** 1-5-2 10 — 두 띠 길이의 합. */
+function stripDrawFormTwoLen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 90),
+  );
+  const w = pick(rng, [20, 40] as const);
+  return make(
+    unit,
+    `전체 길이 ${unitNum(w, "cm")} 인 띠그래프에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목이 차지하는 길이의 합은 몇 cm입니까?`,
+    num((w * (pa + pb)) / 100),
+    `${expr(`${w}\\times\\frac{${pa + pb}}{100}=${(w * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-3 05 — 항목 수. */
+function pieReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
+    num(items.length),
+    `원그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-3 06 — 가장 적은 항목. */
+function pieReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
+    low.label,
+    `가장 좁은 부채꼴은 ${low.label}입니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 07 — 합 100. */
+function pieReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `원그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-3 08 — 두 항목 비율 합. 02 는 차. */
+function pieReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const [a, b] = twoLabels(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    num(a.pct + b.pct),
+    `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 09 — 가장 큰 비율. */
+function pieReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    num(top.pct),
+    `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 10 — 나머지 비율. */
+function pieReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}이 아닌 나머지 부분의 비율은 몇 %입니까?`,
+    num(100 - one.pct),
+    `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-4 05 — 나머지 한 항목 비율(두 항목만 주고). */
+function pieDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `${theme.subject}을 원그래프로 나타낼 때 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 이고 나머지는 한 항목입니다. ` +
+      `나머지 항목의 비율은 몇 %입니까?`,
+    num(100 - pa - pb),
+    `${expr(`100-${pa}-${pb}=${100 - pa - pb}`)} 이므로 ${expr(`${100 - pa - pb}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 06 — 중심각. 원 전체 360°. */
+function pieDrawFormAngle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, [20, 25, 50] as const);
+  return make(
+    unit,
+    `${theme.subject}을 원그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item} 부분의 중심각은 몇 도입니까?`,
+    num((360 * p) / 100),
+    `원 전체는 ${num(360)}°이므로 ${expr(`360\\times\\frac{${p}}{100}=${(360 * p) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 07 — 두 비율의 차. */
+function pieDrawFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v !== pa),
+  );
+  return make(
+    unit,
+    `원그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 비율의 차는 몇 %입니까?`,
+    num(Math.abs(pa - pb)),
+    `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 08 — 비율에서 명수. */
+function pieDrawFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 원그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item}${josa(item, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num((total * p) / 100),
+    `${expr(`${total}\\times\\frac{${p}}{100}=${(total * p) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 09 — 두 중심각의 합. */
+function pieDrawFormTwoAngles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, [20, 25, 30] as const);
+  const pb = pick(rng, [10, 20, 25] as const);
+  return make(
+    unit,
+    `원그래프에서 ${a}의 비율이 ${expr(`${pa}\\%`)}, ${b}의 비율이 ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 부분의 중심각의 합은 몇 도입니까?`,
+    num((360 * (pa + pb)) / 100),
+    `${expr(`360\\times\\frac{${pa + pb}}{100}=${(360 * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 10 — 명수 두 개의 합. */
+function pieDrawFormTwoPeople(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const total = pick(rng, CHART_TOTALS);
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 원그래프로 나타낼 때 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목을 고른 학생은 모두 몇 명입니까?`,
+    num((total * (pa + pb)) / 100),
+    `${expr(`${total}\\times\\frac{${pa + pb}}{100}=${(total * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-5 05 — 가장 낮은 비율. 01 은 가장 높은 비율. */
+function cmpChartFormLowPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
+    num(low.pct),
+    `가장 좁은 부분은 ${low.label}이고 비율은 ${expr(`${low.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 06 — 항목 수. */
+function cmpChartFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartData(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
+    num(d.items.length),
+    `나타난 항목은 ${num(d.items.length)}개입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 07 — 합 100. */
+function cmpChartFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartData(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 08 — 가장 높은 항목 이름. 01 은 그 비율. */
+function cmpChartFormTopName(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
+    top.label,
+    `가장 넓은 부분은 ${top.label}입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 09 — 최고와 최저의 차. */
+function cmpChartFormSpread(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
+    num(top.pct - low.pct),
+    `${expr(`${top.pct}-${low.pct}=${top.pct - low.pct}`)} 이므로 ${expr(`${top.pct - low.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 10 — 두 번째로 높은 비율. */
+function cmpChartFormSecond(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
+  const second = sorted[1]!;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
+    num(second.pct),
+    `두 번째로 넓은 부분은 ${second.label}이고 비율은 ${expr(`${second.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+function cuboid3(rng: Rng): { w: number; d: number; h: number } {
+  return {
+    w: intBetween(rng, 3, 9),
+    d: intBetween(rng, 2, 6),
+    h: intBetween(rng, 2, 7),
+  };
+}
+
+/** 1-6-1 05 — 밑면 한 면의 넓이. */
+function surfFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체가 있습니다. ` +
+      `밑면 한 면의 넓이는 몇 cm²입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 06 — 면의 수 6. */
+function surfFormFaces(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 면은 몇 개입니까?`,
+    num(6),
+    `직육면체의 면은 ${num(6)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 07 — 옆면 네 면의 넓이. */
+function surfFormLateral(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  const lat = 2 * h * (w + d);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 옆면 네 면의 넓이의 합은 몇 cm²입니까?`,
+    num(lat),
+    `${expr(`(${w}+${d})\\times2\\times${h}=${lat}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 08 — 밑면 두 면. */
+function surfFormTwoBases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체에서 밑면 두 면의 넓이의 합은 몇 cm²입니까?`,
+    num(2 * w * d),
+    `${expr(`${w}\\times${d}\\times2=${2 * w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 09 — 겉넓이에서 밑면 하나를 뺀 값(뚜껑 없는 상자). 03 은 치수로 다섯 면. */
+function surfFormMinusLid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  const full = 2 * (w * d + d * h + h * w);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 겉넓이가 ${num(full)} cm²입니다. ` +
+      `윗면 한 면을 빼면 몇 cm²입니까?`,
+    num(full - w * d),
+    `윗면은 ${expr(`${w}\\times${d}=${w * d}`)} 이므로 ${expr(`${full}-${w * d}=${full - w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 10 — 정육면체 한 모서리(겉넓이에서). 04 는 한 면의 넓이. */
+function surfFormEdgeFromArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `겉넓이가 ${num(6 * a * a)} cm²인 정육면체가 있습니다. 한 모서리의 길이는 몇 cm입니까?`,
+    num(a),
+    `한 면은 ${expr(`${6 * a * a}\\div6=${a * a}`)} 이므로 한 모서리는 ${num(a)} cm입니다.`,
+    fig("cuboid", { w: a, d: a, h: a }),
+  );
+}
+
+/** 1-6-2 05 — 밑면의 넓이. */
+function volFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 밑면의 넓이는 몇 cm²입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 06 — 가로×세로. */
+function volFormWd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체에서 가로와 세로의 곱은 얼마입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 07 — 두 직육면체 부피의 합. */
+function volFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = cuboid3(rng);
+  const b = cuboid3(rng);
+  return make(
+    unit,
+    `부피가 ${num(a.w * a.d * a.h)} cm³인 직육면체와 부피가 ${num(b.w * b.d * b.h)} cm³인 직육면체가 있습니다. 두 부피의 합은 몇 cm³입니까?`,
+    num(a.w * a.d * a.h + b.w * b.d * b.h),
+    `${expr(`${a.w * a.d * a.h}+${b.w * b.d * b.h}=${a.w * a.d * a.h + b.w * b.d * b.h}`)} 입니다.`,
+  );
+}
+
+/** 1-6-2 08 — 두 부피의 차. */
+function volFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 3, 8);
+  const d = intBetween(rng, 2, 5);
+  const h1 = intBetween(rng, 4, 9);
+  const h2 = intBetween(rng, 2, h1 - 1);
+  return make(
+    unit,
+    `밑면의 가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")} 로 같고 높이가 ${unitNum(h1, "cm")} 와 ${unitNum(h2, "cm")} 인 두 직육면체가 있습니다. 부피의 차는 몇 cm³입니까?`,
+    num(w * d * (h1 - h2)),
+    `${expr(`${w}\\times${d}\\times${h1 - h2}=${w * d * (h1 - h2)}`)} 입니다.`,
+  );
+}
+
+/** 1-6-2 09 — 1 cm 쌓기나무 개수 = 부피. */
+function volFormCubes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
+    num(w * d * h),
+    `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 10 — 한 변만 2배일 때 부피는 2배. */
+function volFormDoubleOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `직육면체의 높이만 ${num(k)}배로 늘이면 부피는 처음의 몇 배가 됩니까?`,
+    num(k),
+    `부피는 세 모서리의 곱이므로 높이를 ${num(k)}배로 하면 부피도 ${num(k)}배가 됩니다.`,
+  );
+}
+
+/** 1-6-3 05 — 1 m³ = 1000000 cm³ 예. */
+function cubicFormFactTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(1)} m³는 ${num(1000000)} cm³이다. (참고: ${num(k)} m³를 바꾸어 확인하여도 된다.)`,
+    "예",
+    `${expr("1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3")} 입니다.`,
+  );
+}
+
+/** 1-6-3 06 — cm³를 m³로. */
+function cubicFormToM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${num(k * 1000000)} cm³는 몇 m³입니까?`,
+    num(k),
+    `${expr(`${k * 1000000}\\div1000000=${k}`)} 입니다.`,
+  );
+}
+
+/** 1-6-3 07 — 두 m³의 합을 cm³로. */
+function cubicFormSumCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 5);
+  const b = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `${num(a)} m³와 ${num(b)} m³의 합은 몇 cm³입니까?`,
+    num((a + b) * 1000000),
+    `${expr(`${a}+${b}=${a + b}`)} m³이므로 ${expr(`${a + b}\\times1000000=${(a + b) * 1000000}`)} cm³입니다.`,
+  );
+}
+
+/** 1-6-3 08 — m 단위 직육면체 부피. */
+function cubicFormBoxM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, BIG_THINGS);
+  const w = intBetween(rng, 2, 6);
+  const d = intBetween(rng, 2, 5);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `가로 ${num(w)} m, 세로 ${num(d)} m, 높이 ${num(h)} m인 ${thing}의 부피는 몇 m³입니까?`,
+    num(w * d * h),
+    `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 입니다.`,
+  );
+}
+
+/** 1-6-3 09 — 그 부피를 cm³로. */
+function cubicFormBoxToCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 4);
+  const d = intBetween(rng, 2, 3);
+  const h = intBetween(rng, 1, 3);
+  const m3 = w * d * h;
+  return make(
+    unit,
+    `가로 ${num(w)} m, 세로 ${num(d)} m, 높이 ${num(h)} m인 창고의 부피는 몇 cm³입니까?`,
+    num(m3 * 1000000),
+    `부피는 ${expr(`${w}\\times${d}\\times${h}=${m3}`)} m³이고, ${expr(`${m3}\\times1000000=${m3 * 1000000}`)} cm³입니다.`,
+  );
+}
+
+/** 1-6-3 10 — 두 창고 부피의 차(m³). */
+function cubicFormDiffM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 12);
+  const b = intBetween(rng, 2, a - 1);
+  const thing = pick(rng, BIG_THINGS);
+  return make(
+    unit,
+    `부피가 ${num(a)} m³인 ${thing}과 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
+    num(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+  );
+}
+
+/** 2-1-1 05 — 나누어지는 분수의 분자. */
+function sameDenFormTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 분수의 분자는 얼마입니까?\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}`,
+    num(a),
+    `나누어지는 분수는 ${expr(`\\frac{${a}}{${d}}`)} 이므로 분자는 ${num(a)}입니다.`,
+  );
+}
+
+/** 2-1-1 06 — 나누는 분수의 분자. */
+function sameDenFormDivTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${d}}`)} 를 ${expr(`\\frac{${b}}{${d}}`)} 로 나눌 때, 나누는 분수의 분자는 얼마입니까?`,
+    num(b),
+    `나누는 분수는 ${expr(`\\frac{${b}}{${d}}`)} 이므로 분자는 ${num(b)}입니다.`,
+  );
+}
+
+/** 2-1-1 07 — 공통 분모. */
+function sameDenFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음 나눗셈의 두 분수의 분모는 얼마입니까?\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}`,
+    num(d),
+    `두 분수의 분모가 모두 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-1 08 — 분모가 같다 예. */
+function sameDenFormSameTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 에서 두 분수의 분모는 같다.`,
+    "예",
+    `두 분모가 모두 ${num(d)}로 같습니다. 분자끼리 나눕니다.`,
+  );
+}
+
+/** 2-1-1 09 — 두 같은 분모 나눗셈 몫의 합. */
+function sameDenFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 5, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  const [c, e] = twoCoprimeTops(rng, d);
+  const [p, q] = addFrac(a, b, c, e);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}, ${expr(`\\frac{${c}}{${d}}\\div\\frac{${e}}{${d}}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(fmtFrac(a, b))} 와 ${expr(fmtFrac(c, e))} 이므로 합은 ${expr(fmtFrac(p, q))} 입니다.`,
+  );
+}
+
+/** 2-1-1 10 — 몫 × 나누는 분자 = 나누어지는 분자. */
+function sameDenFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 의 몫에 ${num(b)}${numJosa(b, "을", "를")} 곱하면 얼마입니까?`,
+    num(a),
+    `몫은 ${expr(`${a}\\div${b}`)} 이므로 ${expr(`${a}\\div${b}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+/** 2-1-2 05 — 나누어지는 분수의 분모. */
+function diffDenFormDen1(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 분수의 분모는 얼마입니까?\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}`,
+    num(f.d1),
+    `나누어지는 분수는 ${expr(`\\frac{${f.n1}}{${f.d1}}`)} 이므로 분모는 ${num(f.d1)}입니다.`,
+  );
+}
+
+/** 2-1-2 06 — 나누는 분수의 분모. */
+function diffDenFormDen2(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}`)} 를 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 로 나눕니다. 나누는 분수의 분모는 얼마입니까?`,
+    num(f.d2),
+    `나누는 분수의 분모는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-2 07 — 분모가 다르다 예. */
+function diffDenFormDiffTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 에서 두 분수의 분모는 다르다.`,
+    "예",
+    `분모가 ${num(f.d1)}과 ${num(f.d2)}로 다릅니다.`,
+  );
+}
+
+/** 2-1-2 08 — 역수의 분자. */
+function diffDenFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수의 분자는 얼마입니까?`,
+    num(f.d2),
+    `분모와 분자를 바꾸면 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 이므로 분자는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-2 09 — 두 분모의 곱. */
+function diffDenFormDenProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음 나눗셈의 두 분모의 곱은 얼마입니까?\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}`,
+    num(f.d1 * f.d2),
+    `${expr(`${f.d1}\\times${f.d2}=${f.d1 * f.d2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-2 10 — 몫. */
+function diffDenFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 의 몫을 구하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 05 — 나누어지는 자연수. */
+function natFracFormNat(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 수는 얼마입니까?\n\n${expr(`${k}\\div\\frac{${n}}{${d}}`)}`,
+    num(k),
+    `나누어지는 수는 ${num(k)}입니다.`,
+  );
+}
+
+/** 2-1-3 06 — 나누는 분수의 분모. */
+function natFracFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${num(k)}${numRo(k)} ${expr(`\\frac{${n}}{${d}}`)} 를 나눕니다. 나누는 분수의 분모는 얼마입니까?`,
+    num(d),
+    `나누는 분수의 분모는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-3 07 — 곱하는 역수의 분자. */
+function natFracFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${expr(`${k}\\div\\frac{${n}}{${d}}`)} 를 곱셈으로 바꿀 때 곱하는 분수의 분자는 얼마입니까?`,
+    num(d),
+    `${expr(`\\frac{${n}}{${d}}`)} 의 분모와 분자를 바꾸면 분자는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-3 08 — 자연수×분모. */
+function natFracFormTimesDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${expr(`${k}\\div\\frac{${n}}{${d}}`)} 를 계산할 때 먼저 ${num(k)}${numJosa(k, "과", "와")} ${num(d)}를 곱합니다. 그 곱은 얼마입니까?`,
+    num(k * d),
+    `${expr(`${k}\\times${d}=${k * d}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 09 — 두 나눗셈 몫의 합. */
+function natFracFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  const d = intBetween(rng, 3, 8);
+  const n = coprimeTop(rng, d, 2);
+  const k2 = intBetween(rng, 2, 5);
+  const [p1, q1] = divFrac(k, 1, n, d);
+  const [p2, q2] = divFrac(k2, 1, n, d);
+  const [p, q] = addFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${k}\\div\\frac{${n}}{${d}}`)}, ${expr(`${k2}\\div\\frac{${n}}{${d}}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(fmtFrac(p1, q1))} 와 ${expr(fmtFrac(p2, q2))} 이므로 합은 ${expr(fmtFrac(p, q))} 입니다.`,
+  );
+}
+
+/** 2-1-3 10 — 나누는 분수의 분자. */
+function natFracFormNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${num(k)}${numRo(k)} 나누는 분수가 ${expr(`\\frac{${n}}{${d}}`)} 입니다. 이 분수의 분자는 얼마입니까?`,
+    num(n),
+    `분자는 ${num(n)}입니다.`,
+  );
+}
+
+/** 2-1-4 05 — 역수의 분자. */
+function flipFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 를 곱셈으로 바꿀 때, 곱하는 분수의 분자는 얼마입니까?`,
+    num(f.d2),
+    `나누는 수 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾸면 분자는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-4 06 — 역수의 분모. */
+function flipFormRecipDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수의 분모는 얼마입니까?`,
+    num(f.n2),
+    `분모와 분자를 바꾸면 분모는 ${num(f.n2)}입니다.`,
+  );
+}
+
+/** 2-1-4 07 — 곱셈으로 바꾸는 것이 맞다. */
+function flipFormRuleTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}=\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)}`,
+    "예",
+    `나누는 수의 분모와 분자를 바꾸어 곱합니다.`,
+  );
+}
+
+/** 2-1-4 08 — 나누는 분수의 분자. */
+function flipFormDivNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `곱셈식 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 로 나타낸 나눗셈에서 나누는 분수의 분자는 얼마입니까?`,
+    num(f.n2),
+    `곱하는 둘째 분수는 나누는 수의 역수이므로 원래 나누는 분수의 분자는 ${num(f.n2)}입니다.`,
+  );
+}
+
+/** 2-1-4 09 — 두 변환 식의 나누는 분수 분모의 합. */
+function flipFormDenSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const g = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 와 ${expr(`\\frac{${g.n1}}{${g.d1}}\\div\\frac{${g.n2}}{${g.d2}}`)} 에서 나누는 두 분수의 분모의 합은 얼마입니까?`,
+    num(f.d2 + g.d2),
+    `${expr(`${f.d2}+${g.d2}=${f.d2 + g.d2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-4 10 — 계산한 몫. */
+function flipFormValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 를 계산하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${f.n1}\\times${f.d2}}{${f.d1}\\times${f.n2}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-5 05 — 대분수의 자연수 부분. */
+function mixedFracFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 대분수의 자연수 부분은 얼마입니까?`,
+    num(m.w),
+    `대분수 ${expr(mixedLatex(m))} 의 자연수 부분은 ${num(m.w)}입니다.`,
+  );
+}
+
+/** 2-1-5 06 — 가분수 분자. */
+function mixedFracFormImp(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 ${expr(`\\frac{${n}}{${d}}`)} 로 나누려고 합니다. 대분수를 가분수로 고친 분자는 얼마입니까?`,
+    num(m.imp),
+    `${expr(`${m.w}\\times${m.d}+${m.t}=${m.imp}`)} 이므로 분자는 ${num(m.imp)}입니다.`,
+  );
+}
+
+/** 2-1-5 07 — 나누는 분수의 분모. */
+function mixedFracFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 나누는 분수의 분모는 얼마입니까?`,
+    num(d),
+    `나누는 분수의 분모는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-5 08 — 가분수 분모. */
+function mixedFracFormImpDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 가분수로 고칠 때 분모는 얼마입니까? (나누는 수는 ${expr(`\\frac{${n}}{${d}}`)} 입니다.)`,
+    num(m.d),
+    `가분수의 분모는 원래 분모 ${num(m.d)}입니다.`,
+  );
+}
+
+/** 2-1-5 09 — 몫. */
+function mixedFracFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const d = intBetween(rng, 2, 6);
+  const n = coprimeTop(rng, d);
+  const [p, q] = divFrac(m.imp, m.d, n, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 의 몫을 구하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`${mixedLatex(m)}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ${expr(`\\frac{${m.imp}}{${m.d}}\\times\\frac{${d}}{${n}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-5 10 — 자연수 부분과 나누는 분모의 합. */
+function mixedFracFormWholePlusDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 대분수의 자연수 부분과 나누는 분수의 분모를 더하면 얼마입니까?`,
+    num(m.w + d),
+    `${expr(`${m.w}+${d}=${m.w + d}`)} 입니다.`,
+  );
+}
+
+function sameDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `자릿수가 같은 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)}`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function sameDpFormDividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(decStr(c.a, 1)),
+    `나누어지는 수는 ${num(decStr(c.a, 1))}입니다.`,
+  );
+}
+function sameDpFormSameTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 에서 두 수의 소수 자릿수는 같다.`,
+    "예",
+    `두 수 모두 소수 한 자리입니다.`,
+  );
+}
+function sameDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    num(c.q),
+    `소수점을 한 자리씩 옮기면 ${expr(`${c.a}\\div${c.b}=${c.q}`)} 입니다.`,
+  );
+}
+function sameDpFormProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 의 몫에 나누는 수를 곱하면 얼마입니까?`,
+    expr(decStr(c.a, 1)),
+    `${expr(`${c.q}\\times${decStr(c.b, 1)}=${decStr(c.a, 1)}`)} 입니다.`,
+  );
+}
+function sameDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, SAME_DIGIT);
+  const y = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 나눗셈 모두 소수 자릿수가 같습니다.\n\n${expr(`${decStr(x.a, 1)}\\div${decStr(x.b, 1)}`)}, ${expr(`${decStr(y.a, 1)}\\div${decStr(y.b, 1)}`)}`,
+    num(x.q + y.q),
+    `${expr(`${x.q}+${y.q}=${x.q + y.q}`)} 입니다.`,
+  );
+}
+
+function diffDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `자릿수가 다른 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)}`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function diffDpFormDividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(fromCents(c.a)),
+    `나누어지는 수는 ${num(fromCents(c.a))}입니다.`,
+  );
+}
+function diffDpFormDiffTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 에서 두 수의 소수 자릿수는 다르다.`,
+    "예",
+    `나누어지는 수는 소수 두 자리, 나누는 수는 소수 한 자리입니다.`,
+  );
+}
+function diffDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    expr(fromCents(c.q)),
+    `소수점을 옮겨 계산하면 몫은 ${num(fromCents(c.q))}입니다.`,
+  );
+}
+function diffDpFormShift(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 를 계산할 때 나누는 수의 소수점을 오른쪽으로 한 자리 옮기면 나누는 수는 얼마가 됩니까?`,
+    num(c.b),
+    `소수점을 한 자리 옮기면 ${num(c.b)}입니다.`,
+  );
+}
+function diffDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DIFF_DIGIT);
+  const y = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 자릿수가 다른 (소수)÷(소수)입니다.\n\n${expr(`${fromCents(x.a)}\\div${decStr(x.b, 1)}`)}, ${expr(`${fromCents(y.a)}\\div${decStr(y.b, 1)}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫의 합은 ${num(fromCents(x.q + y.q))}입니다.`,
+  );
+}
+
+function natDpFormNat(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 수는 얼마입니까?\n\n${expr(`${c.a}\\div${decStr(c.b, 1)}`)}`,
+    num(c.a),
+    `나누어지는 수는 자연수 ${num(c.a)}입니다.`,
+  );
+}
+function natDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 에서 나누는 수는 얼마입니까?`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function natDpFormNatTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 자연수이다.`,
+    "예",
+    `나누어지는 수 ${num(c.a)}는 자연수입니다.`,
+  );
+}
+function natDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    num(c.q),
+    `소수점을 옮겨 계산하면 몫은 ${num(c.q)}입니다.`,
+  );
+}
+function natDpFormTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 의 몫에 나누는 수를 곱하면 얼마입니까?`,
+    num(c.a),
+    `${expr(`${c.q}\\times${decStr(c.b, 1)}=${c.a}`)} 입니다.`,
+  );
+}
+function natDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_BY_DEC);
+  const y = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 (자연수)÷(소수)입니다.\n\n${expr(`${x.a}\\div${decStr(x.b, 1)}`)}, ${expr(`${y.a}\\div${decStr(y.b, 1)}`)}`,
+    num(x.q + y.q),
+    `${expr(`${x.q}+${y.q}=${x.q + y.q}`)} 입니다.`,
+  );
+}
+
+function roundFormPlace(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 반올림하여 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 나타낼 때, 반올림하는 자리는 소수 몇째 자리입니까?\n\n${expr(`${c.a}\\div${c.b}`)}`,
+    num(place),
+    `소수 ${place === 1 ? "첫" : "둘"}째 자리까지이므로 ${num(place)}째 자리입니다.`,
+  );
+}
+function roundFormNextDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 반올림할 때 보는 다음 자리의 숫자는 얼마입니까?`,
+    num(c.shown % 10),
+    `몫은 ${expr(`${decStr(c.shown, place + 1)}\\ldots`)} 이므로 다음 자리 숫자는 ${num(c.shown % 10)}입니다.`,
+  );
+}
+function roundFormDoesTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.a}\\div${c.b}`)} 의 몫은 나누어떨어지지 않으므로 반올림하여 나타낸다.`,
+    "예",
+    `나누어떨어지지 않으므로 반올림합니다.`,
+  );
+}
+function roundFormResult(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 반올림하여 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 나타내시오.`,
+    expr(decStr(c.cut, place)),
+    `반올림하면 ${expr(decStr(c.cut, place))} 입니다.`,
+  );
+}
+function roundFormShown(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 반올림하기 전, 소수 ${place === 1 ? "둘" : "셋"}째 자리까지 쓴 수는 얼마입니까?`,
+    expr(decStr(c.shown, place + 1)),
+    `${expr(decStr(c.shown, place + 1))} 입니다.`,
+  );
+}
+function roundFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `몫을 반올림하는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${c.a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+function remFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫을 자연수까지 구할 때 몫은 얼마입니까?`,
+    num(r.people),
+    `몫은 ${num(r.people)}입니다.`,
+  );
+}
+function remFormRem(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫을 자연수까지 구할 때 남는 수는 얼마입니까?`,
+    expr(decStr(r.rem10, 1)),
+    `남는 수는 ${num(decStr(r.rem10, 1))}입니다.`,
+  );
+}
+function remFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 나누는 수는 얼마입니까?`,
+    num(r.per),
+    `나누는 수는 ${num(r.per)}입니다.`,
+  );
+}
+function remFormUsed(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫만큼 나누어 준 양은 얼마입니까?`,
+    num(r.per * r.people),
+    `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 입니다.`,
+  );
+}
+function remFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(decStr(r.total10, 1)),
+    `나누어지는 수는 ${num(decStr(r.total10, 1))}입니다.`,
+  );
+}
+function remFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 남는 수는 나누는 수보다 작다.`,
+    "예",
+    `남는 수 ${num(decStr(r.rem10, 1))}는 나누는 수 ${num(r.per)}보다 작습니다.`,
+  );
+}
+
+function viewFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥의 가로는 몇 칸입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function viewFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥의 세로는 몇 칸입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function viewFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥 칸은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function viewFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 위에서 볼 때 쌓기나무가 놓인 칸은 몇 칸입니까?`,
+    num(filled),
+    `놓인 칸은 ${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function viewFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const mx = Math.max(...b.h.flat());
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 가장 높이 쌓인 곳은 몇 층입니까?`,
+    num(mx),
+    `가장 높은 곳은 ${num(mx)}층입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function viewFormSumFloorFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥 칸 수와 위에서 보이는 칸 수를 더하면 얼마입니까?`,
+    num(b.cols * b.rows + filled),
+    `${expr(`${b.cols * b.rows}+${filled}=${b.cols * b.rows + filled}`)} 입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+function cubeOneFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeOneFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeOneFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 쌓기나무가 한 개 이상 놓인 바닥 칸은 몇 칸입니까?`,
+    num(filled),
+    `${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeOneFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?`,
+    num(Math.max(...b.h.flat())),
+    `가장 높은 층은 ${num(Math.max(...b.h.flat()))}입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeOneFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 바닥은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeOneFormExtra(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 쌓기나무 전체 개수에서 놓인 바닥 칸 수를 빼면 얼마입니까?`,
+    num(total - filled),
+    `전체 ${num(total)}개에서 놓인 칸 ${num(filled)}칸을 빼면 ${num(total - filled)}입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+
+function cubeTwoFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높은 곳은 몇 층입니까?`,
+    num(b.top),
+    `가장 높은 곳은 ${num(b.top)}층입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeTwoFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeTwoFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeTwoFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 쌓기나무는 모두 몇 개입니까?`,
+    num(total),
+    `층수를 모두 더하면 ${num(total)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function cubeTwoFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 쌓기나무가 놓인 바닥 칸은 몇 칸입니까?`,
+    num(filled),
+    `${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeTwoFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBaseTopped(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 바닥 칸은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+function cubeLayerFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 가장 높은 층은 몇 층입니까?`,
+    num(Math.max(...b.h.flat())),
+    `가장 높은 층은 ${num(Math.max(...b.h.flat()))}입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeLayerFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 가로 칸 수는 얼마입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeLayerFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 세로 칸 수는 얼마입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeLayerFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 쌓기나무는 모두 몇 개입니까?`,
+    num(total),
+    `모두 ${num(total)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function cubeLayerFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 한 층 이상 쌓인 칸은 몇 칸입니까?`,
+    num(filled),
+    `${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeLayerFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 바닥은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+function cubeBoxFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 가로 칸 수는 얼마입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeBoxFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 세로 칸 수는 얼마입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeBoxFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 가장 높이 담긴 곳은 몇 층입니까?`,
+    num(Math.max(...b.h.flat())),
+    `가장 높은 곳은 ${num(Math.max(...b.h.flat()))}층입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeBoxFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 담긴 쌓기나무는 모두 몇 개입니까?`,
+    num(total),
+    `모두 ${num(total)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function cubeBoxFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 쌓기나무가 담긴 바닥 칸은 몇 칸입니까?`,
+    num(filled),
+    `${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeBoxFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 바닥 칸은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+function cubeMakeFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
+    num(b.cols),
+    `가로는 ${num(b.cols)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeMakeFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
+    num(b.rows),
+    `세로는 ${num(b.rows)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeMakeFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 가장 높은 곳은 몇 층입니까?`,
+    num(Math.max(...b.h.flat())),
+    `가장 높은 곳은 ${num(Math.max(...b.h.flat()))}층입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+  );
+}
+function cubeMakeFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const total = b.h.flat().reduce((s, v) => s + v, 0);
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 사용한 쌓기나무는 모두 몇 개입니까?`,
+    num(total),
+    `모두 ${num(total)}개입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+  );
+}
+function cubeMakeFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  const filled = b.h.flat().filter((v) => v > 0).length;
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 나무가 놓인 바닥 칸은 몇 칸입니까?`,
+    num(filled),
+    `${num(filled)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+function cubeMakeFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = stackBase(rng);
+  return make(
+    unit,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 바닥은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
+  );
+}
+
+function ratioPropFormK(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱합니다. 곱하는 수는 얼마입니까?`,
+    num(k),
+    `곱하는 수는 ${num(k)}입니다.`,
+  );
+}
+function ratioPropFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱한 비에서 전항은 얼마입니까?`,
+    num(a * k),
+    `${expr(`${a}\\times${k}=${a * k}`)} 입니다.`,
+  );
+}
+function ratioPropFormBack(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱한 비에서 후항은 얼마입니까?`,
+    num(b * k),
+    `${expr(`${b}\\times${k}=${b * k}`)} 입니다.`,
+  );
+}
+function ratioPropFormSameTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}`)} 와 ${expr(`${a * k}:${b * k}`)} 의 비율은 같다.`,
+    "예",
+    `같은 수를 곱해도 비율은 같습니다.`,
+  );
+}
+function ratioPropFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 ${num(k)}${numJosa(k, "을", "를")} 곱한 뒤 두 항의 합은 얼마입니까?`,
+    num((a + b) * k),
+    `${expr(`(${a}+${b})\\times${k}=${(a + b) * k}`)} 입니다.`,
+  );
+}
+function ratioPropFormQuotFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 7);
+  return make(
+    unit,
+    `비 ${expr(`${a * g}:${b * g}`)} 의 전항과 후항을 각각 ${num(g)}${numRo(g)} 나눈 비에서 전항은 얼마입니까?`,
+    num(a),
+    `${expr(`${a * g}\\div${g}=${a}`)} 입니다.`,
+  );
+}
+
+function simpleRatioFormGcd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타낼 때, 두 항을 나누는 수는 얼마입니까?`,
+    num(g),
+    `최대공약수는 ${num(g)}입니다.`,
+  );
+}
+function simpleRatioFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타낼 때 전항은 얼마입니까?`,
+    num(a),
+    `${expr(`${a * g}\\div${g}=${a}`)} 입니다.`,
+  );
+}
+function simpleRatioFormBack(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타낼 때 후항은 얼마입니까?`,
+    num(b),
+    `${expr(`${b * g}\\div${g}=${b}`)} 입니다.`,
+  );
+}
+function simpleRatioFormSimple(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타내시오.`,
+    expr(`${a}:${b}`),
+    `${expr(`${a}:${b}`)} 입니다.`,
+  );
+}
+function simpleRatioFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타낸 뒤 두 항의 합은 얼마입니까?`,
+    num(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+function simpleRatioFormProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const g = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${expr(`${a * g}:${b * g}`)} 를 가장 간단한 자연수의 비로 나타낸 뒤 두 항의 곱은 얼마입니까?`,
+    num(a * b),
+    `${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+  );
+}
+
+function propEqFormInner(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 내항의 두 수를 차례로 쓰시오.`,
+    expr(`${b},\\ ${a * k}`),
+    `내항은 ${expr(`${b},\\ ${a * k}`)} 입니다.`,
+  );
+}
+function propEqFormOuter(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 두 수를 차례로 쓰시오.`,
+    expr(`${a},\\ ${b * k}`),
+    `외항은 ${expr(`${a},\\ ${b * k}`)} 입니다.`,
+  );
+}
+function propEqFormIsTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} 는 비례식이다.`,
+    "예",
+    `두 비의 비율이 같으므로 비례식입니다.`,
+  );
+}
+function propEqFormInnerProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 내항의 곱은 얼마입니까?`,
+    num(b * a * k),
+    `${expr(`${b}\\times${a * k}=${b * a * k}`)} 입니다.`,
+  );
+}
+function propEqFormOuterProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 곱은 얼마입니까?`,
+    num(a * b * k),
+    `${expr(`${a}\\times${b * k}=${a * b * k}`)} 입니다.`,
+  );
+}
+function propEqFormEqualTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 내항의 곱과 외항의 곱은 같다.`,
+    "예",
+    `둘 다 ${num(a * b * k)}입니다.`,
+  );
+}
+
+function propRuleFormKnown(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${expr(`${a}:${b}=${a * k}:\\square`)} 에서 외항의 한 수는 얼마입니까? (□가 아닌 수)`,
+    num(a),
+    `외항의 한 수는 ${num(a)}입니다.`,
+  );
+}
+function propRuleFormInnerFirst(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 왼쪽 내항은 얼마입니까?`,
+    num(b),
+    `왼쪽 내항은 ${num(b)}입니다.`,
+  );
+}
+function propRuleFormProdEqTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 곱은 내항의 곱과 같다.`,
+    "예",
+    `비례식의 성질입니다.`,
+  );
+}
+function propRuleFormMissing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 구하시오.\n\n${expr(`${a}:${b}=${a * k}:\\square`)}`,
+    num(b * k),
+    `${expr(`${a}\\times\\square=${b}\\times${a * k}`)} 이므로 ${expr(`\\square=${b * k}`)} 입니다.`,
+  );
+}
+function propRuleFormInnerProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 내항의 곱은 얼마입니까?`,
+    num(b * a * k),
+    `${expr(`${b}\\times${a * k}=${a * b * k}`)} 입니다.`,
+  );
+}
+function propRuleFormOuterProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 9);
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 곱은 얼마입니까?`,
+    num(a * b * k),
+    `${expr(`${a}\\times${b * k}=${a * b * k}`)} 입니다.`,
+  );
+}
+
+function shareFormParts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `${num((a + b) * k)}${numJosa((a + b) * k, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분할 때, 전체를 몇 묶음으로 나눕니까?`,
+    num(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 묶음입니다.`,
+  );
+}
+function shareFormUnit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  return make(
+    unit,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분할 때, 한 묶음의 크기는 얼마입니까?`,
+    num(k),
+    `${expr(`${total}\\div${a + b}=${k}`)} 입니다.`,
+  );
+}
+function shareFormFirst(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  return make(
+    unit,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분할 때, 앞의 수는 얼마입니까?`,
+    num(a * k),
+    `${expr(`${k}\\times${a}=${a * k}`)} 입니다.`,
+  );
+}
+function shareFormSecond(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  return make(
+    unit,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분할 때, 뒤의 수는 얼마입니까?`,
+    num(b * k),
+    `${expr(`${k}\\times${b}=${b * k}`)} 입니다.`,
+  );
+}
+function shareFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  const total = (a + b) * k;
+  return make(
+    unit,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분한 두 수의 합은 얼마입니까?`,
+    num(total),
+    `두 수의 합은 전체 ${num(total)}입니다.`,
+  );
+}
+function shareFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = coprimePair(rng, 2, 5);
+  const k = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `${num((a + b) * k)}${numJosa((a + b) * k, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분할 때, 비의 전항은 얼마입니까?`,
+    num(a),
+    `전항은 ${num(a)}입니다.`,
+  );
+}
+
+/** 원 그림 — 치수는 안 적는다(R6). 선분만 보여 준다. */
+function circShow(which: "radius" | "diameter") {
+  return fig("circleParts", { show: which });
+}
+
+function circPiFormHexSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 정육각형을 그렸습니다. 이 정육각형의 한 변은 몇 cm입니까? ${FIT_HEX}`,
+    num(r),
+    `한 변은 반지름과 같은 ${unitNum(r, "cm")} 입니다.`,
+    circShow("radius"),
+  );
+}
+function circPiFormDiam(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  return make(
+    unit,
+    `원의 반지름이 ${unitNum(r, "cm")} 입니다. 이 원의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    circShow("radius"),
+  );
+}
+function circPiFormShorter(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 20);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주는 지름의 ${num(4)}배보다 짧습니다. 원주는 몇 cm보다 짧습니까?`,
+    num(4 * d),
+    `${expr(`${d}\\times4=${4 * d}`)} 보다 짧습니다.`,
+  );
+}
+function circPiFormHexPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm입니까? ${FIT_HEX}`,
+    num(6 * r),
+    `${expr(`${r}\\times6=${6 * r}`)}`,
+  );
+}
+function circPiFormBothSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 정육각형을 그리고, 같은 원 밖에 꼭 맞게 정사각형을 그렸습니다. 두 도형의 둘레의 합은 몇 cm입니까? ${FIT_HEX} ${ALSO_SQUARE}`,
+    num(14 * r),
+    `정육각형 둘레 ${expr(`${r}\\times6=${6 * r}`)}, 정사각형 둘레 ${expr(`${2 * r}\\times4=${8 * r}`)} 이므로 합은 ${expr(`${6 * r}+${8 * r}=${14 * r}`)} 입니다.`,
+  );
+}
+function circPiFormLongerTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 18);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n지름이 ${unitNum(d, "cm")} 인 원의 원주는 지름의 ${num(3)}배보다 길다.`,
+    "예",
+    `원주는 지름의 ${num(3)}배보다 깁니다.`,
+  );
+}
+
+function circLenFormDiam(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 원주를 구하기 전에 먼저 지름을 구하면 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    circShow("radius"),
+  );
+}
+function circLenFormPi(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 24);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주를 구할 때 이 계산에서 쓰는 원주율은 얼마입니까? (원주율: ${num(3)})`,
+    num(3),
+    `발문에 적은 원주율은 ${num(3)}입니다.`,
+  );
+}
+function circLenFormDiamFromC(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 24);
+  return make(
+    unit,
+    `원주가 ${unitNum(3 * d, "cm")} 인 원의 지름은 몇 cm입니까? (원주율: ${num(3)})`,
+    num(d),
+    `${expr(`${3 * d}\\div3=${d}`)}`,
+  );
+}
+function circLenFormFromR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 원주는 몇 cm입니까? (원주율: ${num(3)})`,
+    num(6 * r),
+    `지름은 ${expr(`${r}\\times2=${2 * r}`)} 이므로 ${expr(`${2 * r}\\times3=${6 * r}`)}`,
+    circShow("radius"),
+  );
+}
+function circLenFormTwoTurns(unit: UnitSeed, rng: Rng): ElemProblem {
+  const roller = pick(rng, ROLLERS);
+  const d = intBetween(rng, 3, 14);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 ${roller}${josa(roller, "을", "를")} ${num(2)}바퀴 굴렸습니다. 굴러간 거리는 몇 cm입니까? (원주율: ${num(3)})`,
+    num(6 * d),
+    `한 바퀴는 ${expr(`${d}\\times3=${3 * d}`)} 이므로 두 바퀴는 ${expr(`${3 * d}\\times2=${6 * d}`)} 입니다.`,
+  );
+}
+function circLenFormCircPlusD(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 20);
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주와 지름의 합은 몇 cm입니까? (원주율: ${num(3)})`,
+    num(4 * d),
+    `${expr(`${d}\\times3+${d}=${4 * d}`)}`,
+  );
+}
+
+function circAppFormSqSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  const d = 2 * r;
+  return make(
+    unit,
+    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? ${FIT_SQUARE}`,
+    num(d),
+    `한 변은 지름과 같은 ${unitNum(d, "cm")} 입니다.`,
+    circShow("diameter"),
+  );
+}
+function circAppFormDiag(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  const d = 2 * r;
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 마름모를 그렸습니다. 이 마름모의 한 대각선은 몇 cm입니까? ${FIT_RHOMBUS}`,
+    num(d),
+    `대각선은 지름과 같은 ${unitNum(d, "cm")} 입니다.`,
+    circShow("diameter"),
+  );
+}
+function circAppFormSqArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  const d = 2 * r;
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²입니까? ${FIT_SQUARE}`,
+    num(4 * r * r),
+    `${expr(`${d}\\times${d}=${4 * r * r}`)}`,
+  );
+}
+function circAppFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 넓이에서, 같은 원 안에 꼭 맞게 그린 마름모의 넓이를 빼면 몇 cm²입니까? ${FIT_RHOMBUS} ${ALSO_SQUARE}`,
+    num(2 * r * r),
+    `정사각형 ${expr(`${2 * r}\\times${2 * r}=${4 * r * r}`)}, 마름모 ${expr(`${2 * r}\\times${2 * r}\\div2=${2 * r * r}`)} 이므로 차는 ${expr(`${4 * r * r}-${2 * r * r}=${2 * r * r}`)} 입니다.`,
+  );
+}
+function circAppFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원 안의 마름모와 원 밖의 정사각형의 넓이의 합은 몇 cm²입니까? ${FIT_RHOMBUS} ${ALSO_SQUARE}`,
+    num(6 * r * r),
+    `${expr(`${2 * r * r}+${4 * r * r}=${6 * r * r}`)}`,
+  );
+}
+function circAppFormBetweenTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 14);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n반지름이 ${unitNum(r, "cm")} 인 원의 넓이는 그 원 안에 꼭 맞게 그린 마름모의 넓이보다 크다. ${FIT_RHOMBUS}`,
+    "예",
+    `원의 넓이는 안쪽 마름모보다 크고 바깥 정사각형보다 작습니다.`,
+  );
+}
+
+function circAreaFormR2(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 구할 때, (반지름)×(반지름)의 값은 얼마입니까?`,
+    num(r * r),
+    `${expr(`${r}\\times${r}=${r * r}`)}`,
+  );
+}
+function circAreaFormDiam(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 이 원의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    circShow("radius"),
+  );
+}
+function circAreaFormPi(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 구할 때 이 계산에서 쓰는 원주율은 얼마입니까? (원주율: ${num(3)})`,
+    num(3),
+    `발문에 적은 원주율은 ${num(3)}입니다.`,
+  );
+}
+function circAreaFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const s = r + intBetween(rng, 1, 5);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원과 반지름이 ${unitNum(s, "cm")} 인 원의 넓이의 합은 몇 cm²입니까? (원주율: ${num(3)})`,
+    num(3 * r * r + 3 * s * s),
+    `${expr(`${r}\\times${r}\\times3+${s}\\times${s}\\times3=${3 * r * r + 3 * s * s}`)}`,
+  );
+}
+function circAreaFormR2FromA(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  return make(
+    unit,
+    `넓이가 ${num(3 * r * r)} cm²인 원이 있습니다. (반지름)×(반지름)의 값은 얼마입니까? (원주율: ${num(3)})`,
+    num(r * r),
+    `${expr(`${3 * r * r}\\div3=${r * r}`)}`,
+  );
+}
+function circAreaFormScale(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 반지름을 ${num(2)}배로 늘리면 넓이는 몇 배가 됩니까? (원주율: ${num(3)})`,
+    num(4),
+    `처음 넓이는 ${expr(`${r}\\times${r}\\times3=${3 * r * r}`)}, 늘린 뒤는 ${expr(`${2 * r}\\times${2 * r}\\times3=${12 * r * r}`)} 이므로 ${expr(`${12 * r * r}\\div${3 * r * r}=4`)} 배입니다.`,
+  );
+}
+
+function cylKnowFormBases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. 밑면인 원은 모두 몇 개입니까?`,
+    num(2),
+    `원기둥의 밑면은 위와 아래 두 원입니다.`,
+    fig("cylinder", { r, h }),
+  );
+}
+function cylKnowFormSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. 옆면은 몇 개입니까?`,
+    num(1),
+    `원기둥의 옆면은 굽은 면 하나입니다.`,
+    fig("cylinder", { r, h }),
+  );
+}
+function cylKnowFormFrontTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥을 앞에서 본 모양은 직사각형이다.`,
+    "예",
+    `앞에서 보면 가로가 지름, 세로가 높이인 직사각형입니다.`,
+    fig("cylinder", { r, h }),
+  );
+}
+function cylKnowFormFrontW(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥을 앞에서 본 직사각형의 가로는 몇 cm입니까?`,
+    num(2 * r),
+    `가로는 밑면의 지름이므로 ${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("cylinder", { r, h }),
+  );
+}
+function cylKnowFormRPlusH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. 밑면의 반지름과 높이의 합은 몇 cm입니까?`,
+    num(r + h),
+    `${expr(`${r}+${h}=${r + h}`)}`,
+    fig("cylinder", { r, h }),
+  );
+}
+function cylKnowFormR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  const d = 2 * r;
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. 밑면의 반지름은 몇 cm입니까?`,
+    num(r),
+    `${expr(`${d}\\div2=${r}`)}`,
+    fig("cylinder", { r, h }),
+  );
+}
+
+function cylNetFormBases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(2 * r, "cm")} 인 원기둥의 전개도에서 밑면인 원은 모두 몇 개입니까?`,
+    num(2),
+    `전개도의 밑면은 원 두 개입니다.`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+function cylNetFormSideCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형은 몇 개입니까?`,
+    num(1),
+    `옆면을 펼치면 직사각형 하나입니다.`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+function cylNetFormFaces(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도를 그렸습니다. 전개도를 이루는 면은 모두 몇 개입니까?`,
+    num(3),
+    `밑면 원 둘과 옆면 직사각형 하나, 모두 ${num(3)}개입니다.`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+function cylNetFormHeight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 4, 18);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 세로는 몇 cm입니까?`,
+    num(h),
+    `옆면의 세로는 원기둥의 높이와 같은 ${unitNum(h, "cm")} 입니다.`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+function cylNetFormDiam(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 전개도입니다. 밑면인 원의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+function cylNetFormRectSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 10);
+  const h = intBetween(rng, 3, 12);
+  const d = 2 * r;
+  const w = d * 3;
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 가로와 세로의 합은 몇 cm입니까? (원주율: ${num(3)})`,
+    num(w + h),
+    `가로는 ${expr(`${d}\\times3=${w}`)}, 세로는 ${num(h)} 이므로 합은 ${expr(`${w}+${h}=${w + h}`)} 입니다.`,
+    fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
+  );
+}
+
+function coneKnowFormBases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원뿔입니다. 밑면인 원은 몇 개입니까?`,
+    num(1),
+    `원뿔의 밑면은 원 하나입니다.`,
+    fig("cone", { r, h }),
+  );
+}
+function coneKnowFormApex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔입니다. 뿔의 꼭짓점은 몇 개입니까?`,
+    num(1),
+    `원뿔의 꼭짓점은 하나뿐입니다.`,
+    fig("cone", { r, h }),
+  );
+}
+function coneKnowFormDiam(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원뿔입니다. 밑면의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("cone", { r, h }),
+  );
+}
+function coneKnowFormFrontBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 앞에서 본 삼각형의 밑변은 몇 cm입니까?`,
+    num(2 * r),
+    `밑변은 밑면의 지름이므로 ${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("cone", { r, h }),
+  );
+}
+function coneKnowFormFrontH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 16);
+  return make(
+    unit,
+    `밑면의 지름이 ${unitNum(2 * r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 앞에서 본 삼각형의 높이는 몇 cm입니까?`,
+    num(h),
+    `앞에서 본 삼각형의 높이는 원뿔의 높이와 같은 ${unitNum(h, "cm")} 입니다.`,
+    fig("cone", { r, h }),
+  );
+}
+function coneKnowFormSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  const h = intBetween(rng, 3, 15);
+  return make(
+    unit,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔입니다. 옆면은 몇 개입니까?`,
+    num(1),
+    `원뿔의 옆면은 굽은 면 하나입니다.`,
+    fig("cone", { r, h }),
+  );
+}
+
+function ballKnowFormCutTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 20);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 자르면 잘린 면은 원이다.`,
+    "예",
+    `구를 중심을 지나게 자르면 잘린 면은 구와 반지름이 같은 원입니다.`,
+    fig("sphere", { r }),
+  );
+}
+function ballKnowFormD(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 3, 18);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구가 있습니다. 이 구의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("sphere", { r }),
+  );
+}
+function ballKnowFormCutR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 20);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면인 원의 반지름은 몇 cm입니까?`,
+    num(r),
+    `잘린 면은 구와 반지름이 같은 원이므로 ${unitNum(r, "cm")} 입니다.`,
+    fig("sphere", { r }),
+  );
+}
+function ballKnowFormCutD(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 20);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면인 원의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `${expr(`${r}\\times2=${2 * r}`)}`,
+    fig("sphere", { r }),
+  );
+}
+function ballKnowFormCutArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 12);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면의 넓이는 몇 cm²입니까? (원주율: ${num(3)})`,
+    num(3 * r * r),
+    `잘린 면은 반지름이 ${unitNum(r, "cm")} 인 원이므로 ${expr(`${r}\\times${r}\\times3=${3 * r * r}`)}`,
+    fig("sphere", { r }),
+  );
+}
+function ballKnowFormCutC(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 16);
+  const d = 2 * r;
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면의 둘레는 몇 cm입니까? (원주율: ${num(3)})`,
+    num(3 * d),
+    `지름은 ${expr(`${r}\\times2=${d}`)} 이므로 둘레는 ${expr(`${d}\\times3=${3 * d}`)} 입니다.`,
+    fig("sphere", { r }),
+  );
+}
+
+export const G6_FORMS: Record<string, readonly ElemForm[]> = {
+  "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
+    b5: natDivFormDen,
+    b6: natDivFormNum,
+    b7: natDivFormReciprocalTf,
+    a8: natDivFormSum,
+    a9: natDivFormHalfShare,
+    a10: natDivFormLarger,
+  }),
+  "초6|1-1-2": forms10(fracNatCalc, fracNatWord, fracNatApply, fracNatDeep, {
+    b5: fracNatFormMulDen,
+    b6: fracNatFormKeepNum,
+    b7: fracNatFormWrongRuleTf,
+    a8: fracNatFormSum,
+    a9: fracNatFormTimesPiece,
+    a10: fracNatFormDiff,
+  }),
+  "초6|1-1-3": forms10(
+    mixedNatCalc,
+    mixedNatWord,
+    mixedNatApply,
+    mixedNatDeep,
+    {
+      b5: mixedNatFormImpNum,
+      b6: mixedNatFormWhole,
+      b7: mixedNatFormHalfConvertTf,
+      a8: mixedNatFormSum,
+      a9: mixedNatFormPolyPerim,
+      a10: mixedNatFormDiff,
+    },
+  ),
+  "초6|1-2-1": forms10(
+    prismFaceCalc,
+    prismFaceRead,
+    prismFaceApply,
+    prismFaceDeep,
+    {
+      b5: prismFaceFormBaseCount,
+      b6: prismFaceFormSideShape,
+      b7: prismFaceFormBaseShape,
+      a8: prismFaceFormOneArea,
+      a9: prismFaceFormBasePerim,
+      a10: prismFaceFormSideMinusBase,
+    },
+  ),
+  "초6|1-2-2": forms10(
+    prismPartCalc,
+    prismPartRead,
+    prismPartApply,
+    prismPartDeep,
+    {
+      b5: prismPartFormBaseSides,
+      b6: prismPartFormEuler,
+      b7: prismPartFormBaseVerts,
+      a8: prismPartFormVertical,
+      a9: prismPartFormBaseEdges,
+      a10: prismPartFormMeet,
+    },
+  ),
+  "초6|1-2-3": forms10(netCalc, netRead, netApply, netDeep, {
+    b5: netFormBaseCount,
+    b6: netFormSideShape,
+    b7: netFormFaceTotal,
+    a8: netFormTwoBasePerim,
+    a9: netFormFoldedBase,
+    a10: netFormSideMinusBase,
+  }),
+  "초6|1-2-4": forms10(pyrFaceCalc, pyrFaceRead, pyrFaceApply, pyrFaceDeep, {
+    b5: pyrFaceFormBaseCount,
+    b6: pyrFaceFormSideShape,
+    b7: pyrFaceFormBaseShape,
+    a8: pyrFaceFormOneArea,
+    a9: pyrFaceFormBasePerim,
+    a10: pyrFaceFormSideMinusBase,
+  }),
+  "초6|1-2-5": forms10(pyrPartCalc, pyrPartRead, pyrPartApply, pyrPartDeep, {
+    b5: pyrPartFormBaseSides,
+    b6: pyrPartFormEuler,
+    b7: pyrPartFormBaseVerts,
+    a8: pyrPartFormApexEdges,
+    a9: pyrPartFormBaseEdges,
+    a10: pyrPartFormApex,
+  }),
+  "초6|1-3-1": forms10(decNatCalc, decNatWord, decNatApply, decNatDeep, {
+    b5: decNatFormDivisor,
+    b6: decNatFormWhole,
+    b7: decNatFormUnderTf,
+    a8: decNatFormSum,
+    a9: decNatFormAfterShare,
+    a10: decNatFormDiff,
+  }),
+  "초6|1-3-2": forms10(
+    decUnderCalc,
+    decUnderWord,
+    decUnderApply,
+    decUnderDeep,
+    {
+      b5: decUnderFormWholeZero,
+      b6: decUnderFormSmallerTf,
+      b7: decUnderFormOverTf,
+      a8: decUnderFormSum,
+      a9: decUnderFormTimesPiece,
+      a10: decUnderFormDiff,
+    },
+  ),
+  "초6|1-3-3": forms10(
+    decBringCalc,
+    decBringWord,
+    decBringApply,
+    decBringDeep,
+    {
+      b5: decBringFormDivisor,
+      b6: decBringFormHundredth,
+      b7: decBringFormZeroTf,
+      a8: decBringFormSum,
+      a9: decBringFormTwoDays,
+      a10: decBringFormDiff,
+    },
+  ),
+  "초6|1-3-4": forms10(decZeroCalc, decZeroWord, decZeroApply, decZeroDeep, {
+    b5: decZeroFormDivisor,
+    b6: decZeroFormTenthZero,
+    b7: decZeroFormPlaceTf,
+    a8: decZeroFormSum,
+    a9: decZeroFormCheck,
+    a10: decZeroFormDiff,
+  }),
+  "초6|1-3-5": forms10(natDecCalc, natDecWord, natDecApply, natDecDeep, {
+    b5: natDecFormDivisor,
+    b6: natDecFormNaturalTf,
+    b7: natDecFormQuotientNatTf,
+    a8: natDecFormSum,
+    a9: natDecFormDoubleShare,
+    a10: natDecFormDiff,
+  }),
+  "초6|1-4-1": forms10(cmpCalc, cmpWord, cmpApply, cmpDeep, {
+    b5: cmpFormSmall,
+    b6: cmpFormProduct,
+    b7: cmpFormReverseTf,
+    a8: cmpFormChain,
+    a9: cmpFormLargerFromSum,
+    a10: cmpFormTwoKSum,
+  }),
+  "초6|1-4-2": forms10(biCalc, biWord, biApply, biDeep, {
+    b5: biFormInverse,
+    b6: biFormFront,
+    b7: biFormBack,
+    a8: biFormSum,
+    a9: biFormDiff,
+    a10: biFormWholeSecond,
+  }),
+  "초6|1-4-3": forms10(rateCalc, rateWord, rateApply, rateDeep, {
+    b5: rateFormFrac,
+    b6: rateFormBase,
+    b7: rateFormCompare,
+    a8: rateFormTimes,
+    a9: rateFormRest,
+    a10: rateFormLarger,
+  }),
+  "초6|1-4-4": forms10(rateUseCalc, rateUseWord, rateUseApply, rateUseDeep, {
+    b5: rateUseFormTime,
+    b6: rateUseFormBaseTf,
+    b7: rateUseFormArea,
+    a8: rateUseFormWater,
+    a9: rateUseFormTwoLegs,
+    a10: rateUseFormSpeedDiff,
+  }),
+  "초6|1-4-5": forms10(pctCalc, pctWord, pctApply, pctDeep, {
+    b5: pctFormFromFrac,
+    b6: pctFormToFrac,
+    b7: pctFormToDec,
+    a8: pctFormSum,
+    a9: pctFormRest,
+    a10: pctFormLarger,
+  }),
+  "초6|1-4-6": forms10(pctUseCalc, pctUseWord, pctUseApply, pctUseDeep, {
+    b5: pctUseFormRate,
+    b6: pctUseFormCut,
+    b7: pctUseFormInterest,
+    a8: pctUseFormPrincipalPlus,
+    a9: pctUseFormNo,
+    a10: pctUseFormPaidDiff,
+  }),
+  "초6|1-5-1": forms10(
+    stripReadCalc,
+    stripReadWord,
+    stripReadApply,
+    stripReadDeep,
+    {
+      b5: stripReadFormCount,
+      b6: stripReadFormLeast,
+      b7: stripReadFormAll100,
+      a8: stripReadFormTwoSum,
+      a9: stripReadFormMaxPct,
+      a10: stripReadFormRest,
+    },
+  ),
+  "초6|1-5-2": forms10(
+    stripDrawCalc,
+    stripDrawWord,
+    stripDrawApply,
+    stripDrawDeep,
+    {
+      b5: stripDrawFormRest,
+      b6: stripDrawFormTwoCount,
+      b7: stripDrawFormLenRest,
+      a8: stripDrawFormPctDiff,
+      a9: stripDrawFormCount,
+      a10: stripDrawFormTwoLen,
+    },
+  ),
+  "초6|1-5-3": forms10(pieReadCalc, pieReadWord, pieReadApply, pieReadDeep, {
+    b5: pieReadFormCount,
+    b6: pieReadFormLeast,
+    b7: pieReadFormAll100,
+    a8: pieReadFormTwoSum,
+    a9: pieReadFormMaxPct,
+    a10: pieReadFormRest,
+  }),
+  "초6|1-5-4": forms10(pieDrawCalc, pieDrawWord, pieDrawApply, pieDrawDeep, {
+    b5: pieDrawFormRest,
+    b6: pieDrawFormAngle,
+    b7: pieDrawFormDiff,
+    a8: pieDrawFormCount,
+    a9: pieDrawFormTwoAngles,
+    a10: pieDrawFormTwoPeople,
+  }),
+  "초6|1-5-5": forms10(
+    cmpChartCalc,
+    cmpChartWord,
+    cmpChartApply,
+    cmpChartDeep,
+    {
+      b5: cmpChartFormLowPct,
+      b6: cmpChartFormCount,
+      b7: cmpChartFormAll100,
+      a8: cmpChartFormTopName,
+      a9: cmpChartFormSpread,
+      a10: cmpChartFormSecond,
+    },
+  ),
+  "초6|1-6-1": forms10(surfCalc, surfWord, surfApply, surfDeep, {
+    b5: surfFormBase,
+    b6: surfFormFaces,
+    b7: surfFormLateral,
+    a8: surfFormTwoBases,
+    a9: surfFormMinusLid,
+    a10: surfFormEdgeFromArea,
+  }),
+  "초6|1-6-2": forms10(volCalc, volWord, volApply, volDeep, {
+    b5: volFormBase,
+    b6: volFormWd,
+    b7: volFormSum,
+    a8: volFormDiff,
+    a9: volFormCubes,
+    a10: volFormDoubleOne,
+  }),
+  "초6|1-6-3": forms10(cubicCalc, cubicWord, cubicApply, cubicDeep, {
+    b5: cubicFormFactTf,
+    b6: cubicFormToM,
+    b7: cubicFormSumCm,
+    a8: cubicFormBoxM,
+    a9: cubicFormBoxToCm,
+    a10: cubicFormDiffM,
+  }),
+  "초6|2-1-1": forms10(sameDenCalc, sameDenWord, sameDenApply, sameDenDeep, {
+    b5: sameDenFormTop,
+    b6: sameDenFormDivTop,
+    b7: sameDenFormDen,
+    a8: sameDenFormSameTf,
+    a9: sameDenFormSum,
+    a10: sameDenFormCheck,
+  }),
+  "초6|2-1-2": forms10(diffDenCalc, diffDenWord, diffDenApply, diffDenDeep, {
+    b5: diffDenFormDen1,
+    b6: diffDenFormDen2,
+    b7: diffDenFormDiffTf,
+    a8: diffDenFormRecipNum,
+    a9: diffDenFormDenProd,
+    a10: diffDenFormQuot,
+  }),
+  "초6|2-1-3": forms10(natFracCalc, natFracWord, natFracApply, natFracDeep, {
+    b5: natFracFormNat,
+    b6: natFracFormDen,
+    b7: natFracFormRecipNum,
+    a8: natFracFormTimesDen,
+    a9: natFracFormSum,
+    a10: natFracFormNum,
+  }),
+  "초6|2-1-4": forms10(flipCalc, flipWord, flipApply, flipDeep, {
+    b5: flipFormRecipNum,
+    b6: flipFormRecipDen,
+    b7: flipFormRuleTf,
+    a8: flipFormDivNum,
+    a9: flipFormDenSum,
+    a10: flipFormValue,
+  }),
+  "초6|2-1-5": forms10(
+    mixedFracCalc,
+    mixedFracWord,
+    mixedFracApply,
+    mixedFracDeep,
+    {
+      b5: mixedFracFormWhole,
+      b6: mixedFracFormImp,
+      b7: mixedFracFormDen,
+      a8: mixedFracFormImpDen,
+      a9: mixedFracFormQuot,
+      a10: mixedFracFormWholePlusDen,
+    },
+  ),
+  "초6|2-2-1": forms10(sameDpCalc, sameDpWord, sameDpApply, sameDpDeep, {
+    b5: sameDpFormDivisor,
+    b6: sameDpFormDividend,
+    b7: sameDpFormSameTf,
+    a8: sameDpFormQuot,
+    a9: sameDpFormProd,
+    a10: sameDpFormSum,
+  }),
+  "초6|2-2-2": forms10(diffDpCalc, diffDpWord, diffDpApply, diffDpDeep, {
+    b5: diffDpFormDivisor,
+    b6: diffDpFormDividend,
+    b7: diffDpFormDiffTf,
+    a8: diffDpFormQuot,
+    a9: diffDpFormShift,
+    a10: diffDpFormSum,
+  }),
+  "초6|2-2-3": forms10(natDpCalc, natDpWord, natDpApply, natDpDeep, {
+    b5: natDpFormNat,
+    b6: natDpFormDivisor,
+    b7: natDpFormNatTf,
+    a8: natDpFormQuot,
+    a9: natDpFormTimes,
+    a10: natDpFormSum,
+  }),
+  "초6|2-2-4": forms10(roundCalc, roundWord, roundApply, roundDeep, {
+    b5: roundFormPlace,
+    b6: roundFormNextDigit,
+    b7: roundFormDoesTf,
+    a8: roundFormResult,
+    a9: roundFormShown,
+    a10: roundFormDivisor,
+  }),
+  "초6|2-2-5": forms10(remCalc, remWord, remApply, remDeep, {
+    b5: remFormQuot,
+    b6: remFormRem,
+    b7: remFormDivisor,
+    a8: remFormUsed,
+    a9: remFormTotal,
+    a10: remFormSmallerTf,
+  }),
+  "초6|2-3-1": forms10(viewCalc, viewWord, viewApply, viewDeep, {
+    b5: viewFormCols,
+    b6: viewFormRows,
+    b7: viewFormFloor,
+    a8: viewFormFilled,
+    a9: viewFormMax,
+    a10: viewFormSumFloorFilled,
+  }),
+  "초6|2-3-2": forms10(cubeOneCalc, cubeOneWord, cubeOneApply, cubeOneDeep, {
+    b5: cubeOneFormCols,
+    b6: cubeOneFormRows,
+    b7: cubeOneFormFilled,
+    a8: cubeOneFormMax,
+    a9: cubeOneFormFloor,
+    a10: cubeOneFormExtra,
+  }),
+  "초6|2-3-3": forms10(cubeTwoCalc, cubeTwoWord, cubeTwoApply, cubeTwoDeep, {
+    b5: cubeTwoFormMax,
+    b6: cubeTwoFormCols,
+    b7: cubeTwoFormRows,
+    a8: cubeTwoFormTotal,
+    a9: cubeTwoFormFilled,
+    a10: cubeTwoFormFloor,
+  }),
+  "초6|2-3-4": forms10(
+    cubeLayerCalc,
+    cubeLayerWord,
+    cubeLayerApply,
+    cubeLayerDeep,
+    {
+      b5: cubeLayerFormMax,
+      b6: cubeLayerFormCols,
+      b7: cubeLayerFormRows,
+      a8: cubeLayerFormTotal,
+      a9: cubeLayerFormFilled,
+      a10: cubeLayerFormFloor,
+    },
+  ),
+  "초6|2-3-5": forms10(cubeBoxCalc, cubeBoxWord, cubeBoxApply, cubeBoxDeep, {
+    b5: cubeBoxFormCols,
+    b6: cubeBoxFormRows,
+    b7: cubeBoxFormMax,
+    a8: cubeBoxFormTotal,
+    a9: cubeBoxFormFilled,
+    a10: cubeBoxFormFloor,
+  }),
+  "초6|2-3-6": forms10(
+    cubeMakeCalc,
+    cubeMakeWord,
+    cubeMakeApply,
+    cubeMakeDeep,
+    {
+      b5: cubeMakeFormCols,
+      b6: cubeMakeFormRows,
+      b7: cubeMakeFormMax,
+      a8: cubeMakeFormTotal,
+      a9: cubeMakeFormFilled,
+      a10: cubeMakeFormFloor,
+    },
+  ),
+  "초6|2-4-1": forms10(
+    ratioPropCalc,
+    ratioPropWord,
+    ratioPropApply,
+    ratioPropDeep,
+    {
+      b5: ratioPropFormK,
+      b6: ratioPropFormFront,
+      b7: ratioPropFormBack,
+      a8: ratioPropFormSameTf,
+      a9: ratioPropFormSum,
+      a10: ratioPropFormQuotFront,
+    },
+  ),
+  "초6|2-4-2": forms10(
+    simpleRatioCalc,
+    simpleRatioWord,
+    simpleRatioApply,
+    simpleRatioDeep,
+    {
+      b5: simpleRatioFormGcd,
+      b6: simpleRatioFormFront,
+      b7: simpleRatioFormBack,
+      a8: simpleRatioFormSimple,
+      a9: simpleRatioFormSum,
+      a10: simpleRatioFormProd,
+    },
+  ),
+  "초6|2-4-3": forms10(propEqCalc, propEqWord, propEqApply, propEqDeep, {
+    b5: propEqFormInner,
+    b6: propEqFormOuter,
+    b7: propEqFormIsTf,
+    a8: propEqFormInnerProd,
+    a9: propEqFormOuterProd,
+    a10: propEqFormEqualTf,
+  }),
+  "초6|2-4-4": forms10(
+    propRuleCalc,
+    propRuleWord,
+    propRuleApply,
+    propRuleDeep,
+    {
+      b5: propRuleFormKnown,
+      b6: propRuleFormInnerFirst,
+      b7: propRuleFormProdEqTf,
+      a8: propRuleFormMissing,
+      a9: propRuleFormInnerProd,
+      a10: propRuleFormOuterProd,
+    },
+  ),
+  "초6|2-4-5": forms10(shareCalc, shareWord, shareApply, shareDeep, {
+    b5: shareFormParts,
+    b6: shareFormUnit,
+    b7: shareFormFirst,
+    a8: shareFormSecond,
+    a9: shareFormSum,
+    a10: shareFormFront,
+  }),
+  "초6|2-5-1": forms10(circPiCalc, circPiWord, circPiApply, circPiDeep, {
+    b5: circPiFormHexSide,
+    b6: circPiFormDiam,
+    b7: circPiFormShorter,
+    a8: circPiFormHexPerim,
+    a9: circPiFormBothSum,
+    a10: circPiFormLongerTf,
+  }),
+  "초6|2-5-2": forms10(circLenCalc, circLenWord, circLenApply, circLenDeep, {
+    b5: circLenFormDiam,
+    b6: circLenFormPi,
+    b7: circLenFormDiamFromC,
+    a8: circLenFormFromR,
+    a9: circLenFormTwoTurns,
+    a10: circLenFormCircPlusD,
+  }),
+  "초6|2-5-3": forms10(circAppCalc, circAppWord, circAppApply, circAppDeep, {
+    b5: circAppFormSqSide,
+    b6: circAppFormDiag,
+    b7: circAppFormSqArea,
+    a8: circAppFormDiff,
+    a9: circAppFormSum,
+    a10: circAppFormBetweenTf,
+  }),
+  "초6|2-5-4": forms10(
+    circAreaCalc,
+    circAreaWord,
+    circAreaApply,
+    circAreaDeep,
+    {
+      b5: circAreaFormR2,
+      b6: circAreaFormDiam,
+      b7: circAreaFormPi,
+      a8: circAreaFormTwoSum,
+      a9: circAreaFormR2FromA,
+      a10: circAreaFormScale,
+    },
+  ),
+  "초6|2-6-1": forms10(cylKnowCalc, cylKnowWord, cylKnowApply, cylKnowDeep, {
+    b5: cylKnowFormBases,
+    b6: cylKnowFormSide,
+    b7: cylKnowFormFrontTf,
+    a8: cylKnowFormFrontW,
+    a9: cylKnowFormRPlusH,
+    a10: cylKnowFormR,
+  }),
+  "초6|2-6-2": forms10(cylNetCalc, cylNetWord, cylNetApply, cylNetDeep, {
+    b5: cylNetFormBases,
+    b6: cylNetFormSideCount,
+    b7: cylNetFormFaces,
+    a8: cylNetFormHeight,
+    a9: cylNetFormDiam,
+    a10: cylNetFormRectSum,
+  }),
+  "초6|2-6-3": forms10(
+    coneKnowCalc,
+    coneKnowWord,
+    coneKnowApply,
+    coneKnowDeep,
+    {
+      b5: coneKnowFormBases,
+      b6: coneKnowFormApex,
+      b7: coneKnowFormDiam,
+      a8: coneKnowFormFrontBase,
+      a9: coneKnowFormFrontH,
+      a10: coneKnowFormSide,
+    },
+  ),
+  "초6|2-6-4": forms10(
+    ballKnowCalc,
+    ballKnowWord,
+    ballKnowApply,
+    ballKnowDeep,
+    {
+      b5: ballKnowFormCutTf,
+      b6: ballKnowFormD,
+      b7: ballKnowFormCutR,
+      a8: ballKnowFormCutD,
+      a9: ballKnowFormCutArea,
+      a10: ballKnowFormCutC,
+    },
+  ),
+};

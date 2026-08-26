@@ -77,6 +77,159 @@ function shapeOf(frames: string[]): string {
   return out.join(" ");
 }
 
+/**
+ * 두 문형이 **같은 물음**인가 — 막는 판정은 이 함수 하나다.
+ *
+ * 지문이 똑같거나, **낱말 하나만 다른데 정답이 씨앗마다 전부 같으면** 같다.
+ * 정답을 함께 보는 이유: 「꼭짓점 8」과 「모서리 12」는 낱말 하나 차이인데
+ * **다른 물음**이다. 지문만 보면 그 둘을 잘못 접는다.
+ */
+export function sameQuestion(
+  shapeA: string,
+  answersA: string,
+  shapeB: string,
+  answersB: string,
+): boolean {
+  if (shapeA === shapeB) return true;
+  if (answersA !== answersB) return false;
+  const ta = shapeA.split(" ");
+  const tb = shapeB.split(" ");
+  if (ta.length !== tb.length) return false;
+  let diff = 0;
+  for (let i = 0; i < ta.length; i += 1) if (ta[i] !== tb[i]) diff += 1;
+  return diff <= 1;
+}
+
+/* ───────────────── 눈금 — 이 판정기가 «아니오»를 낼 수 있나 ───────────────── */
+
+/**
+ * ⚠️ 눈금은 **문자열 픽스처**다. 살아 있는 엔진을 보면 그 소단원을 고치는 순간
+ *    양성이 사라지고 재현율을 영영 못 잰다(2026-08-23).
+ */
+const GAUGE: [why: string, want: boolean, run: () => boolean][] = [
+  [
+    "소재가 씨앗마다 바뀌면 ◇ 로 접힌다 (사과/배 막대그래프)",
+    true,
+    () =>
+      shapeOf([
+        "사과 를 좋아하는 학생은 N 명",
+        "배 를 좋아하는 학생은 N 명",
+      ]) ===
+      shapeOf(["귤 를 좋아하는 학생은 N 명", "감 를 좋아하는 학생은 N 명"]),
+  ],
+  [
+    "지문이 똑같으면 같은 물음",
+    true,
+    () => sameQuestion("N 개의 합", "8|8", "N 개의 합", "3|3"),
+  ],
+  [
+    "낱말 하나만 다르고 정답이 같으면 같은 물음 (직육면체/상자 꼭짓점)",
+    true,
+    () =>
+      sameQuestion(
+        "N 인 직육면체 의 꼭짓점 은 몇 개",
+        "8|8|8",
+        "N 인 상자 의 꼭짓점 은 몇 개",
+        "8|8|8",
+      ),
+  ],
+  [
+    "🔴 낱말 하나 다른데 **정답이 다르면** 다른 물음 (꼭짓점 8 / 모서리 12)",
+    false,
+    () =>
+      sameQuestion(
+        "N 인 직육면체 의 꼭짓점 은 몇 개",
+        "8|8|8",
+        "N 인 직육면체 의 모서리 는 몇 개",
+        "12|12|12",
+      ),
+  ],
+  [
+    "🔴 낱말이 둘 이상 다르면 다른 물음",
+    false,
+    () => sameQuestion("가 를 구하시오", "5|5", "나 의 합 을 구하시오", "5|5"),
+  ],
+  [
+    "🔴 낱말 수가 다르면 다른 물음",
+    false,
+    () => sameQuestion("가 나 다", "5|5", "가 나", "5|5"),
+  ],
+  [
+    "🔴 셈이 같아도 막지 않는다 — 절차와 모델링은 다른 물음",
+    false,
+    () =>
+      sameQuestion(
+        "다음 곱셈 을 하시오 N × N",
+        "46|66",
+        "한 봉지 에 N 개씩 N 봉지 는 몇 개",
+        "46|66",
+      ),
+  ],
+];
+
+if (process.argv.includes("--selftest")) {
+  let bad = 0;
+  for (const [why, want, run] of GAUGE) {
+    const got = run();
+    if (got !== want) bad += 1;
+    console.log(
+      `  ${got === want ? "✅" : "❌"} ${why} — 기대 ${want ? "같다" : "다르다"} / 실제 ${got ? "같다" : "다르다"}`,
+    );
+  }
+  const pos = GAUGE.filter((g) => g[1]).length;
+  console.log(
+    bad === 0
+      ? `\n✅ 눈금 ${GAUGE.length}건 전부 맞다 (양성 ${pos} · 음성 ${GAUGE.length - pos})`
+      : `\n❌ 눈금 ${bad}건 어긋남 — **가드를 믿을 수 없다**`,
+  );
+  process.exit(bad === 0 ? 0 : 1);
+}
+
+/**
+ * ⑶-b **글은 다른데 셈이 같은** 두 문형.
+ *
+ * 앞의 지문 검사는 「$1^\circ$가 N개 모인 각」과 「눈금이 N칸인 각」을 못 가른다 —
+ * 글이 다르고 정답도 다르지만 **셈이 둘 다 항등**이다. 실측으로 초4 14곳에서
+ * 4건 나왔다(「두 각을 이어 붙인 합」과 「$a+b=\square$」가 같은 `n0+n1`).
+ *
+ * 열쇠를 손으로 적지 않는다 — 발문의 수와 정답 사이에 **씨앗 전량에서 성립하는
+ * 관계식**을 찾아 서명으로 쓴다. 서명이 같으면 같은 셈이다.
+ * 음성 대조: 파일럿 3곳(이미 좋다고 판정한 곳)은 **0건**이다.
+ */
+const RELATION_CONSTS = [90, 180, 360, 100, 1000, 10000, 12, 60, 24, 8, 4, 2];
+
+function numsIn(s: string): number[] {
+  return (s.match(/\d+/g) ?? []).map(Number);
+}
+
+function relationsOf(stem: number[], ans: number): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < stem.length; i += 1) {
+    const a = stem[i]!;
+    if (a === ans) out.push(`=n${i}`);
+    for (const k of RELATION_CONSTS) {
+      if (k - a === ans) out.push(`${k}-n${i}`);
+      if (a + k === ans) out.push(`n${i}+${k}`);
+      if (a - k === ans) out.push(`n${i}-${k}`);
+      if (a * k === ans) out.push(`n${i}*${k}`);
+      if (a !== 0 && k / a === ans) out.push(`${k}/n${i}`);
+      if (a / k === ans) out.push(`n${i}/${k}`);
+    }
+    for (let j = i + 1; j < stem.length; j += 1) {
+      const b = stem[j]!;
+      if (a + b === ans) out.push(`n${i}+n${j}`);
+      if (a - b === ans) out.push(`n${i}-n${j}`);
+      if (b - a === ans) out.push(`n${j}-n${i}`);
+      if (a * b === ans) out.push(`n${i}*n${j}`);
+      for (const k of RELATION_CONSTS) {
+        if (a + b - k === ans) out.push(`n${i}+n${j}-${k}`);
+        if (k - a - b === ans) out.push(`${k}-n${i}-n${j}`);
+      }
+    }
+  }
+  return out;
+}
+
 type Report = {
   grade: string;
   section: string;
@@ -87,6 +240,8 @@ type Report = {
 };
 
 const reports: Report[] = [];
+/** 막지 않는 참고 — 셈이 같은 짝. 「묻는 것이 같다」는 뜻이 아니다. */
+const advisories: string[] = [];
 
 for (const unit of elementaryUnits()) {
   if (supportedTiers(unit).length === 0) continue;
@@ -122,18 +277,35 @@ for (const unit of elementaryUnits()) {
   const shapes = new Map<string, string[]>();
   const shapeOfForm = new Map<string, string>();
   const answersOfForm = new Map<string, string>();
+  const relOfForm = new Map<string, string>();
   let figureForms = 0;
   const pool: SelectableProblem[] = [];
 
   for (const form of forms) {
     const frames: string[] = [];
     const answers: string[] = [];
+    let relSet: Set<string> | null = null;
     let sawFigure = false;
     for (let i = 0; i < SEEDS; i += 1) {
       try {
         const p = generateElementaryForm(unit, SEED0 + i * STEP, form.id);
         frames.push(rawFrame(p.content));
         answers.push(p.answer);
+        const ansNums = numsIn(p.answer);
+        const rels: string[] =
+          ansNums.length === 1
+            ? relationsOf(numsIn(p.content), ansNums[0]!)
+            : [];
+        if (relSet === null) {
+          relSet = new Set<string>(rels);
+        } else {
+          const keep = new Set<string>(rels);
+          const kept: string[] = [];
+          relSet.forEach((r) => {
+            if (keep.has(r)) kept.push(r);
+          });
+          relSet = new Set<string>(kept);
+        }
         if (p.figureSpec) sawFigure = true;
       } catch (err) {
         problems.push(
@@ -149,6 +321,8 @@ for (const unit of elementaryUnits()) {
     shapes.set(shape, owners);
     shapeOfForm.set(form.id, shape);
     answersOfForm.set(form.id, answers.join("|"));
+    if (relSet && relSet.size > 0)
+      relOfForm.set(form.id, [...relSet].sort().join(","));
 
     // ⑷ 변형 3개
     const familyKey = pilotFamilyKey(unit, form.id);
@@ -203,16 +377,35 @@ for (const unit of elementaryUnits()) {
       const ia = seenIds[a]!;
       const ib = seenIds[b]!;
       if (shapeOfForm.get(ia) === shapeOfForm.get(ib)) continue; // 위에서 이미 셌다
-      if (answersOfForm.get(ia) !== answersOfForm.get(ib)) continue;
-      const ta = shapeOfForm.get(ia)!.split(" ");
-      const tb = shapeOfForm.get(ib)!.split(" ");
-      if (ta.length !== tb.length) continue;
-      let diff = 0;
-      for (let i = 0; i < ta.length; i += 1) if (ta[i] !== tb[i]) diff += 1;
-      if (diff <= 1)
+      if (
+        sameQuestion(
+          shapeOfForm.get(ia)!,
+          answersOfForm.get(ia)!,
+          shapeOfForm.get(ib)!,
+          answersOfForm.get(ib)!,
+        )
+      )
         problems.push(
-          `문형 ${ia}·${ib} 이 **같은 물음**이다 — 낱말 ${diff}개만 다르고 정답이 씨앗마다 전부 같다`,
+          `문형 ${ia}·${ib} 이 **같은 물음**이다 — 낱말 하나만 다르고 정답이 씨앗마다 전부 같다`,
         );
+    }
+  }
+
+  // ⑶-b 글은 다른데 셈이 같은 짝
+  const relIds = [...relOfForm.keys()];
+  for (let a = 0; a < relIds.length; a += 1) {
+    for (let b = a + 1; b < relIds.length; b += 1) {
+      const ia = relIds[a]!;
+      const ib = relIds[b]!;
+      if (relOfForm.get(ia) !== relOfForm.get(ib)) continue;
+      // 🔴 **막지 않는다.** 셈이 같은 것과 묻는 것이 같은 것은 다르다 —
+      //    「23×2 를 계산하시오」와 「22개씩 3봉지는 몇 개인가」는 절차와 모델링이라
+      //    교과서가 둘 다 낸다. 「정사각형 둘레」와 「변의 개수」도 둘 다 n0*4 다.
+      //    실측: 초3 56곳에 막는 검사로 대니 19곳이 걸렸고 **표본이 전부 거짓**이었다.
+      //    거짓 경보는 가드를 끈다(2026-08-20). 사람이 볼 수 있게 적기만 한다.
+      advisories.push(
+        `${unit.grade} ${unit.section} 문형 ${ia}·${ib} 셈이 같다 (${relOfForm.get(ia)!.slice(0, 24)})`,
+      );
     }
   }
 
@@ -272,6 +465,11 @@ if (wantJson) {
   for (const [g, v] of [...byGrade].sort())
     console.log(`  ${g}  ${v.done} / ${v.n}`);
   console.log("");
+  if (advisories.length > 0) {
+    console.log(`참고 — 셈이 같은 짝 ${advisories.length}건 (막지 않는다):`);
+    for (const a of advisories.slice(0, 5)) console.log(`  ${a}`);
+    console.log("");
+  }
   const bad = started.filter((r) => !r.done).slice(0, 12);
   if (bad.length > 0) {
     console.log("착수했는데 아직 안 되는 곳 (앞 12):");
