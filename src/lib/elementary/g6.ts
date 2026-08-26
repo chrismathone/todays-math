@@ -6271,6 +6271,20 @@ function stackBase(rng: Rng): {
   return { cols, rows, h, grid: `가로 ${num(cols)}칸, 세로 ${num(rows)}칸` };
 }
 
+function stackBits(h: number[][]): {
+  empty: number;
+  ones: number;
+  atMax: number;
+} {
+  const flat = h.flat();
+  const mx = Math.max(...flat, 0);
+  return {
+    empty: flat.filter((v) => v === 0).length,
+    ones: flat.filter((v) => v === 1).length,
+    atMax: mx > 0 ? flat.filter((v) => v === mx).length : 0,
+  };
+}
+
 /** 2-3 기본 갈래의 실생활 소재. */
 const STACK_PLACES = ["창고", "전시대", "놀이방", "미술실"] as const;
 
@@ -8135,7 +8149,7 @@ function decNatFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
   const whole = Math.floor(c.q / 100);
   return make(
     unit,
-    `다음 나눗셈의 몫에서 정수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}=${q}`)}`,
+    `다음 나눗셈의 몫에서 정수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}`)}`,
     num(whole),
     `몫은 ${num(q)}이므로 정수 부분은 ${num(whole)}입니다.`,
   );
@@ -8430,10 +8444,10 @@ function decZeroFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${thing} ${unitNum(fromCents(c.a), "m")}를 모두 사용하여 크기가 같은 선물 상자 ${num(c.b)}개를 묶었습니다. ` +
-      `상자 한 개를 묶는 데 쓴 ${thing}의 길이와 상자 수를 곱하면 몇 m입니까?`,
-    expr(fromCents(c.a)),
-    `한 상자에 쓴 길이는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m입니다. ` +
-      `검산하면 ${expr(`${fromCents(c.q)}\\times${c.b}=${fromCents(c.a)}`)} m입니다.`,
+      `상자 ${num(2)}개를 묶는 데 쓴 ${thing}의 길이는 몇 m입니까?`,
+    expr(fromCents(c.q * 2)),
+    `한 상자에 쓴 길이는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m이므로 ` +
+      `상자 ${num(2)}개에는 ${expr(`${fromCents(c.q)}\\times2=${fromCents(c.q * 2)}`)} m입니다.`,
   );
 }
 
@@ -9559,15 +9573,18 @@ function volFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 1-6-2 06 — 높이. 05(밑면의 넓이 = 가로×세로)와 같은 물음이 아니게. */
+/** 1-6-2 06 — 부피와 밑면의 넓이에서 높이를 한 번에 구한다. 04 심화(두 변)와 가른다. */
 function volFormWd(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { w, d, h } = cuboid3(rng);
+  let a = intBetween(rng, 6, 18);
+  let h = intBetween(rng, 3, 9);
+  for (let t = 0; t < 20 && h === a; t += 1) h = intBetween(rng, 3, 9);
+  if (h === a) a = h + 2;
+  const v = a * h;
   return make(
     unit,
-    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 높이는 몇 cm입니까?`,
+    `부피가 ${num(v)} cm³이고 밑면의 넓이가 ${num(a)} cm²인 직육면체가 있습니다. 이 직육면체의 높이는 몇 cm입니까?`,
     num(h),
-    `높이는 ${unitNum(h, "cm")} 입니다.`,
-    fig("cuboid", { w, d, h }),
+    `높이는 ${expr(`${v}\\div${a}=${h}`)} 입니다.`,
   );
 }
 
@@ -9609,14 +9626,14 @@ function volFormCubes(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 1-6-2 10 — 한 변만 2배일 때 부피는 2배. */
+/** 1-6-2 10 — 세 모서리를 같이 늘인다. 답은 세제곱이라 발문에 없다. */
 function volFormDoubleOne(unit: UnitSeed, rng: Rng): ElemProblem {
-  const k = intBetween(rng, 2, 5);
+  const k = intBetween(rng, 2, 4);
   return make(
     unit,
-    `직육면체의 높이만 ${num(k)}배로 늘이면 부피는 처음의 몇 배가 됩니까?`,
-    num(k),
-    `부피는 세 모서리의 곱이므로 높이를 ${num(k)}배로 하면 부피도 ${num(k)}배가 됩니다.`,
+    `직육면체의 가로·세로·높이를 모두 ${num(k)}배로 늘이면 부피는 처음의 몇 배가 됩니까?`,
+    num(k * k * k),
+    `부피는 세 모서리의 곱이므로 ${expr(`${k}\\times${k}\\times${k}=${k * k * k}`)} 배가 됩니다.`,
   );
 }
 
@@ -10351,22 +10368,24 @@ function remFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function viewFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥의 가로는 몇 칸입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 한 층만 쌓인 칸은 몇 칸입니까?`,
+    num(ones),
+    `한 층만 쌓인 칸은 ${num(ones)}칸입니다.`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function viewFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const atMax = stackBits(b.h).atMax;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 바닥의 세로는 몇 칸입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 가장 높은 층과 같은 높이인 칸은 몇 칸입니까?`,
+    num(atMax),
+    `가장 높은 층과 같은 칸은 ${num(atMax)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
   );
 }
 function viewFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10415,22 +10434,24 @@ function viewFormSumFloorFilled(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function cubeOneFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const empty = stackBits(b.h).empty;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 쌓기나무가 하나도 없는 칸은 몇 칸입니까?`,
+    num(empty),
+    `빈 칸은 ${num(empty)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeOneFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 쌓기나무가 한 개만 놓인 칸은 몇 칸입니까?`,
+    num(ones),
+    `한 개만 놓인 칸은 ${num(ones)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeOneFormFilled(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10489,22 +10510,24 @@ function cubeTwoFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 function cubeTwoFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBaseTopped(rng);
+  const empty = stackBits(b.h).empty;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 비어 있는 바닥 칸은 몇 칸입니까?`,
+    num(empty),
+    `빈 칸은 ${num(empty)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
   );
 }
 function cubeTwoFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBaseTopped(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 한 층만 있는 칸은 몇 칸입니까?`,
+    num(ones),
+    `한 층만 있는 칸은 ${num(ones)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
   );
 }
 function cubeTwoFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10552,22 +10575,24 @@ function cubeLayerFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 function cubeLayerFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const empty = stackBits(b.h).empty;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 가로 칸 수는 얼마입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 쌓이지 않은 칸은 몇 칸입니까?`,
+    num(empty),
+    `쌓이지 않은 칸은 ${num(empty)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeLayerFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 세로 칸 수는 얼마입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 쌓기나무를 층층이 쌓았습니다. 1층에만 있고 2층이 없는 칸은 몇 칸입니까?`,
+    num(ones),
+    `1층만 있는 칸은 ${num(ones)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeLayerFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10605,22 +10630,24 @@ function cubeLayerFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function cubeBoxFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const empty = stackBits(b.h).empty;
   return make(
     unit,
-    `${b.grid} 상자에 쌓기나무를 담았습니다. 가로 칸 수는 얼마입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 비어 있는 칸은 몇 칸입니까?`,
+    num(empty),
+    `빈 칸은 ${num(empty)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeBoxFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 상자에 쌓기나무를 담았습니다. 세로 칸 수는 얼마입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 상자에 쌓기나무를 담았습니다. 한 개만 담긴 칸은 몇 칸입니까?`,
+    num(ones),
+    `한 개만 담긴 칸은 ${num(ones)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeBoxFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10668,22 +10695,24 @@ function cubeBoxFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function cubeMakeFormCols(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const empty = stackBits(b.h).empty;
   return make(
     unit,
-    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 가로 칸 수는 얼마입니까?`,
-    num(b.cols),
-    `가로는 ${num(b.cols)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 나무가 없는 칸은 몇 칸입니까?`,
+    num(empty),
+    `없는 칸은 ${num(empty)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeMakeFormRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
+  const ones = stackBits(b.h).ones;
   return make(
     unit,
-    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 세로 칸 수는 얼마입니까?`,
-    num(b.rows),
-    `세로는 ${num(b.rows)}칸입니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 한 개짜리 칸은 몇 칸입니까?`,
+    num(ones),
+    `한 개짜리 칸은 ${num(ones)}칸입니다.`,
+    fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
   );
 }
 function cubeMakeFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10734,9 +10763,9 @@ function ratioPropFormK(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 7);
   return make(
     unit,
-    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱합니다. 곱하는 수는 얼마입니까?`,
-    num(k),
-    `곱하는 수는 ${num(k)}입니다.`,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}${numJosa(k, "을", "를")} 곱한 뒤 두 항의 차는 얼마입니까?`,
+    num(k * Math.abs(a - b)),
+    `${expr(`${Math.max(a, b) * k}-${Math.min(a, b) * k}=${k * Math.abs(a - b)}`)} 입니다.`,
   );
 }
 function ratioPropFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10917,9 +10946,9 @@ function propRuleFormKnown(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `${expr(`${a}:${b}=${a * k}:\\square`)} 에서 외항의 한 수는 얼마입니까? (□가 아닌 수)`,
-    num(a),
-    `외항의 한 수는 ${num(a)}입니다.`,
+    `${expr(`${a}:${b}=${a * k}:\\square`)} 에서 내항의 합은 얼마입니까?`,
+    num(b + a * k),
+    `내항은 ${num(b)}와 ${num(a * k)}이므로 합은 ${expr(`${b}+${a * k}=${b + a * k}`)} 입니다.`,
   );
 }
 function propRuleFormInnerFirst(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -11022,9 +11051,9 @@ function shareFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const total = (a + b) * k;
   return make(
     unit,
-    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분한 두 수의 합은 얼마입니까?`,
-    num(total),
-    `두 수의 합은 전체 ${num(total)}입니다.`,
+    `${num(total)}${numJosa(total, "을", "를")} ${expr(`${a}:${b}`)} 로 비례배분한 두 수의 차는 얼마입니까?`,
+    num(k * Math.abs(a - b)),
+    `${expr(`${Math.max(a, b) * k}-${Math.min(a, b) * k}=${k * Math.abs(a - b)}`)} 입니다.`,
   );
 }
 function shareFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -11114,9 +11143,9 @@ function circLenFormPi(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 3, 24);
   return make(
     unit,
-    `지름이 ${unitNum(d, "cm")} 인 원의 원주를 구할 때 이 계산에서 쓰는 원주율은 얼마입니까? (원주율: ${num(3)})`,
-    num(3),
-    `발문에 적은 원주율은 ${num(3)}입니다.`,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주에서 지름을 빼면 몇 cm입니까? (원주율: ${num(3)})`,
+    num(2 * d),
+    `원주는 ${expr(`${d}\\times3=${3 * d}`)} 이므로 ${expr(`${3 * d}-${d}=${2 * d}`)} 입니다.`,
   );
 }
 function circLenFormDiamFromC(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -11241,9 +11270,9 @@ function circAreaFormPi(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 16);
   return make(
     unit,
-    `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 구할 때 이 계산에서 쓰는 원주율은 얼마입니까? (원주율: ${num(3)})`,
-    num(3),
-    `발문에 적은 원주율은 ${num(3)}입니다.`,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 반지름으로 나누면 몇 cm입니까? (원주율: ${num(3)})`,
+    num(3 * r),
+    `넓이는 ${expr(`${r}\\times${r}\\times3=${3 * r * r}`)} 이므로 ${expr(`${3 * r * r}\\div${r}=${3 * r}`)} 입니다.`,
   );
 }
 function circAreaFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -11380,11 +11409,13 @@ function cylNetFormFaces(unit: UnitSeed, rng: Rng): ElemProblem {
 function cylNetFormHeight(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 12);
   const h = intBetween(rng, 4, 18);
+  const d = 2 * r;
+  const w = 3 * d;
   return make(
     unit,
-    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 세로는 몇 cm입니까?`,
-    num(h),
-    `옆면의 세로는 원기둥의 높이와 같은 ${unitNum(h, "cm")} 입니다.`,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 둘레는 몇 cm입니까? (원주율: ${num(3)})`,
+    num(2 * (w + h)),
+    `가로는 ${expr(`${d}\\times3=${w}`)}, 세로는 ${num(h)} 이므로 둘레는 ${expr(`(${w}+${h})\\times2=${2 * (w + h)}`)} 입니다.`,
     fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
   );
 }
@@ -11461,11 +11492,12 @@ function coneKnowFormFrontBase(unit: UnitSeed, rng: Rng): ElemProblem {
 function coneKnowFormFrontH(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 12);
   const h = intBetween(rng, 3, 16);
+  const d = 2 * r;
   return make(
     unit,
-    `밑면의 지름이 ${unitNum(2 * r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 앞에서 본 삼각형의 높이는 몇 cm입니까?`,
-    num(h),
-    `앞에서 본 삼각형의 높이는 원뿔의 높이와 같은 ${unitNum(h, "cm")} 입니다.`,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 앞에서 본 삼각형의 넓이는 몇 cm²입니까?`,
+    num(r * h),
+    `밑변 ${num(d)}, 높이 ${num(h)} 인 삼각형이므로 ${expr(`${d}\\times${h}\\div2=${r * h}`)}`,
     fig("cone", { r, h }),
   );
 }
@@ -11505,9 +11537,9 @@ function ballKnowFormCutR(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 20);
   return make(
     unit,
-    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면인 원의 반지름은 몇 cm입니까?`,
-    num(r),
-    `잘린 면은 구와 반지름이 같은 원이므로 ${unitNum(r, "cm")} 입니다.`,
+    `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. 잘린 면인 원의 지름은 몇 cm입니까?`,
+    num(2 * r),
+    `잘린 면의 지름은 ${expr(`${r}\\times2=${2 * r}`)} 입니다.`,
     fig("sphere", { r }),
   );
 }
