@@ -9020,6 +9020,681 @@ function pctUseFormPaidDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function stripFig(items: { label: string; pct: number }[]) {
+  return fig("stripChart", { segments: items });
+}
+function pieFig(items: { label: string; pct: number }[]) {
+  return fig("pieChart", { slices: items });
+}
+
+/** 1-5-1 05 — 항목 수. */
+function stripReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
+    num(items.length),
+    `띠그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-1 06 — 가장 적은 항목. 02 는 가장 많은 항목. */
+function stripReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
+    low.label,
+    `가장 좁은 부분은 비율 ${expr(`${low.pct}\\%`)} 인 ${low.label}입니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 07 — 모든 비율의 합은 100. */
+function stripReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `띠그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-1 08 — 두 항목 비율의 합. */
+function stripReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const [a, b] = twoLabels(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    num(a.pct + b.pct),
+    `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 09 — 가장 큰 비율(숫자). 02 는 항목 이름. */
+function stripReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    num(top.pct),
+    `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
+    stripFig(d.items),
+  );
+}
+
+/** 1-5-1 10 — 한 항목을 뺀 나머지 비율. */
+function stripReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}을 고르지 않은 학생의 비율은 몇 %입니까?`,
+    num(100 - one.pct),
+    `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
+    stripFig(items),
+  );
+}
+
+/** 1-5-2 05 — 나머지 비율. */
+function stripDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생들의 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `띠그래프로 나타낼 때 ${item}이 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
+    num(100 - p),
+    `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-2 06 — 두 명수의 합. */
+function stripDrawFormTwoCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const total = pick(rng, CHART_TOTALS);
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목을 고른 학생은 모두 몇 명입니까?`,
+    num((total * (pa + pb)) / 100),
+    `${expr(`${total}\\times\\frac{${pa + pb}}{100}=${(total * (pa + pb)) / 100}`)} 이므로 ${num((total * (pa + pb)) / 100)}명입니다.`,
+  );
+}
+
+/** 1-5-2 07 — 전체 띠 길이에서 한 항목 길이를 뺀 나머지. */
+function stripDrawFormLenRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, DRAW_PCTS);
+  const w = pick(rng, [20, 40] as const);
+  const len = (w * p) / 100;
+  return make(
+    unit,
+    `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}이 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
+    num(w - len),
+    `${item}은 ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
+  );
+}
+
+/** 1-5-2 08 — 두 비율의 차. */
+function stripDrawFormPctDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v !== pa),
+  );
+  return make(
+    unit,
+    `띠그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 비율의 차는 몇 %입니까?`,
+    num(Math.abs(pa - pb)),
+    `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 이므로 ${expr(`${Math.abs(pa - pb)}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-2 09 — 비율에서 명수. */
+function stripDrawFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 띠그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item}${josa(item, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num((total * p) / 100),
+    `${expr(`${total}\\times\\frac{${p}}{100}=${(total * p) / 100}`)} 이므로 ${num((total * p) / 100)}명입니다.`,
+  );
+}
+
+/** 1-5-2 10 — 두 띠 길이의 합. */
+function stripDrawFormTwoLen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 90),
+  );
+  const w = pick(rng, [20, 40] as const);
+  return make(
+    unit,
+    `전체 길이 ${unitNum(w, "cm")} 인 띠그래프에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목이 차지하는 길이의 합은 몇 cm입니까?`,
+    num((w * (pa + pb)) / 100),
+    `${expr(`${w}\\times\\frac{${pa + pb}}{100}=${(w * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-3 05 — 항목 수. */
+function pieReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
+    num(items.length),
+    `원그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-3 06 — 가장 적은 항목. */
+function pieReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
+    low.label,
+    `가장 좁은 부채꼴은 ${low.label}입니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 07 — 합 100. */
+function pieReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `원그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-3 08 — 두 항목 비율 합. 02 는 차. */
+function pieReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const [a, b] = twoLabels(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    num(a.pct + b.pct),
+    `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 09 — 가장 큰 비율. */
+function pieReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    num(top.pct),
+    `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
+    pieFig(d.items),
+  );
+}
+
+/** 1-5-3 10 — 나머지 비율. */
+function pieReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { subject, items } = chartData(rng);
+  const one = items[intBetween(rng, 0, items.length - 1)]!;
+  return make(
+    unit,
+    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}이 아닌 나머지 부분의 비율은 몇 %입니까?`,
+    num(100 - one.pct),
+    `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
+    pieFig(items),
+  );
+}
+
+/** 1-5-4 05 — 나머지 한 항목 비율(두 항목만 주고). */
+function pieDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `${theme.subject}을 원그래프로 나타낼 때 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 이고 나머지는 한 항목입니다. ` +
+      `나머지 항목의 비율은 몇 %입니까?`,
+    num(100 - pa - pb),
+    `${expr(`100-${pa}-${pb}=${100 - pa - pb}`)} 이므로 ${expr(`${100 - pa - pb}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 06 — 중심각. 원 전체 360°. */
+function pieDrawFormAngle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const p = pick(rng, [20, 25, 50] as const);
+  return make(
+    unit,
+    `${theme.subject}을 원그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item} 부분의 중심각은 몇 도입니까?`,
+    num((360 * p) / 100),
+    `원 전체는 ${num(360)}°이므로 ${expr(`360\\times\\frac{${p}}{100}=${(360 * p) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 07 — 두 비율의 차. */
+function pieDrawFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v !== pa),
+  );
+  return make(
+    unit,
+    `원그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 비율의 차는 몇 %입니까?`,
+    num(Math.abs(pa - pb)),
+    `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 08 — 비율에서 명수. */
+function pieDrawFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const item = pick(rng, theme.items);
+  const total = pick(rng, CHART_TOTALS);
+  const p = pick(rng, DRAW_PCTS);
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 원그래프로 나타낼 때 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `${item}${josa(item, "을", "를")} 고른 학생은 몇 명입니까?`,
+    num((total * p) / 100),
+    `${expr(`${total}\\times\\frac{${p}}{100}=${(total * p) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 09 — 두 중심각의 합. */
+function pieDrawFormTwoAngles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const pa = pick(rng, [20, 25, 30] as const);
+  const pb = pick(rng, [10, 20, 25] as const);
+  return make(
+    unit,
+    `원그래프에서 ${a}의 비율이 ${expr(`${pa}\\%`)}, ${b}의 비율이 ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 부분의 중심각의 합은 몇 도입니까?`,
+    num((360 * (pa + pb)) / 100),
+    `${expr(`360\\times\\frac{${pa + pb}}{100}=${(360 * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-4 10 — 명수 두 개의 합. */
+function pieDrawFormTwoPeople(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, GRAPH_THEMES);
+  const [a, b] = theme.items;
+  const total = pick(rng, CHART_TOTALS);
+  const pa = pick(rng, DRAW_PCTS);
+  const pb = pick(
+    rng,
+    DRAW_PCTS.filter((v) => v + pa <= 80),
+  );
+  return make(
+    unit,
+    `학생 ${num(total)}명의 ${theme.subject}을 원그래프로 나타낼 때 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+      `두 항목을 고른 학생은 모두 몇 명입니까?`,
+    num((total * (pa + pb)) / 100),
+    `${expr(`${total}\\times\\frac{${pa + pb}}{100}=${(total * (pa + pb)) / 100}`)} 입니다.`,
+  );
+}
+
+/** 1-5-5 05 — 가장 낮은 비율. 01 은 가장 높은 비율. */
+function cmpChartFormLowPct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
+    num(low.pct),
+    `가장 좁은 부분은 ${low.label}이고 비율은 ${expr(`${low.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 06 — 항목 수. */
+function cmpChartFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartData(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
+    num(d.items.length),
+    `나타난 항목은 ${num(d.items.length)}개입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 07 — 합 100. */
+function cmpChartFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartData(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    num(100),
+    `그래프 전체는 ${expr(`100\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 08 — 가장 높은 항목 이름. 01 은 그 비율. */
+function cmpChartFormTopName(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
+    top.label,
+    `가장 넓은 부분은 ${top.label}입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 09 — 최고와 최저의 차. */
+function cmpChartFormSpread(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
+  const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
+    num(top.pct - low.pct),
+    `${expr(`${top.pct}-${low.pct}=${top.pct - low.pct}`)} 이므로 ${expr(`${top.pct - low.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+/** 1-5-5 10 — 두 번째로 높은 비율. */
+function cmpChartFormSecond(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = chartDataDistinct(rng);
+  const { kindName, figure } = cmpChartFig(rng, d.items);
+  const sorted = [...d.items].sort((a, b) => b.pct - a.pct);
+  const second = sorted[1]!;
+  return make(
+    unit,
+    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
+    num(second.pct),
+    `두 번째로 넓은 부분은 ${second.label}이고 비율은 ${expr(`${second.pct}\\%`)} 입니다.`,
+    figure,
+  );
+}
+
+function cuboid3(rng: Rng): { w: number; d: number; h: number } {
+  return {
+    w: intBetween(rng, 3, 9),
+    d: intBetween(rng, 2, 6),
+    h: intBetween(rng, 2, 7),
+  };
+}
+
+/** 1-6-1 05 — 밑면 한 면의 넓이. */
+function surfFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체가 있습니다. ` +
+      `밑면 한 면의 넓이는 몇 cm²입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 06 — 면의 수 6. */
+function surfFormFaces(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 면은 몇 개입니까?`,
+    num(6),
+    `직육면체의 면은 ${num(6)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 07 — 옆면 네 면의 넓이. */
+function surfFormLateral(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  const lat = 2 * h * (w + d);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 옆면 네 면의 넓이의 합은 몇 cm²입니까?`,
+    num(lat),
+    `${expr(`(${w}+${d})\\times2\\times${h}=${lat}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 08 — 밑면 두 면. */
+function surfFormTwoBases(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체에서 밑면 두 면의 넓이의 합은 몇 cm²입니까?`,
+    num(2 * w * d),
+    `${expr(`${w}\\times${d}\\times2=${2 * w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 09 — 겉넓이에서 밑면 하나를 뺀 값(뚜껑 없는 상자). 03 은 치수로 다섯 면. */
+function surfFormMinusLid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  const full = 2 * (w * d + d * h + h * w);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 겉넓이가 ${num(full)} cm²입니다. ` +
+      `윗면 한 면을 빼면 몇 cm²입니까?`,
+    num(full - w * d),
+    `윗면은 ${expr(`${w}\\times${d}=${w * d}`)} 이므로 ${expr(`${full}-${w * d}=${full - w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-1 10 — 정육면체 한 모서리(겉넓이에서). 04 는 한 면의 넓이. */
+function surfFormEdgeFromArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `겉넓이가 ${num(6 * a * a)} cm²인 정육면체가 있습니다. 한 모서리의 길이는 몇 cm입니까?`,
+    num(a),
+    `한 면은 ${expr(`${6 * a * a}\\div6=${a * a}`)} 이므로 한 모서리는 ${num(a)} cm입니다.`,
+    fig("cuboid", { w: a, d: a, h: a }),
+  );
+}
+
+/** 1-6-2 05 — 밑면의 넓이. */
+function volFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 밑면의 넓이는 몇 cm²입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 06 — 가로×세로. */
+function volFormWd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체에서 가로와 세로의 곱은 얼마입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 07 — 두 직육면체 부피의 합. */
+function volFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = cuboid3(rng);
+  const b = cuboid3(rng);
+  return make(
+    unit,
+    `부피가 ${num(a.w * a.d * a.h)} cm³인 직육면체와 부피가 ${num(b.w * b.d * b.h)} cm³인 직육면체가 있습니다. 두 부피의 합은 몇 cm³입니까?`,
+    num(a.w * a.d * a.h + b.w * b.d * b.h),
+    `${expr(`${a.w * a.d * a.h}+${b.w * b.d * b.h}=${a.w * a.d * a.h + b.w * b.d * b.h}`)} 입니다.`,
+  );
+}
+
+/** 1-6-2 08 — 두 부피의 차. */
+function volFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 3, 8);
+  const d = intBetween(rng, 2, 5);
+  const h1 = intBetween(rng, 4, 9);
+  const h2 = intBetween(rng, 2, h1 - 1);
+  return make(
+    unit,
+    `밑면의 가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")} 로 같고 높이가 ${unitNum(h1, "cm")} 와 ${unitNum(h2, "cm")} 인 두 직육면체가 있습니다. 부피의 차는 몇 cm³입니까?`,
+    num(w * d * (h1 - h2)),
+    `${expr(`${w}\\times${d}\\times${h1 - h2}=${w * d * (h1 - h2)}`)} 입니다.`,
+  );
+}
+
+/** 1-6-2 09 — 1 cm 쌓기나무 개수 = 부피. */
+function volFormCubes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = cuboid3(rng);
+  return make(
+    unit,
+    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
+    num(w * d * h),
+    `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 1-6-2 10 — 한 변만 2배일 때 부피는 2배. */
+function volFormDoubleOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `직육면체의 높이만 ${num(k)}배로 늘이면 부피는 처음의 몇 배가 됩니까?`,
+    num(k),
+    `부피는 세 모서리의 곱이므로 높이를 ${num(k)}배로 하면 부피도 ${num(k)}배가 됩니다.`,
+  );
+}
+
+/** 1-6-3 05 — 1 m³ = 1000000 cm³ 예. */
+function cubicFormFactTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(1)} m³는 ${num(1000000)} cm³이다. (참고: ${num(k)} m³를 바꾸어 확인하여도 된다.)`,
+    "예",
+    `${expr("1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3")} 입니다.`,
+  );
+}
+
+/** 1-6-3 06 — cm³를 m³로. */
+function cubicFormToM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${num(k * 1000000)} cm³는 몇 m³입니까?`,
+    num(k),
+    `${expr(`${k * 1000000}\\div1000000=${k}`)} 입니다.`,
+  );
+}
+
+/** 1-6-3 07 — 두 m³의 합을 cm³로. */
+function cubicFormSumCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 5);
+  const b = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `${num(a)} m³와 ${num(b)} m³의 합은 몇 cm³입니까?`,
+    num((a + b) * 1000000),
+    `${expr(`${a}+${b}=${a + b}`)} m³이므로 ${expr(`${a + b}\\times1000000=${(a + b) * 1000000}`)} cm³입니다.`,
+  );
+}
+
+/** 1-6-3 08 — m 단위 직육면체 부피. */
+function cubicFormBoxM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, BIG_THINGS);
+  const w = intBetween(rng, 2, 6);
+  const d = intBetween(rng, 2, 5);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `가로 ${num(w)} m, 세로 ${num(d)} m, 높이 ${num(h)} m인 ${thing}의 부피는 몇 m³입니까?`,
+    num(w * d * h),
+    `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 입니다.`,
+  );
+}
+
+/** 1-6-3 09 — 그 부피를 cm³로. */
+function cubicFormBoxToCm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 2, 4);
+  const d = intBetween(rng, 2, 3);
+  const h = intBetween(rng, 1, 3);
+  const m3 = w * d * h;
+  return make(
+    unit,
+    `가로 ${num(w)} m, 세로 ${num(d)} m, 높이 ${num(h)} m인 창고의 부피는 몇 cm³입니까?`,
+    num(m3 * 1000000),
+    `부피는 ${expr(`${w}\\times${d}\\times${h}=${m3}`)} m³이고, ${expr(`${m3}\\times1000000=${m3 * 1000000}`)} cm³입니다.`,
+  );
+}
+
+/** 1-6-3 10 — 두 창고 부피의 차(m³). */
+function cubicFormDiffM(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 12);
+  const b = intBetween(rng, 2, a - 1);
+  const thing = pick(rng, BIG_THINGS);
+  return make(
+    unit,
+    `부피가 ${num(a)} m³인 ${thing}과 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
+    num(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -9202,5 +9877,87 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a8: pctUseFormPrincipalPlus,
     a9: pctUseFormNo,
     a10: pctUseFormPaidDiff,
+  }),
+  "초6|1-5-1": forms10(
+    stripReadCalc,
+    stripReadWord,
+    stripReadApply,
+    stripReadDeep,
+    {
+      b5: stripReadFormCount,
+      b6: stripReadFormLeast,
+      b7: stripReadFormAll100,
+      a8: stripReadFormTwoSum,
+      a9: stripReadFormMaxPct,
+      a10: stripReadFormRest,
+    },
+  ),
+  "초6|1-5-2": forms10(
+    stripDrawCalc,
+    stripDrawWord,
+    stripDrawApply,
+    stripDrawDeep,
+    {
+      b5: stripDrawFormRest,
+      b6: stripDrawFormTwoCount,
+      b7: stripDrawFormLenRest,
+      a8: stripDrawFormPctDiff,
+      a9: stripDrawFormCount,
+      a10: stripDrawFormTwoLen,
+    },
+  ),
+  "초6|1-5-3": forms10(pieReadCalc, pieReadWord, pieReadApply, pieReadDeep, {
+    b5: pieReadFormCount,
+    b6: pieReadFormLeast,
+    b7: pieReadFormAll100,
+    a8: pieReadFormTwoSum,
+    a9: pieReadFormMaxPct,
+    a10: pieReadFormRest,
+  }),
+  "초6|1-5-4": forms10(pieDrawCalc, pieDrawWord, pieDrawApply, pieDrawDeep, {
+    b5: pieDrawFormRest,
+    b6: pieDrawFormAngle,
+    b7: pieDrawFormDiff,
+    a8: pieDrawFormCount,
+    a9: pieDrawFormTwoAngles,
+    a10: pieDrawFormTwoPeople,
+  }),
+  "초6|1-5-5": forms10(
+    cmpChartCalc,
+    cmpChartWord,
+    cmpChartApply,
+    cmpChartDeep,
+    {
+      b5: cmpChartFormLowPct,
+      b6: cmpChartFormCount,
+      b7: cmpChartFormAll100,
+      a8: cmpChartFormTopName,
+      a9: cmpChartFormSpread,
+      a10: cmpChartFormSecond,
+    },
+  ),
+  "초6|1-6-1": forms10(surfCalc, surfWord, surfApply, surfDeep, {
+    b5: surfFormBase,
+    b6: surfFormFaces,
+    b7: surfFormLateral,
+    a8: surfFormTwoBases,
+    a9: surfFormMinusLid,
+    a10: surfFormEdgeFromArea,
+  }),
+  "초6|1-6-2": forms10(volCalc, volWord, volApply, volDeep, {
+    b5: volFormBase,
+    b6: volFormWd,
+    b7: volFormSum,
+    a8: volFormDiff,
+    a9: volFormCubes,
+    a10: volFormDoubleOne,
+  }),
+  "초6|1-6-3": forms10(cubicCalc, cubicWord, cubicApply, cubicDeep, {
+    b5: cubicFormFactTf,
+    b6: cubicFormToM,
+    b7: cubicFormSumCm,
+    a8: cubicFormBoxM,
+    a9: cubicFormBoxToCm,
+    a10: cubicFormDiffM,
   }),
 };
