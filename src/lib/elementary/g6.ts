@@ -7614,6 +7614,103 @@ function fracNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function mixedLatex(m: { w: number; t: number; d: number }): string {
+  return `${m.w}\\frac{${m.t}}{${m.d}}`;
+}
+
+/** 문형 05 — 가분수로 고친 **분자**. 몫이 아니다. */
+function mixedNatFormImpNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 가분수로 고칠 때 분자는 얼마입니까?`,
+    num(m.imp),
+    `자연수 부분에 분모를 곱하고 분자를 더합니다. ${expr(`${m.w}\\times${m.d}+${m.t}=${m.imp}`)} 이므로 분자는 ${num(m.imp)}입니다.`,
+  );
+}
+
+/** 문형 06 — 대분수의 **자연수 부분**. */
+function mixedNatFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  return make(
+    unit,
+    `대분수 ${expr(mixedLatex(m))} 에서 자연수 부분은 얼마입니까?`,
+    num(m.w),
+    `대분수 ${expr(mixedLatex(m))} 의 자연수 부분은 ${num(m.w)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 자연수 부분은 그대로 두고 분수 부분만 나눈 식이 **틀렸다**.
+ */
+function mixedNatFormHalfConvertTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng);
+  const k = intBetween(rng, 2, 6);
+  const [p, q] = divFrac(m.imp, m.d, k, 1);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${mixedLatex(m)}\\div${k}=${m.w}\\frac{${m.t}}{${m.d}\\times${k}}`)}`,
+    "아니요",
+    `대분수는 먼저 가분수로 고칩니다. ${expr(`${mixedLatex(m)}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ` +
+      `${expr(`\\frac{${m.imp}}{${m.d}\\times${k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 두 대분수÷같은 수의 몫의 **합**. */
+function mixedNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = mixedParts(rng, 3);
+  const b = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 5);
+  const [p1, q1] = divFrac(a.imp, a.d, k, 1);
+  const [p2, q2] = divFrac(b.imp, b.d, k, 1);
+  const [p, q] = addFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${mixedLatex(a)}\\div${k}`)}, ${expr(`${mixedLatex(b)}\\div${k}`)}`,
+    expr(fmtFrac(p, q)),
+    `각각 가분수로 고쳐 나누면 ${expr(fmtFrac(p1, q1))} 와 ${expr(fmtFrac(p2, q2))} 입니다. ` +
+      `합은 ${expr(`${fmtFrac(p1, q1)}+${fmtFrac(p2, q2)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 문형 09 — 한 도막이 정다각형의 한 변이 될 때 **둘레**(두 걸음).
+ * 03 은 둘레에서 한 변을 구한다. 여기는 반대다.
+ */
+function mixedNatFormPolyPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 5);
+  const sides = pick(rng, POLY_SIDES);
+  const [oneN, oneD] = divFrac(m.imp, m.d, k, 1);
+  const [p, q] = mulFrac(oneN, oneD, sides, 1);
+  return make(
+    unit,
+    `길이가 ${expr(mixedLatex(m))} m인 색 끈을 똑같이 ${num(k)}도막으로 잘라 ` +
+      `${polyName(sides, true)}의 한 변으로 썼습니다. 이 도형의 둘레는 몇 m입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 변은 ${expr(`${mixedLatex(m)}\\div${k}=${fmtFrac(oneN, oneD)}`)} m입니다. ` +
+      `변의 수가 ${num(sides)}이므로 둘레는 ${expr(`${fmtFrac(oneN, oneD)}\\times${sides}=${fmtFrac(p, q)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 같은 대분수를 다른 수로 나눈 몫의 **차**. */
+function mixedNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const k = intBetween(rng, 2, 4);
+  const n2 = intBetween(rng, k + 1, 7);
+  const [p1, q1] = divFrac(m.imp, m.d, k, 1);
+  const [p2, q2] = divFrac(m.imp, m.d, n2, 1);
+  const [p, q] = subFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 ${num(k)}${numRo(k)} 나눈 몫에서 ${num(n2)}${numRo(n2)} 나눈 몫을 뺀 값은 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `${expr(`${mixedLatex(m)}\\div${k}=${fmtFrac(p1, q1)}`)}, ` +
+      `${expr(`${mixedLatex(m)}\\div${n2}=${fmtFrac(p2, q2)}`)} 입니다. ` +
+      `차는 ${expr(`${fmtFrac(p1, q1)}-${fmtFrac(p2, q2)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -7631,4 +7728,18 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a9: fracNatFormTimesPiece,
     a10: fracNatFormDiff,
   }),
+  "초6|1-1-3": forms10(
+    mixedNatCalc,
+    mixedNatWord,
+    mixedNatApply,
+    mixedNatDeep,
+    {
+      b5: mixedNatFormImpNum,
+      b6: mixedNatFormWhole,
+      b7: mixedNatFormHalfConvertTf,
+      a8: mixedNatFormSum,
+      a9: mixedNatFormPolyPerim,
+      a10: mixedNatFormDiff,
+    },
+  ),
 };

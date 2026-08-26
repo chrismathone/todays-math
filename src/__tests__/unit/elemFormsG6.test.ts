@@ -291,3 +291,125 @@ describe("초6 1-1-2 (분수)÷(자연수) — 분모에 곱한다", () => {
     }
   });
 });
+
+function parseMixed(text: string): { w: number; t: number; d: number } | null {
+  const m = /(\d+)\\frac\{(\d+)\}\{(\d+)\}/.exec(text);
+  if (!m) return null;
+  return { w: Number(m[1]), t: Number(m[2]), d: Number(m[3]) };
+}
+
+function impOf(m: { w: number; t: number; d: number }): number {
+  return m.w * m.d + m.t;
+}
+
+describe("초6 1-1-3 (대분수)÷(자연수) — 가분수로 고친 다음 나눈다", () => {
+  const unit = unitOf("1-1-3");
+  const sidesOf: Record<string, number> = {
+    삼: 3,
+    사: 4,
+    오: 5,
+    육: 6,
+    팔: 8,
+  };
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫은 가분수 분자 / (분모×나누는 수)", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const mix = parseMixed(p.content);
+      const k = p.content.match(/\\div(\d+)/);
+      expect(mix && k, p.content).toBeTruthy();
+      expectFracEq(p.answer, impOf(mix!), mix!.d * Number(k![1]), p.content);
+    }
+  });
+
+  it("05 가분수 분자는 자연수×분모+분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const mix = parseMixed(p.content);
+      expect(mix, p.content).toBeTruthy();
+      expect(p.content).toMatch(/가분수/);
+      expect(answerInt(p.answer)).toBe(impOf(mix!));
+    }
+  });
+
+  it("06 자연수 부분", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const mix = parseMixed(p.content);
+      expect(mix, p.content).toBeTruthy();
+      expect(p.content).toMatch(/자연수 부분/);
+      expect(answerInt(p.answer)).toBe(mix!.w);
+    }
+  });
+
+  it("07 분수 부분만 나눈 식은 아니요", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      expect(p.answer).toBe("아니요");
+      expect(p.content).toMatch(/\\times/);
+    }
+  });
+
+  it("08 두 대분수÷같은 수 몫의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const mixes = [
+        ...p.content.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}\\div(\d+)/g),
+      ];
+      expect(mixes.length, p.content).toBe(2);
+      expect(mixes[0]![4]).toBe(mixes[1]![4]);
+      const k = Number(mixes[0]![4]);
+      const a = {
+        w: Number(mixes[0]![1]),
+        t: Number(mixes[0]![2]),
+        d: Number(mixes[0]![3]),
+      };
+      const b = {
+        w: Number(mixes[1]![1]),
+        t: Number(mixes[1]![2]),
+        d: Number(mixes[1]![3]),
+      };
+      const d1 = a.d * k;
+      const d2 = b.d * k;
+      expectFracEq(p.answer, impOf(a) * d2 + impOf(b) * d1, d1 * d2, p.content);
+    }
+  });
+
+  it("09 한 변×변의 수가 둘레", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const mix = parseMixed(p.content);
+      const k = p.content.match(/똑같이 \$(\d+)\$도막/);
+      const poly = p.content.match(/정(삼|사|오|육|팔)각형/);
+      expect(mix && k && poly, p.content).toBeTruthy();
+      expectFracEq(
+        p.answer,
+        impOf(mix!) * sidesOf[poly![1]!]!,
+        mix!.d * Number(k![1]),
+        p.content,
+      );
+    }
+  });
+
+  it("10 같은 대분수를 다른 수로 나눈 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const mix = parseMixed(p.content);
+      const ks = [...p.content.matchAll(/\$(\d+)\$/g)].map((x) => Number(x[1]));
+      expect(mix, p.content).toBeTruthy();
+      expect(ks.length).toBeGreaterThanOrEqual(2);
+      const k = ks[0]!;
+      const n2 = ks[1]!;
+      expectFracEq(
+        p.answer,
+        impOf(mix!) * (n2 - k),
+        mix!.d * k * n2,
+        p.content,
+      );
+    }
+  });
+});
