@@ -184,11 +184,12 @@ function ownerLabels(classes: ClassRow[]) {
 function buildReport(input: {
   asOf: string;
   units: UnitRow[];
+  allProblems: EligibleRow[];
   eligible: EligibleRow[];
   classes: ClassRow[];
   recentTests: RecentTestRow[];
 }) {
-  const { asOf, units, eligible, classes, recentTests } = input;
+  const { asOf, units, allProblems, eligible, classes, recentTests } = input;
   const defaultProblemCounts: Record<string, number> = {};
   for (const row of classes) {
     increment(defaultProblemCounts, String(row.defaultProblemCount));
@@ -291,6 +292,16 @@ function buildReport(input: {
       defaultProblemCountDistribution: defaultProblemCounts,
     },
     owners,
+    allProblemBank: {
+      rows: allProblems.length,
+      families: new Set(allProblems.map(familyIdentity)).size,
+      soloRows: allProblems.filter(isSolo).length,
+      nullRows: allProblems.filter((row) => row.familyKey === null).length,
+      emptyRows: allProblems.filter(
+        (row) => row.familyKey !== null && row.familyKey.trim() === "",
+      ).length,
+      bySource: sourceStats(allProblems),
+    },
     eligible: {
       rows: eligible.length,
       unitsWithRows: rowsByUnit.size,
@@ -344,6 +355,11 @@ async function main() {
       },
       select: { id: true, unitId: true, source: true, familyKey: true },
     });
+    // 우선순위 분모에는 넣지 않는다. 기출·자작이 `solo:*`로 독립 가족이 되는지
+    // 출처별로 검산하기 위한 별도 모집단이다.
+    const allProblems = await db.problem.findMany({
+      select: { id: true, unitId: true, source: true, familyKey: true },
+    });
     const classes = await db.class.findMany({
       select: { userId: true, defaultProblemCount: true },
     });
@@ -368,6 +384,7 @@ async function main() {
     const report = buildReport({
       asOf: args.asOf,
       units,
+      allProblems,
       eligible,
       classes,
       recentTests,
@@ -390,6 +407,8 @@ async function main() {
     console.log(
       `D-20 ${report.recentWindow.from}~${report.recentWindow.to}: ${report.owners.map((owner) => `${owner.label} 시험 ${owner.recentTests}장 / 문항 ${owner.recentProblemIds}개`).join(", ") || "원장 없음"}`,
     );
+    console.log("\n전체 문제은행 출처별 (우선순위 분모 밖 검산)");
+    console.table(report.allProblemBank.bySource);
     console.log("\n출처별");
     console.table(report.eligible.bySource);
 
