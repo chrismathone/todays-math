@@ -78,6 +78,114 @@ function shapeOf(frames: string[]): string {
 }
 
 /**
+ * 두 문형이 **같은 물음**인가 — 막는 판정은 이 함수 하나다.
+ *
+ * 지문이 똑같거나, **낱말 하나만 다른데 정답이 씨앗마다 전부 같으면** 같다.
+ * 정답을 함께 보는 이유: 「꼭짓점 8」과 「모서리 12」는 낱말 하나 차이인데
+ * **다른 물음**이다. 지문만 보면 그 둘을 잘못 접는다.
+ */
+export function sameQuestion(
+  shapeA: string,
+  answersA: string,
+  shapeB: string,
+  answersB: string,
+): boolean {
+  if (shapeA === shapeB) return true;
+  if (answersA !== answersB) return false;
+  const ta = shapeA.split(" ");
+  const tb = shapeB.split(" ");
+  if (ta.length !== tb.length) return false;
+  let diff = 0;
+  for (let i = 0; i < ta.length; i += 1) if (ta[i] !== tb[i]) diff += 1;
+  return diff <= 1;
+}
+
+/* ───────────────── 눈금 — 이 판정기가 «아니오»를 낼 수 있나 ───────────────── */
+
+/**
+ * ⚠️ 눈금은 **문자열 픽스처**다. 살아 있는 엔진을 보면 그 소단원을 고치는 순간
+ *    양성이 사라지고 재현율을 영영 못 잰다(2026-08-23).
+ */
+const GAUGE: [why: string, want: boolean, run: () => boolean][] = [
+  [
+    "소재가 씨앗마다 바뀌면 ◇ 로 접힌다 (사과/배 막대그래프)",
+    true,
+    () =>
+      shapeOf([
+        "사과 를 좋아하는 학생은 N 명",
+        "배 를 좋아하는 학생은 N 명",
+      ]) ===
+      shapeOf(["귤 를 좋아하는 학생은 N 명", "감 를 좋아하는 학생은 N 명"]),
+  ],
+  [
+    "지문이 똑같으면 같은 물음",
+    true,
+    () => sameQuestion("N 개의 합", "8|8", "N 개의 합", "3|3"),
+  ],
+  [
+    "낱말 하나만 다르고 정답이 같으면 같은 물음 (직육면체/상자 꼭짓점)",
+    true,
+    () =>
+      sameQuestion(
+        "N 인 직육면체 의 꼭짓점 은 몇 개",
+        "8|8|8",
+        "N 인 상자 의 꼭짓점 은 몇 개",
+        "8|8|8",
+      ),
+  ],
+  [
+    "🔴 낱말 하나 다른데 **정답이 다르면** 다른 물음 (꼭짓점 8 / 모서리 12)",
+    false,
+    () =>
+      sameQuestion(
+        "N 인 직육면체 의 꼭짓점 은 몇 개",
+        "8|8|8",
+        "N 인 직육면체 의 모서리 는 몇 개",
+        "12|12|12",
+      ),
+  ],
+  [
+    "🔴 낱말이 둘 이상 다르면 다른 물음",
+    false,
+    () => sameQuestion("가 를 구하시오", "5|5", "나 의 합 을 구하시오", "5|5"),
+  ],
+  [
+    "🔴 낱말 수가 다르면 다른 물음",
+    false,
+    () => sameQuestion("가 나 다", "5|5", "가 나", "5|5"),
+  ],
+  [
+    "🔴 셈이 같아도 막지 않는다 — 절차와 모델링은 다른 물음",
+    false,
+    () =>
+      sameQuestion(
+        "다음 곱셈 을 하시오 N × N",
+        "46|66",
+        "한 봉지 에 N 개씩 N 봉지 는 몇 개",
+        "46|66",
+      ),
+  ],
+];
+
+if (process.argv.includes("--selftest")) {
+  let bad = 0;
+  for (const [why, want, run] of GAUGE) {
+    const got = run();
+    if (got !== want) bad += 1;
+    console.log(
+      `  ${got === want ? "✅" : "❌"} ${why} — 기대 ${want ? "같다" : "다르다"} / 실제 ${got ? "같다" : "다르다"}`,
+    );
+  }
+  const pos = GAUGE.filter((g) => g[1]).length;
+  console.log(
+    bad === 0
+      ? `\n✅ 눈금 ${GAUGE.length}건 전부 맞다 (양성 ${pos} · 음성 ${GAUGE.length - pos})`
+      : `\n❌ 눈금 ${bad}건 어긋남 — **가드를 믿을 수 없다**`,
+  );
+  process.exit(bad === 0 ? 0 : 1);
+}
+
+/**
  * ⑶-b **글은 다른데 셈이 같은** 두 문형.
  *
  * 앞의 지문 검사는 「$1^\circ$가 N개 모인 각」과 「눈금이 N칸인 각」을 못 가른다 —
@@ -269,15 +377,16 @@ for (const unit of elementaryUnits()) {
       const ia = seenIds[a]!;
       const ib = seenIds[b]!;
       if (shapeOfForm.get(ia) === shapeOfForm.get(ib)) continue; // 위에서 이미 셌다
-      if (answersOfForm.get(ia) !== answersOfForm.get(ib)) continue;
-      const ta = shapeOfForm.get(ia)!.split(" ");
-      const tb = shapeOfForm.get(ib)!.split(" ");
-      if (ta.length !== tb.length) continue;
-      let diff = 0;
-      for (let i = 0; i < ta.length; i += 1) if (ta[i] !== tb[i]) diff += 1;
-      if (diff <= 1)
+      if (
+        sameQuestion(
+          shapeOfForm.get(ia)!,
+          answersOfForm.get(ia)!,
+          shapeOfForm.get(ib)!,
+          answersOfForm.get(ib)!,
+        )
+      )
         problems.push(
-          `문형 ${ia}·${ib} 이 **같은 물음**이다 — 낱말 ${diff}개만 다르고 정답이 씨앗마다 전부 같다`,
+          `문형 ${ia}·${ib} 이 **같은 물음**이다 — 낱말 하나만 다르고 정답이 씨앗마다 전부 같다`,
         );
     }
   }
