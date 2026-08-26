@@ -345,18 +345,16 @@ describe("[D-105] 문항 코드 2세대 — 문항류 + 아류 번호", () => {
   });
 });
 
-describe("[원장님 지시 2026-08-26] formatShortProblemCode — 문항류까지 짧게", () => {
-  it("2세대 코드는 문항류(A01 등)만 꺼낸다", () => {
-    expect(formatShortProblemCode("J30103-A01-001")).toBe("A01");
-    expect(formatShortProblemCode("HC10305-B12-007")).toBe("B12");
+describe("[원장님 확정 2026-08-26] formatShortProblemCode — 시안 ㉡ (단원-문항류)", () => {
+  it("기본 모드(unit_family)에서는 단원코드와 문항류(예: J30103-A01)를 꺼낸다", () => {
+    expect(formatShortProblemCode("J30103-A01-001")).toBe("J30103-A01");
+    expect(formatShortProblemCode("HC10305-B12-007")).toBe("HC10305-B12");
   });
 
-  it("unit_family 모드에서는 단원코드와 문항류를 함께 꺼낸다", () => {
-    expect(formatShortProblemCode("J30103-A01-001", "unit_family")).toBe(
-      "J30103-A01",
-    );
-    expect(formatShortProblemCode("HC10305-B12-007", "unit_family")).toBe(
-      "HC10305-B12",
+  it("family_only 모드에서는 문항류(A01 등)만 꺼낸다", () => {
+    expect(formatShortProblemCode("J30103-A01-001", "family_only")).toBe("A01");
+    expect(formatShortProblemCode("HC10305-B12-007", "family_only")).toBe(
+      "B12",
     );
   });
 

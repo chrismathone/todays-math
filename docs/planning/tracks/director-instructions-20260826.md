@@ -69,14 +69,14 @@
 - **1세대 옛 코드** (`J30103-4NSK` 형태): **45,374건** (private 격리)
   - 문항류 자리가 없으므로, 축약 시 전체 코드(`J30103-4NSK`)를 그대로 유지(fallback).
 
-### 4.2 원장님 결정 요청 시안 (D-07)
+### 4.2 원장님 결정 확정 (2026-08-26): **시안 ㉡ — `J30103-A01`**
 
-| 시안 | 표기 형태 | 8문항 시험지 내 겹침 여부 | 장단점 |
+| 시안 | 표기 형태 | 8문항 시험지 내 겹침 여부 | 상태 |
 |---|---|---|---|
-| **시안 ㉠ (추천)** | `A05` | 단원 혼합 출제 시 드물게 중복 가능 (A01이 2개 등) | 가장 짧고 깔끔함. 원장님 직관과 정확히 부합. |
-| **시안 ㉡** | `J30101-A05` | 시험지 전역 100% 유일 | 단원 코드가 포함되어 중복은 없으나 다소 긺. |
+| **시안 ㉠** | `A05` | 단원 혼합 출제 시 드물게 중복 가능 (A01이 2개 등) | 옵션 지원 (`mode='family_only'`) |
+| **시안 ㉡ (확정)** | `J30103-A05` | 시험지 전역 100% 유일 | **기본 적용 (`mode='unit_family'`)** |
 
-- 구현: `formatShortProblemCode(code, mode)` (`src/contracts/problemCode.contract.ts`)에 두 모드 모두 지원하도록 배선 완료 (기본: `family_only` = `A05`).
+- 구현: `formatShortProblemCode(code, mode)` (`src/contracts/problemCode.contract.ts`) 기본 모드를 `unit_family` (`J30103-A01`)로 배선 완료.
 
 ---
 
@@ -85,7 +85,7 @@
 원장님 말씀: *「인쇄화면에 문1 옆에 [단답형1] 이라고 되어있는데, 왜 굳이 이중번호를? 문1만 남기고 옆에 문항 번호를 적어」*
 
 - **변경 전**: `문 1  [단답형 1]`
-- **변경 후**: `문 1  A05` (`styles.problemCodeBadge`, 11px Sans 회색 톤)
+- **변경 후**: `문 1  J30103-A05` (`styles.problemCodeBadge`, 11px Sans 회색 톤)
 - **수정 파일**:
   - `src/components/print/templates/JaseupTemplate.tsx`
   - `src/components/print/TestPrint.module.css` (`.problemCodeBadge`)

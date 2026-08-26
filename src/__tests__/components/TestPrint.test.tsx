@@ -295,19 +295,19 @@ describe("TestPrint — 인쇄 사고 방지", () => {
       expect(container.textContent).not.toContain("서술형 1");
     });
 
-    it("문항 번호 옆에 문항류(A01 등)가 짧게 표기된다", () => {
+    it("문항 번호 옆에 단원-문항류(J30103-A01 등)가 짧게 표기된다", () => {
       const { container } = render(<TestPrint data={withCodes} />);
       const badges = [...container.querySelectorAll("[data-problem-number]")]
         .map((el) => el.textContent ?? "")
-        .map((text) => /문 \d+\s*(A\d+)/.exec(text)?.[1] ?? null);
+        .map((text) => /문 \d+\s*(J\d+-A\d+)/.exec(text)?.[1] ?? null);
 
-      expect(badges[0]).toBe("A01");
-      expect(badges[1]).toBe("A02");
+      expect(badges[0]).toBe("J30103-A01");
+      expect(badges[1]).toBe("J30103-A02");
     });
 
     it("problemCode 가 없으면 추가 번호를 표기하지 않는다", () => {
       const { container } = render(<TestPrint data={PRINT_DOCUMENT} />);
-      expect(container.textContent).not.toContain("A01");
+      expect(container.textContent).not.toContain("J30103-A01");
     });
   });
 });
