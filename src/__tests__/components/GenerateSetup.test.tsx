@@ -567,7 +567,17 @@ describe("[T4.3 S-04] 출제 설정 — 문제 부족", () => {
     expect(generateBodies.at(-1)).toMatchObject({ problemCount: 3 });
   });
 
-  it("AI 생성은 pending으로 두고 승격 안내만 한다", async () => {
+  /**
+   * 🔴 예전 제목은 「AI 생성은 pending으로 두고 **승격 안내만** 한다」였다. 안내만 하니
+   *    원장님이 화면을 떠나 은행에서 찾아 승인하고 돌아와 설정을 처음부터 다시 해야
+   *    했다(원장님 지적 2026-08-26). 이제 검수가 이 화면에 있다.
+   *
+   *    **D-22 는 그대로다** — 이 시험이 지키는 핵심도 그것이다: 생성만으로는
+   *    아무것도 승격되지 않고(`approved === false`), 출제로도 안 넘어간다.
+   *    검수 자리가 옮겨 온 것까지가 여기 몫이고, 승인 뒤 동작은
+   *    `src/__tests__/components/aiDraftReview.test.tsx` 가 본다.
+   */
+  it("AI 생성은 pending으로 두고 **그 자리에서** 검수하게 한다 (자동 승격 없음)", async () => {
     let generated = false;
     let approved = false;
     server.use(
@@ -598,11 +608,16 @@ describe("[T4.3 S-04] 출제 설정 — 문제 부족", () => {
     await user.click(await screen.findByRole("button", { name: "AI 생성" }));
 
     expect(
-      await screen.findByText(/문제은행에서 승격한 뒤 다시 출제하세요/),
+      await screen.findByText(/문항을 생성했습니다\. 아래에서 검수하세요/),
     ).toBeInTheDocument();
+    // 은행 링크는 남아 있다 — 행은 거기에도 있고, 나중에 마저 볼 수 있어야 한다(D-59).
     expect(
       screen.getByRole("alert").querySelector('a[href="/problems"]'),
     ).not.toBeNull();
+    // 검수는 **이 화면**에서 한다.
+    expect(
+      await screen.findByRole("region", { name: "생성한 문항 검수" }),
+    ).toBeInTheDocument();
     expect(generated).toBe(true);
     expect(approved).toBe(false);
     expect(nav.push).not.toHaveBeenCalled();

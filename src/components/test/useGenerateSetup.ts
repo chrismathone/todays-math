@@ -4,7 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
-import type { TestType } from "@/contracts/common.contract";
+import type { ReviewStatus, TestType } from "@/contracts/common.contract";
+import type { ProblemEntity } from "@/contracts/problem.contract";
+// 검수 승격은 **은행이 쓰는 그 함수**를 그대로 부른다 — 요청을 여기서 다시 짜면
+// 승격 경로가 두 벌이 된다(D-22 의 「승격은 이 엔드포인트 하나뿐」이 무너진다).
+// 이 모듈은 계약을 동적으로만 물어서 zod 를 초기 번들에 얹지 않는다(성능 수리 C-1).
+import { updateReviewStatus } from "@/lib/problem/problemApi";
 // 값이지만 **zod 를 안 물고 오는 최소 모듈**이라 정적으로 가져와도 된다 (아래 C-1 주석 참조).
 import {
   DEFAULT_DIFFICULTY_RATIO,
@@ -105,7 +110,14 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
    * 시험의 «음성 대조»(출제에는 안 뜬다)가 이 구분을 지킨다.
    */
   const [aiBusy, setAiBusy] = useState(false);
-  const [generatedPendingCount, setGeneratedPendingCount] = useState(0);
+  /**
+   * AI 가 방금 만든 **pending 문항들** — 이 화면에서 그대로 검수한다
+   * (원장님 지적 2026-08-26 「승인을 한 다음에 다시 배정시켜야 하는데…」).
+   *
+   * 여기 담긴 것은 이미 DB 에 들어간 진짜 행이다. 화면을 떠나도 문제은행에 그대로
+   * 보인다 — 인라인 검수는 **지름길**이지 다른 저장소가 아니다.
+   */
+  const [aiDrafts, setAiDrafts] = useState<ProblemEntity[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -227,12 +239,22 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       );
       setInsufficient(null);
       setSubmitError(null);
+      // 반이 바뀌면 **검수 대상 단원 자체가 바뀐다** — 앞 반에서 만든 카드를 그대로
+      // 두면 원장님이 다른 반의 문항을 이 반의 부족분으로 읽는다. 행은 은행에 남는다.
+      setAiDrafts([]);
       // 반이 바뀌면 펼쳐 둔 범위 피커를 접는다. **효과가 아니라 여기서** 한다 —
       // 효과 안의 동기 setState 는 연쇄 렌더가 되고 ESLint 가 막는다.
       setRangeEditing(false);
     },
     [classes],
   );
+
+  /** 유형이 바뀌면 대상 단원이 바뀐다 — 반을 바꿀 때와 같은 이유로 검수 목록을 비운다. */
+  const selectTestType = useCallback((next: TestType) => {
+    setTestType(next);
+    setInsufficient(null);
+    setAiDrafts([]);
+  }, []);
 
   /**
    * 범위를 **한 번에** 바꾼다. 시작·끝을 따로 setState 하면 그 사이 한 렌더 동안
@@ -286,9 +308,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       }
       setBusy(true);
       setSubmitError(null);
-      // 새 출제 시도는 지난 AI 생성 집계도 지운다 — 안 지우면 다른 반·다른 단원으로
-      // 옮겨 간 뒤에도 옛 「N문항을 생성했습니다」가 남는다(누적의 짝이다).
-      setGeneratedPendingCount(0);
+      // ⚠️ 여기서 `aiDrafts` 를 지우지 않는다. **이 함수는 「승인 뒤 부족분 다시 묻기」로도
+      //    불린다** — 지우면 원장님이 검수하던 카드가 승인할 때마다 사라진다.
+      //    검수 대상이 바뀌는 자리(반·유형 변경)에서만 비운다.
       // 새 시도를 시작하면 지난 부족 안내는 즉시 지운다. 안 지우면 다른 사유로
       // 재실패했을 때 옛 가용/필요 숫자와 「AI 생성」이 새 오류와 나란히 남아
       // 원장이 엉뚱한 버튼을 누른다.
@@ -398,9 +420,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       }
       const { problemGenerateResponseSchema } = await problemContract();
       const created = problemGenerateResponseSchema.parse(json);
-      // 두 번 눌렀으면 **합쳐서** 센다. 마지막 회차만 적으면 원장님이 만든 것보다
-      // 적게 보이고, 「이만큼밖에 안 됐나」로 읽는다. 초기화는 새 출제 시도가 한다.
-      setGeneratedPendingCount((before) => before + created.data.length);
+      // 두 번 눌렀으면 **이어 붙인다.** 갈아 끼우면 앞 회차에서 검수하던 카드가
+      // 사라진다. 같은 문항이 두 번 오는 일은 없다 — 생성은 늘 새 행을 만든다.
+      setAiDrafts((before) => [...before, ...created.data]);
     } catch {
       setSubmitError("AI 문제 생성에 실패했습니다");
     } finally {
@@ -408,6 +430,50 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       setBusy(false);
     }
   }, [insufficient]);
+
+  /**
+   * 인라인 검수 — **D-22 를 풀지 않는다.** 승격은 여기서도 사람이 누르고, 요청은
+   * 은행과 **같은 하나**(`PATCH /api/problems/{id}/review-status`)다.
+   *
+   * 승인한 뒤에는 **부족분을 서버에 다시 묻는다** — 같은 출제 요청을 그대로 다시
+   * 보낸다. 「가용」은 행 수가 아니라 **갈래 수**(`countFamilies`)이고 D-20(최근
+   * 14일 제외)까지 걸린 값이라, 화면이 다시 셀 수 있는 종류의 수가 아니다. 화면이
+   * 제 손으로 세면 「승인했는데 출제는 여전히 422」가 난다.
+   *
+   * 아직 모자라면 422 가 새 숫자를 주고, 채워졌으면 `generate` 가 그대로 시험지로
+   * 데려간다 — 그것이 원장님이 애초에 누른 일이다.
+   *
+   * **반려는 다시 묻지 않는다.** 출제 풀은 `approved` 만 보므로 pending → rejected 는
+   * 가용을 한 톨도 안 바꾼다. 한 번 더 묻는 것은 왕복만 늘린다.
+   */
+  const reviewAiDraft = useCallback(
+    async (id: string, next: ReviewStatus) => {
+      setSubmitError(null);
+      try {
+        await updateReviewStatus(id, next);
+      } catch (error) {
+        setSubmitError(
+          error instanceof Error
+            ? error.message
+            : "검수 상태를 바꾸지 못했습니다",
+        );
+        return;
+      }
+      if (next === "rejected") {
+        // 반려한 것은 목록에서 뺀다 — 전부 반려하면 「원래 자리」로 돌아가 다시
+        // 생성할 수 있어야 한다. 행 자체는 은행에 `rejected` 로 남는다.
+        setAiDrafts((before) => before.filter((draft) => draft.id !== id));
+        return;
+      }
+      setAiDrafts((before) =>
+        before.map((draft) =>
+          draft.id === id ? { ...draft, reviewStatus: next } : draft,
+        ),
+      );
+      if (next === "approved") await generate();
+    },
+    [generate],
+  );
 
   const reduceCount = useCallback(() => {
     if (!insufficient || insufficient.available < 1) return;
@@ -433,12 +499,12 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     rangeUnknown,
     rangeError,
     insufficient,
-    generatedPendingCount,
+    aiDrafts,
     submitError,
     busy,
     aiBusy,
     setStudentId: selectStudent,
-    setTestType,
+    setTestType: selectTestType,
     setTestDate,
     setProblemCount,
     setDifficultyRatio,
@@ -447,6 +513,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     selectClass,
     generate,
     generateAiDrafts,
+    reviewAiDraft,
     reduceCount,
   };
 }

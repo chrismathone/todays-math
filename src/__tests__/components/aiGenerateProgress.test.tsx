@@ -106,7 +106,7 @@ describe("AI 생성 — 진행 표시", () => {
       expect(screen.queryByRole("progressbar")).not.toBeInTheDocument(),
     );
     expect(
-      await screen.findByText(/문제은행에서 승격한 뒤 다시 출제하세요/),
+      await screen.findByText(/문항을 생성했습니다\. 아래에서 검수하세요/),
     ).toBeInTheDocument();
   });
 

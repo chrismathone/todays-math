@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import type { UnitEntity } from "@/contracts/unit.contract";
 
+import { AiDraftReview } from "./AiDraftReview";
 import { AiGenerateProgress } from "./AiGenerateProgress";
 import { FIELD_CLASS } from "./labels";
 import { describeRange } from "./rangeSummary";
@@ -295,10 +296,17 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
                 눌러도 «AI 문제 생성 중» 이 뜬다 — 시험의 «음성 대조»가 그 자리를 지킨다.
               */}
               {form.aiBusy ? <AiGenerateProgress /> : null}
-              {form.generatedPendingCount > 0 ? (
+              {/*
+                🔴 예전에는 여기가 「N문항을 생성했습니다. 문제은행에서 승격한 뒤
+                   **다시 출제하세요**」였다. 그 한 줄이 곧 원장님이 지적한 동선이다 —
+                   화면을 떠나 은행에서 대기 필터를 걸고 방금 만든 것을 찾아 승인한 뒤,
+                   돌아와서 설정을 처음부터 다시. 이제 검수가 아래에 있다(D-22 는 그대로).
+                   은행 링크는 남긴다 — 나중에 마저 보고 싶을 수 있고, 행은 거기에도 있다.
+              */}
+              {form.aiDrafts.length > 0 ? (
                 <p className="mt-3">
-                  {form.generatedPendingCount}문항을 생성했습니다. 문제은행에서
-                  승격한 뒤 다시 출제하세요.{" "}
+                  {form.aiDrafts.length}문항을 생성했습니다. 아래에서
+                  검수하세요.{" "}
                   <Link href="/problems" className="font-bold underline">
                     문제은행
                   </Link>
@@ -306,6 +314,11 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
               ) : null}
             </div>
           ) : null}
+
+          <AiDraftReview
+            drafts={form.aiDrafts}
+            onReviewStatusChange={form.reviewAiDraft}
+          />
 
           {form.submitError ? (
             // role 이 없으면 화면을 못 보는 사용자에겐 실패가 일어나지 않은 것과 같다.
