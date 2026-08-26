@@ -1345,3 +1345,176 @@ describe("초5 2-6-3 가능성", () => {
     }
   });
 });
+
+describe("초5 양자택일 — 변형 셋이 양쪽을 낸다", () => {
+  function expectBoth(
+    code: string,
+    formId: string,
+    check: (
+      content: string,
+      figureSpec: Record<string, unknown> | null,
+    ) => boolean,
+  ) {
+    const unit = unitOf(code);
+    const answers = new Set<string>();
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, formId);
+      const yes = check(p.content, p.figureSpec);
+      expect(p.answer, p.content).toBe(yes ? "예" : "아니요");
+      answers.add(p.answer);
+    }
+    expect(answers, `${code} ${formId}`).toEqual(new Set(["예", "아니요"]));
+  }
+
+  function dollars(content: string): number[] {
+    return [...content.matchAll(/\$(\d+)\$/g)].map((m) => Number(m[1]));
+  }
+
+  function fracs(content: string): [number, number][] {
+    return [...content.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+      Number(m[1]),
+      Number(m[2]),
+    ]);
+  }
+
+  it("1-2-4 공약수 판정", () => {
+    expectBoth("1-2-4", "08", (c) => {
+      const [d, a, b] = dollars(c);
+      return a! % d! === 0 && b! % d! === 0;
+    });
+  });
+
+  it("1-2-5 공배수 판정", () => {
+    expectBoth("1-2-5", "09", (c) => {
+      const [x, a, b] = dollars(c);
+      return x! % a! === 0 && x! % b! === 0;
+    });
+  });
+
+  it("1-2-6 최소공배수=곱", () => {
+    expectBoth("1-2-6", "09", (c) => {
+      const [a, b, prod] = dollars(c);
+      return lcmOf(a!, b!) === prod;
+    });
+  });
+
+  it("1-3-2 대응 관계 판정", () => {
+    expectBoth("1-3-2", "08", (c, fig) => {
+      const shown = Number(c.match(/\\triangle=\\square\\times(\d+)/)?.[1]);
+      const row = (fig as { rows?: string[][] } | null)?.rows?.[0] ?? [];
+      const y = Number(row[1]);
+      const from = dollars(c)[0]!;
+      return y === from * shown;
+    });
+  });
+
+  it("1-4-1 같은 크기 분수", () => {
+    expectBoth("1-4-1", "07", (c) => {
+      const [a, b] = fracs(c);
+      return a![0] * b![1] === b![0] * a![1];
+    });
+  });
+
+  it("1-4-5 분수와 소수", () => {
+    expectBoth("1-4-5", "07", (c) => {
+      const [fn, fd] = fracs(c)[0]!;
+      const dec = c.match(/소수 \$([^$]+)\$/)?.[1];
+      return fn / fd === Number(dec);
+    });
+  });
+
+  it("2-1-1 이상에 들어가는가", () => {
+    expectBoth("2-1-1", "08", (c) => {
+      const [a, k] = dollars(c);
+      return k! >= a!;
+    });
+  });
+
+  it("2-1-2 초과에 들어가는가", () => {
+    expectBoth("2-1-2", "07", (c) => {
+      const [a, k] = dollars(c);
+      return k! > a!;
+    });
+  });
+
+  it("2-2-1 곱이 1보다 큰가", () => {
+    expectBoth("2-2-1", "10", (c) => {
+      const [a, d] = fracs(c)[0]!;
+      const k = Number(c.match(/\\times(\d+)/)?.[1]);
+      return a * k > d;
+    });
+  });
+
+  it("1-3-3 생활 대응 판정", () => {
+    expectBoth("1-3-3", "07", (c) => {
+      const per = Number(c.match(/\$(\d+)\$[가-힣]*씩/)?.[1]);
+      const shown = Number(c.match(/\\times(\d+)/)?.[1]);
+      return per === shown;
+    });
+  });
+
+  it("1-5-2 분수부 올림", () => {
+    expectBoth("1-5-2", "08", (c) => {
+      const mixed = [...c.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/g)].map(
+        (m) => [Number(m[1]), Number(m[2]), Number(m[3])] as const,
+      );
+      const [, a, d1] = mixed[0]!;
+      const [, b, d2] = mixed[1]!;
+      return a / d1 + b / d2 >= 1;
+    });
+  });
+
+  it("1-5-3 차가 1/2보다 큰가", () => {
+    expectBoth("1-5-3", "07", (c) => {
+      const [big, small] = fracs(c);
+      return big![0] / big![1] - small![0] / small![1] > 0.5;
+    });
+  });
+
+  it("1-5-4 받아내림", () => {
+    expectBoth("1-5-4", "08", (c) => {
+      const mixed = [...c.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/g)].map(
+        (m) => [Number(m[1]), Number(m[2]), Number(m[3])] as const,
+      );
+      const [, a, d1] = mixed[0]!;
+      const [, b, d2] = mixed[1]!;
+      return a / d1 < b / d2;
+    });
+  });
+
+  it("2-4-1 소수×자연수가 1보다 큰가", () => {
+    expectBoth("2-4-1", "09", (c) => {
+      const m = c.match(/\$(\d+(?:\.\d+)?)\\times(\d+)\$/);
+      return Number(m![1]) * Number(m![2]) > 1;
+    });
+  });
+
+  it("2-4-2 곱이 어떤 수보다 큰가", () => {
+    expectBoth("2-4-2", "09", (c) => {
+      const m = c.match(/\$(\d+(?:\.\d+)?)\\times(\d+)\$/);
+      const target = dollars(c).pop()!;
+      return Number(m![1]) * Number(m![2]) > target;
+    });
+  });
+
+  it("2-4-3 자연수×소수가 1보다 큰가", () => {
+    expectBoth("2-4-3", "08", (c) => {
+      const m = c.match(/\$(\d+)\\times(\d+(?:\.\d+)?)\$/);
+      return Number(m![1]) * Number(m![2]) > 1;
+    });
+  });
+
+  it("2-4-5 곱이 0.1보다 큰가", () => {
+    expectBoth("2-4-5", "08", (c) => {
+      const m = c.match(/\$(\d+(?:\.\d+)?)\\times(\d+(?:\.\d+)?)\$/);
+      return Number(m![1]) * Number(m![2]) > 0.1;
+    });
+  });
+
+  it("2-4-6 곱이 10보다 큰가", () => {
+    expectBoth("2-4-6", "08", (c) => {
+      const m = c.match(/\$(\d+(?:\.\d+)?)\\times(\d+(?:\.\d+)?)\$/);
+      return Number(m![1]) * Number(m![2]) > 10;
+    });
+  });
+});
