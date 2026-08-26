@@ -5559,15 +5559,14 @@ function manCount(rng: Rng): number {
   return intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
 }
 
-/** 문형 05 — 10000이 n개인 수를 쓴다. */
+/** 문형 05 — 10000이 n개인 수는 100이 몇 개. 02 의 n×10000 과 셈을 가른다. */
 function big113TimesMan(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = manCount(rng);
-  const value = 10000 * count;
   return make(
     unit,
-    `${n(10000)}이 ${n(count)}개인 수를 쓰시오.`,
-    n(value),
-    `${expr(`10000\\times${count}=${value}`)} 입니다.`,
+    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수인가?`,
+    n(count * 100),
+    `${n(10000)}은 ${n(100)}이 ${n(100)}개이므로 ${expr(`100\\times${count}=${count * 100}`)} 개입니다.`,
   );
 }
 
@@ -6254,15 +6253,15 @@ function ang123BiggestAcute(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /* ── 1-2-4 문형 05–10. 01 은 이어 붙이기, 05 는 식. ── */
 
-/** 문형 05 — 덧셈 식. */
+/** 문형 05 — 같은 크기로 둘로 나눈다. 01 의 n0+n1 과 셈을 가른다. */
 function ang124AddExpr(unit: UnitSeed, rng: Rng): ElemProblem {
-  const x = intBetween(rng, 25, 75);
-  const y = intBetween(rng, 15, 60);
+  const half = intBetween(rng, 15, 80);
+  const s = half * 2;
   return make(
     unit,
-    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 각도를 쓰시오. ${expr(`${x}^\\circ+${y}^\\circ=\\square`)}`,
-    deg(x + y),
-    `${expr(`${x}+${y}=${x + y}`)} 이므로 ${deg(x + y)}입니다.`,
+    `이어 붙인 각의 크기가 ${deg(s)}입니다. 크기가 같은 두 각으로 나누면 한 각의 크기는 몇 도인가?`,
+    deg(half),
+    `${expr(`${s}\\div2=${half}`)} 이므로 ${deg(half)}입니다.`,
   );
 }
 
@@ -6344,14 +6343,15 @@ function ang125RestFromTwo(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 06 — 한 각이 정해지면 나머지 둘의 합. */
+/** 문형 06 — 주어진 두 각의 합. 01 의 180−n0 과 셈을 가른다. */
 function ang125OtherTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
-  const a = intBetween(rng, 20, 140);
+  const a = intBetween(rng, 25, 80);
+  const b = intBetween(rng, 25, 135 - a);
   return make(
     unit,
-    `삼각형의 한 각의 크기가 ${deg(a)}입니다. 나머지 두 각의 크기의 합은 몇 도인가?`,
-    deg(180 - a),
-    `${expr(`180-${a}=${180 - a}`)} 이므로 ${deg(180 - a)}입니다.`,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도인가?`,
+    deg(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 이므로 ${deg(a + b)}입니다.`,
   );
 }
 
@@ -6426,14 +6426,15 @@ function ang126RestFromThree(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 06 — 한 각이 정해지면 나머지 셋의 합. */
+/** 문형 06 — 주어진 두 각의 합. 01 의 360−n0 과 셈을 가른다. */
 function ang126OtherThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
-  const a = intBetween(rng, 40, 160);
+  const a = intBetween(rng, 50, 120);
+  const b = intBetween(rng, 50, 120);
   return make(
     unit,
-    `사각형의 한 각의 크기가 ${deg(a)}입니다. 나머지 세 각의 크기의 합은 몇 도인가?`,
-    deg(360 - a),
-    `${expr(`360-${a}=${360 - a}`)} 이므로 ${deg(360 - a)}입니다.`,
+    `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도인가?`,
+    deg(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 이므로 ${deg(a + b)}입니다.`,
   );
 }
 

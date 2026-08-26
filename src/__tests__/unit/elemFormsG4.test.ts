@@ -188,12 +188,14 @@ describe("초4 1-1-2 다섯 자리 수", () => {
 describe("초4 1-1-3 10000이 몇십·몇백·몇천", () => {
   const unit = unitOf("1-1-3");
 
-  it("05 10000이 n개인 수", () => {
+  it("05 10000이 n개인 수는 100이 n×100개", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/\$10000\$이 \$(\d+)\$개인 수를 쓰시오/);
+      const m = p.content.match(
+        /\$10000\$이 \$(\d+)\$개인 수는 \$100\$이 몇 개인 수인가/,
+      );
       expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(10000 * Number(m![1]));
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * 100);
     }
   });
 
@@ -717,11 +719,13 @@ describe("초4 1-2-3 각의 분류", () => {
 describe("초4 1-2-4 각도의 합과 차", () => {
   const unit = unitOf("1-2-4");
 
-  it("05 덧셈 식의 빈칸", () => {
+  it("05 같은 두 각으로 나누면 반", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [x, y] = degNums(p.content);
-      expect(answerDeg(p.answer)).toBe(x! + y!);
+      const s = degNums(p.content)[0];
+      expect(s).toBeTruthy();
+      expect(s! % 2).toBe(0);
+      expect(answerDeg(p.answer)).toBe(s! / 2);
     }
   });
 
@@ -777,10 +781,11 @@ describe("초4 1-2-5 삼각형의 세 각", () => {
     }
   });
 
-  it("06 나머지 두 각의 합은 180-한 각", () => {
+  it("06 주어진 두 각의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      expect(answerDeg(p.answer)).toBe(180 - degNums(p.content)[0]!);
+      const [a, b] = degNums(p.content);
+      expect(answerDeg(p.answer)).toBe(a! + b!);
     }
   });
 
@@ -830,10 +835,11 @@ describe("초4 1-2-6 사각형의 네 각", () => {
     }
   });
 
-  it("06 나머지 세 각의 합은 360-한 각", () => {
+  it("06 주어진 두 각의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      expect(answerDeg(p.answer)).toBe(360 - degNums(p.content)[0]!);
+      const [a, b] = degNums(p.content);
+      expect(answerDeg(p.answer)).toBe(a! + b!);
     }
   });
 
