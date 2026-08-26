@@ -3250,6 +3250,82 @@ function fac121Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 약수의 개수. */
+function fac121Count(unit: UnitSeed, rng: Rng): ElemProblem {
+  const num = pick(rng, FACTOR_NUMBERS);
+  const d = divisors(num);
+  return make(
+    unit,
+    `${n(num)}의 약수는 모두 몇 개입니까?`,
+    n(d.length),
+    `${n(num)}의 약수는 ${nums(d)}이므로 ${n(d.length)}개입니다.`,
+  );
+}
+
+/** 문형 06 — 가장 큰 약수는 그 수 자신(정의). */
+function fac121Largest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const num = pick(rng, FACTOR_NUMBERS);
+  return make(
+    unit,
+    `${n(num)}의 약수 중에서 가장 큰 수를 구하시오.`,
+    n(num),
+    `약수 중 가장 큰 수는 그 수 자신이므로 ${n(num)}입니다.`,
+  );
+}
+
+/** 문형 07 — 약수의 합. */
+function fac121Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const num = pick(rng, FACTOR_NUMBERS);
+  const d = divisors(num);
+  const sum = d.reduce((x, y) => x + y, 0);
+  return make(
+    unit,
+    `${n(num)}의 약수를 모두 더하면 얼마입니까?`,
+    n(sum),
+    `${n(num)}의 약수는 ${nums(d)}입니다. 모두 더하면 ${n(sum)}입니다.`,
+  );
+}
+
+/** 문형 08 — 짝수인 약수의 개수. */
+function fac121EvenCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const num = pick(
+    rng,
+    FACTOR_NUMBERS.filter((x) => x % 2 === 0),
+  );
+  const evens = divisors(num).filter((v) => v % 2 === 0);
+  return make(
+    unit,
+    `${n(num)}의 약수 중에서 짝수는 모두 몇 개입니까?`,
+    n(evens.length),
+    `${n(num)}의 약수는 ${nums(divisors(num))}입니다. 이 중 짝수는 ${nums(evens)}이므로 ${n(evens.length)}개입니다.`,
+  );
+}
+
+/** 문형 09 — 1과 자기 자신을 뺀 약수 개수. */
+function fac121InnerCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const num = pick(rng, FACTOR_NUMBERS);
+  const inner = divisors(num).filter((v) => v !== 1 && v !== num);
+  return make(
+    unit,
+    `${n(num)}의 약수 중에서 ${n(1)}과 자기 자신을 뺀 수는 모두 몇 개입니까?`,
+    n(inner.length),
+    `${n(num)}의 약수는 ${nums(divisors(num))}입니다. ${n(1)}과 ${nj(num, "을", "를")} 빼면 ${nums(inner)}이므로 ${n(inner.length)}개입니다.`,
+  );
+}
+
+/** 문형 10 — M보다 작은 배수 중 가장 큰 수. */
+function fac121LargestBelow(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 9);
+  const k = intBetween(rng, 4, 8);
+  const M = b * k + intBetween(rng, 1, b - 1);
+  return make(
+    unit,
+    `${n(b)}의 배수 중에서 ${n(M)}보다 작은 수 중 가장 큰 수를 구하시오.`,
+    n(b * k),
+    `${expr(`${b}\\times${k}=${b * k}`)}은 ${n(M)}보다 작고 ${expr(`${b}\\times${k + 1}=${b * (k + 1)}`)}부터는 ${n(M)} 이상이므로 ${n(b * k)}입니다.`,
+  );
+}
+
 /* ── 1-2-2 약수와 배수의 관계 — 곱셈식 하나가 맺는 «관계»만 다룬다(목록 나열 없음) ── */
 
 /** 연산 — 관계를 말하는 곱셈식의 □ 하나(절차 한 번). */
@@ -7612,6 +7688,18 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: mix113MulDivSum },
     { id: "09", tier: "응용", generate: mix113ThenAdd },
     { id: "10", tier: "응용", generate: mix113Bigger },
+  ],
+  "초5|1-2-1": [
+    { id: "01", tier: "연산", generate: fac121Calc },
+    { id: "02", tier: "기본", generate: fac121Read },
+    { id: "03", tier: "응용", generate: fac121Apply },
+    { id: "04", tier: "심화", generate: fac121Deep },
+    { id: "05", tier: "기본", generate: fac121Count },
+    { id: "06", tier: "기본", generate: fac121Largest },
+    { id: "07", tier: "기본", generate: fac121Sum },
+    { id: "08", tier: "응용", generate: fac121EvenCount },
+    { id: "09", tier: "응용", generate: fac121InnerCount },
+    { id: "10", tier: "응용", generate: fac121LargestBelow },
   ],
   "초5|2-5-1": [
     { id: "01", tier: "연산", generate: boxRectCalc },

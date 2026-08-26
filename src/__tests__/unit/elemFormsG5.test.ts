@@ -24,6 +24,12 @@ function answerInt(answer: string): number {
   return Number(m![1]);
 }
 
+function ownDivisors(num: number): number[] {
+  const out: number[] = [];
+  for (let i = 1; i <= num; i += 1) if (num % i === 0) out.push(i);
+  return out;
+}
+
 describe("초5 1-1-1 혼합 계산 — 묻는 대상이 답이다", () => {
   const unit = unitOf("1-1-1");
 
@@ -443,6 +449,73 @@ describe("초5 1-1-3 네 연산", () => {
       const parenFirst =
         p.content.indexOf(withP![0]) < p.content.indexOf(noP![0]);
       expect(p.answer).toBe(hi > lo === parenFirst ? "㉠" : "㉡");
+    }
+  });
+});
+
+describe("초5 1-2-1 약수와 배수", () => {
+  const unit = unitOf("1-2-1");
+
+  it("05 약수의 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$의 약수는 모두 몇 개/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(ownDivisors(Number(m![1])).length);
+    }
+  });
+
+  it("06 가장 큰 약수는 그 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\$의 약수 중에서 가장 큰/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+
+  it("07 약수의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\$(\d+)\$의 약수를 모두 더하면/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        ownDivisors(Number(m![1])).reduce((a, b) => a + b, 0),
+      );
+    }
+  });
+
+  it("08 짝수인 약수 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$의 약수 중에서 짝수는/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        ownDivisors(Number(m![1])).filter((v) => v % 2 === 0).length,
+      );
+    }
+  });
+
+  it("09 1과 자신을 뺀 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$의 약수 중에서/);
+      expect(m, p.content).toBeTruthy();
+      const n0 = Number(m![1]);
+      expect(answerInt(p.answer)).toBe(
+        ownDivisors(n0).filter((v) => v !== 1 && v !== n0).length,
+      );
+    }
+  });
+
+  it("10 M보다 작은 가장 큰 배수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\$(\d+)\$의 배수 중에서 \$(\d+)\$보다 작은/);
+      expect(m, p.content).toBeTruthy();
+      const b = Number(m![1]);
+      const M = Number(m![2]);
+      expect(answerInt(p.answer)).toBe(Math.floor((M - 1) / b) * b);
     }
   });
 });
