@@ -57,6 +57,9 @@ export async function POST(request: NextRequest) {
         originProblemId: draft.originProblemId,
         difficulty: draft.difficulty,
         problemType: draft.problemType,
+        // ⚠️ 이 줄이 빠지면 DB 는 널이 되고 화면은 `[?형식]` 을 그린다 — **에러가 안 난다**
+        //    (원장님 지적 2026-08-26). `src/__tests__/api/aiGenerateQuestionType.test.ts` 가 지킨다.
+        questionType: draft.questionType,
         content: draft.content,
         answer: draft.answer,
         solution: draft.solution,
