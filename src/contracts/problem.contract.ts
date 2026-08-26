@@ -25,6 +25,9 @@
 import { z } from "zod";
 
 import type { Difficulty } from "./common.contract";
+// 타입만 가져온다 — 값으로 가져오면 지면 파서(`parseProblemContent`)가 계약 번들에
+// 딸려 들어와 초기 JS 가 무거워진다(성능 수리 C-1 이 279KB 를 덜어 낸 그 자리).
+import type { FilterableFormat } from "@/lib/problem/provenance";
 import { problemCodeSchema } from "./problemCode.contract";
 import {
   dataResponseSchema,
@@ -45,6 +48,34 @@ export const problemTypeSchema = z.enum(["계산", "개념", "활용", "서술�
   error: "문제 유형은 계산/개념/활용/서술형 중 하나여야 합니다.",
 });
 export type ProblemType = z.infer<typeof problemTypeSchema>;
+
+/**
+ * **형식** 필터 — 화면의 `[단]` · `[서]` 라벨 축이다 (원장님 지시 2026-08-26).
+ *
+ * ⚠️ `problemType`(계산/개념/활용/서술형)과 **다른 축**이다. 둘 다 「서술형」이라는 낱말을
+ *    쓰지만 앞은 «어떻게 푸는 문제인가», 뒤는 «어떻게 답을 내는가»다. 실측으로 갈린다 —
+ *    `problem_type='서술형'` 8,037건 중 라벨이 `[서]` 인 것은 7,755건뿐이다
+ *    (`scripts/qa/probe-format-filter.ts`, 공유 DB 47,797건, 2026-08-26).
+ *
+ * ⚠️ **`multiple_choice`·`unknown` 은 일부러 없다.** 서버가 그 둘을 라벨과 똑같이 내려면
+ *    한 조회에 본문 수만 건을 파싱해야 한다(후보 34,138행·47,797행). 값을 받아 놓고
+ *    비슷하게만 거르면 화면 라벨과 갈리므로, **아예 거부해서 400 으로 시끄럽게** 막는다.
+ *    사정과 수는 `src/lib/problem/provenance.ts` 의 「서버 형식 필터」 절에 있다.
+ *
+ * 값이 늘거나 줄면 `FilterableFormat` 과 어긋나선 안 된다. `satisfies` 가 «없는 값»을
+ * 막고, `problemFormatFilter.test.ts` 가 **양방향으로** 대조한다 — 타입은 배열 길이를
+ * 안 세므로(2026-08-25) `satisfies` 하나로는 «빠진 값»이 안 잡힌다.
+ */
+export const problemFormatFilterSchema = z.enum(
+  [
+    "short_answer",
+    "descriptive",
+  ] as const satisfies readonly FilterableFormat[],
+  {
+    error: "형식 필터는 단답형(short_answer)/서술형(descriptive)만 지원합니다.",
+  },
+);
+export type ProblemFormatFilter = z.infer<typeof problemFormatFilterSchema>;
 
 // content/answer/solution — TEXT(무제한)이지만 비정상적으로 큰 입력을 막기 위한 상한.
 const problemTextSchema = (label: string) =>
@@ -182,6 +213,15 @@ export const problemFilterQuerySchema = z.strictObject({
   unitTo: z.uuid({ error: "끝 단원 ID 형식이 올바르지 않습니다." }).optional(),
   difficulty: difficultySchema.optional(),
   problemType: problemTypeSchema.optional(),
+  /**
+   * 형식(`[단]`·`[서]`) 필터 — 화면의 「유형」 드롭다운이 이 축의 값도 싣는다
+   * (원장님 지시 2026-08-26). `problemType` 과 **같이 올 수 있다**: 「활용이면서 서술형」.
+   *
+   * 서버는 이 값을 Prisma `where` 에 그대로 못 넣는다(라벨이 파생값이다). 후보 집합을
+   * 긁어 와 `classifyFormat` 으로 확정한 뒤 어긋난 행만 뺀다 — 규칙과 수는
+   * `src/lib/problem/provenance.ts` 「서버 형식 필터」 절.
+   */
+  format: problemFormatFilterSchema.optional(),
   source: problemSourceSchema.optional(),
   reviewStatus: reviewStatusSchema.optional(),
   pool: problemPoolSchema.optional(),

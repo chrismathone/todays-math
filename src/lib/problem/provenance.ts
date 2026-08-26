@@ -96,32 +96,47 @@ export type ProblemFormat =
   "multiple_choice" | "short_answer" | "descriptive" | "unknown";
 
 /**
- * 판정에 필요한 최소 모양 — `ProblemEntity` 가 그대로 들어맞고, 스크립트가 DB 행을
- * 그대로 넘겨도 된다. **여기 없는 컬럼은 판정에 쓰지 않는다**(쓰려면 이 모양을 넓혀서
- * 화면·스크립트가 같이 넓어지게 한다).
+ * 형식 판정이 **본문 말고** 보는 값들 — 전부 SQL 이 그대로 볼 수 있는 컬럼이다.
+ *
+ * 이 모양을 따로 뽑아 둔 이유: 서버 필터가 본문을 파싱하지 않고도 판정할 수 있는
+ * 자리를 가려내야 하기 때문이다(`formatWithoutContent`). 여기에 컬럼을 더하려면
+ * 필터의 후보 집합(`formatSuperset`)도 같이 넓혀야 한다 — 안 그러면 라벨은 바뀌는데
+ * 필터는 안 바뀌어 둘이 갈린다.
  */
-export type ProvenanceInput = {
-  source: string;
-  /**
-   * 엔진이 적는 자기 유형 정체 (D-105). `elem:…` · `mid:…` · `solo:<uuid>` · 없음.
-   *
-   * ⚠️ **널로 두면 「엔진이 아니다」가 된다.** 그래서 계약(`problem.contract.ts`)이 이
-   *    값을 **반드시 실어 보내게** 했다 — 어느 경로가 빠뜨리면 엔진 문항 2,410건이
-   *    통째로 미분류로 떨어지는데 **에러가 안 난다**(`consoleRow.ts` 가 겪은 그 자리).
-   */
-  familyKey: string | null;
-  /** 변형본의 원본. `transformed` 안에서 **AI 변형과 교재 이관본을 가르는 유일한 값**이다. */
-  originProblemId: string | null;
-  figureUrls: readonly string[];
-  figureSvg: string | null;
-  /** 형식 판정이 **보기**를 세는 자리. 지면 파서와 같은 함수를 쓴다. */
-  content: string;
+export type FormatEvidence = {
   /** 형식 판정이 **정답 모양**을 보는 자리. */
   answer: string;
   /** DB에 기록된 출제 형식 ('객관식' | '단답형' | '서술형' | null) */
   questionType?: string | null;
   /** DB에 기록된 문제 유형 ('계산' | '개념' | '활용' | '서술형' | null) */
   problemType?: string | null;
+  /** 엔진이 적는 자기 유형 정체 (D-105) — `elem:` / `mid:` 는 전량 단답형 생성기다. */
+  familyKey: string | null;
+};
+
+/** 형식 판정의 입력 전부 — 위 증거에 **본문**이 붙는다(보기 칸 수를 여기서 센다). */
+export type FormatInput = FormatEvidence & {
+  /** 형식 판정이 **보기**를 세는 자리. 지면 파서와 같은 함수를 쓴다. */
+  content: string;
+};
+
+/**
+ * 판정에 필요한 최소 모양 — `ProblemEntity` 가 그대로 들어맞고, 스크립트가 DB 행을
+ * 그대로 넘겨도 된다. **여기 없는 컬럼은 판정에 쓰지 않는다**(쓰려면 이 모양을 넓혀서
+ * 화면·스크립트가 같이 넓어지게 한다).
+ */
+export type ProvenanceInput = FormatInput & {
+  source: string;
+  /**
+   * ⚠️ `familyKey`(위 `FormatEvidence`)를 **널로 두면 「엔진이 아니다」가 된다.** 그래서
+   *    계약(`problem.contract.ts`)이 이 값을 **반드시 실어 보내게** 했다 — 어느 경로가
+   *    빠뜨리면 엔진 문항 2,410건이 통째로 미분류로 떨어지는데 **에러가 안 난다**
+   *    (`consoleRow.ts` 가 겪은 그 자리). 필드를 옵셔널로 바꾸지 말 것.
+   */
+  /** 변형본의 원본. `transformed` 안에서 **AI 변형과 교재 이관본을 가르는 유일한 값**이다. */
+  originProblemId: string | null;
+  figureUrls: readonly string[];
+  figureSvg: string | null;
 };
 
 /** 엔진이 `familyKey` 앞에 붙이는 표지. 엔진 말고는 아무도 이 접두사를 안 쓴다(D-105). */
@@ -191,8 +206,28 @@ export function classifyFigure(problem: ProvenanceInput): FigureOrigin | null {
  *    - 보기/정답이 어긋나거나, `questionType` 이 누락되어 단답/서술을 확정할 수 없는 주관식(RPM 등)
  *    - 조용히 한쪽으로 몰아넣지 않고 `[?형식]` 으로 드러낸다.
  */
-export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
-  const choices = parseProblemContent(problem.content).choices.length;
+export function classifyFormat(problem: FormatInput): ProblemFormat {
+  return classifyFormatWithChoices(
+    parseProblemContent(problem.content).choices.length,
+    problem,
+  );
+}
+
+/**
+ * 위 판정에서 **본문 파싱만 뺀 것** — 보기 칸 수를 직접 받는다.
+ *
+ * 갈라 둔 이유가 둘이다.
+ *
+ * ⑴ **시험이 «보기 1칸»을 만들 수 있어야 한다.** 파서는 마커가 하나면 0칸을 낸다(실측)
+ *    — 본문 문자열로만 돌면 `choices === 1` 이라는 가지가 시험에 **아예 없고**, 없는 축은
+ *    변이시킬 수 없다(CLAUDE.md 2026-08-19·20·25 에 세 번 적힌 그 자리).
+ * ⑵ 서버 필터가 「본문을 안 봐도 되는 자리」를 가려낼 때(`formatWithoutContent`) 그
+ *    주장을 **이 함수로 전수 검산**한다. 규칙을 옮겨 적지 않고 같은 함수에 대 본다.
+ */
+export function classifyFormatWithChoices(
+  choices: number,
+  problem: FormatEvidence,
+): ProblemFormat {
   const answerHasChoiceNumber = ANSWER_CHOICE_NUMBER.test(problem.answer);
 
   if (choices >= 2 && answerHasChoiceNumber) return "multiple_choice";
@@ -200,10 +235,7 @@ export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
   if (choices === 0 && !answerHasChoiceNumber) {
     if (problem.questionType === "단답형") return "short_answer";
     if (problem.questionType === "서술형") return "descriptive";
-    const family = problem.familyKey ?? "";
-    if (family.startsWith("elem:") || family.startsWith("mid:")) {
-      return "short_answer";
-    }
+    if (isEngineFamily(problem.familyKey)) return "short_answer";
     if (!problem.questionType && problem.problemType === "서술형") {
       return "descriptive";
     }
@@ -217,6 +249,182 @@ export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
 
   return "unknown";
 }
+
+/**
+ * 엔진이 낸 문항인가 — 접두사 목록은 `ENGINE_PREFIX` **한 곳**에서 온다.
+ *
+ * ⚠️ 예전에는 형식 판정이 `family.startsWith("elem:") || family.startsWith("mid:")` 로
+ *    목록을 **한 벌 더** 적고 있었다. 손으로 적은 목록이 둘이면 엔진이 늘어날 때
+ *    한쪽만 고쳐도 아무도 모른다(CLAUDE.md 2026-08-18 「목록을 손으로 쓰면 세는 쪽과
+ *    고치는 쪽이 같이 눈이 먼다」).
+ */
+function isEngineFamily(familyKey: string | null | undefined): boolean {
+  const family = familyKey ?? "";
+  return ENGINE_PREFIX.some(([prefix]) => family.startsWith(prefix));
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 서버 형식 필터 — 「거르는 쪽」과 「라벨을 붙이는 쪽」이 같은 답을 내게 한다
+ *
+ * 원장님 지시 2026-08-26: 「유형 드롭다운에 **단답형**을 추가 · **[단]** 을 거를 수 있게
+ * · **[서]** 도 서술형 필터에 걸리게」.
+ *
+ * ## 왜 그냥 SQL 조건 하나로 못 하나 — 실측
+ *
+ * `/api/problems` 는 서버에서 거르고 페이지를 나눈다. 그런데 라벨은 **파생값**이라
+ * Prisma `where` 에 그대로 못 넣는다(보기 칸 수는 601줄짜리 지면 파서가 센다).
+ * 그래서 SQL 만으로 흉내 낼 수 있는 후보들을 공유 DB **전량 47,797건**에 대고 재 봤다
+ * (`scripts/qa/probe-format-filter.ts`, 2026-08-26). 「필터만」은 SQL 은 뽑는데 라벨이
+ * 다른 행, 「라벨만」은 그 반대다:
+ *
+ * | 후보 | 객관식 | 단답형 | 서술형 | 미분류 |
+ * |---|---|---|---|---|
+ * | 지금 「유형」 필터(`problem_type`) | — | — | 필터만 282 · 라벨만 50 | — |
+ * | `question_type` 직결 | 필터만 189 · 라벨만 2,512 | 필터만 20 | 필터만 16 · 라벨만 31 | 필터만 2,507 |
+ * | 위 + 엔진 표지 | (같음 — 이 조건은 오늘 **한 행도 안 가른다**) |
+ * | 위 + 정답 원문자 | 필터만 278 | 라벨만 13 | 라벨만 47 | 라벨만 218 |
+ *
+ * **어느 후보도 0이 아니다.** 가장 가까운 것도 278건이 갈리고, 그 278건은 「정답이 `①`
+ * 인데 본문에 보기가 0칸」(그림 보기 문항 111건)과 「`question_type='객관식'` 인데 본문에
+ * 보기가 없다」(167건)이다 — 둘 다 **본문을 봐야만** 갈린다.
+ *
+ * ## 그래서 판정을 셋으로 가른다
+ *
+ *   ㉠ `formatWithoutContent` — 본문을 안 봐도 답이 정해지는 자리(입력 공간의 대부분)
+ *   ㉡ `formatSuperset`       — 「이 형식일 수 있는 행」. SQL 이 이만큼만 긁는다
+ *                               (실측 단답형 3,146행 · 서술형 7,819행)
+ *   ㉢ 나머지                  — 본문을 실제로 읽어 `classifyFormat` 을 부른다
+ *                               (실측 단답형 20행 · 서술형 45행)
+ *
+ * ㉠㉡ 이 `classifyFormat` 과 갈리면 필터와 라벨이 갈린다. 그래서
+ * `src/__tests__/unit/problemFormatFilter.test.ts` 가 **입력 공간 800조합 × 보기 칸 수 4**
+ * 를 전수로 돌며 둘을 맞대고, **음성 대조**(과잉 null 금지 · 트리비얼 후보 금지 ·
+ * 헐거운 후보 금지)를 같이 건다.
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/**
+ * 서버가 **정확히** 낼 수 있는 형식 갈래. 「유형」 드롭다운이 이 둘만 싣는다.
+ *
+ * ⚠️ `multiple_choice`·`unknown` 은 **일부러 뺐다.** 그 둘은 후보 집합이 각각
+ *    34,138행·47,797행이라(정답에 보기 번호가 든 행 전량 / 전량) 위 ㉡㉢ 방식으로는
+ *    한 번 조회에 본문 수만 건을 읽어야 한다. 계약이 값 자체를 거부하므로
+ *    **400 으로 시끄럽게 막힌다** — 조용히 0건이 되지 않는다.
+ */
+export const FILTERABLE_FORMATS = ["short_answer", "descriptive"] as const;
+export type FilterableFormat = (typeof FILTERABLE_FORMATS)[number];
+
+/**
+ * 본문(보기 칸 수)을 **안 보고도** 형식이 정해지면 그 값, 못 정하면 `null`.
+ *
+ * 「모르면 null」이 아니라 **「보기 칸 수에 따라 답이 갈리면 null」**이다. 시험이
+ * 그 둘을 갈라 못 박는다 — 늘 `null` 을 내도 「값을 내면 맞다」는 초록이기 때문이다.
+ */
+export function formatWithoutContent(
+  problem: FormatEvidence,
+): ProblemFormat | null {
+  // 정답이 보기 번호면 「보기가 2칸 이상인가」가 객관식과 나머지를 가른다 — 본문을 봐야 한다.
+  if (ANSWER_CHOICE_NUMBER.test(problem.answer)) return null;
+
+  // 여기부터는 객관식이 될 수 없다. `questionType` 이 있으면 두 가지 모두 같은 답을 낸다.
+  if (problem.questionType === "단답형") return "short_answer";
+  if (problem.questionType === "서술형") return "descriptive";
+
+  // 남은 둘은 **보기가 0칸일 때만** 살아나는 규칙이다(0칸이면 단답/서술, 아니면 미분류).
+  if (isEngineFamily(problem.familyKey)) return null;
+  if (!problem.questionType && problem.problemType === "서술형") return null;
+
+  return "unknown";
+}
+
+/**
+ * 「이 행이 그 형식일 **수** 있나」 — SQL 이 긁어 올 후보 집합의 JS 판.
+ * `classifyFormat` 이 그 형식을 내는 모든 입력을 담아야 하고(놓치면 필터가 빠뜨린다),
+ * 담을 필요 없는 것은 안 담아야 한다(넓히면 서버가 헛일을 한다). 둘 다 시험이 잰다.
+ */
+export function formatSuperset(
+  problem: FormatEvidence,
+  format: FilterableFormat,
+): boolean {
+  if (format === "short_answer") {
+    // 단답형이 나오는 자리는 둘뿐이다 — `questionType` 이 그렇게 적혀 있거나, 엔진 문항이거나.
+    if (problem.questionType === "단답형") return true;
+    if (problem.questionType === "서술형") return false;
+    return isEngineFamily(problem.familyKey);
+  }
+  if (problem.questionType === "서술형") return true;
+  // ⚠️ **엔진 문항을 빼야 한다.** 판정에서 엔진 표지가 `problemType` 되짚기보다 **먼저**
+  //    걸리므로(`classifyFormatWithChoices`), 엔진 문항은 보기 칸 수가 몇이든 서술형이
+  //    될 수 없다. 안 빼면 서술형 후보에 단답형 후보가 섞여 두 집합이 겹친다 —
+  //    전수 시험이 그 겹침을 잡아 줬다.
+  return (
+    !problem.questionType &&
+    problem.problemType === "서술형" &&
+    !isEngineFamily(problem.familyKey)
+  );
+}
+
+/** `familyKey` 가 엔진 표지로 시작하나 — Prisma `where` 판. 접두사 목록은 위와 **같은 곳**. */
+const ENGINE_FAMILY_WHERE = {
+  OR: ENGINE_PREFIX.map(([prefix]) => ({ familyKey: { startsWith: prefix } })),
+};
+
+/**
+ * 엔진 표지가 **아니다** — 널도 포함한다.
+ *
+ * ⚠️ `NOT (family_key LIKE 'elem:%')` 는 널 행에 대해 **NULL**(거짓)이라, 그냥 뒤집으면
+ *    `family_key` 가 널인 행이 통째로 빠진다. 그 행들이 서술형 후보의 대부분이다.
+ */
+const NOT_ENGINE_FAMILY_WHERE = {
+  OR: [
+    { familyKey: null },
+    {
+      AND: ENGINE_PREFIX.map(([prefix]) => ({
+        NOT: { familyKey: { startsWith: prefix } },
+      })),
+    },
+  ],
+};
+
+/**
+ * `questionType` 이 그 값이 **아니다** — NULL 도 포함한다.
+ *
+ * ⚠️ SQL 에서 `question_type <> '서술형'` 은 NULL 행에 대해 **NULL**(거짓)이다.
+ *    그냥 `NOT` 하나로 쓰면 널인 행이 조용히 통째로 빠진다. 그래서 널을 **명시적으로**
+ *    한쪽에 둔다. 이 조각이 `formatSuperset` 과 정말 같은 행을 고르는지는 JS 로는 못
+ *    잰다 — 공유 DB 전량에 대고 `probe-format-filter.ts --superset` 이 잰다.
+ */
+const questionTypeIsNot = (value: string) => ({
+  OR: [{ questionType: null }, { NOT: { questionType: value } }],
+});
+
+/**
+ * 후보 집합의 Prisma `where` 판 — `formatSuperset` 과 **같은 행**을 골라야 한다.
+ *
+ * 🔴 여기 조건을 고치면 `formatSuperset` 도 같이 고쳐야 한다. 둘이 갈리면 필터가
+ *    조용히 행을 빠뜨리는데 **에러가 안 난다** — 그래서 실데이터 대조 조사가 따로 있다.
+ */
+export const FORMAT_SUPERSET_WHERE: Readonly<
+  Record<FilterableFormat, Record<string, unknown>>
+> = {
+  short_answer: {
+    OR: [
+      { questionType: "단답형" },
+      { AND: [ENGINE_FAMILY_WHERE, questionTypeIsNot("서술형")] },
+    ],
+  },
+  descriptive: {
+    OR: [
+      { questionType: "서술형" },
+      {
+        AND: [
+          { OR: [{ questionType: null }, { questionType: "" }] },
+          { problemType: "서술형" },
+          NOT_ENGINE_FAMILY_WHERE,
+        ],
+      },
+    ],
+  },
+};
 
 /** 화면이 그리는 라벨 한 장. */
 export type ProvenanceBadge = {
