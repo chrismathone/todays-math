@@ -26,6 +26,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { attachGivenDims } from "./figureDims";
 
 const GRADE = "중3";
 const BOOK = "3-2";
@@ -799,6 +800,39 @@ type Body = Pick<
   "content" | "answer" | "solution" | "facts" | "figureSpec"
 >;
 
+/**
+ * 유형별 «치수를 다나» 정책 (원장님 확정 2026-08-25).
+ *
+ *   없음(undefined) = **안 단다**   ·   배열 = 단다, 그 이름들만 뺀다
+ *
+ * 안 다는 유형과 **까닭**:
+ *  - `09`·`10` — 그림이 **개형**이다. 빌더가 각·비만 받고 발문의 길이는 안 받는다
+ *    (`figTwoTangents({p})`·`figTangentTri({ratio})`). 길이를 적으면 **그림이
+ *    적힌 값과 다른 크기로 그려진다** — 09 §4-21 이 「스스로 신고하지 않는」 부류로
+ *    적어 둔 그 결함이다. 그릴 수 있어도 안 단다.
+ *  - `07`·`08` — 발문이 주는 것이 원 위의 점을 끝점으로 하는 선분(현·접선 길이)이라
+ *    치수 곡선이 **원둘레와 부딪힌다**(실측: 씨앗을 넓히면 던진다).
+ *
+ * 뺀 이름과 까닭:
+ *  - `11` 의 `AB` 는 **반원의 지름**이다 — 원장님: 「지름은 치수선이 너저분해지니까 빼고」.
+ */
+const DIM_POLICY: Record<string, readonly string[] | undefined> = {
+  "07": ["OP"],
+  // ⚠️ `11`·`15` 는 **뺐다.** 치수를 달면 viewBox 폭이 문턱(160)을 넘어
+  //    지면 등급이 `compact`(140px) → `mid`(240px) 로 **뒤집힌다**
+  //    (실측: 11 은 153.8 → 240.1, 15 는 149.2 → 190.9).
+  //    폭 하나가 등급을 가르므로(09 §4-24 ㉠) 치수 하나 때문에 지면 크기를
+  //    흔들 수는 없다 — 원장님 2026-08-25 「폭을 넓히지 마라」.
+  //    ("11": ["AB"] · "15": [] 로 되살리려면 등급 표를 전량 다시 세어야 한다.)
+  // 접점(`D`·`E`·`F`)이 끝점인 선분은 **원 위에서 시작**한다 — 치수 곡선이
+  // 원둘레와 부딪혀 던진다(실측 `circle_crossings`). 원장님이 지름을 뺀 것과
+  // 같은 축이다: **원을 스치는 선에는 안 단다.**
+  "12": ["AD", "AF", "BD", "BE", "CE", "CF"],
+  "13": ["AD", "AF", "BD", "BE", "CE", "CF"],
+  "14": [],
+  "16": ["DE"],
+};
+
 function def(
   rpmType: string,
   rpmTitle: string,
@@ -813,16 +847,31 @@ function def(
     rpmMinor: MINOR,
     rpmType,
     rpmTitle,
-    handler: (rng) => ({
-      grade: GRADE,
-      unitSection: SEC,
-      rpmBook: BOOK,
-      rpmMinor: MINOR,
-      rpmType,
-      rpmTitle,
-      difficulty,
-      ...gen(rng),
-    }),
+    handler: (rng) => {
+      const body = gen(rng);
+      return {
+        grade: GRADE,
+        unitSection: SEC,
+        rpmBook: BOOK,
+        rpmMinor: MINOR,
+        rpmType,
+        rpmTitle,
+        difficulty,
+        ...body,
+        // 발문이 말한 길이를 그림에 옮겨 단다 — **유형마다 손으로 나열하지 않는다**.
+        // 갈래가 넷씩이라 손으로 적으면 「한 갈래만 치수가 붙은 그림」이 나오고,
+        // 그것은 그 자체로 신호가 된다(09 §2.2 ⑥). 정책은 `DIM_POLICY` 한 곳.
+        figureSpec:
+          DIM_POLICY[rpmType] === undefined
+            ? body.figureSpec
+            : attachGivenDims(
+                body.figureSpec,
+                body.content,
+                body.answer,
+                DIM_POLICY[rpmType],
+              ),
+      };
+    },
   };
 }
 

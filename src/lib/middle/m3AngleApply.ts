@@ -26,6 +26,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { attachGivenDims } from "./figureDims";
 
 const GRADE = "중3";
 const BOOK = "3-2";
@@ -900,6 +901,16 @@ type Body = Pick<
   "content" | "answer" | "solution" | "facts" | "figureSpec"
 >;
 
+/**
+ * 유형별 «치수를 다나» 정책 (원장님 확정 2026-08-25 — `m3Tangent.ts` 와 같은 규약).
+ * 없음 = 안 단다 · 배열 = 단다, 그 이름들만 뺀다.
+ *
+ * `14` 의 `AB` 는 **원의 지름**이다 — 「지름은 치수선이 너저분해지니까 빼고」.
+ */
+const DIM_POLICY: Record<string, readonly string[] | undefined> = {
+  "14": ["AB"],
+};
+
 function def(
   rpmType: string,
   rpmTitle: string,
@@ -914,16 +925,28 @@ function def(
     rpmMinor: MINOR,
     rpmType,
     rpmTitle,
-    handler: (rng) => ({
-      grade: GRADE,
-      unitSection: SEC,
-      rpmBook: BOOK,
-      rpmMinor: MINOR,
-      rpmType,
-      rpmTitle,
-      difficulty,
-      ...gen(rng),
-    }),
+    handler: (rng) => {
+      const body = gen(rng);
+      return {
+        grade: GRADE,
+        unitSection: SEC,
+        rpmBook: BOOK,
+        rpmMinor: MINOR,
+        rpmType,
+        rpmTitle,
+        difficulty,
+        ...body,
+        figureSpec:
+          DIM_POLICY[rpmType] === undefined
+            ? body.figureSpec
+            : attachGivenDims(
+                body.figureSpec,
+                body.content,
+                body.answer,
+                DIM_POLICY[rpmType],
+              ),
+      };
+    },
   };
 }
 

@@ -39,6 +39,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { dimCm } from "./figureDims";
 
 const GRADE = "중3";
 const BOOK = "3-2";
@@ -824,31 +825,6 @@ function nums(o: Record<string, number>): Record<string, number> {
 function red(n: number, d: number): [number, number] {
   const g = gcd(Math.abs(n), Math.abs(d)) || 1;
   return [n / g, d / g];
-}
-
-/**
- * 그림 치수 라벨 — `dimensions.label` 은 **순수 SVG 글자**이지 KaTeX 가 아니다(09 §4-26).
- *
- * 발문에 쓰는 표기를 그대로 넣으면 **렌더는 성공하고 지면에 `3+\sqrt{3}` 이 날 것으로
- * 찍힌다** — 스스로 신고하지 않는 부류다. 그래서 여기서 근호·분수·단위만 글자로 바꾸고,
- * **못 바꾼 명령이 남으면 던진다.** 조용히 통과시키면 그 자리가 「렌더 성공한 오답」이 된다.
- */
-function dimText(v: number | string, unit = "cm"): string {
-  const s = String(v)
-    .replace(/\\sqrt\{([^{}]+)\}/g, "√$1")
-    .replace(/\\d?frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
-    .replace(/\\mathrm\{([^{}]*)\}/g, "$1")
-    .replace(/\\,/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  if (s.includes("\\"))
-    throw new Error(`치수 라벨은 글자여야 한다 — 남은 LaTeX: ${s} (09 §4-26)`);
-  return unit ? `${s} ${unit}` : s;
-}
-
-/** 그림 치수 라벨(cm). */
-function dimCm(v: number | string): string {
-  return dimText(v, "cm");
 }
 
 /** `\sin A`·`\cos A`·`\tan A` (일반각 표기). */

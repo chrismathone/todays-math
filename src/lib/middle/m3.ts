@@ -26,6 +26,7 @@
  * - 3-2|상자그림과 산점도 전체 — 보류. 계층 B 그림(FigureSpec v2 밖, 09 §2).
  */
 import { intBetween, pick } from "../elementary/rng";
+import { dimCm, withDims } from "./figureDims";
 import type { Rng } from "../elementary/types";
 
 import {
@@ -132,7 +133,9 @@ export const M3_TYPES: TypeEntry[] = [
       answer: `$${ab}\\,\\mathrm{cm}$`,
       solution: `$\\overline{OM}\\perp\\overline{AB}$이므로 $M$은 $\\overline{AB}$의 중점이다.\n직각삼각형 $OAM$에서 $\\overline{AM}=\\sqrt{${r}^2-${d}^2}=${h}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{AB}=2\\overline{AM}=${ab}\\,\\mathrm{cm}$이다.`,
       facts: { r, d, h, ab },
-      figureSpec: figChordPerp({ r, d, h }),
+      // 발문이 준 것은 $\overline{OM}$ 뿐이다 — 반지름은 글로만 말하고,
+      // $\overline{AB}$ 는 **묻는 값**이라 그림에 적으면 답을 알려 준다(09 §2.2 ①).
+      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),
     };
   }),
 
@@ -148,7 +151,10 @@ export const M3_TYPES: TypeEntry[] = [
       answer: `$${r}\\,\\mathrm{cm}$`,
       solution: `$\\overline{OM}\\perp\\overline{AB}$이므로 $\\overline{AM}=\\dfrac{1}{2}\\overline{AB}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.`,
       facts: { ab, h, d, r },
-      figureSpec: figChordPerp({ r, d, h }),
+      // ⚠️ $\overline{AB}$ 는 **현**이라 치수 곡선이 원과 부딪힌다 — 엔진이 던진다
+      //    (실측 `circle_crossings=1`). 원장님 확정 2026-08-25 「지름은 치수선이
+      //    너저분해지니까 빼고」와 같은 자리다: **원을 가로지르는 선에는 안 단다.**
+      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),
     };
   }),
 
@@ -167,6 +173,10 @@ export const M3_TYPES: TypeEntry[] = [
         answer: `$${r}\\,\\mathrm{cm}$`,
         solution: `세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-${c})\\,\\mathrm{cm}$, $\\overline{AM}=${h}\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=${h}^2+(r-${c})^2$을 풀면 $r=${r}$이다.\n따라서 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.`,
         facts: { ab, h, c, r },
+        // ⚠️ 치수를 하나도 안 단다. $\overline{AB}$ 는 현이고, $\overline{CM}$ 은
+        //    「활꼴의 높이」라 원장님이 허용한 갈래로 보였는데 **끝점 $C$ 가 원 위**다 —
+        //    치수 곡선이 원둘레와 부딪혀 씨앗 14개 중 8개가 던졌다(실측).
+        //    가르는 축은 「높이냐」가 아니라 **「끝점이 원 위인가」**였다.
         figureSpec: figArcHeight({ r, c, h }),
       };
     },
@@ -203,6 +213,11 @@ export const M3_TYPES: TypeEntry[] = [
       answer: `$${cd}\\,\\mathrm{cm}$`,
       solution: `직각삼각형 $ODN$에서 $\\overline{DN}=\\sqrt{${r}^2-${d}^2}=${h}\\,(\\mathrm{cm})$이다.\n$N$은 $\\overline{CD}$의 중점이므로 $\\overline{CD}=2\\overline{DN}=${cd}\\,\\mathrm{cm}$이다.`,
       facts: { r, d, h, cd },
+      // ⚠️ 치수를 안 단다. 두 현이 «중심에서 같은 거리»라 $\overline{OM}$ 을 적고
+      //    싶은데, 씨앗 14개 중 **3개가 던진다** — 치수 곡선이 다른 현을 가로지른다.
+      //    `side` 를 좌·우로 못 박아도 같은 3개가 던졌다(둘 다 실측).
+      //    **한 씨앗에서 되는 것은 근거가 아니다** — 안 되는 씨앗에서는 그림이
+      //    통째로 사라진다. 못 가르는 것은 **안 다는 쪽**으로 둔다(원장님 2026-08-25).
       figureSpec: figTwoChords({ r, d }),
     };
   }),
@@ -351,6 +366,9 @@ export const M3_TYPES: TypeEntry[] = [
         answer: `$\\dfrac{${num}}{${den}}$`,
         solution: `지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{${bc}}{${2 * r}}=\\dfrac{${num}}{${den}}$이다.`,
         facts: { r, bc, num, den },
+        // ⚠️ $\overline{BC}$ 는 **현**이다. 씨앗 하나로는 그려져서 달 뻔했는데,
+        //    14개로 넓히니 **6개가 던졌다**(원둘레와 부딪힘). 한 씨앗으로 판단하면
+        //    「되는 줄 알고」 넣고 나머지 씨앗에서 그림이 통째로 사라진다.
         figureSpec: figTriSine({ bc, r }),
       };
     },
