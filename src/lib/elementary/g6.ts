@@ -10065,6 +10065,290 @@ function mixedFracFormWholePlusDen(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function sameDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `자릿수가 같은 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)}`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function sameDpFormDividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(decStr(c.a, 1)),
+    `나누어지는 수는 ${num(decStr(c.a, 1))}입니다.`,
+  );
+}
+function sameDpFormSameTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 에서 두 수의 소수 자릿수는 같다.`,
+    "예",
+    `두 수 모두 소수 한 자리입니다.`,
+  );
+}
+function sameDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    num(c.q),
+    `소수점을 한 자리씩 옮기면 ${expr(`${c.a}\\div${c.b}=${c.q}`)} 입니다.`,
+  );
+}
+function sameDpFormProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `${expr(`${decStr(c.a, 1)}\\div${decStr(c.b, 1)}`)} 의 몫에 나누는 수를 곱하면 얼마입니까?`,
+    expr(decStr(c.a, 1)),
+    `${expr(`${c.q}\\times${decStr(c.b, 1)}=${decStr(c.a, 1)}`)} 입니다.`,
+  );
+}
+function sameDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, SAME_DIGIT);
+  const y = pick(rng, SAME_DIGIT);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 나눗셈 모두 소수 자릿수가 같습니다.\n\n${expr(`${decStr(x.a, 1)}\\div${decStr(x.b, 1)}`)}, ${expr(`${decStr(y.a, 1)}\\div${decStr(y.b, 1)}`)}`,
+    num(x.q + y.q),
+    `${expr(`${x.q}+${y.q}=${x.q + y.q}`)} 입니다.`,
+  );
+}
+
+function diffDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `자릿수가 다른 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)}`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function diffDpFormDividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(fromCents(c.a)),
+    `나누어지는 수는 ${num(fromCents(c.a))}입니다.`,
+  );
+}
+function diffDpFormDiffTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 에서 두 수의 소수 자릿수는 다르다.`,
+    "예",
+    `나누어지는 수는 소수 두 자리, 나누는 수는 소수 한 자리입니다.`,
+  );
+}
+function diffDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    expr(fromCents(c.q)),
+    `소수점을 옮겨 계산하면 몫은 ${num(fromCents(c.q))}입니다.`,
+  );
+}
+function diffDpFormShift(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `${expr(`${fromCents(c.a)}\\div${decStr(c.b, 1)}`)} 를 계산할 때 나누는 수의 소수점을 오른쪽으로 한 자리 옮기면 나누는 수는 얼마가 됩니까?`,
+    num(c.b),
+    `소수점을 한 자리 옮기면 ${num(c.b)}입니다.`,
+  );
+}
+function diffDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DIFF_DIGIT);
+  const y = pick(rng, DIFF_DIGIT);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 자릿수가 다른 (소수)÷(소수)입니다.\n\n${expr(`${fromCents(x.a)}\\div${decStr(x.b, 1)}`)}, ${expr(`${fromCents(y.a)}\\div${decStr(y.b, 1)}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫의 합은 ${num(fromCents(x.q + y.q))}입니다.`,
+  );
+}
+
+function natDpFormNat(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 수는 얼마입니까?\n\n${expr(`${c.a}\\div${decStr(c.b, 1)}`)}`,
+    num(c.a),
+    `나누어지는 수는 자연수 ${num(c.a)}입니다.`,
+  );
+}
+function natDpFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 에서 나누는 수는 얼마입니까?`,
+    expr(decStr(c.b, 1)),
+    `나누는 수는 ${num(decStr(c.b, 1))}입니다.`,
+  );
+}
+function natDpFormNatTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수는 자연수이다.`,
+    "예",
+    `나누어지는 수 ${num(c.a)}는 자연수입니다.`,
+  );
+}
+function natDpFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 의 몫을 구하시오.`,
+    num(c.q),
+    `소수점을 옮겨 계산하면 몫은 ${num(c.q)}입니다.`,
+  );
+}
+function natDpFormTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 의 몫에 나누는 수를 곱하면 얼마입니까?`,
+    num(c.a),
+    `${expr(`${c.q}\\times${decStr(c.b, 1)}=${c.a}`)} 입니다.`,
+  );
+}
+function natDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_BY_DEC);
+  const y = pick(rng, NAT_BY_DEC);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 (자연수)÷(소수)입니다.\n\n${expr(`${x.a}\\div${decStr(x.b, 1)}`)}, ${expr(`${y.a}\\div${decStr(y.b, 1)}`)}`,
+    num(x.q + y.q),
+    `${expr(`${x.q}+${y.q}=${x.q + y.q}`)} 입니다.`,
+  );
+}
+
+function roundFormPlace(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `다음 나눗셈의 몫을 반올림하여 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 나타낼 때, 반올림하는 자리는 소수 몇째 자리입니까?\n\n${expr(`${c.a}\\div${c.b}`)}`,
+    num(place),
+    `소수 ${place === 1 ? "첫" : "둘"}째 자리까지이므로 ${num(place)}째 자리입니다.`,
+  );
+}
+function roundFormNextDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 반올림할 때 보는 다음 자리의 숫자는 얼마입니까?`,
+    num(c.shown % 10),
+    `몫은 ${expr(`${decStr(c.shown, place + 1)}\\ldots`)} 이므로 다음 자리 숫자는 ${num(c.shown % 10)}입니다.`,
+  );
+}
+function roundFormDoesTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.a}\\div${c.b}`)} 의 몫은 나누어떨어지지 않으므로 반올림하여 나타낸다.`,
+    "예",
+    `나누어떨어지지 않으므로 반올림합니다.`,
+  );
+}
+function roundFormResult(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 반올림하여 소수 ${place === 1 ? "첫" : "둘"}째 자리까지 나타내시오.`,
+    expr(decStr(c.cut, place)),
+    `반올림하면 ${expr(decStr(c.cut, place))} 입니다.`,
+  );
+}
+function roundFormShown(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `${expr(`${c.a}\\div${c.b}`)} 의 몫을 반올림하기 전, 소수 ${place === 1 ? "둘" : "셋"}째 자리까지 쓴 수는 얼마입니까?`,
+    expr(decStr(c.shown, place + 1)),
+    `${expr(decStr(c.shown, place + 1))} 입니다.`,
+  );
+}
+function roundFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const c = roundCase(rng, place);
+  return make(
+    unit,
+    `몫을 반올림하는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${c.a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+function remFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫을 자연수까지 구할 때 몫은 얼마입니까?`,
+    num(r.people),
+    `몫은 ${num(r.people)}입니다.`,
+  );
+}
+function remFormRem(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫을 자연수까지 구할 때 남는 수는 얼마입니까?`,
+    expr(decStr(r.rem10, 1)),
+    `남는 수는 ${num(decStr(r.rem10, 1))}입니다.`,
+  );
+}
+function remFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 나누는 수는 얼마입니까?`,
+    num(r.per),
+    `나누는 수는 ${num(r.per)}입니다.`,
+  );
+}
+function remFormUsed(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 몫만큼 나누어 준 양은 얼마입니까?`,
+    num(r.per * r.people),
+    `${expr(`${r.per}\\times${r.people}=${r.per * r.people}`)} 입니다.`,
+  );
+}
+function remFormTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 나누어지는 수는 얼마입니까?`,
+    expr(decStr(r.total10, 1)),
+    `나누어지는 수는 ${num(decStr(r.total10, 1))}입니다.`,
+  );
+}
+function remFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = shareRemainder(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${decStr(r.total10, 1)}\\div${r.per}`)} 에서 남는 수는 나누는 수보다 작다.`,
+    "예",
+    `남는 수 ${num(decStr(r.rem10, 1))}는 나누는 수 ${num(r.per)}보다 작습니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -10376,4 +10660,44 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
       a10: mixedFracFormWholePlusDen,
     },
   ),
+  "초6|2-2-1": forms10(sameDpCalc, sameDpWord, sameDpApply, sameDpDeep, {
+    b5: sameDpFormDivisor,
+    b6: sameDpFormDividend,
+    b7: sameDpFormSameTf,
+    a8: sameDpFormQuot,
+    a9: sameDpFormProd,
+    a10: sameDpFormSum,
+  }),
+  "초6|2-2-2": forms10(diffDpCalc, diffDpWord, diffDpApply, diffDpDeep, {
+    b5: diffDpFormDivisor,
+    b6: diffDpFormDividend,
+    b7: diffDpFormDiffTf,
+    a8: diffDpFormQuot,
+    a9: diffDpFormShift,
+    a10: diffDpFormSum,
+  }),
+  "초6|2-2-3": forms10(natDpCalc, natDpWord, natDpApply, natDpDeep, {
+    b5: natDpFormNat,
+    b6: natDpFormDivisor,
+    b7: natDpFormNatTf,
+    a8: natDpFormQuot,
+    a9: natDpFormTimes,
+    a10: natDpFormSum,
+  }),
+  "초6|2-2-4": forms10(roundCalc, roundWord, roundApply, roundDeep, {
+    b5: roundFormPlace,
+    b6: roundFormNextDigit,
+    b7: roundFormDoesTf,
+    a8: roundFormResult,
+    a9: roundFormShown,
+    a10: roundFormDivisor,
+  }),
+  "초6|2-2-5": forms10(remCalc, remWord, remApply, remDeep, {
+    b5: remFormQuot,
+    b6: remFormRem,
+    b7: remFormDivisor,
+    a8: remFormUsed,
+    a9: remFormTotal,
+    a10: remFormSmallerTf,
+  }),
 };
