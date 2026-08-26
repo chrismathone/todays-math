@@ -754,3 +754,71 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
     }
   });
 });
+
+describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
+  const unit = unitOf("1-3-2");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("03 두 몫의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const [b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(b! + q!);
+    }
+  });
+
+  it("05 나눗셈식은 2개", () => {
+    for (const seed of SEEDS) {
+      expect(answerInt(generateElementaryForm(unit, seed, "05").answer)).toBe(
+        2,
+      );
+    }
+  });
+
+  it("06 두 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.abs(q! - b!));
+    }
+  });
+
+  it("07 빈칸 곱하는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\$(\d+)\\times\\square=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) / Number(m![1]));
+    }
+  });
+
+  it("08 세 수 가운데 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.max(...nums));
+      expect(nums[0]! * nums[1]!).toBe(nums[2]);
+    }
+  });
+
+  it("09 a÷q 의 몫은 b", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [b, q, a] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! / q!);
+      expect(a! / q!).toBe(b);
+    }
+  });
+
+  it("10 몫×나누는 수 = 나뉘는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(q! * b!);
+      expect(q! * b!).toBe(a);
+    }
+  });
+});

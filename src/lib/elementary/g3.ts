@@ -8340,6 +8340,74 @@ function div131TotalFromShare(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 곱셈식에서 만드는 나눗셈식 개수. 늘 둘. 번호를 넣어 변형을 연다. */
+function div132DivCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 곱셈식 ${expr(`${b}\\times${q}=${a}`)} 에서 만들 수 있는 나눗셈식은 몇 개입니까?`,
+    n(2),
+    `${expr(`${a}\\div${b}=${q}`)} 와 ${expr(`${a}\\div${q}=${b}`)} 로 2개입니다.`,
+  );
+}
+
+/** 문형 06 — 두 나눗셈 몫의 차. 03 은 합. */
+function div132QuotDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const d = Math.abs(q - b);
+  return make(
+    unit,
+    `곱셈식 ${expr(`${b}\\times${q}=${a}`)} 에서 만들 수 있는 나눗셈식 두 개의 몫의 차를 쓰시오.`,
+    n(d),
+    `${expr(`${a}\\div${b}=${q}`)}, ${expr(`${a}\\div${q}=${b}`)} 이므로 차는 ${expr(`${Math.max(q, b)}-${Math.min(q, b)}=${d}`)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 빈칸 곱하는 수. */
+function div132MissingFactor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${b}\\times\\square=${a}$`,
+    n(q),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 세 수 가운데 곱(가장 큰 수). */
+function div132Product(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${b}$, $${q}$, $${a}$ 가운데 두 수의 곱이 되는 수를 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 곱은 ${n(a)} 입니다.`,
+  );
+}
+
+/** 문형 09 — a÷q 의 몫. 01 은 a÷b 또는 a÷q 를 섞는다. 여기는 항상 a÷q. */
+function div132OtherQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `곱셈식 ${expr(`${b}\\times${q}=${a}`)} 일 때 $${a}\\div${q}$ 의 몫을 쓰시오.`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 몫에 나누는 수를 곱하면 나뉘는 수. */
+function div132Recover(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 입니다. 몫에 나누는 수를 곱한 값을 쓰시오.`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 이므로 ${n(a)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8460,6 +8528,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: div131HowManyGroups },
     { id: "09", tier: "응용", generate: div131Compare },
     { id: "10", tier: "응용", generate: div131TotalFromShare },
+  ],
+  "초3|1-3-2": [
+    { id: "01", tier: "연산", generate: div132Calc },
+    { id: "02", tier: "기본", generate: div132Word },
+    { id: "03", tier: "응용", generate: div132Apply },
+    { id: "04", tier: "심화", generate: div132Deep },
+    { id: "05", tier: "기본", generate: div132DivCount },
+    { id: "06", tier: "기본", generate: div132QuotDiff },
+    { id: "07", tier: "기본", generate: div132MissingFactor },
+    { id: "08", tier: "응용", generate: div132Product },
+    { id: "09", tier: "응용", generate: div132OtherQuot },
+    { id: "10", tier: "응용", generate: div132Recover },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
