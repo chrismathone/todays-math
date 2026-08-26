@@ -100,6 +100,25 @@ export function sameQuestion(
   return diff <= 1;
 }
 
+/**
+ * ⑺ **양자택일인데 답이 늘 같은** 문형.
+ *
+ * 「$80	imes8$ 의 곱은 짝수입니까, 홀수입니까?」가 씨앗을 바꿔도 늘 «짝수»면
+ * 학생은 계산하지 않고 맞힌다. 묻지 않은 문항이다.
+ *
+ * 열쇠는 **두 갈래를 실제로 내놓는 발문**이다 — 「원의 무엇과 같습니까?」처럼
+ * 한 갈래만 묻는 것은 답이 하나인 것이 정상이라 여기서 뺀다.
+ *
+ * 음성 대조가 강하다: **같은 문장**이 다른 소단원에서는 갈린다
+ * (실측 양자택일 49개 중 39개가 갈리고 10개만 늘 같았다). 그러니 이 검사는
+ * 문장을 나무라는 것이 아니라 **생성기가 한쪽만 낸다**는 것을 짚는다.
+ */
+export function isBinaryChoice(content: string): boolean {
+  return /예 또는 아니요|\(예,\s*아니요\)|[가-힣]+입니까,\s*[가-힣]+입니까|[가-힣]+습니까,\s*[가-힣]+습니까/.test(
+    content,
+  );
+}
+
 /* ───────────────── 눈금 — 이 판정기가 «아니오»를 낼 수 있나 ───────────────── */
 
 /**
@@ -153,6 +172,26 @@ const GAUGE: [why: string, want: boolean, run: () => boolean][] = [
     "🔴 낱말 수가 다르면 다른 물음",
     false,
     () => sameQuestion("가 나 다", "5|5", "가 나", "5|5"),
+  ],
+  [
+    "양자택일 발문을 알아본다 — 짝수입니까, 홀수입니까",
+    true,
+    () => isBinaryChoice("$80\times8$ 의 곱은 짝수입니까, 홀수입니까?"),
+  ],
+  [
+    "양자택일 발문을 알아본다 — 예 또는 아니요",
+    true,
+    () => isBinaryChoice("$3/3$ 은 가분수입니까? 예 또는 아니요로 쓰시오."),
+  ],
+  [
+    "🔴 한 갈래만 묻는 것은 양자택일이 아니다 (원의 무엇과 같습니까)",
+    false,
+    () => isBinaryChoice("벌린 길이는 원의 무엇과 같습니까?"),
+  ],
+  [
+    "🔴 보통 발문은 양자택일이 아니다",
+    false,
+    () => isBinaryChoice("두 각을 이어 붙인 각의 크기는 몇 도인가?"),
   ],
   [
     "🔴 셈이 같아도 막지 않는다 — 절차와 모델링은 다른 물음",
@@ -286,11 +325,13 @@ for (const unit of elementaryUnits()) {
     const answers: string[] = [];
     let relSet: Set<string> | null = null;
     let sawFigure = false;
+    let sawBinary = false;
     for (let i = 0; i < SEEDS; i += 1) {
       try {
         const p = generateElementaryForm(unit, SEED0 + i * STEP, form.id);
         frames.push(rawFrame(p.content));
         answers.push(p.answer);
+        if (isBinaryChoice(p.content)) sawBinary = true;
         const ansNums = numsIn(p.answer);
         const rels: string[] =
           ansNums.length === 1
@@ -314,6 +355,15 @@ for (const unit of elementaryUnits()) {
       }
     }
     if (sawFigure) figureForms += 1;
+    // ⑺ 양자택일인데 답이 늘 같으면 학생이 계산 없이 맞힌다 — 묻지 않은 문항이다.
+    //    고치는 방법은 발문을 바꾸는 것이 아니라 **생성기가 두 쪽을 다 내게** 하는 것이다.
+    // ⚠️ 씨앗 여덟이 아니라 **앞 셋**을 본다. `expandFamily` 가 실제로 내는 변형이
+    //    셋이고 늘 같은 셋이므로, 지면에 나올 수 있는 답이 바로 그 셋이다.
+    //    여덟 중 뒤쪽에서만 갈리는 것은 학생이 볼 일이 없다.
+    if (sawBinary && new Set(answers.slice(0, 3)).size === 1)
+      problems.push(
+        `문형 ${form.id} 은 **양자택일인데 답이 늘 «${answers[0]}»** 이다 — 씨앗을 바꿔도 갈리지 않으면 안 물은 것이다`,
+      );
     if (frames.length === 0) continue;
     const shape = shapeOf(frames);
     const owners = shapes.get(shape) ?? [];
