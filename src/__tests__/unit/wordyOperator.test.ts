@@ -25,6 +25,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   hasWordyOperator,
+  preservesValues,
   rewriteWordyOperators,
   wordyOperatorHits,
 } from "../../../scripts/qa/wordyOperator";
@@ -182,5 +183,49 @@ describe("[말 대신 기호] 바꾸기", () => {
     const r = rewriteWordyOperators(raw);
     expect(r.out).toBe(raw);
     expect(r.changed).toBe(0);
+  });
+});
+
+/**
+ * **바꾸기 전 값을 하나도 잃지 않았나** — 이 저장소가 되풀이해 데인 자리.
+ *
+ * 「한글 유사도」로는 본문 유실이 안 보인다(실측 0.92 가 나왔다). 가르는 열쇠는
+ * **수**였다. 그리고 우리는 한글을 **더하므로**, 우리가 넣은 낱말을 도로 걷어 낸
+ * 뒤에 견줘야 한다 — 안 그러면 어떤 한글 유실도 우리 낱말에 가려진다.
+ */
+describe("[말 대신 기호] 값을 지어내지도 잃지도 않았나", () => {
+  it("제대로 바꾼 것은 통과한다", () => {
+    const before = tex("소인수 $2$에서 $§min(a,3)=2$이다.");
+    const after = rewriteWordyOperators(before).out;
+    expect(preservesValues(before, after)).toEqual({ ok: true });
+  });
+
+  it("**수가 하나라도 달라지면** 막는다", () => {
+    const before = tex("$§min(a,3)=2$");
+    expect(
+      preservesValues(before, tex("$(a,§,4§text{ 중 최솟값})=2$")).ok,
+    ).toBe(false);
+  });
+
+  it("수의 **차례**가 바뀌어도 막는다 — 개수만 세면 못 본다", () => {
+    expect(preservesValues("$1$과 $2$", "$2$와 $1$").ok).toBe(false);
+  });
+
+  it("**한글을 잃으면** 막는다 — 우리가 넣은 낱말에 가려지지 않는다", () => {
+    const before = tex("분자의 최대공약수 $§gcd(28,35)=7$이다.");
+    // 「분자의」가 사라졌는데 우리 낱말(최대공약수)이 들어와 겉보기 한글은 비슷하다.
+    const sneaky = tex("최대공약수 $(28,§,35§text{의 최대공약수})=7$이다.");
+    expect(preservesValues(before, sneaky).ok).toBe(false);
+  });
+
+  it("우리가 **안 쓰는 말**을 넣으면 막는다", () => {
+    const before = tex("$§min(a,3)=2$");
+    expect(
+      preservesValues(before, tex("$(a,§,3§text{ 중 제일 쪼끄만 것})=2$")).ok,
+    ).toBe(false);
+  });
+
+  it("수식 구분자 `$` 개수가 달라지면 막는다 — 지면이 통째로 어긋난다", () => {
+    expect(preservesValues("$1$", "$1$$").ok).toBe(false);
   });
 });

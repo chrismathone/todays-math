@@ -88,6 +88,15 @@ export function wordyOperatorHits(text: string): WordyOperatorHit[] {
 export const hasWordyOperator = (text: string): boolean =>
   wordyOperatorHits(text).length > 0;
 
+/** 우리가 **넣는** 말 전부. 되돌려 견주는 쪽이 이 목록을 쓴다 — 두 벌 두지 않는다. */
+export const INSERTED_WORDS: string[] = [
+  ...new Set(
+    Object.values(WORDS).flatMap((w) =>
+      [w.one, w.two, w.many].filter((s): s is string => Boolean(s)),
+    ),
+  ),
+];
+
 // ─────────────────────────────────────────────────────────────
 // 바꾸기
 // ─────────────────────────────────────────────────────────────
@@ -331,4 +340,66 @@ export function rewriteWordyOperators(text: string): RewriteResult {
   }
   out += text.slice(cursor);
   return { out, changed, skipped };
+}
+
+// ─────────────────────────────────────────────────────────────
+// 지키기 — **값을 지어내지도 잃지도 않았나**
+// ─────────────────────────────────────────────────────────────
+
+/**
+ * 우리가 넣은 `\text{…}` 만 걷어 낸다. 다른 `\text{}` 는 **그대로 둔다** —
+ * 통째로 지우면 원문의 `\text{홀수}` 유실이 구조적으로 안 보인다.
+ */
+function stripInserted(text: string): string {
+  let out = text;
+  for (const w of INSERTED_WORDS) {
+    out = out.split(BS + "text{" + w + "}").join("");
+  }
+  return out;
+}
+
+/** 수의 **차례**까지 본다 — 개수만 세면 `1,2` → `2,1` 을 못 본다. */
+const digitStream = (s: string) => (s.match(/\d/g) ?? []).join("");
+/** 한글 낱글자의 차례. 우리 낱말을 걷어 낸 뒤에 견줘야 뜻이 있다. */
+const hangulStream = (s: string) =>
+  (s.match(/[\uAC00-\uD7A3]/g) ?? []).join("");
+const dollarCount = (s: string) => (s.match(/\$/g) ?? []).length;
+
+export interface PreserveVerdict {
+  ok: boolean;
+  why?: string;
+}
+
+/**
+ * 바꾼 글이 **원문의 값을 그대로 담고 있나.**
+ *
+ * 이 저장소가 되풀이해 데인 자리라 셋을 함께 본다:
+ *   · **수** — 「한글 유사도 0.92」로는 본문 유실이 안 보였다(2026-08-19).
+ *              가르는 열쇠는 수였다. 개수가 아니라 **차례**로 본다.
+ *   · **한글** — 우리는 한글을 «더하므로», 우리 낱말을 걷어 낸 뒤에 견준다.
+ *              안 그러면 어떤 한글 유실도 우리 낱말에 가려진다.
+ *              걷어 내고도 남는 한글이 다르면 **우리가 안 쓰는 말을 넣은 것**이다.
+ *   · **`$`** — 수식 구분자가 하나만 틀어져도 지면이 통째로 어긋난다.
+ */
+export function preservesValues(
+  before: string,
+  after: string,
+): PreserveVerdict {
+  const b = digitStream(before);
+  const a = digitStream(after);
+  if (b !== a) return { ok: false, why: `수가 달라졌다: «${b}» → «${a}»` };
+
+  const bh = hangulStream(before);
+  const ah = hangulStream(stripInserted(after));
+  if (bh !== ah)
+    return {
+      ok: false,
+      why: `한글이 달라졌다(우리 낱말을 걷어 낸 뒤): «${bh.slice(0, 40)}» → «${ah.slice(0, 40)}»`,
+    };
+
+  const bd = dollarCount(before);
+  const ad = dollarCount(after);
+  if (bd !== ad) return { ok: false, why: `수식 구분자 $ 가 ${bd} → ${ad}` };
+
+  return { ok: true };
 }

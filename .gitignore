@@ -78,6 +78,9 @@ scripts/qa/reports/*
 !scripts/qa/reports/middle-combo-baseline.json
 !scripts/qa/reports/ai-solution-mismatch.json
 !scripts/qa/reports/ai-solution-skip.json
+# 「말 대신 기호」 교체 원장 (원장님 지적 2026-08-26) — **공유 DB 를 되돌리는 유일한 근거다.**
+# 여기 없으면 다른 컴퓨터에서 `--revert` 가 0행을 되돌린다.
+!scripts/qa/reports/wordy-operator-ledger.json
 # 「모두 고르시오」 정답 개수 통일 원장 — **되돌리기가 이 파일 하나를 읽는다.**
 # 바꾸기 전 본문·정답·해설이 여기에만 있다(공유 DB 를 바꾸는 스크립트의 undo).
 !scripts/qa/reports/choose-all-fix-ledger.json
