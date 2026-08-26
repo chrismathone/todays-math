@@ -7476,7 +7476,115 @@ function circ231FoldHalf(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 문형 10 (기존 4단은 01–04 로만 감싼다. 핸들러 본체는 안 고친다.) ── */
+
+function addCol(a: number, b: number): Record<string, unknown> {
+  return fig("columnOp", { top: String(a), op: "+", bottom: String(b) });
+}
+
+function subCol(a: number, b: number): Record<string, unknown> {
+  return fig("columnOp", { top: String(a), op: "−", bottom: String(b) });
+}
+
+/** 문형 05 — 합의 백의 자리. 합 전체가 아니라 자리 하나를 묻는다. */
+function add111Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const s = a + b;
+  const h = Math.floor(s / 100);
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합에서 백의 자리 숫자를 쓰시오.`,
+    n(h),
+    `${expr(`${a}+${b}=${s}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 06 — 빈칸 가수. 합을 주고 한 수를 되묻는다(한 걸음). */
+function add111Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const s = a + b;
+  if (intBetween(rng, 0, 1) === 0) {
+    return make(
+      unit,
+      `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square+${b}=${s}$`,
+      n(a),
+      `합에서 아는 수를 뺍니다. ${expr(`${s}-${b}=${a}`)} 이므로 ${n(a)} 입니다.`,
+    );
+  }
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}+\\square=${s}$`,
+    n(b),
+    `합에서 아는 수를 뺍니다. ${expr(`${s}-${a}=${b}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 일의 자리 숫자끼리의 합(받아올림 전). */
+function add111OnesSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const ones = (a % 10) + (b % 10);
+  return make(
+    unit,
+    `$${a}$ 의 일의 자리 숫자와 $${b}$ 의 일의 자리 숫자를 더한 값을 쓰시오.`,
+    n(ones),
+    `일의 자리 숫자는 ${n(a % 10)} 과 ${n(b % 10)} 이므로 ${expr(`${a % 10}+${b % 10}=${ones}`)} 입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 08 — 합이 어떤 수보다 얼마 큰가(더하고 빼기). */
+function add111HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const s = a + b;
+  const c = intBetween(rng, 100, Math.max(100, s - 11));
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합은 $${c}$ 보다 얼마 더 큽니까?`,
+    n(s - c),
+    `먼저 합을 구합니다. ${expr(`${a}+${b}=${s}`)} 입니다. 차는 ${expr(`${s}-${c}=${s - c}`)} 입니다.`,
+    addCol(a, b),
+  );
+}
+
+/** 문형 09 — 합보다 100 큰 수. */
+function add111Plus100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const s = a + b;
+  return make(
+    unit,
+    `$${a}$ 와 $${b}$ 의 합보다 $${100}$ 큰 수를 쓰시오.`,
+    n(s + 100),
+    `${expr(`${a}+${b}=${s}`)} 이고, ${expr(`${s}+100=${s + 100}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 합이 짝수인지 홀수인지. */
+function add111EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = addWithCarries(rng, 0, 1);
+  const s = a + b;
+  const even = s % 2 === 0;
+  return make(
+    unit,
+    `$${a}+${b}$ 의 합은 짝수입니까, 홀수입니까?`,
+    even ? "짝수" : "홀수",
+    `${expr(`${a}+${b}=${s}`)} 이므로 ${even ? "짝수" : "홀수"}입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
+  "초3|1-1-1": [
+    { id: "01", tier: "연산", generate: sub111Calc },
+    { id: "02", tier: "기본", generate: sub111Word },
+    { id: "03", tier: "응용", generate: sub111Apply },
+    { id: "04", tier: "심화", generate: sub111Deep },
+    { id: "05", tier: "기본", generate: add111Hundreds },
+    { id: "06", tier: "기본", generate: add111Missing },
+    { id: "07", tier: "기본", generate: add111OnesSum },
+    { id: "08", tier: "응용", generate: add111HowMuchMore },
+    { id: "09", tier: "응용", generate: add111Plus100 },
+    { id: "10", tier: "응용", generate: add111EvenOdd },
+  ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
     { id: "02", tier: "기본", generate: circ231Word },
