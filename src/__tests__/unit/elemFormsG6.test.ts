@@ -496,7 +496,7 @@ describe("초6 1-2-1 각기둥 밑면과 옆면 — 묻는 면이 답이다", ()
 });
 
 function sinoFrom(content: string): number | undefined {
-  const m = content.match(/(삼|사|오|육|칠|팔)각기둥/);
+  const m = content.match(/(삼|사|오|육|칠|팔)각(?:기둥|뿔)/);
   return m ? SINO_N[m[1]!] : undefined;
 }
 
@@ -612,6 +612,70 @@ describe("초6 1-2-3 각기둥의 전개도 — 펼친 그림에서 묻는다", 
       const n = sinoFrom(b.content);
       expect(n, b.content).toBeTruthy();
       expect(answerInt(b.answer)).toBe(n! - 2);
+    }
+  });
+});
+
+describe("초6 1-2-4 각뿔 밑면과 옆면 — 밑면 1 · 옆면 삼각형", () => {
+  const unit = unitOf("1-2-4");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 옆면 수 = 밑면 변의 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const byName = p.content.match(/^(삼|사|오|육|칠|팔)각뿔/);
+      const byBase = p.content.match(/밑면이 (삼|사|오|육|칠|팔)각형/);
+      const n = byName ? SINO_N[byName[1]!] : SINO_N[byBase![1]!];
+      expect(n, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(n);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("05 밑면 1 · 06 옆면은 삼각형", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "05");
+      expect(answerInt(a.answer)).toBe(1);
+      expect(a.content).toMatch(/밑면/);
+      const b = generateElementaryForm(unit, seed, "06");
+      expect(b.answer).toBe("삼각형");
+    }
+  });
+
+  it("07 이름에서 밑면 모양", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/^(삼|사|오|육|칠|팔)각뿔/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`${m![1]}각형`);
+    }
+  });
+
+  it("08 옆면 하나 넓이 = 밑변×높이÷2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(
+        /한 변의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$, 옆면인 삼각형의 높이가 \$(\d+)\\,\\mathrm\{cm\}/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe((Number(m![1]) * Number(m![2])) / 2);
+    }
+  });
+
+  it("09 밑면 둘레 · 10 옆면−밑면1", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "09");
+      const poly = a.content.match(/밑면이 (삼|사|오|육|칠|팔)각형/);
+      const side = a.content.match(/모두 \$(\d+)\\,\\mathrm\{cm\}/);
+      expect(poly && side, a.content).toBeTruthy();
+      expect(answerInt(a.answer)).toBe(SINO_N[poly![1]!]! * Number(side![1]));
+      const b = generateElementaryForm(unit, seed, "10");
+      const n = sinoFrom(b.content);
+      expect(n, b.content).toBeTruthy();
+      expect(answerInt(b.answer)).toBe(n! - 1);
     }
   });
 });
