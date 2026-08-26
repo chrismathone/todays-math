@@ -74,8 +74,19 @@ echo
 
 ONLY="${1:-}"
 
+# 번호 구간으로 나눠 돌 수 있다 — 전량이 10분을 넘으면 배경 작업이 중간에 죽는 환경이
+# 있어서(2026-08-26 실제로 두 번), 반씩 앞에서 돌릴 수 있게 둔다.
+#   FROM=1 TO=12 bash scripts/qa/mutate-format-filter.sh
+# ⚠️ 구간을 나눠 돌아도 **음성 대조(㉠)는 회차마다 다시** 돈다 — 그게 이 하네스가
+#    「아니오를 낼 수 있음」을 회차마다 증명하는 방식이다(도장 방지).
+FROM="${FROM:-1}"
+TO="${TO:-9999}"
+SEQ=0
+
 mutate() {
   local name="$1" file="$2" from="$3" to="$4"
+  SEQ=$((SEQ + 1))
+  if [ "$SEQ" -lt "$FROM" ] || [ "$SEQ" -gt "$TO" ]; then return; fi
   if [ -n "$ONLY" ] && [[ "$name" != *"$ONLY"* ]]; then return; fi
   for f in "${ALL_SRC[@]}"; do cp "$WORK/$(echo "$f" | tr '/' '_')" "$f"; done
   local before after
