@@ -37,6 +37,10 @@ import { parseProblemContent } from "../../src/lib/problem/parseProblemContent";
 
 import {
   classifyFormat,
+  FILTERABLE_FORMATS,
+  FORMAT_SUPERSET_WHERE,
+  formatSuperset,
+  formatWithoutContent,
   PROBLEM_FORMATS,
   type ProblemFormat,
   type ProvenanceInput,
@@ -228,11 +232,145 @@ export function inspectCircledNonChoice(rows: readonly Row[]) {
   return out;
 }
 
+/**
+ * 「지금 유형=서술형 으로 걸리는 것」과 「라벨이 [서] 인 것」이 어떻게 어긋나나.
+ * 드롭다운의 «서술형» 을 어느 축으로 붙일지는 **이 표를 보고** 정한다.
+ */
+export function crossProblemTypeVsFormat(rows: readonly Row[]) {
+  const table = new Map<string, number>();
+  for (const row of rows) {
+    const key = `${row.problemType ?? "null"} × ${classifyFormat(row)}`;
+    table.set(key, (table.get(key) ?? 0) + 1);
+  }
+  return [...table].sort((a, b) => b[1] - a[1]);
+}
+
+/**
+ * **후보 집합의 SQL 판과 JS 판이 같은 행을 고르는가** — 그리고 「후보 − 어긋난 행」이
+ * 정말 라벨 집합과 같은가. 공유 DB **전량**에 대고 잰다.
+ *
+ * 왜 여기서만 잴 수 있나: `FORMAT_SUPERSET_WHERE`(Prisma)와 `formatSuperset`(JS)은
+ * **규칙을 두 벌 적은 것**이고, 둘이 갈리는 자리는 대개 **NULL 삼값논리**다
+ * (`question_type <> '서술형'` 은 널 행에 대해 참이 아니다). 그건 JS 로는 흉내 낼 수
+ * 없다 — 진짜 Postgres 에 물어봐야 한다.
+ *
+ * 그리고 이 확인이 라우트 전체를 덮는다: 라우트가 하는 일이 정확히
+ * 「후보 집합을 긁고 → 어긋난 행을 빼고 → 그 결과를 돌려준다」이기 때문이다.
+ */
+async function probeSuperset(prisma: PrismaClient, rows: readonly Row[]) {
+  const byId = new Map<string, Row & { id: string }>();
+  const all = await prisma.$queryRaw<(Row & { id: string })[]>`
+    SELECT "id"::text AS "id",
+           "source"::text AS "source",
+           "family_key" AS "familyKey",
+           "origin_problem_id"::text AS "originProblemId",
+           "figure_urls" AS "figureUrls",
+           CASE WHEN "figure_svg" IS NOT NULL AND "figure_svg" <> ''
+                THEN '<svg/>' ELSE NULL END AS "figureSvg",
+           "content", "answer",
+           "problem_code" AS "problemCode",
+           "question_type" AS "questionType",
+           "problem_type" AS "problemType"
+      FROM "problem"
+  `;
+  for (const row of all) byId.set(row.id, row);
+  if (all.length !== rows.length) {
+    console.log(
+      `⚠️ 두 조회의 분모가 다르다 (${rows.length} vs ${all.length}) — 그 사이 행이 늘었다.`,
+    );
+  }
+
+  let broken = 0;
+  for (const format of FILTERABLE_FORMATS) {
+    const started = Date.now();
+    const sqlRows = await prisma.problem.findMany({
+      where: FORMAT_SUPERSET_WHERE[format] as never,
+      select: { id: true },
+    });
+    const supersetMs = Date.now() - started;
+    const sqlIds = new Set(sqlRows.map((r) => r.id));
+    const jsIds = new Set(
+      all.filter((row) => formatSuperset(row, format)).map((row) => row.id),
+    );
+
+    const sqlOnly = [...sqlIds].filter((id) => !jsIds.has(id));
+    const jsOnly = [...jsIds].filter((id) => !sqlIds.has(id));
+
+    // 후보 안에서 본문을 읽어야 하는 행 · 최종적으로 빠질 행.
+    const candidates = [...jsIds].map((id) => byId.get(id)!);
+    const needContent = candidates.filter(
+      (row) => formatWithoutContent(row) === null,
+    );
+    const rejected = candidates.filter((row) => classifyFormat(row) !== format);
+    const labelCount = all.filter(
+      (row) => classifyFormat(row) === format,
+    ).length;
+    const served = candidates.length - rejected.length;
+
+    const ok =
+      sqlOnly.length === 0 && jsOnly.length === 0 && served === labelCount;
+    if (!ok) broken += 1;
+    console.log(`\n── ${format}`);
+    console.log(
+      `   ${ok ? "🟢" : "🔴"} 후보 SQL ${sqlIds.size.toLocaleString()} · JS ${jsIds.size.toLocaleString()}` +
+        ` (SQL만 ${sqlOnly.length} · JS만 ${jsOnly.length})  [${supersetMs}ms]`,
+    );
+    console.log(
+      `      본문을 읽어야 하는 행 ${needContent.length} · 빠질 행 ${rejected.length}` +
+        ` → 내보내는 행 ${served.toLocaleString()} / 라벨 ${labelCount.toLocaleString()}`,
+    );
+    for (const id of [...sqlOnly, ...jsOnly].slice(0, 5)) {
+      const row = byId.get(id);
+      console.log(
+        `      ⚠️ ${row?.problemCode ?? id} qt=${row?.questionType ?? "null"} pt=${row?.problemType ?? "null"} family=${row?.familyKey ?? "null"}`,
+      );
+    }
+  }
+  return broken;
+}
+
+/**
+ * 응답이 `questionType` 을 안 실으면 화면 라벨이 몇 건이나 달라지나 —
+ * 2026-08-26 에 `serializeProblem` 이 그 값을 빠뜨리고 있던 결함의 크기다.
+ */
+function blindWithoutQuestionType(rows: readonly Row[]) {
+  const drift = new Map<string, number>();
+  for (const row of rows) {
+    const withIt = classifyFormat(row);
+    const without = classifyFormat({ ...row, questionType: null });
+    if (withIt === without) continue;
+    const key = `${withIt} → ${without}`;
+    drift.set(key, (drift.get(key) ?? 0) + 1);
+  }
+  return [...drift].sort((a, b) => b[1] - a[1]);
+}
+
 async function main() {
   const list = process.argv.includes("--list");
   const prisma = new PrismaClient();
   try {
     const rows = await loadRows(prisma);
+    if (process.argv.includes("--superset")) {
+      console.log(
+        `전량 ${rows.length.toLocaleString()}건 — 후보 집합 SQL↔JS 대조 + 「후보 − 어긋난 행 = 라벨」`,
+      );
+      const broken = await probeSuperset(prisma, rows);
+      console.log("\n── 응답이 questionType 을 안 실을 때의 라벨 표류");
+      const drift = blindWithoutQuestionType(rows);
+      if (drift.length === 0) console.log("   (없음)");
+      for (const [key, n] of drift) {
+        console.log(`   ${key.padEnd(34)} ${String(n).padStart(7)}`);
+      }
+      if (broken > 0) process.exitCode = 1;
+      return;
+    }
+    if (process.argv.includes("--cross")) {
+      console.log("problem_type × 형식 라벨 (전량)");
+      for (const [key, n] of crossProblemTypeVsFormat(rows)) {
+        console.log(`   ${key.padEnd(34)} ${String(n).padStart(7)}`);
+      }
+      return;
+    }
     if (process.argv.includes("--inspect")) {
       const found = inspectCircledNonChoice(rows);
       console.log(`정답에 보기 번호가 있는데 라벨이 [객] 이 아닌 행 — ${found.length}건
