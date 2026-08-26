@@ -199,3 +199,95 @@ describe("초6 1-1-1 (자연수)÷(자연수) — 묻는 대상이 답이다", (
     }
   });
 });
+
+describe("초6 1-1-2 (분수)÷(자연수) — 분모에 곱한다", () => {
+  const unit = unitOf("1-1-2");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫은 분자 / (분모×나누는 수)", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}\\div(\d+)/);
+      expect(m, p.content).toBeTruthy();
+      expectFracEq(
+        p.answer,
+        Number(m![1]),
+        Number(m![2]) * Number(m![3]),
+        p.content,
+      );
+    }
+  });
+
+  it("05 분모에 곱하는 수는 나누는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}\\div(\d+)/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![3]));
+    }
+  });
+
+  it("06 그대로 두는 분자는 원래 분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.content).toMatch(/분자/);
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+
+  it("07 분자에 곱한 식은 아니요", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      expect(p.answer).toBe("아니요");
+      expect(p.content).toMatch(/\\times/);
+    }
+  });
+
+  it("08 같은 분모·같은 나누는 수 두 몫의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = [...p.content.matchAll(/\\frac\{(\d+)\}\{(\d+)\}\\div(\d+)/g)];
+      expect(m.length, p.content).toBe(2);
+      expect(m[0]![2]).toBe(m[1]![2]);
+      expect(m[0]![3]).toBe(m[1]![3]);
+      const d = Number(m[0]![2]) * Number(m[0]![3]);
+      expectFracEq(p.answer, Number(m[0]![1]) + Number(m[1]![1]), d, p.content);
+    }
+  });
+
+  it("09 한 도막 × 이어 붙인 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const frac = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      const cuts = p.content.match(/똑같이 \$(\d+)\$도막/);
+      const join = p.content.match(/그중 \$(\d+)\$도막/);
+      expect(frac && cuts && join, p.content).toBeTruthy();
+      expectFracEq(
+        p.answer,
+        Number(frac![1]) * Number(join![1]),
+        Number(frac![2]) * Number(cuts![1]),
+        p.content,
+      );
+    }
+  });
+
+  it("10 같은 분수를 다른 수로 나눈 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const frac = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      const ks = [...p.content.matchAll(/\$(\d+)\$/g)].map((x) => Number(x[1]));
+      expect(frac, p.content).toBeTruthy();
+      expect(ks.length).toBeGreaterThanOrEqual(2);
+      const top = Number(frac![1]);
+      const d = Number(frac![2]);
+      const k = ks[0]!;
+      const m = ks[1]!;
+      expectFracEq(p.answer, top * (m - k), d * k * m, p.content);
+    }
+  });
+});

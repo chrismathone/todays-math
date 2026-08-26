@@ -3,7 +3,7 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make, makeDeep } from "./make";
-import { divFrac, fmtFrac, gcd, lcm, mulFrac } from "./math";
+import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
@@ -7517,6 +7517,103 @@ function natDivFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 1-1-2 재료 — 진분수 ÷ 자연수. */
+function fracNatPair(rng: Rng): { top: number; d: number; k: number } {
+  const d = intBetween(rng, 2, 9);
+  return { top: coprimeTop(rng, d), d, k: intBetween(rng, 2, 7) };
+}
+
+/** 문형 05 — 분모에 **곱하는 수**(나누는 수). 몫이 아니다. */
+function fracNatFormMulDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `다음 나눗셈에서 분모에 곱하는 자연수는 얼마입니까?\n\n${expr(`\\frac{${top}}{${d}}\\div${k}`)}`,
+    num(k),
+    `분수는 자연수로 나눌 때 분자는 그대로 두고 분모에 나누는 수를 곱합니다. 나누는 수는 ${num(k)}입니다.`,
+  );
+}
+
+/** 문형 06 — 그대로 두는 **분자**. */
+function fracNatFormKeepNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${top}}{${d}}`)} 를 ${num(k)}${numRo(k)} 나눌 때 그대로 두는 분자의 값은 얼마입니까?`,
+    num(top),
+    `분자는 그대로 두고 분모에만 곱합니다. 분자는 ${num(top)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 초등 규칙의 반대(분자에 곱한다)가 **틀렸다**.
+ * 원장님이 잡으신 자리(해설은 분자에 곱한다, 식은 분모에 곱한다)를 학생이 고른다.
+ */
+function fracNatFormWrongRuleTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { top, d, k } = fracNatPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${top}}{${d}}\\div${k}=\\frac{${top}\\times${k}}{${d}}`)}`,
+    "아니요",
+    `분자는 그대로 두고 분모에 곱합니다. ${expr(`\\frac{${top}}{${d}}\\div${k}=\\frac{${top}}{${d}\\times${k}}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 같은 분수 구조 두 몫의 **합**. */
+function fracNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 3, 8);
+  const k = intBetween(rng, 2, 5);
+  const a = coprimeTop(rng, d);
+  const c = coprimeTop(rng, d);
+  const [p, q] = addFrac(a, d * k, c, d * k);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${d}}\\div${k}`)}, ${expr(`\\frac{${c}}{${d}}\\div${k}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(`\\frac{${a}}{${d}\\times${k}}`)} 와 ${expr(`\\frac{${c}}{${d}\\times${k}}`)} 입니다. ` +
+      `합은 ${expr(`\\frac{${a}+${c}}{${d * k}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 도막을 구한 뒤 **몇 배를 이어 붙인다**(두 걸음). 03 은 두 번 자른다. */
+function fracNatFormTimesPiece(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, CUT_STUFF);
+  const { top, d, k } = fracNatPair(rng);
+  const times = pick(
+    rng,
+    [2, 3, 4].filter((t) => t !== k).length > 0
+      ? [2, 3, 4].filter((t) => t !== k)
+      : ([3] as const),
+  );
+  const [oneN, oneD] = divFrac(top, d, k, 1);
+  const [p, q] = mulFrac(oneN, oneD, times, 1);
+  return make(
+    unit,
+    `길이가 ${expr(`\\frac{${top}}{${d}}`)} m인 ${thing}${josa(thing, "을", "를")} 똑같이 ${num(k)}도막으로 잘랐습니다. ` +
+      `그중 ${num(times)}도막을 이어 붙이면 몇 m입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 도막은 ${expr(`\\frac{${top}}{${d}}\\div${k}=${fmtFrac(oneN, oneD)}`)} m입니다. ` +
+      `${num(times)}도막은 ${expr(`${fmtFrac(oneN, oneD)}\\times${times}=${fmtFrac(p, q)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 같은 분수를 다른 수로 나눈 두 몫의 **차**. 1-1-1 의 「큰 몫」과 가른다. */
+function fracNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 8);
+  const top = coprimeTop(rng, d);
+  const k = intBetween(rng, 2, 4);
+  const m = intBetween(rng, k + 1, 7);
+  const [p, q] = subFrac(top, d * k, top, d * m);
+  return make(
+    unit,
+    `${expr(`\\frac{${top}}{${d}}`)} 를 ${num(k)}${numRo(k)} 나눈 몫에서 ${num(m)}${numRo(m)} 나눈 몫을 뺀 값은 얼마입니까?`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${top}}{${d}}\\div${k}=${fmtFrac(top, d * k)}`)}, ` +
+      `${expr(`\\frac{${top}}{${d}}\\div${m}=${fmtFrac(top, d * m)}`)} 입니다. ` +
+      `차는 ${expr(`${fmtFrac(top, d * k)}-${fmtFrac(top, d * m)}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -7525,5 +7622,13 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a8: natDivFormSum,
     a9: natDivFormHalfShare,
     a10: natDivFormLarger,
+  }),
+  "초6|1-1-2": forms10(fracNatCalc, fracNatWord, fracNatApply, fracNatDeep, {
+    b5: fracNatFormMulDen,
+    b6: fracNatFormKeepNum,
+    b7: fracNatFormWrongRuleTf,
+    a8: fracNatFormSum,
+    a9: fracNatFormTimesPiece,
+    a10: fracNatFormDiff,
   }),
 };
