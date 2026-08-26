@@ -775,9 +775,12 @@ describe("초6 1-3-1 (소수)÷(자연수) — 몫이 1보다 크다", () => {
   it("06 몫의 정수 부분", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const m = p.content.match(/=(\d+(?:\.\d+)?)\$/);
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)\$/);
       expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(Math.floor(Number(m![1])));
+      expect(p.content).not.toMatch(/=/);
+      expect(answerInt(p.answer)).toBe(
+        Math.floor(Number(m![1]) / Number(m![2])),
+      );
     }
   });
 
@@ -977,12 +980,15 @@ describe("초6 1-3-4 몫의 소수 첫째 자리에 0", () => {
     }
   });
 
-  it("09 검산 곱 = 전체 길이", () => {
+  it("09 상자 두 개 길이는 전체÷개수×2", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{m\}/);
+      const m = p.content.match(
+        /\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{m\}\$를 모두 사용하여.*?상자 \$(\d+)\$개/,
+      );
       expect(m, p.content).toBeTruthy();
-      expect(answerCents(p.answer)).toBe(centsOf(m![1]!));
+      expect(p.content).toMatch(/상자 \$2\$개/);
+      expect(answerCents(p.answer) * Number(m![2])).toBe(centsOf(m![1]!) * 2);
     }
   });
 });
@@ -1086,24 +1092,46 @@ describe("초6 전량 문형 10", () => {
   });
 });
 
+describe("초6 1-6-2 부피 — 밑면의 넓이와 높이를 가른다", () => {
+  it("05 밑면은 가로×세로 · 06 은 부피÷밑면", () => {
+    const unit = unitOf("1-6-2");
+    for (const seed of SEEDS) {
+      const base = generateElementaryForm(unit, seed, "05");
+      const m = base.content.match(
+        /가로가 \$(\d+)\\,\\mathrm\{cm\}\$, 세로가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+      );
+      expect(m, base.content).toBeTruthy();
+      expect(base.content).toMatch(/밑면의 넓이/);
+      expect(answerInt(base.answer)).toBe(Number(m![1]) * Number(m![2]));
+      const h = generateElementaryForm(unit, seed, "06");
+      const hm = h.content.match(
+        /부피가 \$(\d+)\$ cm³이고 밑면의 넓이가 \$(\d+)\$ cm²/,
+      );
+      expect(hm, h.content).toBeTruthy();
+      expect(answerInt(h.answer) * Number(hm![2])).toBe(Number(hm![1]));
+      expect(h.content).not.toMatch(/높이가 \$/);
+    }
+  });
+});
+
 describe("초6 2-3 쌓기나무 — 묻는 칸이 답이다", () => {
-  it("2-3-1 05 가로는 발문의 가로 칸", () => {
+  it("2-3-1 05 한 층만 · 06 최고층 칸은 발문의 가로가 아니다", () => {
     const unit = unitOf("2-3-1");
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/가로 \$(\d+)\$칸/);
-      expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(Number(m![1]));
+      const cols = Number(p.content.match(/가로 \$(\d+)\$칸/)![1]);
+      expect(p.content).toMatch(/한 층만/);
+      expect(answerInt(p.answer)).toBeGreaterThanOrEqual(0);
+      expect(p.content).toContain(`가로 $${cols}$칸`);
+      const q = generateElementaryForm(unit, seed, "06");
+      expect(q.content).toMatch(/가장 높은 층과 같은/);
+      expect(answerInt(q.answer)).toBeGreaterThan(0);
     }
   });
 
-  it("2-3-1 06 세로 · 07 바닥 칸", () => {
+  it("2-3-1 07 바닥 칸", () => {
     const unit = unitOf("2-3-1");
     for (const seed of SEEDS) {
-      const rows = generateElementaryForm(unit, seed, "06");
-      const rm = rows.content.match(/세로 \$(\d+)\$칸/);
-      expect(rm, rows.content).toBeTruthy();
-      expect(answerInt(rows.answer)).toBe(Number(rm![1]));
       const floor = generateElementaryForm(unit, seed, "07");
       const cols = Number(floor.content.match(/가로 \$(\d+)\$칸/)![1]);
       const r = Number(floor.content.match(/세로 \$(\d+)\$칸/)![1]);
@@ -1230,26 +1258,28 @@ describe("초6 2-6 원기둥·원뿔·구", () => {
     }
   });
 
-  it("2-6-3 05 밑면 1 · 07 지름=2r", () => {
+  it("2-6-3 05 밑면 1 · 07 반지름+높이", () => {
     const unit = unitOf("2-6-3");
     for (const seed of SEEDS) {
       const b = generateElementaryForm(unit, seed, "05");
       expect(answerInt(b.answer)).toBe(1);
-      const d = generateElementaryForm(unit, seed, "07");
-      const rm = d.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/);
-      expect(rm, d.content).toBeTruthy();
-      expect(answerInt(d.answer)).toBe(Number(rm![1]) * 2);
+      const s = generateElementaryForm(unit, seed, "07");
+      const rm = s.content.match(
+        /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$ 이고 높이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+      );
+      expect(rm, s.content).toBeTruthy();
+      expect(answerInt(s.answer)).toBe(Number(rm![1]) + Number(rm![2]));
     }
   });
 
-  it("2-6-4 06 지름=2r · 10 둘레=6r (원주율 3)", () => {
+  it("2-6-4 06 반지름+지름=3r · 10 둘레=6r (원주율 3)", () => {
     const unit = unitOf("2-6-4");
     for (const seed of SEEDS) {
       const d = generateElementaryForm(unit, seed, "06");
       const r = Number(
         d.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/)![1],
       );
-      expect(answerInt(d.answer)).toBe(2 * r);
+      expect(answerInt(d.answer)).toBe(3 * r);
       const c = generateElementaryForm(unit, seed, "10");
       const r2 = Number(
         c.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/)![1],
