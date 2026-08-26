@@ -9695,6 +9695,376 @@ function cubicFormDiffM(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 2-1-1 05 — 나누어지는 분수의 분자. */
+function sameDenFormTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 분수의 분자는 얼마입니까?\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}`,
+    num(a),
+    `나누어지는 분수는 ${expr(`\\frac{${a}}{${d}}`)} 이므로 분자는 ${num(a)}입니다.`,
+  );
+}
+
+/** 2-1-1 06 — 나누는 분수의 분자. */
+function sameDenFormDivTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${d}}`)} 를 ${expr(`\\frac{${b}}{${d}}`)} 로 나눌 때, 나누는 분수의 분자는 얼마입니까?`,
+    num(b),
+    `나누는 분수는 ${expr(`\\frac{${b}}{${d}}`)} 이므로 분자는 ${num(b)}입니다.`,
+  );
+}
+
+/** 2-1-1 07 — 공통 분모. */
+function sameDenFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음 나눗셈의 두 분수의 분모는 얼마입니까?\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}`,
+    num(d),
+    `두 분수의 분모가 모두 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-1 08 — 분모가 같다 예. */
+function sameDenFormSameTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 에서 두 분수의 분모는 같다.`,
+    "예",
+    `두 분모가 모두 ${num(d)}로 같습니다. 분자끼리 나눕니다.`,
+  );
+}
+
+/** 2-1-1 09 — 두 같은 분모 나눗셈 몫의 합. */
+function sameDenFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 5, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  const [c, e] = twoCoprimeTops(rng, d);
+  const [p, q] = addFrac(a, b, c, e);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)}, ${expr(`\\frac{${c}}{${d}}\\div\\frac{${e}}{${d}}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(fmtFrac(a, b))} 와 ${expr(fmtFrac(c, e))} 이므로 합은 ${expr(fmtFrac(p, q))} 입니다.`,
+  );
+}
+
+/** 2-1-1 10 — 몫 × 나누는 분자 = 나누어지는 분자. */
+function sameDenFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 9);
+  const [a, b] = twoCoprimeTops(rng, d);
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 의 몫에 ${num(b)}${numJosa(b, "을", "를")} 곱하면 얼마입니까?`,
+    num(a),
+    `몫은 ${expr(`${a}\\div${b}`)} 이므로 ${expr(`${a}\\div${b}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+/** 2-1-2 05 — 나누어지는 분수의 분모. */
+function diffDenFormDen1(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 분수의 분모는 얼마입니까?\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}`,
+    num(f.d1),
+    `나누어지는 분수는 ${expr(`\\frac{${f.n1}}{${f.d1}}`)} 이므로 분모는 ${num(f.d1)}입니다.`,
+  );
+}
+
+/** 2-1-2 06 — 나누는 분수의 분모. */
+function diffDenFormDen2(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}`)} 를 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 로 나눕니다. 나누는 분수의 분모는 얼마입니까?`,
+    num(f.d2),
+    `나누는 분수의 분모는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-2 07 — 분모가 다르다 예. */
+function diffDenFormDiffTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 에서 두 분수의 분모는 다르다.`,
+    "예",
+    `분모가 ${num(f.d1)}과 ${num(f.d2)}로 다릅니다.`,
+  );
+}
+
+/** 2-1-2 08 — 역수의 분자. */
+function diffDenFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수의 분자는 얼마입니까?`,
+    num(f.d2),
+    `분모와 분자를 바꾸면 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 이므로 분자는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-2 09 — 두 분모의 곱. */
+function diffDenFormDenProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음 나눗셈의 두 분모의 곱은 얼마입니까?\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)}`,
+    num(f.d1 * f.d2),
+    `${expr(`${f.d1}\\times${f.d2}=${f.d1 * f.d2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-2 10 — 몫. */
+function diffDenFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 의 몫을 구하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 05 — 나누어지는 자연수. */
+function natFracFormNat(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누어지는 수는 얼마입니까?\n\n${expr(`${k}\\div\\frac{${n}}{${d}}`)}`,
+    num(k),
+    `나누어지는 수는 ${num(k)}입니다.`,
+  );
+}
+
+/** 2-1-3 06 — 나누는 분수의 분모. */
+function natFracFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${num(k)}${numRo(k)} ${expr(`\\frac{${n}}{${d}}`)} 를 나눕니다. 나누는 분수의 분모는 얼마입니까?`,
+    num(d),
+    `나누는 분수의 분모는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-3 07 — 곱하는 역수의 분자. */
+function natFracFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${expr(`${k}\\div\\frac{${n}}{${d}}`)} 를 곱셈으로 바꿀 때 곱하는 분수의 분자는 얼마입니까?`,
+    num(d),
+    `${expr(`\\frac{${n}}{${d}}`)} 의 분모와 분자를 바꾸면 분자는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-3 08 — 자연수×분모. */
+function natFracFormTimesDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${expr(`${k}\\div\\frac{${n}}{${d}}`)} 를 계산할 때 먼저 ${num(k)}${numJosa(k, "과", "와")} ${num(d)}를 곱합니다. 그 곱은 얼마입니까?`,
+    num(k * d),
+    `${expr(`${k}\\times${d}=${k * d}`)} 입니다.`,
+  );
+}
+
+/** 2-1-3 09 — 두 나눗셈 몫의 합. */
+function natFracFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  const d = intBetween(rng, 3, 8);
+  const n = coprimeTop(rng, d, 2);
+  const k2 = intBetween(rng, 2, 5);
+  const [p1, q1] = divFrac(k, 1, n, d);
+  const [p2, q2] = divFrac(k2, 1, n, d);
+  const [p, q] = addFrac(p1, q1, p2, q2);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${k}\\div\\frac{${n}}{${d}}`)}, ${expr(`${k2}\\div\\frac{${n}}{${d}}`)}`,
+    expr(fmtFrac(p, q)),
+    `몫은 ${expr(fmtFrac(p1, q1))} 와 ${expr(fmtFrac(p2, q2))} 이므로 합은 ${expr(fmtFrac(p, q))} 입니다.`,
+  );
+}
+
+/** 2-1-3 10 — 나누는 분수의 분자. */
+function natFracFormNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const d = intBetween(rng, 3, 9);
+  const n = coprimeTop(rng, d, 2);
+  return make(
+    unit,
+    `${num(k)}${numRo(k)} 나누는 분수가 ${expr(`\\frac{${n}}{${d}}`)} 입니다. 이 분수의 분자는 얼마입니까?`,
+    num(n),
+    `분자는 ${num(n)}입니다.`,
+  );
+}
+
+/** 2-1-4 05 — 역수의 분자. */
+function flipFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 를 곱셈으로 바꿀 때, 곱하는 분수의 분자는 얼마입니까?`,
+    num(f.d2),
+    `나누는 수 ${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾸면 분자는 ${num(f.d2)}입니다.`,
+  );
+}
+
+/** 2-1-4 06 — 역수의 분모. */
+function flipFormRecipDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수의 분모는 얼마입니까?`,
+    num(f.n2),
+    `분모와 분자를 바꾸면 분모는 ${num(f.n2)}입니다.`,
+  );
+}
+
+/** 2-1-4 07 — 곱셈으로 바꾸는 것이 맞다. */
+function flipFormRuleTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}=\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)}`,
+    "예",
+    `나누는 수의 분모와 분자를 바꾸어 곱합니다.`,
+  );
+}
+
+/** 2-1-4 08 — 나누는 분수의 분자. */
+function flipFormDivNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  return make(
+    unit,
+    `곱셈식 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 로 나타낸 나눗셈에서 나누는 분수의 분자는 얼마입니까?`,
+    num(f.n2),
+    `곱하는 둘째 분수는 나누는 수의 역수이므로 원래 나누는 분수의 분자는 ${num(f.n2)}입니다.`,
+  );
+}
+
+/** 2-1-4 09 — 두 변환 식의 나누는 분수 분모의 합. */
+function flipFormDenSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const g = twoDiffFracs(rng);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\div\\frac{${f.n2}}{${f.d2}}`)} 와 ${expr(`\\frac{${g.n1}}{${g.d1}}\\div\\frac{${g.n2}}{${g.d2}}`)} 에서 나누는 두 분수의 분모의 합은 얼마입니까?`,
+    num(f.d2 + g.d2),
+    `${expr(`${f.d2}+${g.d2}=${f.d2 + g.d2}`)} 입니다.`,
+  );
+}
+
+/** 2-1-4 10 — 계산한 몫. */
+function flipFormValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = twoDiffFracs(rng);
+  const [p, q] = divFrac(f.n1, f.d1, f.n2, f.d2);
+  return make(
+    unit,
+    `${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 를 계산하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`\\frac{${f.n1}\\times${f.d2}}{${f.d1}\\times${f.n2}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-5 05 — 대분수의 자연수 부분. */
+function mixedFracFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 대분수의 자연수 부분은 얼마입니까?`,
+    num(m.w),
+    `대분수 ${expr(mixedLatex(m))} 의 자연수 부분은 ${num(m.w)}입니다.`,
+  );
+}
+
+/** 2-1-5 06 — 가분수 분자. */
+function mixedFracFormImp(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 ${expr(`\\frac{${n}}{${d}}`)} 로 나누려고 합니다. 대분수를 가분수로 고친 분자는 얼마입니까?`,
+    num(m.imp),
+    `${expr(`${m.w}\\times${m.d}+${m.t}=${m.imp}`)} 이므로 분자는 ${num(m.imp)}입니다.`,
+  );
+}
+
+/** 2-1-5 07 — 나누는 분수의 분모. */
+function mixedFracFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 나누는 분수의 분모는 얼마입니까?`,
+    num(d),
+    `나누는 분수의 분모는 ${num(d)}입니다.`,
+  );
+}
+
+/** 2-1-5 08 — 가분수 분모. */
+function mixedFracFormImpDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(mixedLatex(m))} 를 가분수로 고칠 때 분모는 얼마입니까? (나누는 수는 ${expr(`\\frac{${n}}{${d}}`)} 입니다.)`,
+    num(m.d),
+    `가분수의 분모는 원래 분모 ${num(m.d)}입니다.`,
+  );
+}
+
+/** 2-1-5 09 — 몫. */
+function mixedFracFormQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 3);
+  const d = intBetween(rng, 2, 6);
+  const n = coprimeTop(rng, d);
+  const [p, q] = divFrac(m.imp, m.d, n, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 의 몫을 구하시오.`,
+    expr(fmtFrac(p, q)),
+    `${expr(`${mixedLatex(m)}=\\frac{${m.imp}}{${m.d}}`)} 이므로 ${expr(`\\frac{${m.imp}}{${m.d}}\\times\\frac{${d}}{${n}}=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 2-1-5 10 — 자연수 부분과 나누는 분모의 합. */
+function mixedFracFormWholePlusDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = mixedParts(rng, 4);
+  const d = intBetween(rng, 2, 7);
+  const n = coprimeTop(rng, d);
+  return make(
+    unit,
+    `${expr(`${mixedLatex(m)}\\div\\frac{${n}}{${d}}`)} 에서 대분수의 자연수 부분과 나누는 분수의 분모를 더하면 얼마입니까?`,
+    num(m.w + d),
+    `${expr(`${m.w}+${d}=${m.w + d}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -9960,4 +10330,50 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a9: cubicFormBoxToCm,
     a10: cubicFormDiffM,
   }),
+  "초6|2-1-1": forms10(sameDenCalc, sameDenWord, sameDenApply, sameDenDeep, {
+    b5: sameDenFormTop,
+    b6: sameDenFormDivTop,
+    b7: sameDenFormDen,
+    a8: sameDenFormSameTf,
+    a9: sameDenFormSum,
+    a10: sameDenFormCheck,
+  }),
+  "초6|2-1-2": forms10(diffDenCalc, diffDenWord, diffDenApply, diffDenDeep, {
+    b5: diffDenFormDen1,
+    b6: diffDenFormDen2,
+    b7: diffDenFormDiffTf,
+    a8: diffDenFormRecipNum,
+    a9: diffDenFormDenProd,
+    a10: diffDenFormQuot,
+  }),
+  "초6|2-1-3": forms10(natFracCalc, natFracWord, natFracApply, natFracDeep, {
+    b5: natFracFormNat,
+    b6: natFracFormDen,
+    b7: natFracFormRecipNum,
+    a8: natFracFormTimesDen,
+    a9: natFracFormSum,
+    a10: natFracFormNum,
+  }),
+  "초6|2-1-4": forms10(flipCalc, flipWord, flipApply, flipDeep, {
+    b5: flipFormRecipNum,
+    b6: flipFormRecipDen,
+    b7: flipFormRuleTf,
+    a8: flipFormDivNum,
+    a9: flipFormDenSum,
+    a10: flipFormValue,
+  }),
+  "초6|2-1-5": forms10(
+    mixedFracCalc,
+    mixedFracWord,
+    mixedFracApply,
+    mixedFracDeep,
+    {
+      b5: mixedFracFormWhole,
+      b6: mixedFracFormImp,
+      b7: mixedFracFormDen,
+      a8: mixedFracFormImpDen,
+      a9: mixedFracFormQuot,
+      a10: mixedFracFormWholePlusDen,
+    },
+  ),
 };
