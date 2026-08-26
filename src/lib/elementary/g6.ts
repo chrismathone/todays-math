@@ -7870,6 +7870,88 @@ function prismPartFormMeet(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function netFigOf(n: number) {
+  return fig("prism", { sides: n, h: 3, net: true });
+}
+
+/** 문형 05 — 전개도에서 밑면은 **둘**. */
+function netFormBaseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 밑면이 되는 면은 몇 개입니까?`,
+    num(2),
+    `각기둥의 전개도에는 밑면이 ${num(2)}개 있습니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 06 — 전개도의 옆면 모양. */
+function netFormSideShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 옆면이 되는 면은 어떤 도형입니까?`,
+    "직사각형",
+    `각기둥 전개도의 옆면은 직사각형입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 07 — 전개도의 면 전체 수 = n+2. */
+function netFormFaceTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 전개도에서 면은 모두 몇 개입니까?`,
+    num(n + 2),
+    `밑면 ${num(2)}개와 옆면 ${num(n)}개를 더하면 ${expr(`2+${n}=${n + 2}`)} 입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 08 — 전개도에서 밑면 둘의 둘레 합. 03 은 옆면 가로(밑면 하나 둘레). */
+function netFormTwoBasePerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥의 전개도입니다. ` +
+      `밑면이 되는 두 면의 둘레의 합은 몇 cm입니까?`,
+    num(2 * n * a),
+    `밑면 하나의 둘레는 ${expr(`${a}\\times${n}=${n * a}`)} cm이고, 밑면이 ${num(2)}개이므로 ` +
+      `${expr(`${n * a}\\times2=${2 * n * a}`)} 입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 09 — 접으면 밑면은 몇 각형. 02 는 입체 이름. */
+function netFormFoldedBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 ${thing}${josa(thing, "을", "를")} 펼친 전개도입니다. 이 전개도를 접으면 밑면은 몇 각형입니까?`,
+    polyName(n),
+    `옆면인 직사각형이 ${num(n)}개이므로 밑면은 ${polyName(n)}입니다.`,
+    netFigOf(n),
+  );
+}
+
+/** 문형 10 — 전개도의 옆면 수에서 밑면 수를 뺀 값. */
+function netFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 전개도에서 옆면의 수는 밑면의 수보다 몇 개 더 많습니까?`,
+    num(n - 2),
+    `옆면 ${num(n)}개, 밑면 ${num(2)}개이므로 ${expr(`${n}-2=${n - 2}`)} 개 더 많습니다.`,
+    netFigOf(n),
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -7929,4 +8011,12 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
       a10: prismPartFormMeet,
     },
   ),
+  "초6|1-2-3": forms10(netCalc, netRead, netApply, netDeep, {
+    b5: netFormBaseCount,
+    b6: netFormSideShape,
+    b7: netFormFaceTotal,
+    a8: netFormTwoBasePerim,
+    a9: netFormFoldedBase,
+    a10: netFormSideMinusBase,
+  }),
 };

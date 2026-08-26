@@ -558,3 +558,60 @@ describe("초6 1-2-2 각기둥 이름과 구성 요소 — 세는 자리가 다�
     }
   });
 });
+
+describe("초6 1-2-3 각기둥의 전개도 — 펼친 그림에서 묻는다", () => {
+  const unit = unitOf("1-2-3");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("02 접으면 n각기둥", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "02");
+      expect(p.answer).toMatch(/^[삼사오육칠팔]각기둥$/);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("05 밑면이 되는 면 2 · 06 옆면은 직사각형", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "05");
+      expect(a.content).toMatch(/전개도/);
+      expect(answerInt(a.answer)).toBe(2);
+      const b = generateElementaryForm(unit, seed, "06");
+      expect(b.answer).toBe("직사각형");
+    }
+  });
+
+  it("07 전개도 면 수 = 옆면+밑면2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const n = sinoFrom(p.content);
+      expect(n, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(n! + 2);
+    }
+  });
+
+  it("08 밑면 둘의 둘레 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const poly = p.content.match(/밑면이 (삼|사|오|육|칠|팔)각형/);
+      const a = p.content.match(/모두 \$(\d+)\\,\\mathrm\{cm\}/);
+      expect(poly && a, p.content).toBeTruthy();
+      expect(p.content).toMatch(/두 면의 둘레/);
+      expect(answerInt(p.answer)).toBe(2 * SINO_N[poly![1]!]! * Number(a![1]));
+    }
+  });
+
+  it("09 접은 밑면은 n각형 · 10 옆면−밑면", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "09");
+      expect(a.answer).toMatch(/^[삼사오육칠팔]각형$/);
+      const b = generateElementaryForm(unit, seed, "10");
+      const n = sinoFrom(b.content);
+      expect(n, b.content).toBeTruthy();
+      expect(answerInt(b.answer)).toBe(n! - 2);
+    }
+  });
+});
