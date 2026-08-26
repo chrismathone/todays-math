@@ -5,7 +5,7 @@ import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make, makeDeep } from "./make";
 import { divFrac, fmtFrac, gcd, lcm, mulFrac } from "./math";
 import { intBetween, pick } from "./rng";
-import type { ChapterHandler, ElemProblem, Rng } from "./types";
+import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /**
  * 초6 생성기.
@@ -7384,3 +7384,9 @@ export const G6: Record<string, ChapterHandler> = {
   "초6|2-5 원의 둘레와 넓이": circle62,
   "초6|2-6 원기둥, 원뿔, 구": cylCone,
 };
+
+/**
+ * 초6 문형 등록부. 소단원마다 문형 10개 (원장님 확정 2026-08-26 안 3 최고안).
+ * 진척은 `npx tsx scripts/qa/probe-elem-forms.ts --grade 초6` 이 센다.
+ */
+export const G6_FORMS: Record<string, readonly ElemForm[]> = {};

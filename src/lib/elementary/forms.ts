@@ -1,5 +1,6 @@
 /**
- * 초등 문형 등록부 — 파일럿 3소단원.
+ * 초등 문형 등록부 — 소단원마다 문형 10개 (원장님 확정 2026-08-26 안 3 최고안).
+ * 진척은 `scripts/qa/probe-elem-forms.ts` 하나가 센다.
  *
  * 문형 id 는 엔진에만 둔다. 적재기 `familyKey` 조립은 손대지 않는다
  * (`scripts/import/load-engine-problems.ts:162`). 키를 지금 옮기면
@@ -10,6 +11,7 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 import { G3_FORMS } from "./g3";
 import { G4_FORMS } from "./g4";
 import { G5_FORMS } from "./g5";
+import { G6_FORMS } from "./g6";
 import { tierKey, type ElemTier } from "./difficulty";
 import { createRng } from "./rng";
 import type { ElemForm, ElemProblem } from "./types";
@@ -23,6 +25,7 @@ const FORMS: Record<string, readonly ElemForm[]> = {
   ...G3_FORMS,
   ...G4_FORMS,
   ...G5_FORMS,
+  ...G6_FORMS,
 };
 
 export function listedForms(unit: UnitSeed): readonly ElemForm[] {
