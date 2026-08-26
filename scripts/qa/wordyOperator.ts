@@ -102,7 +102,46 @@ export const INSERTED_WORDS: string[] = [
 // ─────────────────────────────────────────────────────────────
 
 export type SkipReason =
-  "인자없음" | "중괄호꼴" | "아래첨자" | "괄호안닫힘" | "인자비었음";
+  "인자없음" | "중괄호꼴" | "아래첨자" | "윗첨자" | "괄호안닫힘" | "인자비었음";
+
+/**
+ * `at` 자리가 **첨자 그룹 안**인가 (`^{…}` · `_{…}`).
+ *
+ * 🔴 원장님 확정 2026-08-26: 「외벽 격리된 문제는 괜찮다. **앞으로 생성할 문제만**
+ *    그렇게 해」 — 지수 안에 한국어를 넣지 말고 문장으로 풀어 쓰라는 뜻이다.
+ *
+ * 바꾸기는 **기계적인 제자리 치환**이라 문장을 다시 짤 수 없다. 그래서 첨자 안에서는
+ * 아예 손대지 않는다 — 바꾸면 `2^{(3,\,2\text{ 중 최솟값})}` 처럼 지수 자리에 한국어가
+ * 앉아 지면에서 본문의 70% 크기로 작게 찍힌다(실측: 격리된 3행 10자리가 그 꼴이다).
+ * 문장으로 푸는 것은 **생성하는 쪽**(엔진·AI 프롬프트)의 몫이고, 여기서 못 바꾼 자리는
+ * `skipped` 가 까닭과 함께 세어 드러낸다.
+ *
+ * ⚠️ 앞뒤 몇 글자만 보면 **중첩을 못 본다** — `2^{\frac{\min(3,2)}{2}}` 는 바로 앞이
+ *    `{` 라 「첨자 아님」으로 읽힌다. 그래서 **중괄호 깊이**로 감싸는 그룹을 찾고,
+ *    첨자가 아닌 그룹이면 한 겹 더 바깥을 본다.
+ */
+function enclosingScript(
+  text: string,
+  at: number,
+): "윗첨자" | "아래첨자" | null {
+  let depth = 0;
+  for (let i = at - 1; i >= 0; i -= 1) {
+    const ch = text[i];
+    if (ch === "}") depth += 1;
+    else if (ch === "{") {
+      if (depth === 0) {
+        // 여는 중괄호를 찾았다. 그 앞의 (공백을 건너뛴) 글자가 ^ / _ 면 첨자다.
+        let j = i - 1;
+        while (j >= 0 && /\s/.test(text[j] as string)) j -= 1;
+        if (text[j] === "^") return "윗첨자";
+        if (text[j] === "_") return "아래첨자";
+        return enclosingScript(text, i); // 첨자가 아닌 그룹이면 한 겹 바깥을 본다
+      }
+      depth -= 1;
+    }
+  }
+  return null;
+}
 
 export interface SkippedHit {
   name: string;
@@ -271,6 +310,13 @@ export function rewriteWordyOperators(text: string): RewriteResult {
     // 아래첨자(`\max_{x\le0}` · `P_{\max}`)는 함수 적용이 아니다.
     if (/^\s*_/.test(tail) || /_\s*\{?\s*$/.test(head)) {
       skip(hit, "아래첨자");
+      continue;
+    }
+    // 첨자 **안**은 바꾸지 않는다 — 지수에 한국어가 앉으면 지면에서 작게 찍힌다.
+    // 위 두 검사는 앞뒤 몇 글자만 보므로 중첩(`2^{\frac{\min(3,2)}{2}}`)을 못 본다.
+    const enclosing = enclosingScript(text, hit.index);
+    if (enclosing) {
+      skip(hit, enclosing);
       continue;
     }
     if (new RegExp("^\\s*" + BS + BS + "?\\{").test(tail)) {
