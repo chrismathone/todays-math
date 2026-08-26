@@ -5405,7 +5405,7 @@ function corr133AgeGap(unit: UnitSeed, rng: Rng): ElemProblem {
   const young = intBetween(rng, 8, 15);
   return make(
     unit,
-    `${wj(elder, "은", "는")} 동생보다 ${n(c)}살 많습니다. 동생이 ${n(young)}살일 때 ${elder}는 몇 살입니까?`,
+    `${wj(elder, "은", "는")} 동생보다 ${n(c)}살 많습니다. 동생이 ${n(young)}살일 때 ${wj(elder, "은", "는")} 몇 살입니까?`,
     n(young + c),
     `${expr(`${young}+${c}=${young + c}`)}이므로 ${n(young + c)}살입니다.`,
   );
