@@ -8115,6 +8115,96 @@ function pyrPartFormApex(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 나누는 수. 몫이 아니다. */
+function decNatFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${expr(`${a}\\div${c.b}`)} 의 오른쪽 수 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 **정수 부분**. */
+function decNatFormWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  const whole = Math.floor(c.q / 100);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 정수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}=${q}`)}`,
+    num(whole),
+    `몫은 ${num(q)}이므로 정수 부분은 ${num(whole)}입니다.`,
+  );
+}
+
+/** 문형 07 — 이 소단원의 몫은 1보다 크다. 「작다」는 틀렸다. */
+function decNatFormUnderTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.plain);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 작다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 큽니다.`,
+  );
+}
+
+/** 문형 08 — 두 나눗셈 몫의 합. 센트 정수로 더한다. */
+function decNatFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.plain);
+  const y = pick(rng, DEC_DIV.plain);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 나눈 한 몫에서 일부를 쓰고 남은 양(두 걸음). 03 은 빼고 나눈다. */
+function decNatFormAfterShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(
+    rng,
+    DEC_DIV.plain.filter((x) => x.q >= 40 && x.a <= 2000),
+  );
+  const s = pick(rng, POUR_STUFF);
+  const used = pick(
+    rng,
+    [10, 20, 30].filter((u) => u < c.q),
+  );
+  const left = c.q - used;
+  return make(
+    unit,
+    `${s.thing} ${unitNum(fromCents(c.a), s.unit)}${s.unitJosa} ${s.into} ${num(c.b)}개에 똑같이 나누어 담았습니다. ` +
+      `${s.into} 한 개에서 ${unitNum(fromCents(used), s.unit)}${s.unitJosa} 썼습니다. 남은 ${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(fromCents(left)),
+    `한 ${s.into}에 담은 양은 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} ${s.unit}입니다. ` +
+      `남은 양은 ${expr(`${fromCents(c.q)}-${fromCents(used)}=${fromCents(left)}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. 큰 쪽에서 작은 쪽을 뺀다. */
+function decNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.plain);
+  let y = pick(rng, DEC_DIV.plain);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, DEC_DIV.plain);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -8197,5 +8287,13 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a8: pyrPartFormApexEdges,
     a9: pyrPartFormBaseEdges,
     a10: pyrPartFormApex,
+  }),
+  "초6|1-3-1": forms10(decNatCalc, decNatWord, decNatApply, decNatDeep, {
+    b5: decNatFormDivisor,
+    b6: decNatFormWhole,
+    b7: decNatFormUnderTf,
+    a8: decNatFormSum,
+    a9: decNatFormAfterShare,
+    a10: decNatFormDiff,
   }),
 };

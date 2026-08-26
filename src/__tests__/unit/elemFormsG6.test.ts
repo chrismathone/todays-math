@@ -734,3 +734,101 @@ describe("초6 1-2-5 각뿔 이름과 구성 요소 — 밑면과 꼭짓점을 �
     }
   });
 });
+
+function centsOf(text: string): number {
+  const m = /([0-9]+(?:\.[0-9]+)?)/.exec(text);
+  expect(m, text).toBeTruthy();
+  return Math.round(Number(m![1]) * 100);
+}
+
+function answerCents(answer: string): number {
+  const m = /^\$([0-9]+(?:\.[0-9]+)?)\$$/.exec(answer);
+  expect(m, `소수 답이 아님: ${answer}`).toBeTruthy();
+  return Math.round(Number(m![1]) * 100);
+}
+
+describe("초6 1-3-1 (소수)÷(자연수) — 몫이 1보다 크다", () => {
+  const unit = unitOf("1-3-1");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫 × 나누는 수 = 나누어지는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)=\\square\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerCents(p.answer) * Number(m![2])).toBe(centsOf(m![1]!));
+    }
+  });
+
+  it("05 나누는 수는 오른쪽 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\\div(\d+)/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+
+  it("06 몫의 정수 부분", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/=(\d+(?:\.\d+)?)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Math.floor(Number(m![1])));
+    }
+  });
+
+  it("07 몫이 1보다 작다는 말은 아니요", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      expect(p.answer).toBe("아니요");
+      expect(p.content).toMatch(/작다/);
+    }
+  });
+
+  it("08 두 몫의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = [...p.content.matchAll(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)\$/g)];
+      expect(m.length, p.content).toBe(2);
+      const q1 = centsOf(m[0]![1]!) / Number(m[0]![2]);
+      const q2 = centsOf(m[1]![1]!) / Number(m[1]![2]);
+      expect(answerCents(p.answer)).toBe(Math.round(q1 + q2));
+    }
+  });
+
+  it("09 한 몫에서 쓰고 남은 양", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const total = p.content.match(
+        /\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{[A-Za-z]+\}/,
+      );
+      const bottles = p.content.match(/\$(\d+)\$개에/);
+      const used = [
+        ...p.content.matchAll(
+          /\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{[A-Za-z]+\}/g,
+        ),
+      ];
+      expect(total && bottles && used.length >= 2, p.content).toBeTruthy();
+      const q = centsOf(total![1]!) / Number(bottles![1]);
+      const u = centsOf(used[1]![1]!);
+      expect(answerCents(p.answer)).toBe(q - u);
+    }
+  });
+
+  it("10 두 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = [...p.content.matchAll(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)\$/g)];
+      expect(m.length, p.content).toBe(2);
+      const q1 = centsOf(m[0]![1]!) / Number(m[0]![2]);
+      const q2 = centsOf(m[1]![1]!) / Number(m[1]![2]);
+      expect(answerCents(p.answer)).toBe(
+        Math.abs(Math.round(q1) - Math.round(q2)),
+      );
+    }
+  });
+});
