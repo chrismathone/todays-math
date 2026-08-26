@@ -19,6 +19,11 @@ import {
   buildGenerateSystemPrompt,
   buildGenerateUserPrompt,
 } from "./prompts/generate";
+import { deriveQuestionType, type AiQuestionType } from "./questionType";
+import {
+  speakWordyOperators,
+  speakWordyOperatorsOrNull,
+} from "./wordyOperators";
 import { withOneRetryOnParseFailure } from "./retry";
 
 /** AI 응답 원소 형태 — problemType/content/answer/solution만 AI 책임(그 외는 서버가 부여). */
@@ -46,6 +51,15 @@ export interface GeneratedProblemDraft {
   unitId: string;
   difficulty: Difficulty;
   problemType: ProblemType;
+  /**
+   * 출제 형식 — 객관식 · 단답형 · 서술형.
+   *
+   * ⚠️ **널을 넣지 마라.** 이 값이 비면 화면 형식 판정(`classifyFormat`)이 AI 문항을
+   *    가를 근거를 못 찾아 `[?형식]` 을 그린다(원장님 지적 2026-08-26). AI 문항은
+   *    `familyKey` 가 `solo:<uuid>` 라 엔진 표지로도 구제되지 않는다.
+   *    값은 AI 에게 묻지 않고 생성물에서 읽어 낸다 — `./questionType.ts` 참조.
+   */
+  questionType: AiQuestionType;
   content: string;
   answer: string;
   solution: string | null;
@@ -73,6 +87,13 @@ export async function generateProblems(
       unitId,
       difficulty,
       problemType: "계산",
+      // 모의도 **실물과 같은 축**을 갖는다. 여기서 형식을 비워 두면 E2E 에서만
+      // `[?형식]` 이 되살아나는데, 그건 시험이 못 보는 자리다.
+      questionType: deriveQuestionType({
+        content: `모의 생성 문제 ${index + 1}`,
+        answer: String(index + 1),
+        problemType: "계산",
+      }),
       content: `모의 생성 문제 ${index + 1}`,
       answer: String(index + 1),
       solution: null,
@@ -98,15 +119,38 @@ export async function generateProblems(
 
   const items = await withOneRetryOnParseFailure(attempt);
 
-  return items.slice(0, count).map((item) => ({
-    unitId,
-    difficulty,
-    problemType: item.problemType,
-    content: normalizeLatex(item.content),
-    answer: normalizeLatex(item.answer),
-    solution: item.solution ? normalizeLatex(item.solution) : null,
-    source: "ai_generated" as const,
-    originProblemId: null,
-    reviewStatus: "pending" as const,
-  }));
+  return items.slice(0, count).map((item) => {
+    // ⚠️ **정규화한 뒤에** 형식을 읽는다. 판정이 보는 본문과 DB·지면이 쓰는 본문이
+    //    같아야 보기 칸 수가 갈리지 않는다(CLAUDE.md 2026-08-18).
+    //
+    //    🔴 **이 순서는 오늘 시험이 못 지킨다** — 숨기지 않으려고 적는다.
+    //       `normalizeLatex` 는 `\dfrac`→`\frac` 하나뿐이고 그 치환은 보기 표식도
+    //       정답 모양도 안 건드려서, 정규화 **전**으로 판정해도 산출물이 똑같다.
+    //       변이 하네스가 그것을 «초록»으로 찍는 것을 보고 확인했다
+    //       (`scripts/qa/mutate-ai-question-type.sh` 의 같은 자리 주석 참조).
+    //       정규화가 보기·정답을 건드리는 규칙을 갖게 되면 그때 가드를 세워야 한다.
+    // 「말 대신 기호」를 말로 (원장님 지시 2026-08-26). 프롬프트가 이미 이르지만
+    // **AI 는 지시를 어긴다** — 받은 것을 검사하는 쪽이 여기다. 규칙은 한 곳
+    // (`scripts/qa/wordyOperator.ts`)이 정하고, 못 미더우면 원문을 그대로 둔다.
+    const content = speakWordyOperators(normalizeLatex(item.content)).out;
+    const answer = speakWordyOperators(normalizeLatex(item.answer)).out;
+    return {
+      unitId,
+      difficulty,
+      problemType: item.problemType,
+      questionType: deriveQuestionType({
+        content,
+        answer,
+        problemType: item.problemType,
+      }),
+      content,
+      answer,
+      solution: speakWordyOperatorsOrNull(
+        item.solution ? normalizeLatex(item.solution) : null,
+      ).out,
+      source: "ai_generated" as const,
+      originProblemId: null,
+      reviewStatus: "pending" as const,
+    };
+  });
 }

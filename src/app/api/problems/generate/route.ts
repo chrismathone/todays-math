@@ -25,6 +25,22 @@ import { db } from "@/lib/db";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
+/**
+ * 🔴 **실측하니 기본 제한을 넘는다.** 2026-08-26
+ * (`scripts/qa/probe-ai-generate-live.ts`, 중1 소인수분해, deepseek-v4-pro):
+ *
+ *   · 3문항 → **40.0초**
+ *   · 10문항 → **127.8초**   ← 화면 기본값이 여기 가깝다(「필요 − 가용」, 상한 10)
+ *
+ * 이 값이 없으면 서버리스 기본 제한에서 잘리고, 화면에는 **원인이 안 남는다** —
+ * 그냥 실패한다. 게다가 `withOneRetryOnParseFailure` 가 파싱 실패 때 한 번 더
+ * 부르므로 최악은 그 두 배다. 같은 이유로 `api/eywa-sync` 도 300 을 쓴다.
+ *
+ * ⚠️ Vercel 요금제가 60초로 막으면 이 버튼은 운영에서 타임아웃 난다 —
+ *    그때는 개수를 줄여 여러 번 나눠 부르는 수밖에 없다(로컬·개발에는 제한이 없다).
+ */
+export const maxDuration = 300;
+
 export async function POST(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
@@ -57,6 +73,9 @@ export async function POST(request: NextRequest) {
         originProblemId: draft.originProblemId,
         difficulty: draft.difficulty,
         problemType: draft.problemType,
+        // ⚠️ 이 줄이 빠지면 DB 는 널이 되고 화면은 `[?형식]` 을 그린다 — **에러가 안 난다**
+        //    (원장님 지적 2026-08-26). `src/__tests__/api/aiGenerateQuestionType.test.ts` 가 지킨다.
+        questionType: draft.questionType,
         content: draft.content,
         answer: draft.answer,
         solution: draft.solution,

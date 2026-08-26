@@ -25,7 +25,14 @@ import type {
   TransformMode,
 } from "@/contracts/problem.contract";
 
-export const TRANSFORM_PROMPT_VERSION = "v3";
+import { WORDY_OPERATOR_RULE } from "./wordyOperatorRule";
+
+/**
+ * v4 (2026-08-26) — **「말 대신 기호」를 금지**했다 (원장님 지시). 규칙 문장은
+ * 생성 프롬프트와 **같은 하나**(`./wordyOperatorRule`)를 쓴다 — 두 벌 두면 한쪽만
+ * 고쳐도 아무도 모른다.
+ */
+export const TRANSFORM_PROMPT_VERSION = "v4";
 
 /**
  * 도형 스펙 요구 — 원본이 그림에 기대는 문항일 때만 붙인다 (원장님 지시 2026-08-19
@@ -106,6 +113,7 @@ export function buildTransformSystemPrompt(): string {
     "- solution: 변형된 풀이 과정(선택). 제공하지 않으면 null로 두십시오.",
     "- originalAnswerRecomputed: 지금 세운 풀이 규칙을 '원본 문제의 숫자'에 그대로 적용했을 때 나오는 답. " +
       "아래 제공되는 원본 정답을 그대로 베끼지 말고, 반드시 스스로 규칙을 적용해 계산한 값을 적으십시오.",
+    WORDY_OPERATOR_RULE,
     "JSON 문자열 값 안의 백슬래시(\\frac, \\times, \\sqrt 등)는 반드시 \\\\로 이스케이프해 유효한 JSON을 만드십시오.",
   ].join("\n");
 }

@@ -29,6 +29,10 @@ import {
   buildTransformUserPrompt,
 } from "./prompts/transform";
 import { withOneRetryOnParseFailure } from "./retry";
+import {
+  speakWordyOperators,
+  speakWordyOperatorsOrNull,
+} from "./wordyOperators";
 
 /**
  * AI 응답 원소 형태 — content/answer/solution 및 원본 재현 검사용
@@ -147,10 +151,16 @@ export async function transformProblem(
   const candidates: TransformCandidate[] = items
     .slice(0, count)
     .map((item) => ({
-      content: normalizeLatex(item.content),
-      answer: normalizeLatex(item.answer),
-      solution: item.solution ? normalizeLatex(item.solution) : null,
+      // 「말 대신 기호」를 말로 (원장님 지시 2026-08-26) — 생성 쪽과 **같은 함수**다.
+      content: speakWordyOperators(normalizeLatex(item.content)).out,
+      answer: speakWordyOperators(normalizeLatex(item.answer)).out,
+      solution: speakWordyOperatorsOrNull(
+        item.solution ? normalizeLatex(item.solution) : null,
+      ).out,
       verified: verifiesOriginalReproduction(origin, item),
+      // ⚠️ **여기는 안 건드린다.** 이 값은 「원본 정답을 스스로 다시 계산한 것」이라
+      //    원장님이 **원본과 글자로 견주는** 자리다. 말로 풀어 쓰면 견줄 짝이 달라져
+      //    「재현이 됐나」를 눈으로 못 본다. 지면에 나가는 값도 아니다.
       originalAnswerRecomputed: normalizeLatex(item.originalAnswerRecomputed),
       // 그림이 필요 없는 문항이면 AI 가 스펙을 냈더라도 버린다 — 안 쓰는 도형을
       // 지면에 얹을 이유가 없고, 그 자리에서만 나는 오류를 만들 이유도 없다.
