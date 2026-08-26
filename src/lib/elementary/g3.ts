@@ -9010,6 +9010,530 @@ function time156DiffHours(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function part161Filled(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 조각은 몇 개인지 쓰시오.`,
+    n(filled),
+    `색칠한 조각은 ${n(filled)}개입니다.`,
+    spec,
+  );
+}
+
+function part161Empty(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
+    n(parts - filled),
+    `전체 ${n(parts)}개 중 색칠한 것이 ${n(filled)}개이므로 ${expr(`${parts}-${filled}=${parts - filled}`)} 개입니다.`,
+    spec,
+  );
+}
+
+function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  return make(
+    unit,
+    `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.`,
+    expr(`\\frac{1}{${parts}}`),
+    `똑같이 ${n(parts)}조각이므로 한 조각은 ${expr(`\\frac{1}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+function part161TwoFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 8);
+  const spec = fracSpec(rng, parts, 2);
+  return make(
+    unit,
+    `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 두 조각은 전체의 얼마인지 분수로 쓰시오.`,
+    expr(`\\frac{2}{${parts}}`),
+    `두 조각은 ${expr(`\\frac{2}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+function part161CheckSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 조각과 색칠하지 않은 조각을 더한 값은 몇 개입니까?`,
+    n(parts),
+    `${expr(`${filled}+${parts - filled}=${parts}`)} 입니다.`,
+    spec,
+  );
+}
+
+function part161Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `크기가 같게 나누는 것을 무엇이라고 합니까? 그렇게 ${n(many)}조각으로 나눌 수 있습니다.`,
+    "똑같이 나누기",
+    `크기가 같게 나누는 것이 똑같이 나누기입니다.`,
+  );
+}
+
+function frac162Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 부분을 분수로 나타낼 때 분모에 알맞은 수를 쓰시오.`,
+    n(parts),
+    `전체를 ${n(parts)}조각으로 나누었으므로 분모는 ${n(parts)} 입니다.`,
+    spec,
+  );
+}
+
+function frac162Num(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 부분을 분수로 나타낼 때 분자에 알맞은 수를 쓰시오.`,
+    n(filled),
+    `색칠한 조각이 ${n(filled)}개이므로 분자는 ${n(filled)} 입니다.`,
+    spec,
+  );
+}
+
+function frac162Copies(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  return make(
+    unit,
+    `그림의 색칠한 부분은 ${expr(`\\frac{1}{${parts}}`)} 이 몇 개 모인 것입니까?`,
+    n(filled),
+    `색칠한 조각이 ${n(filled)}개이므로 ${n(filled)}개입니다.`,
+    spec,
+  );
+}
+
+function frac162Gap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  return make(
+    unit,
+    `그림에서 분모와 분자의 차는 얼마입니까?`,
+    n(parts - filled),
+    `${expr(`${parts}-${filled}=${parts - filled}`)} 입니다.`,
+    spec,
+  );
+}
+
+function frac162Whole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 전체를 분수로 나타내면 얼마입니까? (그림은 ${n(parts)}등분)`,
+    expr(`\\frac{${parts}}{${parts}}`),
+    `전체는 ${expr(`\\frac{${parts}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+function frac162PlusOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 8);
+  const filled = intBetween(rng, 1, parts - 2);
+  const spec = fracSpec(rng, parts, filled);
+  return make(
+    unit,
+    `그림의 색칠한 부분에 한 조각을 더 색칠하면 분수는 얼마입니까?`,
+    expr(`\\frac{${filled + 1}}{${parts}}`),
+    `${expr(`\\frac{${filled}}{${parts}}`)} 에 한 조각을 더하면 ${expr(`\\frac{${filled + 1}}{${parts}}`)} 입니다.`,
+    spec,
+  );
+}
+
+function frac163RestN(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
+    n(parts - filled),
+    `${expr(`${parts}-${filled}=${parts - filled}`)} 개입니다.`,
+    spec,
+  );
+}
+
+function frac163Eaten(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 4, 9);
+  const eaten = intBetween(rng, 1, parts - 2);
+  return make(
+    unit,
+    `전체를 ${n(parts)}조각으로 나누어 ${n(eaten)}조각을 먹었습니다. 먹은 부분은 분수로 얼마입니까?`,
+    expr(`\\frac{${eaten}}{${parts}}`),
+    `먹은 조각이 ${n(eaten)}개이므로 ${expr(`\\frac{${eaten}}{${parts}}`)} 입니다.`,
+  );
+}
+
+function frac163RestDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  return make(
+    unit,
+    `그림에서 색칠하지 않은 부분을 분수로 나타낼 때 분모는 얼마입니까?`,
+    n(parts),
+    `전체 조각이 ${n(parts)}개이므로 분모는 ${n(parts)} 입니다.`,
+    spec,
+  );
+}
+
+function frac163Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 색칠한 조각과 색칠하지 않은 조각을 더하면 몇 개입니까?`,
+    n(parts),
+    `${expr(`${filled}+${parts - filled}=${parts}`)} 입니다.`,
+    spec,
+  );
+}
+
+function frac163More(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 5, 9);
+  const filled = intBetween(rng, 1, parts - 1);
+  const rest = parts - filled;
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 조각과 색칠하지 않은 조각 가운데 더 많은 쪽의 조각 수를 쓰시오.`,
+    n(Math.max(filled, rest)),
+    `색칠 ${n(filled)}개, 아닌 것 ${n(rest)}개이므로 더 많은 쪽은 ${n(Math.max(filled, rest))}개입니다.`,
+    spec,
+  );
+}
+
+function frac163Parts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const parts = intBetween(rng, 3, 8);
+  const filled = intBetween(rng, 1, parts - 1);
+  const spec = fracSpec(rng, parts, filled);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림은 전체를 몇 등분한 것입니까?`,
+    n(parts),
+    `조각이 ${n(parts)}개이므로 ${n(parts)}등분입니다.`,
+    spec,
+  );
+}
+
+function cmp164BigNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}`)}, ${expr(`\\frac{${b}}{${den}}`)} 에서 더 큰 분수의 분자를 쓰시오.`,
+    n(Math.max(a, b)),
+    `분모가 같으면 분자가 클수록 크므로 ${n(Math.max(a, b))} 입니다.`,
+  );
+}
+
+function cmp164NumDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}`)} 과 ${expr(`\\frac{${b}}{${den}}`)} 의 분자끼리의 차는 얼마입니까?`,
+    n(Math.abs(a - b)),
+    `${expr(`${Math.max(a, b)}-${Math.min(a, b)}=${Math.abs(a - b)}`)} 입니다.`,
+  );
+}
+
+function cmp164NumSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}`)} 과 ${expr(`\\frac{${b}}{${den}}`)} 의 분자를 더한 값을 쓰시오.`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function cmp164Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  return make(
+    unit,
+    `${expr(`\\frac{${i + 1}}{${den}}`)}, ${expr(`\\frac{${j + 1}}{${den}}`)} 의 분모를 쓰시오.`,
+    n(den),
+    `두 분수의 분모는 모두 ${n(den)} 입니다.`,
+  );
+}
+
+function cmp164SmallNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const a = i + 1;
+  const b = j + 1;
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}`)}, ${expr(`\\frac{${b}}{${den}}`)} 에서 더 작은 분수의 분자를 쓰시오.`,
+    n(Math.min(a, b)),
+    `분자가 작을수록 작으므로 ${n(Math.min(a, b))} 입니다.`,
+  );
+}
+
+function cmp164SameDenQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const [i, j] = distinctIdx(rng, den - 1, 2) as [number, number];
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. ${expr(`\\frac{${i + 1}}{${den}}`)} 과 ${expr(`\\frac{${j + 1}}{${den}}`)} 의 분모는 같습니까? 예 또는 아니요로 쓰시오.`,
+    "예",
+    `두 분수의 분모는 모두 ${n(den)} 으로 같습니다.`,
+  );
+}
+
+function unit165SmallDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  return make(
+    unit,
+    `${expr(`\\frac{1}{${a}}`)}, ${expr(`\\frac{1}{${b}}`)} 에서 더 큰 단위분수의 분모를 쓰시오.`,
+    n(Math.min(a, b)),
+    `단위분수는 분모가 작을수록 크므로 ${n(Math.min(a, b))} 입니다.`,
+  );
+}
+
+function unit165DenSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  return make(
+    unit,
+    `${expr(`\\frac{1}{${a}}`)} 과 ${expr(`\\frac{1}{${b}}`)} 의 분모를 더한 값을 쓰시오.`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function unit165DenDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  return make(
+    unit,
+    `${expr(`\\frac{1}{${a}}`)} 과 ${expr(`\\frac{1}{${b}}`)} 의 분모의 차는 얼마입니까?`,
+    n(Math.abs(a - b)),
+    `${expr(`${Math.max(a, b)}-${Math.min(a, b)}=${Math.abs(a - b)}`)} 입니다.`,
+  );
+}
+
+function unit165BigDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  return make(
+    unit,
+    `${expr(`\\frac{1}{${a}}`)}, ${expr(`\\frac{1}{${b}}`)} 에서 더 작은 단위분수의 분모를 쓰시오.`,
+    n(Math.max(a, b)),
+    `분모가 클수록 작으므로 ${n(Math.max(a, b))} 입니다.`,
+  );
+}
+
+function unit165OneOver(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `전체를 똑같이 ${n(a)}조각으로 나눈 것 중 한 조각을 분수로 쓰시오.`,
+    expr(`\\frac{1}{${a}}`),
+    `한 조각은 ${expr(`\\frac{1}{${a}}`)} 입니다.`,
+  );
+}
+
+function unit165Finer(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 8, 2) as [number, number];
+  const a = i + 2;
+  const b = j + 2;
+  return make(
+    unit,
+    `${expr(`\\frac{1}{${a}}`)} 과 ${expr(`\\frac{1}{${b}}`)} 가운데 더 잘게 나눈 쪽의 등분 수를 쓰시오.`,
+    n(Math.max(a, b)),
+    `등분 수가 클수록 더 잘게 나눈 것이므로 ${n(Math.max(a, b))} 입니다.`,
+  );
+}
+
+function dec166Tenths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `소수 ${expr(`0.${k}`)} 에서 소수 첫째 자리 숫자를 쓰시오.`,
+    n(k),
+    `소수 첫째 자리 숫자는 ${n(k)} 입니다.`,
+  );
+}
+
+function dec166AsFracNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${expr(`0.${k}`)} 을 분수로 나타낼 때 분자를 쓰시오.`,
+    n(k),
+    `${expr(`0.${k}=\\frac{${k}}{10}`)} 이므로 분자는 ${n(k)} 입니다.`,
+  );
+}
+
+function dec166Whole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 4);
+  const t = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `소수 ${expr(`${w}.${t}`)} 의 자연수 부분을 쓰시오.`,
+    n(w),
+    `자연수 부분은 ${n(w)} 입니다.`,
+  );
+}
+
+function dec166TenthsCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${expr(`0.${k}`)} 안에는 $0.1$ 이 몇 개 있습니까?`,
+    n(k),
+    `$0.1$ 짜리가 ${n(k)}개입니다.`,
+  );
+}
+
+function dec166FracDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${expr(`0.${k}`)} 을 분수로 나타낼 때 분모를 쓰시오.`,
+    n(10),
+    `${expr(`0.${k}=\\frac{${k}}{10}`)} 이므로 분모는 $10$ 입니다.`,
+  );
+}
+
+function dec166TimesTen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${expr(`0.${k}`)} 의 $10$ 배는 얼마입니까?`,
+    n(k),
+    `${expr(`0.${k}\\times10=${k}`)} 입니다.`,
+  );
+}
+
+function cmp167WholeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decIdxVal(i);
+  const B = decIdxVal(j);
+  return make(
+    unit,
+    `${n(decStrOf(i))} 과 ${n(decStrOf(j))} 의 자연수 부분을 더한 값을 쓰시오.`,
+    n(A.w + B.w),
+    `${expr(`${A.w}+${B.w}=${A.w + B.w}`)} 입니다.`,
+  );
+}
+
+function cmp167TenthsSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decIdxVal(i);
+  const B = decIdxVal(j);
+  return make(
+    unit,
+    `${n(decStrOf(i))} 과 ${n(decStrOf(j))} 의 소수 첫째 자리 숫자를 더한 값을 쓰시오.`,
+    n(A.t + B.t),
+    `${expr(`${A.t}+${B.t}=${A.t + B.t}`)} 입니다.`,
+  );
+}
+
+function cmp167ScaledDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  return make(
+    unit,
+    `${n(decStrOf(i))} 과 ${n(decStrOf(j))} 을 각각 $10$ 배 한 값의 차를 쓰시오.`,
+    n(Math.abs(vA - vB)),
+    `$10$ 배 하면 ${n(vA)} 과 ${n(vB)} 이므로 차는 ${n(Math.abs(vA - vB))} 입니다.`,
+  );
+}
+
+function cmp167BigTenths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decIdxVal(i);
+  const B = decIdxVal(j);
+  const vA = A.w * 10 + A.t;
+  const vB = B.w * 10 + B.t;
+  const t = vA > vB ? A.t : B.t;
+  return make(
+    unit,
+    `${n(decStrOf(i))} 과 ${n(decStrOf(j))} 가운데 더 큰 수의 소수 첫째 자리 숫자를 쓰시오.`,
+    n(t),
+    `더 큰 수의 소수 첫째 자리는 ${n(t)} 입니다.`,
+  );
+}
+
+function cmp167Smaller(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decStrOf(i);
+  const B = decStrOf(j);
+  const vA = decIdxVal(i).w * 10 + decIdxVal(i).t;
+  const vB = decIdxVal(j).w * 10 + decIdxVal(j).t;
+  const ans = vA > vB ? B : A;
+  return make(
+    unit,
+    `${n(A)} 과 ${n(B)} 가운데 더 작은 수를 쓰시오.`,
+    n(ans),
+    `더 작은 수는 ${expr(ans)} 입니다.`,
+  );
+}
+
+function cmp167SameWholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
+  const A = decIdxVal(i);
+  const B = decIdxVal(j);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. ${n(decStrOf(i))} 과 ${n(decStrOf(j))} 의 자연수 부분은 같습니까? 예 또는 아니요로 쓰시오.`,
+    A.w === B.w ? "예" : "아니요",
+    `자연수 부분은 ${n(A.w)} 과 ${n(B.w)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -9243,6 +9767,90 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     time156TotalMin,
     time156MinusHour,
     time156DiffHours,
+  ),
+  "초3|1-6-1": ten(
+    part161Calc,
+    part161Word,
+    part161Apply,
+    part161Deep,
+    part161Filled,
+    part161Empty,
+    part161UnitFrac,
+    part161TwoFrac,
+    part161CheckSum,
+    part161Def,
+  ),
+  "초3|1-6-2": ten(
+    frac162Calc,
+    frac162Word,
+    frac162Apply,
+    frac162Deep,
+    frac162Den,
+    frac162Num,
+    frac162Copies,
+    frac162Gap,
+    frac162Whole,
+    frac162PlusOne,
+  ),
+  "초3|1-6-3": ten(
+    frac163Calc,
+    frac163Word,
+    frac163Apply,
+    frac163Deep,
+    frac163RestN,
+    frac163Eaten,
+    frac163RestDen,
+    frac163Check,
+    frac163More,
+    frac163Parts,
+  ),
+  "초3|1-6-4": ten(
+    cmp164Calc,
+    cmp164Word,
+    cmp164Apply,
+    cmp164Deep,
+    cmp164BigNum,
+    cmp164NumDiff,
+    cmp164NumSum,
+    cmp164Den,
+    cmp164SmallNum,
+    cmp164SameDenQ,
+  ),
+  "초3|1-6-5": ten(
+    unit165Calc,
+    unit165Word,
+    unit165Apply,
+    unit165Deep,
+    unit165SmallDen,
+    unit165DenSum,
+    unit165DenDiff,
+    unit165BigDen,
+    unit165OneOver,
+    unit165Finer,
+  ),
+  "초3|1-6-6": ten(
+    dec166Calc,
+    dec166Word,
+    dec166Apply,
+    dec166Deep,
+    dec166Tenths,
+    dec166AsFracNum,
+    dec166Whole,
+    dec166TenthsCount,
+    dec166FracDen,
+    dec166TimesTen,
+  ),
+  "초3|1-6-7": ten(
+    cmp167Calc,
+    cmp167Word,
+    cmp167Apply,
+    cmp167Deep,
+    cmp167WholeSum,
+    cmp167TenthsSum,
+    cmp167ScaledDiff,
+    cmp167BigTenths,
+    cmp167Smaller,
+    cmp167SameWholeQ,
   ),
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
