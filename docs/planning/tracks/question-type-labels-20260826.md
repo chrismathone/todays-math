@@ -2,7 +2,7 @@
 
 **작성일**: 2026-08-26  
 **브랜치**: `BIGSHOL/question-type-labels` (기준 `d8c3cd84`)  
-**관련 문서**: `BRIEF-antigravity.md`, `CLAUDE.md`, `docs/planning/07-coding-convention.md` (D-07, D-22, D-30, D-106)
+**관련 문서**: `docs/planning/tracks/BRIEF-antigravity.md`, `CLAUDE.md`, `docs/planning/07-coding-convention.md` (D-07, D-22, D-30, D-106)
 
 ---
 
