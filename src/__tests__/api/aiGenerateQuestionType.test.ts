@@ -98,9 +98,9 @@ describe("POST /api/problems/generate — questionType 적재", () => {
     const saved = rows.slice(-2);
     expect(saved.map((r) => r.questionType)).toEqual(["단답형", "서술형"]);
     for (const row of saved) {
-      expect(
-        classifyFormat({ ...row, figureUrls: row.figureUrls ?? [] }),
-      ).not.toBe("unknown");
+      // 형식 판정은 그림 컬럼을 **안 본다**(`FormatInput`). 넘기면 초과 속성이라
+      // tsc 가 막는다 — 좁은 입력이 옳고, 여기서 그 모양을 그대로 따른다.
+      expect(classifyFormat(row)).not.toBe("unknown");
     }
   });
 });
