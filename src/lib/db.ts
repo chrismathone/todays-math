@@ -1,6 +1,9 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 
-import { APP_VISIBLE_PROBLEM_POOL } from "./problemVisibility";
+import {
+  PROBLEM_READ_OPERATIONS,
+  scopeProblemWhere,
+} from "./problemVisibility";
 
 /**
  * Prisma 클라이언트 싱글턴.
@@ -24,26 +27,6 @@ const baseDb =
     log: process.env.NODE_ENV === "development" ? ["warn", "error"] : ["error"],
   });
 
-const PROBLEM_READ_OPERATIONS = new Set([
-  "aggregate",
-  "count",
-  "findFirst",
-  "findFirstOrThrow",
-  "findMany",
-  "findUnique",
-  "findUniqueOrThrow",
-  "groupBy",
-]);
-
-/**
- * The legacy problem corpus is behind a permanent outer-wall quarantine.
- *
- * The database trigger keeps those rows private/rejected/non-selectable. This
- * client boundary is the second wall: even a new app or dev query that forgets
- * the normal pool filter cannot read them. Administrative scripts intentionally
- * instantiate their own PrismaClient, so a future owner-requested recovery can
- * still inspect the corpus without weakening the application boundary.
- */
 export const db = baseDb.$extends({
   name: "problem-bank-outer-wall",
   query: {
@@ -53,12 +36,7 @@ export const db = baseDb.$extends({
           const scopedArgs = args as typeof args & {
             where?: Prisma.ProblemWhereInput;
           };
-          scopedArgs.where = {
-            AND: [
-              ...(scopedArgs.where ? [scopedArgs.where] : []),
-              { pool: APP_VISIBLE_PROBLEM_POOL },
-            ],
-          };
+          scopedArgs.where = scopeProblemWhere(operation, scopedArgs.where);
         }
         return query(args);
       },
