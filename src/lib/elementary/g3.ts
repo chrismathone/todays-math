@@ -8271,6 +8271,75 @@ function sq125PerimMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 곱셈으로 검산하면 나뉘는 수. */
+function div131Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 입니다. $${b}\\times${q}$ 의 값을 쓰시오.`,
+    n(a),
+    `나눗셈을 곱셈으로 검산하면 ${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+/** 문형 06 — 빈칸 나누는 수. */
+function div131MissingDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\div\\square=${q}$`,
+    n(b),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 빈칸 나뉘는 수. */
+function div131MissingDividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square\\div${b}=${q}$`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(a)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 포함제. 02 는 한 명 몫(등분), 여기는 몇 묶음. */
+function div131HowManyGroups(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, SHARE_STUFF);
+  return make(
+    unit,
+    `${thing} ${n(a)}개를 한 묶음에 ${n(q)}개씩 담으면 몇 묶음이 되는지 쓰시오.`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 ${n(b)}묶음입니다.`,
+  );
+}
+
+/** 문형 09 — 몫과 나누는 수의 크기 비교. */
+function div131Compare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const bigger = q > b ? "큽니다" : "작습니다";
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫은 나누는 수보다 큽니까, 작습니까?`,
+    bigger,
+    `몫은 ${n(q)}, 나누는 수는 ${n(b)} 이므로 몫이 더 ${bigger}.`,
+  );
+}
+
+/** 문형 10 — 한 명 몫과 인원으로 처음 개수(등분의 역). */
+function div131TotalFromShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, SHARE_STUFF);
+  return make(
+    unit,
+    `친구 ${n(b)}명이 ${thing}${josa(thing, "을", "를")} 한 명 ${n(q)}개씩 가졌습니다. ${thing}${josa(thing, "은", "는")} 모두 몇 개였습니까?`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 이므로 모두 ${n(a)}개입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8379,6 +8448,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: sq125OppSum },
     { id: "09", tier: "응용", generate: sq125SideCount },
     { id: "10", tier: "응용", generate: sq125PerimMinus },
+  ],
+  "초3|1-3-1": [
+    { id: "01", tier: "연산", generate: div131Calc },
+    { id: "02", tier: "기본", generate: div131Word },
+    { id: "03", tier: "응용", generate: div131Apply },
+    { id: "04", tier: "심화", generate: div131Deep },
+    { id: "05", tier: "기본", generate: div131Check },
+    { id: "06", tier: "기본", generate: div131MissingDivisor },
+    { id: "07", tier: "기본", generate: div131MissingDividend },
+    { id: "08", tier: "응용", generate: div131HowManyGroups },
+    { id: "09", tier: "응용", generate: div131Compare },
+    { id: "10", tier: "응용", generate: div131TotalFromShare },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },

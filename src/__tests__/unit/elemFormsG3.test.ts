@@ -675,3 +675,82 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
     }
   });
 });
+
+describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다", () => {
+  const unit = unitOf("1-3-1");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01·02 몫 = 나뉘는 수÷나누는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(nums[0]! / nums[1]!);
+      const w = generateElementaryForm(unit, seed, "02");
+      const [x, y] = katexInts(w.content);
+      const q = answerInt(w.answer);
+      expect(q * x! === y! || q * y! === x!).toBe(true);
+    }
+  });
+
+  it("03 두 수를 합친 뒤 나눈 몫", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const [x, y, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe((x! + y!) / b!);
+    }
+  });
+
+  it("05 곱셈 검산은 나뉘는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [, b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(b! * q!);
+    }
+  });
+
+  it("06 빈칸 나누는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\\div\\square=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) / Number(m![2]));
+    }
+  });
+
+  it("07 빈칸 나뉘는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\$\\square\\div(\d+)=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+    }
+  });
+
+  it("08 몇 묶음 = 전체÷한 묶음", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [a, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! / q!);
+    }
+  });
+
+  it("09 몫이 나누는 수보다 큰가 작은가", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b] = katexInts(p.content);
+      const q = a! / b!;
+      expect(p.answer).toBe(q > b! ? "큽니다" : "작습니다");
+    }
+  });
+
+  it("10 한 명 몫×인원 = 처음 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(b! * q!);
+    }
+  });
+});
