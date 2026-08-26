@@ -167,7 +167,10 @@ function parseNumericAnswer(raw: string): {
   const trimmed = raw.trim();
   let inner = trimmed;
   let wrapped = (s: string) => s;
-  const dollar = trimmed.match(/^\$(.*)\$$/s);
+  // ⚠️ `.` + `s`(dotAll) 는 ES2018 부터다. 이 저장소 target 은 ES2017 이라
+  //    tsc 가 TS1501 로 문다 — **vitest 는 타입을 안 보므로 관문은 초록이었다.**
+  //    뜻이 같은 `[\s\S]` 로 적는다.
+  const dollar = trimmed.match(/^\$([\s\S]*)\$$/);
   if (dollar) {
     inner = dollar[1]!.trim();
     wrapped = (s) => `$${s}$`;
