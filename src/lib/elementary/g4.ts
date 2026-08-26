@@ -6496,6 +6496,572 @@ function ang126SumAndOne(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function ten(
+  calc: ChapterHandler,
+  word: ChapterHandler,
+  apply: ChapterHandler,
+  deep: ChapterHandler,
+  f05: ChapterHandler,
+  f06: ChapterHandler,
+  f07: ChapterHandler,
+  f08: ChapterHandler,
+  f09: ChapterHandler,
+  f10: ChapterHandler,
+): readonly ElemForm[] {
+  return [
+    { id: "01", tier: "연산", generate: calc },
+    { id: "02", tier: "기본", generate: word },
+    { id: "03", tier: "응용", generate: apply },
+    { id: "04", tier: "심화", generate: deep },
+    { id: "05", tier: "기본", generate: f05 },
+    { id: "06", tier: "기본", generate: f06 },
+    { id: "07", tier: "기본", generate: f07 },
+    { id: "08", tier: "응용", generate: f08 },
+    { id: "09", tier: "응용", generate: f09 },
+    { id: "10", tier: "응용", generate: f10 },
+  ];
+}
+
+function mulCol(a: number, b: number): Record<string, unknown> {
+  return fig("columnOp", { top: String(a), op: "×", bottom: String(b) });
+}
+
+/* ── 1-3-1 (세 자리)×(몇십) ── */
+
+function pair31(rng: Rng): { a: number; b: number; p: number } {
+  const a = intBetween(rng, 123, 897);
+  const b = intBetween(rng, 2, 9) * 10;
+  return { a, b, p: a * b };
+}
+
+function mul131Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`${a}\\times\\square=${p}`)}`,
+    n(b),
+    `${expr(`${p}\\div${a}=${b}`)} 이므로 ${n(b)}입니다.`,
+  );
+}
+
+function mul131Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱에서 일의 자리 숫자를 쓰시오.`,
+    n(p % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)}입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul131Plus100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱보다 ${n(100)} 큰 수를 쓰시오.`,
+    n(p + 100),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}+100=${p + 100}`)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul131ToMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  const d = Math.abs(p - 10000);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱과 ${n(10000)}의 차는 얼마인가?`,
+    n(d),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${Math.max(p, 10000)}-${Math.min(p, 10000)}=${d}`)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul131TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  const tens = Math.floor(p / 10) % 10;
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱에서 십의 자리 숫자를 쓰시오.`,
+    n(tens),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 십의 자리 숫자는 ${n(tens)}입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul131NextTen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair31(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱과 ${expr(`${a}\\times${b + 10}`)} 의 곱의 차는 얼마인가?`,
+    n(a * 10),
+    `${expr(`${a}\\times10=${a * 10}`)} 이므로 차는 ${n(a * 10)}입니다.`,
+  );
+}
+
+/* ── 1-3-2 (세 자리)×(두 자리) ── */
+
+function pair32(rng: Rng): { a: number; b: number; p: number } {
+  const a = intBetween(rng, 123, 897);
+  const b = twoDigit(rng);
+  return { a, b, p: a * b };
+}
+
+function mul132Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair32(rng);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`\\square\\times${b}=${p}`)}`,
+    n(a),
+    `${expr(`${p}\\div${b}=${a}`)} 이므로 ${n(a)}입니다.`,
+  );
+}
+
+function mul132Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair32(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱에서 일의 자리 숫자를 쓰시오.`,
+    n(p % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)}입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul132Minus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair32(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱보다 ${n(10)} 작은 수를 쓰시오.`,
+    n(p - 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}-10=${p - 10}`)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul132HundredsDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair32(rng);
+  const h = Math.floor(p / 100) % 10;
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱에서 백의 자리 숫자를 쓰시오.`,
+    n(h),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(h)}입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul132Partial(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = pair32(rng);
+  const ones = b % 10;
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 를 계산할 때 ${expr(`${a}\\times${ones}`)} 의 값은 얼마인가?`,
+    n(a * ones),
+    `일의 자리 ${n(ones)}와의 곱은 ${expr(`${a}\\times${ones}=${a * ones}`)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul132Even(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, p } = pair32(rng);
+  const even = p % 2 === 0;
+  return make(
+    unit,
+    `${expr(`${a}\\times${b}`)} 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.`,
+    even ? "예" : "아니요",
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${n(p)}${even ? "는 짝수" : "는 홀수"}입니다.`,
+    mulCol(a, b),
+  );
+}
+
+/* ── 1-3-3 곱셈의 어림셈 ── */
+
+function mul133RoundA(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `다음 곱셈을 어림하려고 합니다. ${josaNum(a, "을", "를")} 몇백으로 어림한 값과 ${josaNum(b, "을", "를")} 몇십으로 어림한 값의 합을 구하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    n(aa + bb),
+    `${josaNum(a, "은", "는")} ${n(aa)}, ${josaNum(b, "은", "는")} ${n(bb)}에 가깝습니다. ${expr(`${aa}+${bb}=${aa + bb}`)} 입니다.`,
+  );
+}
+
+function mul133EstHundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  return make(
+    unit,
+    `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱하면 얼마인가?\n\n${expr(`${a}\\times${b}`)}`,
+    n(est),
+    `${expr(`${aa}\\times${bb}=${est}`)} 이므로 약 ${n(est)}입니다.`,
+    mulCol(aa, bb),
+  );
+}
+
+function mul133Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  const act = a * b;
+  return make(
+    unit,
+    `다음 곱셈의 어림한 곱이 실제로 계산한 곱보다 큰가? '예' 또는 '아니요'로 답하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    est > act ? "예" : "아니요",
+    `어림한 곱은 ${n(est)}, 실제 곱은 ${n(act)}입니다.`,
+  );
+}
+
+function mul133EstDiv10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  return make(
+    unit,
+    `${josaNum(a, "과", "와")} ${n(b)}의 곱을 어림한 값을 ${n(10)}으로 나누면 얼마인가?`,
+    n(est / 10),
+    `어림한 곱은 ${n(est)}이고 ${expr(`${est}\\div10=${est / 10}`)} 입니다.`,
+  );
+}
+
+function mul133RoundBOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = twoDigit(rng);
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?`,
+    n(bb),
+    `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
+  );
+}
+
+function mul133EstMinusActSign(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const b = twoDigit(rng);
+  const aa = Math.round(a / 100) * 100;
+  const bb = Math.round(b / 10) * 10;
+  const est = aa * bb;
+  const act = a * b;
+  return make(
+    unit,
+    `다음 곱셈에서 어림한 곱에서 실제 곱을 뺀 값은 양수인가? '예' 또는 '아니요'로 답하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    est - act > 0 ? "예" : "아니요",
+    `어림한 곱 ${n(est)}에서 실제 곱 ${n(act)}를 빼면 ${n(est - act)}입니다.`,
+  );
+}
+
+/* ── 1-3-4 몇십으로 나누기 ── */
+
+function pair34(rng: Rng): { a: number; b: number; q: number } {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  return { a: b * q, b, q };
+}
+
+function div134MissingDiv(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair34(rng);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`${a}\\div\\square=${q}`)}`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 ${n(b)}입니다.`,
+  );
+}
+
+function div134Remain(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 나머지를 구하시오.`,
+    n(r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 나머지는 ${n(r)}입니다.`,
+  );
+}
+
+function div134Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair34(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}=${q}`)} 입니다. 검산하기 위해 몫과 나누는 수를 곱한 값을 쓰시오.`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+    mulCol(q, b),
+  );
+}
+
+function div134QuotPlus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair34(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫보다 ${n(1)} 큰 수를 쓰시오.`,
+    n(q + 1),
+    `몫은 ${n(q)}이므로 ${expr(`${q}+1=${q + 1}`)} 입니다.`,
+  );
+}
+
+function div134AskB(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair34(rng);
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} 몇십씩 묶었더니 ${n(q)}묶음이 되었습니다. 몇씩 묶은 것인가?`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 ${n(b)}씩 묶은 것입니다.`,
+  );
+}
+
+function div134LeftIfExtra(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair34(rng);
+  const extra = intBetween(rng, 1, b - 1);
+  return make(
+    unit,
+    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 ${n(q)}묶음입니다. ${n(extra)}개를 더하면 남는 것은 몇 개인가?`,
+    n(extra),
+    `처음에는 나누어떨어지므로 더한 ${n(extra)}개가 그대로 남습니다.`,
+  );
+}
+
+/* ── 1-3-5 몇십몇으로 나누기 (1) ── */
+
+function pair35(rng: Rng): { a: number; b: number; q: number } {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  return { a: b * q, b, q };
+}
+
+function div135Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair35(rng);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`\\square\\div${b}=${q}`)}`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(a)}입니다.`,
+    mulCol(b, q),
+  );
+}
+
+function div135Tape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair35(rng);
+  return make(
+    unit,
+    `길이가 ${cm(a)}인 리본을 ${cm(b)}씩 자르면 몇 도막이 되는가?`,
+    `${n(q)}도막`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}도막입니다.`,
+    fig("tape", { length: a, label: `${a} cm`, segments: 1 }),
+  );
+}
+
+function div135Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair35(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}=${q}`)} 의 검산에서 몫과 나누는 수의 곱을 쓰시오.`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+    mulCol(q, b),
+  );
+}
+
+function div135Remain(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const q = intBetween(rng, 3, 9);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 나머지를 구하시오.`,
+    n(r),
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 입니다.`,
+  );
+}
+
+function div135QuotTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair35(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫에 ${n(b)}를 곱한 값을 쓰시오.`,
+    n(a),
+    `몫은 ${n(q)}이고 ${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+function div135DaysLeft(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair35(rng);
+  const done = intBetween(rng, 1, q - 1);
+  return make(
+    unit,
+    `색 테이프 ${cm(a)}를 하루에 ${cm(b)}씩 자릅니다. ${n(done)}일 동안 자르고 남은 날은 며칠인가?`,
+    n(q - done),
+    `${expr(`${a}\\div${b}=${q}`)} 일이고 ${expr(`${q}-${done}=${q - done}`)} 일입니다.`,
+  );
+}
+
+/* ── 1-3-6 몇십몇으로 나누기 (2) ── */
+
+function pair36(rng: Rng): { a: number; b: number; q: number } {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 34);
+  return { a: b * q, b, q };
+}
+
+function div136TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair36(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫에서 십의 자리 숫자를 쓰시오.`,
+    n(Math.floor(q / 10)),
+    `몫은 ${n(q)}이므로 십의 자리 숫자는 ${n(Math.floor(q / 10))}입니다.`,
+    mulCol(q, b),
+  );
+}
+
+function div136OnesDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair36(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫에서 일의 자리 숫자를 쓰시오.`,
+    n(q % 10),
+    `몫은 ${n(q)}이므로 일의 자리 숫자는 ${n(q % 10)}입니다.`,
+    mulCol(q, b),
+  );
+}
+
+function div136Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair36(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}=${q}`)} 입니다. 검산의 곱을 쓰시오.`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+    mulCol(q, b),
+  );
+}
+
+function div136Remain(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 33);
+  const r = intBetween(rng, 1, b - 1);
+  const a = b * q + r;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 나머지를 구하시오.`,
+    n(r),
+    `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 입니다.`,
+  );
+}
+
+function div136QuotMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair36(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 몫보다 ${n(1)} 작은 수를 쓰시오.`,
+    n(q - 1),
+    `몫은 ${n(q)}이므로 ${expr(`${q}-1=${q - 1}`)} 입니다.`,
+  );
+}
+
+function div136Bags(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = pair36(rng);
+  return make(
+    unit,
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았습니다. 봉지는 몇 개인가?`,
+    `${n(q)}개`,
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}개입니다.`,
+  );
+}
+
+/* ── 1-3-7 나눗셈의 어림셈 ── */
+
+function div137RoundDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  return make(
+    unit,
+    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?`,
+    n(bb),
+    `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
+  );
+}
+
+function div137EstQuot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 나누는 수를 몇십으로 어림하여 몫을 어림하시오.`,
+    n(k),
+    `${josaNum(b, "을", "를")} ${n(bb)}으로 어림하면 ${expr(`${a}\\div${bb}=${k}`)} 입니다.`,
+  );
+}
+
+function div137EstBigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  const real = Math.floor(a / b);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 에서 나누는 수를 몇십으로 어림한 몫이 실제 몫보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    k > real ? "예" : "아니요",
+    `어림한 몫은 ${n(k)}, 실제 몫은 ${n(real)}입니다.`,
+  );
+}
+
+function div137EstTimes10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 어림한 몫에 ${n(10)}을 곱한 값을 쓰시오.`,
+    n(k * 10),
+    `어림한 몫은 ${n(k)}이고 ${expr(`${k}\\times10=${k * 10}`)} 입니다.`,
+  );
+}
+
+function div137WhichCloser(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const other = bb === 10 ? 20 : bb - 10;
+  const win = Math.abs(b - bb) <= Math.abs(b - other) ? bb : other;
+  return make(
+    unit,
+    `${n(b)}에 더 가까운 몇십은 ${n(bb)}과 ${n(other)} 중 어느 것인가?`,
+    n(win),
+    `${n(b)}은 ${n(win)}에 더 가깝습니다.`,
+  );
+}
+
+function div137EstMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, DIV_ROUGH_POOL);
+  const bb = Math.round(b / 10) * 10;
+  const k = intBetween(rng, 6, 19);
+  const a = bb * k;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 의 어림한 몫보다 ${n(2)} 작은 수를 쓰시오.`,
+    n(k - 2),
+    `어림한 몫은 ${n(k)}이므로 ${expr(`${k}-2=${k - 2}`)} 입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -6653,6 +7219,90 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "09", tier: "응용", generate: ang126RestVsRight },
     { id: "10", tier: "응용", generate: ang126SumAndOne },
   ],
+  "초4|1-3-1": ten(
+    tier31Calc,
+    tier31Basic,
+    tier31Apply,
+    tier31Deep,
+    mul131Missing,
+    mul131Ones,
+    mul131Plus100,
+    mul131ToMan,
+    mul131TensDigit,
+    mul131NextTen,
+  ),
+  "초4|1-3-2": ten(
+    tier32Calc,
+    tier32Basic,
+    tier32Apply,
+    tier32Deep,
+    mul132Missing,
+    mul132Ones,
+    mul132Minus10,
+    mul132HundredsDigit,
+    mul132Partial,
+    mul132Even,
+  ),
+  "초4|1-3-3": ten(
+    tier33Calc,
+    tier33Basic,
+    tier33Apply,
+    tier33Deep,
+    mul133RoundA,
+    mul133EstHundreds,
+    mul133Bigger,
+    mul133EstDiv10,
+    mul133RoundBOnly,
+    mul133EstMinusActSign,
+  ),
+  "초4|1-3-4": ten(
+    tier34Calc,
+    tier34Basic,
+    tier34Apply,
+    tier34Deep,
+    div134MissingDiv,
+    div134Remain,
+    div134Check,
+    div134QuotPlus,
+    div134AskB,
+    div134LeftIfExtra,
+  ),
+  "초4|1-3-5": ten(
+    tier35Calc,
+    tier35Basic,
+    tier35Apply,
+    tier35Deep,
+    div135Missing,
+    div135Tape,
+    div135Check,
+    div135Remain,
+    div135QuotTimes,
+    div135DaysLeft,
+  ),
+  "초4|1-3-6": ten(
+    tier36Calc,
+    tier36Basic,
+    tier36Apply,
+    tier36Deep,
+    div136TensDigit,
+    div136OnesDigit,
+    div136Check,
+    div136Remain,
+    div136QuotMinus,
+    div136Bags,
+  ),
+  "초4|1-3-7": ten(
+    tier37Calc,
+    tier37Basic,
+    tier37Apply,
+    tier37Deep,
+    div137RoundDivisor,
+    div137EstQuot,
+    div137EstBigger,
+    div137EstTimes10,
+    div137WhichCloser,
+    div137EstMinus,
+  ),
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
     { id: "02", tier: "기본", generate: tier65Basic },

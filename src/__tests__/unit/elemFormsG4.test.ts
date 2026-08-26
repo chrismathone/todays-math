@@ -34,6 +34,12 @@ function answerDeg(answer: string): number {
   return Number(m![1]);
 }
 
+function katexInts(text: string): number[] {
+  return [...text.matchAll(/\$([^$]*)\$/g)].flatMap((m) =>
+    [...m[1]!.matchAll(/\d+/g)].map((d) => Number(d[0])),
+  );
+}
+
 describe("초4 1-1-1 1000이 10개인 수", () => {
   const unit = unitOf("1-1-1");
 
@@ -876,6 +882,149 @@ describe("초4 1-2-6 사각형의 네 각", () => {
       const p = generateElementaryForm(unit, seed, "10");
       const [s, a] = degNums(p.content);
       expect(answerDeg(p.answer)).toBe(s! - a!);
+    }
+  });
+});
+
+describe("초4 1-3-1 (세 자리)×(몇십)", () => {
+  const unit = unitOf("1-3-1");
+
+  it("05 빈칸은 곱하는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [a, prod] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(prod! / a!);
+    }
+  });
+
+  it("06 일의 자리 + 세로셈 그림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe((a! * b!) % 10);
+      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
+    }
+  });
+
+  it("07 곱보다 100 큰 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! * b! + 100);
+    }
+  });
+
+  it("08 곱과 10000의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.abs(a! * b! - 10000));
+    }
+  });
+
+  it("09 십의 자리 숫자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.floor((a! * b!) / 10) % 10);
+    }
+  });
+
+  it("10 곱하는 수가 10 커질 때 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! * 10);
+    }
+  });
+});
+
+describe("초4 1-3-2 (세 자리)×(두 자리)", () => {
+  const unit = unitOf("1-3-2");
+
+  it("05 빈칸은 세 자리 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer) * nums[0]!).toBe(nums[1]!);
+    }
+  });
+
+  it("06 일의 자리 + 세로셈", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe((a! * b!) % 10);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("09 일의 자리와의 부분곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b, a2, ones] = katexInts(p.content);
+      expect(a).toBe(a2);
+      expect(ones).toBe(b! % 10);
+      expect(answerInt(p.answer)).toBe(a! * ones!);
+    }
+  });
+});
+
+describe("초4 1-3-4 몇십으로 나누기", () => {
+  const unit = unitOf("1-3-4");
+
+  it("05 빈칸은 나누는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [a, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! / q!);
+    }
+  });
+
+  it("07 검산 곱 + 세로셈", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const [a, b, q] = katexInts(p.content);
+      expect(a).toBe(b! * q!);
+      expect(answerInt(p.answer)).toBe(a);
+      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
+    }
+  });
+});
+
+describe("초4 1-3-5 몇십몇 나누기 (1)", () => {
+  const unit = unitOf("1-3-5");
+
+  it("06 테이프 도막 + 그림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b] = katexInts(p.content);
+      expect(p.answer).toBe(`$${a! / b!}$도막`);
+      expect(p.figureSpec).toMatchObject({ kind: "tape" });
+    }
+  });
+});
+
+describe("초4 1-3-6 몇십몇 나누기 (2)", () => {
+  const unit = unitOf("1-3-6");
+
+  it("05 몫의 십의 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.floor(a! / b! / 10));
+    }
+  });
+});
+
+describe("초4 1-3-7 나눗셈 어림", () => {
+  const unit = unitOf("1-3-7");
+
+  it("05 몇십으로 어림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const b = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(Math.round(b / 10) * 10);
     }
   });
 });
