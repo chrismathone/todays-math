@@ -45,6 +45,7 @@ export default async function TestPrintPage({ params }: TestPrintPageProps) {
         problems: test.testProblems.map((item) => ({
           id: item.problem.id,
           orderIndex: item.orderIndex,
+          problemCode: item.problem.problemCode,
           content: item.problem.content,
           answer: item.problem.answer,
           solution: item.problem.solution,

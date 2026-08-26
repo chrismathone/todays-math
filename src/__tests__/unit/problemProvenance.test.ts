@@ -252,6 +252,22 @@ describe("[형식] 보기·정답 모양과 questionType으로 [객]·[단]·[�
     expect(classifyFormat(input)).toBe("short_answer");
   });
 
+  /**
+   * 「다음 중 ~인 것은 몇 개인지 구하시오」 유형 — 보기(①②③④⑤)가 있지만
+   * 정답은 번호가 아니라 `$2$개` 같은 개수다. questionType='단답형'이 명시적이면 [단].
+   */
+  it("보기가 있어도 questionType=단답형이면 [단]이다 (몇 개 유형)", () => {
+    expect(
+      classifyFormat({
+        ...BLANK,
+        content:
+          "다음 중 $y$가 $x$에 대한 일차함수인 것은 몇 개인지 구하시오.\n① $y=3x-1$\n② $y=x(x-1)$\n③ $y=5/x$\n④ $y=x^2$\n⑤ $y=-2x+3$",
+        answer: "$2$개",
+        questionType: "단답형",
+      }),
+    ).toBe("short_answer");
+  });
+
   // 양성 대조군 — 미분류가 **실제로 나온다**.
   it.each([
     [

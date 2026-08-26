@@ -38,13 +38,13 @@ export const PROVENANCE_CENSUS_20260825 = {
    */
   format: {
     multiple_choice: 33_860,
-    short_answer: 3_099,
-    descriptive: 7_743,
+    short_answer: 3_126,
+    descriptive: 7_803,
     /**
      * 보기와 정답이 서로 어긋나거나 `question_type` 이 누락되어 단답/서술을 확정할 수 없는 행.
      * 한쪽으로 밀면 **그럴듯하게 틀린다.** 조용히 뭉개지 않고 미분류로 둔다.
      */
-    unknown: 3_085,
+    unknown: 2_998,
   },
   /** 그림 출처 — 그림이 없는 문항이 있어서 합은 `total - none` 이다. */
   figure: {

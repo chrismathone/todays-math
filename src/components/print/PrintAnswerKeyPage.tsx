@@ -1,6 +1,7 @@
 import { MathText } from "@/components/math/MathText";
 import { A4Page } from "@/components/print/A4Page";
 import type { TestPrintProblem } from "@/components/print/types";
+import { formatShortProblemCode } from "@/contracts/problemCode.contract";
 
 import styles from "./TestPrint.module.css";
 
@@ -35,29 +36,29 @@ export function PrintAnswerKeyPage({
         </span>
       </header>
 
-      {isFirstPage ? (
-        <section className={styles.quickAnswerBox}>
-          <h3>빠른 정답</h3>
-          <div className={styles.quickAnswerGrid}>
-            {allProblems.map((problem, index) => (
-              <div
-                className={styles.quickAnswerCell}
-                data-testid={`quick-answer-${index + 1}`}
-                key={problem.id}
-              >
-                <strong>문 {index + 1}</strong>
-                <MathText as="span" text={problem.answer} />
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
       <div
         className={styles.answerSolutions}
         data-testid="answer-solutions"
         style={{ columnCount: 2 }}
       >
+        {isFirstPage ? (
+          <section className={styles.quickAnswerBox}>
+            <h3>빠른 정답</h3>
+            <div className={styles.quickAnswerGrid}>
+              {allProblems.map((problem, index) => (
+                <div
+                  className={styles.quickAnswerCell}
+                  data-testid={`quick-answer-${index + 1}`}
+                  key={problem.id}
+                >
+                  <strong>문 {index + 1}</strong>
+                  <MathText as="span" text={problem.answer} />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         {pageProblems.map((problem, index) => {
           const problemNumber = startingNumber + index;
           return (
@@ -66,7 +67,15 @@ export function PrintAnswerKeyPage({
                 className={styles.solutionHeading}
                 data-testid={`answer-heading-${problemNumber}`}
               >
-                문 {problemNumber} ·{" "}
+                <span>문 {problemNumber}</span>
+                {problem.problemCode ? (
+                  <span className={styles.solutionProblemCode}>
+                    {formatShortProblemCode(problem.problemCode)}
+                  </span>
+                ) : null}
+              </div>
+              <div className={styles.solutionAnswerRow}>
+                <span className={styles.solutionAnswerLabel}>답:</span>
                 <MathText as="span" text={problem.answer} />
               </div>
               <div className={styles.solutionBody}>

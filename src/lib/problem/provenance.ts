@@ -62,9 +62,9 @@
  * | 형식 | 건수 |
  * |---|---|
  * | `[객]` 객관식   | 33,860 |
- * | `[단]` 단답형   |  3,099 |
+ * | `[단]` 단답형   |  3,113 |
  * | `[서]` 서술형   |  7,743 |
- * | `[?형식]` 미분류 |  3,085 |
+ * | `[?형식]` 미분류 |  3,071 |
  *
  * 한 문항이 `figureSvg` 와 `figureUrls` 를 **같이** 갖는 일은 없고(실측 0건), 한 문항의
  * `figureUrls` 가 `/figures-svg/` 와 `/figures/` 를 섞는 일도 없다(실측 0건).
@@ -209,6 +209,11 @@ export function classifyFormat(problem: ProvenanceInput): ProblemFormat {
     }
     return "unknown";
   }
+
+  // 보기가 있는데 정답이 번호가 아닌 경우 — 「다음 중 ~은 몇 개인지 구하시오」 유형.
+  // questionType 이 명시적이면 그것을 믿는다.
+  if (problem.questionType === "단답형") return "short_answer";
+  if (problem.questionType === "서술형") return "descriptive";
 
   return "unknown";
 }

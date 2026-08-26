@@ -3,6 +3,7 @@ export type TestPrintType = "daily" | "review";
 export interface TestPrintProblem {
   id: string;
   orderIndex: number;
+  problemCode?: string | null;
   content: string;
   answer: string;
   solution: string | null;

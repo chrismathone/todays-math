@@ -214,44 +214,21 @@ describe("[출처 배선] 문제은행 카드", () => {
   });
 });
 
-describe("[출처 배선] 검수 카드 — 문제은행과 같은 판정을 그린다", () => {
+describe("[출처 배선] 검수 카드 — 원장님 지시 2026-08-26 「검수화면에는 라벨 안 나와도 됨」", () => {
   it.each([
     ["초등 + 도형 + 객관식", 초등엔진_도형_객관식],
     ["기출 + 스캔 + 객관식", 기출_스캔_객관식],
     ["옛 수동(미분류)", 옛수동],
     ["형식 미분류", 형식모름],
-  ] as const)("%s 에서 두 화면의 라벨이 같다", (_name, entity) => {
-    const bank = render(<ProblemCard problem={entity} />);
-    const review = render(
-      <ReviewProblemCard orderIndex={1} problem={entity} />,
-    );
-    expect(badgesIn(review.container).map((el) => el.textContent)).toEqual(
-      badgesIn(bank.container).map((el) => el.textContent),
-    );
-  });
-
-  it("검수 카드에서도 라벨은 컨트롤이 아니다", () => {
-    const { container } = render(
-      <ReviewProblemCard orderIndex={1} problem={초등엔진_도형_객관식} />,
-    );
-    expect(badgesIn(container)).toHaveLength(3);
-    for (const el of badgesIn(container)) {
-      expect(el.tagName).toBe("ABBR");
-      expect(el.className).not.toContain("cursor-pointer");
-      expect(el.closest("button, a[href]")).toBeNull();
-    }
-  });
-
-  // 검수 카드는 마이크로 라벨에 `text-text-2` 를 쓴다. 그 색이 같이 실리면 어느 쪽이
-  // 이기는지는 **CSS 파일 순서**가 정하므로, 출처 라벨에는 아예 안 실려야 한다.
-  it("검수 카드의 회색 마이크로 라벨 색이 라벨에 섞이지 않는다", () => {
-    const { container } = render(
-      <ReviewProblemCard orderIndex={1} problem={초등엔진_도형_객관식} />,
-    );
-    for (const el of badgesIn(container)) {
-      expect(el.className).not.toContain("text-text-2");
-    }
-  });
+  ] as const)(
+    "%s 에서 검수 카드는 대괄호 라벨을 그리지 않는다",
+    (_name, entity) => {
+      const review = render(
+        <ReviewProblemCard orderIndex={1} problem={entity} />,
+      );
+      expect(badgesIn(review.container)).toHaveLength(0);
+    },
+  );
 });
 
 describe("[출처 배선] 반대쪽 — 없는 것을 그리지 않는다", () => {

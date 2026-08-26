@@ -82,14 +82,14 @@ export const JASEUP_MEASURED_PX = {
   solutionLine: 17.825,
   /** 「빠른 정답」 상자의 제목 줄 + 안팎 여백 (행 수와 무관한 고정분). */
   quickAnswerTitle: 49,
-  /** 그 상자의 행 사이 간격 (`gap: 6px`). */
-  quickAnswerRowGap: 6,
+  /** 그 상자의 행 사이 간격 (`gap: 4px`). */
+  quickAnswerRowGap: 4,
   /** 그 상자의 열 수 (`repeat(4, minmax(0,1fr))`). */
   quickAnswerColumns: 4,
-  /** 셀 한 칸의 글자 아닌 세로 (`padding: 8px 8px 6px`). */
-  quickAnswerCellBase: 14,
-  /** 셀 한 줄 높이 — 11px × `line-height: 2.1`. */
-  quickAnswerCellLine: 23.1,
+  /** 셀 한 칸의 글자 아닌 세로 (`padding: 4px 6px 3px`). */
+  quickAnswerCellBase: 7,
+  /** 셀 한 줄 높이 — 10.5px × `line-height: 1.6`. */
+  quickAnswerCellLine: 16.8,
   /**
    * 셀 한 줄에 들어가는 표시폭. 셀 안폭 약 153px 에서 「문 N」 라벨과 간격을 뺀
    * 몫이라 좁다 — **정답이 조금만 길어도 두 줄이 된다**, 그게 상자가 커지는 이유다.
@@ -97,5 +97,5 @@ export const JASEUP_MEASURED_PX = {
    */
   quickAnswerCellUnits: 16,
   /** 상자와 해설 칸 사이 여백. */
-  quickAnswerGap: 16.5,
+  quickAnswerGap: 14,
 } as const;

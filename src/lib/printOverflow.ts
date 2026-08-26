@@ -788,7 +788,8 @@ export function estimateSolutionPx(solution: string | null): number {
       .split(/\r?\n/)
       .reduce(
         (sum, line) =>
-          sum + Math.max(1, Math.ceil(displayWidth(line) / SOLUTION_UNITS_PER_LINE)),
+          sum +
+          Math.max(1, Math.ceil(displayWidth(line) / SOLUTION_UNITS_PER_LINE)),
         0,
       ),
   );
@@ -826,21 +827,26 @@ export function assessAnswerKeyRisk(
   const risks: AnswerKeyRisk[] = [];
 
   paginateAnswerKey(problems).forEach((page, pageIndex) => {
-    // 1쪽에만 「빠른 정답」 상자가 얹힌다 — 그만큼 해설 칸이 좁다.
-    const columnPx =
+    // 1쪽의 1단에만 「빠른 정답」 상자가 얹힌다 — 1단만 상자 높이만큼 줄어든다.
+    const firstColReduction =
       pageIndex === 0
-        ? answerSolutionsFull -
-          quickAnswerBoxPx(problems.map((p) => p.answer)) -
-          quickAnswerGap
-        : answerSolutionsFull;
+        ? quickAnswerBoxPx(problems.map((p) => p.answer)) + quickAnswerGap
+        : 0;
+
+    const columnLimits = Array.from({ length: solutionColumns }, (_, colIdx) =>
+      colIdx === 0
+        ? answerSolutionsFull - firstColReduction
+        : answerSolutionsFull,
+    );
 
     let column = 0;
     let used = 0;
     const numbers: number[] = [];
     page.problems.forEach((problem, index) => {
       const height = estimateSolutionPx(problem.solution);
+      const currentLimit = columnLimits[column] ?? answerSolutionsFull;
       // 단이 남았는데 안 들어가면 통째로 다음 단으로 간다(`break-inside: avoid`).
-      if (used > 0 && used + height > columnPx) {
+      if (used > 0 && used + height > currentLimit) {
         column += 1;
         used = 0;
       }

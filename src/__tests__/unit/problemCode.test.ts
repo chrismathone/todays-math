@@ -35,6 +35,7 @@ import {
   PROBLEM_CODE_SUFFIX_LENGTH,
   PROBLEM_FAMILY_MAX,
   PROBLEM_SEQ_MAX,
+  formatShortProblemCode,
   problemCodeSchema,
   unitCodePrefixSchema,
 } from "@/contracts/problemCode.contract";
@@ -341,5 +342,26 @@ describe("[D-105] 문항 코드 2세대 — 문항류 + 아류 번호", () => {
   it("옛 한-인자 부여 함수를 남겨 두지 않는다 — 남으면 옛 형식이 계속 나온다", () => {
     expect(sql2).toMatch(/DROP FUNCTION IF EXISTS "problem_code_next"\(uuid\)/);
     expect(sql2).toMatch(/DROP FUNCTION IF EXISTS "problem_code_suffix"\(\)/);
+  });
+});
+
+describe("[원장님 지시 2026-08-26] formatShortProblemCode — 문항류까지 짧게", () => {
+  it("2세대 코드는 문항류(A01 등)만 꺼낸다", () => {
+    expect(formatShortProblemCode("J30103-A01-001")).toBe("A01");
+    expect(formatShortProblemCode("HC10305-B12-007")).toBe("B12");
+  });
+
+  it("unit_family 모드에서는 단원코드와 문항류를 함께 꺼낸다", () => {
+    expect(formatShortProblemCode("J30103-A01-001", "unit_family")).toBe(
+      "J30103-A01",
+    );
+    expect(formatShortProblemCode("HC10305-B12-007", "unit_family")).toBe(
+      "HC10305-B12",
+    );
+  });
+
+  it("1세대 옛 코드(문항류 없음)는 전체 코드를 그대로 보존한다", () => {
+    expect(formatShortProblemCode("J30103-4NSK")).toBe("J30103-4NSK");
+    expect(formatShortProblemCode("E30104-3EGR")).toBe("E30104-3EGR");
   });
 });
