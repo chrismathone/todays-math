@@ -7388,5 +7388,142 @@ export const G6: Record<string, ChapterHandler> = {
 /**
  * 초6 문형 등록부. 소단원마다 문형 10개 (원장님 확정 2026-08-26 안 3 최고안).
  * 진척은 `npx tsx scripts/qa/probe-elem-forms.ts --grade 초6` 이 센다.
+ *
+ * 배분은 제품 `defaultRatioFor(10)` = 연산1·기본4·응용4·심화1.
+ * 01–04 는 기존 4단 핸들러를 **감싸기만** 한다(고치면 적재분이 달라진다).
  */
-export const G6_FORMS: Record<string, readonly ElemForm[]> = {};
+function forms10(
+  calc: ChapterHandler,
+  basic: ChapterHandler,
+  apply: ChapterHandler,
+  deep: ChapterHandler,
+  extra: {
+    b5: ChapterHandler;
+    b6: ChapterHandler;
+    b7: ChapterHandler;
+    a8: ChapterHandler;
+    a9: ChapterHandler;
+    a10: ChapterHandler;
+  },
+): readonly ElemForm[] {
+  return [
+    { id: "01", tier: "연산", generate: calc },
+    { id: "02", tier: "기본", generate: basic },
+    { id: "03", tier: "응용", generate: apply },
+    { id: "04", tier: "심화", generate: deep },
+    { id: "05", tier: "기본", generate: extra.b5 },
+    { id: "06", tier: "기본", generate: extra.b6 },
+    { id: "07", tier: "기본", generate: extra.b7 },
+    { id: "08", tier: "응용", generate: extra.a8 },
+    { id: "09", tier: "응용", generate: extra.a9 },
+    { id: "10", tier: "응용", generate: extra.a10 },
+  ];
+}
+
+/** 1-1-1 재료 — 몫이 진분수가 되게 `a < b`. */
+function natPair(rng: Rng): { a: number; b: number } {
+  const b = intBetween(rng, 3, 9);
+  return { a: intBetween(rng, 2, b - 1), b };
+}
+
+/** 문형 05 — 몫이 아니라 **분모**(나누는 수)를 묻는다. */
+function natDivFormDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}`)} 를 분수로 나타낼 때 분모는 얼마입니까?`,
+    num(b),
+    `나누는 수가 분모입니다. ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 이므로 분모는 ${num(b)}입니다.`,
+  );
+}
+
+/** 문형 06 — **분자**(나누어지는 수). 05 와 한 낱말만 바꾸면 안 되므로 식의 자리를 다르게 적는다. */
+function natDivFormNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `나누어지는 수가 ${num(a)}, 나누는 수가 ${num(b)}인 나눗셈의 몫을 분수로 나타낼 때, 분자는 얼마입니까?`,
+    num(a),
+    `나누어지는 수가 분자입니다. ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 이므로 분자는 ${num(a)}입니다.`,
+  );
+}
+
+/**
+ * 문형 07 — 흔한 거꾸로 표기(`b/a`)가 **틀렸다**는 참·거짓.
+ * 수가 바뀌어도 답은 「아니요」다 — 묻는 것은 표기 규칙이지 값이 아니다.
+ */
+function natDivFormReciprocalTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = natPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${b}=\\frac{${b}}{${a}}`)}`,
+    "아니요",
+    `나누어지는 수가 분자, 나누는 수가 분모이므로 ${expr(`${a}\\div${b}=\\frac{${a}}{${b}}`)} 입니다. ` +
+      `${expr(`\\frac{${b}}{${a}}`)} 는 나누는 수와 나누어지는 수를 바꾼 것입니다.`,
+  );
+}
+
+/** 문형 08 — 분모가 같은 두 나눗셈 몫의 **합**(두 걸음). */
+function natDivFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 9);
+  const a = intBetween(rng, 1, b - 1);
+  const c = intBetween(rng, 1, b - 1);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오.\n\n${expr(`${a}\\div${b}`)}, ${expr(`${c}\\div${b}`)}`,
+    expr(fmtFrac(a + c, b)),
+    `몫은 ${expr(`\\frac{${a}}{${b}}`)} 와 ${expr(`\\frac{${c}}{${b}}`)} 입니다. ` +
+      `분모가 같으므로 ${expr(`\\frac{${a}+${c}}{${b}}=${fmtFrac(a + c, b)}`)} 입니다.`,
+  );
+}
+
+/**
+ * 문형 09 — 나누고 **그 몫의 절반**을 남긴다.
+ * 03 은 「빼고 나눈다」. 여기는 순서가 반대다.
+ */
+function natDivFormHalfShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const people = intBetween(rng, 3, 8);
+  const amount = intBetween(rng, 2, people - 1);
+  const [p, q] = divFrac(amount, people, 2, 1);
+  return make(
+    unit,
+    `${s.thing} ${unitNum(amount, s.unit)}${s.unitJosa} ${num(people)}명이 똑같이 ${s.verb} 합니다. ` +
+      `한 사람이 자기 몫의 절반만 가졌습니다. 그 사람이 가진 양은 몇 ${s.unit}입니까?`,
+    expr(fmtFrac(p, q)),
+    `한 사람의 몫은 ${expr(`${amount}\\div${people}=${fmtFrac(amount, people)}`)} ${s.unit}입니다. ` +
+      `절반은 ${expr(`${fmtFrac(amount, people)}\\div2=${fmtFrac(p, q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 나눗셈 중 **큰 몫**. 답이 식 번호가 아니라 그 몫이다. */
+function natDivFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p1 = natPair(rng);
+  let p2 = natPair(rng);
+  for (let t = 0; t < 24 && p1.a * p2.b === p2.a * p1.b; t += 1)
+    p2 = natPair(rng);
+  if (p1.a * p2.b === p2.a * p1.b) {
+    p2 = { a: p1.a, b: p1.b + 1 <= 9 ? p1.b + 1 : p1.b - 1 };
+  }
+  const leftBigger = p1.a * p2.b > p2.a * p1.b;
+  const win = leftBigger ? p1 : p2;
+  return make(
+    unit,
+    `다음 두 나눗셈 가운데 몫이 더 큰 쪽의 몫을 분수로 나타내시오.\n\n${expr(`${p1.a}\\div${p1.b}`)}\n${expr(`${p2.a}\\div${p2.b}`)}`,
+    expr(fmtFrac(win.a, win.b)),
+    `${expr(`${p1.a}\\div${p1.b}=${fmtFrac(p1.a, p1.b)}`)}, ` +
+      `${expr(`${p2.a}\\div${p2.b}=${fmtFrac(p2.a, p2.b)}`)} 입니다. ` +
+      `더 큰 몫은 ${expr(fmtFrac(win.a, win.b))} 입니다.`,
+  );
+}
+
+export const G6_FORMS: Record<string, readonly ElemForm[]> = {
+  "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
+    b5: natDivFormDen,
+    b6: natDivFormNum,
+    b7: natDivFormReciprocalTf,
+    a8: natDivFormSum,
+    a9: natDivFormHalfShare,
+    a10: natDivFormLarger,
+  }),
+};
