@@ -661,3 +661,199 @@ describe("초5 1-2-3 공약수와 최대공약수", () => {
     }
   });
 });
+
+function lcmOf(x: number, y: number): number {
+  let a = x;
+  let b = y;
+  while (b !== 0) {
+    const t = a % b;
+    a = b;
+    b = t;
+  }
+  return (x * y) / a;
+}
+
+describe("초5 1-2-4 최대공약수 구하는 방법", () => {
+  const unit = unitOf("1-2-4");
+
+  it("05 더 큰 몫", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/두 수 \$(\d+)\$, \$(\d+)\$를 최대공약수/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const g = ownDivisors(a)
+        .filter((d) => b % d === 0)
+        .pop()!;
+      expect(answerInt(p.answer)).toBe(Math.max(a / g, b / g));
+    }
+  });
+
+  it("06 나머지는 0", () => {
+    for (const seed of SEEDS) {
+      expect(answerInt(generateElementaryForm(unit, seed, "06").answer)).toBe(
+        0,
+      );
+    }
+  });
+
+  it("09 두 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/두 수 \$(\d+)\$, \$(\d+)\$를 최대공약수/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const g = ownDivisors(a)
+        .filter((d) => b % d === 0)
+        .pop()!;
+      expect(answerInt(p.answer)).toBe(Math.abs(a / g - b / g));
+    }
+  });
+
+  it("10 최대공약수와 몫의 곱은 처음 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(
+        /두 수 \$(\d+)\$, \$(\d+)\$의 최대공약수와, \$(\d+)\$/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![3]));
+    }
+  });
+});
+
+describe("초5 1-2-5 공배수와 최소공배수", () => {
+  const unit = unitOf("1-2-5");
+
+  it("05 세 번째 공배수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 공배수 중에서 세 번째/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(3 * lcmOf(Number(m![1]), Number(m![2])));
+    }
+  });
+
+  it("06 첫 세 공배수 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(
+        /\$(\d+)\$.*\$(\d+)\$의 공배수를 작은 수부터 세 개/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(6 * lcmOf(Number(m![1]), Number(m![2])));
+    }
+  });
+
+  it("10 최소공배수의 몇 배", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$의 공배수 \$(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      const m0 = lcmOf(Number(m![1]), Number(m![2]));
+      expect(answerInt(p.answer)).toBe(Number(m![3]) / m0);
+    }
+  });
+});
+
+describe("초5 1-2-6 최소공배수 구하는 방법", () => {
+  const unit = unitOf("1-2-6");
+
+  it("05 최소공배수÷한 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(
+        /두 수 \$(\d+)\$, \$(\d+)\$의 최소공배수를 \$(\d+)\$/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        lcmOf(Number(m![1]), Number(m![2])) / Number(m![3]),
+      );
+    }
+  });
+
+  it("06 공약수와 두 몫의 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(
+        /공약수 \$(\d+)\$.*몫이 \$(\d+)\$.*\$(\d+)\$.*두 몫의 공약수/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * Number(m![2]) * Number(m![3]),
+      );
+    }
+  });
+
+  it("10 동시에 출발하는 간격", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(
+        /버스는 \$(\d+)\$분마다, 지하철은 \$(\d+)\$분마다/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(lcmOf(Number(m![1]), Number(m![2])));
+    }
+  });
+});
+
+describe("초5 1-3-1 대응 관계 — 표에서 다시 센다", () => {
+  const unit = unitOf("1-3-1");
+
+  function triValues(p: {
+    figureSpec: Record<string, unknown> | null;
+  }): number[] {
+    expect(p.figureSpec).toBeTruthy();
+    const rows = p.figureSpec!.rows as string[][];
+    return rows[0]!.slice(1).map(Number);
+  }
+
+  it("05 가장 큰 △", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(answerInt(p.answer)).toBe(Math.max(...triValues(p)));
+    }
+  });
+
+  it("06 △의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(answerInt(p.answer)).toBe(triValues(p).reduce((a, b) => a + b, 0));
+    }
+  });
+
+  it("07 최대-최소", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const ys = triValues(p);
+      expect(answerInt(p.answer)).toBe(Math.max(...ys) - Math.min(...ys));
+    }
+  });
+
+  it("08 가장 작은 △", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      expect(answerInt(p.answer)).toBe(Math.min(...triValues(p)));
+    }
+  });
+
+  it("09 한 칸 증가량", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const ys = triValues(p);
+      expect(answerInt(p.answer)).toBe(ys[1]! - ys[0]!);
+    }
+  });
+
+  it("10 합에서 최대를 뺀 값", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const ys = triValues(p);
+      expect(answerInt(p.answer)).toBe(
+        ys.reduce((a, b) => a + b, 0) - Math.max(...ys),
+      );
+    }
+  });
+});

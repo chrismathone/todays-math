@@ -4042,6 +4042,86 @@ function commul125Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 세 번째로 작은 공배수. */
+function commul125Third(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 세 번째로 작은 수를 구하시오.`,
+    n(3 * m),
+    `최소공배수는 ${n(m)}이므로 세 번째로 작은 공배수는 ${expr(`${m}\\times3=${3 * m}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 첫 세 공배수의 합. */
+function commul125FirstThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수를 작은 수부터 세 개 더하면 얼마입니까?`,
+    n(6 * m),
+    `작은 수부터 ${nums([m, 2 * m, 3 * m])}이므로 합은 ${expr(`${m}+${2 * m}+${3 * m}=${6 * m}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 짝수인 공배수 중 가장 작은 수. */
+function commul125SmallestEven(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  const ans = m % 2 === 0 ? m : 2 * m;
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.`,
+    n(ans),
+    `최소공배수는 ${n(m)}입니다. 짝수인 공배수 중 가장 작은 수는 ${n(ans)}입니다.`,
+  );
+}
+
+/** 문형 08 — L보다 큰 가장 작은 공배수. */
+function commul125NextAbove(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  const k = intBetween(rng, 2, 4);
+  const L = k * m + intBetween(rng, 1, Math.max(1, m - 1));
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 ${n(L)}보다 큰 수 중 가장 작은 수를 구하시오.`,
+    n((k + 1) * m),
+    `공배수는 ${n(m)}의 배수입니다. ${n(L)}보다 큰 가장 작은 공배수는 ${n((k + 1) * m)}입니다.`,
+  );
+}
+
+/** 문형 09 — 어떤 수가 공배수인지 판정. */
+function commul125IsCommon(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const x = ok ? m * intBetween(rng, 1, 3) : m * intBetween(rng, 1, 3) + 1;
+  return make(
+    unit,
+    `${nj(x, "은", "는")} ${n(a)}와 ${n(b)}의 공배수입니까? (예, 아니요)`,
+    x % a === 0 && x % b === 0 ? "예" : "아니요",
+    x % a === 0 && x % b === 0
+      ? `${nj(x, "은", "는")} 두 수의 공배수입니다.`
+      : `${nj(x, "은", "는")} 두 수의 공배수가 아닙니다.`,
+  );
+}
+
+/** 문형 10 — 최소공배수의 몇 배인지. */
+function commul125HowManyTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `${nj(a, "과", "와")} ${n(b)}의 공배수 ${n(k * m)}은 최소공배수의 몇 배입니까?`,
+    n(k),
+    `최소공배수는 ${n(m)}이므로 ${expr(`${k * m}\\div${m}=${k}`)}배입니다.`,
+  );
+}
+
 /* ── 1-2-6 최소공배수 구하는 방법 — 시간표·바둑판 활용은 이 소단원만 쓴다 ── */
 
 /** 연산 — 최소공배수 값 · 나눗셈법의 구조(공약수로 나눈 몫이 서로 나눠지지 않을 때). */
@@ -4150,6 +4230,94 @@ function lcm126Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `두 수의 최소공배수가 ${n(M)}입니다. 한 수가 ${n(a)}일 때, 다른 수가 될 수 있는 수 중에서 가장 작은 수를 구하시오.`,
     n(ans),
     `다른 수는 ${n(M)}의 약수 중에서 ${nj(a, "과", "와")}의 최소공배수가 ${nj(M, "이", "가")} 되는 수입니다. 될 수 있는 수는 ${nums(cands)}이고, 가장 작은 수는 ${n(ans)}입니다.`,
+  );
+}
+
+/** 문형 05 — 최소공배수를 한 수로 나눈 값. */
+function lcm126DivOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}의 최소공배수를 ${nro(a)} 나누면 얼마입니까?`,
+    n(m / a),
+    `최소공배수는 ${n(m)}이므로 ${expr(`${m}\\div${a}=${m / a}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 나눗셈법의 곱. */
+function lcm126MethodProduct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = intBetween(rng, 2, 4);
+  const [p, q] = pick(rng, [
+    [2, 3],
+    [3, 4],
+    [2, 5],
+    [3, 5],
+    [4, 5],
+    [2, 7],
+  ] as const);
+  return make(
+    unit,
+    `어떤 두 수를 공약수 ${nro(g)} 나누었더니 몫이 ${nj(p, "과", "와")} ${nj(q, "이", "가")} 되었고 두 몫의 공약수는 ${n(1)}뿐입니다. 공약수와 두 몫을 모두 곱하면 얼마입니까?`,
+    n(g * p * q),
+    `${expr(`${g}\\times${p}\\times${q}=${g * p * q}`)}입니다. 이 값이 최소공배수입니다.`,
+  );
+}
+
+/** 문형 07 — 세 수의 최소공배수. */
+function lcm126Three(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, [4, 6, 8]);
+  const b = pick(
+    rng,
+    [6, 9, 10].filter((v) => v !== a),
+  );
+  const c = pick(
+    rng,
+    [8, 10, 12].filter((v) => v !== a && v !== b),
+  );
+  const m = lcm(lcm(a, b), c);
+  return make(
+    unit,
+    `세 수 ${n(a)}, ${n(b)}, ${n(c)}의 최소공배수를 구하시오.`,
+    n(m),
+    `${nj(a, "과", "와")} ${n(b)}의 최소공배수는 ${n(lcm(a, b))}이고, 이와 ${n(c)}의 최소공배수는 ${n(m)}입니다.`,
+  );
+}
+
+/** 문형 08 — 정사각형을 만들 때 가로로 놓는 카드 수. */
+function lcm126Across(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  return make(
+    unit,
+    `가로가 ${n(a)} cm, 세로가 ${n(b)} cm인 직사각형 카드를 겹치지 않게 늘어놓아 가장 작은 정사각형을 만들었습니다. 가로 방향으로 놓은 카드는 몇 장입니까?`,
+    n(m / a),
+    `정사각형의 한 변은 최소공배수 ${n(m)} cm이므로 가로로는 ${expr(`${m}\\div${a}=${m / a}`)}장입니다.`,
+  );
+}
+
+/** 문형 09 — 최소공배수가 두 수의 곱과 같은지 판정. */
+function lcm126EqualsProduct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  const prod = a * b;
+  return make(
+    unit,
+    `두 수 ${n(a)}, ${n(b)}의 최소공배수는 두 수의 곱 ${n(prod)}과 같습니까? (예, 아니요)`,
+    m === prod ? "예" : "아니요",
+    `최소공배수는 ${n(m)}이고 두 수의 곱은 ${n(prod)}입니다. 따라서 ${m === prod ? "같습니다" : "다릅니다"}.`,
+  );
+}
+
+/** 문형 10 — 동시에 만나는 간격. */
+function lcm126Interval(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = pick(rng, LCM_PAIRS);
+  const m = lcm(a, b);
+  return make(
+    unit,
+    `버스는 ${n(a)}분마다, 지하철은 ${n(b)}분마다 출발합니다. 두 편이 동시에 출발한 뒤 다시 동시에 출발하는 간격은 몇 분입니까?`,
+    n(m),
+    `동시에 출발하는 간격은 최소공배수인 ${n(m)}분입니다.`,
   );
 }
 
@@ -4317,6 +4485,100 @@ function corr131Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       xs,
       xs.map((x) => x + c),
     ),
+  );
+}
+
+function corr131Pair(rng: Rng): {
+  from: number;
+  xs: number[];
+  ys: number[];
+  intro: string;
+} {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const intro = `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다.`;
+  if (intBetween(rng, 0, 1) === 0) {
+    const k = intBetween(rng, 2, 8);
+    return { from, xs, ys: xs.map((x) => x * k), intro };
+  }
+  const c = intBetween(rng, 2, 9);
+  return { from, xs, ys: xs.map((x) => x + c), intro };
+}
+
+/** 문형 05 — 표에서 가장 큰 △. */
+function corr131MaxTri(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  return make(
+    unit,
+    `${intro} 표에 있는 △ 중 가장 큰 값을 구하시오.`,
+    n(ys[ys.length - 1]!),
+    `표의 △는 ${nums(ys)}이므로 가장 큰 값은 ${n(ys[ys.length - 1]!)}입니다.`,
+    corrTable(xs, ys),
+  );
+}
+
+/** 문형 06 — 표의 △를 모두 더한 값. */
+function corr131SumTri(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  const sum = ys.reduce((a, b) => a + b, 0);
+  return make(
+    unit,
+    `${intro} 표에 있는 △를 모두 더하면 얼마입니까?`,
+    n(sum),
+    `△는 ${nums(ys)}이므로 합은 ${n(sum)}입니다.`,
+    corrTable(xs, ys),
+  );
+}
+
+/** 문형 07 — 첫 △와 끝 △의 차. */
+function corr131Span(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  const span = ys[ys.length - 1]! - ys[0]!;
+  return make(
+    unit,
+    `${intro} 표에서 가장 큰 △와 가장 작은 △의 차는 얼마입니까?`,
+    n(span),
+    `가장 큰 △는 ${n(ys[ys.length - 1]!)}, 가장 작은 △는 ${n(ys[0]!)}이므로 차는 ${expr(`${ys[ys.length - 1]}-${ys[0]}=${span}`)}입니다.`,
+    corrTable(xs, ys),
+  );
+}
+
+/** 문형 08 — 표에서 가장 작은 △. */
+function corr131MinTri(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  return make(
+    unit,
+    `${intro} 표에 있는 △ 중 가장 작은 값을 구하시오.`,
+    n(ys[0]!),
+    `표의 △는 ${nums(ys)}이므로 가장 작은 값은 ${n(ys[0]!)}입니다.`,
+    corrTable(xs, ys),
+  );
+}
+
+/** 문형 09 — 이웃한 두 △의 차(첫째와 둘째). */
+function corr131Step(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  const step = ys[1]! - ys[0]!;
+  return make(
+    unit,
+    `${intro} □가 ${n(1)} 커질 때 △는 얼마만큼 커집니까?`,
+    n(step),
+    `첫째 △는 ${n(ys[0]!)}, 둘째 △는 ${n(ys[1]!)}이므로 ${expr(`${ys[1]}-${ys[0]}=${step}`)}만큼 커집니다.`,
+    corrTable(xs, ys),
+  );
+}
+
+/** 문형 10 — △의 합에서 가장 큰 △를 뺀 값. */
+function corr131SumMinusMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { xs, ys, intro } = corr131Pair(rng);
+  const sum = ys.reduce((a, b) => a + b, 0);
+  const rest = sum - ys[ys.length - 1]!;
+  return make(
+    unit,
+    `${intro} 표에 있는 △를 모두 더한 뒤 가장 큰 △를 빼면 얼마입니까?`,
+    n(rest),
+    `합은 ${n(sum)}이고 가장 큰 △는 ${n(ys[ys.length - 1]!)}이므로 ${expr(`${sum}-${ys[ys.length - 1]}=${rest}`)}입니다.`,
+    corrTable(xs, ys),
   );
 }
 
@@ -7959,6 +8221,54 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: comdiv123QuotientSum },
     { id: "09", tier: "응용", generate: comdiv123EvenSum },
     { id: "10", tier: "응용", generate: comdiv123MinMaxSum },
+  ],
+  "초5|1-2-4": [
+    { id: "01", tier: "연산", generate: gcd124Calc },
+    { id: "02", tier: "기본", generate: gcd124Read },
+    { id: "03", tier: "응용", generate: gcd124Apply },
+    { id: "04", tier: "심화", generate: gcd124Deep },
+    { id: "05", tier: "기본", generate: gcd124BiggerQuot },
+    { id: "06", tier: "기본", generate: gcd124Remainder },
+    { id: "07", tier: "기본", generate: gcd124Three },
+    { id: "08", tier: "응용", generate: gcd124DividesBoth },
+    { id: "09", tier: "응용", generate: gcd124QuotDiff },
+    { id: "10", tier: "응용", generate: gcd124Recover },
+  ],
+  "초5|1-2-5": [
+    { id: "01", tier: "연산", generate: commul125Calc },
+    { id: "02", tier: "기본", generate: commul125Read },
+    { id: "03", tier: "응용", generate: commul125Apply },
+    { id: "04", tier: "심화", generate: commul125Deep },
+    { id: "05", tier: "기본", generate: commul125Third },
+    { id: "06", tier: "기본", generate: commul125FirstThreeSum },
+    { id: "07", tier: "기본", generate: commul125SmallestEven },
+    { id: "08", tier: "응용", generate: commul125NextAbove },
+    { id: "09", tier: "응용", generate: commul125IsCommon },
+    { id: "10", tier: "응용", generate: commul125HowManyTimes },
+  ],
+  "초5|1-2-6": [
+    { id: "01", tier: "연산", generate: lcm126Calc },
+    { id: "02", tier: "기본", generate: lcm126Read },
+    { id: "03", tier: "응용", generate: lcm126Apply },
+    { id: "04", tier: "심화", generate: lcm126Deep },
+    { id: "05", tier: "기본", generate: lcm126DivOne },
+    { id: "06", tier: "기본", generate: lcm126MethodProduct },
+    { id: "07", tier: "기본", generate: lcm126Three },
+    { id: "08", tier: "응용", generate: lcm126Across },
+    { id: "09", tier: "응용", generate: lcm126EqualsProduct },
+    { id: "10", tier: "응용", generate: lcm126Interval },
+  ],
+  "초5|1-3-1": [
+    { id: "01", tier: "연산", generate: corr131Calc },
+    { id: "02", tier: "기본", generate: corr131Read },
+    { id: "03", tier: "응용", generate: corr131Apply },
+    { id: "04", tier: "심화", generate: corr131Deep },
+    { id: "05", tier: "기본", generate: corr131MaxTri },
+    { id: "06", tier: "기본", generate: corr131SumTri },
+    { id: "07", tier: "기본", generate: corr131Span },
+    { id: "08", tier: "응용", generate: corr131MinTri },
+    { id: "09", tier: "응용", generate: corr131Step },
+    { id: "10", tier: "응용", generate: corr131SumMinusMax },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
