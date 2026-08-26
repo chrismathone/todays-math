@@ -6,6 +6,22 @@ import { unitSectionName } from "./unitLookup";
 export const MAIN_ROW_GRID =
   "grid grid-cols-[44px_minmax(0,1fr)_232px_112px] items-center gap-4 px-6";
 
+/**
+ * 행을 눌러 반을 고르게 되면서(원장님 확정 2026-08-26) 행이 **두 조각**이 됐다 —
+ * 「고르는 버튼」과 「액션 컨트롤」. 버튼 안에 다시 액션 버튼을 넣으면 겹친 컨트롤이
+ * 되므로 나란히 둔다.
+ *
+ * ⚠️ 바깥(`1fr` + 112px)과 안쪽(44 + 1fr + 232)을 합치면 위 `MAIN_ROW_GRID` 넷과
+ *    **같은 자리**에 선다 — gap 16px 이 안팎에 같은 값으로 들어가기 때문이다.
+ *    완료 행(`DoneSummaryRow`)도 이 셋 중 하나를 쓰므로, 숫자가 어긋나면 같은 화면에서
+ *    칸이 밀린다. `mainRowGrid.test.ts` 가 셋이 한 숫자를 쓰는지 잠근다 —
+ *    **한쪽만 고치면 빨개진다.**
+ */
+export const MAIN_ROW_OUTER =
+  "grid grid-cols-[minmax(0,1fr)_112px] items-center gap-4 px-6";
+export const MAIN_ROW_INNER =
+  "grid grid-cols-[44px_minmax(0,1fr)_232px] items-center gap-4";
+
 export type PipelineStage =
   "progress" | "generate" | "review" | "print" | "done";
 

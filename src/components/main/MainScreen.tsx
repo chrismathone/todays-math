@@ -184,21 +184,40 @@ export function MainScreen() {
           <DailyReviewSection units={state.units} />
           {view === "stack" ? (
             <>
+              {/*
+               * 🔴 `hot` 은 「목록 첫 줄」이 아니라 **「지금 고른 반」**이다
+               *    (원장님 확정 2026-08-26). 종전엔 `i === 0` 이라 파란 불이 늘 맨 위에
+               *    박혀 있었고, 2·3번 반을 고르면 오른쪽 패널만 바뀌고 왼쪽은 그대로여서
+               *    **어느 반을 보고 있는지 화면이 말하지 않았다.**
+               *    첫 화면이 지금과 같아 보이는 것은 `selectedClassId` 의 기본값이
+               *    「가장 먼저 할 반」(정렬 첫 줄)이기 때문이지, 첫 줄이라서가 아니다.
+               */}
               {pending.map((row, i) => (
                 <ClassCard
                   key={row.classId}
                   row={row}
                   index={i + 1}
-                  hot={i === 0}
+                  hot={row.classId === selectedClassId}
+                  onSelect={handleSelectClass}
                   onProgress={handleSelectClass}
                 />
               ))}
               {done.map((row) => (
-                <DoneSummaryRow key={row.classId} row={row} />
+                <DoneSummaryRow
+                  key={row.classId}
+                  row={row}
+                  hot={row.classId === selectedClassId}
+                  onSelect={handleSelectClass}
+                />
               ))}
             </>
           ) : (
-            <LedgerTable rows={rows} onProgress={handleSelectClass} />
+            <LedgerTable
+              rows={rows}
+              selectedClassId={selectedClassId}
+              onSelect={handleSelectClass}
+              onProgress={handleSelectClass}
+            />
           )}
         </div>
         <ProgressPanel
@@ -211,7 +230,6 @@ export function MainScreen() {
           error={advanceError}
           canRecord={canRecord}
           suggestion={committedUnitId === null ? suggestion : null}
-          onSelectClass={handleSelectClass}
           onStep={handleStep}
           onRecord={() => {
             void handleRecord();

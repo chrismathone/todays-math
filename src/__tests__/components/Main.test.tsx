@@ -29,7 +29,8 @@ import {
 } from "@/mocks/data";
 import { server } from "@/mocks/server";
 
-const CARD_GRID = "grid-cols-[44px_minmax(0,1fr)_232px_112px]";
+const OUTER_GRID = "grid-cols-[minmax(0,1fr)_112px]";
+const INNER_GRID = "grid-cols-[44px_minmax(0,1fr)_232px]";
 
 // 일일테스트는 "현재 진도 차시"의 것만 오늘의 테스트로 잡히므로(pickActiveTest, 2026-08-14),
 // 각 반의 현재 진도 단원을 rangeEndUnitId로 넣어야 그 반이 done/review로 정상 판정된다.
@@ -161,18 +162,38 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
   // 배경이 원색 화이트가 되면서(2026-08-18) 「hot = 흰 표면」은 아무 것도 표시하지
   // 못하게 됐다 — 이 테스트가 그 죽은 신호를 지키고 있었다. 지금 처리 중인 반은
   // **왼쪽 잉크 바 + 굵은 밑선**으로 표시한다.
-  it("카드 줄이 44 | 1fr | 232 | 112 그리드이고 hot 카드는 선으로 표시된다", async () => {
+  it("카드 줄이 «고르는 버튼 + 액션» 두 조각이고 hot 카드는 선으로 표시된다", async () => {
     await renderMain();
 
+    // 행을 눌러 반을 고르게 되면서(2026-08-26) 넷짜리 격자가 둘로 쪼개졌다.
+    // 칸 폭이 맞는지는 `mainRowGrid.test.ts` 가 따로 잠근다 — 여기서는 **구조**만 본다.
     const hot = screen.getByRole("article", { name: "중2 심화반" });
-    expect(hot.className).toContain(CARD_GRID);
+    expect(hot.className).toContain(OUTER_GRID);
+    // 고른 행은 **네 변 전부** 굵다 (원장님 2026-08-26). 밑줄만으로는 «구분선»으로 읽힌다.
+    expect(hot.className).toMatch(/\bborder-2\b/);
     expect(hot.className).toContain("border-ink");
     expect(hot.className).toMatch(/inset_5px/);
     expect(hot.className).not.toContain("bg-white");
+    // 밑변만 굵던 옛 표시로 돌아가면 안 된다.
+    expect(hot.className).not.toMatch(/\bborder-b-2\b/);
+
+    // 안쪽 셋은 진짜 버튼이어야 한다(표면에 onClick 을 얹으면 D-30 위반).
+    const pick = within(hot).getByRole("button");
+    expect(pick.className).toContain(INNER_GRID);
+    expect(pick).toHaveAttribute("aria-current", "true");
 
     const printCard = screen.getByRole("article", { name: "중2 기초반" });
-    expect(printCard.className).toContain(CARD_GRID);
-    expect(printCard.className).toContain("border-divider");
+    expect(printCard.className).toContain(OUTER_GRID);
+    // ⚠️ 안 고른 행도 **같은 두께**여야 한다 — 아니면 고를 때마다 위·좌·우로 2px 씩 자라
+    //    목록 전체가 들썩이고, 다음 행을 겨냥하기 어려워진다.
+    expect(printCard.className).toMatch(/\bborder-2\b/);
+    expect(printCard.className).toContain("border-transparent");
+    expect(printCard.className).toContain("border-b-divider");
+    expect(printCard.className).not.toContain("border-ink");
+    // 고르지 않은 행은 aria-current 를 달지 않는다 — 달면 둘 다 «현재»가 된다.
+    expect(within(printCard).getByRole("button")).not.toHaveAttribute(
+      "aria-current",
+    );
   });
 
   it("심화반은 검수 단계 메타를, 기초반은 검수 완료 메타를 보여 준다", async () => {
@@ -309,12 +330,33 @@ describe("[T4.3 S-03] 메인 — 수동 전환·진도 1클릭", () => {
     expect(postedUnitId).toBe(MOCK_UNITS[4]!.id);
   });
 
-  it("패널에서 반을 바꾸면 현재 소단원이 그 반 진도로 바뀐다", async () => {
+  it("목록에서 행을 누르면 패널이 그 반으로 바뀌고 불도 따라온다", async () => {
     const { user } = await renderMain();
 
-    const select = screen.getByLabelText("반 선택");
-    await user.selectOptions(select, CLASS_STARVED_ID);
-    expect(select).toHaveValue(CLASS_STARVED_ID);
+    // 🔴 반 선택은 드롭다운이 아니라 **행 클릭**이다 (원장님 확정 2026-08-26).
+    //    드롭다운이 되살아나면 고르는 자리가 둘이 되어 어느 쪽이 참인지 모르게 된다.
+    expect(screen.queryByLabelText("반 선택")).toBeNull();
+
+    const target = screen.getByRole("article", { name: "중2 기초반" });
+    await user.click(within(target).getByRole("button"));
+
+    expect(screen.getByLabelText("선택한 반")).toHaveTextContent("중2 기초반");
+    // 불이 옮겨온다 — 「먼저 할 반」이 아니라 「지금 고른 반」을 가리킨다.
+    expect(target.className).toMatch(/inset_5px/);
+    expect(
+      screen.getByRole("article", { name: "중2 심화반" }).className,
+    ).not.toMatch(/inset_5px/);
+  });
+
+  it("진도가 다른 반을 고르면 현재 소단원이 그 반 진도로 바뀐다", async () => {
+    const { user } = await renderMain();
+
+    const starved = screen
+      .getAllByRole("article")
+      .find((el) => el.getAttribute("aria-label") === MOCK_CLASS_STARVED.name);
+    if (!starved) throw new Error("진도 없는 반 카드를 못 찾았다");
+    await user.click(within(starved).getByRole("button"));
+
     expect(screen.getByLabelText("현재 소단원")).toHaveTextContent(
       MOCK_UNITS[14]!.section,
     );
@@ -411,10 +453,15 @@ describe("[T4.3 S-03] 메인 — 전부 완료면 대장부로 자동 전환", (
 
     render(<MainPage />);
 
-    const done = await screen.findByRole("status", {
+    // 🔴 완료 행도 **눌러서 고를 수 있어야 한다.** 반 선택이 드롭다운에서 행 클릭으로
+    //    옮겨 갔는데(2026-08-26) 그 드롭다운은 완료된 반까지 담고 있었다 — 안 눌리게 두면
+    //    「끝난 반의 진도를 다시 보기」가 화면에서 통째로 사라지고 **오류도 안 난다.**
+    const doneBtn = await screen.findByRole("button", {
       name: `${MOCK_CLASS_A.name} 완료`,
     });
-    expect(done.className).toContain(CARD_GRID);
+    const done = doneBtn.parentElement!;
+    expect(done.className).toContain(OUTER_GRID);
+    expect(doneBtn.className).toContain(INNER_GRID);
     expect(done).toHaveTextContent("인쇄됨");
     expect(done).toHaveTextContent("완료");
     expect(screen.getByText("남은 작업 2")).toBeInTheDocument();

@@ -5,10 +5,17 @@ import { StageGauge } from "./StageGauge";
 
 type Props = {
   rows: ClassRow[];
+  selectedClassId: string;
+  onSelect: (classId: string) => void;
   onProgress: (classId: string) => void;
 };
 
-export function LedgerTable({ rows, onProgress }: Props) {
+export function LedgerTable({
+  rows,
+  selectedClassId,
+  onSelect,
+  onProgress,
+}: Props) {
   return (
     <div className="px-6 pt-1.5">
       <table className="w-full border-collapse text-xs tabular-nums">
@@ -28,8 +35,28 @@ export function LedgerTable({ rows, onProgress }: Props) {
         <tbody>
           {rows.map((row) => (
             <tr key={row.classId}>
+              {/*
+               * 표 보기에서도 반을 고를 수 있어야 한다 — 반 선택이 드롭다운에서
+               * 행 클릭으로 옮겨 갔기 때문이다(원장님 확정 2026-08-26). 이 칸이 없으면
+               * **표 보기에서는 어느 반도 못 고른다**(표 보기는 전부 끝난 날 기본 화면이다).
+               *
+               * ⚠️ D-30: `<tr>` 을 통째로 누르게 만들지 않는다. 진짜 `<button>` 하나만 둔다.
+               */}
               <td className="border-b border-divider px-2.5 py-2.5 text-[13px] font-black">
-                {row.name}
+                <button
+                  type="button"
+                  onClick={() => onSelect(row.classId)}
+                  aria-current={
+                    row.classId === selectedClassId ? "true" : undefined
+                  }
+                  className={`min-h-11 cursor-pointer text-left ${
+                    row.classId === selectedClassId
+                      ? "text-g-blue underline underline-offset-4"
+                      : "hover:underline hover:underline-offset-4"
+                  }`}
+                >
+                  {row.name}
+                </button>
               </td>
               <td className="border-b border-divider px-2.5 py-2.5">
                 {row.unitLabel}

@@ -19,13 +19,21 @@ type Props = {
    *    말하지 않으면 원장님이 기록된 진도로 읽고, 안 눌러도 된다고 생각한다.
    */
   suggestion: { unitId: string | null; agree: number; students: number } | null;
-  onSelectClass: (classId: string) => void;
   onStep: (unitId: string) => void;
   onRecord: () => void;
 };
 
+/**
+ * 차시이동 화살표 — 상자를 없애고 글자만 남긴다 (원장님 2026-08-26 「더 심플하게」).
+ *
+ * ⚠️ **누를 자리는 44px 를 그대로 유지한다.** 테두리는 장식이지만 `min-h-11 min-w-[44px]`
+ *    는 손가락 표적이다 — 같이 지우면 화살표 글자 크기(약 14px)만 남아 못 누른다.
+ * ⚠️ 비활성은 `opacity` 가 아니라 **색**으로 준다. 투명도는 그 요소의 **모든** 색 대비를
+ *    한꺼번에 깎아서, 상자가 없어진 지금은 화살표가 배경에 묻힌다. 이 저장소가
+ *    카드 흐림에서 이미 겪은 자리다(2026-08-18, 78% 만으로 4.5:1 아래로 내려갔다).
+ */
 const ARROW =
-  "inline-flex min-h-11 min-w-[44px] items-center justify-center border-2 border-ink text-[14px] font-black";
+  "inline-flex min-h-11 min-w-[44px] items-center justify-center text-[17px] font-black text-ink hover:bg-side disabled:text-text-3 disabled:hover:bg-transparent";
 
 export function ProgressPanel({
   classes,
@@ -37,7 +45,6 @@ export function ProgressPanel({
   error,
   canRecord,
   suggestion,
-  onSelectClass,
   onStep,
   onRecord,
 }: Props) {
@@ -54,21 +61,17 @@ export function ProgressPanel({
         진도 입력
       </h2>
       <div className="text-[11.5px] leading-[2.1] text-[#4a4a48]">
-        <label className="block">
-          <span className="sr-only">반 선택</span>
-          <select
-            aria-label="반 선택"
-            value={selectedClassId}
-            onChange={(e) => onSelectClass(e.target.value)}
-            className="w-full cursor-pointer bg-transparent font-bold text-ink"
-          >
-            {classes.map((cls) => (
-              <option key={cls.id} value={cls.id}>
-                {cls.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        {/*
+         * 반은 **왼쪽 목록에서 골라 온다** (원장님 확정 2026-08-26 — 「드롭다운으로 반
+         * 선택을 없애고 클릭으로 원하는 반 먼저 액션」). 여기는 고른 결과를 **말하기만** 한다.
+         *
+         * ⚠️ 드롭다운을 없앴으니 이 이름이 **어느 반을 보고 있는지 말하는 유일한 자리**다.
+         *    지우지 말 것 — 없으면 오른쪽 숫자들이 누구 것인지 알 수 없다.
+         *    (완료된 반도 왼쪽에서 눌러 여기로 데려올 수 있다 — `DoneSummaryRow` 참조.)
+         */}
+        <span aria-label="선택한 반" className="block font-bold text-ink">
+          {classes.find((c) => c.id === selectedClassId)?.name ?? "—"}
+        </span>
         <span
           aria-label="현재 소단원"
           className={`mt-0.5 mb-2 block text-[13.5px] font-black ${
@@ -85,7 +88,7 @@ export function ProgressPanel({
             onClick={() => {
               if (prevId) onStep(prevId);
             }}
-            className={`${ARROW} cursor-pointer disabled:cursor-not-allowed disabled:opacity-40`}
+            className={`${ARROW} cursor-pointer disabled:cursor-not-allowed`}
           >
             &lt;
           </button>
@@ -99,7 +102,7 @@ export function ProgressPanel({
             onClick={() => {
               if (nextId) onStep(nextId);
             }}
-            className={`${ARROW} cursor-pointer disabled:cursor-not-allowed disabled:opacity-40`}
+            className={`${ARROW} cursor-pointer disabled:cursor-not-allowed`}
           >
             &gt;
           </button>
