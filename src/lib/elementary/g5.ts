@@ -7333,6 +7333,83 @@ function rng211Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 이하인 수의 개수. */
+function rng211BelowCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v <= b);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(b)} 이하인 수는 모두 몇 개입니까?`,
+    n(hit.length),
+    `${n(b)} 이하는 ${nj(b, "과", "와")} 같거나 작은 수이므로 ${n(b)} 자신도 셉니다. ${n(hit.length)}개입니다.`,
+  );
+}
+
+/** 문형 06 — 이상인 수 중 가장 작은 수(경계). */
+function rng211MinAbove(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  return make(
+    unit,
+    `${n(a)} 이상인 자연수 중에서 가장 작은 수는 얼마입니까?`,
+    n(a),
+    `이상은 그 수를 포함하므로 가장 작은 수는 ${n(a)}입니다.`,
+  );
+}
+
+/** 문형 07 — 이상인 수 중 가장 큰 수. */
+function rng211MaxAbove(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v >= a);
+  const mx = Math.max(...hit);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(a)} 이상인 수 중 가장 큰 수를 구하시오.`,
+    n(mx),
+    `${n(a)} 이상인 수 가운데 가장 큰 수는 ${n(mx)}입니다.`,
+  );
+}
+
+/** 문형 08 — 경계가 포함되는지 판정. */
+function rng211Includes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  return make(
+    unit,
+    `${n(a)} 이상인 자연수에 ${n(a)} 자신이 들어갑니까? (예, 아니요)`,
+    "예",
+    `이상은 그 수를 포함하므로 들어갑니다.`,
+  );
+}
+
+/** 문형 09 — 이상·이하 구간의 자연수 개수. */
+function rng211RangeCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 10, 40);
+  const b = a + intBetween(rng, 5, 15);
+  return make(
+    unit,
+    `${n(a)} 이상 ${n(b)} 이하인 자연수는 모두 몇 개입니까?`,
+    n(b - a + 1),
+    `양 끝을 포함하므로 ${expr(`${b}-${a}+1=${b - a + 1}`)}개입니다.`,
+  );
+}
+
+/** 문형 10 — 이상·이하 구간에서 3의 배수 개수. */
+function rng211Mult3(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 10, 40);
+  const b = a + intBetween(rng, 8, 18);
+  let c = 0;
+  for (let v = a; v <= b; v += 1) if (v % 3 === 0) c += 1;
+  return make(
+    unit,
+    `${n(a)} 이상 ${n(b)} 이하인 자연수 중에서 ${n(3)}의 배수는 모두 몇 개입니까?`,
+    n(c),
+    `${n(a)}부터 ${n(b)}까지 ${n(3)}의 배수를 세면 ${n(c)}개입니다.`,
+  );
+}
+
 /* ── 2-1-2 초과와 미만 — 경계를 **뺀다**. 2-1-1 과 같은 목록으로 답이 갈린다 ── */
 
 /** 연산 — 목록에서 「a 초과」인 수를 고른다(경계 a 는 빠진다). */
@@ -7386,6 +7463,79 @@ function rng212Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(a)} 초과 □ 미만인 자연수가 모두 ${n(count)}개입니다. □에 알맞은 수를 구하시오.`,
     n(b),
     `양 끝을 빼므로 개수는 ${expr(`\\square-${a}-1`)}입니다. ${expr(`\\square-${a}-1=${count}`)}이므로 □는 ${n(b)}입니다.`,
+  );
+}
+
+/** 문형 05 — 초과인 수 중 가장 작은 수. */
+function rng212MinOver(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  return make(
+    unit,
+    `${n(a)} 초과인 자연수 중에서 가장 작은 수는 얼마입니까?`,
+    n(a + 1),
+    `초과는 그 수를 빼므로 가장 작은 수는 ${n(a + 1)}입니다.`,
+  );
+}
+
+/** 문형 06 — 미만인 수 중 가장 큰 수. */
+function rng212MaxUnder(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 20, 80);
+  return make(
+    unit,
+    `${n(b)} 미만인 자연수 중에서 가장 큰 수는 얼마입니까?`,
+    n(b - 1),
+    `미만은 그 수를 빼므로 가장 큰 수는 ${n(b - 1)}입니다.`,
+  );
+}
+
+/** 문형 07 — 경계가 빠지는지 판정. */
+function rng212Excludes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  return make(
+    unit,
+    `${n(a)} 초과인 자연수에 ${n(a)} 자신이 들어갑니까? (예, 아니요)`,
+    "아니요",
+    `초과는 그 수를 빼므로 들어가지 않습니다.`,
+  );
+}
+
+/** 문형 08 — 이상·이하 개수와 초과·미만 개수의 차(늘 2). */
+function rng212Gap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 50);
+  const b = a + intBetween(rng, 8, 20);
+  return make(
+    unit,
+    `${n(a)} 이상 ${n(b)} 이하인 자연수의 개수와 ${n(a)} 초과 ${n(b)} 미만인 자연수의 개수의 차는 얼마입니까?`,
+    n(2),
+    `양 끝 두 개가 빠지므로 차는 ${n(2)}입니다.`,
+  );
+}
+
+/** 문형 09 — 목록에서 미만인 수의 개수. */
+function rng212UnderCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 60);
+  const b = a + intBetween(rng, 6, 20);
+  const pool = boundaryPool(rng, a, b);
+  const hit = pool.filter((v) => v < b);
+  return make(
+    unit,
+    `${nums(pool)} 중에서 ${n(b)} 미만인 수는 모두 몇 개입니까?`,
+    n(hit.length),
+    `${n(b)} 자신은 빼고 세면 ${n(hit.length)}개입니다.`,
+  );
+}
+
+/** 문형 10 — 초과·미만 구간에서 짝수 개수. */
+function rng212EvenOpen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 10, 40) * 2;
+  const b = a + intBetween(rng, 8, 20);
+  let c = 0;
+  for (let v = a + 1; v < b; v += 1) if (v % 2 === 0) c += 1;
+  return make(
+    unit,
+    `${n(a)} 초과 ${n(b)} 미만인 자연수 중에서 짝수는 모두 몇 개입니까?`,
+    n(c),
+    `양 끝을 빼고 짝수를 세면 ${n(c)}개입니다.`,
   );
 }
 
@@ -7495,6 +7645,86 @@ function rng213Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 조건에 안 맞는 사람 수. */
+function rng213Fail(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const fail = s.values.filter((v) => v < s.limit);
+  return make(
+    unit,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who} ${n(s.values.length)}${s.countUnit}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때 조건에 맞지 않는 ${wj(s.who, "은", "는")} 몇 ${s.countUnit}입니까?`,
+    n(fail.length),
+    `${n(s.limit)} ${s.unitName}보다 작은 것을 세면 ${n(fail.length)}${s.countUnit}입니다.`,
+  );
+}
+
+/** 문형 06 — 이상과 초과의 개수 차(경계 하나). */
+function rng213Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const ge = s.values.filter((v) => v >= s.limit).length;
+  const gt = s.values.filter((v) => v > s.limit).length;
+  return make(
+    unit,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상인 ${s.who}의 수와 ${n(s.limit)} ${s.unitName} 초과인 ${s.who}의 수의 차는 얼마입니까?`,
+    n(ge - gt),
+    `경계값 ${n(s.limit)}이 이상에만 들어가므로 차는 ${n(ge - gt)}입니다.`,
+  );
+}
+
+/** 문형 07 — 가장 작은 합격 값. */
+function rng213MinPass(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const ok = s.values.filter((v) => v >= s.limit);
+  const mn = Math.min(...ok);
+  return make(
+    unit,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때, 조건에 맞는 ${wj(s.what, "중", "중")} 가장 작은 값은 얼마입니까?`,
+    n(mn),
+    `${n(s.limit)} 이상인 값 중 가장 작은 것은 ${n(mn)}입니다.`,
+  );
+}
+
+/** 문형 08 — 무게가 첫 경계일 때 요금. */
+function rng213EdgeFee(unit: UnitSeed, rng: Rng): ElemProblem {
+  const edge1 = intBetween(rng, 3, 6);
+  const edge2 = edge1 + intBetween(rng, 3, 6);
+  const fee1 = intBetween(rng, 2, 4) * 1000;
+  const fee2 = fee1 + intBetween(rng, 1, 3) * 1000;
+  const fee3 = fee2 + 1000;
+  return make(
+    unit,
+    `택배 요금은 무게가 ${n(edge1)} kg 이하이면 ${n(fee1)}원, ${n(edge1)} kg 초과 ${n(edge2)} kg 이하이면 ${n(fee2)}원, ${n(edge2)} kg 초과이면 ${n(fee3)}원입니다. 무게가 정확히 ${n(edge1)} kg일 때 요금은 얼마입니까?`,
+    n(fee1),
+    `${n(edge1)} kg은 «이하»에 들어가므로 ${n(fee1)}원입니다.`,
+  );
+}
+
+/** 문형 09 — 가장 비싼 구간이 되는 가장 작은 무게. */
+function rng213MinHeavy(unit: UnitSeed, rng: Rng): ElemProblem {
+  const edge1 = intBetween(rng, 3, 6);
+  const edge2 = edge1 + intBetween(rng, 3, 6);
+  const fee1 = 2000;
+  const fee2 = 3000;
+  const fee3 = 4000;
+  return make(
+    unit,
+    `택배 요금은 ${n(edge1)} kg 이하 ${n(fee1)}원, ${n(edge1)} kg 초과 ${n(edge2)} kg 이하 ${n(fee2)}원, ${n(edge2)} kg 초과 ${n(fee3)}원입니다. 가장 비싼 요금이 되려면 무게는 적어도 몇 kg이어야 합니까?`,
+    n(edge2 + 1),
+    `${n(edge2)} kg 초과부터 ${n(fee3)}원이므로 가장 작은 자연수는 ${n(edge2 + 1)} kg입니다.`,
+  );
+}
+
+/** 문형 10 — 목록에서 가장 큰 값. */
+function rng213MaxVal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = rangeScene(rng);
+  const mx = Math.max(...s.values);
+  return make(
+    unit,
+    `${s.who} ${n(s.values.length)}${s.countUnit}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}입니다. 이 중 가장 큰 값은 얼마입니까?`,
+    n(mx),
+    `가장 큰 값은 ${n(mx)}입니다.`,
+  );
+}
+
 /* ── 2-1-4 올림 — 아래 자리가 0이 아님을 구성이 보장한다 ── */
 
 /** 연산 — 지정 자리까지 올림(절차 한 번). */
@@ -7558,6 +7788,78 @@ function up214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 자연수를 올림하여 ${placeName}의 자리까지 나타냈더니 ${nj(up, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
     nums([up - place + 1, up]),
     `올림하여 ${n(up)}이 되려면 ${n(up - place)}보다 크고 ${n(up)}보다 작거나 같아야 합니다. 가장 작은 수는 ${n(up - place + 1)}, 가장 큰 수는 ${n(up)}입니다.`,
+  );
+}
+
+/** 문형 05 — 천의 자리까지 올림. */
+function up214Thousands(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 1000);
+  const up = ceilTo(x, 1000);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 천의 자리까지 나타내시오.`,
+    n(up),
+    `천의 자리 아래가 0이 아니므로 올리면 ${n(up)}입니다.`,
+  );
+}
+
+/** 문형 06 — 올림값에서 원래 수를 뺀 차(응용과 같지만 백의 자리만). */
+function up214HundredDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 100);
+  const up = ceilTo(x, 100);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?`,
+    n(up - x),
+    `올림하면 ${n(up)}이므로 ${expr(`${up}-${x}=${up - x}`)}만큼 더해집니다.`,
+  );
+}
+
+/** 문형 07 — 일의 자리 숫자. */
+function up214Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 10);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 십의 자리까지 나타내려면, 일의 자리 숫자를 먼저 봅니다. 일의 자리 숫자는 얼마입니까?`,
+    n(x % 10),
+    `${n(x)}의 일의 자리 숫자는 ${n(x % 10)}입니다.`,
+  );
+}
+
+/** 문형 08 — 가장 작은 원래 수. */
+function up214MinOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = 100;
+  const up = intBetween(rng, 13, 87) * place;
+  return make(
+    unit,
+    `어떤 자연수를 올림하여 백의 자리까지 나타냈더니 ${nj(up, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수는 얼마입니까?`,
+    n(up - place + 1),
+    `${n(up - 100)}보다 커야 하므로 가장 작은 수는 ${n(up - 99)}입니다.`,
+  );
+}
+
+/** 문형 09 — 가장 큰 원래 수. */
+function up214MaxOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = 100;
+  const up = intBetween(rng, 13, 87) * place;
+  return make(
+    unit,
+    `어떤 자연수를 올림하여 백의 자리까지 나타냈더니 ${nj(up, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 큰 수는 얼마입니까?`,
+    n(up),
+    `올림하여 ${n(up)}이 되는 가장 큰 수는 ${n(up)} 자신입니다.`,
+  );
+}
+
+/** 문형 10 — 올림한 뒤 천의 자리 숫자. */
+function up214ThouDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 100);
+  const up = ceilTo(x, 100);
+  const digit = Math.floor(up / 1000) % 10;
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낸 수의 천의 자리 숫자는 얼마입니까?`,
+    n(digit),
+    `올림하면 ${n(up)}이고 천의 자리 숫자는 ${n(digit)}입니다.`,
   );
 }
 
@@ -7629,6 +7931,75 @@ function down215Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 자연수를 올림하여 ${placeName}의 자리까지 나타내면 ${nj(u, "이", "가")} 되고, 버림하여 ${placeName}의 자리까지 나타내면 ${nj(d, "이", "가")} 됩니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
     nums([d + 1, u - 1]),
     `올림하여 ${n(u)}이 되려면 ${n(d)}보다 크고 ${n(u)}보다 작거나 같아야 하고, 버림하여 ${n(d)}이 되려면 ${n(d)}보다 크거나 같고 ${n(u)}보다 작아야 합니다. 두 조건을 함께 만족하는 수는 ${n(d + 1)}부터 ${n(u - 1)}까지입니다.`,
+  );
+}
+
+/** 문형 05 — 천의 자리까지 버림. */
+function down215Thousands(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 1000);
+  const down = floorTo(x, 1000);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 버림하여 천의 자리까지 나타내시오.`,
+    n(down),
+    `천의 자리 아래를 버리면 ${n(down)}입니다.`,
+  );
+}
+
+/** 문형 06 — 백의 자리까지 버릴 때 버려지는 수. */
+function down215HundredDrop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 100);
+  const down = floorTo(x, 100);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 버림하여 백의 자리까지 나타낼 때 버려지는 수는 얼마입니까?`,
+    n(x - down),
+    `버림하면 ${n(down)}이므로 버려지는 수는 ${n(x - down)}입니다.`,
+  );
+}
+
+/** 문형 07 — 일의 자리 숫자. */
+function down215Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 10);
+  return make(
+    unit,
+    `${n(x)}의 일의 자리 숫자는 얼마입니까?`,
+    n(x % 10),
+    `${n(x)}의 일의 자리 숫자는 ${n(x % 10)}입니다.`,
+  );
+}
+
+/** 문형 08 — 버림하여 백의 자리까지 한 값. */
+function down215Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 100);
+  const down = floorTo(x, 100);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 버림하여 백의 자리까지 나타내시오.`,
+    n(down),
+    `백의 자리 아래를 버리면 ${n(down)}입니다.`,
+  );
+}
+
+/** 문형 09 — 가장 작은 원래 수(버림값 d). */
+function down215MinOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 13, 86) * 100;
+  return make(
+    unit,
+    `어떤 자연수를 버림하여 백의 자리까지 나타냈더니 ${nj(d, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수는 얼마입니까?`,
+    n(d),
+    `버림하여 ${n(d)}이 되는 가장 작은 수는 ${n(d)} 자신입니다.`,
+  );
+}
+
+/** 문형 10 — 가장 큰 원래 수. */
+function down215MaxOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 13, 86) * 100;
+  return make(
+    unit,
+    `어떤 자연수를 버림하여 백의 자리까지 나타냈더니 ${nj(d, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 큰 수는 얼마입니까?`,
+    n(d + 99),
+    `${n(d + 100)} 직전까지이므로 가장 큰 수는 ${n(d + 99)}입니다.`,
   );
 }
 
@@ -7709,6 +8080,76 @@ function round216Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 자연수를 반올림하여 ${placeName}의 자리까지 나타냈더니 ${nj(r, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.`,
     nums([lo, hi]),
     `반올림하여 ${n(r)}이 되려면 ${n(lo)} 이상 ${n(hi + 1)} 미만이어야 합니다. 가장 작은 수는 ${n(lo)}, 가장 큰 수는 ${n(hi)}입니다.`,
+  );
+}
+
+/** 문형 05 — 천의 자리까지 반올림. */
+function round216Thousands(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 1000);
+  const r = roundTo(x, 1000);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 천의 자리까지 나타내시오.`,
+    n(r),
+    `백의 자리 숫자를 보고 반올림하면 ${n(r)}입니다.`,
+  );
+}
+
+/** 문형 06 — 백의 자리까지 반올림. */
+function round216Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 100);
+  const r = roundTo(x, 100);
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 백의 자리까지 나타내시오.`,
+    n(r),
+    `십의 자리 숫자를 보고 반올림하면 ${n(r)}입니다.`,
+  );
+}
+
+/** 문형 07 — 판정 자리 숫자. */
+function round216Digit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 10);
+  const digit = x % 10;
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 십의 자리까지 나타낼 때, 바로 아래 자리 숫자는 얼마입니까?`,
+    n(digit),
+    `일의 자리 숫자가 ${n(digit)}입니다.`,
+  );
+}
+
+/** 문형 08 — 5 이상이면 올리기 판정. */
+function round216NeedUp(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = roundTarget(rng, 10);
+  const digit = x % 10;
+  return make(
+    unit,
+    `${nj(x, "을", "를")} 반올림하여 십의 자리까지 나타낼 때 올려야 합니까? (예, 아니요)`,
+    digit >= 5 ? "예" : "아니요",
+    `일의 자리 숫자가 ${n(digit)}이므로 ${digit >= 5 ? "올립니다" : "버립니다"}.`,
+  );
+}
+
+/** 문형 09 — 가장 작은 원래 수. */
+function round216MinOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 13, 87) * 100;
+  return make(
+    unit,
+    `어떤 자연수를 반올림하여 백의 자리까지 나타냈더니 ${nj(r, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 작은 수는 얼마입니까?`,
+    n(r - 50),
+    `반올림하여 ${n(r)}이 되려면 ${n(r - 50)} 이상이어야 합니다.`,
+  );
+}
+
+/** 문형 10 — 가장 큰 원래 수. */
+function round216MaxOrig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 13, 87) * 100;
+  return make(
+    unit,
+    `어떤 자연수를 반올림하여 백의 자리까지 나타냈더니 ${nj(r, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 가장 큰 수는 얼마입니까?`,
+    n(r + 49),
+    `반올림하여 ${n(r)}이 되려면 ${n(r + 50)} 미만이므로 가장 큰 수는 ${n(r + 49)}입니다.`,
   );
 }
 
@@ -9863,6 +10304,78 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: area65TrapH },
     { id: "09", tier: "응용", generate: area65TwoRhomb },
     { id: "10", tier: "응용", generate: area65TrapBot },
+  ],
+  "초5|2-1-1": [
+    { id: "01", tier: "연산", generate: rng211Calc },
+    { id: "02", tier: "기본", generate: rng211Read },
+    { id: "03", tier: "응용", generate: rng211Apply },
+    { id: "04", tier: "심화", generate: rng211Deep },
+    { id: "05", tier: "기본", generate: rng211BelowCount },
+    { id: "06", tier: "기본", generate: rng211MinAbove },
+    { id: "07", tier: "기본", generate: rng211MaxAbove },
+    { id: "08", tier: "응용", generate: rng211Includes },
+    { id: "09", tier: "응용", generate: rng211RangeCount },
+    { id: "10", tier: "응용", generate: rng211Mult3 },
+  ],
+  "초5|2-1-2": [
+    { id: "01", tier: "연산", generate: rng212Calc },
+    { id: "02", tier: "기본", generate: rng212Read },
+    { id: "03", tier: "응용", generate: rng212Apply },
+    { id: "04", tier: "심화", generate: rng212Deep },
+    { id: "05", tier: "기본", generate: rng212MinOver },
+    { id: "06", tier: "기본", generate: rng212MaxUnder },
+    { id: "07", tier: "기본", generate: rng212Excludes },
+    { id: "08", tier: "응용", generate: rng212Gap },
+    { id: "09", tier: "응용", generate: rng212UnderCount },
+    { id: "10", tier: "응용", generate: rng212EvenOpen },
+  ],
+  "초5|2-1-3": [
+    { id: "01", tier: "연산", generate: rng213Calc },
+    { id: "02", tier: "기본", generate: rng213Read },
+    { id: "03", tier: "응용", generate: rng213Apply },
+    { id: "04", tier: "심화", generate: rng213Deep },
+    { id: "05", tier: "기본", generate: rng213Fail },
+    { id: "06", tier: "기본", generate: rng213Diff },
+    { id: "07", tier: "기본", generate: rng213MinPass },
+    { id: "08", tier: "응용", generate: rng213EdgeFee },
+    { id: "09", tier: "응용", generate: rng213MinHeavy },
+    { id: "10", tier: "응용", generate: rng213MaxVal },
+  ],
+  "초5|2-1-4": [
+    { id: "01", tier: "연산", generate: up214Calc },
+    { id: "02", tier: "기본", generate: up214Read },
+    { id: "03", tier: "응용", generate: up214Apply },
+    { id: "04", tier: "심화", generate: up214Deep },
+    { id: "05", tier: "기본", generate: up214Thousands },
+    { id: "06", tier: "기본", generate: up214HundredDiff },
+    { id: "07", tier: "기본", generate: up214Ones },
+    { id: "08", tier: "응용", generate: up214MinOrig },
+    { id: "09", tier: "응용", generate: up214MaxOrig },
+    { id: "10", tier: "응용", generate: up214ThouDigit },
+  ],
+  "초5|2-1-5": [
+    { id: "01", tier: "연산", generate: down215Calc },
+    { id: "02", tier: "기본", generate: down215Read },
+    { id: "03", tier: "응용", generate: down215Apply },
+    { id: "04", tier: "심화", generate: down215Deep },
+    { id: "05", tier: "기본", generate: down215Thousands },
+    { id: "06", tier: "기본", generate: down215HundredDrop },
+    { id: "07", tier: "기본", generate: down215Ones },
+    { id: "08", tier: "응용", generate: down215Hundreds },
+    { id: "09", tier: "응용", generate: down215MinOrig },
+    { id: "10", tier: "응용", generate: down215MaxOrig },
+  ],
+  "초5|2-1-6": [
+    { id: "01", tier: "연산", generate: round216Calc },
+    { id: "02", tier: "기본", generate: round216Read },
+    { id: "03", tier: "응용", generate: round216Apply },
+    { id: "04", tier: "심화", generate: round216Deep },
+    { id: "05", tier: "기본", generate: round216Thousands },
+    { id: "06", tier: "기본", generate: round216Hundreds },
+    { id: "07", tier: "기본", generate: round216Digit },
+    { id: "08", tier: "응용", generate: round216NeedUp },
+    { id: "09", tier: "응용", generate: round216MinOrig },
+    { id: "10", tier: "응용", generate: round216MaxOrig },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
