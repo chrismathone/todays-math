@@ -336,95 +336,166 @@ export function formatWithoutContent(
   return "unknown";
 }
 
-/**
- * 「이 행이 그 형식일 **수** 있나」 — SQL 이 긁어 올 후보 집합의 JS 판.
- * `classifyFormat` 이 그 형식을 내는 모든 입력을 담아야 하고(놓치면 필터가 빠뜨린다),
- * 담을 필요 없는 것은 안 담아야 한다(넓히면 서버가 헛일을 한다). 둘 다 시험이 잰다.
+/* ── 후보 집합의 조건 — **한 곳에서 기술하고 두 가지로 뽑는다** ─────────────────
+ *
+ * 🔴 이 자리에 규칙을 **두 벌**(JS 술어 하나 · Prisma `where` 하나) 적었더니, 변이
+ *    시험이 「SQL 쪽만 망가뜨리면 아무도 안 운다」를 두 번 잡아냈다(2026-08-26):
+ *    「널을 빠뜨린 채 «서술형이 아니다» 를 쓴다」와 「서술형 후보 where 에서 엔진 제외를
+ *    뺀다」가 **둘 다 전량 초록**이었다 — 단위·라우트·화면 시험 어느 것도 SQL 조각을
+ *    안 보기 때문이다(가짜 서버는 JS 판정을 쓴다).
+ *
+ *    그래서 조건을 **작은 서술 구조**로 한 번만 적고, 거기서 JS 판정(`evalFormatCond`)과
+ *    Prisma `where`(`toPrismaWhere`)를 뽑는다. 이제 규칙을 고치면 **양쪽이 같이** 바뀐다.
+ *    남는 위험은 «뽑아 내는 함수»뿐이고, 그건 작고 시험이 붙어 있다.
  */
-export function formatSuperset(
-  problem: FormatEvidence,
-  format: FilterableFormat,
-): boolean {
-  if (format === "short_answer") {
-    // 단답형이 나오는 자리는 둘뿐이다 — `questionType` 이 그렇게 적혀 있거나, 엔진 문항이거나.
-    if (problem.questionType === "단답형") return true;
-    if (problem.questionType === "서술형") return false;
-    return isEngineFamily(problem.familyKey);
+
+/** 조건이 볼 수 있는 칸 — 전부 `FormatEvidence` 의 문자열 컬럼이다. */
+type FormatCol = "questionType" | "problemType" | "familyKey";
+
+/**
+ * `empty` 는 「값이 없다」 = 널 **또는 빈 문자열**이다(`!row.questionType` 과 같은 뜻).
+ * `not` 은 **잎에만** 붙는다 — 만드는 함수가 드모르간으로 밀어 내리기 때문이다.
+ */
+type FormatLeaf =
+  | { kind: "empty"; col: FormatCol }
+  | { kind: "eq"; col: FormatCol; value: string }
+  | { kind: "prefix"; col: FormatCol; value: string };
+
+export type FormatCond =
+  | FormatLeaf
+  | { kind: "not"; of: FormatLeaf }
+  | { kind: "and"; of: FormatCond[] }
+  | { kind: "or"; of: FormatCond[] };
+
+const empty = (col: FormatCol): FormatCond => ({ kind: "empty", col });
+const eq = (col: FormatCol, value: string): FormatCond => ({
+  kind: "eq",
+  col,
+  value,
+});
+const prefix = (col: FormatCol, value: string): FormatCond => ({
+  kind: "prefix",
+  col,
+  value,
+});
+const and = (...of: FormatCond[]): FormatCond => ({ kind: "and", of });
+const or = (...of: FormatCond[]): FormatCond => ({ kind: "or", of });
+/** 부정은 **잎까지 밀어 내린다**(드모르간) — 그래야 SQL 로 뽑을 때 널 처리를 한 곳에 둔다. */
+function not(cond: FormatCond): FormatCond {
+  switch (cond.kind) {
+    case "and":
+      return or(...cond.of.map(not));
+    case "or":
+      return and(...cond.of.map(not));
+    case "not":
+      return cond.of;
+    default:
+      return { kind: "not", of: cond };
   }
-  if (problem.questionType === "서술형") return true;
+}
+
+/** 엔진이 낸 문항인가 — 접두사 목록은 `ENGINE_PREFIX` **한 곳**에서 온다. */
+const ENGINE_FAMILY = or(
+  ...ENGINE_PREFIX.map(([value]) => prefix("familyKey", value)),
+);
+
+/**
+ * 「이 행이 그 형식일 **수** 있나」 — 후보 집합의 **유일한 기술**.
+ *
+ * `classifyFormat` 이 그 형식을 내는 모든 입력을 담아야 하고(놓치면 필터가 빠뜨린다),
+ * 담을 필요 없는 것은 안 담아야 한다(넓히면 서버가 헛일을 한다). 둘 다 시험이 전수로 잰다.
+ */
+const FORMAT_SUPERSET_COND: Readonly<Record<FilterableFormat, FormatCond>> = {
+  // 단답형이 나오는 자리는 둘뿐이다 — `questionType` 이 그렇게 적혀 있거나, 엔진 문항이거나.
+  short_answer: or(
+    eq("questionType", "단답형"),
+    and(ENGINE_FAMILY, not(eq("questionType", "서술형"))),
+  ),
   // ⚠️ **엔진 문항을 빼야 한다.** 판정에서 엔진 표지가 `problemType` 되짚기보다 **먼저**
   //    걸리므로(`classifyFormatWithChoices`), 엔진 문항은 보기 칸 수가 몇이든 서술형이
   //    될 수 없다. 안 빼면 서술형 후보에 단답형 후보가 섞여 두 집합이 겹친다 —
   //    전수 시험이 그 겹침을 잡아 줬다.
-  return (
-    !problem.questionType &&
-    problem.problemType === "서술형" &&
-    !isEngineFamily(problem.familyKey)
-  );
+  descriptive: or(
+    eq("questionType", "서술형"),
+    and(empty("questionType"), eq("problemType", "서술형"), not(ENGINE_FAMILY)),
+  ),
+};
+
+/** 조건을 행에 대 본다 — JS 판. */
+function evalFormatCond(cond: FormatCond, row: FormatEvidence): boolean {
+  switch (cond.kind) {
+    case "empty":
+      return !row[cond.col];
+    case "eq":
+      return row[cond.col] === cond.value;
+    case "prefix":
+      return (row[cond.col] ?? "").startsWith(cond.value);
+    case "not":
+      return !evalFormatCond(cond.of, row);
+    case "and":
+      return cond.of.every((child) => evalFormatCond(child, row));
+    case "or":
+      return cond.of.some((child) => evalFormatCond(child, row));
+  }
 }
 
-/** `familyKey` 가 엔진 표지로 시작하나 — Prisma `where` 판. 접두사 목록은 위와 **같은 곳**. */
-const ENGINE_FAMILY_WHERE = {
-  OR: ENGINE_PREFIX.map(([prefix]) => ({ familyKey: { startsWith: prefix } })),
-};
-
 /**
- * 엔진 표지가 **아니다** — 널도 포함한다.
+ * 조건을 Prisma `where` 로 뽑는다 — **널 처리가 여기 한 곳**에 있다.
  *
- * ⚠️ `NOT (family_key LIKE 'elem:%')` 는 널 행에 대해 **NULL**(거짓)이라, 그냥 뒤집으면
- *    `family_key` 가 널인 행이 통째로 빠진다. 그 행들이 서술형 후보의 대부분이다.
+ * ⚠️ SQL 에서 `question_type <> '서술형'` 은 널 행에 대해 **NULL**(거짓)이다. 그냥
+ *    뒤집으면 널인 행이 통째로 빠진다 — 그 행들이 서술형 후보의 대부분이다. 그래서
+ *    `not` 은 「널이거나 · 빈 값이거나 · 그 값이 아니거나」로 편다. JS 의 `!` 와 뜻이
+ *    같아지는 자리가 여기다.
  */
-const NOT_ENGINE_FAMILY_WHERE = {
-  OR: [
-    { familyKey: null },
-    {
-      AND: ENGINE_PREFIX.map(([prefix]) => ({
-        NOT: { familyKey: { startsWith: prefix } },
-      })),
-    },
-  ],
-};
+export function toPrismaWhere(cond: FormatCond): Record<string, unknown> {
+  switch (cond.kind) {
+    case "empty":
+      return { OR: [{ [cond.col]: null }, { [cond.col]: "" }] };
+    case "eq":
+      return { [cond.col]: cond.value };
+    case "prefix":
+      return { [cond.col]: { startsWith: cond.value } };
+    case "not": {
+      const inner = cond.of;
+      if (inner.kind === "empty") {
+        // 「비어 있지 않다」 — 널도 빈 문자열도 아니어야 한다.
+        return {
+          AND: [{ NOT: { [inner.col]: null } }, { NOT: { [inner.col]: "" } }],
+        };
+      }
+      return {
+        OR: [
+          { [inner.col]: null },
+          { [inner.col]: "" },
+          { NOT: toPrismaWhere(inner) },
+        ],
+      };
+    }
+    case "and":
+      return { AND: cond.of.map(toPrismaWhere) };
+    case "or":
+      return { OR: cond.of.map(toPrismaWhere) };
+  }
+}
 
-/**
- * `questionType` 이 그 값이 **아니다** — NULL 도 포함한다.
- *
- * ⚠️ SQL 에서 `question_type <> '서술형'` 은 NULL 행에 대해 **NULL**(거짓)이다.
- *    그냥 `NOT` 하나로 쓰면 널인 행이 조용히 통째로 빠진다. 그래서 널을 **명시적으로**
- *    한쪽에 둔다. 이 조각이 `formatSuperset` 과 정말 같은 행을 고르는지는 JS 로는 못
- *    잰다 — 공유 DB 전량에 대고 `probe-format-filter.ts --superset` 이 잰다.
- */
-const questionTypeIsNot = (value: string) => ({
-  OR: [{ questionType: null }, { NOT: { questionType: value } }],
-});
+/** 후보 집합 판정 — 화면·조사가 부르는 자리. 위 조건 하나에서 나온다. */
+export function formatSuperset(
+  problem: FormatEvidence,
+  format: FilterableFormat,
+): boolean {
+  return evalFormatCond(FORMAT_SUPERSET_COND[format], problem);
+}
 
-/**
- * 후보 집합의 Prisma `where` 판 — `formatSuperset` 과 **같은 행**을 골라야 한다.
- *
- * 🔴 여기 조건을 고치면 `formatSuperset` 도 같이 고쳐야 한다. 둘이 갈리면 필터가
- *    조용히 행을 빠뜨리는데 **에러가 안 난다** — 그래서 실데이터 대조 조사가 따로 있다.
- */
+/** 후보 집합의 Prisma `where` 판 — **같은 조건**에서 뽑았다. 손으로 다시 적지 마라. */
 export const FORMAT_SUPERSET_WHERE: Readonly<
   Record<FilterableFormat, Record<string, unknown>>
 > = {
-  short_answer: {
-    OR: [
-      { questionType: "단답형" },
-      { AND: [ENGINE_FAMILY_WHERE, questionTypeIsNot("서술형")] },
-    ],
-  },
-  descriptive: {
-    OR: [
-      { questionType: "서술형" },
-      {
-        AND: [
-          { OR: [{ questionType: null }, { questionType: "" }] },
-          { problemType: "서술형" },
-          NOT_ENGINE_FAMILY_WHERE,
-        ],
-      },
-    ],
-  },
+  short_answer: toPrismaWhere(FORMAT_SUPERSET_COND.short_answer),
+  descriptive: toPrismaWhere(FORMAT_SUPERSET_COND.descriptive),
 };
+
+/** 시험이 조건 자체를 들여다볼 수 있게 연다 — 뽑아 내는 함수를 잠그는 데 쓴다. */
+export const FORMAT_SUPERSET_CONDITION = FORMAT_SUPERSET_COND;
 
 /** 화면이 그리는 라벨 한 장. */
 export type ProvenanceBadge = {

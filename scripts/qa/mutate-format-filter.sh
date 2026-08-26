@@ -167,33 +167,17 @@ mutate "늘 본문을 읽게 한다 (과잉 null — 후보 전량이 본문 조
 echo
 echo "── 규칙: 후보 집합 (provenance.ts) ───────────────────────"
 mutate "단답형 후보에서 엔진 표지를 뺀다 (엔진 문항이 필터에서 사라진다)" "$SRC_RULE" \
-  '    return isEngineFamily(problem.familyKey);
-  }' \
-  '    return false;
-  }'
+  '    and(ENGINE_FAMILY, not(eq("questionType", "서술형"))),' \
+  ''
 mutate "서술형 후보에서 problemType 되짚기를 뺀다" "$SRC_RULE" \
-  '  return (
-    !problem.questionType &&
-    problem.problemType === "서술형" &&
-    !isEngineFamily(problem.familyKey)
-  );' \
-  '  return false;'
+  '    and(empty("questionType"), eq("problemType", "서술형"), not(ENGINE_FAMILY)),' \
+  ''
 mutate "서술형 후보에서 엔진 제외를 뺀다 (두 후보가 겹친다)" "$SRC_RULE" \
-  '    problem.problemType === "서술형" &&
-    !isEngineFamily(problem.familyKey)
-  );' \
-  '    problem.problemType === "서술형"
-  );'
+  '    and(empty("questionType"), eq("problemType", "서술형"), not(ENGINE_FAMILY)),' \
+  '    and(empty("questionType"), eq("problemType", "서술형")),'
 mutate "후보를 «전부»로 만든다 (트리비얼)" "$SRC_RULE" \
-  'export function formatSuperset(
-  problem: FormatEvidence,
-  format: FilterableFormat,
-): boolean {' \
-  'export function formatSuperset(
-  problem: FormatEvidence,
-  format: FilterableFormat,
-): boolean {
-  if (problem || format) return true;'
+  '  return evalFormatCond(FORMAT_SUPERSET_COND[format], problem);' \
+  '  return Boolean(problem) || Boolean(format);'
 
 echo
 echo "── 규칙: 판정 본체 (provenance.ts) ───────────────────────"
@@ -208,14 +192,34 @@ mutate "classifyFormat 이 보기 칸 수를 늘 0으로 넘긴다" "$SRC_RULE" 
   '    0,'
 
 echo
-echo "── 후보 집합의 SQL 판 (provenance.ts) ────────────────────"
-mutate "널을 빠뜨린 채 «서술형이 아니다» 를 쓴다 (NULL 삼값논리 함정)" "$SRC_RULE" \
-  '  OR: [{ questionType: null }, { NOT: { questionType: value } }],' \
-  '  NOT: { questionType: value },'
-mutate "서술형 후보 where 에서 엔진 제외를 뺀다" "$SRC_RULE" \
-  '          { problemType: "서술형" },
-          NOT_ENGINE_FAMILY_WHERE,' \
-  '          { problemType: "서술형" },'
+echo "── 조건을 SQL 로 뽑는 자리 (provenance.ts) ───────────────"
+# 🔴 예전에는 이 자리가 **규칙을 두 벌 적은 곳**이었고, 아래 두 변이가 **전량 초록**이었다
+#    (2026-08-26). 이제 조건은 한 곳에 있고 SQL 은 거기서 뽑으므로, 남는 위험은
+#    「뽑아 내는 함수」뿐이다 — 그 함수를 겨눈다.
+mutate "널을 빠뜨린 채 «그 값이 아니다» 를 뽑는다 (NULL 삼값논리 함정)" "$SRC_RULE" \
+  '      return {
+        OR: [
+          { [inner.col]: null },
+          { [inner.col]: "" },
+          { NOT: toPrismaWhere(inner) },
+        ],
+      };' \
+  '      return { NOT: toPrismaWhere(inner) };'
+mutate "«비어 있다» 에서 빈 문자열 갈래를 뺀다" "$SRC_RULE" \
+  '      return { OR: [{ [cond.col]: null }, { [cond.col]: "" }] };' \
+  '      return { [cond.col]: null };'
+mutate "«비어 있지 않다» 에서 널 검사를 뺀다" "$SRC_RULE" \
+  '          AND: [{ NOT: { [inner.col]: null } }, { NOT: { [inner.col]: "" } }],' \
+  '          AND: [{ NOT: { [inner.col]: "" } }],'
+mutate "드모르간을 죽인다 (부정이 잎까지 안 내려간다)" "$SRC_RULE" \
+  '    case "and":
+      return or(...cond.of.map(not));
+    case "or":
+      return and(...cond.of.map(not));' \
+  '    case "and":
+      return cond;
+    case "or":
+      return cond;'
 
 echo
 echo "── 배선: 라우트 (route.ts) ───────────────────────────────"

@@ -18,7 +18,7 @@
  * ⏱ 대기 시간은 `ProblemBank.test.tsx` 와 같은 사정이다 — 여러 세션이 CPU 를 쓰면
  *    첫 렌더가 늦다. 거짓 경보는 가드를 끄므로 넉넉히 준다.
  */
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
@@ -102,6 +102,39 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
         expect(after[badge], `단답형으로 걸렀는데 보이는 ${badge}`).toBe(0);
       }
     }, RENDER_WAIT);
+  });
+
+  it("**등록 직후 목록 판정**도 형식을 본다 (D-60 ⑹)", async () => {
+    /**
+     * 🔴 화면쪽 술어(`matchesFilters`)·가짜 서버·라우트가 **같은 규칙**이어야 한다.
+     *    갈리면 등록·변형·승격 직후 「목록엔 남는데 새로고침하면 사라지는」 카드가 생긴다.
+     *    형식 축을 넣고 이 자리를 빠뜨렸더니 변이 시험이 **초록**이었다(2026-08-26) —
+     *    즉 그 배선을 통째로 지워도 아무도 안 울고 있었다.
+     *
+     *    여기서 등록하는 문항은 `questionType` 도 엔진 표지도 없어 라벨이 `[?형식]` 이다.
+     *    서술형으로 거르는 중이므로 목록에 **끼워 넣으면 안 된다.**
+     */
+    const { user } = await renderBank();
+    await user.selectOptions(screen.getByLabelText("유형"), "서술형");
+    await waitFor(() => {
+      expect(visibleFormatBadges()["[서]"]).toBeGreaterThan(0);
+    }, RENDER_WAIT);
+
+    await user.click(screen.getByRole("button", { name: "등록" }));
+    const form = await screen.findByRole("form", { name: "등록" }, RENDER_WAIT);
+    await user.selectOptions(within(form).getByLabelText("출처"), "manual");
+    await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
+    await user.selectOptions(within(form).getByLabelText("유형"), "계산");
+    await user.type(within(form).getByLabelText("본문"), "형식이 안 맞는 문항");
+    await user.type(within(form).getByLabelText("정답"), "1");
+    await user.click(within(form).getByRole("button", { name: "등록하기" }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/현재 필터에/)).toBeInTheDocument();
+    }, RENDER_WAIT);
+    expect(screen.queryByText("형식이 안 맞는 문항")).toBeNull();
+    // 그리고 그 카드가 안 들어왔으니 `[?형식]` 도 화면에 없어야 한다.
+    expect(visibleFormatBadges()["[?형식]"]).toBe(0);
   });
 
   it("전체로 되돌리면 다시 다 보인다 — 필터가 눌어붙지 않는다", async () => {

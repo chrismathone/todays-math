@@ -40,11 +40,16 @@
 import { describe, expect, it } from "vitest";
 
 import { problemFormatFilterSchema } from "@/contracts/problem.contract";
+import {
+  PROBLEM_FILTER_OPTIONS,
+  splitProblemFilterValue,
+} from "@/components/problem/labels";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import {
   classifyFormat,
   classifyFormatWithChoices,
   FILTERABLE_FORMATS,
+  FORMAT_SUPERSET_WHERE,
   formatSuperset,
   formatWithoutContent,
   PROBLEM_FORMATS,
@@ -238,6 +243,253 @@ describe("[형식 필터] ㉡ 후보 집합", () => {
         formatSuperset(ev, "short_answer") && formatSuperset(ev, "descriptive"),
     );
     expect(both.map(describeEvidence)).toEqual([]);
+  });
+});
+
+describe("[형식 필터] 판정이 **실제로 무엇을 내나** — 기대값을 손으로 적는다", () => {
+  /**
+   * ⚠️ 위 전수 시험들은 ㉠㉡ 이 `classifyFormat` 과 **서로 맞는가**만 본다. 셋이 같은
+   *    `isEngineFamily`·같은 조건 기술을 쓰므로 **셋을 한꺼번에 옮기는 변이는 구조적으로
+   *    안 잡힌다.** 실제로 「엔진 접두사 목록에서 `mid:` 를 뺀다」 변이가 **전량 초록**
+   *    이었다(2026-08-26 변이 시험). 판정의 «참»이 판정기 자신에게서 온 것이다.
+   *
+   *    그래서 여기서는 기대값을 **명세에서 손으로** 적는다 — 이 표는 `classifyFormat`
+   *    이 무엇을 하든 안 바뀐다. 값이 갈리면 둘 중 하나가 틀린 것이고, 그때 사람이 본다.
+   */
+  const PINNED: [number, FormatEvidence, string][] = [
+    // 보기 없음 · 정답이 번호 아님 — `questionType` 이 그대로 답이다
+    [
+      0,
+      {
+        answer: "7",
+        questionType: "단답형",
+        problemType: "계산",
+        familyKey: null,
+      },
+      "short_answer",
+    ],
+    [
+      0,
+      {
+        answer: "7",
+        questionType: "서술형",
+        problemType: "계산",
+        familyKey: null,
+      },
+      "descriptive",
+    ],
+    // 엔진 표지 — **접두사 둘 다** 단답형이어야 한다(목록에서 하나를 빼면 여기가 빨개진다)
+    [
+      0,
+      {
+        answer: "7",
+        questionType: null,
+        problemType: "계산",
+        familyKey: "elem:초6|x|연산",
+      },
+      "short_answer",
+    ],
+    [
+      0,
+      {
+        answer: "7",
+        questionType: null,
+        problemType: "계산",
+        familyKey: "mid:3-1|y|06",
+      },
+      "short_answer",
+    ],
+    // 엔진이 아니면 되짚을 근거가 없다 — 지어내지 않고 미분류
+    [
+      0,
+      {
+        answer: "7",
+        questionType: null,
+        problemType: "계산",
+        familyKey: "solo:abc",
+      },
+      "unknown",
+    ],
+    // `questionType` 이 없을 때만 `problemType` 을 되짚는다
+    [
+      0,
+      {
+        answer: "7",
+        questionType: null,
+        problemType: "서술형",
+        familyKey: null,
+      },
+      "descriptive",
+    ],
+    [
+      0,
+      {
+        answer: "7",
+        questionType: "객관식",
+        problemType: "서술형",
+        familyKey: null,
+      },
+      "unknown",
+    ],
+    // 보기가 둘 이상이고 정답이 번호면 객관식 — **본문이 `questionType` 을 이긴다**
+    [
+      5,
+      { answer: "①", questionType: null, problemType: "개념", familyKey: null },
+      "multiple_choice",
+    ],
+    [
+      5,
+      {
+        answer: "①",
+        questionType: "단답형",
+        problemType: "계산",
+        familyKey: null,
+      },
+      "multiple_choice",
+    ],
+    // 정답이 번호인데 보기가 없다 — 객관식이 아니고, `questionType` 을 믿는다
+    [
+      0,
+      {
+        answer: "①",
+        questionType: "단답형",
+        problemType: "계산",
+        familyKey: null,
+      },
+      "short_answer",
+    ],
+    // 보기는 있는데 정답이 번호가 아니다 — 「몇 개인지 구하시오」 부류
+    [
+      5,
+      { answer: "3", questionType: null, problemType: "개념", familyKey: null },
+      "unknown",
+    ],
+  ];
+
+  it.each(PINNED)("보기 %i칸 · %o → %s", (choices, ev, expected) => {
+    expect(classifyFormatWithChoices(choices, ev)).toBe(expected);
+  });
+
+  it("후보 집합도 손으로 적은 기대값과 맞는다", () => {
+    // 엔진 표지 둘이 **모두** 단답형 후보여야 한다 — 목록이 줄면 여기가 빨개진다.
+    for (const familyKey of ["elem:초6|x|연산", "mid:3-1|y|06"]) {
+      const ev: FormatEvidence = {
+        answer: "7",
+        questionType: null,
+        problemType: "계산",
+        familyKey,
+      };
+      expect(formatSuperset(ev, "short_answer"), familyKey).toBe(true);
+      expect(formatSuperset(ev, "descriptive"), familyKey).toBe(false);
+    }
+  });
+});
+
+describe("[형식 필터] 조건을 Prisma 로 뽑는 자리 — 널을 잃지 않는가", () => {
+  /**
+   * 🔴 SQL 에서 `question_type <> '서술형'` 은 **널 행에 대해 참이 아니다.** 그냥 뒤집으면
+   *    널인 행이 통째로 빠지는데 **에러가 안 난다.** 이 결함은 단위·라우트·화면 시험이
+   *    구조적으로 못 본다 — 가짜 서버는 JS 판정을 쓰고, 시험 대역의 `NOT` 은 JS 의미다.
+   *    실제로 그 변이가 전량 초록이었다(2026-08-26). 그래서 **뽑아 낸 조각의 모양**을 직접 잰다.
+   */
+  type Node = Record<string, unknown>;
+
+  /** `NOT` 이 나오면, **같은 `OR` 안에 그 칸의 널 갈래**가 있어야 한다. */
+  function notesWithoutNullEscape(
+    node: unknown,
+    insideOr: Node[] = [],
+  ): string[] {
+    if (node === null || typeof node !== "object") return [];
+    const obj = node as Node;
+    const bad: string[] = [];
+    if (Array.isArray(obj)) {
+      for (const child of obj)
+        bad.push(...notesWithoutNullEscape(child, insideOr));
+      return bad;
+    }
+    for (const [key, value] of Object.entries(obj)) {
+      if (key === "OR" && Array.isArray(value)) {
+        for (const child of value) {
+          bad.push(...notesWithoutNullEscape(child, value as Node[]));
+        }
+        continue;
+      }
+      if (key === "NOT") {
+        const col = Object.keys(value as Node)[0]!;
+        const hasNull = insideOr.some(
+          (sibling) => sibling && (sibling as Node)[col] === null,
+        );
+        if (!hasNull) bad.push(`NOT ${col} 옆에 널 갈래가 없다`);
+        continue;
+      }
+      bad.push(...notesWithoutNullEscape(value, insideOr));
+    }
+    return bad;
+  }
+
+  it.each(FILTERABLE_FORMATS)(
+    "%s 후보 where 의 모든 NOT 이 널을 살려 둔다",
+    (format) => {
+      expect(notesWithoutNullEscape(FORMAT_SUPERSET_WHERE[format])).toEqual([]);
+    },
+  );
+
+  it("검사기 자신이 «아니오»를 낼 수 있다 — 널 갈래를 지운 조각은 걸린다", () => {
+    // 음성 대조: 이게 없으면 위 시험은 「NOT 이 아예 없어도」 초록이다.
+    const broken = {
+      OR: [{ questionType: "" }, { NOT: { questionType: "서술형" } }],
+    };
+    expect(notesWithoutNullEscape(broken)).not.toEqual([]);
+  });
+
+  it("후보 where 에 NOT 이 **실제로 들어 있다** — 없으면 위 시험이 공허하다", () => {
+    expect(JSON.stringify(FORMAT_SUPERSET_WHERE)).toContain('"NOT"');
+  });
+});
+
+describe("[형식 필터] 「유형」 드롭다운이 서술형을 **형식 축**으로 보낸다", () => {
+  /**
+   * 🔴 원장님이 시킨 것의 핵심이 이 한 줄이다 — 「`[서]` 도 서술형 필터에」.
+   *    되돌려도(서술형을 `problemType` 축으로) 라벨 글자는 그대로라서 화면 시험이
+   *    안 울었다(2026-08-26 변이 시험 초록). 그래서 **어느 축으로 나가는지**를 직접 잰다.
+   */
+  it("계산·개념·활용은 problemType, 단답형·서술형은 format 으로 나간다", () => {
+    const byLabel = Object.fromEntries(
+      PROBLEM_FILTER_OPTIONS.map((o) => [
+        o.label,
+        splitProblemFilterValue(o.value),
+      ]),
+    );
+    expect(byLabel["계산"]).toEqual({ problemType: "계산" });
+    expect(byLabel["개념"]).toEqual({ problemType: "개념" });
+    expect(byLabel["활용"]).toEqual({ problemType: "활용" });
+    expect(byLabel["단답형"]).toEqual({ format: "short_answer" });
+    expect(byLabel["서술형"]).toEqual({ format: "descriptive" });
+  });
+
+  it("드롭다운에 `problemType='서술형'` 갈래가 **없다**", () => {
+    // 있으면 「유형=서술형」이 라벨 `[서]` 아닌 행을 다시 끌고 온다.
+    expect(PROBLEM_FILTER_OPTIONS.map((o) => o.value)).not.toContain(
+      "type:서술형",
+    );
+  });
+
+  it("두 축이 정말 다른 것을 가리킨다 — 실측 278건이 이 모양이다", () => {
+    /**
+     * 공유 DB 전량(47,797건) 교차표: `problem_type='서술형'` 8,037건 중
+     *   `[서]` 7,755 · **`[단]` 278** · `[객]` 4
+     * 아래 행이 그 **278건의 모양**이다. 두 축을 같은 것으로 두면 이 행이
+     * 「유형=서술형」에 딸려 나오는데, 화면에는 `[단]` 이라고 찍혀 있다.
+     */
+    const 그_278건의_모양: FormatEvidence = {
+      answer: "7",
+      questionType: "단답형",
+      problemType: "서술형",
+      familyKey: null,
+    };
+    expect(classifyFormatWithChoices(0, 그_278건의_모양)).toBe("short_answer");
+    expect(formatSuperset(그_278건의_모양, "descriptive")).toBe(false);
+    expect(formatSuperset(그_278건의_모양, "short_answer")).toBe(true);
   });
 });
 

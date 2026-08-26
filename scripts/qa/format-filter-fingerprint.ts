@@ -63,6 +63,8 @@ function everyEvidence(): FormatEvidence[] {
 function sampleRow(
   questionType: string | null,
   problemType: string,
+  content = "다음을 구하시오.",
+  answer = "7",
 ): ProblemRow {
   return {
     id: "00000000-0000-4000-8000-000000000001",
@@ -75,8 +77,8 @@ function sampleRow(
     difficulty: "기본",
     problemType,
     questionType,
-    content: "다음을 구하시오.",
-    answer: "7",
+    content,
+    answer,
     solution: null,
     reviewStatus: "approved",
     directUseAllowed: true,
@@ -116,14 +118,28 @@ for (const option of PROBLEM_FILTER_OPTIONS) {
   );
 }
 
+/**
+ * 본문 두 갈래 — **보기 0칸**과 **보기 5칸 + 정답이 보기 번호**.
+ *
+ * ⚠️ 5칸짜리가 **꼭 있어야 한다.** 전에는 표본이 전부 0칸이라 「`classifyFormat` 이
+ *    보기 칸 수를 늘 0으로 넘긴다」 변이가 지문을 **안 바꿨고**, 하네스가 그 변이를
+ *    「무효」로 판정 거부했다(2026-08-26). 지문이 못 보는 축은 변이시킬 수 없다.
+ */
+const CONTENTS: [string, string, string][] = [
+  ["보기0", "다음을 구하시오.", "7"],
+  ["보기5", "다음 중 옳은 것은?\n① 가\n② 나\n③ 다\n④ 라\n⑤ 마", "③"],
+];
+
 lines.push("## ⑷ 직렬화가 싣는 증거");
-for (const questionType of QUESTION_TYPES) {
-  for (const problemType of ["계산", "서술형"]) {
-    const row = sampleRow(questionType, problemType);
-    const sent = serializeProblem(row);
-    lines.push(
-      `${questionType ?? "∅"}|${problemType} :: 서버 ${classifyFormat(row)} · 화면 ${classifyFormat(sent)}`,
-    );
+for (const [shape, content, answer] of CONTENTS) {
+  for (const questionType of QUESTION_TYPES) {
+    for (const problemType of ["계산", "서술형"]) {
+      const row = sampleRow(questionType, problemType, content, answer);
+      const sent = serializeProblem(row);
+      lines.push(
+        `${shape}|${questionType ?? "∅"}|${problemType} :: 서버 ${classifyFormat(row)} · 화면 ${classifyFormat(sent)}`,
+      );
+    }
   }
 }
 
