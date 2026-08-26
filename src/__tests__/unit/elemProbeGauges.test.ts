@@ -68,10 +68,11 @@ const GAUGED: [name: string, gauges: number][] = [
   ["probe-elem-tier-4dan", 16],
   ["probe-elem-unit-josa", 12],
   // 2026-08-26 — 227곳 문형 10개의 **끝나는 지점**(원장님 확정 안 3 최고안).
-  // 눈금은 문자열 픽스처로 `sameQuestion` 을 직접 댄다(양성 3 · 음성 4).
-  // 음성에 「셈이 같아도 막지 않는다」가 들어 있다 — 한 번 그렇게 막았다가
-  // 초3 19곳을 헛되이 걸어서 되돌렸다(9cb5dedf).
-  ["probe-elem-forms", 7],
+  // 눈금은 문자열 픽스처로 `sameQuestion`·`isBinaryChoice` 를 직접 댄다
+  // (양성 5 · 음성 6). 음성에 「셈이 같아도 막지 않는다」가 들어 있다 —
+  // 한 번 그렇게 막았다가 초3 19곳을 헛되이 걸어서 되돌렸다(9cb5dedf).
+  // 양자택일 눈금 넷(42551fff)을 넣을 때 이 수가 7로 남아 있었다.
+  ["probe-elem-forms", 11],
   // ── 중등 (2026-08-24, 미분류 133건을 읽다 나온 결함에서 태어났다) ──
   ["probe-middle-uniqueness", 3],
   ["probe-middle-page-smells", 9],

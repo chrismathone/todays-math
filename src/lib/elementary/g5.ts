@@ -57,6 +57,24 @@ function pickSome<T>(rng: Rng, items: readonly T[], count: number): T[] {
   return shuffled(rng, items).slice(0, count);
 }
 
+/**
+ * 양자택일 문형의 갈래. 변형 셋이 한 답만 내지 않게 첫 뽑기로 고른다.
+ * `rng() < 0.5` 는 초5 걸린 18곳 중 15곳이 갈린다.
+ */
+function altCase(rng: Rng): boolean {
+  return rng() < 0.5;
+}
+
+/** `0..3` 홀짝 — `altCase` 가 검사 씨앗 셋에서 한쪽으로 몰리는 문형용. */
+function altCase4(rng: Rng): boolean {
+  return intBetween(rng, 0, 3) % 2 === 1;
+}
+
+/** `0..5` 홀짝 — 초5 1-2-6 전용. */
+function altCase6(rng: Rng): boolean {
+  return intBetween(rng, 0, 5) % 2 === 1;
+}
+
 /** 대분수 표기 — `2\frac{1}{3}`. 자연수부는 `1` 이상만 넘긴다. */
 function mixedLatex(whole: number, num: number, den: number): string {
   return `${whole}\\frac{${num}}{${den}}`;
@@ -3523,6 +3541,20 @@ const LCM_PAIRS = [
   [12, 18],
 ] as const;
 
+/** 서로소 — 최소공배수 = 두 수의 곱. 1-2-6 문형 09 의 «예» 갈래. */
+const COPRIME_PAIRS = [
+  [4, 9],
+  [5, 8],
+  [5, 9],
+  [7, 10],
+  [8, 9],
+  [4, 5],
+  [3, 8],
+  [7, 8],
+  [5, 6],
+  [7, 9],
+] as const;
+
 /** «어떤 두 수의 최대공약수/최소공배수가 …» 꼴이 쓰는 값 풀. */
 const GCD_GIVEN = [8, 12, 16, 18, 20, 24] as const;
 const LCM_GIVEN = [8, 12, 14, 15, 16, 20] as const;
@@ -4273,15 +4305,19 @@ function gcd124Three(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 어떤 수가 두 수를 모두 나누는가. */
 function gcd124DividesBoth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const [a, b] = pick(rng, GCD_PAIRS);
   const g = gcd(a, b);
-  const ok = intBetween(rng, 0, 1) === 0;
-  const d = ok ? g : g + 1;
+  let d = wantYes ? g : g + 1;
+  if (!wantYes) {
+    while (a % d === 0 && b % d === 0) d += 1;
+  }
+  const yes = a % d === 0 && b % d === 0;
   return make(
     unit,
     `${nj(d, "은", "는")} ${n(a)}와 ${n(b)}를 모두 나누어떨어지게 합니까? (예, 아니요)`,
-    a % d === 0 && b % d === 0 ? "예" : "아니요",
-    a % d === 0 && b % d === 0
+    yes ? "예" : "아니요",
+    yes
       ? `${nj(d, "은", "는")} 두 수의 공약수입니다.`
       : `${nj(d, "은", "는")} 두 수를 모두 나누지 못합니다.`,
   );
@@ -4491,15 +4527,19 @@ function commul125NextAbove(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 09 — 어떤 수가 공배수인지 판정. */
 function commul125IsCommon(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const [a, b] = pick(rng, LCM_PAIRS);
   const m = lcm(a, b);
-  const ok = intBetween(rng, 0, 1) === 0;
-  const x = ok ? m * intBetween(rng, 1, 3) : m * intBetween(rng, 1, 3) + 1;
+  let x = wantYes ? m * intBetween(rng, 1, 3) : m * intBetween(rng, 1, 3) + 1;
+  if (!wantYes) {
+    while (x % a === 0 && x % b === 0) x += 1;
+  }
+  const yes = x % a === 0 && x % b === 0;
   return make(
     unit,
     `${nj(x, "은", "는")} ${n(a)}와 ${n(b)}의 공배수입니까? (예, 아니요)`,
-    x % a === 0 && x % b === 0 ? "예" : "아니요",
-    x % a === 0 && x % b === 0
+    yes ? "예" : "아니요",
+    yes
       ? `${nj(x, "은", "는")} 두 수의 공배수입니다.`
       : `${nj(x, "은", "는")} 두 수의 공배수가 아닙니다.`,
   );
@@ -4694,7 +4734,8 @@ function lcm126Across(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 09 — 최소공배수가 두 수의 곱과 같은지 판정. */
 function lcm126EqualsProduct(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, b] = pick(rng, LCM_PAIRS);
+  const wantYes = altCase6(rng);
+  const [a, b] = wantYes ? pick(rng, COPRIME_PAIRS) : pick(rng, LCM_PAIRS);
   const m = lcm(a, b);
   const prod = a * b;
   return make(
@@ -5152,11 +5193,11 @@ function corr132SolveBox(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 주어진 식이 표를 맞는지 판정. */
 function corr132Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const from = intBetween(rng, 1, 9);
   const xs = [from, from + 1, from + 2, from + 3];
   const k = intBetween(rng, 2, 8);
-  const ok = intBetween(rng, 0, 1) === 0;
-  const shown = ok ? k : k === 2 ? 3 : k - 1;
+  const shown = wantYes ? k : k === 2 ? 3 : k - 1;
   return make(
     unit,
     `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
@@ -5387,9 +5428,9 @@ function corr133Many(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 주어진 식이 맞는지. */
 function corr133Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const { setup, per } = corrLifeMul(rng);
-  const ok = intBetween(rng, 0, 1) === 0;
-  const shown = ok ? per : per === 2 ? 3 : per - 1;
+  const shown = wantYes ? per : per === 2 ? 3 : per - 1;
   return make(
     unit,
     `${setup}, 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
@@ -5594,18 +5635,18 @@ function eq141Scale(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 크기가 같은지 판정. */
 function eq141Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase4(rng);
   const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6]);
   const g = pick(
     rng,
     [2, 3, 4, 5].filter((x) => sd * x <= 24),
   );
-  const ok = intBetween(rng, 0, 1) === 0;
-  const n2 = ok ? sn * g : sn * g + 1;
+  const n2 = wantYes ? sn * g : sn * g + 1;
   return make(
     unit,
     `${frj(sn, sd, "과", "와")} ${fr(n2, sd * g)}은 크기가 같습니까? (예, 아니요)`,
-    ok ? "예" : "아니요",
-    ok
+    wantYes ? "예" : "아니요",
+    wantYes
       ? `분모와 분자가 모두 ${n(g)}배가 되었으므로 크기가 같습니다.`
       : `분모는 ${n(g)}배가 되었는데 분자는 그렇지 않으므로 크기가 다릅니다.`,
   );
@@ -6343,9 +6384,9 @@ function fd145Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 같은 값인지 판정. */
 function fd145Equal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const [fn, fd, milli] = pick(rng, FD145_PAIRS);
-  const ok = intBetween(rng, 0, 1) === 0;
-  const shown = ok
+  const shown = wantYes
     ? milli
     : pick(
         rng,
@@ -6355,8 +6396,8 @@ function fd145Equal(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${frj(fn, fd, "과", "와")} 소수 ${expr(decText)}은 크기가 같습니까? (예, 아니요)`,
-    ok ? "예" : "아니요",
-    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이므로 ${ok ? "같습니다" : "다릅니다"}.`,
+    wantYes ? "예" : "아니요",
+    `${expr(`\\frac{${fn}}{${fd}}=${dec(milli, 3)}`)}이므로 ${wantYes ? "같습니다" : "다릅니다"}.`,
   );
 }
 
@@ -6822,14 +6863,38 @@ function add152ResultWhole(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 분수부의 합이 1 이상인지(받아올림). */
 function add152Carry(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, d1] = properFrac(rng, FRAC_DENS);
-  const [b, d2] = properFrac(
-    rng,
-    FRAC_DENS.filter((x) => x !== d1),
-  );
+  const wantCarry = altCase(rng);
+  let a = 2;
+  let d1 = 3;
+  let b = 3;
+  let d2 = 4;
+  let fn = 17;
+  let fd = 12;
+  for (let k = 0; k < 40; k += 1) {
+    [a, d1] = properFrac(rng, FRAC_DENS);
+    [b, d2] = properFrac(
+      rng,
+      FRAC_DENS.filter((x) => x !== d1),
+    );
+    [fn, fd] = addFrac(a, d1, b, d2);
+    if (fn >= fd === wantCarry) break;
+  }
+  if (fn >= fd !== wantCarry) {
+    if (wantCarry) {
+      a = 2;
+      d1 = 3;
+      b = 3;
+      d2 = 4;
+    } else {
+      a = 1;
+      d1 = 5;
+      b = 1;
+      d2 = 8;
+    }
+    [fn, fd] = addFrac(a, d1, b, d2);
+  }
   const w1 = intBetween(rng, 1, 4);
   const w2 = intBetween(rng, 1, 4);
-  const [fn, fd] = addFrac(a, d1, b, d2);
   const carry = fn >= fd;
   return make(
     unit,
@@ -6975,8 +7040,28 @@ function sub153NumDiff(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 차가 1/2보다 큰지 판정. */
 function sub153VsHalf(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { big, small } = twoProperFracs(rng, SUB_DENS);
-  const [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+  const wantBigger = altCase(rng);
+  let big: [number, number] = [8, 9];
+  let small: [number, number] = [1, 10];
+  let num = 71;
+  let den = 90;
+  for (let k = 0; k < 40; k += 1) {
+    const pair = twoProperFracs(rng, SUB_DENS);
+    big = pair.big;
+    small = pair.small;
+    [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+    if (num * 2 > den === wantBigger) break;
+  }
+  if (num * 2 > den !== wantBigger) {
+    if (wantBigger) {
+      big = [8, 9];
+      small = [1, 10];
+    } else {
+      big = [2, 9];
+      small = [1, 8];
+    }
+    [num, den] = subFrac(big[0], big[1], small[0], small[1]);
+  }
   const bigger = num * 2 > den;
   return make(
     unit,
@@ -7151,15 +7236,38 @@ function sub154ResultWhole(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 받아내림이 필요한지. */
 function sub154Borrow(unit: UnitSeed, rng: Rng): ElemProblem {
-  const [a, d1] = properFrac(rng, FRAC_DENS);
-  const [b, d2] = properFrac(
-    rng,
-    FRAC_DENS.filter((x) => x !== d1),
-  );
+  const wantBorrow = altCase(rng);
+  let a = 1;
+  let d1 = 5;
+  let b = 3;
+  let d2 = 4;
+  for (let k = 0; k < 40; k += 1) {
+    [a, d1] = properFrac(rng, FRAC_DENS);
+    [b, d2] = properFrac(
+      rng,
+      FRAC_DENS.filter((x) => x !== d1),
+    );
+    const Ltry = lcm(d1, d2);
+    if ((a * Ltry) / d1 < (b * Ltry) / d2 === wantBorrow) break;
+  }
+  const L = lcm(d1, d2);
+  if ((a * L) / d1 < (b * L) / d2 !== wantBorrow) {
+    if (wantBorrow) {
+      a = 1;
+      d1 = 5;
+      b = 3;
+      d2 = 4;
+    } else {
+      a = 3;
+      d1 = 4;
+      b = 1;
+      d2 = 5;
+    }
+  }
   const w1 = intBetween(rng, 3, 6);
   const w2 = intBetween(rng, 1, w1 - 2);
-  const L = lcm(d1, d2);
-  const need = (a * L) / d1 < (b * L) / d2;
+  const L2 = lcm(d1, d2);
+  const need = (a * L2) / d1 < (b * L2) / d2;
   return make(
     unit,
     `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺄 때 자연수에서 ${n(1)}을 받아내려야 합니까? (예, 아니요)`,
@@ -7375,12 +7483,17 @@ function rng211MaxAbove(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 경계가 포함되는지 판정. */
 function rng211Includes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase(rng);
   const a = intBetween(rng, 12, 60);
+  const k = wantYes ? a : a - 1;
+  const yes = k >= a;
   return make(
     unit,
-    `${n(a)} 이상인 자연수에 ${n(a)} 자신이 들어갑니까? (예, 아니요)`,
-    "예",
-    `이상은 그 수를 포함하므로 들어갑니다.`,
+    `${n(a)} 이상인 자연수에 ${nj(k, "이", "가")} 들어갑니까? (예, 아니요)`,
+    yes ? "예" : "아니요",
+    yes
+      ? `이상은 그 수를 포함하므로 들어갑니다.`
+      : `${n(k)}은 ${n(a)}보다 작으므로 들어가지 않습니다.`,
   );
 }
 
@@ -7490,12 +7603,17 @@ function rng212MaxUnder(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 경계가 빠지는지 판정. */
 function rng212Excludes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantYes = altCase4(rng);
   const a = intBetween(rng, 12, 60);
+  const k = wantYes ? a + 1 : a;
+  const yes = k > a;
   return make(
     unit,
-    `${n(a)} 초과인 자연수에 ${n(a)} 자신이 들어갑니까? (예, 아니요)`,
-    "아니요",
-    `초과는 그 수를 빼므로 들어가지 않습니다.`,
+    `${n(a)} 초과인 자연수에 ${nj(k, "이", "가")} 들어갑니까? (예, 아니요)`,
+    yes ? "예" : "아니요",
+    yes
+      ? `${n(k)}은 ${n(a)}보다 크므로 들어갑니다.`
+      : `초과는 그 수를 빼므로 들어가지 않습니다.`,
   );
 }
 
@@ -8561,7 +8679,28 @@ function fm221ThenSub(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 10 — 곱이 1보다 큰지 판정. */
 function fm221OverOne(unit: UnitSeed, rng: Rng): ElemProblem {
-  const { a, d, k } = reducibleTriple(rng);
+  const wantOver = altCase(rng);
+  let a = 5;
+  let d = 6;
+  let k = 2;
+  for (let i = 0; i < 40; i += 1) {
+    const t = reducibleTriple(rng);
+    if (t.a * t.k > t.d === wantOver) {
+      ({ a, d, k } = t);
+      break;
+    }
+  }
+  if (a * k > d !== wantOver) {
+    if (wantOver) {
+      a = 5;
+      d = 6;
+      k = 2;
+    } else {
+      a = 1;
+      d = 12;
+      k = 2;
+    }
+  }
   const [num, den] = simplify(a * k, d);
   const over = num > den;
   return make(
@@ -9403,8 +9542,10 @@ function dm241ThenSub(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 09 — 곱이 1보다 큰지 판정. */
 function dm241OverOne(unit: UnitSeed, rng: Rng): ElemProblem {
-  const k = intBetween(rng, 2, 9);
-  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const wantOver = altCase(rng);
+  const k = wantOver ? intBetween(rng, 2, 9) : intBetween(rng, 2, 4);
+  const cands = [2, 3, 4, 5, 6, 7, 8, 9].filter((x) => x * k > 10 === wantOver);
+  const t = pick(rng, cands.length ? cands : wantOver ? [9] : [2]);
   const over = t * k > 10;
   return make(
     unit,
@@ -9479,16 +9620,21 @@ function dm242ThenSub(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 09 — 곱이 처음 소수보다 큰지. 1보다 큰 소수에 2 이상을 곱하므로 언제나 예가 아니게, 비교 대상을 자연수 k로. */
+/** 문형 09 — 곱이 어떤 수보다 큰지. 비교 대상을 씨앗이 고른다(1보다 큰 소수×자연수는 항상 k보다 크다). */
 function dm242VsNatural(unit: UnitSeed, rng: Rng): ElemProblem {
+  const wantOver = altCase(rng);
   const k = intBetween(rng, 2, 9);
   const a = overOneT(rng, (x) => (x * k) % 10 !== 0);
-  const over = a * k > k * 10;
+  const prodTenths = a * k;
+  const target = wantOver
+    ? k
+    : Math.floor(prodTenths / 10) + intBetween(rng, 2, 8);
+  const over = prodTenths > target * 10;
   return make(
     unit,
-    `${expr(`${dec(a, 1)}\\times${k}`)}의 값은 ${nj(k, "보다", "보다")} 큽니까? (예, 아니요)`,
+    `${expr(`${dec(a, 1)}\\times${k}`)}의 값은 ${nj(target, "보다", "보다")} 큽니까? (예, 아니요)`,
     over ? "예" : "아니요",
-    `값은 ${expr(dec(a * k, 1))}이고 ${n(k)}과 견주면 ${over ? "더 큽니다" : "더 크지 않습니다"}.`,
+    `값은 ${expr(dec(prodTenths, 1))}이고 ${n(target)}과 견주면 ${over ? "더 큽니다" : "더 크지 않습니다"}.`,
   );
 }
 
@@ -9549,10 +9695,12 @@ function dm243FindDec(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 08 — 곱이 처음 자연수보다 작은지. 1보다 작은 소수를 곱하므로 예. 비교를 1과 한다. */
+/** 문형 08 — 곱이 1보다 큰지. 비교를 1과 한다. */
 function dm243OverOne(unit: UnitSeed, rng: Rng): ElemProblem {
-  const k = intBetween(rng, 2, 9);
-  const t = underOneT(rng, (x) => (x * k) % 10 !== 0);
+  const wantOver = altCase(rng);
+  const k = wantOver ? intBetween(rng, 2, 9) : intBetween(rng, 2, 4);
+  const cands = [2, 3, 4, 5, 6, 7, 8, 9].filter((x) => x * k > 10 === wantOver);
+  const t = pick(rng, cands.length ? cands : wantOver ? [9] : [2]);
   const over = k * t > 10;
   return make(
     unit,
@@ -9713,8 +9861,10 @@ function dm245FindOther(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 곱이 0.1보다 큰지. */
 function dm245OverTenth(unit: UnitSeed, rng: Rng): ElemProblem {
-  const a = underOneT(rng);
-  const b = underOneT(rng, (x) => (a * x) % 10 !== 0);
+  const wantOver = altCase(rng);
+  const a = wantOver ? intBetween(rng, 4, 9) : intBetween(rng, 2, 3);
+  const cands = [2, 3, 4, 5, 6, 7, 8, 9].filter((x) => a * x > 10 === wantOver);
+  const b = pick(rng, cands.length ? cands : wantOver ? [9] : [2]);
   const over = a * b > 10;
   return make(
     unit,
@@ -9787,8 +9937,16 @@ function dm246FindOther(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 08 — 곱이 10보다 큰지. */
 function dm246OverTen(unit: UnitSeed, rng: Rng): ElemProblem {
-  const a = overOneT(rng);
-  const b = overOneT(rng, (x) => (a * x) % 10 !== 0);
+  const wantOver = altCase(rng);
+  const band: number[] = [];
+  for (let w = 1; w <= 4; w += 1)
+    for (let f = 1; f <= 9; f += 1) {
+      const t = w * 10 + f;
+      if (wantOver ? t >= 32 : t <= 24) band.push(t);
+    }
+  const a = pick(rng, band);
+  const bCands = band.filter((x) => (a * x) % 10 !== 0);
+  const b = pick(rng, bCands.length ? bCands : band);
   const over = a * b > 1000;
   return make(
     unit,

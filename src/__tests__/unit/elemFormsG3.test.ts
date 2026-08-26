@@ -125,11 +125,14 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   });
 
   it("10 합이 짝수·홀수", () => {
+    const answers = new Set<string>();
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
       const [a, b] = katexInts(p.content);
       expect(p.answer).toBe((a! + b!) % 2 === 0 ? "짝수" : "홀수");
+      answers.add(p.answer);
     }
+    expect(answers).toEqual(new Set(["짝수", "홀수"]));
   });
 });
 
@@ -971,5 +974,74 @@ describe("초3 2-3-2 원의 성질", () => {
       const dia = katexInts(p.content)[0]!;
       expect(answerInt(p.answer)).toBe(dia / 2);
     }
+  });
+});
+
+describe("초3 양자택일 — 변형 셋이 양쪽을 낸다", () => {
+  function evenOddOf(code: string, formId: string, op: "+" | "×") {
+    const unit = unitOf(code);
+    const answers = new Set<string>();
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, formId);
+      const [a, b] = katexInts(p.content);
+      const even = op === "+" ? (a! + b!) % 2 === 0 : (a! * b!) % 2 === 0;
+      expect(p.answer).toBe(even ? "짝수" : "홀수");
+      answers.add(p.answer);
+    }
+    expect(answers, `${code} ${formId}`).toEqual(new Set(["짝수", "홀수"]));
+  }
+
+  it("1-4 곱의 짝·홀", () => {
+    for (const code of ["1-4-1", "1-4-2", "1-4-3", "1-4-5"]) {
+      evenOddOf(code, "09", "×");
+    }
+  });
+
+  it("2-1-3 곱의 짝·홀", () => {
+    evenOddOf("2-1-3", "08", "×");
+  });
+
+  it("1-6-4 분모가 같은지", () => {
+    const unit = unitOf("1-6-4");
+    const answers = new Set<string>();
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const dens = [...p.content.matchAll(/\\frac\{\d+\}\{(\d+)\}/g)].map((m) =>
+        Number(m[1]),
+      );
+      expect(dens.length).toBeGreaterThanOrEqual(2);
+      expect(p.answer).toBe(dens[0] === dens[1] ? "예" : "아니요");
+      answers.add(p.answer);
+    }
+    expect(answers).toEqual(new Set(["예", "아니요"]));
+  });
+
+  it("2-2-3 나머지가 어떤 수보다 작은지", () => {
+    const unit = unitOf("2-2-3");
+    const answers = new Set<string>();
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\\div(\d+)\$.*\$(\d+)\$보다/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const k = Number(m![3]);
+      expect(p.answer).toBe(a % b < k ? "예" : "아니요");
+      answers.add(p.answer);
+    }
+    expect(answers).toEqual(new Set(["예", "아니요"]));
+  });
+
+  it("2-4-4 가분수인지", () => {
+    const unit = unitOf("2-4-4");
+    const answers = new Set<string>();
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(Number(m![1]) >= Number(m![2]) ? "예" : "아니요");
+      answers.add(p.answer);
+    }
+    expect(answers).toEqual(new Set(["예", "아니요"]));
   });
 });
