@@ -945,3 +945,60 @@ describe("초5 1-3-3 생활 속 대응", () => {
     }
   });
 });
+
+describe("초5 1-4-1 크기가 같은 분수", () => {
+  const unit = unitOf("1-4-1");
+
+  it("06 분모는 몇 배", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(
+        /\\frac\{(\d+)\}\{(\d+)\}.+\\frac\{(\d+)\}\{(\d+)\}/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![4]) / Number(m![2]));
+    }
+  });
+
+  it("10 분자가 지정된 분수의 분모", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}.+분자가 \$(\d+)\$인/);
+      expect(m, p.content).toBeTruthy();
+      const g = Number(m![3]) / Number(m![1]);
+      expect(answerInt(p.answer)).toBe(Number(m![2]) * g);
+    }
+  });
+});
+
+describe("초5 1-4-2 약분", () => {
+  const unit = unitOf("1-4-2");
+
+  it("06 기약분수의 분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const g = ownDivisors(a)
+        .filter((d) => b % d === 0)
+        .pop()!;
+      expect(answerInt(p.answer)).toBe(a / g);
+    }
+  });
+
+  it("07 기약분수의 분모", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      const g = ownDivisors(a)
+        .filter((d) => b % d === 0)
+        .pop()!;
+      expect(answerInt(p.answer)).toBe(b / g);
+    }
+  });
+});

@@ -5166,6 +5166,100 @@ function eq141Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 분모가 g배가 된 분수의 분자. */
+function eq141NewNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수를 만들려고 분모에 ${nj(g, "을", "를")} 곱했습니다. 분자에 곱해야 할 수는 얼마입니까?`,
+    n(g),
+    `크기가 같으려면 분자에도 같은 수 ${n(g)}를 곱합니다.`,
+  );
+}
+
+/** 문형 06 — 두 분수가 몇 배 관계인지. */
+function eq141Scale(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} ${fr(sn * g, sd * g)}은 크기가 같습니다. 분모는 몇 배가 되었습니까?`,
+    n(g),
+    `${expr(`${sd * g}\\div${sd}=${g}`)}이므로 ${n(g)}배입니다.`,
+  );
+}
+
+/** 문형 07 — 크기가 같은지 판정. */
+function eq141Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5].filter((x) => sd * x <= 24),
+  );
+  const ok = intBetween(rng, 0, 1) === 0;
+  const n2 = ok ? sn * g : sn * g + 1;
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} ${fr(n2, sd * g)}은 크기가 같습니까? (예, 아니요)`,
+    ok ? "예" : "아니요",
+    ok
+      ? `분모와 분자가 모두 ${n(g)}배가 되었으므로 크기가 같습니다.`
+      : `분모는 ${n(g)}배가 되었는데 분자는 그렇지 않으므로 크기가 다릅니다.`,
+  );
+}
+
+/** 문형 08 — 크기가 같은 분수의 분자와 분모의 곱. */
+function eq141NumDenProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6]);
+  const g = pick(
+    rng,
+    [2, 3, 4].filter((x) => sd * x <= 24),
+  );
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모가 ${n(sd * g)}인 분수의 분자와 분모의 곱은 얼마입니까?`,
+    n(sn * g * sd * g),
+    `분자는 ${n(sn * g)}이므로 곱은 ${expr(`${sn * g}\\times${sd * g}=${sn * g * sd * g}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 분모가 지정된 크기가 같은 분수(분수 답). */
+function eq141Write(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분모가 ${n(sd * g)}인 분수를 쓰시오.`,
+    fr(sn * g, sd * g),
+    `분모가 ${n(g)}배가 되었으므로 분자도 ${n(g)}배입니다. ${fr(sn * g, sd * g)}입니다.`,
+  );
+}
+
+/** 문형 10 — 분자가 지정된 크기가 같은 분수의 분모. */
+function eq141DenFromNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 6, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 24),
+  );
+  return make(
+    unit,
+    `${frj(sn, sd, "과", "와")} 크기가 같은 분수 중에서 분자가 ${n(sn * g)}인 분수의 분모를 구하시오.`,
+    n(sd * g),
+    `분자가 ${n(g)}배가 되었으므로 분모도 ${n(g)}배입니다. ${expr(`${sd}\\times${g}=${sd * g}`)}입니다.`,
+  );
+}
+
 /* ── 1-4-2 분수를 간단하게 나타내기 — 약분·기약분수는 여기서만 말한다 ── */
 
 /** 연산 — 지정한 수로 한 번 약분한다(절차 한 번). */
@@ -5259,6 +5353,96 @@ function sim142Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `분모가 ${n(den)}인 진분수 중에서 약분할 수 있는 분수는 모두 몇 개입니까?`,
     n(count),
     `분자가 ${nj(den, "과", "와")} ${n(1)}이 아닌 공통 약수를 가지면 약분할 수 있습니다. 분자 ${n(1)}부터 ${n(den - 1)}까지 중 그런 수는 ${n(count)}개입니다.`,
+  );
+}
+
+/** 문형 05 — 기약분수로. */
+function sim142Lowest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+  );
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타내시오.`,
+    fr(sn, sd),
+    `분모와 분자의 최대공약수 ${nro(g)} 나누면 ${fr(sn, sd)}입니다.`,
+  );
+}
+
+/** 문형 06 — 기약분수의 분자. */
+function sim142LowestNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+  );
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타냈을 때 분자를 구하시오.`,
+    n(sn),
+    `최대공약수 ${nro(g)} 나누면 분자는 ${n(sn)}입니다.`,
+  );
+}
+
+/** 문형 07 — 기약분수의 분모. */
+function sim142LowestDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+  );
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타냈을 때 분모를 구하시오.`,
+    n(sd),
+    `최대공약수 ${nro(g)} 나누면 분모는 ${n(sd)}입니다.`,
+  );
+}
+
+/** 문형 08 — 기약분수인지 판정. */
+function sim142IsLowest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const g = ok ? 1 : pick(rng, [2, 3, 4]);
+  return make(
+    unit,
+    `${fr(sn * g, sd * g)}은 기약분수입니까? (예, 아니요)`,
+    g === 1 ? "예" : "아니요",
+    g === 1
+      ? `분모와 분자의 공약수가 ${n(1)}뿐이므로 기약분수입니다.`
+      : `분모와 분자를 ${nro(g)} 더 나눌 수 있으므로 기약분수가 아닙니다.`,
+  );
+}
+
+/** 문형 09 — 약분한 분수의 분모와 분자의 차. */
+function sim142LowestDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const g = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((x) => sd * x <= 48),
+  );
+  return make(
+    unit,
+    `${frj(sn * g, sd * g, "을", "를")} 기약분수로 나타냈을 때 분모와 분자의 차를 구하시오.`,
+    n(sd - sn),
+    `기약분수는 ${fr(sn, sd)}이므로 차는 ${expr(`${sd}-${sn}=${sd - sn}`)}입니다.`,
+  );
+}
+
+/** 문형 10 — 약분할 수 있는지 판정. */
+function sim142CanReduce(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [sn, sd] = properFrac(rng, [2, 3, 4, 5, 7]);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const g = ok ? pick(rng, [2, 3, 4]) : 1;
+  return make(
+    unit,
+    `${fr(sn * g, sd * g)}은 약분할 수 있습니까? (예, 아니요)`,
+    g > 1 ? "예" : "아니요",
+    g > 1
+      ? `분모와 분자를 ${nro(g)} 나눌 수 있으므로 약분할 수 있습니다.`
+      : `분모와 분자의 공약수가 ${n(1)}뿐이므로 약분할 수 없습니다.`,
   );
 }
 
@@ -5366,6 +5550,88 @@ function com143Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 통분할 때 공통분모가 될 수 있는 수 중에서 ${n(100)}보다 작은 수는 모두 몇 개입니까?`,
     n(count),
     `공통분모는 두 분모의 공배수, 곧 최소공배수 ${n(L)}의 배수입니다. ${n(100)}보다 작은 ${n(L)}의 배수는 ${n(count)}개입니다.`,
+  );
+}
+
+/** 문형 05 — 공통분모(곱). */
+function com143CommonDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, PROD_PAIRS);
+  return make(
+    unit,
+    `분모가 ${n(d1)}인 분수와 분모가 ${n(d2)}인 분수를 두 분모의 곱을 공통분모로 하여 통분할 때, 공통분모는 얼마입니까?`,
+    n(d1 * d2),
+    `${expr(`${d1}\\times${d2}=${d1 * d2}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 최소공배수를 공통분모로. */
+function com143LcmDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const L = lcm(d1, d2);
+  return make(
+    unit,
+    `분모가 ${n(d1)}인 분수와 분모가 ${n(d2)}인 분수를 두 분모의 최소공배수를 공통분모로 하여 통분할 때, 공통분모는 얼마입니까?`,
+    n(L),
+    `두 분모의 최소공배수는 ${n(L)}입니다.`,
+  );
+}
+
+/** 문형 07 — 통분한 첫째 분수의 분자. */
+function com143FirstNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const L = lcm(d1, d2);
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${fr(b, d2)}를 두 분모의 최소공배수를 공통분모로 하여 통분할 때, ${fr(a, d1)}을 통분한 분수의 분자를 구하시오.`,
+    n((a * L) / d1),
+    `공통분모는 ${n(L)}이므로 분자는 ${expr(`${a}\\times${L / d1}=${(a * L) / d1}`)}입니다.`,
+  );
+}
+
+/** 문형 08 — 통분한 두 분자의 곱. */
+function com143NumProd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const a = coprimeTop(rng, d1);
+  const b = coprimeTop(rng, d2);
+  const L = lcm(d1, d2);
+  const p = (a * L) / d1;
+  const q = (b * L) / d2;
+  return make(
+    unit,
+    `${frj(a, d1, "과", "와")} ${frj(b, d2, "을", "를")} 두 분모의 최소공배수를 공통분모로 하여 통분했을 때, 두 분자의 곱을 구하시오.`,
+    n(p * q),
+    `통분한 분자는 ${n(p)}, ${n(q)}이므로 곱은 ${expr(`${p}\\times${q}=${p * q}`)}입니다.`,
+  );
+}
+
+/** 문형 09 — 공통분모인지 판정. */
+function com143IsCommon(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const L = lcm(d1, d2);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const x = ok ? L * intBetween(rng, 1, 3) : L + 1;
+  return make(
+    unit,
+    `분모가 ${n(d1)}인 분수와 분모가 ${n(d2)}인 분수를 통분할 때 ${nj(x, "은", "는")} 공통분모가 될 수 있습니까? (예, 아니요)`,
+    x % L === 0 ? "예" : "아니요",
+    x % L === 0
+      ? `${nj(x, "은", "는")} 최소공배수 ${n(L)}의 배수이므로 공통분모가 될 수 있습니다.`
+      : `${nj(x, "은", "는")} 두 분모의 공배수가 아니므로 공통분모가 될 수 없습니다.`,
+  );
+}
+
+/** 문형 10 — 곱 공통분모와 최소공배수 공통분모의 차. */
+function com143DenGap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [d1, d2] = pick(rng, COM_PAIRS);
+  const L = lcm(d1, d2);
+  const p = d1 * d2;
+  return make(
+    unit,
+    `분모가 ${n(d1)}인 분수와 분모가 ${n(d2)}인 분수를 통분할 때, 두 분모의 곱과 두 분모의 최소공배수의 차는 얼마입니까?`,
+    n(p - L),
+    `곱은 ${n(p)}, 최소공배수는 ${n(L)}이므로 차는 ${expr(`${p}-${L}=${p - L}`)}입니다.`,
   );
 }
 
@@ -8460,6 +8726,42 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: corr133AgeGap },
     { id: "09", tier: "응용", generate: corr133Cuts },
     { id: "10", tier: "응용", generate: corr133PerDiff },
+  ],
+  "초5|1-4-1": [
+    { id: "01", tier: "연산", generate: eq141Calc },
+    { id: "02", tier: "기본", generate: eq141Read },
+    { id: "03", tier: "응용", generate: eq141Apply },
+    { id: "04", tier: "심화", generate: eq141Deep },
+    { id: "05", tier: "기본", generate: eq141NewNum },
+    { id: "06", tier: "기본", generate: eq141Scale },
+    { id: "07", tier: "기본", generate: eq141Judge },
+    { id: "08", tier: "응용", generate: eq141NumDenProd },
+    { id: "09", tier: "응용", generate: eq141Write },
+    { id: "10", tier: "응용", generate: eq141DenFromNum },
+  ],
+  "초5|1-4-2": [
+    { id: "01", tier: "연산", generate: sim142Calc },
+    { id: "02", tier: "기본", generate: sim142Read },
+    { id: "03", tier: "응용", generate: sim142Apply },
+    { id: "04", tier: "심화", generate: sim142Deep },
+    { id: "05", tier: "기본", generate: sim142Lowest },
+    { id: "06", tier: "기본", generate: sim142LowestNum },
+    { id: "07", tier: "기본", generate: sim142LowestDen },
+    { id: "08", tier: "응용", generate: sim142IsLowest },
+    { id: "09", tier: "응용", generate: sim142LowestDiff },
+    { id: "10", tier: "응용", generate: sim142CanReduce },
+  ],
+  "초5|1-4-3": [
+    { id: "01", tier: "연산", generate: com143Calc },
+    { id: "02", tier: "기본", generate: com143Read },
+    { id: "03", tier: "응용", generate: com143Apply },
+    { id: "04", tier: "심화", generate: com143Deep },
+    { id: "05", tier: "기본", generate: com143CommonDen },
+    { id: "06", tier: "기본", generate: com143LcmDen },
+    { id: "07", tier: "기본", generate: com143FirstNum },
+    { id: "08", tier: "응용", generate: com143NumProd },
+    { id: "09", tier: "응용", generate: com143IsCommon },
+    { id: "10", tier: "응용", generate: com143DenGap },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
