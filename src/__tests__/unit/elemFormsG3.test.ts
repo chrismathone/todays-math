@@ -822,3 +822,95 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
     }
   });
 });
+
+describe("초3 1-3-3 몫을 곱셈식으로", () => {
+  const unit = unitOf("1-3-3");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("05 빈칸×나누는 수 = 나뉘는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$\\square\\times(\d+)=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) / Number(m![1]));
+    }
+  });
+
+  it("06 남은 개수 = 한 봉지×남은 봉지", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b, c] = katexInts(p.content);
+      const q = a! / b!;
+      expect(answerInt(p.answer)).toBe(b! * (q - c!));
+    }
+  });
+
+  it("08 한 봉지 개수 = 전체÷봉지 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [a, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! / q!);
+    }
+  });
+
+  it("09 준 개수 = 한 봉지×준 봉지", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b, c] = katexInts(p.content);
+      expect(a! % b!).toBe(0);
+      expect(answerInt(p.answer)).toBe(b! * c!);
+    }
+  });
+
+  it("10 전체에 한 봉지를 더하면", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! + b!);
+    }
+  });
+});
+
+describe("초3 1-3-4 몫을 곱셈구구로", () => {
+  const unit = unitOf("1-3-4");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("05 이용하는 구구는 나누는 수 단", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(b);
+    }
+  });
+
+  it("08 하루 쪽수×날수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [b, q] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(b! * q!);
+    }
+  });
+
+  it("09 날수에서 며칠을 빼면", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b, c] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! / b! - c!);
+    }
+  });
+
+  it("10 구구 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/(\d+)\\times(\d+)/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+    }
+  });
+});

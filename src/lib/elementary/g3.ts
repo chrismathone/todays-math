@@ -8408,6 +8408,146 @@ function div132Recover(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — □×b=a 에서 몫. 01 은 b×□. */
+function div133LeftBox(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square\\times${b}=${a}$`,
+    n(q),
+    `${expr(`${q}\\times${b}=${a}`)} 이므로 ${n(q)} 입니다.`,
+  );
+}
+
+/** 문형 06 — 봉지를 준 뒤 남은 개수. 03 은 남은 봉지 수. */
+function div133LeftItems(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, q - 1);
+  const thing = pick(rng, PACK_STUFF);
+  const left = b * (q - c);
+  return make(
+    unit,
+    `${thing} ${n(a)}개를 한 봉지에 ${n(b)}개씩 담은 뒤 ${n(c)}봉지를 주었습니다. 남은 ${thing}${josa(thing, "은", "는")} 몇 개인지 쓰시오.`,
+    n(left),
+    `${expr(`${a}\\div${b}=${q}`)} 봉지입니다. ${expr(`${q}-${c}=${q - c}`)} 봉지이므로 ${expr(`${b}\\times${q - c}=${left}`)} 개입니다.`,
+  );
+}
+
+/** 문형 07 — 곱셈 검산. */
+function div133Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 를 곱셈으로 검산한 식의 값을 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 한 봉지에 몇 개씩. 02 는 몇 봉지. */
+function div133Each(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, PACK_STUFF);
+  return make(
+    unit,
+    `${thing} ${n(a)}개를 ${n(q)}봉지에 남김없이 똑같이 담았습니다. 한 봉지에는 몇 개씩인지 쓰시오.`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 한 봉지에 ${n(b)}개씩입니다.`,
+  );
+}
+
+/** 문형 09 — 준 봉지에 담긴 개수. 06 은 남은 개수. */
+function div133GivenItems(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, q - 1);
+  const thing = pick(rng, PACK_STUFF);
+  return make(
+    unit,
+    `${thing} ${n(a)}개를 한 봉지에 ${n(b)}개씩 담아 ${n(c)}봉지를 이웃에게 주었습니다. 준 ${thing}${josa(thing, "은", "는")} 몇 개인지 쓰시오.`,
+    n(b * c),
+    `봉지는 ${expr(`${a}\\div${b}=${q}`)} 개입니다. 준 것은 ${expr(`${b}\\times${c}=${b * c}`)} 개입니다.`,
+  );
+}
+
+/** 문형 10 — 전체에 한 봉지를 더하면. */
+function div133PlusPack(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const thing = pick(rng, PACK_STUFF);
+  return make(
+    unit,
+    `${thing} ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았습니다. 같은 봉지 한 개를 더 담으면 ${thing}${josa(thing, "은", "는")} 모두 몇 개인지 쓰시오.`,
+    n(a + b),
+    `${expr(`${b}\\times${q}=${a}`)} 이고, ${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — 몇 단 곱셈구구를 쓰나. */
+function div134WhichTable(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫을 구할 때 이용하는 곱셈구구는 몇 단입니까?`,
+    n(b),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(b)}단입니다.`,
+  );
+}
+
+/** 문형 06 — 구구에서 곱이 a인 식의 곱하는 수. */
+function div134TimesWhat(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `${n(b)}단 곱셈구구에서 곱이 ${n(a)} 인 곱셈식의 ${expr(`\\square`)} 에 알맞은 수를 쓰시오. (${expr(`${b}\\times\\square=${a}`)})`,
+    n(q),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(q)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 몫×단수. */
+function div134QuotTimesTable(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 입니다. 몫과 단 수를 곱한 값을 쓰시오.`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 하루에 b쪽씩 q일. 02 는 며칠인지. */
+function div134TotalPages(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `동화책을 하루에 ${n(b)}쪽씩 ${n(q)}일 동안 읽었습니다. 읽은 쪽수는 모두 몇 쪽인지 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(a)}쪽입니다.`,
+  );
+}
+
+/** 문형 09 — 다 읽는 날수에서 며칠을 빼면. */
+function div134DaysMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  const c = intBetween(rng, 1, q - 1);
+  return make(
+    unit,
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽습니다. ${n(c)}일 먼저 끝내면 며칠 만에 다 읽는지 쓰시오.`,
+    n(q - c),
+    `${expr(`${a}\\div${b}=${q}`)} 일이고, ${expr(`${q}-${c}=${q - c}`)} 일입니다.`,
+  );
+}
+
+/** 문형 10 — 구구 곱. */
+function div134GuguProduct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b, q } = divTriple(rng);
+  return make(
+    unit,
+    `${n(b)}단 곱셈구구 ${expr(`${b}\\times${q}`)} 의 값을 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8540,6 +8680,30 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: div132Product },
     { id: "09", tier: "응용", generate: div132OtherQuot },
     { id: "10", tier: "응용", generate: div132Recover },
+  ],
+  "초3|1-3-3": [
+    { id: "01", tier: "연산", generate: div133Calc },
+    { id: "02", tier: "기본", generate: div133Word },
+    { id: "03", tier: "응용", generate: div133Apply },
+    { id: "04", tier: "심화", generate: div133Deep },
+    { id: "05", tier: "기본", generate: div133LeftBox },
+    { id: "06", tier: "기본", generate: div133LeftItems },
+    { id: "07", tier: "기본", generate: div133Check },
+    { id: "08", tier: "응용", generate: div133Each },
+    { id: "09", tier: "응용", generate: div133GivenItems },
+    { id: "10", tier: "응용", generate: div133PlusPack },
+  ],
+  "초3|1-3-4": [
+    { id: "01", tier: "연산", generate: div134Calc },
+    { id: "02", tier: "기본", generate: div134Word },
+    { id: "03", tier: "응용", generate: div134Apply },
+    { id: "04", tier: "심화", generate: div134Deep },
+    { id: "05", tier: "기본", generate: div134WhichTable },
+    { id: "06", tier: "기본", generate: div134TimesWhat },
+    { id: "07", tier: "기본", generate: div134QuotTimesTable },
+    { id: "08", tier: "응용", generate: div134TotalPages },
+    { id: "09", tier: "응용", generate: div134DaysMinus },
+    { id: "10", tier: "응용", generate: div134GuguProduct },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
