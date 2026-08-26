@@ -49,8 +49,10 @@ import {
   classifyFormat,
   classifyFormatWithChoices,
   FILTERABLE_FORMATS,
+  FORMAT_COND_EXERCISE,
   FORMAT_SUPERSET_WHERE,
   formatSuperset,
+  toPrismaWhere,
   formatWithoutContent,
   PROBLEM_FORMATS,
   type FormatEvidence,
@@ -444,6 +446,107 @@ describe("[형식 필터] 조건을 Prisma 로 뽑는 자리 — 널을 잃지 �
 
   it("후보 where 에 NOT 이 **실제로 들어 있다** — 없으면 위 시험이 공허하다", () => {
     expect(JSON.stringify(FORMAT_SUPERSET_WHERE)).toContain('"NOT"');
+  });
+
+  it("널 갈래를 낸 자리는 **빈 문자열 갈래도** 같이 낸다", () => {
+    // JS 는 `!row.questionType` 로 널과 빈 문자열을 **같이** 「비었다」로 본다.
+    // SQL 쪽이 널만 보면 그 둘이 갈리는데, 오늘 DB 에 빈 문자열이 0건이라
+    // **실데이터 대조로도 안 잡힌다** — 구조로 잠근다.
+    const missing: string[] = [];
+    const walk = (node: unknown): void => {
+      if (node === null || typeof node !== "object") return;
+      if (Array.isArray(node)) return node.forEach(walk);
+      for (const [key, value] of Object.entries(
+        node as Record<string, unknown>,
+      )) {
+        if (key === "OR" && Array.isArray(value)) {
+          for (const child of value) {
+            const col = Object.entries(child ?? {}).find(
+              ([, v]) => v === null,
+            )?.[0];
+            if (
+              col &&
+              !value.some((s) => (s as Record<string, unknown>)?.[col] === "")
+            ) {
+              missing.push(`${col}: 널 갈래는 있는데 빈 문자열 갈래가 없다`);
+            }
+          }
+        }
+        walk(value);
+      }
+    };
+    for (const format of FILTERABLE_FORMATS)
+      walk(FORMAT_SUPERSET_WHERE[format]);
+    walk(toPrismaWhere(FORMAT_COND_EXERCISE));
+    expect(missing).toEqual([]);
+  });
+
+  /**
+   * 🔴 **연습 조건이 있어야 하는 이유.** 변이 시험이 `toPrismaWhere` 의 「비어 있지 않다」
+   *    가지를 망가뜨렸는데 판정이 **거부**됐다 — 후보 조건 둘 중 어느 것도 그 가지를 안
+   *    밟아서 산출물이 안 바뀌었기 때문이다(2026-08-26). 즉 **아무도 안 지키는 코드**였다.
+   *    그래서 모든 가지를 밟는 연습 조건을 두고, 그 산출물을 여기서 **글자 그대로** 못 박는다.
+   */
+  it("뽑아 내는 함수의 모든 가지가 기대한 SQL 모양을 낸다", () => {
+    expect(toPrismaWhere(FORMAT_COND_EXERCISE)).toEqual({
+      AND: [
+        // empty — 널이거나 빈 문자열
+        { OR: [{ questionType: null }, { questionType: "" }] },
+        // not(empty) — 널도 빈 문자열도 아니어야 한다
+        { AND: [{ NOT: { problemType: null } }, { NOT: { problemType: "" } }] },
+        // or(eq, prefix)
+        {
+          OR: [
+            { questionType: "서술형" },
+            { familyKey: { startsWith: "elem:" } },
+          ],
+        },
+        // not(eq) — 널·빈 값은 «그 값이 아니다» 쪽이다
+        {
+          OR: [
+            { problemType: null },
+            { problemType: "" },
+            { NOT: { problemType: "서술형" } },
+          ],
+        },
+        // not(prefix)
+        {
+          OR: [
+            { familyKey: null },
+            { familyKey: "" },
+            { NOT: { familyKey: { startsWith: "mid:" } } },
+          ],
+        },
+      ],
+    });
+  });
+
+  it("연습 조건이 **모든 가지를 실제로 밟는다** — 하나라도 빠지면 위 시험이 그만큼 눈이 먼다", () => {
+    // 음성 대조: 연습 조건이 쪼그라들면 잠그는 범위도 같이 쪼그라드는데 초록은 그대로다.
+    const kinds = new Set<string>();
+    const walk = (cond: { kind: string; of?: unknown }): void => {
+      kinds.add(cond.kind);
+      if (cond.kind === "not")
+        return void kinds.add(`not:${(cond.of as { kind: string }).kind}`);
+      if (Array.isArray(cond.of)) {
+        for (const child of cond.of)
+          walk(child as { kind: string; of?: unknown });
+      }
+    };
+    walk(FORMAT_COND_EXERCISE as unknown as { kind: string; of?: unknown });
+    expect([...kinds].sort()).toEqual(
+      [
+        "and",
+        "empty",
+        "eq",
+        "not",
+        "not:empty",
+        "not:eq",
+        "not:prefix",
+        "or",
+        "prefix",
+      ].sort(),
+    );
   });
 });
 

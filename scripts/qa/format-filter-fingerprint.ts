@@ -33,8 +33,10 @@ import {
   classifyFormat,
   classifyFormatWithChoices,
   FILTERABLE_FORMATS,
+  FORMAT_COND_EXERCISE,
   FORMAT_SUPERSET_WHERE,
   formatSuperset,
+  toPrismaWhere,
   formatWithoutContent,
   type FormatEvidence,
 } from "../../src/lib/problem/provenance";
@@ -110,6 +112,9 @@ lines.push("## ⑵ 후보 집합 where");
 for (const format of FILTERABLE_FORMATS) {
   lines.push(`${format} :: ${JSON.stringify(FORMAT_SUPERSET_WHERE[format])}`);
 }
+// 뽑아 내는 함수의 **모든 가지**를 밟는다 — 실제 조건이 안 쓰는 모양까지.
+// 이게 없으면 안 쓰이는 가지를 망가뜨린 변이가 「동작 그대로」로 판정 거부된다.
+lines.push(`연습 :: ${JSON.stringify(toPrismaWhere(FORMAT_COND_EXERCISE))}`);
 
 lines.push("## ⑶ 유형 드롭다운");
 for (const option of PROBLEM_FILTER_OPTIONS) {

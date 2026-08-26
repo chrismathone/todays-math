@@ -380,6 +380,30 @@ const prefix = (col: FormatCol, value: string): FormatCond => ({
 });
 const and = (...of: FormatCond[]): FormatCond => ({ kind: "and", of });
 const or = (...of: FormatCond[]): FormatCond => ({ kind: "or", of });
+
+/**
+ * 조건을 짓는 도구를 연다 — **시험과 지문이 뽑아 내는 함수를 직접 시험할 수 있게.**
+ *
+ * ⚠️ 왜 필요한가: 변이 시험이 `toPrismaWhere` 의 가지 하나(「비어 있지 않다」)를
+ *    망가뜨렸는데 **판정이 거부됐다** — 지금 후보 조건 둘 중 어느 것도 그 가지를 안 밟아서
+ *    산출물이 안 바뀌었기 때문이다(2026-08-26). 즉 그 가지는 **아무도 안 지키는 코드**였다.
+ *    쓰지도 시험하지도 않는 가지를 남기면, 나중에 그 가지를 처음 쓰는 조건이 생기는 날
+ *    조용히 틀린 SQL 이 나간다. 그래서 **모든 가지를 밟는 연습 조건**을 만들어
+ *    지문과 시험이 함께 잠근다.
+ */
+export const formatCondBuilders = { empty, eq, prefix, and, or, not };
+
+/**
+ * 뽑아 내는 함수의 **모든 가지**를 한 번씩 밟는 조건. 지문과 시험이 같은 것을 본다.
+ * 실제 후보 조건이 안 쓰는 모양(`not(empty(...))`)도 일부러 넣는다.
+ */
+export const FORMAT_COND_EXERCISE: FormatCond = and(
+  empty("questionType"),
+  not(empty("problemType")),
+  or(eq("questionType", "서술형"), prefix("familyKey", "elem:")),
+  not(eq("problemType", "서술형")),
+  not(prefix("familyKey", "mid:")),
+);
 /** 부정은 **잎까지 밀어 내린다**(드모르간) — 그래야 SQL 로 뽑을 때 널 처리를 한 곳에 둔다. */
 function not(cond: FormatCond): FormatCond {
   switch (cond.kind) {
