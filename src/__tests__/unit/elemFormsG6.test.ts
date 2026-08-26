@@ -1024,3 +1024,50 @@ describe("초6 1-3-5 (자연수)÷(자연수) 몫을 소수로", () => {
     }
   });
 });
+
+describe("초6 1-4 비와 비율", () => {
+  it("1-4-1 05 어떤 수 × k = 큰 수", () => {
+    const unit = unitOf("1-4-1");
+    expect(listedForms(unit)).toHaveLength(10);
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$.*?\$(\d+)\$배/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer) * Number(m![2])).toBe(Number(m![1]));
+    }
+  });
+
+  it("1-4-2 06 앞항 · 07 뒷항 · 08 합", () => {
+    const unit = unitOf("1-4-2");
+    expect(listedForms(unit)).toHaveLength(10);
+    for (const seed of SEEDS) {
+      const f = generateElementaryForm(unit, seed, "06");
+      const ratio = f.content.match(/\$(\d+):(\d+)\$/);
+      expect(ratio, f.content).toBeTruthy();
+      expect(answerInt(f.answer)).toBe(Number(ratio![1]));
+      const b = generateElementaryForm(unit, seed, "07");
+      const r2 = b.content.match(/\$(\d+):(\d+)\$/);
+      expect(answerInt(b.answer)).toBe(Number(r2![2]));
+      const s = generateElementaryForm(unit, seed, "08");
+      const r3 = s.content.match(/\$(\d+):(\d+)\$/);
+      expect(answerInt(s.answer)).toBe(Number(r3![1]) + Number(r3![2]));
+    }
+  });
+
+  it("1-4-5 08 두 %의 합 · 09 나머지 %", () => {
+    const unit = unitOf("1-4-5");
+    expect(listedForms(unit)).toHaveLength(10);
+    for (const seed of SEEDS) {
+      const s = generateElementaryForm(unit, seed, "08");
+      const ps = [...s.content.matchAll(/\$(\d+)\\%\$/g)].map((x) =>
+        Number(x[1]),
+      );
+      expect(ps.length).toBeGreaterThanOrEqual(2);
+      expect(answerInt(s.answer)).toBe(ps[0]! + ps[1]!);
+      const r = generateElementaryForm(unit, seed, "09");
+      const p = r.content.match(/\$(\d+)\\%\$/);
+      expect(p, r.content).toBeTruthy();
+      expect(answerInt(r.answer)).toBe(100 - Number(p![1]));
+    }
+  });
+});

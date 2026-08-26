@@ -8534,6 +8534,492 @@ function natDecFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function cmpPair(rng: Rng): { b: number; k: number; big: number } {
+  const b = intBetween(rng, 2, 9);
+  const k = intBetween(rng, 2, 9);
+  return { b, k, big: b * k };
+}
+
+/** 1-4-1 05 — 몇 배가 아니라 **작은 수**(역산). */
+function cmpFormSmall(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `${num(big)}${numJosa(big, "은", "는")} 어떤 수의 ${num(k)}배입니다. 어떤 수는 얼마입니까?`,
+    num(b),
+    `${expr(`${big}\\div${k}=${b}`)} 이므로 어떤 수는 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-1 06 — 두 수의 **곱**. */
+function cmpFormProduct(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `${num(b)}의 ${num(k)}배는 얼마입니까?`,
+    num(big),
+    `${expr(`${b}\\times${k}=${big}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 07 — 작은 수가 큰 수의 몇 배라는 말은 **틀렸다**. */
+function cmpFormReverseTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { b, k, big } = cmpPair(rng);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(b)}${numJosa(b, "은", "는")} ${num(big)}의 ${num(k)}배이다.`,
+    "아니요",
+    `큰 수를 작은 수로 나눕니다. ${expr(`${big}\\div${b}=${k}`)} 이므로 ${num(big)}이 ${num(b)}의 ${num(k)}배입니다.`,
+  );
+}
+
+/** 1-4-1 08 — 두 번 몇 배를 겹친 배수. */
+function cmpFormChain(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  const m = intBetween(rng, 2, 5);
+  const c = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `가 수는 나 수의 ${num(k)}배이고, 나 수는 다 수의 ${num(m)}배입니다. 다 수가 ${num(c)}일 때 가 수는 얼마입니까?`,
+    num(c * m * k),
+    `나 수는 ${expr(`${c}\\times${m}=${c * m}`)} 이고, 가 수는 ${expr(`${c * m}\\times${k}=${c * m * k}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 09 — 합과 배수에서 **큰 수**. 04 심화는 작은 쪽을 묻는다. */
+function cmpFormLargerFromSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const k = intBetween(rng, 2, 6);
+  const total = b * (k + 1);
+  return make(
+    unit,
+    `두 수의 합이 ${num(total)}이고 큰 수는 작은 수의 ${num(k)}배입니다. 큰 수는 얼마입니까?`,
+    num(b * k),
+    `작은 수를 ${expr("\\square")} 라 하면 합은 ${expr(`\\square\\times${k + 1}=${total}`)} 이므로 ` +
+      `작은 수는 ${expr(`${total}\\div${k + 1}=${b}`)}, 큰 수는 ${expr(`${b}\\times${k}=${b * k}`)} 입니다.`,
+  );
+}
+
+/** 1-4-1 10 — 두 비교의 몇 배를 **더한다**. */
+function cmpFormTwoKSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k1 = intBetween(rng, 2, 6);
+  const k2 = intBetween(rng, 2, 6);
+  const b1 = intBetween(rng, 2, 8);
+  const b2 = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `${num(b1 * k1)}는 ${num(b1)}의 몇 배이고, ${num(b2 * k2)}는 ${num(b2)}의 몇 배입니까? 그 두 배수를 더하시오.`,
+    num(k1 + k2),
+    `${expr(`${b1 * k1}\\div${b1}=${k1}`)}, ${expr(`${b2 * k2}\\div${b2}=${k2}`)} 이므로 합은 ${expr(`${k1}+${k2}=${k1 + k2}`)} 입니다.`,
+  );
+}
+
+function biPair(rng: Rng): { a: number; b: number } {
+  const a = intBetween(rng, 2, 9);
+  let b = intBetween(rng, 2, 9);
+  for (let t = 0; t < 20 && b === a; t += 1) b = intBetween(rng, 2, 9);
+  if (b === a) b = a === 9 ? 8 : a + 1;
+  return { a, b };
+}
+
+/** 1-4-2 05 — **역비**. 02 는 차례 그대로. */
+function biFormInverse(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  const p = pick(rng, BI_PAIRS);
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `${p.y} 수에 대한 ${p.x} 수의 비를 쓰시오.`,
+    expr(`${a}:${b}`),
+    `「에 대한」 앞이 비교하는 양, 뒤가 기준량이므로 ${expr(`${a}:${b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 06 — 비의 **앞항**. */
+function biFormFront(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 비교하는 양(앞항)은 얼마입니까?`,
+    num(a),
+    `비는 (비교하는 양):(기준량)이므로 앞항은 ${num(a)}입니다.`,
+  );
+}
+
+/** 1-4-2 07 — 비의 **뒷항**. */
+function biFormBack(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 기준량(뒷항)은 얼마입니까?`,
+    num(b),
+    `비는 (비교하는 양):(기준량)이므로 뒷항은 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-2 08 — 두 항의 합. */
+function biFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 두 항의 합은 얼마입니까?`,
+    num(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 09 — 두 항의 차. */
+function biFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { a, b } = biPair(rng);
+  const hi = Math.max(a, b);
+  const lo = Math.min(a, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 두 항의 차는 얼마입니까?`,
+    num(hi - lo),
+    `${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
+  );
+}
+
+/** 1-4-2 10 — 전체에 대한 **둘째** 무리의 비. 03 은 첫째 무리. */
+function biFormWholeSecond(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, BI_PAIRS);
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${p.x} ${num(a)}${p.c}${josa(p.c, "과", "와")} ${p.y} ${num(b)}${p.c}${josa(p.c, "이", "가")} 있습니다. ` +
+      `전체 ${p.whole} 수에 대한 ${p.y} 수의 비를 쓰시오.`,
+    expr(`${b}:${a + b}`),
+    `전체는 ${expr(`${a}+${b}=${a + b}`)} 입니다. ${expr(`${b}:${a + b}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 05 — 비를 **분수** 비율로. 01 은 소수. */
+function rateFormFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 의 비율을 분수로 나타내시오.`,
+    expr(`\\frac{${a}}{${b}}`),
+    `(비율)=(비교하는 양)÷(기준량)이므로 ${expr(`\\frac{${a}}{${b}}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 06 — 기준량. */
+function rateFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 기준량은 얼마입니까?`,
+    num(b),
+    `비의 뒷항이 기준량이므로 ${num(b)}입니다.`,
+  );
+}
+
+/** 1-4-3 07 — 비교하는 양. */
+function rateFormCompare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 3, 9);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비 ${expr(`${a}:${b}`)} 에서 비교하는 양은 얼마입니까?`,
+    num(a),
+    `비의 앞항이 비교하는 양이므로 ${num(a)}입니다.`,
+  );
+}
+
+/** 1-4-3 08 — 비율×기준량 = 비교하는 양. */
+function rateFormTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = pick(rng, [2, 4, 5] as const);
+  const m = intBetween(rng, 2, 6);
+  const a = coprimeTop(rng, b);
+  return make(
+    unit,
+    `비율이 ${expr(`\\frac{${a}}{${b}}`)} 이고 기준량이 ${num(b * m)}일 때 비교하는 양은 얼마입니까?`,
+    num(a * m),
+    `${expr(`${b * m}\\times\\frac{${a}}{${b}}=${a * m}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 09 — 나머지 부분의 비율. */
+function rateFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 6, 12);
+  const a = intBetween(rng, 1, r - 1);
+  return make(
+    unit,
+    `바구니에 구슬이 ${num(r)}개 있고 그중 빨간 구슬이 ${num(a)}개입니다. ` +
+      `전체 구슬 수에 대한 빨간 구슬 수의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(a, r)),
+    `비율은 ${expr(`\\frac{${a}}{${r}}=${fmtFrac(a, r)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-3 10 — 두 비율 중 **큰** 쪽을 분수로. */
+function rateFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 4, 9);
+  const a = coprimeTop(rng, b);
+  let d = intBetween(rng, 4, 9);
+  let c = coprimeTop(rng, d);
+  for (let t = 0; t < 16 && a * d === c * b; t += 1) {
+    d = intBetween(rng, 4, 9);
+    c = coprimeTop(rng, d);
+  }
+  const left = a * d > c * b;
+  const win = left ? [a, b] : [c, d];
+  return make(
+    unit,
+    `두 비율 ${expr(`\\frac{${a}}{${b}}`)} 와 ${expr(`\\frac{${c}}{${d}}`)} 중 더 큰 것을 기약분수로 쓰시오.`,
+    expr(fmtFrac(win[0]!, win[1]!)),
+    `더 큰 비율은 ${expr(fmtFrac(win[0]!, win[1]!))} 입니다.`,
+  );
+}
+
+/** 1-4-4 05 — 빠르기와 거리에서 **시간**. */
+function rateUseFormTime(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `한 시간에 ${unitNum(rate, "km")}를 가는 기차가 ${unitNum(rate * h, "km")}를 가려면 몇 시간이 걸립니까?`,
+    num(h),
+    `${expr(`${rate * h}\\div${rate}=${h}`)} 이므로 ${num(h)}시간입니다.`,
+  );
+}
+
+/** 1-4-4 06 — 기준량은 걸린 시간. */
+function rateUseFormBaseTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, VEHICLES);
+  const rate = pick(rng, SPEED_RATES);
+  const h = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${v}${josa(v, "이", "가")} ${num(h)}시간 동안 ${unitNum(rate * h, "km")}를 갔을 때, ` +
+      `걸린 시간에 대한 간 거리의 비율에서 기준량은 걸린 시간이다.`,
+    "예",
+    `「에 대한」 앞에 있는 걸린 시간이 기준량입니다.`,
+  );
+}
+
+/** 1-4-4 07 — 인구밀도에서 **넓이**. */
+function rateUseFormArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 8);
+  const per = pick(rng, [120, 150, 200, 250] as const);
+  return make(
+    unit,
+    `인구가 ${num(a * per)}명이고 넓이에 대한 인구의 비율이 ${num(per)}일 때, 이 마을의 넓이는 몇 km²입니까?`,
+    num(a),
+    `${expr(`${a * per}\\div${per}=${a}`)} 이므로 ${num(a)} km²입니다.`,
+  );
+}
+
+/** 1-4-4 08 — 소금물에 대한 **물**의 비율. 03 은 소금. */
+function rateUseFormWater(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = pick(rng, [200, 250, 400, 500] as const);
+  const salt = pick(
+    rng,
+    ([20, 30, 40, 50] as const).filter((s) => s < total),
+  );
+  const water = total - salt;
+  return make(
+    unit,
+    `물 ${num(water)} g에 소금 ${num(salt)} g을 모두 녹여 소금물을 만들었습니다. ` +
+      `소금물 양에 대한 물 양의 비율을 분수로 나타내시오.`,
+    expr(fmtFrac(water, total)),
+    `소금물은 ${expr(`${water}+${salt}=${total}`)} 입니다. 비율은 ${expr(`\\frac{${water}}{${total}}=${fmtFrac(water, total)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-4 09 — 같은 빠르기로 두 번 간 거리의 **합**. */
+function rateUseFormTwoLegs(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, VEHICLES);
+  const rate = pick(rng, SPEED_RATES);
+  const h1 = intBetween(rng, 2, 4);
+  const h2 = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `${v}${josa(v, "이", "가")} 한 시간에 ${unitNum(rate, "km")}를 갑니다. ` +
+      `${num(h1)}시간 가고, 이어서 ${num(h2)}시간 더 가면 간 거리는 모두 몇 km입니까?`,
+    num(rate * (h1 + h2)),
+    `${expr(`${rate}\\times${h1}=${rate * h1}`)}, ${expr(`${rate}\\times${h2}=${rate * h2}`)} 이므로 ` +
+      `합은 ${expr(`${rate * h1}+${rate * h2}=${rate * (h1 + h2)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-4 10 — 두 빠르기의 **차**. */
+function rateUseFormSpeedDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r1 = pick(rng, SPEED_RATES);
+  let r2 = pick(rng, SPEED_RATES);
+  for (let t = 0; t < 8 && r2 === r1; t += 1) r2 = pick(rng, SPEED_RATES);
+  if (r2 === r1) r2 = r1 === 90 ? 60 : 90;
+  const h = intBetween(rng, 2, 3);
+  return make(
+    unit,
+    `한 기차는 ${num(h)}시간에 ${unitNum(r1 * h, "km")}, 다른 기차는 ${num(h)}시간에 ${unitNum(r2 * h, "km")}를 갔습니다. ` +
+      `두 기차의 빠르기의 차는 얼마입니까?`,
+    num(Math.abs(r1 - r2)),
+    `빠르기는 ${num(r1)} 와 ${num(r2)} 이므로 차는 ${expr(`${Math.max(r1, r2)}-${Math.min(r1, r2)}=${Math.abs(r1 - r2)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 05 — 분수를 백분율로. 01 은 소수 비율. */
+function pctFormFromFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, PCT_DENOMS);
+  const top = coprimeTop(rng, den);
+  const pct = (top * 100) / den;
+  return make(
+    unit,
+    `비율 ${expr(`\\frac{${top}}{${den}}`)} 를 백분율로 나타내시오.`,
+    num(pct),
+    `${expr(`\\frac{${top}}{${den}}\\times100=${pct}`)} 이므로 ${expr(`${pct}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 06 — 백분율을 기약분수로. */
+function pctFormToFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, PCT_DENOMS);
+  const top = coprimeTop(rng, den);
+  const pct = (top * 100) / den;
+  return make(
+    unit,
+    `${expr(`${pct}\\%`)} 를 기약분수로 나타내시오.`,
+    expr(fmtFrac(top, den)),
+    `${expr(`\\frac{${pct}}{100}=${fmtFrac(top, den)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 07 — 백분율을 소수로. */
+function pctFormToDec(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 1, 99);
+  return make(
+    unit,
+    `${expr(`${c}\\%`)} 를 소수로 나타내시오.`,
+    expr(fromCents(c)),
+    `${expr(`\\frac{${c}}{100}=${fromCents(c)}`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 08 — 두 백분율의 합. */
+function pctFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = intBetween(rng, 10, 40);
+  const q = intBetween(rng, 10, 40);
+  return make(
+    unit,
+    `${expr(`${p}\\%`)} 와 ${expr(`${q}\\%`)} 의 합은 몇 %입니까?`,
+    num(p + q),
+    `${expr(`${p}+${q}=${p + q}`)} 이므로 ${expr(`${p + q}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 09 — 전체에 대한 나머지 %. */
+function pctFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, [10, 20, 25, 30, 40, 50] as const);
+  return make(
+    unit,
+    `어떤 양의 ${expr(`${p}\\%`)} 를 사용했습니다. 남은 양은 전체의 몇 %입니까?`,
+    num(100 - p),
+    `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-5 10 — 두 백분율 중 큰 것. */
+function pctFormLarger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, [20, 25, 40, 50] as const);
+  const q = pick(
+    rng,
+    ([20, 25, 40, 50, 60] as const).filter((v) => v !== p),
+  );
+  return make(
+    unit,
+    `${expr(`${p}\\%`)} 와 ${expr(`${q}\\%`)} 중 더 큰 것은 몇 %입니까?`,
+    num(Math.max(p, q)),
+    `더 큰 것은 ${expr(`${Math.max(p, q)}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 05 — 정가와 할인가에서 **할인율**. */
+function pctUseFormRate(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r = pick(rng, [10, 20, 25, 40] as const);
+  const paid = p - (p * r) / 100;
+  return make(
+    unit,
+    `정가 ${num(p)}원짜리 물건을 ${num(paid)}원에 샀습니다. 할인율은 몇 %입니까?`,
+    num(r),
+    `할인 금액은 ${expr(`${p}-${paid}=${(p * r) / 100}`)} 원입니다. ` +
+      `${expr(`\\frac{${(p * r) / 100}}{${p}}\\times100=${r}`)} 이므로 ${expr(`${r}\\%`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 06 — 할인 **금액**. */
+function pctUseFormCut(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r = pick(rng, [10, 20, 25, 30] as const);
+  const cut = (p * r) / 100;
+  return make(
+    unit,
+    `정가가 ${num(p)}원인 물건을 ${expr(`${r}\\%`)} 할인합니다. 할인 금액은 얼마입니까?`,
+    num(cut),
+    `${expr(`${p}\\times\\frac{${r}}{100}=${cut}`)} 이므로 ${num(cut)}원입니다.`,
+  );
+}
+
+/** 1-4-6 07 — **이자** 금액. 01 은 이자율. */
+function pctUseFormInterest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pr = pick(rng, [10000, 20000, 50000] as const);
+  const r = pick(rng, [4, 5, 6, 8, 10] as const);
+  return make(
+    unit,
+    `예금한 돈 ${num(pr)}원에 대한 이자율이 ${expr(`${r}\\%`)} 일 때, 이자는 얼마입니까?`,
+    num((pr * r) / 100),
+    `${expr(`${pr}\\times\\frac{${r}}{100}=${(pr * r) / 100}`)} 이므로 ${num((pr * r) / 100)}원입니다.`,
+  );
+}
+
+/** 1-4-6 08 — 원금과 이자의 **합**. */
+function pctUseFormPrincipalPlus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const pr = pick(rng, [10000, 20000, 50000] as const);
+  const r = pick(rng, [4, 5, 10] as const);
+  const interest = (pr * r) / 100;
+  return make(
+    unit,
+    `예금한 돈 ${num(pr)}원에 이자율 ${expr(`${r}\\%`)} 로 이자를 받았습니다. 원금과 이자의 합은 얼마입니까?`,
+    num(pr + interest),
+    `이자는 ${expr(`${pr}\\times\\frac{${r}}{100}=${interest}`)} 원이므로 합은 ${expr(`${pr}+${interest}=${pr + interest}`)} 원입니다.`,
+  );
+}
+
+/** 1-4-6 09 — 반대 의견 비율. */
+function pctUseFormNo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const rate = pick(rng, [40, 50, 60, 80] as const);
+  const total = pick(rng, [200, 250, 400] as const);
+  const yes = (total * rate) / 100;
+  return make(
+    unit,
+    `투표한 학생 ${num(total)}명 중 ${num(yes)}명이 찬성했습니다. 찬성하지 않은 학생의 비율은 몇 %입니까?`,
+    num(100 - rate),
+    `찬성률은 ${expr(`\\frac{${yes}}{${total}}\\times100=${rate}`)} 이므로 ` +
+      `찬성하지 않은 비율은 ${expr(`100-${rate}=${100 - rate}`)} 입니다.`,
+  );
+}
+
+/** 1-4-6 10 — 두 할인가의 차. */
+function pctUseFormPaidDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const p = pick(rng, MONEY);
+  const r1 = pick(rng, [10, 20] as const);
+  const r2 = pick(rng, [25, 40] as const);
+  const paid1 = p - (p * r1) / 100;
+  const paid2 = p - (p * r2) / 100;
+  return make(
+    unit,
+    `정가 ${num(p)}원짜리 물건을 ${expr(`${r1}\\%`)} 할인할 때와 ${expr(`${r2}\\%`)} 할인할 때, 지불 금액의 차는 얼마입니까?`,
+    num(Math.abs(paid1 - paid2)),
+    `지불액은 ${num(paid1)}원과 ${num(paid2)}원이므로 차는 ${num(Math.abs(paid1 - paid2))}원입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -8668,5 +9154,53 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a8: natDecFormSum,
     a9: natDecFormDoubleShare,
     a10: natDecFormDiff,
+  }),
+  "초6|1-4-1": forms10(cmpCalc, cmpWord, cmpApply, cmpDeep, {
+    b5: cmpFormSmall,
+    b6: cmpFormProduct,
+    b7: cmpFormReverseTf,
+    a8: cmpFormChain,
+    a9: cmpFormLargerFromSum,
+    a10: cmpFormTwoKSum,
+  }),
+  "초6|1-4-2": forms10(biCalc, biWord, biApply, biDeep, {
+    b5: biFormInverse,
+    b6: biFormFront,
+    b7: biFormBack,
+    a8: biFormSum,
+    a9: biFormDiff,
+    a10: biFormWholeSecond,
+  }),
+  "초6|1-4-3": forms10(rateCalc, rateWord, rateApply, rateDeep, {
+    b5: rateFormFrac,
+    b6: rateFormBase,
+    b7: rateFormCompare,
+    a8: rateFormTimes,
+    a9: rateFormRest,
+    a10: rateFormLarger,
+  }),
+  "초6|1-4-4": forms10(rateUseCalc, rateUseWord, rateUseApply, rateUseDeep, {
+    b5: rateUseFormTime,
+    b6: rateUseFormBaseTf,
+    b7: rateUseFormArea,
+    a8: rateUseFormWater,
+    a9: rateUseFormTwoLegs,
+    a10: rateUseFormSpeedDiff,
+  }),
+  "초6|1-4-5": forms10(pctCalc, pctWord, pctApply, pctDeep, {
+    b5: pctFormFromFrac,
+    b6: pctFormToFrac,
+    b7: pctFormToDec,
+    a8: pctFormSum,
+    a9: pctFormRest,
+    a10: pctFormLarger,
+  }),
+  "초6|1-4-6": forms10(pctUseCalc, pctUseWord, pctUseApply, pctUseDeep, {
+    b5: pctUseFormRate,
+    b6: pctUseFormCut,
+    b7: pctUseFormInterest,
+    a8: pctUseFormPrincipalPlus,
+    a9: pctUseFormNo,
+    a10: pctUseFormPaidDiff,
   }),
 };
