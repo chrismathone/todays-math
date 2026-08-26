@@ -494,3 +494,67 @@ describe("초6 1-2-1 각기둥 밑면과 옆면 — 묻는 면이 답이다", ()
     }
   });
 });
+
+function sinoFrom(content: string): number | undefined {
+  const m = content.match(/(삼|사|오|육|칠|팔)각기둥/);
+  return m ? SINO_N[m[1]!] : undefined;
+}
+
+describe("초6 1-2-2 각기둥 이름과 구성 요소 — 세는 자리가 다르다", () => {
+  const unit = unitOf("1-2-2");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("05 이름 앞의 수가 밑면 변의 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const n = sinoFrom(p.content);
+      expect(n, p.content).toBeTruthy();
+      expect(p.content).toMatch(/변/);
+      expect(answerInt(p.answer)).toBe(n);
+    }
+  });
+
+  it("06 꼭짓점+면−모서리 = 2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(p.content).toMatch(/빼면/);
+      expect(answerInt(p.answer)).toBe(2);
+    }
+  });
+
+  it("07 한 밑면 꼭짓점 = 변의 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const n = sinoFrom(p.content);
+      expect(n, p.content).toBeTruthy();
+      expect(p.content).toMatch(/한 밑면/);
+      expect(answerInt(p.answer)).toBe(n);
+    }
+  });
+
+  it("08 옆모서리 = 변의 수 · 09 밑면 모서리 = 2×변", () => {
+    for (const seed of SEEDS) {
+      const v = generateElementaryForm(unit, seed, "08");
+      const n = sinoFrom(v.content);
+      expect(n, v.content).toBeTruthy();
+      expect(v.content).toMatch(/두 밑면을 잇는/);
+      expect(answerInt(v.answer)).toBe(n);
+      const e = generateElementaryForm(unit, seed, "09");
+      const n2 = sinoFrom(e.content);
+      expect(n2, e.content).toBeTruthy();
+      expect(answerInt(e.answer)).toBe(2 * n2!);
+    }
+  });
+
+  it("10 한 꼭짓점에서 만나는 모서리 3", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      expect(p.content).toMatch(/한 꼭짓점/);
+      expect(answerInt(p.answer)).toBe(3);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+});

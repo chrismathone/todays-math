@@ -7795,6 +7795,81 @@ function prismFaceFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 이름에서 밑면의 **변의 수**. 1-2-1 07 은 밑면의 도형 이름. */
+function prismPartFormBaseSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `각기둥의 이름이 ${sino(n)}각기둥이려면 밑면의 변은 몇 개여야 합니까?`,
+    num(n),
+    `각기둥의 이름 앞의 수는 밑면의 변의 수입니다. ${sino(n)}각기둥이므로 변은 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 06 — 꼭짓점+면−모서리 = 2 (오일러). 답이 상수여도 묻는 관계가 다르다. */
+function prismPartFormEuler(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const p = prismParts(n);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 꼭짓점의 수와 면의 수를 더한 값에서 모서리의 수를 빼면 얼마입니까?`,
+    num(2),
+    `꼭짓점 ${num(p.꼭짓점)}개와 면 ${num(p.면)}개를 더하면 ${num(p.꼭짓점 + p.면)}이고, ` +
+      `모서리 ${num(p.모서리)}개를 빼면 ${expr(`${p.꼭짓점}+${p.면}-${p.모서리}=2`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 07 — 한 밑면에 있는 꼭짓점. 전체 꼭짓점(2n)이 아니다. */
+function prismPartFormBaseVerts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 한 밑면에 있는 꼭짓점은 몇 개입니까?`,
+    num(n),
+    `한 밑면은 ${polyName(n)}이므로 꼭짓점은 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 08 — 두 밑면을 잇는 옆모서리. */
+function prismPartFormVertical(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 두 밑면을 잇는 모서리는 몇 개입니까?`,
+    num(n),
+    `밑면의 꼭짓점마다 옆모서리가 하나씩 있으므로 ${num(n)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 09 — 두 밑면에 있는 모서리만 (옆모서리 제외). */
+function prismPartFormBaseEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥에서 밑면에 있는 모서리는 모두 몇 개입니까?`,
+    num(2 * n),
+    `밑면이 ${num(2)}개이고 각 밑면의 모서리는 ${num(n)}개이므로 ${expr(`${n}\\times2=${2 * n}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 10 — 한 꼭짓점에서 만나는 모서리. 답이 늘 3. */
+function prismPartFormMeet(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 한 꼭짓점에서 만나는 모서리는 몇 개입니까?`,
+    num(3),
+    `각기둥의 한 꼭짓점에는 밑면의 모서리 ${num(2)}개와 옆모서리 ${num(1)}개가 모이므로 ${num(3)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -7838,6 +7913,20 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
       a8: prismFaceFormOneArea,
       a9: prismFaceFormBasePerim,
       a10: prismFaceFormSideMinusBase,
+    },
+  ),
+  "초6|1-2-2": forms10(
+    prismPartCalc,
+    prismPartRead,
+    prismPartApply,
+    prismPartDeep,
+    {
+      b5: prismPartFormBaseSides,
+      b6: prismPartFormEuler,
+      b7: prismPartFormBaseVerts,
+      a8: prismPartFormVertical,
+      a9: prismPartFormBaseEdges,
+      a10: prismPartFormMeet,
     },
   ),
 };
