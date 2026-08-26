@@ -914,3 +914,62 @@ describe("초3 1-3-4 몫을 곱셈구구로", () => {
     }
   });
 });
+
+describe("초3 전 소단원 문형 10", () => {
+  it("supportedTiers 있는 초3 소단원은 문형 10개", () => {
+    const units = elementaryUnits().filter((u) => u.grade === "초3");
+    expect(units.length).toBe(56);
+    for (const u of units) {
+      expect(listedForms(u).length, u.section).toBe(10);
+    }
+  });
+});
+
+describe("초3 1-4-1 곱셈 빈칸·일의 자리", () => {
+  const unit = unitOf("1-4-1");
+
+  it("05 빈칸 곱하는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\\times\\square=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) / Number(m![1]));
+    }
+  });
+
+  it("06 곱의 일의 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe((a! * b!) % 10);
+    }
+  });
+
+  it("10 한 묶음 더", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! * b! + a!);
+    }
+  });
+});
+
+describe("초3 2-3-2 원의 성질", () => {
+  const unit = unitOf("2-3-2");
+
+  it("05 지름은 반지름의 2배", () => {
+    for (const seed of SEEDS) {
+      expect(answerInt(generateElementaryForm(unit, seed, "05").answer)).toBe(
+        2,
+      );
+    }
+  });
+
+  it("07 지름−반지름 = 반지름", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const dia = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(dia / 2);
+    }
+  });
+});

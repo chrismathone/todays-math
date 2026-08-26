@@ -9534,6 +9534,1376 @@ function cmp167SameWholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function mul21Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\times\\square=${p}$`,
+    n(b),
+    `${expr(`${p}\\div${a}=${b}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+function mul21Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 백의 자리 숫자를 쓰시오.`,
+    n(Math.floor(p / 100) % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(Math.floor(p / 100) % 10)} 입니다.`,
+    mulCol(a, b),
+  );
+}
+
+function mul21Minus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱보다 $${10}$ 작은 수를 쓰시오.`,
+    n(p - 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}-10=${p - 10}`)} 입니다.`,
+  );
+}
+
+function mul21From1000(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱과 $${1000}$ 의 차는 얼마입니까?`,
+    n(Math.abs(p - 1000)),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 차는 ${n(Math.abs(p - 1000))} 입니다.`,
+  );
+}
+
+function mul21DigitSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  const s = [...String(p)].reduce((t, ch) => t + Number(ch), 0);
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 각 자리 숫자를 모두 더한 값을 쓰시오.`,
+    n(s),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 각 자리의 합은 ${n(s)} 입니다.`,
+  );
+}
+
+function mul21PlusA(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul21PairOf(unit.section, rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에 $${a}$ 를 더하면 얼마입니까?`,
+    n(p + a),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}+${a}=${p + a}`)} 입니다.`,
+  );
+}
+
+const MUL21_FORMS = ten(
+  mul21Calc,
+  mul21Word,
+  mul21Apply,
+  mul21Deep,
+  mul21Missing,
+  mul21Hundreds,
+  mul21Minus10,
+  mul21From1000,
+  mul21DigitSum,
+  mul21PlusA,
+);
+
+function mul213Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square\\times${b}=${p}$`,
+    n(a),
+    `${expr(`${p}\\div${b}=${a}`)} 이므로 ${n(a)} 입니다.`,
+  );
+}
+
+function mul213Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 일의 자리 숫자를 쓰시오.`,
+    n(p % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)} 입니다.`,
+  );
+}
+
+function mul213Plus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱보다 $${10}$ 큰 수를 쓰시오.`,
+    n(p + 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}+10=${p + 10}`)} 입니다.`,
+  );
+}
+
+function mul213EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  const even = p % 2 === 0;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱은 짝수입니까, 홀수입니까?`,
+    even ? "짝수" : "홀수",
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 ${even ? "짝수" : "홀수"}입니다.`,
+  );
+}
+
+function mul213Tens(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 십의 자리 숫자를 쓰시오.`,
+    n(Math.floor(p / 10) % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 십의 자리 숫자는 ${n(Math.floor(p / 10) % 10)} 입니다.`,
+  );
+}
+
+function mul213OneMore(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = mul213PairOf(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}$ 씩 ${n(b)}묶음에 한 묶음을 더하면 모두 몇 개입니까?`,
+    n(p + a),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}+${a}=${p + a}`)} 입니다.`,
+  );
+}
+
+function mul214Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\times\\square=${p}$`,
+    n(b),
+    `${expr(`${p}\\div${a}=${b}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+function mul214Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 백의 자리 숫자를 쓰시오.`,
+    n(Math.floor(p / 100) % 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(Math.floor(p / 100) % 10)} 입니다.`,
+  );
+}
+
+function mul214Minus10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱보다 $${10}$ 작은 수를 쓰시오.`,
+    n(p - 10),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}-10=${p - 10}`)} 입니다.`,
+  );
+}
+
+function mul214From1000(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱과 $${1000}$ 의 차는 얼마입니까?`,
+    n(Math.abs(p - 1000)),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 차는 ${n(Math.abs(p - 1000))} 입니다.`,
+  );
+}
+
+function mul214DigitSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const s = [...String(p)].reduce((t, ch) => t + Number(ch), 0);
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱에서 각 자리 숫자를 모두 더한 값을 쓰시오.`,
+    n(s),
+    `${expr(`${a}\\times${b}=${p}`)} 이고 각 자리의 합은 ${n(s)} 입니다.`,
+  );
+}
+
+function mul214EvenOdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = tensOnes21(rng);
+  const b = tensOnes21(rng);
+  const p = a * b;
+  const even = p % 2 === 0;
+  return make(
+    unit,
+    `$${a}\\times${b}$ 의 곱은 짝수입니까, 홀수입니까?`,
+    even ? "짝수" : "홀수",
+    `${expr(`${a}\\times${b}=${p}`)} 이므로 ${even ? "짝수" : "홀수"}입니다.`,
+  );
+}
+
+function div22Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\div\\square=${q}$`,
+    n(b),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+function div22Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 입니다. $${b}\\times${q}$ 의 값을 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+function div22HowManyGroups(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  return make(
+    unit,
+    `${n(a)}개를 ${n(q)}개씩 묶으면 몇 묶음입니까?`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 이므로 ${n(b)}묶음입니다.`,
+  );
+}
+
+function div22Compare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  const bigger = q > b ? "큽니다" : "작습니다";
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫은 나누는 수보다 큽니까, 작습니까?`,
+    bigger,
+    `몫은 ${n(q)}, 나누는 수는 ${n(b)} 이므로 몫이 더 ${bigger}.`,
+  );
+}
+
+function div22Total(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  return make(
+    unit,
+    `한 묶음에 ${n(q)}개씩 ${n(b)}묶음이면 모두 몇 개입니까?`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+function div22Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2(rng, carryDown22(unit.section));
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫에서 일의 자리 숫자를 쓰시오.`,
+    n(q % 10),
+    `몫은 ${n(q)} 이므로 일의 자리 숫자는 ${n(q % 10)} 입니다.`,
+  );
+}
+
+const DIV22_FORMS = ten(
+  div22Calc,
+  div22Word,
+  div22Apply,
+  div22Deep,
+  div22Missing,
+  div22Check,
+  div22HowManyGroups,
+  div22Compare,
+  div22Total,
+  div22Ones,
+);
+
+function rem223Quot(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div2Rem(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫만 쓰시오.`,
+    n(q),
+    `몫은 ${n(q)} 입니다.`,
+  );
+}
+
+function rem223Rem(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 나머지만 쓰시오.`,
+    n(r),
+    `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${a}-${b * q}=${r}`)} 이므로 나머지는 ${n(r)} 입니다.`,
+  );
+}
+
+function rem223Divisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 에서 나누는 수를 쓰시오.`,
+    n(b),
+    `나누는 수는 ${n(b)} 입니다.`,
+  );
+}
+
+function rem223Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫은 ${n(q)}, 나머지는 ${n(r)} 입니다. $${b}\\times${q}+${r}$ 의 값을 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}+${r}=${a}`)} 입니다.`,
+  );
+}
+
+function rem223LessQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. $${a}\\div${b}$ 의 나머지는 나누는 수보다 작습니까? 예 또는 아니요로 쓰시오.`,
+    "예",
+    `나머지는 ${n(r)}, 나누는 수는 ${n(b)} 이므로 나머지가 더 작습니다.`,
+  );
+}
+
+function rem223Dividend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q, r] = div2Rem(rng);
+  return make(
+    unit,
+    `몫이 ${n(q)}, 나머지가 ${n(r)}, 나누는 수가 ${n(b)} 일 때 나뉘는 수를 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}+${r}=${a}`)} 입니다.`,
+  );
+}
+
+function div224Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}\\div\\square=${q}$`,
+    n(b),
+    `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+function div224Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}=${q}$ 입니다. $${b}\\times${q}$ 의 값을 쓰시오.`,
+    n(a),
+    `${expr(`${b}\\times${q}=${a}`)} 입니다.`,
+  );
+}
+
+function div224HowMany(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  return make(
+    unit,
+    `${n(a)}개를 ${n(q)}개씩 묶으면 몇 묶음입니까?`,
+    n(b),
+    `${expr(`${a}\\div${q}=${b}`)} 입니다.`,
+  );
+}
+
+function div224Compare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  const bigger = q > b ? "큽니다" : "작습니다";
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫은 나누는 수보다 큽니까, 작습니까?`,
+    bigger,
+    `몫은 ${n(q)}, 나누는 수는 ${n(b)} 이므로 몫이 더 ${bigger}.`,
+  );
+}
+
+function div224Total(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  return make(
+    unit,
+    `한 묶음에 ${n(q)}개씩 ${n(b)}묶음이면 모두 몇 개입니까?`,
+    n(a),
+    `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
+  );
+}
+
+function div224Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b, q] = div3Exact(rng);
+  return make(
+    unit,
+    `$${a}\\div${b}$ 의 몫에서 백의 자리 숫자를 쓰시오.`,
+    n(Math.floor(q / 100) % 10),
+    `몫은 ${n(q)} 이므로 백의 자리 숫자는 ${n(Math.floor(q / 100) % 10)} 입니다.`,
+  );
+}
+
+function circ232Times2(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 반지름이 ${unitNum(r, "cm")} 인 원에서 지름은 반지름의 몇 배입니까?`,
+    n(2),
+    `지름은 반지름의 $2$ 배입니다.`,
+    circleFig("radius", r),
+  );
+}
+
+function circ232ThreeR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?`,
+    n(3 * r),
+    `${expr(`${r}\\times3=${3 * r}`)} 입니다.`,
+    circleFig("radius", r),
+  );
+}
+
+function circ232DiaMinusR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `지름이 ${unitNum(r * 2, "cm")} 인 원에서 지름의 길이에서 반지름의 길이를 빼면 몇 cm입니까?`,
+    n(r),
+    `반지름은 ${n(r)} cm이므로 ${expr(`${r * 2}-${r}=${r}`)} 입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+function circ232DiaPlusR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원의 지름과 반지름의 합은 몇 cm입니까?`,
+    n(3 * r),
+    `${expr(`${r * 2}+${r}=${3 * r}`)} 입니다.`,
+    circleFig("radius", r),
+  );
+}
+
+function circ232ManyR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 8);
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 ${n(k)}개 그었습니다. 길이의 합은 몇 cm입니까?`,
+    n(r * k),
+    `${expr(`${r}\\times${k}=${r * k}`)} 입니다.`,
+    circleFig("radius", r),
+  );
+}
+
+function circ232HalfDia(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 지름 ${unitNum(r * 2, "cm")} 인 원을 지름의 중점에서 반으로 접으면 생기는 선분의 길이는 몇 cm입니까?`,
+    n(r),
+    `지름의 반은 반지름이므로 ${n(r)} cm입니다.`,
+    circleFig("diameter", r * 2),
+  );
+}
+
+function circ233Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려 원을 ${n(many)}개 그렸습니다. 벌린 길이는 원의 무엇과 같습니까?`,
+    "반지름",
+    `컴퍼스를 벌린 길이가 반지름입니다.`,
+  );
+}
+
+function circ233FromDia(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `지름이 ${unitNum(r * 2, "cm")} 인 원을 그리려면 컴퍼스를 몇 cm만큼 벌려야 합니까?`,
+    n(r),
+    `벌릴 길이는 반지름이므로 ${expr(`${r * 2}\\div2=${r}`)} 입니다.`,
+  );
+}
+
+function circ233Double(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려 원을 그렸습니다. 벌린 길이를 $2$ 배로 하면 새 원의 지름은 몇 cm입니까?`,
+    n(4 * r),
+    `새 반지름은 ${expr(`${r}\\times2=${2 * r}`)} 이고 지름은 ${expr(`${2 * r}\\times2=${4 * r}`)} 입니다.`,
+  );
+}
+
+function circ233SumR(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 8);
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `같은 길이 ${unitNum(r, "cm")} 로 원을 ${n(k)}개 그렸습니다. 각 원의 반지름의 합은 몇 cm입니까?`,
+    n(r * k),
+    `${expr(`${r}\\times${k}=${r * k}`)} 입니다.`,
+  );
+}
+
+function circ233DiaMinusOpen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌려 그린 원의 지름에서 벌린 길이를 빼면 몇 cm입니까?`,
+    n(r),
+    `지름은 ${n(r * 2)} cm이므로 ${expr(`${r * 2}-${r}=${r}`)} 입니다.`,
+  );
+}
+
+function circ233TwoOpen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = intBetween(rng, 2, 9);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 컴퍼스를 ${unitNum(r, "cm")} 만큼 벌린 길이를 두 번 이으면 그 원의 무엇과 같아집니까?`,
+    "지름",
+    `벌린 길이 둘이 지름입니다.`,
+  );
+}
+
+function part241Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  return make(
+    unit,
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음을 분수로 나타낼 때 분모를 쓰시오.`,
+    n(groups),
+    `전체 묶음 수가 분모이므로 ${n(groups)} 입니다.`,
+  );
+}
+
+function part241Num(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  return make(
+    unit,
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 ${n(take)}묶음을 분수로 나타낼 때 분자를 쓰시오.`,
+    n(take),
+    `가져온 묶음 수가 분자이므로 ${n(take)} 입니다.`,
+  );
+}
+
+function part241Rest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  return make(
+    unit,
+    `전체를 ${n(groups)}묶음으로 나누어 ${n(take)}묶음을 가져갔습니다. 남은 묶음은 몇 묶음입니까?`,
+    n(groups - take),
+    `${expr(`${groups}-${take}=${groups - take}`)} 입니다.`,
+  );
+}
+
+function part241RestFrac(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  return make(
+    unit,
+    `전체를 ${n(groups)}묶음으로 나누어 ${n(take)}묶음을 가져갔습니다. 남은 부분은 분수로 얼마입니까?`,
+    expr(`\\frac{${groups - take}}{${groups}}`),
+    `남은 묶음은 ${n(groups - take)}묶음이므로 ${expr(`\\frac{${groups - take}}{${groups}}`)} 입니다.`,
+  );
+}
+
+function part241Unit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  return make(
+    unit,
+    `전체를 똑같이 ${n(groups)}묶음으로 나눈 것 중 한 묶음은 분수로 얼마입니까?`,
+    expr(`\\frac{1}{${groups}}`),
+    `한 묶음은 ${expr(`\\frac{1}{${groups}}`)} 입니다.`,
+  );
+}
+
+function part241Check(unit: UnitSeed, rng: Rng): ElemProblem {
+  const groups = intBetween(rng, 3, 8);
+  const take = intBetween(rng, 1, groups - 1);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 가져온 ${n(take)}묶음과 남은 ${n(groups - take)}묶음을 더하면 몇 묶음입니까?`,
+    n(groups),
+    `${expr(`${take}+${groups - take}=${groups}`)} 입니다.`,
+  );
+}
+
+function frac24EachOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    return make(
+      unit,
+      `${n(whole)}을 똑같이 ${n(den)}묶음으로 나누면 한 묶음은 얼마입니까?`,
+      n(each),
+      `${expr(`${whole}\\div${den}=${each}`)} 입니다.`,
+    );
+  };
+}
+
+function frac24TakeOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    return make(
+      unit,
+      `${n(whole)}의 ${expr(`\\frac{${take}}{${den}}`)} 만큼은 한 묶음이 ${n(each)}일 때 몇 묶음입니까?`,
+      n(take),
+      `${expr(`\\frac{${take}}{${den}}`)} 은 ${n(take)}묶음입니다.`,
+    );
+  };
+}
+
+function frac24DenOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    return make(
+      unit,
+      `${n(whole)}의 ${expr(`\\frac{${take}}{${den}}`)} 만큼을 구할 때 분모를 쓰시오.`,
+      n(den),
+      `분모는 ${n(den)} 입니다.`,
+    );
+  };
+}
+
+function frac24LeftOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    const take = takeOf(rng, den, unitOnly);
+    return make(
+      unit,
+      `${n(whole)}의 ${expr(`\\frac{${take}}{${den}}`)} 만큼을 가져가면 남는 수는 얼마입니까?`,
+      n(whole - each * take),
+      `가져간 것은 ${n(each * take)} 이므로 ${expr(`${whole}-${each * take}=${whole - each * take}`)} 입니다.`,
+    );
+  };
+}
+
+function frac24TwiceOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 3 : 4, 8);
+    const each = intBetween(rng, 2, 8);
+    const whole = den * each;
+    const take = unitOnly ? 1 : 1;
+    return make(
+      unit,
+      `${n(whole)}의 ${expr(`\\frac{${take}}{${den}}`)} 만큼의 $2$ 배는 얼마입니까?`,
+      n(each * 2),
+      `한 묶음은 ${n(each)} 이므로 $2$ 배는 ${expr(`${each}\\times2=${each * 2}`)} 입니다.`,
+    );
+  };
+}
+
+function frac24WholeOf(unitOnly: boolean): ChapterHandler {
+  return (unit, rng) => {
+    const den = intBetween(rng, unitOnly ? 2 : 3, 8);
+    const each = intBetween(rng, 2, 9);
+    const whole = den * each;
+    return make(
+      unit,
+      `한 묶음이 ${n(each)}이고 묶음이 ${n(den)}개이면 전체는 얼마입니까?`,
+      n(whole),
+      `${expr(`${each}\\times${den}=${whole}`)} 입니다.`,
+    );
+  };
+}
+
+function kind244ImpCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const proper = distinctIdx(rng, den - 1, 2).map((i) => i + 1);
+  const improper = distinctIdx(rng, 5, 2).map((i) => i + den);
+  const order = distinctIdx(rng, 4, 4);
+  const all = [...proper, ...improper];
+  const shown = order.map((i) => all[i]!);
+  const list = shown.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 다음 분수 가운데 가분수는 몇 개입니까?\n\n${list}`,
+    n(2),
+    `분자가 분모 이상인 것이 가분수이므로 $2$개입니다.`,
+  );
+}
+
+function kind244ImpNumSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const proper = distinctIdx(rng, den - 1, 2).map((i) => i + 1);
+  const improper = distinctIdx(rng, 5, 2).map((i) => i + den);
+  const order = distinctIdx(rng, 4, 4);
+  const all = [...proper, ...improper];
+  const shown = order.map((i) => all[i]!);
+  const list = shown.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const s = shown.filter((v) => v >= den).reduce((t, v) => t + v, 0);
+  return make(
+    unit,
+    `다음 분수 가운데 가분수의 분자를 모두 더한 값을 쓰시오.\n\n${list}`,
+    n(s),
+    `가분수의 분자 합은 ${n(s)} 입니다.`,
+  );
+}
+
+function kind244Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `${expr(`\\frac{${den + 1}}{${den}}`)} 의 분모를 쓰시오.`,
+    n(den),
+    `분모는 ${n(den)} 입니다.`,
+  );
+}
+
+function kind244WholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 9);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. ${expr(`\\frac{${den}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
+    "예",
+    `분자가 분모와 같으므로 가분수입니다.`,
+  );
+}
+
+function kind244Gap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const num = intBetween(rng, den + 1, den + 5);
+  return make(
+    unit,
+    `${expr(`\\frac{${num}}{${den}}`)} 에서 분자와 분모의 차는 얼마입니까?`,
+    n(num - den),
+    `${expr(`${num}-${den}=${num - den}`)} 입니다.`,
+  );
+}
+
+function kind244Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `분자가 분모보다 작은 분수를 무엇이라고 합니까? 그런 분수를 ${n(many)}개 쓸 수 있습니다.`,
+    "진분수",
+    `분자가 분모보다 작은 분수가 진분수입니다.`,
+  );
+}
+
+function mixed245Whole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 의 자연수 부분을 쓰시오.`,
+    n(whole),
+    `자연수 부분은 ${n(whole)} 입니다.`,
+  );
+}
+
+function mixed245Rest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 의 진분수 부분의 분자를 쓰시오.`,
+    n(rest),
+    `진분수 부분의 분자는 ${n(rest)} 입니다.`,
+  );
+}
+
+function mixed245Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 의 분모를 쓰시오.`,
+    n(den),
+    `분모는 ${n(den)} 입니다.`,
+  );
+}
+
+function mixed245ImpNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  const num = whole * den + rest;
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 을 가분수로 나타낼 때 분자를 쓰시오.`,
+    n(num),
+    `${expr(`${whole}\\times${den}+${rest}=${num}`)} 입니다.`,
+  );
+}
+
+function mixed245WholeTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 에서 자연수 부분과 분모를 곱한 값을 쓰시오.`,
+    n(whole * den),
+    `${expr(`${whole}\\times${den}=${whole * den}`)} 입니다.`,
+  );
+}
+
+function mixed245ImpDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 3, 8);
+  const whole = intBetween(rng, 2, 5);
+  const rest = pick(rng, coprimeNums(den, 1));
+  return make(
+    unit,
+    `${expr(`${whole}\\frac{${rest}}{${den}}`)} 을 가분수로 나타낼 때 분모를 쓰시오.`,
+    n(den),
+    `분모는 그대로 ${n(den)} 입니다.`,
+  );
+}
+
+function cmp246SmallNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `다음 세 분수 중 가장 작은 분수의 분자를 쓰시오.\n\n${list}`,
+    n(Math.min(...three)),
+    `분자가 가장 작은 수가 ${n(Math.min(...three))} 입니다.`,
+  );
+}
+
+function cmp246BigNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `다음 세 분수 중 가장 큰 분수의 분자를 쓰시오.\n\n${list}`,
+    n(Math.max(...three)),
+    `분자가 가장 큰 수가 ${n(Math.max(...three))} 입니다.`,
+  );
+}
+
+function cmp246Den(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `다음 세 분수의 분모를 쓰시오.\n\n${list}`,
+    n(den),
+    `분모는 모두 ${n(den)} 입니다.`,
+  );
+}
+
+function cmp246NumSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const s = three.reduce((t, v) => t + v, 0);
+  return make(
+    unit,
+    `다음 세 분수의 분자를 모두 더한 값을 쓰시오.\n\n${list}`,
+    n(s),
+    `분자의 합은 ${n(s)} 입니다.`,
+  );
+}
+
+function cmp246Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const sorted = [...three].sort((a, b) => a - b);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  return make(
+    unit,
+    `다음 세 분수 중 크기가 가운데인 분수의 분자를 쓰시오.\n\n${list}`,
+    n(sorted[1]!),
+    `가운데 크기의 분자는 ${n(sorted[1]!)} 입니다.`,
+  );
+}
+
+function cmp246Count(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = intBetween(rng, 5, 9);
+  const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
+  const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번. 다음 분수는 모두 몇 개입니까?\n\n${list}`,
+    n(3),
+    `분수가 $3$개입니다.`,
+  );
+}
+
+function capCmpToSmallOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      n(b * 1000 + s),
+      `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${n(b * 1000 + s)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function capCmpBigPartOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 에서 ${cfg.big} 단위의 수만큼만 쓰시오.`,
+      n(b),
+      `${cfg.big} 단위 부분은 ${n(b)} ${cfg.big}입니다.`,
+    );
+  };
+}
+
+function capCmpSmallPartOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 에서 ${cfg.small} 단위의 수만큼만 쓰시오.`,
+      n(s),
+      `${cfg.small} 단위 부분은 ${n(s)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function capCmpHowManyOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 2, 9);
+    return make(
+      unit,
+      `$${b * 1000}\\,\\mathrm{${cfg.small}}$ 안에는 $1000\\,\\mathrm{${cfg.small}}$ 이 몇 번 들어갑니까?`,
+      n(b),
+      `${expr(`${b * 1000}\\div1000=${b}`)} 이므로 ${n(b)}번입니다.`,
+    );
+  };
+}
+
+function capCmpGapOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const left = b * 1000 + s;
+    const gap = intBetween(rng, 20, 400);
+    const right = left + gap;
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 의 차는 몇 ${cfg.small}입니까?`,
+      n(gap),
+      `${expr(`${right}-${left}=${gap}`)} 입니다.`,
+    );
+  };
+}
+
+function capCmpBiggerOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 900);
+    const left = b * 1000 + s;
+    const gap = intBetween(rng, 20, 400);
+    const right = left + gap * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 가운데 더 큰 값은 몇 ${cfg.small}입니까?`,
+      n(Math.max(left, right)),
+      `둘을 ${cfg.small} ${cfg.jRo} 고치면 ${n(left)} 과 ${n(right)} 이므로 더 큰 값은 ${n(Math.max(left, right))} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function capUnitMissingOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    const total = b * 1000 + s;
+    return make(
+      unit,
+      `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square\\,\\mathrm{${cfg.big}}\\ ${s}\\,\\mathrm{${cfg.small}}=${total}\\,\\mathrm{${cfg.small}}$`,
+      n(b),
+      `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${n(b)} ${cfg.big}입니다.`,
+    );
+  };
+}
+
+function capUnitOnlySmallOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 2, 9);
+    const s = intBetween(rng, 1, 9) * 100;
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 에서 ${cfg.small} 단위의 수만큼만 쓰시오.`,
+      n(s),
+      `${cfg.small} 단위 부분은 ${n(s)} ${cfg.small}입니다.`,
+    );
+  };
+}
+
+function capUnitSumOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 4);
+    const s = intBetween(rng, 1, 8) * 100;
+    const j = intBetween(rng, 1, 3);
+    const f = intBetween(rng, 1, 8) * 100;
+    const t1 = b * 1000 + s;
+    const t2 = j * 1000 + f;
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
+      n(t1 + t2),
+      `${expr(`${t1}+${t2}=${t1 + t2}`)} 입니다.`,
+    );
+  };
+}
+
+function capUnitDiffOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 3, 6);
+    const s = intBetween(rng, 2, 8) * 100;
+    const j = intBetween(rng, 1, b - 1);
+    const f = intBetween(rng, 1, 8) * 100;
+    const t1 = b * 1000 + s;
+    const t2 = j * 1000 + f;
+    const hi = Math.max(t1, t2);
+    const lo = Math.min(t1, t2);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
+      n(hi - lo),
+      `${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
+    );
+  };
+}
+
+function capUnitHowManyOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 2, 9);
+    return make(
+      unit,
+      `$${b * 1000}\\,\\mathrm{${cfg.small}}$ 안에는 $1\\,\\mathrm{${cfg.big}}$ 이 몇 개 들어갑니까?`,
+      n(b),
+      `${expr(`${b * 1000}\\div1000=${b}`)} 이므로 ${n(b)}개입니다.`,
+    );
+  };
+}
+
+function capUnitPlus100Of(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 1, 8) * 100;
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 에 $100\\,\\mathrm{${cfg.small}}$ 을 더하면 몇 ${cfg.small}입니까?`,
+      n(b * 1000 + s + 100),
+      `${expr(`${b * 1000 + s}+100=${b * 1000 + s + 100}`)} 입니다.`,
+    );
+  };
+}
+
+function capSumBigOnlyOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b1 = intBetween(rng, 2, 4);
+    const b2 = intBetween(rng, 1, 3);
+    const s1 = intBetween(rng, 100, 400);
+    const s2 = intBetween(rng, 50, 400);
+    return make(
+      unit,
+      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.big}끼리만 더한 값은 몇 ${cfg.big}입니까?`,
+      n(b1 + b2),
+      `${expr(`${b1}+${b2}=${b1 + b2}`)} 입니다.`,
+    );
+  };
+}
+
+function capSumSmallOnlyOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b1 = intBetween(rng, 2, 4);
+    const b2 = intBetween(rng, 1, 3);
+    const s1 = intBetween(rng, 100, 400);
+    const s2 = intBetween(rng, 50, 400);
+    return make(
+      unit,
+      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.small}끼리만 더한 값은 몇 ${cfg.small}입니까?`,
+      n(s1 + s2),
+      `${expr(`${s1}+${s2}=${s1 + s2}`)} 입니다.`,
+    );
+  };
+}
+
+function capSumCarryQOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const s1 = intBetween(rng, 200, 800);
+    const s2 = intBetween(rng, 200, 800);
+    const b1 = intBetween(rng, 1, 3);
+    const b2 = intBetween(rng, 1, 3);
+    const yes = s1 + s2 >= 1000;
+    const which = intBetween(rng, 1, 6);
+    return make(
+      unit,
+      `${n(which)}번. ${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 을 더할 때 ${cfg.small}에서 ${cfg.big}으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+      yes ? "예" : "아니요",
+      `${cfg.small}끼리 더하면 ${n(s1 + s2)} 이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
+    );
+  };
+}
+
+function capSumToSmallOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 4);
+    const s = intBetween(rng, 100, 800);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      n(b * 1000 + s),
+      `${expr(`1000\\times${b}+${s}=${b * 1000 + s}`)} 입니다.`,
+    );
+  };
+}
+
+function capSumPlusOneBigOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b = intBetween(rng, 1, 5);
+    const s = intBetween(rng, 100, 800);
+    return make(
+      unit,
+      `${mixedCap(cfg, b, s)} 에 $1\\,\\mathrm{${cfg.big}}$ 을 더하면 몇 ${cfg.small}입니까?`,
+      n((b + 1) * 1000 + s),
+      `${expr(`${b * 1000 + s}+1000=${(b + 1) * 1000 + s}`)} 입니다.`,
+    );
+  };
+}
+
+function capSumDiffBigOf(cfg: CapCfg): ChapterHandler {
+  return (unit, rng) => {
+    const b1 = intBetween(rng, 3, 6);
+    const b2 = intBetween(rng, 1, b1 - 1);
+    const s = intBetween(rng, 100, 400);
+    return make(
+      unit,
+      `${mixedCap(cfg, b1, s)} 에서 ${mixedCap(cfg, b2, s)} 을 뺄 때 ${cfg.big}끼리만 빼면 몇 ${cfg.big}입니까?`,
+      n(b1 - b2),
+      `${expr(`${b1}-${b2}=${b1 - b2}`)} 입니다.`,
+    );
+  };
+}
+
+function graph261Value(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const at = intBetween(rng, 0, 2);
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. ${GRAPH_LABELS[at]} ${place}의 □ 칸 수를 쓰시오.`,
+    n(counts[at]!),
+    `${GRAPH_LABELS[at]} ${place}${josa(place, "은", "는")} □가 ${n(counts[at]!)}칸입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+function graph261Total(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const sum = counts.reduce((t, c) => t + c * step, 0);
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}입니다. 세 ${place}의 ${stuff.name} 수를 모두 더하면 몇 ${stuff.unit}입니까?`,
+    n(sum),
+    `세 곳의 합은 ${n(sum)}${stuff.unit}입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+function graph261Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [2, 4, 6];
+  const order = pick(rng, CAP_PERMS);
+  const shown = order.map((i) => counts[i]!);
+  const hi = Math.max(...shown);
+  const lo = Math.min(...shown);
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}입니다. 가장 많은 ${place}와 가장 적은 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
+    n((hi - lo) * step),
+    `칸 수의 차는 ${n(hi - lo)}칸이므로 ${expr(`${step}\\times${hi - lo}=${(hi - lo) * step}`)} 입니다.`,
+    graphSpec(
+      step,
+      shown.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+function graph261Cells(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const sum = counts.reduce((t, c) => t + c, 0);
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림그래프에서 □ 칸을 모두 세면 몇 칸입니까?`,
+    n(sum),
+    `세 ${place}의 칸을 더하면 ${n(sum)}칸입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+function graph261Twice(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
+  const at = intBetween(rng, 0, 2);
+  return make(
+    unit,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}입니다. ${GRAPH_LABELS[at]} ${place}의 ${stuff.name} 수의 $2$ 배는 몇 ${stuff.unit}입니까?`,
+    n(counts[at]! * step * 2),
+    `${GRAPH_LABELS[at]} ${place}${josa(place, "은", "는")} ${n(counts[at]! * step)}${stuff.unit}이므로 $2$ 배는 ${n(counts[at]! * step * 2)}${stuff.unit}입니다.`,
+    graphSpec(
+      step,
+      counts.map((c, i) => ({ label: GRAPH_LABELS[i]!, count: c })),
+    ),
+  );
+}
+
+function graph261Step(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const step = graphStep(rng);
+  const count = intBetween(rng, 2, GRAPH_MAX_COUNT);
+  return make(
+    unit,
+    `그림그래프에서 □가 ${n(count)}칸이고 ${stuff.name} 수가 ${n(count * step)}${stuff.unit}일 때, □ 한 칸은 몇 ${stuff.unit}을 나타냅니까?`,
+    n(step),
+    `${expr(`${count * step}\\div${count}=${step}`)} 입니다.`,
+    graphSpec(step, [{ label: GRAPH_LABELS[0]!, count }]),
+  );
+}
+
+function graph262Tens(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const value = intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 큰 그림 한 개가 ${n(10)}${stuff.unit}일 때 큰 그림은 몇 개 그려야 합니까?`,
+    n(Math.floor(value / 10)),
+    `${expr(`${Math.floor(value / 10)}\\times10`)} 이 ${n(Math.floor(value / 10) * 10)} 이므로 큰 그림은 ${n(Math.floor(value / 10))}개입니다.`,
+  );
+}
+
+function graph262Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const value = intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 작은 그림 한 개가 ${n(1)}${stuff.unit}일 때 작은 그림은 몇 개 그려야 합니까?`,
+    n(value % 10),
+    `일의 자리가 ${n(value % 10)} 이므로 작은 그림은 ${n(value % 10)}개입니다.`,
+  );
+}
+
+function graph262Value(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const tens = intBetween(rng, 1, 4);
+  const ones = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `큰 그림 ${n(tens)}개와 작은 그림 ${n(ones)}개로 나타낸 ${place}의 ${stuff.name} 수는 몇 ${stuff.unit}입니까? 큰 그림 한 개는 ${n(10)}${stuff.unit}입니다.`,
+    n(tens * 10 + ones),
+    `${expr(`10\\times${tens}+${ones}=${tens * 10 + ones}`)} 입니다.`,
+  );
+}
+
+function graph262Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const a = intBetween(rng, 11, 49);
+  const b = intBetween(rng, 11, 49);
+  return make(
+    unit,
+    `가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 합은 몇 ${stuff.unit}입니까?`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function graph262Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const a = intBetween(rng, 21, 49);
+  const b = intBetween(rng, 11, a - 5);
+  return make(
+    unit,
+    `가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
+    n(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+  );
+}
+
+function graph262TenTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const tens = intBetween(rng, 1, 4);
+  return make(
+    unit,
+    `큰 그림 ${n(tens)}개만 그렸습니다. 큰 그림 한 개가 ${n(10)}${stuff.unit}일 때 ${place}의 ${stuff.name} 수는 몇 ${stuff.unit}입니까?`,
+    n(tens * 10),
+    `${expr(`10\\times${tens}=${tens * 10}`)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -9851,6 +11221,250 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     cmp167BigTenths,
     cmp167Smaller,
     cmp167SameWholeQ,
+  ),
+  "초3|2-1-1": MUL21_FORMS,
+  "초3|2-1-2": MUL21_FORMS,
+  "초3|2-1-3": ten(
+    mul213Calc,
+    mul213Word,
+    mul213Apply,
+    mul213Deep,
+    mul213Missing,
+    mul213Ones,
+    mul213Plus10,
+    mul213EvenOdd,
+    mul213Tens,
+    mul213OneMore,
+  ),
+  "초3|2-1-4": ten(
+    mul214Calc,
+    mul214Word,
+    mul214Apply,
+    mul214Deep,
+    mul214Missing,
+    mul214Hundreds,
+    mul214Minus10,
+    mul214From1000,
+    mul214DigitSum,
+    mul214EvenOdd,
+  ),
+  "초3|2-2-1": DIV22_FORMS,
+  "초3|2-2-2": DIV22_FORMS,
+  "초3|2-2-3": ten(
+    rem223Calc,
+    rem223Word,
+    rem223Apply,
+    rem223Deep,
+    rem223Quot,
+    rem223Rem,
+    rem223Divisor,
+    rem223Check,
+    rem223LessQ,
+    rem223Dividend,
+  ),
+  "초3|2-2-4": ten(
+    div224Calc,
+    div224Word,
+    div224Apply,
+    div224Deep,
+    div224Missing,
+    div224Check,
+    div224HowMany,
+    div224Compare,
+    div224Total,
+    div224Hundreds,
+  ),
+  "초3|2-3-2": ten(
+    circ232Calc,
+    circ232Word,
+    circ232Apply,
+    circ232Deep,
+    circ232Times2,
+    circ232ThreeR,
+    circ232DiaMinusR,
+    circ232DiaPlusR,
+    circ232ManyR,
+    circ232HalfDia,
+  ),
+  "초3|2-3-3": ten(
+    circ233Calc,
+    circ233Word,
+    circ233Apply,
+    circ233Deep,
+    circ233Name,
+    circ233FromDia,
+    circ233Double,
+    circ233SumR,
+    circ233DiaMinusOpen,
+    circ233TwoOpen,
+  ),
+  "초3|2-4-1": ten(
+    part241Calc,
+    part241Word,
+    part241Apply,
+    part241Deep,
+    part241Den,
+    part241Num,
+    part241Rest,
+    part241RestFrac,
+    part241Unit,
+    part241Check,
+  ),
+  "초3|2-4-2": ten(
+    frac24CalcOf(true),
+    frac24WordOf(true),
+    frac24ApplyOf(true),
+    frac24DeepOf(true),
+    frac24EachOf(true),
+    frac24TakeOf(true),
+    frac24DenOf(true),
+    frac24LeftOf(true),
+    frac24TwiceOf(true),
+    frac24WholeOf(true),
+  ),
+  "초3|2-4-3": ten(
+    frac24CalcOf(false),
+    frac24WordOf(false),
+    frac24ApplyOf(false),
+    frac24DeepOf(false),
+    frac24EachOf(false),
+    frac24TakeOf(false),
+    frac24DenOf(false),
+    frac24LeftOf(false),
+    frac24TwiceOf(false),
+    frac24WholeOf(false),
+  ),
+  "초3|2-4-4": ten(
+    kind244Calc,
+    kind244Word,
+    kind244Apply,
+    kind244Deep,
+    kind244ImpCount,
+    kind244ImpNumSum,
+    kind244Den,
+    kind244WholeQ,
+    kind244Gap,
+    kind244Def,
+  ),
+  "초3|2-4-5": ten(
+    mixed245Calc,
+    mixed245Word,
+    mixed245Apply,
+    mixed245Deep,
+    mixed245Whole,
+    mixed245Rest,
+    mixed245Den,
+    mixed245ImpNum,
+    mixed245WholeTimes,
+    mixed245ImpDen,
+  ),
+  "초3|2-4-6": ten(
+    cmp246Calc,
+    cmp246Word,
+    cmp246Apply,
+    cmp246Deep,
+    cmp246SmallNum,
+    cmp246BigNum,
+    cmp246Den,
+    cmp246NumSum,
+    cmp246Mid,
+    cmp246Count,
+  ),
+  "초3|2-5-1": ten(
+    capCmpCalcOf(CAP_L),
+    capCmpWordOf(CAP_L),
+    capCmpApplyOf(CAP_L),
+    capCmpDeepOf(CAP_L),
+    capCmpToSmallOf(CAP_L),
+    capCmpBigPartOf(CAP_L),
+    capCmpSmallPartOf(CAP_L),
+    capCmpHowManyOf(CAP_L),
+    capCmpGapOf(CAP_L),
+    capCmpBiggerOf(CAP_L),
+  ),
+  "초3|2-5-2": ten(
+    capUnitCalcOf(CAP_L),
+    capUnitWordOf(CAP_L),
+    capUnitApplyOf(CAP_L),
+    capUnitDeepOf(CAP_L),
+    capUnitMissingOf(CAP_L),
+    capUnitOnlySmallOf(CAP_L),
+    capUnitSumOf(CAP_L),
+    capUnitDiffOf(CAP_L),
+    capUnitHowManyOf(CAP_L),
+    capUnitPlus100Of(CAP_L),
+  ),
+  "초3|2-5-3": ten(
+    capSumCalcOf(CAP_L),
+    capSumWordOf(CAP_L),
+    capSumApplyOf(CAP_L),
+    capSumDeepOf(CAP_L),
+    capSumBigOnlyOf(CAP_L),
+    capSumSmallOnlyOf(CAP_L),
+    capSumCarryQOf(CAP_L),
+    capSumToSmallOf(CAP_L),
+    capSumPlusOneBigOf(CAP_L),
+    capSumDiffBigOf(CAP_L),
+  ),
+  "초3|2-5-4": ten(
+    capCmpCalcOf(CAP_KG),
+    capCmpWordOf(CAP_KG),
+    capCmpApplyOf(CAP_KG),
+    capCmpDeepOf(CAP_KG),
+    capCmpToSmallOf(CAP_KG),
+    capCmpBigPartOf(CAP_KG),
+    capCmpSmallPartOf(CAP_KG),
+    capCmpHowManyOf(CAP_KG),
+    capCmpGapOf(CAP_KG),
+    capCmpBiggerOf(CAP_KG),
+  ),
+  "초3|2-5-5": ten(
+    capUnitCalcOf(CAP_KG),
+    capUnitWordOf(CAP_KG),
+    capUnitApplyOf(CAP_KG),
+    capUnitDeepOf(CAP_KG),
+    capUnitMissingOf(CAP_KG),
+    capUnitOnlySmallOf(CAP_KG),
+    capUnitSumOf(CAP_KG),
+    capUnitDiffOf(CAP_KG),
+    capUnitHowManyOf(CAP_KG),
+    capUnitPlus100Of(CAP_KG),
+  ),
+  "초3|2-5-6": ten(
+    capSumCalcOf(CAP_KG),
+    capSumWordOf(CAP_KG),
+    capSumApplyOf(CAP_KG),
+    capSumDeepOf(CAP_KG),
+    capSumBigOnlyOf(CAP_KG),
+    capSumSmallOnlyOf(CAP_KG),
+    capSumCarryQOf(CAP_KG),
+    capSumToSmallOf(CAP_KG),
+    capSumPlusOneBigOf(CAP_KG),
+    capSumDiffBigOf(CAP_KG),
+  ),
+  "초3|2-6-1": ten(
+    graph261Calc,
+    graph261Word,
+    graph261Apply,
+    graph261Deep,
+    graph261Value,
+    graph261Total,
+    graph261Diff,
+    graph261Cells,
+    graph261Twice,
+    graph261Step,
+  ),
+  "초3|2-6-2": ten(
+    graph262Calc,
+    graph262Word,
+    graph262Apply,
+    graph262Deep,
+    graph262Tens,
+    graph262Ones,
+    graph262Value,
+    graph262Sum,
+    graph262Diff,
+    graph262TenTimes,
   ),
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
