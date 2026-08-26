@@ -7741,6 +7741,106 @@ function sub113DigitSum(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 차의 십의 자리. 1-1-3 의 백의 자리와 가른다. */
+function sub114Tens(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 2, 2);
+  const d = a - b;
+  const t = Math.floor(d / 10) % 10;
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차에서 십의 자리 숫자를 쓰시오.`,
+    n(t),
+    `${expr(`${a}-${b}=${d}`)} 이므로 십의 자리 숫자는 ${n(t)} 입니다.`,
+    subCol(a, b),
+  );
+}
+
+/** 문형 06 — 빈칸 감수. 1-1-3 은 피감수를 묻는다. */
+function sub114MissingSubtrahend(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 2, 2);
+  const d = a - b;
+  return make(
+    unit,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$${a}-\\square=${d}$`,
+    n(b),
+    `처음 수에서 차를 뺍니다. ${expr(`${a}-${d}=${b}`)} 이므로 ${n(b)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 백의 자리 숫자끼리의 차(받아내림 전). */
+function sub114HundredsBare(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  for (let k = 0; k < 80; k += 1) {
+    [a, b] = subWithBorrows(rng, 2, 2);
+    if (Math.floor(a / 100) >= Math.floor(b / 100)) break;
+  }
+  const ha = Math.floor(a / 100);
+  const hb = Math.floor(b / 100);
+  return make(
+    unit,
+    `$${a}$ 의 백의 자리 숫자에서 $${b}$ 의 백의 자리 숫자를 뺀 값을 쓰시오.`,
+    n(ha - hb),
+    `백의 자리 숫자는 ${n(ha)} 과 ${n(hb)} 이므로 ${expr(`${ha}-${hb}=${ha - hb}`)} 입니다.`,
+    subCol(a, b),
+  );
+}
+
+/** 문형 08 — 차에 100 을 더한 수. */
+function sub114Plus100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [a, b] = subWithBorrows(rng, 2, 2);
+  const d = a - b;
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차에 $${100}$ 을 더한 수를 쓰시오.`,
+    n(d + 100),
+    `${expr(`${a}-${b}=${d}`)} 이고, ${expr(`${d}+100=${d + 100}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 차와 100 의 차. */
+function sub114From100(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  let d = 0;
+  for (let k = 0; k < 80; k += 1) {
+    [a, b] = subWithBorrows(rng, 2, 2);
+    d = a - b;
+    if (d !== 100) break;
+  }
+  const gap = Math.abs(d - 100);
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차와 $${100}$ 의 차는 얼마입니까?`,
+    n(gap),
+    `${expr(`${a}-${b}=${d}`)} 이고, ${d >= 100 ? expr(`${d}-100=${gap}`) : expr(`100-${d}=${gap}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 두 차 가운데 더 작은 값. */
+function sub114SmallerDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  let a = 0;
+  let b = 0;
+  let c = 0;
+  let d = 0;
+  let x = 0;
+  let y = 0;
+  for (let k = 0; k < 80; k += 1) {
+    [a, b] = subWithBorrows(rng, 2, 2);
+    [c, d] = subWithBorrows(rng, 2, 2);
+    x = a - b;
+    y = c - d;
+    if (x !== y) break;
+  }
+  const small = Math.min(x, y);
+  return make(
+    unit,
+    `$${a}-${b}$ 의 차와 $${c}-${d}$ 의 차 가운데 더 작은 수를 쓰시오.`,
+    n(small),
+    `${expr(`${a}-${b}=${x}`)}, ${expr(`${c}-${d}=${y}`)} 이므로 더 작은 수는 ${n(small)} 입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -7777,6 +7877,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: sub113Plus10 },
     { id: "09", tier: "응용", generate: sub113HowMuchMore },
     { id: "10", tier: "응용", generate: sub113DigitSum },
+  ],
+  "초3|1-1-4": [
+    { id: "01", tier: "연산", generate: subCalcOf(2, 2) },
+    { id: "02", tier: "기본", generate: subWordOf(2, 2) },
+    { id: "03", tier: "응용", generate: subApplyOf(2, 2) },
+    { id: "04", tier: "심화", generate: subDeepOf(2, 2) },
+    { id: "05", tier: "기본", generate: sub114Tens },
+    { id: "06", tier: "기본", generate: sub114MissingSubtrahend },
+    { id: "07", tier: "기본", generate: sub114HundredsBare },
+    { id: "08", tier: "응용", generate: sub114Plus100 },
+    { id: "09", tier: "응용", generate: sub114From100 },
+    { id: "10", tier: "응용", generate: sub114SmallerDiff },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },

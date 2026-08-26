@@ -333,3 +333,83 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
     }
   });
 });
+
+describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () => {
+  const unit = unitOf("1-1-4");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01·02 두 수의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]!);
+      const w = generateElementaryForm(unit, seed, "02");
+      const wn = katexInts(w.content);
+      expect(answerInt(w.answer)).toBe(wn[0]! - wn[1]!);
+    }
+  });
+
+  it("03 두 번 덜어낸 나머지", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const [a, b, c] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! - b! - c!);
+    }
+  });
+
+  it("05 차의 십의 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.floor((a! - b!) / 10) % 10);
+    }
+  });
+
+  it("06 빈칸 감수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)-\\square=(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) - Number(m![2]));
+    }
+  });
+
+  it("07 백의 자리 숫자끼리의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(
+        Math.floor(a! / 100) - Math.floor(b! / 100),
+      );
+    }
+  });
+
+  it("08 차에 100을 더한 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [a, b, k] = katexInts(p.content);
+      expect(k).toBe(100);
+      expect(answerInt(p.answer)).toBe(a! - b! + 100);
+    }
+  });
+
+  it("09 차와 100의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [a, b, k] = katexInts(p.content);
+      expect(k).toBe(100);
+      expect(answerInt(p.answer)).toBe(Math.abs(a! - b! - 100));
+    }
+  });
+
+  it("10 두 차 가운데 더 작은 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b, c, d] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(Math.min(a! - b!, c! - d!));
+    }
+  });
+});
