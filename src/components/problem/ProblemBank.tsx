@@ -18,6 +18,10 @@ import {
   updateReviewStatus,
   type ProblemListFilters,
 } from "@/lib/problem/problemApi";
+import {
+  compareProblemsForBank,
+  problemOrderFields,
+} from "@/lib/problem/problemOrder";
 import { loadUnits } from "@/lib/units/unitApi";
 
 import { useDebounced } from "@/hooks/useDebounced";
@@ -279,7 +283,18 @@ export function ProblemBank() {
       const matching = created.filter((problem) =>
         matchesFilters(problem, filters, unitById),
       );
-      setProblems((current) => [...matching, ...current]);
+      // 목록 순서는 서버가 정한다(`PROBLEM_BANK_ORDER_BY`). 새로 만든 문항을 **맨 위에**
+      // 얹으면 그 순간 화면이 서버와 다른 순서를 갖는다 — 옛 정렬(`createdAt desc`)에서는
+      // 맨 위가 곧 제자리였지만, 이제는 코드가 자리를 정한다(원장님 지시 2026-08-26).
+      // 그래서 **같은 규칙**으로 제자리에 끼운다.
+      setProblems((current) =>
+        [...matching, ...current].sort((a, b) =>
+          compareProblemsForBank(
+            problemOrderFields(a, unitById.get(a.unitId)),
+            problemOrderFields(b, unitById.get(b.unitId)),
+          ),
+        ),
+      );
       setTotal((current) => current + matching.length);
       setNotice(
         matching.length === created.length
