@@ -5633,6 +5633,356 @@ function big113AddMans(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 1-1-4 문형 05–10. 1-1-5 와 단위만 바꾼 복붙이 되지 않게 표면을 가른다. ── */
+
+/** 문형 05 — 억은 만이 몇 개인가. */
+function big114MansInEok(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${n(a)}억은 만이 몇 개인 수인가?`,
+    n(a * 10000),
+    `${n(1)}억은 만이 ${n(10000)}개인 수이므로 ${n(a)}억은 ${n(a * 10000)}개입니다.`,
+  );
+}
+
+/** 문형 06 — 1000만씩 묶음 수. */
+function big114ThousandManBundles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${n(a)}억을 ${n(1000)}만씩 묶으면 몇 묶음인가?`,
+    `${n(a * 10)}묶음`,
+    `${n(1)}억은 ${n(1000)}만이 ${n(10)}개이므로 ${expr(`10\\times${a}=${a * 10}`)} 묶음입니다.`,
+  );
+}
+
+/** 문형 07 — 만이 n개인 수는 몇 억인가. */
+function big114MansToEok(unit: UnitSeed, rng: Rng): ElemProblem {
+  const mans = intBetween(rng, 2, 9) * 10000;
+  return make(
+    unit,
+    `만이 ${n(mans)}개인 수는 몇 억인가?`,
+    `${n(mans / 10000)}억`,
+    `만이 ${n(10000)}개이면 ${n(1)}억이므로 ${expr(`${mans}\\div10000=${mans / 10000}`)} 에서 ${n(mans / 10000)}억입니다.`,
+  );
+}
+
+/** 문형 08 — 억과 만을 수로 바꿔 비교. */
+function big114CompareEokMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 4);
+  const mans = pick(rng, [5000, 15000, 25000, 35000]);
+  const x = a * 100000000;
+  const y = mans * 10000;
+  const big = Math.max(x, y);
+  return make(
+    unit,
+    `${n(a)}억과 ${n(mans)}만 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `${n(a)}억은 ${n(x)}, ${n(mans)}만은 ${n(y)}입니다. 더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/** 문형 09 — 억에서 만을 뺀다. */
+function big114EokMinusMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 1, 9) * 1000;
+  const v = a * 100000000 - b * 10000;
+  return make(
+    unit,
+    `${n(a)}억에서 ${n(b)}만을 빼면 얼마인가?`,
+    n(v),
+    `${n(a)}억은 ${n(a * 100000000)}, ${n(b)}만은 ${n(b * 10000)}이므로 ` +
+      `${expr(`${a * 100000000}-${b * 10000}=${v}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 억보다 만만큼 큰 수. 09 의 빼기와 방향을 가른다. */
+function big114EokLessMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const b = intBetween(rng, 1, 9) * 1000;
+  const v = a * 100000000 + b * 10000;
+  return make(
+    unit,
+    `${n(a)}억보다 ${n(b)}만 큰 수를 쓰시오.`,
+    n(v),
+    `${expr(`${a * 100000000}+${b * 10000}=${v}`)} 입니다.`,
+  );
+}
+
+/* ── 1-1-5 문형 05–10. 1-1-4 와 문형 표면을 갈랐다. ── */
+
+/** 문형 05 — 조는 억이 몇 개인가. */
+function big115EoksInJo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${n(a)}조는 억이 몇 개인 수인가?`,
+    n(a * 10000),
+    `${n(1)}조는 억이 ${n(10000)}개인 수이므로 ${n(a)}조는 ${n(a * 10000)}개입니다.`,
+  );
+}
+
+/** 문형 06 — 1000억씩 묶음 수. */
+function big115ThousandEokBundles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `${n(a)}조를 ${n(1000)}억씩 묶으면 몇 묶음인가?`,
+    `${n(a * 10)}묶음`,
+    `${n(1)}조는 ${n(1000)}억이 ${n(10)}개이므로 ${expr(`10\\times${a}=${a * 10}`)} 묶음입니다.`,
+  );
+}
+
+/** 문형 07 — 억이 n개인 수는 몇 조인가. */
+function big115EoksToJo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const eoks = intBetween(rng, 2, 9) * 10000;
+  return make(
+    unit,
+    `억이 ${n(eoks)}개인 수는 몇 조인가?`,
+    `${n(eoks / 10000)}조`,
+    `억이 ${n(10000)}개이면 ${n(1)}조이므로 ${expr(`${eoks}\\div10000=${eoks / 10000}`)} 에서 ${n(eoks / 10000)}조입니다.`,
+  );
+}
+
+/** 문형 08 — 조와 억을 수로 바꿔 비교. */
+function big115CompareJoEok(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 1, 4);
+  const eoks = pick(rng, [5000, 15000, 25000, 35000]);
+  const x = a * 1000000000000;
+  const y = eoks * 100000000;
+  const big = Math.max(x, y);
+  return make(
+    unit,
+    `${n(a)}조와 ${n(eoks)}억 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `${n(a)}조는 ${n(x)}, ${n(eoks)}억은 ${n(y)}입니다. 더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/** 문형 09 — 조에서 억을 뺀다. */
+function big115JoMinusEok(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const c = intBetween(rng, 1, 9) * 1000;
+  const v = a * 1000000000000 - c * 100000000;
+  return make(
+    unit,
+    `${n(a)}조에서 ${n(c)}억을 빼면 얼마인가?`,
+    n(v),
+    `${n(a)}조는 ${n(a * 1000000000000)}, ${n(c)}억은 ${n(c * 100000000)}이므로 ` +
+      `${expr(`${a * 1000000000000}-${c * 100000000}=${v}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 조보다 1000억 d개만큼 작은 수. */
+function big115JoLessChunks(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9);
+  const d = intBetween(rng, 1, 9);
+  const v = a * 1000000000000 - d * 100000000000;
+  return make(
+    unit,
+    `${n(a)}조보다 ${n(1000)}억이 ${n(d)}개 작은 수를 쓰시오.`,
+    n(v),
+    `${n(1000)}억 ${n(d)}개는 ${n(d * 100000000000)}이므로 ` +
+      `${expr(`${a * 1000000000000}-${d * 100000000000}=${v}`)} 입니다.`,
+  );
+}
+
+/* ── 1-1-6 문형 05–10. 규모는 150만 띠. ── */
+
+function skipStart(rng: Rng): number {
+  return intBetween(rng, 12, 89) * 10000;
+}
+
+function skipStep(rng: Rng): number {
+  return pick(rng, [1000, 10000, 100000]);
+}
+
+/** 문형 05 — 앞으로 뛰어 센 수. */
+function big116Forward(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = skipStep(rng);
+  const t = intBetween(rng, 2, 5);
+  const start = skipStart(rng);
+  const end = start + step * t;
+  return make(
+    unit,
+    `${n(start)}부터 ${n(step)}씩 ${n(t)}번 뛰어 센 수를 쓰시오.`,
+    n(end),
+    `${expr(`${start}+${step}\\times${t}=${end}`)} 입니다.`,
+  );
+}
+
+/** 문형 06 — 거꾸로 뛰어 센 수. */
+function big116Backward(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = skipStep(rng);
+  const t = intBetween(rng, 2, 5);
+  const start = skipStart(rng);
+  const end = start + step * t;
+  return make(
+    unit,
+    `${n(end)}에서 ${n(step)}씩 거꾸로 ${n(t)}번 뛰어 센 수를 쓰시오.`,
+    n(start),
+    `${expr(`${end}-${step}\\times${t}=${start}`)} 입니다.`,
+  );
+}
+
+/** 문형 07 — 수열의 다음 수. */
+function big116NextTerm(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = skipStep(rng);
+  const start = skipStart(rng);
+  const seq = [start, start + step, start + step * 2];
+  const next = start + step * 3;
+  return make(
+    unit,
+    `${seq.map((v) => n(v)).join(", ")} 다음에 올 수를 쓰시오.`,
+    n(next),
+    `${expr(`${seq[1]}-${seq[0]}=${step}`)} 씩 커지므로 다음 수는 ${expr(`${seq[2]}+${step}=${next}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 몇 번 뛰어 세었는가. */
+function big116HowManyHops(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = skipStep(rng);
+  const t = intBetween(rng, 2, 5);
+  const start = skipStart(rng);
+  const end = start + step * t;
+  return make(
+    unit,
+    `${n(start)}에서 ${n(step)}씩 뛰어 세어 ${josaNum(end, "이", "가")} 되었습니다. 몇 번 뛰어 센 것인가?`,
+    n(t),
+    `${expr(`${end}-${start}=${step * t}`)} 이고 ${expr(`${step * t}\\div${step}=${t}`)} 이므로 ${n(t)}번입니다.`,
+  );
+}
+
+/** 문형 09 — 가운데 빈칸. */
+function big116MissingMiddle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const step = skipStep(rng);
+  const start = skipStart(rng);
+  const at = intBetween(rng, 1, 2);
+  const seq = [start, start + step, start + step * 2, start + step * 3];
+  const missing = seq[at]!;
+  const shown = seq.map((v, i) => (i === at ? expr("\\square") : n(v)));
+  return make(
+    unit,
+    `뛰어 센 수를 차례로 쓰면 ${shown.join(", ")}입니다. ${expr("\\square")} 에 알맞은 수를 쓰시오.`,
+    n(missing),
+    `${n(step)}씩 뛰어 세므로 ${expr("\\square")} 는 ${n(missing)}입니다.`,
+  );
+}
+
+/** 문형 10 — 두 뛰어 세기 중 마지막이 더 큰 수. */
+function big116BiggerFinish(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [s1, s2] = pickDistinct(rng, [1000, 10000, 100000], 2) as [
+    number,
+    number,
+  ];
+  const t = intBetween(rng, 2, 4);
+  const start = skipStart(rng);
+  const e1 = start + s1 * t;
+  const e2 = start + s2 * t;
+  const big = Math.max(e1, e2);
+  return make(
+    unit,
+    `같은 수 ${n(start)}에서 ${n(s1)}씩 ${n(t)}번 뛰어 센 수와 ${n(s2)}씩 ${n(t)}번 뛰어 센 수 중 더 큰 수를 쓰시오.`,
+    n(big),
+    `한쪽은 ${n(e1)}, 다른 쪽은 ${n(e2)}이므로 더 큰 수는 ${n(big)}입니다.`,
+  );
+}
+
+/* ── 1-1-7 문형 05–10. 01 은 네 자리와 다섯 자리라 지문을 가른다. ── */
+
+function fiveDigit(rng: Rng): number {
+  return intBetween(rng, 10000, 99999);
+}
+
+/** 문형 05 — 다섯 자리 두 수를 비교. */
+function big117TwoFiveDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = fiveDigit(rng);
+  const b = a + intBetween(rng, 101, 900);
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  return make(
+    unit,
+    `${josaNum(a, "과", "와")} ${n(b)}는 모두 다섯 자리 수입니다. 더 ${wantBig ? "큰" : "작은"} 수를 쓰시오.`,
+    n(wantBig ? b : a),
+    `높은 자리부터 비교하면 ${josaNum(b, "이", "가")} 더 큽니다. 더 ${wantBig ? "큰" : "작은"} 수는 ${n(wantBig ? b : a)}입니다.`,
+  );
+}
+
+/** 문형 06 — 부등호. */
+function big117Sign(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 2);
+  const a = fiveDigit(rng);
+  const b =
+    kind === 0
+      ? a
+      : kind === 1
+        ? a + intBetween(rng, 101, 900)
+        : a - intBetween(rng, 101, 900);
+  const sign = a > b ? ">" : a < b ? "<" : "=";
+  return make(
+    unit,
+    `${n(a)} □ ${n(b)} 에서 □에 알맞은 것을 쓰시오. (${expr(">")}, ${expr("<")}, ${expr("=")})`,
+    sign,
+    `${a > b ? expr(`${a}>${b}`) : a < b ? expr(`${a}<${b}`) : expr(`${a}=${b}`)} 이므로 □에 알맞은 것은 ${sign}입니다.`,
+  );
+}
+
+/** 문형 07 — 작은 수부터 나열. */
+function big117SortAsc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 10000, 97999);
+  const mid = lo + intBetween(rng, 101, 900);
+  const hi = mid + intBetween(rng, 101, 900);
+  const shown = shuffled(rng, [lo, mid, hi]);
+  return make(
+    unit,
+    `세 수 ${shown.map((v) => n(v)).join(", ")}을 작은 수부터 차례로 쓰시오.`,
+    `${n(lo)}, ${n(mid)}, ${n(hi)}`,
+    `작은 수부터 쓰면 ${n(lo)}, ${n(mid)}, ${n(hi)}입니다.`,
+  );
+}
+
+/** 문형 08 — 두 수의 차. */
+function big117Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = fiveDigit(rng);
+  const b = a + intBetween(rng, 101, 900);
+  const first = intBetween(rng, 0, 1) === 0 ? a : b;
+  const second = first === a ? b : a;
+  return make(
+    unit,
+    `${josaNum(first, "과", "와")} ${n(second)}의 차는 얼마인가?`,
+    n(b - a),
+    `${expr(`${b}-${a}=${b - a}`)} 이므로 차는 ${n(b - a)}입니다.`,
+  );
+}
+
+/** 문형 09 — 더 큰 수의 만의 자리 숫자. */
+function big117BigManDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = fiveDigit(rng);
+  const b = a + intBetween(rng, 101, 900);
+  const big = Math.max(a, b);
+  const digit = Number(String(big)[0]);
+  return make(
+    unit,
+    `${josaNum(a, "과", "와")} ${n(b)} 중 더 큰 수의 만의 자리 숫자를 쓰시오.`,
+    n(digit),
+    `더 큰 수는 ${n(big)}이므로 만의 자리 숫자는 ${n(digit)}입니다.`,
+  );
+}
+
+/** 문형 10 — 가장 큰 수와 가장 작은 수의 차. */
+function big117Range(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 10000, 97999);
+  const mid = lo + intBetween(rng, 101, 900);
+  const hi = mid + intBetween(rng, 101, 900);
+  const shown = shuffled(rng, [lo, mid, hi]);
+  return make(
+    unit,
+    `세 수 ${shown.map((v) => n(v)).join(", ")} 중 가장 큰 수와 가장 작은 수의 차는 얼마인가?`,
+    n(hi - lo),
+    `가장 큰 수는 ${n(hi)}, 가장 작은 수는 ${n(lo)}이므로 ${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -5669,6 +6019,54 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: big113MixBills },
     { id: "09", tier: "응용", generate: big113AsTens },
     { id: "10", tier: "응용", generate: big113AddMans },
+  ],
+  "초4|1-1-4": [
+    { id: "01", tier: "연산", generate: tier14Calc },
+    { id: "02", tier: "기본", generate: tier14Basic },
+    { id: "03", tier: "응용", generate: tier14Apply },
+    { id: "04", tier: "심화", generate: tier14Deep },
+    { id: "05", tier: "기본", generate: big114MansInEok },
+    { id: "06", tier: "기본", generate: big114ThousandManBundles },
+    { id: "07", tier: "기본", generate: big114MansToEok },
+    { id: "08", tier: "응용", generate: big114CompareEokMan },
+    { id: "09", tier: "응용", generate: big114EokMinusMan },
+    { id: "10", tier: "응용", generate: big114EokLessMan },
+  ],
+  "초4|1-1-5": [
+    { id: "01", tier: "연산", generate: tier15Calc },
+    { id: "02", tier: "기본", generate: tier15Basic },
+    { id: "03", tier: "응용", generate: tier15Apply },
+    { id: "04", tier: "심화", generate: tier15Deep },
+    { id: "05", tier: "기본", generate: big115EoksInJo },
+    { id: "06", tier: "기본", generate: big115ThousandEokBundles },
+    { id: "07", tier: "기본", generate: big115EoksToJo },
+    { id: "08", tier: "응용", generate: big115CompareJoEok },
+    { id: "09", tier: "응용", generate: big115JoMinusEok },
+    { id: "10", tier: "응용", generate: big115JoLessChunks },
+  ],
+  "초4|1-1-6": [
+    { id: "01", tier: "연산", generate: tier16Calc },
+    { id: "02", tier: "기본", generate: tier16Basic },
+    { id: "03", tier: "응용", generate: tier16Apply },
+    { id: "04", tier: "심화", generate: tier16Deep },
+    { id: "05", tier: "기본", generate: big116Forward },
+    { id: "06", tier: "기본", generate: big116Backward },
+    { id: "07", tier: "기본", generate: big116NextTerm },
+    { id: "08", tier: "응용", generate: big116HowManyHops },
+    { id: "09", tier: "응용", generate: big116MissingMiddle },
+    { id: "10", tier: "응용", generate: big116BiggerFinish },
+  ],
+  "초4|1-1-7": [
+    { id: "01", tier: "연산", generate: tier17Calc },
+    { id: "02", tier: "기본", generate: tier17Basic },
+    { id: "03", tier: "응용", generate: tier17Apply },
+    { id: "04", tier: "심화", generate: tier17Deep },
+    { id: "05", tier: "기본", generate: big117TwoFiveDigit },
+    { id: "06", tier: "기본", generate: big117Sign },
+    { id: "07", tier: "기본", generate: big117SortAsc },
+    { id: "08", tier: "응용", generate: big117Diff },
+    { id: "09", tier: "응용", generate: big117BigManDigit },
+    { id: "10", tier: "응용", generate: big117Range },
   ],
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },

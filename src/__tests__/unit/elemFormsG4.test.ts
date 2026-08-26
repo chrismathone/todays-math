@@ -238,3 +238,297 @@ describe("초4 1-1-3 10000이 몇십·몇백·몇천", () => {
     }
   });
 });
+
+describe("초4 1-1-4 억", () => {
+  const unit = unitOf("1-1-4");
+
+  it("05 억은 만이 a×10000개", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$억은 만이 몇 개인 수인가/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * 10000);
+    }
+  });
+
+  it("06 1000만씩 묶음은 a×10", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\$억을 \$1000\$만씩 묶으면/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`$${Number(m![1]) * 10}$묶음`);
+    }
+  });
+
+  it("07 만이 n개인 수는 n/10000억", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/만이 \$(\d+)\$개인 수는 몇 억인가/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`$${Number(m![1]) / 10000}$억`);
+    }
+  });
+
+  it("08 억과 만을 수로 바꿔 비교", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$억과 \$(\d+)\$만 중 더 큰 수/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Math.max(Number(m![1]) * 100000000, Number(m![2]) * 10000),
+      );
+    }
+  });
+
+  it("09 억에서 만을 뺀다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$억에서 \$(\d+)\$만을 빼면/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * 100000000 - Number(m![2]) * 10000,
+      );
+    }
+  });
+
+  it("10 억보다 만만큼 큰 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(/\$(\d+)\$억보다 \$(\d+)\$만 큰 수/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * 100000000 + Number(m![2]) * 10000,
+      );
+    }
+  });
+});
+
+describe("초4 1-1-5 조", () => {
+  const unit = unitOf("1-1-5");
+
+  it("05 조는 억이 a×10000개", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$조는 억이 몇 개인 수인가/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * 10000);
+    }
+  });
+
+  it("06 1000억씩 묶음은 a×10", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\$조를 \$1000\$억씩 묶으면/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`$${Number(m![1]) * 10}$묶음`);
+    }
+  });
+
+  it("07 억이 n개인 수는 n/10000조", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/억이 \$(\d+)\$개인 수는 몇 조인가/);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`$${Number(m![1]) / 10000}$조`);
+    }
+  });
+
+  it("08 조와 억을 수로 바꿔 비교", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$조와 \$(\d+)\$억 중 더 큰 수/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Math.max(Number(m![1]) * 1000000000000, Number(m![2]) * 100000000),
+      );
+    }
+  });
+
+  it("09 조에서 억을 뺀다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$조에서 \$(\d+)\$억을 빼면/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * 1000000000000 - Number(m![2]) * 100000000,
+      );
+    }
+  });
+
+  it("10 조보다 1000억 d개 작은 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(
+        /\$(\d+)\$조보다 \$1000\$억이 \$(\d+)\$개 작은 수/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * 1000000000000 - Number(m![2]) * 100000000000,
+      );
+    }
+  });
+});
+
+describe("초4 1-1-6 뛰어 세기", () => {
+  const unit = unitOf("1-1-6");
+
+  it("05 앞으로 뛰어 센 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(
+        /\$(\d+)\$부터 \$(\d+)\$씩 \$(\d+)\$번 뛰어 센 수/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) + Number(m![2]) * Number(m![3]),
+      );
+    }
+  });
+
+  it("06 거꾸로 뛰어 센 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(
+        /\$(\d+)\$에서 \$(\d+)\$씩 거꾸로 \$(\d+)\$번 뛰어 센 수/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) - Number(m![2]) * Number(m![3]),
+      );
+    }
+  });
+
+  it("07 다음 수는 공차만큼 더한다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((x) =>
+        Number(x[1]),
+      );
+      expect(nums.length).toBeGreaterThanOrEqual(3);
+      const step = nums[1]! - nums[0]!;
+      expect(answerInt(p.answer)).toBe(nums[2]! + step);
+    }
+  });
+
+  it("08 횟수는 차를 걸음으로 나눈다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(
+        /\$(\d+)\$에서 \$(\d+)\$씩 뛰어 세어 \$(\d+)\$/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        (Number(m![3]) - Number(m![1])) / Number(m![2]),
+      );
+    }
+  });
+
+  it("09 빈칸은 이웃과의 걸음", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const listed = p.content.match(/쓰면 (.+?)입니다/);
+      expect(listed, p.content).toBeTruthy();
+      const vals = listed![1]!.split(", ").map((s) => {
+        const m = /\$(\d+)\$/.exec(s);
+        return m ? Number(m[1]) : null;
+      });
+      const knownAt = vals
+        .map((v, i) => (v === null ? -1 : i))
+        .filter((i) => i >= 0);
+      const step =
+        (vals[knownAt[1]!]! - vals[knownAt[0]!]!) / (knownAt[1]! - knownAt[0]!);
+      const miss = vals.findIndex((v) => v === null);
+      expect(answerInt(p.answer)).toBe(
+        vals[knownAt[0]!]! + step * (miss - knownAt[0]!),
+      );
+    }
+  });
+
+  it("10 두 뛰어 세기 중 마지막이 큰 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(
+        /같은 수 \$(\d+)\$에서 \$(\d+)\$씩 \$(\d+)\$번 뛰어 센 수와 \$(\d+)\$씩 \$(\d+)\$번/,
+      );
+      expect(m, p.content).toBeTruthy();
+      const start = Number(m![1]);
+      const t = Number(m![3]);
+      expect(Number(m![5])).toBe(t);
+      expect(answerInt(p.answer)).toBe(
+        Math.max(start + Number(m![2]) * t, start + Number(m![4]) * t),
+      );
+    }
+  });
+});
+
+describe("초4 1-1-7 수의 크기 비교", () => {
+  const unit = unitOf("1-1-7");
+
+  it("05 두 다섯 자리 중 큰/작은 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(
+        /\$(\d+)\$(?:과|와) \$(\d+)\$는 모두 다섯 자리 수입니다\. 더 (큰|작은) 수/,
+      );
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      expect(answerInt(p.answer)).toBe(
+        m![3] === "큰" ? Math.max(a, b) : Math.min(a, b),
+      );
+    }
+  });
+
+  it("06 부등호는 두 수의 크기", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+)\$ □ \$(\d+)\$ 에서/);
+      expect(m, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const b = Number(m![2]);
+      expect(p.answer).toBe(a > b ? ">" : a < b ? "<" : "=");
+    }
+  });
+
+  it("07 작은 수부터 나열", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((x) =>
+        Number(x[1]),
+      );
+      const sorted = [...nums].sort((a, b) => a - b);
+      expect(p.answer).toBe(sorted.map((v) => `$${v}$`).join(", "));
+    }
+  });
+
+  it("08 차는 큰 수에서 작은 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/\$(\d+)\$(?:과|와) \$(\d+)\$의 차는/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Math.abs(Number(m![1]) - Number(m![2])));
+    }
+  });
+
+  it("09 더 큰 수의 만의 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(
+        /\$(\d+)\$(?:과|와) \$(\d+)\$ 중 더 큰 수의 만의 자리/,
+      );
+      expect(m, p.content).toBeTruthy();
+      const big = Math.max(Number(m![1]), Number(m![2]));
+      expect(answerInt(p.answer)).toBe(Number(String(big)[0]));
+    }
+  });
+
+  it("10 가장 큰 수와 가장 작은 수의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((x) =>
+        Number(x[1]),
+      );
+      expect(answerInt(p.answer)).toBe(Math.max(...nums) - Math.min(...nums));
+    }
+  });
+});
