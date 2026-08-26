@@ -65,6 +65,9 @@ async function plant(
     answer: string;
   },
 ) {
+  // exam-wiring: 테스트 — 시험 대역(prismaTestDouble)에 픽스처를 심는다. 실 DB 가 아니고
+  //   원본 시험지(examId·sourceFile)도 없다. `source: "past_exam"` 은 형식 판정과 무관한
+  //   자리채움이다 — 판정이 보는 것은 questionType·problemType·content·answer 넷뿐이다.
   const row = await db.problem.create({
     data: {
       userId: USER_TEACHER_ID,

@@ -289,24 +289,23 @@ export async function GET(request: NextRequest) {
           },
         ]
       : [];
-  const whereWithoutFormat = {
-    AND: [
-      problemVisibleWhere(),
-      filters,
-      ...(Object.keys(unitWhere).length > 0 ? [{ unit: unitWhere }] : []),
-      ...rangeWhere,
-      ...figureWhere,
-      ...solutionWhere,
-      ...answerWhere,
-      ...searchWhere,
-    ],
-  };
+  // ⚠️ **평평하게 둔다.** 형식 조건을 넣으려고 이 배열을 한 겹 더 감쌌더니 `where.AND` 의
+  //    모양을 재던 기존 시험 둘이 빨개졌다(관문 2026-08-26 — 「grade/chapterPrefix 는
+  //    unit relation 으로 보낸다」·「chapter 가 있으면 chapterPrefix 를 무시한다」).
+  //    조건을 **덧붙이기만** 하면 종전 모양이 그대로 유지된다.
+  const baseAnd = [
+    problemVisibleWhere(),
+    filters,
+    ...(Object.keys(unitWhere).length > 0 ? [{ unit: unitWhere }] : []),
+    ...rangeWhere,
+    ...figureWhere,
+    ...solutionWhere,
+    ...answerWhere,
+    ...searchWhere,
+  ];
 
   const where = {
-    AND: [
-      whereWithoutFormat,
-      ...(await formatWhere(format, whereWithoutFormat)),
-    ],
+    AND: [...baseAnd, ...(await formatWhere(format, { AND: baseAnd }))],
   };
 
   const [rows, total] = await Promise.all([
