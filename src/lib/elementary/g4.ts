@@ -6252,6 +6252,249 @@ function ang123BiggestAcute(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 1-2-4 문형 05–10. 01 은 이어 붙이기, 05 는 식. ── */
+
+/** 문형 05 — 덧셈 식. */
+function ang124AddExpr(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 25, 75);
+  const y = intBetween(rng, 15, 60);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 각도를 쓰시오. ${expr(`${x}^\\circ+${y}^\\circ=\\square`)}`,
+    deg(x + y),
+    `${expr(`${x}+${y}=${x + y}`)} 이므로 ${deg(x + y)}입니다.`,
+  );
+}
+
+/** 문형 06 — 뺄셈 식. */
+function ang124SubExpr(unit: UnitSeed, rng: Rng): ElemProblem {
+  const small = intBetween(rng, 15, 60);
+  const big = small + intBetween(rng, 20, 70);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 각도를 쓰시오. ${expr(`${big}^\\circ-${small}^\\circ=\\square`)}`,
+    deg(big - small),
+    `${expr(`${big}-${small}=${big - small}`)} 이므로 ${deg(big - small)}입니다.`,
+  );
+}
+
+/** 문형 07 — 어림과 잰 값의 차. */
+function ang124EstimateGap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 25, 75);
+  const gap = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `각의 크기를 ${deg(x)}쯤으로 어림하고 각도기로 재었더니 ${deg(x + gap)}였습니다. 어림한 각도와 잰 각도의 차는 몇 도인가?`,
+    deg(gap),
+    `${expr(`${x + gap}-${x}=${gap}`)} 이므로 ${deg(gap)} 차이가 납니다.`,
+  );
+}
+
+/** 문형 08 — 세 각을 이어 붙인 합. */
+function ang124ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 50);
+  const y = intBetween(rng, 20, 50);
+  const z = intBetween(rng, 20, 50);
+  return make(
+    unit,
+    `세 각 ${deg(x)}, ${deg(y)}, ${deg(z)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도인가?`,
+    deg(x + y + z),
+    `${expr(`${x}+${y}+${z}=${x + y + z}`)} 이므로 ${deg(x + y + z)}입니다.`,
+  );
+}
+
+/** 문형 09 — 이어 붙인 각이 직각과 얼마나 다른가. */
+function ang124VsRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 50);
+  const y = intBetween(rng, 20, 50);
+  const sum = x + y;
+  const gap = Math.abs(sum - 90);
+  return make(
+    unit,
+    `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각은 직각과 몇 도 차이인가?`,
+    deg(gap),
+    `${expr(`${x}+${y}=${sum}`)} 이고 직각은 ${deg(90)}이므로 ${expr(`${Math.max(sum, 90)}-${Math.min(sum, 90)}=${gap}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 직선에서 이어 붙인 각을 뺀다. 03 의 「줄이면」과 물음을 가른다. */
+function ang124SumMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 50);
+  const y = intBetween(rng, 20, 50);
+  return make(
+    unit,
+    `직선이 이루는 각에서 ${deg(x)}와 ${deg(y)}를 이어 붙인 각을 빼면 몇 도인가?`,
+    deg(180 - x - y),
+    `${expr(`${x}+${y}=${x + y}`)} 이고 ${expr(`180-${x + y}=${180 - x - y}`)} 이므로 ${deg(180 - x - y)}입니다.`,
+  );
+}
+
+/* ── 1-2-5 문형 05–10. 01 은 두 각의 합, 05 는 두 각을 따로 준다. ── */
+
+/** 문형 05 — 두 각을 주고 나머지 각. */
+function ang125RestFromTwo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 25, 80);
+  const b = intBetween(rng, 25, 135 - a);
+  const rest = 180 - a - b;
+  return make(
+    unit,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    deg(rest),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${a}-${b}=${rest}`)}`,
+  );
+}
+
+/** 문형 06 — 한 각이 정해지면 나머지 둘의 합. */
+function ang125OtherTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 140);
+  return make(
+    unit,
+    `삼각형의 한 각의 크기가 ${deg(a)}입니다. 나머지 두 각의 크기의 합은 몇 도인가?`,
+    deg(180 - a),
+    `${expr(`180-${a}=${180 - a}`)} 이므로 ${deg(180 - a)}입니다.`,
+  );
+}
+
+/** 문형 07 — 세 각의 합을 직접 더한다. */
+function ang125ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 30, 70);
+  const b = intBetween(rng, 30, 70);
+  const c = 180 - a - b;
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}인 삼각형에서 세 각의 크기의 합은 몇 도인가?`,
+    deg(180),
+    `${expr(`${a}+${b}+${c}=180`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 나머지 각을 구한 뒤 가장 큰 각. */
+function ang125Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 30, 70);
+  const b = intBetween(rng, 30, 70);
+  const c = 180 - a - b;
+  const hi = Math.max(a, b, c);
+  return make(
+    unit,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 세 각 중 가장 큰 각의 크기는 몇 도인가?`,
+    deg(hi),
+    `나머지 한 각은 ${expr(`180-${a}-${b}=${c}`)} 입니다. 가장 큰 각은 ${deg(hi)}입니다.`,
+  );
+}
+
+/** 문형 09 — 나머지 각이 직각보다 큰가. */
+function ang125RestVsRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 70);
+  const b = intBetween(rng, 20, 70);
+  const rest = 180 - a - b;
+  return make(
+    unit,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각은 직각보다 큰가, 작은가?`,
+    rest > 90 ? "크다" : rest < 90 ? "작다" : "같다",
+    `나머지 한 각은 ${expr(`180-${a}-${b}=${rest}`)} 이고 직각은 ${deg(90)}이므로 ` +
+      `직각보다 ${rest > 90 ? "큽니다" : rest < 90 ? "작습니다" : "같습니다"}.`,
+  );
+}
+
+/** 문형 10 — 두 각의 합이 주어진 나머지. 01 과 달리 한 각을 더 준다. */
+function ang125SumAndOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 25, 70);
+  const b = intBetween(rng, 25, 70);
+  const s = a + b;
+  return make(
+    unit,
+    `삼각형의 한 각의 크기가 ${deg(a)}이고, 다른 두 각의 크기의 합이 ${deg(s)}입니다. ` +
+      `크기가 ${deg(a)}가 아닌 나머지 한 각의 크기는 몇 도인가?`,
+    deg(b),
+    `다른 두 각의 합이 ${deg(s)}이고 그 중 한 각이 ${deg(a)}이므로 ${expr(`${s}-${a}=${b}`)} 입니다.`,
+  );
+}
+
+/* ── 1-2-6 문형 05–10. 1-2-5 와 평행하되 360°·네 각. ── */
+
+/** 문형 05 — 세 각을 주고 나머지 각. */
+function ang126RestFromThree(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c = intBetween(rng, 70, 110);
+  const rest = 360 - a - b - c;
+  return make(
+    unit,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    deg(rest),
+    `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${a}-${b}-${c}=${rest}`)}`,
+  );
+}
+
+/** 문형 06 — 한 각이 정해지면 나머지 셋의 합. */
+function ang126OtherThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 40, 160);
+  return make(
+    unit,
+    `사각형의 한 각의 크기가 ${deg(a)}입니다. 나머지 세 각의 크기의 합은 몇 도인가?`,
+    deg(360 - a),
+    `${expr(`360-${a}=${360 - a}`)} 이므로 ${deg(360 - a)}입니다.`,
+  );
+}
+
+/** 문형 07 — 네 각의 합을 직접 더한다. */
+function ang126FourSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c = intBetween(rng, 70, 110);
+  const d = 360 - a - b - c;
+  return make(
+    unit,
+    `네 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}, ${deg(d)}인 사각형에서 네 각의 크기의 합은 몇 도인가?`,
+    deg(360),
+    `${expr(`${a}+${b}+${c}+${d}=360`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 나머지 각을 구한 뒤 가장 큰 각. */
+function ang126Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c = intBetween(rng, 70, 110);
+  const rest = 360 - a - b - c;
+  const hi = Math.max(a, b, c, rest);
+  return make(
+    unit,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 네 각 중 가장 큰 각의 크기는 몇 도인가?`,
+    deg(hi),
+    `나머지 한 각은 ${expr(`360-${a}-${b}-${c}=${rest}`)} 입니다. 가장 큰 각은 ${deg(hi)}입니다.`,
+  );
+}
+
+/** 문형 09 — 나머지 각이 직각보다 큰가. */
+function ang126RestVsRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 70, 110);
+  const b = intBetween(rng, 70, 110);
+  const c = intBetween(rng, 70, 110);
+  const rest = 360 - a - b - c;
+  return make(
+    unit,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각은 직각보다 큰가, 작은가?`,
+    rest > 90 ? "크다" : rest < 90 ? "작다" : "같다",
+    `나머지 한 각은 ${expr(`360-${a}-${b}-${c}=${rest}`)} 이고 직각은 ${deg(90)}이므로 ` +
+      `직각보다 ${rest > 90 ? "큽니다" : rest < 90 ? "작습니다" : "같습니다"}.`,
+  );
+}
+
+/** 문형 10 — 두 각의 합이 주어진 나머지. */
+function ang126SumAndOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 50, 100);
+  const b = intBetween(rng, 50, 100);
+  const s = a + b;
+  return make(
+    unit,
+    `사각형의 두 각의 크기의 합이 ${deg(s)}이고, 그 중 한 각의 크기가 ${deg(a)}입니다. ` +
+      `다른 한 각의 크기는 몇 도인가?`,
+    deg(b),
+    `${expr(`${s}-${a}=${b}`)} 이므로 ${deg(b)}입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -6372,6 +6615,42 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: ang123ListObtuse },
     { id: "09", tier: "응용", generate: ang123AcuteCount },
     { id: "10", tier: "응용", generate: ang123BiggestAcute },
+  ],
+  "초4|1-2-4": [
+    { id: "01", tier: "연산", generate: tier24Calc },
+    { id: "02", tier: "기본", generate: tier24Basic },
+    { id: "03", tier: "응용", generate: tier24Apply },
+    { id: "04", tier: "심화", generate: tier24Deep },
+    { id: "05", tier: "기본", generate: ang124AddExpr },
+    { id: "06", tier: "기본", generate: ang124SubExpr },
+    { id: "07", tier: "기본", generate: ang124EstimateGap },
+    { id: "08", tier: "응용", generate: ang124ThreeSum },
+    { id: "09", tier: "응용", generate: ang124VsRight },
+    { id: "10", tier: "응용", generate: ang124SumMinus },
+  ],
+  "초4|1-2-5": [
+    { id: "01", tier: "연산", generate: tier25Calc },
+    { id: "02", tier: "기본", generate: tier25Basic },
+    { id: "03", tier: "응용", generate: tier25Apply },
+    { id: "04", tier: "심화", generate: tier25Deep },
+    { id: "05", tier: "기본", generate: ang125RestFromTwo },
+    { id: "06", tier: "기본", generate: ang125OtherTwoSum },
+    { id: "07", tier: "기본", generate: ang125ThreeSum },
+    { id: "08", tier: "응용", generate: ang125Biggest },
+    { id: "09", tier: "응용", generate: ang125RestVsRight },
+    { id: "10", tier: "응용", generate: ang125SumAndOne },
+  ],
+  "초4|1-2-6": [
+    { id: "01", tier: "연산", generate: tier26Calc },
+    { id: "02", tier: "기본", generate: tier26Basic },
+    { id: "03", tier: "응용", generate: tier26Apply },
+    { id: "04", tier: "심화", generate: tier26Deep },
+    { id: "05", tier: "기본", generate: ang126RestFromThree },
+    { id: "06", tier: "기본", generate: ang126OtherThreeSum },
+    { id: "07", tier: "기본", generate: ang126FourSum },
+    { id: "08", tier: "응용", generate: ang126Biggest },
+    { id: "09", tier: "응용", generate: ang126RestVsRight },
+    { id: "10", tier: "응용", generate: ang126SumAndOne },
   ],
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
