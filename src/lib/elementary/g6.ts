@@ -7711,6 +7711,90 @@ function mixedNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function prismFigOf(n: number) {
+  return fig("prism", { sides: n, h: 3 });
+}
+
+/** 문형 05 — 밑면은 **둘**. 02 는 옆면 수. */
+function prismFaceFormBaseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 밑면은 몇 개입니까?`,
+    num(2),
+    `각기둥의 밑면은 서로 평행하고 합동인 두 면입니다. 밑면은 ${num(2)}개입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 06 — 옆면의 **모양**. 개수가 아니다. */
+function prismFaceFormSideShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const thing = pick(rng, PRISM_THINGS);
+  return make(
+    unit,
+    `다음은 각기둥 모양 ${thing}입니다. 옆면은 어떤 도형입니까?`,
+    "직사각형",
+    `각기둥의 옆면은 밑면의 한 변을 높이로 세운 직사각형입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 07 — 이름에서 **밑면의 모양**. 01 은 옆면의 수. */
+function prismFaceFormBaseShape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 밑면은 어떤 도형입니까?`,
+    polyName(n),
+    `각기둥의 이름은 밑면의 모양으로 정합니다. ${sino(n)}각기둥이므로 밑면은 ${polyName(n)}입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 08 — 옆면 **하나**의 넓이. 03 은 옆면 전체. */
+function prismFaceFormOneArea(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  const h = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 한 변의 길이가 ${unitNum(a, "cm")}, 높이가 ${unitNum(h, "cm")} 인 각기둥이 있습니다. ` +
+      `옆면 하나의 넓이는 몇 cm²입니까?`,
+    num(a * h),
+    `옆면 하나는 가로 ${unitNum(a, "cm")}, 세로 ${unitNum(h, "cm")} 인 직사각형이므로 ` +
+      `${expr(`${a}\\times${h}=${a * h}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 09 — 밑면의 **둘레**. */
+function prismFaceFormBasePerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  const a = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `밑면이 ${polyName(n)}이고 밑면의 변의 길이가 모두 ${unitNum(a, "cm")} 로 같은 각기둥이 있습니다. ` +
+      `밑면 하나의 둘레는 몇 cm입니까?`,
+    num(n * a),
+    `밑면은 ${polyName(n)}이므로 둘레는 ${expr(`${a}\\times${n}=${n * a}`)} 입니다.`,
+    prismFigOf(n),
+  );
+}
+
+/** 문형 10 — 옆면 수에서 밑면 수를 뺀 값. */
+function prismFaceFormSideMinusBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const n = pick(rng, TIER_SIDES);
+  return make(
+    unit,
+    `${sino(n)}각기둥의 옆면의 수는 밑면의 수보다 몇 개 더 많습니까?`,
+    num(n - 2),
+    `옆면은 ${num(n)}개, 밑면은 ${num(2)}개이므로 ${expr(`${n}-2=${n - 2}`)} 개 더 많습니다.`,
+    prismFigOf(n),
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -7740,6 +7824,20 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
       a8: mixedNatFormSum,
       a9: mixedNatFormPolyPerim,
       a10: mixedNatFormDiff,
+    },
+  ),
+  "초6|1-2-1": forms10(
+    prismFaceCalc,
+    prismFaceRead,
+    prismFaceApply,
+    prismFaceDeep,
+    {
+      b5: prismFaceFormBaseCount,
+      b6: prismFaceFormSideShape,
+      b7: prismFaceFormBaseShape,
+      a8: prismFaceFormOneArea,
+      a9: prismFaceFormBasePerim,
+      a10: prismFaceFormSideMinusBase,
     },
   ),
 };
