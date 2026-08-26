@@ -1086,6 +1086,27 @@ describe("초6 전량 문형 10", () => {
   });
 });
 
+describe("초6 1-6-2 부피 — 밑면의 넓이와 높이를 가른다", () => {
+  it("05 밑면은 가로×세로 · 06 은 높이", () => {
+    const unit = unitOf("1-6-2");
+    for (const seed of SEEDS) {
+      const base = generateElementaryForm(unit, seed, "05");
+      const m = base.content.match(
+        /가로가 \$(\d+)\\,\\mathrm\{cm\}\$, 세로가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+      );
+      expect(m, base.content).toBeTruthy();
+      expect(base.content).toMatch(/밑면의 넓이/);
+      expect(answerInt(base.answer)).toBe(Number(m![1]) * Number(m![2]));
+      const h = generateElementaryForm(unit, seed, "06");
+      const hm = h.content.match(
+        /높이가 \$(\d+)\\,\\mathrm\{cm\}\$ 인 직육면체의 높이는/,
+      );
+      expect(hm, h.content).toBeTruthy();
+      expect(answerInt(h.answer)).toBe(Number(hm![1]));
+    }
+  });
+});
+
 describe("초6 2-3 쌓기나무 — 묻는 칸이 답이다", () => {
   it("2-3-1 05 가로는 발문의 가로 칸", () => {
     const unit = unitOf("2-3-1");

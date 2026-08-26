@@ -9552,14 +9552,14 @@ function volFormBase(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = cuboid3(rng);
   return make(
     unit,
-    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 세 모서리 길이의 합은 몇 cm입니까?`,
-    num(w + d + h),
-    `${expr(`${w}+${d}+${h}=${w + d + h}`)} 입니다.`,
+    `가로가 ${unitNum(w, "cm")}, 세로가 ${unitNum(d, "cm")}, 높이가 ${unitNum(h, "cm")} 인 직육면체의 밑면의 넓이는 몇 cm²입니까?`,
+    num(w * d),
+    `${expr(`${w}\\times${d}=${w * d}`)} 입니다.`,
     fig("cuboid", { w, d, h }),
   );
 }
 
-/** 1-6-2 06 — 높이. 03·05 의 곱(n0*n1)과 셈을 가른다. */
+/** 1-6-2 06 — 높이. 05(밑면의 넓이 = 가로×세로)와 같은 물음이 아니게. */
 function volFormWd(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = cuboid3(rng);
   return make(
@@ -9757,15 +9757,15 @@ function sameDenFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 2-1-1 10 — 두 분자의 곱. 05(=n0)와 셈을 가른다. */
+/** 2-1-1 10 — 몫 × 나누는 분자 = 나누어지는 분자. */
 function sameDenFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 4, 9);
   const [a, b] = twoCoprimeTops(rng, d);
   return make(
     unit,
-    `${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 에서 두 분자의 곱은 얼마입니까?`,
-    num(a * b),
-    `${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
+    `${expr(`\\frac{${a}}{${d}}\\div\\frac{${b}}{${d}}`)} 의 몫에 ${num(b)}${numJosa(b, "을", "를")} 곱하면 얼마입니까?`,
+    num(a),
+    `몫은 ${expr(`${a}\\div${b}`)} 이므로 ${expr(`${a}\\div${b}\\times${b}=${a}`)} 입니다.`,
   );
 }
 
@@ -9802,14 +9802,14 @@ function diffDenFormDiffTf(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 2-1-2 08 — 역수의 분자와 분모의 합. 05(=n1)와 셈을 가른다. */
+/** 2-1-2 08 — 역수의 분자. */
 function diffDenFormRecipNum(unit: UnitSeed, rng: Rng): ElemProblem {
   const f = twoDiffFracs(rng);
   return make(
     unit,
-    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수에서 분자와 분모의 합은 얼마입니까?`,
-    num(f.d2 + f.n2),
-    `바꾼 수는 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 이므로 합은 ${expr(`${f.d2}+${f.n2}=${f.d2 + f.n2}`)} 입니다.`,
+    `${expr(`\\frac{${f.n2}}{${f.d2}}`)} 의 분모와 분자를 바꾼 수의 분자는 얼마입니까?`,
+    num(f.d2),
+    `분모와 분자를 바꾸면 ${expr(`\\frac{${f.d2}}{${f.n2}}`)} 이므로 분자는 ${num(f.d2)}입니다.`,
   );
 }
 
@@ -9951,14 +9951,14 @@ function flipFormRuleTf(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 2-1-4 08 — 나누는 분수의 분모. 05(=n3, 역수 분자)와 셈을 가른다. */
+/** 2-1-4 08 — 나누는 분수의 분자. */
 function flipFormDivNum(unit: UnitSeed, rng: Rng): ElemProblem {
   const f = twoDiffFracs(rng);
   return make(
     unit,
-    `곱셈식 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 로 나타낸 나눗셈에서 나누는 분수의 분모는 얼마입니까?`,
-    num(f.d2),
-    `곱하는 둘째 분수의 분자가 원래 나누는 분수의 분모이므로 ${num(f.d2)}입니다.`,
+    `곱셈식 ${expr(`\\frac{${f.n1}}{${f.d1}}\\times\\frac{${f.d2}}{${f.n2}}`)} 로 나타낸 나눗셈에서 나누는 분수의 분자는 얼마입니까?`,
+    num(f.n2),
+    `곱하는 둘째 분수는 나누는 수의 역수이므로 원래 나누는 분수의 분자는 ${num(f.n2)}입니다.`,
   );
 }
 
@@ -10217,9 +10217,9 @@ function natDpFormTimes(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pick(rng, NAT_BY_DEC);
   return make(
     unit,
-    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 에서 나누어지는 수보다 ${num(2)} 큰 수는 얼마입니까?`,
-    num(c.a + 2),
-    `${expr(`${c.a}+2=${c.a + 2}`)} 입니다.`,
+    `${expr(`${c.a}\\div${decStr(c.b, 1)}`)} 의 몫에 나누는 수를 곱하면 얼마입니까?`,
+    num(c.a),
+    `${expr(`${c.q}\\times${decStr(c.b, 1)}=${c.a}`)} 입니다.`,
   );
 }
 function natDpFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10722,9 +10722,9 @@ function cubeMakeFormFloor(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
   return make(
     unit,
-    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 가로 칸 수와 세로 칸 수의 합은 얼마입니까?`,
-    num(b.cols + b.rows),
-    `${expr(`${b.cols}+${b.rows}=${b.cols + b.rows}`)} 입니다.`,
+    `${b.grid} 바닥에 여러 가지 모양으로 쌓기나무를 쌓았습니다. 바닥은 모두 몇 칸입니까?`,
+    num(b.cols * b.rows),
+    `${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다.`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
   );
 }
@@ -10896,9 +10896,9 @@ function propEqFormOuterProd(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 합은 얼마입니까?`,
-    num(a + b * k),
-    `${expr(`${a}+${b * k}=${a + b * k}`)} 입니다.`,
+    `비례식 ${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 곱은 얼마입니까?`,
+    num(a * b * k),
+    `${expr(`${a}\\times${b * k}=${a * b * k}`)} 입니다.`,
   );
 }
 function propEqFormEqualTf(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10967,9 +10967,9 @@ function propRuleFormOuterProd(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 합은 얼마입니까?`,
-    num(a + b * k),
-    `${expr(`${a}+${b * k}=${a + b * k}`)} 입니다.`,
+    `${expr(`${a}:${b}=${a * k}:${b * k}`)} 에서 외항의 곱은 얼마입니까?`,
+    num(a * b * k),
+    `${expr(`${a}\\times${b * k}=${a * b * k}`)} 입니다.`,
   );
 }
 
