@@ -5431,6 +5431,208 @@ function big111ThousandsLeft(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 1-1-2 문형 05–10. 규모는 다섯 자리. ── */
+
+function digits5(rng: Rng): number[] {
+  return [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+    intBetween(rng, 0, 9),
+  ];
+}
+
+function fromDigits(d: readonly number[]): number {
+  return Number(d.join(""));
+}
+
+/** 문형 05 — 자리 숫자. */
+function big112PlaceDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = digits5(rng);
+  const at = intBetween(rng, 0, 4);
+  const place = PLACE5[at]!;
+  const value = fromDigits(d);
+  return make(
+    unit,
+    `${n(value)}에서 ${place}의 자리 숫자를 쓰시오.`,
+    n(d[at]!),
+    `${n(value)}의 ${place}의 자리 숫자는 ${n(d[at]!)}입니다.`,
+  );
+}
+
+/** 문형 06 — 자리 숫자가 나타내는 값. */
+function big112PlaceValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = digits5(rng);
+  const at = intBetween(rng, 0, 4);
+  const place = PLACE5[at]!;
+  const value = fromDigits(d);
+  const worth = d[at]! * 10 ** (4 - at);
+  return make(
+    unit,
+    `${n(value)}에서 ${place}의 자리 숫자가 나타내는 값을 쓰시오.`,
+    n(worth),
+    `${place}의 자리 숫자가 ${n(d[at]!)}이므로 ${josaNum(worth, "을", "를")} 나타냅니다.`,
+  );
+}
+
+/** 문형 07 — 다섯 자리 수 고르기. */
+function big112PickFiveDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const five = fromDigits(digits5(rng));
+  const fourA = intBetween(rng, 1000, 9999);
+  const fourB = intBetween(rng, 1000, 9999);
+  const shown = shuffled(rng, [five, fourA, fourB]);
+  return make(
+    unit,
+    `다음 수 중 다섯 자리 수를 쓰시오. ${shown.map((v) => n(v)).join(", ")}`,
+    n(five),
+    `${n(five)}은 숫자가 ${n(5)}개인 다섯 자리 수입니다.`,
+  );
+}
+
+/** 문형 08 — 각 자리 숫자의 합. */
+function big112DigitSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = digits5(rng);
+  const value = fromDigits(d);
+  const sum = d.reduce((s, x) => s + x, 0);
+  return make(
+    unit,
+    `${n(value)}의 각 자리 숫자의 합을 구하시오.`,
+    n(sum),
+    `${expr(`${d.join("+")}=${sum}`)} 이므로 합은 ${n(sum)}입니다.`,
+  );
+}
+
+/** 문형 09 — 홀수인 가장 큰 다섯 자리 수. 카드는 답 순서가 아니게 보여 준다. */
+function big112OddMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  let cards = pickDistinct(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 5);
+  for (let i = 0; i < 12 && !cards.some((c) => c % 2 === 1); i += 1) {
+    cards = pickDistinct(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 5);
+  }
+  const odds = cards.filter((c) => c % 2 === 1);
+  if (odds.length === 0) {
+    throw new Error("홀수 카드가 없습니다");
+  }
+  const ones = Math.min(...odds);
+  const rest = [...cards];
+  rest.splice(rest.indexOf(ones), 1);
+  rest.sort((a, b) => b - a);
+  if (rest[0] === 0) {
+    const nz = rest.findIndex((c) => c > 0);
+    [rest[0], rest[nz]!] = [rest[nz]!, 0];
+  }
+  const ansDigits = [...rest, ones];
+  const answer = fromDigits(ansDigits);
+  let show = cards;
+  if (show.join("") === ansDigits.join("")) {
+    show = [show[1]!, show[0]!, ...show.slice(2)];
+  }
+  const listing = show.map((c) => n(c)).join(", ");
+  return make(
+    unit,
+    `숫자 카드 ${listing}${tail(show[4]!, "이", "가")} 한 장씩 있습니다. 카드를 한 번씩 모두 ` +
+      `사용하여 만들 수 있는 홀수인 가장 큰 다섯 자리 수를 쓰시오.`,
+    n(answer),
+    `일의 자리에 가장 작은 홀수 ${n(ones)}을 놓고, 나머지 숫자를 큰 것부터 놓으면 ${n(answer)}입니다.`,
+    fig("numberCards", { cards: show.map(String) }),
+  );
+}
+
+/** 문형 10 — 0이 아닌 자리 숫자의 개수. */
+function big112NonzeroCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = digits5(rng);
+  // 0이 하나도 없으면 답이 늘 5라 변형이 안 갈린다 — 한 자리는 0으로 둔다.
+  d[intBetween(rng, 1, 4)] = 0;
+  const value = fromDigits(d);
+  const cnt = d.filter((x) => x !== 0).length;
+  return make(
+    unit,
+    `${n(value)}에서 ${n(0)}이 아닌 자리 숫자는 모두 몇 개인가?`,
+    n(cnt),
+    `${n(0)}이 아닌 자리 숫자는 ${cnt}개입니다.`,
+  );
+}
+
+/* ── 1-1-3 문형 05–10. 규모는 십만~구천만. ── */
+
+function manCount(rng: Rng): number {
+  return intBetween(rng, 2, 9) * pick(rng, [10, 100, 1000]);
+}
+
+/** 문형 05 — 10000이 n개인 수를 쓴다. */
+function big113TimesMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = manCount(rng);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `${n(10000)}이 ${n(count)}개인 수를 쓰시오.`,
+    n(value),
+    `${expr(`10000\\times${count}=${value}`)} 입니다.`,
+  );
+}
+
+/** 문형 06 — 값을 만 단위로 읽는다. 01 은 「1000이 몇 개」라 지문이 겹치지 않게. */
+function big113HowManyMan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = manCount(rng);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `${n(value)}은 몇 만인가?`,
+    `${n(count)}만`,
+    `${n(10000)}은 ${n(1)}만이므로 ${expr(`${value}\\div10000=${count}`)} 에서 ${n(count)}만입니다.`,
+  );
+}
+
+/** 문형 07 — 10000이 n개인 수는 몇 만인가. */
+function big113AsManUnit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 2, 9) * 10;
+  return make(
+    unit,
+    `${n(10000)}이 ${n(count)}개인 수는 몇 만인가?`,
+    `${n(count)}만`,
+    `${n(10000)}은 ${n(1)}만이므로 ${n(10000)}이 ${n(count)}개인 수는 ${n(count)}만입니다.`,
+  );
+}
+
+/** 문형 08 — 만원권과 천원권을 더한다. */
+function big113MixBills(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 9) * pick(rng, [10, 100]);
+  const b = intBetween(rng, 2, 9);
+  const v = 10000 * a + 1000 * b;
+  return make(
+    unit,
+    `${n(10000)}원짜리 지폐 ${n(a)}장과 ${n(1000)}원짜리 지폐 ${n(b)}장의 합은 얼마인가?`,
+    `${n(v)}원`,
+    `${expr(`10000\\times${a}=${10000 * a}`)} 이고 ${expr(`1000\\times${b}=${1000 * b}`)} 입니다. ` +
+      `${expr(`${10000 * a}+${1000 * b}=${v}`)} 이므로 모두 ${n(v)}원입니다.`,
+  );
+}
+
+/** 문형 09 — 10으로 나눈다. 「N이 몇 개」 꼴은 01 과 지문이 겹친다. */
+function big113AsTens(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = manCount(rng);
+  const value = 10000 * count;
+  return make(
+    unit,
+    `${josaNum(value, "을", "를")} ${roJosa(10)} 나누면 얼마인가?`,
+    n(value / 10),
+    `${expr(`${value}\\div10=${value / 10}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 10000 묶음을 더 얹는다. */
+function big113AddMans(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 8) * pick(rng, [10, 100]);
+  const b = intBetween(rng, 1, 9) * 10;
+  const v = 10000 * (a + b);
+  return make(
+    unit,
+    `${n(10000)}이 ${n(a)}개인 수보다 ${n(10000)}이 ${n(b)}개 더 큰 수를 쓰시오.`,
+    n(v),
+    `${n(10000)}이 ${expr(`${a}+${b}=${a + b}`)} 개인 수이므로 ${expr(`10000\\times${a + b}=${v}`)} 입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -5443,6 +5645,30 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: big111Shortfall },
     { id: "09", tier: "응용", generate: big111BiggerUnit },
     { id: "10", tier: "응용", generate: big111ThousandsLeft },
+  ],
+  "초4|1-1-2": [
+    { id: "01", tier: "연산", generate: tier12Calc },
+    { id: "02", tier: "기본", generate: tier12Basic },
+    { id: "03", tier: "응용", generate: tier12Apply },
+    { id: "04", tier: "심화", generate: tier12Deep },
+    { id: "05", tier: "기본", generate: big112PlaceDigit },
+    { id: "06", tier: "기본", generate: big112PlaceValue },
+    { id: "07", tier: "기본", generate: big112PickFiveDigit },
+    { id: "08", tier: "응용", generate: big112DigitSum },
+    { id: "09", tier: "응용", generate: big112OddMax },
+    { id: "10", tier: "응용", generate: big112NonzeroCount },
+  ],
+  "초4|1-1-3": [
+    { id: "01", tier: "연산", generate: tier13Calc },
+    { id: "02", tier: "기본", generate: tier13Basic },
+    { id: "03", tier: "응용", generate: tier13Apply },
+    { id: "04", tier: "심화", generate: tier13Deep },
+    { id: "05", tier: "기본", generate: big113TimesMan },
+    { id: "06", tier: "기본", generate: big113HowManyMan },
+    { id: "07", tier: "기본", generate: big113AsManUnit },
+    { id: "08", tier: "응용", generate: big113MixBills },
+    { id: "09", tier: "응용", generate: big113AsTens },
+    { id: "10", tier: "응용", generate: big113AddMans },
   ],
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
