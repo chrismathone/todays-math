@@ -1002,3 +1002,333 @@ describe("초5 1-4-2 약분", () => {
     }
   });
 });
+
+describe("초5 2-2-1 분수×자연수", () => {
+  const unit = unitOf("2-2-1");
+
+  it("05 약분하기 전 분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      const k = p.content.match(/\$(\d+)\$을|\$(\d+)\$를/);
+      expect(m, p.content).toBeTruthy();
+      expect(k, p.content).toBeTruthy();
+      const a = Number(m![1]);
+      const nat = Number(k![1] ?? k![2]);
+      expect(answerInt(p.answer)).toBe(a * nat);
+    }
+  });
+});
+
+describe("초5 2-2-2 자연수×분수", () => {
+  const unit = unitOf("2-2-2");
+
+  it("05 약분하기 전 분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const k = p.content.match(/^\$(\d+)\$/);
+      const m = p.content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(k, p.content).toBeTruthy();
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(k![1]) * Number(m![1]));
+    }
+  });
+});
+
+describe("초5 2-2-3 진분수 곱", () => {
+  const unit = unitOf("2-2-3");
+
+  it("05 분자끼리 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const ms = [...p.content.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)];
+      expect(ms.length).toBeGreaterThanOrEqual(2);
+      expect(answerInt(p.answer)).toBe(Number(ms[0]![1]) * Number(ms[1]![1]));
+    }
+  });
+});
+
+describe("초5 2-2-4 대분수 곱", () => {
+  const unit = unitOf("2-2-4");
+
+  it("05 가분수 분자", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(
+        Number(m![1]) * Number(m![3]) + Number(m![2]),
+      );
+    }
+  });
+});
+
+describe("초5 2-3-1 합동", () => {
+  const unit = unitOf("2-3-1");
+
+  it("06 그림의 도형 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const spec = p.figureSpec as { items?: unknown[] } | null;
+      expect(spec?.items, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(spec!.items!.length);
+    }
+  });
+});
+
+describe("초5 2-3-2 합동인 도형의 성질", () => {
+  const unit = unitOf("2-3-2");
+
+  it("05 대응변", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/한 변이 \$(\d+)\$ cm/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+});
+
+describe("초5 2-3-3 선대칭", () => {
+  const unit = unitOf("2-3-3");
+
+  it("05 두 도형 대칭축 합", () => {
+    const axis: Record<string, number> = {
+      이등변삼각형: 1,
+      직사각형: 2,
+      정삼각형: 3,
+      정사각형: 4,
+      정오각형: 5,
+      정육각형: 6,
+      정팔각형: 8,
+    };
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const names = Object.keys(axis).filter((n) => p.content.includes(n));
+      expect(names.length).toBe(2);
+      expect(answerInt(p.answer)).toBe(axis[names[0]!]! + axis[names[1]!]!);
+    }
+  });
+});
+
+describe("초5 2-3-4 점대칭", () => {
+  const unit = unitOf("2-3-4");
+
+  it("07 마주 보는 변", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/한 변이 \$(\d+)\$ cm/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+});
+
+describe("초5 2-4-1 작은 소수×자연수", () => {
+  const unit = unitOf("2-4-1");
+
+  it("05 소수점을 무시한 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$0\.(\d+)\$과|\$0\.(\d+)\$와/);
+      const k = p.content.match(/\$(\d+)\$을|\$(\d+)\$를/);
+      expect(m, p.content).toBeTruthy();
+      expect(k, p.content).toBeTruthy();
+      const t = Number(m![1] ?? m![2]);
+      const nat = Number(k![1] ?? k![2]);
+      expect(answerInt(p.answer)).toBe(t * nat);
+    }
+  });
+});
+
+describe("초5 2-4-2 큰 소수×자연수", () => {
+  const unit = unitOf("2-4-2");
+
+  it("06 소수 첫째 자리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(/\$(\d+\.\d+)\\times(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      const prod = Number(m![1]) * Number(m![2]);
+      const digit = Math.round(prod * 10) % 10;
+      expect(answerInt(p.answer)).toBe(digit);
+    }
+  });
+});
+
+describe("초5 2-4-3 자연수×작은 소수", () => {
+  const unit = unitOf("2-4-3");
+
+  it("05 소수점을 무시한 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const k = p.content.match(/^\$(\d+)\$/);
+      const t = p.content.match(/\$0\.(\d+)\$/);
+      expect(k, p.content).toBeTruthy();
+      expect(t, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(k![1]) * Number(t![1]));
+    }
+  });
+});
+
+describe("초5 2-4-4 자연수×큰 소수", () => {
+  const unit = unitOf("2-4-4");
+
+  it("05 소수점을 무시한 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const k = p.content.match(/^\$(\d+)\$/);
+      const a = p.content.match(/\$(\d+)\.(\d+)\$/);
+      expect(k, p.content).toBeTruthy();
+      expect(a, p.content).toBeTruthy();
+      const scaled = Number(a![1]) * 10 + Number(a![2]);
+      expect(answerInt(p.answer)).toBe(Number(k![1]) * scaled);
+    }
+  });
+});
+
+describe("초5 2-4-5 작은 소수×작은 소수", () => {
+  const unit = unitOf("2-4-5");
+
+  it("05 소수점을 무시한 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const ms = [...p.content.matchAll(/\$0\.(\d+)\$/g)];
+      expect(ms.length).toBeGreaterThanOrEqual(2);
+      expect(answerInt(p.answer)).toBe(Number(ms[0]![1]) * Number(ms[1]![1]));
+    }
+  });
+});
+
+describe("초5 2-4-6 큰 소수×큰 소수", () => {
+  const unit = unitOf("2-4-6");
+
+  it("05 소수점을 무시한 곱", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const ms = [...p.content.matchAll(/\$(\d+)\.(\d+)\$/g)];
+      expect(ms.length).toBeGreaterThanOrEqual(2);
+      const a = Number(ms[0]![1]) * 10 + Number(ms[0]![2]);
+      const b = Number(ms[1]![1]) * 10 + Number(ms[1]![2]);
+      expect(answerInt(p.answer)).toBe(a * b);
+    }
+  });
+});
+
+describe("초5 2-4-7 소수점 위치", () => {
+  const unit = unitOf("2-4-7");
+
+  it("05 오른쪽으로 옮긴 칸 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/\$(\d+)\$을|\$(\d+)\$를/);
+      expect(m, p.content).toBeTruthy();
+      const mul = Number(m![1] ?? m![2]);
+      const steps = mul === 10 ? 1 : mul === 100 ? 2 : 3;
+      expect(answerInt(p.answer)).toBe(steps);
+    }
+  });
+});
+
+describe("초5 2-5-2 정육면체", () => {
+  const unit = unitOf("2-5-2");
+
+  it("05 면의 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(answerInt(p.answer)).toBe(6);
+    }
+  });
+});
+
+describe("초5 2-5-3 직육면체의 성질", () => {
+  const unit = unitOf("2-5-3");
+
+  it("05 가로·높이 평행면 넓이", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/가로가 \$(\d+)\$ cm, 높이가 \$(\d+)\$ cm/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+    }
+  });
+});
+
+describe("초5 2-5-4 겨냥도", () => {
+  const unit = unitOf("2-5-4");
+
+  it("07 숨은 가로 모서리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/가로가 \$(\d+)\$ cm/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]));
+    }
+  });
+});
+
+describe("초5 2-5-5 정육면체 전개도", () => {
+  const unit = unitOf("2-5-5");
+
+  it("08 둘레에서 한 모서리", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(/둘레가 \$(\d+)\$ cm/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) / 14);
+    }
+  });
+});
+
+describe("초5 2-5-6 직육면체 전개도", () => {
+  const unit = unitOf("2-5-6");
+
+  it("05 가로·세로 면 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(answerInt(p.answer)).toBe(2);
+    }
+  });
+});
+
+describe("초5 2-6-1 평균", () => {
+  const unit = unitOf("2-6-1");
+
+  it("05 쪽수의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const inner = p.content.match(/차례로 \$([^$]+)\$ 쪽/);
+      expect(inner, p.content).toBeTruthy();
+      const vals = inner![1].match(/\d+/g)!.map(Number);
+      expect(answerInt(p.answer)).toBe(vals.reduce((a, b) => a + b, 0));
+    }
+  });
+});
+
+describe("초5 2-6-2 평균 이용", () => {
+  const unit = unitOf("2-6-2");
+
+  it("05 자료 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(/평균이 \$(\d+)\$인 자료의 합이 \$(\d+)\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) / Number(m![1]));
+    }
+  });
+});
+
+describe("초5 2-6-3 가능성", () => {
+  const unit = unitOf("2-6-3");
+
+  it("05 구슬의 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(
+        /빨간 구슬 \$(\d+)\$개와 파란 구슬 \$(\d+)\$개/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) + Number(m![2]));
+    }
+  });
+});
