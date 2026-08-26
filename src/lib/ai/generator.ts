@@ -20,6 +20,10 @@ import {
   buildGenerateUserPrompt,
 } from "./prompts/generate";
 import { deriveQuestionType, type AiQuestionType } from "./questionType";
+import {
+  speakWordyOperators,
+  speakWordyOperatorsOrNull,
+} from "./wordyOperators";
 import { withOneRetryOnParseFailure } from "./retry";
 
 /** AI 응답 원소 형태 — problemType/content/answer/solution만 AI 책임(그 외는 서버가 부여). */
@@ -125,8 +129,11 @@ export async function generateProblems(
     //       변이 하네스가 그것을 «초록»으로 찍는 것을 보고 확인했다
     //       (`scripts/qa/mutate-ai-question-type.sh` 의 같은 자리 주석 참조).
     //       정규화가 보기·정답을 건드리는 규칙을 갖게 되면 그때 가드를 세워야 한다.
-    const content = normalizeLatex(item.content);
-    const answer = normalizeLatex(item.answer);
+    // 「말 대신 기호」를 말로 (원장님 지시 2026-08-26). 프롬프트가 이미 이르지만
+    // **AI 는 지시를 어긴다** — 받은 것을 검사하는 쪽이 여기다. 규칙은 한 곳
+    // (`scripts/qa/wordyOperator.ts`)이 정하고, 못 미더우면 원문을 그대로 둔다.
+    const content = speakWordyOperators(normalizeLatex(item.content)).out;
+    const answer = speakWordyOperators(normalizeLatex(item.answer)).out;
     return {
       unitId,
       difficulty,
@@ -138,7 +145,9 @@ export async function generateProblems(
       }),
       content,
       answer,
-      solution: item.solution ? normalizeLatex(item.solution) : null,
+      solution: speakWordyOperatorsOrNull(
+        item.solution ? normalizeLatex(item.solution) : null,
+      ).out,
       source: "ai_generated" as const,
       originProblemId: null,
       reviewStatus: "pending" as const,
