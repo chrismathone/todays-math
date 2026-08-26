@@ -1028,3 +1028,188 @@ describe("초4 1-3-7 나눗셈 어림", () => {
     }
   });
 });
+
+describe("초4 1-4-1 점의 이동", () => {
+  const unit = unitOf("1-4-1");
+
+  it("06 같은 방향 세 번 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [a, b, c] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! + b! + c!);
+      expect(p.figureSpec).toMatchObject({ kind: "pointGrid" });
+    }
+  });
+
+  it("10 가로+세로 칸 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const [a, b] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(a! + b!);
+    }
+  });
+});
+
+describe("초4 1-4-2 평면도형 밀기", () => {
+  const unit = unitOf("1-4-2");
+
+  it("08 민 직사각형 넓이", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [w, h] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(w! * h!);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+});
+
+describe("초4 1-4-4 평면도형 돌리기", () => {
+  const unit = unitOf("1-4-4");
+
+  it("05 90씩 n번 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const t = katexInts(p.content).find((v) => v !== 90)!;
+      expect(answerDeg(p.answer)).toBe(90 * t);
+    }
+  });
+});
+
+describe("초4 1-5-1 막대그래프", () => {
+  const unit = unitOf("1-5-1");
+
+  it("06 한 항목 값 + 그림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(p.answer).toMatch(/명/);
+      expect(p.figureSpec).toMatchObject({ kind: "barChart" });
+    }
+  });
+});
+
+describe("초4 1-6-1 수 배열", () => {
+  const unit = unitOf("1-6-1");
+
+  it("06 이웃한 두 수의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(nums[1]! - nums[0]!);
+    }
+  });
+});
+
+describe("초4 2-1-1 진분수 덧셈", () => {
+  const unit = unitOf("2-1-1");
+
+  it("05 분자끼리 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const nums = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(nums[0]! + nums[2]!);
+    }
+  });
+
+  it("09 색칠 칸 + 그림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      expect(answerInt(p.answer)).toBeGreaterThan(0);
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+});
+
+describe("초4 2-2-3 정삼각형", () => {
+  const unit = unitOf("2-2-3");
+
+  it("05 다른 한 변", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const s = katexInts(p.content)[0]!;
+      expect(p.answer).toContain(String(s));
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("06 한 각 60도", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(answerDeg(p.answer)).toBe(60);
+    }
+  });
+});
+
+describe("초4 2-3-4 소수 덧셈", () => {
+  const unit = unitOf("2-3-4");
+
+  it("05 합 + 세로셈", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
+      expect(p.answer).toMatch(/^\$/);
+    }
+  });
+});
+
+describe("초4 2-4-5 평행사변형", () => {
+  const unit = unitOf("2-4-5");
+
+  it("05 마주 보는 변", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const s = katexInts(p.content)[0]!;
+      expect(p.answer).toContain(String(s));
+    }
+  });
+});
+
+describe("초4 2-5-1 꺾은선그래프", () => {
+  const unit = unitOf("2-5-1");
+
+  it("10 점 개수 + 그림", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      expect(answerInt(p.answer)).toBe(5);
+      expect(p.figureSpec).toMatchObject({ kind: "lineChart" });
+    }
+  });
+});
+
+describe("초4 2-6-1 다각형", () => {
+  const unit = unitOf("2-6-1");
+
+  it("06 꼭짓점 수 = 변 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const sides = katexInts(p.content)[0];
+      const fromName = p.content.includes("삼각형")
+        ? 3
+        : p.content.includes("사각형")
+          ? 4
+          : p.content.includes("오각형")
+            ? 5
+            : p.content.includes("육각형")
+              ? 6
+              : p.content.includes("칠각형")
+                ? 7
+                : p.content.includes("팔각형")
+                  ? 8
+                  : p.content.includes("구각형")
+                    ? 9
+                    : 10;
+      expect(answerInt(p.answer)).toBe(sides ?? fromName);
+    }
+  });
+});
+
+describe("초4 2-6-4 조각으로 채우기", () => {
+  const unit = unitOf("2-6-4");
+
+  it("05 정삼각형 한 변 2배 → 4조각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(answerInt(p.answer)).toBe(4);
+      expect(p.figureSpec).toMatchObject({ kind: "tiling" });
+    }
+  });
+});

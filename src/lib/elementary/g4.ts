@@ -7062,6 +7062,822 @@ function div137EstMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function gridDot(label: string, c: number, r: number): Record<string, unknown> {
+  return fig("pointGrid", {
+    cols: 6,
+    rows: 6,
+    dots: [{ c, r, label, side: "down" }],
+  });
+}
+
+function flipFig(
+  rng: Rng,
+  op: "flipH" | "flipV" | "rot90" | "rot180" | "rot270",
+) {
+  const shape = pick(rng, MOVE_SHAPES);
+  return fig("rotateFlip", { cells: shape.cells, op, n: shape.n });
+}
+
+/* ── 1-4-1 점의 이동 ── */
+
+function move141OneWay(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `모눈에서 점 ㄱ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${dir}으로 ${n(a)}칸`,
+    `${dir}으로 ${n(a)}칸 옮겼으므로 처음 자리에서 ${dir}으로 ${n(a)}칸 옮겨진 것입니다.`,
+    gridDot("ㄱ", 2, 2),
+  );
+}
+
+function move141ThreeSame(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 1, 4);
+  const b = intBetween(rng, 1, 4);
+  const c = intBetween(rng, 1, 4);
+  return make(
+    unit,
+    `모눈에서 점 ㄴ을 ${dir}으로 ${n(a)}칸, 또 ${n(b)}칸, 또 ${n(c)}칸 옮겼습니다. 처음 자리에서 ${dir}으로 몇 칸 옮겨진 것인가?`,
+    n(a + b + c),
+    `${expr(`${a}+${b}+${c}=${a + b + c}`)} 이므로 ${n(a + b + c)}칸입니다.`,
+    gridDot("ㄴ", 1, 3),
+  );
+}
+
+function move141HorizCancel(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [first, second] = pick(rng, [
+    ["오른쪽", "왼쪽"],
+    ["왼쪽", "오른쪽"],
+  ] as const);
+  const a = intBetween(rng, 2, 6);
+  const b = a + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `모눈에서 점 ㄷ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `${second}으로 ${n(b - a)}칸`,
+    `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸입니다.`,
+    gridDot("ㄷ", 3, 2),
+  );
+}
+
+function move141BackHome(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const a = intBetween(rng, 2, 8);
+  const back = DIR_PAIRS.find((p) => p[0] === dir)![1];
+  return make(
+    unit,
+    `모눈에서 점 ㄹ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?`,
+    `${back}으로 ${n(a)}칸`,
+    `${dir}의 반대는 ${back}이므로 ${back}으로 ${n(a)}칸 옮기면 됩니다.`,
+    gridDot("ㄹ", 2, 4),
+  );
+}
+
+function move141HOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 6);
+  const b = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `모눈에서 점 ㅁ을 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?`,
+    n(a),
+    `가로 방향은 오른쪽 ${n(a)}칸입니다.`,
+    gridDot("ㅁ", 1, 1),
+  );
+}
+
+function move141Manhattan(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 6);
+  const b = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `점 ㄱ에서 점 ㄴ까지 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸입니다. 가로와 세로로 옮긴 칸 수의 합은 얼마인가?`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 이므로 ${n(a + b)}칸입니다.`,
+    fig("pointGrid", {
+      cols: 7,
+      rows: 7,
+      dots: [
+        { c: 1, r: 1, label: "ㄱ", side: "down" },
+        { c: 1 + a, r: 1 + b, label: "ㄴ", side: "down" },
+      ],
+    }),
+  );
+}
+
+/* ── 1-4-2 평면도형 밀기 ── */
+
+function move142SideSame(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 3, 9);
+  const dist = intBetween(rng, 2, 8);
+  const dir = pick(rng, DIR_PAIRS)[0];
+  return make(
+    unit,
+    `한 변이 ${cm(side)}인 정사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 한 변은 몇 cm인가?`,
+    cm(side),
+    `밀어도 크기는 변하지 않으므로 한 변은 ${cm(side)}입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function move142WidthSame(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 4, 9);
+  const h = intBetween(rng, 2, w - 1);
+  const dir = pick(rng, DIR_PAIRS)[0];
+  const dist = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 가로는 몇 cm인가?`,
+    cm(w),
+    `밀어도 크기는 변하지 않으므로 가로는 ${cm(w)}입니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function move142ShapeNo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dist = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `도형을 오른쪽으로 ${cm(dist)} 밀었습니다. 도형의 모양이 바뀌는가? '예' 또는 '아니요'로 답하시오.`,
+    "아니요",
+    `밀면 위치만 바뀌고 모양은 그대로입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function move142Area(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 3, 8);
+  const h = intBetween(rng, 2, 6);
+  const dist = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 왼쪽으로 ${cm(dist)} 밀었습니다. 민 도형의 넓이는 몇 cm²인가?`,
+    n(w * h),
+    `밀어도 넓이는 ${expr(`${w}\\times${h}=${w * h}`)} 으로 같습니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function move142RoundTrip(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 8);
+  return make(
+    unit,
+    `도형을 위로 ${cm(d)} 민 다음 아래로 ${cm(d)} 밀었습니다. 처음 위치와 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `같은 거리로 반대 방향이면 처음 자리로 돌아옵니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function move142Net(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 8);
+  const b = intBetween(rng, 1, a - 1);
+  return make(
+    unit,
+    `도형을 오른쪽으로 ${cm(a)} 민 다음 왼쪽으로 ${cm(b)} 밀었습니다. 처음보다 오른쪽으로 몇 cm 밀린 것인가?`,
+    cm(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 이므로 ${cm(a - b)}입니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+/* ── 1-4-3 평면도형 뒤집기 ── */
+
+function move143NameH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 칸의 왼쪽과 오른쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
+    "좌우로 뒤집기",
+    "색칠한 칸이 왼쪽과 오른쪽이 바뀌었으므로 좌우로 뒤집은 것입니다.",
+    flipFig(rng, "flipH"),
+  );
+}
+
+function move143NameV(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 색칠한 칸의 위쪽과 아래쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
+    "위아래로 뒤집기",
+    "색칠한 칸이 위쪽과 아래쪽이 바뀌었으므로 위아래로 뒤집은 것입니다.",
+    flipFig(rng, "flipV"),
+  );
+}
+
+function move143TwiceYes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const axis = pick(rng, ["좌우로", "위아래로"] as const);
+  const t = intBetween(rng, 1, 4) * 2;
+  return make(
+    unit,
+    `도형을 ${axis} ${n(t)}번 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `${n(2)}번마다 처음과 같아지므로 짝수 번은 처음과 같습니다.`,
+    flipFig(rng, axis === "좌우로" ? "flipH" : "flipV"),
+  );
+}
+
+function move143OddOnce(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = intBetween(rng, 0, 3) * 2 + 1;
+  return make(
+    unit,
+    `도형을 좌우로 ${n(t)}번 뒤집었습니다. 좌우로 한 번 뒤집은 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `홀수 번은 한 번 뒤집은 것과 같습니다.`,
+    flipFig(rng, "flipH"),
+  );
+}
+
+function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const shape = pick(rng, MOVE_SHAPES);
+  return make(
+    unit,
+    `색칠한 칸이 ${n(shape.cells.length)}개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?`,
+    n(shape.cells.length),
+    `뒤집어도 칸 수는 변하지 않으므로 ${n(shape.cells.length)}개입니다.`,
+    fig("rotateFlip", { cells: shape.cells, op: "flipV", n: shape.n }),
+  );
+}
+
+function move143HThenH(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 도형을 좌우로 뒤집은 다음 다시 좌우로 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    "같은 방향으로 두 번 뒤집으면 처음과 같습니다.",
+    flipFig(rng, "flipH"),
+  );
+}
+
+/* ── 1-4-4 평면도형 돌리기 ── */
+
+function move144Sum90(unit: UnitSeed, rng: Rng): ElemProblem {
+  const t = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 모두 몇 도 돌린 것인가?`,
+    deg(90 * t),
+    `${expr(`90\\times${t}=${90 * t}`)} 이므로 ${deg(90 * t)}입니다.`,
+    flipFig(rng, "rot90"),
+  );
+}
+
+function move144Clockwise(unit: UnitSeed, rng: Rng): ElemProblem {
+  const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
+  return make(
+    unit,
+    "왼쪽 도형을 시계 방향으로 돌려 오른쪽 도형을 만들었습니다. 몇 도 돌린 것인가?",
+    deg(TURN_NAME[op]!),
+    `시계 방향으로 ${deg(TURN_NAME[op]!)} 돌린 것입니다.`,
+    flipFig(rng, op),
+  );
+}
+
+function move144Ccw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
+  const cw = TURN_NAME[op]!;
+  return make(
+    unit,
+    `시계 방향으로 ${deg(cw)} 돌린 것과 같은 도형을 시계 반대 방향으로 돌리려면 몇 도 돌리면 되는가?`,
+    deg(360 - cw),
+    `${expr(`360-${cw}=${360 - cw}`)} 이므로 ${deg(360 - cw)}입니다.`,
+    flipFig(rng, op),
+  );
+}
+
+function move144FourYes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const turns = intBetween(rng, 1, 4) * 4;
+  return make(
+    unit,
+    `도형을 시계 방향으로 ${deg(90)}씩 ${n(turns)}번 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `${expr(`90\\times${turns}=${90 * turns}`)} 이고 ${n(90 * turns)}은 ${n(360)}의 배수이므로 처음과 같습니다.`,
+    flipFig(rng, "rot90"),
+  );
+}
+
+function move144Two180(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 도형을 시계 방향으로 ${deg(180)} 돌린 다음 다시 ${deg(180)} 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `${expr(`180+180=360`)} 이므로 처음과 같습니다.`,
+    flipFig(rng, "rot180"),
+  );
+}
+
+function move144Two90(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 도형을 시계 방향으로 ${deg(90)} 돌린 다음 다시 ${deg(90)} 돌렸습니다. 시계 방향으로 몇 도 돌린 것과 같은가?`,
+    deg(180),
+    `${expr(`90+90=180`)} 이므로 ${deg(180)}입니다.`,
+    flipFig(rng, "rot180"),
+  );
+}
+
+function cards(vals: readonly (number | string)[]): Record<string, unknown> {
+  return fig("numberCards", { cards: vals.map(String) });
+}
+
+/* ── 1-5-1 막대그래프 알아보기 ── */
+
+function bar151Least(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 적은 것은 어느 ${d.theme.item}인가?`,
+    d.bottom,
+    `${josa(d.bottom, "의", "의")} 막대가 가장 짧습니다. ${n(d.min)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar151Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(d.one.value)}명`,
+    `${josa(d.one.label, "의", "의")} 막대가 눈금 ${n(d.one.value)}에 닿아 있으므로 ${n(d.one.value)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar151Second(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 두 번째로 많은 것은 어느 ${d.theme.item}인가?`,
+    d.second,
+    `${josa(d.top, "이", "가")} ${n(d.max)}명으로 가장 많고, 그다음이 ${josa(d.second, "으로", "로")} ${n(d.secondValue)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar151Most(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 것은 어느 ${d.theme.item}인가?`,
+    d.top,
+    `${josa(d.top, "의", "의")} 막대가 가장 높습니다. ${n(d.max)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar151Total(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 조사한 학생은 모두 몇 명인가?`,
+    `${n(d.total)}명`,
+    `${expr(`${d.picked.join("+")}=${d.total}`)} 이므로 모두 ${n(d.total)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar151MaxMinSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 학생 수의 합은 몇 명인가?`,
+    `${n(d.max + d.min)}명`,
+    `${josa(d.top, "은", "는")} ${n(d.max)}명, ${josa(d.bottom, "은", "는")} ${n(d.min)}명입니다. ${expr(`${d.max}+${d.min}=${d.max + d.min}`)} 입니다.`,
+    d.figure,
+  );
+}
+
+/* ── 1-5-2 막대그래프로 나타내기 ── */
+
+function bar152Shortest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 짧게 그려야 하는 것은 어느 ${d.theme.item}인가?`,
+    d.bottom,
+    `학생 수가 가장 적은 ${josa(d.bottom, "의", "의")} 막대를 가장 짧게 그립니다. ${n(d.min)}명입니다.`,
+    barTable(d),
+  );
+}
+
+function bar152ReadTable(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${drawIntro(d)} 표에서 ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${n(d.one.value)}명`,
+    `표에서 ${josa(d.one.label, "은", "는")} ${n(d.one.value)}명입니다.`,
+    barTable(d),
+  );
+}
+
+function bar152PairSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const sum = d.pairA.value + d.pairB.value;
+  return make(
+    unit,
+    `${drawIntro(d)} 표에서 ${josa(d.pairA.label, "과", "와")} ${josa(d.pairB.label, "을", "를")} 좋아하는 학생은 모두 몇 명인가?`,
+    `${n(sum)}명`,
+    `${josa(d.pairA.label, "은", "는")} ${n(d.pairA.value)}명, ${josa(d.pairB.label, "은", "는")} ${n(d.pairB.value)}명입니다. ${expr(`${d.pairA.value}+${d.pairB.value}=${sum}`)} 입니다.`,
+    barTable(d),
+  );
+}
+
+function bar152MinValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${drawIntro(d)} 표에서 학생 수가 가장 적은 ${d.theme.item}의 학생 수는 몇 명인가?`,
+    `${n(d.min)}명`,
+    `가장 적은 것은 ${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다.`,
+    barTable(d),
+  );
+}
+
+function bar152Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${drawIntro(d)} 표에서 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 차는 몇 명인가?`,
+    `${n(d.max - d.min)}명`,
+    `${josa(d.top, "은", "는")} ${n(d.max)}명, ${josa(d.bottom, "은", "는")} ${n(d.min)}명입니다. ${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 입니다.`,
+    barTable(d),
+  );
+}
+
+function bar152MaxCells(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const s = d.scale.step;
+  const cells = d.max / s;
+  return make(
+    unit,
+    `${drawIntro(d)} 세로 눈금 한 칸을 ${n(s)}명으로 하여 막대그래프를 그리려고 합니다. 가장 긴 막대는 몇 칸인가?`,
+    `${n(cells)}칸`,
+    `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명입니다. ${expr(`${d.max}\\div${s}=${cells}`)} 칸입니다.`,
+    barTable(d),
+  );
+}
+
+/* ── 1-5-3 막대그래프의 활용 ── */
+
+function bar153Total(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 네 ${d.theme.item}을 좋아하는 학생을 모두 더하면 몇 명인가?`,
+    `${n(d.total)}명`,
+    `${expr(`${d.picked.join("+")}=${d.total}`)} 이므로 ${n(d.total)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar153SecondValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 학생 수가 두 번째로 많은 ${d.theme.item}의 학생 수는 몇 명인가?`,
+    `${n(d.secondValue)}명`,
+    `두 번째로 많은 것은 ${josa(d.second, "으로", "로")} ${n(d.secondValue)}명입니다.`,
+    d.figure,
+  );
+}
+
+function bar153LeastName(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 막대가 가장 짧은 ${d.theme.item}의 이름을 쓰시오.`,
+    d.bottom,
+    `막대가 가장 짧은 것은 ${d.bottom}입니다.`,
+    d.figure,
+  );
+}
+
+function bar153SaleMoney(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sale = buildSaleCombo(rng);
+  return make(unit, sale.content, sale.answer, sale.solution, saleFigure(sale));
+}
+
+function bar153EvenCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  const even = d.values.filter((v) => v.value % 2 === 0).length;
+  return make(
+    unit,
+    `${d.intro} 학생 수가 짝수인 ${d.theme.item}은 몇 가지인가?`,
+    n(even),
+    `학생 수가 짝수인 것은 ${even}가지입니다.`,
+    d.figure,
+  );
+}
+
+function bar153HalfTotal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = barData(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 조사한 학생의 절반은 몇 명인가?`,
+    `${n(d.total / 2)}명`,
+    `모두 ${n(d.total)}명이므로 ${expr(`${d.total}\\div2=${d.total / 2}`)} 명입니다.`,
+    d.figure,
+  );
+}
+
+/* ── 1-6-1 수 배열에서 규칙 ── */
+
+function pat161NextInc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 3, 40);
+  const t = [a, a + d, a + d * 2, a + d * 3];
+  return make(
+    unit,
+    `커지는 규칙에 따라 수를 늘어놓았습니다. 다섯째 수를 구하시오. ${t.map((v) => n(v)).join(", ")}`,
+    n(a + d * 4),
+    `${n(d)}씩 커지는 규칙입니다. ${expr(`${a + d * 3}+${d}=${a + d * 4}`)} 입니다.`,
+    cards(t),
+  );
+}
+
+function pat161Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 10, 50);
+  const t = [a, a + d, a + d * 2, a + d * 3];
+  return make(
+    unit,
+    `수의 배열에서 이웃한 두 수의 차는 얼마인가? ${t.map((v) => n(v)).join(", ")}`,
+    n(d),
+    `${expr(`${a + d}-${a}=${d}`)} 이므로 ${n(d)}씩 커집니다.`,
+    cards(t),
+  );
+}
+
+function pat161First(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 10, 40);
+  const t = [a + d, a + d * 2, a + d * 3, a + d * 4];
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓았습니다. 첫째에 올 수를 쓰시오. ${expr("\\square")}, ${t.map((v) => n(v)).join(", ")}`,
+    n(a),
+    `${n(d)}씩 커지는 규칙입니다. ${expr(`${t[0]}-${d}=${a}`)} 입니다.`,
+    cards(["?", ...t]),
+  );
+}
+
+function pat161LastBigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 2, 5);
+  const d2 = d1 + intBetween(rng, 1, 3);
+  const a = intBetween(rng, 5, 20);
+  const last1 = a + d1 * 3;
+  const last2 = a + d2 * 3;
+  return make(
+    unit,
+    `두 배열의 넷째 수 가운데 더 큰 수를 쓰시오. 가: ${[a, a + d1, a + d1 * 2, last1].map((v) => n(v)).join(", ")} / 나: ${[a, a + d2, a + d2 * 2, last2].map((v) => n(v)).join(", ")}`,
+    n(last2),
+    `가의 넷째는 ${n(last1)}, 나의 넷째는 ${n(last2)}이므로 더 큰 수는 ${n(last2)}입니다.`,
+  );
+}
+
+function pat161HowMany(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 6);
+  const a = intBetween(rng, 3, 20);
+  const k = intBetween(rng, 5, 8);
+  const last = a + d * (k - 1);
+  return make(
+    unit,
+    `${n(d)}씩 커지는 규칙으로 ${n(a)}부터 ${n(last)}까지 늘어놓았습니다. 수는 모두 몇 개인가?`,
+    n(k),
+    `${expr(`${last}-${a}=${last - a}`)} 이고 ${expr(`${last - a}\\div${d}=${k - 1}`)} 이므로 첫째를 더하면 ${n(k)}개입니다.`,
+    cards([a, a + d, a + d * 2, "…", last]),
+  );
+}
+
+function pat161DoubleStep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 2, 6);
+  const a = intBetween(rng, 3, 20);
+  return make(
+    unit,
+    `규칙에 따라 수를 늘어놓았습니다. ${n(a)}, ${n(a + d)}, ${n(a + d * 2)}, ${n(a + d * 3)}. 같은 규칙으로 두 칸씩 뛰면 이웃한 두 수의 차는 얼마인가?`,
+    n(d * 2),
+    `${n(d)}씩 커지므로 두 칸을 뛰면 ${expr(`${d}\\times2=${d * 2}`)} 입니다.`,
+    cards([a, a + d, a + d * 2, a + d * 3]),
+  );
+}
+
+/* ── 1-6-2 도형 수 배열 ── */
+
+function pat162Fifth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 다섯째 모형은 몇 개인가?`,
+    `${n(s + d * 4)}개`,
+    `${n(d)}개씩 늘어나므로 다섯째는 ${expr(`${s}+${d}\\times4=${s + d * 4}`)} 개입니다.`,
+    cards([s, s + d, s + d * 2]),
+  );
+}
+
+function pat162ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  const t = [s, s + d, s + d * 2];
+  const sum = t.reduce((x, y) => x + y, 0);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 첫째부터 셋째까지 모형은 모두 몇 개인가?`,
+    `${n(sum)}개`,
+    `${expr(`${t.join("+")}=${sum}`)} 이므로 ${n(sum)}개입니다.`,
+    cards(t),
+  );
+}
+
+function pat162FromEnds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 셋째는 ${n(s + d * 2)}개입니다. 모형은 몇 개씩 늘어나는가?`,
+    `${n(d)}개씩`,
+    `첫째와 셋째 사이가 ${n(2)}칸이므로 ${expr(`(${s + d * 2}-${s})\\div2=${d}`)} 개씩입니다.`,
+    cards([s, "?", s + d * 2]),
+  );
+}
+
+function pat162Fourth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 넷째 모형은 몇 개인가?`,
+    `${n(s + d * 3)}개`,
+    `${n(d)}개씩 늘어나므로 ${expr(`${s + d * 2}+${d}=${s + d * 3}`)} 개입니다.`,
+    cards([s, s + d, s + d * 2]),
+  );
+}
+
+function pat162SecondMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 5);
+  const d = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개입니다. 둘째는 첫째보다 몇 개 더 많은가?`,
+    `${n(d)}개`,
+    `${expr(`${s + d}-${s}=${d}`)} 이므로 ${n(d)}개 더 많습니다.`,
+    cards([s, s + d]),
+  );
+}
+
+function pat162Tenth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 1, 4);
+  const d = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 열째는 몇 개인가?`,
+    `${n(s + d * 9)}개`,
+    `${n(d)}개씩 늘어나므로 열째는 ${expr(`${s}+${d}\\times9=${s + d * 9}`)} 개입니다.`,
+    cards([s, s + d, s + d * 2]),
+  );
+}
+
+/* ── 1-6-3 계산식 배열 ── */
+
+function pat163NextSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 넷째 계산식의 합을 구하시오. ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(r.sum(4)),
+    `합이 ${n(200)}씩 커집니다. ${expr(`${r.sum(3)}+200=${r.sum(4)}`)} 입니다.`,
+  );
+}
+
+function pat163SubStep(unit: UnitSeed, rng: Rng): ElemProblem {
+  const m = intBetween(rng, 6, 9) * 100 + intBetween(rng, 11, 89);
+  return make(
+    unit,
+    `계산식의 배열에서 빼는 수는 얼마씩 커지는가? ${expr(`${m}-100=${m - 100}`)}, ${expr(`${m}-200=${m - 200}`)}, ${expr(`${m}-300=${m - 300}`)}`,
+    n(100),
+    `빼는 수가 ${n(100)}, ${n(200)}, ${n(300)}이므로 ${n(100)}씩 커집니다.`,
+  );
+}
+
+function pat163FirstSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 첫째 계산식의 합을 구하시오. ${expr(`${r.left(1)}+${r.right(1)}=\\square`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(r.sum(1)),
+    `합이 ${n(200)}씩 커지므로 ${expr(`${r.sum(2)}-200=${r.sum(1)}`)} 입니다.`,
+  );
+}
+
+function pat163SumGrows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 합은 ${n(200)}씩 커지는가? '예' 또는 '아니요'로 답하시오. ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    "예",
+    `${expr(`${r.sum(2)}-${r.sum(1)}=200`)} 이고 ${expr(`${r.sum(3)}-${r.sum(2)}=200`)} 입니다.`,
+  );
+}
+
+function pat163FifthLeft(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  return make(
+    unit,
+    `계산식의 배열에서 다섯째 계산식의 앞에 오는 수를 쓰시오. ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(r.left(5)),
+    `앞에 오는 수가 ${n(100)}씩 커지므로 다섯째는 ${n(r.left(5))}입니다.`,
+  );
+}
+
+function pat163ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const r = addRows(rng);
+  const s = r.sum(1) + r.sum(2) + r.sum(3);
+  return make(
+    unit,
+    `계산식의 배열에서 첫째부터 셋째까지 합을 모두 더하면 얼마인가? ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    n(s),
+    `${expr(`${r.sum(1)}+${r.sum(2)}+${r.sum(3)}=${s}`)} 입니다.`,
+  );
+}
+
+/* ── 1-6-4 곱셈·나눗셈 계산식 배열 ── */
+
+function pat164Times10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 48);
+  const b = intBetween(rng, 2, 9);
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${a * 10}\\times${b}=${a * 10 * b}`)}, ${expr(`${a * 100}\\times${b}=\\square`)}`,
+    n(a * 100 * b),
+    `곱하는 수가 ${n(10)}배가 되면 곱도 ${n(10)}배가 됩니다. ${expr(`${a * 10 * b}\\times10=${a * 100 * b}`)} 입니다.`,
+  );
+}
+
+function pat164SubSame(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 50, 90);
+  const b = intBetween(rng, 11, 30);
+  const d = a - b;
+  return make(
+    unit,
+    `계산식의 배열에서 규칙을 찾아 ${expr("\\square")} 에 알맞은 수를 쓰시오. ${expr(`${a}-${b}=${d}`)}, ${expr(`${a + 10}-${b + 10}=${d}`)}, ${expr(`${a + 20}-${b + 20}=\\square`)}`,
+    n(d),
+    `빼는 두 수가 ${n(10)}씩 커지면 차는 변하지 않습니다.`,
+  );
+}
+
+function pat164QuotOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `계산식의 배열에서 둘째 식의 몫을 쓰시오. ${expr(`${a}\\div${b}=${q}`)}, ${expr(`${a * 10}\\div${b}=\\square`)}, ${expr(`${a * 100}\\div${b}=${q * 100}`)}`,
+    n(q * 10),
+    `나누어지는 수가 ${n(10)}배가 되면 몫도 ${n(10)}배가 됩니다.`,
+  );
+}
+
+function pat164MulFactor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 12, 28);
+  const b = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `계산식의 배열에서 곱하는 수는 얼마인가? ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${a * 10}\\times${b}=${a * 10 * b}`)}, ${expr(`${a * 100}\\times${b}=${a * 100 * b}`)}`,
+    n(b),
+    `세 식 모두 ${n(b)}를 곱하고 있습니다.`,
+  );
+}
+
+function pat164SameSumBlank(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 15, 60);
+  const b = intBetween(rng, 33, 80);
+  const s = a + b;
+  return make(
+    unit,
+    `계산식의 배열에서 ${expr("\\square")} 에 알맞은 수를 쓰시오. ${expr(`${a}+${b}=${s}`)}, ${expr(`${a + 10}+\\square=${s}`)}, ${expr(`${a + 20}+${b - 20}=${s}`)}`,
+    n(b - 10),
+    `합이 ${n(s)}로 같으므로 ${expr(`${s}-${a + 10}=${b - 10}`)} 입니다.`,
+  );
+}
+
+function pat164HowManyTens(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9);
+  const q = intBetween(rng, 2, 9);
+  const a = b * q;
+  return make(
+    unit,
+    `${expr(`${a}\\div${b}=${q}`)} 에서 나누어지는 수를 ${n(10)}배로 ${n(2)}번 키우면 몫은 얼마인가?`,
+    n(q * 100),
+    `${n(10)}배로 ${n(2)}번이면 ${n(100)}배가 되므로 몫은 ${expr(`${q}\\times100=${q * 100}`)} 입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -7303,6 +8119,138 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     div137WhichCloser,
     div137EstMinus,
   ),
+  "초4|1-4-1": ten(
+    tier41Calc,
+    tier41Basic,
+    tier41Apply,
+    tier41Deep,
+    move141OneWay,
+    move141ThreeSame,
+    move141HorizCancel,
+    move141BackHome,
+    move141HOnly,
+    move141Manhattan,
+  ),
+  "초4|1-4-2": ten(
+    tier42Calc,
+    tier42Basic,
+    tier42Apply,
+    tier42Deep,
+    move142SideSame,
+    move142WidthSame,
+    move142ShapeNo,
+    move142Area,
+    move142RoundTrip,
+    move142Net,
+  ),
+  "초4|1-4-3": ten(
+    tier43Calc,
+    tier43Basic,
+    tier43Apply,
+    tier43Deep,
+    move143NameH,
+    move143NameV,
+    move143TwiceYes,
+    move143OddOnce,
+    move143CellCount,
+    move143HThenH,
+  ),
+  "초4|1-4-4": ten(
+    tier44Calc,
+    tier44Basic,
+    tier44Apply,
+    tier44Deep,
+    move144Sum90,
+    move144Clockwise,
+    move144Ccw,
+    move144FourYes,
+    move144Two180,
+    move144Two90,
+  ),
+  "초4|1-5-1": ten(
+    tier51Calc,
+    tier51Basic,
+    tier51Apply,
+    tier51Deep,
+    bar151Least,
+    bar151Read,
+    bar151Second,
+    bar151Most,
+    bar151Total,
+    bar151MaxMinSum,
+  ),
+  "초4|1-5-2": ten(
+    tier52Calc,
+    tier52Basic,
+    tier52Apply,
+    tier52Deep,
+    bar152Shortest,
+    bar152ReadTable,
+    bar152PairSum,
+    bar152MinValue,
+    bar152Diff,
+    bar152MaxCells,
+  ),
+  "초4|1-5-3": ten(
+    tier53Calc,
+    tier53Basic,
+    tier53Apply,
+    tier53Deep,
+    bar153Total,
+    bar153SecondValue,
+    bar153LeastName,
+    bar153SaleMoney,
+    bar153EvenCount,
+    bar153HalfTotal,
+  ),
+  "초4|1-6-1": ten(
+    tier61Calc,
+    tier61Basic,
+    tier61Apply,
+    tier61Deep,
+    pat161NextInc,
+    pat161Diff,
+    pat161First,
+    pat161LastBigger,
+    pat161HowMany,
+    pat161DoubleStep,
+  ),
+  "초4|1-6-2": ten(
+    tier62Calc,
+    tier62Basic,
+    tier62Apply,
+    tier62Deep,
+    pat162Fifth,
+    pat162ThreeSum,
+    pat162FromEnds,
+    pat162Fourth,
+    pat162SecondMinus,
+    pat162Tenth,
+  ),
+  "초4|1-6-3": ten(
+    tier63Calc,
+    tier63Basic,
+    tier63Apply,
+    tier63Deep,
+    pat163NextSum,
+    pat163SubStep,
+    pat163FirstSum,
+    pat163SumGrows,
+    pat163FifthLeft,
+    pat163ThreeSum,
+  ),
+  "초4|1-6-4": ten(
+    tier64Calc,
+    tier64Basic,
+    tier64Apply,
+    tier64Deep,
+    pat164Times10,
+    pat164SubSame,
+    pat164QuotOnly,
+    pat164MulFactor,
+    pat164SameSumBlank,
+    pat164HowManyTens,
+  ),
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
     { id: "02", tier: "기본", generate: tier65Basic },
@@ -7315,6 +8263,366 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "09", tier: "응용", generate: eq165LeftSub },
     { id: "10", tier: "응용", generate: eq165Times },
   ],
+  "초4|2-1-1": ten(
+    tier211Calc,
+    tier211Basic,
+    tier211Apply,
+    tier211Deep,
+    fracAddNum,
+    fracAddDen,
+    fracAddMissing,
+    fracAddImproper,
+    fracAddPainted,
+    fracAddEmpty,
+  ),
+  "초4|2-1-2": ten(
+    tier212Calc,
+    tier212Basic,
+    tier212Apply,
+    tier212Deep,
+    fracSubNum,
+    fracSubMissing,
+    fracSubBigger,
+    fracSubPainted,
+    fracSubLeftCells,
+    fracSubDen,
+  ),
+  "초4|2-1-3": ten(
+    tier213Calc,
+    tier213Basic,
+    tier213Apply,
+    tier213Deep,
+    mixedAddWholes,
+    mixedAddFracNum,
+    mixedAddCarry,
+    mixedAddMissingWhole,
+    mixedAddFracDen,
+    mixedAddWholeOnly,
+  ),
+  "초4|2-1-4": ten(
+    tier214Calc,
+    tier214Basic,
+    tier214Apply,
+    tier214Deep,
+    mixedSubWholes,
+    mixedSubWholeDiff,
+    mixedSubFracNum,
+    mixedSubMissing,
+    mixedSubDen,
+    mixedSubPainted,
+  ),
+  "초4|2-2-1": ten(
+    tier221Calc,
+    tier221Basic,
+    tier221Apply,
+    tier221Deep,
+    tri221NameEq,
+    tri221PickEq,
+    tri221Perim,
+    tri221NameIso,
+    tri221PickIso,
+    tri221Vertices,
+  ),
+  "초4|2-2-2": ten(
+    tier222Calc,
+    tier222Basic,
+    tier222Apply,
+    tier222Deep,
+    tri222Sum180,
+    tri222BaseSum,
+    tri222Apex,
+    tri222Biggest,
+    tri222Pick,
+    tri222EqualBase,
+  ),
+  "초4|2-2-3": ten(
+    tier223Calc,
+    tier223Basic,
+    tier223Apply,
+    tier223Deep,
+    tri223Side,
+    tri223Angle,
+    tri223AngleSum,
+    tri223Pick,
+    tri223HalfPerim,
+    tri223Name,
+  ),
+  "초4|2-2-4": ten(
+    tier224Calc,
+    tier224Basic,
+    tier224Apply,
+    tier224Deep,
+    tri224CountAcute,
+    tri224Name,
+    tri224PickRight,
+    tri224HasRight,
+    tri224Biggest,
+    tri224Rest,
+  ),
+  "초4|2-2-5": ten(
+    tier225Calc,
+    tier225Basic,
+    tier225Apply,
+    tier225Deep,
+    tri225BothNames,
+    tri225PickRightIso,
+    tri225EqIsAcute,
+    tri225SideClass,
+    tri225AngleClass,
+    tri225Vertices,
+  ),
+  "초4|2-3-1": ten(
+    tier231Calc,
+    tier231Basic,
+    tier231Apply,
+    tier231Deep,
+    dec231TenthDigit,
+    dec231Hundredths,
+    dec231TenthsCount,
+    dec231Bigger,
+    dec231PlaceWorth,
+    dec231HowManyPlaces,
+  ),
+  "초4|2-3-2": ten(
+    tier232Calc,
+    tier232Basic,
+    tier232Apply,
+    tier232Deep,
+    dec232TensDigit,
+    dec232SecondDigit,
+    dec232AsHundredths,
+    dec232Bigger,
+    dec232FirstDigit,
+    dec232Places,
+  ),
+  "초4|2-3-3": ten(
+    tier233Calc,
+    tier233Basic,
+    tier233Apply,
+    tier233Deep,
+    dec233Times10,
+    dec233Div10,
+    dec233Times100,
+    dec233HowManyTimes,
+    dec233MoveLeft,
+    dec233MoveRight,
+  ),
+  "초4|2-3-4": ten(
+    tier234Calc,
+    tier234Basic,
+    tier234Apply,
+    tier234Deep,
+    dec234Sum,
+    dec234Missing,
+    dec234TenthsDigit,
+    dec234VsTen,
+    dec234Ones,
+    dec234PlusOne,
+  ),
+  "초4|2-3-5": ten(
+    tier235Calc,
+    tier235Basic,
+    tier235Apply,
+    tier235Deep,
+    dec235Diff,
+    dec235Missing,
+    dec235Tenths,
+    dec235Bigger,
+    dec235Ones,
+    dec235MinusOne,
+  ),
+  "초4|2-3-6": ten(
+    tier236Calc,
+    tier236Basic,
+    tier236Apply,
+    tier236Deep,
+    dec236Tape,
+    dec236GapToTen,
+    dec236ThreeSum,
+    dec236Twice,
+    dec236LeftIfAdd,
+    dec236WhichBiggerSum,
+  ),
+  "초4|2-3-7": ten(
+    tier237Calc,
+    tier237Basic,
+    tier237Apply,
+    tier237Deep,
+    dec237Cut,
+    dec237Left,
+    dec237HowMuchMore,
+    dec237Need,
+    dec237Gap,
+    dec237RemainAfterTwo,
+  ),
+  "초4|2-4-1": ten(
+    tier241Calc,
+    tier241Basic,
+    tier241Apply,
+    tier241Deep,
+    quad241Name,
+    quad241RightCount,
+    quad241OneAngle,
+    quad241Sum3,
+    quad241NotRight,
+    quad241PerpName,
+  ),
+  "초4|2-4-2": ten(
+    tier242Calc,
+    tier242Basic,
+    tier242Apply,
+    tier242Deep,
+    quad242Name,
+    quad242Dist,
+    quad242Same,
+    quad242Meet,
+    quad242PerpCount,
+    quad242Angle,
+  ),
+  "초4|2-4-3": ten(
+    tier243Calc,
+    tier243Basic,
+    tier243Apply,
+    tier243Deep,
+    quad243Sum,
+    quad243One,
+    quad243Farther,
+    quad243Diff,
+    quad243Equal,
+    quad243Triple,
+  ),
+  "초4|2-4-4": ten(
+    tier244Calc,
+    tier244Basic,
+    tier244Apply,
+    tier244Deep,
+    quad244Pick,
+    quad244Pairs,
+    quad244Perim,
+    quad244Name,
+    quad244Vertices,
+    quad244Sides,
+  ),
+  "초4|2-4-5": ten(
+    tier245Calc,
+    tier245Basic,
+    tier245Apply,
+    tier245Deep,
+    quad245OppSide,
+    quad245NeighborSum,
+    quad245OppAngle,
+    quad245Perim,
+    quad245Vertices,
+    quad245Name,
+  ),
+  "초4|2-4-6": ten(
+    tier246Calc,
+    tier246Basic,
+    tier246Apply,
+    tier246Deep,
+    quad246Side,
+    quad246Perim,
+    quad246Pick,
+    quad246FromPerim,
+    quad246AllEqual,
+    quad246Vertices,
+  ),
+  "초4|2-4-7": ten(
+    tier247Calc,
+    tier247Basic,
+    tier247Apply,
+    tier247Deep,
+    quad247SqIsRect,
+    quad247NameRight,
+    quad247NameEq,
+    quad247SqSide,
+    quad247RectPerim,
+    quad247SqFromPerim,
+  ),
+  "초4|2-5-1": ten(
+    tier251Calc,
+    tier251Basic,
+    tier251Apply,
+    tier251Deep,
+    line251LeastWhen,
+    line251Read,
+    line251MaxValue,
+    line251First,
+    line251Last,
+    line251Points,
+  ),
+  "초4|2-5-2": ten(
+    tier252Calc,
+    tier252Basic,
+    tier252Apply,
+    tier252Deep,
+    line252RiseCount,
+    line252Range,
+    line252PairDiff,
+    line252MaxWhen,
+    line252MinValue,
+    line252HowManyRows,
+  ),
+  "초4|2-5-3": ten(
+    tier253Calc,
+    tier253Basic,
+    tier253Apply,
+    tier253Deep,
+    line253Step,
+    line253Rise,
+    line253Range,
+    line253FirstLast,
+    line253MaxWhen,
+    line253Unit,
+  ),
+  "초4|2-6-1": ten(
+    tier261Calc,
+    tier261Basic,
+    tier261Apply,
+    tier261Deep,
+    poly261Name,
+    poly261Verts,
+    poly261SidesOfName,
+    poly261Same,
+    poly261Sum,
+    poly261Pent,
+  ),
+  "초4|2-6-2": ten(
+    tier262Calc,
+    tier262Basic,
+    tier262Apply,
+    tier262Deep,
+    poly262AllDiag,
+    poly262FromVertex,
+    poly262TriDiag,
+    poly262QuadDiag,
+    poly262HexFrom,
+    poly262EqualDiag,
+  ),
+  "초4|2-6-3": ten(
+    tier263Calc,
+    tier263Basic,
+    tier263Apply,
+    tier263Deep,
+    poly263Side,
+    poly263Perim,
+    poly263FromPerim,
+    poly263EqualSides,
+    poly263EqualAngles,
+    poly263Name,
+  ),
+  "초4|2-6-4": ten(
+    tier264Calc,
+    tier264Basic,
+    tier264Apply,
+    tier264Deep,
+    poly264TriFill,
+    poly264SqFill,
+    poly264Hex,
+    poly264Rhombus,
+    poly264Trap,
+    poly264FromTris,
+  ),
 };
 
 /* ───────────────── 2-1 분수의 덧셈과 뺄셈 ───────────────── */
@@ -8177,6 +9485,351 @@ function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function fracAddNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 에서 분자끼리 더한 값을 쓰시오.`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+  );
+}
+
+function fracAddDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합에서 분모는 얼마인가?`,
+    n(den),
+    `분모가 같은 분수의 덧셈은 분모를 그대로 쓰므로 ${n(den)}입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracAddMissing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`\\frac{${a}}{${den}}+\\frac{\\square}{${den}}=\\frac{${a + b}}{${den}}`)}`,
+    n(b),
+    `${expr(`${a + b}-${a}=${b}`)} 이므로 ${n(b)}입니다.`,
+  );
+}
+
+function fracAddImproper(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합은 ${expr("1")}보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    a + b > den ? "예" : "아니요",
+    `${expr(`${a}+${b}=${a + b}`)} 이고 분모는 ${n(den)}이므로 ${a + b > den ? "가분수입니다." : "진분수입니다."}`,
+  );
+}
+
+function fracAddPainted(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(properSumPairs));
+  const [a] = pick(rng, properSumPairs(den));
+  return make(
+    unit,
+    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠한 칸은 몇 칸인가?`,
+    n(a),
+    `색칠한 칸은 ${n(a)}칸입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracAddEmpty(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(properSumPairs));
+  const [a] = pick(rng, properSumPairs(den));
+  return make(
+    unit,
+    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠하지 않은 칸은 몇 칸인가?`,
+    n(den - a),
+    `${expr(`${den}-${a}=${den - a}`)} 칸입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracSubNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)} 에서 분자끼리 뺀 값을 쓰시오.`,
+    n(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+  );
+}
+
+function fracSubMissing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`\\frac{${a}}{${den}}-\\frac{\\square}{${den}}=\\frac{${a - b}}{${den}}`)}`,
+    n(b),
+    `${expr(`${a}-${a - b}=${b}`)} 이므로 ${n(b)}입니다.`,
+  );
+}
+
+function fracSubBigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}`)} 과 ${expr(`\\frac{${b}}{${den}}`)} 가운데 더 큰 분수를 쓰시오.`,
+    expr(`\\frac{${a}}{${den}}`),
+    `분모가 같으면 분자가 큰 쪽이 더 큽니다. ${n(a)}이 ${n(b)}보다 큽니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "sub")),
+  );
+  const [a] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `그림에서 색칠한 부분은 전체의 얼마인가?`,
+    expr(`\\frac{${a}}{${den}}`),
+    `${n(den)}칸 중 ${n(a)}칸이 색칠되어 ${expr(`\\frac{${a}}{${den}}`)} 입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracSubLeftCells(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "sub")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `색칠한 ${n(a)}칸에서 ${n(b)}칸을 지우면 색칠한 칸은 몇 칸이 남는가?`,
+    n(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 칸입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function fracSubDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const [a, b] = pick(rng, fracPairs(den, "sub"));
+  return make(
+    unit,
+    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)} 의 차에서 분모는 얼마인가?`,
+    n(den),
+    `분모가 같은 분수의 뺄셈은 분모를 그대로 쓰므로 ${n(den)}입니다.`,
+  );
+}
+
+function mixedAddWholes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 에서 자연수끼리 더한 값을 쓰시오.`,
+    n(w1 + w2),
+    `${expr(`${w1}+${w2}=${w1 + w2}`)} 입니다.`,
+  );
+}
+
+function mixedAddFracNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 더하면 얼마인가?`,
+    n(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
+    fracSpec(rng, den, Math.min(a, den)),
+  );
+}
+
+function mixedAddCarry(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 를 계산할 때 분수 부분에서 받아올림이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    a + b >= den ? "예" : "아니요",
+    `${expr(`${a}+${b}=${a + b}`)} 이고 분모는 ${n(den)}입니다.`,
+  );
+}
+
+function mixedAddMissingWhole(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const w1 = intBetween(rng, 1, 4);
+  const w2 = intBetween(rng, 1, 3);
+  const total = w1 * den + a + w2 * den + b;
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 자연수를 쓰시오. ${expr(`\\square\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}=${fmtFrac(total, den)}`)}`,
+    n(w1),
+    `자연수끼리 더하면 ${n(w1 + w2)}이므로 ${expr(`${w1 + w2}-${w2}=${w1}`)} 입니다.`,
+  );
+}
+
+function mixedAddFracDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => fracPairs(d, "add")),
+  );
+  const [a, b] = pick(rng, fracPairs(den, "add"));
+  const w1 = intBetween(rng, 1, 4);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마인가?`,
+    n(den),
+    `분모가 같은 대분수의 덧셈이므로 분모는 ${n(den)}입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function mixedAddWholeOnly(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(properSumPairs));
+  const [a, b] = pick(rng, properSumPairs(den));
+  const w1 = intBetween(rng, 2, 5);
+  const w2 = intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 의 합에서 자연수 부분은 얼마인가?`,
+    n(w1 + w2),
+    `분수끼리 더해도 ${expr("1")}을 넘지 않으므로 자연수 부분은 ${expr(`${w1}+${w2}=${w1 + w2}`)} 입니다.`,
+  );
+}
+
+function mixedSubWholes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(mixedSubPairs));
+  const { a, b, borrow } = pick(rng, mixedSubPairs(den));
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 받아내림이 필요한가? '예' 또는 '아니요'로 답하시오.`,
+    borrow ? "예" : "아니요",
+    `분수끼리 ${borrow ? "뺄 수 없으므로 받아내림이 필요합니다." : "뺄 수 있으므로 받아내림이 없습니다."}`,
+  );
+}
+
+function mixedSubWholeDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => mixedSubPairs(d).filter((p) => !p.borrow)),
+  );
+  const { a, b } = pick(
+    rng,
+    mixedSubPairs(den).filter((p) => !p.borrow),
+  );
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 자연수끼리 뺀 값을 쓰시오.`,
+    n(w1 - w2),
+    `${expr(`${w1}-${w2}=${w1 - w2}`)} 입니다.`,
+  );
+}
+
+function mixedSubFracNum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => mixedSubPairs(d).filter((p) => !p.borrow)),
+  );
+  const { a, b } = pick(
+    rng,
+    mixedSubPairs(den).filter((p) => !p.borrow),
+  );
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + intBetween(rng, 1, 3);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 빼면 얼마인가?`,
+    n(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
+function mixedSubMissing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => mixedSubPairs(d).filter((p) => !p.borrow)),
+  );
+  const { a, b } = pick(
+    rng,
+    mixedSubPairs(den).filter((p) => !p.borrow),
+  );
+  const w2 = intBetween(rng, 1, 3);
+  const w1 = w2 + intBetween(rng, 2, 4);
+  const total = (w1 - w2) * den + (a - b);
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 자연수를 쓰시오. ${expr(`${w1}\\frac{${a}}{${den}}-\\square\\frac{${b}}{${den}}=${fmtFrac(total, den)}`)}`,
+    n(w2),
+    `자연수 부분의 차는 ${n(w1 - w2)}이므로 ${expr(`${w1}-${w1 - w2}=${w2}`)} 입니다.`,
+  );
+}
+
+function mixedSubDen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, densWith(mixedSubPairs));
+  const { a, b } = pick(rng, mixedSubPairs(den));
+  const w1 = intBetween(rng, 3, 6);
+  const w2 = intBetween(rng, 1, 2);
+  return make(
+    unit,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마인가?`,
+    n(den),
+    `분모가 같은 대분수의 뺄셈이므로 분모는 ${n(den)}입니다.`,
+  );
+}
+
+function mixedSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(
+    rng,
+    densWith((d) => mixedSubPairs(d).filter((p) => !p.borrow)),
+  );
+  const { a } = pick(
+    rng,
+    mixedSubPairs(den).filter((p) => !p.borrow),
+  );
+  return make(
+    unit,
+    `대분수의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?`,
+    n(a),
+    `색칠한 칸은 ${n(a)}칸입니다.`,
+    fracSpec(rng, den, a),
+  );
+}
+
 /* ───────────────────────── 2-2 삼각형 ───────────────────────── */
 
 /**
@@ -9016,6 +10669,351 @@ function tier225Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `세 각이 모두 ${deg(90)}보다 작으므로 예각삼각형입니다. ` +
       `${deg(a)}가 한 밑각이면 다른 한 밑각도 ${deg(a)}이고 꼭지각은 ` +
       `${expr(`180-${a}-${a}=${apexWhenBase}`)} 이므로 둔각삼각형입니다.`,
+  );
+}
+
+function tri221NameEq(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}인 삼각형의 이름을 쓰시오.`,
+    "정삼각형",
+    `세 변의 길이가 모두 같으므로 정삼각형입니다.`,
+    fig("namedShapes", {
+      items: labelledPick(rng, "eqTri", ["isoTri", "wideTri"]).items,
+    }),
+  );
+}
+
+function tri221PickEq(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "eqTri", ["isoTri", "rightTri"]);
+  return make(
+    unit,
+    "그림에서 정삼각형의 기호를 쓰시오.",
+    put.answer,
+    `${put.answer}는 세 변의 길이가 모두 같습니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri221Perim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `한 변이 ${cm(s)}인 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+    cm(s * 3),
+    `${expr(`${s}\\times3=${s * 3}`)} 이므로 ${cm(s * 3)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri221NameIso(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [small, big] = pick(rng, isoSidePairs());
+  return make(
+    unit,
+    `길이가 같은 변이 ${n(2)}개이고 세 변의 길이가 ${cm(small)}, ${cm(small)}, ${cm(big)}인 삼각형의 이름을 쓰시오.`,
+    "이등변삼각형",
+    `길이가 같은 변이 ${n(2)}개이므로 이등변삼각형입니다.`,
+    fig("namedShapes", {
+      items: labelledPick(rng, "isoTri", ["rightTri", "wideTri"]).items,
+    }),
+  );
+}
+
+function tri221PickIso(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "isoTri", ["eqTri", "rightTri"]);
+  return make(
+    unit,
+    "그림에서 이등변삼각형의 기호를 쓰시오.",
+    put.answer,
+    `${put.answer}는 두 변의 길이가 같습니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri221Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림의 삼각형에서 꼭짓점은 몇 개인가?`,
+    n(3),
+    `삼각형의 꼭짓점은 ${n(3)}개입니다.`,
+    fig("namedShapes", {
+      items: [
+        {
+          shape: pick(rng, ["eqTri", "isoTri", "rightTri"] as const),
+          label: "가",
+        },
+      ],
+    }),
+  );
+}
+
+function tri222Sum180(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 이등변삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    deg(180),
+    `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
+  );
+}
+
+function tri222BaseSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(25, 80));
+  return make(
+    unit,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 두 밑각의 크기의 합은 몇 도인가?`,
+    deg(base * 2),
+    `${expr(`${base}+${base}=${base * 2}`)} 이므로 ${deg(base * 2)}입니다.`,
+  );
+}
+
+function tri222Apex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(25, 80));
+  return make(
+    unit,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 꼭지각의 크기는 몇 도인가?`,
+    deg(180 - base * 2),
+    `${expr(`180-${base}-${base}=${180 - base * 2}`)} 이므로 ${deg(180 - base * 2)}입니다.`,
+  );
+}
+
+function tri222Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const base = pick(rng, baseAngles(25, 50));
+  const apex = 180 - base * 2;
+  return make(
+    unit,
+    `이등변삼각형의 밑각이 ${deg(base)}입니다. 가장 큰 각의 크기는 몇 도인가?`,
+    deg(Math.max(base, apex)),
+    `꼭지각은 ${deg(apex)}이므로 가장 큰 각은 ${deg(Math.max(base, apex))}입니다.`,
+    fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
+  );
+}
+
+function tri222Pick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "isoTri", ["wideTri", "rightTri"]);
+  return make(
+    unit,
+    "그림에서 두 밑각의 크기가 같은 삼각형의 기호를 쓰시오.",
+    put.answer,
+    `이등변삼각형은 두 밑각의 크기가 같습니다. ${put.answer}입니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri222EqualBase(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 이등변삼각형에서 두 밑각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `이등변삼각형은 두 밑각의 크기가 같습니다.`,
+    fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
+  );
+}
+
+function tri223Side(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `정삼각형의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm인가?`,
+    cm(s),
+    `정삼각형은 세 변의 길이가 모두 같으므로 ${cm(s)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri223Angle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 정삼각형의 한 각의 크기는 몇 도인가?`,
+    deg(60),
+    `정삼각형은 세 각의 크기가 모두 ${deg(60)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri223AngleSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 정삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    deg(180),
+    `${expr(`60+60+60=180`)} 이므로 ${deg(180)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri223Pick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "eqTri", ["isoTri", "wideTri"]);
+  return make(
+    unit,
+    "그림에서 세 각의 크기가 모두 같은 삼각형의 기호를 쓰시오.",
+    put.answer,
+    `세 각의 크기가 모두 같은 삼각형은 정삼각형입니다. ${put.answer}입니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri223HalfPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 14);
+  return make(
+    unit,
+    `세 변의 길이의 합이 ${cm(s * 3)}인 정삼각형의 한 변은 몇 cm인가?`,
+    cm(s),
+    `${expr(`${s * 3}\\div3=${s}`)} 이므로 ${cm(s)}입니다.`,
+  );
+}
+
+function tri223Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 하는가?`,
+    "정삼각형",
+    `세 변의 길이가 모두 같은 삼각형은 정삼각형입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri224CountAcute(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, 2);
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  const hit = shown.filter((v) => v < 90).length;
+  return make(
+    unit,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 예각은 몇 개인가?`,
+    `${n(hit)}개`,
+    `${deg(90)}보다 작은 각이 ${n(hit)}개입니다.`,
+  );
+}
+
+function tri224Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 2);
+  const angles = triAnglesOfClass(rng, kind);
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  const name = triClass(angles[0]!, angles[1]!, angles[2]!);
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 삼각형의 이름을 쓰시오.`,
+    name,
+    `가장 큰 각이 ${deg(Math.max(...angles))}이므로 ${name}입니다.`,
+  );
+}
+
+function tri224PickRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "rightTri", ["eqTri", "wideTri"]);
+  return make(
+    unit,
+    "그림에서 직각삼각형의 기호를 쓰시오.",
+    put.answer,
+    `${put.answer}는 직각이 있는 삼각형입니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri224HasRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = intBetween(rng, 0, 2);
+  const angles = triAnglesOfClass(rng, kind);
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  const yes = angles.includes(90);
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 삼각형에 직각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    yes ? "예" : "아니요",
+    yes ? `직각이 ${n(1)}개 있습니다.` : `직각이 없습니다.`,
+  );
+}
+
+function tri224Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 2));
+  const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
+  return make(
+    unit,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 가장 큰 각의 크기는 몇 도인가?`,
+    deg(Math.max(...shown)),
+    `가장 큰 각은 ${deg(Math.max(...shown))}입니다.`,
+  );
+}
+
+function tri224Rest(unit: UnitSeed, rng: Rng): ElemProblem {
+  const angles = triAnglesOfClass(rng, intBetween(rng, 0, 2));
+  return make(
+    unit,
+    `삼각형의 두 각의 크기가 ${deg(angles[0]!)}, ${deg(angles[1]!)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    deg(angles[2]!),
+    `${expr(`180-${angles[0]}-${angles[1]}=${angles[2]}`)} 이므로 ${deg(angles[2]!)}입니다.`,
+  );
+}
+
+function tri225BothNames(unit: UnitSeed, rng: Rng): ElemProblem {
+  const same = pick(rng, baseAngles(20, 85));
+  const apex = 180 - same * 2;
+  const shown = pick(rng, TRI_PERMS).map((i) => [same, same, apex][i]!);
+  return make(
+    unit,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 이등변삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
+    triClass(same, same, apex),
+    `가장 큰 각이 ${deg(Math.max(same, apex))}이므로 ${triClass(same, same, apex)}입니다.`,
+    fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
+  );
+}
+
+function tri225PickRightIso(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "rightTri", ["eqTri", "wideTri"]);
+  return make(
+    unit,
+    "그림에서 직각이등변삼각형이 될 수 있는 기호를 쓰시오.",
+    put.answer,
+    `직각이 있는 이등변삼각형은 직각이등변삼각형입니다. ${put.answer}입니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function tri225EqIsAcute(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 정삼각형은 예각삼각형인가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `정삼각형의 세 각은 모두 ${deg(60)}이므로 예각삼각형입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri225SideClass(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 5, 12);
+  return make(
+    unit,
+    `세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}인 삼각형을 변의 길이에 따라 분류하면 무엇인가?`,
+    "정삼각형",
+    `세 변의 길이가 모두 같으므로 정삼각형입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri225AngleClass(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 정삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
+    "예각삼각형",
+    `세 각이 모두 ${deg(60)}이므로 예각삼각형입니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function tri225Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 직각삼각형에서 직각인 꼭짓점은 몇 개인가?`,
+    n(1),
+    `직각삼각형의 직각은 ${n(1)}개입니다.`,
+    fig("namedShapes", { items: [{ shape: "rightTri", label: "가" }] }),
   );
 }
 
@@ -9947,6 +11945,634 @@ function tier237Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${expr(`${dec2(mid)}-${dec2(lo)}=${dec2(small)}`)} 이고 ` +
       `${expr(`${dec2(hi)}-${dec2(mid)}=${dec2(wide)}`)} 이므로 ` +
       `가장 작은 차는 ${n(dec2(small))}입니다.`,
+  );
+}
+
+function decCol(a: string, b: string, op: "+" | "−"): Record<string, unknown> {
+  return fig("columnOp", { top: a, op, bottom: b });
+}
+
+function dec231TenthDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const whole = intBetween(rng, 1, 9);
+  const d = [
+    intBetween(rng, 1, 9),
+    intBetween(rng, 1, 9),
+    intBetween(rng, 1, 9),
+  ];
+  const value = `${whole}.${d.join("")}`;
+  return make(
+    unit,
+    `${n(value)}에서 소수 첫째 자리 숫자를 쓰시오.`,
+    n(d[0]!),
+    `${n(value)}의 소수 첫째 자리 숫자는 ${n(d[0]!)}입니다.`,
+    cards([value]),
+  );
+}
+
+function dec231Hundredths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const count = intBetween(rng, 11, 99);
+  return make(
+    unit,
+    `${n("0.01")}이 ${n(count)}개인 수를 소수로 쓰시오.`,
+    n(dec2(count)),
+    `${n("0.01")}이 ${n(count)}개이면 ${n(dec2(count))}입니다.`,
+  );
+}
+
+function dec231TenthsCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `소수 한 자리 수 ${josaNum(dec1(v), "을", "를")} ${n("0.1")}이 몇 개인 수로 나타내시오.`,
+    `${n(v)}개`,
+    `${n("0.1")}이 ${n(v)}개이면 ${n(dec1(v))}입니다.`,
+  );
+}
+
+function dec231Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v !== a),
+  );
+  const hi = Math.max(a, b);
+  return make(
+    unit,
+    `${n(dec1(a))}과 ${n(dec1(b))} 가운데 더 큰 수를 쓰시오.`,
+    n(dec1(hi)),
+    `${n(dec1(hi))}이 더 큽니다.`,
+    cards([dec1(a), dec1(b)]),
+  );
+}
+
+function dec231PlaceWorth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 1, 9);
+  return make(
+    unit,
+    `소수 첫째 자리 숫자가 ${n(d)}일 때 그 숫자가 나타내는 수를 쓰시오.`,
+    n(dec1(d)),
+    `소수 첫째 자리는 ${n("0.1")}이 ${n(d)}개인 ${n(dec1(d))}을 나타냅니다.`,
+  );
+}
+
+function dec231HowManyPlaces(unit: UnitSeed, rng: Rng): ElemProblem {
+  const digits = intBetween(rng, 1, 3);
+  const frac = Array.from({ length: digits }, () => intBetween(rng, 1, 9)).join(
+    "",
+  );
+  const value = `${intBetween(rng, 1, 9)}.${frac}`;
+  return make(
+    unit,
+    `${n(value)}은 소수 몇 자리 수인가?`,
+    `${n(digits)}자리`,
+    `소수점 아래가 ${n(digits)}자리이므로 소수 ${n(digits)}자리 수입니다.`,
+    cards([value]),
+  );
+}
+
+function dec232TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(
+    rng,
+    DEC2_POOL.filter((x) => x >= 10),
+  );
+  return make(
+    unit,
+    `${n(dec2(v))}에서 자연수 부분의 숫자를 쓰시오.`,
+    n(Math.floor(v / 100)),
+    `${n(dec2(v))}의 자연수 부분은 ${n(Math.floor(v / 100))}입니다.`,
+    cards([dec2(v)]),
+  );
+}
+
+function dec232SecondDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, DEC2_POOL);
+  return make(
+    unit,
+    `${n(dec2(v))}에서 소수 둘째 자리 숫자를 쓰시오.`,
+    n(v % 10),
+    `소수 둘째 자리 숫자는 ${n(v % 10)}입니다.`,
+    cards([dec2(v)]),
+  );
+}
+
+function dec232AsHundredths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(
+    rng,
+    DEC2_POOL.filter((x) => x < 100),
+  );
+  return make(
+    unit,
+    `${josaNum(dec2(v), "은", "는")} ${n("0.01")}이 몇 개인 수입니까?`,
+    `${n(v)}개`,
+    `${n("0.01")}이 ${n(v)}개이면 ${n(dec2(v))}입니다.`,
+  );
+}
+
+function dec232Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC2_POOL);
+  const b = pick(
+    rng,
+    DEC2_POOL.filter((v) => v !== a),
+  );
+  return make(
+    unit,
+    `${n(dec2(a))}과 ${n(dec2(b))} 가운데 더 큰 수를 쓰시오.`,
+    n(dec2(Math.max(a, b))),
+    `${n(dec2(Math.max(a, b)))}이 더 큽니다.`,
+    cards([dec2(a), dec2(b)]),
+  );
+}
+
+function dec232FirstDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, DEC2_POOL);
+  return make(
+    unit,
+    `${n(dec2(v))}에서 소수 첫째 자리 숫자를 쓰시오.`,
+    n(Math.floor(v / 10) % 10),
+    `소수 첫째 자리 숫자는 ${n(Math.floor(v / 10) % 10)}입니다.`,
+  );
+}
+
+function dec232Places(unit: UnitSeed, rng: Rng): ElemProblem {
+  const v = pick(rng, DEC2_POOL);
+  return make(
+    unit,
+    `${n(dec2(v))}은 소수 몇 자리 수인가?`,
+    `${n(2)}자리`,
+    `소수점 아래가 ${n(2)}자리입니다.`,
+    cards([dec2(v)]),
+  );
+}
+
+function dec233Times10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${josaNum(dec1(x), "의", "의")} ${n(10)}배는 얼마인가?`,
+    n(x),
+    `소수점이 오른쪽으로 한 자리 옮겨져 ${n(x)}입니다.`,
+  );
+}
+
+function dec233Div10(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${josaNum(dec1(x), "의", "의")} $\\frac{1}{10}$은 얼마인가?`,
+    n(dec2(x)),
+    `소수점이 왼쪽으로 한 자리 옮겨져 ${n(dec2(x))}입니다.`,
+  );
+}
+
+function dec233Times100(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${n(dec2(x))}의 소수점을 오른쪽으로 ${n(2)}자리 옮긴 수를 쓰시오.`,
+    n(x),
+    `소수점이 오른쪽으로 두 자리 옮겨져 ${n(x)}입니다.`,
+  );
+}
+
+function dec233HowManyTimes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${josaNum(dec1(x), "은", "는")} ${n(dec2(x))}의 몇 배인가?`,
+    n(10),
+    `소수점이 한 자리 옮겨지므로 ${n(10)}배입니다.`,
+  );
+}
+
+function dec233MoveLeft(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${n(x)}의 소수점을 왼쪽으로 ${n(1)}자리 옮긴 수를 쓰시오.`,
+    n(dec1(x)),
+    `${n(x)}에서 소수점을 왼쪽으로 옮기면 ${n(dec1(x))}입니다.`,
+  );
+}
+
+function dec233MoveRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC1_POOL);
+  return make(
+    unit,
+    `${josaNum(dec2(x), "에", "에")} ${n(10)}을 곱한 값을 쓰시오.`,
+    n(dec1(x)),
+    `소수점이 오른쪽으로 한 자리 옮겨져 ${n(dec1(x))}입니다.`,
+  );
+}
+
+function dec234Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합을 구하시오.`,
+    n(dec1(a + b)),
+    `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
+    decCol(dec1(a), dec1(b), "+"),
+  );
+}
+
+function dec234Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`${dec1(a)}+\\square=${dec1(a + b)}`)}`,
+    n(dec1(b)),
+    `${expr(`${dec1(a + b)}-${dec1(a)}=${dec1(b)}`)} 입니다.`,
+  );
+}
+
+function dec234TenthsDigit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const s = a + b;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합에서 소수 첫째 자리 숫자를 쓰시오.`,
+    n(s % 10),
+    `${expr(`${dec1(a)}+${dec1(b)}=${dec1(s)}`)} 이므로 소수 첫째 자리 숫자는 ${n(s % 10)}입니다.`,
+    decCol(dec1(a), dec1(b), "+"),
+  );
+}
+
+function dec234VsTen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const s = a + b;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합은 ${n(10)}보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    s > 100 ? "예" : "아니요",
+    `합은 ${n(dec1(s))}입니다.`,
+    decCol(dec1(a), dec1(b), "+"),
+  );
+}
+
+function dec234Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const s = a + b;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합에서 자연수 부분을 쓰시오.`,
+    n(Math.floor(s / 10)),
+    `합은 ${n(dec1(s))}이므로 자연수 부분은 ${n(Math.floor(s / 10))}입니다.`,
+    decCol(dec1(a), dec1(b), "+"),
+  );
+}
+
+function dec234PlusOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합보다 ${n(1)} 큰 수를 쓰시오.`,
+    n(dec1(a + b + 10)),
+    `${expr(`${dec1(a + b)}+1=${dec1(a + b + 10)}`)} 입니다.`,
+  );
+}
+
+function dec235Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차를 구하시오.`,
+    n(dec1(a - b)),
+    `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
+    decCol(dec1(a), dec1(b), "−"),
+  );
+}
+
+function dec235Missing(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`${dec1(a)}-\\square=${dec1(a - b)}`)}`,
+    n(dec1(b)),
+    `${expr(`${dec1(a)}-${dec1(a - b)}=${dec1(b)}`)} 입니다.`,
+  );
+}
+
+function dec235Tenths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  const d = a - b;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차에서 소수 첫째 자리 숫자를 쓰시오.`,
+    n(d % 10),
+    `차는 ${n(dec1(d))}이므로 소수 첫째 자리 숫자는 ${n(d % 10)}입니다.`,
+    decCol(dec1(a), dec1(b), "−"),
+  );
+}
+
+function dec235Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${n(dec1(a))}과 ${n(dec1(b))} 가운데 더 큰 수를 쓰시오.`,
+    n(dec1(a)),
+    `${n(dec1(a))}이 더 큽니다.`,
+    cards([dec1(a), dec1(b)]),
+  );
+}
+
+function dec235Ones(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  const d = a - b;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차에서 자연수 부분을 쓰시오.`,
+    n(Math.floor(d / 10)),
+    `차는 ${n(dec1(d))}입니다.`,
+    decCol(dec1(a), dec1(b), "−"),
+  );
+}
+
+function dec235MinusOne(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 30),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a - 10 && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차보다 ${n(1)} 작은 수를 쓰시오.`,
+    n(dec1(a - b - 10)),
+    `${expr(`${dec1(a - b)}-1=${dec1(a - b - 10)}`)} 입니다.`,
+  );
+}
+
+function dec236Tape(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20 && v <= 80),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 20 && v <= 80 && (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `리본 ${n(dec1(a))} m와 ${n(dec1(b))} m를 이어 붙였습니다. 모두 몇 m인가?`,
+    n(dec1(a + b)),
+    `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
+    fig("tape", { length: a + b, label: `${dec1(a + b)} m`, segments: 2 }),
+  );
+}
+
+function dec236GapToTen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < 90),
+  );
+  return make(
+    unit,
+    `${n(dec1(a))} m인 끈을 ${n(10)} m로 만들려면 몇 m가 더 필요한가?`,
+    n(dec1(100 - a)),
+    `${expr(`10-${dec1(a)}=${dec1(100 - a)}`)} 입니다.`,
+    fig("tape", { length: a, label: `${dec1(a)} m`, segments: 1 }),
+  );
+}
+
+function dec236ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 40),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 40),
+  );
+  const c = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 40 && (a + b + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${n(dec1(a))} L, ${n(dec1(b))} L, ${n(dec1(c))} L의 물을 한 통에 담았습니다. 모두 몇 L인가?`,
+    n(dec1(a + b + c)),
+    `${expr(`${dec1(a)}+${dec1(b)}+${dec1(c)}=${dec1(a + b + c)}`)} 입니다.`,
+  );
+}
+
+function dec236Twice(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => (v * 2) % 10 !== 0 && v <= 49),
+  );
+  return make(
+    unit,
+    `한 변의 길이가 ${n(dec1(a))} cm인 정사각형의 이웃한 두 변의 길이의 합은 몇 cm인가?`,
+    n(dec1(a * 2)),
+    `${expr(`${dec1(a)}+${dec1(a)}=${dec1(a * 2)}`)} 입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function dec236LeftIfAdd(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 70),
+  );
+  const add = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 20 && (a + v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `물이 ${n(dec1(a))} L 있었습니다. ${n(dec1(add))} L를 더 부었습니다. 지금은 몇 L인가?`,
+    n(dec1(a + add)),
+    `${expr(`${dec1(a)}+${dec1(add)}=${dec1(a + add)}`)} 입니다.`,
+  );
+}
+
+function dec236WhichBiggerSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => (a + v) % 10 !== 0),
+  );
+  const c = pick(
+    rng,
+    DEC1_POOL.filter((v) => v !== a),
+  );
+  const d = pick(
+    rng,
+    DEC1_POOL.filter((v) => (c + v) % 10 !== 0),
+  );
+  const s1 = a + b;
+  const s2 = c + d;
+  return make(
+    unit,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합과 ${expr(`${dec1(c)}+${dec1(d)}`)} 의 합 가운데 더 큰 수를 쓰시오.`,
+    n(dec1(Math.max(s1, s2))),
+    `${n(dec1(s1))}과 ${n(dec1(s2))} 중 더 큰 수는 ${n(dec1(Math.max(s1, s2)))}입니다.`,
+  );
+}
+
+function dec237Cut(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 40),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a - 5 && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `길이가 ${n(dec1(a))} m인 끈에서 ${n(dec1(b))} m를 잘라 냈습니다. 남은 끈은 몇 m인가?`,
+    n(dec1(a - b)),
+    `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
+    fig("tape", { length: a, label: `${dec1(a)} m`, segments: 1 }),
+  );
+}
+
+function dec237Left(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 50),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a - 10 && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `주스 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L를 마셨습니다. 남은 주스는 몇 L인가?`,
+    n(dec1(a - b)),
+    `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
+  );
+}
+
+function dec237HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 30),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v < a && (a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${n(dec1(a))} kg인 상자 A는 ${n(dec1(b))} kg인 상자 B보다 몇 kg 더 무거운가?`,
+    n(dec1(a - b)),
+    `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
+  );
+}
+
+function dec237Need(unit: UnitSeed, rng: Rng): ElemProblem {
+  const have = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 60),
+  );
+  const need = pick(
+    rng,
+    DEC1_POOL.filter((v) => v > have && (v - have) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `한 통에 ${n(dec1(need))} L가 필요합니다. 지금은 ${n(dec1(have))} L가 있습니다. 몇 L가 모자라는가?`,
+    n(dec1(need - have)),
+    `${expr(`${dec1(need)}-${dec1(have)}=${dec1(need - have)}`)} 입니다.`,
+  );
+}
+
+function dec237Gap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, DEC1_POOL);
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v !== a && Math.abs(a - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `${n(dec1(a))}과 ${n(dec1(b))}의 차는 얼마인가?`,
+    n(dec1(Math.abs(a - b))),
+    `${expr(`${dec1(Math.max(a, b))}-${dec1(Math.min(a, b))}=${dec1(Math.abs(a - b))}`)} 입니다.`,
+    decCol(dec1(Math.max(a, b)), dec1(Math.min(a, b)), "−"),
+  );
+}
+
+function dec237RemainAfterTwo(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(
+    rng,
+    DEC1_POOL.filter((v) => v >= 60),
+  );
+  const b = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 20),
+  );
+  const c = pick(
+    rng,
+    DEC1_POOL.filter((v) => v <= 20 && a - b - v > 0 && (a - b - v) % 10 !== 0),
+  );
+  return make(
+    unit,
+    `페인트 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L와 ${n(dec1(c))} L를 썼습니다. 남은 페인트는 몇 L인가?`,
+    n(dec1(a - b - c)),
+    `${expr(`${dec1(a)}-${dec1(b)}-${dec1(c)}=${dec1(a - b - c)}`)} 입니다.`,
   );
 }
 
@@ -11218,6 +13844,468 @@ function tier247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function quad241Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림처럼 두 직선이 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
+    "수직",
+    `두 직선이 ${deg(90)}로 만나면 서로 수직입니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad241RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 두 직선이 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
+    n(4),
+    `만나는 점 주위로 직각이 ${n(4)}개 생깁니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad241OneAngle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 두 직선이 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
+    deg(90),
+    `수직으로 만나면 각의 크기는 ${deg(90)}입니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad241Sum3(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 1, 4);
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 두 직선이 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
+    deg(90 * k),
+    `${expr(`90\\times${k}=${90 * k}`)} 입니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad241NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 두 직선이 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    "아니요",
+    `네 각이 모두 직각입니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad241PerpName(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 한 직선에 수직인 직선을 무엇이라고 하는가?`,
+    "수선",
+    `한 직선에 수직인 직선이 수선입니다.`,
+    fig("lineRelation", { relation: "perpendicular" }),
+  );
+}
+
+function quad242Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 아무리 늘여도 만나지 않는 두 직선을 무엇이라고 하는가?`,
+    "평행",
+    `만나지 않는 두 직선은 서로 평행합니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad242Dist(unit: UnitSeed, rng: Rng): ElemProblem {
+  const dist = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `평행한 두 직선 사이에 그은 수선의 길이가 ${cm(dist)}입니다. 두 직선 사이의 거리는 몇 cm인가?`,
+    cm(dist),
+    `평행선 사이의 거리는 수선의 길이이므로 ${cm(dist)}입니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad242Same(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 평행선 사이에 그은 수선의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `평행선 사이의 수선의 길이는 모두 같습니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 2 }),
+  );
+}
+
+function quad242Meet(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 평행한 두 직선을 늘이면 만나는가? '예' 또는 '아니요'로 답하시오.`,
+    "아니요",
+    `평행한 두 직선은 만나지 않습니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `평행한 두 직선 사이에 수선을 ${n(k)}개 그었습니다. 수선은 몇 개인가?`,
+    n(k),
+    `그은 수선은 ${n(k)}개입니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: Math.min(k, 3) }),
+  );
+}
+
+function quad242Angle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번에서 평행선에 그은 수선이 이루는 각의 크기는 몇 도인가?`,
+    deg(90),
+    `수선이므로 각의 크기는 ${deg(90)}입니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad243Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 9);
+  const b = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `세 평행선에서 이웃한 두 거리의 합이 ${cm(a)}와 ${cm(b)}일 때 양쪽 직선 사이의 거리는 몇 cm인가?`,
+    cm(a + b),
+    `${expr(`${a}+${b}=${a + b}`)} 이므로 ${cm(a + b)}입니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad243One(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `평행선 사이의 거리가 ${cm(d)}일 때 그 사이에 그은 수선의 길이는 몇 cm인가?`,
+    cm(d),
+    `거리는 수선의 길이와 같으므로 ${cm(d)}입니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 1 }),
+  );
+}
+
+function quad243Farther(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 3, 8);
+  const b = a + intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `직선 가와 나 사이의 거리는 ${cm(a)}, 나와 다 사이의 거리는 ${cm(b)}입니다. 더 먼 쪽의 거리는 몇 cm인가?`,
+    cm(b),
+    `${cm(b)}이 ${cm(a)}보다 멉니다.`,
+  );
+}
+
+function quad243Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 5, 12);
+  const b = intBetween(rng, 2, a - 1);
+  return make(
+    unit,
+    `두 평행선 사이의 거리가 ${cm(a)}와 ${cm(b)}입니다. 두 거리의 차는 몇 cm인가?`,
+    cm(a - b),
+    `${expr(`${a}-${b}=${a - b}`)} 이므로 ${cm(a - b)}입니다.`,
+  );
+}
+
+function quad243Equal(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 평행선에서 어디에 수선을 그어도 길이가 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `평행선 사이의 거리는 어디서 재어도 같습니다.`,
+    fig("lineRelation", { relation: "parallel", perpCount: 2 }),
+  );
+}
+
+function quad243Triple(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `세 평행선이 같은 간격 ${cm(a)}로 놓여 있습니다. 양쪽 직선 사이의 거리는 몇 cm인가?`,
+    cm(a * 2),
+    `${expr(`${a}\\times2=${a * 2}`)} 이므로 ${cm(a * 2)}입니다.`,
+  );
+}
+
+function quad244Pick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "trap", ["irregQuad", "rect"]);
+  return make(
+    unit,
+    "그림에서 사다리꼴의 기호를 쓰시오.",
+    put.answer,
+    `${put.answer}는 평행한 변이 한 쌍 있는 사각형입니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function quad244Pairs(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 사다리꼴에서 평행한 변은 몇 쌍인가?`,
+    `${n(1)}쌍`,
+    `사다리꼴은 평행한 변이 ${n(1)}쌍입니다.`,
+    fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
+  );
+}
+
+function quad244Perim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { short, long, legA, legB } = trapSides(rng);
+  return make(
+    unit,
+    `네 변의 길이가 ${cm(short)}, ${cm(long)}, ${cm(legA)}, ${cm(legB)}인 사다리꼴의 네 변의 길이의 합은 몇 cm인가?`,
+    cm(short + long + legA + legB),
+    `${expr(`${short}+${long}+${legA}+${legB}=${short + long + legA + legB}`)} 입니다.`,
+  );
+}
+
+function quad244Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 하는가?`,
+    "사다리꼴",
+    `평행한 변이 한 쌍인 사각형은 사다리꼴입니다.`,
+    fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
+  );
+}
+
+function quad244Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 사다리꼴의 꼭짓점은 몇 개인가?`,
+    n(4),
+    `사각형의 꼭짓점은 ${n(4)}개입니다.`,
+    fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
+  );
+}
+
+function quad244Sides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 사다리꼴에서 평행하지 않은 변은 몇 개인가?`,
+    n(2),
+    `사다리꼴은 평행한 변이 ${n(1)}쌍이고 평행하지 않은 변은 ${n(2)}개입니다.`,
+    fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
+  );
+}
+
+function quad245OppSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `평행사변형의 한 변의 길이가 ${cm(s)}입니다. 마주 보는 변의 길이는 몇 cm인가?`,
+    cm(s),
+    `평행사변형은 마주 보는 두 변의 길이가 같습니다.`,
+    paraFigure({ sides: [`${s} cm`, null, null, null] }),
+  );
+}
+
+function quad245NeighborSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, [50, 60, 70, 80, 100, 110, 120]);
+  return make(
+    unit,
+    `평행사변형의 한 각이 ${deg(a)}입니다. 이웃한 각의 크기는 몇 도인가?`,
+    deg(180 - a),
+    `${expr(`180-${a}=${180 - a}`)} 입니다.`,
+    paraFigure({ angles: [`${a}°`, null, null, null] }),
+  );
+}
+
+function quad245OppAngle(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, [50, 60, 70, 80, 100, 110, 120]);
+  return make(
+    unit,
+    `평행사변형의 한 각이 ${deg(a)}입니다. 마주 보는 각의 크기는 몇 도인가?`,
+    deg(a),
+    `평행사변형은 마주 보는 두 각의 크기가 같습니다.`,
+    paraFigure({ angles: [`${a}°`, null, null, null] }),
+  );
+}
+
+function quad245Perim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 4, 12);
+  const b = intBetween(rng, 3, 11);
+  return make(
+    unit,
+    `이웃한 두 변의 길이가 ${cm(a)}, ${cm(b)}인 평행사변형의 네 변의 길이의 합은 몇 cm인가?`,
+    cm((a + b) * 2),
+    `${expr(`(${a}+${b})\\times2=${(a + b) * 2}`)} 입니다.`,
+  );
+}
+
+function quad245Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 평행사변형의 꼭짓점은 몇 개인가?`,
+    n(4),
+    `사각형의 꼭짓점은 ${n(4)}개입니다.`,
+    paraFigure({}),
+  );
+}
+
+function quad245Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 마주 보는 두 쌍의 변이 각각 평행한 사각형을 무엇이라고 하는가?`,
+    "평행사변형",
+    `마주 보는 두 쌍의 변이 평행한 사각형은 평행사변형입니다.`,
+    paraFigure({}),
+  );
+}
+
+function quad246Side(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `마름모의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm인가?`,
+    cm(s),
+    `마름모는 네 변의 길이가 모두 같습니다.`,
+    fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
+  );
+}
+
+function quad246Perim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `한 변이 ${cm(s)}인 마름모의 네 변의 길이의 합은 몇 cm인가?`,
+    cm(s * 4),
+    `${expr(`${s}\\times4=${s * 4}`)} 입니다.`,
+    fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
+  );
+}
+
+function quad246Pick(unit: UnitSeed, rng: Rng): ElemProblem {
+  const put = labelledPick(rng, "tallDiamond", ["rect", "trap"]);
+  return make(
+    unit,
+    "그림에서 마름모의 기호를 쓰시오.",
+    put.answer,
+    `${put.answer}는 네 변의 길이가 모두 같습니다.`,
+    fig("namedShapes", { items: put.items }),
+  );
+}
+
+function quad246FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `네 변의 길이의 합이 ${cm(s * 4)}인 마름모의 한 변은 몇 cm인가?`,
+    cm(s),
+    `${expr(`${s * 4}\\div4=${s}`)} 입니다.`,
+  );
+}
+
+function quad246AllEqual(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 마름모의 네 변의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `마름모는 네 변의 길이가 모두 같습니다.`,
+    fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
+  );
+}
+
+function quad246Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 마름모의 꼭짓점은 몇 개인가?`,
+    n(4),
+    `사각형의 꼭짓점은 ${n(4)}개입니다.`,
+    fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
+  );
+}
+
+function quad247SqIsRect(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 정사각형은 직사각형이라고 할 수 있는가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `정사각형은 네 각이 모두 직각이므로 직사각형입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function quad247NameRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 네 각의 크기가 모두 직각인 사각형을 무엇이라고 하는가?`,
+    "직사각형",
+    `네 각이 모두 직각인 사각형은 직사각형입니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function quad247NameEq(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형을 무엇이라고 하는가?`,
+    "정사각형",
+    `네 변의 길이가 같고 네 각이 직각인 사각형은 정사각형입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function quad247SqSide(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `한 변이 ${cm(s)}인 정사각형의 네 변의 길이의 합은 몇 cm인가?`,
+    cm(s * 4),
+    `${expr(`${s}\\times4=${s * 4}`)} 입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
+function quad247RectPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 5, 12);
+  const h = intBetween(rng, 3, w - 1);
+  return make(
+    unit,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형의 네 변의 길이의 합은 몇 cm인가?`,
+    cm((w + h) * 2),
+    `${expr(`(${w}+${h})\\times2=${(w + h) * 2}`)} 입니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function quad247SqFromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = intBetween(rng, 4, 15);
+  return make(
+    unit,
+    `네 변의 길이의 합이 ${cm(s * 4)}인 정사각형의 한 변은 몇 cm인가?`,
+    cm(s),
+    `${expr(`${s * 4}\\div4=${s}`)} 입니다.`,
+    fig("markedShape", { shape: "square" }),
+  );
+}
+
 /* ─────────────────────── 2-5 꺾은선그래프 ─────────────────────── */
 
 type TimeLabel = { text: string; math: string };
@@ -11977,6 +15065,243 @@ function tier253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function linePack(unit: UnitSeed, rng: Rng) {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = lineValues(rng, theme);
+  const max = Math.max(...nums);
+  const min = Math.min(...nums);
+  const figure = fig("lineChart", {
+    values: theme.labels.map((label, i) => ({
+      label: label.text,
+      value: nums[i]!,
+    })),
+    yMax: max + 3,
+    yStep: theme.yStep,
+    yLabel: theme.unit,
+  });
+  const intro = `${josa(theme.topic, "을", "를")} 조사하여 나타낸 꺾은선그래프입니다.`;
+  return { theme, nums, max, min, figure, intro };
+}
+
+function line251LeastWhen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const at = d.nums.indexOf(d.min);
+  return make(
+    unit,
+    `${d.intro} ${d.theme.topic}의 값이 가장 작은 때는 언제인가?`,
+    d.theme.labels[at]!.math,
+    `${d.theme.labels[at]!.math}일 때 ${n(d.min)}${d.theme.unit}로 가장 작습니다.`,
+    d.figure,
+  );
+}
+
+function line251Read(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const at = intBetween(rng, 0, d.theme.labels.length - 1);
+  const label = d.theme.labels[at]!;
+  return make(
+    unit,
+    `${d.intro} ${label.math}의 ${josa(d.theme.topic, "은", "는")} 몇 ${d.theme.unit}인가?`,
+    `${n(d.nums[at]!)}${d.theme.unit}`,
+    `${label.math}의 점이 가리키는 값은 ${n(d.nums[at]!)}${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
+function line251MaxValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} ${d.theme.topic}의 가장 큰 값은 몇 ${d.theme.unit}인가?`,
+    `${n(d.max)}${d.theme.unit}`,
+    `가장 큰 값은 ${n(d.max)}${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
+function line251First(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 맨 처음에 조사한 때의 값은 몇 ${d.theme.unit}인가?`,
+    `${n(d.nums[0]!)}${d.theme.unit}`,
+    `${d.theme.labels[0]!.math}의 값은 ${n(d.nums[0]!)}${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
+function line251Last(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const last = d.theme.labels.length - 1;
+  return make(
+    unit,
+    `${d.intro} 맨 나중에 조사한 때의 값은 몇 ${d.theme.unit}인가?`,
+    `${n(d.nums[last]!)}${d.theme.unit}`,
+    `${d.theme.labels[last]!.math}의 값은 ${n(d.nums[last]!)}${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
+function line251Points(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 꺾은선그래프에 찍힌 점은 모두 몇 개인가?`,
+    n(d.nums.length),
+    `점이 ${n(d.nums.length)}개 찍혀 있습니다.`,
+    d.figure,
+  );
+}
+
+function line252RiseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const rises = nums.slice(1).filter((v, i) => v > nums[i]!).length;
+  return make(
+    unit,
+    `${tableIntro(theme)} 값이 늘어난 구간은 모두 몇 번인가?`,
+    `${n(rises)}번`,
+    `값이 늘어난 구간이 ${n(rises)}번입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line252Range(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const max = Math.max(...nums);
+  const min = Math.min(...nums);
+  return make(
+    unit,
+    `${tableIntro(theme)} 가장 큰 값과 가장 작은 값의 차는 몇 ${theme.unit}인가?`,
+    `${n(max - min)}${theme.unit}`,
+    `${expr(`${max}-${min}=${max - min}`)} 입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line252PairDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const i = intBetween(rng, 0, nums.length - 2);
+  const gap = Math.abs(nums[i + 1]! - nums[i]!);
+  return make(
+    unit,
+    `${tableIntro(theme)} ${josa(theme.labels[i]!.math, "과", "와")} ${theme.labels[i + 1]!.math} 사이의 차는 몇 ${theme.unit}인가?`,
+    `${n(gap)}${theme.unit}`,
+    `${expr(`${Math.max(nums[i]!, nums[i + 1]!)}-${Math.min(nums[i]!, nums[i + 1]!)}=${gap}`)} 입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line252MaxWhen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const at = nums.indexOf(Math.max(...nums));
+  return make(
+    unit,
+    `${tableIntro(theme)} 값이 가장 큰 때는 언제인가?`,
+    theme.labels[at]!.math,
+    `${theme.labels[at]!.math}일 때 가장 큽니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line252MinValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  const min = Math.min(...nums);
+  return make(
+    unit,
+    `${tableIntro(theme)} 가장 작은 값은 몇 ${theme.unit}인가?`,
+    `${n(min)}${theme.unit}`,
+    `가장 작은 값은 ${n(min)}${theme.unit}입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line252HowManyRows(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = tableValues(rng, theme);
+  return make(
+    unit,
+    `${tableIntro(theme)} 조사한 때는 모두 몇 개인가?`,
+    n(theme.labels.length),
+    `때가 ${n(theme.labels.length)}개입니다.`,
+    tableFigure(theme, nums),
+  );
+}
+
+function line253Step(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 세로 눈금 한 칸은 몇 ${unitJosa(d.theme.unit, "을", "를")} 나타내는가?`,
+    `${n(d.theme.yStep)}${d.theme.unit}`,
+    `한 칸은 ${n(d.theme.yStep)}${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
+function line253Rise(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const rises = d.nums.slice(1).filter((v, i) => v > d.nums[i]!).length;
+  return make(
+    unit,
+    `${d.intro} ${d.theme.topic}의 값이 늘어난 구간은 모두 몇 번인가?`,
+    `${n(rises)}번`,
+    `늘어난 구간이 ${n(rises)}번입니다.`,
+    d.figure,
+  );
+}
+
+function line253Range(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 가장 큰 값과 가장 작은 값의 차는 몇 ${d.theme.unit}인가?`,
+    `${n(d.max - d.min)}${d.theme.unit}`,
+    `${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 입니다.`,
+    d.figure,
+  );
+}
+
+function line253FirstLast(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const last = d.nums[d.nums.length - 1]!;
+  const first = d.nums[0]!;
+  return make(
+    unit,
+    `${d.intro} ${d.theme.labels[d.theme.labels.length - 1]!.math}의 값은 ${d.theme.labels[0]!.math}의 값보다 몇 ${d.theme.unit} 더 ${last >= first ? "큰가" : "작은가"}?`,
+    `${n(Math.abs(last - first))}${d.theme.unit}`,
+    `${expr(`${Math.max(first, last)}-${Math.min(first, last)}=${Math.abs(last - first)}`)} 입니다.`,
+    d.figure,
+  );
+}
+
+function line253MaxWhen(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  const at = d.nums.indexOf(d.max);
+  return make(
+    unit,
+    `${d.intro} ${d.theme.topic}의 값이 가장 큰 때는 언제인가?`,
+    d.theme.labels[at]!.math,
+    `${d.theme.labels[at]!.math}일 때 가장 큽니다.`,
+    d.figure,
+  );
+}
+
+function line253Unit(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = linePack(unit, rng);
+  return make(
+    unit,
+    `${d.intro} 세로축의 단위는 무엇인가?`,
+    d.theme.unit,
+    `세로축의 단위는 ${d.theme.unit}입니다.`,
+    d.figure,
+  );
+}
+
 /* ───────────────────────── 2-6 다각형 ─────────────────────────
  *
  * 도형 이름은 **한자 수사**로만 쓴다(R4) — `polyName` 을 거치면 `8각형`·`정n각형` 이 나올 수 없다.
@@ -12599,6 +15924,266 @@ function tier264Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `같습니다. ${to.name} 모양 조각 한 개가 ${polyName(3, true)} 모양 조각 ` +
       `${n(to.tris)}개이므로 ${expr(`${tris}\\div${to.tris}=${want}`)} 이고 ` +
       `${n(want)}개 필요합니다.`,
+  );
+}
+
+function poly261Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 8);
+  return make(
+    unit,
+    `${polyName(sides)}보다 변이 ${n(2)}개 많은 다각형의 이름을 쓰시오.`,
+    polyName(sides + 2),
+    `${expr(`${sides}+2=${sides + 2}`)} 이므로 ${polyName(sides + 2)}입니다.`,
+  );
+}
+
+function poly261Verts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    `${polyName(sides)}의 꼭짓점은 몇 개인가?`,
+    n(sides),
+    `변의 수와 꼭짓점의 수는 같으므로 ${n(sides)}개입니다.`,
+  );
+}
+
+function poly261SidesOfName(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  return make(
+    unit,
+    `${polyName(sides)}을 한 바퀴 돌며 변을 세면 몇 개인가?`,
+    n(sides),
+    `${polyName(sides)}을 한 바퀴 돌면 변은 ${n(sides)}개입니다.`,
+  );
+}
+
+function poly261Same(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 4, 9);
+  return make(
+    unit,
+    `${polyName(sides)}에서 변의 수와 꼭짓점의 수는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `다각형은 변의 수와 꼭짓점의 수가 같습니다.`,
+  );
+}
+
+function poly261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 3, 10);
+  return make(
+    unit,
+    `${polyName(sides)}의 변의 수와 꼭짓점의 수의 합은 얼마인가?`,
+    n(sides * 2),
+    `${expr(`${sides}+${sides}=${sides * 2}`)} 입니다.`,
+  );
+}
+
+function poly261Pent(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 오각형의 변은 몇 개인가?`,
+    n(5),
+    `오각형의 변은 ${n(5)}개입니다.`,
+  );
+}
+
+function poly262AllDiag(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  const diag = (sides * (sides - 3)) / 2;
+  return make(
+    unit,
+    `${polyName(sides)}에 그을 수 있는 대각선은 모두 몇 개인가?`,
+    `${n(diag)}개`,
+    `${expr(`${sides}\\times${sides - 3}\\div2=${diag}`)} 개입니다.`,
+  );
+}
+
+function poly262FromVertex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  return make(
+    unit,
+    `${polyName(sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인가?`,
+    `${n(sides - 3)}개`,
+    `${expr(`${sides}-3=${sides - 3}`)} 개입니다.`,
+  );
+}
+
+function poly262TriDiag(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 삼각형에 그을 수 있는 대각선은 몇 개인가?`,
+    n(0),
+    `삼각형에는 대각선을 그을 수 없습니다.`,
+    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+  );
+}
+
+function poly262QuadDiag(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 사각형에 그을 수 있는 대각선은 모두 몇 개인가?`,
+    n(2),
+    `사각형의 대각선은 ${n(2)}개입니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function poly262HexFrom(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 10);
+  return make(
+    unit,
+    `${polyName(sides)}의 한 꼭짓점에서 대각선을 모두 그으면 삼각형은 몇 개로 나뉘는가?`,
+    n(sides - 2),
+    `한 꼭짓점에서 대각선을 그으면 삼각형 ${n(sides - 2)}개로 나뉩니다.`,
+  );
+}
+
+function poly262EqualDiag(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번 직사각형의 두 대각선의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `직사각형의 두 대각선의 길이는 같습니다.`,
+    fig("markedShape", { shape: "rect" }),
+  );
+}
+
+function poly263Side(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  const s = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 다른 한 변의 길이는 몇 cm인가?`,
+    cm(s),
+    `정다각형은 모든 변의 길이가 같습니다.`,
+  );
+}
+
+function poly263Perim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  const s = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 모든 변의 길이의 합은 몇 cm인가?`,
+    cm(s * sides),
+    `${expr(`${s}\\times${sides}=${s * sides}`)} 입니다.`,
+  );
+}
+
+function poly263FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  const s = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `모든 변의 길이의 합이 ${cm(s * sides)}인 ${polyName(sides, true)}의 한 변은 몇 cm인가?`,
+    cm(s),
+    `${expr(`${s * sides}\\div${sides}=${s}`)} 입니다.`,
+  );
+}
+
+function poly263EqualSides(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  return make(
+    unit,
+    `${polyName(sides, true)}의 모든 변의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `정다각형은 모든 변의 길이가 같습니다.`,
+  );
+}
+
+function poly263EqualAngles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  return make(
+    unit,
+    `${polyName(sides, true)}의 모든 각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    "예",
+    `정다각형은 모든 각의 크기가 같습니다.`,
+  );
+}
+
+function poly263Name(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 5, 8);
+  return make(
+    unit,
+    `모든 변의 길이가 같고 변이 ${n(sides)}개인 다각형을 무엇이라고 하는가?`,
+    polyName(sides, true),
+    `모든 변의 길이가 같은 ${polyName(sides)}은 ${polyName(sides, true)}입니다.`,
+  );
+}
+
+function poly264TriFill(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 변이 ${cm(side)}인 정삼각형 모양 조각으로 한 변이 ${cm(side * 2)}인 정삼각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    n(4),
+    `${expr("2\\times2=4")} 개가 필요합니다.`,
+    fig("tiling", {
+      piece: "eqTri",
+      target: "eqTri",
+      pieceSide: side,
+      targetSide: side * 2,
+    }),
+  );
+}
+
+function poly264SqFill(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `한 변이 ${cm(side)}인 정사각형 모양 조각으로 한 변이 ${cm(side * 3)}인 정사각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    n(9),
+    `${expr("3\\times3=9")} 개가 필요합니다.`,
+    fig("tiling", {
+      piece: "square",
+      target: "square",
+      pieceSide: side,
+      targetSide: side * 3,
+    }),
+  );
+}
+
+function poly264Hex(unit: UnitSeed, rng: Rng): ElemProblem {
+  const which = intBetween(rng, 1, 8);
+  return make(
+    unit,
+    `${n(which)}번처럼 정삼각형 모양 조각으로 정육각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    n(6),
+    `정육각형은 정삼각형 ${n(6)}개로 채울 수 있습니다.`,
+    fig("tiling", { piece: "eqTri", target: "hexagon" }),
+  );
+}
+
+function poly264Rhombus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `마름모 모양 조각 한 개는 정삼각형 모양 조각 ${n(2)}개와 같습니다. 마름모 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개인가?`,
+    n(k * 2),
+    `${expr(`${k}\\times2=${k * 2}`)} 개입니다.`,
+  );
+}
+
+function poly264Trap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `사다리꼴 모양 조각 한 개는 정삼각형 모양 조각 ${n(3)}개와 같습니다. 사다리꼴 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개인가?`,
+    n(k * 3),
+    `${expr(`${k}\\times3=${k * 3}`)} 개입니다.`,
+  );
+}
+
+function poly264FromTris(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 5);
+  return make(
+    unit,
+    `정삼각형 모양 조각 ${n(k * 2)}개로 마름모 모양 조각을 만들면 마름모 모양 조각은 몇 개인가?`,
+    n(k),
+    `${expr(`${k * 2}\\div2=${k}`)} 개입니다.`,
   );
 }
 
