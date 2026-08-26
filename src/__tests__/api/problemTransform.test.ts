@@ -29,6 +29,7 @@ vi.mock("@/lib/ai/transformer", () => ({
 }));
 
 import { POST as adoptRoute } from "@/app/api/problems/transform/adopt/route";
+import { deriveQuestionType } from "@/lib/ai/questionType";
 import { POST as transformRoute } from "@/app/api/problems/transform/route";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import {
@@ -506,6 +507,45 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
     expect(saved.unitId).toBe(origin.unitId);
     expect(saved.problemType).toBe(origin.problemType);
     expect(saved.difficulty).toBe(origin.difficulty);
+  });
+
+  /**
+   * 🔴 **형식(`questionType`)을 안 적으면 화면에 `[?형식]` 이 뜬다** (원장님 지적 2026-08-26).
+   *
+   * `classifyFormat` 은 주관식 문항을 가를 때 ㉠ `questionType` ㉡ `familyKey` 의 엔진
+   * 표지(`elem:`/`mid:`) ㉢ `problemType==='서술형'` 순으로 본다. 변형본은 트리거가
+   * `familyKey` 를 `solo:` 로 채우므로 ㉡ 로 구제되지 않는다 — 그래서 ㉠ 을 여기서
+   * 적어야 한다. AI 생성 경로가 정확히 이걸 빠뜨려 8건이 `[?형식]` 으로 나갔다.
+   *
+   * 「빠뜨림」은 오류를 안 내므로 시험이 없으면 **조용히 다시 난다.**
+   */
+  it("🔴 형식(questionType)을 생성 쪽과 **같은 판정기**로 적는다 — 안 적으면 [?형식] 이다", async () => {
+    const origin = MOCK_PROBLEMS[0]!;
+
+    const res = await adoptRoute(
+      jsonRequest("http://localhost/api/problems/transform/adopt", {
+        originProblemId: origin.id,
+        items: [adoptItem("채택된 변형")],
+      }),
+    );
+
+    const body = problemTransformAdoptResponseSchema.parse(await res.json());
+    // ⚠️ **저장된 행**을 본다. 응답이 아니다 — 응답에 `questionType` 을 싣는 것은
+    //    직렬화 쪽 일이고(별도 트랙), 여기서 주장하는 것은 「DB 에 적혔는가」다.
+    //    화면 라벨(`classifyFormat`)이 읽는 것도 DB 값이다.
+    const saved = await prismaTestDouble.problem.findUnique({
+      where: { id: body.data[0]!.id },
+    });
+    // 값 자체는 판정기가 정한다 — 여기서 옮겨 적으면 규칙이 두 벌이 된다.
+    expect(saved!.questionType, "형식이 비면 화면이 [?형식] 을 그린다").toBe(
+      deriveQuestionType({
+        content: saved!.content,
+        answer: saved!.answer,
+        problemType: origin.problemType,
+      }),
+    );
+    // 그리고 **비어 있으면 안 된다** — 위 대조만 두면 판정기가 널을 내도 통과한다.
+    expect(saved!.questionType).not.toBeNull();
   });
 
   it("난이도 조정을 서버가 원본에 적용해 저장한다 (클라이언트 값을 믿지 않는다)", async () => {

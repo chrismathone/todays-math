@@ -21,6 +21,7 @@ import {
   shiftDifficulty,
 } from "@/contracts/problem.contract";
 import { verifiesOriginalReproduction } from "@/lib/ai/originalReproduction";
+import { deriveQuestionType } from "@/lib/ai/questionType";
 import {
   jsonError,
   jsonOk,
@@ -107,6 +108,18 @@ export async function POST(request: NextRequest) {
       originProblemId: origin.id,
       difficulty,
       problemType: origin.problemType,
+      // 형식을 **여기서** 적는다. 안 적으면 `classifyFormat` 이 가를 근거를 못 찾아
+      // 화면에 `[?형식]` 이 뜬다 — AI 생성 경로가 정확히 그래서 8건을 냈다
+      // (원장님 지적 2026-08-26). 변형본의 `familyKey` 도 트리거가 `solo:` 로 채우므로
+      // 엔진 표지로 구제되지 않는다.
+      //
+      // 판정은 생성 쪽과 **같은 함수**다 — 규칙을 두 벌 적으면 한쪽만 고쳐도 아무도 모른다.
+      // ⚠️ 넘기는 본문은 **DB 에 들어갈 그 문자열**이어야 한다(아래 `content` 와 같은 값).
+      questionType: deriveQuestionType({
+        content: item.content,
+        answer: item.answer,
+        problemType: origin.problemType,
+      }),
       content: item.content,
       answer: item.answer,
       solution: item.solution,
