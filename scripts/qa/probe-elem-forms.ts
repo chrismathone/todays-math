@@ -132,6 +132,8 @@ type Report = {
 };
 
 const reports: Report[] = [];
+/** 막지 않는 참고 — 셈이 같은 짝. 「묻는 것이 같다」는 뜻이 아니다. */
+const advisories: string[] = [];
 
 for (const unit of elementaryUnits()) {
   if (supportedTiers(unit).length === 0) continue;
@@ -287,8 +289,13 @@ for (const unit of elementaryUnits()) {
       const ia = relIds[a]!;
       const ib = relIds[b]!;
       if (relOfForm.get(ia) !== relOfForm.get(ib)) continue;
-      problems.push(
-        `문형 ${ia}·${ib} 이 **셈이 같다** (${relOfForm.get(ia)!.slice(0, 30)}) — 글만 다르고 묻는 것이 같다`,
+      // 🔴 **막지 않는다.** 셈이 같은 것과 묻는 것이 같은 것은 다르다 —
+      //    「23×2 를 계산하시오」와 「22개씩 3봉지는 몇 개인가」는 절차와 모델링이라
+      //    교과서가 둘 다 낸다. 「정사각형 둘레」와 「변의 개수」도 둘 다 n0*4 다.
+      //    실측: 초3 56곳에 막는 검사로 대니 19곳이 걸렸고 **표본이 전부 거짓**이었다.
+      //    거짓 경보는 가드를 끈다(2026-08-20). 사람이 볼 수 있게 적기만 한다.
+      advisories.push(
+        `${unit.grade} ${unit.section} 문형 ${ia}·${ib} 셈이 같다 (${relOfForm.get(ia)!.slice(0, 24)})`,
       );
     }
   }
@@ -349,6 +356,11 @@ if (wantJson) {
   for (const [g, v] of [...byGrade].sort())
     console.log(`  ${g}  ${v.done} / ${v.n}`);
   console.log("");
+  if (advisories.length > 0) {
+    console.log(`참고 — 셈이 같은 짝 ${advisories.length}건 (막지 않는다):`);
+    for (const a of advisories.slice(0, 5)) console.log(`  ${a}`);
+    console.log("");
+  }
   const bad = started.filter((r) => !r.done).slice(0, 12);
   if (bad.length > 0) {
     console.log("착수했는데 아직 안 되는 곳 (앞 12):");
