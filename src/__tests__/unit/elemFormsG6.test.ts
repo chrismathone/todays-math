@@ -901,3 +901,126 @@ describe("초6 1-3-2 몫이 1보다 작은 (소수)÷(자연수)", () => {
     }
   });
 });
+
+describe("초6 1-3-3 소수점 아래 0을 내려 계산", () => {
+  const unit = unitOf("1-3-3");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫 × 나누는 수 = 나누어지는 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)=\\square\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerCents(p.answer) * Number(m![2])).toBe(centsOf(m![1]!));
+    }
+  });
+
+  it("05 나누는 수 · 06 소수 둘째 자리 숫자", () => {
+    for (const seed of SEEDS) {
+      const a = generateElementaryForm(unit, seed, "05");
+      const d = a.content.match(/\\div(\d+)/);
+      expect(d, a.content).toBeTruthy();
+      expect(answerInt(a.answer)).toBe(Number(d![1]));
+      const b = generateElementaryForm(unit, seed, "06");
+      const q = b.content.match(/=(\d+\.\d+)\$/);
+      expect(q, b.content).toBeTruthy();
+      const frac = q![1]!.split(".")[1] ?? "";
+      expect(frac.length).toBeGreaterThanOrEqual(2);
+      expect(answerInt(b.answer)).toBe(Number(frac[1]));
+    }
+  });
+
+  it("07 0을 내린다는 말은 예", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("예");
+    }
+  });
+
+  it("09 이틀치 = 하루×2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const km = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{km\}/);
+      const days = p.content.match(/\$(\d+)\$일 동안 매일/);
+      expect(km && days, p.content).toBeTruthy();
+      const one = centsOf(km![1]!) / Number(days![1]);
+      expect(answerCents(p.answer)).toBe(one * 2);
+    }
+  });
+});
+
+describe("초6 1-3-4 몫의 소수 첫째 자리에 0", () => {
+  const unit = unitOf("1-3-4");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫 × 나누는 수 = 나누어지는 수 · 소수 첫째 0", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)=\\square\$/);
+      expect(m, p.content).toBeTruthy();
+      const q = answerCents(p.answer);
+      expect(Math.floor(q / 10) % 10).toBe(0);
+      expect(q * Number(m![2])).toBe(centsOf(m![1]!));
+    }
+  });
+
+  it("06 소수 첫째 자리 숫자는 0", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(answerInt(p.answer)).toBe(0);
+      expect(p.content).toMatch(/첫째 자리/);
+    }
+  });
+
+  it("09 검산 곱 = 전체 길이", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{m\}/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerCents(p.answer)).toBe(centsOf(m![1]!));
+    }
+  });
+});
+
+describe("초6 1-3-5 (자연수)÷(자연수) 몫을 소수로", () => {
+  const unit = unitOf("1-3-5");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 자연수÷자연수의 몫이 소수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\$(\d+)\\div(\d+)=\\square\$/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerCents(p.answer) * Number(m![2])).toBe(Number(m![1]) * 100);
+    }
+  });
+
+  it("06 나누어지는 수는 자연수 예 · 07 몫은 자연수 아니요", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "06").answer).toBe("예");
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("아니요");
+    }
+  });
+
+  it("09 두 사람 몫 = 한 사람×2", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const amt = p.content.match(
+        /\$(\d+)\\,\\mathrm\{[A-Za-z]+\}\$.*?\$(\d+)\$명/,
+      );
+      expect(amt, p.content).toBeTruthy();
+      expect(p.content).toMatch(/두 사람/);
+      expect(answerCents(p.answer) * Number(amt![2])).toBe(
+        Number(amt![1]) * 100 * 2,
+      );
+    }
+  });
+});

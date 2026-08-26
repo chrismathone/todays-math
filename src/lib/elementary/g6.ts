@@ -8288,6 +8288,252 @@ function decUnderFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 0을 내려 계산하는 나눗셈의 나누는 수. */
+function decBringFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `소수점 아래 ${num(0)}을 내려 계산하는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${a}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 소수 둘째 자리 숫자. */
+function decBringFormHundredth(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 소수점 아래 둘째 자리 숫자는 얼마입니까?\n\n${expr(`${a}\\div${c.b}=${q}`)}`,
+    num(c.q % 10),
+    `몫 ${num(q)}의 소수점 아래 둘째 자리 숫자는 ${num(c.q % 10)}입니다.`,
+  );
+}
+
+/** 문형 07 — 나누어떨어지지 않으면 0을 내린다. 맞다. */
+function decBringFormZeroTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_BRING_PURE);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 를 계산할 때 나누어떨어지지 않으면 소수점 아래에 ${num(0)}을 내려 계속 나눈다.`,
+    "예",
+    `소수점 아래에서 나누어떨어지지 않으면 ${num(0)}을 내려 계산을 계속합니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function decBringFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_BRING_PURE);
+  const y = pick(rng, DEC_BRING_PURE);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 둘 다 소수점 아래 ${num(0)}을 내려 계산합니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 하루에 가는 거리를 구한 뒤 이틀치. 02 는 하루만. */
+function decBringFormTwoDays(unit: UnitSeed, rng: Rng): ElemProblem {
+  const how = pick(rng, ["자전거로", "걸어서"] as const);
+  const c = pick(
+    rng,
+    DEC_BRING_PURE.filter((x) => x.a <= 3000),
+  );
+  return make(
+    unit,
+    `${how} ${unitNum(fromCents(c.a), "km")}를 ${num(c.b)}일 동안 매일 같은 거리씩 가려고 합니다. ` +
+      `${num(2)}일 동안 가는 거리는 몇 km입니까?`,
+    expr(fromCents(c.q * 2)),
+    `하루에 가는 거리는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} km입니다. ` +
+      `${num(2)}일 동안은 ${expr(`${fromCents(c.q)}\\times2=${fromCents(c.q * 2)}`)} km입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function decBringFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_BRING_PURE);
+  let y = pick(rng, DEC_BRING_PURE);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, DEC_BRING_PURE);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 둘 다 소수점 아래 ${num(0)}을 내려 계산합니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — 소수 첫째 자리에 0이 있는 나눗셈의 나누는 수. */
+function decZeroFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  return make(
+    unit,
+    `몫의 소수 첫째 자리에 ${num(0)}이 있는 다음 나눗셈에서 나누는 수는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 몫의 소수 첫째 자리 숫자는 0. */
+function decZeroFormTenthZero(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 소수점 아래 첫째 자리 숫자는 얼마입니까?\n\n${expr(`${fromCents(c.a)}\\div${c.b}=${q}`)}`,
+    num(0),
+    `몫 ${num(q)}의 소수점 아래 첫째 자리 숫자는 ${num(0)}입니다.`,
+  );
+}
+
+/** 문형 07 — 나눌 수 없는 자리에 0을 쓴다. 맞다. */
+function decZeroFormPlaceTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.zeroTenth);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${fromCents(c.a)}\\div${c.b}=${q}`)} 에서 나누어야 할 수가 나누는 수보다 작은 자리의 몫에는 ${num(0)}을 쓴다.`,
+    "예",
+    `나누어야 할 수가 더 작은 자리에는 몫에 ${num(0)}을 씁니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function decZeroFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.zeroTenth);
+  const y = pick(rng, DEC_DIV.zeroTenth);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 몫의 소수 첫째 자리는 ${num(0)}입니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 상자 하나 길이 × 상자 수 검산. 02 는 한 상자만. */
+function decZeroFormCheck(unit: UnitSeed, rng: Rng): ElemProblem {
+  const thing = pick(rng, TIE_STUFF);
+  const c = pick(
+    rng,
+    DEC_DIV.zeroTenth.filter((x) => x.a <= 3000),
+  );
+  return make(
+    unit,
+    `${thing} ${unitNum(fromCents(c.a), "m")}를 모두 사용하여 크기가 같은 선물 상자 ${num(c.b)}개를 묶었습니다. ` +
+      `상자 한 개를 묶는 데 쓴 ${thing}의 길이와 상자 수를 곱하면 몇 m입니까?`,
+    expr(fromCents(c.a)),
+    `한 상자에 쓴 길이는 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m입니다. ` +
+      `검산하면 ${expr(`${fromCents(c.q)}\\times${c.b}=${fromCents(c.a)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function decZeroFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.zeroTenth);
+  let y = pick(rng, DEC_DIV.zeroTenth);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1)
+    y = pick(rng, DEC_DIV.zeroTenth);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 두 몫의 소수 첫째 자리는 ${num(0)}입니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 05 — (자연수)÷(자연수)의 나누는 수. */
+function natDecFormDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음 나눗셈에서 나누는 수는 얼마입니까? 몫은 소수로 나타냅니다.\n\n${expr(`${c.n}\\div${c.b}`)}`,
+    num(c.b),
+    `나누는 수는 ${num(c.b)}입니다.`,
+  );
+}
+
+/** 문형 06 — 나누어지는 수는 자연수. */
+function natDecFormNaturalTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.n}\\div${c.b}`)} 에서 나누어지는 수는 자연수이다.`,
+    "예",
+    `나누어지는 수 ${num(c.n)}${numJosa(c.n, "은", "는")} 자연수입니다. 몫만 소수입니다.`,
+  );
+}
+
+/** 문형 07 — 몫은 자연수가 아니다. */
+function natDecFormQuotientNatTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DEC);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${c.n}\\div${c.b}=${q}`)} 의 몫은 자연수이다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} 소수입니다. 나누어떨어지지 않습니다.`,
+  );
+}
+
+/** 문형 08 — 두 몫의 합. */
+function natDecFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_DEC);
+  const y = pick(rng, NAT_DEC);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 소수로 나타내시오.\n\n${expr(`${x.n}\\div${x.b}`)}, ${expr(`${y.n}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 사람 몫의 두 배. 02 는 한 사람만. */
+function natDecFormDoubleShare(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, SHARE_STUFF);
+  const c = pick(
+    rng,
+    NAT_DEC.filter((x) => x.n <= 20 && x.n > x.b),
+  );
+  return make(
+    unit,
+    `${s.thing} ${unitNum(c.n, s.unit)}${s.unitJosa} ${num(c.b)}명이 똑같이 ${s.verb} 합니다. ` +
+      `두 사람이 갖는 ${s.thing}의 합은 몇 ${s.unit}인지 소수로 나타내시오.`,
+    expr(fromCents(c.q * 2)),
+    `한 사람은 ${expr(`${c.n}\\div${c.b}=${fromCents(c.q)}`)} ${s.unit}입니다. ` +
+      `두 사람은 ${expr(`${fromCents(c.q)}\\times2=${fromCents(c.q * 2)}`)} ${s.unit}입니다.`,
+  );
+}
+
+/** 문형 10 — 두 몫의 차. */
+function natDecFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, NAT_DEC);
+  let y = pick(rng, NAT_DEC);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1) y = pick(rng, NAT_DEC);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 소수로 나타내시오.\n\n${expr(`${x.n}\\div${x.b}`)}, ${expr(`${y.n}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -8393,4 +8639,34 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
       a10: decUnderFormDiff,
     },
   ),
+  "초6|1-3-3": forms10(
+    decBringCalc,
+    decBringWord,
+    decBringApply,
+    decBringDeep,
+    {
+      b5: decBringFormDivisor,
+      b6: decBringFormHundredth,
+      b7: decBringFormZeroTf,
+      a8: decBringFormSum,
+      a9: decBringFormTwoDays,
+      a10: decBringFormDiff,
+    },
+  ),
+  "초6|1-3-4": forms10(decZeroCalc, decZeroWord, decZeroApply, decZeroDeep, {
+    b5: decZeroFormDivisor,
+    b6: decZeroFormTenthZero,
+    b7: decZeroFormPlaceTf,
+    a8: decZeroFormSum,
+    a9: decZeroFormCheck,
+    a10: decZeroFormDiff,
+  }),
+  "초6|1-3-5": forms10(natDecCalc, natDecWord, natDecApply, natDecDeep, {
+    b5: natDecFormDivisor,
+    b6: natDecFormNaturalTf,
+    b7: natDecFormQuotientNatTf,
+    a8: natDecFormSum,
+    a9: natDecFormDoubleShare,
+    a10: natDecFormDiff,
+  }),
 };
