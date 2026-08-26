@@ -573,3 +573,59 @@ describe("초3 1-2-3 직각삼각형 — 세는 대상이 답이다", () => {
     }
   });
 });
+
+describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () => {
+  const unit = unitOf("1-2-4");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("03 네 변의 합 = 2(가로+세로)", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "03");
+      const [w, h] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(2 * (w! + h!));
+    }
+  });
+
+  it("04 세로 = 합÷2 − 가로", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "04");
+      const nums = katexInts(p.content);
+      const total = nums[0]!;
+      const w = nums[1]!;
+      expect(answerInt(p.answer)).toBe(total / 2 - w);
+    }
+  });
+
+  it("07 정의는 직사각형", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("직사각형");
+    }
+  });
+
+  it("08 가로 두 변의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [w] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(2 * w!);
+    }
+  });
+
+  it("09 세로를 두 번 더한 값", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [, h] = katexInts(p.content);
+      expect(answerInt(p.answer)).toBe(2 * h!);
+    }
+  });
+
+  it("10 직각은 직사각형 수×4", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const many = katexInts(p.content)[0]!;
+      expect(answerInt(p.answer)).toBe(4 * many);
+    }
+  });
+});

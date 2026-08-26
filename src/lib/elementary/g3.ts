@@ -8092,6 +8092,100 @@ function tri123Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+const RECT_THINGS = [
+  "액자",
+  "공책",
+  "칠판",
+  "책상",
+  "손수건",
+  "게시판",
+  "창문",
+  "카드",
+] as const;
+
+function rectWH(rng: Rng): { w: number; h: number } {
+  const w = intBetween(rng, 4, 12);
+  const h = pick(
+    rng,
+    [2, 3, 5, 6, 7, 8, 9].filter((v) => v !== w),
+  );
+  return { w, h };
+}
+
+/** 문형 05 — 직사각형이 아닌 개수. 01 은 기호를 고른다. */
+function rect124OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const other = row.labels.length - 1;
+  const which = intBetween(rng, 1, 6);
+  return make(
+    unit,
+    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
+    n(other),
+    `직사각형은 ${row.answer} 하나이므로 아닌 도형은 ${n(other)}개입니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 문형 06 — 직사각형이 아닌 기호. */
+function rect124NotRect(unit: UnitSeed, rng: Rng): ElemProblem {
+  const row = rectRow(rng);
+  const other = row.labels.filter((l) => l !== row.answer);
+  const ans = pick(rng, other);
+  return make(
+    unit,
+    `${row.labels.join(", ")} 중에서 직사각형이 아닌 도형의 기호를 쓰시오.`,
+    ans,
+    `직사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    pointGridSpec(row.cols, row.rows, row.shapes),
+  );
+}
+
+/** 문형 07 — 정의. */
+function rect124Def(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `네 각이 모두 직각인 사각형을 무엇이라고 합니까? 그런 사각형을 ${n(many)}개 그릴 수 있습니다.`,
+    "직사각형",
+    `네 각이 모두 직각인 사각형이 직사각형입니다.`,
+  );
+}
+
+/** 문형 08 — 가로 두 변의 합. 03 은 네 변의 합. */
+function rect124TwoWidths(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, h } = rectWH(rng);
+  const thing = pick(rng, RECT_THINGS);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형 모양 ${thing}에서 가로 두 변의 길이의 합은 몇 cm인지 쓰시오.`,
+    n(2 * w),
+    `가로는 마주 보는 두 변이 ${n(w)} cm이므로 ${expr(`${w}+${w}=${2 * w}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 세로 두 변의 합. 08 과 묻는 변이 다르다. */
+function rect124TwoHeights(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, h } = rectWH(rng);
+  const thing = pick(rng, RECT_THINGS);
+  return make(
+    unit,
+    `가로 ${n(w)} cm, 세로 ${n(h)} cm인 직사각형의 세로를 두 번 더한 값은 몇 cm입니까?`,
+    n(2 * h),
+    `세로 ${n(h)} cm를 두 번 더하면 ${expr(`${h}+${h}=${2 * h}`)} 입니다.`,
+  );
+}
+
+/** 문형 10 — 직사각형 n개의 직각 수. */
+function rect124RightAngles(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `직사각형 ${n(many)}개의 각은 모두 직각입니다. 직각은 모두 몇 개인지 쓰시오.`,
+    n(4 * many),
+    `직사각형 한 개에 직각이 4개이므로 ${expr(`${many}\\times4=${4 * many}`)} 개입니다.`,
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -8176,6 +8270,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: tri123RightSides },
     { id: "09", tier: "응용", generate: tri123AllRight },
     { id: "10", tier: "응용", generate: tri123Vertices },
+  ],
+  "초3|1-2-4": [
+    { id: "01", tier: "연산", generate: rect124Calc },
+    { id: "02", tier: "기본", generate: rect124Word },
+    { id: "03", tier: "응용", generate: rect124Apply },
+    { id: "04", tier: "심화", generate: rect124Deep },
+    { id: "05", tier: "기본", generate: rect124OtherCount },
+    { id: "06", tier: "기본", generate: rect124NotRect },
+    { id: "07", tier: "기본", generate: rect124Def },
+    { id: "08", tier: "응용", generate: rect124TwoWidths },
+    { id: "09", tier: "응용", generate: rect124TwoHeights },
+    { id: "10", tier: "응용", generate: rect124RightAngles },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },
