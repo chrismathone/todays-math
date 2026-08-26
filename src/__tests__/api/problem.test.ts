@@ -611,7 +611,11 @@ describe("[T3.1] findEligibleProblems — 출제 가능 풀 조회", () => {
     });
     expect(rows.length).toBeGreaterThan(0);
     for (const row of rows) {
-      expect(row).toHaveProperty("familyKey");
+      // ⚠️ `toHaveProperty("familyKey")` 로 쓰면 **초록인 가드**가 된다 — 매핑이
+      //    `familyKey: row.familyKey` 로 키를 **언제나 만들기** 때문에, select 에서
+      //    빼도 `undefined` 인 채로 키는 존재한다. 변이 시험이 그걸 잡았다.
+      //    값이 `string | null` 인지를 봐야 배선이 살아 있는지 알 수 있다.
+      expect(row.familyKey).not.toBeUndefined();
     }
   });
 
