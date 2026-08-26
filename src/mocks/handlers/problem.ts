@@ -14,6 +14,7 @@ import { http, type HttpHandler } from "msw";
 
 import { deleteResponseSchema } from "@/contracts/common.contract";
 import { verifiesOriginalReproduction } from "@/lib/ai/originalReproduction";
+import { classifyFormat } from "@/lib/problem/provenance";
 import {
   FIGURE_MISSING_REASON,
   originNeedsFigure,
@@ -185,6 +186,10 @@ export const problemHandlers: HttpHandler[] = [
         return false;
       if (filters.problemType && p.problemType !== filters.problemType)
         return false;
+      // 형식(`[단]`·`[서]`, 원장님 지시 2026-08-26) — 라우트·화면 라벨과 **같은 함수**다.
+      // ⚠️ 여기를 안 붙이면 계약이 값을 받아 주므로 가짜는 **조용히 안 거르고**, 화면
+      //    시험이 「필터가 듣는다」를 거짓으로 초록 낸다(2026-08-19 에 토글로 겪은 자리).
+      if (filters.format && classifyFormat(p) !== filters.format) return false;
       if (filters.source && p.source !== filters.source) return false;
       if (filters.reviewStatus && p.reviewStatus !== filters.reviewStatus)
         return false;
