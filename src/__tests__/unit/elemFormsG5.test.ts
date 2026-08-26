@@ -857,3 +857,91 @@ describe("초5 1-3-1 대응 관계 — 표에서 다시 센다", () => {
     }
   });
 });
+
+describe("초5 1-3-2 대응 관계를 식으로", () => {
+  const unit = unitOf("1-3-2");
+
+  it("05 곱 관계에서 △", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const m = p.content.match(
+        /\\triangle=\\square\\times(\d+)\$.*□가 \$(\d+)\$이면/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+    }
+  });
+
+  it("06 덧셈 관계에서 △", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const m = p.content.match(
+        /\\triangle=\\square\+(\d+)\$.*□가 \$(\d+)\$이면/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) + Number(m![2]));
+    }
+  });
+
+  it("07 곱 관계에서 □", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(
+        /\\triangle=\\square\\times(\d+)\$.*△가 \$(\d+)\$이면/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) / Number(m![1]));
+    }
+  });
+
+  it("10 뺄셈 관계에서 △", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const m = p.content.match(
+        /\\triangle=\\square-(\d+)\$.*□가 \$(\d+)\$이면/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![2]) - Number(m![1]));
+    }
+  });
+});
+
+describe("초5 1-3-3 생활 속 대응", () => {
+  const unit = unitOf("1-3-3");
+
+  it("05 한 개에 딸린 수", () => {
+    const known: Record<string, number> = {
+      자동차: 4,
+      세발자전거: 3,
+      오리: 2,
+      거미: 8,
+      곤충: 6,
+    };
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const name = Object.keys(known).find((k) => p.content.includes(k));
+      expect(name, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(known[name!]!);
+    }
+  });
+
+  it("08 나이", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const m = p.content.match(
+        /동생보다 \$(\d+)\$살 많습니다\. 동생이 \$(\d+)\$살/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) + Number(m![2]));
+    }
+  });
+
+  it("09 도막에서 자른 횟수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const m = p.content.match(/\$(\d+)\$도막으로/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) - 1);
+    }
+  });
+});

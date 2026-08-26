@@ -4718,6 +4718,96 @@ function corr132Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 주어진 식에서 곱해지는 수. */
+function corr132Factor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const x = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `□와 △ 사이의 대응 관계가 ${expr(relMulLatex(k))}일 때, □가 ${n(x)}이면 △는 얼마입니까?`,
+    n(k * x),
+    `${expr(`\\triangle=${x}\\times${k}=${k * x}`)}입니다.`,
+  );
+}
+
+/** 문형 06 — 덧셈 관계 식에서 △. */
+function corr132AddValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 15);
+  const x = intBetween(rng, 3, 20);
+  return make(
+    unit,
+    `□와 △ 사이의 대응 관계가 ${expr(relAddLatex(c))}일 때, □가 ${n(x)}이면 △는 얼마입니까?`,
+    n(x + c),
+    `${expr(`\\triangle=${x}+${c}=${x + c}`)}입니다.`,
+  );
+}
+
+/** 문형 07 — 식에서 □를 거슬러 구한다. */
+function corr132SolveBox(unit: UnitSeed, rng: Rng): ElemProblem {
+  const k = intBetween(rng, 2, 8);
+  const x = intBetween(rng, 3, 12);
+  return make(
+    unit,
+    `□와 △ 사이의 대응 관계가 ${expr(relMulLatex(k))}일 때, △가 ${n(k * x)}이면 □는 얼마입니까?`,
+    n(x),
+    `${expr(`${k * x}\\div${k}=${x}`)}이므로 □는 ${n(x)}입니다.`,
+  );
+}
+
+/** 문형 08 — 주어진 식이 표를 맞는지 판정. */
+function corr132Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const k = intBetween(rng, 2, 8);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? k : k === 2 ? 3 : k - 1;
+  return make(
+    unit,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
+    shown === k ? "예" : "아니요",
+    `△는 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다. 따라서 ${shown === k ? "맞습니다" : "틀렸습니다"}.`,
+    corrTable(
+      xs,
+      xs.map((x) => x * k),
+    ),
+  );
+}
+
+/** 문형 09 — 두 식 중 표를 나타내는 것. */
+function corr132PickRel(unit: UnitSeed, rng: Rng): ElemProblem {
+  const from = intBetween(rng, 1, 9);
+  const xs = [from, from + 1, from + 2, from + 3];
+  const k = intBetween(rng, 2, 8);
+  const c = intBetween(rng, 2, 9);
+  const firstIsMul = intBetween(rng, 0, 1) === 0;
+  const [p1, p2] = firstIsMul
+    ? [relMulLatex(k), relAddLatex(c)]
+    : [relAddLatex(c), relMulLatex(k)];
+  const ans = firstIsMul ? "㉠" : "㉡";
+  return make(
+    unit,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    ans,
+    `△는 언제나 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다. 답은 ${ans}입니다.`,
+    corrTable(
+      xs,
+      xs.map((x) => x * k),
+    ),
+  );
+}
+
+/** 문형 10 — 뺄셈 관계에서 △. */
+function corr132SubValue(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = intBetween(rng, 2, 9);
+  const x = intBetween(rng, c + 3, 25);
+  return make(
+    unit,
+    `□와 △ 사이의 대응 관계가 ${expr(relSubLatex(c))}일 때, □가 ${n(x)}이면 △는 얼마입니까?`,
+    n(x - c),
+    `${expr(`\\triangle=${x}-${c}=${x - c}`)}입니다.`,
+  );
+}
+
 /* ── 1-3-3 생활 속에서 찾아 식으로 — **장면**이 관계를 준다. 표는 여기 없다 ── */
 
 /** 배 관계가 **사실인** 것들 — [것, 세는 말, 딸린 것, 세는 말, 한 개당 수]. */
@@ -4873,6 +4963,83 @@ function corr133Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${setup}, △가 ${n(v)}일 때 □의 값을 구하시오.`,
     n(m),
     `도막의 수는 자른 횟수보다 ${n(1)}만큼 크므로(${expr(relAddLatex(1))}) □는 △보다 ${n(1)}만큼 작습니다. ${expr(`${v}-1=${m}`)}입니다.`,
+  );
+}
+
+/** 문형 05 — 한 개에 딸린 수(배). 장면에 답을 적지 않는다. */
+function corr133Per(unit: UnitSeed, rng: Rng): ElemProblem {
+  const [thing, tc, part, pc, per] = pick(rng, CORR_FIXED);
+  return make(
+    unit,
+    `${thing} 한 ${tc}의 ${part}는 몇 ${pc}입니까?`,
+    n(per),
+    `${thing} 한 ${tc}의 ${part}는 ${n(per)}${pc}입니다.`,
+  );
+}
+
+/** 문형 06 — 여러 개의 딸린 수(식을 쓰지 않고 곱). */
+function corr133Many(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { thing, tc, part, pc, per } = corrLifeMul(rng);
+  const m = intBetween(rng, 3, 9);
+  return make(
+    unit,
+    `${thing} ${n(m)}${tc}에 ${wj(part, "이", "가")} 모두 몇 ${pc}입니까?`,
+    n(per * m),
+    `${expr(`${per}\\times${m}=${per * m}`)}이므로 ${n(per * m)}${pc}입니다.`,
+  );
+}
+
+/** 문형 07 — 주어진 식이 맞는지. */
+function corr133Judge(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { setup, per } = corrLifeMul(rng);
+  const ok = intBetween(rng, 0, 1) === 0;
+  const shown = ok ? per : per === 2 ? 3 : per - 1;
+  return make(
+    unit,
+    `${setup}, 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
+    shown === per ? "예" : "아니요",
+    `옳은 식은 ${expr(relMulLatex(per))}입니다. 따라서 ${shown === per ? "맞습니다" : "틀렸습니다"}.`,
+  );
+}
+
+/** 문형 08 — 나이 차. */
+function corr133AgeGap(unit: UnitSeed, rng: Rng): ElemProblem {
+  const elder = pick(rng, CORR_ELDERS);
+  const c = intBetween(rng, 2, 6);
+  const young = intBetween(rng, 8, 15);
+  return make(
+    unit,
+    `${wj(elder, "은", "는")} 동생보다 ${n(c)}살 많습니다. 동생이 ${n(young)}살일 때 ${elder}는 몇 살입니까?`,
+    n(young + c),
+    `${expr(`${young}+${c}=${young + c}`)}이므로 ${n(young + c)}살입니다.`,
+  );
+}
+
+/** 문형 09 — 도막에서 자른 횟수. */
+function corr133Cuts(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { thing } = corrLifeCut(rng);
+  const pieces = intBetween(rng, 4, 12);
+  return make(
+    unit,
+    `${wj(thing, "을", "를")} 잘라 ${n(pieces)}도막으로 만들었습니다. 자른 횟수는 몇 번입니까?`,
+    n(pieces - 1),
+    `도막의 수는 자른 횟수보다 ${n(1)}만큼 크므로 자른 횟수는 ${expr(`${pieces}-1=${pieces - 1}`)}번입니다.`,
+  );
+}
+
+/** 문형 10 — 두 장면의 배 비교. */
+function corr133PerDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = pick(rng, CORR_FIXED);
+  const b = pick(
+    rng,
+    CORR_FIXED.filter((x) => x[0] !== a[0]),
+  );
+  const diff = Math.abs(a[4] - b[4]);
+  return make(
+    unit,
+    `${a[0]} ${n(1)}${a[1]}의 ${a[2]} 수와 ${b[0]} ${n(1)}${b[1]}의 ${b[2]} 수의 차는 얼마입니까?`,
+    n(diff),
+    `${a[0]}는 ${n(a[4])}, ${b[0]}는 ${n(b[4])}이므로 차는 ${n(diff)}입니다.`,
   );
 }
 
@@ -8269,6 +8436,30 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: corr131MinTri },
     { id: "09", tier: "응용", generate: corr131Step },
     { id: "10", tier: "응용", generate: corr131SumMinusMax },
+  ],
+  "초5|1-3-2": [
+    { id: "01", tier: "연산", generate: corr132Calc },
+    { id: "02", tier: "기본", generate: corr132Read },
+    { id: "03", tier: "응용", generate: corr132Apply },
+    { id: "04", tier: "심화", generate: corr132Deep },
+    { id: "05", tier: "기본", generate: corr132Factor },
+    { id: "06", tier: "기본", generate: corr132AddValue },
+    { id: "07", tier: "기본", generate: corr132SolveBox },
+    { id: "08", tier: "응용", generate: corr132Judge },
+    { id: "09", tier: "응용", generate: corr132PickRel },
+    { id: "10", tier: "응용", generate: corr132SubValue },
+  ],
+  "초5|1-3-3": [
+    { id: "01", tier: "연산", generate: corr133Calc },
+    { id: "02", tier: "기본", generate: corr133Read },
+    { id: "03", tier: "응용", generate: corr133Apply },
+    { id: "04", tier: "심화", generate: corr133Deep },
+    { id: "05", tier: "기본", generate: corr133Per },
+    { id: "06", tier: "기본", generate: corr133Many },
+    { id: "07", tier: "기본", generate: corr133Judge },
+    { id: "08", tier: "응용", generate: corr133AgeGap },
+    { id: "09", tier: "응용", generate: corr133Cuts },
+    { id: "10", tier: "응용", generate: corr133PerDiff },
   ],
   "초5|1-2-2": [
     { id: "01", tier: "연산", generate: rel122Calc },
