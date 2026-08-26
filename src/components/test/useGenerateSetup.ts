@@ -97,6 +97,14 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   );
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  /**
+   * **AI 생성**이 돌고 있는가 — `busy`(무엇이든 돌고 있다)와 다른 물음이다.
+   *
+   * 진행 표시는 「무엇이 돌고 있나」를 가리켜야 한다. `busy` 로 그리면 「출제」를
+   * 눌러도 «AI 문제 생성 중» 이 뜬다 — 원장님이 안 시킨 일을 하고 있다고 읽는다.
+   * 시험의 «음성 대조»(출제에는 안 뜬다)가 이 구분을 지킨다.
+   */
+  const [aiBusy, setAiBusy] = useState(false);
   const [generatedPendingCount, setGeneratedPendingCount] = useState(0);
 
   useEffect(() => {
@@ -278,6 +286,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       }
       setBusy(true);
       setSubmitError(null);
+      // 새 출제 시도는 지난 AI 생성 집계도 지운다 — 안 지우면 다른 반·다른 단원으로
+      // 옮겨 간 뒤에도 옛 「N문항을 생성했습니다」가 남는다(누적의 짝이다).
+      setGeneratedPendingCount(0);
       // 새 시도를 시작하면 지난 부족 안내는 즉시 지운다. 안 지우면 다른 사유로
       // 재실패했을 때 옛 가용/필요 숫자와 「AI 생성」이 새 오류와 나란히 남아
       // 원장이 엉뚱한 버튼을 누른다.
@@ -350,6 +361,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   const generateAiDrafts = useCallback(async () => {
     if (!insufficient) return;
     setBusy(true);
+    setAiBusy(true);
     setSubmitError(null);
     try {
       const count = Math.min(
@@ -359,22 +371,40 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       const res = await fetch("/api/problems/generate", {
         method: "POST",
         headers: { "content-type": "application/json" },
+        // ⚠️ 난이도가 「응용」으로 **박혀 있다.** 어느 갈래가 모자란지는 422 가 안 알려
+        //    주기 때문이다 — `insufficientProblemsDetailSchema` 는 `{unitId, available,
+        //    required}` 뿐이라 난이도 칸이 없다. 계약을 넓히는 일은 이 트랙 밖이라
+        //    보고에 남겼다. 넓히기 전에는 여기서 지어내면 안 된다.
         body: JSON.stringify({
           unitId: insufficient.unitId,
           difficulty: "응용",
           count,
         }),
       });
+      const json: unknown = await res.json();
       if (!res.ok) {
-        setSubmitError("AI 문제 생성에 실패했습니다");
+        // 🔴 예전에는 여기서 **서버가 보낸 사유를 통째로 버렸다.** 라우트는 일부러
+        //    행동 가능한 말을 보낸다 — 「AI 설정이 없습니다 — DEEPSEEK_API_KEY 를…」·
+        //    「길이 한도에 걸렸습니다 — 개수를 줄이거나…」. 그걸 「AI 문제 생성에
+        //    실패했습니다」로 뭉개면 원장님은 무엇을 고쳐야 하는지 알 길이 없다.
+        const { errorResponseSchema } = await commonContract();
+        const parsed = errorResponseSchema.safeParse(json);
+        setSubmitError(
+          parsed.success
+            ? parsed.data.error.message
+            : "AI 문제 생성에 실패했습니다",
+        );
         return;
       }
       const { problemGenerateResponseSchema } = await problemContract();
-      const created = problemGenerateResponseSchema.parse(await res.json());
-      setGeneratedPendingCount(created.data.length);
+      const created = problemGenerateResponseSchema.parse(json);
+      // 두 번 눌렀으면 **합쳐서** 센다. 마지막 회차만 적으면 원장님이 만든 것보다
+      // 적게 보이고, 「이만큼밖에 안 됐나」로 읽는다. 초기화는 새 출제 시도가 한다.
+      setGeneratedPendingCount((before) => before + created.data.length);
     } catch {
       setSubmitError("AI 문제 생성에 실패했습니다");
     } finally {
+      setAiBusy(false);
       setBusy(false);
     }
   }, [insufficient]);
@@ -406,6 +436,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     generatedPendingCount,
     submitError,
     busy,
+    aiBusy,
     setStudentId: selectStudent,
     setTestType,
     setTestDate,

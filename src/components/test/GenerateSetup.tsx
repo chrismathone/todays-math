@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import type { UnitEntity } from "@/contracts/unit.contract";
 
+import { AiGenerateProgress } from "./AiGenerateProgress";
 import { FIELD_CLASS } from "./labels";
 import { describeRange } from "./rangeSummary";
 import { useGenerateSetup } from "./useGenerateSetup";
@@ -289,6 +290,11 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
                   문항 수 줄이기
                 </Button>
               </div>
+              {/*
+                진행 표시는 **AI 생성이 돌 때만** 뜬다. `form.busy` 로 그리면 「출제」를
+                눌러도 «AI 문제 생성 중» 이 뜬다 — 시험의 «음성 대조»가 그 자리를 지킨다.
+              */}
+              {form.aiBusy ? <AiGenerateProgress /> : null}
               {form.generatedPendingCount > 0 ? (
                 <p className="mt-3">
                   {form.generatedPendingCount}문항을 생성했습니다. 문제은행에서

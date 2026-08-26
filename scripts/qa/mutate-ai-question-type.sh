@@ -175,17 +175,22 @@ mutate "생성기가 형식을 안 싣는다 (draft 에 없다)" "$SRC_GEN" \
         problemType: item.problemType,
       }),' \
   ''
-mutate "생성기가 **정규화 전** 본문으로 판정한다" "$SRC_GEN" \
-  '      questionType: deriveQuestionType({
-        content,
-        answer,
-        problemType: item.problemType,
-      }),' \
-  '      questionType: deriveQuestionType({
-        content: item.content,
-        answer: item.answer,
-        problemType: item.problemType,
-      }),'
+# 🔴 «정규화 전 본문으로 판정한다» 변이는 **여기 없다 — 오늘은 잴 수 없기 때문이다.**
+#
+#    1차 실행에서 그 변이는 **초록**이었다(「가드가 아니다」). 확인해 보니 가드가 부실한
+#    것이 아니라 **오늘 그 둘의 뜻이 같다**: `normalizeLatex` 는 `\dfrac`→`\frac` 하나만
+#    하고, 그 치환은 보기 칸 수도 정답 모양도 안 바꾼다. 즉 정규화 전으로 판정해도
+#    산출물이 **한 톨도 안 달라진다.**
+#
+#    그런데 이 하네스의 ⑶(동작이 바뀌었나)은 `questionType.ts` 만 지문으로 덮는다.
+#    `generator.ts` 는 `구조` 로 넘어가므로, 그 무효한 변이가 «판정거부»가 아니라
+#    **«초록»으로 찍혔다.** 초록은 「가드를 고치러 가라」는 뜻이라 그대로 두면
+#    멀쩡한 코드를 의심하게 된다 — 가드가 없는 것보다 나쁘다(CLAUDE.md 2026-08-21).
+#
+#    그래서 **빼 두고 사실을 적는다.** 정규화 뒤에 판정하는 순서 자체는 옳다(자에 넣는
+#    입력이 조판과 같아야 한다). 다만 `normalizeLatex` 가 **보기 표식이나 정답 모양을
+#    건드리는 규칙을 갖게 되면** 그때 이 변이를 되살리고 시험도 같이 만들어야 한다.
+#    그전까지는 「지킨다」고 적지 않는다.
 mutate "E2E 모의가 형식을 비워 둔다 (모의에서만 [?형식] 이 되살아난다)" "$SRC_GEN" \
   '      questionType: deriveQuestionType({
         content: `모의 생성 문제 ${index + 1}`,

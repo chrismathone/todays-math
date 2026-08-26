@@ -228,6 +228,9 @@ public/figures-backup-300swap/
 # 임시 조사용 (커밋하지 않는다)
 .probe/
 !scripts/qa/reports/question-type-unify-ledger.json
+# AI 생성 문항 형식(questionType) 백필 — **되돌리기가 이 파일 하나를 읽는다.**
+# 커밋 안 되면 이 컴퓨터에서만 되돌릴 수 있다(2026-08-18 에 실제로 그랬다).
+!scripts/qa/reports/ai-question-type-ledger.json
 
 # 그림 칸 원장(㉮) — 「이 그림이 원본 지면에서 몇 mm 였나」의 유일한 자리.
 # 300dpi 재크롭·인쇄 물리 크기·벡터 SVG 목표 크기가 전부 이 값을 쓴다.

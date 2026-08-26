@@ -118,6 +118,13 @@ export async function generateProblems(
   return items.slice(0, count).map((item) => {
     // ⚠️ **정규화한 뒤에** 형식을 읽는다. 판정이 보는 본문과 DB·지면이 쓰는 본문이
     //    같아야 보기 칸 수가 갈리지 않는다(CLAUDE.md 2026-08-18).
+    //
+    //    🔴 **이 순서는 오늘 시험이 못 지킨다** — 숨기지 않으려고 적는다.
+    //       `normalizeLatex` 는 `\dfrac`→`\frac` 하나뿐이고 그 치환은 보기 표식도
+    //       정답 모양도 안 건드려서, 정규화 **전**으로 판정해도 산출물이 똑같다.
+    //       변이 하네스가 그것을 «초록»으로 찍는 것을 보고 확인했다
+    //       (`scripts/qa/mutate-ai-question-type.sh` 의 같은 자리 주석 참조).
+    //       정규화가 보기·정답을 건드리는 규칙을 갖게 되면 그때 가드를 세워야 한다.
     const content = normalizeLatex(item.content);
     const answer = normalizeLatex(item.answer);
     return {
