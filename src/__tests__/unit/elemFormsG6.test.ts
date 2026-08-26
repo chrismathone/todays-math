@@ -1230,26 +1230,28 @@ describe("초6 2-6 원기둥·원뿔·구", () => {
     }
   });
 
-  it("2-6-3 05 밑면 1 · 07 지름=2r", () => {
+  it("2-6-3 05 밑면 1 · 07 반지름+높이", () => {
     const unit = unitOf("2-6-3");
     for (const seed of SEEDS) {
       const b = generateElementaryForm(unit, seed, "05");
       expect(answerInt(b.answer)).toBe(1);
-      const d = generateElementaryForm(unit, seed, "07");
-      const rm = d.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/);
-      expect(rm, d.content).toBeTruthy();
-      expect(answerInt(d.answer)).toBe(Number(rm![1]) * 2);
+      const s = generateElementaryForm(unit, seed, "07");
+      const rm = s.content.match(
+        /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$ 이고 높이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+      );
+      expect(rm, s.content).toBeTruthy();
+      expect(answerInt(s.answer)).toBe(Number(rm![1]) + Number(rm![2]));
     }
   });
 
-  it("2-6-4 06 지름=2r · 10 둘레=6r (원주율 3)", () => {
+  it("2-6-4 06 반지름+지름=3r · 10 둘레=6r (원주율 3)", () => {
     const unit = unitOf("2-6-4");
     for (const seed of SEEDS) {
       const d = generateElementaryForm(unit, seed, "06");
       const r = Number(
         d.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/)![1],
       );
-      expect(answerInt(d.answer)).toBe(2 * r);
+      expect(answerInt(d.answer)).toBe(3 * r);
       const c = generateElementaryForm(unit, seed, "10");
       const r2 = Number(
         c.content.match(/반지름이 \$(\d+)\\,\\mathrm\{cm\}\$/)![1],
