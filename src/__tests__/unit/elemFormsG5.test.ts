@@ -1244,12 +1244,14 @@ describe("초5 2-5-2 정육면체", () => {
 describe("초5 2-5-3 직육면체의 성질", () => {
   const unit = unitOf("2-5-3");
 
-  it("05 가로·높이 평행면 넓이", () => {
+  it("05 밑면과 수직인 모서리 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/가로가 \$(\d+)\$ cm, 높이가 \$(\d+)\$ cm/);
+      const m = p.content.match(
+        /가로가 \$(\d+)\$ cm, 세로가 \$(\d+)\$ cm, 높이가 \$(\d+)\$ cm/,
+      );
       expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(Number(m![1]) * Number(m![2]));
+      expect(answerInt(p.answer)).toBe(4 * Number(m![3]));
     }
   });
 });
@@ -1307,6 +1309,17 @@ describe("초5 2-6-1 평균", () => {
 
 describe("초5 2-6-2 평균 이용", () => {
   const unit = unitOf("2-6-2");
+
+  it("02 전체와 평균에서 경기 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "02");
+      const m = p.content.match(
+        /모두 \$(\d+)\$점을 얻었고 경기당 평균은 \$(\d+)\$점/,
+      );
+      expect(m, p.content).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(Number(m![1]) / Number(m![2]));
+    }
+  });
 
   it("05 자료 개수", () => {
     for (const seed of SEEDS) {

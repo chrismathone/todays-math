@@ -10188,6 +10188,19 @@ function avg262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 02 — 합과 평균에서 경기 수를 거슬러 구한다. 기본(Read)은 연산과 같은 n0*n1이라 안 감싼다. */
+function avg262HowManyGames(unit: UnitSeed, rng: Rng): ElemProblem {
+  const games = intBetween(rng, 4, 7);
+  const avg = intBetween(rng, 5, 12);
+  const who = pick(rng, FRAC_NAMES);
+  return make(
+    unit,
+    `${wj(who, "이", "가")} 여러 경기에서 모두 ${n(avg * games)}점을 얻었고 경기당 평균은 ${n(avg)}점이었습니다. 경기는 몇 경기입니까?`,
+    n(games),
+    `경기 수는 전체 점수를 평균으로 나눈 값입니다. ${expr(`${avg * games}\\div${avg}=${games}`)}이므로 ${n(games)}경기입니다.`,
+  );
+}
+
 /** 문형 05 — 합과 평균에서 개수를 거슬러 구한다. */
 function avg262Count(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = intBetween(rng, 4, 9);
@@ -10835,14 +10848,14 @@ function cong232BothPer(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 09 — 대응각. 기본은 나머지 한 각이다. */
+/** 문형 09 — 두 삼각형에서 대응각의 합. 05가 대응변 항등(=n0)이라 각을 복사하면 같은 셈이다. */
 function cong232MatchAngle(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = intBetween(rng, 35, 80);
   return make(
     unit,
-    `두 삼각형은 서로 합동입니다. 한 삼각형의 한 각이 ${expr(`${x}^\\circ`)}일 때, 다른 삼각형에서 이와 대응하는 각의 크기는 몇 도입니까?`,
-    expr(`${x}^\\circ`),
-    `합동인 두 도형에서 대응하는 각의 크기는 서로 같으므로 ${expr(`${x}^\\circ`)}입니다.`,
+    `두 삼각형은 서로 합동입니다. 한 삼각형의 한 각이 ${expr(`${x}^\\circ`)}일 때, 두 삼각형에서 이와 대응하는 각의 합은 몇 도입니까?`,
+    expr(`${2 * x}^\\circ`),
+    `대응하는 각의 크기는 서로 같으므로 합은 ${expr(`${x}+${x}=${2 * x}`)}, 곧 ${expr(`${2 * x}^\\circ`)}입니다.`,
   );
 }
 
@@ -12181,7 +12194,7 @@ export const G5_FORMS: Record<string, readonly ElemForm[]> = {
   ],
   "초5|2-6-2": [
     { id: "01", tier: "연산", generate: avg262Calc },
-    { id: "02", tier: "기본", generate: avg262Read },
+    { id: "02", tier: "기본", generate: avg262HowManyGames },
     { id: "03", tier: "응용", generate: avg262Apply },
     { id: "04", tier: "심화", generate: avg262Deep },
     { id: "05", tier: "기본", generate: avg262Count },
@@ -12260,14 +12273,14 @@ function box253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 05 — 가로·높이 면과 평행한 면의 넓이. 연산은 가로·세로 면이다. */
+/** 문형 05 — 한 면과 수직인 모서리(높이) 넷의 합. 01은 평행한 면의 넓이라 면 이름만 바꾸면 같은 물음이다. */
 function box253WHParallel(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = boxDims(rng);
   return make(
     unit,
-    `가로가 ${n(w)} cm, 높이가 ${n(h)} cm인 면과 서로 평행한 면의 넓이는 몇 cm²입니까?`,
-    n(w * h),
-    `서로 평행한 두 면은 합동이므로 넓이도 ${expr(`${w}\\times${h}=${w * h}`)} cm²입니다.`,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서, 가로와 세로로 이루어진 면과 수직인 모서리의 길이의 합은 몇 cm입니까?`,
+    n(4 * h),
+    `그 면과 수직인 모서리는 높이 모서리이고 ${n(4)}개입니다. 합은 ${expr(`${h}\\times4=${4 * h}`)}이므로 ${n(4 * h)} cm입니다.`,
     fig("cuboid", { w, d, h }),
   );
 }
