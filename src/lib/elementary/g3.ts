@@ -7841,6 +7841,89 @@ function sub114SmallerDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+function line121Dots(rng: Rng): { layout: Pt[]; k: number; letters: string[] } {
+  const layout = pick(rng, DOT_LAYOUTS);
+  const k = layout.length;
+  return { layout, k, letters: LINE_LETTERS.slice(0, k).map(String) };
+}
+
+/** 문형 05 — 정의: 두 점을 곧게 이은 선. */
+function line121DefSeg(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `두 점을 곧게 이은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    "선분",
+    `두 점을 곧게 이은 선이 선분입니다.`,
+  );
+}
+
+/** 문형 06 — 정의: 한쪽으로만 끝없이. */
+function line121DefRay(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `한 점에서 출발하여 한쪽으로만 끝없이 늘인 곧은 선을 무엇이라고 합니까? 출발점을 ${n(many)}개 고를 수 있습니다.`,
+    "반직선",
+    `한쪽으로만 끝없이 늘인 곧은 선이 반직선입니다.`,
+  );
+}
+
+/** 문형 07 — 정의: 양쪽으로 끝없이. */
+function line121DefLine(unit: UnitSeed, rng: Rng): ElemProblem {
+  const many = intBetween(rng, 2, 6);
+  return make(
+    unit,
+    `양쪽으로 끝없이 늘인 곧은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    "직선",
+    `양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`,
+  );
+}
+
+/** 문형 08 — 반직선 수. 선분(03)과 답이 다르다. */
+function line121RayCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { layout, k, letters } = line121Dots(rng);
+  const which = intBetween(rng, 1, 6);
+  const rays = k * (k - 1);
+  return make(
+    unit,
+    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 한 점에서 출발하여 다른 점 쪽으로 끝없이 그을 수 있는 반직선은 모두 몇 개인지 쓰시오.`,
+    n(rays),
+    `한 점마다 나머지 ${n(k - 1)}개 쪽으로 반직선을 그을 수 있습니다. ${expr(`${k}\\times${k - 1}=${rays}`)} 개입니다.`,
+    dotsOnly(layout, letters),
+  );
+}
+
+/** 문형 09 — 점 하나를 지운 뒤 선분 수. 04 는 점을 더한다. */
+function line121RemovePoint(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { layout, k, letters } = line121Dots(rng);
+  const which = intBetween(rng, 1, 6);
+  const left = k - 1;
+  const segs = (left * (left - 1)) / 2;
+  return make(
+    unit,
+    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 그중 한 점을 지우면 남은 점으로 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+    n(segs),
+    `점이 ${n(left)}개 남으므로 ${expr(`${left}\\times${left - 1}\\div2=${segs}`)} 개입니다.`,
+    dotsOnly(layout, letters),
+  );
+}
+
+/** 문형 10 — 반직선 수와 선분 수의 합. */
+function line121RayPlusSeg(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { layout, k, letters } = line121Dots(rng);
+  const which = intBetween(rng, 1, 6);
+  const rays = k * (k - 1);
+  const segs = (k * (k - 1)) / 2;
+  return make(
+    unit,
+    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
+    n(rays + segs),
+    `반직선은 ${expr(`${k}\\times${k - 1}=${rays}`)} 개, 선분은 ${expr(`${k}\\times${k - 1}\\div2=${segs}`)} 개이므로 합은 ${expr(`${rays}+${segs}=${rays + segs}`)} 입니다.`,
+    dotsOnly(layout, letters),
+  );
+}
+
 export const G3_FORMS: Record<string, readonly ElemForm[]> = {
   "초3|1-1-1": [
     { id: "01", tier: "연산", generate: sub111Calc },
@@ -7889,6 +7972,18 @@ export const G3_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: sub114Plus100 },
     { id: "09", tier: "응용", generate: sub114From100 },
     { id: "10", tier: "응용", generate: sub114SmallerDiff },
+  ],
+  "초3|1-2-1": [
+    { id: "01", tier: "연산", generate: line121Calc },
+    { id: "02", tier: "기본", generate: line121Word },
+    { id: "03", tier: "응용", generate: line121Apply },
+    { id: "04", tier: "심화", generate: line121Deep },
+    { id: "05", tier: "기본", generate: line121DefSeg },
+    { id: "06", tier: "기본", generate: line121DefRay },
+    { id: "07", tier: "기본", generate: line121DefLine },
+    { id: "08", tier: "응용", generate: line121RayCount },
+    { id: "09", tier: "응용", generate: line121RemovePoint },
+    { id: "10", tier: "응용", generate: line121RayPlusSeg },
   ],
   "초3|2-3-1": [
     { id: "01", tier: "연산", generate: circ231NameVar },

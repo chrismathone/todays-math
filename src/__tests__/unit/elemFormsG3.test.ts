@@ -413,3 +413,51 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
     }
   });
 });
+
+describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 답이다", () => {
+  const unit = unitOf("1-2-1");
+
+  it("등록이 10개다", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("05·06·07 정의는 선분·반직선·직선", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "05").answer).toBe("선분");
+      expect(generateElementaryForm(unit, seed, "06").answer).toBe("반직선");
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("직선");
+    }
+  });
+
+  it("01 이름은 선분·반직선·직선 가운데 하나", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      expect(p.answer).toMatch(/^(선분|반직선|직선) /);
+    }
+  });
+
+  it("08 반직선 수는 k(k-1)", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const k = katexInts(p.content)[1]!;
+      expect(answerInt(p.answer)).toBe(k * (k - 1));
+      expect(p.figureSpec).toBeTruthy();
+    }
+  });
+
+  it("09 점 하나를 지운 선분 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const k = katexInts(p.content)[1]!;
+      expect(answerInt(p.answer)).toBe(((k - 1) * (k - 2)) / 2);
+    }
+  });
+
+  it("10 반직선 수와 선분 수의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const k = katexInts(p.content)[1]!;
+      expect(answerInt(p.answer)).toBe(k * (k - 1) + (k * (k - 1)) / 2);
+    }
+  });
+});
