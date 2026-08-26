@@ -16,7 +16,7 @@ import { fracSpec } from "./fracFig";
 import { fig, make, makeDeep } from "./make";
 import { fmtFrac, gcd } from "./math";
 import { intBetween, pick } from "./rng";
-import type { ChapterHandler, ElemProblem, Rng } from "./types";
+import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /** 각도. `45°` 같은 날 글자를 남기지 않는다(R1). */
 function deg(value: number): string {
@@ -5245,6 +5245,113 @@ function tier65Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${expr("\\square")} 에 알맞은 수는 ${n(b * c3 - a)}입니다.`,
   );
 }
+
+/** 문형 05 — 왼쪽 빈칸. */
+function eq165LeftBlank(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 30);
+  const b = intBetween(rng, 11, 40);
+  const c3 = intBetween(rng, 11, 40);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`\\square+${a}=${b}+${c3}`)}`,
+    n(b + c3 - a),
+    `오른쪽은 ${expr(`${b}+${c3}=${b + c3}`)} 입니다. ${expr(`${b + c3}-${a}=${b + c3 - a}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(b + c3 - a)}입니다.`,
+  );
+}
+
+/** 문형 06 — 덧셈 교환. 식 모양만 보면 03 과 같으므로 발문이 교환을 묻는다. */
+function eq165Commute(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 40);
+  const b = intBetween(rng, 11, 40);
+  return make(
+    unit,
+    `덧셈의 교환법칙을 이용하여 등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=${b}+\\square`)}`,
+    n(a),
+    `더하는 순서를 바꾸어도 합은 같으므로 ${expr("\\square")} 는 ${n(a)}입니다.`,
+  );
+}
+
+/** 문형 07 — 세 수의 합에서 가운데 빈칸. */
+function eq165MiddleBlank(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 30);
+  const x = intBetween(rng, 11, 30);
+  const c3 = intBetween(rng, 11, 30);
+  const s = a + x + c3;
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+\\square+${c3}=${s}`)}`,
+    n(x),
+    `오른쪽이 ${n(s)}이므로 ${expr(`${s}-${a}-${c3}=${x}`)} 입니다.`,
+  );
+}
+
+/** 문형 08 — 뺄셈 등호. □ 가 양수가 되게 차를 먼저 잡는다. */
+function eq165Sub(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 11, 20);
+  const left = intBetween(rng, 5, 18);
+  const a = b + left;
+  const box = intBetween(rng, 2, 20);
+  const c3 = left + box;
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}-${b}=${c3}-\\square`)}`,
+    n(box),
+    `왼쪽은 ${expr(`${a}-${b}=${left}`)} 입니다. ${expr(`${c3}-${left}=${box}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(box)}입니다.`,
+  );
+}
+
+/** 문형 09 — 왼쪽 빈칸 뺄셈(두 단계). */
+function eq165LeftSub(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 11, 30);
+  const b = intBetween(rng, 11, 30);
+  const c3 = intBetween(rng, 11, 30);
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`\\square-${a}=${b}+${c3}`)}`,
+    n(a + b + c3),
+    `오른쪽은 ${expr(`${b}+${c3}=${b + c3}`)} 입니다. ${expr(`${b + c3}+${a}=${a + b + c3}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(a + b + c3)}입니다.`,
+  );
+}
+
+/** 문형 10 — 합을 곱으로 (두 단계). 곱이 24 이상이라 a 범위가 안 뒤집힌다. */
+function eq165Times(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c3 = intBetween(rng, 2, 5);
+  const k = intBetween(rng, Math.ceil(24 / c3), 12);
+  const product = k * c3;
+  const a = intBetween(rng, 11, product - 11);
+  const b = product - a;
+  return make(
+    unit,
+    `등호(=)의 양쪽이 같아지도록 ${expr("\\square")} 에 알맞은 수를 쓰시오. ` +
+      `${expr(`${a}+${b}=\\square\\times${c3}`)}`,
+    n(k),
+    `왼쪽의 합은 ${expr(`${a}+${b}=${product}`)} 입니다. ${expr(`${product}\\div${c3}=${k}`)} 이므로 ` +
+      `${expr("\\square")} 에 알맞은 수는 ${n(k)}입니다.`,
+  );
+}
+
+export const G4_FORMS: Record<string, readonly ElemForm[]> = {
+  "초4|1-6-5": [
+    { id: "01", tier: "연산", generate: tier65Calc },
+    { id: "02", tier: "기본", generate: tier65Basic },
+    { id: "03", tier: "응용", generate: tier65Apply },
+    { id: "04", tier: "심화", generate: tier65Deep },
+    { id: "05", tier: "기본", generate: eq165LeftBlank },
+    { id: "06", tier: "기본", generate: eq165Commute },
+    { id: "07", tier: "기본", generate: eq165MiddleBlank },
+    { id: "08", tier: "응용", generate: eq165Sub },
+    { id: "09", tier: "응용", generate: eq165LeftSub },
+    { id: "10", tier: "응용", generate: eq165Times },
+  ],
+};
 
 /* ───────────────── 2-1 분수의 덧셈과 뺄셈 ───────────────── */
 

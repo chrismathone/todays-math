@@ -30,6 +30,14 @@ export {
   validateElementaryComboDefinition,
 } from "./combo";
 export type { ElemComboDefinition } from "./combo";
+export {
+  elemProblemType,
+  generateElementaryForm,
+  listedForms,
+  PILOT_FORM_KEYS,
+  pilotFamilyKey,
+} from "./forms";
+export type { ElemForm } from "./forms";
 
 const HANDLERS = { ...G3, ...G4, ...G5, ...G6 };
 

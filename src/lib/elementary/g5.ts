@@ -17,7 +17,7 @@ import { fracSpec } from "./fracFig";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divisors, gcd, lcm, simplify, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
-import type { ChapterHandler, ElemProblem, Rng } from "./types";
+import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /* ────────────────────────────── 지역 헬퍼 ────────────────────────────── */
 
@@ -7002,6 +7002,105 @@ function boxRectDeep(unit: UnitSeed, rng: Rng): ElemProblem {
     `세 모서리의 합은 ${expr(`${total}\\div4=${w + d + h}`)} cm이고, 높이를 빼면 ${expr(`${w + d + h}-${h}=${w + d}`)} cm가 가로와 세로의 합입니다. 가로가 세로의 ${n(k)}배이므로 세로의 ${expr(`${k}+1=${k + 1}`)}배가 ${n(w + d)} cm입니다. 따라서 ${expr(`${w + d}\\div${k + 1}=${d}`)}이므로 세로는 ${n(d)} cm입니다.`,
   );
 }
+
+/** 문형 02 — 면의 개수. 색 끈 문장은 모서리 합과 같은 물음이라 새 틀이 아니다. */
+function boxRectFaces(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 면은 몇 개입니까?`,
+    n(6),
+    `직육면체는 직사각형 ${n(6)}개로 둘러싸여 있으므로 면은 ${n(6)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 05 — 꼭짓점 개수. */
+function boxRectVertices(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 꼭짓점은 몇 개입니까?`,
+    n(8),
+    `직육면체의 꼭짓점은 ${n(8)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 06 — 모서리 개수(길이가 아니라 개수). */
+function boxRectEdgeCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 모서리는 몇 개입니까?`,
+    n(12),
+    `직육면체의 모서리는 ${n(12)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 07 — 합동인 면 쌍. */
+function boxRectFacePairs(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서 서로 합동인 면은 몇 쌍입니까?`,
+    n(3),
+    `마주 보는 면이 합동이므로 ${n(3)}쌍입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 08 — 한 꼭짓점에서 만나는 모서리. */
+function boxRectVertexEdges(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서 한 꼭짓점에 모이는 모서리는 몇 개입니까?`,
+    n(3),
+    `한 꼭짓점에 가로·세로·높이 모서리가 하나씩 모이므로 ${n(3)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 09 — 서로 다른 모양의 면 종류. */
+function boxRectFaceKinds(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서 서로 다른 모양의 면은 몇 종류입니까?`,
+    n(3),
+    `가로·세로·높이가 모두 다르므로 면의 모양은 ${n(3)}종류입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+/** 문형 10 — 가로·세로인 면은 몇 개. */
+function boxRectGivenFaceCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const { w, d, h } = boxDims(rng);
+  return make(
+    unit,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체에서 가로 ${n(w)} cm, 세로 ${n(d)} cm인 면은 몇 개입니까?`,
+    n(2),
+    `마주 보는 면이 합동이므로 그런 면은 ${n(2)}개입니다.`,
+    fig("cuboid", { w, d, h }),
+  );
+}
+
+export const G5_FORMS: Record<string, readonly ElemForm[]> = {
+  "초5|2-5-1": [
+    { id: "01", tier: "연산", generate: boxRectCalc },
+    { id: "02", tier: "기본", generate: boxRectFaces },
+    { id: "03", tier: "응용", generate: boxRectApply },
+    { id: "04", tier: "심화", generate: boxRectDeep },
+    { id: "05", tier: "기본", generate: boxRectVertices },
+    { id: "06", tier: "기본", generate: boxRectEdgeCount },
+    { id: "07", tier: "기본", generate: boxRectFacePairs },
+    { id: "08", tier: "응용", generate: boxRectVertexEdges },
+    { id: "09", tier: "응용", generate: boxRectFaceKinds },
+    { id: "10", tier: "응용", generate: boxRectGivenFaceCount },
+  ],
+};
 
 /* ── 2-5-3 직육면체의 성질 — «몇 개인가»가 아니라 «어느 면인가»를 묻는다 ── */
 
