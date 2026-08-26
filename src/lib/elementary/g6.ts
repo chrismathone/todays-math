@@ -8205,6 +8205,89 @@ function decNatFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/** 문형 05 — 몫<1 이므로 자연수 부분은 0. 1-3-1 06 은 정수 부분이 1 이상. */
+function decUnderFormWholeZero(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음 나눗셈의 몫에서 자연수 부분은 얼마입니까?\n\n${expr(`${a}\\div${c.b}=\\square`)}`,
+    num(0),
+    `나누어지는 수 ${num(a)}${centsJosa(c.a, "이", "가")} 나누는 수 ${num(c.b)}보다 작으므로 ` +
+      `몫의 자연수 부분은 ${num(0)}입니다.`,
+  );
+}
+
+/** 문형 06 — 나누어지는 수가 더 작다는 규칙이 **맞다**. */
+function decUnderFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
+    "예",
+    `나누어지는 수가 더 작으면 몫의 자연수 부분에 ${num(0)}을 씁니다.`,
+  );
+}
+
+/** 문형 07 — 이 소단원의 몫은 1보다 작다. 「크다」는 틀렸다. */
+function decUnderFormOverTf(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const a = fromCents(c.a);
+  const q = fromCents(c.q);
+  return make(
+    unit,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 크다.`,
+    "아니요",
+    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
+  );
+}
+
+/** 문형 08 — 몫이 1보다 작은 두 나눗셈의 합. */
+function decUnderFormSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.underOne);
+  const y = pick(rng, DEC_DIV.underOne);
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 합을 구하시오. 두 몫은 모두 ${num(1)}보다 작습니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(x.q + y.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `합은 ${expr(`${fromCents(x.q)}+${fromCents(y.q)}=${fromCents(x.q + y.q)}`)} 입니다.`,
+  );
+}
+
+/** 문형 09 — 한 도막을 구한 뒤 몇 배를 이어 붙인다. 02 는 한 도막만. */
+function decUnderFormTimesPiece(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DEC_DIV.underOne);
+  const thing = pick(rng, CUT_STUFF);
+  const times = intBetween(rng, 2, 4);
+  return make(
+    unit,
+    `${thing} ${unitNum(fromCents(c.a), "m")}를 똑같이 ${num(c.b)}도막으로 잘랐습니다. ` +
+      `그중 ${num(times)}도막을 이어 붙이면 몇 m입니까?`,
+    expr(fromCents(c.q * times)),
+    `한 도막은 ${expr(`${fromCents(c.a)}\\div${c.b}=${fromCents(c.q)}`)} m입니다. ` +
+      `${num(times)}도막은 ${expr(`${fromCents(c.q)}\\times${times}=${fromCents(c.q * times)}`)} m입니다.`,
+  );
+}
+
+/** 문형 10 — 몫이 1보다 작은 두 나눗셈의 차. */
+function decUnderFormDiff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = pick(rng, DEC_DIV.underOne);
+  let y = pick(rng, DEC_DIV.underOne);
+  for (let t = 0; t < 20 && y.q === x.q; t += 1)
+    y = pick(rng, DEC_DIV.underOne);
+  const hi = x.q >= y.q ? x : y;
+  const lo = x.q >= y.q ? y : x;
+  return make(
+    unit,
+    `다음 두 나눗셈의 몫의 차를 구하시오. 두 몫은 모두 ${num(1)}보다 작습니다.\n\n${expr(`${fromCents(x.a)}\\div${x.b}`)}, ${expr(`${fromCents(y.a)}\\div${y.b}`)}`,
+    expr(fromCents(hi.q - lo.q)),
+    `몫은 ${num(fromCents(x.q))} 와 ${num(fromCents(y.q))} 입니다. ` +
+      `차는 ${expr(`${fromCents(hi.q)}-${fromCents(lo.q)}=${fromCents(hi.q - lo.q)}`)} 입니다.`,
+  );
+}
+
 export const G6_FORMS: Record<string, readonly ElemForm[]> = {
   "초6|1-1-1": forms10(natDivCalc, natDivWord, natDivApply, natDivDeep, {
     b5: natDivFormDen,
@@ -8296,4 +8379,18 @@ export const G6_FORMS: Record<string, readonly ElemForm[]> = {
     a9: decNatFormAfterShare,
     a10: decNatFormDiff,
   }),
+  "초6|1-3-2": forms10(
+    decUnderCalc,
+    decUnderWord,
+    decUnderApply,
+    decUnderDeep,
+    {
+      b5: decUnderFormWholeZero,
+      b6: decUnderFormSmallerTf,
+      b7: decUnderFormOverTf,
+      a8: decUnderFormSum,
+      a9: decUnderFormTimesPiece,
+      a10: decUnderFormDiff,
+    },
+  ),
 };

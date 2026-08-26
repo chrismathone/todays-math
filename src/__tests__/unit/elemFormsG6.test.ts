@@ -832,3 +832,72 @@ describe("초6 1-3-1 (소수)÷(자연수) — 몫이 1보다 크다", () => {
     }
   });
 });
+
+describe("초6 1-3-2 몫이 1보다 작은 (소수)÷(자연수)", () => {
+  const unit = unitOf("1-3-2");
+
+  it("등록이 10개", () => {
+    expect(listedForms(unit)).toHaveLength(10);
+  });
+
+  it("01 몫 × 나누는 수 = 나누어지는 수 · 몫<1", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "01");
+      const m = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)=\\square\$/);
+      expect(m, p.content).toBeTruthy();
+      const q = answerCents(p.answer);
+      expect(q).toBeLessThan(100);
+      expect(q * Number(m![2])).toBe(centsOf(m![1]!));
+    }
+  });
+
+  it("05 자연수 부분은 0", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(p.content).toMatch(/자연수 부분/);
+      expect(answerInt(p.answer)).toBe(0);
+    }
+  });
+
+  it("06 나누어지는 수가 더 작다 예 · 07 몫이 더 크다 아니요", () => {
+    for (const seed of SEEDS) {
+      expect(generateElementaryForm(unit, seed, "06").answer).toBe("예");
+      expect(generateElementaryForm(unit, seed, "07").answer).toBe("아니요");
+    }
+  });
+
+  it("08 두 몫의 합 · 10 두 몫의 차", () => {
+    for (const seed of SEEDS) {
+      const s = generateElementaryForm(unit, seed, "08");
+      const sm = [
+        ...s.content.matchAll(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)\$/g),
+      ];
+      expect(sm.length, s.content).toBe(2);
+      const sq1 = centsOf(sm[0]![1]!) / Number(sm[0]![2]);
+      const sq2 = centsOf(sm[1]![1]!) / Number(sm[1]![2]);
+      expect(answerCents(s.answer)).toBe(Math.round(sq1 + sq2));
+      const d = generateElementaryForm(unit, seed, "10");
+      const dm = [
+        ...d.content.matchAll(/\$([0-9]+(?:\.[0-9]+)?)\\div(\d+)\$/g),
+      ];
+      expect(dm.length, d.content).toBe(2);
+      const dq1 = centsOf(dm[0]![1]!) / Number(dm[0]![2]);
+      const dq2 = centsOf(dm[1]![1]!) / Number(dm[1]![2]);
+      expect(answerCents(d.answer)).toBe(
+        Math.abs(Math.round(dq1) - Math.round(dq2)),
+      );
+    }
+  });
+
+  it("09 한 도막 × 이어 붙인 수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const len = p.content.match(/\$([0-9]+(?:\.[0-9]+)?)\\,\\mathrm\{m\}/);
+      const cuts = p.content.match(/똑같이 \$(\d+)\$도막/);
+      const join = p.content.match(/그중 \$(\d+)\$도막/);
+      expect(len && cuts && join, p.content).toBeTruthy();
+      const one = centsOf(len![1]!) / Number(cuts![1]);
+      expect(answerCents(p.answer)).toBe(one * Number(join![1]));
+    }
+  });
+});
