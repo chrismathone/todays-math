@@ -24,6 +24,16 @@ function answerInt(answer: string): number {
   return Number(m![1]);
 }
 
+function degNums(text: string): number[] {
+  return [...text.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) => Number(m[1]));
+}
+
+function answerDeg(answer: string): number {
+  const m = /^\$(\d+)\^\\circ\$/.exec(answer);
+  expect(m, `각도 답이 아님: ${answer}`).toBeTruthy();
+  return Number(m![1]);
+}
+
 describe("초4 1-1-1 1000이 10개인 수", () => {
   const unit = unitOf("1-1-1");
 
@@ -529,6 +539,177 @@ describe("초4 1-1-7 수의 크기 비교", () => {
         Number(x[1]),
       );
       expect(answerInt(p.answer)).toBe(Math.max(...nums) - Math.min(...nums));
+    }
+  });
+});
+
+describe("초4 1-2-1 각의 크기 비교", () => {
+  const unit = unitOf("1-2-1");
+
+  it("05 두 각 중 더 큰 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      const ds = degNums(p.content);
+      expect(ds.length).toBeGreaterThanOrEqual(2);
+      expect(answerDeg(p.answer)).toBe(Math.max(ds[0]!, ds[1]!));
+    }
+  });
+
+  it("06 두 각의 차", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const [y, x] = degNums(p.content);
+      expect(y && x).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(Math.abs(y! - x!));
+    }
+  });
+
+  it("07 네 각 중 가장 큰 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      expect(answerDeg(p.answer)).toBe(Math.max(...degNums(p.content)));
+    }
+  });
+
+  it("08 두 쌍의 합 중 더 큰 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [a, b, c, d] = degNums(p.content);
+      expect(a && b && c && d).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(Math.max(a! + b!, c! + d!));
+    }
+  });
+
+  it("09 가 각에서 더하고 뺀 나 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const [x, d] = degNums(p.content);
+      expect(x && d).toBeTruthy();
+      const y = p.content.includes("더 큽니다") ? x! + d! : x! - d!;
+      expect(answerDeg(p.answer)).toBe(y);
+    }
+  });
+
+  it("10 큰 각부터 나열", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const ds = degNums(p.content);
+      const desc = [...ds].sort((a, b) => b - a);
+      expect(p.answer).toBe(desc.map((v) => `$${v}^\\circ$`).join(", "));
+    }
+  });
+});
+
+describe("초4 1-2-2 각의 크기 재기", () => {
+  const unit = unitOf("1-2-2");
+
+  it("05 각도기 그림의 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(p.figureSpec).toMatchObject({ kind: "protractor" });
+      const d = (p.figureSpec as { deg: number }).deg;
+      expect(answerDeg(p.answer)).toBe(d);
+    }
+  });
+
+  it("06 d도는 1도가 d개", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      const d = degNums(p.content)[0];
+      expect(d).toBeTruthy();
+      expect(answerInt(p.answer)).toBe(d);
+    }
+  });
+
+  it("07 눈금 칸 수가 곧 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = p.content.match(/눈금이 \$(\d+)\$칸인 각/);
+      expect(m, p.content).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(Number(m![1]));
+    }
+  });
+
+  it("08 재 둔 두 각의 합", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const [x, y] = degNums(p.content);
+      expect(x && y).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(x! + y!);
+    }
+  });
+
+  it("09 직각보다 d만큼 큰 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      const d = degNums(p.content)[0];
+      expect(d).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(90 + d!);
+    }
+  });
+
+  it("10 직선이 이루는 각보다 d만큼 작은 각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const d = degNums(p.content)[0];
+      expect(d).toBeTruthy();
+      expect(answerDeg(p.answer)).toBe(180 - d!);
+    }
+  });
+});
+
+describe("초4 1-2-3 각의 분류", () => {
+  const unit = unitOf("1-2-3");
+
+  it("05 그림 각의 분류는 치수로", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "05");
+      expect(p.figureSpec).toMatchObject({ kind: "protractor" });
+      const d = (p.figureSpec as { deg: number }).deg;
+      const want = d < 90 ? "예각" : d === 90 ? "직각" : "둔각";
+      expect(p.answer).toBe(want);
+    }
+  });
+
+  it("06 세 각 중 둔각 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(answerInt(p.answer)).toBe(
+        degNums(p.content).filter((v) => v > 90).length,
+      );
+    }
+  });
+
+  it("07 직각인 각은 90도", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      expect(degNums(p.content)).toContain(90);
+      expect(answerDeg(p.answer)).toBe(90);
+    }
+  });
+
+  it("08 둔각을 나타난 차례로 나열", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "08");
+      const obtuse = degNums(p.content).filter((v) => v > 90);
+      expect(p.answer).toBe(obtuse.map((v) => `$${v}^\\circ$`).join(", "));
+    }
+  });
+
+  it("09 예각 개수", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "09");
+      expect(answerInt(p.answer)).toBe(
+        degNums(p.content).filter((v) => v < 90).length,
+      );
+    }
+  });
+
+  it("10 가장 큰 예각", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "10");
+      const acute = degNums(p.content).filter((v) => v < 90);
+      expect(answerDeg(p.answer)).toBe(Math.max(...acute));
     }
   });
 });

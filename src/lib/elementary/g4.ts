@@ -5983,6 +5983,275 @@ function big117Range(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 1-2-1 문형 05–10. 예각·둔각 이름은 1-2-3 몫이라 쓰지 않는다. ── */
+
+/** 문형 05 — 두 각 중 더 큰 각. */
+function ang121Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 80);
+  const y = x + intBetween(rng, 10, 60);
+  const first = intBetween(rng, 0, 1) === 0 ? x : y;
+  const second = first === x ? y : x;
+  return make(
+    unit,
+    `크기가 ${deg(first)}인 각과 ${deg(second)}인 각 중 더 큰 각의 크기를 쓰시오.`,
+    deg(y),
+    `${expr(`${x}<${y}`)} 이므로 ${deg(y)}인 각이 더 큽니다.`,
+  );
+}
+
+/** 문형 06 — 두 각의 차. */
+function ang121Diff(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 80);
+  const y = x + intBetween(rng, 10, 60);
+  return make(
+    unit,
+    `크기가 ${deg(y)}인 각과 ${deg(x)}인 각의 크기의 차는 몇 도인가?`,
+    deg(y - x),
+    `${expr(`${y}-${x}=${y - x}`)} 이므로 ${deg(y - x)}입니다.`,
+  );
+}
+
+/** 문형 07 — 네 각 중 가장 큰 각. */
+function ang121FourMax(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 15, 50);
+  const a = lo + intBetween(rng, 8, 20);
+  const b = a + intBetween(rng, 8, 20);
+  const hi = b + intBetween(rng, 8, 20);
+  const shown = shuffled(rng, [lo, a, b, hi]);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 가장 큰 각의 크기를 쓰시오.`,
+    deg(hi),
+    `가장 큰 각은 ${deg(hi)}입니다.`,
+  );
+}
+
+/** 문형 08 — 두 쌍의 합 중 더 큰 합. */
+function ang121BiggerPairSum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 20, 70);
+  const b = intBetween(rng, 20, 70);
+  const c = intBetween(rng, 20, 70);
+  const d = intBetween(rng, 20, 70);
+  const left = a + b;
+  const right = c + d;
+  const big = Math.max(left, right);
+  return make(
+    unit,
+    `${deg(a)}와 ${deg(b)}의 합과 ${deg(c)}와 ${deg(d)}의 합 중 더 큰 합은 몇 도인가?`,
+    deg(big),
+    `${expr(`${a}+${b}=${left}`)}, ${expr(`${c}+${d}=${right}`)} 이므로 더 큰 합은 ${deg(big)}입니다.`,
+  );
+}
+
+/** 문형 09 — 관계와 수치를 이어 나 각을 구한다. */
+function ang121Offset(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 30, 120);
+  const d = intBetween(rng, 10, 25);
+  const more = intBetween(rng, 0, 1) === 0;
+  const y = more ? x + d : x - d;
+  return make(
+    unit,
+    `가 각의 크기는 ${deg(x)}입니다. 나 각은 가 각보다 ${deg(d)} 더 ${more ? "큽니다" : "작습니다"}. 나 각의 크기는 몇 도인가?`,
+    deg(y),
+    `나 각은 ${expr(more ? `${x}+${d}=${y}` : `${x}-${d}=${y}`)} 이므로 ${deg(y)}입니다.`,
+  );
+}
+
+/** 문형 10 — 큰 각부터 나열. */
+function ang121SortDesc(unit: UnitSeed, rng: Rng): ElemProblem {
+  const lo = intBetween(rng, 15, 50);
+  const mid = lo + intBetween(rng, 10, 30);
+  const hi = mid + intBetween(rng, 10, 30);
+  const shown = shuffled(rng, [lo, mid, hi]);
+  return make(
+    unit,
+    `세 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 큰 각부터 차례로 쓰시오.`,
+    `${deg(hi)}, ${deg(mid)}, ${deg(lo)}`,
+    `큰 각부터 쓰면 ${deg(hi)}, ${deg(mid)}, ${deg(lo)}입니다.`,
+  );
+}
+
+/* ── 1-2-2 문형 05–10. 그림은 각도기 읽기(05)에만 — 발문에 치수가 없다. ── */
+
+const PROTRACTOR_DEGS = [
+  25, 35, 40, 50, 55, 65, 70, 80, 100, 110, 115, 125, 130, 140, 145, 155,
+] as const;
+
+/** 문형 05 — 각도기 그림에서 읽기. */
+function ang122ReadProtractor(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = pick(rng, PROTRACTOR_DEGS);
+  return make(
+    unit,
+    "각도기로 잰 각의 크기는 몇 도인가?",
+    deg(d),
+    `각도기의 중심을 각의 꼭짓점에, 밑금을 각의 한 변에 맞추고 눈금을 읽으면 ${deg(d)}입니다.`,
+    fig("protractor", { deg: d }),
+  );
+}
+
+/** 문형 06 — d°는 1°가 몇 개. */
+function ang122HowManyOnes(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 11, 169);
+  return make(
+    unit,
+    `${deg(d)}는 ${deg(1)}가 몇 개 모인 각인가?`,
+    n(d),
+    `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
+  );
+}
+
+/** 문형 07 — 눈금 칸 수에서 각을 구한다. */
+function ang122TickCells(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 15, 165);
+  return make(
+    unit,
+    `각도기의 작은 눈금 한 칸이 ${deg(1)}일 때, 눈금이 ${n(d)}칸인 각의 크기는 몇 도인가?`,
+    deg(d),
+    `한 칸이 ${deg(1)}이므로 ${n(d)}칸이면 ${deg(d)}입니다.`,
+  );
+}
+
+/** 문형 08 — 재 둔 두 각의 합. */
+function ang122Sum(unit: UnitSeed, rng: Rng): ElemProblem {
+  const x = intBetween(rng, 20, 80);
+  const y = intBetween(rng, 15, 70);
+  return make(
+    unit,
+    `각도기로 잰 두 각의 크기가 ${deg(x)}, ${deg(y)}입니다. 두 각의 크기의 합은 몇 도인가?`,
+    deg(x + y),
+    `${expr(`${x}+${y}=${x + y}`)} 이므로 ${deg(x + y)}입니다.`,
+  );
+}
+
+/** 문형 09 — 직각보다 d만큼 큰 각. */
+function ang122RightPlus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 5, 80);
+  return make(
+    unit,
+    `직각보다 ${deg(d)} 큰 각의 크기는 몇 도인가?`,
+    deg(90 + d),
+    `직각은 ${deg(90)}이므로 ${expr(`90+${d}=${90 + d}`)} 에서 ${deg(90 + d)}입니다.`,
+  );
+}
+
+/** 문형 10 — 직선이 이루는 각보다 d만큼 작은 각. */
+function ang122StraightMinus(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d = intBetween(rng, 10, 80);
+  return make(
+    unit,
+    `직선이 이루는 각보다 ${deg(d)} 작은 각의 크기는 몇 도인가?`,
+    deg(180 - d),
+    `직선이 이루는 각은 ${deg(180)}이므로 ${expr(`180-${d}=${180 - d}`)} 에서 ${deg(180 - d)}입니다.`,
+  );
+}
+
+/* ── 1-2-3 문형 05–10. 분류 이름이 이 소단원의 몫이다. ── */
+
+const ACUTE = [15, 25, 35, 45, 55, 65, 75, 85] as const;
+const OBTUSE = [95, 105, 115, 125, 135, 145, 155, 165] as const;
+
+/** 문형 05 — 각도기 그림 분류. 발문에 치수가 없어 그림이 필요하다. */
+function ang123ClassifyFig(unit: UnitSeed, rng: Rng): ElemProblem {
+  const klass = pick(rng, ["예각", "직각", "둔각"] as const);
+  const d =
+    klass === "직각"
+      ? 90
+      : klass === "예각"
+        ? pick(rng, ACUTE)
+        : pick(rng, OBTUSE);
+  return make(
+    unit,
+    "그림의 각은 예각, 직각, 둔각 중 무엇인가?",
+    klass,
+    `직각은 ${deg(90)}입니다. ${deg(d)}는 ${klass}입니다.`,
+    fig("protractor", { deg: d }),
+  );
+}
+
+/** 문형 06 — 세 각 중 둔각 개수. */
+function ang123ObtuseCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const three = [
+    pick(rng, [...ACUTE, ...OBTUSE]),
+    pick(rng, [...ACUTE, ...OBTUSE]),
+    pick(rng, [...ACUTE, ...OBTUSE]),
+  ];
+  const wide = three.filter((v) => v > 90).length;
+  return make(
+    unit,
+    `크기가 ${deg(three[0]!)}, ${deg(three[1]!)}, ${deg(three[2]!)}인 세 각 중 둔각은 모두 몇 개인가?`,
+    n(wide),
+    `${deg(90)}보다 큰 각이 둔각입니다. 둔각은 ${n(wide)}개입니다.`,
+  );
+}
+
+/** 문형 07 — 직각인 각을 고른다. */
+function ang123PickRight(unit: UnitSeed, rng: Rng): ElemProblem {
+  const extra = shuffled(rng, [
+    pick(rng, ACUTE),
+    pick(rng, OBTUSE),
+    pick(rng, ACUTE),
+  ]);
+  const shown = shuffled(rng, [90, extra[0]!, extra[1]!, extra[2]!]);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 직각인 각의 크기를 쓰시오.`,
+    deg(90),
+    `직각의 크기는 ${deg(90)}입니다.`,
+  );
+}
+
+/** 문형 08 — 둔각을 모두 나열. 02 는 예각이라 답이 갈린다. */
+function ang123ListObtuse(unit: UnitSeed, rng: Rng): ElemProblem {
+  const nObtuse = intBetween(rng, 1, 3);
+  const four = [
+    ...pickDistinct(rng, OBTUSE, nObtuse),
+    ...pickDistinct(rng, ACUTE, 4 - nObtuse),
+  ];
+  const shown = shuffled(rng, four);
+  const obtuse = shown.filter((v) => v > 90);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 이 중에서 둔각을 모두 찾아 쓰시오.`,
+    obtuse.map((v) => deg(v)).join(", "),
+    `${deg(90)}보다 큰 각이 둔각이므로 ${obtuse.map((v) => deg(v)).join(", ")}입니다.`,
+  );
+}
+
+/** 문형 09 — 예각은 몇 개인가. */
+function ang123AcuteCount(unit: UnitSeed, rng: Rng): ElemProblem {
+  const nAcute = intBetween(rng, 1, 3);
+  const four = [
+    ...pickDistinct(rng, ACUTE, nAcute),
+    ...pickDistinct(rng, OBTUSE, 4 - nAcute),
+  ];
+  const shown = shuffled(rng, four);
+  const acute = shown.filter((v) => v < 90);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 예각은 모두 몇 개인가?`,
+    n(acute.length),
+    `${deg(90)}보다 작은 각이 예각이므로 예각은 ${n(acute.length)}개입니다.`,
+  );
+}
+
+/** 문형 10 — 가장 큰 예각. */
+function ang123BiggestAcute(unit: UnitSeed, rng: Rng): ElemProblem {
+  const nAcute = intBetween(rng, 2, 3);
+  const four = [
+    ...pickDistinct(rng, ACUTE, nAcute),
+    ...pickDistinct(rng, OBTUSE, 4 - nAcute),
+  ];
+  const shown = shuffled(rng, four);
+  const acute = shown.filter((v) => v < 90);
+  const hi = Math.max(...acute);
+  return make(
+    unit,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 예각 중에서 가장 큰 각의 크기를 쓰시오.`,
+    deg(hi),
+    `예각은 ${acute.map((v) => deg(v)).join(", ")}이므로 가장 큰 예각은 ${deg(hi)}입니다.`,
+  );
+}
+
 export const G4_FORMS: Record<string, readonly ElemForm[]> = {
   "초4|1-1-1": [
     { id: "01", tier: "연산", generate: tier11Calc },
@@ -6067,6 +6336,42 @@ export const G4_FORMS: Record<string, readonly ElemForm[]> = {
     { id: "08", tier: "응용", generate: big117Diff },
     { id: "09", tier: "응용", generate: big117BigManDigit },
     { id: "10", tier: "응용", generate: big117Range },
+  ],
+  "초4|1-2-1": [
+    { id: "01", tier: "연산", generate: tier21Calc },
+    { id: "02", tier: "기본", generate: tier21Basic },
+    { id: "03", tier: "응용", generate: tier21Apply },
+    { id: "04", tier: "심화", generate: tier21Deep },
+    { id: "05", tier: "기본", generate: ang121Bigger },
+    { id: "06", tier: "기본", generate: ang121Diff },
+    { id: "07", tier: "기본", generate: ang121FourMax },
+    { id: "08", tier: "응용", generate: ang121BiggerPairSum },
+    { id: "09", tier: "응용", generate: ang121Offset },
+    { id: "10", tier: "응용", generate: ang121SortDesc },
+  ],
+  "초4|1-2-2": [
+    { id: "01", tier: "연산", generate: tier22Calc },
+    { id: "02", tier: "기본", generate: tier22Basic },
+    { id: "03", tier: "응용", generate: tier22Apply },
+    { id: "04", tier: "심화", generate: tier22Deep },
+    { id: "05", tier: "기본", generate: ang122ReadProtractor },
+    { id: "06", tier: "기본", generate: ang122HowManyOnes },
+    { id: "07", tier: "기본", generate: ang122TickCells },
+    { id: "08", tier: "응용", generate: ang122Sum },
+    { id: "09", tier: "응용", generate: ang122RightPlus },
+    { id: "10", tier: "응용", generate: ang122StraightMinus },
+  ],
+  "초4|1-2-3": [
+    { id: "01", tier: "연산", generate: tier23Calc },
+    { id: "02", tier: "기본", generate: tier23Basic },
+    { id: "03", tier: "응용", generate: tier23Apply },
+    { id: "04", tier: "심화", generate: tier23Deep },
+    { id: "05", tier: "기본", generate: ang123ClassifyFig },
+    { id: "06", tier: "기본", generate: ang123ObtuseCount },
+    { id: "07", tier: "기본", generate: ang123PickRight },
+    { id: "08", tier: "응용", generate: ang123ListObtuse },
+    { id: "09", tier: "응용", generate: ang123AcuteCount },
+    { id: "10", tier: "응용", generate: ang123BiggestAcute },
   ],
   "초4|1-6-5": [
     { id: "01", tier: "연산", generate: tier65Calc },
