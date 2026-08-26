@@ -53,7 +53,8 @@ type RecentTestRow = {
 type SourceStats = {
   rows: number;
   families: number;
-  soloRows: number;
+  independentRows: number;
+  storedSoloRows: number;
   nullRows: number;
   emptyRows: number;
   groupedFamilies: number;
@@ -68,7 +69,8 @@ type UnitStats = {
   orderIndex: number;
   eligibleRows: number;
   families: number;
-  soloRows: number;
+  independentRows: number;
+  storedSoloRows: number;
   nullRows: number;
   emptyRows: number;
   sourceRows: Record<string, number>;
@@ -125,8 +127,12 @@ function familyIdentity(row: EligibleRow) {
   return `${row.unitId}\u0000${normalizedFamilyKey(row)}`;
 }
 
-function isSolo(row: EligibleRow) {
+function isIndependent(row: EligibleRow) {
   return normalizedFamilyKey(row).startsWith("solo:");
+}
+
+function isStoredSolo(row: EligibleRow) {
+  return row.familyKey?.trim().startsWith("solo:") ?? false;
 }
 
 function increment(target: Record<string, number>, key: string) {
@@ -155,7 +161,8 @@ function sourceStats(rows: EligibleRow[]): Record<string, SourceStats> {
           {
             rows: sourceRows.length,
             families: sizes.size,
-            soloRows: sourceRows.filter(isSolo).length,
+            independentRows: sourceRows.filter(isIndependent).length,
+            storedSoloRows: sourceRows.filter(isStoredSolo).length,
             nullRows: sourceRows.filter((row) => row.familyKey === null).length,
             emptyRows: sourceRows.filter(
               (row) => row.familyKey !== null && row.familyKey.trim() === "",
@@ -236,7 +243,8 @@ function buildReport(input: {
       ...unit,
       eligibleRows: rows.length,
       families,
-      soloRows: rows.filter(isSolo).length,
+      independentRows: rows.filter(isIndependent).length,
+      storedSoloRows: rows.filter(isStoredSolo).length,
       nullRows: rows.filter((row) => row.familyKey === null).length,
       emptyRows: rows.filter(
         (row) => row.familyKey !== null && row.familyKey.trim() === "",
@@ -295,7 +303,8 @@ function buildReport(input: {
     allProblemBank: {
       rows: allProblems.length,
       families: new Set(allProblems.map(familyIdentity)).size,
-      soloRows: allProblems.filter(isSolo).length,
+      independentRows: allProblems.filter(isIndependent).length,
+      storedSoloRows: allProblems.filter(isStoredSolo).length,
       nullRows: allProblems.filter((row) => row.familyKey === null).length,
       emptyRows: allProblems.filter(
         (row) => row.familyKey !== null && row.familyKey.trim() === "",
@@ -307,7 +316,8 @@ function buildReport(input: {
       unitsWithRows: rowsByUnit.size,
       totalUnits: units.length,
       families: familySizes.size,
-      soloRows: eligible.filter(isSolo).length,
+      independentRows: eligible.filter(isIndependent).length,
+      storedSoloRows: eligible.filter(isStoredSolo).length,
       nullRows: eligible.filter((row) => row.familyKey === null).length,
       emptyRows: eligible.filter(
         (row) => row.familyKey !== null && row.familyKey.trim() === "",
@@ -399,7 +409,7 @@ async function main() {
       `출제 가능 ${report.eligible.rows}행 / ${report.eligible.families}갈래`,
     );
     console.log(
-      `family_key: solo ${report.eligible.soloRows}, NULL ${report.eligible.nullRows}, 빈 값 ${report.eligible.emptyRows}`,
+      `family_key: 저장 solo:* ${report.eligible.storedSoloRows}, 독립 환산 ${report.eligible.independentRows}, NULL ${report.eligible.nullRows}, 빈 값 ${report.eligible.emptyRows}`,
     );
     console.log(
       `반 ${report.classes.total}개 · 기본 문항 수 ${JSON.stringify(report.classes.defaultProblemCountDistribution)}`,
