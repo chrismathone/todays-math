@@ -746,6 +746,35 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
     }
   });
 
+  /**
+   * 🔴 **전개도의 접는 선은 점선이다** (원장님 지적 2026-08-27, `J10504-A05-004~006`).
+   *
+   * 전개도에서 실선은 «자르는 선», 점선은 «접는 선»이다. 밑면 $ABC$ 의 세 변에서
+   * 날개가 접혀 올라가므로 그 셋만 점선이고 바깥 여섯은 실선이어야 한다.
+   * 전부 실선이면 어디를 접는지 읽을 수 없어 **그림이 전개도가 아니다.**
+   *
+   * ⚠️ 스펙의 `dashed` 키를 세지 않고 **렌더된 SVG** 를 센다. 엔진이 모르는 키는
+   *    조용히 무시될 수 있어서, 스펙만 보면 「고쳤다」가 참인지 알 수 없다.
+   *    (실측으로 엔진은 `#111111` `5 4` 로 그린다 — 치수 지문 `#000` `1.4` 와 안 겹친다.)
+   */
+  it.skipIf(!hasEngine)(
+    "🔴 삼각뿔 전개도 — 접는 선 셋만 점선이다",
+    async () => {
+      const p = generateMiddleProblem("1-2|위치 관계|10", 20260824);
+      const r = await renderFigureSpec(p.figureSpec);
+      expect(r.ok, r.ok ? "" : r.error).toBe(true);
+      if (!r.ok) return;
+      const strokes = [...r.svg.matchAll(/<line\b[^>]*>/g)].map((m) => m[0]);
+      const dashed = strokes.filter((s) => s.includes("stroke-dasharray"));
+      // 밑면 세 변 = 접는 선. 날개 여섯 = 자르는 선.
+      expect(
+        dashed.length,
+        `점선 ${dashed.length} / 전체 ${strokes.length}`,
+      ).toBe(3);
+      expect(strokes.length - dashed.length).toBe(6);
+    },
+  );
+
   it("그림이 없는 유형은 figureSpec 이 비어 있다(억지로 안 붙인다)", () => {
     for (const e of M1_GEO1) {
       if (FIGURED_KEYS.includes(e.key)) continue;
