@@ -785,4 +785,149 @@ export const M2_FUNC: TypeEntry[] = [
         };
       }),
   ),
+
+  // ── 확장 유형 (갈래 C, 70~99) ─────────────────────────
+  // RPM 색인은 이 중단원을 13유형까지만 담는다. 130소단원을 10유형으로 올리려면
+  // 색인에 없는 유형을 지어야 하므로 **번호를 갈래마다 나눠 쓴다** — 갈래 C 는 70번대.
+  // (파일로만 나누면 안 겹치지 않는다: 한 중단원이 파일 여럿에 걸쳐 있다.
+  //  2026-08-27 에 `2-2|도형의 닮음|31~35` 가 실제로 두 갈래에서 겹쳤다.)
+
+  def(
+    MINOR_G1,
+    "70",
+    "함숫값이 주어질 때 미지수 구하기",
+    SEC.함숫값,
+    "기본",
+    (rng) =>
+      attempt(80, () => {
+        const a = nonZero(rng, -5, 5);
+        const b = intBetween(rng, -6, 6);
+        const p = nonZero(rng, -4, 4);
+        const q = a * p + b;
+        if (Math.abs(q) > 25) return null;
+        const pa = p === 1 ? "a" : p === -1 ? "-a" : `${p}a`;
+        const tail = b > 0 ? `+${b}` : b === 0 ? "" : `${b}`;
+        return {
+          content: `일차함수 $f(x)=ax${tail}$에 대하여 $f(${p})=${q}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$x=${p}$를 대입하면 $${pa}${tail}=${q}$이다.\n따라서 $${pa}=${q - b}$이므로 $a=${a}$이다.`,
+          facts: { a, b, p, q },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "71",
+    "두 함숫값이 주어질 때 일차함수의 식",
+    SEC.함숫값,
+    "응용",
+    (rng) =>
+      attempt(80, () => {
+        const a = nonZero(rng, -4, 4);
+        const b = nonZero(rng, -6, 6);
+        const p = intBetween(rng, -4, 1);
+        const q = p + intBetween(rng, 2, 5);
+        const fp = a * p + b;
+        const fq = a * q + b;
+        if (Math.abs(fp) > 25 || Math.abs(fq) > 25) return null;
+        const ans = a + b;
+        return {
+          content: `일차함수 $f(x)=ax+b$에 대하여 $f(${p})=${fp}$, $f(${q})=${fq}$일 때, $a+b$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `두 식을 변끼리 빼면 $${q - p}a=${fq - fp}$이므로 $a=${a}$이다.\n$f(${p})=${fp}$에 $a=${a}$를 대입하면 $${a * p}+b=${fp}$이므로 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
+          facts: { a, b, p, q, fp, fq, ans },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "72",
+    "두 함숫값의 합에서 상수 구하기",
+    SEC.함숫값,
+    "응용",
+    (rng) =>
+      attempt(80, () => {
+        const a = nonZero(rng, -5, 5);
+        const b = nonZero(rng, -9, 9);
+        const p = intBetween(rng, 2, 6);
+        const s = 2 * b;
+        return {
+          content: `일차함수 $f(x)=${mono(a)}+b$에 대하여 $f(${p})+f(${-p})=${s}$일 때, 상수 $b$의 값을 구하시오.`,
+          answer: `$${b}$`,
+          solution: `$f(${p})=${a * p}+b$, $f(${-p})=${-a * p}+b$이므로 두 값을 더하면 $x$항이 없어져 $2b$가 된다.\n$2b=${s}$이므로 $b=${b}$이다.`,
+          facts: { a, b, p, s },
+        };
+      }),
+  ),
+
+  def(MINOR_G1, "73", "일차함수가 되기 위한 조건", SEC.함숫값, "기본", (rng) =>
+    attempt(80, () => {
+      const k = nonZero(rng, -6, 6);
+      const c = nonZero(rng, -8, 8);
+      const head = k > 0 ? `a-${k}` : `a+${-k}`;
+      return {
+        content: `$y=(${head})x${c > 0 ? `+${c}` : `${c}`}$가 $x$에 대한 일차함수가 되도록 할 때, 상수 $a$의 값이 될 수 없는 수를 구하시오.`,
+        answer: `$${k}$`,
+        solution: `일차함수가 되려면 $x$의 계수가 $0$이 아니어야 한다.\n$${head}\ne0$이어야 하므로 $a\ne${k}$이다.\n따라서 될 수 없는 수는 $${k}$이다.`,
+        facts: { k, c },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_G1,
+    "74",
+    "정비례 관계에서 함숫값 구하기",
+    SEC.함숫값,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const a = nonZero(rng, -5, 5);
+        const p = nonZero(rng, -5, 5);
+        const r = attempt(60, () => {
+          const v = nonZero(rng, -6, 6);
+          return v === p ? null : v;
+        });
+        const q = a * p;
+        const ans = a * r;
+        if (Math.abs(q) > 25 || Math.abs(ans) > 30) return null;
+        return {
+          content: `정비례 관계 $f(x)=ax$에 대하여 $f(${p})=${q}$일 때, $f(${r})$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `$f(${p})=${p === 1 ? "a" : p === -1 ? "-a" : `${p}a`}=${q}$이므로 $a=${a}$이다.\n따라서 $f(${r})=${a}\times${r < 0 ? `(${r})` : r}=${ans}$이다.`,
+          facts: { a, p, q, r, ans },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "75",
+    "함숫값의 차가 주어질 때 함숫값 구하기",
+    SEC.함숫값,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const a = nonZero(rng, -4, 4);
+        const b = intBetween(rng, -6, 6);
+        const q = intBetween(rng, -3, 2);
+        const p = q + intBetween(rng, 2, 5);
+        const r = attempt(60, () => {
+          const v = intBetween(rng, -4, 6);
+          return v === p || v === q ? null : v;
+        });
+        const d = a * (p - q);
+        const e = a * q + b;
+        const ans = a * r + b;
+        if ([d, e, ans].some((v) => Math.abs(v) > 30)) return null;
+        return {
+          content: `일차함수 $f(x)$에 대하여 $f(${p})-f(${q})=${d}$이고 $f(${q})=${e}$일 때, $f(${r})$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `기울기는 $\dfrac{${d}}{${p}-(${q})}=\dfrac{${d}}{${p - q}}=${a}$이다.\n$f(${q})=${e}$이므로 $f(${r})=${e}+${a}\times(${r}-(${q}))=${ans}$이다.`,
+          facts: { a, b, p, q, r, d, e, ans },
+        };
+      }),
+  ),
 ];

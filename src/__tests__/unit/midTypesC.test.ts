@@ -33,6 +33,14 @@ function generatedCenter(section: string, type: string, seed = 41) {
   return entry!.handler(rng(seed));
 }
 
+function generatedFunc(section: string, type: string, seed = 17) {
+  const entry = M2_FUNC.find(
+    (item) => item.unitSection === section && item.rpmType === type,
+  );
+  expect(entry, `${section} ${type} 유형`).toBeDefined();
+  return entry!.handler(rng(seed));
+}
+
 function generated(type: string, seed = 17) {
   const entry = M2_FUNC.find(
     (item) =>
@@ -326,5 +334,52 @@ describe("중등 그림 — 삼각뿔 전개도의 접는 선", () => {
       const hasDash = !Array.isArray(item) && "dash" in (item as object);
       expect(hasDash, `${n} 은 자르는 선이라 실선이어야 한다`).toBe(false);
     }
+  });
+});
+
+const SEC_FUNCVAL = "함수와 함숫값";
+
+describe("중등 유형 갈래 C — 함수와 함숫값", () => {
+  // 검산은 **발문에 적힌 수만** 쓴다. 생성기가 고른 중간값(a·b)을 그대로 되읽어
+  // 비교하면 동어반복이라 아무것도 안 지킨다 — 발문의 조건식을 여기서 다시 세운다.
+
+  it("70 대입한 함숫값이 발문의 값과 같다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "70");
+    expect(facts!.a * facts!.p + facts!.b).toBe(facts!.q);
+  });
+
+  it("71 두 함숫값이 같은 식에서 나오고 답이 두 계수의 합이다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "71");
+    expect(facts!.a * facts!.p + facts!.b).toBe(facts!.fp);
+    expect(facts!.a * facts!.q + facts!.b).toBe(facts!.fq);
+    expect(facts!.ans).toBe(facts!.a + facts!.b);
+  });
+
+  it("72 부호가 반대인 두 함숫값의 합에는 x항이 남지 않는다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "72");
+    const f = (x: number) => facts!.a * x + facts!.b;
+    expect(f(facts!.p) + f(-facts!.p)).toBe(facts!.s);
+  });
+
+  it("73 답에서만 x의 계수가 0이 된다 — 경계까지 본다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "73");
+    const coef = (a: number) => a - facts!.k;
+    expect(coef(facts!.k)).toBe(0);
+    expect(coef(facts!.k + 1)).not.toBe(0);
+    expect(coef(facts!.k - 1)).not.toBe(0);
+  });
+
+  it("74 정비례이므로 두 짝이 같은 비를 이룬다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "74");
+    // 발문의 수 p·q·r 과 답만으로 — 기울기 a 를 되읽지 않는다.
+    expect(facts!.ans * facts!.p).toBe(facts!.q * facts!.r);
+  });
+
+  it("75 함숫값의 차와 한 함숫값만으로 답이 정해진다", () => {
+    const { facts } = generatedFunc(SEC_FUNCVAL, "75");
+    // f(r) = f(q) + (r-q)/(p-q) · d  를 분모 없이 옮긴 꼴.
+    expect(facts!.ans * (facts!.p - facts!.q)).toBe(
+      facts!.e * (facts!.p - facts!.q) + (facts!.r - facts!.q) * facts!.d,
+    );
   });
 });
