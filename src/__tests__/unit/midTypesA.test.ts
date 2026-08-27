@@ -59,6 +59,13 @@ function histogramRows(
     }));
 }
 
+function coordinatePairs(content: string): Array<[number, number]> {
+  return [...content.matchAll(/\((-?\d+), (-?\d+)\)/g)].map((match) => [
+    Number(match[1]),
+    Number(match[2]),
+  ]);
+}
+
 const stemLeafExpected: Record<
   string,
   (content: string, values: number[]) => number
@@ -297,6 +304,58 @@ describe("갈래 A 중등 유형 값 검산", () => {
       );
     }
   });
+
+  const frequencyPolygonExpected: Record<
+    string,
+    (content: string, points: Array<[number, number]>) => number
+  > = {
+    "44": (_content, points) =>
+      points.reduce((sum, point) => sum + point[1], 0),
+    "45": (content, points) => {
+      const classValue = Number(content.match(/계급값이 \$(\d+)\$/)?.[1]);
+      return points.find((point) => point[0] === classValue)![1];
+    },
+    "46": (_content, points) =>
+      points.reduce((best, point) => (point[1] > best[1] ? point : best))[0],
+    "47": (content, points) => {
+      const classes = content.match(/계급값이 \$(\d+)\$인 계급과 \$(\d+)\$인/);
+      const first = points.find((point) => point[0] === Number(classes?.[1]))!;
+      const second = points.find((point) => point[0] === Number(classes?.[2]))!;
+      return Math.abs(first[1] - second[1]);
+    },
+    "48": (content, points) => {
+      const boundary = Number(content.match(/\$(\d+)\$ 미만/)?.[1]);
+      return points
+        .filter((point) => point[0] < boundary)
+        .reduce((sum, point) => sum + point[1], 0);
+    },
+    "49": (_content, points) => {
+      const half = points.length / 2;
+      return points
+        .slice(0, half)
+        .filter((point, index) => point[1] > points[index + half]![1]).length;
+    },
+  };
+
+  it.each(Object.keys(frequencyPolygonExpected))(
+    "도수분포다각형 유형 %s",
+    (rpmType) => {
+      const entry = M1EXTRA_TYPES.find(
+        (candidate) =>
+          candidate.unitSection === "도수분포다각형" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        const points = coordinatePairs(problem.content);
+        expect(points.length).toBeGreaterThan(0);
+        expect(numericAnswer(problem.answer)).toBe(
+          frequencyPolygonExpected[rpmType]!(problem.content, points),
+        );
+      }
+    },
+  );
 
   const numberAverageAgeExpected: Record<string, (content: string) => number> =
     {

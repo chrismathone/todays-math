@@ -886,6 +886,155 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
   ),
 ];
 
+function frequencyPolygonPoints(
+  start: number,
+  width: number,
+  frequencies: readonly number[],
+): string {
+  return frequencies
+    .map((frequency, index) => `(${start + width * index}, ${frequency})`)
+    .join(",\\ ");
+}
+
+const FREQUENCY_POLYGON_TYPES: TypeEntry[] = [
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "44",
+    "도수분포다각형의 도수 합",
+    "도수분포다각형",
+    "연산",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const answer = frequencies.reduce((sum, value) => sum + value, 0);
+      return {
+        content: `도수분포다각형이 차례로 지나는 점은 $${frequencyPolygonPoints(5, 10, frequencies)}$이다. 이 자료의 전체 개수를 구하시오. (각 점의 첫째 좌표는 계급값, 둘째 좌표는 도수이다.)`,
+        answer: `$${answer}$개`,
+        solution: `각 점의 둘째 좌표인 도수를 모두 더하면 $${frequencies.join("+")}=${answer}$이므로 자료는 모두 $${answer}$개이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "45",
+    "도수분포다각형의 특정 도수",
+    "도수분포다각형",
+    "기본",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const index = intBetween(rng, 0, 4);
+      const classValue = 10 + index * 5;
+      const answer = frequencies[index]!;
+      return {
+        content: `도수분포다각형이 차례로 지나는 점은 $${frequencyPolygonPoints(10, 5, frequencies)}$이다. 계급값이 $${classValue}$인 계급의 도수를 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `첫째 좌표가 $${classValue}$인 점의 둘째 좌표는 $${answer}$이므로 해당 계급의 도수는 $${answer}$이다.`,
+        facts: { ...dataFacts(frequencies, answer), classValue },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "46",
+    "도수가 가장 큰 계급값",
+    "도수분포다각형",
+    "기본",
+    (rng) => {
+      const peak = intBetween(rng, 0, 4);
+      const frequencies = [2, 3, 4, 5, 6].map(
+        (value, index) => value + (index === peak ? 8 : 0),
+      );
+      const answer = 15 + peak * 10;
+      return {
+        content: `도수분포다각형이 차례로 지나는 점은 $${frequencyPolygonPoints(15, 10, frequencies)}$이다. 도수가 가장 큰 계급의 계급값을 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `둘째 좌표가 가장 큰 점의 첫째 좌표는 $${answer}$이므로 구하는 계급값은 $${answer}$이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "47",
+    "이웃한 계급의 도수 변화",
+    "도수분포다각형",
+    "응용",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 10),
+      );
+      const index = intBetween(rng, 0, 3);
+      const firstClass = 5 + index * 10;
+      const secondClass = firstClass + 10;
+      const answer = Math.abs(frequencies[index + 1]! - frequencies[index]!);
+      return {
+        content: `도수분포다각형이 차례로 지나는 점은 $${frequencyPolygonPoints(5, 10, frequencies)}$이다. 계급값이 $${firstClass}$인 계급과 $${secondClass}$인 계급의 도수의 차를 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `두 계급의 도수는 각각 $${frequencies[index]}$, $${frequencies[index + 1]}$이므로 차는 $${answer}$이다.`,
+        facts: { ...dataFacts(frequencies, answer), firstClass, secondClass },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "48",
+    "도수분포다각형의 누적 도수",
+    "도수분포다각형",
+    "응용",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const count = intBetween(rng, 2, 4);
+      const boundary = 10 + count * 10;
+      const answer = frequencies
+        .slice(0, count)
+        .reduce((sum, value) => sum + value, 0);
+      return {
+        content: `계급의 크기가 $10$인 도수분포다각형이 차례로 지나는 점은 $${frequencyPolygonPoints(15, 10, frequencies)}$이다. $${boundary}$ 미만인 자료의 개수를 구하시오.`,
+        answer: `$${answer}$개`,
+        solution: `$${boundary}$ 미만인 계급의 계급값은 $${frequencyPolygonPoints(15, 10, frequencies.slice(0, count))}$의 첫째 좌표들이다. 이 점들의 도수를 더하면 $${answer}$개이다.`,
+        facts: { ...dataFacts(frequencies, answer), boundary, count },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "49",
+    "두 도수분포다각형의 비교",
+    "도수분포다각형",
+    "심화",
+    (rng) => {
+      const first = Array.from({ length: 5 }, () => intBetween(rng, 2, 9));
+      const second = Array.from({ length: 5 }, () => intBetween(rng, 2, 9));
+      const answer = first.filter(
+        (value, index) => value > second[index]!,
+      ).length;
+      return {
+        content: `두 집단 $\mathrm{A}$, $\mathrm{B}$의 도수분포다각형이 지나는 점은 각각 다음과 같다. $\mathrm{A}: ${frequencyPolygonPoints(10, 10, first)}$, $\mathrm{B}: ${frequencyPolygonPoints(10, 10, second)}$. 같은 계급값에서 $\mathrm{A}$의 도수가 $\mathrm{B}$보다 큰 계급의 개수를 구하시오.`,
+        answer: `$${answer}$개`,
+        solution: `같은 첫째 좌표끼리 둘째 좌표를 비교하면 $\mathrm{A}$의 도수가 더 큰 경우는 $${answer}$개이다.`,
+        facts: {
+          ...dataFacts(first, answer),
+          ...Object.fromEntries(
+            second.map((value, index) => [`w${index + 1}`, value]),
+          ),
+        },
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
@@ -894,4 +1043,5 @@ export const M1EXTRA_TYPES: TypeEntry[] = [
   ...BASIC_COORDINATE_TYPES,
   ...HISTOGRAM_TYPES,
   ...GRAPH_UNDERSTANDING_TYPES,
+  ...FREQUENCY_POLYGON_TYPES,
 ];
