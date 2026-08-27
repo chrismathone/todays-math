@@ -8,6 +8,8 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -21,7 +23,10 @@ const BOOK = "2-2";
 const MINOR = "피타고라스 정리";
 
 const entries = () =>
-  registeredTypes().filter((e) => e.rpmBook === BOOK && e.rpmMinor === MINOR);
+  registeredTypes().filter(
+    // 색인 유형만 이 시험의 몫이다 — 갈래들이 더한 확장은 각 갈래가 지킨다.
+    (e) => e.rpmBook === BOOK && e.rpmMinor === MINOR && isCatalogType(e),
+  );
 
 function firstNumber(text: string): number {
   const m = text.match(/-?\d+(?:\.\d+)?/);

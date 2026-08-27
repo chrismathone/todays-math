@@ -19,6 +19,8 @@ import path, { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   figureSvgSize,
@@ -46,7 +48,13 @@ const SEEDS = [20260823, 1, 7777, 424242, 99991];
 const hasFigureEngine =
   existsSync(path.join(process.cwd(), "vendor", "figure-engine")) ||
   existsSync(process.env.FIGURE_ENGINE_PATH ?? "F:\시험지변환기");
-const ALL = [...M2_RATIONAL, ...M2_COUNTING, ...M2_PROB];
+// ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+//    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+//    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+//    갈래의 시험이 들고 있다.
+const ALL = [...M2_RATIONAL, ...M2_COUNTING, ...M2_PROB].filter((e) =>
+  isCatalogType(e),
+);
 
 // ── 검산 소품 (생성기와 다른 방법) ─────────────────────
 

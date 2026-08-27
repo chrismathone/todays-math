@@ -23,6 +23,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
   arabicPolygons,
@@ -543,12 +545,18 @@ const FIGURE_OPTIONAL = new Set(["1-2|다각형|05", "1-2|다각형|04"]);
  * 시험
  * ──────────────────────────────────────────────────────────────────────── */
 
+// ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+//    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+//    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+//    갈래의 시험이 들고 있다.
+const GEO2_OWNED = M1_GEO2.filter((e) => isCatalogType(e));
+
 describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   it("자기 배열만 훑는다 — 36유형, key 겹침 없음", () => {
     expect(M1_CONSTR_TYPES.length).toBe(14);
     expect(M1_POLY2_TYPES.length).toBe(22);
-    expect(M1_GEO2.length).toBe(36);
-    expect(new Set(M1_GEO2.map((e) => e.key)).size).toBe(36);
+    expect(GEO2_OWNED.length).toBe(36);
+    expect(new Set(GEO2_OWNED.map((e) => e.key)).size).toBe(36);
   });
 
   it("RPM 색인의 「작도와 합동」 14유형을 빠짐없이 낸다", () => {
@@ -594,7 +602,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
     const seeded = new Set(
       CURRICULUM_UNITS.filter((u) => u.grade === "중1").map((u) => u.section),
     );
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       expect(
         seeded.has(e.unitSection),
         `중1 시드에 없는 단원 이름: ${e.unitSection} (${e.key})`,
@@ -603,7 +611,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   });
 
   it("붙인 단원이 다섯뿐이다 — 엉뚱한 단원으로 새면 눈에 띄게", () => {
-    expect(new Set(M1_GEO2.map((e) => e.unitSection))).toEqual(
+    expect(new Set(GEO2_OWNED.map((e) => e.unitSection))).toEqual(
       new Set([
         "작도",
         "합동",
@@ -617,7 +625,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   it("제품 전처리가 내 수식의 수를 바꾸지 않는다 (D-73)", () => {
     const digits = (s: string) =>
       (s.match(/\$[^$]*\$/g) ?? []).join(" ").match(/\d+/g)?.join(",") ?? "";
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       for (const seed of SEEDS) {
         const p = generateMiddleProblem(e.key, seed);
         for (const field of [p.content, p.answer, p.solution]) {
@@ -631,7 +639,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   });
 
   it("대분수를 직접 쓰지 않았다 (D-73) · 아라비아 숫자 도형 이름 없음 · 빈 자리 없음", () => {
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       for (const seed of ALL_SEEDS) {
         const p = generateMiddleProblem(e.key, seed);
         for (const field of [p.content, p.answer, p.solution]) {
@@ -646,7 +654,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   });
 
   it("숫자가 KaTeX 밖에 없다 · 지면에 소수가 없다(이 단원은 전부 정수)", () => {
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       for (const seed of SEEDS) {
         const p = generateMiddleProblem(e.key, seed);
         expect(bareNumbers(p.content), p.content).toEqual([]);
@@ -664,7 +672,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   });
 
   it("씨앗을 넓게 훑어도 던지지 않는다 (attempt 소진 없음)", () => {
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       for (const seed of ALL_SEEDS) {
         expect(() => generateMiddleProblem(e.key, seed)).not.toThrow();
       }
@@ -672,7 +680,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
   });
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
-    for (const e of M1_GEO2) {
+    for (const e of GEO2_OWNED) {
       const set = generateMiddleSet(e.key, 20260824, 4);
       expect(new Set(set.map((p: MidProblem) => p.content)).size, e.key).toBe(
         4,
@@ -832,7 +840,7 @@ describe("중1 6B — 작도와 합동 · 다각형(남은 번호)", () => {
 });
 
 describe.skipIf(!hasEngine)("중1 6B — 그림이 실제로 그려진다", () => {
-  const figured = M1_GEO2.filter((e) => FIGURE_TYPES.has(e.key));
+  const figured = GEO2_OWNED.filter((e) => FIGURE_TYPES.has(e.key));
   expect(figured.length).toBe(5);
   for (const e of figured) {
     it(`${e.rpmType} ${e.rpmTitle}`, async () => {
