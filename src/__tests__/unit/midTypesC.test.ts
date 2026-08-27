@@ -556,3 +556,45 @@ describe("중등 유형 갈래 C — 일차함수의 그래프의 성질", () =>
     expect(facts!.k).not.toBe(0); // 안 옮겨도 같으면 문제가 안 된다
   });
 });
+
+describe("중등 유형 갈래 C — 연립방정식의 해 · 일차함수와 일차방정식", () => {
+  const SEC_SOL = "일차함수의 그래프와 연립방정식의 해";
+  const SEC_LEQ = "일차함수와 일차방정식";
+
+  it("70 교점이 두 그래프 위에 다 있고 답이 좌표의 합이다", () => {
+    const { facts } = generatedFunc(SEC_SOL, "70");
+    expect(facts!.m1 * facts!.p + facts!.b1).toBe(facts!.q);
+    expect(facts!.m2 * facts!.p + facts!.b2).toBe(facts!.q);
+    expect(facts!.m1).not.toBe(facts!.m2); // 기울기가 같으면 교점이 하나가 아니다
+    expect(facts!.ans).toBe(facts!.p + facts!.q);
+  });
+
+  it("71 세 직선이 모두 그 교점을 지난다", () => {
+    const { facts } = generatedFunc(SEC_SOL, "71");
+    expect(facts!.m1 * facts!.p + facts!.b1).toBe(facts!.q);
+    expect(facts!.m2 * facts!.p + facts!.b2).toBe(facts!.q);
+    expect(facts!.m3 * facts!.p + facts!.b3).toBe(facts!.q);
+    expect(new Set([facts!.m1, facts!.m2, facts!.m3]).size).toBe(3);
+  });
+
+  it("72 답을 넣어야 두 그래프가 그 x좌표에서 만난다 — 경계", () => {
+    const { facts } = generatedFunc(SEC_SOL, "72");
+    expect(facts!.m1 * facts!.p + facts!.b1).toBe(facts!.q);
+    expect(facts!.m2 * facts!.p + facts!.k).toBe(facts!.q);
+    expect(facts!.m2 * facts!.p + facts!.k + 1).not.toBe(facts!.q);
+  });
+
+  it("73 두 일차방정식이 그 교점에서 모두 성립하고 답이 두 상수의 곱이다", () => {
+    const { facts } = generatedFunc(SEC_SOL, "73");
+    expect(facts!.a * facts!.p + facts!.q).toBe(facts!.c1);
+    expect(facts!.p + facts!.b * facts!.q).toBe(facts!.c2);
+    expect(facts!.ans).toBe(facts!.a * facts!.b);
+  });
+
+  it("74 답이 ax+by+c=0 의 기울기다 — 분모 없이 견준다", () => {
+    const { facts } = generatedFunc(SEC_LEQ, "74");
+    // y=mx+n 이면 a + b·m = 0 이다 (m = -a/b 를 옮긴 꼴).
+    expect(facts!.a + facts!.b * facts!.m).toBe(0);
+    expect(facts!.b).not.toBe(0);
+  });
+});

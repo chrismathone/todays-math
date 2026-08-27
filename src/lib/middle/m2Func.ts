@@ -40,6 +40,7 @@ const SEC = {
   식구하기: "일차함수의 식 구하기",
   온도길이: "일차함수의 활용(온도, 길이)",
   연립해: "일차함수의 그래프와 연립방정식의 해",
+  일차방정식: "일차함수와 일차방정식",
 } as const;
 
 /** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
@@ -1432,6 +1433,138 @@ export const M2_FUNC: TypeEntry[] = [
           answer: `$${k}$`,
           solution: `평행이동한 그래프의 식은 $y=${mono(m)}+${b}+k$이다.\n두 그래프가 일치하려면 $y$절편이 같아야 하므로 $${b}+k=${c}$이다.\n따라서 $k=${k}$이다.`,
           facts: { m, b, k, c },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_REL,
+    "70",
+    "두 그래프의 교점의 좌표의 합",
+    SEC.연립해,
+    "기본",
+    (rng) =>
+      attempt(200, () => {
+        const m1 = nonZero(rng, -4, 4);
+        const m2 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 ? null : v;
+        });
+        const p = nonZero(rng, -4, 4);
+        const q = nonZero(rng, -6, 6);
+        const b1 = q - m1 * p;
+        const b2 = q - m2 * p;
+        if ([b1, b2].some((v) => v === 0 || Math.abs(v) > 18)) return null;
+        return {
+          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프의 교점의 $x$좌표와 $y$좌표의 합을 구하시오.`,
+          answer: `$${p + q}$`,
+          solution: `두 식을 연립하면 $${linear(m1, b1)}=${linear(m2, b2)}$에서 $${m1 - m2}x=${b2 - b1}$이므로 $x=${p}$이다.\n$y=${linear(m1, b1)}$에 대입하면 $y=${q}$이다.\n따라서 교점은 $(${p}, ${q})$이고 좌표의 합은 $${p + q}$이다.`,
+          facts: { m1, b1, m2, b2, p, q, ans: p + q },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_REL,
+    "71",
+    "교점을 지나고 기울기가 주어진 직선의 y절편",
+    SEC.연립해,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const m1 = nonZero(rng, -4, 4);
+        const m2 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 ? null : v;
+        });
+        const p = nonZero(rng, -4, 4);
+        const q = nonZero(rng, -6, 6);
+        const b1 = q - m1 * p;
+        const b2 = q - m2 * p;
+        const m3 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 || v === m2 ? null : v;
+        });
+        const b3 = q - m3 * p;
+        if ([b1, b2, b3].some((v) => v === 0 || Math.abs(v) > 18)) return null;
+        return {
+          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프의 교점을 지나고 기울기가 $${m3}$인 직선의 $y$절편을 구하시오.`,
+          answer: `$${b3}$`,
+          solution: `두 식을 연립하면 교점은 $(${p}, ${q})$이다.\n구하는 직선을 $y=${mono(m3)}+b$라 하고 $x=${p}$, $y=${q}$를 대입하면 $b=${b3}$이다.`,
+          facts: { m1, b1, m2, b2, p, q, m3, b3 },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_REL,
+    "72",
+    "교점의 x좌표가 주어질 때 상수 구하기",
+    SEC.연립해,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const m1 = nonZero(rng, -4, 4);
+        const m2 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 ? null : v;
+        });
+        const p = nonZero(rng, -4, 4);
+        const b1 = nonZero(rng, -8, 8);
+        const q = m1 * p + b1;
+        const k = q - m2 * p;
+        if (q === 0 || k === 0 || Math.abs(k) > 20) return null;
+        return {
+          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${mono(m2)}+k$의 그래프의 교점의 $x$좌표가 $${p}$일 때, 상수 $k$의 값을 구하시오.`,
+          answer: `$${k}$`,
+          solution: `$x=${p}$를 $y=${linear(m1, b1)}$에 대입하면 교점은 $(${p}, ${q})$이다.\n이 점이 $y=${mono(m2)}+k$ 위에 있으므로 $${q}=${m2 * p}+k$이고, $k=${k}$이다.`,
+          facts: { m1, b1, m2, k, p, q },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_REL,
+    "73",
+    "연립방정식의 해가 주어질 때 두 상수의 곱",
+    SEC.연립해,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const p = nonZero(rng, -4, 4);
+        const q = nonZero(rng, -4, 4);
+        const a = nonZero(rng, -4, 4);
+        const b = nonZero(rng, -4, 4);
+        const c1 = a * p + q;
+        const c2 = p + b * q;
+        if ([c1, c2].some((v) => Math.abs(v) > 24)) return null;
+        return {
+          content: `두 일차방정식 $ax+y=${c1}$, $x+by=${c2}$의 그래프의 교점이 $(${p}, ${q})$일 때, $ab$의 값을 구하시오.`,
+          answer: `$${a * b}$`,
+          solution: `교점은 두 그래프 위의 점이다.\n$ax+y=${c1}$에 대입하면 $${p}a+${q}=${c1}$이므로 $a=${a}$이다.\n$x+by=${c2}$에 대입하면 $${p}+${q}b=${c2}$이므로 $b=${b}$이다.\n따라서 $ab=${a * b}$이다.`,
+          facts: { p, q, a, b, c1, c2, ans: a * b },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_REL,
+    "74",
+    "일차방정식의 그래프의 기울기 구하기",
+    SEC.일차방정식,
+    "기본",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -4, 4);
+        const bb = nonZero(rng, -5, 5);
+        const a = -m * bb;
+        const c = nonZero(rng, -9, 9);
+        if (a === 0 || Math.abs(a) > 20) return null;
+        return {
+          content: `일차방정식 $${a === 1 ? "x" : a === -1 ? "-x" : `${a}x`}${bb > 0 ? `+${bb === 1 ? "" : bb}y` : `-${bb === -1 ? "" : -bb}y`}${c > 0 ? `+${c}` : `${c}`}=0$의 그래프의 기울기를 구하시오.`,
+          answer: `$${m}$`,
+          solution: `$y$에 대하여 풀면 $${bb === 1 ? "" : bb === -1 ? "-" : bb}y=${-a === 1 ? "x" : -a === -1 ? "-x" : `${-a}x`}${-c > 0 ? `+${-c}` : `${-c}`}$이다.\n양변을 $${bb}$로 나누면 $y=${mono(m)}${-c / bb > 0 ? "+" : ""}${-c / bb === 0 ? "" : fracTex(-c, bb)}$이므로 기울기는 $${m}$이다.`,
+          facts: { a, b: bb, c, m },
         };
       }),
   ),
