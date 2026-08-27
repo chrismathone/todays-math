@@ -82,25 +82,36 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     );
   }
   const correct = stem.answer.trim();
-  const pool = numericMistakes(correct)
-    .map((m) => m.value)
-    .filter((v) => v !== correct);
-  const unique: string[] = [];
-  for (const v of pool) {
-    if (!unique.includes(v)) unique.push(v);
+  // 🔴 `×10`·`÷10` 은 **자릿수가 통째로 달라진다** — $657$ 의 보기에 $6570$ 이
+  //    끼면 학생이 계산 없이 크기만 보고 지워 낸다. 그렇다고 버릴 수는 없다:
+  //    빼고 재니 초등 69갈래·중등 54유형이 5지선다를 통째로 잃었다(실측).
+  //    **버리지 말고 뒤로 민다** — 좋은 후보로 넷을 못 채울 때만 쓴다.
+  //    (소수·분수 정답에서는 소수점 자리 실수라 진짜 오답이므로 여기 안 넣는다.)
+  const WEAK = new Set(["times-ten", "div-ten"]);
+  const seen = new Set<string>([correct]);
+  const strong: string[] = [];
+  const weak: string[] = [];
+  for (const m of numericMistakes(correct)) {
+    if (seen.has(m.value)) continue;
+    seen.add(m.value);
+    (WEAK.has(m.tag) && !m.value.includes("frac") && !m.value.includes(".")
+      ? weak
+      : strong
+    ).push(m.value);
   }
-  if (unique.length < 4) {
+  if (strong.length + weak.length < 4) {
     throw new Error(
-      `정답이 수·분수·소수가 아니거나 오답 후보가 ${unique.length}개뿐이라 5지선다를 못 만듭니다: ${correct}`,
+      `정답이 수·분수·소수가 아니거나 오답 후보가 ${strong.length + weak.length}개뿐이라 5지선다를 못 만듭니다: ${correct}`,
     );
   }
   const distractors: string[] = [];
-  const rest = [...unique];
-  while (distractors.length < 4) {
-    const next = pick(rng, rest);
-    distractors.push(next);
-    const i = rest.indexOf(next);
-    rest.splice(i, 1);
+  for (const bucket of [strong, weak]) {
+    const rest = [...bucket];
+    while (distractors.length < 4 && rest.length > 0) {
+      const next = pick(rng, rest);
+      distractors.push(next);
+      rest.splice(rest.indexOf(next), 1);
+    }
   }
   const options = shuffleInPlace(rng, [correct, ...distractors]);
   const lines = options.map((v, i) => `${MARKS[i]} ${v}`);
@@ -197,6 +208,7 @@ export function numericMistakes(answer: string): Mistake[] {
     if (!rat || rat.d === 0) return;
     const reduced = reduce(rat);
     if (reduced.n === parsed.rat.n && reduced.d === parsed.rat.d) return;
+    if (!sameKind(parsed.rat, reduced)) return;
     const value = wrap(formatRat(reduced, parsed.style));
     if (parsed.decorated && shapeOf(value) !== wantShape) return;
     if (seen.has(value)) return;
@@ -224,7 +236,49 @@ export function numericMistakes(answer: string): Mistake[] {
     d: parsed.rat.d + (parsed.rat.d === 0 ? 0 : 1),
   });
 
+  // 🔴 위 아홉만으로는 **정수 정답**에서 후보가 모자란다. 같은 종류 가드를 켜면
+  //    `sign-flip`·`reciprocal`·`denominator-plus` 가 통째로 빠지기 때문이다
+  //    (정답 $1$ 은 후보가 셋뿐이라 5지선다를 못 만든다 — 실측).
+  //    **자릿수를 잘못 올린 실수**로 채운다. 초등 연산에서 가장 흔한 오답이고
+  //    정수라는 종류를 그대로 지킨다.
+  //
+  // ⚠️ 없는 자리는 안 만든다 — 한 자리 수에서 «백의 자리 올림»을 틀릴 수는 없다.
+  //    그래서 절댓값이 그 자리에 닿을 때만 낸다. 안 그러면 정답 $6$ 에
+  //    `$106$` 같은 자리 채우기가 다시 생긴다.
+  if (parsed.rat.d === 1) {
+    const abs = Math.abs(parsed.rat.n);
+    for (const place of [10, 100, 1000]) {
+      if (abs < place) break;
+      push(`carry-${place}-up`, { n: parsed.rat.n + place, d: 1 });
+      push(`carry-${place}-down`, { n: parsed.rat.n - place, d: 1 });
+    }
+    push("off-by-two-up", { n: parsed.rat.n + 2, d: 1 });
+    push("off-by-two-down", { n: parsed.rat.n - 2, d: 1 });
+  }
+
   return out;
+}
+
+/**
+ * 오답이 정답과 **같은 종류의 수**인가.
+ *
+ * 🔴 원장님 지적 2026-08-27: 초3 「두 수의 합」 객관식 보기에 `$-865$`·
+ *    `$\frac{865}{2}$` 가 나갔다. 초등 교육과정에 음수가 없고 두 수의 합이
+ *    분수가 될 수도 없다 — 학생이 계산 없이 지워 내므로 오답이 아니라
+ *    **자리 채우기**다. 문항이 오히려 쉬워진다.
+ *
+ * 이 파일은 「오답은 정답과 같은 모양이어야 한다」를 이미 적어 두고 있었는데
+ * (아래 `shapeOf`) **단위가 붙은 정답에만** 걸고 있었다. 맨 정수는 안 걸렀다.
+ * 엔진을 돌려 세니 객관식 8,948건 중 **5,407건(초등 4,345 · 중등 1,062)** 이
+ * 그랬다. 적재본에서도 5,692건 중 4,693건(82%)이다.
+ *
+ * 정답이 **음의 정수**면 부호를 풀어 준다 — 중등 부호 실수는 진짜 오답이다.
+ * 분수·소수 정답도 그대로 둔다(역수·자리 실수가 그 종류 안에서 나온다).
+ */
+function sameKind(answer: Rat, candidate: Rat): boolean {
+  if (answer.d !== 1) return true;
+  if (candidate.d !== 1) return false;
+  return answer.n < 0 || candidate.n >= 0;
 }
 
 function parseNumericAnswer(raw: string): {

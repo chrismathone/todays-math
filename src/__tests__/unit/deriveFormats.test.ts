@@ -330,12 +330,68 @@ describe("단위·꼬리표가 붙은 정답 — 틀은 남기고 수만 바꾼�
 });
 
 describe("계산 실수 목록 — 값이 목록을 가른다", () => {
-  it("정수 정답의 후보에 하나 더하기·부호 반전·두 배가 있다", () => {
+  it("정수 정답의 후보에 하나 더하기·두 배가 있다", () => {
     const tags = new Set(numericMistakes("$6$").map((m) => m.tag));
     expect(tags.has("off-by-one-up")).toBe(true);
     expect(tags.has("off-by-one-down")).toBe(true);
-    expect(tags.has("sign-flip")).toBe(true);
     expect(tags.has("double")).toBe(true);
+  });
+
+  /**
+   * 🔴 이 시험은 종전에 「정답 $6$ 의 후보에 `sign-flip` 이 **있다**」를 지키고
+   *    있었다. 그것이 결함 그 자체였다 — 초3 「두 수의 합」 보기에 `$-865$` 가
+   *    나간 원인이다(원장님 지적 2026-08-27). 초등에는 음수가 없고, 합이
+   *    분수가 될 수도 없다. 학생이 계산 없이 지워 내므로 오답이 아니다.
+   *
+   * ⚠️ 「없다」만 재면 `numericMistakes` 가 통째로 빈 목록을 내도 초록이다.
+   *    그래서 **음의 정수 정답에서는 있다**를 같이 잰다 — 중등 부호 실수는
+   *    진짜 오답이라 살아 있어야 한다. 둘 중 하나만 있으면 이 규칙을 못 지킨다.
+   */
+  it("🔴 음이 아닌 정수 정답에는 음수·분수 오답이 없다 (음의 정수에는 있다)", () => {
+    const plus = numericMistakes("$865$");
+    expect(plus.length).toBeGreaterThanOrEqual(4);
+    expect(plus.filter((m) => m.value.includes("-"))).toEqual([]);
+    expect(plus.filter((m) => m.value.includes("frac"))).toEqual([]);
+
+    const minus = numericMistakes("$-5$");
+    expect(minus.some((m) => m.tag === "sign-flip" && m.value === "$5$")).toBe(
+      true,
+    );
+  });
+
+  /**
+   * 위 가드를 켜면 `sign-flip`·`reciprocal`·`denominator-plus` 가 빠져 정수
+   * 정답의 후보가 모자란다. **자릿수 실수**로 채운다 — 없는 자리는 안 만든다.
+   */
+  it("자릿수 실수는 그 자리가 있을 때만 낸다", () => {
+    const big = new Set(numericMistakes("$865$").map((m) => m.tag));
+    expect(big.has("carry-10-up")).toBe(true);
+    expect(big.has("carry-100-down")).toBe(true);
+
+    const small = new Set(numericMistakes("$6$").map((m) => m.tag));
+    expect(small.has("carry-10-up")).toBe(false);
+    expect(small.has("carry-100-up")).toBe(false);
+    expect(small.has("off-by-two-up")).toBe(true);
+  });
+
+  /**
+   * `×10`·`÷10` 은 자릿수가 통째로 달라져 크기만 보고 지워 낸다. 그러나 버리면
+   * 초등 69갈래·중등 54유형이 5지선다를 잃는다(실측) — **뒤로 밀 뿐 안 버린다.**
+   * 좋은 후보가 넷 이상이면 보기에 안 나오고, 모자라면 나온다.
+   */
+  it("🔴 ×10 은 좋은 후보로 넷을 채울 수 있으면 보기에 안 나온다", () => {
+    const stem = {
+      content: "두 수의 합을 구하시오.\n\n$485$,  $342$",
+      answer: "$827$",
+      solution: "",
+      familyKey: "elem:초3|1-1-1|01",
+      problemType: "계산",
+    };
+    for (let seed = 1; seed <= 20; seed += 1) {
+      const got = asMultipleChoice(stem, createRng(seed));
+      expect(got.content, `씨앗 ${seed}`).not.toContain("$8270$");
+      expect(got.content, `씨앗 ${seed}`).not.toContain("$82$");
+    }
   });
 
   it("분수 정답의 후보에 역수가 있다", () => {
