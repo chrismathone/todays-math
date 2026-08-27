@@ -420,6 +420,54 @@ export const M2_RATIONAL_SUP_B: TypeEntry[] = [
       },
     ),
   ),
+
+  /**
+   * 🔴 **밑단이 아니라 `기본` 이어야 하는 자리다.** 이 소단원은 21~26 을 넣고도
+   *    판정기가 「시험지가 모자란다」로 막았다 — pool 갈래가 연산 2 · 기본 **0** ·
+   *    응용 5 · 심화 1 이라 「기본 4」를 인접 대체로 메우다 응용·심화를 다 먹는다.
+   *    (기존 17·18 은 **이미 객관식**이라 `expandFamily` 가 단답행을 안 내고,
+   *    그래서 10갈래 시험지가 구조적으로 조립될 수 없었다 — pool 갈래가 8뿐.)
+   *    그래서 여기 둘은 **기본 두 개**다. 발문에 조건이 있어 `resolveMiddleTier`
+   *    가 밑단으로 안 내린다(그 규칙을 우회한 것이 아니라, 실제로 한 단계가 더 있다).
+   */
+  def(
+    "27",
+    "순환소수의 기약분수와 분모 분자의 합",
+    SEC.식계산,
+    "기본",
+    (rng) => {
+      const block = attempt(200, () => {
+        const v = intBetween(rng, 12, 87);
+        // 순환마디가 `11`·`22` 처럼 한 자리의 되풀이면 두 자리 순환소수가 아니다.
+        return v % 11 === 0 ? null : v;
+      });
+      const g = gcd(block, 99);
+      const n = block / g;
+      const d = 99 / g;
+      return {
+        content: `순환소수 $0.\\overline{${block}}$${eulReul(block)} 기약분수로 나타내었을 때, 분자와 분모의 합을 구하시오.`,
+        answer: `$${n + d}$`,
+        // 이미 기약이면 「나타내면 같은 분수」라고 되풀이하지 않는다.
+        solution:
+          (g === 1
+            ? `$0.\\overline{${block}}=\\dfrac{${block}}{99}$이고 $${block}$${waGwa(block)} $99$의 최대공약수가 $1$이므로 이미 기약분수이다.`
+            : `$0.\\overline{${block}}=\\dfrac{${block}}{99}$이고, 분자와 분모를 최대공약수 $${g}$${euRo(g)} 나누면 $\\dfrac{${n}}{${d}}$이다.`) +
+          `\n따라서 분자와 분모의 합은 $${n}+${d}=${n + d}$이다.`,
+        facts: { block, n, d, x: n + d },
+      };
+    },
+  ),
+
+  def("28", "순환소수를 문자로 놓은 식의 값", SEC.식계산, "기본", (rng) => {
+    const a = intBetween(rng, 1, 8);
+    const b = intBetween(rng, 2, 9);
+    return {
+      content: `$x=0.\\overline{${a}}$일 때, $9x+${b}$의 값을 구하시오.`,
+      answer: `$${a + b}$`,
+      solution: `$x=0.\\overline{${a}}=\\dfrac{${a}}9$이므로 $9x=${a}$이다.\n따라서 $9x+${b}=${a}+${b}=${a + b}$이다.`,
+      facts: { a, b, x: a + b },
+    };
+  }),
 ];
 
 export const M2_RATIONAL: TypeEntry[] = [

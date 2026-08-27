@@ -349,6 +349,20 @@ const CHECKS: Record<string, Check> = {
     const s = { n: u!.n * v!.d + v!.n * u!.d, d: 2 * u!.d * v!.d };
     expect(eq(rational(answer), s)).toBe(true);
   },
+  "2-1|유리수와 순환소수|27": ({ content, answer }) => {
+    // 「$0.\overline{ab}$의 기약분수의 분자+분모」 — 여기서 다시 약분한다
+    const block = Number(content.match(/\\overline\{(\d+)\}/)![1]);
+    const g = gcd2(block, 99);
+    expect(nums(answer)).toEqual([block / g + 99 / g]);
+    // 순환마디가 한 자리의 되풀이(`11`·`22`)면 두 자리 순환소수가 아니다
+    expect(block % 11).not.toBe(0);
+  },
+  "2-1|유리수와 순환소수|28": ({ content, answer }) => {
+    // 「$x=0.\overline{a}$일 때 $9x+b$」 → $9x=a$ 이므로 $a+b$
+    const a = Number(content.match(/\\overline\{(\d+)\}/)![1]);
+    const b = Number(content.match(/\$9x\+(\d+)\$/)![1]);
+    expect(nums(answer)).toEqual([a + b]);
+  },
   // ── 중2 순환소수 ──────────────────────────────────────────
   "2-1|유리수와 순환소수|30": ({ content, answer }) => {
     // 「$0.abab\cdots$의 순환마디」 — 펼친 소수에서 되풀이를 **직접 찾는다**
