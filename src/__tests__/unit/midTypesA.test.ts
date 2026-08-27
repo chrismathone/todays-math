@@ -1548,6 +1548,78 @@ describe("갈래 A 중등 유형 값 검산", () => {
     expect(alternateSeen).toBeGreaterThan(0);
     expect(sumSeen).toBeGreaterThan(0);
   });
+
+  /*
+   * 연립방정식의 활용(일, 속력) 32A~35A — **발문의 조건을 답에 되먹여** 확인한다.
+   * 「$x$ 를 이렇게 구하면 된다」를 옮겨 적지 않고, 답을 넣었을 때 발문이 말한
+   * 관계가 실제로 성립하는지를 엇곱으로 본다.
+   */
+  function applyEntry(rpmType: string) {
+    const entry = M2_SYSTEM_APPLY.find(
+      (candidate) =>
+        candidate.unitSection === "연립방정식의 활용(일, 속력)" &&
+        candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    return entry!;
+  }
+
+  it("연립방정식의 활용(일, 속력) 32A — 하루에 하는 일의 양", () => {
+    const entry = applyEntry("32A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const days = Number(problem.content.match(/\$(\d+)\$일/)?.[1]);
+      expect(days).toBeGreaterThan(1);
+      const got = fractionAnswer(problem.answer);
+      // 하루치를 $days$ 번 더하면 전체 일 $1$ 이 되어야 한다.
+      expect(got.n * days).toBe(got.d);
+      expect(gcdOf(got.n, got.d)).toBe(1);
+    }
+  });
+
+  it("연립방정식의 활용(일, 속력) 33A — 함께 하면 며칠", () => {
+    const entry = applyEntry("33A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [a, b] = (problem.content.match(/\$(\d+)\$일/g) ?? []).map(
+        (token) => Number(token.match(/\d+/)![0]),
+      );
+      const days = numericAnswer(problem.answer);
+      // $\left(\dfrac1a+\dfrac1b\right)\times days = 1$ 을 엇곱으로.
+      expect(days * (a! + b!)).toBe(a! * b!);
+      expect(a).not.toBe(b);
+    }
+  });
+
+  it("연립방정식의 활용(일, 속력) 34A — 왕복", () => {
+    const entry = applyEntry("34A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [go, back, hours] = (problem.content.match(/\d+/g) ?? []).map(
+        Number,
+      );
+      const distance = numericAnswer(problem.answer);
+      // $\dfrac{d}{go}+\dfrac{d}{back}=hours$ 를 엇곱으로.
+      expect(distance * (go! + back!)).toBe(hours! * go! * back!);
+      expect(go).not.toBe(back);
+    }
+  });
+
+  it("연립방정식의 활용(일, 속력) 35A — 따라잡기", () => {
+    const entry = applyEntry("35A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [slow, head, fast] = (problem.content.match(/\d+/g) ?? []).map(
+        Number,
+      );
+      const minutes = numericAnswer(problem.answer);
+      // 만난 순간 두 사람이 간 거리가 같다.
+      expect(slow! * (head! + minutes)).toBe(fast! * minutes);
+      // 뒤에서 출발한 쪽이 더 빨라야 따라잡는다.
+      expect(fast).toBeGreaterThan(slow!);
+      expect(minutes).toBeGreaterThan(0);
+    }
+  });
 });
 
 /**

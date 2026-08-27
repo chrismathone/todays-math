@@ -742,4 +742,83 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "기본",
   ),
   specialExtra("26A", "해가 없을 때 첫째 식의 x계수", "A1", "없을", "심화"),
+
+  /*
+   * 32A~35A — 활용(일, 속력)을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 09·13·14·17 심화 · 11 응용 · 12 기본이라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * 겹치지 않게 골랐다 — 09 는 «함께 하다 나눠서», 33A 는 그 **반대 방향**이고,
+   * 11 은 한 방향에 속력이 둘, 34A 는 **왕복**이며, 12 는 마주 보는 경우,
+   * 35A 는 **뒤따라가 따라잡는** 경우다.
+   */
+  def(MINOR_APPLY, "32A", "하루에 하는 일의 양", SEC.일속력, "연산", (rng) => {
+    const days = intBetween(rng, 3, 20);
+    return {
+      content: `어떤 일을 혼자 하면 $${days}$일이 걸리는 사람이 하루 동안 하는 일의 양을 구하시오. (단, 전체 일의 양을 $1$로 놓는다.)`,
+      answer: `$\\dfrac{1}{${days}}$`,
+      solution: `전체 일의 양을 $1$이라 하면 $${days}$일 동안 $1$만큼 하므로 하루에 하는 일의 양은 $\\dfrac{1}{${days}}$이다.`,
+      facts: { days, denominator: days },
+    };
+  }),
+
+  def(
+    MINOR_APPLY,
+    "33A",
+    "함께 하면 며칠 걸리는가",
+    SEC.일속력,
+    "기본",
+    (rng) =>
+      attempt(300, () => {
+        const a = intBetween(rng, 3, 30);
+        const b = intBetween(rng, 3, 30);
+        if (a === b) return null;
+        const together = (a * b) / (a + b);
+        // 며칠인지 묻는 발문이므로 자연수로 떨어져야 한다.
+        if (!Number.isInteger(together)) return null;
+        return {
+          content: `어떤 일을 혼자 하면 $\\mathrm{A}$는 $${a}$일, $\\mathrm{B}$는 $${b}$일이 걸린다. 이 일을 두 사람이 함께 하면 며칠 만에 끝낼 수 있는지 구하시오.`,
+          answer: `$${together}$일`,
+          solution: `전체 일의 양을 $1$이라 하면 하루에 하는 일의 양은 $\\mathrm{A}$가 $\\dfrac{1}{${a}}$, $\\mathrm{B}$가 $\\dfrac{1}{${b}}$이다.\n함께 $x$일 걸린다고 하면 $\\left(\\dfrac{1}{${a}}+\\dfrac{1}{${b}}\\right)x=1$이므로 $x=${together}$이다.`,
+          facts: { a, b, together },
+        };
+      }),
+  ),
+
+  def(MINOR_APPLY, "34A", "왕복하는 데 걸린 시간", SEC.일속력, "응용", (rng) =>
+    attempt(300, () => {
+      const goSpeed = intBetween(rng, 2, 12);
+      const backSpeed = intBetween(rng, 2, 12);
+      if (goSpeed === backSpeed) return null;
+      const distance = intBetween(rng, 2, 30);
+      const hoursTimes = distance * (goSpeed + backSpeed);
+      // 걸린 시간이 자연수라야 발문에 적을 수 있다.
+      if (hoursTimes % (goSpeed * backSpeed) !== 0) return null;
+      const hours = hoursTimes / (goSpeed * backSpeed);
+      if (hours < 1 || hours > 12) return null;
+      return {
+        content: `집에서 도서관까지 갈 때는 시속 $${goSpeed}\\,\\mathrm{km}$, 올 때는 같은 길을 시속 $${backSpeed}\\,\\mathrm{km}$로 왕복하였더니 모두 $${hours}$시간이 걸렸다. 집에서 도서관까지의 거리를 구하시오.`,
+        answer: `$${distance}\\,\\mathrm{km}$`,
+        solution: `집에서 도서관까지의 거리를 $x\\,\\mathrm{km}$라 하면 갈 때 걸린 시간은 $\\dfrac{x}{${goSpeed}}$시간, 올 때 걸린 시간은 $\\dfrac{x}{${backSpeed}}$시간이다.\n$\\dfrac{x}{${goSpeed}}+\\dfrac{x}{${backSpeed}}=${hours}$이므로 $x=${distance}$이다.\n따라서 거리는 $${distance}\\,\\mathrm{km}$이다.`,
+        facts: { goSpeed, backSpeed, hours, distance },
+      };
+    }),
+  ),
+
+  def(MINOR_APPLY, "35A", "뒤따라가 따라잡는 경우", SEC.일속력, "심화", (rng) =>
+    attempt(300, () => {
+      const slow = intBetween(rng, 40, 90);
+      const fast = intBetween(rng, slow + 10, 200);
+      const head = intBetween(rng, 3, 20);
+      const gap = fast - slow;
+      if ((slow * head) % gap !== 0) return null;
+      const minutes = (slow * head) / gap;
+      if (minutes < 2 || minutes > 60) return null;
+      return {
+        content: `동생이 분속 $${slow}\\,\\mathrm{m}$로 집을 나선 뒤 $${head}$분 후에 형이 분속 $${fast}\\,\\mathrm{m}$로 같은 길을 따라나섰다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
+        answer: `$${minutes}$분 후`,
+        solution: `형이 출발한 지 $x$분 후에 만난다고 하면 동생은 $${head}+x$분 동안 걸었다.\n두 사람이 걸은 거리가 같으므로 $${slow}(${head}+x)=${fast}x$이다.\n$${gap}x=${slow * head}$이므로 $x=${minutes}$이다.`,
+        facts: { slow, fast, head, minutes },
+      };
+    }),
+  ),
 ];

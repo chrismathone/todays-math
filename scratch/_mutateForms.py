@@ -195,6 +195,40 @@ MUTATIONS = [
         "      const mode = intBetween(rng, 0, 1);\n      const angle = intBetween(rng, 25, 155);",
         "      const mode = 0;\n      const angle = intBetween(rng, 25, 155);",
     ),
+    (
+        "일속력 32A: 하루치를 뒤집는다",
+        SA,
+        "        answer: `$\\\\dfrac{1}{${days}}$`,",
+        "        answer: `$\\\\dfrac{${days}}{1}$`,",
+    ),
+    (
+        "일속력 33A: 함께 한 날수를 합으로",
+        SA,
+        "      const together = (a * b) / (a + b);",
+        "      const together = a + b;",
+    ),
+    (
+        "일속력 34A: 왕복 시간을 편도로 본다",
+        SA,
+        "      const hoursTimes = distance * (goSpeed + backSpeed);",
+        "      const hoursTimes = distance * goSpeed;",
+    ),
+    (
+        "일속력 35A: 따라잡는 시간의 분모를 합으로",
+        SA,
+        "      const gap = fast - slow;",
+        "      const gap = fast + slow;",
+    ),
+    # ⚠️ 「fast 의 범위를 넓힌다」 변이는 **뜻이 안 바뀐다** — fast < slow 이면
+    #    minutes 가 음수라 attempt 가 그 후보를 버리고 다시 뽑는다. 산출물은
+    #    바뀌지만(rng 소비가 달라진다) 결함은 안 생긴다. 그래서 발문의 두 속력을
+    #    **맞바꿔** 진짜로 「느린 쪽이 뒤에서 출발」하게 만든다.
+    (
+        "일속력 35A: 발문에서 두 속력을 맞바꾼다",
+        SA,
+        "        content: `동생이 분속 $${slow}\\\\,\\\\mathrm{m}$로 집을 나선",
+        "        content: `동생이 분속 $${fast}\\\\,\\\\mathrm{m}$로 집을 나선",
+    ),
 ]
 
 
