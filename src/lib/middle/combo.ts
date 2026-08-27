@@ -462,11 +462,84 @@ const SYSTEM_FAMILIES = [
   linearSystemFamily("system-expression-value", 7),
 ] as const;
 
+function repeatingDecimalEntry(index: number, title: string): TypeEntry {
+  const rpmType = String(29 + index).padStart(2, "0");
+  return {
+    key: `2-1|유리수와 순환소수|${rpmType}`,
+    grade: "중2",
+    unitSection: "순환소수",
+    rpmBook: "2-1",
+    rpmMinor: "유리수와 순환소수",
+    rpmType,
+    rpmTitle: title,
+    handler: (rng) => {
+      const a = intBetween(rng, 1, 8);
+      let b = intBetween(rng, 1, 8);
+      if (b === a) b = (b % 8) + 1;
+      const block = `${a}${b}`;
+      const n = intBetween(rng, 4, 15);
+      const digit = n % 2 === 1 ? a : b;
+      const bodies = [
+        {
+          content: `순환소수 $0.${block}${block}\cdots$의 순환마디를 쓰시오.`,
+          answer: `$${block}$`,
+          solution: `소수점 아래에서 $${block}$가 한없이 되풀이되므로 순환마디는 $${block}$이다.`,
+        },
+        {
+          content: `순환마디가 $${block}$인 순환소수 $0.${block}${block}\cdots$를 순환소수의 기호를 사용하여 나타내시오.`,
+          answer: `$0.\overline{${block}}$`,
+          solution: `되풀이되는 첫 숫자부터 마지막 숫자까지 윗줄을 그으면 $0.\overline{${block}}$이다.`,
+        },
+        {
+          content: `순환소수 $0.\overline{${block}}$의 순환마디를 이루는 숫자의 개수를 구하시오.`,
+          answer: `$2$개`,
+          solution: `순환마디는 두 자리 수 $${block}$이므로 숫자의 개수는 $2$개이다.`,
+        },
+        {
+          content: `순환소수 $0.\overline{${block}}$의 소수점 아래 ${n}번째 자리의 숫자를 구하시오.`,
+          answer: `$${digit}$`,
+          solution: `순환마디의 길이는 $2$이다. $${n}$을 $2$로 나눈 나머지에 따라 소수점 아래 ${n}번째 숫자는 $${digit}$이다.`,
+        },
+        {
+          content: `두 순환소수 $0.\overline{${a}${b}}$, $0.\overline{${b}${a}}$ 중 큰 수를 쓰시오.`,
+          answer: a > b ? `$0.\overline{${a}${b}}$` : `$0.\overline{${b}${a}}$`,
+          solution: `소수점 아래 첫째 자리의 숫자를 비교하면 $${Math.max(a, b)}>${Math.min(a, b)}$이므로 첫째 자리가 더 큰 순환소수가 크다.`,
+        },
+        {
+          content: `순환소수 $2.${block}${block}\cdots$의 정수 부분과 순환마디를 차례로 쓰시오.`,
+          answer: `$2,\ ${block}$`,
+          solution: `소수점 왼쪽의 정수 부분은 $2$이고, 소수점 아래에서 되풀이되는 순환마디는 $${block}$이다.`,
+        },
+      ][index - 1]!;
+      return {
+        grade: "중2",
+        unitSection: "순환소수",
+        rpmBook: "2-1",
+        rpmMinor: "유리수와 순환소수",
+        rpmType,
+        rpmTitle: title,
+        difficulty: index < 4 ? "기본" : "응용",
+        ...bodies,
+        facts: { index, a, b, n, digit },
+      };
+    },
+  };
+}
+
+const REPEATING_DECIMAL_TYPES = [
+  repeatingDecimalEntry(1, "순환마디 찾기"),
+  repeatingDecimalEntry(2, "순환소수의 기호로 나타내기"),
+  repeatingDecimalEntry(3, "순환마디의 길이"),
+  repeatingDecimalEntry(4, "순환소수의 특정 자리 숫자"),
+  repeatingDecimalEntry(5, "순환소수의 대소 비교"),
+  repeatingDecimalEntry(6, "순환소수의 정수 부분과 순환마디"),
+] as const;
+
 /**
  * 결합형 파일이 맡은 일반 중등 유형. `M2_GEO_SIM`이 이 배열을 제품 레지스트리에
  * 합친다. 결합형 CLI 등록과 달리 시험지의 10갈래로 직접 선택되는 유형들이다.
  */
-export const MIDDLE_COMBO_TYPES: TypeEntry[] = SYSTEM_FAMILIES.map(
+const SYSTEM_TYPE_ENTRIES: TypeEntry[] = SYSTEM_FAMILIES.map(
   (family, index) => {
     const rpmType = String(21 + index).padStart(2, "0");
     const rpmTitle = [
@@ -499,6 +572,11 @@ export const MIDDLE_COMBO_TYPES: TypeEntry[] = SYSTEM_FAMILIES.map(
     };
   },
 );
+
+export const MIDDLE_COMBO_TYPES: TypeEntry[] = [
+  ...SYSTEM_TYPE_ENTRIES,
+  ...REPEATING_DECIMAL_TYPES,
+];
 
 const DEFINITIONS: readonly ComboDefinition[] = [
   {
