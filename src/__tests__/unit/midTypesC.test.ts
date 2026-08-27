@@ -383,3 +383,38 @@ describe("중등 유형 갈래 C — 함수와 함숫값", () => {
     );
   });
 });
+
+describe("중등 유형 갈래 C — 일차함수의 그래프와 기울기", () => {
+  const SEC_SLOPE = "일차함수의 그래프와 기울기";
+
+  it("76 증가량이 기울기와 x 증가량의 곱이다", () => {
+    const { facts } = generatedFunc(SEC_SLOPE, "76");
+    expect(facts!.ans).toBe(facts!.m * facts!.p);
+  });
+
+  it("77 기울기에 x 증가량을 곱하면 발문의 y 증가량이 된다", () => {
+    const { facts } = generatedFunc(SEC_SLOPE, "77");
+    expect(facts!.m * facts!.p).toBe(facts!.d);
+  });
+
+  it("78 답을 넣으면 두 점의 기울기가 발문의 기울기와 같다", () => {
+    const { facts } = generatedFunc(SEC_SLOPE, "78");
+    // 기울기 정의를 분모 없이 옮긴 꼴 — 발문의 수와 답만 쓴다.
+    expect(facts!.y2 - facts!.y1).toBe(facts!.m * (facts!.x2 - facts!.a));
+    expect(facts!.x2).not.toBe(facts!.a);
+  });
+
+  it("79 답에서만 x의 계수가 발문의 기울기가 된다 — 경계까지 본다", () => {
+    const { facts } = generatedFunc(SEC_SLOPE, "79");
+    const coef = (a: number) => facts!.mult * a - facts!.off;
+    expect(coef(facts!.a)).toBe(facts!.m);
+    expect(coef(facts!.a + 1)).not.toBe(facts!.m);
+  });
+
+  it("80 두 직선의 기울기가 같다 — 분모 없이 견준다", () => {
+    const { facts } = generatedFunc(SEC_SLOPE, "80");
+    expect((facts!.y2 - facts!.y1) * (facts!.x4 - facts!.x3)).toBe(
+      (facts!.k - facts!.y3) * (facts!.x2 - facts!.x1),
+    );
+  });
+});

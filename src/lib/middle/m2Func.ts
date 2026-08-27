@@ -930,4 +930,123 @@ export const M2_FUNC: TypeEntry[] = [
         };
       }),
   ),
+
+  def(
+    MINOR_G1,
+    "76",
+    "x의 값의 증가량에 대한 y의 값의 증가량",
+    SEC.기울기,
+    "기본",
+    (rng) =>
+      attempt(80, () => {
+        const m = nonZero(rng, -5, 5);
+        const p = intBetween(rng, 2, 8);
+        const ans = m * p;
+        if (Math.abs(ans) > 40) return null;
+        return {
+          content: `기울기가 $${m}$인 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때, $y$의 값의 증가량을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `(기울기)$=\dfrac{(y의 값의 증가량)}{(x의 값의 증가량)}$이므로 $y$의 값의 증가량은 $(기울기)\times(x의 값의 증가량)$이다.\n따라서 $${m}\times${p}=${ans}$이다.`,
+          facts: { m, p, ans },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "77",
+    "y의 값의 증가량이 주어질 때 기울기 구하기",
+    SEC.기울기,
+    "기본",
+    (rng) =>
+      attempt(80, () => {
+        const m = nonZero(rng, -5, 5);
+        const p = intBetween(rng, 2, 8);
+        const d = m * p;
+        if (Math.abs(d) > 40) return null;
+        return {
+          content: `어떤 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때 $y$의 값은 $${Math.abs(d)}$만큼 ${d > 0 ? "증가" : "감소"}한다. 이 그래프의 기울기를 구하시오.`,
+          answer: `$${m}$`,
+          solution: `$y$의 값의 증가량은 $${d}$이다.\n따라서 기울기는 $\dfrac{${d}}{${p}}=${m}$이다.`,
+          facts: { m, p, d },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "78",
+    "기울기가 주어질 때 점의 좌표 구하기",
+    SEC.기울기,
+    "응용",
+    (rng) =>
+      attempt(120, () => {
+        const m = nonZero(rng, -4, 4);
+        const a = intBetween(rng, -5, 2);
+        const dx = intBetween(rng, 2, 5);
+        const x2 = a + dx;
+        const y1 = intBetween(rng, -6, 6);
+        const y2 = y1 + m * dx;
+        if (Math.abs(y2) > 25) return null;
+        return {
+          content: `두 점 $(a, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 기울기가 $${m}$일 때, $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$\dfrac{${y2}-(${y1})}{${x2}-a}=${m}$에서 $\dfrac{${y2 - y1}}{${x2}-a}=${m}$이다.\n따라서 $${x2}-a=${dx}$이므로 $a=${a}$이다.`,
+          facts: { m, a, x2, y1, y2 },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "79",
+    "기울기가 주어질 때 계수 구하기",
+    SEC.기울기,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const a = nonZero(rng, -4, 4);
+        const mult = intBetween(rng, 2, 4);
+        const off = nonZero(rng, -5, 5);
+        const m = mult * a - off;
+        if (m === 0 || Math.abs(m) > 20) return null;
+        const c = nonZero(rng, -6, 6);
+        const head = off > 0 ? `${mult}a-${off}` : `${mult}a+${-off}`;
+        return {
+          content: `일차함수 $y=(${head})x${c > 0 ? `+${c}` : `${c}`}$의 그래프의 기울기가 $${m}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$x$의 계수가 곧 기울기이므로 $${head}=${m}$이다.\n$${mult}a=${m + off}$이므로 $a=${a}$이다.`,
+          facts: { a, mult, off, m, c },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "80",
+    "기울기가 같은 두 직선에서 미지수 구하기",
+    SEC.기울기,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -3, 3);
+        const x1 = intBetween(rng, -5, -1);
+        const d1 = intBetween(rng, 2, 4);
+        const x2 = x1 + d1;
+        const y1 = intBetween(rng, -5, 5);
+        const y2 = y1 + m * d1;
+        const x3 = intBetween(rng, 0, 3);
+        const d2 = intBetween(rng, 2, 5);
+        const x4 = x3 + d2;
+        const y3 = intBetween(rng, -5, 5);
+        const k = y3 + m * d2;
+        if ([y2, k].some((v) => Math.abs(v) > 25)) return null;
+        return {
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 직선과 두 점 $(${x3}, ${y3})$, $(${x4}, k)$를 지나는 직선의 기울기가 서로 같을 때, $k$의 값을 구하시오.`,
+          answer: `$${k}$`,
+          solution: `앞 직선의 기울기는 $\dfrac{${y2 - y1}}{${d1}}=${m}$이다.\n뒤 직선도 기울기가 같아야 하므로 $\dfrac{k-(${y3})}{${d2}}=${m}$이다.\n따라서 $k=${k}$이다.`,
+          facts: { m, x1, y1, x2, y2, x3, y3, x4, k },
+        };
+      }),
+  ),
 ];
