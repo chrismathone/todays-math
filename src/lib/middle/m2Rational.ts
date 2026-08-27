@@ -347,6 +347,71 @@ function mixedFracItems(rng: Rng): { n: number; d: number; term: boolean }[] {
 }
 
 export const M2_RATIONAL: TypeEntry[] = [
+  ...([0, 1, 2, 3, 4, 5] as const).map((mode) =>
+    def(
+      String(21 + mode).padStart(2, "0"),
+      [
+        "한 자리 순환소수의 덧셈",
+        "한 자리 순환소수의 뺄셈",
+        "순환소수에 9 곱하기",
+        "두 자리 순환소수에 99 곱하기",
+        "순환소수가 있는 방정식",
+        "순환소수의 평균",
+      ][mode]!,
+      SEC.식계산,
+      mode < 2 ? "연산" : "응용",
+      (rng): Body => {
+        const a = intBetween(rng, 2, 8);
+        const b = intBetween(rng, 1, a - 1);
+        const block = 10 * a + b;
+        const reduced = (n: number, d: number) => {
+          const g = gcd(n, d);
+          return g === d ? `$${n / d}$` : `$\\dfrac{${n / g}}{${d / g}}$`;
+        };
+        if (mode === 0)
+          return {
+            content: `$0.\overline{${a}}+0.\overline{${b}}$를 계산하시오.`,
+            answer: reduced(a + b, 9),
+            solution: `$0.\overline{${a}}=\dfrac{${a}}9$, $0.\overline{${b}}=\dfrac{${b}}9$이므로 합은 $\dfrac{${a + b}}9$이다. 이를 기약분수로 나타내면 ${reduced(a + b, 9)}이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 1)
+          return {
+            content: `$0.\overline{${a}}-0.\overline{${b}}$를 계산하시오.`,
+            answer: reduced(a - b, 9),
+            solution: `$0.\overline{${a}}=\dfrac{${a}}9$, $0.\overline{${b}}=\dfrac{${b}}9$이므로 차는 $\dfrac{${a - b}}9$이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 2)
+          return {
+            content: `$9\times0.\overline{${a}}$를 계산하시오.`,
+            answer: `$${a}$`,
+            solution: `$0.\overline{${a}}=\dfrac{${a}}9$이므로 $9\times0.\overline{${a}}=9\times\dfrac{${a}}9=${a}$이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 3)
+          return {
+            content: `$99\times0.\overline{${block}}$를 계산하시오.`,
+            answer: `$${block}$`,
+            solution: `$0.\overline{${block}}=\dfrac{${block}}{99}$이므로 주어진 식의 값은 $${block}$이다.`,
+            facts: { mode, a, b, block },
+          };
+        if (mode === 4)
+          return {
+            content: `방정식 $x+0.\overline{${a}}=${b}$를 만족시키는 $x$의 값을 구하시오.`,
+            answer: reduced(9 * b - a, 9),
+            solution: `$0.\overline{${a}}=\dfrac{${a}}9$이므로 $x=${b}-\dfrac{${a}}9=\dfrac{${9 * b - a}}9$이다.`,
+            facts: { mode, a, b },
+          };
+        return {
+          content: `두 수 $0.\overline{${a}}$, $0.\overline{${b}}$의 평균을 구하시오.`,
+          answer: reduced(a + b, 18),
+          solution: `두 수의 합은 $\dfrac{${a + b}}9$이므로 평균은 $\dfrac{${a + b}}{18}$이다.`,
+          facts: { mode, a, b },
+        };
+      },
+    ),
+  ),
   // 01 ─────────────────────────────────────────────
   def("01", "유한소수와 무한소수", SEC.유리수와소수, "기본", (rng) => {
     const items = mixedFracItems(rng);
