@@ -48,6 +48,7 @@ import type { Rng } from "../elementary/types";
 
 import { generateMiddleProblem } from "./generate";
 import { euroRo, eulReul } from "./m2Josa";
+import type { TypeEntry } from "./types";
 
 export type MidComboProblem = {
   kind: "combo";
@@ -384,7 +385,135 @@ const binomialRationalize: ComboFamily = {
   },
 };
 
+/** 연립방정식의 기본 풀이를 서로 다른 소거 자리로 연습하는 여덟 문형. */
+function linearSystemFamily(id: string, mode: number): ComboFamily {
+  return {
+    id,
+    generate: (rng) => {
+      const x = intBetween(rng, 2, 9);
+      const y = intBetween(rng, 2, 9);
+      const p = intBetween(rng, 2, 5);
+      const q = intBetween(rng, 2, 5);
+      let content: string;
+      let solution: string;
+      let answer = `$x=${x},\ y=${y}$`;
+      if (mode === 0) {
+        const a = x + y;
+        const b = x - y;
+        content = `연립방정식 $\begin{cases}x+y=${a}\\x-y=${b}\end{cases}$를 푸시오.`;
+        solution = `두 식을 더하면 $2x=${2 * x}$이므로 $x=${x}$이다. 이를 첫째 식에 대입하면 $y=${a}-${x}=${y}$이다.`;
+      } else if (mode === 1) {
+        const a = p * x + y;
+        const b = q * x + y;
+        content = `연립방정식 $\begin{cases}${p}x+y=${a}\\${q}x+y=${b}\end{cases}$를 푸시오.`;
+        solution = `두 식을 빼서 $${p - q}x=${a - b}$를 얻으므로 $x=${x}$이다. 이를 첫째 식에 대입하면 $y=${a}-${p}\times${x}=${y}$이다.`;
+      } else if (mode === 2) {
+        const d = y - p * x;
+        const s = x + q * y;
+        content = `연립방정식 $\begin{cases}y=${p}x${signed(d)}\\x+${q}y=${s}\end{cases}$를 대입법으로 푸시오.`;
+        solution = `둘째 식의 $y$에 $${p}x${signed(d)}$를 대입하면 $x+${q}(${p}x${signed(d)})=${s}$이므로 $x=${x}$이다. 따라서 $y=${y}$이다.`;
+      } else if (mode === 3) {
+        const a = p * (x + y);
+        const b = q * x - y;
+        content = `연립방정식 $\begin{cases}${p}(x+y)=${a}\\${q}x-y=${b}\end{cases}$를 푸시오.`;
+        solution = `첫째 식의 양변을 $${p}$로 나누면 $x+y=${x + y}$이다. 이 식과 둘째 식을 더하면 $${q + 1}x=${(q + 1) * x}$이므로 $x=${x}$, $y=${y}$이다.`;
+      } else if (mode === 4) {
+        const a = p * x + q * y;
+        const b = q * x - p * y;
+        content = `연립방정식 $\begin{cases}${p}x+${q}y=${a}\\${q}x-${p}y=${b}\end{cases}$를 가감법으로 푸시오.`;
+        solution = `첫째 식에 $${p}$, 둘째 식에 $${q}$를 곱해 더하면 $${p * p + q * q}x=${(p * p + q * q) * x}$이므로 $x=${x}$이다. 대입하여 $y=${y}$를 얻는다.`;
+      } else if (mode === 5) {
+        const a = x + p * y;
+        const b = q * x - y;
+        content = `연립방정식 $\begin{cases}\dfrac{x}{${p}}+y=${a / p}\\${q}x-y=${b}\end{cases}$를 푸시오.`;
+        solution = `첫째 식의 양변에 $${p}$를 곱하면 $x+${p}y=${a}$이다. 정리한 두 식을 가감법으로 풀면 $x=${x}$, $y=${y}$이다.`;
+      } else if (mode === 6) {
+        const a = p * x + p * y;
+        const b = q * x - q * y;
+        content = `연립방정식 $\begin{cases}${p}x+${p}y=${a}\\${q}x-${q}y=${b}\end{cases}$를 가장 간단한 식으로 고쳐 푸시오.`;
+        solution = `첫째 식을 $${p}$로, 둘째 식을 $${q}$로 나누면 $x+y=${x + y}$, $x-y=${x - y}$이다. 두 식을 더하고 대입하면 $x=${x}$, $y=${y}$이다.`;
+      } else {
+        const a = x + y;
+        const b = p * x - y;
+        const value = q * x + p * y;
+        content = `연립방정식 $\begin{cases}x+y=${a}\\${p}x-y=${b}\end{cases}$의 해가 $(x, y)$일 때, $${q}x+${p}y$의 값을 구하시오.`;
+        answer = `$${value}$`;
+        solution = `두 식을 더하면 $${p + 1}x=${(p + 1) * x}$이므로 $x=${x}$이고, $y=${y}$이다. 따라서 $${q}x+${p}y=${q}\times${x}+${p}\times${y}=${value}$이다.`;
+      }
+      return {
+        content,
+        answer,
+        solution,
+        difficulty: mode < 2 ? "기본" : mode < 7 ? "응용" : "심화",
+        facts: { mode, x, y, p, q },
+      };
+    },
+  };
+}
+
+const SYSTEM_FAMILIES = [
+  linearSystemFamily("system-add-opposites", 0),
+  linearSystemFamily("system-subtract-equal-coefficients", 1),
+  linearSystemFamily("system-substitution", 2),
+  linearSystemFamily("system-remove-parentheses", 3),
+  linearSystemFamily("system-cross-multiplication", 4),
+  linearSystemFamily("system-clear-denominator", 5),
+  linearSystemFamily("system-common-factor", 6),
+  linearSystemFamily("system-expression-value", 7),
+] as const;
+
+/**
+ * 결합형 파일이 맡은 일반 중등 유형. `M2_GEO_SIM`이 이 배열을 제품 레지스트리에
+ * 합친다. 결합형 CLI 등록과 달리 시험지의 10갈래로 직접 선택되는 유형들이다.
+ */
+export const MIDDLE_COMBO_TYPES: TypeEntry[] = SYSTEM_FAMILIES.map(
+  (family, index) => {
+    const rpmType = String(21 + index).padStart(2, "0");
+    const rpmTitle = [
+      "가감법으로 연립방정식 풀기 덧셈",
+      "가감법으로 연립방정식 풀기 뺄셈",
+      "대입법으로 연립방정식 풀기",
+      "괄호가 있는 연립방정식",
+      "두 식에 수를 곱하여 푸는 연립방정식",
+      "분모를 없애어 푸는 연립방정식",
+      "공통인수로 나누어 푸는 연립방정식",
+      "연립방정식의 해를 이용한 식의 값",
+    ][index]!;
+    return {
+      key: `2-1|연립일차방정식|${rpmType}`,
+      grade: "중2",
+      unitSection: "연립방정식의 풀이",
+      rpmBook: "2-1",
+      rpmMinor: "연립일차방정식",
+      rpmType,
+      rpmTitle,
+      handler: (rng) => ({
+        grade: "중2",
+        unitSection: "연립방정식의 풀이",
+        rpmBook: "2-1",
+        rpmMinor: "연립일차방정식",
+        rpmType,
+        rpmTitle,
+        ...family.generate(rng),
+      }),
+    };
+  },
+);
+
 const DEFINITIONS: readonly ComboDefinition[] = [
+  {
+    id: "중2|연립방정식의 풀이::중2|가감법과 대입법",
+    anchorSection: "연립방정식의 풀이",
+    anchorGrade: "중2",
+    conceptKeys: ["2-1|연립일차방정식|03", "2-1|연립일차방정식|05"],
+    curriculumBasis:
+      "미지수가 두 개인 일차방정식과 가감법·대입법을 연결한 중2 연립방정식의 기본 풀이 문형이다.",
+    laterConceptReview:
+      "두 일차식의 소거만 사용하며 행렬, 역행렬, 행렬식 같은 고등 과정 개념은 사용하지 않는다.",
+    gradeBoundary: "학년 안(중2+중2).",
+    salt: 0x2141,
+    families: SYSTEM_FAMILIES,
+  },
   {
     id: QUADRATIC_CIRCLE_ID,
     anchorSection: "원주각",

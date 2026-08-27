@@ -20,6 +20,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { MIDDLE_COMBO_TYPES } from "./combo";
 
 const GRADE = "중2";
 const BOOK = "2-2";
@@ -1231,6 +1232,7 @@ function figButterfly11(
 }
 
 export const M2_GEO_SIM: TypeEntry[] = [
+  ...MIDDLE_COMBO_TYPES,
   // ── 삼각형의 닮음 조건 (2B 마크 문법: 같은 각 호·직각 기호) ──────────
   def(
     MINOR_SIM,
