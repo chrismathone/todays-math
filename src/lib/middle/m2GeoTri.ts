@@ -863,17 +863,17 @@ export const M2_GEO_TRI: TypeEntry[] = [
       const x = 90 - acute;
       if (mode === 0) {
         return {
-          content: `그림의 두 직각삼각형 $ABC$와 $DEF$에서 $\angle C=\angle F=90^\circ$, $\overline{AB}=\overline{DE}$이고 $\angle B=\angle E=${acute}^\circ$이다. 이때 $\angle D$의 크기를 구하시오.`,
-          answer: `$${x}^\circ$`,
-          solution: `빗변의 길이와 한 예각의 크기가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\mathrm{RHA}$ 합동이다.\n따라서 $\angle D=\angle A=180^\circ-90^\circ-${acute}^\circ=${x}^\circ$이다.`,
+          content: `그림의 두 직각삼각형 $ABC$와 $DEF$에서 $\\angle C=\\angle F=90^\\circ$, $\\overline{AB}=\\overline{DE}$이고 $\\angle B=\\angle E=${acute}^\\circ$이다. 이때 $\\angle D$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `빗변의 길이와 한 예각의 크기가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\\mathrm{RHA}$ 합동이다.\n따라서 $\\angle D=\\angle A=180^\\circ-90^\\circ-${acute}^\\circ=${x}^\\circ$이다.`,
           facts: { mode, acute, x },
           figureSpec: figRightPair06(acute, 0),
         };
       }
       return {
-        content: `그림의 두 직각삼각형 $ABC$와 $DEF$에서 $\angle C=\angle F=90^\circ$, $\overline{AB}=\overline{DE}$, $\overline{CA}=\overline{FD}$이다. $\angle A=${acute}^\circ$일 때, $\angle E$의 크기를 구하시오.`,
-        answer: `$${x}^\circ$`,
-        solution: `빗변의 길이와 다른 한 변의 길이가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\mathrm{RHS}$ 합동이다.\n따라서 $\angle E=\angle B=180^\circ-90^\circ-${acute}^\circ=${x}^\circ$이다.`,
+        content: `그림의 두 직각삼각형 $ABC$와 $DEF$에서 $\\angle C=\\angle F=90^\\circ$, $\\overline{AB}=\\overline{DE}$, $\\overline{CA}=\\overline{FD}$이다. $\\angle A=${acute}^\\circ$일 때, $\\angle E$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `빗변의 길이와 다른 한 변의 길이가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\\mathrm{RHS}$ 합동이다.\n따라서 $\\angle E=\\angle B=180^\\circ-90^\\circ-${acute}^\\circ=${x}^\\circ$이다.`,
         facts: { mode, acute, x },
         figureSpec: figRightPair06(acute, 1),
       };
@@ -894,9 +894,9 @@ export const M2_GEO_TRI: TypeEntry[] = [
       });
       const x = p + q;
       return {
-        content: `그림과 같이 $\overline{AB}=\overline{AC}$이고 $\angle BAC=90^\circ$인 직각이등변삼각형 $ABC$의 두 꼭짓점 $C$, $B$에서 꼭짓점 $A$를 지나는 직선 $l$에 내린 수선의 발을 각각 $D$, $E$라 하자. $\overline{CD}=${p}\,\mathrm{cm}$, $\overline{BE}=${q}\,\mathrm{cm}$일 때, $\overline{DE}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `삼각형 $ACD$와 삼각형 $BAE$에서 $\angle ADC=\angle BEA=90^\circ$, $\overline{AC}=\overline{BA}$이고 $\angle CAD=90^\circ-\angle BAE=\angle ABE$이다.\n빗변의 길이와 한 예각의 크기가 각각 같으므로 두 삼각형은 $\mathrm{RHA}$ 합동이다.\n따라서 $\overline{AE}=\overline{CD}=${p}\,\mathrm{cm}$, $\overline{AD}=\overline{BE}=${q}\,\mathrm{cm}$이므로 $\overline{DE}=${q}+${p}=${x}\,(\mathrm{cm})$이다.`,
+        content: `그림과 같이 $\\overline{AB}=\\overline{AC}$이고 $\\angle BAC=90^\\circ$인 직각이등변삼각형 $ABC$의 두 꼭짓점 $C$, $B$에서 꼭짓점 $A$를 지나는 직선 $l$에 내린 수선의 발을 각각 $D$, $E$라 하자. $\\overline{CD}=${p}\\,\\mathrm{cm}$, $\\overline{BE}=${q}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $ACD$와 삼각형 $BAE$에서 $\\angle ADC=\\angle BEA=90^\\circ$, $\\overline{AC}=\\overline{BA}$이고 $\\angle CAD=90^\\circ-\\angle BAE=\\angle ABE$이다.\n빗변의 길이와 한 예각의 크기가 각각 같으므로 두 삼각형은 $\\mathrm{RHA}$ 합동이다.\n따라서 $\\overline{AE}=\\overline{CD}=${p}\\,\\mathrm{cm}$, $\\overline{AD}=\\overline{BE}=${q}\\,\\mathrm{cm}$이므로 $\\overline{DE}=${q}+${p}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, x },
         figureSpec: figRhaFoot07(p, q),
       };
@@ -913,9 +913,9 @@ export const M2_GEO_TRI: TypeEntry[] = [
       const [a, b, c] = pick(rng, PYTH_LEGS);
       const x = a + c - b;
       return {
-        content: `그림과 같이 $\angle C=90^\circ$인 직각삼각형 $ABC$에서 빗변 $AB$ 위에 $\overline{AC}=\overline{AD}$가 되도록 점 $D$를 잡고, $\overline{DE}\perp\overline{AB}$가 되도록 $\overline{BC}$ 위에 점 $E$를 잡았다. $\overline{AB}=${c}\,\mathrm{cm}$, $\overline{BC}=${a}\,\mathrm{cm}$, $\overline{AC}=${b}\,\mathrm{cm}$일 때, 삼각형 $BED$의 둘레의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `삼각형 $ACE$와 삼각형 $ADE$에서 $\angle ACE=\angle ADE=90^\circ$, $\overline{AE}$는 공통, $\overline{AC}=\overline{AD}$이므로 두 삼각형은 $\mathrm{RHS}$ 합동이다.\n따라서 $\overline{CE}=\overline{DE}$이고 $\overline{BD}=${c}-${b}=${c - b}\,(\mathrm{cm})$이다.\n삼각형 $BED$의 둘레의 길이는 $\overline{BE}+\overline{ED}+\overline{DB}=(\overline{BE}+\overline{EC})+\overline{DB}=\overline{BC}+\overline{DB}=${a}+${c - b}=${x}\,(\mathrm{cm})$이다.`,
+        content: `그림과 같이 $\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 빗변 $AB$ 위에 $\\overline{AC}=\\overline{AD}$가 되도록 점 $D$를 잡고, $\\overline{DE}\\perp\\overline{AB}$가 되도록 $\\overline{BC}$ 위에 점 $E$를 잡았다. $\\overline{AB}=${c}\\,\\mathrm{cm}$, $\\overline{BC}=${a}\\,\\mathrm{cm}$, $\\overline{AC}=${b}\\,\\mathrm{cm}$일 때, 삼각형 $BED$의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $ACE$와 삼각형 $ADE$에서 $\\angle ACE=\\angle ADE=90^\\circ$, $\\overline{AE}$는 공통, $\\overline{AC}=\\overline{AD}$이므로 두 삼각형은 $\\mathrm{RHS}$ 합동이다.\n따라서 $\\overline{CE}=\\overline{DE}$이고 $\\overline{BD}=${c}-${b}=${c - b}\\,(\\mathrm{cm})$이다.\n삼각형 $BED$의 둘레의 길이는 $\\overline{BE}+\\overline{ED}+\\overline{DB}=(\\overline{BE}+\\overline{EC})+\\overline{DB}=\\overline{BC}+\\overline{DB}=${a}+${c - b}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { a, b, c, x },
         figureSpec: figRhsFold08(a, b, c),
       };
@@ -941,9 +941,9 @@ export const M2_GEO_TRI: TypeEntry[] = [
         });
         const x = m;
         return {
-          content: `폭이 일정한 직사각형 모양의 종이를 그림과 같이 접었다. $\overline{AC}=${m}\,\mathrm{cm}$, $\overline{BC}=${n}\,\mathrm{cm}$일 때, $\overline{AB}$의 길이를 구하시오.`,
-          answer: `$${x}\,\mathrm{cm}$`,
-          solution: `접은 각이므로 $\angle ABC=\angle CBD$이고, $\overline{AC}\parallel\overline{BD}$이므로 엇각에서 $\angle ACB=\angle CBD$이다.\n따라서 $\angle ABC=\angle ACB$이므로 삼각형 $ABC$는 $\overline{AB}=\overline{AC}$인 이등변삼각형이다.\n$\overline{AB}=\overline{AC}=${m}\,\mathrm{cm}$이다.`,
+          content: `폭이 일정한 직사각형 모양의 종이를 그림과 같이 접었다. $\\overline{AC}=${m}\\,\\mathrm{cm}$, $\\overline{BC}=${n}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `접은 각이므로 $\\angle ABC=\\angle CBD$이고, $\\overline{AC}\\parallel\\overline{BD}$이므로 엇각에서 $\\angle ACB=\\angle CBD$이다.\n따라서 $\\angle ABC=\\angle ACB$이므로 삼각형 $ABC$는 $\\overline{AB}=\\overline{AC}$인 이등변삼각형이다.\n$\\overline{AB}=\\overline{AC}=${m}\\,\\mathrm{cm}$이다.`,
           facts: { mode, m, n, x },
           figureSpec: figFold12(m, foldWidth(m, n), {
             ac: `${m} cm`,
@@ -958,9 +958,9 @@ export const M2_GEO_TRI: TypeEntry[] = [
       });
       const x = (m * w) / 2;
       return {
-        content: `폭이 $${w}\,\mathrm{cm}$인 직사각형 모양의 종이를 그림과 같이 접었다. $\overline{AB}=${m}\,\mathrm{cm}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}^2$`,
-        solution: `접은 각과 엇각에서 $\angle ABC=\angle ACB$이므로 삼각형 $ABC$는 $\overline{AB}=\overline{AC}$인 이등변삼각형이고 $\overline{AC}=${m}\,\mathrm{cm}$이다.\n밑변을 $\overline{AC}$로 보면 높이는 종이의 폭인 $${w}\,\mathrm{cm}$이므로 넓이는 $\dfrac{1}{2}\times${m}\times${w}=${x}\,(\mathrm{cm}^2)$이다.`,
+        content: `폭이 $${w}\\,\\mathrm{cm}$인 직사각형 모양의 종이를 그림과 같이 접었다. $\\overline{AB}=${m}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `접은 각과 엇각에서 $\\angle ABC=\\angle ACB$이므로 삼각형 $ABC$는 $\\overline{AB}=\\overline{AC}$인 이등변삼각형이고 $\\overline{AC}=${m}\\,\\mathrm{cm}$이다.\n밑변을 $\\overline{AC}$로 보면 높이는 종이의 폭인 $${w}\\,\\mathrm{cm}$이므로 넓이는 $\\dfrac{1}{2}\\times${m}\\times${w}=${x}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { mode, w, m, x },
         figureSpec: figFold12(m, w, { ab: `${m} cm`, width: `${w} cm` }),
       };

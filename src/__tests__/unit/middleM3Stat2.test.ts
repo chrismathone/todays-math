@@ -26,11 +26,24 @@ const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 const SEEDS = [20260824, 1, 7777, 424242, 99991];
 const BOOK = "3-2";
 
+/**
+ * 이 시험이 맡은 몫 — **색인 번호만**(산포도 7 · 상자그림과 산점도 10).
+ *
+ * ⚠️ 2026-08-27 부터 이 중단원에 색인 밖 유형이 붙는다(갈래 B 가 「상자그림」
+ *    소단원을 10유형으로 올리며 지은 50~54). 이 시험은 `registeredTypes()` 를
+ *    **중단원 이름으로** 걸러 자기 몫을 고르므로 그것들까지 쓸어 담아 자기
+ *    검산표에 남의 유형을 들이댄다. 그래서 번호로 한 번 더 좁힌다 —
+ *    「17이 등록돼 있다」는 주장은 그대로 살아 있고, 지은 유형은
+ *    `src/__tests__/unit/midTypesB.test.ts` 가 유형마다 검산을 요구한다.
+ */
+const CATALOG_MAX = 10;
+
 const entries = () =>
   registeredTypes().filter(
     (e) =>
       e.rpmBook === BOOK &&
-      (e.rpmMinor === "산포도" || e.rpmMinor === "상자그림과 산점도"),
+      (e.rpmMinor === "산포도" || e.rpmMinor === "상자그림과 산점도") &&
+      Number(e.rpmType) <= CATALOG_MAX,
   );
 
 function firstNumber(text: string): number {

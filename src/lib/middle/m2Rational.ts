@@ -346,6 +346,378 @@ function mixedFracItems(rng: Rng): { n: number; d: number; term: boolean }[] {
   ]);
 }
 
+/**
+ * 갈래 B 보강 유형 — **RPM 색인 밖의 번호**다. `M2_RATIONAL` 에 넣지 않는다.
+ *
+ * `middleM2NumProb.test.ts` 가 `M2_RATIONAL` 을 색인 명부로 잠그고 유형마다
+ * 검산기를 요구한다. 그 검사는 «유형만 더하고 시험을 안 쓴 경우»를 막는
+ * 가드라 끄면 안 된다 — 보강은 명부 밖에 두고 `midSupB.ts` 가 따로 합친다.
+ * 이 배열을 지키는 것은 `src/__tests__/unit/midTypesB.test.ts` 다.
+ */
+export const M2_RATIONAL_SUP_B: TypeEntry[] = [
+  ...([0, 1, 2, 3, 4, 5] as const).map((mode) =>
+    def(
+      String(21 + mode).padStart(2, "0"),
+      [
+        "한 자리 순환소수의 덧셈",
+        "한 자리 순환소수의 뺄셈",
+        "순환소수에 9 곱하기",
+        "두 자리 순환소수에 99 곱하기",
+        "순환소수가 있는 방정식",
+        "순환소수의 평균",
+      ][mode]!,
+      SEC.식계산,
+      mode < 2 ? "연산" : "응용",
+      (rng): Body => {
+        const a = intBetween(rng, 2, 8);
+        const b = intBetween(rng, 1, a - 1);
+        const block = 10 * a + b;
+        const reduced = (n: number, d: number) => {
+          const g = gcd(n, d);
+          return g === d ? `$${n / d}$` : `$\\dfrac{${n / g}}{${d / g}}$`;
+        };
+        if (mode === 0)
+          return {
+            content: `$0.\\overline{${a}}+0.\\overline{${b}}$${eulReul(b)} 계산하시오.`,
+            answer: reduced(a + b, 9),
+            solution: `$0.\\overline{${a}}=\\dfrac{${a}}9$, $0.\\overline{${b}}=\\dfrac{${b}}9$이므로 합은 $\\dfrac{${a + b}}9$이다. 이를 기약분수로 나타내면 ${reduced(a + b, 9)}이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 1)
+          return {
+            content: `$0.\\overline{${a}}-0.\\overline{${b}}$${eulReul(b)} 계산하시오.`,
+            answer: reduced(a - b, 9),
+            solution: `$0.\\overline{${a}}=\\dfrac{${a}}9$, $0.\\overline{${b}}=\\dfrac{${b}}9$이므로 차는 $\\dfrac{${a - b}}9$이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 2)
+          return {
+            content: `$9\\times0.\\overline{${a}}$${eulReul(a)} 계산하시오.`,
+            answer: `$${a}$`,
+            solution: `$0.\\overline{${a}}=\\dfrac{${a}}9$이므로 $9\\times0.\\overline{${a}}=9\\times\\dfrac{${a}}9=${a}$이다.`,
+            facts: { mode, a, b },
+          };
+        if (mode === 3)
+          return {
+            content: `$99\\times0.\\overline{${block}}$${eulReul(block)} 계산하시오.`,
+            answer: `$${block}$`,
+            solution: `$0.\\overline{${block}}=\\dfrac{${block}}{99}$이므로 주어진 식의 값은 $${block}$이다.`,
+            facts: { mode, a, b, block },
+          };
+        if (mode === 4)
+          return {
+            content: `방정식 $x+0.\\overline{${a}}=${b}$${eulReul(b)} 만족시키는 $x$의 값을 구하시오.`,
+            answer: reduced(9 * b - a, 9),
+            solution: `$0.\\overline{${a}}=\\dfrac{${a}}9$이므로 $x=${b}-\\dfrac{${a}}9=\\dfrac{${9 * b - a}}9$이다.`,
+            facts: { mode, a, b },
+          };
+        return {
+          content: `두 수 $0.\\overline{${a}}$, $0.\\overline{${b}}$의 평균을 구하시오.`,
+          answer: reduced(a + b, 18),
+          solution: `두 수의 합은 $\\dfrac{${a + b}}9$이므로 평균은 $\\dfrac{${a + b}}{18}$이다.`,
+          facts: { mode, a, b },
+        };
+      },
+    ),
+  ),
+
+  /**
+   * 🔴 **밑단이 아니라 `기본` 이어야 하는 자리다.** 이 소단원은 21~26 을 넣고도
+   *    판정기가 「시험지가 모자란다」로 막았다 — pool 갈래가 연산 2 · 기본 **0** ·
+   *    응용 5 · 심화 1 이라 「기본 4」를 인접 대체로 메우다 응용·심화를 다 먹는다.
+   *    (기존 17·18 은 **이미 객관식**이라 `expandFamily` 가 단답행을 안 내고,
+   *    그래서 10갈래 시험지가 구조적으로 조립될 수 없었다 — pool 갈래가 8뿐.)
+   *    그래서 여기 둘은 **기본 두 개**다. 발문에 조건이 있어 `resolveMiddleTier`
+   *    가 밑단으로 안 내린다(그 규칙을 우회한 것이 아니라, 실제로 한 단계가 더 있다).
+   */
+  def(
+    "27",
+    "순환소수의 기약분수와 분모 분자의 합",
+    SEC.식계산,
+    "기본",
+    (rng) => {
+      const block = attempt(200, () => {
+        const v = intBetween(rng, 12, 87);
+        // 순환마디가 `11`·`22` 처럼 한 자리의 되풀이면 두 자리 순환소수가 아니다.
+        return v % 11 === 0 ? null : v;
+      });
+      const g = gcd(block, 99);
+      const n = block / g;
+      const d = 99 / g;
+      return {
+        content: `순환소수 $0.\\overline{${block}}$${eulReul(block)} 기약분수로 나타내었을 때, 분자와 분모의 합을 구하시오.`,
+        answer: `$${n + d}$`,
+        // 이미 기약이면 「나타내면 같은 분수」라고 되풀이하지 않는다.
+        solution:
+          (g === 1
+            ? `$0.\\overline{${block}}=\\dfrac{${block}}{99}$이고 $${block}$${waGwa(block)} $99$의 최대공약수가 $1$이므로 이미 기약분수이다.`
+            : `$0.\\overline{${block}}=\\dfrac{${block}}{99}$이고, 분자와 분모를 최대공약수 $${g}$${euRo(g)} 나누면 $\\dfrac{${n}}{${d}}$이다.`) +
+          `\n따라서 분자와 분모의 합은 $${n}+${d}=${n + d}$이다.`,
+        facts: { block, n, d, x: n + d },
+      };
+    },
+  ),
+
+  def("28", "순환소수를 문자로 놓은 식의 값", SEC.식계산, "기본", (rng) => {
+    const a = intBetween(rng, 1, 8);
+    const b = intBetween(rng, 2, 9);
+    return {
+      content: `$x=0.\\overline{${a}}$일 때, $9x+${b}$의 값을 구하시오.`,
+      answer: `$${a + b}$`,
+      solution: `$x=0.\\overline{${a}}=\\dfrac{${a}}9$이므로 $9x=${a}$이다.\n따라서 $9x+${b}=${a}+${b}=${a + b}$이다.`,
+      facts: { a, b, x: a + b },
+    };
+  }),
+
+  /**
+   * ── 「유리수와 소수」 보강 넷 (36~39) ────────────────────────────────
+   *
+   * 이 소단원은 유형이 8개인데 **pool 갈래는 6개**였다 — 01·06 이 이미 객관식이라
+   * `expandFamily` 가 단답행을 안 낸다. 그래서 「10개로 올리기」로는 안 되고
+   * **네 개**를 더해야 10갈래가 된다(`scratch/mid-b-detail.ts` 로 실측).
+   * 난이도도 골라 넣는다: 지금 pool 이 기본1·응용3·심화2 라 「기본 4」가 모자라
+   * 인접 대체가 응용을 먹는다. 그래서 **연산 1 + 기본 3** 이다.
+   */
+  def(
+    "36",
+    "분수를 유한소수로 나타내기 (직접 나누기)",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      // 분모는 $2^m\times5^n$ 뿐이라 반드시 유한소수다. 분자는 $10$과 서로소로
+      // 잡아 **꼬리 $0$** 이 안 생기게 한다(지면에 `0.250` 이 나가면 흉하다).
+      const { den, num, tex, places } = attempt(300, () => {
+        const m = intBetween(rng, 0, 3);
+        const n = intBetween(rng, 0, 2);
+        const d = Math.pow(2, m) * Math.pow(5, n);
+        if (d < 4 || d > 200) return null;
+        const a = intBetween(rng, 1, d - 1);
+        if (gcd(a, d) !== 1) return null;
+        const k = Math.max(m, n);
+        if (k === 0) return null;
+        const scaled = a * (Math.pow(10, k) / d);
+        const s = String(scaled).padStart(k, "0");
+        return { den: d, num: a, tex: `0.${s}`, places: k };
+      });
+      return {
+        content: `다음 분수를 유한소수로 나타내시오.\n$\\dfrac{${num}}{${den}}$`,
+        answer: `$${tex}$`,
+        solution:
+          `분모 $${den}$${eunNeun(den)} $2$${waGwa(2)} $5$ 이외의 소인수를 갖지 않으므로 유한소수로 나타낼 수 있다.\n` +
+          (Math.pow(10, places) / den === 1
+            ? `분모가 이미 $10^{${places}}$이므로 $\\dfrac{${num}}{${den}}=${tex}$이다.`
+            : `분모와 분자에 $${Math.pow(10, places) / den}$${eulReul(Math.pow(10, places) / den)} 곱하면 $\\dfrac{${num}\\times${Math.pow(10, places) / den}}{${den}\\times${Math.pow(10, places) / den}}=\\dfrac{${num * (Math.pow(10, places) / den)}}{${Math.pow(10, places)}}=${tex}$이다.`),
+        facts: { den, num, places },
+      };
+    },
+  ),
+
+  def(
+    "37",
+    "분모를 10의 거듭제곱으로 만드는 수",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      const { den, num, mul, k } = attempt(300, () => {
+        const m = intBetween(rng, 0, 3);
+        const n = intBetween(rng, 0, 3);
+        if (m === n) return null; // 곱할 수가 $1$ 이면 물음이 안 된다
+        const d = Math.pow(2, m) * Math.pow(5, n);
+        if (d < 4 || d > 500) return null;
+        const a = intBetween(rng, 1, Math.min(9, d - 1));
+        if (gcd(a, d) !== 1) return null;
+        const kk = Math.max(m, n);
+        return { den: d, num: a, mul: Math.pow(10, kk) / d, k: kk };
+      });
+      return {
+        content: `분수 $\\dfrac{${num}}{${den}}$의 분모와 분자에 같은 수를 곱하여 분모를 $10$의 거듭제곱으로 만들려고 한다. 곱해야 하는 가장 작은 자연수를 구하시오.`,
+        answer: `$${mul}$`,
+        // 곱할 수가 소수 하나면 `$2=2$` 같은 되풀이를 쓰지 않는다.
+        solution: `$${den}=${factorTex(den)}$이다. $10^{${k}}=2^{${k}}\\times5^{${k}}$이므로 모자란 소인수를 채우려면 $${factorTex(mul) === String(mul) ? mul : `${factorTex(mul)}=${mul}`}$${eulReul(mul)} 곱해야 한다.\n따라서 곱해야 하는 가장 작은 자연수는 $${mul}$이다.`,
+        facts: { den, num, mul, k },
+      };
+    },
+  ),
+
+  def("38", "기약분수의 분모 구하기", SEC.유리수와소수, "기본", (rng) => {
+    const { num, den, g } = attempt(300, () => {
+      const base = intBetween(rng, 2, 9);
+      const p = pick(rng, [2, 3, 5, 7, 11] as const);
+      const q = pick(rng, [2, 3, 4, 5, 6] as const);
+      const n = base * q;
+      const d = p * q * intBetween(rng, 1, 4);
+      if (d <= n || d > 400) return null;
+      const gg = gcd(n, d);
+      if (gg === 1) return null; // 약분이 되어야 물음이 된다
+      return { num: n, den: d, g: gg };
+    });
+    return {
+      // 분수는 「분모분의 분자」로 읽으므로 조사는 **분자**를 따른다.
+      content: `분수 $\\dfrac{${num}}{${den}}$${eulReul(num)} 기약분수로 나타내었을 때, 분모를 구하시오.`,
+      answer: `$${den / g}$`,
+      solution: `$${num}$${waGwa(num)} $${den}$의 최대공약수는 $${g}$이다.\n분모와 분자를 $${g}$${euRo(g)} 나누면 $\\dfrac{${num / g}}{${den / g}}$이므로 분모는 $${den / g}$이다.`,
+      facts: { num, den, g, x: den / g },
+    };
+  }),
+
+  /**
+   * ── 「순환소수의 분수 표현」 보강 여섯 (40~45) ──────────────────────────
+   *
+   * pool 갈래가 기본1·응용2·심화1 이라 **연산 1 · 기본 3 · 응용 2** 가 모자란다.
+   * 40 만 「다음 …를 나타내시오.」 + 다음 줄에 식이라 `resolveMiddleTier` 가
+   * 밑단으로 내린다 — 나머지는 발문 안에 조건이 있어 기본·응용 그대로다.
+   */
+  def(
+    "40",
+    "순환마디가 두 자리인 순환소수를 분수로 고치기",
+    SEC.분수표현,
+    "기본",
+    (rng) => {
+      const block = attempt(200, () => {
+        const v = intBetween(rng, 12, 87);
+        return v % 11 === 0 ? null : v;
+      });
+      const g = gcd(block, 99);
+      return {
+        content: `다음 순환소수를 기약분수로 나타내시오.\n$0.\\overline{${block}}$`,
+        answer: `$\\dfrac{${block / g}}{${99 / g}}$`,
+        // 이미 기약이면 같은 분수를 두 번 안 쓴다.
+        solution: `$x=0.\\overline{${block}}$라 하면 $100x=${block}.\\overline{${block}}$이다.\n두 식을 빼면 $99x=${block}$이므로 $x=\\dfrac{${block}}{99}${g === 1 ? "" : `=\\dfrac{${block / g}}{${99 / g}}`}$이다.`,
+        facts: { block, n: block / g, d: 99 / g },
+      };
+    },
+  ),
+
+  def(
+    "41",
+    "순환하지 않는 자리가 있는 순환소수를 분수로",
+    SEC.분수표현,
+    "기본",
+    (rng) => {
+      const a = intBetween(rng, 1, 9);
+      // 🔴 순환마디가 `9` 면 **순환소수가 아니다** — $0.5\overline{9}=0.6$ 이라
+      //    유일한 표기가 아니다(이 파일의 `isCanonicalRep` 이 세운 규칙과 같다).
+      //    `b===a` 도 막는다 — $0.4\overline{4}=0.\overline{4}$ 라 마찬가지다.
+      const b = attempt(60, () => {
+        const v = intBetween(rng, 1, 8);
+        return v === a ? null : v;
+      });
+      const num = 9 * a + b;
+      const g = gcd(num, 90);
+      return {
+        content: `순환소수 $0.${a}\\overline{${b}}$${eulReul(b)} 기약분수로 나타내시오.`,
+        answer: `$\\dfrac{${num / g}}{${90 / g}}$`,
+        solution: `$x=0.${a}\\overline{${b}}$라 하면 $100x=${a}${b}.\\overline{${b}}$, $10x=${a}.\\overline{${b}}$이다.\n두 식을 빼면 $90x=${a}${b}-${a}=${num}$이므로 $x=\\dfrac{${num}}{90}${g === 1 ? "" : `=\\dfrac{${num / g}}{${90 / g}}`}$이다.`,
+        facts: { a, b, num, n: num / g, d: 90 / g },
+      };
+    },
+  ),
+
+  def("42", "10의 거듭제곱을 곱해 뺀 값", SEC.분수표현, "기본", (rng) => {
+    const block = attempt(200, () => {
+      const v = intBetween(rng, 12, 87);
+      return v % 11 === 0 ? null : v;
+    });
+    return {
+      content: `순환소수 $x=0.\\overline{${block}}$에 대하여 $100x-x$의 값을 구하시오.`,
+      answer: `$${block}$`,
+      solution: `$100x=${block}.\\overline{${block}}$이고 $x=0.\\overline{${block}}$이다.\n두 식을 빼면 소수 부분이 없어져 $100x-x=${block}$이다.`,
+      facts: { block, x: block },
+    };
+  }),
+
+  def(
+    "43",
+    "정수 부분이 있는 순환소수를 분수로",
+    SEC.분수표현,
+    "기본",
+    (rng) => {
+      const n = intBetween(rng, 1, 5);
+      const a = intBetween(rng, 1, 8);
+      const num = 9 * n + a;
+      const g = gcd(num, 9);
+      return {
+        content: `순환소수 $${n}.\\overline{${a}}$${eulReul(a)} 기약분수로 나타내시오.`,
+        answer: `$\\dfrac{${num / g}}{${9 / g}}$`,
+        solution: `$x=${n}.\\overline{${a}}$라 하면 $10x=${n}${a}.\\overline{${a}}$이다.\n두 식을 빼면 $9x=${n}${a}-${n}=${num}$이므로 $x=\\dfrac{${num}}{9}${g === 1 ? "" : `=\\dfrac{${num / g}}{${9 / g}}`}$이다.`,
+        facts: { n, a, num },
+      };
+    },
+  ),
+
+  def("44", "순환소수의 역수", SEC.분수표현, "응용", (rng) => {
+    const a = attempt(60, () => {
+      const v = intBetween(rng, 1, 8);
+      return v === 3 || v === 9 ? null : v;
+    });
+    const g = gcd(9, a);
+    return {
+      content: `순환소수 $0.\\overline{${a}}$의 역수를 구하시오.`,
+      answer: `$\\dfrac{${9 / g}}{${a / g}}$`,
+      solution:
+        `$0.\\overline{${a}}=\\dfrac{${a}}{9}$이다.\n역수는 분모와 분자를 바꾼 $\\dfrac{9}{${a}}$이다.` +
+        (g === 1
+          ? ""
+          : ` 기약분수로 나타내면 $\\dfrac{${9 / g}}{${a / g}}$이다.`),
+      facts: { a, n: 9 / g, d: a / g },
+    };
+  }),
+
+  def("45", "순환소수와 분수의 대소 비교", SEC.분수표현, "응용", (rng) => {
+    const a = intBetween(rng, 1, 8);
+    const { m, n } = attempt(200, () => {
+      const nn = pick(rng, [4, 5, 7, 8, 11] as const);
+      const mm = intBetween(rng, 1, nn - 1);
+      // 두 수가 같으면 「큰 수」가 없다 — 반드시 갈려야 한다.
+      return a * nn === 9 * mm ? null : { m: mm, n: nn };
+    });
+    const decBigger = a * n > 9 * m;
+    const bigTex = decBigger ? `0.\\overline{${a}}` : `\\dfrac{${m}}{${n}}`;
+    return {
+      content: `두 수 $0.\\overline{${a}}$${waGwa(a)} $\\dfrac{${m}}{${n}}$ 중 큰 수를 쓰시오.`,
+      answer: `$${bigTex}$`,
+      solution: `$0.\\overline{${a}}=\\dfrac{${a}}{9}$이다.\n두 분수를 통분하면 $\\dfrac{${a * n}}{${9 * n}}$${waGwa(a * n)} $\\dfrac{${9 * m}}{${9 * n}}$이므로 $${bigTex}$${iGa(decBigger ? a : m)} 더 크다.`,
+      facts: { a, m, n, decBigger: decBigger ? 1 : 0 },
+    };
+  }),
+
+  def(
+    "39",
+    "유한소수의 소수점 아래 자릿수",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      const { m, n, num, den, k } = attempt(300, () => {
+        const mm = intBetween(rng, 0, 4);
+        const nn = intBetween(rng, 0, 4);
+        const kk = Math.max(mm, nn);
+        if (kk === 0) return null;
+        const d = Math.pow(2, mm) * Math.pow(5, nn);
+        const a = intBetween(rng, 1, 9);
+        if (gcd(a, 10) !== 1) return null;
+        if (gcd(a, d) !== 1) return null;
+        return { m: mm, n: nn, num: a, den: d, k: kk };
+      });
+      const powTex = (base: number, e: number): string =>
+        e === 0 ? "" : e === 1 ? `${base}` : `${base}^{${e}}`;
+      const denTex =
+        m === 0
+          ? powTex(5, n)
+          : n === 0
+            ? powTex(2, m)
+            : `${powTex(2, m)}\\times${powTex(5, n)}`;
+      return {
+        // 「몇째 자리」로 물으면 정답이 「셋째 자리」라 수식 밖에 한글이 남는다.
+        // 「자릿수」로 물으면 정답이 $3$자리 로 깔끔하다.
+        content: `분수 $\\dfrac{${num}}{${denTex}}$${eulReul(num)} 유한소수로 나타낼 때, 소수점 아래 자릿수를 구하시오.`,
+        answer: `$${k}$자리`,
+        solution: `분모와 분자에 같은 수를 곱해 분모를 $10$의 거듭제곱으로 만들면 $10^{${k}}$이다.\n분자 $${num}$${eunNeun(num)} $10$${waGwa(10)} 서로소이므로 꼬리에 $0$이 남지 않아 소수점 아래 자릿수는 $${k}$자리이다.`,
+        facts: { m, n, num, den, k },
+      };
+    },
+  ),
+];
+
 export const M2_RATIONAL: TypeEntry[] = [
   // 01 ─────────────────────────────────────────────
   def("01", "유한소수와 무한소수", SEC.유리수와소수, "기본", (rng) => {

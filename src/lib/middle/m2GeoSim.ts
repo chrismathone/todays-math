@@ -36,6 +36,18 @@ const SEC = {
   평행선비: "평행선 사이의 선분의 길이의 비",
 } as const;
 
+/** 최대공약수 — 비를 기약으로 적을 때 쓴다. */
+function gcdInt(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) {
+    const t = x % y;
+    x = y;
+    y = t;
+  }
+  return x === 0 ? 1 : x;
+}
+
 function r2(v: number): number {
   return Math.round(v * 100) / 100;
 }
@@ -130,6 +142,106 @@ function def(
     }),
   };
 }
+
+function areaVolumeRatioSupplement(
+  rpmType: string,
+  rpmTitle: string,
+  mode: number,
+): TypeEntry {
+  return def(
+    MINOR_SIM,
+    rpmType,
+    rpmTitle,
+    SEC.넓이부피비,
+    mode < 2 ? "기본" : "응용",
+    (rng): Body => {
+      // 🔴 **닮음비는 기약이어야 한다.** 예전에는 `p`·`q` 를 따로 뽑아 `4:16` 의
+      //    닮음비를 「$2:4$」로, `4:8` 의 부피비를 「$64:512$」로 냈다 — 값은 맞지만
+      //    비를 기약으로 안 쓴 것은 **지면이 틀린 것**이고, 값 검산으로는 안 잡힌다
+      //    (2026-08-24 「값이 맞으면 시험이 다 초록이다」와 같은 자리).
+      const [p, q] = (() => {
+        for (let i = 0; i < 60; i += 1) {
+          const a = intBetween(rng, 1, 4);
+          const b = a + intBetween(rng, 1, 4);
+          let x = a;
+          let y = b;
+          while (y !== 0) {
+            const t = x % y;
+            x = y;
+            y = t;
+          }
+          if (x === 1) return [a, b] as const;
+        }
+        return [1, 2] as const;
+      })();
+      const k = intBetween(rng, 2, 6);
+      /** 배율 — 분모가 $1$ 이면 분수를 안 쓴다 (`\dfrac{25}{1}` 금지). */
+      const scale = (num: number, den: number): string =>
+        den === 1 ? String(num) : `\\dfrac{${num}}{${den}}`;
+      if (mode === 0) {
+        return {
+          content: `닮은 두 평면도형의 넓이의 비가 $${p * p}:${q * q}$일 때, 닮음비를 구하시오.`,
+          answer: `$${p}:${q}$`,
+          solution: `닮은 두 평면도형의 넓이의 비는 닮음비의 제곱이다. $${p * p}:${q * q}=${p}^2:${q}^2$이므로 닮음비는 $${p}:${q}$이다.`,
+          facts: { mode, p, q, k, x: p },
+        };
+      }
+      if (mode === 1) {
+        const area = p * p * k;
+        const x = q * q * k;
+        return {
+          content: `닮은 두 삼각형의 닮음비가 $${p}:${q}$이고 작은 삼각형의 넓이가 $${area}\\,\\mathrm{cm}^2$일 때, 큰 삼각형의 넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\\times${scale(q * q, p * p)}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, p, q, k, area, x },
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$일 때, 부피의 비를 구하시오.`,
+          answer: `$${p * p * p}:${q * q * q}$`,
+          solution: `닮은 두 입체도형의 부피의 비는 닮음비의 세제곱이므로 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다.`,
+          facts: { mode, p, q, k, x: p * p * p },
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `닮은 두 입체도형의 부피의 비가 $${p * p * p}:${q * q * q}$일 때, 닮음비를 구하시오.`,
+          answer: `$${p}:${q}$`,
+          solution: `부피의 비는 닮음비의 세제곱이다. $${p * p * p}:${q * q * q}=${p}^3:${q}^3$이므로 닮음비는 $${p}:${q}$이다.`,
+          facts: { mode, p, q, k, x: q },
+        };
+      }
+      if (mode === 4) {
+        const surface = p * p * k;
+        const x = q * q * k;
+        return {
+          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 겉넓이가 $${surface}\\,\\mathrm{cm}^2$일 때, 큰 입체도형의 겉넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\\times${scale(q * q, p * p)}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, p, q, k, surface, x },
+        };
+      }
+      const volume = p * p * p * k;
+      const x = q * q * q * k;
+      return {
+        content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 부피가 $${volume}\\,\\mathrm{cm}^3$일 때, 큰 입체도형의 부피를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^3$`,
+        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\\times${scale(q * q * q, p * p * p)}=${x}\\,(\\mathrm{cm}^3)$이다.`,
+        facts: { mode, p, q, k, volume, x },
+      };
+    },
+  );
+}
+
+const AREA_VOLUME_RATIO_SUPPLEMENTS = [
+  areaVolumeRatioSupplement("30", "넓이의 비에서 닮음비 구하기", 0),
+  areaVolumeRatioSupplement("31", "닮은 삼각형의 넓이 구하기", 1),
+  areaVolumeRatioSupplement("32", "닮은 입체도형의 부피의 비", 2),
+  areaVolumeRatioSupplement("33", "부피의 비에서 닮음비 구하기", 3),
+  areaVolumeRatioSupplement("34", "닮은 입체도형의 겉넓이 구하기", 4),
+  areaVolumeRatioSupplement("35", "닮은 입체도형의 부피 구하기", 5),
+] as const;
 
 /**
  * 닮음 기호 오른쪽 삼각형의 꼭짓점 순서 — △ABC ∽ △(p[0]p[1]p[2]).
@@ -1451,9 +1563,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const treeS = poleS * j;
       const x = poleH * j;
       return {
-        content: `높이가 $${poleH}\,\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\,\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\,\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
-        answer: `$${x}\,\mathrm{m}$`,
-        solution: `같은 시각에 햇빛이 이루는 각의 크기가 같으므로 막대와 그림자가 이루는 삼각형과 나무와 그림자가 이루는 삼각형은 $\mathrm{AA}$ 닮음이다.\n(막대의 높이)$:$(막대의 그림자)$=$(나무의 높이)$:$(나무의 그림자)이므로 $${poleH}:${poleS}=x:${treeS}$이다.\n$${poleS}x=${poleH}\times${treeS}=${poleH * treeS}$이므로 $x=${x}$이다.`,
+        content: `높이가 $${poleH}\\,\\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\\,\\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\\,\\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{m}$`,
+        solution: `같은 시각에 햇빛이 이루는 각의 크기가 같으므로 막대와 그림자가 이루는 삼각형과 나무와 그림자가 이루는 삼각형은 $\\mathrm{AA}$ 닮음이다.\n(막대의 높이)$:$(막대의 그림자)$=$(나무의 높이)$:$(나무의 그림자)이므로 $${poleH}:${poleS}=x:${treeS}$이다.\n$${poleS}x=${poleH}\\times${treeS}=${poleH * treeS}$이므로 $x=${x}$이다.`,
         facts: { mode, poleH, poleS, treeS, x },
         figureSpec: figShadow14(poleH, poleS, treeS, {
           poleH: `${poleH} m`,
@@ -1516,9 +1628,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const c = (a / g) * t;
       const x = (b / g) * t;
       return {
-        content: `그림과 같이 세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 각각 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\overline{AB}=${a}\,\mathrm{cm}$, $\overline{BC}=${b}\,\mathrm{cm}$, $\overline{DE}=${c}\,\mathrm{cm}$일 때, $\overline{EF}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $\overline{AB}:\overline{BC}=\overline{DE}:\overline{EF}$이다.\n$${a}:${b}=${c}:\overline{EF}$에서 $${a}\times\overline{EF}=${b}\times${c}=${b * c}$이므로 $\overline{EF}=${x}\,\mathrm{cm}$이다.`,
+        content: `그림과 같이 세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 각각 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{DE}=${c}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $\\overline{AB}:\\overline{BC}=\\overline{DE}:\\overline{EF}$이다.\n$${a}:${b}=${c}:\\overline{EF}$에서 $${a}\\times\\overline{EF}=${b}\\times${c}=${b * c}$이므로 $\\overline{EF}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { mode: 0, a, b, c, x },
         figureSpec: figThreeParallel08(a, b, {
           a: `${a} cm`,
@@ -2084,6 +2196,510 @@ export const M2_GEO_SIM: TypeEntry[] = [
         solution: `삼각형의 외각의 이등분선의 성질에서 $\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{CD}$이다.\n$\\overline{CD}=x\\,\\mathrm{cm}$라 하면 $${ab}:${ac}=(${b}+x):x$이므로 $${ab}x=${ac}(${b}+x)$, 즉 $${ab - ac}x=${ac * b}$에서 $x=${x}$이다.\n따라서 $\\overline{CD}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { ab, ac, b, x },
         figureSpec: figPar07(ab, ac, b, x),
+      };
+    },
+  ),
+];
+
+/**
+ * 갈래 B 보강 유형 — **RPM 색인 밖의 번호**다. `M2_GEO_SIM` 에 넣지 않는다.
+ *
+ * 왜 따로 두나: `middleM2Geo.test.ts` 가 `M2_GEO_SIM` 을 「RPM 색인 그대로 55유형」
+ * 으로 잠근다(중단원마다 번호가 `01..n` 연속인지까지 본다). 그 시험은 «지어낸
+ * 제목·번호 금지» 가드라 **끄면 안 된다** — 그래서 보강은 그 명부 밖에 두고
+ * `generate.ts` 가 `midSupB.ts` 를 통해 따로 합친다.
+ *
+ * 소단원 이름(`SEC.*`)은 그대로다 — 시험지는 소단원으로 뽑으므로 여기 있어도
+ * 「그 소단원의 유형 10개」에 그대로 센다(`probe-middle-forms.ts` 로 확인).
+ */
+export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
+  ...AREA_VOLUME_RATIO_SUPPLEMENTS,
+
+  // ── 보강: 삼각형의 닮음 조건 ────────────────────────────────────────
+  //
+  // pool 갈래가 기본1·응용5·심화1 이라 **기본 셋**이 모자란다. 그림은 안 붙인다 —
+  // 세 문형 다 치수가 발문에 전부 있어 그림 없이 풀린다.
+  def(
+    MINOR_SIM,
+    "50",
+    "세 쌍의 대응변의 비로 닮음이 되는 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 3, 8);
+      const b = a + intBetween(rng, 1, 4);
+      const c = b + intBetween(rng, 1, 4);
+      const k = intBetween(rng, 2, 4);
+      return {
+        content: `두 삼각형 $ABC$와 $DEF$에서 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{CA}=${c}\\,\\mathrm{cm}$이고 $\\overline{DE}=${k * a}\\,\\mathrm{cm}$, $\\overline{EF}=${k * b}\\,\\mathrm{cm}$이다. 두 삼각형이 $\\mathrm{SSS}$ 닮음이 되도록 하는 $\\overline{FD}$의 길이를 구하시오.`,
+        answer: `$${k * c}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{DE}=${a}:${k * a}=1:${k}$이고 $\\overline{BC}:\\overline{EF}=${b}:${k * b}=1:${k}$이다.\n세 쌍의 대응변의 길이의 비가 같아야 하므로 $\\overline{CA}:\\overline{FD}=1:${k}$에서 $\\overline{FD}=${c}\\times${k}=${k * c}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, c, k, x: k * c },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "51",
+    "끼인각이 같을 때 닮음이 되는 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 3, 8);
+      const b = a + intBetween(rng, 1, 5);
+      const k = intBetween(rng, 2, 4);
+      const ang = 2 * intBetween(rng, 20, 40);
+      return {
+        content: `두 삼각형 $ABC$와 $DEF$에서 $\\angle B=\\angle E=${ang}^\\circ$이고 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{DE}=${k * a}\\,\\mathrm{cm}$이다. 두 삼각형이 $\\mathrm{SAS}$ 닮음이 되도록 하는 $\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${k * b}\\,\\mathrm{cm}$`,
+        solution: `끼인각의 크기가 같으므로 그 각을 낀 두 쌍의 대응변의 길이의 비가 같아야 한다.\n$\\overline{AB}:\\overline{DE}=${a}:${k * a}=1:${k}$이므로 $\\overline{EF}=${b}\\times${k}=${k * b}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, k, ang, x: k * b },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "52",
+    "닮은 삼각형에서 가장 짧은 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      // 🔴 **삼각형이 되어야 한다** — $a+b>c$. 예전에는 그냥 키워서 $2,4,7$ 같은
+      //    «있을 수 없는 삼각형»이 나왔다. 값 검산은 비만 보므로 통과한다.
+      const a = intBetween(rng, 3, 6);
+      const b = a + intBetween(rng, 1, 3);
+      const c = b + intBetween(rng, 1, Math.max(1, a - 1));
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `세 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$, $${c}\\,\\mathrm{cm}$인 삼각형과 닮은 삼각형이 있다. 이 삼각형의 가장 긴 변의 길이가 $${k * c}\\,\\mathrm{cm}$일 때, 가장 짧은 변의 길이를 구하시오.`,
+        answer: `$${k * a}\\,\\mathrm{cm}$`,
+        solution: `가장 긴 변끼리 대응하므로 닮음비는 $${c}:${k * c}=1:${k}$이다.\n가장 짧은 변은 $${a}\\,\\mathrm{cm}$에 대응하므로 $${a}\\times${k}=${k * a}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, c, k, x: k * a },
+      };
+    },
+  ),
+
+  // ── 보강: 평행선 사이의 선분의 길이의 비 (50~55) ────────────────────
+  //
+  // pool 갈래가 기본1·응용3 이라 **기본 넷 · 응용 하나 · 심화 하나**가 모자란다.
+  // 이미 있는 08 이 「$\overline{AB}$·$\overline{BC}$·$\overline{DE}$ 로 $\overline{EF}$」
+  // 를 묻고 있으므로, 여기서는 **묻는 자리를 바꿔** 겹치지 않게 한다.
+  // 그림은 안 붙인다 — 점의 순서를 발문이 말하므로 치수만으로 풀린다.
+  def(
+    MINOR_PAR,
+    "50",
+    "평행선 사이의 선분에서 다른 쪽 윗변 구하기",
+    SEC.평행선비,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 8);
+      const b = intBetween(rng, 2, 8);
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{EF}=${b * k}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${a * k}\\,\\mathrm{cm}$`,
+        solution: `평행선 사이에 생기는 선분의 길이의 비는 같으므로 $\\overline{AB}:\\overline{BC}=\\overline{DE}:\\overline{EF}$이다.\n$${a}:${b}=\\overline{DE}:${b * k}$이므로 $\\overline{DE}=${a * k}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, k, x: a * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "51",
+    "비와 전체 길이로 평행선 사이의 선분 구하기",
+    SEC.평행선비,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 1, 5);
+      const q = intBetween(rng, 1, 5);
+      const k = intBetween(rng, 2, 6);
+      const whole = (p + q) * k;
+      return {
+        content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}:\\overline{BC}=${p}:${q}$이고 $\\overline{DF}=${whole}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${p * k}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{DE}:\\overline{EF}=\\overline{AB}:\\overline{BC}=${p}:${q}$이고 $\\overline{DE}+\\overline{EF}=${whole}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{DE}=${whole}\\times\\dfrac{${p}}{${p + q}}=${p * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, k, whole, x: p * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "52",
+    "평행선 사이의 선분에서 아래쪽 밑변 구하기",
+    SEC.평행선비,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 8);
+      const b = intBetween(rng, 2, 8);
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{DE}=${a * k}\\,\\mathrm{cm}$, $\\overline{EF}=${b * k}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${b}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{DE}:\\overline{EF}=${a * k}:${b * k}=${a}:${b}$이고 이 비는 $\\overline{AB}:\\overline{BC}$와 같다.\n$\\overline{AB}=${a}\\,\\mathrm{cm}$이므로 $\\overline{BC}=${b}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, k, x: b },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "53",
+    "두 전체 길이와 한 부분으로 나머지 부분 구하기",
+    SEC.평행선비,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 6);
+      const b = intBetween(rng, 2, 6);
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AC}=${a + b}\\,\\mathrm{cm}$, $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{DF}=${(a + b) * k}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${a * k}\\,\\mathrm{cm}$`,
+        // 비는 기약으로 적는다 — `4:8` 은 값이 맞아도 지면이 흉하다.
+        solution: `$\\overline{AB}:\\overline{AC}=${a}:${a + b}=${a / gcdInt(a, a + b)}:${(a + b) / gcdInt(a, a + b)}$이고 이 비는 $\\overline{DE}:\\overline{DF}$와 같다.\n따라서 $\\overline{DE}=${(a + b) * k}\\times\\dfrac{${a}}{${a + b}}=${a * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, k, x: a * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "54",
+    "네 평행선 사이의 선분의 길이의 비",
+    SEC.평행선비,
+    "응용",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 6);
+      const b = intBetween(rng, 2, 6);
+      const c = intBetween(rng, 2, 6);
+      const k = intBetween(rng, 2, 4);
+      return {
+        content: `네 평행선이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$, $D$와 $E$, $F$, $G$, $H$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{CD}=${c}\\,\\mathrm{cm}$이고 $\\overline{EF}=${a * k}\\,\\mathrm{cm}$일 때, $\\overline{FG}+\\overline{GH}$의 길이를 구하시오.`,
+        answer: `$${(b + c) * k}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{EF}=${a}:${a * k}=1:${k}$이므로 다른 대응하는 선분의 길이의 비도 $1:${k}$이다.\n$\\overline{FG}=${b * k}\\,\\mathrm{cm}$, $\\overline{GH}=${c * k}\\,\\mathrm{cm}$이므로 그 합은 $${(b + c) * k}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, c, k, x: (b + c) * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "55",
+    "비와 전체 길이로 두 부분의 차 구하기",
+    SEC.평행선비,
+    "심화",
+    (rng): Body => {
+      const q = intBetween(rng, 1, 4);
+      const p = q + intBetween(rng, 1, 4);
+      const k = intBetween(rng, 2, 6);
+      const whole = (p + q) * k;
+      return {
+        content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}:\\overline{BC}=${p}:${q}$이고 $\\overline{DF}=${whole}\\,\\mathrm{cm}$일 때, $\\overline{DE}-\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${(p - q) * k}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{DE}=${whole}\\times\\dfrac{${p}}{${p + q}}=${p * k}\\,(\\mathrm{cm})$, $\\overline{EF}=${whole}\\times\\dfrac{${q}}{${p + q}}=${q * k}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{DE}-\\overline{EF}=${p * k}-${q * k}=${(p - q) * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, k, whole, x: (p - q) * k },
+      };
+    },
+  ),
+
+  // ── 보강: 삼각형에서 평행선 사이의 선분의 길이의 비 (56~60) ──────────
+  //
+  // pool 갈래가 기본1·응용2·심화2 라 **기본 넷 · 응용 하나**가 모자란다.
+  def(
+    MINOR_PAR,
+    "56",
+    "삼각형에서 평행선으로 나뉜 변의 길이 구하기",
+    SEC.삼평행비,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 8);
+      const b = intBetween(rng, 2, 8);
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위에 있고 $\\overline{DE}$와 $\\overline{BC}$는 평행하다. $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{DB}=${b}\\,\\mathrm{cm}$, $\\overline{AE}=${a * k}\\,\\mathrm{cm}$일 때, $\\overline{EC}$의 길이를 구하시오.`,
+        answer: `$${b * k}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{DE}$와 $\\overline{BC}$가 평행하므로 $\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$이다.\n$${a}:${b}=${a * k}:\\overline{EC}$이므로 $\\overline{EC}=${b * k}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, k, x: b * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "57",
+    "삼각형에서 평행선이 만드는 밑변의 길이",
+    SEC.삼평행비,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 6);
+      const k = intBetween(rng, 2, 5);
+      const de = intBetween(rng, 2, 9);
+      return {
+        content: `삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위에 있고 $\\overline{DE}$와 $\\overline{BC}$는 평행하다. $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{AB}=${a * k}\\,\\mathrm{cm}$, $\\overline{DE}=${de}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${de * k}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $ADE$와 삼각형 $ABC$는 $\\mathrm{AA}$ 닮음이고 닮음비는 $\\overline{AD}:\\overline{AB}=${a}:${a * k}=1:${k}$이다.\n따라서 $\\overline{BC}=${de}\\times${k}=${de * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, k, de, x: de * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "58",
+    "변의 비가 주어질 때 평행선이 만드는 선분",
+    SEC.삼평행비,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 1, 5);
+      const q = intBetween(rng, 1, 5);
+      const k = intBetween(rng, 2, 6);
+      const bc = (p + q) * k;
+      return {
+        content: `삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위에 있고 $\\overline{DE}$와 $\\overline{BC}$는 평행하다. $\\overline{AD}:\\overline{DB}=${p}:${q}$이고 $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${p * k}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AD}:\\overline{AB}=${p}:${p + q}$이고 삼각형 $ADE$와 삼각형 $ABC$의 닮음비가 그것과 같다.\n따라서 $\\overline{DE}=${bc}\\times\\dfrac{${p}}{${p + q}}=${p * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, k, bc, x: p * k },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "59",
+    "두 변의 중점을 이은 선분의 길이",
+    SEC.삼평행비,
+    "기본",
+    (rng): Body => {
+      const half = intBetween(rng, 3, 12);
+      return {
+        content: `삼각형 $ABC$에서 두 변 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 하자. $\\overline{BC}=${2 * half}\\,\\mathrm{cm}$일 때, $\\overline{MN}$의 길이를 구하시오.`,
+        answer: `$${half}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AM}:\\overline{AB}=1:2$이므로 $\\overline{MN}$과 $\\overline{BC}$는 평행하고 삼각형 $AMN$과 삼각형 $ABC$의 닮음비는 $1:2$이다.\n따라서 $\\overline{MN}=${2 * half}\\times\\dfrac{1}{2}=${half}\\,(\\mathrm{cm})$이다.`,
+        facts: { half, x: half },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "60",
+    "평행선으로 나뉜 두 삼각형의 둘레의 비",
+    SEC.삼평행비,
+    "응용",
+    (rng): Body => {
+      const a = intBetween(rng, 2, 5);
+      const k = intBetween(rng, 2, 4);
+      const per = intBetween(rng, 3, 12);
+      return {
+        content: `삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위에 있고 $\\overline{DE}$와 $\\overline{BC}$는 평행하다. $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{AB}=${a * k}\\,\\mathrm{cm}$이고 삼각형 $ADE$의 둘레의 길이가 $${per}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: `$${per * k}\\,\\mathrm{cm}$`,
+        solution: `두 삼각형의 닮음비는 $\\overline{AD}:\\overline{AB}=${a}:${a * k}=1:${k}$이다.\n둘레의 길이의 비는 닮음비와 같으므로 삼각형 $ABC$의 둘레는 $${per}\\times${k}=${per * k}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, k, per, x: per * k },
+      };
+    },
+  ),
+
+  // ── 보강: 삼각형의 각의 이등분선 ────────────────────────────────────
+  def(
+    MINOR_PAR,
+    "12",
+    "내각의 이등분선과 밑변의 전체 길이",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const k = intBetween(rng, 2, 6);
+      const ab = p * intBetween(rng, 2, 4);
+      const ac = q * (ab / p);
+      const bc = (p + q) * k;
+      const x = p * k;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{BC}=${bc}\\,\\mathrm{cm}$이므로 $\\overline{BD}=${bc}\\times\\dfrac{${p}}{${p + q}}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, k, ab, ac, bc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "13",
+    "내각의 이등분선과 삼각형의 둘레",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 5);
+      const q = intBetween(rng, 1, p - 1);
+      const sideScale = intBetween(rng, 2, 4);
+      const baseScale = intBetween(rng, 2, 5);
+      const ab = p * sideScale;
+      const ac = q * sideScale;
+      const bd = p * baseScale;
+      const dc = q * baseScale;
+      const x = ab + ac + bd + dc;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=${p}:${q}$이므로 $\\overline{DC}=${dc}\\,\\mathrm{cm}$이다. 따라서 둘레의 길이는 $${ab}+${ac}+${bd}+${dc}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, ab, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "14",
+    "내각의 이등분선에서 한 변의 길이",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const sideScale = intBetween(rng, 2, 5);
+      const baseScale = intBetween(rng, 2, 5);
+      const ac = q * sideScale;
+      const bd = p * baseScale;
+      const dc = q * baseScale;
+      const x = p * sideScale;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$, $\\overline{DC}=${dc}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{DC}$이므로 $\\overline{AB}:${ac}=${bd}:${dc}$이다. 따라서 $\\overline{AB}=${ac}\\times\\dfrac{${bd}}{${dc}}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "15",
+    "내각의 이등분선과 두 삼각형의 넓이",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const k = intBetween(rng, 2, 7);
+      const left = p * k;
+      const right = q * k;
+      const x = left + right;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}:\\overline{AC}=${p}:${q}$이고 삼각형 $ABD$의 넓이가 $${left}\\,\\mathrm{cm}^2$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `두 삼각형 $ABD$, $ACD$는 높이가 같고 밑변의 비가 $${p}:${q}$이므로 넓이의 비도 $${p}:${q}$이다. 삼각형 $ACD$의 넓이는 $${right}\\,\\mathrm{cm}^2$이므로 삼각형 $ABC$의 넓이는 $${left}+${right}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { p, q, k, left, right, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "16",
+    "각의 이등분선의 성질의 역",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const s = intBetween(rng, 2, 5);
+      const t = intBetween(rng, 2, 5);
+      const ab = p * s;
+      const ac = q * s;
+      const bd = p * t;
+      const dc = q * t;
+      const x = intBetween(rng, 28, 72);
+      return {
+        content: `삼각형 $ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$, $\\overline{DC}=${dc}\\,\\mathrm{cm}$이다. $\\angle BAD=${x}^\\circ$일 때, $\\angle DAC$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이고 $\\overline{BD}:\\overline{DC}=${bd}:${dc}=${p}:${q}$이다. 각의 이등분선의 성질의 역에 의해 $\\overline{AD}$는 $\\angle A$의 이등분선이므로 $\\angle DAC=\\angle BAD=${x}^\\circ$이다.`,
+        facts: { p, q, ab, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "17",
+    "외각의 이등분선에서 바깥 선분",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const q = intBetween(rng, 1, 4);
+      const p = q + intBetween(rng, 1, 3);
+      const unit = intBetween(rng, 2, 5);
+      const ab = p * unit;
+      const ac = q * unit;
+      const bc = (p - q) * intBetween(rng, 2, 5);
+      const x = (q * bc) / (p - q);
+      return {
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        // ⚠️ 예전 해설은 `x` 를 **정의하지 않고** 썼다 — 「$(9+x):x=7:4$」만 있고
+        //    그 $x$ 가 무엇인지 어디에도 없었다. 값 검산은 통과한다.
+        solution: `외각의 이등분선의 성질에 의해 $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{CD}=x\\,\\mathrm{cm}$라 하면 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이므로 $\\overline{CD}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { p, q, ab, ac, bc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "18",
+    "외각의 이등분선에서 밑변",
+    SEC.각이등분,
+    "심화",
+    (rng): Body => {
+      const q = intBetween(rng, 1, 4);
+      const p = q + intBetween(rng, 1, 3);
+      const d = intBetween(rng, 2, 5) * q;
+      const x = ((p - q) * d) / q;
+      return {
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}:\\overline{AC}=${p}:${q}$이고 $\\overline{CD}=${d}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        // ⚠️ 예전에는 `$q x=…$` 라고 적혀 있었다 — **생성기 변수 이름 `q` 가 지면에
+        //    글자로 나갔다.** 값은 맞고 LaTeX 도 옳아서 값 검산도 렌더 검사도
+        //    구조적으로 못 잡는다(2026-08-27). `x` 도 정의하지 않고 쓰고 있었다.
+        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. $\\overline{BC}=x\\,\\mathrm{cm}$라 하면 $(x+${d}):${d}=${p}:${q}$이므로 $${q}x=${(p - q) * d}$에서 $x=${x}$이다.`,
+        facts: { p, q, d, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "19",
+    "내각과 외각의 이등분선의 교점",
+    SEC.각이등분,
+    "심화",
+    // ⚠️ 예전 발문은 「서로 닮은 두 삼각형에서 … 둘째 삼각형의 외각의 이등분선이
+    //    만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이」였다 — **제목(내각과
+    //    외각의 이등분선의 교점)과 아무 상관이 없고**, 둘째 삼각형의 꼭짓점을 안
+    //    정한 채 `$\overline{BC}$` 를 쓰고 있었다. 교과서 문형으로 다시 썼다:
+    //    한 삼각형에서 $\angle A$ 의 **내각** 이등분선 $D$ 와 **외각** 이등분선 $E$
+    //    를 잡고 $\overline{DE}$ 를 묻는다.
+    (rng): Body => {
+      const p = intBetween(rng, 3, 5);
+      const q = intBetween(rng, 1, p - 1);
+      // 삼각형이 되려면 $\overline{AB}+\overline{AC}>\overline{BC}$ 이고
+      // $|\overline{AB}-\overline{AC}|<\overline{BC}$ 여야 한다. 아래 `u` 범위가
+      // 그 둘을 동시에 만족시킨다 ($p-q<u<p+q$).
+      const u = p - q + intBetween(rng, 1, Math.max(1, 2 * q - 1));
+      const ab = p * u;
+      const ac = q * u;
+      const bc = (p + q) * (p - q);
+      const dc = q * (p - q); // 내분점 D 에서 $\overline{DC}$
+      const ce = q * (p + q); // 외분점 E 에서 $\overline{CE}$
+      const x = dc + ce; // $=2pq$
+      return {
+        content: `삼각형 $ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$, $\\angle A$의 외각의 이등분선이 $\\overline{BC}$의 연장선과 만나는 점을 $E$라 하자. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이다.\n내각의 이등분선에서 $\\overline{BD}:\\overline{DC}=${p}:${q}$이므로 $\\overline{DC}=${bc}\\times\\dfrac{${q}}{${p + q}}=${dc}\\,(\\mathrm{cm})$이다.\n외각의 이등분선에서 $\\overline{BE}:\\overline{CE}=${p}:${q}$이고 $\\overline{BE}-\\overline{CE}=\\overline{BC}$이므로 $\\overline{CE}=${bc}\\times\\dfrac{${q}}{${p - q}}=${ce}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{DE}=\\overline{DC}+\\overline{CE}=${dc}+${ce}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, ab, ac, bc, dc, ce, x },
       };
     },
   ),

@@ -65,7 +65,7 @@ export type MidComboProblem = {
   facts: Record<string, number>;
 };
 
-type ComboFamily = {
+export type ComboFamily = {
   id: string;
   generate: (
     rng: Rng,
