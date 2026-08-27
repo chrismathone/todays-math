@@ -39,6 +39,28 @@ const DESCRIPTIVE_ASK = "풀이 과정과 답을 쓰시오.";
  */
 const ASK_LINE =
   /(입?니까\?|인가\?|구하시오|구하여라|구하세요|쓰시오|나타내시오|하시오|하여라|하세요|고르시오)\.?$/;
+
+/**
+ * 끝맺음 동사 → **매김꼴**. 「…하시오」를 지우지 않고 「…하는」으로 바꿔
+ * 「풀이 과정과 답을 쓰시오」에 잇는다.
+ *
+ * ⚠️ **긴 것부터** 본다. 「구하시오」보다 「하시오」를 먼저 대면 「구」가 남는다.
+ *    「쓰시오·나타내시오」는 지시(「…을 쓰시오」)와 겹치므로 「구하는」으로 받는다.
+ */
+const ASK_ADNOMINAL: readonly [ending: string, adnominal: string][] = [
+  ["구하시오", "구하는"],
+  ["구하여라", "구하는"],
+  ["구하세요", "구하는"],
+  ["나타내시오", "구하는"],
+  ["나타내어라", "구하는"],
+  ["고르시오", "고르는"],
+  ["고르세요", "고르는"],
+  ["하시오", "하는"],
+  ["하여라", "하는"],
+  ["하세요", "하는"],
+  ["쓰시오", "구하는"],
+  ["써라", "구하는"],
+];
 const MARKS = ["①", "②", "③", "④", "⑤"] as const;
 
 export function asShortAnswer(stem: StemProblem): DerivedProblem {
@@ -131,11 +153,28 @@ export function toDescriptiveStem(content: string): string {
   const inga = trimmed.replace(/인가\?$/, "인지 " + DESCRIPTIVE_ASK);
   if (inga !== trimmed) return inga;
 
-  const ask = trimmed.replace(
-    /(구하시오|구하여라|구하세요|쓰시오|나타내시오|하시오|하여라|하세요|고르시오)\.?$/,
-    DESCRIPTIVE_ASK,
+  // 🔴 끝맺음 동사를 **지우면** 말이 깨진다.
+  //    「다음 식을 전개하시오.」 → 「다음 식을 **전개**풀이 과정과 답을 쓰시오.」
+  //    「가장 큰 수를 구하시오.」 → 「가장 큰 수를 풀이 과정과 답을 쓰시오.」
+  //    실측으로 중등 873 중 654, 초등 2,300 중 494 가 그렇게 됐다.
+  //
+  //    지우지 말고 **매김꼴(-는)로 바꿔** 잇는다 — 「전개하는 풀이 과정과 답을
+  //    쓰시오」, 「구하는 풀이 과정과 답을 쓰시오」. 「쓰시오·나타내시오」는
+  //    지시 자체와 겹치므로 「구하는」으로 받는다.
+  // 앞이 이미 «묻는 꼴»(…인지 / …는지)이면 동사를 **떨군다** —
+  // 원장님 예시가 그 모양이다: 「길이는 몇 cm 인지 풀이 과정과 답을 쓰시오.」
+  // 여기서 매김꼴을 넣으면 「몇 개인지 구하는 풀이 과정과…」로 겹친다.
+  const nominalized = trimmed.replace(
+    /(인지|는지|ㄴ지)\s*(구하시오|구하여라|구하세요|쓰시오|써라|나타내시오|나타내어라|답하시오)\.?$/,
+    `$1 ${DESCRIPTIVE_ASK}`,
   );
-  if (ask !== trimmed) return ask;
+  if (nominalized !== trimmed) return nominalized;
+
+  for (const [ending, adnominal] of ASK_ADNOMINAL) {
+    const re = new RegExp(`${ending}\\.?$`);
+    if (re.test(trimmed))
+      return `${trimmed.replace(re, adnominal)} ${DESCRIPTIVE_ASK}`;
+  }
 
   return `${trimmed} ${DESCRIPTIVE_ASK}`;
 }

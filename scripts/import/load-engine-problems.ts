@@ -224,34 +224,61 @@ function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
         ` — registeredTypes() 로 이름을 확인하라(중단원 이름에 얇은 공백 U+2009 이 들어 있을 수 있다)`,
     );
   if (t.maxTypes) types = types.slice(0, t.maxTypes);
-  const variants = t.variants ?? 1;
+  const variants = t.variants ?? 3;
   const rows: Row[] = [];
   for (const entry of types) {
-    for (let v = 0; v < variants; v += 1) {
+    // 중등의 문항류 = **RPM 유형 키** 그 자체. 변형(v0·v1·…)은 같은 유형의 아류다.
+    const familyKey = `mid:${entry.key}`;
+    // 형식 3종은 초등과 **같은 모듈**에서 파생한다. 규칙이 두 벌이 되면
+    // 한쪽만 고쳐도 아무도 모른다. 이미 객관식인 유형(873 중 20개)은
+    // `expandFamily` 가 파생하지 않고 그대로 낸다.
+    const got = expandFamily((v) => {
       const p = generateMiddleProblem(entry.key, seedBase, v);
-      rows.push({
-        externalId: `engine-mid:${entry.key}|s${seedBase}|v${v}`,
-        // 중등의 문항류 = **RPM 유형 키** 그 자체. 변형(v0·v1·…)은 같은 유형의 아류다.
-        familyKey: `mid:${entry.key}`,
-        unitKey: `${entry.grade} / ${entry.unitSection}`,
-        grade: entry.grade,
-        section: entry.unitSection,
+      return {
         content: p.content,
         answer: p.answer,
         solution: p.solution,
-        difficulty: p.difficulty,
+        familyKey,
         // 유형은 난이도와 **다른 축**이지만 중등 엔진이 유형을 따로 안 내므로
         // 갈래에서 어림한다. 밑 두 칸(연산·기본)은 계산, 위 두 칸은 활용.
         problemType:
           p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
-        questionType: "단답형",
+        difficulty: p.difficulty,
         figureSpec: (p.figureSpec as Record<string, unknown> | null) ?? null,
+        variant: v,
+      };
+    }, variants);
+    midSkippedMcq += got.skippedMcq;
+    for (const item of got.items) {
+      const it = item as typeof item & {
+        difficulty: Difficulty;
+        figureSpec: Record<string, unknown> | null;
+        variant: number;
+      };
+      rows.push({
+        externalId: `engine-mid:${entry.key}|s${seedBase}|v${it.variant}|${it.questionType}`,
+        familyKey,
+        unitKey: `${entry.grade} / ${entry.unitSection}`,
+        grade: entry.grade,
+        section: entry.unitSection,
+        content: it.content,
+        answer: it.answer,
+        solution: it.solution,
+        difficulty: it.difficulty,
+        problemType: it.problemType,
+        // 🔴 형식을 **여기서** 적는다. 전에는 "단답형" 으로 박혀 있어 객관식·서술형이
+        //    통째로 단답으로 들어갔다 — 화면에서 갈라 볼 수 없다.
+        questionType: it.questionType,
+        figureSpec: it.figureSpec,
         origin: `중등 ${entry.key} ${entry.rpmTitle}`,
       });
     }
   }
   return rows;
 }
+
+/** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
+let midSkippedMcq = 0;
 
 // ────────────────────────────── 그림 ──────────────────────────────
 
@@ -387,6 +414,10 @@ async function apply(planFile: string, doApply: boolean) {
       .map(([k, v]) => `${k} ${v}`)
       .join(" · ")}`,
   );
+  if (midSkippedMcq > 0)
+    console.log(
+      `   ⚠️ 중등에서 객관식을 못 만든 변형 ${midSkippedMcq}건 (정답이 «식»이라 계산 실수 오답을 못 만든다)`,
+    );
   if (elemSkippedMcq > 0)
     console.log(
       `   ⚠️ 객관식을 못 만든 변형 ${elemSkippedMcq}건 (정답이 수·분수·소수가 아니다) — 무작위 수로 안 채운다`,
