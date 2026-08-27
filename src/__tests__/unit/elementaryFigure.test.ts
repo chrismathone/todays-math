@@ -504,7 +504,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     const ys = body.map((p) => p[1]);
     const minY = Math.min(...ys);
     expect(ys.filter((y) => y < minY + 6).length).toBe(1);
-    expect(r.svg).toMatch(/stroke-width="0" stroke-opacity="0"/);
+    expect(r.svg).toMatch(/stroke-dasharray="/);
     const vb = r.svg.match(/viewBox="0 0 ([0-9.]+) ([0-9.]+)"/);
     expect(vb).toBeTruthy();
     const boxW = Number(vb![1]);
@@ -1079,9 +1079,7 @@ describe.skipIf(!hasEngine)(
       expect(r.ok).toBe(true);
       if (!r.ok) return;
       const far = [
-        ...r.svg.matchAll(
-          /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/g,
-        ),
+        ...r.svg.matchAll(/<polyline points="([^"]+)"[^>]*stroke-dasharray/g),
       ].map((m) => parsePoints(m[1]!));
       expect(far, "밑면 숨은 호").toHaveLength(1);
       expect(far[0]!.length).toBeGreaterThan(10);
@@ -1159,7 +1157,7 @@ describe.skipIf(!hasEngine)(
         const body = polygonsByFill(cone.svg, "#e4d3b8")[0]!;
         const far = parsePoints(
           cone.svg.match(
-            /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/,
+            /<polyline points="([^"]+)"[^>]*stroke-dasharray/,
           )![1]!,
         );
         expect(
@@ -1196,9 +1194,7 @@ describe.skipIf(!hasEngine)(
         const near = polygonsByFill(r.svg, "#e4d3b8")[0]!;
         expect(near, `r=${rr} h=${hh} 옆면`).toBeTruthy();
         const far = parsePoints(
-          r.svg.match(
-            /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/,
-          )![1]!,
+          r.svg.match(/<polyline points="([^"]+)"[^>]*stroke-dasharray/)![1]!,
         );
         expect(axisTilt(far), `r=${rr} h=${hh} 기울기`).toBeLessThan(1.0);
       }
@@ -2703,11 +2699,7 @@ function dashedLinesAfterPolygons(svg: string): [Pt, Pt][] {
   for (const m of svg.matchAll(
     /<line x1="(-?[0-9.]+)" y1="(-?[0-9.]+)" x2="(-?[0-9.]+)" y2="(-?[0-9.]+)"([^>]*)>/g,
   )) {
-    const attrs = m[5]!;
-    const structuralMarker =
-      attrs.includes('stroke-width="0"') &&
-      attrs.includes('stroke-opacity="0"');
-    if (!attrs.includes("stroke-dasharray") && !structuralMarker) continue;
+    if (!m[5]!.includes("stroke-dasharray")) continue;
     if (m.index! < lastPoly) continue;
     out.push([
       [Number(m[1]), Number(m[2])],

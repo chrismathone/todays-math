@@ -2056,7 +2056,7 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
         [vi(0, 0, 0), vi(w, 0, 0), vi(w, d, 0), vi(0, d, 0)],
         [vi(0, 0, h), vi(w, 0, h), vi(w, d, h), vi(0, d, h)],
     ]
-    parts += _hidden_lines(view, verts3, faces_idx, structural=True)
+    parts += _hidden_lines(view, verts3, faces_idx)
 
     def dim(a: tuple[float, float], b: tuple[float, float], label: str) -> None:
         span = math.hypot(b[0] - a[0], b[1] - a[1])
@@ -2218,16 +2218,10 @@ def _hidden_lines(
     view: Any,
     verts3: list[tuple[float, float, float]],
     faces: list[list[int]],
-    *,
-    structural: bool = False,
 ) -> list[str]:
     pts = [view(p) for p in verts3]
     return [
-        (
-            _dashed_polyline([pts[a], pts[b]], HIDDEN_DASH, sw=1.0)
-            if structural
-            else _line(pts[a], pts[b], sw=1.0, dash=HIDDEN_DASH)
-        )
+        _line(pts[a], pts[b], sw=1.0, dash=HIDDEN_DASH)
         for a, b in _hidden_edges(view, verts3, faces)
     ]
 
@@ -2307,7 +2301,7 @@ def _prism(spec: Mapping[str, Any]) -> str:
     parts = (
         [svg for _, svg in faces]
         + [_poly(top, FACE_TOP, 1.2)]
-        + _hidden_lines(view, verts3, faces_idx, structural=True)
+        + _hidden_lines(view, verts3, faces_idx)
     )
     return _svg(svg_w, svg_h, "".join(parts))
 
@@ -2340,7 +2334,7 @@ def _pyramid(spec: Mapping[str, Any]) -> str:
     parts = (
         [_poly(base, FACE_TOP, 1.1)]
         + [svg for _, svg in faces]
-        + _hidden_lines(view, verts3, faces_idx, structural=True)
+        + _hidden_lines(view, verts3, faces_idx)
     )
     return _svg(svg_w, svg_h, "".join(parts))
 
@@ -2403,7 +2397,7 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     # 예전처럼 네 점 사각형으로 덮으면 밑면 타원을 가로지르는 실선이 남는다.
     parts = [
         _poly(near_top + near_bot, FACE_FRONT, 1.15),
-        _dashed_polyline(far_bot, HIDDEN_DASH, sw=1.05),
+        _polyline(far_bot, sw=1.05, dash=HIDDEN_DASH),
         _poly(top, FACE_TOP, 1.15),
     ]
     tl, bl = top[i_l], bot[i_l]
@@ -2455,7 +2449,7 @@ def _cone(spec: Mapping[str, Any]) -> str:
     near, far = _split_ring(ring, i_right, i_left)
     parts = [
         _poly([apex] + near, FACE_FRONT, 1.15),
-        _dashed_polyline(far, HIDDEN_DASH, sw=1.05),
+        _polyline(far, sw=1.05, dash=HIDDEN_DASH),
     ]
     return _svg(svg_w, svg_h, "".join(parts))
 
