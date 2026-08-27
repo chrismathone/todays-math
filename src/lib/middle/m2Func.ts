@@ -1180,4 +1180,157 @@ export const M2_FUNC: TypeEntry[] = [
         };
       }),
   ),
+
+  def(
+    MINOR_G2,
+    "70",
+    "두 점이 주어질 때 x절편 구하기",
+    SEC.식구하기,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -4, 4);
+        const x0 = nonZero(rng, -5, 5);
+        const b = -m * x0;
+        const x1 = attempt(60, () => {
+          const v = intBetween(rng, -5, 2);
+          return v === x0 ? null : v;
+        });
+        const dx = intBetween(rng, 2, 5);
+        const x2 = x1 + dx;
+        if (x2 === x0) return null;
+        const y1 = m * x1 + b;
+        const y2 = m * x2 + b;
+        if ([y1, y2, b].some((v) => Math.abs(v) > 24)) return null;
+        return {
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
+          answer: `$${x0}$`,
+          solution: `기울기는 $\dfrac{${y2 - y1}}{${dx}}=${m}$이므로 그래프의 식은 $y=${linear(m, b)}$이다.\n$y=0$을 대입하면 $x=${x0}$이다.`,
+          facts: { m, b, x0, x1, y1, x2, y2 },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "71",
+    "기울기와 한 점이 주어질 때 x절편 구하기",
+    SEC.식구하기,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -4, 4);
+        const x0 = nonZero(rng, -5, 5);
+        const b = -m * x0;
+        const p = attempt(60, () => {
+          const v = nonZero(rng, -5, 5);
+          return v === x0 ? null : v;
+        });
+        const q = m * p + b;
+        if (q === 0 || [q, b].some((v) => Math.abs(v) > 24)) return null;
+        return {
+          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$를 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
+          answer: `$${x0}$`,
+          solution: `식을 $y=${mono(m)}+b$라 하고 $x=${p}$, $y=${q}$를 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.\n$y=${linear(m, b)}$에서 $y=0$을 대입하면 $x=${x0}$이다.`,
+          facts: { m, p, q, b, x0 },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "72",
+    "두 절편이 주어질 때 기울기 구하기",
+    SEC.식구하기,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const m = nonZero(rng, -5, 5);
+        const x0 = nonZero(rng, -6, 6);
+        const b = -m * x0;
+        if (Math.abs(b) > 24) return null;
+        return {
+          content: `$x$절편이 $${x0}$이고 $y$절편이 $${b}$인 일차함수의 그래프의 기울기를 구하시오.`,
+          answer: `$${m}$`,
+          solution: `그래프는 두 점 $(${x0}, 0)$, $(0, ${b})$를 지난다.\n따라서 기울기는 $\dfrac{${b}-0}{0-(${x0})}=\dfrac{${b}}{${-x0}}=${m}$이다.`,
+          facts: { m, x0, b },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "73",
+    "평행하고 한 점을 지나는 그래프의 y절편",
+    SEC.식구하기,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -4, 4);
+        const c = nonZero(rng, -6, 6);
+        const p = nonZero(rng, -4, 4);
+        const q = intBetween(rng, -8, 8);
+        const b = q - m * p;
+        if (b === 0 || b === c || Math.abs(b) > 20) return null;
+        return {
+          content: `일차함수 $y=${linear(m, c)}$의 그래프와 평행하고 점 $(${p}, ${q})$를 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
+          answer: `$${b}$`,
+          solution: `평행하면 기울기가 같으므로 구하는 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$를 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.`,
+          facts: { m, c, p, q, b },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "74",
+    "두 점으로 식을 세워 다른 점의 좌표 구하기",
+    SEC.식구하기,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -3, 3);
+        const b = nonZero(rng, -6, 6);
+        const x1 = intBetween(rng, -4, 0);
+        const dx = intBetween(rng, 2, 4);
+        const x2 = x1 + dx;
+        const r = attempt(60, () => {
+          const v = intBetween(rng, -5, 7);
+          return v === x1 || v === x2 ? null : v;
+        });
+        const y1 = m * x1 + b;
+        const y2 = m * x2 + b;
+        const k = m * r + b;
+        if ([y1, y2, k].some((v) => Math.abs(v) > 25)) return null;
+        return {
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프가 점 $(${r}, k)$를 지날 때, $k$의 값을 구하시오.`,
+          answer: `$${k}$`,
+          solution: `기울기는 $\dfrac{${y2 - y1}}{${dx}}=${m}$이고, $y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$을 대입하면 $b=${b}$이다.\n$y=${linear(m, b)}$에 $x=${r}$을 대입하면 $k=${k}$이다.`,
+          facts: { m, b, x1, y1, x2, y2, r, k },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "75",
+    "기울기와 한 점이 주어질 때 계수와 상수항의 합",
+    SEC.식구하기,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const m = nonZero(rng, -5, 5);
+        const p = nonZero(rng, -4, 4);
+        const q = intBetween(rng, -8, 8);
+        const b = q - m * p;
+        if (b === 0 || Math.abs(b) > 20) return null;
+        const ans = m + b;
+        return {
+          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$를 지나는 일차함수의 식을 $y=ax+b$라 할 때, $a+b$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `기울기가 $${m}$이므로 $a=${m}$이고, 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$를 대입하면 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
+          facts: { m, p, q, b, ans },
+        };
+      }),
+  ),
 ];

@@ -461,3 +461,48 @@ describe("중등 유형 갈래 C — 일차함수의 그래프와 절편", () =>
     expect(facts!.x0 + facts!.b).toBe(facts!.sum);
   });
 });
+
+describe("중등 유형 갈래 C — 일차함수의 식 구하기", () => {
+  const SEC_EQ = "일차함수의 식 구하기";
+
+  it("70 두 점을 잇는 직선이 답에서 x축을 지난다 — 분모 없이 견준다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "70");
+    // y1(x2-x1) + (y2-y1)(x0-x1) = 0  ← 두 점을 지나는 직선이 (x0,0) 을 지난다
+    expect(
+      facts!.y1 * (facts!.x2 - facts!.x1) +
+        (facts!.y2 - facts!.y1) * (facts!.x0 - facts!.x1),
+    ).toBe(0);
+    expect(facts!.x2).not.toBe(facts!.x1);
+  });
+
+  it("71 기울기와 한 점에서 이어 간 직선이 답에서 x축을 지난다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "71");
+    expect(facts!.q + facts!.m * (facts!.x0 - facts!.p)).toBe(0);
+    expect(facts!.q + facts!.m * (facts!.x0 + 1 - facts!.p)).not.toBe(0);
+  });
+
+  it("72 답이 두 절편을 잇는 기울기다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "72");
+    // (x0,0) 과 (0,b) 를 지나는 직선의 기울기가 m 이면 m·x0 + b = 0.
+    expect(facts!.m * facts!.x0 + facts!.b).toBe(0);
+  });
+
+  it("73 평행 — 기울기는 그대로고 답을 넣으면 그 점을 지난다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "73");
+    expect(facts!.m * facts!.p + facts!.b).toBe(facts!.q);
+    expect(facts!.b).not.toBe(facts!.c); // 같으면 «평행»이 아니라 같은 그래프다
+  });
+
+  it("74 세 점이 한 직선 위에 있다 — 분모 없이 견준다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "74");
+    expect((facts!.y2 - facts!.y1) * (facts!.r - facts!.x1)).toBe(
+      (facts!.k - facts!.y1) * (facts!.x2 - facts!.x1),
+    );
+  });
+
+  it("75 세운 식이 발문의 점을 지나고 답이 두 계수의 합이다", () => {
+    const { facts } = generatedFunc(SEC_EQ, "75");
+    expect(facts!.m * facts!.p + facts!.b).toBe(facts!.q);
+    expect(facts!.ans).toBe(facts!.m + facts!.b);
+  });
+});
