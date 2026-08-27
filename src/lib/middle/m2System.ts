@@ -1469,7 +1469,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "심화", (rng) =>
+  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "응용", (rng) =>
     attempt(400, () => {
       const a = pick(rng, [5, 10, 15, 20, 25, 30] as const);
       const b = pick(rng, [5, 10, 15, 20, 25, 30] as const);
@@ -1486,6 +1486,88 @@ export const M2_SYSTEM: TypeEntry[] = [
         facts: { T, a, b, P, x, y },
       };
     }),
+  ),
+
+  def(
+    MINOR_APPLY,
+    "27A",
+    "입장권의 가격과 개수",
+    SEC.가격도형,
+    "연산",
+    (rng) => {
+      const adultPrice = 1000 * intBetween(rng, 4, 8);
+      const studentPrice = 1000 * intBetween(rng, 1, 3);
+      const adult = intBetween(rng, 5, 20);
+      const student = intBetween(rng, 5, 20);
+      const total = adult + student;
+      const revenue = adultPrice * adult + studentPrice * student;
+      return {
+        content: `어른 입장권은 한 장에 $${adultPrice}$원, 학생 입장권은 한 장에 $${studentPrice}$원이다. 두 입장권을 모두 $${total}$장 팔아 $${revenue}$원을 받았을 때, 어른 입장권을 판 장수를 구하시오.`,
+        answer: `$${adult}$장`,
+        solution: `어른과 학생 입장권 수를 $x$, $y$라 하면 $x+y=${total}$, $${adultPrice}x+${studentPrice}y=${revenue}$이다. 두 식을 연립하여 풀면 어른 입장권은 $${adult}$장이다.`,
+        facts: { adultPrice, studentPrice, total, revenue, answer: adult },
+      };
+    },
+  ),
+  def(MINOR_APPLY, "28A", "두 물건의 개수", SEC.가격도형, "기본", (rng) => {
+    const pencilPrice = 100 * intBetween(rng, 3, 7);
+    const notePrice = 100 * intBetween(rng, 9, 15);
+    const pencil = intBetween(rng, 4, 18);
+    const note = intBetween(rng, 4, 18);
+    const total = pencil + note;
+    const cost = pencilPrice * pencil + notePrice * note;
+    return {
+      content: `연필 한 자루의 가격은 $${pencilPrice}$원, 공책 한 권의 가격은 $${notePrice}$원이다. 연필과 공책을 합하여 $${total}$개 사고 $${cost}$원을 냈을 때, 공책을 산 권수를 구하시오.`,
+      answer: `$${note}$권`,
+      solution: `연필과 공책 수를 $x$, $y$라 하면 $x+y=${total}$, $${pencilPrice}x+${notePrice}y=${cost}$이다. 두 식을 연립하여 풀면 공책은 $${note}$권이다.`,
+      facts: { pencilPrice, notePrice, total, cost, answer: note },
+    };
+  }),
+  def(MINOR_APPLY, "29A", "직사각형의 두 변", SEC.가격도형, "기본", (rng) => {
+    const width = intBetween(rng, 8, 24);
+    const height = intBetween(rng, 3, width - 2);
+    const perimeter = 2 * (width + height);
+    const difference = width - height;
+    return {
+      content: `직사각형의 둘레의 길이는 $${perimeter}\,\mathrm{cm}$이고 가로는 세로보다 $${difference}\,\mathrm{cm}$ 길다. 세로의 길이를 구하시오.`,
+      answer: `$${height}\,\mathrm{cm}$`,
+      solution: `가로와 세로를 $x\,\mathrm{cm}$, $y\,\mathrm{cm}$라 하면 $x+y=${perimeter / 2}$, $x-y=${difference}$이다. 두 식을 연립하여 풀면 세로는 $${height}\,\mathrm{cm}$이다.`,
+      facts: { width, height, perimeter, difference, answer: height },
+    };
+  }),
+  def(MINOR_APPLY, "30A", "두 집단의 증감", SEC.가격도형, "응용", (rng) => {
+    const first = 20 * intBetween(rng, 5, 15);
+    const second = 20 * intBetween(rng, 5, 15);
+    const increase = pick(rng, [10, 20, 30] as const);
+    const decrease = pick(rng, [10, 20, 30] as const);
+    const total = first + second;
+    const changed =
+      (first * (100 + increase) + second * (100 - decrease)) / 100;
+    return {
+      content: `두 동아리 $\mathrm{A}$, $\mathrm{B}$의 작년 회원은 모두 $${total}$명이었다. 올해 $\mathrm{A}$는 $${increase}\%$ 증가하고 $\mathrm{B}$는 $${decrease}\%$ 감소하여 모두 $${changed}$명이 되었다. 작년 $\mathrm{A}$의 회원 수를 구하시오.`,
+      answer: `$${first}$명`,
+      solution: `작년 두 동아리 회원을 $x$, $y$라 하면 $x+y=${total}$, $${100 + increase}x+${100 - decrease}y=${100 * changed}$이다. 두 식을 연립하여 풀면 $\mathrm{A}$는 $${first}$명이었다.`,
+      facts: { total, increase, decrease, changed, answer: first },
+    };
+  }),
+  def(
+    MINOR_APPLY,
+    "31A",
+    "두 종류 동전의 개수",
+    SEC.가격도형,
+    "응용",
+    (rng) => {
+      const count100 = intBetween(rng, 5, 20);
+      const count500 = intBetween(rng, 5, 20);
+      const total = count100 + count500;
+      const value = 100 * count100 + 500 * count500;
+      return {
+        content: `$100$원짜리 동전과 $500$원짜리 동전이 모두 $${total}$개이고 금액의 합은 $${value}$원이다. $500$원짜리 동전의 개수를 구하시오.`,
+        answer: `$${count500}$개`,
+        solution: `두 동전 수를 $x$, $y$라 하면 $x+y=${total}$, $100x+500y=${value}$이다. 두 식을 연립하여 풀면 $500$원짜리 동전은 $${count500}$개이다.`,
+        facts: { total, value, answer: count500 },
+      };
+    },
   ),
 ];
 

@@ -569,6 +569,67 @@ describe("갈래 A 중등 유형 값 검산", () => {
     },
   );
 
+  const priceCountGeometryExpected: Record<
+    string,
+    (content: string) => number
+  > = {
+    "27A": (content) => {
+      const [adultPrice, studentPrice, total, revenue] = (
+        content.match(/\d+/g) ?? []
+      )
+        .slice(0, 4)
+        .map(Number);
+      return (
+        (revenue! - studentPrice! * total!) / (adultPrice! - studentPrice!)
+      );
+    },
+    "28A": (content) => {
+      const [pencilPrice, notePrice, total, cost] = (
+        content.match(/\d+/g) ?? []
+      )
+        .slice(0, 4)
+        .map(Number);
+      return (cost! - pencilPrice! * total!) / (notePrice! - pencilPrice!);
+    },
+    "29A": (content) => {
+      const values = content.match(/둘레의 길이는 \$(\d+).*세로보다 \$(\d+)/);
+      return (Number(values?.[1]) / 2 - Number(values?.[2])) / 2;
+    },
+    "30A": (content) => {
+      const [total, increase, decrease, changed] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return (
+        (100 * changed! - (100 - decrease!) * total!) / (increase! + decrease!)
+      );
+    },
+    "31A": (content) => {
+      const [low, high, total, value] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return (value! - low! * total!) / (high! - low!);
+    },
+  };
+
+  it.each(Object.keys(priceCountGeometryExpected))(
+    "연립방정식의 활용(가격, 개수, 증감, 도형) 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM.find(
+        (candidate) =>
+          candidate.unitSection ===
+            "연립방정식의 활용(가격, 개수, 증감, 도형)" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          priceCountGeometryExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
   const concentrationRatioExpected: Record<
     string,
     (content: string) => number
