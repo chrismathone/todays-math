@@ -23,6 +23,24 @@ import type { MidProblem, TypeEntry } from "./types";
 /** 수 뒤 「을/를」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
 const nEul = eulReul;
 
+/**
+ * 기약인 **진분수** (분자, 분모) — 「어떤 수의 $\dfrac{a}{b}$」에 쓴다.
+ * 약분이 안 된 분수가 지면에 나가면 값은 맞아도 흉하므로 표로 못 박는다.
+ */
+const PROPER_UNIT_FRACS: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [1, 3],
+  [2, 3],
+  [1, 4],
+  [3, 4],
+  [1, 5],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+  [1, 6],
+  [5, 6],
+];
+
 const GRADE = "중1";
 const BOOK = "1-1";
 const MINOR = "일차방정식의 활용";
@@ -797,6 +815,107 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
         answer: `$${k}$년 후`,
         solution: `$x$년 후라 하면 아버지는 $(${parent}+x)$세, 두 자녀의 나이의 합은 $(${c1 + c2}+2x)$세이다.\n$${parent}+x=${m}(${c1 + c2}+2x)$를 정리하여 풀면 $x=${k}$이다.\n따라서 $${k}$년 후이다.`,
         facts: { parent, c1, c2, m, k },
+      };
+    }),
+  ),
+
+  // ── 45~50 「수」를 10유형으로 채운 몫 (갈래 D) ──
+  // 여기도 연산은 안 만든다(39~44 머리말 참조). 기본 5 · 응용 4 · 심화 1.
+
+  def("45", "연속하는 두 짝수 홀수", SEC.수, "기본", (rng) => {
+    const even = intBetween(rng, 0, 1) === 0;
+    const small = even
+      ? intBetween(rng, 1, 24) * 2
+      : intBetween(rng, 0, 24) * 2 + 1;
+    const big = small + 2;
+    const sum = small + big;
+    const word = even ? "짝" : "홀";
+    return {
+      content: `연속하는 두 ${word}수의 합이 $${sum}$일 때, 두 수 중 큰 수를 구하시오.`,
+      answer: `$${big}$`,
+      solution: `작은 수를 $x$라 하면 큰 수는 $(x+2)$이다.\n$x+(x+2)=${sum}$이므로 $x=${small}$이다.\n따라서 큰 수는 $${small}+2=${big}$이다.`,
+      facts: { small, big, sum, even: even ? 1 : 0 },
+    };
+  }),
+
+  def("46", "어떤 수의 일부에 대한 조건", SEC.수, "기본", (rng) =>
+    attempt(120, () => {
+      const [a, b] = pick(rng, PROPER_UNIT_FRACS);
+      const t = intBetween(rng, 2, 12);
+      const x = b * t; // 어떤 수 — 분수를 곱해도 정수가 되게 잡는다
+      const c = intBetween(rng, 2, 20);
+      const d = a * t + c;
+      return {
+        content: `어떤 수의 $\\dfrac{${a}}{${b}}$보다 $${c}$만큼 큰 수는 $${d}$이다. 어떤 수를 구하시오.`,
+        answer: `$${x}$`,
+        solution: `어떤 수를 $x$라 하면 $\\dfrac{${a}}{${b}}x+${c}=${d}$이다.\n정리하여 풀면 $x=${x}$이다.`,
+        facts: { a, b, c, d, x },
+      };
+    }),
+  ),
+
+  def("47", "잘못 계산한 수", SEC.수, "응용", (rng) =>
+    attempt(80, () => {
+      const a = intBetween(rng, 3, 12);
+      const x = intBetween(rng, 2, 20);
+      const wrong = a * x;
+      const right = x + a;
+      return {
+        content: `어떤 수에 $${a}$${nEul(a)} 더해야 할 것을 잘못하여 $${a}$${nEul(a)} 곱했더니 $${wrong}$이 되었다. 바르게 계산한 답을 구하시오.`,
+        answer: `$${right}$`,
+        solution: `어떤 수를 $x$라 하면 $${a}x=${wrong}$이므로 $x=${x}$이다.\n따라서 바르게 계산한 답은 $${x}+${a}=${right}$이다.`,
+        facts: { a, x, wrong, right },
+      };
+    }),
+  ),
+
+  def("48", "두 수의 차와 배수 관계", SEC.수, "응용", (rng) =>
+    attempt(80, () => {
+      const m = intBetween(rng, 2, 6);
+      const small = intBetween(rng, 2, 20);
+      const big = m * small;
+      const d = big - small;
+      return {
+        content: `두 자연수의 차가 $${d}$이고, 큰 수는 작은 수의 $${m}$배이다. 큰 수를 구하시오.`,
+        answer: `$${big}$`,
+        solution: `작은 수를 $x$라 하면 큰 수는 $${m}x$이다.\n$${m}x-x=${d}$이므로 $x=${small}$이다.\n따라서 큰 수는 $${m}\\times${small}=${big}$이다.`,
+        facts: { m, small, big, d },
+      };
+    }),
+  ),
+
+  def("49", "연속하는 세 자연수의 조건", SEC.수, "응용", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 2, 20);
+      // 🔴 $m=2$ 는 못 쓴다 — $2(n+2)-(2n+1)=3$ 이라 **$n$ 과 무관하게 항상 $3$** 이다.
+      //    그러면 「가장 작은 수」가 하나로 안 정해진다(답이 무수히 많다).
+      //    값은 맞고 발문만 성립하지 않는 부류라 값 검산으로는 안 잡힌다.
+      const m = intBetween(rng, 3, 5);
+      const c = m * (n + 2) - (2 * n + 1);
+      if (c < 1) return null;
+      return {
+        content: `연속하는 세 자연수가 있다. 가장 큰 수의 $${m}$배가 나머지 두 수의 합보다 $${c}$만큼 클 때, 가장 작은 수를 구하시오.`,
+        answer: `$${n}$`,
+        solution: `가장 작은 수를 $x$라 하면 세 수는 $x$, $(x+1)$, $(x+2)$이다.\n$${m}(x+2)-\\{x+(x+1)\\}=${c}$${nEul(c)} 정리하여 풀면 $x=${n}$이다.`,
+        facts: { n, m, c },
+      };
+    }),
+  ),
+
+  def("50", "자릿수 배수 관계", SEC.수, "심화", (rng) =>
+    attempt(200, () => {
+      const ones = intBetween(rng, 1, 4);
+      const m = intBetween(rng, 2, 9);
+      const tens = m * ones;
+      if (tens > 9) return null;
+      const N = 10 * tens + ones;
+      const d = 9 * ones * (m - 1);
+      if (d < 1) return null;
+      return {
+        content: `두 자리 자연수에서 십의 자리의 숫자는 일의 자리의 숫자의 $${m}$배이고, 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수보다 $${d}$만큼 작다. 처음 수를 구하시오.`,
+        answer: `$${N}$`,
+        solution: `일의 자리의 숫자를 $x$라 하면 십의 자리의 숫자는 $${m}x$이므로 처음 수는 $${10 * m + 1}x$, 바꾼 수는 $${10 + m}x$이다.\n$${10 * m + 1}x-${10 + m}x=${d}$이므로 $x=${ones}$이다.\n따라서 처음 수는 $${N}$이다.`,
+        facts: { ones, m, tens, N, d },
       };
     }),
   ),

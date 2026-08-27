@@ -1,6 +1,6 @@
 /**
- * 중1 「일차방정식의 활용」 44유형 — 독립 검산.
- * (RPM 색인 01~22 + 세 소단원을 10유형으로 채우려고 지은 23~44)
+ * 중1 「일차방정식의 활용」 50유형 — 독립 검산.
+ * (RPM 색인 01~22 + 네 소단원을 10유형으로 채우려고 지은 23~50)
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)로 유형마다
  * **방정식을 여기서 다시 세워** 만족하는지 본다. 생성기가 역산을 틀리면
@@ -173,6 +173,37 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   // 두 자녀의 합의 m배: parent+k == m(c1+c2+2k)
   "44": (f) =>
     f.parent! + f.k! === f.m! * (f.c1! + f.c2! + 2 * f.k!) && f.k! >= 1,
+
+  // ── 45~50 「수」를 10유형으로 채운 몫 (갈래 D) ──
+  // 연속하는 두 짝(홀)수: big == small+2, 홀짝이 발문의 낱말과 맞아야 한다
+  "45": (f) =>
+    f.big! === f.small! + 2 &&
+    f.small! + f.big! === f.sum! &&
+    f.small! % 2 === (f.even === 1 ? 0 : 1) &&
+    f.small! >= 1,
+  // 어떤 수의 a/b 보다 c 큰 수가 d: (a/b)x + c == d, 그리고 (a/b)x 가 정수
+  "46": (f) =>
+    (f.a! * f.x!) % f.b! === 0 &&
+    (f.a! * f.x!) / f.b! + f.c! === f.d! &&
+    f.a! < f.b!,
+  // 잘못 곱하기: a·x == wrong, 바른 답은 x+a
+  "47": (f) =>
+    f.a! * f.x! === f.wrong! && f.x! + f.a! === f.right! && f.a! >= 2,
+  // 차와 배수: big == m·small, big-small == d
+  "48": (f) =>
+    f.big! === f.m! * f.small! && f.big! - f.small! === f.d! && f.m! >= 2,
+  // 연속 세 자연수: m(n+2) - (2n+1) == c, c > 0.
+  // 🔴 $m=2$ 이면 좌변이 $n$ 과 무관하게 $3$ 이라 답이 하나로 안 선다.
+  "49": (f) =>
+    f.m! * (f.n! + 2) - (2 * f.n! + 1) === f.c! && f.c! >= 1 && f.m! >= 3,
+  // 자릿수 배수: tens == m·ones, 두 자리이고, 바꾼 수가 d 만큼 작다
+  "50": (f) =>
+    f.tens! === f.m! * f.ones! &&
+    f.tens! >= 1 &&
+    f.tens! <= 9 &&
+    f.ones! >= 1 &&
+    f.N! === 10 * f.tens! + f.ones! &&
+    f.N! - (10 * f.ones! + f.tens!) === f.d!,
 };
 
 /**
@@ -295,6 +326,46 @@ const CONTENT_CHECKS: Record<string, (content: string) => number> = {
       (1 - 2 * Number(m))
     );
   },
+  "45": (c) => {
+    const [, word, sum] = c.match(/연속하는 두 (짝|홀)수의 합이 \$(\d+)\$/)!;
+    const big = (Number(sum) + 2) / 2;
+    // 낱말과 홀짝이 어긋나면 발문이 성립하지 않는다 — 여기서 걸린다.
+    expect(big % 2).toBe(word === "짝" ? 0 : 1);
+    return big;
+  },
+  "46": (c) => {
+    const [, a, b, plus, d] = c.match(
+      /어떤 수의 \$\\dfrac\{(\d+)\}\{(\d+)\}\$보다 \$(\d+)\$만큼 큰 수는 \$(\d+)\$/,
+    )!;
+    return ((Number(d) - Number(plus)) * Number(b)) / Number(a);
+  },
+  "47": (c) => {
+    const [, a, wrong] = c.match(
+      /어떤 수에 \$(\d+)\$.* 곱했더니 \$(\d+)\$이 되었다/,
+    )!;
+    return Number(wrong) / Number(a) + Number(a);
+  },
+  "48": (c) => {
+    const [, d, m] = c.match(
+      /차가 \$(\d+)\$이고, 큰 수는 작은 수의 \$(\d+)\$배/,
+    )!;
+    return (Number(d) / (Number(m) - 1)) * Number(m);
+  },
+  "49": (c) => {
+    const [, m, k] = c.match(
+      /가장 큰 수의 \$(\d+)\$배가 나머지 두 수의 합보다 \$(\d+)\$만큼/,
+    )!;
+    // m(n+2) - (2n+1) = k  ⇔  n(m-2) = k + 1 - 2m
+    return (Number(k) + 1 - 2 * Number(m)) / (Number(m) - 2);
+  },
+  "50": (c) => {
+    const [, m, d] = c.match(
+      /일의 자리의 숫자의 \$(\d+)\$배이고.*처음 수보다 \$(\d+)\$만큼 작다/,
+    )!;
+    // 9·ones·(m-1) = d  ⇔  ones = d / (9(m-1)) · 처음 수 = 10·m·ones + ones
+    const ones = Number(d) / (9 * (Number(m) - 1));
+    return (10 * Number(m) + 1) * ones;
+  },
 };
 
 /** 답 문자열의 첫 수가 facts 의 이 키와 같아야 한다 — 답이 엉뚱한 수를 찍는 것을 막는다. */
@@ -343,6 +414,12 @@ const ANSWER_KEY: Record<string, string> = {
   "42": "total",
   "43": "n",
   "44": "k",
+  "45": "big",
+  "46": "x",
+  "47": "right",
+  "48": "big",
+  "49": "n",
+  "50": "N",
 };
 
 function firstNumber(text: string): number {
@@ -351,18 +428,18 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중1 일차방정식의 활용 44유형", () => {
+describe("중1 일차방정식의 활용 50유형", () => {
   const entries = registeredTypes().filter(
     (e) => e.rpmMinor === "일차방정식의 활용",
   );
 
-  it("RPM 색인의 22유형 + 갈래 D 가 지은 22유형이 빈틈없이 등록돼 있다", () => {
+  it("RPM 색인의 22유형 + 갈래 D 가 지은 28유형이 빈틈없이 등록돼 있다", () => {
     // 01~22 는 RPM 색인 그대로, 23~38 은 두 소단원을 10유형으로 채우려고 지은 것.
     // **빈틈없이** 잇는지 본다 — 번호를 건너뛰면 다음 사람이 그 자리를 다시 쓴다.
-    expect(entries.length).toBe(44);
+    expect(entries.length).toBe(50);
     const nums = entries.map((e) => e.rpmType).sort();
     expect(nums).toEqual(
-      Array.from({ length: 44 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 50 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
   });
 
