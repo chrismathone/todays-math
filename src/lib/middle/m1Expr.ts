@@ -34,7 +34,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul } from "./m2Josa";
+import { eulReul, euroRo } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중1";
@@ -149,7 +149,7 @@ function equalityPropertySupplement(
       const c = intBetween(rng, 2, 6);
       if (mode === 0) {
         return {
-          content: `등식 $${a}x=${a * x}$의 양변에 $${b}$를 더하여 얻은 등식을 쓰시오.`,
+          content: `등식 $${a}x=${a * x}$의 양변에 $${b}$${eulReul(b)} 더하여 얻은 등식을 쓰시오.`,
           answer: `$${a}x+${b}=${a * x + b}$`,
           solution: `등식의 양변에 같은 수를 더해도 등식은 성립하므로 $${a}x+${b}=${a * x}+${b}$, 즉 $${a}x+${b}=${a * x + b}$이다.`,
           facts: { mode, x, a, b, c },
@@ -157,7 +157,7 @@ function equalityPropertySupplement(
       }
       if (mode === 1) {
         return {
-          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$를 빼어 얻은 등식을 쓰시오.`,
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$${eulReul(b)} 빼어 얻은 등식을 쓰시오.`,
           answer: `$${a}x=${a * x}$`,
           solution: `등식의 양변에서 같은 수를 빼도 등식은 성립한다. 따라서 $${a}x+${b}-${b}=${a * x + b}-${b}$에서 $${a}x=${a * x}$이다.`,
           facts: { mode, x, a, b, c },
@@ -165,7 +165,7 @@ function equalityPropertySupplement(
       }
       if (mode === 2) {
         return {
-          content: `등식 $x=${x}$의 양변에 $${a}$를 곱하여 얻은 등식을 쓰시오.`,
+          content: `등식 $x=${x}$의 양변에 $${a}$${eulReul(a)} 곱하여 얻은 등식을 쓰시오.`,
           answer: `$${a}x=${a * x}$`,
           solution: `등식의 양변에 같은 수를 곱해도 등식은 성립하므로 $${a}x=${a}\\times${x}=${a * x}$이다.`,
           facts: { mode, x, a, b, c },
@@ -173,34 +173,38 @@ function equalityPropertySupplement(
       }
       if (mode === 3) {
         return {
-          content: `등식 $${a}x=${a * x}$의 양변을 $${a}$로 나누어 얻은 등식을 쓰시오.`,
+          content: `등식 $${a}x=${a * x}$의 양변을 $${a}$${euroRo(a)} 나누어 얻은 등식을 쓰시오.`,
           answer: `$x=${x}$`,
-          solution: `$${a}\ne0$이므로 등식의 양변을 $${a}$로 나누어도 등식은 성립한다. 따라서 $x=${x}$이다.`,
+          // ⚠️ 예전에는 `$${a}\ne0$` 이라 적혀 있었다 — 템플릿 리터럴에서 `\n` 이
+          //    **줄바꿈**으로 먹혀 지면에 「$5<줄바꿈>e0$」이 나갔다. `\\ne` 로 적는다.
+          solution: `$${a}\\ne 0$이므로 등식의 양변을 $${a}$${euroRo(a)} 나누어도 등식은 성립한다. 따라서 $x=${x}$이다.`,
           facts: { mode, x, a, b, c },
         };
       }
       if (mode === 4) {
         return {
-          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$를 뺀 뒤 양변을 $${a}$로 나누어 얻은 $x$의 값을 구하시오.`,
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$${eulReul(b)} 뺀 뒤 양변을 $${a}$${euroRo(a)} 나누어 얻은 $x$의 값을 구하시오.`,
           answer: `$${x}$`,
-          solution: `양변에서 $${b}$를 빼면 $${a}x=${a * x}$이고, 양변을 $${a}$로 나누면 $x=${x}$이다.`,
+          solution: `양변에서 $${b}$${eulReul(b)} 빼면 $${a}x=${a * x}$이고, 양변을 $${a}$${euroRo(a)} 나누면 $x=${x}$이다.`,
           facts: { mode, x, a, b, c },
         };
       }
       if (mode === 5) {
         const right = c * (a * x + b);
         return {
-          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에 같은 수 $k$를 곱하였더니 $${c * a}x+${c * b}=${right}$이 되었다. $k$의 값을 구하시오.`,
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에 같은 수 $k$를 곱하였더니 $${c * a}x+${c * b}=${right}$${iGa(right)} 되었다. $k$의 값을 구하시오.`,
           answer: `$${c}$`,
-          solution: `$${a}x$의 계수가 $${a}$에서 $${c * a}$로 바뀌었으므로 양변에 곱한 수는 $k=${c}$이다. 상수항도 $${b}\\times${c}=${c * b}$로 조건을 만족한다.`,
+          solution: `$x$의 계수가 $${a}$에서 $${c * a}$${euroRo(c * a)} 바뀌었으므로 양변에 곱한 수는 $k=${c}$이다. 상수항도 $${b}\\times${c}=${c * b}$${euroRo(c * b)} 조건을 만족한다.`,
           facts: { mode, x, a, b, c },
         };
       }
       const target = a * x + b;
       return {
-        content: `등식 $${a}x+${b}=${target}$에서 등식의 성질을 한 번 사용하여 얻을 수 있는 등식 $x=${x}$에서, 양변에 마지막으로 나눈 수를 구하시오.`,
+        // ⚠️ 예전 발문은 「등식의 성질을 **한 번** 사용하여」였는데 해설은 두 번
+        //    쓴다(빼고, 나눈다). 발문과 해설이 어긋나면 값 검산으로는 안 잡힌다.
+        content: `등식 $${a}x+${b}=${target}$의 양변에서 $${b}$${eulReul(b)} 뺀 뒤, 양변을 같은 수로 나누었더니 $x=${x}$${iGa(x)} 되었다. 나눈 수를 구하시오.`,
         answer: `$${a}$`,
-        solution: `먼저 양변에서 $${b}$를 빼면 $${a}x=${a * x}$이다. 여기서 $x=${x}$를 얻으려면 양변을 $${a}$로 나누어야 한다.`,
+        solution: `먼저 양변에서 $${b}$${eulReul(b)} 빼면 $${a}x=${a * x}$이다. 여기서 $x=${x}$${eulReul(x)} 얻으려면 양변을 $${a}$${euroRo(a)} 나누어야 한다.`,
         facts: { mode, x, a, b, c },
       };
     },
@@ -237,7 +241,7 @@ function solutionApplicationSupplement(
         return {
           content: `방정식 $${p}x+a=${a + p * r}$의 해가 $x=${r}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `$x=${r}$을 대입하면 $${p}\\times${r}+a=${a + p * r}$이므로 $a=${a}$이다.`,
+          solution: `$x=${r}$${eulReul(r)} 대입하면 $${p}\\times${r}+a=${a + p * r}$이므로 $a=${a}$이다.`,
           facts: { mode, r, p, q, a },
         };
       }
@@ -256,7 +260,7 @@ function solutionApplicationSupplement(
         return {
           content: `방정식 $\\dfrac{x+a}{${k}}=${r + p}$의 해가 $x=${b}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${k * (r + p) - b}$`,
-          solution: `$x=${b}$를 대입하면 $\\dfrac{${b}+a}{${k}}=${r + p}$이다. 따라서 $${b}+a=${k * (r + p)}$이므로 $a=${k * (r + p) - b}$이다.`,
+          solution: `$x=${b}$${eulReul(b)} 대입하면 $\\dfrac{${b}+a}{${k}}=${r + p}$이다. 따라서 $${b}+a=${k * (r + p)}$이므로 $a=${k * (r + p) - b}$이다.`,
           facts: { mode, r, p, q, a, k, b },
         };
       }
@@ -265,14 +269,14 @@ function solutionApplicationSupplement(
         return {
           content: `방정식 $ax-${q}=${c}$의 해가 자연수 $${r}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${p}$`,
-          solution: `$x=${r}$을 대입하면 $${r}a-${q}=${c}$이므로 $${r}a=${p * r}$, $a=${p}$이다.`,
+          solution: `$x=${r}$${eulReul(r)} 대입하면 $${r}a-${q}=${c}$이므로 $${r}a=${p * r}$, $a=${p}$이다.`,
           facts: { mode, r, p, q, a, c },
         };
       }
       if (mode === 4) {
         const c = intBetween(rng, 2, 8);
         return {
-          content: `방정식 $(a-${p})x=${c}$가 해를 갖지 않을 때, 상수 $a$의 값을 구하시오.`,
+          content: `방정식 $(a-${p})x=${c}$${iGa(c)} 해를 갖지 않을 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${p}$`,
           solution: `해가 없으려면 $x$의 계수는 $0$이고 우변은 $0$이 아니어야 한다. 따라서 $a-${p}=0$에서 $a=${p}$이다.`,
           facts: { mode, r, p, q, a, c },
@@ -282,7 +286,7 @@ function solutionApplicationSupplement(
       return {
         content: `방정식 $a(x+${b})=${p}x+${p * b}$의 해가 무수히 많을 때, 상수 $a$의 값을 구하시오.`,
         answer: `$${p}$`,
-        solution: `양변을 전개했을 때 $x$의 계수와 상수항이 각각 같아야 한다. $x$의 계수에서 $a=${p}$이고, 이때 상수항도 $${b}a=${p * b}$로 같다.`,
+        solution: `양변을 전개했을 때 $x$의 계수와 상수항이 각각 같아야 한다. $x$의 계수에서 $a=${p}$이고, 이때 상수항도 $${b}a=${p * b}$${euroRo(p * b)} 같다.`,
         facts: { mode, r, p, q, a, b },
       };
     },
@@ -1152,8 +1156,6 @@ function itemLine(rng: Rng, items: readonly string[]): string | null {
 }
 
 const EQ_TYPES: TypeEntry[] = [
-  ...EQ_PROPERTY_SUPPLEMENTS,
-  ...SOLUTION_APPLICATION_SUPPLEMENTS,
   def(MINOR_EQ, "01", "등식", SEC.방정식해, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
@@ -1785,3 +1787,17 @@ const EQ_TYPES: TypeEntry[] = [
 ];
 
 export const M1_EXPR: TypeEntry[] = [...EXPR_TYPES, ...EQ_TYPES];
+
+/**
+ * 갈래 B 보강 유형 — **RPM 색인 밖의 번호**다. `M1_EXPR` 에 넣지 않는다.
+ *
+ * `middleM1Expr.test.ts` 가 `M1_EXPR` 을 「색인 그대로 33유형」으로 잠근다.
+ * 그 검사는 «유형만 더하고 시험을 안 쓴 경우»를 막는 가드라 **끄면 안 된다**
+ * (`middleTypeCoverage.test.ts` 머리말이 그렇게 적어 두었다). 그래서 보강은
+ * 그 명부 밖에 두고 `midSupB.ts` → `generate.ts` 가 따로 합친다.
+ * 이 배열을 지키는 것은 `src/__tests__/unit/midTypesB.test.ts` 다.
+ */
+export const M1_EXPR_SUP_B: TypeEntry[] = [
+  ...EQ_PROPERTY_SUPPLEMENTS,
+  ...SOLUTION_APPLICATION_SUPPLEMENTS,
+];

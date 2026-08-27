@@ -35,6 +35,7 @@ import { M1_STAT_TYPES } from "./m1Stat";
 import { M1_STAT_FIG } from "./m1StatFig";
 import { M2_TYPES } from "./m2";
 import { M3_TYPES } from "./m3";
+import { MID_SUP_B } from "./midSupB";
 import type { MidProblem, TypeEntry } from "./types";
 
 // 세션별 소유 모듈을 여기서만 합친다 — 병렬 세션은 자기 모듈 파일만 만지므로
@@ -55,6 +56,8 @@ const ALL: TypeEntry[] = [
   ...M1_GEO3,
   ...M2_TYPES,
   ...M3_TYPES,
+  // 갈래 B 가 지은 보강 유형 — RPM 색인 밖이라 모듈 명부에 안 섞는다(midSupB.ts 머리말).
+  ...MID_SUP_B,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();

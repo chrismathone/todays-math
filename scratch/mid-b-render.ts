@@ -36,7 +36,14 @@ for (const e of registeredTypes() as unknown as E[]) {
       } catch (err) {
         html = `katex-error ${err instanceof Error ? err.message : err}`;
       }
-      if (html.includes("katex-error") || html.includes("#cc0000")) {
+      // ⚠️ 열쇠가 셋이다. `.math-raw` 는 **2차 수리까지 실패한 중립 폴백**이라
+      //    붉지도 katex-error 도 아니면서 **날 LaTeX 가 그대로 지면에 나간다**
+      //    (2026-08-27 `\begin{cases}` 줄바꿈이 `\x` 로 죽어 그렇게 나갔다).
+      if (
+        html.includes("katex-error") ||
+        html.includes("#cc0000") ||
+        html.includes("math-raw")
+      ) {
         bad += 1;
         perKey.set(e.key, (perKey.get(e.key) ?? 0) + 1);
         if (bad <= 12)

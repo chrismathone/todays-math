@@ -16,7 +16,20 @@ import {
 } from "../../src/lib/middle/generate";
 import type { MidProblem, TypeEntry } from "../../src/lib/middle/types";
 
-const EXPECTED_REGISTERED_TYPES = 873;
+/**
+ * **바닥**이다 — 「같은 수」가 아니라 「이보다 적으면 멈춘다」.
+ *
+ * 2026-08-25 에 873 을 **같은 수**로 못 박아 두었는데, 2026-08-27 부터 네 갈래가
+ * 130소단원을 10유형으로 올리려고 RPM 색인 밖 유형을 **짓는다.** 그러면 이 리터럴은
+ * 갈래마다 다른 값으로 움직이는 과녁이 되어 ⑴ 네 갈래가 **같은 한 줄에서 충돌**하고
+ * ⑵ 아무 갈래나 유형 하나만 더해도 말뭉치 빌더가 통째로 멈춘다(실제로 920 에서 막혔다).
+ *
+ * 바닥으로 바꿔도 잃는 것이 없다 — 「말뭉치가 지금 등록표를 빠짐없이 덮었나」는
+ * `probe-middle-combo.ts` 의 `assertInputs` 가 **살아 있는 `registeredTypes()` 와**
+ * 대조해 이미 잠근다(`entries.length !== d.registered` 면 던진다). 여기 바닥은
+ * 「유형이 조용히 **사라지는**」 반대 방향만 막으면 된다.
+ */
+const MIN_REGISTERED_TYPES = 873;
 const DEFAULT_OUTPUT = "C:/tmp/middle-combo/corpus.json";
 const SEEDS = [20260824, 20260825] as const;
 const VARIANTS_PER_SEED = 2;
@@ -136,9 +149,10 @@ function assertEntryMatchesProblem(
 
 function main(): void {
   const entries = registeredTypes();
-  if (entries.length !== EXPECTED_REGISTERED_TYPES) {
+  if (entries.length < MIN_REGISTERED_TYPES) {
     throw new Error(
-      `등록 분모가 달라졌습니다: 기대 ${EXPECTED_REGISTERED_TYPES} / 실제 ${entries.length}`,
+      `등록 분모가 줄었습니다: 바닥 ${MIN_REGISTERED_TYPES} / 실제 ${entries.length}` +
+        ` — 유형이 사라졌는지 보십시오(늘어난 것은 막지 않습니다)`,
     );
   }
 

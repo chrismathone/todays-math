@@ -20,7 +20,6 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
-import { MIDDLE_COMBO_TYPES } from "./combo";
 
 const GRADE = "중2";
 const BOOK = "2-2";
@@ -144,9 +143,29 @@ function areaVolumeRatioSupplement(
     SEC.넓이부피비,
     mode < 2 ? "기본" : "응용",
     (rng): Body => {
-      const p = intBetween(rng, 1, 4);
-      const q = p + intBetween(rng, 1, 4);
+      // 🔴 **닮음비는 기약이어야 한다.** 예전에는 `p`·`q` 를 따로 뽑아 `4:16` 의
+      //    닮음비를 「$2:4$」로, `4:8` 의 부피비를 「$64:512$」로 냈다 — 값은 맞지만
+      //    비를 기약으로 안 쓴 것은 **지면이 틀린 것**이고, 값 검산으로는 안 잡힌다
+      //    (2026-08-24 「값이 맞으면 시험이 다 초록이다」와 같은 자리).
+      const [p, q] = (() => {
+        for (let i = 0; i < 60; i += 1) {
+          const a = intBetween(rng, 1, 4);
+          const b = a + intBetween(rng, 1, 4);
+          let x = a;
+          let y = b;
+          while (y !== 0) {
+            const t = x % y;
+            x = y;
+            y = t;
+          }
+          if (x === 1) return [a, b] as const;
+        }
+        return [1, 2] as const;
+      })();
       const k = intBetween(rng, 2, 6);
+      /** 배율 — 분모가 $1$ 이면 분수를 안 쓴다 (`\dfrac{25}{1}` 금지). */
+      const scale = (num: number, den: number): string =>
+        den === 1 ? String(num) : `\\dfrac{${num}}{${den}}`;
       if (mode === 0) {
         return {
           content: `닮은 두 평면도형의 넓이의 비가 $${p * p}:${q * q}$일 때, 닮음비를 구하시오.`,
@@ -161,7 +180,7 @@ function areaVolumeRatioSupplement(
         return {
           content: `닮은 두 삼각형의 닮음비가 $${p}:${q}$이고 작은 삼각형의 넓이가 $${area}\\,\\mathrm{cm}^2$일 때, 큰 삼각형의 넓이를 구하시오.`,
           answer: `$${x}\\,\\mathrm{cm}^2$`,
-          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\\times\\dfrac{${q * q}}{${p * p}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\\times${scale(q * q, p * p)}=${x}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { mode, p, q, k, area, x },
         };
       }
@@ -187,7 +206,7 @@ function areaVolumeRatioSupplement(
         return {
           content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 겉넓이가 $${surface}\\,\\mathrm{cm}^2$일 때, 큰 입체도형의 겉넓이를 구하시오.`,
           answer: `$${x}\\,\\mathrm{cm}^2$`,
-          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\\times\\dfrac{${q * q}}{${p * p}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\\times${scale(q * q, p * p)}=${x}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { mode, p, q, k, surface, x },
         };
       }
@@ -196,7 +215,7 @@ function areaVolumeRatioSupplement(
       return {
         content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 부피가 $${volume}\\,\\mathrm{cm}^3$일 때, 큰 입체도형의 부피를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}^3$`,
-        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\\times\\dfrac{${q * q * q}}{${p * p * p}}=${x}\\,(\\mathrm{cm}^3)$이다.`,
+        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\\times${scale(q * q * q, p * p * p)}=${x}\\,(\\mathrm{cm}^3)$이다.`,
         facts: { mode, p, q, k, volume, x },
       };
     },
@@ -1312,8 +1331,6 @@ function figButterfly11(
 }
 
 export const M2_GEO_SIM: TypeEntry[] = [
-  ...MIDDLE_COMBO_TYPES,
-  ...AREA_VOLUME_RATIO_SUPPLEMENTS,
   // ── 삼각형의 닮음 조건 (2B 마크 문법: 같은 각 호·직각 기호) ──────────
   def(
     MINOR_SIM,
@@ -2170,6 +2187,21 @@ export const M2_GEO_SIM: TypeEntry[] = [
       };
     },
   ),
+];
+
+/**
+ * 갈래 B 보강 유형 — **RPM 색인 밖의 번호**다. `M2_GEO_SIM` 에 넣지 않는다.
+ *
+ * 왜 따로 두나: `middleM2Geo.test.ts` 가 `M2_GEO_SIM` 을 「RPM 색인 그대로 55유형」
+ * 으로 잠근다(중단원마다 번호가 `01..n` 연속인지까지 본다). 그 시험은 «지어낸
+ * 제목·번호 금지» 가드라 **끄면 안 된다** — 그래서 보강은 그 명부 밖에 두고
+ * `generate.ts` 가 `midSupB.ts` 를 통해 따로 합친다.
+ *
+ * 소단원 이름(`SEC.*`)은 그대로다 — 시험지는 소단원으로 뽑으므로 여기 있어도
+ * 「그 소단원의 유형 10개」에 그대로 센다(`probe-middle-forms.ts` 로 확인).
+ */
+export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
+  ...AREA_VOLUME_RATIO_SUPPLEMENTS,
 
   // ── 보강: 삼각형의 각의 이등분선 ────────────────────────────────────
   def(
@@ -2308,7 +2340,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `외각의 이등분선의 성질에 의해 $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{BD}=\\overline{BC}+\\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이다.`,
+        // ⚠️ 예전 해설은 `x` 를 **정의하지 않고** 썼다 — 「$(9+x):x=7:4$」만 있고
+        //    그 $x$ 가 무엇인지 어디에도 없었다. 값 검산은 통과한다.
+        solution: `외각의 이등분선의 성질에 의해 $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{CD}=x\\,\\mathrm{cm}$라 하면 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이므로 $\\overline{CD}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { p, q, ab, ac, bc, x },
       };
     },
@@ -2323,13 +2357,15 @@ export const M2_GEO_SIM: TypeEntry[] = [
     (rng): Body => {
       const q = intBetween(rng, 1, 4);
       const p = q + intBetween(rng, 1, 3);
-      const unit = intBetween(rng, 2, 5);
       const d = intBetween(rng, 2, 5) * q;
       const x = ((p - q) * d) / q;
       return {
-        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}:${"\\overline{AC}"}=${p}:${q}$이고 $\\overline{CD}=${d}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}:\\overline{AC}=${p}:${q}$이고 $\\overline{CD}=${d}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. 따라서 $(x+${d}):${d}=${p}:${q}$이므로 $q x=${(p - q) * d}$, $x=${x}$이다.`,
+        // ⚠️ 예전에는 `$q x=…$` 라고 적혀 있었다 — **생성기 변수 이름 `q` 가 지면에
+        //    글자로 나갔다.** 값은 맞고 LaTeX 도 옳아서 값 검산도 렌더 검사도
+        //    구조적으로 못 잡는다(2026-08-27). `x` 도 정의하지 않고 쓰고 있었다.
+        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. $\\overline{BC}=x\\,\\mathrm{cm}$라 하면 $(x+${d}):${d}=${p}:${q}$이므로 $${q}x=${(p - q) * d}$에서 $x=${x}$이다.`,
         facts: { p, q, d, x },
       };
     },
@@ -2341,17 +2377,30 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "내각과 외각의 이등분선의 교점",
     SEC.각이등분,
     "심화",
+    // ⚠️ 예전 발문은 「서로 닮은 두 삼각형에서 … 둘째 삼각형의 외각의 이등분선이
+    //    만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이」였다 — **제목(내각과
+    //    외각의 이등분선의 교점)과 아무 상관이 없고**, 둘째 삼각형의 꼭짓점을 안
+    //    정한 채 `$\overline{BC}$` 를 쓰고 있었다. 교과서 문형으로 다시 썼다:
+    //    한 삼각형에서 $\angle A$ 의 **내각** 이등분선 $D$ 와 **외각** 이등분선 $E$
+    //    를 잡고 $\overline{DE}$ 를 묻는다.
     (rng): Body => {
-      const p = intBetween(rng, 2, 5);
+      const p = intBetween(rng, 3, 5);
       const q = intBetween(rng, 1, p - 1);
-      const inside = (p + q) * intBetween(rng, 2, 5);
-      const outside = (p - q) * intBetween(rng, 2, 5);
-      const x = (p * inside) / (p + q) + (q * outside) / (p - q);
+      // 삼각형이 되려면 $\overline{AB}+\overline{AC}>\overline{BC}$ 이고
+      // $|\overline{AB}-\overline{AC}|<\overline{BC}$ 여야 한다. 아래 `u` 범위가
+      // 그 둘을 동시에 만족시킨다 ($p-q<u<p+q$).
+      const u = p - q + intBetween(rng, 1, Math.max(1, 2 * q - 1));
+      const ab = p * u;
+      const ac = q * u;
+      const bc = (p + q) * (p - q);
+      const dc = q * (p - q); // 내분점 D 에서 $\overline{DC}$
+      const ce = q * (p + q); // 외분점 E 에서 $\overline{CE}$
+      const x = dc + ce; // $=2pq$
       return {
-        content: `서로 닮은 두 삼각형에서 대응하는 두 변의 길이의 비가 각각 $${p}:${q}$이다. 첫째 삼각형의 내각의 이등분선이 마주 보는 변(길이 $${inside}\\,\\mathrm{cm}$)을 긴 쪽부터 나눈 길이와, 둘째 삼각형의 외각의 이등분선이 만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이($\\overline{BC}=${outside}\\,\\mathrm{cm}$)의 합을 구하시오.`,
+        content: `삼각형 $ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$, $\\angle A$의 외각의 이등분선이 $\\overline{BC}$의 연장선과 만나는 점을 $E$라 하자. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `내분에서 긴 쪽은 $${inside}\\times\\dfrac{${p}}{${p + q}}=${(p * inside) / (p + q)}\\,(\\mathrm{cm})$이다. 외분에서 짧은 변에 대응하는 바깥 선분은 $${outside}\\times\\dfrac{${q}}{${p - q}}=${(q * outside) / (p - q)}\\,(\\mathrm{cm})$이다. 따라서 합은 $${x}\\,\\mathrm{cm}$이다.`,
-        facts: { p, q, inside, outside, x },
+        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이다.\n내각의 이등분선에서 $\\overline{BD}:\\overline{DC}=${p}:${q}$이므로 $\\overline{DC}=${bc}\\times\\dfrac{${q}}{${p + q}}=${dc}\\,(\\mathrm{cm})$이다.\n외각의 이등분선에서 $\\overline{BE}:\\overline{CE}=${p}:${q}$이고 $\\overline{BE}-\\overline{CE}=\\overline{BC}$이므로 $\\overline{CE}=${bc}\\times\\dfrac{${q}}{${p - q}}=${ce}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{DE}=\\overline{DC}+\\overline{CE}=${dc}+${ce}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { p, q, ab, ac, bc, dc, ce, x },
       };
     },
   ),
