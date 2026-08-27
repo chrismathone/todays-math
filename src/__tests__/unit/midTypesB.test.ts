@@ -685,6 +685,63 @@ const CHECKS: Record<string, Check> = {
     const small = nums(spans[1]!)[0]!;
     expect(nums(answer)[0]).toBe((small * q! ** 3) / p! ** 3);
   },
+  // ── 중2 여러 가지 연립방정식의 풀이 ───────────────────────
+  "2-1|연립일차방정식|50": (p) => {
+    const [x, y] = nums(p.answer);
+    for (const row of casesRows(p.content))
+      expect(evalLinear(row, x!, y!), `${row} @(${x},${y})`).toBeCloseTo(0, 9);
+  },
+  "2-1|연립일차방정식|51": ({ content, answer }) => {
+    // 「$0.ax+0.by=0.c$의 양변에 $10$」 — 열 배가 맞는지 **대입해서** 본다
+    const src = stripDollar(content.match(/\$[^$]*\$/)![0]);
+    const got = stripDollar(answer.match(/\$[^$]*\$/)![0]);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(sideDiff(got, x, y)).toBeCloseTo(10 * sideDiff(src, x, y), 9);
+  },
+  "2-1|연립일차방정식|52": ({ content, answer }) => {
+    const src = stripDollar(content.match(/\$[^$]*\$/)![0]);
+    const got = stripDollar(answer.match(/\$[^$]*\$/)![0]);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(sideDiff(got, x, y)).toBeCloseTo(sideDiff(src, x, y), 9);
+  },
+  "2-1|연립일차방정식|53": ({ content, answer }) => {
+    const src = stripDollar(content.match(/\$[^$]*\$/)![0]);
+    const got = stripDollar(answer.match(/\$[^$]*\$/)![0]);
+    const mul = Number(content.match(/양변에 \$(\d+)\$/)![1]);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(sideDiff(got, x, y)).toBeCloseTo(mul * sideDiff(src, x, y), 9);
+  },
+  // ── 중1 정다면체 ──────────────────────────────────────────
+  //
+  // `PLATONIC` 표를 **안 쓴다** — 이름에서 면의 수를 읽고, 오일러 공식
+  // ($V-E+F=2$)과 $2E=($면의 변의 수$)\times F$ 로 따로 잰다.
+  "1-2|다면체와 회전체|50": ({ content, answer, solution }) => {
+    const F = facesFromName(content);
+    const [V, E] = nums(
+      solution.match(/꼭짓점은 \$\d+\$개, 모서리는 \$\d+\$개/)![0],
+    );
+    expect(V! - E! + F).toBe(2);
+    const s = (2 * E!) / F;
+    expect([3, 4, 5]).toContain(s);
+    expect(nums(answer)).toEqual([V! + E!]);
+  },
+  "1-2|다면체와 회전체|51": ({ content, answer }) => {
+    const s = { 정삼각형: 3, 정사각형: 4, 정오각형: 5 }[
+      content.match(/정(삼|사|오)각형/)![0] as "정삼각형"
+    ]!;
+    const q = Number(content.match(/개수가 \$(\d+)\$/)![1]);
+    // $2E=sF=qV$ 와 $V-E+F=2$ 에서 $F$ 를 푼다
+    const F = (2 * 2 * q) / (2 * s - s * q + 2 * q);
+    expect(nums(answer)).toEqual([F]);
+  },
+  "1-2|다면체와 회전체|52": ({ content, answer }) => {
+    const [F, E] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    expect(nums(answer)).toEqual([2 + E! - F!]);
+  },
+  "1-2|다면체와 회전체|53": ({ content, answer }) => {
+    // 쌍대 — 새 정다면체의 꼭짓점 수는 원래 정다면체의 **면의 수**다
+    expect(nums(answer)).toEqual([facesFromName(content)]);
+  },
   // ── 중2 삼각형의 닮음 조건 ────────────────────────────────
   "2-2|도형의 닮음|50": ({ content, answer }) => {
     const { AB, BC, CA, DE, EF } = segs(content);
@@ -864,6 +921,21 @@ function expectMonoIdentity(
       kind === "mul" ? k * x * evalPoly(A, x, y) : evalPoly(A, x, y) / (k * x);
     expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 9);
   }
+}
+
+/** `A=B` 꼴 한 식의 **좌변−우변**. `evalLinear` 를 그대로 쓴다. */
+function sideDiff(tex: string, x: number, y: number): number {
+  return evalLinear(tex, x, y);
+}
+
+/**
+ * 「정팔면체」 같은 이름에서 **면의 수**를 읽는다 — 이름이 곧 그 수다.
+ * 생성기의 표(`PLATONIC`)를 안 쓴다(쓰면 동어반복이다).
+ */
+function facesFromName(text: string): number {
+  const m = text.match(/정(사|육|팔|십이|이십)면체/);
+  if (!m) throw new Error(`정다면체 이름을 못 찾았다: ${text}`);
+  return { 사: 4, 육: 6, 팔: 8, 십이: 12, 이십: 20 }[m[1] as "사"]!;
 }
 
 /** 발문에 적힌 선분 길이들. */

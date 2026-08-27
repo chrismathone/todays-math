@@ -528,6 +528,158 @@ const POLY_SUPPLEMENTS: TypeEntry[] = [
   ),
 ];
 
+/**
+ * 중2 「여러 가지 연립방정식의 풀이」 보강 넷 — pool 갈래가 **응용4·심화2** 라
+ * 기본이 하나도 없다. 넷 다 기본이다.
+ *
+ * 이미 있는 08·09·10·11(괄호·소수·비례식·$A=B=C$)은 전부 **응용**이라, 여기서는
+ * 그 앞 단계 — 「고쳐 쓴 식을 답하기」와 「분수 계수 풀기」 — 를 맡는다.
+ */
+const SYSTEM_VARIANT_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3] as const).map(
+  (mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      "연립일차방정식",
+      String(50 + mode),
+      [
+        "계수가 분수인 연립방정식 풀기",
+        "소수 계수를 정수로 고친 식 쓰기",
+        "괄호를 풀어 정리한 식 쓰기",
+        "분모를 없애어 정수 계수로 고친 식 쓰기",
+      ][mode]!,
+      "여러 가지 연립방정식의 풀이",
+      "기본",
+      (rng): Body => {
+        if (mode === 0) {
+          const p = intBetween(rng, 2, 4);
+          const q = attempt(40, () => {
+            const v = intBetween(rng, 2, 5);
+            return v === p ? null : v;
+          });
+          const u = intBetween(rng, 1, 4);
+          const v = intBetween(rng, 1, 4);
+          const x = p * u;
+          const y = q * v;
+          return {
+            content: `연립방정식 $\\begin{cases}\\dfrac{x}{${p}}+\\dfrac{y}{${q}}=${u + v}\\\\x-y=${x - y}\\end{cases}$를 푸시오.`,
+            answer: `$x=${x},\\ y=${y}$`,
+            solution: `첫째 식의 양변에 $${p * q}$${eulReul(p * q)} 곱하면 $${q}x+${p}y=${p * q * (u + v)}$이다.\n둘째 식과 연립하여 풀면 $x=${x}$, $y=${y}$이다.`,
+            facts: { mode, p, q, x, y },
+          };
+        }
+        if (mode === 1) {
+          const a = intBetween(rng, 1, 9);
+          const b = intBetween(rng, 1, 9);
+          const c = intBetween(rng, 1, 9);
+          return {
+            content: `일차방정식 $0.${a}x+0.${b}y=0.${c}$의 양변에 $10$을 곱하여 계수와 상수항을 모두 정수로 고친 식을 쓰시오.`,
+            answer: `$${coefTerm(a, "x")}+${coefTerm(b, "y")}=${c}$`,
+            solution: `소수의 계수를 정수로 고치려면 양변에 $10$${eulReul(10)} 곱한다.\n$0.${a}x\\times10=${coefTerm(a, "x")}$, $0.${b}y\\times10=${coefTerm(b, "y")}$, $0.${c}\\times10=${c}$이므로 $${coefTerm(a, "x")}+${coefTerm(b, "y")}=${c}$이다.`,
+            facts: { mode, a, b, c },
+          };
+        }
+        if (mode === 2) {
+          const p = intBetween(rng, 2, 5);
+          const q = intBetween(rng, 2, 5);
+          const r = intBetween(rng, 1, 9);
+          // 빼는 항의 계수를 `p*q+1` 로 두면 $y$ 의 계수가 **늘 $-1$** 이라
+          // 변형이 뜻을 잃는다. `t` 만큼 넘겨 갈래가 생기게 한다.
+          const t = intBetween(rng, 1, 3);
+          const yCoef = -t;
+          return {
+            content: `일차방정식 $${p}(x+${q}y)-${p * q + t}y=${r}$의 괄호를 풀어 $x$, $y$에 대하여 정리한 식을 쓰시오.`,
+            answer: `$${coefTerm(p, "x")}${yCoef > 0 ? "+" : "-"}${coefTerm(Math.abs(yCoef), "y")}=${r}$`,
+            solution: `괄호를 풀면 $${coefTerm(p, "x")}+${coefTerm(p * q, "y")}-${coefTerm(p * q + t, "y")}=${r}$이다.\n동류항끼리 모으면 $${coefTerm(p, "x")}${yCoef > 0 ? "+" : "-"}${coefTerm(Math.abs(yCoef), "y")}=${r}$이다.`,
+            facts: { mode, p, q, r, t, yCoef },
+          };
+        }
+        const p = intBetween(rng, 2, 4);
+        const q = attempt(40, () => {
+          const v = intBetween(rng, 2, 5);
+          return v === p ? null : v;
+        });
+        const lcm = (p * q) / gcdOf(p, q);
+        const r = intBetween(rng, 1, 6);
+        return {
+          content: `일차방정식 $\\dfrac{x}{${p}}-\\dfrac{y}{${q}}=${r}$의 양변에 $${lcm}$${eulReul(lcm)} 곱하여 계수와 상수항을 모두 정수로 고친 식을 쓰시오.`,
+          answer: `$${coefTerm(lcm / p, "x")}-${coefTerm(lcm / q, "y")}=${lcm * r}$`,
+          solution: `두 분모 $${p}$${waGwa(p)} $${q}$의 최소공배수는 $${lcm}$이다.\n양변에 $${lcm}$${eulReul(lcm)} 곱하면 $${coefTerm(lcm / p, "x")}-${coefTerm(lcm / q, "y")}=${lcm * r}$이다.`,
+          facts: { mode, p, q, lcm, r },
+        };
+      },
+    ),
+);
+
+/** 정다면체 다섯 — [이름, 면의 모양, 한 꼭짓점에 모인 면, 면 F, 꼭짓점 V, 모서리 E]. */
+const PLATONIC = [
+  ["정사면체", "정삼각형", 3, 4, 4, 6],
+  ["정육면체", "정사각형", 3, 6, 8, 12],
+  ["정팔면체", "정삼각형", 4, 8, 6, 12],
+  ["정십이면체", "정오각형", 3, 12, 20, 30],
+  ["정이십면체", "정삼각형", 5, 20, 12, 30],
+] as const;
+
+/**
+ * 중1 「정다면체」 보강 넷 — pool 갈래가 기본2·응용3·심화1 이라 넷이 모자란다.
+ * 기본 둘 · 응용 하나 · 심화 하나로 나눠 넣는다.
+ *
+ * 정다면체의 수치는 **표 하나**에서 온다(`PLATONIC`) — 유형마다 손으로 적으면
+ * 한 자리만 고쳐도 나머지가 조용히 어긋난다. 시험은 그 표를 안 쓰고 **오일러
+ * 공식**($V-E+F=2$)과 「면의 모양 × 면의 수 $=$ 모서리의 수 $\times2$」로 따로 잰다.
+ */
+const PLATONIC_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3] as const).map((mode) =>
+  mkType(
+    "중1",
+    "1-2",
+    "다면체와 회전체",
+    String(50 + mode),
+    [
+      "정다면체의 꼭짓점과 모서리의 개수의 합",
+      "면의 모양과 꼭짓점에 모인 면의 개수로 정다면체 찾기",
+      "오일러 공식으로 꼭짓점의 개수 구하기",
+      "정다면체의 각 면의 중심을 이어 만든 정다면체",
+    ][mode]!,
+    "정다면체",
+    mode < 2 ? "기본" : mode === 2 ? "응용" : "심화",
+    (rng): Body => {
+      const i = intBetween(rng, 0, PLATONIC.length - 1);
+      const [name, shape, atVertex, F, V, E] = PLATONIC[i]!;
+      if (mode === 0) {
+        return {
+          content: `${name}의 꼭짓점의 개수와 모서리의 개수의 합을 구하시오.`,
+          answer: `$${V + E}$`,
+          solution: `${name}의 꼭짓점은 $${V}$개, 모서리는 $${E}$개이다.\n따라서 그 합은 $${V}+${E}=${V + E}$이다.`,
+          facts: { mode, F, V, E, x: V + E },
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `면의 모양이 ${shape}이고 한 꼭짓점에 모인 면의 개수가 $${atVertex}$인 정다면체가 있다. 이 정다면체의 면의 개수를 구하시오.`,
+          answer: `$${F}$`,
+          solution: `면의 모양이 ${shape}이고 한 꼭짓점에 면이 $${atVertex}$개 모이는 정다면체는 ${name}이다.\n${name}의 면은 $${F}$개이다.`,
+          facts: { mode, atVertex, F, V, E, x: F },
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `어떤 정다면체의 면의 개수가 $${F}$이고 모서리의 개수가 $${E}$일 때, 꼭짓점의 개수를 구하시오.`,
+          answer: `$${V}$`,
+          solution: `다면체에서 (꼭짓점의 개수)$-$(모서리의 개수)$+$(면의 개수)$=2$가 성립한다.\n따라서 꼭짓점의 개수는 $2+${E}-${F}=${V}$이다.`,
+          facts: { mode, F, E, x: V },
+        };
+      }
+      // 쌍대 — 면의 중심을 이으면 «면의 수»가 새 다면체의 «꼭짓점의 수»가 된다.
+      return {
+        content: `${name}의 각 면의 한가운데 점을 이웃한 면끼리 이어서 새로운 정다면체를 만들었다. 이 새로운 정다면체의 꼭짓점의 개수를 구하시오.`,
+        answer: `$${F}$`,
+        solution: `면의 한가운데 점이 새 정다면체의 꼭짓점이 되므로, 새 정다면체의 꼭짓점의 개수는 ${name}의 면의 개수와 같다.\n${name}의 면은 $${F}$개이므로 꼭짓점은 $${F}$개이다.`,
+        facts: { mode, F, V, E, x: F },
+      };
+    },
+  ),
+);
+
 /** $[lo, hi]$ 에서 부호를 섞어 뽑되 $0$ 과 $\pm1$ 은 안 나온다(지면이 흉해진다). */
 function intNonzeroIn(rng: Rng, lo: number, hi: number): number {
   const v = intBetween(rng, lo, hi);
@@ -563,6 +715,8 @@ export const MID_SUP_B: TypeEntry[] = [
   ...ANGLE_SUPPLEMENTS,
   ...FACTOR_SUPPLEMENTS,
   ...POLY_SUPPLEMENTS,
+  ...SYSTEM_VARIANT_SUPPLEMENTS,
+  ...PLATONIC_SUPPLEMENTS,
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,
