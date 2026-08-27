@@ -215,10 +215,30 @@ a·b·d 를 닫고 한 번 다시 만들면 풀린다」고 했다. **그 고장
    「$…$를 계산하시오」처럼 지시가 하나뿐이면 `resolveMiddleTier` 가 **밑단으로
    내리므로** 기본을 지으려면 발문 안에 조건이 있어야 한다(치환·상황).
 
-## 6. 관문
+## 6. 관문 — 실측 (`scratch/gate2.log`)
 
-- `npx tsc --noEmit` 초록 · `npm run lint` 오류 0
-- `midTypesB.test.ts` **402 tests** 초록 · 변이 6/6 빨강
-- `probe-middle-forms.ts` **50 / 130** · 배선 결함 0
-- 전량 관문(`node scratch/gate2.log`) — §1-⑸ 의 `probe-middle-combo` 눈금 때문에
-  **판정기 쓸기가 빨강**이다. 그 원인은 위에 측정으로 적었다.
+```
+npx tsc --noEmit        초록
+npm run lint            오류 0 (경고만)
+midTypesB.test.ts       402 tests 초록 · 변이 6/6 빨강
+probe-middle-forms.ts   50 / 130 · 배선 결함 0 · --selftest 눈금 7/7
+node scripts/qa/run-tests.mjs   종료 1
+  · vitest  1 failed | 298 passed | 1 skipped (300 파일 · 11,689 tests)
+  · 판정기 19개 · 빨강 1
+```
+
+**들어올 때와 견주면**: 파일 8 실패 · 시험 58 실패 → **파일 1 · 시험 1**.
+
+남은 빨강 **둘 다 내 것이 아니다**:
+
+1. `elemTiersG4Dec.test.ts > 발문·정답·해설 어디에도 꼬리 $0$ 이 없다` —
+   **초등**(다른 세션 파일)이고 실패 이유가 `Test timed out in 20000ms` 다.
+   들어올 때 돌린 관문에서도 같은 시험이 같은 이유로 떨어졌다.
+   이 회차는 `setup 1690s · environment 3427s` 로 **다른 워크트리와 CPU를 다투는
+   중**이었다 — 이 저장소가 여러 번 적은 그 자리다.
+2. `probe-middle-combo.ts` — §1-⑸. **원인을 측정으로 갈라 두었다.**
+
+⚠️ 관문이 「`vitest list` 가 실패해 «돌 예정인 파일»을 못 받았다」고도 적었다.
+   **따로 돌리면 멀쩡하다**(`npx vitest list --filesOnly` → 300파일 · 종료 0).
+   같은 부하 탓으로 보이지만, 그 줄이 뜨면 **분모 가드가 그 회차에는 눈이 먼
+   것**이므로 다음 사람은 그냥 넘기지 말 것.
