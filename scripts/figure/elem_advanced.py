@@ -2401,15 +2401,15 @@ def _net_prism(sides: int) -> str:
     # `_svg` 가 그린 것을 다 담게 viewBox 를 맞춘다 (09 §4-14).
     pad_x, pad_t, pad_b = 10.0, 10.0, 10.0
     ox, oy = pad_x, pad_t
-    parts: list[str] = []
-    for i in range(sides):
-        fill = FACE_FRONT if i % 2 == 0 else FACE_SIDE
-        parts.append(_rect(ox + i * ww, oy, ww, hh, fill=fill, sw=1.15))
-    parts.append(_poly(_ngon_on_edge(sides, ox, oy, ox + ww, oy, "min"), FACE_TOP, 1.15))
-    parts.append(
-        _poly(_ngon_on_edge(sides, ox, oy + hh, ox + ww, oy + hh, "max"), FACE_TOP, 1.15)
-    )
-    return _svg(pad_x * 2 + sides * ww, pad_t + hh + pad_b, "".join(parts))
+    # 옆면 n 장은 세로 변끼리, 두 밑면은 첫 옆면의 가로 변에 맞닿는다 — 그 변들이
+    # **접는 선**이다. 어느 변인지는 `_net_body` 가 공유 여부로 정한다(손으로 안 짚는다).
+    faces = [
+        (_rect_ring(ox + i * ww, oy, ww, hh), FACE_FRONT if i % 2 == 0 else FACE_SIDE)
+        for i in range(sides)
+    ]
+    faces.append((_ngon_on_edge(sides, ox, oy, ox + ww, oy, "min"), FACE_TOP))
+    faces.append((_ngon_on_edge(sides, ox, oy + hh, ox + ww, oy + hh, "max"), FACE_TOP))
+    return _svg(pad_x * 2 + sides * ww, pad_t + hh + pad_b, _net_body(faces))
 
 
 def _prism(spec: Mapping[str, Any]) -> str:
