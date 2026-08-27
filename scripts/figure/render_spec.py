@@ -19,19 +19,11 @@ import json
 import os
 import sys
 
-# 엔진은 **저장소 안**에 있다 (원장님 지시 2026-08-19 「엔진을 우리 프로젝트로 가져와.
-# 계속 사용할거같으니까」). 종전에는 `F:\시험지변환기` 만 봤는데, 그 드라이브가 없는
-# 컴퓨터에서는 도형이 통째로 안 그려졌다 — 그리고 그 사실이 실행해 봐야 드러났다.
-#
-# ⚠️ 우선순위: `FIGURE_ENGINE_PATH`(있으면) → **저장소 안 vendor** → 원본 드라이브.
-#    원본을 마지막에 두는 이유는 «저장소가 정본»이 되게 하려는 것이다. 원본 쪽이
-#    앞서면 두 벌이 갈라져도 아무도 모른다.
-VENDOR_ENGINE_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "vendor",
-    "figure-engine",
-)
-DEFAULT_ENGINE_PATH = r"F:\시험지변환기"
+# 엔진은 **저장소 안**에 있다 (원장님 지시 2026-08-19 「엔진을 우리 프로젝트로 가져와」).
+# 어디를 어떤 차례로 보는가는 `engine_path` **한 곳**에 있다 — 판정기가 `elementary` 를
+# 직접 import 하는 길에서도 같은 규칙이어야 한다(2026-08-28: 두 벌이던 시절 그쪽만
+# `core` 를 못 찾아 시험 50개가 한꺼번에 빨개졌다).
+from engine_path import VENDOR_ENGINE_PATH, engine_root  # noqa: E402
 
 # 스펙은 LLM 이 낸 것이라 통째로 믿지 않는다. 너무 큰 입력은 엔진에 넣기 전에 끊는다.
 MAX_SPEC_BYTES = 64 * 1024
@@ -56,18 +48,7 @@ def main() -> None:
         fail("도형 스펙이 올바른 JSON 이 아닙니다")
         return
 
-    engine = next(
-        (
-            p
-            for p in (
-                os.environ.get("FIGURE_ENGINE_PATH"),
-                VENDOR_ENGINE_PATH,
-                DEFAULT_ENGINE_PATH,
-            )
-            if p and os.path.isdir(p)
-        ),
-        "",
-    )
+    engine = engine_root()
     if not engine:
         fail(f"도형 엔진을 찾을 수 없습니다: {VENDOR_ENGINE_PATH}")
     sys.path.insert(0, engine)

@@ -22,6 +22,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { svgLabels } from "@/lib/figure/svgLabels";
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -61,12 +62,13 @@ function rects(svg: string): Rect[] {
   });
 }
 
+/** 라벨 — 조판된 것(`<g data-label>`)과 그대로 나간 `<text>` 를 한 자로 읽는다. */
 function texts(svg: string): Txt[] {
-  return [...svg.matchAll(/<text ([^>]*?)>([^<]*)<\/text>/g)].map((m) => ({
-    x: Number(/\bx="([-\d.]+)"/.exec(m[1]!)?.[1] ?? NaN),
-    y: Number(/\by="([-\d.]+)"/.exec(m[1]!)?.[1] ?? NaN),
-    anchor: /text-anchor="([^"]*)"/.exec(m[1]!)?.[1] ?? "",
-    t: m[2]!,
+  return svgLabels(svg).map((l) => ({
+    x: l.x,
+    y: l.y,
+    anchor: l.anchor,
+    t: l.text,
   }));
 }
 

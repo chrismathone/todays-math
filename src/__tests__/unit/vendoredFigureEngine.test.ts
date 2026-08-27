@@ -28,12 +28,28 @@ describe("[D-55] 도형 엔진 — 저장소 안에 있다", () => {
 
   it("제품이 **저장소 안 엔진을 먼저** 본다 — 원본 드라이브는 마지막", () => {
     // 순서가 뒤집히면 두 벌이 갈라져도 아무도 모른다.
-    const src = readFileSync("scripts/figure/render_spec.py", "utf8");
+    // ⚠️ 이 결정은 `engine_path.py` **한 곳**에 있다. 종전에는 `render_spec.py` 안에만
+    //    있어서, 판정기가 `elementary` 를 직접 import 하는 길에서는 `core` 를 아예
+    //    못 찾았다(2026-08-28: 그 길로 시험 50개가 한꺼번에 빨개졌다).
+    const src = readFileSync("scripts/figure/engine_path.py", "utf8");
     const vendorAt = src.indexOf("VENDOR_ENGINE_PATH,");
     const driveAt = src.indexOf("DEFAULT_ENGINE_PATH,");
     expect(vendorAt).toBeGreaterThan(0);
     expect(driveAt).toBeGreaterThan(0);
     expect(vendorAt).toBeLessThan(driveAt);
+  });
+
+  it("경로 결정이 **한 벌**이다 — 부르는 쪽이 제 목록을 따로 두지 않는다", () => {
+    // 두 벌이 되는 순간 한쪽만 고쳐지고, 안 고쳐진 쪽은 「엔진이 없다」고 한다.
+    for (const f of [
+      "scripts/figure/render_spec.py",
+      "scripts/figure/elementary.py",
+    ]) {
+      const src = readFileSync(f, "utf8");
+      expect(src, `${f} 가 제 경로 목록을 들고 있다`).not.toContain(
+        'os.environ.get("FIGURE_ENGINE_PATH")',
+      );
+    }
   });
 
   it("일관성 정본이 그 안에 있다 — `type_scale` 과 `verify_figure`", () => {

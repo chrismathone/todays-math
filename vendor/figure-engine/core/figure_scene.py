@@ -20,7 +20,12 @@ import re
 from types import MappingProxyType
 from typing import Any, Iterable, Mapping, Sequence
 
+# `mj_attr` — 「이 라벨을 `data-mj` 로 실을 수 있나」의 규칙은 검사기와 **한 곳**에
+# 있어야 한다. 못 실을 글에 붙이면 안전 검사가 그림 전체를 죽인다.
+from core.figure_quality import mj_attr
 from core.figure_svg import angle_arc, circle_pt, isect
+from core.label_markup import (LabelMarkupError, label_pieces_svg,
+                               label_width_em)
 
 
 Number = int | float
@@ -107,23 +112,49 @@ class StyleProfile:
     name: str = "exam-thin"
     stroke: str = "#111111"
     text_color: str = "#111111"
-    circle_width: float = 1.35
-    segment_width: float = 1.25
-    mark_width: float = 1.0
-    point_radius: float = 1.65
+    # 🔴 **RPM 원본 실측에 맞췄다** (2026-08-28, 원장님 확정 「동일하게」).
+    #    배율은 함께 움직이므로 **도형 선 길이를 1 로 둔 비율**로 재서 맞췄다.
+    #    원본(1-2 p.16 · 0080): 선 길이 78.3pt · 선 굵기 0.80pt · 호 굵기 0.30pt
+    #                          · 라벨 글자 8.00pt
+    #      → 선/길이 1.02%  ·  호/선 0.375배  ·  글자/길이 10.2%
+    #    우리 그림은 보통 180~200 단위를 쓰므로 그 비율을 그대로 옮겼다.
+    #    ⚠️ **호를 도형 선보다 가늘게** — 같은 굵기면 호가 도형의 일부처럼 보인다.
+    circle_width: float = 1.9
+    segment_width: float = 1.9
+    mark_width: float = 0.72
+    point_radius: float = 2.1
     show_points: bool = False
-    font_family: str = "Times New Roman, Batang, serif"
-    font_size: float = 13.0
-    angle_font_size: float = 12.0
-    label_offset: float = 11.5
+    # 🔴 **RPM 그림 글꼴을 찾아서 맞췄다** (2026-08-28).
+    #    원본에 박힌 글꼴(`EHsang-Plain`·`EHhabu-Plain`)은 **부분집합이라 이름이
+    #    지워져 있고 `cmap` 도 없다** — 이름으로는 못 찾는다. 그래서 원본 지면에서
+    #    글자를 오려 내고 설치 글꼴 12종으로 같은 글자를 그려 **겹치는 넓이(IoU)**
+    #    로 쟀다(`scripts/qa/rpm_font_match.py`):
+    #      HancomEQN **0.814** · HyhwpEQ 0.649 · Batang 0.628 · Times 0.558
+    #    숫자·소문자만 보면 0.87~0.97 로 **사실상 같은 글꼴**이다(`A`·`B`·`C` 가
+    #    낮은 것은 오려낸 원본에 윗줄이 딸려 왔기 때문이지 글꼴 차이가 아니다).
+    #    `EHsang`/`EHhabu` 는 한컴 수식 글꼴 식구다 — RPM 이 HWP 로 조판되니 맞다.
+    #    ⚠️ HancomEQN 에 없는 글자가 셋 있다(`□`·`∥`·`∽`) — 뒤 글꼴이 받는다.
+    font_family: str = "Cambria Math, HancomEQN, Times New Roman, serif"
+    #: 이탤릭 조각(변수)에만 쓰는 글꼴. 수식 글꼴에는 이탤릭 판이 없어서
+    #: 그대로 두면 브라우저가 기울기를 흉내 낸다 — 진짜 이탤릭을 따로 준다.
+    font_family_italic: str = "Cambria, Times New Roman, serif"
+    # RPM 실측: 숫자 잉크 높이 0.659em x 8pt = 5.27pt = **밑변(56.4pt)의 9.34%**.
+    #           우리 도형은 180 단위이므로 잉크 16.8 → Cambria Math(0.690em) 에서 24.
+    font_size: float = 24.0
+    angle_font_size: float = 24.0
+    # 글자가 커지면 닻점에서 더 멀리 놓아야 표시 위에 안 앉는다 (글자 24 기준).
+    label_offset: float = 21.0
     padding: float = 12.0
-    angle_radius: float = 15.0
+    # RPM 실측: 각 호 반지름이 밑변의 **14%** 다(우리 옛 값은 8.3%).
+    angle_radius: float = 22.0
     angle_label_distance: float = 25.0
-    dimension_width: float = 1.4        # figure_svg.meas 와 동일 규격
-    dimension_font_size: float = 15.0   # figure_svg.dim_label 과 동일
+    # RPM 실측: 치수 점선은 굵기 0.30pt — 도형 선(0.80)의 **0.375배**이고,
+    #           글자는 도형 라벨과 **같은 8pt** 다. 점선은 `[1.5 1]`(짧고 촘촘).
+    dimension_width: float = 0.72
+    dimension_font_size: float = 24.0
     dimension_offset: float = 14.0
-    dimension_dash: str = "6 4"         # figure_svg.meas 와 동일
-    dimension_halo_width: float = 7.0
+    dimension_dash: str = "5 3"
+    dimension_halo_width: float = 8.0
     halo_color: str = "#ffffff"
     halo_width: float = 4.5
 
@@ -446,13 +477,47 @@ def _point_within_segment(point: Point, a: Point, b: Point, tolerance: float) ->
     return -parameter_tolerance <= parameter <= 1.0 + parameter_tolerance
 
 
-def _text_box(x: float, baseline_y: float, text: str, font_size: float) -> Box:
+#: 기준선 **아래로** 잉크가 내려가는 글자. 없으면 상자 아래끝이 기준선이다.
+_DESCENDERS = set("gjpqy,;()[]{}/")
+
+def _text_box(x: float, baseline_y: float, text: str, font_size: float,
+               metrics: Mapping[str, tuple[float, float, float]] | None = None
+               ) -> Box:
     # Deliberately a little conservative; this is collision/layout geometry,
     # not a font renderer.  CJK glyphs are approximately one em wide.
-    width_units = sum(1.0 if ord(ch) > 0x2FF else 0.61 for ch in text)
+    # 🔴 **재는 쪽과 그리는 쪽이 같은 자를 써야 한다.** 라벨은 `label_markup`
+    #    이 조판하므로(첨자는 작고 연산 앞뒤에 여백이 붙는다) 글자 수를 그대로
+    #    세면 상자가 어긋난다. 조판을 못 하는 글은 예전 어림으로 둔다
+    #    (그 글은 `render_svg` 도 그리기 전에 던진다).
+    # 🔴 **잰 값이 있으면 그것만 쓴다.**  라벨은 MathJax 가 조판하므로 폭·높이도
+    #    MathJax 가 잰 것이 참이다.  여기서 따로 어림하면 조판과 갈라지고,
+    #    갈라진 만큼 라벨이 엉뚱한 자리에 앉는다(실측: 어림이 두 배였을 때
+    #    라벨이 두 배 멀리 밀려났다).
+    if metrics is not None and text in metrics:
+        width_em, ascent_em, descent_em = metrics[text]
+        half = max(0.31, width_em / 2.0) * font_size
+        return (x - half, baseline_y - ascent_em * font_size,
+                x + half, baseline_y + descent_em * font_size)
+    try:
+        width_units = label_width_em(text)
+    except LabelMarkupError:
+        width_units = sum(1.0 if ord(ch) > 0x2FF else 0.61 for ch in text)
     width = max(0.62, width_units) * font_size
-    return (x - width / 2.0, baseline_y - 0.83 * font_size,
-            x + width / 2.0, baseline_y + 0.25 * font_size)
+    # 🔴 **em 상자가 아니라 «잉크 상자»다.**
+    #
+    #    종전에는 기준선 위 0.83em·아래 0.25em(= 1.08em)을 잡았다. 그런데 실제로
+    #    그려지는 잉크는 브라우저 실측으로 **위 0.75em**이고, 내림 글자(g·j·p·q·y)
+    #    가 없으면 **아래는 0**이다. 30% 높은 상자는 비스듬한 선과 더 일찍
+    #    부딪히고, 그만큼 라벨이 멀리 밀려난다 — RPM 실측 18% 자리에 우리는 34%
+    #    였다(`1-2 p.16 · 0080` 의 `3x°+5°`).
+    #
+    #    ⚠️ 판정기(`probe-figure-label-collisions.mjs`)도 같은 자리에서 틀렸었다 —
+    #    `getBBox()` 가 em 상자를 돌려준다. **재는 쪽과 그리는 쪽이 같이** 잉크로
+    #    옮겨야 한다. 한쪽만 옮기면 갈라져도 아무도 모른다.
+    ascent = 0.75 * font_size
+    descent = 0.22 * font_size if any(ch in _DESCENDERS for ch in text) else 0.0
+    return (x - width / 2.0, baseline_y - ascent,
+            x + width / 2.0, baseline_y + descent)
 
 
 def _circle_intersects_box(cx: float, cy: float, radius: float, box: Box) -> bool:
@@ -762,6 +827,10 @@ class FigureScene:
     angles: dict[str, AngleMark] = field(default_factory=dict, init=False)
     dimensions: dict[str, DimensionMark] = field(default_factory=dict, init=False)
     labels: dict[str, PointLabel] = field(default_factory=dict, init=False)
+    #: 라벨 → (폭em, 밑선 위em, 밑선 아래em).  **TS 가 MathJax 로 잰 값**이다.
+    #: 비어 있으면 예전 어림으로 물러선다(파이썬만 직접 부르는 QA 도구용).
+    label_metrics: dict[str, tuple[float, float, float]] = field(
+        default_factory=dict, init=False)
 
     def __post_init__(self) -> None:
         if not isinstance(self.style, StyleProfile):
@@ -798,6 +867,7 @@ class FigureScene:
         scene.angles.update(self.angles)
         scene.dimensions.update(self.dimensions)
         scene.labels.update(self.labels)
+        scene.label_metrics.update(self.label_metrics)
         return scene
 
     def _ensure_global_new(self, name: str, kind: str) -> None:
@@ -1604,7 +1674,7 @@ class FigureScene:
         for rank, distance in enumerate(distances):
             x = vertex.x + distance * math.cos(mid)
             y = vertex.y + distance * math.sin(mid) + 0.32 * fs
-            box = _text_box(x, y, angle.label, fs)
+            box = _text_box(x, y, angle.label, fs, self.label_metrics)
             cost = self._candidate_cost("", _expand_box(box, pad), occupied, rank, 0,
                                         own_angle=angle.name)
             if best is None or cost < best[0]:
@@ -1659,7 +1729,7 @@ class FigureScene:
                     direction = arm + turn * math.radians(turn_deg)
                     x = vertex.x + distance * math.cos(direction)
                     y = vertex.y + distance * math.sin(direction) + 0.32 * fs
-                    box = _text_box(x, y, angle.label, fs)
+                    box = _text_box(x, y, angle.label, fs, self.label_metrics)
                     if self._label_hits_geometry(box):
                         continue
                     grown = _expand_box(box, pad)
@@ -1912,7 +1982,7 @@ class FigureScene:
                         on_curve = samples[index]
                         position = (on_curve.x, on_curve.y + 0.32 * font_size)
                         return position, _expand_box(
-                            _text_box(*position, dimension.label, font_size),
+                            _text_box(*position, dimension.label, font_size, self.label_metrics),
                             self.style.dimension_halo_width / 2.0 + 0.5,
                         )
 
@@ -1935,7 +2005,7 @@ class FigureScene:
                                 apex.y + ny * sign * shift + 0.32 * font_size,
                             )
                             moved_box = _expand_box(
-                                _text_box(*moved, dimension.label, font_size),
+                                _text_box(*moved, dimension.label, font_size, self.label_metrics),
                                 self.style.dimension_halo_width / 2.0 + 0.5,
                             )
                             label_position, label_box = moved, moved_box
@@ -2160,7 +2230,7 @@ class FigureScene:
                 dx = 0.0 if label.dx is None else label.dx
                 dy = 0.0 if label.dy is None else label.dy
                 x, y = point.x + dx, point.y + dy + 0.32 * fs
-                box = _text_box(x, y, label.text, fs)
+                box = _text_box(x, y, label.text, fs, self.label_metrics)
                 candidates = [((x, y), box,
                                self._candidate_cost(label.point, box, occupied, 0, 0,
                                                     dimension_curves))]
@@ -2174,7 +2244,7 @@ class FigureScene:
                                     + distance_rank * max(3.5, 0.55 * fs))
                         x = point.x + ux * distance
                         y = point.y + uy * distance + 0.32 * fs
-                        box = _text_box(x, y, label.text, fs)
+                        box = _text_box(x, y, label.text, fs, self.label_metrics)
                         candidates.append((
                             (x, y), box,
                             self._candidate_cost(
@@ -2305,7 +2375,8 @@ class FigureScene:
             parts.append("Z")
             fills.append(
                 f'<path d="{" ".join(parts)}" '
-                f'fill="{escape(region.fill, quote=True)}" stroke="none"/>')
+                f'fill="{escape(region.fill, quote=True)}" stroke="none" '
+                f'data-region="{escape(region.name, quote=True)}"/>')
 
         for circle_obj in self.circles.values():
             if not circle_obj.draw:
@@ -2443,8 +2514,9 @@ class FigureScene:
                 f'font-style="italic" text-anchor="middle" '
                 f'fill="{escape(style.text_color, quote=True)}" paint-order="stroke" '
                 f'stroke="{escape(style.halo_color, quote=True)}" '
-                f'stroke-width="{_fmt(style.halo_width)}" stroke-linejoin="round">'
-                f'{escape(angle.label)}</text>')
+                f'stroke-width="{_fmt(style.halo_width)}" stroke-linejoin="round" '
+                f'{mj_attr(angle.label)}>'
+                f'{label_pieces_svg(angle.label, style.angle_font_size, style.font_family_italic)}</text>')
         for dimension_name in sorted(self.dimensions):
             dimension = self.dimensions[dimension_name]
             layout = resolved.dimension_layouts[dimension.name]
@@ -2456,7 +2528,9 @@ class FigureScene:
                 f'text-anchor="middle" fill="{escape(style.text_color, quote=True)}" '
                 f'paint-order="stroke fill" stroke="{escape(style.halo_color, quote=True)}" '
                 f'stroke-width="{_fmt(style.dimension_halo_width)}" '
-                f'stroke-linejoin="round">{escape(dimension.label)}</text>')
+                f'stroke-linejoin="round" '
+                f'{mj_attr(dimension.label)}>'
+                f'{label_pieces_svg(dimension.label, fs, style.font_family_italic)}</text>')
         for point_name in sorted(self.labels):
             label = self.labels[point_name]
             x, y = resolved.label_positions[point_name]
@@ -2465,8 +2539,9 @@ class FigureScene:
             labels.append(
                 f'<text x="{_fmt(x + tx)}" y="{_fmt(y + ty)}" '
                 f'font-family="{font_family}" font-size="{_fmt(fs)}"{italic} '
-                f'text-anchor="middle" fill="{escape(style.text_color, quote=True)}">'
-                f'{escape(label.text)}</text>')
+                f'text-anchor="middle" fill="{escape(style.text_color, quote=True)}" '
+                f'{mj_attr(label.text)}>'
+                f'{label_pieces_svg(label.text, fs, style.font_family_italic)}</text>')
 
         background = (f'\n  <rect width="{_fmt(width)}" height="{_fmt(height)}" fill="#ffffff"/>'
                       if self.background == "white" else "")
@@ -2667,7 +2742,7 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
         raise FigureSpecError("FigureSpec must be a mapping")
     allowed_top = {"version", "theme", "canvas", "background", "style",
                    "points", "circles", "segments", "arcs", "regions",
-                   "angles", "dimensions", "labels"}
+                   "angles", "dimensions", "labels", "label_metrics"}
     _strict_keys(spec, allowed_top, "FigureSpec")
     if "version" not in spec:
         raise FigureSpecError("FigureSpec requires version: 2")
@@ -2700,6 +2775,22 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
         scene = FigureScene(style=style, canvas=canvas, background=str(background))
     except (GeometryValidationError, TypeError) as exc:
         raise FigureSpecError(str(exc)) from exc
+
+    # TS 가 MathJax 로 잰 라벨 치수 — 배치는 **이 값만** 쓴다(없으면 어림).
+    raw_metrics = spec.get("label_metrics")
+    if raw_metrics is not None:
+        if not isinstance(raw_metrics, Mapping):
+            raise FigureSpecError("label_metrics must be a mapping")
+        for key, value in raw_metrics.items():
+            if (not isinstance(key, str) or not isinstance(value, Sequence)
+                    or isinstance(value, (str, bytes)) or len(value) != 3):
+                raise FigureSpecError(
+                    "label_metrics values must be [width, ascent, descent]")
+            try:
+                scene.label_metrics[key] = (
+                    float(value[0]), float(value[1]), float(value[2]))
+            except (TypeError, ValueError) as exc:
+                raise FigureSpecError("label_metrics must be numbers") from exc
 
     point_records = _named_records(spec.get("points"), "points")
     circle_records = _named_records(spec.get("circles"), "circles")

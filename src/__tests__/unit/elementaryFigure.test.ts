@@ -18,6 +18,7 @@ import {
   figureSvgViewBoxWidth,
 } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { labelTexts, stripLabels, svgLabels } from "@/lib/figure/svgLabels";
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -203,21 +204,24 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg).toContain(">1<");
-    expect(r.svg).toContain(">2<");
-    expect(r.svg).toContain(">6<");
+    expect(labelTexts(r.svg)).toContain("1");
+    expect(labelTexts(r.svg)).toContain("2");
+    expect(labelTexts(r.svg)).toContain("6");
     const hi = r.svg.match(
       /<rect x="([0-9.]+)" y="([0-9.]+)" width="([0-9.]+)" height="([0-9.]+)"[^>]*stroke="#b45a55"/,
     );
-    const digit = r.svg.match(
-      /stroke="#b45a55"[^/]*\/>\s*<text x="([0-9.]+)" y="([0-9.]+)"[^>]*>1</,
-    );
     expect(hi).toBeTruthy();
-    expect(digit).toBeTruthy();
     const cx = Number(hi![1]) + Number(hi![3]) / 2;
     const cy = Number(hi![2]) + Number(hi![4]) / 2;
-    expect(Number(digit![1])).toBeCloseTo(cx, 5);
-    expect(Number(digit![2])).toBeCloseTo(cy, 5);
+    // 강조 상자 한가운데에 그 숫자가 앉아 있는가. 조판되면 `<text>` 가 아니라
+    // `<g data-label>` 이므로 라벨 읽개로 묻는다 — 상자와 숫자가 갈리면 강조가 헛돈다.
+    const digit = svgLabels(r.svg).find(
+      (l) =>
+        l.text === "1" &&
+        Math.abs(l.x - cx) < 1e-5 &&
+        Math.abs(l.y - cy) < 1e-5,
+    );
+    expect(digit, `강조 상자 (${cx}, ${cy}) 에 «1» 이 없다`).toBeTruthy();
   });
 
   it("테이프 치수 곡선은 막대 바로 위에 붙는다", async () => {
@@ -364,24 +368,27 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg, "높이는 적는다").toContain(">15 cm<");
-    expect(r.svg, "반지름은 발문에 있으므로 안 적는다").not.toContain(">2 cm<");
+    expect(labelTexts(r.svg), "높이는 적는다").toContain("15 cm");
+    expect(
+      labelTexts(r.svg),
+      "반지름은 발문에 있으므로 안 적는다",
+    ).not.toContain("2 cm");
     // 반지름 라벨이 없으면 중심 점은 **설명 없는 표시**다 — 같이 뺀다.
     expect(
       [...r.svg.matchAll(/<circle [^>]*r="1\.8"/g)],
       "중심 점",
     ).toHaveLength(0);
     // 높이 치수는 도형 왼쪽 바깥이다.
-    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>15 cm</);
-    expect(m).toBeTruthy();
+    const m = svgLabels(r.svg).find((l) => l.text === "15 cm");
+    expect(m, "«15 cm» 라벨이 없다").toBeTruthy();
     const xs = [...r.svg.matchAll(/points="([^"]+)"/g)].flatMap((p) =>
       p[1].split(/\s+/).map((q) => Number(q.split(",")[0])),
     );
     const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
-    expect(Number(m![1])).toBeLessThan(midX - 8);
+    expect(m!.x).toBeLessThan(midX - 8);
     const halfText = 0.3 * 12 * "15 cm".length;
     const halfHalo = (12 * 0.5) / 2;
-    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+    expect(m!.x - halfText - halfHalo).toBeGreaterThanOrEqual(0);
   });
 
   it("쌓기나무 겨냥도와 위 보기는 겹치지 않는다", async () => {
@@ -443,13 +450,11 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(cells.length).toBeGreaterThan(0);
     const minCellY = Math.min(...cells.map((m) => Number(m[2])));
     expect(Number(title![1])).toBeLessThan(minCellY - 4);
-    const nums = [
-      ...r.svg.matchAll(/x="([0-9.]+)" y="([0-9.]+)"[^>]*>(\d+)</g),
-    ];
+    const nums = svgLabels(r.svg).filter((l) => /^\d+$/.test(l.text));
     expect(nums.length).toBeGreaterThan(0);
     for (const n of nums) {
-      const nx = Number(n[1]);
-      const ny = Number(n[2]);
+      const nx = n.x;
+      const ny = n.y;
       const hit = cells.find((c) => {
         const x = Number(c[1]);
         const y = Number(c[2]);
@@ -458,7 +463,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
           Math.abs(nx - (x + s / 2)) < 0.6 && Math.abs(ny - (y + s / 2)) < 0.6
         );
       });
-      expect(hit, `${n[3]} at ${nx},${ny}`).toBeTruthy();
+      expect(hit, `${n.text} at ${nx},${ny}`).toBeTruthy();
     }
   });
 
@@ -632,11 +637,9 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     const pos = (label: string) => {
-      const m = r.svg.match(
-        new RegExp(`x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>${label}<`),
-      );
-      expect(m, label).toBeTruthy();
-      return { x: Number(m![1]), y: Number(m![2]) };
+      const hit = svgLabels(r.svg).find((l) => l.text === label);
+      expect(hit, label).toBeTruthy();
+      return { x: hit!.x, y: hit!.y };
     };
     const width = pos("8 cm");
     const depth = pos("2 cm");
@@ -662,11 +665,11 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    const m = r.svg.match(/x="([\d.-]+)" y="[\d.-]+"[^>]*>15 cm</);
-    expect(m).toBeTruthy();
+    const m = svgLabels(r.svg).find((l) => l.text === "15 cm");
+    expect(m, "«15 cm» 라벨이 없다").toBeTruthy();
     const halfText = 0.3 * 12 * "15 cm".length;
     const halfHalo = (12 * 0.5) / 2;
-    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+    expect(m!.x - halfText - halfHalo).toBeGreaterThanOrEqual(0);
   });
 
   it("대칭 윤곽 도형은 격자 칸이 아니라 다각형이다", async () => {
@@ -821,7 +824,13 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     const vb = r.svg.match(/viewBox="0 0 ([0-9.]+)/);
     expect(vb).toBeTruthy();
     expect(Number(vb![1])).toBeLessThanOrEqual(240);
-    expect(r.svg).toMatch(/font-size="1[23]"/);
+    // 글자를 줄여서 폭을 맞추지 않았는가 — 12pt 아래로 내려간 글자가 없어야 한다.
+    const sizes = svgLabels(r.svg).map((l) => l.fontSize);
+    expect(sizes.length).toBeGreaterThan(0);
+    expect(
+      Math.min(...sizes),
+      `글자 크기 ${sizes.join(",")}`,
+    ).toBeGreaterThanOrEqual(12);
   });
 
   it("소수 수직선은 빈칸 눈금에 상자를 둔다", async () => {
@@ -836,8 +845,8 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg).toContain("0.2");
-    expect(r.svg).not.toContain(">0.1<");
+    expect(labelTexts(r.svg)).toContain("0.2");
+    expect(labelTexts(r.svg)).not.toContain("0.1");
     expect(r.svg).toContain("<rect ");
   });
 
@@ -849,7 +858,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg).toContain(">4</text>");
+    expect(labelTexts(r.svg)).toContain("4");
     expect(r.svg).toMatch(/stroke-dasharray="5 4"/);
   });
 
@@ -1267,9 +1276,10 @@ describe.skipIf(!hasEngine)(
         expect(r.ok, String(c.spec.shape)).toBe(true);
         if (!r.ok) return;
         const shown = new Set(
-          [...r.svg.matchAll(/<text[^>]*>([\d.]+) cm<\/text>/g)].map((m) =>
-            Number(m[1]),
-          ),
+          svgLabels(r.svg)
+            .map((l) => /^([0-9.]+) cm$/.exec(l.text))
+            .filter((m): m is RegExpExecArray => m !== null)
+            .map((m) => Number(m[1])),
         );
         for (const v of c.want) {
           if (!shown.has(v))
@@ -1454,12 +1464,10 @@ describe.skipIf(!hasEngine)(
         const r = await renderFigureSpec(spec);
         expect(r.ok, String(spec.kind)).toBe(true);
         if (!r.ok) return;
-        for (const m of r.svg.matchAll(
-          /<text\b([^>]*)>([^<]*\d\s*cm[^<]*)<\/text>/g,
-        )) {
-          if (!m[1]!.includes('paint-order="stroke"')) {
-            bare.push(`${spec.kind}: ${m[2]}`);
-          }
+        for (const l of svgLabels(r.svg)) {
+          if (!/\d\s*cm/.test(l.text)) continue;
+          // halo 가 없으면 치수 글자를 도형 선이 관통한다.
+          if (l.halo <= 0) bare.push(`${spec.kind}: ${l.text}`);
         }
       }
       expect(bare, "날 텍스트 치수").toEqual([]);
@@ -1471,17 +1479,14 @@ describe.skipIf(!hasEngine)(
         const r = await renderFigureSpec(spec);
         expect(r.ok, `${spec.kind}/${spec.shape ?? ""}`).toBe(true);
         if (!r.ok) return;
-        const labels = [
-          ...r.svg.matchAll(/<text\b([^>]*)>([^<]*cm[^<]*)<\/text>/g),
-        ];
+        const labels = svgLabels(r.svg).filter((l) => l.text.includes("cm"));
         expect(
           labels.length,
           `${spec.kind}/${spec.shape ?? ""} cm 라벨`,
         ).toBeGreaterThan(0);
-        for (const m of labels) {
-          if (!m[1]!.includes('paint-order="stroke"')) {
-            bare.push(`${spec.kind}/${spec.shape ?? ""}: ${m[2]}`);
-          }
+        for (const l of labels) {
+          if (l.halo <= 0)
+            bare.push(`${spec.kind}/${spec.shape ?? ""}: ${l.text}`);
         }
         const curves = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
         expect(
@@ -1753,12 +1758,12 @@ const TICK_CAP = 9;
 
 /** 세로 눈금 글자 — 14pt·오른쪽 정렬. 단위(13pt)·막대 숫자(16pt·가운데)와 갈린다. */
 function yTicks(svg: string): { v: number; y: number }[] {
-  return [
-    ...svg.matchAll(
-      /<text x="[0-9.]+" y="([0-9.]+)"[^>]*font-size="14"[^>]*text-anchor="end"[^>]*>(-?[0-9.]+)<\/text>/g,
-    ),
-  ]
-    .map((m) => ({ v: Number(m[2]), y: Number(m[1]) }))
+  return svgLabels(svg)
+    .filter(
+      (l) =>
+        l.fontSize === 14 && l.anchor === "end" && /^-?[0-9.]+$/.test(l.text),
+    )
+    .map((l) => ({ v: Number(l.text), y: l.y }))
     .sort((a, b) => a.v - b.v);
 }
 
@@ -1814,12 +1819,14 @@ function scaleMismatch(svg: string, values: number[]): number {
  * 제목도 14pt·가운데라 **숫자인 것만** 고른다(제목은 숫자가 아니다).
  */
 function xTicks(svg: string): { v: number; x: number }[] {
-  return [
-    ...svg.matchAll(
-      /<text x="([0-9.]+)" y="[0-9.]+"[^>]*font-size="14"[^>]*text-anchor="middle"[^>]*>(-?[0-9.]+)<\/text>/g,
-    ),
-  ]
-    .map((m) => ({ v: Number(m[2]), x: Number(m[1]) }))
+  return svgLabels(svg)
+    .filter(
+      (l) =>
+        l.fontSize === 14 &&
+        l.anchor === "middle" &&
+        /^-?[0-9.]+$/.test(l.text),
+    )
+    .map((l) => ({ v: Number(l.text), x: l.x }))
     .sort((a, b) => a.v - b.v);
 }
 
@@ -2328,8 +2335,10 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
     // 두 그래프가 다 들어 있다
     expect(r.svg).toContain("팔린 수");
     expect(r.svg).toContain("한 개의 가격");
-    // 합성은 좌표를 옮겨서 한다 — `sanitize_svg` 가 transform 을 막는다.
-    expect(r.svg).not.toContain("transform");
+    // 합성은 좌표를 옮겨서 한다 — 그림 잉크에 `transform` 이 없어야 한다.
+    // ⚠️ 조판된 라벨은 **제 자리로 옮기는 transform 을 쓴다**(그게 조판의 방식이다).
+    //    그러니 걷어내고 본다 — 안 걷어내면 이 검사는 늘 빨갛고, 늘 우는 가드는 꺼진다.
+    expect(stripLabels(r.svg)).not.toContain("transform");
   });
 
   it("**한 숫자를 두 곳이 쓴다** — 파이썬 판정 폭과 화면 폭 등급이 같다", () => {
@@ -2479,7 +2488,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 지워진 막대 · 값 0", () => {
       expect(dashedBoxes(r.svg)).toHaveLength(1);
       const box = dashedBoxes(r.svg)[0]!;
       expect(box).toContain('fill="none"');
-      expect(r.svg).toContain(">?<");
+      expect(labelTexts(r.svg)).toContain("?");
 
       // ⚠️ **상자는 값 축 «전체»를 덮어야 한다.** 절반이면 「이 정도 값」으로 읽혀
       //    그림이 없는 답을 암시한다. 「기하가 서로 같다」만 잠그면 둘 다 똑같이
@@ -2593,7 +2602,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 지워진 막대 · 값 0", () => {
       if (!r.ok) return;
       expect(r.svg).not.toMatch(/<rect[^>]*width="0"/);
       expect(r.svg).not.toMatch(/<rect[^>]*height="0"/);
-      expect(r.svg).toContain(">0<");
+      expect(labelTexts(r.svg)).toContain("0");
     },
   );
 
@@ -2944,9 +2953,16 @@ function axisTilt(pts: Pt[]) {
   return Math.abs(left[1] - right[1]);
 }
 
-/** 그려진 점 — 폴리곤·선·상자·원·글자 닻점·경로의 끝점. 잘림 검사의 표본이다. */
-function drawnPoints(svg: string): Pt[] {
-  const out: Pt[] = [];
+/**
+ * 그려진 점 — 폴리곤·선·상자·원·글자 닻점·경로의 끝점. 잘림 검사의 표본이다.
+ *
+ * ⚠️ **조판된 라벨은 걷어내고 본다.** 그 안의 `<path>` 좌표는 그림 좌표가 아니라
+ *    **em 단위(1em = 1000)** 라, 같이 세면 viewBox 밖 점이 수백 개 쏟아진다
+ *    (실측 525개, 전부 글자 외곽선). 라벨 닻점은 `svgLabels()` 로 따로 넣는다.
+ */
+function drawnPoints(full: string): Pt[] {
+  const svg = stripLabels(full);
+  const out: Pt[] = svgLabels(full).map((l) => [l.x, l.y] as Pt);
   for (const m of svg.matchAll(/<(?:polygon|polyline) points="([^"]+)"/g)) {
     out.push(...parsePoints(m[1]!));
   }
@@ -2969,9 +2985,6 @@ function drawnPoints(svg: string): Pt[] {
     const cy = Number(m[2]);
     const rr = Number(m[3]);
     out.push([cx - rr, cy - rr], [cx + rr, cy + rr]);
-  }
-  for (const m of svg.matchAll(/<text x="(-?[0-9.]+)" y="(-?[0-9.]+)"/g)) {
-    out.push([Number(m[1]), Number(m[2])]);
   }
   for (const m of svg.matchAll(/ d="([^"]+)"/g)) {
     // 경로는 **끝점만** 본다. 제어점은 곡선이 닿지 않는 자리라 세면 헛되이 부푼다.
@@ -3038,10 +3051,13 @@ function svgRects(svg: string) {
   });
 }
 
+/**
+ * 그 글이 앉은 자리. **조판됐든 아니든** 같은 값을 낸다 — `<text>` 만 보면
+ * MathJax 로 조판된 라벨이 구조적으로 «없는 것»이 된다(2026-08-28).
+ */
 function textPos(svg: string, label: string) {
-  const esc = label.replace(/[+\-]/g, "\\$&");
-  const m = svg.match(new RegExp(`x="([0-9.]+)" y="([0-9.]+)"[^>]*>${esc}<`));
-  return m ? { x: Number(m[1]), y: Number(m[2]) } : null;
+  const hit = svgLabels(svg).find((l) => l.text === label);
+  return hit ? { x: hit.x, y: hit.y } : null;
 }
 
 function hexMean(hex: string) {
@@ -3965,8 +3981,7 @@ describe.skipIf(!hasEngine)("[초등 그림] tiling — 조각과 목표", () =>
  *    그래서 엔진이 ㉠ 용어 라벨을 **아예 안 그리고** ㉡ 반지름·지름을 **둘 다 받으면 던진다**.
  */
 describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분", () => {
-  const texts = (svg: string) =>
-    [...svg.matchAll(/>([^<]+)<\/text>/g)].map((m) => m[1]!);
+  const texts = (svg: string) => labelTexts(svg);
 
   it("**용어를 적지 않는다** — 그 용어가 2-3-1 의 답이다", async () => {
     for (const spec of [{ radius: "5 cm" }, { diameter: "10 cm" }, {}]) {

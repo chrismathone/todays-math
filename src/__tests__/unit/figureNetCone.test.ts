@@ -18,6 +18,7 @@ import { describe, expect, it } from "vitest";
 
 import { figureSvgSize } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { svgLabels } from "@/lib/figure/svgLabels";
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -69,10 +70,9 @@ function baseCircle(svg: string): { c: [number, number]; r: number } {
   return { c: [Number(m[1]), Number(m[2])], r: Number(m[3]) };
 }
 
+/** 라벨 글 — 조판된 것(`<g data-label>`)과 그대로 나간 `<text>` 를 한 자로 읽는다. */
 function texts(svg: string): string[] {
-  return [...svg.matchAll(/<text [^>]*>([^<]*)<\/text>/g)].map((m) =>
-    m[1]!.trim(),
-  );
+  return svgLabels(svg).map((l) => l.text.trim());
 }
 
 function viewBoxWidth(svg: string): number {

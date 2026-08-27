@@ -27,6 +27,7 @@ import {
   handlerKeys,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { labelTexts, svgLabels } from "@/lib/figure/svgLabels";
 import { createRng } from "@/lib/elementary/rng";
 import { bareNumbers } from "@/lib/elementary/rules";
 
@@ -246,14 +247,15 @@ describe("[초등 엔진] 소단원 전량", () => {
     });
     expect(drawn.ok).toBe(true);
     if (!drawn.ok) return;
-    expect(drawn.svg).toContain(">14<");
-    expect(drawn.svg).toContain(">8<");
-    expect(drawn.svg).toContain(">0<");
-    expect(drawn.svg).toContain(">10<");
-    expect(drawn.svg).toContain(">15<");
+    const shown = labelTexts(drawn.svg);
+    for (const want of ["14", "8", "0", "10", "15"]) {
+      expect(shown, `${want} 이 지면에 없다`).toContain(want);
+    }
     expect(drawn.svg).not.toMatch(/stroke="#fff"/);
-    expect(drawn.svg).not.toContain(">2<");
-    expect(drawn.svg).not.toContain(">4<");
+    // 눈금 걸음이 5 라 2·4 는 안 그려야 한다.
+    for (const no of ["2", "4"]) {
+      expect(shown, `${no} 를 그렸다`).not.toContain(no);
+    }
   });
 
   it("막대그래프 세로축 단위는 눈금 숫자와 겹치지 않는다", async () => {
@@ -270,9 +272,9 @@ describe("[초등 엔진] 소단원 전량", () => {
     expect(drawn.ok).toBe(true);
     if (!drawn.ok) return;
     const textY = (label: string) => {
-      const m = drawn.svg.match(new RegExp(`y="([0-9.]+)"[^>]*>${label}<`));
-      expect(m, `${label} 좌표`).toBeTruthy();
-      return Number(m![1]);
+      const hit = svgLabels(drawn.svg).find((l) => l.text === label);
+      expect(hit, `${label} 좌표`).toBeTruthy();
+      return hit!.y;
     };
     expect(textY("마리")).toBeLessThan(textY("20") - 14);
   });
@@ -1506,12 +1508,9 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
         expect(drawn.ok, drawn.ok ? "" : drawn.error).toBe(true);
         if (!drawn.ok) continue;
         // 세로축 눈금 숫자 — `text-anchor="end"` 로 축 왼쪽에 찍힌다.
-        const ticks = [
-          ...drawn.svg.matchAll(
-            /<text[^>]*text-anchor="end"[^>]*>(\d+)<\/text>/g,
-          ),
-        ]
-          .map((m) => Number(m[1]))
+        const ticks = svgLabels(drawn.svg)
+          .filter((l) => l.anchor === "end" && /^\d+$/.test(l.text))
+          .map((l) => Number(l.text))
           .sort((a, b) => a - b);
         expect(
           ticks.length,
@@ -1585,9 +1584,9 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
         //    (숫자만 걸러 내므로 제목 「팔린 수」는 크기가 14여도 안 섞인다.)
         const ticks = [
           ...new Set(
-            [...r.svg.matchAll(/<text\b([^>]*)>\s*(\d+)\s*<\/text>/g)]
-              .filter((m) => /font-size="14"/.test(m[1]!))
-              .map((m) => Number(m[2])),
+            svgLabels(r.svg)
+              .filter((l) => l.fontSize === 14 && /^\d+$/.test(l.text))
+              .map((l) => Number(l.text)),
           ),
         ].sort((a, b) => a - b);
         if (ticks.length < 2) {
@@ -1885,8 +1884,14 @@ describe.skipIf(!hasEngine)("[초등 엔진] 그림 렌더", () => {
     const w2 = two.svg.match(/viewBox="0 0 ([0-9.]+)/)?.[1];
     const w3 = three.svg.match(/viewBox="0 0 ([0-9.]+)/)?.[1];
     expect(w2).toBe(w3);
-    expect(two.svg).toMatch(/font-size="15"/);
-    expect(three.svg).toMatch(/font-size="15"/);
+    // 자릿수가 늘어도 글자를 줄여 폭을 맞추지 않는다.
+    for (const [who, r] of [
+      ["두 자리", two],
+      ["세 자리", three],
+    ] as const) {
+      const sizes = new Set(svgLabels(r.svg).map((l) => l.fontSize));
+      expect(sizes, `${who} 글자 크기`).toEqual(new Set([15]));
+    }
   });
 
   it("그림그래프는 칸 수와 무관하게 viewBox 폭이 240이다", async () => {

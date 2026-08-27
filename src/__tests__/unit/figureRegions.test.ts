@@ -243,9 +243,13 @@ describe.skipIf(!hasEngine)("[도형 v2] arcs — 호 스트로크", () => {
     const r = await renderFigureSpec(spec);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    // 치수 점선(6 4)은 정확히 두 벌 — 더 그리지도, 조용히 빠뜨리지도 않는다
-    expect(r.svg.match(/stroke-dasharray="6 4"/g)?.length).toBe(2);
-    expect(r.svg.match(/>4 cm<\/text>/g)?.length).toBe(2);
+    // 치수 점선은 정확히 두 벌 — 더 그리지도, 조용히 빠뜨리지도 않는다.
+    //
+    // ⚠️ 2026-08-28: 점선 간격이 `6 4` → `5 3` 으로 바뀌었다(RPM 실측에 맞췄다).
+    //    그리고 라벨은 이제 **MathJax 가 조판**하므로 SVG 에 `<text>` 가 없다 —
+    //    글자가 전부 `<path>` 다. 라벨을 찾는 열쇠는 `data-label` 이다.
+    expect(r.svg.match(/stroke-dasharray="5 3"/g)?.length).toBe(2);
+    expect(r.svg.match(/data-label="4 cm"/g)?.length).toBe(2);
   });
 
   it("dash 를 주면 stroke-dasharray 로 긋는다", async () => {

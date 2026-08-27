@@ -20,6 +20,7 @@ import { elementaryUnits } from "@/lib/elementary/generate";
 import { createRng } from "@/lib/elementary/rng";
 import { bareNumbers } from "@/lib/elementary/rules";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { svgLabels } from "@/lib/figure/svgLabels";
 
 const UNIT = elementaryUnits().find(
   (u) => u.grade === "초4" && u.section.startsWith("1-5-3"),
@@ -247,9 +248,12 @@ describe("[초등 엔진] 초4 1-5-3 난이도 4단 (셋째 파일럿)", () => {
       // 그래서 **분모를 함께 센다** — 이름표를 하나도 못 읽었으면 그것부터 실패다.
       // 「0건이 «깨끗»인지 «못 셈»인지」를 가르는 자리다.
       const truth = answerNum(p.answer);
-      const drawn = [...r.svg.matchAll(/<text\b([^>]*)>\s*(\d+)\s*<\/text>/g)]
-        .filter((m) => /font-size="16"/.test(m[1]!))
-        .map((m) => Number(m[2]));
+      // 2026-08-28: 라벨이 조판되면 `<text>` 가 아니라 `<g data-label>` 로 나간다.
+      // 정규식으로 `<text>` 만 보면 그 순간 이 검사는 **또** 죽은 채 초록이 된다 —
+      // 위에 적은 그 결함의 다른 얼굴이다. 읽는 규칙을 한 곳(`svgLabels`)에 둔다.
+      const drawn = svgLabels(r.svg)
+        .filter((l) => l.fontSize === 16 && /^\d+$/.test(l.text))
+        .map((l) => Number(l.text));
       if (drawn.length === 0)
         bad.push(
           `씨앗 ${seed}: 막대 이름표를 하나도 못 읽었다 — 이 검사가 죽었다`,

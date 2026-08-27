@@ -17,6 +17,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { svgLabels } from "@/lib/figure/svgLabels";
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -64,8 +65,9 @@ function guides(svg: string): number {
   return [...svg.matchAll(/stroke-dasharray="4 3"/g)].length;
 }
 
+/** 라벨 글 — 조판된 것(`<g data-label>`)과 그대로 나간 `<text>` 를 한 자로 읽는다. */
 function texts(svg: string): string[] {
-  return [...svg.matchAll(/<text [^>]*>([^<]*)<\/text>/g)].map((m) => m[1]!);
+  return svgLabels(svg).map((l) => l.text);
 }
 
 const POS = {

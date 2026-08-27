@@ -30,6 +30,7 @@
  *
  *    `--selftest` 가 이 눈금을 **양성·음성 둘로** 확인한다.
  */
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 import { chromium } from "playwright";
@@ -55,7 +56,36 @@ async function measure(page, svg) {
         const m = ctx.measureText(t);
         return [m.actualBoundingBoxAscent, m.actualBoundingBoxDescent];
       };
-      const texts = [...root.querySelectorAll("text")].map((t) => {
+      // ── 라벨은 **두 모습**으로 온다 (2026-08-28) ────────────────────────────
+      // ① 조판됨: `<g data-label="5 cm">` 안에 글리프 `<path>` 들. **글자가 없다.**
+      // ② 그대로: `<text>` — TeX 글꼴에 글리프가 없는 글(한글·㎠).
+      // ①을 안 보면 이 판정기는 중등 지면에서 구조적으로 0 이 된다.
+      const texts = [];
+      for (const g of root.querySelectorAll("[data-label]")) {
+        // 조판된 것은 **잉크가 곧 상자**다 — `getBBox` 가 em 상자가 아니라 글리프
+        // 외곽선의 실제 경계를 준다(글자가 아니라 path 이므로). 다만 그 값은 이
+        // `<g>` 의 **자기 transform 이 걸리기 전** 좌표라, CTM 으로 옮겨야 한다.
+        const b = g.getBBox();
+        const m = g.getCTM();
+        if (!m) continue;
+        const px = (x, y) => [m.a * x + m.c * y + m.e, m.b * x + m.d * y + m.f];
+        const [x0, y0] = px(b.x, b.y);
+        const [x1, y1] = px(b.x + b.width, b.y + b.height);
+        const halo = Number(g.getAttribute("data-halo")) || 0;
+        const pad = halo / 2;
+        texts.push({
+          text: g.getAttribute("data-label") ?? "",
+          box: [
+            Math.min(x0, x1) - pad,
+            Math.min(y0, y1) - pad,
+            Math.max(x0, x1) + pad,
+            Math.max(y0, y1) + pad,
+          ],
+          w: Math.abs(x1 - x0),
+          h: Math.abs(y1 - y0),
+        });
+      }
+      for (const t of root.querySelectorAll("text")) {
         const b = t.getBBox();
         const raw = t.getAttribute("stroke-width");
         const halo = raw === null ? defaultHalo : Number(raw) || 0;
@@ -68,13 +98,13 @@ async function measure(page, svg) {
         const baseline = b.y + b.height - (parseFloat(cs.fontSize) || 12) * 0.25;
         const yAttr = Number(t.getAttribute("y"));
         const base = Number.isFinite(yAttr) ? yAttr : baseline;
-        return {
+        texts.push({
           text: str,
           box: [b.x - pad, base - asc - pad, b.x + b.width + pad, base + desc + pad],
           w: b.width,
           h: asc + desc,
-        };
-      });
+        });
+      }
       // 잉크: **모든 기하 요소**를 촘촘히 표본으로 편다.
       //
       // 🔴 종전에는 `line`·`path` 만 봤다. 그래서 **`circle` 이 통째로 안 보였고**
@@ -85,6 +115,9 @@ async function measure(page, svg) {
       const ink = [];
       for (const el of root.querySelectorAll("*")) {
         if (typeof el.getTotalLength !== "function") continue;
+        // 🔴 **조판된 라벨의 글리프는 기하가 아니다.** 안 걸러 내면 모든 라벨이
+        //    «제 글자와 겹친다»고 나온다 — 그러면 판정기가 통째로 쓸모없어진다.
+        if (el.closest("[data-label]")) continue;
         let len = 0;
         try {
           len = el.getTotalLength();
@@ -183,22 +216,55 @@ function selftestSvg(shape, baselineY) {
   );
 }
 
+/**
+ * **조판된 라벨** 눈금 — 제품 코드(`placeLabel`)가 찍어 준다.
+ *
+ * ⚠️ 여기 글자로 박으면 안 된다. 속성 이름이 바뀌는 날 눈금만 옛 모양으로 남아
+ *    **초록인 채로** 판정기가 눈이 먼다. 못 얻으면 «못 쟀다»고 말하고 실패한다 —
+ *    조용히 건너뛰면 「눈금 6건 통과」가 「조판 라벨도 잰다」로 읽힌다.
+ */
+function typesetGauges() {
+  // `npx.cmd` 는 Windows 에서 `spawnSync` 가 EINVAL 을 낸다(Node 24, shell 없이 .cmd).
+  // tsx 를 **직접** 부른다 — 경로가 확실하고 셸을 안 거친다.
+  const out = spawnSync(
+    process.execPath,
+    ["node_modules/tsx/dist/cli.mjs", "scripts/qa/emit-label-gauge.ts"],
+    { encoding: "utf8", maxBuffer: 8 * 1024 * 1024 },
+  );
+  if (out.status !== 0) {
+    throw new Error(`눈금 도형을 못 얻었다: ${out.stderr || out.error}`);
+  }
+  return JSON.parse(out.stdout);
+}
+
 async function selftest(page) {
   let bad = 0;
-  for (const [name, shape, baselineY, expected] of SELFTEST) {
-    const measured = await measure(page, selftestSvg(shape, baselineY));
+  const cases = [
+    ...SELFTEST.map(([name, shape, baselineY, expected]) => ({
+      name,
+      svg: selftestSvg(shape, baselineY),
+      expect: expected,
+    })),
+    ...typesetGauges(),
+  ];
+  for (const c of cases) {
+    const measured = await measure(page, c.svg);
     const got = collisions(measured).length > 0;
-    const ok = got === expected;
+    const ok = got === c.expect;
     if (!ok) bad += 1;
     console.log(
-      `  ${ok ? "✅" : "🔴"} ${name} — 기대 ${expected ? "겹침" : "깨끗"} · ` +
+      `  ${ok ? "✅" : "🔴"} ${c.name} — 기대 ${c.expect ? "겹침" : "깨끗"} · ` +
         `실제 ${got ? "겹침" : "깨끗"} (잉크 높이 ${measured.texts[0].h.toFixed(1)})`,
     );
   }
   if (bad > 0) {
     console.log(`\n🔴 눈금 ${bad}건 어긋남 — 이 판정기의 답을 쓰지 마라.`);
   } else {
-    console.log("\n✅ 눈금 6건 — 양성 3 · 음성 3 을 갈라낸다.");
+    const pos = cases.filter((c) => c.expect).length;
+    console.log(
+      `\n✅ 눈금 ${cases.length}건 — 양성 ${pos} · 음성 ${cases.length - pos} 을 갈라낸다` +
+        " (날 `<text>` 와 **조판된 라벨** 둘 다).",
+    );
   }
   return bad;
 }
