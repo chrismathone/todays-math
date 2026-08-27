@@ -11,8 +11,14 @@
  * | 번호가 RPM 색인과 맞나 | `middleTypeCoverage.test.ts` 가 **전량**으로 |
  *
  * 모듈 시험이 어디인지: `m1Book1`→`middleM1Extra`, `m1Num`→`middleM1Num`,
- * `m1LinearApply`→`middleLinearApply`. **거기가 유형마다 검산식을 요구한다** —
- * 그러니 새 유형을 지으면 그 파일에 검산을 적는다. 여기 또 적지 말 것.
+ * `m1LinearApply`→`middleLinearApply`, `m2GeoQuad`→`middleM2Geo`.
+ * **거기가 유형마다 검산식을 요구한다** — 그러니 새 유형을 지으면 그 파일에
+ * 검산을 적는다. 여기 또 적지 말 것.
+ *
+ * ⚠️ 한 소단원이 **두 모듈에 걸칠 수 있다.** 「평행선과 삼각형의 넓이」가 그렇다 —
+ *    13~16 은 `m2GeoTri`(내 파일이 아니다), 18~23 은 `m2GeoQuad`. 그래서
+ *    `entries` 는 모듈 하나가 아니라 **그 소단원을 담은 모듈 전부**를 이어 붙인다.
+ *    한쪽만 세면 「10유형」이 영영 6으로 보인다.
  */
 
 import { describe, expect, it } from "vitest";
@@ -21,6 +27,8 @@ import { generateMiddleProblem } from "@/lib/middle/generate";
 import { M1_BOOK1 } from "@/lib/middle/m1Book1";
 import { M1_LINEAR_APPLY } from "@/lib/middle/m1LinearApply";
 import { M1_NUM } from "@/lib/middle/m1Num";
+import { M2_GEO_QUAD } from "@/lib/middle/m2GeoQuad";
+import { M2_GEO_TRI } from "@/lib/middle/m2GeoTri";
 
 import { josaMismatches, pageSmells } from "../helpers/midPage";
 
@@ -51,6 +59,10 @@ const DONE_SECTIONS = [
   { entries: M1_NUM, section: "공배수와 최소공배수" },
   { entries: M1_NUM, section: "소인수분해" },
   { entries: M1_NUM, section: "최대공약수와 최소공배수의 활용" },
+  {
+    entries: [...M2_GEO_TRI, ...M2_GEO_QUAD],
+    section: "평행선과 삼각형의 넓이",
+  },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {

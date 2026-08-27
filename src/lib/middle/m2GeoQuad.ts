@@ -34,6 +34,7 @@ const MINOR = "여러 가지 사각형";
 const SEC = {
   직사각형류: "직사각형, 마름모, 정사각형",
   등변사다리꼴: "등변사다리꼴, 여러 가지 사각형",
+  평삼넓이: "평행선과 삼각형의 넓이",
 } as const;
 
 const DEG = Math.PI / 180;
@@ -554,6 +555,224 @@ function distinctIndices(rng: Rng, total: number, count: number): number[] {
   return bag.slice(0, count).sort((a, b) => a - b);
 }
 
+/** 넓이 비에 쓰는 «서로소인» 두 수 — 기약이 아니면 해설의 분수가 약분되지 않는다. */
+const RATIOS_AREA: readonly (readonly [number, number])[] = [
+  [1, 1],
+  [1, 2],
+  [2, 1],
+  [1, 3],
+  [3, 1],
+  [2, 3],
+  [3, 2],
+  [3, 4],
+  [4, 3],
+];
+
+/** 23 — 사다리꼴의 두 평행한 변의 길이의 비 (짧은 쪽이 위, 서로소). */
+const TRAP_SIDES: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [2, 3],
+  [3, 4],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+];
+/** 목록에서 하나 뽑는다 (비 목록처럼 «값을 고르는» 자리에 쓴다). */
+function pick<T>(rng: Rng, xs: readonly T[]): T {
+  return xs[intBetween(rng, 0, xs.length - 1)]!;
+}
+
+/**
+ * 18 — 평행한 두 직선 $l$(위) · $m$(아래)과 그 사이의 삼각형 $ABC$.
+ *
+ * 밑변 $a$ 와 높이 $h$ 를 **발문의 실제 값으로** 그린다(09 §4-20). 두 직선에
+ * 평행 » 를 찍고, $A$ 에서 $m$ 에 내린 수선의 발 $H$ 로 «두 직선 사이의 거리»를
+ * 보인다 — 그 수선이 곧 삼각형의 높이라는 것이 이 유형의 성질이다.
+ */
+function figParLines18(a: number, h: number): Fig {
+  const pts: Record<string, XY> = {
+    A: [r2(a * 0.35), h],
+    B: [0, 0],
+    C: [a, 0],
+    H: [r2(a * 0.35), 0],
+    lA: [r2(-a * 0.28), h],
+    lB: [r2(a * 1.34), h],
+    mA: [r2(-a * 0.28), 0],
+    mB: [r2(a * 1.34), 0],
+  };
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      lineL: { points: ["lA", "lB"], parallel: 1 },
+      lineM: { points: ["mA", "mB"], parallel: 1 },
+      AB: ["A", "B"],
+      AC: ["A", "C"],
+      AH: ["A", "H"],
+    },
+    angles: { rH: { vertex: "H", points: ["A", "C"], right: true } },
+    labels: {
+      A: "A",
+      B: "B",
+      C: "C",
+      H: "H",
+      lB: { text: "l", italic: true },
+      mB: { text: "m", italic: true },
+    },
+  };
+}
+
+/**
+ * 19 — 삼각형 $ABC$ 와 중선 $\overline{AD}$. `mode` 1 이면 $\overline{AD}$ 의
+ * 중점 $E$ 와 $\overline{BE}$ 도 그린다.
+ *
+ * tick 은 **주어진 것만** — 밑변의 두 조각은 1개, $\overline{AD}$ 의 두 조각은
+ * 2개로 갈라 「무엇과 무엇이 같은지」가 지면에서 섞이지 않게 한다.
+ */
+function figMedian19(mode: number): Fig {
+  const A: XY = [46, 92];
+  const B: XY = [0, 0];
+  const C: XY = [140, 0];
+  const D: XY = [70, 0];
+  const pts: Record<string, XY> = { A, B, C, D };
+  const segments: Record<string, unknown> = {
+    AB: ["A", "B"],
+    AC: ["A", "C"],
+    BD: { points: ["B", "D"], ticks: 1 },
+    DC: { points: ["D", "C"], ticks: 1 },
+  };
+  const labels: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+  };
+  if (mode === 1) {
+    pts.E = [r2((A[0] + D[0]) / 2), r2((A[1] + D[1]) / 2)];
+    segments.AE = { points: ["A", "E"], ticks: 2 };
+    segments.ED = { points: ["E", "D"], ticks: 2 };
+    segments.BE = ["B", "E"];
+    labels.E = "E";
+  } else {
+    segments.AD = ["A", "D"];
+  }
+  return { version: 2, points: fitPts(pts), segments, labels };
+}
+
+/**
+ * 20 — 평행사변형 $ABCD$ 와 내부의 점 $P$, 그리고 $P$ 에서 네 꼭짓점으로 그은 선.
+ *
+ * $P$ 를 아무 데나 찍으면 그림이 발문과 다른 말을 한다. 삼각형 $PAB$ 의 넓이가
+ * $a$, 평행사변형이 $S$ 이면 $\overline{AB}$ 에서 $P$ 까지의 거리는 두 대변
+ * 사이 거리의 $2a/S$ 배다 — 그 값으로 $\overline{BC}$ 방향 성분을 정한다.
+ */
+function figParaInner20(u: number): Fig {
+  const A: XY = [34, 88];
+  const B: XY = [0, 0];
+  const C: XY = [130, 0];
+  const D: XY = [164, 88];
+  const v = 0.45;
+  const P: XY = [
+    r2(B[0] + u * (C[0] - B[0]) + v * (A[0] - B[0])),
+    r2(B[1] + u * (C[1] - B[1]) + v * (A[1] - B[1])),
+  ];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D, P }),
+    segments: {
+      AB: { points: ["A", "B"], parallel: 2 },
+      DC: { points: ["D", "C"], parallel: 2 },
+      BC: { points: ["B", "C"], parallel: 1 },
+      AD: { points: ["A", "D"], parallel: 1 },
+      PA: ["P", "A"],
+      PB: ["P", "B"],
+      PC: ["P", "C"],
+      PD: ["P", "D"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D", P: "P" },
+  };
+}
+
+/** 21 — 삼각형 $ABC$ 의 밑변 위의 점 $D$ (BD:BC = `t`) 와 $\overline{AD}$. */
+function figTriSplit21(t: number): Fig {
+  const A: XY = [54, 94];
+  const B: XY = [0, 0];
+  const C: XY = [150, 0];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D: [r2(150 * t), 0] }),
+    segments: {
+      AB: ["A", "B"],
+      AC: ["A", "C"],
+      BC: ["B", "C"],
+      AD: ["A", "D"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D" },
+  };
+}
+
+/**
+ * 22 — 평행사변형 $ABCD$ 의 두 변 위의 점 $E$(AB 위) · $F$(BC 위)와 삼각형 $EBF$.
+ *
+ * `ae` 는 $\overline{AE}:\overline{AB}$, `bf` 는 $\overline{BF}:\overline{BC}$ —
+ * 둘 다 발문의 비 그대로다. 변이 점으로 끊기므로 평행 » 는 찍지 않는다
+ * (한쪽에만 찍히면 지면에서 짝을 잃는다).
+ */
+function figParaEF22(ae: number, bf: number): Fig {
+  const A: XY = [34, 86];
+  const B: XY = [0, 0];
+  const C: XY = [140, 0];
+  const D: XY = [174, 86];
+  const E: XY = [r2(A[0] + ae * (B[0] - A[0])), r2(A[1] + ae * (B[1] - A[1]))];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D, E, F: [r2(140 * bf), 0] }),
+    segments: {
+      AE: ["A", "E"],
+      EB: ["E", "B"],
+      BF: ["B", "F"],
+      FC: ["F", "C"],
+      CD: ["C", "D"],
+      DA: ["D", "A"],
+      EF: ["E", "F"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E", F: "F" },
+  };
+}
+
+/**
+ * 23 — $\overline{AD}\parallel\overline{BC}$ 인 사다리꼴과 두 대각선의 교점 $O$.
+ *
+ * `adOverBc` 는 두 평행한 변의 길이의 비다. $O$ 는 $\overline{AC}$ 를
+ * $\overline{AD}:\overline{BC}$ 로 나누는 점이므로 그 값으로 찍으면 $O$ 가
+ * $\overline{BD}$ 위에도 **실제로** 놓인다(테스트가 그것을 잰다).
+ */
+function figTrapDiag23(adOverBc: number): Fig {
+  const BC = 176;
+  const ad = BC * adOverBc;
+  const A: XY = [r2((BC - ad) / 2 - 8), 88];
+  const B: XY = [0, 0];
+  const C: XY = [BC, 0];
+  const D: XY = [r2(A[0] + ad), 88];
+  const f = ad / (ad + BC);
+  const O: XY = [r2(A[0] + f * (C[0] - A[0])), r2(A[1] + f * (C[1] - A[1]))];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D, O }),
+    segments: {
+      AD: { points: ["A", "D"], parallel: 1 },
+      BC: { points: ["B", "C"], parallel: 1 },
+      AB: ["A", "B"],
+      DC: ["D", "C"],
+      AO: ["A", "O"],
+      OC: ["O", "C"],
+      BO: ["B", "O"],
+      OD: ["O", "D"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D", O: "O" },
+  };
+}
+
 // ── 유형 ────────────────────────────────────────────────────────────────
 
 export const M2_GEO_QUAD: TypeEntry[] = [
@@ -980,6 +1199,151 @@ export const M2_GEO_QUAD: TypeEntry[] = [
           ad: `${p} cm`,
           fc: `${q} cm`,
         }),
+      };
+    },
+  ),
+
+  // ── 평행선과 삼각형의 넓이 (18~23 — RPM 색인 17 뒤에 우리가 더한 번호) ──
+
+  def(
+    "18",
+    "평행선 사이에 있는 삼각형의 넓이",
+    SEC.평삼넓이,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const a = intBetween(rng, 4, 16);
+      const h = 2 * intBetween(rng, 2, 7);
+      const area = (a * h) / 2;
+      const intro = `그림과 같이 두 직선 $l$, $m$은 서로 평행하고, 점 $A$는 직선 $l$ 위에, 두 점 $B$, $C$는 직선 $m$ 위에 있다.`;
+      if (mode === 0) {
+        return {
+          content: `${intro} $\\overline{BC}=${a}\\,\\mathrm{cm}$이고 두 직선 $l$, $m$ 사이의 거리가 $${h}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+          answer: `$${area}\\,\\mathrm{cm}^2$`,
+          solution: `점 $A$에서 직선 $m$에 내린 수선의 발을 $H$라 하면 $\\overline{AH}$의 길이는 두 직선 $l$, $m$ 사이의 거리와 같으므로 삼각형 $ABC$의 높이는 $${h}\\,\\mathrm{cm}$이다.\n따라서 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times${a}\\times${h}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, a, h, area, x: area },
+          figureSpec: figParLines18(a, h),
+        };
+      }
+      return {
+        content: `${intro} $\\overline{BC}=${a}\\,\\mathrm{cm}$이고 삼각형 $ABC$의 넓이가 $${area}\\,\\mathrm{cm}^2$일 때, 두 직선 $l$, $m$ 사이의 거리를 구하시오.`,
+        answer: `$${h}\\,\\mathrm{cm}$`,
+        solution: `두 직선 $l$, $m$ 사이의 거리는 삼각형 $ABC$의 높이와 같으므로 그 거리를 $x\\,\\mathrm{cm}$라 하면 $\\dfrac{1}{2}\\times${a}\\times x=${area}$이다.\n따라서 $x=\\dfrac{2\\times${area}}{${a}}=${h}$이므로 두 직선 사이의 거리는 $${h}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, a, h, area, x: h },
+        figureSpec: figParLines18(a, h),
+      };
+    },
+  ),
+
+  def("19", "삼각형의 중선과 넓이", SEC.평삼넓이, "기본", (rng): Body => {
+    const mode = intBetween(rng, 0, 1);
+    const S = 4 * intBetween(rng, 3, 20);
+    if (mode === 0) {
+      const x = S / 2;
+      return {
+        content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{BC}$의 중점이다. 삼각형 $ABC$의 넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 삼각형 $ABD$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `삼각형 $ABD$와 삼각형 $ADC$는 밑변의 길이가 $\\overline{BD}=\\overline{DC}$로 같고 높이도 같으므로 넓이가 같다.\n따라서 삼각형 $ABD$의 넓이는 삼각형 $ABC$의 넓이의 $\\dfrac{1}{2}$인 $${x}\\,\\mathrm{cm}^2$이다.`,
+        facts: { mode, S, x },
+        figureSpec: figMedian19(0),
+      };
+    }
+    const half = S / 2;
+    const x = S / 4;
+    return {
+      content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{BC}$의 중점이고, 점 $E$는 $\\overline{AD}$의 중점이다. 삼각형 $ABC$의 넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 삼각형 $ABE$의 넓이를 구하시오.`,
+      answer: `$${x}\\,\\mathrm{cm}^2$`,
+      solution: `중선 $\\overline{AD}$가 삼각형 $ABC$의 넓이를 이등분하므로 삼각형 $ABD$의 넓이는 $${half}\\,\\mathrm{cm}^2$이다.\n삼각형 $ABE$와 삼각형 $EBD$도 밑변의 길이가 $\\overline{AE}=\\overline{ED}$로 같고 높이가 같으므로 삼각형 $ABE$의 넓이는 $${half}$의 $\\dfrac{1}{2}$인 $${x}\\,\\mathrm{cm}^2$이다.`,
+      facts: { mode, S, half, x },
+      figureSpec: figMedian19(1),
+    };
+  }),
+
+  def(
+    "20",
+    "평행사변형의 내부의 한 점과 삼각형의 넓이",
+    SEC.평삼넓이,
+    "기본",
+    (rng): Body => {
+      const S = 2 * intBetween(rng, 10, 45);
+      const half = S / 2;
+      const a = intBetween(rng, 2, half - 2);
+      const x = half - a;
+      return {
+        content: `그림과 같은 평행사변형 $ABCD$의 내부의 한 점 $P$에 대하여 평행사변형 $ABCD$의 넓이가 $${S}\\,\\mathrm{cm}^2$이고 삼각형 $PAB$의 넓이가 $${a}\\,\\mathrm{cm}^2$일 때, 삼각형 $PCD$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `점 $P$에서 $\\overline{AB}$, $\\overline{DC}$에 내린 수선의 길이의 합은 두 대변 사이의 거리와 같다.\n따라서 삼각형 $PAB$와 삼각형 $PCD$의 넓이의 합은 평행사변형 $ABCD$의 넓이의 $\\dfrac{1}{2}$인 $${half}\\,\\mathrm{cm}^2$이므로 삼각형 $PCD$의 넓이는 $${half}-${a}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { S, half, a, x },
+        figureSpec: figParaInner20((2 * a) / S),
+      };
+    },
+  ),
+
+  def(
+    "21",
+    "삼각형의 넓이를 나누는 밑변 위의 점",
+    SEC.평삼넓이,
+    "응용",
+    (rng): Body => {
+      const [m, n] = pick(rng, RATIOS_AREA);
+      const k = intBetween(rng, 1, 4);
+      const s = intBetween(rng, 2, 8);
+      const a = (m + n) * k;
+      const S = (m + n) * s;
+      const t = m * s;
+      const x = m * k;
+      return {
+        content: `그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{BC}$ 위의 점이다. $\\overline{BC}=${a}\\,\\mathrm{cm}$이고 삼각형 $ABC$의 넓이가 $${S}\\,\\mathrm{cm}^2$, 삼각형 $ABD$의 넓이가 $${t}\\,\\mathrm{cm}^2$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `삼각형 $ABD$와 삼각형 $ABC$는 높이가 같으므로 넓이의 비는 밑변의 길이의 비와 같다.\n$\\overline{BD}:\\overline{BC}=${t}:${S}=${m}:${m + n}$이므로 $\\overline{BD}=${a}\\times\\dfrac{${m}}{${m + n}}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { m, n, k, s, a, S, t, x },
+        figureSpec: figTriSplit21(m / (m + n)),
+      };
+    },
+  ),
+
+  def(
+    "22",
+    "평행사변형의 두 변 위의 점과 삼각형의 넓이",
+    SEC.평삼넓이,
+    "응용",
+    (rng): Body => {
+      const [p, q] = pick(rng, RATIOS_AREA);
+      const [m, n] = pick(rng, RATIOS_AREA);
+      const k = intBetween(rng, 1, 2);
+      const S = 2 * (p + q) * (m + n) * k;
+      const half = S / 2;
+      /** 삼각형 $ABF$ — 두 단계로 나눠 «높이가 같은 두 삼각형»을 두 번 쓴다. */
+      const mid = (p + q) * m * k;
+      const x = q * m * k;
+      return {
+        content: `그림과 같은 평행사변형 $ABCD$에서 점 $E$는 $\\overline{AB}$ 위의 점으로 $\\overline{AE}:\\overline{EB}=${p}:${q}$이고, 점 $F$는 $\\overline{BC}$ 위의 점으로 $\\overline{BF}:\\overline{FC}=${m}:${n}$이다. 평행사변형 $ABCD$의 넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 삼각형 $EBF$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `대각선 $\\overline{AC}$를 그으면 삼각형 $ABC$의 넓이는 평행사변형 $ABCD$의 넓이의 $\\dfrac{1}{2}$인 $${half}\\,\\mathrm{cm}^2$이다.\n삼각형 $ABF$와 삼각형 $ABC$는 높이가 같고 $\\overline{BF}:\\overline{BC}=${m}:${m + n}$이므로 삼각형 $ABF$의 넓이는 $${half}\\times\\dfrac{${m}}{${m + n}}=${mid}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $EBF$와 삼각형 $ABF$도 높이가 같고 $\\overline{BE}:\\overline{BA}=${q}:${p + q}$이므로 삼각형 $EBF$의 넓이는 $${mid}\\times\\dfrac{${q}}{${p + q}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { p, q, m, n, k, S, half, mid, x },
+        figureSpec: figParaEF22(p / (p + q), m / (m + n)),
+      };
+    },
+  ),
+
+  def(
+    "23",
+    "사다리꼴의 대각선이 나눈 네 삼각형의 넓이",
+    SEC.평삼넓이,
+    "응용",
+    (rng): Body => {
+      const [s, t] = pick(rng, TRAP_SIDES);
+      const k = intBetween(rng, 2, 3);
+      const p = k * s * s;
+      const q = k * t * t;
+      const r = k * s * t;
+      const x = k * (s + t) * (s + t);
+      return {
+        content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 두 대각선의 교점을 $O$라 하자. 삼각형 $AOD$의 넓이가 $${p}\\,\\mathrm{cm}^2$, 삼각형 $OBC$의 넓이가 $${q}\\,\\mathrm{cm}^2$일 때, 사다리꼴 $ABCD$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 삼각형 $ABD$와 삼각형 $ACD$의 넓이가 같고, 두 삼각형에서 삼각형 $AOD$를 빼면 삼각형 $ABO$와 삼각형 $DOC$의 넓이가 같다.\n삼각형 $ABO$의 넓이를 $S$라 하면 높이가 같은 두 삼각형에서 $\\triangle AOD:\\triangle ABO=\\overline{OD}:\\overline{OB}=\\triangle DOC:\\triangle OBC$이므로 $${p}:S=S:${q}$이다.\n$S\\times S=${p}\\times${q}=${p * q}$에서 $S=${r}$이므로 사다리꼴 $ABCD$의 넓이는 $${p}+${r}+${r}+${q}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { s, t, k, p, q, r, x },
+        figureSpec: figTrapDiag23(s / t),
       };
     },
   ),
