@@ -576,6 +576,175 @@ export const M2_FUNC: TypeEntry[] = [
       }),
   ),
 
+  def(
+    MINOR_G2,
+    "25",
+    "일차함수의 활용 산의 기온 변화",
+    SEC.온도길이,
+    "기본",
+    (rng) => {
+      const ground = intBetween(rng, 18, 28);
+      const drop = intBetween(rng, 2, 5);
+      const units = intBetween(rng, 4, 9);
+      const height = units * 100;
+      const ans = ground - drop * units;
+      return {
+        content: `지면에서의 기온은 $${ground}\\degree\\mathrm{C}$이고 높이가 $100 m$ 높아질 때마다 기온이 $${drop}\\degree\\mathrm{C}$씩 내려간다. 높이가 $${height} m$인 곳의 기온을 계산하시오.`,
+        answer: `$${ans}\\degree\\mathrm{C}$`,
+        solution: `$${height} m$는 $100 m$의 $${units}$배이므로 기온은 $${drop}\\times${units}=${drop * units}\\degree\\mathrm{C}$ 내려간다. 따라서 구하는 기온은 $${ground}-${drop * units}=${ans}\\degree\\mathrm{C}$이다.`,
+        facts: { ground, drop, units, height, ans },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "26",
+    "일차함수의 활용 물의 온도가 내려가는 시간",
+    SEC.온도길이,
+    "응용",
+    (rng) => {
+      const start = intBetween(rng, 72, 92);
+      const rate = intBetween(rng, 3, 6);
+      const time = intBetween(rng, 5, 10);
+      const target = start - rate * time;
+      return {
+        content: `온도가 $${start}\\degree\\mathrm{C}$인 물을 식히면 $1$분마다 온도가 $${rate}\\degree\\mathrm{C}$씩 일정하게 내려간다. 물의 온도가 $${target}\\degree\\mathrm{C}$가 되는 것은 식히기 시작한 지 몇 분 후인지 구하시오.`,
+        answer: `$${time}$분 후`,
+        solution: `$x$분 후의 온도를 $y\\degree\\mathrm{C}$라 하면 $y=${start}-${rate}x$이다. $${target}=${start}-${rate}x$이므로 $${rate}x=${start - target}$, 따라서 $x=${time}$이다.`,
+        facts: { start, rate, time, target },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "27",
+    "일차함수의 활용 온도계의 액주 길이",
+    SEC.온도길이,
+    "응용",
+    (rng) => {
+      const base = intBetween(rng, 3, 8);
+      const rate = intBetween(rng, 2, 4);
+      const temp = intBetween(rng, 5, 12);
+      const length = base + rate * temp;
+      return {
+        content: `어떤 온도계의 액주 길이는 온도가 $0\\degree\\mathrm{C}$일 때 $${base} mm$이고, 온도가 $1\\degree\\mathrm{C}$ 올라갈 때마다 $${rate} mm$씩 길어진다. 온도가 $${temp}\\degree\\mathrm{C}$일 때 액주 길이를 구하시오.`,
+        answer: `$${length} mm$`,
+        solution: `온도를 $x\\degree\\mathrm{C}$, 액주 길이를 $y mm$라 하면 $y=${rate}x+${base}$이다. $x=${temp}$를 대입하면 $y=${rate}\\times${temp}+${base}=${length}$이다.`,
+        facts: { base, rate, temp, length },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "28",
+    "일차함수의 활용 금속 막대의 길이",
+    SEC.온도길이,
+    "심화",
+    (rng) => {
+      const baseTemp = intBetween(rng, 5, 15);
+      const baseLength = intBetween(rng, 40, 70);
+      const rate = intBetween(rng, 2, 5);
+      const rise = intBetween(rng, 4, 9);
+      const temp = baseTemp + rise;
+      const length = baseLength + rate * rise;
+      return {
+        content: `금속 막대의 길이는 온도가 $${baseTemp}\\degree\\mathrm{C}$일 때 $${baseLength} mm$이고, 온도가 $1\\degree\\mathrm{C}$ 올라갈 때마다 $${rate} mm$씩 늘어난다. 이 막대의 길이가 $${length} mm$일 때 온도를 구하시오.`,
+        answer: `$${temp}\\degree\\mathrm{C}$`,
+        solution: `온도가 $${baseTemp}\\degree\\mathrm{C}$에서 $x\\degree\\mathrm{C}$로 올라가면 길이는 $${baseLength}+${rate}(x-${baseTemp})$이다. $${length}=${baseLength}+${rate}(x-${baseTemp})$이므로 $x-${baseTemp}=${rise}$, 따라서 $x=${temp}$이다.`,
+        facts: { baseTemp, baseLength, rate, rise, temp, length },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "29",
+    "일차함수의 활용 용수철의 길이",
+    SEC.온도길이,
+    "기본",
+    (rng) => {
+      const base = intBetween(rng, 8, 15);
+      const rate = intBetween(rng, 2, 4);
+      const weight = intBetween(rng, 4, 9);
+      const length = base + rate * weight;
+      return {
+        content: `추를 달지 않은 용수철의 길이는 $${base} cm$이고, 추의 무게가 $1 kg$ 늘어날 때마다 용수철의 길이는 $${rate} cm$씩 늘어난다. 무게가 $${weight} kg$인 추를 달았을 때 용수철의 길이를 계산하시오.`,
+        answer: `$${length} cm$`,
+        solution: `추의 무게를 $x kg$, 용수철의 길이를 $y cm$라 하면 $y=${rate}x+${base}$이다. $x=${weight}$를 대입하면 $y=${rate}\\times${weight}+${base}=${length}$이다.`,
+        facts: { base, rate, weight, length },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "30",
+    "일차함수의 활용 물통의 수위",
+    SEC.온도길이,
+    "응용",
+    (rng) => {
+      const base = intBetween(rng, 4, 12);
+      const rate = intBetween(rng, 2, 5);
+      const time = intBetween(rng, 5, 10);
+      const height = base + rate * time;
+      return {
+        content: `물의 높이가 $${base} cm$인 물통에 물을 넣었더니 물의 높이가 $1$분마다 $${rate} cm$씩 일정하게 높아졌다. 물의 높이가 $${height} cm$가 되는 것은 물을 넣기 시작한 지 몇 분 후인지 구하시오.`,
+        answer: `$${time}$분 후`,
+        solution: `$x$분 후 물의 높이를 $y cm$라 하면 $y=${rate}x+${base}$이다. $${height}=${rate}x+${base}$이므로 $${rate}x=${height - base}$, 따라서 $x=${time}$이다.`,
+        facts: { base, rate, time, height },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "31",
+    "일차함수의 활용 두 양초의 길이",
+    SEC.온도길이,
+    "심화",
+    (rng) =>
+      attempt(80, () => {
+        const rateA = intBetween(rng, 2, 4);
+        const rateB = rateA + intBetween(rng, 1, 3);
+        const meet = intBetween(rng, 4, 8);
+        const startB = intBetween(rng, 32, 45);
+        const startA = startB - (rateB - rateA) * meet;
+        const length = startA - rateA * meet;
+        if (length <= 5) return null;
+        return {
+          content: `길이가 각각 $${startA} cm$, $${startB} cm$인 두 양초 A, B에 동시에 불을 붙였다. A는 $1$분에 $${rateA} cm$, B는 $1$분에 $${rateB} cm$씩 일정하게 짧아질 때, 두 양초의 길이가 같아지는 것은 몇 분 후인지 구하시오.`,
+          answer: `$${meet}$분 후`,
+          solution: `$x$분 후 두 양초의 길이는 각각 $${startA}-${rateA}x$, $${startB}-${rateB}x$이다. $${startA}-${rateA}x=${startB}-${rateB}x$에서 $${rateB - rateA}x=${startB - startA}$이므로 $x=${meet}$이다.`,
+          facts: { rateA, rateB, meet, startA, startB, length },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "32",
+    "일차함수의 활용 두 시점에서 길이 구하기",
+    SEC.온도길이,
+    "심화",
+    (rng) => {
+      const rate = intBetween(rng, 2, 5);
+      const t1 = intBetween(rng, 2, 5);
+      const t2 = t1 + intBetween(rng, 3, 6);
+      const length1 = intBetween(rng, 28, 42);
+      const start = length1 + rate * t1;
+      const length2 = start - rate * t2;
+      return {
+        content: `일정한 속력으로 짧아지는 양초의 길이가 불을 붙인 지 $${t1}$분 후에 $${length1} cm$이고 $1$분마다 $${rate} cm$씩 짧아진다. 불을 붙인 지 $${t2}$분 후의 길이를 구하시오.`,
+        answer: `$${length2} cm$`,
+        solution: `처음 길이는 $${length1}+${rate}\\times${t1}=${start} cm$이다. $x$분 후의 길이는 $y=${start}-${rate}x$이므로 $x=${t2}$일 때 $y=${start}-${rate}\\times${t2}=${length2}$이다.`,
+        facts: { rate, t1, t2, length1, start, length2 },
+      };
+    },
+  ),
+
   // ── 일차함수와 일차방정식의 관계 ────────────────────────
   def(
     MINOR_REL,
