@@ -2087,4 +2087,189 @@ export const M2_GEO_SIM: TypeEntry[] = [
       };
     },
   ),
+
+  // ── 보강: 삼각형의 각의 이등분선 ────────────────────────────────────
+  def(
+    MINOR_PAR,
+    "12",
+    "내각의 이등분선과 밑변의 전체 길이",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const k = intBetween(rng, 2, 6);
+      const ab = p * intBetween(rng, 2, 4);
+      const ac = q * (ab / p);
+      const bc = (p + q) * k;
+      const x = p * k;
+      return {
+        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BC}=${bc}\,\mathrm{cm}$일 때, $\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `$\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}=${p}:${q}$이다. $\overline{BC}=${bc}\,\mathrm{cm}$이므로 $\overline{BD}=${bc}\times\dfrac{${p}}{${p + q}}=${x}\,(\mathrm{cm})$이다.`,
+        facts: { p, q, k, ab, ac, bc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "13",
+    "내각의 이등분선과 삼각형의 둘레",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 5);
+      const q = intBetween(rng, 1, p - 1);
+      const sideScale = intBetween(rng, 2, 4);
+      const baseScale = intBetween(rng, 2, 5);
+      const ab = p * sideScale;
+      const ac = q * sideScale;
+      const bd = p * baseScale;
+      const dc = q * baseScale;
+      const x = ab + ac + bd + dc;
+      return {
+        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `$\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}=${p}:${q}$이므로 $\overline{DC}=${dc}\,\mathrm{cm}$이다. 따라서 둘레의 길이는 $${ab}+${ac}+${bd}+${dc}=${x}\,(\mathrm{cm})$이다.`,
+        facts: { p, q, ab, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "14",
+    "내각의 이등분선에서 한 변의 길이",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const sideScale = intBetween(rng, 2, 5);
+      const baseScale = intBetween(rng, 2, 5);
+      const ac = q * sideScale;
+      const bd = p * baseScale;
+      const dc = q * baseScale;
+      const x = p * sideScale;
+      return {
+        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$, $\overline{DC}=${dc}\,\mathrm{cm}$일 때, $\overline{AB}$의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `$\overline{AB}:\overline{AC}=\overline{BD}:\overline{DC}$이므로 $\overline{AB}:${ac}=${bd}:${dc}$이다. 따라서 $\overline{AB}=${ac}\times\dfrac{${bd}}{${dc}}=${x}\,(\mathrm{cm})$이다.`,
+        facts: { p, q, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "15",
+    "내각의 이등분선과 두 삼각형의 넓이",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const k = intBetween(rng, 2, 7);
+      const left = p * k;
+      const right = q * k;
+      const x = left + right;
+      return {
+        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}:\overline{AC}=${p}:${q}$이고 삼각형 $ABD$의 넓이가 $${left}\,\mathrm{cm}^2$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}^2$`,
+        solution: `두 삼각형 $ABD$, $ACD$는 높이가 같고 밑변의 비가 $${p}:${q}$이므로 넓이의 비도 $${p}:${q}$이다. 삼각형 $ACD$의 넓이는 $${right}\,\mathrm{cm}^2$이므로 삼각형 $ABC$의 넓이는 $${left}+${right}=${x}\,(\mathrm{cm}^2)$이다.`,
+        facts: { p, q, k, left, right, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "16",
+    "각의 이등분선의 성질의 역",
+    SEC.각이등분,
+    "기본",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 1, p - 1);
+      const s = intBetween(rng, 2, 5);
+      const t = intBetween(rng, 2, 5);
+      const ab = p * s;
+      const ac = q * s;
+      const bd = p * t;
+      const dc = q * t;
+      const x = intBetween(rng, 28, 72);
+      return {
+        content: `삼각형 $ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$, $\overline{DC}=${dc}\,\mathrm{cm}$이다. $\angle BAD=${x}^\circ$일 때, $\angle DAC$의 크기를 구하시오.`,
+        answer: `$${x}^\circ$`,
+        solution: `$\overline{AB}:\overline{AC}=${ab}:${ac}=${p}:${q}$이고 $\overline{BD}:\overline{DC}=${bd}:${dc}=${p}:${q}$이다. 각의 이등분선의 성질의 역에 의해 $\overline{AD}$는 $\angle A$의 이등분선이므로 $\angle DAC=\angle BAD=${x}^\circ$이다.`,
+        facts: { p, q, ab, ac, bd, dc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "17",
+    "외각의 이등분선에서 바깥 선분",
+    SEC.각이등분,
+    "응용",
+    (rng): Body => {
+      const q = intBetween(rng, 1, 4);
+      const p = q + intBetween(rng, 1, 3);
+      const unit = intBetween(rng, 2, 5);
+      const ab = p * unit;
+      const ac = q * unit;
+      const bc = (p - q) * intBetween(rng, 2, 5);
+      const x = (q * bc) / (p - q);
+      return {
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BC}=${bc}\,\mathrm{cm}$일 때, $\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `외각의 이등분선의 성질에 의해 $\overline{BD}:\overline{CD}=\overline{AB}:\overline{AC}=${p}:${q}$이다. $\overline{BD}=\overline{BC}+\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이다.`,
+        facts: { p, q, ab, ac, bc, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "18",
+    "외각의 이등분선에서 밑변",
+    SEC.각이등분,
+    "심화",
+    (rng): Body => {
+      const q = intBetween(rng, 1, 4);
+      const p = q + intBetween(rng, 1, 3);
+      const unit = intBetween(rng, 2, 5);
+      const d = intBetween(rng, 2, 5) * q;
+      const x = ((p - q) * d) / q;
+      return {
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\overline{AB}:${"\\overline{AC}"}=${p}:${q}$이고 $\overline{CD}=${d}\,\mathrm{cm}$일 때, $\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `$\overline{BD}:\overline{CD}=${p}:${q}$이고 $\overline{BD}=\overline{BC}+\overline{CD}$이다. 따라서 $(x+${d}):${d}=${p}:${q}$이므로 $q x=${(p - q) * d}$, $x=${x}$이다.`,
+        facts: { p, q, d, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_PAR,
+    "19",
+    "내각과 외각의 이등분선의 교점",
+    SEC.각이등분,
+    "심화",
+    (rng): Body => {
+      const p = intBetween(rng, 2, 5);
+      const q = intBetween(rng, 1, p - 1);
+      const inside = (p + q) * intBetween(rng, 2, 5);
+      const outside = (p - q) * intBetween(rng, 2, 5);
+      const x = (p * inside) / (p + q) + (q * outside) / (p - q);
+      return {
+        content: `서로 닮은 두 삼각형에서 대응하는 두 변의 길이의 비가 각각 $${p}:${q}$이다. 첫째 삼각형의 내각의 이등분선이 마주 보는 변(길이 $${inside}\,\mathrm{cm}$)을 긴 쪽부터 나눈 길이와, 둘째 삼각형의 외각의 이등분선이 만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이($\overline{BC}=${outside}\,\mathrm{cm}$)의 합을 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}$`,
+        solution: `내분에서 긴 쪽은 $${inside}\times\dfrac{${p}}{${p + q}}=${(p * inside) / (p + q)}\,(\mathrm{cm})$이다. 외분에서 짧은 변에 대응하는 바깥 선분은 $${outside}\times\dfrac{${q}}{${p - q}}=${(q * outside) / (p - q)}\,(\mathrm{cm})$이다. 따라서 합은 $${x}\,\mathrm{cm}$이다.`,
+        facts: { p, q, inside, outside, x },
+      };
+    },
+  ),
 ];
