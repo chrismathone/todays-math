@@ -19,6 +19,7 @@ from elementary import (
     PAPER,
     TABLE_VIEWBOX_MAX,
     _arrow_right,
+    _dashed_polyline,
     _esc,
     _label_w_max,
     _text_bboxes,
@@ -2027,7 +2028,9 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     miny = min(c[1] for c in corners0)
     maxy = max(c[1] for c in corners0)
     # 가로=앞 아래, 높이=앞 왼쪽, 세로=밑면 오른쪽 뒤. 위-오른쪽 짧은 모서리는 쓰지 않는다.
-    pad_l, pad_t, pad_r, pad_b = 40.0, 22.0, 52.0, 44.0
+    # 왼쪽 높이 라벨의 근사 상자까지 담되 총 폭은 유지한다(44+48 == 종전 40+52).
+    # viewBox 폭 문턱(160/320)을 넘나들지 않게 오른쪽 여백을 같은 만큼 줄인다.
+    pad_l, pad_t, pad_r, pad_b = 44.0, 22.0, 48.0, 44.0
     view = View(0.5, 45, scale, (pad_l - minx, pad_t - miny))
 
     def p(x: float, y: float, z: float) -> tuple[float, float]:
@@ -2376,7 +2379,8 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     bot3 = circle3((0, 0, 0), r, (0, 0, 1), 64)
     top3 = circle3((0, 0, h), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
-        bot3 + top3, scale, (40.0, 24.0, 30.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
+        bot3 + top3, scale, (44.0, 24.0, 26.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)
@@ -2704,7 +2708,9 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
     # 적는다. 지금 부르는 쪽은 늘 `height == d2` 라 안 드러날 뿐이다(09 §4-20).
     vertical = _num(spec.get("d2", height), "d2", 0.5, 40) if shape == "rhombus" else height
     bw, bh = _area_box(base, vertical)
-    extra_r, extra_b = 24.0, 18.0
+    # 세로 치수를 오른쪽 바깥에 놓고 긴 라벨 halo 까지 담는다. 최대 폭은 236px 로
+    # 종전 208px 와 같은 figureSvgFrame mid 등급(161~320)이다.
+    extra_r, extra_b = 52.0, 18.0
     parts: list[str] = []
     if shape == "rect":
         parts.append(_rect(pad, pad, bw, bh, fill=FAINT, sw=1.4))
@@ -2714,15 +2720,15 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         pts = [(pad, pad + bh), (pad + bw, pad + bh), (pad + bw * 0.45, pad)]
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[0][0], pts[0][1], pts[1][0], pts[1][1], f"{_n(base)} cm", off=12))
-        parts.append(_line((pts[2][0], pts[2][1]), (pts[2][0], pts[0][1]), sw=1.05, dash="5 4"))
-        parts.append(_length_mark(pts[2][0], pts[2][1], pts[2][0], pts[0][1], f"{_n(height)} cm", off=-12))
+        hx = pad + bw + 8.0
+        parts.append(_length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12))
     elif shape == "para":
         skew = min(bw * 0.22, bh * 0.4)
         pts = [(pad + skew, pad), (pad + bw, pad), (pad + bw - skew, pad + bh), (pad, pad + bh)]
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[3][0], pts[3][1], pts[2][0], pts[2][1], f"{_n(base)} cm", off=12))
-        parts.append(_line((pts[0][0], pts[0][1]), (pts[0][0], pts[3][1]), sw=1.05, dash="5 4"))
-        parts.append(_length_mark(pts[0][0], pts[0][1], pts[0][0], pts[3][1], f"{_n(height)} cm", off=-12))
+        hx = pad + bw + 8.0
+        parts.append(_length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12))
     elif shape == "trap":
         top = _num(spec.get("top", base * 0.5), "top", 0.5, 40)
         tw = bw * (top / base)
@@ -2731,16 +2737,11 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[3][0], pts[3][1], pts[2][0], pts[2][1], f"{_n(base)} cm", off=12))
         parts.append(_length_mark(pts[0][0], pts[0][1], pts[1][0], pts[1][1], f"{_n(top)} cm", off=-10))
-        # 높이는 **윗변 왼쪽 끝에서 수직으로** 내린다. 예전에는 윗변·아랫변 왼쪽 끝의
-        # 가운데 x 에 그어 윗절반이 빗변 **바깥**으로 삐져나왔다 — 값을 안 적어 두어
-        # 아무도 못 봤을 뿐이다. 삼각형·평행사변형과 같은 자리(꼭짓점에서 수직)로 맞춘다.
-        hx = pts[0][0]
-        parts.append(_line((hx, pts[0][1]), (hx, pts[3][1]), sw=1.05, dash="5 4"))
-        # 높이 점선에 **값을 적는다.** 삼각형·평행사변형은 적는데 사다리꼴만 안 적어
-        # 지면에 「설명 없는 점선」이 남았다(2026-08-22). 발문이 높이를 말해 주더라도
-        # 이유 없는 선은 원장님 ⑭「어디를 가리키는지 모르겠다」와 같은 부류다.
+        # 높이는 도형 오른쪽 바깥에서 윗변·아랫변 사이의 수직 거리를 잰다. 도형 안의
+        # 보조선 위에 measured() 를 겹치면 치수 곡선과 라벨이 도형을 가로지른다.
+        hx = pad + bw + 8.0
         parts.append(
-            _length_mark(hx, pts[0][1], hx, pts[3][1], f"{_n(height)} cm", off=-12)
+            _length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12)
         )
     elif shape == "rhombus":
         d2 = vertical
@@ -2759,8 +2760,8 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         #    「그린 가로:세로가 스펙의 d1:d2 와 맞는가」를 시험이 직접 잰다(09 §4-20).
         #    그 시험이 없으면 마름모는 오늘부터 아무도 안 보는 그림이 된다.
         extra_r, extra_b = 0.0, 0.0
-        parts.append(_line(pts[0], pts[2], sw=1.05, dash="5 4"))
-        parts.append(_line(pts[1], pts[3], sw=1.05, dash="5 4"))
+        parts.append(_dashed_polyline([pts[0], pts[2]], "5 4", sw=1.05))
+        parts.append(_dashed_polyline([pts[1], pts[3]], "5 4", sw=1.05))
     else:
         raise ValueError("shape 는 rect·tri·para·trap·rhombus 여야 합니다")
     return _svg(bw + pad * 2 + extra_r, bh + pad * 2 + extra_b, "".join(parts))

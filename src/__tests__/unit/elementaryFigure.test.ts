@@ -336,9 +336,15 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       yCounts.set(y, (yCounts.get(y) ?? 0) + 1);
     }
     expect([...yCounts.values()].sort((a, b) => a - b)).toEqual([2, 4]);
+    expect(r.svg, "내부 분할선은 measured 식별자가 아니다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      (r.svg.match(/stroke-dasharray="/g) ?? []).length,
-    ).toBeGreaterThanOrEqual(3);
+      (r.svg.match(/<line [^>]*stroke-width="1.15"/g) ?? []).length,
+      "내부 점선의 짧은 실선 조각",
+    ).toBeGreaterThanOrEqual(6);
+    expect(figureSvgViewBoxWidth(r.svg)).toBe(124);
+    expect(figureSvgSize(r.svg)).toBe("compact");
   });
 
   /**
@@ -354,11 +360,11 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       version: "elem-1",
       kind: "cylinder",
       r: 2,
-      h: 3,
+      h: 15,
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg, "높이는 적는다").toContain(">3 cm<");
+    expect(r.svg, "높이는 적는다").toContain(">15 cm<");
     expect(r.svg, "반지름은 발문에 있으므로 안 적는다").not.toContain(">2 cm<");
     // 반지름 라벨이 없으면 중심 점은 **설명 없는 표시**다 — 같이 뺀다.
     expect(
@@ -366,13 +372,16 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       "중심 점",
     ).toHaveLength(0);
     // 높이 치수는 도형 왼쪽 바깥이다.
-    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>3 cm</);
+    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>15 cm</);
     expect(m).toBeTruthy();
     const xs = [...r.svg.matchAll(/points="([^"]+)"/g)].flatMap((p) =>
       p[1].split(/\s+/).map((q) => Number(q.split(",")[0])),
     );
     const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
     expect(Number(m![1])).toBeLessThan(midX - 8);
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
   });
 
   it("쌓기나무 겨냥도와 위 보기는 겹치지 않는다", async () => {
@@ -643,6 +652,23 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(depth.y).toBeGreaterThan(height.y);
   });
 
+  it("직육면체의 긴 높이 라벨 halo가 viewBox 왼쪽에서 잘리지 않는다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "cuboid",
+      w: 8,
+      d: 2,
+      h: 15,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const m = r.svg.match(/x="([\d.-]+)" y="[\d.-]+"[^>]*>15 cm</);
+    expect(m).toBeTruthy();
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+  });
+
   it("대칭 윤곽 도형은 격자 칸이 아니라 다각형이다", async () => {
     const r = await renderFigureSpec({
       version: "elem-1",
@@ -704,10 +730,44 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.svg, "마름모는 라벨을 적지 않는다").not.toMatch(/\d\s*cm/);
+    expect(r.svg, "구조용 점선은 measured 식별자를 쓰지 않는다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      [...r.svg.matchAll(/<line [^>]*stroke-dasharray="5 4"/g)],
-      "대각선 점선 둘",
-    ).toHaveLength(2);
+      [...r.svg.matchAll(/<line [^>]*stroke-width="1.05"/g)].length,
+      "대각선의 짧은 실선 조각",
+    ).toBeGreaterThan(4);
+  });
+
+  it.each([
+    { shape: "tri", base: 8, height: 5 },
+    { shape: "para", base: 7, height: 4 },
+    { shape: "trap", base: 8, height: 4, top: 5 },
+  ])("areaPoly $shape 치수는 도형 바깥이고 폭은 mid 등급이다", async (spec) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "areaPoly",
+      ...spec,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const polygon = parsePoints(r.svg.match(/<polygon points="([^"]+)"/)![1]!);
+    const controls = [
+      ...r.svg.matchAll(
+        /<path d="M [\d.-]+ [\d.-]+ Q ([\d.-]+) ([\d.-]+) [\d.-]+ [\d.-]+"[^>]*stroke-dasharray="6 4"/g,
+      ),
+    ].map((m) => [Number(m[1]), Number(m[2])] as Pt);
+    expect(controls.length, `${spec.shape} 치수`).toBeGreaterThanOrEqual(2);
+    for (const control of controls) {
+      expect(
+        pointInsidePolygon(control, polygon),
+        `${spec.shape} 치수 곡선`,
+      ).toBe(false);
+    }
+    const width = figureSvgViewBoxWidth(r.svg);
+    expect(width).toBeGreaterThan(160);
+    expect(width).toBeLessThanOrEqual(320);
+    expect(figureSvgSize(r.svg)).toBe("mid");
   });
 
   it("정삼각형은 세 변의 길이가 같다", async () => {
@@ -2594,6 +2654,21 @@ function parsePoints(raw: string): Pt[] {
   );
 }
 
+function pointInsidePolygon([x, y]: Pt, polygon: Pt[]): boolean {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const [xi, yi] = polygon[i]!;
+    const [xj, yj] = polygon[j]!;
+    if (
+      yi > y !== yj > y &&
+      x < ((xj - xi) * (y - yi)) / (yj - yi || Number.EPSILON) + xi
+    ) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
 function svgPolygons(svg: string): Pt[][] {
   return [...svg.matchAll(/<polygon points="([^"]+)"/g)].map((m) =>
     parsePoints(m[1]!),
@@ -3090,6 +3165,57 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     //    (문서 §10). 그래서 **같은 것을 다른 특징으로** 한 번 더 잰다.
     const dashes = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
     expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
+  });
+
+  it("치수 점선의 볼록한 가운데는 도형 바깥이고 폭 등급은 mid로 고정된다", async () => {
+    for (const spec of [
+      MARKED_ISO,
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "para",
+        sides: ["4 cm", "6 cm", null, null],
+      },
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "pentagon",
+        sides: ["12 cm"],
+      },
+    ]) {
+      const r = await renderFigureSpec(spec);
+      expect(r.ok, String(spec.shape)).toBe(true);
+      if (!r.ok) return;
+      const corners = shapeCorners(r.svg)[0]!;
+      const center = corners.reduce(
+        (sum, [x, y]) => [
+          sum[0] + x / corners.length,
+          sum[1] + y / corners.length,
+        ],
+        [0, 0] as Pt,
+      );
+      const dims = [
+        ...r.svg.matchAll(
+          /<path d="M ([\d.-]+) ([\d.-]+) Q ([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"[^>]*stroke-dasharray="6 4"/g,
+        ),
+      ];
+      expect(dims.length, `${spec.shape} 치수`).toBeGreaterThan(0);
+      for (const dim of dims) {
+        const sx = Number(dim[1]);
+        const sy = Number(dim[2]);
+        const cx = Number(dim[3]);
+        const cy = Number(dim[4]);
+        const ex = Number(dim[5]);
+        const ey = Number(dim[6]);
+        const mx = (sx + ex) / 2;
+        const my = (sy + ey) / 2;
+        const outwardDot =
+          (cx - mx) * (mx - center[0]) + (cy - my) * (my - center[1]);
+        expect(outwardDot, `${spec.shape} 치수 곡선`).toBeGreaterThan(0);
+      }
+      expect(figureSvgViewBoxWidth(r.svg), `${spec.shape} 폭`).toBe(184);
+      expect(figureSvgSize(r.svg), `${spec.shape} 지면 등급`).toBe("mid");
+    }
   });
 
   it.each([

@@ -385,6 +385,53 @@ def _esc(v: Any) -> str:
     return escape(str(v), quote=True)
 
 
+def _dashed_polyline(
+    pts: list[tuple[float, float]],
+    dash: str,
+    *,
+    stroke: str = INK,
+    sw: float = 1.3,
+) -> str:
+    """치수가 아닌 점선을 짧은 실선 조각으로 그린다.
+
+    `measured()` 의 inline `stroke-dasharray` 는 치수 판정기의 식별자다. 숨은 모서리·
+    보조선까지 같은 표식을 쓰면 판정기가 둘을 구별할 수 없으므로, 보이는 무늬는
+    유지하되 구조용 점선은 명시적인 조각들로 낸다.
+    """
+    pattern = [float(v) for v in dash.split()]
+    if not pattern or any(v <= 0 for v in pattern):
+        raise ValueError("dash 는 양수 길이 목록이어야 합니다")
+    if len(pattern) % 2:
+        pattern *= 2
+    out: list[str] = []
+    pi = 0
+    remain = pattern[0]
+    drawing = True
+    for a, b in zip(pts, pts[1:]):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        length = math.hypot(dx, dy)
+        if length <= 1e-9:
+            continue
+        at = 0.0
+        while at < length - 1e-9:
+            take = min(remain, length - at)
+            if drawing and take > 1e-9:
+                t0, t1 = at / length, (at + take) / length
+                x0, y0 = a[0] + dx * t0, a[1] + dy * t0
+                x1, y1 = a[0] + dx * t1, a[1] + dy * t1
+                out.append(
+                    f'<line x1="{_n(x0)}" y1="{_n(y0)}" x2="{_n(x1)}" y2="{_n(y1)}" '
+                    f'stroke="{_esc(stroke)}" stroke-width="{_n(sw)}"/>'
+                )
+            at += take
+            remain -= take
+            if remain <= 1e-9:
+                pi = (pi + 1) % len(pattern)
+                remain = pattern[pi]
+                drawing = pi % 2 == 0
+    return "".join(out)
+
+
 def _rect(
     x: float,
     y: float,
@@ -1474,10 +1521,7 @@ def _trap_four(spec: Mapping[str, Any]) -> str:
         f'stroke="{INK}" stroke-width="1.3"/>'
     )
     for a, b in ((tl, b1), (tr, b2), (b1, tr)):
-        parts.append(
-            f'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" y2="{_n(b[1])}" '
-            f'stroke="{INK}" stroke-width="1.15" stroke-dasharray="4 3"/>'
-        )
+        parts.append(_dashed_polyline([a, b], "4 3", sw=1.15))
     return _svg(pad * 2 + 3 * u, pad * 2 + u, "".join(parts))
 
 
@@ -1893,7 +1937,10 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     if kind not in _MARKED_KINDS:
         raise ValueError(f"모르는 도형입니다: {kind}")
 
-    pad, size = 30.0, 104.0
+    # 바깥 치수 라벨의 halo 상자까지 담는다. 30px 에서는 기울어진 변의 긴 라벨이
+    # `measured()` 의 법선 방향 push 뒤 viewBox 가장자리에 닿았다.
+    # 폭 184px 는 figureSvgFrame 의 같은 mid 등급(161~320)을 유지한다.
+    pad, size = 40.0, 104.0
     pts = _shape_points(kind, pad, pad, size)
     n = len(pts)
 
@@ -2009,7 +2056,7 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
         nx, ny = -(b[1] - a[1]), b[0] - a[0]
         outward = (mx - cx) * nx + (my - cy) * ny
         parts.append(
-            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)
+            _length_mark(a[0], a[1], b[0], b[1], str(label), off=11.0 if outward > 0 else -11.0)
         )
 
     # 각 — 꼭짓점에서 **안쪽**으로 들여 적는다.
