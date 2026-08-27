@@ -238,8 +238,8 @@ MUTATIONS = [
     (
         "원과 현 18A: 같은 거리인데 길이를 바꾼다",
         M3,
-        '      answer: `$${ab}\\\\,\\\\mathrm{cm}$`,\n      solution: `한 원에서 중심으로부터 같은 거리에',
-        '      answer: `$${ab + 2}\\\\,\\\\mathrm{cm}$`,\n      solution: `한 원에서 중심으로부터 같은 거리에',
+        '        answer: `$${ab}\\\\,\\\\mathrm{cm}$`,\n        solution: `한 원에서 중심으로부터 같은 거리에',
+        '        answer: `$${ab + 2}\\\\,\\\\mathrm{cm}$`,\n        solution: `한 원에서 중심으로부터 같은 거리에',
     ),
     (
         "원과 현 19A: 거리와 반현을 맞바꾼다",
