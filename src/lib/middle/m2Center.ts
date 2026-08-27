@@ -22,6 +22,7 @@ const GRADE = "중2";
 const BOOK = "2-2";
 const MINOR_CIRC = "삼각형의 외심과 내심";
 const MINOR_CENTROID = "삼각형의 무게중심";
+const MINOR_SIMILAR = "도형의 닮음";
 
 /** 우리 Unit.section 정확한 이름 */
 const SEC = {
@@ -29,6 +30,7 @@ const SEC = {
   내심: "삼각형의 내심",
   중점연결: "삼각형의 두 변의 중점을 연결한 선분",
   무게중심: "삼각형의 무게중심",
+  닮음: "닮은 도형",
 } as const;
 
 const DEG = Math.PI / 180;
@@ -1329,7 +1331,127 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
   ),
 ];
 
+export const M2_CENTER_SIMILAR: TypeEntry[] = [
+  def(
+    MINOR_SIMILAR,
+    "31",
+    "닮은 도형의 대응변",
+    SEC.닮음,
+    "기본",
+    (rng): Body => {
+      const ratio = intBetween(rng, 2, 5);
+      const side = intBetween(rng, 3, 12);
+      const answer = ratio * side;
+      return {
+        content: `서로 닮은 두 삼각형 $ABC$, $DEF$의 닮음비가 $1:${ratio}$이고 $\\overline{AB}=${side} cm$일 때, 대응변 $\\overline{DE}$의 길이를 계산하시오.`,
+        answer: `$${answer} cm$`,
+        solution: `대응변의 길이의 비는 닮음비와 같으므로 $\\overline{AB}:\\overline{DE}=1:${ratio}$이다. 따라서 $\\overline{DE}=${side}\\times${ratio}=${answer} cm$이다.`,
+        facts: { ratio, side, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIMILAR,
+    "32",
+    "닮은 도형의 닮음비",
+    SEC.닮음,
+    "기본",
+    (rng): Body => {
+      const ratio = intBetween(rng, 2, 6);
+      const unit = intBetween(rng, 2, 8);
+      const small = unit;
+      const large = unit * ratio;
+      return {
+        content: `서로 닮은 두 도형에서 서로 대응하는 두 변의 길이가 각각 $${small} cm$, $${large} cm$이다. 작은 도형과 큰 도형의 닮음비를 구하시오.`,
+        answer: `$1:${ratio}$`,
+        solution: `닮음비는 대응변의 길이의 비와 같으므로 $${small}:${large}=1:${ratio}$이다.`,
+        facts: { ratio, small, large },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIMILAR,
+    "33",
+    "닮은 도형의 둘레의 길이",
+    SEC.닮음,
+    "응용",
+    (rng): Body => {
+      const ratio = intBetween(rng, 2, 5);
+      const perimeter = intBetween(rng, 12, 40);
+      const answer = ratio * perimeter;
+      return {
+        content: `서로 닮은 두 다각형의 닮음비가 $1:${ratio}$이고 작은 다각형의 둘레의 길이가 $${perimeter} cm$이다. 큰 다각형의 둘레의 길이를 구하시오.`,
+        answer: `$${answer} cm$`,
+        solution: `닮은 도형의 둘레의 길이의 비는 닮음비와 같다. 따라서 큰 다각형의 둘레의 길이는 $${perimeter}\\times${ratio}=${answer} cm$이다.`,
+        facts: { ratio, perimeter, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIMILAR,
+    "34",
+    "닮은 도형의 넓이",
+    SEC.닮음,
+    "응용",
+    (rng): Body => {
+      const ratio = intBetween(rng, 2, 5);
+      const area = intBetween(rng, 4, 20);
+      const answer = area * ratio * ratio;
+      return {
+        content: `서로 닮은 두 삼각형의 닮음비가 $1:${ratio}$이고 작은 삼각형의 넓이가 $${area} cm^2$이다. 큰 삼각형의 넓이를 구하시오.`,
+        answer: `$${answer} cm^2$`,
+        solution: `닮은 도형의 넓이의 비는 닮음비의 제곱과 같으므로 $1:${ratio * ratio}$이다. 따라서 큰 삼각형의 넓이는 $${area}\\times${ratio * ratio}=${answer} cm^2$이다.`,
+        facts: { ratio, area, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIMILAR,
+    "35",
+    "축척을 이용한 실제 거리",
+    SEC.닮음,
+    "기본",
+    (rng): Body => {
+      const scale = pick(rng, [1000, 2000, 5000] as const);
+      const mapLength = intBetween(rng, 2, 12);
+      const answer = (scale * mapLength) / 100;
+      return {
+        content: `축척이 $1:${scale}$인 지도에서 두 지점 사이의 거리가 $${mapLength} cm$이다. 실제 거리를 $m$ 단위로 계산하시오.`,
+        answer: `$${answer} m$`,
+        solution: `실제 거리는 $${mapLength}\\times${scale}=${mapLength * scale} cm$이다. $100 cm=1 m$이므로 $${answer} m$이다.`,
+        facts: { scale, mapLength, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIMILAR,
+    "36",
+    "평행선과 닮은 삼각형",
+    SEC.닮음,
+    "심화",
+    (rng): Body => {
+      const upper = intBetween(rng, 2, 8);
+      const lower = intBetween(rng, 2, 8);
+      const small = intBetween(rng, 3, 10) * upper;
+      const whole = upper + lower;
+      const answer = (small * whole) / upper;
+      return {
+        content: `$\\triangle ABC$에서 점 $D$, $E$가 각각 $\\overline{AB}$, $\\overline{AC}$ 위에 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $AD:DB=${upper}:${lower}$이고 $\\overline{DE}=${small} cm$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${answer} cm$`,
+        solution: `$\\triangle ADE\\sim\\triangle ABC$이고 $AD:AB=${upper}:${whole}$이다. 따라서 $DE:BC=${upper}:${whole}$이므로 $\\overline{BC}=${small}\\times\\dfrac{${whole}}{${upper}}=${answer} cm$이다.`,
+        facts: { upper, lower, small, whole, answer },
+      };
+    },
+  ),
+];
+
 export const M2_CENTER: TypeEntry[] = [
   ...M2_CENTER_CIRC,
   ...M2_CENTER_CENTROID,
+  ...M2_CENTER_SIMILAR,
 ];

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { M2_CENTER } from "../../lib/middle/m2Center";
 import { M2_FUNC } from "../../lib/middle/m2Func";
 import { M2_INEQ_APPLY } from "../../lib/middle/m2IneqApply";
 
@@ -13,6 +14,14 @@ function rng(seed: number): () => number {
 
 function generatedIneq(section: string, type: string, seed = 29) {
   const entry = M2_INEQ_APPLY.find(
+    (item) => item.unitSection === section && item.rpmType === type,
+  );
+  expect(entry, `${section} ${type} 유형`).toBeDefined();
+  return entry!.handler(rng(seed));
+}
+
+function generatedCenter(section: string, type: string, seed = 41) {
+  const entry = M2_CENTER.find(
     (item) => item.unitSection === section && item.rpmType === type,
   );
   expect(entry, `${section} ${type} 유형`).toBeDefined();
@@ -205,5 +214,40 @@ describe("중등 유형 갈래 C — 일차부등식의 활용(수, 평균, 정�
     expect(facts!.price - facts!.discount - facts!.cost).toBe(
       (facts!.cost * facts!.profit) / 100,
     );
+  });
+});
+
+describe("중등 유형 갈래 C — 닮은 도형", () => {
+  const section = "닮은 도형";
+
+  it("31 대응변의 길이를 닮음비로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "31");
+    expect(facts!.answer).toBe(facts!.side * facts!.ratio);
+  });
+
+  it("32 두 대응변으로 닮음비를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "32");
+    expect(facts!.large / facts!.small).toBe(facts!.ratio);
+  });
+
+  it("33 둘레의 길이를 닮음비로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "33");
+    expect(facts!.answer).toBe(facts!.perimeter * facts!.ratio);
+  });
+
+  it("34 넓이를 닮음비의 제곱으로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "34");
+    expect(facts!.answer).toBe(facts!.area * facts!.ratio ** 2);
+  });
+
+  it("35 지도 길이와 축척으로 실제 거리를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "35");
+    expect(facts!.answer).toBe((facts!.mapLength * facts!.scale) / 100);
+  });
+
+  it("36 평행선으로 생긴 닮음비를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "36");
+    expect(facts!.whole).toBe(facts!.upper + facts!.lower);
+    expect(facts!.answer).toBe((facts!.small * facts!.whole) / facts!.upper);
   });
 });
