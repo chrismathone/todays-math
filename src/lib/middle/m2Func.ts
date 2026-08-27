@@ -1333,4 +1333,106 @@ export const M2_FUNC: TypeEntry[] = [
         };
       }),
   ),
+
+  def(MINOR_G2, "76", "그래프가 지나지 않는 사분면", SEC.성질, "응용", (rng) =>
+    attempt(120, () => {
+      const m = nonZero(rng, -4, 4);
+      const b = nonZero(rng, -8, 8);
+      // 기울기·y절편의 부호가 «안 지나는 사분면» 하나를 정한다.
+      //   m>0,b>0 → 4 · m>0,b<0 → 2 · m<0,b>0 → 3 · m<0,b<0 → 1
+      const miss = m > 0 ? (b > 0 ? 4 : 2) : b > 0 ? 3 : 1;
+      return {
+        content: `일차함수 $y=${linear(m, b)}$의 그래프가 지나지 않는 사분면을 구하시오.`,
+        answer: `제$${miss}$사분면`,
+        solution: `기울기가 ${m > 0 ? "양수" : "음수"}이고 $y$절편이 ${b > 0 ? "양수" : "음수"}이므로 그래프는 오른쪽 ${m > 0 ? "위" : "아래"}로 향하며 $y$축의 ${b > 0 ? "양" : "음"}의 부분을 지난다.\n따라서 제$${miss}$사분면을 지나지 않는다.`,
+        facts: { m, b, miss },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_G2,
+    "77",
+    "y의 값이 감소할 조건에서 상수의 최댓값",
+    SEC.성질,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const k = intBetween(rng, -4, 8);
+        const c = nonZero(rng, -6, 6);
+        const head = k > 0 ? `a-${k}` : k === 0 ? "a" : `a+${-k}`;
+        return {
+          content: `일차함수 $y=(${head})x${c > 0 ? `+${c}` : `${c}`}$의 그래프에서 $x$의 값이 증가할 때 $y$의 값은 감소한다. 이때 상수 $a$가 될 수 있는 가장 큰 정수를 구하시오.`,
+          answer: `$${k - 1}$`,
+          solution: `$x$의 값이 증가할 때 $y$의 값이 감소하려면 기울기가 음수여야 한다.\n$${head}<0$이므로 $a<${k}$이고, 가장 큰 정수는 $${k - 1}$이다.`,
+          facts: { k, c, ans: k - 1 },
+        };
+      }),
+  ),
+
+  def(MINOR_G2, "78", "평행이동한 그래프의 y절편", SEC.성질, "기본", (rng) =>
+    attempt(120, () => {
+      const m = nonZero(rng, -4, 4);
+      const b = nonZero(rng, -7, 7);
+      const k = nonZero(rng, -8, 8);
+      const ans = b + k;
+      if (ans === 0 || Math.abs(ans) > 15) return null;
+      return {
+        content: `일차함수 $y=${linear(m, b)}$의 그래프를 $y$축의 방향으로 $${k}$만큼 평행이동한 그래프의 $y$절편을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `$y$축의 방향으로 $${k}$만큼 평행이동하면 식은 $y=${mono(m)}+${b}${k > 0 ? `+${k}` : `${k}`}$가 된다.\n따라서 $y$절편은 $${b}${k > 0 ? `+${k}` : `${k}`}=${ans}$이다.`,
+        facts: { m, b, k, ans },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_G2,
+    "79",
+    "두 그래프가 y축 위에서 만날 조건",
+    SEC.성질,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const b = nonZero(rng, -9, 9);
+        const a = nonZero(rng, -5, 5);
+        const mult = intBetween(rng, 2, 4);
+        const off = mult * a - b;
+        if (off === 0) return null;
+        const m1 = nonZero(rng, -4, 4);
+        const m2 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 ? null : v;
+        });
+        const head = off > 0 ? `${mult}a-${off}` : `${mult}a+${-off}`;
+        return {
+          content: `두 일차함수 $y=${linear(m1, b)}$과 $y=${mono(m2)}+(${head})$의 그래프가 $y$축 위의 같은 점에서 만날 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$y$축 위에서 만나려면 두 그래프의 $y$절편이 같아야 한다.\n$${head}=${b}$에서 $${mult}a=${b + off}$이므로 $a=${a}$이다.`,
+          facts: { a, b, mult, off, m1, m2 },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G2,
+    "80",
+    "평행이동한 그래프가 주어진 그래프와 일치할 조건",
+    SEC.성질,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -4, 4);
+        const b = nonZero(rng, -7, 7);
+        const k = nonZero(rng, -8, 8);
+        const c = b + k;
+        if (c === 0 || Math.abs(c) > 15) return null;
+        return {
+          content: `일차함수 $y=${linear(m, b)}$의 그래프를 $y$축의 방향으로 $k$만큼 평행이동하였더니 일차함수 $y=${linear(m, c)}$의 그래프와 일치하였다. $k$의 값을 구하시오.`,
+          answer: `$${k}$`,
+          solution: `평행이동한 그래프의 식은 $y=${mono(m)}+${b}+k$이다.\n두 그래프가 일치하려면 $y$절편이 같아야 하므로 $${b}+k=${c}$이다.\n따라서 $k=${k}$이다.`,
+          facts: { m, b, k, c },
+        };
+      }),
+  ),
 ];

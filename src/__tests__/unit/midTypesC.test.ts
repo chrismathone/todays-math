@@ -506,3 +506,53 @@ describe("중등 유형 갈래 C — 일차함수의 식 구하기", () => {
     expect(facts!.ans).toBe(facts!.m + facts!.b);
   });
 });
+
+describe("중등 유형 갈래 C — 일차함수의 그래프의 성질", () => {
+  const SEC_PROP = "일차함수의 그래프의 성질";
+
+  it("76 답한 사분면에는 그래프 위의 점이 하나도 없다 — 좌표로 훑어 센다", () => {
+    const { facts } = generatedFunc(SEC_PROP, "76");
+    const m = facts!.m;
+    const b = facts!.b;
+    // 부호 표로 답하지 않는다. 그래프 위의 점을 촘촘히 찍어 **어느 사분면에
+    // 들어가는지 세고**, 답한 사분면만 0인지 본다.
+    const seen = new Set<number>();
+    for (let i = -4000; i <= 4000; i += 1) {
+      const x = i / 100;
+      const y = m * x + b;
+      if (x === 0 || y === 0) continue;
+      seen.add(x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3);
+    }
+    expect(seen.has(facts!.miss), `제${facts!.miss}사분면`).toBe(false);
+    expect(seen.size).toBe(3); // 나머지 셋은 실제로 지난다
+  });
+
+  it("77 답에서는 기울기가 음수이고 답+1 에서는 아니다 — 경계", () => {
+    const { facts } = generatedFunc(SEC_PROP, "77");
+    const slope = (a: number) => a - facts!.k;
+    expect(slope(facts!.ans)).toBeLessThan(0);
+    expect(slope(facts!.ans + 1)).not.toBeLessThan(0);
+  });
+
+  it("78 평행이동한 그래프에 x=0 을 넣으면 답이 나온다", () => {
+    const { facts } = generatedFunc(SEC_PROP, "78");
+    const moved = (x: number) => facts!.m * x + facts!.b + facts!.k;
+    expect(moved(0)).toBe(facts!.ans);
+  });
+
+  it("79 답을 넣으면 두 그래프의 y축 위의 점이 같아진다", () => {
+    const { facts } = generatedFunc(SEC_PROP, "79");
+    const second = (a: number) => facts!.mult * a - facts!.off;
+    expect(second(facts!.a)).toBe(facts!.b);
+    expect(second(facts!.a + 1)).not.toBe(facts!.b);
+    expect(facts!.m1).not.toBe(facts!.m2); // 기울기까지 같으면 «y축 위에서»가 무의미
+  });
+
+  it("80 답만큼 옮기면 두 그래프가 모든 x 에서 같아진다", () => {
+    const { facts } = generatedFunc(SEC_PROP, "80");
+    const moved = (x: number) => facts!.m * x + facts!.b + facts!.k;
+    const target = (x: number) => facts!.m * x + facts!.c;
+    for (const x of [-3, 0, 1, 5]) expect(moved(x)).toBe(target(x));
+    expect(facts!.k).not.toBe(0); // 안 옮겨도 같으면 문제가 안 된다
+  });
+});
