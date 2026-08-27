@@ -2028,7 +2028,9 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     miny = min(c[1] for c in corners0)
     maxy = max(c[1] for c in corners0)
     # 가로=앞 아래, 높이=앞 왼쪽, 세로=밑면 오른쪽 뒤. 위-오른쪽 짧은 모서리는 쓰지 않는다.
-    pad_l, pad_t, pad_r, pad_b = 40.0, 22.0, 52.0, 44.0
+    # 왼쪽 높이 라벨의 근사 상자까지 담되 총 폭은 유지한다(44+48 == 종전 40+52).
+    # viewBox 폭 문턱(160/320)을 넘나들지 않게 오른쪽 여백을 같은 만큼 줄인다.
+    pad_l, pad_t, pad_r, pad_b = 44.0, 22.0, 48.0, 44.0
     view = View(0.5, 45, scale, (pad_l - minx, pad_t - miny))
 
     def p(x: float, y: float, z: float) -> tuple[float, float]:

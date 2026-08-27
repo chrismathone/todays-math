@@ -649,6 +649,23 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(depth.y).toBeGreaterThan(height.y);
   });
 
+  it("직육면체의 긴 높이 라벨 halo가 viewBox 왼쪽에서 잘리지 않는다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "cuboid",
+      w: 8,
+      d: 2,
+      h: 15,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const m = r.svg.match(/x="([\d.-]+)" y="[\d.-]+"[^>]*>15 cm</);
+    expect(m).toBeTruthy();
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+  });
+
   it("대칭 윤곽 도형은 격자 칸이 아니라 다각형이다", async () => {
     const r = await renderFigureSpec({
       version: "elem-1",
