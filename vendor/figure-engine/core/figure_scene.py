@@ -320,6 +320,10 @@ class ResolvedScene:
     view_box: tuple[float, float, float, float]
     translation: tuple[float, float]
     content_bounds: Box
+    #: 각 이름 → (호 위 시작점, 라벨 자리). **도형 밖으로 끌어낸 각만** 들어간다.
+    #: 좁은 각은 라벨이 안쪽에 못 들어가므로(배율로 안 풀린다) 밖에 놓고 지시선으로
+    #: 임자를 밝힌다 — 원장님 지시 2026-08-27.
+    angle_leaders: Mapping[str, tuple[tuple[float, float], tuple[float, float]]] =         field(default_factory=dict)
 
     @property
     def width(self) -> float:
@@ -449,6 +453,78 @@ def _text_box(x: float, baseline_y: float, text: str, font_size: float) -> Box:
     width = max(0.62, width_units) * font_size
     return (x - width / 2.0, baseline_y - 0.83 * font_size,
             x + width / 2.0, baseline_y + 0.25 * font_size)
+
+
+def _circle_intersects_box(cx: float, cy: float, radius: float, box: Box) -> bool:
+    """원 **둘레**가 이 상자를 지나가는가 (안쪽만 겹치는 것은 아니다).
+
+    둘레가 상자를 지나려면 상자에서 중심까지 **가장 가까운 거리 ≤ r ≤ 가장 먼 거리**
+    여야 한다. `_candidate_cost` 는 «상자 중심과 반지름의 차 < 반대각선» 이라는
+    어림을 쓰는데, 그 어림은 옆으로 긴 상자에서 **넉넉히 과보고**한다(라벨 상자가
+    딱 그 모양이다). 여기서는 정확히 잰다.
+    """
+    nx = min(max(cx, box[0]), box[2])
+    ny = min(max(cy, box[1]), box[3])
+    near = math.hypot(cx - nx, cy - ny)
+    far = max(math.hypot(cx - x, cy - y)
+              for x in (box[0], box[2]) for y in (box[1], box[3]))
+    return near <= radius <= far
+
+
+def _leader_stop_radius(label: str, font_size: float, halo_width: float,
+                        ux: float = 0.0, uy: float = 0.0) -> float:
+    """지시선이 글자 앞에서 끊기는 거리 — 글자 상자 **경계까지** + 여백 + halo 반폭.
+
+    halo 까지 안 비키면 지시선 끝이 흰 테두리에 먹혀 «끊긴 선»로 보인다
+    (실측 0.2단위 침범, lint_svg 규칙 7 과 같은 자리).
+
+    ⚠️ 종전에는 `max(반폭, 반높이)` **한 값**을 썼다 — 상자를 감싸는 **원**이다.
+       그러면 위·아래에서 다가오는 지시선이 반**폭**만큼 떨어져 끊긴다: `25°` 는
+       반폭 11·반높이 6.5 라 **4.5단위가 빈다**(실측 `m3-diameter-cross`). 지면에서
+       지시선과 글자가 따로 노는 것처럼 보였다. 이제 다가오는 **방향으로** 상자
+       경계를 찾는다(ux,uy 를 안 주면 옛 동작 — 가장 먼 쪽).
+    """
+    box = _text_box(0.0, 0.0, label, font_size)
+    half_w = (box[2] - box[0]) / 2.0
+    half_h = (box[3] - box[1]) / 2.0
+    margin = 2.0 + halo_width / 2.0
+    if ux == 0.0 and uy == 0.0:
+        return max(half_w, half_h) + margin
+    # 중심에서 (ux,uy) 방향으로 상자 경계까지 — 두 축의 문턱 중 **먼저 닿는** 쪽.
+    tx = half_w / abs(ux) if ux else float("inf")
+    ty = half_h / abs(uy) if uy else float("inf")
+    return min(tx, ty) + margin
+
+
+def _leader_is_drawable(anchor: tuple[float, float], pos: tuple[float, float],
+                        label: str, font_size: float, halo_width: float) -> bool:
+    """이 지시선이 **그릴 값어치가 있는 길이**인가.
+
+    🔴 **짧은 지시선은 없느니만 못하다.** 호와 라벨이 가까우면 실제로 그려지는
+    길이가 몇 단위뿐이라, 변을 가로지르는 **같음 표시(tick)로 읽힌다** — 그 순간
+    문항의 뜻이 달라진다(합동 근거가 하나 더 생긴 것처럼 보인다). 실측
+    `2-2|삼각형의 성질|06` 40° 판에서 8단위짜리 막대가 그랬고, **그 8 이 곧
+    tick 전장**(`_TICK_HALF*2`)이다 — 우연이 아니다.
+
+    그래서 문턱을 글자 크기가 아니라 **tick 전장**에 맨다: 그려지는 길이가 tick
+    두 개분보다 길어야 한다. 지어낸 수가 아니라 «무엇으로 오해받는가»의 치수다.
+    (`_TICK_HALF` 를 바꾸면 이 문턱도 같이 움직인다 — 한 숫자를 두 곳이 쓴다.)
+
+    ⚠️ **이 판단은 «그릴 때»가 아니라 «고를 때» 해야 한다.** 그리기 단계에서만
+    걸렀더니 라벨은 밖(=각의 바깥, 변 너머)에 선 채로 지시선만 사라져,
+    **어느 각의 값인지 아무것도 말해 주지 않는 라벨**이 됐다 — 실측
+    `m3-diameter-cross` 의 `25°` 가 제 쐐기를 떠나 AB 아래에 홀로 앉았다.
+    밖에 세우는 것과 지시선을 긋는 것은 **한 결정**이다. 그래서 고르는 쪽과
+    그리는 쪽이 이 함수 **하나**를 부른다.
+    """
+    dx = pos[0] - anchor[0]
+    dy = pos[1] - 0.32 * font_size - anchor[1]
+    length = math.hypot(dx, dy)
+    if length == 0.0:
+        return False
+    stop_r = _leader_stop_radius(label, font_size, halo_width,
+                                 dx / length, dy / length)
+    return length - stop_r > 2.0 * (_TICK_HALF * 2.0)
 
 
 def _boxes_overlap(a: Box, b: Box, gap: float = 0.0) -> bool:
@@ -1436,8 +1512,8 @@ class FigureScene:
         return out
 
     def _angle_label_layout(
-            self, angle: AngleMark,
-            occupied: Sequence[Box] = ()) -> tuple[tuple[float, float], Box] | None:
+            self, angle: AngleMark, occupied: Sequence[Box] = ()
+    ) -> tuple[tuple[float, float], Box, tuple[float, float] | None] | None:
         """각 라벨 자리 — 이등분선 위에서 **비켜설 수 있는 만큼** 비켜선다.
 
         ⚠️ 종전에는 `angle_label_distance`(25) 한 값에 **무조건** 놓았다.  그 거리는
@@ -1504,7 +1580,112 @@ class FigureScene:
             if cost[0] == 0:
                 break
         assert best is not None
-        return best[1], best[2]
+        # 🔴 **끌어낼지 말지의 열쇠는 «이 상자가 정말 잉크를 밟는가»다.**
+        #
+        # ⚠️ `cost[0]`(hard) 로 재면 안 된다. 그 수는 «먼저 놓인 라벨과 겹침»·«다른
+        #    각 표시»까지 세므로 넉넉한 각에서도 0이 아니다. 그걸 열쇠로 썼다가
+        #    **7장 전부를 밖으로 끌어냈다**(2026-08-27 첫 판). 원장님이 화면에서
+        #    바로 잡아 주셨다 — 「완전 이상한데?」.
+        if not self._label_hits_geometry(best[2]):
+            return best[1], best[2], None
+
+        # ── 안쪽에 자리가 없다 → **밖으로 끌어내고 지시선을 긋는다** ──────────
+        #
+        # 원장님 지시 2026-08-27: 「적당한 크기로 구현했을때도 라벨 표현이 힘들면,
+        # 화살표로 각을 도형 밖으로 끌어내서 표현해.」
+        #
+        # 🔴 **키운다고 들어가지 않는다.** 반각 φ 에서 이등분선 위 거리 d 의 여유는
+        #    `d·sin φ` 이므로, 글자 반높이를 확보하려면 `d ≥ (fs/2)/sin φ` 다.
+        #    $30^\circ$ 각이면 $d \ge 23.2$ 인데 그 삼각형의 **세로가 41** 이다 —
+        #    각 안쪽이 아니라 도형 한복판이 된다. 이 비율은 **배율에 안 변한다.**
+        #
+        # ⚠️ **이등분선을 따라 더 밀면 안 된다.** 좁은 각의 이등분선은 도형 **안쪽**을
+        #    향하므로, 밀면 라벨이 도형을 가로질러 반대편으로 나간다(첫 판이 그랬다 —
+        #    원장님 「다른 도형도 가로질러 가고」).
+        #
+        # 나가는 곳은 **이등분선의 반대쪽**이다 — 원장님 지시 2026-08-27:
+        # 「각의 중심에서 그냥 밖으로 선을 빼면 되잖아.」 그 방향은 각의 바깥이므로
+        # 꼭짓점을 벗어나는 순간 도형 밖이고, 지시선은 **꼭짓점을 곧게 가리킨다**
+        # (어느 각의 값인지 선 하나로 말한다). 그리고 **바로 근처**에 둔다 —
+        # 자리를 못 얻을 때만 조금씩 넓힌다.
+        radius = self.style.angle_radius if angle.radius is None else angle.radius
+        # 지시선은 **각의 호에서** 시작한다 — 원장님 지시: 「각의 중심에서 그냥 밖으로
+        # 선을 빼면 되잖아.」 이등분선 위 호의 한복판이라 「이 각의 값」임을 선 하나가
+        # 말한다. (꼭짓점에서 시작하면 변에서 뻗은 또 하나의 반직선처럼 읽히고,
+        # 이등분선 **반대쪽**으로 라벨을 두면 그 선이 꼭짓점을 뚫고 지나간다.)
+        anchor = (vertex.x + radius * math.cos(mid),
+                  vertex.y + radius * math.sin(mid))
+        # 라벨은 **두 변 중 하나 바로 바깥**에 둔다 — 변을 한 번만 가로지르는 짧은
+        # 지시선이 되어 도형을 안 가로지른다(원장님 「다른 도형도 가로질러 가고」).
+        sign = 1.0 if delta >= 0 else -1.0
+        best_out: tuple[float, tuple[float, float], Box, tuple[float, float]] | None
+        best_out = None
+        for far in (1.2, 1.7, 2.3, 3.0):
+            distance = radius + fs * far
+            for arm, turn in ((a0, -sign), (a1, sign)):
+                for turn_deg in (30.0, 48.0, 66.0):
+                    direction = arm + turn * math.radians(turn_deg)
+                    x = vertex.x + distance * math.cos(direction)
+                    y = vertex.y + distance * math.sin(direction) + 0.32 * fs
+                    box = _text_box(x, y, angle.label, fs)
+                    if self._label_hits_geometry(box):
+                        continue
+                    grown = _expand_box(box, pad)
+                    if any(_boxes_overlap(grown, other, gap=1.0) for other in occupied):
+                        continue
+                    # 밖에 세우는 것과 지시선을 긋는 것은 **한 결정**이다 — 지시선을
+                    # 못 그을 자리면 라벨도 여기 세우면 안 된다(주석은 그 함수에).
+                    if not _leader_is_drawable(anchor, (x, y), angle.label, fs,
+                                               self.style.halo_width):
+                        continue
+                    best_out = (distance, (x, y), box, anchor)
+                    break
+                if best_out is not None:
+                    break
+            if best_out is not None:
+                break
+        if best_out is None:
+            # 밖에서도 못 비켰다 — 옛 동작(가장 덜 나쁜 자리)으로 물러선다.
+            # 지시선을 그으면 그 선이 또 잉크를 얹으므로 여기서는 긋지 않는다.
+            return best[1], best[2], None
+        return best_out[1], best_out[2], best_out[3]
+
+    def _label_hits_geometry(self, box: Box) -> bool:
+        """이 글자 상자가 **실선·꼭짓점을 밟는가.**
+
+        각 표시(호·직각 사각형)는 안 센다 — 각 라벨은 제 호의 설명이라 호 곁에
+        앉는 것이 정상이다. 먼저 놓인 라벨(`occupied`)도 여기서 안 센다(그건
+        부르는 쪽이 따로 본다). **오직 잉크로 그려진 도형만** 본다.
+        """
+        for point in self.points.values():
+            if _point_in_box(point.x, point.y, box, 1.5):
+                return True
+        for segment in self.segments.values():
+            if _segment_intersects_box(
+                    self.points[segment.p1], self.points[segment.p2], box):
+                return True
+            # 같음 표시·평행 표시도 잉크다 — `_candidate_cost` 와 **같은 것**을 본다.
+            for (mx1, my1), (mx2, my2) in self._segment_mark_lines(segment):
+                if _segment_intersects_box(
+                        Point(name="", x=mx1, y=my1),
+                        Point(name="", x=mx2, y=my2), box):
+                    return True
+        for arc_name in sorted(self.arcs):
+            if _polyline_intersects_box(
+                    self._arc_stroke_samples(self.arcs[arc_name]), box):
+                return True
+        # 🔴 **원을 빠뜨리면 안 된다.** 첫 판이 그랬고, 밖으로 끌어낸 라벨이
+        #    하필 **원 둘레 위에** 앉았다(실측 `m3-chord-cross`·`m3-inscribed-iso`
+        #    ·`m3-semicircle` — 셋 다). 판정기(브라우저)도 같은 자리에서 눈이 멀어
+        #    「깨끗」이라 했다. 세는 쪽과 고치는 쪽이 **같이** 눈이 먼 그 자리다.
+        for circle_name in sorted(self.circles):
+            circle_obj = self.circles[circle_name]
+            if not circle_obj.draw:
+                continue  # 작도용 원은 잉크를 안 남긴다.
+            center = self.points[circle_obj.center]
+            if _circle_intersects_box(center.x, center.y, circle_obj.radius, box):
+                return True
+        return False
 
     def _label_vectors(self, label: PointLabel) -> list[tuple[float, float]]:
         point = self.points[label.point]
@@ -1584,6 +1765,19 @@ class FigureScene:
             if _segment_intersects_box(self.points[segment.p1], self.points[segment.p2], box):
                 hard += 1
                 cost += 20.0
+            # 🔴 **같음 표시(tick)·평행 표시(»)도 잉크다.**
+            #
+            # 여기 없던 동안 라벨은 그것을 **못 봤고**, `2-2|삼각형의 성질|06` 의
+            # `64°` 가 $\overline{CA}$ 의 이중 tick 을 통째로 덮었다(실측: 글자 상자
+            # x 63.8~83.8, tick x 83.08~91.08 — 겹친다). 지면에서는 «표시가 없는
+            # 변»으로 읽히므로 **문항이 달라진다** — RHS 합동의 근거가 사라진다.
+            # 원장님과 RPM 원본을 1:1 로 견주다 드러났다(2026-08-28).
+            for (mx1, my1), (mx2, my2) in self._segment_mark_lines(segment):
+                if _segment_intersects_box(
+                        Point(name="", x=mx1, y=my1), Point(name="", x=mx2, y=my2), box):
+                    hard += 1
+                    cost += 20.0
+                    break
         for arc_name in sorted(self.arcs):
             if _polyline_intersects_box(
                     self._arc_stroke_samples(self.arcs[arc_name]), box):
@@ -1883,6 +2077,8 @@ class FigureScene:
         label_positions: dict[str, tuple[float, float]] = {}
         label_boxes: dict[str, Box] = {}
         occupied: list[Box] = []
+        # 각 이름 → (호 위 시작점, 라벨 자리). 라벨을 도형 밖으로 끌어낸 각만 들어간다.
+        angle_leaders: dict[str, tuple[tuple[float, float], tuple[float, float]]] = {}
 
         # 🔴 **자리를 잡는 순서는 «자유도가 적은 것부터»다.**
         #
@@ -1901,10 +2097,14 @@ class FigureScene:
             angle = self.angles[angle_name]
             laid_out = self._angle_label_layout(angle, occupied)
             if laid_out:
-                pos, box = laid_out
+                pos, box, leader = laid_out
                 key = f"angle:{angle.name}"
                 label_positions[key], label_boxes[key] = pos, box
                 occupied.append(box)
+                # 밖으로 끌어낸 라벨은 **지시선이 임자를 말한다** — 그 선을 그리려면
+                # 호 위의 시작점을 여기서 챙겨 둬야 한다(각 순서가 자리를 정한다).
+                if leader is not None:
+                    angle_leaders[angle.name] = (leader, pos)
 
         dimension_layouts: dict[str, DimensionLayout] = {}
         for dimension_name in sorted(self.dimensions):
@@ -2026,7 +2226,8 @@ class FigureScene:
         return ResolvedScene(
             MappingProxyType(dict(self.points)), MappingProxyType(label_positions),
             MappingProxyType(label_boxes), MappingProxyType(dimension_layouts),
-            (0.0, 0.0, width, height), translation, content)
+            (0.0, 0.0, width, height), translation, content,
+            MappingProxyType(angle_leaders))
 
     def render_svg(self) -> str:
         """Render a standalone SVG with deterministic main/marks/labels layers."""
@@ -2145,6 +2346,39 @@ class FigureScene:
                     f'<path d="{path_data}" fill="none" '
                     f'stroke="{escape(style.stroke, quote=True)}" '
                     f'stroke-width="{_fmt(style.mark_width)}"/>')
+        # ── 밖으로 끌어낸 각 라벨의 **지시선** ────────────────────────────────
+        #
+        # 원장님 지시 2026-08-27: 「화살표로 각을 도형 밖으로 끌어내서 표현해.」
+        # 좁은 각은 라벨이 안쪽에 못 들어간다(배율로 안 풀린다 — `_angle_label_layout`
+        # 의 주석 참조). 그때 라벨은 밖에 서고, **어느 꼭짓점의 값인지는 이 선이 말한다.**
+        #
+        # ⚠️ 선을 글자 **밑까지** 긋지 않는다 — 글자 상자 앞에서 끊는다. 끝까지 그으면
+        #    halo 가 그 선을 지워 «끊긴 선»으로 보인다(lint_svg 규칙 7 과 같은 자리).
+        for angle_name in sorted(resolved.angle_leaders):
+            (ax, ay), (lx, ly) = resolved.angle_leaders[angle_name]
+            label_text = self.angles[angle_name].label
+            dx, dy = lx - ax, ly - 0.32 * style.angle_font_size - ay
+            length = math.hypot(dx, dy)
+            # 고르는 쪽(`_angle_label_layout`)이 이미 같은 함수로 걸렀다. 여기서 또
+            # 보는 것은 **두 벌이 갈라지지 않게** 하기 위해서다 — 규칙은 그 함수 하나다.
+            if not _leader_is_drawable((ax, ay), (lx, ly), label_text,
+                                       style.angle_font_size, style.halo_width):
+                continue
+            ux, uy = dx / length, dy / length
+            stop_r = _leader_stop_radius(
+                label_text, style.angle_font_size, style.halo_width, ux, uy)
+            ex = lx - ux * stop_r
+            ey = ly - 0.32 * style.angle_font_size - uy * stop_r
+            # 살짝 휘게 — 곧은 선은 도형의 변으로 읽힌다(원장님 스케치도 곡선이다).
+            bow = 0.18 * (length - stop_r)
+            cx = (ax + ex) / 2.0 - uy * bow
+            cy = (ay + ey) / 2.0 + ux * bow
+            marks.append(
+                f'<path d="M {_fmt(ax + tx)} {_fmt(ay + ty)} '
+                f'Q {_fmt(cx + tx)} {_fmt(cy + ty)} '
+                f'{_fmt(ex + tx)} {_fmt(ey + ty)}" fill="none" '
+                f'stroke="{escape(style.stroke, quote=True)}" '
+                f'stroke-width="{_fmt(style.mark_width)}" stroke-linecap="round"/>')
         for dimension_name in sorted(self.dimensions):
             dimension = self.dimensions[dimension_name]
             layout = resolved.dimension_layouts[dimension.name]
