@@ -63,6 +63,7 @@ const DONE_SECTIONS = [
     entries: [...M2_GEO_TRI, ...M2_GEO_QUAD],
     section: "평행선과 삼각형의 넓이",
   },
+  { entries: M2_GEO_QUAD, section: "직사각형, 마름모, 정사각형" },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {

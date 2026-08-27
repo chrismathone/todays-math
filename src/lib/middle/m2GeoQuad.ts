@@ -39,6 +39,19 @@ const SEC = {
 
 const DEG = Math.PI / 180;
 
+/**
+ * 계수를 적는다 — $1$ 은 **안 적는다**.
+ *
+ * 지면에 `$1x=7$` 이 나가도 값은 맞고 KaTeX 도 초록이라 값 검산이 구조적으로
+ * 못 본다. 실제로 02·04·06 이 `p=2` 일 때 그렇게 나가고 있었고, 새 소단원이
+ * 지면 훑개(`midPage`)에 붙는 순간 드러났다(2026-08-27).
+ */
+function coefTex(c: number): string {
+  if (c === 1) return "";
+  if (c === -1) return "-";
+  return String(c);
+}
+
 function r2(v: number): number {
   return Math.round(v * 100) / 100;
 }
@@ -773,6 +786,55 @@ function figTrapDiag23(adOverBc: number): Fig {
   };
 }
 
+/**
+ * 27 — 정사각형 $ABCD$ 의 대각선 $BD$ 위의 점 $P$ 와 $\overline{PA}$·$\overline{PC}$.
+ *
+ * $P$ 의 자리를 «적당히» 찍으면 그림이 발문과 다른 말을 한다. $\angle PAB=a$ 이면
+ * $\overline{BP}:\overline{BD}=\tan a^\circ/(1+\tan a^\circ)$ 이므로 그 값으로 찍는다.
+ * 그래야 지면의 각이 발문의 각과 같다 (09 §4-20).
+ *
+ * `mode` 0 은 $\angle PAB$ 를, 1 은 $\angle APB$ 를 찍는다 — **주어진 것만** 찍는다.
+ * $a$ 는 두 모드 모두 $\angle PAB$ 라 $P$ 의 자리는 한 식으로 정해진다.
+ */
+function figSquareDiagPoint27(a: number, mode: number): Fig {
+  const s = 130;
+  const ta = Math.tan(a * DEG);
+  const t = ta / (1 + ta);
+  const pts: Record<string, XY> = {
+    ...rectPts(s, s),
+    P: [r2(t * s), r2(t * s)],
+  };
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AB: { points: ["A", "B"], ticks: 1 },
+      BC: { points: ["B", "C"], ticks: 1 },
+      CD: { points: ["C", "D"], ticks: 1 },
+      DA: { points: ["D", "A"], ticks: 1 },
+      BP: ["B", "P"],
+      PD: ["P", "D"],
+      PA: ["P", "A"],
+      PC: ["P", "C"],
+    },
+    angles:
+      mode === 0
+        ? {
+            rB: { vertex: "B", points: ["A", "C"], right: true },
+            angA: { vertex: "A", points: ["B", "P"], label: `${a}°` },
+          }
+        : {
+            rB: { vertex: "B", points: ["A", "C"], right: true },
+            angP: {
+              vertex: "P",
+              points: ["A", "B"],
+              label: `${135 - a}°`,
+            },
+          },
+    labels: { A: "A", B: "B", C: "C", D: "D", P: "P" },
+  };
+}
+
 // ── 유형 ────────────────────────────────────────────────────────────────
 
 export const M2_GEO_QUAD: TypeEntry[] = [
@@ -833,7 +895,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
       return {
         content: `평행사변형 $ABCD$에서 두 대각선의 길이가 $\\overline{AC}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BD}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 직사각형일 때, $\\overline{AC}$의 길이를 구하시오.`,
         answer: `$${len}\\,\\mathrm{cm}$`,
-        solution: `평행사변형이 직사각형이 되려면 두 대각선의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${p - 1}x=${s - q}$이므로 $x=${x}$이고, $\\overline{AC}=${p}\\times${x}+${q}=${len}\\,(\\mathrm{cm})$이다.`,
+        solution: `평행사변형이 직사각형이 되려면 두 대각선의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이고, $\\overline{AC}=${p}\\times${x}+${q}=${len}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, p, q, s, x, len },
         figureSpec: figPara(150, 92, 40, true),
       };
@@ -885,7 +947,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         return {
           content: `평행사변형 $ABCD$에서 $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BC}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 마름모일 때, 그 둘레의 길이를 구하시오.`,
           answer: `$${peri}\\,\\mathrm{cm}$`,
-          solution: `평행사변형이 마름모가 되려면 이웃하는 두 변의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${p - 1}x=${s - q}$이므로 $x=${x}$이고 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $4\\times${side}=${peri}\\,(\\mathrm{cm})$이다.`,
+          solution: `평행사변형이 마름모가 되려면 이웃하는 두 변의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이고 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $4\\times${side}=${peri}\\,(\\mathrm{cm})$이다.`,
           facts: { mode, p, q, s, x, side, peri },
           figureSpec: figPara(140, 92, 46, false),
         };
@@ -942,7 +1004,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
       return {
         content: `직사각형 $ABCD$에서 $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BC}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 정사각형일 때, 그 넓이를 구하시오.`,
         answer: `$${area}\\,\\mathrm{cm}^2$`,
-        solution: `직사각형이 정사각형이 되려면 이웃하는 두 변의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${p - 1}x=${s - q}$이므로 $x=${x}$이고 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.\n따라서 넓이는 $${side}\\times${side}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+        solution: `직사각형이 정사각형이 되려면 이웃하는 두 변의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이고 한 변의 길이는 $${side}\\,\\mathrm{cm}$이다.\n따라서 넓이는 $${side}\\times${side}=${area}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { mode, p, q, s, x, side, area },
         figureSpec: figRect01(150, 96),
       };
@@ -956,7 +1018,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     return {
       content: `마름모 $ABCD$에서 두 대각선의 길이가 $\\overline{AC}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BD}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 정사각형일 때, 그 넓이를 구하시오.`,
       answer: `$${area}\\,\\mathrm{cm}^2$`,
-      solution: `마름모가 정사각형이 되려면 두 대각선의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${p - 1}x=${s - q}$이므로 $x=${x}$이고 두 대각선의 길이는 모두 $${d}\\,\\mathrm{cm}$이다.\n마름모의 두 대각선은 서로 수직이므로 넓이는 $\\dfrac{1}{2}\\times${d}\\times${d}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+      solution: `마름모가 정사각형이 되려면 두 대각선의 길이가 같아야 하므로 $${p}x+${q}=x+${s}$이다.\n$${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이고 두 대각선의 길이는 모두 $${d}\\,\\mathrm{cm}$이다.\n마름모의 두 대각선은 서로 수직이므로 넓이는 $\\dfrac{1}{2}\\times${d}\\times${d}=${area}\\,(\\mathrm{cm}^2)$이다.`,
       facts: { mode, p, q, s, x, d, area },
       figureSpec: figRhombus(96, 96, {}),
     };
@@ -1344,6 +1406,144 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 삼각형 $ABD$와 삼각형 $ACD$의 넓이가 같고, 두 삼각형에서 삼각형 $AOD$를 빼면 삼각형 $ABO$와 삼각형 $DOC$의 넓이가 같다.\n삼각형 $ABO$의 넓이를 $S$라 하면 높이가 같은 두 삼각형에서 $\\triangle AOD:\\triangle ABO=\\overline{OD}:\\overline{OB}=\\triangle DOC:\\triangle OBC$이므로 $${p}:S=S:${q}$이다.\n$S\\times S=${p}\\times${q}=${p * q}$에서 $S=${r}$이므로 사다리꼴 $ABCD$의 넓이는 $${p}+${r}+${r}+${q}=${x}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { s, t, k, p, q, r, x },
         figureSpec: figTrapDiag23(s / t),
+      };
+    },
+  ),
+
+  // ── 직사각형, 마름모, 정사각형 (24~27 — 색인 17 뒤에 우리가 더한 번호) ──
+
+  def(
+    "24",
+    "직사각형의 대각선과 삼각형의 둘레",
+    SEC.직사각형류,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const b = intBetween(rng, 6, 14);
+        // 대각선이 밑변보다 «너무 조금» 길면 지면의 직사각형이 납작해진다.
+        const c = attempt(80, () => {
+          const v = 2 * intBetween(rng, 4, 14);
+          return v > 1.1 * b && v < 1.9 * b ? v : null;
+        });
+        const x = c + b;
+        return {
+          content: `그림과 같은 직사각형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{AC}=${c}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, 삼각형 $OBC$의 둘레의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `직사각형의 두 대각선은 길이가 같고 서로 다른 것을 이등분하므로 $\\overline{OB}=\\overline{OC}=\\dfrac{1}{2}\\times${c}=${c / 2}\\,(\\mathrm{cm})$이다.\n따라서 삼각형 $OBC$의 둘레의 길이는 $${c / 2}+${c / 2}+${b}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, c, b, half: c / 2, x },
+          figureSpec: figRect01(b, r2(Math.sqrt(c * c - b * b))),
+        };
+      }
+      const a = intBetween(rng, 5, 13);
+      const x = attempt(80, () => {
+        const v = intBetween(rng, 8, 26);
+        return v > 1.1 * a && v < 1.9 * a ? v : null;
+      });
+      const p = x + a;
+      return {
+        content: `그림과 같은 직사각형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$이고 삼각형 $OAB$의 둘레의 길이가 $${p}\\,\\mathrm{cm}$일 때, $\\overline{AC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `직사각형의 두 대각선은 길이가 같고 서로 다른 것을 이등분하므로 $\\overline{OA}=\\overline{OB}=\\dfrac{1}{2}\\overline{AC}$이다.\n삼각형 $OAB$의 둘레의 길이는 $\\overline{OA}+\\overline{OB}+\\overline{AB}=\\overline{AC}+\\overline{AB}$와 같으므로 $\\overline{AC}=${p}-${a}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, p, x },
+        figureSpec: figRect01(r2(Math.sqrt(x * x - a * a)), a),
+      };
+    },
+  ),
+
+  def(
+    "25",
+    "마름모의 두 대각선과 넓이",
+    SEC.직사각형류,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const m = 2 * intBetween(rng, 3, 11);
+      const n = attempt(80, () => {
+        const v = intBetween(rng, 5, 22);
+        return v > 0.45 * m && v < 2.2 * m ? v : null;
+      });
+      const S = (m * n) / 2;
+      // 대각선의 직각 기호는 `figRhombus` 가 이미 붙인다 — 여기서 또 주지 않는다.
+      const rhombus = figRhombus(n / 2, m / 2, {});
+      if (mode === 0) {
+        return {
+          content: `그림과 같은 마름모 $ABCD$에서 두 대각선의 길이가 $\\overline{AC}=${m}\\,\\mathrm{cm}$, $\\overline{BD}=${n}\\,\\mathrm{cm}$일 때, $\\square ABCD$의 넓이를 구하시오.`,
+          answer: `$${S}\\,\\mathrm{cm}^2$`,
+          solution: `마름모의 두 대각선은 서로 다른 것을 수직이등분하므로 마름모의 넓이는 두 대각선의 길이의 곱의 절반이다.\n따라서 $\\square ABCD$의 넓이는 $\\dfrac{1}{2}\\times${m}\\times${n}=${S}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, m, n, S, x: S },
+          figureSpec: rhombus,
+        };
+      }
+      return {
+        content: `그림과 같은 마름모 $ABCD$에서 $\\overline{AC}=${m}\\,\\mathrm{cm}$이고 $\\square ABCD$의 넓이가 $${S}\\,\\mathrm{cm}^2$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${n}\\,\\mathrm{cm}$`,
+        solution: `마름모의 넓이는 두 대각선의 길이의 곱의 절반이므로 $\\dfrac{1}{2}\\times${m}\\times\\overline{BD}=${S}$이다.\n따라서 $\\overline{BD}=\\dfrac{2\\times${S}}{${m}}=${n}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, m, n, S, x: n },
+        figureSpec: rhombus,
+      };
+    },
+  ),
+
+  def(
+    "26",
+    "정사각형의 대각선이 나눈 네 삼각형",
+    SEC.직사각형류,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const t = intBetween(rng, 3, 25);
+      const S = 4 * t;
+      if (mode === 0) {
+        return {
+          content: `그림과 같은 정사각형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\square ABCD$의 넓이가 $${S}\\,\\mathrm{cm}^2$일 때, 삼각형 $OAB$의 넓이를 구하시오.`,
+          answer: `$${t}\\,\\mathrm{cm}^2$`,
+          solution: `정사각형의 두 대각선은 길이가 같고 서로 다른 것을 수직이등분하므로 네 삼각형 $OAB$, $OBC$, $OCD$, $ODA$는 모두 합동이다.\n따라서 삼각형 $OAB$의 넓이는 $${S}\\div4=${t}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, S, t, x: t },
+          figureSpec: figSquareDiag(120),
+        };
+      }
+      const x = 2 * t;
+      return {
+        content: `그림과 같은 정사각형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. 삼각형 $OBC$의 넓이가 $${t}\\,\\mathrm{cm}^2$일 때, 삼각형 $ABD$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `두 대각선이 정사각형을 합동인 네 삼각형으로 나누므로 $\\square ABCD$의 넓이는 $4\\times${t}=${S}\\,(\\mathrm{cm}^2)$이다.\n대각선 $\\overline{BD}$가 정사각형의 넓이를 이등분하므로 삼각형 $ABD$의 넓이는 $${S}\\div2=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { mode, S, t, x },
+        figureSpec: figSquareDiag(120),
+      };
+    },
+  ),
+
+  def(
+    "27",
+    "정사각형의 대각선 위의 점",
+    SEC.직사각형류,
+    "심화",
+    (rng): Body => {
+      // $P$ 가 중심 $O$ 와 $D$ 사이에 있어야 $\angle APC$ 가 우각이 되지 않는다
+      // ($\angle PAB=45^\circ$ 이면 $A$·$P$·$C$ 가 한 직선 위에 놓인다).
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const a = intBetween(rng, 50, 85);
+        const apb = 135 - a;
+        const x = 2 * apb;
+        return {
+          content: `그림과 같은 정사각형 $ABCD$의 대각선 $BD$ 위에 점 $P$가 있다. $\\angle PAB=${a}^\\circ$일 때, $\\angle APC$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `삼각형 $ABP$와 삼각형 $CBP$에서 $\\overline{AB}=\\overline{CB}$이고, 대각선 $BD$가 $\\angle B$를 이등분하므로 $\\angle ABP=\\angle CBP=45^\\circ$이며 $\\overline{BP}$는 공통이다.\n두 삼각형이 합동이므로 $\\angle BPA=\\angle BPC$이고, 삼각형 $ABP$에서 $\\angle APB=180^\\circ-45^\\circ-${a}^\\circ=${apb}^\\circ$이다.\n따라서 $\\angle APC=2\\times${apb}^\\circ=${x}^\\circ$이다.`,
+          facts: { mode, a, apb, x },
+          figureSpec: figSquareDiagPoint27(a, 0),
+        };
+      }
+      const apb = intBetween(rng, 50, 85);
+      const a = 135 - apb;
+      const x = 90 - a;
+      return {
+        content: `그림과 같은 정사각형 $ABCD$의 대각선 $BD$ 위에 점 $P$가 있다. $\\angle APB=${apb}^\\circ$일 때, $\\angle PAD$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `대각선 $BD$가 $\\angle B$를 이등분하므로 $\\angle ABP=45^\\circ$이다.\n삼각형 $ABP$에서 $\\angle PAB=180^\\circ-45^\\circ-${apb}^\\circ=${a}^\\circ$이다.\n정사각형의 한 내각의 크기는 $90^\\circ$이므로 $\\angle PAD=90^\\circ-${a}^\\circ=${x}^\\circ$이다.`,
+        facts: { mode, a, apb, x },
+        figureSpec: figSquareDiagPoint27(a, 1),
       };
     },
   ),

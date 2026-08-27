@@ -1,5 +1,5 @@
 /**
- * 「평행선과 삼각형의 넓이」 18~23 의 가드를 **망가뜨려 본다.**
+ * `m2GeoQuad` 가 낸 유형 18~27 의 가드를 **망가뜨려 본다.**
  *
  * 판정 순서는 이 저장소가 정한 그대로다 (CLAUDE.md 2026-08-20 · 08-21 · 08-23):
  *   ㉠ 음성 대조 — 변이 **전에** 시험이 초록인가 (아니면 판정 거부)
@@ -10,11 +10,41 @@
  *
  * 원복은 시작할 때 읽어 둔 **바이트 그대로** 한다.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  openSync,
+  closeSync,
+  rmSync,
+} from "node:fs";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import path from "node:path";
+
+/**
+ * 이 하네스는 대상 파일을 **덮어썼다 되돌린다.** 두 판이 같이 돌면 한쪽의 변이가
+ * 다른 쪽의 기준이 되어 «음성 대조 실패»가 난다 — 실제로 한 번 그렇게 났다.
+ * 그때 판정이 조용히 이상해지는 게 아니라 **멈춘** 것은 ㉠ 덕분이지만,
+ * 애초에 둘이 못 돌게 막는 편이 낫다.
+ */
+const LOCK = path.join(tmpdir(), "mutate-m2geoquad.lock");
+try {
+  closeSync(openSync(LOCK, "wx"));
+} catch {
+  console.error(
+    `판정 거부 — 다른 판이 이미 돌고 있다(${LOCK}). 끝나길 기다리거나,\n` +
+      "죽은 판이면 그 파일을 지운 뒤 `git status` 로 대상이 변이 상태가 아닌지 볼 것.",
+  );
+  process.exit(1);
+}
+process.on("exit", () => {
+  try {
+    rmSync(LOCK);
+  } catch {
+    /* 이미 지워졌다 */
+  }
+});
 
 /** vitest 의 json 은 **저장소 밖**에 쓴다 — 남의 `git add -A` 에 실리지 않게. */
 const REPORT = path.join(tmpdir(), "mutate-m2geoquad.json");
@@ -77,6 +107,41 @@ const MUTATIONS = [
     "23 의 그림에서 O 를 AC 의 중점으로 옮긴다",
     "const f = ad / (ad + BC);",
     "const f = 0.5;",
+  ],
+  [
+    "24 의 둘레를 1 만큼 어긋나게 한다",
+    "const x = c + b;",
+    "const x = c + b + 1;",
+  ],
+  [
+    "24 의 해설 중간값 half 를 대각선 그대로 놓는다",
+    "facts: { mode, c, b, half: c / 2, x },",
+    "facts: { mode, c, b, half: c, x },",
+  ],
+  [
+    "25 의 마름모 넓이에서 ½ 를 뺀다",
+    "const S = (m * n) / 2;",
+    "const S = m * n;",
+  ],
+  [
+    "26 이 정사각형을 네 조각이 아니라 세 조각으로 본다",
+    "const S = 4 * t;",
+    "const S = 3 * t;",
+  ],
+  [
+    "27 의 ∠APB 를 5° 어긋나게 한다",
+    "const apb = 135 - a;",
+    "const apb = 130 - a;",
+  ],
+  [
+    "27 의 그림에서 P 를 대각선의 중점으로 옮긴다",
+    "const t = ta / (1 + ta);",
+    "const t = 0.5;",
+  ],
+  [
+    "02·04·06 이 계수 1 을 다시 적는다 (지면 훑개가 무나)",
+    'if (c === 1) return "";',
+    'if (c === 1) return "1";',
   ],
 ];
 
