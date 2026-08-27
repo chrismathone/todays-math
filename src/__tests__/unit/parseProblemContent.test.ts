@@ -66,14 +66,27 @@ describe("[parseProblemContent] 지문/보기 분해", () => {
     expect(parseProblemContent("")).toEqual({ question: "", choices: [] });
   });
 
+  /**
+   * ⚠️ 기대값이 2026-08-27 에 **한 자리** 바뀌었다 — 발문 뒤에 `\n\n` 이 남는다.
+   *    `keepMeaningfulParagraphs` 가 「앞이 문장으로 끝났으면 문단」으로 갈랐고,
+   *    `것은?` 이 그 조건에 든다. 지면에서는 「발문 / 줄바꿈 / 보기 묶음」이 되므로
+   *    이 문항에 대해서도 나아진 쪽이다.
+   *
+   * 🔴 **이 시험이 지키는 것은 그 개행이 아니라 «꼬리 중복이 지워지는가»다.**
+   *    개행이 남기 시작하자 `dropDuplicatedTail` 이 구분자 차이(`\n\n` vs ` `) 때문에
+   *    중복을 **못 찾게 됐고**, 그 회귀를 잡은 것이 이 시험이다
+   *    (그래서 `dropDuplicatedTails` 가 문단마다 다시 본다).
+   *    아래 두 번째 단언이 그 알맹이다 — 개행 기대값만 고치고 지나가지 말 것.
+   */
   it("마커 없이 꼬리 블록이 통째로 중복된 OCR 결함을 제거한다", () => {
     // 실데이터(2,000건 중 340건): 보기 마커를 잃은 채 보기 묶음이 2회 반복 저장됨.
+    const block = "$5-3x\\ge x+9$ $6x\\le3x+1$ $x-2x^{2}>7-2x^{2}$";
     const raw =
       "다음 중 일차부등식이 아닌 것은?\n\n$5-3x\\ge x+9$\n\n$6x\\le3x+1$\n\n$x-2x^{2}>7-2x^{2}$\n\n$5-3x\\ge x+9$\n\n$6x\\le3x+1$\n\n$x-2x^{2}>7-2x^{2}$";
     const { question } = parseProblemContent(raw);
-    expect(question).toBe(
-      "다음 중 일차부등식이 아닌 것은? $5-3x\\ge x+9$ $6x\\le3x+1$ $x-2x^{2}>7-2x^{2}$",
-    );
+    expect(question).toBe(`다음 중 일차부등식이 아닌 것은?\n\n${block}`);
+    // 알맹이 — 묶음이 **한 번만** 남는다.
+    expect(question.split("$5-3x").length - 1).toBe(1);
   });
 
   it("정상적으로 반복되는 짧은 표현은 중복으로 오인하지 않는다", () => {
