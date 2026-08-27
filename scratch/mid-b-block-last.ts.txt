@@ -1,0 +1,163 @@
+/**
+ * 중2 「일차함수의 활용(속력, 도형, 기타)」 보강 다섯 — pool 갈래가 **응용 5** 뿐이라
+ * 기본이 하나도 없다. 기본 넷 · 심화 하나로 넣는다.
+ *
+ * ⚠️ 중단원 이름에 **얇은 공백(U+2009)** 이 들어 있다 — 보통 공백으로 적으면
+ *    어디서도 안 걸리고 다른 시험의 중단원 필터가 남의 유형을 쓸어 담는다
+ *    (`middleTypeCoverage.test.ts` 머리말의 실제 사고). 그래서 ` ` 로 **명시**한다.
+ */
+const MINOR_LINEAR2 = "일차함수와 그 그래프  ⑵";
+
+const LINEAR_APPLY_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map(
+  (mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      MINOR_LINEAR2,
+      String(50 + mode),
+      [
+        "타는 양초의 길이를 식으로 나타내기",
+        "남은 거리를 식으로 나타내기",
+        "움직이는 점이 만드는 삼각형의 넓이를 식으로",
+        "물이 모두 빠지는 데 걸리는 시간",
+        "두 시각의 길이로 다 타는 시간 구하기",
+      ][mode]!,
+      "일차함수의 활용(속력, 도형, 기타)",
+      mode < 4 ? "기본" : "심화",
+      (rng): Body => {
+        if (mode === 0) {
+          const rate = intBetween(rng, 2, 5);
+          const total = rate * intBetween(rng, 5, 12);
+          return {
+            content: `길이가 $${total}\\,\\mathrm{cm}$인 양초에 불을 붙이면 $1$분에 $${rate}\\,\\mathrm{cm}$씩 짧아진다. 불을 붙인 지 $x$분 후 남은 양초의 길이를 $y\\,\\mathrm{cm}$라 할 때, $y$를 $x$에 대한 식으로 나타내시오.`,
+            answer: `$y=-${rate}x+${total}$`,
+            solution: `$x$분 동안 짧아진 길이는 $${rate}x\\,\\mathrm{cm}$이다.\n남은 길이는 처음 길이에서 그만큼 뺀 것이므로 $y=${total}-${rate}x$, 즉 $y=-${rate}x+${total}$이다.`,
+            facts: { mode, rate, total },
+          };
+        }
+        if (mode === 1) {
+          const v = intBetween(rng, 40, 90);
+          const total = v * intBetween(rng, 2, 5);
+          return {
+            content: `$${total}\\,\\mathrm{km}$ 떨어진 곳을 향해 시속 $${v}\\,\\mathrm{km}$로 달리는 자동차가 있다. 출발한 지 $x$시간 후 남은 거리를 $y\\,\\mathrm{km}$라 할 때, $y$를 $x$에 대한 식으로 나타내시오.`,
+            answer: `$y=-${v}x+${total}$`,
+            solution: `$x$시간 동안 달린 거리는 $${v}x\\,\\mathrm{km}$이다.\n남은 거리는 $y=${total}-${v}x$, 즉 $y=-${v}x+${total}$이다.`,
+            facts: { mode, v, total },
+          };
+        }
+        if (mode === 2) {
+          const ab = 2 * intBetween(rng, 3, 8);
+          const bc = intBetween(rng, 8, 20);
+          const s = intBetween(rng, 1, 3);
+          return {
+            content: `$\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$인 직사각형 $ABCD$에서 점 $P$가 $B$를 출발하여 변 $BC$를 따라 $C$까지 매초 $${s}\\,\\mathrm{cm}$의 속력으로 움직인다. 출발한 지 $x$초 후 삼각형 $ABP$의 넓이를 $y\\,\\mathrm{cm}^2$라 할 때, $y$를 $x$에 대한 식으로 나타내시오.`,
+            answer: `$y=${(ab * s) / 2}x$`,
+            solution: `$x$초 후 $\\overline{BP}=${s}x\\,\\mathrm{cm}$이다.\n삼각형 $ABP$는 $\\angle B=90^\\circ$이므로 넓이는 $y=\\dfrac{1}{2}\\times${ab}\\times${s}x=${(ab * s) / 2}x$이다.`,
+            facts: { mode, ab, bc, s },
+          };
+        }
+        if (mode === 3) {
+          const rate = intBetween(rng, 2, 6);
+          const minutes = intBetween(rng, 5, 15);
+          const total = rate * minutes;
+          return {
+            content: `물이 $${total}\\,\\mathrm{L}$ 들어 있는 물통에서 매분 $${rate}\\,\\mathrm{L}$씩 물을 빼낸다. 물이 모두 빠지는 데 걸리는 시간을 구하시오.`,
+            answer: `$${minutes}$분`,
+            solution: `$x$분 후 남은 물의 양은 $y=${total}-${rate}x\\,(\\mathrm{L})$이다.\n$y=0$일 때 물이 모두 빠지므로 $${rate}x=${total}$에서 $x=${minutes}$이다.`,
+            facts: { mode, rate, minutes, total },
+          };
+        }
+        // 두 시각의 길이로 **먼저 속도를 구해야** 풀린다 — 그래서 심화다.
+        const rate = intBetween(rng, 2, 5);
+        const t = intBetween(rng, 3, 8);
+        const total = rate * intBetween(rng, t + 2, t + 10);
+        const left = total - rate * t;
+        return {
+          content: `길이가 $${total}\\,\\mathrm{cm}$인 양초에 불을 붙였더니 $${t}$분 후 길이가 $${left}\\,\\mathrm{cm}$가 되었다. 이 양초가 모두 타는 데 걸리는 시간을 구하시오.`,
+          answer: `$${total / rate}$분`,
+          solution: `$${t}$분 동안 $${total}-${left}=${rate * t}\\,(\\mathrm{cm})$ 짧아졌으므로 $1$분에 $${rate}\\,\\mathrm{cm}$씩 탄다.\n$x$분 후 남은 길이는 $y=${total}-${rate}x$이고, $y=0$에서 $x=${total / rate}$이다.`,
+          facts: { mode, rate, t, total, left },
+        };
+      },
+    ),
+);
+
+/**
+ * 중2 「직각삼각형의 합동」 보강 다섯 — pool 갈래가 기본2·응용3 이라
+ * **기본 셋 · 응용 하나 · 심화 하나**가 모자란다.
+ *
+ * 이미 있는 06 이 「합동 조건으로 **각**을 구하기」를 맡고 있으므로 여기서는
+ * **변**과 「각의 이등분선의 성질」을 맡는다. 그림은 안 붙인다 — 조건이 발문에
+ * 전부 있어 그림 없이 풀린다.
+ */
+const RIGHT_CONGRUENT_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map(
+  (mode) =>
+    mkType(
+      "중2",
+      "2-2",
+      "삼각형의 성질",
+      String(50 + mode),
+      [
+        "RHS 합동에서 대응하는 변의 길이",
+        "RHA 합동에서 대응하는 변의 길이",
+        "각의 이등분선 위의 점에서 두 변까지의 거리",
+        "각의 이등분선의 성질에서 밑변의 길이",
+        "직각삼각형의 내각의 이등분선이 만드는 선분",
+      ][mode]!,
+      "직각삼각형의 합동",
+      mode < 3 ? "기본" : mode === 3 ? "응용" : "심화",
+      (rng): Body => {
+        if (mode === 0) {
+          const c = intBetween(rng, 8, 20);
+          const a = intBetween(rng, 3, c - 4);
+          const b = intBetween(rng, 3, 15);
+          return {
+            content: `$\\angle C=90^\\circ$인 직각삼각형 $ABC$와 $\\angle F=90^\\circ$인 직각삼각형 $DEF$에서 $\\overline{AB}=\\overline{DE}=${c}\\,\\mathrm{cm}$, $\\overline{BC}=\\overline{EF}=${a}\\,\\mathrm{cm}$이다. $\\overline{AC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{DF}$의 길이를 구하시오.`,
+            answer: `$${b}\\,\\mathrm{cm}$`,
+            solution: `빗변의 길이와 다른 한 변의 길이가 각각 같으므로 두 직각삼각형은 $\\mathrm{RHS}$ 합동이다.\n합동인 도형의 대응하는 변의 길이는 같으므로 $\\overline{DF}=\\overline{AC}=${b}\\,\\mathrm{cm}$이다.`,
+            facts: { mode, a, b, c, x: b },
+          };
+        }
+        if (mode === 1) {
+          const c = intBetween(rng, 8, 20);
+          const ang = 2 * intBetween(rng, 15, 37);
+          const b = intBetween(rng, 3, 15);
+          return {
+            content: `$\\angle C=90^\\circ$인 직각삼각형 $ABC$와 $\\angle F=90^\\circ$인 직각삼각형 $DEF$에서 $\\overline{AB}=\\overline{DE}=${c}\\,\\mathrm{cm}$이고 $\\angle A=\\angle D=${ang}^\\circ$이다. $\\overline{AC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{DF}$의 길이를 구하시오.`,
+            answer: `$${b}\\,\\mathrm{cm}$`,
+            solution: `빗변의 길이와 한 예각의 크기가 각각 같으므로 두 직각삼각형은 $\\mathrm{RHA}$ 합동이다.\n대응하는 변의 길이는 같으므로 $\\overline{DF}=\\overline{AC}=${b}\\,\\mathrm{cm}$이다.`,
+            facts: { mode, ang, b, c, x: b },
+          };
+        }
+        if (mode === 2) {
+          const d = intBetween(rng, 3, 14);
+          const ang = 2 * intBetween(rng, 10, 40);
+          return {
+            content: `$\\angle XOY=${ang}^\\circ$의 이등분선 위의 점 $P$에서 두 변 $OX$, $OY$에 내린 수선의 발을 각각 $A$, $B$라 하자. $\\overline{PA}=${d}\\,\\mathrm{cm}$일 때, $\\overline{PB}$의 길이를 구하시오.`,
+            answer: `$${d}\\,\\mathrm{cm}$`,
+            solution: `두 직각삼각형 $POA$, $POB$는 빗변 $\\overline{OP}$가 공통이고 $\\angle AOP=\\angle BOP$이므로 $\\mathrm{RHA}$ 합동이다.\n따라서 $\\overline{PB}=\\overline{PA}=${d}\\,\\mathrm{cm}$이다.`,
+            facts: { mode, d, ang, x: d },
+          };
+        }
+        if (mode === 3) {
+          const oa = intBetween(rng, 4, 16);
+          const pa = intBetween(rng, 3, 12);
+          return {
+            content: `$\\angle XOY$의 이등분선 위의 점 $P$에서 두 변 $OX$, $OY$에 내린 수선의 발을 각각 $A$, $B$라 하자. $\\overline{PA}=\\overline{PB}=${pa}\\,\\mathrm{cm}$이고 $\\overline{OA}=${oa}\\,\\mathrm{cm}$일 때, $\\overline{OB}$의 길이를 구하시오.`,
+            answer: `$${oa}\\,\\mathrm{cm}$`,
+            solution: `두 직각삼각형 $POA$, $POB$는 빗변 $\\overline{OP}$가 공통이고 $\\overline{PA}=\\overline{PB}$이므로 $\\mathrm{RHS}$ 합동이다.\n따라서 $\\overline{OB}=\\overline{OA}=${oa}\\,\\mathrm{cm}$이다.`,
+            facts: { mode, oa, pa, x: oa },
+          };
+        }
+        const ac = intBetween(rng, 4, 12);
+        const ab = ac + intBetween(rng, 3, 10);
+        return {
+          content: `$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$, 점 $D$에서 $\\overline{AB}$에 내린 수선의 발을 $E$라 하자. $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, $\\overline{EB}$의 길이를 구하시오.`,
+          answer: `$${ab - ac}\\,\\mathrm{cm}$`,
+          solution: `두 직각삼각형 $ACD$, $AED$는 빗변 $\\overline{AD}$가 공통이고 $\\angle CAD=\\angle EAD$이므로 $\\mathrm{RHA}$ 합동이다.\n따라서 $\\overline{AE}=\\overline{AC}=${ac}\\,\\mathrm{cm}$이고, $\\overline{EB}=\\overline{AB}-\\overline{AE}=${ab}-${ac}=${ab - ac}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, ac, ab, x: ab - ac },
+        };
+      },
+    ),
+);
+

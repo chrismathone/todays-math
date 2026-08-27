@@ -997,6 +997,67 @@ const CHECKS: Record<string, Check> = {
     expect(Number.isInteger(q)).toBe(true);
     expect(p! * p! + q * q).toBe(r! * r!);
   },
+  // ── 중2 일차함수의 활용(속력, 도형, 기타) ─────────────────
+  //
+  // 식을 세우는 유형은 **두 시각을 대입해** 잰다 — 상황이 말한 값과 맞는지 본다.
+  "2-1|일차함수와 그 그래프  ⑵|50": ({ content, answer }) => {
+    const total = Number(content.match(/길이가 \$(\d+)/)![1]);
+    const rate = Number(content.match(/분에 \$(\d+)/)![1]);
+    // $x=0$ 이면 처음 길이, $1$분마다 `rate` 만큼 줄어든다
+    expect(evalLine(answer, 0)).toBe(total);
+    expect(evalLine(answer, 0) - evalLine(answer, 1)).toBe(rate);
+  },
+  "2-1|일차함수와 그 그래프  ⑵|51": ({ content, answer }) => {
+    const [total, v] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    expect(evalLine(answer, 0)).toBe(total);
+    expect(evalLine(answer, 0) - evalLine(answer, 1)).toBe(v);
+  },
+  "2-1|일차함수와 그 그래프  ⑵|52": ({ content, answer }) => {
+    const { AB } = segs(content);
+    const s = Number(content.match(/매초 \$(\d+)/)![1]);
+    // $x$초 후 $\overline{BP}=sx$ 이고 넓이는 $\dfrac12\times\overline{AB}\times\overline{BP}$
+    for (const x of [1, 2, 5])
+      expect(evalLine(answer, x)).toBe((AB! * s * x) / 2);
+  },
+  "2-1|일차함수와 그 그래프  ⑵|53": ({ content, answer }) => {
+    const total = Number(content.match(/물이 \$(\d+)/)![1]);
+    const rate = Number(content.match(/매분 \$(\d+)/)![1]);
+    expect(nums(answer)[0]! * rate!).toBe(total);
+  },
+  "2-1|일차함수와 그 그래프  ⑵|54": ({ content, answer }) => {
+    const [total, t, left] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    const rate = (total! - left!) / t!;
+    expect(Number.isInteger(rate)).toBe(true);
+    expect(nums(answer)[0]! * rate).toBe(total);
+  },
+  // ── 중2 직각삼각형의 합동 ─────────────────────────────────
+  //
+  // 합동이므로 **대응하는 변이 그대로 옮겨진다** — 발문의 그 변과 같은지 본다.
+  "2-2|삼각형의 성질|50": ({ content, answer }) => {
+    // 발문이 `\overline{AB}=\overline{DE}=12` 꼴이라 **뒤쪽** 이름에만 수가 붙는다
+    const { AC, DE, EF } = segs(content);
+    expect(nums(answer)).toEqual([AC]);
+    expect(AC!).toBeLessThan(DE!); // 빗변이 가장 길어야 삼각형이 된다
+    expect(EF!).toBeLessThan(DE!);
+  },
+  "2-2|삼각형의 성질|51": ({ content, answer }) => {
+    const { AC, DE } = segs(content);
+    expect(nums(answer)).toEqual([AC]);
+    expect(AC!).toBeLessThan(DE!);
+  },
+  "2-2|삼각형의 성질|52": ({ content, answer }) => {
+    const pa = Number(content.match(/\\overline\{PA\}=(\d+)/)![1]);
+    expect(nums(answer)).toEqual([pa]);
+  },
+  "2-2|삼각형의 성질|53": ({ content, answer }) => {
+    const oa = Number(content.match(/\\overline\{OA\}=(\d+)/)![1]);
+    expect(nums(answer)).toEqual([oa]);
+  },
+  "2-2|삼각형의 성질|54": ({ content, answer }) => {
+    const { AC, AB } = segs(content);
+    expect(AC!).toBeLessThan(AB!); // 아니면 $\overline{EB}$ 가 음수가 된다
+    expect(nums(answer)).toEqual([AB! - AC!]);
+  },
   // ── 중2 평행선 사이의 선분의 길이의 비 (50~55) ────────────
   //
   // 전부 「대응하는 두 비가 같다」는 **한 등식**으로 반증한다 —
@@ -1218,6 +1279,31 @@ function expectMonoOp(
         : evalPoly(A, x, y) / evalPoly(monoTex, x, y);
     expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 6);
   }
+}
+
+/**
+ * 연산 명령 뒤에 **문자가 붙어** 없는 명령이 된 자리 — `\timesx` · `\divx`.
+ * 계수가 $1$ 이라 `coefTerm` 이 `x` 만 낼 때 생긴다.
+ *
+ * ⚠️ `\cdots` 는 **진짜 명령**이다 — 「`\cdot` + `s`」로 읽으면 순환소수 발문이
+ *    통째로 거짓 경보가 된다. 그래서 **낱말 전체**를 보고 아는 이름이면 넘긴다.
+ */
+export function gluedCommands(text: string): string[] {
+  const KNOWN = new Set(["times", "div", "cdot", "cdots"]);
+  const out: string[] = [];
+  for (const m of text.match(/\\[A-Za-z]+/g) ?? []) {
+    const name = m.slice(1);
+    if (KNOWN.has(name)) continue;
+    for (const cmd of ["times", "div", "cdot"])
+      if (name.startsWith(cmd)) out.push(m);
+  }
+  return out;
+}
+
+/** `$y=-3x+24$` 꼴 답을 그 $x$ 에서 잰다. */
+function evalLine(answer: string, x: number): number {
+  const tex = stripDollar(answer.match(/\$[^$]*\$/)![0]).replace(/^y=/, "");
+  return evalPoly(tex, x, 0);
 }
 
 /** 발문 끝줄의 「$13$, $17$, …」 자료를 읽는다. */
@@ -1477,6 +1563,29 @@ describe("[갈래 B] 지면 — 값이 맞아도 흉할 수 있는 축", () => {
             bad.push(`${e.key} ${f}: ${text.slice(0, 90)}`);
         }
     expect(bad.slice(0, 4), `지면이 깨진 자리 ${bad.length}`).toEqual([]);
+  });
+
+  it("⑵-b `\\times`·`\\div` 바로 뒤에 문자가 오지 않는다", () => {
+    // `\timesx`·`\divx` 는 **없는 명령**이라 지면에 날 LaTeX 가 그대로 나간다.
+    // 계수가 $1$ 이라 `coefTerm` 이 `x` 만 낼 때 생긴다 — 2026-08-27 에 두 번 났다.
+    const bad: string[] = [];
+    for (const e of MID_SUP_B)
+      for (const seed of SEEDS)
+        for (const f of ["content", "answer", "solution"] as const)
+          for (const m of gluedCommands(
+            String(generateMiddleProblem(e.key, seed)[f] ?? ""),
+          ))
+            bad.push(`${e.key} ${f}: ${m}`);
+    expect(bad.slice(0, 4)).toEqual([]);
+  });
+
+  it("🔴 ⑵-b 의 눈금 — 붙은 것만 잡는다", () => {
+    expect(gluedCommands("$2\\timesx$")).toHaveLength(1);
+    expect(gluedCommands("$2\\times x$")).toHaveLength(0);
+    expect(gluedCommands("$2\\times3$")).toHaveLength(0);
+    // ⚠️ `\cdots` 는 **진짜 명령**이다 — 「`\cdot` + `s`」로 읽으면 거짓 경보가 된다
+    //    (실제로 순환소수 발문 넷이 그렇게 걸렸다).
+    expect(gluedCommands("$0.1212\\cdots$")).toHaveLength(0);
   });
 
   it("🔴 ⑵ 의 눈금 — `math-raw` 폴백을 실제로 잡는다", () => {
