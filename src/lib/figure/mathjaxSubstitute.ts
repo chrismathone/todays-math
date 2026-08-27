@@ -67,10 +67,16 @@ export function collectLabels(
  */
 export function withLabelMetrics(spec: unknown): unknown {
   if (!spec || typeof spec !== "object") return spec;
-  // ⚠️ **FigureSpec v2 에만 싣는다.** 초등 그림(`kind` 기반)은 `elementary.py` 라는
-  //    다른 렌더러가 그리고, 그쪽 스펙 검사는 `label_metrics` 를 모르는 키로 보고
-  //    **던진다**(실측: 통계 kind 15건이 그렇게 빨개졌다). 초등 라벨의 조판은
-  //    아직 옛 경로다 — 그쪽도 옮기려면 `elementary.py` 가 `data-mj` 를 내야 한다.
+  // ⚠️ **치수는 FigureSpec v2 에만 싣는다.** 초등 그림(`kind` 기반)은 `elementary.py`
+  //    라는 다른 렌더러가 그리고, 그쪽 스펙 검사는 `label_metrics` 를 모르는 키로 보고
+  //    **던진다**(실측: 통계 kind 15건이 그렇게 빨개졌다).
+  //
+  //    ⓘ 초등 라벨도 **조판은 된다** — 표식은 정제기(`add_mj_marks`)가 붙이고 아래
+  //      `substituteLabels()` 가 바꿔 낀다. 여기서 안 싣는 것은 «자리를 잡을 때 쓸
+  //      치수»뿐이다. 초등은 제 자를 쓰는데(`_label_w_max`) 그것이 **상한**이라
+  //      MathJax 조판본이 그보다 좁다 — 넘치지 않으므로 안전하다(실측 `6 cm`
+  //      상한 2.46em vs 조판 1.66em). 정확히 맞추려면 `elementary.py` 가
+  //      `label_metrics` 를 받게 해야 하고, 그건 스펙 검사부터 손대는 일이다.
   if ((spec as Record<string, unknown>).version !== 2) return spec;
   const metrics: Record<string, [number, number, number]> = {};
   for (const label of collectLabels(spec)) {
