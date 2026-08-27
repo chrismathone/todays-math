@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { M1EXTRA_TYPES } from "../../lib/middle/m1Extra";
 import { M2_SYSTEM } from "../../lib/middle/m2System";
 import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
+import { M2_QUAD } from "../../lib/middle/m2Quad";
 
 function seeded(seed: number): () => number {
   let state = seed >>> 0;
@@ -484,6 +485,59 @@ describe("갈래 A 중등 유형 값 검산", () => {
         const problem = entry!.handler(seeded(seed));
         expect(numericAnswer(problem.answer)).toBe(
           concentrationRatioExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
+  const parallelogramConditionExpected: Record<
+    string,
+    (content: string) => number
+  > = {
+    "14A": (content) => {
+      const values = content.match(/=\$?\((\d+)x\+(\d+)\).*\(x\+(\d+)\)/);
+      return (
+        (Number(values?.[3]) - Number(values?.[2])) / (Number(values?.[1]) - 1)
+      );
+    },
+    "15A": (content) => {
+      const values = content.match(/=\$?\((\d+)x\+(\d+)\).*\(x\+(\d+)\)/);
+      return (
+        (Number(values?.[3]) - Number(values?.[2])) / (Number(values?.[1]) - 1)
+      );
+    },
+    "16A": (content) => {
+      const values = content.match(/=\$?\((\d+)x\+(\d+)\).*\(x\+(\d+)\)/);
+      return (
+        (Number(values?.[3]) - Number(values?.[2])) / (Number(values?.[1]) - 1)
+      );
+    },
+    "17A": (content) => {
+      const values = content.match(/=\$?\((\d+)x\+(\d+)\).*\(x\+(\d+)\)/);
+      return (
+        (Number(values?.[3]) - Number(values?.[2])) / (Number(values?.[1]) - 1)
+      );
+    },
+    "18A": (content) => 2 * Number(content.match(/AO\}=(\d+)/)?.[1]),
+    "19A": (content) => {
+      const values = (content.match(/\d+/g) ?? []).map(Number);
+      return 2 * (values[0]! + values[1]!);
+    },
+  };
+
+  it.each(Object.keys(parallelogramConditionExpected))(
+    "평행사변형이 되는 조건 유형 %s",
+    (rpmType) => {
+      const entry = M2_QUAD.find(
+        (candidate) =>
+          candidate.unitSection === "평행사변형이 되는 조건" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          parallelogramConditionExpected[rpmType]!(problem.content),
         );
       }
     },
