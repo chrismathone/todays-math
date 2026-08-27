@@ -1059,7 +1059,9 @@ describe.skipIf(!hasEngine)(
       expect(r.ok).toBe(true);
       if (!r.ok) return;
       const far = [
-        ...r.svg.matchAll(/<polyline points="([^"]+)"[^>]*stroke-dasharray/g),
+        ...r.svg.matchAll(
+          /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/g,
+        ),
       ].map((m) => parsePoints(m[1]!));
       expect(far, "밑면 숨은 호").toHaveLength(1);
       expect(far[0]!.length).toBeGreaterThan(10);

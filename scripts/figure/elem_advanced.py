@@ -2400,7 +2400,7 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     # 예전처럼 네 점 사각형으로 덮으면 밑면 타원을 가로지르는 실선이 남는다.
     parts = [
         _poly(near_top + near_bot, FACE_FRONT, 1.15),
-        _polyline(far_bot, sw=1.05, dash=HIDDEN_DASH),
+        _dashed_polyline(far_bot, HIDDEN_DASH, sw=1.05),
         _poly(top, FACE_TOP, 1.15),
     ]
     tl, bl = top[i_l], bot[i_l]
