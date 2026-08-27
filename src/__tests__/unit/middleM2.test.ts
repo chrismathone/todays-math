@@ -14,6 +14,11 @@ import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import {
+  catalogHit,
+  catalogMaxNumber,
+  isCatalogType,
+} from "../helpers/rpmCatalog";
 import { bareNumbers } from "../../lib/elementary/rules";
 // ⚠️ 합본(m2.ts 의 M2_TYPES)이 아니라 **이 시험이 지키는 두 모듈만** 훑는다.
 //    합본을 훑으면 다른 세션이 m2.ts spread 에 유형을 더하는 순간 그 유형이
@@ -30,8 +35,25 @@ import {
 } from "../../lib/middle/generate";
 import type { MidProblem } from "../../lib/middle/types";
 
-/** 이 시험이 지키는 유형 — 물결 1 중2 세션이 낸 두 모듈뿐이다. */
-const OWNED = [...M2_INEQ_APPLY, ...M2_SYSTEM_APPLY];
+const MODULE_TYPES = [...M2_INEQ_APPLY, ...M2_SYSTEM_APPLY];
+
+/**
+ * 이 시험이 지키는 유형 — 물결 1 중2 세션이 낸 두 모듈의 **RPM 색인 유형**뿐이다.
+ *
+ * ⚠️ 위 머리말이 적어 둔 함정이 **한 겹 더** 있었다. 「합본이 아니라 모듈만」으로
+ *    좁혔는데, 2026-08-27 부터 갈래 넷이 130소단원을 10유형으로 올리면서 **같은
+ *    모듈에** 색인에 없는 «확장 유형»을 더한다. 그러면 모듈로 좁힌 것만으로는
+ *    남의 유형이 다시 이 검산표에 들이대진다 — 실제로 70건이 빨개졌다.
+ *    그래서 몫을 **정본 색인에 있는가**로 한 번 더 좁힌다. 확장 유형의 값 검산은
+ *    그것을 지은 갈래의 시험(`midTypes*.test.ts`)이 유형마다 하나씩 들고 있다.
+ *
+ * 이렇게 좁혀도 아래 「36유형」 검사는 여전히 문다 — 색인 번호를 가진 유형을
+ * 검산식 없이 더하면 수가 37이 된다.
+ */
+const OWNED = MODULE_TYPES.filter((e) => isCatalogType(e));
+
+/** 갈래들이 지은 확장 유형 — 이 시험의 몫이 아니지만 **모양은 확인한다**. */
+const EXTENSIONS = MODULE_TYPES.filter((e) => !isCatalogType(e));
 
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
@@ -260,8 +282,6 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-type CatalogType = { minor: string; number: string; title: string };
-
 describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
   it("36유형이 등록돼 있고 유형 번호가 색인과 같다", () => {
     expect(OWNED.length).toBe(36);
@@ -304,19 +324,28 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
     ]);
   });
 
-  it("RPM 유형 번호·제목이 색인 정본과 일치한다 (지어낸 제목 금지)", () => {
-    const raw = readFileSync(
-      resolve(__dirname, "../../../scripts/rpm/rpm-type-catalog.json"),
-      "utf-8",
-    );
-    const catalog = JSON.parse(raw) as Record<string, { types: CatalogType[] }>;
-    const book = catalog["2-1"]!.types;
+  // 🟡 정직하게 — `OWNED` 자체가 「색인에 있는가」로 걸러진 뒤라 **번호 쪽은
+  //    이제 동어반복**이다. 여기서 참으로 남는 것은 **제목**이다(지어낸 제목 금지).
+  //    번호 쪽은 아래 「확장 유형」 검사와 위 「36유형」 수 검사가 지킨다.
+  it("RPM 유형 제목이 색인 정본과 일치한다 (지어낸 제목 금지)", () => {
     for (const e of OWNED) {
-      const hit = book.find(
-        (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
-      );
+      const hit = catalogHit(e);
       expect(hit, `색인에 없는 유형: ${e.key}`).toBeDefined();
       expect(hit!.title, e.key).toBe(e.rpmTitle);
+    }
+  });
+
+  it("확장 유형은 색인 번호대를 **넘는다** — 번호대 안이면 오타이지 확장이 아니다", () => {
+    for (const e of EXTENSIONS) {
+      const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
+      expect(
+        maxNo,
+        `${e.key}: 색인에 없는 중단원 ${JSON.stringify(e.rpmMinor)}`,
+      ).not.toBeNull();
+      expect(
+        Number(e.rpmType),
+        `${e.key}: 색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`,
+      ).toBeGreaterThan(maxNo!);
     }
   });
 

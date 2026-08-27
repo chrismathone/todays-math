@@ -82,18 +82,47 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
         bad.push(`${e.key}: 색인에 없는 책 ${e.rpmBook}`);
         continue;
       }
-      const hit = book.types.find(
-        (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
-      );
-      if (!hit) {
+      // ⚠️ **중단원 이름은 여전히 정본과 글자 그대로** 대조한다 — 이 가드가
+      //    실제로 잡은 결함(얇은 공백 U+2009)이 바로 이 자리다. 번호만 아래에서
+      //    풀어 준다. 이름까지 풀면 이 검사는 통째로 장식이 된다.
+      const inMinor = book.types.filter((t) => t.minor === e.rpmMinor);
+      if (inMinor.length === 0) {
         bad.push(
-          `${e.key}: 색인에 없는 중단원·번호 (${JSON.stringify(e.rpmMinor)})`,
+          `${e.key}: 색인에 없는 중단원 (${JSON.stringify(e.rpmMinor)})`,
         );
         continue;
       }
-      if (hit.title !== e.rpmTitle) {
+      const hit = inMinor.find((t) => t.number === e.rpmType);
+      if (hit) {
+        if (hit.title !== e.rpmTitle) {
+          bad.push(
+            `${e.key}: 제목이 다름 — 색인 ${hit.title} vs 등록 ${e.rpmTitle}`,
+          );
+        }
+        continue;
+      }
+      // 색인에 없는 번호 = 우리가 **지은** 확장 유형. 130소단원을 10유형으로
+      // 올리려면 RPM 이 안 만든 유형을 지어야 하므로(2026-08-27 네 갈래) 정본에
+      // 있을 수가 없다. 정본에 없는 것을 정본에 적어 넣으면 이 가드가
+      // 「우리가 적은 것과 우리가 등록한 것이 같은가」를 묻는 동어반복이 된다.
+      // 그래서 **정본은 그대로 두고** 확장 번호에 두 조건만 건다.
+      const maxNo = Math.max(...inMinor.map((t) => Number(t.number)));
+      if (Number(e.rpmType) <= maxNo) {
+        // 정본 번호대(01..max)의 빈 칸을 가로채면 RPM 이 그 번호를 쓰는 날 겹친다.
+        // 🟡 정직하게 — 정본의 번호는 지금 전부 01..N 이 **끊김 없이** 이어져서
+        //    이 갈래는 **오늘은 못 탄다**(번호대 안이면 위에서 `hit` 이 된다).
+        //    번호대 안을 노린 변이는 「유형 키가 겹칩니다」(generate.ts)가 먼저
+        //    문다. 이 줄은 정본이 재추출되며 번호에 구멍이 생기는 날을 위한
+        //    뒷받침이다 — 지금 무엇이 지키고 있는지 헷갈리지 않게 적어 둔다.
+        bad.push(`${e.key}: 확장 번호가 색인 번호대(최대 ${maxNo}) 안에 있다`);
+        continue;
+      }
+      // 확장인데 제목이 정본 제목과 같으면 **이미 있는 유형을 번호만 바꿔 두 번**
+      // 등록한 것이다 — 유형 수(축 🅐)가 가짜로 채워진다.
+      const dup = inMinor.find((t) => t.title === e.rpmTitle);
+      if (dup) {
         bad.push(
-          `${e.key}: 제목이 다름 — 색인 ${hit.title} vs 등록 ${e.rpmTitle}`,
+          `${e.key}: 확장인데 제목이 색인 ${dup.number} 과 같다 — 같은 유형을 두 번 세었다`,
         );
       }
     }

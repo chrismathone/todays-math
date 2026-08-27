@@ -9,6 +9,8 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -23,11 +25,16 @@ const MINOR_CIRC = "삼각형의 외심과 내심";
 const MINOR_CENTROID = "삼각형의 무게중심";
 
 const CIRC = M2_TYPES.filter(
-  (e) => e.rpmBook === "2-2" && e.rpmMinor === MINOR_CIRC,
+  (e) => e.rpmBook === "2-2" && e.rpmMinor === MINOR_CIRC && isCatalogType(e),
 );
 const CENTROID = M2_TYPES.filter(
-  (e) => e.rpmBook === "2-2" && e.rpmMinor === MINOR_CENTROID,
+  (e) =>
+    e.rpmBook === "2-2" && e.rpmMinor === MINOR_CENTROID && isCatalogType(e),
 );
+// ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+//    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+//    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+//    갈래의 시험이 들고 있다.
 const ALL = [...CIRC, ...CENTROID];
 
 type P2 = readonly [number, number];

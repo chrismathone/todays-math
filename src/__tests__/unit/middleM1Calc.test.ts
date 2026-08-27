@@ -32,6 +32,8 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import { preprocessMathText } from "../../lib/math/textPreprocess";
 import {
@@ -533,7 +535,11 @@ const VERIFY: Record<string, Check> = {
 };
 
 describe("중1 정수와 유리수의 계산 27유형", () => {
-  const entries = M1_CALC; // ⚠️ registeredTypes() 를 중단원 이름으로 거르지 않는다
+  // ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+  //    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+  //    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+  //    갈래의 시험이 들고 있다.
+  const entries = M1_CALC.filter((e) => isCatalogType(e)); // ⚠️ registeredTypes() 를 중단원 이름으로 거르지 않는다
 
   it("RPM 색인의 27유형이 전부 등록돼 있다", () => {
     expect(entries.length).toBe(27);

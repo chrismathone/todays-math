@@ -2156,6 +2156,50 @@ const TYPES_G2: TypeEntry[] = [
       };
     },
   ),
+
+  // ── 확장 유형 (갈래 C, 70~99) ─────────────────────────
+  // 이 소단원은 기존 8유형이 전부 응용·심화라 **기본이 하나도 없다.**
+  // 시험지 배분(1:4:4:1)에서 기본이 넷 필요하므로 새 둘을 기본으로 낸다.
+
+  def(
+    MINOR_G2,
+    "70",
+    "표준형에서 최댓값 또는 최솟값 읽기",
+    SEC.최대최소,
+    "기본",
+    (rng): Body => {
+      const a = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
+      const p = intBetween(rng, -5, 5);
+      const qv = intBetween(rng, -8, 8);
+      const isMax = a < 0;
+      return {
+        content: `이차함수 $y=${a === 1 ? "" : a === -1 ? "-" : a}(x${p >= 0 ? `-${p}` : `+${-p}`})^2${qv >= 0 ? `+${qv}` : qv}$의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
+        answer: `$${qv}$`,
+        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$를 갖는다.`,
+        facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "71",
+    "꼭짓점의 좌표로 최댓값 또는 최솟값 구하기",
+    SEC.최대최소,
+    "기본",
+    (rng): Body => {
+      const a = pick(rng, [-2, -1, 1, 2] as const);
+      const p = intBetween(rng, -4, 4);
+      const qv = intBetween(rng, -7, 7);
+      const isMax = a < 0;
+      return {
+        content: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 $${a}$인 이차함수의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
+        answer: `$${qv}$`,
+        solution: `이차함수의 식은 $y=${a === 1 ? "" : a === -1 ? "-" : a}(x${p >= 0 ? `-${p}` : `+${-p}`})^2${qv >= 0 ? `+${qv}` : qv}$이다.\n$x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록해 꼭짓점에서 최댓값" : "양수이므로 아래로 볼록해 꼭짓점에서 최솟값"}을 갖는다.\n따라서 ${isMax ? "최댓값" : "최솟값"}은 $${qv}$이다.`,
+        facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
+      };
+    },
+  ),
 ];
 
 export const M3_FUNC: TypeEntry[] = [...TYPES_G1, ...TYPES_G2];

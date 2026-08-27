@@ -12,6 +12,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import { renderMathHtml } from "../../lib/math/renderMathHtml";
@@ -21,6 +23,12 @@ import {
   registeredTypes,
 } from "../../lib/middle/generate";
 import { M1_GEO1 } from "../../lib/middle/m1Geo1";
+
+// ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+//    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+//    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+//    갈래의 시험이 들고 있다.
+const GEO1_OWNED = M1_GEO1.filter((e) => isCatalogType(e));
 import type { MidProblem } from "../../lib/middle/types";
 
 const REPO = path.resolve(__dirname, "../../..");
@@ -594,11 +602,11 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
 
 describe("중1 물결 6A(m1Geo1) 31유형", () => {
   it("31유형 명부와 unitSection 이 실측 그대로다", () => {
-    expect(new Set(M1_GEO1.map((e) => e.key))).toEqual(
+    expect(new Set(GEO1_OWNED.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1_GEO1.length).toBe(31);
-    for (const e of M1_GEO1) {
+    expect(GEO1_OWNED.length).toBe(31);
+    for (const e of GEO1_OWNED) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
       expect(e.grade).toBe("중1");
@@ -615,7 +623,7 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
       string,
       { types: { minor: string; number: string; title: string }[] }
     >;
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       const hit = catalog[e.rpmBook]?.types.find(
         (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
       );
@@ -626,19 +634,19 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
 
   it("모든 유형이 generate 진입점에 등록돼 있다", () => {
     const keys = new Set(registeredTypes().map((e) => e.key));
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       expect(keys.has(e.key), e.key).toBe(true);
     }
   });
 
   it("위치 관계 06·07·08(m1Book2)과 겹치지 않는다", () => {
-    const mine = new Set(M1_GEO1.map((e) => e.key));
+    const mine = new Set(GEO1_OWNED.map((e) => e.key));
     expect(mine.has("1-2|위치 관계|06")).toBe(false);
     expect(mine.has("1-2|위치 관계|07")).toBe(false);
     expect(mine.has("1-2|위치 관계|08")).toBe(false);
   });
 
-  for (const e of M1_GEO1) {
+  for (const e of GEO1_OWNED) {
     describe(`${e.key} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260824);
@@ -692,7 +700,7 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
   }
 
   it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       const set = generateMiddleSet(e.key, 20260824, 4);
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
@@ -776,7 +784,7 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
   );
 
   it("그림이 없는 유형은 figureSpec 이 비어 있다(억지로 안 붙인다)", () => {
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       if (FIGURED_KEYS.includes(e.key)) continue;
       const p = generateMiddleProblem(e.key, 20260824);
       expect(p.figureSpec ?? null, e.key).toBeNull();
@@ -784,7 +792,7 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
   });
 
   it("대분수 0 — D-73(중학 계수는 분자에)", () => {
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       for (const seed of SEEDS) {
         const p = generateMiddleProblem(e.key, seed);
         for (const part of [p.content, p.answer, p.solution]) {
@@ -796,7 +804,7 @@ describe("중1 물결 6A(m1Geo1) 31유형", () => {
 
   it("문제 없이 던지는 유형이 실제로 던진다 — attempt 소진을 흉내내지 않는다", () => {
     // 등록된 31유형이 전부 정상 범위에서 안정적으로 나오는지(예외 없이) 크게 훑는다.
-    for (const e of M1_GEO1) {
+    for (const e of GEO1_OWNED) {
       for (const v of [0, 1, 2, 3, 4, 5]) {
         expect(() => generateMiddleProblem(e.key, 555, v)).not.toThrow();
       }

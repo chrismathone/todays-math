@@ -14,6 +14,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { catalogMaxNumber, isCatalogType } from "../helpers/rpmCatalog";
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import { M2_FUNC } from "../../lib/middle/m2Func";
@@ -131,7 +132,28 @@ describe("중2 일차함수 함수 유형 18개", () => {
   // ⚠️ 중단원 이름으로 고르면 **같은 중단원의 남의 유형**까지 쓸어 담는다 —
   //    물결 2D 가 2-1 ⑵ 11·12 에 실물 맥락 유형을 냈다. 자기 모듈을 직접 훑는다
   //    (자기 유형은 자기 시험이 지킨다 — middleM2.test.ts 와 같은 규칙).
-  const entries = M2_FUNC;
+  //
+  // ⚠️ 그 좁힘이 **한 겹 부족했다.** 2026-08-27 부터 갈래 넷이 130소단원을
+  //    10유형으로 올리며 **같은 모듈에** 색인에 없는 «확장 유형»을 더한다.
+  //    모듈로만 좁히면 그 유형이 다시 이 검산표에 들이대진다(실제로 8건 빨강).
+  //    그래서 몫을 「RPM 색인에 있는가」로 한 번 더 좁힌다 — 확장 유형의 값 검산은
+  //    그것을 지은 갈래의 시험(`midTypes*.test.ts`)이 유형마다 하나씩 들고 있다.
+  const entries = M2_FUNC.filter((e) => isCatalogType(e));
+  const extensions = M2_FUNC.filter((e) => !isCatalogType(e));
+
+  it("확장 유형은 색인 번호대를 **넘는다** — 번호대 안이면 오타이지 확장이 아니다", () => {
+    for (const e of extensions) {
+      const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
+      expect(
+        maxNo,
+        `${e.key}: 색인에 없는 중단원 ${JSON.stringify(e.rpmMinor)}`,
+      ).not.toBeNull();
+      expect(
+        Number(e.rpmType),
+        `${e.key}: 색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`,
+      ).toBeGreaterThan(maxNo!);
+    }
+  });
 
   it("18유형이 등록돼 있다 — ⑴ 11개 · ⑵ 6개 · 관계 1개", () => {
     expect(entries.length).toBe(18);
