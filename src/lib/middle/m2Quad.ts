@@ -703,7 +703,7 @@ export const M2_QUAD: TypeEntry[] = [
     const q = intBetween(rng, 1, 9);
     const s = (p - 1) * answer + q;
     return {
-      content: `사각형 $ABCD$에서 $\overline{AB}=\overline{CD}$, $\overline{AD}=\overline{BC}$이다. $\overline{AB}=(${p}x+${q})\,\mathrm{cm}$, $\overline{CD}=(x+${s})\,\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
+      content: `사각형 $ABCD$에서 $\\overline{AB}=\\overline{CD}$, $\\overline{AD}=\\overline{BC}$이다. $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{CD}=(x+${s})\\,\\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
       answer: `$${answer}$`,
       solution: `두 쌍의 대변의 길이가 각각 같으므로 이 사각형은 평행사변형이다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
       facts: { p, q, s, ans: answer },
@@ -716,7 +716,7 @@ export const M2_QUAD: TypeEntry[] = [
     const q = intBetween(rng, 1, 12);
     const s = (p - 1) * answer + q;
     return {
-      content: `사각형 $ABCD$에서 $\angle A=\angle C$, $\angle B=\angle D$이다. $\angle B=(${p}x+${q})^\circ$, $\angle D=(x+${s})^\circ$일 때, $x$의 값을 구하시오.`,
+      content: `사각형 $ABCD$에서 $\\angle A=\\angle C$, $\\angle B=\\angle D$이다. $\\angle B=(${p}x+${q})^\\circ$, $\\angle D=(x+${s})^\\circ$일 때, $x$의 값을 구하시오.`,
       answer: `$${answer}$`,
       solution: `두 쌍의 대각의 크기가 각각 같으므로 이 사각형은 평행사변형이다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
       facts: { p, q, s, ans: answer },
@@ -734,9 +734,9 @@ export const M2_QUAD: TypeEntry[] = [
       const q = intBetween(rng, 1, 8);
       const s = (p - 1) * answer + q;
       return {
-        content: `사각형 $ABCD$의 두 대각선의 교점을 $O$라 하자. $\overline{BO}=\overline{DO}$이고 $\overline{AO}=(${p}x+${q})\,\mathrm{cm}$, $\overline{CO}=(x+${s})\,\mathrm{cm}$이다. 이 사각형이 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
+        content: `사각형 $ABCD$의 두 대각선의 교점을 $O$라 하자. $\\overline{BO}=\\overline{DO}$이고 $\\overline{AO}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{CO}=(x+${s})\\,\\mathrm{cm}$이다. 이 사각형이 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
         answer: `$${answer}$`,
-        solution: `두 대각선이 서로 다른 것을 이등분하려면 $\overline{AO}=\overline{CO}$이어야 한다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
+        solution: `두 대각선이 서로 다른 것을 이등분하려면 $\\overline{AO}=\\overline{CO}$이어야 한다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
         facts: { p, q, s, ans: answer },
         figureSpec: figCondDiagOne(150, 92, 40),
       };
@@ -753,7 +753,7 @@ export const M2_QUAD: TypeEntry[] = [
       const q = intBetween(rng, 1, 9);
       const s = (p - 1) * answer + q;
       return {
-        content: `사각형 $ABCD$에서 $\overline{AB}\parallel\overline{DC}$이다. $\overline{AB}=(${p}x+${q})\,\mathrm{cm}$, $\overline{DC}=(x+${s})\,\mathrm{cm}$일 때, 이 사각형이 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
+        content: `사각형 $ABCD$에서 $\\overline{AB}\\parallel\\overline{DC}$이다. $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{DC}=(x+${s})\\,\\mathrm{cm}$일 때, 이 사각형이 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
         answer: `$${answer}$`,
         solution: `한 쌍의 대변이 평행하고 그 길이가 같으면 평행사변형이다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
         facts: { p, q, s, ans: answer },
@@ -770,9 +770,9 @@ export const M2_QUAD: TypeEntry[] = [
       const half = intBetween(rng, 6, 24);
       const answer = 2 * half;
       return {
-        content: `사각형 $ABCD$의 두 대각선의 교점 $O$에 대하여 $\overline{AO}=\overline{CO}$, $\overline{BO}=\overline{DO}$이다. $\overline{AO}=${half}\,\mathrm{cm}$일 때, $\overline{AC}$의 길이를 구하시오.`,
-        answer: `$${answer}\,\mathrm{cm}$`,
-        solution: `두 대각선이 서로 다른 것을 이등분하므로 이 사각형은 평행사변형이다. $\overline{AC}=2\times\overline{AO}=2\times${half}=${answer}\,(\mathrm{cm})$이다.`,
+        content: `사각형 $ABCD$의 두 대각선의 교점 $O$에 대하여 $\\overline{AO}=\\overline{CO}$, $\\overline{BO}=\\overline{DO}$이다. $\\overline{AO}=${half}\\,\\mathrm{cm}$일 때, $\\overline{AC}$의 길이를 구하시오.`,
+        answer: `$${answer}\\,\\mathrm{cm}$`,
+        solution: `두 대각선이 서로 다른 것을 이등분하므로 이 사각형은 평행사변형이다. $\\overline{AC}=2\\times\\overline{AO}=2\\times${half}=${answer}\\,(\\mathrm{cm})$이다.`,
         facts: { half, ans: answer },
         figureSpec: figCondDiagOne(150, 92, 40),
       };
@@ -788,9 +788,9 @@ export const M2_QUAD: TypeEntry[] = [
       const sideB = intBetween(rng, 5, 18);
       const answer = 2 * (sideA + sideB);
       return {
-        content: `사각형 $ABCD$에서 $\overline{AB}\parallel\overline{DC}$이고 $\overline{AB}=\overline{DC}=${sideA}\,\mathrm{cm}$이다. $\overline{AD}=${sideB}\,\mathrm{cm}$일 때, 사각형 $ABCD$의 둘레의 길이를 구하시오.`,
-        answer: `$${answer}\,\mathrm{cm}$`,
-        solution: `한 쌍의 대변이 평행하고 그 길이가 같으므로 평행사변형이다. 따라서 $\overline{BC}=\overline{AD}=${sideB}\,\mathrm{cm}$이고 둘레는 $2(${sideA}+${sideB})=${answer}\,(\mathrm{cm})$이다.`,
+        content: `사각형 $ABCD$에서 $\\overline{AB}\\parallel\\overline{DC}$이고 $\\overline{AB}=\\overline{DC}=${sideA}\\,\\mathrm{cm}$이다. $\\overline{AD}=${sideB}\\,\\mathrm{cm}$일 때, 사각형 $ABCD$의 둘레의 길이를 구하시오.`,
+        answer: `$${answer}\\,\\mathrm{cm}$`,
+        solution: `한 쌍의 대변이 평행하고 그 길이가 같으므로 평행사변형이다. 따라서 $\\overline{BC}=\\overline{AD}=${sideB}\\,\\mathrm{cm}$이고 둘레는 $2(${sideA}+${sideB})=${answer}\\,(\\mathrm{cm})$이다.`,
         facts: { sideA, sideB, ans: answer },
         figureSpec: figParaDiag(150, 92, 40, { onlyAB: true }),
       };

@@ -625,9 +625,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       const defective = (rateA * countA + rateB * countB) / 100;
       if (!Number.isInteger(defective)) return null;
       return {
-        content: `공장 $\mathrm{A}$와 $\mathrm{B}$에서 만든 제품은 모두 $${total}$개이고 불량률은 각각 $${rateA}\%$, $${rateB}\%$이다. 불량품이 모두 $${defective}$개일 때, 공장 $\mathrm{A}$의 제품 수를 구하시오.`,
+        content: `공장 $\\mathrm{A}$와 $\\mathrm{B}$에서 만든 제품은 모두 $${total}$개이고 불량률은 각각 $${rateA}\\%$, $${rateB}\\%$이다. 불량품이 모두 $${defective}$개일 때, 공장 $\\mathrm{A}$의 제품 수를 구하시오.`,
         answer: `$${countA}$개`,
-        solution: `두 공장의 제품 수를 $x$, $y$라 하면 $x+y=${total}$, $${rateA}x+${rateB}y=${100 * defective}$이다. 두 식을 연립하여 풀면 공장 $\mathrm{A}$의 제품은 $${countA}$개이다.`,
+        solution: `두 공장의 제품 수를 $x$, $y$라 하면 $x+y=${total}$, $${rateA}x+${rateB}y=${100 * defective}$이다. 두 식을 연립하여 풀면 공장 $\\mathrm{A}$의 제품은 $${countA}$개이다.`,
         facts: { rateA, rateB, total, defective, answer: countA },
       };
     }),
@@ -643,9 +643,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       if (salt % total !== 0) return null;
       const target = salt / total;
       return {
-        content: `$${low}\%$의 소금물과 $${high}\%$의 소금물을 섞어 $${target}\%$의 소금물 $${total}\,\mathrm{g}$을 만들었다. $${high}\%$의 소금물의 양을 구하시오.`,
-        answer: `$${highMass}\,\mathrm{g}$`,
-        solution: `두 소금물의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${low}x+${high}y=${target * total}$이다. 두 식을 연립하여 풀면 $${high}\%$의 소금물은 $${highMass}\,\mathrm{g}$이다.`,
+        content: `$${low}\\%$의 소금물과 $${high}\\%$의 소금물을 섞어 $${target}\\%$의 소금물 $${total}\\,\\mathrm{g}$을 만들었다. $${high}\\%$의 소금물의 양을 구하시오.`,
+        answer: `$${highMass}\\,\\mathrm{g}$`,
+        solution: `두 소금물의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${low}x+${high}y=${target * total}$이다. 두 식을 연립하여 풀면 $${high}\\%$의 소금물은 $${highMass}\\,\\mathrm{g}$이다.`,
         facts: { low, high, target, total, answer: highMass },
       };
     }),
@@ -664,9 +664,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       const total = massA + massB;
       const copper = (percentA * massA + percentB * massB) / 100;
       return {
-        content: `구리를 $${percentA}\%$ 포함한 합금 $\mathrm{A}$와 $${percentB}\%$ 포함한 합금 $\mathrm{B}$를 합하여 $${total}\,\mathrm{g}$의 합금을 만들었더니 구리가 $${copper}\,\mathrm{g}$ 들어 있었다. 합금 $\mathrm{A}$의 양을 구하시오.`,
-        answer: `$${massA}\,\mathrm{g}$`,
-        solution: `두 합금의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 합금 $\mathrm{A}$는 $${massA}\,\mathrm{g}$이다.`,
+        content: `구리를 $${percentA}\\%$ 포함한 합금 $\\mathrm{A}$와 $${percentB}\\%$ 포함한 합금 $\\mathrm{B}$를 합하여 $${total}\\,\\mathrm{g}$의 합금을 만들었더니 구리가 $${copper}\\,\\mathrm{g}$ 들어 있었다. 합금 $\\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${massA}\\,\\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 합금 $\\mathrm{A}$는 $${massA}\\,\\mathrm{g}$이다.`,
         facts: { percentA, percentB, total, copper, answer: massA },
       };
     },
@@ -682,9 +682,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       if (pure % total !== 0) return null;
       const target = pure / total;
       return {
-        content: `과즙이 $${percentA}\%$인 음료 $\mathrm{A}$와 $${percentB}\%$인 음료 $\mathrm{B}$를 섞어 과즙이 $${target}\%$인 음료 $${total}\,\mathrm{mL}$를 만들었다. 음료 $\mathrm{A}$의 양을 구하시오.`,
-        answer: `$${amountA}\,\mathrm{mL}$`,
-        solution: `두 음료의 양을 $x\,\mathrm{mL}$, $y\,\mathrm{mL}$라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${target * total}$이다. 두 식을 연립하여 풀면 음료 $\mathrm{A}$는 $${amountA}\,\mathrm{mL}$이다.`,
+        content: `과즙이 $${percentA}\\%$인 음료 $\\mathrm{A}$와 $${percentB}\\%$인 음료 $\\mathrm{B}$를 섞어 과즙이 $${target}\\%$인 음료 $${total}\\,\\mathrm{mL}$를 만들었다. 음료 $\\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${amountA}\\,\\mathrm{mL}$`,
+        solution: `두 음료의 양을 $x\\,\\mathrm{mL}$, $y\\,\\mathrm{mL}$라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${target * total}$이다. 두 식을 연립하여 풀면 음료 $\\mathrm{A}$는 $${amountA}\\,\\mathrm{mL}$이다.`,
         facts: { percentA, percentB, target, total, answer: amountA },
       };
     }),
@@ -703,9 +703,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       const total = massA + massB;
       const copper = (copperA * massA + copperB * massB) / 100;
       return {
-        content: `구리의 비율이 각각 $${copperA}\%$, $${copperB}\%$인 두 합금을 섞어 전체 질량이 $${total}\,\mathrm{g}$이고 구리의 양이 $${copper}\,\mathrm{g}$인 합금을 만들었다. 구리의 비율이 $${copperB}\%$인 합금의 양을 구하시오.`,
-        answer: `$${massB}\,\mathrm{g}$`,
-        solution: `두 합금의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${copperA}x+${copperB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 구리의 비율이 $${copperB}\%$인 합금은 $${massB}\,\mathrm{g}$이다.`,
+        content: `구리의 비율이 각각 $${copperA}\\%$, $${copperB}\\%$인 두 합금을 섞어 전체 질량이 $${total}\\,\\mathrm{g}$이고 구리의 양이 $${copper}\\,\\mathrm{g}$인 합금을 만들었다. 구리의 비율이 $${copperB}\\%$인 합금의 양을 구하시오.`,
+        answer: `$${massB}\\,\\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${copperA}x+${copperB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 구리의 비율이 $${copperB}\\%$인 합금은 $${massB}\\,\\mathrm{g}$이다.`,
         facts: { copperA, copperB, total, copper, answer: massB },
       };
     },

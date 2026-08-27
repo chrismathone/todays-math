@@ -784,7 +784,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `$x=${x}$, $y=${y}$일 때, $${mc(a, "x")}${sc(b, "y")}$의 값을 구하시오.`,
         answer: `$${answer}$`,
-        solution: `$x=${x}$, $y=${y}$를 대입하면 $${a}\times(${x})+(${b})\times(${y})=${answer}$이다.`,
+        solution: `$x=${x}$, $y=${y}$를 대입하면 $${a}\\times(${x})+(${b})\\times(${y})=${answer}$이다.`,
         facts: { x, y, a, b, answer },
       };
     },
@@ -848,7 +848,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `$x$, $y$가 음이 아닌 정수일 때, 일차방정식 $${a}x+${b}y=${c}$의 해 $(x,\ y)$는 모두 몇 개인지 구하시오.`,
         answer: `$${answer}$개`,
-        solution: `$x=0$, $1$, $2$, $\cdots$를 대입하여 $${c}-${a}x$가 $${b}$의 음이 아닌 배수가 되는 경우를 세면 모두 $${answer}$개이다.`,
+        solution: `$x=0$, $1$, $2$, $\\cdots$를 대입하여 $${c}-${a}x$가 $${b}$의 음이 아닌 배수가 되는 경우를 세면 모두 $${answer}$개이다.`,
         facts: { a, b, c, answer },
       };
     }),
@@ -867,7 +867,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       if (Math.abs(c1) > 50 || Math.abs(c2) > 50) return null;
       const answer = a - b;
       return {
-        content: `연립방정식 $\begin{cases}ax${sc(q, "y")}=${c1}\\${mc(r, "x")}+by=${c2}\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
+        content: `연립방정식 $\\begin{cases}ax${sc(q, "y")}=${c1}\\\\${mc(r, "x")}+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
         answer: `$${answer}$`,
         solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${b}=${answer}$이다.`,
         facts: { x, y, a, b, q, r, c1, c2, answer },
@@ -1331,9 +1331,9 @@ export const M2_SYSTEM: TypeEntry[] = [
     const averageA = averageB + difference;
     const averageAll = (averageA + averageB) / 2;
     return {
-      content: `$\mathrm{A}$반과 $\mathrm{B}$반의 학생 수는 각각 $${count}$명이고, 두 반 전체의 평균 점수는 $${averageAll}$점이다. $\mathrm{A}$반의 평균 점수가 $\mathrm{B}$반보다 $${difference}$점 높을 때, $\mathrm{A}$반의 평균 점수를 구하시오.`,
+      content: `$\\mathrm{A}$반과 $\\mathrm{B}$반의 학생 수는 각각 $${count}$명이고, 두 반 전체의 평균 점수는 $${averageAll}$점이다. $\\mathrm{A}$반의 평균 점수가 $\\mathrm{B}$반보다 $${difference}$점 높을 때, $\\mathrm{A}$반의 평균 점수를 구하시오.`,
       answer: `$${averageA}$점`,
-      solution: `$\mathrm{A}$반과 $\mathrm{B}$반의 평균 점수를 각각 $x$점, $y$점이라 하면 학생 수가 같으므로 $x+y=${2 * averageAll}$이고 $x-y=${difference}$이다. 두 식을 연립하면 $x=${averageA}$이므로 $\mathrm{A}$반의 평균은 $${averageA}$점이다.`,
+      solution: `$\\mathrm{A}$반과 $\\mathrm{B}$반의 평균 점수를 각각 $x$점, $y$점이라 하면 학생 수가 같으므로 $x+y=${2 * averageAll}$이고 $x-y=${difference}$이다. 두 식을 연립하면 $x=${averageA}$이므로 $\\mathrm{A}$반의 평균은 $${averageA}$점이다.`,
       facts: { count, averageAll, difference, averageA, averageB },
     };
   }),
@@ -1355,9 +1355,9 @@ export const M2_SYSTEM: TypeEntry[] = [
         if (score % total !== 0) return null;
         const averageAll = score / total;
         return {
-          content: `평균 점수가 $${averageA}$점인 $\mathrm{A}$모둠과 평균 점수가 $${averageB}$점인 $\mathrm{B}$모둠의 학생은 모두 $${total}$명이고, 전체 평균은 $${averageAll}$점이다. $\mathrm{A}$모둠의 학생 수를 구하시오.`,
+          content: `평균 점수가 $${averageA}$점인 $\\mathrm{A}$모둠과 평균 점수가 $${averageB}$점인 $\\mathrm{B}$모둠의 학생은 모두 $${total}$명이고, 전체 평균은 $${averageAll}$점이다. $\\mathrm{A}$모둠의 학생 수를 구하시오.`,
           answer: `$${countA}$명`,
-          solution: `$\mathrm{A}$모둠과 $\mathrm{B}$모둠의 학생 수를 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${averageA}x+${averageB}y=${averageAll * total}$이다. 두 식을 연립하여 풀면 $x=${countA}$, $y=${countB}$이므로 $\mathrm{A}$모둠은 $${countA}$명이다.`,
+          solution: `$\\mathrm{A}$모둠과 $\\mathrm{B}$모둠의 학생 수를 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${averageA}x+${averageB}y=${averageAll * total}$이다. 두 식을 연립하여 풀면 $x=${countA}$, $y=${countB}$이므로 $\\mathrm{A}$모둠은 $${countA}$명이다.`,
           facts: { countA, countB, averageA, averageB, total, averageAll },
         };
       }),
@@ -1529,9 +1529,9 @@ export const M2_SYSTEM: TypeEntry[] = [
     const perimeter = 2 * (width + height);
     const difference = width - height;
     return {
-      content: `직사각형의 둘레의 길이는 $${perimeter}\,\mathrm{cm}$이고 가로는 세로보다 $${difference}\,\mathrm{cm}$ 길다. 세로의 길이를 구하시오.`,
-      answer: `$${height}\,\mathrm{cm}$`,
-      solution: `가로와 세로를 $x\,\mathrm{cm}$, $y\,\mathrm{cm}$라 하면 $x+y=${perimeter / 2}$, $x-y=${difference}$이다. 두 식을 연립하여 풀면 세로는 $${height}\,\mathrm{cm}$이다.`,
+      content: `직사각형의 둘레의 길이는 $${perimeter}\\,\\mathrm{cm}$이고 가로는 세로보다 $${difference}\\,\\mathrm{cm}$ 길다. 세로의 길이를 구하시오.`,
+      answer: `$${height}\\,\\mathrm{cm}$`,
+      solution: `가로와 세로를 $x\\,\\mathrm{cm}$, $y\\,\\mathrm{cm}$라 하면 $x+y=${perimeter / 2}$, $x-y=${difference}$이다. 두 식을 연립하여 풀면 세로는 $${height}\\,\\mathrm{cm}$이다.`,
       facts: { width, height, perimeter, difference, answer: height },
     };
   }),
@@ -1544,9 +1544,9 @@ export const M2_SYSTEM: TypeEntry[] = [
     const changed =
       (first * (100 + increase) + second * (100 - decrease)) / 100;
     return {
-      content: `두 동아리 $\mathrm{A}$, $\mathrm{B}$의 작년 회원은 모두 $${total}$명이었다. 올해 $\mathrm{A}$는 $${increase}\%$ 증가하고 $\mathrm{B}$는 $${decrease}\%$ 감소하여 모두 $${changed}$명이 되었다. 작년 $\mathrm{A}$의 회원 수를 구하시오.`,
+      content: `두 동아리 $\\mathrm{A}$, $\\mathrm{B}$의 작년 회원은 모두 $${total}$명이었다. 올해 $\\mathrm{A}$는 $${increase}\\%$ 증가하고 $\\mathrm{B}$는 $${decrease}\\%$ 감소하여 모두 $${changed}$명이 되었다. 작년 $\\mathrm{A}$의 회원 수를 구하시오.`,
       answer: `$${first}$명`,
-      solution: `작년 두 동아리 회원을 $x$, $y$라 하면 $x+y=${total}$, $${100 + increase}x+${100 - decrease}y=${100 * changed}$이다. 두 식을 연립하여 풀면 $\mathrm{A}$는 $${first}$명이었다.`,
+      solution: `작년 두 동아리 회원을 $x$, $y$라 하면 $x+y=${total}$, $${100 + increase}x+${100 - decrease}y=${100 * changed}$이다. 두 식을 연립하여 풀면 $\\mathrm{A}$는 $${first}$명이었다.`,
       facts: { total, increase, decrease, changed, answer: first },
     };
   }),

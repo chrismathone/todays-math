@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 
+import { M1_BOOK2 } from "../../lib/middle/m1Book2";
 import { M1EXTRA_TYPES } from "../../lib/middle/m1Extra";
 import { M2_PROB } from "../../lib/middle/m2Prob";
 import { M2_SYSTEM } from "../../lib/middle/m2System";
 import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
 import { M2_QUAD } from "../../lib/middle/m2Quad";
+import { M3_TYPES } from "../../lib/middle/m3";
+import type { TypeEntry } from "../../lib/middle/types";
 
 function seeded(seed: number): () => number {
   let state = seed >>> 0;
@@ -1008,4 +1011,146 @@ describe("갈래 A 중등 유형 값 검산", () => {
       }
     },
   );
+});
+
+/**
+ * 갈래 A 소유 7모듈 전량 — **지면에 날 LaTeX 명령이 나가는가.**
+ *
+ * ## 2026-08-27 에 실제로 있던 일
+ *
+ * 이 갈래가 이미 커밋한 22유형이 지면에 `\overline{AB}` 대신 `overline{AB}` 를,
+ * `\times` 대신 **탭 문자**를, `\%` 대신 **주석을 여는 `%`** 를 내보내고 있었다.
+ * 원인은 템플릿 문자열에 `\\overline` 대신 `\overline` 를 적은 것 — JS 는
+ * 모르는 이스케이프를 **조용히 글자로** 바꾼다(`\t` 는 아예 탭이 된다).
+ *
+ * **값 검산도 KaTeX 도 이 부류를 구조적으로 못 잡는다.** 값은 맞고, KaTeX 는
+ * `overline{AB}` 를 유효한 글자로 그린다(2026-08-16 「KaTeX 가 초록이라고
+ * 지면이 멀쩡한 게 아니다」와 같은 자리). 원장님이 종이에서 찾아 줄 때까지
+ * 아무도 모른다.
+ *
+ * ## 열쇠 — 손 목록을 쓰지 않는다
+ *
+ * 「무엇이 잔재인지」를 미리 정하면 목록에 없는 부류는 영영 0이다(2026-08-18).
+ * 그래서 **말뭉치 자신에게 묻는다**: 이 유형들이 실제로 쓰는 `\명령` 이름을
+ * 모아 어휘로 삼고, 수식 안의 «백슬래시 없는 영문 덩어리»가 그 어휘로
+ * 시작하면 잔재로 본다. 도형 라벨(`ABCD`·`AH`)은 어휘에 없어 저절로 빠진다.
+ */
+describe("갈래 A 중등 유형 지면 — 날 LaTeX 명령", () => {
+  const MODULES: [string, TypeEntry[]][] = [
+    ["m1Book2", M1_BOOK2],
+    ["m1Extra", M1EXTRA_TYPES],
+    ["m2Prob", M2_PROB],
+    ["m2Quad", M2_QUAD],
+    ["m2System", M2_SYSTEM],
+    ["m2SystemApply", M2_SYSTEM_APPLY],
+    ["m3", M3_TYPES],
+  ];
+  const SEEDS = [17, 203, 991];
+
+  /**
+   * 줄바꿈 `\\` 를 먼저 치운다.
+   *
+   * ⚠️ 뒤돌아보기(`(?<!\\)`)로는 못 가른다 — `\\\dfrac`(줄바꿈 바로 뒤의 명령)
+   *    에서 셋째 역슬래시가 둘째 뒤에 오므로 **멀쩡한 명령이 잔재로 걸린다**.
+   *    실측 거짓 경보 1유형(`m2System|…|09`). 거짓 경보는 가드를 끈다(2026-08-20).
+   */
+  function maskRowBreaks(text: string): string {
+    return text.replace(/\\\\/g, " ");
+  }
+
+  const corpus: { key: string; text: string }[] = [];
+  for (const [name, list] of MODULES) {
+    for (const entry of list) {
+      for (const seed of SEEDS) {
+        let problem;
+        try {
+          problem = entry.handler(seeded(seed));
+        } catch {
+          continue;
+        }
+        for (const part of [
+          problem.content,
+          problem.answer,
+          problem.solution,
+        ]) {
+          if (typeof part === "string") {
+            corpus.push({ key: `${name}|${entry.key}`, text: part });
+          }
+        }
+      }
+    }
+  }
+
+  const vocabulary = new Set<string>();
+  for (const s of corpus) {
+    for (const m of maskRowBreaks(s.text).matchAll(/\\([A-Za-z]+)/g)) {
+      if (m[1]!.length >= 2) vocabulary.add(m[1]!);
+    }
+  }
+  /** `\t`·`\b` 로 먹힌 명령의 꼬리 — 어휘에는 안 남는다. */
+  const EATEN_TAILS = new Set([
+    "imes",
+    "riangle",
+    "an",
+    "extbf",
+    "egin",
+    "frac",
+  ]);
+
+  it("표본이 실제로 모였다", () => {
+    // 말뭉치가 비면 아래 검사들이 «구조적으로 0» 이 된다.
+    expect(corpus.length).toBeGreaterThan(1000);
+    expect(vocabulary.size).toBeGreaterThan(10);
+  });
+
+  it("수식 안에 백슬래시를 잃은 명령이 없다", () => {
+    const bad: string[] = [];
+    for (const s of corpus) {
+      for (const span of s.text.match(/\$[^$]*\$/g) ?? []) {
+        const stripped = maskRowBreaks(span).replace(/\\[A-Za-z]+/g, " ");
+        for (const run of stripped.match(/[A-Za-z]{2,}/g) ?? []) {
+          const hit =
+            EATEN_TAILS.has(run) ||
+            [...vocabulary].some((name) => run.startsWith(name));
+          if (hit) bad.push(`${s.key}: ${run} — ${span.slice(0, 60)}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("발문·정답·해설에 제어문자가 없다", () => {
+    // `\times` 를 한 겹으로 적으면 `\t` 가 **탭**이 된다. 지면에서는 그냥 빈칸이다.
+    const bad = corpus
+      .filter((s) => /[\t\v\f\b]/.test(s.text))
+      .map((s) => s.key);
+    expect([...new Set(bad)].slice(0, 8)).toEqual([]);
+  });
+
+  it("수식 안 백분율은 `\\%` 로 적혀 있다", () => {
+    // 날 `%` 는 KaTeX 에서 **주석을 연다** — 그 뒤가 지면에서 사라진다.
+    const bad: string[] = [];
+    for (const s of corpus) {
+      for (const span of s.text.match(/\$[^$]*\$/g) ?? []) {
+        if (/(?<!\\)%/.test(maskRowBreaks(span))) {
+          bad.push(`${s.key}: ${span.slice(0, 60)}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("수식 안에 홑 역슬래시가 없다", () => {
+    // `\begin{cases}…=10\-3x+…` — 줄바꿈 `\\` 를 한 겹만 적은 자리다.
+    // 날 명령이 안 남으므로 위 어휘 훑기로는 구조적으로 안 보인다.
+    const bad: string[] = [];
+    for (const s of corpus) {
+      for (const span of s.text.match(/\$[^$]*\$/g) ?? []) {
+        if (/\\[^A-Za-z,%{}\\ ]/.test(span.replace(/\\\\/g, " "))) {
+          bad.push(`${s.key}: ${span.slice(0, 60)}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
 });

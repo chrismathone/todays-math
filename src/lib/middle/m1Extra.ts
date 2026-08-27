@@ -144,7 +144,7 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
       return {
         content: `다음 줄기와 잎 그림에 나타난 자료의 평균을 구하시오.\n(줄기 | 잎)\n${stemAndLeaf(values)}`,
         answer: `$${mean}$`,
-        solution: `자료의 합은 $${mean * 5}$이고 자료는 $5$개이므로 평균은 $${mean * 5}\div5=${mean}$이다.`,
+        solution: `자료의 합은 $${mean * 5}$이고 자료는 $5$개이므로 평균은 $${mean * 5}\\div5=${mean}$이다.`,
         facts: dataFacts(values, mean),
       };
     },
@@ -419,7 +419,7 @@ const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
     return {
       content: `다음 도수분포표에서 $${low}$ 이상 $${low + width}$ 미만인 계급의 계급값을 구하시오.\n(변량 | 도수)\n${frequencyTable(start, width, frequencies)}`,
       answer: `$${answer}$`,
-      solution: `계급값은 양 끝값의 평균이므로 $(${low}+${low + width})\div2=${answer}$이다.`,
+      solution: `계급값은 양 끝값의 평균이므로 $(${low}+${low + width})\\div2=${answer}$이다.`,
       facts: { ...dataFacts(frequencies, answer), low, width },
     };
   }),
@@ -858,7 +858,7 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
       return {
         content: `한 직선 모양의 그래프 위에 점 $A(${x1}, ${y1})$가 있다. 이 그래프에서 $x$가 $1$만큼 증가할 때마다 $y$는 $${slope}$만큼 증가한다. $x$좌표가 $${x2}$인 점의 $y$좌표를 구하시오.`,
         answer: `$${y2}$`,
-        solution: `$x$는 $${x2 - x1}$만큼 증가하므로 $y$는 $${slope}\times${x2 - x1}=${slope * (x2 - x1)}$만큼 증가한다. 따라서 구하는 $y$좌표는 $${y1}+${slope * (x2 - x1)}=${y2}$이다.`,
+        solution: `$x$는 $${x2 - x1}$만큼 증가하므로 $y$는 $${slope}\\times${x2 - x1}=${slope * (x2 - x1)}$만큼 증가한다. 따라서 구하는 $y$좌표는 $${y1}+${slope * (x2 - x1)}=${y2}$이다.`,
         facts: { slope, intercept, x1, x2, y1, y2, answer: y2 },
       };
     },
@@ -1021,9 +1021,9 @@ const FREQUENCY_POLYGON_TYPES: TypeEntry[] = [
         (value, index) => value > second[index]!,
       ).length;
       return {
-        content: `두 집단 $\mathrm{A}$, $\mathrm{B}$의 도수분포다각형이 지나는 점은 각각 다음과 같다. $\mathrm{A}: ${frequencyPolygonPoints(10, 10, first)}$, $\mathrm{B}: ${frequencyPolygonPoints(10, 10, second)}$. 같은 계급값에서 $\mathrm{A}$의 도수가 $\mathrm{B}$보다 큰 계급의 개수를 구하시오.`,
+        content: `두 집단 $\\mathrm{A}$, $\\mathrm{B}$의 도수분포다각형이 지나는 점은 각각 다음과 같다. $\\mathrm{A}: ${frequencyPolygonPoints(10, 10, first)}$, $\\mathrm{B}: ${frequencyPolygonPoints(10, 10, second)}$. 같은 계급값에서 $\\mathrm{A}$의 도수가 $\\mathrm{B}$보다 큰 계급의 개수를 구하시오.`,
         answer: `$${answer}$개`,
-        solution: `같은 첫째 좌표끼리 둘째 좌표를 비교하면 $\mathrm{A}$의 도수가 더 큰 경우는 $${answer}$개이다.`,
+        solution: `같은 첫째 좌표끼리 둘째 좌표를 비교하면 $\\mathrm{A}$의 도수가 더 큰 경우는 $${answer}$개이다.`,
         facts: {
           ...dataFacts(first, answer),
           ...Object.fromEntries(
