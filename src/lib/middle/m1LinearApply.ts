@@ -919,4 +919,180 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       };
     }),
   ),
+
+  // ── 51~55 「거리, 속력, 시간」을 10유형으로 채운 몫 (갈래 D) ──
+  // 이 소단원은 색인 몫이 **심화 넷**이라(11·12·13·22) 새로 짓는 것은
+  // 아래쪽을 메운다 — 기본 4 · 응용 1.
+
+  def("51", "왕복에 걸린 시간으로 거리 구하기", SEC.거리, "기본", (rng) =>
+    attempt(80, () => {
+      const v = pick(rng, [4, 5, 6, 8, 10] as const);
+      const t = intBetween(rng, 2, 8);
+      if ((v * t) % 2 !== 0) return null;
+      const d = (v * t) / 2;
+      return {
+        content: `집에서 공원까지 시속 $${v}\\,\\mathrm{km}$로 걸어서 갔다가 같은 길로 돌아오는 데 모두 $${t}$시간이 걸렸다. 집에서 공원까지의 거리를 구하시오.`,
+        answer: `$${d}\\,\\mathrm{km}$`,
+        solution: `집에서 공원까지의 거리를 $x\\,\\mathrm{km}$라 하면 왕복한 거리는 $2x\\,\\mathrm{km}$이다.\n$\\dfrac{2x}{${v}}=${t}$이므로 $x=${d}$이다.\n따라서 거리는 $${d}\\,\\mathrm{km}$이다.`,
+        facts: { v, t, d },
+      };
+    }),
+  ),
+
+  def("52", "두 구간의 속력이 다른 경우", SEC.거리, "기본", (rng) =>
+    attempt(120, () => {
+      const a = pick(rng, [3, 4, 5] as const);
+      const b = pick(rng, [8, 10, 12] as const);
+      const t1 = intBetween(rng, 1, 4);
+      const t2 = intBetween(rng, 1, 4);
+      const d1 = a * t1;
+      const d2 = b * t2;
+      const D = d1 + d2;
+      const t = t1 + t2;
+      return {
+        content: `집에서 공원까지의 거리는 $${D}\\,\\mathrm{km}$이다. 처음에는 시속 $${a}\\,\\mathrm{km}$로 걷다가 도중에 시속 $${b}\\,\\mathrm{km}$로 뛰어서 모두 $${t}$시간이 걸렸다. 걸어간 거리를 구하시오.`,
+        answer: `$${d1}\\,\\mathrm{km}$`,
+        solution: `걸어간 거리를 $x\\,\\mathrm{km}$라 하면 뛴 거리는 $(${D}-x)\\,\\mathrm{km}$이다.\n$\\dfrac{x}{${a}}+\\dfrac{${D}-x}{${b}}=${t}$이므로 $x=${d1}$이다.\n따라서 걸어간 거리는 $${d1}\\,\\mathrm{km}$이다.`,
+        facts: { a, b, t1, t2, d1, d2, D, t },
+      };
+    }),
+  ),
+
+  def("53", "마주 보고 가서 만나는 경우", SEC.거리, "기본", (rng) =>
+    attempt(80, () => {
+      const p = intBetween(rng, 5, 16) * 10;
+      const q = intBetween(rng, 5, 16) * 10;
+      // 두 사람의 빠르기가 같으면 「한 사람은 … 다른 사람은 …」가 무의미하다.
+      if (p === q) return null;
+      const n = intBetween(rng, 3, 20);
+      const D = (p + q) * n;
+      return {
+        content: `$${D}\\,\\mathrm{m}$ 떨어진 두 지점에서 두 사람이 마주 보고 동시에 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 걸을 때 두 사람이 만나는 것은 출발한 지 몇 분 후인지 구하시오.`,
+        answer: `$${n}$분 후`,
+        solution: `$x$분 후에 만난다고 하면 두 사람이 걸은 거리의 합이 $${D}\\,\\mathrm{m}$이다.\n$${p}x+${q}x=${D}$이므로 $x=${n}$이다.\n따라서 $${n}$분 후이다.`,
+        facts: { p, q, n, D },
+      };
+    }),
+  ),
+
+  def("54", "같은 방향으로 둘레를 도는 경우", SEC.거리, "응용", (rng) =>
+    attempt(120, () => {
+      const q = intBetween(rng, 5, 12) * 10;
+      const p = q + intBetween(rng, 2, 10) * 10;
+      const n = intBetween(rng, 4, 20);
+      const L = (p - q) * n;
+      if (L < 200 || L > 3000) return null;
+      return {
+        content: `둘레의 길이가 $${L}\\,\\mathrm{m}$인 트랙의 같은 지점에서 두 사람이 동시에 같은 방향으로 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 달릴 때 두 사람이 처음으로 다시 만나는 것은 출발한 지 몇 분 후인지 구하시오.`,
+        answer: `$${n}$분 후`,
+        solution: `같은 방향으로 돌면 빠른 사람이 느린 사람보다 트랙 한 바퀴만큼 더 달렸을 때 처음으로 다시 만난다.\n$x$분 후라 하면 $${p}x-${q}x=${L}$이므로 $x=${n}$이다.\n따라서 $${n}$분 후이다.`,
+        facts: { p, q, n, L },
+      };
+    }),
+  ),
+
+  def("55", "기차가 다리를 지나는 속력", SEC.거리, "기본", (rng) =>
+    attempt(120, () => {
+      const v = intBetween(rng, 2, 6) * 10;
+      const t = intBetween(rng, 10, 40);
+      const L = intBetween(rng, 8, 20) * 10;
+      const B = v * t - L;
+      if (B < L || B > 2000) return null;
+      return {
+        content: `길이가 $${L}\\,\\mathrm{m}$인 기차가 길이 $${B}\\,\\mathrm{m}$인 다리를 완전히 지나는 데 $${t}$초가 걸렸다. 이 기차의 속력은 초속 몇 $\\mathrm{m}$인지 구하시오.`,
+        answer: `초속 $${v}\\,\\mathrm{m}$`,
+        solution: `기차가 다리를 완전히 지나려면 다리의 길이와 기차의 길이를 더한 만큼 달려야 한다.\n기차의 속력을 초속 $x\\,\\mathrm{m}$라 하면 $${t}x=${B}+${L}$이므로 $x=${v}$이다.\n따라서 초속 $${v}\\,\\mathrm{m}$이다.`,
+        facts: { v, t, L, B },
+      };
+    }),
+  ),
+
+  // ── 56~60 「도형, 농도, 일」을 10유형으로 채운 몫 (갈래 D) ──
+
+  def("56", "삼각형의 넓이로 밑변 구하기", SEC.도형, "기본", (rng) =>
+    attempt(80, () => {
+      const b = intBetween(rng, 4, 24);
+      const h = intBetween(rng, 4, 20);
+      if ((b * h) % 2 !== 0) return null;
+      const S = (b * h) / 2;
+      return {
+        content: `높이가 $${h}\\,\\mathrm{cm}$인 삼각형의 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 밑변의 길이를 구하시오.`,
+        answer: `$${b}\\,\\mathrm{cm}$`,
+        solution: `밑변의 길이를 $x\\,\\mathrm{cm}$라 하면 넓이는 $\\dfrac{1}{2}\\times x\\times${h}$이다.\n$\\dfrac{1}{2}\\times x\\times${h}=${S}$이므로 $x=${b}$이다.\n따라서 밑변의 길이는 $${b}\\,\\mathrm{cm}$이다.`,
+        facts: { b, h, S },
+      };
+    }),
+  ),
+
+  def("57", "사다리꼴의 넓이", SEC.도형, "기본", (rng) =>
+    attempt(120, () => {
+      const a = intBetween(rng, 3, 15);
+      const d = intBetween(rng, 2, 10);
+      const h = intBetween(rng, 4, 16);
+      const S = ((2 * a + d) * h) / 2;
+      if (!Number.isInteger(S)) return null;
+      return {
+        content: `아랫변의 길이가 윗변의 길이보다 $${d}\\,\\mathrm{cm}$만큼 긴 사다리꼴이 있다. 높이가 $${h}\\,\\mathrm{cm}$이고 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 윗변의 길이를 구하시오.`,
+        answer: `$${a}\\,\\mathrm{cm}$`,
+        solution: `윗변의 길이를 $x\\,\\mathrm{cm}$라 하면 아랫변의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$\\dfrac{1}{2}\\times\\{x+(x+${d})\\}\\times${h}=${S}$이므로 $x=${a}$이다.\n따라서 윗변의 길이는 $${a}\\,\\mathrm{cm}$이다.`,
+        facts: { a, d, h, S },
+      };
+    }),
+  ),
+
+  def("58", "농도에 대한 문제 물을 증발시키는 경우", SEC.도형, "기본", (rng) =>
+    attempt(200, () => {
+      const A = pick(rng, [4, 5, 6, 8, 10] as const);
+      const B = pick(rng, [10, 12, 15, 20, 25] as const);
+      if (B <= A) return null;
+      const W = intBetween(rng, 4, 20) * B;
+      const E = (W * (B - A)) / B;
+      if (!Number.isInteger(E) || E < 10) return null;
+      return {
+        content: `$${A}\\%$의 소금물 $${W}\\,\\mathrm{g}$이 있다. 여기에서 물을 몇 $\\mathrm{g}$ 증발시키면 $${B}\\%$의 소금물이 되는지 구하시오.`,
+        answer: `$${E}\\,\\mathrm{g}$`,
+        solution: `물을 증발시켜도 소금의 양은 변하지 않는다.\n증발시키는 물의 양을 $x\\,\\mathrm{g}$라 하면 $\\dfrac{${A}}{100}\\times${W}=\\dfrac{${B}}{100}\\times(${W}-x)$이다.\n풀면 $x=${E}$이므로 물을 $${E}\\,\\mathrm{g}$ 증발시켜야 한다.`,
+        facts: { A, B, W, E },
+      };
+    }),
+  ),
+
+  def(
+    "59",
+    "일에 대한 문제 혼자 하다가 함께 하는 경우",
+    SEC.도형,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const a = intBetween(rng, 6, 24);
+        const b = intBetween(rng, 6, 24);
+        const k = intBetween(rng, 1, a - 2);
+        if (((a - k) * b) % (a + b) !== 0) return null;
+        const n = ((a - k) * b) / (a + b);
+        if (n < 1) return null;
+        return {
+          content: `어떤 일을 완성하는 데 $\\mathrm{A}$는 $${a}$일, $\\mathrm{B}$는 $${b}$일이 걸린다. 이 일을 $\\mathrm{A}$가 혼자 $${k}$일 동안 한 뒤 나머지를 두 사람이 함께 하여 완성하였다. 두 사람이 함께 한 날수를 구하시오.`,
+          answer: `$${n}$일`,
+          solution: `전체 일의 양을 $1$이라 하면 $\\mathrm{A}$, $\\mathrm{B}$가 하루에 하는 일의 양은 각각 $\\dfrac{1}{${a}}$, $\\dfrac{1}{${b}}$이다.\n함께 한 날수를 $x$일이라 하면 $\\dfrac{${k}}{${a}}+\\left(\\dfrac{1}{${a}}+\\dfrac{1}{${b}}\\right)x=1$이다.\n풀면 $x=${n}$이므로 함께 한 날수는 $${n}$일이다.`,
+          facts: { a, b, k, n },
+        };
+      }),
+  ),
+
+  def("60", "둘레가 같은 두 도형", SEC.도형, "응용", (rng) =>
+    attempt(120, () => {
+      const s = intBetween(rng, 6, 24);
+      const d = intBetween(rng, 1, 8) * 2; // 세로가 정수가 되려면 짝수
+      const h = s - d / 2;
+      if (h < 2) return null;
+      const w = h + d;
+      const area = h * w;
+      return {
+        content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 긴 직사각형과 한 변의 길이가 $${s}\\,\\mathrm{cm}$인 정사각형의 둘레의 길이가 같다. 이 직사각형의 넓이를 구하시오.`,
+        answer: `$${area}\\,\\mathrm{cm}^{2}$`,
+        solution: `직사각형의 세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{x+(x+${d})\\}=4\\times${s}$이므로 $x=${h}$이다.\n따라서 가로는 $${w}\\,\\mathrm{cm}$, 넓이는 $${h}\\times${w}=${area}\\,(\\mathrm{cm}^{2})$이다.`,
+        facts: { s, d, h, w, area },
+      };
+    }),
+  ),
 ];

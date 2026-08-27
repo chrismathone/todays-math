@@ -40,6 +40,14 @@ const DONE_SECTIONS = [
     section: "일차방정식의 활용(나이, 과부족, 예금)",
   },
   { entries: M1_LINEAR_APPLY, section: "일차방정식의 활용(수)" },
+  {
+    entries: M1_LINEAR_APPLY,
+    section: "일차방정식의 활용(거리, 속력, 시간)",
+  },
+  {
+    entries: M1_LINEAR_APPLY,
+    section: "일차방정식의 활용(도형, 농도, 일)",
+  },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {

@@ -1,6 +1,6 @@
 /**
- * 중1 「일차방정식의 활용」 50유형 — 독립 검산.
- * (RPM 색인 01~22 + 네 소단원을 10유형으로 채우려고 지은 23~50)
+ * 중1 「일차방정식의 활용」 60유형 — 독립 검산.
+ * (RPM 색인 01~22 + 여섯 소단원을 10유형으로 채우려고 지은 23~60)
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)로 유형마다
  * **방정식을 여기서 다시 세워** 만족하는지 본다. 생성기가 역산을 틀리면
@@ -204,6 +204,40 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
     f.ones! >= 1 &&
     f.N! === 10 * f.tens! + f.ones! &&
     f.N! - (10 * f.ones! + f.tens!) === f.d!,
+
+  // ── 51~55 「거리, 속력, 시간」 · 56~60 「도형, 농도, 일」 (갈래 D) ──
+  // 왕복: 2d == v·t
+  "51": (f) => 2 * f.d! === f.v! * f.t!,
+  // 두 구간: d1/a + d2/b == t (분모를 없애 정수로 견준다), D == d1+d2
+  "52": (f) =>
+    f.d1! === f.a! * f.t1! &&
+    f.d2! === f.b! * f.t2! &&
+    f.D! === f.d1! + f.d2! &&
+    f.t! === f.t1! + f.t2! &&
+    f.a! !== f.b!,
+  // 마주 보고: (p+q)·n == D. 두 빠르기가 같으면 발문이 무의미하다
+  "53": (f) => (f.p! + f.q!) * f.n! === f.D! && f.p! !== f.q!,
+  // 같은 방향 둘레: (p-q)·n == L, 빠른 쪽이 있어야 한다
+  "54": (f) => (f.p! - f.q!) * f.n! === f.L! && f.p! > f.q!,
+  // 기차: v·t == B+L, 다리가 기차보다 길다
+  "55": (f) => f.v! * f.t! === f.B! + f.L! && f.B! > f.L!,
+  // 삼각형: 2S == b·h
+  "56": (f) => 2 * f.S! === f.b! * f.h!,
+  // 사다리꼴: 2S == (2a+d)·h
+  "57": (f) => 2 * f.S! === (2 * f.a! + f.d!) * f.h! && f.d! > 0,
+  // 증발: 소금이 보존된다 A·W == B·(W-E), 진해진다
+  "58": (f) => f.A! * f.W! === f.B! * (f.W! - f.E!) && f.B! > f.A! && f.E! > 0,
+  // 혼자 하다 함께: k/a + n(1/a+1/b) == 1  ⇔  k·b + n(a+b) == a·b
+  "59": (f) =>
+    f.k! * f.b! + f.n! * (f.a! + f.b!) === f.a! * f.b! &&
+    f.k! >= 1 &&
+    f.n! >= 1,
+  // 둘레가 같다: w == h+d, 2(h+w) == 4s, 넓이 == h·w
+  "60": (f) =>
+    f.w! === f.h! + f.d! &&
+    2 * (f.h! + f.w!) === 4 * f.s! &&
+    f.area! === f.h! * f.w! &&
+    f.h! >= 1,
 };
 
 /**
@@ -366,6 +400,71 @@ const CONTENT_CHECKS: Record<string, (content: string) => number> = {
     const ones = Number(d) / (9 * (Number(m) - 1));
     return (10 * Number(m) + 1) * ones;
   },
+  "51": (c) => {
+    const [, v, t] = c.match(
+      /시속 \$(\d+)\\,\\mathrm\{km\}\$.*모두 \$(\d+)\$시간/,
+    )!;
+    return (Number(v) * Number(t)) / 2;
+  },
+  "52": (c) => {
+    const [, D, a, b, t] = c.match(
+      /거리는 \$(\d+)\\,\\mathrm\{km\}\$.*시속 \$(\d+)\\,\\mathrm\{km\}\$로 걷다가.*시속 \$(\d+)\\,\\mathrm\{km\}\$로 뛰어서 모두 \$(\d+)\$시간/,
+    )!;
+    // x/a + (D-x)/b = t  ⇔  x = a(bt - D)/(b - a)
+    return (
+      (Number(a) * (Number(b) * Number(t) - Number(D))) /
+      (Number(b) - Number(a))
+    );
+  },
+  "53": (c) => {
+    const [, D, p, q] = c.match(
+      /\$(\d+)\\,\\mathrm\{m\}\$ 떨어진.*분속 \$(\d+)\\,\\mathrm\{m\}\$로, 다른 사람은 분속 \$(\d+)\\,\\mathrm\{m\}\$/,
+    )!;
+    return Number(D) / (Number(p) + Number(q));
+  },
+  "54": (c) => {
+    const [, L, p, q] = c.match(
+      /둘레의 길이가 \$(\d+)\\,\\mathrm\{m\}\$.*분속 \$(\d+)\\,\\mathrm\{m\}\$로, 다른 사람은 분속 \$(\d+)\\,\\mathrm\{m\}\$/,
+    )!;
+    return Number(L) / (Number(p) - Number(q));
+  },
+  "55": (c) => {
+    const [, L, B, t] = c.match(
+      /길이가 \$(\d+)\\,\\mathrm\{m\}\$인 기차가 길이 \$(\d+)\\,\\mathrm\{m\}\$인 다리를 완전히 지나는 데 \$(\d+)\$초/,
+    )!;
+    return (Number(L) + Number(B)) / Number(t);
+  },
+  "56": (c) => {
+    const [, h, S] = c.match(
+      /높이가 \$(\d+)\\,\\mathrm\{cm\}\$인 삼각형의 넓이가 \$(\d+)\\,\\mathrm\{cm\}\^\{2\}\$/,
+    )!;
+    return (2 * Number(S)) / Number(h);
+  },
+  "57": (c) => {
+    const [, d, h, S] = c.match(
+      /윗변의 길이보다 \$(\d+)\\,\\mathrm\{cm\}\$만큼 긴.*높이가 \$(\d+)\\,\\mathrm\{cm\}\$이고 넓이가 \$(\d+)\\,\\mathrm\{cm\}\^\{2\}\$/,
+    )!;
+    return ((2 * Number(S)) / Number(h) - Number(d)) / 2;
+  },
+  "58": (c) => {
+    const [, A, W, B] = c.match(
+      /\$(\d+)\\%\$의 소금물 \$(\d+)\\,\\mathrm\{g\}\$.*\$(\d+)\\%\$의 소금물이/,
+    )!;
+    return Number(W) - (Number(A) * Number(W)) / Number(B);
+  },
+  "59": (c) => {
+    const [, a, b, k] = c.match(
+      /\$\\mathrm\{A\}\$는 \$(\d+)\$일, \$\\mathrm\{B\}\$는 \$(\d+)\$일.*혼자 \$(\d+)\$일/,
+    )!;
+    return ((Number(a) - Number(k)) * Number(b)) / (Number(a) + Number(b));
+  },
+  "60": (c) => {
+    const [, d, s] = c.match(
+      /세로의 길이보다 \$(\d+)\\,\\mathrm\{cm\}\$만큼 긴.*한 변의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+    )!;
+    const h = Number(s) - Number(d) / 2;
+    return h * (h + Number(d));
+  },
 };
 
 /** 답 문자열의 첫 수가 facts 의 이 키와 같아야 한다 — 답이 엉뚱한 수를 찍는 것을 막는다. */
@@ -420,6 +519,16 @@ const ANSWER_KEY: Record<string, string> = {
   "48": "big",
   "49": "n",
   "50": "N",
+  "51": "d",
+  "52": "d1",
+  "53": "n",
+  "54": "n",
+  "55": "v",
+  "56": "b",
+  "57": "a",
+  "58": "E",
+  "59": "n",
+  "60": "area",
 };
 
 function firstNumber(text: string): number {
@@ -428,18 +537,18 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중1 일차방정식의 활용 50유형", () => {
+describe("중1 일차방정식의 활용 60유형", () => {
   const entries = registeredTypes().filter(
     (e) => e.rpmMinor === "일차방정식의 활용",
   );
 
-  it("RPM 색인의 22유형 + 갈래 D 가 지은 28유형이 빈틈없이 등록돼 있다", () => {
+  it("RPM 색인의 22유형 + 갈래 D 가 지은 38유형이 빈틈없이 등록돼 있다", () => {
     // 01~22 는 RPM 색인 그대로, 23~38 은 두 소단원을 10유형으로 채우려고 지은 것.
     // **빈틈없이** 잇는지 본다 — 번호를 건너뛰면 다음 사람이 그 자리를 다시 쓴다.
-    expect(entries.length).toBe(50);
+    expect(entries.length).toBe(60);
     const nums = entries.map((e) => e.rpmType).sort();
     expect(nums).toEqual(
-      Array.from({ length: 50 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 60 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
   });
 
