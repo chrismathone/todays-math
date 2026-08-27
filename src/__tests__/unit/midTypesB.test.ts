@@ -685,6 +685,110 @@ const CHECKS: Record<string, Check> = {
     const small = nums(spans[1]!)[0]!;
     expect(nums(answer)[0]).toBe((small * q! ** 3) / p! ** 3);
   },
+  // ── 중2 부등식 / 일차부등식의 풀이 ────────────────────────
+  //
+  // 부등식은 **정수 $x$ 를 훑어** 잰다 — 「해집합이 같은가」를 직접 물으므로
+  // 부등호 방향이 뒤집히면 바로 갈린다(값만 맞고 방향이 틀린 자리를 잡는다).
+  "2-1|일차부등식|50": ({ content, answer }) => {
+    const [a, b] = nums(
+      content
+        .match(/\$[^$]*\$/g)!
+        .slice(1)
+        .join(" "),
+    );
+    const lowClosed = content.includes("이상");
+    const highClosed = content.includes("이하");
+    for (let x = a! - 3; x <= b! + 3; x += 1)
+      expect(satisfiesRange(answer, x), `x=${x}`).toBe(
+        (lowClosed ? x >= a! : x > a!) && (highClosed ? x <= b! : x < b!),
+      );
+  },
+  "2-1|일차부등식|51": ({ content, answer }) => {
+    // $a<b$ 를 실제 수로 여럿 넣어 답의 부등식이 **늘 참**인지 본다
+    const spans = answer.match(/\$([^$]*)\$/)![1]!;
+    const [lhs, rhs, op] = splitIneq(spans);
+    for (const [av, bv] of [
+      [1, 2],
+      [-5, 3],
+      [2.5, 9],
+      [-8, -1],
+    ] as const) {
+      const L = evalAB(lhs, av, bv);
+      const R = evalAB(rhs, av, bv);
+      expect(op === ">" ? L > R : L < R, `${spans} @ a=${av},b=${bv}`).toBe(
+        true,
+      );
+    }
+  },
+  "2-1|일차부등식|52": ({ content, answer }) => {
+    const [a, b, c] = nums(
+      content
+        .match(/\$[^$]*\$/g)!
+        .slice(1)
+        .join(" "),
+    );
+    const want = content.includes("작지 않다")
+      ? "\\ge"
+      : content.includes("크지 않다")
+        ? "\\le"
+        : content.includes("보다 크다")
+          ? ">"
+          : "<";
+    expect(answer).toBe(`$${a}x-${b}${want}${c}$`);
+  },
+  "2-1|일차부등식|53": (p) => expectRangeMap(p),
+  "2-1|일차부등식|54": (p) => expectRangeMap(p),
+  "2-1|일차부등식|55": ({ content, answer }) => {
+    const [lo, hi] = nums(content.match(/\$[^$]*\$/)![0]);
+    let n = 0;
+    for (let x = lo!; x < hi!; x += 1) n += 1;
+    expect(nums(answer)).toEqual([n]);
+  },
+  "2-1|일차부등식|56": ({ content, answer }) => {
+    const [a, b, c, d] = nums(
+      content
+        .match(/\$[^$]*\$/g)!
+        .slice(0, 2)
+        .join(" "),
+    );
+    const [lo, hi] = nums(answer);
+    // 실제로 $x-y$ 가 그 범위를 **꽉 채우는지** 본다 (양 끝이 도달 가능해야 한다)
+    let min = Infinity;
+    let max = -Infinity;
+    for (let x = a!; x <= b!; x += 1)
+      for (let y = c!; y <= d!; y += 1) {
+        min = Math.min(min, x - y);
+        max = Math.max(max, x - y);
+      }
+    expect([lo, hi]).toEqual([min, max]);
+  },
+  ...Object.fromEntries(
+    ["57", "58", "59", "60", "61"].map((t) => [
+      `2-1|일차부등식|${t}`,
+      ((p) => {
+        // 발문의 부등식과 답의 부등식이 **같은 정수해 집합**을 갖는가
+        const src = p.content.match(/\$([^$]*)\$/)![1]!;
+        for (let x = -40; x <= 40; x += 1)
+          expect(holdsIneq(src, x), `${src} @x=${x}`).toBe(
+            satisfiesRange(p.answer, x),
+          );
+      }) as Check,
+    ]),
+  ),
+  "2-1|일차부등식|62": ({ content, answer }) => {
+    const src = content.match(/\$([^$]*)\$/)![1]!;
+    let n = 0;
+    for (let x = 1; x <= 200; x += 1) if (holdsIneq(src, x)) n += 1;
+    expect(nums(answer)).toEqual([n]);
+  },
+  "2-1|일차부등식|63": ({ content, answer }) => {
+    // 「$ax>b$의 해가 $x<k$」 — 답 $a$ 를 넣어 두 해집합이 같은지 본다
+    const b = Number(content.match(/\$ax>(-?\d+)\$/)![1]);
+    const k = Number(content.match(/\$x<(-?\d+)\$/)![1]);
+    const a = nums(answer)[0]!;
+    expect(a).toBeLessThan(0);
+    for (let x = -40; x <= 40; x += 1) expect(a * x > b).toBe(x < k);
+  },
   // ── 중2 여러 가지 연립방정식의 풀이 ───────────────────────
   "2-1|연립일차방정식|50": (p) => {
     const [x, y] = nums(p.answer);
@@ -878,9 +982,10 @@ function stripDollar(s: string): string {
   return s.replace(/^\$|\$$/g, "");
 }
 
-/** `3x^2-4xy+2y` 꼴을 $(x,y)$ 에서 잰다. LaTeX 는 `\times`·`\div` 만 나온다. */
+/** `3x^2-4xy+2y` 꼴을 $(x,y)$ 에서 잰다. `\dfrac`·`\times`·`\div` 를 읽는다. */
 export function evalPoly(tex: string, x: number, y: number): number {
   const js = tex
+    .replace(/\\dfrac\{([^{}]*)\}\{([^{}]*)\}/g, "(($1)/($2))")
     .replace(/\\times/g, "*")
     .replace(/\\div/g, "/")
     .replace(/\^\{(-?\d+)\}/g, "**($1)")
@@ -921,6 +1026,102 @@ function expectMonoIdentity(
       kind === "mul" ? k * x * evalPoly(A, x, y) : evalPoly(A, x, y) / (k * x);
     expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 9);
   }
+}
+
+// ── 부등식 검산 소품 — 정수 $x$ 를 훑어 **해집합**을 견준다 ─────────────
+
+const INEQ_OPS = ["\\le", "\\ge", "<", ">"] as const;
+
+/**
+ * `L op R` 을 세 조각으로. 부등호가 없으면 던진다.
+ *
+ * ⚠️ **가장 왼쪽 부등호**로 자른다. 목록 순서로 자르면 `-1<x\le4` 에서 `\le` 를
+ *    먼저 찾아 `["-1<x", "4"]` 로 갈라져 **두 겹 부등식이 조용히 뒤바뀐다** —
+ *    2026-08-27 에 실제로 그 자리에서 판정이 거꾸로 나왔다.
+ */
+function splitIneq(tex: string): [string, string, string] {
+  let best = -1;
+  let bestOp = "";
+  for (const op of INEQ_OPS) {
+    const i = tex.indexOf(op);
+    if (i >= 0 && (best < 0 || i < best)) {
+      best = i;
+      bestOp = op;
+    }
+  }
+  if (best < 0) throw new Error(`부등호가 없다: ${tex}`);
+  return [tex.slice(0, best), tex.slice(best + bestOp.length), bestOp];
+}
+
+function compareBy(op: string, l: number, r: number): boolean {
+  if (op === "\\le") return l <= r;
+  if (op === "\\ge") return l >= r;
+  if (op === "<") return l < r;
+  return l > r;
+}
+
+/** `$…$` 안의 부등식(한 겹 또는 두 겹)이 그 $x$ 에서 참인가. */
+function holdsIneq(tex: string, x: number): boolean {
+  // 두 겹(`a\le x\le b`)이면 두 조각으로 나눠 둘 다 본다
+  const first = splitIneq(tex);
+  const rest = (() => {
+    try {
+      return splitIneq(first[1]);
+    } catch {
+      return null;
+    }
+  })();
+  if (rest === null)
+    return compareBy(
+      first[2],
+      evalPoly(first[0], x, 0),
+      evalPoly(first[1], x, 0),
+    );
+  return (
+    compareBy(first[2], evalPoly(first[0], x, 0), evalPoly(rest[0], x, 0)) &&
+    compareBy(rest[2], evalPoly(rest[0], x, 0), evalPoly(rest[1], x, 0))
+  );
+}
+
+/** 답(`$x\le3$` 등)이 그 $x$ 에서 참인가. */
+function satisfiesRange(answer: string, x: number): boolean {
+  return holdsIneq(answer.match(/\$([^$]*)\$/)![1]!, x);
+}
+
+/** `a`, `b` 두 문자만 있는 식을 잰다(부등식의 성질 유형). */
+function evalAB(tex: string, a: number, b: number): number {
+  const js = tex
+    .replace(/\\dfrac\{([^{}]*)\}\{([^{}]*)\}/g, "(($1)/($2))")
+    .replace(/\\times/g, "*")
+    .replace(/(\d)\s*([ab(])/g, "$1*$2");
+  return Function("a", "b", `"use strict";return (${js});`)(a, b) as number;
+}
+
+/**
+ * 「$p\le x\le q$일 때 $ax+b$ 의 범위」 — 발문 범위 안의 정수 $x$ 마다 식의 값이
+ * 답의 범위를 만족하는지 본다.
+ */
+function expectRangeMap(p: { content: string; answer: string }): void {
+  const src = p.content.match(/\$([^$]*)\$/)![1]!;
+  const ansTex = p.answer.match(/\$([^$]*)\$/)![1]!;
+  const expr = p.content.match(/때, \$([^$]*)\$의 값의 범위/)![1]!;
+  // 발문 범위 안의 정수 $x$ 마다 식의 값이 답의 범위를 만족해야 한다
+  let seen = 0;
+  for (let x = -30; x <= 30; x += 1) {
+    if (!holdsIneq(src, x)) continue;
+    seen += 1;
+    const v = evalPoly(expr, x, 0);
+    expect(holdsIneq(ansTex.replace(expr, `(${v})`), 0), `x=${x} → ${v}`).toBe(
+      true,
+    );
+  }
+  expect(seen, "발문 범위에 정수가 하나도 없다").toBeGreaterThan(1);
+  // 범위가 거꾸로 적히지 않았는가 — 답의 **첫 수 < 마지막 수**
+  const ends = ansTex.match(/-?\d+/g)!;
+  expect(
+    Number(ends[0]) < Number(ends[ends.length - 1]),
+    `범위가 거꾸로다: ${ansTex}`,
+  ).toBe(true);
 }
 
 /** `A=B` 꼴 한 식의 **좌변−우변**. `evalLinear` 를 그대로 쓴다. */

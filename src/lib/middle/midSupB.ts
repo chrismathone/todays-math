@@ -611,6 +611,257 @@ const SYSTEM_VARIANT_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3] as const).map(
     ),
 );
 
+/**
+ * 중2 「부등식」 보강 일곱 · 「일차부등식의 풀이」 보강 일곱.
+ *
+ * 두 소단원 다 **pool 갈래가 셋뿐**이었다(부등식 기본2·응용1 · 풀이 기본1·응용2) —
+ * 등록 유형은 5·4 인데 01·04·06 이 **이미 객관식**이라 단답행을 안 낸다.
+ * 그래서 「10개로 올린다」가 아니라 **일곱씩** 필요했다.
+ */
+const IN = { le: "\\le", ge: "\\ge", lt: "<", gt: ">" } as const;
+
+const INEQUALITY_SUPPLEMENTS: TypeEntry[] = [
+  ...([0, 1, 2, 3, 4, 5, 6] as const).map((mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      "일차부등식",
+      String(50 + mode),
+      [
+        "이상 이하 초과 미만을 부등식으로 나타내기",
+        "부등식의 성질 양변에 같은 수를 곱하거나 나누기",
+        "문장을 부등식으로 나타내기",
+        "일차식의 값의 범위 계수가 양수",
+        "일차식의 값의 범위 계수가 음수",
+        "주어진 범위 안의 정수의 개수",
+        "두 문자의 차의 값의 범위",
+      ][mode]!,
+      "부등식",
+      mode < 3 ? "기본" : mode < 6 ? "응용" : "심화",
+      (rng): Body => {
+        if (mode === 0) {
+          const a = intBetween(rng, 2, 9);
+          const b = a + intBetween(rng, 2, 9);
+          const lowClosed = intBetween(rng, 0, 1) === 0;
+          const highClosed = intBetween(rng, 0, 1) === 0;
+          const lowWord = lowClosed ? "이상" : "초과";
+          const highWord = highClosed ? "이하" : "미만";
+          const lo = lowClosed ? IN.le : IN.lt;
+          const hi = highClosed ? IN.le : IN.lt;
+          return {
+            content: `$x$는 $${a}$ ${lowWord}이고 $${b}$ ${highWord}이다. $x$의 값의 범위를 부등식으로 나타내시오.`,
+            answer: `$${a}${lo} x${hi}${b}$`,
+            solution: `「${lowWord}」${eunNeunWord(lowWord)} 그 수를 ${lowClosed ? "포함하고" : "포함하지 않고"}, 「${highWord}」${eunNeunWord(highWord)} 그 수를 ${highClosed ? "포함한다" : "포함하지 않는다"}.\n따라서 $${a}${lo} x${hi}${b}$이다.`,
+            facts: {
+              mode,
+              a,
+              b,
+              lowClosed: lowClosed ? 1 : 0,
+              highClosed: highClosed ? 1 : 0,
+            },
+          };
+        }
+        if (mode === 1) {
+          const c = intBetween(rng, 2, 6);
+          const neg = intBetween(rng, 0, 1) === 0;
+          const divide = intBetween(rng, 0, 1) === 0;
+          const left = divide
+            ? `\\dfrac{a}{${neg ? -c : c}}`
+            : `${neg ? -c : c}a`;
+          const right = divide
+            ? `\\dfrac{b}{${neg ? -c : c}}`
+            : `${neg ? -c : c}b`;
+          const op = neg ? ">" : "<";
+          return {
+            // 분수·단항식은 끝이 문자(`a`·`b` — 에이·비)라 접속 조사가 늘 「와」다.
+            content: `$a<b$일 때, $${left}$와 $${right}$의 대소를 부등호를 사용하여 나타내시오.`,
+            answer: `$${left}${op}${right}$`,
+            solution: `부등식의 양변${divide ? "을" : "에"} ${neg ? "음수" : "양수"}인 $${neg ? -c : c}$${divide ? euroRo(c) : eulReul(c)} ${divide ? "나누면" : "곱하면"} 부등호의 방향이 ${neg ? "바뀐다" : "그대로다"}.\n따라서 $${left}${op}${right}$이다.`,
+            facts: { mode, c, neg: neg ? 1 : 0, divide: divide ? 1 : 0 },
+          };
+        }
+        if (mode === 2) {
+          const a = intBetween(rng, 2, 9);
+          const b = intBetween(rng, 2, 9);
+          const c = intBetween(rng, 2, 20);
+          const kind = intBetween(rng, 0, 3);
+          const word = [
+            "보다 크다",
+            "보다 작다",
+            "보다 작지 않다",
+            "보다 크지 않다",
+          ][kind]!;
+          const op = [IN.gt, IN.lt, IN.ge, IN.le][kind]!;
+          return {
+            content: `어떤 수 $x$의 $${a}$배에서 $${b}$${eulReul(b)} 뺀 수는 $${c}$${word}. 이를 부등식으로 나타내시오.`,
+            answer: `$${a}x-${b}${op}${c}$`,
+            solution: `「$x$의 $${a}$배에서 $${b}$${eulReul(b)} 뺀 수」는 $${a}x-${b}$이다.\n「$${c}$${word}」는 $${op}${c}$${euroRo(c)} 나타내므로 $${a}x-${b}${op}${c}$이다.`,
+            facts: { mode, a, b, c, kind },
+          };
+        }
+        if (mode === 3) {
+          const p = intBetween(rng, -5, 2);
+          const q = p + intBetween(rng, 2, 6);
+          const a = intBetween(rng, 2, 5);
+          const b = intBetween(rng, 1, 9);
+          return {
+            content: `$${p}\\le x\\le${q}$일 때, $${a}x+${b}$의 값의 범위를 구하시오.`,
+            answer: `$${a * p + b}\\le ${a}x+${b}\\le${a * q + b}$`,
+            solution: `각 변에 $${a}$${eulReul(a)} 곱하면 $${a * p}\\le ${a}x\\le${a * q}$이다.\n각 변에 $${b}$${eulReul(b)} 더하면 $${a * p + b}\\le ${a}x+${b}\\le${a * q + b}$이다.`,
+            facts: { mode, p, q, a, b },
+          };
+        }
+        if (mode === 4) {
+          const p = intBetween(rng, -4, 2);
+          const q = p + intBetween(rng, 2, 6);
+          const a = intBetween(rng, 2, 5);
+          const b = intBetween(rng, 1, 9);
+          return {
+            content: `$${p}<x\\le${q}$일 때, $-${a}x+${b}$의 값의 범위를 구하시오.`,
+            answer: `$${-a * q + b}\\le -${a}x+${b}<${-a * p + b}$`,
+            solution: `각 변에 음수인 $-${a}$${eulReul(a)} 곱하면 부등호의 방향이 바뀌어 $${-a * q}\\le -${a}x<${-a * p}$이다.\n각 변에 $${b}$${eulReul(b)} 더하면 $${-a * q + b}\\le -${a}x+${b}<${-a * p + b}$이다.`,
+            facts: { mode, p, q, a, b },
+          };
+        }
+        if (mode === 5) {
+          const p = intBetween(rng, 1, 6);
+          const q = intBetween(rng, 2, 8);
+          return {
+            content: `$-${p}\\le x<${q}$${eulReul(q)} 만족시키는 정수 $x$의 개수를 구하시오.`,
+            answer: `$${q + p}$개`,
+            solution: `$x$는 $-${p}$부터 $${q - 1}$까지의 정수이다($${q}$${eunNeunOf(q)} 포함하지 않는다).\n따라서 그 개수는 $${q - 1}-(-${p})+1=${q + p}$이다.`,
+            facts: { mode, p, q, x: q + p },
+          };
+        }
+        const a = intBetween(rng, -4, 2);
+        const b = a + intBetween(rng, 2, 6);
+        const c = intBetween(rng, 1, 5);
+        const d = c + intBetween(rng, 2, 6);
+        return {
+          content: `$${a}\\le x\\le${b}$이고 $${c}\\le y\\le${d}$일 때, $x-y$의 값의 범위를 구하시오.`,
+          answer: `$${a - d}\\le x-y\\le${b - c}$`,
+          solution: `$-y$의 범위는 각 변에 $-1$을 곱해 $${-d}\\le -y\\le${-c}$이다.\n$x$의 범위와 변끼리 더하면 $${a}+(${-d})\\le x-y\\le${b}+(${-c})$, 즉 $${a - d}\\le x-y\\le${b - c}$이다.`,
+          facts: { mode, a, b, c, d },
+        };
+      },
+    ),
+  ),
+
+  ...([0, 1, 2, 3, 4, 5, 6] as const).map((mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      "일차부등식",
+      String(57 + mode),
+      [
+        "일차부등식 풀기 계수가 양수",
+        "일차부등식의 해 구하기 상수항 이항",
+        "괄호가 있는 일차부등식의 해",
+        "계수가 음수인 일차부등식의 해",
+        "분수 계수인 일차부등식의 해",
+        "일차부등식을 만족시키는 자연수의 개수",
+        "해가 주어진 일차부등식에서 계수 구하기",
+      ][mode]!,
+      "일차부등식의 풀이",
+      mode === 0 ? "기본" : mode < 4 ? "기본" : mode < 6 ? "응용" : "심화",
+      (rng): Body => {
+        const a = intBetween(rng, 2, 6);
+        const r = intBetween(rng, 1, 9);
+        if (mode === 0) {
+          const b = intBetween(rng, 1, 9);
+          return {
+            content: `다음 일차부등식을 푸시오.\n$${a}x+${b}>${a * r + b}$`,
+            answer: `$x>${r}$`,
+            solution: `$${b}$${eulReul(b)} 이항하면 $${a}x>${a * r}$이다.\n양변을 양수인 $${a}$${euroRo(a)} 나누면 $x>${r}$이다.`,
+            facts: { mode, a, b, r },
+          };
+        }
+        if (mode === 1) {
+          const b = intBetween(rng, 1, 9);
+          return {
+            content: `일차부등식 $${a}x-${b}\\le${a * r - b}$의 해를 구하시오.`,
+            answer: `$x\\le${r}$`,
+            solution: `$-${b}$${eulReul(b)} 이항하면 $${a}x\\le${a * r}$이다.\n양변을 $${a}$${euroRo(a)} 나누면 $x\\le${r}$이다.`,
+            facts: { mode, a, b, r },
+          };
+        }
+        if (mode === 2) {
+          const b = intBetween(rng, 1, 5);
+          return {
+            content: `일차부등식 $${a}(x-${b})\\ge${a * (r - b)}$의 해를 구하시오.`,
+            answer: `$x\\ge${r}$`,
+            solution: `괄호를 풀면 $${a}x-${a * b}\\ge${a * (r - b)}$이다.\n$-${a * b}$${eulReul(a * b)} 이항하면 $${a}x\\ge${a * r}$이고, 양변을 $${a}$${euroRo(a)} 나누면 $x\\ge${r}$이다.`,
+            facts: { mode, a, b, r },
+          };
+        }
+        if (mode === 3) {
+          const b = intBetween(rng, 1, 9);
+          return {
+            content: `일차부등식 $-${a}x+${b}\\ge${-a * r + b}$의 해를 구하시오.`,
+            answer: `$x\\le${r}$`,
+            solution: `$${b}$${eulReul(b)} 이항하면 $-${a}x\\ge${-a * r}$이다.\n양변을 **음수**인 $-${a}$${euroRo(a)} 나누므로 부등호의 방향이 바뀌어 $x\\le${r}$이다.`,
+            facts: { mode, a, b, r },
+          };
+        }
+        if (mode === 4) {
+          const p = intBetween(rng, 2, 4);
+          const q = attempt(40, () => {
+            const v = intBetween(rng, 2, 6);
+            return v === p ? null : v;
+          });
+          const lcm = (p * q) / gcdOf(p, q);
+          // `p<q` 면 계수가 양수, `p>q` 면 음수라 **부등호가 뒤집힌다.**
+          const coef = lcm / p - lcm / q;
+          // 🔴 **우변을 계수의 배수로 잡는다.** 안 그러면 해가
+          //    `x\le23.333333333333332` 로 나간다(실측 — 씨앗 99991·$p=2$·$q=5$).
+          const rr = Math.abs(coef) * intBetween(rng, 1, 4);
+          const bound = (lcm * rr) / coef;
+          const flip = coef < 0;
+          return {
+            content: `일차부등식 $\\dfrac{x}{${p}}-\\dfrac{x}{${q}}\\le${rr}$의 해를 구하시오.`,
+            answer: `$x${flip ? IN.ge : IN.le}${bound}$`,
+            solution: `양변에 두 분모의 최소공배수 $${lcm}$${eulReul(lcm)} 곱하면 $${coefTerm(lcm / p, "x")}-${coefTerm(lcm / q, "x")}\\le${lcm * rr}$, 즉 $${coefTerm(coef, "x")}\\le${lcm * rr}$이다.\n양변을 $${coef}$${euroRo(Math.abs(coef))} 나누면 ${flip ? "부등호의 방향이 바뀌어 " : ""}$x${flip ? IN.ge : IN.le}${bound}$이다.`,
+            facts: { mode, p, q, lcm, r: rr, coef },
+          };
+        }
+        if (mode === 5) {
+          const b = intBetween(rng, 1, 9);
+          const n = intBetween(rng, 2, 7);
+          return {
+            content: `일차부등식 $${a}x+${b}\\le${a * n + b}$${eulReul(a * n + b)} 만족시키는 자연수 $x$의 개수를 구하시오.`,
+            answer: `$${n}$개`,
+            solution: `$${b}$${eulReul(b)} 이항하고 양변을 $${a}$${euroRo(a)} 나누면 $x\\le${n}$이다.\n자연수 $x$는 $1$부터 $${n}$까지이므로 그 개수는 $${n}$이다.`,
+            facts: { mode, a, b, n, x: n },
+          };
+        }
+        const k = intBetween(rng, 2, 6);
+        return {
+          content: `일차부등식 $ax>${-a * k}$의 해가 $x<${k}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${-a}$`,
+          // 「$x<6$과」 — 소리의 끝이 수(육)라 접속 조사는 `waGwa` 가 정한다.
+          solution: `양변을 $a$로 나눌 때 부등호의 방향이 바뀌었으므로 $a<0$이다.\n$x<\\dfrac{${-a * k}}{a}$이고 이것이 $x<${k}$${waGwa(k)} 같으므로 $\\dfrac{${-a * k}}{a}=${k}$에서 $a=${-a}$이다.`,
+          facts: { mode, a: -a, k },
+        };
+      },
+    ),
+  ),
+];
+
+/** 보조사 — 받침 판정은 `m2Josa.eulReul` 한 곳에서 온다. */
+function eunNeunOf(n: number): "은" | "는" {
+  return eulReul(n) === "을" ? "은" : "는";
+}
+
+/**
+ * 한글 **낱말** 뒤의 보조사 — 「이상**은**」·「이하**는**」.
+ * 마지막 음절의 종성으로 가른다(한글 음절 = 0xAC00 + (초성·중성·종성) 합성).
+ * 수 뒤 조사(`m2Josa`)와는 **가르는 대상이 다르다** — 그쪽은 수의 «읽는 소리»다.
+ */
+function eunNeunWord(word: string): "은" | "는" {
+  const last = word.charCodeAt(word.length - 1) - 0xac00;
+  return last >= 0 && last % 28 !== 0 ? "은" : "는";
+}
+
 /** 정다면체 다섯 — [이름, 면의 모양, 한 꼭짓점에 모인 면, 면 F, 꼭짓점 V, 모서리 E]. */
 const PLATONIC = [
   ["정사면체", "정삼각형", 3, 4, 4, 6],
@@ -717,6 +968,7 @@ export const MID_SUP_B: TypeEntry[] = [
   ...POLY_SUPPLEMENTS,
   ...SYSTEM_VARIANT_SUPPLEMENTS,
   ...PLATONIC_SUPPLEMENTS,
+  ...INEQUALITY_SUPPLEMENTS,
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,
