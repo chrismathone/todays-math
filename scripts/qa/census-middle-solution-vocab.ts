@@ -10,10 +10,11 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { COMBO_CORPUS, COMBO_DIR, COMBO_VOCAB } from "./comboPaths";
 
-const DEFAULT_CORPUS = "C:/tmp/middle-combo/corpus.json";
-const DEFAULT_JSON = "C:/tmp/middle-combo/solution-vocab2.json";
-const DEFAULT_TSV = "C:/tmp/middle-combo/solution-vocab2.tsv";
+const DEFAULT_CORPUS = COMBO_CORPUS;
+const DEFAULT_JSON = COMBO_VOCAB;
+const DEFAULT_TSV = `${COMBO_DIR}/solution-vocab2.tsv`;
 const DEFAULT_LIMIT = 120;
 
 type CorpusSample = {

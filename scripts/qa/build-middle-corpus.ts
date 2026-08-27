@@ -15,6 +15,7 @@ import {
   registeredTypes,
 } from "../../src/lib/middle/generate";
 import type { MidProblem, TypeEntry } from "../../src/lib/middle/types";
+import { COMBO_CORPUS } from "./comboPaths";
 
 /**
  * **바닥**이다 — 「같은 수」가 아니라 「이보다 적으면 멈춘다」.
@@ -30,7 +31,7 @@ import type { MidProblem, TypeEntry } from "../../src/lib/middle/types";
  * 「유형이 조용히 **사라지는**」 반대 방향만 막으면 된다.
  */
 const MIN_REGISTERED_TYPES = 873;
-const DEFAULT_OUTPUT = "C:/tmp/middle-combo/corpus.json";
+const DEFAULT_OUTPUT = COMBO_CORPUS;
 const SEEDS = [20260824, 20260825] as const;
 const VARIANTS_PER_SEED = 2;
 

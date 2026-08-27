@@ -14,11 +14,17 @@ import { dirname, resolve } from "node:path";
 import { registeredTypes } from "../../src/lib/middle/generate";
 import type { TypeEntry } from "../../src/lib/middle/types";
 import { solutionTerms } from "./census-middle-solution-vocab";
+import {
+  COMBO_CORPUS,
+  COMBO_JSON,
+  COMBO_REPORT,
+  COMBO_VOCAB,
+} from "./comboPaths";
 
-const DEFAULT_CORPUS = "C:/tmp/middle-combo/corpus.json";
-const DEFAULT_VOCAB = "C:/tmp/middle-combo/solution-vocab2.json";
-const DEFAULT_JSON = "C:/tmp/middle-combo/classifications2.json";
-const DEFAULT_REPORT = "C:/tmp/middle-combo/classify-report2.md";
+const DEFAULT_CORPUS = COMBO_CORPUS;
+const DEFAULT_VOCAB = COMBO_VOCAB;
+const DEFAULT_JSON = COMBO_JSON;
+const DEFAULT_REPORT = COMBO_REPORT;
 /**
  * 1차 기준선은 **저장소 안**에 둔다 (2026-08-25).
  *
