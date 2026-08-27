@@ -162,3 +162,48 @@ describe("중등 유형 갈래 C — 일차부등식의 활용(속력, 도형, �
     expect((facts!.lap * facts!.laps) / facts!.speed).toBe(facts!.limit);
   });
 });
+
+describe("중등 유형 갈래 C — 일차부등식의 활용(수, 평균, 정가)", () => {
+  const section = "일차부등식의 활용(수, 평균, 정가)";
+
+  it("29 연속하는 두 수의 경계 합을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "29");
+    expect(facts!.n + (facts!.n + 1)).toBe(facts!.limit);
+  });
+
+  it("30 자연수의 배에서 뺀 경계값을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "30");
+    expect(facts!.a * facts!.n - facts!.b).toBe(facts!.limit);
+  });
+
+  it("31 목표 평균의 최소 점수를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "31");
+    expect((facts!.previous + facts!.score) / (facts!.count + 1)).toBe(
+      facts!.target,
+    );
+  });
+
+  it("32 목표 평균의 최대 점수를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "32");
+    expect((facts!.previous + facts!.score) / (facts!.count + 1)).toBe(
+      facts!.target,
+    );
+  });
+
+  it("33 할인 뒤 판매 금액을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "33");
+    expect(facts!.price - facts!.discount).toBe(facts!.cost);
+  });
+
+  it("34 목표 이익을 포함한 판매 가격을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "34");
+    expect(facts!.price).toBe((facts!.cost * (100 + facts!.profit)) / 100);
+  });
+
+  it("35 할인 뒤 목표 이익을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "35");
+    expect(facts!.price - facts!.discount - facts!.cost).toBe(
+      (facts!.cost * facts!.profit) / 100,
+    );
+  });
+});

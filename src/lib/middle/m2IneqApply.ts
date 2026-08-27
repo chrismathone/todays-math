@@ -231,6 +231,143 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     },
   ),
 
+  def(
+    MINOR_APPLY,
+    "29",
+    "연속하는 두 자연수에 대한 문제",
+    SEC.수평균정가,
+    "기본",
+    (rng) => {
+      const n = intBetween(rng, 4, 20);
+      const limit = 2 * n + 1;
+      return {
+        content: `연속하는 두 자연수의 합이 $${limit}$ 이상일 때, 작은 수의 최솟값을 계산하시오.`,
+        answer: `$${n}$`,
+        solution: `작은 수를 $x$라 하면 큰 수는 $x+1$이므로 $x+(x+1)\\ge${limit}$이다. $2x+1\\ge${limit}$에서 $x\\ge${n}$이므로 최솟값은 $${n}$이다.`,
+        facts: { n, limit },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "30",
+    "어떤 수의 배에 대한 문제",
+    SEC.수평균정가,
+    "기본",
+    (rng) => {
+      const a = intBetween(rng, 3, 7);
+      const b = intBetween(rng, 1, 9);
+      const n = intBetween(rng, 3, 15);
+      const limit = a * n - b;
+      return {
+        content: `어떤 자연수의 $${a}$배에서 $${b}$를 뺀 수가 $${limit}$ 이상일 때, 이러한 자연수의 최솟값을 계산하시오.`,
+        answer: `$${n}$`,
+        solution: `어떤 자연수를 $x$라 하면 $${a}x-${b}\\ge${limit}$이다. 풀면 $x\\ge${n}$이므로 가장 작은 자연수는 $${n}$이다.`,
+        facts: { a, b, n, limit },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "31",
+    "여러 번의 평균 점수",
+    SEC.수평균정가,
+    "응용",
+    (rng) => {
+      const count = intBetween(rng, 3, 5);
+      const target = intBetween(rng, 75, 88);
+      const score = intBetween(rng, target, 100);
+      const previous = target * (count + 1) - score;
+      return {
+        content: `$${count}$번 시험의 점수 합이 $${previous}$점이다. 다음 시험까지의 평균이 $${target}$점 이상이 되려면 다음 시험에서 최소 몇 점을 받아야 하는지 구하시오.`,
+        answer: `$${score}$점`,
+        solution: `다음 시험 점수를 $x$점이라 하면 $\\dfrac{${previous}+x}{${count + 1}}\\ge${target}$이다. 풀면 $x\\ge${score}$이므로 최소 $${score}$점을 받아야 한다.`,
+        facts: { count, target, score, previous },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "32",
+    "평균을 넘지 않는 점수",
+    SEC.수평균정가,
+    "응용",
+    (rng) => {
+      const count = intBetween(rng, 3, 5);
+      const target = intBetween(rng, 70, 85);
+      const score = intBetween(rng, 55, target);
+      const previous = target * (count + 1) - score;
+      return {
+        content: `$${count}$과목의 점수 합이 $${previous}$점이다. 전체 $${count + 1}$과목의 평균이 $${target}$점 이하가 되게 하려면 마지막 과목의 점수는 최대 몇 점이어야 하는지 구하시오.`,
+        answer: `$${score}$점`,
+        solution: `마지막 과목의 점수를 $x$점이라 하면 $\\dfrac{${previous}+x}{${count + 1}}\\le${target}$이다. 풀면 $x\\le${score}$이므로 최대 $${score}$점이다.`,
+        facts: { count, target, score, previous },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "33",
+    "정가에서 할인하여 파는 문제",
+    SEC.수평균정가,
+    "응용",
+    (rng) => {
+      const cost = 1000 * intBetween(rng, 5, 20);
+      const profit = pick(rng, [10, 20, 25] as const);
+      const price = (cost * (100 + profit)) / 100;
+      const discount = price - cost;
+      return {
+        content: `원가가 $${cost}$원인 상품을 $${price}$원에 팔려고 한다. 원가 이상의 판매 금액을 유지하려면 최대 몇 원까지 할인할 수 있는지 계산하시오.`,
+        answer: `$${discount}$원`,
+        solution: `할인 금액을 $x$원이라 하면 $${price}-x\\ge${cost}$이다. 풀면 $x\\le${discount}$이므로 최대 $${discount}$원까지 할인할 수 있다.`,
+        facts: { cost, profit, price, discount },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "34",
+    "목표 이익을 얻는 판매 가격",
+    SEC.수평균정가,
+    "기본",
+    (rng) => {
+      const cost = 1000 * intBetween(rng, 4, 18);
+      const profit = pick(rng, [10, 20, 25, 50] as const);
+      const price = (cost * (100 + profit)) / 100;
+      return {
+        content: `원가가 $${cost}$원인 상품을 팔아 원가의 $${profit}\\%$ 이상의 이익을 얻으려고 한다. 판매 가격은 최소 몇 원이어야 하는지 계산하시오.`,
+        answer: `$${price}$원`,
+        solution: `판매 가격을 $x$원이라 하면 $x-${cost}\\ge\\dfrac{${profit}}{100}\\times${cost}$이다. 따라서 $x\\ge${price}$이므로 최소 $${price}$원에 팔아야 한다.`,
+        facts: { cost, profit, price },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "35",
+    "할인 판매와 목표 이익",
+    SEC.수평균정가,
+    "심화",
+    (rng) => {
+      const cost = 1000 * intBetween(rng, 5, 16);
+      const profit = pick(rng, [10, 20, 25] as const);
+      const discount = 500 * intBetween(rng, 2, 8);
+      const price = (cost * (100 + profit)) / 100 + discount;
+      return {
+        content: `어떤 상품을 정가에서 $${discount}$원 할인하여 팔아도 원가의 $${profit}\\%$ 이상 이익을 얻으려고 한다. 원가가 $${cost}$원일 때 정가는 최소 몇 원이어야 하는지 구하시오.`,
+        answer: `$${price}$원`,
+        solution: `정가를 $x$원이라 하면 $x-${discount}-${cost}\\ge\\dfrac{${profit}}{100}\\times${cost}$이다. 풀면 $x\\ge${price}$이므로 정가는 최소 $${price}$원이어야 한다.`,
+        facts: { cost, profit, discount, price },
+      };
+    },
+  ),
+
   // ── 일차부등식의 활용 (개수, 예금액, 유리한 방법) ────
   def(MINOR_APPLY, "02", "예금액에 대한 문제", SEC.개수예금, "응용", (rng) => {
     const q = pick(rng, [1000, 1500, 2000, 2500] as const);
