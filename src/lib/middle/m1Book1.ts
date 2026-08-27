@@ -24,7 +24,7 @@ import {
   shuffle,
   signed,
 } from "./m1Shared";
-import { eulReul } from "./m2Josa";
+import { euroRo, eulReul } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -255,6 +255,178 @@ export const M1_BOOK1: TypeEntry[] = [
       facts: { p, m, q, n },
     };
   }),
+
+  // ── 11~17 「소수와 거듭제곱」을 10유형으로 채운 몫 (갈래 D) ──
+  // 색인(소인수분해)은 01~10 이고 04~10 은 `m1Num.ts` 몫이라 11 부터 잇는다.
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "11",
+    "거듭제곱의 밑과 지수",
+    SEC1.소수,
+    "기본",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5, 7, 11] as const);
+      const n = intBetween(rng, 2, 6);
+      return {
+        content: `$${p}^{${n}}$에서 밑을 $a$, 지수를 $b$라 할 때, $a+b$의 값을 구하시오.`,
+        answer: `$${p + n}$`,
+        solution: `거듭제곱에서 여러 번 곱한 수가 밑, 곱한 횟수가 지수이므로 $a=${p}$, $b=${n}$이다.\n따라서 $a+b=${p}+${n}=${p + n}$이다.`,
+        facts: { p, n, sum: p + n },
+      };
+    },
+  ),
+
+  defType(BOOK, "소인수분해", "12", "거듭제곱의 값", SEC1.소수, "응용", (rng) =>
+    attempt(300, () => {
+      const [p, q] = pickDistinct(rng, [2, 3, 5, 7] as const, 2).sort(
+        (x, y) => x - y,
+      ) as [number, number];
+      const m = intBetween(rng, 2, 5);
+      const n = intBetween(rng, 2, 3);
+      const value = p ** m * q ** n;
+      // 중1 이 손으로 셀 수 있는 크기로 묶는다.
+      if (value > 3000) return null;
+      return {
+        content: `$${p}^{${m}}\\times${q}^{${n}}$의 값을 구하시오.`,
+        answer: `$${value}$`,
+        solution: `$${p}^{${m}}=${p ** m}$, $${q}^{${n}}=${q ** n}$이므로 $${p}^{${m}}\\times${q}^{${n}}=${p ** m}\\times${q ** n}=${value}$이다.`,
+        facts: { p, m, q, n, value },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "13",
+    "분수를 거듭제곱으로",
+    SEC1.소수,
+    "기본",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5, 7] as const);
+      const n = intBetween(rng, 3, 5);
+      const chain = Array<number>(n).fill(p).join("\\times");
+      return {
+        content: `$\\dfrac{1}{${chain}}=\\dfrac{1}{${p}^{x}}$일 때, 자연수 $x$의 값을 구하시오.`,
+        answer: `$${n}$`,
+        solution: `분모는 $${p}$${eulReul(p)} $${n}$번 곱한 것이므로 $${p}^{${n}}$이다.\n따라서 $x=${n}$이다.`,
+        facts: { p, n },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "14",
+    "거듭제곱의 지수 구하기",
+    SEC1.소수,
+    "기본",
+    (rng) =>
+      attempt(200, () => {
+        const p = pick(rng, [2, 3, 5] as const);
+        const n = intBetween(rng, 2, 8);
+        const value = p ** n;
+        if (value > 1000) return null;
+        return {
+          content: `$${p}^{x}=${value}$일 때, 자연수 $x$의 값을 구하시오.`,
+          answer: `$${n}$`,
+          solution: `$${value}$${eulReul(value)} $${p}$${euroRo(p)} 계속 나누면 $${value}=${p}^{${n}}$이다.\n따라서 $x=${n}$이다.`,
+          facts: { p, n, value },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "15",
+    "범위 안 소수의 합",
+    SEC1.소수,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const lo = intBetween(rng, 2, 24);
+        const hi = lo + intBetween(rng, 8, 16);
+        if (hi > 48) return null;
+        const primes: number[] = [];
+        for (let v = lo; v <= hi; v += 1) if (PRIMES.has(v)) primes.push(v);
+        if (primes.length < 3) return null;
+        const sum = primes.reduce((s, v) => s + v, 0);
+        return {
+          content: `$${lo}$ 이상 $${hi}$ 이하의 자연수 중에서 소수를 모두 더한 값을 구하시오.`,
+          answer: `$${sum}$`,
+          solution: `이 범위의 소수는 ${primes.map((v) => `$${v}$`).join(", ")}이다.\n따라서 그 합은 $${primes.join("+")}=${sum}$이다.`,
+          facts: { lo, hi, sum, count: primes.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "16",
+    "범위 안의 소수 찾기",
+    SEC1.소수,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const kind = pick(rng, [0, 1] as const); // 0 가장 큰 · 1 가장 작은
+        const lo = intBetween(rng, 2, 30);
+        const hi = lo + intBetween(rng, 8, 16);
+        if (hi > 48) return null;
+        const primes: number[] = [];
+        for (let v = lo; v <= hi; v += 1) if (PRIMES.has(v)) primes.push(v);
+        if (primes.length < 3) return null;
+        const answer = kind === 0 ? primes[primes.length - 1]! : primes[0]!;
+        const word = kind === 0 ? "큰" : "작은";
+        return {
+          content: `$${lo}$ 이상 $${hi}$ 이하의 자연수 중에서 가장 ${word} 소수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `이 범위의 소수는 ${primes.map((v) => `$${v}$`).join(", ")}이다.\n따라서 가장 ${word} 소수는 $${answer}$이다.`,
+          facts: { kind, lo, hi, answer, count: primes.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "17",
+    "거듭제곱의 대소",
+    SEC1.소수,
+    "심화",
+    (rng) =>
+      attempt(400, () => {
+        const bases = pickDistinct(rng, [2, 3, 5, 7] as const, 3);
+        const exps = [
+          intBetween(rng, 2, 6),
+          intBetween(rng, 2, 4),
+          intBetween(rng, 2, 3),
+        ];
+        const values = bases.map((b, i) => b ** exps[i]!);
+        if (values.some((v) => v > 1000)) return null;
+        if (new Set(values).size !== 3) return null;
+        const max = Math.max(...values);
+        const min = Math.min(...values);
+        return {
+          content: `$a=${bases[0]}^{${exps[0]}}$, $b=${bases[1]}^{${exps[1]}}$, $c=${bases[2]}^{${exps[2]}}$일 때, 가장 큰 수와 가장 작은 수의 차를 구하시오.`,
+          answer: `$${max - min}$`,
+          solution: `$a=${values[0]}$, $b=${values[1]}$, $c=${values[2]}$이므로 가장 큰 수는 $${max}$, 가장 작은 수는 $${min}$이다.\n따라서 그 차는 $${max}-${min}=${max - min}$이다.`,
+          facts: {
+            b1: bases[0]!,
+            e1: exps[0]!,
+            b2: bases[1]!,
+            e2: exps[1]!,
+            b3: bases[2]!,
+            e3: exps[2]!,
+            diff: max - min,
+          },
+        };
+      }),
+  ),
 
   // ── 문자의 사용과 식의 계산 → 일차식의 뜻Ⅰ·Ⅱ ─────────
   defType(

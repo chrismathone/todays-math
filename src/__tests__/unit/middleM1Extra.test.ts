@@ -1,5 +1,5 @@
 /**
- * 중1 저조 단원 30유형 (m1Extra) — 독립 검산.
+ * 중1 저조 단원 45유형 (m1Extra) — 독립 검산.
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)와 **발문 자체**로
  * 조건을 여기서 다시 세워 검산한다. 검산 도구는 생성기와 **다른 방법**을 쓴다 —
@@ -267,12 +267,21 @@ function faceFaceRel(
   return "other";
 }
 
-// ── unitSection 실측 잠금 (공유 DB 2026-08-23) + 30유형 명부 ──
+// ── unitSection 실측 잠금 (공유 DB 2026-08-23) + 45유형 명부 ──
 
 const EXPECTED_SECTION: Record<string, string> = {
   "1-1|소인수분해|01": "소수와 거듭제곱",
   "1-1|소인수분해|02": "소수와 거듭제곱",
   "1-1|소인수분해|03": "소수와 거듭제곱",
+  // 11~17 은 RPM 색인 밖 — 「소수와 거듭제곱」을 10유형으로 채우려고 갈래 D 가
+  // 지은 것이다. 이 중단원의 색인 최댓값은 10 이고, 04~10 은 `m1Num.ts` 몫이다.
+  "1-1|소인수분해|11": "소수와 거듭제곱",
+  "1-1|소인수분해|12": "소수와 거듭제곱",
+  "1-1|소인수분해|13": "소수와 거듭제곱",
+  "1-1|소인수분해|14": "소수와 거듭제곱",
+  "1-1|소인수분해|15": "소수와 거듭제곱",
+  "1-1|소인수분해|16": "소수와 거듭제곱",
+  "1-1|소인수분해|17": "소수와 거듭제곱",
   "1-1|문자의 사용과 식의 계산|09": "일차식의 뜻Ⅰ",
   "1-1|문자의 사용과 식의 계산|10": "일차식의 뜻Ⅰ",
   "1-1|문자의 사용과 식의 계산|12": "일차식의 뜻Ⅱ",
@@ -354,6 +363,104 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
       f.n,
     ]);
   },
+
+  // ── 11~17 「소수와 거듭제곱」을 10유형으로 채운 몫 (갈래 D) ──
+  // 검산은 **지면 글자에서** 밑·지수·보기 수를 되읽어 다시 계산한다.
+  // `facts` 만 보면 「식을 그리는 쪽」이 틀려도 초록이다.
+
+  "1-1|소인수분해|11": (p) => {
+    const m = p.content.match(/\$(\d+)\^\{(\d+)\}\$에서/);
+    expect(m, p.content).not.toBeNull();
+    const base = Number(m![1]);
+    const exp = Number(m![2]);
+    expect([base, exp]).toEqual([p.facts.p, p.facts.n]);
+    expect(firstNumber(p.answer)).toBe(base + exp);
+  },
+
+  "1-1|소인수분해|12": (p) => {
+    const m = p.content.match(
+      /\$(\d+)\^\{(\d+)\}\\times(\d+)\^\{(\d+)\}\$의 값/,
+    );
+    expect(m, p.content).not.toBeNull();
+    const value =
+      Number(m![1]) ** Number(m![2]) * Number(m![3]) ** Number(m![4]);
+    expect(value).toBe(p.facts.value);
+    expect(firstNumber(p.answer)).toBe(value);
+  },
+
+  "1-1|소인수분해|13": (p) => {
+    const chain = p.content.match(/\\dfrac\{1\}\{([^}]+)\}/)![1]!;
+    const parts = chain.split("\\times");
+    // 같은 수만 곱해야 「$p^{x}$」로 묶인다 — 섞여 있으면 발문이 성립하지 않는다.
+    expect(new Set(parts).size, chain).toBe(1);
+    expect(Number(parts[0])).toBe(p.facts.p);
+    expect(firstNumber(p.answer)).toBe(parts.length);
+  },
+
+  "1-1|소인수분해|14": (p) => {
+    const m = p.content.match(/\$(\d+)\^\{x\}=(\d+)\$/);
+    expect(m, p.content).not.toBeNull();
+    const base = Number(m![1]);
+    // 생성기는 «지수를 뽑아 값을 만들었다». 여기서는 **나눠 떨어뜨려** 되짚는다.
+    let rest = Number(m![2]);
+    let k = 0;
+    while (rest % base === 0) {
+      rest /= base;
+      k += 1;
+    }
+    expect(rest, `${m![2]} 이 ${base} 의 거듭제곱이 아니다`).toBe(1);
+    expect(firstNumber(p.answer)).toBe(k);
+  },
+
+  "1-1|소인수분해|15": (p) => {
+    const m = p.content.match(
+      /\$(\d+)\$ 이상 \$(\d+)\$ 이하의 자연수 중에서 소수를 모두 더한/,
+    );
+    expect(m, p.content).not.toBeNull();
+    // 생성기는 소수 «집합»으로 골랐다. 여기서는 나눗셈으로 다시 판별해 더한다.
+    let sum = 0;
+    let count = 0;
+    for (let v = Number(m![1]); v <= Number(m![2]); v += 1) {
+      if (!isPrime(v)) continue;
+      sum += v;
+      count += 1;
+    }
+    expect(
+      count,
+      "범위에 소수가 셋은 있어야 «합»이 뜻이 있다",
+    ).toBeGreaterThanOrEqual(3);
+    expect(sum).toBe(p.facts.sum);
+    expect(firstNumber(p.answer)).toBe(sum);
+  },
+
+  "1-1|소인수분해|16": (p) => {
+    const m = p.content.match(
+      /\$(\d+)\$ 이상 \$(\d+)\$ 이하의 자연수 중에서 가장 (큰|작은) 소수/,
+    );
+    expect(m, p.content).not.toBeNull();
+    const primes: number[] = [];
+    for (let v = Number(m![1]); v <= Number(m![2]); v += 1) {
+      if (isPrime(v)) primes.push(v);
+    }
+    expect(
+      primes.length,
+      "범위에 소수가 셋은 있어야 «가장»이 뜻이 있다",
+    ).toBeGreaterThanOrEqual(3);
+    const want = m![3] === "큰" ? primes[primes.length - 1]! : primes[0]!;
+    expect(firstNumber(p.answer)).toBe(want);
+  },
+
+  "1-1|소인수분해|17": (p) => {
+    const vals = [...p.content.matchAll(/[abc]=(\d+)\^\{(\d+)\}/g)].map(
+      (m) => Number(m[1]) ** Number(m[2]),
+    );
+    expect(vals, p.content).toHaveLength(3);
+    expect(new Set(vals).size, "세 값이 서로 달라야 «가장»이 하나로 선다").toBe(
+      3,
+    );
+    expect(firstNumber(p.answer)).toBe(Math.max(...vals) - Math.min(...vals));
+  },
+
   "1-1|문자의 사용과 식의 계산|09": (p) => {
     const f = p.facts;
     const m = p.content.match(/다항식 \$(\d+)x\^\{2\}([+-]\d+)x([+-]\d+)\$/);
@@ -679,12 +786,12 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
 
 // ── 명부·색인·등록 ──────────────────────────────────────────
 
-describe("중1 저조 단원 38유형 (m1Extra)", () => {
-  it("38유형 명부와 unitSection 이 실측 그대로다", () => {
+describe("중1 저조 단원 45유형 (m1Extra)", () => {
+  it("45유형 명부와 unitSection 이 실측 그대로다", () => {
     expect(new Set(M1EXTRA_TYPES.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1EXTRA_TYPES.length).toBe(38);
+    expect(M1EXTRA_TYPES.length).toBe(45);
     for (const e of M1EXTRA_TYPES) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
