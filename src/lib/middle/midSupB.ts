@@ -847,6 +847,197 @@ const INEQUALITY_SUPPLEMENTS: TypeEntry[] = [
   ),
 ];
 
+/**
+ * 단항식 하나 — 계수·$x$ 지수·$y$ 지수. 계수 $1$ 과 지수 $1$ 은 지면에 안 쓴다
+ * (`1x^{1}` 은 값이 맞고 지면만 흉하다).
+ */
+function mono(c: number, ex: number, ey: number): string {
+  const pow = (v: string, e: number): string =>
+    e === 0 ? "" : e === 1 ? v : `${v}^{${e}}`;
+  const body = `${pow("x", ex)}${pow("y", ey)}`;
+  if (body === "") return String(c);
+  if (c === 1) return body;
+  if (c === -1) return `-${body}`;
+  return `${c}${body}`;
+}
+
+/**
+ * 중2 「단항식의 곱셈과 나눗셈」 보강 다섯 — pool 갈래가 연산1·응용2·심화2 라
+ * **기본 넷**이 모자란다(하나는 응용).
+ *
+ * ⚠️ 「$2x\times3x^2$을 계산하시오」는 지시가 하나뿐이라 밑단으로 내려간다.
+ *    그래서 «$A$ 로 놓고» 묻는다 — 치환이라는 한 단계가 실제로 더 있다.
+ */
+const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
+  mkType(
+    "중2",
+    "2-1",
+    "단항식의 계산",
+    String(50 + mode),
+    [
+      "단항식의 곱을 문자로 놓고 계산하기",
+      "단항식의 나눗셈을 문자로 놓고 계산하기",
+      "어떤 단항식 구하기 곱셈",
+      "단항식의 거듭제곱을 문자로 놓고 계산하기",
+      "단항식의 곱셈과 나눗셈에서 문자의 지수",
+    ][mode]!,
+    "단항식의 곱셈과 나눗셈",
+    mode < 4 ? "기본" : "응용",
+    (rng): Body => {
+      const c = intNonzeroIn(rng, 2, 5);
+      const d = intBetween(rng, 2, 5);
+      const ex = intBetween(rng, 1, 3);
+      const ey = intBetween(rng, 1, 3);
+      const ep = intBetween(rng, 1, 2);
+      if (mode === 0) {
+        return {
+          content: `$A=${mono(c, ex, ey)}$일 때, $A\\times${mono(d, ep, 0)}$를 계산하시오.`,
+          answer: `$${mono(c * d, ex + ep, ey)}$`,
+          solution: `계수는 계수끼리, 문자는 문자끼리 곱한다.\n$${c}\\times${d}=${c * d}$이고 $x^{${ex}}\\times x^{${ep}}=x^{${ex + ep}}$이므로 $${mono(c * d, ex + ep, ey)}$이다.`,
+          facts: { mode, c, d, ex, ey, ep },
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `$A=${mono(c * d, ex + ep, ey)}$일 때, $A\\div${mono(d, ep, 0)}$를 계산하시오.`,
+          answer: `$${mono(c, ex, ey)}$`,
+          solution: `계수는 계수끼리 나누고, 같은 문자는 지수끼리 뺀다.\n$${c * d}\\div${d}=${c}$이고 $x^{${ex + ep}}\\div x^{${ep}}=x^{${ex}}$이므로 $${mono(c, ex, ey)}$이다.`,
+          facts: { mode, c, d, ex, ey, ep },
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `어떤 단항식에 $${mono(d, ep, 0)}$${VAR_EUL} 곱했더니 $${mono(c * d, ex + ep, ey)}$${VAR_IGA} 되었다. 어떤 단항식을 구하시오.`,
+          answer: `$${mono(c, ex, ey)}$`,
+          solution: `(어떤 단항식)$=${mono(c * d, ex + ep, ey)}\\div${mono(d, ep, 0)}$이다.\n계수끼리 나누고 지수끼리 빼면 $${mono(c, ex, ey)}$이다.`,
+          facts: { mode, c, d, ex, ey, ep },
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `$A=${mono(c, ex, 0)}$일 때, $A^{2}$${eulReul(2)} 계산하시오.`,
+          answer: `$${mono(c * c, 2 * ex, 0)}$`,
+          solution: `괄호 안의 각 인수를 제곱한다.\n$(${c})^{2}=${c * c}$이고 $(x^{${ex}})^{2}=x^{${2 * ex}}$이므로 $${mono(c * c, 2 * ex, 0)}$이다.`,
+          facts: { mode, c, ex },
+        };
+      }
+      const e2 = intBetween(rng, 1, 2);
+      const total = ex + ep - e2;
+      // 🔴 `\div` 바로 뒤에 문자가 오면 **`\divx` 라는 없는 명령**이 된다
+      //    (`mono(1, e2, 0)` 은 계수 $1$ 을 안 쓰므로 `x` 로 시작한다).
+      //    나누는 단항식에 계수를 붙여 그 자리를 없앴다.
+      const dv = intBetween(rng, 2, 4);
+      return {
+        // 식이 문자로 끝나므로 조사는 늘 「를」다(`VAR_EUL`).
+        content: `$${mono(c, ex, ey)}\\times${mono(d, ep, 0)}\\div${mono(dv, e2, 0)}$${VAR_EUL} 계산하였을 때, $x$의 지수를 구하시오.`,
+        answer: `$${total}$`,
+        solution: `곱할 때는 지수를 더하고 나눌 때는 뺀다.\n$x$의 지수는 $${ex}+${ep}-${e2}=${total}$이다.`,
+        facts: { mode, ex, ep, e2, dv, x: total },
+      };
+    },
+  ),
+);
+
+/** 자료 일곱 개의 사분위수 — 중앙값은 넷째, $Q_1$ 은 둘째, $Q_3$ 은 여섯째. */
+function quartilesOfSeven(sorted: readonly number[]): {
+  q1: number;
+  med: number;
+  q3: number;
+} {
+  return { q1: sorted[1]!, med: sorted[3]!, q3: sorted[5]! };
+}
+
+/**
+ * 중3 「상자그림」 보강 다섯 — pool 갈래가 응용3·심화2 라 **기본 넷**이 모자란다.
+ *
+ * 자료는 **일곱 개**로 고정한다 — 홀수라 중앙값이 넷째 값이고 아래·위 절반이
+ * 각각 셋이라 $Q_1$·$Q_3$ 이 **정수로 딱 떨어진다**(짝수면 평균이라 소수가 난다).
+ */
+const BOXPLOT_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map(
+  (mode) =>
+    mkType(
+      "중3",
+      "3-2",
+      "상자그림과 산점도",
+      String(50 + mode),
+      [
+        "자료에서 제1사분위수 구하기",
+        "자료에서 제3사분위수 구하기",
+        "최솟값과 최댓값으로 범위 구하기",
+        "두 사분위수로 사분범위 구하기",
+        "자료에서 사분범위 구하기",
+      ][mode]!,
+      "상자그림",
+      mode < 4 ? "기본" : "응용",
+      (rng): Body => {
+        if (mode === 2) {
+          const lo = intBetween(rng, 3, 20);
+          const hi = lo + intBetween(rng, 5, 30);
+          return {
+            content: `어떤 자료의 최솟값이 $${lo}$이고 최댓값이 $${hi}$이다. 이 자료의 범위를 구하시오.`,
+            answer: `$${hi - lo}$`,
+            solution: `(범위)$=$(최댓값)$-$(최솟값)이므로 $${hi}-${lo}=${hi - lo}$이다.`,
+            facts: { mode, lo, hi, x: hi - lo },
+          };
+        }
+        if (mode === 3) {
+          const q1 = intBetween(rng, 3, 20);
+          const q3 = q1 + intBetween(rng, 4, 25);
+          return {
+            content: `어떤 자료의 제$1$사분위수가 $${q1}$이고 제$3$사분위수가 $${q3}$이다. 이 자료의 사분범위를 구하시오.`,
+            answer: `$${q3 - q1}$`,
+            solution: `(사분범위)$=$(제$3$사분위수)$-$(제$1$사분위수)이므로 $${q3}-${q1}=${q3 - q1}$이다.`,
+            facts: { mode, q1, q3, x: q3 - q1 },
+          };
+        }
+        // 서로 다른 일곱 값을 뽑아 **섞어서** 낸다 — 정렬을 학생이 직접 해야 한다.
+        const sorted: number[] = [];
+        let v = intBetween(rng, 2, 9);
+        for (let i = 0; i < 7; i += 1) {
+          sorted.push(v);
+          v += intBetween(rng, 1, 5);
+        }
+        const shown = shuffleArr(rng, sorted);
+        const { q1, q3 } = quartilesOfSeven(sorted);
+        const list = shown.map((n) => `$${n}$`).join(", ");
+        if (mode === 0) {
+          return {
+            content: `다음은 어떤 자료를 조사한 것이다. 이 자료의 제$1$사분위수를 구하시오.\n${list}`,
+            answer: `$${q1}$`,
+            solution: `자료를 작은 값부터 크기순으로 늘어놓으면 $${sorted.join("$, $")}$이다.\n자료가 $7$개이므로 중앙값은 넷째 값이고, 제$1$사분위수는 중앙값보다 작은 세 값의 중앙값인 둘째 값 $${q1}$이다.`,
+            facts: { mode, q1, q3 },
+          };
+        }
+        if (mode === 1) {
+          return {
+            content: `다음은 어떤 자료를 조사한 것이다. 이 자료의 제$3$사분위수를 구하시오.\n${list}`,
+            answer: `$${q3}$`,
+            solution: `자료를 작은 값부터 크기순으로 늘어놓으면 $${sorted.join("$, $")}$이다.\n제$3$사분위수는 중앙값보다 큰 세 값의 중앙값인 여섯째 값 $${q3}$이다.`,
+            facts: { mode, q1, q3 },
+          };
+        }
+        return {
+          content: `다음은 어떤 자료를 조사한 것이다. 이 자료의 사분범위를 구하시오.\n${list}`,
+          answer: `$${q3 - q1}$`,
+          solution: `자료를 작은 값부터 크기순으로 늘어놓으면 $${sorted.join("$, $")}$이다.\n제$1$사분위수는 둘째 값 $${q1}$, 제$3$사분위수는 여섯째 값 $${q3}$이므로 사분범위는 $${q3}-${q1}=${q3 - q1}$이다.`,
+          facts: { mode, q1, q3, x: q3 - q1 },
+        };
+      },
+    ),
+);
+
+/** 배열 섞기 — 씨앗이 같으면 결과가 같다. */
+function shuffleArr<T>(rng: Rng, items: readonly T[]): T[] {
+  const out = [...items];
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(rng() * (i + 1));
+    const t = out[i]!;
+    out[i] = out[j]!;
+    out[j] = t;
+  }
+  return out;
+}
+
 /** 보조사 — 받침 판정은 `m2Josa.eulReul` 한 곳에서 온다. */
 function eunNeunOf(n: number): "은" | "는" {
   return eulReul(n) === "을" ? "은" : "는";
@@ -969,6 +1160,8 @@ export const MID_SUP_B: TypeEntry[] = [
   ...SYSTEM_VARIANT_SUPPLEMENTS,
   ...PLATONIC_SUPPLEMENTS,
   ...INEQUALITY_SUPPLEMENTS,
+  ...MONO_SUPPLEMENTS,
+  ...BOXPLOT_SUPPLEMENTS,
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,

@@ -742,6 +742,62 @@ const CHECKS: Record<string, Check> = {
     const small = nums(spans[1]!)[0]!;
     expect(nums(answer)[0]).toBe((small * q! ** 3) / p! ** 3);
   },
+  // ── 중2 단항식의 곱셈과 나눗셈 ────────────────────────────
+  //
+  // 단항식도 **대입해서** 잰다 — 지수·계수를 옮겨 적지 않는다.
+  "2-1|단항식의 계산|50": (p) => expectMonoOp(p, "×"),
+  "2-1|단항식의 계산|51": (p) => expectMonoOp(p, "÷"),
+  "2-1|단항식의 계산|52": ({ content, answer }) => {
+    const [M, S] = content
+      .match(/\$[^$]*\$/g)!
+      .slice(0, 2)
+      .map(stripDollar);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(
+        evalPoly(stripDollar(answer), x, y) * evalPoly(M!, x, y),
+      ).toBeCloseTo(evalPoly(S!, x, y), 6);
+  },
+  "2-1|단항식의 계산|53": ({ content, answer }) => {
+    const A = stripDollar(content.match(/\$[^$]*\$/)![0]).replace(/^A=/, "");
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(evalPoly(stripDollar(answer), x, y)).toBeCloseTo(
+        evalPoly(A, x, y) ** 2,
+        6,
+      );
+  },
+  "2-1|단항식의 계산|54": ({ content, answer }) => {
+    // $x$ 의 지수 — $y$ 는 고정하고 $x$ 만 두 배로 키워 **비**로 잰다.
+    //
+    // ⚠️ `A\div2x` 는 «$A\div(2x)$» 다. 한 줄로 이어 붙여 재면 JS 가
+    //    `A/2*x` 로 읽어 지수가 **거꾸로** 나온다(실측: $1$ 이어야 할 답을
+    //    $3$ 이라고 했다). 그래서 `\div` 에서 잘라 분모를 따로 잰다.
+    const tex = stripDollar(content.match(/\$[^$]*\$/)![0]);
+    const [num, den] = tex.split("\\div");
+    const at = (x: number): number =>
+      evalPoly(num!, x, 3) / evalPoly(den!, x, 3);
+    const e = Math.round(Math.log2(at(4) / at(2)));
+    expect(nums(answer)).toEqual([e]);
+  },
+  // ── 중3 상자그림 ──────────────────────────────────────────
+  "3-2|상자그림과 산점도|50": ({ content, answer }) =>
+    expectQuartile(content, answer, "q1"),
+  "3-2|상자그림과 산점도|51": ({ content, answer }) =>
+    expectQuartile(content, answer, "q3"),
+  "3-2|상자그림과 산점도|52": ({ content, answer }) => {
+    const [lo, hi] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    expect(nums(answer)).toEqual([hi! - lo!]);
+  },
+  "3-2|상자그림과 산점도|53": ({ content, answer }) => {
+    // 발문에 「제$1$사분위수」·「제$3$사분위수」의 $1$·$3$ 도 수식이라 같이 읽힌다
+    const v = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    const [, q1, , q3] = v;
+    expect(nums(answer)).toEqual([q3! - q1!]);
+  },
+  "3-2|상자그림과 산점도|54": ({ content, answer }) => {
+    const data = dataListOf(content);
+    const s = [...data].sort((a, b) => a - b);
+    expect(nums(answer)).toEqual([s[5]! - s[1]!]);
+  },
   // ── 중2 부등식 / 일차부등식의 풀이 ────────────────────────
   //
   // 부등식은 **정수 $x$ 를 훑어** 잰다 — 「해집합이 같은가」를 직접 물으므로
@@ -1049,7 +1105,8 @@ export function evalPoly(tex: string, x: number, y: number): number {
     .replace(/\^(-?\d)/g, "**($1)")
     .replace(/(\d)\s*([xy(])/g, "$1*$2")
     .replace(/([xy])\s*([xy(])/g, "$1*$2")
-    .replace(/\)\s*\(/g, ")*(");
+    // `x^{2}y` 는 위 규칙이 못 본다 — 닫는 괄호·중괄호 **뒤**에도 곱셈을 넣는다.
+    .replace(/([)}])\s*([xy(])/g, "$1*$2");
   return Function("x", "y", `"use strict";return (${js});`)(x, y) as number;
 }
 
@@ -1083,6 +1140,46 @@ function expectMonoIdentity(
       kind === "mul" ? k * x * evalPoly(A, x, y) : evalPoly(A, x, y) / (k * x);
     expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 9);
   }
+}
+
+/** 「$A=…$일 때 $A\times M$ / $A\div M$」 — 지면의 두 식을 대입해 맞댄다. */
+function expectMonoOp(
+  p: { content: string; answer: string },
+  op: "×" | "÷",
+): void {
+  const spans = p.content.match(/\$[^$]*\$/g)!;
+  const A = stripDollar(spans[0]!).replace(/^A=/, "");
+  const M = stripDollar(spans[1]!).replace(/^A[\\times\\div]*/, "");
+  const monoTex = M.replace(/^\\times/, "").replace(/^\\div/, "");
+  for (const [x, y] of SAMPLE_POINTS) {
+    const want =
+      op === "×"
+        ? evalPoly(A, x, y) * evalPoly(monoTex, x, y)
+        : evalPoly(A, x, y) / evalPoly(monoTex, x, y);
+    expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 6);
+  }
+}
+
+/** 발문 끝줄의 「$13$, $17$, …」 자료를 읽는다. */
+function dataListOf(content: string): number[] {
+  const line = content.split("\n").at(-1)!;
+  return (line.match(/\$(-?\d+)\$/g) ?? []).map((s) => Number(stripDollar(s)));
+}
+
+/**
+ * 자료 일곱 개의 사분위수 — **여기서 직접 정렬해** 둘째·여섯째를 집는다.
+ * 생성기의 `quartilesOfSeven` 을 안 부른다(동어반복 금지).
+ */
+function expectQuartile(
+  content: string,
+  answer: string,
+  which: "q1" | "q3",
+): void {
+  const data = dataListOf(content);
+  expect(data).toHaveLength(7);
+  expect(new Set(data).size, "같은 값이 있으면 사분위수가 애매해진다").toBe(7);
+  const s = [...data].sort((a, b) => a - b);
+  expect(nums(answer)).toEqual([which === "q1" ? s[1] : s[5]]);
 }
 
 // ── 부등식 검산 소품 — 정수 $x$ 를 훑어 **해집합**을 견준다 ─────────────
