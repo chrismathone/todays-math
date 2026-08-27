@@ -59,6 +59,19 @@ function coefTerm(k: number, v: string): string {
   return `${k}${v}`;
 }
 
+/**
+ * 식이 **문자로 끝날 때**의 조사. `-4x-3y` 는 「…와이」, `2x` 는 「…엑스」로 읽어
+ * 둘 다 받침이 없다 — 그래서 늘 「를·가·는·와」다.
+ *
+ * ⚠️ 계수의 수(`eulReul(-3)`)로 정하면 **틀린다.** 소리의 끝은 계수가 아니라
+ *    **마지막 문자**다. 2026-08-27 에 「$-4x-3y$**을** 더했더니」가 그렇게 나갔고,
+ *    수식이 숫자로 안 끝나서 조사 가드도 「안 잼」으로 넘겼다.
+ *    (`x` 엑스 · `y` 와이 · `a` 에이 · `b` 비 · `k` 케이 — 전부 받침 없음.
+ *     `l`·`m`·`n` 은 엘·엠·엔이라 받침이 있으니 쓰게 되면 여기를 고칠 것.)
+ */
+const VAR_EUL = "를";
+const VAR_IGA = "가";
+
 /** 연립방정식의 기본 풀이를 서로 다른 소거 자리로 연습하는 여덟 문형. */
 function linearSystemFamily(id: string, mode: number): ComboFamily {
   return {
@@ -400,6 +413,126 @@ const FACTOR_SUPPLEMENTS: TypeEntry[] = [
   ),
 ];
 
+/**
+ * 중2 「다항식의 덧셈과 뺄셈」 보강 셋 · 「다항식의 곱셈과 나눗셈」 보강 넷.
+ *
+ * 둘 다 **기본이 모자란다** — 덧셈·뺄셈은 연산2·기본1·응용4, 곱셈·나눗셈은
+ * 연산1·응용3·심화2 다. 그래서 전부 기본으로 짓는다.
+ *
+ * ⚠️ 「$(2x+3y)+(x-y)$를 계산하시오」처럼 지시가 하나뿐인 발문은
+ *    `resolveMiddleTier` 가 **밑단(연산)으로 내린다.** 그러면 기본이 안 채워진다.
+ *    그래서 «$A$, $B$ 로 놓고» 묻는다 — 실제로 한 단계(치환)가 더 있다.
+ */
+function polyTerm(cx: number, cy: number): string {
+  const head = coefTerm(cx, "x");
+  if (cy === 0) return head;
+  return `${head}${cy > 0 ? "+" : "-"}${coefTerm(Math.abs(cy), "y")}`;
+}
+
+const POLY_SUPPLEMENTS: TypeEntry[] = [
+  ...([0, 1, 2] as const).map((mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      "다항식의 계산",
+      String(50 + mode),
+      [
+        "두 다항식을 문자로 놓고 더하기",
+        "두 다항식을 문자로 놓고 빼기",
+        "어떤 식 구하기 다항식의 덧셈",
+      ][mode]!,
+      "다항식의 덧셈과 뺄셈",
+      "기본",
+      (rng) => {
+        const a = intNonzeroIn(rng, 2, 6);
+        const b = intNonzeroIn(rng, 2, 6);
+        const c = intNonzeroIn(rng, 2, 6);
+        const d = intNonzeroIn(rng, 2, 6);
+        if (mode === 0) {
+          return {
+            content: `$A=${polyTerm(a, b)}$, $B=${polyTerm(c, d)}$일 때, $A+B$를 계산하시오.`,
+            answer: `$${polyTerm(a + c, b + d)}$`,
+            solution: `$A+B=(${polyTerm(a, b)})+(${polyTerm(c, d)})$이다.\n동류항끼리 모으면 $${polyTerm(a + c, b + d)}$이다.`,
+            facts: { mode, a, b, c, d },
+          };
+        }
+        if (mode === 1) {
+          return {
+            content: `$A=${polyTerm(a, b)}$, $B=${polyTerm(c, d)}$일 때, $A-B$를 계산하시오.`,
+            answer: `$${polyTerm(a - c, b - d)}$`,
+            solution: `$A-B=(${polyTerm(a, b)})-(${polyTerm(c, d)})$이다.\n괄호를 풀 때 뒤 식의 부호가 모두 바뀌므로 $${polyTerm(a - c, b - d)}$이다.`,
+            facts: { mode, a, b, c, d },
+          };
+        }
+        return {
+          content: `어떤 식에 $${polyTerm(a, b)}$${VAR_EUL} 더했더니 $${polyTerm(a + c, b + d)}$${VAR_IGA} 되었다. 어떤 식을 구하시오.`,
+          answer: `$${polyTerm(c, d)}$`,
+          solution: `(어떤 식)$=(${polyTerm(a + c, b + d)})-(${polyTerm(a, b)})$이다.\n동류항끼리 계산하면 $${polyTerm(c, d)}$이다.`,
+          facts: { mode, a, b, c, d },
+        };
+      },
+    ),
+  ),
+
+  ...([0, 1, 2, 3] as const).map((mode) =>
+    mkType(
+      "중2",
+      "2-1",
+      "다항식의 계산",
+      String(53 + mode),
+      [
+        "단항식과 다항식의 곱을 문자로 놓고 전개하기",
+        "다항식을 단항식으로 나누기 문자로 놓기",
+        "어떤 식 구하기 단항식의 곱셈",
+        "어떤 식 구하기 단항식의 나눗셈",
+      ][mode]!,
+      "다항식의 곱셈과 나눗셈",
+      "기본",
+      (rng) => {
+        const k = intBetween(rng, 2, 5);
+        const a = intNonzeroIn(rng, 2, 6);
+        const b = intNonzeroIn(rng, 2, 6);
+        if (mode === 0) {
+          return {
+            content: `$A=${polyTerm(a, b)}$일 때, $${k}x\\times A$를 전개하시오.`,
+            answer: `$${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$`,
+            solution: `$${k}x\\times(${polyTerm(a, b)})$의 각 항에 $${k}x$${VAR_EUL} 곱한다.\n따라서 $${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$이다.`,
+            facts: { mode, k, a, b },
+          };
+        }
+        if (mode === 1) {
+          return {
+            content: `$A=${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$일 때, $A\\div${k}x$를 계산하시오.`,
+            answer: `$${polyTerm(a, b)}$`,
+            solution: `$A\\div${k}x$는 $A$의 각 항을 $${k}x$로 나눈 것과 같다.\n따라서 $${polyTerm(a, b)}$이다.`,
+            facts: { mode, k, a, b },
+          };
+        }
+        if (mode === 2) {
+          return {
+            content: `어떤 식에 $${k}x$${VAR_EUL} 곱했더니 $${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$${VAR_IGA} 되었다. 어떤 식을 구하시오.`,
+            answer: `$${polyTerm(a, b)}$`,
+            solution: `(어떤 식)$=(${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")})\\div${k}x$이다.\n각 항을 나누면 $${polyTerm(a, b)}$이다.`,
+            facts: { mode, k, a, b },
+          };
+        }
+        return {
+          content: `어떤 식을 $${k}x$로 나누었더니 $${polyTerm(a, b)}$${VAR_IGA} 되었다. 어떤 식을 구하시오.`,
+          answer: `$${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$`,
+          solution: `(어떤 식)$=(${polyTerm(a, b)})\\times${k}x$이다.\n각 항에 $${k}x$${VAR_EUL} 곱하면 $${coefTerm(k * a, "x^2")}${k * b > 0 ? "+" : "-"}${coefTerm(Math.abs(k * b), "xy")}$이다.`,
+          facts: { mode, k, a, b },
+        };
+      },
+    ),
+  ),
+];
+
+/** $[lo, hi]$ 에서 부호를 섞어 뽑되 $0$ 과 $\pm1$ 은 안 나온다(지면이 흉해진다). */
+function intNonzeroIn(rng: Rng, lo: number, hi: number): number {
+  const v = intBetween(rng, lo, hi);
+  return intBetween(rng, 0, 1) === 0 ? v : -v;
+}
+
 /** 최대공약수 — `m1Shared` 에 없어 여기 하나 둔다. */
 function gcdOf(a: number, b: number): number {
   let x = Math.abs(a);
@@ -428,6 +561,7 @@ function attempt<T>(tries: number, f: () => T | null): T {
 export const MID_SUP_B: TypeEntry[] = [
   ...ANGLE_SUPPLEMENTS,
   ...FACTOR_SUPPLEMENTS,
+  ...POLY_SUPPLEMENTS,
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,

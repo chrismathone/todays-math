@@ -213,6 +213,58 @@ export function dfracJosaFaults(text: string): string[] {
 }
 
 /**
+ * 수식이 **문자로 끝나는** 것 — 「$-4x-3y$을」.
+ *
+ * 소리의 끝은 계수가 아니라 **마지막 문자**다(`x` 는 「엑스」, `y` 는 「와이」).
+ * `josaFaults` 는 끝이 숫자일 때만 재므로 이 자리는 통째로 「안 잼」이다 —
+ * 2026-08-27 에 새 유형 셋이 그 자리로 샜고 **눈으로 훑다** 걸렸다.
+ *
+ * ⚠️ 받침이 있는 문자가 셋 있다: `l`(엘) · `m`(엠) · `n`(엔). 표에 없는 문자는
+ *    **판정하지 않는다** — 모르는 소리를 찍으면 거짓 경보가 되고, 거짓 경보는
+ *    가드를 끈다(2026-08-20).
+ */
+const VAR_BATCHIM: Record<string, boolean> = {
+  a: false, // 에이
+  b: false, // 비
+  c: false, // 씨
+  d: false, // 디
+  k: false, // 케이
+  l: true, // 엘
+  m: true, // 엠
+  n: true, // 엔
+  p: false, // 피
+  q: false, // 큐
+  r: false, // 아르
+  s: false, // 에스
+  t: false, // 티
+  x: false, // 엑스
+  y: false, // 와이
+  z: false, // 제트
+};
+
+export function varTailJosaFaults(text: string): string[] {
+  const NEEDS: Record<string, boolean> = {
+    을: true,
+    를: false,
+    이: true,
+    가: false,
+    과: true,
+    와: false,
+    은: true,
+    는: false,
+  };
+  const bad: string[] = [];
+  const re = /\$[^$]*?([A-Za-z])\$ ?(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+  let m = re.exec(text);
+  while (m !== null) {
+    const want = VAR_BATCHIM[m[1]!.toLowerCase()];
+    if (want !== undefined && NEEDS[m[2]!] !== want) bad.push(m[0]);
+    m = re.exec(text);
+  }
+  return bad;
+}
+
+/**
  * 수식이 `\overline{숫자}` 로 끝나는 것 — 순환소수 `0.\overline{8}` 은 「영 점 팔」
  * 이라 소리의 끝이 그 숫자다. `josaFaults` 는 끝이 `}` 라 **「안 잼」**으로 넘긴다
  * (그 함수 머리말이 「못 재는 것은 «통과»가 아니라 «안 잼»이다」라고 적어 둔 자리).
@@ -450,6 +502,49 @@ const CHECKS: Record<string, Check> = {
     ).toBe(1);
     expect(nums(answer)).toEqual([found[0]]);
   },
+  // ── 중2 다항식의 덧셈과 뺄셈 / 곱셈과 나눗셈 ───────────────
+  //
+  // 계수를 옮겨 적지 않는다 — 지면의 식을 **여러 점에서 재어** 같은 값인지 본다.
+  // 그래서 부호·괄호·계수 $1$ 생략이 틀려도 여기서 걸린다.
+  "2-1|다항식의 계산|50": (p) => expectPolyIdentity(p, (A, B) => A + B),
+  "2-1|다항식의 계산|51": (p) => expectPolyIdentity(p, (A, B) => A - B),
+  "2-1|다항식의 계산|52": ({ content, answer }) => {
+    // 「어떤 식에 $P$를 더했더니 $S$」 → 답 $= S-P$
+    const [P, S] = content
+      .match(/\$[^$]*\$/g)!
+      .slice(0, 2)
+      .map(stripDollar);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(
+        evalPoly(stripDollar(answer), x, y) + evalPoly(P!, x, y),
+        `${answer} + ${P} @(${x},${y})`,
+      ).toBeCloseTo(evalPoly(S!, x, y), 9);
+  },
+  "2-1|다항식의 계산|53": (p) => expectMonoIdentity(p, "mul"),
+  "2-1|다항식의 계산|54": (p) => expectMonoIdentity(p, "div"),
+  "2-1|다항식의 계산|55": ({ content, answer }) => {
+    // 「어떤 식에 $kx$를 곱했더니 $S$」 → 답 $\times kx = S$
+    const [M, S] = content
+      .match(/\$[^$]*\$/g)!
+      .slice(0, 2)
+      .map(stripDollar);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(
+        evalPoly(stripDollar(answer), x, y) * evalPoly(M!, x, y),
+      ).toBeCloseTo(evalPoly(S!, x, y), 9);
+  },
+  "2-1|다항식의 계산|56": ({ content, answer }) => {
+    // 「어떤 식을 $kx$로 나누었더니 $Q$」 → 답 $= Q\times kx$
+    const [M, Q] = content
+      .match(/\$[^$]*\$/g)!
+      .slice(0, 2)
+      .map(stripDollar);
+    for (const [x, y] of SAMPLE_POINTS)
+      expect(evalPoly(stripDollar(answer), x, y)).toBeCloseTo(
+        evalPoly(Q!, x, y) * evalPoly(M!, x, y),
+        9,
+      );
+  },
   // ── 중2 유리수와 소수 ─────────────────────────────────────
   "2-1|유리수와 순환소수|36": ({ content, answer }) => {
     // 「$\dfrac{a}{b}$를 유한소수로」 — **여기서 직접 나눠** 소수를 만든다
@@ -673,6 +768,66 @@ function solveTwo(r1: string, r2: string): { x: number; y: number } {
   throw new Error(`해를 못 찾았다: ${r1} / ${r2}`);
 }
 
+// ── 다항식 검산 소품 — 지면의 식을 **대입해서** 잰다 ────────────────
+
+/** $(x, y)$ 표본. 부호·계수가 틀리면 어느 한 점에서 갈린다. */
+const SAMPLE_POINTS: readonly (readonly [number, number])[] = [
+  [1, 1],
+  [2, 3],
+  [-1, 2],
+  [3, -2],
+  [5, 7],
+];
+
+function stripDollar(s: string): string {
+  return s.replace(/^\$|\$$/g, "");
+}
+
+/** `3x^2-4xy+2y` 꼴을 $(x,y)$ 에서 잰다. LaTeX 는 `\times`·`\div` 만 나온다. */
+export function evalPoly(tex: string, x: number, y: number): number {
+  const js = tex
+    .replace(/\\times/g, "*")
+    .replace(/\\div/g, "/")
+    .replace(/\^\{(-?\d+)\}/g, "**($1)")
+    .replace(/\^(-?\d)/g, "**($1)")
+    .replace(/(\d)\s*([xy(])/g, "$1*$2")
+    .replace(/([xy])\s*([xy(])/g, "$1*$2")
+    .replace(/\)\s*\(/g, ")*(");
+  return Function("x", "y", `"use strict";return (${js});`)(x, y) as number;
+}
+
+/** 「$A=…$, $B=…$일 때 $A\pm B$」 — 지면의 세 식을 대입해 항등식인지 본다. */
+function expectPolyIdentity(
+  p: { content: string; answer: string },
+  op: (a: number, b: number) => number,
+): void {
+  const spans = p.content.match(/\$[^$]*\$/g)!;
+  const A = stripDollar(spans[0]!).replace(/^A=/, "");
+  const B = stripDollar(spans[1]!).replace(/^B=/, "");
+  for (const [x, y] of SAMPLE_POINTS)
+    // ⚠️ `toBe` 는 `-0` 과 `0` 을 다르게 본다 — 계수가 상쇄되면 그 자리가 난다.
+    expect(
+      evalPoly(stripDollar(p.answer), x, y),
+      `${p.answer} @(${x},${y})`,
+    ).toBeCloseTo(op(evalPoly(A, x, y), evalPoly(B, x, y)), 9);
+}
+
+/** 「$A=…$일 때 $kx\times A$」 또는 「$A\div kx$」. */
+function expectMonoIdentity(
+  p: { content: string; answer: string },
+  kind: "mul" | "div",
+): void {
+  const spans = p.content.match(/\$[^$]*\$/g)!;
+  const A = stripDollar(spans[0]!).replace(/^A=/, "");
+  const k = Number(stripDollar(spans[1]!).match(/(\d+)x/)![1]);
+  for (const [x, y] of SAMPLE_POINTS) {
+    if (kind === "div" && k * x === 0) continue;
+    const want =
+      kind === "mul" ? k * x * evalPoly(A, x, y) : evalPoly(A, x, y) / (k * x);
+    expect(evalPoly(stripDollar(p.answer), x, y)).toBeCloseTo(want, 9);
+  }
+}
+
 /** 발문에 적힌 선분 길이들. */
 function segs(content: string): Record<string, number | undefined> {
   const out: Record<string, number> = {};
@@ -823,6 +978,7 @@ describe("[갈래 B] 지면 — 값이 맞아도 흉할 수 있는 축", () => {
             ...euroRoFaults(t),
             ...overlineJosaFaults(t),
             ...dfracJosaFaults(t),
+            ...varTailJosaFaults(t),
           ])
             bad.push(`${e.key} ${f}: ${b}`);
         }
@@ -836,6 +992,17 @@ describe("[갈래 B] 지면 — 값이 맞아도 흉할 수 있는 축", () => {
     expect(overlineJosaFaults("$0.\\overline{3}$를 계산")).toHaveLength(1);
     expect(overlineJosaFaults("$0.\\overline{3}$을 계산")).toHaveLength(0);
     expect(overlineJosaFaults("$0.\\overline{2}$를 계산")).toHaveLength(0);
+    // 분수는 **분자**가 소리의 끝 — 「백십분의 삼십오를」
+    expect(dfracJosaFaults("$\\dfrac{35}{110}$을 기약")).toHaveLength(1);
+    expect(dfracJosaFaults("$\\dfrac{35}{110}$를 기약")).toHaveLength(0);
+    expect(dfracJosaFaults("$\\dfrac{7}{110}$을 기약")).toHaveLength(0);
+    // 문자로 끝나면 소리의 끝은 **그 문자**다 — 「…와이를」
+    expect(varTailJosaFaults("$-4x-3y$을 더했더니")).toHaveLength(1);
+    expect(varTailJosaFaults("$-4x-3y$를 더했더니")).toHaveLength(0);
+    expect(varTailJosaFaults("$2n$를 더했더니")).toHaveLength(1); // 엔 — 받침
+    expect(varTailJosaFaults("$2n$을 더했더니")).toHaveLength(0);
+    // 표에 없는 문자는 **판정하지 않는다** (모르는 소리를 찍지 않는다)
+    expect(varTailJosaFaults("$2f$을 더했더니")).toHaveLength(0);
     // 서술격 조사(계사)는 조사가 아니다 — 잡으면 거짓 경보가 쏟아진다
     expect(josaFaults("합은 $75$이다.")).toEqual([]);
   });
