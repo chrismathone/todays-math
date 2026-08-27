@@ -76,6 +76,28 @@ function fracTex(num: number, den: number): string {
   return `${num < 0 ? "-" : ""}\\dfrac{${Math.abs(num)}}{${den}}`;
 }
 
+/**
+ * 앞 항에 이어 붙이는 항 — `+3` / `-3`. **이중 부호(`+-`)를 막는다.**
+ *
+ * 값 검산은 이 부류를 구조적으로 못 본다(값도 KaTeX 도 맞다).
+ * `scripts/qa/probe-middle-page-smells.ts` 가 지면을 따로 센다.
+ */
+function addend(v: number): string {
+  return v >= 0 ? `+${v}` : `${v}`;
+}
+
+/** `3a` 꼴 — 계수 1·-1 을 `a`·`-a` 로. 앞에 오는 항에 쓴다. */
+function coef(v: number, name: string): string {
+  if (v === 1) return name;
+  if (v === -1) return `-${name}`;
+  return `${v}${name}`;
+}
+
+/** 이어 붙이는 `+3a` 꼴 — 계수 1·-1 과 부호를 같이 다듬는다. */
+function addCoef(v: number, name: string): string {
+  return v >= 0 ? `+${coef(v, name)}` : coef(v, name);
+}
+
 /** `mx+b` 꼴 (b=0 이면 mx). */
 function linear(m: number, b: number): string {
   if (b === 0) return mono(m);
@@ -871,7 +893,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `$y=(${head})x${c > 0 ? `+${c}` : `${c}`}$가 $x$에 대한 일차함수가 되도록 할 때, 상수 $a$의 값이 될 수 없는 수를 구하시오.`,
         answer: `$${k}$`,
-        solution: `일차함수가 되려면 $x$의 계수가 $0$이 아니어야 한다.\n$${head}\ne0$이어야 하므로 $a\ne${k}$이다.\n따라서 될 수 없는 수는 $${k}$이다.`,
+        solution: `일차함수가 되려면 $x$의 계수가 $0$이 아니어야 한다.\n$${head}\\ne0$이어야 하므로 $a\\ne${k}$이다.\n따라서 될 수 없는 수는 $${k}$이다.`,
         facts: { k, c },
       };
     }),
@@ -897,7 +919,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `정비례 관계 $f(x)=ax$에 대하여 $f(${p})=${q}$일 때, $f(${r})$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `$f(${p})=${p === 1 ? "a" : p === -1 ? "-a" : `${p}a`}=${q}$이므로 $a=${a}$이다.\n따라서 $f(${r})=${a}\times${r < 0 ? `(${r})` : r}=${ans}$이다.`,
+          solution: `$f(${p})=${p === 1 ? "a" : p === -1 ? "-a" : `${p}a`}=${q}$이므로 $a=${a}$이다.\n따라서 $f(${r})=${a}\\times${r < 0 ? `(${r})` : r}=${ans}$이다.`,
           facts: { a, p, q, r, ans },
         };
       }),
@@ -926,7 +948,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $f(x)$에 대하여 $f(${p})-f(${q})=${d}$이고 $f(${q})=${e}$일 때, $f(${r})$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `기울기는 $\dfrac{${d}}{${p}-(${q})}=\dfrac{${d}}{${p - q}}=${a}$이다.\n$f(${q})=${e}$이므로 $f(${r})=${e}+${a}\times(${r}-(${q}))=${ans}$이다.`,
+          solution: `기울기는 $\\dfrac{${d}}{${p}-(${q})}=\\dfrac{${d}}{${p - q}}=${a}$이다.\n$f(${q})=${e}$이므로 $f(${r})=${e}${a >= 0 ? `+${a}` : `-${-a}`}\\times(${r}-(${q}))=${ans}$이다.`,
           facts: { a, b, p, q, r, d, e, ans },
         };
       }),
@@ -947,7 +969,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `기울기가 $${m}$인 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때, $y$의 값의 증가량을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `(기울기)$=\dfrac{(y의 값의 증가량)}{(x의 값의 증가량)}$이므로 $y$의 값의 증가량은 $(기울기)\times(x의 값의 증가량)$이다.\n따라서 $${m}\times${p}=${ans}$이다.`,
+          solution: `(기울기)$=\\dfrac{(y의 값의 증가량)}{(x의 값의 증가량)}$이므로 $y$의 값의 증가량은 $(기울기)\\times(x의 값의 증가량)$이다.\n따라서 $${m}\\times${p}=${ans}$이다.`,
           facts: { m, p, ans },
         };
       }),
@@ -968,7 +990,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `어떤 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때 $y$의 값은 $${Math.abs(d)}$만큼 ${d > 0 ? "증가" : "감소"}한다. 이 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
-          solution: `$y$의 값의 증가량은 $${d}$이다.\n따라서 기울기는 $\dfrac{${d}}{${p}}=${m}$이다.`,
+          solution: `$y$의 값의 증가량은 $${d}$이다.\n따라서 기울기는 $\\dfrac{${d}}{${p}}=${m}$이다.`,
           facts: { m, p, d },
         };
       }),
@@ -992,7 +1014,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 점 $(a, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 기울기가 $${m}$일 때, $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `$\dfrac{${y2}-(${y1})}{${x2}-a}=${m}$에서 $\dfrac{${y2 - y1}}{${x2}-a}=${m}$이다.\n따라서 $${x2}-a=${dx}$이므로 $a=${a}$이다.`,
+          solution: `$\\dfrac{${y2}-(${y1})}{${x2}-a}=${m}$에서 $\\dfrac{${y2 - y1}}{${x2}-a}=${m}$이다.\n따라서 $${x2}-a=${dx}$이므로 $a=${a}$이다.`,
           facts: { m, a, x2, y1, y2 },
         };
       }),
@@ -1045,7 +1067,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 직선과 두 점 $(${x3}, ${y3})$, $(${x4}, k)$를 지나는 직선의 기울기가 서로 같을 때, $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `앞 직선의 기울기는 $\dfrac{${y2 - y1}}{${d1}}=${m}$이다.\n뒤 직선도 기울기가 같아야 하므로 $\dfrac{k-(${y3})}{${d2}}=${m}$이다.\n따라서 $k=${k}$이다.`,
+          solution: `앞 직선의 기울기는 $\\dfrac{${y2 - y1}}{${d1}}=${m}$이다.\n뒤 직선도 기울기가 같아야 하므로 $\\dfrac{k-(${y3})}{${d2}}=${m}$이다.\n따라서 $k=${k}$이다.`,
           facts: { m, x1, y1, x2, y2, x3, y3, x4, k },
         };
       }),
@@ -1106,7 +1128,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `일차함수 $y=${linear(m, b)}$의 그래프의 $x$절편과 $y$절편의 곱을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$y=0$을 대입하면 $x$절편은 $${x0}$이고, $x=0$을 대입하면 $y$절편은 $${b}$이다.\n따라서 두 절편의 곱은 $${x0}\times${b < 0 ? `(${b})` : b}=${ans}$이다.`,
+        solution: `$y=0$을 대입하면 $x$절편은 $${x0}$이고, $x=0$을 대입하면 $y$절편은 $${b}$이다.\n따라서 두 절편의 곱은 $${x0}\\times${b < 0 ? `(${b})` : b}=${ans}$이다.`,
         facts: { m, b, x0, ans },
       };
     }),
@@ -1206,7 +1228,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
           answer: `$${x0}$`,
-          solution: `기울기는 $\dfrac{${y2 - y1}}{${dx}}=${m}$이므로 그래프의 식은 $y=${linear(m, b)}$이다.\n$y=0$을 대입하면 $x=${x0}$이다.`,
+          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이므로 그래프의 식은 $y=${linear(m, b)}$이다.\n$y=0$을 대입하면 $x=${x0}$이다.`,
           facts: { m, b, x0, x1, y1, x2, y2 },
         };
       }),
@@ -1253,7 +1275,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `$x$절편이 $${x0}$이고 $y$절편이 $${b}$인 일차함수의 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
-          solution: `그래프는 두 점 $(${x0}, 0)$, $(0, ${b})$를 지난다.\n따라서 기울기는 $\dfrac{${b}-0}{0-(${x0})}=\dfrac{${b}}{${-x0}}=${m}$이다.`,
+          solution: `그래프는 두 점 $(${x0}, 0)$, $(0, ${b})$를 지난다.\n따라서 기울기는 $\\dfrac{${b}-0}{0-(${x0})}=\\dfrac{${b}}{${-x0}}=${m}$이다.`,
           facts: { m, x0, b },
         };
       }),
@@ -1306,7 +1328,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프가 점 $(${r}, k)$를 지날 때, $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `기울기는 $\dfrac{${y2 - y1}}{${dx}}=${m}$이고, $y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$을 대입하면 $b=${b}$이다.\n$y=${linear(m, b)}$에 $x=${r}$을 대입하면 $k=${k}$이다.`,
+          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이고, $y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$을 대입하면 $b=${b}$이다.\n$y=${linear(m, b)}$에 $x=${r}$을 대입하면 $k=${k}$이다.`,
           facts: { m, b, x1, y1, x2, y2, r, k },
         };
       }),
@@ -1381,7 +1403,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `일차함수 $y=${linear(m, b)}$의 그래프를 $y$축의 방향으로 $${k}$만큼 평행이동한 그래프의 $y$절편을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$y$축의 방향으로 $${k}$만큼 평행이동하면 식은 $y=${mono(m)}+${b}${k > 0 ? `+${k}` : `${k}`}$가 된다.\n따라서 $y$절편은 $${b}${k > 0 ? `+${k}` : `${k}`}=${ans}$이다.`,
+        solution: `$y$축의 방향으로 $${k}$만큼 평행이동하면 식은 $y=${mono(m)}${addend(b)}${addend(k)}$가 된다.\n따라서 $y$절편은 $${b}${addend(k)}=${ans}$이다.`,
         facts: { m, b, k, ans },
       };
     }),
@@ -1431,7 +1453,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $y=${linear(m, b)}$의 그래프를 $y$축의 방향으로 $k$만큼 평행이동하였더니 일차함수 $y=${linear(m, c)}$의 그래프와 일치하였다. $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `평행이동한 그래프의 식은 $y=${mono(m)}+${b}+k$이다.\n두 그래프가 일치하려면 $y$절편이 같아야 하므로 $${b}+k=${c}$이다.\n따라서 $k=${k}$이다.`,
+          solution: `평행이동한 그래프의 식은 $y=${mono(m)}${addend(b)}+k$이다.\n두 그래프가 일치하려면 $y$절편이 같아야 하므로 $${b}+k=${c}$이다.\n따라서 $k=${k}$이다.`,
           facts: { m, b, k, c },
         };
       }),
@@ -1458,7 +1480,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프의 교점의 $x$좌표와 $y$좌표의 합을 구하시오.`,
           answer: `$${p + q}$`,
-          solution: `두 식을 연립하면 $${linear(m1, b1)}=${linear(m2, b2)}$에서 $${m1 - m2}x=${b2 - b1}$이므로 $x=${p}$이다.\n$y=${linear(m1, b1)}$에 대입하면 $y=${q}$이다.\n따라서 교점은 $(${p}, ${q})$이고 좌표의 합은 $${p + q}$이다.`,
+          solution: `두 식을 연립하면 $${linear(m1, b1)}=${linear(m2, b2)}$에서 $${coef(m1 - m2, "x")}=${b2 - b1}$이므로 $x=${p}$이다.\n$y=${linear(m1, b1)}$에 대입하면 $y=${q}$이다.\n따라서 교점은 $(${p}, ${q})$이고 좌표의 합은 $${p + q}$이다.`,
           facts: { m1, b1, m2, b2, p, q, ans: p + q },
         };
       }),
@@ -1541,7 +1563,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `두 일차방정식 $ax+y=${c1}$, $x+by=${c2}$의 그래프의 교점이 $(${p}, ${q})$일 때, $ab$의 값을 구하시오.`,
           answer: `$${a * b}$`,
-          solution: `교점은 두 그래프 위의 점이다.\n$ax+y=${c1}$에 대입하면 $${p}a+${q}=${c1}$이므로 $a=${a}$이다.\n$x+by=${c2}$에 대입하면 $${p}+${q}b=${c2}$이므로 $b=${b}$이다.\n따라서 $ab=${a * b}$이다.`,
+          solution: `교점은 두 그래프 위의 점이다.\n$ax+y=${c1}$에 대입하면 $${coef(p, "a")}${addend(q)}=${c1}$이므로 $a=${a}$이다.\n$x+by=${c2}$에 대입하면 $${p}${addCoef(q, "b")}=${c2}$이므로 $b=${b}$이다.\n따라서 $ab=${a * b}$이다.`,
           facts: { p, q, a, b, c1, c2, ans: a * b },
         };
       }),
@@ -1563,7 +1585,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차방정식 $${a === 1 ? "x" : a === -1 ? "-x" : `${a}x`}${bb > 0 ? `+${bb === 1 ? "" : bb}y` : `-${bb === -1 ? "" : -bb}y`}${c > 0 ? `+${c}` : `${c}`}=0$의 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
-          solution: `$y$에 대하여 풀면 $${bb === 1 ? "" : bb === -1 ? "-" : bb}y=${-a === 1 ? "x" : -a === -1 ? "-x" : `${-a}x`}${-c > 0 ? `+${-c}` : `${-c}`}$이다.\n양변을 $${bb}$로 나누면 $y=${mono(m)}${-c / bb > 0 ? "+" : ""}${-c / bb === 0 ? "" : fracTex(-c, bb)}$이므로 기울기는 $${m}$이다.`,
+          solution: `$y$에 대하여 풀면 $${coef(bb, "y")}=${coef(-a, "x")}${addend(-c)}$이다.\n양변을 $${bb}$로 나누면 $x$의 계수는 $\\dfrac{${-a}}{${bb}}=${m}$이므로 기울기는 $${m}$이다.`,
           facts: { a, b: bb, c, m },
         };
       }),
