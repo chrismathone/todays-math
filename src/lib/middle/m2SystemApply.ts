@@ -229,7 +229,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "16",
     "계수 또는 상수항을 잘못 보고 구한 해",
     SEC.응용,
-    "심화",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const a = nonzero(rng, 2, 4);
@@ -254,6 +254,74 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         };
       }),
   ),
+
+  def(MINOR_SYS, "12A", "해의 합과 차", SEC.응용, "연산", (rng) => {
+    const x = intBetween(rng, 2, 15);
+    const y = intBetween(rng, 2, 15);
+    const sum = x + y;
+    const difference = x - y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\x-y=${difference}\\end{cases}$의 해 $x$, $y$에 대하여 $x$의 값을 구하시오.`,
+      answer: `$${x}$`,
+      solution: `두 식을 변끼리 더하면 $2x=${2 * x}$이므로 $x=${x}$이다.`,
+      facts: { x, y, sum, difference, answer: x },
+    };
+  }),
+  def(MINOR_SYS, "13A", "두 식을 더하여 해 구하기", SEC.응용, "기본", (rng) => {
+    const x = intBetween(rng, 2, 12);
+    const y = intBetween(rng, 2, 12);
+    const sum = x + y;
+    const weighted = 2 * x + y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\2x+y=${weighted}\\end{cases}$의 해 $x$, $y$에 대하여 $y$의 값을 구하시오.`,
+      answer: `$${y}$`,
+      solution: `둘째 식에서 첫째 식을 빼면 $x=${weighted - sum}$이다. 이를 첫째 식에 대입하면 $y=${y}$이다.`,
+      facts: { x, y, sum, weighted, answer: y },
+    };
+  }),
+  def(MINOR_SYS, "14A", "해를 이용한 계수 결정", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 6);
+    const y = nonzero(rng, 1, 6);
+    const answer = nonzero(rng, 2, 6);
+    const sum = x + y;
+    const c = answer * x - y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\kx-y=${c}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, 상수 $k$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `해를 둘째 식에 대입하면 $${x}k-${y}=${c}$이므로 $k=${answer}$이다.`,
+      facts: { x, y, sum, c, answer },
+    };
+  }),
+  def(MINOR_SYS, "15A", "다른 방정식의 계수 결정", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 6);
+    const y = nonzero(rng, 1, 6);
+    const p = nonzero(rng, 2, 5);
+    const sum = x + y;
+    const c = p * x - y;
+    const answer = nonzero(rng, 2, 6);
+    const target = answer * x + y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$를 만족시킬 때, 상수 $a$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `연립방정식을 풀면 $x=${x}$, $y=${y}$이다. 이를 $ax+y=${target}$에 대입하면 $${x}a+${y}=${target}$이므로 $a=${answer}$이다.`,
+      facts: { x, y, p, sum, c, target, answer },
+    };
+  }),
+  def(MINOR_SYS, "16A", "두 계수의 합", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 5);
+    const y = nonzero(rng, 1, 5);
+    const a = nonzero(rng, 2, 6);
+    const b = nonzero(rng, 2, 6);
+    const c1 = a * x + y;
+    const c2 = x + b * y;
+    const answer = a + b;
+    return {
+      content: `연립방정식 $\\begin{cases}ax+y=${c1}\\\\x+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a+b$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `해를 첫째 식에 대입하면 $a=${a}$이고 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a+b=${answer}$이다.`,
+      facts: { x, y, a, b, c1, c2, answer },
+    };
+  }),
 
   // ── 연립일차방정식 (해가 특수한 경우) ────────────────
   def(

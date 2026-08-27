@@ -518,6 +518,57 @@ describe("갈래 A 중등 유형 값 검산", () => {
     },
   );
 
+  const systemApplyExpected: Record<string, (content: string) => number> = {
+    "12A": (content) => {
+      const values = content.match(/x\+y=(-?\d+).*x-y=(-?\d+)/);
+      return (Number(values?.[1]) + Number(values?.[2])) / 2;
+    },
+    "13A": (content) => {
+      const values = content.match(/x\+y=(-?\d+).*2x\+y=(-?\d+)/);
+      return 2 * Number(values?.[1]) - Number(values?.[2]);
+    },
+    "14A": (content) => {
+      const values = content.match(
+        /kx-y=(-?\d+).*해가 \$x=(-?\d+)\$, \$y=(-?\d+)\$/,
+      );
+      return (Number(values?.[1]) + Number(values?.[3])) / Number(values?.[2]);
+    },
+    "15A": (content) => {
+      const values = content.match(
+        /x\+y=(-?\d+).*?([+-]?\d+)x-y=(-?\d+).*ax\+y=(-?\d+)/,
+      );
+      const [sum, p, c, target] = values!.slice(1).map(Number);
+      const x = (sum! + c!) / (p! + 1);
+      const y = sum! - x;
+      return (target! - y) / x;
+    },
+    "16A": (content) => {
+      const values = content.match(
+        /ax\+y=(-?\d+).*x\+by=(-?\d+).*해가 \$x=(-?\d+)\$, \$y=(-?\d+)\$/,
+      );
+      const [c1, c2, x, y] = values!.slice(1).map(Number);
+      return (c1! - y!) / x! + (c2! - x!) / y!;
+    },
+  };
+
+  it.each(Object.keys(systemApplyExpected))(
+    "연립방정식의 풀이의 응용 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM_APPLY.find(
+        (candidate) =>
+          candidate.unitSection === "연립방정식의 풀이의 응용" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          systemApplyExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
   const concentrationRatioExpected: Record<
     string,
     (content: string) => number
