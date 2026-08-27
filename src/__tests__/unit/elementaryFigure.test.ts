@@ -4108,3 +4108,127 @@ describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분",
     expect(r.svg).toContain('stroke-dasharray="6 4"');
   });
 });
+
+/**
+ * 전개도의 **접는 선** — 원장님 2026-08-27 (`J10504-A05-005`)
+ *
+ * 초5 「직육면체의 전개도」 교과서: **실선 = 자르는 선**(바깥 윤곽) ·
+ * **점선 = 접는 선**(면과 면이 맞닿는 안쪽 변). 종전에는 면마다 닫힌 실선
+ * `_rect`/`_poly` 를 그려 둘이 **같은 획**이었다 — 그림이 전개도가 아니었다.
+ *
+ * ⚠️ 이 시험은 「몇 개인가」로 잠근다. 접는 선 수는 **면 수 - 1**(신장나무)이라
+ *    좌표를 안 옮겨 적고도 갈린다 — 하나를 빠뜨리거나 윤곽을 점선으로 만들면 빨개진다.
+ *    좌표 단위의 전량 판정은 `python scripts/qa/probe-elem-net-fold.py` 가 한다(양성 6·음성 5).
+ */
+describe.skipIf(!hasEngine)(
+  "[초등 그림] 전개도의 접는 선 (원장님 2026-08-27)",
+  () => {
+    const FOLD = /<line\b[^>]*stroke-dasharray="5 4"[^>]*\/>/g;
+
+    it("netCuboid — 여섯 면이 맞닿는 다섯 변만 점선이고 윤곽은 실선이다", async () => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "netCuboid",
+        w: 7,
+        d: 4,
+        h: 5,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 면 6장이 이루는 신장나무 = 접는 선 5개.
+      expect(r.svg.match(FOLD) ?? []).toHaveLength(5);
+      // 면은 **칠만** 한다 — 면마다 획이 있으면 안쪽 변과 윤곽을 못 가른다.
+      expect(r.svg).not.toMatch(/<rect\b[^>]*stroke="#111111"/);
+      // 윤곽은 **한 폴리라인**이고 점선이 아니다(변마다 그으면 모서리에 톱니가 남는다).
+      const outline = r.svg.match(/<polyline\b[^>]*\/>/g) ?? [];
+      expect(outline).toHaveLength(1);
+      expect(outline[0]).not.toContain("stroke-dasharray");
+    });
+
+    it("prism(net) — 접는 선은 옆면 사이 n-1 개 + 두 밑면이 붙는 2 개다", async () => {
+      for (const sides of [3, 4, 5, 6, 8]) {
+        const r = await renderFigureSpec({
+          version: "elem-1",
+          kind: "prism",
+          sides,
+          h: 4,
+          net: true,
+        });
+        expect(r.ok, `sides=${sides}`).toBe(true);
+        if (!r.ok) return;
+        expect(r.svg.match(FOLD) ?? [], `sides=${sides}`).toHaveLength(
+          sides + 1,
+        );
+      }
+    });
+
+    /**
+     * 🔴 접는 선이 **치수 지문**(`#000` 1.4 `6 4`)을 쓰면
+     *    `scripts/qa/probe-dim-outside.py` 가 그것을 「치수」로 세고, 전개도 안쪽이라
+     *    「치수가 도형 안에 있다」로 **거짓 결함이 쏟아진다.** 두 지문을 갈라 둔다.
+     */
+    it("접는 선은 치수 지문(#000 1.4 '6 4')을 쓰지 않는다", async () => {
+      for (const spec of [
+        { version: "elem-1", kind: "netCuboid", w: 7, d: 4, h: 5 },
+        { version: "elem-1", kind: "prism", sides: 5, h: 4, net: true },
+      ]) {
+        const r = await renderFigureSpec(spec);
+        expect(r.ok).toBe(true);
+        if (!r.ok) return;
+        for (const line of r.svg.match(FOLD) ?? []) {
+          expect(line).toContain('stroke="#111111"');
+          expect(line).not.toContain('stroke="#000"');
+          expect(line).not.toContain('stroke-width="1.4"');
+        }
+      }
+    });
+
+    /**
+     * 맞닿아야 할 두 면이 어긋나면 그 변은 「공유하는 변」으로 안 읽혀 **접는 선이
+     * 조용히 윤곽이 된다.** 실측 2026-08-27: `<rect>` 의 `x` 와 `width` 가 따로
+     * 반올림되어 전개도 40장 중 4장이 0.01px 어긋나 있었다.
+     */
+    it("맞닿는 면끼리 좌표가 정확히 만난다 — 폭은 반올림한 꼭짓점에서 뺀다", async () => {
+      for (const [w, d, h] of [
+        [10, 6, 2],
+        [12, 7, 2],
+        [10, 2, 4],
+        [6, 7, 4],
+      ]) {
+        const r = await renderFigureSpec({
+          version: "elem-1",
+          kind: "netCuboid",
+          w,
+          d,
+          h,
+        });
+        expect(r.ok).toBe(true);
+        if (!r.ok) return;
+        // ⚠️ **찍힌 자리수(소수 둘째)로 견준다.** JS 부동소수 합(`x + width`)을
+        //    날것으로 비교하면 148.92000000000002 ≠ 148.92 라 시험이 제 산술 때문에
+        //    빨개진다 — 지면에 나가는 것은 반올림된 값이다.
+        const r2 = (v: number) => Math.round(v * 100) / 100;
+        const edges = new Set<string>();
+        for (const m of r.svg.matchAll(
+          /<rect\b[^>]*x="([-\d.]+)"[^>]*y="([-\d.]+)"[^>]*width="([-\d.]+)"[^>]*height="([-\d.]+)"/g,
+        )) {
+          const [x, y, ww, hh] = m.slice(1, 5).map(Number);
+          edges.add(`${r2(x)},${r2(y)}`);
+          edges.add(`${r2(x + ww)},${r2(y + hh)}`);
+        }
+        // 어긋나면 「거의 같지만 다른」 좌표 짝이 생긴다(실측: 0.01 차이).
+        const pts = [...edges].map((s) => s.split(",").map(Number));
+        for (const [ax, ay] of pts) {
+          for (const [bx, by] of pts) {
+            const near = Math.abs(ax - bx) < 0.06 && Math.abs(ay - by) < 0.06;
+            if (near && (ax !== bx || ay !== by)) {
+              expect.fail(
+                `netCuboid ${w}/${d}/${h} — (${ax},${ay}) 와 (${bx},${by}) 가 어긋났다`,
+              );
+            }
+          }
+        }
+      }
+    });
+  },
+);
