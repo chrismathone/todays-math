@@ -81,6 +81,36 @@ MUTATIONS = [
         "      const vals = shuffle(rng, [mode, mode, mode, a, b, c, d]);",
         "      const vals = shuffle(rng, [mode, mode, mode, a, a, a, d]);",
     ),
+    (
+        "위치 22A: 평행과 꼬인 위치를 맞바꾼다",
+        B2,
+        '  return edgeAxis(e1) === edgeAxis(e2) ? "평행" : "꼬인";',
+        '  return edgeAxis(e1) !== edgeAxis(e2) ? "평행" : "꼬인";',
+    ),
+    (
+        "위치 22A: 꼭짓점을 둘 공유해야 만난다고 본다",
+        B2,
+        '  if (sharedCount(e1, e2) >= 1) return "만남";',
+        '  if (sharedCount(e1, e2) >= 2) return "만남";',
+    ),
+    (
+        "위치 23A: 삼각기둥 옆모서리를 밑면 무리로",
+        B2,
+        '  return 3; // 옆모서리 AD · BE · CF',
+        '  return 0; // 옆모서리 AD · BE · CF',
+    ),
+    (
+        "위치 24A: 면의 법선 축을 뒤섞는다",
+        B2,
+        '  if (f === "ABFE" || f === "CGHD") return 1;',
+        '  if (f === "ABFE" || f === "CGHD") return 0;',
+    ),
+    (
+        "위치 25A: 꼬인 대신 평행한 모서리를 더한다",
+        B2,
+        '        (o) => o !== e && edgeRelation(e, o) === "꼬인",\n      );\n      const sum = skew.reduce',
+        '        (o) => o !== e && edgeRelation(e, o) === "평행",\n      );\n      const sum = skew.reduce',
+    ),
 ]
 
 

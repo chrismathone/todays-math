@@ -1144,6 +1144,179 @@ describe("갈래 A 중등 유형 값 검산", () => {
       expect(numericAnswer(problem.answer)).toBe(median + modes[0]!);
     }
   });
+
+  /*
+   * 공간에서 평면의 위치 관계 22A~25A — **좌표 기하로 다시 잰다.**
+   *
+   * 생성기는 「꼭짓점 글자를 공유하나 · 축이 같나」로 판정한다. 그것을 옮겨
+   * 적으면 동어반복이라 아무것도 안 지킨다. 그래서 시험은 꼭짓점에 좌표를
+   * 주고 **외적(평행)과 삼중곱(한 평면 위인가)** 으로 관계를 다시 가른다.
+   */
+  type P3 = [number, number, number];
+
+  function cubePoints(a: number, b: number, c: number): Record<string, P3> {
+    return {
+      A: [0, 0, c],
+      B: [a, 0, c],
+      C: [a, b, c],
+      D: [0, b, c],
+      E: [0, 0, 0],
+      F: [a, 0, 0],
+      G: [a, b, 0],
+      H: [0, b, 0],
+    };
+  }
+
+  const PRISM_POINTS: Record<string, P3> = {
+    A: [0, 0, 1],
+    B: [1, 0, 1],
+    C: [0, 1, 1],
+    D: [0, 0, 0],
+    E: [1, 0, 0],
+    F: [0, 1, 0],
+  };
+
+  function sub(p: P3, q: P3): P3 {
+    return [p[0] - q[0], p[1] - q[1], p[2] - q[2]];
+  }
+  function cross(u: P3, v: P3): P3 {
+    return [
+      u[1] * v[2] - u[2] * v[1],
+      u[2] * v[0] - u[0] * v[2],
+      u[0] * v[1] - u[1] * v[0],
+    ];
+  }
+  function dot(u: P3, v: P3): number {
+    return u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+  }
+  function norm(u: P3): number {
+    return Math.sqrt(dot(u, u));
+  }
+
+  /** 두 선분의 위치 관계 — 좌표만 보고 가른다. */
+  function relationOf(
+    pts: Record<string, P3>,
+    e1: string,
+    e2: string,
+  ): "평행" | "꼬인" | "만남" {
+    const d1 = sub(pts[e1[0]!]!, pts[e1[1]!]!);
+    const d2 = sub(pts[e2[0]!]!, pts[e2[1]!]!);
+    const n = cross(d1, d2);
+    if (norm(n) < 1e-9) return "평행";
+    // 삼중곱이 $0$ 이면 한 평면 위 — 평행이 아니므로 반드시 만난다.
+    const between = sub(pts[e2[0]!]!, pts[e1[0]!]!);
+    return Math.abs(dot(between, n)) < 1e-9 ? "만남" : "꼬인";
+  }
+
+  const CUBE_EDGE_NAMES = [
+    "AB",
+    "BC",
+    "CD",
+    "DA",
+    "EF",
+    "FG",
+    "GH",
+    "HE",
+    "AE",
+    "BF",
+    "CG",
+    "DH",
+  ];
+  const PRISM_EDGE_NAMES = [
+    "AB",
+    "BC",
+    "CA",
+    "DE",
+    "EF",
+    "FD",
+    "AD",
+    "BE",
+    "CF",
+  ];
+  const REL_FROM_WORD: Record<string, "평행" | "꼬인" | "만남"> = {
+    평행한: "평행",
+    "꼬인 위치에 있는": "꼬인",
+    "한 점에서 만나는": "만남",
+  };
+
+  it.each([
+    ["22A", "직육면체", CUBE_EDGE_NAMES],
+    ["23A", "삼각기둥", PRISM_EDGE_NAMES],
+  ] as const)(
+    "공간에서 평면의 위치 관계 유형 %s — 좌표로 다시 센다",
+    (rpmType, solid, edges) => {
+      const entry = midEntry("공간에서 평면의 위치 관계", rpmType);
+      const pts = solid === "직육면체" ? cubePoints(3, 5, 7) : PRISM_POINTS;
+      const seenWords = new Set<string>();
+      for (let i = 1; i <= 60; i += 1) {
+        const problem = entry.handler(seeded(spread(i)));
+        const asked = problem.content.match(
+          /모서리 \$\\mathrm\{([A-Z]+)\}\$와 (평행한|꼬인 위치에 있는|한 점에서 만나는) 모서리/,
+        );
+        expect(asked).not.toBeNull();
+        expect(problem.content).toContain(solid);
+        const edge = asked![1]!;
+        const want = REL_FROM_WORD[asked![2]!]!;
+        seenWords.add(asked![2]!);
+        expect(edges).toContain(edge);
+        const count = edges.filter(
+          (other) => other !== edge && relationOf(pts, edge, other) === want,
+        ).length;
+        expect(numericAnswer(problem.answer)).toBe(count);
+      }
+      // 세 관계가 다 나와야 한 갈래만 지키는 일이 없다.
+      expect(seenWords.size).toBe(3);
+    },
+  );
+
+  it("공간에서 평면의 위치 관계 유형 24A — 모서리와 면 사이의 거리", () => {
+    const entry = midEntry("공간에서 평면의 위치 관계", "24A");
+    for (let i = 1; i <= 60; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [a, b, c] = (problem.content.match(/=(\d+)\\,/g) ?? []).map(
+        (token) => Number(token.match(/\d+/)![0]),
+      );
+      const asked = problem.content.match(
+        /모서리 \$\\mathrm\{([A-Z]+)\}\$와 면 \$\\mathrm\{([A-Z]+)\}\$ 사이의 거리/,
+      );
+      expect(asked).not.toBeNull();
+      const pts = cubePoints(a!, b!, c!);
+      const face = asked![2]!;
+      const [p0, p1, p2] = [...face].slice(0, 3).map((ch) => pts[ch]!);
+      const normal = cross(sub(p1!, p0!), sub(p2!, p0!));
+      const distances = [...asked![1]!].map(
+        (ch) => Math.abs(dot(sub(pts[ch]!, p0!), normal)) / norm(normal),
+      );
+      // 두 끝점이 면에서 같은 거리라야 «평행»이고, 그때만 «사이의 거리»가 있다.
+      expect(distances[0]).toBeCloseTo(distances[1]!, 9);
+      expect(numericAnswer(problem.answer)).toBeCloseTo(distances[0]!, 9);
+    }
+  });
+
+  it("공간에서 평면의 위치 관계 유형 25A — 꼬인 모서리 길이의 합", () => {
+    const entry = midEntry("공간에서 평면의 위치 관계", "25A");
+    for (let i = 1; i <= 60; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [a, b, c] = (problem.content.match(/=(\d+)\\,/g) ?? []).map(
+        (token) => Number(token.match(/\d+/)![0]),
+      );
+      const edge = problem.content.match(
+        /모서리 \$\\mathrm\{([A-Z]+)\}\$와 꼬인 위치/,
+      )?.[1];
+      expect(edge).toBeTruthy();
+      const pts = cubePoints(a!, b!, c!);
+      const skew = CUBE_EDGE_NAMES.filter(
+        (other) => other !== edge && relationOf(pts, edge!, other) === "꼬인",
+      );
+      // 직육면체에서 한 모서리와 꼬인 위치인 모서리는 늘 넷이다.
+      expect(skew).toHaveLength(4);
+      const sum = skew.reduce(
+        (s, other) => s + norm(sub(pts[other[0]!]!, pts[other[1]!]!)),
+        0,
+      );
+      expect(numericAnswer(problem.answer)).toBeCloseTo(sum, 9);
+    }
+  });
 });
 
 /**

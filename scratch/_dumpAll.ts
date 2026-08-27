@@ -29,9 +29,23 @@ function seeded(seed: number): () => number {
   };
 }
 
+/**
+ * 씨앗을 **멀리 떨어뜨린다.**
+ *
+ * `seeded` 는 선형 합동이라 씨앗을 $1$씩 올리면 첫 뽑기가 $0.0004$ 밖에 안
+ * 움직인다. `[17, 203, 991]` 처럼 붙은 씨앗으로 지문을 만들면 **갈래를 첫
+ * 뽑기로 고르는 유형은 늘 같은 갈래만** 찍혀, 변이 시험 ⑵ 단계가
+ * 「산출물 그대로」라는 거짓 판정을 낸다(실측: 삼각기둥 무리 변이).
+ */
+function spread(i: number): number {
+  return Math.imul(i, 104729) >>> 0;
+}
+
+const SEEDS = Array.from({ length: 12 }, (_v, i) => spread(i + 1));
+
 for (const [name, list] of MODULES) {
   for (const entry of list) {
-    for (const seed of [17, 203, 991]) {
+    for (const seed of SEEDS) {
       let p;
       try {
         p = entry.handler(seeded(seed));

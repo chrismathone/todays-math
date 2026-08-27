@@ -75,6 +75,61 @@ function edgeAxis(e: string): number {
 }
 
 /**
+ * 두 모서리의 위치 관계 — 꼭짓점을 하나라도 공유하면 **한 점에서 만나고**,
+ * 아니면 축이 같을 때만 평행이며 그 밖은 전부 꼬인 위치다.
+ * (볼록한 기둥에서는 «만나지도 평행하지도 않다» == «꼬인 위치»다.)
+ */
+function edgeRelation(e1: string, e2: string): "평행" | "꼬인" | "만남" {
+  if (sharedCount(e1, e2) >= 1) return "만남";
+  return edgeAxis(e1) === edgeAxis(e2) ? "평행" : "꼬인";
+}
+
+/** 관계 낱말 — 발문과 해설이 **한 곳**에서 같은 말을 쓰게 한다. */
+const REL_WORD = {
+  평행: "평행한",
+  꼬인: "꼬인 위치에 있는",
+  만남: "한 점에서 만나는",
+} as const;
+
+const REL_ORDER = ["평행", "꼬인", "만남"] as const;
+
+/**
+ * 면의 법선 축 — 그 면과 **평행한** 모서리까지의 거리는 이 축의 치수와 같다.
+ * (윗·아랫면은 $z$, 앞·뒷면은 $y$, 옆면은 $x$.)
+ */
+function faceNormalAxis(f: string): number {
+  if (f === "ABCD" || f === "EFGH") return 2;
+  if (f === "ABFE" || f === "CGHD") return 1;
+  return 0;
+}
+
+// ── 삼각기둥 문자 모델 (A 위 D · B 위 E · C 위 F) ──
+const PRISM_EDGES = [
+  "AB",
+  "BC",
+  "CA",
+  "DE",
+  "EF",
+  "FD",
+  "AD",
+  "BE",
+  "CF",
+] as const;
+
+/** 삼각기둥에서 평행한 모서리끼리는 같은 무리다. */
+function prismGroup(e: string): number {
+  if (e === "AB" || e === "DE") return 0;
+  if (e === "BC" || e === "EF") return 1;
+  if (e === "CA" || e === "FD") return 2;
+  return 3; // 옆모서리 AD · BE · CF
+}
+
+function prismRelation(e1: string, e2: string): "평행" | "꼬인" | "만남" {
+  if (sharedCount(e1, e2) >= 1) return "만남";
+  return prismGroup(e1) === prismGroup(e2) ? "평행" : "꼬인";
+}
+
+/**
  * 위치 06 의 관계 종류 — 직육면체에서 모서리↔면 관계는 공유 꼭짓점 수로
  * 갈린다 (2 포함 · 0 평행 · 1 수직). 면↔면은 0 평행 · 2(모서리 공유) 수직.
  */
@@ -696,6 +751,130 @@ export const M1_BOOK2: TypeEntry[] = [
           .map((o) => `면 $\\mathrm{${o}}$`)
           .join(", ")}이다.\n따라서 $${count}$개이다.`,
         facts: { kind, face: fi, count },
+      };
+    },
+  ),
+
+  /*
+   * 22A~25A — 공간에서 평면의 위치 관계를 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 06·07 응용 · 08 기본 · 09·10·19 심화라 **밑단(`연산`)이 비어 있었다**(D-106).
+   *
+   * 06 은 모서리↔면, 08 은 면↔면을 세는데 **모서리↔모서리**(꼬인 위치)는
+   * 밋밋한 직육면체에 대한 유형이 없었다 — 09 는 잘라 낸 입체다.
+   * 그림 없이 성립하는 발문만 낸다(이 파일의 규약).
+   */
+  defType(
+    BOOK,
+    "위치 관계",
+    "22A",
+    "직육면체에서 두 모서리의 위치 관계",
+    SEC2.위치,
+    "연산",
+    (rng) => {
+      const ki = intBetween(rng, 0, REL_ORDER.length - 1);
+      const kind = REL_ORDER[ki]!;
+      const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+      const e = CUBE_EDGES[ei]!;
+      const hit = CUBE_EDGES.filter(
+        (o) => o !== e && edgeRelation(e, o) === kind,
+      );
+      return {
+        content: `직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리의 개수를 구하시오.`,
+        answer: `$${hit.length}$개`,
+        solution: `모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리는 ${hit
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n따라서 $${hit.length}$개이다.`,
+        facts: { kind: ki, edge: ei, count: hit.length },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "23A",
+    "삼각기둥에서 두 모서리의 위치 관계",
+    SEC2.위치,
+    "기본",
+    (rng) => {
+      const ki = intBetween(rng, 0, REL_ORDER.length - 1);
+      const kind = REL_ORDER[ki]!;
+      const ei = intBetween(rng, 0, PRISM_EDGES.length - 1);
+      const e = PRISM_EDGES[ei]!;
+      const hit = PRISM_EDGES.filter(
+        (o) => o !== e && prismRelation(e, o) === kind,
+      );
+      return {
+        content: `삼각기둥 $\\mathrm{ABC-DEF}$에서 모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리의 개수를 구하시오.`,
+        answer: `$${hit.length}$개`,
+        solution: `모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리는 ${hit
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n따라서 $${hit.length}$개이다.`,
+        facts: { kind: ki, edge: ei, count: hit.length },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "24A",
+    "모서리와 평면 사이의 거리",
+    SEC2.위치,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const dims = pickDistinct(
+          rng,
+          [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const,
+          3,
+        );
+        const [a, b, c] = dims as [number, number, number];
+        const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+        const e = CUBE_EDGES[ei]!;
+        const fi = intBetween(rng, 0, CUBE_FACES.length - 1);
+        const F = CUBE_FACES[fi]!;
+        // 꼭짓점을 하나도 공유하지 않아야 «모서리가 면과 평행»이다.
+        if (sharedCount(e, F) !== 0) return null;
+        const dist = [a, b, c][faceNormalAxis(F)]!;
+        return {
+          content: `$\\mathrm{AB}=${a}\\,\\mathrm{cm}$, $\\mathrm{AD}=${b}\\,\\mathrm{cm}$, $\\mathrm{AE}=${c}\\,\\mathrm{cm}$인 직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 면 $\\mathrm{${F}}$ 사이의 거리를 구하시오.`,
+          answer: `$${dist}\\,\\mathrm{cm}$`,
+          solution: `모서리 $\\mathrm{${e}}$는 면 $\\mathrm{${F}}$와 만나지 않으므로 두 도형은 평행하다.\n그 거리는 면 $\\mathrm{${F}}$에 수직인 모서리의 길이와 같으므로 $${dist}\\,\\mathrm{cm}$이다.`,
+          facts: { a, b, c, edge: ei, face: fi, dist },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "25A",
+    "꼬인 위치에 있는 모서리의 길이의 합",
+    SEC2.위치,
+    "응용",
+    (rng) => {
+      const dims = pickDistinct(
+        rng,
+        [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const,
+        3,
+      );
+      const [a, b, c] = dims as [number, number, number];
+      const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+      const e = CUBE_EDGES[ei]!;
+      const skew = CUBE_EDGES.filter(
+        (o) => o !== e && edgeRelation(e, o) === "꼬인",
+      );
+      const sum = skew.reduce((s, o) => s + [a, b, c][edgeAxis(o)]!, 0);
+      return {
+        content: `$\\mathrm{AB}=${a}\\,\\mathrm{cm}$, $\\mathrm{AD}=${b}\\,\\mathrm{cm}$, $\\mathrm{AE}=${c}\\,\\mathrm{cm}$인 직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 꼬인 위치에 있는 모든 모서리의 길이의 합을 구하시오.`,
+        answer: `$${sum}\\,\\mathrm{cm}$`,
+        solution: `모서리 $\\mathrm{${e}}$와 꼬인 위치에 있는 모서리는 ${skew
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n그 길이는 각각 ${skew
+          .map((o) => `$${[a, b, c][edgeAxis(o)]}\\,\\mathrm{cm}$`)
+          .join(", ")}이므로 합은 $${sum}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, c, edge: ei, sum },
       };
     },
   ),
