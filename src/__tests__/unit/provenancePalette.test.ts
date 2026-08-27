@@ -214,13 +214,13 @@ describe("[출처 팔레트] 토큰이 실제로 연결되어 있는가", () => 
 });
 
 describe("[출처 팔레트] 원장님 지시 「색상 전부 다르게」 — 재서 지킨다", () => {
-  it("열한 갈래의 색값이 서로 다른 문자열이다", () => {
+  it("열두 갈래의 색값이 서로 다른 문자열이다", () => {
     const hexes = NAMED.map((k) => NAMED_HEX.get(k)!.toLowerCase());
-    expect(hexes).toHaveLength(11);
-    expect(new Set(hexes).size).toBe(11);
+    expect(hexes).toHaveLength(12);
+    expect(new Set(hexes).size).toBe(12);
   });
 
-  it(`열한 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
+  it(`열두 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
     const 가까운짝: string[] = [];
     for (let i = 0; i < NAMED.length; i += 1) {
       for (let j = i + 1; j < NAMED.length; j += 1) {

@@ -95,7 +95,14 @@ export function answerIsChoiceNumber(answer: string): boolean {
 
 /** 문항 «본문»을 무엇이 만들었나 / 어디서 가져왔나. 문항마다 **정확히 하나**다. */
 export type ProblemOrigin =
-  "past_exam" | "workbook" | "elem_engine" | "middle_engine" | "ai" | "unknown";
+  | "past_exam"
+  | "workbook"
+  | "elem_engine"
+  | "middle_engine"
+  | "ai"
+  /** 우리 문항을 AI 가 변형한 것 — `[변]`. 원장님 지시 2026-08-27. */
+  | "ai_transformed"
+  | "unknown";
 
 /** 문항에 붙은 «그림»이 어디서 왔나. 그림이 없으면 `null`. */
 export type FigureOrigin = "figure_engine" | "svg_engine" | "scan" | "unknown";
@@ -177,7 +184,12 @@ export function classifyOrigin(problem: ProvenanceInput): ProblemOrigin {
   if (problem.source === "transformed") {
     // 원본이 우리 DB 에 있으면 **우리 문항을 변형한 것** = AI 변형(D-22 경로).
     // 없으면 교재 이관본이다 — 교재 원본은 애초에 우리 DB 에 없다.
-    return problem.originProblemId ? "ai" : "workbook";
+    //
+    // 🔴 변형은 **생성과 다른 갈래**다(원장님 지시 2026-08-27 「[변] 이라고 붙여
+    //    줘야겠다 라벨에」). 종전에는 둘 다 `[AI]` 라 화면에서 「처음부터 AI 가
+    //    지은 것」과 「우리 문항을 비튼 것」이 구분되지 않았다 — 검수할 때 봐야 할
+    //    것이 다르다(변형본은 **원본과 값이 맞는지**를 본다).
+    return problem.originProblemId ? "ai_transformed" : "workbook";
   }
   if (problem.source === "past_exam") return "past_exam";
 
@@ -545,7 +557,11 @@ export type ProvenanceBadge = {
   axis: "origin" | "figure" | "format";
   /** 갈래 키 — 시험·조사가 지목하는 값. 축이 다르면 같은 이름이 있을 수 있다. */
   kind: ProblemOrigin | FigureOrigin | ProblemFormat;
-  /** 원장님이 지시한 대괄호 표기. */
+  /**
+   * 배지에 찍는 글자. **대괄호를 벗겼다** — 원장님 지시 2026-08-27
+   * 「동그라미에 흰색 글씨에 검정 테두리, 배경색만 라벨에 따라 다르게」.
+   * 한 글자면 동그라미, 여러 글자면 알약이 된다(`ProblemCard`).
+   */
   text: string;
   /** 라벨만으로 안 읽히는 사람에게 주는 말 (05 §5 — 색 단독으로 뜻을 전달하지 않는다). */
   name: string;
@@ -600,60 +616,65 @@ type BadgeFace = Omit<ProvenanceBadge, "kind" | "axis">;
  */
 const ORIGIN_BADGE: Readonly<Record<ProblemOrigin, BadgeFace>> = {
   past_exam: {
-    text: "[기]",
+    text: "기",
     name: "기출 추출",
-    className: "text-src-past-exam",
+    className: "bg-src-past-exam",
   },
   workbook: {
-    text: "[문]",
+    text: "문",
     name: "문제집 추출",
-    className: "text-src-workbook",
+    className: "bg-src-workbook",
   },
   elem_engine: {
-    text: "[초]",
+    text: "초",
     name: "초등 엔진 생성",
-    className: "text-src-elem",
+    className: "bg-src-elem",
   },
   middle_engine: {
-    text: "[중]",
+    text: "중",
     name: "중등 엔진 생성",
-    className: "text-src-middle",
+    className: "bg-src-middle",
   },
-  ai: { text: "[AI]", name: "AI 생성·변형", className: "text-src-ai" },
-  unknown: { text: "[?]", name: "출처 미분류", className: "text-src-unknown" },
+  ai: { text: "AI", name: "AI 생성", className: "bg-src-ai" },
+  ai_transformed: {
+    text: "변",
+    name: "AI 변형",
+    className: "bg-src-ai-transformed",
+  },
+  unknown: { text: "?", name: "출처 미분류", className: "bg-src-unknown" },
 };
 
 const FORMAT_BADGE: Readonly<Record<ProblemFormat, BadgeFace>> = {
-  multiple_choice: { text: "[객]", name: "객관식", className: "text-src-mcq" },
-  short_answer: { text: "[단]", name: "단답형", className: "text-src-short" },
-  descriptive: { text: "[서]", name: "서술형", className: "text-src-written" },
+  multiple_choice: { text: "객", name: "객관식", className: "bg-src-mcq" },
+  short_answer: { text: "단", name: "단답형", className: "bg-src-short" },
+  descriptive: { text: "서", name: "서술형", className: "bg-src-written" },
   unknown: {
-    text: "[?형식]",
+    text: "?형식",
     name: "형식 미분류",
-    className: "text-src-unknown",
+    className: "bg-src-unknown",
   },
 };
 
 const FIGURE_BADGE: Readonly<Record<FigureOrigin, BadgeFace>> = {
   figure_engine: {
-    text: "[도]",
+    text: "도",
     name: "도형 엔진 생성",
-    className: "text-src-figure",
+    className: "bg-src-figure",
   },
   svg_engine: {
-    text: "[SVG]",
+    text: "SVG",
     name: "SVG 엔진 생성",
-    className: "text-src-svg",
+    className: "bg-src-svg",
   },
   scan: {
-    text: "[스캔]",
+    text: "스캔",
     name: "원본 시험지 오려냄",
-    className: "text-src-scan",
+    className: "bg-src-scan",
   },
   unknown: {
-    text: "[?그림]",
+    text: "?그림",
     name: "그림 출처 미분류",
-    className: "text-src-unknown",
+    className: "bg-src-unknown",
   },
 };
 
@@ -701,5 +722,8 @@ export function provenanceColorToken(
         ? FIGURE_BADGE
         : FORMAT_BADGE
   ) as Record<string, Omit<ProvenanceBadge, "kind" | "axis">>;
-  return table[kind]!.className.replace(/^text-/, "--color-");
+  // ⚠️ 접두사를 **하나만** 알면 안 된다. 2026-08-27 에 배지가 글자색(`text-src-*`)에서
+  //    면색(`bg-src-*`)으로 바뀌었는데, 여기가 `text-` 만 벗기고 있어서 팔레트 시험이
+  //    토큰을 **하나도 못 찾았다**(전량 빨강). 유틸리티 접두사를 통째로 벗긴다.
+  return table[kind]!.className.replace(/^(?:text|bg)-/, "--color-");
 }
