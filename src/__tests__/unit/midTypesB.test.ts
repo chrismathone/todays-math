@@ -175,6 +175,44 @@ export function euroRoFaults(text: string): string[] {
 }
 
 /**
+ * 수식이 **분수로 끝나는** 것 — 「$\dfrac{35}{110}$을」.
+ *
+ * 분수는 **분모를 먼저, 분자를 나중에** 읽는다(「백십분의 삼십오」). 그래서 소리의
+ * 끝은 **분자**다. `josaFaults` 는 이 규칙을 알지만 정규식이 `\frac{…}{…}` 만 보고
+ * **`\dfrac` 은 못 본다**(`\d` 가 사이에 낀다) — 우리 지면은 전부 `\dfrac` 이라
+ * 그 축이 통째로 「안 잼」이었다. 2026-08-27 에 새 유형 둘이 그 자리로 샜다.
+ */
+export function dfracJosaFaults(text: string): string[] {
+  const FLIP: Record<string, string> = {
+    을: "를",
+    이: "가",
+    과: "와",
+    은: "는",
+  };
+  const HEAD: Record<string, string> = {
+    을: "을",
+    를: "을",
+    이: "이",
+    가: "이",
+    과: "과",
+    와: "과",
+    은: "은",
+    는: "은",
+  };
+  const bad: string[] = [];
+  const re =
+    /\\d?frac\{(-?\d+)\}\{[^{}]*\}\$ ?(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+  let m = re.exec(text);
+  while (m !== null) {
+    const head = HEAD[m[2]!]!;
+    const want = eulReul(Number(m[1])) === "을" ? head : FLIP[head]!;
+    if (m[2] !== want) bad.push(m[0]);
+    m = re.exec(text);
+  }
+  return bad;
+}
+
+/**
  * 수식이 `\overline{숫자}` 로 끝나는 것 — 순환소수 `0.\overline{8}` 은 「영 점 팔」
  * 이라 소리의 끝이 그 숫자다. `josaFaults` 는 끝이 `}` 라 **「안 잼」**으로 넘긴다
  * (그 함수 머리말이 「못 재는 것은 «통과»가 아니라 «안 잼»이다」라고 적어 둔 자리).
@@ -362,6 +400,47 @@ const CHECKS: Record<string, Check> = {
     const a = Number(content.match(/\\overline\{(\d+)\}/)![1]);
     const b = Number(content.match(/\$9x\+(\d+)\$/)![1]);
     expect(nums(answer)).toEqual([a + b]);
+  },
+  // ── 중2 유리수와 소수 ─────────────────────────────────────
+  "2-1|유리수와 순환소수|36": ({ content, answer }) => {
+    // 「$\dfrac{a}{b}$를 유한소수로」 — **여기서 직접 나눠** 소수를 만든다
+    const [a, b] = nums(content.match(/\\dfrac\{[^}]*\}\{[^}]*\}/)![0]);
+    const dec = answer.match(/0\.(\d+)/)![1]!;
+    expect(a! * Math.pow(10, dec.length)).toBe(b! * Number(dec));
+    expect(dec.endsWith("0"), "꼬리 0 이 남았다").toBe(false);
+    // 분모가 $2^m5^n$ 인가 — 아니면 유한소수가 아니다
+    let d = b!;
+    while (d % 2 === 0) d /= 2;
+    while (d % 5 === 0) d /= 5;
+    expect(d).toBe(1);
+  },
+  "2-1|유리수와 순환소수|37": ({ content, answer }) => {
+    const [, b] = nums(content.match(/\\dfrac\{[^}]*\}\{[^}]*\}/)![0]);
+    const mul = nums(answer)[0]!;
+    const prod = b! * mul;
+    // 곱한 뒤 $10$의 거듭제곱인가
+    expect(Math.pow(10, Math.round(Math.log10(prod)))).toBe(prod);
+    // **가장 작은** 자연수인가 — 더 작은 것으로는 안 된다
+    for (let t = 1; t < mul; t += 1) {
+      const p = b! * t;
+      expect(Math.pow(10, Math.round(Math.log10(p))) === p).toBe(false);
+    }
+  },
+  "2-1|유리수와 순환소수|38": ({ content, answer }) => {
+    const [a, b] = nums(content.match(/\\dfrac\{[^}]*\}\{[^}]*\}/)![0]);
+    expect(nums(answer)).toEqual([b! / gcd2(a!, b!)]);
+    expect(gcd2(a!, b!)).toBeGreaterThan(1); // 약분이 되어야 물음이 된다
+  },
+  "2-1|유리수와 순환소수|39": ({ content, answer }) => {
+    // 분모가 `2^{m}\times5^{n}` 꼴로 적혀 있다 — 지수를 지면에서 읽는다
+    // 중괄호가 한 겹 중첩된다(`2^{3}\times5^{2}`). 게으른 매칭으로 `}$` 까지.
+    const den = content.match(/\\dfrac\{\d+\}\{(.*?)\}\$/)![1]!;
+    const expOf = (base: number): number => {
+      if (!den.includes(String(base))) return 0;
+      const withExp = den.match(new RegExp(`${base}\\^\\{(\\d+)\\}`));
+      return withExp ? Number(withExp[1]) : 1;
+    };
+    expect(nums(answer)).toEqual([Math.max(expOf(2), expOf(5))]);
   },
   // ── 중2 순환소수 ──────────────────────────────────────────
   "2-1|유리수와 순환소수|30": ({ content, answer }) => {
@@ -694,6 +773,7 @@ describe("[갈래 B] 지면 — 값이 맞아도 흉할 수 있는 축", () => {
             ...josaFaults(t),
             ...euroRoFaults(t),
             ...overlineJosaFaults(t),
+            ...dfracJosaFaults(t),
           ])
             bad.push(`${e.key} ${f}: ${b}`);
         }

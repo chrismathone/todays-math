@@ -468,6 +468,133 @@ export const M2_RATIONAL_SUP_B: TypeEntry[] = [
       facts: { a, b, x: a + b },
     };
   }),
+
+  /**
+   * ── 「유리수와 소수」 보강 넷 (36~39) ────────────────────────────────
+   *
+   * 이 소단원은 유형이 8개인데 **pool 갈래는 6개**였다 — 01·06 이 이미 객관식이라
+   * `expandFamily` 가 단답행을 안 낸다. 그래서 「10개로 올리기」로는 안 되고
+   * **네 개**를 더해야 10갈래가 된다(`scratch/mid-b-detail.ts` 로 실측).
+   * 난이도도 골라 넣는다: 지금 pool 이 기본1·응용3·심화2 라 「기본 4」가 모자라
+   * 인접 대체가 응용을 먹는다. 그래서 **연산 1 + 기본 3** 이다.
+   */
+  def(
+    "36",
+    "분수를 유한소수로 나타내기 (직접 나누기)",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      // 분모는 $2^m\times5^n$ 뿐이라 반드시 유한소수다. 분자는 $10$과 서로소로
+      // 잡아 **꼬리 $0$** 이 안 생기게 한다(지면에 `0.250` 이 나가면 흉하다).
+      const { den, num, tex, places } = attempt(300, () => {
+        const m = intBetween(rng, 0, 3);
+        const n = intBetween(rng, 0, 2);
+        const d = Math.pow(2, m) * Math.pow(5, n);
+        if (d < 4 || d > 200) return null;
+        const a = intBetween(rng, 1, d - 1);
+        if (gcd(a, d) !== 1) return null;
+        const k = Math.max(m, n);
+        if (k === 0) return null;
+        const scaled = a * (Math.pow(10, k) / d);
+        const s = String(scaled).padStart(k, "0");
+        return { den: d, num: a, tex: `0.${s}`, places: k };
+      });
+      return {
+        content: `다음 분수를 유한소수로 나타내시오.\n$\\dfrac{${num}}{${den}}$`,
+        answer: `$${tex}$`,
+        solution:
+          `분모 $${den}$${eunNeun(den)} $2$${waGwa(2)} $5$ 이외의 소인수를 갖지 않으므로 유한소수로 나타낼 수 있다.\n` +
+          (Math.pow(10, places) / den === 1
+            ? `분모가 이미 $10^{${places}}$이므로 $\\dfrac{${num}}{${den}}=${tex}$이다.`
+            : `분모와 분자에 $${Math.pow(10, places) / den}$${eulReul(Math.pow(10, places) / den)} 곱하면 $\\dfrac{${num}\\times${Math.pow(10, places) / den}}{${den}\\times${Math.pow(10, places) / den}}=\\dfrac{${num * (Math.pow(10, places) / den)}}{${Math.pow(10, places)}}=${tex}$이다.`),
+        facts: { den, num, places },
+      };
+    },
+  ),
+
+  def(
+    "37",
+    "분모를 10의 거듭제곱으로 만드는 수",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      const { den, num, mul, k } = attempt(300, () => {
+        const m = intBetween(rng, 0, 3);
+        const n = intBetween(rng, 0, 3);
+        if (m === n) return null; // 곱할 수가 $1$ 이면 물음이 안 된다
+        const d = Math.pow(2, m) * Math.pow(5, n);
+        if (d < 4 || d > 500) return null;
+        const a = intBetween(rng, 1, Math.min(9, d - 1));
+        if (gcd(a, d) !== 1) return null;
+        const kk = Math.max(m, n);
+        return { den: d, num: a, mul: Math.pow(10, kk) / d, k: kk };
+      });
+      return {
+        content: `분수 $\\dfrac{${num}}{${den}}$의 분모와 분자에 같은 수를 곱하여 분모를 $10$의 거듭제곱으로 만들려고 한다. 곱해야 하는 가장 작은 자연수를 구하시오.`,
+        answer: `$${mul}$`,
+        // 곱할 수가 소수 하나면 `$2=2$` 같은 되풀이를 쓰지 않는다.
+        solution: `$${den}=${factorTex(den)}$이다. $10^{${k}}=2^{${k}}\\times5^{${k}}$이므로 모자란 소인수를 채우려면 $${factorTex(mul) === String(mul) ? mul : `${factorTex(mul)}=${mul}`}$${eulReul(mul)} 곱해야 한다.\n따라서 곱해야 하는 가장 작은 자연수는 $${mul}$이다.`,
+        facts: { den, num, mul, k },
+      };
+    },
+  ),
+
+  def("38", "기약분수의 분모 구하기", SEC.유리수와소수, "기본", (rng) => {
+    const { num, den, g } = attempt(300, () => {
+      const base = intBetween(rng, 2, 9);
+      const p = pick(rng, [2, 3, 5, 7, 11] as const);
+      const q = pick(rng, [2, 3, 4, 5, 6] as const);
+      const n = base * q;
+      const d = p * q * intBetween(rng, 1, 4);
+      if (d <= n || d > 400) return null;
+      const gg = gcd(n, d);
+      if (gg === 1) return null; // 약분이 되어야 물음이 된다
+      return { num: n, den: d, g: gg };
+    });
+    return {
+      // 분수는 「분모분의 분자」로 읽으므로 조사는 **분자**를 따른다.
+      content: `분수 $\\dfrac{${num}}{${den}}$${eulReul(num)} 기약분수로 나타내었을 때, 분모를 구하시오.`,
+      answer: `$${den / g}$`,
+      solution: `$${num}$${waGwa(num)} $${den}$의 최대공약수는 $${g}$이다.\n분모와 분자를 $${g}$${euRo(g)} 나누면 $\\dfrac{${num / g}}{${den / g}}$이므로 분모는 $${den / g}$이다.`,
+      facts: { num, den, g, x: den / g },
+    };
+  }),
+
+  def(
+    "39",
+    "유한소수의 소수점 아래 자릿수",
+    SEC.유리수와소수,
+    "기본",
+    (rng) => {
+      const { m, n, num, den, k } = attempt(300, () => {
+        const mm = intBetween(rng, 0, 4);
+        const nn = intBetween(rng, 0, 4);
+        const kk = Math.max(mm, nn);
+        if (kk === 0) return null;
+        const d = Math.pow(2, mm) * Math.pow(5, nn);
+        const a = intBetween(rng, 1, 9);
+        if (gcd(a, 10) !== 1) return null;
+        if (gcd(a, d) !== 1) return null;
+        return { m: mm, n: nn, num: a, den: d, k: kk };
+      });
+      const powTex = (base: number, e: number): string =>
+        e === 0 ? "" : e === 1 ? `${base}` : `${base}^{${e}}`;
+      const denTex =
+        m === 0
+          ? powTex(5, n)
+          : n === 0
+            ? powTex(2, m)
+            : `${powTex(2, m)}\\times${powTex(5, n)}`;
+      return {
+        // 「몇째 자리」로 물으면 정답이 「셋째 자리」라 수식 밖에 한글이 남는다.
+        // 「자릿수」로 물으면 정답이 $3$자리 로 깔끔하다.
+        content: `분수 $\\dfrac{${num}}{${denTex}}$${eulReul(num)} 유한소수로 나타낼 때, 소수점 아래 자릿수를 구하시오.`,
+        answer: `$${k}$자리`,
+        solution: `분모와 분자에 같은 수를 곱해 분모를 $10$의 거듭제곱으로 만들면 $10^{${k}}$이다.\n분자 $${num}$${eunNeun(num)} $10$${waGwa(10)} 서로소이므로 꼬리에 $0$이 남지 않아 소수점 아래 자릿수는 $${k}$자리이다.`,
+        facts: { m, n, num, den, k },
+      };
+    },
+  ),
 ];
 
 export const M2_RATIONAL: TypeEntry[] = [
