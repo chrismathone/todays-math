@@ -997,6 +997,66 @@ const CHECKS: Record<string, Check> = {
     expect(Number.isInteger(q)).toBe(true);
     expect(p! * p! + q * q).toBe(r! * r!);
   },
+  // ── 중2 평행선 사이의 선분의 길이의 비 (50~55) ────────────
+  //
+  // 전부 「대응하는 두 비가 같다」는 **한 등식**으로 반증한다 —
+  // 답을 넣었을 때 $\overline{AB}\times\overline{EF}=\overline{BC}\times\overline{DE}$ 가
+  // 성립하는지 본다(곱셈 꼴이라 어느 자리를 물어도 같은 식이다).
+  "2-2|평행선 사이의 선분의 길이의 비|50": ({ content, answer }) => {
+    const { AB, BC, EF } = segs(content);
+    const DE = nums(answer)[0]!;
+    expect(AB! * EF!).toBe(BC! * DE);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|51": ({ content, answer }) => {
+    const [p, q] = nums(content.match(/=(\d+):(\d+)\$/)![0]);
+    const whole = Number(content.match(/\\overline\{DF\}=(\d+)/)![1]);
+    const DE = nums(answer)[0]!;
+    expect(DE * (p! + q!)).toBe(whole * p!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|52": ({ content, answer }) => {
+    const { AB, DE, EF } = segs(content);
+    const BC = nums(answer)[0]!;
+    expect(AB! * EF!).toBe(BC * DE!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|53": ({ content, answer }) => {
+    const { AC, AB, DF } = segs(content);
+    const DE = nums(answer)[0]!;
+    expect(AB! * DF!).toBe(AC! * DE);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|54": ({ content, answer }) => {
+    const { AB, BC, CD, EF } = segs(content);
+    // $\overline{FG}+\overline{GH}=(\overline{BC}+\overline{CD})\times\overline{EF}/\overline{AB}$
+    expect(nums(answer)[0]! * AB!).toBe((BC! + CD!) * EF!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|55": ({ content, answer }) => {
+    const [p, q] = nums(content.match(/=(\d+):(\d+)\$/)![0]);
+    const whole = Number(content.match(/\\overline\{DF\}=(\d+)/)![1]);
+    expect(nums(answer)[0]! * (p! + q!)).toBe(whole * (p! - q!));
+    expect(p!).toBeGreaterThan(q!); // 차가 음수면 「길이」가 아니다
+  },
+  // ── 중2 삼각형에서 평행선 사이의 선분의 길이의 비 (56~60) ─
+  "2-2|평행선 사이의 선분의 길이의 비|56": ({ content, answer }) => {
+    const { AD, DB, AE } = segs(content);
+    expect(AD! * nums(answer)[0]!).toBe(DB! * AE!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|57": ({ content, answer }) => {
+    const { AD, AB, DE } = segs(content);
+    expect(AD! * nums(answer)[0]!).toBe(AB! * DE!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|58": ({ content, answer }) => {
+    const [p, q] = nums(content.match(/=(\d+):(\d+)\$/)![0]);
+    const BC = Number(content.match(/\\overline\{BC\}=(\d+)/)![1]);
+    expect(nums(answer)[0]! * (p! + q!)).toBe(BC * p!);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|59": ({ content, answer }) => {
+    const BC = Number(content.match(/\\overline\{BC\}=(\d+)/)![1]);
+    expect(nums(answer)[0]! * 2).toBe(BC);
+  },
+  "2-2|평행선 사이의 선분의 길이의 비|60": ({ content, answer }) => {
+    const { AD, AB } = segs(content);
+    const per = Number(content.match(/둘레의 길이가 \$(\d+)/)![1]);
+    expect(nums(answer)[0]! * AD!).toBe(per * AB!);
+  },
   // ── 중2 삼각형의 각의 이등분선 ────────────────────────────
   "2-2|평행선 사이의 선분의 길이의 비|12": ({ content, answer }) => {
     const { AB, AC, BC } = segs(content);
