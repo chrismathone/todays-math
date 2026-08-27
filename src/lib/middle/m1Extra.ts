@@ -761,6 +761,131 @@ const HISTOGRAM_TYPES: TypeEntry[] = [
   ),
 ];
 
+const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "20",
+    "그래프에서 점의 좌표 읽기",
+    "그래프의 이해",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, -6, 6);
+      const y = intBetween(rng, -6, 6);
+      return {
+        content: `그래프 위의 점 $P$의 좌표가 $(${x}, ${y})$일 때, 점 $P$의 $y$좌표를 구하시오.`,
+        answer: `$${y}$`,
+        solution: `순서쌍의 두 번째 수가 $y$좌표이므로 점 $P$의 $y$좌표는 $${y}$이다.`,
+        facts: { x, y, answer: y },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "21",
+    "그래프에서 가로 변화량",
+    "그래프의 이해",
+    "연산",
+    (rng) => {
+      const x1 = intBetween(rng, -8, 1);
+      const change = intBetween(rng, 2, 9);
+      const x2 = x1 + change;
+      const y = intBetween(rng, -5, 5);
+      return {
+        content: `그래프 위의 두 점 $A(${x1}, ${y})$, $B(${x2}, ${y})$ 사이의 가로 방향 거리를 구하시오.`,
+        answer: `$${change}$`,
+        solution: `두 점의 $x$좌표의 차는 $${x2}-(${x1})=${change}$이므로 가로 방향 거리는 $${change}$이다.`,
+        facts: { x1, x2, y, answer: change },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "22",
+    "그래프에서 세로 변화량",
+    "그래프의 이해",
+    "연산",
+    (rng) => {
+      const y1 = intBetween(rng, -8, 1);
+      const change = intBetween(rng, 2, 9);
+      const y2 = y1 + change;
+      const x = intBetween(rng, -5, 5);
+      return {
+        content: `그래프 위의 두 점 $C(${x}, ${y1})$, $D(${x}, ${y2})$ 사이의 세로 방향 거리를 구하시오.`,
+        answer: `$${change}$`,
+        solution: `두 점의 $y$좌표의 차는 $${y2}-(${y1})=${change}$이므로 세로 방향 거리는 $${change}$이다.`,
+        facts: { x, y1, y2, answer: change },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "23",
+    "그래프에서 값의 증가량",
+    "그래프의 이해",
+    "응용",
+    (rng) => {
+      const x1 = intBetween(rng, 0, 4);
+      const x2 = x1 + intBetween(rng, 1, 4);
+      const y1 = intBetween(rng, 1, 10);
+      const increase = intBetween(rng, 2, 10);
+      const y2 = y1 + increase;
+      return {
+        content: `어떤 관계의 그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지난다. $x$가 $${x1}$에서 $${x2}$까지 변할 때 $y$가 증가한 양을 구하시오.`,
+        answer: `$${increase}$`,
+        solution: `$y$좌표는 $${y1}$에서 $${y2}$로 변하므로 증가한 양은 $${y2}-${y1}=${increase}$이다.`,
+        facts: { x1, x2, y1, y2, answer: increase },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "24",
+    "그래프 위의 규칙으로 좌표 구하기",
+    "그래프의 이해",
+    "응용",
+    (rng) => {
+      const slope = intBetween(rng, 2, 5);
+      const intercept = intBetween(rng, 1, 8);
+      const x1 = intBetween(rng, 0, 3);
+      const x2 = x1 + intBetween(rng, 2, 5);
+      const y1 = slope * x1 + intercept;
+      const y2 = slope * x2 + intercept;
+      return {
+        content: `한 직선 모양의 그래프 위에 점 $A(${x1}, ${y1})$가 있다. 이 그래프에서 $x$가 $1$만큼 증가할 때마다 $y$는 $${slope}$만큼 증가한다. $x$좌표가 $${x2}$인 점의 $y$좌표를 구하시오.`,
+        answer: `$${y2}$`,
+        solution: `$x$는 $${x2 - x1}$만큼 증가하므로 $y$는 $${slope}\times${x2 - x1}=${slope * (x2 - x1)}$만큼 증가한다. 따라서 구하는 $y$좌표는 $${y1}+${slope * (x2 - x1)}=${y2}$이다.`,
+        facts: { slope, intercept, x1, x2, y1, y2, answer: y2 },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "25",
+    "그래프의 증가 구간 세기",
+    "그래프의 이해",
+    "심화",
+    (rng) => {
+      const values = Array.from({ length: 6 }, () => intBetween(rng, 1, 15));
+      let answer = 0;
+      for (let i = 1; i < values.length; i += 1) {
+        if (values[i]! > values[i - 1]!) answer += 1;
+      }
+      return {
+        content: `그래프 위의 점을 $x$좌표가 작은 것부터 읽었더니 $y$좌표가 차례로 $${values.join(",\\ ")}$이었다. 이웃한 두 점을 이은 선분 중 오른쪽 위로 올라가는 선분의 개수를 구하시오.`,
+        answer: `$${answer}$개`,
+        solution: `이웃한 $y$좌표를 차례로 비교하면 뒤의 값이 더 큰 경우는 모두 $${answer}$번이다. 따라서 오른쪽 위로 올라가는 선분은 $${answer}$개이다.`,
+        facts: dataFacts(values, answer),
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
@@ -768,4 +893,5 @@ export const M1EXTRA_TYPES: TypeEntry[] = [
   ...FREQUENCY_TABLE_TYPES,
   ...BASIC_COORDINATE_TYPES,
   ...HISTOGRAM_TYPES,
+  ...GRAPH_UNDERSTANDING_TYPES,
 ];

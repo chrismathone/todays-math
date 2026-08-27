@@ -247,6 +247,57 @@ describe("갈래 A 중등 유형 값 검산", () => {
     }
   });
 
+  const graphExpected: Record<string, (content: string) => number> = {
+    "20": (content) =>
+      Number(content.match(/좌표가 \$\((-?\d+), (-?\d+)\)\$/)?.[2]),
+    "21": (content) => {
+      const points = content.match(
+        /\$A\((-?\d+), (-?\d+)\)\$, \$B\((-?\d+), (-?\d+)\)\$/,
+      );
+      return Math.abs(Number(points?.[3]) - Number(points?.[1]));
+    },
+    "22": (content) => {
+      const points = content.match(
+        /\$C\((-?\d+), (-?\d+)\)\$, \$D\((-?\d+), (-?\d+)\)\$/,
+      );
+      return Math.abs(Number(points?.[4]) - Number(points?.[2]));
+    },
+    "23": (content) => {
+      const points = content.match(
+        /두 점 \$\((-?\d+), (-?\d+)\)\$, \$\((-?\d+), (-?\d+)\)\$/,
+      );
+      return Number(points?.[4]) - Number(points?.[2]);
+    },
+    "24": (content) => {
+      const values = content.match(
+        /점 \$A\((-?\d+), (-?\d+)\)\$.*\$y\$는 \$(\d+)\$만큼.*\$x\$좌표가 \$(-?\d+)\$/,
+      );
+      const [x1, y1, slope, x2] = values!.slice(1).map(Number);
+      return y1! + slope! * (x2! - x1!);
+    },
+    "25": (content) => {
+      const list = content.match(/차례로 \$([^$]+)\$/)?.[1] ?? "";
+      const values = (list.match(/-?\d+/g) ?? []).map(Number);
+      return values.slice(1).filter((value, index) => value > values[index]!)
+        .length;
+    },
+  };
+
+  it.each(Object.keys(graphExpected))("그래프의 이해 유형 %s", (rpmType) => {
+    const entry = M1EXTRA_TYPES.find(
+      (candidate) =>
+        candidate.unitSection === "그래프의 이해" &&
+        candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    for (const seed of [17, 203, 991]) {
+      const problem = entry!.handler(seeded(seed));
+      expect(numericAnswer(problem.answer)).toBe(
+        graphExpected[rpmType]!(problem.content),
+      );
+    }
+  });
+
   const numberAverageAgeExpected: Record<string, (content: string) => number> =
     {
       "01A": (content) => {
