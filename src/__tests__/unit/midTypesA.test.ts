@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { M1EXTRA_TYPES } from "../../lib/middle/m1Extra";
+import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
 
 function seeded(seed: number): () => number {
   let state = seed >>> 0;
@@ -178,6 +179,35 @@ describe("갈래 A 중등 유형 값 검산", () => {
         expect(numericAnswer(problem.answer)).toBe(
           coordinateExpected[rpmType]!(x, y, problem.content),
         );
+      }
+    },
+  );
+
+  it.each(["19A", "20A", "21A", "22A", "23A", "24A", "25A", "26A"])(
+    "해가 특수한 연립방정식 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM_APPLY.find(
+        (candidate) =>
+          candidate.unitSection === "해가 특수한 연립방정식" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        const table = problem.content.match(
+          /계수표: (a|\d+), (a|\d+), (\d+) \/ (a|\d+), (a|\d+), (\d+)/,
+        );
+        expect(table).not.toBeNull();
+        const cells = table!
+          .slice(1)
+          .map((value) => (value === "a" ? null : Number(value)));
+        const [a1, b1, _c1, a2, b2] = cells;
+        let expected: number;
+        if (a1 === null) expected = a2! / (b2! / b1!);
+        else if (b1 === null) expected = b2! / (a2! / a1);
+        else if (a2 === null) expected = a1 * (b2! / b1);
+        else expected = b1 * (a2 / a1);
+        expect(numericAnswer(problem.answer)).toBe(expected);
       }
     },
   );

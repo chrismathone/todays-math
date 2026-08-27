@@ -92,6 +92,41 @@ function def(
   };
 }
 
+type SpecialMissing = "A1" | "B1" | "A2" | "B2";
+
+function specialExtra(
+  rpmType: string,
+  rpmTitle: string,
+  missing: SpecialMissing,
+  outcome: "무수히 많을" | "없을",
+  difficulty: MidProblem["difficulty"],
+): TypeEntry {
+  return def(MINOR_SYS, rpmType, rpmTitle, SEC.특수, difficulty, (rng) => {
+    const p = intBetween(rng, 1, 5);
+    const q = intBetween(rng, 1, 5);
+    const r = intBetween(rng, 1, 8);
+    const k = intBetween(rng, 2, 5);
+    const d = intBetween(rng, 1, 4);
+    const coefficients: Record<SpecialMissing | "C1" | "C2", number> = {
+      A1: p,
+      B1: q,
+      C1: r,
+      A2: k * p,
+      B2: k * q,
+      C2: outcome === "무수히 많을" ? k * r : k * r + d,
+    };
+    const shown = (name: SpecialMissing): string =>
+      name === missing ? "a" : String(coefficients[name]);
+    const answer = coefficients[missing];
+    return {
+      content: `연립방정식 $\\begin{cases}${shown("A1")}x+${shown("B1")}y=${coefficients.C1}\\\\${shown("A2")}x+${shown("B2")}y=${coefficients.C2}\\end{cases}$의 해가 ${outcome} 때, $a$의 값을 구하시오.\n(계수표: ${shown("A1")}, ${shown("B1")}, ${coefficients.C1} / ${shown("A2")}, ${shown("B2")}, ${coefficients.C2})`,
+      answer: `$${answer}$`,
+      solution: `$x$, $y$의 계수비가 각각 $${k}$로 같아야 한다. 따라서 빠진 계수 $a=${answer}$이다.${outcome === "없을" ? " 이때 상수항의 비는 계수비와 다르다." : " 상수항의 비도 같으므로 두 식은 같은 방정식이다."}`,
+      facts: { ...coefficients, answer },
+    };
+  });
+}
+
 export const M2_SYSTEM_APPLY: TypeEntry[] = [
   // ── 연립일차방정식 (풀이의 응용: 해의 조건·계수 결정) ─
   def(
@@ -499,4 +534,36 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       };
     }),
   ),
+  specialExtra(
+    "19A",
+    "해가 무수히 많을 때 둘째 식의 y계수",
+    "B2",
+    "무수히 많을",
+    "연산",
+  ),
+  specialExtra("20A", "해가 없을 때 둘째 식의 y계수", "B2", "없을", "응용"),
+  specialExtra(
+    "21A",
+    "해가 무수히 많을 때 둘째 식의 x계수",
+    "A2",
+    "무수히 많을",
+    "기본",
+  ),
+  specialExtra("22A", "해가 없을 때 둘째 식의 x계수", "A2", "없을", "응용"),
+  specialExtra(
+    "23A",
+    "해가 무수히 많을 때 첫째 식의 y계수",
+    "B1",
+    "무수히 많을",
+    "연산",
+  ),
+  specialExtra("24A", "해가 없을 때 첫째 식의 y계수", "B1", "없을", "심화"),
+  specialExtra(
+    "25A",
+    "해가 무수히 많을 때 첫째 식의 x계수",
+    "A1",
+    "무수히 많을",
+    "기본",
+  ),
+  specialExtra("26A", "해가 없을 때 첫째 식의 x계수", "A1", "없을", "심화"),
 ];
