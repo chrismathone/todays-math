@@ -132,6 +132,86 @@ function def(
   };
 }
 
+function areaVolumeRatioSupplement(
+  rpmType: string,
+  rpmTitle: string,
+  mode: number,
+): TypeEntry {
+  return def(
+    MINOR_SIM,
+    rpmType,
+    rpmTitle,
+    SEC.넓이부피비,
+    mode < 2 ? "기본" : "응용",
+    (rng): Body => {
+      const p = intBetween(rng, 1, 4);
+      const q = p + intBetween(rng, 1, 4);
+      const k = intBetween(rng, 2, 6);
+      if (mode === 0) {
+        return {
+          content: `닮은 두 평면도형의 넓이의 비가 $${p * p}:${q * q}$일 때, 닮음비를 구하시오.`,
+          answer: `$${p}:${q}$`,
+          solution: `닮은 두 평면도형의 넓이의 비는 닮음비의 제곱이다. $${p * p}:${q * q}=${p}^2:${q}^2$이므로 닮음비는 $${p}:${q}$이다.`,
+          facts: { mode, p, q, k, x: p },
+        };
+      }
+      if (mode === 1) {
+        const area = p * p * k;
+        const x = q * q * k;
+        return {
+          content: `닮은 두 삼각형의 닮음비가 $${p}:${q}$이고 작은 삼각형의 넓이가 $${area}\,\mathrm{cm}^2$일 때, 큰 삼각형의 넓이를 구하시오.`,
+          answer: `$${x}\,\mathrm{cm}^2$`,
+          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\times\dfrac{${q * q}}{${p * p}}=${x}\,(\mathrm{cm}^2)$이다.`,
+          facts: { mode, p, q, k, area, x },
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$일 때, 부피의 비를 구하시오.`,
+          answer: `$${p * p * p}:${q * q * q}$`,
+          solution: `닮은 두 입체도형의 부피의 비는 닮음비의 세제곱이므로 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다.`,
+          facts: { mode, p, q, k, x: p * p * p },
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `닮은 두 입체도형의 부피의 비가 $${p * p * p}:${q * q * q}$일 때, 닮음비를 구하시오.`,
+          answer: `$${p}:${q}$`,
+          solution: `부피의 비는 닮음비의 세제곱이다. $${p * p * p}:${q * q * q}=${p}^3:${q}^3$이므로 닮음비는 $${p}:${q}$이다.`,
+          facts: { mode, p, q, k, x: q },
+        };
+      }
+      if (mode === 4) {
+        const surface = p * p * k;
+        const x = q * q * k;
+        return {
+          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 겉넓이가 $${surface}\,\mathrm{cm}^2$일 때, 큰 입체도형의 겉넓이를 구하시오.`,
+          answer: `$${x}\,\mathrm{cm}^2$`,
+          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\times\dfrac{${q * q}}{${p * p}}=${x}\,(\mathrm{cm}^2)$이다.`,
+          facts: { mode, p, q, k, surface, x },
+        };
+      }
+      const volume = p * p * p * k;
+      const x = q * q * q * k;
+      return {
+        content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 부피가 $${volume}\,\mathrm{cm}^3$일 때, 큰 입체도형의 부피를 구하시오.`,
+        answer: `$${x}\,\mathrm{cm}^3$`,
+        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\times\dfrac{${q * q * q}}{${p * p * p}}=${x}\,(\mathrm{cm}^3)$이다.`,
+        facts: { mode, p, q, k, volume, x },
+      };
+    },
+  );
+}
+
+const AREA_VOLUME_RATIO_SUPPLEMENTS = [
+  areaVolumeRatioSupplement("30", "넓이의 비에서 닮음비 구하기", 0),
+  areaVolumeRatioSupplement("31", "닮은 삼각형의 넓이 구하기", 1),
+  areaVolumeRatioSupplement("32", "닮은 입체도형의 부피의 비", 2),
+  areaVolumeRatioSupplement("33", "부피의 비에서 닮음비 구하기", 3),
+  areaVolumeRatioSupplement("34", "닮은 입체도형의 겉넓이 구하기", 4),
+  areaVolumeRatioSupplement("35", "닮은 입체도형의 부피 구하기", 5),
+] as const;
+
 /**
  * 닮음 기호 오른쪽 삼각형의 꼭짓점 순서 — △ABC ∽ △(p[0]p[1]p[2]).
  * 테스트가 같은 표로 대응변·대응각을 재계산한다.
@@ -1233,6 +1313,7 @@ function figButterfly11(
 
 export const M2_GEO_SIM: TypeEntry[] = [
   ...MIDDLE_COMBO_TYPES,
+  ...AREA_VOLUME_RATIO_SUPPLEMENTS,
   // ── 삼각형의 닮음 조건 (2B 마크 문법: 같은 각 호·직각 기호) ──────────
   def(
     MINOR_SIM,
