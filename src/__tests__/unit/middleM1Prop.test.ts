@@ -23,6 +23,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
+import { isCatalogType } from "../helpers/rpmCatalog";
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import {
@@ -592,9 +593,14 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
     // 물결 5 의 새 함정: 이 두 중단원은 시작 시점에 반쯤 차 있었다.
     // 남의 유형을 다시 내면 key 가 겹치고, 안 내면 중단원이 안 찬다.
     const mine = new Set(M1_PROP.map((e) => e.key));
+    // ⚠️ **색인 유형만** 견준다. 2026-08-27 부터 네 갈래가 이 두 중단원에도
+    //    색인 밖 확장 유형을 더한다. 전량을 얼려 두면 이 시험은 「남의 색인
+    //    유형을 다시 냈나」가 아니라 「오늘 아무도 유형을 안 더했나」를 묻는
+    //    것이 되어, 누가 무엇을 더하든 빨개진다(실측 7 → 20).
     const others = registeredTypes().filter(
       (e) =>
         !mine.has(e.key) &&
+        isCatalogType(e) &&
         (e.rpmMinor === "좌표와 그래프" || e.rpmMinor === "정비례와 반비례"),
     );
     expect(others.map((e) => e.key).sort()).toEqual([
@@ -607,7 +613,7 @@ describe("5B — 정비례와 반비례 21 + 좌표와 그래프 6", () => {
       "1-1|좌표와 그래프|10",
     ]);
     // 남의 것 + 내 것 = 색인 전량(좌표 11 · 정비례 23).
-    const all = [...others, ...M1_PROP];
+    const all = [...others, ...M1_PROP.filter(isCatalogType)];
     expect(all.filter((e) => e.rpmMinor === "좌표와 그래프").length).toBe(11);
     expect(all.filter((e) => e.rpmMinor === "정비례와 반비례").length).toBe(23);
   });

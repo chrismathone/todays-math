@@ -23,6 +23,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { registeredTypes } from "../../lib/middle/generate";
+import { extensionNumberReason } from "../helpers/rpmCatalog";
 
 const TEST_DIR = path.resolve(process.cwd(), "src/__tests__/unit");
 const SELF = "middleTypeCoverage.test.ts";
@@ -106,15 +107,18 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
       // 있을 수가 없다. 정본에 없는 것을 정본에 적어 넣으면 이 가드가
       // 「우리가 적은 것과 우리가 등록한 것이 같은가」를 묻는 동어반복이 된다.
       // 그래서 **정본은 그대로 두고** 확장 번호에 두 조건만 건다.
-      const maxNo = Math.max(...inMinor.map((t) => Number(t.number)));
-      if (Number(e.rpmType) <= maxNo) {
+      // 규칙은 `extensionNumberReason` **한 곳**에 있다. 여기 다시 적으면
+      // 여러 벌이 되어 한쪽만 고쳐도 아무도 모른다(실측: 갈래 A 의 `12A` 를
+      // 세 파일이 다 `Number()` 로만 봐서 NaN 으로 읽었다).
+      const why = extensionNumberReason(e);
+      if (why !== null) {
         // 정본 번호대(01..max)의 빈 칸을 가로채면 RPM 이 그 번호를 쓰는 날 겹친다.
         // 🟡 정직하게 — 정본의 번호는 지금 전부 01..N 이 **끊김 없이** 이어져서
         //    이 갈래는 **오늘은 못 탄다**(번호대 안이면 위에서 `hit` 이 된다).
         //    번호대 안을 노린 변이는 「유형 키가 겹칩니다」(generate.ts)가 먼저
         //    문다. 이 줄은 정본이 재추출되며 번호에 구멍이 생기는 날을 위한
         //    뒷받침이다 — 지금 무엇이 지키고 있는지 헷갈리지 않게 적어 둔다.
-        bad.push(`${e.key}: 확장 번호가 색인 번호대(최대 ${maxNo}) 안에 있다`);
+        bad.push(`${e.key}: ${why}`);
         continue;
       }
       // 확장인데 제목이 정본 제목과 같으면 **이미 있는 유형을 번호만 바꿔 두 번**

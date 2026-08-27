@@ -64,3 +64,38 @@ export function catalogMaxNumber(book: string, minor: string): number | null {
   if (types.length === 0) return null;
   return Math.max(...types.map((t) => Number(t.number)));
 }
+
+/**
+ * **확장 유형의 번호가 옳은가** — 그르면 까닭을, 옳으면 `null` 을 낸다.
+ *
+ * 지키려는 것은 하나다: **RPM 이 나중에 그 번호를 쓰는 날 겹치지 않는가.**
+ * 그 목적을 채우는 꼴이 둘이고, 둘 다 받는다.
+ *
+ *   ⑴ **순수 숫자 · 색인 최댓값 초과** — `11`·`17` (갈래 B·C·D 가 쓴 꼴)
+ *   ⑵ **색인 번호 + 영문 한 글자** — `12A`·`07A` (갈래 A 가 쓴 꼴)
+ *
+ * ⑵ 를 받는 까닭: **RPM 색인 번호는 숫자뿐**이라 글자가 붙은 번호는 영영 안
+ * 겹친다. 목적으로 보면 ⑴ 보다 오히려 세다 — ⑴ 은 RPM 이 유형을 늘리면
+ * 언젠가 따라잡히지만 ⑵ 는 그럴 수 없다. 그리고 ⑵ 는 「색인 12번 곁에 지은
+ * 것」이라는 **뜻까지** 담는다.
+ *
+ * 🔴 종전에는 이 규칙이 세 시험 파일에 **따로** 적혀 있었고 셋 다 `Number()` 로만
+ *    봤다. 그래서 `Number("12A") = NaN` 이 「번호대 안이다 — 오타로 보인다」로
+ *    읽혔다(갈래 A 병합 실측). 규칙이 여러 벌이면 한쪽만 고쳐도 아무도 모른다 —
+ *    그래서 **여기 한 곳**에 둔다.
+ */
+export function extensionNumberReason(e: TypeRef): string | null {
+  const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
+  if (maxNo === null)
+    return `색인에 없는 중단원이다: ${e.rpmBook}|${e.rpmMinor}`;
+
+  const suffixed = /^(\d+)[A-Z]$/.exec(e.rpmType);
+  if (suffixed) return null; // ⑵ 글자가 붙었다 — 색인 번호와 절대 안 겹친다
+
+  const plain = /^\d+$/.test(e.rpmType) ? Number(e.rpmType) : null;
+  if (plain === null)
+    return `번호 꼴이 «숫자» 도 «숫자+영문 한 글자» 도 아니다: ${e.rpmType}`;
+  if (plain <= maxNo)
+    return `색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`;
+  return null;
+}

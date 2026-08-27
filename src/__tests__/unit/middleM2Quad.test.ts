@@ -15,6 +15,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { extensionNumberReason, isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import {
@@ -31,7 +33,21 @@ const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 
 const SEEDS = [20260824, 1, 7777, 424242, 99991, 31337, 5150];
 
-const QUAD = M2_QUAD;
+/**
+ * 이 시험이 맡은 몫 — **RPM 색인 유형만.**
+ *
+ * 🔴 2026-08-27 부터 갈래 넷이 130소단원을 10유형으로 올리며 이 모듈에도 색인
+ *    밖 확장 유형을 더한다(갈래 A 가 `14A`·`15A` 꼴). 모듈 배열을 통째로 돌면
+ *    손으로 적은 검산표·그림 허용 목록·유형 수에 **남의 유형이 들이대져** 빨개진다.
+ *    갈래 A 가 자기 보고서에 「소유권 밖 고정 명부 — 병합할 때 갱신해야 한다」고
+ *    적어 넘긴 자리다.
+ *
+ * ⚠️ 좁히면서 「확장 유형이 조용히 사라지는」 반대 방향을 잃지 않는다 —
+ *    아래 «확장 유형도 등록돼 있다» 가 그것을 지키고, 확장 유형의 값 검산은
+ *    그 갈래의 전용 시험(`midTypesA.test.ts` 등)이 한다.
+ */
+const QUAD = M2_QUAD.filter(isCatalogType);
+const QUAD_EXT = M2_QUAD.filter((e) => !isCatalogType(e));
 
 type F = Record<string, number>;
 type XY = [number, number];
@@ -372,3 +388,23 @@ describe.skipIf(!hasEngine)(
     }
   },
 );
+
+/**
+ * 좁힌 만큼의 뒷받침 — **확장 유형이 조용히 사라지지 않는다.**
+ * 위에서 몫을 색인 유형으로 좁혔으므로, 이 시험이 없으면 다른 갈래가 확장
+ * 유형을 통째로 지워도 이 파일은 초록이다. 값 검산은 그 갈래의 전용 시험이 한다.
+ */
+describe("확장 유형 — 등록은 살아 있다", () => {
+  it("색인 밖 유형도 generate 진입점에 있다", () => {
+    const keys = new Set(registeredTypes().map((e) => e.key));
+    for (const e of QUAD_EXT) expect(keys.has(e.key), e.key).toBe(true);
+  });
+
+  it("확장 유형의 번호가 RPM 번호와 영영 안 겹친다", () => {
+    const bad = QUAD_EXT.map((e) => {
+      const why = extensionNumberReason(e);
+      return why === null ? null : `${e.key}: ${why}`;
+    }).filter((x): x is string => x !== null);
+    expect(bad).toEqual([]);
+  });
+});

@@ -12,6 +12,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
 import { bareNumbers } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import {
@@ -217,8 +218,12 @@ describe("중1 「원과 부채꼴」 16유형 + 「도수분포다각형」 09 
     expect(dup[0]!.rpmTitle).toBe("원의 둘레의 길이와 넓이");
   });
 
+  // ⚠️ **색인 유형만** 센다. 2026-08-27 부터 네 갈래가 130소단원을 10유형으로
+  //    올리며 색인 밖 확장 유형을 더한다. 전량을 세면 이 수는 「색인을 다
+  //    덮었나」가 아니라 「오늘 몇 개나 지었나」를 묻는 것이 된다(실측 18 → 20).
+  //    지키려는 것은 앞엣것이다.
   it("전체 색인 커버리지 — 원과 부채꼴 18/18 · 도수분포표와 상대도수 19/19", () => {
-    const all = registeredTypes();
+    const all = registeredTypes().filter(isCatalogType);
     const sector = all.filter(
       (e) => e.rpmBook === "1-2" && e.rpmMinor === "원과 부채꼴",
     );

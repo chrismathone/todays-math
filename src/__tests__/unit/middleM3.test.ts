@@ -10,6 +10,8 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { extensionNumberReason, isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -139,13 +141,33 @@ function everyNumberFinite(v: unknown): boolean {
  * **이 파일이 지키는 중단원 둘을 이름으로 못 박는** 쪽으로 뒤집는다.
  */
 const OWN_MINORS = new Set(["원과 직선", "원주각"]);
+/**
+ * 이 시험이 맡은 몫 — **RPM 색인 유형만.**
+ *
+ * 🔴 2026-08-27 부터 갈래 넷이 130소단원을 10유형으로 올리며 이 중단원에도 색인
+ *    밖 확장 유형을 더한다(갈래 A 가 `17A`·`18A` 꼴). 색인으로 안 좁히면 손으로
+ *    적은 검산표·답 키에 **남의 유형이 들이대져** 「검산식 누락」으로 빨개진다.
+ *    확장 유형의 값 검산은 그 갈래의 전용 시험이 한다.
+ */
 const ownEntries = (): ReturnType<typeof registeredTypes> =>
   registeredTypes().filter(
     (e) =>
       e.rpmBook === "3-2" &&
       e.grade === "중3" &&
       OWN_MINORS.has(e.rpmMinor) &&
-      e.unitSection !== "원의 접선",
+      e.unitSection !== "원의 접선" &&
+      isCatalogType(e),
+  );
+
+/** 좁힌 만큼의 뒷받침 — 확장 유형이 조용히 사라지지 않는다. */
+const extEntries = (): ReturnType<typeof registeredTypes> =>
+  registeredTypes().filter(
+    (e) =>
+      e.rpmBook === "3-2" &&
+      e.grade === "중3" &&
+      OWN_MINORS.has(e.rpmMinor) &&
+      e.unitSection !== "원의 접선" &&
+      !isCatalogType(e),
   );
 
 describe("중3 원의 성질 16유형", () => {
@@ -253,5 +275,19 @@ describe("중3 원의 성질 16유형", () => {
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
     }
+  });
+});
+
+describe("확장 유형 — 등록은 살아 있다", () => {
+  it("색인 밖 유형의 번호가 RPM 번호와 영영 안 겹친다", () => {
+    const ext = extEntries();
+    expect(ext.length, "확장 유형이 통째로 사라졌다").toBeGreaterThan(0);
+    const bad = ext
+      .map((e) => {
+        const why = extensionNumberReason(e);
+        return why === null ? null : `${e.key}: ${why}`;
+      })
+      .filter((x): x is string => x !== null);
+    expect(bad).toEqual([]);
   });
 });

@@ -9,14 +9,12 @@
  * RPM 유형 번호·제목은 `scripts/rpm/rpm-type-catalog.json`(색인 정본)과 대조한다 —
  * 지어낸 제목이면 여기서 빨개진다.
  */
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
 import {
   catalogHit,
-  catalogMaxNumber,
+  extensionNumberReason,
   isCatalogType,
 } from "../helpers/rpmCatalog";
 import { bareNumbers } from "../../lib/elementary/rules";
@@ -335,18 +333,14 @@ describe("중2 부등식·연립방정식 활용 계열 36유형", () => {
     }
   });
 
-  it("확장 유형은 색인 번호대를 **넘는다** — 번호대 안이면 오타이지 확장이 아니다", () => {
-    for (const e of EXTENSIONS) {
-      const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
-      expect(
-        maxNo,
-        `${e.key}: 색인에 없는 중단원 ${JSON.stringify(e.rpmMinor)}`,
-      ).not.toBeNull();
-      expect(
-        Number(e.rpmType),
-        `${e.key}: 색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`,
-      ).toBeGreaterThan(maxNo!);
-    }
+  // 규칙은 `extensionNumberReason` **한 곳**에 있다. 여기 다시 적으면 여러 벌이
+  // 되어 한쪽만 고쳐도 아무도 모른다 — 실제로 그래서 `12A` 가 NaN 으로 읽혔다.
+  it("확장 유형의 번호가 RPM 번호와 영영 안 겹친다", () => {
+    const bad = EXTENSIONS.map((e) => {
+      const why = extensionNumberReason(e);
+      return why === null ? null : `${e.key}: ${why}`;
+    }).filter((x): x is string => x !== null);
+    expect(bad).toEqual([]);
   });
 
   it("우리 단원 9개(0건 7개 + 해가 특수 + 개수·예금액)에 실측 이름으로 붙는다", () => {
