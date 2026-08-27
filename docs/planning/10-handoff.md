@@ -198,6 +198,8 @@ DB 수리 도구는 `scripts/qa/repair-mcq-choices.ts` (마른 실행이 기본)
 
 ### 0-C.6 이 컴퓨터에만 있는 것 (다른 컴퓨터에는 안 간다)
 
+- ✅ **그 미커밋 작업은 사본을 떠 밀어 뒀다** — `scratch/rescued/uncommitted-2026-08-27/`
+  (새 파일 둘 + 패치 + 되살리는 법). 원본은 안 건드렸으니 이 컴퓨터에서는 그대로다.
 - **`npx next build` 가 타입 검사에서 죽는다** — 다른 세션의 **미커밋**
   `src/__tests__/unit/import.test.ts` 두 줄이 D-106 개명(easy/mid → 연산·기본·응용·심화)
   잔재를 달고 있다(384행 `"mid"`, 413행 `"easy"`). **커밋 안 됐으니 pull 하면 없다.**
