@@ -4,7 +4,8 @@ import { M1_BOOK1 } from "@/lib/middle/m1Book1";
 import { M1_LINEAR_APPLY } from "@/lib/middle/m1LinearApply";
 import { M1_NUM } from "@/lib/middle/m1Num";
 
-const FIRST_FIVE = [
+/** 이 갈래에서 **10유형을 채운** 소단원 — 끝낼 때마다 한 줄씩 는다. */
+const DONE_SECTIONS = [
   { entries: M1_LINEAR_APPLY, section: "일차방정식의 활용(비율, 시계, 규칙)" },
   {
     entries: M1_LINEAR_APPLY,
@@ -12,7 +13,6 @@ const FIRST_FIVE = [
   },
   { entries: M1_BOOK1, section: "일차식의 뜻Ⅰ" },
   { entries: M1_NUM, section: "공약수와 최대공약수" },
-  { entries: M1_BOOK1, section: "소수와 거듭제곱" },
 ] as const;
 
 function rngFrom(seed: number): () => number {
@@ -129,25 +129,25 @@ const CHANGE_CHECKS: Record<string, (content: string) => number> = {
 };
 
 const LINEAR_TERM_CHECKS: Record<string, (content: string) => number> = {
-  "14": (content) => {
+  "21": (content) => {
     const expression = content.match(/다항식 \$(.+)\$의 항/)![1]!;
     return expression.match(/[+-]?[^+-]+/g)!.length;
   },
-  "15": (content) => Number(content.match(/x\^\{(\d+)\}/)![1]),
-  "16": (content) => Number(content.match(/x\^\{2\}([+-]\d+)x/)![1]),
-  "17": (content) => Number(content.match(/x\^\{2\}[+-]\d+x([+-]\d+)\$/)![1]),
-  "18": (content) => {
+  "22": (content) => Number(content.match(/x\^\{(\d+)\}/)![1]),
+  "23": (content) => Number(content.match(/x\^\{2\}([+-]\d+)x/)![1]),
+  "24": (content) => Number(content.match(/x\^\{2\}[+-]\d+x([+-]\d+)\$/)![1]),
+  "25": (content) => {
     const [, x, a, b] = content.match(/\$x=(-?\d+)\$.*\$(-?\d+)x([+-]\d+)\$/)!;
     return Number(a) * Number(x) + Number(b);
   },
-  "19": (content) => {
+  "26": (content) => {
     const [, price, fee, count] = content.match(
       /\$(\d+)\$원인.*포장비 \$(\d+)\$원.*\$x=(\d+)\$/,
     )!;
     return Number(price) * Number(count) + Number(fee);
   },
-  "20": () => 0,
-  "21": (content) => {
+  "27": () => 0,
+  "28": (content) => {
     const [, add, x] = content.match(/\$\(x\+(\d+)\).*\$x=(-?\d+)\$/)!;
     return 4 * Number(x) + 2 * Number(add);
   },
@@ -209,7 +209,7 @@ const GCD_CHECKS: Record<string, (content: string) => number> = {
 };
 
 describe("중등 유형 갈래 D", () => {
-  it.each(FIRST_FIVE)(
+  it.each(DONE_SECTIONS)(
     "$section 소단원은 서로 다른 유형 10개를 갖는다",
     ({ entries, section }) => {
       const selected = entries.filter((entry) => entry.unitSection === section);
@@ -253,7 +253,11 @@ describe("중등 유형 갈래 D", () => {
   it.each(Object.keys(LINEAR_TERM_CHECKS))(
     "일차식의 뜻Ⅰ 유형 %s의 값을 발문에서 다시 계산한다",
     (rpmType) => {
-      const entry = M1_BOOK1.find((candidate) => candidate.rpmType === rpmType);
+      const entry = M1_BOOK1.find(
+        (candidate) =>
+          candidate.rpmType === rpmType &&
+          candidate.unitSection === "일차식의 뜻Ⅰ",
+      );
       expect(entry).toBeDefined();
       for (const seed of [17, 37, 59]) {
         const problem = entry!.handler(rngFrom(seed));

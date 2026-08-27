@@ -519,7 +519,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "14",
+    "21",
     "항의 개수",
     SEC1.일차1,
     "기본",
@@ -551,7 +551,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "15",
+    "22",
     "다항식의 차수",
     SEC1.일차1,
     "기본",
@@ -571,7 +571,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "16",
+    "23",
     "특정 항의 계수",
     SEC1.일차1,
     "기본",
@@ -591,7 +591,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "17",
+    "24",
     "상수항 찾기",
     SEC1.일차1,
     "기본",
@@ -611,7 +611,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "18",
+    "25",
     "식의 값",
     SEC1.일차1,
     "응용",
@@ -632,7 +632,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "19",
+    "26",
     "문자를 사용한 식",
     SEC1.일차1,
     "기본",
@@ -653,7 +653,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "20",
+    "27",
     "일차식이 되는 조건",
     SEC1.일차1,
     "응용",
@@ -672,7 +672,7 @@ export const M1_BOOK1: TypeEntry[] = [
   defType(
     BOOK,
     "문자의 사용과 식의 계산",
-    "21",
+    "28",
     "도형을 나타내는 일차식",
     SEC1.일차1,
     "응용",
