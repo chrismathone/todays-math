@@ -711,7 +711,13 @@ function netMeets(l1: string, l2: string): boolean | null {
   const [a2, b2] = netEndpoints(l2);
   return a1 === a2 || a1 === b2 || b1 === a2 || b1 === b2;
 }
-const FIGURE_TETRA_NET: Record<string, unknown> = {
+/** 전개도의 **접는 선** 점선 무늬 — 시험이 이 값을 그대로 읽는다(두 벌 금지). */
+export const NET_FOLD_DASH = "5 4";
+
+/** 접는 선 = 접었을 때 겹치는 가운데 삼각형의 세 변. 날개 여섯은 자르는 선이다. */
+export const NET_FOLD_EDGES = ["AB", "BC", "CA"] as const;
+
+export const FIGURE_TETRA_NET: Record<string, unknown> = {
   version: 2,
   style: { show_points: true },
   points: {
@@ -722,10 +728,16 @@ const FIGURE_TETRA_NET: Record<string, unknown> = {
     E: [205, 110],
     F: [35, 110],
   },
+  // 접는 선(가운데 삼각형 세 변)은 **점선**, 날개 여섯은 실선이다.
+  // 전개도에서 실선은 «자르는 선»이라, 접는 선을 실선으로 그리면 그림이 전개도가
+  // 아니게 된다(초5 교과 규약. 원장님이 J10504-A05-005·006 화면에서 짚으셨다).
+  // 점선 문법은 v2 엔진의 `segments.<이름>.dash` 다 —
+  // `vendor/figure-engine/core/figure_scene.py:2506` 이 받는 키를 못 박아 두었고,
+  // 모르는 키를 넣으면 조용히 무시되는 게 아니라 **던진다**(`_strict_keys`).
   segments: {
-    AB: ["A", "B"],
-    BC: ["B", "C"],
-    CA: ["C", "A"],
+    AB: { points: ["A", "B"], dash: NET_FOLD_DASH },
+    BC: { points: ["B", "C"], dash: NET_FOLD_DASH },
+    CA: { points: ["C", "A"], dash: NET_FOLD_DASH },
     AD: ["A", "D"],
     BD: ["B", "D"],
     BE: ["B", "E"],

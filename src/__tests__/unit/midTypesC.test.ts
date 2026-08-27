@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
 
+import {
+  FIGURE_TETRA_NET,
+  NET_FOLD_DASH,
+  NET_FOLD_EDGES,
+} from "../../lib/middle/m1Geo1";
 import { M2_CENTER } from "../../lib/middle/m2Center";
 import { M2_FUNC } from "../../lib/middle/m2Func";
 import { M2_INEQ_APPLY } from "../../lib/middle/m2IneqApply";
@@ -249,5 +254,77 @@ describe("중등 유형 갈래 C — 닮은 도형", () => {
     const { facts } = generatedCenter(section, "75");
     expect(facts!.whole).toBe(facts!.upper + facts!.lower);
     expect(facts!.answer).toBe((facts!.small * facts!.whole) / facts!.upper);
+  });
+});
+
+describe("중등 그림 — 삼각뿔 전개도의 접는 선", () => {
+  /**
+   * 전개도에서 **접는 선은 점선**, 자르는 선은 실선이다(초5 교과 규약).
+   * 실선으로 그리면 그림이 전개도가 아니게 된다 — 원장님이 J10504-A05-005·006
+   * 화면에서 짚으셨다.
+   *
+   * ⚠️ 「AB·BC·CA 가 점선인가」를 **목록으로 물으면 동어반복**이다(스펙에 적힌
+   *    그 목록을 다시 읽는 것뿐이다). 그래서 접는 선을 **스펙의 이음새에서
+   *    다시 구한다** — 접는 선은 세 면이 모이는 가운데 삼각형의 변이므로 두 끝점이
+   *    모두 «여러 선분이 모이는 점»이고, 날개(자르는 선)는 한쪽 끝이 잎사귀 점이다.
+   *    이러면 점을 옮기거나 선을 지워도 기대값이 같이 따라온다.
+   */
+  const segments = FIGURE_TETRA_NET.segments as Record<string, unknown>;
+
+  function endpoints(item: unknown): [string, string] {
+    if (Array.isArray(item)) return [String(item[0]), String(item[1])];
+    const pts = (item as { points: unknown[] }).points;
+    return [String(pts[0]), String(pts[1])];
+  }
+
+  /** 점마다 몇 개의 선분이 닿는가 — 가운데 삼각형의 꼭짓점만 셋 이상이다. */
+  const degree = new Map<string, number>();
+  for (const item of Object.values(segments)) {
+    for (const pt of endpoints(item)) {
+      degree.set(pt, (degree.get(pt) ?? 0) + 1);
+    }
+  }
+
+  const foldByShape = Object.keys(segments)
+    .filter((name) =>
+      endpoints(segments[name]).every((pt) => (degree.get(pt) ?? 0) > 2),
+    )
+    .sort();
+
+  const dashedNames = Object.keys(segments)
+    .filter((name) => {
+      const item = segments[name];
+      return !Array.isArray(item) && "dash" in (item as object);
+    })
+    .sort();
+
+  it("접는 선은 이음새로 다시 구해도 가운데 삼각형 세 변이다", () => {
+    expect(foldByShape).toEqual([...NET_FOLD_EDGES].sort());
+    expect(foldByShape).toHaveLength(3);
+  });
+
+  it("점선이 붙은 선분은 그 접는 선 셋뿐이다", () => {
+    expect(dashedNames).toEqual(foldByShape);
+  });
+
+  it("접는 선 셋의 점선 무늬는 엔진이 받는 수 목록이다", () => {
+    for (const name of foldByShape) {
+      const dash = (segments[name] as { dash: string }).dash;
+      expect(dash, name).toBe(NET_FOLD_DASH);
+      // `figure_scene.py` 는 dash 를 숫자 목록으로 읽고, 양수가 하나도 없으면 던진다.
+      const parts = dash.split(/[\s,]+/).map(Number);
+      expect(parts.every((v) => Number.isFinite(v) && v >= 0)).toBe(true);
+      expect(parts.some((v) => v > 0)).toBe(true);
+    }
+  });
+
+  it("날개 여섯(자르는 선)에는 점선이 없다", () => {
+    const wings = Object.keys(segments).filter((n) => !foldByShape.includes(n));
+    expect(wings).toHaveLength(6);
+    for (const n of wings) {
+      const item = segments[n];
+      const hasDash = !Array.isArray(item) && "dash" in (item as object);
+      expect(hasDash, `${n} 은 자르는 선이라 실선이어야 한다`).toBe(false);
+    }
   });
 });
