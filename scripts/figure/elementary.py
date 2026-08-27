@@ -385,6 +385,53 @@ def _esc(v: Any) -> str:
     return escape(str(v), quote=True)
 
 
+def _dashed_polyline(
+    pts: list[tuple[float, float]],
+    dash: str,
+    *,
+    stroke: str = INK,
+    sw: float = 1.3,
+) -> str:
+    """치수가 아닌 점선을 짧은 실선 조각으로 그린다.
+
+    `measured()` 의 inline `stroke-dasharray` 는 치수 판정기의 식별자다. 숨은 모서리·
+    보조선까지 같은 표식을 쓰면 판정기가 둘을 구별할 수 없으므로, 보이는 무늬는
+    유지하되 구조용 점선은 명시적인 조각들로 낸다.
+    """
+    pattern = [float(v) for v in dash.split()]
+    if not pattern or any(v <= 0 for v in pattern):
+        raise ValueError("dash 는 양수 길이 목록이어야 합니다")
+    if len(pattern) % 2:
+        pattern *= 2
+    out: list[str] = []
+    pi = 0
+    remain = pattern[0]
+    drawing = True
+    for a, b in zip(pts, pts[1:]):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        length = math.hypot(dx, dy)
+        if length <= 1e-9:
+            continue
+        at = 0.0
+        while at < length - 1e-9:
+            take = min(remain, length - at)
+            if drawing and take > 1e-9:
+                t0, t1 = at / length, (at + take) / length
+                x0, y0 = a[0] + dx * t0, a[1] + dy * t0
+                x1, y1 = a[0] + dx * t1, a[1] + dy * t1
+                out.append(
+                    f'<line x1="{_n(x0)}" y1="{_n(y0)}" x2="{_n(x1)}" y2="{_n(y1)}" '
+                    f'stroke="{_esc(stroke)}" stroke-width="{_n(sw)}"/>'
+                )
+            at += take
+            remain -= take
+            if remain <= 1e-9:
+                pi = (pi + 1) % len(pattern)
+                remain = pattern[pi]
+                drawing = pi % 2 == 0
+    return "".join(out)
+
+
 def _rect(
     x: float,
     y: float,

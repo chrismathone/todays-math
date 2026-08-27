@@ -704,10 +704,44 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.svg, "마름모는 라벨을 적지 않는다").not.toMatch(/\d\s*cm/);
+    expect(r.svg, "구조용 점선은 measured 식별자를 쓰지 않는다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      [...r.svg.matchAll(/<line [^>]*stroke-dasharray="5 4"/g)],
-      "대각선 점선 둘",
-    ).toHaveLength(2);
+      [...r.svg.matchAll(/<line [^>]*stroke-width="1.05"/g)].length,
+      "대각선의 짧은 실선 조각",
+    ).toBeGreaterThan(4);
+  });
+
+  it.each([
+    { shape: "tri", base: 8, height: 5 },
+    { shape: "para", base: 7, height: 4 },
+    { shape: "trap", base: 8, height: 4, top: 5 },
+  ])("areaPoly $shape 치수는 도형 바깥이고 폭은 mid 등급이다", async (spec) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "areaPoly",
+      ...spec,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const polygon = parsePoints(r.svg.match(/<polygon points="([^"]+)"/)![1]!);
+    const controls = [
+      ...r.svg.matchAll(
+        /<path d="M [\d.-]+ [\d.-]+ Q ([\d.-]+) ([\d.-]+) [\d.-]+ [\d.-]+"[^>]*stroke-dasharray="6 4"/g,
+      ),
+    ].map((m) => [Number(m[1]), Number(m[2])] as Pt);
+    expect(controls.length, `${spec.shape} 치수`).toBeGreaterThanOrEqual(2);
+    for (const control of controls) {
+      expect(
+        pointInsidePolygon(control, polygon),
+        `${spec.shape} 치수 곡선`,
+      ).toBe(false);
+    }
+    const width = figureSvgViewBoxWidth(r.svg);
+    expect(width).toBeGreaterThan(160);
+    expect(width).toBeLessThanOrEqual(320);
+    expect(figureSvgSize(r.svg)).toBe("mid");
   });
 
   it("정삼각형은 세 변의 길이가 같다", async () => {
@@ -2592,6 +2626,21 @@ function parsePoints(raw: string): Pt[] {
   return [...raw.matchAll(/(-?[0-9.]+),(-?[0-9.]+)/g)].map(
     (m) => [Number(m[1]), Number(m[2])] as Pt,
   );
+}
+
+function pointInsidePolygon([x, y]: Pt, polygon: Pt[]): boolean {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const [xi, yi] = polygon[i]!;
+    const [xj, yj] = polygon[j]!;
+    if (
+      yi > y !== yj > y &&
+      x < ((xj - xi) * (y - yi)) / (yj - yi || Number.EPSILON) + xi
+    ) {
+      inside = !inside;
+    }
+  }
+  return inside;
 }
 
 function svgPolygons(svg: string): Pt[][] {
