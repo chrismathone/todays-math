@@ -86,8 +86,13 @@ def run(cmd: list[str]) -> int:
     # win32 에서 `npx` 는 `.cmd` 라 `CreateProcess` 가 못 찾는다 — 셸을 태운다.
     if cmd[0] == "npx":
         cmd = ["npx.cmd", *cmd[1:]]
+    # ⚠️ `encoding` 을 안 주면 win32 기본이 cp949 라 한글 출력에서 리더 스레드가
+    #    `UnicodeDecodeError` 로 죽는다. 판정은 `returncode` 라 답은 안 틀리지만
+    #    **근거(무엇이 실패했나)가 통째로 사라진다** — 판정 줄만 남고 근거 줄이 비면
+    #    다음 사람이 그 침묵을 못 알아챈다(2026-08-23 교훈).
     return subprocess.run(
         cmd, cwd=REPO, capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
         env={**__import__("os").environ, "PYTHONUTF8": "1"},
     ).returncode
 
