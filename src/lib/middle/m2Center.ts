@@ -1334,7 +1334,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
 export const M2_CENTER_SIMILAR: TypeEntry[] = [
   def(
     MINOR_SIMILAR,
-    "31",
+    "70",
     "닮은 도형의 대응변",
     SEC.닮음,
     "기본",
@@ -1353,7 +1353,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
 
   def(
     MINOR_SIMILAR,
-    "32",
+    "71",
     "닮은 도형의 닮음비",
     SEC.닮음,
     "기본",
@@ -1373,7 +1373,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
 
   def(
     MINOR_SIMILAR,
-    "33",
+    "72",
     "닮은 도형의 둘레의 길이",
     SEC.닮음,
     "응용",
@@ -1392,7 +1392,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
 
   def(
     MINOR_SIMILAR,
-    "34",
+    "73",
     "닮은 도형의 넓이",
     SEC.닮음,
     "응용",
@@ -1411,7 +1411,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
 
   def(
     MINOR_SIMILAR,
-    "35",
+    "74",
     "축척을 이용한 실제 거리",
     SEC.닮음,
     "기본",
@@ -1430,7 +1430,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
 
   def(
     MINOR_SIMILAR,
-    "36",
+    "75",
     "평행선과 닮은 삼각형",
     SEC.닮음,
     "심화",

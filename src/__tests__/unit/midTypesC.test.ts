@@ -220,33 +220,33 @@ describe("중등 유형 갈래 C — 일차부등식의 활용(수, 평균, 정�
 describe("중등 유형 갈래 C — 닮은 도형", () => {
   const section = "닮은 도형";
 
-  it("31 대응변의 길이를 닮음비로 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "31");
+  it("70 대응변의 길이를 닮음비로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "70");
     expect(facts!.answer).toBe(facts!.side * facts!.ratio);
   });
 
-  it("32 두 대응변으로 닮음비를 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "32");
+  it("71 두 대응변으로 닮음비를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "71");
     expect(facts!.large / facts!.small).toBe(facts!.ratio);
   });
 
-  it("33 둘레의 길이를 닮음비로 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "33");
+  it("72 둘레의 길이를 닮음비로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "72");
     expect(facts!.answer).toBe(facts!.perimeter * facts!.ratio);
   });
 
-  it("34 넓이를 닮음비의 제곱으로 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "34");
+  it("73 넓이를 닮음비의 제곱으로 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "73");
     expect(facts!.answer).toBe(facts!.area * facts!.ratio ** 2);
   });
 
-  it("35 지도 길이와 축척으로 실제 거리를 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "35");
+  it("74 지도 길이와 축척으로 실제 거리를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "74");
     expect(facts!.answer).toBe((facts!.mapLength * facts!.scale) / 100);
   });
 
-  it("36 평행선으로 생긴 닮음비를 다시 계산한다", () => {
-    const { facts } = generatedCenter(section, "36");
+  it("75 평행선으로 생긴 닮음비를 다시 계산한다", () => {
+    const { facts } = generatedCenter(section, "75");
     expect(facts!.whole).toBe(facts!.upper + facts!.lower);
     expect(facts!.answer).toBe((facts!.small * facts!.whole) / facts!.upper);
   });
