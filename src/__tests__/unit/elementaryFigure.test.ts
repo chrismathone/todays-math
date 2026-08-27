@@ -501,7 +501,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     const ys = body.map((p) => p[1]);
     const minY = Math.min(...ys);
     expect(ys.filter((y) => y < minY + 6).length).toBe(1);
-    expect(r.svg).toMatch(/stroke-dasharray="/);
+    expect(r.svg).toMatch(/stroke-width="0" stroke-opacity="0"/);
     const vb = r.svg.match(/viewBox="0 0 ([0-9.]+) ([0-9.]+)"/);
     expect(vb).toBeTruthy();
     const boxW = Number(vb![1]);
@@ -1139,7 +1139,7 @@ describe.skipIf(!hasEngine)(
         const body = polygonsByFill(cone.svg, "#e4d3b8")[0]!;
         const far = parsePoints(
           cone.svg.match(
-            /<polyline points="([^"]+)"[^>]*stroke-dasharray/,
+            /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/,
           )![1]!,
         );
         expect(
@@ -1176,7 +1176,9 @@ describe.skipIf(!hasEngine)(
         const near = polygonsByFill(r.svg, "#e4d3b8")[0]!;
         expect(near, `r=${rr} h=${hh} 옆면`).toBeTruthy();
         const far = parsePoints(
-          r.svg.match(/<polyline points="([^"]+)"[^>]*stroke-dasharray/)![1]!,
+          r.svg.match(
+            /<polyline points="([^"]+)"[^>]*stroke-width="0"[^>]*stroke-opacity="0"/,
+          )![1]!,
         );
         expect(axisTilt(far), `r=${rr} h=${hh} 기울기`).toBeLessThan(1.0);
       }

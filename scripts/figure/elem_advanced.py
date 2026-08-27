@@ -2452,7 +2452,7 @@ def _cone(spec: Mapping[str, Any]) -> str:
     near, far = _split_ring(ring, i_right, i_left)
     parts = [
         _poly([apex] + near, FACE_FRONT, 1.15),
-        _polyline(far, sw=1.05, dash=HIDDEN_DASH),
+        _dashed_polyline(far, HIDDEN_DASH, sw=1.05),
     ]
     return _svg(svg_w, svg_h, "".join(parts))
 
