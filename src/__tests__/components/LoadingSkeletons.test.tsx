@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
@@ -58,5 +60,30 @@ describe("페이지 로딩 스켈레톤", () => {
     render(view);
 
     expect(screen.getByRole("status", { name: label })).toBeInTheDocument();
+  });
+});
+
+/**
+ * 🔴 `/dev/skeletons` 시안은 목록을 **손으로 적는다.** 자리를 더하고 거기 안 적으면
+ *    그 자리는 시안에서 **구조적으로 0이 된다** — 원장님이 못 보시고, 못 보신 것은
+ *    확정될 수 없다(절대 규칙 1). 손 목록은 샌다는 것을 이 저장소가 여러 번 겪었다.
+ *
+ * 그래서 「내보낸 것이 시안에 전부 실렸는가」를 **글자로** 대조한다. 여기서는
+ * 지켜야 할 대상 자체가 «import 목록»이라 글자 검사가 동어반복이 아니다.
+ */
+describe("[D-07] 시안 목록이 새지 않는다", () => {
+  it("PageSkeletons 가 내보낸 자리는 전부 /dev/skeletons 에 실린다", () => {
+    const src = readFileSync("src/components/ui/PageSkeletons.tsx", "utf-8");
+    const page = readFileSync("src/app/dev/skeletons/page.tsx", "utf-8");
+    const exported = [...src.matchAll(/^export function (\w+)/gm)].map(
+      (m) => m[1]!,
+    );
+    expect(exported.length, "내보낸 자리를 하나도 못 찾았다").toBeGreaterThan(
+      5,
+    );
+    const missing = exported.filter(
+      (name) => !new RegExp(String.raw`\b${name}\b`).test(page),
+    );
+    expect(missing, "시안에 안 실린 자리").toEqual([]);
   });
 });
