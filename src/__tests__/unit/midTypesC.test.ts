@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { M2_FUNC } from "../../lib/middle/m2Func";
+import { M2_INEQ_APPLY } from "../../lib/middle/m2IneqApply";
 
 function rng(seed: number): () => number {
   let state = seed >>> 0;
@@ -8,6 +9,14 @@ function rng(seed: number): () => number {
     state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
     return state / 0x1_0000_0000;
   };
+}
+
+function generatedIneq(section: string, type: string, seed = 29) {
+  const entry = M2_INEQ_APPLY.find(
+    (item) => item.unitSection === section && item.rpmType === type,
+  );
+  expect(entry, `${section} ${type} 유형`).toBeDefined();
+  return entry!.handler(rng(seed));
 }
 
 function generated(type: string, seed = 17) {
@@ -63,5 +72,52 @@ describe("중등 유형 갈래 C — 일차함수의 활용(온도, 길이)", ()
     const { facts } = generated("32");
     expect(facts!.start).toBe(facts!.length1 + facts!.rate * facts!.t1);
     expect(facts!.length2).toBe(facts!.start - facts!.rate * facts!.t2);
+  });
+});
+
+describe("중등 유형 갈래 C — 일차부등식의 활용(농도)", () => {
+  const section = "일차부등식의 활용(농도)";
+
+  it("15 소금을 넣은 경계 농도를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "15");
+    expect((facts!.A * facts!.B + 100 * facts!.x) / (facts!.B + facts!.x)).toBe(
+      facts!.C,
+    );
+  });
+
+  it("16 물을 증발시킨 경계 농도를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "16");
+    expect((facts!.A * facts!.B) / (facts!.B - facts!.x)).toBe(facts!.C);
+  });
+
+  it("17 소금을 넣을 수 있는 최대량을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "17");
+    expect((facts!.A * facts!.B + 100 * facts!.x) / (facts!.B + facts!.x)).toBe(
+      facts!.C,
+    );
+  });
+
+  it("18 넣을 수 있는 물의 최대량을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "18");
+    expect((facts!.A * facts!.B) / (facts!.B + facts!.x)).toBe(facts!.C);
+  });
+
+  it("19 소금물을 물로 치환한 농도를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "19");
+    expect((facts!.A * (facts!.B - facts!.x)) / facts!.B).toBe(facts!.C);
+  });
+
+  it("20 두 소금물의 혼합 농도를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "20");
+    expect(
+      (facts!.a * facts!.x + facts!.b * (facts!.T - facts!.x)) / facts!.T,
+    ).toBe(facts!.c);
+  });
+
+  it("21 순수 단백질을 섞은 함량을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "21");
+    expect((facts!.A * facts!.B + 100 * facts!.x) / (facts!.B + facts!.x)).toBe(
+      facts!.C,
+    );
   });
 });

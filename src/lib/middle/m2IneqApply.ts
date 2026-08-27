@@ -462,4 +462,160 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       facts: { p, q, T, M, x0 },
     };
   }),
+
+  def(
+    MINOR_APPLY,
+    "15",
+    "소금을 넣어 농도를 높이는 문제",
+    SEC.농도,
+    "기본",
+    (rng) => {
+      const [A, C, unit] = pick(rng, [
+        [10, 20, 4],
+        [20, 25, 3],
+        [25, 40, 2],
+      ] as const);
+      const scale = intBetween(rng, 1, 4);
+      const B = unit * (100 - C) * scale;
+      const x = unit * (C - A) * scale;
+      return {
+        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에 소금을 넣어 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 소금을 몇 $\\mathrm{g}$ 이상 넣어야 하는지 계산하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `소금을 $x\\,\\mathrm{g}$ 넣는다고 하면 $\\dfrac{${A * B}+100x}{${B}+x}\\ge${C}$이다. 풀면 $x\\ge${x}$이므로 소금을 $${x}\\,\\mathrm{g}$ 이상 넣어야 한다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "16",
+    "물을 증발시켜 농도를 높이는 문제",
+    SEC.농도,
+    "응용",
+    (rng) => {
+      const A = pick(rng, [5, 10, 15] as const);
+      const C = A + pick(rng, [5, 10] as const);
+      const scale = intBetween(rng, 2, 6);
+      const B = C * scale;
+      const x = (B * (C - A)) / C;
+      return {
+        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$을 끓여서 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 물을 몇 $\\mathrm{g}$ 이상 증발시켜야 하는지 구하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `물 $x\\,\\mathrm{g}$을 증발시키면 소금의 양은 그대로이고 전체 양은 $(${B}-x)\\,\\mathrm{g}$이다. $\\dfrac{${A * B}}{${B}-x}\\ge${C}$을 풀면 $x\\ge${x}$이다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "17",
+    "소금을 넣을 수 있는 최대량",
+    SEC.농도,
+    "응용",
+    (rng) => {
+      const [A, C, unit] = pick(rng, [
+        [5, 20, 4],
+        [10, 25, 3],
+        [20, 40, 2],
+      ] as const);
+      const scale = intBetween(rng, 1, 4);
+      const B = unit * (100 - C) * scale;
+      const x = unit * (C - A) * scale;
+      return {
+        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에 소금을 넣되 농도가 $${C}\\%$ 이하가 되게 하려고 한다. 소금은 최대 몇 $\\mathrm{g}$까지 넣을 수 있는지 구하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `소금을 $x\\,\\mathrm{g}$ 넣는다고 하면 $\\dfrac{${A * B}+100x}{${B}+x}\\le${C}$이다. 풀면 $x\\le${x}$이므로 최대 $${x}\\,\\mathrm{g}$까지 넣을 수 있다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "18",
+    "농도를 유지하며 넣을 물의 최대량",
+    SEC.농도,
+    "기본",
+    (rng) => {
+      const C = pick(rng, [4, 5, 8, 10] as const);
+      const A = C + intBetween(rng, 2, 6);
+      const scale = intBetween(rng, 20, 50);
+      const B = C * scale;
+      const x = scale * (A - C);
+      return {
+        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에 물을 넣은 뒤에도 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 물은 최대 몇 $\\mathrm{g}$까지 넣을 수 있는지 계산하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `물 $x\\,\\mathrm{g}$을 넣으면 $\\dfrac{${A * B}}{${B}+x}\\ge${C}$이다. 풀면 $x\\le${x}$이므로 물은 최대 $${x}\\,\\mathrm{g}$까지 넣을 수 있다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "19",
+    "소금물을 물로 치환하는 문제",
+    SEC.농도,
+    "심화",
+    (rng) => {
+      const A = pick(rng, [10, 12, 15, 20] as const);
+      const C = pick(rng, [5, 6, 8, 10] as const);
+      const scale = intBetween(rng, 10, 30);
+      const B = A * scale;
+      const x = scale * (A - C);
+      return {
+        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에서 소금물 $x\\,\\mathrm{g}$을 덜어 내고 같은 양의 물을 넣었다. 농도가 $${C}\\%$ 이하가 되게 하는 $x$의 최솟값을 구하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `덜어 낸 뒤 남은 소금의 양은 $\\dfrac{${A}}{100}(${B}-x)\\,\\mathrm{g}$이다. 전체 양은 $${B}\\,\\mathrm{g}$이므로 $${A}(${B}-x)\\le${C}\\times${B}$이다. 풀면 $x\\ge${x}$이다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "20",
+    "두 소금물을 섞어 농도 이상 만들기",
+    SEC.농도,
+    "응용",
+    (rng) =>
+      attempt(100, () => {
+        const a = pick(rng, [15, 20, 25] as const);
+        const b = pick(rng, [5, 10] as const);
+        if (a <= b) return null;
+        const c = intBetween(rng, b + 1, a - 1);
+        const unit = intBetween(rng, 10, 30);
+        const T = (a - b) * unit;
+        const x = (c - b) * unit;
+        return {
+          content: `$${a}\\%$와 $${b}\\%$의 소금물을 섞어 농도가 $${c}\\%$ 이상인 소금물 $${T}\\,\\mathrm{g}$을 만들려고 한다. $${a}\\%$의 소금물은 몇 $\\mathrm{g}$ 이상 섞어야 하는지 구하시오.`,
+          answer: `$${x}\\,\\mathrm{g}$`,
+          solution: `$${a}\\%$의 소금물을 $x\\,\\mathrm{g}$ 넣으면 $${a}x+${b}(${T}-x)\\ge${c}\\times${T}$이다. 풀면 $x\\ge${x}$이다.`,
+          facts: { a, b, c, T, x },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_APPLY,
+    "21",
+    "순수한 물질을 섞는 함량 문제",
+    SEC.농도,
+    "심화",
+    (rng) => {
+      const C = pick(rng, [20, 25, 40, 50] as const);
+      const A = pick(rng, [5, 10, 15] as const);
+      const scale = intBetween(rng, 2, 6);
+      const B = (100 - C) * scale;
+      const x = (C - A) * scale;
+      return {
+        content: `단백질이 $${A}\\%$ 들어 있는 식품 $${B}\\,\\mathrm{g}$에 순수한 단백질을 섞어 단백질 함량이 $${C}\\%$ 이상이 되게 하려고 한다. 단백질을 몇 $\\mathrm{g}$ 이상 섞어야 하는지 구하시오.`,
+        answer: `$${x}\\,\\mathrm{g}$`,
+        solution: `단백질을 $x\\,\\mathrm{g}$ 섞으면 $\\dfrac{${A * B}+100x}{${B}+x}\\ge${C}$이다. 풀면 $x\\ge${x}$이다.`,
+        facts: { A, B, C, x },
+      };
+    },
+  ),
 ];
