@@ -534,6 +534,114 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       };
     }),
   ),
+  def(MINOR_APPLY, "10A", "인원수의 비", SEC.농도비율, "연산", (rng) => {
+    const firstRatio = intBetween(rng, 2, 6);
+    const secondRatio = intBetween(rng, 2, 6);
+    const scale = intBetween(rng, 4, 15);
+    const total = (firstRatio + secondRatio) * scale;
+    const answer = firstRatio * scale;
+    return {
+      content: `어느 모임의 남학생 수와 여학생 수의 비는 $${firstRatio}:${secondRatio}$이고 전체 학생은 $${total}$명이다. 남학생 수를 구하시오.`,
+      answer: `$${answer}$명`,
+      solution: `남학생과 여학생을 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${secondRatio}x=${firstRatio}y$이다. 두 식을 연립하여 풀면 남학생은 $${answer}$명이다.`,
+      facts: { firstRatio, secondRatio, total, answer },
+    };
+  }),
+  def(MINOR_APPLY, "11A", "불량품의 비율", SEC.농도비율, "기본", (rng) =>
+    attempt(300, () => {
+      const rateA = pick(rng, [5, 10, 15, 20] as const);
+      const rateB = pick(rng, [25, 30, 35, 40] as const);
+      const countA = 20 * intBetween(rng, 2, 10);
+      const countB = 20 * intBetween(rng, 2, 10);
+      const total = countA + countB;
+      const defective = (rateA * countA + rateB * countB) / 100;
+      if (!Number.isInteger(defective)) return null;
+      return {
+        content: `공장 $\mathrm{A}$와 $\mathrm{B}$에서 만든 제품은 모두 $${total}$개이고 불량률은 각각 $${rateA}\%$, $${rateB}\%$이다. 불량품이 모두 $${defective}$개일 때, 공장 $\mathrm{A}$의 제품 수를 구하시오.`,
+        answer: `$${countA}$개`,
+        solution: `두 공장의 제품 수를 $x$, $y$라 하면 $x+y=${total}$, $${rateA}x+${rateB}y=${100 * defective}$이다. 두 식을 연립하여 풀면 공장 $\mathrm{A}$의 제품은 $${countA}$개이다.`,
+        facts: { rateA, rateB, total, defective, answer: countA },
+      };
+    }),
+  ),
+  def(MINOR_APPLY, "12A", "두 소금물의 혼합", SEC.농도비율, "기본", (rng) =>
+    attempt(300, () => {
+      const low = pick(rng, [2, 4, 6, 8] as const);
+      const high = pick(rng, [10, 12, 14, 16] as const);
+      const lowMass = 50 * intBetween(rng, 2, 8);
+      const highMass = 50 * intBetween(rng, 2, 8);
+      const total = lowMass + highMass;
+      const salt = low * lowMass + high * highMass;
+      if (salt % total !== 0) return null;
+      const target = salt / total;
+      return {
+        content: `$${low}\%$의 소금물과 $${high}\%$의 소금물을 섞어 $${target}\%$의 소금물 $${total}\,\mathrm{g}$을 만들었다. $${high}\%$의 소금물의 양을 구하시오.`,
+        answer: `$${highMass}\,\mathrm{g}$`,
+        solution: `두 소금물의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${low}x+${high}y=${target * total}$이다. 두 식을 연립하여 풀면 $${high}\%$의 소금물은 $${highMass}\,\mathrm{g}$이다.`,
+        facts: { low, high, target, total, answer: highMass },
+      };
+    }),
+  ),
+  def(
+    MINOR_APPLY,
+    "13A",
+    "합금의 전체 질량과 성분",
+    SEC.농도비율,
+    "응용",
+    (rng) => {
+      const percentA = pick(rng, [20, 30, 40] as const);
+      const percentB = pick(rng, [60, 70, 80] as const);
+      const massA = 10 * intBetween(rng, 8, 30);
+      const massB = 10 * intBetween(rng, 8, 30);
+      const total = massA + massB;
+      const copper = (percentA * massA + percentB * massB) / 100;
+      return {
+        content: `구리를 $${percentA}\%$ 포함한 합금 $\mathrm{A}$와 $${percentB}\%$ 포함한 합금 $\mathrm{B}$를 합하여 $${total}\,\mathrm{g}$의 합금을 만들었더니 구리가 $${copper}\,\mathrm{g}$ 들어 있었다. 합금 $\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${massA}\,\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 합금 $\mathrm{A}$는 $${massA}\,\mathrm{g}$이다.`,
+        facts: { percentA, percentB, total, copper, answer: massA },
+      };
+    },
+  ),
+  def(MINOR_APPLY, "14A", "두 음료의 원액 비율", SEC.농도비율, "응용", (rng) =>
+    attempt(300, () => {
+      const percentA = pick(rng, [10, 20, 30] as const);
+      const percentB = pick(rng, [50, 60, 70] as const);
+      const amountA = 10 * intBetween(rng, 10, 30);
+      const amountB = 10 * intBetween(rng, 10, 30);
+      const total = amountA + amountB;
+      const pure = percentA * amountA + percentB * amountB;
+      if (pure % total !== 0) return null;
+      const target = pure / total;
+      return {
+        content: `과즙이 $${percentA}\%$인 음료 $\mathrm{A}$와 $${percentB}\%$인 음료 $\mathrm{B}$를 섞어 과즙이 $${target}\%$인 음료 $${total}\,\mathrm{mL}$를 만들었다. 음료 $\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${amountA}\,\mathrm{mL}$`,
+        solution: `두 음료의 양을 $x\,\mathrm{mL}$, $y\,\mathrm{mL}$라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${target * total}$이다. 두 식을 연립하여 풀면 음료 $\mathrm{A}$는 $${amountA}\,\mathrm{mL}$이다.`,
+        facts: { percentA, percentB, target, total, answer: amountA },
+      };
+    }),
+  ),
+  def(
+    MINOR_APPLY,
+    "15A",
+    "두 합금의 성분 비교",
+    SEC.농도비율,
+    "심화",
+    (rng) => {
+      const copperA = pick(rng, [30, 40, 50] as const);
+      const copperB = pick(rng, [60, 70, 80] as const);
+      const massA = 10 * intBetween(rng, 10, 30);
+      const massB = 10 * intBetween(rng, 10, 30);
+      const total = massA + massB;
+      const copper = (copperA * massA + copperB * massB) / 100;
+      return {
+        content: `구리의 비율이 각각 $${copperA}\%$, $${copperB}\%$인 두 합금을 섞어 전체 질량이 $${total}\,\mathrm{g}$이고 구리의 양이 $${copper}\,\mathrm{g}$인 합금을 만들었다. 구리의 비율이 $${copperB}\%$인 합금의 양을 구하시오.`,
+        answer: `$${massB}\,\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\,\mathrm{g}$, $y\,\mathrm{g}$이라 하면 $x+y=${total}$, $${copperA}x+${copperB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 구리의 비율이 $${copperB}\%$인 합금은 $${massB}\,\mathrm{g}$이다.`,
+        facts: { copperA, copperB, total, copper, answer: massB },
+      };
+    },
+  ),
   specialExtra(
     "19A",
     "해가 무수히 많을 때 둘째 식의 y계수",

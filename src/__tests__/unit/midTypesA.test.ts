@@ -430,6 +430,65 @@ describe("갈래 A 중등 유형 값 검산", () => {
     },
   );
 
+  const concentrationRatioExpected: Record<
+    string,
+    (content: string) => number
+  > = {
+    "10A": (content) => {
+      const values = content.match(/비는 \$(\d+):(\d+)\$이고.*\$(\d+)\$명/);
+      const [first, second, total] = values!.slice(1).map(Number);
+      return (first! * total!) / (first! + second!);
+    },
+    "11A": (content) => {
+      const [total, rateA, rateB, defective] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return (100 * defective! - rateB! * total!) / (rateA! - rateB!);
+    },
+    "12A": (content) => {
+      const [low, high, target, total] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return ((target! - low!) * total!) / (high! - low!);
+    },
+    "13A": (content) => {
+      const [percentA, percentB, total, copper] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return (100 * copper! - percentB! * total!) / (percentA! - percentB!);
+    },
+    "14A": (content) => {
+      const [percentA, percentB, target, total] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return ((target! - percentB!) * total!) / (percentA! - percentB!);
+    },
+    "15A": (content) => {
+      const [percentA, percentB, total, copper] = (content.match(/\d+/g) ?? [])
+        .slice(0, 4)
+        .map(Number);
+      return (100 * copper! - percentA! * total!) / (percentB! - percentA!);
+    },
+  };
+
+  it.each(Object.keys(concentrationRatioExpected))(
+    "연립방정식의 활용(농도, 비율, 합금) 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM_APPLY.find(
+        (candidate) =>
+          candidate.unitSection === "연립방정식의 활용(농도, 비율, 합금)" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          concentrationRatioExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
   it.each(["19A", "20A", "21A", "22A", "23A", "24A", "25A", "26A"])(
     "해가 특수한 연립방정식 유형 %s",
     (rpmType) => {
