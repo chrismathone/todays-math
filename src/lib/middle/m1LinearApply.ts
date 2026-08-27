@@ -485,4 +485,106 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       facts: { n, M },
     };
   }),
+
+  def("23", "비례배분으로 전체 구하기", SEC.비율, "기본", (rng) => {
+    const a = intBetween(rng, 2, 7);
+    const b = intBetween(rng, 2, 7);
+    const k = intBetween(rng, 3, 15);
+    const part = a * k;
+    const total = (a + b) * k;
+    return {
+      content: `남학생 수와 여학생 수의 비가 $${a}:${b}$인 모둠에서 남학생이 $${part}$명이다. 이 모둠의 전체 학생 수를 구하시오.`,
+      answer: `$${total}$명`,
+      solution: `비의 한 칸은 $${part}\\div${a}=${k}$(명)이다.\n따라서 전체 학생 수는 $(${a}+${b})\\times${k}=${total}$(명)이다.`,
+      facts: { a, b, k, part, total },
+    };
+  }),
+
+  def("24", "일정량을 더한 뒤의 비", SEC.비율, "응용", (rng) => {
+    const a = intBetween(rng, 2, 6);
+    const b = intBetween(rng, a + 1, 9);
+    const k = intBetween(rng, 3, 12);
+    const added = (b - a) * k;
+    const first = a * k;
+    return {
+      content: `두 상자 $\\mathrm{A}$, $\\mathrm{B}$에 들어 있는 공의 수의 비가 $${a}:${b}$이다. $\\mathrm{A}$ 상자에 공을 $${added}$개 더 넣었더니 두 상자의 공의 수가 같아졌다. 처음 $\\mathrm{A}$ 상자에 있던 공의 수를 구하시오.`,
+      answer: `$${first}$개`,
+      solution: `처음 공의 수를 각각 $${a}x$, $${b}x$라 하면 $${a}x+${added}=${b}x$이다.\n$x=${k}$이므로 처음 $\\mathrm{A}$ 상자의 공은 $${a}\\times${k}=${first}$(개)이다.`,
+      facts: { a, b, k, added, first },
+    };
+  }),
+
+  def("25", "전체에 대한 백분율", SEC.비율, "기본", (rng) => {
+    const rate = pick(rng, [20, 25, 40, 50] as const);
+    const unit = 100 / rate;
+    const used = intBetween(rng, 2, 12) * rate;
+    const total = used * unit;
+    return {
+      content: `어느 창고에 있던 쌀의 $${rate}\\%$를 사용하였더니 사용한 쌀이 $${used}\\,\\mathrm{kg}$이었다. 처음 창고에 있던 쌀의 양을 구하시오.`,
+      answer: `$${total}\\,\\mathrm{kg}$`,
+      solution: `처음 쌀의 양을 $x\\,\\mathrm{kg}$라 하면 $\\dfrac{${rate}}{100}x=${used}$이다.\n따라서 $x=${total}$이다.`,
+      facts: { rate, used, total },
+    };
+  }),
+
+  def("26", "시계의 분침이 움직인 각", SEC.비율, "기본", (rng) => {
+    const minutes = intBetween(rng, 5, 40);
+    const angle = minutes * 6;
+    return {
+      content: `시계의 분침은 $1$분에 $6^{\\circ}$씩 움직인다. 분침이 $${angle}^{\\circ}$ 움직이는 데 걸리는 시간을 구하시오.`,
+      answer: `$${minutes}$분`,
+      solution: `걸리는 시간을 $x$분이라 하면 $6x=${angle}$이다.\n따라서 $x=${minutes}$이다.`,
+      facts: { minutes, angle },
+    };
+  }),
+
+  def("27", "달력에서 같은 열의 수", SEC.비율, "기본", (rng) => {
+    const top = intBetween(rng, 1, 14);
+    const rows = intBetween(rng, 2, 3);
+    const bottom = top + 7 * rows;
+    const sum = ((rows + 1) * (top + bottom)) / 2;
+    return {
+      content: `달력의 같은 열에서 위에서부터 연속하여 $${rows + 1}$개의 수를 골랐더니 가장 위의 수는 $${top}$이고 각 수는 바로 위의 수보다 $7$씩 크다. 고른 수의 합을 구하시오.`,
+      answer: `$${sum}$`,
+      solution: `고른 수는 $${Array.from({ length: rows + 1 }, (_, i) => top + 7 * i).join(", ")}$이다.\n따라서 합은 $${sum}$이다.`,
+      facts: { top, rows, bottom, sum },
+    };
+  }),
+
+  def("28", "등차수열 모양의 규칙", SEC.비율, "응용", (rng) => {
+    const first = intBetween(rng, 1, 8);
+    const diff = intBetween(rng, 2, 7);
+    const n = intBetween(rng, 8, 20);
+    const value = first + (n - 1) * diff;
+    return {
+      content: `수 $${first}$에서 시작하여 바로 앞의 수보다 $${diff}$씩 큰 수를 차례로 쓴다. 이 규칙으로 쓴 $${n}$번째 수를 구하시오.`,
+      answer: `$${value}$`,
+      solution: `$n$번째 수는 $${first}+${diff}(n-1)$이다.\n따라서 $${n}$번째 수는 $${first}+${diff}\\times${n - 1}=${value}$이다.`,
+      facts: { first, diff, n, value },
+    };
+  }),
+
+  def("29", "정사각형을 이어 붙인 규칙", SEC.비율, "응용", (rng) => {
+    const n = intBetween(rng, 4, 18);
+    const sticks = 3 * n + 1;
+    return {
+      content: `성냥개비로 정사각형을 한 줄로 이어 붙인다. 정사각형 $1$개에는 $4$개가 필요하고 하나를 더 이어 붙일 때마다 $3$개씩 더 필요하다. 성냥개비 $${sticks}$개로 만들 수 있는 정사각형의 개수를 구하시오.`,
+      answer: `$${n}$개`,
+      solution: `정사각형을 $x$개 만들 때 성냥개비는 $4+3(x-1)$개 필요하다.\n$4+3(x-1)=${sticks}$이므로 $x=${n}$이다.`,
+      facts: { n, sticks },
+    };
+  }),
+
+  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화", (rng) => {
+    const a = intBetween(rng, 2, 6) * 5;
+    const b = intBetween(rng, 2, 6) * 5;
+    const turnsA = intBetween(rng, 3, 12) * b;
+    const turnsB = (a * turnsA) / b;
+    return {
+      content: `서로 맞물린 두 톱니바퀴 $\\mathrm{A}$, $\\mathrm{B}$의 톱니 수는 각각 $${a}$개, $${b}$개이다. $\\mathrm{A}$가 $${turnsA}$바퀴 도는 동안 $\\mathrm{B}$가 도는 바퀴 수를 구하시오.`,
+      answer: `$${turnsB}$바퀴`,
+      solution: `두 톱니바퀴가 맞물려 움직인 톱니 수는 같으므로 $${a}\\times${turnsA}=${b}\\times x$이다.\n따라서 $x=${turnsB}$이다.`,
+      facts: { a, b, turnsA, turnsB },
+    };
+  }),
 ];
