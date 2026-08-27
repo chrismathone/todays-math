@@ -44,6 +44,20 @@ function frequencyRows(
     }));
 }
 
+function histogramRows(
+  content: string,
+): Array<{ low: number; high: number; frequency: number }> {
+  return content
+    .split("\n")
+    .map((line) => line.match(/^(\d+)~(\d+) \| (■+)$/))
+    .filter((match): match is RegExpMatchArray => match !== null)
+    .map((match) => ({
+      low: Number(match[1]),
+      high: Number(match[2]),
+      frequency: match[3]!.length,
+    }));
+}
+
 const stemLeafExpected: Record<
   string,
   (content: string, values: number[]) => number
@@ -182,6 +196,55 @@ describe("갈래 A 중등 유형 값 검산", () => {
       }
     },
   );
+
+  const histogramExpected: Record<
+    string,
+    (content: string, rows: ReturnType<typeof histogramRows>) => number
+  > = {
+    "37": (_content, rows) => rows.reduce((sum, row) => sum + row.frequency, 0),
+    "38": (content, rows) => {
+      const low = Number(content.match(/\$(\d+)\$ 이상/)?.[1]);
+      return rows.find((row) => row.low === low)!.frequency;
+    },
+    "39": (_content, rows) =>
+      rows.reduce((best, row) => (row.frequency > best.frequency ? row : best))
+        .low,
+    "40": (_content, rows) => rows[0]!.high - rows[0]!.low,
+    "41": (content, rows) => {
+      const boundary = Number(content.match(/\$(\d+)\$ 미만/)?.[1]);
+      return rows
+        .filter((row) => row.high <= boundary)
+        .reduce((sum, row) => sum + row.frequency, 0);
+    },
+    "42": (_content, rows) => {
+      const frequencies = rows.map((row) => row.frequency);
+      return Math.max(...frequencies) - Math.min(...frequencies);
+    },
+    "43": (content, rows) => {
+      const range = content.match(/\$(\d+)\$ 이상 \$(\d+)\$ 미만/);
+      const low = Number(range?.[1]);
+      const high = Number(range?.[2]);
+      return rows
+        .filter((row) => row.low >= low && row.high <= high)
+        .reduce((sum, row) => sum + row.frequency, 0);
+    },
+  };
+
+  it.each(Object.keys(histogramExpected))("히스토그램 유형 %s", (rpmType) => {
+    const entry = M1EXTRA_TYPES.find(
+      (candidate) =>
+        candidate.unitSection === "히스토그램" && candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    for (const seed of [17, 203, 991]) {
+      const problem = entry!.handler(seeded(seed));
+      const rows = histogramRows(problem.content);
+      expect(rows.length).toBeGreaterThan(0);
+      expect(numericAnswer(problem.answer)).toBe(
+        histogramExpected[rpmType]!(problem.content, rows),
+      );
+    }
+  });
 
   it.each(["19A", "20A", "21A", "22A", "23A", "24A", "25A", "26A"])(
     "해가 특수한 연립방정식 유형 %s",

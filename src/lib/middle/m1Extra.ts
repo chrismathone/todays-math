@@ -298,6 +298,19 @@ function frequencyTable(
     .join("\n");
 }
 
+function histogramText(
+  start: number,
+  width: number,
+  frequencies: readonly number[],
+): string {
+  return frequencies
+    .map((frequency, index) => {
+      const low = start + width * index;
+      return `${low}~${low + width} | ${"■".repeat(frequency)}`;
+    })
+    .join("\n");
+}
+
 const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
   defType(BOOK2, DATA_MINOR, "29", "도수의 합", "도수분포표", "연산", (rng) => {
     const frequencies = Array.from({ length: 5 }, () => intBetween(rng, 2, 8));
@@ -596,10 +609,163 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
   ),
 ];
 
+const HISTOGRAM_TYPES: TypeEntry[] = [
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "37",
+    "히스토그램의 도수 합",
+    "히스토그램",
+    "연산",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 8),
+      );
+      const answer = frequencies.reduce((sum, value) => sum + value, 0);
+      return {
+        content: `다음 히스토그램에 나타난 자료의 전체 개수를 구하시오.\n(구간 | 도수 막대)\n${histogramText(0, 10, frequencies)}`,
+        answer: `$${answer}$개`,
+        solution: `각 막대의 높이를 모두 더하면 $${answer}$개이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "38",
+    "히스토그램의 특정 도수",
+    "히스토그램",
+    "기본",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 8),
+      );
+      const index = intBetween(rng, 0, 4);
+      const low = 10 * index;
+      const answer = frequencies[index]!;
+      return {
+        content: `다음 히스토그램에서 $${low}$ 이상 $${low + 10}$ 미만인 계급의 도수를 구하시오.\n(구간 | 도수 막대)\n${histogramText(0, 10, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `해당 구간의 막대 높이는 $${answer}$이다.`,
+        facts: { ...dataFacts(frequencies, answer), low },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "39",
+    "가장 높은 막대의 계급",
+    "히스토그램",
+    "기본",
+    (rng) => {
+      const peak = intBetween(rng, 0, 4);
+      const frequencies = [2, 3, 4, 5, 6].map(
+        (value, index) => value + (index === peak ? 8 : 0),
+      );
+      const answer = 20 + peak * 5;
+      return {
+        content: `다음 히스토그램에서 도수가 가장 큰 계급의 최솟값을 구하시오.\n(구간 | 도수 막대)\n${histogramText(20, 5, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `가장 높은 막대의 구간은 $${answer}$ 이상 $${answer + 5}$ 미만이므로 최솟값은 $${answer}$이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "40",
+    "히스토그램의 계급 크기",
+    "히스토그램",
+    "기본",
+    (rng) => {
+      const width = intBetween(rng, 2, 5) * 5;
+      const frequencies = Array.from({ length: 4 }, () =>
+        intBetween(rng, 2, 8),
+      );
+      return {
+        content: `다음 히스토그램의 계급의 크기를 구하시오.\n(구간 | 도수 막대)\n${histogramText(20, width, frequencies)}`,
+        answer: `$${width}$`,
+        solution: `막대 하나의 구간 너비는 $${width}$이다.`,
+        facts: dataFacts(frequencies, width),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "41",
+    "히스토그램의 누적 도수",
+    "히스토그램",
+    "응용",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 8),
+      );
+      const count = intBetween(rng, 2, 4);
+      const boundary = count * 10;
+      const answer = frequencies
+        .slice(0, count)
+        .reduce((sum, value) => sum + value, 0);
+      return {
+        content: `다음 히스토그램에서 $${boundary}$ 미만인 자료의 개수를 구하시오.\n(구간 | 도수 막대)\n${histogramText(0, 10, frequencies)}`,
+        answer: `$${answer}$개`,
+        solution: `$${boundary}$ 미만인 막대의 높이를 더하면 $${answer}$개이다.`,
+        facts: { ...dataFacts(frequencies, answer), boundary },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "42",
+    "히스토그램 도수의 차",
+    "히스토그램",
+    "응용",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const answer = Math.max(...frequencies) - Math.min(...frequencies);
+      return {
+        content: `다음 히스토그램에서 가장 높은 막대와 가장 낮은 막대의 도수의 차를 구하시오.\n(구간 | 도수 막대)\n${histogramText(10, 5, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `막대 높이의 최댓값과 최솟값의 차는 $${answer}$이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "43",
+    "두 구간의 도수 합",
+    "히스토그램",
+    "심화",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const index = intBetween(rng, 0, 3);
+      const low = index * 10;
+      const answer = frequencies[index]! + frequencies[index + 1]!;
+      return {
+        content: `다음 히스토그램에서 $${low}$ 이상 $${low + 20}$ 미만인 자료의 개수를 구하시오.\n(구간 | 도수 막대)\n${histogramText(0, 10, frequencies)}`,
+        answer: `$${answer}$개`,
+        solution: `해당 범위의 두 막대 높이를 더하면 $${answer}$개이다.`,
+        facts: { ...dataFacts(frequencies, answer), low },
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
   ...STEM_LEAF_TYPES,
   ...FREQUENCY_TABLE_TYPES,
   ...BASIC_COORDINATE_TYPES,
+  ...HISTOGRAM_TYPES,
 ];
