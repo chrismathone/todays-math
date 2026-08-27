@@ -29,6 +29,20 @@ function numericAnswer(answer: string): number {
   return Number(match[0]);
 }
 
+function frequencyRows(
+  content: string,
+): Array<{ low: number; high: number; frequency: number }> {
+  return content
+    .split("\n")
+    .map((line) => line.match(/^(\d+) 이상 (\d+) 미만 \| (\d+)$/))
+    .filter((match): match is RegExpMatchArray => match !== null)
+    .map((match) => ({
+      low: Number(match[1]),
+      high: Number(match[2]),
+      frequency: Number(match[3]),
+    }));
+}
+
 const stemLeafExpected: Record<
   string,
   (content: string, values: number[]) => number
@@ -85,4 +99,51 @@ describe("갈래 A 중등 유형 값 검산", () => {
       }
     },
   );
+
+  const frequencyExpected: Record<
+    string,
+    (content: string, rows: ReturnType<typeof frequencyRows>) => number
+  > = {
+    "29": (_content, rows) => rows.reduce((sum, row) => sum + row.frequency, 0),
+    "30": (content, rows) => {
+      const low = Number(content.match(/\$(\d+)\$ 이상/)?.[1]);
+      return rows.find((row) => row.low === low)!.frequency;
+    },
+    "31": (_content, rows) =>
+      rows.reduce((best, row) => (row.frequency > best.frequency ? row : best))
+        .low,
+    "32": (_content, rows) => Math.max(...rows.map((row) => row.frequency)),
+    "33": (_content, rows) => rows[0]!.high - rows[0]!.low,
+    "34": (content, rows) => {
+      const low = Number(content.match(/\$(\d+)\$ 이상/)?.[1]);
+      const row = rows.find((candidate) => candidate.low === low)!;
+      return (row.low + row.high) / 2;
+    },
+    "35": (content, rows) => {
+      const boundary = Number(content.match(/\$(\d+)\$ 미만/)?.[1]);
+      return rows
+        .filter((row) => row.high <= boundary)
+        .reduce((sum, row) => sum + row.frequency, 0);
+    },
+    "36": (_content, rows) => {
+      const frequencies = rows.map((row) => row.frequency);
+      return Math.max(...frequencies) - Math.min(...frequencies);
+    },
+  };
+
+  it.each(Object.keys(frequencyExpected))("도수분포표 유형 %s", (rpmType) => {
+    const entry = M1EXTRA_TYPES.find(
+      (candidate) =>
+        candidate.unitSection === "도수분포표" && candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    for (const seed of [17, 203, 991]) {
+      const problem = entry!.handler(seeded(seed));
+      const rows = frequencyRows(problem.content);
+      expect(rows.length).toBeGreaterThan(0);
+      expect(numericAnswer(problem.answer)).toBe(
+        frequencyExpected[rpmType]!(problem.content, rows),
+      );
+    }
+  });
 });

@@ -284,8 +284,172 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
   ),
 ];
 
+function frequencyTable(
+  start: number,
+  width: number,
+  frequencies: readonly number[],
+): string {
+  return frequencies
+    .map((frequency, index) => {
+      const low = start + width * index;
+      return `${low} 이상 ${low + width} 미만 | ${frequency}`;
+    })
+    .join("\n");
+}
+
+const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
+  defType(BOOK2, DATA_MINOR, "29", "도수의 합", "도수분포표", "연산", (rng) => {
+    const frequencies = Array.from({ length: 5 }, () => intBetween(rng, 2, 8));
+    const total = frequencies.reduce((sum, value) => sum + value, 0);
+    return {
+      content: `다음 도수분포표에서 조사한 학생 수를 구하시오.\n(점수 | 도수)\n${frequencyTable(50, 10, frequencies)}`,
+      answer: `$${total}$명`,
+      solution: `도수의 총합은 $${frequencies.join("+")}=${total}$이므로 학생은 $${total}$명이다.`,
+      facts: dataFacts(frequencies, total),
+    };
+  }),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "30",
+    "특정 계급의 도수",
+    "도수분포표",
+    "기본",
+    (rng) => {
+      const start = intBetween(rng, 1, 3) * 10;
+      const width = 10;
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      const index = intBetween(rng, 0, 4);
+      const low = start + index * width;
+      const answer = frequencies[index]!;
+      return {
+        content: `다음 도수분포표에서 $${low}$ 이상 $${low + width}$ 미만인 계급의 도수를 구하시오.\n(변량 | 도수)\n${frequencyTable(start, width, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `표에서 $${low}$ 이상 $${low + width}$ 미만인 계급의 도수는 $${answer}$이다.`,
+        facts: { ...dataFacts(frequencies, answer), low, width },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "31",
+    "도수가 가장 큰 계급",
+    "도수분포표",
+    "기본",
+    (rng) => {
+      const start = intBetween(rng, 2, 4) * 10;
+      const width = 5;
+      const peak = intBetween(rng, 0, 4);
+      const frequencies = [2, 3, 4, 5, 6].map(
+        (value, index) => value + (index === peak ? 8 : 0),
+      );
+      const low = start + peak * width;
+      return {
+        content: `다음 도수분포표에서 도수가 가장 큰 계급의 최솟값을 구하시오.\n(변량 | 도수)\n${frequencyTable(start, width, frequencies)}`,
+        answer: `$${low}$`,
+        solution: `가장 큰 도수는 $${frequencies[peak]}$이고 그 계급은 $${low}$ 이상 $${low + width}$ 미만이므로 최솟값은 $${low}$이다.`,
+        facts: { ...dataFacts(frequencies, low), low, width },
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "32",
+    "가장 큰 도수",
+    "도수분포표",
+    "기본",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 12),
+      );
+      const answer = Math.max(...frequencies);
+      return {
+        content: `다음 도수분포표에서 가장 큰 도수를 구하시오.\n(시간 | 도수)\n${frequencyTable(0, 2, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `도수 ${frequencies.join(", ")} 중 가장 큰 값은 $${answer}$이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "33",
+    "계급의 크기",
+    "도수분포표",
+    "기본",
+    (rng) => {
+      const width = intBetween(rng, 2, 6) * 5;
+      const frequencies = Array.from({ length: 4 }, () =>
+        intBetween(rng, 2, 9),
+      );
+      return {
+        content: `다음 도수분포표에서 계급의 크기를 구하시오.\n(키 | 도수)\n${frequencyTable(120, width, frequencies)}`,
+        answer: `$${width}$`,
+        solution: `계급의 크기는 계급의 양 끝값의 차이므로 $${120 + width}-120=${width}$이다.`,
+        facts: dataFacts(frequencies, width),
+      };
+    },
+  ),
+  defType(BOOK2, DATA_MINOR, "34", "계급값", "도수분포표", "연산", (rng) => {
+    const start = intBetween(rng, 2, 5) * 10;
+    const width = 10;
+    const frequencies = Array.from({ length: 4 }, () => intBetween(rng, 2, 9));
+    const index = intBetween(rng, 0, 3);
+    const low = start + index * width;
+    const answer = low + width / 2;
+    return {
+      content: `다음 도수분포표에서 $${low}$ 이상 $${low + width}$ 미만인 계급의 계급값을 구하시오.\n(변량 | 도수)\n${frequencyTable(start, width, frequencies)}`,
+      answer: `$${answer}$`,
+      solution: `계급값은 양 끝값의 평균이므로 $(${low}+${low + width})\div2=${answer}$이다.`,
+      facts: { ...dataFacts(frequencies, answer), low, width },
+    };
+  }),
+  defType(BOOK2, DATA_MINOR, "35", "누적 도수", "도수분포표", "응용", (rng) => {
+    const start = 10;
+    const width = 10;
+    const frequencies = Array.from({ length: 5 }, () => intBetween(rng, 2, 9));
+    const count = intBetween(rng, 2, 4);
+    const boundary = start + count * width;
+    const answer = frequencies
+      .slice(0, count)
+      .reduce((sum, value) => sum + value, 0);
+    return {
+      content: `다음 도수분포표에서 $${boundary}$ 미만인 자료의 개수를 구하시오.\n(변량 | 도수)\n${frequencyTable(start, width, frequencies)}`,
+      answer: `$${answer}$개`,
+      solution: `$${boundary}$ 미만인 계급들의 도수를 더하면 $${answer}$개이다.`,
+      facts: { ...dataFacts(frequencies, answer), boundary },
+    };
+  }),
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "36",
+    "도수의 범위",
+    "도수분포표",
+    "심화",
+    (rng) => {
+      const frequencies = Array.from({ length: 5 }, () =>
+        intBetween(rng, 2, 12),
+      );
+      const answer = Math.max(...frequencies) - Math.min(...frequencies);
+      return {
+        content: `다음 도수분포표에서 가장 큰 도수와 가장 작은 도수의 차를 구하시오.\n(변량 | 도수)\n${frequencyTable(20, 5, frequencies)}`,
+        answer: `$${answer}$`,
+        solution: `가장 큰 도수와 가장 작은 도수의 차는 $${Math.max(...frequencies)}-${Math.min(...frequencies)}=${answer}$이다.`,
+        facts: dataFacts(frequencies, answer),
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
   ...STEM_LEAF_TYPES,
+  ...FREQUENCY_TABLE_TYPES,
 ];
