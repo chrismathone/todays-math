@@ -1521,10 +1521,7 @@ def _trap_four(spec: Mapping[str, Any]) -> str:
         f'stroke="{INK}" stroke-width="1.3"/>'
     )
     for a, b in ((tl, b1), (tr, b2), (b1, tr)):
-        parts.append(
-            f'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" y2="{_n(b[1])}" '
-            f'stroke="{INK}" stroke-width="1.15" stroke-dasharray="4 3"/>'
-        )
+        parts.append(_dashed_polyline([a, b], "4 3", sw=1.15))
     return _svg(pad * 2 + 3 * u, pad * 2 + u, "".join(parts))
 
 

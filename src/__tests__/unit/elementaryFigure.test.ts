@@ -336,9 +336,15 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       yCounts.set(y, (yCounts.get(y) ?? 0) + 1);
     }
     expect([...yCounts.values()].sort((a, b) => a - b)).toEqual([2, 4]);
+    expect(r.svg, "내부 분할선은 measured 식별자가 아니다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      (r.svg.match(/stroke-dasharray="/g) ?? []).length,
-    ).toBeGreaterThanOrEqual(3);
+      (r.svg.match(/<line [^>]*stroke-width="1.15"/g) ?? []).length,
+      "내부 점선의 짧은 실선 조각",
+    ).toBeGreaterThanOrEqual(6);
+    expect(figureSvgViewBoxWidth(r.svg)).toBe(124);
+    expect(figureSvgSize(r.svg)).toBe("compact");
   });
 
   /**
