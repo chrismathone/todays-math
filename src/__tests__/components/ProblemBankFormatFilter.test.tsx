@@ -27,7 +27,8 @@ import ProblemsPage from "@/app/(main)/problems/page";
 const RENDER_WAIT = { timeout: 45_000 } as const;
 
 /** 카드에 찍히는 형식 라벨 — `provenance.ts` 의 `FORMAT_BADGE` 와 같은 글자다. */
-const FORMAT_BADGES = ["[객]", "[단]", "[서]", "[?형식]"] as const;
+// 2026-08-27 원장님 지시로 배지에서 대괄호를 벗겼다(`[서]` → `서`).
+const FORMAT_BADGES = ["객", "단", "서", "?형식"] as const;
 
 async function renderBank() {
   const user = userEvent.setup();
@@ -65,7 +66,7 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
 
     // 음성 대조 ⑴ — 거르기 전에는 `[서]` 아닌 카드가 보인다(안 그러면 아래가 공허하다).
     const before = visibleFormatBadges();
-    const otherBefore = FORMAT_BADGES.filter((b) => b !== "[서]").reduce(
+    const otherBefore = FORMAT_BADGES.filter((b) => b !== "서").reduce(
       (sum, b) => sum + before[b]!,
       0,
     );
@@ -76,9 +77,9 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
     await waitFor(() => {
       const after = visibleFormatBadges();
       // 음성 대조 ⑵ — 목록이 통째로 비면 「[서] 만 남았다」가 참이 되어 버린다.
-      expect(after["[서]"], "거른 뒤 남은 [서] 카드").toBeGreaterThan(0);
+      expect(after["서"], "거른 뒤 남은 [서] 카드").toBeGreaterThan(0);
       for (const badge of FORMAT_BADGES) {
-        if (badge === "[서]") continue;
+        if (badge === "서") continue;
         expect(after[badge], `거른 뒤 보이면 안 되는 ${badge}`).toBe(0);
       }
     }, RENDER_WAIT);
@@ -98,7 +99,7 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
     await waitFor(() => {
       const after = visibleFormatBadges();
       for (const badge of FORMAT_BADGES) {
-        if (badge === "[단]") continue;
+        if (badge === "단") continue;
         expect(after[badge], `단답형으로 걸렀는데 보이는 ${badge}`).toBe(0);
       }
     }, RENDER_WAIT);
@@ -117,7 +118,7 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
     const { user } = await renderBank();
     await user.selectOptions(screen.getByLabelText("유형"), "서술형");
     await waitFor(() => {
-      expect(visibleFormatBadges()["[서]"]).toBeGreaterThan(0);
+      expect(visibleFormatBadges()["서"]).toBeGreaterThan(0);
     }, RENDER_WAIT);
 
     await user.click(screen.getByRole("button", { name: "등록" }));
@@ -134,7 +135,7 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
     }, RENDER_WAIT);
     expect(screen.queryByText("형식이 안 맞는 문항")).toBeNull();
     // 그리고 그 카드가 안 들어왔으니 `[?형식]` 도 화면에 없어야 한다.
-    expect(visibleFormatBadges()["[?형식]"]).toBe(0);
+    expect(visibleFormatBadges()["?형식"]).toBe(0);
   });
 
   it("전체로 되돌리면 다시 다 보인다 — 필터가 눌어붙지 않는다", async () => {
@@ -142,13 +143,13 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
     const select = screen.getByLabelText("유형");
     await user.selectOptions(select, "서술형");
     await waitFor(() => {
-      expect(visibleFormatBadges()["[서]"]).toBeGreaterThan(0);
+      expect(visibleFormatBadges()["서"]).toBeGreaterThan(0);
     }, RENDER_WAIT);
 
     await user.selectOptions(select, "");
     await waitFor(() => {
       const after = visibleFormatBadges();
-      const others = FORMAT_BADGES.filter((b) => b !== "[서]").reduce(
+      const others = FORMAT_BADGES.filter((b) => b !== "서").reduce(
         (sum, b) => sum + after[b]!,
         0,
       );

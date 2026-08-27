@@ -1,7 +1,6 @@
 /**
- * 중2 기하 65유형 (RPM 2-2 삼각형의 성질·여러 가지 사각형·도형의 닮음·평행선 비)
- * — 독립 검산. 2B 물결(마크 문법)로 **네 중단원 전량**(12+17+15+11)을 덮었고,
- * 갈래 D 가 «여러 가지 사각형» 색인 뒤에 18~27 을 더했다(소단원 10유형 채우기).
+ * 중2 기하 55유형 (RPM 2-2 삼각형의 성질·여러 가지 사각형·도형의 닮음·평행선 비)
+ * — 독립 검산. 2B 물결(마크 문법)로 **네 중단원 전량**(12+17+15+11)을 덮었다.
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)로 유형마다 조건식을
  * **여기서 다시 세워** 만족하는지 본다. 검산식은 「발문이 말하는 성질」을 직접
@@ -17,6 +16,7 @@ import {
   generateMiddleProblem,
   generateMiddleSet,
 } from "../../lib/middle/generate";
+import { catalogMaxNumber, isCatalogType } from "../helpers/rpmCatalog";
 import { M2_TYPES } from "../../lib/middle/m2";
 import { QUAD10_CLAIMS, QUAD11_SHAPES } from "../../lib/middle/m2GeoQuad";
 import { SIM01_PERMS } from "../../lib/middle/m2GeoSim";
@@ -31,9 +31,15 @@ const MINORS = new Set([
   "평행선 사이의 선분의 길이의 비",
 ]);
 
-const GEO = M2_TYPES.filter(
+// ⚠️ 중단원으로 고르면 2026-08-27 부터 갈래 넷이 같은 중단원에 더하는 «확장 유형»
+//    (색인에 없는 번호)까지 쓸어 담아, 남의 유형이 이 검산표에 들이대진다
+//    — 실제로 「닮은 도형」이 4 → 10 이 되며 빨개졌다. 몫을 「RPM 색인에 있는가」로
+//    한 번 더 좁힌다. 확장 유형의 값 검산은 그것을 지은 갈래의 시험이 들고 있다.
+const IN_MINORS = M2_TYPES.filter(
   (e) => e.rpmBook === "2-2" && MINORS.has(e.rpmMinor),
 );
+const GEO = IN_MINORS.filter((e) => isCatalogType(e));
+const GEO_EXTENSIONS = IN_MINORS.filter((e) => !isCatalogType(e));
 
 type P2 = readonly [number, number];
 
@@ -48,39 +54,6 @@ function dot(a: P2, b: P2, c: P2): number {
 
 function near(a: number, b: number, eps = 1e-9): boolean {
   return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
-}
-
-/** 삼각형의 넓이 — 신발끈. 18~23 은 도형을 직접 세워 이것 하나로 잰다. */
-function triArea(a: P2, b: P2, c: P2): number {
-  return (
-    Math.abs((b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1])) / 2
-  );
-}
-
-/** 각 `∠abc` 의 크기(도) — 세 점에서 직접 잰다 (27 이 각을 묻는다). */
-function angleDeg(a: P2, b: P2, c: P2): number {
-  const u = Math.hypot(a[0] - b[0], a[1] - b[1]);
-  const v = Math.hypot(c[0] - b[0], c[1] - b[1]);
-  const cos = dot(a, b, c) / (u * v);
-  return (Math.acos(Math.min(1, Math.max(-1, cos))) * 180) / Math.PI;
-}
-
-/** 선분 `ab` 의 내분점 (`t`=0 이면 a, 1 이면 b). */
-function lerpP(a: P2, b: P2, t: number): P2 {
-  return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
-}
-
-/**
- * 두 직선 `ab` · `cd` 의 교점 — «어디서 만나는가»를 **가정하지 않고** 푼다.
- * 23 의 검산이 «대각선의 교점이 밑변을 AD:BC 로 나눈다»를 생성기에서
- * 옮겨 받지 않게 하려고 둔다.
- */
-function lineInter(a: P2, b: P2, c: P2, d: P2): P2 {
-  const r: P2 = [b[0] - a[0], b[1] - a[1]];
-  const s: P2 = [d[0] - c[0], d[1] - c[1]];
-  const den = r[0] * s[1] - r[1] * s[0];
-  const t = ((c[0] - a[0]) * s[1] - (c[1] - a[1]) * s[0]) / den;
-  return [a[0] + t * r[0], a[1] + t * r[1]];
 }
 
 /**
@@ -425,164 +398,6 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
     f.mode === 0
       ? f.x! * (f.a! + f.b!) === f.a! * f.b!
       : 2 * f.x! * (f.a! + f.b!) === f.bcLen! * f.a! * f.b!,
-
-  // ── 평행선과 삼각형의 넓이 18~23 ────────────────────────────────
-  // 여기서부터는 «식을 다시 세운다»가 아니라 **도형을 실제로 세워 넓이를 잰다.**
-  // 넓이 유형은 조건식이 곧 생성식이라 옮겨 적으면 동어반복이 된다.
-
-  // 18 — 점 A 가 직선 l 위 **어디에 있든** 넓이가 같다는 것이 이 유형의 성질이다.
-  "여러 가지 사각형|18": (f) => {
-    const B: P2 = [0, 0];
-    const C: P2 = [f.a!, 0];
-    const anywhere = [-4, 0, 1.7, f.a! + 9].every((ax) =>
-      near(triArea([ax, f.h!], B, C), f.area!),
-    );
-    return anywhere && (f.mode === 0 ? f.x === f.area : f.x === f.h);
-  },
-
-  // 19 — 중선이 넓이를 이등분한다. 모드 1 은 그 절반을 한 번 더 이등분.
-  //      ⚠️ `half` 은 **해설에만** 나오는 중간값이다. 답만 재면 해설이 틀려도
-  //      아무도 못 본다(변이가 실제로 초록을 냈다) — 그래서 여기서 같이 잰다.
-  "여러 가지 사각형|19": (f) => {
-    const A: P2 = [3.3, f.S! / 5];
-    const B: P2 = [0, 0];
-    const C: P2 = [10, 0];
-    const D = lerpP(B, C, 0.5);
-    if (!near(triArea(A, B, C), f.S!)) return false;
-    if (f.mode === 0) return near(triArea(A, B, D), f.x!);
-    return (
-      near(triArea(A, B, D), f.half!) &&
-      near(triArea(A, B, lerpP(A, D, 0.5)), f.x!)
-    );
-  },
-
-  // 20 — 내부의 점 P 를 «삼각형 PAB 가 a 가 되는 자리»에 놓고 삼각형 PCD 를 잰다.
-  "여러 가지 사각형|20": (f) => {
-    const A: P2 = [2.5, f.S! / 12];
-    const B: P2 = [0, 0];
-    const C: P2 = [12, 0];
-    const D: P2 = [A[0] + 12, A[1]];
-    const P: P2 = [((2 * f.a!) / f.S!) * 12 + 0.45 * A[0], 0.45 * A[1]];
-    return (
-      near(triArea(A, B, C) + triArea(A, C, D), f.S!) &&
-      // 해설이 찍는 «평행사변형의 절반»도 도형에서 잰다 (19 와 같은 이유).
-      near(triArea(P, A, B) + triArea(P, C, D), f.half!) &&
-      near(triArea(P, A, B), f.a!) &&
-      near(triArea(P, C, D), f.x!)
-    );
-  },
-
-  // 21 — 답 x 를 «BD 의 길이»로 되돌려 놓고 삼각형 ABD 가 t 인지 잰다.
-  "여러 가지 사각형|21": (f) => {
-    const A: P2 = [1.3, (2 * f.S!) / f.a!];
-    const B: P2 = [0, 0];
-    return (
-      f.x! < f.a! &&
-      near(triArea(A, B, [f.a!, 0]), f.S!) &&
-      near(triArea(A, B, [f.x!, 0]), f.t!)
-    );
-  },
-
-  // 22 — 평행사변형을 세우고 E·F 를 발문의 비로 잡아 삼각형 EBF 를 잰다.
-  //      `half`(ABC) 과 `mid`(ABF) 는 **해설에만** 나오는 두 단계다. 답 하나만
-  //      재던 판에서는 `mid` 를 1 만큼 어긋내도 시험이 초록이었다 — 그 상태로
-  //      나가면 지면의 계산이 «$42\times\dfrac{3}{7}=19$» 가 된다.
-  "여러 가지 사각형|22": (f) => {
-    const A: P2 = [3, f.S! / 14];
-    const B: P2 = [0, 0];
-    const C: P2 = [14, 0];
-    const D: P2 = [A[0] + 14, A[1]];
-    const E = lerpP(A, B, f.p! / (f.p! + f.q!));
-    const F = lerpP(B, C, f.m! / (f.m! + f.n!));
-    return (
-      near(triArea(A, B, C) + triArea(A, C, D), f.S!) &&
-      near(triArea(A, B, C), f.half!) &&
-      near(triArea(A, B, F), f.mid!) &&
-      near(triArea(E, B, F), f.x!)
-    );
-  },
-
-  // 23 — 사다리꼴을 세우고 **두 대각선의 교점을 직접 풀어** 네 조각의 비를 잰다.
-  //      배율 u 는 삼각형 AOD 를 p 에 맞추는 값이고, 나머지 셋이 q·r·r 이어야 한다.
-  "여러 가지 사각형|23": (f) => {
-    const H = 3.7;
-    const A: P2 = [1.1, H];
-    const B: P2 = [0, 0];
-    const C: P2 = [2 * f.t!, 0];
-    const D: P2 = [A[0] + 2 * f.s!, H];
-    const O = lineInter(A, C, B, D);
-    const u = f.p! / triArea(A, O, D);
-    return (
-      near(triArea(O, B, C) * u, f.q!, 1e-8) &&
-      near(triArea(A, B, O) * u, f.r!, 1e-8) &&
-      near(triArea(D, O, C) * u, f.r!, 1e-8) &&
-      f.x === f.p! + f.q! + 2 * f.r!
-    );
-  },
-
-  // ── 직사각형, 마름모, 정사각형 24~27 ────────────────────────────
-  // 여기도 도형을 세워 잰다. 교점 `O` 는 «중점»으로 놓지 않고 두 대각선을
-  // **직접 만나게** 해서 구한다 — 「대각선이 서로 다른 것을 이등분한다」가 바로
-  // 이 유형들이 쓰는 성질이라, 그것을 가정하면 검산이 동어반복이 된다.
-  "여러 가지 사각형|24": (f) => {
-    const diag = f.mode === 0 ? f.c! : f.x!;
-    const left = f.mode === 0 ? Math.sqrt(diag * diag - f.b! * f.b!) : f.a!;
-    const bottom = f.mode === 0 ? f.b! : Math.sqrt(diag * diag - f.a! * f.a!);
-    const A: P2 = [0, left];
-    const B: P2 = [0, 0];
-    const C: P2 = [bottom, 0];
-    const D: P2 = [bottom, left];
-    const O = lineInter(A, C, B, D);
-    return f.mode === 0
-      ? near(f.half!, diag / 2, 1e-8) &&
-          near(dist(O, B) + dist(O, C) + dist(B, C), f.x!, 1e-8)
-      : near(dist(O, A) + dist(O, B) + dist(A, B), f.p!, 1e-8);
-  },
-
-  // 25 — 두 대각선으로 마름모를 세우고 넓이를 신발끈으로 잰다(공식을 안 옮긴다).
-  "여러 가지 사각형|25": (f) => {
-    const A: P2 = [0, f.m! / 2];
-    const B: P2 = [-f.n! / 2, 0];
-    const C: P2 = [0, -f.m! / 2];
-    const D: P2 = [f.n! / 2, 0];
-    return (
-      near(dist(A, C), f.m!, 1e-9) &&
-      near(dist(B, D), f.n!, 1e-9) &&
-      near(triArea(A, B, C) + triArea(A, C, D), f.S!, 1e-9) &&
-      f.x! === (f.mode === 0 ? f.S! : f.n!)
-    );
-  },
-
-  // 26 — 정사각형을 넓이에서 되돌려 세우고 네 조각·반쪽을 잰다.
-  "여러 가지 사각형|26": (f) => {
-    const s = Math.sqrt(f.S!);
-    const A: P2 = [0, s];
-    const B: P2 = [0, 0];
-    const C: P2 = [s, 0];
-    const D: P2 = [s, s];
-    const O = lineInter(A, C, B, D);
-    return (
-      near(triArea(O, A, B), f.t!, 1e-8) &&
-      near(triArea(A, B, D), 2 * f.t!, 1e-8) &&
-      f.x! === (f.mode === 0 ? f.t! : 2 * f.t!)
-    );
-  },
-
-  // 27 — 대각선 위의 점 $P$ 를 세워 **각을 직접 잰다.** 합동 논증을 옮기지 않는다.
-  "여러 가지 사각형|27": (f) => {
-    const ta = Math.tan((f.a! * Math.PI) / 180);
-    const t = ta / (1 + ta);
-    const A: P2 = [0, 1];
-    const B: P2 = [0, 0];
-    const C: P2 = [1, 0];
-    const D: P2 = [1, 1];
-    const P: P2 = [t, t];
-    if (!near(angleDeg(P, A, B), f.a!, 1e-6)) return false;
-    if (!near(angleDeg(A, P, B), f.apb!, 1e-6)) return false;
-    return f.mode === 0
-      ? near(angleDeg(A, P, C), f.x!, 1e-6)
-      : near(angleDeg(P, A, D), f.x!, 1e-6);
-  },
 };
 
 /**
@@ -649,18 +464,6 @@ const ANSWER_KEY: Record<
   "평행선 사이의 선분의 길이의 비|09": "x",
   "평행선 사이의 선분의 길이의 비|10": "x",
   "평행선 사이의 선분의 길이의 비|11": "x",
-  // ── 평행선과 삼각형의 넓이 18~23 ────────────────────────────────
-  "여러 가지 사각형|18": "x",
-  "여러 가지 사각형|19": "x",
-  "여러 가지 사각형|20": "x",
-  "여러 가지 사각형|21": "x",
-  "여러 가지 사각형|22": "x",
-  "여러 가지 사각형|23": "x",
-  // ── 직사각형, 마름모, 정사각형 24~27 ────────────────────────────
-  "여러 가지 사각형|24": "x",
-  "여러 가지 사각형|25": "x",
-  "여러 가지 사각형|26": "x",
-  "여러 가지 사각형|27": "x",
   // 닮음 01 은 답이 «대응변·대응각» 이라 수가 없다 — 아래에서 따로 검사한다.
 };
 
@@ -712,18 +515,6 @@ const FIGURE_KEYS = new Set([
   "평행선 사이의 선분의 길이의 비|09",
   "평행선 사이의 선분의 길이의 비|10",
   "평행선 사이의 선분의 길이의 비|11",
-  // ── 평행선과 삼각형의 넓이 18~23 — 전부 그림이 있어야 발문이 선다 ──
-  "여러 가지 사각형|18",
-  "여러 가지 사각형|19",
-  "여러 가지 사각형|20",
-  "여러 가지 사각형|21",
-  "여러 가지 사각형|22",
-  "여러 가지 사각형|23",
-  // ── 직사각형, 마름모, 정사각형 24~27 ────────────────────────────
-  "여러 가지 사각형|24",
-  "여러 가지 사각형|25",
-  "여러 가지 사각형|26",
-  "여러 가지 사각형|27",
 ]);
 
 /** 그림이 «있을 수도, 없을 수도» 있는 유형 — mode 가 가른다. */
@@ -777,23 +568,32 @@ function numericLabels(spec: Record<string, unknown>): number[] {
   return out;
 }
 
-describe("중2 기하 65유형 (RPM 2-2 색인 55 + 우리가 더한 18~27)", () => {
+describe("중2 기하 55유형 (RPM 2-2)", () => {
+  it("확장 유형은 색인 번호대를 **넘는다** — 번호대 안이면 오타이지 확장이 아니다", () => {
+    for (const e of GEO_EXTENSIONS) {
+      const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
+      expect(
+        maxNo,
+        `${e.key}: 색인에 없는 중단원 ${JSON.stringify(e.rpmMinor)}`,
+      ).not.toBeNull();
+      expect(
+        Number(e.rpmType),
+        `${e.key}: 색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`,
+      ).toBeGreaterThan(maxNo!);
+    }
+  });
+
   it("네 중단원의 계획된 번호가 전부 등록돼 있다", () => {
     const byMinor = new Map<string, string[]>();
     for (const e of GEO) {
       byMinor.set(e.rpmMinor, [...(byMinor.get(e.rpmMinor) ?? []), e.rpmType]);
     }
     // 2B 물결로 네 중단원이 **빠짐없이** 등록됐다 — RPM 색인의 번호 전량.
-    // «여러 가지 사각형»만 색인 최댓값 17 뒤에 18~27 이 더 있다 — 소단원
-    // 「평행선과 삼각형의 넓이」(18~23)와 「직사각형, 마름모, 정사각형」(24~27)을
-    // 각각 10유형으로 채우려고 우리가 지은 번호다.
-    // 색인 밖 번호가 색인 **안**의 자리를 차지하지 않는지는
-    // `middleTypeCoverage.test.ts` 가 전량으로 지킨다.
     const seq = (n: number): string[] =>
       Array.from({ length: n }, (_, i) => String(i + 1).padStart(2, "0"));
-    expect(GEO.length).toBe(65);
+    expect(GEO.length).toBe(55);
     expect(byMinor.get("삼각형의 성질")!.sort()).toEqual(seq(12));
-    expect(byMinor.get("여러 가지 사각형")!.sort()).toEqual(seq(27));
+    expect(byMinor.get("여러 가지 사각형")!.sort()).toEqual(seq(17));
     expect(byMinor.get("도형의 닮음")!.sort()).toEqual(seq(15));
     expect(byMinor.get("평행선 사이의 선분의 길이의 비")!.sort()).toEqual(
       seq(11),
@@ -833,12 +633,12 @@ describe("중2 기하 65유형 (RPM 2-2 색인 55 + 우리가 더한 18~27)", ()
       new Map([
         ["이등변삼각형의 성질", 7],
         ["직각삼각형의 합동", 5],
-        ["평행선과 삼각형의 넓이", 10],
+        ["평행선과 삼각형의 넓이", 4],
         ["닮은 도형", 4],
         ["닮은 도형의 넓이의 비와 부피의 비", 4],
         ["삼각형에서 평행선 사이의 선분의 길이의 비", 5],
         ["삼각형의 각의 이등분선", 2],
-        ["직사각형, 마름모, 정사각형", 10],
+        ["직사각형, 마름모, 정사각형", 6],
         ["등변사다리꼴, 여러 가지 사각형", 7],
         ["삼각형의 닮음 조건", 7],
         ["평행선 사이의 선분의 길이의 비", 4],
@@ -1005,69 +805,6 @@ describe("중2 기하 65유형 (RPM 2-2 색인 55 + 우리가 더한 18~27)", ()
       expect(p.answer).toBe(
         `$\\overline{${rhs[i1]}${rhs[i2]}}$, $\\angle ${rhs[p.facts.ai!]}$`,
       );
-    }
-  });
-
-  it("24·25·27 의 그림은 발문의 비·각을 그대로 그린다", () => {
-    // 09 §4-20 — 그림의 각·길이 비는 발문의 실제 값이어야 한다. 「대충 그린」
-    // 그림은 에러를 안 내고 지면에서만 거짓말한다(값 검산이 구조적으로 못 본다).
-    const pointsOf = (key: string, seed: number): Record<string, P2> =>
-      (
-        generateMiddleProblem(key, seed).figureSpec as {
-          points: Record<string, P2>;
-        }
-      ).points;
-    for (const seed of SEEDS) {
-      const k24 = GEO.find((x) => vkey(x) === "여러 가지 사각형|24")!.key;
-      const f24 = generateMiddleProblem(k24, seed).facts;
-      const p24 = pointsOf(k24, seed);
-      // 모드 0 은 대각선:밑변 = c:b · 모드 1 은 대각선:왼변 = x:a 로 그려야 한다.
-      const want24 = f24.mode === 0 ? f24.c! / f24.b! : f24.x! / f24.a!;
-      const got24 =
-        f24.mode === 0
-          ? dist(p24.A!, p24.C!) / dist(p24.B!, p24.C!)
-          : dist(p24.A!, p24.C!) / dist(p24.A!, p24.B!);
-      expect(
-        Math.abs(got24 - want24),
-        `24 seed ${seed}: 그림의 비 ${got24} ≠ 발문의 ${want24}`,
-      ).toBeLessThan(0.02);
-
-      const k25 = GEO.find((x) => vkey(x) === "여러 가지 사각형|25")!.key;
-      const f25 = generateMiddleProblem(k25, seed).facts;
-      const p25 = pointsOf(k25, seed);
-      expect(
-        Math.abs(dist(p25.A!, p25.C!) / dist(p25.B!, p25.D!) - f25.m! / f25.n!),
-        `25 seed ${seed}: 두 대각선의 비가 발문과 다르다`,
-      ).toBeLessThan(0.02);
-
-      const k27 = GEO.find((x) => vkey(x) === "여러 가지 사각형|27")!.key;
-      const f27 = generateMiddleProblem(k27, seed).facts;
-      const p27 = pointsOf(k27, seed);
-      expect(
-        Math.abs(angleDeg(p27.P!, p27.A!, p27.B!) - f27.a!),
-        `27 seed ${seed}: 그림의 $\\angle PAB$ 가 발문과 다르다`,
-      ).toBeLessThan(0.5);
-    }
-  });
-
-  it("사각형 23 의 그림에서 $O$ 는 실제로 두 대각선 위에 있다", () => {
-    // 그림이 거짓말하면 «대각선의 교점»이라는 발문이 지면에서 무너진다.
-    // 좌표를 넘겨받지 않고 **세 점이 한 직선 위인지**로 잰다.
-    const e = GEO.find((x) => vkey(x) === "여러 가지 사각형|23")!;
-    for (const seed of SEEDS) {
-      const spec = generateMiddleProblem(e.key, seed).figureSpec as {
-        points: Record<string, P2>;
-      };
-      const { A, B, C, D, O } = spec.points;
-      const span = Math.max(dist(A!, C!), dist(B!, D!));
-      expect(
-        triArea(A!, O!, C!) / span,
-        `seed ${seed}: O 가 대각선 AC 밖이다`,
-      ).toBeLessThan(0.05);
-      expect(
-        triArea(B!, O!, D!) / span,
-        `seed ${seed}: O 가 대각선 BD 밖이다`,
-      ).toBeLessThan(0.05);
     }
   });
 

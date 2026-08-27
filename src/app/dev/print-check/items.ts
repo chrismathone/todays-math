@@ -1046,6 +1046,33 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-08-26",
   },
   {
+    id: "print-paragraph-break",
+    title:
+      "발문 뒤 나열 대상이 **줄을 바꿔** 앉는다 (문항 높이가 한 줄 늘어난다)",
+    changed:
+      "원장님 지적 2026-08-27(「두 수의 합을 구하시오. 485, 342 … 줄바꿈 되어있지 않고」). " +
+      "`collapseWhitespace` 가 엔진이 넣은 이중 개행을 **전부 공백으로 접고** 있었다. " +
+      "이제 «앞이 문장부호로 끝난» 자리에서만 문단으로 남긴다(`keepMeaningfulParagraphs`). " +
+      "발문이 한 줄 늘어나므로 **문항 칸 높이가 커진다** — 칸을 꽉 채우던 문항이 넘칠 수 있다.",
+    look:
+      "① 「두 수의 합을 구하시오.」 「다음 세 분수 중 …」 같은 문항에서 나열 대상($485$, $342$)이 " +
+      "발문 **다음 줄**에 앉는가(발문과 한 줄로 붙어 있으면 불합격). " +
+      "② 그 때문에 문항이 칸을 넘쳐 다음 장으로 밀리거나 **잘려 나간 문항**이 없는가. " +
+      "③ 「ㄱ. ㄴ. ㄷ.」 보기 묶음·「㈎ ㈏ ㈐」 조건 묶음도 발문과 갈라져 있는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/problem/parseProblemContent.ts (keepMeaningfulParagraphs)",
+      "src/__tests__/unit/renderParity.test.tsx (2026-08-27 항목)",
+    ],
+    scale:
+      "공유 DB 전량 실측 — 발문이 바뀌는 문항 393건 / 17,513 (보기는 0건). 초3~중2 전 학년에 걸쳐 있다.",
+    needs:
+      "초3 1-1-1(「두 수의 합」)과 중1 7단원(「ㄱ.ㄴ.ㄷ. 보기」)이 **같이** 들어간 시험지. " +
+      "자(`estimateProblemPx`)가 같은 파서를 부르므로 넘침 판정은 따라오지만, 종이는 따로 봐야 한다.",
+    status: "대기",
+    changedOn: "2026-08-27",
+  },
+  {
     id: "prod-print",
     title: "프로덕션 실물 인쇄 최종 검수 (T6.2)",
     changed: "배포 태스크의 인수 조건. 배포 자체가 미완이라 착수 전이다.",

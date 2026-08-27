@@ -336,9 +336,15 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       yCounts.set(y, (yCounts.get(y) ?? 0) + 1);
     }
     expect([...yCounts.values()].sort((a, b) => a - b)).toEqual([2, 4]);
+    expect(r.svg, "내부 분할선은 measured 식별자가 아니다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      (r.svg.match(/stroke-dasharray="/g) ?? []).length,
-    ).toBeGreaterThanOrEqual(3);
+      (r.svg.match(/<line [^>]*stroke-width="1.15"/g) ?? []).length,
+      "내부 점선의 짧은 실선 조각",
+    ).toBeGreaterThanOrEqual(6);
+    expect(figureSvgViewBoxWidth(r.svg)).toBe(124);
+    expect(figureSvgSize(r.svg)).toBe("compact");
   });
 
   /**
@@ -354,11 +360,11 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       version: "elem-1",
       kind: "cylinder",
       r: 2,
-      h: 3,
+      h: 15,
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg, "높이는 적는다").toContain(">3 cm<");
+    expect(r.svg, "높이는 적는다").toContain(">15 cm<");
     expect(r.svg, "반지름은 발문에 있으므로 안 적는다").not.toContain(">2 cm<");
     // 반지름 라벨이 없으면 중심 점은 **설명 없는 표시**다 — 같이 뺀다.
     expect(
@@ -366,13 +372,16 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       "중심 점",
     ).toHaveLength(0);
     // 높이 치수는 도형 왼쪽 바깥이다.
-    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>3 cm</);
+    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>15 cm</);
     expect(m).toBeTruthy();
     const xs = [...r.svg.matchAll(/points="([^"]+)"/g)].flatMap((p) =>
       p[1].split(/\s+/).map((q) => Number(q.split(",")[0])),
     );
     const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
     expect(Number(m![1])).toBeLessThan(midX - 8);
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
   });
 
   it("쌓기나무 겨냥도와 위 보기는 겹치지 않는다", async () => {
@@ -643,6 +652,23 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(depth.y).toBeGreaterThan(height.y);
   });
 
+  it("직육면체의 긴 높이 라벨 halo가 viewBox 왼쪽에서 잘리지 않는다", async () => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "cuboid",
+      w: 8,
+      d: 2,
+      h: 15,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const m = r.svg.match(/x="([\d.-]+)" y="[\d.-]+"[^>]*>15 cm</);
+    expect(m).toBeTruthy();
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+  });
+
   it("대칭 윤곽 도형은 격자 칸이 아니라 다각형이다", async () => {
     const r = await renderFigureSpec({
       version: "elem-1",
@@ -704,10 +730,44 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.svg, "마름모는 라벨을 적지 않는다").not.toMatch(/\d\s*cm/);
+    expect(r.svg, "구조용 점선은 measured 식별자를 쓰지 않는다").not.toContain(
+      "stroke-dasharray",
+    );
     expect(
-      [...r.svg.matchAll(/<line [^>]*stroke-dasharray="5 4"/g)],
-      "대각선 점선 둘",
-    ).toHaveLength(2);
+      [...r.svg.matchAll(/<line [^>]*stroke-width="1.05"/g)].length,
+      "대각선의 짧은 실선 조각",
+    ).toBeGreaterThan(4);
+  });
+
+  it.each([
+    { shape: "tri", base: 8, height: 5 },
+    { shape: "para", base: 7, height: 4 },
+    { shape: "trap", base: 8, height: 4, top: 5 },
+  ])("areaPoly $shape 치수는 도형 바깥이고 폭은 mid 등급이다", async (spec) => {
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "areaPoly",
+      ...spec,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const polygon = parsePoints(r.svg.match(/<polygon points="([^"]+)"/)![1]!);
+    const controls = [
+      ...r.svg.matchAll(
+        /<path d="M [\d.-]+ [\d.-]+ Q ([\d.-]+) ([\d.-]+) [\d.-]+ [\d.-]+"[^>]*stroke-dasharray="6 4"/g,
+      ),
+    ].map((m) => [Number(m[1]), Number(m[2])] as Pt);
+    expect(controls.length, `${spec.shape} 치수`).toBeGreaterThanOrEqual(2);
+    for (const control of controls) {
+      expect(
+        pointInsidePolygon(control, polygon),
+        `${spec.shape} 치수 곡선`,
+      ).toBe(false);
+    }
+    const width = figureSvgViewBoxWidth(r.svg);
+    expect(width).toBeGreaterThan(160);
+    expect(width).toBeLessThanOrEqual(320);
+    expect(figureSvgSize(r.svg)).toBe("mid");
   });
 
   it("정삼각형은 세 변의 길이가 같다", async () => {
@@ -2594,6 +2654,21 @@ function parsePoints(raw: string): Pt[] {
   );
 }
 
+function pointInsidePolygon([x, y]: Pt, polygon: Pt[]): boolean {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const [xi, yi] = polygon[i]!;
+    const [xj, yj] = polygon[j]!;
+    if (
+      yi > y !== yj > y &&
+      x < ((xj - xi) * (y - yi)) / (yj - yi || Number.EPSILON) + xi
+    ) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
 function svgPolygons(svg: string): Pt[][] {
   return [...svg.matchAll(/<polygon points="([^"]+)"/g)].map((m) =>
     parsePoints(m[1]!),
@@ -3090,6 +3165,57 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     //    (문서 §10). 그래서 **같은 것을 다른 특징으로** 한 번 더 잰다.
     const dashes = (r.svg.match(/stroke-dasharray="6 4"/g) ?? []).length;
     expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
+  });
+
+  it("치수 점선의 볼록한 가운데는 도형 바깥이고 폭 등급은 mid로 고정된다", async () => {
+    for (const spec of [
+      MARKED_ISO,
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "para",
+        sides: ["4 cm", "6 cm", null, null],
+      },
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "pentagon",
+        sides: ["12 cm"],
+      },
+    ]) {
+      const r = await renderFigureSpec(spec);
+      expect(r.ok, String(spec.shape)).toBe(true);
+      if (!r.ok) return;
+      const corners = shapeCorners(r.svg)[0]!;
+      const center = corners.reduce(
+        (sum, [x, y]) => [
+          sum[0] + x / corners.length,
+          sum[1] + y / corners.length,
+        ],
+        [0, 0] as Pt,
+      );
+      const dims = [
+        ...r.svg.matchAll(
+          /<path d="M ([\d.-]+) ([\d.-]+) Q ([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"[^>]*stroke-dasharray="6 4"/g,
+        ),
+      ];
+      expect(dims.length, `${spec.shape} 치수`).toBeGreaterThan(0);
+      for (const dim of dims) {
+        const sx = Number(dim[1]);
+        const sy = Number(dim[2]);
+        const cx = Number(dim[3]);
+        const cy = Number(dim[4]);
+        const ex = Number(dim[5]);
+        const ey = Number(dim[6]);
+        const mx = (sx + ex) / 2;
+        const my = (sy + ey) / 2;
+        const outwardDot =
+          (cx - mx) * (mx - center[0]) + (cy - my) * (my - center[1]);
+        expect(outwardDot, `${spec.shape} 치수 곡선`).toBeGreaterThan(0);
+      }
+      expect(figureSvgViewBoxWidth(r.svg), `${spec.shape} 폭`).toBe(184);
+      expect(figureSvgSize(r.svg), `${spec.shape} 지면 등급`).toBe("mid");
+    }
   });
 
   it.each([
@@ -3982,3 +4108,127 @@ describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분",
     expect(r.svg).toContain('stroke-dasharray="6 4"');
   });
 });
+
+/**
+ * 전개도의 **접는 선** — 원장님 2026-08-27 (`J10504-A05-005`)
+ *
+ * 초5 「직육면체의 전개도」 교과서: **실선 = 자르는 선**(바깥 윤곽) ·
+ * **점선 = 접는 선**(면과 면이 맞닿는 안쪽 변). 종전에는 면마다 닫힌 실선
+ * `_rect`/`_poly` 를 그려 둘이 **같은 획**이었다 — 그림이 전개도가 아니었다.
+ *
+ * ⚠️ 이 시험은 「몇 개인가」로 잠근다. 접는 선 수는 **면 수 - 1**(신장나무)이라
+ *    좌표를 안 옮겨 적고도 갈린다 — 하나를 빠뜨리거나 윤곽을 점선으로 만들면 빨개진다.
+ *    좌표 단위의 전량 판정은 `python scripts/qa/probe-elem-net-fold.py` 가 한다(양성 6·음성 5).
+ */
+describe.skipIf(!hasEngine)(
+  "[초등 그림] 전개도의 접는 선 (원장님 2026-08-27)",
+  () => {
+    const FOLD = /<line\b[^>]*stroke-dasharray="5 4"[^>]*\/>/g;
+
+    it("netCuboid — 여섯 면이 맞닿는 다섯 변만 점선이고 윤곽은 실선이다", async () => {
+      const r = await renderFigureSpec({
+        version: "elem-1",
+        kind: "netCuboid",
+        w: 7,
+        d: 4,
+        h: 5,
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 면 6장이 이루는 신장나무 = 접는 선 5개.
+      expect(r.svg.match(FOLD) ?? []).toHaveLength(5);
+      // 면은 **칠만** 한다 — 면마다 획이 있으면 안쪽 변과 윤곽을 못 가른다.
+      expect(r.svg).not.toMatch(/<rect\b[^>]*stroke="#111111"/);
+      // 윤곽은 **한 폴리라인**이고 점선이 아니다(변마다 그으면 모서리에 톱니가 남는다).
+      const outline = r.svg.match(/<polyline\b[^>]*\/>/g) ?? [];
+      expect(outline).toHaveLength(1);
+      expect(outline[0]).not.toContain("stroke-dasharray");
+    });
+
+    it("prism(net) — 접는 선은 옆면 사이 n-1 개 + 두 밑면이 붙는 2 개다", async () => {
+      for (const sides of [3, 4, 5, 6, 8]) {
+        const r = await renderFigureSpec({
+          version: "elem-1",
+          kind: "prism",
+          sides,
+          h: 4,
+          net: true,
+        });
+        expect(r.ok, `sides=${sides}`).toBe(true);
+        if (!r.ok) return;
+        expect(r.svg.match(FOLD) ?? [], `sides=${sides}`).toHaveLength(
+          sides + 1,
+        );
+      }
+    });
+
+    /**
+     * 🔴 접는 선이 **치수 지문**(`#000` 1.4 `6 4`)을 쓰면
+     *    `scripts/qa/probe-dim-outside.py` 가 그것을 「치수」로 세고, 전개도 안쪽이라
+     *    「치수가 도형 안에 있다」로 **거짓 결함이 쏟아진다.** 두 지문을 갈라 둔다.
+     */
+    it("접는 선은 치수 지문(#000 1.4 '6 4')을 쓰지 않는다", async () => {
+      for (const spec of [
+        { version: "elem-1", kind: "netCuboid", w: 7, d: 4, h: 5 },
+        { version: "elem-1", kind: "prism", sides: 5, h: 4, net: true },
+      ]) {
+        const r = await renderFigureSpec(spec);
+        expect(r.ok).toBe(true);
+        if (!r.ok) return;
+        for (const line of r.svg.match(FOLD) ?? []) {
+          expect(line).toContain('stroke="#111111"');
+          expect(line).not.toContain('stroke="#000"');
+          expect(line).not.toContain('stroke-width="1.4"');
+        }
+      }
+    });
+
+    /**
+     * 맞닿아야 할 두 면이 어긋나면 그 변은 「공유하는 변」으로 안 읽혀 **접는 선이
+     * 조용히 윤곽이 된다.** 실측 2026-08-27: `<rect>` 의 `x` 와 `width` 가 따로
+     * 반올림되어 전개도 40장 중 4장이 0.01px 어긋나 있었다.
+     */
+    it("맞닿는 면끼리 좌표가 정확히 만난다 — 폭은 반올림한 꼭짓점에서 뺀다", async () => {
+      for (const [w, d, h] of [
+        [10, 6, 2],
+        [12, 7, 2],
+        [10, 2, 4],
+        [6, 7, 4],
+      ]) {
+        const r = await renderFigureSpec({
+          version: "elem-1",
+          kind: "netCuboid",
+          w,
+          d,
+          h,
+        });
+        expect(r.ok).toBe(true);
+        if (!r.ok) return;
+        // ⚠️ **찍힌 자리수(소수 둘째)로 견준다.** JS 부동소수 합(`x + width`)을
+        //    날것으로 비교하면 148.92000000000002 ≠ 148.92 라 시험이 제 산술 때문에
+        //    빨개진다 — 지면에 나가는 것은 반올림된 값이다.
+        const r2 = (v: number) => Math.round(v * 100) / 100;
+        const edges = new Set<string>();
+        for (const m of r.svg.matchAll(
+          /<rect\b[^>]*x="([-\d.]+)"[^>]*y="([-\d.]+)"[^>]*width="([-\d.]+)"[^>]*height="([-\d.]+)"/g,
+        )) {
+          const [x, y, ww, hh] = m.slice(1, 5).map(Number);
+          edges.add(`${r2(x)},${r2(y)}`);
+          edges.add(`${r2(x + ww)},${r2(y + hh)}`);
+        }
+        // 어긋나면 「거의 같지만 다른」 좌표 짝이 생긴다(실측: 0.01 차이).
+        const pts = [...edges].map((s) => s.split(",").map(Number));
+        for (const [ax, ay] of pts) {
+          for (const [bx, by] of pts) {
+            const near = Math.abs(ax - bx) < 0.06 && Math.abs(ay - by) < 0.06;
+            if (near && (ax !== bx || ay !== by)) {
+              expect.fail(
+                `netCuboid ${w}/${d}/${h} — (${ax},${ay}) 와 (${bx},${by}) 가 어긋났다`,
+              );
+            }
+          }
+        }
+      }
+    });
+  },
+);

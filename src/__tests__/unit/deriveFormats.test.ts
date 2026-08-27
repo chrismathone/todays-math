@@ -288,6 +288,47 @@ describe("세 형식 — familyKey 가 갈라지지 않는다", () => {
   });
 });
 
+describe("단위·꼬리표가 붙은 정답 — 틀은 남기고 수만 바꾼다", () => {
+  /**
+   * 🔴 중등 객관식이 873 중 227 뿐이던 까닭은 「정답이 식」이라서가 **아니었다.**
+   *    전수로 세니 못 만든 정답의 대부분이 **단위가 붙은 수**였다:
+   *      $8\,\mathrm{cm}$ 78 · $90^\circ$ 76 · $12$개 61 · $254\,\mathrm{cm}^2$ 29 …
+   *    `numericMistakes` 가 맨 숫자만 봐서 통째로 못 만들었다.
+   *    수만 바꾸고 **틀은 그대로** 두면 그대로 오답이 된다.
+   */
+  it("단위가 붙어도 오답을 만든다 — 단위는 그대로 따라간다", () => {
+    for (const answer of [
+      "$8\\,\\mathrm{cm}$",
+      "$90^\\circ$",
+      "$12$개",
+      "$254\\,\\mathrm{cm}^2$",
+      "$11$명",
+      "$86$점",
+    ]) {
+      const got = numericMistakes(answer);
+      expect(got.length, answer).toBeGreaterThanOrEqual(4);
+      // 틀이 살아 있어야 한다 — 숫자만 다르고 나머지는 같다.
+      const shape = (t: string) => t.replace(/-?\d+(?:\.\d+)?/g, "N");
+      for (const m of got)
+        expect(shape(m.value), `${answer} → ${m.value}`).toBe(shape(answer));
+    }
+  });
+
+  it("dfrac 도 frac 과 같이 다룬다", () => {
+    const got = numericMistakes("$\\dfrac{2}{3}$");
+    expect(got.length).toBeGreaterThanOrEqual(4);
+  });
+
+  /**
+   * 🔴 **닫힌 영역**은 손대지 않는다. 「제$2$사분면」에서 수를 바꾸면
+   *    「제$8$사분면」이 나온다 — 학생이 계산 없이 지워 내는 가짜 오답이라
+   *    문항이 오히려 쉬워진다. 없는 것을 지어내지 않는다.
+   */
+  it("🔴 닫힌 영역(사분면)은 오답을 지어내지 않는다", () => {
+    expect(numericMistakes("제$2$사분면")).toHaveLength(0);
+  });
+});
+
 describe("계산 실수 목록 — 값이 목록을 가른다", () => {
   it("정수 정답의 후보에 하나 더하기·부호 반전·두 배가 있다", () => {
     const tags = new Set(numericMistakes("$6$").map((m) => m.tag));

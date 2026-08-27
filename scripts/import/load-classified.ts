@@ -33,6 +33,7 @@ export interface LoadResult {
   alreadyPresent: number;
   skippedOversized: number;
   skippedDuplicates: number;
+  heldForGradeReview: number;
   reason: string;
   selectedSource: string;
   selectedKind: string;
@@ -133,6 +134,7 @@ export async function loadClassifiedAtomically(
   inserted: number;
   alreadyPresent: number;
   skippedOversized: number;
+  heldForGradeReview: number;
   examSync: SyncExamResult;
 }> {
   return prisma.$transaction(
@@ -174,8 +176,9 @@ export async function loadClassifiedAtomically(
 
       // 그림 치수를 **적재 때** 채운다. 판정은 브라우저에서 돌아 파일을 못 읽으므로
       // 여기서 안 채우면 그 문항은 영원히 «모른다»가 된다(적대적 리뷰 ④ C).
-      const { rows, skipped } = toLoadRows(remapped, user.id, {
+      const { rows, skipped, held } = toLoadRows(remapped, user.id, {
         resolveDimensions: readFigureDimensions,
+        unitGradeById: new Map(dbUnits.map((unit) => [unit.id, unit.grade])),
       });
       const existing = await tx.problem.findMany({
         where: { userId: user.id },
@@ -225,6 +228,7 @@ export async function loadClassifiedAtomically(
         inserted,
         alreadyPresent: rows.length - missing.length,
         skippedOversized: skipped.length,
+        heldForGradeReview: held.length,
         examSync,
       };
     },
@@ -253,6 +257,7 @@ export async function runLoadIfLocal(outDir: string): Promise<LoadResult> {
       alreadyPresent: 0,
       skippedOversized: 0,
       skippedDuplicates: 0,
+      heldForGradeReview: 0,
       reason: reasons.filter(Boolean).join(" / "),
       ...base,
     };
@@ -321,7 +326,7 @@ export async function runLoadIfLocal(outDir: string): Promise<LoadResult> {
     };
     await writeJson(path.join(outDir, "load-result.json"), result);
     console.log(
-      `[load] inserted=${load.inserted} existing=${load.alreadyPresent} skipped=${load.skippedOversized}`,
+      `[load] inserted=${load.inserted} existing=${load.alreadyPresent} skipped=${load.skippedOversized} grade-hold=${load.heldForGradeReview}`,
     );
     const sync = load.examSync;
     console.log(

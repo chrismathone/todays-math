@@ -351,7 +351,9 @@ export const problemHandlers: HttpHandler[] = [
 
     return jsonOk(problemTransformResponseSchema, {
       data: candidates,
-      meta: { figureRequired },
+      // 실제 서버는 문항류 대표(`-001`)로 옮겨 변형하고 그 코드를 싣는다.
+      // mock 은 옮길 형제가 없으므로 요청한 문항의 코드를 그대로 돌려준다.
+      meta: { figureRequired, originProblemCode: origin?.problemCode ?? "" },
     });
   }),
 

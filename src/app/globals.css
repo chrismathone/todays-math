@@ -72,7 +72,8 @@
   --src-middle: #b645a4; /* [중]   중등 엔진      — 문항 출처 */
   --src-past-exam: #90325d; /* [기]   기출 추출      — 문항 출처 */
   --src-workbook: #d13559; /* [문]   문제집 추출    — 문항 출처 */
-  --src-ai: #7a4920; /* [AI]  AI 생성·변형   — 문항 출처 */
+  --src-ai: #7a4920; /* [AI]  AI 생성        — 문항 출처 */
+  --src-ai-transformed: #1400fa; /* 변    AI 변형        — 문항 출처 */
   --src-mcq: #5f5521; /* [객]   객관식         — 형식 */
   --src-short: #5f4977; /* [단]   단답형         — 형식 */
   --src-written: #687a00; /* [서]   서술형         — 형식 */
@@ -123,12 +124,15 @@
   --color-g-yellow-text: var(--yellow-text);
   --color-g-red: var(--red);
   --color-g-red-text: var(--red-text);
-  /* 출처 라벨 — `text-src-*` 로 쓴다. 값은 위 `:root` 하나가 정한다(§2.2.1). */
+  /* 출처 라벨 — 배지 **면색**(`bg-src-*`)으로 쓴다. 흰 글씨가 얹히므로 값은
+     흰색 대비 4.5:1 이상이어야 한다. 값은 위 `:root` 하나가 정한다(§2.2.1).
+     ⚠️ 2026-08-27 원장님 지시로 «글자색 → 면색»으로 바뀌었다(05 §8.6 갱신). */
   --color-src-past-exam: var(--src-past-exam);
   --color-src-workbook: var(--src-workbook);
   --color-src-elem: var(--src-elem);
   --color-src-middle: var(--src-middle);
   --color-src-ai: var(--src-ai);
+  --color-src-ai-transformed: var(--src-ai-transformed);
   --color-src-mcq: var(--src-mcq);
   --color-src-short: var(--src-short);
   --color-src-written: var(--src-written);

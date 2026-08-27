@@ -19,6 +19,7 @@ from elementary import (
     PAPER,
     TABLE_VIEWBOX_MAX,
     _arrow_right,
+    _dashed_polyline,
     _esc,
     _label_w_max,
     _text_bboxes,
@@ -2027,7 +2028,9 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     miny = min(c[1] for c in corners0)
     maxy = max(c[1] for c in corners0)
     # 가로=앞 아래, 높이=앞 왼쪽, 세로=밑면 오른쪽 뒤. 위-오른쪽 짧은 모서리는 쓰지 않는다.
-    pad_l, pad_t, pad_r, pad_b = 40.0, 22.0, 52.0, 44.0
+    # 왼쪽 높이 라벨의 근사 상자까지 담되 총 폭은 유지한다(44+48 == 종전 40+52).
+    # viewBox 폭 문턱(160/320)을 넘나들지 않게 오른쪽 여백을 같은 만큼 줄인다.
+    pad_l, pad_t, pad_r, pad_b = 44.0, 22.0, 48.0, 44.0
     view = View(0.5, 45, scale, (pad_l - minx, pad_t - miny))
 
     def p(x: float, y: float, z: float) -> tuple[float, float]:
@@ -2250,6 +2253,147 @@ def _ngon_on_edge(
     return chosen
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# 전개도의 **접는 선** (원장님 2026-08-27, `J10504-A05-005`)
+#
+# 초5 「직육면체의 전개도」 교과서 규약:
+#   · **실선 = 자르는 선** — 바깥 윤곽
+#   · **점선 = 접는 선** — 면과 면이 맞닿는 안쪽 변
+# 지금까지는 면마다 닫힌 실선 `_rect`/`_poly` 를 그려서 안쪽 변과 바깥 윤곽이
+# **같은 획**이었다 — 그래서 못 갈랐고, 그림이 전개도가 아니었다.
+#
+# 규칙을 kind 마다 좌표로 적지 않고 **여기 한 곳**에 둔다 (D-61). kind 는 「면이
+# 어디 있나」만 말하고, 「어느 변이 접는 선인가」는 **공유 여부**가 정한다 —
+# 그러면 새 전개도 kind 가 같은 결함을 다시 낼 자리가 없다.
+#
+# 🔴 접는 선 지문은 **치수와 겹치면 안 된다.** 치수는 `#000` 1.4 `6 4` 이고,
+#    `scripts/qa/probe-dim-outside.py` 가 그 지문으로 치수를 고른다. 접는 선을
+#    그 지문으로 그리면 그 판정기가 전개도 **안쪽**의 접는 선을 전부 「치수가
+#    도형 안에 있다」로 세어 거짓 결함이 쏟아진다. 겨냥도 숨은 모서리와 같은
+#    지문(`#111111` `5 4`)을 쓴다 — 전개도는 평면이라 숨은 모서리가 없으므로
+#    한 그림 안에서 둘이 부딪치지 않는다.
+#
+# 판정기는 `scripts/qa/probe-elem-net-fold.py` (양성 5 · 음성 5).
+# ═══════════════════════════════════════════════════════════════════════════
+
+NET_SW = 1.15
+# 자르는 선과 접는 선은 **같은 굵기**다 — 갈라 주는 것은 점선이다.
+FOLD_DASH = "5 4"
+
+
+def _rect_ring(x: float, y: float, w: float, h: float) -> list[tuple[float, float]]:
+    return [(x, y), (x + w, y), (x + w, y + h), (x, y + h)]
+
+
+def _net_face(pts: list[tuple[float, float]], fill: str) -> str:
+    """면의 **칠**. 획은 `_net_body` 가 따로 긋는다(그래야 안쪽 변을 가른다).
+
+    ⚠️ 축에 나란한 네모는 `<polygon>` 이 아니라 **`<rect>` 로** 남긴다.
+       `probe-dim-outside.py` 는 「가장 큰 `<polygon>`」을 도형 윤곽으로 삼는데,
+       전개도 면을 polygon 으로 바꾸면 그 판정기가 **면 한 장**을 도형으로 읽기
+       시작한다(실측 2026-08-27: 잰 그림 111 → 129 로 분모가 움직였다). 그리는
+       것은 같으니 그쪽 분모를 흔들지 않는 표현을 고른다.
+    """
+    if len(pts) == 4:
+        xs = {round(p[0], 6) for p in pts}
+        ys = {round(p[1], 6) for p in pts}
+        if len(xs) == 2 and len(ys) == 2:
+            # ⚠️ 폭·높이를 **찍는 자리수로 반올림한 꼭짓점에서** 뺀다.
+            #    `<rect>` 는 `x` 와 `width` 를 따로 찍고 둘 다 소수 둘째에서 반올림된다.
+            #    원래 값에서 폭을 재면 둘이 같이 올림되어 `x + width` 가 이웃 면의 `x`
+            #    보다 0.01 커진다 — 맞닿아야 할 두 면이 어긋나고, 그러면 그 변은
+            #    「두 면이 공유하는 변」으로 안 읽혀 **접는 선이 아니라 윤곽**이 된다.
+            #    실측(2026-08-27): 전개도 40장 중 4장이 그랬다(접는 선 216 → 210).
+            x0, x1 = round(min(xs), 2), round(max(xs), 2)
+            y0, y1 = round(min(ys), 2), round(max(ys), 2)
+            return _rect(x0, y0, x1 - x0, y1 - y0, fill=fill, stroke="none", sw=NET_SW)
+    return (
+        f'<polygon points="{" ".join(f"{_n(x)},{_n(y)}" for x, y in pts)}" '
+        f'fill="{fill}" stroke="none"/>'
+    )
+
+
+def _net_body(faces: list[tuple[list[tuple[float, float]], str]]) -> str:
+    """전개도 몸통 — 면은 **칠만**, 바깥 윤곽은 실선, 접는 선은 점선.
+
+    `faces` 는 (꼭짓점 고리, 칠) 목록. 같은 변을 **두 면이 공유**하면 그 변이
+    접는 선이다. 윤곽은 변마다 따로 긋지 않고 **한 폴리라인**으로 이어 그린다 —
+    변마다 그으면 butt 마개 때문에 모서리마다 톱니가 남는다.
+
+    윤곽이 한 고리로 안 이어지면 **던진다**. 조용히 다른 것을 그리면 잘려도
+    아무도 모른다(09 §4-14 와 같은 이유).
+    """
+
+    def key(p: tuple[float, float]) -> tuple[float, float]:
+        return (round(p[0], 3), round(p[1], 3))
+
+    count: dict[tuple, int] = {}
+    for pts, _fill in faces:
+        n = len(pts)
+        for i in range(n):
+            ka, kb = key(pts[i]), key(pts[(i + 1) % n])
+            if ka == kb:
+                continue
+            count[(ka, kb) if ka <= kb else (kb, ka)] = (
+                count.get((ka, kb) if ka <= kb else (kb, ka), 0) + 1
+            )
+
+    cuts: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    folds: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    seen: set[tuple] = set()
+    for pts, _fill in faces:
+        n = len(pts)
+        for i in range(n):
+            a, b = pts[i], pts[(i + 1) % n]
+            ka, kb = key(a), key(b)
+            if ka == kb:
+                continue
+            ek = (ka, kb) if ka <= kb else (kb, ka)
+            if ek in seen:
+                continue
+            seen.add(ek)
+            (folds if count[ek] >= 2 else cuts).append((a, b))
+
+    parts = [_net_face(pts, fill) for pts, fill in faces]
+    parts.append(_polyline(_net_outline_ring(cuts), sw=NET_SW))
+    parts += [_line(a, b, sw=NET_SW, dash=FOLD_DASH) for a, b in folds]
+    return "".join(parts)
+
+
+def _net_outline_ring(
+    cuts: list[tuple[tuple[float, float], tuple[float, float]]],
+) -> list[tuple[float, float]]:
+    """자르는 변들을 **한 고리**로 잇는다(닫는 점을 되풀이해 돌려준다)."""
+
+    def key(p: tuple[float, float]) -> tuple[float, float]:
+        return (round(p[0], 3), round(p[1], 3))
+
+    adj: dict[tuple[float, float], list[tuple[float, float]]] = {}
+    for a, b in cuts:
+        adj.setdefault(key(a), []).append(b)
+        adj.setdefault(key(b), []).append(a)
+    bad = [k for k, v in adj.items() if len(v) != 2]
+    if bad:
+        raise ValueError(
+            f"전개도 윤곽이 한 고리로 안 이어집니다 — 갈래가 2가 아닌 꼭짓점 {bad[:4]}"
+        )
+    start = cuts[0][0]
+    ring = [start]
+    prev, cur = None, start
+    while True:
+        nxts = adj[key(cur)]
+        nxt = nxts[0] if prev is None or key(nxts[0]) != key(prev) else nxts[1]
+        prev, cur = cur, nxt
+        ring.append(cur)
+        if key(cur) == key(start):
+            break
+    if len(ring) != len(cuts) + 1:
+        raise ValueError(
+            f"전개도 윤곽이 한 고리가 아닙니다 — 자르는 변 {len(cuts)} 중 {len(ring) - 1} 만 이어집니다"
+        )
+    return ring
+
+
 def _net_prism(sides: int) -> str:
     ww, hh = 22.0, 38.0
     # 밑면 각형이 옆면 위·아래로 얼마나 솟는지 손으로 셈하지 않는다 — 변 수가 바뀌면
@@ -2257,15 +2401,15 @@ def _net_prism(sides: int) -> str:
     # `_svg` 가 그린 것을 다 담게 viewBox 를 맞춘다 (09 §4-14).
     pad_x, pad_t, pad_b = 10.0, 10.0, 10.0
     ox, oy = pad_x, pad_t
-    parts: list[str] = []
-    for i in range(sides):
-        fill = FACE_FRONT if i % 2 == 0 else FACE_SIDE
-        parts.append(_rect(ox + i * ww, oy, ww, hh, fill=fill, sw=1.15))
-    parts.append(_poly(_ngon_on_edge(sides, ox, oy, ox + ww, oy, "min"), FACE_TOP, 1.15))
-    parts.append(
-        _poly(_ngon_on_edge(sides, ox, oy + hh, ox + ww, oy + hh, "max"), FACE_TOP, 1.15)
-    )
-    return _svg(pad_x * 2 + sides * ww, pad_t + hh + pad_b, "".join(parts))
+    # 옆면 n 장은 세로 변끼리, 두 밑면은 첫 옆면의 가로 변에 맞닿는다 — 그 변들이
+    # **접는 선**이다. 어느 변인지는 `_net_body` 가 공유 여부로 정한다(손으로 안 짚는다).
+    faces = [
+        (_rect_ring(ox + i * ww, oy, ww, hh), FACE_FRONT if i % 2 == 0 else FACE_SIDE)
+        for i in range(sides)
+    ]
+    faces.append((_ngon_on_edge(sides, ox, oy, ox + ww, oy, "min"), FACE_TOP))
+    faces.append((_ngon_on_edge(sides, ox, oy + hh, ox + ww, oy + hh, "max"), FACE_TOP))
+    return _svg(pad_x * 2 + sides * ww, pad_t + hh + pad_b, _net_body(faces))
 
 
 def _prism(spec: Mapping[str, Any]) -> str:
@@ -2376,7 +2520,8 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     bot3 = circle3((0, 0, 0), r, (0, 0, 1), 64)
     top3 = circle3((0, 0, h), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
-        bot3 + top3, scale, (40.0, 24.0, 30.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
+        bot3 + top3, scale, (44.0, 24.0, 26.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)
@@ -2489,13 +2634,19 @@ def _net_cuboid(spec: Mapping[str, Any]) -> str:
     #     [bot]
     #     [back]
     ox, oy = extra_l + dd, extra_t
+    # 여섯 면이 맞닿는 다섯 변이 **접는 선**이다(면 6장 - 1). 어느 변인지는
+    # `_net_body` 가 공유 여부로 정한다 — 좌표로 짚으면 w·d·h 가 바뀔 때 어긋난다.
     parts = [
-        _rect(ox, oy, ww, dd, fill=FACE_TOP, sw=1.15),
-        _rect(ox - dd, oy + dd, dd, hh, fill=FACE_SIDE, sw=1.15),
-        _rect(ox, oy + dd, ww, hh, fill=FACE_FRONT, sw=1.15),
-        _rect(ox + ww, oy + dd, dd, hh, fill=FACE_SIDE, sw=1.15),
-        _rect(ox, oy + dd + hh, ww, dd, fill=FACE_TOP, sw=1.15),
-        _rect(ox, oy + dd + hh + dd, ww, hh, fill=FACE_FRONT, sw=1.15),
+        _net_body(
+            [
+                (_rect_ring(ox, oy, ww, dd), FACE_TOP),
+                (_rect_ring(ox - dd, oy + dd, dd, hh), FACE_SIDE),
+                (_rect_ring(ox, oy + dd, ww, hh), FACE_FRONT),
+                (_rect_ring(ox + ww, oy + dd, dd, hh), FACE_SIDE),
+                (_rect_ring(ox, oy + dd + hh, ww, dd), FACE_TOP),
+                (_rect_ring(ox, oy + dd + hh + dd, ww, hh), FACE_FRONT),
+            ]
+        )
     ]
     # 면 안 곱셈(7×4)은 치수가 아니다. 직육면체만 변 밖에 cm.
     if not (w == d == h):
@@ -2704,7 +2855,9 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
     # 적는다. 지금 부르는 쪽은 늘 `height == d2` 라 안 드러날 뿐이다(09 §4-20).
     vertical = _num(spec.get("d2", height), "d2", 0.5, 40) if shape == "rhombus" else height
     bw, bh = _area_box(base, vertical)
-    extra_r, extra_b = 24.0, 18.0
+    # 세로 치수를 오른쪽 바깥에 놓고 긴 라벨 halo 까지 담는다. 최대 폭은 236px 로
+    # 종전 208px 와 같은 figureSvgFrame mid 등급(161~320)이다.
+    extra_r, extra_b = 52.0, 18.0
     parts: list[str] = []
     if shape == "rect":
         parts.append(_rect(pad, pad, bw, bh, fill=FAINT, sw=1.4))
@@ -2714,15 +2867,15 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         pts = [(pad, pad + bh), (pad + bw, pad + bh), (pad + bw * 0.45, pad)]
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[0][0], pts[0][1], pts[1][0], pts[1][1], f"{_n(base)} cm", off=12))
-        parts.append(_line((pts[2][0], pts[2][1]), (pts[2][0], pts[0][1]), sw=1.05, dash="5 4"))
-        parts.append(_length_mark(pts[2][0], pts[2][1], pts[2][0], pts[0][1], f"{_n(height)} cm", off=-12))
+        hx = pad + bw + 8.0
+        parts.append(_length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12))
     elif shape == "para":
         skew = min(bw * 0.22, bh * 0.4)
         pts = [(pad + skew, pad), (pad + bw, pad), (pad + bw - skew, pad + bh), (pad, pad + bh)]
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[3][0], pts[3][1], pts[2][0], pts[2][1], f"{_n(base)} cm", off=12))
-        parts.append(_line((pts[0][0], pts[0][1]), (pts[0][0], pts[3][1]), sw=1.05, dash="5 4"))
-        parts.append(_length_mark(pts[0][0], pts[0][1], pts[0][0], pts[3][1], f"{_n(height)} cm", off=-12))
+        hx = pad + bw + 8.0
+        parts.append(_length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12))
     elif shape == "trap":
         top = _num(spec.get("top", base * 0.5), "top", 0.5, 40)
         tw = bw * (top / base)
@@ -2731,16 +2884,11 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         parts.append(_poly(pts, FAINT, 1.4))
         parts.append(_length_mark(pts[3][0], pts[3][1], pts[2][0], pts[2][1], f"{_n(base)} cm", off=12))
         parts.append(_length_mark(pts[0][0], pts[0][1], pts[1][0], pts[1][1], f"{_n(top)} cm", off=-10))
-        # 높이는 **윗변 왼쪽 끝에서 수직으로** 내린다. 예전에는 윗변·아랫변 왼쪽 끝의
-        # 가운데 x 에 그어 윗절반이 빗변 **바깥**으로 삐져나왔다 — 값을 안 적어 두어
-        # 아무도 못 봤을 뿐이다. 삼각형·평행사변형과 같은 자리(꼭짓점에서 수직)로 맞춘다.
-        hx = pts[0][0]
-        parts.append(_line((hx, pts[0][1]), (hx, pts[3][1]), sw=1.05, dash="5 4"))
-        # 높이 점선에 **값을 적는다.** 삼각형·평행사변형은 적는데 사다리꼴만 안 적어
-        # 지면에 「설명 없는 점선」이 남았다(2026-08-22). 발문이 높이를 말해 주더라도
-        # 이유 없는 선은 원장님 ⑭「어디를 가리키는지 모르겠다」와 같은 부류다.
+        # 높이는 도형 오른쪽 바깥에서 윗변·아랫변 사이의 수직 거리를 잰다. 도형 안의
+        # 보조선 위에 measured() 를 겹치면 치수 곡선과 라벨이 도형을 가로지른다.
+        hx = pad + bw + 8.0
         parts.append(
-            _length_mark(hx, pts[0][1], hx, pts[3][1], f"{_n(height)} cm", off=-12)
+            _length_mark(hx, pad, hx, pad + bh, f"{_n(height)} cm", off=-12)
         )
     elif shape == "rhombus":
         d2 = vertical
@@ -2759,8 +2907,8 @@ def _area_poly(spec: Mapping[str, Any]) -> str:
         #    「그린 가로:세로가 스펙의 d1:d2 와 맞는가」를 시험이 직접 잰다(09 §4-20).
         #    그 시험이 없으면 마름모는 오늘부터 아무도 안 보는 그림이 된다.
         extra_r, extra_b = 0.0, 0.0
-        parts.append(_line(pts[0], pts[2], sw=1.05, dash="5 4"))
-        parts.append(_line(pts[1], pts[3], sw=1.05, dash="5 4"))
+        parts.append(_dashed_polyline([pts[0], pts[2]], "5 4", sw=1.05))
+        parts.append(_dashed_polyline([pts[1], pts[3]], "5 4", sw=1.05))
     else:
         raise ValueError("shape 는 rect·tri·para·trap·rhombus 여야 합니다")
     return _svg(bw + pad * 2 + extra_r, bh + pad * 2 + extra_b, "".join(parts))

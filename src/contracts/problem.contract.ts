@@ -389,6 +389,14 @@ export const problemTransformResponseSchema = z.strictObject({
      * (`figureSvg !== null`). 변형은 본문 글자만 오가서 원본 그림이 따라가지 않기 때문이다.
      */
     figureRequired: z.boolean(),
+    /**
+     * **실제로 변형한 원본의 문항 코드.** 화면이 누른 문항과 다를 수 있다 —
+     * 변형은 언제나 문항류의 대표(`-001`)에서 하기 때문이다(원장님 지시 2026-08-27
+     * 「002~ 에서 변형 누르면 001이 변형되는 걸로 배선」).
+     * 서버가 조용히 옮기고 끝내지 않고 **어디로 옮겼는지 알린다** — 안 알리면
+     * 화면이 보여 준 원본과 후보의 출처가 어긋난 채로 검수하게 된다.
+     */
+    originProblemCode: z.string(),
   }),
 });
 

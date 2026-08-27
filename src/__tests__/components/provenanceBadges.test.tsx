@@ -79,6 +79,17 @@ const AI변형 = problem({
   originProblemId: "00000000-0000-4000-8000-0000000000a1",
   questionType: "단답형",
 });
+/**
+ * 🔴 **생성과 변형은 다른 갈래다** (원장님 지시 2026-08-27 「[변] 이라고 붙여
+ *    줘야겠다 라벨에」). 가르는 값은 `source` 가 아니라 `originProblemId` 다 —
+ *    `ai_generated` 는 처음부터 AI 가 지은 것이고, `transformed` + 원본 있음이
+ *    우리 문항을 비튼 것이다. 둘을 나란히 두어 **한쪽만 고치면 빨개지게** 한다.
+ */
+const AI생성 = problem({
+  source: "ai_generated",
+  originProblemId: null,
+  questionType: "단답형",
+});
 /** 실측 764건 — `manual` 인데 엔진 표지가 없는 옛 행. */
 const 옛수동 = problem({ familyKey: null, questionType: null });
 /** 실측 311건 — 보기와 정답이 어긋나 형식을 모르는 행. */
@@ -90,19 +101,16 @@ const badgesIn = (root: HTMLElement) =>
 
 describe("[출처 배선] 문제은행 카드", () => {
   it.each([
-    ["초등 엔진 · 보기 없음", 초등엔진, ["[초]", "[단]"]],
-    [
-      "초등 + 도형 엔진 + 객관식",
-      초등엔진_도형_객관식,
-      ["[초]", "[도]", "[객]"],
-    ],
-    ["기출 + 스캔 + 객관식", 기출_스캔_객관식, ["[기]", "[스캔]", "[객]"]],
-    ["기출 + 서술형", 기출_서술형, ["[기]", "[서]"]],
-    ["기출 + 단답형", 기출_단답형, ["[기]", "[단]"]],
-    ["문제집 + SVG 엔진", 문제집_SVG, ["[문]", "[SVG]", "[?형식]"]],
-    ["AI 변형", AI변형, ["[AI]", "[단]"]],
-    ["옛 수동(출처 미분류)", 옛수동, ["[?]", "[?형식]"]],
-    ["형식 미분류", 형식모름, ["[?]", "[?형식]"]],
+    ["초등 엔진 · 보기 없음", 초등엔진, ["초", "단"]],
+    ["초등 + 도형 엔진 + 객관식", 초등엔진_도형_객관식, ["초", "도", "객"]],
+    ["기출 + 스캔 + 객관식", 기출_스캔_객관식, ["기", "스캔", "객"]],
+    ["기출 + 서술형", 기출_서술형, ["기", "서"]],
+    ["기출 + 단답형", 기출_단답형, ["기", "단"]],
+    ["문제집 + SVG 엔진", 문제집_SVG, ["문", "SVG", "?형식"]],
+    ["AI 생성", AI생성, ["AI", "단"]],
+    ["AI 변형", AI변형, ["변", "단"]],
+    ["옛 수동(출처 미분류)", 옛수동, ["?", "?형식"]],
+    ["형식 미분류", 형식모름, ["?", "?형식"]],
   ] as const)("%s → %s", (_name, entity, expected) => {
     const { container } = render(<ProblemCard problem={entity} />);
     expect(badgesIn(container).map((el) => el.textContent)).toEqual([
@@ -112,7 +120,13 @@ describe("[출처 배선] 문제은행 카드", () => {
 
   // 자리 — D-53 「화면은 코드 옆에 현재 단원·**출처**를 항상 같이 보여야 한다」.
   // 검수 상태는 오른쪽 무리라 색이 섞여 읽히지 않는다.
-  it("라벨은 문항 코드 뒤, 검수 상태 앞에 온다", () => {
+  /**
+   * 🔴 **차례가 바뀌었다** — 원장님 지시 2026-08-27 「[변] [단] 같은 라벨을 문항
+   *    번호 위로 올려」. 종전에는 «코드 뒤»였다. 배지가 동그라미가 되면서 코드와
+   *    같은 줄에 서면 둘 다 «머리»로 읽혀 지목할 이름이 묻힌다.
+   *    검수 상태보다 앞이라는 것은 그대로다(오른쪽 `ml-auto` 무리).
+   */
+  it("라벨은 문항 코드 **앞**, 검수 상태 앞에 온다", () => {
     const { container } = render(
       <ProblemCard problem={초등엔진_도형_객관식} />,
     );
@@ -124,7 +138,7 @@ describe("[출처 배선] 문제은행 카드", () => {
     const badges = badgesIn(container);
 
     // Node.DOCUMENT_POSITION_FOLLOWING = 4 — 「뒤에 온다」
-    expect(code.compareDocumentPosition(badges[0]!) & 4).toBeTruthy();
+    expect(badges[0]!.compareDocumentPosition(code) & 4).toBeTruthy();
     expect(badges.at(-1)!.compareDocumentPosition(status) & 4).toBeTruthy();
   });
 
@@ -167,13 +181,9 @@ describe("[출처 배선] 문제은행 카드", () => {
       <ProblemCard problem={초등엔진_도형_객관식} />,
     );
     const classes = badgesIn(container).map(
-      (el) => el.className.match(/text-src-[a-z-]+/)![0],
+      (el) => el.className.match(/bg-src-[a-z-]+/)![0],
     );
-    expect(classes).toEqual([
-      "text-src-elem",
-      "text-src-figure",
-      "text-src-mcq",
-    ]);
+    expect(classes).toEqual(["bg-src-elem", "bg-src-figure", "bg-src-mcq"]);
     expect(new Set(classes).size).toBe(3);
   });
 

@@ -96,7 +96,7 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   it.each([
     ["기출", SHAPES.기출, "past_exam"],
     ["문제집", SHAPES.문제집, "workbook"],
-    ["AI변형", SHAPES.AI변형, "ai"],
+    ["AI변형", SHAPES.AI변형, "ai_transformed"],
     ["AI생성", SHAPES.AI생성, "ai"],
     ["초등", SHAPES.초등, "elem_engine"],
     ["중등", SHAPES.중등, "middle_engine"],
@@ -110,11 +110,14 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   //    조용히 붙는다 — 값이 그럴듯해서 아무도 못 알아챈다.
   it("transformed 를 가르는 것은 originProblemId 의 널뿐이다", () => {
     expect(classifyOrigin(SHAPES.문제집)).toBe("workbook");
-    expect(classifyOrigin(SHAPES.AI변형)).toBe("ai");
+    // 🔴 **생성과 변형도 갈린다** (원장님 지시 2026-08-27 「[변] 라벨」).
+    //    `ai_generated` = 처음부터 AI 가 지음 · `transformed`+원본 = 우리 것을 비틈.
+    expect(classifyOrigin(SHAPES.AI변형)).toBe("ai_transformed");
+    expect(classifyOrigin(SHAPES.AI생성)).toBe("ai");
     // 나머지 컬럼은 이 판정을 못 바꾼다 — 바꾸면 열쇠가 둘이 된 것이다.
     expect(
       classifyOrigin({ ...SHAPES.AI변형, familyKey: "elem:x|y|연산" }),
-    ).toBe("ai");
+    ).toBe("ai_transformed");
   });
 
   // 반대쪽 모집단: **분류가 되는 갈래에서 미분류가 나오면 안 된다.**
@@ -365,7 +368,7 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
       content: MCQ,
       answer: "③",
     });
-    expect(badges.map((b) => b.text)).toEqual(["[초]", "[도]", "[객]"]);
+    expect(badges.map((b) => b.text)).toEqual(["초", "도", "객"]);
     expect(badges.map((b) => b.axis)).toEqual(["origin", "figure", "format"]);
   });
 
@@ -409,20 +412,22 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
       ...FIGURE_ORIGINS.map((k) => badgeOf("figure", k)),
       ...PROBLEM_FORMATS.map((k) => badgeOf("format", k)),
     ];
-    expect(전량).toHaveLength(14);
+    expect(전량).toHaveLength(15);
     for (const badge of 전량) {
-      expect(badge.text).toMatch(/^\[.+\]$/);
+      // 대괄호를 벗겼다(원장님 2026-08-27 배지 지시) — 이제 «글자가 있다」만 본다.
+      expect(badge.text).toMatch(/^[^\[\]]+$/);
       expect(badge.name.length).toBeGreaterThan(0);
-      expect(badge.className).toMatch(/^text-src-[a-z-]+$/);
+      // 2026-08-27 원장님 지시로 **면색**이 됐다(`bg-`). 글자색이면 배지가 안 칠해진다.
+      expect(badge.className).toMatch(/^bg-src-[a-z-]+$/);
     }
   });
 
   /**
-   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열하나는 색이 전부 달라야 한다.**
+   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열둘은 색이 전부 달라야 한다.**
    * 「모른다」 셋은 뜻이 같으므로 한 색을 같이 쓴다. 색값 자체는
    * `provenancePalette.test.ts` 가 `globals.css` 를 읽어 대비·ΔE 로 잰다.
    */
-  it("이름 붙은 열한 갈래의 색 클래스가 서로 다르다", () => {
+  it("이름 붙은 열두 갈래의 색 클래스가 서로 다르다", () => {
     const 이름붙은 = [
       ...PROBLEM_ORIGINS.filter((k) => k !== "unknown").map((k) =>
         badgeOf("origin", k),
@@ -434,8 +439,8 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
         badgeOf("format", k),
       ),
     ].map((b) => b.className);
-    expect(이름붙은).toHaveLength(11);
-    expect(new Set(이름붙은).size).toBe(11);
+    expect(이름붙은).toHaveLength(12);
+    expect(new Set(이름붙은).size).toBe(12);
   });
 
   it("세 축의 「모른다」는 같은 색을 쓴다 — 모른다는 분류가 아니다", () => {
@@ -445,7 +450,7 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
       badgeOf("format", "unknown"),
     ].map((b) => b.className);
     expect(new Set(색).size).toBe(1);
-    expect(색[0]).toBe("text-src-unknown");
+    expect(색[0]).toBe("bg-src-unknown");
   });
 });
 
@@ -494,6 +499,12 @@ function shapeFor(axis: string, kind: string): Partial<ProvenanceInput> {
         return { source: "transformed" };
       case "ai":
         return { source: "ai_generated" };
+      case "ai_transformed":
+        // `transformed` + **원본이 있다** — 이 둘이 함께여야 «AI 변형»이다.
+        return {
+          source: "transformed",
+          originProblemId: "00000000-0000-4000-8000-00000000a001",
+        };
       case "elem_engine":
         return { familyKey: "elem:x|y|연산" };
       case "middle_engine":

@@ -25,10 +25,12 @@ import {
   unauthorizedError,
   validationError,
 } from "@/lib/apiResponse";
+import { db } from "@/lib/db";
 import { figureFabricationReason } from "@/lib/figure/figureMatchesContent";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { originNeedsFigure } from "@/lib/figure/transformFigureBlock";
 import { requireAccessibleProblem } from "@/lib/ownership";
+import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
 import { getSessionUser } from "@/lib/session";
 import type { ProblemType } from "@/contracts/problem.contract";
 
@@ -46,7 +48,34 @@ export async function POST(request: NextRequest) {
   );
   if (!accessible.ok) return accessible.response;
 
-  const origin = accessible.data;
+  // 🔴 **변형은 언제나 문항류의 대표(`-001`)에서 한다** (원장님 지시 2026-08-27:
+  //    「변형된 문제는 재변형 불가능하게. 항상 001만 변형 가능하게」 ·
+  //     「002~ 에서 변형 누르면 001이 변형되는 걸로 배선」).
+  //
+  //    변형본을 또 변형하면 **원본에서 두 걸음 멀어진 것**이 생긴다. AI 가 지은 값이
+  //    맞는지 대 볼 기준은 «바로 앞 것»이 아니라 사람이 검수한 원본이어야 한다.
+  //
+  //    화면에서 막지 않고 **서버가 옮긴다** — 화면만 막으면 문지기가 브라우저에
+  //    있는 것이고 그건 없는 것과 같다(이 파일 아래 `adopt` 가 같은 이유로 문지기를
+  //    다시 세운다). 어느 문항으로 옮겼는지는 `meta.originProblemCode` 로 알린다.
+  const asked = accessible.data;
+  const siblings =
+    // ⚠️ `solo:` 도 **키가 있으면 조회한다.** 접두사가 «혼자»라는 뜻이 아니다 —
+    //    변형본이 원본의 키를 물려받으므로 형제들이 같은 `solo:<uuid>` 를 든다
+    //    (실측 `A07-001`~`A07-006`). 여기서 끊으면 원장님이 지시한 «002~ 에서
+    //    누르면 001» 배선이 그 부류에 안 걸린다. 판단은 `pickFamilyMain` 하나가 한다.
+    asked.familyKey?.trim()
+      ? await db.problem.findMany({
+          where: { unitId: asked.unitId, familyKey: asked.familyKey },
+          select: { id: true, unitId: true, familyKey: true, createdAt: true },
+        })
+      : [];
+  const mainRef = pickFamilyMain(asked, siblings);
+  const origin =
+    mainRef.id === asked.id
+      ? asked
+      : ((await db.problem.findUnique({ where: { id: mainRef.id } })) ?? asked);
+
   const figureRequired = originNeedsFigure(origin);
 
   try {
@@ -99,7 +128,7 @@ export async function POST(request: NextRequest) {
     // 201 이 아니라 **200** 이다 — 만든 것이 없다(created nothing). 아직 자원이 아니다.
     return jsonOk(problemTransformResponseSchema, {
       data: drawn,
-      meta: { figureRequired },
+      meta: { figureRequired, originProblemCode: origin.problemCode },
     });
   } catch (error) {
     // ⚠️ `AiCapacityError`·`AiConfigError` 는 둘 다 `AiGenerationError` 의 하위 타입이다 —

@@ -196,6 +196,30 @@ export async function assertFigureColumns(prisma: PrismaClient): Promise<void> {
 
   const known = FIGURE_URL_COLUMNS.map((c) => `${c.table}.${c.column}`).sort();
   const actual = [...found].sort();
+
+  // 🔴 **「목록이 낡았다」와 「볼 게 없다」는 다른 상태다.**
+  //
+  //    이 가드가 지키려는 것은 «새 컬럼이 생겼는데 목록에 없어서 그 컬럼의 그림이
+  //    구조적으로 0이 되는 것»이다. 그런데 **아무 컬럼도** 파일 URL 을 안 담고 있으면
+  //    새 컬럼은 정의상 없다 — 그건 낡은 목록이 아니라 **파일을 가리키는 그림이 하나도
+  //    없는 상태**다.
+  //
+  //    2026-08-27 에 실제로 그 상태가 됐다: 옛 말뭉치(기출·RPM) 45,374건을 지우자
+  //    `figure_urls` 를 쓰는 행이 0이 되고, 남은 그림 4,229건은 전부 엔진이 DB 안에
+  //    **인라인 SVG**(`figure_svg`)로 넣은 것이다(바깥 파일을 부르지 않는다 — 실측 0건).
+  //    그때 이 가드가 푸시를 막았는데, 막을 일이 아니었다.
+  //    **늘 우는 가드는 꺼진다**(2026-08-20) — 그러면 진짜 결함도 같이 안 보인다.
+  //
+  //    그래서 비었을 때는 통과시키되 **시끄럽게 알린다.** 뒤이어 `main()` 이
+  //    「이번 회차에 아무것도 증명하지 않았다」를 다시 찍는다.
+  if (actual.length === 0) {
+    console.log(
+      `ⓘ 파일을 가리키는 그림이 **어떤 컬럼에도 없다** (아는 컬럼: ${known.join(", ")}). ` +
+        `그림이 전부 DB 안 인라인이면 정상이다 — 이 검사는 이번 회차에 잴 것이 없다.`,
+    );
+    return;
+  }
+
   if (JSON.stringify(known) !== JSON.stringify(actual))
     throw new Error(
       `그림 URL 을 담은 컬럼이 달라졌다 — 아는 것 [${known.join(", ")}] · DB 에 실제로 있는 것 [${actual.join(", ")}]. ` +

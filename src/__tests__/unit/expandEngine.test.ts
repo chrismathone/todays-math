@@ -14,7 +14,7 @@ import { generateMiddleProblem, typesForSection } from "@/lib/middle/generate";
 import { classifyFormat } from "@/lib/problem/provenance";
 
 describe("expandFamily", () => {
-  it("수 정답이면 변형 3 × 형식 3 = 9행이고 familyKey 는 하나다", () => {
+  it("수 정답이면 변형 3 × 형식 2 = 6행이고 familyKey 는 하나다", () => {
     const familyKey = "elem:fixture|최대공약수|기본";
     const got = expandFamily((v) => ({
       content: `$${12 + v}$와 $18$의 최대공약수를 구하시오.`,
@@ -24,15 +24,14 @@ describe("expandFamily", () => {
       problemType: "개념",
     }));
     expect(got.skippedMcq).toBe(0);
-    expect(got.items).toHaveLength(9);
+    expect(got.items).toHaveLength(6);
     expect(new Set(got.items.map((i) => i.familyKey)).size).toBe(1);
     const qt = got.items.map((i) => i.questionType).sort();
     expect(qt.filter((t) => t === "단답형")).toHaveLength(3);
-    expect(qt.filter((t) => t === "서술형")).toHaveLength(3);
     expect(qt.filter((t) => t === "객관식")).toHaveLength(3);
   });
 
-  it("수가 아닌 정답은 객관식만 건너뛰고 단답·서술은 남긴다", () => {
+  it("수가 아닌 정답은 객관식만 건너뛰고 단답은 남긴다", () => {
     const got = expandFamily((v) => ({
       content: `관계를 말하시오. (${v})`,
       answer: "정비례",
@@ -41,9 +40,42 @@ describe("expandFamily", () => {
       problemType: "개념",
     }));
     expect(got.skippedMcq).toBe(3);
-    expect(got.items).toHaveLength(6);
-    expect(got.items.every((i) => i.questionType !== "객관식")).toBe(true);
+    expect(got.items).toHaveLength(3);
+    expect(got.items.every((i) => i.questionType === "단답형")).toBe(true);
     expect(got.reasons.length).toBe(3);
+  });
+
+  /**
+   * 🔴 **파생 서술형 금지** (원장님 확정 2026-08-27).
+   *
+   * 발문 끝맺음만 바꿔 만든 서술형은 문항이 아니라 **단답형의 복제**였다 —
+   * 실측 9,476건 중 9,467건(99.9%)이 같은 문항류에 풀이가 글자까지 같은
+   * 단답형 짝을 갖고 있었고, 절반은 쓸 과정 자체가 없었다
+   * (「$13$은 두 수의 공배수가 아닙니다.」).
+   *
+   * 서술형은 **생성기가 처음부터 서술형으로** 낸다. 이 시험은 파생 경로가
+   * 되살아나면 빨개진다 — `expandEngine` 이 `asDescriptive` 를 다시 부르는
+   * 순간 걸린다. 어투 변환기 자체(`toDescriptiveStem`)는 남아 있으므로
+   * 「함수가 있나」로는 못 막는다. **산출물**을 본다.
+   */
+  it("🔴 서술형을 파생하지 않는다 — 어떤 발문이 와도", () => {
+    const shapes = [
+      { content: "$12$와 $18$의 최대공약수를 구하시오.", answer: "$6$" },
+      { content: "다음 식을 전개하시오.", answer: "$x^2+2x+1$" },
+      { content: "관계를 말하시오.", answer: "정비례" },
+      { content: "모두 몇 개인지 쓰시오.", answer: "$3$개" },
+    ];
+    for (const s of shapes) {
+      const got = expandFamily((v) => ({
+        content: `${s.content} (${v})`,
+        answer: s.answer.replace("$6$", `$${6 + v}$`),
+        solution: "풀이\n두 번째 줄\n세 번째 줄",
+        familyKey: "elem:fixture|파생금지|기본",
+        problemType: "개념",
+      }));
+      const desc = got.items.filter((i) => i.questionType === "서술형");
+      expect(desc, `${s.content} → 서술형 ${desc.length}건`).toHaveLength(0);
+    }
   });
 });
 
@@ -155,7 +187,7 @@ describe("실물 엔진 한 갈래", () => {
    *    보기가 **세는 대상**이고 정답이 「$2$개」다.
    *    보기만 보고 접으면 중등 3유형이 통째로 `[?형식]` 이 된다(실측).
    */
-  it("보기가 있어도 정답이 번호가 아니면 단답·서술로 파생한다", () => {
+  it("보기가 있어도 정답이 번호가 아니면 객관식으로 접지 않는다", () => {
     const stem = {
       content: [
         "다음 보기 중 $y$가 $x$의 함수인 것은 모두 몇 개인지 구하시오.",
@@ -177,7 +209,9 @@ describe("실물 엔진 한 갈래", () => {
     }));
     const kinds = got.items.map((i) => i.questionType);
     expect(kinds).toContain("단답형");
-    expect(kinds).toContain("서술형");
+    // 🔴 여기가 요지다 — 「보기가 있다」만 보고 객관식으로 접으면 안 된다.
+    //    (서술형은 2026-08-27 부터 파생하지 않으므로 여기 안 나온다.)
+    expect(kinds).not.toContain("객관식");
     // 그리고 화면 판정이 `unknown` 으로 떨어지면 안 된다.
     for (const item of got.items) {
       expect(

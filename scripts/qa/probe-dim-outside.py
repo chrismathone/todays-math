@@ -84,12 +84,35 @@ def parse_polygon(svg: str):
     return best[1] if best else None
 
 
+# `measured()` 가 그리는 치수 곡선의 지문. 저장소 밖 엔진
+# (`vendor/figure-engine/core/figure_svg.py`)의 `meas()` 가 늘 이 셋으로 그린다.
+#
+# 🔴 **왜 «점선이면 치수»가 아닌가** — 지면의 점선은 세 부류다(2026-08-27 실측,
+#    문형 2,300 이 내는 그림 936장 전량):
+#      · `#000`    1.4  `6 4`  — **치수**            364건, **100% 가 수 라벨 곁**
+#      · `#111111` 1~1.2 `5 4` — 숨은 모서리·분할선  538건
+#      · `#111111` 0.4  `3 3`  — 직각·등변 표시      475건
+#      · `#c8d7e4` 0.7  `4 3`  — 모눈                871건
+#    「점선이 도형 안에 있다」로 재면 **숨은 모서리가 전부 결함으로 잡힌다** —
+#    숨은 모서리는 **안에 있는 것이 옳다.** 실제로 그렇게 재서 141건이 나왔고
+#    그 중 **125건이 오인**이었다(진짜는 13건). 열쇠를 «점선»에서 «치수의
+#    지문»으로 바꾸면 분모(잰 그림 111)는 그대로고 결함만 갈린다.
+#
+#    ⚠️ 이 지문이 낡으면 이 판정기는 **조용히 0을 낸다**(치수를 하나도 못 찾으므로
+#    `judge` 가 None 을 돌려준다). 그래서 `main()` 이 «치수를 가진 그림»의 수를
+#    함께 찍고, 0이면 멈춘다 — 「깨끗」과 「못 셈」을 가르기 위해서다.
+_MEASURED_STROKE = 'stroke="#000"'
+_MEASURED_WIDTH = 'stroke-width="1.4"'
+
+
 def parse_dashed_points(svg: str):
-    """점선(`stroke-dasharray`)의 좌표들."""
+    """**치수** 점선의 좌표들 — 구조 점선(숨은 모서리·표시·모눈)은 세지 않는다."""
     out = []
     for m in re.finditer(r"<(path|polyline|line)\b([^>]*)>", svg):
         attrs = m.group(2)
         if "stroke-dasharray" not in attrs:
+            continue
+        if _MEASURED_STROKE not in attrs or _MEASURED_WIDTH not in attrs:
             continue
         nums = [float(v) for v in re.findall(_NUM, attrs.split("d=")[-1] if "d=" in attrs else attrs)]
         d = re.search(r'd="([^"]+)"', attrs)
@@ -120,19 +143,28 @@ def judge(svg: str):
     return points_in_polygon(pts, poly), len(pts)
 
 
+_TRI = '<polygon points="10,10 90,10 50,90"/>'
+_MEAS = 'stroke="#000" stroke-width="1.4" stroke-dasharray="6 4"'
+_HIDDEN = 'stroke="#111111" stroke-width="1" stroke-dasharray="5 4"'
+
 GAUGE = [
-    # 삼각형 (10,10)-(90,10)-(50,90) 안쪽을 지나는 점선 → 잡는다
+    # 삼각형 (10,10)-(90,10)-(50,90) 안쪽을 지나는 **치수** → 잡는다
+    ("안쪽 치수를 잡는다", True, _TRI + f'<polyline points="30,30 60,40" {_MEAS}/>'),
+    ("🔴 바깥 치수는 안 잡는다", False, _TRI + f'<polyline points="5,95 95,95" {_MEAS}/>'),
+    # 🔴 **음성 대조** — 숨은 모서리는 안에 있는 것이 옳다. 이것을 잡으면
+    #    2026-08-27 의 「141건」이 되돌아온다(그 중 125건이 이 부류였다).
     (
-        "안쪽 점선을 잡는다",
-        True,
-        '<polygon points="10,10 90,10 50,90"/>'
-        '<polyline points="30,30 60,40" stroke-dasharray="6 4"/>',
-    ),
-    (
-        "🔴 바깥 점선은 안 잡는다",
+        "🔴 안쪽 숨은 모서리는 치수가 아니다",
         False,
-        '<polygon points="10,10 90,10 50,90"/>'
-        '<polyline points="5,95 95,95" stroke-dasharray="6 4"/>',
+        _TRI + f'<line x1="30" y1="30" x2="60" y2="40" {_HIDDEN}/>',
+    ),
+    # 🔴 같은 자리에 치수와 숨은 모서리가 **겹쳐** 있어도 치수만 센다.
+    (
+        "🔴 겹쳐 있어도 치수만 센다 (바깥 치수 + 안쪽 숨은선)",
+        False,
+        _TRI
+        + f'<polyline points="5,95 95,95" {_MEAS}/>'
+        + f'<line x1="30" y1="30" x2="60" y2="40" {_HIDDEN}/>',
     ),
 ]
 
@@ -177,7 +209,12 @@ def main() -> int:
     print(f"잰 그림 {tested} · **치수 점선이 안쪽인 것 {inside_total}**")
     for b in bad:
         print("   " + b)
-    return 0
+    # 🔴 «0» 이 «깨끗»인지 «못 셈»인지 가른다. 치수 지문(`_MEASURED_*`)이 낡으면
+    #    한 장도 못 재면서 「안쪽 0」을 낸다 — 그때 멈춘다.
+    if tested == 0:
+        print("🔴 치수를 가진 그림을 **한 장도 못 찾았다** — 지문이 낡았다. 0은 «깨끗»이 아니다.")
+        return 1
+    return 1 if inside_total else 0
 
 
 if __name__ == "__main__":

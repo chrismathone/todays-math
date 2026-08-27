@@ -32,6 +32,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isCatalogType } from "../helpers/rpmCatalog";
+
 import { bareNumbers, josaFaults } from "../../lib/elementary/rules";
 import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
 import { renderMathHtml } from "../../lib/math/renderMathHtml";
@@ -1322,7 +1324,11 @@ describe("이 시험의 판정기들이 «아니오»를 낼 수 있는가", () 
  * ──────────────────────────────────────────────────────────────────────── */
 
 describe("중3 이차함수 42유형", () => {
-  const entries = M3_FUNC;
+  // ⚠️ 몫을 **RPM 색인 유형**으로 좁힌다. 갈래들이 같은 모듈에 색인에 없는
+  //    «확장 유형»을 더하는데, 그것까지 쓸어 담으면 남의 유형이 이 파일의
+  //    검산표에 들이대진다(2026-08-27 실측 89건). 확장의 값 검산은 그것을 지은
+  //    갈래의 시험이 들고 있다.
+  const entries = M3_FUNC.filter((e) => isCatalogType(e));
 
   it("42유형이 전부 등록돼 있다", () => {
     expect(entries).toHaveLength(42);

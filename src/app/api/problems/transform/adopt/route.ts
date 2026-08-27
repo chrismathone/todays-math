@@ -36,6 +36,7 @@ import {
 } from "@/lib/figure/transformFigureBlock";
 import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
+import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -53,7 +54,30 @@ export async function POST(request: NextRequest) {
   );
   if (!accessible.ok) return accessible.response;
 
-  const origin = accessible.data;
+  // 🔴 문지기를 **여기서도** 세운다 — 생성 쪽과 같은 이유다. 화면이 다른 id 를
+  //    보내도 저장되는 변형본은 **문항류 대표의 자식**이어야 한다. 안 그러면
+  //    `originProblemId` 가 변형본을 가리켜 «변형의 변형» 사슬이 DB 에 남는다.
+  const askedOrigin = accessible.data;
+  const originSiblings =
+    // ⚠️ `solo:` 도 **키가 있으면 조회한다.** 접두사가 «혼자»라는 뜻이 아니다 —
+    //    변형본이 원본의 키를 물려받으므로 형제들이 같은 `solo:<uuid>` 를 든다
+    //    (실측 `A07-001`~`A07-006`). 여기서 끊으면 원장님이 지시한 «002~ 에서
+    //    누르면 001» 배선이 그 부류에 안 걸린다. 판단은 `pickFamilyMain` 하나가 한다.
+    askedOrigin.familyKey?.trim()
+      ? await db.problem.findMany({
+          where: {
+            unitId: askedOrigin.unitId,
+            familyKey: askedOrigin.familyKey,
+          },
+          select: { id: true, unitId: true, familyKey: true, createdAt: true },
+        })
+      : [];
+  const originMain = pickFamilyMain(askedOrigin, originSiblings);
+  const origin =
+    originMain.id === askedOrigin.id
+      ? askedOrigin
+      : ((await db.problem.findUnique({ where: { id: originMain.id } })) ??
+        askedOrigin);
 
   // ⚠️ 문지기를 **여기서 다시** 세운다. 화면도 막지만 화면만 막으면 문지기가
   //    브라우저에 있는 것이고, 그건 없는 것과 같다(적대적 리뷰 2026-08-19).
@@ -106,6 +130,23 @@ export async function POST(request: NextRequest) {
       unitId: origin.unitId,
       source: "transformed",
       originProblemId: origin.id,
+      // 🔴 **변형본은 원본과 같은 문항류다** (원장님 지적 2026-08-27:
+      //    「새로운 문항류로 전부 되어버리네 사실 같은 문항류 같은데」).
+      //
+      //    안 적으면 트리거(`problem_code_assign`)가 `solo:<uuid>` 를 새로 만든다.
+      //    실측: 원본 `J10101-A07-001` 을 5번 변형했더니 `A14-001`~`A18-001` —
+      //    **다섯이 전부 다른 문항류**가 됐다. 엔진 쪽은 같은 류가
+      //    `A12-001·003·005` 로 번호를 이어 가는데 변형만 어긋난다.
+      //
+      //    번호가 흉한 것보다 **출제가 더 문제다**: `familyIdOf` 가 문항류로
+      //    묶어 「한 시험지에 한 문항류」(D-105 · 원장님 2026-08-26 「같은 문제류는
+      //    1개만 출제되도록 해」)를 거는데, 류가 갈리면 그 규칙이 **변형본에는
+      //    안 걸린다** — 원본과 변형 다섯이 한 장에 같이 실릴 수 있다.
+      //    숫자만 다른 같은 문제가 나란히 나오는, 그 지시가 막으려던 바로 그 모습이다.
+      //
+      //    원본이 키가 없으면(레거시·AI 생성) `null` 을 넘겨 종전대로 트리거가
+      //    `solo:` 를 만들게 둔다 — 그때는 **원본도 혼자**라 물려받을 류가 없다.
+      familyKey: origin.familyKey,
       difficulty,
       problemType: origin.problemType,
       // 형식을 **여기서** 적는다. 안 적으면 `classifyFormat` 이 가를 근거를 못 찾아

@@ -21,6 +21,29 @@ const paperVariables = PAPER_CSS_VARIABLES as CSSProperties;
 /** 마이크로 라벨 — 검수 카드(`ReviewProblemCard`)와 같은 규격을 쓴다. */
 const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
 
+/**
+ * 출처·그림·형식 배지의 겉모습 — 원장님 지시 2026-08-27:
+ * 「동그라미에 **흰색 글씨**에 **검정 테두리**. **배경색만** 라벨에 따라 다르게.」
+ *
+ * ⚠️ 이것은 **기록된 결정을 뒤집은 것**이다. 05 §8.6 은 「알약 칩은 면색을 세 개 더
+ *    만들어 팔레트를 흐린다 — 위계는 글자 명도로 낸다」였고 원장님이 2026-08-18 에
+ *    재확인하셨다. 2026-08-27 에 직접 「면색으로」 지시하셨으므로 그쪽이 최신이다.
+ *    되돌리려면 05 §8.6 부터 보고, 색은 `globals.css` 의 `--src-*` 하나가 정한다.
+ *
+ * `min-w-[1.35rem]` + `rounded-full` 인 이유: 한 글자(`변`·`단`)는 **동그라미**가 되고
+ * 여러 글자(`SVG`·`?형식`)는 **알약**으로 늘어난다. 고정 폭으로 박으면 긴 것이 잘린다.
+ *
+ * `print:hidden` 은 그대로 둔다 — 지면을 바꾸면 실물 인쇄 검수까지가 완료 조건이다
+ * (절대 규칙 6). 이 배지는 화면에서 분류를 보려는 것이다.
+ */
+const BADGE_CHIP = [
+  "inline-flex items-center justify-center",
+  "min-w-[1.35rem] h-[1.35rem] px-[0.3rem] rounded-full",
+  "border border-ink",
+  "text-[10px] font-extrabold leading-none text-white no-underline",
+  "print:hidden",
+].join(" ");
+
 /** 카드 바닥 액션 — 「정답 및 해설」과 「변형」이 같은 규격을 쓴다(둘 다 카드를 펼친다). */
 const CARD_ACTION_CLASS =
   "inline-flex min-h-11 cursor-pointer items-center gap-2 border border-control bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-side";
@@ -111,44 +134,47 @@ export const ProblemCard = memo(function ProblemCard({
         <span className="flex h-8 w-8 items-center justify-center bg-ink text-lg font-bold text-bg print:bg-black">
           Q
         </span>
-        {/* 「문제」라는 말 대신 **문항 코드**를 놓는다 (원장님 지시 2026-08-19
-            "문항 코드가 안보이는것도 맞고"). Q 배지가 이미 「문제」라고 말하고 있고,
-            이 자리가 필요한 것은 **지목할 이름**이다(D-53). 검색칸에 그대로 붙여
-            넣으면 이 한 건이 나온다. 숫자 폭을 고정해 코드끼리 세로로 맞춘다. */}
-        <span className="font-semibold tabular-nums text-text-2">
-          {problem.problemCode}
+        {/* 배지를 **코드 위**로 (원장님 지시 2026-08-27 「[변] [단] 같은 라벨을 문항
+            번호 위로 올려」). 종전에는 코드 오른쪽 한 줄이었는데, 배지가 동그라미가
+            되면서 코드와 같은 줄에 서면 둘 다 «머리»로 읽혀 지목할 이름이 묻힌다.
+
+            출처 라벨 자체는 원장님 지시 2026-08-25 「이게 어떤걸로 인해 생성되었고
+            가져왔고 이런걸 다 분류해야겠어」. 판정·글자·색은
+            `src/lib/problem/provenance.ts` **하나**가 정한다 — 여기서 조건을 다시
+            쓰지 마라. 두 벌이 되는 순간 한쪽만 고쳐도 아무도 모른다.
+
+            `abbr` 인 이유: `초` 는 줄임말이고 풀어 쓴 말이 `title` 에 있어야 색이 안
+            보이는 사람도 읽는다(05 §5 — 색만으로 뜻을 전달하지 않는다).
+            **누르는 것이 아니다** — 손가락 커서·hover 배경 금지(D-30). */}
+        <span className="flex min-w-0 flex-col gap-1">
+          <span className="flex flex-wrap items-center gap-1">
+            {provenanceBadges(problem).map((badge) => (
+              <abbr
+                key={badge.axis}
+                data-provenance={badge.kind}
+                data-provenance-axis={badge.axis}
+                title={badge.name}
+                className={`${BADGE_CHIP} ${badge.className}`}
+              >
+                {badge.text}
+              </abbr>
+            ))}
+          </span>
+          {/* 「문제」라는 말 대신 **문항 코드**를 놓는다 (원장님 지시 2026-08-19
+              "문항 코드가 안보이는것도 맞고"). Q 배지가 이미 「문제」라고 말하고 있고,
+              이 자리가 필요한 것은 **지목할 이름**이다(D-53). 검색칸에 그대로 붙여
+              넣으면 이 한 건이 나온다. 숫자 폭을 고정해 코드끼리 세로로 맞춘다. */}
+          {/* 배지가 10px 이라 코드가 같은 크기면 **지목할 이름이 묻힌다**
+              (원장님 지시 2026-08-27 「문항번호를 좀 더 키우자」).
+              `text-base` 로 올리고 잉크색을 준다 — 이 줄이 카드의 이름이다. */}
+          <span className="text-base font-semibold tabular-nums text-ink">
+            {problem.problemCode}
+          </span>
         </span>
-        {/* 출처 라벨 — 원장님 지시 2026-08-25 「이게 어떤걸로 인해 생성되었고 가져왔고
-            이런걸 다 분류해야겠어」. **코드 바로 오른쪽**에 두는 것은 D-53 이 이미 적어 둔
-            요구다 — 「화면은 코드 옆에 현재 단원·**출처**를 항상 같이 보여야 한다」.
-            검수 상태(색 있는 글자)는 `ml-auto` 오른쪽 무리라 자리가 갈린다.
-
-            판정·라벨·색은 `src/lib/problem/provenance.ts` 하나가 정한다. 여기서 조건을
-            다시 쓰지 마라 — 두 벌이 되는 순간 한쪽만 고쳐도 아무도 모른다.
-
-            `abbr` 인 이유: `[초]` 는 줄임말이고 풀어 쓴 말이 `title` 에 있어야 색이 안
-            보이는 사람도 읽는다(05 §5 — 색만으로 뜻을 전달하지 않는다). 밑줄은 10px
-            굵은 글씨에서 얼룩이라 끈다. **누르는 것이 아니다** — 손가락 커서·hover 배경
-            금지(D-30).
-
-            `print:hidden` 인 이유: 지면을 바꾸면 실물 인쇄 검수까지가 완료 조건이다
-            (절대 규칙 6). 이 라벨은 화면에서 분류를 보려는 것이라 지면은 그대로 둔다.
-            종이에도 필요하다고 정해지면 `/dev/print-check` 에 항목을 세우고 넣는다. */}
-        {provenanceBadges(problem).map((badge) => (
-          <abbr
-            key={badge.axis}
-            data-provenance={badge.kind}
-            data-provenance-axis={badge.axis}
-            title={badge.name}
-            className={`${MICRO} no-underline ${badge.className} print:hidden`}
-          >
-            {badge.text}
-          </abbr>
-        ))}
         {/* 난이도·유형·상태는 **마이크로 라벨**이다 (05 §8.6 확정, 원장님 재확인 2026-08-18).
-            알약 칩은 면색을 세 개 더 만들어 팔레트를 흐린다. 위계는 글자 명도로 낸다.
-            ⚠️ 위 출처 라벨이 «색을 쓰면서도» 이 결정을 안 어기는 근거는 provenance.ts
-               「색을 어떻게 정했나」에 있다 — 한 줄로 줄이면 **면색이 아니라 글자색**이다. */}
+            ⚠️ 출처 배지는 2026-08-27 원장님 지시로 **면색**이 됐다(위 `BADGE_CHIP`).
+               여기 셋은 그 지시의 대상이 아니었으므로 글자 명도 그대로 둔다 —
+               바꾸려면 원장님께 먼저 여쭐 것. */}
         <span className={`ml-auto flex flex-wrap items-center gap-3 ${MICRO}`}>
           <span className="text-ink">{problem.difficulty}</span>
           <span className="text-text-2">{problem.problemType}</span>
