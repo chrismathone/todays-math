@@ -79,12 +79,12 @@ const KO_NUM: readonly string[] = [
   "십일",
   "십이",
 ];
-function koNum(n: number): string {
+export function koNum(n: number): string {
   const s = KO_NUM[n];
   if (!s) throw new Error(`한글 수사 범위 밖: ${n}`);
   return s;
 }
-function gonName(n: number): string {
+export function gonName(n: number): string {
   return `${koNum(n)}각형`;
 }
 
@@ -1217,7 +1217,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 4, 8);
       return {
-        content: `${gonName(n)}뿔에서 밑면의 한 모서리와 꼬인 위치에 있는 모서리의 개수를 구하시오.`,
+        content: `${koNum(n)}각뿔에서 밑면의 한 모서리와 꼬인 위치에 있는 모서리의 개수를 구하시오.`,
         answer: `$${n - 2}$개`,
         solution: `밑면의 모서리는 다른 밑면의 모서리와 한 평면 위에 있으므로 꼬인 위치가 아니다.\n옆모서리 $${n}$개 중 그 모서리의 양 끝점에서 만나는 $2$개를 빼면 $${n}-2=${n - 2}$개가 꼬인 위치에 있다.`,
         facts: { n, ans: n - 2, kind: 0 },
@@ -1234,7 +1234,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 4, 8);
       return {
-        content: `${gonName(n)}뿔에서 한 옆모서리와 만나는 모서리의 개수를 구하시오.`,
+        content: `${koNum(n)}각뿔에서 한 옆모서리와 만나는 모서리의 개수를 구하시오.`,
         answer: `$${n + 1}$개`,
         solution: `꼭짓점에서 나머지 옆모서리 $${n - 1}$개와 만나고, 밑면의 꼭짓점에서 밑면의 모서리 $2$개와 만난다.\n따라서 $${n - 1}+2=${n + 1}$개이다.`,
         facts: { n, ans: n + 1, kind: 1 },
@@ -1251,7 +1251,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 4, 9);
       return {
-        content: `${gonName(n)}기둥에서 한 옆모서리와 평행한 모서리의 개수를 구하시오.`,
+        content: `${koNum(n)}각기둥에서 한 옆모서리와 평행한 모서리의 개수를 구하시오.`,
         answer: `$${n - 1}$개`,
         solution: `각기둥의 옆모서리는 모두 서로 평행하다.\n옆모서리는 $${n}$개이므로 자기 자신을 뺀 $${n}-1=${n - 1}$개가 평행하다.`,
         facts: { n, ans: n - 1, kind: 2 },
@@ -1268,7 +1268,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 4, 8);
       return {
-        content: `${gonName(n)}기둥에서 한 밑면의 모서리와 꼬인 위치에 있는 모서리의 개수를 구하시오.`,
+        content: `${koNum(n)}각기둥에서 한 밑면의 모서리와 꼬인 위치에 있는 모서리의 개수를 구하시오.`,
         answer: `$${2 * n - 3}$개`,
         solution: `같은 밑면의 모서리는 한 평면 위에 있으므로 꼬인 위치가 아니다.\n다른 밑면의 모서리 $${n}$개 중 평행한 $1$개를 뺀 $${n - 1}$개, 옆모서리 $${n}$개 중 양 끝에서 만나는 $2$개를 뺀 $${n - 2}$개가 꼬인 위치에 있다.\n따라서 $${n - 1}+${n - 2}=${2 * n - 3}$개이다.`,
         facts: { n, ans: 2 * n - 3, kind: 3 },
@@ -1285,7 +1285,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 4, 7);
       return {
-        content: `${gonName(n)}뿔에서 서로 꼬인 위치에 있는 두 모서리의 쌍은 모두 몇 쌍인지 구하시오.`,
+        content: `${koNum(n)}각뿔에서 서로 꼬인 위치에 있는 두 모서리의 쌍은 모두 몇 쌍인지 구하시오.`,
         answer: `$${n * (n - 2)}$쌍`,
         solution: `밑면의 모서리끼리는 한 평면 위에 있고, 옆모서리끼리는 꼭짓점에서 만나므로 꼬인 위치가 아니다.\n밑면의 모서리 하나마다 꼬인 위치인 옆모서리가 $${n - 2}$개이므로 $${n}\\times${n - 2}=${n * (n - 2)}$쌍이다.`,
         facts: { n, ans: n * (n - 2), kind: 4 },
@@ -1378,7 +1378,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
       return {
         content: `면의 개수가 $${faces}$인 각기둥의 모서리의 개수와 꼭짓점의 개수의 합을 구하시오.`,
         answer: `$${5 * n}$`,
-        solution: `${gonName(n)}기둥의 면의 개수는 $${n}+2=${faces}$이므로 밑면은 ${gonName(n)}형이다.\n모서리는 $3\\times${n}=${3 * n}$개, 꼭짓점은 $2\\times${n}=${2 * n}$개이므로 합은 $${5 * n}$이다.`,
+        solution: `${koNum(n)}각기둥의 면의 개수는 $${n}+2=${faces}$이므로 밑면은 ${gonName(n)}이다.\n모서리는 $3\\times${n}=${3 * n}$개, 꼭짓점은 $2\\times${n}=${2 * n}$개이므로 합은 $${5 * n}$이다.`,
         facts: { n, faces, edges: 3 * n, vertices: 2 * n, ans: 5 * n },
       };
     },
@@ -1393,9 +1393,9 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     (rng): Body => {
       const n = intBetween(rng, 3, 9);
       return {
-        content: `${gonName(n)}뿔대의 면의 개수를 $a$, 모서리의 개수를 $b$, 꼭짓점의 개수를 $c$라 할 때, $a+b-c$의 값을 구하시오.`,
+        content: `${koNum(n)}각뿔대의 면의 개수를 $a$, 모서리의 개수를 $b$, 꼭짓점의 개수를 $c$라 할 때, $a+b-c$의 값을 구하시오.`,
         answer: `$${n + 2 + 3 * n - 2 * n}$`,
-        solution: `${gonName(n)}뿔대는 두 밑면과 옆면 $${n}$개로 면이 $${n + 2}$개, 모서리가 $3\\times${n}=${3 * n}$개, 꼭짓점이 $2\\times${n}=${2 * n}$개이다.\n따라서 $a+b-c=${n + 2}+${3 * n}-${2 * n}=${n + 2 + n}$이다.`,
+        solution: `${koNum(n)}각뿔대는 두 밑면과 옆면 $${n}$개로 면이 $${n + 2}$개, 모서리가 $3\\times${n}=${3 * n}$개, 꼭짓점이 $2\\times${n}=${2 * n}$개이다.\n따라서 $a+b-c=${n + 2}+${3 * n}-${2 * n}=${n + 2 + n}$이다.`,
         facts: { n, a: n + 2, b: 3 * n, c: 2 * n, ans: n + 2 + n },
       };
     },
