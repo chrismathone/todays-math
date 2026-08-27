@@ -991,7 +991,12 @@ class FigureScene:
         length = math.hypot(b.x - a.x, b.y - a.y)
         ux, uy = (b.x - a.x) / length, (b.y - a.y) / length
         nx, ny = -uy, ux
-        mid_x, mid_y = (a.x + b.x) / 2.0, (a.y + b.y) / 2.0
+        # 🔴 **선분 한복판에 다른 점이 얹혀 있으면 마크를 비킨다.**
+        #    실측 `1-2|위치 관계|12`: 평행 표시 » 가 t 와의 교점 바로 위에 앉아
+        #    **t 의 화살촉처럼** 읽혔다. 중점 표시(M)·교점은 흔히 한복판에 있다.
+        #    비키는 자리는 「가장 넓은 빈 구간의 한복판」이다 — 문턱을 지어내지 않는다.
+        center = self._segment_mark_center(segment, a, length, ux, uy, nx, ny)
+        mid_x, mid_y = a.x + center * ux, a.y + center * uy
         both = bool(segment.ticks) and bool(segment.parallel)
         lines: list[tuple[tuple[float, float], tuple[float, float]]] = []
 
@@ -1018,14 +1023,41 @@ class FigureScene:
                 lines.append(((tip_x, tip_y),
                               (back_x - wing * nx, back_y - wing * ny)))
 
-        reach = max(
-            abs((x - mid_x) * ux + (y - mid_y) * uy)
-            for line in lines for x, y in line)
-        if reach + 2.0 > length / 2.0:
+        # 마크가 선분 **밖으로** 비어져 나가면 던진다. 마크 자리를 비켰을 수 있으므로
+        # 「한복판에서 얼마나 뻗나」가 아니라 **선분 위 좌표**로 잰다.
+        spans = [(x - a.x) * ux + (y - a.y) * uy for line in lines for x, y in line]
+        if min(spans) < 2.0 or max(spans) > length - 2.0:
             raise GeometryValidationError(
                 f"segment {segment.name!r} is too short ({length:.4g}px) for its "
                 "tick/parallel marks — marks may not spill past the endpoints")
         return lines
+
+    def _segment_mark_center(self, segment: Segment, a: Point, length: float,
+                             ux: float, uy: float, nx: float,
+                             ny: float) -> float:
+        """마크가 앉을 자리 — 선분 **위에 얹힌 다른 점**을 피한 가장 넓은 빈 구간의 한복판.
+
+        얹힌 점이 없으면 한복판(`length/2`)이라 옛 동작 그대로다.
+        """
+        cuts = [0.0, length]
+        for name in sorted(self.points):
+            if name in (segment.p1, segment.p2):
+                continue
+            point = self.points[name]
+            along = (point.x - a.x) * ux + (point.y - a.y) * uy
+            if along <= 0.0 or along >= length:
+                continue
+            if abs((point.x - a.x) * nx + (point.y - a.y) * ny) > 0.6:
+                continue  # 선분에서 벗어난 점은 얹힌 것이 아니다.
+            cuts.append(along)
+        if len(cuts) == 2:
+            return length / 2.0
+        cuts.sort()
+        best, widest = length / 2.0, -1.0
+        for low, high in zip(cuts, cuts[1:]):
+            if high - low > widest:
+                widest, best = high - low, (low + high) / 2.0
+        return best
 
     def _arc_stroke_samples(self, arc: ArcStroke) -> tuple[Point, ...]:
         center, radius, start_deg, signed = self._arc_geometry(

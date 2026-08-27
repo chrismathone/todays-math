@@ -32,8 +32,22 @@
  *    1px 반올림이 1° 넘게 흔든다. 2° 를 넘게 어긋나면 그건 반올림이 아니다.
  *    (실측: 이 결함은 **44~50°** 어긋났다. 문턱을 어디 두든 잡힌다.)
  *
- * ⚠️ **라벨이 문자면 안 본다** — `x`, `a°`, `∠x` 처럼 미지수를 적는 것이 정상이다.
- *    숫자로 못 읽는 라벨은 **판정 대상이 아니다**(못 본 것은 「없다」가 아니다).
+ * ⚠️ **라벨이 문자면 첫 축은 안 본다** — `x`, `a°`, `∠x` 처럼 미지수를 적는 것이
+ *    정상이다. 숫자로 못 읽는 라벨은 **그 축의 대상이 아니다**(못 본 것은 「없다」가 아니다).
+ *
+ * ## 축 둘 — **기호 라벨은 첫 축이 구조적으로 못 본다** (2026-08-28)
+ *
+ * RPM 1:1 대조를 하다 `1-2|기본 도형|10`(맞꼭지각)이 발문과 상관없이 **늘 55°** 를
+ * 그리는 것을 찾았다. 원장님이 짚으신 것과 **같은 결함**인데, 라벨이 `a` 라 첫 축이
+ * 못 본다 — 그림에 적힌 것은 기호이고 **값은 발문에 있다.**
+ *
+ * 그래서 둘째 축을 세운다: 발문이 `\angle a=(4x+51)^\circ` 라고 **그 기호의 값을
+ * 말하면**, `facts.x` 로 셈해 좌표와 맞댄다. 이 모양인 유형은 셋뿐이었고
+ * (`기본 도형|10` · `위치 관계|11` · `위치 관계|12`) **셋 다 틀려 있었다.**
+ * 그림 둘이 모듈 상수라 씨앗이 뭐든 같은 각을 그렸다.
+ *
+ * ⚠️ §4-20-b(「발문이 이미 말했는가」)는 **값을 라벨로 이중표기하지 마라**는 규칙이지
+ *    「아무 각이나 그려도 된다」가 아니다. 라벨은 기호로 두고 **그리는 각만** 맞춘다.
  */
 import {
   generateMiddleProblem,
@@ -141,6 +155,82 @@ export function angleMismatches(spec: unknown): AngleCheck[] {
   return out;
 }
 
+/**
+ * 발문이 `\angle a=NN^\circ` 또는 `\angle a=(cx+d)^\circ` 라고 **기호의 값을 말하는** 자리.
+ * 기호는 한 글자만 본다 — `\angle ABC` 같은 세 글자 표기는 라벨이 아니라 각의 이름이다.
+ */
+const CONTENT_SAYS =
+  /\\angle ([a-z])\s*=\s*(?:\((\d+)x\s*([+-])\s*(\d+)\)|(\d+))\s*\^?\\?circ/g;
+
+/**
+ * **발문이 값을 말한 기호 라벨**을 좌표와 맞댄다 — 첫 축(`angleMismatches`)이
+ * 구조적으로 못 보는 자리다.
+ *
+ * `facts.x` 가 없으면 `(cx+d)` 를 셈할 수 없으므로 **대상이 아니다**(조용한 통과가
+ * 아니라 대상 제외 — 「못 본 것」과 「없는 것」을 안 섞는다).
+ */
+export function symbolicAngleMismatches(
+  spec: unknown,
+  content: string,
+  facts: unknown,
+): AngleCheck[] {
+  if (!spec || typeof spec !== "object") return [];
+  const s = spec as Record<string, unknown>;
+  const rawPts = s.points;
+  const rawAngles = s.angles;
+  if (!rawPts || typeof rawPts !== "object") return [];
+  if (!rawAngles || typeof rawAngles !== "object") return [];
+  const x = (facts as Record<string, unknown> | null | undefined)?.x;
+
+  const pts = new Map<string, XY>();
+  for (const [k, v] of Object.entries(rawPts as Record<string, unknown>)) {
+    const xy = asXY(v);
+    if (xy) pts.set(k, xy);
+  }
+
+  const out: AngleCheck[] = [];
+  CONTENT_SAYS.lastIndex = 0;
+  for (let m = CONTENT_SAYS.exec(content); m; m = CONTENT_SAYS.exec(content)) {
+    const sym = m[1]!;
+    const want = m[5]
+      ? Number(m[5])
+      : typeof x === "number"
+        ? Number(m[2]) * x + (m[3] === "-" ? -1 : 1) * Number(m[4])
+        : NaN;
+    if (!Number.isFinite(want)) continue; // `x` 를 모르면 대상이 아니다
+
+    for (const [name, rawA] of Object.entries(
+      rawAngles as Record<string, unknown>,
+    )) {
+      if (!rawA || typeof rawA !== "object" || Array.isArray(rawA)) continue;
+      const a = rawA as Record<string, unknown>;
+      if (a.label !== sym) continue;
+      const vertex = typeof a.vertex === "string" ? a.vertex : null;
+      const arms = Array.isArray(a.points) ? a.points : null;
+      if (!vertex || !arms || arms.length < 2) continue;
+      const [pn, qn] = arms as [unknown, unknown];
+      if (typeof pn !== "string" || typeof qn !== "string") continue;
+      const V = pts.get(vertex);
+      const P = pts.get(pn);
+      const Q = pts.get(qn);
+      if (!V || !P || !Q) continue;
+      const got = angleAt(V, P, Q);
+      if (!Number.isFinite(got)) continue;
+      if (Math.abs(got - want) > TOL_DEG)
+        out.push({
+          name,
+          vertex,
+          from: pn,
+          to: qn,
+          want,
+          got: Math.round(got * 10) / 10,
+          raw: `발문이 말한 ∠${sym}=${want}°`,
+        });
+    }
+  }
+  return out;
+}
+
 // ────────────────────────────────────────────────────────────────────────
 // 눈금 — 양성과 음성을 **둘 다** 댄다. 양성만 대면 지어냄이 구조적으로 0이 된다.
 // ────────────────────────────────────────────────────────────────────────
@@ -204,6 +294,97 @@ const GAUGE: [name: string, spec: unknown, catches: boolean][] = [
   ["반올림 1° 는 봐준다", triSpec(45.9, "30°", "B"), false],
 ];
 
+/** 두 직선이 O 에서 만나 ∠a(=BOC)를 이루는 그림 — `deg` 를 실제로 그린다. */
+function crossSpec(deg: number): unknown {
+  const h = ((deg / 2) * Math.PI) / 180;
+  const P = (t: number): XY => [120 + 70 * Math.cos(t), 95 - 70 * Math.sin(t)];
+  return {
+    version: 2,
+    points: {
+      O: [120, 95],
+      A: P(Math.PI - h),
+      B: P(-h),
+      C: P(h),
+      D: P(Math.PI + h),
+    },
+    segments: { AB: ["A", "B"], CD: ["C", "D"] },
+    angles: { a: { vertex: "O", points: ["B", "C"], label: "a" } },
+  };
+}
+
+/**
+ * 둘째 축의 눈금 — `[이름, 스펙, 발문, facts, 잡나]`.
+ *
+ * ⚠️ **양성 하나는 그 결함 그대로다** — 상수 55° 그림에 발문이 99° 라고 하는 판.
+ *    실제 유형을 부르지 않고 **픽스처**로 박는다: 유형을 고치면 살아 있는 엔진에서는
+ *    그 자리가 사라져 재현율을 영영 못 재게 된다(2026-08-23 사다리 판정기와 같은 자리).
+ */
+const GAUGE_SYM: [
+  name: string,
+  spec: unknown,
+  content: string,
+  facts: unknown,
+  catches: boolean,
+][] = [
+  [
+    "🔴 그 결함 그대로 — 발문은 ∠a=99° 인데 그림은 늘 55°",
+    crossSpec(55),
+    "그림에서 $\\angle a=(4x+51)^\\circ$, $\\angle c=(5x+39)^\\circ$는 맞꼭지각이다.",
+    { x: 12 },
+    true,
+  ],
+  [
+    "🔴 발문이 수를 바로 말하는 판 — ∠a=97° 인데 그림은 55°",
+    crossSpec(55),
+    "그림에서 $l\\parallel m$이고 $\\angle a=97^\\circ$이다.",
+    {},
+    true,
+  ],
+  // ── 음성 ──────────────────────────────────────────────────────────────
+  [
+    "그림이 발문대로 99° 를 그리면 안 잡는다",
+    crossSpec(99),
+    "그림에서 $\\angle a=(4x+51)^\\circ$, $\\angle c=(5x+39)^\\circ$는 맞꼭지각이다.",
+    { x: 12 },
+    false,
+  ],
+  [
+    "그림이 발문대로 97° 를 그리면 안 잡는다",
+    crossSpec(97),
+    "그림에서 $l\\parallel m$이고 $\\angle a=97^\\circ$이다.",
+    {},
+    false,
+  ],
+  [
+    "`x` 를 모르면 대상이 아니다 — 조용한 통과가 아니라 셈을 못 한다",
+    crossSpec(55),
+    "그림에서 $\\angle a=(4x+51)^\\circ$이다.",
+    {},
+    false,
+  ],
+  [
+    "발문이 값을 안 말하면 대상이 아니다",
+    crossSpec(55),
+    "그림에서 $\\angle a$와 $\\angle c$는 맞꼭지각이다. 옳은 것을 고르시오.",
+    { x: 12 },
+    false,
+  ],
+  [
+    "세 글자 각 이름(∠ABC)은 라벨이 아니다 — 기호 하나만 본다",
+    crossSpec(55),
+    "그림에서 $\\angle ABC=99^\\circ$이다.",
+    {},
+    false,
+  ],
+  [
+    "발문이 말한 기호가 그림에 없으면 대상이 아니다",
+    crossSpec(55),
+    "그림에서 $\\angle z=99^\\circ$이다.",
+    {},
+    false,
+  ],
+];
+
 function selftest(): void {
   let bad = 0;
   for (const [name, spec, want] of GAUGE) {
@@ -215,11 +396,23 @@ function selftest(): void {
         ` / 실제 ${got ? "잡는다" : "안 잡는다"}`,
     );
   }
-  const pos = GAUGE.filter((g) => g[2]).length;
+  console.log("  ── 축 2: 라벨은 기호이고 값은 발문에 있다 ──");
+  for (const [name, spec, content, facts, want] of GAUGE_SYM) {
+    const got = symbolicAngleMismatches(spec, content, facts).length > 0;
+    const ok = got === want;
+    if (!ok) bad += 1;
+    console.log(
+      `  ${ok ? "✅" : "❌"} ${name} — 기대 ${want ? "잡는다" : "안 잡는다"}` +
+        ` / 실제 ${got ? "잡는다" : "안 잡는다"}`,
+    );
+  }
+  const total = GAUGE.length + GAUGE_SYM.length;
+  const pos =
+    GAUGE.filter((g) => g[2]).length + GAUGE_SYM.filter((g) => g[4]).length;
   console.log(
-    `\n${bad === 0 ? "✅" : "🔴"} 눈금 ${GAUGE.length}건` +
+    `\n${bad === 0 ? "✅" : "🔴"} 눈금 ${total}건` +
       `${bad === 0 ? " 전부 맞다" : ` 중 ${bad}건 어긋남`}` +
-      ` (양성 ${pos} · 음성 ${GAUGE.length - pos})`,
+      ` (양성 ${pos} · 음성 ${total - pos})`,
   );
   process.exit(bad === 0 ? 0 : 1);
 }
@@ -248,7 +441,10 @@ function main(): void {
         if (!spec || typeof spec !== "object") continue;
         const angles = (spec as Record<string, unknown>).angles;
         if (angles && typeof angles === "object") withAngles += 1;
-        const miss = angleMismatches(spec);
+        const miss = [
+          ...angleMismatches(spec),
+          ...symbolicAngleMismatches(spec, p.content, p.facts),
+        ];
         if (miss.length > 0 && !bad.has(t.key)) bad.set(t.key, miss);
       }
     }

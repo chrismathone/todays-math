@@ -113,53 +113,96 @@ function polarPt(deg: number, r = 70, cx = 120, cy = 95): [number, number] {
   return [r2(cx + r * Math.cos(rad)), r2(cy - r * Math.sin(rad))];
 }
 
-/** 기본 도형 10 — 두 직선이 O 에서 만나 이루는 맞꼭지각(∠BOC, ∠AOD). */
-const FIGURE_VERTICAL: Record<string, unknown> = {
-  version: 2,
-  style: { show_points: true },
-  points: {
-    O: [120, 95],
-    A: polarPt(160),
-    B: polarPt(340),
-    C: polarPt(35),
-    D: polarPt(215),
-  },
-  segments: { AB: ["A", "B"], CD: ["C", "D"] },
-  angles: {
-    a: { vertex: "O", points: ["B", "C"], label: "a" },
-    c: { vertex: "O", points: ["A", "D"], label: "c" },
-  },
-  labels: { A: "A", B: "B", C: "C", D: "D", O: "O" },
-};
+/**
+ * 기본 도형 10 — 두 직선이 O 에서 만나 이루는 맞꼭지각(∠BOC, ∠AOD).
+ *
+ * 🔴 **`deg` 를 받는다.** 종전에는 상수라 **늘 55°** 를 그렸다 — 발문이 ∠a=99° 라
+ *    해도 그림은 55° 였다(실측 4/4). 원장님 지적 2026-08-27 「지 멋대로 그려놓고
+ *    70도라고 우기고 있음」이 바로 이 부류다. 라벨이 **기호**(`a`)라 숫자 판정기가
+ *    구조적으로 못 본다 — 발문이 그 기호의 값을 말하는지까지 봐야 걸린다.
+ *
+ * §4-20-b(「발문이 이미 말했는가」)는 **값을 라벨로 이중표기하지 마라**는 규칙이지
+ * 「아무 각이나 그려도 된다」가 아니다. 같은 문서가 `linearGraph` 에는
+ * 「그린 기울기 = 적힌 기울기」를 요구한다. 그래서 **라벨은 기호로 두고 각만 맞춘다.**
+ *
+ * 글자·점은 안 붙인다 — 발문이 A·B·C·D·O 를 **하나도 안 쓴다**(RPM 원본도 안 쓴다.
+ * `RPM 중학 1-2` p.16 유형 10 렌더 대조). 설명 없는 표시는 지면을 어지럽힐 뿐이다.
+ */
+function figVertical(deg: number): Record<string, unknown> {
+  const h = deg / 2;
+  return {
+    version: 2,
+    points: {
+      O: [120, 95],
+      A: polarPt(180 - h),
+      B: polarPt(-h),
+      C: polarPt(h),
+      D: polarPt(180 + h),
+    },
+    segments: { AB: ["A", "B"], CD: ["C", "D"] },
+    angles: {
+      a: { vertex: "O", points: ["B", "C"], label: "a" },
+      c: { vertex: "O", points: ["A", "D"], label: "c" },
+    },
+  };
+}
 
 /**
  * 위치 관계 11·12·13 — 두 직선 l, m 을 t 가 가로지른다(평행선과 동위각·엇각).
- * probe-wave6-geometry.py `s_position_parallel` 과 같은 좌표(양성 실렌더 확인됨).
+ *
+ * 🔴 **`deg` 를 받는다** — `figVertical` 과 같은 결함이었다(늘 53.1°). ∠a 는
+ *    X 에서 「l 을 따라 오른쪽(B)」과 「t 를 따라 아래(Q)」가 이루는 각이고,
+ *    ∠b 는 Y 에서 같은 자리다(동위각). 그래서 **t 의 기울기 하나가 둘을 다 정한다.**
+ *
+ * 좌표는 `probe-wave6-geometry.py` `s_position_parallel` 의 배치를 물려받되(양성
+ * 실렌더 확인됨), 가로 이동 `dx = 80/tan(deg)` 만 각에서 유도한다. 둔각이면 `dx`
+ * 가 음수라 t 가 왼쪽으로 기운다 — 그게 맞다.
  */
-const FIGURE_PARALLEL: Record<string, unknown> = {
-  version: 2,
-  style: { show_points: true },
-  points: {
-    A: [20, 60],
-    B: [220, 60],
-    C: [20, 140],
-    D: [220, 140],
-    P: [60, 20],
-    Q: [180, 180],
-    X: [90.0, 60.0],
-    Y: [150.0, 140.0],
-  },
-  segments: {
-    l: { points: ["A", "B"], parallel: 1 },
-    m: { points: ["C", "D"], parallel: 1 },
-    t: { points: ["P", "Q"] },
-  },
-  angles: {
-    a: { vertex: "X", points: ["B", "Q"], label: "a" },
-    b: { vertex: "Y", points: ["D", "Q"], label: "b" },
-  },
-  labels: { A: "l", C: "m", P: "t" },
-};
+function figParallel(deg: number): Record<string, unknown> {
+  const rad = (deg * Math.PI) / 180;
+  const ux = Math.cos(rad);
+  const uy = Math.sin(rad); // SVG 는 y 가 아래로 — 아래로 내려가는 쪽이 양수다.
+  const dx = 80 / Math.tan(rad); // X → Y 가로 이동(세로는 60 → 140).
+  const xTop = 120 - dx / 2;
+  const xBot = 120 + dx / 2;
+  const left = r2(Math.min(xTop, xBot) - 58);
+  const right = r2(Math.max(xTop, xBot) + 58);
+  const ext = 44; // t 가 l 위·m 아래로 뻗는 길이.
+  // ⚠️ **P·X·Y·Q 를 반올림하지 마라.** 넷은 한 직선 위여야 하는데 `r2` 는 그 점을
+  //    선에서 최대 0.005 밀어내고, 엔진은 「각의 광선이 그려진 선분에 안 얹혔다」로
+  //    **던진다**(실측 — `figParallel04` 에서 똑같이 밟았다, 09 §4-1). 그리고
+  //    뻗는 방향을 각이 아니라 **X→Y 에서** 구한다 — 그래야 넷이 구성상 한 직선이다.
+  const vx = xBot - xTop;
+  const norm = Math.hypot(vx, 80);
+  const px = (ext * vx) / norm;
+  const py = (ext * 80) / norm;
+  return {
+    version: 2,
+    points: {
+      A: [left, 60],
+      B: [right, 60],
+      C: [left, 140],
+      D: [right, 140],
+      X: [xTop, 60],
+      Y: [xBot, 140],
+      P: [xTop - px, 60 - py],
+      Q: [xBot + px, 140 + py],
+    },
+    segments: {
+      l: { points: ["A", "B"], parallel: 1 },
+      m: { points: ["C", "D"], parallel: 1 },
+      t: { points: ["P", "Q"] },
+    },
+    angles: {
+      a: { vertex: "X", points: ["B", "Q"], label: "a" },
+      b: { vertex: "Y", points: ["D", "Q"], label: "b" },
+    },
+    labels: { A: "l", C: "m", P: "t" },
+  };
+}
+
+/** 각을 말하지 않는 갈래(위치 관계 13)가 쓰는 기본 기울기 — 보기 좋은 값 하나. */
+const FIGURE_PARALLEL_PLAIN = figParallel(55);
 
 // ── 직육면체 문자 모델 소품 (m1Book2 와 같은 관례 — 위치 관계 09 가 쓴다) ──
 function sharedCount(x: string, y: string): number {
@@ -506,13 +549,15 @@ const M1_GEO1_BASE: TypeEntry[] = [
       // a x + p = b2 x + q ⇒ q = p + (a-b2) x. 각도가 0~180 이 되도록만 확인.
       const val = a * x + p;
       const q = val - b2 * x;
-      if (q < 0 || q > 170 || val <= 0 || val >= 180) return null;
+      // 그림이 이 각을 **실제로 그린다** — 너무 좁거나 너무 넓으면 두 직선이
+      // 겹쳐 보인다. 그래서 값을 그릴 수 있는 범위로 좁힌다(RPM 원본도 이 대역이다).
+      if (q < 0 || q > 170 || val < 25 || val > 155) return null;
       return {
         content: `그림에서 $\\angle a=(${a}x+${p})^\\circ$, $\\angle c=(${b2}x+${q})^\\circ$는 맞꼭지각이다. $x$의 값을 구하시오.`,
         answer: `$${x}$`,
         solution: `맞꼭지각의 크기는 서로 같으므로 $${a}x+${p}=${b2}x+${q}$이다.\n$${a - b2}x=${q - p}$에서 $x=${x}$이다.`,
         facts: { a, p, b2, q, x, ans: x },
-        figureSpec: FIGURE_VERTICAL,
+        figureSpec: figVertical(val),
       };
     }),
   ),
@@ -1009,14 +1054,15 @@ const M1_GEO1_POS: TypeEntry[] = [
       const p = intBetween(rng, 5, 60);
       const val = a * x + p;
       const q = val - b2 * x;
-      if (q < 0 || q > 170 || val <= 10 || val >= 170) return null;
+      // 그림이 이 각을 **실제로 그린다** — t 가 너무 누우면 지면 밖으로 뻗는다.
+      if (q < 0 || q > 170 || val < 35 || val > 145) return null;
       const relWord = relKind === 0 ? "동위각" : "엇각";
       return {
         content: `두 직선 $l$, $m$이 다른 한 직선 $t$와 만나고 $l\\parallel m$이다. $l$과 $t$의 교점에서 생기는 $\\angle a=(${a}x+${p})^\\circ$이고, $\\angle a$의 ${relWord}인 $\\angle b=(${b2}x+${q})^\\circ$일 때, $x$의 값을 구하시오.`,
         answer: `$${x}$`,
         solution: `$l\\parallel m$이므로 ${relWord}의 크기는 서로 같다. 따라서 $${a}x+${p}=${b2}x+${q}$이다.\n$${a - b2}x=${q - p}$에서 $x=${x}$이다.`,
         facts: { relKind, a, p, b2, q, x, ans: x },
-        figureSpec: FIGURE_PARALLEL,
+        figureSpec: figParallel(val),
       };
     }),
   ),
@@ -1031,7 +1077,8 @@ const M1_GEO1_POS: TypeEntry[] = [
     (rng) =>
       attempt(200, (): Body | null => {
         const relKind = pick(rng, [0, 1] as const);
-        const theta = intBetween(rng, 20, 160);
+        // 그림이 이 각을 **실제로 그린다**(figParallel 주석).
+        const theta = intBetween(rng, 35, 145);
         const ans = 180 - theta;
         if (ans === theta) return null;
         const relWord = relKind === 0 ? "동위각" : "엇각";
@@ -1040,7 +1087,7 @@ const M1_GEO1_POS: TypeEntry[] = [
           answer: `$${ans}^\\circ$`,
           solution: `$l\\parallel m$이므로 $\\angle a$의 ${relWord}의 크기는 $\\angle a$와 같은 $${theta}^\\circ$이다.\n구하는 각은 그 각과 이웃하여 합이 평각($180^\\circ$)을 이루므로 $180^\\circ-${theta}^\\circ=${ans}^\\circ$이다.`,
           facts: { relKind, theta, ans },
-          figureSpec: FIGURE_PARALLEL,
+          figureSpec: figParallel(theta),
         };
       }),
   ),
@@ -1063,7 +1110,7 @@ const M1_GEO1_POS: TypeEntry[] = [
           answer: `$${ans}$개`,
           solution: `${rows.map(([s, t], i) => `${BOGI[i]!}. ${s} → ${t ? "평행하다고 할 수 있다" : "평행하다고 할 수 없다"}.`).join("\n")}\n따라서 옳은 것은 $${ans}$개이다.`,
           facts: { ans },
-          figureSpec: FIGURE_PARALLEL,
+          figureSpec: FIGURE_PARALLEL_PLAIN,
         };
       }),
     () => [],
