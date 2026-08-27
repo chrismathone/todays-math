@@ -1,5 +1,5 @@
 /**
- * 중1 RPM 1-1 「수」 51유형 (`m1Num.ts`) — 독립 검산.
+ * 중1 RPM 1-1 「수」 61유형 (`m1Num.ts`) — 독립 검산.
  *
  * ## 검산은 생성기와 «다른 길»로 간다 (동어반복 금지)
  *
@@ -253,6 +253,9 @@ const EXPECTED_SECTION: Record<string, string> = {
   "1-1|소인수분해|08": "소인수분해",
   "1-1|소인수분해|09": "소인수분해",
   "1-1|소인수분해|10": "소인수분해",
+  "1-1|소인수분해|18": "소인수분해",
+  "1-1|소인수분해|19": "소인수분해",
+  "1-1|소인수분해|20": "소인수분해",
   "1-1|최대공약수와 최소공배수|01": "공약수와 최대공약수",
   "1-1|최대공약수와 최소공배수|02": "공약수와 최대공약수",
   "1-1|최대공약수와 최소공배수|03": "공약수와 최대공약수",
@@ -278,6 +281,13 @@ const EXPECTED_SECTION: Record<string, string> = {
   "1-1|최대공약수와 최소공배수|21": "공약수와 최대공약수",
   "1-1|최대공약수와 최소공배수|22": "공약수와 최대공약수",
   "1-1|최대공약수와 최소공배수|23": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|24": "공배수와 최소공배수",
+  "1-1|최대공약수와 최소공배수|25": "공배수와 최소공배수",
+  "1-1|최대공약수와 최소공배수|26": "공배수와 최소공배수",
+  "1-1|최대공약수와 최소공배수|27": "공배수와 최소공배수",
+  "1-1|최대공약수와 최소공배수|28": "공배수와 최소공배수",
+  "1-1|최대공약수와 최소공배수|29": "최대공약수와 최소공배수의 활용",
+  "1-1|최대공약수와 최소공배수|30": "최대공약수와 최소공배수의 활용",
   "1-1|정수와 유리수|01": "정수와 유리수",
   "1-1|정수와 유리수|02": "정수와 유리수",
   "1-1|정수와 유리수|03": "정수와 유리수",
@@ -362,8 +372,10 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     expect(isPrime(pr!) && isPrime(q!)).toBe(true);
     expect(pr! ** a! * q! ** other).toBe(N);
     expect(divisorsOf(N!).length, "약수의 개수가 발문과 다르다").toBe(k);
-    // kind 1 은 두 지수가 모두 미지수라 발문에 수로 나오지 않는다
-    if (kind === 0) shows(p.content, k!, other);
+    // kind 1 은 두 지수가 모두 미지수라 발문에 수로 나오지 않는다.
+    // 그리고 kind 0 이라도 **지수가 $1$ 이면 지면에 안 적는다**(`5^{1}` 금지)
+    // — 그때는 그 수를 발문에서 찾을 수 없다.
+    if (kind === 0 && other !== 1) shows(p.content, k!, other);
     else shows(p.content, k!);
     if (kind === 0) {
       // 그 개수를 내는 지수가 하나뿐이어야 답이 정해진다
@@ -751,6 +763,109 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     expect(answerNum(p)).toBe(want);
   },
 
+  // ── 18~20 「소인수분해」 · 24~30 「공배수·활용」 (갈래 D) ──
+  // 값은 지면 글자에서 되읽어 **시행나눗셈·전수 열거**로 다시 구한다.
+
+  "1-1|소인수분해|18": (p) => {
+    const N = Number(p.content.match(/\$(\d+)\$$/m)![1]);
+    expect(N).toBe(p.facts.N);
+    // 정답이 **정말 그 수의 소인수분해인가** — 값·소수성·차례를 다 본다.
+    expectFactorizationOf(mathBodies(p.answer)[0]!, N);
+  },
+
+  "1-1|소인수분해|19": (p) => {
+    const N = Number(p.content.match(/\$(\d+)\$의 서로 다른 소인수/)![1]);
+    expect(N).toBe(p.facts.N);
+    expect(factorize(N).length).toBe(p.facts.k);
+    expect(answerNum(p)).toBe(factorize(N).length);
+  },
+
+  "1-1|소인수분해|20": (p) => {
+    const N = Number(p.content.match(/\$(\d+)\$의 모든 약수의 합/)![1]);
+    expect(N).toBe(p.facts.N);
+    const want = divisorsOf(N).reduce((s, d) => s + d, 0);
+    expect(want).toBe(p.facts.sum);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|24": (p) => {
+    const [, a, b, c] = p.content.match(
+      /세 자연수 \$(\d+)\$, \$(\d+)\$, \$(\d+)\$의 최소공배수/,
+    )!;
+    const want = lcm3(Number(a), Number(b), Number(c));
+    expect(want).toBe(p.facts.L);
+    expect(
+      want,
+      "가장 큰 수가 곧 최소공배수면 문제가 되지 않는다",
+    ).toBeGreaterThan(Math.max(Number(a), Number(b), Number(c)));
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|25": (p) => {
+    const [, a, b, k] = p.content.match(
+      /두 자연수 \$(\d+)\$, \$(\d+)\$의 공배수를.*\$(\d+)\$번째/,
+    )!;
+    const want = lcm(Number(a), Number(b)) * Number(k);
+    expect(want).toBe(p.facts.answer);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|26": (p) => {
+    const [, G, L] = p.content.match(
+      /최대공약수가 \$(\d+)\$, 최소공배수가 \$(\d+)\$/,
+    )!;
+    expect(
+      Number(L) % Number(G),
+      "최소공배수는 최대공약수의 배수여야 한다",
+    ).toBe(0);
+    expect(answerNum(p)).toBe(Number(G) * Number(L));
+  },
+
+  "1-1|최대공약수와 최소공배수|27": (p) => {
+    const [, a, b, r] = p.content.match(
+      /\$(\d+)\$로 나누어도 \$(\d+)\$로 나누어도 \$(\d+)\$/,
+    )!;
+    // 두 자리 수를 **하나씩 훑어** 조건에 맞는 첫 수를 찾는다.
+    let want = -1;
+    for (let v = 10; v <= 99; v += 1) {
+      if (v % Number(a) === Number(r) && v % Number(b) === Number(r)) {
+        want = v;
+        break;
+      }
+    }
+    expect(want, "조건에 맞는 두 자리 수가 없다").toBeGreaterThan(0);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|28": (p) => {
+    const [, a, b, N] = p.content.match(
+      /두 자연수 \$(\d+)\$, \$(\d+)\$의 공배수 중에서 \$(\d+)\$ 이하/,
+    )!;
+    const L = lcm(Number(a), Number(b));
+    let want = 0;
+    for (let v = L; v <= Number(N); v += L) want += 1;
+    expect(want).toBe(p.facts.count);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|29": (p) => {
+    const [, a, b] = p.content.match(
+      /가로의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$, 세로의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+    )!;
+    const want = gcd(Number(a), Number(b));
+    expect(want).toBe(p.facts.g);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|30": (p) => {
+    const [, a, b] = p.content.match(
+      /가로의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$, 세로의 길이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+    )!;
+    const want = lcm(Number(a), Number(b));
+    expect(want).toBe(p.facts.L);
+    expect(answerNum(p)).toBe(want);
+  },
+
   "1-1|정수와 유리수|01": (p) => {
     const { kind, a, b, answer } = p.facts as Record<string, number>;
     expect(a).toBeLessThan(0);
@@ -1071,12 +1186,12 @@ function outsideMath(text: string): string {
   return text.replace(/\$[^$]*\$/g, "");
 }
 
-describe("중1 1-1 「수」 51유형 (m1Num)", () => {
-  it("51유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
+describe("중1 1-1 「수」 61유형 (m1Num)", () => {
+  it("61유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
     expect(new Set(M1_NUM.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1_NUM.length).toBe(51);
+    expect(M1_NUM.length).toBe(61);
     for (const e of M1_NUM) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
@@ -1097,9 +1212,12 @@ describe("중1 1-1 「수」 51유형 (m1Num)", () => {
       "08",
       "09",
       "10",
+      "18",
+      "19",
+      "20",
     ]);
     // RPM 색인의 16 + 갈래 D 가 「공약수와 최대공약수」를 채우려고 지은 7
-    expect(byMinor.get("최대공약수와 최소공배수")!.length).toBe(23);
+    expect(byMinor.get("최대공약수와 최소공배수")!.length).toBe(30);
     expect(byMinor.get("정수와 유리수")!.length).toBe(21);
   });
 

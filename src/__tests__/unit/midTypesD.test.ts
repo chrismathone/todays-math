@@ -48,6 +48,9 @@ const DONE_SECTIONS = [
     entries: M1_LINEAR_APPLY,
     section: "일차방정식의 활용(도형, 농도, 일)",
   },
+  { entries: M1_NUM, section: "공배수와 최소공배수" },
+  { entries: M1_NUM, section: "소인수분해" },
+  { entries: M1_NUM, section: "최대공약수와 최소공배수의 활용" },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {

@@ -335,6 +335,18 @@ function tokList(toks: readonly NumTok[]): string {
   return toks.map((t) => `$${t.tex}$`).join(", ");
 }
 
+/** 최소공배수 — 호제법으로 얻은 최대공약수로 나눈다. */
+function lcmOf(a: number, b: number): number {
+  return (a / gcdOfPair(a, b)) * b;
+}
+
+function gcdOfPair(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) [x, y] = [y, x % y];
+  return x;
+}
+
 /** 분모가 $2$ 와 $5$ 만으로 이루어져 있나 — 소수(小數)로 딱 떨어지는가. */
 function terminatesAsDecimal(den: number): boolean {
   let x = den;
@@ -649,7 +661,8 @@ const 소인수분해_TYPES: TypeEntry[] = [
           const N = p ** a * q ** n;
           if (N > 40000) return null;
           return {
-            content: `$${p}^{a}\\times${q}^{${n}}$의 약수의 개수가 $${k}$일 때, 자연수 $a$의 값을 구하시오.`,
+            // 지수 $1$ 은 안 적는다 — `5^{1}` 이 지면에 나가면 값은 맞아도 흉하다.
+            content: `$${p}^{a}\\times${n === 1 ? `${q}` : `${q}^{${n}}`}$의 약수의 개수가 $${k}$일 때, 자연수 $a$의 값을 구하시오.`,
             answer: `$${a}$`,
             solution: `약수의 개수는 지수에 $1$을 더하여 곱한 것이므로 $(a+1)\\times(${n}+1)=${k}$이다.\n$(a+1)\\times${n + 1}=${k}$에서 $a+1=${a + 1}$이므로 $a=${a}$이다.`,
             facts: { kind, p, q, n, k, a, N },
@@ -757,6 +770,96 @@ const 소인수분해_TYPES: TypeEntry[] = [
           facts: { B, x, k, N: B * x },
         };
       }),
+  ),
+
+  // ── 18~20 「소인수분해」를 10유형으로 채운 몫 (갈래 D) ──
+  // 색인은 01~10 이고 11~17 은 `m1Book1.ts`(소수와 거듭제곱) 몫이라 18 부터 잇는다.
+
+  defType(
+    BOOK,
+    MIN_소인수,
+    "18",
+    "소인수분해 하기",
+    SEC.소인수,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const primes = pickDistinct(
+          rng,
+          SMALL_PRIMES,
+          intBetween(rng, 2, 3),
+        ).sort((a, b) => a - b);
+        const f: [number, number][] = primes.map((p) => [
+          p,
+          intBetween(rng, 1, 3),
+        ]);
+        const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+        if (N < 60 || N > 900) return null;
+        return {
+          // 지시 하나 + 수식 한 줄 — 이 모양이라야 `tier.ts` 가 **연산**으로 내린다.
+          content: `다음 수를 소인수분해하시오.\n$${N}$`,
+          answer: `$${facTex(f)}$`,
+          solution: `작은 소수부터 차례로 나누어 몫이 소수가 될 때까지 계속한다.\n따라서 $${N}=${facTex(f)}$이다.`,
+          facts: { N, k: f.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_소인수,
+    "19",
+    "서로 다른 소인수의 개수",
+    SEC.소인수,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const primes = pickDistinct(
+          rng,
+          SMALL_PRIMES,
+          intBetween(rng, 2, 3),
+        ).sort((a, b) => a - b);
+        const f: [number, number][] = primes.map((p) => [
+          p,
+          intBetween(rng, 1, 3),
+        ]);
+        const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+        if (N < 60 || N > 900) return null;
+        return {
+          content: `$${N}$의 서로 다른 소인수의 개수를 구하시오.`,
+          answer: `$${f.length}$개`,
+          solution: `$${N}=${facTex(f)}$이므로 서로 다른 소인수는 ${f
+            .map(([p]) => `$${p}$`)
+            .join(", ")}이다.\n따라서 그 개수는 $${f.length}$개이다.`,
+          facts: { N, k: f.length },
+        };
+      }),
+  ),
+
+  defType(BOOK, MIN_소인수, "20", "약수의 총합", SEC.소인수, "응용", (rng) =>
+    attempt(300, (): Body | null => {
+      const primes = pickDistinct(rng, [2, 3, 5, 7] as const, 2).sort(
+        (a, b) => a - b,
+      );
+      const f: [number, number][] = primes.map((p) => [
+        p,
+        intBetween(rng, 1, 3),
+      ]);
+      const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+      if (N < 30 || N > 300) return null;
+      // 약수를 **전수로 훑어** 더한다 — 공식으로 구하지 않는다.
+      const divs: number[] = [];
+      for (let d = 1; d <= N; d += 1) if (N % d === 0) divs.push(d);
+      const sum = divs.reduce((v, d) => v + d, 0);
+      return {
+        content: `$${N}$의 모든 약수의 합을 구하시오.`,
+        answer: `$${sum}$`,
+        solution: `$${N}=${facTex(f)}$이고, $${N}$의 약수는 ${divs
+          .map((d) => `$${d}$`)
+          .join(", ")}이다.\n따라서 모든 약수의 합은 $${sum}$이다.`,
+        facts: { N, sum },
+      };
+    }),
   ),
 ];
 
@@ -1763,6 +1866,185 @@ const 최대최소_TYPES: TypeEntry[] = [
           answer: `$${count}$개`,
           solution: `두 수의 최대공약수는 $${g}$이다. $${g}$의 약수 중 $${limit}$ 이하인 것은 $${count}$개이다.`,
           facts: { A, B, g, limit, count },
+        };
+      }),
+  ),
+
+  // ── 24~28 「공배수와 최소공배수」 · 29~30 「최대공약수와 최소공배수의 활용」 ──
+  // 색인은 01~16 이고 17~23 은 앞 회차 몫이라 24 부터 잇는다 (갈래 D).
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "24",
+    "세 수의 최소공배수",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(400, (): Body | null => {
+        const a = intBetween(rng, 4, 30);
+        const b = intBetween(rng, 4, 30);
+        const c = intBetween(rng, 4, 30);
+        if (a === b || b === c || a === c) return null;
+        const L = lcmOf(lcmOf(a, b), c);
+        if (L > 600 || L === Math.max(a, b, c)) return null;
+        return {
+          content: `세 자연수 $${a}$, $${b}$, $${c}$의 최소공배수를 구하시오.`,
+          answer: `$${L}$`,
+          solution: `세 수를 소인수분해하여 공통이 아닌 것까지 모든 소인수의 지수 중 가장 큰 것을 택해 곱한다.\n따라서 최소공배수는 $${L}$이다.`,
+          facts: { a, b, c, L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "25",
+    "공배수를 차례로 나열하기",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const a = intBetween(rng, 4, 24);
+        const b = intBetween(rng, 4, 24);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 200) return null;
+        const k = intBetween(rng, 2, 6);
+        return {
+          content: `두 자연수 $${a}$, $${b}$의 공배수를 작은 것부터 차례로 나열할 때, $${k}$번째 수를 구하시오.`,
+          answer: `$${k * L}$`,
+          solution: `공배수는 최소공배수의 배수이고 두 수의 최소공배수는 $${L}$이다.\n따라서 $${k}$번째 공배수는 $${L}\\times${k}=${k * L}$이다.`,
+          facts: { a, b, L, k, answer: k * L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "26",
+    "최대공약수와 최소공배수의 곱",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const G = intBetween(rng, 2, 15);
+        const m = intBetween(rng, 2, 12);
+        const L = G * m;
+        if (L % G !== 0 || L === G) return null;
+        return {
+          content: `두 자연수 $A$, $B$의 최대공약수가 $${G}$, 최소공배수가 $${L}$일 때, $A\\times B$의 값을 구하시오.`,
+          answer: `$${G * L}$`,
+          solution: `두 자연수의 곱은 최대공약수와 최소공배수의 곱과 같다.\n따라서 $A\\times B=${G}\\times${L}=${G * L}$이다.`,
+          facts: { G, L, answer: G * L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "27",
+    "나머지가 같은 가장 작은 수",
+    SEC.최소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 3, 12);
+        const b = intBetween(rng, 3, 12);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 60) return null;
+        const r = intBetween(rng, 1, Math.min(a, b) - 1);
+        // 두 자리 자연수 중 가장 작은 것을 **하나씩 훑어** 찾는다.
+        let answer = -1;
+        for (let v = 10; v <= 99; v += 1) {
+          if (v % a === r && v % b === r) {
+            answer = v;
+            break;
+          }
+        }
+        if (answer < 0) return null;
+        return {
+          content: `$${a}$로 나누어도 $${b}$로 나누어도 $${r}$${nIGa(r)} 남는 자연수 중에서 가장 작은 두 자리 자연수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `구하는 수에서 $${r}$${nEul(r)} 빼면 $${a}$${nGwa(a)} $${b}$의 공배수가 된다.\n$${a}$${nGwa(a)} $${b}$의 최소공배수는 $${L}$이므로 구하는 수는 $${L}$의 배수보다 $${r}$만큼 큰 수이다.\n두 자리 자연수 중 가장 작은 것은 $${answer}$이다.`,
+          facts: { a, b, r, L, answer },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "28",
+    "범위 안의 공배수의 개수",
+    SEC.최소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 4, 20);
+        const b = intBetween(rng, 4, 20);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 120) return null;
+        const count = intBetween(rng, 2, 6);
+        const N = L * count + intBetween(rng, 0, L - 1);
+        return {
+          content: `두 자연수 $${a}$, $${b}$의 공배수 중에서 $${N}$ 이하인 자연수의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `공배수는 최소공배수 $${L}$의 배수이다.\n$${N}$ 이하인 $${L}$의 배수는 $${count}$개이다.`,
+          facts: { a, b, L, N, count },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "29",
+    "최대공약수의 활용 자르는 정사각형의 한 변",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const g = intBetween(rng, 3, 15);
+        const uv = coprimeQuotients(rng, 2, 9);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const a = g * u;
+        const b = g * v;
+        if (a === b) return null;
+        return {
+          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$인 직사각형 모양의 종이를 남는 부분 없이 크기가 같은 정사각형 모양으로 자르려고 한다. 정사각형의 한 변의 길이가 될 수 있는 가장 큰 수를 구하시오.`,
+          answer: `$${g}\\,\\mathrm{cm}$`,
+          solution: `정사각형의 한 변의 길이는 가로와 세로를 모두 나누어떨어지게 해야 하므로 $${a}$${nGwa(a)} $${b}$의 공약수이다.\n가장 큰 것은 최대공약수 $${g}$이다.`,
+          facts: { a, b, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "30",
+    "최소공배수의 활용 만드는 정사각형의 한 변",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 4, 30);
+        const b = intBetween(rng, 4, 30);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 300) return null;
+        return {
+          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$인 직사각형 모양의 종이를 겹치지 않게 빈틈없이 늘어놓아 될 수 있는 대로 작은 정사각형을 만들려고 한다. 이 정사각형의 한 변의 길이를 구하시오.`,
+          answer: `$${L}\\,\\mathrm{cm}$`,
+          solution: `정사각형의 한 변의 길이는 가로와 세로의 공배수이다.\n가장 작은 것은 최소공배수 $${L}$이다.`,
+          facts: { a, b, L },
         };
       }),
   ),
