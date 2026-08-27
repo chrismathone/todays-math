@@ -288,7 +288,8 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     return {
       content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\kx-y=${c}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, 상수 $k$의 값을 구하시오.`,
       answer: `$${answer}$`,
-      solution: `해를 둘째 식에 대입하면 $${x}k-${y}=${c}$이므로 $k=${answer}$이다.`,
+      // ⚠️ `${x}k-${y}` 로 적으면 $y$ 가 음수일 때 `1k--2` 가 나간다 — 15A 와 같은 자리.
+      solution: `해를 둘째 식에 대입하면 $${mc(x, "k")}${sg(-y)}=${c}$이므로 $k=${answer}$이다.`,
       facts: { x, y, sum, c, answer },
     };
   }),
@@ -303,7 +304,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     return {
       content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$를 만족시킬 때, 상수 $a$의 값을 구하시오.`,
       answer: `$${answer}$`,
-      solution: `연립방정식을 풀면 $x=${x}$, $y=${y}$이다. 이를 $ax+y=${target}$에 대입하면 $${x}a+${y}=${target}$이므로 $a=${answer}$이다.`,
+      // ⚠️ `${x}a+${y}` 로 적으면 $y$ 가 음수일 때 지면에 `3a+-4` 가 나가고,
+      //    $x=1$ 이면 `1a` 가 나간다. 부호·계수는 `mc`·`sg` 가 한 곳에서 정한다.
+      solution: `연립방정식을 풀면 $x=${x}$, $y=${y}$이다. 이를 $ax+y=${target}$에 대입하면 $${mc(x, "a")}${sg(y)}=${target}$이므로 $a=${answer}$이다.`,
       facts: { x, y, p, sum, c, target, answer },
     };
   }),

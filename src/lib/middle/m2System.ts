@@ -79,6 +79,17 @@ function mc(n: number, v: string): string {
   return `${n}${v}`;
 }
 
+/**
+ * 빼는 항 — 음수면 괄호를 씌운다.
+ *
+ * `$a-b=4-(-4)$` 로 적어야 한다. 괄호가 없으면 지면에 `4--4` 가 나가는데,
+ * **값은 맞고 KaTeX 도 초록**이라 값 검산으로는 구조적으로 안 걸린다
+ * (2026-08-24 「값이 맞으면 시험이 다 초록이다」와 같은 자리).
+ */
+function subTerm(n: number): string {
+  return n < 0 ? `(${n})` : String(n);
+}
+
 /** 한쪽 변 `ax+b` — 계수가 0 이면 상수만, 상수가 0 이면 문자항만. */
 function side(coef: number, cnst: number, v = "x"): string {
   if (coef === 0) return `${cnst}`;
@@ -869,7 +880,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `연립방정식 $\\begin{cases}ax${sc(q, "y")}=${c1}\\\\${mc(r, "x")}+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
         answer: `$${answer}$`,
-        solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${b}=${answer}$이다.`,
+        solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${subTerm(b)}=${answer}$이다.`,
         facts: { x, y, a, b, q, r, c1, c2, answer },
       };
     }),
@@ -907,7 +918,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     return {
       content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax+by=${c}$의 해이고 $a-b=${difference}$일 때, $a+b$의 값을 구하시오.`,
       answer: `$${answer}$`,
-      solution: `해를 대입하면 $${x}a+${y}b=${c}$이고, $a-b=${difference}$이다. 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이므로 $a+b=${answer}$이다.`,
+      solution: `해를 대입하면 $${mc(x, "a")}${sc(y, "b")}=${c}$이고, $a-b=${difference}$이다. 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이므로 $a+b=${answer}$이다.`,
       facts: { x, y, a, b, c, difference, answer },
     };
   }),

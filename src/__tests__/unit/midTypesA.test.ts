@@ -214,8 +214,8 @@ describe("갈래 A 중등 유형 값 검산", () => {
     "12": (x) => x,
     "13": (_x, y) => y,
     "14": (x, y) => (x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3),
-    "15": (_x, _y, content) => -Number(content.match(/a\+(-?\d+)/)?.[1]),
-    "16": (_x, _y, content) => -Number(content.match(/a\+(-?\d+)/)?.[1]),
+    "15": (_x, _y, content) => -Number(content.match(/a([+-]\d+)/)?.[1]),
+    "16": (_x, _y, content) => -Number(content.match(/a([+-]\d+)/)?.[1]),
     "17": (_x, y) => Math.abs(y),
     "18": (x) => Math.abs(x),
     "19": (x, y) => -x - y,
@@ -1723,7 +1723,14 @@ describe("갈래 A 중등 유형 지면 — 날 LaTeX 명령", () => {
     ["m2SystemApply", M2_SYSTEM_APPLY],
     ["m3", M3_TYPES],
   ];
-  const SEEDS = [17, 203, 991];
+  /*
+   * ⚠️ **씨앗을 멀리 뗀다.** `[17, 203, 991]` 처럼 붙은 씨앗은 첫 뽑기가
+   *    $0.07$ 안에 몰려 있어 갈래가 한쪽으로 쏠리고, 음수/양수가 갈리는 자리를
+   *    구조적으로 안 밟는다. 실측: 그 셋만으로는 `m2SystemApply|…|15A` 의
+   *    이중 부호(`3a+-4`)를 못 봤는데, 공용 `probe-middle-page-smells` 는
+   *    120씨앗 중 66에서 봤다.
+   */
+  const SEEDS = Array.from({ length: 12 }, (_v, i) => spread(i + 1));
 
   /**
    * 줄바꿈 `\\` 를 먼저 치운다.
@@ -1827,6 +1834,23 @@ describe("갈래 A 중등 유형 지면 — 날 LaTeX 명령", () => {
         if (/\\[^A-Za-z,%{}\\ ]/.test(span.replace(/\\\\/g, " "))) {
           bad.push(`${s.key}: ${span.slice(0, 60)}`);
         }
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("수식 안에 부호가 겹쳐 있지 않다", () => {
+    /*
+     * `$a-b=4--4=8$` — 음수를 빼면서 괄호를 안 씌운 자리다(실측 `m2System` 05A).
+     *
+     * **값은 맞고 KaTeX 도 초록**이라 값 검산으로는 구조적으로 안 걸린다.
+     * 여기서는 오탐이 없는 모양(`--`·`+-`·`-+`·`++`)만 좁게 센다 —
+     * 거짓 경보는 가드를 끈다(2026-08-20).
+     */
+    const bad: string[] = [];
+    for (const s of corpus) {
+      for (const span of s.text.match(/\$[^$]*\$/g) ?? []) {
+        if (/[+\-][+\-]/.test(span)) bad.push(`${s.key}: ${span.slice(0, 60)}`);
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);

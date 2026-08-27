@@ -21,7 +21,7 @@
 import { M1_BOOK1 } from "./m1Book1";
 import { M1_BOOK2 } from "./m1Book2";
 import { intBetween, pick } from "../elementary/rng";
-import { defType, shuffle } from "./m1Shared";
+import { defType, shuffle, signed } from "./m1Shared";
 import type { TypeEntry } from "./types";
 
 const BOOK2 = "1-2";
@@ -526,11 +526,12 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
     "연산",
     (rng) => {
       const x = intBetween(rng, -9, 9);
-      const a = intBetween(rng, -7, 7);
+      // $a$ 가 $0$ 이면 지면에 `a+0=0` 이 나간다 — 17·18 과 같은 방식으로 뺀다.
+      const a = intBetween(rng, 1, 7) * (rng() < 0.5 ? -1 : 1);
       return {
-        content: `점 $D(${x}, a+${-a})$가 $x$축 위에 있을 때, $a$의 값을 구하시오.`,
+        content: `점 $D(${x}, a${signed(-a)})$가 $x$축 위에 있을 때, $a$의 값을 구하시오.`,
         answer: `$${a}$`,
-        solution: `$x$축 위의 점의 $y$좌표는 $0$이므로 $a${-a >= 0 ? "+" : ""}${-a}=0$에서 $a=${a}$이다.`,
+        solution: `$x$축 위의 점의 $y$좌표는 $0$이므로 $a${signed(-a)}=0$에서 $a=${a}$이다.`,
         facts: { x, a, answer: a },
       };
     },
@@ -544,11 +545,11 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
     "연산",
     (rng) => {
       const y = intBetween(rng, -9, 9);
-      const a = intBetween(rng, -7, 7);
+      const a = intBetween(rng, 1, 7) * (rng() < 0.5 ? -1 : 1);
       return {
-        content: `점 $E(a+${-a}, ${y})$가 $y$축 위에 있을 때, $a$의 값을 구하시오.`,
+        content: `점 $E(a${signed(-a)}, ${y})$가 $y$축 위에 있을 때, $a$의 값을 구하시오.`,
         answer: `$${a}$`,
-        solution: `$y$축 위의 점의 $x$좌표는 $0$이므로 $a${-a >= 0 ? "+" : ""}${-a}=0$에서 $a=${a}$이다.`,
+        solution: `$y$축 위의 점의 $x$좌표는 $0$이므로 $a${signed(-a)}=0$에서 $a=${a}$이다.`,
         facts: { y, a, answer: a },
       };
     },
@@ -602,7 +603,9 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       return {
         content: `점 $R(${x}, ${y})$와 원점에 대하여 대칭인 점의 두 좌표의 합을 구하시오.`,
         answer: `$${-x - y}$`,
-        solution: `대칭인 점은 $(-${x}, -${y})$이므로 두 좌표의 합은 $${-x}+(${-y})=${-x - y}$이다.`,
+        // ⚠️ `-${x}` 로 적으면 $x$ 가 음수일 때 지면에 `--5` 가 나간다.
+        //    부호를 붙인 **값**을 적어야 한다.
+        solution: `대칭인 점은 $(${-x}, ${-y})$이므로 두 좌표의 합은 $${-x}${signed(-y)}=${-x - y}$이다.`,
         facts: { x, y, answer: -x - y },
       };
     },
