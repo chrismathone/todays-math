@@ -17,7 +17,29 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
+
+/** 수 뒤 「을/를」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
+const nEul = eulReul;
+
+/**
+ * 기약인 **진분수** (분자, 분모) — 「어떤 수의 $\dfrac{a}{b}$」에 쓴다.
+ * 약분이 안 된 분수가 지면에 나가면 값은 맞아도 흉하므로 표로 못 박는다.
+ */
+const PROPER_UNIT_FRACS: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [1, 3],
+  [2, 3],
+  [1, 4],
+  [3, 4],
+  [1, 5],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+  [1, 6],
+  [5, 6],
+];
 
 const GRADE = "중1";
 const BOOK = "1-1";
@@ -86,7 +108,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       const rel = diff > 0 ? "크다" : "작다";
       const ad = Math.abs(diff);
       return {
-        content: `어떤 수에 $${a}$를 곱한 후 $${b}$를 더한 수는 어떤 수의 $${c}$배보다 $${ad}$만큼 ${rel}고 한다. 어떤 수를 구하시오.`,
+        content: `어떤 수에 $${a}$${nEul(a)} 곱한 후 $${b}$${nEul(b)} 더한 수는 어떤 수의 $${c}$배보다 $${ad}$만큼 ${rel}고 한다. 어떤 수를 구하시오.`,
         answer: `$${x}$`,
         solution: `어떤 수를 $x$라 하면 $${a}x+${b}=${c}x${diff > 0 ? `+${ad}` : `-${ad}`}$이다.\n정리하여 풀면 $x=${x}$이다.`,
         facts: { x, a, b, c, diff },
@@ -114,7 +136,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `각 자리의 숫자의 합이 $${s}$인 두 자리 자연수가 있다. 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수보다 $${d}$만큼 크다고 한다. 처음 수를 구하시오.`,
       answer: `$${N}$`,
-      solution: `십의 자리의 숫자를 $x$라 하면 일의 자리의 숫자는 $${s}-x$이다.\n$10(${s}-x)+x=\\{10x+(${s}-x)\\}+${d}$를 풀면 $x=${a}$이다.\n따라서 처음 수는 $${N}$이다.`,
+      solution: `십의 자리의 숫자를 $x$라 하면 일의 자리의 숫자는 $${s}-x$이다.\n$10(${s}-x)+x=\\{10x+(${s}-x)\\}+${d}$${nEul(d)} 풀면 $x=${a}$이다.\n따라서 처음 수는 $${N}$이다.`,
       facts: { a, b, s, d, N },
     };
   }),
@@ -130,7 +152,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `한 자루에 $${p}$원인 볼펜과 한 자루에 $${q}$원인 연필을 합하여 $${T}$자루를 사고 $${C}$원을 지불하였다. 볼펜은 몇 자루 샀는지 구하시오.`,
         answer: `$${x}$자루`,
-        solution: `볼펜을 $x$자루 샀다고 하면 연필은 $(${T}-x)$자루이다.\n$${p}x+${q}(${T}-x)=${C}$를 풀면 $x=${x}$이다.\n따라서 볼펜은 $${x}$자루 샀다.`,
+        solution: `볼펜을 $x$자루 샀다고 하면 연필은 $(${T}-x)$자루이다.\n$${p}x+${q}(${T}-x)=${C}$${nEul(C)} 풀면 $x=${x}$이다.\n따라서 볼펜은 $${x}$자루 샀다.`,
         facts: { x, T, p, q, C },
       };
     }),
@@ -223,7 +245,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `작년 어느 중학교의 전체 학생 수는 $${T}$명이었다. 올해는 작년보다 남학생이 $${a}\\%$ 늘고 여학생이 $${b}\\%$ 줄어서 전체 학생 수가 $${Math.abs(c)}$명 ${rel}. 작년 남학생 수를 구하시오.`,
         answer: `$${x}$명`,
-        solution: `작년 남학생 수를 $x$명이라 하면 여학생 수는 $(${T}-x)$명이다.\n$\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}(${T}-x)=${c}$를 풀면 $x=${x}$이다.\n따라서 작년 남학생은 $${x}$명이다.`,
+        solution: `작년 남학생 수를 $x$명이라 하면 여학생 수는 $(${T}-x)$명이다.\n$\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}(${T}-x)=${c}$${nEul(c)} 풀면 $x=${x}$이다.\n따라서 작년 남학생은 $${x}$명이다.`,
         facts: { a, b, x, y, c, T },
       };
     }),
@@ -268,7 +290,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `등산을 하는데 올라갈 때는 시속 $${v1}\\,\\mathrm{km}$로, 내려올 때는 같은 길을 시속 $${v2}\\,\\mathrm{km}$로 걸어서 모두 $${t}$시간이 걸렸다. 올라간 거리를 구하시오.`,
         answer: `$${d}\\,\\mathrm{km}$`,
-        solution: `올라간 거리를 $x\\,\\mathrm{km}$라 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}=${t}$이다.\n양변에 $${v1 * v2}$를 곱하여 풀면 $x=${d}$이다.\n따라서 올라간 거리는 $${d}\\,\\mathrm{km}$이다.`,
+        solution: `올라간 거리를 $x\\,\\mathrm{km}$라 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}=${t}$이다.\n양변에 $${v1 * v2}$${nEul(v1 * v2)} 곱하여 풀면 $x=${d}$이다.\n따라서 올라간 거리는 $${d}\\,\\mathrm{km}$이다.`,
         facts: { v1, v2, d, t },
       };
     },
@@ -372,7 +394,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 더 긴 직사각형의 둘레의 길이가 $${P}\\,\\mathrm{cm}$일 때, 세로의 길이를 구하시오.`,
       answer: `$${h}\\,\\mathrm{cm}$`,
-      solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$를 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
+      solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$${nEul(P)} 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
       facts: { h, d, w, P },
     };
   }),
@@ -481,8 +503,596 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `성냥개비로 정삼각형을 한 줄로 이어 붙여 만들려고 한다. 정삼각형 $1$개를 만들 때는 성냥개비 $3$개가 필요하고, 정삼각형을 $1$개 이어 붙일 때마다 성냥개비가 $2$개씩 더 필요하다. 성냥개비 $${M}$개로 만들 수 있는 정삼각형의 개수를 구하시오.`,
       answer: `$${n}$개`,
-      solution: `정삼각형을 $x$개 만든다고 하면 필요한 성냥개비는 $\\{3+2(x-1)\\}$개이다.\n$3+2(x-1)=${M}$을 풀면 $x=${n}$이다.\n따라서 정삼각형을 $${n}$개 만들 수 있다.`,
+      solution: `정삼각형을 $x$개 만든다고 하면 필요한 성냥개비는 $\\{3+2(x-1)\\}$개이다.\n$3+2(x-1)=${M}$${nEul(M)} 풀면 $x=${n}$이다.\n따라서 정삼각형을 $${n}$개 만들 수 있다.`,
       facts: { n, M },
     };
   }),
+
+  def("23", "비례배분으로 전체 구하기", SEC.비율, "기본", (rng) => {
+    const a = intBetween(rng, 2, 7);
+    const b = intBetween(rng, 2, 7);
+    const k = intBetween(rng, 3, 15);
+    const part = a * k;
+    const total = (a + b) * k;
+    return {
+      content: `남학생 수와 여학생 수의 비가 $${a}:${b}$인 모둠에서 남학생이 $${part}$명이다. 이 모둠의 전체 학생 수를 구하시오.`,
+      answer: `$${total}$명`,
+      solution: `비의 한 칸은 $${part}\\div${a}=${k}$(명)이다.\n따라서 전체 학생 수는 $(${a}+${b})\\times${k}=${total}$(명)이다.`,
+      facts: { a, b, k, part, total },
+    };
+  }),
+
+  def("24", "일정량을 더한 뒤의 비", SEC.비율, "응용", (rng) => {
+    const a = intBetween(rng, 2, 6);
+    const b = intBetween(rng, a + 1, 9);
+    const k = intBetween(rng, 3, 12);
+    const added = (b - a) * k;
+    const first = a * k;
+    return {
+      content: `두 상자 $\\mathrm{A}$, $\\mathrm{B}$에 들어 있는 공의 수의 비가 $${a}:${b}$이다. $\\mathrm{A}$ 상자에 공을 $${added}$개 더 넣었더니 두 상자의 공의 수가 같아졌다. 처음 $\\mathrm{A}$ 상자에 있던 공의 수를 구하시오.`,
+      answer: `$${first}$개`,
+      solution: `처음 공의 수를 각각 $${a}x$, $${b}x$라 하면 $${a}x+${added}=${b}x$이다.\n$x=${k}$이므로 처음 $\\mathrm{A}$ 상자의 공은 $${a}\\times${k}=${first}$(개)이다.`,
+      facts: { a, b, k, added, first },
+    };
+  }),
+
+  def("25", "전체에 대한 백분율", SEC.비율, "기본", (rng) => {
+    const rate = pick(rng, [20, 25, 40, 50] as const);
+    const unit = 100 / rate;
+    const used = intBetween(rng, 2, 12) * rate;
+    const total = used * unit;
+    return {
+      content: `어느 창고에 있던 쌀의 $${rate}\\%$를 사용하였더니 사용한 쌀이 $${used}\\,\\mathrm{kg}$이었다. 처음 창고에 있던 쌀의 양을 구하시오.`,
+      answer: `$${total}\\,\\mathrm{kg}$`,
+      solution: `처음 쌀의 양을 $x\\,\\mathrm{kg}$라 하면 $\\dfrac{${rate}}{100}x=${used}$이다.\n따라서 $x=${total}$이다.`,
+      facts: { rate, used, total },
+    };
+  }),
+
+  def("26", "시계의 분침이 움직인 각", SEC.비율, "기본", (rng) => {
+    const minutes = intBetween(rng, 5, 40);
+    const angle = minutes * 6;
+    return {
+      content: `시계의 분침은 $1$분에 $6^{\\circ}$씩 움직인다. 분침이 $${angle}^{\\circ}$ 움직이는 데 걸리는 시간을 구하시오.`,
+      answer: `$${minutes}$분`,
+      solution: `걸리는 시간을 $x$분이라 하면 $6x=${angle}$이다.\n따라서 $x=${minutes}$이다.`,
+      facts: { minutes, angle },
+    };
+  }),
+
+  def("27", "달력에서 같은 열의 수", SEC.비율, "기본", (rng) => {
+    const top = intBetween(rng, 1, 14);
+    const rows = intBetween(rng, 2, 3);
+    const bottom = top + 7 * rows;
+    const sum = ((rows + 1) * (top + bottom)) / 2;
+    return {
+      content: `달력의 같은 열에서 위에서부터 연속하여 $${rows + 1}$개의 수를 골랐더니 가장 위의 수는 $${top}$이고 각 수는 바로 위의 수보다 $7$씩 크다. 고른 수의 합을 구하시오.`,
+      answer: `$${sum}$`,
+      solution: `고른 수는 $${Array.from({ length: rows + 1 }, (_, i) => top + 7 * i).join(", ")}$이다.\n따라서 합은 $${sum}$이다.`,
+      facts: { top, rows, bottom, sum },
+    };
+  }),
+
+  def("28", "등차수열 모양의 규칙", SEC.비율, "응용", (rng) => {
+    const first = intBetween(rng, 1, 8);
+    const diff = intBetween(rng, 2, 7);
+    const n = intBetween(rng, 8, 20);
+    const value = first + (n - 1) * diff;
+    return {
+      content: `수 $${first}$에서 시작하여 바로 앞의 수보다 $${diff}$씩 큰 수를 차례로 쓴다. 이 규칙으로 쓴 $${n}$번째 수를 구하시오.`,
+      answer: `$${value}$`,
+      solution: `$n$번째 수는 $${first}+${diff}(n-1)$이다.\n따라서 $${n}$번째 수는 $${first}+${diff}\\times${n - 1}=${value}$이다.`,
+      facts: { first, diff, n, value },
+    };
+  }),
+
+  def("29", "정사각형을 이어 붙인 규칙", SEC.비율, "응용", (rng) => {
+    const n = intBetween(rng, 4, 18);
+    const sticks = 3 * n + 1;
+    return {
+      content: `성냥개비로 정사각형을 한 줄로 이어 붙인다. 정사각형 $1$개에는 $4$개가 필요하고 하나를 더 이어 붙일 때마다 $3$개씩 더 필요하다. 성냥개비 $${sticks}$개로 만들 수 있는 정사각형의 개수를 구하시오.`,
+      answer: `$${n}$개`,
+      solution: `정사각형을 $x$개 만들 때 성냥개비는 $4+3(x-1)$개 필요하다.\n$4+3(x-1)=${sticks}$이므로 $x=${n}$이다.`,
+      facts: { n, sticks },
+    };
+  }),
+
+  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화", (rng) => {
+    const a = intBetween(rng, 2, 6) * 5;
+    const b = intBetween(rng, 2, 6) * 5;
+    const turnsA = intBetween(rng, 3, 12) * b;
+    const turnsB = (a * turnsA) / b;
+    return {
+      content: `서로 맞물린 두 톱니바퀴 $\\mathrm{A}$, $\\mathrm{B}$의 톱니 수는 각각 $${a}$개, $${b}$개이다. $\\mathrm{A}$가 $${turnsA}$바퀴 도는 동안 $\\mathrm{B}$가 도는 바퀴 수를 구하시오.`,
+      answer: `$${turnsB}$바퀴`,
+      solution: `두 톱니바퀴가 맞물려 움직인 톱니 수는 같으므로 $${a}\\times${turnsA}=${b}\\times x$이다.\n따라서 $x=${turnsB}$이다.`,
+      facts: { a, b, turnsA, turnsB },
+    };
+  }),
+
+  def("31", "증가한 양으로 처음 값 구하기", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 50] as const);
+    const before = intBetween(rng, 4, 20) * 100;
+    const after = (before * (100 + rate)) / 100;
+    return {
+      content: `어느 마을의 인구가 작년보다 $${rate}\\%$ 증가하여 올해 $${after}$명이 되었다. 작년의 인구를 구하시오.`,
+      answer: `$${before}$명`,
+      solution: `작년 인구를 $x$명이라 하면 $\\dfrac{${100 + rate}}{100}x=${after}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, after },
+    };
+  }),
+
+  def("32", "감소한 양으로 처음 값 구하기", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 40] as const);
+    const before = intBetween(rng, 4, 20) * 100;
+    const after = (before * (100 - rate)) / 100;
+    return {
+      content: `어느 공장의 생산량이 지난달보다 $${rate}\\%$ 감소하여 이번 달 $${after}$개가 되었다. 지난달의 생산량을 구하시오.`,
+      answer: `$${before}$개`,
+      solution: `지난달 생산량을 $x$개라 하면 $\\dfrac{${100 - rate}}{100}x=${after}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, after },
+    };
+  }),
+
+  def("33", "이익률과 판매가", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 50] as const);
+    const cost = intBetween(rng, 4, 20) * 1000;
+    const sale = (cost * (100 + rate)) / 100;
+    return {
+      content: `어떤 물건을 원가의 $${rate}\\%$의 이익을 남기고 $${sale}$원에 팔았다. 이 물건의 원가를 구하시오.`,
+      answer: `$${cost}$원`,
+      solution: `원가를 $x$원이라 하면 판매가는 $\\dfrac{${100 + rate}}{100}x$원이다.\n$\\dfrac{${100 + rate}}{100}x=${sale}$이므로 $x=${cost}$이다.`,
+      facts: { rate, cost, sale },
+    };
+  }),
+
+  def("34", "할인율과 정가", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 40] as const);
+    const price = intBetween(rng, 4, 20) * 1000;
+    const sale = (price * (100 - rate)) / 100;
+    return {
+      content: `정가에서 $${rate}\\%$ 할인하여 $${sale}$원에 판매한 상품이 있다. 이 상품의 정가를 구하시오.`,
+      answer: `$${price}$원`,
+      solution: `정가를 $x$원이라 하면 $\\dfrac{${100 - rate}}{100}x=${sale}$이다.\n따라서 $x=${price}$이다.`,
+      facts: { rate, price, sale },
+    };
+  }),
+
+  def("35", "연속한 증가와 감소", SEC.증감, "심화", (rng) =>
+    attempt(200, () => {
+      const up = pick(rng, [20, 25, 50] as const);
+      const down = pick(rng, [20, 25, 40] as const);
+      const before = intBetween(rng, 4, 16) * 100;
+      const after = (before * (100 + up) * (100 - down)) / 10000;
+      // 제품 개수는 정수여야 한다 — $25\%$ 올렸다 $25\%$ 내리면 $\frac{15}{16}$ 배라
+      // $700$개가 $656.25$개가 된다. 값은 맞고 **지면만 말이 안 된다**.
+      if (!Number.isInteger(after)) return null;
+      return {
+        content: `어떤 제품의 생산량이 첫 달에는 $${up}\\%$ 증가하고 다음 달에는 $${down}\\%$ 감소하여 $${after}$개가 되었다. 증가하기 전 생산량을 구하시오.`,
+        answer: `$${before}$개`,
+        solution: `증가하기 전 생산량을 $x$개라 하면 $x\\times\\dfrac{${100 + up}}{100}\\times\\dfrac{${100 - down}}{100}=${after}$이다.\n따라서 $x=${before}$이다.`,
+        facts: { up, down, before, after },
+      };
+    }),
+  ),
+
+  def("36", "부가세가 포함된 가격", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [5, 10, 20] as const);
+    const before = intBetween(rng, 4, 20) * 1000;
+    const included = (before * (100 + rate)) / 100;
+    return {
+      content: `어떤 물건의 세전 가격에 $${rate}\\%$의 세금을 더한 가격이 $${included}$원이다. 이 물건의 세전 가격을 구하시오.`,
+      answer: `$${before}$원`,
+      solution: `세전 가격을 $x$원이라 하면 $\\dfrac{${100 + rate}}{100}x=${included}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, included },
+    };
+  }),
+
+  def("37", "불량률을 제외한 제품 수", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [5, 10, 20, 25] as const);
+    const total = intBetween(rng, 4, 20) * 100;
+    const good = (total * (100 - rate)) / 100;
+    return {
+      content: `생산한 제품 중 $${rate}\\%$가 불량품이고 정상 제품은 $${good}$개이다. 생산한 제품의 전체 개수를 구하시오.`,
+      answer: `$${total}$개`,
+      solution: `전체 제품을 $x$개라 하면 정상 제품은 $\\dfrac{${100 - rate}}{100}x$개이다.\n$\\dfrac{${100 - rate}}{100}x=${good}$이므로 $x=${total}$이다.`,
+      facts: { rate, total, good },
+    };
+  }),
+
+  def("38", "일부를 쓰고 남은 양", SEC.증감, "응용", (rng) => {
+    const firstRate = pick(rng, [10, 20, 25] as const);
+    const secondRate = pick(rng, [10, 20, 25] as const);
+    const total = intBetween(rng, 4, 20) * 100;
+    const spent = (total * (firstRate + secondRate)) / 100;
+    const left = total - spent;
+    return {
+      content: `예산의 $${firstRate}\\%$를 교재비로, 전체 예산의 $${secondRate}\\%$를 준비물비로 사용하였더니 $${left}$원이 남았다. 처음 예산을 구하시오.`,
+      answer: `$${total}$원`,
+      solution: `처음 예산을 $x$원이라 하면 남은 돈은 $\\dfrac{${100 - firstRate - secondRate}}{100}x$원이다.\n$\\dfrac{${100 - firstRate - secondRate}}{100}x=${left}$이므로 $x=${total}$이다.`,
+      facts: { firstRate, secondRate, total, spent, left },
+    };
+  }),
+
+  // ── 39~44 「나이, 과부족, 예금」을 10유형으로 채운 몫 (갈래 D) ──
+  // 이 소단원은 **연산이 없다** — 「식이 따로 주어지고 지시가 하나」인 모양이
+  // 활용 문제에는 성립하지 않는다(상황이 곧 발문이다). 배분은 사다리 대체가
+  // 메운다. 그래서 기본 5 · 응용 4 · 심화 1 로 채운다.
+
+  def("39", "두 사람의 나이의 합과 차", SEC.나이, "기본", (rng) =>
+    attempt(80, () => {
+      const younger = intBetween(rng, 8, 30);
+      const gap = intBetween(rng, 2, 12);
+      const older = younger + gap;
+      const sum = older + younger;
+      return {
+        content: `형과 동생의 나이의 합은 $${sum}$세이고, 형은 동생보다 $${gap}$세 많다. 형의 나이를 구하시오.`,
+        answer: `$${older}$세`,
+        solution: `동생의 나이를 $x$세라 하면 형의 나이는 $(x+${gap})$세이다.\n$x+(x+${gap})=${sum}$이므로 $x=${younger}$이다.\n따라서 형의 나이는 $${younger}+${gap}=${older}$(세)이다.`,
+        facts: { older, younger, gap, sum },
+      };
+    }),
+  ),
+
+  def("40", "몇 년 전에 몇 배였나", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const child = intBetween(rng, 12, 20);
+      const m = intBetween(rng, 3, 6);
+      const k = intBetween(rng, 2, 8); // k년 전
+      if (child - k < 4) return null;
+      const parent = m * (child - k) + k;
+      if (parent - child < 22 || parent > 60) return null;
+      return {
+        content: `현재 어머니의 나이는 $${parent}$세, 딸의 나이는 $${child}$세이다. 어머니의 나이가 딸의 나이의 $${m}$배였던 것은 몇 년 전인지 구하시오.`,
+        answer: `$${k}$년 전`,
+        solution: `$x$년 전에 $${m}$배였다고 하면 $${parent}-x=${m}(${child}-x)$이다.\n정리하여 풀면 $x=${k}$이다.\n따라서 $${k}$년 전이다.`,
+        facts: { parent, child, m, k },
+      };
+    }),
+  ),
+
+  def("41", "예금액이 같아지는 때", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 3, 15);
+      const p = intBetween(rng, 2, 8) * 500; // 적게 든 쪽이 더 많이 넣는다
+      const q = intBetween(rng, 1, 5) * 500;
+      if (p <= q) return null;
+      const b0 = intBetween(rng, 10, 40) * 1000;
+      const a0 = b0 + (q - p) * n;
+      if (a0 <= 0 || a0 >= b0) return null;
+      return {
+        content: `현재 지호의 예금액은 $${a0}$원, 서연이의 예금액은 $${b0}$원이다. 다음 달부터 매달 지호는 $${p}$원씩, 서연이는 $${q}$원씩 예금한다면 두 사람의 예금액이 같아지는 것은 몇 개월 후인지 구하시오.`,
+        answer: `$${n}$개월 후`,
+        solution: `$x$개월 후에 같아진다고 하면 $${a0}+${p}x=${b0}+${q}x$이다.\n정리하여 풀면 $x=${n}$이다.\n따라서 $${n}$개월 후이다.`,
+        facts: { a0, b0, p, q, n },
+      };
+    }),
+  ),
+
+  def("42", "과부족에서 물건의 개수 구하기", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 5, 20); // 사람 수
+      const a = intBetween(rng, 2, 6);
+      const b = a + intBetween(rng, 1, 2);
+      const r = intBetween(rng, 1, a);
+      const s = (b - a) * n - r;
+      if (s < 1) return null;
+      const total = a * n + r;
+      return {
+        content: `사탕을 학생들에게 나누어 주려고 한다. 한 학생에게 $${a}$개씩 주면 $${r}$개가 남고, $${b}$개씩 주면 $${s}$개가 모자란다. 사탕의 개수를 구하시오.`,
+        answer: `$${total}$개`,
+        solution: `학생 수를 $x$명이라 하면 사탕의 수는 같으므로 $${a}x+${r}=${b}x-${s}$이다.\n정리하여 풀면 $x=${n}$이다.\n따라서 사탕은 $${a}\\times${n}+${r}=${total}$(개)이다.`,
+        facts: { n, a, b, r, s, total },
+      };
+    }),
+  ),
+
+  def("43", "목표액에 도달하는 때", SEC.나이, "기본", (rng) =>
+    attempt(80, () => {
+      const n = intBetween(rng, 4, 20);
+      const p = intBetween(rng, 2, 10) * 1000;
+      const a0 = intBetween(rng, 5, 30) * 1000;
+      const target = a0 + p * n;
+      return {
+        content: `현재 통장에 $${a0}$원이 들어 있다. 다음 달부터 매달 $${p}$원씩 예금할 때, 예금액이 처음으로 $${target}$원이 되는 것은 몇 개월 후인지 구하시오.`,
+        answer: `$${n}$개월 후`,
+        solution: `$x$개월 후의 예금액은 $(${a0}+${p}x)$원이다.\n$${a0}+${p}x=${target}$이므로 $x=${n}$이다.\n따라서 $${n}$개월 후이다.`,
+        facts: { a0, p, n, target },
+      };
+    }),
+  ),
+
+  def("44", "두 자녀의 나이의 합", SEC.나이, "응용", (rng) =>
+    attempt(200, () => {
+      const c1 = intBetween(rng, 6, 14);
+      const c2 = c1 + intBetween(rng, 1, 6);
+      const m = intBetween(rng, 2, 3);
+      const k = intBetween(rng, 3, 15); // k년 후
+      const parent = m * (c1 + c2 + 2 * k) - k;
+      if (parent - c2 < 22 || parent > 60) return null;
+      return {
+        content: `현재 아버지의 나이는 $${parent}$세이고 두 자녀의 나이는 각각 $${c1}$세, $${c2}$세이다. 아버지의 나이가 두 자녀의 나이의 합의 $${m}$배가 되는 것은 몇 년 후인지 구하시오.`,
+        answer: `$${k}$년 후`,
+        solution: `$x$년 후라 하면 아버지는 $(${parent}+x)$세, 두 자녀의 나이의 합은 $(${c1 + c2}+2x)$세이다.\n$${parent}+x=${m}(${c1 + c2}+2x)$를 정리하여 풀면 $x=${k}$이다.\n따라서 $${k}$년 후이다.`,
+        facts: { parent, c1, c2, m, k },
+      };
+    }),
+  ),
+
+  // ── 45~50 「수」를 10유형으로 채운 몫 (갈래 D) ──
+  // 여기도 연산은 안 만든다(39~44 머리말 참조). 기본 5 · 응용 4 · 심화 1.
+
+  def("45", "연속하는 두 짝수 홀수", SEC.수, "기본", (rng) => {
+    const even = intBetween(rng, 0, 1) === 0;
+    const small = even
+      ? intBetween(rng, 1, 24) * 2
+      : intBetween(rng, 0, 24) * 2 + 1;
+    const big = small + 2;
+    const sum = small + big;
+    const word = even ? "짝" : "홀";
+    return {
+      content: `연속하는 두 ${word}수의 합이 $${sum}$일 때, 두 수 중 큰 수를 구하시오.`,
+      answer: `$${big}$`,
+      solution: `작은 수를 $x$라 하면 큰 수는 $(x+2)$이다.\n$x+(x+2)=${sum}$이므로 $x=${small}$이다.\n따라서 큰 수는 $${small}+2=${big}$이다.`,
+      facts: { small, big, sum, even: even ? 1 : 0 },
+    };
+  }),
+
+  def("46", "어떤 수의 일부에 대한 조건", SEC.수, "기본", (rng) =>
+    attempt(120, () => {
+      const [a, b] = pick(rng, PROPER_UNIT_FRACS);
+      const t = intBetween(rng, 2, 12);
+      const x = b * t; // 어떤 수 — 분수를 곱해도 정수가 되게 잡는다
+      const c = intBetween(rng, 2, 20);
+      const d = a * t + c;
+      return {
+        content: `어떤 수의 $\\dfrac{${a}}{${b}}$보다 $${c}$만큼 큰 수는 $${d}$이다. 어떤 수를 구하시오.`,
+        answer: `$${x}$`,
+        solution: `어떤 수를 $x$라 하면 $\\dfrac{${a}}{${b}}x+${c}=${d}$이다.\n정리하여 풀면 $x=${x}$이다.`,
+        facts: { a, b, c, d, x },
+      };
+    }),
+  ),
+
+  def("47", "잘못 계산한 수", SEC.수, "응용", (rng) =>
+    attempt(80, () => {
+      const a = intBetween(rng, 3, 12);
+      const x = intBetween(rng, 2, 20);
+      const wrong = a * x;
+      const right = x + a;
+      return {
+        content: `어떤 수에 $${a}$${nEul(a)} 더해야 할 것을 잘못하여 $${a}$${nEul(a)} 곱했더니 $${wrong}$이 되었다. 바르게 계산한 답을 구하시오.`,
+        answer: `$${right}$`,
+        solution: `어떤 수를 $x$라 하면 $${a}x=${wrong}$이므로 $x=${x}$이다.\n따라서 바르게 계산한 답은 $${x}+${a}=${right}$이다.`,
+        facts: { a, x, wrong, right },
+      };
+    }),
+  ),
+
+  def("48", "두 수의 차와 배수 관계", SEC.수, "응용", (rng) =>
+    attempt(80, () => {
+      const m = intBetween(rng, 2, 6);
+      const small = intBetween(rng, 2, 20);
+      const big = m * small;
+      const d = big - small;
+      return {
+        content: `두 자연수의 차가 $${d}$이고, 큰 수는 작은 수의 $${m}$배이다. 큰 수를 구하시오.`,
+        answer: `$${big}$`,
+        solution: `작은 수를 $x$라 하면 큰 수는 $${m}x$이다.\n$${m}x-x=${d}$이므로 $x=${small}$이다.\n따라서 큰 수는 $${m}\\times${small}=${big}$이다.`,
+        facts: { m, small, big, d },
+      };
+    }),
+  ),
+
+  def("49", "연속하는 세 자연수의 조건", SEC.수, "응용", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 2, 20);
+      // 🔴 $m=2$ 는 못 쓴다 — $2(n+2)-(2n+1)=3$ 이라 **$n$ 과 무관하게 항상 $3$** 이다.
+      //    그러면 「가장 작은 수」가 하나로 안 정해진다(답이 무수히 많다).
+      //    값은 맞고 발문만 성립하지 않는 부류라 값 검산으로는 안 잡힌다.
+      const m = intBetween(rng, 3, 5);
+      const c = m * (n + 2) - (2 * n + 1);
+      if (c < 1) return null;
+      return {
+        content: `연속하는 세 자연수가 있다. 가장 큰 수의 $${m}$배가 나머지 두 수의 합보다 $${c}$만큼 클 때, 가장 작은 수를 구하시오.`,
+        answer: `$${n}$`,
+        solution: `가장 작은 수를 $x$라 하면 세 수는 $x$, $(x+1)$, $(x+2)$이다.\n$${m}(x+2)-\\{x+(x+1)\\}=${c}$${nEul(c)} 정리하여 풀면 $x=${n}$이다.`,
+        facts: { n, m, c },
+      };
+    }),
+  ),
+
+  def("50", "자릿수 배수 관계", SEC.수, "심화", (rng) =>
+    attempt(200, () => {
+      const ones = intBetween(rng, 1, 4);
+      const m = intBetween(rng, 2, 9);
+      const tens = m * ones;
+      if (tens > 9) return null;
+      const N = 10 * tens + ones;
+      const d = 9 * ones * (m - 1);
+      if (d < 1) return null;
+      return {
+        content: `두 자리 자연수에서 십의 자리의 숫자는 일의 자리의 숫자의 $${m}$배이고, 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수보다 $${d}$만큼 작다. 처음 수를 구하시오.`,
+        answer: `$${N}$`,
+        solution: `일의 자리의 숫자를 $x$라 하면 십의 자리의 숫자는 $${m}x$이므로 처음 수는 $${10 * m + 1}x$, 바꾼 수는 $${10 + m}x$이다.\n$${10 * m + 1}x-${10 + m}x=${d}$이므로 $x=${ones}$이다.\n따라서 처음 수는 $${N}$이다.`,
+        facts: { ones, m, tens, N, d },
+      };
+    }),
+  ),
+
+  // ── 51~55 「거리, 속력, 시간」을 10유형으로 채운 몫 (갈래 D) ──
+  // 이 소단원은 색인 몫이 **심화 넷**이라(11·12·13·22) 새로 짓는 것은
+  // 아래쪽을 메운다 — 기본 4 · 응용 1.
+
+  def("51", "왕복에 걸린 시간으로 거리 구하기", SEC.거리, "기본", (rng) =>
+    attempt(80, () => {
+      const v = pick(rng, [4, 5, 6, 8, 10] as const);
+      const t = intBetween(rng, 2, 8);
+      if ((v * t) % 2 !== 0) return null;
+      const d = (v * t) / 2;
+      return {
+        content: `집에서 공원까지 시속 $${v}\\,\\mathrm{km}$로 걸어서 갔다가 같은 길로 돌아오는 데 모두 $${t}$시간이 걸렸다. 집에서 공원까지의 거리를 구하시오.`,
+        answer: `$${d}\\,\\mathrm{km}$`,
+        solution: `집에서 공원까지의 거리를 $x\\,\\mathrm{km}$라 하면 왕복한 거리는 $2x\\,\\mathrm{km}$이다.\n$\\dfrac{2x}{${v}}=${t}$이므로 $x=${d}$이다.\n따라서 거리는 $${d}\\,\\mathrm{km}$이다.`,
+        facts: { v, t, d },
+      };
+    }),
+  ),
+
+  def("52", "두 구간의 속력이 다른 경우", SEC.거리, "기본", (rng) =>
+    attempt(120, () => {
+      const a = pick(rng, [3, 4, 5] as const);
+      const b = pick(rng, [8, 10, 12] as const);
+      const t1 = intBetween(rng, 1, 4);
+      const t2 = intBetween(rng, 1, 4);
+      const d1 = a * t1;
+      const d2 = b * t2;
+      const D = d1 + d2;
+      const t = t1 + t2;
+      return {
+        content: `집에서 공원까지의 거리는 $${D}\\,\\mathrm{km}$이다. 처음에는 시속 $${a}\\,\\mathrm{km}$로 걷다가 도중에 시속 $${b}\\,\\mathrm{km}$로 뛰어서 모두 $${t}$시간이 걸렸다. 걸어간 거리를 구하시오.`,
+        answer: `$${d1}\\,\\mathrm{km}$`,
+        solution: `걸어간 거리를 $x\\,\\mathrm{km}$라 하면 뛴 거리는 $(${D}-x)\\,\\mathrm{km}$이다.\n$\\dfrac{x}{${a}}+\\dfrac{${D}-x}{${b}}=${t}$이므로 $x=${d1}$이다.\n따라서 걸어간 거리는 $${d1}\\,\\mathrm{km}$이다.`,
+        facts: { a, b, t1, t2, d1, d2, D, t },
+      };
+    }),
+  ),
+
+  def("53", "마주 보고 가서 만나는 경우", SEC.거리, "기본", (rng) =>
+    attempt(80, () => {
+      const p = intBetween(rng, 5, 16) * 10;
+      const q = intBetween(rng, 5, 16) * 10;
+      // 두 사람의 빠르기가 같으면 「한 사람은 … 다른 사람은 …」가 무의미하다.
+      if (p === q) return null;
+      const n = intBetween(rng, 3, 20);
+      const D = (p + q) * n;
+      return {
+        content: `$${D}\\,\\mathrm{m}$ 떨어진 두 지점에서 두 사람이 마주 보고 동시에 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 걸을 때 두 사람이 만나는 것은 출발한 지 몇 분 후인지 구하시오.`,
+        answer: `$${n}$분 후`,
+        solution: `$x$분 후에 만난다고 하면 두 사람이 걸은 거리의 합이 $${D}\\,\\mathrm{m}$이다.\n$${p}x+${q}x=${D}$이므로 $x=${n}$이다.\n따라서 $${n}$분 후이다.`,
+        facts: { p, q, n, D },
+      };
+    }),
+  ),
+
+  def("54", "같은 방향으로 둘레를 도는 경우", SEC.거리, "응용", (rng) =>
+    attempt(120, () => {
+      const q = intBetween(rng, 5, 12) * 10;
+      const p = q + intBetween(rng, 2, 10) * 10;
+      const n = intBetween(rng, 4, 20);
+      const L = (p - q) * n;
+      if (L < 200 || L > 3000) return null;
+      return {
+        content: `둘레의 길이가 $${L}\\,\\mathrm{m}$인 트랙의 같은 지점에서 두 사람이 동시에 같은 방향으로 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 달릴 때 두 사람이 처음으로 다시 만나는 것은 출발한 지 몇 분 후인지 구하시오.`,
+        answer: `$${n}$분 후`,
+        solution: `같은 방향으로 돌면 빠른 사람이 느린 사람보다 트랙 한 바퀴만큼 더 달렸을 때 처음으로 다시 만난다.\n$x$분 후라 하면 $${p}x-${q}x=${L}$이므로 $x=${n}$이다.\n따라서 $${n}$분 후이다.`,
+        facts: { p, q, n, L },
+      };
+    }),
+  ),
+
+  def("55", "기차가 다리를 지나는 속력", SEC.거리, "기본", (rng) =>
+    attempt(120, () => {
+      const v = intBetween(rng, 2, 6) * 10;
+      const t = intBetween(rng, 10, 40);
+      const L = intBetween(rng, 8, 20) * 10;
+      const B = v * t - L;
+      if (B < L || B > 2000) return null;
+      return {
+        content: `길이가 $${L}\\,\\mathrm{m}$인 기차가 길이 $${B}\\,\\mathrm{m}$인 다리를 완전히 지나는 데 $${t}$초가 걸렸다. 이 기차의 속력은 초속 몇 $\\mathrm{m}$인지 구하시오.`,
+        answer: `초속 $${v}\\,\\mathrm{m}$`,
+        solution: `기차가 다리를 완전히 지나려면 다리의 길이와 기차의 길이를 더한 만큼 달려야 한다.\n기차의 속력을 초속 $x\\,\\mathrm{m}$라 하면 $${t}x=${B}+${L}$이므로 $x=${v}$이다.\n따라서 초속 $${v}\\,\\mathrm{m}$이다.`,
+        facts: { v, t, L, B },
+      };
+    }),
+  ),
+
+  // ── 56~60 「도형, 농도, 일」을 10유형으로 채운 몫 (갈래 D) ──
+
+  def("56", "삼각형의 넓이로 밑변 구하기", SEC.도형, "기본", (rng) =>
+    attempt(80, () => {
+      const b = intBetween(rng, 4, 24);
+      const h = intBetween(rng, 4, 20);
+      if ((b * h) % 2 !== 0) return null;
+      const S = (b * h) / 2;
+      return {
+        content: `높이가 $${h}\\,\\mathrm{cm}$인 삼각형의 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 밑변의 길이를 구하시오.`,
+        answer: `$${b}\\,\\mathrm{cm}$`,
+        solution: `밑변의 길이를 $x\\,\\mathrm{cm}$라 하면 넓이는 $\\dfrac{1}{2}\\times x\\times${h}$이다.\n$\\dfrac{1}{2}\\times x\\times${h}=${S}$이므로 $x=${b}$이다.\n따라서 밑변의 길이는 $${b}\\,\\mathrm{cm}$이다.`,
+        facts: { b, h, S },
+      };
+    }),
+  ),
+
+  def("57", "사다리꼴의 넓이", SEC.도형, "기본", (rng) =>
+    attempt(120, () => {
+      const a = intBetween(rng, 3, 15);
+      const d = intBetween(rng, 2, 10);
+      const h = intBetween(rng, 4, 16);
+      const S = ((2 * a + d) * h) / 2;
+      if (!Number.isInteger(S)) return null;
+      return {
+        content: `아랫변의 길이가 윗변의 길이보다 $${d}\\,\\mathrm{cm}$만큼 긴 사다리꼴이 있다. 높이가 $${h}\\,\\mathrm{cm}$이고 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 윗변의 길이를 구하시오.`,
+        answer: `$${a}\\,\\mathrm{cm}$`,
+        solution: `윗변의 길이를 $x\\,\\mathrm{cm}$라 하면 아랫변의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$\\dfrac{1}{2}\\times\\{x+(x+${d})\\}\\times${h}=${S}$이므로 $x=${a}$이다.\n따라서 윗변의 길이는 $${a}\\,\\mathrm{cm}$이다.`,
+        facts: { a, d, h, S },
+      };
+    }),
+  ),
+
+  def("58", "농도에 대한 문제 물을 증발시키는 경우", SEC.도형, "기본", (rng) =>
+    attempt(200, () => {
+      const A = pick(rng, [4, 5, 6, 8, 10] as const);
+      const B = pick(rng, [10, 12, 15, 20, 25] as const);
+      if (B <= A) return null;
+      const W = intBetween(rng, 4, 20) * B;
+      const E = (W * (B - A)) / B;
+      if (!Number.isInteger(E) || E < 10) return null;
+      return {
+        content: `$${A}\\%$의 소금물 $${W}\\,\\mathrm{g}$이 있다. 여기에서 물을 몇 $\\mathrm{g}$ 증발시키면 $${B}\\%$의 소금물이 되는지 구하시오.`,
+        answer: `$${E}\\,\\mathrm{g}$`,
+        solution: `물을 증발시켜도 소금의 양은 변하지 않는다.\n증발시키는 물의 양을 $x\\,\\mathrm{g}$라 하면 $\\dfrac{${A}}{100}\\times${W}=\\dfrac{${B}}{100}\\times(${W}-x)$이다.\n풀면 $x=${E}$이므로 물을 $${E}\\,\\mathrm{g}$ 증발시켜야 한다.`,
+        facts: { A, B, W, E },
+      };
+    }),
+  ),
+
+  def(
+    "59",
+    "일에 대한 문제 혼자 하다가 함께 하는 경우",
+    SEC.도형,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const a = intBetween(rng, 6, 24);
+        const b = intBetween(rng, 6, 24);
+        const k = intBetween(rng, 1, a - 2);
+        if (((a - k) * b) % (a + b) !== 0) return null;
+        const n = ((a - k) * b) / (a + b);
+        if (n < 1) return null;
+        return {
+          content: `어떤 일을 완성하는 데 $\\mathrm{A}$는 $${a}$일, $\\mathrm{B}$는 $${b}$일이 걸린다. 이 일을 $\\mathrm{A}$가 혼자 $${k}$일 동안 한 뒤 나머지를 두 사람이 함께 하여 완성하였다. 두 사람이 함께 한 날수를 구하시오.`,
+          answer: `$${n}$일`,
+          solution: `전체 일의 양을 $1$이라 하면 $\\mathrm{A}$, $\\mathrm{B}$가 하루에 하는 일의 양은 각각 $\\dfrac{1}{${a}}$, $\\dfrac{1}{${b}}$이다.\n함께 한 날수를 $x$일이라 하면 $\\dfrac{${k}}{${a}}+\\left(\\dfrac{1}{${a}}+\\dfrac{1}{${b}}\\right)x=1$이다.\n풀면 $x=${n}$이므로 함께 한 날수는 $${n}$일이다.`,
+          facts: { a, b, k, n },
+        };
+      }),
+  ),
+
+  def("60", "둘레가 같은 두 도형", SEC.도형, "응용", (rng) =>
+    attempt(120, () => {
+      const s = intBetween(rng, 6, 24);
+      const d = intBetween(rng, 1, 8) * 2; // 세로가 정수가 되려면 짝수
+      const h = s - d / 2;
+      if (h < 2) return null;
+      const w = h + d;
+      const area = h * w;
+      return {
+        content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 긴 직사각형과 한 변의 길이가 $${s}\\,\\mathrm{cm}$인 정사각형의 둘레의 길이가 같다. 이 직사각형의 넓이를 구하시오.`,
+        answer: `$${area}\\,\\mathrm{cm}^{2}$`,
+        solution: `직사각형의 세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{x+(x+${d})\\}=4\\times${s}$이므로 $x=${h}$이다.\n따라서 가로는 $${w}\\,\\mathrm{cm}$, 넓이는 $${h}\\times${w}=${area}\\,(\\mathrm{cm}^{2})$이다.`,
+        facts: { s, d, h, w, area },
+      };
+    }),
+  ),
 ];

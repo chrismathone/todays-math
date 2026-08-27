@@ -24,6 +24,7 @@ import {
   shuffle,
   signed,
 } from "./m1Shared";
+import { euroRo, eulReul } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -134,6 +135,44 @@ function renderTerm(co: number, kind: number): string {
   return co < 0 ? `-${body}` : body;
 }
 
+/**
+ * 차수가 일반인 다항식의 KaTeX 몸통 — `coefs[0]` 이 최고차항이다.
+ *
+ * `m1Shared.poly` 와 **같은 규칙**(계수 ±1 을 안 적고, 0항을 지운다)인데
+ * 그쪽은 2차로 못이 박혀 있어 여기 일반형을 둔다. 이 규칙이 없으면 지면에
+ * `1x^{4}`·`-1x` 가 그대로 나가는데, **값은 맞아서 값 검산이 구조적으로 못 본다**
+ * (2026-08-24 「값이 맞으면 시험이 다 초록이다」).
+ */
+function polyTex(coefs: readonly number[]): string {
+  const top = coefs.length - 1;
+  const parts: string[] = [];
+  coefs.forEach((co, i) => {
+    if (co === 0) return;
+    const e = top - i;
+    const sym = e === 0 ? "" : e === 1 ? "x" : `x^{${e}}`;
+    const sign = co < 0 ? "-" : parts.length === 0 ? "" : "+";
+    const abs = Math.abs(co);
+    parts.push(
+      `${sign}${sym === "" ? String(abs) : abs === 1 ? sym : `${abs}${sym}`}`,
+    );
+  });
+  return parts.length === 0 ? "0" : parts.join("");
+}
+
+/**
+ * `a` 를 `x` 에 곱한 대입 자리 — 계수 ±1 이면 곱셈표를 안 적고,
+ * 괄호는 **음수일 때만** 친다 (`2\times(1)` 은 교과서 표기가 아니다).
+ */
+function mulSubTex(a: number, x: number): string {
+  const val = x < 0 ? `(${x})` : String(x);
+  if (a === 1) return val;
+  if (a === -1) return `-${val}`;
+  return `${a}\\times${val}`;
+}
+
+/** 수 뒤 「이/가」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
+const nIGa = (n: number): string => (eulReul(n) === "을" ? "이" : "가");
+
 export const M1_BOOK1: TypeEntry[] = [
   // ── 소인수분해 → 소수와 거듭제곱 ───────────────────────
   defType(BOOK, "소인수분해", "01", "소수와 합성수", SEC1.소수, "기본", (rng) =>
@@ -216,6 +255,178 @@ export const M1_BOOK1: TypeEntry[] = [
       facts: { p, m, q, n },
     };
   }),
+
+  // ── 11~17 「소수와 거듭제곱」을 10유형으로 채운 몫 (갈래 D) ──
+  // 색인(소인수분해)은 01~10 이고 04~10 은 `m1Num.ts` 몫이라 11 부터 잇는다.
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "11",
+    "거듭제곱의 밑과 지수",
+    SEC1.소수,
+    "기본",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5, 7, 11] as const);
+      const n = intBetween(rng, 2, 6);
+      return {
+        content: `$${p}^{${n}}$에서 밑을 $a$, 지수를 $b$라 할 때, $a+b$의 값을 구하시오.`,
+        answer: `$${p + n}$`,
+        solution: `거듭제곱에서 여러 번 곱한 수가 밑, 곱한 횟수가 지수이므로 $a=${p}$, $b=${n}$이다.\n따라서 $a+b=${p}+${n}=${p + n}$이다.`,
+        facts: { p, n, sum: p + n },
+      };
+    },
+  ),
+
+  defType(BOOK, "소인수분해", "12", "거듭제곱의 값", SEC1.소수, "응용", (rng) =>
+    attempt(300, () => {
+      const [p, q] = pickDistinct(rng, [2, 3, 5, 7] as const, 2).sort(
+        (x, y) => x - y,
+      ) as [number, number];
+      const m = intBetween(rng, 2, 5);
+      const n = intBetween(rng, 2, 3);
+      const value = p ** m * q ** n;
+      // 중1 이 손으로 셀 수 있는 크기로 묶는다.
+      if (value > 3000) return null;
+      return {
+        content: `$${p}^{${m}}\\times${q}^{${n}}$의 값을 구하시오.`,
+        answer: `$${value}$`,
+        solution: `$${p}^{${m}}=${p ** m}$, $${q}^{${n}}=${q ** n}$이므로 $${p}^{${m}}\\times${q}^{${n}}=${p ** m}\\times${q ** n}=${value}$이다.`,
+        facts: { p, m, q, n, value },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "13",
+    "분수를 거듭제곱으로",
+    SEC1.소수,
+    "기본",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5, 7] as const);
+      const n = intBetween(rng, 3, 5);
+      const chain = Array<number>(n).fill(p).join("\\times");
+      return {
+        content: `$\\dfrac{1}{${chain}}=\\dfrac{1}{${p}^{x}}$일 때, 자연수 $x$의 값을 구하시오.`,
+        answer: `$${n}$`,
+        solution: `분모는 $${p}$${eulReul(p)} $${n}$번 곱한 것이므로 $${p}^{${n}}$이다.\n따라서 $x=${n}$이다.`,
+        facts: { p, n },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "14",
+    "거듭제곱의 지수 구하기",
+    SEC1.소수,
+    "기본",
+    (rng) =>
+      attempt(200, () => {
+        const p = pick(rng, [2, 3, 5] as const);
+        const n = intBetween(rng, 2, 8);
+        const value = p ** n;
+        if (value > 1000) return null;
+        return {
+          content: `$${p}^{x}=${value}$일 때, 자연수 $x$의 값을 구하시오.`,
+          answer: `$${n}$`,
+          solution: `$${value}$${eulReul(value)} $${p}$${euroRo(p)} 계속 나누면 $${value}=${p}^{${n}}$이다.\n따라서 $x=${n}$이다.`,
+          facts: { p, n, value },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "15",
+    "범위 안 소수의 합",
+    SEC1.소수,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const lo = intBetween(rng, 2, 24);
+        const hi = lo + intBetween(rng, 8, 16);
+        if (hi > 48) return null;
+        const primes: number[] = [];
+        for (let v = lo; v <= hi; v += 1) if (PRIMES.has(v)) primes.push(v);
+        if (primes.length < 3) return null;
+        const sum = primes.reduce((s, v) => s + v, 0);
+        return {
+          content: `$${lo}$ 이상 $${hi}$ 이하의 자연수 중에서 소수를 모두 더한 값을 구하시오.`,
+          answer: `$${sum}$`,
+          solution: `이 범위의 소수는 ${primes.map((v) => `$${v}$`).join(", ")}이다.\n따라서 그 합은 $${primes.join("+")}=${sum}$이다.`,
+          facts: { lo, hi, sum, count: primes.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "16",
+    "범위 안의 소수 찾기",
+    SEC1.소수,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const kind = pick(rng, [0, 1] as const); // 0 가장 큰 · 1 가장 작은
+        const lo = intBetween(rng, 2, 30);
+        const hi = lo + intBetween(rng, 8, 16);
+        if (hi > 48) return null;
+        const primes: number[] = [];
+        for (let v = lo; v <= hi; v += 1) if (PRIMES.has(v)) primes.push(v);
+        if (primes.length < 3) return null;
+        const answer = kind === 0 ? primes[primes.length - 1]! : primes[0]!;
+        const word = kind === 0 ? "큰" : "작은";
+        return {
+          content: `$${lo}$ 이상 $${hi}$ 이하의 자연수 중에서 가장 ${word} 소수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `이 범위의 소수는 ${primes.map((v) => `$${v}$`).join(", ")}이다.\n따라서 가장 ${word} 소수는 $${answer}$이다.`,
+          facts: { kind, lo, hi, answer, count: primes.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "소인수분해",
+    "17",
+    "거듭제곱의 대소",
+    SEC1.소수,
+    "심화",
+    (rng) =>
+      attempt(400, () => {
+        const bases = pickDistinct(rng, [2, 3, 5, 7] as const, 3);
+        const exps = [
+          intBetween(rng, 2, 6),
+          intBetween(rng, 2, 4),
+          intBetween(rng, 2, 3),
+        ];
+        const values = bases.map((b, i) => b ** exps[i]!);
+        if (values.some((v) => v > 1000)) return null;
+        if (new Set(values).size !== 3) return null;
+        const max = Math.max(...values);
+        const min = Math.min(...values);
+        return {
+          content: `$a=${bases[0]}^{${exps[0]}}$, $b=${bases[1]}^{${exps[1]}}$, $c=${bases[2]}^{${exps[2]}}$일 때, 가장 큰 수와 가장 작은 수의 차를 구하시오.`,
+          answer: `$${max - min}$`,
+          solution: `$a=${values[0]}$, $b=${values[1]}$, $c=${values[2]}$이므로 가장 큰 수는 $${max}$, 가장 작은 수는 $${min}$이다.\n따라서 그 차는 $${max}-${min}=${max - min}$이다.`,
+          facts: {
+            b1: bases[0]!,
+            e1: exps[0]!,
+            b2: bases[1]!,
+            e2: exps[1]!,
+            b3: bases[2]!,
+            e3: exps[2]!,
+            diff: max - min,
+          },
+        };
+      }),
+  ),
 
   // ── 문자의 사용과 식의 계산 → 일차식의 뜻Ⅰ·Ⅱ ─────────
   defType(
@@ -512,6 +723,172 @@ export const M1_BOOK1: TypeEntry[] = [
         answer: `$${S}$`,
         solution: `항등식은 $x$에 어떤 값을 대입해도 성립하므로 양변의 $x$의 계수와 상수항이 각각 같다.\n$a=${p}$이고 $${k}b=${cVal}$에서 $b=${b0}$이다.\n따라서 $a+b=${S}$이다.`,
         facts: { p, k, c: cVal, b: b0, S },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "21",
+    "항의 개수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const terms = intBetween(rng, 2, 5);
+      const coefs = Array.from({ length: terms }, () => intNonzero(rng, -9, 9));
+      return {
+        content: `다항식 $${polyTex(coefs)}$의 항의 개수를 구하시오.`,
+        answer: `$${terms}$개`,
+        solution: `덧셈과 뺄셈으로 구분되는 각각의 부분이 항이다. 따라서 항은 $${terms}$개이다.`,
+        facts: { terms },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "22",
+    "다항식의 차수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const degree = intBetween(rng, 2, 5);
+      const a = intNonzero(rng, -7, 7);
+      const b = intNonzero(rng, -9, 9);
+      const c = intBetween(rng, 1, 9);
+      // 최고차항과 일차항 사이는 비운다 — 계수 0 을 적으면 지면에 `+0x^{3}` 이 난다.
+      const coefs = [a, ...Array<number>(degree - 2).fill(0), b, c];
+      return {
+        content: `다항식 $${polyTex(coefs)}$의 차수를 구하시오.`,
+        answer: `$${degree}$`,
+        solution: `가장 높은 차수인 항은 $${polyTex([a, ...Array<number>(degree).fill(0)])}$이므로 이 다항식의 차수는 $${degree}$이다.`,
+        facts: { degree, a, b, c },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "23",
+    "특정 항의 계수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const a = intNonzero(rng, -9, 9);
+      const b = intNonzero(rng, -9, 9);
+      const c = intNonzero(rng, -9, 9);
+      return {
+        content: `다항식 $${polyTex([a, b, c])}$에서 $x$의 계수를 구하시오.`,
+        answer: `$${b}$`,
+        solution: `$x$가 곱해진 항은 $${polyTex([b, 0])}$이므로 $x$의 계수는 $${b}$이다.`,
+        facts: { a, b, c },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "24",
+    "상수항 찾기",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const a = intNonzero(rng, -9, 9);
+      const b = intNonzero(rng, -9, 9);
+      const c = intNonzero(rng, -12, 12);
+      return {
+        content: `다항식 $${polyTex([a, b, c])}$의 상수항을 구하시오.`,
+        answer: `$${c}$`,
+        solution: `문자가 곱해지지 않은 항은 $${c}$이므로 상수항은 $${c}$이다.`,
+        facts: { a, b, c },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "25",
+    "식의 값",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const a = intNonzero(rng, -7, 7);
+      const b = intNonzero(rng, -9, 9);
+      const x = intNonzero(rng, -5, 5);
+      const value = a * x + b;
+      return {
+        content: `$x=${x}$일 때, 일차식 $${polyTex([a, b])}$의 값을 구하시오.`,
+        answer: `$${value}$`,
+        solution: `$x=${x}$${eulReul(x)} 대입하면 $${mulSubTex(a, x)}${signed(b)}=${value}$이다.`,
+        facts: { a, b, x, value },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "26",
+    "문자를 사용한 식",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const price = intBetween(rng, 2, 9) * 100;
+      const fee = intBetween(rng, 1, 5) * 100;
+      const count = intBetween(rng, 3, 12);
+      const total = price * count + fee;
+      return {
+        content: `한 개에 $${price}$원인 공책 $x$개의 값과 포장비 $${fee}$원을 더한 전체 가격을 $x$를 사용한 식으로 나타내고, $x=${count}$일 때의 값을 구하시오.`,
+        answer: `$${total}$원`,
+        solution: `전체 가격은 $${price}x+${fee}$원이다. $x=${count}$${eulReul(count)} 대입하면 $${price}\\times${count}+${fee}=${total}$(원)이다.`,
+        facts: { price, fee, count, total },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "27",
+    "일차식이 되는 조건",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const a = intNonzero(rng, -8, 8);
+      const b = intNonzero(rng, -9, 9);
+      // 앞에 `kx^{2}` 이 이미 있으므로 뒤쪽은 부호를 스스로 달아야 한다 —
+      // 그냥 이어붙이면 `kx^{2}+-3x` 가 된다.
+      const tail = polyTex([a, b]);
+      return {
+        content: `다항식 $kx^{2}${tail.startsWith("-") ? "" : "+"}${tail}$${nIGa(b)} $x$에 대한 일차식일 때, 상수 $k$의 값을 구하시오.`,
+        answer: `$0$`,
+        solution: `일차식에는 $x^{2}$항이 없어야 하므로 $x^{2}$의 계수 $k$는 $0$이다.`,
+        facts: { a, b, k: 0 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "28",
+    "도형을 나타내는 일차식",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const add = intBetween(rng, 2, 8);
+      const x = intBetween(rng, 3, 12);
+      const perimeter = 4 * x + 2 * add;
+      return {
+        content: `가로의 길이가 $(x+${add})\\,\\mathrm{cm}$이고 세로의 길이가 $x\\,\\mathrm{cm}$인 직사각형이 있다. $x=${x}$일 때 둘레의 길이를 구하시오.`,
+        answer: `$${perimeter}\\,\\mathrm{cm}$`,
+        solution: `둘레는 $2\\{(x+${add})+x\\}=4x+${2 * add}$이다. $x=${x}$${eulReul(x)} 대입하면 $${perimeter}\\,\\mathrm{cm}$이다.`,
+        facts: { add, x, perimeter },
       };
     },
   ),

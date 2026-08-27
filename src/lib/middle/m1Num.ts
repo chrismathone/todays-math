@@ -28,7 +28,13 @@ import type { Rng } from "../elementary/types";
 
 import { eulReul, waGwa } from "./m2Josa";
 import type { Body } from "./m1Shared";
-import { attempt, defType, pickDistinct, shuffle } from "./m1Shared";
+import {
+  attempt,
+  defType,
+  intNonzero,
+  pickDistinct,
+  shuffle,
+} from "./m1Shared";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -67,16 +73,21 @@ const wGwa = (w: string): string => (wordHasBatchim(w) ? "과" : "와");
  */
 const nEun = (n: number): string => (eulReul(n) === "을" ? "은" : "는");
 const nEul = eulReul;
+/** 수 뒤 「이/가」 — 같은 받침 판정을 되쓴다. */
+const nIGa = (n: number): string => (eulReul(n) === "을" ? "이" : "가");
 
 /**
- * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수».
- * `improperToMixed`(textPreprocess) 가 가분수를 **대분수**로 그리므로
- * 마지막에 읽는 수는 분자가 아니라 **나머지**다: $14/5$ → 「$2$와 $5$분의 **$4$**」.
+ * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수» — **분자**다.
+ * 분수는 「$b$**분의** $a$」로 읽으므로 끝에 오는 것이 분자다.
+ *
+ * ⚠️ 예전 판은 «대분수의 나머지»를 냈다 — `improperToMixed` 가 $\frac{14}{5}$ 를
+ *    $2\frac45$ 로 그리던 때의 규칙이다. **그 변환은 2026-08-24 에 제품에서
+ *    빠졌다**(원장님 확정 「중등은 대분수 변환하지 말 것」). 전제가 뒤집혔는데
+ *    규칙만 남아 유형 13 이 지면에 `$\frac{8}{3}$는`(→은) 을 찍고 있었다.
+ *    이식해 온 규칙은 **그 주석이 적어 둔 전제부터** 검산할 것.
  */
-function fracTail(num: number, den: number): number {
-  const a = Math.abs(num);
-  if (a % den === 0) return a / den;
-  return a > den ? a % den : a;
+function fracTail(num: number): number {
+  return Math.abs(num);
 }
 const nGwa = waGwa;
 
@@ -323,6 +334,60 @@ function isIntegerTok(t: NumTok): boolean {
 function tokList(toks: readonly NumTok[]): string {
   return toks.map((t) => `$${t.tex}$`).join(", ");
 }
+
+/** 최소공배수 — 호제법으로 얻은 최대공약수로 나눈다. */
+function lcmOf(a: number, b: number): number {
+  return (a / gcdOfPair(a, b)) * b;
+}
+
+function gcdOfPair(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) [x, y] = [y, x % y];
+  return x;
+}
+
+/** 분모가 $2$ 와 $5$ 만으로 이루어져 있나 — 소수(小數)로 딱 떨어지는가. */
+function terminatesAsDecimal(den: number): boolean {
+  let x = den;
+  while (x % 2 === 0) x /= 2;
+  while (x % 5 === 0) x /= 5;
+  return x === 1;
+}
+
+/** 소수점 아래 자릿수 — 부동소수점 찌꺼기(`0.30000000000000004`)를 걸러 낸다. */
+function decDigits(v: number): number {
+  const s = String(v);
+  const dot = s.indexOf(".");
+  return dot < 0 ? 0 : s.length - dot - 1;
+}
+
+/**
+ * `분자/분모` 표시 — 분모가 $1$ 이면 **정수로 적는다**.
+ * 안 그러면 지면에 `\frac{5}{1}` 이 나가는데 값은 맞아서 값 검산이 못 본다.
+ */
+function overTex(num: number, den: number): string {
+  if (den === 1) return String(num);
+  const body = `\\frac{${Math.abs(num)}}{${den}}`;
+  return num < 0 ? `-${body}` : body;
+}
+
+/**
+ * **진분수만** — 분자가 분모보다 작고 서로소다.
+ * `PROPER_FRACS` 는 이름과 달리 가분수도 담고 있어(3/2·10/3 …) 「정수 부분 + 진분수」
+ * 를 만들 때 쓰면 위끝이 두 칸 건너뛴다. 그래서 여기 따로 둔다.
+ */
+const PROPER_ONLY: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [1, 3],
+  [2, 3],
+  [1, 4],
+  [3, 4],
+  [1, 5],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+];
 
 /** `facts` 는 수만 담는다 — 표시한 수들을 분자/분모로 남겨 테스트가 되짚는다. */
 function tokFacts(toks: readonly NumTok[]): Record<string, number> {
@@ -596,7 +661,8 @@ const 소인수분해_TYPES: TypeEntry[] = [
           const N = p ** a * q ** n;
           if (N > 40000) return null;
           return {
-            content: `$${p}^{a}\\times${q}^{${n}}$의 약수의 개수가 $${k}$일 때, 자연수 $a$의 값을 구하시오.`,
+            // 지수 $1$ 은 안 적는다 — `5^{1}` 이 지면에 나가면 값은 맞아도 흉하다.
+            content: `$${p}^{a}\\times${n === 1 ? `${q}` : `${q}^{${n}}`}$의 약수의 개수가 $${k}$일 때, 자연수 $a$의 값을 구하시오.`,
             answer: `$${a}$`,
             solution: `약수의 개수는 지수에 $1$을 더하여 곱한 것이므로 $(a+1)\\times(${n}+1)=${k}$이다.\n$(a+1)\\times${n + 1}=${k}$에서 $a+1=${a + 1}$이므로 $a=${a}$이다.`,
             facts: { kind, p, q, n, k, a, N },
@@ -700,10 +766,100 @@ const 소인수분해_TYPES: TypeEntry[] = [
           answer: `$${x}$`,
           solution: `$\\square$ 안에 $1$부터 차례로 넣어 $${facTex(
             base,
-          )}\\times\\square$를 소인수분해 하고 약수의 개수를 세어 본다.\n$\\square=${x}$일 때 $${B}\\times${x}=${B * x}$의 약수의 개수가 처음으로 $${k}$가 된다.\n따라서 구하는 가장 작은 자연수는 $${x}$이다.`,
+          )}\\times\\square$를 소인수분해 하고 약수의 개수를 세어 본다.\n$\\square=${x}$일 때 $${B}\\times${x}=${B * x}$의 약수의 개수가 처음으로 $${k}$${nIGa(k)} 된다.\n따라서 구하는 가장 작은 자연수는 $${x}$이다.`,
           facts: { B, x, k, N: B * x },
         };
       }),
+  ),
+
+  // ── 18~20 「소인수분해」를 10유형으로 채운 몫 (갈래 D) ──
+  // 색인은 01~10 이고 11~17 은 `m1Book1.ts`(소수와 거듭제곱) 몫이라 18 부터 잇는다.
+
+  defType(
+    BOOK,
+    MIN_소인수,
+    "18",
+    "소인수분해 하기",
+    SEC.소인수,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const primes = pickDistinct(
+          rng,
+          SMALL_PRIMES,
+          intBetween(rng, 2, 3),
+        ).sort((a, b) => a - b);
+        const f: [number, number][] = primes.map((p) => [
+          p,
+          intBetween(rng, 1, 3),
+        ]);
+        const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+        if (N < 60 || N > 900) return null;
+        return {
+          // 지시 하나 + 수식 한 줄 — 이 모양이라야 `tier.ts` 가 **연산**으로 내린다.
+          content: `다음 수를 소인수분해하시오.\n$${N}$`,
+          answer: `$${facTex(f)}$`,
+          solution: `작은 소수부터 차례로 나누어 몫이 소수가 될 때까지 계속한다.\n따라서 $${N}=${facTex(f)}$이다.`,
+          facts: { N, k: f.length },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_소인수,
+    "19",
+    "서로 다른 소인수의 개수",
+    SEC.소인수,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const primes = pickDistinct(
+          rng,
+          SMALL_PRIMES,
+          intBetween(rng, 2, 3),
+        ).sort((a, b) => a - b);
+        const f: [number, number][] = primes.map((p) => [
+          p,
+          intBetween(rng, 1, 3),
+        ]);
+        const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+        if (N < 60 || N > 900) return null;
+        return {
+          content: `$${N}$의 서로 다른 소인수의 개수를 구하시오.`,
+          answer: `$${f.length}$개`,
+          solution: `$${N}=${facTex(f)}$이므로 서로 다른 소인수는 ${f
+            .map(([p]) => `$${p}$`)
+            .join(", ")}이다.\n따라서 그 개수는 $${f.length}$개이다.`,
+          facts: { N, k: f.length },
+        };
+      }),
+  ),
+
+  defType(BOOK, MIN_소인수, "20", "약수의 총합", SEC.소인수, "응용", (rng) =>
+    attempt(300, (): Body | null => {
+      const primes = pickDistinct(rng, [2, 3, 5, 7] as const, 2).sort(
+        (a, b) => a - b,
+      );
+      const f: [number, number][] = primes.map((p) => [
+        p,
+        intBetween(rng, 1, 3),
+      ]);
+      const N = f.reduce((v, [p, e]) => v * p ** e, 1);
+      if (N < 30 || N > 300) return null;
+      // 약수를 **전수로 훑어** 더한다 — 공식으로 구하지 않는다.
+      const divs: number[] = [];
+      for (let d = 1; d <= N; d += 1) if (N % d === 0) divs.push(d);
+      const sum = divs.reduce((v, d) => v + d, 0);
+      return {
+        content: `$${N}$의 모든 약수의 합을 구하시오.`,
+        answer: `$${sum}$`,
+        solution: `$${N}=${facTex(f)}$이고, $${N}$의 약수는 ${divs
+          .map((d) => `$${d}$`)
+          .join(", ")}이다.\n따라서 모든 약수의 합은 $${sum}$이다.`,
+        facts: { N, sum },
+      };
+    }),
   ),
 ];
 
@@ -1521,6 +1677,377 @@ const 최대최소_TYPES: TypeEntry[] = [
         };
       }),
   ),
+
+  defType(BOOK, MIN_최대최소, "17", "공약수의 합", SEC.최대, "응용", (rng) =>
+    attempt(200, (): Body | null => {
+      const g = intBetween(rng, 6, 36);
+      const uv = coprimeQuotients(rng, 2, 12);
+      if (!uv) return null;
+      const [u, v] = uv;
+      const A = g * u;
+      const B = g * v;
+      let sum = 0;
+      for (let divisor = 1; divisor <= g; divisor += 1) {
+        if (g % divisor === 0) sum += divisor;
+      }
+      return {
+        content: `두 자연수 $${A}$, $${B}$의 모든 공약수의 합을 구하시오.`,
+        answer: `$${sum}$`,
+        solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 공약수는 $${g}$의 약수이므로 그 합은 $${sum}$이다.`,
+        facts: { A, B, g, sum },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "18",
+    "세 수의 최대공약수",
+    SEC.최대,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 2, 24);
+        const uvw = coprimeTriple(rng, 2, 9);
+        if (!uvw) return null;
+        const [u, v, w] = uvw;
+        const A = g * u;
+        const B = g * v;
+        const C = g * w;
+        return {
+          content: `세 자연수 $${A}$, $${B}$, $${C}$의 최대공약수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$로 나타낼 수 있고 $${u}$, $${v}$, $${w}$${nEun(w)} 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
+          facts: { A, B, C, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "19",
+    "두 수를 같은 수만큼 확대한 최대공약수",
+    SEC.최대,
+    "응용",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 2, 20);
+        const uv = coprimeQuotients(rng, 2, 10);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const k = intBetween(rng, 2, 8);
+        const A = g * u;
+        const B = g * v;
+        const answer = g * k;
+        return {
+          content: `두 자연수 $${A}$, $${B}$에 각각 $${k}$${nEul(k)} 곱한 두 수의 최대공약수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 두 수에 같은 수 $${k}$${nEul(k)} 곱하면 최대공약수도 $${k}$배가 되므로 $${g}\\times${k}=${answer}$이다.`,
+          facts: { A, B, g, k, answer },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "20",
+    "소인수분해로 세 수의 최대공약수 구하기",
+    SEC.최대,
+    "응용",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5] as const);
+      const q = pick(rng, [7, 11, 13] as const);
+      const a = intBetween(rng, 1, 3);
+      const b = intBetween(rng, 1, 2);
+      const A = p ** (a + 2) * q ** b;
+      const B = p ** (a + 1) * q ** (b + 1);
+      const C = p ** a * q ** (b + 2);
+      const answer = p ** a * q ** b;
+      return {
+        // `facTex` 로 그린다 — 손으로 `${q}^{${b}}` 를 적으면 $b=1$ 일 때
+        // 지면에 `11^{1}` 이 나간다(값은 맞아서 값 검산이 구조적으로 못 본다).
+        content: `세 수 $${facTex([
+          [p, a + 2],
+          [q, b],
+        ])}$, $${facTex([
+          [p, a + 1],
+          [q, b + 1],
+        ])}$, $${facTex([
+          [p, a],
+          [q, b + 2],
+        ])}$의 최대공약수를 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `공통인 소인수의 지수 중 가장 작은 것을 택하면 $${facTex([
+          [p, a],
+          [q, b],
+        ])}=${answer}$이다.`,
+        facts: { p, q, a, b, A, B, C, answer },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "21",
+    "같은 나머지를 남기는 가장 큰 수",
+    SEC.최대,
+    "심화",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 5, 30);
+        const uv = coprimeQuotients(rng, 2, 12);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const remainder = intBetween(rng, 1, g - 1);
+        const A = g * u + remainder;
+        const B = g * v + remainder;
+        return {
+          content: `두 자연수 $${A}$, $${B}$${nEul(B)} 어떤 자연수로 나누면 나머지가 모두 $${remainder}$이다. 이러한 자연수 중 가장 큰 수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `구하는 수는 $${A}-${remainder}=${A - remainder}$${waGwa(A - remainder)} $${B}-${remainder}=${B - remainder}$의 최대공약수이다. 따라서 $${g}$이다.`,
+          facts: { A, B, remainder, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "22",
+    "서로 다른 나머지를 남기는 가장 큰 수",
+    SEC.최대,
+    "심화",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 6, 30);
+        const uv = coprimeQuotients(rng, 2, 12);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const r1 = intBetween(rng, 1, g - 2);
+        const r2 = intBetween(rng, 1, g - 1);
+        const A = g * u + r1;
+        const B = g * v + r2;
+        return {
+          content: `$${A}$${nEul(A)} 나누면 $${r1}$${nIGa(r1)} 남고 $${B}$${nEul(B)} 나누면 $${r2}$${nIGa(r2)} 남도록 하는 자연수 중 가장 큰 수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `구하는 수는 $${A}-${r1}=${A - r1}$${waGwa(A - r1)} $${B}-${r2}=${B - r2}$의 최대공약수이다. 따라서 $${g}$이다.`,
+          facts: { A, B, r1, r2, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "23",
+    "범위 안의 공약수 개수",
+    SEC.최대,
+    "응용",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 12, 48);
+        const uv = coprimeQuotients(rng, 2, 10);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const A = g * u;
+        const B = g * v;
+        const limit = intBetween(rng, 2, g - 1);
+        let count = 0;
+        for (let divisor = 1; divisor <= limit; divisor += 1) {
+          if (g % divisor === 0) count += 1;
+        }
+        if (count < 2) return null;
+        return {
+          content: `두 자연수 $${A}$, $${B}$의 공약수 중 $${limit}$ 이하인 자연수의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `두 수의 최대공약수는 $${g}$이다. $${g}$의 약수 중 $${limit}$ 이하인 것은 $${count}$개이다.`,
+          facts: { A, B, g, limit, count },
+        };
+      }),
+  ),
+
+  // ── 24~28 「공배수와 최소공배수」 · 29~30 「최대공약수와 최소공배수의 활용」 ──
+  // 색인은 01~16 이고 17~23 은 앞 회차 몫이라 24 부터 잇는다 (갈래 D).
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "24",
+    "세 수의 최소공배수",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(400, (): Body | null => {
+        const a = intBetween(rng, 4, 30);
+        const b = intBetween(rng, 4, 30);
+        const c = intBetween(rng, 4, 30);
+        if (a === b || b === c || a === c) return null;
+        const L = lcmOf(lcmOf(a, b), c);
+        if (L > 600 || L === Math.max(a, b, c)) return null;
+        return {
+          content: `세 자연수 $${a}$, $${b}$, $${c}$의 최소공배수를 구하시오.`,
+          answer: `$${L}$`,
+          solution: `세 수를 소인수분해하여 공통이 아닌 것까지 모든 소인수의 지수 중 가장 큰 것을 택해 곱한다.\n따라서 최소공배수는 $${L}$이다.`,
+          facts: { a, b, c, L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "25",
+    "공배수를 차례로 나열하기",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const a = intBetween(rng, 4, 24);
+        const b = intBetween(rng, 4, 24);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 200) return null;
+        const k = intBetween(rng, 2, 6);
+        return {
+          content: `두 자연수 $${a}$, $${b}$의 공배수를 작은 것부터 차례로 나열할 때, $${k}$번째 수를 구하시오.`,
+          answer: `$${k * L}$`,
+          solution: `공배수는 최소공배수의 배수이고 두 수의 최소공배수는 $${L}$이다.\n따라서 $${k}$번째 공배수는 $${L}\\times${k}=${k * L}$이다.`,
+          facts: { a, b, L, k, answer: k * L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "26",
+    "최대공약수와 최소공배수의 곱",
+    SEC.최소,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const G = intBetween(rng, 2, 15);
+        const m = intBetween(rng, 2, 12);
+        const L = G * m;
+        if (L % G !== 0 || L === G) return null;
+        return {
+          content: `두 자연수 $A$, $B$의 최대공약수가 $${G}$, 최소공배수가 $${L}$일 때, $A\\times B$의 값을 구하시오.`,
+          answer: `$${G * L}$`,
+          solution: `두 자연수의 곱은 최대공약수와 최소공배수의 곱과 같다.\n따라서 $A\\times B=${G}\\times${L}=${G * L}$이다.`,
+          facts: { G, L, answer: G * L },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "27",
+    "나머지가 같은 가장 작은 수",
+    SEC.최소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 3, 12);
+        const b = intBetween(rng, 3, 12);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 60) return null;
+        const r = intBetween(rng, 1, Math.min(a, b) - 1);
+        // 두 자리 자연수 중 가장 작은 것을 **하나씩 훑어** 찾는다.
+        let answer = -1;
+        for (let v = 10; v <= 99; v += 1) {
+          if (v % a === r && v % b === r) {
+            answer = v;
+            break;
+          }
+        }
+        if (answer < 0) return null;
+        return {
+          content: `$${a}$로 나누어도 $${b}$로 나누어도 $${r}$${nIGa(r)} 남는 자연수 중에서 가장 작은 두 자리 자연수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `구하는 수에서 $${r}$${nEul(r)} 빼면 $${a}$${nGwa(a)} $${b}$의 공배수가 된다.\n$${a}$${nGwa(a)} $${b}$의 최소공배수는 $${L}$이므로 구하는 수는 $${L}$의 배수보다 $${r}$만큼 큰 수이다.\n두 자리 자연수 중 가장 작은 것은 $${answer}$이다.`,
+          facts: { a, b, r, L, answer },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "28",
+    "범위 안의 공배수의 개수",
+    SEC.최소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 4, 20);
+        const b = intBetween(rng, 4, 20);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 120) return null;
+        const count = intBetween(rng, 2, 6);
+        const N = L * count + intBetween(rng, 0, L - 1);
+        return {
+          content: `두 자연수 $${a}$, $${b}$의 공배수 중에서 $${N}$ 이하인 자연수의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `공배수는 최소공배수 $${L}$의 배수이다.\n$${N}$ 이하인 $${L}$의 배수는 $${count}$개이다.`,
+          facts: { a, b, L, N, count },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "29",
+    "최대공약수의 활용 자르는 정사각형의 한 변",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const g = intBetween(rng, 3, 15);
+        const uv = coprimeQuotients(rng, 2, 9);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const a = g * u;
+        const b = g * v;
+        if (a === b) return null;
+        return {
+          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$인 직사각형 모양의 종이를 남는 부분 없이 크기가 같은 정사각형 모양으로 자르려고 한다. 정사각형의 한 변의 길이가 될 수 있는 가장 큰 수를 구하시오.`,
+          answer: `$${g}\\,\\mathrm{cm}$`,
+          solution: `정사각형의 한 변의 길이는 가로와 세로를 모두 나누어떨어지게 해야 하므로 $${a}$${nGwa(a)} $${b}$의 공약수이다.\n가장 큰 것은 최대공약수 $${g}$이다.`,
+          facts: { a, b, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "30",
+    "최소공배수의 활용 만드는 정사각형의 한 변",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const a = intBetween(rng, 4, 30);
+        const b = intBetween(rng, 4, 30);
+        if (a === b) return null;
+        const L = lcmOf(a, b);
+        if (L > 300) return null;
+        return {
+          content: `가로의 길이가 $${a}\\,\\mathrm{cm}$, 세로의 길이가 $${b}\\,\\mathrm{cm}$인 직사각형 모양의 종이를 겹치지 않게 빈틈없이 늘어놓아 될 수 있는 대로 작은 정사각형을 만들려고 한다. 이 정사각형의 한 변의 길이를 구하시오.`,
+          answer: `$${L}\\,\\mathrm{cm}$`,
+          solution: `정사각형의 한 변의 길이는 가로와 세로의 공배수이다.\n가장 작은 것은 최소공배수 $${L}$이다.`,
+          facts: { a, b, L },
+        };
+      }),
+  ),
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -2119,9 +2646,9 @@ const 정수_TYPES: TypeEntry[] = [
               ? "사이에 있는 정수 중 가장 큰 수를 구하시오."
               : "사이에 있는 모든 정수의 합을 구하시오.";
         return {
-          content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum, t1))} $${rightTex}$ ${ask}`,
+          content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum))} $${rightTex}$ ${ask}`,
           answer: `$${answer}$${kind === 0 ? "개" : ""}`,
-          solution: `$${leftTex}$${nEun(fracTail(lNum, t1))} $${lo - 1}$${nGwa(lo - 1)} $${lo}$ 사이의 수이고, $${rightTex}$${nEun(fracTail(rNum, t2))} $${hi}$${nGwa(hi)} $${
+          solution: `$${leftTex}$${nEun(fracTail(lNum))} $${lo - 1}$${nGwa(lo - 1)} $${lo}$ 사이의 수이고, $${rightTex}$${nEun(fracTail(rNum))} $${hi}$${nGwa(hi)} $${
             hi + 1
           }$ 사이의 수이다.\n따라서 두 수 사이에 있는 정수는 ${ints
             .map((v) => `$${v}$`)
@@ -2208,6 +2735,174 @@ const 정수_TYPES: TypeEntry[] = [
             c3: ids[2]!,
             c4: ids[3] ?? -1,
           },
+        };
+      }),
+  ),
+
+  // ── 16~21 「수의 대소관계」를 10유형으로 채운 몫 (갈래 D) ──
+  // 색인(정수와 유리수)은 01~15 라 16 부터 잇는다.
+  // 갈래는 **배분에 맞춰** 골랐다 — 이 소단원의 열은 연산 1(16) · 기본 4(12·17·18·19)
+  // · 응용 4(11·13·20·21) · 심화 1(15) 로 `defaultRatioFor(10)` 과 정확히 같다.
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "16",
+    "두 수의 대소를 부등호로 나타내기",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const toks = mixedToks(rng, 2);
+        if (!toks) return null;
+        const [a, b] = toks as [NumTok, NumTok];
+        const va = tokValue(a);
+        const vb = tokValue(b);
+        const rel = va > vb ? ">" : "<";
+        // 부호가 다르거나 한쪽이 $0$ 이면 값을 견줄 것도 없다.
+        const bySign = va === 0 || vb === 0 || va < 0 !== vb < 0;
+        // 부호가 같으면 값을 견줘야 한다. **통분해서 보여 주지 않는다** —
+        // 통분한 분수는 약분이 안 된 꼴이라(`\frac{106}{20}`) 지면 규칙과 부딪친다.
+        // 대신 소수로 고쳐 보인다. 딱 떨어지지 않는 분모($3$ 등)면 다시 뽑는다.
+        if (
+          !bySign &&
+          !(terminatesAsDecimal(a.den) && terminatesAsDecimal(b.den))
+        ) {
+          return null;
+        }
+        if (!bySign && (decDigits(va) > 3 || decDigits(vb) > 3)) return null;
+        const step = bySign
+          ? `음수는 $0$보다 작고 양수는 $0$보다 크므로 부호를 보면 대소를 알 수 있다.`
+          : a.den === 1 && b.den === 1
+            ? `두 수가 모두 정수이므로 그대로 견준다.`
+            : `두 수를 소수로 고치면 $${va}$, $${vb}$이다.`;
+        return {
+          content: `다음 두 수의 대소를 부등호를 사용하여 나타내시오.\n${tokList(toks)}`,
+          answer: `$${a.tex}${rel}${b.tex}$`,
+          solution: `${step}\n따라서 $${a.tex}${rel}${b.tex}$이다.`,
+          facts: { n1: a.num, d1: a.den, n2: b.num, d2: b.den },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "17",
+    "부등호로 나타낸 범위 안의 정수의 개수",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const lo = intBetween(rng, -9, 3);
+        const closed = intBetween(rng, 0, 1) === 0; // 0 이상(≤) · 1 초과(<)
+        const whole = lo + intBetween(rng, 2, 8);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        // 위끝은 **정수가 아닌** 분수라 «미만/이하»가 같은 뜻이 된다 — 애매함이 없다.
+        const hiNum = whole * q + p;
+        const first = closed ? lo : lo + 1;
+        const count = whole - first + 1;
+        if (count < 3) return null;
+        return {
+          content: `$${lo}${closed ? "\\le" : "<"} x<${overTex(hiNum, q)}$${nEul(Math.abs(hiNum))} 만족시키는 정수 $x$의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `$${overTex(hiNum, q)}$${nEun(Math.abs(hiNum))} $${whole}$${nGwa(whole)} $${whole + 1}$ 사이의 수이므로 $x$는 $${first}$부터 $${whole}$까지의 정수이다.\n따라서 그 개수는 $${count}$개이다.`,
+          facts: { lo, closed: closed ? 1 : 0, hiNum, q, whole, count },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "18",
+    "수직선 위의 위치로 정수 찾기",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const kind = intBetween(rng, 0, 1); // 0 오른쪽·가장 작은 · 1 왼쪽·가장 큰
+        const sign = pick(rng, [-1, 1] as const);
+        const whole = intBetween(rng, 0, 7);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        const num = sign * (whole * q + p);
+        if (num === 0) return null;
+        const value = num / q;
+        const answer = kind === 0 ? Math.ceil(value) : Math.floor(value);
+        const side = kind === 0 ? "오른쪽" : "왼쪽";
+        const word = kind === 0 ? "작은" : "큰";
+        return {
+          content: `수직선 위에서 $${overTex(num, q)}$${nEul(Math.abs(num))} 나타내는 점보다 ${side}에 있는 정수 중에서 가장 ${word} 수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$${overTex(num, q)}$${nEun(Math.abs(num))} $${Math.floor(value)}$${nGwa(Math.floor(value))} $${Math.floor(value) + 1}$ 사이의 수이다.\n따라서 ${side}에 있는 정수 중 가장 ${word} 수는 $${answer}$이다.`,
+          facts: { kind, num, q, answer },
+        };
+      }),
+  ),
+
+  defType(BOOK, MIN_정수, "19", "절댓값의 대소", SEC.대소, "기본", (rng) =>
+    attempt(200, (): Body | null => {
+      const a = intNonzero(rng, -12, 12);
+      const b = intNonzero(rng, -12, 12);
+      if (Math.abs(a) === Math.abs(b)) return null;
+      const rel = Math.abs(a) > Math.abs(b) ? ">" : "<";
+      return {
+        // 「$|a|$」는 「절댓값 에이」로 읽으므로 조사는 $a$ 의 **값**이 아니라
+        // 글자 `a` 를 따른다 — 항상 「와」다. `nGwa(a)` 를 쓰면 $a=10$ 일 때
+        // 「$|a|$과」가 지면에 나간다.
+        content: `$a=${a}$, $b=${b}$일 때, $|a|$와 $|b|$의 대소를 부등호를 사용하여 나타내시오.`,
+        answer: `$|a|${rel}|b|$`,
+        solution: `절댓값은 수직선 위에서 원점까지의 거리이므로 $|a|=${Math.abs(a)}$, $|b|=${Math.abs(b)}$이다.\n따라서 $|a|${rel}|b|$이다.`,
+        facts: { a, b },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "20",
+    "절댓값이 가장 큰 수",
+    SEC.대소,
+    "응용",
+    (rng) =>
+      attempt(400, (): Body | null => {
+        const toks = mixedToks(rng, 5);
+        if (!toks) return null;
+        const abs = toks.map((t) => Math.abs(tokValue(t)));
+        const top = Math.max(...abs);
+        // 가장 큰 것이 **하나**여야 답이 정해진다.
+        if (abs.filter((v) => v === top).length !== 1) return null;
+        const target = toks[abs.indexOf(top)]!;
+        return {
+          content: `다음 수 중에서 절댓값이 가장 큰 수를 구하시오.\n${tokList(toks)}`,
+          answer: `$${target.tex}$`,
+          solution: `절댓값은 부호를 떼고 본 크기이므로 각 수의 절댓값은 차례로 ${tokList(
+            toks.map((t) => ({ ...t, tex: t.tex.replace(/^[+-]/, "") })),
+          )}이다.\n따라서 절댓값이 가장 큰 수는 $${target.tex}$이다.`,
+          facts: tokFacts(toks),
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "21",
+    "절댓값 부등식을 만족시키는 정수",
+    SEC.대소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const whole = intBetween(rng, 2, 8);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        const hiNum = whole * q + p;
+        const count = 2 * whole + 1;
+        return {
+          content: `$|x|<${overTex(hiNum, q)}$${nEul(Math.abs(hiNum))} 만족시키는 정수 $x$의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `$${overTex(hiNum, q)}$${nEun(Math.abs(hiNum))} $${whole}$${nGwa(whole)} $${whole + 1}$ 사이의 수이므로 $x$는 $-${whole}$부터 $${whole}$까지의 정수이다.\n따라서 그 개수는 $${count}$개이다.`,
+          facts: { hiNum, q, whole, count },
         };
       }),
   ),
