@@ -401,6 +401,55 @@ const CHECKS: Record<string, Check> = {
     const b = Number(content.match(/\$9x\+(\d+)\$/)![1]);
     expect(nums(answer)).toEqual([a + b]);
   },
+  // ── 중1 문자의 사용과 식의 값 ─────────────────────────────
+  "1-1|문자의 사용과 식의 계산|50": ({ content, answer }) => {
+    // 단위 환산 — **여기서 다시 환산한다**
+    const spans = content.match(/\$[^$]*\$/g)!.join(" ");
+    const [a, b] = nums(spans);
+    const got = nums(answer)[0]!;
+    expect(content.includes("km") ? a! * b! * 1000 : a! * 40).toBe(got);
+  },
+  "1-1|문자의 사용과 식의 계산|51": ({ content, answer }) => {
+    // 「$px-qy=k$일 때 $mpx-mqy+c$」 — 배수 관계를 **여기서 확인**한다
+    const [p, q, k, mp, mq, c] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    expect(mp! % p!).toBe(0);
+    expect(mq! / q!).toBe(mp! / p!);
+    expect(nums(answer)).toEqual([(mp! / p!) * k! + c!]);
+  },
+  // ── 중1 각 ────────────────────────────────────────────────
+  "1-2|기본 도형|50": ({ content, answer }) => {
+    const [total, n] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    expect(total! % n!).toBe(0);
+    expect(nums(answer)).toEqual([total! / n!]);
+  },
+  "1-2|기본 도형|51": ({ content, answer }) => {
+    const angles = [...content.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) =>
+      Number(m[1]),
+    );
+    expect(angles).toHaveLength(5);
+    expect(nums(answer)).toEqual([
+      angles.filter((a) => a > 90 && a < 180).length,
+    ]);
+  },
+  // ── 중3 인수분해 ──────────────────────────────────────────
+  "3-1|다항식의 인수분해|50": ({ content, answer }) => {
+    // 지면의 이차식을 읽어 **여기서 인수분해한다** — 그리고 갈래가 하나인지 센다
+    const m = content.match(/\$(\d*)x\^2\+(\d+)x\+(\d+)\$/)!;
+    const c = m[1] === "" ? 1 : Number(m[1]);
+    const mid = Number(m[2]);
+    const tail = Number(m[3]);
+    const found: number[] = [];
+    for (let b = 1; b <= tail; b += 1) {
+      if (tail % b !== 0) continue;
+      const d = tail / b;
+      if (d + b * c === mid) found.push(b + d);
+    }
+    expect(
+      new Set(found).size,
+      `인수분해가 하나로 안 정해진다: ${content}`,
+    ).toBe(1);
+    expect(nums(answer)).toEqual([found[0]]);
+  },
   // ── 중2 유리수와 소수 ─────────────────────────────────────
   "2-1|유리수와 순환소수|36": ({ content, answer }) => {
     // 「$\dfrac{a}{b}$를 유한소수로」 — **여기서 직접 나눠** 소수를 만든다

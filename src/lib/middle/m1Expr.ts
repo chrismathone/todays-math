@@ -1797,7 +1797,66 @@ export const M1_EXPR: TypeEntry[] = [...EXPR_TYPES, ...EQ_TYPES];
  * 그 명부 밖에 두고 `midSupB.ts` → `generate.ts` 가 따로 합친다.
  * 이 배열을 지키는 것은 `src/__tests__/unit/midTypesB.test.ts` 다.
  */
+/**
+ * 「문자의 사용과 식의 값」 보강 둘 — pool 갈래가 연산1·기본3·응용4 라
+ * **기본 하나와 심화 하나**가 모자란다(`scratch/mid-b-detail.ts` 실측).
+ *
+ * 번호는 `50` 부터다 — 이 중단원은 갈래 B 가 새로 여는 자리이고, 20~40 번대는
+ * 갈래 A(~43)·D(~38) 와 부딪힐 수 있다(`midSupB.ts` 머리말의 번호 규약).
+ */
+const EXPR_VALUE_SUPPLEMENTS: TypeEntry[] = [
+  def(
+    MINOR_EXPR,
+    "50",
+    "단위를 바꾸어 문자를 사용한 식으로 나타내기",
+    SEC.식의값,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const a = intBetween(rng, 2, 9);
+      const b = intBetween(rng, 2, 9);
+      if (mode === 0) {
+        return {
+          content: `시속 $${a}x\\,\\mathrm{km}$의 속력으로 $${b}$시간 동안 달린 거리는 몇 $\\mathrm{m}$인지 $x$에 대한 식으로 나타내시오.`,
+          answer: `$${a * b * 1000}x\\,\\mathrm{m}$`,
+          solution: `(거리)$=$(속력)$\\times$(시간)이므로 달린 거리는 $${a}x\\times${b}=${a * b}x\\,(\\mathrm{km})$이다.\n$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $${a * b}x\\,\\mathrm{km}=${a * b * 1000}x\\,\\mathrm{m}$이다.`,
+          facts: { mode, a, b, x: a * b * 1000 },
+        };
+      }
+      return {
+        content: `한 변의 길이가 $${a}x\\,\\mathrm{cm}$인 정사각형의 둘레의 길이는 몇 $\\mathrm{mm}$인지 $x$에 대한 식으로 나타내시오.`,
+        answer: `$${a * 40}x\\,\\mathrm{mm}$`,
+        solution: `정사각형의 둘레의 길이는 $4\\times${a}x=${4 * a}x\\,(\\mathrm{cm})$이다.\n$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$이므로 $${4 * a}x\\,\\mathrm{cm}=${a * 40}x\\,\\mathrm{mm}$이다.`,
+        facts: { mode, a, b, x: a * 40 },
+      };
+    },
+  ),
+
+  def(
+    MINOR_EXPR,
+    "51",
+    "식의 값을 이용하여 다른 식의 값 구하기",
+    SEC.식의값,
+    "심화",
+    (rng): Body => {
+      // 🔴 $x$, $y$ 를 따로 못 구한다 — **덩어리째** 대입해야 풀린다. 그래서 심화다.
+      const p = intBetween(rng, 2, 5);
+      const q = intBetween(rng, 2, 5);
+      const k = intBetween(rng, 2, 9);
+      const m = intBetween(rng, 2, 4);
+      const c = intBetween(rng, 1, 9);
+      return {
+        content: `$${p}x-${q}y=${k}$일 때, $${m * p}x-${m * q}y+${c}$의 값을 구하시오.`,
+        answer: `$${m * k + c}$`,
+        solution: `$${m * p}x-${m * q}y=${m}(${p}x-${q}y)$이고 $${p}x-${q}y=${k}$이므로 그 값은 $${m}\\times${k}=${m * k}$이다.\n따라서 구하는 값은 $${m * k}+${c}=${m * k + c}$이다.`,
+        facts: { p, q, k, m, c, x: m * k + c },
+      };
+    },
+  ),
+];
+
 export const M1_EXPR_SUP_B: TypeEntry[] = [
   ...EQ_PROPERTY_SUPPLEMENTS,
   ...SOLUTION_APPLICATION_SUPPLEMENTS,
+  ...EXPR_VALUE_SUPPLEMENTS,
 ];

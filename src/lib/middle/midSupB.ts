@@ -26,9 +26,10 @@
  * 이미 착지한 B 몫은 `21~35` 다. **앞으로 B 가 새로 여는 중단원은 `50` 부터** 쓴다
  * — 20~40 번대는 A·D 와 부딪힐 수 있고, 70번대는 C 몫이다.
  */
-import { intBetween } from "../elementary/rng";
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
 
-import { eulReul, euroRo } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 
 /** 주격 조사 — 받침 판정은 `m2Josa.eulReul` 한 곳에서 온다(규칙을 두 벌로 두지 않는다). */
 function iGa(n: number): "이" | "가" {
@@ -46,7 +47,7 @@ import { M1_EXPR_SUP_B } from "./m1Expr";
 import { signed } from "./m1Shared";
 import { M2_GEO_SIM_SUP_B } from "./m2GeoSim";
 import { M2_RATIONAL_SUP_B } from "./m2Rational";
-import type { TypeEntry } from "./types";
+import type { MidProblem, TypeEntry } from "./types";
 
 /**
  * 계수 $1$ 을 지면에 안 쓴다 — `1x` 는 값이 맞고 **지면만 흉하다**
@@ -265,11 +266,168 @@ export const MIDDLE_COMBO_TYPES: TypeEntry[] = [
   ...REPEATING_DECIMAL_TYPES,
 ];
 
+// ══════════════════════════════════════════════════════════════
+//  남의 모듈 소단원 몫 — 그 파일은 이 갈래 것이 아니라 여기서 짓는다
+// ══════════════════════════════════════════════════════════════
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+/** 유형 하나. 머리(grade·book·minor·type·title)를 두 번 안 적게 묶는다. */
+function mkType(
+  grade: string,
+  rpmBook: string,
+  rpmMinor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  const head = { grade, unitSection, rpmBook, rpmMinor, rpmType, rpmTitle };
+  return {
+    key: `${rpmBook}|${rpmMinor}|${rpmType}`,
+    ...head,
+    handler: (rng) => ({ ...head, difficulty, ...gen(rng) }),
+  };
+}
+
+/**
+ * 중1 「각」 보강 둘 — pool 갈래가 기본2·응용6 이라 **기본 넷**이 필요하다.
+ * 둘을 더하면 기본4·응용6 이 되어 「연산 1」은 인접 대체가 기본에서 가져간다.
+ *
+ * 그림을 안 붙인다 — 두 문형 다 수치가 발문에 다 있어 그림 없이 풀린다.
+ * (장식으로 붙이면 「그림이 필요한데 없다」와 반대쪽 결함이 된다.)
+ */
+const ANGLE_SUPPLEMENTS: TypeEntry[] = [
+  mkType(
+    "중1",
+    "1-2",
+    "기본 도형",
+    "50",
+    "각을 등분한 한 각의 크기",
+    "각",
+    "기본",
+    (rng) => {
+      const n = intBetween(rng, 3, 6);
+      const unit = intBetween(rng, 8, 25);
+      const total = n * unit;
+      return {
+        content: `크기가 $${total}^\\circ$인 각을 크기가 같은 $${n}$개의 각으로 나누었다. 나누어진 한 각의 크기를 구하시오.`,
+        answer: `$${unit}^\\circ$`,
+        solution: `크기가 같은 $${n}$개의 각으로 나누었으므로 한 각의 크기는 $${total}^\\circ\\div${n}=${unit}^\\circ$이다.`,
+        facts: { n, total, x: unit },
+      };
+    },
+  ),
+
+  mkType(
+    "중1",
+    "1-2",
+    "기본 도형",
+    "51",
+    "둔각인 것의 개수 세기",
+    "각",
+    "기본",
+    (rng) => {
+      // 예각·직각·둔각·평각이 **모두 나올 수 있게** 뽑는다 — 한 갈래만 나오면
+      // 「둔각의 개수」가 늘 같은 수가 되어 변형이 뜻을 잃는다.
+      const angles = Array.from({ length: 5 }, () =>
+        pickAngle(intBetween(rng, 0, 3), rng),
+      );
+      const obtuse = angles.filter((a) => a > 90 && a < 180).length;
+      return {
+        content: `다음 각 중에서 둔각은 모두 몇 개인지 구하시오.\n$${angles.map((a) => `${a}^\\circ`).join("$, $")}$`,
+        answer: `$${obtuse}$개`,
+        solution: `둔각은 $90^\\circ$보다 크고 $180^\\circ$보다 작은 각이다.\n주어진 각 가운데 그 조건을 만족하는 것은 $${obtuse}$개이다.`,
+        facts: {
+          a0: angles[0]!,
+          a1: angles[1]!,
+          a2: angles[2]!,
+          a3: angles[3]!,
+          a4: angles[4]!,
+          x: obtuse,
+        },
+      };
+    },
+  ),
+];
+
+/** 예각(0) · 직각(1) · 둔각(2) · 평각(3) 중 하나를 그 갈래 안에서 뽑는다. */
+function pickAngle(kind: number, rng: Rng): number {
+  if (kind === 1) return 90;
+  if (kind === 3) return 180;
+  if (kind === 2) return intBetween(rng, 91, 179);
+  return intBetween(rng, 10, 89);
+}
+
+/**
+ * 중3 「인수분해」 보강 하나 — pool 갈래가 연산4·기본1·응용3·심화1 이라
+ * 「심화 1」이 응용의 인접 대체로 먹혀 시험지가 한 자리 모자랐다.
+ * 그래서 **심화 하나**다.
+ */
+const FACTOR_SUPPLEMENTS: TypeEntry[] = [
+  mkType(
+    "중3",
+    "3-1",
+    "다항식의 인수분해",
+    "50",
+    "인수분해한 두 일차식의 상수항의 합",
+    "인수분해",
+    "심화",
+    (rng) => {
+      // 🔴 인수분해가 **하나로 정해져야** 답이 하나다.
+      //    최고차항의 계수를 $1$ 또는 소수로만 잡으면 두 일차식으로 가르는 방법이
+      //    (순서를 빼고) 하나뿐이다. $4$ 처럼 합성수면 갈래가 둘이 될 수 있다.
+      const c = pick(rng, [1, 2, 3, 5] as const);
+      const b = intBetween(rng, 1, 6);
+      const d = attempt(60, () => {
+        const v = intBetween(rng, 1, 6);
+        return gcdOf(c, v) === 1 ? v : null;
+      });
+      const mid = d + b * c;
+      const tail = b * d;
+      const lead = c === 1 ? "x^2" : `${c}x^2`;
+      return {
+        content: `이차식 $${lead}+${mid}x+${tail}$${eulReul(tail)} 계수가 자연수인 두 일차식의 곱으로 인수분해할 때, 두 일차식의 상수항의 합을 구하시오.`,
+        answer: `$${b + d}$`,
+        solution: `$${lead}+${mid}x+${tail}=(x+${b})(${c === 1 ? "" : c}x+${d})$이다.\n두 일차식의 상수항은 $${b}$${waGwa(b)} $${d}$이므로 그 합은 $${b}+${d}=${b + d}$이다.`,
+        facts: { c, b, d, mid, tail, x: b + d },
+      };
+    },
+  ),
+];
+
+/** 최대공약수 — `m1Shared` 에 없어 여기 하나 둔다. */
+function gcdOf(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) {
+    const t = x % y;
+    x = y;
+    y = t;
+  }
+  return x;
+}
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다. */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
 /**
  * 이 갈래가 등록하는 보강 유형 전량 — `generate.ts` 가 이 하나만 편다.
- * 위의 세 모듈 몫 + 아래에서 지은 연립방정식 8 · 순환소수 6.
+ * 위의 세 모듈 몫 + 아래에서 지은 연립방정식 8 · 순환소수 6 · 각 2 · 인수분해 1.
  */
 export const MID_SUP_B: TypeEntry[] = [
+  ...ANGLE_SUPPLEMENTS,
+  ...FACTOR_SUPPLEMENTS,
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,
