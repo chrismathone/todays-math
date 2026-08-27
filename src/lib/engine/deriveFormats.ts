@@ -187,11 +187,18 @@ export function numericMistakes(answer: string): Mistake[] {
   const wrap = parsed.wrapped;
   const out: Mistake[] = [];
   const seen = new Set<string>();
+  // 🔴 오답은 **정답과 같은 모양**이어야 한다. 「$8\,\mathrm{cm}$」의 역수는
+  //    「$\frac{1}{8}\,\mathrm{cm}$」인데, 길이로는 그럴듯하지 않아 학생이
+  //    계산 없이 지워 낸다 — 문항이 오히려 쉬워진다. 수를 N 으로 지운 뒤
+  //    모양이 같은 것만 남긴다.
+  const shapeOf = (t: string) => t.replace(/-?\d+(?:\.\d+)?/g, "N");
+  const wantShape = shapeOf(answer.trim());
   const push = (tag: string, rat: Rat | null): void => {
     if (!rat || rat.d === 0) return;
     const reduced = reduce(rat);
     if (reduced.n === parsed.rat.n && reduced.d === parsed.rat.d) return;
     const value = wrap(formatRat(reduced, parsed.style));
+    if (parsed.decorated && shapeOf(value) !== wantShape) return;
     if (seen.has(value)) return;
     seen.add(value);
     out.push({ tag, value });
@@ -224,6 +231,8 @@ function parseNumericAnswer(raw: string): {
   rat: Rat;
   wrapped: (inner: string) => string;
   style: "int" | "frac" | "dec";
+  /** 단위·꼬리표가 붙은 수인가 — 오답 모양을 그대로 지켜야 한다. */
+  decorated?: boolean;
 } | null {
   const trimmed = raw.trim();
   let inner = trimmed;
@@ -238,7 +247,7 @@ function parseNumericAnswer(raw: string): {
   }
   inner = inner.replace(/\\,/g, "").trim();
 
-  const frac = inner.match(/^(-)?\\frac\{(-?\d+)\}\{(-?\d+)\}$/);
+  const frac = inner.match(/^(-)?\\d?frac\{(-?\d+)\}\{(-?\d+)\}$/);
   if (frac) {
     const sign = frac[1] ? -1 : 1;
     const n = sign * Number(frac[2]);
@@ -264,8 +273,45 @@ function parseNumericAnswer(raw: string): {
     if (!Number.isFinite(n)) return null;
     return { rat: { n, d: 1 }, wrapped, style: "int" };
   }
+
+  // 🔴 **단위·꼬리표가 붙은 수** — 여기까지 오면 「$8\,\mathrm{cm}$」·「$90^\circ$」·
+  //    「$12$개」처럼 수 하나에 장식이 붙은 것이다. 전수로 세니 중등에서 객관식을
+  //    못 만든 정답의 대부분이 이 부류였다(cm 78 · ° 76 · 개 61 · cm² 29 …).
+  //    **틀은 그대로 두고 수만** 바꾸면 그대로 오답이 된다.
+  //
+  //    ⚠️ 수가 둘 이상이면 손대지 않는다(「$x=2$, $y=5$」) — 어느 쪽을 바꿔야
+  //       할지 알 수 없다. 그리고 **닫힌 영역**도 손대지 않는다.
+  if (CLOSED_DOMAIN.test(trimmed)) return null;
+  const decorated = trimmed.match(/^(\D*?)(-?\d+(?:\.\d+)?)([\s\S]*)$/);
+  if (decorated) {
+    const [, before, num, after] = decorated as unknown as [
+      string,
+      string,
+      string,
+      string,
+    ];
+    const value = Number(num);
+    if (!Number.isFinite(value)) return null;
+    const dot = num.indexOf(".");
+    const style = dot < 0 ? ("int" as const) : ("dec" as const);
+    const scale = dot < 0 ? 1 : 10 ** (num.length - dot - 1);
+    return {
+      rat: reduce({ n: Math.round(value * scale), d: scale }),
+      wrapped: (s) => `${before}${s}${after}`,
+      style,
+      decorated: true,
+    };
+  }
   return null;
 }
+
+/**
+ * **닫힌 영역** — 수를 바꾸면 학생이 계산 없이 지워 내는 가짜 오답이 나온다.
+ * 「제$2$사분면」에서 2를 8로 바꾸면 「제$8$사분면」이다. 오답을 지어내는 것보다
+ * 객관식을 안 만드는 편이 낫다.
+ * 목록은 **실측 census 에서** 뽑았다(못 만든 정답 모양 빈도표).
+ */
+const CLOSED_DOMAIN = /사분면|요일|월$|분면/;
 
 function reduce(r: Rat): Rat {
   const g = gcd(Math.abs(r.n), Math.abs(r.d));
