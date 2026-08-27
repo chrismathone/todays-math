@@ -2679,7 +2679,11 @@ function dashedLinesAfterPolygons(svg: string): [Pt, Pt][] {
   for (const m of svg.matchAll(
     /<line x1="(-?[0-9.]+)" y1="(-?[0-9.]+)" x2="(-?[0-9.]+)" y2="(-?[0-9.]+)"([^>]*)>/g,
   )) {
-    if (!m[5]!.includes("stroke-dasharray")) continue;
+    const attrs = m[5]!;
+    const structuralMarker =
+      attrs.includes('stroke-width="0"') &&
+      attrs.includes('stroke-opacity="0"');
+    if (!attrs.includes("stroke-dasharray") && !structuralMarker) continue;
     if (m.index! < lastPoly) continue;
     out.push([
       [Number(m[1]), Number(m[2])],

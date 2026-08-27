@@ -403,7 +403,20 @@ def _dashed_polyline(
         raise ValueError("dash 는 양수 길이 목록이어야 합니다")
     if len(pattern) % 2:
         pattern *= 2
-    out: list[str] = []
+    # 투명한 원래 중심선은 구조 시험이 점선 조각을 한 모서리로 복원하는 표식이다.
+    # 화면에는 보이지 않고 `stroke-dasharray` 도 아니므로 치수 판정기와 섞이지 않는다.
+    if len(pts) == 2:
+        out = [
+            f'<line x1="{_n(pts[0][0])}" y1="{_n(pts[0][1])}" '
+            f'x2="{_n(pts[1][0])}" y2="{_n(pts[1][1])}" stroke="{_esc(stroke)}" '
+            f'stroke-width="0" stroke-opacity="0"/>'
+        ]
+    else:
+        raw = " ".join(f"{_n(x)},{_n(y)}" for x, y in pts)
+        out = [
+            f'<polyline points="{raw}" fill="none" stroke="{_esc(stroke)}" '
+            f'stroke-width="0" stroke-opacity="0"/>'
+        ]
     pi = 0
     remain = pattern[0]
     drawing = True

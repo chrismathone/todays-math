@@ -2054,7 +2054,7 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
         [vi(0, 0, 0), vi(w, 0, 0), vi(w, d, 0), vi(0, d, 0)],
         [vi(0, 0, h), vi(w, 0, h), vi(w, d, h), vi(0, d, h)],
     ]
-    parts += _hidden_lines(view, verts3, faces_idx)
+    parts += _hidden_lines(view, verts3, faces_idx, structural=True)
 
     def dim(a: tuple[float, float], b: tuple[float, float], label: str) -> None:
         span = math.hypot(b[0] - a[0], b[1] - a[1])
@@ -2216,10 +2216,16 @@ def _hidden_lines(
     view: Any,
     verts3: list[tuple[float, float, float]],
     faces: list[list[int]],
+    *,
+    structural: bool = False,
 ) -> list[str]:
     pts = [view(p) for p in verts3]
     return [
-        _line(pts[a], pts[b], sw=1.0, dash=HIDDEN_DASH)
+        (
+            _dashed_polyline([pts[a], pts[b]], HIDDEN_DASH, sw=1.0)
+            if structural
+            else _line(pts[a], pts[b], sw=1.0, dash=HIDDEN_DASH)
+        )
         for a, b in _hidden_edges(view, verts3, faces)
     ]
 
