@@ -16,6 +16,7 @@ import {
   generateMiddleProblem,
   generateMiddleSet,
 } from "../../lib/middle/generate";
+import { catalogMaxNumber, isCatalogType } from "../helpers/rpmCatalog";
 import { M2_TYPES } from "../../lib/middle/m2";
 import { QUAD10_CLAIMS, QUAD11_SHAPES } from "../../lib/middle/m2GeoQuad";
 import { SIM01_PERMS } from "../../lib/middle/m2GeoSim";
@@ -30,9 +31,15 @@ const MINORS = new Set([
   "평행선 사이의 선분의 길이의 비",
 ]);
 
-const GEO = M2_TYPES.filter(
+// ⚠️ 중단원으로 고르면 2026-08-27 부터 갈래 넷이 같은 중단원에 더하는 «확장 유형»
+//    (색인에 없는 번호)까지 쓸어 담아, 남의 유형이 이 검산표에 들이대진다
+//    — 실제로 「닮은 도형」이 4 → 10 이 되며 빨개졌다. 몫을 「RPM 색인에 있는가」로
+//    한 번 더 좁힌다. 확장 유형의 값 검산은 그것을 지은 갈래의 시험이 들고 있다.
+const IN_MINORS = M2_TYPES.filter(
   (e) => e.rpmBook === "2-2" && MINORS.has(e.rpmMinor),
 );
+const GEO = IN_MINORS.filter((e) => isCatalogType(e));
+const GEO_EXTENSIONS = IN_MINORS.filter((e) => !isCatalogType(e));
 
 type P2 = readonly [number, number];
 
@@ -562,6 +569,20 @@ function numericLabels(spec: Record<string, unknown>): number[] {
 }
 
 describe("중2 기하 55유형 (RPM 2-2)", () => {
+  it("확장 유형은 색인 번호대를 **넘는다** — 번호대 안이면 오타이지 확장이 아니다", () => {
+    for (const e of GEO_EXTENSIONS) {
+      const maxNo = catalogMaxNumber(e.rpmBook, e.rpmMinor);
+      expect(
+        maxNo,
+        `${e.key}: 색인에 없는 중단원 ${JSON.stringify(e.rpmMinor)}`,
+      ).not.toBeNull();
+      expect(
+        Number(e.rpmType),
+        `${e.key}: 색인 번호대(최대 ${maxNo}) 안이다 — 확장이 아니라 오타로 보인다`,
+      ).toBeGreaterThan(maxNo!);
+    }
+  });
+
   it("네 중단원의 계획된 번호가 전부 등록돼 있다", () => {
     const byMinor = new Map<string, string[]>();
     for (const e of GEO) {
