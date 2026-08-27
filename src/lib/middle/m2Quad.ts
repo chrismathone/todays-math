@@ -796,4 +796,35 @@ export const M2_QUAD: TypeEntry[] = [
       };
     },
   ),
+
+  /*
+   * 20A — 「평행사변형의 성질」에는 `연산` 이 **하나도 없었다**(01·02·03 기본,
+   * 04·05·06·10·11 응용, 12 심화). 하위반 프리셋이 이 소단원에서 밑단을 한
+   * 문항도 못 채운다(D-106). 성질 둘(대각이 같다 · 이웃각의 합이 $180^\circ$ ·
+   * 대변이 같다)을 **식 없이 곧바로 쓰는** 밑단으로 세운다.
+   */
+  def("20A", "평행사변형의 대각과 대변", SEC.성질, "연산", (rng): Body => {
+    const mode = intBetween(rng, 0, 1);
+    if (mode === 0) {
+      const a = intBetween(rng, 35, 145);
+      const b = 180 - a;
+      return {
+        content: `평행사변형 $ABCD$에서 $\\angle A=${a}^\\circ$일 때, $\\angle B$의 크기를 구하시오.`,
+        answer: `$${b}^\\circ$`,
+        solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 이웃하는 두 내각의 크기의 합은 $180^\\circ$이다.\n따라서 $\\angle B=180^\\circ-${a}^\\circ=${b}^\\circ$이다.`,
+        facts: { mode, a, ans: b },
+        figureSpec: figParaBasic(150, 92, 40),
+      };
+    }
+    const m = intBetween(rng, 3, 16);
+    const n = intBetween(rng, 3, 16);
+    const peri = 2 * (m + n);
+    return {
+      content: `평행사변형 $ABCD$에서 $\\overline{AB}=${m}\\,\\mathrm{cm}$, $\\overline{BC}=${n}\\,\\mathrm{cm}$일 때, $\\square ABCD$의 둘레의 길이를 구하시오.`,
+      answer: `$${peri}\\,\\mathrm{cm}$`,
+      solution: `평행사변형의 두 쌍의 대변의 길이는 각각 같으므로 $\\overline{CD}=\\overline{AB}=${m}\\,\\mathrm{cm}$, $\\overline{AD}=\\overline{BC}=${n}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $2\\times(${m}+${n})=${peri}\\,(\\mathrm{cm})$이다.`,
+      facts: { mode, m, n, ans: peri },
+      figureSpec: figParaBasic(150, 92, 40),
+    };
+  }),
 ];

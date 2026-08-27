@@ -50,6 +50,24 @@ MUTATIONS = [
         "$\\\\mathrm{A}$의 도수가",
         "$\\mathrm{A}$의 도수가",
     ),
+    (
+        "20A: 이웃각을 대각으로",
+        "src/lib/middle/m2Quad.ts",
+        "      const a = intBetween(rng, 35, 145);\n      const b = 180 - a;",
+        "      const a = intBetween(rng, 35, 145);\n      const b = a;",
+    ),
+    (
+        "20A: 둘레를 두 배 안 한다",
+        "src/lib/middle/m2Quad.ts",
+        "    const peri = 2 * (m + n);",
+        "    const peri = m + n;",
+    ),
+    (
+        "20A: 갈래를 하나로 고정",
+        "src/lib/middle/m2Quad.ts",
+        'def("20A", "평행사변형의 대각과 대변", SEC.성질, "연산", (rng): Body => {\n    const mode = intBetween(rng, 0, 1);',
+        'def("20A", "평행사변형의 대각과 대변", SEC.성질, "연산", (rng): Body => {\n    const mode = intBetween(rng, 0, 0);',
+    ),
 ]
 
 

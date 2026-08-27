@@ -50,6 +50,18 @@ function gcdOf(a: number, b: number): number {
   return x;
 }
 
+/**
+ * 씨앗을 **멀리 떨어뜨린다.**
+ *
+ * `seeded` 는 선형 합동이라 씨앗을 $1$씩 올리면 **첫 뽑기가 $0.0004$ 밖에 안
+ * 움직인다** — `1`~`60` 을 다 돌려도 첫 뽑기 범위가 $0.023$ 이다. 갈래를 첫
+ * 뽑기로 고르는 유형(`intBetween(rng, 0, 1)`)은 그 씨앗 사다리에서 **한 갈래만**
+ * 나오고, 나머지 갈래는 구조적으로 가드 밖이 된다(실측: 20A 의 대변 갈래 0회).
+ */
+function spread(i: number): number {
+  return Math.imul(i, 104729) >>> 0;
+}
+
 function implicitCoefficient(token: string): number {
   if (token === "" || token === "+") return 1;
   if (token === "-") return -1;
@@ -892,8 +904,8 @@ describe("갈래 A 중등 유형 값 검산", () => {
         candidate.rpmType === "04A",
     );
     expect(entry).toBeDefined();
-    for (let seed = 1; seed <= 120; seed += 1) {
-      const problem = entry!.handler(seeded(seed));
+    for (let i = 1; i <= 120; i += 1) {
+      const problem = entry!.handler(seeded(spread(i)));
       const divisors = (problem.content.match(/\$(\d+)\$의 배수/g) ?? []).map(
         (token) => Number(token.match(/\d+/)![0]),
       );
@@ -967,8 +979,8 @@ describe("갈래 A 중등 유형 값 검산", () => {
         candidate.unitSection === "확률의 계산" && candidate.rpmType === "07A",
     );
     expect(entry).toBeDefined();
-    for (let seed = 1; seed <= 40; seed += 1) {
-      const problem = entry!.handler(seeded(seed));
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry!.handler(seeded(spread(i)));
       const cond = problem.content.match(
         /\$(\d+)\$(의 배수|의 약수| 이상| 이하)의 눈이 나올/,
       );
@@ -1011,6 +1023,43 @@ describe("갈래 A 중등 유형 값 검산", () => {
       }
     },
   );
+
+  /**
+   * 평행사변형의 성질 20A — 두 갈래를 **둘 다** 본다.
+   *
+   * 씨앗 셋만 돌리면 한 갈래가 안 나올 수 있고, 그러면 그 갈래는 구조적으로
+   * 가드 밖이다. 그래서 씨앗을 넓히고 **두 갈래가 다 나왔는지 세어** 확인한다.
+   */
+  it("평행사변형의 성질 유형 20A", () => {
+    const entry = M2_QUAD.find(
+      (candidate) =>
+        candidate.unitSection === "평행사변형의 성질" &&
+        candidate.rpmType === "20A",
+    );
+    expect(entry).toBeDefined();
+    let angleSeen = 0;
+    let sideSeen = 0;
+    for (let i = 1; i <= 60; i += 1) {
+      const problem = entry!.handler(seeded(spread(i)));
+      if (problem.content.includes("\\angle A=")) {
+        // 이웃하는 두 내각의 합은 $180^\circ$ 다.
+        const a = Number(problem.content.match(/\\angle A=(\d+)\^/)?.[1]);
+        expect(a).toBeGreaterThan(0);
+        expect(numericAnswer(problem.answer)).toBe(180 - a);
+        angleSeen += 1;
+      } else {
+        const [m, n] = (problem.content.match(/=(\d+)\\,/g) ?? []).map(
+          (token) => Number(token.match(/\d+/)![0]),
+        );
+        expect(m).toBeGreaterThan(0);
+        expect(n).toBeGreaterThan(0);
+        expect(numericAnswer(problem.answer)).toBe(2 * (m! + n!));
+        sideSeen += 1;
+      }
+    }
+    expect(angleSeen).toBeGreaterThan(0);
+    expect(sideSeen).toBeGreaterThan(0);
+  });
 });
 
 /**
