@@ -418,3 +418,46 @@ describe("중등 유형 갈래 C — 일차함수의 그래프와 기울기", ()
     );
   });
 });
+
+describe("중등 유형 갈래 C — 일차함수의 그래프와 절편", () => {
+  const SEC_INT = "일차함수의 그래프와 절편";
+
+  it("81 답에서만 상수항이 발문의 y절편이 된다 — 경계까지 본다", () => {
+    const { facts } = generatedFunc(SEC_INT, "81");
+    const constTerm = (a: number) => facts!.mult * a - facts!.off;
+    expect(constTerm(facts!.a)).toBe(facts!.b);
+    expect(constTerm(facts!.a + 1)).not.toBe(facts!.b);
+  });
+
+  it("82 x절편에서만 y가 0이 된다 — 경계까지 본다", () => {
+    const { facts } = generatedFunc(SEC_INT, "82");
+    const y = (x: number) => facts!.m * x + facts!.b;
+    expect(y(facts!.x0)).toBe(0);
+    expect(y(facts!.x0 + 1)).not.toBe(0);
+  });
+
+  it("83 두 절편이 실제로 절편이고 답이 그 곱이다", () => {
+    const { facts } = generatedFunc(SEC_INT, "83");
+    expect(facts!.m * facts!.x0 + facts!.b).toBe(0); // x절편
+    expect(facts!.ans).toBe(facts!.x0 * facts!.b);
+  });
+
+  it("84 답을 넣으면 발문의 x절편에서 y가 0이 된다", () => {
+    const { facts } = generatedFunc(SEC_INT, "84");
+    expect(facts!.m * facts!.p + facts!.b).toBe(0);
+    expect(facts!.m * (facts!.p + 1) + facts!.b).not.toBe(0);
+  });
+
+  it("85 두 그래프가 같은 점에서 x축을 지난다", () => {
+    const { facts } = generatedFunc(SEC_INT, "85");
+    expect(facts!.m1 * facts!.x0 + facts!.b1).toBe(0);
+    expect(facts!.m2 * facts!.x0 + facts!.k).toBe(0);
+    expect(facts!.m1).not.toBe(facts!.m2);
+  });
+
+  it("86 답을 넣으면 두 절편의 합이 발문의 값이 된다", () => {
+    const { facts } = generatedFunc(SEC_INT, "86");
+    expect(facts!.m * facts!.x0 + facts!.b).toBe(0); // x절편이 맞나
+    expect(facts!.x0 + facts!.b).toBe(facts!.sum);
+  });
+});

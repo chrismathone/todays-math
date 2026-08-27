@@ -1049,4 +1049,135 @@ export const M2_FUNC: TypeEntry[] = [
         };
       }),
   ),
+
+  def(
+    MINOR_G1,
+    "81",
+    "y절편이 주어질 때 상수 구하기",
+    SEC.절편,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const a = nonZero(rng, -5, 5);
+        const mult = intBetween(rng, 2, 4);
+        const off = nonZero(rng, -6, 6);
+        const b = mult * a - off;
+        if (b === 0 || Math.abs(b) > 20) return null;
+        const m = nonZero(rng, -4, 4);
+        const head = off > 0 ? `${mult}a-${off}` : `${mult}a+${-off}`;
+        return {
+          content: `일차함수 $y=${mono(m)}+(${head})$의 그래프의 $y$절편이 $${b}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$y$절편은 상수항이므로 $${head}=${b}$이다.\n$${mult}a=${b + off}$이므로 $a=${a}$이다.`,
+          facts: { a, mult, off, b, m },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "82",
+    "일차함수의 그래프의 x절편 구하기",
+    SEC.절편,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const m = nonZero(rng, -5, 5);
+        const x0 = nonZero(rng, -6, 6);
+        const b = -m * x0;
+        if (Math.abs(b) > 24) return null;
+        return {
+          content: `일차함수 $y=${linear(m, b)}$의 그래프의 $x$절편을 구하시오.`,
+          answer: `$${x0}$`,
+          solution: `$x$절편은 $y=0$일 때의 $x$의 값이다.\n$${linear(m, b)}=0$에서 $${mono(m)}=${-b}$이므로 $x=${x0}$이다.`,
+          facts: { m, b, x0 },
+        };
+      }),
+  ),
+
+  def(MINOR_G1, "83", "x절편과 y절편의 곱", SEC.절편, "응용", (rng) =>
+    attempt(120, () => {
+      const m = nonZero(rng, -4, 4);
+      const x0 = nonZero(rng, -5, 5);
+      const b = -m * x0;
+      if (Math.abs(b) > 20) return null;
+      const ans = x0 * b;
+      return {
+        content: `일차함수 $y=${linear(m, b)}$의 그래프의 $x$절편과 $y$절편의 곱을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `$y=0$을 대입하면 $x$절편은 $${x0}$이고, $x=0$을 대입하면 $y$절편은 $${b}$이다.\n따라서 두 절편의 곱은 $${x0}\times${b < 0 ? `(${b})` : b}=${ans}$이다.`,
+        facts: { m, b, x0, ans },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_G1,
+    "84",
+    "x절편이 주어질 때 상수 구하기",
+    SEC.절편,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const m = nonZero(rng, -5, 5);
+        const p = nonZero(rng, -6, 6);
+        const b = -m * p;
+        if (Math.abs(b) > 24) return null;
+        return {
+          content: `일차함수 $y=${mono(m)}+b$의 그래프의 $x$절편이 $${p}$일 때, 상수 $b$의 값을 구하시오.`,
+          answer: `$${b}$`,
+          solution: `$x$절편이 $${p}$이므로 그래프는 점 $(${p}, 0)$을 지난다.\n$x=${p}$, $y=0$을 대입하면 $0=${m * p}+b$이므로 $b=${b}$이다.`,
+          facts: { m, p, b },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "85",
+    "x절편이 같은 두 일차함수의 그래프",
+    SEC.절편,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const x0 = nonZero(rng, -5, 5);
+        const m1 = nonZero(rng, -4, 4);
+        const m2 = attempt(60, () => {
+          const v = nonZero(rng, -4, 4);
+          return v === m1 ? null : v;
+        });
+        const b1 = -m1 * x0;
+        const k = -m2 * x0;
+        if (Math.abs(b1) > 20 || Math.abs(k) > 20) return null;
+        return {
+          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${mono(m2)}+k$의 그래프의 $x$절편이 서로 같을 때, 상수 $k$의 값을 구하시오.`,
+          answer: `$${k}$`,
+          solution: `앞 그래프의 $x$절편은 $${linear(m1, b1)}=0$에서 $x=${x0}$이다.\n뒤 그래프도 점 $(${x0}, 0)$을 지나야 하므로 $0=${m2 * x0}+k$이다.\n따라서 $k=${k}$이다.`,
+          facts: { x0, m1, b1, m2, k },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_G1,
+    "86",
+    "두 절편의 합이 주어질 때 상수 구하기",
+    SEC.절편,
+    "심화",
+    (rng) =>
+      attempt(200, () => {
+        const m = nonZero(rng, -5, 5);
+        const x0 = nonZero(rng, -6, 6);
+        const b = -m * x0;
+        if (b === 0 || Math.abs(b) > 24) return null;
+        const sum = x0 + b;
+        if (sum === 0) return null;
+        return {
+          content: `일차함수 $y=${mono(m)}+b$의 그래프에서 ($x$절편)$+$($y$절편)$=${sum}$일 때, 상수 $b$의 값을 구하시오.`,
+          answer: `$${b}$`,
+          solution: `$y$절편은 $b$이고, $x$절편은 $${mono(m)}+b=0$에서 $x=${x0}$이다.\n두 절편의 합이 $${sum}$이므로 $${x0}+${b < 0 ? `(${b})` : b}=${sum}$이 되어 $b=${b}$이다.`,
+          facts: { m, x0, b, sum },
+        };
+      }),
+  ),
 ];
