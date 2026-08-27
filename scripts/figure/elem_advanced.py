@@ -2385,7 +2385,8 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     bot3 = circle3((0, 0, 0), r, (0, 0, 1), 64)
     top3 = circle3((0, 0, h), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
-        bot3 + top3, scale, (40.0, 24.0, 30.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
+        bot3 + top3, scale, (44.0, 24.0, 26.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)

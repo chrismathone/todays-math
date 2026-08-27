@@ -360,11 +360,11 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       version: "elem-1",
       kind: "cylinder",
       r: 2,
-      h: 3,
+      h: 15,
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg, "높이는 적는다").toContain(">3 cm<");
+    expect(r.svg, "높이는 적는다").toContain(">15 cm<");
     expect(r.svg, "반지름은 발문에 있으므로 안 적는다").not.toContain(">2 cm<");
     // 반지름 라벨이 없으면 중심 점은 **설명 없는 표시**다 — 같이 뺀다.
     expect(
@@ -372,13 +372,16 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
       "중심 점",
     ).toHaveLength(0);
     // 높이 치수는 도형 왼쪽 바깥이다.
-    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>3 cm</);
+    const m = r.svg.match(/x="([0-9.-]+)" y="([0-9.-]+)"[^>]*>15 cm</);
     expect(m).toBeTruthy();
     const xs = [...r.svg.matchAll(/points="([^"]+)"/g)].flatMap((p) =>
       p[1].split(/\s+/).map((q) => Number(q.split(",")[0])),
     );
     const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
     expect(Number(m![1])).toBeLessThan(midX - 8);
+    const halfText = 0.3 * 12 * "15 cm".length;
+    const halfHalo = (12 * 0.5) / 2;
+    expect(Number(m![1]) - halfText - halfHalo).toBeGreaterThanOrEqual(0);
   });
 
   it("쌓기나무 겨냥도와 위 보기는 겹치지 않는다", async () => {
