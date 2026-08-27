@@ -587,4 +587,103 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       facts: { a, b, turnsA, turnsB },
     };
   }),
+
+  def("31", "증가한 양으로 처음 값 구하기", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 50] as const);
+    const before = intBetween(rng, 4, 20) * 100;
+    const after = (before * (100 + rate)) / 100;
+    return {
+      content: `어느 마을의 인구가 작년보다 $${rate}\\%$ 증가하여 올해 $${after}$명이 되었다. 작년의 인구를 구하시오.`,
+      answer: `$${before}$명`,
+      solution: `작년 인구를 $x$명이라 하면 $\\dfrac{${100 + rate}}{100}x=${after}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, after },
+    };
+  }),
+
+  def("32", "감소한 양으로 처음 값 구하기", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 40] as const);
+    const before = intBetween(rng, 4, 20) * 100;
+    const after = (before * (100 - rate)) / 100;
+    return {
+      content: `어느 공장의 생산량이 지난달보다 $${rate}\\%$ 감소하여 이번 달 $${after}$개가 되었다. 지난달의 생산량을 구하시오.`,
+      answer: `$${before}$개`,
+      solution: `지난달 생산량을 $x$개라 하면 $\\dfrac{${100 - rate}}{100}x=${after}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, after },
+    };
+  }),
+
+  def("33", "이익률과 판매가", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 50] as const);
+    const cost = intBetween(rng, 4, 20) * 1000;
+    const sale = (cost * (100 + rate)) / 100;
+    return {
+      content: `어떤 물건을 원가의 $${rate}\\%$의 이익을 남기고 $${sale}$원에 팔았다. 이 물건의 원가를 구하시오.`,
+      answer: `$${cost}$원`,
+      solution: `원가를 $x$원이라 하면 판매가는 $\\dfrac{${100 + rate}}{100}x$원이다.\n$\\dfrac{${100 + rate}}{100}x=${sale}$이므로 $x=${cost}$이다.`,
+      facts: { rate, cost, sale },
+    };
+  }),
+
+  def("34", "할인율과 정가", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [10, 20, 25, 40] as const);
+    const price = intBetween(rng, 4, 20) * 1000;
+    const sale = (price * (100 - rate)) / 100;
+    return {
+      content: `정가에서 $${rate}\\%$ 할인하여 $${sale}$원에 판매한 상품이 있다. 이 상품의 정가를 구하시오.`,
+      answer: `$${price}$원`,
+      solution: `정가를 $x$원이라 하면 $\\dfrac{${100 - rate}}{100}x=${sale}$이다.\n따라서 $x=${price}$이다.`,
+      facts: { rate, price, sale },
+    };
+  }),
+
+  def("35", "연속한 증가와 감소", SEC.증감, "심화", (rng) => {
+    const up = pick(rng, [20, 25, 50] as const);
+    const down = pick(rng, [20, 25, 40] as const);
+    const before = intBetween(rng, 4, 16) * 100;
+    const after = (before * (100 + up) * (100 - down)) / 10000;
+    return {
+      content: `어떤 제품의 생산량이 첫 달에는 $${up}\\%$ 증가하고 다음 달에는 $${down}\\%$ 감소하여 $${after}$개가 되었다. 증가하기 전 생산량을 구하시오.`,
+      answer: `$${before}$개`,
+      solution: `증가하기 전 생산량을 $x$개라 하면 $x\\times\\dfrac{${100 + up}}{100}\\times\\dfrac{${100 - down}}{100}=${after}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { up, down, before, after },
+    };
+  }),
+
+  def("36", "부가세가 포함된 가격", SEC.증감, "응용", (rng) => {
+    const rate = pick(rng, [5, 10, 20] as const);
+    const before = intBetween(rng, 4, 20) * 1000;
+    const included = (before * (100 + rate)) / 100;
+    return {
+      content: `어떤 물건의 세전 가격에 $${rate}\\%$의 세금을 더한 가격이 $${included}$원이다. 이 물건의 세전 가격을 구하시오.`,
+      answer: `$${before}$원`,
+      solution: `세전 가격을 $x$원이라 하면 $\\dfrac{${100 + rate}}{100}x=${included}$이다.\n따라서 $x=${before}$이다.`,
+      facts: { rate, before, included },
+    };
+  }),
+
+  def("37", "불량률을 제외한 제품 수", SEC.증감, "기본", (rng) => {
+    const rate = pick(rng, [5, 10, 20, 25] as const);
+    const total = intBetween(rng, 4, 20) * 100;
+    const good = (total * (100 - rate)) / 100;
+    return {
+      content: `생산한 제품 중 $${rate}\\%$가 불량품이고 정상 제품은 $${good}$개이다. 생산한 제품의 전체 개수를 구하시오.`,
+      answer: `$${total}$개`,
+      solution: `전체 제품을 $x$개라 하면 정상 제품은 $\\dfrac{${100 - rate}}{100}x$개이다.\n$\\dfrac{${100 - rate}}{100}x=${good}$이므로 $x=${total}$이다.`,
+      facts: { rate, total, good },
+    };
+  }),
+
+  def("38", "일부를 쓰고 남은 양", SEC.증감, "응용", (rng) => {
+    const firstRate = pick(rng, [10, 20, 25] as const);
+    const secondRate = pick(rng, [10, 20, 25] as const);
+    const total = intBetween(rng, 4, 20) * 100;
+    const spent = (total * (firstRate + secondRate)) / 100;
+    const left = total - spent;
+    return {
+      content: `예산의 $${firstRate}\\%$를 교재비로, 전체 예산의 $${secondRate}\\%$를 준비물비로 사용하였더니 $${left}$원이 남았다. 처음 예산을 구하시오.`,
+      answer: `$${total}$원`,
+      solution: `처음 예산을 $x$원이라 하면 남은 돈은 $\\dfrac{${100 - firstRate - secondRate}}{100}x$원이다.\n$\\dfrac{${100 - firstRate - secondRate}}{100}x=${left}$이므로 $x=${total}$이다.`,
+      facts: { firstRate, secondRate, total, spent, left },
+    };
+  }),
 ];

@@ -72,6 +72,53 @@ const RATIO_CHECKS: Record<string, (content: string) => number> = {
   },
 };
 
+const CHANGE_CHECKS: Record<string, (content: string) => number> = {
+  "31": (content) => {
+    const [, rate, after] = content.match(
+      /\$(\d+)\\%\$ 증가하여.*\$(\d+)\$명/,
+    )!;
+    return (Number(after) * 100) / (100 + Number(rate));
+  },
+  "32": (content) => {
+    const [, rate, after] = content.match(
+      /\$(\d+)\\%\$ 감소하여.*\$(\d+)\$개/,
+    )!;
+    return (Number(after) * 100) / (100 - Number(rate));
+  },
+  "33": (content) => {
+    const [, rate, sale] = content.match(/원가의 \$(\d+)\\%\$.*\$(\d+)\$원/)!;
+    return (Number(sale) * 100) / (100 + Number(rate));
+  },
+  "34": (content) => {
+    const [, rate, sale] = content.match(/\$(\d+)\\%\$ 할인하여 \$(\d+)\$원/)!;
+    return (Number(sale) * 100) / (100 - Number(rate));
+  },
+  "35": (content) => {
+    const [, up, down, after] = content.match(
+      /\$(\d+)\\%\$ 증가.*\$(\d+)\\%\$ 감소하여 \$(\d+)\$개/,
+    )!;
+    return (
+      (Number(after) * 10000) / ((100 + Number(up)) * (100 - Number(down)))
+    );
+  },
+  "36": (content) => {
+    const [, rate, included] = content.match(
+      /\$(\d+)\\%\$의 세금.*\$(\d+)\$원/,
+    )!;
+    return (Number(included) * 100) / (100 + Number(rate));
+  },
+  "37": (content) => {
+    const [, rate, good] = content.match(/\$(\d+)\\%\$가 불량품.*\$(\d+)\$개/)!;
+    return (Number(good) * 100) / (100 - Number(rate));
+  },
+  "38": (content) => {
+    const [, first, second, left] = content.match(
+      /\$(\d+)\\%\$를 교재비로.*\$(\d+)\\%\$를 준비물비로.*\$(\d+)\$원/,
+    )!;
+    return (Number(left) * 100) / (100 - Number(first) - Number(second));
+  },
+};
+
 describe("중등 유형 갈래 D", () => {
   it.each(FIRST_FIVE)(
     "$section 소단원은 서로 다른 유형 10개를 갖는다",
@@ -93,6 +140,22 @@ describe("중등 유형 갈래 D", () => {
         const problem = entry!.handler(rngFrom(seed));
         expect(answerNumber(problem.answer)).toBe(
           RATIO_CHECKS[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
+  it.each(Object.keys(CHANGE_CHECKS))(
+    "증가·감소·가격 유형 %s의 값을 발문에서 다시 계산한다",
+    (rpmType) => {
+      const entry = M1_LINEAR_APPLY.find(
+        (candidate) => candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [13, 31, 53]) {
+        const problem = entry!.handler(rngFrom(seed));
+        expect(answerNumber(problem.answer)).toBe(
+          CHANGE_CHECKS[rpmType]!(problem.content),
         );
       }
     },
