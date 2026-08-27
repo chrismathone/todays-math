@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { M1EXTRA_TYPES } from "../../lib/middle/m1Extra";
+import { M2_SYSTEM } from "../../lib/middle/m2System";
 import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
 
 function seeded(seed: number): () => number {
@@ -245,6 +246,79 @@ describe("갈래 A 중등 유형 값 검산", () => {
       );
     }
   });
+
+  const numberAverageAgeExpected: Record<string, (content: string) => number> =
+    {
+      "01A": (content) => {
+        const values = content.match(/합은 \$(\d+)\$이고 차는 \$(\d+)\$/);
+        return (Number(values?.[1]) + Number(values?.[2])) / 2;
+      },
+      "02A": (content) => {
+        const values = content.match(
+          /합은 \$(\d+)\$이다.*\$(\d+)\$배보다 \$(\d+)\$만큼/,
+        );
+        return (
+          (Number(values?.[1]) - Number(values?.[3])) /
+          (Number(values?.[2]) + 1)
+        );
+      },
+      "03A": (content) => {
+        const values = content.match(
+          /합은 \$(\d+)\$이고.*\$(\d+)\$배와.*\$(\d+)\$배의 합은 \$(\d+)\$/,
+        );
+        const [sum, a, b, weighted] = values!.slice(1).map(Number);
+        return (b! * sum! - weighted!) / (b! - a!);
+      },
+      "04A": (content) => {
+        const values = content.match(
+          /평균 점수는 \$(\d+)\$점이다.*보다 \$(\d+)\$점 높을/,
+        );
+        return Number(values?.[1]) + Number(values?.[2]) / 2;
+      },
+      "05A": (content) => {
+        const values = content.match(
+          /\$(\d+)\$점인.*\$(\d+)\$점인.*모두 \$(\d+)\$명이고, 전체 평균은 \$(\d+)\$점/,
+        );
+        const [averageA, averageB, total, averageAll] = values!
+          .slice(1)
+          .map(Number);
+        return ((averageAll! - averageB!) * total!) / (averageA! - averageB!);
+      },
+      "06A": (content) => {
+        const values = content.match(
+          /나이 차는 \$(\d+)\$세이다. \$(\d+)\$년 후.*\$(\d+)\$배/,
+        );
+        const [difference, years, multiple] = values!.slice(1).map(Number);
+        return (difference! - (multiple! - 1) * years!) / (multiple! - 1);
+      },
+      "07A": (content) => {
+        const values = content.match(
+          /합은 \$(\d+)\$세이다. \$(\d+)\$년 전.*\$(\d+)\$배보다 \$(\d+)\$세/,
+        );
+        const [sum, years, multiple, extra] = values!.slice(1).map(Number);
+        const younger =
+          (sum! + (multiple! - 1) * years! - extra!) / (multiple! + 1);
+        return sum! - younger;
+      },
+    };
+
+  it.each(Object.keys(numberAverageAgeExpected))(
+    "연립방정식의 활용(수, 평균, 나이) 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM.find(
+        (candidate) =>
+          candidate.unitSection === "연립방정식의 활용(수, 평균, 나이)" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          numberAverageAgeExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
 
   it.each(["19A", "20A", "21A", "22A", "23A", "24A", "25A", "26A"])(
     "해가 특수한 연립방정식 유형 %s",

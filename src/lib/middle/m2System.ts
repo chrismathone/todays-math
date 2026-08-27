@@ -1139,6 +1139,119 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
+  def(MINOR_APPLY, "01A", "두 수의 합과 차", SEC.수나이, "연산", (rng) => {
+    const small = intBetween(rng, 3, 30);
+    const difference = intBetween(rng, 2, 18);
+    const big = small + difference;
+    const sum = big + small;
+    return {
+      content: `두 자연수의 합은 $${sum}$이고 차는 $${difference}$이다. 두 수 중 큰 수를 구하시오.`,
+      answer: `$${big}$`,
+      solution: `큰 수를 $x$, 작은 수를 $y$라 하면 $x+y=${sum}$, $x-y=${difference}$이다. 두 식을 변끼리 더하면 $2x=${2 * big}$이므로 큰 수는 $${big}$이다.`,
+      facts: { sum, difference, big, small },
+    };
+  }),
+
+  def(MINOR_APPLY, "02A", "배수 관계인 두 수", SEC.수나이, "기본", (rng) => {
+    const small = intBetween(rng, 3, 18);
+    const multiple = intBetween(rng, 2, 4);
+    const extra = intBetween(rng, 1, 8);
+    const big = multiple * small + extra;
+    const sum = big + small;
+    return {
+      content: `두 자연수의 합은 $${sum}$이다. 큰 수는 작은 수의 $${multiple}$배보다 $${extra}$만큼 클 때, 작은 수를 구하시오.`,
+      answer: `$${small}$`,
+      solution: `큰 수를 $x$, 작은 수를 $y$라 하면 $x+y=${sum}$, $x=${multiple}y+${extra}$이다. 두 식을 연립하면 $${multiple + 1}y=${sum - extra}$이므로 작은 수는 $${small}$이다.`,
+      facts: { sum, multiple, extra, big, small },
+    };
+  }),
+
+  def(MINOR_APPLY, "03A", "두 수의 배수의 합", SEC.수나이, "응용", (rng) => {
+    const first = intBetween(rng, 3, 20);
+    const second = intBetween(rng, 3, 20);
+    const a = intBetween(rng, 2, 4);
+    const b = a + intBetween(rng, 1, 3);
+    const sum = first + second;
+    const weighted = a * first + b * second;
+    return {
+      content: `두 자연수의 합은 $${sum}$이고, 첫째 수의 $${a}$배와 둘째 수의 $${b}$배의 합은 $${weighted}$이다. 첫째 수를 구하시오.`,
+      answer: `$${first}$`,
+      solution: `첫째 수를 $x$, 둘째 수를 $y$라 하면 $x+y=${sum}$, $${a}x+${b}y=${weighted}$이다. 두 식을 연립하여 풀면 $x=${first}$, $y=${second}$이므로 첫째 수는 $${first}$이다.`,
+      facts: { sum, a, b, weighted, first, second },
+    };
+  }),
+
+  def(MINOR_APPLY, "04A", "두 집단의 평균", SEC.수나이, "기본", (rng) => {
+    const count = intBetween(rng, 4, 12);
+    const averageB = intBetween(rng, 55, 85);
+    const difference = 2 * intBetween(rng, 2, 8);
+    const averageA = averageB + difference;
+    const averageAll = (averageA + averageB) / 2;
+    return {
+      content: `$\mathrm{A}$반과 $\mathrm{B}$반의 학생 수는 각각 $${count}$명이고, 두 반 전체의 평균 점수는 $${averageAll}$점이다. $\mathrm{A}$반의 평균 점수가 $\mathrm{B}$반보다 $${difference}$점 높을 때, $\mathrm{A}$반의 평균 점수를 구하시오.`,
+      answer: `$${averageA}$점`,
+      solution: `$\mathrm{A}$반과 $\mathrm{B}$반의 평균 점수를 각각 $x$점, $y$점이라 하면 학생 수가 같으므로 $x+y=${2 * averageAll}$이고 $x-y=${difference}$이다. 두 식을 연립하면 $x=${averageA}$이므로 $\mathrm{A}$반의 평균은 $${averageA}$점이다.`,
+      facts: { count, averageAll, difference, averageA, averageB },
+    };
+  }),
+
+  def(
+    MINOR_APPLY,
+    "05A",
+    "전체 평균으로 인원 구하기",
+    SEC.수나이,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const countA = intBetween(rng, 4, 16);
+        const countB = intBetween(rng, 4, 16);
+        const averageA = intBetween(rng, 70, 92);
+        const averageB = intBetween(rng, 45, 68);
+        const total = countA + countB;
+        const score = averageA * countA + averageB * countB;
+        if (score % total !== 0) return null;
+        const averageAll = score / total;
+        return {
+          content: `평균 점수가 $${averageA}$점인 $\mathrm{A}$모둠과 평균 점수가 $${averageB}$점인 $\mathrm{B}$모둠의 학생은 모두 $${total}$명이고, 전체 평균은 $${averageAll}$점이다. $\mathrm{A}$모둠의 학생 수를 구하시오.`,
+          answer: `$${countA}$명`,
+          solution: `$\mathrm{A}$모둠과 $\mathrm{B}$모둠의 학생 수를 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${averageA}x+${averageB}y=${averageAll * total}$이다. 두 식을 연립하여 풀면 $x=${countA}$, $y=${countB}$이므로 $\mathrm{A}$모둠은 $${countA}$명이다.`,
+          facts: { countA, countB, averageA, averageB, total, averageAll },
+        };
+      }),
+  ),
+
+  def(MINOR_APPLY, "06A", "몇 년 후의 나이", SEC.수나이, "기본", (rng) => {
+    const son = intBetween(rng, 7, 16);
+    const years = intBetween(rng, 3, 9);
+    const multiple = intBetween(rng, 2, 3);
+    const father = multiple * (son + years) - years;
+    const difference = father - son;
+    return {
+      content: `현재 아버지와 아들의 나이 차는 $${difference}$세이다. $${years}$년 후 아버지의 나이가 아들의 나이의 $${multiple}$배가 될 때, 현재 아들의 나이를 구하시오.`,
+      answer: `$${son}$세`,
+      solution: `현재 아버지의 나이를 $x$세, 아들의 나이를 $y$세라 하면 $x-y=${difference}$이고 $x+${years}=${multiple}(y+${years})$이다. 두 식을 연립하여 풀면 $y=${son}$이므로 현재 아들의 나이는 $${son}$세이다.`,
+      facts: { son, father, years, multiple, difference },
+    };
+  }),
+
+  def(MINOR_APPLY, "07A", "몇 년 전의 나이", SEC.수나이, "심화", (rng) =>
+    attempt(300, () => {
+      const younger = intBetween(rng, 10, 18);
+      const older = intBetween(rng, younger + 2, younger + 10);
+      const years = intBetween(rng, 2, Math.min(7, younger - 2));
+      const multiple = intBetween(rng, 2, 3);
+      const extra = older - years - multiple * (younger - years);
+      if (extra < 1 || extra > 12) return null;
+      const sum = older + younger;
+      return {
+        content: `현재 형과 동생의 나이의 합은 $${sum}$세이다. $${years}$년 전 형의 나이는 동생의 나이의 $${multiple}$배보다 $${extra}$세 많았다. 현재 형의 나이를 구하시오.`,
+        answer: `$${older}$세`,
+        solution: `현재 형과 동생의 나이를 각각 $x$세, $y$세라 하면 $x+y=${sum}$이고 $x-${years}=${multiple}(y-${years})+${extra}$이다. 두 식을 연립하여 풀면 $x=${older}$, $y=${younger}$이므로 현재 형의 나이는 $${older}$세이다.`,
+        facts: { older, younger, years, multiple, extra, sum },
+      };
+    }),
+  ),
+
   // ══ 연립일차방정식의 활용 04~08 (가격, 개수, 증감, 도형) ══
   def(MINOR_APPLY, "04", "가격 개수에 대한 문제", SEC.가격도형, "기본", (rng) =>
     attempt(300, () => {
