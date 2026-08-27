@@ -695,4 +695,109 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       facts: { firstRate, secondRate, total, spent, left },
     };
   }),
+
+  // ── 39~44 「나이, 과부족, 예금」을 10유형으로 채운 몫 (갈래 D) ──
+  // 이 소단원은 **연산이 없다** — 「식이 따로 주어지고 지시가 하나」인 모양이
+  // 활용 문제에는 성립하지 않는다(상황이 곧 발문이다). 배분은 사다리 대체가
+  // 메운다. 그래서 기본 5 · 응용 4 · 심화 1 로 채운다.
+
+  def("39", "두 사람의 나이의 합과 차", SEC.나이, "기본", (rng) =>
+    attempt(80, () => {
+      const younger = intBetween(rng, 8, 30);
+      const gap = intBetween(rng, 2, 12);
+      const older = younger + gap;
+      const sum = older + younger;
+      return {
+        content: `형과 동생의 나이의 합은 $${sum}$세이고, 형은 동생보다 $${gap}$세 많다. 형의 나이를 구하시오.`,
+        answer: `$${older}$세`,
+        solution: `동생의 나이를 $x$세라 하면 형의 나이는 $(x+${gap})$세이다.\n$x+(x+${gap})=${sum}$이므로 $x=${younger}$이다.\n따라서 형의 나이는 $${younger}+${gap}=${older}$(세)이다.`,
+        facts: { older, younger, gap, sum },
+      };
+    }),
+  ),
+
+  def("40", "몇 년 전에 몇 배였나", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const child = intBetween(rng, 12, 20);
+      const m = intBetween(rng, 3, 6);
+      const k = intBetween(rng, 2, 8); // k년 전
+      if (child - k < 4) return null;
+      const parent = m * (child - k) + k;
+      if (parent - child < 22 || parent > 60) return null;
+      return {
+        content: `현재 어머니의 나이는 $${parent}$세, 딸의 나이는 $${child}$세이다. 어머니의 나이가 딸의 나이의 $${m}$배였던 것은 몇 년 전인지 구하시오.`,
+        answer: `$${k}$년 전`,
+        solution: `$x$년 전에 $${m}$배였다고 하면 $${parent}-x=${m}(${child}-x)$이다.\n정리하여 풀면 $x=${k}$이다.\n따라서 $${k}$년 전이다.`,
+        facts: { parent, child, m, k },
+      };
+    }),
+  ),
+
+  def("41", "예금액이 같아지는 때", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 3, 15);
+      const p = intBetween(rng, 2, 8) * 500; // 적게 든 쪽이 더 많이 넣는다
+      const q = intBetween(rng, 1, 5) * 500;
+      if (p <= q) return null;
+      const b0 = intBetween(rng, 10, 40) * 1000;
+      const a0 = b0 + (q - p) * n;
+      if (a0 <= 0 || a0 >= b0) return null;
+      return {
+        content: `현재 지호의 예금액은 $${a0}$원, 서연이의 예금액은 $${b0}$원이다. 다음 달부터 매달 지호는 $${p}$원씩, 서연이는 $${q}$원씩 예금한다면 두 사람의 예금액이 같아지는 것은 몇 개월 후인지 구하시오.`,
+        answer: `$${n}$개월 후`,
+        solution: `$x$개월 후에 같아진다고 하면 $${a0}+${p}x=${b0}+${q}x$이다.\n정리하여 풀면 $x=${n}$이다.\n따라서 $${n}$개월 후이다.`,
+        facts: { a0, b0, p, q, n },
+      };
+    }),
+  ),
+
+  def("42", "과부족에서 물건의 개수 구하기", SEC.나이, "기본", (rng) =>
+    attempt(120, () => {
+      const n = intBetween(rng, 5, 20); // 사람 수
+      const a = intBetween(rng, 2, 6);
+      const b = a + intBetween(rng, 1, 2);
+      const r = intBetween(rng, 1, a);
+      const s = (b - a) * n - r;
+      if (s < 1) return null;
+      const total = a * n + r;
+      return {
+        content: `사탕을 학생들에게 나누어 주려고 한다. 한 학생에게 $${a}$개씩 주면 $${r}$개가 남고, $${b}$개씩 주면 $${s}$개가 모자란다. 사탕의 개수를 구하시오.`,
+        answer: `$${total}$개`,
+        solution: `학생 수를 $x$명이라 하면 사탕의 수는 같으므로 $${a}x+${r}=${b}x-${s}$이다.\n정리하여 풀면 $x=${n}$이다.\n따라서 사탕은 $${a}\\times${n}+${r}=${total}$(개)이다.`,
+        facts: { n, a, b, r, s, total },
+      };
+    }),
+  ),
+
+  def("43", "목표액에 도달하는 때", SEC.나이, "기본", (rng) =>
+    attempt(80, () => {
+      const n = intBetween(rng, 4, 20);
+      const p = intBetween(rng, 2, 10) * 1000;
+      const a0 = intBetween(rng, 5, 30) * 1000;
+      const target = a0 + p * n;
+      return {
+        content: `현재 통장에 $${a0}$원이 들어 있다. 다음 달부터 매달 $${p}$원씩 예금할 때, 예금액이 처음으로 $${target}$원이 되는 것은 몇 개월 후인지 구하시오.`,
+        answer: `$${n}$개월 후`,
+        solution: `$x$개월 후의 예금액은 $(${a0}+${p}x)$원이다.\n$${a0}+${p}x=${target}$이므로 $x=${n}$이다.\n따라서 $${n}$개월 후이다.`,
+        facts: { a0, p, n, target },
+      };
+    }),
+  ),
+
+  def("44", "두 자녀의 나이의 합", SEC.나이, "응용", (rng) =>
+    attempt(200, () => {
+      const c1 = intBetween(rng, 6, 14);
+      const c2 = c1 + intBetween(rng, 1, 6);
+      const m = intBetween(rng, 2, 3);
+      const k = intBetween(rng, 3, 15); // k년 후
+      const parent = m * (c1 + c2 + 2 * k) - k;
+      if (parent - c2 < 22 || parent > 60) return null;
+      return {
+        content: `현재 아버지의 나이는 $${parent}$세이고 두 자녀의 나이는 각각 $${c1}$세, $${c2}$세이다. 아버지의 나이가 두 자녀의 나이의 합의 $${m}$배가 되는 것은 몇 년 후인지 구하시오.`,
+        answer: `$${k}$년 후`,
+        solution: `$x$년 후라 하면 아버지는 $(${parent}+x)$세, 두 자녀의 나이의 합은 $(${c1 + c2}+2x)$세이다.\n$${parent}+x=${m}(${c1 + c2}+2x)$를 정리하여 풀면 $x=${k}$이다.\n따라서 $${k}$년 후이다.`,
+        facts: { parent, c1, c2, m, k },
+      };
+    }),
+  ),
 ];

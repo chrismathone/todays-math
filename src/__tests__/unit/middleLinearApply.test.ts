@@ -1,6 +1,6 @@
 /**
- * 중1 「일차방정식의 활용」 38유형 — 독립 검산.
- * (RPM 색인 01~22 + 두 소단원을 10유형으로 채우려고 지은 23~38)
+ * 중1 「일차방정식의 활용」 44유형 — 독립 검산.
+ * (RPM 색인 01~22 + 세 소단원을 10유형으로 채우려고 지은 23~44)
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)로 유형마다
  * **방정식을 여기서 다시 세워** 만족하는지 본다. 생성기가 역산을 틀리면
@@ -146,6 +146,33 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
     100 * f.spent! === f.total! * (f.firstRate! + f.secondRate!) &&
     f.spent! + f.left! === f.total! &&
     f.left! > 0,
+
+  // ── 39~44 「나이, 과부족, 예금」을 10유형으로 채운 몫 (갈래 D) ──
+  // 나이의 합·차: older == younger + gap, 합이 sum
+  "39": (f) =>
+    f.older! === f.younger! + f.gap! &&
+    f.older! + f.younger! === f.sum! &&
+    f.younger! >= 1 &&
+    f.gap! >= 1,
+  // k년 전: parent-k == m(child-k), 그때 딸이 살아 있어야 한다
+  "40": (f) =>
+    f.parent! - f.k! === f.m! * (f.child! - f.k!) &&
+    f.k! >= 1 &&
+    f.child! - f.k! >= 1,
+  // 예금이 같아지는 때: a0+p·n == b0+q·n, 해가 하나이려면 p≠q
+  "41": (f) =>
+    f.a0! + f.p! * f.n! === f.b0! + f.q! * f.n! && f.p! !== f.q! && f.n! >= 1,
+  // 과부족(개수를 묻는다): an+r == bn-s, 답은 물건 수 an+r
+  "42": (f) =>
+    f.a! * f.n! + f.r! === f.b! * f.n! - f.s! &&
+    f.total! === f.a! * f.n! + f.r! &&
+    f.r! >= 1 &&
+    f.s! >= 1,
+  // 목표액: a0 + p·n == target
+  "43": (f) => f.a0! + f.p! * f.n! === f.target! && f.n! >= 1 && f.p! > 0,
+  // 두 자녀의 합의 m배: parent+k == m(c1+c2+2k)
+  "44": (f) =>
+    f.parent! + f.k! === f.m! * (f.c1! + f.c2! + 2 * f.k!) && f.k! >= 1,
 };
 
 /**
@@ -226,6 +253,48 @@ const CONTENT_CHECKS: Record<string, (content: string) => number> = {
     )!;
     return (Number(left) * 100) / (100 - Number(first) - Number(second));
   },
+  "39": (c) => {
+    const [, sum, gap] = c.match(
+      /합은 \$(\d+)\$세이고, 형은 동생보다 \$(\d+)\$세 많다/,
+    )!;
+    return (Number(sum) + Number(gap)) / 2;
+  },
+  "40": (c) => {
+    const [, parent, child, m] = c.match(
+      /어머니의 나이는 \$(\d+)\$세, 딸의 나이는 \$(\d+)\$세.*\$(\d+)\$배였던/,
+    )!;
+    // parent - x = m(child - x)  ⇔  x = (m·child - parent) / (m - 1)
+    return (Number(m) * Number(child) - Number(parent)) / (Number(m) - 1);
+  },
+  "41": (c) => {
+    const [, a0, b0, p, q] = c.match(
+      /지호의 예금액은 \$(\d+)\$원, 서연이의 예금액은 \$(\d+)\$원.*지호는 \$(\d+)\$원씩, 서연이는 \$(\d+)\$원씩/,
+    )!;
+    return (Number(b0) - Number(a0)) / (Number(p) - Number(q));
+  },
+  "42": (c) => {
+    const [, a, r, b, s] = c.match(
+      /\$(\d+)\$개씩 주면 \$(\d+)\$개가 남고, \$(\d+)\$개씩 주면 \$(\d+)\$개가 모자란다/,
+    )!;
+    const n = (Number(r) + Number(s)) / (Number(b) - Number(a));
+    return Number(a) * n + Number(r); // 답은 사람 수가 아니라 **사탕 수**다
+  },
+  "43": (c) => {
+    const [, a0, p, target] = c.match(
+      /통장에 \$(\d+)\$원.*매달 \$(\d+)\$원씩.*처음으로 \$(\d+)\$원/,
+    )!;
+    return (Number(target) - Number(a0)) / Number(p);
+  },
+  "44": (c) => {
+    const [, parent, c1, c2, m] = c.match(
+      /아버지의 나이는 \$(\d+)\$세.*각각 \$(\d+)\$세, \$(\d+)\$세.*\$(\d+)\$배/,
+    )!;
+    // parent + x = m(c1+c2+2x)  ⇔  x = (m(c1+c2) - parent) / (1 - 2m)
+    return (
+      (Number(m) * (Number(c1) + Number(c2)) - Number(parent)) /
+      (1 - 2 * Number(m))
+    );
+  },
 };
 
 /** 답 문자열의 첫 수가 facts 의 이 키와 같아야 한다 — 답이 엉뚱한 수를 찍는 것을 막는다. */
@@ -268,6 +337,12 @@ const ANSWER_KEY: Record<string, string> = {
   "36": "before",
   "37": "total",
   "38": "total",
+  "39": "older",
+  "40": "k",
+  "41": "n",
+  "42": "total",
+  "43": "n",
+  "44": "k",
 };
 
 function firstNumber(text: string): number {
@@ -276,18 +351,18 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중1 일차방정식의 활용 38유형", () => {
+describe("중1 일차방정식의 활용 44유형", () => {
   const entries = registeredTypes().filter(
     (e) => e.rpmMinor === "일차방정식의 활용",
   );
 
-  it("RPM 색인의 22유형 + 갈래 D 가 지은 16유형이 빈틈없이 등록돼 있다", () => {
+  it("RPM 색인의 22유형 + 갈래 D 가 지은 22유형이 빈틈없이 등록돼 있다", () => {
     // 01~22 는 RPM 색인 그대로, 23~38 은 두 소단원을 10유형으로 채우려고 지은 것.
     // **빈틈없이** 잇는지 본다 — 번호를 건너뛰면 다음 사람이 그 자리를 다시 쓴다.
-    expect(entries.length).toBe(38);
+    expect(entries.length).toBe(44);
     const nums = entries.map((e) => e.rpmType).sort();
     expect(nums).toEqual(
-      Array.from({ length: 38 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 44 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
   });
 
