@@ -2338,7 +2338,7 @@ def _pyramid(spec: Mapping[str, Any]) -> str:
     parts = (
         [_poly(base, FACE_TOP, 1.1)]
         + [svg for _, svg in faces]
-        + _hidden_lines(view, verts3, faces_idx)
+        + _hidden_lines(view, verts3, faces_idx, structural=True)
     )
     return _svg(svg_w, svg_h, "".join(parts))
 
