@@ -1893,7 +1893,10 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     if kind not in _MARKED_KINDS:
         raise ValueError(f"모르는 도형입니다: {kind}")
 
-    pad, size = 30.0, 104.0
+    # 바깥 치수 라벨의 halo 상자까지 담는다. 30px 에서는 기울어진 변의 긴 라벨이
+    # `measured()` 의 법선 방향 push 뒤 viewBox 가장자리에 닿았다.
+    # 폭 184px 는 figureSvgFrame 의 같은 mid 등급(161~320)을 유지한다.
+    pad, size = 40.0, 104.0
     pts = _shape_points(kind, pad, pad, size)
     n = len(pts)
 
@@ -2009,7 +2012,7 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
         nx, ny = -(b[1] - a[1]), b[0] - a[0]
         outward = (mx - cx) * nx + (my - cy) * ny
         parts.append(
-            _length_mark(a[0], a[1], b[0], b[1], str(label), off=-11.0 if outward > 0 else 11.0)
+            _length_mark(a[0], a[1], b[0], b[1], str(label), off=11.0 if outward > 0 else -11.0)
         )
 
     # 각 — 꼭짓점에서 **안쪽**으로 들여 적는다.

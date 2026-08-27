@@ -3092,6 +3092,57 @@ describe.skipIf(!hasEngine)("[초등 그림] markedShape — 도형 위 표시",
     expect(dashes, "치수 점선").toBeGreaterThanOrEqual(2);
   });
 
+  it("치수 점선의 볼록한 가운데는 도형 바깥이고 폭 등급은 mid로 고정된다", async () => {
+    for (const spec of [
+      MARKED_ISO,
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "para",
+        sides: ["4 cm", "6 cm", null, null],
+      },
+      {
+        version: "elem-1",
+        kind: "markedShape",
+        shape: "pentagon",
+        sides: ["12 cm"],
+      },
+    ]) {
+      const r = await renderFigureSpec(spec);
+      expect(r.ok, String(spec.shape)).toBe(true);
+      if (!r.ok) return;
+      const corners = shapeCorners(r.svg)[0]!;
+      const center = corners.reduce(
+        (sum, [x, y]) => [
+          sum[0] + x / corners.length,
+          sum[1] + y / corners.length,
+        ],
+        [0, 0] as Pt,
+      );
+      const dims = [
+        ...r.svg.matchAll(
+          /<path d="M ([\d.-]+) ([\d.-]+) Q ([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"[^>]*stroke-dasharray="6 4"/g,
+        ),
+      ];
+      expect(dims.length, `${spec.shape} 치수`).toBeGreaterThan(0);
+      for (const dim of dims) {
+        const sx = Number(dim[1]);
+        const sy = Number(dim[2]);
+        const cx = Number(dim[3]);
+        const cy = Number(dim[4]);
+        const ex = Number(dim[5]);
+        const ey = Number(dim[6]);
+        const mx = (sx + ex) / 2;
+        const my = (sy + ey) / 2;
+        const outwardDot =
+          (cx - mx) * (mx - center[0]) + (cy - my) * (my - center[1]);
+        expect(outwardDot, `${spec.shape} 치수 곡선`).toBeGreaterThan(0);
+      }
+      expect(figureSvgViewBoxWidth(r.svg), `${spec.shape} 폭`).toBe(184);
+      expect(figureSvgSize(r.svg), `${spec.shape} 지면 등급`).toBe("mid");
+    }
+  });
+
   it.each([
     ["square", 4, 2],
     ["pentagon", 5, 5],
