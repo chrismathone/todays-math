@@ -50,6 +50,21 @@ MUTATIONS = [
         "if (b % a === 0) return null;",
         "if (false) return null;",
     ),
+    (
+        "06A: multiply instead of add",
+        "const ans = addF(P, Q);",
+        "const ans = mulF(P, Q);",
+    ),
+    (
+        "06A: allow the two probabilities to sum past 1",
+        "if (P.n * Q.d + Q.n * P.d >= P.d * Q.d) return null;",
+        "if (false) return null;",
+    ),
+    (
+        "07A: forget the coin factor",
+        "const p = red(c.count, 12);",
+        "const p = red(c.count, 6);",
+    ),
 ]
 
 

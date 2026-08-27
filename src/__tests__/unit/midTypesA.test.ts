@@ -923,4 +923,89 @@ describe("갈래 A 중등 유형 값 검산", () => {
       }
     },
   );
+
+  /**
+   * 확률의 계산 06A·07A.
+   *
+   * 07A 는 주사위 조건을 **발문 글자에서 읽어 눈 $1$~$6$ 을 직접 훑어** 센다 —
+   * 생성기의 `DICE_CONDS` 표에 적힌 개수를 되읽으면 그 표가 틀렸을 때 같이 틀린다.
+   */
+  it("확률의 계산 유형 06A", () => {
+    const entry = M2_PROB.find(
+      (candidate) =>
+        candidate.unitSection === "확률의 계산" && candidate.rpmType === "06A",
+    );
+    expect(entry).toBeDefined();
+    for (const seed of [17, 203, 991, 4242, 77]) {
+      const problem = entry!.handler(seeded(seed));
+      const given = [
+        ...problem.content.matchAll(/\\dfrac\{(\d+)\}\{(\d+)\}/g),
+      ].map((match) => ({ n: Number(match[1]), d: Number(match[2]) }));
+      expect(given).toHaveLength(2);
+      const [first, second] = given as [
+        { n: number; d: number },
+        { n: number; d: number },
+      ];
+      const want = {
+        n: first.n * second.d + second.n * first.d,
+        d: first.d * second.d,
+      };
+      // 「동시에 일어나지 않는다」가 성립하려면 합이 $1$ 을 넘으면 안 된다.
+      expect(want.n).toBeLessThan(want.d);
+      const got = fractionAnswer(problem.answer);
+      expect(got.n * want.d).toBe(want.n * got.d);
+      expect(gcdOf(got.n, got.d)).toBe(1);
+    }
+  });
+
+  it("확률의 계산 유형 07A", () => {
+    const entry = M2_PROB.find(
+      (candidate) =>
+        candidate.unitSection === "확률의 계산" && candidate.rpmType === "07A",
+    );
+    expect(entry).toBeDefined();
+    for (let seed = 1; seed <= 40; seed += 1) {
+      const problem = entry!.handler(seeded(seed));
+      const cond = problem.content.match(
+        /\$(\d+)\$(의 배수|의 약수| 이상| 이하)의 눈이 나올/,
+      );
+      expect(cond).not.toBeNull();
+      const value = Number(cond![1]);
+      let faces = 0;
+      for (let face = 1; face <= 6; face += 1) {
+        const hit =
+          cond![2] === "의 배수"
+            ? face % value === 0
+            : cond![2] === "의 약수"
+              ? value % face === 0
+              : cond![2] === " 이상"
+                ? face >= value
+                : face <= value;
+        if (hit) faces += 1;
+      }
+      expect(faces).toBeGreaterThan(0);
+      // 동전 앞면 $\dfrac12$ × 주사위 $\dfrac{faces}{6}$
+      const got = fractionAnswer(problem.answer);
+      expect(got.n * 12).toBe(faces * got.d);
+      expect(gcdOf(got.n, got.d)).toBe(1);
+    }
+  });
+
+  it.each(["06A", "07A"])(
+    "확률의 계산 유형 %s 해설에 헛걸음이 없다",
+    (rpmType) => {
+      const entry = M2_PROB.find(
+        (candidate) =>
+          candidate.unitSection === "확률의 계산" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991, 4242, 77]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(problem.solution).not.toMatch(
+          /\\dfrac\{(\d+)\}\{(\d+)\}=\\dfrac\{\1\}\{\2\}/,
+        );
+      }
+    },
+  );
 });

@@ -19,7 +19,7 @@ const seeds = WIDE
   ? Array.from({ length: 120 }, (_v, i) => i + 1)
   : [17, 203, 991];
 
-for (const t of ["01A", "02A", "03A", "04A", "05A"]) {
+for (const t of ["01A", "02A", "03A", "04A", "05A", "06A", "07A"]) {
   const e = M2_PROB.find((x) => x.rpmType === t)!;
   for (const s of seeds) {
     const p = e.handler(seeded(s));

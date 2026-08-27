@@ -662,4 +662,39 @@ export const M2_PROB: TypeEntry[] = [
       };
     }),
   ),
+
+  /*
+   * 06A·07A — 확률의 계산에는 `연산`·`기본` 이 **하나도 없었다**(06~13 이 응용 5 ·
+   * 심화 3). 하위반 프리셋이 이 소단원에서 밑단을 한 문항도 못 채운다(D-106).
+   * 그래서 덧셈 정리·곱셈 정리를 각각 밑단으로 하나씩 세운다.
+   */
+  def("06A", "확률의 덧셈", SEC.계산, "연산", (rng) =>
+    attempt(100, (): Body | null => {
+      const pa = pick(rng, NICE_PROBS);
+      const pb = pick(rng, NICE_PROBS);
+      const P: Frac = { n: pa[0], d: pa[1] };
+      const Q: Frac = { n: pb[0], d: pb[1] };
+      // 합이 $1$ 이상이면 「동시에 일어나지 않는다」와 어긋난다.
+      if (P.n * Q.d + Q.n * P.d >= P.d * Q.d) return null;
+      const ans = addF(P, Q);
+      return {
+        content: `두 사건 $A$, $B$ 는 동시에 일어나지 않는다. 사건 $A$ 가 일어날 확률이 $${fracTex(P)}$, 사건 $B$ 가 일어날 확률이 $${fracTex(Q)}$ 일 때, 사건 $A$ 또는 사건 $B$ 가 일어날 확률을 구하시오.`,
+        answer: ansTex(ans),
+        solution: `두 사건이 동시에 일어나지 않으므로 두 확률을 더한다.\n따라서 구하는 확률은 $${fracTex(P)}+${fracTex(Q)}=${fracTex(ans)}$ 이다.`,
+        facts: { pn: P.n, pd: P.d, qn: Q.n, qd: Q.d, num: ans.n, den: ans.d },
+      };
+    }),
+  ),
+
+  def("07A", "동전과 주사위의 확률", SEC.계산, "기본", (rng): Body => {
+    const cond = pick(rng, [0, 1, 2, 3, 4] as const);
+    const c = DICE_CONDS[cond]!;
+    const p = red(c.count, 12);
+    return {
+      content: `한 개의 동전과 한 개의 주사위를 동시에 던질 때, 동전은 앞면이 나오고 주사위는 ${c.text}의 눈이 나올 확률을 구하시오.`,
+      answer: ansTex(p),
+      solution: `동전에서 앞면이 나올 확률은 $\\dfrac{1}{2}$ 이고, 주사위에서 ${c.text}의 눈이 나오는 경우는 $${c.count}$가지이므로 그 확률은 $${reduceTex(c.count, 6)}$ 이다.\n두 사건은 서로 영향을 주지 않으므로 구하는 확률은 $\\dfrac{1}{2}\\times${fracTex(red(c.count, 6))}=${fracTex(p)}$ 이다.`,
+      facts: { cond, succ: c.count, num: p.n, den: p.d },
+    };
+  }),
 ];
