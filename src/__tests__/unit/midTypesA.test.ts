@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { M1EXTRA_TYPES } from "../../lib/middle/m1Extra";
+import { M2_PROB } from "../../lib/middle/m2Prob";
 import { M2_SYSTEM } from "../../lib/middle/m2System";
 import { M2_SYSTEM_APPLY } from "../../lib/middle/m2SystemApply";
 import { M2_QUAD } from "../../lib/middle/m2Quad";
@@ -30,6 +31,20 @@ function numericAnswer(answer: string): number {
   const match = answer.match(/-?\d+(?:\.\d+)?/);
   if (!match) throw new Error(`숫자 정답을 찾을 수 없음: ${answer}`);
   return Number(match[0]);
+}
+
+/** `$\dfrac{n}{d}$` 또는 `$n$` 을 분자·분모로 읽는다. */
+function fractionAnswer(answer: string): { n: number; d: number } {
+  const frac = answer.match(/\\dfrac\{(-?\d+)\}\{(\d+)\}/);
+  if (frac) return { n: Number(frac[1]), d: Number(frac[2]) };
+  return { n: numericAnswer(answer), d: 1 };
+}
+
+function gcdOf(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) [x, y] = [y, x % y];
+  return x;
 }
 
 function implicitCoefficient(token: string): number {
@@ -767,6 +782,144 @@ describe("갈래 A 중등 유형 값 검산", () => {
         else if (a2 === null) expected = a1 * (b2! / b1);
         else expected = b1 * (a2 / a1);
         expect(numericAnswer(problem.answer)).toBe(expected);
+      }
+    },
+  );
+
+  /**
+   * 확률의 뜻과 성질 01A~04A — **발문 글자에서 다시 센다.**
+   *
+   * `facts` 를 읽으면 생성기가 스스로 적어 둔 값을 되읽는 것이라 아무것도 안
+   * 지킨다. 04A 는 포함·배제 식을 옮겨 적지 않고 $1$부터 $N$까지를 **직접 훑어**
+   * 세므로, 생성기가 식을 잘못 세우면 갈라진다.
+   */
+  const probabilityMeaningExpected: Record<
+    string,
+    (content: string) => { n: number; d: number }
+  > = {
+    "01A": (content) => {
+      const [total, favorable] = (content.match(/\d+/g) ?? []).map(Number);
+      return { n: favorable!, d: total! };
+    },
+    "02A": (content) => {
+      const [redCount, blueCount] = (content.match(/\d+/g) ?? []).map(Number);
+      return { n: blueCount!, d: redCount! + blueCount! };
+    },
+    "03A": (content) => {
+      const largest = Number(content.match(/\$1\$부터 \$(\d+)\$까지/)?.[1]);
+      const threshold = Number(content.match(/수가 \$(\d+)\$ 이상/)?.[1]);
+      let favorable = 0;
+      for (let value = 1; value <= largest; value += 1) {
+        if (value >= threshold) favorable += 1;
+      }
+      return { n: favorable, d: largest };
+    },
+    "04A": (content) => {
+      const largest = Number(content.match(/\$1\$부터 \$(\d+)\$까지/)?.[1]);
+      const divisors = (content.match(/\$(\d+)\$의 배수/g) ?? []).map((token) =>
+        Number(token.match(/\d+/)![0]),
+      );
+      expect(divisors).toHaveLength(2);
+      let favorable = 0;
+      for (let value = 1; value <= largest; value += 1) {
+        if (divisors.some((divisor) => value % divisor === 0)) favorable += 1;
+      }
+      return { n: favorable, d: largest };
+    },
+  };
+
+  it.each(Object.keys(probabilityMeaningExpected))(
+    "확률의 뜻과 성질 유형 %s",
+    (rpmType) => {
+      const entry = M2_PROB.find(
+        (candidate) =>
+          candidate.unitSection === "확률의 뜻과 성질" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        const got = fractionAnswer(problem.answer);
+        const want = probabilityMeaningExpected[rpmType]!(problem.content);
+        expect(Number.isFinite(want.n)).toBe(true);
+        expect(want.d).toBeGreaterThan(0);
+        // 값이 같은가 — 나눗셈으로 재면 부동소수가 끼므로 엇곱으로 본다.
+        expect(got.n * want.d).toBe(want.n * got.d);
+        // 정답은 늘 기약분수다.
+        expect(gcdOf(got.n, got.d)).toBe(1);
+        // 확률은 $0$ 이상 $1$ 이하다.
+        expect(got.n).toBeGreaterThanOrEqual(0);
+        expect(got.n).toBeLessThanOrEqual(got.d);
+      }
+    },
+  );
+
+  it("확률의 뜻과 성질 유형 05A", () => {
+    const entry = M2_PROB.find(
+      (candidate) =>
+        candidate.unitSection === "확률의 뜻과 성질" &&
+        candidate.rpmType === "05A",
+    );
+    expect(entry).toBeDefined();
+    for (const seed of [17, 203, 991]) {
+      const problem = entry!.handler(seeded(seed));
+      const [winning, losingBefore, num, den] = (
+        problem.content.match(/\d+/g) ?? []
+      ).map(Number);
+      const added = numericAnswer(problem.answer);
+      // 답대로 꽝 제비를 더 넣으면 발문이 말한 확률이 되는가 — 엇곱으로 다시 센다.
+      expect(winning! * den!).toBe(num! * (winning! + losingBefore! + added));
+      // 「더 넣었다」가 참이려면 더한 수가 $1$ 이상이어야 하고,
+      // 처음 꽝 제비도 $1$ 개 이상 있어야 발문이 성립한다.
+      expect(added).toBeGreaterThanOrEqual(1);
+      expect(losingBefore).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  /**
+   * 04A 의 두 수는 **서로 배수 관계가 아니어야** 한다.
+   *
+   * $3$ 과 $6$ 이 뽑히면 「$3$의 배수 또는 $6$의 배수」가 그냥 「$3$의 배수」라
+   * 포함·배제가 헛돈다. **값 검산으로는 안 걸린다** — 그래도 답은 맞기 때문이다.
+   */
+  it("확률의 뜻과 성질 유형 04A 의 두 수는 배수 관계가 아니다", () => {
+    const entry = M2_PROB.find(
+      (candidate) =>
+        candidate.unitSection === "확률의 뜻과 성질" &&
+        candidate.rpmType === "04A",
+    );
+    expect(entry).toBeDefined();
+    for (let seed = 1; seed <= 120; seed += 1) {
+      const problem = entry!.handler(seeded(seed));
+      const divisors = (problem.content.match(/\$(\d+)\$의 배수/g) ?? []).map(
+        (token) => Number(token.match(/\d+/)![0]),
+      );
+      expect(divisors).toHaveLength(2);
+      const [small, large] = divisors as [number, number];
+      expect(large % small).not.toBe(0);
+    }
+  });
+
+  /**
+   * 지면 — **값이 맞아도 흉한 것**을 따로 센다(2026-08-24 교훈).
+   * `$\dfrac{3}{8}=\dfrac{3}{8}$` 같은 헛걸음은 값 검산으로 구조적으로 안 보인다.
+   */
+  it.each(["01A", "02A", "03A", "04A", "05A"])(
+    "확률의 뜻과 성질 유형 %s 해설에 헛걸음이 없다",
+    (rpmType) => {
+      const entry = M2_PROB.find(
+        (candidate) =>
+          candidate.unitSection === "확률의 뜻과 성질" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991, 4242, 77]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(problem.solution).not.toMatch(
+          /\\dfrac\{(\d+)\}\{(\d+)\}=\\dfrac\{\1\}\{\2\}/,
+        );
+        expect(problem.solution).not.toMatch(/[+\-]0=/);
+        expect(problem.content).not.toMatch(/\$0\$개/);
       }
     },
   );
