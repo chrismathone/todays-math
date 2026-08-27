@@ -20,11 +20,11 @@ function seeded(seed: number): () => number {
 function valuesFromStemAndLeaf(content: string): number[] {
   const values: number[] = [];
   for (const line of content.split("\n")) {
-    const match = line.match(/^(\d+) \|(?: (\d+(?: \d+)*))?$/);
+    const match = line.match(/^\$(\d+)\$ \|(?: (\$\d+\$(?: \$\d+\$)*))?$/);
     if (!match) continue;
     const stem = Number(match[1]);
     for (const leaf of (match[2] ?? "").split(" ").filter(Boolean)) {
-      values.push(stem * 10 + Number(leaf));
+      values.push(stem * 10 + Number(leaf.replaceAll("$", "")));
     }
   }
   return values;
@@ -73,7 +73,7 @@ function frequencyRows(
 ): Array<{ low: number; high: number; frequency: number }> {
   return content
     .split("\n")
-    .map((line) => line.match(/^(\d+) 이상 (\d+) 미만 \| (\d+)$/))
+    .map((line) => line.match(/^\$(\d+)\$ 이상 \$(\d+)\$ 미만 \| \$(\d+)\$$/))
     .filter((match): match is RegExpMatchArray => match !== null)
     .map((match) => ({
       low: Number(match[1]),
@@ -87,7 +87,7 @@ function histogramRows(
 ): Array<{ low: number; high: number; frequency: number }> {
   return content
     .split("\n")
-    .map((line) => line.match(/^(\d+)~(\d+) \| (■+)$/))
+    .map((line) => line.match(/^\$(\d+)\$~\$(\d+)\$ \| (■+)$/))
     .filter((match): match is RegExpMatchArray => match !== null)
     .map((match) => ({
       low: Number(match[1]),

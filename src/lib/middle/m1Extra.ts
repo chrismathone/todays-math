@@ -36,9 +36,16 @@ function stemAndLeaf(values: readonly number[]): string {
     leaves.push(value % 10);
     rows.set(stem, leaves);
   }
-  return [...rows]
-    .map(([stem, leaves]) => `${stem} | ${leaves.join(" ")}`)
-    .join("\n");
+  return (
+    [...rows]
+      // 숫자는 **KaTeX 안**에 둔다 — 이 모듈의 나머지 45유형이 그렇고,
+      // `숫자가 KaTeX 밖에 없다` 검사가 그것을 지킨다(24유형이 어겼다).
+      .map(
+        ([stem, leaves]) =>
+          `$${stem}$ | ${leaves.map((leaf) => `$${leaf}$`).join(" ")}`,
+      )
+      .join("\n")
+  );
 }
 
 function dataFacts(
@@ -226,6 +233,7 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
         solution: `$${threshold}$ 이상인 값은 ${values
           .filter((value) => value >= threshold)
           .sort((a, b) => a - b)
+          .map((value) => `$${value}$`)
           .join(", ")}의 $${answer}$개이다.`,
         facts: { ...dataFacts(values, answer), threshold },
       };
@@ -293,7 +301,7 @@ function frequencyTable(
   return frequencies
     .map((frequency, index) => {
       const low = start + width * index;
-      return `${low} 이상 ${low + width} 미만 | ${frequency}`;
+      return `$${low}$ 이상 $${low + width}$ 미만 | $${frequency}$`;
     })
     .join("\n");
 }
@@ -306,7 +314,7 @@ function histogramText(
   return frequencies
     .map((frequency, index) => {
       const low = start + width * index;
-      return `${low}~${low + width} | ${"■".repeat(frequency)}`;
+      return `$${low}$~$${low + width}$ | ${"■".repeat(frequency)}`;
     })
     .join("\n");
 }
@@ -384,7 +392,9 @@ const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
       return {
         content: `다음 도수분포표에서 가장 큰 도수를 구하시오.\n(시간 | 도수)\n${frequencyTable(0, 2, frequencies)}`,
         answer: `$${answer}$`,
-        solution: `도수 ${frequencies.join(", ")} 중 가장 큰 값은 $${answer}$이다.`,
+        solution: `도수 ${frequencies
+          .map((value) => `$${value}$`)
+          .join(", ")} 중 가장 큰 값은 $${answer}$이다.`,
         facts: dataFacts(frequencies, answer),
       };
     },

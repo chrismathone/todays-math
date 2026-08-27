@@ -786,17 +786,47 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
 
 // ── 명부·색인·등록 ──────────────────────────────────────────
 
+/**
+ * 이 시험이 맡은 몫 — **명부(`EXPECTED_SECTION`)에 적힌 것만.**
+ *
+ * 🔴 2026-08-27 부터 갈래 넷이 130소단원을 10유형으로 올리며 이 모듈에도
+ *    유형을 더한다(갈래 A 가 `07A`·`08A` 처럼 글자를 붙인 번호로 63개). 그러면
+ *    `M1EXTRA_TYPES` 를 통째로 도는 이 시험이 **남의 유형을 자기 검산표에 들이대어**
+ *    「검산식 누락」으로 153건이 빨개진다(실측). 갈래 A 가 자기 보고서에
+ *    「소유권 밖 고정 명부 — 병합할 때 갱신해야 한다」고 적어 넘긴 자리다.
+ *
+ * ⚠️ **가드를 끄는 게 아니라 나눈다.** 유형과 무관한 검사(같은 씨앗 재현·날 숫자·
+ *    실제 렌더)는 **전부**에 그대로 건다. 손으로 적은 `CHECKS` 를 요구하는 검산만
+ *    자기 몫으로 좁히고, 남의 유형은 그 갈래의 전용 시험이 지킨다
+ *    (갈래 A → `midTypesA.test.ts`, 갈래 D → `midTypesD.test.ts`).
+ *
+ * ⚠️ 좁히면서 **「명부가 조용히 줄어드는」** 반대 방향을 잃으면 안 된다 —
+ *    아래가 45를 못 박고, 45 전부에 `CHECKS` 가 있는지도 따로 잰다.
+ */
+const OWNED = M1EXTRA_TYPES.filter((e) => e.key in EXPECTED_SECTION);
+const FOREIGN = M1EXTRA_TYPES.filter((e) => !(e.key in EXPECTED_SECTION));
+
 describe("중1 저조 단원 45유형 (m1Extra)", () => {
   it("45유형 명부와 unitSection 이 실측 그대로다", () => {
-    expect(new Set(M1EXTRA_TYPES.map((e) => e.key))).toEqual(
+    expect(new Set(OWNED.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1EXTRA_TYPES.length).toBe(45);
-    for (const e of M1EXTRA_TYPES) {
+    expect(OWNED.length).toBe(45);
+    for (const e of OWNED) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
       expect(e.grade).toBe("중1");
     }
+  });
+
+  it("명부 45개는 **전부** 검산식을 갖는다 — 표가 조용히 줄면 빨개진다", () => {
+    const missing = OWNED.filter((e) => !CHECKS[e.key]).map((e) => e.key);
+    expect(missing, "검산식이 없는 명부 유형").toEqual([]);
+  });
+
+  it("남의 유형도 등록은 돼 있다 — 조용히 사라지지 않는다", () => {
+    const keys = new Set(registeredTypes().map((e) => e.key));
+    for (const e of FOREIGN) expect(keys.has(e.key), e.key).toBe(true);
   });
 
   // 색인 대조는 `middleTypeCoverage.test.ts` **한 곳**이 전량으로 한다
@@ -811,6 +841,9 @@ describe("중1 저조 단원 45유형 (m1Extra)", () => {
   });
 
   for (const e of M1EXTRA_TYPES) {
+    // 손으로 적은 검산표는 **자기 명부**에만 댄다. 남의 유형은 그 갈래의 전용
+    // 시험이 값 검산을 한다 — 여기서 요구하면 「검산식 누락」이 될 뿐이다.
+    const owned = e.key in EXPECTED_SECTION;
     describe(`${e.key} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260823);
@@ -818,7 +851,7 @@ describe("중1 저조 단원 45유형 (m1Extra)", () => {
         expect(a).toEqual(b);
       });
 
-      it("씨앗별 독립 검산 — 발문 수치·구조를 재계산한다", () => {
+      it.runIf(owned)("씨앗별 독립 검산 — 발문 수치·구조를 재계산한다", () => {
         const check = CHECKS[e.key];
         expect(check, `검산식 누락: ${e.key}`).toBeDefined();
         for (const seed of SEEDS) {
@@ -827,7 +860,7 @@ describe("중1 저조 단원 45유형 (m1Extra)", () => {
         }
       });
 
-      it("변형 20개도 전부 검산을 통과한다", () => {
+      it.runIf(owned)("변형 20개도 전부 검산을 통과한다", () => {
         // 고정 씨앗 5개가 못 건드리는 가지(변환·kind)를 변형이 넓게 밟는다.
         const check = CHECKS[e.key]!;
         for (let variant = 0; variant < 20; variant += 1) {
