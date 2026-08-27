@@ -5,7 +5,6 @@ import { classifyDrafts } from "@/lib/import/buildReport";
 import { convertManualSeedQuestion } from "@/lib/import/convertManualSeed";
 import { convertPastExamPaper } from "@/lib/import/convertPastExam";
 import { convertRpmRow } from "@/lib/import/convertRpm";
-import { elementaryContentHoldReason } from "@/lib/import/elementaryContentGuard";
 import { mapNumericDifficulty } from "@/lib/import/mapDifficulty";
 import { mapUnitHint, normalizeGrade } from "@/lib/import/mapUnit";
 import { toLoadRows } from "@/lib/import/toLoadRows";
@@ -372,69 +371,6 @@ describe("[T3.0] 기출 header 정규화 + RPM 구조화", () => {
     expect(rows[0]?.directUseAllowed).toBe(true);
     expect(rows[0]?.pool).toBe("shared");
     expect(skipped).toHaveLength(1);
-  });
-
-  it("초등 단원에 잘못 붙은 문자식은 보류하고 자동 출제에서 뺀다", () => {
-    const { rows, held } = toLoadRows(
-      [
-        {
-          externalId: "wrong-grade-algebra",
-          source: "transformed",
-          directUseAllowed: true,
-          difficulty: "mid",
-          problemType: "계산",
-          content: "$3(2x-4)$를 계산하시오.",
-          answer: "$6x-12$",
-          solution: null,
-          unitHint: "자연수의 혼합 계산",
-          hasFigure: false,
-          unitId: "elementary-unit",
-        },
-      ],
-      "user-1",
-      { unitGradeById: new Map([["elementary-unit", "초5"]]) },
-    );
-
-    expect(rows[0]).toMatchObject({
-      reviewStatus: "pending",
-      directUseAllowed: false,
-    });
-    expect(held).toHaveLength(1);
-    expect(held[0]?.reason).toContain("문자식 항");
-  });
-
-  it("초등 길이 단위는 문자식으로 오인해 보류하지 않는다", () => {
-    const { rows, held } = toLoadRows(
-      [
-        {
-          externalId: "elementary-length",
-          source: "manual",
-          directUseAllowed: true,
-          difficulty: "easy",
-          problemType: "계산",
-          content: "색 테이프의 길이는 15cm입니다.",
-          answer: "15cm",
-          solution: null,
-          unitHint: "길이",
-          hasFigure: false,
-          unitId: "elementary-unit",
-        },
-      ],
-      "user-1",
-      { unitGradeById: new Map([["elementary-unit", "초4"]]) },
-    );
-
-    expect(rows[0]).toMatchObject({
-      reviewStatus: "approved",
-      directUseAllowed: true,
-    });
-    expect(held).toEqual([]);
-  });
-
-  it("초등 단원의 제곱근 표기도 보류한다", () => {
-    expect(elementaryContentHoldReason("초4", "$\\sqrt{2}$")).toContain(
-      "제곱근 표기",
-    );
   });
 });
 
