@@ -117,6 +117,9 @@ async function main(): Promise<void> {
     if (ledger.rounds.length === 0) throw new Error("원장이 비었습니다");
     // 되살리는 차례는 지우는 차례의 **거꾸로**다.
     for (const r of ledger.rounds) {
+      // exam-wiring: 되돌리기 — 원장에 적힌 기출 행을 **그대로** 되살린다. 시험지
+      //   (`exam`)와 문항연결(`exam_question`)도 바로 아래에서 같이 되살아나므로
+      //   배선이 끊긴 채 남지 않는다. 새 기출을 넣는 경로가 아니다.
       await prisma.problem.createMany({
         data: r.problem as never,
         skipDuplicates: true,

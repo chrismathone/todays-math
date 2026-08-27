@@ -88,7 +88,18 @@ const DECLARABLE: readonly WiringVerdict[] = [
  * 원래대로 돌려놓는 것. 그 컬럼에는 FK 가 없어서 **끊겨도 오류가 안 난다.**
  * 그러니 「배선됨」을 `syncExamMetadata` 로 대조하듯, 「되돌리기」는 이것으로 대조한다.
  */
-const REVERT_LINK = /examQuestion\s*\.\s*(update|updateMany)/;
+/**
+ * 되돌리기가 **문항연결을 실제로 되살리는가**.
+ *
+ * ⚠️ 열쇠가 `update` 뿐이면 좁다. 되살리는 방법이 둘이다:
+ *   · 링크는 남아 있고 `problem_id` 만 다시 가리키게 한다 → `update`
+ *   · 링크째 지웠다가 **통째로 다시 만든다** → `create`/`createMany`
+ * 뒤엣것이 더 강한 복원인데 2026-08-27 까지 이 정규식이 못 봤다
+ * (`delete-legacy-corpus.ts` 가 시험지·문항연결을 다 지우고 원장에서 되살린다).
+ * 못 보면 「되돌리기·링크없음」이라는 **거짓 경보**가 나고, 늘 우는 가드는 꺼진다.
+ */
+const REVERT_LINK =
+  /examQuestion\s*\.\s*(update|updateMany|create|createMany|createManyAndReturn)/;
 
 export interface WiringSite {
   file: string;

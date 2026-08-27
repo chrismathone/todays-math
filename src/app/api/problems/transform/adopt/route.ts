@@ -36,6 +36,7 @@ import {
 } from "@/lib/figure/transformFigureBlock";
 import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
+import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -53,7 +54,30 @@ export async function POST(request: NextRequest) {
   );
   if (!accessible.ok) return accessible.response;
 
-  const origin = accessible.data;
+  // 🔴 문지기를 **여기서도** 세운다 — 생성 쪽과 같은 이유다. 화면이 다른 id 를
+  //    보내도 저장되는 변형본은 **문항류 대표의 자식**이어야 한다. 안 그러면
+  //    `originProblemId` 가 변형본을 가리켜 «변형의 변형» 사슬이 DB 에 남는다.
+  const askedOrigin = accessible.data;
+  const originSiblings =
+    // ⚠️ `solo:` 도 **키가 있으면 조회한다.** 접두사가 «혼자»라는 뜻이 아니다 —
+    //    변형본이 원본의 키를 물려받으므로 형제들이 같은 `solo:<uuid>` 를 든다
+    //    (실측 `A07-001`~`A07-006`). 여기서 끊으면 원장님이 지시한 «002~ 에서
+    //    누르면 001» 배선이 그 부류에 안 걸린다. 판단은 `pickFamilyMain` 하나가 한다.
+    askedOrigin.familyKey?.trim()
+      ? await db.problem.findMany({
+          where: {
+            unitId: askedOrigin.unitId,
+            familyKey: askedOrigin.familyKey,
+          },
+          select: { id: true, unitId: true, familyKey: true, createdAt: true },
+        })
+      : [];
+  const originMain = pickFamilyMain(askedOrigin, originSiblings);
+  const origin =
+    originMain.id === askedOrigin.id
+      ? askedOrigin
+      : ((await db.problem.findUnique({ where: { id: originMain.id } })) ??
+        askedOrigin);
 
   // ⚠️ 문지기를 **여기서 다시** 세운다. 화면도 막지만 화면만 막으면 문지기가
   //    브라우저에 있는 것이고, 그건 없는 것과 같다(적대적 리뷰 2026-08-19).

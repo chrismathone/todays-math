@@ -97,6 +97,8 @@ async function main(): Promise<void> {
         where: { id: String(row.id) },
       });
       if (exists) continue; // 이미 있으면 건드리지 않는다
+      // exam-wiring: 기출아님 — 원장에 적힌 **그 행 그대로** 되살린다. 새 문항이
+      //   아니라 되돌리기이므로 시험지 배선이 생기거나 사라지지 않는다.
       await prisma.problem.create({ data: row as never });
       back += 1;
     }
