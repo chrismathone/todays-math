@@ -146,4 +146,39 @@ describe("갈래 A 중등 유형 값 검산", () => {
       );
     }
   });
+
+  const coordinateExpected: Record<
+    string,
+    (x: number, y: number, content: string) => number
+  > = {
+    "12": (x) => x,
+    "13": (_x, y) => y,
+    "14": (x, y) => (x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3),
+    "15": (_x, _y, content) => -Number(content.match(/a\+(-?\d+)/)?.[1]),
+    "16": (_x, _y, content) => -Number(content.match(/a\+(-?\d+)/)?.[1]),
+    "17": (_x, y) => Math.abs(y),
+    "18": (x) => Math.abs(x),
+    "19": (x, y) => -x - y,
+  };
+
+  it.each(Object.keys(coordinateExpected))(
+    "순서쌍과 좌표평면 기본 유형 %s",
+    (rpmType) => {
+      const entry = M1EXTRA_TYPES.find(
+        (candidate) =>
+          candidate.unitSection === "순서쌍과 좌표평면(기본)" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        const point = problem.content.match(/\$[A-Z]\((-?\d+), (-?\d+)\)\$/);
+        const x = Number(point?.[1] ?? 0);
+        const y = Number(point?.[2] ?? 0);
+        expect(numericAnswer(problem.answer)).toBe(
+          coordinateExpected[rpmType]!(x, y, problem.content),
+        );
+      }
+    },
+  );
 });

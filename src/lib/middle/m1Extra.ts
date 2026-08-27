@@ -26,6 +26,7 @@ import type { TypeEntry } from "./types";
 
 const BOOK2 = "1-2";
 const DATA_MINOR = "도수분포표와 상대도수";
+const COORD_MINOR = "좌표와 그래프";
 
 function stemAndLeaf(values: readonly number[]): string {
   const rows = new Map<number, number[]>();
@@ -447,9 +448,158 @@ const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
   ),
 ];
 
+const BASIC_COORDINATE_TYPES: TypeEntry[] = [
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "12",
+    "점의 x좌표",
+    "순서쌍과 좌표평면(기본)",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, -9, 9);
+      const y = intBetween(rng, -9, 9);
+      return {
+        content: `점 $A(${x}, ${y})$의 $x$좌표를 구하시오.`,
+        answer: `$${x}$`,
+        solution: `순서쌍의 첫 번째 수가 $x$좌표이므로 $${x}$이다.`,
+        facts: { x, y, answer: x },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "13",
+    "점의 y좌표",
+    "순서쌍과 좌표평면(기본)",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, -9, 9);
+      const y = intBetween(rng, -9, 9);
+      return {
+        content: `점 $B(${x}, ${y})$의 $y$좌표를 구하시오.`,
+        answer: `$${y}$`,
+        solution: `순서쌍의 두 번째 수가 $y$좌표이므로 $${y}$이다.`,
+        facts: { x, y, answer: y },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "14",
+    "점이 속한 사분면",
+    "순서쌍과 좌표평면(기본)",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
+      const y = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
+      const quadrant = x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3;
+      return {
+        content: `점 $C(${x}, ${y})$는 제몇 사분면 위의 점인지 구하시오.`,
+        answer: `제$${quadrant}$사분면`,
+        solution: `$x$좌표의 부호는 ${x > 0 ? "양수" : "음수"}, $y$좌표의 부호는 ${y > 0 ? "양수" : "음수"}이므로 제$${quadrant}$사분면이다.`,
+        facts: { x, y, answer: quadrant },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "15",
+    "x축 위의 점",
+    "순서쌍과 좌표평면(기본)",
+    "연산",
+    (rng) => {
+      const x = intBetween(rng, -9, 9);
+      const a = intBetween(rng, -7, 7);
+      return {
+        content: `점 $D(${x}, a+${-a})$가 $x$축 위에 있을 때, $a$의 값을 구하시오.`,
+        answer: `$${a}$`,
+        solution: `$x$축 위의 점의 $y$좌표는 $0$이므로 $a${-a >= 0 ? "+" : ""}${-a}=0$에서 $a=${a}$이다.`,
+        facts: { x, a, answer: a },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "16",
+    "y축 위의 점",
+    "순서쌍과 좌표평면(기본)",
+    "연산",
+    (rng) => {
+      const y = intBetween(rng, -9, 9);
+      const a = intBetween(rng, -7, 7);
+      return {
+        content: `점 $E(a+${-a}, ${y})$가 $y$축 위에 있을 때, $a$의 값을 구하시오.`,
+        answer: `$${a}$`,
+        solution: `$y$축 위의 점의 $x$좌표는 $0$이므로 $a${-a >= 0 ? "+" : ""}${-a}=0$에서 $a=${a}$이다.`,
+        facts: { y, a, answer: a },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "17",
+    "x축까지의 거리",
+    "순서쌍과 좌표평면(기본)",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, -9, 9);
+      const y = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
+      return {
+        content: `점 $P(${x}, ${y})$와 $x$축 사이의 거리를 구하시오.`,
+        answer: `$${Math.abs(y)}$`,
+        solution: `$x$축까지의 거리는 $y$좌표의 절댓값이므로 $|${y}|=${Math.abs(y)}$이다.`,
+        facts: { x, y, answer: Math.abs(y) },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "18",
+    "y축까지의 거리",
+    "순서쌍과 좌표평면(기본)",
+    "기본",
+    (rng) => {
+      const x = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
+      const y = intBetween(rng, -9, 9);
+      return {
+        content: `점 $Q(${x}, ${y})$와 $y$축 사이의 거리를 구하시오.`,
+        answer: `$${Math.abs(x)}$`,
+        solution: `$y$축까지의 거리는 $x$좌표의 절댓값이므로 $|${x}|=${Math.abs(x)}$이다.`,
+        facts: { x, y, answer: Math.abs(x) },
+      };
+    },
+  ),
+  defType(
+    "1-1",
+    COORD_MINOR,
+    "19",
+    "원점에 대칭인 점",
+    "순서쌍과 좌표평면(기본)",
+    "응용",
+    (rng) => {
+      const x = intBetween(rng, -9, 9);
+      const y = intBetween(rng, -9, 9);
+      return {
+        content: `점 $R(${x}, ${y})$와 원점에 대하여 대칭인 점의 두 좌표의 합을 구하시오.`,
+        answer: `$${-x - y}$`,
+        solution: `대칭인 점은 $(-${x}, -${y})$이므로 두 좌표의 합은 $${-x}+(${-y})=${-x - y}$이다.`,
+        facts: { x, y, answer: -x - y },
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
   ...STEM_LEAF_TYPES,
   ...FREQUENCY_TABLE_TYPES,
+  ...BASIC_COORDINATE_TYPES,
 ];
