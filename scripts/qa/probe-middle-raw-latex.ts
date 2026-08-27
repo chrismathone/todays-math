@@ -135,6 +135,52 @@ export function bareCommands(text: string): string[] {
 }
 
 // ────────────────────────────────────────────────────────────────────────
+// 같은 뿌리의 **더 조용한 얼굴** — 역슬래시가 글자를 지운 게 아니라 **제어문자**가 됐다.
+// ────────────────────────────────────────────────────────────────────────
+/**
+ * 🔴 `bareCommands` 는 이 부류를 **구조적으로 못 본다.**
+ *
+ *   `\times` → TAB + `imes` · `\frac` → 폼피드 + `rac` · `\beta` → 백스페이스 + `eta`
+ *
+ * 남은 조각(`imes`·`rac`)이 명령 이름이 아니라서 위 목록에 안 걸린다. 그리고 화면에서는
+ * **그냥 붙어 보이는 글자**다 — 「지표가 실패를 셀 수 있는 형태인가」가 여기서 갈린다.
+ * 실측으로 적재본 해설 5문항에 TAB 이 살아 있었다(2026-08-27).
+ *
+ * ⚠️ 줄바꿈·캐리지리턴은 본문에서 **정상**이다(해설이 여러 줄이다). 그래서 그 둘만
+ *    수식 `$…$` **안**에서 센다. 밖에서까지 세면 해설 대부분이 거짓으로 걸린다.
+ */
+const CONTROL_ANYWHERE: [name: string, ch: string, from: string][] = [
+  ["TAB", "\t", "times·theta·triangle·text·to"],
+  ["폼피드", "\f", "frac·phi"],
+  ["세로탭", "\v", "vec"],
+  ["백스페이스", "\b", "beta·bar"],
+  ["널", "\0", "-"],
+];
+
+/** 이 글에 죽은 역슬래시가 만든 제어문자가 있으면 그 이름들을 낸다. */
+export function controlChars(text: string): string[] {
+  const out: string[] = [];
+  for (const [name, ch] of CONTROL_ANYWHERE) {
+    if (text.includes(ch)) out.push(name);
+  }
+  for (const m of text.matchAll(CHUNK)) {
+    if (m[1]!.includes("\n")) out.push("줄바꿈(수식안)");
+    if (m[1]!.includes("\r")) out.push("캐리지리턴(수식안)");
+  }
+  return out;
+}
+
+/** 두 축을 한 번에 — 적재기·pre-push 가 이것만 부르면 축이 새지 않는다. */
+export function deadBackslashHits(text: string): string[] {
+  return [...bareCommands(text), ...controlChars(text)];
+}
+
+/** 무엇이 그 제어문자를 만드는지 사람에게 알려 준다. */
+export function controlCharOrigins(): string {
+  return CONTROL_ANYWHERE.map(([n, , from]) => `${n}←\\${from}`).join(" · ");
+}
+
+// ────────────────────────────────────────────────────────────────────────
 // 눈금 — 양성과 음성을 **둘 다** 댄다. 양성만 대면 지어냄이 구조적으로 0이 된다.
 // ────────────────────────────────────────────────────────────────────────
 const GAUGE: [name: string, text: string, catches: boolean][] = [
@@ -155,12 +201,31 @@ const GAUGE: [name: string, text: string, catches: boolean][] = [
   ["🔴 한 글자 변수는 명령이 아니다", String.raw`$x+y=z$`, false],
   ["🔴 수식 밖의 글은 안 본다", "각 $ABC$ 의 크기를 구하시오.", false],
   ["🔴 제대로 쓴 근호·곱셈은 안 잡는다", String.raw`$\sqrt{2}\times3$`, false],
+
+  // ── 제어문자 축 (2026-08-27) ────────────────────────
+  // ⚠️ 여기만은 `String.raw` 를 **쓰면 안 된다.** raw 로 적으면 역슬래시가 살아 있는
+  //    정상 글이 되어 이 축이 재려는 것과 정반대가 된다.
+  //
+  // 아래 셋은 **결함 그 자체를 소스에 그대로 적은 것**이다. 보통 문자열에서
+  //   "\times" 는 TAB+"imes" · "\frac" 은 폼피드+"rac" · "\beta" 는 백스페이스+"eta"
+  // 이다 — 사람 눈에는 명령처럼 보이는데 자바스크립트는 제어문자로 읽는다.
+  // 그것이 지면에 나가던 바로 그 모양이다.
+  ["탭이 된 곱셈", "$2\times3$", true],
+  ["폼피드가 된 분수", "$\frac{1}{2}$", true],
+  ["백스페이스가 된 베타", "$\beta$", true],
+  ["수식 안에 낀 줄바꿈", "$x=\n1$", true],
+  [
+    "🔴 해설의 정상 줄바꿈은 안 잡는다 — 수식 **밖**이다",
+    "따라서 $x=1$이다.\n그러므로 답은 $2$이다.",
+    false,
+  ],
+  ["🔴 제어문자가 없는 정상 수식은 안 잡는다", String.raw`$2\times3=6$`, false],
 ];
 
 function selftest(): void {
   let bad = 0;
   for (const [name, text, want] of GAUGE) {
-    const got = bareCommands(text).length > 0;
+    const got = deadBackslashHits(text).length > 0;
     const ok = got === want;
     if (!ok) bad += 1;
     console.log(
@@ -248,4 +313,7 @@ function main(): void {
   process.exit(1);
 }
 
-main();
+// ⚠️ **직접 실행할 때만** 쓸기를 돈다. 이 파일은 판정 규칙(`deadBackslashHits`)의
+//    유일한 자리라 다른 도구가 import 한다(`checkLoadedRawLatex.ts`). 무조건 부르면
+//    import 하는 쪽이 엔진 8,022표본을 통째로 돌리고 그 출력이 남의 보고서에 섞인다.
+if (/probe-middle-raw-latex/.test(process.argv[1] ?? "")) main();
