@@ -61,12 +61,21 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
     ).toEqual([]);
   });
 
-  it("등록 유형의 책·중단원·번호·제목이 RPM 색인 정본과 글자 그대로 같다", () => {
-    // 왜: 세션마다 중단원 이름을 **손으로 적는다**. 정본은 「일차함수와 그 그래프」
-    // 뒤에 **얇은 공백(U+2009)** 을 쓰는데 보통 공백으로 적으면 어디서도 안 걸린다 —
-    // 실제로 m2Func 가 그렇게 등록돼 있었고, 그 자리를 고치는 날 다른 시험의
+  it("RPM 번호는 색인 정본과 글자 그대로 같고, 색인 밖 번호는 색인 뒤에만 있다", () => {
+    // 왜 대조하나: 세션마다 중단원 이름을 **손으로 적는다**. 정본은 「일차함수와 그
+    // 그래프」 뒤에 **얇은 공백(U+2009)** 을 쓰는데 보통 공백으로 적으면 어디서도 안
+    // 걸린다 — 실제로 m2Func 가 그렇게 등록돼 있었고, 그 자리를 고치는 날 다른 시험의
     // 중단원 필터가 남의 유형을 쓸어 담아 빨개진다(2026-08-23 물결 2D 가 발견).
-    // 「손 목록은 샌다」 — 정본 하나에 대고 전량 대조한다.
+    //
+    // 왜 «색인 밖»을 허용하나 (2026-08-27): 색인은 **RPM 의 873유형**이다. 130소단원을
+    // 10유형씩 채우라는 일은 그 밖으로 나가야 끝나는데, 그렇다고 색인 파일에 우리
+    // 유형을 적어 넣으면 「이 번호가 RPM 에 있다」는 **거짓이 SSOT 에 박힌다**.
+    // 그래서 가르는 축을 **번호의 자리**로 둔다 —
+    //   · 색인 **안** 번호는 제목까지 정본과 같아야 하고,
+    //   · 우리가 지은 번호는 그 중단원 색인 **최댓값 뒤**에서만 시작한다.
+    // 이러면 「RPM 번호를 딴 뜻으로 쓴다」는 여전히 걸린다.
+    // ⚠️ 중등 유형의 색인 대조는 **여기 한 곳**이다. 모듈 시험마다 다시 적지 말 것 —
+    //    규칙이 네 벌이 되면 한쪽만 고쳐도 아무도 모른다.
     const raw = readFileSync(
       path.resolve(process.cwd(), "scripts/rpm/rpm-type-catalog.json"),
       "utf8",
@@ -82,13 +91,19 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
         bad.push(`${e.key}: 색인에 없는 책 ${e.rpmBook}`);
         continue;
       }
-      const hit = book.types.find(
-        (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
-      );
-      if (!hit) {
+      const inMinor = book.types.filter((t) => t.minor === e.rpmMinor);
+      if (inMinor.length === 0) {
         bad.push(
-          `${e.key}: 색인에 없는 중단원·번호 (${JSON.stringify(e.rpmMinor)})`,
+          `${e.key}: 색인에 없는 중단원 (${JSON.stringify(e.rpmMinor)})`,
         );
+        continue;
+      }
+      const hit = inMinor.find((t) => t.number === e.rpmType);
+      if (!hit) {
+        const top = Math.max(...inMinor.map((t) => Number(t.number)));
+        if (Number(e.rpmType) <= top) {
+          bad.push(`${e.key}: 색인 밖인데 색인 범위(≤${top}) 안의 번호다`);
+        }
         continue;
       }
       if (hit.title !== e.rpmTitle) {

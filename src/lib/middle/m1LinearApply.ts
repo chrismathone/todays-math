@@ -17,7 +17,11 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { eulReul } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
+
+/** 수 뒤 「을/를」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
+const nEul = eulReul;
 
 const GRADE = "중1";
 const BOOK = "1-1";
@@ -86,7 +90,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       const rel = diff > 0 ? "크다" : "작다";
       const ad = Math.abs(diff);
       return {
-        content: `어떤 수에 $${a}$를 곱한 후 $${b}$를 더한 수는 어떤 수의 $${c}$배보다 $${ad}$만큼 ${rel}고 한다. 어떤 수를 구하시오.`,
+        content: `어떤 수에 $${a}$${nEul(a)} 곱한 후 $${b}$${nEul(b)} 더한 수는 어떤 수의 $${c}$배보다 $${ad}$만큼 ${rel}고 한다. 어떤 수를 구하시오.`,
         answer: `$${x}$`,
         solution: `어떤 수를 $x$라 하면 $${a}x+${b}=${c}x${diff > 0 ? `+${ad}` : `-${ad}`}$이다.\n정리하여 풀면 $x=${x}$이다.`,
         facts: { x, a, b, c, diff },
@@ -114,7 +118,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `각 자리의 숫자의 합이 $${s}$인 두 자리 자연수가 있다. 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수보다 $${d}$만큼 크다고 한다. 처음 수를 구하시오.`,
       answer: `$${N}$`,
-      solution: `십의 자리의 숫자를 $x$라 하면 일의 자리의 숫자는 $${s}-x$이다.\n$10(${s}-x)+x=\\{10x+(${s}-x)\\}+${d}$를 풀면 $x=${a}$이다.\n따라서 처음 수는 $${N}$이다.`,
+      solution: `십의 자리의 숫자를 $x$라 하면 일의 자리의 숫자는 $${s}-x$이다.\n$10(${s}-x)+x=\\{10x+(${s}-x)\\}+${d}$${nEul(d)} 풀면 $x=${a}$이다.\n따라서 처음 수는 $${N}$이다.`,
       facts: { a, b, s, d, N },
     };
   }),
@@ -130,7 +134,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `한 자루에 $${p}$원인 볼펜과 한 자루에 $${q}$원인 연필을 합하여 $${T}$자루를 사고 $${C}$원을 지불하였다. 볼펜은 몇 자루 샀는지 구하시오.`,
         answer: `$${x}$자루`,
-        solution: `볼펜을 $x$자루 샀다고 하면 연필은 $(${T}-x)$자루이다.\n$${p}x+${q}(${T}-x)=${C}$를 풀면 $x=${x}$이다.\n따라서 볼펜은 $${x}$자루 샀다.`,
+        solution: `볼펜을 $x$자루 샀다고 하면 연필은 $(${T}-x)$자루이다.\n$${p}x+${q}(${T}-x)=${C}$${nEul(C)} 풀면 $x=${x}$이다.\n따라서 볼펜은 $${x}$자루 샀다.`,
         facts: { x, T, p, q, C },
       };
     }),
@@ -223,7 +227,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `작년 어느 중학교의 전체 학생 수는 $${T}$명이었다. 올해는 작년보다 남학생이 $${a}\\%$ 늘고 여학생이 $${b}\\%$ 줄어서 전체 학생 수가 $${Math.abs(c)}$명 ${rel}. 작년 남학생 수를 구하시오.`,
         answer: `$${x}$명`,
-        solution: `작년 남학생 수를 $x$명이라 하면 여학생 수는 $(${T}-x)$명이다.\n$\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}(${T}-x)=${c}$를 풀면 $x=${x}$이다.\n따라서 작년 남학생은 $${x}$명이다.`,
+        solution: `작년 남학생 수를 $x$명이라 하면 여학생 수는 $(${T}-x)$명이다.\n$\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}(${T}-x)=${c}$${nEul(c)} 풀면 $x=${x}$이다.\n따라서 작년 남학생은 $${x}$명이다.`,
         facts: { a, b, x, y, c, T },
       };
     }),
@@ -268,7 +272,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       return {
         content: `등산을 하는데 올라갈 때는 시속 $${v1}\\,\\mathrm{km}$로, 내려올 때는 같은 길을 시속 $${v2}\\,\\mathrm{km}$로 걸어서 모두 $${t}$시간이 걸렸다. 올라간 거리를 구하시오.`,
         answer: `$${d}\\,\\mathrm{km}$`,
-        solution: `올라간 거리를 $x\\,\\mathrm{km}$라 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}=${t}$이다.\n양변에 $${v1 * v2}$를 곱하여 풀면 $x=${d}$이다.\n따라서 올라간 거리는 $${d}\\,\\mathrm{km}$이다.`,
+        solution: `올라간 거리를 $x\\,\\mathrm{km}$라 하면 $\\dfrac{x}{${v1}}+\\dfrac{x}{${v2}}=${t}$이다.\n양변에 $${v1 * v2}$${nEul(v1 * v2)} 곱하여 풀면 $x=${d}$이다.\n따라서 올라간 거리는 $${d}\\,\\mathrm{km}$이다.`,
         facts: { v1, v2, d, t },
       };
     },
@@ -372,7 +376,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 더 긴 직사각형의 둘레의 길이가 $${P}\\,\\mathrm{cm}$일 때, 세로의 길이를 구하시오.`,
       answer: `$${h}\\,\\mathrm{cm}$`,
-      solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$를 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
+      solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$${nEul(P)} 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
       facts: { h, d, w, P },
     };
   }),
@@ -481,7 +485,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     return {
       content: `성냥개비로 정삼각형을 한 줄로 이어 붙여 만들려고 한다. 정삼각형 $1$개를 만들 때는 성냥개비 $3$개가 필요하고, 정삼각형을 $1$개 이어 붙일 때마다 성냥개비가 $2$개씩 더 필요하다. 성냥개비 $${M}$개로 만들 수 있는 정삼각형의 개수를 구하시오.`,
       answer: `$${n}$개`,
-      solution: `정삼각형을 $x$개 만든다고 하면 필요한 성냥개비는 $\\{3+2(x-1)\\}$개이다.\n$3+2(x-1)=${M}$을 풀면 $x=${n}$이다.\n따라서 정삼각형을 $${n}$개 만들 수 있다.`,
+      solution: `정삼각형을 $x$개 만든다고 하면 필요한 성냥개비는 $\\{3+2(x-1)\\}$개이다.\n$3+2(x-1)=${M}$${nEul(M)} 풀면 $x=${n}$이다.\n따라서 정삼각형을 $${n}$개 만들 수 있다.`,
       facts: { n, M },
     };
   }),
@@ -636,18 +640,23 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("35", "연속한 증가와 감소", SEC.증감, "심화", (rng) => {
-    const up = pick(rng, [20, 25, 50] as const);
-    const down = pick(rng, [20, 25, 40] as const);
-    const before = intBetween(rng, 4, 16) * 100;
-    const after = (before * (100 + up) * (100 - down)) / 10000;
-    return {
-      content: `어떤 제품의 생산량이 첫 달에는 $${up}\\%$ 증가하고 다음 달에는 $${down}\\%$ 감소하여 $${after}$개가 되었다. 증가하기 전 생산량을 구하시오.`,
-      answer: `$${before}$개`,
-      solution: `증가하기 전 생산량을 $x$개라 하면 $x\\times\\dfrac{${100 + up}}{100}\\times\\dfrac{${100 - down}}{100}=${after}$이다.\n따라서 $x=${before}$이다.`,
-      facts: { up, down, before, after },
-    };
-  }),
+  def("35", "연속한 증가와 감소", SEC.증감, "심화", (rng) =>
+    attempt(200, () => {
+      const up = pick(rng, [20, 25, 50] as const);
+      const down = pick(rng, [20, 25, 40] as const);
+      const before = intBetween(rng, 4, 16) * 100;
+      const after = (before * (100 + up) * (100 - down)) / 10000;
+      // 제품 개수는 정수여야 한다 — $25\%$ 올렸다 $25\%$ 내리면 $\frac{15}{16}$ 배라
+      // $700$개가 $656.25$개가 된다. 값은 맞고 **지면만 말이 안 된다**.
+      if (!Number.isInteger(after)) return null;
+      return {
+        content: `어떤 제품의 생산량이 첫 달에는 $${up}\\%$ 증가하고 다음 달에는 $${down}\\%$ 감소하여 $${after}$개가 되었다. 증가하기 전 생산량을 구하시오.`,
+        answer: `$${before}$개`,
+        solution: `증가하기 전 생산량을 $x$개라 하면 $x\\times\\dfrac{${100 + up}}{100}\\times\\dfrac{${100 - down}}{100}=${after}$이다.\n따라서 $x=${before}$이다.`,
+        facts: { up, down, before, after },
+      };
+    }),
+  ),
 
   def("36", "부가세가 포함된 가격", SEC.증감, "응용", (rng) => {
     const rate = pick(rng, [5, 10, 20] as const);

@@ -16,10 +16,8 @@
  * 자기 모듈(`M1_NUM`)을 직접 훑는다 — `registeredTypes()` 를 중단원 이름으로
  * 거르면 같은 중단원의 남의 유형을 쓸어 담는다(물결 2 에서 실제로 났다).
  *
- * 유형 번호·제목은 `scripts/rpm/rpm-type-catalog.json`(정본)과 직접 대조한다.
+ * 유형 번호·제목의 정본 대조는 `middleTypeCoverage.test.ts` 가 전량으로 한다.
  */
-import { readFileSync } from "node:fs";
-import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
@@ -32,8 +30,8 @@ import {
 } from "../../lib/middle/generate";
 import { M1_NUM } from "../../lib/middle/m1Num";
 import type { MidProblem } from "../../lib/middle/types";
+import { josaMismatches } from "../helpers/midPage";
 
-const REPO = path.resolve(__dirname, "../../..");
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
 // ── 독립 검산 연장 (생성기와 다른 방법) ─────────────────────
@@ -271,6 +269,15 @@ const EXPECTED_SECTION: Record<string, string> = {
   "1-1|최대공약수와 최소공배수|14": "최대공약수와 최소공배수의 활용",
   "1-1|최대공약수와 최소공배수|15": "최대공약수와 최소공배수의 활용",
   "1-1|최대공약수와 최소공배수|16": "최대공약수와 최소공배수의 활용",
+  // 17~23 은 RPM 색인 밖 — 「공약수와 최대공약수」를 10유형으로 채우려고
+  // 우리가 지은 것이다(갈래 D). 번호는 색인 최댓값 16 **다음부터** 잇는다.
+  "1-1|최대공약수와 최소공배수|17": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|18": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|19": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|20": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|21": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|22": "공약수와 최대공약수",
+  "1-1|최대공약수와 최소공배수|23": "공약수와 최대공약수",
   "1-1|정수와 유리수|01": "정수와 유리수",
   "1-1|정수와 유리수|02": "정수와 유리수",
   "1-1|정수와 유리수|03": "정수와 유리수",
@@ -656,6 +663,86 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     expect(answerNum(p)).toBe(answer);
   },
 
+  // ── 17~23 「공약수와 최대공약수」를 10유형으로 채운 몫 (갈래 D) ──
+  // 생성기는 최대공약수를 **구성으로** 정한다(몫을 서로소로 뽑아 곱한다).
+  // 여기서는 그 수를 **호제법으로 다시 재고**, 약수는 **전수 열거**한다.
+
+  "1-1|최대공약수와 최소공배수|17": (p) => {
+    const { A, B, g, sum } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!);
+    expect(gcd(A!, B!), "호제법으로 다시 잰 최대공약수").toBe(g);
+    const want = divisorsOf(gcd(A!, B!)).reduce((s, d) => s + d, 0);
+    expect(want).toBe(sum);
+    expect(answerNum(p)).toBe(want);
+  },
+
+  "1-1|최대공약수와 최소공배수|18": (p) => {
+    const { A, B, C, g } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!, C!);
+    expect(gcd3(A!, B!, C!)).toBe(g);
+    expect(answerNum(p)).toBe(gcd3(A!, B!, C!));
+  },
+
+  "1-1|최대공약수와 최소공배수|19": (p) => {
+    const { A, B, g, k, answer } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!, k!);
+    expect(gcd(A!, B!)).toBe(g);
+    // 「같은 수를 곱하면 최대공약수도 그만큼」이라는 성질을 믿지 않고
+    // **실제로 곱한 두 수**의 최대공약수를 호제법으로 다시 잰다.
+    expect(gcd(A! * k!, B! * k!)).toBe(answer);
+    expect(answerNum(p)).toBe(gcd(A! * k!, B! * k!));
+  },
+
+  "1-1|최대공약수와 최소공배수|20": (p) => {
+    const { A, B, C, answer } = p.facts as Record<string, number>;
+    const bodies = mathBodies(p.content);
+    expect(bodies, "발문에 세 수가 소인수분해 꼴로 있어야 한다").toHaveLength(
+      3,
+    );
+    const vals = bodies.map((b) =>
+      parseFacTex(b).reduce((v, [q, e]) => v * q ** e, 1),
+    );
+    expect(vals).toEqual([A, B, C]);
+    expect(gcd3(vals[0]!, vals[1]!, vals[2]!)).toBe(answer);
+    expect(answerNum(p)).toBe(gcd3(vals[0]!, vals[1]!, vals[2]!));
+  },
+
+  "1-1|최대공약수와 최소공배수|21": (p) => {
+    const { A, B, remainder, g } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!, remainder!);
+    // 「가장 큰 수」를 **후보를 처음부터 훑어** 다시 찾는다 — 구성이 아니라 탐색.
+    let best = 0;
+    for (let d = remainder! + 1; d <= Math.min(A!, B!); d += 1) {
+      if (A! % d === remainder && B! % d === remainder) best = d;
+    }
+    expect(best, "나머지가 같아지는 가장 큰 수").toBe(g);
+    expect(answerNum(p)).toBe(best);
+  },
+
+  "1-1|최대공약수와 최소공배수|22": (p) => {
+    const { A, B, r1, r2, g } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!, r1!, r2!);
+    let best = 0;
+    for (let d = Math.max(r1!, r2!) + 1; d <= Math.min(A!, B!); d += 1) {
+      if (A! % d === r1 && B! % d === r2) best = d;
+    }
+    expect(best, "두 나머지를 남기는 가장 큰 수").toBe(g);
+    expect(answerNum(p)).toBe(best);
+  },
+
+  "1-1|최대공약수와 최소공배수|23": (p) => {
+    const { A, B, g, limit, count } = p.facts as Record<string, number>;
+    shows(p.content, A!, B!, limit!);
+    expect(gcd(A!, B!)).toBe(g);
+    // 공약수를 최대공약수의 약수로 «알고» 세지 않고, $1$부터 전수로 훑는다.
+    let want = 0;
+    for (let d = 1; d <= limit!; d += 1) {
+      if (A! % d === 0 && B! % d === 0) want += 1;
+    }
+    expect(want).toBe(count);
+    expect(answerNum(p)).toBe(want);
+  },
+
   "1-1|정수와 유리수|01": (p) => {
     const { kind, a, b, answer } = p.facts as Record<string, number>;
     expect(a).toBeLessThan(0);
@@ -893,46 +980,12 @@ function outsideMath(text: string): string {
   return text.replace(/\$[^$]*\$/g, "");
 }
 
-/** 수 읽기의 끝 글자에 받침이 있는가 — `m2Josa` 와 같은 규칙을 시험 쪽에 다시 적은 것 */
-function numVowelFinal(n: number): boolean {
-  const d = Math.abs(n) % 10;
-  return d === 2 || d === 4 || d === 5 || d === 9;
-}
-
-/**
- * 수식 끝에서 «읽을 때 마지막에 오는 수» — 없으면 `null`(판정하지 않는다).
- *
- * 분수를 그냥 건너뛰면 안 된다. `improperToMixed`(textPreprocess)가 가분수를
- * **대분수**로 그리므로 $\frac{14}{5}$ 는 「$2$와 $5$분의 $4$」로 읽히고,
- * 조사는 그 **나머지**를 따른다. 처음엔 「숫자로 끝나는 것」만 봐서 유형 13 의
- * 64자리를 통째로 못 봤다 — 지표가 실패를 셀 수 있는 형태여야 한다.
- */
-function trailingReadNumber(body: string): number | null {
-  const frac = body.match(/\\frac\{(\d+)\}\{(\d+)\}$/);
-  if (frac) {
-    const a = Number(frac[1]);
-    const b = Number(frac[2]);
-    if (a % b === 0) return a / b;
-    return a > b ? a % b : a;
-  }
-  const int = body.match(/(\d+)$/);
-  return int ? Number(int[1]) : null;
-}
-const JOSA_PAIR: Record<string, [string, string]> = {
-  을: ["을", "를"],
-  를: ["을", "를"],
-  은: ["은", "는"],
-  는: ["은", "는"],
-  와: ["과", "와"],
-  과: ["과", "와"],
-};
-
-describe("중1 1-1 「수」 38유형 (m1Num)", () => {
-  it("38유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
+describe("중1 1-1 「수」 45유형 (m1Num)", () => {
+  it("45유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
     expect(new Set(M1_NUM.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1_NUM.length).toBe(38);
+    expect(M1_NUM.length).toBe(45);
     for (const e of M1_NUM) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
@@ -954,28 +1007,14 @@ describe("중1 1-1 「수」 38유형 (m1Num)", () => {
       "09",
       "10",
     ]);
-    expect(byMinor.get("최대공약수와 최소공배수")!.length).toBe(16);
+    // RPM 색인의 16 + 갈래 D 가 「공약수와 최대공약수」를 채우려고 지은 7
+    expect(byMinor.get("최대공약수와 최소공배수")!.length).toBe(23);
     expect(byMinor.get("정수와 유리수")!.length).toBe(15);
   });
 
-  it("유형 번호·제목이 RPM 색인(정본)에 실재한다", () => {
-    const catalog = JSON.parse(
-      readFileSync(
-        path.resolve(REPO, "scripts/rpm/rpm-type-catalog.json"),
-        "utf-8",
-      ),
-    ) as Record<
-      string,
-      { types: { minor: string; number: string; title: string }[] }
-    >;
-    for (const e of M1_NUM) {
-      const hit = catalog[e.rpmBook]?.types.find(
-        (t) => t.minor === e.rpmMinor && t.number === e.rpmType,
-      );
-      expect(hit, `${e.key} — 색인에 없는 번호`).toBeDefined();
-      expect(hit!.title, e.key).toBe(e.rpmTitle);
-    }
-  });
+  // 색인 대조는 `middleTypeCoverage.test.ts` **한 곳**이 전량으로 한다
+  // (색인 안 번호는 제목까지, 색인 밖 번호는 그 중단원 색인 최댓값 뒤인지).
+  // 여기 다시 적으면 규칙이 여러 벌이 되어 한쪽만 고쳐도 아무도 모른다.
 
   it("모든 유형이 generate 진입점에 등록돼 있다", () => {
     const keys = new Set(registeredTypes().map((e) => e.key));
@@ -1026,20 +1065,12 @@ describe("중1 1-1 「수」 38유형 (m1Num)", () => {
 
       it("수 뒤 조사가 읽기와 맞는다", () => {
         // 「$15$과」·「$63$와」처럼 받침을 거스르면 지면에서 바로 티가 난다.
+        // 판정 규칙은 `helpers/midPage` 한 곳에 있다 — 시험마다 다시 적으면
+        // 한쪽만 고쳐도 아무도 모른다(실제로 지수 `x^2` 거짓 경보가 그랬다).
         for (let variant = 0; variant < 20; variant += 1) {
           const p = generateMiddleProblem(e.key, 20260823, variant);
           for (const part of [p.content, p.answer, p.solution]) {
-            for (const m of part.matchAll(/\$([^$]*)\$(을|를|은|는|와|과)/g)) {
-              const n = trailingReadNumber(m[1]!);
-              if (n === null) continue; // 지수·문자로 끝나면 읽기를 알 수 없다
-              const want = numVowelFinal(n)
-                ? JOSA_PAIR[m[2]!]![1]
-                : JOSA_PAIR[m[2]!]![0];
-              expect(
-                m[2],
-                `$…${m[1]!.slice(-16)}$${m[2]} → ${want} (${part})`,
-              ).toBe(want);
-            }
+            expect(josaMismatches(part), part).toEqual([]);
           }
         }
       });

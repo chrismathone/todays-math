@@ -15,6 +15,7 @@ import {
   registeredTypes,
 } from "../../lib/middle/generate";
 import type { MidProblem } from "../../lib/middle/types";
+import { josaMismatches } from "../helpers/midPage";
 
 const SEEDS = [20260823, 1, 7777, 424242, 99991];
 
@@ -85,6 +86,142 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   "10": (f) => f.x! * (f.a! - 1) * (f.b! - 1) === f.N! * f.a! * f.b!,
   // 성냥개비: 3 + 2(n-1) == M
   "21": (f) => 3 + 2 * (f.n! - 1) === f.M!,
+
+  // ── 23~38 은 RPM 색인 밖 — 두 소단원을 10유형으로 채우려고 지은 몫 (갈래 D) ──
+  // 비례배분: 남 a·k == part, 전체 (a+b)·k
+  "23": (f) =>
+    f.a! * f.k! === f.part! && (f.a! + f.b!) * f.k! === f.total! && f.a !== f.b,
+  // 더한 뒤의 비: A 는 a·k, B 는 b·k, A + added == B
+  "24": (f) =>
+    f.a! * f.k! + f.added! === f.b! * f.k! &&
+    f.first! === f.a! * f.k! &&
+    f.a! < f.b!,
+  // 백분율: rate% 의 total 이 used
+  "25": (f) =>
+    f.rate! * f.total! === 100 * f.used! && f.rate! > 0 && f.rate! < 100,
+  // 분침: 1분에 6°
+  "26": (f) => f.angle! === 6 * f.minutes! && f.minutes! >= 1,
+  // 달력: 아래로 rows 칸, 한 칸에 7 씩. 합은 (rows+1)개의 등차수열
+  "27": (f) =>
+    f.bottom! === f.top! + 7 * f.rows! &&
+    f.sum! === (f.rows! + 1) * f.top! + (7 * (f.rows! * (f.rows! + 1))) / 2,
+  // 등차: n 번째 == first + (n-1)·diff
+  "28": (f) => f.value! === f.first! + (f.n! - 1) * f.diff! && f.n! >= 2,
+  // 정사각형: 4 + 3(n-1) == sticks
+  "29": (f) => 4 + 3 * (f.n! - 1) === f.sticks! && f.n! >= 1,
+  // 톱니: a·turnsA == b·turnsB
+  "30": (f) => f.a! * f.turnsA! === f.b! * f.turnsB!,
+  // 증가: before·(100+rate) == 100·after
+  "31": (f) => f.before! * (100 + f.rate!) === 100 * f.after! && f.rate! > 0,
+  // 감소: before·(100-rate) == 100·after
+  "32": (f) =>
+    f.before! * (100 - f.rate!) === 100 * f.after! &&
+    f.rate! > 0 &&
+    f.rate! < 100,
+  // 이익률: cost·(100+rate) == 100·sale
+  "33": (f) => f.cost! * (100 + f.rate!) === 100 * f.sale! && f.rate! > 0,
+  // 할인율: price·(100-rate) == 100·sale
+  "34": (f) =>
+    f.price! * (100 - f.rate!) === 100 * f.sale! &&
+    f.rate! > 0 &&
+    f.rate! < 100,
+  // 연속 증감: before·(100+up)(100-down) == 10000·after
+  "35": (f) =>
+    f.before! * (100 + f.up!) * (100 - f.down!) === 10000 * f.after! &&
+    f.up! > 0 &&
+    f.down! > 0,
+  // 부가세: before·(100+rate) == 100·included
+  "36": (f) => f.before! * (100 + f.rate!) === 100 * f.included! && f.rate! > 0,
+  // 불량률: total·(100-rate) == 100·good
+  "37": (f) =>
+    f.total! * (100 - f.rate!) === 100 * f.good! &&
+    f.rate! > 0 &&
+    f.rate! < 100,
+  // 두 번 쓰고 남기: 쓴 양 == total·(firstRate+secondRate)/100, 남은 것과 합이 total
+  "38": (f) =>
+    100 * f.spent! === f.total! * (f.firstRate! + f.secondRate!) &&
+    f.spent! + f.left! === f.total! &&
+    f.left! > 0,
+};
+
+/**
+ * 발문 **글자**에서 답을 다시 계산한다 — `VERIFY` 와 **다른 축**이다.
+ *
+ * `VERIFY` 는 `facts` 끼리 조건식이 서는지만 본다. 그래서 생성기가 `facts` 는
+ * 맞게 두고 **발문에 딴 수를 찍으면** 통과한다. 여기서는 지면 글자를 되읽어
+ * 답을 다시 세우므로 그 자리가 걸린다.
+ */
+const CONTENT_CHECKS: Record<string, (content: string) => number> = {
+  "23": (c) => {
+    const [, a, b, part] = c.match(/비가 \$(\d+):(\d+)\$.*남학생이 \$(\d+)\$/)!;
+    return (Number(part) / Number(a)) * (Number(a) + Number(b));
+  },
+  "24": (c) => {
+    const [, a, b, added] = c.match(/비가 \$(\d+):(\d+)\$.*공을 \$(\d+)\$개/)!;
+    return (Number(a) * Number(added)) / (Number(b) - Number(a));
+  },
+  "25": (c) => {
+    const [, rate, used] = c.match(/\$(\d+)\\%\$.*\$(\d+)\\,\\mathrm\{kg\}\$/)!;
+    return (Number(used) * 100) / Number(rate);
+  },
+  "26": (c) => Number(c.match(/분침이 \$(\d+)\^\{\\circ\}\$/)![1]) / 6,
+  "27": (c) => {
+    const [, count, top] = c.match(
+      /연속하여 \$(\d+)\$개의 수.*수는 \$(\d+)\$/,
+    )!;
+    return (Number(count) * (2 * Number(top) + (Number(count) - 1) * 7)) / 2;
+  },
+  "28": (c) => {
+    const [, first, diff, n] = c.match(
+      /수 \$(\d+)\$에서.*\$(\d+)\$씩.*\$(\d+)\$번째/,
+    )!;
+    return Number(first) + (Number(n) - 1) * Number(diff);
+  },
+  "29": (c) => (Number(c.match(/성냥개비 \$(\d+)\$개로/)![1]) - 1) / 3,
+  "30": (c) => {
+    const [, a, b, turnsA] = c.match(
+      /각각 \$(\d+)\$개, \$(\d+)\$개.*가 \$(\d+)\$바퀴/,
+    )!;
+    return (Number(a) * Number(turnsA)) / Number(b);
+  },
+  "31": (c) => {
+    const [, rate, after] = c.match(/\$(\d+)\\%\$ 증가하여.*\$(\d+)\$명/)!;
+    return (Number(after) * 100) / (100 + Number(rate));
+  },
+  "32": (c) => {
+    const [, rate, after] = c.match(/\$(\d+)\\%\$ 감소하여.*\$(\d+)\$개/)!;
+    return (Number(after) * 100) / (100 - Number(rate));
+  },
+  "33": (c) => {
+    const [, rate, sale] = c.match(/원가의 \$(\d+)\\%\$.*\$(\d+)\$원/)!;
+    return (Number(sale) * 100) / (100 + Number(rate));
+  },
+  "34": (c) => {
+    const [, rate, sale] = c.match(/\$(\d+)\\%\$ 할인하여 \$(\d+)\$원/)!;
+    return (Number(sale) * 100) / (100 - Number(rate));
+  },
+  "35": (c) => {
+    const [, up, down, after] = c.match(
+      /\$(\d+)\\%\$ 증가.*\$(\d+)\\%\$ 감소하여 \$(\d+)\$개/,
+    )!;
+    return (
+      (Number(after) * 10000) / ((100 + Number(up)) * (100 - Number(down)))
+    );
+  },
+  "36": (c) => {
+    const [, rate, included] = c.match(/\$(\d+)\\%\$의 세금.*\$(\d+)\$원/)!;
+    return (Number(included) * 100) / (100 + Number(rate));
+  },
+  "37": (c) => {
+    const [, rate, good] = c.match(/\$(\d+)\\%\$가 불량품.*\$(\d+)\$개/)!;
+    return (Number(good) * 100) / (100 - Number(rate));
+  },
+  "38": (c) => {
+    const [, first, second, left] = c.match(
+      /\$(\d+)\\%\$를 교재비로.*\$(\d+)\\%\$를 준비물비로.*\$(\d+)\$원/,
+    )!;
+    return (Number(left) * 100) / (100 - Number(first) - Number(second));
+  },
 };
 
 /** 답 문자열의 첫 수가 facts 의 이 키와 같아야 한다 — 답이 엉뚱한 수를 찍는 것을 막는다. */
@@ -111,6 +248,22 @@ const ANSWER_KEY: Record<string, string> = {
   "19": "x",
   "10": "x",
   "21": "n",
+  "23": "total",
+  "24": "first",
+  "25": "total",
+  "26": "minutes",
+  "27": "sum",
+  "28": "value",
+  "29": "n",
+  "30": "turnsB",
+  "31": "before",
+  "32": "before",
+  "33": "cost",
+  "34": "price",
+  "35": "before",
+  "36": "before",
+  "37": "total",
+  "38": "total",
 };
 
 function firstNumber(text: string): number {
@@ -119,16 +272,18 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중1 일차방정식의 활용 22유형", () => {
+describe("중1 일차방정식의 활용 38유형", () => {
   const entries = registeredTypes().filter(
     (e) => e.rpmMinor === "일차방정식의 활용",
   );
 
-  it("RPM 색인의 22유형이 전부 등록돼 있다", () => {
-    expect(entries.length).toBe(22);
+  it("RPM 색인의 22유형 + 갈래 D 가 지은 16유형이 빈틈없이 등록돼 있다", () => {
+    // 01~22 는 RPM 색인 그대로, 23~38 은 두 소단원을 10유형으로 채우려고 지은 것.
+    // **빈틈없이** 잇는지 본다 — 번호를 건너뛰면 다음 사람이 그 자리를 다시 쓴다.
+    expect(entries.length).toBe(38);
     const nums = entries.map((e) => e.rpmType).sort();
     expect(nums).toEqual(
-      Array.from({ length: 22 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 38 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
   });
 
@@ -188,6 +343,41 @@ describe("중1 일차방정식의 활용 22유형", () => {
           expect(bareNumbers(p.content)).toEqual([]);
           expect(bareNumbers(p.answer)).toEqual([]);
           expect(bareNumbers(p.solution)).toEqual([]);
+        }
+      });
+
+      const contentCheck = CONTENT_CHECKS[e.rpmType];
+      if (contentCheck) {
+        it("발문 글자에서 답을 다시 세워도 같다", () => {
+          for (const seed of SEEDS) {
+            const p = generateMiddleProblem(e.key, seed);
+            expect(firstNumber(p.answer), p.content).toBe(
+              contentCheck(p.content),
+            );
+          }
+        });
+      }
+
+      it("지면에 소수점 붙은 수가 없다 (개·명·원은 정수다)", () => {
+        // 유형 35 가 실제로 「$656.25$개」를 찍고 있었다 — 값은 맞고 **지면만**
+        // 말이 안 된다. 값 검산도 KaTeX 도 이 부류를 구조적으로 못 잡는다.
+        for (let variant = 0; variant < 40; variant += 1) {
+          const p = generateMiddleProblem(e.key, 20260823, variant);
+          for (const part of [p.content, p.answer]) {
+            expect(
+              [...part.matchAll(/\d+\.\d+/g)].map((m) => m[0]),
+              part,
+            ).toEqual([]);
+          }
+        }
+      });
+
+      it("수 뒤 조사가 읽기와 맞는다", () => {
+        for (let variant = 0; variant < 20; variant += 1) {
+          const p = generateMiddleProblem(e.key, 20260823, variant);
+          for (const part of [p.content, p.answer, p.solution]) {
+            expect(josaMismatches(part), part).toEqual([]);
+          }
         }
       });
     });

@@ -24,6 +24,7 @@ import {
   shuffle,
   signed,
 } from "./m1Shared";
+import { eulReul } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -133,6 +134,44 @@ function renderTerm(co: number, kind: number): string {
   const body = abs === 1 ? sym : `${abs}${sym}`;
   return co < 0 ? `-${body}` : body;
 }
+
+/**
+ * 차수가 일반인 다항식의 KaTeX 몸통 — `coefs[0]` 이 최고차항이다.
+ *
+ * `m1Shared.poly` 와 **같은 규칙**(계수 ±1 을 안 적고, 0항을 지운다)인데
+ * 그쪽은 2차로 못이 박혀 있어 여기 일반형을 둔다. 이 규칙이 없으면 지면에
+ * `1x^{4}`·`-1x` 가 그대로 나가는데, **값은 맞아서 값 검산이 구조적으로 못 본다**
+ * (2026-08-24 「값이 맞으면 시험이 다 초록이다」).
+ */
+function polyTex(coefs: readonly number[]): string {
+  const top = coefs.length - 1;
+  const parts: string[] = [];
+  coefs.forEach((co, i) => {
+    if (co === 0) return;
+    const e = top - i;
+    const sym = e === 0 ? "" : e === 1 ? "x" : `x^{${e}}`;
+    const sign = co < 0 ? "-" : parts.length === 0 ? "" : "+";
+    const abs = Math.abs(co);
+    parts.push(
+      `${sign}${sym === "" ? String(abs) : abs === 1 ? sym : `${abs}${sym}`}`,
+    );
+  });
+  return parts.length === 0 ? "0" : parts.join("");
+}
+
+/**
+ * `a` 를 `x` 에 곱한 대입 자리 — 계수 ±1 이면 곱셈표를 안 적고,
+ * 괄호는 **음수일 때만** 친다 (`2\times(1)` 은 교과서 표기가 아니다).
+ */
+function mulSubTex(a: number, x: number): string {
+  const val = x < 0 ? `(${x})` : String(x);
+  if (a === 1) return val;
+  if (a === -1) return `-${val}`;
+  return `${a}\\times${val}`;
+}
+
+/** 수 뒤 「이/가」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
+const nIGa = (n: number): string => (eulReul(n) === "을" ? "이" : "가");
 
 export const M1_BOOK1: TypeEntry[] = [
   // ── 소인수분해 → 소수와 거듭제곱 ───────────────────────
@@ -525,22 +564,9 @@ export const M1_BOOK1: TypeEntry[] = [
     "기본",
     (rng) => {
       const terms = intBetween(rng, 2, 5);
-      const coefficients = Array.from({ length: terms }, () =>
-        intNonzero(rng, -9, 9),
-      );
-      const expression = coefficients
-        .map((coefficient, index) => {
-          const exponent = terms - index - 1;
-          if (exponent === 0) return String(coefficient);
-          const variable = exponent === 1 ? "x" : `x^{${exponent}}`;
-          if (coefficient === 1) return variable;
-          if (coefficient === -1) return `-${variable}`;
-          return `${coefficient}${variable}`;
-        })
-        .join("+")
-        .replaceAll("+-", "-");
+      const coefs = Array.from({ length: terms }, () => intNonzero(rng, -9, 9));
       return {
-        content: `다항식 $${expression}$의 항의 개수를 구하시오.`,
+        content: `다항식 $${polyTex(coefs)}$의 항의 개수를 구하시오.`,
         answer: `$${terms}$개`,
         solution: `덧셈과 뺄셈으로 구분되는 각각의 부분이 항이다. 따라서 항은 $${terms}$개이다.`,
         facts: { terms },
@@ -559,11 +585,14 @@ export const M1_BOOK1: TypeEntry[] = [
       const degree = intBetween(rng, 2, 5);
       const a = intNonzero(rng, -7, 7);
       const b = intNonzero(rng, -9, 9);
+      const c = intBetween(rng, 1, 9);
+      // 최고차항과 일차항 사이는 비운다 — 계수 0 을 적으면 지면에 `+0x^{3}` 이 난다.
+      const coefs = [a, ...Array<number>(degree - 2).fill(0), b, c];
       return {
-        content: `다항식 $${a}x^{${degree}}${signed(b)}x+${intBetween(rng, 1, 9)}$의 차수를 구하시오.`,
+        content: `다항식 $${polyTex(coefs)}$의 차수를 구하시오.`,
         answer: `$${degree}$`,
-        solution: `가장 높은 차수인 항은 $${a}x^{${degree}}$이므로 이 다항식의 차수는 $${degree}$이다.`,
-        facts: { degree, a, b },
+        solution: `가장 높은 차수인 항은 $${polyTex([a, ...Array<number>(degree).fill(0)])}$이므로 이 다항식의 차수는 $${degree}$이다.`,
+        facts: { degree, a, b, c },
       };
     },
   ),
@@ -580,9 +609,9 @@ export const M1_BOOK1: TypeEntry[] = [
       const b = intNonzero(rng, -9, 9);
       const c = intNonzero(rng, -9, 9);
       return {
-        content: `다항식 $${a}x^{2}${signed(b)}x${signed(c)}$에서 $x$의 계수를 구하시오.`,
+        content: `다항식 $${polyTex([a, b, c])}$에서 $x$의 계수를 구하시오.`,
         answer: `$${b}$`,
-        solution: `$x$가 곱해진 항은 $${b}x$이므로 $x$의 계수는 $${b}$이다.`,
+        solution: `$x$가 곱해진 항은 $${polyTex([b, 0])}$이므로 $x$의 계수는 $${b}$이다.`,
         facts: { a, b, c },
       };
     },
@@ -600,7 +629,7 @@ export const M1_BOOK1: TypeEntry[] = [
       const b = intNonzero(rng, -9, 9);
       const c = intNonzero(rng, -12, 12);
       return {
-        content: `다항식 $${a}x^{2}${signed(b)}x${signed(c)}$의 상수항을 구하시오.`,
+        content: `다항식 $${polyTex([a, b, c])}$의 상수항을 구하시오.`,
         answer: `$${c}$`,
         solution: `문자가 곱해지지 않은 항은 $${c}$이므로 상수항은 $${c}$이다.`,
         facts: { a, b, c },
@@ -621,9 +650,9 @@ export const M1_BOOK1: TypeEntry[] = [
       const x = intNonzero(rng, -5, 5);
       const value = a * x + b;
       return {
-        content: `$x=${x}$일 때, 일차식 $${a}x${signed(b)}$의 값을 구하시오.`,
+        content: `$x=${x}$일 때, 일차식 $${polyTex([a, b])}$의 값을 구하시오.`,
         answer: `$${value}$`,
-        solution: `$x=${x}$를 대입하면 $${a}\\times(${x})${signed(b)}=${value}$이다.`,
+        solution: `$x=${x}$${eulReul(x)} 대입하면 $${mulSubTex(a, x)}${signed(b)}=${value}$이다.`,
         facts: { a, b, x, value },
       };
     },
@@ -642,9 +671,9 @@ export const M1_BOOK1: TypeEntry[] = [
       const count = intBetween(rng, 3, 12);
       const total = price * count + fee;
       return {
-        content: `한 개에 $${price}$원인 공책 $x$개와 포장비 $${fee}$원의 전체 가격을 식으로 나타내고, $x=${count}$일 때의 값을 구하시오.`,
+        content: `한 개에 $${price}$원인 공책 $x$개의 값과 포장비 $${fee}$원을 더한 전체 가격을 $x$를 사용한 식으로 나타내고, $x=${count}$일 때의 값을 구하시오.`,
         answer: `$${total}$원`,
-        solution: `전체 가격은 $${price}x+${fee}$원이다. $x=${count}$를 대입하면 $${price}\\times${count}+${fee}=${total}$(원)이다.`,
+        solution: `전체 가격은 $${price}x+${fee}$원이다. $x=${count}$${eulReul(count)} 대입하면 $${price}\\times${count}+${fee}=${total}$(원)이다.`,
         facts: { price, fee, count, total },
       };
     },
@@ -660,8 +689,11 @@ export const M1_BOOK1: TypeEntry[] = [
     (rng) => {
       const a = intNonzero(rng, -8, 8);
       const b = intNonzero(rng, -9, 9);
+      // 앞에 `kx^{2}` 이 이미 있으므로 뒤쪽은 부호를 스스로 달아야 한다 —
+      // 그냥 이어붙이면 `kx^{2}+-3x` 가 된다.
+      const tail = polyTex([a, b]);
       return {
-        content: `다항식 $kx^{2}${signed(a)}x${signed(b)}$가 $x$에 대한 일차식일 때, 상수 $k$의 값을 구하시오.`,
+        content: `다항식 $kx^{2}${tail.startsWith("-") ? "" : "+"}${tail}$${nIGa(b)} $x$에 대한 일차식일 때, 상수 $k$의 값을 구하시오.`,
         answer: `$0$`,
         solution: `일차식에는 $x^{2}$항이 없어야 하므로 $x^{2}$의 계수 $k$는 $0$이다.`,
         facts: { a, b, k: 0 },
@@ -683,7 +715,7 @@ export const M1_BOOK1: TypeEntry[] = [
       return {
         content: `가로의 길이가 $(x+${add})\\,\\mathrm{cm}$이고 세로의 길이가 $x\\,\\mathrm{cm}$인 직사각형이 있다. $x=${x}$일 때 둘레의 길이를 구하시오.`,
         answer: `$${perimeter}\\,\\mathrm{cm}$`,
-        solution: `둘레는 $2\\{(x+${add})+x\\}=4x+${2 * add}$이다. $x=${x}$를 대입하면 $${perimeter}\\,\\mathrm{cm}$이다.`,
+        solution: `둘레는 $2\\{(x+${add})+x\\}=4x+${2 * add}$이다. $x=${x}$${eulReul(x)} 대입하면 $${perimeter}\\,\\mathrm{cm}$이다.`,
         facts: { add, x, perimeter },
       };
     },

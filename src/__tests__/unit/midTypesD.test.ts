@@ -1,8 +1,28 @@
+/**
+ * 갈래 D — 중등 소단원을 10유형으로 채우는 몫.
+ *
+ * ## 여기 있는 것 / 여기 없는 것
+ *
+ * | 무엇 | 어디 |
+ * |---|---|
+ * | 소단원이 **10유형**인가 | 여기 (`DONE_SECTIONS`) |
+ * | 끝낸 소단원의 **지면 글자**(조사·냄새) | 여기 |
+ * | 유형 하나의 **값 검산** | 그 모듈의 시험 |
+ * | 번호가 RPM 색인과 맞나 | `middleTypeCoverage.test.ts` 가 **전량**으로 |
+ *
+ * 모듈 시험이 어디인지: `m1Book1`→`middleM1Extra`, `m1Num`→`middleM1Num`,
+ * `m1LinearApply`→`middleLinearApply`. **거기가 유형마다 검산식을 요구한다** —
+ * 그러니 새 유형을 지으면 그 파일에 검산을 적는다. 여기 또 적지 말 것.
+ */
+
 import { describe, expect, it } from "vitest";
 
+import { generateMiddleProblem } from "@/lib/middle/generate";
 import { M1_BOOK1 } from "@/lib/middle/m1Book1";
 import { M1_LINEAR_APPLY } from "@/lib/middle/m1LinearApply";
 import { M1_NUM } from "@/lib/middle/m1Num";
+
+import { josaMismatches, pageSmells } from "../helpers/midPage";
 
 /** 이 갈래에서 **10유형을 채운** 소단원 — 끝낼 때마다 한 줄씩 는다. */
 const DONE_SECTIONS = [
@@ -15,199 +35,6 @@ const DONE_SECTIONS = [
   { entries: M1_NUM, section: "공약수와 최대공약수" },
 ] as const;
 
-function rngFrom(seed: number): () => number {
-  let state = seed >>> 0;
-  return () => {
-    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
-    return state / 4294967296;
-  };
-}
-
-function answerNumber(answer: string): number {
-  const matched = answer.match(/-?\d+(?:\.\d+)?/);
-  if (!matched) throw new Error(`숫자 정답을 찾지 못함: ${answer}`);
-  return Number(matched[0]);
-}
-
-function gcd(a: number, b: number): number {
-  let x = Math.abs(a);
-  let y = Math.abs(b);
-  while (y !== 0) {
-    [x, y] = [y, x % y];
-  }
-  return x;
-}
-
-const RATIO_CHECKS: Record<string, (content: string) => number> = {
-  "23": (content) => {
-    const [, a, b, part] = content.match(
-      /비가 \$(\d+):(\d+)\$.*남학생이 \$(\d+)\$/,
-    )!;
-    return (Number(part) / Number(a)) * (Number(a) + Number(b));
-  },
-  "24": (content) => {
-    const [, a, b, added] = content.match(
-      /비가 \$(\d+):(\d+)\$.*공을 \$(\d+)\$개/,
-    )!;
-    return (Number(a) * Number(added)) / (Number(b) - Number(a));
-  },
-  "25": (content) => {
-    const [, rate, used] = content.match(
-      /\$(\d+)\\%\$.*\$(\d+)\\,\\mathrm\{kg\}\$/,
-    )!;
-    return (Number(used) * 100) / Number(rate);
-  },
-  "26": (content) =>
-    Number(content.match(/분침이 \$(\d+)\^\{\\circ\}\$/)![1]) / 6,
-  "27": (content) => {
-    const [, count, top] = content.match(
-      /연속하여 \$(\d+)\$개의 수.*수는 \$(\d+)\$/,
-    )!;
-    return (Number(count) * (2 * Number(top) + (Number(count) - 1) * 7)) / 2;
-  },
-  "28": (content) => {
-    const [, first, diff, n] = content.match(
-      /수 \$(\d+)\$에서.*\$(\d+)\$씩.*\$(\d+)\$번째/,
-    )!;
-    return Number(first) + (Number(n) - 1) * Number(diff);
-  },
-  "29": (content) =>
-    (Number(content.match(/성냥개비 \$(\d+)\$개로/)![1]) - 1) / 3,
-  "30": (content) => {
-    const [, a, b, turnsA] = content.match(
-      /각각 \$(\d+)\$개, \$(\d+)\$개.*가 \$(\d+)\$바퀴/,
-    )!;
-    return (Number(a) * Number(turnsA)) / Number(b);
-  },
-};
-
-const CHANGE_CHECKS: Record<string, (content: string) => number> = {
-  "31": (content) => {
-    const [, rate, after] = content.match(
-      /\$(\d+)\\%\$ 증가하여.*\$(\d+)\$명/,
-    )!;
-    return (Number(after) * 100) / (100 + Number(rate));
-  },
-  "32": (content) => {
-    const [, rate, after] = content.match(
-      /\$(\d+)\\%\$ 감소하여.*\$(\d+)\$개/,
-    )!;
-    return (Number(after) * 100) / (100 - Number(rate));
-  },
-  "33": (content) => {
-    const [, rate, sale] = content.match(/원가의 \$(\d+)\\%\$.*\$(\d+)\$원/)!;
-    return (Number(sale) * 100) / (100 + Number(rate));
-  },
-  "34": (content) => {
-    const [, rate, sale] = content.match(/\$(\d+)\\%\$ 할인하여 \$(\d+)\$원/)!;
-    return (Number(sale) * 100) / (100 - Number(rate));
-  },
-  "35": (content) => {
-    const [, up, down, after] = content.match(
-      /\$(\d+)\\%\$ 증가.*\$(\d+)\\%\$ 감소하여 \$(\d+)\$개/,
-    )!;
-    return (
-      (Number(after) * 10000) / ((100 + Number(up)) * (100 - Number(down)))
-    );
-  },
-  "36": (content) => {
-    const [, rate, included] = content.match(
-      /\$(\d+)\\%\$의 세금.*\$(\d+)\$원/,
-    )!;
-    return (Number(included) * 100) / (100 + Number(rate));
-  },
-  "37": (content) => {
-    const [, rate, good] = content.match(/\$(\d+)\\%\$가 불량품.*\$(\d+)\$개/)!;
-    return (Number(good) * 100) / (100 - Number(rate));
-  },
-  "38": (content) => {
-    const [, first, second, left] = content.match(
-      /\$(\d+)\\%\$를 교재비로.*\$(\d+)\\%\$를 준비물비로.*\$(\d+)\$원/,
-    )!;
-    return (Number(left) * 100) / (100 - Number(first) - Number(second));
-  },
-};
-
-const LINEAR_TERM_CHECKS: Record<string, (content: string) => number> = {
-  "21": (content) => {
-    const expression = content.match(/다항식 \$(.+)\$의 항/)![1]!;
-    return expression.match(/[+-]?[^+-]+/g)!.length;
-  },
-  "22": (content) => Number(content.match(/x\^\{(\d+)\}/)![1]),
-  "23": (content) => Number(content.match(/x\^\{2\}([+-]\d+)x/)![1]),
-  "24": (content) => Number(content.match(/x\^\{2\}[+-]\d+x([+-]\d+)\$/)![1]),
-  "25": (content) => {
-    const [, x, a, b] = content.match(/\$x=(-?\d+)\$.*\$(-?\d+)x([+-]\d+)\$/)!;
-    return Number(a) * Number(x) + Number(b);
-  },
-  "26": (content) => {
-    const [, price, fee, count] = content.match(
-      /\$(\d+)\$원인.*포장비 \$(\d+)\$원.*\$x=(\d+)\$/,
-    )!;
-    return Number(price) * Number(count) + Number(fee);
-  },
-  "27": () => 0,
-  "28": (content) => {
-    const [, add, x] = content.match(/\$\(x\+(\d+)\).*\$x=(-?\d+)\$/)!;
-    return 4 * Number(x) + 2 * Number(add);
-  },
-};
-
-const GCD_CHECKS: Record<string, (content: string) => number> = {
-  "17": (content) => {
-    const [, a, b] = content.match(/두 자연수 \$(\d+)\$, \$(\d+)\$/)!;
-    const common = gcd(Number(a), Number(b));
-    let sum = 0;
-    for (let divisor = 1; divisor <= common; divisor += 1) {
-      if (common % divisor === 0) sum += divisor;
-    }
-    return sum;
-  },
-  "18": (content) => {
-    const [, a, b, c] = content.match(
-      /세 자연수 \$(\d+)\$, \$(\d+)\$, \$(\d+)\$/,
-    )!;
-    return gcd(gcd(Number(a), Number(b)), Number(c));
-  },
-  "19": (content) => {
-    const [, a, b, k] = content.match(
-      /두 자연수 \$(\d+)\$, \$(\d+)\$에 각각 \$(\d+)\$/,
-    )!;
-    return gcd(Number(a) * Number(k), Number(b) * Number(k));
-  },
-  "20": (content) => {
-    const values = [
-      ...content.matchAll(/\$(\d+)\^\{(\d+)\}\\times(\d+)\^\{(\d+)\}\$/g),
-    ].map(
-      ([, p, pe, q, qe]) => Number(p) ** Number(pe) * Number(q) ** Number(qe),
-    );
-    return values.reduce((acc, value) => gcd(acc, value));
-  },
-  "21": (content) => {
-    const [, a, b, remainder] = content.match(
-      /두 자연수 \$(\d+)\$, \$(\d+)\$.*모두 \$(\d+)\$/,
-    )!;
-    return gcd(Number(a) - Number(remainder), Number(b) - Number(remainder));
-  },
-  "22": (content) => {
-    const [, a, r1, b, r2] = content.match(
-      /\$(\d+)\$를 나누면 \$(\d+)\$이 남고 \$(\d+)\$를 나누면 \$(\d+)\$/,
-    )!;
-    return gcd(Number(a) - Number(r1), Number(b) - Number(r2));
-  },
-  "23": (content) => {
-    const [, a, b, limit] = content.match(
-      /두 자연수 \$(\d+)\$, \$(\d+)\$의 공약수 중 \$(\d+)\$/,
-    )!;
-    const common = gcd(Number(a), Number(b));
-    let count = 0;
-    for (let divisor = 1; divisor <= Number(limit); divisor += 1) {
-      if (common % divisor === 0) count += 1;
-    }
-    return count;
-  },
-};
-
 describe("중등 유형 갈래 D", () => {
   it.each(DONE_SECTIONS)(
     "$section 소단원은 서로 다른 유형 10개를 갖는다",
@@ -218,66 +45,36 @@ describe("중등 유형 갈래 D", () => {
     },
   );
 
-  it.each(Object.keys(RATIO_CHECKS))(
-    "비율·시계·규칙 유형 %s의 값을 발문에서 다시 계산한다",
-    (rpmType) => {
-      const entry = M1_LINEAR_APPLY.find(
-        (candidate) => candidate.rpmType === rpmType,
-      );
-      expect(entry).toBeDefined();
-      for (const seed of [11, 29, 47]) {
-        const problem = entry!.handler(rngFrom(seed));
-        expect(answerNumber(problem.answer)).toBe(
-          RATIO_CHECKS[rpmType]!(problem.content),
-        );
-      }
-    },
-  );
+  // ── 지면 글자 — 값 검산이 구조적으로 못 보는 자리 ──────────────
+  //
+  // 눈금을 먼저 둔다: **이 자가 «아니오»를 낼 수 있는가.** 없으면 「0건」이
+  // 「깨끗」인지 「못 셈」인지 안 갈린다(2026-08-21).
 
-  it.each(Object.keys(CHANGE_CHECKS))(
-    "증가·감소·가격 유형 %s의 값을 발문에서 다시 계산한다",
-    (rpmType) => {
-      const entry = M1_LINEAR_APPLY.find(
-        (candidate) => candidate.rpmType === rpmType,
-      );
-      expect(entry).toBeDefined();
-      for (const seed of [13, 31, 53]) {
-        const problem = entry!.handler(rngFrom(seed));
-        expect(answerNumber(problem.answer)).toBe(
-          CHANGE_CHECKS[rpmType]!(problem.content),
-        );
-      }
-    },
-  );
+  it("판정기 눈금 — 조사·냄새 자가 아니오를 낼 수 있다", () => {
+    // 양성
+    expect(josaMismatches("$15$과 $3$")).toEqual(["$…15$과 → 와"]);
+    expect(josaMismatches("$36$가 된다")).toEqual(["$…36$가 → 이"]);
+    expect(pageSmells("$1x+2$")).toContain("계수 1 을 적었다");
+    expect(pageSmells("$11^{1}$")).toContain("지수 1 을 적었다");
+    // 음성 — 옳은 지면을 잡으면 거짓 경보고, 거짓 경보는 가드를 끈다
+    expect(josaMismatches("$15$와 $3$을")).toEqual([]);
+    expect(josaMismatches("$5x-3x^2$을")).toEqual([]); // 「제곱」으로 읽는다
+    expect(josaMismatches("$5$이다")).toEqual([]); // 서술격 「이다」
+    expect(pageSmells("$x+2$")).toEqual([]);
+    expect(pageSmells("$2^{3}\\times11$")).toEqual([]);
+  });
 
-  it.each(Object.keys(LINEAR_TERM_CHECKS))(
-    "일차식의 뜻Ⅰ 유형 %s의 값을 발문에서 다시 계산한다",
-    (rpmType) => {
-      const entry = M1_BOOK1.find(
-        (candidate) =>
-          candidate.rpmType === rpmType &&
-          candidate.unitSection === "일차식의 뜻Ⅰ",
-      );
-      expect(entry).toBeDefined();
-      for (const seed of [17, 37, 59]) {
-        const problem = entry!.handler(rngFrom(seed));
-        expect(answerNumber(problem.answer)).toBe(
-          LINEAR_TERM_CHECKS[rpmType]!(problem.content),
-        );
-      }
-    },
-  );
-
-  it.each(Object.keys(GCD_CHECKS))(
-    "공약수·최대공약수 유형 %s의 값을 발문에서 다시 계산한다",
-    (rpmType) => {
-      const entry = M1_NUM.find((candidate) => candidate.rpmType === rpmType);
-      expect(entry).toBeDefined();
-      for (const seed of [19, 41, 61]) {
-        const problem = entry!.handler(rngFrom(seed));
-        expect(answerNumber(problem.answer)).toBe(
-          GCD_CHECKS[rpmType]!(problem.content),
-        );
+  it.each(DONE_SECTIONS)(
+    "$section 소단원의 지면에 조사·냄새 결함이 없다",
+    ({ entries, section }) => {
+      for (const entry of entries.filter((e) => e.unitSection === section)) {
+        for (let variant = 0; variant < 20; variant += 1) {
+          const p = generateMiddleProblem(entry.key, 20260827, variant);
+          for (const part of [p.content, p.answer, p.solution]) {
+            expect(josaMismatches(part), `${entry.key} ${part}`).toEqual([]);
+            expect(pageSmells(part), `${entry.key} ${part}`).toEqual([]);
+          }
+        }
       }
     },
   );

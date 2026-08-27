@@ -67,6 +67,8 @@ const wGwa = (w: string): string => (wordHasBatchim(w) ? "과" : "와");
  */
 const nEun = (n: number): string => (eulReul(n) === "을" ? "은" : "는");
 const nEul = eulReul;
+/** 수 뒤 「이/가」 — 같은 받침 판정을 되쓴다. */
+const nIGa = (n: number): string => (eulReul(n) === "을" ? "이" : "가");
 
 /**
  * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수».
@@ -700,7 +702,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
           answer: `$${x}$`,
           solution: `$\\square$ 안에 $1$부터 차례로 넣어 $${facTex(
             base,
-          )}\\times\\square$를 소인수분해 하고 약수의 개수를 세어 본다.\n$\\square=${x}$일 때 $${B}\\times${x}=${B * x}$의 약수의 개수가 처음으로 $${k}$가 된다.\n따라서 구하는 가장 작은 자연수는 $${x}$이다.`,
+          )}\\times\\square$를 소인수분해 하고 약수의 개수를 세어 본다.\n$\\square=${x}$일 때 $${B}\\times${x}=${B * x}$의 약수의 개수가 처음으로 $${k}$${nIGa(k)} 된다.\n따라서 구하는 가장 작은 자연수는 $${x}$이다.`,
           facts: { B, x, k, N: B * x },
         };
       }),
@@ -1562,7 +1564,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         return {
           content: `세 자연수 $${A}$, $${B}$, $${C}$의 최대공약수를 구하시오.`,
           answer: `$${g}$`,
-          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$로 나타낼 수 있고 $${u}$, $${v}$, $${w}$는 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
+          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$로 나타낼 수 있고 $${u}$, $${v}$, $${w}$${nEun(w)} 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
           facts: { A, B, C, g },
         };
       }),
@@ -1586,9 +1588,9 @@ const 최대최소_TYPES: TypeEntry[] = [
         const B = g * v;
         const answer = g * k;
         return {
-          content: `두 자연수 $${A}$, $${B}$에 각각 $${k}$를 곱한 두 수의 최대공약수를 구하시오.`,
+          content: `두 자연수 $${A}$, $${B}$에 각각 $${k}$${nEul(k)} 곱한 두 수의 최대공약수를 구하시오.`,
           answer: `$${answer}$`,
-          solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 두 수에 같은 수 $${k}$를 곱하면 최대공약수도 $${k}$배가 되므로 $${g}\\times${k}=${answer}$이다.`,
+          solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 두 수에 같은 수 $${k}$${nEul(k)} 곱하면 최대공약수도 $${k}$배가 되므로 $${g}\\times${k}=${answer}$이다.`,
           facts: { A, B, g, k, answer },
         };
       }),
@@ -1611,9 +1613,23 @@ const 최대최소_TYPES: TypeEntry[] = [
       const C = p ** a * q ** (b + 2);
       const answer = p ** a * q ** b;
       return {
-        content: `세 수 $${p}^{${a + 2}}\\times${q}^{${b}}$, $${p}^{${a + 1}}\\times${q}^{${b + 1}}$, $${p}^{${a}}\\times${q}^{${b + 2}}$의 최대공약수를 구하시오.`,
+        // `facTex` 로 그린다 — 손으로 `${q}^{${b}}` 를 적으면 $b=1$ 일 때
+        // 지면에 `11^{1}` 이 나간다(값은 맞아서 값 검산이 구조적으로 못 본다).
+        content: `세 수 $${facTex([
+          [p, a + 2],
+          [q, b],
+        ])}$, $${facTex([
+          [p, a + 1],
+          [q, b + 1],
+        ])}$, $${facTex([
+          [p, a],
+          [q, b + 2],
+        ])}$의 최대공약수를 구하시오.`,
         answer: `$${answer}$`,
-        solution: `공통인 소인수의 지수 중 가장 작은 것을 택하면 $${p}^{${a}}\\times${q}^{${b}}=${answer}$이다.`,
+        solution: `공통인 소인수의 지수 중 가장 작은 것을 택하면 $${facTex([
+          [p, a],
+          [q, b],
+        ])}=${answer}$이다.`,
         facts: { p, q, a, b, A, B, C, answer },
       };
     },
@@ -1636,7 +1652,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         const A = g * u + remainder;
         const B = g * v + remainder;
         return {
-          content: `두 자연수 $${A}$, $${B}$를 어떤 자연수로 나누면 나머지가 모두 $${remainder}$이다. 이러한 자연수 중 가장 큰 수를 구하시오.`,
+          content: `두 자연수 $${A}$, $${B}$${nEul(B)} 어떤 자연수로 나누면 나머지가 모두 $${remainder}$이다. 이러한 자연수 중 가장 큰 수를 구하시오.`,
           answer: `$${g}$`,
           solution: `구하는 수는 $${A}-${remainder}=${A - remainder}$${waGwa(A - remainder)} $${B}-${remainder}=${B - remainder}$의 최대공약수이다. 따라서 $${g}$이다.`,
           facts: { A, B, remainder, g },
@@ -1662,7 +1678,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         const A = g * u + r1;
         const B = g * v + r2;
         return {
-          content: `$${A}$를 나누면 $${r1}$이 남고 $${B}$를 나누면 $${r2}$가 남도록 하는 자연수 중 가장 큰 수를 구하시오.`,
+          content: `$${A}$${nEul(A)} 나누면 $${r1}$${nIGa(r1)} 남고 $${B}$${nEul(B)} 나누면 $${r2}$${nIGa(r2)} 남도록 하는 자연수 중 가장 큰 수를 구하시오.`,
           answer: `$${g}$`,
           solution: `구하는 수는 $${A}-${r1}=${A - r1}$${waGwa(A - r1)} $${B}-${r2}=${B - r2}$의 최대공약수이다. 따라서 $${g}$이다.`,
           facts: { A, B, r1, r2, g },
