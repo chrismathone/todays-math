@@ -1430,6 +1430,124 @@ describe("갈래 A 중등 유형 값 검산", () => {
       expect(numericAnswer(problem.answer)).toBe(360 / part);
     }
   });
+
+  /*
+   * 회전체 21A~24A — 단면을 **넓이 공식으로 다시 잰다.**
+   * 생성기가 쓴 곱셈을 그대로 옮기지 않고, 단면의 «모양»에서 다시 세운다:
+   * 구는 원, 원뿔은 밑변 $2r$ 인 삼각형, 원뿔대는 두 밑변이 $2r$·$2R$ 인 사다리꼴.
+   */
+  function extraEntry(section: string, rpmType: string) {
+    const entry = M1EXTRA_TYPES.find(
+      (candidate) =>
+        candidate.unitSection === section && candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    return entry!;
+  }
+
+  /** `$12\pi\,\mathrm{cm}^2$` 의 계수 $12$. */
+  function piCoefficient(answer: string): number {
+    const match = answer.match(/\$(-?\d+)\\pi/);
+    if (!match) throw new Error(`$\\pi$ 계수를 못 찾음: ${answer}`);
+    return Number(match[1]);
+  }
+
+  it("회전체 유형 21A — 구의 단면", () => {
+    const entry = extraEntry("회전체", "21A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const r = Number(
+        problem.content.match(/\$(\d+)\\,\\mathrm\{cm\}\$/)?.[1],
+      );
+      expect(r).toBeGreaterThan(0);
+      // 중심을 지나는 단면은 반지름이 그대로인 원이다.
+      expect(piCoefficient(problem.answer)).toBe(r * r);
+    }
+  });
+
+  it("회전체 유형 22A — 원뿔의 밑면 둘레", () => {
+    const entry = extraEntry("회전체", "22A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [base, height] = (
+        problem.content.match(/\$(\d+)\\,\\mathrm\{cm\}\$/g) ?? []
+      ).map((token) => Number(token.match(/\d+/)![0]));
+      expect(base).toBeGreaterThan(0);
+      expect(height).toBeGreaterThan(0);
+      // 높이를 축으로 돌리면 밑면 반지름은 «밑변», 높이가 아니다.
+      expect(piCoefficient(problem.answer)).toBe(2 * base!);
+    }
+  });
+
+  it("회전체 유형 23A — 원뿔의 축 단면", () => {
+    const entry = extraEntry("회전체", "23A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [r, h] = (
+        problem.content.match(/\$(\d+)\\,\\mathrm\{cm\}\$/g) ?? []
+      ).map((token) => Number(token.match(/\d+/)![0]));
+      // 단면은 밑변 $2r$ · 높이 $h$ 인 삼각형이다.
+      expect(numericAnswer(problem.answer)).toBe((2 * r! * h!) / 2);
+      // 축 단면은 $\pi$ 가 들어가지 않는다 — 원이 아니라 삼각형이다.
+      expect(problem.answer).not.toContain("\\pi");
+    }
+  });
+
+  it("회전체 유형 24A — 원뿔대의 축 단면", () => {
+    const entry = extraEntry("회전체", "24A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [small, big, h] = (
+        problem.content.match(/\$(\d+)\\,\\mathrm\{cm\}\$/g) ?? []
+      ).map((token) => Number(token.match(/\d+/)![0]));
+      // 윗면이 아랫면보다 크면 원뿔대가 아니다.
+      expect(small!).toBeLessThan(big!);
+      // 단면은 윗변 $2r$ · 아랫변 $2R$ · 높이 $h$ 인 사다리꼴이다.
+      expect(numericAnswer(problem.answer)).toBe(
+        ((2 * small! + 2 * big!) * h!) / 2,
+      );
+      expect(problem.answer).not.toContain("\\pi");
+    }
+  });
+
+  it("상대도수 유형 50A — 정의 그대로", () => {
+    const entry = extraEntry("상대도수", "50A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [total, frequency] = (
+        problem.content.match(/\$(\d+)\$/g) ?? []
+      ).map((token) => Number(token.replaceAll("$", "")));
+      expect(frequency).toBeLessThan(total!);
+      const answer = Number(problem.answer.replaceAll("$", ""));
+      // 상대도수는 도수 ÷ 총합. 부동소수 찌꺼기 없이 딱 떨어져야 지면에 적힌다.
+      expect(answer * total!).toBeCloseTo(frequency!, 9);
+      expect(problem.answer).not.toMatch(/\d{6,}/);
+      expect(answer).toBeGreaterThan(0);
+      expect(answer).toBeLessThan(1);
+    }
+  });
+
+  it("평행선 유형 21A — 엇각·동위각", () => {
+    const entry = extraEntry("평행선", "21A");
+    let alternateSeen = 0;
+    let sumSeen = 0;
+    for (let i = 1; i <= 60; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const angle = Number(problem.content.match(/\$(\d+)\^\\circ\$/)?.[1]);
+      expect(angle).toBeGreaterThan(0);
+      expect(angle).toBeLessThan(180);
+      if (problem.content.includes("합을 구하시오")) {
+        // 평행선에서 엇각도 동위각도 처음 각과 같으므로 합은 두 배다.
+        expect(numericAnswer(problem.answer)).toBe(2 * angle);
+        sumSeen += 1;
+      } else {
+        expect(numericAnswer(problem.answer)).toBe(angle);
+        alternateSeen += 1;
+      }
+    }
+    expect(alternateSeen).toBeGreaterThan(0);
+    expect(sumSeen).toBeGreaterThan(0);
+  });
 });
 
 /**

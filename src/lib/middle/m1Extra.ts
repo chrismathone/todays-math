@@ -20,7 +20,7 @@
  */
 import { M1_BOOK1 } from "./m1Book1";
 import { M1_BOOK2 } from "./m1Book2";
-import { intBetween } from "../elementary/rng";
+import { intBetween, pick } from "../elementary/rng";
 import { defType, shuffle } from "./m1Shared";
 import type { TypeEntry } from "./types";
 
@@ -1035,6 +1035,168 @@ const FREQUENCY_POLYGON_TYPES: TypeEntry[] = [
   ),
 ];
 
+/*
+ * 회전체 21A~24A — 갈래 A, 2026-08-27.
+ * 13 기본 · 14~18 응용이라 **밑단(`연산`)과 꼭대기(`심화`)가 비어 있었다**(D-106).
+ *
+ * 그림 없이 성립하는 발문만 낸다 — 회전체는 치수를 발문이 다 말하면 풀린다.
+ * 14·16 이 «직사각형 → 원기둥» 을 쓰므로 여기서는 **구 · 원뿔 · 원뿔대**로 짠다.
+ */
+const SOLID_MINOR = "다면체와 회전체";
+const SOLID_SEC = "회전체";
+
+const ROTATION_TYPES: TypeEntry[] = [
+  defType(
+    BOOK2,
+    SOLID_MINOR,
+    "21A",
+    "구의 단면의 넓이",
+    SOLID_SEC,
+    "연산",
+    (rng) => {
+      const r = intBetween(rng, 2, 15);
+      return {
+        content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구를 구의 중심을 지나는 평면으로 자를 때 생기는 단면의 넓이를 구하시오.`,
+        answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `구를 중심을 지나는 평면으로 자르면 단면은 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원이다.\n따라서 넓이는 $\\pi\\times${r}^{2}=${r * r}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { r, ans: r * r },
+      };
+    },
+  ),
+
+  defType(
+    BOOK2,
+    SOLID_MINOR,
+    "22A",
+    "직각삼각형을 회전시켜 만든 원뿔의 밑면",
+    SOLID_SEC,
+    "기본",
+    (rng) => {
+      const base = intBetween(rng, 2, 12);
+      const height = intBetween(rng, 3, 15);
+      return {
+        content: `밑변의 길이가 $${base}\\,\\mathrm{cm}$, 높이가 $${height}\\,\\mathrm{cm}$인 직각삼각형을 높이를 회전축으로 하여 $1$회전 시킬 때 생기는 회전체의 밑면인 원의 둘레의 길이를 구하시오.`,
+        answer: `$${2 * base}\\pi\\,\\mathrm{cm}$`,
+        solution: `직각삼각형을 높이를 회전축으로 하여 $1$회전 시키면 원뿔이 되고, 밑면인 원의 반지름의 길이는 밑변의 길이인 $${base}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $2\\pi\\times${base}=${2 * base}\\pi\\,(\\mathrm{cm})$이다.`,
+        facts: { base, height, ans: 2 * base },
+      };
+    },
+  ),
+
+  defType(
+    BOOK2,
+    SOLID_MINOR,
+    "23A",
+    "원뿔의 회전축을 포함하는 단면의 넓이",
+    SOLID_SEC,
+    "응용",
+    (rng) => {
+      const r = intBetween(rng, 2, 12);
+      const h = intBetween(rng, 3, 16);
+      // 단면은 밑변 $2r$ · 높이 $h$ 인 이등변삼각형이므로 넓이는 $rh$ 다.
+      return {
+        content: `밑면인 원의 반지름의 길이가 $${r}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 원뿔을 회전축을 포함하는 평면으로 자를 때 생기는 단면의 넓이를 구하시오.`,
+        answer: `$${r * h}\\,\\mathrm{cm}^2$`,
+        solution: `단면은 밑변의 길이가 $2\\times${r}=${2 * r}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 이등변삼각형이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times${2 * r}\\times${h}=${r * h}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { r, h, ans: r * h },
+      };
+    },
+  ),
+
+  defType(
+    BOOK2,
+    SOLID_MINOR,
+    "24A",
+    "원뿔대의 회전축을 포함하는 단면의 넓이",
+    SOLID_SEC,
+    "심화",
+    (rng) => {
+      const small = intBetween(rng, 2, 8);
+      const big = intBetween(rng, small + 1, 14);
+      const h = intBetween(rng, 3, 14);
+      const area = (small + big) * h;
+      return {
+        content: `윗면인 원의 반지름의 길이가 $${small}\\,\\mathrm{cm}$, 아랫면인 원의 반지름의 길이가 $${big}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 원뿔대를 회전축을 포함하는 평면으로 자를 때 생기는 단면의 넓이를 구하시오.`,
+        answer: `$${area}\\,\\mathrm{cm}^2$`,
+        solution: `단면은 윗변의 길이가 $2\\times${small}=${2 * small}\\,\\mathrm{cm}$, 아랫변의 길이가 $2\\times${big}=${2 * big}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 사다리꼴이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times(${2 * small}+${2 * big})\\times${h}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { small, big, h, ans: area },
+      };
+    },
+  ),
+];
+
+/**
+ * 소수를 **부동소수 찌꺼기 없이** 적는다 — `0.15000000000000002` 가 지면에
+ * 나가면 안 된다. 천분의 몇으로 반올림한 뒤 꼬리 $0$ 을 떼어 문자열로 만든다.
+ */
+function decimalText(milli: number): string {
+  const text = (milli / 1000).toFixed(3);
+  return text.replace(/0+$/, "").replace(/\.$/, "");
+}
+
+/*
+ * 50A — 상대도수를 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+ * 11~15·17 응용 · 16·18·19 심화라 **밑단(`연산`)이 통째로 비어 있었다**(D-106).
+ * 11 이 «상대도수 → 도수» 이므로 그 반대인 **정의 그대로**를 밑단으로 세운다.
+ */
+const RELATIVE_FREQUENCY_TYPES: TypeEntry[] = [
+  defType(
+    BOOK2,
+    DATA_MINOR,
+    "50A",
+    "도수와 총합으로 상대도수 구하기",
+    "상대도수",
+    "연산",
+    (rng) => {
+      // 나누어떨어지는 총합만 쓴다 — 상대도수가 유한소수라야 지면에 적을 수 있다.
+      const total = pick(rng, [20, 25, 40, 50, 100, 200] as const);
+      const frequency = intBetween(rng, 2, Math.min(30, total - 2));
+      const milli = Math.round((frequency * 1000) / total);
+      const text = decimalText(milli);
+      return {
+        content: `어떤 도수분포표에서 도수의 총합이 $${total}$이고 어느 계급의 도수가 $${frequency}$일 때, 이 계급의 상대도수를 구하시오.`,
+        answer: `$${text}$`,
+        solution: `상대도수는 그 계급의 도수를 도수의 총합으로 나눈 값이다.\n따라서 구하는 상대도수는 $\\dfrac{${frequency}}{${total}}=${text}$이다.`,
+        facts: { total, frequency, milli },
+      };
+    },
+  ),
+];
+
+/*
+ * 21A — 평행선을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+ * 11·13~17 응용 · 12 기본 · 18·20 심화라 **밑단(`연산`)이 없었다**(D-106).
+ * 그림 없이 성립하도록 각의 자리를 «동위각·엇각»이라는 말로만 지목한다.
+ */
+const PARALLEL_LINE_TYPES: TypeEntry[] = [
+  defType(
+    BOOK2,
+    "위치 관계",
+    "21A",
+    "평행선에서 엇각과 동위각의 크기",
+    "평행선",
+    "연산",
+    (rng) => {
+      const mode = intBetween(rng, 0, 1);
+      const angle = intBetween(rng, 25, 155);
+      if (mode === 0) {
+        return {
+          content: `두 직선 $l$, $m$이 다른 한 직선 $t$와 만나고 $l\\parallel m$이다. 이때 생기는 한 각의 크기가 $${angle}^\\circ$일 때, 그 각의 엇각의 크기를 구하시오.`,
+          answer: `$${angle}^\\circ$`,
+          solution: `두 직선이 평행하면 엇각의 크기는 서로 같다.\n따라서 구하는 각의 크기는 $${angle}^\\circ$이다.`,
+          facts: { mode, angle, ans: angle },
+        };
+      }
+      return {
+        content: `두 직선 $l$, $m$이 다른 한 직선 $t$와 만나고 $l\\parallel m$이다. 이때 생기는 한 각의 크기가 $${angle}^\\circ$일 때, 그 각의 엇각의 크기와 동위각의 크기의 합을 구하시오.`,
+        answer: `$${2 * angle}^\\circ$`,
+        solution: `두 직선이 평행하면 엇각의 크기도 동위각의 크기도 처음 각과 같으므로 각각 $${angle}^\\circ$이다.\n따라서 두 각의 크기의 합은 $${angle}^\\circ+${angle}^\\circ=${2 * angle}^\\circ$이다.`,
+        facts: { mode, angle, ans: 2 * angle },
+      };
+    },
+  ),
+];
+
 export const M1EXTRA_TYPES: TypeEntry[] = [
   ...M1_BOOK1,
   ...M1_BOOK2,
@@ -1044,4 +1206,7 @@ export const M1EXTRA_TYPES: TypeEntry[] = [
   ...HISTOGRAM_TYPES,
   ...GRAPH_UNDERSTANDING_TYPES,
   ...FREQUENCY_POLYGON_TYPES,
+  ...ROTATION_TYPES,
+  ...RELATIVE_FREQUENCY_TYPES,
+  ...PARALLEL_LINE_TYPES,
 ];

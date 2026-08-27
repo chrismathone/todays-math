@@ -147,6 +147,54 @@ MUTATIONS = [
         "      const part = pick(rng, [3, 4, 5, 6, 8, 9, 10, 12] as const);\n      const deg = 360 / part;",
         "      const part = pick(rng, [3, 4, 5, 7, 8, 9, 11, 12] as const);\n      const deg = 360 / part;",
     ),
+    (
+        "회전체 21A: 반지름을 제곱 안 한다",
+        EX,
+        "        answer: `$${r * r}\\\\pi\\\\,\\\\mathrm{cm}^2$`,",
+        "        answer: `$${r}\\\\pi\\\\,\\\\mathrm{cm}^2$`,",
+    ),
+    (
+        "회전체 22A: 밑면 반지름을 높이로 본다",
+        EX,
+        "        answer: `$${2 * base}\\\\pi\\\\,\\\\mathrm{cm}$`,",
+        "        answer: `$${2 * height}\\\\pi\\\\,\\\\mathrm{cm}$`,",
+    ),
+    (
+        "회전체 23A: 삼각형을 직사각형으로",
+        EX,
+        "          answer: `$${r * h}\\\\,\\\\mathrm{cm}^2$`,",
+        "          answer: `$${2 * r * h}\\\\,\\\\mathrm{cm}^2$`,",
+    ),
+    (
+        "회전체 24A: 윗면이 더 커도 된다",
+        EX,
+        "        const big = intBetween(rng, small + 1, 14);",
+        "        const big = intBetween(rng, 2, 14);",
+    ),
+    (
+        "상대도수 50A: 총합으로 안 나눈다",
+        EX,
+        "      const milli = Math.round((frequency * 1000) / total);",
+        "      const milli = Math.round(frequency * 10);",
+    ),
+    (
+        "상대도수 50A: 나누어떨어지지 않는 총합도 허용",
+        EX,
+        "      const total = pick(rng, [20, 25, 40, 50, 100, 200] as const);",
+        "      const total = pick(rng, [20, 25, 40, 50, 100, 300] as const);",
+    ),
+    (
+        "평행선 21A: 엇각을 보각으로",
+        EX,
+        "          answer: `$${angle}^\\\\circ$`,",
+        "          answer: `$${180 - angle}^\\\\circ$`,",
+    ),
+    (
+        "평행선 21A: 갈래를 하나로 고정",
+        EX,
+        "      const mode = intBetween(rng, 0, 1);\n      const angle = intBetween(rng, 25, 155);",
+        "      const mode = 0;\n      const angle = intBetween(rng, 25, 155);",
+    ),
 ]
 
 
