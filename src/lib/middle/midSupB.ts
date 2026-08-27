@@ -46,6 +46,7 @@ import type { ComboFamily } from "./combo";
 import { M1_EXPR_SUP_B } from "./m1Expr";
 import { signed } from "./m1Shared";
 import { M2_GEO_SIM_SUP_B } from "./m2GeoSim";
+import { M2_PYTHA_SUP_B } from "./m2Pytha";
 import { M2_RATIONAL_SUP_B } from "./m2Rational";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -565,5 +566,6 @@ export const MID_SUP_B: TypeEntry[] = [
   ...M1_EXPR_SUP_B,
   ...M2_RATIONAL_SUP_B,
   ...M2_GEO_SIM_SUP_B,
+  ...M2_PYTHA_SUP_B,
   ...MIDDLE_COMBO_TYPES,
 ];

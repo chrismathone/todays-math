@@ -2203,6 +2203,72 @@ export const M2_GEO_SIM: TypeEntry[] = [
 export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
   ...AREA_VOLUME_RATIO_SUPPLEMENTS,
 
+  // ── 보강: 삼각형의 닮음 조건 ────────────────────────────────────────
+  //
+  // pool 갈래가 기본1·응용5·심화1 이라 **기본 셋**이 모자란다. 그림은 안 붙인다 —
+  // 세 문형 다 치수가 발문에 전부 있어 그림 없이 풀린다.
+  def(
+    MINOR_SIM,
+    "50",
+    "세 쌍의 대응변의 비로 닮음이 되는 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 3, 8);
+      const b = a + intBetween(rng, 1, 4);
+      const c = b + intBetween(rng, 1, 4);
+      const k = intBetween(rng, 2, 4);
+      return {
+        content: `두 삼각형 $ABC$와 $DEF$에서 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{CA}=${c}\\,\\mathrm{cm}$이고 $\\overline{DE}=${k * a}\\,\\mathrm{cm}$, $\\overline{EF}=${k * b}\\,\\mathrm{cm}$이다. 두 삼각형이 $\\mathrm{SSS}$ 닮음이 되도록 하는 $\\overline{FD}$의 길이를 구하시오.`,
+        answer: `$${k * c}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{DE}=${a}:${k * a}=1:${k}$이고 $\\overline{BC}:\\overline{EF}=${b}:${k * b}=1:${k}$이다.\n세 쌍의 대응변의 길이의 비가 같아야 하므로 $\\overline{CA}:\\overline{FD}=1:${k}$에서 $\\overline{FD}=${c}\\times${k}=${k * c}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, c, k, x: k * c },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "51",
+    "끼인각이 같을 때 닮음이 되는 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      const a = intBetween(rng, 3, 8);
+      const b = a + intBetween(rng, 1, 5);
+      const k = intBetween(rng, 2, 4);
+      const ang = 2 * intBetween(rng, 20, 40);
+      return {
+        content: `두 삼각형 $ABC$와 $DEF$에서 $\\angle B=\\angle E=${ang}^\\circ$이고 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{DE}=${k * a}\\,\\mathrm{cm}$이다. 두 삼각형이 $\\mathrm{SAS}$ 닮음이 되도록 하는 $\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${k * b}\\,\\mathrm{cm}$`,
+        solution: `끼인각의 크기가 같으므로 그 각을 낀 두 쌍의 대응변의 길이의 비가 같아야 한다.\n$\\overline{AB}:\\overline{DE}=${a}:${k * a}=1:${k}$이므로 $\\overline{EF}=${b}\\times${k}=${k * b}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, k, ang, x: k * b },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SIM,
+    "52",
+    "닮은 삼각형에서 가장 짧은 변의 길이",
+    SEC.닮음조건,
+    "기본",
+    (rng): Body => {
+      // 🔴 **삼각형이 되어야 한다** — $a+b>c$. 예전에는 그냥 키워서 $2,4,7$ 같은
+      //    «있을 수 없는 삼각형»이 나왔다. 값 검산은 비만 보므로 통과한다.
+      const a = intBetween(rng, 3, 6);
+      const b = a + intBetween(rng, 1, 3);
+      const c = b + intBetween(rng, 1, Math.max(1, a - 1));
+      const k = intBetween(rng, 2, 5);
+      return {
+        content: `세 변의 길이가 $${a}\\,\\mathrm{cm}$, $${b}\\,\\mathrm{cm}$, $${c}\\,\\mathrm{cm}$인 삼각형과 닮은 삼각형이 있다. 이 삼각형의 가장 긴 변의 길이가 $${k * c}\\,\\mathrm{cm}$일 때, 가장 짧은 변의 길이를 구하시오.`,
+        answer: `$${k * a}\\,\\mathrm{cm}$`,
+        solution: `가장 긴 변끼리 대응하므로 닮음비는 $${c}:${k * c}=1:${k}$이다.\n가장 짧은 변은 $${a}\\,\\mathrm{cm}$에 대응하므로 $${a}\\times${k}=${k * a}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, c, k, x: k * a },
+      };
+    },
+  ),
+
   // ── 보강: 삼각형의 각의 이등분선 ────────────────────────────────────
   def(
     MINOR_PAR,

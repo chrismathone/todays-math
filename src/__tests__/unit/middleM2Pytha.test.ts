@@ -20,8 +20,27 @@ const SEEDS = [20260824, 1, 7777, 424242, 99991];
 const BOOK = "2-2";
 const MINOR = "피타고라스 정리";
 
+/** RPM 색인의 마지막 번호. 이보다 큰 번호는 우리가 **지은** 확장 유형이다. */
+const CATALOG_MAX = 16;
+
+/**
+ * 이 시험이 맡은 몫 — **색인 번호(01~16)만**.
+ *
+ * ⚠️ 2026-08-27 부터 이 중단원에 색인 밖 유형이 붙는다(갈래 B 가 「피타고라스
+ *    정리의 활용」 소단원을 10유형으로 올리며 지은 50~52). 이 시험은
+ *    `registeredTypes()` 를 중단원 이름으로 걸러 자기 몫을 고르므로 그것들까지
+ *    쓸어 담아 **자기 검산표에 남의 유형을 들이댄다**(물결 1·2C 가 밟은 그 자리).
+ *    그래서 번호로 한 번 더 좁힌다 — 「01~16 이 전부 등록돼 있다」는 주장은
+ *    그대로 살아 있고, 지은 유형은 `src/__tests__/unit/midTypesB.test.ts` 가
+ *    유형마다 검산을 요구하며 따로 지킨다(분모가 새지 않는다).
+ */
 const entries = () =>
-  registeredTypes().filter((e) => e.rpmBook === BOOK && e.rpmMinor === MINOR);
+  registeredTypes().filter(
+    (e) =>
+      e.rpmBook === BOOK &&
+      e.rpmMinor === MINOR &&
+      Number(e.rpmType) <= CATALOG_MAX,
+  );
 
 function firstNumber(text: string): number {
   const m = text.match(/-?\d+(?:\.\d+)?/);

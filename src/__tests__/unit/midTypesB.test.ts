@@ -685,6 +685,44 @@ const CHECKS: Record<string, Check> = {
     const small = nums(spans[1]!)[0]!;
     expect(nums(answer)[0]).toBe((small * q! ** 3) / p! ** 3);
   },
+  // ── 중2 삼각형의 닮음 조건 ────────────────────────────────
+  "2-2|도형의 닮음|50": ({ content, answer }) => {
+    const { AB, BC, CA, DE, EF } = segs(content);
+    expect(DE! * BC!).toBe(EF! * AB!); // 두 비가 같아야 물음이 선다
+    expect(nums(answer)[0]).toBe((CA! * DE!) / AB!);
+  },
+  "2-2|도형의 닮음|51": ({ content, answer }) => {
+    const { AB, BC, DE } = segs(content);
+    expect(nums(answer)[0]).toBe((BC! * DE!) / AB!);
+  },
+  "2-2|도형의 닮음|52": ({ content, answer }) => {
+    const spans = content.match(/\$[^$]*\$/g)!.map((s) => nums(s)[0]!);
+    const [a, b, c, big] = spans;
+    // 삼각형이 되는가 — 발문 자체가 성립하는지부터 본다
+    expect(a! + b!).toBeGreaterThan(c!);
+    expect(a!).toBeLessThanOrEqual(b!);
+    expect(b!).toBeLessThanOrEqual(c!);
+    expect(big! % c!).toBe(0);
+    expect(nums(answer)[0]).toBe((a! * big!) / c!);
+  },
+  // ── 중2 피타고라스 정리의 활용 ────────────────────────────
+  "2-2|피타고라스 정리|50": ({ content, answer }) => {
+    const [p, q] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    const r = nums(answer)[0]!;
+    expect(p! * p! + q! * q!).toBe(r * r);
+  },
+  "2-2|피타고라스 정리|51": ({ content, answer }) => {
+    const [r, p] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    const q = nums(answer)[0]!;
+    expect(p! * p! + q * q).toBe(r! * r!);
+  },
+  "2-2|피타고라스 정리|52": ({ content, answer }) => {
+    const [p, r] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
+    const area = nums(answer)[0]!;
+    const q = (2 * area) / p!;
+    expect(Number.isInteger(q)).toBe(true);
+    expect(p! * p! + q * q).toBe(r! * r!);
+  },
   // ── 중2 삼각형의 각의 이등분선 ────────────────────────────
   "2-2|평행선 사이의 선분의 길이의 비|12": ({ content, answer }) => {
     const { AB, AC, BC } = segs(content);
