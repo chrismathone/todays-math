@@ -2305,7 +2305,7 @@ def _prism(spec: Mapping[str, Any]) -> str:
     parts = (
         [svg for _, svg in faces]
         + [_poly(top, FACE_TOP, 1.2)]
-        + _hidden_lines(view, verts3, faces_idx)
+        + _hidden_lines(view, verts3, faces_idx, structural=True)
     )
     return _svg(svg_w, svg_h, "".join(parts))
 
