@@ -34,6 +34,7 @@ const DONE_SECTIONS = [
   { entries: M1_BOOK1, section: "일차식의 뜻Ⅰ" },
   { entries: M1_NUM, section: "공약수와 최대공약수" },
   { entries: M1_BOOK1, section: "소수와 거듭제곱" },
+  { entries: M1_NUM, section: "수의 대소관계" },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {

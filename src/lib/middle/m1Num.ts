@@ -28,7 +28,13 @@ import type { Rng } from "../elementary/types";
 
 import { eulReul, waGwa } from "./m2Josa";
 import type { Body } from "./m1Shared";
-import { attempt, defType, pickDistinct, shuffle } from "./m1Shared";
+import {
+  attempt,
+  defType,
+  intNonzero,
+  pickDistinct,
+  shuffle,
+} from "./m1Shared";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -71,14 +77,17 @@ const nEul = eulReul;
 const nIGa = (n: number): string => (eulReul(n) === "을" ? "이" : "가");
 
 /**
- * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수».
- * `improperToMixed`(textPreprocess) 가 가분수를 **대분수**로 그리므로
- * 마지막에 읽는 수는 분자가 아니라 **나머지**다: $14/5$ → 「$2$와 $5$분의 **$4$**」.
+ * 분수 표기 뒤 조사에 쓸 «읽을 때 마지막에 오는 수» — **분자**다.
+ * 분수는 「$b$**분의** $a$」로 읽으므로 끝에 오는 것이 분자다.
+ *
+ * ⚠️ 예전 판은 «대분수의 나머지»를 냈다 — `improperToMixed` 가 $\frac{14}{5}$ 를
+ *    $2\frac45$ 로 그리던 때의 규칙이다. **그 변환은 2026-08-24 에 제품에서
+ *    빠졌다**(원장님 확정 「중등은 대분수 변환하지 말 것」). 전제가 뒤집혔는데
+ *    규칙만 남아 유형 13 이 지면에 `$\frac{8}{3}$는`(→은) 을 찍고 있었다.
+ *    이식해 온 규칙은 **그 주석이 적어 둔 전제부터** 검산할 것.
  */
-function fracTail(num: number, den: number): number {
-  const a = Math.abs(num);
-  if (a % den === 0) return a / den;
-  return a > den ? a % den : a;
+function fracTail(num: number): number {
+  return Math.abs(num);
 }
 const nGwa = waGwa;
 
@@ -325,6 +334,48 @@ function isIntegerTok(t: NumTok): boolean {
 function tokList(toks: readonly NumTok[]): string {
   return toks.map((t) => `$${t.tex}$`).join(", ");
 }
+
+/** 분모가 $2$ 와 $5$ 만으로 이루어져 있나 — 소수(小數)로 딱 떨어지는가. */
+function terminatesAsDecimal(den: number): boolean {
+  let x = den;
+  while (x % 2 === 0) x /= 2;
+  while (x % 5 === 0) x /= 5;
+  return x === 1;
+}
+
+/** 소수점 아래 자릿수 — 부동소수점 찌꺼기(`0.30000000000000004`)를 걸러 낸다. */
+function decDigits(v: number): number {
+  const s = String(v);
+  const dot = s.indexOf(".");
+  return dot < 0 ? 0 : s.length - dot - 1;
+}
+
+/**
+ * `분자/분모` 표시 — 분모가 $1$ 이면 **정수로 적는다**.
+ * 안 그러면 지면에 `\frac{5}{1}` 이 나가는데 값은 맞아서 값 검산이 못 본다.
+ */
+function overTex(num: number, den: number): string {
+  if (den === 1) return String(num);
+  const body = `\\frac{${Math.abs(num)}}{${den}}`;
+  return num < 0 ? `-${body}` : body;
+}
+
+/**
+ * **진분수만** — 분자가 분모보다 작고 서로소다.
+ * `PROPER_FRACS` 는 이름과 달리 가분수도 담고 있어(3/2·10/3 …) 「정수 부분 + 진분수」
+ * 를 만들 때 쓰면 위끝이 두 칸 건너뛴다. 그래서 여기 따로 둔다.
+ */
+const PROPER_ONLY: readonly (readonly [number, number])[] = [
+  [1, 2],
+  [1, 3],
+  [2, 3],
+  [1, 4],
+  [3, 4],
+  [1, 5],
+  [2, 5],
+  [3, 5],
+  [4, 5],
+];
 
 /** `facts` 는 수만 담는다 — 표시한 수들을 분자/분모로 남겨 테스트가 되짚는다. */
 function tokFacts(toks: readonly NumTok[]): Record<string, number> {
@@ -2313,9 +2364,9 @@ const 정수_TYPES: TypeEntry[] = [
               ? "사이에 있는 정수 중 가장 큰 수를 구하시오."
               : "사이에 있는 모든 정수의 합을 구하시오.";
         return {
-          content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum, t1))} $${rightTex}$ ${ask}`,
+          content: `두 유리수 $${leftTex}$${nGwa(fracTail(lNum))} $${rightTex}$ ${ask}`,
           answer: `$${answer}$${kind === 0 ? "개" : ""}`,
-          solution: `$${leftTex}$${nEun(fracTail(lNum, t1))} $${lo - 1}$${nGwa(lo - 1)} $${lo}$ 사이의 수이고, $${rightTex}$${nEun(fracTail(rNum, t2))} $${hi}$${nGwa(hi)} $${
+          solution: `$${leftTex}$${nEun(fracTail(lNum))} $${lo - 1}$${nGwa(lo - 1)} $${lo}$ 사이의 수이고, $${rightTex}$${nEun(fracTail(rNum))} $${hi}$${nGwa(hi)} $${
             hi + 1
           }$ 사이의 수이다.\n따라서 두 수 사이에 있는 정수는 ${ints
             .map((v) => `$${v}$`)
@@ -2402,6 +2453,174 @@ const 정수_TYPES: TypeEntry[] = [
             c3: ids[2]!,
             c4: ids[3] ?? -1,
           },
+        };
+      }),
+  ),
+
+  // ── 16~21 「수의 대소관계」를 10유형으로 채운 몫 (갈래 D) ──
+  // 색인(정수와 유리수)은 01~15 라 16 부터 잇는다.
+  // 갈래는 **배분에 맞춰** 골랐다 — 이 소단원의 열은 연산 1(16) · 기본 4(12·17·18·19)
+  // · 응용 4(11·13·20·21) · 심화 1(15) 로 `defaultRatioFor(10)` 과 정확히 같다.
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "16",
+    "두 수의 대소를 부등호로 나타내기",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const toks = mixedToks(rng, 2);
+        if (!toks) return null;
+        const [a, b] = toks as [NumTok, NumTok];
+        const va = tokValue(a);
+        const vb = tokValue(b);
+        const rel = va > vb ? ">" : "<";
+        // 부호가 다르거나 한쪽이 $0$ 이면 값을 견줄 것도 없다.
+        const bySign = va === 0 || vb === 0 || va < 0 !== vb < 0;
+        // 부호가 같으면 값을 견줘야 한다. **통분해서 보여 주지 않는다** —
+        // 통분한 분수는 약분이 안 된 꼴이라(`\frac{106}{20}`) 지면 규칙과 부딪친다.
+        // 대신 소수로 고쳐 보인다. 딱 떨어지지 않는 분모($3$ 등)면 다시 뽑는다.
+        if (
+          !bySign &&
+          !(terminatesAsDecimal(a.den) && terminatesAsDecimal(b.den))
+        ) {
+          return null;
+        }
+        if (!bySign && (decDigits(va) > 3 || decDigits(vb) > 3)) return null;
+        const step = bySign
+          ? `음수는 $0$보다 작고 양수는 $0$보다 크므로 부호를 보면 대소를 알 수 있다.`
+          : a.den === 1 && b.den === 1
+            ? `두 수가 모두 정수이므로 그대로 견준다.`
+            : `두 수를 소수로 고치면 $${va}$, $${vb}$이다.`;
+        return {
+          content: `다음 두 수의 대소를 부등호를 사용하여 나타내시오.\n${tokList(toks)}`,
+          answer: `$${a.tex}${rel}${b.tex}$`,
+          solution: `${step}\n따라서 $${a.tex}${rel}${b.tex}$이다.`,
+          facts: { n1: a.num, d1: a.den, n2: b.num, d2: b.den },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "17",
+    "부등호로 나타낸 범위 안의 정수의 개수",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const lo = intBetween(rng, -9, 3);
+        const closed = intBetween(rng, 0, 1) === 0; // 0 이상(≤) · 1 초과(<)
+        const whole = lo + intBetween(rng, 2, 8);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        // 위끝은 **정수가 아닌** 분수라 «미만/이하»가 같은 뜻이 된다 — 애매함이 없다.
+        const hiNum = whole * q + p;
+        const first = closed ? lo : lo + 1;
+        const count = whole - first + 1;
+        if (count < 3) return null;
+        return {
+          content: `$${lo}${closed ? "\\le" : "<"} x<${overTex(hiNum, q)}$${nEul(Math.abs(hiNum))} 만족시키는 정수 $x$의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `$${overTex(hiNum, q)}$${nEun(Math.abs(hiNum))} $${whole}$${nGwa(whole)} $${whole + 1}$ 사이의 수이므로 $x$는 $${first}$부터 $${whole}$까지의 정수이다.\n따라서 그 개수는 $${count}$개이다.`,
+          facts: { lo, closed: closed ? 1 : 0, hiNum, q, whole, count },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "18",
+    "수직선 위의 위치로 정수 찾기",
+    SEC.대소,
+    "기본",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const kind = intBetween(rng, 0, 1); // 0 오른쪽·가장 작은 · 1 왼쪽·가장 큰
+        const sign = pick(rng, [-1, 1] as const);
+        const whole = intBetween(rng, 0, 7);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        const num = sign * (whole * q + p);
+        if (num === 0) return null;
+        const value = num / q;
+        const answer = kind === 0 ? Math.ceil(value) : Math.floor(value);
+        const side = kind === 0 ? "오른쪽" : "왼쪽";
+        const word = kind === 0 ? "작은" : "큰";
+        return {
+          content: `수직선 위에서 $${overTex(num, q)}$${nEul(Math.abs(num))} 나타내는 점보다 ${side}에 있는 정수 중에서 가장 ${word} 수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$${overTex(num, q)}$${nEun(Math.abs(num))} $${Math.floor(value)}$${nGwa(Math.floor(value))} $${Math.floor(value) + 1}$ 사이의 수이다.\n따라서 ${side}에 있는 정수 중 가장 ${word} 수는 $${answer}$이다.`,
+          facts: { kind, num, q, answer },
+        };
+      }),
+  ),
+
+  defType(BOOK, MIN_정수, "19", "절댓값의 대소", SEC.대소, "기본", (rng) =>
+    attempt(200, (): Body | null => {
+      const a = intNonzero(rng, -12, 12);
+      const b = intNonzero(rng, -12, 12);
+      if (Math.abs(a) === Math.abs(b)) return null;
+      const rel = Math.abs(a) > Math.abs(b) ? ">" : "<";
+      return {
+        // 「$|a|$」는 「절댓값 에이」로 읽으므로 조사는 $a$ 의 **값**이 아니라
+        // 글자 `a` 를 따른다 — 항상 「와」다. `nGwa(a)` 를 쓰면 $a=10$ 일 때
+        // 「$|a|$과」가 지면에 나간다.
+        content: `$a=${a}$, $b=${b}$일 때, $|a|$와 $|b|$의 대소를 부등호를 사용하여 나타내시오.`,
+        answer: `$|a|${rel}|b|$`,
+        solution: `절댓값은 수직선 위에서 원점까지의 거리이므로 $|a|=${Math.abs(a)}$, $|b|=${Math.abs(b)}$이다.\n따라서 $|a|${rel}|b|$이다.`,
+        facts: { a, b },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "20",
+    "절댓값이 가장 큰 수",
+    SEC.대소,
+    "응용",
+    (rng) =>
+      attempt(400, (): Body | null => {
+        const toks = mixedToks(rng, 5);
+        if (!toks) return null;
+        const abs = toks.map((t) => Math.abs(tokValue(t)));
+        const top = Math.max(...abs);
+        // 가장 큰 것이 **하나**여야 답이 정해진다.
+        if (abs.filter((v) => v === top).length !== 1) return null;
+        const target = toks[abs.indexOf(top)]!;
+        return {
+          content: `다음 수 중에서 절댓값이 가장 큰 수를 구하시오.\n${tokList(toks)}`,
+          answer: `$${target.tex}$`,
+          solution: `절댓값은 부호를 떼고 본 크기이므로 각 수의 절댓값은 차례로 ${tokList(
+            toks.map((t) => ({ ...t, tex: t.tex.replace(/^[+-]/, "") })),
+          )}이다.\n따라서 절댓값이 가장 큰 수는 $${target.tex}$이다.`,
+          facts: tokFacts(toks),
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_정수,
+    "21",
+    "절댓값 부등식을 만족시키는 정수",
+    SEC.대소,
+    "응용",
+    (rng) =>
+      attempt(300, (): Body | null => {
+        const whole = intBetween(rng, 2, 8);
+        const [p, q] = pick(rng, PROPER_ONLY);
+        const hiNum = whole * q + p;
+        const count = 2 * whole + 1;
+        return {
+          content: `$|x|<${overTex(hiNum, q)}$${nEul(Math.abs(hiNum))} 만족시키는 정수 $x$의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `$${overTex(hiNum, q)}$${nEun(Math.abs(hiNum))} $${whole}$${nGwa(whole)} $${whole + 1}$ 사이의 수이므로 $x$는 $-${whole}$부터 $${whole}$까지의 정수이다.\n따라서 그 개수는 $${count}$개이다.`,
+          facts: { hiNum, q, whole, count },
         };
       }),
   ),

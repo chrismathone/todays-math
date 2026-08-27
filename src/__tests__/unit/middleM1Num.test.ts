@@ -1,5 +1,5 @@
 /**
- * 중1 RPM 1-1 「수」 38유형 (`m1Num.ts`) — 독립 검산.
+ * 중1 RPM 1-1 「수」 51유형 (`m1Num.ts`) — 독립 검산.
  *
  * ## 검산은 생성기와 «다른 길»로 간다 (동어반복 금지)
  *
@@ -293,6 +293,14 @@ const EXPECTED_SECTION: Record<string, string> = {
   "1-1|정수와 유리수|13": "수의 대소관계",
   "1-1|정수와 유리수|14": "정수와 유리수",
   "1-1|정수와 유리수|15": "수의 대소관계",
+  // 16~21 은 RPM 색인 밖 — 「수의 대소관계」를 10유형으로 채우려고 갈래 D 가
+  // 지은 것이다. 이 중단원의 색인 최댓값은 15 다.
+  "1-1|정수와 유리수|16": "수의 대소관계",
+  "1-1|정수와 유리수|17": "수의 대소관계",
+  "1-1|정수와 유리수|18": "수의 대소관계",
+  "1-1|정수와 유리수|19": "수의 대소관계",
+  "1-1|정수와 유리수|20": "수의 대소관계",
+  "1-1|정수와 유리수|21": "수의 대소관계",
 };
 
 // ── 유형별 독립 검산 ────────────────────────────────────────
@@ -971,6 +979,89 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
       }
     }
   },
+
+  // ── 16~21 「수의 대소관계」를 10유형으로 채운 몫 (갈래 D) ──
+  // 값은 **지면 글자에서 다시 읽어** 계산한다 — `parseTok` 이 분수·소수·정수를
+  // 되읽으므로 생성기의 `facts` 를 한 번도 안 믿는다.
+
+  "1-1|정수와 유리수|16": (p) => {
+    const toks = dataToks(p.content);
+    expect(toks, p.content).toHaveLength(2);
+    const [x, y] = toks as [(typeof toks)[0], (typeof toks)[0]];
+    expect(ratVal(x.rat), "두 수가 같으면 부등호가 안 선다").not.toBe(
+      ratVal(y.rat),
+    );
+    const want = ratVal(x.rat) > ratVal(y.rat) ? ">" : "<";
+    expect(p.answer).toBe(`$${x.tex}${want}${y.tex}$`);
+  },
+
+  "1-1|정수와 유리수|17": (p) => {
+    const m = p.content.match(/\$(-?\d+)(\\le|<) x<([^$]+)\$/);
+    expect(m, p.content).not.toBeNull();
+    const lo = Number(m![1]);
+    const closed = m![2] === "\\le";
+    const hi = ratVal(parseTok(m![3]!));
+    expect(
+      Number.isInteger(hi),
+      "위끝이 정수면 «미만»과 «이하»가 갈려 답이 흔들린다",
+    ).toBe(false);
+    // 개수를 **하나씩 세어** 다시 구한다 (생성기는 뺄셈으로 구했다).
+    let count = 0;
+    for (let v = lo; v < hi; v += 1) {
+      if (!closed && v === lo) continue;
+      count += 1;
+    }
+    expect(answerNum(p)).toBe(count);
+  },
+
+  "1-1|정수와 유리수|18": (p) => {
+    const m = p.content.match(
+      /수직선 위에서 \$([^$]+)\$.*보다 (오른쪽|왼쪽)에 있는 정수 중에서 가장 (작은|큰) 수/,
+    );
+    expect(m, p.content).not.toBeNull();
+    const v = ratVal(parseTok(m![1]!));
+    expect(
+      Number.isInteger(v),
+      "정수면 «보다 오른쪽»의 첫 정수가 흔들린다",
+    ).toBe(false);
+    expect(m![2] === "오른쪽" ? "작은" : "큰").toBe(m![3]);
+    expect(answerNum(p)).toBe(
+      m![2] === "오른쪽" ? Math.ceil(v) : Math.floor(v),
+    );
+  },
+
+  "1-1|정수와 유리수|19": (p) => {
+    const m = p.content.match(/\$a=(-?\d+)\$, \$b=(-?\d+)\$/);
+    expect(m, p.content).not.toBeNull();
+    const A = Math.abs(Number(m![1]));
+    const B = Math.abs(Number(m![2]));
+    expect(A, "절댓값이 같으면 부등호가 안 선다").not.toBe(B);
+    expect(p.answer).toBe(`$|a|${A > B ? ">" : "<"}|b|$`);
+  },
+
+  "1-1|정수와 유리수|20": (p) => {
+    const toks = dataToks(p.content);
+    expect(toks, p.content).toHaveLength(5);
+    const abs = toks.map((t) => Math.abs(ratVal(t.rat)));
+    const top = Math.max(...abs);
+    expect(
+      abs.filter((v) => v === top),
+      "절댓값이 가장 큰 수가 둘이면 답이 안 정해진다",
+    ).toHaveLength(1);
+    expect(p.answer).toBe(`$${toks[abs.indexOf(top)]!.tex}$`);
+  },
+
+  "1-1|정수와 유리수|21": (p) => {
+    const m = p.content.match(/\$\|x\|<([^$]+)\$/);
+    expect(m, p.content).not.toBeNull();
+    const hi = ratVal(parseTok(m![1]!));
+    expect(Number.isInteger(hi), "위끝이 정수면 개수가 흔들린다").toBe(false);
+    let count = 0;
+    for (let v = -Math.ceil(hi); v <= Math.ceil(hi); v += 1) {
+      if (Math.abs(v) < hi) count += 1;
+    }
+    expect(answerNum(p)).toBe(count);
+  },
 };
 
 // ── 시험 ────────────────────────────────────────────────────
@@ -980,12 +1071,12 @@ function outsideMath(text: string): string {
   return text.replace(/\$[^$]*\$/g, "");
 }
 
-describe("중1 1-1 「수」 45유형 (m1Num)", () => {
-  it("45유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
+describe("중1 1-1 「수」 51유형 (m1Num)", () => {
+  it("51유형 명부와 unitSection 이 공유 DB 실측 그대로다", () => {
     expect(new Set(M1_NUM.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(M1_NUM.length).toBe(45);
+    expect(M1_NUM.length).toBe(51);
     for (const e of M1_NUM) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
@@ -1009,7 +1100,7 @@ describe("중1 1-1 「수」 45유형 (m1Num)", () => {
     ]);
     // RPM 색인의 16 + 갈래 D 가 「공약수와 최대공약수」를 채우려고 지은 7
     expect(byMinor.get("최대공약수와 최소공배수")!.length).toBe(23);
-    expect(byMinor.get("정수와 유리수")!.length).toBe(15);
+    expect(byMinor.get("정수와 유리수")!.length).toBe(21);
   });
 
   // 색인 대조는 `middleTypeCoverage.test.ts` **한 곳**이 전량으로 한다

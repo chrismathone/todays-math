@@ -29,21 +29,21 @@ export function numVowelFinal(n: number): boolean {
  * 수식 끝에서 «읽을 때 마지막에 오는 수» — 없으면 `null`(판정하지 않는다).
  *
  * 두 자리가 함정이다.
- *  ⑴ 분수를 건너뛰면 안 된다. `improperToMixed`(textPreprocess)가 가분수를
- *     **대분수**로 그리므로 $\frac{14}{5}$ 는 「$2$와 $5$분의 $4$」로 읽히고,
- *     조사는 그 **나머지**를 따른다.
+ *  ⑴ 분수를 건너뛰면 안 된다. 분수는 「$b$**분의** $a$」로 읽으므로 마지막에
+ *     오는 수는 **분자**다.
+ *     ⚠️ 예전 판은 여기서 «대분수의 나머지»를 냈다 — `improperToMixed` 가
+ *     $\frac{14}{5}$ 를 $2\frac45$ 로 그리던 때의 규칙이다. 그 변환은
+ *     **2026-08-24 에 제품에서 빠졌다**(원장님 확정 「중등은 대분수 변환하지
+ *     말 것」, `textPreprocess.applyMathInnerNormalization` 주석). 전제가
+ *     뒤집혔는데 규칙만 남으면 $\frac{7}{5}$(칠 → 받침)를 「이」로 읽어
+ *     **옳은 조사를 거짓 경보로 잡는다**. 실제 렌더를 찍어 보고 고쳤다.
  *  ⑵ **지수로 끝나면 읽기를 알 수 없다.** `5x-3x^2` 는 「엑스의 **제곱**」으로
  *     읽지 「이」로 읽지 않는다. 여기를 안 막으면 멀쩡한 「을」이 거짓 경보로
  *     걸리고, **거짓 경보는 가드를 끈다**(2026-08-20).
  */
 export function trailingReadNumber(body: string): number | null {
-  const frac = body.match(/\\frac\{(\d+)\}\{(\d+)\}$/);
-  if (frac) {
-    const a = Number(frac[1]);
-    const b = Number(frac[2]);
-    if (a % b === 0) return a / b;
-    return a > b ? a % b : a;
-  }
+  const frac = body.match(/\\d?frac\{(\d+)\}\{(\d+)\}$/);
+  if (frac) return Number(frac[1]); // 「$b$분의 $a$」 — 마지막은 분자
   if (/\^\d+$/.test(body)) return null; // 지수로 끝난다 — 「제곱」으로 읽는다
   const int = body.match(/(\d+)$/);
   return int ? Number(int[1]) : null;
