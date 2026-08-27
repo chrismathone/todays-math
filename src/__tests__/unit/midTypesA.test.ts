@@ -1060,6 +1060,90 @@ describe("갈래 A 중등 유형 값 검산", () => {
     expect(angleSeen).toBeGreaterThan(0);
     expect(sideSeen).toBeGreaterThan(0);
   });
+
+  /**
+   * 대푯값 07A~10A — 자료 줄을 **다시 읽어** 평균·중앙값·최빈값을 직접 센다.
+   * 생성기가 쓴 `facts` 는 보지 않는다.
+   */
+  function dataValues(content: string): number[] {
+    const lines = content.split("\n");
+    const last = lines[lines.length - 1]!;
+    return [...last.matchAll(/\$(-?\d+)\$/g)].map((m) => Number(m[1]));
+  }
+
+  function midEntry(section: string, rpmType: string) {
+    const entry = M1_BOOK2.find(
+      (candidate) =>
+        candidate.unitSection === section && candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    return entry!;
+  }
+
+  it("대푯값 유형 07A — 평균", () => {
+    const entry = midEntry("대푯값", "07A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const values = dataValues(problem.content);
+      expect(values).toHaveLength(4);
+      const sum = values.reduce((s, v) => s + v, 0);
+      expect(sum % values.length).toBe(0);
+      expect(numericAnswer(problem.answer)).toBe(sum / values.length);
+    }
+  });
+
+  it("대푯값 유형 08A — 최빈값이 정확히 둘", () => {
+    const entry = midEntry("대푯값", "08A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const values = dataValues(problem.content);
+      expect(values).toHaveLength(6);
+      const counts = new Map<number, number>();
+      for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+      const top = Math.max(...counts.values());
+      const modes = [...counts]
+        .filter(([, c]) => c === top)
+        .map(([v]) => v)
+        .sort((a, b) => a - b);
+      // 「모두 구하시오」의 답이 둘이 아니면 발문이 거짓말을 한다.
+      expect(modes).toHaveLength(2);
+      const answered = [...problem.answer.matchAll(/\$(-?\d+)\$/g)]
+        .map((m) => Number(m[1]))
+        .sort((a, b) => a - b);
+      expect(answered).toEqual(modes);
+    }
+  });
+
+  it("대푯값 유형 09A — 두 집단을 합한 평균", () => {
+    const entry = midEntry("대푯값", "09A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [boys, boyAvg, girls, girlAvg] = (
+        problem.content.match(/\d+/g) ?? []
+      ).map(Number);
+      const total = boys! * boyAvg! + girls! * girlAvg!;
+      expect(total % (boys! + girls!)).toBe(0);
+      expect(numericAnswer(problem.answer)).toBe(total / (boys! + girls!));
+    }
+  });
+
+  it("대푯값 유형 10A — 중앙값 + 최빈값", () => {
+    const entry = midEntry("대푯값", "10A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const values = dataValues(problem.content);
+      expect(values).toHaveLength(7);
+      const sorted = [...values].sort((a, b) => a - b);
+      const median = sorted[3]!;
+      const counts = new Map<number, number>();
+      for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+      const top = Math.max(...counts.values());
+      const modes = [...counts].filter(([, c]) => c === top).map(([v]) => v);
+      // 최빈값이 하나로 정해지지 않으면 「최빈값을 $b$라 할 때」가 성립하지 않는다.
+      expect(modes).toHaveLength(1);
+      expect(numericAnswer(problem.answer)).toBe(median + modes[0]!);
+    }
+  });
 });
 
 /**

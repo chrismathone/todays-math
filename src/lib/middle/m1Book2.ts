@@ -347,6 +347,133 @@ export const M1_BOOK2: TypeEntry[] = [
       }),
   ),
 
+  /*
+   * 07A~10A — 대푯값을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01~03 기본 · 04~06 응용이라 **밑단(`연산`)과 꼭대기(`심화`)가 비어 있었다**
+   * (D-106). 07A 를 연산, 10A 를 심화로 세워 사다리 네 칸을 모두 채운다.
+   */
+  defType(BOOK, "대푯값", "07A", "자료의 평균", SEC2.대푯값, "연산", (rng) =>
+    attempt(400, () => {
+      const vals: number[] = [];
+      for (let i = 0; i < 4; i += 1) vals.push(intBetween(rng, 2, 30));
+      const sum = vals.reduce((s, v) => s + v, 0);
+      if (sum % 4 !== 0) return null;
+      const M = sum / 4;
+      const facts: Record<string, number> = { n: 4, M };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 평균을 구하시오.\n${vals.map((v) => `$${v}$`).join(", ")}`,
+        answer: `$${M}$`,
+        solution: `(평균)$=\\dfrac{${vals.join("+")}}{4}=\\dfrac{${sum}}{4}=${M}$`,
+        facts,
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "08A",
+    "최빈값이 두 개인 자료",
+    SEC2.대푯값,
+    "기본",
+    (rng) => {
+      const pool: number[] = [];
+      for (let v = 3; v <= 28; v += 1) pool.push(v);
+      // 두 값은 두 번씩, 나머지 둘은 한 번씩 — 최빈값이 정확히 둘이 되게 짠다.
+      const chosen = pickDistinct(rng, pool, 4);
+      const [m1, m2, s1, s2] = chosen as [number, number, number, number];
+      const vals = shuffle(rng, [m1, m1, m2, m2, s1, s2]);
+      const lo = Math.min(m1, m2);
+      const hi = Math.max(m1, m2);
+      const facts: Record<string, number> = { n: 6, lo, hi };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 최빈값을 모두 구하시오.\n${vals.map((v) => `$${v}$`).join(", ")}`,
+        answer: `$${lo}$, $${hi}$`,
+        solution: `$${lo}$과 $${hi}$가 각각 $2$번씩 나타나고 나머지 값은 $1$번씩 나타난다.\n따라서 최빈값은 $${lo}$, $${hi}$의 두 개이다.`,
+        facts,
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "09A",
+    "두 집단을 합한 평균",
+    SEC2.대푯값,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const boys = intBetween(rng, 8, 20);
+        const girls = intBetween(rng, 8, 20);
+        const boyAvg = intBetween(rng, 60, 95);
+        const girlAvg = intBetween(rng, 60, 95);
+        if (boyAvg === girlAvg) return null;
+        const total = boys * boyAvg + girls * girlAvg;
+        if (total % (boys + girls) !== 0) return null;
+        return {
+          content: `어느 반의 남학생 $${boys}$명의 수학 성적의 평균은 $${boyAvg}$점이고, 여학생 $${girls}$명의 수학 성적의 평균은 $${girlAvg}$점이다. 이 반 전체 학생의 수학 성적의 평균을 구하시오.`,
+          answer: `$${total / (boys + girls)}$점`,
+          solution: `남학생의 성적의 총합은 $${boys}\\times${boyAvg}=${boys * boyAvg}$(점), 여학생의 성적의 총합은 $${girls}\\times${girlAvg}=${girls * girlAvg}$(점)이다.\n따라서 전체 평균은 $\\dfrac{${total}}{${boys + girls}}=${total / (boys + girls)}$(점)이다.`,
+          facts: {
+            boys,
+            girls,
+            boyAvg,
+            girlAvg,
+            M: total / (boys + girls),
+          },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "10A",
+    "중앙값과 최빈값을 함께 구하기",
+    SEC2.대푯값,
+    "심화",
+    (rng) => {
+      const pool: number[] = [];
+      for (let v = 2; v <= 26; v += 1) pool.push(v);
+      // 자료 $7$개 — 홀수라 중앙값이 자료의 한 값이다. 최빈값은 $3$번 나오는 하나뿐.
+      const chosen = pickDistinct(rng, pool, 5);
+      const [mode, a, b, c, d] = chosen as [
+        number,
+        number,
+        number,
+        number,
+        number,
+      ];
+      const vals = shuffle(rng, [mode, mode, mode, a, b, c, d]);
+      const sorted = [...vals].sort((x, y) => x - y);
+      const median = sorted[3]!;
+      const sum = median + mode;
+      const facts: Record<string, number> = { n: 7, median, mode, sum };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 중앙값을 $a$, 최빈값을 $b$라 할 때, $a+b$의 값을 구하시오.\n${vals
+          .map((v) => `$${v}$`)
+          .join(", ")}`,
+        answer: `$${sum}$`,
+        solution: `자료를 작은 값부터 크기순으로 나열하면 ${sorted
+          .map((v) => `$${v}$`)
+          .join(
+            ", ",
+          )}이다.\n자료의 개수가 $7$이므로 중앙값은 가운데 값인 $a=${median}$이고, $3$번 나타나는 $b=${mode}$가 최빈값이다.\n따라서 $a+b=${median}+${mode}=${sum}$이다.`,
+        facts,
+      };
+    },
+  ),
+
   // ── 입체도형의 겉넓이와 부피 → 기둥의 겉넓이와 부피 ────
   defType(
     BOOK,
