@@ -15,6 +15,7 @@ import {
   asShortAnswer,
   deriveThreeFormats,
   numericMistakes,
+  toDescriptiveStem,
   type StemProblem,
 } from "@/lib/engine/deriveFormats";
 import { createRng } from "@/lib/elementary/rng";
@@ -105,6 +106,38 @@ describe("서술형", () => {
     expect(
       classifyFormat(asFormatInput({ ...got, questionType: "단답형" })),
     ).toBe("short_answer");
+  });
+});
+
+describe("서술형 — 발문 뒤에 목록이 붙은 문항", () => {
+  /**
+   * 🔴 `toDescriptiveStem` 은 **문자열 끝**을 보고 물음을 바꾼다. 그런데 중등에는
+   *    「다음 보기 중 …인 것은 모두 몇 개인지 구하시오.」 뒤에 보기 목록이 붙는
+   *    유형이 있다. 그러면 물음 문장이 **중간**에 있어서, 지시가 마지막 보기 뒤에
+   *    붙는다 — 「⑤ $y=(x+2)^2$ 풀이 과정과 답을 쓰시오.」 라는 지면이 나간다.
+   *
+   *    실측으로 중등 3유형이 그렇다. 물음 **문장**을 바꿔야 한다.
+   */
+  it("보기 목록 앞의 물음 문장을 바꾼다 — 목록 뒤에 붙이지 않는다", () => {
+    const content = [
+      "다음 보기 중 $y$가 이차함수인 것은 모두 몇 개인지 구하시오.",
+      "\u2460 $y=x^2$",
+      "\u2461 $y=x^3$",
+      "\u2464 $y=(x+2)^2$",
+    ].join("\n");
+    const got = toDescriptiveStem(content);
+    const lines = got.split("\n");
+    expect(lines[0]).toContain("풀이 과정과 답을 쓰시오");
+    // 마지막 보기 줄은 그대로여야 한다.
+    expect(lines[lines.length - 1]).toBe("\u2464 $y=(x+2)^2$");
+    // 지시는 딱 한 번만.
+    expect(got.split("풀이 과정과 답을 쓰시오").length - 1).toBe(1);
+  });
+
+  it("목록이 없으면 종전대로 끝을 바꾼다", () => {
+    expect(toDescriptiveStem("넓이를 구하시오.")).toBe(
+      "넓이를 풀이 과정과 답을 쓰시오.",
+    );
   });
 });
 

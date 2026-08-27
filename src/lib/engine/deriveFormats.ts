@@ -30,6 +30,15 @@ export type DerivedProblem = StemProblem & {
 export type Mistake = { tag: string; value: string };
 
 const DESCRIPTIVE_ASK = "풀이 과정과 답을 쓰시오.";
+
+/**
+ * 이 줄이 **물음 문장**인가 — 아래 `toDescriptiveStem` 이 실제로 바꿀 수 있는 끝맺음.
+ * 목록이 딸린 발문에서 「어느 줄을 바꿀 것인가」를 고르는 데 쓴다.
+ * ⚠️ 아래 치환 목록과 **같은 낱말**이어야 한다. 갈라지면 물음 줄을 찾아 놓고
+ *    바꾸지 못해 목록만 헤집는다.
+ */
+const ASK_LINE =
+  /(입?니까\?|인가\?|구하시오|구하여라|구하세요|쓰시오|나타내시오|하시오|하여라|하세요|고르시오)\.?$/;
 const MARKS = ["①", "②", "③", "④", "⑤"] as const;
 
 export function asShortAnswer(stem: StemProblem): DerivedProblem {
@@ -100,6 +109,19 @@ export function deriveThreeFormats(
  * 원장님: 「입니까? → …인지 풀이 과정과 답을 쓰시오.」
  */
 export function toDescriptiveStem(content: string): string {
+  // 🔴 물음이 **문자열 끝**에 있다고 가정하면 안 된다. 중등에는 「다음 보기 중
+  //    …인 것은 모두 몇 개인지 구하시오.」 뒤에 보기 목록이 붙는 유형이 있고,
+  //    그때 물음 문장은 **첫 줄**이다. 끝만 보면 지시가 마지막 보기 뒤에 붙어
+  //    「⑤ $y=(x+2)^2$ 풀이 과정과 답을 쓰시오.」 라는 지면이 나간다(실측 3유형).
+  //    그래서 목록이 붙어 있으면 **물음 줄만** 바꾸고 목록은 그대로 둔다.
+  const lines = content.trimEnd().split("\n");
+  const askAt = lines.findIndex((l) => ASK_LINE.test(l.trimEnd()));
+  if (askAt >= 0 && askAt < lines.length - 1) {
+    const head = lines.slice(0, askAt);
+    const rest = lines.slice(askAt + 1);
+    return [...head, toDescriptiveStem(lines[askAt]!), ...rest].join("\n");
+  }
+
   const trimmed = content.trimEnd();
   if (trimmed.endsWith(DESCRIPTIVE_ASK)) return trimmed;
 

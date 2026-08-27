@@ -88,16 +88,27 @@ const DIFFICULTY_ORDER: readonly Difficulty[] = DIFFICULTY_LADDER;
  *    「연산」 행이 **조용히 빠진다** — 그러면 연산이 부족해도 대체를 아예 안 하고
  *    shortfall 만 쌓인다. 에러가 아니라 시험지가 얇아질 뿐이라 아무도 못 본다.
  *
- * 아래·위 한 칸씩. **아래(쉬운 쪽)를 먼저** 본다 — 못 채운 칸을 더 쉬운 문항으로
- * 메우는 편이 학생에게 안전하다.
+ * **가까운 칸부터, 같은 거리면 아래(쉬운 쪽) 먼저.** 못 채운 칸을 더 쉬운
+ * 문항으로 메우는 편이 학생에게 안전하다.
+ *
+ * ⚠️ 한 칸만 보면 **자리를 잃는다.** 예전에는 아래·위 한 칸씩이었는데, 그러면
+ *    「연산」은 「기본」에서만 빌릴 수 있고 기본도 비면 그 자리가 그냥 빈다.
+ *    실측으로 중등 3소단원(부채꼴의 호의 길이와 넓이 · 뿔의 겉넓이와 부피 ·
+ *    인수분해의 응용)이 그렇다 — RPM 구조상 유형이 전부 응용·심화라 연산이
+ *    **원래 하나도 없다.** 유형 10개인데 시험지가 9문항으로 얇아졌고, 에러가
+ *    아니라 한 자리가 비는 것뿐이라 아무도 못 봤다.
+ *    그래서 **사다리 끝까지** 걸어간다. 풀이 정말 모자라면 그때는 여전히
+ *    shortfall 이 난다 — 없는 것을 지어내지는 않는다.
  */
 const ADJACENT_DIFFICULTY: Record<Difficulty, Difficulty[]> =
   Object.fromEntries(
     DIFFICULTY_LADDER.map((tier, i) => [
       tier,
-      [DIFFICULTY_LADDER[i - 1], DIFFICULTY_LADDER[i + 1]].filter(
-        (x): x is Difficulty => x !== undefined,
-      ),
+      DIFFICULTY_LADDER.map((alt, j) => ({ alt, dist: Math.abs(j - i), j }))
+        .filter((x) => x.dist > 0)
+        // 가까운 것 먼저, 같은 거리면 사다리 아래쪽(쉬운 쪽) 먼저.
+        .sort((a, b) => a.dist - b.dist || a.j - b.j)
+        .map((x) => x.alt),
     ]),
   ) as Record<Difficulty, Difficulty[]>;
 

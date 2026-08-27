@@ -9,6 +9,8 @@
  * 단답·서술은 남긴다. 조용히 세 형식을 다 냈다고 하지 않는다.
  */
 import { createRng } from "../elementary/rng";
+import { hasChoices } from "../problem/choiceCountRule";
+import { answerIsChoiceNumber } from "../problem/provenance";
 import {
   asDescriptive,
   asMultipleChoice,
@@ -35,6 +37,21 @@ export function expandFamily(
 
   for (let i = 0; i < stems.length; i += 1) {
     const stem = stems[i]!;
+    // 🔴 **이미 객관식인 발문은 파생하지 않는다.** 중등 873유형 가운데 20개가
+    //    그렇다(2.3%). 파생하면 둘이 어긋난다 — `asShortAnswer` 가 보기 다섯인
+    //    문항을 「단답형」으로 찍고, `asDescriptive` 가 보기를 단 채로
+    //    「…풀이 과정과 답을 쓰시오」를 붙인다.
+    //
+    // ⚠️ 가르는 축은 **「보기가 있나」가 아니라 「정답이 번호인가」**다.
+    //    「다음 보기 중 …인 것은 **모두 몇 개**인지 구하시오」는 보기가 세는
+    //    대상이고 정답이 「$2$개」다 — 그건 단답이고, 서술 파생도 자연스럽다
+    //    (「…몇 개인지 풀이 과정과 답을 쓰시오」). 보기만 보고 접으면 그 부류가
+    //    통째로 `[?형식]` 이 된다(실측 3유형). `classifyFormat` 이 쓰는 바로
+    //    그 축을 여기서도 쓴다.
+    if (hasChoices(stem.content) && answerIsChoiceNumber(stem.answer)) {
+      items.push({ ...stem, questionType: "객관식" });
+      continue;
+    }
     items.push(asShortAnswer(stem));
     items.push(asDescriptive(stem));
     try {

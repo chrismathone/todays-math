@@ -107,4 +107,89 @@ describe("실물 엔진 한 갈래", () => {
       expect(item.familyKey).toBe(familyKey);
     }
   });
+
+  /**
+   * 🔴 중등에는 **이미 보기가 붙은 유형**이 20개 있다(873 중 2.3%).
+   *    그런 발문을 파생하면 두 가지가 어긋난다:
+   *      ⑴ `asShortAnswer` 가 「단답형」으로 찍는다 — 보기가 다섯 개인데.
+   *      ⑵ `asDescriptive` 가 「…풀이 과정과 답을 쓰시오」를 붙인다 —
+   *         보기 ①~⑤ 가 그대로 달린 채로. 말이 안 되는 지면이 나간다.
+   *    적재 전에 여기서 막는다. `deriveQuestionType` 은 이미 옳게 읽는데
+   *    (객관식) 펼치는 쪽만 몰랐다 — 규칙이 두 벌이던 자리다.
+   */
+  it("이미 보기가 붙은 발문은 파생하지 않고 객관식 그대로 낸다", () => {
+    const stem = {
+      content: [
+        "다음 중 옳은 것은?",
+        "① $1$",
+        "② $2$",
+        "③ $3$",
+        "④ $4$",
+        "⑤ $5$",
+      ].join("\n"),
+      answer: "③",
+      solution: "풀이",
+      familyKey: "mid:2-1|일차부등식|01",
+      problemType: "활용",
+    };
+    let v = 0;
+    const got = expandFamily(() => ({
+      ...stem,
+      content: stem.content.replace("옳은 것은?", `옳은 것은? (${v++})`),
+    }));
+    // 변형 셋 각각 **한 행**만 — 단답·서술로 부풀리지 않는다.
+    expect(got.items).toHaveLength(3);
+    for (const item of got.items) {
+      expect(item.questionType).toBe("객관식");
+      // 서술 지시가 붙으면 안 된다.
+      expect(item.content).not.toContain("풀이 과정과 답을 쓰시오");
+      // 보기를 한 겹 더 얹으면 안 된다 — ①이 하나뿐이어야 한다.
+      expect(item.content.split("①").length - 1).toBe(1);
+    }
+    expect(got.skippedMcq).toBe(0);
+  });
+
+  /**
+   * 🔴 위 규칙의 **음성 쪽**. 보기가 붙어 있어도 **정답이 번호가 아니면**
+   *    객관식이 아니다 — 「다음 보기 중 …인 것은 모두 몇 개인지 구하시오」는
+   *    보기가 **세는 대상**이고 정답이 「$2$개」다.
+   *    보기만 보고 접으면 중등 3유형이 통째로 `[?형식]` 이 된다(실측).
+   */
+  it("보기가 있어도 정답이 번호가 아니면 단답·서술로 파생한다", () => {
+    const stem = {
+      content: [
+        "다음 보기 중 $y$가 $x$의 함수인 것은 모두 몇 개인지 구하시오.",
+        "① $y=x$",
+        "② $y=x^2$",
+        "③ $y=2x$",
+        "④ $y=3x$",
+        "⑤ $y=4x$",
+      ].join("\n"),
+      answer: "$2$개",
+      solution: "풀이",
+      familyKey: "mid:2-1|일차함수와 그 그래프|01",
+      problemType: "활용",
+    };
+    let v = 0;
+    const got = expandFamily(() => ({
+      ...stem,
+      content: stem.content.replace("함수인", `함수인(${v++})`),
+    }));
+    const kinds = got.items.map((i) => i.questionType);
+    expect(kinds).toContain("단답형");
+    expect(kinds).toContain("서술형");
+    // 그리고 화면 판정이 `unknown` 으로 떨어지면 안 된다.
+    for (const item of got.items) {
+      expect(
+        classifyFormat({
+          content: item.content,
+          answer: item.answer,
+          familyKey: item.familyKey,
+          questionType: item.questionType,
+          problemType: item.problemType,
+        }),
+        item.questionType,
+      ).not.toBe("unknown");
+    }
+  });
 });

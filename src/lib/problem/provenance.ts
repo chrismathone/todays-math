@@ -80,6 +80,19 @@ import { parseProblemContent } from "./parseProblemContent";
  */
 const ANSWER_CHOICE_NUMBER = new RegExp(`[${ANSWER_CIRCLED_CLASS}]`);
 
+/**
+ * 정답이 **보기 번호**인가 — 「①」처럼 고른 것을 답으로 적었나.
+ *
+ * 보기가 붙어 있다고 다 객관식이 아니다. 「다음 보기 중 …인 것은 **모두 몇 개**인지
+ * 구하시오」는 보기가 **세는 대상**이고 정답은 「$2$개」다. 그 둘을 가르는 축이
+ * 「보기가 있나」가 아니라 이것이다 — `classifyFormatWithChoices` 가 쓰는 바로 그 축을
+ * 펼치는 쪽(`expandFamily`)도 같이 쓰게 내보낸다. 규칙이 두 벌이 되면 한쪽만 고쳐도
+ * 아무도 모른다.
+ */
+export function answerIsChoiceNumber(answer: string): boolean {
+  return ANSWER_CHOICE_NUMBER.test(answer);
+}
+
 /** 문항 «본문»을 무엇이 만들었나 / 어디서 가져왔나. 문항마다 **정확히 하나**다. */
 export type ProblemOrigin =
   "past_exam" | "workbook" | "elem_engine" | "middle_engine" | "ai" | "unknown";
