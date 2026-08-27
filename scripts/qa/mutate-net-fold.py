@@ -20,7 +20,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 TARGET = REPO / "scripts" / "figure" / "elem_advanced.py"
-PROBE = REPO / "scripts" / "qa" / "probe-net-fold.py"
+PROBE = REPO / "scripts" / "qa" / "probe-elem-net-fold.py"
 VITEST = "src/__tests__/unit/elementaryFigure.test.ts"
 
 # (이름, 찾을 것, 바꿀 것) — 각각 **다른 규칙 하나**를 망가뜨린다.

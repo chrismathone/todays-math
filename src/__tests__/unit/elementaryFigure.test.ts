@@ -4118,7 +4118,7 @@ describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분",
  *
  * ⚠️ 이 시험은 「몇 개인가」로 잠근다. 접는 선 수는 **면 수 - 1**(신장나무)이라
  *    좌표를 안 옮겨 적고도 갈린다 — 하나를 빠뜨리거나 윤곽을 점선으로 만들면 빨개진다.
- *    좌표 단위의 전량 판정은 `python scripts/qa/probe-net-fold.py` 가 한다(양성 6·음성 5).
+ *    좌표 단위의 전량 판정은 `python scripts/qa/probe-elem-net-fold.py` 가 한다(양성 6·음성 5).
  */
 describe.skipIf(!hasEngine)(
   "[초등 그림] 전개도의 접는 선 (원장님 2026-08-27)",

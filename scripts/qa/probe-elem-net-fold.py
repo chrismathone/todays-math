@@ -46,9 +46,9 @@ F3 이 왜 결함인가 — `scripts/qa/probe-dim-outside.py` 는 그 지문을 
 `--census` 가 kind 별로 「잰 그림 / 관할 밖」을 따로 찍어 그 사실이 숨지 않게 한다.
 
 쓰기:
-  python scripts/qa/probe-net-fold.py --selftest              # 눈금 (양성·음성)
-  python scripts/qa/probe-net-fold.py                         # 붙박이 전개도 행렬
-  python scripts/qa/probe-net-fold.py --specs scratch/specs.json --census
+  python scripts/qa/probe-elem-net-fold.py --selftest              # 눈금 (양성·음성)
+  python scripts/qa/probe-elem-net-fold.py                         # 붙박이 전개도 행렬
+  python scripts/qa/probe-elem-net-fold.py --specs scratch/specs.json --census
 """
 from __future__ import annotations
 
