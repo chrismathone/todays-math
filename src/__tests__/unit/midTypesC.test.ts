@@ -121,3 +121,44 @@ describe("중등 유형 갈래 C — 일차부등식의 활용(농도)", () => {
     );
   });
 });
+
+describe("중등 유형 갈래 C — 일차부등식의 활용(속력, 도형, 기타)", () => {
+  const section = "일차부등식의 활용(속력, 도형, 기타)";
+
+  it("22 직사각형의 경계 둘레를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "22");
+    expect(2 * (facts!.width + facts!.length)).toBe(facts!.perimeter);
+  });
+
+  it("23 평행사변형의 경계 넓이를 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "23");
+    expect(facts!.base * facts!.height).toBe(facts!.area);
+  });
+
+  it("24 왕복 거리의 경계 시간을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "24");
+    expect((2 * facts!.distance) / facts!.speed + facts!.stay).toBe(
+      facts!.limit,
+    );
+  });
+
+  it("25 통화 시간의 경계 요금을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "25");
+    expect(facts!.base + facts!.rate * facts!.minutes).toBe(facts!.budget);
+  });
+
+  it("26 운동 시간의 경계 소비량을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "26");
+    expect(facts!.initial + facts!.rate * facts!.minutes).toBe(facts!.target);
+  });
+
+  it("27 짐과 사람 무게의 합을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "27");
+    expect(facts!.body + facts!.load).toBe(facts!.limit);
+  });
+
+  it("28 바퀴 수의 경계 시간을 다시 계산한다", () => {
+    const { facts } = generatedIneq(section, "28");
+    expect((facts!.lap * facts!.laps) / facts!.speed).toBe(facts!.limit);
+  });
+});

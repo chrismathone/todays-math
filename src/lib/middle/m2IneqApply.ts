@@ -397,6 +397,139 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     },
   ),
 
+  def(
+    MINOR_APPLY,
+    "22",
+    "직사각형의 둘레에 대한 문제",
+    SEC.속력도형,
+    "기본",
+    (rng) => {
+      const width = intBetween(rng, 3, 12);
+      const length = intBetween(rng, width + 2, width + 12);
+      const perimeter = 2 * (width + length);
+      return {
+        content: `가로의 길이가 $${width} cm$인 직사각형의 둘레의 길이를 $${perimeter} cm$ 이하로 만들려고 한다. 세로의 길이는 최대 몇 $cm$인지 계산하시오.`,
+        answer: `$${length} cm$`,
+        solution: `세로의 길이를 $x cm$라 하면 $2(${width}+x)\\le${perimeter}$이다. 풀면 $x\\le${length}$이므로 세로의 길이는 최대 $${length} cm$이다.`,
+        facts: { width, length, perimeter },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "23",
+    "평행사변형의 넓이에 대한 문제",
+    SEC.속력도형,
+    "기본",
+    (rng) => {
+      const base = intBetween(rng, 4, 12);
+      const height = intBetween(rng, 3, 15);
+      const area = base * height;
+      return {
+        content: `밑변의 길이가 $${base} cm$인 평행사변형의 넓이를 $${area} cm^2$ 이상으로 만들려고 한다. 높이는 몇 $cm$ 이상이어야 하는지 계산하시오.`,
+        answer: `$${height} cm$`,
+        solution: `높이를 $x cm$라 하면 $${base}x\\ge${area}$이다. 따라서 $x\\ge${height}$이므로 높이는 $${height} cm$ 이상이어야 한다.`,
+        facts: { base, height, area },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "24",
+    "제한 시간 안에 왕복하는 문제",
+    SEC.속력도형,
+    "응용",
+    (rng) => {
+      const speed = pick(rng, [3, 4, 5, 6] as const);
+      const stay = intBetween(rng, 1, 4);
+      const distance = speed * intBetween(rng, 2, 6);
+      const limit = (2 * distance) / speed + stay;
+      return {
+        content: `분속 $${speed} m$로 걸어 어떤 곳에 다녀오되 그곳에서 $${stay}$분 동안 머문다. 전체 시간이 $${limit}$분 이하일 때 출발점에서 최대 몇 $m$ 떨어진 곳까지 다녀올 수 있는지 구하시오.`,
+        answer: `$${distance} m$`,
+        solution: `거리를 $x m$라 하면 $\\dfrac{2x}{${speed}}+${stay}\\le${limit}$이다. 풀면 $x\\le${distance}$이므로 최대 $${distance} m$ 떨어진 곳까지 다녀올 수 있다.`,
+        facts: { speed, stay, distance, limit },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "25",
+    "통화 요금의 최대 시간",
+    SEC.속력도형,
+    "응용",
+    (rng) => {
+      const base = pick(rng, [1000, 1500, 2000] as const);
+      const rate = pick(rng, [50, 100, 200] as const);
+      const minutes = intBetween(rng, 10, 40);
+      const budget = base + rate * minutes;
+      return {
+        content: `기본요금이 $${base}$원이고 통화 $1$분마다 $${rate}$원이 추가되는 요금제가 있다. 요금을 $${budget}$원 이하로 내려면 최대 몇 분 동안 통화할 수 있는지 구하시오.`,
+        answer: `$${minutes}$분`,
+        solution: `통화 시간을 $x$분이라 하면 $${base}+${rate}x\\le${budget}$이다. 풀면 $x\\le${minutes}$이므로 최대 $${minutes}$분 동안 통화할 수 있다.`,
+        facts: { base, rate, minutes, budget },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "26",
+    "목표량을 채우는 운동 시간",
+    SEC.속력도형,
+    "기본",
+    (rng) => {
+      const initial = intBetween(rng, 20, 80);
+      const rate = intBetween(rng, 5, 12);
+      const minutes = intBetween(rng, 8, 20);
+      const target = initial + rate * minutes;
+      return {
+        content: `이미 $${initial}$칼로리를 소비한 사람이 운동을 계속하여 $1$분마다 $${rate}$칼로리씩 소비한다. 모두 $${target}$칼로리 이상을 소비하려면 앞으로 몇 분 이상 운동해야 하는지 계산하시오.`,
+        answer: `$${minutes}$분`,
+        solution: `앞으로 운동할 시간을 $x$분이라 하면 $${initial}+${rate}x\\ge${target}$이다. 풀면 $x\\ge${minutes}$이므로 $${minutes}$분 이상 운동해야 한다.`,
+        facts: { initial, rate, minutes, target },
+      };
+    },
+  ),
+
+  def(
+    MINOR_APPLY,
+    "27",
+    "운반할 수 있는 최대 무게",
+    SEC.속력도형,
+    "응용",
+    (rng) => {
+      const body = intBetween(rng, 40, 80);
+      const load = intBetween(rng, 20, 70);
+      const limit = body + load;
+      return {
+        content: `무게가 $${body} kg$인 사람이 제한 무게가 $${limit} kg$인 운반 장비를 이용하려고 한다. 짐은 최대 몇 $kg$까지 실을 수 있는지 구하시오.`,
+        answer: `$${load} kg$`,
+        solution: `짐의 무게를 $x kg$라 하면 $${body}+x\\le${limit}$이다. 따라서 $x\\le${load}$이므로 짐은 최대 $${load} kg$까지 실을 수 있다.`,
+        facts: { body, load, limit },
+      };
+    },
+  ),
+
+  def(MINOR_APPLY, "28", "여러 바퀴를 도는 시간", SEC.속력도형, "심화", (rng) =>
+    attempt(80, () => {
+      const lap = pick(rng, [200, 300, 400] as const);
+      const speed = pick(rng, [50, 60, 80, 100] as const);
+      const laps = intBetween(rng, 3, 10);
+      const limit = (lap * laps) / speed;
+      if (!Number.isInteger(limit)) return null;
+      return {
+        content: `한 바퀴의 길이가 $${lap} m$인 산책로를 분속 $${speed} m$로 걸어 $${limit}$분 이내에 운동하려고 한다. 최대 몇 바퀴까지 돌 수 있는지 구하시오.`,
+        answer: `$${laps}$바퀴`,
+        solution: `도는 횟수를 자연수 $x$라 하면 $\\dfrac{${lap}x}{${speed}}\\le${limit}$이다. 풀면 $x\\le${laps}$이므로 최대 $${laps}$바퀴까지 돌 수 있다.`,
+        facts: { lap, speed, laps, limit },
+      };
+    }),
+  ),
+
   // ── 일차부등식의 활용 (농도) ─────────────────────────
   def(
     MINOR_APPLY,
