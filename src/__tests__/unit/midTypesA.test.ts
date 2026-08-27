@@ -32,6 +32,12 @@ function numericAnswer(answer: string): number {
   return Number(match[0]);
 }
 
+function implicitCoefficient(token: string): number {
+  if (token === "" || token === "+") return 1;
+  if (token === "-") return -1;
+  return Number(token);
+}
+
 function frequencyRows(
   content: string,
 ): Array<{ low: number; high: number; frequency: number }> {
@@ -426,6 +432,87 @@ describe("갈래 A 중등 유형 값 검산", () => {
         const problem = entry!.handler(seeded(seed));
         expect(numericAnswer(problem.answer)).toBe(
           numberAverageAgeExpected[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
+  const twoVariableExpected: Record<string, (content: string) => number> = {
+    "01A": (content) => {
+      const values = content.match(
+        /\$x=(-?\d+)\$, \$y=(-?\d+)\$.*\$(-?\d+)x([+-]\d+)y\$/,
+      );
+      const [x, y, a, b] = values!.slice(1).map(Number);
+      return a! * x! + b! * y!;
+    },
+    "02A": (content) => {
+      const values = content.match(
+        /\$\((-?\d+), y\)\$.*\$(-?\d+)x([+-]\d+)y=(-?\d+)\$/,
+      );
+      const [x, a, b, c] = values!.slice(1).map(Number);
+      return (c! - a! * x!) / b!;
+    },
+    "03A": (content) => {
+      const values = content.match(
+        /\$\((-?\d+), (-?\d+)\)\$.*\$ax([+-]\d*)y=(-?\d+)\$/,
+      );
+      const x = Number(values?.[1]);
+      const y = Number(values?.[2]);
+      const b = implicitCoefficient(values?.[3] ?? "");
+      const c = Number(values?.[4]);
+      return (c - b * y) / x;
+    },
+    "04A": (content) => {
+      const values = content.match(/\$(\d+)x\+(\d+)y=(\d+)\$/);
+      const [a, b, c] = values!.slice(1).map(Number);
+      let count = 0;
+      for (let x = 0; a! * x <= c!; x += 1) {
+        if ((c! - a! * x) % b! === 0) count += 1;
+      }
+      return count;
+    },
+    "05A": (content) => {
+      const first = content.match(/ax([+-]\d*)y=(-?\d+)/);
+      const second = content.match(/([+-]?\d*)x\+by=(-?\d+)/);
+      const solution = content.match(/해가 \$x=(-?\d+)\$, \$y=(-?\d+)\$/);
+      const x = Number(solution?.[1]);
+      const y = Number(solution?.[2]);
+      const q = implicitCoefficient(first?.[1] ?? "");
+      const c1 = Number(first?.[2]);
+      const r = implicitCoefficient(second?.[1] ?? "");
+      const c2 = Number(second?.[2]);
+      return (c1 - q * y) / x - (c2 - r * x) / y;
+    },
+    "06A": (content) => {
+      const values = content.match(
+        /\$\(x, (-?\d+)\)\$.*\$(-?\d+)x([+-]\d+)y=(-?\d+)\$/,
+      );
+      const [y, a, b, c] = values!.slice(1).map(Number);
+      return (c! - b! * y!) / a!;
+    },
+    "07A": (content) => {
+      const values = content.match(
+        /\$\((-?\d+), (-?\d+)\)\$.*\$ax\+by=(-?\d+)\$.*\$a-b=(-?\d+)\$/,
+      );
+      const [x, y, c, difference] = values!.slice(1).map(Number);
+      const b = (c! - x! * difference!) / (x! + y!);
+      return 2 * b + difference!;
+    },
+  };
+
+  it.each(Object.keys(twoVariableExpected))(
+    "미지수가 2개인 연립일차방정식 유형 %s",
+    (rpmType) => {
+      const entry = M2_SYSTEM.find(
+        (candidate) =>
+          candidate.unitSection === "미지수가 2개인 연립일차방정식" &&
+          candidate.rpmType === rpmType,
+      );
+      expect(entry).toBeDefined();
+      for (const seed of [17, 203, 991]) {
+        const problem = entry!.handler(seeded(seed));
+        expect(numericAnswer(problem.answer)).toBe(
+          twoVariableExpected[rpmType]!(problem.content),
         );
       }
     },

@@ -677,7 +677,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "03",
     "일차방정식의 해가 주어질 때",
     SEC.미지수2,
-    "기본",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -748,7 +748,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "05",
     "연립방정식의 해가 주어질 때⑴",
     SEC.미지수2,
-    "기본",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -768,6 +768,149 @@ export const M2_SYSTEM: TypeEntry[] = [
         };
       }),
   ),
+
+  def(
+    MINOR_SYS,
+    "01A",
+    "두 수를 대입한 식의 값",
+    SEC.미지수2,
+    "연산",
+    (rng) => {
+      const x = nonzero(rng, 1, 7);
+      const y = nonzero(rng, 1, 7);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const answer = a * x + b * y;
+      return {
+        content: `$x=${x}$, $y=${y}$일 때, $${mc(a, "x")}${sc(b, "y")}$의 값을 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `$x=${x}$, $y=${y}$를 대입하면 $${a}\times(${x})+(${b})\times(${y})=${answer}$이다.`,
+        facts: { x, y, a, b, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SYS,
+    "02A",
+    "일차방정식의 한 해 구하기",
+    SEC.미지수2,
+    "응용",
+    (rng) => {
+      const x = nonzero(rng, 1, 8);
+      const y = nonzero(rng, 1, 8);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const c = a * x + b * y;
+      return {
+        content: `순서쌍 $(${x}, y)$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $y$의 값을 구하시오.`,
+        answer: `$${y}$`,
+        solution: `$x=${x}$를 대입하면 $${a * x}${sc(b, "y")}=${c}$이다. 이를 풀면 $y=${y}$이다.`,
+        facts: { x, y, a, b, c, answer: y },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SYS,
+    "03A",
+    "해를 이용하여 계수 구하기",
+    SEC.미지수2,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const x = nonzero(rng, 1, 6);
+        const y = nonzero(rng, 1, 6);
+        const answer = nonzero(rng, 2, 7);
+        const b = nonzero(rng, 1, 5);
+        const c = answer * x + b * y;
+        if (Math.abs(c) > 50) return null;
+        return {
+          content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax${sc(b, "y")}=${c}$의 해일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$x=${x}$, $y=${y}$를 대입하면 $${mc(x, "a")}${sg(b * y)}=${c}$이므로 $a=${answer}$이다.`,
+          facts: { x, y, b, c, answer },
+        };
+      }),
+  ),
+
+  def(MINOR_SYS, "04A", "음이 아닌 정수해의 개수", SEC.미지수2, "응용", (rng) =>
+    attempt(300, () => {
+      const a = intBetween(rng, 2, 6);
+      const b = intBetween(rng, 2, 6);
+      if (gcd(a, b) !== 1) return null;
+      const c = intBetween(rng, 20, 60);
+      let answer = 0;
+      for (let x = 0; a * x <= c; x += 1) {
+        if ((c - a * x) % b === 0) answer += 1;
+      }
+      if (answer < 2 || answer > 7) return null;
+      return {
+        content: `$x$, $y$가 음이 아닌 정수일 때, 일차방정식 $${a}x+${b}y=${c}$의 해 $(x,\ y)$는 모두 몇 개인지 구하시오.`,
+        answer: `$${answer}$개`,
+        solution: `$x=0$, $1$, $2$, $\cdots$를 대입하여 $${c}-${a}x$가 $${b}$의 음이 아닌 배수가 되는 경우를 세면 모두 $${answer}$개이다.`,
+        facts: { a, b, c, answer },
+      };
+    }),
+  ),
+
+  def(MINOR_SYS, "05A", "두 방정식의 계수 구하기", SEC.미지수2, "심화", (rng) =>
+    attempt(200, () => {
+      const x = nonzero(rng, 1, 5);
+      const y = nonzero(rng, 1, 5);
+      const a = nonzero(rng, 2, 7);
+      const b = nonzero(rng, 2, 7);
+      const q = nonzero(rng, 1, 5);
+      const r = nonzero(rng, 1, 5);
+      const c1 = a * x + q * y;
+      const c2 = r * x + b * y;
+      if (Math.abs(c1) > 50 || Math.abs(c2) > 50) return null;
+      const answer = a - b;
+      return {
+        content: `연립방정식 $\begin{cases}ax${sc(q, "y")}=${c1}\\${mc(r, "x")}+by=${c2}\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${b}=${answer}$이다.`,
+        facts: { x, y, a, b, q, r, c1, c2, answer },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_SYS,
+    "06A",
+    "한 좌표가 주어진 일차방정식의 해",
+    SEC.미지수2,
+    "기본",
+    (rng) => {
+      const x = nonzero(rng, 1, 8);
+      const y = nonzero(rng, 1, 8);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const c = a * x + b * y;
+      return {
+        content: `순서쌍 $(x, ${y})$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $x$의 값을 구하시오.`,
+        answer: `$${x}$`,
+        solution: `$y=${y}$를 대입하면 $${mc(a, "x")}${sg(b * y)}=${c}$이다. 이를 풀면 $x=${x}$이다.`,
+        facts: { x, y, a, b, c, answer: x },
+      };
+    },
+  ),
+
+  def(MINOR_SYS, "07A", "해와 계수의 관계", SEC.미지수2, "심화", (rng) => {
+    const x = intBetween(rng, 1, 5);
+    const y = intBetween(rng, 1, 5);
+    const a = intBetween(rng, 2, 8);
+    const b = intBetween(rng, 2, 8);
+    const c = a * x + b * y;
+    const difference = a - b;
+    const answer = a + b;
+    return {
+      content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax+by=${c}$의 해이고 $a-b=${difference}$일 때, $a+b$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `해를 대입하면 $${x}a+${y}b=${c}$이고, $a-b=${difference}$이다. 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이므로 $a+b=${answer}$이다.`,
+      facts: { x, y, a, b, c, difference, answer },
+    };
+  }),
 
   // ══ 연립일차방정식 06~07 (연립방정식의 풀이) ═════════
   def(
