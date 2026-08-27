@@ -79,6 +79,17 @@ function mc(n: number, v: string): string {
   return `${n}${v}`;
 }
 
+/**
+ * 빼는 항 — 음수면 괄호를 씌운다.
+ *
+ * `$a-b=4-(-4)$` 로 적어야 한다. 괄호가 없으면 지면에 `4--4` 가 나가는데,
+ * **값은 맞고 KaTeX 도 초록**이라 값 검산으로는 구조적으로 안 걸린다
+ * (2026-08-24 「값이 맞으면 시험이 다 초록이다」와 같은 자리).
+ */
+function subTerm(n: number): string {
+  return n < 0 ? `(${n})` : String(n);
+}
+
 /** 한쪽 변 `ax+b` — 계수가 0 이면 상수만, 상수가 0 이면 문자항만. */
 function side(coef: number, cnst: number, v = "x"): string {
   if (coef === 0) return `${cnst}`;
@@ -677,7 +688,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "03",
     "일차방정식의 해가 주어질 때",
     SEC.미지수2,
-    "기본",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -748,7 +759,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "05",
     "연립방정식의 해가 주어질 때⑴",
     SEC.미지수2,
-    "기본",
+    "응용",
     (rng) =>
       attempt(200, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -768,6 +779,149 @@ export const M2_SYSTEM: TypeEntry[] = [
         };
       }),
   ),
+
+  def(
+    MINOR_SYS,
+    "01A",
+    "두 수를 대입한 식의 값",
+    SEC.미지수2,
+    "연산",
+    (rng) => {
+      const x = nonzero(rng, 1, 7);
+      const y = nonzero(rng, 1, 7);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const answer = a * x + b * y;
+      return {
+        content: `$x=${x}$, $y=${y}$일 때, $${mc(a, "x")}${sc(b, "y")}$의 값을 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `$x=${x}$, $y=${y}$를 대입하면 $${a}\\times(${x})+(${b})\\times(${y})=${answer}$이다.`,
+        facts: { x, y, a, b, answer },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SYS,
+    "02A",
+    "일차방정식의 한 해 구하기",
+    SEC.미지수2,
+    "응용",
+    (rng) => {
+      const x = nonzero(rng, 1, 8);
+      const y = nonzero(rng, 1, 8);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const c = a * x + b * y;
+      return {
+        content: `순서쌍 $(${x}, y)$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $y$의 값을 구하시오.`,
+        answer: `$${y}$`,
+        solution: `$x=${x}$를 대입하면 $${a * x}${sc(b, "y")}=${c}$이다. 이를 풀면 $y=${y}$이다.`,
+        facts: { x, y, a, b, c, answer: y },
+      };
+    },
+  ),
+
+  def(
+    MINOR_SYS,
+    "03A",
+    "해를 이용하여 계수 구하기",
+    SEC.미지수2,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const x = nonzero(rng, 1, 6);
+        const y = nonzero(rng, 1, 6);
+        const answer = nonzero(rng, 2, 7);
+        const b = nonzero(rng, 1, 5);
+        const c = answer * x + b * y;
+        if (Math.abs(c) > 50) return null;
+        return {
+          content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax${sc(b, "y")}=${c}$의 해일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$x=${x}$, $y=${y}$를 대입하면 $${mc(x, "a")}${sg(b * y)}=${c}$이므로 $a=${answer}$이다.`,
+          facts: { x, y, b, c, answer },
+        };
+      }),
+  ),
+
+  def(MINOR_SYS, "04A", "음이 아닌 정수해의 개수", SEC.미지수2, "응용", (rng) =>
+    attempt(300, () => {
+      const a = intBetween(rng, 2, 6);
+      const b = intBetween(rng, 2, 6);
+      if (gcd(a, b) !== 1) return null;
+      const c = intBetween(rng, 20, 60);
+      let answer = 0;
+      for (let x = 0; a * x <= c; x += 1) {
+        if ((c - a * x) % b === 0) answer += 1;
+      }
+      if (answer < 2 || answer > 7) return null;
+      return {
+        content: `$x$, $y$가 음이 아닌 정수일 때, 일차방정식 $${a}x+${b}y=${c}$의 해 $(x,\ y)$는 모두 몇 개인지 구하시오.`,
+        answer: `$${answer}$개`,
+        solution: `$x=0$, $1$, $2$, $\\cdots$를 대입하여 $${c}-${a}x$가 $${b}$의 음이 아닌 배수가 되는 경우를 세면 모두 $${answer}$개이다.`,
+        facts: { a, b, c, answer },
+      };
+    }),
+  ),
+
+  def(MINOR_SYS, "05A", "두 방정식의 계수 구하기", SEC.미지수2, "심화", (rng) =>
+    attempt(200, () => {
+      const x = nonzero(rng, 1, 5);
+      const y = nonzero(rng, 1, 5);
+      const a = nonzero(rng, 2, 7);
+      const b = nonzero(rng, 2, 7);
+      const q = nonzero(rng, 1, 5);
+      const r = nonzero(rng, 1, 5);
+      const c1 = a * x + q * y;
+      const c2 = r * x + b * y;
+      if (Math.abs(c1) > 50 || Math.abs(c2) > 50) return null;
+      const answer = a - b;
+      return {
+        content: `연립방정식 $\\begin{cases}ax${sc(q, "y")}=${c1}\\\\${mc(r, "x")}+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${subTerm(b)}=${answer}$이다.`,
+        facts: { x, y, a, b, q, r, c1, c2, answer },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_SYS,
+    "06A",
+    "한 좌표가 주어진 일차방정식의 해",
+    SEC.미지수2,
+    "기본",
+    (rng) => {
+      const x = nonzero(rng, 1, 8);
+      const y = nonzero(rng, 1, 8);
+      const a = nonzero(rng, 2, 6);
+      const b = nonzero(rng, 2, 6);
+      const c = a * x + b * y;
+      return {
+        content: `순서쌍 $(x, ${y})$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $x$의 값을 구하시오.`,
+        answer: `$${x}$`,
+        solution: `$y=${y}$를 대입하면 $${mc(a, "x")}${sg(b * y)}=${c}$이다. 이를 풀면 $x=${x}$이다.`,
+        facts: { x, y, a, b, c, answer: x },
+      };
+    },
+  ),
+
+  def(MINOR_SYS, "07A", "해와 계수의 관계", SEC.미지수2, "심화", (rng) => {
+    const x = intBetween(rng, 1, 5);
+    const y = intBetween(rng, 1, 5);
+    const a = intBetween(rng, 2, 8);
+    const b = intBetween(rng, 2, 8);
+    const c = a * x + b * y;
+    const difference = a - b;
+    const answer = a + b;
+    return {
+      content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax+by=${c}$의 해이고 $a-b=${difference}$일 때, $a+b$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `해를 대입하면 $${mc(x, "a")}${sc(y, "b")}=${c}$이고, $a-b=${difference}$이다. 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이므로 $a+b=${answer}$이다.`,
+      facts: { x, y, a, b, c, difference, answer },
+    };
+  }),
 
   // ══ 연립일차방정식 06~07 (연립방정식의 풀이) ═════════
   def(
@@ -1139,6 +1293,119 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
+  def(MINOR_APPLY, "01A", "두 수의 합과 차", SEC.수나이, "연산", (rng) => {
+    const small = intBetween(rng, 3, 30);
+    const difference = intBetween(rng, 2, 18);
+    const big = small + difference;
+    const sum = big + small;
+    return {
+      content: `두 자연수의 합은 $${sum}$이고 차는 $${difference}$이다. 두 수 중 큰 수를 구하시오.`,
+      answer: `$${big}$`,
+      solution: `큰 수를 $x$, 작은 수를 $y$라 하면 $x+y=${sum}$, $x-y=${difference}$이다. 두 식을 변끼리 더하면 $2x=${2 * big}$이므로 큰 수는 $${big}$이다.`,
+      facts: { sum, difference, big, small },
+    };
+  }),
+
+  def(MINOR_APPLY, "02A", "배수 관계인 두 수", SEC.수나이, "기본", (rng) => {
+    const small = intBetween(rng, 3, 18);
+    const multiple = intBetween(rng, 2, 4);
+    const extra = intBetween(rng, 1, 8);
+    const big = multiple * small + extra;
+    const sum = big + small;
+    return {
+      content: `두 자연수의 합은 $${sum}$이다. 큰 수는 작은 수의 $${multiple}$배보다 $${extra}$만큼 클 때, 작은 수를 구하시오.`,
+      answer: `$${small}$`,
+      solution: `큰 수를 $x$, 작은 수를 $y$라 하면 $x+y=${sum}$, $x=${multiple}y+${extra}$이다. 두 식을 연립하면 $${multiple + 1}y=${sum - extra}$이므로 작은 수는 $${small}$이다.`,
+      facts: { sum, multiple, extra, big, small },
+    };
+  }),
+
+  def(MINOR_APPLY, "03A", "두 수의 배수의 합", SEC.수나이, "응용", (rng) => {
+    const first = intBetween(rng, 3, 20);
+    const second = intBetween(rng, 3, 20);
+    const a = intBetween(rng, 2, 4);
+    const b = a + intBetween(rng, 1, 3);
+    const sum = first + second;
+    const weighted = a * first + b * second;
+    return {
+      content: `두 자연수의 합은 $${sum}$이고, 첫째 수의 $${a}$배와 둘째 수의 $${b}$배의 합은 $${weighted}$이다. 첫째 수를 구하시오.`,
+      answer: `$${first}$`,
+      solution: `첫째 수를 $x$, 둘째 수를 $y$라 하면 $x+y=${sum}$, $${a}x+${b}y=${weighted}$이다. 두 식을 연립하여 풀면 $x=${first}$, $y=${second}$이므로 첫째 수는 $${first}$이다.`,
+      facts: { sum, a, b, weighted, first, second },
+    };
+  }),
+
+  def(MINOR_APPLY, "04A", "두 집단의 평균", SEC.수나이, "기본", (rng) => {
+    const count = intBetween(rng, 4, 12);
+    const averageB = intBetween(rng, 55, 85);
+    const difference = 2 * intBetween(rng, 2, 8);
+    const averageA = averageB + difference;
+    const averageAll = (averageA + averageB) / 2;
+    return {
+      content: `$\\mathrm{A}$반과 $\\mathrm{B}$반의 학생 수는 각각 $${count}$명이고, 두 반 전체의 평균 점수는 $${averageAll}$점이다. $\\mathrm{A}$반의 평균 점수가 $\\mathrm{B}$반보다 $${difference}$점 높을 때, $\\mathrm{A}$반의 평균 점수를 구하시오.`,
+      answer: `$${averageA}$점`,
+      solution: `$\\mathrm{A}$반과 $\\mathrm{B}$반의 평균 점수를 각각 $x$점, $y$점이라 하면 학생 수가 같으므로 $x+y=${2 * averageAll}$이고 $x-y=${difference}$이다. 두 식을 연립하면 $x=${averageA}$이므로 $\\mathrm{A}$반의 평균은 $${averageA}$점이다.`,
+      facts: { count, averageAll, difference, averageA, averageB },
+    };
+  }),
+
+  def(
+    MINOR_APPLY,
+    "05A",
+    "전체 평균으로 인원 구하기",
+    SEC.수나이,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const countA = intBetween(rng, 4, 16);
+        const countB = intBetween(rng, 4, 16);
+        const averageA = intBetween(rng, 70, 92);
+        const averageB = intBetween(rng, 45, 68);
+        const total = countA + countB;
+        const score = averageA * countA + averageB * countB;
+        if (score % total !== 0) return null;
+        const averageAll = score / total;
+        return {
+          content: `평균 점수가 $${averageA}$점인 $\\mathrm{A}$모둠과 평균 점수가 $${averageB}$점인 $\\mathrm{B}$모둠의 학생은 모두 $${total}$명이고, 전체 평균은 $${averageAll}$점이다. $\\mathrm{A}$모둠의 학생 수를 구하시오.`,
+          answer: `$${countA}$명`,
+          solution: `$\\mathrm{A}$모둠과 $\\mathrm{B}$모둠의 학생 수를 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${averageA}x+${averageB}y=${averageAll * total}$이다. 두 식을 연립하여 풀면 $x=${countA}$, $y=${countB}$이므로 $\\mathrm{A}$모둠은 $${countA}$명이다.`,
+          facts: { countA, countB, averageA, averageB, total, averageAll },
+        };
+      }),
+  ),
+
+  def(MINOR_APPLY, "06A", "몇 년 후의 나이", SEC.수나이, "기본", (rng) => {
+    const son = intBetween(rng, 7, 16);
+    const years = intBetween(rng, 3, 9);
+    const multiple = intBetween(rng, 2, 3);
+    const father = multiple * (son + years) - years;
+    const difference = father - son;
+    return {
+      content: `현재 아버지와 아들의 나이 차는 $${difference}$세이다. $${years}$년 후 아버지의 나이가 아들의 나이의 $${multiple}$배가 될 때, 현재 아들의 나이를 구하시오.`,
+      answer: `$${son}$세`,
+      solution: `현재 아버지의 나이를 $x$세, 아들의 나이를 $y$세라 하면 $x-y=${difference}$이고 $x+${years}=${multiple}(y+${years})$이다. 두 식을 연립하여 풀면 $y=${son}$이므로 현재 아들의 나이는 $${son}$세이다.`,
+      facts: { son, father, years, multiple, difference },
+    };
+  }),
+
+  def(MINOR_APPLY, "07A", "몇 년 전의 나이", SEC.수나이, "심화", (rng) =>
+    attempt(300, () => {
+      const younger = intBetween(rng, 10, 18);
+      const older = intBetween(rng, younger + 2, younger + 10);
+      const years = intBetween(rng, 2, Math.min(7, younger - 2));
+      const multiple = intBetween(rng, 2, 3);
+      const extra = older - years - multiple * (younger - years);
+      if (extra < 1 || extra > 12) return null;
+      const sum = older + younger;
+      return {
+        content: `현재 형과 동생의 나이의 합은 $${sum}$세이다. $${years}$년 전 형의 나이는 동생의 나이의 $${multiple}$배보다 $${extra}$세 많았다. 현재 형의 나이를 구하시오.`,
+        answer: `$${older}$세`,
+        solution: `현재 형과 동생의 나이를 각각 $x$세, $y$세라 하면 $x+y=${sum}$이고 $x-${years}=${multiple}(y-${years})+${extra}$이다. 두 식을 연립하여 풀면 $x=${older}$, $y=${younger}$이므로 현재 형의 나이는 $${older}$세이다.`,
+        facts: { older, younger, years, multiple, extra, sum },
+      };
+    }),
+  ),
+
   // ══ 연립일차방정식의 활용 04~08 (가격, 개수, 증감, 도형) ══
   def(MINOR_APPLY, "04", "가격 개수에 대한 문제", SEC.가격도형, "기본", (rng) =>
     attempt(300, () => {
@@ -1213,7 +1480,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "심화", (rng) =>
+  def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "응용", (rng) =>
     attempt(400, () => {
       const a = pick(rng, [5, 10, 15, 20, 25, 30] as const);
       const b = pick(rng, [5, 10, 15, 20, 25, 30] as const);
@@ -1230,6 +1497,88 @@ export const M2_SYSTEM: TypeEntry[] = [
         facts: { T, a, b, P, x, y },
       };
     }),
+  ),
+
+  def(
+    MINOR_APPLY,
+    "27A",
+    "입장권의 가격과 개수",
+    SEC.가격도형,
+    "연산",
+    (rng) => {
+      const adultPrice = 1000 * intBetween(rng, 4, 8);
+      const studentPrice = 1000 * intBetween(rng, 1, 3);
+      const adult = intBetween(rng, 5, 20);
+      const student = intBetween(rng, 5, 20);
+      const total = adult + student;
+      const revenue = adultPrice * adult + studentPrice * student;
+      return {
+        content: `어른 입장권은 한 장에 $${adultPrice}$원, 학생 입장권은 한 장에 $${studentPrice}$원이다. 두 입장권을 모두 $${total}$장 팔아 $${revenue}$원을 받았을 때, 어른 입장권을 판 장수를 구하시오.`,
+        answer: `$${adult}$장`,
+        solution: `어른과 학생 입장권 수를 $x$, $y$라 하면 $x+y=${total}$, $${adultPrice}x+${studentPrice}y=${revenue}$이다. 두 식을 연립하여 풀면 어른 입장권은 $${adult}$장이다.`,
+        facts: { adultPrice, studentPrice, total, revenue, answer: adult },
+      };
+    },
+  ),
+  def(MINOR_APPLY, "28A", "두 물건의 개수", SEC.가격도형, "기본", (rng) => {
+    const pencilPrice = 100 * intBetween(rng, 3, 7);
+    const notePrice = 100 * intBetween(rng, 9, 15);
+    const pencil = intBetween(rng, 4, 18);
+    const note = intBetween(rng, 4, 18);
+    const total = pencil + note;
+    const cost = pencilPrice * pencil + notePrice * note;
+    return {
+      content: `연필 한 자루의 가격은 $${pencilPrice}$원, 공책 한 권의 가격은 $${notePrice}$원이다. 연필과 공책을 합하여 $${total}$개 사고 $${cost}$원을 냈을 때, 공책을 산 권수를 구하시오.`,
+      answer: `$${note}$권`,
+      solution: `연필과 공책 수를 $x$, $y$라 하면 $x+y=${total}$, $${pencilPrice}x+${notePrice}y=${cost}$이다. 두 식을 연립하여 풀면 공책은 $${note}$권이다.`,
+      facts: { pencilPrice, notePrice, total, cost, answer: note },
+    };
+  }),
+  def(MINOR_APPLY, "29A", "직사각형의 두 변", SEC.가격도형, "기본", (rng) => {
+    const width = intBetween(rng, 8, 24);
+    const height = intBetween(rng, 3, width - 2);
+    const perimeter = 2 * (width + height);
+    const difference = width - height;
+    return {
+      content: `직사각형의 둘레의 길이는 $${perimeter}\\,\\mathrm{cm}$이고 가로는 세로보다 $${difference}\\,\\mathrm{cm}$ 길다. 세로의 길이를 구하시오.`,
+      answer: `$${height}\\,\\mathrm{cm}$`,
+      solution: `가로와 세로를 $x\\,\\mathrm{cm}$, $y\\,\\mathrm{cm}$라 하면 $x+y=${perimeter / 2}$, $x-y=${difference}$이다. 두 식을 연립하여 풀면 세로는 $${height}\\,\\mathrm{cm}$이다.`,
+      facts: { width, height, perimeter, difference, answer: height },
+    };
+  }),
+  def(MINOR_APPLY, "30A", "두 집단의 증감", SEC.가격도형, "응용", (rng) => {
+    const first = 20 * intBetween(rng, 5, 15);
+    const second = 20 * intBetween(rng, 5, 15);
+    const increase = pick(rng, [10, 20, 30] as const);
+    const decrease = pick(rng, [10, 20, 30] as const);
+    const total = first + second;
+    const changed =
+      (first * (100 + increase) + second * (100 - decrease)) / 100;
+    return {
+      content: `두 동아리 $\\mathrm{A}$, $\\mathrm{B}$의 작년 회원은 모두 $${total}$명이었다. 올해 $\\mathrm{A}$는 $${increase}\\%$ 증가하고 $\\mathrm{B}$는 $${decrease}\\%$ 감소하여 모두 $${changed}$명이 되었다. 작년 $\\mathrm{A}$의 회원 수를 구하시오.`,
+      answer: `$${first}$명`,
+      solution: `작년 두 동아리 회원을 $x$, $y$라 하면 $x+y=${total}$, $${100 + increase}x+${100 - decrease}y=${100 * changed}$이다. 두 식을 연립하여 풀면 $\\mathrm{A}$는 $${first}$명이었다.`,
+      facts: { total, increase, decrease, changed, answer: first },
+    };
+  }),
+  def(
+    MINOR_APPLY,
+    "31A",
+    "두 종류 동전의 개수",
+    SEC.가격도형,
+    "응용",
+    (rng) => {
+      const count100 = intBetween(rng, 5, 20);
+      const count500 = intBetween(rng, 5, 20);
+      const total = count100 + count500;
+      const value = 100 * count100 + 500 * count500;
+      return {
+        content: `$100$원짜리 동전과 $500$원짜리 동전이 모두 $${total}$개이고 금액의 합은 $${value}$원이다. $500$원짜리 동전의 개수를 구하시오.`,
+        answer: `$${count500}$개`,
+        solution: `두 동전 수를 $x$, $y$라 하면 $x+y=${total}$, $100x+500y=${value}$이다. 두 식을 연립하여 풀면 $500$원짜리 동전은 $${count500}$개이다.`,
+        facts: { total, value, answer: count500 },
+      };
+    },
   ),
 ];
 

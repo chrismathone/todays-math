@@ -462,6 +462,75 @@ export const M3_TYPES: TypeEntry[] = [
       };
     },
   ),
+  /*
+   * 17A~20A — 원과 현을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01 기본 · 02·05·06 응용 · 03·04 심화라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * 피타고라스 세 쌍의 **세 방향**을 나눠 가진다 — 01 은 $(r,d)\to L$,
+   * 02 는 $(L,d)\to r$, 19A 는 $(r,L)\to d$ 다. 20A 는 거기에 넓이를 한 단계 얹는다.
+   * 그림은 달지 않는다 — 발문이 치수를 다 말하고, 02·03 이 현·활꼴에 치수를
+   * 달다가 원둘레와 부딪힌 자리다(위 주석).
+   */
+  def("원과 직선", "17A", "현의 수직이등분", SEC.현, "연산", (rng) => {
+    const half = intBetween(rng, 3, 20);
+    return {
+      content: `원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\overline{AM}=${half}\\,\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,
+      answer: `$${2 * half}\\,\\mathrm{cm}$`,
+      solution: `원의 중심에서 현에 내린 수선은 그 현을 이등분하므로 $M$은 $\\overline{AB}$의 중점이다.\n따라서 $\\overline{AB}=2\\overline{AM}=2\\times${half}=${2 * half}\\,(\\mathrm{cm})$이다.`,
+      facts: { half, ab: 2 * half },
+      figureSpec: null,
+    };
+  }),
+
+  def(
+    "원과 직선",
+    "18A",
+    "중심에서 같은 거리에 있는 두 현",
+    SEC.현,
+    "기본",
+    (rng) => {
+      const ab = 2 * intBetween(rng, 3, 20);
+      const dist = intBetween(rng, 2, 12);
+      return {
+        content: `원 $O$의 중심에서 두 현 $AB$, $CD$에 이르는 거리가 모두 $${dist}\\,\\mathrm{cm}$로 같다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${ab}\\,\\mathrm{cm}$`,
+        solution: `한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 서로 같다.\n따라서 $\\overline{CD}=\\overline{AB}=${ab}\\,\\mathrm{cm}$이다.`,
+        facts: { ab, dist },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def("원과 직선", "19A", "중심에서 현까지의 거리", SEC.현, "응용", (rng) => {
+    const [l1, l2, r] = pick(rng, TRIPLES);
+    const [d, h] = pick(rng, [
+      [l1, l2],
+      [l2, l1],
+    ] as const);
+    return {
+      content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $${2 * h}\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.`,
+      answer: `$${d}\\,\\mathrm{cm}$`,
+      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{${r}^2-${h}^2}=${d}\\,(\\mathrm{cm})$이다.`,
+      facts: { r, h, d, ab: 2 * h },
+      figureSpec: null,
+    };
+  }),
+
+  def("원과 직선", "20A", "현으로 원의 넓이 구하기", SEC.현, "심화", (rng) => {
+    const [l1, l2, r] = pick(rng, TRIPLES);
+    const [d, h] = pick(rng, [
+      [l1, l2],
+      [l2, l1],
+    ] as const);
+    return {
+      content: `원 $O$의 중심에서 현 $AB$에 이르는 거리가 $${d}\\,\\mathrm{cm}$이고 $\\overline{AB}=${2 * h}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
+      answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
+      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 반지름의 길이는 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 원 $O$의 넓이는 $\\pi\\times${r}^2=${r * r}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+      facts: { d, h, r, area: r * r },
+      figureSpec: null,
+    };
+  }),
+
   ...M3_TANGENT_TYPES,
   ...M3_POLY,
   ...M3_TRIG,

@@ -92,6 +92,41 @@ function def(
   };
 }
 
+type SpecialMissing = "A1" | "B1" | "A2" | "B2";
+
+function specialExtra(
+  rpmType: string,
+  rpmTitle: string,
+  missing: SpecialMissing,
+  outcome: "무수히 많을" | "없을",
+  difficulty: MidProblem["difficulty"],
+): TypeEntry {
+  return def(MINOR_SYS, rpmType, rpmTitle, SEC.특수, difficulty, (rng) => {
+    const p = intBetween(rng, 1, 5);
+    const q = intBetween(rng, 1, 5);
+    const r = intBetween(rng, 1, 8);
+    const k = intBetween(rng, 2, 5);
+    const d = intBetween(rng, 1, 4);
+    const coefficients: Record<SpecialMissing | "C1" | "C2", number> = {
+      A1: p,
+      B1: q,
+      C1: r,
+      A2: k * p,
+      B2: k * q,
+      C2: outcome === "무수히 많을" ? k * r : k * r + d,
+    };
+    const shown = (name: SpecialMissing): string =>
+      name === missing ? "a" : String(coefficients[name]);
+    const answer = coefficients[missing];
+    return {
+      content: `연립방정식 $\\begin{cases}${shown("A1")}x+${shown("B1")}y=${coefficients.C1}\\\\${shown("A2")}x+${shown("B2")}y=${coefficients.C2}\\end{cases}$의 해가 ${outcome} 때, $a$의 값을 구하시오.\n(계수표: ${shown("A1")}, ${shown("B1")}, ${coefficients.C1} / ${shown("A2")}, ${shown("B2")}, ${coefficients.C2})`,
+      answer: `$${answer}$`,
+      solution: `$x$, $y$의 계수비가 각각 $${k}$로 같아야 한다. 따라서 빠진 계수 $a=${answer}$이다.${outcome === "없을" ? " 이때 상수항의 비는 계수비와 다르다." : " 상수항의 비도 같으므로 두 식은 같은 방정식이다."}`,
+      facts: { ...coefficients, answer },
+    };
+  });
+}
+
 export const M2_SYSTEM_APPLY: TypeEntry[] = [
   // ── 연립일차방정식 (풀이의 응용: 해의 조건·계수 결정) ─
   def(
@@ -194,7 +229,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "16",
     "계수 또는 상수항을 잘못 보고 구한 해",
     SEC.응용,
-    "심화",
+    "응용",
     (rng) =>
       attempt(300, () => {
         const a = nonzero(rng, 2, 4);
@@ -219,6 +254,77 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         };
       }),
   ),
+
+  def(MINOR_SYS, "12A", "해의 합과 차", SEC.응용, "연산", (rng) => {
+    const x = intBetween(rng, 2, 15);
+    const y = intBetween(rng, 2, 15);
+    const sum = x + y;
+    const difference = x - y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\x-y=${difference}\\end{cases}$의 해 $x$, $y$에 대하여 $x$의 값을 구하시오.`,
+      answer: `$${x}$`,
+      solution: `두 식을 변끼리 더하면 $2x=${2 * x}$이므로 $x=${x}$이다.`,
+      facts: { x, y, sum, difference, answer: x },
+    };
+  }),
+  def(MINOR_SYS, "13A", "두 식을 더하여 해 구하기", SEC.응용, "기본", (rng) => {
+    const x = intBetween(rng, 2, 12);
+    const y = intBetween(rng, 2, 12);
+    const sum = x + y;
+    const weighted = 2 * x + y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\2x+y=${weighted}\\end{cases}$의 해 $x$, $y$에 대하여 $y$의 값을 구하시오.`,
+      answer: `$${y}$`,
+      solution: `둘째 식에서 첫째 식을 빼면 $x=${weighted - sum}$이다. 이를 첫째 식에 대입하면 $y=${y}$이다.`,
+      facts: { x, y, sum, weighted, answer: y },
+    };
+  }),
+  def(MINOR_SYS, "14A", "해를 이용한 계수 결정", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 6);
+    const y = nonzero(rng, 1, 6);
+    const answer = nonzero(rng, 2, 6);
+    const sum = x + y;
+    const c = answer * x - y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\kx-y=${c}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, 상수 $k$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      // ⚠️ `${x}k-${y}` 로 적으면 $y$ 가 음수일 때 `1k--2` 가 나간다 — 15A 와 같은 자리.
+      solution: `해를 둘째 식에 대입하면 $${mc(x, "k")}${sg(-y)}=${c}$이므로 $k=${answer}$이다.`,
+      facts: { x, y, sum, c, answer },
+    };
+  }),
+  def(MINOR_SYS, "15A", "다른 방정식의 계수 결정", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 6);
+    const y = nonzero(rng, 1, 6);
+    const p = nonzero(rng, 2, 5);
+    const sum = x + y;
+    const c = p * x - y;
+    const answer = nonzero(rng, 2, 6);
+    const target = answer * x + y;
+    return {
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$를 만족시킬 때, 상수 $a$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      // ⚠️ `${x}a+${y}` 로 적으면 $y$ 가 음수일 때 지면에 `3a+-4` 가 나가고,
+      //    $x=1$ 이면 `1a` 가 나간다. 부호·계수는 `mc`·`sg` 가 한 곳에서 정한다.
+      solution: `연립방정식을 풀면 $x=${x}$, $y=${y}$이다. 이를 $ax+y=${target}$에 대입하면 $${mc(x, "a")}${sg(y)}=${target}$이므로 $a=${answer}$이다.`,
+      facts: { x, y, p, sum, c, target, answer },
+    };
+  }),
+  def(MINOR_SYS, "16A", "두 계수의 합", SEC.응용, "기본", (rng) => {
+    const x = nonzero(rng, 1, 5);
+    const y = nonzero(rng, 1, 5);
+    const a = nonzero(rng, 2, 6);
+    const b = nonzero(rng, 2, 6);
+    const c1 = a * x + y;
+    const c2 = x + b * y;
+    const answer = a + b;
+    return {
+      content: `연립방정식 $\\begin{cases}ax+y=${c1}\\\\x+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a+b$의 값을 구하시오.`,
+      answer: `$${answer}$`,
+      solution: `해를 첫째 식에 대입하면 $a=${a}$이고 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a+b=${answer}$이다.`,
+      facts: { x, y, a, b, c1, c2, answer },
+    };
+  }),
 
   // ── 연립일차방정식 (해가 특수한 경우) ────────────────
   def(
@@ -496,6 +602,225 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         answer: `$${x}\\,\\mathrm{g}$`,
         solution: `합금 $\\mathrm{A}$, $\\mathrm{B}$가 각각 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$ 필요하다고 하면 구리의 양에서 $\\dfrac{${p1}}{100}x+\\dfrac{${p2}}{100}y=${C}$, 주석의 양에서 $\\dfrac{${r1}}{100}x+\\dfrac{${r2}}{100}y=${Z}$이다.\n풀면 $x=${x}$, $y=${y}$이다.\n따라서 합금 $\\mathrm{A}$는 $${x}\\,\\mathrm{g}$이 필요하다.`,
         facts: { p1, p2, r1, r2, C, Z, x, y },
+      };
+    }),
+  ),
+  def(MINOR_APPLY, "10A", "인원수의 비", SEC.농도비율, "연산", (rng) => {
+    const firstRatio = intBetween(rng, 2, 6);
+    const secondRatio = intBetween(rng, 2, 6);
+    const scale = intBetween(rng, 4, 15);
+    const total = (firstRatio + secondRatio) * scale;
+    const answer = firstRatio * scale;
+    return {
+      content: `어느 모임의 남학생 수와 여학생 수의 비는 $${firstRatio}:${secondRatio}$이고 전체 학생은 $${total}$명이다. 남학생 수를 구하시오.`,
+      answer: `$${answer}$명`,
+      solution: `남학생과 여학생을 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${secondRatio}x=${firstRatio}y$이다. 두 식을 연립하여 풀면 남학생은 $${answer}$명이다.`,
+      facts: { firstRatio, secondRatio, total, answer },
+    };
+  }),
+  def(MINOR_APPLY, "11A", "불량품의 비율", SEC.농도비율, "기본", (rng) =>
+    attempt(300, () => {
+      const rateA = pick(rng, [5, 10, 15, 20] as const);
+      const rateB = pick(rng, [25, 30, 35, 40] as const);
+      const countA = 20 * intBetween(rng, 2, 10);
+      const countB = 20 * intBetween(rng, 2, 10);
+      const total = countA + countB;
+      const defective = (rateA * countA + rateB * countB) / 100;
+      if (!Number.isInteger(defective)) return null;
+      return {
+        content: `공장 $\\mathrm{A}$와 $\\mathrm{B}$에서 만든 제품은 모두 $${total}$개이고 불량률은 각각 $${rateA}\\%$, $${rateB}\\%$이다. 불량품이 모두 $${defective}$개일 때, 공장 $\\mathrm{A}$의 제품 수를 구하시오.`,
+        answer: `$${countA}$개`,
+        solution: `두 공장의 제품 수를 $x$, $y$라 하면 $x+y=${total}$, $${rateA}x+${rateB}y=${100 * defective}$이다. 두 식을 연립하여 풀면 공장 $\\mathrm{A}$의 제품은 $${countA}$개이다.`,
+        facts: { rateA, rateB, total, defective, answer: countA },
+      };
+    }),
+  ),
+  def(MINOR_APPLY, "12A", "두 소금물의 혼합", SEC.농도비율, "기본", (rng) =>
+    attempt(300, () => {
+      const low = pick(rng, [2, 4, 6, 8] as const);
+      const high = pick(rng, [10, 12, 14, 16] as const);
+      const lowMass = 50 * intBetween(rng, 2, 8);
+      const highMass = 50 * intBetween(rng, 2, 8);
+      const total = lowMass + highMass;
+      const salt = low * lowMass + high * highMass;
+      if (salt % total !== 0) return null;
+      const target = salt / total;
+      return {
+        content: `$${low}\\%$의 소금물과 $${high}\\%$의 소금물을 섞어 $${target}\\%$의 소금물 $${total}\\,\\mathrm{g}$을 만들었다. $${high}\\%$의 소금물의 양을 구하시오.`,
+        answer: `$${highMass}\\,\\mathrm{g}$`,
+        solution: `두 소금물의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${low}x+${high}y=${target * total}$이다. 두 식을 연립하여 풀면 $${high}\\%$의 소금물은 $${highMass}\\,\\mathrm{g}$이다.`,
+        facts: { low, high, target, total, answer: highMass },
+      };
+    }),
+  ),
+  def(
+    MINOR_APPLY,
+    "13A",
+    "합금의 전체 질량과 성분",
+    SEC.농도비율,
+    "응용",
+    (rng) => {
+      const percentA = pick(rng, [20, 30, 40] as const);
+      const percentB = pick(rng, [60, 70, 80] as const);
+      const massA = 10 * intBetween(rng, 8, 30);
+      const massB = 10 * intBetween(rng, 8, 30);
+      const total = massA + massB;
+      const copper = (percentA * massA + percentB * massB) / 100;
+      return {
+        content: `구리를 $${percentA}\\%$ 포함한 합금 $\\mathrm{A}$와 $${percentB}\\%$ 포함한 합금 $\\mathrm{B}$를 합하여 $${total}\\,\\mathrm{g}$의 합금을 만들었더니 구리가 $${copper}\\,\\mathrm{g}$ 들어 있었다. 합금 $\\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${massA}\\,\\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 합금 $\\mathrm{A}$는 $${massA}\\,\\mathrm{g}$이다.`,
+        facts: { percentA, percentB, total, copper, answer: massA },
+      };
+    },
+  ),
+  def(MINOR_APPLY, "14A", "두 음료의 원액 비율", SEC.농도비율, "응용", (rng) =>
+    attempt(300, () => {
+      const percentA = pick(rng, [10, 20, 30] as const);
+      const percentB = pick(rng, [50, 60, 70] as const);
+      const amountA = 10 * intBetween(rng, 10, 30);
+      const amountB = 10 * intBetween(rng, 10, 30);
+      const total = amountA + amountB;
+      const pure = percentA * amountA + percentB * amountB;
+      if (pure % total !== 0) return null;
+      const target = pure / total;
+      return {
+        content: `과즙이 $${percentA}\\%$인 음료 $\\mathrm{A}$와 $${percentB}\\%$인 음료 $\\mathrm{B}$를 섞어 과즙이 $${target}\\%$인 음료 $${total}\\,\\mathrm{mL}$를 만들었다. 음료 $\\mathrm{A}$의 양을 구하시오.`,
+        answer: `$${amountA}\\,\\mathrm{mL}$`,
+        solution: `두 음료의 양을 $x\\,\\mathrm{mL}$, $y\\,\\mathrm{mL}$라 하면 $x+y=${total}$, $${percentA}x+${percentB}y=${target * total}$이다. 두 식을 연립하여 풀면 음료 $\\mathrm{A}$는 $${amountA}\\,\\mathrm{mL}$이다.`,
+        facts: { percentA, percentB, target, total, answer: amountA },
+      };
+    }),
+  ),
+  def(
+    MINOR_APPLY,
+    "15A",
+    "두 합금의 성분 비교",
+    SEC.농도비율,
+    "심화",
+    (rng) => {
+      const copperA = pick(rng, [30, 40, 50] as const);
+      const copperB = pick(rng, [60, 70, 80] as const);
+      const massA = 10 * intBetween(rng, 10, 30);
+      const massB = 10 * intBetween(rng, 10, 30);
+      const total = massA + massB;
+      const copper = (copperA * massA + copperB * massB) / 100;
+      return {
+        content: `구리의 비율이 각각 $${copperA}\\%$, $${copperB}\\%$인 두 합금을 섞어 전체 질량이 $${total}\\,\\mathrm{g}$이고 구리의 양이 $${copper}\\,\\mathrm{g}$인 합금을 만들었다. 구리의 비율이 $${copperB}\\%$인 합금의 양을 구하시오.`,
+        answer: `$${massB}\\,\\mathrm{g}$`,
+        solution: `두 합금의 양을 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$이라 하면 $x+y=${total}$, $${copperA}x+${copperB}y=${100 * copper}$이다. 두 식을 연립하여 풀면 구리의 비율이 $${copperB}\\%$인 합금은 $${massB}\\,\\mathrm{g}$이다.`,
+        facts: { copperA, copperB, total, copper, answer: massB },
+      };
+    },
+  ),
+  specialExtra(
+    "19A",
+    "해가 무수히 많을 때 둘째 식의 y계수",
+    "B2",
+    "무수히 많을",
+    "연산",
+  ),
+  specialExtra("20A", "해가 없을 때 둘째 식의 y계수", "B2", "없을", "응용"),
+  specialExtra(
+    "21A",
+    "해가 무수히 많을 때 둘째 식의 x계수",
+    "A2",
+    "무수히 많을",
+    "기본",
+  ),
+  specialExtra("22A", "해가 없을 때 둘째 식의 x계수", "A2", "없을", "응용"),
+  specialExtra(
+    "23A",
+    "해가 무수히 많을 때 첫째 식의 y계수",
+    "B1",
+    "무수히 많을",
+    "연산",
+  ),
+  specialExtra("24A", "해가 없을 때 첫째 식의 y계수", "B1", "없을", "심화"),
+  specialExtra(
+    "25A",
+    "해가 무수히 많을 때 첫째 식의 x계수",
+    "A1",
+    "무수히 많을",
+    "기본",
+  ),
+  specialExtra("26A", "해가 없을 때 첫째 식의 x계수", "A1", "없을", "심화"),
+
+  /*
+   * 32A~35A — 활용(일, 속력)을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 09·13·14·17 심화 · 11 응용 · 12 기본이라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * 겹치지 않게 골랐다 — 09 는 «함께 하다 나눠서», 33A 는 그 **반대 방향**이고,
+   * 11 은 한 방향에 속력이 둘, 34A 는 **왕복**이며, 12 는 마주 보는 경우,
+   * 35A 는 **뒤따라가 따라잡는** 경우다.
+   */
+  def(MINOR_APPLY, "32A", "하루에 하는 일의 양", SEC.일속력, "연산", (rng) => {
+    const days = intBetween(rng, 3, 20);
+    return {
+      content: `어떤 일을 혼자 하면 $${days}$일이 걸리는 사람이 하루 동안 하는 일의 양을 구하시오. (단, 전체 일의 양을 $1$로 놓는다.)`,
+      answer: `$\\dfrac{1}{${days}}$`,
+      solution: `전체 일의 양을 $1$이라 하면 $${days}$일 동안 $1$만큼 하므로 하루에 하는 일의 양은 $\\dfrac{1}{${days}}$이다.`,
+      facts: { days, denominator: days },
+    };
+  }),
+
+  def(
+    MINOR_APPLY,
+    "33A",
+    "함께 하면 며칠 걸리는가",
+    SEC.일속력,
+    "기본",
+    (rng) =>
+      attempt(300, () => {
+        const a = intBetween(rng, 3, 30);
+        const b = intBetween(rng, 3, 30);
+        if (a === b) return null;
+        const together = (a * b) / (a + b);
+        // 며칠인지 묻는 발문이므로 자연수로 떨어져야 한다.
+        if (!Number.isInteger(together)) return null;
+        return {
+          content: `어떤 일을 혼자 하면 $\\mathrm{A}$는 $${a}$일, $\\mathrm{B}$는 $${b}$일이 걸린다. 이 일을 두 사람이 함께 하면 며칠 만에 끝낼 수 있는지 구하시오.`,
+          answer: `$${together}$일`,
+          solution: `전체 일의 양을 $1$이라 하면 하루에 하는 일의 양은 $\\mathrm{A}$가 $\\dfrac{1}{${a}}$, $\\mathrm{B}$가 $\\dfrac{1}{${b}}$이다.\n함께 $x$일 걸린다고 하면 $\\left(\\dfrac{1}{${a}}+\\dfrac{1}{${b}}\\right)x=1$이므로 $x=${together}$이다.`,
+          facts: { a, b, together },
+        };
+      }),
+  ),
+
+  def(MINOR_APPLY, "34A", "왕복하는 데 걸린 시간", SEC.일속력, "응용", (rng) =>
+    attempt(300, () => {
+      const goSpeed = intBetween(rng, 2, 12);
+      const backSpeed = intBetween(rng, 2, 12);
+      if (goSpeed === backSpeed) return null;
+      const distance = intBetween(rng, 2, 30);
+      const hoursTimes = distance * (goSpeed + backSpeed);
+      // 걸린 시간이 자연수라야 발문에 적을 수 있다.
+      if (hoursTimes % (goSpeed * backSpeed) !== 0) return null;
+      const hours = hoursTimes / (goSpeed * backSpeed);
+      if (hours < 1 || hours > 12) return null;
+      return {
+        content: `집에서 도서관까지 갈 때는 시속 $${goSpeed}\\,\\mathrm{km}$, 올 때는 같은 길을 시속 $${backSpeed}\\,\\mathrm{km}$로 왕복하였더니 모두 $${hours}$시간이 걸렸다. 집에서 도서관까지의 거리를 구하시오.`,
+        answer: `$${distance}\\,\\mathrm{km}$`,
+        solution: `집에서 도서관까지의 거리를 $x\\,\\mathrm{km}$라 하면 갈 때 걸린 시간은 $\\dfrac{x}{${goSpeed}}$시간, 올 때 걸린 시간은 $\\dfrac{x}{${backSpeed}}$시간이다.\n$\\dfrac{x}{${goSpeed}}+\\dfrac{x}{${backSpeed}}=${hours}$이므로 $x=${distance}$이다.\n따라서 거리는 $${distance}\\,\\mathrm{km}$이다.`,
+        facts: { goSpeed, backSpeed, hours, distance },
+      };
+    }),
+  ),
+
+  def(MINOR_APPLY, "35A", "뒤따라가 따라잡는 경우", SEC.일속력, "심화", (rng) =>
+    attempt(300, () => {
+      const slow = intBetween(rng, 40, 90);
+      const fast = intBetween(rng, slow + 10, 200);
+      const head = intBetween(rng, 3, 20);
+      const gap = fast - slow;
+      if ((slow * head) % gap !== 0) return null;
+      const minutes = (slow * head) / gap;
+      if (minutes < 2 || minutes > 60) return null;
+      return {
+        content: `동생이 분속 $${slow}\\,\\mathrm{m}$로 집을 나선 뒤 $${head}$분 후에 형이 분속 $${fast}\\,\\mathrm{m}$로 같은 길을 따라나섰다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
+        answer: `$${minutes}$분 후`,
+        solution: `형이 출발한 지 $x$분 후에 만난다고 하면 동생은 $${head}+x$분 동안 걸었다.\n두 사람이 걸은 거리가 같으므로 $${slow}(${head}+x)=${fast}x$이다.\n$${gap}x=${slow * head}$이므로 $x=${minutes}$이다.`,
+        facts: { slow, fast, head, minutes },
       };
     }),
   ),

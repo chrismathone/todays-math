@@ -338,6 +338,95 @@ export const M2_PROB: TypeEntry[] = [
     };
   }),
 
+  def("01A", "확률을 분수로 나타내기", SEC.뜻과성질, "연산", (rng): Body => {
+    const total = intBetween(rng, 8, 20);
+    const favorable = intBetween(rng, 2, total - 2);
+    const p = red(favorable, total);
+    return {
+      content: `어떤 실험에서 일어날 수 있는 모든 경우의 수가 $${total}$ 이고 사건 $A$ 가 일어나는 경우의 수가 $${favorable}$ 일 때, 사건 $A$ 가 일어날 확률을 구하시오.`,
+      answer: ansTex(p),
+      solution: `각 경우가 일어날 가능성이 같으므로 구하는 확률은 $${reduceTex(favorable, total)}$ 이다.`,
+      facts: { total, favorable, num: p.n, den: p.d },
+    };
+  }),
+
+  def("02A", "색 공을 뽑을 확률", SEC.뜻과성질, "기본", (rng): Body => {
+    const redCount = intBetween(rng, 3, 9);
+    const blueCount = intBetween(rng, 2, 8);
+    const p = red(blueCount, redCount + blueCount);
+    return {
+      content: `주머니에 크기와 모양이 같은 빨간 공 $${redCount}$개와 파란 공 $${blueCount}$개가 들어 있다. 이 주머니에서 공을 한 개 꺼낼 때 파란 공이 나올 확률을 구하시오.`,
+      answer: ansTex(p),
+      solution: `전체 공은 $${redCount}+${blueCount}=${redCount + blueCount}$개이고 파란 공은 $${blueCount}$개이다.\n따라서 구하는 확률은 $${reduceTex(blueCount, redCount + blueCount)}$ 이다.`,
+      facts: { redCount, blueCount, num: p.n, den: p.d },
+    };
+  }),
+
+  def("03A", "수 카드의 범위와 확률", SEC.뜻과성질, "기본", (rng): Body => {
+    const largest = intBetween(rng, 9, 20);
+    // 문턱이 $2$ 이상이라야 사건이 «반드시 일어나는 사건»(확률 1)으로 무너지지 않는다.
+    const threshold = intBetween(rng, 3, largest - 2);
+    const favorable = largest - threshold + 1;
+    const p = red(favorable, largest);
+    return {
+      content: `$1$부터 $${largest}$까지의 자연수가 각각 하나씩 적힌 $${largest}$장의 카드 중에서 한 장을 뽑을 때, 카드에 적힌 수가 $${threshold}$ 이상일 확률을 구하시오.`,
+      answer: ansTex(p),
+      solution: `모든 경우의 수는 $${largest}$ 이고, $${threshold}$ 이상 $${largest}$ 이하인 자연수는 $${favorable}$개이다.\n따라서 구하는 확률은 $${reduceTex(favorable, largest)}$ 이다.`,
+      facts: { largest, threshold, favorable, num: p.n, den: p.d },
+    };
+  }),
+
+  def("04A", "배수인 수 카드의 확률", SEC.뜻과성질, "응용", (rng) =>
+    attempt(100, (): Body | null => {
+      const largest = intBetween(rng, 18, 30);
+      const a = intBetween(rng, 3, 6);
+      const b = intBetween(rng, a + 1, 8);
+      // 한쪽이 다른 쪽의 배수이면 「$3$의 배수 또는 $6$의 배수」가 되어
+      // 포함·배제가 헛돈다 — 발문도 어색하다. 그런 짝은 버린다.
+      if (b % a === 0) return null;
+      const lcm = (a * b) / gcd(a, b);
+      const countA = Math.floor(largest / a);
+      const countB = Math.floor(largest / b);
+      const countBoth = Math.floor(largest / lcm);
+      const favorable = countA + countB - countBoth;
+      if (favorable < 3 || favorable >= largest) return null;
+      const p = red(favorable, largest);
+      return {
+        content: `$1$부터 $${largest}$까지의 자연수가 각각 하나씩 적힌 $${largest}$장의 카드 중에서 한 장을 뽑을 때, 카드에 적힌 수가 $${a}$의 배수 또는 $${b}$의 배수일 확률을 구하시오.`,
+        answer: ansTex(p),
+        // 두 배수가 겹치지 않는 회차에 「$42$의 배수는 $0$개」·「$3+3-0$」이
+        // 나가면 지면이 흉하다 — 값은 맞아도 그 부류는 값 검산으로 안 걸린다.
+        solution:
+          countBoth === 0
+            ? `$${a}$의 배수는 $${countA}$개, $${b}$의 배수는 $${countB}$개이고 $${largest}$ 이하의 자연수 중 두 조건을 모두 만족하는 수는 없다.\n따라서 조건을 만족하는 경우의 수는 $${countA}+${countB}=${favorable}$ 이므로 구하는 확률은 $${reduceTex(favorable, largest)}$ 이다.`
+            : `$${a}$의 배수는 $${countA}$개, $${b}$의 배수는 $${countB}$개이고, 두 조건을 모두 만족하는 $${lcm}$의 배수는 $${countBoth}$개이다.\n따라서 조건을 만족하는 경우의 수는 $${countA}+${countB}-${countBoth}=${favorable}$ 이므로 구하는 확률은 $${reduceTex(favorable, largest)}$ 이다.`,
+        facts: { largest, a, b, lcm, favorable, num: p.n, den: p.d },
+      };
+    }),
+  ),
+
+  def("05A", "확률에서 경우의 수 구하기", SEC.뜻과성질, "심화", (rng): Body => {
+    const [num, den] = pick(rng, NICE_PROBS);
+    const scale = intBetween(rng, 2, 6);
+    const finalTotal = den * scale;
+    const winning = num * scale;
+    // 더 넣은 꽝 제비 — 처음 꽝 제비가 $1$개 이상 남게 뽑는다.
+    const added = intBetween(rng, 1, finalTotal - winning - 1);
+    const losingBefore = finalTotal - winning - added;
+    return {
+      content: `당첨 제비 $${winning}$개와 꽝 제비 $${losingBefore}$개가 들어 있는 상자에 꽝 제비 몇 개를 더 넣었더니 이 상자에서 제비 한 개를 뽑을 때 당첨 제비를 뽑을 확률이 $\\dfrac{${num}}{${den}}$ 이 되었다. 더 넣은 꽝 제비는 몇 개인지 구하시오.`,
+      answer: `$${added}$개`,
+      solution: `더 넣은 꽝 제비를 $x$개라 하면 제비는 모두 $(${winning}+${losingBefore}+x)$개이므로 $\\dfrac{${winning}}{${winning + losingBefore}+x}=\\dfrac{${num}}{${den}}$ 이다.\n$${num}\\times(${winning + losingBefore}+x)=${den}\\times${winning}$ 에서 $${winning + losingBefore}+x=${finalTotal}$ 이므로 $x=${added}$ 이다.`,
+      facts: {
+        winning,
+        losingBefore,
+        probabilityNumerator: num,
+        probabilityDenominator: den,
+        added,
+      },
+    };
+  }),
+
   // 06 ─────────────────────────────────────────────
   def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "응용", (rng) => {
     // 갈래를 **재시도 밖에서** 뽑는다 — 안에서 뽑으면 조건이 까다로운 갈래
@@ -573,4 +662,39 @@ export const M2_PROB: TypeEntry[] = [
       };
     }),
   ),
+
+  /*
+   * 06A·07A — 확률의 계산에는 `연산`·`기본` 이 **하나도 없었다**(06~13 이 응용 5 ·
+   * 심화 3). 하위반 프리셋이 이 소단원에서 밑단을 한 문항도 못 채운다(D-106).
+   * 그래서 덧셈 정리·곱셈 정리를 각각 밑단으로 하나씩 세운다.
+   */
+  def("06A", "확률의 덧셈", SEC.계산, "연산", (rng) =>
+    attempt(100, (): Body | null => {
+      const pa = pick(rng, NICE_PROBS);
+      const pb = pick(rng, NICE_PROBS);
+      const P: Frac = { n: pa[0], d: pa[1] };
+      const Q: Frac = { n: pb[0], d: pb[1] };
+      // 합이 $1$ 이상이면 「동시에 일어나지 않는다」와 어긋난다.
+      if (P.n * Q.d + Q.n * P.d >= P.d * Q.d) return null;
+      const ans = addF(P, Q);
+      return {
+        content: `두 사건 $A$, $B$ 는 동시에 일어나지 않는다. 사건 $A$ 가 일어날 확률이 $${fracTex(P)}$, 사건 $B$ 가 일어날 확률이 $${fracTex(Q)}$ 일 때, 사건 $A$ 또는 사건 $B$ 가 일어날 확률을 구하시오.`,
+        answer: ansTex(ans),
+        solution: `두 사건이 동시에 일어나지 않으므로 두 확률을 더한다.\n따라서 구하는 확률은 $${fracTex(P)}+${fracTex(Q)}=${fracTex(ans)}$ 이다.`,
+        facts: { pn: P.n, pd: P.d, qn: Q.n, qd: Q.d, num: ans.n, den: ans.d },
+      };
+    }),
+  ),
+
+  def("07A", "동전과 주사위의 확률", SEC.계산, "기본", (rng): Body => {
+    const cond = pick(rng, [0, 1, 2, 3, 4] as const);
+    const c = DICE_CONDS[cond]!;
+    const p = red(c.count, 12);
+    return {
+      content: `한 개의 동전과 한 개의 주사위를 동시에 던질 때, 동전은 앞면이 나오고 주사위는 ${c.text}의 눈이 나올 확률을 구하시오.`,
+      answer: ansTex(p),
+      solution: `동전에서 앞면이 나올 확률은 $\\dfrac{1}{2}$ 이고, 주사위에서 ${c.text}의 눈이 나오는 경우는 $${c.count}$가지이므로 그 확률은 $${reduceTex(c.count, 6)}$ 이다.\n두 사건은 서로 영향을 주지 않으므로 구하는 확률은 $\\dfrac{1}{2}\\times${fracTex(red(c.count, 6))}=${fracTex(p)}$ 이다.`,
+      facts: { cond, succ: c.count, num: p.n, den: p.d },
+    };
+  }),
 ];

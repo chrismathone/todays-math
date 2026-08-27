@@ -29,7 +29,26 @@ const SEC2 = {
   기둥: "기둥의 겉넓이와 부피",
   부채꼴: "부채꼴의 호의 길이와 넓이",
   위치: "공간에서 평면의 위치 관계",
+  다각형: "다각형",
+  원부채꼴: "원과 부채꼴",
 } as const;
+
+/**
+ * 대각선의 개수를 **세어서** 구한다.
+ *
+ * 공식 $\dfrac{n(n-3)}{2}$ 를 여기저기 옮겨 적지 않는다 — 한 곳만 두면
+ * 시험이 다른 방법(꼭짓점 쌍 열거)으로 견줄 수 있다.
+ */
+function diagonalCount(n: number): number {
+  let count = 0;
+  for (let i = 0; i < n; i += 1) {
+    for (let j = i + 1; j < n; j += 1) {
+      const adjacent = j - i === 1 || (i === 0 && j === n - 1);
+      if (!adjacent) count += 1;
+    }
+  }
+  return count;
+}
 
 /** 세 내각이 모두 정수가 되는 비 (합이 180 의 약수 관계) — 오름차순. */
 const ANGLE_RATIOS: readonly (readonly [number, number, number])[] = [
@@ -72,6 +91,61 @@ function edgeAxis(e: string): number {
   if (["AB", "CD", "EF", "GH"].includes(e)) return 0;
   if (["BC", "DA", "FG", "HE"].includes(e)) return 1;
   return 2;
+}
+
+/**
+ * 두 모서리의 위치 관계 — 꼭짓점을 하나라도 공유하면 **한 점에서 만나고**,
+ * 아니면 축이 같을 때만 평행이며 그 밖은 전부 꼬인 위치다.
+ * (볼록한 기둥에서는 «만나지도 평행하지도 않다» == «꼬인 위치»다.)
+ */
+function edgeRelation(e1: string, e2: string): "평행" | "꼬인" | "만남" {
+  if (sharedCount(e1, e2) >= 1) return "만남";
+  return edgeAxis(e1) === edgeAxis(e2) ? "평행" : "꼬인";
+}
+
+/** 관계 낱말 — 발문과 해설이 **한 곳**에서 같은 말을 쓰게 한다. */
+const REL_WORD = {
+  평행: "평행한",
+  꼬인: "꼬인 위치에 있는",
+  만남: "한 점에서 만나는",
+} as const;
+
+const REL_ORDER = ["평행", "꼬인", "만남"] as const;
+
+/**
+ * 면의 법선 축 — 그 면과 **평행한** 모서리까지의 거리는 이 축의 치수와 같다.
+ * (윗·아랫면은 $z$, 앞·뒷면은 $y$, 옆면은 $x$.)
+ */
+function faceNormalAxis(f: string): number {
+  if (f === "ABCD" || f === "EFGH") return 2;
+  if (f === "ABFE" || f === "CGHD") return 1;
+  return 0;
+}
+
+// ── 삼각기둥 문자 모델 (A 위 D · B 위 E · C 위 F) ──
+const PRISM_EDGES = [
+  "AB",
+  "BC",
+  "CA",
+  "DE",
+  "EF",
+  "FD",
+  "AD",
+  "BE",
+  "CF",
+] as const;
+
+/** 삼각기둥에서 평행한 모서리끼리는 같은 무리다. */
+function prismGroup(e: string): number {
+  if (e === "AB" || e === "DE") return 0;
+  if (e === "BC" || e === "EF") return 1;
+  if (e === "CA" || e === "FD") return 2;
+  return 3; // 옆모서리 AD · BE · CF
+}
+
+function prismRelation(e1: string, e2: string): "평행" | "꼬인" | "만남" {
+  if (sharedCount(e1, e2) >= 1) return "만남";
+  return prismGroup(e1) === prismGroup(e2) ? "평행" : "꼬인";
 }
 
 /**
@@ -347,6 +421,133 @@ export const M1_BOOK2: TypeEntry[] = [
       }),
   ),
 
+  /*
+   * 07A~10A — 대푯값을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01~03 기본 · 04~06 응용이라 **밑단(`연산`)과 꼭대기(`심화`)가 비어 있었다**
+   * (D-106). 07A 를 연산, 10A 를 심화로 세워 사다리 네 칸을 모두 채운다.
+   */
+  defType(BOOK, "대푯값", "07A", "자료의 평균", SEC2.대푯값, "연산", (rng) =>
+    attempt(400, () => {
+      const vals: number[] = [];
+      for (let i = 0; i < 4; i += 1) vals.push(intBetween(rng, 2, 30));
+      const sum = vals.reduce((s, v) => s + v, 0);
+      if (sum % 4 !== 0) return null;
+      const M = sum / 4;
+      const facts: Record<string, number> = { n: 4, M };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 평균을 구하시오.\n${vals.map((v) => `$${v}$`).join(", ")}`,
+        answer: `$${M}$`,
+        solution: `(평균)$=\\dfrac{${vals.join("+")}}{4}=\\dfrac{${sum}}{4}=${M}$`,
+        facts,
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "08A",
+    "최빈값이 두 개인 자료",
+    SEC2.대푯값,
+    "기본",
+    (rng) => {
+      const pool: number[] = [];
+      for (let v = 3; v <= 28; v += 1) pool.push(v);
+      // 두 값은 두 번씩, 나머지 둘은 한 번씩 — 최빈값이 정확히 둘이 되게 짠다.
+      const chosen = pickDistinct(rng, pool, 4);
+      const [m1, m2, s1, s2] = chosen as [number, number, number, number];
+      const vals = shuffle(rng, [m1, m1, m2, m2, s1, s2]);
+      const lo = Math.min(m1, m2);
+      const hi = Math.max(m1, m2);
+      const facts: Record<string, number> = { n: 6, lo, hi };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 최빈값을 모두 구하시오.\n${vals.map((v) => `$${v}$`).join(", ")}`,
+        answer: `$${lo}$, $${hi}$`,
+        solution: `$${lo}$과 $${hi}$가 각각 $2$번씩 나타나고 나머지 값은 $1$번씩 나타난다.\n따라서 최빈값은 $${lo}$, $${hi}$의 두 개이다.`,
+        facts,
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "09A",
+    "두 집단을 합한 평균",
+    SEC2.대푯값,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const boys = intBetween(rng, 8, 20);
+        const girls = intBetween(rng, 8, 20);
+        const boyAvg = intBetween(rng, 60, 95);
+        const girlAvg = intBetween(rng, 60, 95);
+        if (boyAvg === girlAvg) return null;
+        const total = boys * boyAvg + girls * girlAvg;
+        if (total % (boys + girls) !== 0) return null;
+        return {
+          content: `어느 반의 남학생 $${boys}$명의 수학 성적의 평균은 $${boyAvg}$점이고, 여학생 $${girls}$명의 수학 성적의 평균은 $${girlAvg}$점이다. 이 반 전체 학생의 수학 성적의 평균을 구하시오.`,
+          answer: `$${total / (boys + girls)}$점`,
+          solution: `남학생의 성적의 총합은 $${boys}\\times${boyAvg}=${boys * boyAvg}$(점), 여학생의 성적의 총합은 $${girls}\\times${girlAvg}=${girls * girlAvg}$(점)이다.\n따라서 전체 평균은 $\\dfrac{${total}}{${boys + girls}}=${total / (boys + girls)}$(점)이다.`,
+          facts: {
+            boys,
+            girls,
+            boyAvg,
+            girlAvg,
+            M: total / (boys + girls),
+          },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "대푯값",
+    "10A",
+    "중앙값과 최빈값을 함께 구하기",
+    SEC2.대푯값,
+    "심화",
+    (rng) => {
+      const pool: number[] = [];
+      for (let v = 2; v <= 26; v += 1) pool.push(v);
+      // 자료 $7$개 — 홀수라 중앙값이 자료의 한 값이다. 최빈값은 $3$번 나오는 하나뿐.
+      const chosen = pickDistinct(rng, pool, 5);
+      const [mode, a, b, c, d] = chosen as [
+        number,
+        number,
+        number,
+        number,
+        number,
+      ];
+      const vals = shuffle(rng, [mode, mode, mode, a, b, c, d]);
+      const sorted = [...vals].sort((x, y) => x - y);
+      const median = sorted[3]!;
+      const sum = median + mode;
+      const facts: Record<string, number> = { n: 7, median, mode, sum };
+      vals.forEach((v, i) => {
+        facts[`v${i + 1}`] = v;
+      });
+      return {
+        content: `다음 자료의 중앙값을 $a$, 최빈값을 $b$라 할 때, $a+b$의 값을 구하시오.\n${vals
+          .map((v) => `$${v}$`)
+          .join(", ")}`,
+        answer: `$${sum}$`,
+        solution: `자료를 작은 값부터 크기순으로 나열하면 ${sorted
+          .map((v) => `$${v}$`)
+          .join(
+            ", ",
+          )}이다.\n자료의 개수가 $7$이므로 중앙값은 가운데 값인 $a=${median}$이고, $3$번 나타나는 $b=${mode}$가 최빈값이다.\n따라서 $a+b=${median}+${mode}=${sum}$이다.`,
+        facts,
+      };
+    },
+  ),
+
   // ── 입체도형의 겉넓이와 부피 → 기둥의 겉넓이와 부피 ────
   defType(
     BOOK,
@@ -569,6 +770,270 @@ export const M1_BOOK2: TypeEntry[] = [
           .map((o) => `면 $\\mathrm{${o}}$`)
           .join(", ")}이다.\n따라서 $${count}$개이다.`,
         facts: { kind, face: fi, count },
+      };
+    },
+  ),
+
+  /*
+   * 22A~25A — 공간에서 평면의 위치 관계를 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 06·07 응용 · 08 기본 · 09·10·19 심화라 **밑단(`연산`)이 비어 있었다**(D-106).
+   *
+   * 06 은 모서리↔면, 08 은 면↔면을 세는데 **모서리↔모서리**(꼬인 위치)는
+   * 밋밋한 직육면체에 대한 유형이 없었다 — 09 는 잘라 낸 입체다.
+   * 그림 없이 성립하는 발문만 낸다(이 파일의 규약).
+   */
+  defType(
+    BOOK,
+    "위치 관계",
+    "22A",
+    "직육면체에서 두 모서리의 위치 관계",
+    SEC2.위치,
+    "연산",
+    (rng) => {
+      const ki = intBetween(rng, 0, REL_ORDER.length - 1);
+      const kind = REL_ORDER[ki]!;
+      const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+      const e = CUBE_EDGES[ei]!;
+      const hit = CUBE_EDGES.filter(
+        (o) => o !== e && edgeRelation(e, o) === kind,
+      );
+      return {
+        content: `직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리의 개수를 구하시오.`,
+        answer: `$${hit.length}$개`,
+        solution: `모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리는 ${hit
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n따라서 $${hit.length}$개이다.`,
+        facts: { kind: ki, edge: ei, count: hit.length },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "23A",
+    "삼각기둥에서 두 모서리의 위치 관계",
+    SEC2.위치,
+    "기본",
+    (rng) => {
+      const ki = intBetween(rng, 0, REL_ORDER.length - 1);
+      const kind = REL_ORDER[ki]!;
+      const ei = intBetween(rng, 0, PRISM_EDGES.length - 1);
+      const e = PRISM_EDGES[ei]!;
+      const hit = PRISM_EDGES.filter(
+        (o) => o !== e && prismRelation(e, o) === kind,
+      );
+      return {
+        content: `삼각기둥 $\\mathrm{ABC-DEF}$에서 모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리의 개수를 구하시오.`,
+        answer: `$${hit.length}$개`,
+        solution: `모서리 $\\mathrm{${e}}$와 ${REL_WORD[kind]} 모서리는 ${hit
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n따라서 $${hit.length}$개이다.`,
+        facts: { kind: ki, edge: ei, count: hit.length },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "24A",
+    "모서리와 평면 사이의 거리",
+    SEC2.위치,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const dims = pickDistinct(
+          rng,
+          [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const,
+          3,
+        );
+        const [a, b, c] = dims as [number, number, number];
+        const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+        const e = CUBE_EDGES[ei]!;
+        const fi = intBetween(rng, 0, CUBE_FACES.length - 1);
+        const F = CUBE_FACES[fi]!;
+        // 꼭짓점을 하나도 공유하지 않아야 «모서리가 면과 평행»이다.
+        if (sharedCount(e, F) !== 0) return null;
+        const dist = [a, b, c][faceNormalAxis(F)]!;
+        return {
+          content: `$\\mathrm{AB}=${a}\\,\\mathrm{cm}$, $\\mathrm{AD}=${b}\\,\\mathrm{cm}$, $\\mathrm{AE}=${c}\\,\\mathrm{cm}$인 직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 면 $\\mathrm{${F}}$ 사이의 거리를 구하시오.`,
+          answer: `$${dist}\\,\\mathrm{cm}$`,
+          solution: `모서리 $\\mathrm{${e}}$는 면 $\\mathrm{${F}}$와 만나지 않으므로 두 도형은 평행하다.\n그 거리는 면 $\\mathrm{${F}}$에 수직인 모서리의 길이와 같으므로 $${dist}\\,\\mathrm{cm}$이다.`,
+          facts: { a, b, c, edge: ei, face: fi, dist },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "위치 관계",
+    "25A",
+    "꼬인 위치에 있는 모서리의 길이의 합",
+    SEC2.위치,
+    "응용",
+    (rng) => {
+      const dims = pickDistinct(
+        rng,
+        [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const,
+        3,
+      );
+      const [a, b, c] = dims as [number, number, number];
+      const ei = intBetween(rng, 0, CUBE_EDGES.length - 1);
+      const e = CUBE_EDGES[ei]!;
+      const skew = CUBE_EDGES.filter(
+        (o) => o !== e && edgeRelation(e, o) === "꼬인",
+      );
+      const sum = skew.reduce((s, o) => s + [a, b, c][edgeAxis(o)]!, 0);
+      return {
+        content: `$\\mathrm{AB}=${a}\\,\\mathrm{cm}$, $\\mathrm{AD}=${b}\\,\\mathrm{cm}$, $\\mathrm{AE}=${c}\\,\\mathrm{cm}$인 직육면체 $\\mathrm{ABCD-EFGH}$에서 모서리 $\\mathrm{${e}}$와 꼬인 위치에 있는 모든 모서리의 길이의 합을 구하시오.`,
+        answer: `$${sum}\\,\\mathrm{cm}$`,
+        solution: `모서리 $\\mathrm{${e}}$와 꼬인 위치에 있는 모서리는 ${skew
+          .map((o) => `$\\mathrm{${o}}$`)
+          .join(", ")}이다.\n그 길이는 각각 ${skew
+          .map((o) => `$${[a, b, c][edgeAxis(o)]}\\,\\mathrm{cm}$`)
+          .join(", ")}이므로 합은 $${sum}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, c, edge: ei, sum },
+      };
+    },
+  ),
+
+  /*
+   * 25A~28A — 다각형을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01·03·04 기본 · 05·06 응용 · 22 심화라 **밑단(`연산`)이 비어 있었다**(D-106).
+   *
+   * ⚠️ 내각·외각은 이 소단원이 아니다(「다각형의 내각과 외각」 몫이다).
+   *    이 소단원의 축은 **다각형의 뜻 · 정다각형 · 대각선**뿐이므로 그 안에서 짠다.
+   */
+  defType(
+    BOOK,
+    "다각형",
+    "25A",
+    "한 꼭짓점에서 그은 대각선으로 나누어지는 삼각형의 개수",
+    SEC2.다각형,
+    "연산",
+    (rng) => {
+      const n = intBetween(rng, 5, 15);
+      return {
+        content: `$${n}$각형의 한 꼭짓점에서 대각선을 모두 그었을 때 생기는 삼각형의 개수를 구하시오.`,
+        answer: `$${n - 2}$개`,
+        solution: `$${n}$각형의 한 꼭짓점에서 그을 수 있는 대각선은 $${n}-3=${n - 3}$(개)이다.\n대각선 $${n - 3}$개가 다각형을 $${n - 3}+1=${n - 2}$(개)의 삼각형으로 나눈다.`,
+        facts: { n, ans: n - 2 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "26A",
+    "한 꼭짓점에서의 대각선의 개수가 주어질 때 다각형 구하기",
+    SEC2.다각형,
+    "기본",
+    (rng) => {
+      const k = intBetween(rng, 2, 12);
+      return {
+        content: `한 꼭짓점에서 그을 수 있는 대각선의 개수가 $${k}$개인 다각형의 변의 개수를 구하시오.`,
+        answer: `$${k + 3}$`,
+        solution: `구하는 다각형을 $n$각형이라 하면 한 꼭짓점에서 그을 수 있는 대각선의 개수는 $n-3$이다.\n$n-3=${k}$에서 $n=${k + 3}$이므로 변의 개수는 $${k + 3}$이다.`,
+        facts: { k, ans: k + 3 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "27A",
+    "대각선의 개수가 변의 개수의 몇 배인 다각형",
+    SEC2.다각형,
+    "응용",
+    (rng) => {
+      const times = intBetween(rng, 1, 6);
+      const n = 2 * times + 3;
+      return {
+        content: `대각선의 개수가 변의 개수의 $${times}$배인 다각형의 변의 개수를 구하시오.`,
+        answer: `$${n}$`,
+        solution: `구하는 다각형을 $n$각형이라 하면 대각선의 개수는 $\\dfrac{n(n-3)}{2}$이다.\n$\\dfrac{n(n-3)}{2}=${times}n$에서 $n-3=${2 * times}$이므로 $n=${n}$이다.`,
+        facts: { times, n, ans: n },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "28A",
+    "나누어지는 삼각형의 개수로 대각선의 개수 구하기",
+    SEC2.다각형,
+    "심화",
+    (rng) => {
+      const triangles = intBetween(rng, 3, 12);
+      const n = triangles + 2;
+      const d = diagonalCount(n);
+      return {
+        content: `어떤 다각형의 한 꼭짓점에서 대각선을 모두 그었더니 $${triangles}$개의 삼각형으로 나누어졌다. 이 다각형의 대각선의 개수를 구하시오.`,
+        answer: `$${d}$개`,
+        solution: `구하는 다각형을 $n$각형이라 하면 한 꼭짓점에서 그은 대각선이 만드는 삼각형은 $n-2$개이다.\n$n-2=${triangles}$에서 $n=${n}$이다.\n따라서 대각선의 개수는 $\\dfrac{${n}\\times(${n}-3)}{2}=${d}$(개)이다.`,
+        facts: { triangles, n, ans: d },
+      };
+    },
+  ),
+
+  /*
+   * 19A·20A — 원과 부채꼴을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01 기본 · 02·03·05·06·07·08 응용 · 04 심화라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * ⚠️ 호의 길이·넓이를 $\pi$ 로 «계산»하는 유형은 이 소단원이 아니다
+   *    (「부채꼴의 호의 길이와 넓이」 몫이다). 여기 축은 **중심각과의 비례**다.
+   */
+  defType(
+    BOOK,
+    "원과 부채꼴",
+    "19A",
+    "중심각의 크기에 비례하는 호의 길이",
+    SEC2.원부채꼴,
+    "연산",
+    (rng) =>
+      attempt(400, () => {
+        const unit = pick(rng, [15, 20, 30, 40, 45] as const);
+        const k1 = intBetween(rng, 2, 8);
+        const k2 = intBetween(rng, 2, 8);
+        if (k1 === k2) return null;
+        if (k1 * unit > 360 || k2 * unit > 360) return null;
+        const t = intBetween(rng, 1, 5);
+        const first = k1 * t;
+        const second = k2 * t;
+        return {
+          content: `한 원에서 중심각의 크기가 $${k1 * unit}^\\circ$인 부채꼴의 호의 길이가 $${first}\\,\\mathrm{cm}$이다. 이 원에서 중심각의 크기가 $${k2 * unit}^\\circ$인 부채꼴의 호의 길이를 구하시오.`,
+          answer: `$${second}\\,\\mathrm{cm}$`,
+          solution: `한 원에서 부채꼴의 호의 길이는 중심각의 크기에 정비례한다.\n$${k1 * unit}:${k2 * unit}=${first}:x$에서 $${k1 * unit}x=${k2 * unit * first}$이므로 $x=${second}$이다.\n따라서 호의 길이는 $${second}\\,\\mathrm{cm}$이다.`,
+          facts: {
+            firstAngle: k1 * unit,
+            secondAngle: k2 * unit,
+            first,
+            ans: second,
+          },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "원과 부채꼴",
+    "20A",
+    "호의 길이가 둘레의 일부일 때 중심각의 크기",
+    SEC2.원부채꼴,
+    "기본",
+    (rng) => {
+      // $360$ 의 약수만 골라야 중심각이 정수가 된다.
+      const part = pick(rng, [3, 4, 5, 6, 8, 9, 10, 12] as const);
+      const deg = 360 / part;
+      return {
+        content: `원 $O$에서 호 $AB$의 길이가 이 원의 둘레의 길이의 $\\dfrac{1}{${part}}$일 때, $\\angle AOB$의 크기를 구하시오.`,
+        answer: `$${deg}^\\circ$`,
+        solution: `호의 길이는 중심각의 크기에 정비례하고 원의 둘레 전체에 대한 중심각은 $360^\\circ$이다.\n따라서 $\\angle AOB=360^\\circ\\times\\dfrac{1}{${part}}=${deg}^\\circ$이다.`,
+        facts: { part, ans: deg },
       };
     },
   ),
