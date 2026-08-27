@@ -162,14 +162,14 @@ MUTATIONS = [
     (
         "회전체 23A: 삼각형을 직사각형으로",
         EX,
-        "          answer: `$${r * h}\\\\,\\\\mathrm{cm}^2$`,",
-        "          answer: `$${2 * r * h}\\\\,\\\\mathrm{cm}^2$`,",
+        "        answer: `$${r * h}\\\\,\\\\mathrm{cm}^2$`,",
+        "        answer: `$${2 * r * h}\\\\,\\\\mathrm{cm}^2$`,",
     ),
     (
         "회전체 24A: 윗면이 더 커도 된다",
         EX,
-        "        const big = intBetween(rng, small + 1, 14);",
-        "        const big = intBetween(rng, 2, 14);",
+        "      const big = intBetween(rng, small + 1, 14);",
+        "      const big = intBetween(rng, 2, 14);",
     ),
     (
         "상대도수 50A: 총합으로 안 나눈다",
@@ -198,8 +198,8 @@ MUTATIONS = [
     (
         "일속력 32A: 하루치를 뒤집는다",
         SA,
-        "        answer: `$\\\\dfrac{1}{${days}}$`,",
-        "        answer: `$\\\\dfrac{${days}}{1}$`,",
+        "      answer: `$\\\\dfrac{1}{${days}}$`,",
+        "      answer: `$\\\\dfrac{${days}}{1}$`,",
     ),
     (
         "일속력 33A: 함께 한 날수를 합으로",
@@ -229,6 +229,30 @@ MUTATIONS = [
         "        content: `동생이 분속 $${slow}\\\\,\\\\mathrm{m}$로 집을 나선",
         "        content: `동생이 분속 $${fast}\\\\,\\\\mathrm{m}$로 집을 나선",
     ),
+    (
+        "원과 현 17A: 현을 두 배 안 한다",
+        M3,
+        "      answer: `$${2 * half}\\\\,\\\\mathrm{cm}$`,",
+        "      answer: `$${half}\\\\,\\\\mathrm{cm}$`,",
+    ),
+    (
+        "원과 현 18A: 같은 거리인데 길이를 바꾼다",
+        M3,
+        '      answer: `$${ab}\\\\,\\\\mathrm{cm}$`,\n      solution: `한 원에서 중심으로부터 같은 거리에',
+        '      answer: `$${ab + 2}\\\\,\\\\mathrm{cm}$`,\n      solution: `한 원에서 중심으로부터 같은 거리에',
+    ),
+    (
+        "원과 현 19A: 거리와 반현을 맞바꾼다",
+        M3,
+        "      answer: `$${d}\\\\,\\\\mathrm{cm}$`,\n      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\\\overline{AM}=\\\\dfrac{1}{2}\\\\times${2 * h}",
+        "      answer: `$${h}\\\\,\\\\mathrm{cm}$`,\n      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\\\overline{AM}=\\\\dfrac{1}{2}\\\\times${2 * h}",
+    ),
+    (
+        "원과 현 20A: 넓이를 반지름으로",
+        M3,
+        "      answer: `$${r * r}\\\\pi\\\\,\\\\mathrm{cm}^2$`,",
+        "      answer: `$${r}\\\\pi\\\\,\\\\mathrm{cm}^2$`,",
+    ),
 ]
 
 
@@ -249,6 +273,16 @@ def read(path):
 
 def write(path, text):
     io.open(path, "w", encoding="utf-8", newline="").write(text)
+
+
+def adapt(text, sample):
+    """줄바꿈을 그 파일에 맞춘다.
+
+    ⚠️ 이 저장소는 autocrlf 라 파일마다 줄 끝이 다르다(`m3.ts` 는 CRLF,
+       `m1Book2.ts` 는 LF). 여러 줄 앵커를 `\\n` 으로 적으면 CRLF 파일에서
+       **말없이 «앵커 없음»** 이 되고, 그러면 변이 시험이 그 가드를 아예 안 잰다.
+    """
+    return text.replace("\n", "\r\n") if "\r\n" in sample else text
 
 
 only = None
@@ -282,6 +316,8 @@ failures = []
 try:
     for why, path, before, after in todo:
         orig = originals[path]
+        before = adapt(before, orig)
+        after = adapt(after, orig)
         if before not in orig:
             print("ABORT: anchor not found -> %s (%s)" % (why, path))
             failures.append(why)

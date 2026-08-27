@@ -1620,6 +1620,75 @@ describe("갈래 A 중등 유형 값 검산", () => {
       expect(minutes).toBeGreaterThan(0);
     }
   });
+
+  /*
+   * 원과 현 17A~20A — 피타고라스를 **제곱으로 다시 맞춘다.**
+   * 생성기는 세 쌍 표에서 뽑고, 시험은 표를 안 보고 $d^2+(L/2)^2=r^2$ 이
+   * 실제로 성립하는지만 본다. 표가 틀리면 갈라진다.
+   */
+  function chordEntry(rpmType: string) {
+    const entry = M3_TYPES.find(
+      (candidate) =>
+        candidate.unitSection === "원과 현" && candidate.rpmType === rpmType,
+    );
+    expect(entry).toBeDefined();
+    return entry!;
+  }
+
+  it("원과 현 유형 17A — 수직이등분", () => {
+    const entry = chordEntry("17A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const half = Number(problem.content.match(/\\overline\{AM\}=(\d+)/)?.[1]);
+      expect(half).toBeGreaterThan(0);
+      expect(numericAnswer(problem.answer)).toBe(2 * half);
+    }
+  });
+
+  it("원과 현 유형 18A — 중심에서 같은 거리", () => {
+    const entry = chordEntry("18A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const ab = Number(problem.content.match(/\\overline\{AB\}=(\d+)/)?.[1]);
+      expect(ab).toBeGreaterThan(0);
+      // 중심에서 같은 거리면 두 현의 길이도 같다.
+      expect(numericAnswer(problem.answer)).toBe(ab);
+    }
+  });
+
+  it("원과 현 유형 19A — 중심에서 현까지의 거리", () => {
+    const entry = chordEntry("19A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const r = Number(problem.content.match(/길이가 \$(\d+)\\,/)?.[1]);
+      const ab = Number(
+        problem.content.match(/길이가 \$(\d+)\\,\\mathrm\{cm\}\$일/)?.[1],
+      );
+      const d = numericAnswer(problem.answer);
+      expect(r).toBeGreaterThan(0);
+      expect(ab).toBeGreaterThan(0);
+      // $d^2+(L/2)^2=r^2$ — 세 쌍 표를 안 보고 제곱으로 확인한다.
+      expect(d * d + (ab / 2) * (ab / 2)).toBe(r * r);
+      expect(Number.isInteger(d)).toBe(true);
+      expect(d).toBeLessThan(r);
+    }
+  });
+
+  it("원과 현 유형 20A — 현으로 원의 넓이", () => {
+    const entry = chordEntry("20A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const d = Number(problem.content.match(/거리가 \$(\d+)\\,/)?.[1]);
+      const ab = Number(problem.content.match(/\\overline\{AB\}=(\d+)/)?.[1]);
+      const radiusSquared = d * d + (ab / 2) * (ab / 2);
+      expect(d).toBeGreaterThan(0);
+      expect(ab).toBeGreaterThan(0);
+      // 넓이는 $\pi r^2$ 이고 $r^2=d^2+(L/2)^2$ 이다.
+      expect(piCoefficient(problem.answer)).toBe(radiusSquared);
+      // 반지름이 정수라야 넓이가 깔끔한 $\pi$ 계수로 떨어진다.
+      expect(Number.isInteger(Math.sqrt(radiusSquared))).toBe(true);
+    }
+  });
 });
 
 /**
