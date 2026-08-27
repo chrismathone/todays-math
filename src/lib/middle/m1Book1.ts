@@ -515,4 +515,177 @@ export const M1_BOOK1: TypeEntry[] = [
       };
     },
   ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "14",
+    "항의 개수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const terms = intBetween(rng, 2, 5);
+      const coefficients = Array.from({ length: terms }, () =>
+        intNonzero(rng, -9, 9),
+      );
+      const expression = coefficients
+        .map((coefficient, index) => {
+          const exponent = terms - index - 1;
+          if (exponent === 0) return String(coefficient);
+          const variable = exponent === 1 ? "x" : `x^{${exponent}}`;
+          if (coefficient === 1) return variable;
+          if (coefficient === -1) return `-${variable}`;
+          return `${coefficient}${variable}`;
+        })
+        .join("+")
+        .replaceAll("+-", "-");
+      return {
+        content: `다항식 $${expression}$의 항의 개수를 구하시오.`,
+        answer: `$${terms}$개`,
+        solution: `덧셈과 뺄셈으로 구분되는 각각의 부분이 항이다. 따라서 항은 $${terms}$개이다.`,
+        facts: { terms },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "15",
+    "다항식의 차수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const degree = intBetween(rng, 2, 5);
+      const a = intNonzero(rng, -7, 7);
+      const b = intNonzero(rng, -9, 9);
+      return {
+        content: `다항식 $${a}x^{${degree}}${signed(b)}x+${intBetween(rng, 1, 9)}$의 차수를 구하시오.`,
+        answer: `$${degree}$`,
+        solution: `가장 높은 차수인 항은 $${a}x^{${degree}}$이므로 이 다항식의 차수는 $${degree}$이다.`,
+        facts: { degree, a, b },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "16",
+    "특정 항의 계수",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const a = intNonzero(rng, -9, 9);
+      const b = intNonzero(rng, -9, 9);
+      const c = intNonzero(rng, -9, 9);
+      return {
+        content: `다항식 $${a}x^{2}${signed(b)}x${signed(c)}$에서 $x$의 계수를 구하시오.`,
+        answer: `$${b}$`,
+        solution: `$x$가 곱해진 항은 $${b}x$이므로 $x$의 계수는 $${b}$이다.`,
+        facts: { a, b, c },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "17",
+    "상수항 찾기",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const a = intNonzero(rng, -9, 9);
+      const b = intNonzero(rng, -9, 9);
+      const c = intNonzero(rng, -12, 12);
+      return {
+        content: `다항식 $${a}x^{2}${signed(b)}x${signed(c)}$의 상수항을 구하시오.`,
+        answer: `$${c}$`,
+        solution: `문자가 곱해지지 않은 항은 $${c}$이므로 상수항은 $${c}$이다.`,
+        facts: { a, b, c },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "18",
+    "식의 값",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const a = intNonzero(rng, -7, 7);
+      const b = intNonzero(rng, -9, 9);
+      const x = intNonzero(rng, -5, 5);
+      const value = a * x + b;
+      return {
+        content: `$x=${x}$일 때, 일차식 $${a}x${signed(b)}$의 값을 구하시오.`,
+        answer: `$${value}$`,
+        solution: `$x=${x}$를 대입하면 $${a}\\times(${x})${signed(b)}=${value}$이다.`,
+        facts: { a, b, x, value },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "19",
+    "문자를 사용한 식",
+    SEC1.일차1,
+    "기본",
+    (rng) => {
+      const price = intBetween(rng, 2, 9) * 100;
+      const fee = intBetween(rng, 1, 5) * 100;
+      const count = intBetween(rng, 3, 12);
+      const total = price * count + fee;
+      return {
+        content: `한 개에 $${price}$원인 공책 $x$개와 포장비 $${fee}$원의 전체 가격을 식으로 나타내고, $x=${count}$일 때의 값을 구하시오.`,
+        answer: `$${total}$원`,
+        solution: `전체 가격은 $${price}x+${fee}$원이다. $x=${count}$를 대입하면 $${price}\\times${count}+${fee}=${total}$(원)이다.`,
+        facts: { price, fee, count, total },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "20",
+    "일차식이 되는 조건",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const a = intNonzero(rng, -8, 8);
+      const b = intNonzero(rng, -9, 9);
+      return {
+        content: `다항식 $kx^{2}${signed(a)}x${signed(b)}$가 $x$에 대한 일차식일 때, 상수 $k$의 값을 구하시오.`,
+        answer: `$0$`,
+        solution: `일차식에는 $x^{2}$항이 없어야 하므로 $x^{2}$의 계수 $k$는 $0$이다.`,
+        facts: { a, b, k: 0 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "문자의 사용과 식의 계산",
+    "21",
+    "도형을 나타내는 일차식",
+    SEC1.일차1,
+    "응용",
+    (rng) => {
+      const add = intBetween(rng, 2, 8);
+      const x = intBetween(rng, 3, 12);
+      const perimeter = 4 * x + 2 * add;
+      return {
+        content: `가로의 길이가 $(x+${add})\\,\\mathrm{cm}$이고 세로의 길이가 $x\\,\\mathrm{cm}$인 직사각형이 있다. $x=${x}$일 때 둘레의 길이를 구하시오.`,
+        answer: `$${perimeter}\\,\\mathrm{cm}$`,
+        solution: `둘레는 $2\\{(x+${add})+x\\}=4x+${2 * add}$이다. $x=${x}$를 대입하면 $${perimeter}\\,\\mathrm{cm}$이다.`,
+        facts: { add, x, perimeter },
+      };
+    },
+  ),
 ];

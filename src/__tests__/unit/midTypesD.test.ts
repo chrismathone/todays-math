@@ -119,6 +119,31 @@ const CHANGE_CHECKS: Record<string, (content: string) => number> = {
   },
 };
 
+const LINEAR_TERM_CHECKS: Record<string, (content: string) => number> = {
+  "14": (content) => {
+    const expression = content.match(/다항식 \$(.+)\$의 항/)![1]!;
+    return expression.match(/[+-]?[^+-]+/g)!.length;
+  },
+  "15": (content) => Number(content.match(/x\^\{(\d+)\}/)![1]),
+  "16": (content) => Number(content.match(/x\^\{2\}([+-]\d+)x/)![1]),
+  "17": (content) => Number(content.match(/x\^\{2\}[+-]\d+x([+-]\d+)\$/)![1]),
+  "18": (content) => {
+    const [, x, a, b] = content.match(/\$x=(-?\d+)\$.*\$(-?\d+)x([+-]\d+)\$/)!;
+    return Number(a) * Number(x) + Number(b);
+  },
+  "19": (content) => {
+    const [, price, fee, count] = content.match(
+      /\$(\d+)\$원인.*포장비 \$(\d+)\$원.*\$x=(\d+)\$/,
+    )!;
+    return Number(price) * Number(count) + Number(fee);
+  },
+  "20": () => 0,
+  "21": (content) => {
+    const [, add, x] = content.match(/\$\(x\+(\d+)\).*\$x=(-?\d+)\$/)!;
+    return 4 * Number(x) + 2 * Number(add);
+  },
+};
+
 describe("중등 유형 갈래 D", () => {
   it.each(FIRST_FIVE)(
     "$section 소단원은 서로 다른 유형 10개를 갖는다",
@@ -156,6 +181,20 @@ describe("중등 유형 갈래 D", () => {
         const problem = entry!.handler(rngFrom(seed));
         expect(answerNumber(problem.answer)).toBe(
           CHANGE_CHECKS[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
+  it.each(Object.keys(LINEAR_TERM_CHECKS))(
+    "일차식의 뜻Ⅰ 유형 %s의 값을 발문에서 다시 계산한다",
+    (rpmType) => {
+      const entry = M1_BOOK1.find((candidate) => candidate.rpmType === rpmType);
+      expect(entry).toBeDefined();
+      for (const seed of [17, 37, 59]) {
+        const problem = entry!.handler(rngFrom(seed));
+        expect(answerNumber(problem.answer)).toBe(
+          LINEAR_TERM_CHECKS[rpmType]!(problem.content),
         );
       }
     },
