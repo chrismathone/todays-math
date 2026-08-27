@@ -1317,6 +1317,119 @@ describe("갈래 A 중등 유형 값 검산", () => {
       expect(numericAnswer(problem.answer)).toBeCloseTo(sum, 9);
     }
   });
+
+  /*
+   * 다각형 25A~28A.
+   *
+   * 생성기는 대각선을 **꼭짓점 쌍을 열거해** 세고, 시험은 **공식**
+   * $\dfrac{n(n-3)}{2}$ 로 견준다 — 반대로 27A 는 생성기가 식을 풀어 얻은 $n$ 을
+   * 시험이 **찾아서** 확인한다. 한쪽을 옮겨 적으면 아무것도 안 지킨다.
+   */
+  function diagonalsFormula(n: number): number {
+    return (n * (n - 3)) / 2;
+  }
+
+  /** 한 꼭짓점에서 부채꼴처럼 삼각형을 나눠 센다 — $(0, i, i+1)$. */
+  function fanTriangles(n: number): number {
+    let count = 0;
+    for (let i = 1; i <= n - 2; i += 1) count += 1;
+    return count;
+  }
+
+  /** 꼭짓점 $0$ 에서 이웃이 아닌 꼭짓점을 세면 그것이 대각선의 개수다. */
+  function diagonalsFromVertex(n: number): number {
+    let count = 0;
+    for (let j = 1; j < n; j += 1) {
+      if (j !== 1 && j !== n - 1) count += 1;
+    }
+    return count;
+  }
+
+  it("다각형 유형 25A — 나누어지는 삼각형의 개수", () => {
+    const entry = midEntry("다각형", "25A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const n = Number(problem.content.match(/\$(\d+)\$각형/)?.[1]);
+      expect(n).toBeGreaterThanOrEqual(4);
+      expect(fanTriangles(n)).toBe(diagonalsFromVertex(n) + 1);
+      expect(numericAnswer(problem.answer)).toBe(fanTriangles(n));
+    }
+  });
+
+  it("다각형 유형 26A — 한 꼭짓점의 대각선 개수로 변의 개수", () => {
+    const entry = midEntry("다각형", "26A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const k = Number(problem.content.match(/\$(\d+)\$개인/)?.[1]);
+      const hits: number[] = [];
+      for (let n = 3; n <= 60; n += 1) {
+        if (diagonalsFromVertex(n) === k) hits.push(n);
+      }
+      // 답이 하나로 정해지지 않으면 발문이 성립하지 않는다.
+      expect(hits).toHaveLength(1);
+      expect(numericAnswer(problem.answer)).toBe(hits[0]!);
+    }
+  });
+
+  it("다각형 유형 27A — 대각선이 변의 몇 배", () => {
+    const entry = midEntry("다각형", "27A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const times = Number(problem.content.match(/\$(\d+)\$배/)?.[1]);
+      const hits: number[] = [];
+      for (let n = 3; n <= 80; n += 1) {
+        if (diagonalsFormula(n) === times * n) hits.push(n);
+      }
+      expect(hits).toHaveLength(1);
+      expect(numericAnswer(problem.answer)).toBe(hits[0]!);
+    }
+  });
+
+  it("다각형 유형 28A — 삼각형 개수로 대각선 개수", () => {
+    const entry = midEntry("다각형", "28A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const triangles = Number(
+        problem.content.match(/\$(\d+)\$개의 삼각형/)?.[1],
+      );
+      const hits: number[] = [];
+      for (let n = 3; n <= 60; n += 1) {
+        if (fanTriangles(n) === triangles) hits.push(n);
+      }
+      expect(hits).toHaveLength(1);
+      expect(numericAnswer(problem.answer)).toBe(diagonalsFormula(hits[0]!));
+    }
+  });
+
+  it("원과 부채꼴 유형 19A — 중심각에 비례하는 호의 길이", () => {
+    const entry = midEntry("원과 부채꼴", "19A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const [first, arc, second] = (problem.content.match(/\d+/g) ?? []).map(
+        Number,
+      );
+      expect(first).toBeGreaterThan(0);
+      expect(first).toBeLessThanOrEqual(360);
+      expect(second).toBeLessThanOrEqual(360);
+      // 두 중심각이 같으면 「비례한다」를 묻는 뜻이 없다.
+      expect(first).not.toBe(second);
+      const want = (arc! * second!) / first!;
+      expect(Number.isInteger(want)).toBe(true);
+      expect(numericAnswer(problem.answer)).toBe(want);
+    }
+  });
+
+  it("원과 부채꼴 유형 20A — 둘레의 일부와 중심각", () => {
+    const entry = midEntry("원과 부채꼴", "20A");
+    for (let i = 1; i <= 40; i += 1) {
+      const problem = entry.handler(seeded(spread(i)));
+      const part = Number(problem.content.match(/\\dfrac\{1\}\{(\d+)\}/)?.[1]);
+      expect(part).toBeGreaterThan(1);
+      // $360$ 의 약수가 아니면 중심각이 정수로 안 떨어진다.
+      expect(360 % part).toBe(0);
+      expect(numericAnswer(problem.answer)).toBe(360 / part);
+    }
+  });
 });
 
 /**

@@ -29,7 +29,26 @@ const SEC2 = {
   기둥: "기둥의 겉넓이와 부피",
   부채꼴: "부채꼴의 호의 길이와 넓이",
   위치: "공간에서 평면의 위치 관계",
+  다각형: "다각형",
+  원부채꼴: "원과 부채꼴",
 } as const;
+
+/**
+ * 대각선의 개수를 **세어서** 구한다.
+ *
+ * 공식 $\dfrac{n(n-3)}{2}$ 를 여기저기 옮겨 적지 않는다 — 한 곳만 두면
+ * 시험이 다른 방법(꼭짓점 쌍 열거)으로 견줄 수 있다.
+ */
+function diagonalCount(n: number): number {
+  let count = 0;
+  for (let i = 0; i < n; i += 1) {
+    for (let j = i + 1; j < n; j += 1) {
+      const adjacent = j - i === 1 || (i === 0 && j === n - 1);
+      if (!adjacent) count += 1;
+    }
+  }
+  return count;
+}
 
 /** 세 내각이 모두 정수가 되는 비 (합이 180 의 약수 관계) — 오름차순. */
 const ANGLE_RATIOS: readonly (readonly [number, number, number])[] = [
@@ -875,6 +894,146 @@ export const M1_BOOK2: TypeEntry[] = [
           .map((o) => `$${[a, b, c][edgeAxis(o)]}\\,\\mathrm{cm}$`)
           .join(", ")}이므로 합은 $${sum}\\,\\mathrm{cm}$이다.`,
         facts: { a, b, c, edge: ei, sum },
+      };
+    },
+  ),
+
+  /*
+   * 25A~28A — 다각형을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01·03·04 기본 · 05·06 응용 · 22 심화라 **밑단(`연산`)이 비어 있었다**(D-106).
+   *
+   * ⚠️ 내각·외각은 이 소단원이 아니다(「다각형의 내각과 외각」 몫이다).
+   *    이 소단원의 축은 **다각형의 뜻 · 정다각형 · 대각선**뿐이므로 그 안에서 짠다.
+   */
+  defType(
+    BOOK,
+    "다각형",
+    "25A",
+    "한 꼭짓점에서 그은 대각선으로 나누어지는 삼각형의 개수",
+    SEC2.다각형,
+    "연산",
+    (rng) => {
+      const n = intBetween(rng, 5, 15);
+      return {
+        content: `$${n}$각형의 한 꼭짓점에서 대각선을 모두 그었을 때 생기는 삼각형의 개수를 구하시오.`,
+        answer: `$${n - 2}$개`,
+        solution: `$${n}$각형의 한 꼭짓점에서 그을 수 있는 대각선은 $${n}-3=${n - 3}$(개)이다.\n대각선 $${n - 3}$개가 다각형을 $${n - 3}+1=${n - 2}$(개)의 삼각형으로 나눈다.`,
+        facts: { n, ans: n - 2 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "26A",
+    "한 꼭짓점에서의 대각선의 개수가 주어질 때 다각형 구하기",
+    SEC2.다각형,
+    "기본",
+    (rng) => {
+      const k = intBetween(rng, 2, 12);
+      return {
+        content: `한 꼭짓점에서 그을 수 있는 대각선의 개수가 $${k}$개인 다각형의 변의 개수를 구하시오.`,
+        answer: `$${k + 3}$`,
+        solution: `구하는 다각형을 $n$각형이라 하면 한 꼭짓점에서 그을 수 있는 대각선의 개수는 $n-3$이다.\n$n-3=${k}$에서 $n=${k + 3}$이므로 변의 개수는 $${k + 3}$이다.`,
+        facts: { k, ans: k + 3 },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "27A",
+    "대각선의 개수가 변의 개수의 몇 배인 다각형",
+    SEC2.다각형,
+    "응용",
+    (rng) => {
+      const times = intBetween(rng, 1, 6);
+      const n = 2 * times + 3;
+      return {
+        content: `대각선의 개수가 변의 개수의 $${times}$배인 다각형의 변의 개수를 구하시오.`,
+        answer: `$${n}$`,
+        solution: `구하는 다각형을 $n$각형이라 하면 대각선의 개수는 $\\dfrac{n(n-3)}{2}$이다.\n$\\dfrac{n(n-3)}{2}=${times}n$에서 $n-3=${2 * times}$이므로 $n=${n}$이다.`,
+        facts: { times, n, ans: n },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    "다각형",
+    "28A",
+    "나누어지는 삼각형의 개수로 대각선의 개수 구하기",
+    SEC2.다각형,
+    "심화",
+    (rng) => {
+      const triangles = intBetween(rng, 3, 12);
+      const n = triangles + 2;
+      const d = diagonalCount(n);
+      return {
+        content: `어떤 다각형의 한 꼭짓점에서 대각선을 모두 그었더니 $${triangles}$개의 삼각형으로 나누어졌다. 이 다각형의 대각선의 개수를 구하시오.`,
+        answer: `$${d}$개`,
+        solution: `구하는 다각형을 $n$각형이라 하면 한 꼭짓점에서 그은 대각선이 만드는 삼각형은 $n-2$개이다.\n$n-2=${triangles}$에서 $n=${n}$이다.\n따라서 대각선의 개수는 $\\dfrac{${n}\\times(${n}-3)}{2}=${d}$(개)이다.`,
+        facts: { triangles, n, ans: d },
+      };
+    },
+  ),
+
+  /*
+   * 19A·20A — 원과 부채꼴을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01 기본 · 02·03·05·06·07·08 응용 · 04 심화라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * ⚠️ 호의 길이·넓이를 $\pi$ 로 «계산»하는 유형은 이 소단원이 아니다
+   *    (「부채꼴의 호의 길이와 넓이」 몫이다). 여기 축은 **중심각과의 비례**다.
+   */
+  defType(
+    BOOK,
+    "원과 부채꼴",
+    "19A",
+    "중심각의 크기에 비례하는 호의 길이",
+    SEC2.원부채꼴,
+    "연산",
+    (rng) =>
+      attempt(400, () => {
+        const unit = pick(rng, [15, 20, 30, 40, 45] as const);
+        const k1 = intBetween(rng, 2, 8);
+        const k2 = intBetween(rng, 2, 8);
+        if (k1 === k2) return null;
+        if (k1 * unit > 360 || k2 * unit > 360) return null;
+        const t = intBetween(rng, 1, 5);
+        const first = k1 * t;
+        const second = k2 * t;
+        return {
+          content: `한 원에서 중심각의 크기가 $${k1 * unit}^\\circ$인 부채꼴의 호의 길이가 $${first}\\,\\mathrm{cm}$이다. 이 원에서 중심각의 크기가 $${k2 * unit}^\\circ$인 부채꼴의 호의 길이를 구하시오.`,
+          answer: `$${second}\\,\\mathrm{cm}$`,
+          solution: `한 원에서 부채꼴의 호의 길이는 중심각의 크기에 정비례한다.\n$${k1 * unit}:${k2 * unit}=${first}:x$에서 $${k1 * unit}x=${k2 * unit * first}$이므로 $x=${second}$이다.\n따라서 호의 길이는 $${second}\\,\\mathrm{cm}$이다.`,
+          facts: {
+            firstAngle: k1 * unit,
+            secondAngle: k2 * unit,
+            first,
+            ans: second,
+          },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "원과 부채꼴",
+    "20A",
+    "호의 길이가 둘레의 일부일 때 중심각의 크기",
+    SEC2.원부채꼴,
+    "기본",
+    (rng) => {
+      // $360$ 의 약수만 골라야 중심각이 정수가 된다.
+      const part = pick(rng, [3, 4, 5, 6, 8, 9, 10, 12] as const);
+      const deg = 360 / part;
+      return {
+        content: `원 $O$에서 호 $AB$의 길이가 이 원의 둘레의 길이의 $\\dfrac{1}{${part}}$일 때, $\\angle AOB$의 크기를 구하시오.`,
+        answer: `$${deg}^\\circ$`,
+        solution: `호의 길이는 중심각의 크기에 정비례하고 원의 둘레 전체에 대한 중심각은 $360^\\circ$이다.\n따라서 $\\angle AOB=360^\\circ\\times\\dfrac{1}{${part}}=${deg}^\\circ$이다.`,
+        facts: { part, ans: deg },
       };
     },
   ),

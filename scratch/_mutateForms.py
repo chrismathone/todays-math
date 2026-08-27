@@ -111,6 +111,42 @@ MUTATIONS = [
         '        (o) => o !== e && edgeRelation(e, o) === "꼬인",\n      );\n      const sum = skew.reduce',
         '        (o) => o !== e && edgeRelation(e, o) === "평행",\n      );\n      const sum = skew.reduce',
     ),
+    (
+        "다각형 25A: 삼각형을 대각선 개수로 답한다",
+        B2,
+        "        answer: `$${n - 2}$개`,",
+        "        answer: `$${n - 3}$개`,",
+    ),
+    (
+        "다각형 26A: 변의 개수를 하나 적게",
+        B2,
+        "        answer: `$${k + 3}$`,",
+        "        answer: `$${k + 2}$`,",
+    ),
+    (
+        "다각형 27A: n = 2k+3 을 k+3 으로",
+        B2,
+        "      const n = 2 * times + 3;",
+        "      const n = times + 3;",
+    ),
+    (
+        "다각형 28A: 대각선 세기에서 이웃을 안 뺀다",
+        B2,
+        "      const adjacent = j - i === 1 || (i === 0 && j === n - 1);\n      if (!adjacent) count += 1;",
+        "      count += 1;",
+    ),
+    (
+        "부채꼴 19A: 비례를 반비례로",
+        B2,
+        "        const second = k2 * t;",
+        "        const second = k1 * t;",
+    ),
+    (
+        "부채꼴 20A: 약수가 아닌 분모도 허용",
+        B2,
+        "      const part = pick(rng, [3, 4, 5, 6, 8, 9, 10, 12] as const);\n      const deg = 360 / part;",
+        "      const part = pick(rng, [3, 4, 5, 7, 8, 9, 11, 12] as const);\n      const deg = 360 / part;",
+    ),
 ]
 
 
