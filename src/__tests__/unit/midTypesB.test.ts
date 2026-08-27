@@ -321,6 +321,21 @@ function eq(a: { n: number; d: number }, b: { n: number; d: number }): boolean {
   return a.n * b.d === b.n * a.d;
 }
 
+/**
+ * $n/d$ 를 **손 나눗셈으로** 소수점 아래 `k` 자리까지 펼친다(정수 부분 제외).
+ * 순환소수 공식을 안 쓰므로 생성기와 독립이다.
+ */
+function expandDecimal(n: number, d: number, k: number): string {
+  let r = n % d;
+  let out = "";
+  for (let i = 0; i < k; i += 1) {
+    r *= 10;
+    out += String(Math.floor(r / d));
+    r %= d;
+  }
+  return out;
+}
+
 /** `0.\overline{k}` 들을 순서대로 유리수(k/9 · k/99)로. */
 function repeating(text: string): { n: number; d: number }[] {
   return [...text.matchAll(/0\.\\overline\{(\d+)\}/g)].map((m) => {
@@ -585,6 +600,48 @@ const CHECKS: Record<string, Check> = {
       return withExp ? Number(withExp[1]) : 1;
     };
     expect(nums(answer)).toEqual([Math.max(expOf(2), expOf(5))]);
+  },
+  // ── 중2 순환소수의 분수 표현 ──────────────────────────────
+  //
+  // 「분수 → 소수」로 **되돌려** 잰다 — 답의 분수를 길게 나눠 펼친 소수가 발문의
+  // 순환소수와 같은지 본다. 공식($\dfrac{ab}{99}$)을 옮겨 적으면 동어반복이다.
+  "2-1|유리수와 순환소수|40": ({ content, answer }) => {
+    const cyc = content.match(/\\overline\{(\d+)\}/)![1]!;
+    const [n, d] = nums(answer);
+    expect(expandDecimal(n!, d!, 8)).toBe(cyc.repeat(8).slice(0, 8));
+    expect(gcd2(n!, d!)).toBe(1);
+  },
+  "2-1|유리수와 순환소수|41": ({ content, answer }) => {
+    const m = content.match(/0\.(\d)\\overline\{(\d+)\}/)!;
+    const [n, d] = nums(answer);
+    expect(expandDecimal(n!, d!, 9)).toBe(m[1]! + m[2]!.repeat(8).slice(0, 8));
+    expect(gcd2(n!, d!)).toBe(1);
+  },
+  "2-1|유리수와 순환소수|42": ({ content, answer }) => {
+    // $100x-x=99x$ 이고 $x=\dfrac{ab}{99}$ 이므로 답은 순환마디 그 자체다
+    const cyc = content.match(/\\overline\{(\d+)\}/)![1]!;
+    expect(nums(answer)).toEqual([Number(cyc)]);
+  },
+  "2-1|유리수와 순환소수|43": ({ content, answer }) => {
+    const m = content.match(/\$(\d+)\.\\overline\{(\d+)\}\$/)!;
+    const [n, d] = nums(answer);
+    const want = m[1]! + m[2]!.repeat(8).slice(0, 8);
+    expect(`${Math.floor(n! / d!)}${expandDecimal(n! % d!, d!, 8)}`).toBe(want);
+    expect(gcd2(n!, d!)).toBe(1);
+  },
+  "2-1|유리수와 순환소수|44": ({ content, answer }) => {
+    const a = Number(content.match(/\\overline\{(\d+)\}/)![1]);
+    const [n, d] = nums(answer);
+    // 역수 — 원래 수와 곱하면 $1$ 이어야 한다
+    expect(a * n!).toBe(9 * d!);
+    expect(gcd2(n!, d!)).toBe(1);
+  },
+  "2-1|유리수와 순환소수|45": ({ content, answer }) => {
+    const a = Number(content.match(/\\overline\{(\d+)\}/)![1]);
+    const [m, n] = nums(content.match(/\\dfrac\{\d+\}\{\d+\}/)![0]);
+    const decBigger = a * n! > 9 * m!;
+    expect(a * n!).not.toBe(9 * m!); // 같으면 「큰 수」가 없다
+    expect(answer.includes("overline")).toBe(decBigger);
   },
   // ── 중2 순환소수 ──────────────────────────────────────────
   "2-1|유리수와 순환소수|30": ({ content, answer }) => {
