@@ -29,6 +29,15 @@ function answerNumber(answer: string): number {
   return Number(matched[0]);
 }
 
+function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) {
+    [x, y] = [y, x % y];
+  }
+  return x;
+}
+
 const RATIO_CHECKS: Record<string, (content: string) => number> = {
   "23": (content) => {
     const [, a, b, part] = content.match(
@@ -144,6 +153,61 @@ const LINEAR_TERM_CHECKS: Record<string, (content: string) => number> = {
   },
 };
 
+const GCD_CHECKS: Record<string, (content: string) => number> = {
+  "17": (content) => {
+    const [, a, b] = content.match(/두 자연수 \$(\d+)\$, \$(\d+)\$/)!;
+    const common = gcd(Number(a), Number(b));
+    let sum = 0;
+    for (let divisor = 1; divisor <= common; divisor += 1) {
+      if (common % divisor === 0) sum += divisor;
+    }
+    return sum;
+  },
+  "18": (content) => {
+    const [, a, b, c] = content.match(
+      /세 자연수 \$(\d+)\$, \$(\d+)\$, \$(\d+)\$/,
+    )!;
+    return gcd(gcd(Number(a), Number(b)), Number(c));
+  },
+  "19": (content) => {
+    const [, a, b, k] = content.match(
+      /두 자연수 \$(\d+)\$, \$(\d+)\$에 각각 \$(\d+)\$/,
+    )!;
+    return gcd(Number(a) * Number(k), Number(b) * Number(k));
+  },
+  "20": (content) => {
+    const values = [
+      ...content.matchAll(/\$(\d+)\^\{(\d+)\}\\times(\d+)\^\{(\d+)\}\$/g),
+    ].map(
+      ([, p, pe, q, qe]) => Number(p) ** Number(pe) * Number(q) ** Number(qe),
+    );
+    return values.reduce((acc, value) => gcd(acc, value));
+  },
+  "21": (content) => {
+    const [, a, b, remainder] = content.match(
+      /두 자연수 \$(\d+)\$, \$(\d+)\$.*모두 \$(\d+)\$/,
+    )!;
+    return gcd(Number(a) - Number(remainder), Number(b) - Number(remainder));
+  },
+  "22": (content) => {
+    const [, a, r1, b, r2] = content.match(
+      /\$(\d+)\$를 나누면 \$(\d+)\$이 남고 \$(\d+)\$를 나누면 \$(\d+)\$/,
+    )!;
+    return gcd(Number(a) - Number(r1), Number(b) - Number(r2));
+  },
+  "23": (content) => {
+    const [, a, b, limit] = content.match(
+      /두 자연수 \$(\d+)\$, \$(\d+)\$의 공약수 중 \$(\d+)\$/,
+    )!;
+    const common = gcd(Number(a), Number(b));
+    let count = 0;
+    for (let divisor = 1; divisor <= Number(limit); divisor += 1) {
+      if (common % divisor === 0) count += 1;
+    }
+    return count;
+  },
+};
+
 describe("중등 유형 갈래 D", () => {
   it.each(FIRST_FIVE)(
     "$section 소단원은 서로 다른 유형 10개를 갖는다",
@@ -195,6 +259,20 @@ describe("중등 유형 갈래 D", () => {
         const problem = entry!.handler(rngFrom(seed));
         expect(answerNumber(problem.answer)).toBe(
           LINEAR_TERM_CHECKS[rpmType]!(problem.content),
+        );
+      }
+    },
+  );
+
+  it.each(Object.keys(GCD_CHECKS))(
+    "공약수·최대공약수 유형 %s의 값을 발문에서 다시 계산한다",
+    (rpmType) => {
+      const entry = M1_NUM.find((candidate) => candidate.rpmType === rpmType);
+      expect(entry).toBeDefined();
+      for (const seed of [19, 41, 61]) {
+        const problem = entry!.handler(rngFrom(seed));
+        expect(answerNumber(problem.answer)).toBe(
+          GCD_CHECKS[rpmType]!(problem.content),
         );
       }
     },

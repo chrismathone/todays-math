@@ -1521,6 +1521,184 @@ const 최대최소_TYPES: TypeEntry[] = [
         };
       }),
   ),
+
+  defType(BOOK, MIN_최대최소, "17", "공약수의 합", SEC.최대, "응용", (rng) =>
+    attempt(200, (): Body | null => {
+      const g = intBetween(rng, 6, 36);
+      const uv = coprimeQuotients(rng, 2, 12);
+      if (!uv) return null;
+      const [u, v] = uv;
+      const A = g * u;
+      const B = g * v;
+      let sum = 0;
+      for (let divisor = 1; divisor <= g; divisor += 1) {
+        if (g % divisor === 0) sum += divisor;
+      }
+      return {
+        content: `두 자연수 $${A}$, $${B}$의 모든 공약수의 합을 구하시오.`,
+        answer: `$${sum}$`,
+        solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 공약수는 $${g}$의 약수이므로 그 합은 $${sum}$이다.`,
+        facts: { A, B, g, sum },
+      };
+    }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "18",
+    "세 수의 최대공약수",
+    SEC.최대,
+    "기본",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 2, 24);
+        const uvw = coprimeTriple(rng, 2, 9);
+        if (!uvw) return null;
+        const [u, v, w] = uvw;
+        const A = g * u;
+        const B = g * v;
+        const C = g * w;
+        return {
+          content: `세 자연수 $${A}$, $${B}$, $${C}$의 최대공약수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$로 나타낼 수 있고 $${u}$, $${v}$, $${w}$는 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
+          facts: { A, B, C, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "19",
+    "두 수를 같은 수만큼 확대한 최대공약수",
+    SEC.최대,
+    "응용",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 2, 20);
+        const uv = coprimeQuotients(rng, 2, 10);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const k = intBetween(rng, 2, 8);
+        const A = g * u;
+        const B = g * v;
+        const answer = g * k;
+        return {
+          content: `두 자연수 $${A}$, $${B}$에 각각 $${k}$를 곱한 두 수의 최대공약수를 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `$${A}$${nGwa(A)} $${B}$의 최대공약수는 $${g}$이다. 두 수에 같은 수 $${k}$를 곱하면 최대공약수도 $${k}$배가 되므로 $${g}\\times${k}=${answer}$이다.`,
+          facts: { A, B, g, k, answer },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "20",
+    "소인수분해로 세 수의 최대공약수 구하기",
+    SEC.최대,
+    "응용",
+    (rng) => {
+      const p = pick(rng, [2, 3, 5] as const);
+      const q = pick(rng, [7, 11, 13] as const);
+      const a = intBetween(rng, 1, 3);
+      const b = intBetween(rng, 1, 2);
+      const A = p ** (a + 2) * q ** b;
+      const B = p ** (a + 1) * q ** (b + 1);
+      const C = p ** a * q ** (b + 2);
+      const answer = p ** a * q ** b;
+      return {
+        content: `세 수 $${p}^{${a + 2}}\\times${q}^{${b}}$, $${p}^{${a + 1}}\\times${q}^{${b + 1}}$, $${p}^{${a}}\\times${q}^{${b + 2}}$의 최대공약수를 구하시오.`,
+        answer: `$${answer}$`,
+        solution: `공통인 소인수의 지수 중 가장 작은 것을 택하면 $${p}^{${a}}\\times${q}^{${b}}=${answer}$이다.`,
+        facts: { p, q, a, b, A, B, C, answer },
+      };
+    },
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "21",
+    "같은 나머지를 남기는 가장 큰 수",
+    SEC.최대,
+    "심화",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 5, 30);
+        const uv = coprimeQuotients(rng, 2, 12);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const remainder = intBetween(rng, 1, g - 1);
+        const A = g * u + remainder;
+        const B = g * v + remainder;
+        return {
+          content: `두 자연수 $${A}$, $${B}$를 어떤 자연수로 나누면 나머지가 모두 $${remainder}$이다. 이러한 자연수 중 가장 큰 수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `구하는 수는 $${A}-${remainder}=${A - remainder}$${waGwa(A - remainder)} $${B}-${remainder}=${B - remainder}$의 최대공약수이다. 따라서 $${g}$이다.`,
+          facts: { A, B, remainder, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "22",
+    "서로 다른 나머지를 남기는 가장 큰 수",
+    SEC.최대,
+    "심화",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 6, 30);
+        const uv = coprimeQuotients(rng, 2, 12);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const r1 = intBetween(rng, 1, g - 2);
+        const r2 = intBetween(rng, 1, g - 1);
+        const A = g * u + r1;
+        const B = g * v + r2;
+        return {
+          content: `$${A}$를 나누면 $${r1}$이 남고 $${B}$를 나누면 $${r2}$가 남도록 하는 자연수 중 가장 큰 수를 구하시오.`,
+          answer: `$${g}$`,
+          solution: `구하는 수는 $${A}-${r1}=${A - r1}$${waGwa(A - r1)} $${B}-${r2}=${B - r2}$의 최대공약수이다. 따라서 $${g}$이다.`,
+          facts: { A, B, r1, r2, g },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    MIN_최대최소,
+    "23",
+    "범위 안의 공약수 개수",
+    SEC.최대,
+    "응용",
+    (rng) =>
+      attempt(200, (): Body | null => {
+        const g = intBetween(rng, 12, 48);
+        const uv = coprimeQuotients(rng, 2, 10);
+        if (!uv) return null;
+        const [u, v] = uv;
+        const A = g * u;
+        const B = g * v;
+        const limit = intBetween(rng, 2, g - 1);
+        let count = 0;
+        for (let divisor = 1; divisor <= limit; divisor += 1) {
+          if (g % divisor === 0) count += 1;
+        }
+        if (count < 2) return null;
+        return {
+          content: `두 자연수 $${A}$, $${B}$의 공약수 중 $${limit}$ 이하인 자연수의 개수를 구하시오.`,
+          answer: `$${count}$개`,
+          solution: `두 수의 최대공약수는 $${g}$이다. $${g}$의 약수 중 $${limit}$ 이하인 것은 $${count}$개이다.`,
+          facts: { A, B, g, limit, count },
+        };
+      }),
+  ),
 ];
 
 // ═══════════════════════════════════════════════════════════
