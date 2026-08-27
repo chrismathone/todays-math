@@ -217,6 +217,87 @@ const EQ_PROPERTY_SUPPLEMENTS = [
   equalityPropertySupplement("25", "등식의 성질에서 나눈 수 구하기", 6),
 ] as const;
 
+function solutionApplicationSupplement(
+  rpmType: string,
+  rpmTitle: string,
+  mode: number,
+): TypeEntry {
+  return def(
+    MINOR_EQ,
+    rpmType,
+    rpmTitle,
+    SEC.해응용,
+    mode < 2 ? "응용" : "심화",
+    (rng) => {
+      const r = intBetween(rng, 2, 9);
+      const p = intBetween(rng, 2, 6);
+      const q = intBetween(rng, 2, 7);
+      const a = p * r + q;
+      if (mode === 0) {
+        return {
+          content: `방정식 $${p}x+a=${a + p * r}$의 해가 $x=${r}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${a}$`,
+          solution: `$x=${r}$을 대입하면 $${p}\times${r}+a=${a + p * r}$이므로 $a=${a}$이다.`,
+          facts: { mode, r, p, q, a },
+        };
+      }
+      if (mode === 1) {
+        const b = q * r - p;
+        return {
+          content: `두 방정식 $${p}x=${p * r}$, $${q}x-b=${p}$의 해가 서로 같을 때, 상수 $b$의 값을 구하시오.`,
+          answer: `$${b}$`,
+          solution: `첫째 방정식의 해는 $x=${r}$이다. 둘째 방정식에 대입하면 $${q}\times${r}-b=${p}$이므로 $b=${b}$이다.`,
+          facts: { mode, r, p, q, a, b },
+        };
+      }
+      if (mode === 2) {
+        const k = intBetween(rng, 2, 5);
+        const b = k * r;
+        return {
+          content: `방정식 $\dfrac{x+a}{${k}}=${r + p}$의 해가 $x=${b}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${k * (r + p) - b}$`,
+          solution: `$x=${b}$를 대입하면 $\dfrac{${b}+a}{${k}}=${r + p}$이다. 따라서 $${b}+a=${k * (r + p)}$이므로 $a=${k * (r + p) - b}$이다.`,
+          facts: { mode, r, p, q, a, k, b },
+        };
+      }
+      if (mode === 3) {
+        const c = p * r - q;
+        return {
+          content: `방정식 $ax-${q}=${c}$의 해가 자연수 $${r}$일 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${p}$`,
+          solution: `$x=${r}$을 대입하면 $${r}a-${q}=${c}$이므로 $${r}a=${p * r}$, $a=${p}$이다.`,
+          facts: { mode, r, p, q, a, c },
+        };
+      }
+      if (mode === 4) {
+        const c = intBetween(rng, 2, 8);
+        return {
+          content: `방정식 $(a-${p})x=${c}$가 해를 갖지 않을 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${p}$`,
+          solution: `해가 없으려면 $x$의 계수는 $0$이고 우변은 $0$이 아니어야 한다. 따라서 $a-${p}=0$에서 $a=${p}$이다.`,
+          facts: { mode, r, p, q, a, c },
+        };
+      }
+      const b = intBetween(rng, 2, 8);
+      return {
+        content: `방정식 $a(x+${b})=${p}x+${p * b}$의 해가 무수히 많을 때, 상수 $a$의 값을 구하시오.`,
+        answer: `$${p}$`,
+        solution: `양변을 전개했을 때 $x$의 계수와 상수항이 각각 같아야 한다. $x$의 계수에서 $a=${p}$이고, 이때 상수항도 $${b}a=${p * b}$로 같다.`,
+        facts: { mode, r, p, q, a, b },
+      };
+    },
+  );
+}
+
+const SOLUTION_APPLICATION_SUPPLEMENTS = [
+  solutionApplicationSupplement("26", "해를 대입하여 상수 구하기", 0),
+  solutionApplicationSupplement("27", "해가 같은 두 방정식", 1),
+  solutionApplicationSupplement("28", "분수 꼴 방정식의 해와 상수", 2),
+  solutionApplicationSupplement("29", "자연수인 해를 이용하여 계수 구하기", 3),
+  solutionApplicationSupplement("30", "해가 없는 방정식의 조건", 4),
+  solutionApplicationSupplement("31", "해가 무수히 많은 방정식의 조건", 5),
+] as const;
+
 /** `ax+by+c` 몸통 — 17·18 이 두 문자 식을 낼 때 쓴다. */
 function lin2(a: number, b: number, c: number): string {
   const parts: string[] = [];
@@ -1072,6 +1153,7 @@ function itemLine(rng: Rng, items: readonly string[]): string | null {
 
 const EQ_TYPES: TypeEntry[] = [
   ...EQ_PROPERTY_SUPPLEMENTS,
+  ...SOLUTION_APPLICATION_SUPPLEMENTS,
   def(MINOR_EQ, "01", "등식", SEC.방정식해, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
