@@ -167,7 +167,7 @@ function equalityPropertySupplement(
         return {
           content: `등식 $x=${x}$의 양변에 $${a}$를 곱하여 얻은 등식을 쓰시오.`,
           answer: `$${a}x=${a * x}$`,
-          solution: `등식의 양변에 같은 수를 곱해도 등식은 성립하므로 $${a}x=${a}\times${x}=${a * x}$이다.`,
+          solution: `등식의 양변에 같은 수를 곱해도 등식은 성립하므로 $${a}x=${a}\\times${x}=${a * x}$이다.`,
           facts: { mode, x, a, b, c },
         };
       }
@@ -192,7 +192,7 @@ function equalityPropertySupplement(
         return {
           content: `등식 $${a}x+${b}=${a * x + b}$의 양변에 같은 수 $k$를 곱하였더니 $${c * a}x+${c * b}=${right}$이 되었다. $k$의 값을 구하시오.`,
           answer: `$${c}$`,
-          solution: `$${a}x$의 계수가 $${a}$에서 $${c * a}$로 바뀌었으므로 양변에 곱한 수는 $k=${c}$이다. 상수항도 $${b}\times${c}=${c * b}$로 조건을 만족한다.`,
+          solution: `$${a}x$의 계수가 $${a}$에서 $${c * a}$로 바뀌었으므로 양변에 곱한 수는 $k=${c}$이다. 상수항도 $${b}\\times${c}=${c * b}$로 조건을 만족한다.`,
           facts: { mode, x, a, b, c },
         };
       }
@@ -228,7 +228,7 @@ function solutionApplicationSupplement(
     rpmTitle,
     SEC.해응용,
     mode < 2 ? "응용" : "심화",
-    (rng) => {
+    (rng): Body => {
       const r = intBetween(rng, 2, 9);
       const p = intBetween(rng, 2, 6);
       const q = intBetween(rng, 2, 7);
@@ -237,7 +237,7 @@ function solutionApplicationSupplement(
         return {
           content: `방정식 $${p}x+a=${a + p * r}$의 해가 $x=${r}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `$x=${r}$을 대입하면 $${p}\times${r}+a=${a + p * r}$이므로 $a=${a}$이다.`,
+          solution: `$x=${r}$을 대입하면 $${p}\\times${r}+a=${a + p * r}$이므로 $a=${a}$이다.`,
           facts: { mode, r, p, q, a },
         };
       }
@@ -246,7 +246,7 @@ function solutionApplicationSupplement(
         return {
           content: `두 방정식 $${p}x=${p * r}$, $${q}x-b=${p}$의 해가 서로 같을 때, 상수 $b$의 값을 구하시오.`,
           answer: `$${b}$`,
-          solution: `첫째 방정식의 해는 $x=${r}$이다. 둘째 방정식에 대입하면 $${q}\times${r}-b=${p}$이므로 $b=${b}$이다.`,
+          solution: `첫째 방정식의 해는 $x=${r}$이다. 둘째 방정식에 대입하면 $${q}\\times${r}-b=${p}$이므로 $b=${b}$이다.`,
           facts: { mode, r, p, q, a, b },
         };
       }
@@ -254,9 +254,9 @@ function solutionApplicationSupplement(
         const k = intBetween(rng, 2, 5);
         const b = k * r;
         return {
-          content: `방정식 $\dfrac{x+a}{${k}}=${r + p}$의 해가 $x=${b}$일 때, 상수 $a$의 값을 구하시오.`,
+          content: `방정식 $\\dfrac{x+a}{${k}}=${r + p}$의 해가 $x=${b}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${k * (r + p) - b}$`,
-          solution: `$x=${b}$를 대입하면 $\dfrac{${b}+a}{${k}}=${r + p}$이다. 따라서 $${b}+a=${k * (r + p)}$이므로 $a=${k * (r + p) - b}$이다.`,
+          solution: `$x=${b}$를 대입하면 $\\dfrac{${b}+a}{${k}}=${r + p}$이다. 따라서 $${b}+a=${k * (r + p)}$이므로 $a=${k * (r + p) - b}$이다.`,
           facts: { mode, r, p, q, a, k, b },
         };
       }

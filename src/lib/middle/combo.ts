@@ -396,49 +396,49 @@ function linearSystemFamily(id: string, mode: number): ComboFamily {
       const q = intBetween(rng, 2, 5);
       let content: string;
       let solution: string;
-      let answer = `$x=${x},\ y=${y}$`;
+      let answer = `$x=${x},\\ y=${y}$`;
       if (mode === 0) {
         const a = x + y;
         const b = x - y;
-        content = `연립방정식 $\begin{cases}x+y=${a}\\x-y=${b}\end{cases}$를 푸시오.`;
+        content = `연립방정식 $\\begin{cases}x+y=${a}\\x-y=${b}\\end{cases}$를 푸시오.`;
         solution = `두 식을 더하면 $2x=${2 * x}$이므로 $x=${x}$이다. 이를 첫째 식에 대입하면 $y=${a}-${x}=${y}$이다.`;
       } else if (mode === 1) {
         const a = p * x + y;
         const b = q * x + y;
-        content = `연립방정식 $\begin{cases}${p}x+y=${a}\\${q}x+y=${b}\end{cases}$를 푸시오.`;
-        solution = `두 식을 빼서 $${p - q}x=${a - b}$를 얻으므로 $x=${x}$이다. 이를 첫째 식에 대입하면 $y=${a}-${p}\times${x}=${y}$이다.`;
+        content = `연립방정식 $\\begin{cases}${p}x+y=${a}\\${q}x+y=${b}\\end{cases}$를 푸시오.`;
+        solution = `두 식을 빼서 $${p - q}x=${a - b}$를 얻으므로 $x=${x}$이다. 이를 첫째 식에 대입하면 $y=${a}-${p}\\times${x}=${y}$이다.`;
       } else if (mode === 2) {
         const d = y - p * x;
         const s = x + q * y;
-        content = `연립방정식 $\begin{cases}y=${p}x${signed(d)}\\x+${q}y=${s}\end{cases}$를 대입법으로 푸시오.`;
+        content = `연립방정식 $\\begin{cases}y=${p}x${signed(d)}\\x+${q}y=${s}\\end{cases}$를 대입법으로 푸시오.`;
         solution = `둘째 식의 $y$에 $${p}x${signed(d)}$를 대입하면 $x+${q}(${p}x${signed(d)})=${s}$이므로 $x=${x}$이다. 따라서 $y=${y}$이다.`;
       } else if (mode === 3) {
         const a = p * (x + y);
         const b = q * x - y;
-        content = `연립방정식 $\begin{cases}${p}(x+y)=${a}\\${q}x-y=${b}\end{cases}$를 푸시오.`;
+        content = `연립방정식 $\\begin{cases}${p}(x+y)=${a}\\${q}x-y=${b}\\end{cases}$를 푸시오.`;
         solution = `첫째 식의 양변을 $${p}$로 나누면 $x+y=${x + y}$이다. 이 식과 둘째 식을 더하면 $${q + 1}x=${(q + 1) * x}$이므로 $x=${x}$, $y=${y}$이다.`;
       } else if (mode === 4) {
         const a = p * x + q * y;
         const b = q * x - p * y;
-        content = `연립방정식 $\begin{cases}${p}x+${q}y=${a}\\${q}x-${p}y=${b}\end{cases}$를 가감법으로 푸시오.`;
+        content = `연립방정식 $\\begin{cases}${p}x+${q}y=${a}\\${q}x-${p}y=${b}\\end{cases}$를 가감법으로 푸시오.`;
         solution = `첫째 식에 $${p}$, 둘째 식에 $${q}$를 곱해 더하면 $${p * p + q * q}x=${(p * p + q * q) * x}$이므로 $x=${x}$이다. 대입하여 $y=${y}$를 얻는다.`;
       } else if (mode === 5) {
         const a = x + p * y;
         const b = q * x - y;
-        content = `연립방정식 $\begin{cases}\dfrac{x}{${p}}+y=${a / p}\\${q}x-y=${b}\end{cases}$를 푸시오.`;
+        content = `연립방정식 $\\begin{cases}\\dfrac{x}{${p}}+y=${a / p}\\${q}x-y=${b}\\end{cases}$를 푸시오.`;
         solution = `첫째 식의 양변에 $${p}$를 곱하면 $x+${p}y=${a}$이다. 정리한 두 식을 가감법으로 풀면 $x=${x}$, $y=${y}$이다.`;
       } else if (mode === 6) {
         const a = p * x + p * y;
         const b = q * x - q * y;
-        content = `연립방정식 $\begin{cases}${p}x+${p}y=${a}\\${q}x-${q}y=${b}\end{cases}$를 가장 간단한 식으로 고쳐 푸시오.`;
+        content = `연립방정식 $\\begin{cases}${p}x+${p}y=${a}\\${q}x-${q}y=${b}\\end{cases}$를 가장 간단한 식으로 고쳐 푸시오.`;
         solution = `첫째 식을 $${p}$로, 둘째 식을 $${q}$로 나누면 $x+y=${x + y}$, $x-y=${x - y}$이다. 두 식을 더하고 대입하면 $x=${x}$, $y=${y}$이다.`;
       } else {
         const a = x + y;
         const b = p * x - y;
         const value = q * x + p * y;
-        content = `연립방정식 $\begin{cases}x+y=${a}\\${p}x-y=${b}\end{cases}$의 해가 $(x, y)$일 때, $${q}x+${p}y$의 값을 구하시오.`;
+        content = `연립방정식 $\\begin{cases}x+y=${a}\\${p}x-y=${b}\\end{cases}$의 해가 $(x, y)$일 때, $${q}x+${p}y$의 값을 구하시오.`;
         answer = `$${value}$`;
-        solution = `두 식을 더하면 $${p + 1}x=${(p + 1) * x}$이므로 $x=${x}$이고, $y=${y}$이다. 따라서 $${q}x+${p}y=${q}\times${x}+${p}\times${y}=${value}$이다.`;
+        solution = `두 식을 더하면 $${p + 1}x=${(p + 1) * x}$이므로 $x=${x}$이고, $y=${y}$이다. 따라서 $${q}x+${p}y=${q}\\times${x}+${p}\\times${y}=${value}$이다.`;
       }
       return {
         content,
@@ -481,33 +481,34 @@ function repeatingDecimalEntry(index: number, title: string): TypeEntry {
       const digit = n % 2 === 1 ? a : b;
       const bodies = [
         {
-          content: `순환소수 $0.${block}${block}\cdots$의 순환마디를 쓰시오.`,
+          content: `순환소수 $0.${block}${block}\\cdots$의 순환마디를 쓰시오.`,
           answer: `$${block}$`,
           solution: `소수점 아래에서 $${block}$가 한없이 되풀이되므로 순환마디는 $${block}$이다.`,
         },
         {
-          content: `순환마디가 $${block}$인 순환소수 $0.${block}${block}\cdots$를 순환소수의 기호를 사용하여 나타내시오.`,
-          answer: `$0.\overline{${block}}$`,
-          solution: `되풀이되는 첫 숫자부터 마지막 숫자까지 윗줄을 그으면 $0.\overline{${block}}$이다.`,
+          content: `순환마디가 $${block}$인 순환소수 $0.${block}${block}\\cdots$를 순환소수의 기호를 사용하여 나타내시오.`,
+          answer: `$0.\\overline{${block}}$`,
+          solution: `되풀이되는 첫 숫자부터 마지막 숫자까지 윗줄을 그으면 $0.\\overline{${block}}$이다.`,
         },
         {
-          content: `순환소수 $0.\overline{${block}}$의 순환마디를 이루는 숫자의 개수를 구하시오.`,
+          content: `순환소수 $0.\\overline{${block}}$의 순환마디를 이루는 숫자의 개수를 구하시오.`,
           answer: `$2$개`,
           solution: `순환마디는 두 자리 수 $${block}$이므로 숫자의 개수는 $2$개이다.`,
         },
         {
-          content: `순환소수 $0.\overline{${block}}$의 소수점 아래 ${n}번째 자리의 숫자를 구하시오.`,
+          content: `순환소수 $0.\\overline{${block}}$의 소수점 아래 ${n}번째 자리의 숫자를 구하시오.`,
           answer: `$${digit}$`,
           solution: `순환마디의 길이는 $2$이다. $${n}$을 $2$로 나눈 나머지에 따라 소수점 아래 ${n}번째 숫자는 $${digit}$이다.`,
         },
         {
-          content: `두 순환소수 $0.\overline{${a}${b}}$, $0.\overline{${b}${a}}$ 중 큰 수를 쓰시오.`,
-          answer: a > b ? `$0.\overline{${a}${b}}$` : `$0.\overline{${b}${a}}$`,
+          content: `두 순환소수 $0.\\overline{${a}${b}}$, $0.\\overline{${b}${a}}$ 중 큰 수를 쓰시오.`,
+          answer:
+            a > b ? `$0.\\overline{${a}${b}}$` : `$0.\\overline{${b}${a}}$`,
           solution: `소수점 아래 첫째 자리의 숫자를 비교하면 $${Math.max(a, b)}>${Math.min(a, b)}$이므로 첫째 자리가 더 큰 순환소수가 크다.`,
         },
         {
-          content: `순환소수 $2.${block}${block}\cdots$의 정수 부분과 순환마디를 차례로 쓰시오.`,
-          answer: `$2,\ ${block}$`,
+          content: `순환소수 $2.${block}${block}\\cdots$의 정수 부분과 순환마디를 차례로 쓰시오.`,
+          answer: `$2,\\ ${block}$`,
           solution: `소수점 왼쪽의 정수 부분은 $2$이고, 소수점 아래에서 되풀이되는 순환마디는 $${block}$이다.`,
         },
       ][index - 1]!;

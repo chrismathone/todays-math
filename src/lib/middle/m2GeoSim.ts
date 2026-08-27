@@ -159,9 +159,9 @@ function areaVolumeRatioSupplement(
         const area = p * p * k;
         const x = q * q * k;
         return {
-          content: `닮은 두 삼각형의 닮음비가 $${p}:${q}$이고 작은 삼각형의 넓이가 $${area}\,\mathrm{cm}^2$일 때, 큰 삼각형의 넓이를 구하시오.`,
-          answer: `$${x}\,\mathrm{cm}^2$`,
-          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\times\dfrac{${q * q}}{${p * p}}=${x}\,(\mathrm{cm}^2)$이다.`,
+          content: `닮은 두 삼각형의 닮음비가 $${p}:${q}$이고 작은 삼각형의 넓이가 $${area}\\,\\mathrm{cm}^2$일 때, 큰 삼각형의 넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `넓이의 비는 $${p}^2:${q}^2=${p * p}:${q * q}$이다. 따라서 큰 삼각형의 넓이는 $${area}\\times\\dfrac{${q * q}}{${p * p}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { mode, p, q, k, area, x },
         };
       }
@@ -185,18 +185,18 @@ function areaVolumeRatioSupplement(
         const surface = p * p * k;
         const x = q * q * k;
         return {
-          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 겉넓이가 $${surface}\,\mathrm{cm}^2$일 때, 큰 입체도형의 겉넓이를 구하시오.`,
-          answer: `$${x}\,\mathrm{cm}^2$`,
-          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\times\dfrac{${q * q}}{${p * p}}=${x}\,(\mathrm{cm}^2)$이다.`,
+          content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 겉넓이가 $${surface}\\,\\mathrm{cm}^2$일 때, 큰 입체도형의 겉넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `겉넓이의 비는 닮음비의 제곱인 $${p * p}:${q * q}$이다. 따라서 큰 입체도형의 겉넓이는 $${surface}\\times\\dfrac{${q * q}}{${p * p}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { mode, p, q, k, surface, x },
         };
       }
       const volume = p * p * p * k;
       const x = q * q * q * k;
       return {
-        content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 부피가 $${volume}\,\mathrm{cm}^3$일 때, 큰 입체도형의 부피를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}^3$`,
-        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\times\dfrac{${q * q * q}}{${p * p * p}}=${x}\,(\mathrm{cm}^3)$이다.`,
+        content: `닮은 두 입체도형의 닮음비가 $${p}:${q}$이고 작은 입체도형의 부피가 $${volume}\\,\\mathrm{cm}^3$일 때, 큰 입체도형의 부피를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^3$`,
+        solution: `부피의 비는 $${p}^3:${q}^3=${p * p * p}:${q * q * q}$이다. 따라서 큰 입체도형의 부피는 $${volume}\\times\\dfrac{${q * q * q}}{${p * p * p}}=${x}\\,(\\mathrm{cm}^3)$이다.`,
         facts: { mode, p, q, k, volume, x },
       };
     },
@@ -1534,9 +1534,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const treeS = poleS * j;
       const x = poleH * j;
       return {
-        content: `높이가 $${poleH}\,\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\,\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\,\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
-        answer: `$${x}\,\mathrm{m}$`,
-        solution: `같은 시각에 햇빛이 이루는 각의 크기가 같으므로 막대와 그림자가 이루는 삼각형과 나무와 그림자가 이루는 삼각형은 $\mathrm{AA}$ 닮음이다.\n(막대의 높이)$:$(막대의 그림자)$=$(나무의 높이)$:$(나무의 그림자)이므로 $${poleH}:${poleS}=x:${treeS}$이다.\n$${poleS}x=${poleH}\times${treeS}=${poleH * treeS}$이므로 $x=${x}$이다.`,
+        content: `높이가 $${poleH}\\,\\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\\,\\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\\,\\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{m}$`,
+        solution: `같은 시각에 햇빛이 이루는 각의 크기가 같으므로 막대와 그림자가 이루는 삼각형과 나무와 그림자가 이루는 삼각형은 $\\mathrm{AA}$ 닮음이다.\n(막대의 높이)$:$(막대의 그림자)$=$(나무의 높이)$:$(나무의 그림자)이므로 $${poleH}:${poleS}=x:${treeS}$이다.\n$${poleS}x=${poleH}\\times${treeS}=${poleH * treeS}$이므로 $x=${x}$이다.`,
         facts: { mode, poleH, poleS, treeS, x },
         figureSpec: figShadow14(poleH, poleS, treeS, {
           poleH: `${poleH} m`,
@@ -1599,9 +1599,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const c = (a / g) * t;
       const x = (b / g) * t;
       return {
-        content: `그림과 같이 세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 각각 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\overline{AB}=${a}\,\mathrm{cm}$, $\overline{BC}=${b}\,\mathrm{cm}$, $\overline{DE}=${c}\,\mathrm{cm}$일 때, $\overline{EF}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $\overline{AB}:\overline{BC}=\overline{DE}:\overline{EF}$이다.\n$${a}:${b}=${c}:\overline{EF}$에서 $${a}\times\overline{EF}=${b}\times${c}=${b * c}$이므로 $\overline{EF}=${x}\,\mathrm{cm}$이다.`,
+        content: `그림과 같이 세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 각각 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{DE}=${c}\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `세 평행선이 두 직선과 만나서 생긴 선분의 길이의 비는 같으므로 $\\overline{AB}:\\overline{BC}=\\overline{DE}:\\overline{EF}$이다.\n$${a}:${b}=${c}:\\overline{EF}$에서 $${a}\\times\\overline{EF}=${b}\\times${c}=${b * c}$이므로 $\\overline{EF}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { mode: 0, a, b, c, x },
         figureSpec: figThreeParallel08(a, b, {
           a: `${a} cm`,
@@ -2187,9 +2187,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const bc = (p + q) * k;
       const x = p * k;
       return {
-        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BC}=${bc}\,\mathrm{cm}$일 때, $\overline{BD}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `$\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}=${p}:${q}$이다. $\overline{BC}=${bc}\,\mathrm{cm}$이므로 $\overline{BD}=${bc}\times\dfrac{${p}}{${p + q}}=${x}\,(\mathrm{cm})$이다.`,
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{BC}=${bc}\\,\\mathrm{cm}$이므로 $\\overline{BD}=${bc}\\times\\dfrac{${p}}{${p + q}}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, k, ab, ac, bc, x },
       };
     },
@@ -2212,9 +2212,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const dc = q * baseScale;
       const x = ab + ac + bd + dc;
       return {
-        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `$\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}=${p}:${q}$이므로 $\overline{DC}=${dc}\,\mathrm{cm}$이다. 따라서 둘레의 길이는 $${ab}+${ac}+${bd}+${dc}=${x}\,(\mathrm{cm})$이다.`,
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=${p}:${q}$이므로 $\\overline{DC}=${dc}\\,\\mathrm{cm}$이다. 따라서 둘레의 길이는 $${ab}+${ac}+${bd}+${dc}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, ab, ac, bd, dc, x },
       };
     },
@@ -2236,9 +2236,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const dc = q * baseScale;
       const x = p * sideScale;
       return {
-        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$, $\overline{DC}=${dc}\,\mathrm{cm}$일 때, $\overline{AB}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `$\overline{AB}:\overline{AC}=\overline{BD}:\overline{DC}$이므로 $\overline{AB}:${ac}=${bd}:${dc}$이다. 따라서 $\overline{AB}=${ac}\times\dfrac{${bd}}{${dc}}=${x}\,(\mathrm{cm})$이다.`,
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$, $\\overline{DC}=${dc}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{DC}$이므로 $\\overline{AB}:${ac}=${bd}:${dc}$이다. 따라서 $\\overline{AB}=${ac}\\times\\dfrac{${bd}}{${dc}}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, ac, bd, dc, x },
       };
     },
@@ -2258,9 +2258,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const right = q * k;
       const x = left + right;
       return {
-        content: `삼각형 $ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고 점 $D$는 $\overline{BC}$ 위에 있다. $\overline{AB}:\overline{AC}=${p}:${q}$이고 삼각형 $ABD$의 넓이가 $${left}\,\mathrm{cm}^2$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}^2$`,
-        solution: `두 삼각형 $ABD$, $ACD$는 높이가 같고 밑변의 비가 $${p}:${q}$이므로 넓이의 비도 $${p}:${q}$이다. 삼각형 $ACD$의 넓이는 $${right}\,\mathrm{cm}^2$이므로 삼각형 $ABC$의 넓이는 $${left}+${right}=${x}\,(\mathrm{cm}^2)$이다.`,
+        content: `삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 이등분선이고 점 $D$는 $\\overline{BC}$ 위에 있다. $\\overline{AB}:\\overline{AC}=${p}:${q}$이고 삼각형 $ABD$의 넓이가 $${left}\\,\\mathrm{cm}^2$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}^2$`,
+        solution: `두 삼각형 $ABD$, $ACD$는 높이가 같고 밑변의 비가 $${p}:${q}$이므로 넓이의 비도 $${p}:${q}$이다. 삼각형 $ACD$의 넓이는 $${right}\\,\\mathrm{cm}^2$이므로 삼각형 $ABC$의 넓이는 $${left}+${right}=${x}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { p, q, k, left, right, x },
       };
     },
@@ -2283,9 +2283,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const dc = q * t;
       const x = intBetween(rng, 28, 72);
       return {
-        content: `삼각형 $ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BD}=${bd}\,\mathrm{cm}$, $\overline{DC}=${dc}\,\mathrm{cm}$이다. $\angle BAD=${x}^\circ$일 때, $\angle DAC$의 크기를 구하시오.`,
-        answer: `$${x}^\circ$`,
-        solution: `$\overline{AB}:\overline{AC}=${ab}:${ac}=${p}:${q}$이고 $\overline{BD}:\overline{DC}=${bd}:${dc}=${p}:${q}$이다. 각의 이등분선의 성질의 역에 의해 $\overline{AD}$는 $\angle A$의 이등분선이므로 $\angle DAC=\angle BAD=${x}^\circ$이다.`,
+        content: `삼각형 $ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BD}=${bd}\\,\\mathrm{cm}$, $\\overline{DC}=${dc}\\,\\mathrm{cm}$이다. $\\angle BAD=${x}^\\circ$일 때, $\\angle DAC$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이고 $\\overline{BD}:\\overline{DC}=${bd}:${dc}=${p}:${q}$이다. 각의 이등분선의 성질의 역에 의해 $\\overline{AD}$는 $\\angle A$의 이등분선이므로 $\\angle DAC=\\angle BAD=${x}^\\circ$이다.`,
         facts: { p, q, ab, ac, bd, dc, x },
       };
     },
@@ -2306,9 +2306,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const bc = (p - q) * intBetween(rng, 2, 5);
       const x = (q * bc) / (p - q);
       return {
-        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\overline{AB}=${ab}\,\mathrm{cm}$, $\overline{AC}=${ac}\,\mathrm{cm}$, $\overline{BC}=${bc}\,\mathrm{cm}$일 때, $\overline{CD}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `외각의 이등분선의 성질에 의해 $\overline{BD}:\overline{CD}=\overline{AB}:\overline{AC}=${p}:${q}$이다. $\overline{BD}=\overline{BC}+\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이다.`,
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `외각의 이등분선의 성질에 의해 $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}=${p}:${q}$이다. $\\overline{BD}=\\overline{BC}+\\overline{CD}$이므로 $(${bc}+x):x=${p}:${q}$이다. 이를 풀면 $x=${x}$이다.`,
         facts: { p, q, ab, ac, bc, x },
       };
     },
@@ -2327,9 +2327,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const d = intBetween(rng, 2, 5) * q;
       const x = ((p - q) * d) / q;
       return {
-        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\overline{AB}:${"\\overline{AC}"}=${p}:${q}$이고 $\overline{CD}=${d}\,\mathrm{cm}$일 때, $\overline{BC}$의 길이를 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `$\overline{BD}:\overline{CD}=${p}:${q}$이고 $\overline{BD}=\overline{BC}+\overline{CD}$이다. 따라서 $(x+${d}):${d}=${p}:${q}$이므로 $q x=${(p - q) * d}$, $x=${x}$이다.`,
+        content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 $BC$의 연장선과 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}:${"\\overline{AC}"}=${p}:${q}$이고 $\\overline{CD}=${d}\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. 따라서 $(x+${d}):${d}=${p}:${q}$이므로 $q x=${(p - q) * d}$, $x=${x}$이다.`,
         facts: { p, q, d, x },
       };
     },
@@ -2348,9 +2348,9 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const outside = (p - q) * intBetween(rng, 2, 5);
       const x = (p * inside) / (p + q) + (q * outside) / (p - q);
       return {
-        content: `서로 닮은 두 삼각형에서 대응하는 두 변의 길이의 비가 각각 $${p}:${q}$이다. 첫째 삼각형의 내각의 이등분선이 마주 보는 변(길이 $${inside}\,\mathrm{cm}$)을 긴 쪽부터 나눈 길이와, 둘째 삼각형의 외각의 이등분선이 만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이($\overline{BC}=${outside}\,\mathrm{cm}$)의 합을 구하시오.`,
-        answer: `$${x}\,\mathrm{cm}$`,
-        solution: `내분에서 긴 쪽은 $${inside}\times\dfrac{${p}}{${p + q}}=${(p * inside) / (p + q)}\,(\mathrm{cm})$이다. 외분에서 짧은 변에 대응하는 바깥 선분은 $${outside}\times\dfrac{${q}}{${p - q}}=${(q * outside) / (p - q)}\,(\mathrm{cm})$이다. 따라서 합은 $${x}\,\mathrm{cm}$이다.`,
+        content: `서로 닮은 두 삼각형에서 대응하는 두 변의 길이의 비가 각각 $${p}:${q}$이다. 첫째 삼각형의 내각의 이등분선이 마주 보는 변(길이 $${inside}\\,\\mathrm{cm}$)을 긴 쪽부터 나눈 길이와, 둘째 삼각형의 외각의 이등분선이 만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이($\\overline{BC}=${outside}\\,\\mathrm{cm}$)의 합을 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `내분에서 긴 쪽은 $${inside}\\times\\dfrac{${p}}{${p + q}}=${(p * inside) / (p + q)}\\,(\\mathrm{cm})$이다. 외분에서 짧은 변에 대응하는 바깥 선분은 $${outside}\\times\\dfrac{${q}}{${p - q}}=${(q * outside) / (p - q)}\\,(\\mathrm{cm})$이다. 따라서 합은 $${x}\\,\\mathrm{cm}$이다.`,
         facts: { p, q, inside, outside, x },
       };
     },
