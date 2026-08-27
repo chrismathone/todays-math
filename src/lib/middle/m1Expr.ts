@@ -131,6 +131,92 @@ function lin(a: number, b: number, v = "x"): string {
   return parts.join("");
 }
 
+function equalityPropertySupplement(
+  rpmType: string,
+  rpmTitle: string,
+  mode: number,
+): TypeEntry {
+  return def(
+    MINOR_EQ,
+    rpmType,
+    rpmTitle,
+    SEC.등식성질,
+    mode < 4 ? "기본" : "응용",
+    (rng) => {
+      const x = intBetween(rng, 2, 9);
+      const a = intBetween(rng, 2, 7);
+      const b = intBetween(rng, 2, 9);
+      const c = intBetween(rng, 2, 6);
+      if (mode === 0) {
+        return {
+          content: `등식 $${a}x=${a * x}$의 양변에 $${b}$를 더하여 얻은 등식을 쓰시오.`,
+          answer: `$${a}x+${b}=${a * x + b}$`,
+          solution: `등식의 양변에 같은 수를 더해도 등식은 성립하므로 $${a}x+${b}=${a * x}+${b}$, 즉 $${a}x+${b}=${a * x + b}$이다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$를 빼어 얻은 등식을 쓰시오.`,
+          answer: `$${a}x=${a * x}$`,
+          solution: `등식의 양변에서 같은 수를 빼도 등식은 성립한다. 따라서 $${a}x+${b}-${b}=${a * x + b}-${b}$에서 $${a}x=${a * x}$이다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `등식 $x=${x}$의 양변에 $${a}$를 곱하여 얻은 등식을 쓰시오.`,
+          answer: `$${a}x=${a * x}$`,
+          solution: `등식의 양변에 같은 수를 곱해도 등식은 성립하므로 $${a}x=${a}\times${x}=${a * x}$이다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `등식 $${a}x=${a * x}$의 양변을 $${a}$로 나누어 얻은 등식을 쓰시오.`,
+          answer: `$x=${x}$`,
+          solution: `$${a}\ne0$이므로 등식의 양변을 $${a}$로 나누어도 등식은 성립한다. 따라서 $x=${x}$이다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      if (mode === 4) {
+        return {
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에서 $${b}$를 뺀 뒤 양변을 $${a}$로 나누어 얻은 $x$의 값을 구하시오.`,
+          answer: `$${x}$`,
+          solution: `양변에서 $${b}$를 빼면 $${a}x=${a * x}$이고, 양변을 $${a}$로 나누면 $x=${x}$이다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      if (mode === 5) {
+        const right = c * (a * x + b);
+        return {
+          content: `등식 $${a}x+${b}=${a * x + b}$의 양변에 같은 수 $k$를 곱하였더니 $${c * a}x+${c * b}=${right}$이 되었다. $k$의 값을 구하시오.`,
+          answer: `$${c}$`,
+          solution: `$${a}x$의 계수가 $${a}$에서 $${c * a}$로 바뀌었으므로 양변에 곱한 수는 $k=${c}$이다. 상수항도 $${b}\times${c}=${c * b}$로 조건을 만족한다.`,
+          facts: { mode, x, a, b, c },
+        };
+      }
+      const target = a * x + b;
+      return {
+        content: `등식 $${a}x+${b}=${target}$에서 등식의 성질을 한 번 사용하여 얻을 수 있는 등식 $x=${x}$에서, 양변에 마지막으로 나눈 수를 구하시오.`,
+        answer: `$${a}$`,
+        solution: `먼저 양변에서 $${b}$를 빼면 $${a}x=${a * x}$이다. 여기서 $x=${x}$를 얻으려면 양변을 $${a}$로 나누어야 한다.`,
+        facts: { mode, x, a, b, c },
+      };
+    },
+  );
+}
+
+const EQ_PROPERTY_SUPPLEMENTS = [
+  equalityPropertySupplement("19", "등식의 양변에 같은 수 더하기", 0),
+  equalityPropertySupplement("20", "등식의 양변에서 같은 수 빼기", 1),
+  equalityPropertySupplement("21", "등식의 양변에 같은 수 곱하기", 2),
+  equalityPropertySupplement("22", "등식의 양변을 같은 수로 나누기", 3),
+  equalityPropertySupplement("23", "등식의 성질을 연속하여 이용하기", 4),
+  equalityPropertySupplement("24", "등식의 성질에서 곱한 수 구하기", 5),
+  equalityPropertySupplement("25", "등식의 성질에서 나눈 수 구하기", 6),
+] as const;
+
 /** `ax+by+c` 몸통 — 17·18 이 두 문자 식을 낼 때 쓴다. */
 function lin2(a: number, b: number, c: number): string {
   const parts: string[] = [];
@@ -985,6 +1071,7 @@ function itemLine(rng: Rng, items: readonly string[]): string | null {
 }
 
 const EQ_TYPES: TypeEntry[] = [
+  ...EQ_PROPERTY_SUPPLEMENTS,
   def(MINOR_EQ, "01", "등식", SEC.방정식해, "기본", (rng) =>
     attempt(400, (): Body | null => {
       const L = intBetween(rng, 2, 3);
