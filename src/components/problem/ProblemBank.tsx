@@ -5,6 +5,7 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import { Button } from "@/components/ui/Button";
+import { ProblemGridSkeleton } from "@/components/ui/PageSkeletons";
 import type {
   Difficulty,
   ProblemSource,
@@ -646,10 +647,6 @@ export function ProblemBank() {
           {unitsError}
         </p>
       ) : null}
-      {loading ? (
-        <p className="mt-4 text-[12.5px] text-text-2">불러오는 중</p>
-      ) : null}
-
       {!loading && !error ? (
         <PaginationRow
           page={page}
@@ -677,6 +674,8 @@ export function ProblemBank() {
           ))
         ) : null}
       </section>
+
+      {loading ? <ProblemGridSkeleton /> : null}
 
       {!loading && !error && problems.length > 0 ? (
         <PaginationRow

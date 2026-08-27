@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
+import { TestReviewContentSkeleton } from "@/components/ui/PageSkeletons";
 
 import { ReviewProblemCard } from "./ReviewProblemCardLazy";
 import { useTestReview } from "./useTestReview";
@@ -31,11 +32,7 @@ export function TestReview({ testId }: Props) {
   );
 
   if (state.status === "loading") {
-    return (
-      <main className="px-8 py-6">
-        <p className="text-[12.5px] text-text-2">불러오는 중</p>
-      </main>
-    );
+    return <TestReviewContentSkeleton />;
   }
 
   if (state.status === "notfound") {

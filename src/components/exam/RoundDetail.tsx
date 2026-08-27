@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
+import { ExamDetailSkeleton } from "@/components/ui/PageSkeletons";
 
 import { basisLine, BlueprintPanel } from "./BlueprintPanel";
 import type { ExamRoundDetail } from "./examScreen.contract";
@@ -69,12 +70,14 @@ export function RoundDetail({
     );
   }
 
-  if (state.status !== "ready") {
+  if (state.status === "loading") {
+    return <ExamDetailSkeleton />;
+  }
+
+  if (state.status === "error") {
     return (
       <AppChrome tab="exam">
-        <div className="px-7 py-8 text-[13px] text-muted">
-          {state.status === "loading" ? "불러오는 중" : state.message}
-        </div>
+        <div className="px-7 py-8 text-[13px] text-muted">{state.message}</div>
       </AppChrome>
     );
   }

@@ -7,6 +7,7 @@ import { ClassTable } from "@/components/class/ClassTable";
 import { UnitTreePicker } from "@/components/progress/UnitTreePicker";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { ClassManageSkeleton } from "@/components/ui/PageSkeletons";
 import { useClassManage } from "@/hooks/useClassManage";
 import { findUnit, type UnitNode } from "@/lib/units/groupUnits";
 
@@ -19,7 +20,7 @@ export function ClassManage({ units }: ClassManageProps) {
   const current = findUnit(units, manage.currentUnitId);
 
   if (manage.status === "loading") {
-    return <p className="px-[26px] py-6 text-[12.5px]">불러오는 중</p>;
+    return <ClassManageSkeleton />;
   }
 
   if (manage.status === "error") {

@@ -14,6 +14,7 @@ import type { UnitEntity } from "@/contracts/unit.contract";
 import { recordProgress } from "@/lib/class/classApi";
 import { loadMainDashboard } from "@/lib/main/loadMainDashboard";
 import { buildClassRows, remainingCount } from "@/lib/main/pipeline";
+import { DashboardSkeleton } from "@/components/ui/PageSkeletons";
 
 import { ClassCard } from "./ClassCard";
 import { DailyReviewSection } from "./DailyReviewSection";
@@ -150,11 +151,7 @@ export function MainScreen() {
   }, [selectedClassId, state.status, displayedUnitId, committedUnitId]);
 
   if (state.status === "loading") {
-    return (
-      <div className="min-h-screen bg-canvas px-7 py-8 text-ink">
-        불러오는 중
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (state.status === "error") {

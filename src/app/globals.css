@@ -150,6 +150,66 @@ body {
   font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif;
 }
 
+/*
+ * 로딩 자리 — **기다리는 칸**이다. 색을 새로 들이지 않고 이미 그 뜻으로 쓰는
+ * 토큰을 그대로 쓴다(`--seg-empty` 는 `PipelineDots` 의 «대기» 색이다).
+ *
+ * 🔴 처음 판은 `#e5e7e8`·`#ececea`·`#d8e3ef` 를 **직접 적었다.** 이 팔레트는
+ *    따뜻한 중성(`#e9e9e6`·`#e1e1de`·`#b9b9b6`)인데 그 셋은 **차가운 회색·푸른색**
+ *    이라 지면에서 톤이 갈라진다 — 05 §0 이 금지한 「AI 공장식」이 이렇게 스며든다.
+ *    토큰으로 적으면 나중에 팔레트를 손봐도 로딩 자리가 같이 따라온다.
+ *
+ * 결은 하나만 쓴다 — 카드마다 따로 뛰는 것이 아니라 **느린 씻김 한 번**.
+ */
+.skeleton {
+  display: block;
+  overflow: hidden;
+  color: transparent;
+  background-color: var(--seg-empty);
+  background-image: linear-gradient(
+    100deg,
+    transparent 18%,
+    rgb(255 255 255 / 72%) 43%,
+    transparent 68%
+  );
+  background-repeat: no-repeat;
+  background-size: 240% 100%;
+  animation: skeleton-wash 1.8s ease-in-out 120ms infinite both;
+}
+
+/* 더 조용한 자리 — 곁다리 줄·보조 칸. */
+.skeleton-quiet {
+  background-color: var(--side);
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 62%) 45%,
+    transparent 70%
+  );
+}
+
+/* 눈이 먼저 닿아야 하는 자리 — 진행 막대처럼. 새 색이 아니라 한 단 짙은 회색. */
+.skeleton-accent {
+  background-color: var(--divider);
+}
+
+@keyframes skeleton-wash {
+  from {
+    background-position: 120% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+/* 움직임을 줄이라고 한 사람에게는 씻김을 끈다 — 칸은 그대로 남는다. */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background-image: none;
+  }
+}
+
 /* 손가락은 실제 조작 가능한 컨트롤만. 카드·행 본체에는 쓰지 않는다. */
 a[href]:not([aria-disabled="true"]),
 button:not(:disabled):not([aria-disabled="true"]),

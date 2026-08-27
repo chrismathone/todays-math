@@ -6,6 +6,7 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { TestSetupFieldsSkeleton } from "@/components/ui/PageSkeletons";
 import type { UnitEntity } from "@/contracts/unit.contract";
 
 import { AiDraftReview } from "./AiDraftReview";
@@ -130,9 +131,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
       {form.loadError ? (
         <p className="mt-4 text-[12.5px] text-g-red-text">{form.loadError}</p>
       ) : null}
-      {!form.ready && !form.loadError ? (
-        <p className="mt-4 text-[12.5px] text-text-2">불러오는 중</p>
-      ) : null}
+      {!form.ready && !form.loadError ? <TestSetupFieldsSkeleton /> : null}
       {form.ready ? (
         <form
           className="mt-6 grid max-w-none gap-4"

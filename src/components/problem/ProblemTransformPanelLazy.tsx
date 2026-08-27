@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import { ProblemTransformLoadingSkeleton } from "@/components/ui/PageSkeletons";
+
 /**
  * 변형 패널을 **지연 청크로 떼어 낸다** — `ProblemCardLazy` / `ProblemPanelsLazy` 와 같은 이유.
  *
@@ -22,5 +24,5 @@ if (typeof window !== "undefined") {
 
 export const ProblemTransformPanel = dynamic(loadTransformPanel, {
   ssr: false,
-  loading: () => null,
+  loading: ProblemTransformLoadingSkeleton,
 });

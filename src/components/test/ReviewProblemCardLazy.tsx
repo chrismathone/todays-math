@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import { ReviewProblemCardLoadingSkeleton } from "@/components/ui/PageSkeletons";
+
 /**
  * 검수 문제 카드를 **지연 청크로 떼어 낸다** (성능 수리 C-2).
  *
@@ -23,5 +25,5 @@ if (typeof window !== "undefined") {
 
 export const ReviewProblemCard = dynamic(loadReviewProblemCard, {
   ssr: false,
-  loading: () => null,
+  loading: ReviewProblemCardLoadingSkeleton,
 });

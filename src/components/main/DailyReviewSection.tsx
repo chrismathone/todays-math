@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { DailyReviewResponse } from "@/contracts/test.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import { loadDailyReview } from "@/lib/main/loadDailyReview";
+import { DailyReviewSkeleton } from "@/components/ui/PageSkeletons";
 
 /**
  * 오늘의 학생별 확인테스트 — 메인 상단 계기판 (원장님 확정 2026-08-21: Hi-fi ①).
@@ -123,15 +124,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
   }, [reloadKey]);
 
   if (state.status === "loading") {
-    return (
-      <section
-        aria-label="오늘의 확인테스트"
-        className="border-b border-divider px-5 py-3"
-      >
-        <p className={MICRO_LABEL}>오늘의 확인테스트</p>
-        <p className="mt-1 text-sm text-text-3">불러오는 중</p>
-      </section>
-    );
+    return <DailyReviewSkeleton />;
   }
   if (state.status === "error") {
     return (

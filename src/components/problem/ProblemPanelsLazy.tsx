@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import { ProblemPanelLoadingSkeleton } from "@/components/ui/PageSkeletons";
+
 /**
  * 변형 패널은 여기 없다 — 카드 안에서 열리므로 `ProblemTransformPanelLazy` 가 맡는다.
  *
@@ -30,10 +32,10 @@ if (typeof window !== "undefined") {
 
 export const ProblemRegisterForm = dynamic(loadRegisterForm, {
   ssr: false,
-  loading: () => null,
+  loading: ProblemPanelLoadingSkeleton,
 });
 
 export const ProblemGenerateForm = dynamic(loadGenerateForm, {
   ssr: false,
-  loading: () => null,
+  loading: ProblemPanelLoadingSkeleton,
 });

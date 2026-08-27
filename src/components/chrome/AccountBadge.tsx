@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { signOutAction } from "@/app/actions/auth";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 /**
  * 헤더 계정 구역 — **누구로 로그인했는지 항상 보인다** (D-77).
@@ -46,7 +47,9 @@ export function AccountBadge() {
       <span aria-hidden="true" className="text-[17.25px] text-[#C2C2C0]">
         │
       </span>
-      {email ? (
+      {email === undefined ? (
+        <Skeleton className="h-4 w-28" />
+      ) : email ? (
         <span
           data-testid="account-email"
           className="text-[15px] font-normal text-text-2"
