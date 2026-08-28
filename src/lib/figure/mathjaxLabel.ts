@@ -79,21 +79,35 @@ function ensure(): void {
  *   · `°`        → `^\circ`
  *   · 낱말(영문 2자 이상) → `\mathrm{…}`   (단위·함수 이름은 정자체다)
  *   · 빈칸       → `\,`                    (수식의 가는 빈칸)
- * 낱글자(`x`·`A`)는 변수이므로 그대로 둔다 — 그게 이탤릭이 되는 것이 맞다.
+ * 홑 **소문자**(`x`·`a`·`l`)는 변수라 이탤릭 그대로 두고, 홑 **대문자**(`A`·`O`)는
+ * **점 이름이라 정자체**로 돌린다 — 근거는 아래 주석에 실측으로 적었다.
  */
 function toTex(label: string): string {
   let text = label.trim();
-  if (text.startsWith("$") && text.endsWith("$") && text.length >= 2) {
+  // `$…$` 로 감싼 것은 **「이건 수식이다」는 뜻**이다 — 아래 «점 이름은 정자체»
+  // 규칙을 걸지 않는다. 넓이 `S`·부피 `V` 처럼 홑 대문자를 **변수로** 쓰려면
+  // 스펙에 `$S$` 라고 적으면 된다(손 예외 목록을 두지 않기 위한 탈출구).
+  const wasMath =
+    text.startsWith("$") && text.endsWith("$") && text.length >= 2;
+  if (wasMath) {
     text = text.slice(1, -1);
   }
   if (/\\[a-zA-Z]/.test(text)) return text.replace(/°/g, "^\\circ ");
   // ⚠️ **낱말 → `\mathrm` 을 먼저** 하고 `°` 를 나중에 옮긴다. 순서를 바꾸면 방금
   //    넣은 `\circ` 의 `circ` 가 낱말로 잡혀 `\mathrm{circ}` 가 되고, 지면에
   //    `125^\mathrm{circ}` 같은 날 글자가 그대로 나간다(실측으로 그랬다).
-  return text
-    .replace(/[A-Za-z]{2,}/g, (word) => `\\mathrm{${word}}`)
-    .replace(/ +/g, "\\,")
-    .replace(/°/g, "^\\circ ");
+  //
+  // 🔴 **홑 대문자는 «점 이름»이라 정자체다.** TeX 기본은 홑 글자를 변수로 보고
+  //    이탤릭으로 그리는데, 그러면 지면에서 **본문과 그림이 어긋난다** — 우리
+  //    문항 본문은 이미 `$\mathrm{ABCD}$` 로 적는다(중2 닮음 한 파일에만 166곳).
+  //    RPM 정본을 세어도 같다(`.rpm-src` 1-2 · 10~70쪽 · 그림 곁 낱글자 실측):
+  //    `A`(정자체 145/153)·`B`·`C`·`D`·`O`(29/37) 가 **`EHsang-Plain`(정자체)**,
+  //    소문자 `a`·`b`·`c`·`l`·`m`·`n`·`x`·`y` 는 **`EHsang-Italic`(이탤릭) 100%**.
+  //    그래서 대문자만 정자체로 돌리고 소문자는 그대로 둔다.
+  const romanized = wasMath
+    ? text.replace(/[A-Za-z]{2,}/g, (word) => `\\mathrm{${word}}`)
+    : text.replace(/[A-Za-z]{2,}|[A-Z]/g, (word) => `\\mathrm{${word}}`);
+  return romanized.replace(/ +/g, "\\,").replace(/°/g, "^\\circ ");
 }
 
 /**
@@ -158,6 +172,12 @@ export interface PlaceOptions {
    * 세로 가운데**다 — 초등 엔진이 그렇게 부른다.
    */
   centerY?: boolean;
+  /**
+   * 이 이름표의 **임자 꼭짓점**(그림 좌표). 점 이름표에만 있다.
+   * 없으면 판정기가 「가장 가까운 끝점」으로 임자를 추측해야 하고, 라벨이 두
+   * 꼭짓점 사이에 앉으면 엉뚱한 쪽을 집는다(`figure_scene` 의 점 라벨 주석).
+   */
+  owner?: { x: number; y: number };
 }
 
 /**
@@ -241,6 +261,9 @@ export function placeLabel(
     // 되짚기 어렵다. **그림 좌표 그대로** 여기 적는다.
     ` data-anchor="${anchor}"${halo ? ` data-halo="${f(halo.width)}"` : ""}` +
     ` data-x="${f(x)}" data-y="${f(yIn)}" data-base="${f(y)}"` +
+    (opts.owner
+      ? ` data-px="${f(opts.owner.x)}" data-py="${f(opts.owner.y)}"`
+      : "") +
     ` data-fs="${f(fontSize)}"` +
     ` data-w="${f(width)}"` +
     ` data-a="${f(laid.ascentEm * fontSize)}"` +

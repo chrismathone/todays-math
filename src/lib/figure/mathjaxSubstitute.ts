@@ -146,9 +146,18 @@ export function substituteLabels(svg: string): SubstituteResult {
     // (`_cell_center_text` 는 central, 좌표평면 라벨은 middle). 한쪽만 보면 나머지
     // 라벨이 밑선 기준으로 앉아 **한 줄 아래로 내려간다.**
     const baseline = attr(tag, "dominant-baseline");
+    // 「이 이름표의 임자 꼭짓점」 — 엔진이 적어 준다. 조판하면 `<text>` 가 통째로
+    // 사라지므로 여기서 옮기지 않으면 그 정보가 없어지고, 판정기는 다시 임자를
+    // **추측**하게 된다(`figure_scene` 의 점 라벨 주석 참조).
+    const px = Number(attr(tag, "data-px"));
+    const py = Number(attr(tag, "data-py"));
     const piece = placeLabel(laid, label, x, y, fs, color, halo, {
       anchor,
       centerY: baseline === "middle" || baseline === "central",
+      owner:
+        Number.isFinite(px) && Number.isFinite(py)
+          ? { x: px, y: py }
+          : undefined,
     });
     if (piece === null) {
       unresolved.push(label);

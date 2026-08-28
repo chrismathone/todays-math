@@ -31,6 +31,10 @@ from core.label_markup import (LabelMarkupError, label_pieces_svg,
 Number = int | float
 Box = tuple[float, float, float, float]
 _EPS = 1.0e-9
+
+# 붙은 변들의 단위벡터 합이 이보다 짧으면 **바깥이 정의되지 않는다**(선분 위의 점·
+# 교점). 억지로 방향을 정하지 않고 옛 순서로 물러선다 — `_outward_vector` 참조.
+_OUTWARD_MIN = 0.30
 _SAFE_PAINT_NAMES = {
     "black", "white", "gray", "grey", "red", "green", "blue", "yellow",
     "orange", "purple", "brown", "pink", "navy", "teal", "maroon",
@@ -1789,6 +1793,59 @@ class FigureScene:
                 return True
         return False
 
+    def _outward_vector(self, point: Point) -> tuple[float, float] | None:
+        """이 꼭짓점의 **바깥** — 붙은 변들의 반대 방향(외각 이등분선).
+
+        ## 왜 필요한가
+
+        종전에는 꼭짓점 라벨의 방향 후보가 «N, NE, E, SE, S, SW, W, NW» **고정
+        순서**였고, 비용은 잉크를 밟을 때만 올랐다. 도형 **안쪽은 대개 비어
+        있으므로** 아래쪽 꼭짓점의 라벨은 잉크를 안 밟는 `N`(rank 0)을 그대로
+        집었다 — 즉 **안으로 들어갔다.**
+
+        가장 단순한 삼각형에서도 그랬다(실측 2026-08-28): 위 꼭짓점 `A` 는 5.2°
+        로 바깥인데 `B` 121.7° · `C` 116.6° 로 **셋 중 둘이 안쪽**이었다.
+        원장님이 짚으신 구각형의 `D`·`E`, 오각형의 `C`·`D`, 사각형의 `B` 가 전부
+        이 자리다.
+
+        ## 바깥을 어떻게 정하나 — 정본에서 뽑았다
+
+        RPM 지면을 벡터로 훑어 라벨 위치를 실측했다
+        (`scripts/qa/measure-rpm-label-placement.py`). **덩어리 중심의 반대쪽**
+        으로 재면 28.3% 가 «안쪽»으로 나온다 — 교재가 그럴 리 없고, 그 축이
+        오목한 도형·겹친 그림에서 바깥을 못 가리는 것이다.
+
+        바깥은 **국소적**이다. 꼭짓점 `V` 에 변 `V→N1 … V→Nk` 가 붙어 있으면
+        `−normalize(Σ normalize(Ni − V))` 가 외각 이등분선이고, 그 자로 다시 재니
+        RPM 은 **안쪽이 6.7%** 였다(그 6.7% 도 대부분 각 크기를 적는 `x`·`y` 라
+        도형 안쪽이 제자리다).
+
+        ⚠️ **합이 0에 가까우면 바깥이 없다.** 선분 위의 점(양쪽으로 뻗는다)·
+           두 현의 교점이 그렇다. 그때는 억지로 정하지 않고 `None` 을 돌려
+           옛 순서로 물러선다 — 못 가르는 것을 가른 척하면 **틀린 자리를
+           «근거 있는 자리»로 만든다.**
+        """
+        sx = sy = 0.0
+        incident = 0
+        for segment in self.segments.values():
+            if segment.p1 == point.name:
+                other = self.points[segment.p2]
+            elif segment.p2 == point.name:
+                other = self.points[segment.p1]
+            else:
+                continue
+            length = math.hypot(other.x - point.x, other.y - point.y)
+            if length > _EPS:
+                sx += (other.x - point.x) / length
+                sy += (other.y - point.y) / length
+                incident += 1
+        if incident == 0:
+            return None
+        length = math.hypot(sx, sy)
+        if length < _OUTWARD_MIN:
+            return None
+        return (-sx / length, -sy / length)
+
     def _label_vectors(self, label: PointLabel) -> list[tuple[float, float]]:
         point = self.points[label.point]
         compass = {
@@ -1827,12 +1884,25 @@ class FigureScene:
                 endpoint_vectors.append(
                     ((point.x - other.x) / length, (point.y - other.y) / length))
         if radial is None:
-            # Intersections look most natural below-left unless occupied; raw
-            # points prefer north.  Costs still decide among all candidates.
-            if point.kind == "intersection":
+            outward = self._outward_vector(point)
+            if outward is not None:
+                # 🔴 **여덟 방향 그대로 두고 «순서»만 바깥 기준으로 다시 매긴다.**
+                #    새 각도를 만들면 이미 옳던 라벨까지 조금씩 움직여 지면 전체가
+                #    흔들린다. 자리 집합은 그대로 두고 순서만 바꾸면, 바깥을 이미
+                #    보던 라벨은 **같은 칸**을 그대로 집는다(실측: 안 움직였다).
+                target = math.atan2(outward[1], outward[0])
+
+                def _turn(vector: tuple[float, float]) -> float:
+                    delta = math.atan2(vector[1], vector[0]) - target
+                    return abs(math.atan2(math.sin(delta), math.cos(delta)))
+
+                ordered = sorted(base, key=_turn)
+            elif point.kind == "intersection":
+                # Intersections look most natural below-left unless occupied.
                 ordered = [compass[key] for key in
                            ("SW", "SE", "NW", "NE", "S", "N", "W", "E")]
             else:
+                # 바깥을 못 정하는 raw 점 — 옛 순서(북쪽 먼저)로 물러선다.
                 ordered = base
             return endpoint_vectors + [vector for vector in ordered
                                        if vector not in endpoint_vectors]
@@ -2536,10 +2606,17 @@ class FigureScene:
             x, y = resolved.label_positions[point_name]
             fs = style.font_size if label.font_size is None else label.font_size
             italic = ' font-style="italic"' if label.italic else ""
+            # 🔴 **임자 꼭짓점을 적는다.** 안 적으면 판정기가 「가장 가까운 끝점」으로
+            #    임자를 **추측**하는데, 라벨이 두 꼭짓점 사이에 앉으면 엉뚱한 쪽을
+            #    집는다 — 실측 2026-08-28: 사각형 안 삼각형에서 `A` 의 이름표가
+            #    제 꼭짓점(25.3)보다 `F`(24.7)에 가까워, 멀쩡한 자리를 **178° 안쪽**
+            #    으로 판정했다. 하마터면 맞는 자리를 고치러 갈 뻔했다.
+            owner = self.points[label.point]
             labels.append(
                 f'<text x="{_fmt(x + tx)}" y="{_fmt(y + ty)}" '
                 f'font-family="{font_family}" font-size="{_fmt(fs)}"{italic} '
                 f'text-anchor="middle" fill="{escape(style.text_color, quote=True)}" '
+                f'data-px="{_fmt(owner.x + tx)}" data-py="{_fmt(owner.y + ty)}" '
                 f'{mj_attr(label.text)}>'
                 f'{label_pieces_svg(label.text, fs, style.font_family_italic)}</text>')
 

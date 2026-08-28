@@ -148,9 +148,16 @@ function main(): void {
     //       조판기는 그것을 `oldsymbol` 로 받는다 — `+` 가 0.778 → **0.894em** 이다.
     //       보통 굵기만 재면 어림이 아래로 새고, 실측으로 `timeAdd` 의 `+` 가
     //       왼쪽으로 1.61단위 잘려 나갔다(2026-08-28).
+    //    ⚠️ **홑 대문자는 2026-08-28 부터 정자체다**(점 이름 — `toTex` 주석 참조).
+    //       그러면 `typesetLabel("A")` 는 이탤릭 폭을 **더 이상 안 잰다.** 스펙이
+    //       `$A$` 로 이탤릭을 부를 수 있으므로 그쪽도 같이 재서 **넓은 쪽**을 쓴다.
+    //       한쪽만 재면 어림이 아래로 새고, 그러면 배치기가 「자리가 남는다」고
+    //       잘못 본다 — 이 표의 존재 이유가 그것이다.
     const cands = [
       typesetLabel(c)?.widthEm ?? 0,
       typesetLabel(c, true)?.widthEm ?? 0,
+      typesetLabel(`$${c}$`)?.widthEm ?? 0,
+      typesetLabel(`$${c}$`, true)?.widthEm ?? 0,
     ];
     if (/[A-Za-z]/.test(c)) {
       for (const bold of [false, true]) {

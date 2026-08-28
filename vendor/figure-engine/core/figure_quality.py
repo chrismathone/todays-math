@@ -139,7 +139,10 @@ _COMMON_ATTRS = _PRESENTATION_ATTRS
 # 값은 글자일 뿐 실행되지 않는다. 다만 "무해하다"에 기대지 않고 아래 값 검사에서
 # 꺾쇠·따옴표·앰퍼샌드를 **막는다** — 허용 목록을 넓힐 때 값 검사를 같이 넓히지
 # 않으면, 그 순간 지면에 마크업을 심는 통로가 열린다.
-_TEXT_ATTRS = frozenset({"x", "y", "dx", "dy", "rotate", "xml:space", "data-mj"})
+# `data-px`·`data-py` 는 **이 이름표의 임자 꼭짓점**이다(그림 좌표). 판정기가
+# 임자를 추측하지 않게 엔진이 직접 적는다 — `figure_scene` 의 점 라벨 주석 참조.
+_TEXT_ATTRS = frozenset({"x", "y", "dx", "dy", "rotate", "xml:space", "data-mj",
+                         "data-px", "data-py"})
 _MJ_MAX_LEN = 200
 _MJ_UNSAFE = "<>&" + chr(34) + chr(39)
 # `<g transform>` — 에셋 합성(figure_assets.py)이 조각을 배치하는 유일한 길이라
