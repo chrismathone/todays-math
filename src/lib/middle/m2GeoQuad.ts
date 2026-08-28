@@ -1051,9 +1051,14 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         answer: `$${x}^\\circ$`,
         solution: `$\\overline{AB}=\\overline{AD}$이므로 삼각형 $ABD$는 이등변삼각형이고 $\\angle ABD=\\angle ADB=${t}^\\circ$이다.\n$\\overline{AD}\\parallel\\overline{BC}$이므로 엇각에서 $\\angle DBC=\\angle ADB=${t}^\\circ$이다.\n따라서 $\\angle B=${t}^\\circ+${t}^\\circ=${x}^\\circ$이고, 등변사다리꼴이므로 $\\angle C=\\angle B=${x}^\\circ$이다.`,
         facts: { mode, t, x },
+        // 🔴 **발문이 건 조건($\overline{AB}=\overline{AD}$)을 그림이 지켜야** 한다.
+        //    윗변을 80 으로 못 박으면 $\overline{AD}=80$ 인데 $\overline{AB}=h/\sin(2t)$ 라
+        //    둘이 안 같고, 그러면 $\angle ADB \neq t$ 가 된다(실측 27° 라 적고 32.7° 를 그렸다).
+        //    등변사다리꼴에서 $\angle ADB=\angle DBC$(엇각)이고 $\angle ABD=\angle ADB$
+        //    (이등변)이므로 $\angle B=2t$ 는 그대로다 — 바뀌는 것은 윗변뿐이다.
         figureSpec: figIsoTrap(
-          80,
-          80 + 2 * r2(96 / Math.tan(2 * t * DEG)),
+          r2(96 / Math.sin(2 * t * DEG)),
+          r2(96 / Math.sin(2 * t * DEG)) + 2 * r2(96 / Math.tan(2 * t * DEG)),
           96,
           { diagBD: true, angADB: `${t}°` },
         ),

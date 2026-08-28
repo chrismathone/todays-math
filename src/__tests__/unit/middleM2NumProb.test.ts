@@ -1585,8 +1585,11 @@ describe("중2 수·확률 49유형 (2A-중2수확률 + 2E-회전판색칠)", ()
         if (!r.ok) continue;
         expect(figureSvgViewBoxWidth(r.svg)).toBe(SHADE_CANVAS_W);
         expect(figureSvgSize(r.svg)).toBe("mid");
-        // 채색 레이어가 스펙의 영역 수만큼 실제로 깔렸는가
-        const filled = r.svg.match(/stroke="none"/g)?.length ?? 0;
+        // 채색 레이어가 스펙의 영역 수만큼 실제로 깔렸는가.
+        // ⚠️ 열쇠는 `data-region` 이다 — 종전에는 `stroke="none"` 을 셌는데,
+        //    그건 **채색만 쓰는 낱말이 아니다.** MathJax 라벨 조각이 같은 글자를
+        //    달고 나온 날 4가 8이 됐다(2026-08-28). 세는 열쇠는 세려는 것이어야 한다.
+        const filled = r.svg.match(/ data-region="/g)?.length ?? 0;
         const wanted = Object.keys(
           (spec as { regions: Record<string, unknown> }).regions,
         ).length;

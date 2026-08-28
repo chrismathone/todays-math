@@ -212,8 +212,8 @@ describe.skipIf(!hasEngine)("[도형 v2] angles.arcs — 이중 호", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     const marks = groups(r.svg)[1] ?? "";
-    expect(marks).toContain("A 15.0 15.0");
-    expect(marks).toContain("A 12.0 12.0");
+    expect(marks).toContain("A 22.0 22.0");
+    expect(marks).toContain("A 19.0 19.0");
   });
 
   it("arcs 기본(1)은 호 하나", async () => {
@@ -221,8 +221,8 @@ describe.skipIf(!hasEngine)("[도형 v2] angles.arcs — 이중 호", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     const marks = groups(r.svg)[1] ?? "";
-    expect(marks.match(/A 15\.0 15\.0/g)?.length).toBe(1);
-    expect(marks).not.toContain("A 12.0 12.0");
+    expect(marks.match(/A 22\.0 22\.0/g)?.length).toBe(1);
+    expect(marks).not.toContain("A 19.0 19.0");
   });
 
   it("arcs:3·arcs:0 은 던진다", async () => {
@@ -261,8 +261,8 @@ describe.skipIf(!hasEngine)(
       expect(m).toBeTruthy();
       if (!m) return;
       const [x1, y1, x2, y2, x3, y3] = m.slice(1).map(Number);
-      expect(Math.hypot(x2 - x1, y2 - y1)).toBeCloseTo(8.25, 3);
-      expect(Math.hypot(x3 - x2, y3 - y2)).toBeCloseTo(8.25, 3);
+      expect(Math.hypot(x2 - x1, y2 - y1)).toBeCloseTo(12.1, 3);
+      expect(Math.hypot(x3 - x2, y3 - y2)).toBeCloseTo(12.1, 3);
     });
 
     it("90°가 아니면 던진다 — 마크가 아니라 기하를 고치라는 사유", async () => {

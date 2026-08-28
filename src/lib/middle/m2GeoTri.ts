@@ -202,7 +202,16 @@ function figIso02(t: number, d: number): Fig {
 
 function figIso03(a: number, mode: number): Fig {
   const L = 110;
-  const s = (L * Math.sin(3 * a * DEG)) / Math.sin(4 * a * DEG);
+  // 🔴 사인법칙의 분모가 틀려 있었다 — `sin(4a)` 였다.
+  //
+  // 이 그림의 삼각형 $ABC$ 는 $\angle B=a$, $\angle ADC=2a$(외각), $\overline{CD}=\overline{CA}$
+  // 이므로 $\angle A=\angle ADC=2a$ 이고 $\angle ACB=180^\circ-3a$ 다. 사인법칙은
+  //   $\overline{BA}/\sin(\angle ACB) = \overline{BC}/\sin(\angle A)$
+  // 즉 $s = L\cdot\sin(3a)/\sin(\mathbf{2}a)$ 다.
+  //
+  // ⚠️ $4a$ 를 쓰면 $\overline{CA}\neq\overline{CD}$ 가 되어 **발문의 전제가 그림에서
+  //    깨진다.** 실측 $a=32$ 에서 $\angle ACE$ 를 $96^\circ$ 라 적고 $84^\circ$ 를 그렸다.
+  const s = (L * Math.sin(3 * a * DEG)) / Math.sin(2 * a * DEG);
   const B: XY = [0, 0];
   const C: XY = [L, 0];
   const E: XY = [L + 34, 0];
@@ -638,7 +647,18 @@ function foldWidth(m: number, n: number): number {
 function figRightPair06(acute: number, mode: number): Fig {
   // 직각을 낀 두 변이 좌표축과 나란해야 fit 반올림 뒤에도 정확히 90°가 된다.
   const base = 78;
-  const rise = r2(base * Math.tan(acute * DEG));
+  // 🔴 **라벨이 가리키는 각에서 좌표를 유도한다.**
+  //
+  // 직각이 $C$ 이므로 $\angle A = 90^\circ - \angle B$ 다. `base·tan(t)` 는
+  // **$\angle B$** 를 $t$ 로 만든다 — mode 1 은 라벨을 **$\angle A$** 에 붙이므로
+  // 그 식을 쓰면 지면의 각이 $90^\circ - t$ 가 된다. 원장님이 2026-08-27 에
+  // 「각이 70도인데 전혀 70도처럼 안 생김」이라 하신 것이 이것이다(실제 20°).
+  //
+  // ⚠️ 그리는 각과 적는 각이 갈리면 **아무 관문도 안 운다** — 발문과 정답은 서로
+  //    맞고, 좌표가 유효하니 렌더도 성공한다. `probe-middle-figure-angles.ts` 가
+  //    그래서 태어났다.
+  const labelled = mode === 0 ? acute : 90 - acute; // 그림의 ∠B 가 될 각
+  const rise = r2(base * Math.tan(labelled * DEG));
   const gap = 46;
   const B: XY = [0, 0];
   const C: XY = [base, 0];

@@ -356,10 +356,21 @@ def unit_label_min_top() -> float:
 
 
 def _unit_label(left: float, top: float, ylab: str) -> str:
-    """세로축 단위는 눈금과 같은 열, 맨 위 눈금보다 한 줄 위."""
+    """세로축 단위는 눈금과 같은 열, 맨 위 눈금보다 한 줄 위.
+
+    🔴 **왼쪽 여백은 눈금 «숫자» 폭으로 정해진다** — 단위 이름표는 그 계산에
+       들어 있지 않다. 그래서 `(원)`(29.2단위)처럼 숫자보다 넓은 이름표는
+       왼쪽 끝을 **넘어가 잘렸다**(실측 -3.43단위, 짝 그래프). `_svg` 가
+       글자를 닻점으로만 세던 시절에는 에러도 안 났다.
+
+       이름표는 맨 위 눈금보다 **한 줄 위**에 있어 오른쪽으로 밀어도 눈금
+       숫자와 겹치지 않는다. 그래서 여기서 **못 나가게 붙든다** —
+       열 정렬이 조금 어긋나는 것보다 글자가 잘리는 편이 나쁘다.
+    """
     if not ylab:
         return ""
-    return _text(left - 7, top - UNIT_LABEL_DROP, ylab, size=UNIT_LABEL_SIZE, anchor="end")
+    x = max(left - 7, _label_w_max(ylab, UNIT_LABEL_SIZE))
+    return _text(x, top - UNIT_LABEL_DROP, ylab, size=UNIT_LABEL_SIZE, anchor="end")
 
 
 # 눈금 숫자 한 자의 폭(그림 단위, 14pt). **실측값이다** — 지면과 같은 렌더러
@@ -2058,10 +2069,15 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     ]
     parts += _hidden_lines(view, verts3, faces_idx)
 
+    avoid = _DimSpace(_seen_edges(view, [(e[0], e[1]) for e in _box_edges(w, d, h)]))
+
     def dim(a: tuple[float, float], b: tuple[float, float], label: str) -> None:
         span = math.hypot(b[0] - a[0], b[1] - a[1])
         off = _outward_off(a, b, inside, DIM_OFF if span >= 28 else DIM_OFF + 6)
-        parts.append(_length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12))
+        off, t = _dim_place(a, b, label, off, avoid, 12.0)
+        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+        parts.append(mark)
+        avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
 
     dim(p(0, 0, 0), p(w, 0, 0), f"{_n(w)} cm")
     dim(p(0, 0, 0), p(0, 0, h), f"{_n(h)} cm")
@@ -3102,7 +3118,170 @@ def _shape_keys(m: Any, name: str, required: frozenset[str], optional: frozenset
         raise ValueError(f"{name} 에 빠진 키: {', '.join(sorted(missing))}")
 
 
-def _cuboid_dim_parts(view, w: float, d: float, h: float, edges3) -> list[str]:
+# --- 치수 라벨을 **도형 밖으로** — RPM 0849 규칙 ---------------------------
+#
+# 정본(RPM 중1-2 유형08 0849)은 우리와 **같은 문제·같은 치수 여섯**을 그리는데,
+# 여섯 중 **다섯을 실루엣 바깥** 둘레에 두고 홈 속에는 하나만 넣는다(실측).
+# 우리는 거리를 `DIM_OFF`(=9) 로 **못 박아** 두어 라벨이 도형 위에 앉았다 —
+# `cutCuboid` 여섯 중 **넷**이 그랬다(실측 2026-08-28).
+#
+# 왜 그렇게 되나: 정본은 도형이 라벨보다 크다. 「도형 대각 ÷ 라벨 글자」가
+# 정본 **13.0**, 우리 **8.0** 이다(같은 문제로 실측). 도형이 작으면 고정 거리 9 는
+# 실루엣 **안쪽**에 떨어진다.
+#
+# ⚠️ **문턱을 올려서 고치지 마라.** 9 를 14 로 바꾸면 이 그림은 낫고 다른 그림은
+#    치수가 도형에서 떨어져 무엇을 잰 것인지 안 읽힌다. 거리는 도형마다 달라야 한다.
+#    그래서 여기서는 거리를 정하지 않고 **«비켰나»를 직접 묻는다** —
+#    좌표평면 `O` 를 고칠 때와 같은 방식이다(D-61 · `_cp_o_offset`).
+DIM_CLEAR = 1.5      # 라벨 상자와 획 사이 최소 여유(SVG 단위)
+DIM_PUSH_TRIES = 7   # 더 밀면 치수가 도형에서 떨어져 «무엇을 쟀나»가 안 읽힌다
+
+
+# 라벨을 선분 **위에서** 옮겨 볼 자리 (0=시작점 · 0.5=중점 · 1=끝점).
+# 정본은 거리를 늘리는 대신 이쪽을 쓴다 — 호가 짧아야 «무엇을 쟀나»가 읽힌다.
+DIM_TS = (0.5, 0.7, 0.3, 0.82, 0.18)
+
+
+def _dim_label_box(a, b, off: float, label: str, fs: float, t: float = 0.5):
+    """그 치수 라벨이 지면에서 차지할 상자.
+
+    🔴 **자리 계산을 옮겨 적지 않는다.** 제품이 실제로 그리는 그 문자열
+       (`core.figure_svg.dim_label`)을 만들어 `_text_bboxes` 로 잰다. vendor 의
+       `_label_push` 든 여기 폭 표든 한쪽만 바뀌면 자와 그림이 갈라진다 —
+       이 저장소가 여러 번 겪은 자리다.
+    """
+    from core.figure_svg import dim_label
+
+    boxes = _text_bboxes(dim_label(a[0], a[1], b[0], b[1], off, label, fs=fs, t=t))
+    return boxes[0][:4] if boxes else None
+
+
+def _dim_place(a, b, label: str, off: float, avoid,
+               fs: float = 12.0, slide_only: bool = False) -> tuple[float, float]:
+    """라벨이 획을 비키는 (거리, 선분 위 자리) 를 고른다.
+
+    ⚠️ **거리만 늘리면 안 된다.** `measured()` 는 같은 `off` 로 점선 호도 부풀리므로,
+       멀리 밀수록 호가 도형을 가로질러 «무엇을 잰 치수인가»가 안 읽힌다(실측).
+       정본은 호를 짧게 두고 라벨을 **선분 위에서** 옮긴다. 그래서 가까운 거리부터
+       보고, 같은 거리 안에서 `t` 를 먼저 흔든다.
+
+    `slide_only` — 반지름처럼 **그 선 자체가 치수선**인 경우(`off=0`). 옆으로 밀면
+    치수선에서 떨어져 「무엇을 잰 것인가」가 깨지므로 `t` 만 흔든다.
+
+    끝내 비킬 자리가 없으면 **획이 가장 적게 지나는** 자리를 고른다 — 안쪽으로
+    되돌리지 않는다(도형 한가운데보다 가장자리가 낫다).
+    """
+    if avoid is None:
+        return off, 0.5
+    segs, boxes = avoid.segs, avoid.boxes
+    if not segs and not boxes:
+        return off, 0.5
+    # 걸음을 잘게(0.25·fs) 해 «비키는 가장 가까운 자리»를 찾게도 해 봤다 —
+    # 그림은 눈으로 구분이 안 되고 겹침만 6 → 7 로 나빠졌다(실측). 굵은 걸음을 둔다.
+    step = max(4.0, 0.5 * fs)
+    best, best_hits = (off, 0.5), None
+    # 부르는 쪽의 `want` 는 **어느 쪽을 먼저 볼지**만 정한다. 먼저 그쪽을 다 보고,
+    # 끝내 못 비키면 **반대쪽**도 본다 — 홈이 왼쪽 끝에 붙은 컷처럼 «빈 하늘»이
+    # 부르는 쪽 예상과 반대편인 경우가 있다(실측 `cutCuboid` cut.x=0).
+    signs = (1.0,) if slide_only else (
+        1.0 if off >= 0 else -1.0, -1.0 if off >= 0 else 1.0)
+    for sign in signs:
+        base = abs(off) * sign
+        for k in range(1 if slide_only else DIM_PUSH_TRIES):
+            cand = base + sign * step * k
+            for t in DIM_TS:
+                box = _dim_label_box(a, b, cand, label, fs, t)
+                if box is None:
+                    return cand, t
+                pad = (box[0] - DIM_CLEAR, box[1] - DIM_CLEAR,
+                       box[2] + DIM_CLEAR, box[3] + DIM_CLEAR)
+                hits = sum(1 for p, q in segs if _seg_hits_box(p, q, pad))
+                # 이 후보의 **곡선**이 앞서 놓은 라벨을 무는가 — 라벨 자리만 보면
+                # 「내가 비켰다」는 참인데 「내 곡선이 남을 덮는다」가 안 보인다.
+                if boxes:
+                    curve = _dim_curve_segs(
+                        _length_mark(a[0], a[1], b[0], b[1], label, off=cand, fs=fs, t=t))
+                    hits += sum(1 for bx in boxes for p, q in curve
+                                if _seg_hits_box(p, q, bx))
+                if hits == 0:
+                    return cand, t
+                if best_hits is None or hits < best_hits:
+                    best, best_hits = (cand, t), hits
+    return best
+
+
+_DIM_PATH_RE = re.compile(
+    r'd="M ([-\d.]+) ([-\d.]+) Q ([-\d.]+) ([-\d.]+) ([-\d.]+) ([-\d.]+)"')
+
+
+def _dim_curve_segs(markup: str, steps: int = 12) -> list:
+    """치수 곡선(2차 베지에)을 화면 선분들로 — **그려 낸 그 markup 에서** 읽는다.
+
+    🔴 곡선 식을 여기 다시 적지 않는다. `core.figure_svg.meas` 가 정본이고,
+       그 식이 바뀌면 여기 사본만 옛 모양으로 남아 **초록인 채로** 눈이 먼다.
+
+    왜 필요한가: 라벨을 밖으로 밀면 **치수 곡선도 같이 나간다.** 그 곡선이
+    다음 라벨을 가로지르면 방금 고친 만큼 새 겹침이 생긴다 — 실측으로
+    `12 cm`·`6 cm` 를 비키게 하자 그 곡선이 `7 cm` 를 물었다.
+    """
+    m = _DIM_PATH_RE.search(markup)
+    if not m:
+        # ⚠️ **조용히 [] 를 내면 안 된다.** 그러면 「비켜야 할 것」에서 치수 곡선이
+        #    통째로 빠지고, 겹침이 0 으로 **줄어드는 게 아니라 안 보이게** 된다 —
+        #    0 은 «깨끗»과 «못 셈»을 안 가른다.
+        raise ValueError(f"치수 곡선을 못 읽었다 — meas() 의 path 모양이 바뀌었나: {markup[:120]}")
+    x0, y0, cx, cy, x1, y1 = (float(v) for v in m.groups())
+    pts = []
+    for i in range(steps + 1):
+        t = i / steps
+        u = 1.0 - t
+        pts.append((u * u * x0 + 2 * u * t * cx + t * t * x1,
+                    u * u * y0 + 2 * u * t * cy + t * t * y1))
+    return [(pts[i], pts[i + 1]) for i in range(steps)]
+
+
+class _DimSpace:
+    """치수를 놓을 때 **비켜야 할 것** — 획과 «이미 놓은 라벨 상자».
+
+    라벨 상자가 왜 필요한가: 곡선은 라벨과 같이 밀리므로, 뒤에 놓는 치수의 곡선이
+    **앞서 놓은 라벨**을 가로지를 수 있다. 획만 보면 그 자리는 구조적으로 안 보인다 —
+    실측으로 `cutCuboid` 에서 컷 치수 곡선이 `7 cm` 를 물었다(겹침 넷을 둘로 줄인
+    바로 그 회차에 **새로** 생겼다).
+    """
+
+    __slots__ = ("segs", "boxes")
+
+    def __init__(self, segs: list | None = None):
+        self.segs: list = list(segs or [])
+        self.boxes: list = []
+
+    def add(self, mark: str, box) -> None:
+        self.segs.extend(_dim_curve_segs(mark))
+        if box is not None:
+            self.boxes.append(box)
+
+
+def _seen_edges(view, edges3) -> list:
+    """3D 모서리 목록 → 화면 선분. 치수 라벨이 **비켜야 할 것**이다."""
+    return [(view(a3), view(b3)) for a3, b3 in edges3]
+
+
+def _chain_segs(view, chains) -> list:
+    """`_draw_chains` 에 넘긴 사슬 → 화면 선분 목록.
+
+    ⚠️ **그리는 것과 같은 목록**을 쓴다. 여기서 모서리를 다시 세면 한쪽만 늘어나
+       「라벨이 비켰다」가 거짓이 된다 — 원 구멍의 실루엣이 딱 그런 자리다.
+    """
+    out: list = []
+    for pts, _solid in chains:
+        scr = [view(q) for q in pts]
+        for i in range(len(scr) - 1):
+            out.append((scr[i], scr[i + 1]))
+    return out
+
+
+def _cuboid_dim_parts(view, w: float, d: float, h: float, edges3,
+                      avoid=None) -> list[str]:
     """직육면체 계열 바깥 치수 세 개 — `_cuboid` 와 같은 자리·같은 `measured()` 한 벌.
 
     edges3 는 (w모서리, h모서리, d모서리) 의 3D 끝점 쌍 — 컷이 그 모서리를 끊었으면
@@ -3114,17 +3293,30 @@ def _cuboid_dim_parts(view, w: float, d: float, h: float, edges3) -> list[str]:
         a, b = view(a3), view(b3)
         span = math.hypot(b[0] - a[0], b[1] - a[1])
         off = _outward_off(a, b, inside, DIM_OFF if span >= 28 else DIM_OFF + 6)
-        parts.append(_length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12))
+        off, t = _dim_place(a, b, label, off, avoid, 12.0)
+        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+        parts.append(mark)
+        if avoid is not None:
+            avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
     return parts
 
 
-def _dim_towards(view, a3, b3, label: str, want3, off_mag: float = DIM_OFF) -> str:
-    """치수 곡선을 3D 상의 want3 쪽(빈 공간)으로 밀어 measured() 로 긋는다."""
+def _dim_towards(view, a3, b3, label: str, want3, off_mag: float = DIM_OFF,
+                 avoid=None) -> str:
+    """치수 곡선을 3D 상의 want3 쪽(빈 공간)으로 밀어 measured() 로 긋는다.
+
+    `want3` 는 **어느 쪽**인지만 정한다 — **얼마나** 미는지는 `_dim_clear_off` 가
+    「비켰나」를 물어 정한다. 예전에는 `off_mag` 가 곧 거리라 라벨이 도형 위에 앉았다.
+    """
     a, b = view(a3), view(b3)
     mid = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
     wv = view(want3)
     off = _off_towards(a, b, (wv[0] - mid[0], wv[1] - mid[1]), off_mag)
-    return _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12)
+    off, t = _dim_place(a, b, label, off, avoid, 12.0)
+    mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+    if avoid is not None:
+        avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
+    return mark
 
 
 def _box_edges(w: float, d: float, h: float) -> list:
@@ -3187,20 +3379,30 @@ def _hollow_cyl(R: float, H: float, r: float) -> str:
         ([(-r, 0.0, 0.0), (-r, 0.0, H)], True),
     ]
     parts += _draw_chains(chains, view, hidden)
+    avoid = _DimSpace(_chain_segs(view, chains))
     # 치수 — 전부 measured() 한 벌(§4-16). 반지름은 중심에 점을 찍고 그 선 자체가
     # 치수선이 되게 off=0. 바깥 R 은 오른쪽, 구멍 r 은 왼쪽으로 갈라 겹치지 않는다.
+    #
+    # ⚠️ 반지름 라벨은 **옆으로 못 민다** — 밀면 치수선에서 떨어져 무엇을 잰 것인지
+    #    안 읽힌다. 대신 선 **위에서** 미끄러뜨린다(`slide_only`). 중심에서 곧장
+    #    절반 자리에 두면 안쪽 원의 타원을 그대로 물었다(실측: `8 cm`·`5 cm` 둘 다).
     c = view((0.0, 0.0, H))
     pR = view((R, 0.0, H))
     pr = view((-r, 0.0, H))
     parts.append(f'<circle cx="{_n(c[0])}" cy="{_n(c[1])}" r="2" fill="{INK}"/>')
-    parts.append(_length_mark(c[0], c[1], pR[0], pR[1], f"{_n(R)} cm", off=0, fs=12))
-    parts.append(_length_mark(c[0], c[1], pr[0], pr[1], f"{_n(r)} cm", off=0, fs=12))
-    tR, bR = view((R, 0.0, H)), view((R, 0.0, 0.0))
+    for q, text, want in ((pR, f"{_n(R)} cm", (R, 0.0, 2.0 * H)),
+                          (pr, f"{_n(r)} cm", (-r, 0.0, 2.0 * H))):
+        a2, b2 = (c[0], c[1]), (q[0], q[1])
+        wv = view(want)
+        off0 = _off_towards(a2, b2, (wv[0] - (a2[0] + b2[0]) / 2,
+                                     wv[1] - (a2[1] + b2[1]) / 2), DIM_OFF)
+        off, t = _dim_place(a2, b2, text, off0, avoid, 12.0)
+        mark = _length_mark(c[0], c[1], q[0], q[1], text, off=off, fs=12, t=t)
+        parts.append(mark)
+        avoid.add(mark, _dim_label_box(a2, b2, off, text, 12.0, t))
     parts.append(
-        _length_mark(
-            tR[0], tR[1], bR[0], bR[1], f"{_n(H)} cm",
-            off=_off_towards(tR, bR, (1.0, 0.0), DIM_OFF), fs=12,
-        )
+        _dim_towards(view, (R, 0.0, H), (R, 0.0, 0.0), f"{_n(H)} cm",
+                     (2 * R, 0.0, H / 2), DIM_OFF, avoid=avoid)
     )
     return _svg(svg_w, svg_h, "".join(parts))
 
@@ -3259,17 +3461,21 @@ def _hollow_box(w: float, d: float, h: float, cw: float, cd: float, hole_r: floa
             sy = d / 2 + hole_r * math.sin(t)
             chains.append(([(sx, sy, 0.0), (sx, sy, h)], True))
     parts += _draw_chains(chains, view, hidden)
+    avoid = _DimSpace(_chain_segs(view, chains))
     parts += _cuboid_dim_parts(
         view, w, d, h,
         (((0, 0, 0), (w, 0, 0)), ((0, 0, 0), (0, 0, h)), ((w, 0, 0), (w, d, 0))),
+        avoid=avoid,
     )
     if hole_r is None:
         void = ((hx0 + hx1) / 2, (hy0 + hy1) / 2, h)
         parts.append(
-            _dim_towards(view, (hx0, hy0, h), (hx1, hy0, h), f"{_n(cw)} cm", void, 8.0)
+            _dim_towards(view, (hx0, hy0, h), (hx1, hy0, h), f"{_n(cw)} cm", void, 8.0,
+                         avoid=avoid)
         )
         parts.append(
-            _dim_towards(view, (hx1, hy0, h), (hx1, hy1, h), f"{_n(cd)} cm", void, 8.0)
+            _dim_towards(view, (hx1, hy0, h), (hx1, hy1, h), f"{_n(cd)} cm", void, 8.0,
+                         avoid=avoid)
         )
     else:
         c = view((w / 2, d / 2, h))
@@ -3445,7 +3651,9 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
             a3, b3 = poly[i], poly[(i + 1) % m]
             key = tuple(sorted((tuple(round(c, 4) for c in a3), tuple(round(c, 4) for c in b3))))
             edge_map.setdefault(key, (a3, b3))
-    parts += _draw_chains([([a3, b3], True) for a3, b3 in edge_map.values()], view, hidden)
+    _cut_chains = [([a3, b3], True) for a3, b3 in edge_map.values()]
+    parts += _draw_chains(_cut_chains, view, hidden)
+    avoid = _DimSpace(_chain_segs(view, _cut_chains))
 
     # 바깥 치수 — 컷이 끊은 모서리에는 적지 않는다(성한 모서리로 옮긴다).
     w_edge = ((0, 0, 0), (w, 0, 0)) if not touch_b else ((0, d, h), (w, d, h))
@@ -3456,7 +3664,7 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
     else:
         h_edge = ((w, d, 0), (w, d, h))
     d_edge = ((w, 0, 0), (w, d, 0)) if not (touch_r and touch_b) else ((0, 0, 0), (0, d, 0))
-    parts += _cuboid_dim_parts(view, w, d, h, (w_edge, h_edge, d_edge))
+    parts += _cuboid_dim_parts(view, w, d, h, (w_edge, h_edge, d_edge), avoid=avoid)
 
     # 컷 치수 — 받은 값만 적는다(§4-20). 셋을 홈 안에 다 밀어 넣으면 서로 겹치므로
     # (0849 재현에서 실측) 폭·깊이는 위(빈 하늘)로, 높이만 홈의 빈 공간으로 민다.
@@ -3471,7 +3679,7 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
         else:
             a3, b3 = (cx, cd, h), (x1, cd, h)  # 바닥까지 뚫린 홈 — 뒷벽 윗모서리 위
             want = (cx + cw / 2, cd, h + 6.0)
-        parts.append(_dim_towards(view, a3, b3, f"{_n(cw)} cm", want, 9.0))
+        parts.append(_dim_towards(view, a3, b3, f"{_n(cw)} cm", want, 9.0, avoid=avoid))
     if given_d:
         if not touch_r:
             a3, b3 = (x1, 0.0, h), (x1, cd, h)
@@ -3482,7 +3690,7 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
         else:
             a3, b3 = (x1, 0.0, zf), (x1, cd, zf)
             want = (x1 + 5.0, cd / 2, zf - 3.0)
-        parts.append(_dim_towards(view, a3, b3, f"{_n(cd)} cm", want, 9.0))
+        parts.append(_dim_towards(view, a3, b3, f"{_n(cd)} cm", want, 9.0, avoid=avoid))
     if given_h:
         if not touch_r:
             a3, b3 = (x1, 0.0, zf), (x1, 0.0, h)
@@ -3491,11 +3699,12 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
         else:
             # 좌우가 다 바깥에 닿는 컷(폭 전체) — 뒷벽의 오른끝 세로 모서리에 적는다.
             a3, b3 = (w, cd, zf), (w, cd, h)
-        parts.append(_dim_towards(view, a3, b3, f"{_n(ch)} cm", void, 9.0))
+        parts.append(_dim_towards(view, a3, b3, f"{_n(ch)} cm", void, 9.0, avoid=avoid))
     # 컷 위치(x)는 양쪽에 기둥이 남을 때만 치수가 된다 — 왼기둥 폭으로 적는다.
     if x_given and not touch_l and not touch_r:
         parts.append(
-            _dim_towards(view, (0.0, 0.0, h), (cx, 0.0, h), f"{_n(cx)} cm", (cx / 2, 0.0, h + 6.0))
+            _dim_towards(view, (0.0, 0.0, h), (cx, 0.0, h), f"{_n(cx)} cm",
+                         (cx / 2, 0.0, h + 6.0), avoid=avoid)
         )
     return _svg(svg_w, svg_h, "".join(parts))
 
@@ -3992,7 +4201,101 @@ def _cp_grid_flag(spec: Mapping[str, Any]) -> bool:
     return grid
 
 
-def _cp_frame_parts(pl: _Plane, grid: bool) -> list[str]:
+# 🔴 **`O` 는 그래프가 안 지나는 사분면에 앉는다** — RPM 정본에서 배웠다.
+#
+# 원장님 지시(2026-08-28): 「RPM 1학기 교재에서 함수파트를 보고 함수 파트에서 라벨
+# 위치를 분석하고 학습해. 그래야 어떻게 라벨위치를 **선과 안겹치게** 배치하는지
+# 파악할 수 있을것 같네」.
+#
+# 실측(`scripts/qa/measure-rpm-function-labels.py` — 1학기 함수 단원 3권,
+# 원점 라벨 291개):
+#   · 앉는 자리 — 왼아래(제3사분면) **64.9%** · 오른아래 14.4% · 왼위 5.5% · 오른위 3.1%
+#   · **고를 자리가 있을 때 79.9% 가 「그래프가 안 지나는」 사분면**이다
+#   · 축과의 여백은 글자 크기의 **0.17배**(중앙값)
+#
+# 종전에는 `(-7, +10)` **한 자리에 못 박혀** 있었다. 그래서 기울기가 양수인 직선처럼
+# 제3사분면을 지나는 그래프에서는 `O` 가 그 선 위에 그대로 앉았다 — 실측
+# `1-1|정비례와 반비례|09`: 직선이 글자 상자 **안을 지난다**(표본점 16개).
+# 원장님이 화면에서 처음 짚으신 결함이 바로 이 자리다.
+# 자리는 **여백에서 거꾸로 유도한다** — 좌표를 손으로 박지 않는다. 박으면 글자
+# 크기를 바꿀 때 여백이 조용히 달라지고, 칸(u)이 좁은 그림에서는 첫 눈금 획을
+# 스친다(실측 `1-1|정비례와 반비례|10`: 종전 `dy=10` 이 y축 −1 눈금과 0.45 겹쳤다).
+#
+# ⚠️ **RPM 의 거리(0.79배)를 그대로 베끼면 안 된다.** 우리 `O` 는 조판본이라
+#    정본보다 넓다 — 폭이 글자 크기의 0.78배(실측 10.114/13)인데 RPM 은 0.58배다.
+#    같은 거리를 쓰면 여백이 0.06배로 좁아진다. **여백을 지키면 거리는 따라온다**:
+#    아래 값으로 나오는 거리가 0.76배로 정본의 0.79배와 맞는다(서로 다른 두 수가
+#    맞아떨어지는 것이 이 유도가 옳다는 검산이다).
+CP_O_CLEAR = 0.17          # RPM 실측 — 획까지 띄우는 몫 (글자 크기 배, 중앙값)
+CP_O_HALF_W = 0.39         # 조판된 `O` 폭의 절반 ÷ 글자 크기 (실측 10.114/13/2)
+CP_O_HALF_H = 0.365        # 그 잉크 높이의 절반 ÷ 글자 크기 (실측 9.451/13/2)
+_O_DX = round((CP_O_HALF_W + CP_O_CLEAR) * CP_FONT, 2)
+_O_DY = round((CP_O_HALF_H + CP_O_CLEAR) * CP_FONT, 2)
+CP_O_CORNERS = ((-_O_DX, _O_DY), (_O_DX, _O_DY), (-_O_DX, -_O_DY), (_O_DX, -_O_DY))
+
+
+def _seg_hits_box(a: tuple[float, float], b: tuple[float, float],
+                  box: tuple[float, float, float, float]) -> bool:
+    """선분이 상자와 만나는가 (Liang–Barsky).
+
+    ⚠️ **표본점을 찍어 «상자 안에 있나»로 묻지 마라.** 상자가 작고 선분이 길면
+       표본이 상자를 건너뛴다 — 겹쳤는데 «안 겹쳤다»가 나오고, 그 실패는
+       조용하다. 여기서는 자른다.
+    """
+    x0, y0 = a
+    dx, dy = b[0] - x0, b[1] - y0
+    t0, t1 = 0.0, 1.0
+    for p, q in ((-dx, x0 - box[0]), (dx, box[2] - x0),
+                 (-dy, y0 - box[1]), (dy, box[3] - y0)):
+        if p == 0.0:
+            if q < 0.0:
+                return False        # 그 축에 나란한데 밖이다
+            continue
+        r = q / p
+        if p < 0.0:
+            if r > t1:
+                return False
+            t0 = max(t0, r)
+        else:
+            if r < t0:
+                return False
+            t1 = min(t1, r)
+    return t0 <= t1
+
+
+def _cp_o_offset(pl: _Plane, inks: list) -> tuple[float, float]:
+    """`O` 를 놓을 모서리 — RPM 순서로 훑어 **선이 안 지나는 첫 자리**를 고른다.
+
+    `inks` 는 그린 것의 **화면 좌표 폴리라인**이다(그래프·곡선·점선 안내선).
+
+    ⚠️ **축과 눈금은 넣지 마라.** 그 둘은 원점에서 사방으로 뻗으므로 넣으면
+       네 자리가 다 막히고, 이 고르기가 **구조적으로 늘 첫 자리**를 낸다 —
+       고치기 전과 똑같아지는데 아무 에러도 안 난다. RPM 도 `O` 를 축 바로
+       옆(여백 0.17배)에 붙인다.
+    ⚠️ 네 자리가 다 막히면 첫 자리로 돌아온다. 정본도 그렇다 — 빈 사분면이
+       없는 그림이 291개 중 27개였다.
+    """
+    hw = (CP_O_HALF_W + CP_O_CLEAR) * CP_FONT
+    hh = (CP_O_HALF_H + CP_O_CLEAR) * CP_FONT
+    for dx, dy in CP_O_CORNERS:
+        cx, cy = pl.ax + dx, pl.ay + dy
+        box = (cx - hw, cy - hh, cx + hw, cy + hh)
+        if not any(_seg_hits_box(p, q, box)
+                   for pts in inks for p, q in zip(pts, pts[1:])):
+            return dx, dy
+    return CP_O_CORNERS[0]
+
+
+def _cp_guide_polylines(pl: _Plane, marks: list[tuple[int, int]]) -> list[list]:
+    """점선 안내선의 **기하**. 그리는 쪽(`_cp_mark_parts`)과 `O` 고르기가 같이 쓴다 —
+    규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다."""
+    ax, ay = pl.ax, pl.ay
+    return [[(pl.sx(mx), ay), (pl.sx(mx), pl.sy(my)), (ax, pl.sy(my))]
+            for mx, my in marks if mx != 0 and my != 0]
+
+
+def _cp_frame_parts(pl: _Plane, grid: bool,
+                    o_offset: tuple[float, float] = CP_O_CORNERS[0]) -> list[str]:
     """모눈 → 축·화살촉·라벨 x·y·O → 정수 눈금 짧은 획. **이 셋이 한 벌이다.**"""
     parts: list[str] = []
     if grid:
@@ -4018,7 +4321,7 @@ def _cp_frame_parts(pl: _Plane, grid: bool) -> list[str]:
     )
     parts.append(_cp_text(x_end + 4.0, ay + 12.0, "x", italic=True))
     parts.append(_cp_text(ax - 9.0, y_end - 4.0, "y", italic=True))
-    parts.append(_cp_text(ax - 7.0, ay + 10.0, "O"))
+    parts.append(_cp_text(ax + o_offset[0], ay + o_offset[1], "O"))
 
     for gx in range(pl.xlo, pl.xhi + 1):
         if gx == 0:
@@ -4036,12 +4339,13 @@ def _cp_mark_parts(pl: _Plane, marks: list[tuple[int, int]]) -> list[str]:
     parts: list[str] = []
     ax, ay = pl.ax, pl.ay
     done: set[tuple[str, int]] = set()
+    # 안내선 기하는 `_cp_guide_polylines` 한 곳에서 온다 — `O` 고르기가 같은 것을 본다.
+    guides = {(mx, my): pts for (mx, my), pts
+              in zip([(mx, my) for mx, my in marks if mx != 0 and my != 0],
+                     _cp_guide_polylines(pl, marks))}
     for mx, my in marks:
         if mx != 0 and my != 0:
-            parts.append(
-                _polyline([(pl.sx(mx), ay), (pl.sx(mx), pl.sy(my)), (ax, pl.sy(my))],
-                          sw=0.9, dash=CP_GUIDE_DASH)
-            )
+            parts.append(_polyline(guides[(mx, my)], sw=0.9, dash=CP_GUIDE_DASH))
         if mx != 0 and ("x", mx) not in done:
             done.add(("x", mx))
             # 숫자는 안내선 반대쪽 — 점이 위면 축 아래(0891 의 4), 아래면 축 위(0891 의 -4).
@@ -4136,7 +4440,12 @@ def _linear_graph(spec: Mapping[str, Any]) -> str:
     grid = _cp_grid_flag(spec)
     segs = _cp_line_segs(pl, lines)
 
-    parts = _cp_frame_parts(pl, grid)
+    # `O` 는 **그린 것을 보고** 자리를 고른다 (RPM 실측 — `CP_O_CORNERS` 주석).
+    inks = [[(pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb))]
+            for (xa, ya), (xb, yb) in segs]
+    inks += _cp_guide_polylines(pl, marks)
+
+    parts = _cp_frame_parts(pl, grid, _cp_o_offset(pl, inks))
     parts += _cp_mark_parts(pl, marks)
     for (xa, ya), (xb, yb) in segs:
         parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))
@@ -4353,7 +4662,8 @@ def _cg_thin(pts: list[tuple[float, float]], eps: float) -> list[tuple[float, fl
     return [p for p, k in zip(pts, keep) if k]
 
 
-def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
+def _cg_screen_points(fn, run: tuple[float, float], pl: _Plane) -> list:
+    """곡선 한 토막의 **화면 좌표** 점들. 그리는 쪽과 `O` 고르기가 같이 쓴다."""
     a, b = run
     pts: list[tuple[float, float]] = []
     for i in range(CG_SAMPLES + 1):
@@ -4365,7 +4675,11 @@ def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
         # 프레임 밖으로 새는 곡선은 지면에서 옆 문항을 덮는다.
         y = min(max(y, float(pl.ylo)), float(pl.yhi))
         pts.append((pl.sx(x), pl.sy(y)))
-    return _polyline(_cg_thin(pts, CG_THIN_PX), sw=CP_GRAPH_SW)
+    return pts
+
+
+def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
+    return _polyline(_cg_thin(_cg_screen_points(fn, run, pl), CG_THIN_PX), sw=CP_GRAPH_SW)
 
 
 def _cg_label_item(pl: _Plane, curve, fn, runs) -> tuple:
@@ -4420,7 +4734,14 @@ def _curve_graph(spec: Mapping[str, Any]) -> str:
         runs_by_curve.append(runs)
     segs = _cp_line_segs(pl, lines)
 
-    parts = _cp_frame_parts(pl, grid)
+    # `O` 는 **그린 것을 보고** 자리를 고른다 (RPM 실측 — `CP_O_CORNERS` 주석).
+    inks = [[(pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb))]
+            for (xa, ya), (xb, yb) in segs]
+    inks += [_cg_screen_points(fn, run, pl)
+             for fn, runs in zip(fns, runs_by_curve) for run in runs]
+    inks += _cp_guide_polylines(pl, marks)
+
+    parts = _cp_frame_parts(pl, grid, _cp_o_offset(pl, inks))
     parts += _cp_mark_parts(pl, marks)
     for (xa, ya), (xb, yb) in segs:
         parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))

@@ -752,16 +752,37 @@ function figSimPair09(
   k: number,
   mode: number,
   labels: Record<string, string>,
+  /**
+   * 라벨이 요구하는 $(\angle A, \angle B)$(도). 주면 그 각들이 **실제로** 그려진다.
+   *
+   * 🔴 종전에는 $A=[34,58]$ **고정**이라 어떤 $p,q$ 를 받아도 지면의 각은 늘
+   *    $\angle A=77.3^\circ$·$\angle B=59.6^\circ$ 였다. 라벨만 $35^\circ$~$70^\circ$ 로
+   *    바뀌었다 — 실측 최악 **41.3° 어긋남**(원장님 지적 2026-08-27 의 그 부류).
+   *
+   * 사인법칙으로 세운다: $B=(0,0)$·$C=(bw,0)$ 이고 $\angle B=q$ 이므로
+   * $\overline{BA} = bw\cdot\sin(\angle C)/\sin(\angle A)$, $A = \overline{BA}\,(\cos q,\ \sin q)$.
+   * 닮은 쪽은 그대로 $k$ 배 한다 — **닮음이 지면에서도 닮음이어야** 한다.
+   */
+  angs?: { p: number; q: number },
 ): Fig {
   const bw = 96;
   const bh = 58;
   const gap = 42;
-  const A: XY = [34, bh];
+  const DEG = Math.PI / 180;
+  let ax = 34;
+  let ay = bh;
+  if (angs) {
+    const angC = 180 - angs.p - angs.q;
+    const ba = (bw * Math.sin(angC * DEG)) / Math.sin(angs.p * DEG);
+    ax = r2(ba * Math.cos(angs.q * DEG));
+    ay = r2(ba * Math.sin(angs.q * DEG));
+  }
+  const A: XY = [ax, ay];
   const B: XY = [0, 0];
   const C: XY = [bw, 0];
   const E: XY = [bw + gap, 0];
   const F: XY = [bw + gap + bw * k, 0];
-  const D: XY = [bw + gap + 34 * k, bh * k];
+  const D: XY = [bw + gap + ax * k, ay * k];
   const angles: Record<string, unknown> =
     mode === 0
       ? {
@@ -1384,7 +1405,12 @@ export const M2_GEO_SIM: TypeEntry[] = [
         answer: `$${x}^\\circ$`,
         solution: `두 쌍의 대응각의 크기가 각각 같으므로 삼각형 $ABC$와 삼각형 $DEF$는 $\\mathrm{AA}$ 닮음이다.\n삼각형 $DEF$의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle F=180^\\circ-${p}^\\circ-${q}^\\circ=${x}^\\circ$이다.`,
         facts: { mode, p, q, x },
-        figureSpec: figSimPair09(1.35, 1, { angA: `${p}°`, angB: `${q}°` }),
+        figureSpec: figSimPair09(
+          1.35,
+          1,
+          { angA: `${p}°`, angB: `${q}°` },
+          { p, q },
+        ),
       };
     },
   ),

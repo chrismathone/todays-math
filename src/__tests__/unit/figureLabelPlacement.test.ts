@@ -35,10 +35,39 @@ type Box = { x0: number; y0: number; x1: number; y1: number };
 type Seg = { x1: number; y1: number; x2: number; y2: number };
 
 /** 그려진 `<text>` 하나 — 닻점·글꼴·내용. */
-type Text = { x: number; y: number; size: number; text: string; halo: boolean };
+type Text = {
+  x: number;
+  y: number;
+  size: number;
+  text: string;
+  halo: boolean;
+  width?: number;
+};
 
+/**
+ * 그려진 라벨들을 읽는다.
+ *
+ * ⚠️ 2026-08-28 부터 라벨은 **MathJax 가 조판**하므로 SVG 에 `<text>` 가 없다 —
+ *    글자가 전부 `<path>` 다. 대신 조각이 `data-label`·`data-x`·`data-y`·`data-fs`
+ *    ·`data-w`·`data-a`·`data-d` 로 **제 치수를 스스로 말한다.** 그 값을 읽는다
+ *    (자식 path 를 훑어 되짚으면 그건 또 하나의 어림이고, 어림이 둘이면 갈라진다).
+ *    조판을 못 한 라벨은 옛 `<text>` 로 남으므로 그쪽도 계속 읽는다.
+ */
 function texts(svg: string): Text[] {
   const out: Text[] = [];
+  const group = /<g\b([^>]*\bdata-label="[^"]*"[^>]*)>/g;
+  for (let m = group.exec(svg); m; m = group.exec(svg)) {
+    const attrs = m[1]!;
+    const get = (k: string) => new RegExp(`${k}="([^"]*)"`).exec(attrs)?.[1];
+    out.push({
+      x: Number(get("data-x")),
+      y: Number(get("data-y")),
+      size: Number(get("data-fs") ?? 13),
+      text: get("data-label") ?? "",
+      width: Number(get("data-w")),
+      halo: true, // 조판 조각은 halo 를 늘 얹는다.
+    });
+  }
   const re = /<text\b([^>]*)>([^<]*)<\/text>/g;
   for (let m = re.exec(svg); m; m = re.exec(svg)) {
     const attrs = m[1]!;
@@ -56,7 +85,8 @@ function texts(svg: string): Text[] {
 
 /** 글자 상자 — 엔진과 **다른 자**로, 실제보다 좁게 잡는다(거짓 빨강 방지). */
 function textBox(t: Text): Box {
-  const width = t.text.length * t.size * 0.5;
+  // 조판 조각은 **제 폭을 스스로 말한다**. 없을 때만 좁게 어림한다(거짓 빨강 방지).
+  const width = t.width ?? t.text.length * t.size * 0.5;
   return {
     x0: t.x - width / 2,
     y0: t.y - t.size * 0.75,
@@ -208,7 +238,8 @@ describe.runIf(hasEngine)("그림 라벨 자리", () => {
 
   it("삼각형에 치수 둘을 달아도 그려지고, 둘 다 점선 치수선을 얻는다", async () => {
     const svg = await render(TWO_DIMS_SPEC);
-    const dashed = [...svg.matchAll(/stroke-dasharray="6 4"/g)];
+    // 점선 간격은 RPM 실측에 맞춰 `6 4` → `5 3` 으로 바뀌었다(2026-08-28).
+    const dashed = [...svg.matchAll(/stroke-dasharray="5 3"/g)];
     expect(dashed.length).toBe(2);
     const labels = texts(svg).filter((t) => /cm$/.test(t.text));
     expect(labels.map((t) => t.text).sort()).toEqual(["10 cm", "6 cm"]);

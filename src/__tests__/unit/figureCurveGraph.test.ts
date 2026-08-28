@@ -28,6 +28,7 @@ import {
   figureSvgSize,
 } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { svgLabels } from "@/lib/figure/svgLabels";
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -55,9 +56,7 @@ function viewBoxWidth(svg: string): number {
 }
 
 function fontSizes(svg: string): number[] {
-  return [...svg.matchAll(/<text[^>]*font-size="([\d.]+)"/g)].map((m) =>
-    Number(m[1]),
-  );
+  return svgLabels(svg).map((l) => l.fontSize);
 }
 
 /** 굵은 꺾은선 = 곡선. 안내선(0.9)과 갈린다. */
@@ -126,8 +125,9 @@ function origin(svg: string): Pt {
   return [v.x1, h.y1];
 }
 
+/** 라벨 글 — 조판된 것(`<g data-label>`)과 그대로 나간 `<text>` 를 한 자로 읽는다. */
 function texts(svg: string): string[] {
-  return [...svg.matchAll(/<text [^>]*>([^<]*)<\/text>/g)].map((m) => m[1]!);
+  return svgLabels(svg).map((l) => l.text);
 }
 
 function arrowheads(svg: string): number {

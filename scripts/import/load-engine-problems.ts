@@ -57,6 +57,8 @@ import {
   generateMiddleProblem,
   typesForSection,
 } from "../../src/lib/middle/generate";
+// 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
+import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
 
 // 관리용 스크립트는 **자기 클라이언트**를 쓴다 — `src/lib/db` 의 바깥벽 확장은
 // 읽기를 `pool='shared'` 로 좁혀서, 「내가 넣은 행이 정말 shared 인가」를 물을 때
@@ -493,6 +495,41 @@ async function apply(planFile: string, doApply: boolean) {
     );
   fresh.length = 0;
   fresh.push(...kept);
+
+  // ── 🔴 **죽은 역슬래시는 아예 안 넣는다** ────────────────────────────────
+  // 결함이 들어오는 자리가 여기다. TS 템플릿 리터럴에서 `\angle` 은 역슬래시가
+  // **먹혀서** 지면에 `angle C=90^circ` 가 나간다. tsc·vitest·KaTeX·값 검산이 전부
+  // 초록이라 **결함이 스스로 신고하지 않는다**(2026-08-27 에 16문항이 그렇게 나갔다).
+  //
+  // 판정 규칙은 **옮겨 적지 않는다** — 관문 판정기의 것을 그대로 부른다.
+  // 그래야 축이 늘 때 한 곳만 고치면 된다.
+  const dirty = fresh.filter(
+    (r) =>
+      deadBackslashHits(r.content).length > 0 ||
+      deadBackslashHits(r.answer).length > 0 ||
+      deadBackslashHits(r.solution ?? "").length > 0,
+  );
+  if (dirty.length > 0) {
+    console.log(
+      `\n🔴 죽은 역슬래시가 든 문항 ${dirty.length}건 — 적재를 멈춘다.`,
+    );
+    for (const r of dirty.slice(0, 10)) {
+      const names = [
+        ...new Set([
+          ...deadBackslashHits(r.content),
+          ...deadBackslashHits(r.answer),
+          ...deadBackslashHits(r.solution ?? ""),
+        ]),
+      ];
+      console.log(`   ❌ ${r.origin} [${names.join(", ")}]`);
+      console.log(`      ${r.content.replace(/\n/g, " ").slice(0, 120)}`);
+    }
+    if (dirty.length > 10) console.log(`   … ${dirty.length - 10}건 더`);
+    throw new Error(
+      "엔진 소스에서 `String.raw` 를 쓰거나 `\\\\angle` 로 적은 뒤 다시 돌려라. " +
+        "여기서 넣으면 **엔진을 고쳐도 이 행은 안 고쳐진다.**",
+    );
+  }
 
   if (!doApply) {
     const withFig = fresh.filter((r) => r.figureSpec).length;

@@ -150,17 +150,17 @@ def refuse_during_mutation() -> None:
 
 
 def engine_path() -> str:
-    """㉠ `render_spec.py` 와 **같은 우선순위**로 엔진을 찾는다 — 상수를 import 한다."""
-    sys.path.insert(0, FIGDIR)
-    import render_spec  # noqa: E402
+    """㉠ 제품과 **같은 규칙**으로 엔진을 찾는다 — 결정은 `engine_path` 한 곳이다.
 
-    for cand in (
-        os.environ.get("FIGURE_ENGINE_PATH"),
-        render_spec.VENDOR_ENGINE_PATH,
-        render_spec.DEFAULT_ENGINE_PATH,
-    ):
-        if cand and os.path.isdir(os.path.join(cand, "core")):
-            return cand
+    종전에는 여기서 우선순위를 **다시 나열**했다. 그러면 제품이 순서를 바꾸는 날
+    판정기만 옛 순서로 남는다 — 실제로 상수가 옮겨 가자 이 함수가 죽었다(2026-08-28).
+    """
+    sys.path.insert(0, FIGDIR)
+    from engine_path import engine_root  # noqa: E402
+
+    cand = engine_root()
+    if cand:
+        return cand
     die(
         "도형 엔진을 못 찾았다 — 세지 않고 멈춘다.\n"
         "   경로를 못 잡은 채로 세면 `No module named 'core'` 가 진짜 결함에 섞여\n"

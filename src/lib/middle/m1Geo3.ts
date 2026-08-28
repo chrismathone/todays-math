@@ -27,6 +27,7 @@
  * 찍는다 — 묻는 값을 미리 그리면 그림이 답을 말해 버린다(09 §2.2 규칙①).
  */
 import { intBetween, pick } from "../elementary/rng";
+import { drawScale } from "../figure/drawScale";
 import type { Rng } from "../elementary/types";
 
 import { attempt as attemptStat, def as defStat, obj } from "./m1Stat";
@@ -299,13 +300,33 @@ function figSectorShaded(x: number): Fig {
   };
 }
 
+/** 반지름 `r1`~`r2`, 벌어짐 `x`도인 부채꼴이 **실제로 차지하는 상자의 대각선**. */
+function sectorSpan(r1: number, r2: number, x: number): number {
+  const xs: number[] = [];
+  const ys: number[] = [];
+  for (const r of [r1, r2]) {
+    for (let t = 0; t <= x; t += 1) {
+      xs.push(r * Math.cos((t * Math.PI) / 180));
+      ys.push(r * Math.sin((t * Math.PI) / 180));
+    }
+  }
+  return Math.hypot(
+    Math.max(...xs) - Math.min(...xs),
+    Math.max(...ys) - Math.min(...ys),
+  );
+}
+
 /**
- * 12·13 — 동심 부채꼴 사이(도넛 부채꼴). 반지름을 픽셀 배율로 키워 시각을
+ * 12·13 — 동심 부채꼴 사이(도넛 부채꼴). 반지름을 지면 배율로 키워 시각을
  * 확보한다(수치 그대로는 지름이 몇십 px 라 안 보인다 — 지면 비율 자체는
  * 두 반지름 모두 같은 배율을 쓰므로 그림 속에서도 참이다).
  */
 function figAnnulus(r1: number, r2: number, x: number): Fig {
-  const SCALE = 6;
+  // ⚠️ **지름이 아니라 «실제로 그려지는 크기»로 맞춘다.** $45°$ 부채꼴은 원의
+  //    1/8 만 차지하므로 지름을 150 으로 맞추면 지면에서는 그 절반뿐이다
+  //    (실측: 도형 지름이 글자의 3.8배 — RPM 은 10 안팎). 호 위의 점들을 훑어
+  //    **부채꼴이 실제로 차지하는 상자**를 재고 그 대각선을 목표로 삼는다.
+  const SCALE = drawScale(sectorSpan(r1, r2, x));
   return {
     version: 2,
     points: {
@@ -345,23 +366,26 @@ function figAnnulus(r1: number, r2: number, x: number): Fig {
  * 방향은 실렌더로 확인했다 — 큰 원 A→B `cw`, 작은 원은 거꾸로 `ccw` 둘.
  */
 function figArbelos(r1: number, r2: number): Fig {
+  // ⚠️ 여기만 배율이 **없었다** — 지름이 그대로 14단위라 라벨(24)보다 작았다.
+  //    형제 갈래는 전부 배율을 곱한다(`drawScale` 주석 참조).
+  const S = drawScale(2 * r1 + 2 * r2);
   const A: XY = [0, 140];
-  const C: XY = [2 * r1, 140];
-  const B: XY = [2 * r1 + 2 * r2, 140];
+  const C: XY = [2 * r1 * S, 140];
+  const B: XY = [(2 * r1 + 2 * r2) * S, 140];
   return {
     version: 2,
     points: {
       A,
       C,
       B,
-      Obig: [r1 + r2, 140],
-      Osmall1: [r1, 140],
-      Osmall2: [2 * r1 + r2, 140],
+      Obig: [(r1 + r2) * S, 140],
+      Osmall1: [r1 * S, 140],
+      Osmall2: [(2 * r1 + r2) * S, 140],
     },
     circles: {
-      big: { center: "Obig", radius: r1 + r2, draw: false },
-      small1: { center: "Osmall1", radius: r1, draw: false },
-      small2: { center: "Osmall2", radius: r2, draw: false },
+      big: { center: "Obig", radius: (r1 + r2) * S, draw: false },
+      small1: { center: "Osmall1", radius: r1 * S, draw: false },
+      small2: { center: "Osmall2", radius: r2 * S, draw: false },
     },
     segments: { AB: ["A", "B"] },
     regions: {
@@ -448,7 +472,7 @@ function figBelt(n: number, r: number): Fig {
 
 /** 17 — 직사각형(원이 지나간 자리는 발문이 말로 설명 — 09 §2.2 규칙②). */
 function figRectSimple(p: number, q: number): Fig {
-  const SCALE = 4;
+  const SCALE = drawScale(Math.max(p, q));
   const w = p * SCALE;
   const h = q * SCALE;
   const A: XY = [20, 20];

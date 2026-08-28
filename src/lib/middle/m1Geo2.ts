@@ -284,25 +284,38 @@ function figAngleCopy03(baseDeg: number, extraDeg?: number): Fig {
   return { version: 2, points, segments, angles, labels: { P: "P" } };
 }
 
-/** 두 직선(점+방향)의 교점 — 수학 좌표. */
-function inter(p: XY, d: XY, q: XY, e: XY): XY {
-  const det = d[0] * e[1] - d[1] * e[0];
-  const t = ((q[0] - p[0]) * e[1] - (q[1] - p[1]) * e[0]) / det;
-  return [r2(p[0] + t * d[0]), r2(p[1] + t * d[1])];
-}
+// ⚠️ 여기 있던 `inter`(두 직선의 교점)를 지웠다 — **반올림을 품고 있어서** 이 파일의
+//    유일한 소비자였던 `figParallel04` 를 죽였다. 교점이 필요하면 반올림 없이 세울 것.
 
 function figParallel04(theta: number): Fig {
   const A: XY = [20, 60];
   const B: XY = [220, 60];
   const C: XY = [20, 140];
   const D: XY = [220, 140];
-  // P,Q 는 y=60·y=140 과의 교점이 정확한 값이 되도록 고른다(반올림 잔차 방지,
-  // 09-figure-engine-guide §4-1 류의 함정 — 손 계산 좌표는 원 위/선 위를 벗어난다).
-  const P: XY = [50, 20];
-  const Q: XY = [200, 180];
-  const dir: XY = [Q[0] - P[0], Q[1] - P[1]];
-  const X = inter(P, dir, A, [1, 0]);
-  const Y = inter(P, dir, C, [1, 0]);
+  // 🔴 **가로지르는 직선의 기울기를 $\theta$ 에서 유도한다.**
+  //
+  // 종전에는 $P=[50,20]$·$Q=[200,180]$ **고정**이라 $\theta$ 가 $40^\circ$든
+  // $85^\circ$든 지면의 각은 늘 $46.8^\circ$ 였다. 라벨만 바뀌었다.
+  //
+  // 이 좌표는 **SVG 계**(y 아래)라 $\angle a$ 는 $\overrightarrow{XB}=(1,0)$ 와
+  // $\overrightarrow{XQ}$ 의 사잇각이다. 그러므로 방향을 $(\cos\theta,\ \sin\theta)$
+  // 로 두면 그 각이 정확히 $\theta$ 가 된다($Q$ 가 아래쪽이라 부호도 맞다).
+  //
+  // $P$·$Q$ 는 $y=20$·$y=180$ 에 닿게 잡고, $X$ 의 가로 자리는 둘이 지면 가운데에
+  // 오도록 고른다 — 안 그러면 $\theta$ 가 클 때 한쪽으로 쏠린다.
+  const rad = (theta * Math.PI) / 180;
+  const cot = Math.cos(rad) / Math.sin(rad);
+  const dyP = 20 - 60;
+  const dyQ = 180 - 60;
+  // ⚠️ **여기서는 반올림하지 않는다.** 이 그림은 `fitPts` 를 안 거치므로 좌표가 그대로
+  //    나가는데, $P$·$Q$ 를 반올림해 놓으면 $X$·$Y$ 가 그 선분 위를 벗어나 엔진이
+  //    「각의 광선이 그려진 선분에 안 얹혔다」로 **던진다**(실측 `seed 20260824`).
+  //    09 §4-1 이 적어 둔 「손 계산 좌표는 선 위를 벗어난다」와 같은 자리다.
+  const anchorX = 120 - ((dyP + dyQ) / 2) * cot;
+  const P: XY = [anchorX + dyP * cot, 20];
+  const Q: XY = [anchorX + dyQ * cot, 180];
+  const X: XY = [anchorX, 60];
+  const Y: XY = [anchorX + (140 - 60) * cot, 140];
   return {
     version: 2,
     points: { A, B, C, D, P, Q, X, Y },

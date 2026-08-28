@@ -15,6 +15,8 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 
+import { substituteLabels, withLabelMetrics } from "./mathjaxSubstitute";
+
 /** Python 실행 파일 — 환경마다 다르다. `python3` 만 있는 곳도 있어 열어 둔다. */
 const PYTHON_BIN = process.env.PYTHON_BIN ?? "python";
 
@@ -34,6 +36,18 @@ const SCRIPT_PATH = path.join(
   "render_spec.py",
 );
 
+export interface RenderFigureOptions {
+  /**
+   * 라벨을 MathJax 로 조판할까. 기본 `true` — **지면에 나가는 것은 늘 조판본**이다.
+   *
+   * `false` 는 «조판 전» 을 보려는 대조용이다: 치수도 안 싣고 조각도 안 끼운다 —
+   * 즉 **2026-08-28 이전의 그 경로 그대로**다. 이것이 있어야 「조판이 무엇을
+   * 바꿨나」를 같은 스펙으로 견줄 수 있다(옛 커밋을 꺼내 돌리는 것보다 싸고,
+   * 두 벌이 갈라질 자리가 없다).
+   */
+  typeset?: boolean;
+}
+
 /**
  * 스펙 하나를 SVG 로 그린다. 던지지 않는다 — 실패는 `{ ok: false, error }` 로 돌려준다.
  *
@@ -43,7 +57,9 @@ const SCRIPT_PATH = path.join(
  */
 export async function renderFigureSpec(
   spec: unknown,
+  options: RenderFigureOptions = {},
 ): Promise<RenderFigureResult> {
+  const typeset = options.typeset !== false;
   if (spec === null || typeof spec !== "object") {
     return { ok: false, error: "도형 스펙이 없습니다" };
   }
@@ -106,7 +122,21 @@ export async function renderFigureSpec(
       }
       const body = parsed as { svg?: unknown; error?: unknown };
       if (typeof body.svg === "string" && body.svg.length > 0) {
-        return finish({ ok: true, svg: body.svg });
+        // 🔴 라벨을 **MathJax 조각**으로 바꿔 끼운다 (원장님 확정 2026-08-28).
+        //    엔진은 자리를 잡고, 조판은 MathJax 가 한다. 글꼴이 필요 없어
+        //    macOS·리눅스·어느 프린터에서도 같게 나온다.
+        if (!typeset) return finish({ ok: true, svg: body.svg });
+        const laid = substituteLabels(body.svg);
+        if (laid.unresolved.length > 0) {
+          // ⚠️ `kept`(한글처럼 조판할 수 없는 글)는 **여기 안 온다.** 그건 정상이라
+          //    시끄러우면 이 경고 자체가 꺼진다 — 늘 우는 가드는 꺼진다(2026-08-20).
+          //    여기 오는 것은 자리를 못 읽었거나 안전 검사에 걸린 **결함**뿐이다.
+          console.warn(
+            `[도형] 조판이 실패한 라벨 ${laid.unresolved.length}개:`,
+            laid.unresolved.slice(0, 5).join(" · "),
+          );
+        }
+        return finish({ ok: true, svg: laid.svg });
       }
       finish({
         ok: false,
@@ -120,6 +150,12 @@ export async function renderFigureSpec(
     child.stdin.on("error", () => {
       /* close 쪽에서 사유를 만든다 — 여기서 두 번 resolve 하지 않는다. */
     });
-    child.stdin.end(JSON.stringify(spec), "utf-8");
+    // 엔진이 라벨 상자를 알아야 자리를 잡는다 — MathJax 가 잰 값을 실어 보낸다.
+    // 대조용(`typeset:false`)에서는 **치수도 안 싣는다.** 안 그러면 「옛 글자·새 배치」라는
+    // 어디에도 없던 제3의 지면이 되어, 견주는 뜻이 사라진다.
+    child.stdin.end(
+      JSON.stringify(typeset ? withLabelMetrics(spec) : spec),
+      "utf-8",
+    );
   });
 }

@@ -180,10 +180,27 @@ function figParaOneDiag(w: number, h: number, slant: number): Fig {
  * `E = B + (m/n)·(C-B)`, 즉 BE=m, BC=n 이 되는 자리에 직접 찍는다.
  * `angB` 를 주면 ∠B 에 라벨을 붙인다(05 전용, 숫자는 발문이 준 값만).
  */
-function figParaBisectE(m: number, n: number, angB?: string): Fig {
+function figParaBisectE(
+  m: number,
+  n: number,
+  angB?: string,
+  /** 라벨이 요구하는 $\angle B$(도). 주면 그 각이 **실제로** 그려진다. */
+  angBDeg?: number,
+): Fig {
   const w = 14 * n;
   const h = 90;
-  const slant = 40;
+  // 🔴 **라벨을 붙일 거면 모양이 그 각을 따라야 한다.**
+  //
+  // `quadPts` 는 $B=(0,0)$·$C=(w,0)$·$A=(\text{slant},h)$ 다. 그러므로
+  // $\tan(\angle B) = h/\text{slant}$ 이고, 요구된 각 $t$ 를 그리려면
+  // `slant = h / tan(t)` 여야 한다($t>90^\circ$ 면 음수 — 둔각이라 $A$ 가 $B$ 의
+  // 왼쪽으로 눕는 것이 옳다).
+  //
+  // ⚠️ 종전에는 `slant = 40` **고정**이라 어떤 $b$ 를 받아도 지면의 각은 늘
+  //    $\arctan(90/40) = 66^\circ$ 였다. 라벨만 $40^\circ$~$140^\circ$ 로 바뀌었다.
+  //    실측 최악 **58° 어긋남** — 원장님이 2026-08-27 에 지적하신 그 부류다.
+  const slant =
+    angBDeg === undefined ? 40 : r2(h / Math.tan(angBDeg * (Math.PI / 180)));
   const pts: Record<string, XY> = quadPts(w, h, slant);
   pts.E = [r2(w * (m / n)), 0];
   const angles: Record<string, unknown> = {};
@@ -496,7 +513,7 @@ export const M2_QUAD: TypeEntry[] = [
         answer: `$${ans}^\\circ$`,
         solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 이웃하는 두 내각의 합이 $180^\\circ$이다. $\\angle A=180^\\circ-${b}^\\circ=${angleA}^\\circ$이다.\n$\\overline{AE}$가 $\\angle A$를 이등분하므로 $\\angle BAE=\\dfrac{${angleA}^\\circ}{2}=${ans}^\\circ$이다.\n삼각형 $ABE$에서 $\\angle AEB=180^\\circ-${b}^\\circ-${ans}^\\circ=${ans}^\\circ$이다.`,
         facts: { b, m, n, angleA, ans },
-        figureSpec: figParaBisectE(m, n, `${b}°`),
+        figureSpec: figParaBisectE(m, n, `${b}°`, b),
       };
     },
   ),

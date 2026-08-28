@@ -29,6 +29,7 @@
  * 접기가 만드는 **직각삼각형 EBC**(대응하는 실제 도형)만 그린다.
  */
 import { intBetween, pick } from "../elementary/rng";
+import { drawScale } from "../figure/drawScale";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
@@ -167,7 +168,7 @@ function figRectDiag(
   dimW: string,
   dimH: string,
 ): Record<string, unknown> {
-  const s = Math.min(16, 180 / Math.max(w, h));
+  const s = drawScale(Math.max(w, h), 180);
   const A: XY = [0, h * s];
   const B: XY = [w * s, h * s];
   const C: XY = [w * s, 0];
@@ -199,7 +200,7 @@ function figRectDiag(
  */
 function figRhombusDiag(p: number, q: number): Record<string, unknown> {
   // p = 가로 대각선(BD) 전체 길이, q = 세로 대각선(AC) 전체 길이.
-  const s = Math.min(14, 160 / Math.max(p, q));
+  const s = drawScale(Math.max(p, q), 160);
   const shortSide = Math.min(p, q);
   const s2 = shortSide * s < 90 ? 90 / shortSide : s;
   const cx = (p / 2) * s2;
@@ -240,7 +241,7 @@ function figPinwheel(a: number, b: number): Record<string, unknown> {
   // 상한을 14 로 둔다(7 이었을 때는 가장 작은 TRIPLES 쌍(3,4,5, 바깥 정사각형
   // 한 변 7)에서 도형이 49×49 로 작아져 다리 치수선 'as' 를 놓을 여백이
   // 없어 v2 엔진이 던졌다 — 실렌더로 확인, scale=14부터 안전).
-  const s = Math.min(14, 170 / (a + b));
+  const s = drawScale(a + b, 170);
   const side = (a + b) * s;
   const A: XY = [0, side];
   const B: XY = [side, side];
@@ -288,7 +289,7 @@ function figAltitude(opts: {
   dimB: string;
 }): Record<string, unknown> {
   const { legA, legB, hyp, dimA, dimB } = opts;
-  const s = Math.min(14, 170 / Math.max(legA, legB, hyp));
+  const s = drawScale(Math.max(legA, legB, hyp), 170);
   // 직각은 C. A=(0,0), B=(hyp,0) 로 두고 C 를 legA=CA, legB=CB 를 만족하게 배치.
   const cx = (legA * legA - legB * legB + hyp * hyp) / (2 * hyp);
   const cy = -Math.sqrt(Math.max(legA * legA - cx * cx, 0));
@@ -323,7 +324,7 @@ function figAltitude(opts: {
  * 쓰이는 직각삼각형 EBC 만 보인다.
  */
 function figFoldRect(w: number, h: number, e: number): Record<string, unknown> {
-  const s = Math.min(16, 180 / Math.max(w, h));
+  const s = drawScale(Math.max(w, h), 180);
   const A: XY = [0, h * s];
   const B: XY = [w * s, h * s];
   const C: XY = [w * s, 0];
@@ -361,8 +362,8 @@ export const M2_PYTHA: TypeEntry[] = [
         facts: { p, q, r, mode },
         figureSpec: figRightTri({
           a: [0, 0],
-          b: [0, p * Math.min(16, 170 / r)],
-          c: [q * Math.min(16, 170 / r), 0],
+          b: [0, p * drawScale(r, 170)],
+          c: [q * drawScale(r, 170), 0],
           labelA: "A",
           labelB: "B",
           labelC: "C",
@@ -378,8 +379,8 @@ export const M2_PYTHA: TypeEntry[] = [
       facts: { p, q, r, mode },
       figureSpec: figRightTri({
         a: [0, 0],
-        b: [0, p * Math.min(16, 170 / r)],
-        c: [q * Math.min(16, 170 / r), 0],
+        b: [0, p * drawScale(r, 170)],
+        c: [q * drawScale(r, 170), 0],
         labelA: "A",
         labelB: "B",
         labelC: "C",
@@ -399,7 +400,7 @@ export const M2_PYTHA: TypeEntry[] = [
       solution: `꼭짓점 $A$에서 $\\overline{BC}$에 내린 수선의 발을 $D$라 하면, 이등변삼각형의 성질에 의해 $D$는 $\\overline{BC}$의 중점이다.\n$\\overline{BD}=\\dfrac{1}{2}\\times${base}=${half}\\,(\\mathrm{cm})$이므로 직각삼각형 $ABD$에서 $\\overline{AD}=\\sqrt{${leg}^2-${half}^2}=${h}\\,(\\mathrm{cm})$이다.\n따라서 $\\triangle ABC=\\dfrac{1}{2}\\times${base}\\times${h}=${area}\\,\\mathrm{cm}^2$이다.`,
       facts: { half, h, leg, base, area },
       figureSpec: (() => {
-        const s = Math.min(16, 170 / Math.max(base, h));
+        const s = drawScale(Math.max(base, h), 170);
         const A: XY = [half * s, 0];
         const B: XY = [0, h * s];
         const C: XY = [base * s, h * s];
