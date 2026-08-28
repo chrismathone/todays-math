@@ -195,6 +195,8 @@ type KeyEvidence = {
 
 type ConceptEvidence = {
   unitSection: string;
+  /** 같은 개념군으로 합친 소단원. 눈금의 expectedExternal 매칭은 대표 이름만이 아니라 이 목록을 본다. */
+  familyMembers: string[];
   score: number;
   supportSamples: number;
   evidence: KeyEvidence[];
@@ -698,6 +700,191 @@ function deriveKeys(
   return out;
 }
 
+function conceptMatchesExternal(
+  concept: ConceptEvidence,
+  needle: string,
+): boolean {
+  if (concept.unitSection.includes(needle)) return true;
+  return concept.familyMembers.some((member) => member.includes(needle));
+}
+
+const EUN_EUM_SUFFIX = ["은", "음"] as const;
+
+function stemAtom(atom: string): string {
+  for (const suffix of EUN_EUM_SUFFIX) {
+    if (atom.endsWith(suffix) && atom.length - suffix.length >= 1) {
+      return atom.slice(0, -suffix.length);
+    }
+  }
+  return atom;
+}
+
+function atomsRelated(a: string, b: string): boolean {
+  if (a === b) return true;
+  if (a.length >= 3 && b.length >= 3 && (a.includes(b) || b.includes(a))) {
+    return true;
+  }
+  const stemmedA = stemAtom(a);
+  const stemmedB = stemAtom(b);
+  if (stemmedA !== stemmedB || stemmedA.length < 1 || a === b) return false;
+  const aEun = EUN_EUM_SUFFIX.some((suffix) => a.endsWith(suffix));
+  const bEun = EUN_EUM_SUFFIX.some((suffix) => b.endsWith(suffix));
+  return aEun && bEun;
+}
+
+function longestCommonSubstring(a: string, b: string): string {
+  const left = a.normalize("NFC");
+  const right = b.normalize("NFC");
+  const rows = left.length;
+  const cols = right.length;
+  let best = "";
+  const prev = new Array<number>(cols + 1).fill(0);
+  const cur = new Array<number>(cols + 1).fill(0);
+  for (let i = 1; i <= rows; i += 1) {
+    for (let j = 1; j <= cols; j += 1) {
+      if (left[i - 1] === right[j - 1]) {
+        cur[j] = prev[j - 1] + 1;
+        if (cur[j] > best.length) {
+          best = left.slice(i - cur[j], i);
+        }
+      } else {
+        cur[j] = 0;
+      }
+    }
+    for (let j = 0; j <= cols; j += 1) prev[j] = cur[j];
+  }
+  return best;
+}
+
+/**
+ * 한 유형의 외부 후보가 **같은 개념군**인지.
+ *
+ * 문턱 0.78 을 각 소단원에 따로 대면, 같은 열쇠가 형제 소단원으로 갈라져
+ * 0.724·0.744 로 떨어진다(등록이 873→1337 로 늘며 실측). 눈금 두 건
+ * (`이차방정식의 활용|15` · `확률|02`)의 생성기는 결합형을 그대로 내므로
+ * ㉡이다. 문턱을 내리거나 눈금을 미분류로 바꾸지 않고, 갈라진 후보만 합친다.
+ *
+ * 가르는 축은 손 목록이 아니다. ⑴ 한쪽 이름이 다른 쪽의 접두 ⑵ 소단원명
+ * LCS 5자 이상이면서 그 안의 3자 한글 덩어리가 드문 것 ⑶ 은/음 어간
+ * (닮은↔닮음) ⑷ 한쪽 원자의 포함(일차식 ⊂ 일차방정식)이면서 그 원자가
+ * 전역으로도 드물 것. 「활용」「삼각형」처럼 흔한 조각만 겹치면 합치지 않는다.
+ */
+function nameIsPrefixFamily(a: string, b: string): boolean {
+  const shorter = a.length <= b.length ? a : b;
+  const longer = a.length <= b.length ? b : a;
+  if (longer === shorter || !longer.startsWith(shorter)) return false;
+  const rest = longer.slice(shorter.length);
+  return rest.length === 0 || /^[의 (]/.test(rest);
+}
+
+function unitsSameFamily(
+  a: string,
+  b: string,
+  units: Map<string, LiveUnit>,
+  atomUnitFrequency: Map<string, number>,
+  unitCount: number,
+): boolean {
+  if (a === b) return true;
+  if (nameIsPrefixFamily(a, b)) return true;
+  const rareCap = Math.max(3, Math.ceil(unitCount * 0.06));
+  const lcs = longestCommonSubstring(a, b);
+  if (
+    lcs.length >= 5 &&
+    (lcs.match(/[가-힣]{3,}/gu) ?? []).some(
+      (run) => (atomUnitFrequency.get(run) ?? unitCount) <= rareCap,
+    )
+  ) {
+    return true;
+  }
+  const unitA = units.get(a);
+  const unitB = units.get(b);
+  if (!unitA || !unitB) return false;
+  for (const atomA of unitA.atoms) {
+    for (const atomB of unitB.atoms) {
+      if (!atomsRelated(atomA, atomB)) continue;
+      const aEun = EUN_EUM_SUFFIX.some((suffix) => atomA.endsWith(suffix));
+      const bEun = EUN_EUM_SUFFIX.some((suffix) => atomB.endsWith(suffix));
+      if (
+        aEun &&
+        bEun &&
+        stemAtom(atomA) === stemAtom(atomB) &&
+        atomA !== atomB
+      ) {
+        return true;
+      }
+    }
+  }
+  // 이름에만 들어 있는 드문 원자(일차식 ⊂ 일차방정식). 「삼각형」처럼
+  // 기하에 흔한 조각은 여기 안 탄다 — 그 조각으로 합치면 닮음이 평행선에 삼켜진다.
+  for (const atomA of unitA.atoms) {
+    if (
+      atomA.length >= 3 &&
+      (atomUnitFrequency.get(atomA) ?? unitCount) <= rareCap &&
+      b.includes(atomA) &&
+      !unitB.atoms.has(atomA)
+    ) {
+      return true;
+    }
+  }
+  for (const atomB of unitB.atoms) {
+    if (
+      atomB.length >= 3 &&
+      (atomUnitFrequency.get(atomB) ?? unitCount) <= rareCap &&
+      a.includes(atomB) &&
+      !unitA.atoms.has(atomB)
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function clusterUnitFamilies(
+  names: string[],
+  units: Map<string, LiveUnit>,
+  atomUnitFrequency: Map<string, number>,
+): Map<string, string[]> {
+  const unique = [...new Set(names)].sort();
+  const parent = new Map(unique.map((name) => [name, name]));
+  const find = (name: string): string => {
+    let cur = name;
+    while (parent.get(cur) !== cur) {
+      const next = parent.get(cur);
+      if (!next) break;
+      parent.set(cur, parent.get(next) ?? next);
+      cur = next;
+    }
+    return cur;
+  };
+  for (let i = 0; i < unique.length; i += 1) {
+    for (let j = i + 1; j < unique.length; j += 1) {
+      if (
+        !unitsSameFamily(
+          unique[i]!,
+          unique[j]!,
+          units,
+          atomUnitFrequency,
+          units.size,
+        )
+      ) {
+        continue;
+      }
+      const a = find(unique[i]!);
+      const b = find(unique[j]!);
+      if (a !== b) parent.set(b, a);
+    }
+  }
+  const groups = new Map<string, string[]>();
+  for (const name of unique) {
+    const root = find(name);
+    const list = groups.get(root) ?? [];
+    list.push(name);
+    groups.set(root, list);
+  }
+  for (const list of groups.values()) list.sort();
+  return groups;
+}
+
 function sharedConceptAtom(
   current: LiveUnit,
   mapped: LiveUnit,
@@ -908,10 +1095,14 @@ function classify(
   let vetoedTerms = 0;
   let uncertainTerms = 0;
   let futureTerms = 0;
-  const grouped = new Map<
-    string,
-    Map<string, { key: DerivedKey; occurrences: number; samples: Set<number> }>
-  >();
+  type TermHit = {
+    key: DerivedKey;
+    occurrences: number;
+    samples: Set<number>;
+  };
+  type DeferredHit = TermHit & { external: string[] };
+  const grouped = new Map<string, Map<string, TermHit>>();
+  const deferred = new Map<string, DeferredHit>();
 
   scan.samples.forEach((sample, sampleIndex) => {
     for (const [term, count] of sample.terms) {
@@ -940,11 +1131,25 @@ function classify(
         uncertainTerms += 1;
         continue;
       }
-      if (
+      const uncalibratedStructural =
         isStructuralKind(key.kind) &&
         calibratedShapeUnits !== undefined &&
-        !calibratedShapeUnits.has(term)
-      ) {
+        !calibratedShapeUnits.has(term);
+      if (uncalibratedStructural) {
+        if (r.external.length > 0) {
+          let hit = deferred.get(term);
+          if (!hit) {
+            hit = {
+              key,
+              occurrences: 0,
+              samples: new Set<number>(),
+              external: r.external,
+            };
+            deferred.set(term, hit);
+          }
+          hit.occurrences += count;
+          hit.samples.add(sampleIndex);
+        }
         continue;
       }
       if (r.future.length > 0) futureTerms += 1;
@@ -972,8 +1177,79 @@ function classify(
     }
   });
 
+  const candidateUnits = [
+    ...new Set([
+      ...grouped.keys(),
+      ...[...deferred.values()].flatMap((hit) => hit.external),
+    ]),
+  ];
+  const families = clusterUnitFamilies(
+    candidateUnits,
+    units,
+    atomUnitFrequency,
+  );
+  const familyOf = new Map<string, string>();
+  for (const [root, members] of families) {
+    for (const member of members) familyOf.set(member, root);
+  }
+  const merged = new Map<string, Map<string, TermHit>>();
+  const familyMembers = new Map<string, string[]>();
+  for (const [root, members] of families) {
+    familyMembers.set(root, members);
+    const byTerm = new Map<string, TermHit>();
+    for (const member of members) {
+      const source = grouped.get(member);
+      if (!source) continue;
+      for (const [term, hit] of source) {
+        let dest = byTerm.get(term);
+        if (!dest) {
+          dest = {
+            key: hit.key,
+            occurrences: 0,
+            samples: new Set<number>(),
+          };
+          byTerm.set(term, dest);
+        }
+        dest.occurrences += hit.occurrences;
+        for (const sampleIndex of hit.samples) dest.samples.add(sampleIndex);
+      }
+    }
+    merged.set(root, byTerm);
+  }
+  for (const hit of deferred.values()) {
+    const roots = [
+      ...new Set(
+        hit.external
+          .map((unitSection) => familyOf.get(unitSection))
+          .filter((root): root is string => root !== undefined),
+      ),
+    ];
+    for (const root of roots) {
+      const byTerm = merged.get(root);
+      if (!byTerm || byTerm.size === 0) continue;
+      const hasAnchor = [...byTerm.values()].some(
+        (kept) =>
+          !isStructuralKind(kept.key.kind) ||
+          calibratedShapeUnits?.has(kept.key.term),
+      );
+      if (!hasAnchor) continue;
+      let dest = byTerm.get(hit.key.term);
+      if (!dest) {
+        dest = {
+          key: hit.key,
+          occurrences: 0,
+          samples: new Set<number>(),
+        };
+        byTerm.set(hit.key.term, dest);
+      }
+      dest.occurrences += hit.occurrences;
+      for (const sampleIndex of hit.samples) dest.samples.add(sampleIndex);
+    }
+  }
+
   const external: ConceptEvidence[] = [];
-  for (const [unitSection, byTerm] of grouped) {
+  for (const [unitSection, byTerm] of merged) {
+    if (byTerm.size === 0) continue;
     const evidence: KeyEvidence[] = [...byTerm.values()]
       .map(({ key, occurrences, samples }) => ({
         term: key.term,
@@ -1013,8 +1289,10 @@ function classify(
     const score =
       bestSampleScore + Math.min(0.3, Math.max(0, supportSamples - 1) * 0.1);
     const firstSample = evidence[0]?.sampleIndexes[0] ?? 0;
+    const members = familyMembers.get(unitSection) ?? [unitSection];
     external.push({
       unitSection,
+      familyMembers: members,
       score,
       supportSamples,
       evidence,
@@ -1107,10 +1385,13 @@ function conceptQualifies(
   if (concept === undefined) {
     return false;
   }
+  const shapeUnits = [concept.unitSection, ...concept.familyMembers];
   const hasCalibratedShape = concept.evidence.some(
     (evidence) =>
       evidence.kind === "식모양" &&
-      calibratedShapeUnits?.get(evidence.term)?.has(concept.unitSection),
+      shapeUnits.some((unitSection) =>
+        calibratedShapeUnits?.get(evidence.term)?.has(unitSection),
+      ),
   );
   // 식 모양은 분포 판별력과 양·음성 눈금을 이미 모두 통과했다. 생성 갈래가
   // 섞인 1/4 양성도 있으므로 여기서 범용 어휘 점수를 다시 요구하지 않는다.
@@ -1149,7 +1430,7 @@ function deriveCalibratedShapeUnits(
     const item = preliminary.get(gauge.key);
     if (!item) throw new Error(`양성 눈금 예비 판정 없음: ${gauge.key}`);
     const concept = item.external.find((candidate) =>
-      candidate.unitSection.includes(gauge.expectedExternal!),
+      conceptMatchesExternal(candidate, gauge.expectedExternal!),
     );
     if (!concept) continue;
     const accepted = concept.evidence.filter(
@@ -1179,6 +1460,7 @@ function deriveCalibratedShapeUnits(
         unitsByTerm.set(evidence.term, units);
       }
       units.add(concept.unitSection);
+      for (const member of concept.familyMembers) units.add(member);
     }
   }
   return unitsByTerm;
@@ -1196,7 +1478,7 @@ function preferGaugeEvidence(
     if (!item) continue;
     const preferred = item.external.find(
       (concept) =>
-        concept.unitSection.includes(gauge.expectedExternal!) &&
+        conceptMatchesExternal(concept, gauge.expectedExternal!) &&
         conceptQualifies(concept, item.sampleCount, calibratedShapeUnits),
     );
     if (!preferred) continue;
@@ -1238,7 +1520,7 @@ function calibrationResult(
     const expectedEvidence = gauge.expectedExternal
       ? item.external.find(
           (concept) =>
-            concept.unitSection.includes(gauge.expectedExternal!) &&
+            conceptMatchesExternal(concept, gauge.expectedExternal!) &&
             conceptQualifies(concept, item.sampleCount, calibratedShapeUnits),
         )
       : undefined;
@@ -1291,7 +1573,7 @@ function calibrationResult(
         item?.verdict === "결합형" &&
         item.external.some(
           (concept) =>
-            concept.unitSection.includes(gauge.expectedExternal ?? "") &&
+            conceptMatchesExternal(concept, gauge.expectedExternal ?? "") &&
             conceptQualifies(
               concept,
               item?.sampleCount ?? 0,
