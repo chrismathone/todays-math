@@ -157,32 +157,65 @@ describe("파일럿 3소단원 · 문형 10", () => {
   });
 });
 
+/**
+ * **변형을 3개까지 못 채우는 파일럿 문형** — `학년|소단원|문형 → 낼 수 있는 수`.
+ *
+ * `초3 2-3-1 f01` 은 「굵게 그린 선분의 이름」을 묻는데 답이 **지름·반지름 둘뿐**이다.
+ * 태생이 2가지이고, 3을 채우려면 없는 답을 지어내야 한다.
+ *
+ * ⚠️ 이 표가 **늘면 회귀**다 — 변할 수 있던 문형이 못 변하게 된 것이다.
+ *    전 학년 목록은 `elemFormVariantSpace.test.ts` 가 따로 못 박는다.
+ */
+const PILOT_SHORT: Record<string, number> = {
+  "초3|2-3-1|01": 2,
+};
+
 describe("expandFamily 를 지나 서로 다른 문항류로 선다", () => {
   it("문형마다 변형 3 × 단답이 나오고 familyKey 는 문형 id 다", () => {
+    const shortSeen: Record<string, number> = {};
     for (const key of PILOT_FORM_KEYS) {
       const unit = unitOf(key);
       for (const form of listedForms(unit)) {
         const familyKey = pilotFamilyKey(unit, form.id);
-        const got = expandFamily((v) => {
-          const p = generateElementaryForm(unit, 20260826 + v * 1009, form.id);
-          return {
-            content: p.content,
-            answer: p.answer,
-            solution: p.solution,
-            familyKey,
-            problemType: elemProblemType(form.tier),
-          };
-        });
+        // 🔴 **적재기와 같은 방식으로 부른다** (`allowShort`, 2026-08-28).
+        //    다르게 부르면 제품이 안 쓰는 길을 재게 된다.
+        const got = expandFamily(
+          (v) => {
+            const p = generateElementaryForm(
+              unit,
+              20260826 + v * 1009,
+              form.id,
+            );
+            return {
+              content: p.content,
+              answer: p.answer,
+              solution: p.solution,
+              familyKey,
+              problemType: elemProblemType(form.tier),
+            };
+          },
+          3,
+          { allowShort: true },
+        );
         const short = got.items.filter((i) => i.questionType === "단답형");
-        expect(short, `${key} ${form.id}`).toHaveLength(3);
+        const want = PILOT_SHORT[`${key}|${form.id}`] ?? 3;
+        if (short.length < 3) shortSeen[`${key}|${form.id}`] = short.length;
+        expect(short, `${key} ${form.id}`).toHaveLength(want);
+        // 낸 것은 **서로 달라야** 한다 — 몇 개를 내든 이건 흔들리면 안 된다.
         expect(
           new Set(short.map((i) => `${i.content}\n${i.answer}`)).size,
-        ).toBe(3);
+          `${key} ${form.id} — 같은 문항이 섞였다`,
+        ).toBe(want);
         expect(new Set(got.items.map((i) => i.familyKey))).toEqual(
           new Set([familyKey]),
         );
       }
     }
+    // 🔴 **짧은 문형의 목록이 그대로다.** 안 잠그면 새로 짧아진 문형이
+    //    `want` 를 그때그때 따라가 조용히 통과한다.
+    expect(shortSeen, "변형을 못 채우는 파일럿 문형이 달라졌다").toEqual(
+      PILOT_SHORT,
+    );
   });
 });
 
@@ -193,16 +226,24 @@ describe("한 시험지에 10문항이 조립된다", () => {
       const pool: SelectableProblem[] = [];
       for (const form of listedForms(unit)) {
         const familyKey = pilotFamilyKey(unit, form.id);
-        const got = expandFamily((v) => {
-          const p = generateElementaryForm(unit, 20260826 + v * 1009, form.id);
-          return {
-            content: p.content,
-            answer: p.answer,
-            solution: p.solution,
-            familyKey,
-            problemType: elemProblemType(form.tier),
-          };
-        });
+        const got = expandFamily(
+          (v) => {
+            const p = generateElementaryForm(
+              unit,
+              20260826 + v * 1009,
+              form.id,
+            );
+            return {
+              content: p.content,
+              answer: p.answer,
+              solution: p.solution,
+              familyKey,
+              problemType: elemProblemType(form.tier),
+            };
+          },
+          3,
+          { allowShort: true }, // 적재기와 같은 방식으로 부른다
+        );
         got.items
           .filter((i) => i.questionType === "단답형")
           .forEach((item, i) => {

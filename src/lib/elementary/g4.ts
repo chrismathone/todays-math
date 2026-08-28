@@ -7245,10 +7245,9 @@ function move142Net(unit: UnitSeed, rng: Rng): ElemProblem {
 /* ── 1-4-3 평면도형 뒤집기 ── */
 
 function move143NameH(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 칸의 왼쪽과 오른쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
+    `그림에서 색칠한 칸의 왼쪽과 오른쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
     "좌우로 뒤집기",
     "색칠한 칸이 왼쪽과 오른쪽이 바뀌었으므로 좌우로 뒤집은 것입니다.",
     flipFig(rng, "flipH"),
@@ -7256,10 +7255,9 @@ function move143NameH(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function move143NameV(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 칸의 위쪽과 아래쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
+    `그림에서 색칠한 칸의 위쪽과 아래쪽이 서로 바뀌었습니다. 좌우로 뒤집은 것인지 위아래로 뒤집은 것인지 쓰시오.`,
     "위아래로 뒤집기",
     "색칠한 칸이 위쪽과 아래쪽이 바뀌었으므로 위아래로 뒤집은 것입니다.",
     flipFig(rng, "flipV"),
@@ -7301,10 +7299,9 @@ function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function move143HThenH(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 도형을 좌우로 뒤집은 다음 다시 좌우로 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 좌우로 뒤집은 다음 다시 좌우로 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     "같은 방향으로 두 번 뒤집으면 처음과 같습니다.",
     flipFig(rng, "flipH"),
@@ -7359,10 +7356,9 @@ function move144FourYes(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function move144Two180(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 도형을 시계 방향으로 ${deg(180)} 돌린 다음 다시 ${deg(180)} 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 시계 방향으로 ${deg(180)} 돌린 다음 다시 ${deg(180)} 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `${expr(`180+180=360`)} 이므로 처음과 같습니다.`,
     flipFig(rng, "rot180"),
@@ -7370,10 +7366,9 @@ function move144Two180(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function move144Two90(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 도형을 시계 방향으로 ${deg(90)} 돌린 다음 다시 ${deg(90)} 돌렸습니다. 시계 방향으로 몇 도 돌린 것과 같은가?`,
+    `도형을 시계 방향으로 ${deg(90)} 돌린 다음 다시 ${deg(90)} 돌렸습니다. 시계 방향으로 몇 도 돌린 것과 같은가?`,
     deg(180),
     `${expr(`90+90=180`)} 이므로 ${deg(180)}입니다.`,
     flipFig(rng, "rot180"),
@@ -10732,10 +10727,9 @@ function tri221PickIso(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function tri221Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(which)}번 그림의 삼각형에서 꼭짓점은 몇 개인가?`,
+    `그림의 삼각형에서 꼭짓점은 몇 개인가?`,
     n(3),
     `삼각형의 꼭짓점은 ${n(3)}개입니다.`,
     fig("namedShapes", {
@@ -10749,11 +10743,10 @@ function tri221Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri222Sum180(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri222Sum180(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 이등변삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    `이등변삼각형의 세 각의 크기의 합은 몇 도인가?`,
     deg(180),
     `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -10803,11 +10796,10 @@ function tri222Pick(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri222EqualBase(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri222EqualBase(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 이등변삼각형에서 두 밑각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `이등변삼각형에서 두 밑각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `이등변삼각형은 두 밑각의 크기가 같습니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -10825,22 +10817,20 @@ function tri223Side(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri223Angle(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri223Angle(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 정삼각형의 한 각의 크기는 몇 도인가?`,
+    `정삼각형의 한 각의 크기는 몇 도인가?`,
     deg(60),
     `정삼각형은 세 각의 크기가 모두 ${deg(60)}입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
   );
 }
 
-function tri223AngleSum(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri223AngleSum(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 정삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    `정삼각형의 세 각의 크기의 합은 몇 도인가?`,
     deg(180),
     `${expr(`60+60+60=180`)} 이므로 ${deg(180)}입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -10868,11 +10858,10 @@ function tri223HalfPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri223Name(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri223Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 하는가?`,
+    `그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 하는가?`,
     "정삼각형",
     `세 변의 길이가 모두 같은 삼각형은 정삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -10973,11 +10962,10 @@ function tri225PickRightIso(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri225EqIsAcute(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri225EqIsAcute(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 정삼각형은 예각삼각형인가? '예' 또는 '아니요'로 답하시오.`,
+    `정삼각형은 예각삼각형인가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정삼각형의 세 각은 모두 ${deg(60)}이므로 예각삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -10995,22 +10983,20 @@ function tri225SideClass(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function tri225AngleClass(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri225AngleClass(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 정삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
+    `정삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
     "예각삼각형",
     `세 각이 모두 ${deg(60)}이므로 예각삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
   );
 }
 
-function tri225Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function tri225Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 직각삼각형에서 직각인 꼭짓점은 몇 개인가?`,
+    `직각삼각형에서 직각인 꼭짓점은 몇 개인가?`,
     n(1),
     `직각삼각형의 직각은 ${n(1)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "rightTri", label: "가" }] }),
@@ -13844,78 +13830,89 @@ function tier247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/**
+ * 2-4-1 수직 — 관계를 **말로** 묻는 여섯 문형.
+ *
+ * 🔴 **`그림처럼` 을 걷어냈다** (2026-08-28). 그 여섯은 1~8 을 뽑아
+ *    「$5$번 그림처럼 두 직선이 직각으로 만날 때…」로 나가고 있었는데 **그 그림이 없다.**
+ *    `lineRelation` 의 `perpendicular` 을 엔진이 안 받아서(지금은 `parallel` 뿐)
+ *    적재 때도 렌더가 실패했고, 33문항이 **전부 그림 없이** 들어갔다. 종이에서는
+ *    학생이 있지도 않은 「5번 그림」을 찾게 된다.
+ *
+ * ⚠️ 그리고 `which` 는 **답을 하나도 바꾸지 않았다** — 변형 규칙(R4: 문형 여덟)을
+ *    채우려고 넣은 순수 잡음이다. **잡음으로 변형 수를 채우면 규칙은 초록인데 지면이
+ *    나빠진다.** 그런 축은 세지 않는다.
+ *
+ * 그래서 변형 축을 형제 문형(A01~A03)과 **같은 것**으로 맞췄다 — 직선 이름이다.
+ * 그쪽은 이미 `lineName`·`lineJosa`·`lineBase` 로 그렇게 하고, 교과서도 문항마다
+ * 직선 이름을 달리 쓴다. 발문이 관계를 말로 다 적으므로 **그림 없이 자족한다**
+ * (같은 파일 2-4-2 블록 주석이 적어 둔 판단과 같다).
+ */
 function quad241Name(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번 그림처럼 두 직선이 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
+    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
     "수직",
     `두 직선이 ${deg(90)}로 만나면 서로 수직입니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
 function quad241RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번처럼 두 직선이 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
+    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
     n(4),
     `만나는 점 주위로 직각이 ${n(4)}개 생깁니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
 function quad241OneAngle(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번처럼 두 직선이 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
     deg(90),
     `수직으로 만나면 각의 크기는 ${deg(90)}입니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
 function quad241Sum3(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 1, 4);
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번처럼 두 직선이 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
     deg(90 * k),
     `${expr(`90\\times${k}=${90 * k}`)} 입니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
 function quad241NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번처럼 두 직선이 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `네 각이 모두 직각입니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
 function quad241PerpName(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+  const b = lineBase(rng, 2);
   return make(
     unit,
-    `${n(which)}번 그림에서 한 직선에 수직인 직선을 무엇이라고 하는가?`,
+    `${lineName(b)}에 수직인 직선을 무엇이라고 하는가?`,
     "수선",
     `한 직선에 수직인 직선이 수선입니다.`,
-    fig("lineRelation", { relation: "perpendicular" }),
   );
 }
 
-function quad242Name(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad242Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 아무리 늘여도 만나지 않는 두 직선을 무엇이라고 하는가?`,
+    `그림처럼 아무리 늘여도 만나지 않는 두 직선을 무엇이라고 하는가?`,
     "평행",
     `만나지 않는 두 직선은 서로 평행합니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -13933,22 +13930,20 @@ function quad242Dist(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad242Same(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad242Same(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 평행선 사이에 그은 수선의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `평행선 사이에 그은 수선의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `평행선 사이의 수선의 길이는 모두 같습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 2 }),
   );
 }
 
-function quad242Meet(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad242Meet(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 평행한 두 직선을 늘이면 만나는가? '예' 또는 '아니요'로 답하시오.`,
+    `그림처럼 평행한 두 직선을 늘이면 만나는가? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `평행한 두 직선은 만나지 않습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -13966,11 +13961,10 @@ function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad242Angle(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad242Angle(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번에서 평행선에 그은 수선이 이루는 각의 크기는 몇 도인가?`,
+    `그림에서 평행선에 그은 수선이 이루는 각의 크기는 몇 도인가?`,
     deg(90),
     `수선이므로 각의 크기는 ${deg(90)}입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -14022,11 +14016,10 @@ function quad243Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad243Equal(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad243Equal(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 평행선에서 어디에 수선을 그어도 길이가 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `평행선에서 어디에 수선을 그어도 길이가 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `평행선 사이의 거리는 어디서 재어도 같습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 2 }),
@@ -14054,11 +14047,10 @@ function quad244Pick(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad244Pairs(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad244Pairs(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 사다리꼴에서 평행한 변은 몇 쌍인가?`,
+    `사다리꼴에서 평행한 변은 몇 쌍인가?`,
     `${n(1)}쌍`,
     `사다리꼴은 평행한 변이 ${n(1)}쌍입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -14075,33 +14067,30 @@ function quad244Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad244Name(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad244Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 하는가?`,
+    `그림처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 하는가?`,
     "사다리꼴",
     `평행한 변이 한 쌍인 사각형은 사다리꼴입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
   );
 }
 
-function quad244Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad244Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 사다리꼴의 꼭짓점은 몇 개인가?`,
+    `사다리꼴의 꼭짓점은 몇 개인가?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
   );
 }
 
-function quad244Sides(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad244Sides(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 사다리꼴에서 평행하지 않은 변은 몇 개인가?`,
+    `사다리꼴에서 평행하지 않은 변은 몇 개인가?`,
     n(2),
     `사다리꼴은 평행한 변이 ${n(1)}쌍이고 평행하지 않은 변은 ${n(2)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -14152,22 +14141,20 @@ function quad245Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad245Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad245Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 평행사변형의 꼭짓점은 몇 개인가?`,
+    `평행사변형의 꼭짓점은 몇 개인가?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     paraFigure({}),
   );
 }
 
-function quad245Name(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad245Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 마주 보는 두 쌍의 변이 각각 평행한 사각형을 무엇이라고 하는가?`,
+    `그림처럼 마주 보는 두 쌍의 변이 각각 평행한 사각형을 무엇이라고 하는가?`,
     "평행사변형",
     `마주 보는 두 쌍의 변이 평행한 사각형은 평행사변형입니다.`,
     paraFigure({}),
@@ -14217,55 +14204,50 @@ function quad246FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function quad246AllEqual(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad246AllEqual(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 마름모의 네 변의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `마름모의 네 변의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `마름모는 네 변의 길이가 모두 같습니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
   );
 }
 
-function quad246Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad246Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 마름모의 꼭짓점은 몇 개인가?`,
+    `마름모의 꼭짓점은 몇 개인가?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
   );
 }
 
-function quad247SqIsRect(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad247SqIsRect(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 정사각형은 직사각형이라고 할 수 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `정사각형은 직사각형이라고 할 수 있는가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정사각형은 네 각이 모두 직각이므로 직사각형입니다.`,
     fig("markedShape", { shape: "square" }),
   );
 }
 
-function quad247NameRight(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad247NameRight(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 네 각의 크기가 모두 직각인 사각형을 무엇이라고 하는가?`,
+    `그림처럼 네 각의 크기가 모두 직각인 사각형을 무엇이라고 하는가?`,
     "직사각형",
     `네 각이 모두 직각인 사각형은 직사각형입니다.`,
     fig("markedShape", { shape: "rect" }),
   );
 }
 
-function quad247NameEq(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function quad247NameEq(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형을 무엇이라고 하는가?`,
+    `그림처럼 네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형을 무엇이라고 하는가?`,
     "정사각형",
     `네 변의 길이가 같고 네 각이 직각인 사각형은 정사각형입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -15977,11 +15959,10 @@ function poly261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function poly261Pent(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function poly261Pent(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 오각형의 변은 몇 개인가?`,
+    `오각형의 변은 몇 개인가?`,
     n(5),
     `오각형의 변은 ${n(5)}개입니다.`,
   );
@@ -16008,22 +15989,20 @@ function poly262FromVertex(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function poly262TriDiag(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function poly262TriDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 삼각형에 그을 수 있는 대각선은 몇 개인가?`,
+    `삼각형에 그을 수 있는 대각선은 몇 개인가?`,
     n(0),
     `삼각형에는 대각선을 그을 수 없습니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
   );
 }
 
-function poly262QuadDiag(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function poly262QuadDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 사각형에 그을 수 있는 대각선은 모두 몇 개인가?`,
+    `사각형에 그을 수 있는 대각선은 모두 몇 개인가?`,
     n(2),
     `사각형의 대각선은 ${n(2)}개입니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -16040,11 +16019,10 @@ function poly262HexFrom(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function poly262EqualDiag(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function poly262EqualDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번 직사각형의 두 대각선의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `직사각형의 두 대각선의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `직사각형의 두 대각선의 길이는 같습니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -16146,11 +16124,10 @@ function poly264SqFill(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function poly264Hex(unit: UnitSeed, rng: Rng): ElemProblem {
-  const which = intBetween(rng, 1, 8);
+function poly264Hex(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `${n(which)}번처럼 정삼각형 모양 조각으로 정육각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    `그림처럼 정삼각형 모양 조각으로 정육각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
     n(6),
     `정육각형은 정삼각형 ${n(6)}개로 채울 수 있습니다.`,
     fig("tiling", { piece: "eqTri", target: "hexagon" }),

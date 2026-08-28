@@ -7406,10 +7406,9 @@ function circ231Deep(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 01 — 그림에서 굵은 선분의 이름. 번호를 넣어 변형 3개를 채운다. */
 function circ231NameVar(unit: UnitSeed, rng: Rng): ElemProblem {
   const isDia = intBetween(rng, 0, 1) === 1;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 굵게 그린 선분의 이름을 쓰시오.`,
+    `그림에서 굵게 그린 선분의 이름을 쓰시오.`,
     isDia ? "지름" : "반지름",
     isDia
       ? "원의 중심을 지나 원 위의 두 점을 이은 선분이 지름입니다."
@@ -7900,11 +7899,10 @@ function line121DefLine(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 08 — 반직선 수. 선분(03)과 답이 다르다. */
 function line121RayCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { layout, k, letters } = line121Dots(rng);
-  const which = intBetween(rng, 1, 6);
   const rays = k * (k - 1);
   return make(
     unit,
-    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 한 점에서 출발하여 다른 점 쪽으로 끝없이 그을 수 있는 반직선은 모두 몇 개인지 쓰시오.`,
+    `그림에 점이 ${n(k)}개 있습니다. 한 점에서 출발하여 다른 점 쪽으로 끝없이 그을 수 있는 반직선은 모두 몇 개인지 쓰시오.`,
     n(rays),
     `한 점마다 나머지 ${n(k - 1)}개 쪽으로 반직선을 그을 수 있습니다. ${expr(`${k}\\times${k - 1}=${rays}`)} 개입니다.`,
     dotsOnly(layout, letters),
@@ -7914,12 +7912,11 @@ function line121RayCount(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 09 — 점 하나를 지운 뒤 선분 수. 04 는 점을 더한다. */
 function line121RemovePoint(unit: UnitSeed, rng: Rng): ElemProblem {
   const { layout, k, letters } = line121Dots(rng);
-  const which = intBetween(rng, 1, 6);
   const left = k - 1;
   const segs = (left * (left - 1)) / 2;
   return make(
     unit,
-    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 그중 한 점을 지우면 남은 점으로 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
+    `그림에 점이 ${n(k)}개 있습니다. 그중 한 점을 지우면 남은 점으로 그을 수 있는 선분은 모두 몇 개인지 쓰시오.`,
     n(segs),
     `점이 ${n(left)}개 남으므로 ${expr(`${left}\\times${left - 1}\\div2=${segs}`)} 개입니다.`,
     dotsOnly(layout, letters),
@@ -7929,12 +7926,11 @@ function line121RemovePoint(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 10 — 반직선 수와 선분 수의 합. */
 function line121RayPlusSeg(unit: UnitSeed, rng: Rng): ElemProblem {
   const { layout, k, letters } = line121Dots(rng);
-  const which = intBetween(rng, 1, 6);
   const rays = k * (k - 1);
   const segs = (k * (k - 1)) / 2;
   return make(
     unit,
-    `${n(which)}번 그림에 점이 ${n(k)}개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
+    `그림에 점이 ${n(k)}개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
     n(rays + segs),
     `반직선은 ${expr(`${k}\\times${k - 1}=${rays}`)} 개, 선분은 ${expr(`${k}\\times${k - 1}\\div2=${segs}`)} 개이므로 합은 ${expr(`${rays}+${segs}=${rays + segs}`)} 입니다.`,
     dotsOnly(layout, letters),
@@ -7946,10 +7942,9 @@ function ang122RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = intBetween(rng, 3, 4);
   const rightCount = intBetween(rng, 1, count - 1);
   const row = angleRow(rng, count, rightCount);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각인 각은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 직각인 각은 모두 몇 개인지 쓰시오.`,
     n(rightCount),
     `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
@@ -7989,10 +7984,9 @@ function ang122OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const rightCount = intBetween(rng, 1, count - 1);
   const row = angleRow(rng, count, rightCount);
   const other = count - rightCount;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각이 아닌 각은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 직각이 아닌 각은 모두 몇 개인지 쓰시오.`,
     n(other),
     `전체 ${n(count)}개에서 직각 ${n(rightCount)}개를 빼면 ${expr(`${count}-${rightCount}=${other}`)} 개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
@@ -8030,10 +8024,9 @@ function tri123RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = 3;
   const rightCount = intBetween(rng, 1, 2);
   const row = triangleRow(rng, count, rightCount);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각삼각형은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 직각삼각형은 모두 몇 개인지 쓰시오.`,
     n(rightCount),
     `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
@@ -8072,10 +8065,9 @@ function tri123RightSides(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = 3;
   const rightCount = intBetween(rng, 1, 2);
   const row = triangleRow(rng, count, rightCount);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직각삼각형의 변은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 직각삼각형의 변은 모두 몇 개인지 쓰시오.`,
     n(3 * rightCount),
     `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, 변은 각각 3개이므로 ${expr(`${rightCount}\\times3=${3 * rightCount}`)} 개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
@@ -8099,10 +8091,9 @@ function tri123Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = intBetween(rng, 2, 3);
   const rightCount = intBetween(rng, 1, Math.max(1, count - 1));
   const row = triangleRow(rng, count, rightCount);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 삼각형 ${n(count)}개의 꼭짓점은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 삼각형 ${n(count)}개의 꼭짓점은 모두 몇 개인지 쓰시오.`,
     n(3 * count),
     `삼각형 ${n(count)}개에 꼭짓점이 각각 3개이므로 ${expr(`${count}\\times3=${3 * count}`)} 개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
@@ -8133,10 +8124,9 @@ function rectWH(rng: Rng): { w: number; h: number } {
 function rect124OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const row = rectRow(rng);
   const other = row.labels.length - 1;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 직사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 직사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
     n(other),
     `직사각형은 ${row.answer} 하나이므로 아닌 도형은 ${n(other)}개입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
@@ -8218,10 +8208,9 @@ const SQ_THINGS = [
 function sq125OtherCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const row = squareRow(rng);
   const other = row.labels.length - 1;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 ${row.labels.join(", ")} 가운데 정사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
+    `그림에서 ${row.labels.join(", ")} 가운데 정사각형이 아닌 도형은 모두 몇 개인지 쓰시오.`,
     n(other),
     `정사각형은 ${row.answer} 하나이므로 아닌 도형은 ${n(other)}개입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
@@ -8360,10 +8349,9 @@ function div131TotalFromShare(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 05 — 곱셈식에서 만드는 나눗셈식 개수. 늘 둘. 번호를 넣어 변형을 연다. */
 function div132DivCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, q } = divTriple(rng);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 곱셈식 ${expr(`${b}\\times${q}=${a}`)} 에서 만들 수 있는 나눗셈식은 몇 개입니까?`,
+    `곱셈식 ${expr(`${b}\\times${q}=${a}`)} 에서 만들 수 있는 나눗셈식은 몇 개입니까?`,
     n(2),
     `${expr(`${a}\\div${b}=${q}`)} 와 ${expr(`${a}\\div${q}=${b}`)} 로 2개입니다.`,
   );
@@ -8787,10 +8775,9 @@ function lenHowManyBigOf(cfg: LenCfg): ChapterHandler {
 
 function guessMmOfCm(unit: UnitSeed, rng: Rng): ElemProblem {
   const g = intBetween(rng, 3, 9);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 어림한 길이 ${unitNum(g, "cm")} 는 ${unitNum(10, "mm")} 가 몇 번 들어간 길이입니까?`,
+    `어림한 길이 ${unitNum(g, "cm")} 는 ${unitNum(10, "mm")} 가 몇 번 들어간 길이입니까?`,
     n(g),
     `$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 이므로 ${n(g)}번입니다.`,
   );
@@ -8940,10 +8927,9 @@ function time155HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
 function time155CarryQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, h2, m2 } = addHm(rng);
   const yes = m1 + m2 >= 60;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. ${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 을 더할 때 분에서 시간으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 을 더할 때 분에서 시간으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     `분끼리 더하면 ${n(m1 + m2)}분이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
   );
@@ -9002,10 +8988,9 @@ function time156HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
 function time156BorrowQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, sh, sm } = subHm(rng);
   const yes = m1 < sm;
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. ${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때 분에서 받아내림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때 분에서 받아내림이 있습니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     `${n(m1)}분에서 ${n(sm)}분을 빼므로 ${yes ? "받아내림이 있습니다" : "받아내림이 없습니다"}.`,
   );
@@ -9045,10 +9030,9 @@ function part161Filled(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 조각은 몇 개인지 쓰시오.`,
+    `그림에서 색칠한 조각은 몇 개인지 쓰시오.`,
     n(filled),
     `색칠한 조각은 ${n(filled)}개입니다.`,
     spec,
@@ -9059,10 +9043,9 @@ function part161Empty(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
+    `그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
     n(parts - filled),
     `전체 ${n(parts)}개 중 색칠한 것이 ${n(filled)}개이므로 ${expr(`${parts}-${filled}=${parts - filled}`)} 개입니다.`,
     spec,
@@ -9098,10 +9081,9 @@ function part161CheckSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 조각과 색칠하지 않은 조각을 더한 값은 몇 개입니까?`,
+    `그림에서 색칠한 조각과 색칠하지 않은 조각을 더한 값은 몇 개입니까?`,
     n(parts),
     `${expr(`${filled}+${parts - filled}=${parts}`)} 입니다.`,
     spec,
@@ -9122,10 +9104,9 @@ function frac162Den(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 부분을 분수로 나타낼 때 분모에 알맞은 수를 쓰시오.`,
+    `그림에서 색칠한 부분을 분수로 나타낼 때 분모에 알맞은 수를 쓰시오.`,
     n(parts),
     `전체를 ${n(parts)}조각으로 나누었으므로 분모는 ${n(parts)} 입니다.`,
     spec,
@@ -9136,10 +9117,9 @@ function frac162Num(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 부분을 분수로 나타낼 때 분자에 알맞은 수를 쓰시오.`,
+    `그림에서 색칠한 부분을 분수로 나타낼 때 분자에 알맞은 수를 쓰시오.`,
     n(filled),
     `색칠한 조각이 ${n(filled)}개이므로 분자는 ${n(filled)} 입니다.`,
     spec,
@@ -9176,10 +9156,9 @@ function frac162Whole(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 전체를 분수로 나타내면 얼마입니까? (그림은 ${n(parts)}등분)`,
+    `전체를 분수로 나타내면 얼마입니까? (그림은 ${n(parts)}등분)`,
     expr(`\\frac{${parts}}{${parts}}`),
     `전체는 ${expr(`\\frac{${parts}}{${parts}}`)} 입니다.`,
     spec,
@@ -9203,10 +9182,9 @@ function frac163RestN(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
+    `그림에서 색칠하지 않은 조각은 몇 개인지 쓰시오.`,
     n(parts - filled),
     `${expr(`${parts}-${filled}=${parts - filled}`)} 개입니다.`,
     spec,
@@ -9241,10 +9219,9 @@ function frac163Check(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 색칠한 조각과 색칠하지 않은 조각을 더하면 몇 개입니까?`,
+    `색칠한 조각과 색칠하지 않은 조각을 더하면 몇 개입니까?`,
     n(parts),
     `${expr(`${filled}+${parts - filled}=${parts}`)} 입니다.`,
     spec,
@@ -9256,10 +9233,9 @@ function frac163More(unit: UnitSeed, rng: Rng): ElemProblem {
   const filled = intBetween(rng, 1, parts - 1);
   const rest = parts - filled;
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림에서 색칠한 조각과 색칠하지 않은 조각 가운데 더 많은 쪽의 조각 수를 쓰시오.`,
+    `그림에서 색칠한 조각과 색칠하지 않은 조각 가운데 더 많은 쪽의 조각 수를 쓰시오.`,
     n(Math.max(filled, rest)),
     `색칠 ${n(filled)}개, 아닌 것 ${n(rest)}개이므로 더 많은 쪽은 ${n(Math.max(filled, rest))}개입니다.`,
     spec,
@@ -9270,10 +9246,9 @@ function frac163Parts(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   const filled = intBetween(rng, 1, parts - 1);
   const spec = fracSpec(rng, parts, filled);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림은 전체를 몇 등분한 것입니까?`,
+    `그림은 전체를 몇 등분한 것입니까?`,
     n(parts),
     `조각이 ${n(parts)}개이므로 ${n(parts)}등분입니다.`,
     spec,
@@ -9355,10 +9330,9 @@ function cmp164SameDenQ(unit: UnitSeed, rng: Rng): ElemProblem {
     number,
     number,
   ];
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. ${expr(`\\frac{${i + 1}}{${den}}`)} 과 ${expr(`\\frac{${j + 1}}{${den2}}`)} 의 분모는 같습니까? 예 또는 아니요로 쓰시오.`,
+    `${expr(`\\frac{${i + 1}}{${den}}`)} 과 ${expr(`\\frac{${j + 1}}{${den2}}`)} 의 분모는 같습니까? 예 또는 아니요로 쓰시오.`,
     same ? "예" : "아니요",
     same
       ? `두 분수의 분모는 모두 ${n(den)} 으로 같습니다.`
@@ -9567,10 +9541,9 @@ function cmp167SameWholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const [i, j] = distinctIdx(rng, 36, 2) as [number, number];
   const A = decIdxVal(i);
   const B = decIdxVal(j);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. ${n(decStrOf(i))} 과 ${n(decStrOf(j))} 의 자연수 부분은 같습니까? 예 또는 아니요로 쓰시오.`,
+    `${n(decStrOf(i))} 과 ${n(decStrOf(j))} 의 자연수 부분은 같습니까? 예 또는 아니요로 쓰시오.`,
     A.w === B.w ? "예" : "아니요",
     `자연수 부분은 ${n(A.w)} 과 ${n(B.w)} 입니다.`,
   );
@@ -9927,11 +9900,10 @@ function rem223LessQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const wantYes = altCase(rng);
   const [a, b, , r] = div2Rem(rng);
   const k = wantYes ? b : r;
-  const which = intBetween(rng, 1, 6);
   const yes = r < k;
   return make(
     unit,
-    `${n(which)}번. $${a}\\div${b}$ 의 나머지는 ${n(k)}보다 작습니까? 예 또는 아니요로 쓰시오.`,
+    `$${a}\\div${b}$ 의 나머지는 ${n(k)}보다 작습니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     `나머지는 ${n(r)} 이므로 ${yes ? `${n(k)}보다 작습니다` : `${n(k)}보다 작지 않습니다`}.`,
   );
@@ -10010,10 +9982,9 @@ function div224Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function circ232Times2(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 9);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 반지름이 ${unitNum(r, "cm")} 인 원에서 지름은 반지름의 몇 배입니까?`,
+    `반지름이 ${unitNum(r, "cm")} 인 원에서 지름은 반지름의 몇 배입니까?`,
     n(2),
     `지름은 반지름의 $2$ 배입니다.`,
     circleFig("radius", r),
@@ -10067,10 +10038,9 @@ function circ232ManyR(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function circ232HalfDia(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 9);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 지름 ${unitNum(r * 2, "cm")} 인 원을 지름의 중점에서 반으로 접으면 생기는 선분의 길이는 몇 cm입니까?`,
+    `지름 ${unitNum(r * 2, "cm")} 인 원을 지름의 중점에서 반으로 접으면 생기는 선분의 길이는 몇 cm입니까?`,
     n(r),
     `지름의 반은 반지름이므로 ${n(r)} cm입니다.`,
     circleFig("diameter", r * 2),
@@ -10131,10 +10101,9 @@ function circ233DiaMinusOpen(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function circ233TwoOpen(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 9);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 컴퍼스를 ${unitNum(r, "cm")} 만큼 벌린 길이를 두 번 이으면 그 원의 무엇과 같아집니까?`,
+    `컴퍼스를 ${unitNum(r, "cm")} 만큼 벌린 길이를 두 번 이으면 그 원의 무엇과 같아집니까?`,
     "지름",
     `벌린 길이 둘이 지름입니다.`,
   );
@@ -10197,10 +10166,9 @@ function part241Unit(unit: UnitSeed, rng: Rng): ElemProblem {
 function part241Check(unit: UnitSeed, rng: Rng): ElemProblem {
   const groups = intBetween(rng, 3, 8);
   const take = intBetween(rng, 1, groups - 1);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 가져온 ${n(take)}묶음과 남은 ${n(groups - take)}묶음을 더하면 몇 묶음입니까?`,
+    `가져온 ${n(take)}묶음과 남은 ${n(groups - take)}묶음을 더하면 몇 묶음입니까?`,
     n(groups),
     `${expr(`${take}+${groups - take}=${groups}`)} 입니다.`,
   );
@@ -10303,10 +10271,9 @@ function kind244ImpCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const all = [...proper, ...improper];
   const shown = order.map((i) => all[i]!);
   const list = shown.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 다음 분수 가운데 가분수는 몇 개입니까?\n\n${list}`,
+    `다음 분수 가운데 가분수는 몇 개입니까?\n\n${list}`,
     n(2),
     `분자가 분모 이상인 것이 가분수이므로 $2$개입니다.`,
   );
@@ -10345,11 +10312,10 @@ function kind244WholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const num = wantImproper
     ? den + intBetween(rng, 0, 4)
     : intBetween(rng, 1, den - 1);
-  const which = intBetween(rng, 1, 6);
   const yes = num >= den;
   return make(
     unit,
-    `${n(which)}번. ${expr(`\\frac{${num}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
+    `${expr(`\\frac{${num}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     yes
       ? `분자가 분모 이상이므로 가분수입니다.`
@@ -10517,10 +10483,9 @@ function cmp246Count(unit: UnitSeed, rng: Rng): ElemProblem {
   const den = intBetween(rng, 5, 9);
   const three = distinctIdx(rng, den - 1, 3).map((i) => i + 1);
   const list = three.map((v) => expr(`\\frac{${v}}{${den}}`)).join(",  ");
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번. 다음 분수는 모두 몇 개입니까?\n\n${list}`,
+    `다음 분수는 모두 몇 개입니까?\n\n${list}`,
     n(3),
     `분수가 $3$개입니다.`,
   );
@@ -10734,10 +10699,9 @@ function capSumCarryQOf(cfg: CapCfg): ChapterHandler {
     const b1 = intBetween(rng, 1, 3);
     const b2 = intBetween(rng, 1, 3);
     const yes = s1 + s2 >= 1000;
-    const which = intBetween(rng, 1, 6);
     return make(
       unit,
-      `${n(which)}번. ${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 을 더할 때 ${cfg.small}에서 ${cfg.big}으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 을 더할 때 ${cfg.small}에서 ${cfg.big}으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
       yes ? "예" : "아니요",
       `${cfg.small}끼리 더하면 ${n(s1 + s2)} 이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
     );
@@ -10847,10 +10811,9 @@ function graph261Cells(unit: UnitSeed, rng: Rng): ElemProblem {
   const step = graphStep(rng);
   const counts = [0, 1, 2].map(() => intBetween(rng, 2, GRAPH_MAX_COUNT));
   const sum = counts.reduce((t, c) => t + c, 0);
-  const which = intBetween(rng, 1, 6);
   return make(
     unit,
-    `${n(which)}번 그림그래프에서 □ 칸을 모두 세면 몇 칸입니까?`,
+    `그림그래프에서 □ 칸을 모두 세면 몇 칸입니까?`,
     n(sum),
     `세 ${place}의 칸을 더하면 ${n(sum)}칸입니다.`,
     graphSpec(

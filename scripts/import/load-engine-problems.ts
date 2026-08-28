@@ -172,20 +172,33 @@ export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
       const problemType = elemProblemType(form.tier);
       // 형식 3종은 **한 곳**에서 파생한다 — 생성기마다 손대지 않는다.
       // 객관식은 정답이 수가 아니면 안 나오고, 그때는 건너뛴 수가 보고에 찍힌다.
-      const got = expandFamily((v) => {
-        const seed = seedBase + v * 1009;
-        const p = generateElementaryForm(unit, seed, form.id);
-        return {
-          content: p.content,
-          answer: p.answer,
-          solution: p.solution,
-          familyKey,
-          problemType,
-          figureSpec: p.figureSpec,
-          seed,
-        };
-      }, variants);
+      // 🔴 **있는 만큼 낸다** (`allowShort`, 2026-08-28). 「사다리꼴의 꼭짓점은
+      //    몇 개인가?」처럼 씨앗이 무엇이든 한 문항인 문형이 실측 30개 있다.
+      //    던지면 그 **단원이 통째로 적재 거부**가 된다(실측 6개 단원).
+      //    대신 몇 개를 못 채웠는지 아래 보고에서 **반드시 찍는다** —
+      //    안 찍으면 말없는 상한이 되고, 표는 「다 넣었다」로 읽힌다.
+      const got = expandFamily(
+        (v) => {
+          const seed = seedBase + v * 1009;
+          const p = generateElementaryForm(unit, seed, form.id);
+          return {
+            content: p.content,
+            answer: p.answer,
+            solution: p.solution,
+            familyKey,
+            problemType,
+            figureSpec: p.figureSpec,
+            seed,
+          };
+        },
+        variants,
+        { allowShort: true },
+      );
       elemSkippedMcq += got.skippedMcq;
+      if (got.shortBy > 0)
+        elemShort.push(
+          `${unit.grade} ${unit.section} f${form.id} — ${variants - got.shortBy}/${variants}`,
+        );
       for (const item of got.items) {
         const it = item as typeof item & {
           figureSpec: Record<string, unknown> | null;
@@ -217,6 +230,7 @@ export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
 
 /** 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. 조용히 삼키지 않는다. */
 let elemSkippedMcq = 0;
+const elemShort: string[] = [];
 
 export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
   let types = typesForSection(t.unitSection).filter((e) => e.grade === t.grade);
@@ -424,6 +438,18 @@ async function apply(planFile: string, doApply: boolean) {
     console.log(
       `   ⚠️ 객관식을 못 만든 변형 ${elemSkippedMcq}건 (정답이 수·분수·소수가 아니다) — 무작위 수로 안 채운다`,
     );
+  // 🔴 **말없는 상한을 막는다.** `allowShort` 로 덜 낸 문형을 반드시 찍는다.
+  //    안 찍으면 「전부 넣었다」로 읽히고, 변할 수 있던 문형이 못 변하게 된 회귀도
+  //    같은 모양으로 조용히 지나간다. 목록 자체는 시험이 못 박는다
+  //    (`src/__tests__/unit/elemFormVariantSpace.test.ts`).
+  if (elemShort.length > 0) {
+    console.log(
+      `   ⚠️ 변형을 다 못 채운 초등 문형 ${elemShort.length}개 — 씨앗이 무엇이든 같은 문항이라 있는 만큼만 넣었다:`,
+    );
+    for (const s of elemShort.slice(0, 10)) console.log(`      · ${s}`);
+    if (elemShort.length > 10)
+      console.log(`      … 그 밖 ${elemShort.length - 10}개`);
+  }
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
   const units = await prisma.unit.findMany({
@@ -570,6 +596,31 @@ async function apply(planFile: string, doApply: boolean) {
 
   const prev = readLedger(ledgerFile);
   const created: LedgerRow[] = [];
+  // 흘려 쓸 때마다 시각을 새로 찍으면 회차 줄이 매번 달라진다 — 한 번만 찍는다.
+  const RUN_AT = new Date().toISOString();
+
+  /**
+   * 🔴 **원장을 넣는 도중에도 흘려 쓴다** (2026-08-29).
+   *
+   * 이 파일 머리말은 「원장을 DB 보다 **먼저** 쓴다」고 적어 두었는데, 실제로는
+   * 만들기 고리가 **다 끝난 뒤에** 한 번 썼다. INSERT 는 id 가 만든 뒤에야 나오니
+   * 「먼저」가 글자 그대로는 안 되지만, **흘려 쓰지 않으면 도중에 죽었을 때 그
+   * 행들이 통째로 되돌릴 수 없는 상태로 남는다.**
+   *
+   * 2026-08-29 에 실제로 났다 — 12,762행을 넣다 DB 트리거가 던져 **6,438행이
+   * 원장 없이** 남았다. 되살리려고 DB 를 훑는 스크립트를 따로 써야 했다.
+   * 이제 200행마다 흘려 쓰므로, 죽어도 잃는 것은 마지막 한 묶음뿐이다.
+   */
+  const FLUSH_EVERY = 200;
+  const flush = (): void => {
+    writeLedger(ledgerFile, prev, {
+      runs: [
+        ...prev.runs,
+        { label: plan.label, at: RUN_AT, count: created.length },
+      ],
+      rows: [...prev.rows, ...created],
+    });
+  };
 
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
@@ -604,19 +655,10 @@ async function apply(planFile: string, doApply: boolean) {
       origin: r.origin,
       unitKey: r.unitKey,
     });
+    if (created.length % FLUSH_EVERY === 0) flush();
   }
 
-  writeLedger(ledgerFile, prev, {
-    runs: [
-      ...prev.runs,
-      {
-        label: plan.label,
-        at: new Date().toISOString(),
-        count: created.length,
-      },
-    ],
-    rows: [...prev.rows, ...created],
-  });
+  flush();
   console.log(`적재 ${created.length}건 · 원장 ${ledgerFile}`);
 
   // 🔴 **믿지 않고 잰다** — 넣은 값 그대로인가. 트리거가 뒤집으면 여기서 잡힌다.
