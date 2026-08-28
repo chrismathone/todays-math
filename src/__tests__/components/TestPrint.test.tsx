@@ -310,4 +310,87 @@ describe("TestPrint — 인쇄 사고 방지", () => {
       expect(container.textContent).not.toContain("J30103-A01");
     });
   });
+
+  /**
+   * 「인쇄하기」는 두 가지 일을 한다 — ⑴ 시험지를 «인쇄됨»으로 표시하고 ⑵ 인쇄창을 연다.
+   *
+   * 🔴 **⑴ 이 견본 지면에서 단추를 통째로 죽였다**(2026-08-28). `/dev/print-paper` 가
+   *    `testId: "print-paper-specimen"` 이라는 가짜 값을 넘겨서, 그 POST 가 400
+   *    (「요청 값이 올바르지 않습니다」)을 받고 `window.print()` 까지 못 갔다.
+   *    **절대 규칙 6 의 인쇄 검수를 하러 들어간 원장님이 그 화면에서 인쇄를 못 하셨다.**
+   *
+   * 왜 아무 시험도 못 봤나 — 이 파일의 시험이 **전부 지면 모양만** 봤다. 단추를 누르는
+   * 축이 아예 없었으니 변이시킬 것도 없었다.
+   *
+   * 아래 셋은 **양방향**이다. 견본만 시험하면 「진짜 시험지도 표시를 건너뛴다」를
+   * 구조적으로 못 본다 — 그건 훨씬 나쁜 결함이다(인쇄해 놓고 «안 인쇄됨»으로 남는다).
+   */
+  describe("인쇄하기", () => {
+    function stubPrint(): ReturnType<typeof vi.fn> {
+      const print = vi.fn();
+      Object.defineProperty(window, "print", {
+        value: print,
+        writable: true,
+        configurable: true,
+      });
+      return print;
+    }
+
+    it("**견본은 표시를 건너뛰고 바로 인쇄한다** — 표시할 레코드가 없다", async () => {
+      const user = userEvent.setup();
+      const print = stubPrint();
+      const fetchSpy = vi.spyOn(globalThis, "fetch");
+      const specimen: TestPrintDocument = { ...PRINT_DOCUMENT, testId: null };
+
+      render(<TestPrint data={specimen} />);
+      await user.click(screen.getByRole("button", { name: "인쇄하기" }));
+
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect(print).toHaveBeenCalledTimes(1);
+      // 죽은 단추의 지문이 다시 나오면 안 된다.
+      expect(screen.queryByText(/요청 값이 올바르지 않습니다/)).toBeNull();
+    });
+
+    it("🔴 **진짜 시험지는 반드시 «인쇄됨» 으로 표시하고 연다**", async () => {
+      const user = userEvent.setup();
+      const print = stubPrint();
+      const fetchSpy = vi
+        .spyOn(globalThis, "fetch")
+        .mockResolvedValue(new Response(null, { status: 200 }));
+
+      render(<TestPrint data={PRINT_DOCUMENT} />);
+      await user.click(screen.getByRole("button", { name: "인쇄하기" }));
+
+      expect(fetchSpy).toHaveBeenCalledTimes(1);
+      expect(String(fetchSpy.mock.calls[0]?.[0])).toBe(
+        `/api/tests/${PRINT_DOCUMENT.testId}/print`,
+      );
+      expect(fetchSpy.mock.calls[0]?.[1]).toMatchObject({ method: "POST" });
+      expect(print).toHaveBeenCalledTimes(1);
+    });
+
+    it("🔴 **표시에 실패하면 인쇄창을 열지 않는다** — 사유를 화면에 남긴다", async () => {
+      const user = userEvent.setup();
+      const print = stubPrint();
+      vi.spyOn(globalThis, "fetch").mockResolvedValue(
+        new Response(
+          JSON.stringify({
+            error: {
+              code: "VALIDATION_ERROR",
+              message: "요청 값이 올바르지 않습니다.",
+            },
+          }),
+          { status: 400, headers: { "content-type": "application/json" } },
+        ),
+      );
+
+      render(<TestPrint data={PRINT_DOCUMENT} />);
+      await user.click(screen.getByRole("button", { name: "인쇄하기" }));
+
+      expect(print).not.toHaveBeenCalled();
+      expect(
+        await screen.findByText("요청 값이 올바르지 않습니다."),
+      ).toBeInTheDocument();
+    });
+  });
 });

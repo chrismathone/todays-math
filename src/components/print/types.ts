@@ -42,7 +42,19 @@ export interface TestPrintProblem {
 }
 
 export interface TestPrintDocument {
-  testId: string;
+  /**
+   * 「인쇄됨」으로 표시할 시험지 레코드. **`null` 이면 표시할 레코드가 없다**(검수 견본).
+   *
+   * 🔴 **불리언 플래그가 아니라 이 타입으로 두는 까닭**: 견본 지면을 새로 만드는
+   *    사람이 플래그를 붙이는 것을 잊으면, 「인쇄하기」가 **없는 시험지를 표시하려다
+   *    400 을 받고 `window.print()` 까지 못 간다** — 단추가 조용히 죽는다.
+   *    2026-08-28 에 `/dev/print-paper` 가 정확히 그랬다(`testId:
+   *    "print-paper-specimen"` → 「요청 값이 올바르지 않습니다」). 인쇄 검수를 하러
+   *    들어간 원장님이 그 화면에서 인쇄를 못 하셨고, **절대 규칙 6 의 잔고 화면이
+   *    바로 그 화면**이라 검수 자체가 막혔다.
+   *    `string | null` 이면 새 화면을 만들 때 tsc 가 «둘 중 무엇인가»를 반드시 묻는다.
+   */
+  testId: string | null;
   testType: TestPrintType;
   testDate: string;
   className: string;

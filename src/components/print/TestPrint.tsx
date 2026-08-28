@@ -98,12 +98,17 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
     setPrintError(null);
 
     try {
-      const response = await fetch(`/api/tests/${data.testId}/print`, {
-        method: "POST",
-      });
-      if (!response.ok) {
-        setPrintError(await readPrintError(response));
-        return;
+      // 견본 지면(`testId === null`)은 **표시할 시험지 레코드가 없다.** 그대로 부르면
+      // 400 을 받고 인쇄창까지 못 간다 — 2026-08-28 `/dev/print-paper` 가 그랬다.
+      // 진짜 시험지는 **반드시** 표시하고 나서 연다(실패하면 인쇄하지 않는다).
+      if (data.testId !== null) {
+        const response = await fetch(`/api/tests/${data.testId}/print`, {
+          method: "POST",
+        });
+        if (!response.ok) {
+          setPrintError(await readPrintError(response));
+          return;
+        }
       }
       window.print();
     } catch {

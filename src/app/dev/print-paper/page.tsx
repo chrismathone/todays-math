@@ -81,7 +81,11 @@ export default async function PrintPaperPage() {
   const { picked, filled, padding } = pickPaperProblems(pool, TOTAL);
 
   const doc: TestPrintDocument = {
-    testId: "print-paper-specimen",
+    // 🔴 **견본이라 표시할 시험지 레코드가 없다.** 예전엔 여기에 가짜 문자열이
+    //    있었고, 그래서 「인쇄하기」가 `POST /api/tests/print-paper-specimen/print`
+    //    로 400 을 받아 **인쇄창까지 못 갔다**(2026-08-28, 원장님이 검수하러
+    //    들어가셨다가 「요청 값이 올바르지 않습니다」를 보셨다).
+    testId: null,
     testType: "daily",
     testDate: "검수 견본",
     className: "인쇄 검수",
