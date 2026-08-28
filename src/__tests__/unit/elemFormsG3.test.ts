@@ -442,7 +442,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("08 반직선 수는 k(k-1)", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const k = katexInts(p.content)[1]!;
+      const k = katexInts(p.content)[0]!;
       expect(answerInt(p.answer)).toBe(k * (k - 1));
       expect(p.figureSpec).toBeTruthy();
     }
@@ -451,7 +451,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("09 점 하나를 지운 선분 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const k = katexInts(p.content)[1]!;
+      const k = katexInts(p.content)[0]!;
       expect(answerInt(p.answer)).toBe(((k - 1) * (k - 2)) / 2);
     }
   });
@@ -459,7 +459,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("10 반직선 수와 선분 수의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const k = katexInts(p.content)[1]!;
+      const k = katexInts(p.content)[0]!;
       expect(answerInt(p.answer)).toBe(k * (k - 1) + (k * (k - 1)) / 2);
     }
   });
@@ -571,7 +571,7 @@ describe("초3 1-2-3 직각삼각형 — 세는 대상이 답이다", () => {
   it("10 꼭짓점은 삼각형 수×3", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const count = katexInts(p.content)[1]!;
+      const count = katexInts(p.content)[0]!;
       expect(answerInt(p.answer)).toBe(3 * count);
     }
   });

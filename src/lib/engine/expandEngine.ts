@@ -43,19 +43,33 @@ import {
   type DerivedProblem,
   type StemProblem,
 } from "./deriveFormats";
-import { collectDistinctVariants } from "./variants";
+import { collectDistinctVariantsResult } from "./variants";
 
 export type ExpandResult = {
   items: DerivedProblem[];
   skippedMcq: number;
   reasons: string[];
+  /**
+   * 요구한 변형 수를 **못 채운 만큼**. 0 이면 다 채웠다.
+   * `allowShort` 를 준 부르는 쪽은 이 값을 **반드시 찍어야** 한다 —
+   * 안 찍으면 「말없는 상한」이 된다.
+   */
+  shortBy: number;
 };
 
 export function expandFamily(
   generateStem: (variant: number) => StemProblem,
   nVariants = 3,
+  /**
+   * `allowShort` — 변형 공간이 좁으면 던지지 말고 **있는 만큼** 낸다.
+   * 초등 문형에는 「사다리꼴의 꼭짓점은 몇 개인가?」처럼 씨앗이 무엇이든 한
+   * 문항인 것이 실측 30개 있고, 던지면 그 **단원이 통째로 적재 거부**가 된다
+   * (실측 6개 단원). 중등은 기본(던진다)을 그대로 쓴다.
+   */
+  opts: { allowShort?: boolean } = {},
 ): ExpandResult {
-  const stems = collectDistinctVariants(generateStem, nVariants);
+  const got = collectDistinctVariantsResult(generateStem, nVariants, opts);
+  const stems = got.items;
   const items: DerivedProblem[] = [];
   const reasons: string[] = [];
   let skippedMcq = 0;
@@ -86,5 +100,5 @@ export function expandFamily(
     }
   }
 
-  return { items, skippedMcq, reasons };
+  return { items, skippedMcq, reasons, shortBy: got.shortBy };
 }
