@@ -87,13 +87,38 @@ function fitPts(pts: Record<string, XY>): Record<string, XY> {
   const minY = Math.min(...ys);
   const maxY = Math.max(...ys);
   const m = 18;
+  const boxW = 220;
+  const boxH = 190;
   const s = Math.min(
-    (220 - 2 * m) / Math.max(maxX - minX, 1e-9),
-    (190 - 2 * m) / Math.max(maxY - minY, 1e-9),
+    (boxW - 2 * m) / Math.max(maxX - minX, 1e-9),
+    (boxH - 2 * m) / Math.max(maxY - minY, 1e-9),
   );
   const out: Record<string, XY> = {};
   for (const [k, [x, y]] of Object.entries(pts)) {
-    out[k] = [r2(m + (x - minX) * s), r2(190 - m - (y - minY) * s)];
+    out[k] = [r2(m + (x - minX) * s), r2(boxH - m - (y - minY) * s)];
+  }
+  return out;
+}
+
+function fitPtsBox(
+  pts: Record<string, XY>,
+  boxW: number,
+  boxH: number,
+): Record<string, XY> {
+  const xs = Object.values(pts).map((p) => p[0]);
+  const ys = Object.values(pts).map((p) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const m = 16;
+  const s = Math.min(
+    (boxW - 2 * m) / Math.max(maxX - minX, 1e-9),
+    (boxH - 2 * m) / Math.max(maxY - minY, 1e-9),
+  );
+  const out: Record<string, XY> = {};
+  for (const [k, [x, y]] of Object.entries(pts)) {
+    out[k] = [r2(m + (x - minX) * s), r2(boxH - m - (y - minY) * s)];
   }
   return out;
 }
@@ -412,6 +437,70 @@ function figIncenter09(b: number, c: number): Fig {
     },
     labels: { A: "A", B: "B", C: "C", D: "D", E: "E", I: "I" },
   };
+}
+
+/**
+ * 직각삼각형 ABC (∠C=90°) 의 내접원. 접점 D(BC)·E(CA)·F(AB).
+ * 치수는 발문이 말하고 그림은 구조만 보인다(09 §4-20-b).
+ */
+function figRightIncircle(
+  p: number,
+  q: number,
+  opts: { touch?: boolean; circum?: boolean } = {},
+): Fig {
+  const C0: XY = [0, 0];
+  const B: XY = [p, 0];
+  const A: XY = [0, q];
+  const h = Math.hypot(p, q);
+  const r = (p + q - h) / 2;
+  const I: XY = [r, r];
+  const D: XY = [r, 0];
+  const E: XY = [0, r];
+  const F = ((): XY => {
+    const ux = A[0] - B[0];
+    const uy = A[1] - B[1];
+    const t = ((I[0] - B[0]) * ux + (I[1] - B[1]) * uy) / (ux * ux + uy * uy);
+    return [B[0] + t * ux, B[1] + t * uy];
+  })();
+  const O = mid(A, B);
+  const src: Record<string, XY> = { A, B, C: C0, I, D, E, F };
+  if (opts.circum) {
+    src.O = O;
+    // 외접원은 빗변 반대쪽으로 불룩하다. 그 끝을 상자에 넣어야 viewBox 가 안 넘친다.
+    src.Opp = [2 * O[0] - C0[0], 2 * O[1] - C0[1]];
+  }
+  const pts = fitPtsBox(src, 200, 168);
+  delete pts.Opp;
+  const rIn = dist(pts.I!, pts.D!);
+  const fig: Fig = {
+    version: 2,
+    points: pts,
+    circles: {
+      inc: { center: "I", radius: r2(rIn) },
+    },
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CA: ["C", "A"],
+    },
+    angles: {
+      rC: { vertex: "C", points: ["B", "A"], right: true },
+    },
+    labels: { A: "A", B: "B", C: "C" },
+  };
+  if (opts.touch) {
+    (fig.labels as Record<string, string>).D = "D";
+    (fig.labels as Record<string, string>).E = "E";
+    (fig.labels as Record<string, string>).F = "F";
+  }
+  if (opts.circum) {
+    const rOut = dist(pts.O!, pts.C!);
+    (fig.circles as Record<string, unknown>).out = {
+      center: "O",
+      radius: r2(rOut),
+    };
+  }
+  return fig;
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -916,7 +1005,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
         answer: `$${x}\\,\\mathrm{cm}$`,
         solution: `피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${p}^2+${q}^2}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형의 넓이는 $\\dfrac{1}{2}\\times${p}\\times${q}$이고, 내접원의 반지름을 이용하면 넓이는 $\\dfrac{1}{2}r(${p}+${q}+${h})$이므로 두 식이 같다.\n따라서 $r=\\dfrac{${p}+${q}-${h}}{2}=${x}$이다.`,
         facts: { p, q, h, x },
-        figureSpec: null,
+        figureSpec: figRightIncircle(p, q),
       };
     },
   ),
@@ -936,7 +1025,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
         answer: `$${x}\\,\\mathrm{cm}$`,
         solution: `한 점에서 원에 그은 두 접선의 길이는 같으므로 $\\overline{CD}=\\overline{CE}$이고, $\\angle C=90^\\circ$이므로 사각형 $CDIE$는 정사각형이다. 따라서 $\\overline{CE}=r=\\dfrac{${p}+${q}-\\sqrt{${p}^2+${q}^2}}{2}=${r}\\,(\\mathrm{cm})$이다.\n$\\overline{AE}=\\overline{CA}-\\overline{CE}=${q}-${r}=${x}\\,(\\mathrm{cm})$이고, $\\overline{AF}=\\overline{AE}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, h, r, x },
-        figureSpec: null,
+        figureSpec: figRightIncircle(p, q, { touch: true }),
       };
     },
   ),
@@ -990,7 +1079,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
         answer: `$${x}\\,\\mathrm{cm}$`,
         solution: `피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${p}^2+${q}^2}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형의 외접원의 반지름은 빗변의 절반이므로 $R=\\dfrac{${h}}{2}$이고, 내접원의 반지름은 $r=\\dfrac{${p}+${q}-${h}}{2}$이다.\n따라서 $R+r=\\dfrac{${h}}{2}+\\dfrac{${p}+${q}-${h}}{2}=\\dfrac{${p}+${q}}{2}=${x}$이다.`,
         facts: { p, q, h, x },
-        figureSpec: null,
+        figureSpec: figRightIncircle(p, q, { circum: true }),
       };
     },
   ),
