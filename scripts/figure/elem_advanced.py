@@ -4003,7 +4003,101 @@ def _cp_grid_flag(spec: Mapping[str, Any]) -> bool:
     return grid
 
 
-def _cp_frame_parts(pl: _Plane, grid: bool) -> list[str]:
+# 🔴 **`O` 는 그래프가 안 지나는 사분면에 앉는다** — RPM 정본에서 배웠다.
+#
+# 원장님 지시(2026-08-28): 「RPM 1학기 교재에서 함수파트를 보고 함수 파트에서 라벨
+# 위치를 분석하고 학습해. 그래야 어떻게 라벨위치를 **선과 안겹치게** 배치하는지
+# 파악할 수 있을것 같네」.
+#
+# 실측(`scripts/qa/measure-rpm-function-labels.py` — 1학기 함수 단원 3권,
+# 원점 라벨 291개):
+#   · 앉는 자리 — 왼아래(제3사분면) **64.9%** · 오른아래 14.4% · 왼위 5.5% · 오른위 3.1%
+#   · **고를 자리가 있을 때 79.9% 가 「그래프가 안 지나는」 사분면**이다
+#   · 축과의 여백은 글자 크기의 **0.17배**(중앙값)
+#
+# 종전에는 `(-7, +10)` **한 자리에 못 박혀** 있었다. 그래서 기울기가 양수인 직선처럼
+# 제3사분면을 지나는 그래프에서는 `O` 가 그 선 위에 그대로 앉았다 — 실측
+# `1-1|정비례와 반비례|09`: 직선이 글자 상자 **안을 지난다**(표본점 16개).
+# 원장님이 화면에서 처음 짚으신 결함이 바로 이 자리다.
+# 자리는 **여백에서 거꾸로 유도한다** — 좌표를 손으로 박지 않는다. 박으면 글자
+# 크기를 바꿀 때 여백이 조용히 달라지고, 칸(u)이 좁은 그림에서는 첫 눈금 획을
+# 스친다(실측 `1-1|정비례와 반비례|10`: 종전 `dy=10` 이 y축 −1 눈금과 0.45 겹쳤다).
+#
+# ⚠️ **RPM 의 거리(0.79배)를 그대로 베끼면 안 된다.** 우리 `O` 는 조판본이라
+#    정본보다 넓다 — 폭이 글자 크기의 0.78배(실측 10.114/13)인데 RPM 은 0.58배다.
+#    같은 거리를 쓰면 여백이 0.06배로 좁아진다. **여백을 지키면 거리는 따라온다**:
+#    아래 값으로 나오는 거리가 0.76배로 정본의 0.79배와 맞는다(서로 다른 두 수가
+#    맞아떨어지는 것이 이 유도가 옳다는 검산이다).
+CP_O_CLEAR = 0.17          # RPM 실측 — 획까지 띄우는 몫 (글자 크기 배, 중앙값)
+CP_O_HALF_W = 0.39         # 조판된 `O` 폭의 절반 ÷ 글자 크기 (실측 10.114/13/2)
+CP_O_HALF_H = 0.365        # 그 잉크 높이의 절반 ÷ 글자 크기 (실측 9.451/13/2)
+_O_DX = round((CP_O_HALF_W + CP_O_CLEAR) * CP_FONT, 2)
+_O_DY = round((CP_O_HALF_H + CP_O_CLEAR) * CP_FONT, 2)
+CP_O_CORNERS = ((-_O_DX, _O_DY), (_O_DX, _O_DY), (-_O_DX, -_O_DY), (_O_DX, -_O_DY))
+
+
+def _seg_hits_box(a: tuple[float, float], b: tuple[float, float],
+                  box: tuple[float, float, float, float]) -> bool:
+    """선분이 상자와 만나는가 (Liang–Barsky).
+
+    ⚠️ **표본점을 찍어 «상자 안에 있나»로 묻지 마라.** 상자가 작고 선분이 길면
+       표본이 상자를 건너뛴다 — 겹쳤는데 «안 겹쳤다»가 나오고, 그 실패는
+       조용하다. 여기서는 자른다.
+    """
+    x0, y0 = a
+    dx, dy = b[0] - x0, b[1] - y0
+    t0, t1 = 0.0, 1.0
+    for p, q in ((-dx, x0 - box[0]), (dx, box[2] - x0),
+                 (-dy, y0 - box[1]), (dy, box[3] - y0)):
+        if p == 0.0:
+            if q < 0.0:
+                return False        # 그 축에 나란한데 밖이다
+            continue
+        r = q / p
+        if p < 0.0:
+            if r > t1:
+                return False
+            t0 = max(t0, r)
+        else:
+            if r < t0:
+                return False
+            t1 = min(t1, r)
+    return t0 <= t1
+
+
+def _cp_o_offset(pl: _Plane, inks: list) -> tuple[float, float]:
+    """`O` 를 놓을 모서리 — RPM 순서로 훑어 **선이 안 지나는 첫 자리**를 고른다.
+
+    `inks` 는 그린 것의 **화면 좌표 폴리라인**이다(그래프·곡선·점선 안내선).
+
+    ⚠️ **축과 눈금은 넣지 마라.** 그 둘은 원점에서 사방으로 뻗으므로 넣으면
+       네 자리가 다 막히고, 이 고르기가 **구조적으로 늘 첫 자리**를 낸다 —
+       고치기 전과 똑같아지는데 아무 에러도 안 난다. RPM 도 `O` 를 축 바로
+       옆(여백 0.17배)에 붙인다.
+    ⚠️ 네 자리가 다 막히면 첫 자리로 돌아온다. 정본도 그렇다 — 빈 사분면이
+       없는 그림이 291개 중 27개였다.
+    """
+    hw = (CP_O_HALF_W + CP_O_CLEAR) * CP_FONT
+    hh = (CP_O_HALF_H + CP_O_CLEAR) * CP_FONT
+    for dx, dy in CP_O_CORNERS:
+        cx, cy = pl.ax + dx, pl.ay + dy
+        box = (cx - hw, cy - hh, cx + hw, cy + hh)
+        if not any(_seg_hits_box(p, q, box)
+                   for pts in inks for p, q in zip(pts, pts[1:])):
+            return dx, dy
+    return CP_O_CORNERS[0]
+
+
+def _cp_guide_polylines(pl: _Plane, marks: list[tuple[int, int]]) -> list[list]:
+    """점선 안내선의 **기하**. 그리는 쪽(`_cp_mark_parts`)과 `O` 고르기가 같이 쓴다 —
+    규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다."""
+    ax, ay = pl.ax, pl.ay
+    return [[(pl.sx(mx), ay), (pl.sx(mx), pl.sy(my)), (ax, pl.sy(my))]
+            for mx, my in marks if mx != 0 and my != 0]
+
+
+def _cp_frame_parts(pl: _Plane, grid: bool,
+                    o_offset: tuple[float, float] = CP_O_CORNERS[0]) -> list[str]:
     """모눈 → 축·화살촉·라벨 x·y·O → 정수 눈금 짧은 획. **이 셋이 한 벌이다.**"""
     parts: list[str] = []
     if grid:
@@ -4029,7 +4123,7 @@ def _cp_frame_parts(pl: _Plane, grid: bool) -> list[str]:
     )
     parts.append(_cp_text(x_end + 4.0, ay + 12.0, "x", italic=True))
     parts.append(_cp_text(ax - 9.0, y_end - 4.0, "y", italic=True))
-    parts.append(_cp_text(ax - 7.0, ay + 10.0, "O"))
+    parts.append(_cp_text(ax + o_offset[0], ay + o_offset[1], "O"))
 
     for gx in range(pl.xlo, pl.xhi + 1):
         if gx == 0:
@@ -4047,12 +4141,13 @@ def _cp_mark_parts(pl: _Plane, marks: list[tuple[int, int]]) -> list[str]:
     parts: list[str] = []
     ax, ay = pl.ax, pl.ay
     done: set[tuple[str, int]] = set()
+    # 안내선 기하는 `_cp_guide_polylines` 한 곳에서 온다 — `O` 고르기가 같은 것을 본다.
+    guides = {(mx, my): pts for (mx, my), pts
+              in zip([(mx, my) for mx, my in marks if mx != 0 and my != 0],
+                     _cp_guide_polylines(pl, marks))}
     for mx, my in marks:
         if mx != 0 and my != 0:
-            parts.append(
-                _polyline([(pl.sx(mx), ay), (pl.sx(mx), pl.sy(my)), (ax, pl.sy(my))],
-                          sw=0.9, dash=CP_GUIDE_DASH)
-            )
+            parts.append(_polyline(guides[(mx, my)], sw=0.9, dash=CP_GUIDE_DASH))
         if mx != 0 and ("x", mx) not in done:
             done.add(("x", mx))
             # 숫자는 안내선 반대쪽 — 점이 위면 축 아래(0891 의 4), 아래면 축 위(0891 의 -4).
@@ -4147,7 +4242,12 @@ def _linear_graph(spec: Mapping[str, Any]) -> str:
     grid = _cp_grid_flag(spec)
     segs = _cp_line_segs(pl, lines)
 
-    parts = _cp_frame_parts(pl, grid)
+    # `O` 는 **그린 것을 보고** 자리를 고른다 (RPM 실측 — `CP_O_CORNERS` 주석).
+    inks = [[(pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb))]
+            for (xa, ya), (xb, yb) in segs]
+    inks += _cp_guide_polylines(pl, marks)
+
+    parts = _cp_frame_parts(pl, grid, _cp_o_offset(pl, inks))
     parts += _cp_mark_parts(pl, marks)
     for (xa, ya), (xb, yb) in segs:
         parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))
@@ -4364,7 +4464,8 @@ def _cg_thin(pts: list[tuple[float, float]], eps: float) -> list[tuple[float, fl
     return [p for p, k in zip(pts, keep) if k]
 
 
-def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
+def _cg_screen_points(fn, run: tuple[float, float], pl: _Plane) -> list:
+    """곡선 한 토막의 **화면 좌표** 점들. 그리는 쪽과 `O` 고르기가 같이 쓴다."""
     a, b = run
     pts: list[tuple[float, float]] = []
     for i in range(CG_SAMPLES + 1):
@@ -4376,7 +4477,11 @@ def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
         # 프레임 밖으로 새는 곡선은 지면에서 옆 문항을 덮는다.
         y = min(max(y, float(pl.ylo)), float(pl.yhi))
         pts.append((pl.sx(x), pl.sy(y)))
-    return _polyline(_cg_thin(pts, CG_THIN_PX), sw=CP_GRAPH_SW)
+    return pts
+
+
+def _cg_polyline(fn, run: tuple[float, float], pl: _Plane) -> str:
+    return _polyline(_cg_thin(_cg_screen_points(fn, run, pl), CG_THIN_PX), sw=CP_GRAPH_SW)
 
 
 def _cg_label_item(pl: _Plane, curve, fn, runs) -> tuple:
@@ -4431,7 +4536,14 @@ def _curve_graph(spec: Mapping[str, Any]) -> str:
         runs_by_curve.append(runs)
     segs = _cp_line_segs(pl, lines)
 
-    parts = _cp_frame_parts(pl, grid)
+    # `O` 는 **그린 것을 보고** 자리를 고른다 (RPM 실측 — `CP_O_CORNERS` 주석).
+    inks = [[(pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb))]
+            for (xa, ya), (xb, yb) in segs]
+    inks += [_cg_screen_points(fn, run, pl)
+             for fn, runs in zip(fns, runs_by_curve) for run in runs]
+    inks += _cp_guide_polylines(pl, marks)
+
+    parts = _cp_frame_parts(pl, grid, _cp_o_offset(pl, inks))
     parts += _cp_mark_parts(pl, marks)
     for (xa, ya), (xb, yb) in segs:
         parts.append(_line((pl.sx(xa), pl.sy(ya)), (pl.sx(xb), pl.sy(yb)), sw=CP_GRAPH_SW))

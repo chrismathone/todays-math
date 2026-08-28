@@ -198,6 +198,74 @@ describe.skipIf(!hasEngine)("[linearGraph] 교과 문법", () => {
   // 지면에서 10.50px ~ 17.78px 이었다(실측). 그중 셋은 본문 12.5px 아래인데
   // 에러가 안 났다 — viewBox 폭 하나가 지면 등급을 가르기 때문이다.
   // 이제 `curveGraph` 와 **같은 폭**에 박혀 있다. 자세한 잠금은 figureCurveGraph.test.ts.
+  it("**`O` 는 그래프가 지나는 사분면을 비킨다** — RPM 정본에서 배운 규칙", async () => {
+    // 원장님 지시(2026-08-28): 「RPM 함수 파트를 보고 **선과 안 겹치게** 배치하는
+    // 법을 학습해」. 실측(`measure-rpm-function-labels.py` · 원점 라벨 291개):
+    // 고를 자리가 있을 때 **79.9%** 가 그래프가 안 지나는 사분면이고, 즐겨 쓰는
+    // 순서는 왼아래 64.9% → 오른아래 14.4% 다.
+    //
+    // ⚠️ 자리를 좌표 리터럴로 박지 않는다 — 레이아웃 상수가 바뀌면 따라가야 한다.
+    //    대신 **그림 안 요소끼리** 견준다: 원점(축 두 개의 교점) ↔ `O` 닻점,
+    //    그리고 「직선이 `O` 상자를 지나는가」를 직접 잰다.
+    const up = await renderFigureSpec({
+      ...POS,
+      lines: [{ slope: 1, yIntercept: 0 }],
+      marks: [[2, 2]],
+    });
+    const down = await renderFigureSpec({
+      ...POS,
+      lines: [{ slope: -1, yIntercept: 0 }],
+      marks: [[2, -2]],
+    });
+    expect(up.ok && down.ok).toBe(true);
+
+    /** 축 두 개의 교점 — 굵기 1 인 긴 가로획·세로획. */
+    function origin(svg: string): { x: number; y: number } {
+      const axes = svgLines(svg).filter((l) => l.sw === 1 && len(l) > 80);
+      const h = axes.find((l) => l.y1 === l.y2)!;
+      const v = axes.find((l) => l.x1 === l.x2)!;
+      return { x: v.x1, y: h.y1 };
+    }
+    function oLabel(svg: string) {
+      const lab = svgLabels(svg).find((l) => l.text === "O")!;
+      const half = 0.4 * lab.fontSize;
+      return {
+        x: lab.x,
+        y: lab.y,
+        box: [lab.x - half, lab.y - half, lab.x + half, lab.y + half] as const,
+      };
+    }
+    /** 선분이 상자를 지나는가 — 촘촘히 훑는다(시험은 정확도보다 단순함). */
+    function hits(l: Line, box: readonly number[]): boolean {
+      for (let i = 0; i <= 600; i += 1) {
+        const t = i / 600;
+        const x = l.x1 + (l.x2 - l.x1) * t;
+        const y = l.y1 + (l.y2 - l.y1) * t;
+        if (x >= box[0]! && x <= box[2]! && y >= box[1]! && y <= box[3]!)
+          return true;
+      }
+      return false;
+    }
+
+    for (const r of [up, down]) {
+      const o = oLabel(r.svg!);
+      for (const g of graphLines(r.svg!)) {
+        expect(hits(g, o.box)).toBe(false);
+      }
+    }
+
+    // 기울기가 양수면 왼아래(제3사분면)가 막힌다 → 오른쪽으로 간다.
+    // 음수면 왼아래가 비니 정본 기본 자리에 남는다. **둘이 달라야** 한다 —
+    // 한 자리에 못 박으면 이 줄이 빨개진다.
+    const oUp = oLabel(up.svg!);
+    const oDown = oLabel(down.svg!);
+    expect(oUp.x - origin(up.svg!).x).toBeGreaterThan(0);
+    expect(oDown.x - origin(down.svg!).x).toBeLessThan(0);
+    // 둘 다 x축 **아래**다 (정본: 아래 두 사분면이 79.3%).
+    expect(oUp.y - origin(up.svg!).y).toBeGreaterThan(0);
+    expect(oDown.y - origin(down.svg!).y).toBeGreaterThan(0);
+  });
+
   it("범위가 무엇이든 viewBox 폭이 240 이다 — 등급이 안 뒤집힌다", async () => {
     const cases = [
       { xRange: [-2, 2], yRange: [-2, 2], marks: [[1, 1]] },
