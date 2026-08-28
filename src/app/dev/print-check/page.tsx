@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
+import { devPageVisible } from "@/lib/devPageAccess";
+
 import {
   ITEMS,
   PRINT_ROUTE,
@@ -32,10 +34,11 @@ const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
 
 export default async function PrintCheckPage() {
   await connection();
-  if (
-    process.env.NODE_ENV === "production" &&
-    process.env.ENABLE_RENDER_QA !== "1"
-  ) {
+  // 원장님이 **인쇄하시는 컴퓨터가 다르다**(2026-08-28) — production 에서도
+  // 보여야 한다. 다만 `ENABLE_RENDER_QA` 를 켜면 `/dev` 12화면이 인증 없이 통째로
+  // 열리므로(프록시가 `/dev/` 를 공개로 둔다), **로그인한 원장에게만** 연다.
+  // 규칙은 `src/lib/devPageAccess.ts` 한 곳에 있다.
+  if (!(await devPageVisible({ directorOnly: true }))) {
     notFound();
   }
 
