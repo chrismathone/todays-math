@@ -71,6 +71,12 @@ scripts/qa/reports/*
 # 다른 컴퓨터가 바로 읽으려면 커밋돼야 한다. 8파일 ~400KB.
 # (디렉터리 재포함 — `reports/*` 는 한 단계만 무시하므로 이 예외로 안이 전부 살아난다.)
 !scripts/qa/reports/cube-catalog
+# 엔진 그림 재적재 원장 — **되돌리기 자료. 커밋 필수** (2026-08-28).
+# 🔴 파일 이름이 «계획 × 셰이드» 로 정해져서 **미리 목록에 적을 수 없다.** 손 목록으로
+#    두면 새 셰이드의 원장이 조용히 커밋에서 빠지고, 공유 DB 를 수천 행 바꿔 놓고
+#    되돌릴 자료가 이 컴퓨터에만 남는다(2026-08-18 에 실제로 그랬다).
+#    그래서 **디렉터리째** 살린다 — 어떤 셰이드든 자동으로 들어온다.
+!scripts/qa/reports/refresh-engine-figures
 !scripts/qa/reports/subnum-dup-2026-08-21.json
 !scripts/qa/reports/cm-sup-2026-08-21.json
 # Claude 생성 해설 원장 — 되돌리기 자료. 커밋 필수 (2026-08-22)

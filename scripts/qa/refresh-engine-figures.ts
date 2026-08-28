@@ -177,9 +177,15 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
   const shardSpec = arg("--shard");
   const targets = shardOf(plan.targets, shardSpec);
   const tag = shardSpec ? shardSpec.replace("/", "of") : "all";
+  // 🔴 **하위 디렉터리에 쓴다.** `scripts/qa/reports/*` 는 `.gitignore` 가 손으로 적은
+  //    예외 목록으로 굴리는 자리라, 새 파일 이름은 **커밋되지 않는다** — 셰이드마다
+  //    이름이 달라지는 이 원장은 목록에 미리 적을 수도 없다. 디렉터리 하나를 통째로
+  //    예외로 두면 어떤 셰이드든 자동으로 커밋된다(2026-08-18 「되돌리기가 이 컴퓨터에만
+  //    있었다」의 구조적 수리).
   const ledgerFile = path.join(
     REPORTS,
-    `refresh-engine-figures-${path.basename(planFile, ".json")}-${tag}.json.gz`,
+    "refresh-engine-figures",
+    `${path.basename(planFile, ".json")}-${tag}.json.gz`,
   );
 
   console.log(
@@ -276,6 +282,7 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
   // ── ⑷ 제품 경로로 다시 그린다 ───────────────────────────────────────────
   let failed = 0;
   let same = 0;
+  const failures: string[] = [];
   const t0 = Date.now();
   const drawn = await mapLimit(todo, CONCURRENCY, async (r, i) => {
     if (i > 0 && i % 200 === 0) {
@@ -284,7 +291,13 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
     }
     const res = await renderFigureSpec(r.figureSpec as never);
     if (!res.ok) {
+      // 🔴 **어느 것이 실패했는지 적는다.** 안 적으면 그 문항은 옛 그림으로 남는데
+      //    표에는 「실패 N」이라는 숫자만 남아, 다음 사람이 무엇을 볼지 알 수 없다.
+      //    숫자만 세는 지표는 고칠 자리를 안 알려 준다.
       failed += 1;
+      failures.push(
+        `${found.get(r.externalId)?.problemCode ?? r.externalId}: ${res.error}`,
+      );
       return null;
     }
     const db = found.get(r.externalId)!;
@@ -315,6 +328,13 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
       `   크기 ${kb(beforeB)} → ${kb(afterB)} (${(afterB / Math.max(beforeB, 1)).toFixed(2)}배) · ` +
         `한 장 평균 ${Math.round(beforeB / changes.length)} → ${Math.round(afterB / changes.length)}자`,
     );
+  }
+
+  if (failures.length > 0) {
+    console.log(`   ⚠️ 렌더 실패 — 이 문항들은 **옛 그림으로 남는다**:`);
+    for (const f of failures.slice(0, 20)) console.log(`      · ${f}`);
+    if (failures.length > 20)
+      console.log(`      … ${failures.length - 20}건 더`);
   }
 
   if (!doApply) {
