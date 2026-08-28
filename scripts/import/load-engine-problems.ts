@@ -596,6 +596,31 @@ async function apply(planFile: string, doApply: boolean) {
 
   const prev = readLedger(ledgerFile);
   const created: LedgerRow[] = [];
+  // 흘려 쓸 때마다 시각을 새로 찍으면 회차 줄이 매번 달라진다 — 한 번만 찍는다.
+  const RUN_AT = new Date().toISOString();
+
+  /**
+   * 🔴 **원장을 넣는 도중에도 흘려 쓴다** (2026-08-29).
+   *
+   * 이 파일 머리말은 「원장을 DB 보다 **먼저** 쓴다」고 적어 두었는데, 실제로는
+   * 만들기 고리가 **다 끝난 뒤에** 한 번 썼다. INSERT 는 id 가 만든 뒤에야 나오니
+   * 「먼저」가 글자 그대로는 안 되지만, **흘려 쓰지 않으면 도중에 죽었을 때 그
+   * 행들이 통째로 되돌릴 수 없는 상태로 남는다.**
+   *
+   * 2026-08-29 에 실제로 났다 — 12,762행을 넣다 DB 트리거가 던져 **6,438행이
+   * 원장 없이** 남았다. 되살리려고 DB 를 훑는 스크립트를 따로 써야 했다.
+   * 이제 200행마다 흘려 쓰므로, 죽어도 잃는 것은 마지막 한 묶음뿐이다.
+   */
+  const FLUSH_EVERY = 200;
+  const flush = (): void => {
+    writeLedger(ledgerFile, prev, {
+      runs: [
+        ...prev.runs,
+        { label: plan.label, at: RUN_AT, count: created.length },
+      ],
+      rows: [...prev.rows, ...created],
+    });
+  };
 
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
@@ -630,19 +655,10 @@ async function apply(planFile: string, doApply: boolean) {
       origin: r.origin,
       unitKey: r.unitKey,
     });
+    if (created.length % FLUSH_EVERY === 0) flush();
   }
 
-  writeLedger(ledgerFile, prev, {
-    runs: [
-      ...prev.runs,
-      {
-        label: plan.label,
-        at: new Date().toISOString(),
-        count: created.length,
-      },
-    ],
-    rows: [...prev.rows, ...created],
-  });
+  flush();
   console.log(`적재 ${created.length}건 · 원장 ${ledgerFile}`);
 
   // 🔴 **믿지 않고 잰다** — 넣은 값 그대로인가. 트리거가 뒤집으면 여기서 잡힌다.
