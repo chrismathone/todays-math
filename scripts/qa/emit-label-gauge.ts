@@ -32,19 +32,46 @@ const at = (y: number, halo?: { color: string; width: number }) =>
 // 짝으로 두지 않으면 「halo 를 아예 안 보는」 판정기도 ⑨ 하나는 맞힐 수 있다.
 const HALO_Y = 111;
 
+// ── halo 가 **글자를 먹지 않는가** ────────────────────────────────────────
+//
+// 🔴 조판본은 **글자 하나가 `<path>` 하나**다. halo 를 `paint-order="stroke"` 로
+//    주면 그 규칙이 **요소마다** 걸려, 앞 글자를 칠한 뒤 뒤 글자의 굵은 흰 테두리가
+//    그 위를 덮는다 — 실측으로 `7 cm` 이 지면에 **`7 ⟨ m`** 으로 나갔다
+//    (원장님 지적 2026-08-28). 옛 `<text>` 는 한 요소라 이 일이 안 생겼다.
+//
+//    이 부류는 **스스로 신고하지 않는다** — 글자는 그려지고, 라벨 상자도
+//    그대로이고, 겹침 판정도 그대로다. 잉크를 **세어야만** 보인다.
+const INK_TEXT = "7 cm";
+const inkLaid = typesetLabel(INK_TEXT);
+if (!inkLaid) {
+  console.error(`MathJax 가 «${INK_TEXT}» 를 조판하지 못했다`);
+  process.exit(1);
+}
+const inkSvg = (halo?: { color: string; width: number }) =>
+  `${HEAD}${placeLabel(inkLaid, INK_TEXT, 100, 80, 24, "#111111", halo, {
+    anchor: "middle",
+  })}</svg>`;
+
 console.log(
-  JSON.stringify([
-    { name: "⑦ 조판된 라벨이 선을 밟는다", svg: at(104), expect: true },
-    { name: "⑧ 조판된 라벨이 선을 비킨다", svg: at(130), expect: false },
-    {
-      name: "⑨ halo 없으면 그 자리는 깨끗하다",
-      svg: at(HALO_Y),
-      expect: false,
+  JSON.stringify({
+    collision: [
+      { name: "⑦ 조판된 라벨이 선을 밟는다", svg: at(104), expect: true },
+      { name: "⑧ 조판된 라벨이 선을 비킨다", svg: at(130), expect: false },
+      {
+        name: "⑨ halo 없으면 그 자리는 깨끗하다",
+        svg: at(HALO_Y),
+        expect: false,
+      },
+      {
+        name: "⑩ **같은 자리**인데 halo 가 선을 지운다",
+        svg: at(HALO_Y, { color: "#ffffff", width: 8 }),
+        expect: true,
+      },
+    ],
+    ink: {
+      text: INK_TEXT,
+      plain: inkSvg(),
+      haloed: inkSvg({ color: "#ffffff", width: 8 }),
     },
-    {
-      name: "⑩ **같은 자리**인데 halo 가 선을 지운다",
-      svg: at(HALO_Y, { color: "#ffffff", width: 8 }),
-      expect: true,
-    },
-  ]),
+  }),
 );

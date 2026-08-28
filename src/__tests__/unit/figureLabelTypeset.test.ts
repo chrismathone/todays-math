@@ -77,6 +77,41 @@ describe("[도형] 라벨 조판", () => {
     expect(stripLabels(g).trim()).toBe("");
   });
 
+  // ── ④ halo 가 **글자를 먹지 않는가**.
+  //
+  // 🔴 조판본은 **글자 하나가 `<path>` 하나**다. halo 를 `paint-order="stroke"` 로
+  //    주면 그 규칙이 **요소마다** 걸려, 앞 글자를 칠한 뒤 뒤 글자의 굵은 흰 테두리가
+  //    그 위를 덮는다 — 실측으로 `7 cm` 이 지면에 **`7 ⟨ m`** 으로 나갔다
+  //    (원장님이 화면에서 찾아 주셨다, 2026-08-28). 옛 `<text>` 는 한 요소라
+  //    테두리를 통째로 한 번 칠하고 글자를 통째로 얹으므로 이 일이 없었다.
+  //
+  //    이 부류는 **스스로 신고하지 않는다** — 글자는 그려지고 상자도 그대로다.
+  //    여기서는 «순서»를 잠그고, 잉크를 실제로 세는 눈금은 브라우저 판정기에 있다
+  //    (`probe-figure-label-collisions.mjs --selftest` ⑪ — 이 시험은 망 없이 돈다).
+  it("halo 는 글자 **전체를 한 번** 두르고, 그 위에 글자를 얹는다", () => {
+    const laid = typesetLabel("7 cm")!;
+    const g = placeLabel(laid, "7 cm", 100, 80, 24, "#111111", {
+      color: "#ffffff",
+      width: 8,
+    })!;
+    // `paint-order` 는 **요소마다** 걸리는 규칙이라 여러 글리프에서는 못 쓴다.
+    expect(g, "paint-order 로는 글자끼리 서로 지운다").not.toContain(
+      "paint-order",
+    );
+    // 테두리 전용 사본이 **먼저**, 글자 사본이 **나중**.
+    const ring = g.indexOf('fill="none" stroke="#ffffff"');
+    const glyph = g.indexOf('fill="#111111" stroke="none"');
+    expect(ring, "테두리 전용 사본이 없다").toBeGreaterThanOrEqual(0);
+    expect(glyph, "글자 사본이 없다").toBeGreaterThanOrEqual(0);
+    expect(ring, "테두리가 글자 뒤에 칠해진다 — 글자를 덮는다").toBeLessThan(
+      glyph,
+    );
+    // halo 가 없으면 사본은 하나뿐이다(쓸데없이 두 배로 커지지 않는다).
+    const plain = placeLabel(laid, "7 cm", 100, 80, 24, "#111111")!;
+    expect(plain).not.toContain('stroke="#ffffff"');
+    expect(plain.length).toBeLessThan(g.length);
+  });
+
   describe.skipIf(!hasFigureEngine)("실렌더 — 새는 자리가 없다", () => {
     /**
      * 나온 SVG 의 `<text>` 를 전량 훑어 **표식 없이 나가는 라벨**을 센다.

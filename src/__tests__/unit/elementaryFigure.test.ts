@@ -235,7 +235,13 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.svg).toMatch(/stroke-dasharray="6 4"/);
-    expect(r.svg).toMatch(/paint-order="stroke"/);
+    // ⚠️ halo 는 **성질**로 센다 — 그 낱말은 halo 를 이루는 «방법» 하나일 뿐이다.
+    //    2026-08-28 에 방법이 바뀌자(글자끼리 서로 지워서 두 벌로 갈랐다) 이 줄이
+    //    빨개졌는데, halo 는 멀쩡히 걸려 있었다. 낱말을 세면 그 낱말이 바뀔 때 운다.
+    expect(
+      svgLabels(r.svg).some((l) => l.halo > 0),
+      "halo 가 없다",
+    ).toBe(true);
     expect(r.svg).toContain("20cm");
     const bar = r.svg.match(/<rect x="[\d.]+" y="([\d.]+)"/);
     const start = r.svg.match(/<path d="M [\d.]+ ([\d.]+)/);
@@ -3749,7 +3755,13 @@ describe.skipIf(!hasEngine)("[초등 그림] lineRelation — 두 직선의 관�
     if (!r.ok) return;
     expect(r.svg).toContain("10 cm");
     // 치수는 `measured()` 가 낸다 — halo + 점선 `6 4` (09 §4-16)
-    expect(r.svg).toContain('paint-order="stroke"');
+    // ⚠️ halo 는 **성질**로 센다 — 그 낱말은 halo 를 이루는 «방법» 하나일 뿐이다.
+    //    2026-08-28 에 방법이 바뀌자(글자끼리 서로 지워서 두 벌로 갈랐다) 이 줄이
+    //    빨개졌는데, halo 는 멀쩡히 걸려 있었다. 낱말을 세면 그 낱말이 바뀔 때 운다.
+    expect(
+      svgLabels(r.svg).some((l) => l.halo > 0),
+      "halo 가 없다",
+    ).toBe(true);
     expect(r.svg).toContain('stroke-dasharray="6 4"');
   });
 
@@ -4119,7 +4131,13 @@ describe.skipIf(!hasEngine)("[초등 그림] circleParts — 원과 그 부분",
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.svg).toContain('paint-order="stroke"');
+    // ⚠️ halo 는 **성질**로 센다 — 그 낱말은 halo 를 이루는 «방법» 하나일 뿐이다.
+    //    2026-08-28 에 방법이 바뀌자(글자끼리 서로 지워서 두 벌로 갈랐다) 이 줄이
+    //    빨개졌는데, halo 는 멀쩡히 걸려 있었다. 낱말을 세면 그 낱말이 바뀔 때 운다.
+    expect(
+      svgLabels(r.svg).some((l) => l.halo > 0),
+      "halo 가 없다",
+    ).toBe(true);
     expect(r.svg).toContain('stroke-dasharray="6 4"');
   });
 });

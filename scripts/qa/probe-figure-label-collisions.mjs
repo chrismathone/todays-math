@@ -237,15 +237,66 @@ function typesetGauges() {
   return JSON.parse(out.stdout);
 }
 
+/**
+ * **halo 가 글자를 먹는가** — 잉크를 세어 본다.
+ *
+ * 조판본은 글자 하나가 `<path>` 하나다. halo 를 `paint-order="stroke"` 로 주면
+ * 그 규칙이 **요소마다** 걸려 뒤 글자의 흰 테두리가 앞 글자를 덮는다 — 실측으로
+ * `7 cm` 이 **`7 ⟨ m`** 으로 나갔다(원장님 지적 2026-08-28).
+ *
+ * 이 부류는 상자도 겹침도 그대로라 **위 판정으로는 구조적으로 0**이다.
+ * 그래서 halo 있는 판과 없는 판의 **검은 화소 수**를 견준다.
+ */
+async function inkSurvives(page, ink) {
+  const count = (svg) =>
+    page.evaluate(async (svg) => {
+      const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+      const img = new Image();
+      await new Promise((ok, no) => {
+        img.onload = ok;
+        img.onerror = no;
+        img.src = url;
+      });
+      const c = document.createElement("canvas");
+      c.width = 600;
+      c.height = 480;
+      const g = c.getContext("2d");
+      g.fillStyle = "#ffffff";
+      g.fillRect(0, 0, c.width, c.height);
+      g.drawImage(img, 0, 0, c.width, c.height);
+      const d = g.getImageData(0, 0, c.width, c.height).data;
+      let dark = 0;
+      for (let i = 0; i < d.length; i += 4) {
+        if (d[i] < 128 && d[i + 1] < 128 && d[i + 2] < 128) dark += 1;
+      }
+      return dark;
+    }, svg);
+  const plain = await count(ink.plain);
+  const haloed = await count(ink.haloed);
+  // 분모 — 글자가 아예 안 그려졌으면 «0 == 0» 으로 통과해 버린다.
+  if (plain < 200) {
+    console.log(`  🔴 «${ink.text}» 가 halo 없이도 거의 안 그려졌다(${plain}화소) — 못 잰다.`);
+    return 1;
+  }
+  const ratio = haloed / plain;
+  const ok = ratio >= 0.97;
+  console.log(
+    `  ${ok ? "✅" : "🔴"} ⑪ halo 가 «${ink.text}» 의 글자를 먹지 않는다 — ` +
+      `잉크 ${haloed}/${plain} = ${(ratio * 100).toFixed(1)}%`,
+  );
+  return ok ? 0 : 1;
+}
+
 async function selftest(page) {
   let bad = 0;
+  const gauges = typesetGauges();
   const cases = [
     ...SELFTEST.map(([name, shape, baselineY, expected]) => ({
       name,
       svg: selftestSvg(shape, baselineY),
       expect: expected,
     })),
-    ...typesetGauges(),
+    ...gauges.collision,
   ];
   for (const c of cases) {
     const measured = await measure(page, c.svg);
@@ -257,12 +308,14 @@ async function selftest(page) {
         `실제 ${got ? "겹침" : "깨끗"} (잉크 높이 ${measured.texts[0].h.toFixed(1)})`,
     );
   }
+  bad += await inkSurvives(page, gauges.ink);
+
   if (bad > 0) {
     console.log(`\n🔴 눈금 ${bad}건 어긋남 — 이 판정기의 답을 쓰지 마라.`);
   } else {
     const pos = cases.filter((c) => c.expect).length;
     console.log(
-      `\n✅ 눈금 ${cases.length}건 — 양성 ${pos} · 음성 ${cases.length - pos} 을 갈라낸다` +
+      `\n✅ 눈금 ${cases.length + 1}건 — 양성 ${pos} · 음성 ${cases.length - pos} · 잉크 1 을 갈라낸다` +
         " (날 `<text>` 와 **조판된 라벨** 둘 다).",
     );
   }

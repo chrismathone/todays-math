@@ -189,18 +189,37 @@ export function placeLabel(
   const left =
     anchor === "start" ? x : anchor === "end" ? x - width : x - width / 2;
   const y = opts.centerY ? yIn + centerShiftEm() * fontSize : yIn;
-  // MathJax 조각 안의 `stroke/fill="currentColor" stroke-width="0"` 을 우리 색과
-  // halo 로 바꾼다. 그대로 두면 halo 가 안 걸리고 색도 상속되지 않는다.
-  const paint = halo
-    ? `fill="${color}" stroke="${halo.color}" ` +
-      `stroke-width="${(halo.width / scale).toFixed(1)}" ` +
-      `stroke-linejoin="round" paint-order="stroke"`
-    : `fill="${color}" stroke="none"`;
-  const body = laid.inner.replace(
-    /stroke="currentColor"\s+fill="currentColor"\s+stroke-width="0"/,
-    paint,
-  );
-  if (!isSafeFragment(body)) return null;
+  // MathJax 조각 안의 `stroke/fill="currentColor" stroke-width="0"` 을 우리 칠로 바꾼다.
+  // 그대로 두면 색이 상속되지 않고 `stroke-width="0"` 이 halo 를 눌러 버린다.
+  const repaint = (paint: string) =>
+    laid.inner.replace(
+      /stroke="currentColor"\s+fill="currentColor"\s+stroke-width="0"/,
+      paint,
+    );
+  const glyphs = repaint(`fill="${color}" stroke="none"`);
+  if (!isSafeFragment(glyphs)) return null;
+
+  // 🔴 **halo 는 글자 전체를 한 번 두르고, 그 위에 글자를 얹는다.**
+  //
+  //    종전에는 `paint-order="stroke"` 한 줄로 끝냈다. 그런데 `paint-order` 는
+  //    **요소마다** 「테두리 → 채우기」다. 조판본은 **글자 하나가 `<path>` 하나**라
+  //    앞 글자를 칠한 뒤 뒤 글자의 굵은 흰 테두리가 그 위를 덮는다 —
+  //    실측으로 `7 cm` 이 지면에 **`7 ⟨ m`** 으로 나갔다(`c` 가 먹혔다.
+  //    원장님 지적 2026-08-28). 옛 `<text>` 는 한 요소라 테두리를 통째로 한 번
+  //    칠하고 글자를 통째로 얹으므로 이 일이 안 생겼다.
+  //
+  //    그래서 조각을 **두 벌** 낸다 — 아래는 테두리만(`fill="none"`), 위는 글자만.
+  //    그러면 `<text>` 와 같은 순서가 되고 글자끼리 서로 지우지 않는다.
+  let body = glyphs;
+  if (halo) {
+    const ring = repaint(
+      `fill="none" stroke="${halo.color}" ` +
+        `stroke-width="${(halo.width / scale).toFixed(1)}" ` +
+        `stroke-linejoin="round" stroke-linecap="round"`,
+    );
+    if (!isSafeFragment(ring)) return null;
+    body = ring + glyphs;
+  }
   // ⚠️ **`data-label` 을 남긴다.** 조판하고 나면 SVG 에 글자가 한 톨도 안 남는다
   //    (전부 `<path>` 다). 그러면 시험도, 겹침 판정기도, 사람이 눈으로 grep 하는
   //    것도 **라벨을 찾을 길이 없다.** 원문을 여기 붙여 둔다.
