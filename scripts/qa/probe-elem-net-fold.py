@@ -85,7 +85,13 @@ _NEAR = 0.6
 # `measured()` 치수 지문 — `probe-dim-outside.py` 와 **같은 값**을 본다.
 # ⚠️ 두 곳에 적힌 값이다. 한쪽만 고치면 F3 이 조용히 죽는다.
 _DIM_STROKE = "#000"
-_DIM_WIDTH = 1.4
+# ⚠️ **굵기로 치수를 알아보지 않는다.** 종전에는 `_DIM_WIDTH = 1.4` 를 같이 봤는데,
+#    원장님 확정으로 치수 점선이 0.6 이 되자(2026-08-28) 그 조건이 **한 줄도 안 맞아**
+#    치수선이 «접는 선»으로 세어진다 — 결함이 아니라 **거짓 결함이 쏟아진다.**
+#    굵기는 치수를 가르는 성질이 아니다. 색(`#000`)과 파선 무늬(`6 4`)면 갈린다
+#    (접는 선·숨은 모서리는 `#111111`). 같은 날 같은 결함이 세 곳에 있었다:
+#    여기 · `probe-dim-outside.py` · `elementaryFigure.test.ts`.
+_DIM_DASH = "6 4"
 
 
 def _attrs(raw: str) -> dict[str, str]:
@@ -205,7 +211,7 @@ def strokes(svg: str):
         if _f(a, "stroke-width", 1.0) <= 0:
             continue
         dashed = bool(a.get("stroke-dasharray"))
-        is_dim = stroke == _DIM_STROKE and abs(_f(a, "stroke-width", 1.0) - _DIM_WIDTH) < 1e-6
+        is_dim = stroke == _DIM_STROKE and (a.get("stroke-dasharray") or "").strip() == _DIM_DASH
         for seg in _straight_runs(tag, a):
             out.append((seg, dashed, is_dim))
     return out
@@ -292,9 +298,9 @@ def judge(svg: str):
 # 눈금 — **양성과 음성을 둘 다** 넣는다. 양성만 넣으면 재현율만 재고 지어냄은
 # 구조적으로 0이 된다(2026-08-20 「판정자를 눈금 맞출 때」).
 # ═══════════════════════════════════════════════════════════════════════════
-_SOLID = 'stroke="#111111" stroke-width="1.15"'
-_DASH = 'stroke="#111111" stroke-width="1.15" stroke-dasharray="5 4"'
-_DIM = 'stroke="#000" stroke-width="1.4" stroke-dasharray="6 4"'
+_SOLID = 'stroke="#111111" stroke-width="1.4"'
+_DASH = 'stroke="#111111" stroke-width="1.4" stroke-dasharray="5 4"'
+_DIM = 'stroke="#000" stroke-width="0.6" stroke-dasharray="6 4"'
 # 나란히 붙은 정사각형 두 장. 공유 변은 x=50, y 10~50.
 _F2 = ('<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="none"/>'
        '<rect x="50" y="10" width="40" height="40" fill="#f2e6d4" stroke="none"/>')
@@ -306,14 +312,14 @@ GAUGE = [
     (
         "🟥 면마다 닫힌 실선 rect — 접는 선이 실선이다 (지금의 netCuboid)",
         True,
-        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.15"/>'
-        '<rect x="50" y="10" width="40" height="40" fill="#f2e6d4" stroke="#111111" stroke-width="1.15"/>',
+        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.4"/>'
+        '<rect x="50" y="10" width="40" height="40" fill="#f2e6d4" stroke="#111111" stroke-width="1.4"/>',
     ),
     (
         "🟥 점선을 얹었지만 실선도 남아 있다 (반쪽 수리)",
         True,
-        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.15"/>'
-        '<rect x="50" y="10" width="40" height="40" fill="#f2e6d4" stroke="#111111" stroke-width="1.15"/>'
+        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.4"/>'
+        '<rect x="50" y="10" width="40" height="40" fill="#f2e6d4" stroke="#111111" stroke-width="1.4"/>'
         + _FOLD_D,
     ),
     (
@@ -350,13 +356,13 @@ GAUGE = [
     (
         "🟩 면이 하나뿐이면 접는 선이 없다 — 관할 밖(거짓 결함 금지)",
         False,
-        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.15"/>',
+        '<rect x="10" y="10" width="40" height="40" fill="#e4d3b8" stroke="#111111" stroke-width="1.4"/>',
     ),
     (
         "🟩 원기둥 전개도처럼 **점에서만 닿으면** 관할 밖",
         False,
-        '<rect x="10" y="30" width="80" height="30" fill="#e4d3b8" stroke="#111111" stroke-width="1.15"/>'
-        '<circle cx="40" cy="20" r="10" fill="#f2e6d4" stroke="#111111" stroke-width="1.15"/>',
+        '<rect x="10" y="30" width="80" height="30" fill="#e4d3b8" stroke="#111111" stroke-width="1.4"/>'
+        '<circle cx="40" cy="20" r="10" fill="#f2e6d4" stroke="#111111" stroke-width="1.4"/>',
     ),
     (
         "🟩 치수 점선이 윤곽과 나란히 지나가도 결함이 아니다",
@@ -369,7 +375,7 @@ GAUGE = [
     (
         "🟩 겨냥도의 숨은 모서리(도형 **안**의 점선)는 이 판정기 관할이 아니다",
         False,
-        '<polygon points="10,10 90,10 90,50 10,50" fill="#e4d3b8" stroke="#111111" stroke-width="1.15"/>'
+        '<polygon points="10,10 90,10 90,50 10,50" fill="#e4d3b8" stroke="#111111" stroke-width="1.4"/>'
         f'<line x1="20" y1="20" x2="80" y2="40" {_DASH}/>',
     ),
 ]

@@ -25,6 +25,11 @@ describe("[초등 결합형 CLI] 명시적인 별도 경로", () => {
     expect(result.stdout).toContain("remainder-part");
   });
 
+  // ⚠️ **예산을 넉넉히 준다.** 이 시험은 `tsx` 로 CLI 를 **두 번** 띄운다 —
+  //    아무도 안 쓸 때도 15.5초가 걸린다(실측). vitest 기본 예산이 20초라 여유가
+  //    22% 뿐이고, 다른 세션이 같이 돌면 그대로 **시간 초과로 빨개진다**(2026-08-28
+  //    관문에서 실제로 그랬다. 따로 돌리면 통과). 「부하 때만 빨간」 시험은 아무것도
+  //    안 재면서 관문을 막고, 그러면 다음 사람이 관문을 우회한다.
   it("--combo는 같은 씨앗으로 같은 JSON 세트를 낸다", () => {
     const args = ["--combo", COMBO, "--count", "3", "--seed", "20260824"];
     const first = run(args);
@@ -44,7 +49,7 @@ describe("[초등 결합형 CLI] 명시적인 별도 경로", () => {
         (item: { problem: { kind: string } }) => item.problem.kind === "combo",
       ),
     ).toBe(true);
-  });
+  }, 90_000);
 
   it("결합형과 기존 grade/section/tier 옵션은 섞지 못한다", () => {
     const result = run([

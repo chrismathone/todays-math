@@ -101,8 +101,13 @@ def parse_polygon(svg: str):
 #    ⚠️ 이 지문이 낡으면 이 판정기는 **조용히 0을 낸다**(치수를 하나도 못 찾으므로
 #    `judge` 가 None 을 돌려준다). 그래서 `main()` 이 «치수를 가진 그림»의 수를
 #    함께 찍고, 0이면 멈춘다 — 「깨끗」과 「못 셈」을 가르기 위해서다.
+#    ⚠️ **굵기는 지문에서 뺐다** (2026-08-28). 원장님 확정으로 치수 점선이 1.4 → 0.6 이
+#    되었는데, 굵기를 지문에 넣어 두면 그 순간 이 판정기가 **아무것도 못 찾고 0을 낸다.**
+#    굵기는 치수를 가르는 성질이 아니다 — 색(`#000`)과 파선 무늬(`6 4`) 둘이면 갈린다
+#    (숨은 모서리는 `#111111` + `5 4`, 접는 선도 `#111111`). 같은 날 `elementaryFigure`
+#    의 접는 선 시험이 똑같이 굵기로 가르다가 거짓 빨강을 냈다.
 _MEASURED_STROKE = 'stroke="#000"'
-_MEASURED_WIDTH = 'stroke-width="1.4"'
+_MEASURED_DASH = 'stroke-dasharray="6 4"'
 
 
 def parse_dashed_points(svg: str):
@@ -112,7 +117,7 @@ def parse_dashed_points(svg: str):
         attrs = m.group(2)
         if "stroke-dasharray" not in attrs:
             continue
-        if _MEASURED_STROKE not in attrs or _MEASURED_WIDTH not in attrs:
+        if _MEASURED_STROKE not in attrs or _MEASURED_DASH not in attrs:
             continue
         nums = [float(v) for v in re.findall(_NUM, attrs.split("d=")[-1] if "d=" in attrs else attrs)]
         d = re.search(r'd="([^"]+)"', attrs)
@@ -144,7 +149,7 @@ def judge(svg: str):
 
 
 _TRI = '<polygon points="10,10 90,10 50,90"/>'
-_MEAS = 'stroke="#000" stroke-width="1.4" stroke-dasharray="6 4"'
+_MEAS = 'stroke="#000" stroke-width="0.6" stroke-dasharray="6 4"'
 _HIDDEN = 'stroke="#111111" stroke-width="1" stroke-dasharray="5 4"'
 
 GAUGE = [

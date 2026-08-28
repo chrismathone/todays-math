@@ -181,6 +181,22 @@ def angle_arc(vx, vy, p1, p2, r=26) -> str:
     return arc(vx, vy, r, a0, a0 + da)
 
 
+# 🔴 **치수 점선 굵기** — 원장님 확정 2026-08-28 (D-07 · 시안 ②).
+#
+# 정본 실측(RPM 중1-2 p126·p130): 도형 윤곽선 **0.8pt** · 치수 파선 **0.3~0.5pt**.
+# 치수가 도형선의 0.375~0.625배다. 우리는 도형 1.15 · 치수 **1.4** 라 **치수가 더 굵어**
+# (비 1.22) 배경으로 안 물러나고 앞으로 튀어나왔다. 도형을 1.4 로 올리고 치수를 0.6 으로
+# 내려 비 **0.43** 으로 맞춘다(도형 쪽은 `scripts/figure/elem_advanced.py` 의 `SOLID_SW`).
+#
+# ⚠️ 이 파일은 `F:\시험지변환기` 의 **벤더 사본**이다. 상류를 갱신할 때 이 값이 1.4 로
+#    되돌아오지 않는지 보라 — 되돌아오면 지면이 조용히 옛 모양이 된다.
+#
+# ⚠️ **굵기로 치수를 «알아보지» 마라.** `scripts/qa/probe-dim-outside.py` 와
+#    `elementaryFigure.test.ts` 가 그렇게 하다가 이 값이 바뀌는 순간 하나는 눈이 멀고
+#    하나는 거짓 빨강을 냈다. 치수 지문은 색(`#000`) + 파선(`6 4`) 둘이다.
+DIM_SW = 0.6
+
+
 def meas(px_, py_, qx_, qy_, off=10.0, ins_p=0.0, ins_q=0.0) -> str:
     """길이 치수 점선 — **양끝이 잰 두 점에 정확히 닿고** 가운데만 |off| 볼록.
 
@@ -200,7 +216,7 @@ def meas(px_, py_, qx_, qy_, off=10.0, ins_p=0.0, ins_q=0.0) -> str:
     c_lat = 2.0 * off - end
     cx_, cy_ = (px_ + qx_) / 2 + nx_ * c_lat, (py_ + qy_) / 2 + ny_ * c_lat
     return (f'<path d="M {sx_:.1f} {sy_:.1f} Q {cx_:.1f} {cy_:.1f} {ex_:.1f} {ey_:.1f}" '
-            f'fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="6 4"/>')
+            f'fill="none" stroke="#000" stroke-width="{DIM_SW}" stroke-dasharray="6 4"/>')
 
 
 _LABEL_CLEAR = 1.5      # 라벨 상자(+halo)와 실선 사이 최소 여유(SVG 단위)
@@ -310,7 +326,7 @@ def arc_measured(cx, cy, r, a0, a1, txt=None, runs=None, end_off=3.0,
     mid = a0 + da / 2.0
     lx, ly = circle_pt(cx, cy, mid, r + end_off + bow + label_gap)
     content = _escape(str(txt)) if runs is None else _text_runs_markup(runs)
-    path = (f'<path d="{d}" fill="none" stroke="#000" stroke-width="1.4" '
+    path = (f'<path d="{d}" fill="none" stroke="#000" stroke-width="{DIM_SW}" '
             f'stroke-dasharray="6 4"/>')
     label = (f'<text x="{lx:.1f}" y="{ly + 0.35 * fs:.1f}" font-size="{fs}" {FONT} '
              f'text-anchor="middle" paint-order="stroke" stroke="#fff" '

@@ -39,7 +39,7 @@ MUTANTS = [
         "접는 선을 **치수 지문**으로 긋는다 (dim 판정기가 오인한다)",
         "parts += [_line(a, b, sw=NET_SW, dash=FOLD_DASH) for a, b in folds]",
         'parts += [f\'<line x1="{_n(a[0])}" y1="{_n(a[1])}" x2="{_n(b[0])}" '
-        'y2="{_n(b[1])}" stroke="#000" stroke-width="1.4" stroke-dasharray="6 4"/>\' '
+        'y2="{_n(b[1])}" stroke="#000" stroke-width="0.6" stroke-dasharray="6 4"/>\' '
         "for a, b in folds]",
     ),
     (

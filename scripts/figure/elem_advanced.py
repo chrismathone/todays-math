@@ -32,6 +32,60 @@ from elementary import (
     _text,
 )
 
+# 🔴 **입체 그림의 획 굵기** — 원장님 확정 2026-08-28 (D-07 · 시안 ②).
+#
+# 정본 실측(RPM 중1-2 p126·p130 여러 자리): 도형 윤곽선 **0.8pt** · 치수/숨은 파선
+# **0.3~0.5pt** — 치수가 도형선의 **0.375~0.625배**다. 우리는 도형 1.15 · 치수 1.4 라
+# **치수가 더 굵었다**(비 1.22). 그래서 치수 점선이 배경으로 안 물러나고 앞으로 튀어나왔다.
+#
+# 확정: 도형 실선 **1.4** · 치수 점선 **0.6**(vendor `core.figure_svg.meas`) → 비 **0.43**.
+#
+# ⚠️ 각 호(`angle_mark`)는 **여기 없다** — 별도 D-07 항목(「각 호가 정본보다 2배 굵다」)이라
+#    같이 움직이면 어느 쪽이 원장님 확정인지 이력에서 안 갈린다.
+SOLID_SW = 1.4
+
+# 🔴 **입체 그림의 크기** — 원장님 확정 2026-08-28 「정본 비율로 바로 맞춰라」(D-07).
+#
+# 정본 실측(RPM 0849 — 우리 `cutCuboid` 와 **같은 문제·같은 치수 여섯**):
+# 도형(실선) 대각 95.1pt ÷ 라벨 8.0pt = **11.9**. 우리는 **7.1** 이었다 — 도형이 정본의
+# 60% 라 치수를 놓을 자리가 없었고, 고정 거리가 실루엣 안쪽에 떨어졌다.
+#
+# ⚠️ **배율만 올리면 안 된다.** viewBox 가 커지면 `figureSvgFrame` 등급(폭 ≤160 →
+#    140px, ≤320 → 240px)을 넘어 종이에서 그림이 통째로 1.7배가 되고, 그러면 라벨도
+#    같이 커진다. 정본은 **라벨 ÷ 본문 글자**도 0.762 인데 우리는 0.930 이었다.
+#    그래서 **배율을 올리고 라벨을 줄인다** — 여백도 라벨에 맞춰 줄어 등급이 안 넘어간다.
+#
+# ⚠️ 이 셋은 **한 곳에만** 적는다. 종전에는 `56.0 / mx` 가 세 곳(`_cuboid`·`_hollow_box`
+#    ·`_cut_cuboid`), `70.0 / …` 이 네 곳에 손으로 적혀 있었다 — 한쪽만 고치면
+#    같은 지면에 두 크기가 섞인다.
+SOLID_UNITS = 84.0      # 각기둥·직육면체 계열: 가장 긴 모서리의 화면 길이 (종전 56.0)
+ROUND_UNITS = 98.0      # 원기둥·원뿔·구 계열 (종전 70.0)
+#                         ⚠️ 여기가 **인쇄 등급 경계가 허락하는 한계**다. 100 으로
+#                         올리면 `elem-cylinder` 의 viewBox 폭이 161.3 이 되어 160 을
+#                         넘고, 등급이 compact(140px) → mid(240px) 로 뛴다. 그러면
+#                         종이에서 그림이 1.7배가 되고 **라벨도 같이 커져**
+#                         본문 12.5px 보다 커진다(15.2px) — 고치려던 그 결함이 난다.
+#                         그래서 회전체는 비 10.3~10.7 에서 멈춘다(정본 11.9).
+DIM_FS = 10.5           # 치수 라벨 글자 크기 (종전 12)
+_DIM_PAD_K = DIM_FS / 12.0
+
+
+def _dim_pads(pads: tuple[float, float, float, float]) -> tuple[float, ...]:
+    """치수 라벨이 앉을 여백 — **라벨 크기에 비례**한다.
+
+    여백은 라벨을 담으려고 잡은 값이다(직육면체 계열은 viewBox 폭의 **64%** 가 여백이었다).
+    라벨을 줄이면서 여백을 그대로 두면 도형만 작아 보이고, 배율을 올린 만큼 viewBox 가
+    커져 인쇄 등급을 넘는다.
+    """
+    return tuple(round(v * _DIM_PAD_K, 1) for v in pads)
+
+
+# ⚠️ **여백을 도형에 비례시켜 보는 대안은 재 보고 버렸다.** 여백을 그대로 두고
+#    배율만 72/88 로 낮추면(등급은 안 넘는다) 겹침은 **똑같이 5** 인데 비가
+#    12.1 → 10.4 로 내려가고, `cutCuboid` 의 `4 cm` 가 도형에서 **뚝 떨어져**
+#    지시선이 그림을 가로지른다(눈으로 확인). 라벨은 «밖»보다 «가까이»가 낫다 —
+#    정본도 `7 cm` 하나는 홈 속에 halo 로 얹는다.
+
 FILL = "#e2b48a"
 FAINT = "#f4efe6"
 FACE_TOP = "#f2e6d4"
@@ -2027,7 +2081,7 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     d = _num(spec["d"], "d", 0.5, 40)
     h = _num(spec["h"], "h", 0.5, 40)
     mx = max(w, d, h)
-    scale = 56.0 / mx
+    scale = SOLID_UNITS / mx
     # cabinet 45° 에서 깊이 모서리 투영 길이는 0.5·scale·d. 너무 짧으면 치수를 못 붙인다.
     depth_px = 0.5 * scale * d
     if depth_px < 24.0:
@@ -2041,7 +2095,7 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     # 가로=앞 아래, 높이=앞 왼쪽, 세로=밑면 오른쪽 뒤. 위-오른쪽 짧은 모서리는 쓰지 않는다.
     # 왼쪽 높이 라벨의 근사 상자까지 담되 총 폭은 유지한다(44+48 == 종전 40+52).
     # viewBox 폭 문턱(160/320)을 넘나들지 않게 오른쪽 여백을 같은 만큼 줄인다.
-    pad_l, pad_t, pad_r, pad_b = 44.0, 22.0, 48.0, 44.0
+    pad_l, pad_t, pad_r, pad_b = _dim_pads((44.0, 22.0, 48.0, 44.0))
     view = View(0.5, 45, scale, (pad_l - minx, pad_t - miny))
 
     def p(x: float, y: float, z: float) -> tuple[float, float]:
@@ -2074,10 +2128,10 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
     def dim(a: tuple[float, float], b: tuple[float, float], label: str) -> None:
         span = math.hypot(b[0] - a[0], b[1] - a[1])
         off = _outward_off(a, b, inside, DIM_OFF if span >= 28 else DIM_OFF + 6)
-        off, t = _dim_place(a, b, label, off, avoid, 12.0)
-        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+        off, t = _dim_place(a, b, label, off, avoid, DIM_FS)
+        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=DIM_FS, t=t)
         parts.append(mark)
-        avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
+        avoid.add(mark, _dim_label_box(a, b, off, label, DIM_FS, t))
 
     dim(p(0, 0, 0), p(w, 0, 0), f"{_n(w)} cm")
     dim(p(0, 0, 0), p(0, 0, h), f"{_n(h)} cm")
@@ -2292,7 +2346,7 @@ def _ngon_on_edge(
 # 판정기는 `scripts/qa/probe-elem-net-fold.py` (양성 5 · 음성 5).
 # ═══════════════════════════════════════════════════════════════════════════
 
-NET_SW = 1.15
+NET_SW = SOLID_SW   # 전개도도 같은 굵기 — 같은 지면에 나란히 놓인다
 # 자르는 선과 접는 선은 **같은 굵기**다 — 갈라 주는 것은 점선이다.
 FOLD_DASH = "5 4"
 
@@ -2451,7 +2505,7 @@ def _prism(spec: Mapping[str, Any]) -> str:
         j = (i + 1) % sides
         depth = (bot3[i][1] + bot3[j][1]) / 2
         fill = FACE_FRONT if depth < 0 else FACE_SIDE
-        faces.append((depth, _poly([bot[i], bot[j], top[j], top[i]], fill, 1.15)))
+        faces.append((depth, _poly([bot[i], bot[j], top[j], top[i]], fill, SOLID_SW)))
     faces.sort(key=lambda t: t[0], reverse=True)
     # 숨은 모서리는 **맨 위에** 그린다. 면 아래에 깔면 칠에 덮여 겨냥도가 막힌
     # 덩어리가 된다 — 그러면 면·모서리를 셀 수 없다(원장님 2026-08-22).
@@ -2486,7 +2540,7 @@ def _pyramid(spec: Mapping[str, Any]) -> str:
         j = (i + 1) % sides
         depth = (base3[i][1] + base3[j][1]) / 2
         fill = FACE_FRONT if depth < 0 else FACE_SIDE
-        faces.append((depth, _poly([base[i], base[j], apex], fill, 1.15)))
+        faces.append((depth, _poly([base[i], base[j], apex], fill, SOLID_SW)))
     faces.sort(key=lambda t: t[0], reverse=True)
     parts = (
         [_poly(base, FACE_TOP, 1.1)]
@@ -2532,12 +2586,12 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
 
     r = _num(spec["r"], "r", 0.4, 20)
     h = _num(spec["h"], "h", 0.4, 30)
-    scale = 70.0 / max(2 * r, h)
+    scale = ROUND_UNITS / max(2 * r, h)
     bot3 = circle3((0, 0, 0), r, (0, 0, 1), 64)
     top3 = circle3((0, 0, h), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
         # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
-        bot3 + top3, scale, (44.0, 24.0, 26.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        bot3 + top3, scale, _dim_pads((44.0, 24.0, 26.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)
@@ -2553,9 +2607,9 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     # 옆면은 곧은 사다리꼴이 아니다 — 위·아래 앞쪽 호를 그대로 잇는다.
     # 예전처럼 네 점 사각형으로 덮으면 밑면 타원을 가로지르는 실선이 남는다.
     parts = [
-        _poly(near_top + near_bot, FACE_FRONT, 1.15),
+        _poly(near_top + near_bot, FACE_FRONT, SOLID_SW),
         _polyline(far_bot, sw=1.05, dash=HIDDEN_DASH),
-        _poly(top, FACE_TOP, 1.15),
+        _poly(top, FACE_TOP, SOLID_SW),
     ]
     tl, bl = top[i_l], bot[i_l]
     c_top = view((0.0, 0.0, h))
@@ -2564,7 +2618,7 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     parts.append(
         _length_mark(
             tl[0], tl[1], bl[0], bl[1], f"{_n(h)} cm",
-            off=_off_towards(tl, bl, (-1.0, 0.0), DIM_OFF), fs=12,
+            off=_off_towards(tl, bl, (-1.0, 0.0), DIM_OFF), fs=DIM_FS,
         )
     )
     # 반지름은 **안 적는다** (원장님 확정 2026-08-22): 「문제에 굳이 있는데 라벨로
@@ -2587,11 +2641,11 @@ def _cone(spec: Mapping[str, Any]) -> str:
 
     r = _num(spec["r"], "r", 0.4, 20)
     h = _num(spec["h"], "h", 0.4, 30)
-    scale = 70.0 / max(2 * r, h)
+    scale = ROUND_UNITS / max(2 * r, h)
     base3 = circle3((0, 0, 0), r, (0, 0, 1), 64)
     apex3 = (0.0, 0.0, h)
     view, svg_w, svg_h = _fitted_cabinet(
-        base3 + [apex3], scale, (18.0, 20.0, 18.0, 16.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        base3 + [apex3], scale, _dim_pads((18.0, 20.0, 18.0, 16.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     apex = view(apex3)
     ring = _round_ring(view, base3)
@@ -2605,7 +2659,7 @@ def _cone(spec: Mapping[str, Any]) -> str:
     i_left = max(range(n), key=lambda i: polar(ring[i]))
     near, far = _split_ring(ring, i_right, i_left)
     parts = [
-        _poly([apex] + near, FACE_FRONT, 1.15),
+        _poly([apex] + near, FACE_FRONT, SOLID_SW),
         _polyline(far, sw=1.05, dash=HIDDEN_DASH),
     ]
     return _svg(svg_w, svg_h, "".join(parts))
@@ -2698,7 +2752,7 @@ def _net_cylinder(spec: Mapping[str, Any]) -> str:
     if name not in _NET_CYL_LAYOUTS:
         raise ValueError(f"layout 은 {', '.join(_NET_CYL_LAYOUTS)} 중 하나여야 합니다")
     circ = 2 * r * pi
-    u = 70.0 / max(circ, h, r * 2)
+    u = ROUND_UNITS / max(circ, h, r * 2)
     rw, rh, cr = circ * u, h * u, r * u
     circles: list[tuple[float, float]] = []
     for side, t in _NET_CYL_LAYOUTS[name]:
@@ -2710,11 +2764,11 @@ def _net_cylinder(spec: Mapping[str, Any]) -> str:
     ys = [0.0, rh] + [c[1] - cr for c in circles] + [c[1] + cr for c in circles]
     minx, miny = min(xs), min(ys)
     ox, oy = pad - minx, pad - miny
-    parts = [_rect(ox, oy, rw, rh, fill=FACE_FRONT, sw=1.15)]
+    parts = [_rect(ox, oy, rw, rh, fill=FACE_FRONT, sw=SOLID_SW)]
     for cx, cy in circles:
         parts.append(
             f'<circle cx="{_n(ox + cx)}" cy="{_n(oy + cy)}" r="{_n(cr)}" fill="{FACE_TOP}" '
-            f'stroke="{INK}" stroke-width="1.15"/>'
+            f'stroke="{INK}" stroke-width="{_n(SOLID_SW)}"/>'
         )
     return _svg(max(xs) - minx + pad * 2, max(ys) - miny + pad * 2, "".join(parts))
 
@@ -2827,9 +2881,9 @@ def _net_cone(spec: Mapping[str, Any]) -> str:
     parts = [
         f'<path d="M {_n(ox)} {_n(oy)} L {_n(px0)} {_n(py0)} '
         f'{_nc_arc_d(ox, oy, l * u, a0, a1)} Z" '
-        f'fill="{FACE_FRONT}" stroke="{INK}" stroke-width="1.15"/>',
+        f'fill="{FACE_FRONT}" stroke="{INK}" stroke-width="{_n(SOLID_SW)}"/>',
         f'<circle cx="{_n(ox)}" cy="{_n(oy + base_cy * u)}" r="{_n(r * u)}" '
-        f'fill="{FACE_TOP}" stroke="{INK}" stroke-width="1.15"/>',
+        f'fill="{FACE_TOP}" stroke="{INK}" stroke-width="{_n(SOLID_SW)}"/>',
     ]
     if "slant" in labels:
         # 모선은 **왼쪽** 직선 변에 적는다(0887 과 같은 자리).
@@ -3095,7 +3149,7 @@ def _draw_chains(chains, view, hidden) -> list[str]:
             if hid:
                 parts.append(_polyline(pts, sw=1.0, dash=HIDDEN_DASH))
             else:
-                parts.append(_polyline(pts, sw=1.15))
+                parts.append(_polyline(pts, sw=SOLID_SW))
     return parts
 
 
@@ -3134,7 +3188,10 @@ def _shape_keys(m: Any, name: str, required: frozenset[str], optional: frozenset
 #    그래서 여기서는 거리를 정하지 않고 **«비켰나»를 직접 묻는다** —
 #    좌표평면 `O` 를 고칠 때와 같은 방식이다(D-61 · `_cp_o_offset`).
 DIM_CLEAR = 1.5      # 라벨 상자와 획 사이 최소 여유(SVG 단위)
-DIM_PUSH_TRIES = 7   # 더 밀면 치수가 도형에서 떨어져 «무엇을 쟀나»가 안 읽힌다
+DIM_PUSH_TRIES = 14   # 더 밀면 치수가 도형에서 떨어져 «무엇을 쟀나»가 안 읽힌다.
+#                       실측(그림 149장): 7 → 겹침 8 · 10 → 7 · **14 → 5** · 20 → 5.
+#                       도형을 키운 만큼(SOLID_UNITS) 밀 거리도 늘어야 한다 —
+#                       7 로 두면 밀다 만 라벨이 반대쪽 면 위에 앉는다(실측 `12 cm`).
 
 
 # 라벨을 선분 **위에서** 옮겨 볼 자리 (0=시작점 · 0.5=중점 · 1=끝점).
@@ -3157,7 +3214,7 @@ def _dim_label_box(a, b, off: float, label: str, fs: float, t: float = 0.5):
 
 
 def _dim_place(a, b, label: str, off: float, avoid,
-               fs: float = 12.0, slide_only: bool = False) -> tuple[float, float]:
+               fs: float = DIM_FS, slide_only: bool = False) -> tuple[float, float]:
     """라벨이 획을 비키는 (거리, 선분 위 자리) 를 고른다.
 
     ⚠️ **거리만 늘리면 안 된다.** `measured()` 는 같은 `off` 로 점선 호도 부풀리므로,
@@ -3293,11 +3350,11 @@ def _cuboid_dim_parts(view, w: float, d: float, h: float, edges3,
         a, b = view(a3), view(b3)
         span = math.hypot(b[0] - a[0], b[1] - a[1])
         off = _outward_off(a, b, inside, DIM_OFF if span >= 28 else DIM_OFF + 6)
-        off, t = _dim_place(a, b, label, off, avoid, 12.0)
-        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+        off, t = _dim_place(a, b, label, off, avoid, DIM_FS)
+        mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=DIM_FS, t=t)
         parts.append(mark)
         if avoid is not None:
-            avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
+            avoid.add(mark, _dim_label_box(a, b, off, label, DIM_FS, t))
     return parts
 
 
@@ -3312,10 +3369,10 @@ def _dim_towards(view, a3, b3, label: str, want3, off_mag: float = DIM_OFF,
     mid = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
     wv = view(want3)
     off = _off_towards(a, b, (wv[0] - mid[0], wv[1] - mid[1]), off_mag)
-    off, t = _dim_place(a, b, label, off, avoid, 12.0)
-    mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=12, t=t)
+    off, t = _dim_place(a, b, label, off, avoid, DIM_FS)
+    mark = _length_mark(a[0], a[1], b[0], b[1], label, off=off, fs=DIM_FS, t=t)
     if avoid is not None:
-        avoid.add(mark, _dim_label_box(a, b, off, label, 12.0, t))
+        avoid.add(mark, _dim_label_box(a, b, off, label, DIM_FS, t))
     return mark
 
 
@@ -3340,13 +3397,13 @@ def _hollow_cyl(R: float, H: float, r: float) -> str:
 
     if R - r < SOLID_MIN_WALL:
         raise ValueError(f"구멍 반지름 {_n(r)} 이 바깥 반지름 {_n(R)} 에 너무 가깝습니다")
-    scale = 70.0 / max(2 * R, H)
+    scale = ROUND_UNITS / max(2 * R, H)
     obot = circle3((0, 0, 0), R, (0, 0, 1), 64)
     otop = circle3((0, 0, H), R, (0, 0, 1), 64)
     ibot = circle3((0, 0, 0), r, (0, 0, 1), 64)
     itop = circle3((0, 0, H), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
-        obot + otop, scale, (24.0, 26.0, 40.0, 24.0), ratio=ROUND_RATIO, deg=ROUND_DEG
+        obot + otop, scale, _dim_pads((24.0, 26.0, 40.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     dr = _ray_dir(ROUND_RATIO, ROUND_DEG)
     hidden = _make_hidden(
@@ -3396,10 +3453,10 @@ def _hollow_cyl(R: float, H: float, r: float) -> str:
         wv = view(want)
         off0 = _off_towards(a2, b2, (wv[0] - (a2[0] + b2[0]) / 2,
                                      wv[1] - (a2[1] + b2[1]) / 2), DIM_OFF)
-        off, t = _dim_place(a2, b2, text, off0, avoid, 12.0)
-        mark = _length_mark(c[0], c[1], q[0], q[1], text, off=off, fs=12, t=t)
+        off, t = _dim_place(a2, b2, text, off0, avoid, DIM_FS)
+        mark = _length_mark(c[0], c[1], q[0], q[1], text, off=off, fs=DIM_FS, t=t)
         parts.append(mark)
-        avoid.add(mark, _dim_label_box(a2, b2, off, text, 12.0, t))
+        avoid.add(mark, _dim_label_box(a2, b2, off, text, DIM_FS, t))
     parts.append(
         _dim_towards(view, (R, 0.0, H), (R, 0.0, 0.0), f"{_n(H)} cm",
                      (2 * R, 0.0, H / 2), DIM_OFF, avoid=avoid)
@@ -3412,12 +3469,12 @@ def _hollow_box(w: float, d: float, h: float, cw: float, cd: float, hole_r: floa
     from core.figure_solid import circle3
 
     mx = max(w, d, h)
-    scale = 56.0 / mx
+    scale = SOLID_UNITS / mx
     depth_px = 0.5 * scale * d
     if depth_px < 24.0:
         scale *= 24.0 / depth_px
     corners = [(x, y, z) for x in (0.0, w) for y in (0.0, d) for z in (0.0, h)]
-    view, svg_w, svg_h = _fitted_cabinet(corners, scale, (40.0, 22.0, 52.0, 44.0))
+    view, svg_w, svg_h = _fitted_cabinet(corners, scale, _dim_pads((40.0, 22.0, 52.0, 44.0)))
     dr = _ray_dir(0.5, 45.0)
     outer_iv = _iv_box_fn(dr, 0.0, w, 0.0, d, 0.0, h)
     if hole_r is None:
@@ -3482,7 +3539,7 @@ def _hollow_box(w: float, d: float, h: float, cw: float, cd: float, hole_r: floa
         th = math.atan2(dr[0], -dr[1])
         rim = view((w / 2 + hole_r * math.cos(th), d / 2 + hole_r * math.sin(th), h))
         parts.append(f'<circle cx="{_n(c[0])}" cy="{_n(c[1])}" r="2" fill="{INK}"/>')
-        parts.append(_length_mark(c[0], c[1], rim[0], rim[1], f"{_n(hole_r)} cm", off=0, fs=12))
+        parts.append(_length_mark(c[0], c[1], rim[0], rim[1], f"{_n(hole_r)} cm", off=0, fs=DIM_FS))
     return _svg(svg_w, svg_h, "".join(parts))
 
 
@@ -3580,12 +3637,12 @@ def _cut_cuboid(spec: Mapping[str, Any]) -> str:
     touch_b, touch_k = ch >= h - eps, cd >= d - eps  # 바닥·뒷면까지 닿는가
 
     mx = max(w, d, h)
-    scale = 56.0 / mx
+    scale = SOLID_UNITS / mx
     depth_px = 0.5 * scale * d
     if depth_px < 24.0:
         scale *= 24.0 / depth_px
     corners = [(x, y, z) for x in (0.0, w) for y in (0.0, d) for z in (0.0, h)]
-    view, svg_w, svg_h = _fitted_cabinet(corners, scale, (40.0, 22.0, 52.0, 44.0))
+    view, svg_w, svg_h = _fitted_cabinet(corners, scale, _dim_pads((40.0, 22.0, 52.0, 44.0)))
     dr = _ray_dir(0.5, 45.0)
     hidden = _make_hidden(
         _iv_box_fn(dr, 0.0, w, 0.0, d, 0.0, h),
@@ -3884,12 +3941,12 @@ def _revolve_plan(spec: Mapping[str, Any]) -> str:
         a, b = scr(a_cm), scr(b_cm)
         if key == "rLabel":
             parts.append(f'<circle cx="{_n(a[0])}" cy="{_n(a[1])}" r="2" fill="{INK}"/>')
-            parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=0, fs=12))
+            parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=0, fs=DIM_FS))
             continue
         cxs = sum(p[0] for p in poly) / len(poly)
         cys = sum(p[1] for p in poly) / len(poly)
         off = _outward_off(a, b, (cxs, cys), DIM_OFF)
-        parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=off, fs=12))
+        parts.append(_length_mark(a[0], a[1], b[0], b[1], text, off=off, fs=DIM_FS))
     # 축 위(x=0)에 앉는 라벨은 바깥 = 축 오른쪽이다. `_svg` 는 글자 닻점만 세므로
     # (09 §4-17) 그 글자 폭만큼 오른쪽 여백을 여기서 잡아 준다 — 0891 재현에서
     # 「7 cm」의 m 이 잘려 나갔다.

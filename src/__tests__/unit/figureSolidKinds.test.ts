@@ -22,27 +22,29 @@ const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 
 /** <polygon points fill> 전부 — (점열, fill). `_fill_poly`/`_poly`/화살촉이 다 잡힌다. */
 function polygons(svg: string): { pts: [number, number][]; fill: string }[] {
-  return [...svg.matchAll(/<polygon points="([^"]+)"(?:[^>]*?)fill="([^"]+)"/g)].map(
-    (m) => ({
-      pts: m[1]!.split(" ").map((p) => {
-        const [x, y] = p.split(",");
-        return [Number(x), Number(y)] as [number, number];
-      }),
-      fill: m[2]!,
+  return [
+    ...svg.matchAll(/<polygon points="([^"]+)"(?:[^>]*?)fill="([^"]+)"/g),
+  ].map((m) => ({
+    pts: m[1]!.split(" ").map((p) => {
+      const [x, y] = p.split(",");
+      return [Number(x), Number(y)] as [number, number];
     }),
-  );
+    fill: m[2]!,
+  }));
 }
 
 function polylines(svg: string): { pts: [number, number][]; dash: boolean }[] {
-  return [...svg.matchAll(/<polyline points="([^"]+)"[^>]*?(stroke-dasharray="5 4")?\s*\/>/g)].map(
-    (m) => ({
-      pts: m[1]!.split(" ").map((p) => {
-        const [x, y] = p.split(",");
-        return [Number(x), Number(y)] as [number, number];
-      }),
-      dash: Boolean(m[2]),
+  return [
+    ...svg.matchAll(
+      /<polyline points="([^"]+)"[^>]*?(stroke-dasharray="5 4")?\s*\/>/g,
+    ),
+  ].map((m) => ({
+    pts: m[1]!.split(" ").map((p) => {
+      const [x, y] = p.split(",");
+      return [Number(x), Number(y)] as [number, number];
     }),
-  );
+    dash: Boolean(m[2]),
+  }));
 }
 
 function bbox(pts: [number, number][]) {
@@ -93,7 +95,11 @@ describe.skipIf(!hasEngine)("[입체 kind] hollowSolid", () => {
     // 낼 수 없다 (09 §4-20-d).
     for (const spec of [
       HOLLOW_CYL,
-      { ...HOLLOW_CYL, outer: { shape: "cylinder", r: 2, h: 9 }, inner: { shape: "cylinder", r: 0.8 } },
+      {
+        ...HOLLOW_CYL,
+        outer: { shape: "cylinder", r: 2, h: 9 },
+        inner: { shape: "cylinder", r: 0.8 },
+      },
     ]) {
       const r = await renderFigureSpec(spec);
       expect(r.ok).toBe(true);
@@ -104,9 +110,22 @@ describe.skipIf(!hasEngine)("[입체 kind] hollowSolid", () => {
       const ratio = (b.maxY - b.minY) / (b.maxX - b.minX);
       expect(ratio).toBeGreaterThan(0.14);
       expect(ratio).toBeLessThan(0.16);
-      // 축에 나란한가 — 가장 낮은 꼭짓점의 x 가 가운데여야 한다(기울면 타원기둥).
-      const bottomPt = top!.pts.reduce((a, c) => (c[1] > a[1] ? c : a));
-      expect(Math.abs(bottomPt[0] - (b.minX + b.maxX) / 2)).toBeLessThan(1.0);
+      // 축에 나란한가 — **좌·우 끝점의 y 가 같아야** 한다. 기울면(타원기둥) 한쪽 끝이
+      // 올라가고 다른 쪽이 내려간다.
+      //
+      // ⚠️ 종전에는 «가장 낮은 꼭짓점의 x 가 가운데인가»를 **절대 1.0px** 로 물었다.
+      //    그것은 기울기가 아니라 **표본이 하필 바닥에 걸렸는가**를 잰다 — 타원을 64점
+      //    으로 찍으므로 바닥 표본은 최대 `R·sin(π/64)` 만큼 옆에 있고, 그 값은
+      //    **도형이 커지면 같이 커진다.** 회전체 배율을 정본에 맞춰 올리는 순간
+      //    (원장님 확정 2026-08-28) 멀쩡한 축나란 타원이 2.14px 로 빨개졌다.
+      //    실측하면 두 타원 다 좌우 끝 y 차가 **정확히 0.0000** 이다 — 기울기는 없었고
+      //    치우침만 하나는 0.0000, 하나는 0.0983 이었다(순전히 표본 탓).
+      //    **재는 축이 틀리면 크기를 바꿀 때마다 거짓 빨강이 난다.**
+      const left = top!.pts.reduce((a, c) => (c[0] < a[0] ? c : a));
+      const right = top!.pts.reduce((a, c) => (c[0] > a[0] ? c : a));
+      const height = b.maxY - b.minY;
+      expect(height, "타원 높이를 못 쟀다").toBeGreaterThan(3);
+      expect(Math.abs(left[1] - right[1]) / height).toBeLessThan(0.05);
     }
   });
 
@@ -134,7 +153,9 @@ describe.skipIf(!hasEngine)("[입체 kind] hollowSolid", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    const opening = polygons(r.svg).find((p) => p.fill === "#d4c09e" && p.pts.length === 4);
+    const opening = polygons(r.svg).find(
+      (p) => p.fill === "#d4c09e" && p.pts.length === 4,
+    );
     expect(opening).toBeTruthy();
     // 직육면체 숨은 모서리 셋 + 구멍 세로 넷 + 구멍 바닥 넷 — 최소 7토막.
     expect(hiddenDashCount(r.svg)).toBeGreaterThanOrEqual(7);
@@ -150,7 +171,9 @@ describe.skipIf(!hasEngine)("[입체 kind] hollowSolid", () => {
     });
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    const opening = polygons(r.svg).find((p) => p.fill === "#d4c09e" && p.pts.length > 10);
+    const opening = polygons(r.svg).find(
+      (p) => p.fill === "#d4c09e" && p.pts.length > 10,
+    );
     expect(opening).toBeTruthy();
     expect(r.svg).toContain('r="2" fill="#111111"'); // 반지름 치수의 중심 점 (09 §4-16)
     expect(measCount(r.svg)).toBe(4); // w·d·h + r
@@ -256,14 +279,25 @@ describe.skipIf(!hasEngine)("[입체 kind] revolvePlan", () => {
     expect(shape).toBeTruthy();
     const sb = bbox(shape!.pts);
     // 축(세로 실선)은 도형보다 위·아래로 나가야 한다. 원본 지면(RPM p111)이 실선이다.
-    const axis = [...r.svg.matchAll(/<line x1="([0-9.]+)" y1="([0-9.]+)" x2="([0-9.]+)" y2="([0-9.]+)"[^>]*\/>/g)]
+    const axis = [
+      ...r.svg.matchAll(
+        /<line x1="([0-9.]+)" y1="([0-9.]+)" x2="([0-9.]+)" y2="([0-9.]+)"[^>]*\/>/g,
+      ),
+    ]
       .map((m) => ({ x1: +m[1]!, y1: +m[2]!, x2: +m[3]!, y2: +m[4]! }))
-      .find((l) => Math.abs(l.x1 - l.x2) < 0.01 && l.y1 < sb.minY - 5 && l.y2 > sb.maxY + 5);
+      .find(
+        (l) =>
+          Math.abs(l.x1 - l.x2) < 0.01 &&
+          l.y1 < sb.minY - 5 &&
+          l.y2 > sb.maxY + 5,
+      );
     expect(axis).toBeTruthy();
     // 축이 도형의 오른변에 붙는다(gap 0) — 원본 구도.
     expect(Math.abs(axis!.x1 - sb.maxX)).toBeLessThan(1.5);
     // 회전 화살표 — 축 꼭대기의 화살촉(작은 폴리곤).
-    const head = polygons(r.svg).find((p) => p.fill === "#111111" && p.pts.length === 3);
+    const head = polygons(r.svg).find(
+      (p) => p.fill === "#111111" && p.pts.length === 3,
+    );
     expect(head).toBeTruthy();
     expect(bbox(head!.pts).maxY).toBeLessThan(sb.minY);
   });
@@ -275,12 +309,21 @@ describe.skipIf(!hasEngine)("[입체 kind] revolvePlan", () => {
       if (!r.ok) return -1;
       return polylines(r.svg).filter((p) => {
         const b = bbox(p.pts);
-        return p.pts.length === 3 && !p.dash && b.maxX - b.minX < 14 && b.maxY - b.minY < 14;
+        return (
+          p.pts.length === 3 &&
+          !p.dash &&
+          b.maxX - b.minX < 14 &&
+          b.maxY - b.minY < 14
+        );
       }).length;
     };
     expect(await marks(REV_RECT)).toBe(4);
     expect(
-      await marks({ version: "elem-1", kind: "revolvePlan", pieces: [{ shape: "rightTri", w: 3.5, h: 5 }] }),
+      await marks({
+        version: "elem-1",
+        kind: "revolvePlan",
+        pieces: [{ shape: "rightTri", w: 3.5, h: 5 }],
+      }),
     ).toBe(1);
     expect(
       await marks({
@@ -291,7 +334,11 @@ describe.skipIf(!hasEngine)("[입체 kind] revolvePlan", () => {
     ).toBe(2);
     // 반원은 직각이 없다.
     expect(
-      await marks({ version: "elem-1", kind: "revolvePlan", pieces: [{ shape: "semicircle", r: 3 }] }),
+      await marks({
+        version: "elem-1",
+        kind: "revolvePlan",
+        pieces: [{ shape: "semicircle", r: 3 }],
+      }),
     ).toBe(0);
   });
 
@@ -303,7 +350,9 @@ describe.skipIf(!hasEngine)("[입체 kind] revolvePlan", () => {
     const labeled = await renderFigureSpec({
       version: "elem-1",
       kind: "revolvePlan",
-      pieces: [{ shape: "rightTri", w: 5, h: 7, wLabel: "5 cm", hLabel: "7 cm" }],
+      pieces: [
+        { shape: "rightTri", w: 5, h: 7, wLabel: "5 cm", hLabel: "7 cm" },
+      ],
     });
     expect(labeled.ok).toBe(true);
     if (!labeled.ok) return;
@@ -330,15 +379,29 @@ describe.skipIf(!hasEngine)("[입체 kind] revolvePlan", () => {
       {
         version: "elem-1",
         kind: "revolvePlan",
-        pieces: [{ shape: "rightTri", w: 3, h: 3 }, { shape: "rect", w: 2, h: 2 }],
+        pieces: [
+          { shape: "rightTri", w: 3, h: 3 },
+          { shape: "rect", w: 2, h: 2 },
+        ],
       },
       {
         version: "elem-1",
         kind: "revolvePlan",
-        pieces: [{ shape: "semicircle", r: 2 }, { shape: "rect", w: 2, h: 2 }],
+        pieces: [
+          { shape: "semicircle", r: 2 },
+          { shape: "rect", w: 2, h: 2 },
+        ],
       },
-      { version: "elem-1", kind: "revolvePlan", pieces: [{ shape: "원", r: 2 }] },
-      { version: "elem-1", kind: "revolvePlan", pieces: [{ shape: "rect", w: 3, h: 5, top: 1 }] },
+      {
+        version: "elem-1",
+        kind: "revolvePlan",
+        pieces: [{ shape: "원", r: 2 }],
+      },
+      {
+        version: "elem-1",
+        kind: "revolvePlan",
+        pieces: [{ shape: "rect", w: 3, h: 5, top: 1 }],
+      },
       { version: "elem-1", kind: "revolvePlan", pieces: [] },
     ];
     for (const spec of bad) {

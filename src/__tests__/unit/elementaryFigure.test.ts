@@ -18,7 +18,38 @@ import {
   figureSvgViewBoxWidth,
 } from "@/lib/figure/figureSvgFrame";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import type { SvgLabel } from "@/lib/figure/svgLabels";
 import { labelTexts, stripLabels, svgLabels } from "@/lib/figure/svgLabels";
+
+/**
+ * 라벨이 **프레임 밖으로 잘리지 않았는가** — 조판된 상자를 그대로 잰다.
+ *
+ * `_svg` 는 `<text>` 를 닻점 하나로 보고 viewBox 를 맞춘 뒤 글자 상자만큼 넓히는데,
+ * 그 계산이 어긋나면 지면에서 숫자의 앞글자가 잘려 나간다(원장님 2026-08-25 실측).
+ * halo 는 잉크를 더하지 않지만 밑의 선을 지우므로 **반폭만큼** 같이 본다.
+ */
+function expectInsideFrame(svg: string, l: SvgLabel): void {
+  const vb = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(svg);
+  expect(vb, "viewBox 를 못 읽었다").toBeTruthy();
+  const vw = Number(vb![1]);
+  const vh = Number(vb![2]);
+  expect(l.width, `«${l.text}» 는 조판되지 않아 폭을 모른다`).not.toBeNull();
+  const halo = l.halo / 2;
+  const w = l.width!;
+  const x0 =
+    (l.anchor === "middle" ? l.x - w / 2 : l.anchor === "end" ? l.x - w : l.x) -
+    halo;
+  const y0 = l.baseline - (l.ascent ?? 0) - halo;
+  expect(x0, `«${l.text}» 왼쪽`).toBeGreaterThanOrEqual(-0.01);
+  expect(y0, `«${l.text}» 위쪽`).toBeGreaterThanOrEqual(-0.01);
+  expect(x0 + w + halo * 2, `«${l.text}» 오른쪽`).toBeLessThanOrEqual(
+    vw + 0.01,
+  );
+  expect(
+    l.baseline + (l.descent ?? 0) + halo,
+    `«${l.text}» 아래쪽`,
+  ).toBeLessThanOrEqual(vh + 0.01);
+}
 
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
@@ -392,9 +423,12 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     );
     const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
     expect(m!.x).toBeLessThan(midX - 8);
-    const halfText = 0.3 * 12 * "15 cm".length;
-    const halfHalo = (12 * 0.5) / 2;
-    expect(m!.x - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+    // ⚠️ 폭을 «0.3 × 글자크기 × 글자수» 로 **어림**하던 것을 버렸다. 그 식은 글자
+    //    크기를 12 로 박고 있어서, 치수 글자를 10.5 로 내리자(원장님 확정 2026-08-28)
+    //    **멀쩡한 그림에서 빨개졌다** — 실측하면 라벨은 프레임 안에 있었다.
+    //    조판된 라벨은 폭·잉크 높이·halo 를 **정확히** 아니까 그걸 그대로 쓴다.
+    //    어림이 아니라 실측이므로 가드도 더 세다(세로 잘림까지 본다).
+    expectInsideFrame(r.svg, m!);
   });
 
   it("쌓기나무 겨냥도와 위 보기는 겹치지 않는다", async () => {
@@ -673,9 +707,12 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     if (!r.ok) return;
     const m = svgLabels(r.svg).find((l) => l.text === "15 cm");
     expect(m, "«15 cm» 라벨이 없다").toBeTruthy();
-    const halfText = 0.3 * 12 * "15 cm".length;
-    const halfHalo = (12 * 0.5) / 2;
-    expect(m!.x - halfText - halfHalo).toBeGreaterThanOrEqual(0);
+    // ⚠️ 폭을 «0.3 × 글자크기 × 글자수» 로 **어림**하던 것을 버렸다. 그 식은 글자
+    //    크기를 12 로 박고 있어서, 치수 글자를 10.5 로 내리자(원장님 확정 2026-08-28)
+    //    **멀쩡한 그림에서 빨개졌다** — 실측하면 라벨은 프레임 안에 있었다.
+    //    조판된 라벨은 폭·잉크 높이·halo 를 **정확히** 아니까 그걸 그대로 쓴다.
+    //    어림이 아니라 실측이므로 가드도 더 세다(세로 잘림까지 본다).
+    expectInsideFrame(r.svg, m!);
   });
 
   it("대칭 윤곽 도형은 격자 칸이 아니라 다각형이다", async () => {
@@ -4196,11 +4233,11 @@ describe.skipIf(!hasEngine)(
     });
 
     /**
-     * 🔴 접는 선이 **치수 지문**(`#000` 1.4 `6 4`)을 쓰면
+     * 🔴 접는 선이 **치수 지문**(`#000` + `6 4`)을 쓰면
      *    `scripts/qa/probe-dim-outside.py` 가 그것을 「치수」로 세고, 전개도 안쪽이라
      *    「치수가 도형 안에 있다」로 **거짓 결함이 쏟아진다.** 두 지문을 갈라 둔다.
      */
-    it("접는 선은 치수 지문(#000 1.4 '6 4')을 쓰지 않는다", async () => {
+    it("접는 선은 치수 지문(#000 + '6 4')을 쓰지 않는다", async () => {
       for (const spec of [
         { version: "elem-1", kind: "netCuboid", w: 7, d: 4, h: 5 },
         { version: "elem-1", kind: "prism", sides: 5, h: 4, net: true },
@@ -4209,9 +4246,16 @@ describe.skipIf(!hasEngine)(
         expect(r.ok).toBe(true);
         if (!r.ok) return;
         for (const line of r.svg.match(FOLD) ?? []) {
+          // ⚠️ 굵기 하나로 가르면 안 된다. 종전에는 `stroke-width="1.4"` 를 금지했는데,
+          //    도형 실선이 1.4 가 되자(원장님 확정 2026-08-28) **접는 선이 제 굵기를
+          //    쓴 것만으로 빨개졌다** — 색도 파선도 치수와 다른데도. 굵기는 치수를
+          //    가르는 성질이 아니다. 치수 지문은 `#000` + `6 4` **둘이 같이** 있는 것이다.
           expect(line).toContain('stroke="#111111"');
           expect(line).not.toContain('stroke="#000"');
-          expect(line).not.toContain('stroke-width="1.4"');
+          expect(
+            /stroke="#000"/.test(line) && /stroke-dasharray="6 4"/.test(line),
+            "치수 지문(#000 + '6 4')",
+          ).toBe(false);
         }
       }
     });
