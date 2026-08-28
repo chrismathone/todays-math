@@ -37,4 +37,26 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     echo "   (엔진만 고치면 적재본은 그대로다 — 그게 이 검사가 태어난 까닭이다.)"
     exit 1
   fi
+
+  # ── ⑶ 타입 ────────────────────────────────────────────────────────────
+  # 🔴 **이건 망을 안 탄다.** 그런데도 위 둘 옆에 있는 까닭은, 실제로 production 을
+  #    죽인 것이 이것이기 때문이다 — 2026-08-27 16:19(af12eb29) 부터 2026-08-28 까지
+  #    **141커밋 동안 Vercel 배포가 전량 빨갰다.** 사유는 늘 같은 두 줄:
+  #      scripts/import/load-classified.ts … Property 'held' does not exist
+  #    `npm run build` 는 `next build` 안에서 tsc 를 돌리므로 **거기서 죽는다.**
+  #
+  #    왜 아무도 몰랐나: `type-check` 가 관문에도 훅에도 **없었다.** lint-staged 는
+  #    ESLint 만 돌고, 그것도 «스테이징한 파일»만 본다 — 남의 파일을 되돌려 생긴
+  #    이런 어긋남은 구조적으로 못 본다. 그리고 배포 실패는 **스스로 신고하지 않는다**
+  #    (원장님이 화면에서 「접속이 안 된다」고 하실 때까지 아무 지표도 안 울었다).
+  #
+  #    ⚠️ 그러니 여기서 빼지 마라. 느리면(실측 10초 남짓) 빠르게 만들 일이지
+  #    끄는 게 아니다.
+  echo "▸ 타입 검사 (tsc --noEmit) — 배포가 이걸로 죽는다"
+  if ! npm run --silent type-check; then
+    echo ""
+    echo "🔴 타입 오류가 있다 — 이대로 밀면 **Vercel 배포가 실패한다.**"
+    echo "   next build 가 tsc 를 돌린다. 지금 고치지 않으면 조용히 빨간 채로 쌓인다."
+    exit 1
+  fi
 done

@@ -1,4 +1,5 @@
 import { allowNonFinalSource, isFinalSource } from "./finalSource";
+import { elementaryContentHoldReason } from "./elementaryContentGuard";
 import type { ImportDraft } from "./types";
 
 /** Prisma Problem.createMany에 넣을 최소 행. DB 클라이언트를 여기서 import하지 않는다. */
@@ -11,7 +12,7 @@ export interface ImportLoadRow {
   content: string;
   answer: string;
   solution: string | null;
-  reviewStatus: "approved";
+  reviewStatus: "approved" | "pending";
   directUseAllowed: boolean;
   pool: "shared";
 
@@ -58,15 +59,25 @@ export interface ToLoadRowsOptions {
    * (`scripts/import/load-classified.ts` 가 `readFigureDimensions` 를 넘긴다).
    */
   resolveDimensions?: (figureUrl: string) => [number, number] | null;
+  /** unitId → 학년. 적재 스크립트가 DB 단원을 조회해 넘긴다. */
+  unitGradeById?: ReadonlyMap<string, string>;
+}
+
+export interface GradeReviewHold {
+  externalId: string;
+  unitId: string;
+  grade: string;
+  reason: string;
 }
 
 export function toLoadRows(
   classified: Array<ImportDraft & { unitId: string }>,
   userId: string,
   options: ToLoadRowsOptions = {},
-): { rows: ImportLoadRow[]; skipped: LoadRowSkip[] } {
+): { rows: ImportLoadRow[]; skipped: LoadRowSkip[]; held: GradeReviewHold[] } {
   const rows: ImportLoadRow[] = [];
   const skipped: LoadRowSkip[] = [];
+  const held: GradeReviewHold[] = [];
 
   for (const draft of classified) {
     if (!draft.content.trim()) {
@@ -104,6 +115,17 @@ export function toLoadRows(
       continue;
     }
 
+    const grade = options.unitGradeById?.get(draft.unitId);
+    const holdReason = elementaryContentHoldReason(grade, draft.content);
+    if (holdReason) {
+      held.push({
+        externalId: draft.externalId,
+        unitId: draft.unitId,
+        grade: grade!,
+        reason: holdReason,
+      });
+    }
+
     rows.push({
       userId,
       unitId: draft.unitId,
@@ -113,8 +135,9 @@ export function toLoadRows(
       content: draft.content,
       answer: draft.answer,
       solution: draft.solution,
-      reviewStatus: "approved",
-      directUseAllowed: draft.directUseAllowed,
+      // 의심 문항은 적재는 보존하되, 사람 검수 전까지 자동 출제에서 뺀다.
+      reviewStatus: holdReason ? "pending" : "approved",
+      directUseAllowed: holdReason ? false : draft.directUseAllowed,
       pool: "shared",
       externalId: draft.externalId || null,
       sourceFile: draft.sourceFile ?? null,
@@ -129,7 +152,7 @@ export function toLoadRows(
     });
   }
 
-  return { rows, skipped };
+  return { rows, skipped, held };
 }
 
 /**

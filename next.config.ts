@@ -7,6 +7,30 @@ const nextConfig: NextConfig = {
   // (차단 시 로그인 폼이 JS 없이 네이티브 GET으로 제출됨.) dev 전용 설정이라 프로덕션엔 영향 없음.
   allowedDevOrigins: ["192.168.101.32"],
 
+  /**
+   * **번들에 넣지 않고 런타임에 `require` 하는 패키지.**
+   *
+   * `mathjax-full` 은 자기 판 번호를 이렇게 읽는다
+   * (`js/components/version.js`, 실제 코드다):
+   *
+   * ```js
+   * var load = eval('require');
+   * var dirname = eval('__dirname');
+   * return load(path.resolve(dirname, '..', '..', 'package.json')).version;
+   * ```
+   *
+   * 번들되면 `__dirname` 이 **청크 자리**(`.next/server/chunks/ssr/`)가 되므로
+   * `../../package.json` 이 `.next/server/package.json` 을 가리킨다 — 없는 파일이다.
+   * 그러면 이 모듈을 물고 있는 **페이지가 통째로 못 열리고**, `next build` 가
+   * 「Failed to collect page data」로 죽는다(2026-08-28, `/dev/cube-scrape`).
+   *
+   * ⚠️ **이 결함은 tsc·vitest·`next dev` 어디에도 안 나타난다.** 셋 다 이 파일을
+   *    Turbopack 프로덕션 청크로 묶지 않기 때문이다. **`npm run build` 만 본다.**
+   *    MathJax 조판이 들어온 2026-08-28 04:30 부터 이랬는데, 그때 이미 배포가
+   *    다른 이유(타입 오류)로 빨개서 아무도 여기까지 못 왔다.
+   */
+  serverExternalPackages: ["mathjax-full"],
+
   experimental: {
     // 배럴(barrel) 재수출 패키지를 실제 참조하는 하위 모듈로 바꿔 준다.
     //
