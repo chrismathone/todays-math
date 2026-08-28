@@ -305,6 +305,18 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
     `다시 그림 ${todo.length} · 바뀐 것 **${changes.length}** · 그대로 ${same} · 렌더 실패 ${failed}`,
   );
 
+  // 조판(MathJax)이 들어가면 SVG 가 커진다 — **DB 가 얼마나 불어나는지 모르고**
+  // 수천 행을 덮으면 안 된다. 덮기 전에 세어 찍는다(D-20 「무엇을 잃는가」의 짝).
+  if (changes.length > 0) {
+    const beforeB = changes.reduce((n, c) => n + (c.before?.length ?? 0), 0);
+    const afterB = changes.reduce((n, c) => n + c.after.length, 0);
+    const kb = (n: number) => `${(n / 1024).toFixed(0)}KB`;
+    console.log(
+      `   크기 ${kb(beforeB)} → ${kb(afterB)} (${(afterB / Math.max(beforeB, 1)).toFixed(2)}배) · ` +
+        `한 장 평균 ${Math.round(beforeB / changes.length)} → ${Math.round(afterB / changes.length)}자`,
+    );
+  }
+
   if (!doApply) {
     console.log(
       `\n드라이런이다. 실제로 덮으려면: ALLOW_SHARED_IMPORT=1 … --apply` +
