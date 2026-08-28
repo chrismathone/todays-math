@@ -79,13 +79,28 @@ function concordantRatio(xs: number[], ys: number[]): number {
   return same / total;
 }
 
-describe("중3 산포도·상자그림과 산점도 17유형", () => {
-  it("산포도 7 + 상자그림과 산점도 10 = 17이 등록돼 있다", () => {
+describe("중3 산포도·상자그림과 산점도 18유형", () => {
+  it("🔴 **이 소단원이 8문항 일일테스트를 채운다** — 유형 수가 곧 한 시험지의 상한이다", () => {
+    // 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`),
+    // 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이다. 그래서
+    // 유형 수 < 문항 수 이면 그 소단원의 일일테스트는 **구조적으로 못 찬다.**
+    // 원장님 반은 전부 8문항 설정이다(실측 2026-08-29).
+    const disp = entries().filter((e) => e.unitSection === "대푯값과 산포도");
+    expect(
+      disp.length,
+      "「대푯값과 산포도」 유형이 8 미만이면 8문항 일일테스트를 못 채운다",
+    ).toBeGreaterThanOrEqual(8);
+    // 키가 겹치면 그 둘은 한 자리를 다툰다 — 세는 것이 뜻을 잃는다.
+    expect(new Set(disp.map((e) => e.key)).size).toBe(disp.length);
+  });
+
+  it("산포도 8 + 상자그림과 산점도 10 = 18이 등록돼 있다", () => {
     const es = entries();
-    expect(es.length).toBe(17);
+    expect(es.length).toBe(18);
     const disp = es.filter((e) => e.rpmMinor === "산포도");
     const box = es.filter((e) => e.rpmMinor === "상자그림과 산점도");
-    expect(disp.length).toBe(7);
+    // 🔴 RPM 의 01~07 에 **우리 유형 08**(자료 → 분산)을 더해 8이다.
+    expect(disp.length).toBe(8);
     expect(box.length).toBe(10);
   });
 

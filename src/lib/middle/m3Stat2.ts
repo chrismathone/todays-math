@@ -122,6 +122,17 @@ function eulReul(n: number): "을" | "를" {
   return NUM_BATCHIM[Math.abs(n) % 10] ? "을" : "를";
 }
 
+/**
+ * **편차의 제곱을 지면에 쓰는 꼴** — 음수만 괄호로 싼다.
+ *
+ * ⚠️ 양수까지 괄호로 싸면 `(3)^2` 가 되어 지면이 흉하다. 값은 맞으므로 **값 검산은
+ *    이 부류를 구조적으로 못 잡는다**(CLAUDE.md 2026-08-24 「값이 맞으면 시험이 다
+ *    초록이다」). 그래서 규칙을 한 곳에 두고 쓰는 쪽이 모두 이것을 부른다.
+ */
+function sqTex(d: number): string {
+  return d < 0 ? `(${d})^2` : `${d}^2`;
+}
+
 /** 한글 단어의 마지막 음절에 받침이 있는가. */
 function hasBatchim(word: string): boolean {
   const code = word.charCodeAt(word.length - 1) - 0xac00;
@@ -255,7 +266,7 @@ export const M3_STAT2: TypeEntry[] = [
       return {
         content: `학생 $5$명의 수학 점수의 편차가 각각 ${devs.map((d) => `$${d >= 0 ? "+" : ""}${d}$점`).join(", ")}이다. 이 자료의 표준편차를 구하시오.`,
         answer: `$${sdTex}\\,\\mathrm{점}$`,
-        solution: `분산은 편차의 제곱의 평균이므로 $\\dfrac{${devs.map((d) => `(${d})^2`).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.\n표준편차는 분산의 양의 제곱근이므로 $\\sqrt{${variance}}=${sdTex}$(점)이다.`,
+        solution: `분산은 편차의 제곱의 평균이므로 $\\dfrac{${devs.map((d) => sqTex(d)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.\n표준편차는 분산의 양의 제곱근이므로 $\\sqrt{${variance}}=${sdTex}$(점)이다.`,
         facts,
         figureSpec: null,
       };
@@ -355,6 +366,63 @@ export const M3_STAT2: TypeEntry[] = [
         figureSpec: null,
       };
     },
+  ),
+
+  /**
+   * **08 — 자료에서 분산을 직접 구한다** (2026-08-29 추가, RPM 에 없는 우리 유형).
+   *
+   * ## 왜 넣었나
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`),
+   * 「한 시험지에 같은 문항류는 1개만」이라 **문항류 수가 곧 한 시험지의 상한**이다.
+   * 원장님 반은 8문항 설정인데 이 소단원은 유형이 7개뿐이라 **7/8 밖에 못 채웠다**
+   * (제품 `selectProblems` 로 실측).
+   *
+   * ## 왜 «이것»인가 — 빈 자리를 세어서 골랐다
+   *
+   * 기존 일곱은 시작과 끝이 이렇다:
+   *   01 자료+평균 → 편차 · 02 편차 → 빠진 편차 · **03 편차 → 표준편차**
+   *   04 분산 → 변환된 분산 · **05 자료 → 평균** · 06 두 집단 → 평균
+   *   07 표준편차 → 변환된 표준편차
+   *
+   * **「자료 → 분산」이 없다.** 03 은 편차가 이미 주어진 데서 시작하고 05 는 평균에서
+   * 멈춘다. 자료에서 평균·편차를 거쳐 분산까지 가는 **그 소단원의 중심 경로**가
+   * 비어 있었다. 시작도 끝도 기존 것과 다르다.
+   *
+   * ⚠️ **중앙값·최빈값은 여기 넣지 않는다** — 그건 **중1** 대푯값이고 이미 있다
+   *    (`m1Book2.ts` 대푯값 02·03). 학년을 어기는 중복이 된다.
+   * ⚠️ 숫자만 바꾸거나 발문 어투만 바꾼 것은 **새 유형이 아니다**(그건 같은 유형의
+   *    아류다). 2026-08-29 에 초등에서 그런 잡음 73자리를 걷어냈다.
+   */
+  def(MINOR_DISP, "08", "자료에서 분산 구하기", SEC.산포도, "응용", (rng) =>
+    attempt(300, () => {
+      const values = distinctSorted(rng, 5, 40, 95);
+      const sum = values.reduce((s, v) => s + v, 0);
+      if (sum % 5 !== 0) return null;
+      const mean = sum / 5;
+      const devs = values.map((v) => v - mean);
+      const sumSq = devs.reduce((s, d) => s + d * d, 0);
+      if (sumSq % 5 !== 0) return null;
+      const variance = sumSq / 5;
+      // 분산이 너무 작으면 편차가 거의 0 이라 「흩어진 정도」가 안 보인다.
+      if (variance < 4) return null;
+      const facts: Record<string, number> = { mean, sum, sumSq, variance };
+      packValues("v", values, facts);
+      packValues("d", devs, facts);
+      return {
+        content:
+          `다음은 학생 $5$명의 수학 점수를 조사하여 나타낸 것이다. ` +
+          `${values.map((v) => `$${v}$점`).join(", ")}\n이 자료의 분산을 구하시오.`,
+        answer: `$${variance}$`,
+        solution:
+          `평균은 $\\dfrac{${values.join("+")}}{5}=\\dfrac{${sum}}{5}=${mean}$(점)이다.\n` +
+          `각 변량의 편차는 ${devs.map((d) => `$${d >= 0 ? "+" : ""}${d}$`).join(", ")}이다.\n` +
+          `분산은 편차의 제곱의 평균이므로 ` +
+          `$\\dfrac{${devs.map((d) => sqTex(d)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.`,
+        facts,
+        figureSpec: null,
+      };
+    }),
   ),
 
   // ══ 상자그림과 산점도 01~05 (상자그림) — SEC.상자 「상자그림」 ══
