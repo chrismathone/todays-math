@@ -32,6 +32,44 @@ function key(name: string): string {
   return name;
 }
 
+/**
+ * **크기를 박아 준다** — 안 박으면 라벨이 안 보인다.
+ *
+ * 코퍼스 SVG 는 `viewBox` 만 있고 `width`/`height` 가 **없다**(지면에서는
+ * `figureSvgFrame` 이 등급별 폭을 씌운다). 그런 `<svg>` 를 그냥 HTML 에 넣으면
+ * 기본 폭이 100% 인데, 이 페이지의 `figure` 는 flex 항목이라 **바탕이 0 으로
+ * 접힌다** — 원장님 화면에서 30px 짜리 얼룩으로 나왔다(2026-08-28).
+ * `max-width` 는 폭을 **정하지 않으므로** 그것으로는 못 고친다.
+ *
+ * ⚠️ 고정 폭으로 다 같게 그리면 **크기 변화가 지워진다** — 이 회차에서 viewBox 가
+ *    넓어진 그림이 144장이고 「도형이 글자보다 작다」가 고치려던 결함 중 하나였다.
+ *    그래서 **viewBox 폭에 비례**해서 키운다(1.8배). 전/후 크기 차이가 눈에 남는다.
+ */
+const ZOOM = 1.8;
+const MAX_W = 460;
+
+function sized(svg: string): string {
+  const m = /viewBox="([\d.\-]+) +([\d.\-]+) +([\d.\-]+) +([\d.\-]+)"/.exec(
+    svg,
+  );
+  if (!m) return svg; // 뜻을 모르면 손대지 않는다 — 조용히 0 으로 접히는 편이 낫다
+  const vw = Number(m[3]);
+  const vh = Number(m[4]);
+  if (!(vw > 0) || !(vh > 0)) return svg;
+  const w = Math.min(MAX_W, vw * ZOOM);
+  const h = (w * vh) / vw;
+  // ⚠️ 정규식이 아니라 **글자 그대로** 찾는다. 역슬래시를 쓰면 이 저장소의
+  //    도구 층이 한 겹 먹어 **백스페이스 문자**가 되고, 그러면 아무것도 안 걸리는데
+  //    **에러도 안 난다** — 페이지가 조용히 예전처럼 접힌다(실제로 그렇게 났다).
+  const at = svg.indexOf("<svg ");
+  if (at < 0) return svg;
+  return (
+    svg.slice(0, at) +
+    `<svg width="${w.toFixed(1)}" height="${h.toFixed(1)}" ` +
+    svg.slice(at + "<svg ".length)
+  );
+}
+
 function index(dir: string): Map<string, string> {
   const map = new Map<string, string>();
   for (const name of readdirSync(dir)) {
@@ -59,8 +97,8 @@ const body = rows
     (r) => `<section${r.same ? ' class="same"' : ""}>
   <h3>${esc(r.k.replace(/\.svg$/, ""))}${r.same ? " <em>그대로</em>" : ""}</h3>
   <div class="pair">
-    <figure><figcaption>전</figcaption>${r.b}</figure>
-    <figure><figcaption>후</figcaption>${r.a}</figure>
+    <figure><figcaption>전</figcaption>${sized(r.b)}</figure>
+    <figure><figcaption>후</figcaption>${sized(r.a)}</figure>
   </div>
 </section>`,
   )
@@ -80,7 +118,7 @@ const html = `<!doctype html>
   .pair { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
   figure { margin: 0; }
   figcaption { font-size: 11px; color: #888; margin-bottom: 4px; }
-  svg { border: 1px dashed #e5e5e5; max-width: 460px; height: auto; }
+  svg { border: 1px dashed #e5e5e5; display: block; }
 </style></head><body>
 <h1>라벨 배치 1:1 대조 — 전 / 후</h1>
 <p class="m">짝지은 그림 ${rows.length}장 · <b>달라진 것 ${moved.length}장</b> ·

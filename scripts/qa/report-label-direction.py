@@ -110,6 +110,39 @@ def signed_shape(rows: list, title: str) -> list[str]:
     return out
 
 
+def pull(rows: list, title: str) -> list[str]:
+    """**이등분선보다 수평/수직 쪽으로 당기는가.**
+
+    RPM 지면을 확대해 보면 삼각형 밑변 양 끝의 `B`·`C` 가 이등분선(대각선)보다
+    **옆으로**(수평) 앉아 보였다. 눈대중을 그대로 믿지 않고 센다 — 실제 방향이
+    이등분선보다 가로축에 가까우면 «수평으로 당김», 세로축에 가까우면 «수직으로 당김».
+    """
+
+    def to_h(deg: float) -> float:
+        d = deg % 180
+        return min(d, 180 - d)
+
+    h = v = same = 0
+    for r in rows:
+        a, b = r.get("abs_deg"), r.get("bis_deg")
+        if a is None or b is None:
+            continue
+        da, db = to_h(a), to_h(b)
+        if abs(da - db) < 3:
+            same += 1
+        elif da < db:
+            h += 1
+        else:
+            v += 1
+    total = h + v + same or 1
+    return [
+        title,
+        f"  수평으로 당김 {h:5d}  {h / total * 100:5.1f}%",
+        f"  수직으로 당김 {v:5d}  {v / total * 100:5.1f}%",
+        f"  거의 그대로   {same:5d}  {same / total * 100:5.1f}%",
+    ]
+
+
 def by_incident(rows: list, title: str) -> list[str]:
     out = [title]
     groups: dict[int, list] = {}
@@ -142,6 +175,7 @@ def main() -> None:
             rows, "\n── ⑴ 실제 방향의 칸 == 외각 이등분선의 칸 인가")))
         print("\n".join(signed_shape(
             rows, "\n── ⑶ 이등분선에서 어느 쪽으로 얼마나 도나 (+ 반시계)")))
+        print("\n".join(pull(rows, "\n── ⑸ 이등분선보다 수평/수직 쪽으로 당기나")))
         print("\n".join(by_incident(rows, "\n── ⑷ 붙은 변 수별")))
         print("\n".join(histogram(
             rows, "abs_deg", "\n── 절대 각도 분포 (몰리면 «스냅»이 있다는 뜻)")))

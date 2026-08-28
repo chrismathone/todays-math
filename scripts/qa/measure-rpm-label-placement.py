@@ -52,6 +52,12 @@ from dataclasses import dataclass, field
 
 import pymupdf
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from label_placement import (  # noqa: E402
+    Label, Stroke, bbox, cluster, measure_label, report,
+    sample_bezier, sample_line,
+)
+
 SRC = os.path.join(os.getcwd(), ".rpm-src")
 BOOKS = ["1-1", "1-2", "2-1", "2-2", "3-1", "3-2"]
 
@@ -59,53 +65,6 @@ BOOKS = ["1-1", "1-2", "2-1", "2-2", "3-1", "3-2"]
 LABEL_CHARS = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 LINE_CHARS = set("lmnpqrstabcxyzh")
 
-VERTEX_TOL = 1.6   # 이 거리 안이면 같은 꼭짓점으로 본다 (pt)
-DEGENERATE = 0.30  # 붙은 변들의 단위벡터 합이 이보다 짧으면 «바깥 없음»
-
-
-# ────────────────────────────────────────────────────────────── 벡터 훑기
-def _bezier(p0, p1, p2, p3, n=8):
-    out = []
-    for i in range(n + 1):
-        t = i / n
-        u = 1.0 - t
-        out.append((
-            u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0],
-            u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1],
-        ))
-    return out
-
-
-def _sample_line(a, b, step=3.0):
-    dist = math.hypot(b[0] - a[0], b[1] - a[1])
-    n = max(1, min(64, int(dist / step)))
-    return [(a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n) for i in range(n + 1)]
-
-
-@dataclass
-class Stroke:
-    """한 획 — 표본점과 **끝점 두 개**, 그리고 끝점에서의 진행 방향."""
-    pts: list = field(default_factory=list)
-
-    @property
-    def a(self):
-        return self.pts[0]
-
-    @property
-    def b(self):
-        return self.pts[-1]
-
-    def dir_from(self, end: int):
-        """끝점에서 획을 따라 들어가는 단위벡터. 짧은 획도 견딘다."""
-        pts = self.pts if end == 0 else list(reversed(self.pts))
-        p0 = pts[0]
-        for p in pts[1:]:
-            d = math.hypot(p[0] - p0[0], p[1] - p0[1])
-            if d > 1.0:
-                return ((p[0] - p0[0]) / d, (p[1] - p0[1]) / d)
-        p = pts[-1]
-        d = math.hypot(p[0] - p0[0], p[1] - p0[1])
-        return None if d < 1e-6 else ((p[0] - p0[0]) / d, (p[1] - p0[1]) / d)
 
 
 def _is_ink(drawing) -> bool:
@@ -133,10 +92,10 @@ def page_strokes(page) -> list[Stroke]:
                 a = (item[1].x, item[1].y)
                 b = (item[2].x, item[2].y)
                 if math.hypot(b[0] - a[0], b[1] - a[1]) > 0.4:
-                    out.append(Stroke(_sample_line(a, b)))
+                    out.append(Stroke(sample_line(a, b)))
             elif kind == "c":
                 p = [(q.x, q.y) for q in item[1:5]]
-                out.append(Stroke(_bezier(*p)))
+                out.append(Stroke(sample_bezier(*p)))
             elif kind in ("re", "qu"):
                 if kind == "re":
                     r = item[1]
@@ -146,55 +105,8 @@ def page_strokes(page) -> list[Stroke]:
                     corners = [(q.ul.x, q.ul.y), (q.ur.x, q.ur.y),
                                (q.lr.x, q.lr.y), (q.ll.x, q.ll.y)]
                 for i in range(4):
-                    out.append(Stroke(_sample_line(corners[i], corners[(i + 1) % 4])))
+                    out.append(Stroke(sample_line(corners[i], corners[(i + 1) % 4])))
     return out
-
-
-def _bbox(pts):
-    xs = [p[0] for p in pts]
-    ys = [p[1] for p in pts]
-    return (min(xs), min(ys), max(xs), max(ys))
-
-
-def cluster(strokes: list[Stroke], gap: float = 14.0) -> list[list[Stroke]]:
-    """가까운 획끼리 묶어 **그림 덩어리**를 만든다.
-
-    ⚠️ 짝을 전부 견주면 O(n²) 이라 한 쪽에 획이 수천 개면 못 쓴다.
-       격자에 넣고 **이웃 칸만** 본다.
-    """
-    n = len(strokes)
-    parent = list(range(n))
-
-    def find(i):
-        while parent[i] != i:
-            parent[i] = parent[parent[i]]
-            i = parent[i]
-        return i
-
-    def union(i, j):
-        ri, rj = find(i), find(j)
-        if ri != rj:
-            parent[rj] = ri
-
-    cell = max(gap, 12.0)
-    grid: dict[tuple, list[int]] = defaultdict(list)
-    boxes = [_bbox(s.pts) for s in strokes]
-    for i, b in enumerate(boxes):
-        for gx in range(int((b[0] - gap) // cell), int((b[2] + gap) // cell) + 1):
-            for gy in range(int((b[1] - gap) // cell), int((b[3] + gap) // cell) + 1):
-                grid[(gx, gy)].append(i)
-    for members in grid.values():
-        for idx, i in enumerate(members):
-            bi = boxes[i]
-            for j in members[idx + 1:]:
-                bj = boxes[j]
-                if (bi[0] - gap <= bj[2] and bj[0] - gap <= bi[2]
-                        and bi[1] - gap <= bj[3] and bj[1] - gap <= bi[3]):
-                    union(i, j)
-    groups: dict[int, list[Stroke]] = {}
-    for i in range(n):
-        groups.setdefault(find(i), []).append(strokes[i])
-    return list(groups.values())
 
 
 # ────────────────────────────────────────────────────────────── 글자 훑기
@@ -242,27 +154,6 @@ def group_glyphs(glyphs: list[Glyph]) -> list[list[Glyph]]:
 
 
 # ────────────────────────────────────────────────────────────── 재기
-def outward_at(vertex, group: list[Stroke]):
-    """꼭짓점에 붙은 변들의 **반대 방향** = 외각 이등분선. 없으면 None."""
-    sx = sy = 0.0
-    incident = 0
-    for s in group:
-        for end in (0, 1):
-            p = s.a if end == 0 else s.b
-            if math.hypot(p[0] - vertex[0], p[1] - vertex[1]) <= VERTEX_TOL:
-                d = s.dir_from(end)
-                if d is not None:
-                    sx += d[0]
-                    sy += d[1]
-                    incident += 1
-    if incident == 0:
-        return None, 0
-    length = math.hypot(sx, sy)
-    if length < DEGENERATE:
-        return None, incident
-    return (-sx / length, -sy / length), incident
-
-
 SKIPPED: list = []
 
 
@@ -279,16 +170,11 @@ def measure_page(page, page_no: int, book: str, rows: list, crops: list) -> None
         pts = [p for s in group for p in s.pts]
         if len(pts) < 6 or len(group) < 3:
             continue
-        box = _bbox(pts)
+        box = bbox(pts)
         w, h = box[2] - box[0], box[3] - box[1]
         # 표·밑줄·쪽 장식은 그림이 아니다.
         if w < 22 or h < 22 or w > 520 or h > 700:
             continue
-        ends = []
-        for s in group:
-            ends.append(s.a)
-            ends.append(s.b)
-
         near = [g for g in glyphs
                 if box[0] - 34 <= (g.box[0] + g.box[2]) / 2 <= box[2] + 34
                 and box[1] - 34 <= (g.box[1] + g.box[3]) / 2 <= box[3] + 34]
@@ -303,35 +189,19 @@ def measure_page(page, page_no: int, book: str, rows: list, crops: list) -> None
             size = max(g.size for g in label)
             if size <= 0:
                 continue
-            lb = _bbox([(g.box[0], g.box[1]) for g in label]
-                       + [(g.box[2], g.box[3]) for g in label])
-            lc = ((lb[0] + lb[2]) / 2, (lb[1] + lb[3]) / 2)
-
-            vx, vy, vd = 0.0, 0.0, 1e9
-            for p in ends:
-                d = math.hypot(p[0] - lc[0], p[1] - lc[1])
-                if d < vd:
-                    vx, vy, vd = p[0], p[1], d
-            if vd > size * 4.5:
-                continue  # 꼭짓점 라벨이 아니다(본문·먼 주석)
-            ink = min(math.hypot(p[0] - lc[0], p[1] - lc[1]) for p in pts)
-
-            out_dir, incident = outward_at((vx, vy), group)
-            dx, dy = lc[0] - vx, lc[1] - vy
-            dl = math.hypot(dx, dy)
-            row = {
-                "book": book, "page": page_no, "text": text,
-                "size": round(size, 2),
-                "dist": round(vd / size, 3),
-                "gap": round(ink / size, 3),
-                "incident": incident,
-                "dev": None,
-            }
-            if out_dir is not None and dl > 1e-6:
-                cosine = max(-1.0, min(1.0, (dx * out_dir[0] + dy * out_dir[1]) / dl))
-                row["dev"] = round(math.degrees(math.acos(cosine)), 1)
+            lb = bbox([(g.box[0], g.box[1]) for g in label]
+                      + [(g.box[2], g.box[3]) for g in label])
+            # 🔴 **재는 규칙은 `label_placement` 한 곳뿐이다.** 여기서 다시 적으면
+            #    우리 SVG 쪽과 갈라지고, 그러면 「RPM 보다 낫다/못하다」가 아무 뜻이
+            #    없어진다. 실제로 그랬다 — 방향 축(`abs_deg`)을 공용 쪽에만 넣었더니
+            #    RPM 성적표가 **전부 0** 이 나왔다(2026-08-28).
+            row = measure_label(Label(text, lb, size), group, pts)
+            if row is None:
+                continue
+            row["book"] = book
+            row["page"] = page_no
             rows.append(row)
-            found.append((lb, row["dev"], (vx, vy), out_dir))
+            found.append((lb, row["dev"], None, None))
         if found and len(crops) < 40:
             crops.append({"page": page_no, "book": book, "box": box, "labels": found})
 
