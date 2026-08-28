@@ -20,6 +20,7 @@ import {
   generateMiddleProblem,
   generateMiddleSet,
 } from "@/lib/middle/generate";
+import { fitPts } from "@/lib/middle/m3Trig";
 
 const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
@@ -28,26 +29,6 @@ const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 type XY = [number, number];
 const DEG = Math.PI / 180;
 const r2 = (v: number) => Math.round(v * 100) / 100;
-
-/** 생성기 fitPts 와 같은 220×190 — 배율만 맞출 뿐 MIN_DIM_SIDE_PX 는 안 본다. */
-function fitPts(pts: Record<string, XY>): Record<string, XY> {
-  const xs = Object.values(pts).map((p) => p[0]);
-  const ys = Object.values(pts).map((p) => p[1]);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
-  const m = 22;
-  const s = Math.min(
-    (220 - 2 * m) / Math.max(maxX - minX, 1e-9),
-    (190 - 2 * m) / Math.max(maxY - minY, 1e-9),
-  );
-  const out: Record<string, XY> = {};
-  for (const [k, [x, y]] of Object.entries(pts)) {
-    out[k] = [r2(m + (x - minX) * s), r2(190 - m - (y - minY) * s)];
-  }
-  return out;
-}
 
 function twoSidesSpec(
   ab: number,

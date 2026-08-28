@@ -299,8 +299,11 @@ type XY = [number, number];
 
 const DEG = Math.PI / 180;
 
-/** 수학 좌표(y-위) → SVG 좌표(y-아래), 220×190 균일 배율 (m2GeoSim 과 같은 규약). */
-function fitPts(pts: Record<string, XY>): Record<string, XY> {
+/**
+ * 수학 좌표(y-위) → SVG 좌표(y-아래), 220×190 균일 배율 (m2GeoSim 과 같은 규약).
+ * export 하는 이유: 시험이 캔버스 상수를 옮겨 적지 않게. 문턱은 안 든다.
+ */
+export function fitPts(pts: Record<string, XY>): Record<string, XY> {
   const xs = Object.values(pts).map((p) => p[0]);
   const ys = Object.values(pts).map((p) => p[1]);
   const minX = Math.min(...xs);
