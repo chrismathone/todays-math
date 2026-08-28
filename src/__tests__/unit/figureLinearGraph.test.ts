@@ -217,7 +217,13 @@ describe.skipIf(!hasEngine)("[linearGraph] 교과 문법", () => {
       lines: [{ slope: -1, yIntercept: 0 }],
       marks: [[2, -2]],
     });
-    expect(up.ok && down.ok).toBe(true);
+    // ⚠️ `up.svg!` 로는 **판별 유니온이 안 좁혀진다** — `!` 는 null 만 지운다.
+    //    그렇게 적었더니 `npm run type-check` 만 빨갛고 관문(vitest)·훅(eslint)은
+    //    둘 다 초록이라 그대로 착지했다(2026-08-28). 여기서 한 번에 좁힌다.
+    if (!up.ok || !down.ok)
+      throw new Error(`렌더 실패: ${JSON.stringify([up, down])}`);
+    const upSvg = up.svg;
+    const downSvg = down.svg;
 
     /** 축 두 개의 교점 — 굵기 1 인 긴 가로획·세로획. */
     function origin(svg: string): { x: number; y: number } {
@@ -247,9 +253,9 @@ describe.skipIf(!hasEngine)("[linearGraph] 교과 문법", () => {
       return false;
     }
 
-    for (const r of [up, down]) {
-      const o = oLabel(r.svg!);
-      for (const g of graphLines(r.svg!)) {
+    for (const svg of [upSvg, downSvg]) {
+      const o = oLabel(svg);
+      for (const g of graphLines(svg)) {
         expect(hits(g, o.box)).toBe(false);
       }
     }
@@ -257,13 +263,13 @@ describe.skipIf(!hasEngine)("[linearGraph] 교과 문법", () => {
     // 기울기가 양수면 왼아래(제3사분면)가 막힌다 → 오른쪽으로 간다.
     // 음수면 왼아래가 비니 정본 기본 자리에 남는다. **둘이 달라야** 한다 —
     // 한 자리에 못 박으면 이 줄이 빨개진다.
-    const oUp = oLabel(up.svg!);
-    const oDown = oLabel(down.svg!);
-    expect(oUp.x - origin(up.svg!).x).toBeGreaterThan(0);
-    expect(oDown.x - origin(down.svg!).x).toBeLessThan(0);
+    const oUp = oLabel(upSvg);
+    const oDown = oLabel(downSvg);
+    expect(oUp.x - origin(upSvg).x).toBeGreaterThan(0);
+    expect(oDown.x - origin(downSvg).x).toBeLessThan(0);
     // 둘 다 x축 **아래**다 (정본: 아래 두 사분면이 79.3%).
-    expect(oUp.y - origin(up.svg!).y).toBeGreaterThan(0);
-    expect(oDown.y - origin(down.svg!).y).toBeGreaterThan(0);
+    expect(oUp.y - origin(upSvg).y).toBeGreaterThan(0);
+    expect(oDown.y - origin(downSvg).y).toBeGreaterThan(0);
   });
 
   it("범위가 무엇이든 viewBox 폭이 240 이다 — 등급이 안 뒤집힌다", async () => {
