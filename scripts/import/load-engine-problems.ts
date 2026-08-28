@@ -133,7 +133,7 @@ const TIER_PROBLEM_TYPE: Record<Tier, string> = {
 
 // ────────────────────────────── 생성 ──────────────────────────────
 
-function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
+export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
   const units = elementaryUnits().filter(
     (u) =>
       u.grade === t.grade &&
@@ -218,7 +218,7 @@ function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
 /** 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. 조용히 삼키지 않는다. */
 let elemSkippedMcq = 0;
 
-function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
+export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
   let types = typesForSection(t.unitSection).filter((e) => e.grade === t.grade);
   if (types.length === 0)
     throw new Error(
@@ -694,9 +694,20 @@ async function main() {
   }
 }
 
-main()
-  .catch((e) => {
-    console.error(`\n🔴 ${e instanceof Error ? e.message : String(e)}`);
-    process.exitCode = 1;
-  })
-  .finally(() => prisma.$disconnect());
+// ⚠️ **직접 실행할 때만 돈다.** `scripts/qa/refresh-engine-figures.ts` 가 이 파일의
+//    행 만들기(`buildElemRows`·`buildMiddleRows`)를 **그대로 빌려 쓴다** — 규칙을 옮겨
+//    적으면 두 벌이 되고, 한쪽만 고치면 그림이 남의 문항에 붙는다. 가드가 없으면
+//    import 하는 순간 적재기가 돌아 버린다.
+// ⚠️ `import.meta.dirname` 은 쓰지 않는다 — tsx 가 CJS 로 옮기면 **undefined** 다
+//    (2026-08-28 에 그걸로 죽었다). 파일 이름만 보면 모듈 시스템에 안 기댄다.
+const RUN_DIRECTLY = /load-engine-problems\.(ts|js|mts|mjs)$/i.test(
+  process.argv[1] ?? "",
+);
+
+if (RUN_DIRECTLY)
+  main()
+    .catch((e) => {
+      console.error(`\n🔴 ${e instanceof Error ? e.message : String(e)}`);
+      process.exitCode = 1;
+    })
+    .finally(() => prisma.$disconnect());
