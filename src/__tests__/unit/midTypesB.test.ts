@@ -483,6 +483,32 @@ const CHECKS: Record<string, Check> = {
     expect(mq! / q!).toBe(mp! / p!);
     expect(nums(answer)).toEqual([(mp! / p!) * k! + c!]);
   },
+  // ── 중1 방정식과 그 해 / 일차방정식의 풀이 보강 ──────────
+  "1-1|일차방정식의 풀이|32": ({ content, answer }) => {
+    const items = lastLineItems(content);
+    expect(items).toHaveLength(5);
+    const n = items.filter((s) => isConditionalEquation(s)).length;
+    expect(n).toBeGreaterThanOrEqual(2);
+    expect(nums(answer)).toEqual([n]);
+  },
+  "1-1|일차방정식의 풀이|33": ({ content, answer }) => {
+    const r = Number(content.match(/\$x=(-?\d+)\$/)![1]);
+    const items = lastLineItems(content);
+    expect(items).toHaveLength(5);
+    const n = items.filter((s) => equationHoldsAt(s, r)).length;
+    expect(n).toBeGreaterThanOrEqual(2);
+    expect(nums(answer)).toEqual([n]);
+  },
+  "1-1|일차방정식의 풀이|34": ({ content, answer }) => {
+    const eq = content.match(/등식 \$([^$]+)\$/)![1]!;
+    const cands = lastLineItems(content).map(Number);
+    expect(cands).toHaveLength(5);
+    const hits = cands.filter((x) => equationHoldsAt(eq, x));
+    expect(hits).toHaveLength(1);
+    expect(nums(answer)).toEqual(hits);
+  },
+  "1-1|일차방정식의 풀이|35": (p) => expectRootSatisfies(p),
+  "1-1|일차방정식의 풀이|36": (p) => expectRootSatisfies(p),
   // ── 중1 각 ────────────────────────────────────────────────
   "1-2|기본 도형|50": ({ content, answer }) => {
     const [total, n] = nums(content.match(/\$[^$]*\$/g)!.join(" "));
@@ -1214,6 +1240,49 @@ const SAMPLE_POINTS: readonly (readonly [number, number])[] = [
 
 function stripDollar(s: string): string {
   return s.replace(/^\$|\$$/g, "");
+}
+
+/** 마지막 줄의 `$…$` 항목 — 판별 유형이 늘어놓은 다섯. */
+function lastLineItems(content: string): string[] {
+  const line = content.split("\n").at(-1)!;
+  return (line.match(/\$[^$]+\$/g) ?? []).map((s) => s.slice(1, -1));
+}
+
+/**
+ * 일차식(괄호·중괄호·분수)을 $x$ 에서 잰다. 생성기의 `lin` 을 안 부른다.
+ * `\left\{` 가 죽은 백슬래시가 되면 여기서 파싱이 깨져 빨개진다.
+ */
+function evalMidExpr(tex: string, x: number): number {
+  const js = tex
+    .replace(/\\left|\\right/g, "")
+    .replace(/\\\{/g, "(")
+    .replace(/\\\}/g, ")")
+    .replace(/\\dfrac\{([^{}]*)\}\{([^{}]*)\}/g, "(($1)/($2))")
+    .replace(/\\times/g, "*")
+    .replace(/(\d)\s*([x(])/g, "$1*$2")
+    .replace(/\)\s*\(/g, ")*(");
+  return Function("x", `"use strict"; return (${js});`)(x) as number;
+}
+
+function equationHoldsAt(eq: string, x: number): boolean {
+  const parts = eq.split("=");
+  if (parts.length !== 2) return false;
+  return Math.abs(evalMidExpr(parts[0]!, x) - evalMidExpr(parts[1]!, x)) < 1e-9;
+}
+
+/** 미지수가 있고, 모든 $x$ 에서 참은 아닌 등식. */
+function isConditionalEquation(s: string): boolean {
+  if (!s.includes("=") || /[<>]|\\(?:ge|le)\b/.test(s)) return false;
+  if (!/(?:^|[^A-Za-z])x(?:$|[^A-Za-z])/.test(s)) return false;
+  const xs = [0, 1, 2, 3, -4];
+  return !xs.every((x) => equationHoldsAt(s, x));
+}
+
+function expectRootSatisfies(p: { content: string; answer: string }): void {
+  const eq = p.content.match(/\$([^$]*=[^$]*)\$/)![1]!;
+  const r = nums(p.answer)[0]!;
+  expect(equationHoldsAt(eq, r), `해 ${r} 대입 실패: ${eq}`).toBe(true);
+  expect(equationHoldsAt(eq, r + 1), "해가 하나뿐이어야 한다").toBe(false);
 }
 
 /** `3x^2-4xy+2y` 꼴을 $(x,y)$ 에서 잰다. `\dfrac`·`\times`·`\div` 를 읽는다. */

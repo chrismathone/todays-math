@@ -1,5 +1,5 @@
 /**
- * 중1 저조 단원 45유형 (m1Extra) — 독립 검산.
+ * 중1 저조 단원 48유형 (m1Extra) — 독립 검산.
  *
  * 생성기의 답을 그대로 믿지 않는다: `facts`(발문의 원 수치)와 **발문 자체**로
  * 조건을 여기서 다시 세워 검산한다. 검산 도구는 생성기와 **다른 방법**을 쓴다 —
@@ -301,6 +301,9 @@ const EXPECTED_SECTION: Record<string, string> = {
   "1-1|좌표와 그래프|05": "순서쌍과 좌표평면(응용)",
   "1-1|좌표와 그래프|06": "순서쌍과 좌표평면(응용)",
   "1-1|좌표와 그래프|10": "순서쌍과 좌표평면(응용)",
+  "1-1|좌표와 그래프|26": "순서쌍과 좌표평면(응용)",
+  "1-1|좌표와 그래프|27": "순서쌍과 좌표평면(응용)",
+  "1-1|좌표와 그래프|28": "순서쌍과 좌표평면(응용)",
   "1-1|일차방정식의 풀이|05": "방정식과 그 해",
   "1-2|다각형|07": "삼각형의 내각과 외각",
   "1-2|다각형|08": "삼각형의 내각과 외각",
@@ -630,6 +633,37 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     expect(p.content).toContain(`$(${f.a}, ${f.b})$`);
     expect((p.answer.match(/-?\d+/g) ?? []).map(Number)).toEqual([f.c, f.d]);
   },
+  "1-1|좌표와 그래프|26": (p) => {
+    const f = p.facts;
+    expect((f.ax! + f.bx!) / 2).toBe(f.m);
+    expect((f.ay! + f.by!) / 2).toBe(f.n);
+    expect(p.content).toContain(`$\\mathrm{A}(${f.ax}, ${f.ay})$`);
+    expect(p.content).toContain(`$\\mathrm{B}(${f.bx}, ${f.by})$`);
+    expect((p.answer.match(/-?\d+/g) ?? []).map(Number)).toEqual([f.m, f.n]);
+  },
+  "1-1|좌표와 그래프|27": (p) => {
+    const f = p.facts;
+    const a = f.axis === 0 ? f.x! : -f.x!;
+    const b = f.axis === 1 ? f.y! : -f.y!;
+    expect(f.a).toBe(a);
+    expect(f.b).toBe(b);
+    expect(f.S).toBe(a + b);
+    expect(Math.abs(f.x!)).not.toBe(Math.abs(f.y!));
+    const axisWord = f.axis === 0 ? "$x$축" : f.axis === 1 ? "$y$축" : "원점";
+    expect(p.content).toContain(axisWord);
+    expect(p.content).toContain(`$(a, ${f.y})$`);
+    expect(p.content).toContain(`$(${f.x}, b)$`);
+    expect(firstNumber(p.answer)).toBe(a + b);
+  },
+  "1-1|좌표와 그래프|28": (p) => {
+    const f = p.facts;
+    expect(f.x1).not.toBe(f.x2);
+    expect(f.y1).not.toBe(f.y2);
+    expect(f.area).toBe(Math.abs(f.x2! - f.x1!) * Math.abs(f.y2! - f.y1!));
+    expect(p.content).toContain(`$\\mathrm{A}(${f.x1}, ${f.y1})$`);
+    expect(p.content).toContain(`$\\mathrm{C}(${f.x2}, ${f.y2})$`);
+    expect(firstNumber(p.answer)).toBe(f.area);
+  },
   "1-1|일차방정식의 풀이|05": (p) => {
     const f = p.facts;
     expect(f.S).toBe(f.p! + f.b!);
@@ -801,17 +835,17 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
  *    (갈래 A → `midTypesA.test.ts`, 갈래 D → `midTypesD.test.ts`).
  *
  * ⚠️ 좁히면서 **「명부가 조용히 줄어드는」** 반대 방향을 잃으면 안 된다 —
- *    아래가 45를 못 박고, 45 전부에 `CHECKS` 가 있는지도 따로 잰다.
+ *    아래가 48을 못 박고, 48 전부에 `CHECKS` 가 있는지도 따로 잰다.
  */
 const OWNED = M1EXTRA_TYPES.filter((e) => e.key in EXPECTED_SECTION);
 const FOREIGN = M1EXTRA_TYPES.filter((e) => !(e.key in EXPECTED_SECTION));
 
-describe("중1 저조 단원 45유형 (m1Extra)", () => {
-  it("45유형 명부와 unitSection 이 실측 그대로다", () => {
+describe("중1 저조 단원 48유형 (m1Extra)", () => {
+  it("48유형 명부와 unitSection 이 실측 그대로다", () => {
     expect(new Set(OWNED.map((e) => e.key))).toEqual(
       new Set(Object.keys(EXPECTED_SECTION)),
     );
-    expect(OWNED.length).toBe(45);
+    expect(OWNED.length).toBe(48);
     for (const e of OWNED) {
       expect(e.unitSection, e.key).toBe(EXPECTED_SECTION[e.key]);
       expect(e.key).toBe(`${e.rpmBook}|${e.rpmMinor}|${e.rpmType}`);
@@ -819,7 +853,7 @@ describe("중1 저조 단원 45유형 (m1Extra)", () => {
     }
   });
 
-  it("명부 45개는 **전부** 검산식을 갖는다 — 표가 조용히 줄면 빨개진다", () => {
+  it("명부 48개는 **전부** 검산식을 갖는다 — 표가 조용히 줄면 빨개진다", () => {
     const missing = OWNED.filter((e) => !CHECKS[e.key]).map((e) => e.key);
     expect(missing, "검산식이 없는 명부 유형").toEqual([]);
   });
@@ -920,6 +954,9 @@ describe("중1 저조 단원 45유형 (m1Extra)", () => {
       new Set([0, 1, 2, 3]),
     );
     expect(seen("1-1|좌표와 그래프|10", "axis", 60)).toEqual(
+      new Set([0, 1, 2]),
+    );
+    expect(seen("1-1|좌표와 그래프|27", "axis", 80)).toEqual(
       new Set([0, 1, 2]),
     );
     expect(seen("1-2|다각형|07", "kind", 40)).toEqual(new Set([0, 1]));
