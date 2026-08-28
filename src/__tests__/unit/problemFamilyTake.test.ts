@@ -64,6 +64,22 @@ const PICKS_SMALLEST_FREE = [
   /generate_series\(/,
   /NOT EXISTS\s*\(/,
 ];
+/**
+ * **«찼다»가 무리 행만 보면 안 된다.** 무리 행 없이 코드만 남은 자리가 실측
+ * **448개** 있다 — `family_key` 를 옮기면(2026-08-27, 1,751행) 옛 무리 행이
+ * 「빈 무리」로 보여 되돌리기가 치우는데, 그 코드를 단 문항은 살아 있기 때문이다.
+ * 그 자리를 다시 내주면 `problem_code` 가 부딪혀 적재가 통째로 죽는다.
+ */
+const ALSO_LOOKS_AT_STAMPED_CODES = [
+  /FROM "problem" p/,
+  /substring\(\s*p\."problem_code"/,
+];
+/**
+ * ⚠️ `NOT IN` 을 쓰면 안 된다. 옛 형식 코드(`J30103-4NSK`)는 정규식에 안 걸려
+ *    NULL 이 되는데, 목록에 NULL 이 하나만 있어도 **전부 거짓**이 된다 —
+ *    에러가 아니라 「빈자리가 없다」는 조용한 오답이다.
+ */
+const USES_NOT_IN = /\bNOT\s+IN\s*\(/i;
 
 describe("[D-105] 문항류 자리 — 구멍을 메운다", () => {
   it("**검출기가 살아 있다** — 옛 마이그레이션은 옛 식으로 걸려야 한다", () => {
@@ -94,6 +110,25 @@ describe("[D-105] 문항류 자리 — 구멍을 메운다", () => {
     expect(
       COUNTS_AND_ADDS_ONE.test(live.sql),
       `${live.dir} — 옛 식 «센 수 + 1» 로 되돌아갔다.`,
+    ).toBe(false);
+  });
+
+  it("🔴 **«찼다»가 문항에 찍힌 코드도 센다** — 무리 행만 보면 448 자리에서 부딪힌다", () => {
+    const live = definitions().at(-1)!;
+    for (const re of ALSO_LOOKS_AT_STAMPED_CODES)
+      expect(
+        re.test(live.sql),
+        `${live.dir} — ${re} 가 없다. 무리 행 없이 코드만 남은 자리를 다시 내주면` +
+          ` \`problem_code\` 가 부딪혀 적재가 통째로 죽는다(2026-08-29 실제).`,
+      ).toBe(true);
+  });
+
+  it("🔴 **`NOT IN` 을 안 쓴다** — 옛 형식 코드가 NULL 이 되어 목록을 통째로 죽인다", () => {
+    const live = definitions().at(-1)!;
+    expect(
+      USES_NOT_IN.test(live.sql),
+      `${live.dir} — \`NOT IN\` 이 있다. 목록에 NULL 이 하나만 있어도 전부 거짓이 되고,` +
+        ` 그건 에러가 아니라 「빈자리가 없다」는 조용한 오답이다. \`NOT EXISTS\` 를 써라.`,
     ).toBe(false);
   });
 
