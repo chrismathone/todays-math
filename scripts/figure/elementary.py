@@ -10,7 +10,10 @@
 """
 from __future__ import annotations
 
+import io as io
+import json as _json
 import math
+import os as _os
 import re
 from html import escape
 from typing import Any, Mapping
@@ -122,14 +125,25 @@ def _svg(w: float, h: float, body: str) -> str:
        **조용히 지나가지 않고 예외**를 낸다(못 옮긴 것이 잘려도 아무도 모른다).
     """
     box = _body_bbox(body)
-    if box is not None:
-        minx, miny, maxx, maxy = box
-        dx = max(0.0, FIT_PAD - minx)
-        dy = max(0.0, FIT_PAD - miny)
+    # 🔴 **글자는 따로 본다.** `_body_bbox` 는 `<text>` 를 닻점 하나로 세므로,
+    #    글자가 지면 밖으로 나가도 viewBox 가 안 넓어지고 **에러도 안 난다** —
+    #    실측으로 `12 cm` 의 `1` 이 왼쪽으로 5.24단위 잘려 나가고 있었다
+    #    (원장님 지적 2026-08-28, `netCuboid` 계열).
+    #
+    #    ⚠️ 다만 글자에는 **여백(FIT_PAD)을 요구하지 않는다.** 요구하면 가장자리에
+    #       딱 붙여 놓은 축 이름표(x=0)가 밀려 그림 전체가 넓어지고, 폭을 박는
+    #       kind(통계·좌표평면)가 「폭이 벌어졌다」로 던진다(실측 240 → 243).
+    #       글자에 필요한 것은 **안 잘리는 것**이지 여백이 아니다.
+    tbox = _text_extent(body)
+    if box is not None or tbox is not None:
+        gx0, gy0, gx1, gy1 = box if box is not None else (FIT_PAD, FIT_PAD, 0.0, 0.0)
+        tx0, ty0, tx1, ty1 = tbox if tbox is not None else (0.0, 0.0, 0.0, 0.0)
+        dx = max(0.0, FIT_PAD - gx0, -tx0)
+        dy = max(0.0, FIT_PAD - gy0, -ty0)
         if dx or dy:
             body = _shift_body(body, dx, dy)
-        w = max(w + dx, maxx + dx + FIT_PAD)
-        h = max(h + dy, maxy + dy + FIT_PAD)
+        w = max(w + dx, gx1 + dx + FIT_PAD, tx1 + dx)
+        h = max(h + dy, gy1 + dy + FIT_PAD, ty1 + dy)
     return _svg_raw(w, h, body)
 
 
@@ -162,6 +176,19 @@ def _body_bbox(body: str) -> tuple[float, float, float, float] | None:
     xs = [p[0] for p in pts]
     ys = [p[1] for p in pts]
     return min(xs), min(ys), max(xs), max(ys)
+
+
+def _text_extent(body: str) -> tuple[float, float, float, float] | None:
+    """그려진 글자 전체의 경계. 자는 `_text_bboxes` **하나**뿐이다."""
+    rows = _text_bboxes(body)
+    if not rows:
+        return None
+    return (
+        min(r[0] for r in rows),
+        min(r[1] for r in rows),
+        max(r[2] for r in rows),
+        max(r[3] for r in rows),
+    )
 
 
 def _iter_tags(body: str):
@@ -478,13 +505,65 @@ def _text(
 HANGUL_W_13 = 13.24
 ASCII_W_13 = 8.0
 
+# ── 글자 폭 표는 **MathJax 에서 뽑는다** (2026-08-28) ───────────────────────
+#
+# 🔴 위 `ASCII_W_13 = 8.0`(= 0.6154em) 은 **한 값**이었다. 그런데 지면을 그리는
+#    것은 이제 MathJax 이고, 그 글꼴에서 **34종이 그 값보다 넓다** — `M` 1.71배 ·
+#    `m` 1.43배 · `+` 1.26배. 어림이 실제보다 좁으면 배치기는 「자리가 남는다」고
+#    판단하고 지면에서는 라벨이 **잘린다**(실측: `12 cm` 의 `1` 이 왼쪽으로
+#    5.24단위 나갔다 — 원장님 지적 2026-08-28).
+#
+#    그래서 손으로 정한 한 값을 버리고 **정본에서 뽑은 표**를 쓴다
+#    (`scripts/qa/build-label-width-table.ts` 가 굽는다). 표를 못 읽으면 옛 값으로
+#    물러서되 **조용히 넘어가지 않는다** — 그 자리가 곧 잘림이기 때문이다.
+_WIDTHS_PATH = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                            "label-widths.json")
+_WIDTH_TABLE: dict | None = None
+
+
+def _width_table() -> dict:
+    global _WIDTH_TABLE
+    if _WIDTH_TABLE is None:
+        try:
+            with io.open(_WIDTHS_PATH, encoding="utf-8") as fh:
+                _WIDTH_TABLE = _json.load(fh)
+        except Exception:  # 표가 없으면 옛 어림 — 다만 상한이 아니다.
+            _WIDTH_TABLE = {}
+    return _WIDTH_TABLE
+
 
 def _label_w_max(text: str, size: float = 13.0) -> float:
-    """글자 폭 **상한**. 한글은 넓고 나머지는 좁다 — 넘치지 않을 만큼만 넉넉하게."""
-    scale = size / 13.0
-    return scale * sum(
-        HANGUL_W_13 if ord(ch) >= 0x1100 else ASCII_W_13 for ch in text
-    )
+    """글자 폭 **상한**. 지면을 그리는 MathJax 에서 뽑은 표로 잰다.
+
+    ⚠️ 「가운데 낀 이항 연산자」는 앞뒤에 여백을 얻는다(TeX 규칙) — 그 항이 없으면
+       `x°-9°` 가 16.3% 좁게 나온다. 표에 실린 `opSpace` 를 그대로 쓴다.
+    """
+    # 🔴 **한글이 한 글자라도 있으면 MathJax 가 그 라벨을 조판하지 않는다** —
+    #    TeX 글꼴에 글리프가 없어서다(`mathjaxLabel.ts` 의 `CJK_RE` 와 같은 규칙).
+    #    그러면 지면을 그리는 것은 브라우저의 Batang 이므로 **MathJax 표를 대면
+    #    엉뚱한 자로 재는 것**이다. 실측으로 `A반` 이 1.8단위 부풀어 상자그림이
+    #    240 한계를 넘고 던졌다(2026-08-28). 그 라벨은 옛 실측 어림 그대로 잰다.
+    #
+    #    ⚠️ 「조판되나」의 판정이 여기와 `mathjaxLabel.ts` 두 곳에 있다. 한쪽만
+    #       바꾸면 자와 그림이 갈라진다 — 바꿀 때는 둘 다 본다.
+    table = _width_table()
+    widths = table.get("widths")
+    if not widths or any(ord(ch) >= 0x1100 for ch in text):
+        scale = size / 13.0
+        return scale * sum(
+            HANGUL_W_13 if ord(ch) >= 0x1100 else ASCII_W_13 for ch in text
+        )
+    default = float(table.get("default", ASCII_W_13 / 13.0))
+    ops = set(table.get("operators", ()))
+    op_space = float(table.get("opSpace", 0.0))
+    chars = list(text)
+    total = 0.0
+    for ch in chars:
+        total += float(widths.get(ch, default))
+    for i in range(1, len(chars) - 1):
+        if chars[i] in ops:
+            total += op_space
+    return total * size * float(table.get("safety", 1.0))
 
 
 _TEXT_TAG_RE = re.compile(r"<text\b([^>]*)>(.*?)</text>", re.S)
@@ -513,7 +592,7 @@ def _text_bboxes(body: str) -> list[tuple[float, float, float, float, str]]:
         width = _label_w_max(text, size)
         anchor = attrs.get("text-anchor", "start")
         x0 = x - width if anchor == "end" else x - width / 2.0 if anchor == "middle" else x
-        if attrs.get("dominant-baseline") == "middle":
+        if attrs.get("dominant-baseline") in ("middle", "central"):
             y0, y1 = y - size * 0.56, y + size * 0.56
         else:
             y0, y1 = y - size * 0.85, y + size * 0.25

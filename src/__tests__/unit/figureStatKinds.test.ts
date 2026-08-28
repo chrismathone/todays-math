@@ -452,8 +452,14 @@ describe.skipIf(!hasEngine)("[통계 kind] freqPolygon", () => {
       polyArea += ((x2 - x1) * (axisY - y1 + (axisY - y2))) / 2;
     }
     // 양끝을 0 으로 안 닫거나 가운데 값이 어긋나면 이 등식이 깨진다.
-    expect(polyArea).toBeCloseTo(barArea, 0);
-    expect(Math.abs(polyArea - barArea) / barArea).toBeLessThan(0.005);
+    //
+    // ⚠️ **절대 오차(±0.5)로 재지 않는다.** 넓이는 1만 단위인데 좌표가 소수 둘째
+    //    자리에서 반올림되므로, 그림이 몇 단위만 움직여도 합이 1쯤 달라진다 —
+    //    2026-08-28 에 라벨 폭 자를 고치자 그 이유로 빨개졌다(상대 오차는 0.01%).
+    //    지키려는 성질은 「양끝이 0 으로 닫히는가」이고, 안 닫히면 사다리꼴 하나가
+    //    통째로 빠져 **몇 %가 어긋난다** — 그래서 상대 오차가 진짜 가드다.
+    //    종전 0.005 에서 **0.001 로 조인다**(실측 0.0001 이라 10배 여유가 남는다).
+    expect(Math.abs(polyArea - barArea) / barArea).toBeLessThan(0.001);
   });
 
   it("lineChart 는 양끝 연장이 없다 (반대쪽 표본)", async () => {

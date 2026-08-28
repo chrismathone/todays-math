@@ -13,7 +13,7 @@
  * 그래서 「무엇이 라벨을 내는가」를 **미리 정하지 않고** 나온 SVG 를 전량 훑어 센다.
  * 새 emitter 가 생겨도 여기가 잡는다.
  */
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { describe, expect, it } from "vitest";
@@ -112,6 +112,95 @@ describe("[도형] 라벨 조판", () => {
     expect(plain.length).toBeLessThan(g.length);
   });
 
+  // ── ⑤ 파이썬 배치기가 쓰는 **글자 폭 표**가 조판기와 어긋나지 않는가.
+  //
+  // 🔴 배치기는 라벨 자리를 미리 빼려고 폭을 어림한다. 그 어림이 실제보다 **좁으면**
+  //    「자리가 남는다」고 판단해 라벨을 가장자리에 붙이고, 지면에서 잘린다.
+  //    종전 어림은 「13pt 에서 8.0/글자」 한 값이었고 MathJax 글꼴에서 34종이 그보다
+  //    넓었다 — 실측으로 `12 cm` 의 `1` 과 `timeAdd` 의 `+` 가 잘려 나갔다.
+  //
+  //    표는 `scripts/qa/build-label-width-table.ts` 가 **정본에서 뽑는다.** 여기서는
+  //    그 표가 여전히 **위로만 새는지**(어림 ≥ 실제) 확인한다 — 손으로 고치거나
+  //    MathJax 판이 올라가면 빨개진다.
+  it("글자 폭 표가 조판기를 **아래로 새지 않고** 감싼다", () => {
+    const table = JSON.parse(
+      readFileSync(
+        path.join(process.cwd(), "scripts", "figure", "label-widths.json"),
+        "utf8",
+      ),
+    ) as {
+      safety: number;
+      opSpace: number;
+      operators: string[];
+      default: number;
+      widths: Record<string, number>;
+    };
+    expect(Object.keys(table.widths).length, "표가 비었다").toBeGreaterThan(50);
+    const ops = new Set(table.operators);
+    const estimate = (text: string): number => {
+      const chars = [...text];
+      let sum = chars.reduce(
+        (a, c) => a + (table.widths[c] ?? table.default),
+        0,
+      );
+      for (let i = 1; i < chars.length - 1; i += 1) {
+        if (ops.has(chars[i]!)) sum += table.opSpace;
+      }
+      return sum * table.safety;
+    };
+    const short: string[] = [];
+    let checked = 0;
+    for (const text of [
+      "0",
+      "12",
+      "1000",
+      "0.5",
+      "12.75",
+      "1 cm",
+      "6 cm",
+      "12 cm",
+      "0.5 cm",
+      "125 cm",
+      "0°",
+      "45°",
+      "125°",
+      "360°",
+      "x",
+      "A",
+      "M",
+      "W",
+      "AB",
+      "ABCD",
+      "+",
+      "-",
+      "×",
+      "÷",
+      "=",
+      "3x°+5°",
+      "2x°+40°",
+      "x°-9°",
+      "10%",
+      "sin",
+      "cos",
+      "1/2",
+    ]) {
+      // ⚠️ 굵기 **두 갈래를 다** 본다 — 초등 엔진은 라벨을 `font-weight="700"` 으로
+      //    내므로 보통 굵기만 재면 그쪽이 통째로 사각지대가 된다(실측 `+` 0.778 → 0.894em).
+      for (const bold of [false, true]) {
+        const laid = typesetLabel(text, bold);
+        if (!laid) continue;
+        checked += 1;
+        if (estimate(text) < laid.widthEm - 1e-6) {
+          short.push(
+            `«${text}»${bold ? " (굵게)" : ""} 어림 ${estimate(text).toFixed(4)} < 실제 ${laid.widthEm.toFixed(4)}`,
+          );
+        }
+      }
+    }
+    expect(checked, "잰 라벨이 없다 — 이 검사가 죽었다").toBeGreaterThan(50);
+    expect(short, short.join("\n")).toEqual([]);
+  });
+
   describe.skipIf(!hasFigureEngine)("실렌더 — 새는 자리가 없다", () => {
     /**
      * 나온 SVG 의 `<text>` 를 전량 훑어 **표식 없이 나가는 라벨**을 센다.
@@ -190,6 +279,95 @@ describe("[도형] 라벨 조판", () => {
       expect(typeset, "조판된 라벨이 하나도 없다").toBeGreaterThan(5);
       expect([...new Set(missed)], missed.join("\n")).toEqual([]);
     }, 300_000);
+
+    /**
+     * **라벨이 지면 밖으로 나가지 않는가.**
+     *
+     * 🔴 엔진의 `_body_bbox` 는 `<text>` 를 **닻점 하나**로 셌다. 그래서 글자가
+     *    viewBox 밖으로 나가도 **아무 에러가 안 났다** — 실측으로 `12 cm` 의 `1` 이
+     *    왼쪽으로 5.24단위 잘려 나가고 있었다(원장님 지적 2026-08-28, `netCuboid` 계열).
+     *
+     *    조판된 라벨은 제 폭·높이를 스스로 말하므로(`data-w`·`data-a`·`data-d`)
+     *    **정확히** 잴 수 있다. halo 는 흰색이라 밖으로 나가도 안 보이니 **잉크만** 센다.
+     */
+    it("조판된 라벨이 지면(viewBox) 밖으로 나가지 않는다", async () => {
+      const out: string[] = [];
+      let measured = 0;
+      const seen = new Set<string>();
+      const scan = (svg: string, where: string) => {
+        const vb = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(svg);
+        if (!vb) return;
+        const W = Number(vb[1]);
+        const H = Number(vb[2]);
+        for (const l of svgLabels(svg)) {
+          if (l.width === null) continue; // 조판 안 된 글은 폭을 브라우저가 정한다
+          measured += 1;
+          const left =
+            l.anchor === "start"
+              ? l.x
+              : l.anchor === "end"
+                ? l.x - l.width
+                : l.x - l.width / 2;
+          const over = [
+            ["왼쪽", -left],
+            ["오른쪽", left + l.width - W],
+            ["위", -(l.baseline - (l.ascent ?? 0))],
+            ["아래", l.baseline + (l.descent ?? 0) - H],
+          ] as const;
+          for (const [side, gap] of over) {
+            if (gap > 0.01) {
+              out.push(
+                `${where}: «${l.text}» ${side}으로 ${gap.toFixed(2)} 나갔다`,
+              );
+            }
+          }
+        }
+      };
+      for (const unit of elementaryUnits()) {
+        for (let seed = 1; seed <= 6; seed += 1) {
+          let p;
+          try {
+            p = generateElementaryProblem(unit, seed);
+          } catch {
+            continue;
+          }
+          const spec = p?.figureSpec as Record<string, unknown> | undefined;
+          if (!spec) continue;
+          const tag = `${spec.kind}|${seed}`;
+          if (seen.has(tag)) continue;
+          seen.add(tag);
+          const r = await renderFigureSpec(spec);
+          if (r.ok) scan(r.svg, `초등 ${spec.kind}`);
+        }
+      }
+      // ⚠️ **변형까지 돈다.** 씨앗 하나·변형 0만 보면 원장님이 찾으신 바로 그 자리
+      //    (`netCuboid` 씨앗 2·변형 1의 `12 cm`)가 표본에 **안 들어온다** — 그러면
+      //    이 가드는 그 결함을 구조적으로 못 본다.
+      for (const { key } of registeredTypes()) {
+        for (let seed = 1; seed <= 4; seed += 1) {
+          for (let v = 0; v < 3; v += 1) {
+            let p;
+            try {
+              p = generateMiddleProblem(key, seed, v);
+            } catch {
+              continue;
+            }
+            const spec = p.figureSpec as Record<string, unknown> | undefined;
+            if (!spec) continue;
+            const tag = `중${spec.kind ?? spec.version}|${seed}|${v}`;
+            if (seen.has(tag)) continue;
+            seen.add(tag);
+            const r = await renderFigureSpec(spec);
+            if (r.ok) scan(r.svg, `중등 ${key}`);
+          }
+        }
+      }
+      // 분모 — 잰 라벨이 0이면 이 시험은 아무것도 못 잰다(실측 500자리 이상).
+      expect(measured, "잰 라벨이 없다 — 이 검사가 죽었다").toBeGreaterThan(
+        300,
+      );
+      expect([...new Set(out)], out.join("\n")).toEqual([]);
+    }, 600_000);
 
     it("한글 라벨은 **그대로** 나가고, 그 자리에 조판이 끼지 않는다", async () => {
       const r = await renderFigureSpec({

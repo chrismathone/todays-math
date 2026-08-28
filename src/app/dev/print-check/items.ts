@@ -1082,6 +1082,41 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "미착수",
   },
+  {
+    id: "figure-label-mathjax",
+    title: "그림 라벨을 **MathJax 가 조판**한다 (전학년)",
+    changed:
+      "라벨 글자가 통째로 달라졌다. 종전에는 SVG `<text>` 한 덩어리(Batang·Cambria 폴백)였고, " +
+      "이제는 MathJax 가 그린 **외곽선**(`<path>`)이다 — 글꼴 설치가 필요 없어 어느 프린터에서도 " +
+      "같게 나온다. 수학 조판 규칙이 살아난다(문자만 이탤릭 · 숫자·단위는 정자체 · `°` 는 위첨자 · " +
+      "연산자 앞뒤 여백). **한글 라벨은 TeX 글꼴에 글리프가 없어 종전 `<text>` 그대로다** — " +
+      "한 그림 안에 두 글꼴이 섞인다(예: 막대그래프의 눈금 숫자와 항목 이름). " +
+      "그리고 라벨 폭을 세는 자가 바뀌어 그림 214장 중 **18장의 viewBox 폭이 달라졌다**(등급 변화는 0).",
+    look:
+      "① 숫자·단위(`6 cm`·`125°`)와 **한글 이름표**(`사과`·`(개)`)가 한 지면에 있을 때 " +
+      "크기·굵기·회색도가 따로 노는 느낌이 없는가 — 이게 이 변경의 **가장 큰 위험**이다. " +
+      "② 치수 글자가 도형 선 위에 있을 때 **글자 일부가 먹히지 않았는가**(흰 테두리 순서 결함, " +
+      "화면에서는 고쳤다). ③ 라벨이 그림 테두리 밖으로 **잘려 나가지 않는가**. " +
+      "④ 작은 그림(140px 등급)에서 조판된 숫자가 종전보다 흐리거나 가늘어 보이지 않는가 — " +
+      "외곽선이라 래스터라이저가 다르게 그릴 수 있다. ⑤ `3x°+5°` 같은 식 라벨에서 " +
+      "`x` 만 기울고 숫자는 곧게 서 있는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/figure/mathjaxLabel.ts · mathjaxSubstitute.ts · svgLabels.ts",
+      "vendor/figure-engine/core/figure_quality.py (add_mj_marks — 표식의 그물)",
+      "scripts/figure/label-widths.json (MathJax 에서 뽑은 글자 폭 표)",
+      "src/__tests__/unit/figureLabelTypeset.test.ts (조판·halo·잘림 가드)",
+      "scripts/qa/probe-figure-label-collisions.mjs --selftest (눈금 11건)",
+      "docs/planning/tracks/reports/rpm-engine-gaps.md",
+    ],
+    scale:
+      "초3~중3 그림 **295종**. 라벨 자리 실측 — 조판 1,672 · 한글이라 그대로 둔 것 105. " +
+      "viewBox 폭이 달라진 그림 18/214(넓어짐 16 · 좁아짐 2), **인쇄 크기 등급이 바뀐 그림 0**.",
+    status: "대기",
+    needs:
+      "실물 출력 — 한글 이름표와 숫자가 **같이** 있는 그림(막대그래프·표)이 반드시 들어가야 한다",
+    changedOn: "2026-08-28",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

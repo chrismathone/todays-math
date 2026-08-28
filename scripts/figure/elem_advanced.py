@@ -356,10 +356,21 @@ def unit_label_min_top() -> float:
 
 
 def _unit_label(left: float, top: float, ylab: str) -> str:
-    """세로축 단위는 눈금과 같은 열, 맨 위 눈금보다 한 줄 위."""
+    """세로축 단위는 눈금과 같은 열, 맨 위 눈금보다 한 줄 위.
+
+    🔴 **왼쪽 여백은 눈금 «숫자» 폭으로 정해진다** — 단위 이름표는 그 계산에
+       들어 있지 않다. 그래서 `(원)`(29.2단위)처럼 숫자보다 넓은 이름표는
+       왼쪽 끝을 **넘어가 잘렸다**(실측 -3.43단위, 짝 그래프). `_svg` 가
+       글자를 닻점으로만 세던 시절에는 에러도 안 났다.
+
+       이름표는 맨 위 눈금보다 **한 줄 위**에 있어 오른쪽으로 밀어도 눈금
+       숫자와 겹치지 않는다. 그래서 여기서 **못 나가게 붙든다** —
+       열 정렬이 조금 어긋나는 것보다 글자가 잘리는 편이 나쁘다.
+    """
     if not ylab:
         return ""
-    return _text(left - 7, top - UNIT_LABEL_DROP, ylab, size=UNIT_LABEL_SIZE, anchor="end")
+    x = max(left - 7, _label_w_max(ylab, UNIT_LABEL_SIZE))
+    return _text(x, top - UNIT_LABEL_DROP, ylab, size=UNIT_LABEL_SIZE, anchor="end")
 
 
 # 눈금 숫자 한 자의 폭(그림 단위, 14pt). **실측값이다** — 지면과 같은 렌더러
