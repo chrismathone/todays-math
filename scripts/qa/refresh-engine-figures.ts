@@ -253,6 +253,17 @@ async function run(planFile: string, doApply: boolean): Promise<void> {
   console.log(
     `짝 맞음 ${todo.length} · DB 에 없음 ${missing.length} · **본문이 달라 건너뜀 ${drifted.length}**`,
   );
+  // 「DB 에 없음」도 숫자만 세면 고칠 자리를 모른다 — 적재가 중복으로 뺀 것인지,
+  // 계획이 어긋난 것인지는 **그 externalId 를 봐야** 갈린다.
+  if (missing.length)
+    console.log(
+      `   ⚠️ DB 에 없는 것 예:\n${missing
+        .slice(0, 5)
+        .map((m) => `      · ${m}`)
+        .join(
+          "\n",
+        )}${missing.length > 5 ? `\n      … ${missing.length - 5}건 더` : ""}`,
+    );
   if (drifted.length)
     console.log(
       `   ⚠️ 건너뛴 것 예: ${drifted.slice(0, 5).join(", ")}${drifted.length > 5 ? " …" : ""}\n` +
