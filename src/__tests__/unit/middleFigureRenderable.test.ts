@@ -25,6 +25,63 @@ const VENDOR = path.join(process.cwd(), "vendor", "figure-engine");
 const ENGINE = process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기";
 const hasEngine = existsSync(VENDOR) || existsSync(ENGINE);
 
+type XY = [number, number];
+const DEG = Math.PI / 180;
+const r2 = (v: number) => Math.round(v * 100) / 100;
+
+/** 생성기 fitPts 와 같은 220×190 — 배율만 맞출 뿐 MIN_DIM_SIDE_PX 는 안 본다. */
+function fitPts(pts: Record<string, XY>): Record<string, XY> {
+  const xs = Object.values(pts).map((p) => p[0]);
+  const ys = Object.values(pts).map((p) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const m = 22;
+  const s = Math.min(
+    (220 - 2 * m) / Math.max(maxX - minX, 1e-9),
+    (190 - 2 * m) / Math.max(maxY - minY, 1e-9),
+  );
+  const out: Record<string, XY> = {};
+  for (const [k, [x, y]] of Object.entries(pts)) {
+    out[k] = [r2(m + (x - minX) * s), r2(190 - m - (y - minY) * s)];
+  }
+  return out;
+}
+
+function twoSidesSpec(
+  ab: number,
+  bc: number,
+  angB: number,
+): Record<string, unknown> {
+  const k = 140 / Math.max(ab, bc);
+  const pts = fitPts({
+    B: [0, 0],
+    C: [r2(bc * k), 0],
+    A: [r2(ab * k * Math.cos(angB * DEG)), r2(ab * k * Math.sin(angB * DEG))],
+  });
+  return {
+    version: 2,
+    points: pts,
+    segments: { AB: ["A", "B"], BC: ["B", "C"], CA: ["C", "A"] },
+    angles: {
+      a_B: { vertex: "B", points: ["A", "C"], label: `${angB}°` },
+    },
+    dimensions: {
+      d_AB: { points: ["A", "B"], label: `${ab} cm`, side: "auto" },
+      d_BC: { points: ["B", "C"], label: `${bc} cm`, side: "auto" },
+    },
+    labels: { A: "A", B: "B", C: "C" },
+  };
+}
+
+function abPx(spec: Record<string, unknown>): number {
+  const pts = spec.points as Record<string, XY>;
+  const a = pts.A!;
+  const b = pts.B!;
+  return Math.hypot(a[0] - b[0], a[1] - b[1]);
+}
+
 const KEY_08 = "3-2|삼각비의 활용|08";
 const KEY_09 = "3-2|삼각비의 활용|09";
 const KEY_10 = "3-2|삼각비의 활용|10";
@@ -98,6 +155,30 @@ describe.runIf(hasEngine)("중등 그림 — 생성기 스펙을 제품이 그�
     }
     expect(failed, failed.join("\n")).toEqual([]);
   }, 60_000);
+
+  it("실측 경계: AB 80px 는 던지고 83px 는 그린다 — 참은 렌더이지 제품 상수가 아니다", async () => {
+    // 생성기의 MIN_DIM_SIDE_PX 를 **읽지 않는다.** 그 상수를 기대값으로 쓰면
+    // 상수를 70 으로 망가뜨려도 초록이다(CLAUDE.md 2026-08-18).
+    // 자리는 실측 두 값이다: 12/16 @150° → 80px 던짐, 8/13 @120° → 83px 그림.
+    const failSpec = twoSidesSpec(12, 16, 150);
+    const passSpec = twoSidesSpec(8, 13, 120);
+    expect(
+      abPx(failSpec),
+      "12/16 @150° 가 80px 근처가 아니면 이 검사는 다른 자리를 본다",
+    ).toBeCloseTo(80, 0);
+    expect(
+      abPx(passSpec),
+      "8/13 @120° 가 83px 근처가 아니면 이 검사는 다른 자리를 본다",
+    ).toBeCloseTo(83, 0);
+    const fail = await renderFigureSpec(failSpec);
+    const pass = await renderFigureSpec(passSpec);
+    expect(
+      fail.ok,
+      fail.ok ? "80px 가 그려지면 문턱 85 는 장식이다" : fail.error,
+    ).toBe(false);
+    expect(fail.ok ? "" : fail.error).toMatch(/d_AB/);
+    expect(pass.ok, pass.ok ? "" : pass.error).toBe(true);
+  }, 30_000);
 
   it("활용 10 은 그릴 수 없는 $\\overline{AD}$ 치수만 빼고 세 변은 싣는다", () => {
     const p = generateMiddleProblem(KEY_10, 20260827, 0);
