@@ -67,6 +67,23 @@ const KEY_08 = "3-2|삼각비의 활용|08";
 const KEY_09 = "3-2|삼각비의 활용|09";
 const KEY_10 = "3-2|삼각비의 활용|10";
 
+/** 발문이 그림을 가리키는데 스펙이 없던 13유형 — 제품이 실제로 그려야 한다. */
+const POINTER_KEYS = [
+  "1-2|기본 도형|05",
+  "1-2|기본 도형|07",
+  "1-2|기본 도형|08",
+  "1-2|기본 도형|09",
+  "1-2|기본 도형|11",
+  "1-2|위치 관계|14",
+  "1-2|위치 관계|15",
+  "1-2|위치 관계|16",
+  "1-2|위치 관계|17",
+  "1-2|위치 관계|20",
+  "2-2|삼각형의 외심과 내심|10",
+  "2-2|삼각형의 외심과 내심|11",
+  "2-2|삼각형의 외심과 내심|13",
+] as const;
+
 /** 치수 둘을 다는 둔각 삼각형 — `figureLabelPlacement` 가 그리는 자리. */
 const KNOWN_GOOD = {
   version: 2,
@@ -160,6 +177,31 @@ describe.runIf(hasEngine)("중등 그림 — 생성기 스펙을 제품이 그�
     expect(fail.ok ? "" : fail.error).toMatch(/d_AB/);
     expect(pass.ok, pass.ok ? "" : pass.error).toBe(true);
   }, 30_000);
+
+  it("그림 지시 13유형은 스펙을 싣고 제품 경로로 그린다", async () => {
+    const failed: string[] = [];
+    let drawn = 0;
+    for (const seed of [20260827, 20260824, 7]) {
+      for (const v of [0, 1, 2]) {
+        for (const key of POINTER_KEYS) {
+          const p = generateMiddleProblem(key, seed, v);
+          if (!p.figureSpec) {
+            failed.push(`${key} s${seed} v${v}: figureSpec 없음`);
+            continue;
+          }
+          const r = await renderFigureSpec(p.figureSpec as never);
+          drawn += 1;
+          if (!r.ok) {
+            failed.push(
+              `${key} s${seed} v${v} facts=${JSON.stringify(p.facts)}: ${r.error}`,
+            );
+          }
+        }
+      }
+    }
+    expect(drawn, "그린 스펙이 너무 적다").toBeGreaterThan(50);
+    expect(failed, failed.join("\n")).toEqual([]);
+  }, 180_000);
 
   it("활용 10 은 그릴 수 없는 $\\overline{AD}$ 치수만 빼고 세 변은 싣는다", () => {
     const p = generateMiddleProblem(KEY_10, 20260827, 0);

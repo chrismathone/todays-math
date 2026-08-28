@@ -11,8 +11,12 @@
  *
  * | 유형 | 그림 |
  * |---|---|
+ * | 기본 도형 05 | 선분 AB 와 중점 M, N |
+ * | 기본 도형 07·08·09 | 한 점 O 에서 나가는 반직선 |
  * | 기본 도형 10 (맞꼭지각의 성질 (1)) | 두 직선이 한 점에서 만나 이루는 맞꼭지각 |
+ * | 기본 도형 11 | 세 직선이 한 점에서 만남 |
  * | 위치 관계 11·12·13 (동위각·엇각·평행 조건) | 두 직선 + 가로지르는 직선(엇각·동위각) |
+ * | 위치 관계 14~17·20 | 두 평행선 사이의 꺾인 선 / n등분 |
  *
  * 두 그림 모두 **씨앗과 무관한 고정 스펙**이다 — 라벨은 구조(어느 각이 서로
  * 마주보는지/대응하는지)만 보이고, 실제 수치는 발문 문장이 말한다(09 §4-20-b:
@@ -203,6 +207,298 @@ function figParallel(deg: number): Record<string, unknown> {
 
 /** 각을 말하지 않는 갈래(위치 관계 13)가 쓰는 기본 기울기 — 보기 좋은 값 하나. */
 const FIGURE_PARALLEL_PLAIN = figParallel(55);
+
+const DEG = Math.PI / 180;
+
+function packX(points: Record<string, [number, number]>, maxW = 172): void {
+  const xs = Object.values(points).map((p) => p[0]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const w = Math.max(maxX - minX, 1e-6);
+  const s = w > maxW ? maxW / w : 1;
+  for (const k of Object.keys(points)) {
+    const p = points[k]!;
+    points[k] = [12 + (p[0] - minX) * s, p[1]];
+  }
+}
+
+function lineMeet(
+  p: [number, number],
+  d: [number, number],
+  q: [number, number],
+  e: [number, number],
+): [number, number] | null {
+  const det = d[0] * e[1] - d[1] * e[0];
+  if (Math.abs(det) < 1e-9) return null;
+  const t = ((q[0] - p[0]) * e[1] - (q[1] - p[1]) * e[0]) / det;
+  return [p[0] + t * d[0], p[1] + t * d[1]];
+}
+
+/** 기본 도형 05 — 선분 AB 위에 중점 M, MB 의 중점 N. 비 2:1:1. */
+function figMidpoints(): Record<string, unknown> {
+  return {
+    version: 2,
+    points: { A: [36, 90], M: [116, 90], N: [156, 90], B: [196, 90] },
+    segments: { AB: ["A", "B"] },
+    labels: { A: "A", M: "M", N: "N", B: "B" },
+  };
+}
+
+/**
+ * 한 점 O 에서 나가는 반직선. `angles` 는 인접한 각(도)이고 합이 total.
+ * total=180 이면 첫·끝 반직선이 한 직선. 수치는 발문이 말하고 그림은 각만 맞춘다.
+ */
+function figRaysFromO(
+  angles: readonly number[],
+  total: 90 | 180,
+  names: readonly string[],
+  labelRays = true,
+): Record<string, unknown> {
+  const O: [number, number] = [120, 100];
+  const r = 78;
+  let dir = total === 180 ? 180 : 180;
+  const pts: Record<string, [number, number]> = { O };
+  const rays = ["A", "B", "C", "D", "E"].slice(0, angles.length + 1);
+  pts[rays[0]!] = polarPt(dir, r, O[0], O[1]);
+  for (let i = 0; i < angles.length; i += 1) {
+    dir -= angles[i]!;
+    pts[rays[i + 1]!] = polarPt(dir, r, O[0], O[1]);
+  }
+  const segs: Record<string, unknown> = {};
+  if (total === 180) {
+    segs.AC = [rays[0]!, rays[rays.length - 1]!];
+    for (let i = 1; i < rays.length - 1; i += 1) {
+      segs[`r${i}`] = ["O", rays[i]!];
+    }
+  } else {
+    for (const ray of rays) segs[`r${ray}`] = ["O", ray];
+  }
+  const angs: Record<string, unknown> = {};
+  for (let i = 0; i < angles.length; i += 1) {
+    const lab = names[i] ?? "";
+    if (!lab) continue;
+    angs[`a${i}`] = {
+      vertex: "O",
+      points: [rays[i]!, rays[i + 1]!],
+      label: lab,
+    };
+  }
+  if (total === 90) {
+    angs.rt = {
+      vertex: "O",
+      points: [rays[0]!, rays[rays.length - 1]!],
+      right: true,
+    };
+  }
+  const labels: Record<string, string> = { O: "O" };
+  if (labelRays) {
+    for (const ray of rays) labels[ray] = ray;
+  }
+  return { version: 2, points: pts, segments: segs, angles: angs, labels };
+}
+
+/** 기본 도형 11 — 세 직선이 O 에서 만남. a·b 이웃, c 는 그 합의 맞꼭지각. */
+function figThreeLines(a: number, b: number): Record<string, unknown> {
+  const r = 78;
+  const ox = 120;
+  const oy = 100;
+  const pts = {
+    O: [ox, oy] as [number, number],
+    P0: polarPt(0, r, ox, oy),
+    P0b: polarPt(180, r, ox, oy),
+    P1: polarPt(a, r, ox, oy),
+    P1b: polarPt(a + 180, r, ox, oy),
+    P2: polarPt(a + b, r, ox, oy),
+    P2b: polarPt(a + b + 180, r, ox, oy),
+  };
+  return {
+    version: 2,
+    points: pts,
+    segments: {
+      L0: ["P0", "P0b"],
+      L1: ["P1", "P1b"],
+      L2: ["P2", "P2b"],
+    },
+    angles: {
+      a: { vertex: "O", points: ["P0", "P1"], label: "a" },
+      b: { vertex: "O", points: ["P1", "P2"], label: "b" },
+      c: { vertex: "O", points: ["P0b", "P2b"], label: "c" },
+    },
+    labels: { O: "O" },
+  };
+}
+
+/**
+ * 위치 관계 14 — 두 평행선 사이 꺾인 점 하나. l∠=a, m∠=b, 꺾인 각 x=a+b.
+ * A·B 는 P 의 왼쪽(열림이 왼쪽) — 보조선(수평)이 x 를 a 와 b 로 가른다.
+ */
+function figOneKink(a: number, b: number): Record<string, unknown> {
+  const P: [number, number] = [150, 96];
+  const yL = 52;
+  const yM = 140;
+  const h = P[1] - yL;
+  const Ax = P[0] - h / Math.tan(a * DEG);
+  const Bx = P[0] - h / Math.tan(b * DEG);
+  const A: [number, number] = [Ax, yL];
+  const B: [number, number] = [Bx, yM];
+  const left = Math.min(Ax, Bx, 28) - 18;
+  const right = P[0] + 22;
+  const points: Record<string, [number, number]> = {
+    Ll: [left, yL],
+    Lr: [right, yL],
+    Ml: [left, yM],
+    Mr: [right, yM],
+    A,
+    B,
+    P,
+    AuxL: [left, P[1]],
+    AuxR: [P[0] + 12, P[1]],
+  };
+  packX(points);
+  return {
+    version: 2,
+    points,
+    segments: {
+      l: { points: ["Ll", "Lr"], parallel: 1 },
+      m: { points: ["Ml", "Mr"], parallel: 1 },
+      AP: ["A", "P"],
+      BP: ["B", "P"],
+      aux: { points: ["AuxL", "AuxR"], dashed: "6 4" },
+    },
+    angles: {
+      a: { vertex: "A", points: ["Lr", "P"], label: "a" },
+      b: { vertex: "B", points: ["Mr", "P"], label: "b" },
+      x: { vertex: "P", points: ["A", "B"], label: "x" },
+    },
+    labels: { Ll: "l", Ml: "m", P: "P" },
+  };
+}
+
+/**
+ * 평행선 사이 꺾인 선. `turns` 는 각 꺾인 점의 회전(왼쪽 +, 도).
+ * 첫·끝 선을 연장한 교점에 전체 각 x 를 표시한다 — 회전의 합이 x 다.
+ */
+function figTurnChain(
+  turns: readonly number[],
+  labelsAt: readonly string[],
+): Record<string, unknown> {
+  const yL = 44;
+  const yM = 156;
+  const start: [number, number] = [70, yL];
+  const step = (yM - yL) / (turns.length + 0.35);
+  let dir = 250;
+  const raw: [number, number][] = [start];
+  let x = start[0];
+  let y = start[1];
+  for (let i = 0; i <= turns.length; i += 1) {
+    x += step * Math.cos(dir * DEG);
+    y -= step * Math.sin(dir * DEG);
+    raw.push([x, y]);
+    if (i < turns.length) dir += turns[i]!;
+  }
+  const last = raw[raw.length - 1]!;
+  const sy = (yM - yL) / Math.max(last[1] - raw[0]![1], 1e-6);
+  const pts0 = raw.map(
+    (p) => [p[0], yL + (p[1] - raw[0]![1]) * sy] as [number, number],
+  );
+  const minX = Math.min(...pts0.map((p) => p[0]));
+  const shift = 48 - minX;
+  const pts = pts0.map((p) => [p[0] + shift, p[1]] as [number, number]);
+  const A = pts[0]!;
+  const B = pts[pts.length - 1]!;
+  const dFirst: [number, number] = [pts[1]![0] - A[0], pts[1]![1] - A[1]];
+  const dLast: [number, number] = [
+    B[0] - pts[pts.length - 2]![0],
+    B[1] - pts[pts.length - 2]![1],
+  ];
+  const X = lineMeet(A, dFirst, B, [-dLast[0], -dLast[1]]);
+  const xs = [...pts.map((p) => p[0]), ...(X ? [X[0]] : [])];
+  const left = Math.min(...xs) - 20;
+  const right = Math.max(...pts.map((p) => p[0])) + 28;
+  const points: Record<string, [number, number]> = {
+    Ll: [left, yL],
+    Lr: [right, yL],
+    Ml: [left, yM],
+    Mr: [right, yM],
+    A,
+    B,
+  };
+  if (X) points.X = X;
+  const segs: Record<string, unknown> = {
+    l: { points: ["Ll", "Lr"], parallel: 1 },
+    m: { points: ["Ml", "Mr"], parallel: 1 },
+  };
+  const names = ["A", ...turns.map((_, i) => `P${i}`), "B"];
+  for (let i = 1; i < pts.length - 1; i += 1) points[names[i]!] = pts[i]!;
+  for (let i = 0; i < pts.length - 1; i += 1) {
+    segs[`s${i}`] = [names[i]!, names[i + 1]!];
+  }
+  const angs: Record<string, unknown> = {};
+  if (X) {
+    angs.xAll = { vertex: "X", points: ["A", "B"], label: "x" };
+    segs.XA = { points: ["X", "A"], dashed: "6 4" };
+    segs.XB = { points: ["X", "B"], dashed: "6 4" };
+  }
+  for (let i = 0; i < turns.length; i += 1) {
+    const lab = labelsAt[i];
+    if (!lab) continue;
+    angs[lab] = {
+      vertex: names[i + 1]!,
+      points: [names[i]!, names[i + 2]!],
+      label: lab,
+    };
+  }
+  const labels: Record<string, string> = { Ll: "l", Ml: "m" };
+  if (X) labels.X = "x";
+  packX(points);
+  return { version: 2, points, segments: segs, angles: angs, labels };
+}
+
+/** 위치 관계 20 — l∥m, AB 가로지름, AC·BC 가 ∠DAB·∠EBA 를 n 등분. */
+function figNsect(n: number): Record<string, unknown> {
+  const yL = 52;
+  const yM = 140;
+  const A: [number, number] = [150, yL];
+  const B: [number, number] = [150, yM];
+  const D: [number, number] = [36, yL];
+  const E: [number, number] = [36, yM];
+  const slice = 90 / n;
+  const dirA = 180 + slice;
+  const dirB = 180 - slice;
+  const dA: [number, number] = [Math.cos(dirA * DEG), -Math.sin(dirA * DEG)];
+  const dB: [number, number] = [Math.cos(dirB * DEG), -Math.sin(dirB * DEG)];
+  const C = lineMeet(A, dA, B, dB);
+  if (!C) throw new Error("n등분 그림: AC·BC 가 만나지 않습니다");
+  const left = Math.min(D[0], C[0]) - 12;
+  const right = A[0] + 18;
+  const points: Record<string, [number, number]> = {
+    Ll: [left, yL],
+    Lr: [right, yL],
+    Ml: [left, yM],
+    Mr: [right, yM],
+    A,
+    B,
+    C,
+    D,
+    E,
+  };
+  packX(points);
+  return {
+    version: 2,
+    points,
+    segments: {
+      l: { points: ["Ll", "Lr"], parallel: 1 },
+      m: { points: ["Ml", "Mr"], parallel: 1 },
+      AB: ["A", "B"],
+      AC: ["A", "C"],
+      BC: ["B", "C"],
+    },
+    angles: {
+      x: { vertex: "C", points: ["A", "B"], label: "x" },
+    },
+    labels: { Ll: "l", Ml: "m", A: "A", B: "B", C: "C", D: "D", E: "E" },
+  };
+}
 
 // ── 직육면체 문자 모델 소품 (m1Book2 와 같은 관례 — 위치 관계 09 가 쓴다) ──
 function sharedCount(x: string, y: string): number {
@@ -402,6 +698,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
           answer: `$${an}\\,\\mathrm{cm}$`,
           solution: `$\\overline{AM}=\\overline{MB}=\\dfrac{1}{2}\\overline{AB}=${ab / 2}\\,\\mathrm{cm}$이다.\n$\\overline{MN}=\\dfrac{1}{2}\\overline{MB}=${mn}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{AN}=\\overline{AM}+\\overline{MN}=${ab / 2}+${mn}=${an}\\,(\\mathrm{cm})$이다.`,
           facts: { branch, ab, mn, an, ans: an },
+          figureSpec: figMidpoints(),
         };
       }
       const mn = intBetween(rng, 2, 20);
@@ -411,6 +708,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
         answer: `$${ab}\\,\\mathrm{cm}$`,
         solution: `$\\overline{MN}=\\dfrac{1}{2}\\overline{MB}=\\dfrac{1}{4}\\overline{AB}$이므로 $\\overline{AB}=4\\times\\overline{MN}=4\\times${mn}=${ab}\\,(\\mathrm{cm})$이다.`,
         facts: { branch, mn, ab, ans: ab },
+        figureSpec: figMidpoints(),
       };
     }),
   ),
@@ -469,11 +767,13 @@ const M1_GEO1_BASE: TypeEntry[] = [
         const x = intBetween(rng, 2, 20);
         const b = total - c - a * x;
         if (b < 0 || b > 60) return null;
+        const aob = a * x + b;
         return {
           content: `그림과 같이 한 점 $O$에서 세 반직선 $OA$, $OB$, $OC$를 그었더니 $\\angle AOB=(${a}x+${b})^\\circ$, $\\angle BOC=${c}^\\circ$이고 $\\angle AOC=${total}^\\circ$이다. $x$의 값을 구하시오.`,
           answer: `$${x}$`,
           solution: `$\\angle AOB+\\angle BOC=\\angle AOC$이므로 $(${a}x+${b})+${c}=${total}$이다.\n$${a}x=${total - b - c}$에서 $x=${x}$이다.`,
           facts: { total, a, b, c, x, ans: x },
+          figureSpec: figRaysFromO([aob, c], total, []),
         };
       }),
   ),
@@ -496,10 +796,11 @@ const M1_GEO1_BASE: TypeEntry[] = [
         if (total !== 90 && total !== 180) return null;
         const cod = k * p;
         return {
-          content: `그림과 같이 한 점 $O$에서 세 반직선 $OA$, $OB$, $OC$, $OD$를 그었더니 $\\angle AOB=\\angle BOC$이고 $\\angle COD=${k}\\angle BOC$이다. $\\angle AOD=${total}^\\circ$일 때, $\\angle COD$의 크기를 구하시오.`,
+          content: `그림과 같이 한 점 $O$에서 네 반직선 $OA$, $OB$, $OC$, $OD$를 그었더니 $\\angle AOB=\\angle BOC$이고 $\\angle COD=${k}\\angle BOC$이다. $\\angle AOD=${total}^\\circ$일 때, $\\angle COD$의 크기를 구하시오.`,
           answer: `$${cod}^\\circ$`,
           solution: `$\\angle BOC=x^\\circ$라 하면 $\\angle AOB=x^\\circ$, $\\angle COD=${k}x^\\circ$이다.\n$\\angle AOD=\\angle AOB+\\angle BOC+\\angle COD=x+x+${k}x=${2 + k}x=${total}$에서 $x=${p}$이다.\n따라서 $\\angle COD=${k}\\times${p}=${cod}^\\circ$이다.`,
           facts: { k, p, total, cod, ans: cod },
+          figureSpec: figRaysFromO([p, p, k * p], total as 90 | 180, []),
         };
       }),
   ),
@@ -529,11 +830,15 @@ const M1_GEO1_BASE: TypeEntry[] = [
         const r = [ra, rb, rc][ask]!;
         const ans = (180 * r) / sum;
         const askName = ["\\angle x", "\\angle y", "\\angle z"][ask]!;
+        const ax = (180 * ra) / sum;
+        const ay = (180 * rb) / sum;
+        const az = (180 * rc) / sum;
         return {
           content: `그림과 같이 한 점 $O$에서 만나는 세 반직선이 이루는 $\\angle x:\\angle y:\\angle z=${ra}:${rb}:${rc}$이고 세 각을 합하면 평각을 이룬다. $${askName}$의 크기를 구하시오.`,
           answer: `$${ans}^\\circ$`,
           solution: `세 각의 크기의 합이 $180^\\circ$이므로 $${askName}=180^\\circ\\times\\dfrac{${r}}{${sum}}=${ans}^\\circ$이다.`,
           facts: { ra, rb, rc, sum, ask, ans },
+          figureSpec: figRaysFromO([ax, ay, az], 180, ["x", "y", "z"], false),
         };
       }),
   ),
@@ -575,11 +880,13 @@ const M1_GEO1_BASE: TypeEntry[] = [
       const cCoef = a1 + 1;
       const cConst = aVal + bVal - cCoef * x;
       if (cConst < 0 || cConst > 60) return null;
+      if (aVal < 12 || bVal < 8 || aVal + bVal > 165) return null;
       return {
         content: `그림에서 세 직선이 한 점 $O$에서 만난다. $\\angle a=(${a1}x+${b1})^\\circ$, $\\angle b=${c1}^\\circ$이고 $\\angle a$와 $\\angle b$는 서로 이웃하며, 그 합은 $\\angle a$, $\\angle b$의 맞꼭지각인 $\\angle c=(${cCoef}x+${cConst})^\\circ$와 같다. $x$의 값을 구하시오.`,
         answer: `$${x}$`,
         solution: `맞꼭지각의 성질에 의해 $\\angle a+\\angle b=\\angle c$이므로 $(${a1}x+${b1})+${c1}=${cCoef}x+${cConst}$이다.\n$${a1 - cCoef}x=${cConst - b1 - c1}$에서 $x=${x}$이다.`,
         facts: { a1, b1, c1, cCoef, cConst, x, ans: x },
+        figureSpec: figThreeLines(aVal, bVal),
       };
     }),
   ),
@@ -1140,6 +1447,7 @@ const M1_GEO1_POS: TypeEntry[] = [
           answer: `$${x}^\\circ$`,
           solution: `점 $P$를 지나고 $l$, $m$에 평행한 보조선을 그으면, 엇각에 의해 $x$는 $${a}^\\circ$와 $${b}^\\circ$인 두 각으로 나뉜다.\n따라서 $x=${a}+${b}=${x}$이므로 $${x}^\\circ$이다.`,
           facts: { a, b, x, ans: x },
+          figureSpec: figOneKink(a, b),
         };
       }),
   ),
@@ -1163,6 +1471,7 @@ const M1_GEO1_POS: TypeEntry[] = [
           answer: `$${x}^\\circ$`,
           solution: `각 꺾인 점을 지나고 $l$, $m$에 평행한 보조선을 그으면 엇각에 의해 $x$는 $${a}^\\circ$, $${b}^\\circ$, $${c}^\\circ$인 세 각으로 나뉜다.\n따라서 $x=${a}+${b}+${c}=${x}$이므로 $${x}^\\circ$이다.`,
           facts: { a, b, c, x, ans: x },
+          figureSpec: figTurnChain([a, b, c], ["a", "b", "c"]),
         };
       }),
   ),
@@ -1186,6 +1495,7 @@ const M1_GEO1_POS: TypeEntry[] = [
           answer: `$${x}^\\circ$`,
           solution: `가운데 점이 바깥쪽으로 꺾여 있으므로 그 점의 각은 나머지 둘과 반대로 작용한다.\n따라서 $x=${b}-${a}+${c}=${x}$이므로 $${x}^\\circ$이다.`,
           facts: { a, b, c, x, ans: x },
+          figureSpec: figTurnChain([-a, b, c], ["a", "b", "c"]),
         };
       }),
   ),
@@ -1203,6 +1513,7 @@ const M1_GEO1_POS: TypeEntry[] = [
         answer: `$${x}^\\circ$`,
         solution: `두 평행선 사이에 있는 지그재그 선의 네 꺾인 각의 크기의 합은 항상 $180^\\circ$이다.\n따라서 $x=180-${a}-${b}-${c}=${x}$이므로 $${x}^\\circ$이다.`,
         facts: { a, b, c, x, ans: x },
+        figureSpec: figTurnChain([a, b, c, x], ["a", "b", "c", "x"]),
       };
     }),
   ),
@@ -1261,6 +1572,7 @@ const M1_GEO1_POS: TypeEntry[] = [
       answer: `$${ans}^\\circ$`,
       solution: `$\\angle DAC=\\alpha$, $\\angle EBC=\\beta$라 하면 $\\angle CAB=(${n}-1)\\alpha$, $\\angle CBA=(${n}-1)\\beta$이다.\n$l\\parallel m$이므로 $\\angle DAB+\\angle EBA=180^\\circ$, 즉 $${n}\\alpha+${n}\\beta=180^\\circ$에서 $\\alpha+\\beta=\\dfrac{180^\\circ}{${n}}$이다.\n삼각형 $ABC$의 세 각의 크기의 합이 $180^\\circ$이므로 $\\angle ACB=180^\\circ-(${n}-1)\\alpha-(${n}-1)\\beta=180^\\circ-(${n}-1)(\\alpha+\\beta)=180^\\circ-\\dfrac{(${n}-1)\\times180^\\circ}{${n}}=\\dfrac{180^\\circ}{${n}}=${ans}^\\circ$이다.`,
       facts: { n, ans },
+      figureSpec: figNsect(n),
     };
   }),
 ];
