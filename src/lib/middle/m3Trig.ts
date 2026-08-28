@@ -319,6 +319,24 @@ function fitPts(pts: Record<string, XY>): Record<string, XY> {
   return out;
 }
 
+/**
+ * 맞춘 뒤 변 길이(px). 치수 곡선을 붙이려면 이 길이는 되어야 한다.
+ *
+ * 실측(제품 경로, `geometry=1`): 80px(AB=12·BC=16·150°)은 던지고
+ * 83px(AB=8·BC=13·120°)은 그린다. 5px 여유.
+ *
+ * 쪽을 `left`/`right` 로 고정해도 안 된다 — left 는 text, right 는 geometry.
+ * 짧은 변에 억지로 달지 말고 값을 다시 뽑는다(m2Pytha 마름모 · 09 §4-27).
+ */
+const MIN_DIM_SIDE_PX = 85;
+
+function fittedSidePx(pts: Record<string, XY>, p: string, q: string): number {
+  const fitted = fitPts(pts);
+  const u = fitted[p]!;
+  const v = fitted[q]!;
+  return Math.hypot(u[0] - v[0], u[1] - v[1]);
+}
+
 type Draft = {
   pts: Record<string, XY>;
   segments: Record<string, unknown>;
@@ -862,6 +880,19 @@ function triangleArea(rng: Rng, angles: readonly number[]): Body {
     const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;
     const area = surdMul(surdMul(surd(a * b, 1, 1), sinT), surd(1, 1, 2));
     if (area.d !== 1) return null;
+    // 짧은 $\overline{AB}$ 에 치수를 달면 엔진이 변과 겹쳐 던진다
+    // (J30503-A09, 적재 씨앗 20260827 v0: 4cm/16cm @120° → 맞춘 뒤 39px).
+    const ax = a * Math.cos(ang * DEG);
+    const raw: Record<string, XY> = {
+      B: [0, 0],
+      C: [b, 0],
+      A: [ax, a * Math.sin(ang * DEG)],
+    };
+    if (fittedSidePx(raw, "A", "B") < MIN_DIM_SIDE_PX) return null;
+    // 끼인각 B 가 예각이어도 $a\cos B > b$ 이면 C 가 둔각이라 C 가 AB 밑에
+    // 붙는다. 그때 AB 치수 곡선은 안쪽·바깥쪽 모두 변과 겹친다
+    // (활용 08, 15cm/8cm @30° — 맞춘 뒤 AB 는 203px 로 **긴데** 던진다).
+    if (ax > b + 1e-6) return null;
     const mode = intBetween(rng, 0, 1);
     const shrink =
       ang > 90 ? `\\sin(180^\\circ-${ang}^\\circ)` : `\\sin ${ang}^\\circ`;
@@ -2057,10 +2088,13 @@ export const M3_TRIG: TypeEntry[] = [
         ad,
         dc,
         angD: 120,
+        // $\overline{AD}$ 치수는 안 단다. 둔각 120° 에 붙은 이 변은 표 6행
+        // 전량이 `d_DA` geometry 충돌로 던진다 — 혼자 달아도 같다(쪽 고정
+        // 불가). 발문이 네 변을 이미 말하므로 그릴 수 있는 세 변만 단다
+        // (09 §4-20-b · m2Pytha 마름모 대각선과 같은 판단).
         dims: {
           AB: dimCm(ab),
           BC: dimCm(bc),
-          DA: dimCm(ad),
           CD: dimCm(dc),
         },
       }),
