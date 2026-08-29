@@ -1,0 +1,112 @@
+  // ── 등변사다리꼴, 여러 가지 사각형 (28~30 — 색인 17 뒤에 우리가 더한 번호) ──
+
+  def(
+    "28",
+    "등변사다리꼴의 두 대각선",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      // $\overline{AD}<\overline{BC}$ 이려면 $\overline{OA}<\overline{OB}$ 여야 한다.
+      const p = intBetween(rng, 3, 12);
+      const q = attempt(80, () => {
+        const v = intBetween(rng, 4, 18);
+        return v > p && p > 0.3 * v && p < 0.85 * v ? v : null;
+      });
+      if (mode === 0) {
+        const x = p + q;
+        return {
+          content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{OA}=${p}\\,\\mathrm{cm}$, $\\overline{OB}=${q}\\,\\mathrm{cm}$일 때, $\\overline{AC}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `등변사다리꼴 $ABCD$에서 $\\overline{AB}=\\overline{DC}$, $\\angle ABC=\\angle DCB$이고 $\\overline{BC}$는 공통이므로 삼각형 $ABC$와 삼각형 $DCB$는 합동이다.\n따라서 $\\angle ACB=\\angle DBC$이므로 삼각형 $OBC$는 이등변삼각형이고 $\\overline{OC}=\\overline{OB}=${q}\\,\\mathrm{cm}$이다.\n그러므로 $\\overline{AC}=\\overline{OA}+\\overline{OC}=${p}+${q}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, p, q, x },
+          figureSpec: figIsoTrapDiag28(p / q),
+        };
+      }
+      const c = p + q;
+      const x = q;
+      return {
+        content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{BD}=${c}\\,\\mathrm{cm}$, $\\overline{OD}=${p}\\,\\mathrm{cm}$일 때, $\\overline{OC}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `등변사다리꼴 $ABCD$에서 $\\overline{AB}=\\overline{DC}$, $\\angle ABC=\\angle DCB$이고 $\\overline{BC}$는 공통이므로 삼각형 $ABC$와 삼각형 $DCB$는 합동이다.\n따라서 $\\angle ACB=\\angle DBC$이므로 삼각형 $OBC$는 이등변삼각형이고 $\\overline{OC}=\\overline{OB}$이다.\n$\\overline{OB}=\\overline{BD}-\\overline{OD}=${c}-${p}=${x}\\,(\\mathrm{cm})$이므로 $\\overline{OC}=${x}\\,\\mathrm{cm}$이다.`,
+        facts: { mode, p, q, c, x },
+        figureSpec: figIsoTrapDiag28(p / q),
+      };
+    },
+  ),
+
+  def(
+    "29",
+    "등변사다리꼴의 둘레의 길이",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const a = intBetween(rng, 4, 14);
+      const b = a + 2 * intBetween(rng, 1, 8);
+      const gap = (b - a) / 2;
+      // 빗변이 밑변 차의 절반보다 길어야 사다리꼴이 닫힌다.
+      const c = attempt(80, () => {
+        const v = intBetween(rng, 3, 18);
+        return v > gap + 1 ? v : null;
+      });
+      const peri = a + b + 2 * c;
+      const h = r2(Math.sqrt(c * c - gap * gap));
+      const fig = figIsoTrap(a * 10, b * 10, h * 10, {});
+      if (mode === 0) {
+        return {
+          content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{AB}=${c}\\,\\mathrm{cm}$일 때, $\\square ABCD$의 둘레의 길이를 구하시오.`,
+          answer: `$${peri}\\,\\mathrm{cm}$`,
+          solution: `등변사다리꼴은 평행하지 않은 두 변의 길이가 같으므로 $\\overline{DC}=\\overline{AB}=${c}\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $${a}+${b}+${c}+${c}=${peri}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, a, b, c, peri, x: peri },
+          figureSpec: fig,
+        };
+      }
+      return {
+        content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$이고 $\\square ABCD$의 둘레의 길이가 $${peri}\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.`,
+        answer: `$${c}\\,\\mathrm{cm}$`,
+        solution: `등변사다리꼴은 평행하지 않은 두 변의 길이가 같으므로 $\\overline{AB}=\\overline{DC}$이다.\n$\\overline{AB}+\\overline{DC}=${peri}-${a}-${b}=${2 * c}\\,(\\mathrm{cm})$이므로 $\\overline{AB}=${2 * c}\\div2=${c}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, c, peri, x: c },
+        figureSpec: fig,
+      };
+    },
+  ),
+
+  def(
+    "30",
+    "등변사다리꼴에 그은 평행한 보조선",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const a = intBetween(rng, 4, 14);
+      const b = a + 2 * intBetween(rng, 1, 8);
+      const gap = (b - a) / 2;
+      const c = attempt(80, () => {
+        const v = intBetween(rng, 3, 18);
+        return v > gap + 1 ? v : null;
+      });
+      const be = b - a;
+      const h = r2(Math.sqrt(c * c - gap * gap));
+      const fig = figIsoTrapAux30(a * 10, b * 10, h * 10);
+      const intro = `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 꼭짓점 $A$를 지나 $\\overline{DC}$에 평행한 직선이 $\\overline{BC}$와 만나는 점을 $E$라 하자.`;
+      if (mode === 0) {
+        return {
+          content: `${intro} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.`,
+          answer: `$${be}\\,\\mathrm{cm}$`,
+          solution: `$\\overline{AD}\\parallel\\overline{EC}$이고 $\\overline{AE}\\parallel\\overline{DC}$이므로 $\\square AECD$는 평행사변형이고 $\\overline{EC}=\\overline{AD}=${a}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{BE}=\\overline{BC}-\\overline{EC}=${b}-${a}=${be}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, a, b, c, be, x: be },
+          figureSpec: fig,
+        };
+      }
+      const x = be + 2 * c;
+      return {
+        content: `${intro} $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{AB}=${c}\\,\\mathrm{cm}$일 때, 삼각형 $ABE$의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `$\\square AECD$는 평행사변형이므로 $\\overline{EC}=\\overline{AD}=${a}\\,\\mathrm{cm}$이고 $\\overline{BE}=${b}-${a}=${be}\\,(\\mathrm{cm})$이다.\n또 $\\overline{AE}=\\overline{DC}=\\overline{AB}=${c}\\,\\mathrm{cm}$이므로 삼각형 $ABE$의 둘레의 길이는 $${c}+${be}+${c}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, c, be, x },
+        figureSpec: fig,
+      };
+    },
+  ),
+];

@@ -1,0 +1,23 @@
+{
+  "asOf": "2026-08-26",
+  "command": "npx tsx scripts/qa/census-elem-stem-frames.ts",
+  "method": "generateElementaryProblem × 230소단원 × 4갈래 × 씨앗 12. 지문은 $수식$과 숫자를 N으로만 지움.",
+  "warning": "한글 소재(사과/배, 막대그래프 항목명)는 안 지워진다. 최고 47이 막대그래프인 것이 과대의 증거. 이 수를 갈래 수 목표로 쓰지 마라.",
+  "sections": 230,
+  "generated": 11040,
+  "failed": 0,
+  "seedsPerTier": 12,
+  "frames": {
+    "min": 4,
+    "avg": 15.2,
+    "max": 47,
+    "below10": 92,
+    "at4": 12
+  },
+  "byGrade": {
+    "초3": { "n": 56, "min": 5, "below10": 3 },
+    "초4": { "n": 62, "min": 4, "below10": 37 },
+    "초5": { "n": 56, "min": 4, "below10": 26 },
+    "초6": { "n": 56, "min": 4, "below10": 26 }
+  }
+}

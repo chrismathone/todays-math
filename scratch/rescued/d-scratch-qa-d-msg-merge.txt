@@ -1,0 +1,41 @@
+merge: main (갈래 C 30/30 포함) — 그리고 `isCatalogType` 규약으로 갈아탄다
+
+main 이 54커밋 앞서 있었다. 판정기 전체 39 → **69 / 130**, 내 몫은 15 / 25 그대로.
+
+## 이 병합의 알맹이 — 검산이 사는 자리가 바뀌었다
+
+main 이 2026-08-27 에 `src/__tests__/helpers/rpmCatalog.ts` 와 `isCatalogType` 을
+세웠다. 모듈 시험은 **색인 유형만** 보고, 갈래들이 지은 **확장 유형**의 검산은
+그 갈래의 시험이 든다. 내 앞 두 커밋은 그 규약 **이전** 모양이라
+`middleM2Geo.test.ts` 의 검산표·명부에 18~27 을 직접 끼워 넣고 있었다.
+
+  · `middleM2Geo.test.ts` · `middleTypeCoverage.test.ts` → **main 쪽을 그대로** 쓴다
+    (main 것이 더 세다 — 확장인데 제목이 색인과 같으면 「같은 유형을 두 번 세었다」로
+     문다. 내 판에는 그 축이 없었다.)
+  · 18~27 의 값 검산은 `midTypesD.test.ts` 로 옮겼다(`EXT_VERIFY`).
+    `GEO_QUAD_EXT` 가 «색인 밖 번호»를 스스로 세므로 **28~30 을 지으면 검산 없이는
+    빨개진다** — 손 목록이 아니다.
+
+옮기면서 잃은 것 없음: 도형을 세워 재는 검산 열, 답↔`facts.x`, 그림 존재·유한·
+라벨⊂facts, 4문항 서로 다름, 그리고 「그림이 발문의 비·각을 그대로 그리는가」까지
+그대로 왔다.
+
+## `scratch/BRIEF.md` 는 **갈래마다 다른 파일**이 같은 이름을 쓴다
+
+main 에는 갈래 C 의 브리프가, 내 쪽에는 D 의 브리프가 있었다. 한쪽을 고르면 다른
+갈래의 브리프가 사라진다. main 것을 `BRIEF.md` 로 두고 내 것을 `BRIEF-D.md` 로
+옮겨 **둘 다 남겼다**. (`scratch/RESUME.md` 는 `BRIEF.md` 를 가리키므로 갈래 D 를
+이어받는 사람은 `BRIEF-D.md` 를 볼 것.)
+
+## 🔴 main 이 지금 `npx tsc --noEmit` 에서 빨갛다 (내 것이 아니다)
+
+    scripts/import/load-classified.ts(179,30): 'held' does not exist ...
+    scripts/import/load-classified.ts(181,9): 'unitGradeById' does not exist ...
+
+`5df3c90d revert(적재): 남의 세션 미커밋 파일 셋을 앞 커밋에서 뺀다` 가
+`src/lib/import/toLoadRows.ts` 를 되돌렸는데 **부르는 쪽**(`load-classified.ts`)은
+그대로 남았다. 되돌림이 반쪽이라 호출부가 없는 필드를 destructure 한다.
+`git show main:` 로 대조해 확인했다 — 병합 탓이 아니고 **main 단독으로 빨갛다.**
+공용 파일이고 다른 세션의 작업 중인 자리라 내가 고치지 않았다.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

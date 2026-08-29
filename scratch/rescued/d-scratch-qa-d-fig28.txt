@@ -1,0 +1,66 @@
+/**
+ * 28 — 등변사다리꼴 ($\overline{AD}\parallel\overline{BC}$) 과 두 대각선의 교점 $O$.
+ *
+ * `adOverBc` 는 두 평행한 변의 길이의 비다. 등변사다리꼴에서
+ * $\overline{AO}:\overline{OC}=\overline{AD}:\overline{BC}$ 이므로 그 값으로 찍으면
+ * $O$ 가 $\overline{BD}$ 위에도 실제로 놓인다.
+ */
+function figIsoTrapDiag28(adOverBc: number): Fig {
+  const BC = 176;
+  const ad = BC * adOverBc;
+  const h = 92;
+  const off = (BC - ad) / 2;
+  const A: XY = [r2(off), h];
+  const B: XY = [0, 0];
+  const C: XY = [BC, 0];
+  const D: XY = [r2(off + ad), h];
+  const f = ad / (ad + BC);
+  const O: XY = [r2(A[0] + f * (C[0] - A[0])), r2(A[1] + f * (C[1] - A[1]))];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D, O }),
+    segments: {
+      AD: { points: ["A", "D"], parallel: 1 },
+      BC: { points: ["B", "C"], parallel: 1 },
+      AB: { points: ["A", "B"], ticks: 1 },
+      DC: { points: ["D", "C"], ticks: 1 },
+      AO: ["A", "O"],
+      OC: ["O", "C"],
+      BO: ["B", "O"],
+      OD: ["O", "D"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D", O: "O" },
+  };
+}
+
+/**
+ * 30 — 등변사다리꼴에 꼭짓점 $A$ 를 지나 $\overline{DC}$ 에 평행한 보조선 $\overline{AE}$.
+ *
+ * $\square AECD$ 가 평행사변형이 되므로 $\overline{BE}=\overline{BC}-\overline{AD}$ 이고
+ * $\triangle ABE$ 는 이등변삼각형이다 — 그 두 가지가 이 유형의 전부라 그림도
+ * **그렇게 보이게** 찍는다. $E$ 는 계산이 아니라 «$\overline{DC}$ 와 나란한 방향»으로 잡는다.
+ */
+function figIsoTrapAux30(top: number, bottom: number, height: number): Fig {
+  const off = (bottom - top) / 2;
+  const A: XY = [r2(off), height];
+  const B: XY = [0, 0];
+  const C: XY = [bottom, 0];
+  const D: XY = [r2(off + top), height];
+  const E: XY = [r2(A[0] + (C[0] - D[0])), 0];
+  return {
+    version: 2,
+    points: fitPts({ A, B, C, D, E }),
+    // ⚠️ tick 은 **주어진 것만**. $\overline{AB}=\overline{DC}$ 는 등변사다리꼴이라는
+    //    조건이지만 $\overline{AE}=\overline{DC}$ 는 **풀어서 얻는 결론**이다 —
+    //    거기에 tick 을 찍으면 그림이 답을 미리 말해 버린다.
+    segments: {
+      AD: { points: ["A", "D"], parallel: 1 },
+      BC: { points: ["B", "C"], parallel: 1 },
+      AB: { points: ["A", "B"], ticks: 1 },
+      DC: { points: ["D", "C"], ticks: 1 },
+      AE: ["A", "E"],
+    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E" },
+  };
+}
+
