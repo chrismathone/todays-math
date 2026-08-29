@@ -78,6 +78,16 @@ function term(k: number, sym: string): string {
   return `${k}${sym}`;
 }
 
+/**
+ * 주격 조사 — `$41$이` · `$5$가`.
+ *
+ * ⚠️ 받침 판정은 `m2Josa.eulReul` **한 곳**에서 온다(규칙을 두 벌로 두지 않는다).
+ *    05 는 등식이 문자 `b` 로 끝나 늘 「가」인데, 여기는 **수로 끝나서** 수마다 갈린다.
+ */
+function iGa(n: number): "이" | "가" {
+  return eulReul(n) === "을" ? "이" : "가";
+}
+
 /** 뒤에 이어 붙이는 항 — 늘 부호를 앞세운다. `+3b` · `-4b`. */
 function sterm(k: number, sym: string): string {
   return `${k < 0 ? "-" : "+"}${Math.abs(k)}${sym}`;
@@ -177,13 +187,17 @@ const EQUATION_MEANING: TypeEntry[] = [
         const T = a * u + b * v;
         if (Math.abs(S) < 2) return null; // `1x`·`0x` 를 지면에 안 쓴다
         if (T === 0) return null;
-        const lhs = `${a}\\left(x${signed(u)}\\right)${b < 0 ? "-" : "+"}${Math.abs(b)}\\left(x${signed(v)}\\right)`;
+        // 🔴 좌변은 **글자 $a$, $b$ 로** 찍는다. 값을 찍으면 등식이 이미 정해져
+        //    「상수 $a$, $b$」가 발문 어디에도 없는 문항이 되어 **풀 수가 없다**
+        //    — 값 검산은 답이 맞으니 통과한다(첫 판이 실제로 그랬다).
+        const lhs = `a\\left(x${signed(u)}\\right)+b\\left(x${signed(v)}\\right)`;
         const rhs = `${S}x${signed(T)}`;
         const x = a * b;
+        const bTex = b < 0 ? `\\left(${b}\\right)` : `${b}`;
         return {
-          content: `등식 $${lhs}=${rhs}$가 $x$에 대한 항등식일 때, 상수 $a$, $b$에 대하여 $ab$의 값을 구하시오.`,
+          content: `등식 $${lhs}=${rhs}$${iGa(T)} $x$에 대한 항등식일 때, 상수 $a$, $b$에 대하여 $ab$의 값을 구하시오.`,
           answer: `$${x}$`,
-          solution: `좌변을 전개하여 정리하면 $\\left(a+b\\right)x${sterm(u, "a")}${sterm(v, "b")}$이다.\n항등식이므로 양변의 $x$의 계수와 상수항이 각각 같다.\n$a+b=${S}$, $${term(u, "a")}${sterm(v, "b")}=${T}$이므로 이를 연립하여 풀면 $a=${a}$, $b=${b}$이다.\n따라서 $ab=${a}\\times\\left(${b}\\right)=${x}$이다.`,
+          solution: `좌변을 전개하여 정리하면 $\\left(a+b\\right)x${sterm(u, "a")}${sterm(v, "b")}$이다.\n항등식이므로 양변의 $x$의 계수와 상수항이 각각 같다.\n$a+b=${S}$, $${term(u, "a")}${sterm(v, "b")}=${T}$이므로 이를 연립하여 풀면 $a=${a}$, $b=${b}$이다.\n따라서 $ab=${a}\\times${bTex}=${x}$이다.`,
           facts: { a, b, u, v, S, T, x },
         };
       }),
@@ -318,7 +332,7 @@ const LINEAR_SOLVE: TypeEntry[] = [
         return {
           content: `일차방정식 $${expr}=${c}$의 계수를 모두 정수로 고치기 위하여 양변에 곱해야 하는 가장 작은 자연수를 구하시오.`,
           answer: `$${K}$`,
-          solution: `계수를 정수로 고치려면 두 분모 $${m}$${waGwa(m)} $${n}$의 공배수를 양변에 곱해야 한다.\n$${m}$${waGwa(m)} $${n}$의 최소공배수는 $${K}$이고, 양변에 $${K}$${eulReul(K)} 곱하면 $${cleared}$이 되어 모든 계수가 정수이다.\n따라서 구하는 가장 작은 자연수는 $${K}$이다.`,
+          solution: `계수를 정수로 고치려면 두 분모 $${m}$${waGwa(m)} $${n}$의 공배수를 양변에 곱해야 한다.\n$${m}$${waGwa(m)} $${n}$의 최소공배수는 $${K}$이므로 양변에 $${K}$${eulReul(K)} 곱하면 $${cleared}$이다.\n이때 모든 계수가 정수이고, $${K}$보다 작은 자연수 중에는 $${m}$${waGwa(m)} $${n}$의 공배수가 없다.\n따라서 구하는 가장 작은 자연수는 $${K}$이다.`,
           facts: { m, n, a, u, v, c, s, x: K },
         };
       }),
@@ -357,6 +371,9 @@ const COORD_TYPES: TypeEntry[] = [
         const B = pointTex("B", bx, by);
         const hi = horizontal ? Math.max(ax, bx) : Math.max(ay, by);
         const lo = horizontal ? Math.min(ax, bx) : Math.min(ay, by);
+        // 🔴 빼는 수가 $0$ 이면 해설에 `4-0=4` 가 나간다 — **값은 맞고 지면만 흉한**
+        //    부류라 값 검산이 구조적으로 못 본다. 지면 냄새 자가 실제로 잡았다.
+        if (lo === 0) return null;
         const shared = horizontal ? ay : ax;
         const sameAxis = horizontal ? "y" : "x";
         const diffAxis = horizontal ? "x" : "y";
@@ -486,7 +503,7 @@ const SPHERE_TYPES: TypeEntry[] = [
         return {
           content: `반지름의 길이가 $${R}\\,\\mathrm{cm}$인 쇠구슬을 녹여 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 쇠구슬을 만들려고 한다. 만들 수 있는 쇠구슬은 최대 몇 개인지 구하시오.`,
           answer: `$${x}$개`,
-          solution: `구의 부피는 $\\dfrac{4\\pi}{3}\\times(\\text{반지름})^{3}$이므로 두 구의 부피의 비는 반지름의 세제곱의 비와 같다.\n$${R}^{3}:${r}^{3}=${R * R * R}:${r * r * r}=${x}:1$이므로 큰 쇠구슬 하나로 작은 쇠구슬을 $${x}$개까지 만들 수 있다.\n따라서 구하는 개수는 $${x}$개이다.`,
+          solution: `구의 부피는 반지름의 길이의 세제곱에 정비례하므로 두 구의 부피의 비는 반지름의 길이의 세제곱의 비와 같다.\n$${R}^{3}:${r}^{3}=${R * R * R}:${r * r * r}=${x}:1$이므로 큰 쇠구슬 하나로 작은 쇠구슬을 $${x}$개까지 만들 수 있다.\n따라서 구하는 개수는 $${x}$개이다.`,
           facts: { R, r, k, x },
         };
       }),
