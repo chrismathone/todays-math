@@ -31,6 +31,7 @@
 
 import { describe, expect, it } from "vitest";
 
+import { pointsAtFigure } from "@/lib/middle/figureReference";
 import {
   generateMiddleProblem,
   generateMiddleSet,
@@ -76,15 +77,24 @@ const DONE_SECTIONS = [
     section: "평행선과 삼각형의 넓이",
   },
   { entries: M2_GEO_QUAD, section: "직사각형, 마름모, 정사각형" },
+  { entries: M2_GEO_QUAD, section: "등변사다리꼴, 여러 가지 사각형" },
 ] as const;
 
 describe("중등 유형 갈래 D", () => {
+  // ⚠️ **「정확히 10」이 아니라 「10 이상」이다.** 일일테스트 한 장이 10문항이고
+  //    같은 문항류는 한 장에 하나뿐이므로(원장님 2026-08-26) 지키려는 성질은
+  //    「10문항을 낼 수 있는가」다 — 11번째 유형은 그 성질을 **더 잘** 채운다.
+  //    `toHaveLength(10)` 은 여유를 둔 소단원에서 «채웠다»를 실패로 읽는다
+  //    (등변사다리꼴은 12유형이다). 중복 키 검사는 그대로 둔다 — 그쪽이
+  //    「서로 다른 유형인가」를 지키는 자리다.
   it.each(DONE_SECTIONS)(
-    "$section 소단원은 서로 다른 유형 10개를 갖는다",
+    "$section 소단원은 서로 다른 유형 10개 이상을 갖는다",
     ({ entries, section }) => {
       const selected = entries.filter((entry) => entry.unitSection === section);
-      expect(selected).toHaveLength(10);
-      expect(new Set(selected.map((entry) => entry.key)).size).toBe(10);
+      expect(selected.length).toBeGreaterThanOrEqual(10);
+      expect(new Set(selected.map((entry) => entry.key)).size).toBe(
+        selected.length,
+      );
     },
   );
 
@@ -193,6 +203,113 @@ const EXT_VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
     const bd = f.root! + f.s!;
     // 두 대각선이 같아야 등변이고, **그때의 AC 가 답**이다.
     return ac === bd && ac > 0 && f.x === ac;
+  },
+
+  // ── 등변사다리꼴 29~32 (2026-08-29, 이 회차) ───────────────────
+  //
+  // 넷 다 **도형을 좌표로 세워 잰다.** 넓이는 신발끈, 길이는 두 점 거리,
+  // 각은 세 점에서 직접 — 생성기가 쓴 공식(사다리꼴 넓이·둘레·보각·대각선 곱)을
+  // 한 줄도 옮겨 적지 않는다. 옮기면 그 순간 동어반복이라 아무것도 안 지킨다.
+
+  // 29 — 넓이/둘레 계산. 세운 사다리꼴이 **정말 등변인지**(두 다리가 같은지)
+  //      부터 보고, 그 도형에서 넓이·둘레를 잰다.
+  "2-2|여러 가지 사각형|29": (f) => {
+    const off = (f.b! - f.a!) / 2;
+    // 모드 1 은 높이가 발문에 없다 — 다리 길이에서 되찾는다(존재 조건도 여기서 갈린다).
+    const h = f.mode === 0 ? f.h! : Math.sqrt(f.c! * f.c! - off * off);
+    if (!(h > 0) || !(off > 0)) return false;
+    const A: P2 = [off, h];
+    const B: P2 = [0, 0];
+    const C: P2 = [f.b!, 0];
+    const D: P2 = [off + f.a!, h];
+    // AD ∥ BC (두 변이 같은 높이) 이고 두 다리가 같다 — 그래야 등변사다리꼴이다.
+    if (A[1] !== D[1] || B[1] !== C[1]) return false;
+    if (!near(dist(A, B), dist(D, C))) return false;
+    if (f.mode === 0) {
+      return near(triArea(A, B, C) + triArea(A, C, D), f.x!);
+    }
+    return (
+      near(dist(A, B), f.c!) &&
+      near(dist(A, B) + dist(B, C) + dist(C, D) + dist(D, A), f.x!)
+    );
+  },
+
+  // 30 — 두 대각선의 교점 O. 「대각선이 이등변삼각형을 만든다」가 이 유형이
+  //      **쓰는 성질**이라 그것을 가정하면 검산이 동어반복이 된다. 그래서 O 를
+  //      `lineInter` 로 직접 풀고, 「두 대각선의 길이가 같다」도 도형에서 잰다.
+  "2-2|여러 가지 사각형|30": (f) => {
+    // 모드 0 은 비(OD:OB)만 맞추어 세우고 마지막에 스케일을 맞춘다 — 발문이
+    // 준 것은 길이 둘뿐이고 높이는 자유롭다.
+    const top = f.mode === 0 ? f.x! : 7;
+    const bottom = f.mode === 0 ? f.q! : 13;
+    if (!(top > 0) || !(bottom > top)) return false;
+    const h =
+      f.mode === 0
+        ? 5
+        : ((bottom + top) / 2) * Math.tan((f.t! * Math.PI) / 180);
+    const off = (bottom - top) / 2;
+    const A: P2 = [off, h];
+    const B: P2 = [0, 0];
+    const C: P2 = [bottom, 0];
+    const D: P2 = [off + top, h];
+    const O = lineInter(A, C, B, D);
+    if (!near(dist(A, C), dist(B, D), 1e-8)) return false;
+    if (f.mode === 0) {
+      const s = f.p! / dist(A, C); // 대각선이 $p$ 가 되도록 맞춘다
+      return (
+        near(dist(O, B) * s, f.q!, 1e-8) && near(dist(O, D) * s, f.x!, 1e-8)
+      );
+    }
+    return (
+      near(angleDeg(D, B, C), f.t!, 1e-8) && near(angleDeg(B, O, C), f.x!, 1e-8)
+    );
+  },
+
+  // 31 — 두 각. **답에서 도형을 세우고 발문의 조건**(비·차)이 성립하는지 잰다.
+  //      조건에서 답을 다시 계산하면 생성기의 식을 옮겨 적는 것이 된다.
+  "2-2|여러 가지 사각형|31": (f) => {
+    const angA = f.mode === 0 ? f.x! : f.x! + f.d!;
+    const off = 1 / Math.tan(((180 - angA) * Math.PI) / 180);
+    if (!(off > 0)) return false;
+    const A: P2 = [off, 1];
+    const B: P2 = [0, 0];
+    const C: P2 = [3 + 2 * off, 0];
+    const D: P2 = [off + 3, 1];
+    if (!near(dist(A, B), dist(D, C), 1e-8)) return false;
+    const gotA = angleDeg(B, A, D);
+    const gotB = angleDeg(A, B, C);
+    if (!near(gotA + gotB, 180, 1e-8)) return false;
+    if (f.mode === 0) {
+      return near(gotA, f.x!, 1e-8) && near(gotA * f.n!, gotB * f.m!, 1e-8);
+    }
+    return near(gotB, f.x!, 1e-8) && near(gotA - gotB, f.d!, 1e-8);
+  },
+
+  // 32 — 대각선 조건으로 사각형을 판별한다. 조건 그대로 두 대각선을 세우고
+  //      («서로 다른 것을 수직이등분» = 중점이 겹치고 직교) 판별 결과가 정말
+  //      그 사각형인지(네 변이 같다 / 이웃한 각이 직각) 도형에서 확인한다.
+  "2-2|여러 가지 사각형|32": (f) => {
+    const q = f.mode === 0 ? f.p! : f.q!;
+    const A: P2 = [-f.p! / 2, 0];
+    const C: P2 = [f.p! / 2, 0];
+    const B: P2 = [0, -q / 2];
+    const D: P2 = [0, q / 2];
+    const mid: P2 = [0, 0];
+    if (!near(dot(A, mid, B), 0)) return false; // 두 대각선이 수직
+    if (!near(dist(A, mid), dist(C, mid), 1e-8)) return false; // 서로 이등분
+    if (!near(dist(B, mid), dist(D, mid), 1e-8)) return false;
+    const sides = [dist(A, B), dist(B, C), dist(C, D), dist(D, A)];
+    if (!sides.every((s) => near(s, sides[0]!, 1e-8))) return false; // 마름모
+    const area = triArea(A, B, C) + triArea(A, C, D);
+    if (f.mode === 0) {
+      // 대각선 길이도 같다 → 정사각형. 이웃한 두 변이 직각을 이룬다.
+      return (
+        near(dist(A, C), dist(B, D), 1e-8) &&
+        near(dot(A, B, C), 0, 1e-8) &&
+        near(area, f.x!, 1e-8)
+      );
+    }
+    return near(area, f.S!, 1e-8) && near(dist(B, D), f.x!, 1e-8);
   },
   // ── 평행선과 삼각형의 넓이 18~23 ────────────────────────────────
   // 여기서부터는 «식을 다시 세운다»가 아니라 **도형을 실제로 세워 넓이를 잰다.**
@@ -393,15 +510,26 @@ describe("갈래 D 가 m2GeoQuad 에 지은 확장 유형", () => {
         }
       });
 
-      it("그림이 있고, 스펙의 수는 전부 유한하며, 숫자 라벨은 facts 에 있다", () => {
+      // 🔴 종전에는 **「그림이 있다」**를 요구했다. 그것은 지키려는 성질이 아니다 —
+      //    지면에서 못 푸는 것은 「발문이 가리키는데 그림이 없는」 문항이고, 반대로
+      //    그림 없이 완전한 발문(판별 조건·비례식)은 **그려 주면 답을 말해 버린다**
+      //    (28 이 tick 을 못 찍는 것과 같은 자리). 그래서 짝을 **양방향**으로 묻는다.
+      it("발문이 가리키면 그림이 있고, 그림이 있으면 스펙이 성하다", () => {
         for (const seed of EXT_SEEDS) {
           const p = generateMiddleProblem(e.key, seed);
           const spec = p.figureSpec as Record<string, unknown> | null;
-          expect(spec, `${e.key} seed ${seed}: 그림이 없다`).not.toBeNull();
-          expect(spec!.version).toBe(2);
+          const pointer = pointsAtFigure(p.content);
+          if (spec === null) {
+            expect(
+              pointer,
+              `${e.key} seed ${seed}: 발문이 «${pointer}» 라 적는데 그림이 없다`,
+            ).toBeNull();
+            continue;
+          }
+          expect(spec.version).toBe(2);
           expect(everyNumberFinite(spec), "스펙에 NaN/무한대").toBe(true);
           const values = new Set(Object.values(p.facts));
-          for (const n of numericLabels(spec!)) {
+          for (const n of numericLabels(spec)) {
             expect(
               values.has(n),
               `${e.key} seed ${seed}: 그림 라벨 ${n} 이 facts 에 없다`,
@@ -440,6 +568,36 @@ describe("갈래 D 가 m2GeoQuad 에 지은 확장 유형", () => {
           Math.abs(dist(A!, B!) - dist(D!, C!)),
           `seed ${seed} v${v}: 다리가 같게 그려졌다`,
         ).toBeGreaterThan(1);
+      }
+    }
+  });
+
+  it("🔴 **30 의 그림에 대각선 치수를 적지 않는다** — 옆 변의 치수로 읽힌다", () => {
+    // 2026-08-29 실물 렌더로 드러난 결함이다. $\overline{AC}=35$ 를 대각선
+    // 곁에 놓았더니 배치기가 오른쪽 변 바깥으로 밀어 지면에서 «$\overline{DC}$
+    // 가 35» 로 읽혔다. 대각선에는 «옆에 놓을 바깥쪽»이 없다.
+    // 값 검산도 KaTeX 도 렌더도 셋 다 초록이라, 이 자리를 지키는 것은 이 줄뿐이다.
+    const KEY = "2-2|여러 가지 사각형|30";
+    for (const seed of EXT_SEEDS) {
+      for (let v = 0; v < 8; v += 1) {
+        const spec = generateMiddleProblem(KEY, seed, v).figureSpec as Record<
+          string,
+          unknown
+        >;
+        const nums = numericLabels(spec);
+        // 각 라벨(`43°`)은 각이 붙은 자리를 스스로 가리키므로 셈에서 뺀다 —
+        // 여기서 막으려는 것은 **길이**를 선분 곁에 적는 것이다.
+        const angleLabels = new Set(
+          Object.values(
+            (spec.angles ?? {}) as Record<string, { label?: unknown }>,
+          )
+            .map((a) => (typeof a?.label === "string" ? a.label : ""))
+            .map((s) => Number(/^(\d+(?:\.\d+)?)/.exec(s)?.[1] ?? NaN)),
+        );
+        expect(
+          nums.filter((n) => !angleLabels.has(n)),
+          `30 seed ${seed} v${v}: 그림에 치수 라벨이 있다`,
+        ).toEqual([]);
       }
     }
   });
@@ -497,6 +655,43 @@ describe("갈래 D 가 m2GeoQuad 에 지은 확장 유형", () => {
         Math.abs(angleDeg(p27.P!, p27.A!, p27.B!) - f27.a!),
         `27 seed ${seed}: 그림의 각이 발문과 다르다`,
       ).toBeLessThan(0.5);
+
+      // 30 — 교점 $O$ 가 정말 두 대각선 위에 있고, 지면의 비·각이 발문과 같다.
+      //      대각선을 반쪽으로 끊어 그리므로 «O 가 어긋난 채로 그려지는» 것이
+      //      에러 없이 지나갈 수 있다(23 이 같은 자리를 지킨다).
+      const k30 = "2-2|여러 가지 사각형|30";
+      for (let v = 0; v < 6; v += 1) {
+        const g30 = generateMiddleProblem(k30, seed, v);
+        const f30 = g30.facts;
+        const q30 = (g30.figureSpec as { points: Record<string, P2> }).points;
+        const span30 = Math.max(dist(q30.A!, q30.C!), dist(q30.B!, q30.D!));
+        expect(
+          triArea(q30.A!, q30.O!, q30.C!) / span30,
+          `30 seed ${seed} v${v}: O 가 대각선 AC 밖이다`,
+        ).toBeLessThan(0.05);
+        expect(
+          triArea(q30.B!, q30.O!, q30.D!) / span30,
+          `30 seed ${seed} v${v}: O 가 대각선 BD 밖이다`,
+        ).toBeLessThan(0.05);
+        // 등변사다리꼴이면 두 대각선의 길이가 같다 — 지면에서도 그래야 한다.
+        expect(
+          Math.abs(dist(q30.A!, q30.C!) - dist(q30.B!, q30.D!)) / span30,
+          `30 seed ${seed} v${v}: 지면의 두 대각선 길이가 다르다`,
+        ).toBeLessThan(0.02);
+        if (f30.mode === 0) {
+          expect(
+            Math.abs(
+              dist(q30.O!, q30.B!) / dist(q30.O!, q30.D!) - f30.q! / f30.x!,
+            ),
+            `30 seed ${seed} v${v}: 지면의 $\\overline{OB}:\\overline{OD}$ 가 발문과 다르다`,
+          ).toBeLessThan(0.02);
+        } else {
+          expect(
+            Math.abs(angleDeg(q30.D!, q30.B!, q30.C!) - f30.t!),
+            `30 seed ${seed} v${v}: 지면의 $\\angle DBC$ 가 발문과 다르다`,
+          ).toBeLessThan(0.5);
+        }
+      }
     }
   });
 });

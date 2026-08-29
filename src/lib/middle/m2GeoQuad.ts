@@ -387,6 +387,68 @@ function figTrap(
   };
 }
 
+/**
+ * 등변사다리꼴 (AD∥BC) + **두 대각선과 그 교점 O**.
+ *
+ * ⚠️ 대각선을 통짜로 긋지 않고 **반쪽 넷**(AO·OC·BO·OD)으로 끊는다 — O 를
+ *    점으로 세우려면 거기서 끊어야 한다. 그러면 ∠DBC 의 광선 BD 를 덮는
+ *    선분이 없어지므로 각은 `BO` 로 가리킨다(`figMidSquare09` 주석의 그 검사).
+ *
+ * 🔴 **대각선의 치수는 여기에 안 적는다** (2026-08-29, 실물 렌더로 드러났다).
+ *    $\overline{AC}=35$ 를 대각선 옆에 놓았더니 배치기가 그것을 오른쪽 변
+ *    바깥으로 밀어 지면에서 **$\overline{DC}=35$ 로 읽혔다.** $\overline{OB}$ 도
+ *    같은 식으로 밑변 옆에 앉아 $\overline{BC}$ 처럼 보였다. 대각선은 변과 달리
+ *    «옆에 놓을 바깥쪽»이 없다 — 어느 쪽으로 밀어도 다른 변이 먼저 있다.
+ *    값 검산·KaTeX·렌더 성공 여부가 **셋 다 초록**인 채로 지면만 거짓말한다.
+ *    그래서 치수는 발문에만 두고 그림은 **배치**(꼭짓점 이름·평행·교점)만 말한다.
+ *
+ * O 의 자리는 «중점»이 아니다 — 두 대각선의 교점은 대칭축 위에서 아랫변:윗변
+ * 으로 높이를 내분한다. 그것을 여기서 **한 번만** 계산한다.
+ */
+function figIsoTrapDiags(
+  top: number,
+  bottom: number,
+  height: number,
+  opts: { angDBC?: string },
+): Fig {
+  const off = (bottom - top) / 2;
+  const oy = r2((height * bottom) / (bottom + top));
+  const pts: Record<string, XY> = {
+    A: [off, height],
+    B: [0, 0],
+    C: [bottom, 0],
+    D: [off + top, height],
+    O: [r2(bottom / 2), oy],
+  };
+  const angles: Record<string, unknown> = {};
+  const labels: Record<string, string> = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    O: "O",
+  };
+  if (opts.angDBC !== undefined) {
+    angles.angDBC = { vertex: "B", points: ["O", "C"], label: opts.angDBC };
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments: {
+      AD: { points: ["A", "D"], parallel: 1 },
+      BC: { points: ["B", "C"], parallel: 1 },
+      AB: { points: ["A", "B"], ticks: 1 },
+      DC: { points: ["D", "C"], ticks: 1 },
+      AO: ["A", "O"],
+      OC: ["O", "C"],
+      BO: ["B", "O"],
+      OD: ["O", "D"],
+    },
+    angles,
+    labels,
+  };
+}
+
 /** 정사각형 각 변 위에 AE=BF=CG=DH — 네 조각에 tick, 안쪽 사각형 EFGH. */
 function figMidSquare09(s: number, t: number): Fig {
   const pts: Record<string, XY> = {
@@ -585,6 +647,27 @@ export const QUAD11_SHAPES: readonly (readonly [
   ["마름모", false, true, true],
   ["등변사다리꼴", true, false, false],
   ["정사각형", true, true, true],
+] as const;
+
+/**
+ * 유형 31 이 쓰는 «$\angle A:\angle B$» 의 비 (기약).
+ *
+ * $\overline{AD}\parallel\overline{BC}$ 라 두 각의 합이 $180^\circ$ 다. 그래서
+ * **합 $m+n$ 이 $180$ 의 약수**여야 각이 정수로 떨어진다 — 아무 비나 쓰면
+ * $\angle A$ 가 소수점이 되고, 그건 에러가 아니라 지면에 그대로 나간다.
+ * 그리고 $m>n$ 으로 둔다: 윗변이 짧은 보통 배치에서 $\angle A$ 가 둔각이다.
+ */
+const TRAP31_RATIOS: readonly (readonly [number, number])[] = [
+  [2, 1],
+  [3, 1],
+  [3, 2],
+  [5, 4],
+  [7, 3],
+  [7, 5],
+  [8, 7],
+  [11, 7],
+  [11, 9],
+  [13, 7],
 ] as const;
 
 /** 보기 기호 — 발문에 ㄱ·ㄴ·… 으로 늘어놓는다. */
@@ -1357,6 +1440,206 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         solution: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴이 등변사다리꼴이 되려면 두 대각선의 길이가 같아야 한다.\n$${p}x+${q}=x+${s}$에서 $${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이다.\n따라서 $\\overline{AC}=${p}\\times${x}+${q}=${len}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, p, q, s, root: x, x: len },
         figureSpec: figTrap(80, 160, 90, 24, { diagAC: true, diagBD: true }),
+      };
+    },
+  ),
+
+  /**
+   * **29 — 등변사다리꼴의 넓이와 둘레** (2026-08-29 추가, 밑단 `연산`).
+   *
+   * 이 소단원에는 `연산` 갈래가 **하나도 없었다.** 밑단이 비면 「쉬운 문항이
+   * 없다」가 아니라 **하위반 프리셋(연산 40%)이 이 소단원에서 한 문항도 못
+   * 세운다** — 계속 대체만 한다(D-106, `tier.ts` 머리말).
+   *
+   * 07·08 은 성질을 한 번 거쳐야 수가 나온다(양 끝 각이 같다 · 수선의 발로
+   * 자른 두 조각이 합동이다). 여기서는 **필요한 수가 발문에 전부 있다** —
+   * 넣어서 계산하는 것이 전부다. 그게 밑단이다.
+   *
+   * ⚠️ **그림을 붙이지 않는다.** 치수를 발문이 다 말하므로 그림은 아무것도
+   *    더하지 않는다. 발문이 그림을 가리키지도 않으므로 지면에서 그대로 풀린다.
+   *    (`resolveMiddleTier` 도 그림이 붙은 문항은 밑단으로 안 내린다 — 여기서는
+   *    `연산` 을 직접 등록하지만, 그림 없는 쪽이 그 규칙과도 결이 맞는다.)
+   */
+  def(
+    "29",
+    "등변사다리꼴의 넓이와 둘레",
+    SEC.등변사다리꼴,
+    "연산",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      const a = intBetween(rng, 3, 12);
+      if (mode === 0) {
+        // 두 밑변의 **차를 짝수**로 두면 합도 짝수라 넓이가 정수로 떨어진다.
+        const b = a + 2 * intBetween(rng, 1, 8);
+        const h = intBetween(rng, 4, 14);
+        const x = ((a + b) * h) / 2;
+        return {
+          content: `윗변의 길이가 $${a}\\,\\mathrm{cm}$, 아랫변의 길이가 $${b}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$인 등변사다리꼴의 넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `사다리꼴의 넓이는 두 밑변의 길이의 합에 높이를 곱한 뒤 $2$로 나눈 것이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times(${a}+${b})\\times${h}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, a, b, h, x },
+          figureSpec: null,
+        };
+      }
+      // 🔴 다리가 밑변 차의 절반보다 **길어야** 등변사다리꼴이 존재한다.
+      //    `d < c` 로 두어 높이 $\sqrt{c^2-d^2}$ 가 실수가 되게 못 박는다 —
+      //    아니면 지면에 «있을 수 없는 도형»의 둘레가 나간다(값 검산은 통과한다).
+      const c = intBetween(rng, 4, 13);
+      const d = intBetween(rng, 1, c - 1);
+      const b = a + 2 * d;
+      const x = a + b + 2 * c;
+      return {
+        content: `윗변의 길이가 $${a}\\,\\mathrm{cm}$, 아랫변의 길이가 $${b}\\,\\mathrm{cm}$이고 평행하지 않은 한 변의 길이가 $${c}\\,\\mathrm{cm}$인 등변사다리꼴의 둘레의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `등변사다리꼴은 평행하지 않은 두 변의 길이가 같으므로 그 두 변의 길이의 합은 $${c}\\times2=${2 * c}\\,(\\mathrm{cm})$이다.\n따라서 둘레의 길이는 $${a}+${b}+${2 * c}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, a, b, c, d, x },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  /**
+   * **30 — 등변사다리꼴의 두 대각선** (2026-08-29 추가).
+   *
+   * 07 은 «각», 08 은 «변»을 묻고 **둘 다 대각선을 안 쓴다**(07 의 mode 1 이
+   * $\overline{BD}$ 를 긋지만 이등변삼각형 논증이고 교점은 안 나온다).
+   * 여기서 쓰는 성질은 둘이고 그 둘이 이 유형의 전부다:
+   *
+   *   ⑴ 두 대각선의 길이가 같다 → $\overline{OD}=\overline{AC}-\overline{OB}$
+   *   ⑵ $\triangle OBC$ 가 이등변이다 → $\angle BOC=180^\circ-2\angle DBC$
+   *
+   * 11 이 「어느 사각형이 그 성질을 갖나」를 표로 묻는다면, 여기서는 **그 성질을
+   * 실제로 써서** 값을 낸다 — 시작(도형 하나)도 끝(길이·각)도 다르다.
+   */
+  def(
+    "30",
+    "등변사다리꼴의 두 대각선",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        // O 는 아랫변 쪽에 치우친다($\overline{AD}<\overline{BC}$) — `x < q` 가
+        // 그 조건이고, 동시에 그림의 윗변:아랫변 비이기도 하다.
+        const q = intBetween(rng, 8, 20);
+        const x = intBetween(rng, 3, q - 2);
+        const p = q + x;
+        return {
+          content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{AC}=${p}\\,\\mathrm{cm}$, $\\overline{OB}=${q}\\,\\mathrm{cm}$일 때, $\\overline{OD}$의 길이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}$`,
+          solution: `등변사다리꼴의 두 대각선의 길이는 같으므로 $\\overline{BD}=\\overline{AC}=${p}\\,\\mathrm{cm}$이다.\n점 $O$는 대각선 $BD$ 위의 점이므로 $\\overline{OD}=\\overline{BD}-\\overline{OB}=${p}-${q}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, p, q, x },
+          // 윗변:아랫변 $=\overline{OD}:\overline{OB}=x:q$ — 지면의 비가 발문과 같아야 한다.
+          // 치수는 안 적는다(까닭은 `figIsoTrapDiags` 머리말의 🔴).
+          figureSpec: figIsoTrapDiags(x * 8, q * 8, 96, {}),
+        };
+      }
+      const t = intBetween(rng, 25, 55);
+      const x = 180 - 2 * t;
+      // 그림의 $\angle DBC$ 가 실제로 $t$ 가 되게 높이를 역산한다. 교점 $O$ 는
+      // 대칭축 위에 있으므로 $\tan(\angle DBC)=h\div\frac{윗변+아랫변}{2}$ 다.
+      const top = 70;
+      const bottom = 140;
+      return {
+        content: `그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\angle DBC=${t}^\\circ$일 때, $\\angle BOC$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `등변사다리꼴에서 $\\triangle ABC$와 $\\triangle DCB$는 합동이므로 $\\angle ACB=\\angle DBC=${t}^\\circ$이다.\n삼각형 $OBC$의 세 각의 크기의 합은 $180^\\circ$이므로 $\\angle BOC=180^\\circ-${t}^\\circ-${t}^\\circ=${x}^\\circ$이다.`,
+        facts: { mode, t, x },
+        figureSpec: figIsoTrapDiags(
+          top,
+          bottom,
+          r2(((bottom + top) / 2) * Math.tan(t * DEG)),
+          { angDBC: `${t}°` },
+        ),
+      };
+    },
+  ),
+
+  /**
+   * **31 — 등변사다리꼴의 두 각의 크기** (2026-08-29 추가).
+   *
+   * 07 은 한 각의 **값**을 주고 다른 각을 묻는다. 여기서는 값을 하나도 안 주고
+   * **두 각의 관계**(비 · 차)만 준다 — 학생이 $\angle A+\angle B=180^\circ$ 를
+   * 세워 연립해야 한다. 07 의 숫자 바꾸기로는 이 자리에 못 온다.
+   *
+   * ⚠️ **그림을 붙이지 않는다.** 각의 값이 발문에 없는데 그림을 실제 각으로
+   *    그리면 그림이 답을 말해 버린다(28 이 다리 tick 을 못 찍는 것과 같은 자리).
+   *    조건이 각 관계뿐이라 그림 없이도 완전하다.
+   */
+  def(
+    "31",
+    "등변사다리꼴의 두 각의 크기",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const [m, n] =
+          TRAP31_RATIOS[intBetween(rng, 0, TRAP31_RATIOS.length - 1)]!;
+        const x = (180 * m) / (m + n);
+        return {
+          content: `$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A:\\angle B=${m}:${n}$일 때, $\\angle A$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle A+\\angle B=180^\\circ$이다.\n$\\angle A:\\angle B=${m}:${n}$이므로 $\\angle A=180^\\circ\\times\\dfrac{${m}}{${m + n}}=${x}^\\circ$이다.`,
+          facts: { mode, m, n, x },
+          figureSpec: null,
+        };
+      }
+      // 차를 짝수로 두어야 $\angle B=\frac{180-d}{2}$ 가 정수다.
+      const d = 2 * intBetween(rng, 5, 40);
+      const x = (180 - d) / 2;
+      return {
+        content: `$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A$가 $\\angle B$보다 $${d}^\\circ$만큼 클 때, $\\angle B$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle A+\\angle B=180^\\circ$이고, 조건에서 $\\angle A=\\angle B+${d}^\\circ$이다.\n두 식에서 $\\angle B+${d}^\\circ+\\angle B=180^\\circ$이므로 $\\angle B=\\dfrac{180^\\circ-${d}^\\circ}{2}=${x}^\\circ$이다.`,
+        facts: { mode, d, x },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  /**
+   * **32 — 대각선의 조건으로 사각형 판별하기** (2026-08-29 추가).
+   *
+   * 10·11 은 사각형의 **이름을 늘어놓고** 「몇 개인가」를 센다. 여기서는 반대다 —
+   * **조건이 먼저 오고 이름이 답이 아니다.** 학생은 조건에서 사각형을 가려낸 뒤
+   * 그 사각형의 성질로 값을 낸다. 12 와도 다르다(12 는 중점을 잇는다).
+   *
+   * ⚠️ **그림을 붙이지 않는다.** 이 유형이 묻는 것이 「어떤 사각형인가」인데
+   *    그리는 순간 그림이 답을 말한다 — 28 이 다리 tick 을 못 찍는 것과 같다.
+   *    조건이 대각선뿐이라 그림 없이 완전하다.
+   */
+  def(
+    "32",
+    "대각선의 조건으로 사각형 판별하기",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      // 대각선을 짝수로 두면 넓이 $\frac{pq}{2}$ 가 정수로 떨어진다.
+      const p = 2 * intBetween(rng, 3, 12);
+      if (mode === 0) {
+        const x = (p * p) / 2;
+        return {
+          content: `사각형 $ABCD$의 두 대각선이 서로 다른 것을 수직이등분하고, 두 대각선의 길이가 같다. $\\overline{AC}=${p}\\,\\mathrm{cm}$일 때, $\\square ABCD$의 넓이를 구하시오.`,
+          answer: `$${x}\\,\\mathrm{cm}^2$`,
+          solution: `두 대각선이 서로 다른 것을 이등분하므로 $\\square ABCD$는 평행사변형이고, 두 대각선이 서로 수직이므로 마름모이다.\n여기에 두 대각선의 길이까지 같으므로 $\\square ABCD$는 정사각형이다.\n$\\overline{BD}=\\overline{AC}=${p}\\,\\mathrm{cm}$이므로 넓이는 $\\dfrac{1}{2}\\times${p}\\times${p}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { mode, p, x },
+          figureSpec: null,
+        };
+      }
+      // 두 대각선이 같으면 정사각형이 되어 모드 0 과 같은 도형이 된다 — 가른다.
+      const x = attempt(60, () => {
+        const v = 2 * intBetween(rng, 3, 12);
+        return v !== p ? v : null;
+      });
+      const area = (p * x) / 2;
+      return {
+        content: `사각형 $ABCD$의 두 대각선이 서로 다른 것을 수직이등분한다. $\\overline{AC}=${p}\\,\\mathrm{cm}$이고 $\\square ABCD$의 넓이가 $${area}\\,\\mathrm{cm}^2$일 때, $\\overline{BD}$의 길이를 구하시오.`,
+        answer: `$${x}\\,\\mathrm{cm}$`,
+        solution: `두 대각선이 서로 다른 것을 수직이등분하므로 $\\square ABCD$는 마름모이다.\n마름모의 넓이는 두 대각선의 길이의 곱의 절반이므로 $\\dfrac{1}{2}\\times${p}\\times\\overline{BD}=${area}$이다.\n따라서 $\\overline{BD}=\\dfrac{2\\times${area}}{${p}}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, p, q: x, S: area, x },
+        figureSpec: null,
       };
     },
   ),
