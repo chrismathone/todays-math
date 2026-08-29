@@ -154,28 +154,44 @@ describe.runIf(hasEngine)("중등 그림 — 생성기 스펙을 제품이 그�
     expect(failed, failed.join("\n")).toEqual([]);
   }, 60_000);
 
-  it("실측 경계: AB 80px 는 던지고 83px 는 그린다 — 참은 렌더이지 제품 상수가 아니다", async () => {
-    // 생성기의 MIN_DIM_SIDE_PX 를 **읽지 않는다.** 그 상수를 기대값으로 쓰면
-    // 상수를 70 으로 망가뜨려도 초록이다(CLAUDE.md 2026-08-18).
-    // 자리는 실측 두 값이다: 12/16 @150° → 80px 던짐, 8/13 @120° → 83px 그림.
-    const failSpec = twoSidesSpec(12, 16, 150);
-    const passSpec = twoSidesSpec(8, 13, 120);
+  it("좁아서 치수를 못 놓으면 **그 치수만 빠지고 그림은 나온다** (원장님 확정 2026-08-29)", async () => {
+    // 🔴 계약이 바뀌었다. 종전에는 치수 하나가 안 들어가면 **그림이 통째로 안 나왔다.**
+    //    그러면 지면에 「그림과 같이…」만 남고 그림이 없다 — 치수 하나를 잃는 것보다
+    //    훨씬 나쁘다. 원장님 지시: 「치수선이 들어갈 만한 공간이 없는 좁은 도형은
+    //    억지로 치수선과 라벨을 입력하지 않도록 해.」
+    //
+    // 생성기의 `MIN_DIM_SIDE_PX` 를 **읽지 않는다.** 그 상수를 기대값으로 쓰면
+    // 상수를 망가뜨려도 초록이다(CLAUDE.md 2026-08-18). 자리는 실측 두 값이다:
+    //   5/16 @150° → AB 43px, 치수가 빠진다 · 12/16 @150° → AB 80px, 치수가 붙는다.
+    //
+    // ⚠️ 음성 대조가 **이 검사의 절반**이다. 「빠지는가」만 물으면 「늘 빠지는가」를
+    //    구조적으로 못 본다 — 아래 `wide` 가 빈 `droppedDimensions` 를 요구한다.
+    const narrow = twoSidesSpec(5, 16, 150);
+    const wide = twoSidesSpec(12, 16, 150);
     expect(
-      abPx(failSpec),
+      abPx(narrow),
+      "5/16 @150° 가 43px 근처가 아니면 이 검사는 다른 자리를 본다",
+    ).toBeCloseTo(43, 0);
+    expect(
+      abPx(wide),
       "12/16 @150° 가 80px 근처가 아니면 이 검사는 다른 자리를 본다",
     ).toBeCloseTo(80, 0);
+
+    const thin = await renderFigureSpec(narrow);
+    expect(thin.ok, thin.ok ? "" : thin.error).toBe(true);
+    // 좁은 쪽은 **AB 치수만** 빠진다 — 나머지(d_BC)는 그대로 붙어야 한다.
+    expect(thin.ok ? [...(thin.droppedDimensions ?? [])] : []).toEqual([
+      "d_AB",
+    ]);
+    expect(thin.ok ? thin.svg : "").toContain("16 cm");
+
+    const full = await renderFigureSpec(wide);
+    expect(full.ok, full.ok ? "" : full.error).toBe(true);
     expect(
-      abPx(passSpec),
-      "8/13 @120° 가 83px 근처가 아니면 이 검사는 다른 자리를 본다",
-    ).toBeCloseTo(83, 0);
-    const fail = await renderFigureSpec(failSpec);
-    const pass = await renderFigureSpec(passSpec);
-    expect(
-      fail.ok,
-      fail.ok ? "80px 가 그려지면 문턱 85 는 장식이다" : fail.error,
-    ).toBe(false);
-    expect(fail.ok ? "" : fail.error).toMatch(/d_AB/);
-    expect(pass.ok, pass.ok ? "" : pass.error).toBe(true);
+      full.ok ? [...(full.droppedDimensions ?? [])] : ["렌더 실패"],
+      "넉넉한 도형에서도 치수가 빠지면 «늘 빠지는» 것이다",
+    ).toEqual([]);
+    expect(full.ok ? full.svg : "").toContain("12 cm");
   }, 30_000);
 
   it("그림 지시 13유형은 스펙을 싣고 제품 경로로 그린다", async () => {

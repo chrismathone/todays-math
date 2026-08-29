@@ -19,7 +19,28 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { withDims } from "./figureDims";
 import type { MidProblem, TypeEntry } from "./types";
+
+/**
+ * 「`ad`·`db` 처럼 **두 점 이름**을 키로 쓰는 라벨 표」를 치수선 표로 바꾼다.
+ *
+ * 이 모듈의 그림 함수들은 길이 라벨을 `{ ad: "6 cm", db: "9 cm" }` 로 받고,
+ * 그 키가 곧 **끝점 두 개**다. 그러니 가짜 점을 만들 필요가 없다 —
+ * 키를 대문자로 올리면 그대로 `withDims` 의 열쇠가 된다.
+ *
+ * `anchors` 에 없는 키는 그 그림이 모르는 변이므로 건너뛴다(종전 동작 그대로).
+ */
+function dimsOf(
+  labels: Record<string, string>,
+  anchors: Record<string, unknown>,
+): Record<string, string | undefined> {
+  const dims: Record<string, string | undefined> = {};
+  for (const [key, text] of Object.entries(labels)) {
+    if (anchors[key] !== undefined) dims[key.toUpperCase()] = text;
+  }
+  return dims;
+}
 
 const GRADE = "중2";
 const BOOK = "2-2";
@@ -356,21 +377,31 @@ function figPar01(
     D: "D",
     E: "E",
   };
-  const anchors: Array<[string, XY, string | undefined]> = [
-    ["n1", sideAnchor(A, D, 0.5, g, 16), labels.ad],
-    ["n2", sideAnchor(D, B, 0.5, g, 16), labels.db],
-    ["n3", sideAnchor(A, E, 0.5, g, 16), labels.ae],
-    ["n4", sideAnchor(E, C, 0.5, g, 16), labels.ec],
-    ["n5", edgeAnchor(B, C, 0.5, g, 18), labels.bc],
-    ["n6", [(D[0] + E[0]) / 2, (D[1] + E[1]) / 2 - 14], labels.de],
-  ];
-  for (const [k, at, text] of anchors) {
-    if (text !== undefined) {
-      pts[k] = at;
-      out[k] = text;
-    }
-  }
-  return {
+  // 🔴 길이는 **치수선**으로 단다 — 보이지 않는 점에 글자를 붙이지 않는다.
+  //
+  // 원장님 지시 2026-08-29: 「길이 치수선은 왜 자꾸 빠지나?」 그리고
+  // 「발문에서 길이를 제시하지 않은 도형은 항상 그림에서 치수선과 라벨을 붙이고,
+  //  제시한 도형 중 치수선이 들어갈 공간이 없는 좁은 도형은 억지로 넣지 마라.」
+  //
+  // 종전에는 `n1`~`n6` 이라는 **가짜 점**을 변 옆 16 만큼 떨어뜨려 만들고 거기에
+  // `"6 cm"` 를 라벨로 붙였다. 그러면 지면에 **숫자만 떠 있고 무엇을 잰 것인지
+  // 선이 말해 주지 않는다** — `figureDims.ts` 머리말이 「원장님이 2026-08-13 에
+  // 물린 바로 그 모양」이라고 적어 둔 것이 이것이다. 규칙도 도구(`withDims`)도
+  // 이미 있었는데 **막는 가드가 없어서** 이 모듈들에 계속 들어왔다.
+  //
+  // ⚠️ 엔진이 「충돌 없는 배치가 없다」고 던지는 자리가 있다(변 위에 다른 점이
+  //    올라앉은 좁은 변). 그때는 **떠 있는 숫자로 되돌리지 않고 그냥 뺀다** —
+  //    이 유형들은 발문이 그 길이를 이미 말하므로 지면에서 잃는 것이 없다
+  //    (실측: 떠 있는 길이 글자가 있는 30유형 전량, 표본 12개씩 발문에 다 있었다).
+  const dims: Record<string, string | undefined> = {
+    AD: labels.ad,
+    DB: labels.db,
+    AE: labels.ae,
+    EC: labels.ec,
+    BC: labels.bc,
+    DE: labels.de,
+  };
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -381,6 +412,7 @@ function figPar01(
     },
     labels: out,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 /** 나비꼴 — BE·CD 의 교점 A, BC∥DE. ratio = AE:AB (실제 비율). */
@@ -875,13 +907,9 @@ function figSasInner10(
     ec: sideAnchor(E, C, 0.5, g, 15),
     de: sideAnchor(D, E, 0.5, g, -16),
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  // 길이는 **치수선**으로 — 가짜 점 `n_*` 에 글자를 붙이지 않는다(`figPar01` 머리말).
+  const dims = dimsOf(labels, anchors);
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -896,6 +924,7 @@ function figSasInner10(
     angles: { angA: { vertex: "A", points: ["D", "E"] } },
     labels: out,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 /**
@@ -930,13 +959,8 @@ function figAaInner11(
     be: sideAnchor(B, E, 0.5, g, 15),
     ec: sideAnchor(E, C, 0.5, g, 15),
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  const dims = dimsOf(labels, anchors);
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -953,6 +977,7 @@ function figAaInner11(
     },
     labels: out,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 /**
