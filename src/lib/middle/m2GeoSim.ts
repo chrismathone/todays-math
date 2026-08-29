@@ -96,22 +96,13 @@ function fitPts(pts: Record<string, XY>): Record<string, XY> {
 }
 
 /** 선분 p1→p2 위 t 지점을 무게중심 반대쪽으로 push 만큼 민 라벨 앵커. */
-function edgeAnchor(p1: XY, p2: XY, t: number, g: XY, push: number): XY {
-  const mx = p1[0] + (p2[0] - p1[0]) * t;
-  const my = p1[1] + (p2[1] - p1[1]) * t;
-  const dx = mx - g[0];
-  const dy = my - g[1];
-  const n = Math.hypot(dx, dy) || 1;
-  return [mx + (dx / n) * push, my + (dy / n) * push];
-}
-
 function lerp(p1: XY, p2: XY, t: number): XY {
   return [p1[0] + (p2[0] - p1[0]) * t, p1[1] + (p2[1] - p1[1]) * t];
 }
 
 /**
  * 선분 위 t 지점에서 변에 **수직인** 방향(무게중심 반대쪽)으로 push 한 라벨 앵커.
- * 꼭짓점 근처 짧은 구간에서도 라벨이 변 옆에 붙는다(edgeAnchor 는 중심 방사형이라 위로 뜼다).
+ * 꼭짓점 근처 짧은 구간에서도 라벨이 변 옆에 붙는다.
  */
 function sideAnchor(p1: XY, p2: XY, t: number, g: XY, push: number): XY {
   const mx = p1[0] + (p2[0] - p1[0]) * t;
@@ -291,22 +282,9 @@ function figSim02(
   const E: XY = [ox, 0];
   const F: XY = [ox + 64 * r, 0];
   const D: XY = [ox + 22 * r, 48 * r];
-  const g1: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
-  const g2: XY = [(D[0] + E[0] + F[0]) / 3, (D[1] + E[1] + F[1]) / 3];
-  return {
+  const shape: Fig = {
     version: 2,
-    points: fitPts({
-      A,
-      B,
-      C,
-      D,
-      E,
-      F,
-      n1: edgeAnchor(B, C, 0.5, g1, 16),
-      n2: edgeAnchor(E, F, 0.5, g2, 16),
-      n3: sideAnchor(A, B, 0.5, g1, 15),
-      n4: sideAnchor(D, E, 0.5, g2, 15),
-    }),
+    points: fitPts({ A, B, C, D, E, F }),
     segments: {
       AB: ["A", "B"],
       BC: ["B", "C"],
@@ -315,19 +293,14 @@ function figSim02(
       EF: ["E", "F"],
       FD: ["F", "D"],
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      E: "E",
-      F: "F",
-      n1: labels.bc,
-      n2: labels.ef,
-      n3: labels.ab,
-      n4: labels.de,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E", F: "F" },
   };
+  return withDims(shape, {
+    BC: labels.bc,
+    EF: labels.ef,
+    AB: labels.ab,
+    DE: labels.de,
+  }) as Fig;
 }
 
 /** △ABC ∽ △ADE 겹친 꼴 (BC ∥ DE) — AB:AD 비율대로. */
@@ -368,7 +341,6 @@ function figPar01(
   const C: XY = [78, 0];
   const D = lerp(A, B, ratio);
   const E = lerp(A, C, ratio);
-  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
   const pts: Record<string, XY> = { A, B, C, D, E };
   const out: Record<string, string> = {
     A: "A",
@@ -425,18 +397,8 @@ function figPar02(
   const C: XY = [80, -66];
   const E: XY = [-B[0] * ratio, -B[1] * ratio];
   const D: XY = [-C[0] * ratio, -C[1] * ratio];
-  const pts: Record<string, XY> = {
-    A,
-    B,
-    C,
-    D,
-    E,
-    n1: edgeAnchor(B, A, 0.5, [20, -66], 20),
-    n2: edgeAnchor(A, E, 0.5, [-40, 30], 20),
-    n3: [(B[0] + C[0]) / 2, -66 - 14],
-    n4: [(D[0] + E[0]) / 2, -66 * -ratio + 14],
-  };
-  return {
+  const pts: Record<string, XY> = { A, B, C, D, E };
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -445,18 +407,15 @@ function figPar02(
       BC: ["B", "C"],
       DE: ["D", "E"],
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      E: "E",
-      n1: labels.ab,
-      n2: labels.ae,
-      n3: labels.bc,
-      n4: labels.de,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E" },
   };
+  // `n1`·`n2` 는 A 를 낀 **반쪽**(AB·AE)을 잰 것이다 — 선분 BE 전체가 아니다.
+  return withDims(shape, {
+    AB: labels.ab,
+    AE: labels.ae,
+    BC: labels.bc,
+    DE: labels.de,
+  }) as Fig;
 }
 
 /** BC∥DE + 중선꼴 AG, F=AG∩DE — BG:GC 비율대로. */
@@ -473,21 +432,9 @@ function figPar03(
   const D = lerp(A, B, r);
   const E = lerp(A, C, r);
   const F = lerp(A, G, r);
-  const cen: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
-  return {
+  const shape: Fig = {
     version: 2,
-    points: fitPts({
-      A,
-      B,
-      C,
-      D,
-      E,
-      F,
-      G,
-      n1: edgeAnchor(B, G, 0.5, cen, 18),
-      n2: edgeAnchor(G, C, 0.5, cen, 18),
-      n3: [(F[0] + E[0]) / 2, (F[1] + E[1]) / 2 - 14],
-    }),
+    points: fitPts({ A, B, C, D, E, F, G }),
     segments: {
       AB: ["A", "B"],
       AC: ["A", "C"],
@@ -503,11 +450,13 @@ function figPar03(
       E: "E",
       F: "F",
       G: "G",
-      n1: labels.g1,
-      n2: labels.g2,
-      n3: labels.fe,
     },
   };
+  return withDims(shape, {
+    BG: labels.g1,
+    GC: labels.g2,
+    FE: labels.fe,
+  }) as Fig;
 }
 
 /** BC∥DE, DC∥FE 겹사다리 — AF:FD 비율대로 (AB 는 그 비에서 유도된다). */
@@ -519,20 +468,9 @@ function figPar04(f1: number, f2: number): Fig {
   const D = lerp(A, B, rD);
   const F = lerp(A, B, rD * rD);
   const E = lerp(A, C, rD);
-  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
-  return {
+  const shape: Fig = {
     version: 2,
-    points: fitPts({
-      A,
-      B,
-      C,
-      D,
-      E,
-      F,
-      n1: edgeAnchor(A, F, 0.5, g, 20),
-      n2: edgeAnchor(F, D, 0.5, g, 20),
-      n3: edgeAnchor(D, B, 0.5, g, 20),
-    }),
+    points: fitPts({ A, B, C, D, E, F }),
     segments: {
       AB: ["A", "B"],
       AC: ["A", "C"],
@@ -541,18 +479,13 @@ function figPar04(f1: number, f2: number): Fig {
       DC: ["D", "C"],
       FE: ["F", "E"],
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      E: "E",
-      F: "F",
-      n1: `${f1} cm`,
-      n2: `${f2} cm`,
-      n3: "x cm",
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E", F: "F" },
   };
+  return withDims(shape, {
+    AF: `${f1} cm`,
+    FD: `${f2} cm`,
+    DB: "x cm",
+  }) as Fig;
 }
 
 /**
@@ -585,32 +518,19 @@ function figPar06(
   const C: XY = [w, 0];
   const A = apexForRatio(ab, ac, w, 92);
   const D: XY = [(w * ab) / (ab + ac), 0];
-  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
   const pts: Record<string, XY> = {
     A,
     B,
     C,
     D,
-    n1: edgeAnchor(A, B, 0.5, g, 20),
-    n2: edgeAnchor(A, C, 0.5, g, 20),
   };
   const out: Record<string, string> = {
     A: "A",
     B: "B",
     C: "C",
     D: "D",
-    n1: labels.ab,
-    n2: labels.ac,
   };
-  if (labels.bd !== undefined) {
-    pts.n3 = [D[0] / 2, -15];
-    out.n3 = labels.bd;
-  }
-  if (labels.dc !== undefined) {
-    pts.n4 = [(D[0] + w) / 2, -15];
-    out.n4 = labels.dc;
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -621,6 +541,12 @@ function figPar06(
     },
     labels: out,
   };
+  return withDims(shape, {
+    AB: labels.ab,
+    AC: labels.ac,
+    BD: labels.bd,
+    DC: labels.dc,
+  }) as Fig;
 }
 
 /** 외각의 이등분선 — D 는 BC 연장 위 실제 자리(BD:CD=AB:AC 가 저절로 성립). */
@@ -629,36 +555,24 @@ function figPar07(ab: number, ac: number, b: number, x: number): Fig {
   const C: XY = [b, 0];
   const D: XY = [b + x, 0];
   const A = apexForRatio(ab, ac, b, 0.85 * b);
-  const g: XY = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
-  return {
+  const shape: Fig = {
     version: 2,
-    points: fitPts({
-      A,
-      B,
-      C,
-      D,
-      n1: edgeAnchor(A, B, 0.5, g, 0.16 * b),
-      n2: edgeAnchor(A, C, 0.45, g, 0.15 * b),
-      n3: [C[0] / 2, -0.14 * b],
-      n4: [(C[0] + D[0]) / 2, -0.14 * b],
-    }),
+    points: fitPts({ A, B, C, D }),
     segments: {
       AB: ["A", "B"],
       AC: ["A", "C"],
       BD: ["B", "D"],
       AD: ["A", "D"],
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      n1: `${ab} cm`,
-      n2: `${ac} cm`,
-      n3: `${b} cm`,
-      n4: "x cm",
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D" },
   };
+  // `n3`·`n4` 는 BC 와 CD — BD 전체가 아니라 C 로 갈린 두 토막이다.
+  return withDims(shape, {
+    AB: `${ab} cm`,
+    AC: `${ac} cm`,
+    BC: `${b} cm`,
+    CD: "x cm",
+  }) as Fig;
 }
 
 const COPRIME_UP = [
@@ -852,13 +766,7 @@ function figSimPair09(
     de: sideAnchor(D, E, 0.5, g2, 16),
     ef: sideAnchor(E, F, 0.5, g2, 15),
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -872,6 +780,7 @@ function figSimPair09(
     angles,
     labels: out,
   };
+  return withDims(shape, dimsOf(labels, anchors)) as Fig;
 }
 
 /**
@@ -1013,13 +922,7 @@ function figRightFeet12(
     ce: [(bd + be) * k + 22, (ce * k) / 2],
     bd: [(bd / 2) * k, -17],
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1036,6 +939,7 @@ function figRightFeet12(
     },
     labels: out,
   };
+  return withDims(shape, dimsOf(labels, anchors)) as Fig;
 }
 
 /** ∠A=90° 인 직각삼각형에서 빗변 BC 에 내린 수선의 발 H. */
@@ -1059,13 +963,7 @@ function figAltitude13(
     ab: [(bh * k) / 2 - 18, (ah * k) / 2 + 12],
     ac: [(2 * bh + ch) * k * 0.5 + 16, (ah * k) / 2 + 12],
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1081,6 +979,7 @@ function figAltitude13(
     },
     labels: out,
   };
+  return withDims(shape, dimsOf(labels, anchors)) as Fig;
 }
 
 /** 그림자 닮음 — 나무와 막대(둘 다 지면에 수직) + 같은 시각의 햇빛. */
@@ -1107,13 +1006,19 @@ function figShadow14(
     treeS: [(treeS * kx) / 2, -17],
     treeH: [-22, (treeH * ky) / 2],
   };
+  // 여기 앵커 이름은 **두 점 이름이 아니다**(`poleH`…). 어느 선분을 잰 것인지는
+  // 이 표만 안다 — `dimsOf` 의 「대문자로 바꾸면 짝」 규칙이 안 통한다.
+  const PAIR: Record<string, string> = {
+    poleH: "QP",
+    poleS: "PS2",
+    treeS: "BS1",
+    treeH: "TB",
+  };
+  const dims: Record<string, string | undefined> = {};
   for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
+    if (anchors[key] && PAIR[key]) dims[PAIR[key]!] = text;
   }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1130,6 +1035,7 @@ function figShadow14(
     },
     labels: out,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 /**
@@ -1166,13 +1072,7 @@ function figFoldRect15(
     ap: [(ap * k) / 2, side + 16],
     cd: [long + 20, side / 2],
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1192,6 +1092,7 @@ function figFoldRect15(
     },
     labels: out,
   };
+  return withDims(shape, dimsOf(labels, anchors)) as Fig;
 }
 
 /** 세 평행선 l∥m∥n 과 두 절단선 — 평행 » 로 «평행»을 지면에 남긴다. */
@@ -1246,13 +1147,18 @@ function figThreeParallel08(
     c: [(Q1[0] + Q2[0]) / 2 + 22, (Q1[1] + Q2[1]) / 2],
     x: [(Q2[0] + Q3[0]) / 2 + 22, (Q2[1] + Q3[1]) / 2],
   };
+  // 앵커 이름이 `a`·`b`·`c`·`x` 라 두 점 이름이 아니다 — 어느 토막인지는 이 표만 안다.
+  const PAIR: Record<string, string> = {
+    a: "P1P2",
+    b: "P2P3",
+    c: "Q1Q2",
+    x: "Q2Q3",
+  };
+  const dims: Record<string, string | undefined> = {};
   for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`t_${key}`] = anchors[key]!;
-      out[`t_${key}`] = text;
-    }
+    if (anchors[key] && PAIR[key]) dims[PAIR[key]!] = text;
   }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1264,6 +1170,7 @@ function figThreeParallel08(
     },
     labels: out,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 /**
@@ -1315,13 +1222,8 @@ function figTrapMid09(
     ae: [(A[0] + E[0]) / 2 - 20, (A[1] + E[1]) / 2],
     eb: [(E[0] + B[0]) / 2 - 20, (E[1] + B[1]) / 2],
   };
-  for (const [key, text] of Object.entries(opts.labels ?? {})) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
-  return { version: 2, points: fitPts(pts), segments, labels: out };
+  const shape: Fig = { version: 2, points: fitPts(pts), segments, labels: out };
+  return withDims(shape, dimsOf(opts.labels ?? {}, anchors)) as Fig;
 }
 
 /**
@@ -1358,12 +1260,6 @@ function figButterfly11(
     dc: [D[0] + 22, (dc * k) / 2],
     bc: [(bcLen * k) / 2, -18],
   };
-  for (const [key, text] of Object.entries(labels)) {
-    if (anchors[key]) {
-      pts[`n_${key}`] = anchors[key]!;
-      out[`n_${key}`] = text;
-    }
-  }
   const angles: Record<string, unknown> = perp
     ? {
         // BC 를 F 에서 끊었으므로 직각기호는 BF·FC 를 광선으로 쓴다.
@@ -1371,7 +1267,7 @@ function figButterfly11(
         rC: { vertex: "C", points: ["D", "F"], right: true },
       }
     : {};
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -1386,6 +1282,7 @@ function figButterfly11(
     angles,
     labels: out,
   };
+  return withDims(shape, dimsOf(labels, anchors)) as Fig;
 }
 
 export const M2_GEO_SIM: TypeEntry[] = [

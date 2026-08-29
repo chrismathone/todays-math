@@ -24,6 +24,7 @@
 import { intBetween } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { withDims } from "./figureDims";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -231,11 +232,7 @@ function figSquareDiag(s: number, acLabel?: string): Fig {
     D: "D",
     O: "O",
   };
-  if (acLabel !== undefined) {
-    pts.n1 = [0.31 * s, 0.62 * s];
-    labels.n1 = acLabel;
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -254,6 +251,7 @@ function figSquareDiag(s: number, acLabel?: string): Fig {
     },
     labels,
   };
+  return withDims(shape, { AC: acLabel }) as Fig;
 }
 
 /** 정사각형 ABCD + 대각선 AC 위의 점 E + BE·DE — ∠BEC 를 표시한다. */
@@ -334,20 +332,31 @@ function figIsoTrap(
   if (opts.angADB !== undefined) {
     angles.angADB = { vertex: "D", points: ["A", "B"], label: opts.angADB };
   }
+  // 앵커 이름(`top`·`ch`…)은 두 점 이름이 아니다 — 어느 변인지는 이 표만 안다.
+  // `ch` 는 수선의 발 H 가 있을 때만 성립한다(`opts.foot`).
+  const PAIR: Record<string, string> = {
+    top: "AD",
+    bottom: "BC",
+    left: "AB",
+    right: "DC",
+    ch: "HC",
+  };
+  const dims: Record<string, string | undefined> = {};
   for (const [k, v] of Object.entries(opts.labels ?? {})) {
-    const anchor: Record<string, XY> = {
-      top: [off + top / 2, height + 15],
-      bottom: [bottom / 2, -15],
-      left: [off / 2 - 16, height / 2],
-      right: [bottom - off / 2 + 16, height / 2],
-      ch: [bottom - off / 2, -15],
-    };
-    if (anchor[k]) {
-      pts[`n_${k}`] = anchor[k]!;
-      labels[`n_${k}`] = v;
-    }
+    const pair = PAIR[k];
+    if (!pair) continue;
+    // 끝점이 없으면 `withDims` 가 던진다 — 없는 자리는 조용히 건너뛴다.
+    if (!pts[pair.slice(0, 1)] || !pts[pair.slice(1)]) continue;
+    dims[pair] = v;
   }
-  return { version: 2, points: fitPts(pts), segments, angles, labels };
+  const shape: Fig = {
+    version: 2,
+    points: fitPts(pts),
+    segments,
+    angles,
+    labels,
+  };
+  return withDims(shape, dims) as Fig;
 }
 
 /**
@@ -573,15 +582,7 @@ function figPerpBisect17(
     F: "F",
     O: "O",
   };
-  if (labels.ad !== undefined) {
-    pts.n1 = [p / 2, h + 15];
-    out.n1 = labels.ad;
-  }
-  if (labels.fc !== undefined) {
-    pts.n2 = [(fx + p) / 2, -15];
-    out.n2 = labels.fc;
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: fitPts(pts),
     segments: {
@@ -605,6 +606,7 @@ function figPerpBisect17(
     },
     labels: out,
   };
+  return withDims(shape, { AD: labels.ad, FC: labels.fc }) as Fig;
 }
 
 // ── 명제 은행 (10·11 유형) ───────────────────────────────────────────────

@@ -28,6 +28,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { withDims } from "./figureDims";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -81,15 +82,6 @@ function inter(p: XY, d1: XY, q: XY, d2: XY): XY {
 }
 
 /** p1→p2 를 t 로 나눈 점을 무게중심 반대쪽으로 push 만큼 민 자리 (라벨 앵커). */
-function edgeAnchor(p1: XY, p2: XY, t: number, g: XY, push: number): XY {
-  const mx = p1[0] + (p2[0] - p1[0]) * t;
-  const my = p1[1] + (p2[1] - p1[1]) * t;
-  const dx = mx - g[0];
-  const dy = my - g[1];
-  const n = Math.hypot(dx, dy) || 1;
-  return [mx + (dx / n) * push, my + (dy / n) * push];
-}
-
 type Fig = Record<string, unknown>;
 
 function svgPoints(pts: Record<string, XY>): Record<string, XY> {
@@ -167,18 +159,9 @@ function figIso01(a: number, mode: number): Fig {
 function figIso02(t: number, d: number): Fig {
   const { A, B, C } = isoPts(2 * t);
   const D: XY = [0, 0];
-  const g: XY = [0, 33];
-  const pts = svgPoints({
-    A,
-    B,
-    C,
-    D,
-    n1: edgeAnchor(B, D, 0.5, g, 22),
-    n2: edgeAnchor(D, C, 0.5, g, 22),
-  });
-  return {
+  const shape: Fig = {
     version: 2,
-    points: pts,
+    points: svgPoints({ A, B, C, D }),
     segments: {
       AB: ["A", "B"],
       AC: ["A", "C"],
@@ -189,15 +172,9 @@ function figIso02(t: number, d: number): Fig {
       angA: { vertex: "A", points: ["B", "D"], label: `${t}°` },
       angB: { vertex: "B", points: ["A", "D"], label: "y°" },
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      n1: "x cm",
-      n2: `${d} cm`,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D" },
   };
+  return withDims(shape, { BD: "x cm", DC: `${d} cm` }) as Fig;
 }
 
 function figIso03(a: number, mode: number): Fig {
@@ -290,22 +267,8 @@ function figIso05(
   },
 ): Fig {
   const { A, B, C } = isoPts(apex);
-  const g: XY = [0, 33];
-  const pts: Record<string, XY> = { A, B, C, n1: edgeAnchor(A, B, 0.5, g, 24) };
-  const labels: Record<string, string> = {
-    A: "A",
-    B: "B",
-    C: "C",
-    n1: opts.abLabel,
-  };
-  if (opts.baseLabel !== undefined) {
-    pts.n2 = edgeAnchor(B, C, 0.5, g, 20);
-    labels.n2 = opts.baseLabel;
-  }
-  if (opts.acLabel !== undefined) {
-    pts.n3 = edgeAnchor(A, C, 0.5, g, 24);
-    labels.n3 = opts.acLabel;
-  }
+  const pts: Record<string, XY> = { A, B, C };
+  const labels: Record<string, string> = { A: "A", B: "B", C: "C" };
   const angles: Record<string, unknown> = {};
   if (opts.angA !== undefined) {
     angles.angA = { vertex: "A", points: ["B", "C"], label: `${opts.angA}°` };
@@ -313,13 +276,18 @@ function figIso05(
   if (opts.angB !== undefined) {
     angles.angB = { vertex: "B", points: ["A", "C"], label: `${opts.angB}°` };
   }
-  return {
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: { AB: ["A", "B"], AC: ["A", "C"], BC: ["B", "C"] },
     ...(Object.keys(angles).length > 0 ? { angles } : {}),
     labels,
   };
+  return withDims(shape, {
+    AB: opts.abLabel,
+    BC: opts.baseLabel,
+    AC: opts.acLabel,
+  }) as Fig;
 }
 
 function figBisector09(w: number, mode: number, d?: number): Fig {
@@ -340,13 +308,10 @@ function figBisector09(w: number, mode: number, d?: number): Fig {
     D: "D",
   };
   let angles: Record<string, unknown> | undefined;
+  const dims: Record<string, string | undefined> = {};
   if (mode === 0 && d !== undefined) {
-    const mid1: XY = [(P[0] + C[0]) / 2, (P[1] + C[1]) / 2];
-    const mid2: XY = [(P[0] + D[0]) / 2, (P[1] + D[1]) / 2];
-    pts.n1 = [mid1[0] + 16, mid1[1] + 10];
-    pts.n2 = [mid2[0] + 18, mid2[1]];
-    labels.n1 = `${d} cm`;
-    labels.n2 = "x cm";
+    dims.PC = `${d} cm`;
+    dims.PD = "x cm";
   } else {
     angles = {
       a1: { vertex: "O", points: ["A", "P"], label: `${w / 2}°` },
@@ -354,7 +319,7 @@ function figBisector09(w: number, mode: number, d?: number): Fig {
       ax: { vertex: "P", points: ["C", "D"], label: "x" },
     };
   }
-  return {
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -367,6 +332,7 @@ function figBisector09(w: number, mode: number, d?: number): Fig {
     ...(angles ? { angles } : {}),
     labels,
   };
+  return withDims(shape, dims) as Fig;
 }
 
 function figRight10(ab: number, bc: number, bd: number, ac: number): Fig {
@@ -374,18 +340,8 @@ function figRight10(ab: number, bc: number, bd: number, ac: number): Fig {
   const B: XY = [0, 0];
   const C: XY = [bc, 0];
   const D: XY = [bd, 0];
-  const hypMid: XY = [bc / 2, ab / 2];
-  const n = Math.hypot(ab, bc);
-  const pts: Record<string, XY> = {
-    A,
-    B,
-    C,
-    D,
-    n1: [-0.14 * bc, ab / 2],
-    n2: [bd / 2, -0.14 * ab],
-    n3: [hypMid[0] + (ab / n) * 0.13 * n, hypMid[1] + (bc / n) * 0.13 * n],
-  };
-  return {
+  const pts: Record<string, XY> = { A, B, C, D };
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -394,16 +350,14 @@ function figRight10(ab: number, bc: number, bd: number, ac: number): Fig {
       CA: ["C", "A"],
       AD: ["A", "D"],
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      n1: `${ab} cm`,
-      n2: `${bd} cm`,
-      n3: `${ac} cm`,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D" },
   };
+  // `n2` 는 BD — 밑변 BC 전체가 아니라 D 로 끊긴 앞 토막이다.
+  return withDims(shape, {
+    AB: `${ab} cm`,
+    BD: `${bd} cm`,
+    CA: `${ac} cm`,
+  }) as Fig;
 }
 
 function figIso11(a: number): Fig {
@@ -475,17 +429,8 @@ function figQuad13(
   const C: XY = [w, 0];
   const E: XY = [2 * w, 0];
   const D: XY = [E[0] + 0.6 * (A[0] - C[0]), 0.6 * (A[1] - C[1])];
-  const pts: Record<string, XY> = {
-    A,
-    B,
-    C,
-    D,
-    E,
-    n1: [-0.16 * w, h / 2],
-    n2: [w / 2, -0.16 * h],
-    n3: [1.5 * w, -0.16 * h],
-  };
-  return {
+  const pts: Record<string, XY> = { A, B, C, D, E };
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -497,17 +442,13 @@ function figQuad13(
       AC: ["A", "C"],
       DE: { points: ["D", "E"], dash: "5 4" },
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      E: "E",
-      n1: `${h} cm`,
-      n2: `${w} cm`,
-      n3: `${w} cm`,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E" },
   };
+  return withDims(shape, {
+    AB: `${h} cm`,
+    BC: `${w} cm`,
+    CE: `${w} cm`,
+  }) as Fig;
 }
 
 function figTri14(
@@ -711,18 +652,8 @@ function figRhaFoot07(p: number, q: number): Fig {
   const B: XY = [Q + P, Q];
   const L1: XY = [-22, 0];
   const L2: XY = [Q + P + 22, 0];
-  const pts: Record<string, XY> = {
-    A,
-    B,
-    C,
-    D,
-    E,
-    L1,
-    L2,
-    n1: [-20, P / 2],
-    n2: [Q + P + 20, Q / 2],
-  };
-  return {
+  const pts: Record<string, XY> = { A, B, C, D, E, L1, L2 };
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -745,10 +676,9 @@ function figRhaFoot07(p: number, q: number): Fig {
       D: "D",
       E: "E",
       L2: { text: "l", italic: true },
-      n1: `${p} cm`,
-      n2: `${q} cm`,
     },
   };
+  return withDims(shape, { CD: `${p} cm`, BE: `${q} cm` }) as Fig;
 }
 
 /**
@@ -763,17 +693,8 @@ function figRhsFold08(a: number, b: number, c: number): Fig {
   const D: XY = [(a * b * k) / c, b * k - (b * b * k) / c];
   const ex = ((a * a * b + b * b * b - b * b * c) / (a * c)) * k;
   const E: XY = [ex, 0];
-  const pts: Record<string, XY> = {
-    A,
-    B,
-    C,
-    D,
-    E,
-    n1: [-0.13 * a * k, (b * k) / 2],
-    n2: [(a * k) / 2, -0.12 * b * k],
-    n3: [0.62 * a * k, 0.62 * b * k],
-  };
-  return {
+  const pts: Record<string, XY> = { A, B, C, D, E };
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -788,17 +709,14 @@ function figRhsFold08(a: number, b: number, c: number): Fig {
       rC: { vertex: "C", points: ["A", "B"], right: true },
       rD: { vertex: "D", points: ["A", "E"], right: true },
     },
-    labels: {
-      A: "A",
-      B: "B",
-      C: "C",
-      D: "D",
-      E: "E",
-      n1: `${b} cm`,
-      n2: `${a} cm`,
-      n3: `${c} cm`,
-    },
+    labels: { A: "A", B: "B", C: "C", D: "D", E: "E" },
   };
+  // `n3` 는 빗변 AB — AD·DB 로 끊겨 있지만 잰 것은 **전장**이다.
+  return withDims(shape, {
+    CA: `${b} cm`,
+    CB: `${a} cm`,
+    AB: `${c} cm`,
+  }) as Fig;
 }
 
 /**
@@ -828,23 +746,7 @@ function figFold12(m: number, w: number, labels: Record<string, string>): Fig {
   const D: XY = [bx + 0.55 * M, 0];
   const pts: Record<string, XY> = { A, B, C, D, P, Q, TL, BL, TR };
   const out: Record<string, string> = { A: "A", B: "B", C: "C", D: "D" };
-  if (labels.ac !== undefined) {
-    pts.n1 = [M / 2, W + 15];
-    out.n1 = labels.ac;
-  }
-  if (labels.bc !== undefined) {
-    pts.n2 = [(bx + M) / 2 + 16, W / 2];
-    out.n2 = labels.bc;
-  }
-  if (labels.width !== undefined) {
-    pts.n3 = [-0.19 * M, W / 2];
-    out.n3 = labels.width;
-  }
-  if (labels.ab !== undefined) {
-    pts.n4 = [bx / 2 - 16, W / 2];
-    out.n4 = labels.ab;
-  }
-  return {
+  const shape: Fig = {
     version: 2,
     points: svgPoints(pts),
     segments: {
@@ -866,6 +768,13 @@ function figFold12(m: number, w: number, labels: Record<string, string>): Fig {
     },
     labels: out,
   };
+  // 띠의 «폭» 은 두 평행선 사이 거리 — 왼쪽 모서리 TL-BL 이 그 치수다.
+  return withDims(shape, {
+    AC: labels.ac,
+    BC: labels.bc,
+    TLBL: labels.width,
+    AB: labels.ab,
+  }) as Fig;
 }
 
 export const M2_GEO_TRI: TypeEntry[] = [
