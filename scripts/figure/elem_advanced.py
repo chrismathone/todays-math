@@ -2588,6 +2588,27 @@ def _round_ring(view: Any, pts3: list[tuple[float, float, float]]) -> list[tuple
     return ring
 
 
+# 원기둥의 치수 여백 — 왼쪽에 높이 라벨, 오른쪽은 라벨이 안 선다.
+# 구가 **같은 값**을 읽는다(아래). 손으로 두 번 적으면 한쪽만 고쳐도 아무도 모른다.
+CYL_PADS = (44.0, 24.0, 10.0, 24.0)
+
+# 구의 틀 — **원기둥과 같은 «도형 ÷ 틀» 비율**이라야 종이에서 같은 크기로 나온다.
+# 지면 폭은 등급이 정하므로(compact 140px) 종이에서의 크기는 그 비율이 전부다.
+#
+# 🔴 실측 2026-08-29: 옛 판은 `pr` 이 날 리터럴 36 · 틀이 140 이라 72/140 = **51.4%**
+#    였다. 같은 반지름인 원기둥(112.7/160 = 70.4%)보다 종이에서 **27% 작다**
+#    (지름 72px vs 98.6px). 구는 `ROUND_UNITS` 를 안 써서 2026-08-29 의 +15% 확대에도
+#    **혼자 안 따라왔다** — 상수를 안 쓰는 리터럴은 이렇게 조용히 뒤처진다
+#    (§4-20-d 의 `0.32` 와 같은 자리, 이번엔 크기 축이다).
+#
+# ⚠️ 구는 라벨이 없어 여백이 필요 없다. 그래서 여백을 깎아 「최대로」 키우면
+#    이번엔 **원기둥보다 커진다.** 한 지면에 두 입체가 같이 나오므로 집안의
+#    상한(원기둥)에 맞춘다 — 원장님 2026-08-29 「회전체도 등급 안 넘게 최대로」.
+#    세로는 라벨이 없으니 획 몫만 둔다(여백을 두면 지면만 길어진다).
+SPHERE_PAD_W = sum(_dim_pads(CYL_PADS)[0::2])
+SPHERE_PAD_H = 4.0
+
+
 def _cylinder(spec: Mapping[str, Any]) -> str:
     from core.figure_solid import circle3
 
@@ -2600,7 +2621,7 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
         # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
         # 오른쪽 26 은 **놀던 여백**이었다 — 원기둥은 오른쪽에 라벨을 안 놓는다.
         # 실측(2026-08-29): viewBox 159.3 중 오른쪽 22.8 에 내용이 하나도 없었다.
-        bot3 + top3, scale, _dim_pads((44.0, 24.0, 10.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
+        bot3 + top3, scale, _dim_pads(CYL_PADS), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)
@@ -2676,7 +2697,11 @@ def _cone(spec: Mapping[str, Any]) -> str:
 
 def _sphere(spec: Mapping[str, Any]) -> str:
     r = _num(spec["r"], "r", 0.4, 20)
-    cx, cy, pr = 70.0, 60.0, 36.0
+    # 지름이 곧 `ROUND_UNITS` — 같은 반지름의 원기둥 지름(2r·scale)과 같은 길이다.
+    pr = ROUND_UNITS / 2.0
+    svg_w = ROUND_UNITS + SPHERE_PAD_W
+    svg_h = ROUND_UNITS + 2 * SPHERE_PAD_H
+    cx, cy = svg_w / 2.0, svg_h / 2.0
     parts = [
         f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="{_n(pr)}" fill="{FACE_TOP}" '
         f'stroke="{INK}" stroke-width="1.4"/>',
@@ -2696,7 +2721,7 @@ def _sphere(spec: Mapping[str, Any]) -> str:
     #    지금 구 문항은 길이를 그림에서 읽지 않으니 성립하지만, 「그림을 보고 반지름을
     #    구하시오」가 생기면 그 순간 못 쓴다. 시험이 그 사실을 **적어 두고 있다.**
     _ = r
-    return _svg(140, 120, "".join(parts))
+    return _svg(svg_w, svg_h, "".join(parts))
 
 
 def _net_cuboid(spec: Mapping[str, Any]) -> str:

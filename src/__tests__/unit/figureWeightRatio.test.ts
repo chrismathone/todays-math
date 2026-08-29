@@ -147,6 +147,63 @@ describe("[D-112] 지면 굵기 비 — 정본(RPM) 비율", () => {
     ).toBeGreaterThan(150);
   });
 
+  /**
+   * 🔴 **구가 원기둥과 같은 크기로 나가는가** — 원장님 2026-08-29
+   * 「회전체도 등급 안 넘게 최대로 키워봐」.
+   *
+   * 지면 폭은 등급이 정한다(compact 140px). 그러니 종이에서의 크기는
+   * **«도형 ÷ 틀»** 이 전부다. 옛 `_sphere` 는 `pr` 이 날 리터럴 36 · 틀 140 이라
+   * 51.4% 였고 원기둥(70.4%)보다 **27% 작게** 나갔다 — `ROUND_UNITS` 를 안 쓰니
+   * 크기를 올려도 **혼자 안 따라왔다.** 상수를 안 쓰는 리터럴은 이렇게 조용히
+   * 뒤처진다(§4-20-d 의 `0.32` 와 같은 자리, 이번엔 크기 축이다).
+   *
+   * ⚠️ 참을 상수에서 가져오지 않는다. **두 그림을 실제로 그려** 각자의
+   *    «도형 ÷ 틀» 을 재서 견준다 — 한쪽만 고치면 빨개진다.
+   */
+  it("🔴 **구와 원기둥이 종이에서 같은 크기다** — 도형 ÷ 틀 이 같다", async () => {
+    if (!hasEngine) return;
+    const vbw = (svg: string) => {
+      const m = /viewBox="0 0 ([0-9.]+) ([0-9.]+)"/.exec(svg);
+      expect(m, "viewBox 를 못 읽었다 — 지문이 낡았다").not.toBeNull();
+      return Number(m![1]);
+    };
+    const cyl = await renderFigureSpec({
+      version: "elem-1",
+      kind: "cylinder",
+      r: 4,
+      h: 4,
+    });
+    const sph = await renderFigureSpec({
+      version: "elem-1",
+      kind: "sphere",
+      r: 4,
+    });
+    expect(cyl.ok, cyl.ok ? "" : cyl.error).toBe(true);
+    expect(sph.ok, sph.ok ? "" : sph.error).toBe(true);
+    if (!cyl.ok || !sph.ok) return;
+
+    // 원기둥의 도형 폭은 **그려진 좌표**에서 잰다 — 여백 상수를 다시 읽지 않는다.
+    const xs = [...cyl.svg.matchAll(/points="([^"]*)"/g)].flatMap((m) =>
+      [...m[1]!.matchAll(/(-?[0-9.]+),(-?[0-9.]+)/g)].map((q) => Number(q[1])),
+    );
+    expect(
+      xs.length,
+      "원기둥 좌표를 하나도 못 읽었다 — 지문이 낡았다",
+    ).toBeGreaterThan(10);
+    const cylRatio = (Math.max(...xs) - Math.min(...xs)) / vbw(cyl.svg);
+
+    const pr = /<circle cx="[0-9.]+" cy="[0-9.]+" r="([0-9.]+)"/.exec(sph.svg);
+    expect(pr, "구의 원을 못 읽었다 — 지문이 낡았다").not.toBeNull();
+    const sphRatio = (2 * Number(pr![1])) / vbw(sph.svg);
+
+    expect(
+      sphRatio,
+      `구 ${sphRatio.toFixed(3)} vs 원기둥 ${cylRatio.toFixed(3)} — 종이에서 크기가 갈린다`,
+    ).toBeCloseTo(cylRatio, 2);
+    // 구도 등급 안이어야 한다 — 넘으면 종이에서 1.7배가 되고 라벨 없는 원만 커진다.
+    expect(vbw(sph.svg), "구 viewBox 폭").toBeLessThanOrEqual(160);
+  });
+
   it("🔴 **상수가 아니라 지면을 잰다** — 실제로 그린 SVG 의 굵기 비", async () => {
     if (!hasEngine) return;
     // 직각 표시(마크)와 도형 선이 같이 나오는 최소 그림.
