@@ -350,6 +350,43 @@ function figIsoTrap(
   return { version: 2, points: fitPts(pts), segments, angles, labels };
 }
 
+/**
+ * 사다리꼴 (AD∥BC) — **등변이 아닌** 배치. 「등변사다리꼴이 되는 조건」을 물을 때
+ * 다리가 같은 그림을 그리면 그림이 답을 말해 버린다. tick 도 없다.
+ */
+function figTrap(
+  top: number,
+  bottom: number,
+  height: number,
+  leftOff: number,
+  opts: { diagAC?: boolean; diagBD?: boolean },
+): Fig {
+  const pts: Record<string, XY> = {
+    A: [leftOff, height],
+    B: [0, 0],
+    C: [bottom, 0],
+    D: [leftOff + top, height],
+  };
+  const segments: Record<string, unknown> = {
+    AD: { points: ["A", "D"], parallel: 1 },
+    BC: { points: ["B", "C"], parallel: 1 },
+    AB: ["A", "B"],
+    DC: ["D", "C"],
+  };
+  if (opts.diagAC) {
+    segments.AC = ["A", "C"];
+  }
+  if (opts.diagBD) {
+    segments.BD = ["B", "D"];
+  }
+  return {
+    version: 2,
+    points: fitPts(pts),
+    segments,
+    labels: { A: "A", B: "B", C: "C", D: "D" },
+  };
+}
+
 /** 정사각형 각 변 위에 AE=BF=CG=DH — 네 조각에 tick, 안쪽 사각형 EFGH. */
 function figMidSquare09(s: number, t: number): Fig {
   const pts: Record<string, XY> = {
@@ -1266,6 +1303,60 @@ export const M2_GEO_QUAD: TypeEntry[] = [
           ad: `${p} cm`,
           fc: `${q} cm`,
         }),
+      };
+    },
+  ),
+
+  /**
+   * **28 — 사다리꼴이 등변사다리꼴이 되는 조건** (2026-08-29 추가).
+   *
+   * 같은 파일의 직사각형류는 뜻과 성질(01·03·05) 다음에 **되는 조건**(02·04·06)이
+   * 있다. 등변사다리꼴은 07 뜻과 성질 · 08 성질의 응용만 있고 **되는 조건이 없었다.**
+   *
+   * 07 은 이미 등변사다리꼴인 도형에서 각을 구하고, 08 은 변의 길이를 구한다.
+   * 여기서는 사다리꼴이 주어지고 「언제 등변이 되는가」를 묻는다 — 시작도 끝도 다르다.
+   *
+   * ⚠️ 그림에 다리 tick 을 찍지 않는다 — 찍으면 그림이 답을 말한다.
+   * ⚠️ 좌표도 등변이 아니게 둔다. figIsoTrap 은 대칭이라 다리가 같고, tick 만
+   *    빼도 모양이 답을 말해 버린다.
+   */
+  def(
+    "28",
+    "사다리꼴이 등변사다리꼴이 되는 조건",
+    SEC.등변사다리꼴,
+    "기본",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const p = intBetween(rng, 2, 4);
+        const theta = intBetween(rng, 52, 78);
+        const x = attempt(80, () => {
+          const v = intBetween(rng, theta - 40, theta - 8);
+          if (v <= 0 || v >= theta) return null;
+          const q = p * v - theta;
+          return q > 0 ? v : null;
+        });
+        const q = p * x - theta;
+        const s = theta - x;
+        return {
+          content: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle B=(${p}x-${q})^\\circ$, $\\angle C=(x+${s})^\\circ$이다. $\\square ABCD$가 등변사다리꼴이 되도록 하는 $x$의 값을 구하시오.`,
+          answer: `$${x}$`,
+          solution: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴이 등변사다리꼴이 되려면 아랫변의 양 끝 각의 크기가 같아야 한다.\n$${p}x-${q}=x+${s}$에서 $${coefTex(p - 1)}x=${q + s}$이므로 $x=${x}$이다.`,
+          facts: { mode, p, q, s, theta, x },
+          figureSpec: figTrap(80, 160, 90, 20, {}),
+        };
+      }
+      const p = intBetween(rng, 2, 4);
+      const x = intBetween(rng, 3, 12);
+      const q = intBetween(rng, 1, 8);
+      const s = (p - 1) * x + q;
+      const len = p * x + q;
+      return {
+        content: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\overline{AC}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BD}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 등변사다리꼴일 때, $\\overline{AC}$의 길이를 구하시오.`,
+        answer: `$${len}\\,\\mathrm{cm}$`,
+        solution: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴이 등변사다리꼴이 되려면 두 대각선의 길이가 같아야 한다.\n$${p}x+${q}=x+${s}$에서 $${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이다.\n따라서 $\\overline{AC}=${p}\\times${x}+${q}=${len}\\,(\\mathrm{cm})$이다.`,
+        facts: { mode, p, q, s, x, len },
+        figureSpec: figTrap(80, 160, 90, 24, { diagAC: true, diagBD: true }),
       };
     },
   ),

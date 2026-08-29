@@ -1,5 +1,5 @@
 /**
- * 중3 「이차방정식」 31유형 (3-1 이차방정식의 풀이 01~16 · 이차방정식의 활용 01~15)
+ * 중3 「이차방정식」 32유형 (3-1 이차방정식의 풀이 01~16 · 이차방정식의 활용 01~16)
  * — 독립 검산.
  *
  * 생성기의 답을 그대로 믿지 않는다. 생성기는 **근을 먼저 골라 방정식을 만들었으므로**
@@ -321,6 +321,19 @@ const VERIFY: Record<string, (f: F) => boolean> = {
     if (f.mode === 2) return f.x === f.a! * f.b!;
     return f.x === f.a! - f.b!;
   },
+  // 한 근이 무리수: 두 켤레를 **대입**해 근인지 보고, 묻는 값을 다시 계산한다.
+  "3-1|이차방정식의 활용|16": (f) => {
+    if (!squareFree(f.q!) || isSquare(f.q!)) return false;
+    const r1 = f.p! + Math.sqrt(f.q!);
+    const r2 = f.p! - Math.sqrt(f.q!);
+    if (!near(r1 * r1 + f.a! * r1 + f.b!, 0)) return false;
+    if (!near(r2 * r2 + f.a! * r2 + f.b!, 0)) return false;
+    if (f.a! !== -2 * f.p!) return false;
+    if (f.b! !== f.p! * f.p! - f.q!) return false;
+    if (f.mode === 0) return f.x === f.p!;
+    if (f.mode === 1) return f.x === f.a! + f.b!;
+    return f.x === f.b!;
+  },
   // 식이 주어진 문제: 조건을 만족시키는 자연수를 **전수로** 찾아 유일한지 본다
   "3-1|이차방정식의 활용|08": (f) => {
     const g = (n: number): number =>
@@ -501,6 +514,7 @@ const TITLES: Record<string, string> = {
   "3-1|이차방정식의 활용|13": "이차방정식의 활용 길의 폭에 대한 문제",
   "3-1|이차방정식의 활용|14": "이차방정식의 활용 상자를 만드는 문제",
   "3-1|이차방정식의 활용|15": "이차방정식의 활용 닮음을 이용한 문제",
+  "3-1|이차방정식의 활용|16": "한 근이 무리수일 때 이차방정식",
 };
 
 /** 유형별 모드 가짓수 — 변형 폭의 하한을 잠근다. */
@@ -536,6 +550,7 @@ const MODE_COUNT: Record<string, number> = {
   "3-1|이차방정식의 활용|13": 3,
   "3-1|이차방정식의 활용|14": 3,
   "3-1|이차방정식의 활용|15": 3,
+  "3-1|이차방정식의 활용|16": 3,
 };
 
 /** 우리 Unit.section — 유형 번호별 기대값(DB 실측 리터럴). */
@@ -544,9 +559,9 @@ for (let i = 1; i <= 16; i += 1) {
   SECTION[`3-1|이차방정식의 풀이|${String(i).padStart(2, "0")}`] =
     "이차방정식의 풀이";
 }
-for (let i = 1; i <= 15; i += 1) {
+for (let i = 1; i <= 16; i += 1) {
   SECTION[`3-1|이차방정식의 활용|${String(i).padStart(2, "0")}`] =
-    i <= 7 ? "이차방정식의 근의 공식과 응용" : "이차방정식의 활용";
+    i <= 7 || i === 16 ? "이차방정식의 근의 공식과 응용" : "이차방정식의 활용";
 }
 
 /**
@@ -560,23 +575,34 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중3 이차방정식 31유형 (3-1 이차방정식의 풀이·활용)", () => {
+describe("중3 이차방정식 32유형 (3-1 이차방정식의 풀이·활용)", () => {
   const entries = M3_QUAD;
 
-  it("풀이 16 + 활용 15 = 31유형이 등록돼 있다", () => {
-    expect(entries.length).toBe(31);
+  it("🔴 **「이차방정식의 근의 공식과 응용」이 8문항 일일테스트를 채운다**", () => {
+    const formula = entries.filter(
+      (e) => e.unitSection === "이차방정식의 근의 공식과 응용",
+    );
+    expect(
+      formula.length,
+      "유형이 8 미만이면 8문항 일일테스트를 못 채운다",
+    ).toBeGreaterThanOrEqual(8);
+    expect(new Set(formula.map((e) => e.key)).size).toBe(formula.length);
+  });
+
+  it("풀이 16 + 활용 16 = 32유형이 등록돼 있다", () => {
+    expect(entries.length).toBe(32);
     const solve = entries.filter((e) => e.rpmMinor === "이차방정식의 풀이");
     const apply = entries.filter((e) => e.rpmMinor === "이차방정식의 활용");
     expect(solve.map((e) => e.rpmType)).toEqual(
       Array.from({ length: 16 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(apply.map((e) => e.rpmType)).toEqual(
-      Array.from({ length: 15 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 16 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(new Set(entries.map((e) => e.rpmBook))).toEqual(new Set(["3-1"]));
   });
 
-  it("RPM 색인의 실제 제목을 쓴다 (31유형 전량 리터럴 대조)", () => {
+  it("RPM 색인의 실제 제목을 쓴다 (32유형 전량 리터럴 대조)", () => {
     for (const e of entries) {
       expect(e.rpmTitle, e.key).toBe(TITLES[e.key]);
     }
@@ -752,9 +778,10 @@ describe("중3 이차방정식 31유형 (3-1 이차방정식의 풀이·활용)"
    * 「답이 맞다」만 보면 «왜 다른 근을 버렸는가»가 지면에서 사라진다.
    */
   it("활용 08~15 의 해설이 «버린 근» 또는 «모두 유효»를 말한다", () => {
-    const targets = entries.filter(
-      (e) => e.rpmMinor === "이차방정식의 활용" && Number(e.rpmType) >= 8,
-    );
+    const targets = entries.filter((e) => {
+      const n = Number(e.rpmType);
+      return e.rpmMinor === "이차방정식의 활용" && n >= 8 && n <= 15;
+    });
     expect(targets.length).toBe(8);
     for (const e of targets) {
       for (const seed of SEEDS) {

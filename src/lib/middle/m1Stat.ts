@@ -417,6 +417,88 @@ export const M1_SPHERE: TypeEntry[] = [
         };
       }),
   ),
+
+  /**
+   * **27 — 부피에서 겉넓이를 구한다** (2026-08-29 추가, RPM 21~26 다음 번호).
+   *
+   * 기존 여섯의 시작과 끝:
+   *   21 단면·반지름·지름 → 겉넓이 · **22 반지름·지름·겉넓이 → 부피**
+   *   23 1/n 절단 → 겉넓이·부피 · 24 회전체 → 겉넓이·부피
+   *   25 원뿔·구·원기둥 한 부피 → 다른 부피 · 26 외접·내접 → 겉넓이 또는 부피
+   *
+   * **「부피 → 겉넓이」가 없다.** 22 갈래 2 는 겉넓이에서 시작해 부피에서 멈춘다.
+   * 시작도 끝도 기존 것과 다르다. 숫자만 바꾸거나 어투만 바꾼 것이 아니다.
+   */
+  def(MINOR_SOLID, "27", "부피가 주어진 구의 겉넓이", SEC.구, "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const half = pick(rng, [0, 1] as const);
+      const r = pick(rng, R3);
+      if (half === 0) {
+        const V = (4 * r * r * r) / 3;
+        const S = 4 * r * r;
+        // r=3 이면 V=S=36 이라 발문의 부피가 답을 말해 버린다(22 갈래 2 의 그 자리).
+        if (V === S) return null;
+        return {
+          content: `부피가 $${V}\\pi\\,\\mathrm{cm}^3$인 구의 겉넓이를 구하시오.`,
+          answer: `$${S}\\pi\\,\\mathrm{cm}^2$`,
+          solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\dfrac{4\\pi}{3}\\times r^{3}=${V}\\pi$에서 $r^{3}=${r * r * r}$, $r=${r}$이다.\n따라서 겉넓이는 $4\\pi\\times${r}^{2}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { half, r, V, S, ans: S },
+        };
+      }
+      const V = (2 * r * r * r) / 3;
+      const S = 3 * r * r;
+      // r=3 이면 곡면 $2r^{2}$ 과 부피가 둘 다 $18$ 이라 해설이 답을 한 번 더 말한 것처럼 읽힌다.
+      if (V === S || 2 * r * r === V) return null;
+      return {
+        content: `부피가 $${V}\\pi\\,\\mathrm{cm}^3$인 반구의 겉넓이를 구하시오.`,
+        answer: `$${S}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\dfrac{1}{2}\\times\\dfrac{4\\pi}{3}\\times r^{3}=${V}\\pi$에서 $r=${r}$이다.\n곡면의 넓이 $${2 * r * r}\\pi$와 단면인 원의 넓이 $${r * r}\\pi$를 더하면 겉넓이는 $${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { half, r, V, S, ans: S },
+      };
+    }),
+  ),
+
+  /**
+   * **28 — 겉넓이와 부피의 비** (2026-08-29 추가).
+   *
+   * 21 은 겉넓이에서, 22 는 부피에서 멈춘다. 둘의 비 $4\\pi r^{2}:\\dfrac{4\\pi}{3}r^{3}=3:r$ 는
+   * 그 소단원의 두 공식을 한 번에 묶는 자리인데 비어 있었다.
+   * 중2 「닮은 도형의 넓이의 비와 부피의 비」는 **닮음비**로 가는 다른 단원이다
+   * (`m2GeoSim.ts`) — 여기 넣으면 학년을 어기는 중복이 된다.
+   */
+  def(
+    MINOR_SOLID,
+    "28",
+    "구의 겉넓이와 부피의 비",
+    SEC.구,
+    "연산",
+    (rng) =>
+      attempt(40, (): Body | null => {
+        const r = pick(rng, R3);
+        const g = gcd(3, r);
+        const a = 3 / g;
+        const b = r / g;
+        const mode = pick(rng, [0, 1] as const);
+        if (mode === 0) {
+          return {
+            content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 구의 겉넓이와 부피의 비를 가장 간단한 자연수의 비로 나타내시오.`,
+            answer: `$${a}:${b}$`,
+            solution: `겉넓이는 $4\\pi r^{2}$, 부피는 $\\dfrac{4\\pi}{3}r^{3}$이므로 겉넓이와 부피의 비는 $3:r$이다.\n$r=${r}$이므로 $3:${r}=${a}:${b}$이다.`,
+            facts: { mode, r, a, b, ans: b },
+          };
+        }
+        return {
+          content: `어떤 구의 겉넓이와 부피의 비가 $${a}:${b}$일 때, 이 구의 반지름의 길이를 구하시오.`,
+          answer: `$${r}\\,\\mathrm{cm}$`,
+          solution: `겉넓이와 부피의 비는 $3:r$이므로 $3:r=${a}:${b}$이다.\n따라서 $r=${r}\\,(\\mathrm{cm})$이다.`,
+          facts: { mode, r, a, b, ans: r },
+        };
+      }),
+    (f) =>
+      f.mode === 0
+        ? [f.a, f.b].filter((v): v is number => v !== undefined)
+        : [f.r].filter((v): v is number => v !== undefined),
+  ),
 ];
 
 // ═══════════════════════════════════════════════════════════════════

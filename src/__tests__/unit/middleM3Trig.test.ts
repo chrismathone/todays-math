@@ -1,5 +1,5 @@
 /**
- * 중3 「삼각비」 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14) — 독립 검산.
+ * 중3 「삼각비」 33유형 (RPM 3-2 삼각비 18+여각 1 + 삼각비의 활용 14) — 독립 검산.
  *
  * ## 이 시험이 무엇을 «다르게» 재는가
  *
@@ -424,6 +424,15 @@ const VERIFY: Record<string, (f: F) => boolean> = {
     if (f.d * f.d + f.h * f.h !== f.s * f.s) return false;
     return near(f.num / f.den, TRIG(f.mode, Math.atan2(f.h, f.d) / DEG));
   },
+  // 여각 — 각 A 를 asin 으로 되찾고 90-A 에서 묻는 삼각비를 다시 잰다.
+  [`${T}|19`]: (f) => {
+    if (f.p * f.p + f.q * f.q !== f.r * f.r) return false;
+    const ang = Math.asin(f.p / f.r) / DEG;
+    return (
+      near(f.gnum / f.gden, TRIG(f.given, ang)) &&
+      near(f.num / f.den, TRIG(f.want, 90 - ang))
+    );
+  },
   // 특수각 계산 — 부동소수로 식을 그대로 계산해 정확값과 견준다.
   [`${T}|08`]: (f) => verifySpecial(f),
   [`${T}|09`]: (f) =>
@@ -597,6 +606,7 @@ const ANSWER_VALUE: Record<string, (f: F) => number | null> = {
   [`${T}|05`]: (f) => f.num / f.den,
   [`${T}|06`]: (f) => f.num / f.den,
   [`${T}|07`]: (f) => f.num / f.den,
+  [`${T}|19`]: (f) => f.num / f.den,
   [`${T}|08`]: (f) => (f.an * Math.sqrt(f.ar)) / f.ad,
   [`${T}|09`]: (f) => f.x,
   [`${T}|10`]: (f) => f.an * Math.sqrt(f.ar),
@@ -634,6 +644,7 @@ const TITLES: Record<string, string> = {
   [`${T}|05`]: "직각삼각형의 닮음과 삼각비⑵",
   [`${T}|06`]: "직선의 방정식과 삼각비",
   [`${T}|07`]: "입체도형에서 삼각비의 값 구하기",
+  [`${T}|19`]: "여각의 삼각비",
   [`${T}|08`]: "의 삼각비의 값",
   [`${T}|09`]: "의 삼각비의 값을 이용하여 각의 크기 구하기",
   [`${T}|10`]: "의 삼각비의 값을 이용하여 변의 길이 구하기",
@@ -665,9 +676,9 @@ const TITLES: Record<string, string> = {
 
 /** 우리 `Unit.section` (prisma/seed-data/units.ts 481~483) — 실측 리터럴. */
 const SECTION: Record<string, string> = {};
-for (let i = 1; i <= 18; i += 1) {
+for (let i = 1; i <= 19; i += 1) {
   const n = String(i).padStart(2, "0");
-  SECTION[`${T}|${n}`] = i <= 7 ? "삼각비의 뜻" : "삼각비의 값";
+  SECTION[`${T}|${n}`] = i <= 7 || i === 19 ? "삼각비의 뜻" : "삼각비의 값";
 }
 for (let i = 1; i <= 14; i += 1) {
   SECTION[`${A}|${String(i).padStart(2, "0")}`] = "삼각비의 활용";
@@ -706,6 +717,7 @@ const MIN_CONTENTS: Record<string, number> = {
   [`${T}|05`]: 34,
   [`${T}|06`]: 38,
   [`${T}|07`]: 18,
+  [`${T}|19`]: 12,
   [`${T}|08`]: 36,
   [`${T}|09`]: 33,
   [`${T}|10`]: 35,
@@ -835,16 +847,25 @@ describe("전처리 판정기 — 지면이 수를 고쳐 쓰는가", () => {
   });
 });
 
-describe("중3 삼각비 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14)", () => {
+describe("중3 삼각비 33유형 (RPM 3-2 삼각비 19 + 삼각비의 활용 14)", () => {
   // 브리프 계약 5 — 합본을 중단원 이름으로 거르지 않는다. 내 배열을 직접 돈다.
   const entries = M3_TRIG;
 
-  it("삼각비 18유형 + 삼각비의 활용 14유형 = 32유형이 등록돼 있다", () => {
-    expect(entries.length).toBe(32);
+  it("🔴 **「삼각비의 뜻」이 8문항 일일테스트를 채운다**", () => {
+    const meaning = entries.filter((e) => e.unitSection === "삼각비의 뜻");
+    expect(
+      meaning.length,
+      "유형이 8 미만이면 8문항 일일테스트를 못 채운다",
+    ).toBeGreaterThanOrEqual(8);
+    expect(new Set(meaning.map((e) => e.key)).size).toBe(meaning.length);
+  });
+
+  it("삼각비 19유형 + 삼각비의 활용 14유형 = 33유형이 등록돼 있다", () => {
+    expect(entries.length).toBe(33);
     const trig = entries.filter((e) => e.rpmMinor === "삼각비");
     const apply = entries.filter((e) => e.rpmMinor === "삼각비의 활용");
     expect(trig.map((e) => e.rpmType)).toEqual(
-      Array.from({ length: 18 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 19 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(apply.map((e) => e.rpmType)).toEqual(
       Array.from({ length: 14 }, (_, i) => String(i + 1).padStart(2, "0")),
@@ -865,12 +886,12 @@ describe("중3 삼각비 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14
     }
     expect([...counts.entries()].sort()).toEqual([
       ["삼각비의 값", 11],
-      ["삼각비의 뜻", 7],
+      ["삼각비의 뜻", 8],
       ["삼각비의 활용", 14],
     ]);
   });
 
-  it("RPM 색인의 실제 제목을 쓴다 (32유형 전량 리터럴 대조)", () => {
+  it("RPM 색인의 실제 제목을 쓴다 (33유형 전량 리터럴 대조)", () => {
     for (const e of entries) {
       expect(e.rpmTitle, e.key).toBe(TITLES[e.key]);
     }
@@ -1147,7 +1168,7 @@ describe("중3 삼각비 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14
    * 넓은 씨앗 전량 검산 — 좁은 표본은 드물게 나는 조합을 구조적으로 못 본다
    * (CLAUDE.md 2026-08-19 「0% 를 «구조적으로 못 센다»로 단정하기 전에 표본을 넓혀라」).
    */
-  it("넓은 씨앗(300×4)에서도 32유형 전량이 검산을 통과한다", () => {
+  it("넓은 씨앗(300×4)에서도 33유형 전량이 검산을 통과한다", () => {
     let checked = 0;
     for (let s = 0; s < 300; s += 1) {
       for (const e of M3_TRIG) {
@@ -1159,14 +1180,14 @@ describe("중3 삼각비 32유형 (RPM 3-2 삼각비 18 + 삼각비의 활용 14
         checked += 1;
       }
     }
-    expect(checked).toBe(300 * 32);
+    expect(checked).toBe(300 * 33);
   });
 
   it("정확한 무리수 대수가 아니라 **부동소수**로 재고 있다 (동어반복 방지)", () => {
     // 이 시험 파일은 `Surd`·`surdText`·`frac` 를 import 하지 않는다. 그것을
     // 쓰면 「생성기가 쓴 식으로 생성기를 검산」하는 셈이라 아무것도 못 잡는다.
-    expect(Object.keys(VERIFY).length).toBe(32);
-    expect(Object.keys(ANSWER_VALUE).length).toBe(32);
+    expect(Object.keys(VERIFY).length).toBe(33);
+    expect(Object.keys(ANSWER_VALUE).length).toBe(33);
     expect(EPS).toBeGreaterThan(0);
   });
 });

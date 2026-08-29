@@ -1644,6 +1644,60 @@ export const M3_TRIG: TypeEntry[] = [
     },
   ),
 
+  /**
+   * **19 — 여각의 삼각비** (2026-08-29 추가, RPM 삼각비 01~18 다음 번호).
+   *
+   * 기존 일곱(뜻)의 시작과 끝:
+   *   01 두 변 → 삼각비 · 02 삼각비+한 변 → 다른 변
+   *   **03 한 삼각비 → 같은 각의 다른 삼각비** · 04·05 수선의 발 → 삼각비
+   *   06 직선의 기울기 → 삼각비 · 07 직육면체 대각선 → 삼각비
+   *
+   * **「한 각의 삼각비 → 여각의 삼각비」가 없다.** 03 은 같은 각에서 끝나고,
+   * 08~18(삼각비의 값)의 18 은 **표의 특수각**에서 여각을 쓴다. 뜻 단원에서
+   * 비로 정의한 일반각의 여각이 비어 있었다.
+   *
+   * 답이 발문과 같은 수가 되는 자리(예: $\\sin A$ → $\\cos(90^\\circ-A)$)는
+   * 항등식이 답을 말해 버리므로 버린다.
+   */
+  def("삼각비", "19", "여각의 삼각비", SEC.뜻, "응용", (rng) =>
+    attempt(120, () => {
+      const [p0, q0, r0] = pick(rng, TRIPLES);
+      const g0 = gcd(gcd(p0, q0), r0);
+      const p = p0 / g0;
+      const q = q0 / g0;
+      const r = r0 / g0;
+      const given = intBetween(rng, 0, 2);
+      const want = intBetween(rng, 0, 2);
+      const givenPair = (fn: number): [number, number] =>
+        fn === 0 ? red(p, r) : fn === 1 ? red(q, r) : red(p, q);
+      const wantPair = (fn: number): [number, number] =>
+        fn === 0 ? red(q, r) : fn === 1 ? red(p, r) : red(q, p);
+      const [gn, gd] = givenPair(given);
+      const [wn, wd] = wantPair(want);
+      if (gn >= gd || wn >= wd) return null;
+      if (gn === wn && gd === wd) return null;
+      const asked = `${FN_NAMES[want]} (90^\\circ-A)`;
+      const givenTex = trigOf(given, "A");
+      const same = [
+        `\\cos A=\\dfrac{${q}}{${r}}`,
+        `\\sin A=\\dfrac{${p}}{${r}}`,
+        `\\dfrac{1}{\\tan A}=\\dfrac{${q}}{${p}}`,
+      ][want]!;
+      const iden = [
+        `${asked}=\\cos A`,
+        `${asked}=\\sin A`,
+        `${asked}=\\dfrac{1}{\\tan A}`,
+      ][want]!;
+      return {
+        content: `$0^\\circ<A<90^\\circ$인 $\\angle A$에 대하여 $${givenTex}=${frac(gn, gd)}$일 때, $${asked}$의 값을 구하시오.`,
+        answer: `$${frac(wn, wd)}$`,
+        solution: `$${givenTex}=${frac(gn, gd)}$이므로 높이가 $${p}$, 밑변의 길이가 $${q}$, 빗변의 길이가 $${r}$인 직각삼각형에서 $${same}$이다.\n$${iden}$이므로 $${asked}=${frac(wn, wd)}$이다.`,
+        facts: { p, q, r, given, want, gnum: gn, gden: gd, num: wn, den: wd },
+        figureSpec: null,
+      };
+    }),
+  ),
+
   /* ── 삼각비의 활용 01~14 → 우리 단원 「삼각비의 활용」 ──────────── */
 
   def(
