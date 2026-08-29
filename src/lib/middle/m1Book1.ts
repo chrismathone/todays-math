@@ -24,7 +24,7 @@ import {
   shuffle,
   signed,
 } from "./m1Shared";
-import { euroRo, eulReul } from "./m2Josa";
+import { euroRo, eulReul, waGwa } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -702,6 +702,97 @@ export const M1_BOOK1: TypeEntry[] = [
         facts: { a, b, axis, c: cVal, d: dVal },
       };
     },
+  ),
+
+  // 색인 01~11 · 기본 보강 12~19 · 그래프의 이해 20~25 가 이미 있다.
+  // 빈 번호는 26부터. 아래 셋은 03(삼각형 넓이)·04~06(사분면)·10(대칭점 좌표)이
+  // 안 묻는 것이다 — 숫자만 바꾼 아류가 아니다.
+  defType(
+    BOOK,
+    "좌표와 그래프",
+    "26",
+    "두 점의 중점의 좌표",
+    SEC1.좌표응용,
+    "기본",
+    (rng) =>
+      attempt(200, () => {
+        const m = intNonzero(rng, -6, 6);
+        const n = intNonzero(rng, -6, 6);
+        const dx = intNonzero(rng, -5, 5);
+        const dy = intNonzero(rng, -5, 5);
+        const ax = m - dx;
+        const ay = n - dy;
+        const bx = m + dx;
+        const by = n + dy;
+        if (Math.abs(ax) > 12 || Math.abs(ay) > 12) return null;
+        if (Math.abs(bx) > 12 || Math.abs(by) > 12) return null;
+        if (ax === bx && ay === by) return null;
+        return {
+          content: `두 점 $\\mathrm{A}(${ax}, ${ay})$, $\\mathrm{B}(${bx}, ${by})$의 중점의 좌표를 구하시오.`,
+          answer: `$(${m}, ${n})$`,
+          solution: `선분 $\\mathrm{AB}$의 중점의 좌표는 $\\left(\\dfrac{${ax}${signed(bx)}}{2},\\,\\dfrac{${ay}${signed(by)}}{2}\\right)=(${m}, ${n})$이다.`,
+          facts: { ax, ay, bx, by, m, n },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "좌표와 그래프",
+    "27",
+    "대칭인 두 점의 좌표에서 미지수 구하기",
+    SEC1.좌표응용,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const axis = intBetween(rng, 0, 2);
+        const x = intNonzero(rng, -9, 9);
+        const y = intNonzero(rng, -9, 9);
+        if (Math.abs(x) === Math.abs(y)) return null;
+        const aVal = axis === 0 ? x : -x;
+        const bVal = axis === 1 ? y : -y;
+        const axisText = axis === 0 ? "$x$축" : axis === 1 ? "$y$축" : "원점";
+        const rule =
+          axis === 0
+            ? "$x$축에 대하여 대칭이면 $x$좌표는 같고 $y$좌표의 부호만 바뀐다."
+            : axis === 1
+              ? "$y$축에 대하여 대칭이면 $y$좌표는 같고 $x$좌표의 부호만 바뀐다."
+              : "원점에 대하여 대칭이면 $x$좌표와 $y$좌표의 부호가 모두 바뀐다.";
+        return {
+          content: `점 $(a, ${y})$${waGwa(y)} 점 $(${x}, b)$가 ${axisText}에 대하여 대칭일 때, 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.`,
+          answer: `$${aVal + bVal}$`,
+          solution: `${rule}\n따라서 $a=${aVal}$, $b=${bVal}$이므로 $a+b=${aVal + bVal}$이다.`,
+          facts: { axis, x, y, a: aVal, b: bVal, S: aVal + bVal },
+        };
+      }),
+  ),
+
+  defType(
+    BOOK,
+    "좌표와 그래프",
+    "28",
+    "축에 평행한 직사각형의 넓이",
+    SEC1.좌표응용,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const x1 = intNonzero(rng, -8, 8);
+        const y1 = intNonzero(rng, -8, 8);
+        const x2 = intNonzero(rng, -8, 8);
+        const y2 = intNonzero(rng, -8, 8);
+        if (x1 === x2 || y1 === y2) return null;
+        const area = Math.abs(x2 - x1) * Math.abs(y2 - y1);
+        const dx = Math.abs(x2 - x1);
+        const dy = Math.abs(y2 - y1);
+        const sub = (p: number, q: number): string =>
+          q >= 0 ? `${p}-${q}` : `${p}-(${q})`;
+        return {
+          content: `두 점 $\\mathrm{A}(${x1}, ${y1})$, $\\mathrm{C}(${x2}, ${y2})$${eulReul(y2)} 대각선의 양 끝점으로 하고, 각 변이 좌표축에 평행한 직사각형의 넓이를 구하시오.`,
+          answer: `$${area}$`,
+          solution: `각 변이 축에 평행하므로 가로의 길이는 $\\left|${sub(x2, x1)}\\right|=${dx}$, 세로의 길이는 $\\left|${sub(y2, y1)}\\right|=${dy}$이다.\n따라서 넓이는 $${dx}\\times${dy}=${area}$이다.`,
+          facts: { x1, y1, x2, y2, area },
+        };
+      }),
   ),
 
   // ── 일차방정식의 풀이 → 방정식과 그 해 (여력분) ────────

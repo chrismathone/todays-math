@@ -302,6 +302,182 @@ const SOLUTION_APPLICATION_SUPPLEMENTS = [
   solutionApplicationSupplement("31", "해가 무수히 많은 방정식의 조건", 5),
 ] as const;
 
+/**
+ * 방정식과 그 해 보강 — 01 등식 개수 · 02 문장→등식 · 03 |x|=k 해 · 04 항등식
+ * 개수 · 05 항등식 조건. 아직 안 묻는 것은 **방정식(조건부 등식) 판별**, **한 수가
+ * 여러 식의 해인가**, **보기 수 중 등식을 참이게 하는 것**. 풀이 절차(이항)는
+ * 다음 소단원 몫이고, 발문만 바꾼 서술형은 아니다.
+ */
+const EQUATION_MEANING_SUPPLEMENTS: TypeEntry[] = [
+  def(MINOR_EQ, "32", "방정식인 것의 개수", SEC.방정식해, "기본", (rng) =>
+    attempt(500, (): Body | null => {
+      const L = intBetween(rng, 2, 3);
+      const items: string[] = [];
+      for (let i = 0; i < L; i += 1) {
+        const a = intNonzero(rng, -7, 7);
+        const b = intNonzero(rng, -9, 9);
+        const c = intNonzero(rng, -9, 9);
+        items.push(`${lin(a, b)}=${c}`);
+      }
+      for (let i = L; i < 5; i += 1) {
+        const t = intBetween(rng, 0, 2);
+        const a = intNonzero(rng, -6, 6);
+        const b = intNonzero(rng, -9, 9);
+        const c = intNonzero(rng, -7, 7);
+        if (t === 0) {
+          items.push(`${a}\\left(x${signed(c)}\\right)=${lin(a, a * c)}`);
+        } else if (t === 1) {
+          const p = Math.abs(a);
+          const q = Math.abs(b);
+          items.push(`${p}+${q}=${p + q}`);
+        } else if (rng() < 0.5) {
+          items.push(`${lin(a, 0)}>${c}`);
+        } else {
+          items.push(lin(a, b));
+        }
+      }
+      const line = itemLine(rng, items);
+      if (line === null) return null;
+      return {
+        content: `다음 중 방정식인 것의 개수를 구하시오.\n${line}`,
+        answer: `$${L}$개`,
+        solution: `미지수를 포함한 등식 가운데 미지수에 어떤 값을 대입해도 항상 참인 항등식이 아닌 것이 방정식이다.\n등호가 없는 식과 부등식, 항등식은 방정식이 아니므로 방정식은 $${L}$개이다.`,
+        facts: { count: L },
+      };
+    }),
+  ),
+
+  def(
+    MINOR_EQ,
+    "33",
+    "주어진 수가 해가 되는 방정식",
+    SEC.방정식해,
+    "응용",
+    (rng) =>
+      attempt(500, (): Body | null => {
+        const r = intNonzero(rng, -8, 8);
+        const L = intBetween(rng, 2, 3);
+        const items: string[] = [];
+        for (let i = 0; i < L; i += 1) {
+          const a = intNonzero(rng, -7, 7);
+          const b = intNonzero(rng, -9, 9);
+          items.push(`${lin(a, b)}=${a * r + b}`);
+        }
+        for (let i = L; i < 5; i += 1) {
+          const a = intNonzero(rng, -7, 7);
+          const b = intNonzero(rng, -9, 9);
+          const off = intNonzero(rng, -8, 8);
+          items.push(`${lin(a, b)}=${a * r + b + off}`);
+        }
+        const line = itemLine(rng, items);
+        if (line === null) return null;
+        return {
+          content: `다음 중 $x=${r}$${eulReul(r)} 해로 갖는 방정식의 개수를 구하시오.\n${line}`,
+          answer: `$${L}$개`,
+          solution: `$x=${r}$${eulReul(r)} 각 등식에 대입하여 성립하는 것만 센다.\n따라서 해가 되는 방정식은 $${L}$개이다.`,
+          facts: { r, count: L },
+        };
+      }),
+  ),
+
+  def(MINOR_EQ, "34", "등식을 참이 되게 하는 수", SEC.방정식해, "기본", (rng) =>
+    attempt(400, (): Body | null => {
+      const r = intNonzero(rng, -9, 9);
+      const a = intNonzero(rng, -7, 7);
+      const b = intNonzero(rng, -9, 9);
+      const decoys: number[] = [];
+      for (let k = 0; k < 4; k += 1) {
+        const d = intNonzero(rng, -12, 12);
+        if (d === r || decoys.includes(d)) return null;
+        decoys.push(d);
+      }
+      const line = itemLine(
+        rng,
+        [r, ...decoys].map((n) => String(n)),
+      );
+      if (line === null) return null;
+      return {
+        content: `다음 수 중에서 등식 $${lin(a, b)}=${a * r + b}$${eulReul(a * r + b)} 참이 되게 하는 수를 구하시오.\n${line}`,
+        answer: `$${r}$`,
+        solution: `등식에 $x=${r}$${eulReul(r)} 대입하면 좌변의 값은 $${a * r + b}$이고 우변과 같다.\n다른 수를 대입하면 등식이 성립하지 않으므로 구하는 수는 $${r}$이다.`,
+        facts: { r, a, b },
+      };
+    }),
+  ),
+];
+
+/**
+ * 일차방정식의 풀이 보강 — 09 판별 · 10 괄호 한 겹 · 11 소수 · 12 분수 ·
+ * 13 소수+분수 · 14 비례식. 중첩 괄호와 괄호+분수는 푸는 절차가 다르다.
+ */
+const LINEAR_SOLVE_SUPPLEMENTS: TypeEntry[] = [
+  def(
+    MINOR_EQ,
+    "35",
+    "괄호가 중첩된 일차방정식의 풀이",
+    SEC.일차방정식,
+    "심화",
+    (rng) =>
+      attempt(600, (): Body | null => {
+        const r = intNonzero(rng, -8, 8);
+        const k = intBetween(rng, 2, 4);
+        const a = intBetween(rng, 2, 5);
+        const u = intNonzero(rng, -6, 6);
+        const v = intNonzero(rng, -6, 6);
+        const slopeL = k * (a - 1);
+        const m = intNonzero(rng, -6, 6);
+        if (m === slopeL) return null;
+        const constL = k * (a * u - v);
+        const d = slopeL * r + constL - m * r;
+        if (d === 0) return null;
+        const inner = `${a}(x${signed(u)})-(x${signed(v)})`;
+        return {
+          content: `다음 일차방정식을 푸시오.\n$${k}\\left\\{${inner}\\right\\}=${lin(m, d)}$`,
+          answer: `$x=${r}$`,
+          solution: `중괄호 안을 먼저 계산하면 $${inner}=${lin(a - 1, a * u - v)}$이다.\n양변에 $${k}$${eulReul(k)} 곱하면 $${lin(slopeL, constL)}=${lin(m, d)}$이다.\n이항하여 정리하면 $x=${r}$이다.`,
+          facts: { r, k, a, u, v, m, d },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_EQ,
+    "36",
+    "괄호와 분수가 있는 일차방정식의 풀이",
+    SEC.일차방정식,
+    "심화",
+    (rng) =>
+      attempt(800, (): Body | null => {
+        const r = intNonzero(rng, -8, 8);
+        const m = intBetween(rng, 2, 6);
+        const n = intBetween(rng, 2, 6);
+        if (m === n) return null;
+        const a = intBetween(rng, 2, 5);
+        const b = intBetween(rng, 2, 5);
+        // `\dfrac{5(x-5)}{5}` 처럼 계수가 분모와 같아 분수가 가짜가 되면 안 된다.
+        if (a === m || b === n) return null;
+        if (gcd(a, m) !== 1 || gcd(b, n) !== 1) return null;
+        const u = intNonzero(rng, -5, 5);
+        const v = intNonzero(rng, -5, 5);
+        const s = pick(rng, [1, -1] as const);
+        const xc = n * a + s * m * b;
+        if (xc === 0) return null;
+        const num = n * a * (r + u) + s * m * b * (r + v);
+        const den = m * n;
+        if (num % den !== 0) return null;
+        const c = num / den;
+        if (c === 0) return null;
+        const expr = `\\dfrac{${a}(x${signed(u)})}{${m}}${s > 0 ? "+" : "-"}\\dfrac{${b}(x${signed(v)})}{${n}}`;
+        return {
+          content: `다음 일차방정식을 푸시오.\n$${expr}=${c}$`,
+          answer: `$x=${r}$`,
+          solution: `계수를 정수로 고치기 위해 양변에 두 분모의 곱 $${den}$${eulReul(den)} 곱하면 $${lin(xc, n * a * u + s * m * b * v)}=${den * c}$이다.\n이항하여 정리하면 $x=${r}$이다.`,
+          facts: { r, m, n, a, b, u, v, s, c },
+        };
+      }),
+  ),
+];
+
 /** `ax+by+c` 몸통 — 17·18 이 두 문자 식을 낼 때 쓴다. */
 function lin2(a: number, b: number, c: number): string {
   const parts: string[] = [];
@@ -1858,5 +2034,7 @@ const EXPR_VALUE_SUPPLEMENTS: TypeEntry[] = [
 export const M1_EXPR_SUP_B: TypeEntry[] = [
   ...EQ_PROPERTY_SUPPLEMENTS,
   ...SOLUTION_APPLICATION_SUPPLEMENTS,
+  ...EQUATION_MEANING_SUPPLEMENTS,
+  ...LINEAR_SOLVE_SUPPLEMENTS,
   ...EXPR_VALUE_SUPPLEMENTS,
 ];
