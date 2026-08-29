@@ -196,6 +196,19 @@ def angle_arc(vx, vy, p1, p2, r=26) -> str:
 #    하나는 거짓 빨강을 냈다. 치수 지문은 색(`#000`) + 파선(`6 4`) 둘이다.
 DIM_SW = 0.6
 
+# 🔴 **각 호 굵기** — 원장님 확정 2026-08-29 「rpm과 같은 비율이면 전부 통과」(D-112).
+#
+# 정본 실측(RPM 중1-2 p126·p130): 각 호 0.30pt ÷ 도형 선 0.80pt = **0.375**.
+# 우리 도형 선은 `elem_advanced.SOLID_SW = 1.4` 이므로 1.4 × 0.375 = **0.525**.
+# 종전 기본값은 1.4 라 **도형 선과 똑같았다**(비 1.000) — 호가 도형과 같은 무게로
+# 앞에 나와, 정본처럼 배경으로 물러나지 않았다.
+#
+# ⚠️ v2 장면 엔진(`figure_scene`)은 이미 정본 비다 — `mark_width 0.72 / segment_width 1.9`
+#    = 0.379(실측 확인). 이 상수는 `figure_svg` 를 직접 쓰는 옛 경로 몫이다.
+# ⚠️ 이 파일은 `F:\시험지변환기` 의 **사본**이다 — 상류를 갱신하면 1.4 로 되돌아온다.
+#    `src/__tests__/unit/figureWeightRatio.test.ts` 가 그때 빨개진다.
+ANGLE_SW = 0.525
+
 
 def meas(px_, py_, qx_, qy_, off=10.0, ins_p=0.0, ins_q=0.0) -> str:
     """길이 치수 점선 — **양끝이 잰 두 점에 정확히 닿고** 가운데만 |off| 볼록.
@@ -357,7 +370,7 @@ def rangle(x, y, ux, uy, vx, vy, s=11) -> str:
             f'fill="none" stroke="#000" stroke-width="1"/>')
 
 
-def angle_mark(vx, vy, p1, p2, r=20, n=1, gap=5, dash=True, w=1.4) -> str:
+def angle_mark(vx, vy, p1, p2, r=20, n=1, gap=5, dash=True, w=ANGLE_SW) -> str:
     """각 표시 호 — **점선이 기본**이고 완성된 요소를 돌려준다.
 
     원본 인쇄의 각 호는 점선이다(오성중 13그림 전수 대조). 호출부가 매번
