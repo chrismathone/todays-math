@@ -81,6 +81,16 @@ def measure(path: str):
             if fs:
                 fonts.append(fs)
             continue
+        # 🔴 **조판된 라벨에는 `<text>` 가 없다** (2026-08-28 MathJax 배선 이후).
+        #    글자가 글리프 path 로 바뀌고 크기는 `<g data-fs="...">` 에만 남는다.
+        #    `<text>` 만 보면 이 축이 **적재본 전체에서 구조적으로 0**이 된다 —
+        #    실제로 그렇게 되어 있었고, 아래 `line()` 이 「침묵한다」고만 찍었다.
+        #    0 이 「깨끗」인지 「못 셈」인지 갈라야 한다(2026-08-21).
+        if el.get("data-fs") is not None:
+            fs = _f(el.get("data-fs"))
+            if fs:
+                fonts.append(fs)
+            continue
         sw = _f(el.get("stroke-width"))
         stroke = (el.get("stroke") or "").lower()
         dash = (el.get("stroke-dasharray") or "").strip()
@@ -90,6 +100,21 @@ def measure(path: str):
         #    같은 무늬를 쓴다 — 처음 이 자를 그렇게 짰다가 보조선 13장을 각 호로
         #    세어 「비 1.000」이라는 거짓 값을 냈다. 각 호는 `angle_mark` 가 내는
         #    **호(`A` 명령이 든 path)** 다. 대시 하나로는 안 갈린다.
+        #
+        # 🔴🔴 **그런데 이 좁힌 열쇠도 틀렸다** (2026-08-29 적대적 점검).
+        #    ㉠ **제품(v2 장면 엔진)의 각 호는 점선이 아니다** — 실측
+        #       `<path d="M … A 22 22 …" stroke="#111111" stroke-width="0.72"/>`,
+        #       대시 없음. 그래서 이 축은 **진짜 각 호를 한 장도 못 본다.**
+        #    ㉡ 대신 **내용 곡선**을 문다 — 적재본에서 걸린 6장은 전부
+        #       `mid:1-2|원과 부채꼴|18` 의 **반지름 66짜리 파선 반원**(그림의 일부)
+        #       이었고, 도형선과 같은 굵기인 것이 정상이다. 그 6장이
+        #       「중앙값 1.000 · 정본 0.375」라는 **거짓 경보**를 냈다.
+        #
+        #    속성만으로는 «각 표시»와 «내용 곡선»이 안 갈린다 — 각 호인지는 «꼭짓점
+        #    사이에 그렸는가»이지 색·대시가 아니다. 그래서 이 축은 **판정하지 않고**
+        #    「파선 호」로만 세어 찍는다(아래 이름). 진짜 가드는 입력을 통제하는 쪽에
+        #    있다: `src/__tests__/unit/figureWeightRatio.test.ts` 가 **각 표시만 든
+        #    스펙을 직접 그려** 굵기 비를 잰다. 분류를 못 하겠으면 입력을 통제하라.
         is_arc = (
             dash.startswith("4 3")
             and tag == "path"
@@ -109,6 +134,14 @@ def measure(path: str):
     if not solid:
         return None
     # 도형 실선의 **최빈값**을 쓴다 — 평균은 장식선 하나에 끌려간다.
+    #
+    # ⚠️ **최빈값도 끌려간다** (2026-08-29 적대적 점검). 화살촉은 짧은 선 두 개씩이라
+    #    한 그림에 **수십 개**가 되고, 그러면 최빈값이 화살촉 굵기(0.72)가 된다.
+    #    실측: `mid:1-5|…` 계열 18장이 「치수 파선 ÷ 도형 선 = 2.639」로 찍혔는데,
+    #    분모가 도형선이 아니라 **화살촉**이었다(진짜 도형선은 그 파선 1.9 쪽이다).
+    #    그래서 **띠 밖 값이 나오면 먼저 이 자를 의심하라** — 세 축 중 믿을 것은
+    #    「도형 대각 ÷ 라벨」이고, 굵기 축은 입력을 통제한 시험
+    #    (`figureWeightRatio.test.ts`)이 정본이다.
     sw_solid = Counter(solid).most_common(1)[0][0]
     diag = math.hypot(max(xs) - min(xs), max(ys) - min(ys)) if xs and ys else None
     return {
@@ -152,7 +185,14 @@ def main() -> int:
         )
 
     print("\n비 — 우리 지면 (같은 자로 잰 값)")
-    line("각 호 ÷ 도형 선", arcs, RPM["arc_over_solid"])
+    # ⚠️ 판정이 아니라 **참고**다 — 위 주석 참고. 진짜 각 호 가드는
+    #    `src/__tests__/unit/figureWeightRatio.test.ts` 다.
+    line("파선 호 ÷ 도형 선(참고)", arcs, RPM["arc_over_solid"])
+    if arcs:
+        print(
+            "   ⚠️ 위 «파선 호» 는 **각 표시가 아닐 수 있다**(내용 곡선이 섞인다). "
+            "제품 각 호는 점선이 아니라 이 축이 못 본다 — 가드는 figureWeightRatio.test.ts."
+        )
     line("치수 파선 ÷ 도형 선", dims, f'{RPM["dim_over_solid"][0]}~{RPM["dim_over_solid"][1]}')
     line("도형 대각 ÷ 라벨", diags, RPM["diag_over_label"])
 
