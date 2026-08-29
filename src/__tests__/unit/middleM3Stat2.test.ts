@@ -1,5 +1,5 @@
 /**
- * 중3 «산포도» 8 + «상자그림과 산점도» 13 = 21유형 — 독립 검산.
+ * 중3 «산포도» 10 + «상자그림과 산점도» 15 = 25유형 — 독립 검산.
  *
  * `boxPlot`·`scatterPlot` 은 실제 엔진(`render_spec.py`)까지 태운다 — 모킹하지
  * 않는다(없는 축은 변이시킬 수 없다, CLAUDE.md 2026-08-19). 상관관계(08)는
@@ -36,11 +36,16 @@ const BOOK = "3-2";
  *    쓸어 담아 자기 검산표에 남의 유형을 들이댄다. 그래서 번호로 한 번 더 좁힌다 —
  *    그 유형들은 `src/__tests__/unit/midTypesB.test.ts` 가 검산을 요구한다.
  *
- * 🔴 **11~13 은 이 모듈이 냈으므로 여기 안이다**(2026-08-29, RPM 색인 밖). 문턱을
+ * 🔴 **11~15 는 이 모듈이 냈으므로 여기 안이다**(2026-08-29, RPM 색인 밖). 문턱을
  *    안 올리면 새 유형이 **아무 검산도 안 받고** 지나간다 — 아래 per-type 검사가
  *    전부 `entries()` 를 돌기 때문이다. 「없는 축은 변이시킬 수 없다」의 그 자리다.
+ *
+ * ⚠️ 문턱 하나가 **두 중단원**을 함께 자른다. 「산포도」는 09·10 까지라 13 이든
+ *    15 든 안 걸리지만, 그 사실에 기대지 말 것 — 산포도가 16번을 내는 날 조용히
+ *    분모 밖이 된다. 그래서 아래 「N유형이 전부 등록돼 있다」가 **중단원마다**
+ *    개수를 따로 못 박는다.
  */
-const CATALOG_MAX = 13;
+const CATALOG_MAX = 15;
 
 const entries = () =>
   registeredTypes().filter(
@@ -83,8 +88,8 @@ function concordantRatio(xs: number[], ys: number[]): number {
   return same / total;
 }
 
-describe("중3 산포도·상자그림과 산점도 21유형", () => {
-  it("🔴 **이 파일이 맡은 소단원이 8문항 일일테스트를 채운다** — 유형 수가 곧 한 시험지의 상한이다", () => {
+describe("중3 산포도·상자그림과 산점도 25유형", () => {
+  it("🔴 **이 파일이 맡은 소단원이 10문항 일일테스트를 채운다** — 유형 수가 곧 한 시험지의 상한이다", () => {
     // 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`),
     // 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이다. 그래서
     // 유형 수 < 문항 수 이면 그 소단원의 일일테스트는 **구조적으로 못 찬다.**
@@ -97,17 +102,17 @@ describe("중3 산포도·상자그림과 산점도 21유형", () => {
       const mine = entries().filter((e) => e.unitSection === sec);
       expect(
         mine.length,
-        `「${sec}」 유형이 8 미만이면 8문항 일일테스트를 못 채운다`,
-      ).toBeGreaterThanOrEqual(8);
+        `「${sec}」 유형이 10 미만이면 10문항 일일테스트를 못 채운다`,
+      ).toBeGreaterThanOrEqual(10);
       // 키가 겹치면 그 둘은 한 자리를 다툰다 — 세는 것이 뜻을 잃는다.
       expect(new Set(mine.map((e) => e.key)).size).toBe(mine.length);
     }
   });
 
-  it("🔴 **「산점도와 상관관계」 난이도가 8문항 기본 배분을 덮는다** — 1·3·3·1", () => {
-    // 유형이 8개여도 전부 「응용」이면 배분을 못 맞춘다. 배분은
+  it("🔴 **「산점도와 상관관계」 난이도가 10문항 기본 배분을 덮는다** — 1·4·4·1", () => {
+    // 유형이 10개여도 전부 「응용」이면 배분을 못 맞춘다. 배분은
     // `DEFAULT_DIFFICULTY_RATIO`(연산 1 · 기본 3 · 응용 3 · 심화 1)가 정본이다.
-    const want = defaultRatioFor(8);
+    const want = defaultRatioFor(10);
     const got: Record<string, number> = {};
     for (const e of entries().filter(
       (x) => x.unitSection === "산점도와 상관관계",
@@ -122,15 +127,34 @@ describe("중3 산포도·상자그림과 산점도 21유형", () => {
     }
   });
 
-  it("산포도 8 + 상자그림과 산점도 13 = 21이 등록돼 있다", () => {
+  it("🔴 **「대푯값과 산포도」에 갈래가 하나도 비지 않았다**", () => {
+    // 2026-08-29 실측: 연산 0 · 기본 2 · 응용 6 · 심화 0 — **양 끝이 둘 다**
+    // 비어 있었다. 배분을 완전히 덮는 것(1·4·4·1)까지는 요구하지 않는다 —
+    // 그러려면 이미 있는 여섯 응용의 등급을 손대야 하는데 그 값은 사람이 RPM 을
+    // 보고 정한 것이라 옮길 근거가 없다(`tier.ts` 머리말과 같은 자리).
+    const got: Record<string, number> = {};
+    for (const e of entries().filter(
+      (x) => x.unitSection === "대푯값과 산포도",
+    )) {
+      const d = generateMiddleProblem(e.key, 20260829).difficulty;
+      got[d] = (got[d] ?? 0) + 1;
+    }
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(got[tier] ?? 0, `「${tier}」 유형 수`).toBeGreaterThan(0);
+    }
+  });
+
+  it("산포도 10 + 상자그림과 산점도 15 = 25가 등록돼 있다", () => {
     const es = entries();
-    expect(es.length).toBe(21);
+    expect(es.length).toBe(25);
     const disp = es.filter((e) => e.rpmMinor === "산포도");
     const box = es.filter((e) => e.rpmMinor === "상자그림과 산점도");
-    // 🔴 RPM 의 01~07 에 **우리 유형 08**(자료 → 분산)을 더해 8이다.
-    expect(disp.length).toBe(8);
-    // 🔴 RPM 의 01~10 에 **우리 유형 11~13**(좌표 읽기·비율·상관관계의 이해)을 더해 13이다.
-    expect(box.length).toBe(13);
+    // 🔴 RPM 의 01~07 에 **우리 유형 08~10**(자료 → 분산 · 분산↔표준편차 ·
+    //    미지수가 있는 자료의 분산)을 더해 10이다.
+    expect(disp.length).toBe(10);
+    // 🔴 RPM 의 01~10 에 **우리 유형 11~15**(좌표 읽기·비율·상관관계의 이해·
+    //    두 변량의 차·무리의 평균)을 더해 15다.
+    expect(box.length).toBe(15);
   });
 
   it("Unit.section 은 소재가 바뀌는 05→06 경계에서 갈린다", () => {
@@ -142,8 +166,8 @@ describe("중3 산포도·상자그림과 산점도 21유형", () => {
     for (let i = 1; i <= 5; i += 1) {
       expect(byType.get(String(i).padStart(2, "0"))).toBe("상자그림");
     }
-    // 11~13 은 RPM 색인 밖이지만 소재가 산점도라 같은 쪽에 선다.
-    for (let i = 6; i <= 13; i += 1) {
+    // 11~15 는 RPM 색인 밖이지만 소재가 산점도라 같은 쪽에 선다.
+    for (let i = 6; i <= 15; i += 1) {
       expect(byType.get(String(i).padStart(2, "0"))).toBe("산점도와 상관관계");
     }
     const dispSections = new Set(
@@ -255,6 +279,62 @@ describe("중3 산포도·상자그림과 산점도 21유형", () => {
       const p = generateMiddleProblem("3-2|산포도|07", seed);
       const want = p.facts.mode === 0 ? p.facts.sd : p.facts.k! * p.facts.sd!;
       expect(firstNumber(p.answer)).toBe(want);
+    }
+  });
+
+  // ── 산포도 09·10 (RPM 색인 밖, 2026-08-29) — 개별 검산 ─────────────────
+
+  it("09 분산과 표준편차의 관계 — 세 갈래가 서로의 역이 되는지 잰다", () => {
+    // 🔴 참을 **발문에서 읽어** 온다. `facts` 만 보면 생성기가 `content` 와
+    //    `facts` 를 따로 만드는 자리에서 둘이 갈라져도 못 본다.
+    for (const seed of [...SEEDS, 3, 51, 777, 60606, 12321]) {
+      for (let v = 0; v < 6; v += 1) {
+        const p = generateMiddleProblem("3-2|산포도|09", seed, v);
+        const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((m) =>
+          Number(m[1]),
+        );
+        const ans = firstNumber(p.answer);
+        if (p.facts.mode === 0) {
+          // 「변량 n개의 편차의 제곱의 합이 S」 → 분산 = S/n
+          const [n, sumSq] = nums;
+          expect(sumSq! / n!, `${JSON.stringify(p.facts)}`).toBe(ans);
+          expect(Number.isInteger(sumSq! / n!)).toBe(true);
+        } else if (p.facts.mode === 1) {
+          // 「분산이 v」 → 표준편차 = √v, 그리고 그 제곱이 다시 v 다
+          expect(ans * ans).toBe(nums[0]);
+        } else {
+          // 「표준편차가 s」 → 분산 = s²
+          expect(nums[0]! * nums[0]!).toBe(ans);
+        }
+      }
+    }
+  });
+
+  it("10 미지수가 있는 자료의 분산 — 발문의 두 조건을 풀어 분산을 다시 낸다", () => {
+    for (const seed of [...SEEDS, 3, 51, 777, 60606]) {
+      for (let v = 0; v < 6; v += 1) {
+        const p = generateMiddleProblem("3-2|산포도|10", seed, v);
+        const known = unpack(p.facts, "k", 3);
+        const { mean, d } = p.facts;
+        // 발문이 실제로 그 세 수·평균·차를 적고 있는가.
+        for (const k of known) expect(p.content).toContain(`$${k}$`);
+        expect(p.content).toContain(`평균이 $${mean}$`);
+        expect(p.content).toContain(`차가 $${d}$`);
+        // 두 조건을 **여기서 다시 푼다** — 생성기의 (T±d)/2 를 옮기지 않는다.
+        const sum = known.reduce((s, x) => s + x, 0);
+        const a = (5 * mean! - sum - d!) / 2;
+        const b = a + d!;
+        expect(a).toBe(p.facts.a);
+        expect(b).toBe(p.facts.b);
+        const values = [known[0]!, known[1]!, a, b, known[2]!];
+        expect(values.reduce((s, x) => s + x, 0)).toBe(5 * mean!);
+        const variance =
+          values.reduce((s, x) => s + (x - mean!) * (x - mean!), 0) / 5;
+        expect(Number.isInteger(variance)).toBe(true);
+        expect(firstNumber(p.answer)).toBe(variance);
+        // 🔴 `+0` 이 지면에 나가면 값은 맞아도 흉하다 — 값 검산이 못 보는 축.
+        expect(p.solution).not.toContain("$+0$");
+      }
     }
   });
 
@@ -510,6 +590,57 @@ describe("중3 산포도·상자그림과 산점도 21유형", () => {
       // 그림이 없는 유형이다 — 발문이 그림을 가리키면 학생이 없는 것을 찾는다.
       expect(p.figureSpec ?? null).toBeNull();
       expect(p.content).not.toContain("그림");
+    }
+  });
+
+  it("14 두 변량의 차 — 지면의 점으로 다시 재면 가장 큰 차가 정답이다", () => {
+    for (const seed of [...SEEDS, 3, 51, 777, 60606]) {
+      for (let v = 0; v < 4; v += 1) {
+        const p = generateMiddleProblem("3-2|상자그림과 산점도|14", seed, v);
+        const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+          (m) => [Number(m[1]), Number(m[2])] as const,
+        );
+        expect(pts).toHaveLength(p.facts.n!);
+        const gaps = pts.map(([x, y]) => Math.abs(x - y));
+        const max = Math.max(...gaps);
+        expect(firstNumber(p.answer)).toBe(max);
+        // 🔴 최대가 유일해야 답이 하나다 — 둘이면 지면이 「가장 큰」을 못 가른다.
+        expect(gaps.filter((g) => g === max)).toHaveLength(1);
+        // 🔴 2등과 뚜렷이 갈려야 그림에서 눈으로 읽을 수 있다.
+        const second = Math.max(...gaps.filter((g) => g !== max));
+        expect(max - second).toBeGreaterThanOrEqual(3);
+        // 점이 겹치면 산점도가 거짓말을 한다.
+        expect(new Set(pts.map(([x, y]) => `${x},${y}`)).size).toBe(pts.length);
+      }
+    }
+  });
+
+  it("15 무리의 평균 — 지면의 점으로 다시 세고 다시 평균 낸다", () => {
+    for (const seed of [...SEEDS, 3, 51, 777, 60606]) {
+      for (let v = 0; v < 4; v += 1) {
+        const p = generateMiddleProblem("3-2|상자그림과 산점도|15", seed, v);
+        const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+          (m) => [Number(m[1]), Number(m[2])] as const,
+        );
+        const t = Number(/수학 점수가 \$(\d+)\$점 이상/.exec(p.content)?.[1]);
+        expect(pts).toHaveLength(p.facts.n!);
+        expect(t).toBe(p.facts.threshold);
+
+        const hit = pts.filter(([x]) => x >= t);
+        expect(hit.length).toBe(p.facts.count);
+        const sum = hit.reduce((s, [, y]) => s + y, 0);
+        expect(sum % hit.length, "평균이 정수로 떨어져야 지면이 깨끗하다").toBe(
+          0,
+        );
+        expect(firstNumber(p.answer)).toBe(sum / hit.length);
+
+        // 🔴 무리가 전원이면 「그 학생들의 평균」이 **전체 평균과 같아져** 조건이
+        //    아무 일도 안 한다. 너무 작아도 평균의 뜻이 죽는다.
+        expect(hit.length).toBeGreaterThanOrEqual(3);
+        expect(hit.length).toBeLessThanOrEqual(pts.length - 2);
+        // 문턱에 딱 걸친 점은 「이상」을 그림에서 가르기 어렵다.
+        expect(pts.filter(([x]) => x === t)).toEqual([]);
+      }
     }
   });
 

@@ -1,5 +1,6 @@
 /**
- * 중3 「삼각비」 33유형 (RPM 3-2 삼각비 18+여각 1 + 삼각비의 활용 14) — 독립 검산.
+ * 중3 「삼각비」 35유형 (RPM 3-2 삼각비 18 + 우리 유형 19~21 + 삼각비의 활용 14)
+ * — 독립 검산.
  *
  * ## 이 시험이 무엇을 «다르게» 재는가
  *
@@ -21,6 +22,7 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { DIFFICULTY_LADDER } from "../../contracts/difficulty";
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -433,6 +435,35 @@ const VERIFY: Record<string, (f: F) => boolean> = {
       near(f.num / f.den, TRIG(f.want, 90 - ang))
     );
   },
+  /* ── 20·21 (RPM 색인 밖, 2026-08-29) ──────────────────────────────────
+   * 검산 방향은 위와 같다: 발문의 삼각비에서 **각을 되찾아** 부동소수로 식을
+   * 다시 세운다. 생성기가 쓴 «세 쌍 → 기약분수» 대수는 한 줄도 안 쓴다.
+   */
+  // 두 삼각비 → 각 → 그 각으로 물은 식을 다시 계산한다.
+  [`${T}|20`]: (f) => {
+    if (f.u * f.u + f.v * f.v !== f.w * f.w) return false;
+    const ang = Math.asin(f.u / f.w) / DEG;
+    // 발문의 cos 가 그 각의 것인가 — 둘이 다른 각이면 문항이 거짓말을 한다.
+    if (!near(f.v / f.w, COS(ang))) return false;
+    const want =
+      f.mode === 0
+        ? SIN(ang) * COS(ang)
+        : f.mode === 1
+          ? SIN(ang) / COS(ang)
+          : SIN(ang) * TAN(ang);
+    // 밑단이므로 답이 진분수여야 한다(가분수는 지면 전처리가 고쳐 쓴다).
+    return near(f.num / f.den, want) && f.num < f.den && f.den <= 300;
+  },
+  // 삼각비 + 한 변 → 각 → 두 직각변을 다시 재어 넓이를 만든다.
+  [`${T}|21`]: (f) => {
+    if (f.u * f.u + f.v * f.v !== f.w * f.w) return false;
+    const ang = Math.atan2(f.u, f.v) / DEG;
+    // 주어진 변은 mode 2 만 이웃변(AB)이고 나머지는 빗변(AC)이다.
+    const hyp = f.mode === 2 ? f.given / COS(ang) : f.given;
+    const opp = hyp * SIN(ang);
+    const adj = hyp * COS(ang);
+    return near(hyp, f.w * f.t, 1e-9) && near((opp * adj) / 2, f.area, 1e-9);
+  },
   // 특수각 계산 — 부동소수로 식을 그대로 계산해 정확값과 견준다.
   [`${T}|08`]: (f) => verifySpecial(f),
   [`${T}|09`]: (f) =>
@@ -607,6 +638,22 @@ const ANSWER_VALUE: Record<string, (f: F) => number | null> = {
   [`${T}|06`]: (f) => f.num / f.den,
   [`${T}|07`]: (f) => f.num / f.den,
   [`${T}|19`]: (f) => f.num / f.den,
+  // 20·21 — `facts` 의 답 칸(`num/den`·`area`)을 그대로 쓰지 않는다. 그러면
+  // 「지면 글자가 facts 와 같은가」만 묻게 되어 VERIFY 와 겹친다. 각을 되찾아
+  // **다시 계산**한 값과 견준다.
+  [`${T}|20`]: (f) => {
+    const ang = Math.asin(f.u / f.w) / DEG;
+    return f.mode === 0
+      ? SIN(ang) * COS(ang)
+      : f.mode === 1
+        ? SIN(ang) / COS(ang)
+        : SIN(ang) * TAN(ang);
+  },
+  [`${T}|21`]: (f) => {
+    const ang = Math.atan2(f.u, f.v) / DEG;
+    const hyp = f.mode === 2 ? f.given / COS(ang) : f.given;
+    return (hyp * SIN(ang) * (hyp * COS(ang))) / 2;
+  },
   [`${T}|08`]: (f) => (f.an * Math.sqrt(f.ar)) / f.ad,
   [`${T}|09`]: (f) => f.x,
   [`${T}|10`]: (f) => f.an * Math.sqrt(f.ar),
@@ -656,6 +703,10 @@ const TITLES: Record<string, string> = {
   [`${T}|16`]: "삼각비의 표를 이용하여 삼각비의 값 구하기",
   [`${T}|17`]: "삼각비의 표를 이용하여 변의 길이 구하기",
   [`${T}|18`]: "의 삼각비의 값을 이용하여 다른 삼각비의 값 구하기",
+  // 19~21 은 RPM 색인 밖 — 우리가 지은 유형이다. 제목이 색인 것과 같으면
+  // 「같은 유형을 두 번 세었다」로 `middleTypeCoverage` 가 문다.
+  [`${T}|20`]: "두 삼각비의 값을 이용한 식의 계산",
+  [`${T}|21`]: "삼각비를 이용하여 직각삼각형의 넓이 구하기",
   [`${A}|01`]: "직각삼각형의 변의 길이 구하기",
   [`${A}|02`]: "입체도형에서 직각삼각형의 변의 길이의 활용",
   [`${A}|03`]: "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
@@ -676,9 +727,12 @@ const TITLES: Record<string, string> = {
 
 /** 우리 `Unit.section` (prisma/seed-data/units.ts 481~483) — 실측 리터럴. */
 const SECTION: Record<string, string> = {};
-for (let i = 1; i <= 19; i += 1) {
+/** 색인 밖에서 지은 번호 — 소재가 「뜻」이라 08~18(값)과 갈린다. */
+const MEANING_EXT = new Set([19, 20, 21]);
+for (let i = 1; i <= 21; i += 1) {
   const n = String(i).padStart(2, "0");
-  SECTION[`${T}|${n}`] = i <= 7 || i === 19 ? "삼각비의 뜻" : "삼각비의 값";
+  SECTION[`${T}|${n}`] =
+    i <= 7 || MEANING_EXT.has(i) ? "삼각비의 뜻" : "삼각비의 값";
 }
 for (let i = 1; i <= 14; i += 1) {
   SECTION[`${A}|${String(i).padStart(2, "0")}`] = "삼각비의 활용";
@@ -718,6 +772,9 @@ const MIN_CONTENTS: Record<string, number> = {
   [`${T}|06`]: 38,
   [`${T}|07`]: 18,
   [`${T}|19`]: 12,
+  // 20 은 답이 커지지 않게 분모를 300 으로 막아 표가 좁다(실측 13).
+  [`${T}|20`]: 12,
+  [`${T}|21`]: 20,
   [`${T}|08`]: 36,
   [`${T}|09`]: 33,
   [`${T}|10`]: 35,
@@ -847,25 +904,42 @@ describe("전처리 판정기 — 지면이 수를 고쳐 쓰는가", () => {
   });
 });
 
-describe("중3 삼각비 33유형 (RPM 3-2 삼각비 19 + 삼각비의 활용 14)", () => {
+describe("중3 삼각비 35유형 (RPM 3-2 삼각비 21 + 삼각비의 활용 14)", () => {
   // 브리프 계약 5 — 합본을 중단원 이름으로 거르지 않는다. 내 배열을 직접 돈다.
   const entries = M3_TRIG;
 
-  it("🔴 **「삼각비의 뜻」이 8문항 일일테스트를 채운다**", () => {
+  it("🔴 **「삼각비의 뜻」이 10문항 일일테스트를 채운다**", () => {
+    // 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+    // 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 유형 수가
+    // 곧 한 시험지의 상한이다. 2026-08-29 까지 8이었다.
     const meaning = entries.filter((e) => e.unitSection === "삼각비의 뜻");
     expect(
       meaning.length,
-      "유형이 8 미만이면 8문항 일일테스트를 못 채운다",
-    ).toBeGreaterThanOrEqual(8);
+      "유형이 10 미만이면 10문항 일일테스트를 못 채운다",
+    ).toBeGreaterThanOrEqual(10);
     expect(new Set(meaning.map((e) => e.key)).size).toBe(meaning.length);
   });
 
-  it("삼각비 19유형 + 삼각비의 활용 14유형 = 33유형이 등록돼 있다", () => {
-    expect(entries.length).toBe(33);
+  it("🔴 **「삼각비의 뜻」에 갈래가 하나도 비지 않았다**", () => {
+    // 유형이 10개여도 전부 「응용」이면 배분을 못 맞춘다. 2026-08-29 실측:
+    // 연산 0 · 기본 2 · 응용 4 · 심화 2 — **밑단이 통째로 비어** 하위반 배분
+    // (연산 1)이 이 소단원에서 한 문항도 못 채웠다.
+    const got: Record<string, number> = {};
+    for (const e of entries.filter((x) => x.unitSection === "삼각비의 뜻")) {
+      const d = generateMiddleProblem(e.key, 20260829).difficulty;
+      got[d] = (got[d] ?? 0) + 1;
+    }
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(got[tier] ?? 0, `「${tier}」 유형 수`).toBeGreaterThan(0);
+    }
+  });
+
+  it("삼각비 21유형 + 삼각비의 활용 14유형 = 35유형이 등록돼 있다", () => {
+    expect(entries.length).toBe(35);
     const trig = entries.filter((e) => e.rpmMinor === "삼각비");
     const apply = entries.filter((e) => e.rpmMinor === "삼각비의 활용");
     expect(trig.map((e) => e.rpmType)).toEqual(
-      Array.from({ length: 19 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 21 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(apply.map((e) => e.rpmType)).toEqual(
       Array.from({ length: 14 }, (_, i) => String(i + 1).padStart(2, "0")),
@@ -886,12 +960,12 @@ describe("중3 삼각비 33유형 (RPM 3-2 삼각비 19 + 삼각비의 활용 14
     }
     expect([...counts.entries()].sort()).toEqual([
       ["삼각비의 값", 11],
-      ["삼각비의 뜻", 8],
+      ["삼각비의 뜻", 10],
       ["삼각비의 활용", 14],
     ]);
   });
 
-  it("RPM 색인의 실제 제목을 쓴다 (33유형 전량 리터럴 대조)", () => {
+  it("RPM 색인의 실제 제목을 쓴다 (35유형 전량 리터럴 대조)", () => {
     for (const e of entries) {
       expect(e.rpmTitle, e.key).toBe(TITLES[e.key]);
     }
@@ -1168,7 +1242,7 @@ describe("중3 삼각비 33유형 (RPM 3-2 삼각비 19 + 삼각비의 활용 14
    * 넓은 씨앗 전량 검산 — 좁은 표본은 드물게 나는 조합을 구조적으로 못 본다
    * (CLAUDE.md 2026-08-19 「0% 를 «구조적으로 못 센다»로 단정하기 전에 표본을 넓혀라」).
    */
-  it("넓은 씨앗(300×4)에서도 33유형 전량이 검산을 통과한다", () => {
+  it("넓은 씨앗(300×4)에서도 35유형 전량이 검산을 통과한다", () => {
     let checked = 0;
     for (let s = 0; s < 300; s += 1) {
       for (const e of M3_TRIG) {
@@ -1180,14 +1254,14 @@ describe("중3 삼각비 33유형 (RPM 3-2 삼각비 19 + 삼각비의 활용 14
         checked += 1;
       }
     }
-    expect(checked).toBe(300 * 33);
+    expect(checked).toBe(300 * 35);
   });
 
   it("정확한 무리수 대수가 아니라 **부동소수**로 재고 있다 (동어반복 방지)", () => {
     // 이 시험 파일은 `Surd`·`surdText`·`frac` 를 import 하지 않는다. 그것을
     // 쓰면 「생성기가 쓴 식으로 생성기를 검산」하는 셈이라 아무것도 못 잡는다.
-    expect(Object.keys(VERIFY).length).toBe(33);
-    expect(Object.keys(ANSWER_VALUE).length).toBe(33);
+    expect(Object.keys(VERIFY).length).toBe(35);
+    expect(Object.keys(ANSWER_VALUE).length).toBe(35);
     expect(EPS).toBeGreaterThan(0);
   });
 });

@@ -1,5 +1,5 @@
 /**
- * 중3 「이차방정식」 32유형 (3-1 이차방정식의 풀이 01~16 · 이차방정식의 활용 01~16)
+ * 중3 「이차방정식」 36유형 (3-1 이차방정식의 풀이 01~16 · 이차방정식의 활용 01~20)
  * — 독립 검산.
  *
  * 생성기의 답을 그대로 믿지 않는다. 생성기는 **근을 먼저 골라 방정식을 만들었으므로**
@@ -11,6 +11,7 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { DIFFICULTY_LADDER } from "../../contracts/difficulty";
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -477,6 +478,86 @@ const VERIFY: Record<string, (f: F) => boolean> = {
     const t = f.m! * (Math.sqrt(5) - 1);
     return near(t * t + k * t - k * k, 0) && t > 0 && t < k && f.x === f.m!;
   },
+
+  /* ── 17~20 (RPM 색인 밖, 2026-08-29) ────────────────────────────────────
+   *
+   * 검산 방향은 위와 같다: 생성기는 «근·답을 먼저 골라 발문을 만들었으므로»
+   * 여기서는 **발문의 계수로 근을 다시 구해** 대입한다.
+   */
+
+  // 짝수 공식: 지면에 적힌 근 $\dfrac{-m\pm\sqrt q}{a}$ 를 **발문의 방정식에
+  // 대입**한다. 근의 공식을 옮겨 적지 않는다 — 대입은 반대 방향이다.
+  "3-1|이차방정식의 활용|17": (f) => {
+    const { a, m, c, q } = f as { a: number; m: number; c: number; q: number };
+    if (q <= 0 || isSquare(q)) return false;
+    // 일차항의 계수가 **짝수**라는 것이 이 유형의 존재 이유다.
+    if ((2 * m) % 2 !== 0 || m === 0 || c === 0) return false;
+    for (const sign of [1, -1]) {
+      const r = (-m + sign * Math.sqrt(q)) / a;
+      if (!near(a * r * r + 2 * m * r + c, 0)) return false;
+    }
+    if (f.mode === 2) {
+      // 근호 안이 제곱인수를 갖고, 지면에 적힌 $k\sqrt{s}$ 가 그 값이다.
+      if (f.k! < 2 || !squareFree(f.s!)) return false;
+      if (f.k! * f.k! * f.s! !== q) return false;
+    } else if (!squareFree(q)) return false;
+    if (f.mode === 1 ? a === 1 : a !== 1) return false;
+    return f.x === -m;
+  },
+
+  // 두 근의 차: **두 근을 각각 구해 빼 본다**. 생성기가 쓴 $(b^2-d^2)/4$ 를
+  // 옮겨 적으면 동어반복이다.
+  "3-1|이차방정식의 활용|18": (f) => {
+    const diff = (B: number, C: number): number => {
+      const disc = B * B - 4 * C;
+      if (disc <= 0) return NaN;
+      return Math.abs((-B + Math.sqrt(disc)) / 2 - (-B - Math.sqrt(disc)) / 2);
+    };
+    if (f.mode === 2) {
+      // $m$ 에 **관계없이** 일정해야 한다 — 여러 $m$ 으로 실제로 재 본다.
+      if (f.k! < 2 || f.t! !== f.k! * f.k!) return false;
+      for (const m of [-3.5, 0, 1, 7]) {
+        if (!near(diff(-2 * m, m * m - f.t!), f.d!)) return false;
+      }
+      return f.x === 2 * f.k!;
+    }
+    if (f.d! <= 0 || f.d! >= f.b! || f.c! === 0) return false;
+    if (f.mode === 0) {
+      return near(diff(-f.b!, f.c!), f.d!) && f.x === f.c!;
+    }
+    // 양수 근만 답이다 — 음수 쪽도 차는 같으므로 그것을 버렸는지 함께 본다.
+    return (
+      near(diff(f.b!, f.c!), f.d!) &&
+      near(diff(-f.b!, f.c!), f.d!) &&
+      f.b! > 0 &&
+      f.x === f.b!
+    );
+  },
+
+  // 넓이: 답을 **도형의 넓이 식에 되넣어** 발문의 넓이가 나오는지 본다.
+  "3-1|이차방정식의 활용|19": (f) => {
+    const v = f.x!;
+    if (v <= 0) return false;
+    if (f.mode === 2) return f.r! * v * v === f.S! && f.k === 0;
+    if (f.k! <= 0) return false;
+    const area = f.mode === 1 ? (v * (v + f.k!)) / 2 : v * (v + f.k!);
+    return area === f.S! && f.y === v;
+  },
+
+  // 합·곱·차: 두 수를 **전수로 찾아 유일한지** 본다(08 과 같은 방식).
+  "3-1|이차방정식의 활용|20": (f) => {
+    const hit: [number, number][] = [];
+    for (let a = 1; a <= 400; a += 1) {
+      for (let b = a + 1; b <= 400; b += 1) {
+        if (a * b !== f.p!) continue;
+        if (f.mode === 1 ? b - a === f.d! : a + b === f.s!) hit.push([a, b]);
+      }
+    }
+    if (hit.length !== 1) return false;
+    const [a, b] = hit[0]!;
+    if (a !== f.small! || b !== f.big!) return false;
+    return f.x === (f.mode === 0 ? b : f.mode === 1 ? a : b - a);
+  },
 };
 
 /** RPM 색인의 실제 제목 (scripts/rpm/rpm-type-catalog.json 3-1 그대로). */
@@ -515,6 +596,12 @@ const TITLES: Record<string, string> = {
   "3-1|이차방정식의 활용|14": "이차방정식의 활용 상자를 만드는 문제",
   "3-1|이차방정식의 활용|15": "이차방정식의 활용 닮음을 이용한 문제",
   "3-1|이차방정식의 활용|16": "한 근이 무리수일 때 이차방정식",
+  // 17~20 은 RPM 색인 밖 — 우리가 지은 유형이다(2026-08-29). 제목이 색인 것과
+  // 같으면 「같은 유형을 두 번 세었다」로 `middleTypeCoverage` 가 문다.
+  "3-1|이차방정식의 활용|17": "일차항의 계수가 짝수인 이차방정식의 풀이",
+  "3-1|이차방정식의 활용|18": "두 근의 차가 주어진 이차방정식",
+  "3-1|이차방정식의 활용|19": "이차방정식의 활용 넓이가 주어진 도형",
+  "3-1|이차방정식의 활용|20": "이차방정식의 활용 합과 곱이 주어진 두 수",
 };
 
 /** 유형별 모드 가짓수 — 변형 폭의 하한을 잠근다. */
@@ -551,17 +638,29 @@ const MODE_COUNT: Record<string, number> = {
   "3-1|이차방정식의 활용|14": 3,
   "3-1|이차방정식의 활용|15": 3,
   "3-1|이차방정식의 활용|16": 3,
+  "3-1|이차방정식의 활용|17": 3,
+  "3-1|이차방정식의 활용|18": 3,
+  "3-1|이차방정식의 활용|19": 3,
+  "3-1|이차방정식의 활용|20": 3,
 };
 
-/** 우리 Unit.section — 유형 번호별 기대값(DB 실측 리터럴). */
+/**
+ * 우리 Unit.section — 유형 번호별 기대값(DB 실측 리터럴).
+ *
+ * RPM 중단원 «이차방정식의 활용» 하나가 우리 소단원 **둘**로 갈린다. 16~18 은
+ * 근의 공식을 쓰는 자리(공식), 19·20 은 문장을 식으로 옮기는 자리(활용)다.
+ */
+const FORMULA_APPLY = new Set([16, 17, 18]);
 const SECTION: Record<string, string> = {};
 for (let i = 1; i <= 16; i += 1) {
   SECTION[`3-1|이차방정식의 풀이|${String(i).padStart(2, "0")}`] =
     "이차방정식의 풀이";
 }
-for (let i = 1; i <= 16; i += 1) {
+for (let i = 1; i <= 20; i += 1) {
   SECTION[`3-1|이차방정식의 활용|${String(i).padStart(2, "0")}`] =
-    i <= 7 || i === 16 ? "이차방정식의 근의 공식과 응용" : "이차방정식의 활용";
+    i <= 7 || FORMULA_APPLY.has(i)
+      ? "이차방정식의 근의 공식과 응용"
+      : "이차방정식의 활용";
 }
 
 /**
@@ -575,34 +674,70 @@ function firstNumber(text: string): number {
   return Number(m[0]);
 }
 
-describe("중3 이차방정식 32유형 (3-1 이차방정식의 풀이·활용)", () => {
+describe("중3 이차방정식 36유형 (3-1 이차방정식의 풀이·활용)", () => {
   const entries = M3_QUAD;
 
-  it("🔴 **「이차방정식의 근의 공식과 응용」이 8문항 일일테스트를 채운다**", () => {
-    const formula = entries.filter(
-      (e) => e.unitSection === "이차방정식의 근의 공식과 응용",
-    );
+  /**
+   * 🔴 **이 파일이 대는 두 소단원이 10문항 일일테스트를 채운다.**
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+   * 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 **유형 수가
+   * 곧 한 시험지의 상한**이다. 2026-08-29 까지 두 소단원이 **각각 8** 이었다.
+   */
+  const TEN_SECTIONS = [
+    "이차방정식의 근의 공식과 응용",
+    "이차방정식의 활용",
+  ] as const;
+
+  it.each(TEN_SECTIONS)("🔴 **「%s」이 10문항 일일테스트를 채운다**", (sec) => {
+    const mine = entries.filter((e) => e.unitSection === sec);
     expect(
-      formula.length,
-      "유형이 8 미만이면 8문항 일일테스트를 못 채운다",
-    ).toBeGreaterThanOrEqual(8);
-    expect(new Set(formula.map((e) => e.key)).size).toBe(formula.length);
+      mine.length,
+      `유형이 10 미만이면 10문항 일일테스트를 못 채운다`,
+    ).toBeGreaterThanOrEqual(10);
+    expect(new Set(mine.map((e) => e.key)).size).toBe(mine.length);
   });
 
-  it("풀이 16 + 활용 16 = 32유형이 등록돼 있다", () => {
-    expect(entries.length).toBe(32);
+  /**
+   * 🔴 **갈래가 배분을 덮는다** — 유형이 10개여도 전부 「응용」이면 못 맞춘다.
+   *
+   * 2026-08-29 실측: 공식은 `연산 0 · 심화 0`, 활용은 `연산 0 · 기본 0` 이었다.
+   * 하위반 시험지가 첫 문항부터 응용으로 시작한다. 배분의 정본은
+   * `DEFAULT_DIFFICULTY_RATIO`(연산 1 · 기본 3 · 응용 3 · 심화 1)다.
+   *
+   * ⚠️ 배분을 **완전히** 덮는 것(1·4·4·1)까지는 요구하지 않는다 — 그러려면 이미
+   *    있는 여섯 응용 유형의 등급을 손대야 하는데, 그 값은 사람이 RPM 을 보고
+   *    정한 것이라 발문 모양만 보고 옮길 근거가 없다(`tier.ts` 머리말과 같은 자리).
+   *    여기서 잠그는 것은 **「어느 갈래도 0이 아니다」** 다.
+   */
+  it.each(TEN_SECTIONS)("🔴 **「%s」에 갈래가 하나도 비지 않았다**", (sec) => {
+    const got: Record<string, number> = {};
+    for (const e of entries.filter((x) => x.unitSection === sec)) {
+      const d = generateMiddleProblem(e.key, 20260829).difficulty;
+      got[d] = (got[d] ?? 0) + 1;
+    }
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(
+        got[tier] ?? 0,
+        `「${sec}」의 「${tier}」 유형 수`,
+      ).toBeGreaterThan(0);
+    }
+  });
+
+  it("풀이 16 + 활용 20 = 36유형이 등록돼 있다", () => {
+    expect(entries.length).toBe(36);
     const solve = entries.filter((e) => e.rpmMinor === "이차방정식의 풀이");
     const apply = entries.filter((e) => e.rpmMinor === "이차방정식의 활용");
     expect(solve.map((e) => e.rpmType)).toEqual(
       Array.from({ length: 16 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(apply.map((e) => e.rpmType)).toEqual(
-      Array.from({ length: 16 }, (_, i) => String(i + 1).padStart(2, "0")),
+      Array.from({ length: 20 }, (_, i) => String(i + 1).padStart(2, "0")),
     );
     expect(new Set(entries.map((e) => e.rpmBook))).toEqual(new Set(["3-1"]));
   });
 
-  it("RPM 색인의 실제 제목을 쓴다 (32유형 전량 리터럴 대조)", () => {
+  it("RPM 색인의 실제 제목을 쓴다 (36유형 전량 리터럴 대조)", () => {
     for (const e of entries) {
       expect(e.rpmTitle, e.key).toBe(TITLES[e.key]);
     }
@@ -777,12 +912,14 @@ describe("중3 이차방정식 32유형 (3-1 이차방정식의 풀이·활용)"
    * 활용 갈래는 **버리는 근**이 있다. 해설이 그 근을 실제로 적었는지 본다 —
    * 「답이 맞다」만 보면 «왜 다른 근을 버렸는가»가 지면에서 사라진다.
    */
-  it("활용 08~15 의 해설이 «버린 근» 또는 «모두 유효»를 말한다", () => {
-    const targets = entries.filter((e) => {
-      const n = Number(e.rpmType);
-      return e.rpmMinor === "이차방정식의 활용" && n >= 8 && n <= 15;
-    });
-    expect(targets.length).toBe(8);
+  it("「이차방정식의 활용」 소단원의 해설이 «버린 근» 또는 «모두 유효»를 말한다", () => {
+    // ⚠️ 예전에는 번호대(08~15)로 골랐다. 그러면 **새 유형은 분모 밖**이라 해설이
+    //    버린 근을 안 적어도 초록이다 — 19·20 을 넣을 때 실제로 그랬다.
+    //    소단원으로 고르면 이 갈래에 유형이 늘어도 자동으로 따라온다.
+    const targets = entries.filter(
+      (e) => e.unitSection === "이차방정식의 활용",
+    );
+    expect(targets.length).toBe(10);
     for (const e of targets) {
       for (const seed of SEEDS) {
         for (let v = 0; v < 6; v += 1) {
@@ -802,6 +939,49 @@ describe("중3 이차방정식 32유형 (3-1 이차방정식의 풀이·활용)"
       const contents = new Set(set.map((p: MidProblem) => p.content));
       expect(contents.size, e.key).toBe(4);
     }
+  });
+
+  /**
+   * 🔴 **17 이 존재하는 이유가 지면에 실제로 나타나는가.**
+   *
+   * 17 은 「01 이 구조적으로 못 내는 자리」를 메우려고 지었다 — 01 은
+   * `gcd(|b|, 2a) !== 1` 인 표본을 버리므로 **일차항의 계수가 짝수인 방정식이
+   * 안 나온다.** 그 성질이 사라지면 17 은 01 의 아류가 되는데, 값 검산도
+   * 개수 검사도 그것을 구조적으로 못 본다 — 그래서 **발문에서 계수를 읽어** 센다.
+   */
+  it("🔴 활용 17 은 일차항의 계수가 짝수다 — 01 은 그 자리를 못 낸다", () => {
+    const evenCoef = (content: string): number => {
+      const m = /x\^2([+-]\d+)x/.exec(content.replace(/\s+/g, ""));
+      expect(m, `일차항을 못 읽었다: ${content}`).not.toBeNull();
+      return Number(m![1]);
+    };
+    for (const seed of SEEDS) {
+      for (let v = 0; v < 10; v += 1) {
+        const p = generateMiddleProblem("3-1|이차방정식의 활용|17", seed, v);
+        // `-6 % 2` 는 `-0` 이고 `Object.is(-0, 0)` 은 거짓이다 — 절댓값으로 센다.
+        expect(Math.abs(evenCoef(p.content)) % 2, `17 seed ${seed} v${v}`).toBe(
+          0,
+        );
+      }
+    }
+    // 반대쪽 — 01 에서 짝수 계수가 나오면 17 은 «메운 자리»가 아니었던 것이다.
+    let odd = 0;
+    for (const seed of SEEDS) {
+      for (let v = 0; v < 10; v += 1) {
+        const p = generateMiddleProblem("3-1|이차방정식의 활용|01", seed, v);
+        const m = /x\^2([+-]\d+)x/.exec(p.content.replace(/\s+/g, ""));
+        if (!m) continue;
+        expect(
+          Math.abs(Number(m[1])) % 2,
+          `01 이 짝수 계수를 냈다: ${p.content}`,
+        ).not.toBe(0);
+        odd += 1;
+      }
+    }
+    expect(
+      odd,
+      "01 의 발문을 하나도 못 읽었으면 이 대조는 장식이다",
+    ).toBeGreaterThan(10);
   });
 });
 
