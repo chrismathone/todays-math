@@ -139,11 +139,25 @@ const MUTATIONS = [
     keys: ["3-2|산포도|10"],
   },
   {
-    name: "S3 산점도 14 를 «가장 큰 차» 가 아니라 «가장 작은 차» 로",
+    /**
+     * ⚠️ 처음엔 정렬을 뒤집으려(`b - a` → `a - b`) 했는데, 그러면 유일성 가드가
+     *    **영영 통과하지 못해** `attempt` 가 던지고 프로브가 죽는다. 그건
+     *    「가드가 문다」가 아니라 「생성이 깨졌다」다 — 하네스가 그 둘을 갈라서
+     *    판정을 거부했다. 그래서 **가드 자체를 없애는** 변이로 바꿨다.
+     */
+    name: "S3 산점도 14 의 «최대가 유일하고 2등과 갈린다» 가드를 없앤다",
     target: STAT,
     test: T_STAT,
-    from: "const sorted = [...gaps].sort((a, b) => b - a);",
-    to: "const sorted = [...gaps].sort((a, b) => a - b);",
+    from: "if (sorted[0]! < 8 || sorted[0]! - sorted[1]! < 3) return null;",
+    to: "if (sorted[0]! < 0) return null;",
+    keys: ["3-2|상자그림과 산점도|14"],
+  },
+  {
+    name: "S6 산점도 14 의 답을 최대가 아니라 2등 차로",
+    target: STAT,
+    test: T_STAT,
+    from: "answer: `$${sorted[0]}$점`,",
+    to: "answer: `$${sorted[1]}$점`,",
     keys: ["3-2|상자그림과 산점도|14"],
   },
   {
