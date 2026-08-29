@@ -173,6 +173,24 @@ function pmSqrt(p: number, q: number, sign: "+" | "-"): string {
   return `${p}${sign}\\sqrt{${q}}`;
 }
 
+/** 음수만 괄호로 싼다 — `(3)^2`·`4\times(5)` 는 값이 맞아도 지면이 흉하다. */
+function neg(n: number): string {
+  return n < 0 ? `(${n})` : String(n);
+}
+
+/**
+ * 수 뒤 조사 — **읽는 소리**의 받침으로 고른다. 끝 자리가 2(이)·4(사)·5(오)·9(구)
+ * 면 받침이 없다. `$-11$은 버린다`·`$-14$는 버린다` 가 갈린다.
+ *
+ * ⚠️ 이 파일의 옛 유형들은 「은」을 못 박아 두었다(실측: 활용 08~14). 값 검산도
+ *    KaTeX 도 이 부류를 구조적으로 못 보므로 그대로 남아 있다 — 새로 짓는 자리에서는
+ *    쓰지 않는다. 옛 자리를 한꺼번에 고치는 것은 이 회차의 몫이 아니다.
+ */
+function josaNum(n: number, withB: string, withoutB: string): string {
+  const d = Math.abs(n) % 10;
+  return d === 2 || d === 4 || d === 5 || d === 9 ? withoutB : withB;
+}
+
 type Body = Pick<
   MidProblem,
   "content" | "answer" | "solution" | "facts" | "figureSpec"
@@ -1982,7 +2000,263 @@ $t>0$이므로 음수인 근은 버린다. 따라서 $t=\\dfrac{-${k}+${k}\\sqrt
         );
       }),
   ),
+
+  /* ── 17~20 은 RPM 색인 밖이다 (2026-08-29). ───────────────────────────────
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+   * 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 **유형 수가
+   * 곧 한 시험지의 상한**이다. 이 파일이 대는 두 소단원은 **각각 8유형**이라
+   * 10문항 일일테스트를 구조적으로 못 채운다.
+   *
+   * 그런데 **모자란 것은 수만이 아니었다.** 갈래를 세어 보면(제품 `resolveMiddleTier`
+   * 로 실측, 2026-08-29):
+   *
+   *   「이차방정식의 근의 공식과 응용」 연산 0 · 기본 2 · 응용 6 · 심화 0
+   *   「이차방정식의 활용」           연산 0 · 기본 0 · 응용 6 · 심화 2
+   *
+   * 10문항 기본 배분은 **1·4·4·1** 이다(`defaultRatioFor(10)`). 활용은 **밑단이
+   * 통째로 비어 있어** 하위반 시험지가 첫 문항부터 응용으로 시작한다. 그래서
+   * 유형 수보다 **갈래**를 먼저 보고 지었다 — 17 연산 · 18 심화 · 19 연산 · 20 기본.
+   *
+   * ⚠️ 번호는 색인 최댓값(활용 15)을 넘어야 한다(`extensionNumberReason`).
+   *    16 은 이미 썼으므로 17 부터다.
+   */
+
+  /**
+   * **17 — 일차항의 계수가 짝수인 이차방정식의 풀이** (연산).
+   *
+   * ## 빈 자리를 어떻게 찾았나 — **01 의 가드가 스스로 적어 두고 있었다**
+   *
+   * 01(근의 공식)은 `gcd(|b|, 2a) !== 1` 이면 그 표본을 버린다. 즉
+   * **일차항의 계수가 짝수인 경우는 01 에서 구조적으로 안 나온다.** 그 자리가 곧
+   * 「짝수 공식」 $x=\dfrac{-b'\pm\sqrt{b'^{2}-ac}}{a}$ 이고, 근이 통분 없이
+   * $-b'\pm\sqrt{q}$ 로 떨어져 계산이 한 줄이다 — 이 소단원의 **밑단**이다.
+   *
+   * 세 mode 는 «묻는 것»이 아니라 **마지막 계산 한 단계**로 갈린다:
+   *   0 $a=1$ · 근호가 이미 정리됨 → $-m\pm\sqrt{q}$
+   *   1 $a\neq1$ → 분모가 남는다 $\dfrac{-m\pm\sqrt{q}}{a}$
+   *   2 $a=1$ · 근호 안에 제곱인수 → $-m\pm k\sqrt{s}$ 로 **정리해야** 한다
+   */
+  def(
+    MINOR_APPLY,
+    "17",
+    "일차항의 계수가 짝수인 이차방정식의 풀이",
+    SEC.공식,
+    "연산",
+    (rng) =>
+      attempt(400, () => {
+        const mode = pick(rng, [0, 1, 2] as const);
+        const m = nonZero(rng, 1, 7);
+        const a = mode === 1 ? pick(rng, [2, 3] as const) : 1;
+        const k = mode === 2 ? pick(rng, [2, 3] as const) : 1;
+        const s = mode === 2 ? pick(rng, [2, 3, 5, 6, 7] as const) : 0;
+        const q = mode === 2 ? k * k * s : pick(rng, SURD_POOL);
+        if (mode !== 2 && splitSurd(q)[0] !== 1) return null;
+        if ((m * m - q) % a !== 0) return null;
+        const c = (m * m - q) / a;
+        if (c === 0) return null;
+        // 근호가 통째로 사라지면(=완전제곱) 인수분해 문항이 되어 이 유형이 아니다.
+        if (Math.round(Math.sqrt(q)) ** 2 === q) return null;
+        const eq = quadEq(a, 2 * m, c);
+        const rootTex =
+          mode === 1
+            ? `\\dfrac{${-m}\\pm\\sqrt{${q}}}{${a}}`
+            : mode === 2
+              ? `${-m}\\pm${k}\\sqrt{${s}}`
+              : `${-m}\\pm\\sqrt{${q}}`;
+        const dText =
+          `일차항의 계수가 짝수이므로 $x=\\dfrac{-b'\\pm\\sqrt{b'^{2}-ac}}{a}$에 ` +
+          `$a=${a}$, $b'=${m}$, $c=${c}$${josaNum(c, "을", "를")} 대입한다.\n` +
+          `$b'^{2}-ac=${neg(m)}^{2}-${a}\\times${neg(c)}=${q}$이다.`;
+        const tail =
+          mode === 2
+            ? `$\\sqrt{${q}}=${k}\\sqrt{${s}}$이므로 $x=${rootTex}$이다.`
+            : `따라서 $x=${rootTex}$이다.`;
+        return body(
+          `다음 이차방정식을 푸시오.\n$${eq}$`,
+          `$x=${rootTex}$`,
+          `${dText}\n${tail}`,
+          { a, m, c, q, k, s, mode, x: -m },
+        );
+      }),
+  ),
+
+  /**
+   * **18 — 두 근의 차가 주어진 이차방정식** (심화).
+   *
+   * 기존 여덟의 시작과 끝:
+   *   01 방정식 → 근 · 02 복잡한 방정식 → 근 · 03 치환 → 근
+   *   04 방정식 → 근의 **개수** · 05 매개변수 → 중근 조건
+   *   06 매개변수 → 근을 가질 **범위** · 07 두 근 → 방정식 · 16 무리수 근 → 켤레
+   *
+   * **「두 근의 차」로 미지의 계수를 되찾는 자리가 없다.** 05·06 은 판별식의
+   * **부호**만 쓰고, 07 은 근이 이미 둘 다 주어진다. 근의 공식이 내는 두 근
+   * $\dfrac{-b\pm\sqrt{D}}{2a}$ 의 **차가 $\dfrac{\sqrt{D}}{a}$** 라는 것은
+   * 그 다음 칸인데 비어 있었다.
+   *
+   * ⚠️ 「근과 계수의 관계」($\alpha+\beta=-b/a$)는 **고1** 이다. 여기서는 쓰지 않고
+   *    근의 공식이 낸 두 근을 **직접 빼서** 구한다.
+   */
+  def(
+    MINOR_APPLY,
+    "18",
+    "두 근의 차가 주어진 이차방정식",
+    SEC.공식,
+    "심화",
+    (rng) =>
+      attempt(400, () => {
+        const mode = pick(rng, [0, 1, 2] as const);
+        if (mode === 2) {
+          const k = intBetween(rng, 2, 8);
+          const t = k * k;
+          return body(
+            `상수 $m$에 대하여 이차방정식 $x^2-2mx+m^2-${t}=0$의 두 근의 차를 구하시오.`,
+            `$${2 * k}$`,
+            `근의 공식에서 $x=\\dfrac{2m\\pm\\sqrt{(-2m)^{2}-4(m^{2}-${t})}}{2}=\\dfrac{2m\\pm\\sqrt{${4 * t}}}{2}$이다.
+$\\sqrt{${4 * t}}=${2 * k}$이므로 두 근은 $m+${k}$, $m-${k}$이고, 그 차는 $${2 * k}$로 $m$의 값에 관계없이 일정하다.`,
+            { b: 0, c: 0, d: 2 * k, k, t, mode, x: 2 * k },
+          );
+        }
+        const b = intBetween(rng, 4, 15);
+        const d = intBetween(rng, 1, b - 1);
+        if ((b - d) % 2 !== 0) return null;
+        const c = (b * b - d * d) / 4;
+        if (c === 0) return null;
+        if (mode === 0) {
+          return body(
+            `이차방정식 $x^2-${b}x+k=0$의 두 근의 차가 $${d}$일 때, 상수 $k$의 값을 구하시오.`,
+            `$k=${c}$`,
+            `근의 공식에서 $x=\\dfrac{${b}\\pm\\sqrt{${b * b}-4k}}{2}$이므로 두 근의 차는 $\\sqrt{${b * b}-4k}$이다.
+$\\sqrt{${b * b}-4k}=${d}$에서 $${b * b}-4k=${d * d}$이므로 $k=${c}$이다.`,
+            { b, c, d, k: 0, t: 0, mode, x: c },
+          );
+        }
+        return body(
+          `이차방정식 $x^2+ax+${c}=0$의 두 근의 차가 $${d}$일 때, 양수인 상수 $a$의 값을 구하시오.`,
+          `$a=${b}$`,
+          `근의 공식에서 $x=\\dfrac{-a\\pm\\sqrt{a^{2}-${4 * c}}}{2}$이므로 두 근의 차는 $\\sqrt{a^{2}-${4 * c}}$이다.
+$\\sqrt{a^{2}-${4 * c}}=${d}$에서 $a^{2}=${d * d + 4 * c}$이므로 $a=${b}$ 또는 $a=${-b}$이다.
+$a$는 양수이므로 $a=${-b}$${josaNum(-b, "은", "는")} 버린다. 따라서 $a=${b}$이다.`,
+          { b, c, d, k: 0, t: 0, mode, x: b },
+        );
+      }),
+  ),
+
+  /**
+   * **19 — 넓이가 주어진 도형** (연산). 「이차방정식의 활용」의 **밑단**이다.
+   *
+   * 이 소단원은 08~15 여덟이 전부 `응용`·`심화` 였다 — 하위반 시험지가 첫 문항부터
+   * 응용으로 시작한다. 활용의 가장 밑단은 **한 관계를 그대로 식으로 옮겨 한 번
+   * 인수분해하면 끝나는** 문형이고, 그것이 없었다.
+   *
+   * 12(도형)와 겹치지 않는다 — 12 는 ⑴ **늘인 길이** ⑵ 두 정사각형의 **넓이의 합**
+   * ⑶ **움직이는 두 점**이고, 셋 다 한 단계 더 있다. 여기는 변 하나를 바로 묻는다.
+   *
+   * ⚠️ 발문에 `닮은`·`잘라`·`귀퉁이`·`길의` 같은 **얽힘 낱말을 쓰지 않는다** —
+   *    쓰면 그림 없이 배치가 안 정해져 `classifyArrangement` 가 «배치미정» 을 낸다
+   *    (`middleM3Quad.test.ts` 「발문이 배치를 적는다」).
+   */
+  def(
+    MINOR_APPLY,
+    "19",
+    "이차방정식의 활용 넓이가 주어진 도형",
+    SEC.활용,
+    "연산",
+    (rng) =>
+      attempt(400, () => {
+        const mode = pick(rng, [0, 1, 2] as const);
+        if (mode === 2) {
+          const r = pick(rng, [2, 3, 4] as const);
+          const h = intBetween(rng, 3, 14);
+          const bigS = r * h * h;
+          return body(
+            `밑변의 길이가 높이의 $${r}$배인 평행사변형의 넓이가 $${bigS}\\,\\mathrm{cm^2}$일 때, 이 평행사변형의 높이를 구하시오.`,
+            `$${h}\\,\\mathrm{cm}$`,
+            `높이를 $x\\,\\mathrm{cm}$라 하면 밑변의 길이는 $${r}x$이므로 $x\\times${r}x=${bigS}$이다.
+정리하면 $${r}x^2-${bigS}=0$, 즉 $x^2=${h * h}$이므로 $x=${h}$ 또는 $x=${-h}$이다.
+길이는 양수이므로 $x=${-h}$${josaNum(-h, "은", "는")} 버린다. 따라서 높이는 $${h}\\,\\mathrm{cm}$이다.`,
+            { y: h, k: 0, r, S: bigS, mode, x: h },
+          );
+        }
+        const y = intBetween(rng, 2, 15);
+        const k = intBetween(rng, 1, 9);
+        const prod = y * (y + k);
+        if (mode === 1 && prod % 2 !== 0) return null;
+        const bigS = mode === 1 ? prod / 2 : prod;
+        const shape = mode === 1 ? "삼각형" : "직사각형";
+        const askName = mode === 1 ? "높이" : "세로의 길이";
+        const otherName = mode === 1 ? "밑변의 길이" : "가로의 길이";
+        const setup =
+          mode === 1
+            ? `$\\dfrac{1}{2}\\times(x+${k})\\times x=${bigS}$`
+            : `$x(x+${k})=${bigS}$`;
+        return body(
+          `${otherName}가 ${askName}보다 $${k}\\,\\mathrm{cm}$ 더 긴 ${shape}의 넓이가 $${bigS}\\,\\mathrm{cm^2}$일 때, 이 ${shape}의 ${askName}를 구하시오.`,
+          `$${y}\\,\\mathrm{cm}$`,
+          `${askName}를 $x\\,\\mathrm{cm}$라 하면 ${otherName}는 $x+${k}$이므로 ${setup}이다.
+정리하면 $x^2+${k}x-${prod}=0$이고, 인수분해하면 $(x-${y})(x+${y + k})=0$이므로 $x=${y}$ 또는 $x=${-(y + k)}$이다.
+길이는 양수이므로 $x=${-(y + k)}$${josaNum(-(y + k), "은", "는")} 버린다. 따라서 ${askName}는 $${y}\\,\\mathrm{cm}$이다.`,
+          { y, k, r: 0, S: bigS, mode, x: y },
+        );
+      }),
+  ),
+
+  /**
+   * **20 — 합·곱·차가 주어진 두 자연수** (기본).
+   *
+   * 09(수에 대한 문제)와 겹치지 않는다 — 09 는 ⑴ 연속하는 두 **홀수의 제곱의 합**
+   * ⑵ 연속하는 **세** 자연수 ⑶ **두 자리 수의 자릿수** ⑷ 잘못 계산한 수다.
+   * 여기는 **두 수의 합·곱·차**만으로 세우는 가장 표준적인 문형이고, 세우는 식이
+   * $x(s-x)=p$ 라 09 의 어느 갈래와도 모양이 다르다.
+   *
+   * mode 2 는 **두 근이 모두 답에 쓰인다** — 그때 해설은 「버린다」가 아니라
+   * 「모두 조건을 만족시킨다」라고 적어야 한다(`middleM3Quad.test.ts` 가 본다).
+   */
+  def(
+    MINOR_APPLY,
+    "20",
+    "이차방정식의 활용 합과 곱이 주어진 두 수",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt(400, () => {
+        const small = intBetween(rng, 2, 14);
+        const big = intBetween(rng, small + 1, small + 12);
+        const s = small + big;
+        const p = small * big;
+        const d = big - small;
+        const mode = pick(rng, [0, 1, 2] as const);
+        if (mode === 1) {
+          return body(
+            `두 자연수의 차가 $${d}$이고 곱이 $${p}$일 때, 두 수 중 작은 수를 구하시오.`,
+            `$${small}$`,
+            `작은 수를 $x$라 하면 큰 수는 $x+${d}$이므로 $x(x+${d})=${p}$이다.
+정리하면 $x^2+${d}x-${p}=0$이고, 인수분해하면 $(x-${small})(x+${big})=0$이므로 $x=${small}$ 또는 $x=${-big}$이다.
+$x$는 자연수이므로 $x=${-big}$${josaNum(-big, "은", "는")} 버린다. 따라서 작은 수는 $${small}$이다.`,
+            { small, big, s, p, d, mode, x: small },
+          );
+        }
+        const solve = `두 수 중 하나를 $x$라 하면 다른 하나는 $${s}-x$이므로 $x(${s}-x)=${p}$이다.
+정리하면 $x^2-${s}x+${p}=0$이고, 인수분해하면 $(x-${small})(x-${big})=0$이므로 $x=${small}$ 또는 $x=${big}$이다.`;
+        if (mode === 0) {
+          return body(
+            `두 자연수의 합이 $${s}$이고 곱이 $${p}$일 때, 두 수 중 큰 수를 구하시오.`,
+            `$${big}$`,
+            `${solve}
+두 수는 $${small}$${josaNum(small, "과", "와")} $${big}$이고, 그중 작은 쪽인 $${small}$${josaNum(small, "은", "는")} 버린다. 따라서 큰 수는 $${big}$이다.`,
+            { small, big, s, p, d, mode, x: big },
+          );
+        }
+        return body(
+          `두 자연수의 합이 $${s}$이고 곱이 $${p}$일 때, 두 수의 차를 구하시오.`,
+          `$${d}$`,
+          `${solve}
+두 근이 곧 두 수이므로 모두 조건을 만족시킨다. 따라서 두 수의 차는 $${big}-${small}=${d}$이다.`,
+          { small, big, s, p, d, mode, x: d },
+        );
+      }),
+  ),
 ];
 
-/** 3-1 «이차방정식의 풀이» 16 + «이차방정식의 활용» 16 = 32유형. */
+/** 3-1 «이차방정식의 풀이» 16 + «이차방정식의 활용» 20 = 36유형. */
 export const M3_QUAD: TypeEntry[] = [...SOLVE, ...APPLY];
