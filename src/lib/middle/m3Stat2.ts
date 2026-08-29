@@ -133,6 +133,19 @@ function sqTex(d: number): string {
   return d < 0 ? `(${d})^2` : `${d}^2`;
 }
 
+/**
+ * **편차를 지면에 쓰는 꼴** — 0 에는 부호를 안 붙인다.
+ *
+ * ⚠️ `d >= 0 ? "+" : ""` 로 쓰면 편차가 0 인 변량에서 **`+0`** 이 지면에 나간다.
+ *    값은 맞으므로 값 검산도 KaTeX 도 이 부류를 구조적으로 못 잡는다
+ *    (CLAUDE.md 2026-08-24 「값이 맞으면 시험이 다 초록이다」). 편차가 0 일 수
+ *    있는 자리는 **자료에서 평균을 빼는** 갈래(08·10)다 — `devsSumZero` 로 만든
+ *    편차는 0 을 안 내므로 01~03 은 이 함수가 없어도 같은 글을 낸다.
+ */
+function devTex(d: number): string {
+  return d > 0 ? `+${d}` : String(d);
+}
+
 /** 한글 단어의 마지막 음절에 받침이 있는가. */
 function hasBatchim(word: string): boolean {
   const code = word.charCodeAt(word.length - 1) - 0xac00;
@@ -452,13 +465,127 @@ export const M3_STAT2: TypeEntry[] = [
         answer: `$${variance}$`,
         solution:
           `평균은 $\\dfrac{${values.join("+")}}{5}=\\dfrac{${sum}}{5}=${mean}$(점)이다.\n` +
-          `각 변량의 편차는 ${devs.map((d) => `$${d >= 0 ? "+" : ""}${d}$`).join(", ")}이다.\n` +
+          `각 변량의 편차는 ${devs.map((d) => `$${devTex(d)}$`).join(", ")}이다.\n` +
           `분산은 편차의 제곱의 평균이므로 ` +
           `$\\dfrac{${devs.map((d) => sqTex(d)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.`,
         facts,
         figureSpec: null,
       };
     }),
+  ),
+
+  /* ── 09·10 도 RPM 색인 밖이다 (2026-08-29 오후). ────────────────────────
+   *
+   * 08 을 더해 여덟이 됐지만 **10문항** 일일테스트는 여전히 못 채운다(유형 수가
+   * 곧 한 시험지의 상한). 갈래도 세어 봤다(제품 `resolveMiddleTier` 실측):
+   * 연산 0 · 기본 2 · 응용 6 · 심화 0 — **양 끝이 둘 다 비어 있었다.**
+   * 그래서 09 를 연산, 10 을 심화로 지었다.
+   */
+
+  /**
+   * **09 — 분산과 표준편차의 관계** (연산).
+   *
+   * 기존 여덟은 전부 «자료» 나 «편차 목록» 에서 시작한다. 여기는 **한 수에서
+   * 한 수로** 간다 — 분산의 정의(편차의 제곱의 평균)와 표준편차의 정의(분산의
+   * 양의 제곱근)를 한 번 쓰면 끝나는 밑단이다.
+   *
+   * ⚠️ 03(편차 → 표준편차)과 다르다. 03 은 편차 다섯을 제곱해 더하는 데서
+   *    시작하고 답이 $\sqrt{}$ 로 남는다. 여기는 근호가 **떨어지는** 값만 쓴다.
+   */
+  def(MINOR_DISP, "09", "분산과 표준편차의 관계", SEC.산포도, "연산", (rng) => {
+    const mode = pick(rng, [0, 1, 2] as const);
+    if (mode === 0) {
+      const n = pick(rng, [5, 6, 8, 10] as const);
+      const variance = intBetween(rng, 2, 30);
+      const sumSq = n * variance;
+      return {
+        content: `어떤 자료의 변량 $${n}$개의 편차의 제곱의 합이 $${sumSq}$일 때, 이 자료의 분산을 구하시오.`,
+        answer: `$${variance}$`,
+        solution: `분산은 편차의 제곱의 평균이므로 (편차의 제곱의 합)을 (변량의 개수)로 나눈 값이다.\n따라서 분산은 $\\dfrac{${sumSq}}{${n}}=${variance}$이다.`,
+        facts: { n, sumSq, variance, sd: 0, mode, x: variance },
+        figureSpec: null,
+      };
+    }
+    const sd = intBetween(rng, 2, 12);
+    const variance = sd * sd;
+    if (mode === 1) {
+      return {
+        content: `어떤 자료의 분산이 $${variance}$일 때, 이 자료의 표준편차를 구하시오.`,
+        answer: `$${sd}$`,
+        solution: `표준편차는 분산의 양의 제곱근이다.\n따라서 표준편차는 $\\sqrt{${variance}}=${sd}$이다.`,
+        facts: { n: 0, sumSq: 0, variance, sd, mode, x: sd },
+        figureSpec: null,
+      };
+    }
+    return {
+      content: `어떤 자료의 표준편차가 $${sd}$일 때, 이 자료의 분산을 구하시오.`,
+      answer: `$${variance}$`,
+      solution: `분산은 표준편차의 제곱이다.\n따라서 분산은 $${sd}^2=${variance}$이다.`,
+      facts: { n: 0, sumSq: 0, variance, sd, mode, x: variance },
+      figureSpec: null,
+    };
+  }),
+
+  /**
+   * **10 — 미지수가 있는 자료의 분산** (심화).
+   *
+   * 02(편차 → 빠진 편차)와 08(자료 → 분산)을 **이어 붙인** 자리다. 02 는 미지수를
+   * 찾고 멈추고, 08 은 자료가 다 주어진 데서 시작한다. 「평균과 차 두 조건으로
+   * 미지의 두 변량을 먼저 찾고, 그러고 나서 분산까지」가 비어 있었다.
+   *
+   * ⚠️ $(분산)=\overline{x^{2}}-\overline{x}^{2}$ 은 **고1** 이다. 여기서는 쓰지
+   *    않고 편차를 하나씩 적어 제곱의 평균으로 간다(중3 교과서의 길).
+   */
+  def(
+    MINOR_DISP,
+    "10",
+    "미지수가 있는 자료의 분산",
+    SEC.산포도,
+    "심화",
+    (rng) =>
+      attempt(400, () => {
+        const mean = intBetween(rng, 6, 20);
+        const known = distinctSorted(rng, 3, Math.max(1, mean - 8), mean + 8);
+        const total = 5 * mean - known.reduce((s, v) => s + v, 0);
+        const d = intBetween(rng, 2, 10);
+        if ((total - d) % 2 !== 0) return null;
+        const a = (total - d) / 2;
+        const b = (total + d) / 2;
+        if (a <= 0) return null;
+        const values = [known[0]!, known[1]!, a, b, known[2]!];
+        if (new Set(values).size !== 5) return null;
+        const devs = values.map((v) => v - mean);
+        const sumSq = devs.reduce((s, x) => s + x * x, 0);
+        if (sumSq % 5 !== 0) return null;
+        const variance = sumSq / 5;
+        if (variance < 4) return null;
+        const facts: Record<string, number> = {
+          mean,
+          a,
+          b,
+          d,
+          total,
+          sumSq,
+          variance,
+          x: variance,
+        };
+        packValues("v", values, facts);
+        packValues("k", known, facts);
+        return {
+          content:
+            `$5$개의 변량 $${known[0]}$, $${known[1]}$, $a$, $b$, $${known[2]}$의 평균이 $${mean}$이고 ` +
+            `두 변량 $a$, $b$의 차가 $${d}$일 때, 이 자료의 분산을 구하시오. (단, $a<b$)`,
+          answer: `$${variance}$`,
+          solution:
+            `평균이 $${mean}$이므로 $${known[0]}+${known[1]}+a+b+${known[2]}=${mean}\\times5=${5 * mean}$에서 $a+b=${total}$이다.\n` +
+            `$b-a=${d}$이므로 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이다.\n` +
+            `각 변량의 편차는 ${devs.map((v) => `$${devTex(v)}$`).join(", ")}이다.\n` +
+            `분산은 편차의 제곱의 평균이므로 ` +
+            `$\\dfrac{${devs.map((v) => sqTex(v)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.`,
+          facts,
+          figureSpec: null,
+        };
+      }),
   ),
 
   // ══ 상자그림과 산점도 01~05 (상자그림) — SEC.상자 「상자그림」 ══
@@ -1009,6 +1136,148 @@ export const M3_STAT2: TypeEntry[] = [
       figureSpec: null,
     };
   }),
+
+  /* ── 14·15 (2026-08-29 오후). ───────────────────────────────────────────
+   *
+   * 11~13 으로 여덟이 됐지만 **10문항** 일일테스트는 아직 못 채운다. 갈래는
+   * 이미 넷이 다 차 있으므로(연산 1 · 기본 3 · 응용 3 · 심화 1) 여기서는
+   * **10문항 기본 배분 1·4·4·1** 에 맞춰 기본 1 · 응용 1 을 더한다.
+   *
+   * 끝(무엇을 묻고 끝나는가)이 겹치지 않게 골랐다. 지금 여덟의 끝은
+   *   06·07·09 개수 · 08·13 상관관계 · 10 평균 · 11 좌표 · 12 백분율
+   * 이라 **네 번째 「개수」 유형을 넣는 것은 채우기지 유형이 아니다.**
+   *   14 두 변량의 **차** · 15 **조건을 만족하는 무리의 평균**
+   */
+
+  def(
+    MINOR_BOX,
+    "14",
+    "산점도에서 두 변량의 차 구하기",
+    SEC.산점도,
+    "기본",
+    (rng) =>
+      attempt(400, () => {
+        const n = 7;
+        const xs = distinctSorted(rng, n, 40, 95);
+        const ys: number[] = [];
+        const seen = new Set<string>();
+        for (const x of xs) {
+          const y = intBetween(rng, 40, 95);
+          if (seen.has(`${x},${y}`)) return null; // 점이 겹치면 산점도가 거짓말을 한다
+          seen.add(`${x},${y}`);
+          ys.push(y);
+        }
+        const gaps = xs.map((x, i) => Math.abs(x - ys[i]!));
+        const sorted = [...gaps].sort((a, b) => b - a);
+        // 최대가 유일하고 2등과 뚜렷이 갈려야 그림에서 읽을 수 있다.
+        if (sorted[0]! < 8 || sorted[0]! - sorted[1]! < 3) return null;
+        const top = gaps.indexOf(sorted[0]!);
+        const facts: Record<string, number> = {
+          n,
+          diff: sorted[0]!,
+          top,
+          x: sorted[0]!,
+        };
+        packValues("x", xs, facts);
+        packValues("y", ys, facts);
+        const axis = niceAxis(30, 100);
+        return {
+          content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n두 과목의 점수의 차가 가장 큰 학생의 두 점수의 차를 구하시오.`,
+          answer: `$${sorted[0]}$점`,
+          solution: `각 점에서 두 좌표의 차를 구하면 ${gaps.map((g) => `$${g}$`).join(", ")}이다.\n그중 가장 큰 것은 점 $(${xs[top]},\\,${ys[top]})$의 $|${xs[top]}-${ys[top]}|=${sorted[0]}$이다.\n따라서 구하는 차는 $${sorted[0]}$점이다.`,
+          facts,
+          figureSpec: {
+            version: "elem-1",
+            kind: "scatterPlot",
+            points: xs.map((x, i) => [x, ys[i]!]),
+            xMin: axis.axisMin,
+            xMax: axis.axisMax,
+            xStep: axis.axisStep,
+            yMin: axis.axisMin,
+            yMax: axis.axisMax,
+            yStep: axis.axisStep,
+            xLabel: "(점)",
+            yLabel: "(점)",
+          },
+        };
+      }),
+  ),
+
+  def(
+    MINOR_BOX,
+    "15",
+    "산점도에서 조건을 만족하는 학생들의 평균 구하기",
+    SEC.산점도,
+    "응용",
+    (rng) =>
+      attempt(400, () => {
+        const n = 8;
+        const t = pick(rng, [60, 70, 80] as const);
+        const pts: [number, number][] = [];
+        const seen = new Set<string>();
+        for (let i = 0; i < n; i += 1) {
+          const x = intBetween(rng, 40, 95);
+          const y = intBetween(rng, 40, 95);
+          if (seen.has(`${x},${y}`)) return null;
+          // 문턱에 딱 걸친 점은 「이상」을 그림에서 가르기 어렵다.
+          if (x === t) return null;
+          seen.add(`${x},${y}`);
+          pts.push([x, y]);
+        }
+        const hit = pts.filter(([x]) => x >= t);
+        // 무리가 너무 작거나 전원이면 「그 학생들의 평균」이 전체 평균과 같아진다.
+        if (hit.length < 3 || hit.length > n - 2) return null;
+        const sum = hit.reduce((s, [, y]) => s + y, 0);
+        if (sum % hit.length !== 0) return null;
+        const mean = sum / hit.length;
+        const facts: Record<string, number> = {
+          n,
+          threshold: t,
+          count: hit.length,
+          sum,
+          mean,
+          x: mean,
+        };
+        packValues(
+          "px",
+          pts.map((p) => p[0]),
+          facts,
+        );
+        packValues(
+          "py",
+          pts.map((p) => p[1]),
+          facts,
+        );
+        const axis = niceAxis(30, 100);
+        return {
+          content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n수학 점수가 $${t}$점 이상인 학생들의 과학 점수의 평균을 구하시오.`,
+          answer: `$${mean}$점`,
+          solution: `수학 점수가 $${t}$점 이상인 학생의 점은 ${hit
+            .map(([x, y]) => `$(${x},\\,${y})$`)
+            .join(
+              ", ",
+            )}로 $${hit.length}$명이다.\n그 학생들의 과학 점수의 합은 $${hit
+            .map(([, y]) => y)
+            .join(
+              "+",
+            )}=${sum}$이다.\n따라서 평균은 $\\dfrac{${sum}}{${hit.length}}=${mean}$점이다.`,
+          facts,
+          figureSpec: {
+            version: "elem-1",
+            kind: "scatterPlot",
+            points: pts,
+            xMin: axis.axisMin,
+            xMax: axis.axisMax,
+            xStep: axis.axisStep,
+            yMin: axis.axisMin,
+            yMax: axis.axisMax,
+            yStep: axis.axisStep,
+            xLabel: "(점)",
+            yLabel: "(점)",
+          },
+        };
+      }),
+  ),
 ];
 
 // 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해

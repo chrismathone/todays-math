@@ -1,5 +1,6 @@
 /**
- * 중3 「삼각비」 — RPM 3-2 «삼각비» 18유형 + «삼각비의 활용» 14유형 = 32유형.
+ * 중3 「삼각비」 — RPM 3-2 «삼각비» 18유형 + 우리 유형 19~21
+ * + «삼각비의 활용» 14유형 = 35유형.
  *
  * 물결 3E 세션 소유 모듈 — 이 파일과 짝 시험(`middleM3Trig.test.ts`)만 이 세션이
  * 만진다(middle-engine-wave3-plan.md §9 소유권 규칙). 합본 `m3.ts` 에는 import 한 줄과
@@ -1696,6 +1697,150 @@ export const M3_TRIG: TypeEntry[] = [
         figureSpec: null,
       };
     }),
+  ),
+
+  /* ── 20·21 은 RPM 색인 밖이다 (2026-08-29). ────────────────────────────
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+   * 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 **유형 수가
+   * 곧 한 시험지의 상한**이다. 「삼각비의 뜻」은 01~07·19 여덟뿐이라 10문항
+   * 일일테스트를 구조적으로 못 채웠다.
+   *
+   * 갈래도 세어 봤다(제품 `resolveMiddleTier` 실측): 연산 0 · 기본 2 · 응용 4 ·
+   * 심화 2. **밑단이 없다** — 하위반 배분(연산 1)이 이 소단원에서 한 문항도
+   * 못 채운다. 그래서 20 은 연산, 21 은 모자란 기본으로 지었다.
+   *
+   * 끝(무엇을 묻고 끝나는가)도 겹치지 않게 골랐다:
+   *   01·03·19 삼각비의 값 · 02 변의 길이 · 04·05 닮음 · 06 기울기 · 07 입체
+   *   → **20 식의 값** · **21 넓이** 가 비어 있었다.
+   */
+
+  /**
+   * **20 — 두 삼각비의 값을 이용한 식의 계산** (연산).
+   *
+   * 03(한 삼각비 → 다른 삼각비)과 묻는 것이 다르다. 03 은 **하나**를 주고
+   * 피타고라스로 **다른 삼각비**를 구하게 하고, 여기는 **둘**을 주고 그 둘로
+   * 만든 **식의 값**을 구하게 한다 — 분수 계산 한 줄이 전부인 밑단이다.
+   *
+   * ⚠️ 세 갈래 모두 **진분수**로 떨어지는 것이 우연이 아니다:
+   *   `sin×cos` $=\dfrac{uv}{w^{2}}$ 는 $w^{2}=u^{2}+v^{2}\geq 2uv>uv$ 라 늘 진분수,
+   *   `sin÷cos` $=\dfrac{u}{v}$ 는 표가 $u<v$ 뿐이라 진분수,
+   *   `sin×tan` $=\dfrac{u^{2}}{vw}$ 는 $u<v$·$u<w$ 라 진분수다.
+   * 가분수가 되면 `frac()` 이 **던진다**(지면 전처리가 대분수로 고쳐 쓴다).
+   */
+  def(
+    "삼각비",
+    "20",
+    "두 삼각비의 값을 이용한 식의 계산",
+    SEC.뜻,
+    "연산",
+    (rng) =>
+      attempt(120, () => {
+        const [p0, q0, r0] = pick(rng, TRIPLES);
+        const g0 = gcd(gcd(p0, q0), r0);
+        const u = p0 / g0;
+        const v = q0 / g0;
+        const w = r0 / g0;
+        if (u >= v) return null;
+        const mode = intBetween(rng, 0, 2);
+        const sinTex = frac(u, w);
+        const cosTex = frac(v, w);
+        const [num, den] =
+          mode === 0
+            ? red(u * v, w * w)
+            : mode === 1
+              ? red(u, v)
+              : red(u * u, v * w);
+        if (num >= den) return null;
+        // 밑단이므로 답이 커지면 안 된다 — $\dfrac{420}{1369}$ 은 연산이 아니다.
+        if (den > 300) return null;
+        const asked =
+          mode === 0
+            ? "\\sin A\\times\\cos A"
+            : mode === 1
+              ? "\\sin A\\div\\cos A"
+              : "\\sin A\\times\\tan A";
+        const [tn, td] = red(u, v);
+        const work =
+          mode === 0
+            ? `$${asked}=${sinTex}\\times${cosTex}=${frac(num, den)}$이다.`
+            : mode === 1
+              ? `$${asked}=${sinTex}\\div${cosTex}=${frac(num, den)}$이다.`
+              : `$\\tan A=\\sin A\\div\\cos A=${sinTex}\\div${cosTex}=${frac(tn, td)}$이다.\n` +
+                `$${asked}=${sinTex}\\times${frac(tn, td)}=${frac(num, den)}$이다.`;
+        return {
+          content: `$0^\\circ<A<90^\\circ$인 $\\angle A$에 대하여 $\\sin A=${sinTex}$, $\\cos A=${cosTex}$일 때, $${asked}$의 값을 구하시오.`,
+          answer: `$${frac(num, den)}$`,
+          solution: `${work}\n따라서 구하는 값은 $${frac(num, den)}$이다.`,
+          facts: nums({ u, v, w, mode, num, den }),
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  /**
+   * **21 — 삼각비를 이용하여 직각삼각형의 넓이 구하기** (기본).
+   *
+   * 02(삼각비 → 변의 길이)에서 **한 걸음 더** 간다: 구한 변으로 **넓이**를 낸다.
+   * 이 소단원의 여덟은 전부 「삼각비의 값」 아니면 「변의 길이」에서 끝났다 —
+   * 넓이로 끝나는 자리가 비어 있었다.
+   *
+   * ⚠️ 「삼각비의 활용」 08(삼각형의 넓이)과 다르다. 그쪽은 $\dfrac12ab\sin C$ 로
+   *    **끼인각**을 쓰고, 여기는 직각삼각형에서 두 변을 구해 곱한다. 소단원도 다르다.
+   */
+  def(
+    "삼각비",
+    "21",
+    "삼각비를 이용하여 직각삼각형의 넓이 구하기",
+    SEC.뜻,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const [p0, q0, r0] = pick(rng, TRIPLES);
+        const g0 = gcd(gcd(p0, q0), r0);
+        const u = p0 / g0;
+        const v = q0 / g0;
+        const w = r0 / g0;
+        if (u >= v) return null;
+        const t = intBetween(rng, 1, 4);
+        const opp = u * t; // $\overline{BC}$
+        const adj = v * t; // $\overline{AB}$
+        const hyp = w * t; // $\overline{AC}$
+        if (hyp > 60) return null;
+        if ((opp * adj) % 2 !== 0) return null;
+        const area = (opp * adj) / 2;
+        const mode = intBetween(rng, 0, 2);
+        // 주어지는 변과 삼각비 — 0: 빗변+sin · 1: 빗변+cos · 2: 이웃변+tan
+        const givenLen = mode === 2 ? adj : hyp;
+        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;
+        const [gn, gd] =
+          mode === 0 ? red(u, w) : mode === 1 ? red(v, w) : red(u, v);
+        if (gn >= gd) return null;
+        const relation = [
+          `\\sin A=\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+          `\\cos A=\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+          `\\tan A=\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+        ][mode]!;
+        // 삼각비로 바로 나오는 변과, 피타고라스로 되찾는 변.
+        const direct = mode === 1 ? adj : opp;
+        const directSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;
+        const other = mode === 1 ? opp : mode === 0 ? adj : hyp;
+        const otherSide = mode === 1 ? SIDE_NAMES[1]! : SIDE_NAMES[0]!;
+        const pytha =
+          mode === 2
+            ? ``
+            : `피타고라스 정리에 의하여 $${otherSide}=\\sqrt{${hyp}^2-${direct}^2}=${other}\\,(\\mathrm{cm})$이다.\n`;
+        return {
+          content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$이고 $${trigOf(mode, "A")}=${frac(gn, gd)}$, $${givenSide}=${cm(givenLen)}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+          answer: `$${cm2(area)}$`,
+          solution:
+            `$${relation}$이므로 $${directSide}=${givenLen}\\times${frac(gn, gd)}=${direct}\\,(\\mathrm{cm})$이다.\n` +
+            pytha +
+            `따라서 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times${adj}\\times${opp}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: nums({ u, v, w, t, mode, area, given: givenLen }),
+          figureSpec: null,
+        };
+      }),
   ),
 
   /* ── 삼각비의 활용 01~14 → 우리 단원 「삼각비의 활용」 ──────────── */
