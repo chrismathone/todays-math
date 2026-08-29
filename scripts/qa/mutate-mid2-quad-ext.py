@@ -100,6 +100,14 @@ MUTANTS = [
         "const area = (p * x) / 2;",
         "const area = p * x;",
     ),
+    # 그림이 **안 그려지게** 만든다. 각을 `BO` 가 아니라 `D` 로 가리키면 광선 BD 를
+    # 덮는 선분이 없어 엔진이 던진다(대각선을 반쪽으로 끊었기 때문이다).
+    # 스펙은 객체로 보면 멀쩡하다 — 값 검산도 좌표 검사도 이 변이를 못 본다.
+    (
+        "30 각이 덮이지 않은 광선을 가리켜 그림이 안 그려진다",
+        'angles.angDBC = { vertex: "B", points: ["O", "C"], label: opts.angDBC };',
+        'angles.angDBC = { vertex: "B", points: ["D", "C"], label: opts.angDBC };',
+    ),
 ]
 
 # 「대각선 치수를 다시 적는다」 변이는 지금 없는 가지(`opts.acLabel`)를 되살려야
