@@ -72,8 +72,8 @@ MUTANTS = [
     ),
     (
         "30 발문이 그림을 가리키는데 그림이 없다",
-        "figureSpec: figIsoTrapDiags(\n        top,",
-        "figureSpec: null && figIsoTrapDiags(\n        top,",
+        "figureSpec: figIsoTrapDiags(\n          top,",
+        "figureSpec: null,\n        deadSpec: figIsoTrapDiags(\n          top,",
     ),
     (
         "30 그림에 대각선 치수를 다시 적는다",
@@ -108,8 +108,12 @@ MUTANTS = [
 MUTANTS[7] = (
     "30 그림에 대각선 치수를 다시 적는다",
     'labels: Record<string, string> = {\n    A: "A",\n    B: "B",\n    C: "C",\n    D: "D",\n    O: "O",\n  };\n  if (opts.angDBC !== undefined) {',
-    'labels: Record<string, string> = {\n    A: "A",\n    B: "B",\n    C: "C",\n    D: "D",\n    O: "O",\n  };\n  pts.n_zz = [off, height / 2];\n  labels.n_zz = `${Math.round(bottom / 8)} cm`;\n  if (opts.angDBC !== undefined) {',
+    'labels: Record<string, string> = {\n    A: "A",\n    B: "B",\n    C: "C",\n    D: "D",\n    O: "O",\n  };\n  pts.n_zz = [off, height / 2];\n  labels.n_zz = `${bottom / 8} cm`;\n  if (opts.angDBC !== undefined) {',
 )
+# ⚠️ 라벨 값을 `bottom / 8` 로 둔 까닭: 30 의 mode 0 은 아랫변을 `q * 8` 로 그리므로
+#    이 값이 **정확히 `facts.q`** 다. 그래서 「그림 라벨이 facts 에 있다」는 통과하고
+#    「대각선 치수를 적지 않는다」쪽이 문다 — 겨눈 가드가 실제로 무는지 갈린다.
+#    (mode 1 은 17.5 라 두 가드가 같이 문다. 판정이 실패 이름을 여럿 찍어 그것도 보인다.)
 
 
 def run(cmd: list[str], **kw) -> subprocess.CompletedProcess:
@@ -208,8 +212,15 @@ def main() -> int:
                 verdicts.append((name, "⛔ 판정 거부 — 빨간데 실패한 시험을 못 댄다"))
                 print(f"⛔ {name} — 빨간데 근거가 없다 ({why})")
             else:
-                verdicts.append((name, f"🔴 빨강 ← {failed[0]}"))
-                print(f"🔴 {name}\n     ↳ {failed[0]}")
+                # 실패한 시험을 **여럿** 찍는다 — 하나만 찍으면 「어느 가드가
+                # 물었나」가 가려져, 겨눈 가드가 아니라 옆 가드가 문 것을 못 본다.
+                shown = failed[:3]
+                verdicts.append((name, "🔴 빨강 ← " + " · ".join(shown)))
+                print(f"🔴 {name}")
+                for t in shown:
+                    print(f"     ↳ {t}")
+                if len(failed) > len(shown):
+                    print(f"     ↳ … 그 밖에 {len(failed) - len(shown)}건")
     finally:
         with open(TARGET, "wb") as f:
             f.write(original)
