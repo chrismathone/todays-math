@@ -1,5 +1,5 @@
 /**
- * 중3 «산포도» 7 + «상자그림과 산점도» 10 = 17유형 — 독립 검산.
+ * 중3 «산포도» 8 + «상자그림과 산점도» 13 = 21유형 — 독립 검산.
  *
  * `boxPlot`·`scatterPlot` 은 실제 엔진(`render_spec.py`)까지 태운다 — 모킹하지
  * 않는다(없는 축은 변이시킬 수 없다, CLAUDE.md 2026-08-19). 상관관계(08)는
@@ -10,6 +10,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { DIFFICULTY_LADDER, defaultRatioFor } from "../../contracts/difficulty";
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -27,16 +28,19 @@ const SEEDS = [20260824, 1, 7777, 424242, 99991];
 const BOOK = "3-2";
 
 /**
- * 이 시험이 맡은 몫 — **색인 번호만**(산포도 7 · 상자그림과 산점도 10).
+ * 이 시험이 맡은 몫 — **이 모듈이 낸 번호까지**(산포도 01~08 · 상자그림과 산점도 01~13).
  *
- * ⚠️ 2026-08-27 부터 이 중단원에 색인 밖 유형이 붙는다(갈래 B 가 「상자그림」
- *    소단원을 10유형으로 올리며 지은 50~54). 이 시험은 `registeredTypes()` 를
- *    **중단원 이름으로** 걸러 자기 몫을 고르므로 그것들까지 쓸어 담아 자기
- *    검산표에 남의 유형을 들이댄다. 그래서 번호로 한 번 더 좁힌다 —
- *    「17이 등록돼 있다」는 주장은 그대로 살아 있고, 지은 유형은
- *    `src/__tests__/unit/midTypesB.test.ts` 가 유형마다 검산을 요구한다.
+ * ⚠️ 2026-08-27 부터 이 중단원에 **다른 모듈이 지은** 유형이 붙는다(갈래 B 가
+ *    「상자그림」 소단원을 10유형으로 올리며 지은 50~54). 이 시험은
+ *    `registeredTypes()` 를 **중단원 이름으로** 걸러 자기 몫을 고르므로 그것들까지
+ *    쓸어 담아 자기 검산표에 남의 유형을 들이댄다. 그래서 번호로 한 번 더 좁힌다 —
+ *    그 유형들은 `src/__tests__/unit/midTypesB.test.ts` 가 검산을 요구한다.
+ *
+ * 🔴 **11~13 은 이 모듈이 냈으므로 여기 안이다**(2026-08-29, RPM 색인 밖). 문턱을
+ *    안 올리면 새 유형이 **아무 검산도 안 받고** 지나간다 — 아래 per-type 검사가
+ *    전부 `entries()` 를 돌기 때문이다. 「없는 축은 변이시킬 수 없다」의 그 자리다.
  */
-const CATALOG_MAX = 10;
+const CATALOG_MAX = 13;
 
 const entries = () =>
   registeredTypes().filter(
@@ -79,29 +83,54 @@ function concordantRatio(xs: number[], ys: number[]): number {
   return same / total;
 }
 
-describe("중3 산포도·상자그림과 산점도 18유형", () => {
-  it("🔴 **이 소단원이 8문항 일일테스트를 채운다** — 유형 수가 곧 한 시험지의 상한이다", () => {
+describe("중3 산포도·상자그림과 산점도 21유형", () => {
+  it("🔴 **이 파일이 맡은 소단원이 8문항 일일테스트를 채운다** — 유형 수가 곧 한 시험지의 상한이다", () => {
     // 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`),
     // 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이다. 그래서
     // 유형 수 < 문항 수 이면 그 소단원의 일일테스트는 **구조적으로 못 찬다.**
     // 원장님 반은 전부 8문항 설정이다(실측 2026-08-29).
-    const disp = entries().filter((e) => e.unitSection === "대푯값과 산포도");
-    expect(
-      disp.length,
-      "「대푯값과 산포도」 유형이 8 미만이면 8문항 일일테스트를 못 채운다",
-    ).toBeGreaterThanOrEqual(8);
-    // 키가 겹치면 그 둘은 한 자리를 다툰다 — 세는 것이 뜻을 잃는다.
-    expect(new Set(disp.map((e) => e.key)).size).toBe(disp.length);
+    //
+    // ⚠️ 「상자그림」은 이 파일 밖(갈래 B 50~54)이 절반을 대므로 여기서 안 센다 —
+    //    `entries()` 로 세면 그 소단원만 늘 5로 보인다. 세는 쪽과 채우는 쪽이
+    //    다른 모집단을 보면 그 숫자는 아무것도 안 지킨다.
+    for (const sec of ["대푯값과 산포도", "산점도와 상관관계"]) {
+      const mine = entries().filter((e) => e.unitSection === sec);
+      expect(
+        mine.length,
+        `「${sec}」 유형이 8 미만이면 8문항 일일테스트를 못 채운다`,
+      ).toBeGreaterThanOrEqual(8);
+      // 키가 겹치면 그 둘은 한 자리를 다툰다 — 세는 것이 뜻을 잃는다.
+      expect(new Set(mine.map((e) => e.key)).size).toBe(mine.length);
+    }
   });
 
-  it("산포도 8 + 상자그림과 산점도 10 = 18이 등록돼 있다", () => {
+  it("🔴 **「산점도와 상관관계」 난이도가 8문항 기본 배분을 덮는다** — 1·3·3·1", () => {
+    // 유형이 8개여도 전부 「응용」이면 배분을 못 맞춘다. 배분은
+    // `DEFAULT_DIFFICULTY_RATIO`(연산 1 · 기본 3 · 응용 3 · 심화 1)가 정본이다.
+    const want = defaultRatioFor(8);
+    const got: Record<string, number> = {};
+    for (const e of entries().filter(
+      (x) => x.unitSection === "산점도와 상관관계",
+    )) {
+      const d = generateMiddleProblem(e.key, 20260829).difficulty;
+      got[d] = (got[d] ?? 0) + 1;
+    }
+    for (const tier of DIFFICULTY_LADDER) {
+      expect(got[tier] ?? 0, `「${tier}」 유형 수`).toBeGreaterThanOrEqual(
+        want[tier],
+      );
+    }
+  });
+
+  it("산포도 8 + 상자그림과 산점도 13 = 21이 등록돼 있다", () => {
     const es = entries();
-    expect(es.length).toBe(18);
+    expect(es.length).toBe(21);
     const disp = es.filter((e) => e.rpmMinor === "산포도");
     const box = es.filter((e) => e.rpmMinor === "상자그림과 산점도");
     // 🔴 RPM 의 01~07 에 **우리 유형 08**(자료 → 분산)을 더해 8이다.
     expect(disp.length).toBe(8);
-    expect(box.length).toBe(10);
+    // 🔴 RPM 의 01~10 에 **우리 유형 11~13**(좌표 읽기·비율·상관관계의 이해)을 더해 13이다.
+    expect(box.length).toBe(13);
   });
 
   it("Unit.section 은 소재가 바뀌는 05→06 경계에서 갈린다", () => {
@@ -113,7 +142,8 @@ describe("중3 산포도·상자그림과 산점도 18유형", () => {
     for (let i = 1; i <= 5; i += 1) {
       expect(byType.get(String(i).padStart(2, "0"))).toBe("상자그림");
     }
-    for (let i = 6; i <= 10; i += 1) {
+    // 11~13 은 RPM 색인 밖이지만 소재가 산점도라 같은 쪽에 선다.
+    for (let i = 6; i <= 13; i += 1) {
       expect(byType.get(String(i).padStart(2, "0"))).toBe("산점도와 상관관계");
     }
     const dispSections = new Set(
@@ -392,5 +422,142 @@ describe("중3 산포도·상자그림과 산점도 18유형", () => {
       expect(p.facts.mean! * n).toBe(xs.reduce((s, v) => s + v, 0));
       expect(firstNumber(p.answer)).toBe(p.facts.mean);
     }
+  });
+
+  // ── 산점도 11~13 (RPM 색인 밖, 2026-08-29) — 개별 검산 ────────────────
+  //
+  // 09 와 같은 규약이다: **지면에 찍힌 점**에서 답을 다시 센다. `facts` 만 보면
+  // 생성기가 `content` 와 `facts` 를 따로 만드는 자리에서 둘이 갈라져도 못 본다.
+
+  it("11 산점도에서 좌표 읽기 — 지면의 점 중 y가 가장 큰 것의 x가 정답이다", () => {
+    for (const seed of SEEDS) {
+      const p = generateMiddleProblem("3-2|상자그림과 산점도|11", seed);
+      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+        (m) => [Number(m[1]), Number(m[2])] as const,
+      );
+      expect(pts).toHaveLength(p.facts.n!);
+      const maxY = Math.max(...pts.map(([, y]) => y));
+      // y 가 유일해야 답이 하나다 — 겹치면 지면이 「가장 높은 학생」을 못 가른다.
+      expect(pts.filter(([, y]) => y === maxY)).toHaveLength(1);
+      const top = pts.find(([, y]) => y === maxY)!;
+      expect(firstNumber(p.answer)).toBe(top[0]);
+
+      // 🔴 그림을 안 보고 찍을 수 있으면 이 유형은 죽은 것이다.
+      const byX = [...pts].sort((a, b) => a[0] - b[0]);
+      expect(
+        byX[byX.length - 1]![1],
+        "답이 x가 가장 큰 점이면 찍힌다",
+      ).not.toBe(maxY);
+      expect(byX[0]![1], "답이 x가 가장 작은 점이면 찍힌다").not.toBe(maxY);
+    }
+  });
+
+  it("12 산점도에서 비율 구하기 — 두 좌표가 모두 문턱 이상인 점의 비율", () => {
+    for (const seed of SEEDS) {
+      const p = generateMiddleProblem("3-2|상자그림과 산점도|12", seed);
+      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+        (m) => [Number(m[1]), Number(m[2])] as const,
+      );
+      const t = Number(/모두 \$(\d+)\$점 이상/.exec(p.content)?.[1]);
+      expect(pts).toHaveLength(p.facts.n!);
+      expect(t).toBe(p.facts.threshold);
+
+      const counted = pts.filter(([x, y]) => x >= t && y >= t).length;
+      expect(firstNumber(p.answer)).toBe((counted * 100) / pts.length);
+      // 백분율이 정수로 떨어져야 지면이 깨끗하다.
+      expect((counted * 100) % pts.length).toBe(0);
+
+      // 물음이 죽지 않았는가 — 0명이나 전원이면 셀 것이 없다.
+      expect(counted).toBeGreaterThanOrEqual(2);
+      expect(counted).toBeLessThan(pts.length - 1);
+      // 문턱에 딱 걸친 점이 있으면 「이상」을 그림에서 가르기 어렵다.
+      expect(pts.filter(([x, y]) => x === t || y === t)).toEqual([]);
+    }
+  });
+
+  it("13 상관관계의 이해 — 정답만 그 상관관계고 나머지 둘은 아니다", () => {
+    // 🔴 이 시험의 참은 **생성기가 아니라 여기 적은 표**에서 온다. 생성기의
+    //    `CORRELATION_EXAMPLES` 를 import 해서 대조하면 동어반복이 된다 —
+    //    표가 통째로 틀려도 초록이다(2026-08-18 「지표의 참이 제품에서 오면」).
+    const POS =
+      /키와 몸무게|공부한 시간|아이스크림|자동차 등록|정상까지 오르는/;
+    const NEG = /난방비|그 지점의 기온|속력과 걸리는 시간|팔린 개수|남는 시간/;
+    const NONE = /시력|이름의 글자|키와 수학 점수|태어난 달|마시는 물의 양/;
+    const BY_KIND = { 1: POS, "-1": NEG, 0: NONE } as const;
+
+    for (const seed of [...SEEDS, 20260829, 3, 51, 777, 60606]) {
+      const p = generateMiddleProblem("3-2|상자그림과 산점도|13", seed);
+      const [ask, list] = p.content.split("\n");
+      const items = list!.split(" / ");
+      expect(items).toHaveLength(3);
+      expect(new Set(items).size, "같은 항목이 두 번 나오면 안 된다").toBe(3);
+      expect(items).toContain(p.answer);
+
+      const want = BY_KIND[String(p.facts.kindCode!) as "1" | "-1" | "0"];
+      expect(want.test(p.answer), `정답 「${p.answer}」`).toBe(true);
+      // 🔴 나머지 둘이 같은 갈래면 답이 둘이다 — 「고르시오」가 성립하지 않는다.
+      for (const other of items.filter((i) => i !== p.answer)) {
+        expect(
+          want.test(other),
+          `오답 「${other}」 이 정답과 같은 갈래다`,
+        ).toBe(false);
+      }
+      // 발문의 낱말과 갈래가 맞물리는가.
+      if (p.facts.kindCode === 1) expect(ask).toContain("양의 상관관계");
+      else if (p.facts.kindCode === -1) expect(ask).toContain("음의 상관관계");
+      else expect(ask).toContain("상관관계가 없는");
+
+      // 그림이 없는 유형이다 — 발문이 그림을 가리키면 학생이 없는 것을 찾는다.
+      expect(p.figureSpec ?? null).toBeNull();
+      expect(p.content).not.toContain("그림");
+    }
+  });
+
+  /**
+   * 🔴 **스펙을 실은 유형은 전부 실제로 그려진다.**
+   *
+   * 이 파일의 렌더 검사는 유형마다 손으로 적혀 있었다(03·04·05·06·08). 그러면
+   * **새 유형은 분모 밖**이라 스펙이 안 그려져도 초록이다 — 11·12 를 넣을 때
+   * 실제로 그랬다. 손 목록을 없애고 `entries()` 를 돌린다.
+   *
+   * 씨앗을 둘만 쓰는 것은 엔진을 프로세스로 띄우기 때문이다(유형마다 2회).
+   * 값에 따라만 깨지는 부류는 유형별 검사가 더 넓은 씨앗으로 따로 본다.
+   */
+  it("🔴 **스펙을 실은 유형은 전부 제품 경로가 그린다** — 손 목록 없이", async () => {
+    if (!hasEngine) return;
+    const failed: string[] = [];
+    const kinds = new Set<string>();
+    let drawn = 0;
+    for (const e of entries()) {
+      for (const seed of [20260824, 99991]) {
+        const p = generateMiddleProblem(e.key, seed);
+        if (!p.figureSpec) continue;
+        kinds.add(String(p.figureSpec.kind));
+        const r = await renderFigureSpec(p.figureSpec);
+        drawn += 1;
+        if (!r.ok) failed.push(`${e.key} s${seed} — ${r.error}`);
+      }
+    }
+    // 🔴 0 이 「깨끗」인지 「못 셈」인지 갈라야 한다. 그런데 **건수로 울타리를
+    //    치면 유형이 하나 늘 때마다 숫자를 옮기게 되고**, 옮기다 보면 그 울타리가
+    //    무엇을 지키는지 아무도 모른다. 그래서 「무엇을 그렸나」로 잠근다 —
+    //    이 파일이 맡은 두 종류가 **둘 다** 실제로 엔진을 탄 것을 요구한다.
+    expect(kinds, "그린 종류가 빠지면 그 종류는 이 검사 밖이다").toEqual(
+      new Set(["boxPlot", "scatterPlot"]),
+    );
+    expect(
+      drawn,
+      "그린 것이 없으면 이 검사는 아무것도 안 지킨다",
+    ).toBeGreaterThan(0);
+    expect(failed, failed.join("\n")).toEqual([]);
+  });
+
+  it("🔴 **13 의 답이 늘 같은 자리에 있지 않다** — 자리로 찍히면 유형이 죽는다", () => {
+    const seen = new Set<number>();
+    for (let s = 0; s < 40; s += 1) {
+      const p = generateMiddleProblem("3-2|상자그림과 산점도|13", 20260829 + s);
+      seen.add(p.facts.ansIndex!);
+    }
+    expect(seen).toEqual(new Set([0, 1, 2]));
   });
 });

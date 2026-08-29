@@ -212,6 +212,42 @@ function def(
 
 const NAMES5 = ["A", "B", "C", "D", "E"] as const;
 
+/**
+ * 실생활 두 변량의 상관관계 (유형 13) — **셋은 서로 배타여야 한다.** 한 짝이 두
+ * 갈래에 걸치면 답이 둘이 되고, 그때 지면은 「고르시오」라고 하면서 고를 수 없다.
+ *
+ * ⚠️ 「걸리는 시간」류는 **거리를 고정해야** 음의 상관관계다. 거리가 자유로우면
+ *    속력이 빨라도 시간이 길 수 있다 — 그래서 「같은 거리를 갈 때」를 붙였다.
+ *    「물건의 값과 판매량」도 같은 물건이어야 뜻이 선다.
+ */
+const CORRELATION_KINDS = ["양", "음", "없"] as const;
+const CORRELATION_EXAMPLES: Record<
+  (typeof CORRELATION_KINDS)[number],
+  readonly string[]
+> = {
+  양: [
+    "키와 몸무게",
+    "공부한 시간과 시험 점수",
+    "여름철 기온과 아이스크림 판매량",
+    "도시의 인구수와 자동차 등록 대수",
+    "산의 높이와 정상까지 오르는 데 걸리는 시간",
+  ],
+  음: [
+    "겨울철 기온과 난방비",
+    "산의 높이와 그 지점의 기온",
+    "같은 거리를 갈 때 자동차의 속력과 걸리는 시간",
+    "같은 물건의 값과 팔린 개수",
+    "통학 거리와 등교 후 남는 시간",
+  ],
+  없: [
+    "발의 길이와 시력",
+    "이름의 글자 수와 몸무게",
+    "학생의 키와 수학 점수",
+    "태어난 달과 통학 거리",
+    "손가락의 길이와 하루에 마시는 물의 양",
+  ],
+};
+
 export const M3_STAT2: TypeEntry[] = [
   // ══════════════ 산포도 (01~07) — SEC.산포도 「대푯값과 산포도」 ══════════════
   def(MINOR_DISP, "01", "편차", SEC.산포도, "기본", (rng) => {
@@ -808,6 +844,171 @@ export const M3_STAT2: TypeEntry[] = [
       };
     }),
   ),
+
+  /* ── 아래 11~13 은 RPM 색인 밖이다 (2026-08-29). ─────────────────────────
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+   * 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 **유형 수가
+   * 곧 한 시험지의 상한**이다. RPM 이 이 소단원에 준 것은 06~10 다섯뿐이라
+   * 8문항 일일테스트를 구조적으로 못 채웠다(제품 선정기 실측 5/8, 2026-08-29).
+   *
+   * 빈 자리는 **끝**(무엇을 묻고 끝나는가)과 **난이도**로 찾았다:
+   *   06 개수(기본) · 07 개수(응용) · 08 상관관계(응용) · 09 개수(심화) · 10 평균(응용)
+   *   → 연산 0 · 기본 1 · 응용 3 · 심화 1. 8문항 기본 배분은 **1·3·3·1** 이다
+   *   (`DEFAULT_DIFFICULTY_RATIO`). 그래서 모자란 것이 정확히 **연산 1 · 기본 2** 다.
+   * 끝도 겹치지 않게 골랐다 — 네 번째 「개수」 유형을 넣는 것은 채우기지 유형이 아니다.
+   *   11 좌표 읽기(연산) · 12 백분율(기본) · 13 실생활 상관관계(기본, 그림 없음)
+   *
+   * ⚠️ 엔진의 `scatterPlot` 은 점 **이름표를 안 받는다** — 허용 키는 `points`·축·
+   *    `xLabel`·`yLabel`·`title` 뿐이다(`scripts/figure/elem_advanced.py:4856`).
+   *    그래서 「A~E 중 누구인가」류(표준 유형이다)는 지면에서 읽을 수 없어 뺐다.
+   */
+  def(MINOR_BOX, "11", "산점도에서 좌표 읽기", SEC.산점도, "연산", (rng) =>
+    attempt(200, () => {
+      const n = 7;
+      const xs = distinctSorted(rng, n, 40, 95);
+      const ys = distinctSorted(rng, n, 40, 95);
+      // `distinctSorted` 를 그대로 쓰면 x·y 가 **함께** 오름차순이라 답이 늘 맨
+      // 오른쪽 점이 된다 — 그러면 그림을 안 보고도 맞힌다. 그래서 y 만 섞는다.
+      for (let i = ys.length - 1; i > 0; i -= 1) {
+        const j = intBetween(rng, 0, i);
+        const t = ys[i]!;
+        ys[i] = ys[j]!;
+        ys[j] = t;
+      }
+      const top = ys.indexOf(Math.max(...ys));
+      if (top === n - 1 || top === 0) return null; // 양 끝이면 찍어서 맞는다
+      const facts: Record<string, number> = {
+        n,
+        topY: ys[top]!,
+        ans: xs[top]!,
+      };
+      packValues("x", xs, facts);
+      packValues("y", ys, facts);
+      const axis = niceAxis(30, 100);
+      return {
+        content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n과학 점수가 가장 높은 학생의 수학 점수를 구하시오.`,
+        answer: `$${xs[top]}$점`,
+        solution: `산점도에서 $y$좌표가 가장 큰 점은 $(${xs[top]},\\,${ys[top]})$이다.\n따라서 과학 점수가 가장 높은 학생의 수학 점수는 $${xs[top]}$점이다.`,
+        facts,
+        figureSpec: {
+          version: "elem-1",
+          kind: "scatterPlot",
+          points: xs.map((x, i) => [x, ys[i]!]),
+          xMin: axis.axisMin,
+          xMax: axis.axisMax,
+          xStep: axis.axisStep,
+          yMin: axis.axisMin,
+          yMax: axis.axisMax,
+          yStep: axis.axisStep,
+          xLabel: "(점)",
+          yLabel: "(점)",
+        },
+      };
+    }),
+  ),
+
+  def(MINOR_BOX, "12", "산점도에서 비율 구하기", SEC.산점도, "기본", (rng) =>
+    attempt(300, () => {
+      // 학생 수가 곧 분모다 — $10$명이면 백분율이 늘 정수로 떨어진다.
+      const n = 10;
+      const t = pick(rng, [60, 70, 80] as const);
+      const pts: [number, number][] = [];
+      const seen = new Set<string>();
+      for (let i = 0; i < n; i += 1) {
+        const x = intBetween(rng, 40, 95);
+        const y = intBetween(rng, 40, 95);
+        if (seen.has(`${x},${y}`)) return null; // 점이 겹치면 산점도가 거짓말을 한다
+        // 문턱에 딱 걸친 점은 「이상」을 그림에서 가르기 어렵다.
+        if (x === t || y === t) return null;
+        seen.add(`${x},${y}`);
+        pts.push([x, y]);
+      }
+      const hit = pts.filter(([x, y]) => x >= t && y >= t);
+      if (hit.length < 2 || hit.length > n - 3) return null;
+      const pct = (hit.length * 100) / n;
+      const facts: Record<string, number> = {
+        n,
+        threshold: t,
+        count: hit.length,
+        ans: pct,
+      };
+      packValues(
+        "px",
+        pts.map((p) => p[0]),
+        facts,
+      );
+      packValues(
+        "py",
+        pts.map((p) => p[1]),
+        facts,
+      );
+      const axis = niceAxis(30, 100);
+      return {
+        content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n수학 점수와 과학 점수가 모두 $${t}$점 이상인 학생은 전체의 몇 $\\%$인지 구하시오.`,
+        answer: `$${pct}\\%$`,
+        solution: `두 점수가 모두 $${t}$점 이상인 점은 ${hit
+          .map(([x, y]) => `$(${x},\\,${y})$`)
+          .join(
+            ", ",
+          )}로 $${hit.length}$개이다.\n따라서 전체의 $\\dfrac{${hit.length}}{${n}}\\times100=${pct}\\,(\\%)$이다.`,
+        facts,
+        figureSpec: {
+          version: "elem-1",
+          kind: "scatterPlot",
+          points: pts,
+          xMin: axis.axisMin,
+          xMax: axis.axisMax,
+          xStep: axis.axisStep,
+          yMin: axis.axisMin,
+          yMax: axis.axisMax,
+          yStep: axis.axisStep,
+          xLabel: "(점)",
+          yLabel: "(점)",
+        },
+      };
+    }),
+  ),
+
+  def(MINOR_BOX, "13", "상관관계의 이해", SEC.산점도, "기본", (rng) => {
+    const ask = pick(rng, CORRELATION_KINDS);
+    const others = CORRELATION_KINDS.filter((k) => k !== ask);
+    const items = [
+      pick(rng, CORRELATION_EXAMPLES[ask]),
+      pick(rng, CORRELATION_EXAMPLES[others[0]!]),
+      pick(rng, CORRELATION_EXAMPLES[others[1]!]),
+    ];
+    const answer = items[0]!;
+    // 답이 늘 첫째 자리면 읽지 않고 찍는다 — 자리를 섞는다.
+    for (let i = items.length - 1; i > 0; i -= 1) {
+      const j = intBetween(rng, 0, i);
+      const t = items[i]!;
+      items[i] = items[j]!;
+      items[j] = t;
+    }
+    const question =
+      ask === "없"
+        ? "다음 셋 중에서 두 변량 사이에 상관관계가 없는 것을 고르시오."
+        : `다음 셋 중에서 두 변량 사이에 ${ask}의 상관관계가 있는 것을 고르시오.`;
+    const why =
+      ask === "양"
+        ? "한 변량이 커질 때 다른 변량도 대체로 커지면 두 변량 사이에는 양의 상관관계가 있다."
+        : ask === "음"
+          ? "한 변량이 커질 때 다른 변량은 대체로 작아지면 두 변량 사이에는 음의 상관관계가 있다."
+          : "한 변량이 커질 때 다른 변량이 커지는지 작아지는지 뚜렷한 경향이 없으면 두 변량 사이에는 상관관계가 없다.";
+    return {
+      content: `${question}\n${items.join(" / ")}`,
+      answer,
+      solution: `${why}\n따라서 구하는 것은 ${answer}이다.`,
+      facts: {
+        kindCode: ask === "양" ? 1 : ask === "음" ? -1 : 0,
+        ansIndex: items.indexOf(answer),
+      },
+      // 이 유형은 **그림이 없다** — 발문도 그림을 가리키지 않는다
+      // (`middleFigureReference.test.ts` 가 그 짝을 지킨다).
+      figureSpec: null,
+    };
+  }),
 ];
 
 // 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해

@@ -49,7 +49,32 @@ describe("[중등 엔진] 발문이 없는 그림을 가리키지 않는다", ()
     expect(
       pointsAtFigure("$5$번 그림처럼 두 직선이 직각으로 만날 때"),
     ).not.toBeNull();
+    // 🔴 「산점도·상자그림」은 낱말 「그림」 없이 지면을 가리킨다 (2026-08-29).
+    expect(
+      pointsAtFigure(
+        "다음은 학생 $7$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): $(50, 60)$",
+      ),
+    ).not.toBeNull();
+    expect(
+      pointsAtFigure(
+        "다음 산점도에서 국어 점수가 영어 점수보다 높은 학생 수를",
+      ),
+    ).not.toBeNull();
+    expect(
+      pointsAtFigure("다음은 어느 반 학생들의 키를 나타낸 상자그림이다."),
+    ).not.toBeNull();
+    expect(
+      pointsAtFigure("위 상자그림에서 사분범위를 구하시오."),
+    ).not.toBeNull();
     // 반대쪽 — 멀쩡한 발문을 물면 거짓 경보가 되고, 거짓 경보는 가드를 끈다.
+    // 🔴 「학생이 **직접 그리는**」 문형은 지면에 그림이 없는 것이 정상이다.
+    //    낱말 「상자그림」으로 세면 이것까지 문다 — 그래서 어형으로 좁혔다.
+    expect(
+      pointsAtFigure(
+        "다음은 어느 자료를 작은 값부터 크기순으로 나열한 것이다. 이 자료를 상자그림으로 나타낼 때 제$1$사분위수를 구하시오.",
+      ),
+    ).toBeNull();
+    expect(pointsAtFigure("다음 자료를 산점도로 나타내시오.")).toBeNull();
     expect(pointsAtFigure("직선 가에 수선을 $8$개 그었습니다.")).toBeNull();
     expect(pointsAtFigure("그림그래프로 나타내시오.")).toBeNull();
     expect(pointsAtFigure("나무의 그림자 길이를 구하시오.")).toBeNull();
