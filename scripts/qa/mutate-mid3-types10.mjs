@@ -164,35 +164,47 @@ const MUTATIONS = [
   },
 ];
 
-function sh(cmd, args, opts = {}) {
-  return spawnSync(cmd, args, {
+/**
+ * ⚠️ **`shell: true` 를 쓰지 않는다.** 유형 키가 `3-2|산포도|09` 라 win32 셸이
+ *    `|` 를 **파이프로 읽는다** — 인자가 갈라져 프로브가 안 뜨고, 그러면 지문이
+ *    변이 전후로 **똑같이 «실패»** 가 되어 14개 전부 「산출물이 그대로다」로
+ *    거부된다(2026-08-29 실측, 이 도구가 처음 낸 결과가 그것이었다).
+ *    그래서 `node` 를 직접 부르고 vitest 도 npx 가 아니라 그 진입점을 바로 쓴다.
+ */
+function sh(args, opts = {}) {
+  return spawnSync(process.execPath, args, {
     cwd: ROOT,
     encoding: "utf8",
-    shell: process.platform === "win32",
+    shell: false,
     ...opts,
   });
 }
 
 /** 지문 — 제품 엔진을 실제로 돌려 산출물을 찍는다. */
 function fingerprint(keys) {
-  const r = sh("node", [
+  const r = sh([
     "node_modules/tsx/dist/cli.mjs",
     "scripts/qa/probe-mid3-types10.ts",
     "--keys",
     keys.join(","),
   ]);
-  if (r.status !== 0) {
-    return `실패:${(r.stderr || "").slice(-400)}`;
-  }
-  return (r.stdout || "")
+  const lines = (r.stdout || "")
     .split("\n")
-    .filter((l) => /^[0-9a-f]{64}\s/.test(l))
-    .join("|");
+    .filter((l) => /^[0-9a-f]{64}\s/.test(l));
+  // 🔴 프로브가 못 떴으면 **지문이 아니다.** 실패를 지문으로 돌려주면 변이 전후가
+  //    같은 문자열이 되어 「산출물이 그대로다」라는 **거짓 거부**가 난다.
+  if (r.status !== 0 || lines.length !== keys.length) {
+    return {
+      ok: false,
+      why: `프로브가 못 떴다(status ${r.status}, 지문 ${lines.length}/${keys.length}): ${(r.stderr || "").slice(-300)}`,
+    };
+  }
+  return { ok: true, value: lines.join("|") };
 }
 
 /** 시험을 돌려 «빨간가 · 실패한 이름» 을 낸다. 이름을 못 읽으면 그것도 말한다. */
 function runTest(file) {
-  const r = sh("npx", ["vitest", "run", file, "--reporter=json"], {
+  const r = sh(["node_modules/vitest/vitest.mjs", "run", file, "--reporter=json"], {
     maxBuffer: 64 * 1024 * 1024,
   });
   const out = r.stdout || "";
@@ -262,12 +274,18 @@ function main() {
     return;
   }
 
-  const base = new Map(
-    picked.map((m) => [m.keys.join(","), null]).map(([k]) => [k, null]),
-  );
+  // 변이 **전** 지문. 하나라도 못 찍으면 ⑶ 을 아예 물을 수 없으므로 멈춘다.
+  const base = new Map();
   for (const m of picked) {
     const k = m.keys.join(",");
-    if (base.get(k) === null) base.set(k, fingerprint(m.keys));
+    if (base.has(k)) continue;
+    const fp = fingerprint(m.keys);
+    if (!fp.ok) {
+      console.error(`🔴 **판정을 거부한다** — 기준 지문을 못 찍었다: ${fp.why}`);
+      process.exitCode = 1;
+      return;
+    }
+    base.set(k, fp.value);
   }
 
   const rows = [];
@@ -288,7 +306,13 @@ function main() {
         continue;
       }
       const fp = fingerprint(m.keys);
-      if (fp === base.get(m.keys.join(","))) {
+      if (!fp.ok) {
+        // 변이가 **컴파일을 깨뜨린** 것일 수도 있다 — 그건 「가드가 문다」가 아니다.
+        rows.push([m.name, "⛔ 변이 뒤 지문을 못 찍었다 — 판정 거부", fp.why]);
+        restore();
+        continue;
+      }
+      if (fp.value === base.get(m.keys.join(","))) {
         rows.push([m.name, "⛔ 산출물이 그대로다 — 판정 거부"]);
         restore();
         continue;
