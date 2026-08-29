@@ -59,13 +59,20 @@ SOLID_SW = 1.4
 #    ·`_cut_cuboid`), `70.0 / …` 이 네 곳에 손으로 적혀 있었다 — 한쪽만 고치면
 #    같은 지면에 두 크기가 섞인다.
 SOLID_UNITS = 84.0      # 각기둥·직육면체 계열: 가장 긴 모서리의 화면 길이 (종전 56.0)
-ROUND_UNITS = 98.0      # 원기둥·원뿔·구 계열 (종전 70.0)
-#                         ⚠️ 여기가 **인쇄 등급 경계가 허락하는 한계**다. 100 으로
-#                         올리면 `elem-cylinder` 의 viewBox 폭이 161.3 이 되어 160 을
-#                         넘고, 등급이 compact(140px) → mid(240px) 로 뛴다. 그러면
-#                         종이에서 그림이 1.7배가 되고 **라벨도 같이 커져**
-#                         본문 12.5px 보다 커진다(15.2px) — 고치려던 그 결함이 난다.
-#                         그래서 회전체는 비 10.3~10.7 에서 멈춘다(정본 11.9).
+ROUND_UNITS = 112.7     # 원기둥·원뿔·구 계열 (70.0 → 98.0 → 112.7)
+#                         ⚠️ 여기가 **인쇄 등급 경계가 허락하는 한계**다 — 원기둥의
+#                         viewBox 폭이 정확히 **160.0** 이 된다(`figureSvgFrame` 은
+#                         ≤160 이 compact/140px). 넘으면 mid(240px)로 뛰어 종이에서
+#                         그림이 1.7배가 되고 **라벨도 같이 커져** 본문 12.5px 를
+#                         넘는다 — 고치려던 그 결함이 난다.
+#
+#                         🔴 **98 에서 멈춰 있던 이유는 배율이 아니라 «놀던 여백»이었다**
+#                         (원장님 2026-08-29 「회전체도 등급 안 넘게 최대로 키워봐」).
+#                         `_fitted_cabinet` 은 도형 꼭짓점 + **고정 여백**만 보고
+#                         라벨을 안 본다. 그래서 라벨이 안 서는 쪽 여백이 통째로 놀았다 —
+#                         실측으로 원기둥 오른쪽 22.8, 구멍 원기둥 왼쪽 21.0. 그 여백을
+#                         내용에 맞춰 줄이니 같은 160 안에서 도형이 **+15.0%** 커졌다.
+#                         쓸기: `.tmp-orca/sweep2.py` (등급 변화 0 · 새 잘림 0 을 전량 확인).
 DIM_FS = 10.5           # 치수 라벨 글자 크기 (종전 12)
 _DIM_PAD_K = DIM_FS / 12.0
 
@@ -2591,7 +2598,9 @@ def _cylinder(spec: Mapping[str, Any]) -> str:
     top3 = circle3((0, 0, h), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
         # 왼쪽 높이 라벨 halo 를 4px 더 담되 총 폭은 유지한다(44+26 == 40+30).
-        bot3 + top3, scale, _dim_pads((44.0, 24.0, 26.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
+        # 오른쪽 26 은 **놀던 여백**이었다 — 원기둥은 오른쪽에 라벨을 안 놓는다.
+        # 실측(2026-08-29): viewBox 159.3 중 오른쪽 22.8 에 내용이 하나도 없었다.
+        bot3 + top3, scale, _dim_pads((44.0, 24.0, 10.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     top = _round_ring(view, top3)
     bot = _round_ring(view, bot3)
@@ -3403,7 +3412,8 @@ def _hollow_cyl(R: float, H: float, r: float) -> str:
     ibot = circle3((0, 0, 0), r, (0, 0, 1), 64)
     itop = circle3((0, 0, H), r, (0, 0, 1), 64)
     view, svg_w, svg_h = _fitted_cabinet(
-        obot + otop, scale, _dim_pads((24.0, 26.0, 40.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
+        # 왼쪽 24 도 놀던 여백이다 — 구멍 원기둥의 치수는 오른쪽에 선다(실측 왼 21.0 이 비었다).
+        obot + otop, scale, _dim_pads((8.0, 26.0, 40.0, 24.0)), ratio=ROUND_RATIO, deg=ROUND_DEG
     )
     dr = _ray_dir(ROUND_RATIO, ROUND_DEG)
     hidden = _make_hidden(

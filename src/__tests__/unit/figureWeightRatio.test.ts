@@ -113,6 +113,40 @@ describe("[D-112] 지면 굵기 비 — 정본(RPM) 비율", () => {
     }
   });
 
+  /**
+   * 🔴 **회전체는 등급 경계에 «딱 붙어» 있다** — 원장님 2026-08-29
+   * 「회전체도 등급 안 넘게 최대로 키워봐」.
+   *
+   * `figureSvgFrame` 은 viewBox 폭 **≤160** 이면 compact(140px), 넘으면 mid(240px)다.
+   * 넘는 순간 종이에서 그림이 1.7배가 되고 **라벨이 본문 12.5px 를 넘는다** —
+   * 키우려다 고치려던 결함을 부른다. 그래서 160 이 상한이고, 지금은 **정확히 160.0**
+   * 이라 한 칸도 남지 않았다.
+   *
+   * ⚠️ 이 시험이 없으면 `ROUND_UNITS` 를 조금만 올려도 **조용히 등급이 뛴다** —
+   *    에러가 안 나고 지면만 달라진다.
+   */
+  it("🔴 **회전체 viewBox 폭이 등급 경계(160)를 안 넘는다**", async () => {
+    if (!hasEngine) return;
+    // 2r >= h 이면 가로가 `ROUND_UNITS` 를 그대로 쓴다 — **가장 넓은 경우**다.
+    const r = await renderFigureSpec({
+      version: "elem-1",
+      kind: "cylinder",
+      r: 5,
+      h: 6,
+    });
+    expect(r.ok, r.ok ? "" : r.error).toBe(true);
+    if (!r.ok) return;
+    const m = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(r.svg);
+    expect(m, "viewBox 를 못 읽었다 — 지문이 낡았다").not.toBeNull();
+    const w = Number(m![1]);
+    expect(w, `원기둥 viewBox 폭 ${w}`).toBeLessThanOrEqual(160);
+    // 그리고 **경계에 붙어 있어야** 한다 — 멀어지면 여백이 다시 놀고 있다는 뜻이다.
+    expect(
+      w,
+      `원기둥이 경계에서 멀다(${w}) — 여백이 놀고 있는지 보라`,
+    ).toBeGreaterThan(150);
+  });
+
   it("🔴 **상수가 아니라 지면을 잰다** — 실제로 그린 SVG 의 굵기 비", async () => {
     if (!hasEngine) return;
     // 직각 표시(마크)와 도형 선이 같이 나오는 최소 그림.
