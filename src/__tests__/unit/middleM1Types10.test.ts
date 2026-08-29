@@ -35,6 +35,7 @@ import { describe, expect, it } from "vitest";
 
 import { defaultRatioFor } from "@/contracts/difficulty";
 import { bareNumbers } from "@/lib/elementary/rules";
+import { renderMathHtml } from "@/lib/math/renderMathHtml";
 import {
   selectProblems,
   type SelectableProblem,
@@ -73,6 +74,25 @@ const num = (s: string): number => Number(s);
 function requireInt(v: number, who: string): number {
   if (!Number.isInteger(v)) throw new Error(`${who}: 정수가 아니다 (${v})`);
   return v;
+}
+
+/**
+ * **지면을 제품 렌더러로 실제로 그려 본다** — 붉거나 중립 폴백이면 참.
+ *
+ * 값 검산도 냄새 자도 이 축을 못 본다: 없는 명령(`\notacommand`)이나 날 LaTeX 는
+ * **값이 맞고 냄새 목록에도 없다.** 판정을 명령 목록으로 하지 않고 **화면과 같은
+ * 방식으로 렌더해서** 한다 — 목록을 손으로 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다.
+ *
+ * ⚠️ KaTeX 0.16 은 unknown command 를 `.katex-error` 가 아니라 `color:#cc0000` 인
+ *    `.mord.text` 로 그린다. 클래스만 보면 붉은 날 명령이 그대로 나간다.
+ */
+function brokenRender(text: string): boolean {
+  const html = renderMathHtml(text);
+  return (
+    html.includes("katex-error") ||
+    html.includes("#cc0000") ||
+    html.includes("math-raw")
+  );
 }
 
 // ── 검산기 — 인자는 `content` 하나뿐이다 ────────────────────────
@@ -412,6 +432,20 @@ describe("중1 확장 유형 — 검산기 눈금", () => {
     expect(josaMismatches("$41$이")).toEqual([]);
     expect(pageSmells("$-8x-4=9x-1$")).toEqual([]);
   });
+
+  it("판정기 눈금 — 렌더 자가 아니오를 낼 수 있다", () => {
+    // 양성 — 없는 명령은 붉게 나간다(`.katex-error` 가 아니라 `#cc0000` 인 판이 있다).
+    expect(brokenRender("$\\notacommand{2}$")).toBe(true);
+    // 음성 — 이 회차가 실제로 쓰는 모양들은 멀쩡해야 한다.
+    for (const ok of [
+      "$\\dfrac{x+9}{12}+\\dfrac{5x-2}{9}=-5$",
+      "$a\\left(x-4\\right)+b\\left(x-5\\right)=-9x+41$",
+      "$\\mathrm{A}(-6, -1)$",
+      "$676\\pi\\,\\mathrm{cm}^2$",
+    ]) {
+      expect(brokenRender(ok), ok).toBe(false);
+    }
+  });
 });
 
 describe("중1 확장 유형 — 값 검산", () => {
@@ -465,6 +499,17 @@ describe("중1 확장 유형 — 값 검산", () => {
               expect(josaMismatches(part), `${e.key} ${part}`).toEqual([]);
               expect(pageSmells(part), `${e.key} ${part}`).toEqual([]);
               expect(bareNumbers(part), `${e.key} ${part}`).toEqual([]);
+            }
+          }
+        }
+      });
+
+      it("제품 렌더러로 그리면 붉은 자리도 날 LaTeX 도 없다", () => {
+        for (const seed of SEEDS) {
+          for (let v = 0; v < VARIANTS; v += 1) {
+            const p = generateMiddleProblem(e.key, seed, v);
+            for (const part of [p.content, p.answer, p.solution]) {
+              expect(brokenRender(part), `${e.key} ${part}`).toBe(false);
             }
           }
         }
