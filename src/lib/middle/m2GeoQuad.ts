@@ -1355,7 +1355,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         content: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\overline{AC}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{BD}=(x+${s})\\,\\mathrm{cm}$이다. $\\square ABCD$가 등변사다리꼴일 때, $\\overline{AC}$의 길이를 구하시오.`,
         answer: `$${len}\\,\\mathrm{cm}$`,
         solution: `$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴이 등변사다리꼴이 되려면 두 대각선의 길이가 같아야 한다.\n$${p}x+${q}=x+${s}$에서 $${coefTex(p - 1)}x=${s - q}$이므로 $x=${x}$이다.\n따라서 $\\overline{AC}=${p}\\times${x}+${q}=${len}\\,(\\mathrm{cm})$이다.`,
-        facts: { mode, p, q, s, x, len },
+        facts: { mode, p, q, s, root: x, x: len },
         figureSpec: figTrap(80, 160, 90, 24, { diagAC: true, diagBD: true }),
       };
     },

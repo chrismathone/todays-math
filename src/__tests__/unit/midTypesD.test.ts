@@ -178,6 +178,22 @@ function lineInter(a: P2, b: P2, c: P2, d: P2): P2 {
 }
 
 const EXT_VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
+  // ── 등변사다리꼴 28 (2026-08-29) ────────────────────────────────
+  // 「되는 조건」이므로 **조건식이 실제로 성립하는지**를 잰다 — 생성기가 쓴
+  // 대수를 옮겨 적지 않고, 두 각(또는 두 대각선)의 식을 각각 값으로 만들어
+  // 같아지는지 본다. 근(`root`)과 답(`x`)이 다른 모드가 있어 둘 다 확인한다.
+  "2-2|여러 가지 사각형|28": (f) => {
+    if (f.mode === 0) {
+      const angB = f.p! * f.x! - f.q!;
+      const angC = f.x! + f.s!;
+      // 각이 같아야 등변이고, 사다리꼴의 아랫변 각이므로 0 < θ < 180 이다.
+      return angB === angC && angB > 0 && angB < 180 && f.theta === angB;
+    }
+    const ac = f.p! * f.root! + f.q!;
+    const bd = f.root! + f.s!;
+    // 두 대각선이 같아야 등변이고, **그때의 AC 가 답**이다.
+    return ac === bd && ac > 0 && f.x === ac;
+  },
   // ── 평행선과 삼각형의 넓이 18~23 ────────────────────────────────
   // 여기서부터는 «식을 다시 세운다»가 아니라 **도형을 실제로 세워 넓이를 잰다.**
   // 넓이 유형은 조건식이 곧 생성식이라 옮겨 적으면 동어반복이 된다.
@@ -400,6 +416,33 @@ describe("갈래 D 가 m2GeoQuad 에 지은 확장 유형", () => {
       });
     });
   }
+
+  it("🔴 **28 의 그림이 답을 말하지 않는다** — 다리에 tick 이 없다", () => {
+    // 「등변사다리꼴이 **되는** 조건」을 묻는데 그림이 두 다리에 같음 표시를
+    // 달면, 학생은 식을 안 풀고 그림만 보고 답한다. 좌표도 등변이 아니게
+    // 두어야 한다 — tick 만 빼고 대칭으로 그리면 모양이 답을 말한다.
+    const KEY = "2-2|여러 가지 사각형|28";
+    for (const seed of EXT_SEEDS) {
+      for (let v = 0; v < 8; v += 1) {
+        const spec = generateMiddleProblem(KEY, seed, v).figureSpec as {
+          segments: Record<string, unknown>;
+          points: Record<string, P2>;
+        };
+        for (const [name, seg] of Object.entries(spec.segments)) {
+          expect(
+            seg && typeof seg === "object" && "ticks" in seg,
+            `${name} 에 tick 이 있으면 그림이 등변을 말해 버린다`,
+          ).toBe(false);
+        }
+        const { A, B, C, D } = spec.points;
+        // 두 다리가 좌표에서도 달라야 한다 — 같으면 모양이 답이다.
+        expect(
+          Math.abs(dist(A!, B!) - dist(D!, C!)),
+          `seed ${seed} v${v}: 다리가 같게 그려졌다`,
+        ).toBeGreaterThan(1);
+      }
+    }
+  });
 
   it("그림이 발문과 같은 말을 한다 — 비·각을 지면 좌표에서 되잰다", () => {
     // 09 §4-20. «대충 그린» 그림은 에러를 안 내고 지면에서만 거짓말한다.

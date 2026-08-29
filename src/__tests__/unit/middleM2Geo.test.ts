@@ -351,19 +351,6 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   // 판별⑵: □EBFD 는 마름모, BF = AD - FC. 그림이 성립하려면 AD > 2·FC
   "여러 가지 사각형|17": (f) =>
     f.side! === f.p! - f.q! && f.x! === 4 * f.side! && f.p! > 2 * f.q!,
-  // 28 등변이 되는 조건: 두 각(또는 두 대각선) 식이 x 에서 같아진다.
-  "여러 가지 사각형|28": (f) => {
-    if (f.mode === 0) {
-      const left = f.p! * f.x! - f.q!;
-      const right = f.x! + f.s!;
-      return left === right && left > 0 && left < 180 && f.theta === left;
-    }
-    return (
-      f.p! * f.x! + f.q! === f.x! + f.s! &&
-      f.len === f.p! * f.x! + f.q! &&
-      f.len! > 0
-    );
-  },
 
   // 닮음 조건: SAS 는 비례식을 곱셈꼴로 / AA 는 세 내각의 합
   "도형의 닮음|09": (f) =>
@@ -849,64 +836,5 @@ describe("중2 기하 55유형 (RPM 2-2)", () => {
     // 닮음 01 은 유한 조합(6×3×3=54) — 그보다 큰 요구는 던져야 한다.
     const e = GEO.find((x) => vkey(x) === "도형의 닮음|01")!;
     expect(() => generateMiddleSet(e.key, 1, 200)).toThrow(/변형 공간/);
-  });
-});
-
-describe("등변사다리꼴 확장 28 — 사다리꼴이 등변사다리꼴이 되는 조건", () => {
-  const KEY = "2-2|여러 가지 사각형|28";
-
-  it("같은 씨앗이면 같은 문항", () => {
-    expect(generateMiddleProblem(KEY, 20260823)).toEqual(
-      generateMiddleProblem(KEY, 20260823),
-    );
-  });
-
-  it("씨앗별 독립 검산 — 두 각 또는 두 대각선이 x 에서 같아진다", () => {
-    const verify = VERIFY["여러 가지 사각형|28"];
-    expect(verify).toBeDefined();
-    for (const seed of SEEDS) {
-      for (let v = 0; v < 8; v += 1) {
-        const p = generateMiddleProblem(KEY, seed, v);
-        expect(
-          verify!(p.facts),
-          `seed ${seed} v${v} 검산 실패: ${JSON.stringify(p.facts)}`,
-        ).toBe(true);
-      }
-    }
-  });
-
-  it("답의 수가 facts 와 일치한다", () => {
-    for (const seed of SEEDS) {
-      for (let v = 0; v < 8; v += 1) {
-        const p = generateMiddleProblem(KEY, seed, v);
-        const want = p.facts.mode === 0 ? p.facts.x : p.facts.len;
-        expect(firstNumber(p.answer), p.answer).toBe(want);
-      }
-    }
-  });
-
-  it("숫자가 KaTeX 밖에 없다", () => {
-    for (const seed of SEEDS) {
-      const p = generateMiddleProblem(KEY, seed);
-      expect(bareNumbers(p.content)).toEqual([]);
-      expect(bareNumbers(p.answer)).toEqual([]);
-      expect(bareNumbers(p.solution)).toEqual([]);
-    }
-  });
-
-  it("그림이 있고 스펙의 수는 유한하다 — 다리 tick 으로 답을 말하지 않는다", () => {
-    for (const seed of SEEDS) {
-      const p = generateMiddleProblem(KEY, seed);
-      expect(p.figureSpec, "그림 누락").toBeTruthy();
-      const spec = p.figureSpec as Record<string, unknown>;
-      expect(spec.version).toBe(2);
-      expect(everyNumberFinite(spec)).toBe(true);
-      const segs = spec.segments as Record<string, unknown>;
-      for (const seg of Object.values(segs)) {
-        if (seg && typeof seg === "object" && "ticks" in seg) {
-          throw new Error("다리 tick 이 있으면 그림이 등변을 말해 버린다");
-        }
-      }
-    }
   });
 });
