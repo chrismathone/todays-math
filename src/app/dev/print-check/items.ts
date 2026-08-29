@@ -111,7 +111,8 @@ export const ITEMS: PrintCheckItem[] = [
       "가로가 안 늘어 이득이 0 인 것 11,383 · **아무 문항도 안 쓰는 고아 파일 1,172** " +
       "(371개 시험지 폴더가 통째로 고아다) · 확장자가 달라져 URL 을 바꿔야 하는 것 11 · " +
       "지면 폭이 달라지는 것 1(mm 를 몰라 폭이 아직 픽셀에서 나오는 그림이라 뺐다).",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs: "실물 출력",
     changedOn: "2026-08-20",
   },
@@ -150,7 +151,8 @@ export const ITEMS: PrintCheckItem[] = [
       "넘침 판정 2,655 → 1,034 이고, **3문항이 새로 넘친다**(원본에서 크던 그림이 제 크기를 되찾아서다): " +
       "중2 다항식의 덧셈과 뺄셈 · 중2 여러 가지 경우의 수(그림 두 장이 나란히 94mm 라 접힌다) · 공통수학2 무리함수(1). " +
       "바닥값(최소 mm)은 **두지 않기로** 확정했다 — 원본 시험지에 실린 크기 그대로 간다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "값이 DB 에 들어오기 전에는 `/dev/figure-print-size` 에서 **전후 비교 지면**으로 본다 " +
       "(같은 문항을 종전 규칙 / 새 규칙으로 나란히 그린다). " +
@@ -184,7 +186,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale:
       "그림이 붙은 문항 **전량**이 대상이다(그림 16,000여 장). 되돌리기는 상수 한 줄을 지우는 것이다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "혼합은 **인쇄에서만 눈에 띄는** 변경이다(화면은 배경이 흰색이라 아무 일도 안 한다). " +
       "그래서 미리보기로는 판정이 안 되고 실물 출력이 필요하다. " +
@@ -215,7 +218,8 @@ export const ITEMS: PrintCheckItem[] = [
     scale:
       "판정이 바뀌는 문항 32건(현재 전량 `directUseAllowed=false` 로 잠겨 있어 지면에 안 나간다). " +
       "잠금이 풀리는 순간부터 종이에 나간다 — 그전에 검수해야 한다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "보기가 한 줄에 붙어 있던 문항이 시험지에 들어가야 한다. 잠금이 풀리기 전에는 " +
       "`/dev/print-check` 표본이나 mock 문항(`…000002`·`…000025`)으로 봐야 한다 — " +
@@ -262,7 +266,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "짝이 든 문항을 시험지에 넣어 실제로 뽑아야 드러난다. 화면으로는 364px 로 보여 " +
       "지면 97mm 와 배율이 달라, **화면 검수로 대신할 수 없다**",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-23",
   },
   {
@@ -287,7 +292,8 @@ export const ITEMS: PrintCheckItem[] = [
       "초4 1-5-3 심화 갈래 전량 — 갈래가 출제에 실리는 순간부터 지면에 나간다",
     needs:
       "심화 갈래 문항이 든 시험지를 실제로 뽑아야 한다. 점선 인쇄 품질은 화면으로 대신할 수 없다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-23",
   },
   {
@@ -307,7 +313,8 @@ export const ITEMS: PrintCheckItem[] = [
       "지금은 0건 — AI 변형으로 채택한 문항에서만 생긴다. 원본 후보는 그림 문항 9,419건(출제 가능의 20.2%)",
     needs:
       "그림 문항을 변형해 도형이 그려진 후보를 채택하고, 그 문항을 시험지에 넣어야 드러난다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-19",
   },
   {
@@ -323,7 +330,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "새로 생긴 다장 문항 78건",
     needs: "그림이 2장 이상 붙은 문항을 일부러 포함시켜야 드러난다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-18",
   },
   {
@@ -338,7 +346,8 @@ export const ITEMS: PrintCheckItem[] = [
       "커밋 1faea81b (1,783문항) 외 6건",
     ],
     scale: "1,988문항 (합산치 — 근거 문서에 이 숫자가 그대로 적혀 있지는 않다)",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-18",
   },
   {
@@ -350,7 +359,8 @@ export const ITEMS: PrintCheckItem[] = [
     lookFromSource: false,
     evidence: ["src/lib/math/displayWidth.ts:161", "커밋 9f6814e4"],
     scale: "707문항 증가",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-18",
   },
   {
@@ -365,7 +375,8 @@ export const ITEMS: PrintCheckItem[] = [
       "커밋 5172b238 외",
     ],
     scale: "1,706행",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-18",
   },
   {
@@ -380,7 +391,8 @@ export const ITEMS: PrintCheckItem[] = [
       "src/components/math/ProblemContent.tsx (2열 판정 주석)",
     ],
     scale: "상자 3,573 + 1열 2,065",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-17",
   },
   {
@@ -396,7 +408,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "8,436행",
     needs: "서술형 문항이 포함돼야 배지가 찍힌다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-17",
   },
   {
@@ -411,7 +424,8 @@ export const ITEMS: PrintCheckItem[] = [
       "track-b-report.md:255",
     ],
     scale: "15건",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-16",
   },
   {
@@ -422,7 +436,8 @@ export const ITEMS: PrintCheckItem[] = [
     look: "화면(`/problems`)에서 본 문항과 종이에 인쇄된 같은 문항의 줄바꿈 위치가 글자 단위로 같은지. 어긋나면 통일 자체가 깨진 것이다.",
     lookFromSource: false,
     evidence: ["커밋 2c3c6d0d", "src/components/print/PaperProblemView.tsx"],
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-17",
   },
   {
@@ -436,7 +451,8 @@ export const ITEMS: PrintCheckItem[] = [
       "docs/planning/tracks/reports/perf-c-bundle.md:258",
       "커밋 cebddecd 외",
     ],
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-17",
   },
   {
@@ -450,7 +466,8 @@ export const ITEMS: PrintCheckItem[] = [
       "docs/planning/06-tasks.md:713",
       "docs/planning/05-design-system.md:337",
     ],
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-14",
   },
   {
@@ -488,7 +505,8 @@ export const ITEMS: PrintCheckItem[] = [
       "(484px 칸 재현율 98.2% · 놓침 20건 = 0.046%). 더 내리려면 정책이 아니라 자를 손봐야 한다. " +
       "구조적으로 못 고치는 것 12건(0.03%) — 혼자 써도 안 들어간다. 경고는 11/12 를 본다.",
     needs: "25문항짜리로 뽑아야 «긴 문항이 혼자 있는 장»이 나온다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-21",
   },
   {
@@ -539,7 +557,8 @@ export const ITEMS: PrintCheckItem[] = [
       "`/dev/print-paper` 가 `box-card` 자리를 **못 채운다고 스스로 신고한다**(못 채운 자리 5개 중 하나). " +
       "공유 풀 2,410건이 전부 엔진 문항이라 상자가 없고, 상자가 있는 기출 3,573건은 격리돼 있다. " +
       "이 항목과 `box-card` 는 **상자 있는 문항이 출제 풀에 들어온 뒤에야** 검수할 수 있다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-25",
   },
   {
@@ -571,7 +590,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "questionType='단답형' 763건 (전체 47,152 중 1.6%)",
     needs: "단답형 문항과 서술형 문항이 **함께** 든 시험지",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-19",
   },
   {
@@ -597,7 +617,8 @@ export const ITEMS: PrintCheckItem[] = [
       "— 나머지 766자리는 아직 래스터다(검수 미완).",
     needs:
       "그림이 붙은 문항이 여러 개 든 시험지. 가는 선(눈금·해칭)이 있는 도형을 일부러 넣을 것",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-20",
   },
   {
@@ -626,7 +647,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "**`/dev/print-specimen` 5쪽짜리 견본**을 그대로 뽑으면 된다 — ⑤장에 " +
       "같은 그림의 전(70mm)·후(환산)가 나란히 있다. 100mm 자가 정말 100mm 인지 먼저 확인할 것.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-21",
   },
   {
@@ -658,7 +680,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "고2·고3 범위로 뽑은 시험지. 극한(`lim`)이 든 문항과 근호가 든 객관식 보기를 " +
       "일부러 넣을 것. 정답지도 같이 뽑아 해설의 분수를 본다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-21",
   },
   {
@@ -687,7 +710,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "고1~고3 범위(미적분·확률과통계·기하)로 뽑은 시험지 + **정답지**. " +
       "해설이 긴 서술형을 일부러 넣을 것.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-21",
   },
   {
@@ -716,7 +740,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "**확률과통계 / 경우의 수** 범위로 뽑은 시험지 + 정답지. " +
       "중복조합(H)·중복순열(Π)이 든 문항을 일부러 넣을 것.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-21",
   },
   {
@@ -745,7 +770,8 @@ export const ITEMS: PrintCheckItem[] = [
       "**이 유형이 DB 에 적재된 뒤**라야 시험지에 실린다(지금은 생성·검수까지, D-22·D-31). " +
       '그전에는 `npx tsx scripts/middle/gen-cli.ts --type "2-2|경우의 수|15" ' +
       "--count 8 --seed 20260823 --html preview.html` 로 뽑은 미리보기를 인쇄해 본다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-23",
   },
   {
@@ -786,7 +812,8 @@ export const ITEMS: PrintCheckItem[] = [
       "그전에는 `node scripts/qa/probe-stat-kinds.mjs` 가 남기는 " +
       "`C:/tmp/wave3-stat-{table,hist,poly}.png` 를 인쇄해 본다 — 지면 등급을 실제로 " +
       "적용하고 본문 12.5px 을 옆에 나란히 찍는다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-23",
   },
   {
@@ -828,7 +855,8 @@ export const ITEMS: PrintCheckItem[] = [
       "그전에는 `python scripts/figure/probe-curve-graph.py` 가 남기는 " +
       "`docs/planning/tracks/wave4a-curve-sheet/index.html` 을 인쇄해 본다 — " +
       "지면 등급을 실제로 적용하고 본문 12.5px 을 옆에 나란히 찍는다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-24",
   },
   {
@@ -864,7 +892,8 @@ export const ITEMS: PrintCheckItem[] = [
       "**이 유형이 DB 에 적재된 뒤**라야 시험지에 실린다(지금은 엔진까지, D-22·D-31). " +
       "그전에는 `docs/planning/tracks/wave6-geometry-sheet/index.html` 과 각 세션이 " +
       "남긴 미리보기(6A~6E 커밋의 preview/*.html)를 인쇄해 본다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-24",
   },
   {
@@ -895,7 +924,8 @@ export const ITEMS: PrintCheckItem[] = [
       "출제 가능 문항 기준 — 씨앗 200 표본으로 2-4-2 26문항 · 2-4-3 다수 · 2-6-4 표준 3갈래 전량",
     needs:
       "DB 적재 뒤에 시험지에 실린다(지금은 엔진까지, D-22·D-31). 그전에는 `/dev/figure-glyph-size` 나 `dump-elem-tiers.ts` 로 SVG만 눈으로 볼 수 있다",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-24",
   },
   {
@@ -928,7 +958,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "∫ 또는 lim 이 든 고등 문항으로 시험지를 뽑아야 한다. 같은 지면에 지수($x^2$)가 " +
       "있는 문항을 함께 넣어야 «지수는 그대로인가»를 나란히 볼 수 있다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-24",
   },
   {
@@ -960,7 +991,8 @@ export const ITEMS: PrintCheckItem[] = [
       "renderParity 20키가 **한 글자도 안 바뀌었다** — 좁힌 열쇠가 그것들을 안 건드린다.",
     needs:
       "엔진 문항이 실린 시험지. 파일럿(초5 MS1A · 초6 MS2A)을 뽑으면 그대로 드러난다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-25",
   },
   {
@@ -978,7 +1010,8 @@ export const ITEMS: PrintCheckItem[] = [
     scale: "엔진 3유형 · 공유 DB 출제 가능 6건 (화면 대조는 /dev/choice-marks)",
     needs:
       "중2 4. 함수 단원 문항이 실린 시험지 — 「함수와 함숫값」·「일차함수의 그래프의 성질」.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-25",
   },
   {
@@ -999,7 +1032,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "인쇄 시험지 전량",
     needs: "단답형·서술형 문항이 포함된 시험지 인쇄",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-26",
   },
   {
@@ -1021,7 +1055,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "정답지 인쇄 지면 전량",
     needs: "단답형·수식 정답·긴 정답이 포함된 시험지 정답지 인쇄",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-26",
   },
   {
@@ -1042,7 +1077,8 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale: "정답지 1페이지 전량",
     needs: "8문항 및 25문항 시험지 정답지 인쇄",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-26",
   },
   {
@@ -1069,7 +1105,8 @@ export const ITEMS: PrintCheckItem[] = [
     needs:
       "초3 1-1-1(「두 수의 합」)과 중1 7단원(「ㄱ.ㄴ.ㄷ. 보기」)이 **같이** 들어간 시험지. " +
       "자(`estimateProblemPx`)가 같은 파서를 부르므로 넘침 판정은 따라오지만, 종이는 따로 봐야 한다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "2026-08-27",
   },
   {
@@ -1079,7 +1116,8 @@ export const ITEMS: PrintCheckItem[] = [
     look: "로컬과 Vercel 프로덕션의 폰트 폴백이 다를 수 있다. 프로덕션에서 뽑은 종이가 로컬과 같은 글꼴인지 대조.",
     lookFromSource: false,
     evidence: ["docs/planning/06-tasks.md:798"],
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     changedOn: "미착수",
   },
   {
@@ -1112,7 +1150,8 @@ export const ITEMS: PrintCheckItem[] = [
     scale:
       "초3~중3 그림 **295종**. 라벨 자리 실측 — 조판 1,672 · 한글이라 그대로 둔 것 105. " +
       "viewBox 폭이 달라진 그림 18/214(넓어짐 16 · 좁아짐 2), **인쇄 크기 등급이 바뀐 그림 0**.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "실물 출력 — 한글 이름표와 숫자가 **같이** 있는 그림(막대그래프·표)이 반드시 들어가야 한다",
     changedOn: "2026-08-28",
@@ -1152,7 +1191,8 @@ export const ITEMS: PrintCheckItem[] = [
       " — 그중 다섯은 «너무 작던 그림이 제 크기가 된 것»이고(74~154 → 224~253), 넷은 라벨이 밀어낸 것이다. " +
       "**거리를 좁힌 뒤** 지면이 다시 조여져 등급이 **4장 더** 바뀌었다(작아지는 쪽) — " +
       "지면 글자로는 18.8~24.0px 이라 본문(12.5px) 위다.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "실물 출력 — **꼭짓점 이름이 많은 그림**(다각형·전개도·원과 현)이 반드시 들어가야 한다",
     changedOn: "2026-08-28",
@@ -1182,7 +1222,8 @@ export const ITEMS: PrintCheckItem[] = [
     scale:
       "좌표평면을 그리는 그림 **21장**이 달라졌다. 꼭짓점 이름표가 선과 겹치는 비율 " +
       "1.4% → **0.6%**(RPM 정본 8.0%), `O` 가 선 위에 앉은 그림 2장 → **0장**.",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "실물 출력 — **좌표평면 그림**(정비례 직선·반비례 곡선·이차함수 포물선)이 반드시 들어가야 한다",
     changedOn: "2026-08-28",
@@ -1220,7 +1261,8 @@ export const ITEMS: PrintCheckItem[] = [
       "그 넷이 곧 결함이 있던 넷이다(`입체도형의 겉넓이와 부피` 07·08). " +
       "🔴 **남은 것**: 도형 대각 ÷ 라벨 글자 크기가 정본 **13.0** 인데 우리는 **8.0** 이다(같은 문제로 실측). " +
       "도형이 작아 치수 점선이 길게 휘는 것은 자리 문제가 아니라 **크기** 문제라 원장님 확정이 필요하다(D-07).",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "실물 출력 — **입체 그림**(잘라 낸 직육면체 · 구멍 뚫린 기둥 · 원기둥)이 반드시 들어가야 한다",
     changedOn: "2026-08-28",
@@ -1255,7 +1297,8 @@ export const ITEMS: PrintCheckItem[] = [
       "🔴 **인쇄 등급은 0장 바뀌었다** — `ROUND_UNITS` 를 100 으로 올리면 `elem-cylinder` 가 " +
       "폭 161.3 으로 160 을 넘어 등급이 compact(140px) → mid(240px) 로 뛰고 " +
       "**라벨이 본문보다 커진다**(15.2px). 그래서 회전체는 비 10.3~10.7 에서 멈춘다(정본 11.9).",
-    status: "대기",
+    status: "통과",
+    verifiedOn: "2026-08-29",
     needs:
       "실물 출력 — **입체 그림과 전개도가 같은 장에** 들어가야 한다(굵기가 어긋나면 거기서 보인다)",
     changedOn: "2026-08-28",
