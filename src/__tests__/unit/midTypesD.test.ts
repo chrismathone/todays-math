@@ -29,8 +29,12 @@
  *    한쪽만 세면 「10유형」이 영영 6으로 보인다.
  */
 
+import { existsSync } from "node:fs";
+import path from "node:path";
+
 import { describe, expect, it } from "vitest";
 
+import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { pointsAtFigure } from "@/lib/middle/figureReference";
 import {
   generateMiddleProblem,
@@ -705,6 +709,45 @@ function everyNumberFinite(v: unknown): boolean {
   }
   return true;
 }
+
+/* ────────────── 30 의 그림을 **제품 렌더러가 실제로 그리는가** ──────────────
+ *
+ * 위의 자들이 구조적으로 못 보는 축이다. 값 검산도 좌표 검사도 스펙을 **객체로**
+ * 볼 뿐 렌더러에 안 넘긴다 — 스펙이 「말은 맞는데 안 그려지는」 상태여도 전부 초록이다.
+ *
+ * 🔴 그 구멍은 **같은 소단원에서 이미 열려 있다.** 색인 유형 08 은 아랫변과 윗변의
+ *    차가 $2$ 일 때 수선의 발 $H$ 가 $C$ 에 붙어 직각 기호가 안 들어간다 —
+ *    실측 96장 중 6장이 `right-angle square does not fit inside its rays` 로
+ *    떨어지는데 그 유형의 어떤 시험도 빨갛지 않다(`middleFigureRenderable` 은
+ *    손 목록만 훑어 08 이 그 분모 밖이다). 30 에 같은 구멍을 남기지 않는다.
+ *
+ * 엔진이 없는 컴퓨터에서는 건너뛴다 — `middleFigureRenderable` 이 쓰는 판정과 같다.
+ */
+const FIGURE_ENGINE_HERE =
+  existsSync(path.join(process.cwd(), "vendor", "figure-engine")) ||
+  existsSync(process.env.FIGURE_ENGINE_PATH ?? "F:\\시험지변환기");
+
+describe.runIf(FIGURE_ENGINE_HERE)("30 의 그림을 제품 렌더러가 그린다", () => {
+  it("씨앗·변형을 훑어도 전부 그려진다 — **두 모드가 다 표본에 들어야** 한다", async () => {
+    const KEY = "2-2|여러 가지 사각형|30";
+    const failed: string[] = [];
+    const modes = new Set<number>();
+    for (const seed of [20260829, 7777, 99991]) {
+      for (let v = 0; v < 3; v += 1) {
+        const p = generateMiddleProblem(KEY, seed, v);
+        modes.add(p.facts.mode!);
+        const r = await renderFigureSpec(p.figureSpec as never);
+        if (!r.ok) {
+          failed.push(`s${seed} v${v} ${JSON.stringify(p.facts)}: ${r.error}`);
+        }
+      }
+    }
+    // 한 모드만 돌면 다른 모드는 이 자의 분모 **밖**이다 — 그것부터 못 박는다.
+    // (08 의 결함도 한쪽 모드에서만 난다. 표본이 그 모드를 안 뽑으면 영영 0이다.)
+    expect([...modes].sort(), "표본이 한 모드만 돌았다").toEqual([0, 1]);
+    expect(failed, "제품 렌더러가 못 그린 그림").toEqual([]);
+  }, 120_000);
+});
 
 /** 스펙의 labels 에서 «숫자 라벨»만 뽑는다 (`12 cm` → 12). */
 function numericLabels(spec: Record<string, unknown>): number[] {
