@@ -18,6 +18,18 @@ export interface TestPrintProblem {
   /** 원본 시험지에서 오려 온 그림 경로들. 없으면 빈 배열. */
   figureUrls?: string[];
   /**
+   * 엔진이 그린 **인라인 SVG**(`Problem.figureSvg`). 파일이 아니라 마크업이다.
+   *
+   * 🔴 **엔진 문항의 그림은 이 컬럼에만 있다** — `figureUrls` 는 실측 4,640건
+   * 전량 비어 있다(2026-08-29). 이 필드가 없어서 시험지에 엔진 그림이 **한 장도
+   * 안 나가고 있었다.** 화면(`ProblemCard`)은 넘기는데 지면 경로만 안 넘겨서,
+   * 「다음 그림에서…」라고 적힌 문항이 그림 없이 인쇄됐다.
+   *
+   * 넘침 판정(`printOverflow.estimateFigureSvgPx`)도 이 값을 본다 — 자와 지면이
+   * **같은 값**을 받아야 한다(CLAUDE.md 2026-08-18).
+   */
+  figureSvg?: string | null;
+  /**
    * `figureUrls` 와 **같은 순서**로 짝지은 원본 치수 `[w1,h1,w2,h2,…]`
    * (`Problem.figureDims`). 넘침 판정이 그림 높이를 계산하는 유일한 근거다 —
    * 브라우저는 판정 시점에 파일을 못 읽는다.

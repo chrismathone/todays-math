@@ -51,6 +51,22 @@ export function risksTightSeat(
   slotPx: number,
 ): boolean {
   if (problem.content === undefined) return true;
+  /**
+   * ⚠️ **`figureSvg` 는 여기서 안 본다 — 알고 두는 구멍이다** (2026-08-29).
+   *
+   * 엔진 문항의 그림은 그 컬럼에만 있는데(`figureUrls` 는 4,640건 전량 비었다),
+   * 출제 풀 조회(`findEligibleProblems`)가 **일부러** 그 TEXT 를 안 읽는다 —
+   * 조판된 SVG 는 한 장 평균 8KB 라 후보 수천 건이면 전송량이 조회를 지배한다.
+   *
+   * 그래서 출제 ⑷(칸에 안 들어가는 문항을 후순위로)는 **엔진 그림 문항에 대해
+   * 꺼져 있다.** 잃는 것은 **순서뿐**이다 — 겹침을 막는 것은 분할
+   * (`packProblems`)이고 그쪽은 `figureSvg` 를 본다(`estimateFigureSvgPx`).
+   * 증상은 「시험지가 길어진다」이지 「겹쳐 찍힌다」가 아니다.
+   *
+   * 고치려면 풀 조회가 viewBox 만이라도 실어 와야 한다 — 그 전에 «전송량이
+   * 얼마나 느나»를 재고 원장님께 알릴 것. 지금은 **모르는 채로 두지 않기 위해**
+   * 여기 적어 둔다.
+   */
   return assessSeat(
     {
       content: problem.content,

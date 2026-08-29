@@ -16,6 +16,9 @@ export function ProblemBody({ problem }: ProblemBodyProps) {
       // 자(`printOverflow`)와 지면이 같은 값을 받아야 한다.
       figureDims={problem.figureDims}
       figureSourceMm={problem.figureSourceMm}
+      // 🔴 엔진 그림은 파일이 아니라 이 마크업이다. 안 넘기면 「다음 그림에서…」
+      //    문항이 **그림 없이** 인쇄된다(2026-08-29 까지 실제로 그랬다).
+      figureSvg={problem.figureSvg}
       framed={false}
     />
   );

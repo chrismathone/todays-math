@@ -1344,6 +1344,52 @@ export const ITEMS: PrintCheckItem[] = [
       "실물 출력 — **원기둥·원뿔·구가 든 문항**이 들어가야 한다(초6 2-6 · 중1-2 입체도형의 겉넓이와 부피 계열)",
     changedOn: "2026-08-29",
   },
+  {
+    id: "figure-svg-overflow-count",
+    title: "🔴 **엔진 그림이 시험지에 나간다** + 자도 그 높이를 센다",
+    changed:
+      "적대적 점검 2026-08-29 에서 **둘이 같이** 나왔다. " +
+      "🔴 **① 엔진 그림이 시험지에 한 장도 안 나가고 있었다.** 엔진 문항의 그림은 " +
+      "`problem.figureSvg`(인라인 SVG) 한 컬럼에만 있는데(`figureUrls` 는 4,640건 전량 비었다), " +
+      "지면 경로(`JaseupTemplate` → `ProblemBody` → `PaperProblemView`)가 그 값을 **안 넘겼고** " +
+      "인쇄 페이지의 매핑도 그 컬럼을 **안 담았다.** 화면(문제은행·검수)은 `ProblemCard` 가 " +
+      "넘겨서 보이는데 **종이에만 안 나갔다** — 「다음 그림에서…」라고 적힌 문항이 그림 없이 " +
+      "인쇄됐다. 매핑을 `src/lib/print/toPrintProblem.ts` 로 빼서 시험이 「그림 컬럼이 다 갔는가」를 " +
+      "묻게 했다(인라인 매핑은 시험할 자리가 없어서 빠진 줄도 몰랐다). " +
+      "**② 지면 자도 같은 값을 못 보고 있었다.** `SeatProblem` 이 `figureUrls`·`figureDims`·`figureSourceMm` 만 담고 " +
+      "**`figureSvg` 가 타입에 없었다.** 그래서 넘침 판정과 인쇄 분할(`packProblems`)이 엔진 그림을 " +
+      "**0으로** 셌다. 실측(공유 DB): 출제 가능 문항 중 `figureSvg` 가 있는 **4,640건 전량**이 " +
+      "`figureUrls` 가 비어 있고, 그 그림의 지면 세로는 **중앙값 151px · p90 240px · 최대 367px** — " +
+      "문항 칸(484px)의 31%·50%·76% 다. 이만큼을 0으로 세고 두 문항을 한 칸에 짝지으면 뒤 문항이 " +
+      "겹쳐 찍힌다. `estimateFigureSvgPx` 를 넣어 등급이 정한 **인쇄 폭(mm)** × viewBox 비율로 잰다. " +
+      "`[그림]` 자국 숨김 조건도 지면과 같게 맞췄다(`figures.length > 0 || Boolean(figureSvg)`).",
+    look:
+      "① 🔴 **엔진 그림이 종이에 실제로 나오는가** — 이게 첫째다. 초등 전 학년과 중등 문항에 " +
+      "그림이 붙어 나와야 한다(2026-08-29 이전에는 한 장도 안 나갔다). " +
+      "② **그림이 든 문항이 다음 문항과 겹치지 않는가** — 자를 고친 목적이다. " +
+      "겹침은 잘림이 아니라 **글자가 포개져** 나타난다. " +
+      "③ 반대로 **한 장이 너무 헐거워지지 않았는가** — 자가 그림을 세기 시작했으므로 " +
+      "한 장에 문항이 덜 들어가고 시험지가 길어질 수 있다. 빈 자리가 절반을 넘으면 알려 주십시오. " +
+      "④ 초6 2-6(원기둥·원뿔·구)처럼 **그림이 큰 문항**을 꼭 넣어야 이 변경이 드러난다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/print/toPrintProblem.ts (지면이 받는 컬럼 목록 한 곳 · 변이 4개 전부 빨강)",
+      "src/lib/printOverflow.ts `estimateFigureSvgPx` · `SeatProblem`",
+      "src/__tests__/components/TestPrint.test.tsx (시험지에 SVG 가 실제로 그려진다 + 음성 대조군)",
+      "src/lib/figure/figureSvgFrame.ts `FIGURE_SVG_PRINT_MM` (자와 지면이 같은 mm 를 본다)",
+      "src/__tests__/unit/printOverflowFigureSvg.test.ts (변이 4개 전부 빨강)",
+      "src/__tests__/unit/figureSvgFrame.test.ts (표 ↔ Tailwind 클래스 대조)",
+    ],
+    scale:
+      "**그림이 새로 나오는 문항 4,640건**(출제 가능 + `figureSvg`) — 초등 전 학년과 중등 엔진 문항 전부다. " +
+      "판정이 달라지는 문항도 같은 4,640건. " +
+      "⚠️ 자를 고쳤으므로 **분할이 바뀐다** — 같은 문항 묶음이라도 장수가 늘 수 있다. " +
+      "종전에는 그림을 0으로 세어 «들어간다»고 판정하던 자리가 이제 «혼자 쓴다»가 된다.",
+    status: "대기",
+    needs:
+      "실물 출력 — **엔진 그림이 든 문항**(초등 전 학년 · 중등)이 여러 개 든 시험지 1건",
+    changedOn: "2026-08-29",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

@@ -28,6 +28,43 @@ const PRINT_DOCUMENT: TestPrintDocument = {
 };
 
 describe("TestPrint", () => {
+  /**
+   * 🔴 **엔진 그림이 시험지에 안 나가고 있었다** (2026-08-29 적대적 점검).
+   *
+   * 엔진 문항의 그림은 `problem.figureSvg` 한 컬럼에만 있다 — `figureUrls` 는
+   * **4,640건 전량 비어 있다**. 그런데 지면 경로(`JaseupTemplate` → `ProblemBody`
+   * → `PaperProblemView`)가 그 값을 **안 넘겼고**, 인쇄 페이지의 조회도 그 컬럼을
+   * **안 담았다.** 화면(문제은행·검수)은 `ProblemCard` 가 넘겨서 보이는데,
+   * **종이에만 안 나갔다** — 「다음 그림에서…」라고 적힌 문항이 그림 없이 나간다.
+   *
+   * 「배선이 한쪽만 되면 그쪽 지표만 좋아진다」(CLAUDE.md 2026-08-18)의 그 자리다.
+   */
+  it("🔴 **인라인 SVG 그림이 시험지에 실제로 그려진다**", () => {
+    const withSvg: TestPrintDocument = {
+      ...PRINT_DOCUMENT,
+      problems: [
+        {
+          ...PRINT_DOCUMENT.problems[0]!,
+          content: "다음 그림의 원기둥의 겉넓이를 구하시오.",
+          figureSvg:
+            '<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg"><circle cx="80" cy="60" r="50"/></svg>',
+        },
+        ...PRINT_DOCUMENT.problems.slice(1),
+      ],
+    };
+    const { container } = render(<TestPrint data={withSvg} />);
+    const box = container.querySelector("[data-figure-svg]");
+    expect(box, "시험지에 인라인 SVG 그림이 없다").not.toBeNull();
+    expect(box!.querySelector("svg"), "틀만 있고 그림이 없다").not.toBeNull();
+    // 등급도 지면 규칙 그대로여야 한다 — 폭 160 은 compact 다.
+    expect(box!.getAttribute("data-figure-size")).toBe("compact");
+  });
+
+  it("**음성 대조군** — figureSvg 가 없으면 그 자리도 없다", () => {
+    const { container } = render(<TestPrint data={PRINT_DOCUMENT} />);
+    expect(container.querySelector("[data-figure-svg]")).toBeNull();
+  });
+
   it("첫 장에 학원명, 예정일, 이름·반 칸과 확정 제목을 표시한다", () => {
     const { container } = render(<TestPrint data={PRINT_DOCUMENT} />);
     const firstPage = container.querySelector(

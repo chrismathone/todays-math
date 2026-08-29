@@ -3,8 +3,10 @@ import { describe, expect, it } from "vitest";
 import {
   FIGURE_SVG_COMPACT_VIEWBOX,
   FIGURE_SVG_MID_VIEWBOX,
+  FIGURE_SVG_PRINT_MM,
   figureSvgFrameClass,
   figureSvgSize,
+  figureSvgViewBox,
 } from "@/lib/figure/figureSvgFrame";
 
 const svg = (w: number, h = 80) =>
@@ -80,5 +82,46 @@ describe("[figureSvgFrame] 그래프 짝은 폭이 아니라 kind 로 가른다"
     expect(figureSvgSize(svg(300))).not.toBe("pair");
     expect(figureSvgSize(pairSvg(325))).toBe("pair");
     expect(figureSvgSize(pairSvg(300))).toBe("pair");
+  });
+});
+
+describe("[figureSvgFrame] 자와 지면이 **같은 mm** 를 본다", () => {
+  /**
+   * 🔴 넘침 판정(`printOverflow.estimateFigureSvgPx`)이 `FIGURE_SVG_PRINT_MM` 을
+   * 읽고, 실제로 그려지는 폭은 `FRAME` 의 Tailwind 클래스가 정한다. Tailwind 는
+   * 클래스 문자열을 글자 그대로 훑으므로 그쪽을 표에서 만들 수 없다 — 그래서
+   * **여기서 대조**한다. 어긋나면 자가 재는 지면과 실제 지면이 갈라지는데,
+   * 그건 아무도 모르게 어긋난다(2026-08-23 `PAIR_FRAME_PX` 가 같은 자리였다).
+   */
+  it("등급마다 `print:max-w-[Xmm]` 이 표와 같은 수다", () => {
+    const sample: Record<keyof typeof FIGURE_SVG_PRINT_MM, string> = {
+      compact: svg(140),
+      mid: svg(240),
+      wide: svg(400),
+      pair: `<svg viewBox="0 0 300 80"><desc>chartPair</desc><rect/></svg>`,
+    };
+    for (const [size, mm] of Object.entries(FIGURE_SVG_PRINT_MM)) {
+      const cls = figureSvgFrameClass(
+        sample[size as keyof typeof FIGURE_SVG_PRINT_MM],
+      );
+      // 표본이 정말 그 등급인지부터 본다 — 아니면 이 대조가 통째로 헛돈다.
+      expect(
+        figureSvgSize(sample[size as keyof typeof FIGURE_SVG_PRINT_MM]),
+        `표본이 ${size} 가 아니다`,
+      ).toBe(size);
+      expect(cls, `${size} 의 인쇄 폭`).toContain(`print:max-w-[${mm}mm]`);
+    }
+  });
+
+  it("**viewBox 를 세로까지 읽는다** — 높이 자가 이걸 쓴다", () => {
+    expect(figureSvgViewBox(svg(160, 120))).toEqual({
+      width: 160,
+      height: 120,
+    });
+    // 못 읽는 것은 «못 읽는다»고 말해야 한다 — 0 을 돌려주면 자가 조용해진다.
+    expect(figureSvgViewBox("<svg><rect/></svg>")).toBeNull();
+    expect(
+      figureSvgViewBox(`<svg viewBox="0 0 160 0"><rect/></svg>`),
+    ).toBeNull();
   });
 });

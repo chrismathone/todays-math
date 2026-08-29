@@ -38,8 +38,14 @@ import type { TestPrintProblem } from "@/components/print/types";
 import {
   type FigureDimension as FigureDimensionType,
   figurePrintWidthPx,
+  mmToCssPx,
   parseFigureDimensions as parseFigureDimensionsRule,
 } from "@/lib/figurePrintSize";
+import {
+  FIGURE_SVG_PRINT_MM,
+  figureSvgSize,
+  figureSvgViewBox,
+} from "@/lib/figure/figureSvgFrame";
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
 import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
@@ -262,14 +268,47 @@ function choicesBlockPx(items: readonly string[]): number {
  * 그림을 0으로 센다 — 그게 2026-08-18 이전의 동작이었고, 실측 넘침의 93.8%가
  * 거기로 빠져나갔다(적대적 리뷰 ③ §2). 판정 경로에서는 반드시 넘길 것.
  */
+/**
+ * **인라인 SVG 그림**(`problem.figureSvg`)이 문항 칸에서 먹는 세로 픽셀.
+ *
+ * 지면 그대로의 모형이다(`ProblemContent`): `mt-3` 위 여백 + `print:max-w-[Xmm]`
+ * 폭에 `[&>svg]:w-full [&>svg]:h-auto` — 그래서 **높이는 viewBox 비율**이 정한다.
+ *
+ * 🔴 **이 함수가 없어서 4,640문항의 그림이 0으로 세어지고 있었다**(2026-08-29
+ * 적대적 점검). `SeatProblem` 이 `figureUrls` 만 담았고, 엔진 문항은 그 배열이
+ * **전량 비어 있다** — 그림은 `figureSvg` 한 컬럼에만 있다. 실측 지면 세로는
+ * 중앙값 151px · p90 240px · 최대 367px 로, 문항 칸(484px)의 31%·50%·76% 다.
+ * 「과소평가는 곧 놓침이고, 놓침은 겹쳐 찍힌 시험지로 간다」(2026-08-18).
+ *
+ * ⚠️ 폭은 **화면 px 가 아니라 인쇄 mm** 로 잡는다 — `wide` 는 화면 360px 인데
+ *    종이에서는 70mm(264.57px)다. 화면 값으로 재면 36% 크게 센다.
+ *
+ * ⚠️ viewBox 를 못 읽으면 **0이 아니라 「모른다」**(`UNKNOWN_FIGURE_HEIGHT_PX`)로
+ *    센다. 0으로 세면 못 읽는 그림일수록 조용해지는데, 그게 이 결함의 모양이었다.
+ */
+export function estimateFigureSvgPx(svg: string | null | undefined): number {
+  if (!svg) return 0;
+  const { figureBlockTop } = JASEUP_MEASURED_PX;
+  const box = figureSvgViewBox(svg);
+  if (box === null) return figureBlockTop + UNKNOWN_FIGURE_HEIGHT_PX;
+  const printedWidth = mmToCssPx(FIGURE_SVG_PRINT_MM[figureSvgSize(svg)]);
+  return figureBlockTop + printedWidth * (box.height / box.width);
+}
+
 export function estimateProblemPx(
   content: string,
   figures: readonly (FigureDimensionType | null)[] = [],
+  figureSvg: string | null = null,
 ): number {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   // 조판이 안 그리는 `[그림]` 자국을 자도 안 센다 — **같은 함수**를 부른다.
   // 한쪽만 고치면 높이가 갈라지고, 갈라진 것은 아무도 못 본다(2026-08-18).
-  const question = hideFigureMarker(rawQuestion, figures.length > 0);
+  // 🔴 조건도 지면과 **같아야** 한다: `ProblemContent` 는 인라인 SVG 가 있어도
+  //    자국을 지운다. 자만 `figures.length > 0` 를 보면 그 문항만 한 줄 더 높다.
+  const question = hideFigureMarker(
+    rawQuestion,
+    figures.length > 0 || Boolean(figureSvg),
+  );
   const { line, boxChrome, fixedChrome } = JASEUP_MEASURED_PX;
 
   // 문항번호와 정답란은 본문과 무관하게 늘 붙는다 — 실측 62.5px = 3.08줄.
@@ -342,6 +381,7 @@ export function estimateProblemPx(
   flushBox();
 
   px += estimateFigureBlockPx(figures);
+  px += estimateFigureSvgPx(figureSvg);
   px += choicesBlockPx(choices);
   /**
    * **세로로 쌓이는 수식**은 폭이 아니라 높이를 먹는다. 해설 자에만 있던 항을
@@ -359,9 +399,10 @@ export function estimateProblemPx(
 export function estimateProblemLines(
   content: string,
   figures: readonly (FigureDimensionType | null)[] = [],
+  figureSvg: string | null = null,
 ): number {
   return Math.ceil(
-    estimateProblemPx(content, figures) / JASEUP_MEASURED_PX.line,
+    estimateProblemPx(content, figures, figureSvg) / JASEUP_MEASURED_PX.line,
   );
 }
 
@@ -585,7 +626,10 @@ export interface SeatAssessment {
 /** 판정이 읽는 것 — 문항 전체가 아니라 이 셋뿐이다. */
 export type SeatProblem = Pick<TestPrintProblem, "content"> &
   Partial<
-    Pick<TestPrintProblem, "figureUrls" | "figureDims" | "figureSourceMm">
+    Pick<
+      TestPrintProblem,
+      "figureUrls" | "figureDims" | "figureSourceMm" | "figureSvg"
+    >
   >;
 
 /**
@@ -609,8 +653,11 @@ export function assessSeat(
     problem.figureSourceMm,
     problem.figureUrls,
   );
-  const px = estimateProblemPx(problem.content, figures);
-  const lines = estimateProblemLines(problem.content, figures);
+  // 🔴 엔진 문항은 그림이 `figureSvg` 한 컬럼에만 있다(`figureUrls` 전량 비었다).
+  //    여기서 안 넘기면 그 4,640문항의 그림이 통째로 0으로 세어진다.
+  const svg = problem.figureSvg ?? null;
+  const px = estimateProblemPx(problem.content, figures, svg);
+  const lines = estimateProblemLines(problem.content, figures, svg);
   const limit = lineLimitFor(slotPx);
   /**
    * 🔴 **px 를 직접 견준다.** 줄 수로 견주면 `ceil` 이 최대 한 줄을 삼켜, 칸을
@@ -628,7 +675,7 @@ export function assessSeat(
     slotPx,
     lines,
     limit,
-    figurePx: estimateFigureBlockPx(figures),
+    figurePx: estimateFigureBlockPx(figures) + estimateFigureSvgPx(svg),
     manyFigures,
     risky: tooTall || manyFigures,
   };

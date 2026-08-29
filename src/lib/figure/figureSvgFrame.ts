@@ -73,11 +73,20 @@ export type FigureSvgSize = "compact" | "mid" | "wide" | "pair";
 
 const VIEWBOX_WH = /viewBox="0\s+0\s+([\d.]+)\s+([\d.]+)"/;
 
-export function figureSvgViewBoxWidth(svg: string): number | null {
+export function figureSvgViewBox(
+  svg: string,
+): { width: number; height: number } | null {
   const match = VIEWBOX_WH.exec(svg);
   if (!match) return null;
   const width = Number(match[1]);
-  return Number.isFinite(width) && width > 0 ? width : null;
+  const height = Number(match[2]);
+  if (!Number.isFinite(width) || width <= 0) return null;
+  if (!Number.isFinite(height) || height <= 0) return null;
+  return { width, height };
+}
+
+export function figureSvgViewBoxWidth(svg: string): number | null {
+  return figureSvgViewBox(svg)?.width ?? null;
 }
 
 export function figureSvgSize(svg: string): FigureSvgSize {
@@ -102,6 +111,22 @@ const FRAME: Record<FigureSvgSize, string> = {
   wide: "mt-3 max-w-[360px] print:max-w-[70mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
   // 짝은 문항 열을 통째로 쓴다 — 위 상수와 같은 수여야 한다(364px / 97mm).
   pair: "mt-3 max-w-[364px] print:max-w-[97mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
+};
+
+/**
+ * 등급별 **인쇄 폭(mm)**. 아래 `FRAME` 의 `print:max-w-[Xmm]` 과 **같은 수여야 한다** —
+ * Tailwind 는 클래스 문자열을 글자 그대로 훑으므로 그쪽을 이 표에서 만들 수 없다.
+ * 그래서 `figureSvgFrame.test.ts` 가 둘을 대조한다(어긋나면 빨개진다).
+ *
+ * 🔴 **넘침 판정(`printOverflow.estimateFigureSvgPx`)이 이 표를 읽는다.** 화면 px
+ * (140/240/360)가 아니라 **인쇄 mm** 라야 한다 — `wide` 는 화면 360px 인데 종이에서는
+ * 70mm(264.57px)라 화면 값으로 재면 **36% 크게** 센다. 자는 종이를 재는 물건이다.
+ */
+export const FIGURE_SVG_PRINT_MM: Record<FigureSvgSize, number> = {
+  compact: 37,
+  mid: 64,
+  wide: 70,
+  pair: FIGURE_SVG_PAIR_MM,
 };
 
 export function figureSvgFrameClass(svg: string): string {
