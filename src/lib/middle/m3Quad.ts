@@ -1,5 +1,6 @@
 /**
- * 중3 「이차방정식」 — RPM 3-1 «이차방정식의 풀이» 01~16 + «이차방정식의 활용» 01~15.
+ * 중3 「이차방정식」 — RPM 3-1 «이차방정식의 풀이» 01~16 + «이차방정식의 활용» 01~15
+ * + 우리 유형 16(한 근이 무리수일 때).
  *
  * 물결 4D 세션 소유 모듈 (docs/planning/tracks/middle-engine-wave3-plan.md §11.2).
  * 합본 `m3.ts` 에는 한 줄(spread)만 더한다.
@@ -163,6 +164,14 @@ function splitSurd(n: number): [number, number] {
 const SURD_POOL = [
   2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23,
 ] as const;
+
+/**
+ * $p\\pm\\sqrt{q}$ — 양수 $p$ 는 괄호로 감지 않는다. `(2)+\\sqrt{3}` 도
+ * `(2)^2` 도 지면이 흉하다(값 검산이 이 부류를 구조적으로 못 잡는다).
+ */
+function pmSqrt(p: number, q: number, sign: "+" | "-"): string {
+  return `${p}${sign}\\sqrt{${q}}`;
+}
 
 type Body = Pick<
   MidProblem,
@@ -1907,7 +1916,73 @@ $t>0$이므로 음수인 근은 버린다. 따라서 $t=\\dfrac{-${k}+${k}\\sqrt
         );
       }),
   ),
+
+  /**
+   * **16 — 한 근이 무리수일 때** (2026-08-29 추가, RPM 활용 01~15 다음 번호).
+   *
+   * 기존 일곱(공식 단원)의 시작과 끝:
+   *   01 방정식 → 근(공식 꼴) · 02 복잡한 방정식 → 근 · 03 치환 → 근
+   *   04 방정식 → 근의 개수 · 05 매개변수 → 중근 조건
+   *   06 매개변수 → 근을 가질 범위 · **07 두 유리수 근 → 방정식**
+   *
+   * **「한 무리수 근 → 켤레와 방정식」이 없다.** 07 은 근 둘이 이미 주어지고
+   * 풀이 07 은 한 정수 근을 대입한다. 유리수 계수이면 $p+\\sqrt{q}$ 의 켤레가
+   * 다른 근이라는 것은 근의 공식 $(A\\pm\\sqrt{B})/(2a)$ 바로 다음 자리인데
+   * 비어 있었다.
+   *
+   * ⚠️ 「근과 계수의 관계」($\\alpha+\\beta=-b/a$)는 **고1** 이다. 여기 넣지 않는다.
+   *    두 근의 곱은 $(p+\\sqrt{q})(p-\\sqrt{q})=p^{2}-q$ 로 **전개**해서 구한다.
+   */
+  def(
+    MINOR_APPLY,
+    "16",
+    "한 근이 무리수일 때 이차방정식",
+    SEC.공식,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const p = intBetween(rng, 1, 6);
+        const q = pick(rng, SURD_POOL);
+        if (splitSurd(q)[0] !== 1) return null;
+        const a = -2 * p;
+        const b = p * p - q;
+        const eq = quadEq(1, a, b);
+        const rPlus = pmSqrt(p, q, "+");
+        const rMinus = pmSqrt(p, q, "-");
+        const mode = pick(rng, [0, 1, 2] as const);
+        const binom = `(x-${p})^{2}-${q}=0`;
+        const expand =
+          `유리수 계수의 이차방정식의 한 근이 $${rPlus}$이면 켤레인 $${rMinus}$도 근이다.\n` +
+          `두 근이 $${rPlus}$, $${rMinus}$이므로 $${binom}$, 즉 $${eq}$이다.`;
+        if (mode === 0) {
+          return body(
+            `이차방정식 $x^2+ax+b=0$의 한 근이 $${rPlus}$일 때, 다른 한 근을 구하시오. (단, $a$, $b$는 유리수이다.)`,
+            `$x=${rMinus}$`,
+            `${expand}
+따라서 다른 한 근은 $x=${rMinus}$이다.`,
+            { p, q, a, b, mode, x: p },
+          );
+        }
+        if (mode === 1) {
+          return body(
+            `이차방정식 $x^2+ax+b=0$의 한 근이 $${rPlus}$일 때, 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오. (단, $a$, $b$는 유리수이다.)`,
+            `$${a + b}$`,
+            `${expand}
+따라서 $a=${a}$, $b=${b}$이므로 $a+b=${a + b}$이다.`,
+            { p, q, a, b, mode, x: a + b },
+          );
+        }
+        const prod = p * p - q;
+        return body(
+          `이차방정식 $x^2+ax+b=0$의 한 근이 $${rPlus}$일 때, 두 근의 곱을 구하시오. (단, $a$, $b$는 유리수이다.)`,
+          `$${prod}$`,
+          `${expand}
+두 근의 곱은 $(${rPlus})(${rMinus})=${p}^{2}-${q}=${prod}$이다.`,
+          { p, q, a, b, mode, x: prod },
+        );
+      }),
+  ),
 ];
 
-/** 3-1 «이차방정식의 풀이» 16 + «이차방정식의 활용» 15 = 31유형. */
+/** 3-1 «이차방정식의 풀이» 16 + «이차방정식의 활용» 16 = 32유형. */
 export const M3_QUAD: TypeEntry[] = [...SOLVE, ...APPLY];

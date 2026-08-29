@@ -24,6 +24,7 @@ import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
   generateMiddleSet,
+  typesForSection,
 } from "../../lib/middle/generate";
 import { preprocessMathText } from "../../lib/math/textPreprocess";
 import { M1_FREQ, M1_SPHERE, M1_STAT_TYPES } from "../../lib/middle/m1Stat";
@@ -94,6 +95,20 @@ const VERIFY: Record<string, (f: F) => boolean> = {
       f.ratio! * f.cone! === f.half!
     );
   },
+  // 27 부피 → 겉넓이. 부피 공식과 겉넓이 공식을 **따로** 대고 $3V=Sr$ 로 잇는다.
+  "27": (f) => {
+    if (f.half === 0) {
+      return 3 * f.V! === f.S! * f.r! && f.S! === 4 * f.r! * f.r!;
+    }
+    return 3 * f.V! === 2 * f.r! ** 3 && f.S! === 3 * f.r! * f.r!;
+  },
+  // 28 겉넓이:부피 = 3:r — 약분 없이 교차곱. gcd=1 은 기약.
+  "28": (f) =>
+    f.a! * f.r! === f.b! * 3 &&
+    f.a! > 0 &&
+    f.b! > 0 &&
+    egcd(f.a!, f.b!) === 1 &&
+    (f.mode === 0 ? f.ans === f.b : f.ans === f.r),
 
   // ── 도수분포표와 상대도수 ────────────────────────────
   // 02 갈래 0: «가장 큰 값이 몇 번째 계급인가» 를 나눗셈으로 되짚는다.
@@ -172,6 +187,8 @@ const ANSWER_NUMS: Record<string, (f: F) => number[]> = {
   "24": (f) => [f.A!, f.V!],
   "25": (f) => [f.ans!],
   "26": (f) => [f.ans!],
+  "27": (f) => [f.ans!],
+  "28": (f) => (f.mode === 0 ? [f.a!, f.b!] : [f.r!]),
   "02": (f) => [f.ans!],
   "03": (f) => [f.ans!],
   "11": (f) => [f.ans!],
@@ -180,16 +197,25 @@ const ANSWER_NUMS: Record<string, (f: F) => number[]> = {
 };
 
 describe("중1 3A — 구 계열 + 도수분포표와 상대도수(텍스트 유형)", () => {
+  it("🔴 **「구의 겉넓이와 부피」가 8문항 일일테스트를 채운다**", () => {
+    const sphere = typesForSection("구의 겉넓이와 부피");
+    expect(
+      sphere.length,
+      "유형이 8 미만이면 8문항 일일테스트를 못 채운다",
+    ).toBeGreaterThanOrEqual(8);
+    expect(new Set(sphere.map((e) => e.key)).size).toBe(sphere.length);
+  });
+
   it("자기 모듈이 낸 유형만 훑는다 — 남의 유형이 섞이면 여기서 갈린다", () => {
     // 중단원 이름으로 거르면 같은 중단원의 남의 유형(01~04·18 은 세션 중1 것)이
     // 쓸려 들어온다. 그래서 목록은 **모듈에서** 온다.
-    expect(M1_STAT_TYPES.length).toBe(11);
-    expect(M1_SPHERE.length).toBe(6);
+    expect(M1_STAT_TYPES.length).toBe(13);
+    expect(M1_SPHERE.length).toBe(8);
     expect(M1_FREQ.length).toBe(5);
-    expect(new Set(M1_STAT_TYPES.map((e) => e.key)).size).toBe(11);
+    expect(new Set(M1_STAT_TYPES.map((e) => e.key)).size).toBe(13);
   });
 
-  it("RPM 색인의 구 계열 여섯(21~26)을 낸다", () => {
+  it("RPM 색인의 구 계열 여섯(21~26)에 우리 유형 27·28 을 더해 여덟이다", () => {
     expect(M1_SPHERE.map((e) => e.rpmType)).toEqual([
       "21",
       "22",
@@ -197,6 +223,8 @@ describe("중1 3A — 구 계열 + 도수분포표와 상대도수(텍스트 유
       "24",
       "25",
       "26",
+      "27",
+      "28",
     ]);
     expect(new Set(M1_SPHERE.map((e) => e.rpmMinor))).toEqual(
       new Set(["입체도형의 겉넓이와 부피"]),
@@ -333,7 +361,7 @@ describe("중1 3A — 구 계열 + 도수분포표와 상대도수(텍스트 유
           const asked = ANSWER_NUMS[e.rpmType]!(p.facts);
           const inContent = valueNumbers(p.content);
           for (const v of asked) {
-            if (e.rpmType === "16") continue; // 비는 «$3:1$» 처럼 작은 수가 겹친다
+            if (e.rpmType === "16" || e.rpmType === "28") continue; // 비는 작은 수가 겹친다
             expect(
               inContent.includes(v),
               `답 ${v} 가 발문에 그대로 있다: ${p.content}`,
