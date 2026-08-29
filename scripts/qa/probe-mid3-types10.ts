@@ -103,4 +103,12 @@ function main(): void {
   for (const key of keys) console.log(`${fingerprint(key)}  ${key}`);
 }
 
+// `| head` 로 받으면 파이프가 먼저 닫혀 EPIPE 가 난다. 그대로 두면 **스택
+// 트레이스가 「엔진이 깨졌다」처럼 보인다** — 이 도구는 변이 시험의 지문을 내는
+// 자리라 그 오해가 곧 잘못된 판정으로 이어진다. 조용히 끝낸다.
+process.stdout.on("error", (e: NodeJS.ErrnoException) => {
+  if (e.code === "EPIPE") process.exit(0);
+  throw e;
+});
+
 if (process.argv[1] && process.argv[1].includes("probe-mid3-types10")) main();
