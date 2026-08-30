@@ -9638,6 +9638,10 @@ function misTasks(spec: MisSpec, render: (t: MisTask) => string): MisTask[] {
     // 되짚기가 만드는 **다른 후보** — 발문이 방향을 안 말하므로 이것도 살아 있다.
     const other = scShift(wrong, spec.dir === 1 ? 1 : -1);
     // 🔴 마디가 «굳지 않아야» 한다. 다른 후보도 성질을 만족하면 답이 둘이 된다.
+    // ⚠️ **오늘 이 줄은 0자리를 깎는다**(변이가 «산출물 그대로»로 거부된다) —
+    //    지금 `holds` 가 전부 **자릿수**를 걸어서 반대쪽 후보가 늘 탈락하기 때문이다.
+    //    회귀 가드로 남긴다: 자릿수를 안 거는 성질을 쓰는 날 처음 일한다.
+    //    그 «굳음» 자체는 시험이 따로 센다(`elemTiersG5DecTop` ⑴).
     if (spec.holds(other)) continue;
     for (const k of spec.kPool) {
       const product = scMul(wrong, k);
@@ -9752,6 +9756,8 @@ function topTasks(spec: TopSpec, render: (t: TopTask) => string): TopTask[] {
           return v > scQ(lo) && v < scQ(hi);
         });
         // 🔴 창이 하나만 남기면 학생이 창만 보고 답을 얻는다 — 되짚기가 장식이 된다.
+        // ⚠️ 아래 `decoys.length === 0` 이 «하나만 남는 경우»를 이미 막는다(실측:
+        //    이 줄만 풀면 산출물이 안 바뀐다). 남겨 둔 것은 **상한**이 일하기 때문이다.
         if (inWindow.length < 2 || inWindow.length > 4) continue;
         if (inWindow.some((o) => scPlaces(scMul(probe, o)) > spec.maxPlaces))
           continue;

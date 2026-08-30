@@ -792,9 +792,12 @@ G5_MUTS = [
     ),
     (
         # 다른 후보도 성질을 만족하면 답이 둘이다 — 마디가 안 굳는다.
-        "[2-4 심화중] 「다른 후보가 성질을 만족하면 버린다」 가드 삭제",
-        "    if (spec.holds(other)) continue;",
-        "    if (spec.holds(other) && false) continue;",
+        # ⚠️ 「다른 후보가 성질을 만족하면 버린다」 가드는 **오늘 0자리를 깎는다**
+        #    (변이가 «산출물 그대로»로 거부된다) — 성질이 자릿수를 걸어 반대쪽 후보가
+        #    늘 탈락하기 때문이다. 그래서 그 줄 대신 **소단원의 약속**을 문다.
+        "[2-4 심화중] 2-4-2 의 «어떤 수»를 1보다 **작은** 소수로 (소단원 약속 훼손)",
+        'key: "g5-242-mid",\n      aPool: P_OVER1,',
+        'key: "g5-242-mid",\n      aPool: P_UNDER1,',
     ),
     (
         "[2-4 심화중] 바른 값을 한 자리 어긋나게 계산한다 (값 검산 훼손)",
@@ -803,9 +806,11 @@ G5_MUTS = [
     ),
     (
         # 창이 하나만 남기면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
+        # ⚠️ 위쪽 `inWindow.length < 2` 를 물면 **산출물이 안 바뀐다** — 아래
+        #    `decoys.length === 0` 이 같은 것을 이미 막고 있어서다(실측). 일하는 줄을 문다.
         "[2-4 심화상] 창이 후보를 **하나만** 남겨도 통과",
-        "        if (inWindow.length < 2 || inWindow.length > 4) continue;",
-        "        if (inWindow.length < 1 || inWindow.length > 4) continue;",
+        "            if (decoys.length === 0) continue;",
+        "            if (decoys.length < 0) continue;",
     ),
     (
         "[2-4 심화상] 창 안 다른 후보가 같은 곱을 만들어도 통과 (답이 둘이 된다)",
