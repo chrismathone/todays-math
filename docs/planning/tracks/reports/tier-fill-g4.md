@@ -262,6 +262,24 @@ node   scripts/qa/mutate-elem-g4-deep.mjs                     # 변이 7건 전�
 `npx tsc --noEmit` **0** · `npm run lint` **에러 0**(경고 34개는 전부 기존 파일) ·
 `npm run lint:affordance` 통과 · KaTeX 렌더 **2,013자리 붉은/폴백 0**.
 
+**`npm run test`(정식 관문): 325파일 통과 · 13,226시험 통과 · 1파일 실패**
+— 그 하나가 §9.1 의 `PrintCheck.test.tsx` 다(내 것 아님).
+⚠️ 백그라운드 알림은 `exit code 0` 이라고 했다. 그건 `npm run test > 파일; echo $?` 의
+**`echo` 종료 코드**다 — 파일 안의 `GATE_EXIT=1` 이 참이다(메모리 `pipe-exit-code-lie`).
+
+### 9.0 시안 화면을 **실물로 띄워** 확인했다
+
+단위 시험은 「Next 가 이 파일을 어떻게 읽는가」라는 축이 없어 이 자리를 못 지킨다
+(CLAUDE.md 2026-08-20). `next dev` → `curl`:
+
+```
+GET /dev/tier-bench/g4?chapter=1-3 곱셈과 나눗셈   →  HTTP 200 · 990KB
+연산 7칸 · 기본 7칸 · 응용 7칸 · 심화하 7칸 · 심화중 7칸 · 심화상 7칸
+「아직 안 채움」 0 · 「그림 실패」 0 · KaTeX 334자리
+```
+
+**여섯 갈래 × 일곱 소단원 마흔둘이 빈칸 없이 그려진다.**
+
 > ⚠️ **이 워크트리에 `prisma generate` 가 안 돌아 있었다.** 1차 관문에서 19파일이
 > `@prisma/client did not initialize` 로 죽었고 `tsc` 는 688건이었다. 생성 뒤 **둘 다 0**.
 > 새 워크트리를 받는 다음 사람은 이것부터 돌릴 것.
