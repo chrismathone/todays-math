@@ -117,6 +117,228 @@ if (process.argv.includes("--selftest")) {
 const units = elementaryUnits().filter((u) => u.grade === GRADE);
 const wantForms = process.argv.includes("--forms");
 const wantMarks = process.argv.includes("--marks");
+const wantThin = process.argv.includes("--thin");
+const wantSix = process.argv.includes("--sixgrade");
+
+/* ══════════════════ 매쓰홀릭 6단 눈금에 대는 신호 세 가지 ══════════════════
+ *
+ * 리드가 매쓰홀릭 눈금을 확보했다(2026-08-30): **개념 → 기본 → 실력(하) →
+ * 실력(중) → 심화(하) → 심화(중)** 6단. 우리는 4단이다.
+ *
+ * 리드 가설 ㉠~㉣ 을 초5 에서 **반증 가능한 형태**로 옮기면 이 셋이다. 셋 다
+ * «어려움»을 직접 재지 않는다 — 그건 지면에 없다. 재는 것은 **발문의 모양**이고,
+ * 모양은 사람 판단의 **입력**이지 결론이 아니다.
+ *
+ *   Ⓐ **심화가 «한 걸음 역산»인가** — `□ 안에 알맞은 …` 식 하나, 또는
+ *      `어떤 수에 … 했더니 … 되었습니다`. 둘 다 연산 **한 번**을 거꾸로 푸는 것이다.
+ *      매쓰홀릭이 「심화(중)」에 두는 복면산·경우의 수와는 층이 다르다. ㉠ 의 열쇠.
+ *   Ⓑ **응용이 맨 「계산하시오」인가** — 기존 사다리 판정기는 **심화만** 본다
+ *      (그 파일 머리말 ㉠). 응용은 구조적으로 그 그물 밖이다. ㉡ 의 열쇠.
+ *   Ⓒ **연산에 4단 표지가 있는가** — 연산이 이미 역산이면 사다리 밑동이 부푼 것이고,
+ *      그만큼 위쪽이 좁아진다. ㉢ 의 열쇠(저쪽 「개념」과 우리 「연산」의 어긋남).
+ *
+ * ⚠️ 셋 다 **모양**이다. 「한 걸음 역산」이 늘 쉬운 것도 아니고(수가 고약하면 어렵다),
+ *    긴 문장이 늘 어려운 것도 아니다. 그래서 이 수치는 «판정»이 아니라 «어디를 눈으로
+ *    볼지»를 고르는 자다. 보고서의 6단 배정은 **사람이 읽고** 적는다.
+ */
+
+/** Ⓐ-1 `□ 안에 알맞은 X를 구하시오.` **그리고 그 밖에 아무 말도 없다.** */
+const ONE_STEP_BOX = /^□ 안에 알맞은 .{0,8}구하시오\.? ◇$/;
+/** Ⓐ-2 `어떤 수에 ◇을 …더니 ◇이 되었습니다. 어떤 수를 구하시오.` */
+const ONE_STEP_SOME =
+  /^어떤 수(에서|에|를)? ?◇[^.]{0,30}되었습니다\.? 어떤 수를 구하시오\.?$/;
+/** Ⓑ 맨 계산 지시로 **시작**하는가. `probe-elem-tier-ladder.ts` 의 열쇠와 같은 뜻. */
+const BARE_CALC_HEAD = /^계산하(시오|여라|여|세요|기)|^계산해 ?보시오/;
+
+export function isOneStepInverse(frame: string): boolean {
+  return ONE_STEP_BOX.test(frame) || ONE_STEP_SOME.test(frame);
+}
+
+if (wantSix) {
+  /* 눈금 — 양성·음성 **둘 다**. 양성만 대면 지어냄이 구조적으로 0이 된다.
+   * 실물에서 그대로 가져온다(지어낸 문자열은 「검출기가 도는가」만 본다). */
+  const SIX_GAUGE: [string, string, boolean][] = [
+    // 양성 — 실제 초5 심화 발문(씨앗 20260830)
+    ["초5 2-4-1 심화 (실물)", "□ 안에 알맞은 자연수를 구하시오. ◇", true],
+    ["초5 2-4-5 심화 (실물)", "□ 안에 알맞은 소수를 구하시오. ◇", true],
+    [
+      "초5 1-5-1 심화 (실물)",
+      "어떤 수에 ◇을 더했더니 ◇이 되었습니다. 어떤 수를 구하시오.",
+      true,
+    ],
+    [
+      "초5 1-5-4 심화 (실물)",
+      "어떤 수에서 ◇를 뺐더니 ◇가 되었습니다. 어떤 수를 구하시오.",
+      true,
+    ],
+    // 음성 — 이것들이 걸리면 이 자의 결함이다. 전부 실물이고, 전부 두 걸음 이상이다.
+    [
+      "초5 1-1-3 심화 — 괄호 빠뜨림 (두 값을 다 구해 차)",
+      "◇를 계산해야 하는데, 잘못하여 괄호를 빠뜨리고 ◇로 계산했습니다. 바르게 계산한 값과 잘못 계산한 값의 차는 얼마입니까?",
+      false,
+    ],
+    [
+      "초5 2-3-4 심화 — 연속한 세 자연수 (조건 조합)",
+      "둘레가 ◇ cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 길이가 같고, 이웃한 세 변의 길이가 연속한 세 자연수일 때 가장 짧은 변은 몇 cm입니까?",
+      false,
+    ],
+    [
+      "초5 2-4-7 심화 — 역산 뒤 한 걸음 더",
+      "어떤 수에 ◇을 곱했더니 ◇이 되었습니다. 어떤 수에 ◇을 곱하면 얼마입니까?",
+      false,
+    ],
+    [
+      "초5 2-1-4 심화 — 범위의 양 끝",
+      "어떤 자연수를 올림하여 백의 자리까지 나타냈더니 ◇이 되었습니다. 어떤 수가 될 수 있는 가장 작은 수와 가장 큰 수를 차례로 쓰시오.",
+      false,
+    ],
+    [
+      "초5 1-4-4 심화 — 부등식 안의 □ 개수 세기",
+      "□ 안에 들어갈 수 있는 자연수는 모두 몇 개입니까? ◇",
+      false,
+    ],
+  ];
+  let bad = 0;
+  for (const [why, frame, want] of SIX_GAUGE) {
+    const got = isOneStepInverse(frame);
+    if (got !== want) bad += 1;
+    console.log(
+      `  ${got === want ? "✅" : "❌"} ${why} — 기대 ${want ? "한걸음" : "아님"} / 실제 ${got ? "한걸음" : "아님"}`,
+    );
+  }
+  const pos = SIX_GAUGE.filter((g) => g[2]).length;
+  console.log(
+    bad === 0
+      ? `\n✅ Ⓐ 눈금 ${SIX_GAUGE.length}건 맞다 (양성 ${pos} · 음성 ${SIX_GAUGE.length - pos})\n`
+      : `\n❌ Ⓐ 눈금 ${bad}건 어긋남 — **아래 수치를 믿지 마라**\n`,
+  );
+  if (bad > 0) process.exit(1);
+
+  let aHit = 0;
+  let bHit = 0;
+  let cHit = 0;
+  const aList: string[] = [];
+  const bList: string[] = [];
+  const cList: string[] = [];
+
+  for (const unit of units) {
+    if (supportedTiers(unit).length === 0) continue;
+    const seen = { a: false, b: false, c: false };
+    for (let i = 0; i < SEEDS; i += 1) {
+      const deep = generateElementaryProblem(unit, SEED0 + i * STEP, "심화");
+      const app = generateElementaryProblem(unit, SEED0 + i * STEP, "응용");
+      const calc = generateElementaryProblem(unit, SEED0 + i * STEP, "연산");
+      if (isOneStepInverse(frameOf(deep.content))) seen.a = true;
+      if (BARE_CALC_HEAD.test(app.content.trim())) seen.b = true;
+      if (marksOf(calc.content).length > 0) seen.c = true;
+    }
+    if (seen.a) {
+      aHit += 1;
+      aList.push(unit.section);
+    }
+    if (seen.b) {
+      bHit += 1;
+      bList.push(unit.section);
+    }
+    if (seen.c) {
+      cHit += 1;
+      cList.push(unit.section);
+    }
+  }
+
+  const n = units.filter((u) => supportedTiers(u).length > 0).length;
+  const show = (t: string, hit: number, list: string[]) => {
+    console.log(`── ${t} — ${hit}/${n} 소단원 ──`);
+    for (const s of list) console.log(`   · ${s}`);
+    console.log("");
+  };
+  console.log(
+    `${GRADE} — 매쓰홀릭 6단에 대기 위한 신호 (씨앗 ${SEEDS} · 갈래 경로)\n`,
+  );
+  show("Ⓐ 심화가 «한 걸음 역산»인 씨앗이 있다", aHit, aList);
+  show("Ⓑ 응용이 맨 「계산하시오」인 씨앗이 있다", bHit, bList);
+  show("Ⓒ 연산에 4단 표지가 있는 씨앗이 있다", cHit, cList);
+  console.log(
+    `⚠️ 이 셋은 **모양**이지 어려움이 아니다. 6단 배정은 사람이 읽고 적는다 —\n` +
+      `   이 수치는 «어디를 눈으로 볼지»를 고르는 자다.`,
+  );
+  process.exit(0);
+}
+
+/* ─────────────────── 「얇다」를 셀 수 있는 형태로 ───────────────────
+ *
+ * 리드 가설 ㉡ — 「우리 응용이 얇다. 3건 중 2건이 같은 문형이었다」(초3 표본).
+ * 그 말을 **반증 가능한 형태**로 옮기면 이렇다:
+ *
+ *   소단원 하나에서 그 갈래를 **씨앗 12개**로 뽑았을 때 «서로 다른 발문 꼴»이 몇 개인가.
+ *
+ * 1이면 그 소단원의 그 갈래는 씨앗을 바꿔도 **늘 같은 물음**이다 — 수만 바뀐다.
+ * 그것이 「얇다」의 측정 가능한 뜻이다. 표본 3건이 아니라 **전량**으로 센다.
+ *
+ * ⚠️ **이것은 «다양성»이지 «난이도»가 아니다.** 꼴이 하나여도 좋은 심화일 수 있다.
+ *    그리고 지문이 같아도 소재가 다르면 학생에게는 다른 문항이다 — 이 자는 소재를
+ *    안 지우므로(수·수식만 지운다) 소재가 다르면 다른 꼴로 센다. 즉 이 수는
+ *    다양성의 **상한이 아니라 하한**이다.
+ */
+if (wantThin) {
+  console.log(
+    `${GRADE} — 갈래마다 «서로 다른 발문 꼴»이 몇 개인가 (씨앗 ${SEEDS} · 소단원별)\n`,
+  );
+  const perTier = new Map<string, number[]>();
+  for (const tier of ELEM_TIERS) perTier.set(tier, []);
+  const ones: string[] = [];
+
+  for (const unit of units) {
+    const counts: string[] = [];
+    for (const tier of ELEM_TIERS) {
+      const seen = new Set<string>();
+      if (wantForms) {
+        for (const form of listedForms(unit).filter((f) => f.tier === tier))
+          for (let i = 0; i < SEEDS; i += 1)
+            seen.add(
+              frameOf(
+                generateElementaryForm(unit, SEED0 + i * STEP, form.id).content,
+              ),
+            );
+      } else {
+        if (supportedTiers(unit).length === 0) continue;
+        for (let i = 0; i < SEEDS; i += 1)
+          seen.add(
+            frameOf(
+              generateElementaryProblem(unit, SEED0 + i * STEP, tier).content,
+            ),
+          );
+      }
+      perTier.get(tier)!.push(seen.size);
+      counts.push(`${tier} ${String(seen.size).padStart(2)}`);
+      if (seen.size === 1) ones.push(`${unit.section} — ${tier}`);
+    }
+    console.log(`  ${unit.section.padEnd(34)} ${counts.join(" · ")}`);
+  }
+
+  console.log(`\n── 갈래별 요약 (경로: ${wantForms ? "문형" : "갈래"}) ──`);
+  for (const tier of ELEM_TIERS) {
+    const xs = perTier.get(tier)!;
+    if (xs.length === 0) continue;
+    const sum = xs.reduce((a, b) => a + b, 0);
+    const sorted = [...xs].sort((a, b) => a - b);
+    const med = sorted[Math.floor(sorted.length / 2)]!;
+    console.log(
+      `  ${tier.padEnd(4)} 평균 ${(sum / xs.length).toFixed(2)} · 중앙 ${med}` +
+        ` · 최저 ${sorted[0]} · 최고 ${sorted[sorted.length - 1]}` +
+        ` · **꼴이 하나뿐** ${xs.filter((x) => x === 1).length}/${xs.length}`,
+    );
+  }
+  console.log(
+    `\n꼴이 하나뿐인 자리 ${ones.length}개` +
+      (ones.length > 0 ? `:\n${ones.map((o) => `   · ${o}`).join("\n")}` : ""),
+  );
+  console.log(
+    `\n⚠️ 이 수는 다양성의 **하한**이다(소재를 안 지운다). 그리고 다양성은 난이도가` +
+      `\n   아니다 — 꼴이 하나여도 좋은 심화일 수 있다.`,
+  );
+  process.exit(0);
+}
 
 /* ─────────────────────── 표지가 어느 갈래에 앉나 ─────────────────────── */
 if (wantMarks) {
