@@ -44,6 +44,7 @@ import {
 } from "../../src/lib/elementary/generate";
 
 import {
+  answerPrintedOnPage,
   forwardReachable,
   pageNumbers,
   readRat,
@@ -87,9 +88,93 @@ export function sweep(grade?: string, chapter?: string): Row[] {
   return out;
 }
 
+/* ── ④ 의 자격 — **연산 갈래가 양성 대조군이다** ─────────────────────────── */
+
+export type FlatVerdict = {
+  key: string;
+  /** 연산·기본·응용 중 «안 닿는» 문항 수 — ④ 가 거는 근거. */
+  flatN: number;
+  /** 훑은 연산 문항 수. 0 이면 이 소단원에는 **대조군 자체가 없다**. */
+  yeonsanN: number;
+  /** 그중 «닿는» 수. 0 이면 이 자는 여기서 **눈이 멀었다**. */
+  yeonsanReach: number;
+};
+
+/**
+ * **④ 를 낼 자격이 있는 소단원과 «못 재는» 소단원을 가른다** (2026-08-31).
+ *
+ * ## 왜 연산 갈래가 대조군인가
+ *
+ * D-113 이 정한 **연산 = 「그 소단원의 연산을 그대로 한 번 하는 자리」**다. 곧 연산
+ * 문항은 **정의상 순방향으로 풀린다.** 그런데 이 자가 그것을 「안 닿는다」고 하면,
+ * 안 닿는 쪽은 문항이 아니라 **자다.** 그 소단원에서 이 자의 「0」은 «깨끗»이 아니라
+ * **«못 셈»**이다 — 이 저장소가 여러 번 적은 그 자리다.
+ *
+ * ## 🔴 안 갈랐더니 ④ 의 **81%가 거짓**이었다 (2026-08-31 실측)
+ *
+ * ```
+ * ④ 가 걸던 소단원      140
+ *    그중 근거가 없는 것 113  (81%)
+ *    진짜 후보            27
+ * ```
+ *
+ * 눈먼 뿌리가 셋인데 **셋 다 이 한 대조군에 걸린다**:
+ *
+ * ```
+ * ㉠ 순수 덧뺄셈        `forwardReachable` 은 곱셈이 한 번은 있어야 길이 열린다.
+ *                      초3 1-1-1 연산 「$764+135$」 답 $899$ → «안 닿는다».
+ *                      ⚠️ 그렇다고 넓히지 마라 — 「+− 한 번」 축을 재 보니
+ *                         연산 10.3% · 심화중 4.9% · 심화상 5.4% 로 **안 갈린다.**
+ *                         넓히면 머리말 ⑴ 의 거짓 경보 46건이 그대로 돌아온다.
+ * ㉡ 분수를 못 읽는다   `pageNumbers` 가 `\frac{3}{4}` 를 **[3, 4] 두 낱값**으로 읽는다.
+ *                      초5 2-2-1 연산 「$\frac34\times4$」 답 $3$ → «안 닿는다».
+ * ㉢ 답이 수가 아니다   대분수(`$1\frac1{12}$`)·단위 붙은 답(`$3000$개`)은 `readRat`
+ *                      가 못 읽어 **행이 아예 안 생긴다**(연산 갈래가 통째로 빈다).
+ * ```
+ *
+ * ⚠️ **이 대조군은 «필요조건»이지 «충분조건»이 아니다.** 연산이 닿는다고 그 소단원의
+ *    위 갈래까지 이 자가 다 본다는 뜻은 아니다 — 살아 있는 길이 하나는 있다는 뜻뿐이다.
+ */
+export function splitFlatUnits(rows: readonly Row[]): {
+  candidates: FlatVerdict[];
+  unmeasurable: FlatVerdict[];
+} {
+  const lower = new Set(["연산", "기본", "응용"]);
+  const per = new Map<string, FlatVerdict>();
+  for (const r of rows) {
+    const key = `${r.grade} ${r.code}`;
+    const v = per.get(key) ?? { key, flatN: 0, yeonsanN: 0, yeonsanReach: 0 };
+    if (lower.has(r.tier) && !r.reachable) v.flatN += 1;
+    if (r.tier === "연산") {
+      v.yeonsanN += 1;
+      if (r.reachable) v.yeonsanReach += 1;
+    }
+    per.set(key, v);
+  }
+  const candidates: FlatVerdict[] = [];
+  const unmeasurable: FlatVerdict[] = [];
+  for (const v of per.values()) {
+    if (v.flatN === 0) continue; // ④ 가 애초에 안 건다
+    (v.yeonsanReach > 0 ? candidates : unmeasurable).push(v);
+  }
+  return { candidates, unmeasurable };
+}
+
+/** 「왜 못 재나」를 한 낱말로. */
+export const unmeasurableReason = (v: FlatVerdict): string =>
+  v.yeonsanN === 0 ? "연산 갈래를 못 훑었다" : `연산 0/${v.yeonsanN}`;
+
 /* ── 눈금 — 이 자가 «아니오»를 낼 수 있나 ────────────────────────────────── */
 
 const R = (s: string) => readRat(s)!;
+
+/** 눈금용 지어낸 행 — 살아 있는 엔진을 안 쓴다. */
+const row = (
+  grade: string,
+  code: string,
+  tier: string,
+  reachable: boolean,
+): Row => ({ grade, code, tier: tier as ElemTier, seed: 0, reachable });
 
 function gauges(): { label: string; ok: () => boolean }[] {
   return [
@@ -125,8 +210,20 @@ function gauges(): { label: string; ok: () => boolean }[] {
       ok: () => !forwardReachable(pageNumbers("$1.6$ $0.8$ $6$ $9$"), R("0.2")),
     },
     {
-      label: "양성 — 답이 발문의 수 그대로면 닿는다",
+      // 🔴 **이름이 거짓이던 눈금** (2026-08-31 정정). 옛 이름은 「답이 발문의 수
+      //    그대로면 닿는다」였는데, 그 성질은 `answerPrintedOnPage` 로 갈라 냈다.
+      //    이 표본이 초록인 진짜 까닭은 $7\times2-7=7$ 이라 **`a×b−c` 꼴**이라서다.
+      //    이름만 보면 「갈라 낸 것이 아직 여기 있다」로 읽힌다 — 아래 음성이 짝이다.
+      label: "양성 — `a×b−c` 꼴은 순방향이다",
       ok: () => forwardReachable(pageNumbers("$7$ $2$"), R("7")),
+    },
+    {
+      // 실물: 초3 2-1-1 심화중 「$116$ 에 곱했더니 곱의 일의 자리가 $6$」 답 $6$.
+      // 지면의 `$6$` 은 **자릿수 설명**이지 피연산자가 아니다.
+      label: "음성 — 답이 지면에 그대로 있는 것만으로는 «순방향»이 아니다",
+      ok: () =>
+        !forwardReachable(pageNumbers("$116$ $6$"), R("6")) &&
+        answerPrintedOnPage(pageNumbers("$116$ $6$"), R("6")),
     },
     {
       label: "지면 읽기 — 식 안의 수도 전부 뽑는다",
@@ -135,6 +232,69 @@ function gauges(): { label: string; ok: () => boolean }[] {
     {
       label: "지면 읽기 — KaTeX 밖 숫자는 안 센다 (R1 을 믿는다)",
       ok: () => pageNumbers("보기 3개 중 $2$").length === 1,
+    },
+    // ── ④ 의 자격 (2026-08-31) ────────────────────────────────────────────
+    // 🔴 살아 있는 엔진으로 재면 안 된다 — 이 갈라내기가 «세는 능력»을 잃어도
+    //    엔진 답은 그대로다(도장). 그래서 **지어낸 표**로 두 쪽을 직접 댄다.
+    {
+      label: "④ 양성 — 연산이 닿는 소단원은 «진짜 후보»로 남는다",
+      ok: () => {
+        const s = splitFlatUnits([
+          row("초X", "1-1-1", "연산", true),
+          row("초X", "1-1-1", "응용", false),
+        ]);
+        return (
+          s.candidates.length === 1 &&
+          s.candidates[0]!.key === "초X 1-1-1" &&
+          s.unmeasurable.length === 0
+        );
+      },
+    },
+    {
+      label: "④ 음성 — 연산이 **0%** 면 후보가 아니라 «못 잼»이다",
+      ok: () => {
+        const s = splitFlatUnits([
+          row("초X", "1-1-1", "연산", false),
+          row("초X", "1-1-1", "응용", false),
+        ]);
+        return (
+          s.candidates.length === 0 &&
+          s.unmeasurable.length === 1 &&
+          unmeasurableReason(s.unmeasurable[0]!) === "연산 0/1"
+        );
+      },
+    },
+    {
+      label: "④ 음성 — 연산 갈래를 **못 훑은** 소단원도 «못 잼»이다",
+      ok: () => {
+        const s = splitFlatUnits([row("초X", "1-1-1", "응용", false)]);
+        return (
+          s.candidates.length === 0 &&
+          s.unmeasurable.length === 1 &&
+          unmeasurableReason(s.unmeasurable[0]!) === "연산 갈래를 못 훑었다"
+        );
+      },
+    },
+    {
+      label: "④ 분모 — 안 닿는 하위 갈래가 없으면 어느 쪽에도 안 올린다",
+      ok: () => {
+        const s = splitFlatUnits([
+          row("초X", "1-1-1", "연산", true),
+          row("초X", "1-1-1", "응용", true),
+          row("초X", "1-1-1", "심화중", false),
+        ]);
+        return s.candidates.length === 0 && s.unmeasurable.length === 0;
+      },
+    },
+    {
+      label: "④ 분모 — 심화 갈래는 연산 대조군으로 안 센다",
+      ok: () => {
+        const s = splitFlatUnits([
+          row("초X", "1-1-1", "심화하", true),
+          row("초X", "1-1-1", "응용", false),
+        ]);
+        return s.candidates.length === 0 && s.unmeasurable.length === 1;
+      },
     },
   ];
 }
@@ -183,13 +343,8 @@ function main(): void {
     (r) => (r.tier === "심화중" || r.tier === "심화상") && r.reachable,
   );
   // ④ — 연산·기본·응용이 **안 닿으면** 그 소단원에서는 이 축이 난이도를 안 가른다.
-  const lower = new Set(["연산", "기본", "응용"]);
-  const flat = new Map<string, number>();
-  for (const r of rows) {
-    if (!lower.has(r.tier) || r.reachable) continue;
-    const key = `${r.grade} ${r.code}`;
-    flat.set(key, (flat.get(key) ?? 0) + 1);
-  }
+  //      단 **연산 갈래가 실제로 닿을 때만** 그 말을 할 자격이 있다(`splitFlatUnits`).
+  const { candidates, unmeasurable } = splitFlatUnits(rows);
 
   console.log(
     `\n⑥ 중·상인데 순방향으로 닿는 문항 ${six.length}건` +
@@ -198,13 +353,27 @@ function main(): void {
         : ""),
   );
   console.log(
-    `④ 연산·기본·응용이 이미 순방향으로 **안 닿는** 소단원 ${flat.size}개` +
-      (flat.size
-        ? `\n   ${[...flat.entries()]
-            .map(([k, v]) => `${k}(${v})`)
-            .slice(0, 12)
+    `④ 연산·기본·응용이 이미 순방향으로 **안 닿는** 소단원 ${candidates.length}개` +
+      (candidates.length
+        ? `\n   ${candidates
+            .map((v) => `${v.key}(${v.flatN})`)
+            .slice(0, 16)
             .join(" · ")}` +
           `\n   → 이 소단원들에서는 되짚기 축이 난이도를 안 가를 수 있다. **채우기 전에 사람이 본다.**`
+        : ""),
+  );
+  console.log(
+    `\n🔴 ④ 를 **못 재는** 소단원 ${unmeasurable.length}개 — 여기의 «안 닿는다»는 근거가 아니다` +
+      (unmeasurable.length
+        ? `\n   ${unmeasurable
+            .map((v) => `${v.key}(${unmeasurableReason(v)})`)
+            .slice(0, 16)
+            .join(" · ")}` +
+          (unmeasurable.length > 16
+            ? ` … 외 ${unmeasurable.length - 16}개`
+            : "") +
+          `\n   연산 갈래는 **정의상 순방향**인데 이 자가 그것도 «안 닿는다»고 한다 —` +
+          `\n   안 닿는 쪽은 문항이 아니라 자다. 머리말 §「④ 의 자격」을 읽어라.`
         : ""),
   );
   console.log(
