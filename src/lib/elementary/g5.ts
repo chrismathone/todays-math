@@ -9931,12 +9931,22 @@ function cardTasks(
       const q = scQ(bound);
       const hits = items.filter((it) => scQ(it.prod) < q);
       if (hits.length < min || hits.length > max) continue;
-      if (hits.length >= items.length) continue;
+      // 🔴 **가장 큰 곱이 경계보다 크다** — 이 갈래의 알맹이다. 이것이 곧
+      //    「가장 큰 곱은 고른 것 안에 없다」이므로 «hits 가 전부는 아니다»를 따로
+      //    적을 필요가 없다(적어 봤더니 **0자리**를 깎았다 — 지웠다).
+      //
+      //    ⚠️ 이 한 줄이 깎는 것도 실측 **1자리 / 291**(2-4-1)·**0자리 / 285**(2-4-6)뿐이다.
+      //    `max` 가 항목 수보다 작으면 대개 저절로 지켜지기 때문이다. 그러니 이것은
+      //    **오늘 일하는 가드가 아니라 회귀 가드**다 — `max` 를 올리는 날 처음 일한다.
+      //    (`.tmp` 재기: 가드를 하나씩 꺼서 후보 수를 견줬다. 아래 둘도 같은 방법으로 쟀다.)
       if (scQ(top.prod) <= q) continue;
       const best = hits[hits.length - 1]!;
+      // 으뜸이 둘이면 해설이 그중 하나만 「가장 큰 곱」으로 이름 짓는다(값은 같다).
+      // 실측 **2자리**씩 깎는다.
       if (scQ(best.prod) === scQ(hits[hits.length - 2]!.prod)) continue;
       // 답이 정수로 접히면 「소수의 곱셈」이 지면에서 사라진다(2-4-7 은 자리를 옮기는
-      // 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다).
+      // 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다). 실측 **39자리 / 291**(2-4-1)·
+      // **8자리 / 285**(2-4-6) — 셋 중 이것만 오늘 실제로 일한다.
       if (wantDecimal && scPlaces(best.prod) === 0) continue;
       if (extra && !extra(hits)) continue;
       out.push({ cards, items, example: made[0]!, bound, hits, best, top });

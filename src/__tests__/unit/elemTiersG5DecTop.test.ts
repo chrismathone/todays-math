@@ -342,6 +342,30 @@ describe("[초5 2-4 확대] 눈금 — 시험이 쓰는 자가 살아 있다", (
     );
   });
 
+  it("🔴 축 ⑵ 의 자 — 「가장 큰 곱이 빠진다」가 **거짓일 수도** 있다 (음성 대조)", () => {
+    // 이 축은 오늘 실물에서 늘 참이다(생성기가 그렇게 고른다). 그러면 전량 초록이
+    // «깨끗»인지 «못 셈»인지 안 갈린다 — 손으로 지은 발문으로 자가 «아니오»를 내는
+    // 것을 여기서 못 박는다. 실물 검사는 아래 본 검사가 한다.
+    const escapes = (content: string) => {
+      const t = topParse(content);
+      const all = arrangements(t.frame, t.cards, t.powers);
+      return (
+        q(all.reduce((a, b) => (q(a.prod) >= q(b.prod) ? a : b)).prod) >
+        q(t.bound)
+      );
+    };
+    const head =
+      "수 카드 $3$, $6$, $8$을 한 번씩 모두 사용하여 $0.\\square\\times\\square\\square$ 꼴의 곱셈식을 만듭니다. $0.3\\times68$도 그중 하나입니다. 만들 수 있는 곱 중에서 ";
+    // 경계가 가장 큰 곱($50.4$)보다 **아래** — 요령이 막힌다(참).
+    expect(
+      escapes(`${head}$45$보다 작은 것 가운데 가장 큰 곱을 구하시오.`),
+    ).toBe(true);
+    // 경계가 모든 곱보다 **위** — 「가장 큰 것을 그냥 고르면」 끝난다(거짓).
+    expect(
+      escapes(`${head}$99$보다 작은 것 가운데 가장 큰 곱을 구하시오.`),
+    ).toBe(false);
+  });
+
   it("소단원 이름 자 — 조건을 이름에서 읽고, 어기면 거짓을 낸다", () => {
     const r = operandRule("2-4-1 (1보다 작은 소수)×(자연수)의 계산")!;
     expect(r).not.toBeNull();
@@ -476,6 +500,20 @@ describe("[초5 2-4 확대] 심화상 — 「배열을 전부 만들어 견줘�
           new Set(hits.map((f) => q(f.prod))).size,
           `${code} 심화상 @${seed} 조건에 든 것이 하나뿐이다 — 견줄 짝이 없다\n${p.content}`,
         ).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it("답이 정수로 접히지 않는다 — 「소수의 곱셈」이 지면에서 사라지면 안 된다", () => {
+    // ⚠️ 2-4-7 은 **자리를 옮기는** 소단원이라 정수 답이 정상이다 — 여기서 뺀다.
+    for (const code of CODES) {
+      if (code === "2-4-7") continue;
+      for (const seed of SEEDS) {
+        const p = problem(code, "심화상", seed);
+        expect(
+          p.answer,
+          `${code} 심화상 @${seed} 답이 정수다 — 소수가 지면에서 사라졌다\n${p.content}`,
+        ).toMatch(/^\$\d+\.\d+\$$/);
       }
     }
   });

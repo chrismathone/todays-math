@@ -4165,13 +4165,18 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
 
   /* ── 이름의 약속 — «차례»와 «크기»를 따로 잠근다 ── */
 
+  // ⚠️ **갈래 루프는 소단원마다 쪼개져 있다** (D-113, 2026-08-30). 예전에는 형제 넷을
+  //    `tiersOf(unitOf("2-4-1"))` **대표 하나**로 돌았다. 그러면 형제 중 하나만 먼저
+  //    확대 갈래를 채우는 날 다른 형제에서 생성기가 **던진다** — 그건 결함이 아니라
+  //    설계지만(`helpers/elemTiers.ts` 참조), 고치는 자리는 여기다. 대표를 바꿔 때우면
+  //    다음 형제를 채울 때 또 던진다.
   it("차례 — 2-4-1·2 는 소수 먼저, 2-4-3·4 는 자연수 먼저 (서로의 음성 대조)", () => {
     // □ 도 그 자리를 지킨다(역산 갈래가 한쪽을 비운다).
     const decFirst = /(?:^|[^\d.])\d+\.\d+\\times(?:\d+|\\square)(?!\.)/;
     const wholeFirst = /(?:^|[^\d.])(?:\d+|\\square)\\times\d+\.\d+/;
     for (const seed of SEEDS) {
-      for (const tier of tiersOf(unitOf("2-4-1"))) {
-        for (const code of ["2-4-1", "2-4-2"] as const) {
+      for (const code of ["2-4-1", "2-4-2"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           const s = problem(code, tier, seed).solution;
           expect(
@@ -4183,7 +4188,9 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
             `${code} ${tier} @${seed} 발문에 자연수가 앞선 식이 있다\n${c}`,
           ).toBe(false);
         }
-        for (const code of ["2-4-3", "2-4-4"] as const) {
+      }
+      for (const code of ["2-4-3", "2-4-4"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           const s = problem(code, tier, seed).solution;
           expect(
@@ -4203,9 +4210,9 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     /** 발문·해설의 소수 토큰 값들(정수 스케일 → 실수 비교는 스케일로). */
     const decsIn = (t: string) => decTokens(t).filter(([, d]) => d > 0);
     for (const seed of SEEDS) {
-      for (const tier of tiersOf(unitOf("2-4-1"))) {
-        // 2-4-1·2-4-3: 곱하는 소수가 1보다 작다 → 발문에 «0.x» 가 반드시 있다
-        for (const code of ["2-4-1", "2-4-3"] as const) {
+      // 2-4-1·2-4-3: 곱하는 소수가 1보다 작다 → 발문에 «0.x» 가 반드시 있다
+      for (const code of ["2-4-1", "2-4-3"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           const unders = decsIn(c).filter(([v, d]) => v < 10 ** d);
           expect(
@@ -4213,8 +4220,10 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
             `${code} ${tier} @${seed} 1보다 작은 소수가 없다\n${c}`,
           ).toBeGreaterThan(0);
         }
-        // 2-4-2·2-4-4: 곱하는 소수가 1보다 크다
-        for (const code of ["2-4-2", "2-4-4"] as const) {
+      }
+      // 2-4-2·2-4-4: 곱하는 소수가 1보다 크다
+      for (const code of ["2-4-2", "2-4-4"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           const overs = decsIn(c).filter(([v, d]) => v > 10 ** d);
           expect(
