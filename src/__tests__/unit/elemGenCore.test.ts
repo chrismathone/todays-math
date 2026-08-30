@@ -9,6 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { CORE_DIFFICULTIES } from "../../contracts/difficulty";
 import { ELEM_TIERS, type ElemTier } from "../../lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -155,16 +156,34 @@ describe("[초등 출제 CLI] 세트 생성", () => {
     expect(new Set(keys).size).toBe(6);
   });
 
-  it("소단원 230개가 전부 갈래 넷을 낸다 — «갈래 없음» 가드의 분모", () => {
+  it("소단원 230개가 전부 **핵심 넷**을 낸다 — «갈래 없음» 가드의 분모", () => {
+    // 🔴 **`tiers.length !== 4` 로 재면 안 된다** (D-113, 2026-08-30). 축이 여섯이 되어
+    //    `심화중`·`심화상` 을 채우는 소단원이 생기면 길이가 5·6 이 되는데, 그건 회귀가
+    //    아니라 **확대**다. 이 시험이 지키려는 것은 「갈래가 **없는** 소단원이 없다」이고
+    //    그 잣대는 **핵심 넷이 다 있는가**다 — 길이가 아니다.
+    //    (실제로 초6 2-2 다섯 소단원을 채우자 여기가 빨개졌다. 손으로 적은 상수 `4` 는
+    //     「타입은 배열 길이를 안 센다」의 사촌이다 — 값이 늘어도 조용히 남는다.)
+    //    사다리는 `CORE_DIFFICULTIES` 한 곳에서 온다. 여기 이름을 다시 적지 말 것.
     const rows = listCoverage();
-    const tierless = rows.filter((r) => r.tiers.length !== 4);
+    const tierless = rows.filter(
+      (r) => !CORE_DIFFICULTIES.every((t) => r.tiers.includes(t)),
+    );
     expect(
-      tierless.map((r) => `${r.grade} ${r.code}`),
-      "갈래가 넷이 아닌 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
+      tierless.map(
+        (r) => `${r.grade} ${r.code} → ${r.tiers.join("·") || "(없음)"}`,
+      ),
+      "핵심 갈래가 빠진 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
         "`generate.ts` 의 「난이도 갈래가 없는 소단원입니다」가 그날 다시 살아난다. " +
         "위 주석이 가리키는 두 시험을 되살려 그 가드를 다시 재라",
     ).toEqual([]);
     expect(rows).toHaveLength(230);
+    // 음성 대조 — 이 자가 「없음」을 실제로 잡을 수 있는가. 잡는 힘이 죽으면
+    // 위의 「0건」이 «깨끗»인지 «못 셈»인지 안 갈린다.
+    expect(
+      [{ grade: "초X", code: "9-9-9", tiers: ["연산", "기본"] }].filter(
+        (r) => !CORE_DIFFICULTIES.every((t) => r.tiers.includes(t)),
+      ),
+    ).toHaveLength(1);
   });
 
   it("tier 와 preset 을 같이 주면 던진다", () => {
