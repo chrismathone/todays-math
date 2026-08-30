@@ -1,58 +1,50 @@
 /**
- * 초6 `2-2 소수의 나눗셈` — **확대 갈래 심화중·심화상** (D-113 파일럿, 2026-08-30).
+ * 초6 `2-2 소수의 나눗셈` — **확대 갈래 심화중·심화상** (D-113, 잣대 확정 2026-08-30).
  *
- * ## 무엇을 축으로 잡았나
+ * ## 축 — **되짚기 사슬의 «굳지 않는 마디»**
  *
- * 「어렵다」는 지면에 없다. 그래서 **잴 수 있는 것**으로 바꿔 잠근다.
+ * 처음에는 **열거**(「모두 구하시오」·「몇 가지」)를 축으로 썼는데 **기각됐다.** 리드가
+ * 문형 전량 6,900행으로 두 축을 견주니 열거는 갈래를 1.5~2배밖에 안 가르고, 심화하
+ * **안에서** 걸음을 재니 열거형이 평균 0.39걸음으로 **그 소단원의 «연산»(0.79)보다도
+ * 얕았다.** 되짚기 축은 22~40배 가른다. 그래서 이 파일도 통째로 다시 썼다.
  *
- * **㉠ (약한 축 — 답의 모양)** 심화중의 답은 **하나**, 심화상의 답은 **여럿을 나열**하거나
- *    **후보를 센 값**이다. ⚠️ 이것만으로는 목록을 손으로 지어 붙여도 통과한다.
+ *   심화하 (안 건드림) — 되짚기 사슬의 **마디마다 값이 하나로 굳는다**
+ *   심화중            — 굳지 않는 마디가 **하나**, 그 소단원 성질과 조건이 굳혀 준다
+ *   심화상            — 성질만으론 못 굳혀, **되짚기가 만든 후보**를 실제로 계산해
+ *                       견주어야 하나가 남는다 (후보를 발문이 주지 않는다)
  *
- *    🔴 **그리고 이 모양은 심화상만의 것이 아니다 — 초6 실측(씨앗 16, 갈래 전량):**
+ * ## 무엇을 잠그나 — **셋 다 지면에서 되짚기를 다시 밟는다**
  *
- *        갈래     문항   답이 «나열»   「모두 …시오」
- *        연산      896   16 (1.8%)    16 (1.8%)
- *        기본      896   16 (1.8%)     0
- *        응용      896    0            0
- *        심화하    896    0            0
- *        심화중     80    0            0
- *        심화상     80   64 (80%)     64 (80%)
+ * **㉠ 값** — 발문이 말하는 조건을 이 시험이 **다시 풀어** 답과 견준다. 엔진의 풀·계산을
+ *    안 부르므로 동어반복이 아니다. 「$A$ 의 배수 중 범위 안의 것」·「반올림 구간의
+ *    자연수」·「$a$ 로 나눈 나머지가 $r$ 인 수」를 **여기서 다시 만든다.**
  *
- *    연산·기본의 16건은 **2-2-5 「몫 $6$, 남는 수 $1.5$」** 다 — 여러 답이 아니라
- *    **한 답의 두 부분**이고(`chooseAllRule` 의 «조각» 부류), 연산의 「모두 …시오」는
- *    **2-4-3 「비례식에서 외항을 모두 쓰시오」**(정의 확인)다.
- *    **그러므로 ㉠ 을 «갈래를 가르는 자»로 쓰면 안 된다.** 여기서는 오직
- *    심화중 ↔ 심화상 **둘 사이**에서만 쓰고, 진짜 판정은 ㉡·㉢ 이 한다.
- *    (초4 2-1-4 는 **심화하**가 이미 「□ 안에 들어갈 수 있는 수를 **모두** 구하시오」다 —
- *     리드 실측. 초6 에는 그 겹침이 없지만, 다른 학년으로 넓힐 때는 반드시 다시 잰다.)
+ * **㉡ 마디가 정말 안 굳나 (심화중·심화상의 정의)** — 그 조건이 후보를 **둘 이상**
+ *    만들어야 한다. 하나만 만들면 마디가 굳은 것이고 그건 **심화하**다(반증 ①).
  *
- * **㉡ (센 축 — 후보를 다시 훑는다)** 심화상 발문에는 **후보가 실려 있고**, 이 시험이
- *    그 후보를 **지면에서 다시 읽어** 조건을 적용한다. 그 결과가 답과 한 글자도 안 다르면
- *    통과다. 엔진의 풀·계산을 되부르지 않으므로 동어반복이 아니다 — 엔진이 조건을
- *    잘못 적용하면(하나 빠뜨리거나 하나 더 넣으면) 여기서 빨개진다.
+ * **㉢ 답이 하나인가 (반증 ⑤)** — 새 잣대의 답은 전부 **하나**다. 답이 여럿이면 그것은
+ *    열거 문형이고, 「모두 구하시오」를 지워도 답이 그대로면 열거는 등급의 근거가 아니다.
  *
- * **㉢ (센 축 — 훑을 이유가 있나)** 후보 중 **조건에 안 맞는 것이 하나 이상** 있어야 한다.
- *    전부 통과하는 후보 묶음이면 「모두 구하시오」가 아무것도 안 가른다 — 열거가 장식이 된다.
+ * **㉣ 순방향 한 걸음으로 답이 나오나 (반증 ⑥)** — 발문의 두 수를 한 번 곱하거나 나눠서
+ *    답이 나오면 중·상이 아니다. 심화상은 **둘째 조건을 지워도 답이 그대로면** 안 된다
+ *    (그러면 심화중과 같은 층이다).
  *
- * **㉣ (심화중이 심화하보다 위인가)** 발문의 두 수를 **한 번 곱하거나 나눠서** 답이 나오면
- *    한 걸음이다. 2-2-1·2-2-2·2-2-3 의 심화하는 **씨앗 400개 전부** 그렇고(실측),
- *    심화중은 **하나도** 그렇지 않다. 양쪽을 다 잠근다 — 음성 대조가 없으면 「0」이
- *    «깨끗»인지 «못 셈»인지 안 갈린다.
+ * **㉤ 반증 ④ — 뒤집힘 필터.** 같은 소단원의 **연산·기본·응용**에 이 잣대를 대면
+ *    **통과가 나오면 안 된다.** 나오면 그 소단원에서는 이 축이 난이도를 안 가르므로
+ *    확대 갈래를 **비워야** 한다.
  *
- * ## 🔴 이 축들이 **못 보는 것**
+ * ## 🔴 못 보는 것
  *
- * · **㉣ 는 2-2-4·2-2-5 에서 구조적으로 침묵한다.** 그 둘은 심화하가 이미 두 걸음이라
- *   (반올림 두 자리의 차 · 몫과 남는 수로 처음 양 되짚기) 「한 걸음이냐」가 둘을 못 가른다.
- *   게다가 2-2-5 심화중은 **우연 일치**가 난다(실측 20/400 — `4\times2.5=10` 이 하필 답과
- *   같다). 그래서 ㉣ 을 그 둘에 대면 **거짓 빨강**이고, 거짓 경보는 가드를 끈다.
- *   그 둘의 값 검산은 `elemTiersG6.test.ts` 가 한다(2-2-4 전용 검사 · `truthOf22`).
- * · **「후보를 훑는 것이 정말 «탐색»인가」는 못 잰다.** 규칙을 아는 학생은 안 훑고도 푼다.
- *   여기서 재는 것은 「답에 이르려면 여러 경우를 봐야 하는 **형태**인가」다.
- * · **심화상이 심화중보다 «어려운가»도 못 잰다.** 그 판정은 원장님이
- *   `/dev/tier-bench/g6` 에서 여섯을 나란히 보고 하신다 — 이 파일럿이 그러라고 있는 것이다.
- * · **문형(`FORMS`) 경로는 안 본다.** 이 갈래는 적재본에 안 나간다(D-113 파일럿 범위).
- * · **2-2-4 의 값 재구성은 여기 없다** — `elemTiersG6.test.ts` 의 2-2-4 전용 검사가
- *   범위를 다시 지어 잰다. 두 벌을 두면 한쪽만 고쳐도 아무도 모른다.
+ * · **「굳지 않는다」를 이 시험이 «후보 수»로 잰다.** 사람이 읽는 「생각이 몇 번
+ *   필요한가」는 못 잰다 — 후보가 둘이어도 학생이 한눈에 고를 수 있으면 얕다.
+ * · **해설이 무엇을 시키는지는 못 잰다.** 리드가 초3 2-1-4 에서 짚은 자리다 —
+ *   생성기가 전수 탐색을 해도 해설이 한 줄로 접으면 학생 경로는 얕다. 이 파일은
+ *   **발문과 답**을 본다. 해설의 깊이는 사람이 `/dev/tier-bench/g6` 에서 본다.
+ * · **심화상이 심화중보다 «어려운가»는 못 잰다.** 재는 것은 「굳히는 데 후보를 실제로
+ *   만들어 견주어야 하는가」라는 **구조**뿐이다.
+ * · **문형(`FORMS`) 경로는 안 본다** — 이 갈래는 적재본에 안 나간다(D-113 파일럿 범위).
+ * · 값·구간을 재는 것은 여기 한 곳뿐이다. `elemTiersG6.test.ts` 는 확대 갈래를
+ *   **세어서 건너뛴다** — 두 벌을 두면 한쪽만 고쳐도 아무도 모른다.
  */
 import { describe, expect, it } from "vitest";
 
@@ -74,7 +66,6 @@ const unitOf = (code: string) => {
 };
 
 // ── 지면에서 수를 읽는 자 — 엔진을 안 부른다 ──────────────────────────────
-//
 // 글자로 세므로 `0.30` 은 dp=2 다(수로 읽으면 0.3 이 되어 자릿수가 사라진다).
 
 type Dec = { scaled: number; dp: number };
@@ -103,27 +94,13 @@ function decsIn(text: string): Dec[] {
   return out;
 }
 
-/** 지면에 적힌 그대로의 글자 — 답 목록을 **글자로** 견주려고 쓴다. */
+/** 지면에 적힌 그대로의 글자 — 답을 **글자로** 견주려고 쓴다. */
 const show = (d: Dec) =>
   d.dp === 0
     ? String(d.scaled)
     : `${Math.trunc(d.scaled / 10 ** d.dp)}.${String(d.scaled % 10 ** d.dp).padStart(d.dp, "0")}`;
 
-/** `a \div b` 의 몫이 자연수인가 — **정수로만** 판정한다(부동소수를 안 거친다). */
-function divisible(a: Dec, b: Dec): boolean {
-  const A = a.scaled * 10 ** b.dp;
-  const B = b.scaled * 10 ** a.dp;
-  return B !== 0 && A % B === 0;
-}
-
-/** `a \div b > t` — 교차곱으로. 셋 다 양수다(초등 지면). */
-function quotientGreater(a: Dec, b: Dec, t: Dec): boolean {
-  return (
-    a.scaled * 10 ** b.dp * 10 ** t.dp > t.scaled * (b.scaled * 10 ** a.dp)
-  );
-}
-
-/** 답에 실린 `$…$` 값들 — 나열이면 여럿이 나온다. */
+/** 답에 실린 `$…$` 값들 — 하나여야 한다(㉢). */
 const answerDecs = (answer: string) =>
   [...answer.matchAll(/\$([^$]*)\$/g)]
     .map((m) =>
@@ -136,11 +113,17 @@ const answerDecs = (answer: string) =>
     )
     .filter((v): v is Dec => v !== null);
 
+/** 정수 나눗셈으로 **소수 첫째 자리까지 반올림** — 부동소수를 안 거친다. */
+const round1 = (n: number, b: number) => {
+  const s = n * 10;
+  return Math.floor(s / b) + ((s % b) * 2 >= b ? 1 : 0);
+};
+
 /**
- * 발문의 두 수를 **한 번 곱하거나 나눠서** 답이 나오는가 (축 ㉣).
+ * 발문의 두 수를 **한 번 곱하거나 나눠서** 답이 나오는가 (㉣ · 반증 ⑥).
  *
- * ⚠️ `+`·`-` 는 **일부러 뺐다.** 넣으면 우연 일치가 난다 — 실측으로
- * `4.5-2=2.5` 가 하필 두 걸음짜리 답과 같았다. 이 대단원이 실제로 쓰는 연산만 본다.
+ * ⚠️ `+`·`-` 는 **일부러 뺐다.** 넣으면 우연 일치가 난다(실측: `4.5-2=2.5` 가 하필
+ * 두 걸음짜리 답과 같았다). 이 대단원이 실제로 쓰는 연산만 본다.
  */
 function oneStepAway(page: Dec[], want: Dec): string | null {
   const w = want.scaled / 10 ** want.dp;
@@ -157,72 +140,133 @@ function oneStepAway(page: Dec[], want: Dec): string | null {
 }
 
 /**
- * 심화상 한 문항의 **참** — 발문에 실린 후보를 다시 훑는다(축 ㉡).
- * `고른것` 은 답과 견줄 글자 목록, `버린것` 은 조건에 안 맞은 후보(축 ㉢ 가 센다).
+ * 🔴 **되짚기를 지면에서 다시 밟는다.**
+ *
+ * `first` — 첫 조건이 만드는 **후보**(굳지 않는 마디). 둘 이상이어야 심화하가 아니다.
+ * `final` — 둘째 조건(심화상)이나 「가장 큰/적은」(심화중)까지 걸러 **하나** 남은 것.
+ *
+ * 후보를 만드는 규칙은 **발문의 낱말**로 고른다 — 엔진의 어느 함수도 안 부른다.
  */
-function siftTop(
+function retrace(
   code: string,
   content: string,
-): { 고른것: string[]; 버린것: string[] } | null {
+): { first: string[]; final: string[] } | null {
   const ds = decsIn(content);
-  if (code === "2-2-1") {
-    // 네 장 중 두 장을 뽑아 «큰 수 ÷ 작은 수» — 답은 **자연수가 되는 경우의 수**다.
-    if (ds.length !== 4) return null;
-    const yes: string[] = [];
-    const no: string[] = [];
-    for (let i = 0; i < 4; i += 1)
-      for (let j = i + 1; j < 4; j += 1) {
-        const [big, small] =
-          ds[i]!.scaled >= ds[j]!.scaled ? [ds[i]!, ds[j]!] : [ds[j]!, ds[i]!];
-        const label = `${show(big)}÷${show(small)}`;
-        (divisible(big, small) ? yes : no).push(label);
-      }
-    return { 고른것: [String(yes.length)], 버린것: no };
-  }
-  if (code === "2-2-2") {
-    // 후보 넷 · 나누는 수 · 문턱 — 몫이 문턱보다 «큰» 것.
-    if (ds.length !== 6) return null;
-    const [c1, c2, c3, c4, b, t] = ds as [Dec, Dec, Dec, Dec, Dec, Dec];
-    const yes: string[] = [];
-    const no: string[] = [];
-    for (const c of [c1, c2, c3, c4]) {
-      (quotientGreater(c, b, t) ? yes : no).push(show(c));
+
+  // ── 2-2-1·2-2-2·2-2-3 — 「$A$ 로 나눈 몫이 …」가 어떤 수를 배수열로 묶는다 ──
+  if (code === "2-2-1" || code === "2-2-2" || code === "2-2-3") {
+    const two = /나눈 몫도/.test(content); // 심화상은 나눗셈 조건이 둘이다
+    if (ds.length !== (two ? 4 : 3)) return null;
+    const a = ds[0]!;
+    const b = two ? ds[1]! : null;
+    const lo = ds[two ? 2 : 1]!;
+    const up = ds[two ? 3 : 2]!;
+    // 어떤 수의 «해상도» — 2-2-2 는 소수 두 자리, 2-2-1 은 한 자리, 2-2-3 은 자연수.
+    const dp = code === "2-2-2" ? 2 : code === "2-2-1" ? 1 : 0;
+    const unit = 10 ** dp; // 그 해상도의 한 눈금(정수 배율)
+    const scale = 10 ** Math.max(dp, a.dp, b?.dp ?? 0, lo.dp, up.dp);
+    const at = (d: Dec) => d.scaled * (scale / 10 ** d.dp);
+    const divides = (x: number, d: Dec) => x % (d.scaled * (scale / 10 ** d.dp) / 10 ** 0) === 0;
+    void divides;
+    const aS = at(a);
+    const first: string[] = [];
+    for (let k = 1; ; k += 1) {
+      const x = aS * k; // 어떤 수 (scale 배율)
+      if (x >= at(up)) break;
+      if (x <= at(lo)) continue;
+      // 그 해상도로 적을 수 있는 수인가 — 2-2-3 은 자연수, 2-2-2 는 두 자리까지
+      if (x % (scale / unit) !== 0) continue;
+      // 꼬리 0 은 지면 표기가 달라지므로 «그 자릿수의 수»가 아니다(2-2-2 만 요구)
+      if (code === "2-2-2" && (x / (scale / unit)) % 10 === 0) continue;
+      first.push(show({ scaled: x / (scale / unit), dp }));
     }
-    return { 고른것: yes, 버린것: no };
+    const final = b
+      ? first.filter((t) => {
+          const x = decOf(t)!;
+          return (at(x) * 10) % (at(b) * 10) === 0;
+        })
+      : first;
+    return { first, final };
   }
-  if (code === "2-2-3") {
-    // 자연수 넷 · 나누는 소수 — 몫이 자연수인 것.
-    if (ds.length !== 5) return null;
-    const b = ds[4]!;
-    const yes: string[] = [];
-    const no: string[] = [];
-    for (const c of ds.slice(0, 4)) {
-      (divisible(c, b) ? yes : no).push(show(c));
+
+  // ── 2-2-4 — 반올림한 값 하나가 **구간**을 가리킨다 ──
+  if (code === "2-2-4") {
+    const midHead = content.match(/\$\\square\\div(\d+)\$/);
+    const topHead = content.match(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림/);
+    const rs = [...content.matchAll(/나타내면 \$(\d+)\.(\d)\$/g)].map((m) =>
+      Number(`${m[1]}${m[2]}`),
+    );
+    const b1 = midHead ? Number(midHead[1]) : topHead ? Number(topHead[1]) : NaN;
+    if (!Number.isFinite(b1) || rs.length === 0) return null;
+    const lo100 = (rs[0]! * 10 - 5) * b1;
+    const hi100 = (rs[0]! * 10 + 5) * b1;
+    const first: number[] = [];
+    for (let n = Math.ceil(lo100 / 100); n * 100 < hi100; n += 1)
+      if (n * 100 >= lo100) first.push(n);
+    if (midHead) {
+      // 심화중 — 「가장 큰 자연수」가 하나를 고른다
+      return {
+        first: first.map(String),
+        final: first.length > 0 ? [String(first[first.length - 1])] : [],
+      };
     }
-    return { 고른것: yes, 버린것: no };
+    // 심화상 — 둘째 반올림을 각 후보에 실제로 해 본다
+    const b2 = Number(
+      content.match(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림[^$]*$/)?.[1] ??
+        [...content.matchAll(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림/g)][1]?.[1] ??
+        NaN,
+    );
+    if (!Number.isFinite(b2) || rs.length < 2) return null;
+    return {
+      first: first.map(String),
+      final: first.filter((n) => round1(n, b2) === rs[1]!).map(String),
+    };
   }
+
+  // ── 2-2-5 — 「$k$ 명에게 주고 조금 남는다」·「$r$ 이 남는다」가 구간·배수열을 만든다 ──
   if (code === "2-2-5") {
-    // 전체 · 한 사람 몫 넷 · 문턱 — 남는 양이 문턱보다 «적은» 것.
-    if (ds.length !== 6) return null;
-    const total = ds[0]!;
-    const limit = ds[5]!;
-    const yes: string[] = [];
-    const no: string[] = [];
-    for (const per of ds.slice(1, 5)) {
-      // 전부 ×10 으로 맞춰 정수로만 잰다.
-      const T = total.scaled * 10 ** (1 - total.dp);
-      const P = per.scaled * 10 ** (1 - per.dp);
-      const L = limit.scaled * 10 ** (1 - limit.dp);
-      const rem = T - Math.floor(T / P) * P;
-      (rem < L ? yes : no).push(show(per));
+    const mid = content.match(
+      /\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주었더니 \$(\d+)\$명[^$]*\$(\d+)\\,/,
+    );
+    if (mid) {
+      const per = Number(mid[1]);
+      const k = Number(mid[2]);
+      const rmin = Number(mid[3]);
+      // 되짚기: 처음 양은 (per·k, per·k+per) 안의 소수 첫째 자리 수 — **여럿**이다
+      const first: string[] = [];
+      for (let t = per * k * 10 + 1; t < (per * k + per) * 10; t += 1)
+        first.push(show({ scaled: t, dp: 1 }));
+      // 남는 양 하한이 좁히고, 「가장 적은」이 하나를 고른다
+      const ok = first.filter(
+        (t) => decOf(t)!.scaled > (per * k + rmin) * 10,
+      );
+      return { first, final: ok.length > 0 ? [ok[0]!] : [] };
     }
-    return { 고른것: yes, 버린것: no };
+    const top = content.match(
+      /\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주면 \$([\d.]+)\\,\\mathrm\{[a-zA-Z]+\}\$[^$]*\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주면 \$([\d.]+)\\,\\mathrm\{[a-zA-Z]+\}\$[^$]*\$([\d.]+)\\,/,
+    );
+    if (!top) return null;
+    const a = Number(top[1]);
+    const ra10 = decOf(top[2]!)!.scaled;
+    const b = Number(top[3]);
+    const rb10 = decOf(top[4]!)!.scaled;
+    const cap10 = decOf(top[5]!)!.scaled;
+    const first: string[] = [];
+    for (let k = 1; ; k += 1) {
+      const t = a * 10 * k + ra10;
+      if (t >= cap10) break;
+      first.push(show({ scaled: t, dp: 1 }));
+    }
+    const final = first.filter((t) => {
+      const v = decOf(t)!.scaled;
+      return v > b * 10 && (v - rb10) % (b * 10) === 0;
+    });
+    return { first, final };
   }
-  // 2-2-4 는 후보가 «목록»이 아니라 **구간**이다 — 값 재구성은 elemTiersG6.test.ts 몫이다.
   return null;
 }
 
-describe("[초6 확대] 2-2 소수의 나눗셈 — 심화중·심화상 (D-113 파일럿)", () => {
+describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () => {
   it("다섯 소단원이 심화중·심화상을 **둘 다** 낸다", () => {
     for (const code of CODES) {
       const tiers = supportedTiers(unitOf(code));
@@ -231,151 +275,167 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 심화중·심화상 (D-113 
     }
   });
 
-  it("㉡ 심화상의 답은 **발문의 후보를 다시 훑어** 나온 그것과 같다", () => {
+  it("㉠ 답은 **지면에서 되짚기를 다시 밟아** 나온 그 하나다", () => {
     const bad: string[] = [];
     let checked = 0;
     for (const code of CODES) {
-      if (code === "2-2-4") continue; // 구간형 — 위 머리말 참조
       const unit = unitOf(code);
-      for (const seed of SEEDS) {
-        const p = generateElementaryProblem(unit, seed, "심화상");
-        const where = `${code} 심화상 seed=${seed}`;
-        const sift = siftTop(code, p.content);
-        if (!sift) {
-          bad.push(
-            `${where}: 후보를 못 읽음 — ${p.content.replace(/\n+/g, " ")}`,
-          );
-          continue;
-        }
-        checked += 1;
-        const got = answerDecs(p.answer).map(show);
-        if (got.join(",") !== sift.고른것.join(",")) {
-          bad.push(
-            `${where}: 답 ${p.answer} (${sift.고른것.join(", ")} 이어야) — ` +
-              p.content.replace(/\n+/g, " "),
-          );
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const where = `${code} ${tier} seed=${seed}`;
+          const r = retrace(code, p.content);
+          if (!r) {
+            bad.push(`${where}: 되짚기를 못 읽음 — ${p.content}`);
+            continue;
+          }
+          checked += 1;
+          if (r.final.length !== 1) {
+            bad.push(
+              `${where}: 되짚어 남는 값이 ${r.final.length}개 (${r.final.join(", ")}) — ${p.content}`,
+            );
+            continue;
+          }
+          const got = answerDecs(p.answer).map(show);
+          if (got.join(",") !== r.final.join(",")) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${r.final[0]} 이어야) — ${p.content}`,
+            );
+          }
         }
       }
     }
     expect(bad.slice(0, 6)).toEqual([]);
     // 분모를 같이 못 박는다 — 훑기가 조용히 줄면 «0건»이 «못 셈»이 된다.
-    expect(checked).toBe((CODES.length - 1) * SEEDS.length);
+    expect(checked).toBe(CODES.length * 2 * SEEDS.length);
   });
 
-  it("㉢ 후보에는 **조건에 안 맞는 것**이 반드시 섞여 있다 — 다 고르면 틀린다", () => {
+  it("㉡ 첫 조건은 후보를 **둘 이상** 만든다 — 하나면 마디가 굳은 것이고 심화하다", () => {
+    // 🔴 이것이 심화중·심화상의 **정의**다(반증 ①). 이 검사가 죽으면 「되짚기 축」이
+    //    이름만 남고, 마디가 굳는 문항이 위 두 칸에 조용히 앉는다.
     const bad: string[] = [];
     for (const code of CODES) {
-      if (code === "2-2-4") continue;
+      const unit = unitOf(code);
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const r = retrace(code, p.content)!;
+          if (r.first.length < 2) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 첫 조건이 후보를 ${r.first.length}개만 만든다 — ${p.content}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("㉡-b 심화상은 **둘째 조건이 없으면 답이 안 선다** — 심화중과 층이 갈린다", () => {
+    // 심화상의 정의는 「성질만으론 못 굳혀 후보를 실제로 만들어 견주어야 한다」이다.
+    // 첫 조건만으로 답이 하나면 그것은 심화중이다.
+    const bad: string[] = [];
+    for (const code of CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unit, seed, "심화상");
-        const sift = siftTop(code, p.content)!;
-        if (sift.버린것.length === 0) {
+        const r = retrace(code, p.content)!;
+        if (r.first.length === r.final.length) {
           bad.push(
-            `${code} 심화상 seed=${seed}: 후보가 전부 조건을 만족한다 — 「모두」가 아무것도 안 가른다`,
+            `${code} 심화상 seed=${seed}: 둘째 조건이 아무것도 안 거른다 — ${p.content}`,
           );
         }
-        if (sift.고른것.length === 0) {
-          bad.push(`${code} 심화상 seed=${seed}: 고를 것이 하나도 없다`);
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("㉢ 답은 **하나**다 — 열거 문형이 아니다 (반증 ⑤)", () => {
+    const bad: string[] = [];
+    for (const code of CODES) {
+      const unit = unitOf(code);
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const n = answerDecs(p.answer).length;
+          if (n !== 1) {
+            bad.push(`${code} ${tier} seed=${seed}: 답이 ${n}개 — ${p.answer}`);
+          }
+          if (/모두\s*(구하|쓰|고르|찾)/.test(p.content)) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: 「모두 …시오」 — 열거는 등급의 근거가 아니다`,
+            );
+          }
         }
       }
     }
     expect(bad.slice(0, 6)).toEqual([]);
   });
 
-  it("㉢-b 2-2-2 심화상은 **문턱과 몫이 똑같은 후보**를 하나 둔다 (경계 함정)", () => {
-    // 「보다 큰」을 「보다 크거나 같은」으로 읽으면 틀리게 하는 자리다.
-    // 이게 없으면 문턱을 대충 읽어도 맞는다 — 그러면 이 문항이 재는 것이 하나 줄어든다.
+  it("㉣ 발문의 두 수를 **한 번 곱하거나 나눠서** 답이 나오지 않는다 (반증 ⑥)", () => {
+    // 🔴 **양성 대조를 같이 잡는다.** 「심화중·심화상이 0」만 보면 이 자가 눈이 멀어도
+    //    (수를 못 읽어 빈 배열이어도) 늘 초록이다. 같은 소단원의 **연산**은 발문이 식을
+    //    그대로 주므로 **반드시 걸려야** 한다.
     const bad: string[] = [];
-    const unit = unitOf("2-2-2");
-    for (const seed of SEEDS) {
-      const p = generateElementaryProblem(unit, seed, "심화상");
-      const ds = decsIn(p.content);
-      const [b, t] = [ds[4]!, ds[5]!];
-      // `c ÷ b === t` 를 **정수 교차곱**으로 — 부동소수로 견주면 경계에서 답이 흔들린다.
-      const exact = ds
-        .slice(0, 4)
-        .filter(
-          (c) =>
-            c.scaled * 10 ** (b.dp + t.dp) === t.scaled * b.scaled * 10 ** c.dp,
-        );
-      if (exact.length === 0) {
-        bad.push(
-          `2-2-2 심화상 seed=${seed}: 몫이 문턱과 같은 후보가 없다 — ${p.content}`,
-        );
-      }
-    }
-    expect(bad.slice(0, 6)).toEqual([]);
-  });
-
-  it("㉠ 심화중의 답은 하나, 심화상의 답은 여럿이거나 **개수**다", () => {
-    const bad: string[] = [];
-    let counted = 0;
-    let listed = 0;
+    let caught = 0;
     for (const code of CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const mid = generateElementaryProblem(unit, seed, "심화중");
-        if (answerDecs(mid.answer).length !== 1) {
-          bad.push(
-            `${code} 심화중 seed=${seed}: 답이 하나가 아니다 — ${mid.answer}`,
-          );
+        const calc = generateElementaryProblem(unit, seed, "연산");
+        const cAns = answerDecs(calc.answer);
+        if (cAns.length === 1 && oneStepAway(decsIn(calc.content), cAns[0]!)) {
+          caught += 1;
         }
-        const top = generateElementaryProblem(unit, seed, "심화상");
-        const n = answerDecs(top.answer).length;
-        if (n >= 2) {
-          listed += 1;
-        } else if (n === 1 && /몇 가지|몇 개/.test(top.content)) {
-          // «후보를 센 값» — 그 값이 실제로 후보 수인지는 ㉡ 이 잰다.
-          counted += 1;
-        } else {
-          bad.push(
-            `${code} 심화상 seed=${seed}: 답이 여럿도 개수도 아니다 — ${top.answer}`,
-          );
+        for (const tier of ["심화중", "심화상"] as const) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          const ans = answerDecs(p.answer);
+          if (ans.length !== 1) continue;
+          const hit = oneStepAway(decsIn(p.content), ans[0]!);
+          if (hit) {
+            bad.push(
+              `${code} ${tier} seed=${seed}: ${hit} 한 번이면 답이 나온다 — ${p.content}`,
+            );
+          }
         }
       }
     }
     expect(bad.slice(0, 6)).toEqual([]);
-    // 두 모양이 **둘 다** 실제로 나온다 — 한쪽만 나오면 그 가지는 시험된 적이 없다.
-    expect(counted).toBeGreaterThan(0);
-    expect(listed).toBeGreaterThan(0);
-    expect(counted + listed).toBe(CODES.length * SEEDS.length);
+    // 음성 대조 — 이 자가 「한 걸음」을 실제로 잡는가.
+    expect(caught, "연산 갈래에서 한 걸음을 하나도 못 잡았다 — 이 자가 죽었다").toBeGreaterThan(
+      CODES.length * SEEDS.length * 0.5,
+    );
   });
 
-  it("㉣ 2-2-1·2-2-2·2-2-3 — 심화하는 **한 걸음**이고 심화중은 아니다", () => {
-    // 🔴 **양쪽을 다 잠근다.** 심화중이 0 이라는 것만 보면 이 자가 눈이 멀어도(예: 발문을
-    //    못 읽어 후보가 빈 배열) 늘 초록이다. 심화하가 **반드시 걸리는 것**이 음성 대조다.
+  it("㉤ 반증 ④ — 같은 소단원의 **연산·기본·응용**은 이 잣대를 통과하지 않는다", () => {
+    // 🔴 통과가 나오면 그 소단원에서는 되짚기 축이 난이도를 안 가른다 — 확대 갈래를
+    //    **비워야** 한다. 「굳지 않는 마디가 있는가」의 지면 대리 지표는
+    //    ⑴ 되짚기를 시키는 낱말(「어떤 수」·`\square`·「~가 되려면」)이 있고
+    //    ⑵ 답이 발문의 두 수 한 걸음으로 **안** 나온다 — 둘 다다.
+    //    ⚠️ 이 대리 지표는 손 목록이라 샌다. 그래서 아래 §「눈으로 본 것」을 보고서에
+    //       같이 적었다 — 15갈래(5소단원 × 3)를 실제로 읽었다.
     const bad: string[] = [];
-    let shallow = 0;
-    for (const code of ["2-2-1", "2-2-2", "2-2-3"] as const) {
+    let judged = 0;
+    for (const code of CODES) {
       const unit = unitOf(code);
-      for (const seed of SEEDS) {
-        const deep = generateElementaryProblem(unit, seed, "심화하");
-        const dAns = answerDecs(deep.answer);
-        const hit =
-          dAns.length === 1
-            ? oneStepAway(decsIn(deep.content), dAns[0]!)
-            : null;
-        if (!hit) {
-          bad.push(
-            `${code} 심화하 seed=${seed}: 한 걸음으로 안 나온다 — 이 자가 죽었을 수 있다 (${deep.content.replace(/\n+/g, " ")})`,
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          judged += 1;
+          const backword = /어떤 수|\\square|되려면|이 되었습니다/.test(
+            p.content,
           );
-        } else {
-          shallow += 1;
-        }
-        const mid = generateElementaryProblem(unit, seed, "심화중");
-        const mAns = answerDecs(mid.answer);
-        const midHit =
-          mAns.length === 1 ? oneStepAway(decsIn(mid.content), mAns[0]!) : null;
-        if (midHit) {
+          if (!backword) continue;
+          const ans = answerDecs(p.answer);
+          if (ans.length !== 1) continue;
+          if (oneStepAway(decsIn(p.content), ans[0]!)) continue;
           bad.push(
-            `${code} 심화중 seed=${seed}: ${midHit} 한 번이면 답이 나온다 — 심화하와 같은 층이다`,
+            `${code} ${tier} seed=${seed}: 되짚기 축을 통과한다 — 이 소단원은 비워야 한다 (${p.content})`,
           );
         }
       }
     }
     expect(bad.slice(0, 6)).toEqual([]);
-    expect(shallow).toBe(3 * SEEDS.length);
+    expect(judged).toBe(CODES.length * 3 * SEEDS.length);
   });
 
   it("심화중·심화상은 씨앗마다 갈리고, 같은 씨앗이면 늘 같다", () => {
