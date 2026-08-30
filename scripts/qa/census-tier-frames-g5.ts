@@ -364,6 +364,43 @@ if (wantSix) {
   console.log(
     `   ⚠️ 걸린 자리는 **눈으로 봐야 한다** — 이 표지는 새는 쪽으로 헐겁다.\n`,
   );
+
+  /* Ⓔ **예/아니요로 답하는 문항이 어느 갈래에 몇이나 있나.**
+   *
+   * 열쇠를 **발문이 아니라 정답**에서 뽑는다 — 발문 말투는 새지만 「정답이 예/아니요」는
+   * 새지 않는다. 이런 문항은 찍어서 **절반을 맞힌다**. 저쪽 6단에는 이 형식이 리드
+   * 실측 표본에 없었다(선택형은 「누구입니까」·「기호를 쓰시오」였다).
+   * 우리 «응용»에 이것이 있으면 그 자리는 저쪽 「기본」보다도 아래로 읽힌다.
+   *
+   * ⚠️ 형식이 곧 쉬움은 아니다 — 판단 자체가 어려울 수 있다. 그래서 이것도 «모양»이다. */
+  const yesNo = new Map<string, number>();
+  const yesNoUnits = new Map<string, Set<string>>();
+  let yesNoSeen = 0;
+  for (const tier of ELEM_TIERS) {
+    yesNo.set(tier, 0);
+    yesNoUnits.set(tier, new Set());
+  }
+  for (const unit of units) {
+    for (const f of listedForms(unit)) {
+      for (let i = 0; i < SEEDS; i += 1) {
+        const p = generateElementaryForm(unit, SEED0 + i * STEP, f.id);
+        yesNoSeen += 1;
+        const a = p.answer.trim();
+        if (a === "예" || a === "아니요") {
+          yesNo.set(f.tier, (yesNo.get(f.tier) ?? 0) + 1);
+          yesNoUnits.get(f.tier)!.add(unit.section);
+        }
+      }
+    }
+  }
+  console.log(`── Ⓔ 정답이 «예/아니요» 인 문항 — 문형 ${yesNoSeen}건 중 ──`);
+  for (const tier of ELEM_TIERS) {
+    const c = yesNo.get(tier) ?? 0;
+    console.log(
+      `   ${tier.padEnd(4)} ${String(c).padStart(4)}건 · ${yesNoUnits.get(tier)!.size}개 소단원`,
+    );
+  }
+  console.log("");
   console.log(
     `⚠️ 이 넷은 **모양**이지 어려움이 아니다. 6단 배정은 사람이 읽고 적는다 —\n` +
       `   이 수치는 «어디를 눈으로 볼지»를 고르는 자다.`,
