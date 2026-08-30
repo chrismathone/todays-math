@@ -348,34 +348,38 @@ G3_MUTS = [
         '  const top = three.indexOf(Math.max(...three));',
         '  const top = three.indexOf(Math.min(...three));',
     ),
-    # ── 초3 2-1 «심화중·심화상» (D-113 파일럿, 2026-08-30) ──
-    # 잠그는 시험은 `elemTiersG3Mul21Extend.test.ts` 다(위 TARGETS 에 함께 적었다).
-    # 마지막 하나는 **옛 시험**(elemTiersG3 의 이름 약속)이 무는지를 본다 —
-    # 새 갈래가 소단원 밖으로 새는 것을 옛 가드가 잡아야 확대가 안전하다.
+    # ── 초3 2-1 «심화중·심화상» — D-113 **되짚기 축** (2026-08-30) ──
+    # 첫 판(열거 축)의 변이 다섯은 코드째 사라졌다 — 축이 기각돼 생성기를 다시 짰다.
+    # 잠그는 시험은 `elemTiersG3Mul21Extend.test.ts` 다(아래 TARGETS 에 함께 적었다).
     (
-        '[2-1 D-113] 심화중: 답을 옆 후보로 민다',
-        'n(cut.ans), [',
-        'n(next), [',
+        '[2-1 D-113] 심화중: 답을 반대쪽 후보로 민다',
+        '  const chosen = wantLow ? low : high;',
+        '  const chosen = wantLow ? high : low;',
     ),
     (
-        '[2-1 D-113] 심화중: 문턱을 꼭대기 위로 올려 후보가 다 통과한다',
-        '    const up = roundBetween(f.product(ds[i]!), f.product(ds[i + 1]!));',
-        '    const up = f.product(ds[ds.length - 1]!) + 1;',
+        '[2-1 D-113] 심화중: 올림이 같은 짝도 목록에 넣는다(성질이 못 가른다)',
+        '      if (cx === cy) continue;',
+        '      if (false && cx === cy) continue;',
     ),
     (
-        '[2-1 D-113] 심화상: 나열을 첫 후보 하나로 줄인다',
-        'list21(r.ans), [',
-        'list21(r.ans.slice(0, 1)), [',
+        '[2-1 D-113] 심화중: 올림 약속 밖 후보도 목록에 넣는다',
+        '      if (!inBand(cx) || !inBand(cy)) continue;',
+        '      if (!inBand(cx) && !inBand(cy)) continue;',
     ),
     (
-        '[2-1 D-113] 심화상: 카드 개수를 «전부»로 센다',
-        'n(okProducts.length), [',
-        'n(ps.length), [',
+        '[2-1 D-113] 심화상: 후보가 둘뿐인 짝도 넣는다(심화중과 겹친다)',
+        '      if (ks.length < 3) continue;',
+        '      if (ks.length < 2) continue;',
     ),
     (
-        '[2-1 D-113] 올림 약속 필터를 끈다 — 후보가 소단원 밖으로 샌다',
-        '        if (!DIGITS_1_9.every((d) => inBand(mulCarries3x1(at(d), b)))) continue;',
-        '        if (!DIGITS_1_9.some((d) => inBand(mulCarries3x1(at(d), b)))) continue;',
+        '[2-1 D-113] 심화상: 답을 이웃 후보로 민다',
+        '  const ans = f.ks[f.idx]!;',
+        '  const ans = f.ks[(f.idx + 1) % f.ks.length]!;',
+    ),
+    (
+        '[2-1 D-113] 2-1-4 심화하: 해설이 한 배치만 찍는다(리드가 짚은 옛 결함)',
+        '  const shown = alt.map(([u, v]) => expr(`${u}\times${v}=${u * v}`));',
+        '  const shown = [alt[0]!].map(([u, v]) => expr(`${u}\times${v}=${u * v}`));',
     ),
 ]
 
