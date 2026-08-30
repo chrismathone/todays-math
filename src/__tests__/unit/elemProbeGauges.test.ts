@@ -93,7 +93,7 @@ const GAUGED: [name: string, gauges: number][] = [
   //   ④ 는 「연산·기본·응용이 안 닿으면 이 소단원을 비워라」인데, **연산 갈래가
   //   정의상 순방향**이므로 그것이 «안 닿는다»고 나오면 눈먼 쪽은 자다. 안 가르니
   //   ④ 가 걸던 140소단원 중 **113개(81%)가 근거 없는 것**이었다.
-  ["probe-elem-tier-backsolve", 16],
+  ["probe-elem-tier-backsolve", 20],
   // ── 중등 (2026-08-24, 미분류 133건을 읽다 나온 결함에서 태어났다) ──
   ["probe-middle-uniqueness", 3],
   ["probe-middle-page-smells", 9],

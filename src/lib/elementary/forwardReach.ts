@@ -115,12 +115,58 @@ export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
   return false;
 }
 
-/** `"0.35"` → 7/20. 못 읽으면 null. */
+/**
+ * `"0.35"` → 7/20 · `"\frac{3}{4}"` → 3/4 · `"1\frac{1}{12}"` → 13/12 ·
+ * `"12\,\mathrm{cm}"`·`"3000개"`·`"66^\circ"` → 꼬리를 떼고 수만. 못 읽으면 null.
+ *
+ * ## 🔴 왜 넓혔나 — 넓히기 전에는 **답의 38.2%를 못 읽었다** (2026-08-31 실측)
+ *
+ * 못 읽으면 `sweep()` 이 그 행을 **아예 안 만든다.** 그래서 초4 는 62소단원 중
+ * **27개만** 훑혔다 — 나머지 35곳에서는 반증 ⑥ 이 「깨끗」이 아니라 **없다.**
+ * 앞으로 채울 206소단원의 절반이 그 자리라, 넓히지 않으면 **가드 없이 채우게 된다.**
+ *
+ * 되찾은 부류와 실측 건수(씨앗 3):
+ * ```
+ * \frac{N}{N}        187   진짜 유리수인데 못 읽던 것
+ * N\frac{N}{N}       107   대분수
+ * N^\circ · N개 · N\,\mathrm{cm} · N명 · N원 · N칸 · N번 ≈ 296   단위·조사가 붙었을 뿐
+ * ```
+ *
+ * ⚠️ **일부러 안 넓힌 것** — 이것들은 «수 하나»가 아니라서 이 자의 축이 아니다:
+ * ```
+ * N:N · N,\ N · N\,\mathrm{L}\ N\,\mathrm{mL} · N시간 N분 · 몫 N, 나머지 N
+ * 가 · 나 · 다 · 둔각삼각형 · 평행        (도형 이름·고르기)
+ * ```
+ *    억지로 첫 수만 떼어 읽으면 「$3$시간 $20$분」이 $3$ 이 되어 **없는 판정을 지어낸다.**
+ */
 export function readRat(tok: string): Rat | null {
-  const m = /^(\d+)(?:\.(\d+))?$/.exec(tok.trim());
+  let s = tok.trim();
+  // 꼬리의 단위·조사만 뗀다 — **수가 둘 이상 남으면 안 뗀다**(혼합 표기는 이 축이 아니다).
+  s = s
+    .replace(/\^\\?circ$/, "")
+    .replace(/\\,?\\mathrm\{[a-zA-Z]+\}$/, "")
+    .replace(/\\,$/, "")
+    .replace(/\s*(?:cm|mm|km|kg|mL|L|g|m)$/, "")
+    .replace(/\s*[가-힣]+$/, "")
+    .trim();
+
+  // 대분수 `1\frac{1}{12}` — 정수부 + 진분수.
+  const mixed = /^(\d+)\s*\\frac\{(\d+)\}\{(\d+)\}$/.exec(s);
+  if (mixed) {
+    const d = Number(mixed[3]);
+    if (d === 0) return null;
+    return rat(Number(mixed[1]) * d + Number(mixed[2]), d);
+  }
+  // 분수 `\frac{3}{4}`.
+  const frac = /^\\frac\{(\d+)\}\{(\d+)\}$/.exec(s);
+  if (frac) {
+    const d = Number(frac[2]);
+    return d === 0 ? null : rat(Number(frac[1]), d);
+  }
+  const m = /^(\d+)(?:\.(\d+))?$/.exec(s);
   if (!m) return null;
-  const frac = m[2] ?? "";
-  return rat(Number(m[1] + frac), 10 ** frac.length);
+  const dec = m[2] ?? "";
+  return rat(Number(m[1] + dec), 10 ** dec.length);
 }
 
 /**
@@ -133,7 +179,19 @@ export function readRat(tok: string): Rat | null {
 export function pageNumbers(text: string): Rat[] {
   const out: Rat[] = [];
   for (const m of text.matchAll(/\$([^$]*)\$/g)) {
-    for (const tok of (m[1] ?? "").match(/\d+(?:\.\d+)?/g) ?? []) {
+    // 🔴 **분수를 먼저 통째로 삼킨다** (2026-08-31). 앞판은 `\frac{3}{4}` 를
+    //    낱값 **[3, 4] 둘**로 읽었다 — 그건 느슨한 게 아니라 **틀린 것**이다.
+    //    그래서 초5 2-2-1 연산 「$\frac34\times4$」 답 $3$ 이 «안 닿는다»로 찍혔고,
+    //    분수 대단원 전체에서 이 자가 아무것도 판정하지 못했다.
+    //    대분수도 한 값이다 — `2\frac13` 을 [2,1,3] 으로 읽으면 없는 수 셋이 생긴다.
+    let body = m[1] ?? "";
+    for (const f of body.matchAll(/(\d+)?\s*\\[dt]?frac\{(\d+)\}\{(\d+)\}/g)) {
+      const d = Number(f[3]);
+      if (d === 0) continue;
+      out.push(rat(Number(f[1] ?? 0) * d + Number(f[2]), d));
+    }
+    body = body.replace(/(\d+)?\s*\\[dt]?frac\{(\d+)\}\{(\d+)\}/g, " ");
+    for (const tok of body.match(/\d+(?:\.\d+)?/g) ?? []) {
       const r = readRat(tok);
       if (r) out.push(r);
     }
