@@ -295,21 +295,42 @@ if (mode === "holic") {
     );
   }
   // 저쪽 기본은 계산의 «구조»를 묻는다(자릿값 분해·수 모형·계산 방법 따라가기).
-  // ⚠️ 이 낱말 목록은 **손으로 지은 것**이다 — 0 이면 «없다»가 아니라 «이 열쇠로는
-  //    못 셌다»로 읽어야 한다. 있으면 참이고, 없으면 사람이 봐야 한다.
-  const STRUCT = /자릿값|수 모형|모형으로|계산 방법|어떻게 계산|분해/;
+  //
+  // 🔴 **첫 판은 낱말로 물었고 전 갈래 0 이 나왔다** — `자릿값|수 모형|계산 방법|분해`.
+  //    그런데 눈으로 보니 초4 1-1-2 «연산»이 「10000이 6개, 1000이 7개 … 인 수를
+  //    쓰시오」다. **바로 그 자릿값 분해인데 그 낱말을 안 쓴다.** 0 은 «없다»가 아니라
+  //    «못 셌다»였다(CLAUDE.md 2026-08-21 「가드가 0을 내면 «없다»가 아니라 «못 센다»일
+  //    수 있다」). 그래서 열쇠를 **낱말이 아니라 문형**으로 바꿨다 — 고치니 초4에서
+  //    연산 48 · 기본 16 · 응용 14 · 심화 12 문항이 잡힌다. **저쪽이 «기본»에 두는 층이
+  //    우리는 «연산»에 가장 두껍게 있다** — ㉢ 이 묻는 어긋남이 그 수에 있다.
+  const STRUCT: [string, RegExp][] = [
+    [
+      "자릿값 분해 (A가 n개, B가 m개인 수)",
+      /이 \$?\d+\$?개[,、]|가 \$?\d+\$?개[,、]/,
+    ],
+    ["단위 세기 (…은 …이 몇 개인 수)", /은 .*이 몇 개인 수/],
+    [
+      "뜻을 묻는다 (무엇을 나타내는가·바뀌는 것은)",
+      /무엇을 나타내는가|바뀌는 것은|무엇을 비교하면/,
+    ],
+  ];
   console.log(
-    `\n  「계산의 구조를 묻는가」 (손으로 지은 열쇠 — 0 은 «못 셈»일 수 있다)`,
+    `\n  「계산의 구조를 묻는가」 — 저쪽 «기본»의 표지가 우리 어느 갈래에 있나`,
   );
-  for (const tier of ELEM_TIERS) {
-    const mine = rows.filter((r) => r.tier === tier);
-    const hit = mine.filter((r) => STRUCT.test(r.content));
-    console.log(
-      `    ${tier}  ${String(hit.length).padStart(3)}/${mine.length}` +
-        (hit.length > 0
-          ? `   예) ${hit[0]!.content.replace(/\s+/g, " ").slice(0, 70)}`
-          : ""),
-    );
+  for (const [name, re] of STRUCT) {
+    console.log(`    · ${name}`);
+    for (const tier of ELEM_TIERS) {
+      const mine = rows.filter((r) => r.tier === tier);
+      const hit = mine.filter((r) => re.test(r.content));
+      const secs = new Set(hit.map((r) => r.section.split(" ")[0]!));
+      console.log(
+        `        ${tier}  ${String(hit.length).padStart(3)}/${mine.length}` +
+          `  소단원 ${String(secs.size).padStart(2)}` +
+          (hit.length > 0
+            ? `   예) ${hit[0]!.content.replace(/\s+/g, " ").slice(0, 60)}`
+            : ""),
+      );
+    }
   }
 
   console.log(
