@@ -54,7 +54,9 @@ const MUTATIONS = [
   {
     // 심화상의 후보를 **발문이 주게** 한다 — 되짚기가 만든 것이 아니게 된다.
     label: "1-3-7 심화상 — 나누는 수가 어림값 그 자체인 자리도 낸다(답이 발문에 적힌다)",
-    from: "      if (divs.length === 1 && divs[0] !== bb) rows.push({ bb, a, d: divs[0]! });",
+    // ⚠️ 앵커는 **prettier 가 접은 뒤의 모양**이다. 손으로 한 줄로 적었다가
+    //    `치환 자리 0곳` 이 났다(메모리 `format-kills-mutation-anchors` 그 자리).
+    from: "      if (divs.length === 1 && divs[0] !== bb)\n        rows.push({ bb, a, d: divs[0]! });",
     to: "      if (divs.length === 1) rows.push({ bb, a, d: divs[0]! });",
   },
   {
