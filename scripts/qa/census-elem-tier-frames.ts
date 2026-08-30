@@ -5,6 +5,13 @@
  *   npx tsx scripts/qa/census-elem-tier-frames.ts 초3 --tails   # 갈래별 «지시문 꼬리»
  *   npx tsx scripts/qa/census-elem-tier-frames.ts 초3 --unit=2-3-3  # 한 소단원 네 갈래
  *   npx tsx scripts/qa/census-elem-tier-frames.ts 초3 --top=40  # 몇 종까지 찍나 (기본 25)
+ *   npx tsx scripts/qa/census-elem-tier-frames.ts 초3 --tails --show='$N$' --tier=심화
+ *                                              # 그 꼴 뒤의 **실제 발문**을 펴 본다
+ *
+ * ⚠️ `--show` 는 **분포를 믿기 전에 꼴이 무엇을 뭉쳤는지 펴 보라고** 있다. 꼴은
+ *    뭉치는 물건이라 「무엇이 한 칸에 들어갔나」를 안 보면 수를 잘못 읽는다 — 실제로
+ *    초3 심화 꼬리 «$N$» 66건은 «맨 계산»이 아니라 **지시문 뒤에 수식 줄이 따로
+ *    붙은 것**이었다(`--show` 로 확인). 그걸 안 펴고 적었으면 거짓을 보고할 뻔했다.
  *
  * ## 왜 있나
  *
@@ -48,6 +55,12 @@ const unitArg = args
   .find((a) => a.startsWith("--unit="))
   ?.slice("--unit=".length);
 const topArg = args.find((a) => a.startsWith("--top="))?.slice("--top=".length);
+const showArg = args
+  .find((a) => a.startsWith("--show="))
+  ?.slice("--show=".length);
+const tierArg = args
+  .find((a) => a.startsWith("--tier="))
+  ?.slice("--tier=".length);
 const wantTails = args.includes("--tails");
 const TOP = topArg ? Number(topArg) : 25;
 
@@ -119,6 +132,40 @@ if (unitArg) {
   console.log(
     `\n훑은 것 — ${tally.line()} · ${fence.scopeLine()}\n` +
       "⚠️ 이 연장은 판정하지 않는다. 넷을 눈으로 보라고 늘어놓은 것뿐이다.",
+  );
+  process.exit(0);
+}
+
+// `--show` — 한 꼴 뒤의 **실제 발문**을 편다. 꼴은 뭉치는 물건이라, 수를 읽기 전에
+// 「무엇이 한 칸에 들어갔나」를 봐야 한다.
+if (showArg !== undefined) {
+  const tiers = tierArg ? [tierArg] : [...ELEM_TIERS];
+  let hit = 0;
+  for (const unit of units) {
+    for (const tier of tiers) {
+      tally.count(unit.grade, unit.section, tier, SEEDS.length);
+      for (const seed of SEEDS) {
+        const p = generateElementaryProblem(
+          unit,
+          seed,
+          tier as (typeof ELEM_TIERS)[number],
+        );
+        const key = wantTails ? tailOf(p.content) : frameOf(p.content);
+        if (key !== showArg) continue;
+        hit += 1;
+        if (hit <= 15) {
+          console.log(`\n--- ${unit.section} [${tier}] 씨앗 ${seed}`);
+          console.log(`    ${p.content.replace(/\n+/g, " / ")}`);
+          console.log(`    답 ${p.answer}`);
+        }
+      }
+    }
+  }
+  tally.assertNonEmpty();
+  fence.close();
+  console.log(
+    `\n«${showArg}» 에 해당하는 문항 ${hit}건 (위에 ${Math.min(hit, 15)}건만 폈다)\n` +
+      `훑은 것 — ${tally.line()} · ${fence.scopeLine()}`,
   );
   process.exit(0);
 }
