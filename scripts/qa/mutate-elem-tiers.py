@@ -780,66 +780,48 @@ G5_MUTS = [
         "  const left = intBetween(rng, 4, 40);",
         "  const left = intBetween(rng, -20, 40);",
     ),
-    # ── 2-4 확대 갈래 «심화중»·«심화상» (D-113 파일럿, 2026-08-30) ──────────────
-    # 새 시험은 `elemTiersG5DecTop.test.ts` 다 — 위 `TARGETS["g5"]["test"]` 에 같이 넣었다.
-    # 하나만 돌리면 새 축이 무는 변이가 「시험이 못 잡는다」로 읽힌다.
+    # ── 2-4 확대 갈래 «심화중»·«심화상» — **되짚기 축** (D-113, 2026-08-30) ─────
+    # 🔴 옛 아홉은 «열거 축» 코드를 물고 있었고 그 축이 기각돼 **자리가 사라졌다**
+    #    (하네스가 count==1 로 시끄럽게 거부한다 — 조용히 통과하지 않는다).
+    #    잣대가 바뀌면 변이도 같이 바뀐다. 새 시험은 `elemTiersG5DecTop.test.ts` 다.
     (
-        "[2-4 심화중] 답 목록에서 마지막 후보를 뺀다 (열거가 반쪽이 된다)",
-        "  const answer = nums(t.hits.map((c) => c.label));",
-        "  const answer = nums(t.hits.slice(0, -1).map((c) => c.label));",
+        # 방향을 적으면 마디가 «굳어» 심화하가 된다 — 이 갈래의 정의 그 자체다.
+        "[2-4 심화중] 발문이 소수점을 옮긴 **방향을 말한다**",
+        "어떤 수의 소수점을 한 자리 잘못 옮긴 수에 ${dj(kt",
+        "어떤 수의 소수점을 오른쪽으로 한 자리 잘못 옮긴 수에 ${dj(kt",
     ),
     (
-        # 후보 줄의 양 끝이 답이 되면 「그 바깥은 왜 안 되나」를 보여 줄 짝이 없다.
-        "[2-4 심화중] 후보 줄의 «양 끝» 가드 삭제",
-        "        if (first < 1 || last >= prod.length - 1) continue;",
-        "        if (first < 0 || last >= prod.length) continue;",
+        # 다른 후보도 성질을 만족하면 답이 둘이다 — 마디가 안 굳는다.
+        "[2-4 심화중] 「다른 후보가 성질을 만족하면 버린다」 가드 삭제",
+        "    if (spec.holds(other)) continue;",
+        "    if (spec.holds(other) && false) continue;",
     ),
     (
-        "[2-4 심화중] 2-4-1 이 답 하나짜리도 낸다 (한 걸음 역산으로 내려앉는다)",
-        '    key: "g5-241-mid",\n'
-        "    fixedPool: MID_UNDER_ONE,\n"
-        "    candPool: MID_NAT,\n"
-        "    boundPool: scRange(1, 17, 1, 0),\n"
-        "    min: 2,",
-        '    key: "g5-241-mid",\n'
-        "    fixedPool: MID_UNDER_ONE,\n"
-        "    candPool: MID_NAT,\n"
-        "    boundPool: scRange(1, 17, 1, 0),\n"
-        "    min: 1,",
+        "[2-4 심화중] 바른 값을 한 자리 어긋나게 계산한다 (값 검산 훼손)",
+        "      const right = scMul(a, k);",
+        "      const right = scMul(scShift(a, 1), k);",
     ),
     (
-        "[2-4 심화중] 해설이 «양쪽 경계»를 안 짚는다",
-        '      `${lj(spec.calc(t.fixed, t.below), "은", "는")} ${n(scText(t.lo))}보다 작고 ` +\n'
-        '        `${lj(spec.calc(t.fixed, t.above), "은", "는")} ${n(scText(t.hi))}보다 크므로 조건에 맞지 않습니다.`,',
-        "      `그 밖의 수는 조건에 맞지 않습니다.`,",
+        # 창이 하나만 남기면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
+        "[2-4 심화상] 창이 후보를 **하나만** 남겨도 통과",
+        "        if (inWindow.length < 2 || inWindow.length > 4) continue;",
+        "        if (inWindow.length < 1 || inWindow.length > 4) continue;",
     ),
     (
-        "[2-4 심화상] 답을 «조건에 맞는 으뜸»이 아니라 **전체 으뜸**으로",
-        "    expr(scText(t.best.prod)),",
-        "    expr(scText(t.top.prod)),",
+        "[2-4 심화상] 창 안 다른 후보가 같은 곱을 만들어도 통과 (답이 둘이 된다)",
+        "            if (rival) continue;",
+        "            if (rival && false) continue;",
     ),
     (
-        # 실측으로 이 가드만 오늘 실제로 일한다(2-4-1 에서 39자리). 그 자리를
-        # 재기 전에는 **아무 시험도 안 보고 있었다** — 그래서 시험을 새로 넣었다.
-        "[2-4 심화상] 답이 정수로 접혀도 통과 (지면에서 «소수»가 사라진다)",
-        "      if (wantDecimal && scPlaces(best.prod) === 0) continue;",
-        "      if (wantDecimal && scPlaces(best.prod) === 9) continue;",
+        "[2-4 심화상] 답을 되짚어 얻는 인수가 아니라 **창에 걸린 인수**로",
+        "  return makeDeep(unit, content(t), expr(scText(t.dec)), [",
+        "  return makeDeep(unit, content(t), expr(scText(t.other)), [",
     ),
     (
-        "[2-4 심화상] 발문이 카드를 하나 빠뜨린다 (배열 공간이 발문과 어긋난다)",
-        '  return [...cards.slice(0, -1).map((c) => n(c)), tail].join(", ");',
-        '  return [...cards.slice(1, -1).map((c) => n(c)), tail].join(", ");',
-    ),
-    (
-        "[2-4 심화상] 2-4-7 의 «곱하는 수가 두 가지 이상» 가드 삭제",
-        r'    (hits) => new Set(hits.map((it) => it.text.split("\\times")[1])).size >= 2,',
-        "    (hits) => hits.length > 0,",
-    ),
-    (
-        # 발문의 «꼴»이 소단원 이름과 어긋난다 — 1보다 큰 소수여야 할 자리가 0.x 가 된다.
-        "[2-4 심화상] 2-4-2 의 꼴을 소단원 밖으로 바꾼다",
-        r'      `${expr("\\square.\\square\\times\\square")} 꼴의 곱셈식을 만듭니다. ` +',
-        r'      `${expr("0.\\square\\times\\square\\square")} 꼴의 곱셈식을 만듭니다. ` +',
+        # 반증 ⑥ — 이걸 끄면 순방향으로 풀리는 문항이 통과한다.
+        "[2-4 심화중] 반증 ⑥ 걸개(순방향 도달) 삭제",
+        "      if (forwardReach(render(task), right)) continue;",
+        "      if (forwardReach(render(task), right) && false) continue;",
     ),
 ]
 
