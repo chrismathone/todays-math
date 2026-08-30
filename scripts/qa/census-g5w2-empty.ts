@@ -38,8 +38,10 @@ const DENS = [3, 4, 5, 6, 8, 9, 10, 12];
 /** 「자연수 부분을 안 말한다」에서 사람이 뒤져 볼 만한 자연수 부분의 위끝. */
 const WHOLE_CAP = 9;
 
-const add = (x: Fr, y: Fr): Fr => simplify(x[0] * y[1] + y[0] * x[1], x[1] * y[1]);
-const sub = (x: Fr, y: Fr): Fr => simplify(x[0] * y[1] - y[0] * x[1], x[1] * y[1]);
+const add = (x: Fr, y: Fr): Fr =>
+  simplify(x[0] * y[1] + y[0] * x[1], x[1] * y[1]);
+const sub = (x: Fr, y: Fr): Fr =>
+  simplify(x[0] * y[1] - y[0] * x[1], x[1] * y[1]);
 const proper = (x: Fr) => x[0] > 0 && x[0] < x[1];
 const mixed = (x: Fr) => x[0] > x[1] && x[1] !== 1;
 
@@ -68,7 +70,8 @@ function candidates(kind: "proper" | "mixed", given: Fr, part: Fr): Fr[] {
 function censusSums(): void {
   const props = properAll();
   const bases: Fr[] = [];
-  for (const f of props) for (const w of [1, 2, 3]) bases.push([w * f[1] + f[0], f[1]]);
+  for (const f of props)
+    for (const w of [1, 2, 3]) bases.push([w * f[1] + f[0], f[1]]);
 
   for (const [label, kind, givens] of [
     ["1-5-1 진분수의 덧셈", "proper", props],
@@ -128,7 +131,9 @@ function main(): void {
   console.log(
     "\n⚠️ 1-6-3(넓이의 단위)은 세지 않는다 — 환산이 일대일이라 어떤 마디도 후보를",
   );
-  console.log("   둘 만들 수 없다. 그것은 세어서가 아니라 **구성으로** 보인 것이다.");
+  console.log(
+    "   둘 만들 수 없다. 그것은 세어서가 아니라 **구성으로** 보인 것이다.",
+  );
 }
 
 if (isDirectScript(import.meta.url)) main();
