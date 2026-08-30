@@ -1791,16 +1791,30 @@ class FigureScene:
         #    **밑의 실선을 지운다** — 글자 상자만 보면 「안 겹친다」인데 지면에서는
         #    선이 끊긴다(lint_svg 규칙 7). 경계(viewBox)에는 안 넓힌 상자를 쓴다.
         pad = self.style.halo_width / 2.0 + 0.5
-        best: tuple[tuple[int, float], tuple[float, float], Box] | None = None
+        best: tuple[tuple[int, int, float], tuple[float, float], Box] | None = None
         for rank, distance in enumerate(distances):
             x = vertex.x + distance * math.cos(mid)
             y = vertex.y + distance * math.sin(mid) + 0.32 * fs
             box = _text_box(x, y, angle.label, fs, self.label_metrics)
-            cost = self._candidate_cost("", _expand_box(box, pad), occupied, rank, 0,
-                                        own_angle=angle.name)
+            # 🔴 **고르는 자와 «밖으로 뺄까»를 판정하는 자가 같은 것을 봐야 한다.**
+            #
+            # 종전에는 `_candidate_cost` 로 고르고 `_label_hits_geometry` 로 판정했다.
+            # 그 둘은 **다른 것을 본다** — cost 는 먼저 놓인 라벨·다른 각 표시까지
+            # 세고, hits 는 오직 잉크만 본다. 그래서 **잉크를 안 밟는 후보가 있는데도**
+            # cost 가 다른 것을 골라, 「안에 자리가 없다」로 밖으로 끌려 나갔다.
+            # 실측 `3-2|삼각비의 활용|04`: 거리 후보 [17.5, 25.1, **32.6**] 중
+            # 32.6 은 잉크를 안 밟는데(hits=0) 밖으로 나갔다 — 원장님 지적 2026-08-30
+            # 「도형 내부에 60도를 적어도 충분한데 굳이 밖으로 뺌」.
+            #
+            # 그래서 **「잉크를 밟나」를 첫째 항으로** 올린다. 안 밟는 후보가 하나라도
+            # 있으면 그것이 이기고, 그러면 아래 판정도 자연히 「안에 남는다」가 된다.
+            # (같은 값을 두 번 재지 않도록 그 결과를 `best` 에 함께 싣는다.)
+            hits = self._label_hits_geometry(box)
+            cost = (1 if hits else 0,) + self._candidate_cost(
+                "", _expand_box(box, pad), occupied, rank, 0, own_angle=angle.name)
             if best is None or cost < best[0]:
                 best = (cost, (x, y), box)
-            if cost[0] == 0:
+            if cost[0] == 0 and cost[1] == 0:
                 break
         assert best is not None
         # 🔴 **끌어낼지 말지의 열쇠는 «이 상자가 정말 잉크를 밟는가»다.**
@@ -1809,7 +1823,9 @@ class FigureScene:
         #    각 표시»까지 세므로 넉넉한 각에서도 0이 아니다. 그걸 열쇠로 썼다가
         #    **7장 전부를 밖으로 끌어냈다**(2026-08-27 첫 판). 원장님이 화면에서
         #    바로 잡아 주셨다 — 「완전 이상한데?」.
-        if not self._label_hits_geometry(best[2]):
+        # `best[0][0]` 이 곧 «이 상자가 잉크를 밟나»다 — 위에서 이미 쟀다.
+        # 다시 부르면 두 자가 갈라질 자리를 또 만든다.
+        if best[0][0] == 0:
             return best[1], best[2], None
 
         # ── 안쪽에 자리가 없다 → **밖으로 끌어내고 지시선을 긋는다** ──────────
@@ -1843,10 +1859,37 @@ class FigureScene:
         sign = 1.0 if delta >= 0 else -1.0
         best_out: tuple[float, tuple[float, float], Box, tuple[float, float]] | None
         best_out = None
-        for far in (1.2, 1.7, 2.3, 3.0):
+        # 🔴 **먼저 되는 자리를 그냥 쓰면 안 된다 — 어느 팔로 나갈지가 «순서»로 정해진다.**
+        #
+        # 종전에는 첫 통과 후보에서 `break` 했다(first-fit). 그러면 나가는 팔이
+        # `angle.p1`·`p2` 를 **스펙이 어느 차례로 적었는가**로 정해진다. 실측
+        # `2-2|여러 가지 사각형|08`: 후보 **24개가 전부 통과**하는데 첫째(=`p1` 쪽,
+        # 곧 $\overline{AB}$ 쪽)를 써서, 그 변의 `4 cm` 치수가 밀려났다.
+        # 원장님 지적 2026-08-30 — 「60도를 아래쪽으로 해야 4cm 의 치수가 여유로워짐」.
+        #
+        # 그래서 **치수가 달린 팔을 피한다.** 각 라벨은 치수보다 먼저 놓이므로 치수가
+        # «어디에» 올지는 모르지만, `self.dimensions` 를 보면 «어느 변을 잴지»는 안다.
+        # 그 한 가지가 원장님이 말씀하신 바로 그 축이다.
+        arm_taken = []
+        for arm_point in (p1, p2):
+            taken = False
+            for dimension in self.dimensions.values():
+                ends = (self.points[dimension.p1], self.points[dimension.p2])
+                # 그 치수의 두 끝이 **이 팔 위**에 있나 (변 전체든 토막이든).
+                if all(_distance_point_line(end, vertex, arm_point) <= 0.25
+                       and _point_within_segment(end, vertex, arm_point, 0.25)
+                       for end in ends):
+                    taken = True
+                    break
+            arm_taken.append(taken)
+
+        scored: list[tuple[tuple[int, int, int, int],
+                           tuple[float, tuple[float, float], Box,
+                                 tuple[float, float]]]] = []
+        for far_rank, far in enumerate((1.2, 1.7, 2.3, 3.0)):
             distance = radius + fs * far
-            for arm, turn in ((a0, -sign), (a1, sign)):
-                for turn_deg in (30.0, 48.0, 66.0):
+            for arm_rank, (arm, turn) in enumerate(((a0, -sign), (a1, sign))):
+                for turn_rank, turn_deg in enumerate((30.0, 48.0, 66.0)):
                     direction = arm + turn * math.radians(turn_deg)
                     x = vertex.x + distance * math.cos(direction)
                     y = vertex.y + distance * math.sin(direction) + 0.32 * fs
@@ -1861,12 +1904,14 @@ class FigureScene:
                     if not _leader_is_drawable(anchor, (x, y), angle.label, fs,
                                                self.style.halo_width):
                         continue
-                    best_out = (distance, (x, y), box, anchor)
-                    break
-                if best_out is not None:
-                    break
-            if best_out is not None:
-                break
+                    scored.append((
+                        # 치수가 달린 팔을 피하는 것이 먼저, 그다음이 «가까이».
+                        (1 if arm_taken[arm_rank] else 0,
+                         far_rank, turn_rank, arm_rank),
+                        (distance, (x, y), box, anchor),
+                    ))
+        if scored:
+            best_out = min(scored, key=lambda item: item[0])[1]
         if best_out is None:
             # 밖에서도 못 비켰다 — 옛 동작(가장 덜 나쁜 자리)으로 물러선다.
             # 지시선을 그으면 그 선이 또 잉크를 얹으므로 여기서는 긋지 않는다.
@@ -2370,6 +2415,26 @@ class FigureScene:
                                     for sample in samples)
                                 if clearance < 3.0:
                                     near_geometry += 1
+
+                        # 🔴 **각 표시(호·직각 사각형)도 잉크다.**
+                        #
+                        # 여기 없던 동안 치수는 그것을 **못 봤다** — 목록에 없으니
+                        # 구조적으로 0이다. 원장님이 지면에서 찾으셨다(2026-08-30,
+                        # `2-2|삼각형의 성질|12`): 「치수선과 각도가 매우 겹치기
+                        # 때문에…」. 겹친 것은 곡선끼리가 아니라 **값 글자와 각 호**
+                        # 다 — 실측 `6 cm` 상자와 60° 호 사이 **8.25px**(곡선끼리는
+                        # 10.08px 라 그것만 보면 「안 겹친다」로 읽힌다). 그래서
+                        # 여기서 `label_box` 도 함께 본다. 고친 뒤 56.36px.
+                        # 라벨 배치는 이미 `_angle_mark_polylines` 로 이것을 보고
+                        # 있었다 — 치수만 두 벌 중 한쪽에서 빠져 있었다.
+                        for angle_name in sorted(self.angles):
+                            for polyline in self._angle_mark_polylines(
+                                    self.angles[angle_name]):
+                                if (_polylines_intersect(samples, polyline)
+                                        or _polyline_intersects_box(
+                                            polyline, _expand_box(label_box, 1.0))):
+                                    geometry_crossings += 1
+                                    break
 
                         for arc_name in sorted(self.arcs):
                             arc_samples = self._arc_stroke_samples(self.arcs[arc_name])

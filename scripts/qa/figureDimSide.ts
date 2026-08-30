@@ -265,3 +265,153 @@ export function judgeSvg(svg: string): { hullPts: number; dims: DimVerdict[] } {
 }
 
 export const INSIDE_MARGIN = MARGIN;
+
+/**
+ * 치수 파선과 **각 표시(호·직각 사각형)** 사이의 가장 가까운 거리.
+ *
+ * 원장님이 지면에서 찾으셨다(2026-08-30, `2-2|삼각형의 성질|12`): 「치수선과 각도가
+ * 매우 겹치기 때문에 문제에서 BC 를 주고 치수선을 표시 안 하는 게 더 나은 방법일지도
+ * 모름.」 겹친 것은 곡선끼리가 아니라 **값 글자와 각 호**다 — 실측 `6 cm` 상자와
+ * 60° 호 사이 **8.25px**(곡선끼리는 10.08px 라 그것만 보면 「안 겹친다」로 읽힌다).
+ * ⚠️ 처음에 「0.29px」이라 적었는데 그건 **틀린 값**이다. 그때 자가 `stroke-width`
+ *    없는 **글자 글리프**까지 「표시」로 세고 있었다. 치수 자리를 고르는 점수가 도형
+ * 선분·호·원은 보는데 **각 표시는 목록에 없어** 구조적으로 0이었다.
+ *
+ * 치수가 하나도 없으면 `Infinity` — 「겹침 없음」과 「잴 것이 없음」을 부르는 쪽이
+ * 갈라 볼 수 있어야 한다.
+ */
+export function dimVsAngleMarkGap(svg: string): {
+  gap: number;
+  labelGap: number;
+  dims: number;
+  marks: number;
+} {
+  const all = svg.match(/<[^>]+>/g) ?? [];
+  const dashed: XY[][] = [];
+  const marks: XY[][] = [];
+  for (const t of all) {
+    if (!/^<path\b/.test(t)) continue;
+    const d = /\sd="([^"]+)"/.exec(t)?.[1];
+    if (!d) continue;
+    // 🔴 `stroke-width` 가 **없는** path 는 글자 글리프다 — `w < 1.0` 으로만 거르면
+    //    그것들이 통째로 「표시」로 들어온다. 첫 판이 그랬고, 그래서 「각 표시와
+    //    0.29px」이라는 숫자가 나왔다. 실제로 그 0.29 는 **글자와의 거리**였다.
+    const w = Number(/stroke-width="([\d.]+)"/.exec(t)?.[1] ?? "0");
+    if (/stroke-dasharray/.test(t)) dashed.push(samplePath(d));
+    else if (w > 0 && w < 1.0) marks.push(samplePath(d)); // 얇은 실선 = 표시류
+  }
+  let gap = Infinity;
+  for (const c of dashed) {
+    for (const m of marks) {
+      for (const a of c) {
+        for (const b of m)
+          gap = Math.min(gap, Math.hypot(a[0] - b[0], a[1] - b[1]));
+      }
+    }
+  }
+
+  // 🔴 **원장님이 보신 겹침은 곡선끼리가 아니라 «값 글자»와 각 호였다.**
+  //    (2026-08-30, `2-2|삼각형의 성질|12` — 「치수선과 각도가 매우 겹치기 때문에」)
+  //    곡선만 재면 그 자리는 10px 떨어진 것으로 나와 **아무것도 안 잡힌다.**
+  //    라벨 상자는 `data-*` 에 있다: 폭 `data-w`·위 `data-a`·아래 `data-d` (전부 em).
+  let labelGap = Infinity;
+  for (const t of all) {
+    const text = /data-label="([^"]*)"/.exec(t)?.[1];
+    if (text === undefined || !/\d/.test(text)) continue;
+    if (/°/.test(text)) continue; // 각 값 자체는 제 호 곁에 앉는 것이 정상이다
+    const x = attr(t, "data-x");
+    const y = attr(t, "data-y");
+    // ⚠️ **`data-w`·`data-a`·`data-d` 는 px 다.** 엔진 안에서는 em 이지만
+    //    (`label_metrics` 주석), SVG 로 나올 때 이미 글꼴 크기가 곱해져 있다.
+    //    처음에 em 으로 보고 `× data-fs` 를 한 번 더 곱했더니 「A」 한 글자 상자가
+    //    **211px** 이 되어 무엇과도 겹쳤고, `labelGap` 이 늘 0이었다.
+    //    실측으로 확인: «A» `data-w="12.600"` · `data-fs="16.800"` — 12.6 이 폭이다.
+    const wPx = attr(t, "data-w");
+    const aPx = attr(t, "data-a");
+    const dPx = attr(t, "data-d");
+    if (x === null || y === null || wPx === null) continue;
+    const halfW = wPx / 2;
+    const up = aPx ?? 12;
+    const down = dPx ?? 4;
+    const box: [number, number, number, number] = [
+      x - halfW,
+      y - up,
+      x + halfW,
+      y + down,
+    ];
+    for (const m of marks) {
+      for (const p of m) {
+        const dx = Math.max(box[0] - p[0], 0, p[0] - box[2]);
+        const dy = Math.max(box[1] - p[1], 0, p[1] - box[3]);
+        labelGap = Math.min(labelGap, Math.hypot(dx, dy));
+      }
+    }
+  }
+  return { gap, labelGap, dims: dashed.length, marks: marks.length };
+}
+
+/**
+ * 각 라벨을 **밖으로 끌어낸** 지시선들. 없으면 빈 배열 = 라벨이 도형 안에 있다.
+ *
+ * 지시선은 「점선이 아닌 얇은 `<path>` 중 이차 곡선(`Q`)을 쓰는 것」이다 — 각 표시
+ * 호는 `A`(원호) 명령이고, 치수는 점선이다. 이름이 아니라 **모양**으로 가른다.
+ */
+export function angleLeaders(svg: string): XY[][] {
+  const out: XY[][] = [];
+  for (const t of svg.match(/<[^>]+>/g) ?? []) {
+    if (!/^<path\b/.test(t) || /stroke-dasharray/.test(t)) continue;
+    const d = /\sd="([^"]+)"/.exec(t)?.[1];
+    if (!d || !/\bQ\b/.test(d)) continue;
+    const w = Number(/stroke-width="([\d.]+)"/.exec(t)?.[1] ?? "0");
+    if (w <= 0 || w >= 1.0) continue;
+    out.push(samplePath(d));
+  }
+  return out;
+}
+
+/** 도형 잉크의 y 최댓값 — 「도형보다 아래로 나갔나」를 묻는 데 쓴다. */
+export function inkBounds(svg: string): {
+  minY: number;
+  maxY: number;
+  minX: number;
+  maxX: number;
+} {
+  const all = svg.match(/<[^>]+>/g) ?? [];
+  let widest = 0;
+  for (const t of all) {
+    if (!/^<(line|path|circle)\b/.test(t) || /stroke-dasharray/.test(t))
+      continue;
+    const w = Number(/stroke-width="([\d.]+)"/.exec(t)?.[1] ?? "0");
+    if (w > widest) widest = w;
+  }
+  let minY = Infinity;
+  let maxY = -Infinity;
+  let minX = Infinity;
+  let maxX = -Infinity;
+  const eat = (x: number, y: number) => {
+    minY = Math.min(minY, y);
+    maxY = Math.max(maxY, y);
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+  };
+  for (const t of all) {
+    if (/stroke-dasharray/.test(t)) continue;
+    const w = Number(/stroke-width="([\d.]+)"/.exec(t)?.[1] ?? "0");
+    if (Math.abs(w - widest) > 1e-6) continue;
+    if (/^<line\b/.test(t)) {
+      // ⚠️ 여기서 정규식을 **템플릿 리터럴로 짓지 마라.** 처음에 그렇게 썼다가
+      //    `[\d.]` 가 TS 문자열에서 `[d.]` 로 축약돼 **숫자를 하나도 안 물었고**,
+      //    `maxY` 가 `-Infinity` 라 그것을 쓰는 시험이 **늘 통과**했다(가드가
+      //    아니었다). 위에 이미 있는 `attr()` 를 쓴다 — 한 곳만 둔다.
+      const nums = (["x1", "y1", "x2", "y2"] as const).map((n) => attr(t, n));
+      if (nums.every((n) => n !== null)) {
+        eat(nums[0]!, nums[1]!);
+        eat(nums[2]!, nums[3]!);
+      }
+    } else if (/^<path\b/.test(t)) {
+      const d = /\sd="([^"]+)"/.exec(t)?.[1];
+      if (d) for (const p of samplePath(d)) eat(p[0], p[1]);
+    }
+  }
+  return { minY, maxY, minX, maxX };
+}

@@ -1484,11 +1484,15 @@ export const ITEMS: PrintCheckItem[] = [
       "① 길이 치수 점선이 **도형 바깥**을 지나는가 — 도형 선들 사이로 파고들면 불합격이다. " +
       "🔴 다만 **도형 한가운데를 지나는 선분**(접힌 종이의 대각선 · 평행선 사이의 토막)은 " +
       "바깥이 아예 없어 안쪽으로 그린다. 그건 결함이 아니다. " +
-      "② 치수선이 **각 표시(호)와 겹치지** 않는가 — 원장님이 「삼각형의 성질 12」에서 짚으셨다. " +
-      "③ 같은 변에 치수선과 tick(같음 표시)이 겹쳐 보이지 않는가.",
+      "② 치수 **값 글자**가 각 표시(호)와 겹치지 않는가 — 원장님이 「삼각형의 성질 12」에서 " +
+      "짚으셨다. 못 비키면 그 치수만 빠지고 발문이 값을 준다(새로 빠진 8자리 전량 확인). " +
+      "③ 각 값(`60°`)이 **도형 안에 들어갈 수 있는데 밖으로 끌려 나가** 있지 않은가. " +
+      "④ 같은 변에 치수선과 tick(같음 표시)이 겹쳐 보이지 않는가.",
     lookFromSource: false,
     evidence: [
-      "vendor/figure-engine/core/figure_scene.py (`_shape_hull` · `inside_shape` · `chord_tolerance`)",
+      "vendor/figure-engine/core/figure_scene.py (`_shape_hull` · `inside_shape` · `chord_tolerance`" +
+        " · `arm_taken` · 각 표시를 치수 잉크로)",
+      "src/__tests__/unit/figureAngleLabelPlacement.test.ts (각 라벨 자리 · 변이 3개 빨강)",
       "scripts/qa/figureDimSide.ts (판정 자 — 나온 SVG 만 본다, 엔진 안을 안 본다)",
       "src/__tests__/unit/figureDimOutside.test.ts (양성 대조 + 원장님 두 자리 + 떨어짐 0)",
       ".tmp-orca/chordgap.ts (문턱을 손으로 안 고르고 **분포에서** 골랐다)",
