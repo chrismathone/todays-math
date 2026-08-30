@@ -23,12 +23,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["2-6-1", "2-6-2", "2-6-3", "2-6-4"] as const;
 const SWEEP = Array.from({ length: 600 }, (_, i) => i * 7919 + 13);
@@ -114,7 +115,7 @@ describe("[초4 2-6] 대각선 수의 성질", () => {
 describe("[초4 2-6] 등록", () => {
   it("세 소단원에 네 갈래가 다 붙어 있다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual([...ELEM_TIERS]);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -123,7 +124,7 @@ describe("[초4 2-6] 등록", () => {
     for (const code of CODES) {
       const std = new Set(SWEEP.map((s) => skeleton(gen(code, s).content)));
       expect(std.size, `${code} 표준 뼈대`).toBeGreaterThan(0);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const k = skeleton(gen(code, s, tier).content);
           expect(
@@ -139,7 +140,7 @@ describe("[초4 2-6] 등록", () => {
 
   it("갈래마다 변형이 여덟 가지 이상이다 (R4)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const forms = new Set(SWEEP.map((s) => gen(code, s, tier).content));
         expect(forms.size, `${code} «${tier}» 변형`).toBeGreaterThanOrEqual(8);
       }
@@ -149,7 +150,7 @@ describe("[초4 2-6] 등록", () => {
   it("**대단원 약속 셋을 전량으로 지킨다** (㉡㉢㉣)", () => {
     let looked = 0;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const p = gen(code, s, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -235,7 +236,7 @@ describe("[초4 2-6-1] 다각형", () => {
   it("**4단 — 두 다각형이 «둘 다» 변이 셋 이상이다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-6-1", s, "심화");
+      const p = gen("2-6-1", s, "심화하");
       const [gap, sum] = numsIn(p.content);
       const big = sidesOfName(p.answer)!;
       const small = big - gap!;
@@ -311,7 +312,7 @@ describe("[초4 2-6-2] 정다각형", () => {
   it("4단 — 정삼각형의 한 변을 거쳐 변의 수까지 세 단계다", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-6-2", s, "심화");
+      const p = gen("2-6-2", s, "심화하");
       const [triTotal, more, total] = cmsIn(p.content);
       expect(triTotal! % 3, `씨앗 ${s}: 정삼각형 한 변이 자연수가 아니다`).toBe(
         0,
@@ -393,7 +394,7 @@ describe("[초4 2-6-3] 대각선", () => {
   it("**4단 — 전체 대각선 수로 도형이 하나로 정해지고 둘레까지 간다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-6-3", s, "심화");
+      const p = gen("2-6-3", s, "심화하");
       const total = numsIn(p.content)[0]!;
       const side = cmsIn(p.content)[0]!;
       // 그 개수를 내는 도형을 **여기서 찾는다** — 하나여야 답이 정해진다.
@@ -428,7 +429,7 @@ describe("[초4 2-6] 그림", () => {
     let looked = 0;
     for (const s of SWEEP.slice(0, 200)) {
       for (const code of CODES) {
-        for (const tier of ELEM_TIERS) {
+        for (const tier of tiersOf(unitOf(code))) {
           const p = gen(code, s, tier);
           const has = p.figureSpec !== null;
           const want = code === "2-6-2" && tier === "기본";
@@ -518,7 +519,7 @@ describe("[초4 2-6-4] 모양 만들기와 채우기", () => {
 
   it("**발문에 나온 조각은 관계가 적혀 있다** (㉠ 자족)", () => {
     let looked = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-6-4"))) {
       for (const s of SWEEP) {
         const p = gen("2-6-4", s, tier);
         const rules = rulesIn(p.content);
@@ -540,7 +541,7 @@ describe("[초4 2-6-4] 모양 만들기와 채우기", () => {
 
   it("**주어지는 관계의 자는 언제나 정삼각형이다** (㉡ 2단이 1단으로 안 내려앉게)", () => {
     let looked = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-6-4"))) {
       for (const s of SWEEP) {
         const c = gen("2-6-4", s, tier).content;
         // 「한 개는 …」 로 주는 관계는 전부 정삼각형을 가리켜야 한다.
@@ -558,7 +559,7 @@ describe("[초4 2-6-4] 모양 만들기와 채우기", () => {
 
   it("**관계표가 흔들리지 않고 세 값이 서로 다르다** (㉢)", () => {
     const table = new Map<string, number>();
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-6-4"))) {
       for (const s of SWEEP) {
         for (const [name, t] of rulesIn(gen("2-6-4", s, tier).content)) {
           const had = table.get(name);
@@ -645,7 +646,7 @@ describe("[초4 2-6-4] 모양 만들기와 채우기", () => {
     let looked = 0;
     const pairs = new Set<string>();
     for (const s of SWEEP) {
-      const p = gen("2-6-4", s, "심화");
+      const p = gen("2-6-4", s, "심화하");
       const rules = rulesIn(p.content);
       expect(rules.size, `씨앗 ${s}: 관계 둘을 줘야`).toBe(2);
       const from = p.content.match(
@@ -681,7 +682,7 @@ describe("[초4 2-6-4] 모양 만들기와 채우기", () => {
     const stdKinds = new Set<string>();
     const answers = new Set<string>();
     for (const s of SWEEP.slice(0, 200)) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-6-4"))) {
         expect(
           gen("2-6-4", s, tier).figureSpec,
           `«${tier}» 씨앗 ${s}`,

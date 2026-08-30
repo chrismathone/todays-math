@@ -183,7 +183,8 @@ function consecutiveViolations(order: Row[]): number {
 
 /**
  * 난이도 배분은 **개수**이고 합이 문항 수와 같아야 한다(`test.contract.ts`).
- * 반 기본값 `{연산:1, 기본:3, 응용:3, 심화:1}`(=8문항)의 비율을 그대로 늘린다 (D-106).
+ * 반 기본값 `{연산:1, 기본:3, 응용:3, 심화하:1, 심화중:0, 심화상:0}`(=8문항)의
+ * 비율을 그대로 늘린다 (D-106 · 축 확대는 D-113).
  */
 function ratioFor(count: number): DifficultyRatio {
   return defaultRatioFor(count);

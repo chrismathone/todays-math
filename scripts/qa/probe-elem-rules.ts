@@ -38,7 +38,8 @@
  * **「R9 를 넓혔으니 그림은 검사된다」고 읽지 말 것** — 그건 다른 축이다.
  */
 import { answerSkewAmongFigures, answersLookAlike } from "./answerSkewRule";
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { CORE_DIFFICULTIES } from "../../src/contracts/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -60,18 +61,15 @@ const SEEDS = [20260821, 7, 1234, 99991, 20260822, 555, 31337, 4242];
 type Unit = ReturnType<typeof elementaryUnits>[number];
 
 /**
- * 이 소단원이 낼 수 있는 문항 갈래 — 표준(`undefined`) + 등록된 난이도 4단 (D-71·D-72).
+ * 표준(`undefined`) + **그 소단원이 실제로 내는 갈래**.
  *
- * ⚠️ **갈래를 안 세면 그 축은 가드 밖이다.** 2026-08-23 에 실측했다 — 파일럿 갈래에
- * 「정답 +7 · KaTeX 미감쌈 · 해설에 맨 숫자 999」를 심었는데 판정기 넷이 **전부 초록**이었다.
- * 표준 문항만 뽑고 있었기 때문이다. 「없는 축은 변이시킬 수 없다」의 그 자리다.
- *
- * 갈래가 없는 소단원은 표준 하나뿐이라 예전과 완전히 같다.
+ * 🔴 D-113(2026-08-30): 종전에는 `supportedTiers(unit).length > 0 ? [undefined, ...ELEM_TIERS]`
+ *    였다. `ELEM_TIERS` 는 **축 전체**(여섯)라, 축을 넓히자 아직 안 채운 갈래를
+ *    만들려다 판정기가 통째로 죽었다. `supportedTiers` 는 등록 안 된 소단원에서
+ *    `[]` 를 주므로 아래 한 줄이 옛 두 갈래를 **정확히** 대신한다.
  */
 function variantsOf(unit: Unit): (ElemTier | undefined)[] {
-  return supportedTiers(unit).length > 0
-    ? [undefined, ...ELEM_TIERS]
-    : [undefined];
+  return [undefined, ...supportedTiers(unit)];
 }
 
 const tierLabel = (tier: ElemTier | undefined) => (tier ? ` «${tier}»` : "");
@@ -260,8 +258,12 @@ if (process.argv.includes("--selftest")) {
    * `probe-elem-arithmetic` 몫이고 여기서는 구조적으로 안 잡힌다 — 그 경계도 아래에서 못 박는다.
    */
   const withTiers = elementaryUnits().find((u) => supportedTiers(u).length > 0);
-  const allUnitsHaveTiers = elementaryUnits().every(
-    (u) => supportedTiers(u).length === ELEM_TIERS.length,
+  // D-113 — 「축 전체와 같은가」가 아니라 **핵심 넷을 다 갖는가**를 묻는다.
+  // 축이 여섯이 되며 앞의 물음은 «덜 찼다»와 «축이 넓어졌다»를 구분 못 하게 됐다.
+  const allUnitsHaveTiers = elementaryUnits().every((u) =>
+    CORE_DIFFICULTIES.every((t) =>
+      (supportedTiers(u) as readonly string[]).includes(t),
+    ),
   );
   rows.push(
     [

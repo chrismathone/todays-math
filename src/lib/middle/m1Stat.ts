@@ -278,7 +278,7 @@ export const M1_SPHERE: TypeEntry[] = [
     "23",
     "구의 일부분을 잘라 낸 입체도형의 겉넓이와 부피",
     SEC.구,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, (): Body | null => {
         // $\frac1n$ 을 잘라 내면 자른 면은 «반평면» $\log_2 n$ 장이고
@@ -377,7 +377,7 @@ export const M1_SPHERE: TypeEntry[] = [
     "26",
     "입체도형에 꼭 맞게 들어가는 입체도형",
     SEC.구,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(60, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);
@@ -784,7 +784,7 @@ export const M1_FREQ: TypeEntry[] = [
     "16",
     "도수의 총합이 다른 두 집단의 상대도수의 비",
     SEC.상대도수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, (): Body | null => {
         const t = pick(rng, TOPICS);

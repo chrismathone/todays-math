@@ -23,7 +23,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { G4_LINE_THEMES } from "@/lib/elementary/g4";
 import {
@@ -31,6 +31,8 @@ import {
   generateElementaryProblem,
   supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["2-5-1", "2-5-2", "2-5-3"] as const;
 const SEEDS = Array.from({ length: 16 }, (_, i) => 20260823 + i * 7919);
@@ -74,8 +76,7 @@ type Spec = {
 function figureNums(spec: Spec | null): number[] {
   if (spec?.kind === "lineChart")
     return (spec.values ?? []).map((v) => v.value);
-  if (spec?.kind === "table")
-    return (spec.rows ?? []).map((r) => Number(r[1]));
+  if (spec?.kind === "table") return (spec.rows ?? []).map((r) => Number(r[1]));
   return [];
 }
 
@@ -99,7 +100,7 @@ const spec = (p: { figureSpec: unknown }) => p.figureSpec as Spec | null;
 
 describe("초4 2-5 꺾은선그래프 — 4단 등록", () => {
   it.each(CODES)("%s 는 네 갈래가 다 있다", (code) => {
-    expect(supportedTiers(unitOf(code))).toEqual([...ELEM_TIERS]);
+    expectCoreTiers(unitOf(code), code);
   });
 });
 
@@ -111,8 +112,11 @@ describe("그림과 발문이 같은 것을 말한다", () => {
       "2-5-3": "table",
     };
     let seen = 0;
+    let tierCount = 0;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      const tiers = tiersOf(unitOf(code));
+      tierCount += tiers.length;
+      for (const tier of tiers) {
         for (const seed of WIDE) {
           seen += 1;
           expect(
@@ -122,7 +126,7 @@ describe("그림과 발문이 같은 것을 말한다", () => {
         }
       }
     }
-    expect(seen).toBe(CODES.length * ELEM_TIERS.length * WIDE.length);
+    expect(seen).toBe(tierCount * WIDE.length);
   });
 
   /*
@@ -141,7 +145,7 @@ describe("그림과 발문이 같은 것을 말한다", () => {
     ];
     const bad: string[] = [];
     let seen = 0;
-    for (const tier of [undefined, ...ELEM_TIERS]) {
+    for (const tier of [undefined, ...tiersOf(unitOf("2-5-3"))]) {
       for (const seed of SWEEP) {
         const p = gen("2-5-3", seed, tier);
         if (spec(p)?.kind !== "table") continue; // 표준은 꺾은선이라 이 잠금 밖이다
@@ -161,15 +165,16 @@ describe("그림과 발문이 같은 것을 말한다", () => {
   });
 
   it("2-5-3 발문은 표를 가리킨다", () => {
+    const tiers = tiersOf(unitOf("2-5-3"));
     let seen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiers) {
       for (const seed of WIDE) {
         const p = gen("2-5-3", seed, tier);
         seen += 1;
         expect(p.content, `«${tier}» s${seed}`).toContain("표");
       }
     }
-    expect(seen).toBe(ELEM_TIERS.length * WIDE.length);
+    expect(seen).toBe(tiers.length * WIDE.length);
   });
 });
 
@@ -215,9 +220,9 @@ describe("값 — 그림에 실린 수로 다시 세운다", () => {
     expect(seen).toBe(SWEEP.length);
   });
 
-  it("2-5-1 심화: 지목한 때부터 센 늘어난 양의 합이 그림과 맞다", () => {
+  it("2-5-1 심화하: 지목한 때부터 센 늘어난 양의 합이 그림과 맞다", () => {
     for (const seed of SEEDS) {
-      const p = gen("2-5-1", seed, "심화");
+      const p = gen("2-5-1", seed, "심화하");
       const s = spec(p);
       const nums = figureNums(s);
       const labels = figureLabels(s);
@@ -248,10 +253,10 @@ describe("값 — 그림에 실린 수로 다시 세운다", () => {
     }
   });
 
-  it("2-5-2 심화: 문턱을 처음 넘은 뒤에 반드시 내려가는 구간이 있다", () => {
+  it("2-5-2 심화하: 문턱을 처음 넘은 뒤에 반드시 내려가는 구간이 있다", () => {
     let seen = 0;
     for (const seed of SWEEP) {
-      const p = gen("2-5-2", seed, "심화");
+      const p = gen("2-5-2", seed, "심화하");
       const nums = figureNums(spec(p));
       const bar = nums[1]!;
       // 「처음으로」가 뜻을 가지려면 ㉠ 첫 값이 문턱 아래이고 ㉡ 그 뒤에 오르내림이 있어야 한다.
@@ -292,10 +297,10 @@ describe("값 — 그림에 실린 수로 다시 세운다", () => {
     expect(seen).toBe(SWEEP.length);
   });
 
-  it("2-5-3 심화: 가장 가파른 구간이 하나로 서고, 견줄 구간과 다르다", () => {
+  it("2-5-3 심화하: 가장 가파른 구간이 하나로 서고, 견줄 구간과 다르다", () => {
     let seen = 0;
     for (const seed of SWEEP) {
-      const p = gen("2-5-3", seed, "심화");
+      const p = gen("2-5-3", seed, "심화하");
       const gaps = gapsOf(figureNums(spec(p)));
       const most = Math.max(...gaps);
       // 최대가 둘이면 「가장 가파른 구간」이 둘이 되어 답이 하나로 안 선다 — 구성 보장이니 전량.
@@ -368,8 +373,10 @@ describe("눈으로 찾아 고친 자리 — 그 자리에서 잠근다", () => 
     const bad: string[] = [];
     let seen = 0;
     for (const u of elementaryUnits().filter((x) => x.grade === "초4")) {
-      const tiers =
-        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+      // ⚠️ 여기서는 tiersOf() 를 안 쓴다 — tiersOf 는 갈래가 0개면 스스로 빨개지는데,
+      // 이 스윕은 **아직 4단으로 안 넓힌 초4 소단원**도 도는 것이 정상이다(그런 소단원은
+      // 표준만 시험). supportedTiers(u) 를 그대로 써서 «이 단원이 실제로 낸 갈래»만 돈다.
+      const tiers = [undefined, ...supportedTiers(u)];
       for (const tier of tiers) {
         // 씨앗을 넓게 쓴다 — 라벨이 붙는 문항만 세므로 16개로는 분모가 304밖에 안 된다.
         for (const seed of WIDE) {
@@ -422,7 +429,7 @@ describe("눈으로 찾아 고친 자리 — 그 자리에서 잠근다", () => 
     );
     const bad: string[] = [];
     let seen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-5-3"))) {
       for (const seed of SWEEP) {
         const p = gen("2-5-3", seed, tier);
         const topic = [...bands.keys()].find((t) => p.content.includes(t));
@@ -452,7 +459,7 @@ describe("겹침 — 표준과, 그리고 갈래끼리", () => {
     const mine = new Map<string, string>();
     const skel = new Map<string, string>();
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           mine.set(p.content, `${code} «${tier}»`);
@@ -477,7 +484,7 @@ describe("겹침 — 표준과, 그리고 갈래끼리", () => {
     const seen = new Map<string, string>();
     const hit: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const sk = skeleton(gen(code, seed, tier).content);
           const prev = seen.get(sk);
@@ -495,7 +502,7 @@ describe("변형 — 씨앗이 바뀌면 발문이 바뀐다", () => {
   it("갈래마다 씨앗 16개에서 발문이 8가지 이상", () => {
     const thin: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         if (seen.size < 8) thin.push(`${code} «${tier}» ${seen.size}가지`);
       }
@@ -572,8 +579,10 @@ describe("[초4] 단위 뒤 조사", () => {
     let looked = 0;
     for (const u of elementaryUnits()) {
       if (u.grade !== "초4") continue;
-      const tiers =
-        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+      // ⚠️ 여기서는 tiersOf() 를 안 쓴다 — tiersOf 는 갈래가 0개면 스스로 빨개지는데,
+      // 이 스윕은 **아직 4단으로 안 넓힌 초4 소단원**도 도는 것이 정상이다(그런 소단원은
+      // 표준만 시험). supportedTiers(u) 를 그대로 써서 «이 단원이 실제로 낸 갈래»만 돈다.
+      const tiers = [undefined, ...supportedTiers(u)];
       for (const tier of tiers) {
         for (const seed of WIDE) {
           const p = generateElementaryProblem(u, seed, tier);
@@ -655,20 +664,26 @@ describe("[초4 표] 지면 폭 — 스펙 모양 (엔진 없이도 돈다)", ()
   it("**표가 세로로 서 있다** — 열은 둘, 행은 항목 수", () => {
     let looked = 0;
     for (const code of TABLE_CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of WIDE) {
           const spec = gen(code, seed, tier).figureSpec as
             | { kind?: string; headers?: unknown[]; rows?: unknown[][] }
             | undefined;
           if (spec?.kind !== "table") continue;
           // 가로로 누우면 첫 열에 긴 이름이 들어가 지면을 넘는다 — 그 모양을 막는다.
-          expect(spec.headers, `${code} ${tier} 씨앗 ${seed} 열이 둘이 아니다`).toHaveLength(2);
+          expect(
+            spec.headers,
+            `${code} ${tier} 씨앗 ${seed} 열이 둘이 아니다`,
+          ).toHaveLength(2);
           expect(
             spec.rows!.length,
             `${code} ${tier} 씨앗 ${seed} 항목이 행으로 안 섰다`,
           ).toBeGreaterThanOrEqual(4);
           for (const row of spec.rows!) {
-            expect(row, `${code} ${tier} 씨앗 ${seed} 행이 두 칸이어야`).toHaveLength(2);
+            expect(
+              row,
+              `${code} ${tier} 씨앗 ${seed} 행이 두 칸이어야`,
+            ).toHaveLength(2);
           }
           looked += 1;
         }
@@ -682,15 +697,20 @@ describe("[초4 표] 지면 폭 — 스펙 모양 (엔진 없이도 돈다)", ()
     // 발문은 긴 이름을 그대로 쓰고(문장이 상하지 않게), 표 칸만 짧은 이름을 쓴다.
     let looked = 0;
     let shortSeen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-5-3"))) {
       for (const seed of WIDE) {
         const p = gen("2-5-3", seed, tier);
-        const spec = p.figureSpec as { kind?: string; headers?: string[] } | undefined;
+        const spec = p.figureSpec as
+          { kind?: string; headers?: string[] } | undefined;
         if (spec?.kind !== "table") continue;
         looked += 1;
         const head = String(spec.headers![1]);
-        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain("하루 동안");
-        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain("박물관에 온");
+        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain(
+          "하루 동안",
+        );
+        expect(head, `씨앗 ${seed} 긴 이름이 표에 들어왔다`).not.toContain(
+          "박물관에 온",
+        );
         if (head.startsWith("비의 양") || head.startsWith("관람객 수")) {
           shortSeen += 1;
           // 그 소재의 **발문**에는 긴 이름이 그대로 남아 있어야 한다.
@@ -702,7 +722,10 @@ describe("[초4 표] 지면 폭 — 스펙 모양 (엔진 없이도 돈다)", ()
       }
     }
     expect(looked, "표 스펙을 한 건도 못 봤다").toBeGreaterThan(0);
-    expect(shortSeen, "짧은 이름을 쓰는 소재가 한 번도 안 나왔다").toBeGreaterThan(0);
+    expect(
+      shortSeen,
+      "짧은 이름을 쓰는 소재가 한 번도 안 나왔다",
+    ).toBeGreaterThan(0);
   });
 });
 
@@ -716,30 +739,43 @@ describe.skipIf(!hasFigureEngine)("[초4 표] 지면 폭 — 실제 렌더", () 
     const seen = new Set<string>();
     let rendered = 0;
     for (const code of ["1-5-2", "2-5-3"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const spec = gen(code, seed, tier).figureSpec;
-          if ((spec as { kind?: string } | undefined)?.kind !== "table") continue;
+          if ((spec as { kind?: string } | undefined)?.kind !== "table")
+            continue;
           const key = JSON.stringify(spec);
           if (seen.has(key)) continue;
           seen.add(key);
           const r = await renderFigureSpec(spec as Record<string, unknown>);
           expect(r.ok, `${code} ${tier} 씨앗 ${seed} 렌더 실패`).toBe(true);
           if (!r.ok) continue;
-          const vb = /viewBox="([^"]+)"/.exec(r.svg)?.[1]?.split(/\s+/).map(Number);
+          const vb = /viewBox="([^"]+)"/
+            .exec(r.svg)?.[1]
+            ?.split(/\s+/)
+            .map(Number);
           expect(vb, "viewBox 를 못 읽음").toBeTruthy();
           const width = vb![2]!;
-          const xs = [
-            ...r.svg.matchAll(/<text x="(-?[\d.]+)"/g),
-          ].map((m) => Number(m[1]));
+          const xs = [...r.svg.matchAll(/<text x="(-?[\d.]+)"/g)].map((m) =>
+            Number(m[1]),
+          );
           expect(xs.length, `${code} 글자가 없다`).toBeGreaterThan(0);
           // 옛 엔진은 왼쪽 끝이 $-11.8$ 까지 넘쳐 한글 다섯 자를 잘랐다.
-          expect(Math.min(...xs), `${code} ${tier} 씨앗 ${seed} 왼쪽으로 넘침`).toBeGreaterThanOrEqual(0);
-          expect(Math.max(...xs), `${code} ${tier} 씨앗 ${seed} 오른쪽으로 넘침`).toBeLessThanOrEqual(width);
+          expect(
+            Math.min(...xs),
+            `${code} ${tier} 씨앗 ${seed} 왼쪽으로 넘침`,
+          ).toBeGreaterThanOrEqual(0);
+          expect(
+            Math.max(...xs),
+            `${code} ${tier} 씨앗 ${seed} 오른쪽으로 넘침`,
+          ).toBeLessThanOrEqual(width);
           rendered += 1;
         }
       }
     }
-    expect(rendered, "표를 한 장도 안 그렸다 — 이 검사는 아무것도 안 지킨다").toBeGreaterThan(0);
+    expect(
+      rendered,
+      "표를 한 장도 안 그렸다 — 이 검사는 아무것도 안 지킨다",
+    ).toBeGreaterThan(0);
   }, 120_000);
 });

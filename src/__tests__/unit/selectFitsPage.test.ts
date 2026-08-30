@@ -95,7 +95,14 @@ const pick = (
 ) =>
   selectProblems({
     pool,
-    difficultyRatio: { 연산: 0, 기본: 0, 응용: count, 심화: 0 },
+    difficultyRatio: {
+      연산: 0,
+      기본: 0,
+      응용: count,
+      심화하: 0,
+      심화중: 0,
+      심화상: 0,
+    },
     count,
     recentProblemIds: [],
     seed: "fit-select",
@@ -149,19 +156,29 @@ describe("[⑷] 출제가 «칸에 안 들어가는 문항»을 후순위로 돌
       small("e-1", { difficulty: "기본" }),
       small("e-2", { difficulty: "기본" }),
       small("e-3", { difficulty: "기본" }),
-      tall("h-1", { difficulty: "심화" }),
-      tall("h-2", { difficulty: "심화" }),
-      tall("h-3", { difficulty: "심화" }),
+      tall("h-1", { difficulty: "심화하" }),
+      tall("h-2", { difficulty: "심화하" }),
+      tall("h-3", { difficulty: "심화하" }),
     ];
     const { problems, substitutions } = selectProblems({
       pool,
-      difficultyRatio: { 연산: 0, 기본: 1, 응용: 0, 심화: 1 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 1,
+        응용: 0,
+        심화하: 1,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 2,
       recentProblemIds: [],
       seed: "fit-select",
     });
 
-    expect(problems.map((p) => p.difficulty).sort()).toEqual(["기본", "심화"]);
+    expect(problems.map((p) => p.difficulty).sort()).toEqual([
+      "기본",
+      "심화하",
+    ]);
     expect(substitutions).toEqual([]);
   });
 
@@ -202,13 +219,20 @@ describe("[⑷] 출제가 «칸에 안 들어가는 문항»을 후순위로 돌
 
   it("같은 난이도 안에서는 들어가는 것을 먼저 고른다", () => {
     const pool = [
-      tall("h-big", { difficulty: "심화" }),
-      small("h-ok", { difficulty: "심화" }),
+      tall("h-big", { difficulty: "심화하" }),
+      small("h-ok", { difficulty: "심화하" }),
       small("e-1", { difficulty: "기본" }),
     ];
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { 연산: 0, 기본: 1, 응용: 0, 심화: 1 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 1,
+        응용: 0,
+        심화하: 1,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 2,
       recentProblemIds: [],
       seed: "fit-select",

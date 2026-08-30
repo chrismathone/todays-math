@@ -21,6 +21,7 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import type { ElemProblem } from "@/lib/elementary/types";
 
 /**
  * **초4 난이도 사다리를 한 줄씩 눈으로 보는 자리** — 매쓰홀릭 벤치마킹용 (2026-08-30).
@@ -101,7 +102,7 @@ export default async function TierBenchG4Page({
   // 읽으면 「62 중 하나」가 「지금 화면 중 하나」로 줄어든다.
   const wholeGrade = all.map((u) => {
     const deep = JUDGE_SEEDS.map(
-      (s) => generateElementaryProblem(u, s, "심화").content,
+      (s) => generateElementaryProblem(u, s, "심화하").content,
     );
     return judgeDeep(elemKey(u.grade, u.section), deep, ledger.초등);
   });
@@ -115,15 +116,27 @@ export default async function TierBenchG4Page({
   const rows = await Promise.all(
     units.map(async (unit) => {
       const deep = JUDGE_SEEDS.map(
-        (s) => generateElementaryProblem(unit, s, "심화").content,
+        (s) => generateElementaryProblem(unit, s, "심화하").content,
       );
       const judgement = judgeDeep(
         elemKey(unit.grade, unit.section),
         deep,
         ledger.초등,
       );
+      // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도
+      // 있다 — `supportedTiers` 로 먼저 물어보고, 없으면 만들지 않는다.
+      const supported = new Set(supportedTiers(unit));
       const cells = await Promise.all(
         ELEM_TIERS.map(async (tier) => {
+          if (!supported.has(tier)) {
+            return {
+              tier,
+              problem: null as ElemProblem | null,
+              svg: null as string | null,
+              figureError: null as string | null,
+              marks: [] as string[],
+            };
+          }
           const p = generateElementaryProblem(unit, seed, tier);
           let svg: string | null = null;
           let figureError: string | null = null;
@@ -134,7 +147,7 @@ export default async function TierBenchG4Page({
           }
           return {
             tier,
-            problem: p,
+            problem: p as ElemProblem | null,
             svg,
             figureError,
             marks: marksOf(p.content),
@@ -151,7 +164,7 @@ export default async function TierBenchG4Page({
         DEV · 난이도 벤치마킹
       </p>
       <h1 className="mt-2 text-xl font-black">
-        초4 — 네 갈래를 나란히 (연산 · 기본 · 응용 · 심화)
+        초4 — 여섯 갈래를 나란히 (연산 · 기본 · 응용 · 심화하 · 심화중 · 심화상)
       </h1>
       <p className="mt-3 max-w-[880px] text-[13px] leading-relaxed text-text-2">
         매쓰홀릭 화면을 옆에 띄우고 <b className="text-text-1">한 줄씩</b> 대
@@ -169,7 +182,9 @@ export default async function TierBenchG4Page({
           <dt className="font-extrabold tracking-wide text-text-2">
             초4 소단원
           </dt>
-          <dd className="font-bold">{all.length}개 (전량 4단 등록)</dd>
+          <dd className="font-bold">
+            {all.length}개 (전량 핵심 4단 등록 · 심화중·심화상은 채우는 중)
+          </dd>
         </div>
         <div className="flex gap-2">
           <dt className="font-extrabold tracking-wide text-text-2">표지있음</dt>
@@ -231,8 +246,8 @@ export default async function TierBenchG4Page({
 
       {chapter === "전체" ? (
         <p className="mt-3 text-[12px] text-text-2">
-          전체는 소단원 {all.length}개 × 네 갈래를 한 번에 그립니다 — 그림이
-          있는 문항마다 도형 엔진을 부르므로 느립니다.
+          전체는 소단원 {all.length}개 × 최대 여섯 갈래를 한 번에 그립니다 —
+          그림이 있는 문항마다 도형 엔진을 부르므로 느립니다.
         </p>
       ) : null}
 
@@ -254,7 +269,7 @@ export default async function TierBenchG4Page({
                 <span className="text-[11px] text-text-2">{judgement.왜}</span>
               ) : null}
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
               {cells.map(({ tier, problem, svg, figureError, marks }) => (
                 <article
                   key={tier}
@@ -270,25 +285,38 @@ export default async function TierBenchG4Page({
                       </span>
                     ) : null}
                   </p>
-                  {figureError ? (
-                    <p className="mb-2 text-[11px] text-g-red-text">
-                      그림 실패 — {figureError}
+                  {problem === null ? (
+                    <p className="text-[12px] text-text-3">
+                      아직 안 채움 ({tier})
                     </p>
-                  ) : null}
-                  <PaperProblemView content={problem.content} figureSvg={svg} />
-                  <div className="mt-2 text-[12px]">
-                    <span className="font-extrabold tracking-wide text-text-2">
-                      정답
-                    </span>{" "}
-                    <MathText as="span" text={problem.answer} />
-                  </div>
-                  <div className="mt-1 text-[12px] text-text-2">
-                    <p className="mb-1 font-extrabold tracking-wide">해설</p>
-                    <PaperProblemView
-                      content={problem.solution}
-                      framed={false}
-                    />
-                  </div>
+                  ) : (
+                    <>
+                      {figureError ? (
+                        <p className="mb-2 text-[11px] text-g-red-text">
+                          그림 실패 — {figureError}
+                        </p>
+                      ) : null}
+                      <PaperProblemView
+                        content={problem.content}
+                        figureSvg={svg}
+                      />
+                      <div className="mt-2 text-[12px]">
+                        <span className="font-extrabold tracking-wide text-text-2">
+                          정답
+                        </span>{" "}
+                        <MathText as="span" text={problem.answer} />
+                      </div>
+                      <div className="mt-1 text-[12px] text-text-2">
+                        <p className="mb-1 font-extrabold tracking-wide">
+                          해설
+                        </p>
+                        <PaperProblemView
+                          content={problem.solution}
+                          framed={false}
+                        />
+                      </div>
+                    </>
+                  )}
                 </article>
               ))}
             </div>

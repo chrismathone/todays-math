@@ -119,8 +119,8 @@ function exactCandidates(): PaperCandidate[] {
     candidate(6, UNIT_B, "응용", "객관식"),
     candidate(7, UNIT_B, "응용", "객관식"),
     candidate(8, UNIT_B, "응용", "객관식"),
-    candidate(9, UNIT_B, "심화", "서술형", { score: 10 }),
-    candidate(10, UNIT_B, "심화", "서술형"),
+    candidate(9, UNIT_B, "심화하", "서술형", { score: 10 }),
+    candidate(10, UNIT_B, "심화하", "서술형"),
   ];
 }
 

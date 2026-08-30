@@ -22,11 +22,20 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 
+import { expectCoreTiers } from "../helpers/elemTiers";
+
 const UNITS = elementaryUnits();
 
 describe("난이도 계약 (D-71)", () => {
   it("4단이고 순서는 연산→기본→응용→심화다", () => {
-    expect([...ELEM_TIERS]).toEqual(["연산", "기본", "응용", "심화"]);
+    expect([...ELEM_TIERS]).toEqual([
+      "연산",
+      "기본",
+      "응용",
+      "심화하",
+      "심화중",
+      "심화상",
+    ]);
   });
 
   it("반 프리셋은 안A 그대로이고 각 반의 합이 100 이다", () => {
@@ -35,19 +44,25 @@ describe("난이도 계약 (D-71)", () => {
       연산: 40,
       기본: 40,
       응용: 20,
-      심화: 0,
+      심화하: 0,
+      심화중: 0,
+      심화상: 0,
     });
     expect(TIER_PRESETS.중위반).toEqual({
       연산: 15,
       기본: 40,
       응용: 30,
-      심화: 15,
+      심화하: 15,
+      심화중: 0,
+      심화상: 0,
     });
     expect(TIER_PRESETS.상위반).toEqual({
       연산: 0,
       기본: 25,
       응용: 40,
-      심화: 35,
+      심화하: 35,
+      심화중: 0,
+      심화상: 0,
     });
     for (const ratio of Object.values(TIER_PRESETS)) {
       expect(Object.values(ratio).reduce((a, b) => a + b, 0)).toBe(100);
@@ -90,25 +105,31 @@ describe("난이도 계약 (D-71)", () => {
     const fake = { ...real, section: "1-1-99 없는 소단원" };
     expect(supportedTiers(fake)).toEqual([]);
     expect(() =>
-      generateElementaryProblem(fake, 20260822, "심화"),
+      generateElementaryProblem(fake, 20260822, "심화하"),
     ).toThrowError(/난이도 갈래가 없는 소단원/);
     expect(() =>
-      generateElementaryProblem(fake, 20260822, "심화"),
+      generateElementaryProblem(fake, 20260822, "심화하"),
     ).toThrowError(new RegExp(fake.grade));
   });
 
-  it("supportedTiers 는 전부(4)이거나 없음(0)이다 — 일부 등록은 타입이 막는다", () => {
+  it("supportedTiers 는 미등록(0)이거나 핵심 넷을 반드시 포함한다 (D-113)", () => {
+    // ⚠️ 「전부(4)이거나 없음(0)」은 축이 넷일 때만 맞는 말이다. 축이 여섯으로
+    // 넓어진 뒤에도(D-113) 참인 것은 「미등록이거나 핵심 넷은 있다」 — 확대 둘
+    // (심화중·심화상)이 채워지면 길이는 5·6도 될 수 있다.
     for (const unit of UNITS) {
-      const tiers = supportedTiers(unit);
-      expect([0, 4]).toContain(tiers.length);
+      if (supportedTiers(unit).length === 0) continue;
+      expectCoreTiers(unit, `${unit.grade} ${unit.section}`);
     }
   });
 
   it("등록된 파일럿은 갈래마다 문항이 나오고, 갈래끼리 발문이 갈린다", () => {
     // 지금은 0개(빈 맵)여도 초록이다 — g3·g5 가 채우면 자동으로 그 소단원을 검사한다.
+    // ⚠️ tiersOf 는 0이면 스스로 던지므로(=검사가 안 돈 것을 감추지 않으려고) 여기서는
+    // 못 쓴다 — 미등록 소단원이 섞인 전수 루프라 0 은 «건너뛴다»가 맞는 값이다.
     for (const unit of UNITS) {
-      if (supportedTiers(unit).length === 0) continue;
-      const byTier = ELEM_TIERS.map((tier) =>
+      const tiers = supportedTiers(unit);
+      if (tiers.length === 0) continue;
+      const byTier = tiers.map((tier) =>
         generateElementaryProblem(unit, 20260822, tier),
       );
       for (const p of byTier) {
@@ -116,8 +137,8 @@ describe("난이도 계약 (D-71)", () => {
         expect(p.answer.trim()).not.toBe("");
         expect(p.solution.trim()).not.toBe("");
       }
-      // 네 갈래가 같은 발문이면 난이도가 이름뿐이다.
-      expect(new Set(byTier.map((p) => p.content)).size).toBe(4);
+      // 갈래가 같은 발문이면 난이도가 이름뿐이다.
+      expect(new Set(byTier.map((p) => p.content)).size).toBe(tiers.length);
     }
   });
 });

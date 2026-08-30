@@ -299,7 +299,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 02 ─────────────────────────────────────────────
-  def("02", "돈을 지불하는 방법의 수", SEC.경우의수, "심화", (rng) =>
+  def("02", "돈을 지불하는 방법의 수", SEC.경우의수, "심화하", (rng) =>
     attempt(400, (): Body | null => {
       const useBig = pick(rng, [0, 1] as const); // 1: 500원 포함 3종
       const c500 = useBig === 1 ? intBetween(rng, 1, 3) : 0;
@@ -707,7 +707,7 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 15 ─────────────────────────────────────────────
-  def("15", "색칠하는 경우의 수", SEC.여러가지, "심화", (rng): Body => {
+  def("15", "색칠하는 경우의 수", SEC.여러가지, "심화하", (rng): Body => {
     const rule = pick(rng, [0, 1] as const); // 0: 모두 다른 색 · 1: 이웃만 다르게
     const [shape, k, nLo] =
       rule === 0 ? [...pick(rng, DISTINCT_PAIRS), 0] : pick(rng, ADJ_PAIRS);
@@ -768,33 +768,39 @@ export const M2_COUNTING: TypeEntry[] = [
   }),
 
   // 16 ─────────────────────────────────────────────
-  def("16", "최단 거리로 가는 경우의 수", SEC.여러가지, "심화", (rng): Body => {
-    const m = pick(rng, [3, 3, 4] as const);
-    const n = m === 4 ? 2 : pick(rng, [2, 3] as const);
-    const via = pick(rng, [0, 1] as const);
-    if (via === 0) {
-      const ans = comb(m + n, m);
+  def(
+    "16",
+    "최단 거리로 가는 경우의 수",
+    SEC.여러가지,
+    "심화하",
+    (rng): Body => {
+      const m = pick(rng, [3, 3, 4] as const);
+      const n = m === 4 ? 2 : pick(rng, [2, 3] as const);
+      const via = pick(rng, [0, 1] as const);
+      if (via === 0) {
+        const ans = comb(m + n, m);
+        return {
+          content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `각 교차점에 A 지점에서 그 지점까지 최단 거리로 가는 경우의 수를 적으면, 그 값은 왼쪽 교차점과 아래쪽 교차점에 적힌 수의 합이 된다.\n이렇게 차례로 적으면 B 지점에는 $${ans}$ 가 적힌다.`,
+          facts: { m, n, via, ans },
+          figureSpec: gridFigureSpec(m, n, null),
+        };
+      }
+      const px = intBetween(rng, 1, m - 1);
+      const py = intBetween(rng, 1, n - 1);
+      const c1 = comb(px + py, px);
+      const c2 = comb(m - px + (n - py), m - px);
+      const ans = c1 * c2;
       return {
-        content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
+        content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 P 지점을 거쳐 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
         answer: `$${ans}$`,
-        solution: `각 교차점에 A 지점에서 그 지점까지 최단 거리로 가는 경우의 수를 적으면, 그 값은 왼쪽 교차점과 아래쪽 교차점에 적힌 수의 합이 된다.\n이렇게 차례로 적으면 B 지점에는 $${ans}$ 가 적힌다.`,
-        facts: { m, n, via, ans },
-        figureSpec: gridFigureSpec(m, n, null),
+        solution: `A 지점에서 P 지점까지 최단 거리로 가는 경우의 수는 $${c1}$ 이고, P 지점에서 B 지점까지 최단 거리로 가는 경우의 수는 $${c2}$ 이다.\n따라서 구하는 경우의 수는 $${c1}\\times${c2}=${ans}$ 이다.`,
+        facts: { m, n, via, px, py, ans },
+        figureSpec: gridFigureSpec(m, n, { px, py }),
       };
-    }
-    const px = intBetween(rng, 1, m - 1);
-    const py = intBetween(rng, 1, n - 1);
-    const c1 = comb(px + py, px);
-    const c2 = comb(m - px + (n - py), m - px);
-    const ans = c1 * c2;
-    return {
-      content: `다음 그림과 같이 가로 $${m}$칸, 세로 $${n}$칸의 바둑판 모양 도로망이 있다. A 지점에서 출발하여 P 지점을 거쳐 B 지점까지 최단 거리로 가는 경우의 수를 구하시오.`,
-      answer: `$${ans}$`,
-      solution: `A 지점에서 P 지점까지 최단 거리로 가는 경우의 수는 $${c1}$ 이고, P 지점에서 B 지점까지 최단 거리로 가는 경우의 수는 $${c2}$ 이다.\n따라서 구하는 경우의 수는 $${c1}\\times${c2}=${ans}$ 이다.`,
-      facts: { m, n, via, px, py, ans },
-      figureSpec: gridFigureSpec(m, n, { px, py }),
-    };
-  }),
+    },
+  ),
 
   // ── 확장 유형 (갈래 C, 70~99) ─────────────────────────
   // RPM 색인은 이 중단원을 16 까지만 담는다. 색인에 없는 유형을 지어야 하므로

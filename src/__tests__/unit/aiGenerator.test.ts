@@ -111,12 +111,12 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     const [draft] = await generateProblems({
       unitId: GENERATE_UNIT_ID,
       unitLabel: "일차부등식의 활용(농도)",
-      difficulty: "심화",
+      difficulty: "심화하",
       count: 1,
     });
 
     expect(draft!.unitId).toBe(GENERATE_UNIT_ID);
-    expect(draft!.difficulty).toBe("심화");
+    expect(draft!.difficulty).toBe("심화하");
   });
 
   it("응답이 마크다운 코드펜스 + LaTeX 백슬래시가 깨진 형태로 와도 salvage해 파싱한다", async () => {

@@ -226,7 +226,7 @@ describe("[T0.5.1] problem.contract", () => {
   it("problemGenerateRequestSchema — count 상한(10) 초과 시 reject한다", () => {
     const result = problemGenerateRequestSchema.safeParse({
       unitId: UUID_1,
-      difficulty: "심화",
+      difficulty: "심화하",
       count: 11,
     });
     expect(result.success).toBe(false);
@@ -266,7 +266,14 @@ describe("[T0.5.1] test.contract", () => {
       testType: "daily",
       testDate: "2026-08-13",
       problemCount: 9,
-      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 3,
+        응용: 4,
+        심화하: 1,
+        심화중: 0,
+        심화상: 0,
+      },
     });
     expect(result.success).toBe(false);
   });

@@ -12,7 +12,7 @@
  * 새는데, 조용히 0이 되면 「없다」와 「못 센다」를 구분할 수 없다
  * (CLAUDE.md 2026-08-18 `report-missing-figures.ts` 와 같은 태도).
  */
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -46,16 +46,15 @@ const SEEDS = [
 type Unit = ReturnType<typeof elementaryUnits>[number];
 
 /**
- * 이 소단원이 낼 수 있는 문항 갈래 — 표준(`undefined`) + 등록된 난이도 4단 (D-71·D-72).
+ * 표준(`undefined`) + **그 소단원이 실제로 내는 갈래**.
  *
- * ⚠️ **갈래를 안 세면 그 축은 가드 밖이다.** 2026-08-23 실측: 파일럿 갈래에
- * 「정답 +7 · KaTeX 미감쌈 · 맨 숫자 999」를 심었는데 판정기 넷이 **전부 초록**이었다.
- * 갈래가 없는 소단원은 표준 하나뿐이라 예전과 완전히 같다.
+ * 🔴 D-113(2026-08-30): 종전에는 `supportedTiers(unit).length > 0 ? [undefined, ...ELEM_TIERS]`
+ *    였다. `ELEM_TIERS` 는 **축 전체**(여섯)라, 축을 넓히자 아직 안 채운 갈래를
+ *    만들려다 판정기가 통째로 죽었다. `supportedTiers` 는 등록 안 된 소단원에서
+ *    `[]` 를 주므로 아래 한 줄이 옛 두 갈래를 **정확히** 대신한다.
  */
 function variantsOf(unit: Unit): (ElemTier | undefined)[] {
-  return supportedTiers(unit).length > 0
-    ? [undefined, ...ELEM_TIERS]
-    : [undefined];
+  return [undefined, ...supportedTiers(unit)];
 }
 
 const tierLabel = (tier: ElemTier | undefined) => (tier ? ` «${tier}»` : "");

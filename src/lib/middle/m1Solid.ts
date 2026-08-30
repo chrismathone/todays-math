@@ -1015,7 +1015,7 @@ export const M1_POLY: TypeEntry[] = [
     "20",
     "정다면체의 각 면의 한가운데 점을 연결하여 만든 입체도형",
     SEC.정다면체,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, (): Body | null => {
         const s = pick(rng, PLATO);
@@ -1134,7 +1134,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "06",
     "밑면이 부채꼴인 기둥의 겉넓이와 부피",
     SEC.기둥,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, (): Body | null => {
         const branch = pick(rng, [0, 1] as const);
@@ -1174,7 +1174,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "07",
     "구멍이 뚫린 기둥의 겉넓이와 부피",
     SEC.기둥,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, (): Body | null => {
         const shape = pick(rng, [0, 1] as const);
@@ -1389,7 +1389,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "12", "뿔대의 겉넓이", SEC.뿔, "심화", (rng) =>
+  def(MINOR_AREA, "12", "뿔대의 겉넓이", SEC.뿔, "심화하", (rng) =>
     attempt(200, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       if (branch === 0) {
@@ -1504,7 +1504,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_AREA, "15", "뿔대의 부피", SEC.뿔, "심화", (rng) =>
+  def(MINOR_AREA, "15", "뿔대의 부피", SEC.뿔, "심화하", (rng) =>
     attempt(300, (): Body | null => {
       const branch = pick(rng, [0, 1] as const);
       // 닮음비 $b:a$ 로 잘린 뿔대 — 큰 뿔의 높이 `Hb`, 작은 뿔의 높이 `Hs`.
@@ -1593,7 +1593,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
     "17",
     "직육면체 모양의 그릇에 담긴 물의 부피",
     SEC.기둥,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, (): Body | null => {
         const branch = pick(rng, [0, 1, 2] as const);

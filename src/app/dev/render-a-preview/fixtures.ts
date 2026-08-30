@@ -42,7 +42,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a3",
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "계산",
     reviewStatus: "pending",
     content:
@@ -86,7 +86,7 @@ export const PREVIEW_PROBLEMS: ProblemEntity[] = [
   {
     ...base,
     id: "00000000-0000-4000-8000-0000000000a7",
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "계산",
     reviewStatus: "approved",
     content:

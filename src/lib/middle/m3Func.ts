@@ -1307,7 +1307,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("20", "이차함수 의 그래프에서 의 부호", "심화", (rng) =>
+  g1("20", "이차함수 의 그래프에서 의 부호", "심화하", (rng) =>
     attempt(200, (): Body | null => {
       const a = pick(rng, [
         [1, 1],
@@ -1396,7 +1396,7 @@ const TYPES_G1: TypeEntry[] = [
     }),
   ),
 
-  g1("21", "이차함수의 그래프의 활용", "심화", (rng) =>
+  g1("21", "이차함수의 그래프의 활용", "심화하", (rng) =>
     attempt(200, (): Body | null => {
       const a = pickA(rng);
       if (rVal(a) < 0) return null; // 제1사분면 위의 점이라야 직사각형이 그려진다
@@ -1654,7 +1654,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "심화", (rng) =>
+  g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "심화하", (rng) =>
     attempt(300, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2] as const);
       const r1 = intBetween(rng, -5, 1);
@@ -1687,7 +1687,7 @@ const TYPES_G2: TypeEntry[] = [
     }),
   ),
 
-  g2("09", "이차함수 의 그래프에서 의 부호", SEC.일반형, "심화", (rng) =>
+  g2("09", "이차함수 의 그래프에서 의 부호", SEC.일반형, "심화하", (rng) =>
     attempt(300, (): Body | null => {
       const a = pick(rng, [1, -1, 2, -2] as const);
       const p = intBetween(rng, 1, 3) * pick(rng, SIGNS);
@@ -2051,42 +2051,48 @@ const TYPES_G2: TypeEntry[] = [
     },
   ),
 
-  g2("19", "이차함수의 활용 도형의 넓이", SEC.최대최소, "심화", (rng): Body => {
-    const h = intBetween(rng, 3, 14);
-    const mode = intBetween(rng, 0, 2);
-    if (mode === 0) {
+  g2(
+    "19",
+    "이차함수의 활용 도형의 넓이",
+    SEC.최대최소,
+    "심화하",
+    (rng): Body => {
+      const h = intBetween(rng, 3, 14);
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        return {
+          content: `둘레의 길이가 $${4 * h}\\,\\mathrm{cm}$인 직사각형의 넓이의 최댓값을 구하시오.`,
+          answer: `$${h * h}\\,\\mathrm{cm}^2$`,
+          solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=x(${2 * h}-x)=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}\\,\\mathrm{cm}^2$이다.`,
+          facts: { mode, h, ans: h * h },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `가로와 세로의 길이의 합이 $${2 * h}\\,\\mathrm{cm}$인 직사각형 중에서 넓이가 가장 큰 것의 가로의 길이를 구하시오.`,
+          answer: `$${h}\\,\\mathrm{cm}$`,
+          solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=-(x-${h})^2+${h * h}$이다.\n따라서 넓이가 가장 클 때의 가로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
+          facts: { mode, h, ans: h },
+          figureSpec: null,
+        };
+      }
+      const s = 2 * h;
       return {
-        content: `둘레의 길이가 $${4 * h}\\,\\mathrm{cm}$인 직사각형의 넓이의 최댓값을 구하시오.`,
-        answer: `$${h * h}\\,\\mathrm{cm}^2$`,
-        solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=x(${2 * h}-x)=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}\\,\\mathrm{cm}^2$이다.`,
-        facts: { mode, h, ans: h * h },
+        content: `한 변의 길이가 $${s}\\,\\mathrm{cm}$인 정사각형 $\\mathrm{ABCD}$에서 점 $\\mathrm{P}$는 변 $\\mathrm{AB}$ 위를, 점 $\\mathrm{Q}$는 변 $\\mathrm{AD}$ 위를 움직이고 $\\overline{\\mathrm{AP}}=\\overline{\\mathrm{DQ}}$이다. 삼각형 $\\mathrm{APQ}$의 넓이의 최댓값을 구하시오.`,
+        answer: `$${(h * h) / 2}\\,\\mathrm{cm}^2$`,
+        solution: `$\\overline{\\mathrm{AP}}=x\\,\\mathrm{cm}$라 하면 $\\overline{\\mathrm{DQ}}=x\\,\\mathrm{cm}$이므로 $\\overline{\\mathrm{AQ}}=(${s}-x)\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{APQ}$의 넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=\\dfrac{1}{2}x(${s}-x)=-\\dfrac{1}{2}(x-${h})^2+${(h * h) / 2}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${(h * h) / 2}\\,\\mathrm{cm}^2$이다.`,
+        facts: { mode, h, ans: (h * h) / 2 },
         figureSpec: null,
       };
-    }
-    if (mode === 1) {
-      return {
-        content: `가로와 세로의 길이의 합이 $${2 * h}\\,\\mathrm{cm}$인 직사각형 중에서 넓이가 가장 큰 것의 가로의 길이를 구하시오.`,
-        answer: `$${h}\\,\\mathrm{cm}$`,
-        solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=-(x-${h})^2+${h * h}$이다.\n따라서 넓이가 가장 클 때의 가로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
-        facts: { mode, h, ans: h },
-        figureSpec: null,
-      };
-    }
-    const s = 2 * h;
-    return {
-      content: `한 변의 길이가 $${s}\\,\\mathrm{cm}$인 정사각형 $\\mathrm{ABCD}$에서 점 $\\mathrm{P}$는 변 $\\mathrm{AB}$ 위를, 점 $\\mathrm{Q}$는 변 $\\mathrm{AD}$ 위를 움직이고 $\\overline{\\mathrm{AP}}=\\overline{\\mathrm{DQ}}$이다. 삼각형 $\\mathrm{APQ}$의 넓이의 최댓값을 구하시오.`,
-      answer: `$${(h * h) / 2}\\,\\mathrm{cm}^2$`,
-      solution: `$\\overline{\\mathrm{AP}}=x\\,\\mathrm{cm}$라 하면 $\\overline{\\mathrm{DQ}}=x\\,\\mathrm{cm}$이므로 $\\overline{\\mathrm{AQ}}=(${s}-x)\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{APQ}$의 넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=\\dfrac{1}{2}x(${s}-x)=-\\dfrac{1}{2}(x-${h})^2+${(h * h) / 2}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${(h * h) / 2}\\,\\mathrm{cm}^2$이다.`,
-      facts: { mode, h, ans: (h * h) / 2 },
-      figureSpec: null,
-    };
-  }),
+    },
+  ),
 
   g2(
     "20",
     "최댓값의 최솟값 또는 최솟값의 최댓값",
     SEC.최대최소,
-    "심화",
+    "심화하",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -2116,7 +2122,7 @@ const TYPES_G2: TypeEntry[] = [
     "21",
     "이차함수의 활용 내접하는 도형의 넓이",
     SEC.최대최소,
-    "심화",
+    "심화하",
     (rng): Body => {
       const mode = intBetween(rng, 0, 2);
       if (mode === 0) {

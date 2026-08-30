@@ -541,7 +541,7 @@ export const M3_STAT2: TypeEntry[] = [
     "10",
     "미지수가 있는 자료의 분산",
     SEC.산포도,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, () => {
         const mean = intBetween(rng, 6, 20);
@@ -615,7 +615,7 @@ export const M3_STAT2: TypeEntry[] = [
     "02",
     "사분위수가 주어질 때 변량 구하기",
     SEC.상자,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const sorted = distinctSorted(rng, 7, 5, 60);
@@ -697,7 +697,7 @@ export const M3_STAT2: TypeEntry[] = [
     "05",
     "상자그림을 이용한 두 자료의 비교",
     SEC.상자,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const sortedA = distinctSorted(rng, 7, 10, 70);
@@ -880,7 +880,7 @@ export const M3_STAT2: TypeEntry[] = [
    *   06 한 축 기준 세기 · 07 대각선 기준 세기(x>y) · 08 상관관계 · 10 평균
    * 두 축을 **함께** 보게 하므로 hard 자리도 그대로다.
    */
-  def(MINOR_BOX, "09", "산점도의 분석", SEC.산점도, "심화", (rng) =>
+  def(MINOR_BOX, "09", "산점도의 분석", SEC.산점도, "심화하", (rng) =>
     attempt(200, () => {
       const n = 8;
       const pts: [number, number][] = [];

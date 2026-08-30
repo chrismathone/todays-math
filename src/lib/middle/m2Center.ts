@@ -1015,7 +1015,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "11",
     "삼각형의 내접원과 접선의 길이",
     SEC.내심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [p, q, h] = pick(rng, RIGHT_EVEN_HYP);
       const r = (p + q - h) / 2;
@@ -1035,7 +1035,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "12",
     "삼각형의 외심과 내심",
     SEC.내심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const { b, c } = attempt(200, () => {
         const bb = evenBetween(rng, 40, 90);
@@ -1058,7 +1058,7 @@ export const M2_CENTER_CIRC: TypeEntry[] = [
     "13",
     "직각삼각형의 외접원과 내접원",
     SEC.외심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const EVEN_SUM: readonly (readonly [number, number, number])[] = [
         [6, 8, 10],
@@ -1287,7 +1287,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "10",
     "두 삼각형의 무게중심 길이",
     SEC.무게중심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [m, n] = pick(rng, [
         [1, 1],
@@ -1405,7 +1405,7 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "15",
     "평행사변형에서 삼각형의 무게중심의 응용",
     SEC.무게중심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const d = 3 * intBetween(rng, 4, 20);
       const ex = intBetween(rng, 20, 50);
@@ -1524,7 +1524,7 @@ export const M2_CENTER_SIMILAR: TypeEntry[] = [
     "75",
     "평행선과 닮은 삼각형",
     SEC.닮음,
-    "심화",
+    "심화하",
     (rng): Body => {
       const upper = intBetween(rng, 2, 8);
       const lower = intBetween(rng, 2, 8);
@@ -1619,7 +1619,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
     "73",
     "외심이 한 변 위에 있는 삼각형",
     SEC.외심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [p, q, h] = pick(rng, [
         [3, 4, 5],
@@ -1682,7 +1682,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
     "76",
     "내접원의 반지름과 넓이로 둘레 구하기",
     SEC.내심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const r = intBetween(rng, 2, 6);
       const half = intBetween(rng, 8, 25); // 둘레의 절반
@@ -1738,7 +1738,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
     "72",
     "세 중점으로 만든 사각형의 둘레",
     SEC.중점연결,
-    "심화",
+    "심화하",
     (rng): Body => {
       const a = 2 * intBetween(rng, 3, 12); // BC
       const c = 2 * intBetween(rng, 3, 12); // AB
@@ -1775,7 +1775,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
     "74",
     "무게중심을 지나는 평행선이 자른 사각형의 넓이",
     SEC.무게중심,
-    "심화",
+    "심화하",
     (rng): Body => {
       const S = 9 * intBetween(rng, 3, 12);
       const ans = (S * 5) / 9;

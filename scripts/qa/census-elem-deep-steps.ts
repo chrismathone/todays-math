@@ -54,14 +54,14 @@ const med = (v: number[]) =>
 
 const rows: Row[] = [];
 for (const u of elementaryUnits()) {
-  if (!supportedTiers(u).includes("심화")) continue;
+  if (!supportedTiers(u).includes("심화하")) continue;
   const d: number[] = [];
   const a: number[] = [];
   let sample = "";
   let worst = Number.POSITIVE_INFINITY;
   let bare = 0;
   for (const s of SEEDS) {
-    const deep = generateElementaryProblem(u, s, "심화");
+    const deep = generateElementaryProblem(u, s, "심화하");
     const n = countCalcSteps(deep.solution);
     d.push(n);
     a.push(countCalcSteps(generateElementaryProblem(u, s, "응용").solution));

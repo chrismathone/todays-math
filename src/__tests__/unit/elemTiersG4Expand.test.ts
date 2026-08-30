@@ -15,13 +15,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["1-5-1", "1-5-2"] as const;
 
@@ -75,15 +75,15 @@ function tableValue(spec: TableSpec, label: string): number {
 }
 
 describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () => {
-  it("두 소단원이 네 갈래를 전부 낸다 (파일럿 1-5-3 도 그대로)", () => {
+  it("두 소단원이 핵심 갈래를 전부 낸다 (파일럿 1-5-3 도 그대로)", () => {
     for (const code of [...CODES, "1-5-3"]) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = generateElementaryProblem(unitOf(code), 31337, tier);
         const b = generateElementaryProblem(unitOf(code), 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -96,7 +96,8 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   // 정체성의 뼈대 — 그림 종류가 소단원을 가른다. 1-5-2 갈래가 barChart 를 내면
   // 「그리기」가 「읽기」로 무너진 것이고, 표준 1-5-2 와의 구분 근거가 사라진다.
   it("1-5-1 갈래는 그래프(barChart), 1-5-2 갈래는 표(table)다", () => {
-    for (const tier of ELEM_TIERS) {
+    // 두 소단원은 같은 D-72 트랜치라 지금은 같은 갈래를 낸다 — 1-5-1 을 기준으로 돈다.
+    for (const tier of tiersOf(unitOf("1-5-1"))) {
       for (const seed of SEEDS) {
         const p1 = generateElementaryProblem(unitOf("1-5-1"), seed, tier);
         expect(
@@ -184,7 +185,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
 
   it("1-5-1 4단 — 지워진 막대를 관계 단서로 역산하고, 그림이 답을 흘리지 않는다", () => {
     for (const seed of SEEDS) {
-      const p = generateElementaryProblem(unitOf("1-5-1"), seed, "심화");
+      const p = generateElementaryProblem(unitOf("1-5-1"), seed, "심화하");
       const spec = p.figureSpec as BarSpec;
       const unknown = spec.values.filter((v) => v.unknown);
       expect(unknown.length, `seed ${seed}: 숨긴 항목이 하나가 아니다`).toBe(1);
@@ -298,7 +299,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   it("1-5-2 4단 — 「그렸더니 몇 칸」에서 눈금을 되짚는다 (두 형태 다 나온다)", () => {
     const kinds = new Set<string>();
     for (const seed of SEEDS) {
-      const p = generateElementaryProblem(unitOf("1-5-2"), seed, "심화");
+      const p = generateElementaryProblem(unitOf("1-5-2"), seed, "심화하");
       const spec = p.figureSpec as TableSpec;
       const got = answerNum(p.answer);
       const back = p.content.match(
@@ -336,7 +337,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   it("해설의 셈이 하나도 빠짐없이 실제로 맞는다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unitOf(code), seed, tier);
           for (const m of p.solution.matchAll(
@@ -359,7 +360,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
 
   it("갈래마다 변형 공간이 여덟 가지 이상이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const stems = new Set<string>();
         for (let seed = 0; seed < 240; seed += 1) {
           stems.add(
@@ -381,7 +382,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
       const all: string[] = [];
       for (const code of [...CODES, "1-5-3"]) {
         all.push(generateElementaryProblem(unitOf(code), seed).content);
-        for (const tier of ELEM_TIERS) {
+        for (const tier of tiersOf(unitOf(code))) {
           all.push(generateElementaryProblem(unitOf(code), seed, tier).content);
         }
       }
@@ -392,7 +393,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
 
   it("씨앗을 바꾸면 갈래마다 문항이 갈린다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(
           SEEDS.map(
             (s) => generateElementaryProblem(unitOf(code), s, tier).content,
@@ -412,7 +413,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
     const risk = /\$[^$]*\$\s*(은|는|이|가|을|를|과|와|으로|로)(?![가-힣])/;
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unitOf(code), seed, tier);
           for (const [label, text] of [
@@ -442,7 +443,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   it("1-5-1 4단 그림이 실제로 그려지고, 점선 자리와 ? 가 나온다", async () => {
     const bad: string[] = [];
     for (const seed of SEEDS.slice(0, 6)) {
-      const p = generateElementaryProblem(unitOf("1-5-1"), seed, "심화");
+      const p = generateElementaryProblem(unitOf("1-5-1"), seed, "심화하");
       const r = await renderFigureSpec(p.figureSpec);
       if (!r.ok) {
         bad.push(`씨앗 ${seed}: ${r.error}`);
@@ -464,7 +465,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   // 1-5-2 의 표 — 네 갈래 모두 실제로 그려진다 (표가 못 그려지면 「표를 보고」가 거짓말이 된다).
   it("1-5-2 갈래의 표가 실제로 그려진다", async () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-5-2"))) {
       for (const seed of SEEDS.slice(0, 3)) {
         const p = generateElementaryProblem(unitOf("1-5-2"), seed, tier);
         const r = await renderFigureSpec(p.figureSpec);

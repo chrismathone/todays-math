@@ -14,9 +14,10 @@ import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["1-2-1", "1-2-2", "1-2-3", "1-2-4", "1-2-5", "1-2-6"] as const;
 
@@ -90,15 +91,15 @@ const WITH_BATCHIM = new Set(["은", "이", "을", "과"]);
 const WITHOUT_BATCHIM = new Set(["는", "가", "를", "와"]);
 
 describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
-  it("여섯 소단원이 네 갈래를 전부 낸다", () => {
+  it("여섯 소단원이 핵심 갈래를 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = gen(code, 31337, tier);
         const b = gen(code, 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -113,7 +114,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
     const eq = /\$([\d+\-\\a-z]+)=(\d+)\$/g;
     const pure = /^\d+(?:(?:\+|-|\\times|\\div)\d+)*$/;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const m of p.solution.matchAll(eq)) {
@@ -133,7 +134,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
   it("각도 띠 — 모든 수가 360 이하이고, 도(°) 값은 0 초과 360 미만이다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -154,7 +155,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         expect(
           seen.size,
@@ -169,7 +170,8 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
       const all: string[] = [];
       for (const code of CODES) {
         all.push(generateElementaryProblem(unitOf(code), seed).content);
-        for (const tier of ELEM_TIERS) all.push(gen(code, seed, tier).content);
+        for (const tier of tiersOf(unitOf(code)))
+          all.push(gen(code, seed, tier).content);
       }
       const dup = all.filter((c, i) => all.indexOf(c) !== i);
       expect(dup, `seed ${seed}: ${dup[0] ?? ""}`).toEqual([]);
@@ -179,7 +181,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
   it("모든 수가 KaTeX 안에 있고, 수·도(°) 뒤 조사가 소리와 맞는다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const [label, text] of [
@@ -283,7 +285,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         );
       }
 
-      const deep = gen("1-2-1", seed, "심화");
+      const deep = gen("1-2-1", seed, "심화하");
       const dm = deep.content.match(
         /네 각의 크기가 (.+)입니다\. \$(\d+)\^\\circ\$보다 크고 \$(\d+)\^\\circ\$보다 작은/,
       );
@@ -336,7 +338,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
 
       // 심화 — 예전엔 둘 다 **한 걸음**이었다($90\div d$ · $a+d$). 이제 한 걸음을 더 얹어
       // 응용(직선의 각을 나눠 몇 개를 잇는다)보다 위로 올린다.
-      const deep = gen("1-2-2", seed, "심화");
+      const deep = gen("1-2-2", seed, "심화하");
       m = deep.content.match(
         /한 각의 크기가 \$(\d+)\^\\circ\$가 되었습니다\. 나누어진 각 \$(\d+)\$개를 겹치지 않게 이어 붙이면/,
       );
@@ -422,7 +424,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(apply.answer).toBe(`$${a1 > a2 ? h1 : h2}$시`);
       }
 
-      const deep = gen("1-2-3", seed, "심화");
+      const deep = gen("1-2-3", seed, "심화하");
       m = deep.content.match(
         /네 각의 크기가 (.+)입니다\. 예각이면서 \$(\d+)\^\\circ\$보다 큰/,
       );
@@ -477,7 +479,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(answerDeg(apply.answer)).toBe(d[0]! + d[1]! - 180);
       }
 
-      const deep = gen("1-2-4", seed, "심화");
+      const deep = gen("1-2-4", seed, "심화하");
       const dm = deep.content.match(
         /어떤 각도(?:에|에서) \$(\d+)\^\\circ\$를 (더해야|빼야) 할 것을 잘못하여 (?:뺐|더했)더니 \$(\d+)\^\\circ\$가/,
       );
@@ -522,7 +524,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
 
       // 심화 — 예전 둘째 갈래는 「세 각이 모두 같은 삼각형」이라 답이 늘 $60^\circ$ 였다.
       // 씨앗을 바꿔도 같은 문항이니 4단은커녕 갈래도 아니었다. 이제 두 각을 조건으로 엮는다.
-      const deep = gen("1-2-5", seed, "심화");
+      const deep = gen("1-2-5", seed, "심화하");
       const dGap = deep.content.match(
         /한 각의 크기는 \$(\d+)\^\\circ\$이고, 다른 한 각은 그보다 \$(\d+)\^\\circ\$ 더 큽니다/,
       );
@@ -570,7 +572,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
 
       // 심화 — 예전 둘째 갈래는 「네 각이 모두 같은 사각형」이라 답이 늘 $90^\circ$ 였다.
       // 이제 한 각만 주고 **나머지 셋이 같다**로 되짚는다(두 걸음).
-      const deep = gen("1-2-6", seed, "심화");
+      const deep = gen("1-2-6", seed, "심화하");
       const dd = degsOf(deep.content);
       if (dd.length === 2) {
         const rest2 = 360 - dd[0]! - dd[1]!;

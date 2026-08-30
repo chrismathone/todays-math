@@ -1023,7 +1023,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "11",
     "삼각형의 한 내각의 이등분선과 한 외각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "심화",
+    "심화하",
     (rng): Body => {
       const A = 2 * intBetween(rng, 5, 60);
       const ans = A / 2;
@@ -1305,7 +1305,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "22",
     "다각형의 대각선의 개수의 활용",
     SEC.다각형,
-    "심화",
+    "심화하",
     (rng): Body => {
       const n = intBetween(rng, 4, 15);
       const K = (n * (n - 1)) / 2;
@@ -1323,7 +1323,7 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "23",
     "삼각형의 두 외각의 이등분선이 이루는 각",
     SEC.삼각형내외각,
-    "심화",
+    "심화하",
     (rng): Body => {
       const A = 2 * intBetween(rng, 5, 60);
       const ans = 90 - A / 2;
@@ -1458,7 +1458,7 @@ export const M1_GEO2_EXT: TypeEntry[] = [
     "72",
     "가장 긴 변의 길이의 최댓값",
     SEC.작도,
-    "심화",
+    "심화하",
     (rng): Body => {
       const a = intBetween(rng, 5, 14);
       const b = intBetween(rng, 5, 14);
@@ -1518,7 +1518,7 @@ export const M1_GEO2_EXT: TypeEntry[] = [
     "75",
     "합동인 두 사각형에서 나머지 각",
     SEC.합동,
-    "심화",
+    "심화하",
     (rng): Body =>
       attempt(200, (): Body | null => {
         const p = intBetween(rng, 50, 110);
@@ -1597,7 +1597,7 @@ export const M1_GEO2_EXT: TypeEntry[] = [
     "72",
     "밑각의 이등분선이 이루는 각",
     SEC.이등변,
-    "심화",
+    "심화하",
     (rng): Body => {
       // 밑각이 4의 배수라야 이등분한 각이 정수로 떨어진다.
       const base = 4 * intBetween(rng, 8, 20);
@@ -1636,7 +1636,7 @@ export const M1_GEO2_EXT: TypeEntry[] = [
     "71",
     "한 외각의 크기로 내각의 크기의 합 구하기",
     SEC.다각형내외각,
-    "심화",
+    "심화하",
     (rng): Body => {
       const n = pick(rng, [5, 6, 8, 9, 10, 12] as const);
       const ext = 360 / n;

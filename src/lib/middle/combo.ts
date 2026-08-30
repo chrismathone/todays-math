@@ -167,7 +167,7 @@ const quadraticCircle: ComboFamily = {
         `인수분해하면 $(x-${p})(x+${q})=0$ 이므로 $x=${p}$ 또는 $x=-${q}$ 이다.\n` +
         `$x$ 는 양수이므로 $x=${p}$ 이다. ` +
         `(이때 원주각은 $${inscribed}^\\circ$, 중심각은 $${central}^\\circ$ 이다.)`,
-      difficulty: "심화",
+      difficulty: "심화하",
       facts: { p, q, a, b, e, f, inscribed, central },
     };
   },
@@ -219,7 +219,7 @@ const waterGraphRange: ComboFamily = {
         `$-${drop}x\\le ${t - b0}$에서 양변을 **음수인** $-${drop}$${euroRo(drop)} 나누므로 ` +
         `부등호의 방향이 바뀌어 $x\\ge ${k}$이다.\n` +
         `따라서 물을 빼기 시작한 지 $${k}$분 후부터이다.`,
-      difficulty: "심화",
+      difficulty: "심화하",
       facts: { k, drop, t, b0, p, q },
     };
   },
@@ -267,7 +267,7 @@ const movingPointAreaRange: ComboFamily = {
         `$0\\le x\\le ${secToC}$이다.\n` +
         `넓이가 $${s}\\,\\mathrm{cm}^2$ 이상이려면 $${c}x\\ge ${s}$이므로 $x\\ge ${k}$이다.\n` +
         `따라서 출발한 지 $${k}$초 후부터이다.`,
-      difficulty: "심화",
+      difficulty: "심화하",
       facts: { k, ab, v, bc, secToC, c, s },
     };
   },
@@ -338,7 +338,7 @@ const sqrtProductExpand: ComboFamily = {
         `$(\\sqrt{${a}})^2=${a}$이므로 ` +
         `$${lhs}=${rationalPlusRadical(p, q, a)}$이다.\n` +
         `따라서 $p=${p}$, $q=${q}$이므로 $p+q=${p + q}$이다.`,
-      difficulty: "심화",
+      difficulty: "심화하",
       facts: { a, b, c, p, q },
     };
   },
@@ -378,7 +378,7 @@ const binomialRationalize: ComboFamily = {
         `$\\dfrac{${k}}{\\sqrt{${a}}+${b}}=${d === 1 ? "" : `\\dfrac{${k}(\\sqrt{${a}}-${b})}{${d}}=`}` +
         `${m === 1 ? "" : m}(\\sqrt{${a}}-${b})$이다.\n` +
         `따라서 $${result}$이다.`,
-      difficulty: "심화",
+      difficulty: "심화하",
       facts: { a, b, d, m, k },
     };
   },

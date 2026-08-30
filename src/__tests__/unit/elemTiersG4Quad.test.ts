@@ -23,12 +23,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = [
   "2-4-1",
@@ -113,7 +114,7 @@ const ALSO: Record<string, string[]> = {
 describe("[초4 2-4] 등록", () => {
   it("세 소단원에 네 갈래가 다 붙어 있다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual([...ELEM_TIERS]);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -122,7 +123,7 @@ describe("[초4 2-4] 등록", () => {
     for (const code of CODES) {
       const std = new Set(SWEEP.map((s) => skeleton(gen(code, s).content)));
       expect(std.size, `${code} 표준 뼈대`).toBeGreaterThan(0);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const k = skeleton(gen(code, s, tier).content);
           expect(
@@ -138,7 +139,7 @@ describe("[초4 2-4] 등록", () => {
 
   it("갈래마다 변형이 여덟 가지 이상이다 (R4)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const forms = new Set(SWEEP.map((s) => gen(code, s, tier).content));
         expect(forms.size, `${code} «${tier}» 변형`).toBeGreaterThanOrEqual(8);
       }
@@ -149,7 +150,7 @@ describe("[초4 2-4] 등록", () => {
     // 표준 2-4-4·2-4-7 이 그 문형을 셋 쓴다 — 낱말만 바꾸면 R5 가 말하는 그 자리다.
     let looked = 0;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const c = gen(code, s, tier).content;
           expect(c, `${code} «${tier}»`).not.toContain("아니요");
@@ -219,7 +220,7 @@ describe("[초4 2-4-4] 사다리꼴", () => {
   it("**4단 — 세 조건이 모두 서고 그릴 수 있는 사다리꼴이다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-4-4", s, "심화");
+      const p = gen("2-4-4", s, "심화하");
       const [total, leg, gap] = cmsIn(p.content);
       const long = cmsIn(p.answer)[0]!;
       const short = long - gap!;
@@ -290,7 +291,7 @@ describe("[초4 2-4-6] 마름모", () => {
   it("**4단 — 늘인 뒤의 합에서 처음 한 변을 되짚는다** (역산이라 지름길이 없다)", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-4-6", s, "심화");
+      const p = gen("2-4-6", s, "심화하");
       const [more, grown] = cmsIn(p.content);
       const first = cmsIn(p.answer)[0]!;
       expect((first + more!) * 4, `씨앗 ${s}: ${p.content}`).toBe(grown);
@@ -369,7 +370,7 @@ describe("[초4 2-4-7] 여러 가지 사각형", () => {
   it("**4단 — 반례 조건이 정사각형을 지우고, 다른 마름모를 거쳐 되짚는다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-4-7", s, "심화");
+      const p = gen("2-4-7", s, "심화하");
       // 배제 조건이 없으면 마름모와 정사각형이 안 갈린다.
       expect(p.content, `씨앗 ${s}: 반례 조건이 없다`).toContain("아닙니다");
       const [other, gap] = cmsIn(p.content);
@@ -440,7 +441,7 @@ describe("[초4 2-4-5] 평행사변형", () => {
   it("**4단 — 합 $180^\circ$ 와 차를 함께 써야 정해진다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-4-5", s, "심화");
+      const p = gen("2-4-5", s, "심화하");
       const gap = degsIn(p.content)[0]!;
       const big = degsIn(p.answer)[0]!;
       const small = big - gap;
@@ -459,7 +460,7 @@ describe("[초4 2-4-5] 평행사변형", () => {
     let withFig = 0;
     let without = 0;
     for (const s of SWEEP.slice(0, 120)) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-4-5"))) {
         const p = gen("2-4-5", s, tier);
         const has = p.figureSpec !== null;
         if (tier === "연산" || tier === "기본") {
@@ -568,7 +569,7 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
     let counted = 0;
     const sides = new Set<string>();
     for (const seed of SWEEP) {
-      const p = gen("2-4-3", seed, "심화");
+      const p = gen("2-4-3", seed, "심화하");
       const given = cmsIn(p.content);
       expect(given, `씨앗 ${seed} 발문에 길이 둘(수선 합 · 전체)`).toHaveLength(
         2,
@@ -599,7 +600,7 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
 
   it("**세 직선을 쓰는 갈래는 배치를 발문이 못 박는다** (그림이 없어도 답이 하나)", () => {
     let counted = 0;
-    for (const tier of ["기본", "응용", "심화"] as const) {
+    for (const tier of ["기본", "응용", "심화하"] as const) {
       for (const seed of SWEEP) {
         const t = gen("2-4-3", seed, tier).content;
         // 「이 순서로」가 없으면 직선 나가 바깥에 놓일 수 있어 **답이 둘**이 된다.
@@ -617,8 +618,9 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
   });
 
   it("**각도로 사다리를 세우지 않는다** (1-2-4 와 같은 산술이 되는 자리)", () => {
+    const tiers = tiersOf(unitOf("2-4-3"));
     let counted = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiers) {
       for (const seed of SWEEP) {
         const p = gen("2-4-3", seed, tier);
         // 1-2-4(각도의 합과 차)가 이미 그 산술을 쓴다. 직각 옷만 입히면 같은 문형이다.
@@ -630,7 +632,7 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
         counted += 1;
       }
     }
-    expect(counted).toBe(SWEEP.length * ELEM_TIERS.length);
+    expect(counted).toBe(SWEEP.length * tiers.length);
   });
 
   /**
@@ -642,15 +644,16 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
    * 낱말을 요구하면 그건 약속이 아니라 **내가 기대한 문형**이다.
    */
   it("**소단원의 약속이 지면에 남는다** — 평행과 거리, 그리고 수선은 제 갈래에", () => {
+    const tiers = tiersOf(unitOf("2-4-3"));
     let counted = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiers) {
       for (const seed of SWEEP) {
         const p = gen("2-4-3", seed, tier);
         const page = `${p.content} ${p.solution}`;
         expect(page, `${tier} 씨앗 ${seed} 평행을 안 말한다`).toMatch(/평행/);
         expect(page, `${tier} 씨앗 ${seed} 거리를 안 말한다`).toContain("거리");
         // 수선의 성질을 쓰는 갈래는 그 낱말이 반드시 지면에 있어야 한다.
-        if (tier === "연산" || tier === "심화") {
+        if (tier === "연산" || tier === "심화하") {
           expect(page, `${tier} 씨앗 ${seed} 수선을 안 말한다`).toContain(
             "수선",
           );
@@ -658,7 +661,7 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
         counted += 1;
       }
     }
-    expect(counted).toBe(SWEEP.length * ELEM_TIERS.length);
+    expect(counted).toBe(SWEEP.length * tiers.length);
   });
 });
 
@@ -775,7 +778,7 @@ describe("[초4 2-4-2] 평행과 평행선", () => {
     let counted0 = 0;
     const answers = new Set<string>();
     for (const seed of SWEEP) {
-      const p = gen("2-4-2", seed, "심화");
+      const p = gen("2-4-2", seed, "심화하");
       const m = p.content.match(/서로 (평행|수직)하려면/);
       expect(m, `씨앗 ${seed} 양 끝에 요구된 관계를 못 읽음`).toBeTruthy();
       // 앞뒤에서 수직으로 한 번씩 꺾이므로 그 둘은 서로 지운다 —
@@ -791,7 +794,7 @@ describe("[초4 2-4-2] 평행과 평행선", () => {
 
   it("**각도로 사다리를 세우지 않는다** (㉡ 1-2-3 · 1-2-4 와 같은 산술이 되는 자리)", () => {
     let counted0 = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-4-2"))) {
       for (const seed of SWEEP) {
         const p = gen("2-4-2", seed, tier);
         expect(
@@ -806,7 +809,7 @@ describe("[초4 2-4-2] 평행과 평행선", () => {
 
   it("**1-4-3(뒤집기)의 「$N$번보다 많고」 문형을 안 쓴다** (㉢)", () => {
     let counted0 = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-4-2"))) {
       for (const seed of SWEEP) {
         const c = gen("2-4-2", seed, tier).content;
         // 홀짝을 쓰는 소단원이라 저절로 떠오르는 문형이다 — 그대로 가면 뒤집기와 같은 문항.
@@ -820,7 +823,7 @@ describe("[초4 2-4-2] 평행과 평행선", () => {
 
   it("**직선 이름 뒤 조사가 맞는다** (㉣ 가~자는 모두 받침이 없다)", () => {
     let counted0 = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-4-2"))) {
       for (const seed of SWEEP) {
         const p = gen("2-4-2", seed, tier);
         for (const page of [p.content, p.solution]) {
@@ -955,7 +958,7 @@ describe("[초4 2-4-2·2-4-3] 그림 배선", () => {
     // 하나만 그리는 까닭이 바로 이것이다(`_line_relation` 머리말).
     let looked = 0;
     for (const seed of SWEEP) {
-      for (const tier of [undefined, ...ELEM_TIERS] as const) {
+      for (const tier of [undefined, ...tiersOf(unitOf("2-4-1"))]) {
         expect(
           gen("2-4-1", seed, tier).figureSpec,
           `«${tier}» 씨앗 ${seed}`,
@@ -1084,7 +1087,7 @@ describe("[초4 2-4-1] 수직과 수선", () => {
     let byPoints = 0;
     let byMore = 0;
     for (const seed of SWEEP) {
-      const p = gen("2-4-1", seed, "심화");
+      const p = gen("2-4-1", seed, "심화하");
       const had = madeRight(p.content);
       expect(had, `씨앗 ${seed} 되짚을 직각 수를 못 읽음`).toBeTruthy();
       expect(
@@ -1120,7 +1123,7 @@ describe("[초4 2-4-1] 수직과 수선", () => {
 
   it("**각도가 한 자리도 안 나온다** (㉢ 표준은 $90\\times k$ 를 쓴다)", () => {
     let looked = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-4-1"))) {
       for (const seed of SWEEP) {
         const p = gen("2-4-1", seed, tier);
         expect(
@@ -1135,7 +1138,7 @@ describe("[초4 2-4-1] 수직과 수선", () => {
 
   it("**직선 이름 뒤 조사가 맞는다** (㉣ 가~자는 모두 받침이 없다)", () => {
     let looked = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-4-1"))) {
       for (const seed of SWEEP) {
         const p = gen("2-4-1", seed, tier);
         for (const page of [p.content, p.solution]) {

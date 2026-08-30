@@ -32,7 +32,6 @@
  *   ㉣ 어느 갈래가 **답을 발문에 그대로 두고** 있지 않은가
  *   ㉤ 그림이 **답이나 풀이 첫 단계**를 말하지 않는가 (09 §2.2)
  */
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -96,7 +95,9 @@ for (const u of units) {
   console.log(`\n${"═".repeat(72)}\n${u.grade} ${u.section}`);
   for (const seed of SEEDS) {
     if (SEEDS.length > 1) console.log(`\n  ── 씨앗 ${seed} ──`);
-    for (const tier of ELEM_TIERS) {
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+    // `ELEM_TIERS`(축 전체) 가 아니라 `supportedTiers(u)`(등록된 것)를 돈다.
+    for (const tier of supportedTiers(u)) {
       const p = generateElementaryProblem(u, seed, tier);
       shown += 1;
       console.log(`\n  [${tier}] ${p.content.replace(/\n/g, "\n         ")}`);

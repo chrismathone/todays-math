@@ -36,7 +36,11 @@
  * 후속 작업: predictor 엔진(A)을 이 프로젝트로 이식하고, B(능력 추정)를 실제로 설계·구현하는
  * 별도 태스크가 필요하다. 그 전까지 이 함수의 결과는 "예상 점수(잠정)"로만 표기해야 한다.
  */
-import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
+import {
+  CORE_DIFFICULTIES,
+  DIFFICULTY_LADDER,
+  type Difficulty,
+} from "@/contracts/difficulty";
 
 import type { GradedAnswer } from "@/lib/testResults/gradeAnswers";
 
@@ -44,15 +48,26 @@ import type { GradedAnswer } from "@/lib/testResults/gradeAnswers";
  * 오답 문항 난이도별 보정 방향 — 어려운 갈래를 틀렸으면 +, 쉬운 갈래를 틀렸으면 −.
  *
  * ⚠️ 2026-08-25(D-106) 에 갈래가 넷이 되었다. 예전 셋(−1 / 0 / +1)을 그대로 옮기면
- *    밑단이 하나 늘어난 만큼 아래가 비어 버린다. 사다리 위치를 −1 … +1 에 고르게
- *    놓는다 — 연산 −1 · 기본 −⅓ · 응용 +⅓ · 심화 +1.
- *    (v0 잠정치라 정밀한 값이 아니다. 방향과 폭만 지킨다.)
+ *    밑단이 하나 늘어난 만큼 아래가 비어 버린다. 한 칸에 ⅔씩 — 연산 −1 · 기본 −⅓ ·
+ *    응용 +⅓ · 심화하 +1. (v0 잠정치라 정밀한 값이 아니다. 방향과 폭만 지킨다.)
+ *
+ * 🔴 **눈금을 사다리 «길이»로 나누면 안 된다** (D-113, 2026-08-30).
+ *    종전에는 `(2 * i) / (사다리 길이 - 1) - 1` 이었다. 그러면 축을 넓히는 순간
+ *    **기존 갈래의 무게가 통째로 옮겨 간다** — 축이 여섯이 되자 `심화하` 가
+ *    **+1 → +0.2** 로 주저앉아, 콘텐츠는 한 문항도 안 바뀌었는데 원장님이 보시는
+ *    예상 점수가 **75 → 71** 로 움직였다(`testresult.test.ts` 가 잡았다).
+ *    「분모가 바뀌면 같은 숫자가 다른 것을 가리킨다」(2026-08-17)의 그 자리다.
+ *
+ *    그래서 **칸 간격을 못 박는다** — 밑단이 −1, 한 칸에 ⅔. 눈금이 축의 길이에
+ *    안 매이므로 갈래를 더해도 **이미 있는 갈래의 값은 그대로다.**
+ *    확대 갈래는 +1 위로 나간다(심화중 +5/3 · 심화상 +7/3) — 보정 자체는
+ *    `MAX_ADJUSTMENT` 로 이미 잘리므로 「가장 어려운 것만 틀렸다」가 상한에 닿는다.
  */
+/** 한 칸의 무게 — **핵심 넷이 −1 … +1 을 채우도록** 정한다(=⅔). 축 길이에 안 매인다. */
+const WEIGHT_STEP = 2 / (CORE_DIFFICULTIES.length - 1);
+
 const DIFFICULTY_WEIGHT: Record<Difficulty, number> = Object.fromEntries(
-  DIFFICULTY_LADDER.map((tier, i) => [
-    tier,
-    (2 * i) / (DIFFICULTY_LADDER.length - 1) - 1,
-  ]),
+  DIFFICULTY_LADDER.map((tier, i) => [tier, -1 + WEIGHT_STEP * i]),
 ) as Record<Difficulty, number>;
 
 /** 보정 폭 상한(점) — 근거가 얇은 v0 추정치가 실채점 점수와 크게 어긋나지 않도록 제한한다. */

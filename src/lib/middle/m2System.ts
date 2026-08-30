@@ -865,25 +865,31 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SYS, "05A", "두 방정식의 계수 구하기", SEC.미지수2, "심화", (rng) =>
-    attempt(200, () => {
-      const x = nonzero(rng, 1, 5);
-      const y = nonzero(rng, 1, 5);
-      const a = nonzero(rng, 2, 7);
-      const b = nonzero(rng, 2, 7);
-      const q = nonzero(rng, 1, 5);
-      const r = nonzero(rng, 1, 5);
-      const c1 = a * x + q * y;
-      const c2 = r * x + b * y;
-      if (Math.abs(c1) > 50 || Math.abs(c2) > 50) return null;
-      const answer = a - b;
-      return {
-        content: `연립방정식 $\\begin{cases}ax${sc(q, "y")}=${c1}\\\\${mc(r, "x")}+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
-        answer: `$${answer}$`,
-        solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${subTerm(b)}=${answer}$이다.`,
-        facts: { x, y, a, b, q, r, c1, c2, answer },
-      };
-    }),
+  def(
+    MINOR_SYS,
+    "05A",
+    "두 방정식의 계수 구하기",
+    SEC.미지수2,
+    "심화하",
+    (rng) =>
+      attempt(200, () => {
+        const x = nonzero(rng, 1, 5);
+        const y = nonzero(rng, 1, 5);
+        const a = nonzero(rng, 2, 7);
+        const b = nonzero(rng, 2, 7);
+        const q = nonzero(rng, 1, 5);
+        const r = nonzero(rng, 1, 5);
+        const c1 = a * x + q * y;
+        const c2 = r * x + b * y;
+        if (Math.abs(c1) > 50 || Math.abs(c2) > 50) return null;
+        const answer = a - b;
+        return {
+          content: `연립방정식 $\\begin{cases}ax${sc(q, "y")}=${c1}\\\\${mc(r, "x")}+by=${c2}\\end{cases}$의 해가 $x=${x}$, $y=${y}$일 때, $a-b$의 값을 구하시오.`,
+          answer: `$${answer}$`,
+          solution: `해를 첫째 식에 대입하면 $a=${a}$이고, 둘째 식에 대입하면 $b=${b}$이다. 따라서 $a-b=${a}-${subTerm(b)}=${answer}$이다.`,
+          facts: { x, y, a, b, q, r, c1, c2, answer },
+        };
+      }),
   ),
 
   def(
@@ -907,7 +913,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_SYS, "07A", "해와 계수의 관계", SEC.미지수2, "심화", (rng) => {
+  def(MINOR_SYS, "07A", "해와 계수의 관계", SEC.미지수2, "심화하", (rng) => {
     const x = intBetween(rng, 1, 5);
     const y = intBetween(rng, 1, 5);
     const a = intBetween(rng, 2, 8);
@@ -1159,7 +1165,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "19",
     "계수가 순환소수인 연립방정식",
     SEC.여러가지,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(8000, () => {
         const x0 = nonzero(rng, 1, 6);
@@ -1213,7 +1219,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     "20",
     "지수법칙을 이용한 연립방정식",
     SEC.여러가지,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const b1 = pick(rng, [2, 3, 5] as const);
@@ -1388,7 +1394,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     };
   }),
 
-  def(MINOR_APPLY, "07A", "몇 년 전의 나이", SEC.수나이, "심화", (rng) =>
+  def(MINOR_APPLY, "07A", "몇 년 전의 나이", SEC.수나이, "심화하", (rng) =>
     attempt(300, () => {
       const younger = intBetween(rng, 10, 18);
       const older = intBetween(rng, younger + 2, younger + 10);
@@ -1458,26 +1464,32 @@ export const M2_SYSTEM: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "07", "증가 감소에 대한 문제", SEC.가격도형, "심화", (rng) =>
-    attempt(400, () => {
-      const a = pick(rng, [4, 5, 6, 8, 10, 20] as const);
-      const b = pick(rng, [4, 5, 6, 8, 10, 20] as const);
-      const km = intBetween(rng, 2, 5);
-      const kf = intBetween(rng, 2, 5);
-      const male = 100 * km;
-      const female = 100 * kf;
-      const T = male + female;
-      const d = a * km - b * kf;
-      if (d === 0) return null;
-      const nowMale = km * (100 + a);
-      const word = d > 0 ? "늘었다" : "줄었다";
-      return {
-        content: `어느 중학교의 작년 전체 학생은 $${T}$명이었다. 올해는 작년에 비하여 남학생이 $${a}\\%$ 증가하고 여학생이 $${b}\\%$ 감소하여 전체 학생이 $${Math.abs(d)}$명 ${word}. 올해의 남학생 수를 구하시오.`,
-        answer: `$${nowMale}$명`,
-        solution: `작년의 남학생을 $x$명, 여학생을 $y$명이라 하면 $x+y=${T}$이다.\n전체 학생의 증감에서 $\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}y=${d}$이므로 $${a}x-${b}y=${100 * d}$이다.\n두 식을 연립하여 풀면 $x=${male}$, $y=${female}$이다.\n작년의 남학생 $${male}$명이 $${a}\\%$ 늘었으므로 올해의 남학생은 $${male}+${(a * male) / 100}=${nowMale}$(명)이다.`,
-        facts: { T, a, b, d, male, female, nowMale },
-      };
-    }),
+  def(
+    MINOR_APPLY,
+    "07",
+    "증가 감소에 대한 문제",
+    SEC.가격도형,
+    "심화하",
+    (rng) =>
+      attempt(400, () => {
+        const a = pick(rng, [4, 5, 6, 8, 10, 20] as const);
+        const b = pick(rng, [4, 5, 6, 8, 10, 20] as const);
+        const km = intBetween(rng, 2, 5);
+        const kf = intBetween(rng, 2, 5);
+        const male = 100 * km;
+        const female = 100 * kf;
+        const T = male + female;
+        const d = a * km - b * kf;
+        if (d === 0) return null;
+        const nowMale = km * (100 + a);
+        const word = d > 0 ? "늘었다" : "줄었다";
+        return {
+          content: `어느 중학교의 작년 전체 학생은 $${T}$명이었다. 올해는 작년에 비하여 남학생이 $${a}\\%$ 증가하고 여학생이 $${b}\\%$ 감소하여 전체 학생이 $${Math.abs(d)}$명 ${word}. 올해의 남학생 수를 구하시오.`,
+          answer: `$${nowMale}$명`,
+          solution: `작년의 남학생을 $x$명, 여학생을 $y$명이라 하면 $x+y=${T}$이다.\n전체 학생의 증감에서 $\\dfrac{${a}}{100}x-\\dfrac{${b}}{100}y=${d}$이므로 $${a}x-${b}y=${100 * d}$이다.\n두 식을 연립하여 풀면 $x=${male}$, $y=${female}$이다.\n작년의 남학생 $${male}$명이 $${a}\\%$ 늘었으므로 올해의 남학생은 $${male}+${(a * male) / 100}=${nowMale}$(명)이다.`,
+          facts: { T, a, b, d, male, female, nowMale },
+        };
+      }),
   ),
 
   def(MINOR_APPLY, "08", "원가 정가에 대한 문제", SEC.가격도형, "응용", (rng) =>

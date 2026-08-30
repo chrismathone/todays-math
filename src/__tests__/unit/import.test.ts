@@ -113,7 +113,7 @@ describe("[T3.0] 난이도 매핑", () => {
   it("1~10을 easy/mid/hard로 나눈다", () => {
     expect(mapNumericDifficulty(2)).toBe("기본");
     expect(mapNumericDifficulty(5)).toBe("응용");
-    expect(mapNumericDifficulty(9)).toBe("심화");
+    expect(mapNumericDifficulty(9)).toBe("심화하");
   });
 });
 

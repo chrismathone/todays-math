@@ -56,8 +56,7 @@ PROBE_PATH = os.path.join(
 # 산출물에 figureSpec 까지 넣는다 — 「그림을 뗀다」류 변이는 본문·정답·해설이 그대로라
 # 그림을 안 찍으면 ⑵ 에서 «산출물이 그대로다»로 오판된다(멀쩡한 변이를 판정 거부).
 PROBE_TS = """
-import { elementaryUnits, generateElementaryProblem } from "../../src/lib/elementary/generate";
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
+import { elementaryUnits, generateElementaryProblem, supportedTiers } from "../../src/lib/elementary/generate";
 
 const sections: string[] = __SECTIONS__;
 const out: string[] = [];
@@ -68,7 +67,10 @@ for (const sec of sections) {
   // ⚠️ **표준(`undefined`)까지 찍는다.** 갈래만 찍으면 「표준 발문을 고치는 변이」가
   // ⑵ 에서 «산출물이 그대로다»로 판정 거부된다 — 표준 결함은 구조적으로 안 보인다.
   // 초3 조사 수리(1-3-3 표준)를 등록하며 실제로 걸렸다(2026-08-23 elem-g3).
-  for (const tier of [undefined, ...ELEM_TIERS]) {
+  // 🔴 D-113(2026-08-30) — `ELEM_TIERS` 는 **축 전체**(여섯)다. 아직 안 채운 갈래를
+  // 만들려 들면 표본이 통째로 죽고, 그러면 하네스가 「산출물이 그대로다」가 아니라
+  // **비교 자체를 못 한다.** 그 소단원이 실제로 내는 갈래만 돈다.
+  for (const tier of [undefined, ...supportedTiers(unit)]) {
     // ⚠️ 씨앗은 **일부러 고른 것**이다. 표본이 어떤 자리를 안 밟으면 그 자리를 건드리는
     // 변이는 산출물을 안 바꿔 **판정할 수 없다**(⑵ 거부). 4·79 는 초3 2-2-3 에서
     // 「나쁜 나머지가 뽑는 범위의 **끝**」인 자리를 밟는다 — 그것 없이는 「나쁜 r 탐색

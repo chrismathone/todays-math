@@ -14,9 +14,10 @@ import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["1-4-1", "1-4-2", "1-4-3", "1-4-4"] as const;
 const FIGURE_TIERS = new Set(["1-4-3|기본", "1-4-4|기본"]);
@@ -85,13 +86,13 @@ type MoveSpec = { kind: string; cells: Cell[]; op: string; n: number };
 describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
   it("네 소단원이 네 갈래를 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = gen(code, 31337, tier);
         const b = gen(code, 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -106,7 +107,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
     const eq = /\$([\d+\-\\a-z]+)=(\d+)\$/g;
     const pure = /^\d+(?:(?:\+|-|\\times|\\div)\d+)*$/;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const m of p.solution.matchAll(eq)) {
@@ -126,7 +127,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
   it("규모 — 모든 수가 1400 아래다 (90°×15 = 1350 이 최대)", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -144,7 +145,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
   // 2026-08-23), 그림만으로도 6 이상을 따로 잠근다. 나머지는 발문 기준.
   it("갈래마다 변형이 8가지 이상이다 (그림 갈래는 발문+그림 짝)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const isFig = FIGURE_TIERS.has(`${code}|${tier}`);
         const seen = new Set<string>();
         const figs = new Set<string>();
@@ -174,7 +175,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
       for (const code of CODES) {
         const std = generateElementaryProblem(unitOf(code), seed);
         all.push(`${std.content}${JSON.stringify(std.figureSpec ?? null)}`);
-        for (const tier of ELEM_TIERS) {
+        for (const tier of tiersOf(unitOf(code))) {
           const p = gen(code, seed, tier);
           all.push(`${p.content}${JSON.stringify(p.figureSpec ?? null)}`);
         }
@@ -187,7 +188,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
   it("모든 수가 KaTeX 안에 있다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const [label, text] of [
@@ -280,7 +281,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
         `${m![1]}으로 $${Number(m![2]) - Number(m![6])}$칸, ${m![3]}으로 $${Number(m![4])}$칸`,
       );
 
-      const deep = gen("1-4-1", seed, "심화");
+      const deep = gen("1-4-1", seed, "심화하");
       m = deep.content.match(
         /([가-힣]+)으로 \$(\d+)\$칸 옮겨야 할 것을 잘못하여 ([가-힣]+)으로 \$(\d+)\$칸/,
       );
@@ -324,7 +325,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
         `${a > b ? m![1] : m![3]}으로 $${Math.abs(a - b)}\\,\\mathrm{cm}$`,
       );
 
-      const deep = gen("1-4-2", seed, "심화");
+      const deep = gen("1-4-2", seed, "심화하");
       m = deep.content.match(
         /([가-힣]+)으로 \$(\d+)\\,\\mathrm\{cm\}\$ 밀어야 할 것을 잘못하여 ([가-힣]+)으로 \$(\d+)\\,\\mathrm\{cm\}\$/,
       );
@@ -372,7 +373,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
               : "처음 도형과 같다";
       expect(apply.answer, apply.content).toBe(want);
 
-      const deep = gen("1-4-3", seed, "심화");
+      const deep = gen("1-4-3", seed, "심화하");
       m = deep.content.match(/\$(\d+)\$번보다 많고 \$(\d+)\$번보다 적다면/);
       expect(m, deep.content).toBeTruthy();
       const lo = Number(m![1]);
@@ -422,7 +423,7 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
       expect(net, "0°면 문항이 죽는다").toBeGreaterThan(0);
       expect(answerNum(apply.answer)).toBe(net);
 
-      const deep = gen("1-4-4", seed, "심화");
+      const deep = gen("1-4-4", seed, "심화하");
       m = deep.content.match(
         /시계 방향으로 \$(\d+)\^\\circ\$ 돌렸더니 가 도형/,
       );

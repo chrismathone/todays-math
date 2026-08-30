@@ -276,7 +276,7 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
     "28",
     "홀수와 짝수 자료 수의 차",
     "줄기와 잎 그림",
-    "심화",
+    "심화하",
     (rng) => {
       const base = intBetween(rng, 20, 35);
       const values = Array.from({ length: 9 }, (_, i) => base + i);
@@ -455,7 +455,7 @@ const FREQUENCY_TABLE_TYPES: TypeEntry[] = [
     "36",
     "도수의 범위",
     "도수분포표",
-    "심화",
+    "심화하",
     (rng) => {
       const frequencies = Array.from({ length: 5 }, () =>
         intBetween(rng, 2, 12),
@@ -756,7 +756,7 @@ const HISTOGRAM_TYPES: TypeEntry[] = [
     "43",
     "두 구간의 도수 합",
     "히스토그램",
-    "심화",
+    "심화하",
     (rng) => {
       const frequencies = Array.from({ length: 5 }, () =>
         intBetween(rng, 2, 9),
@@ -882,7 +882,7 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
     "25",
     "그래프의 증가 구간 세기",
     "그래프의 이해",
-    "심화",
+    "심화하",
     (rng) => {
       const values = Array.from({ length: 6 }, () => intBetween(rng, 1, 15));
       let answer = 0;
@@ -1029,7 +1029,7 @@ const FREQUENCY_POLYGON_TYPES: TypeEntry[] = [
     // (10 은 «A반 학생 수», 49 는 «도수가 더 큰 계급의 개수»로 서로 다르다).
     "두 도수분포다각형에서 도수가 더 큰 계급의 개수",
     "도수분포다각형",
-    "심화",
+    "심화하",
     (rng) => {
       const first = Array.from({ length: 5 }, () => intBetween(rng, 2, 9));
       const second = Array.from({ length: 5 }, () => intBetween(rng, 2, 9));
@@ -1125,7 +1125,7 @@ const ROTATION_TYPES: TypeEntry[] = [
     "24A",
     "원뿔대의 회전축을 포함하는 단면의 넓이",
     SOLID_SEC,
-    "심화",
+    "심화하",
     (rng) => {
       const small = intBetween(rng, 2, 8);
       const big = intBetween(rng, small + 1, 14);

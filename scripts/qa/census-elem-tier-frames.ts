@@ -115,11 +115,13 @@ if (units.length === 0) {
 const fence = openFence({ grades: [grade] });
 const tally = new SweepTally();
 
-// 한 소단원만 물으면 네 갈래를 그대로 찍는다 — 세지 않고 보여 준다.
+// 한 소단원만 물으면 갈래를 그대로 찍는다 — 세지 않고 보여 준다.
+// `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+// `ELEM_TIERS`(축 전체) 가 아니라 `supportedTiers(u)`(등록된 것)를 돈다.
 if (unitArg) {
   for (const u of units) {
     console.log(`\n${"=".repeat(72)}\n${u.grade} ${u.section}`);
-    for (const tier of ELEM_TIERS) {
+    for (const tier of supportedTiers(u)) {
       tally.count(u.grade, u.section, tier, 1);
       const p = generateElementaryProblem(u, SEEDS[0]!, tier);
       console.log(`\n  [${tier}]`);
@@ -143,7 +145,10 @@ if (showArg !== undefined) {
   const tiers = tierArg ? [tierArg] : [...ELEM_TIERS];
   let hit = 0;
   for (const unit of units) {
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다.
+    const supported = new Set(supportedTiers(unit));
     for (const tier of tiers) {
+      if (!supported.has(tier as (typeof ELEM_TIERS)[number])) continue;
       tally.count(unit.grade, unit.section, tier, SEEDS.length);
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(
@@ -218,7 +223,11 @@ if (args.includes("--diversity") || args.includes("--marks")) {
   }
 
   for (const unit of units) {
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+    // 없으면 그 소단원 행을 아예 만들지 않는다(만들려다 던지면 연장이 통째로 죽는다).
+    const supported = new Set(supportedTiers(unit));
     for (const tier of ELEM_TIERS) {
+      if (!supported.has(tier)) continue;
       tally.count(unit.grade, unit.section, tier, SEEDS.length);
       const cell: Cell = {
         frames: new Set(),
@@ -254,6 +263,12 @@ if (args.includes("--diversity") || args.includes("--marks")) {
     );
     for (const tier of ELEM_TIERS) {
       const cells = [...grid.get(tier)!.values()];
+      // `심화중`·`심화상` 은 채우는 중이라(D-113) 아무 소단원도 안 걸릴 수 있다 —
+      // 0으로 나누면 NaN 이 찍힌다. NaN 은 「깨끗」과 「못 셈」을 안 가른다.
+      if (cells.length === 0) {
+        console.log(`  ${tier.padEnd(5)}  (아직 안 채움 — 소단원 0개)`);
+        continue;
+      }
       const w = cells.reduce((a, c) => a + c.works.size, 0) / cells.length;
       const f = cells.reduce((a, c) => a + c.frames.size, 0) / cells.length;
       const one = cells.filter((c) => c.works.size === 1).length;
@@ -283,6 +298,10 @@ if (args.includes("--diversity") || args.includes("--marks")) {
     console.log("  갈래   표지 붙은 문항 / 전체      소단원 전 씨앗에 표지");
     for (const tier of ELEM_TIERS) {
       const cells = [...grid.get(tier)!.values()];
+      if (cells.length === 0) {
+        console.log(`  ${tier.padEnd(5)}  (아직 안 채움 — 소단원 0개)`);
+        continue;
+      }
       const marked = cells.reduce((a, c) => a + c.marked, 0);
       const total = cells.reduce((a, c) => a + c.total, 0);
       const allSeeds = cells.filter((c) => c.marked === c.total).length;
@@ -319,7 +338,10 @@ for (const tier of ELEM_TIERS) {
 }
 
 for (const unit of units) {
+  // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다.
+  const supported = new Set(supportedTiers(unit));
   for (const tier of ELEM_TIERS) {
+    if (!supported.has(tier)) continue;
     tally.count(unit.grade, unit.section, tier, SEEDS.length);
     const bucket = perTier.get(tier)!;
     const owners = perTierUnits.get(tier)!;

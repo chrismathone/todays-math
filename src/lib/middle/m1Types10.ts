@@ -172,7 +172,7 @@ const EQUATION_MEANING: TypeEntry[] = [
     "91",
     "항등식이 되는 두 상수의 곱",
     SEC.방정식해,
-    "심화",
+    "심화하",
     (rng): Body =>
       attempt(400, (): Body | null => {
         const a = pick(rng, [2, 3, 4, 5, -2, -3, -4, -5] as const);

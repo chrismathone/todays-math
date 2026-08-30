@@ -203,7 +203,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "15",
     "두 연립방정식의 해가 서로 같을 때",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const x0 = nonzero(rng, 1, 5);
@@ -367,7 +367,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
   ),
 
   // ── 연립일차방정식의 활용 (일, 속력) ─────────────────
-  def(MINOR_APPLY, "09", "일에 대한 문제", SEC.일속력, "심화", (rng) =>
+  def(MINOR_APPLY, "09", "일에 대한 문제", SEC.일속력, "심화하", (rng) =>
     attempt(400, () => {
       const T = intBetween(rng, 2, 8);
       const m = T + intBetween(rng, 1, 24);
@@ -446,7 +446,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "13",
     "거리 속력 시간에 대한 문제 둘레를 도는 경우",
     SEC.일속력,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const p = intBetween(rng, 4, 9);
@@ -470,7 +470,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "14",
     "거리 속력 시간에 대한 문제 강물과 배의 속력에 대한 경우",
     SEC.일속력,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const bb = intBetween(rng, 4, 12);
@@ -494,7 +494,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "17",
     "거리 속력 시간에 대한 문제 기차가 다리 또는 터널을 지나는 경우",
     SEC.일속력,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const v = pick(rng, [15, 20, 25, 30] as const);
@@ -564,7 +564,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "16",
     "농도에 대한 문제 농도를 구하는 경우",
     SEC.농도비율,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const a = intBetween(rng, 2, 15);
@@ -586,24 +586,30 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_APPLY, "18", "합금 식품에 대한 문제", SEC.농도비율, "심화", (rng) =>
-    attempt(50, () => {
-      const p1 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);
-      const p2 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);
-      if (p1 === p2) return null;
-      const r1 = 100 - p1;
-      const r2 = 100 - p2;
-      const x = 10 * intBetween(rng, 10, 40);
-      const y = 10 * intBetween(rng, 10, 40);
-      const C = (p1 * x + p2 * y) / 100;
-      const Z = (r1 * x + r2 * y) / 100;
-      return {
-        content: `구리를 $${p1}\\%$, 주석을 $${r1}\\%$ 포함한 합금 $\\mathrm{A}$와 구리를 $${p2}\\%$, 주석을 $${r2}\\%$ 포함한 합금 $\\mathrm{B}$를 녹여서 구리 $${C}\\,\\mathrm{g}$, 주석 $${Z}\\,\\mathrm{g}$을 얻으려고 한다. 합금 $\\mathrm{A}$는 몇 $\\mathrm{g}$이 필요한지 구하시오.`,
-        answer: `$${x}\\,\\mathrm{g}$`,
-        solution: `합금 $\\mathrm{A}$, $\\mathrm{B}$가 각각 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$ 필요하다고 하면 구리의 양에서 $\\dfrac{${p1}}{100}x+\\dfrac{${p2}}{100}y=${C}$, 주석의 양에서 $\\dfrac{${r1}}{100}x+\\dfrac{${r2}}{100}y=${Z}$이다.\n풀면 $x=${x}$, $y=${y}$이다.\n따라서 합금 $\\mathrm{A}$는 $${x}\\,\\mathrm{g}$이 필요하다.`,
-        facts: { p1, p2, r1, r2, C, Z, x, y },
-      };
-    }),
+  def(
+    MINOR_APPLY,
+    "18",
+    "합금 식품에 대한 문제",
+    SEC.농도비율,
+    "심화하",
+    (rng) =>
+      attempt(50, () => {
+        const p1 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);
+        const p2 = pick(rng, [20, 30, 40, 50, 60, 70, 80] as const);
+        if (p1 === p2) return null;
+        const r1 = 100 - p1;
+        const r2 = 100 - p2;
+        const x = 10 * intBetween(rng, 10, 40);
+        const y = 10 * intBetween(rng, 10, 40);
+        const C = (p1 * x + p2 * y) / 100;
+        const Z = (r1 * x + r2 * y) / 100;
+        return {
+          content: `구리를 $${p1}\\%$, 주석을 $${r1}\\%$ 포함한 합금 $\\mathrm{A}$와 구리를 $${p2}\\%$, 주석을 $${r2}\\%$ 포함한 합금 $\\mathrm{B}$를 녹여서 구리 $${C}\\,\\mathrm{g}$, 주석 $${Z}\\,\\mathrm{g}$을 얻으려고 한다. 합금 $\\mathrm{A}$는 몇 $\\mathrm{g}$이 필요한지 구하시오.`,
+          answer: `$${x}\\,\\mathrm{g}$`,
+          solution: `합금 $\\mathrm{A}$, $\\mathrm{B}$가 각각 $x\\,\\mathrm{g}$, $y\\,\\mathrm{g}$ 필요하다고 하면 구리의 양에서 $\\dfrac{${p1}}{100}x+\\dfrac{${p2}}{100}y=${C}$, 주석의 양에서 $\\dfrac{${r1}}{100}x+\\dfrac{${r2}}{100}y=${Z}$이다.\n풀면 $x=${x}$, $y=${y}$이다.\n따라서 합금 $\\mathrm{A}$는 $${x}\\,\\mathrm{g}$이 필요하다.`,
+          facts: { p1, p2, r1, r2, C, Z, x, y },
+        };
+      }),
   ),
   def(MINOR_APPLY, "10A", "인원수의 비", SEC.농도비율, "연산", (rng) => {
     const firstRatio = intBetween(rng, 2, 6);
@@ -697,7 +703,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "15A",
     "두 합금의 성분 비교",
     SEC.농도비율,
-    "심화",
+    "심화하",
     (rng) => {
       const copperA = pick(rng, [30, 40, 50] as const);
       const copperB = pick(rng, [60, 70, 80] as const);
@@ -736,7 +742,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "무수히 많을",
     "연산",
   ),
-  specialExtra("24A", "해가 없을 때 첫째 식의 y계수", "B1", "없을", "심화"),
+  specialExtra("24A", "해가 없을 때 첫째 식의 y계수", "B1", "없을", "심화하"),
   specialExtra(
     "25A",
     "해가 무수히 많을 때 첫째 식의 x계수",
@@ -744,7 +750,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     "무수히 많을",
     "기본",
   ),
-  specialExtra("26A", "해가 없을 때 첫째 식의 x계수", "A1", "없을", "심화"),
+  specialExtra("26A", "해가 없을 때 첫째 식의 x계수", "A1", "없을", "심화하"),
 
   /*
    * 32A~35A — 활용(일, 속력)을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
@@ -807,21 +813,27 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_APPLY, "35A", "뒤따라가 따라잡는 경우", SEC.일속력, "심화", (rng) =>
-    attempt(300, () => {
-      const slow = intBetween(rng, 40, 90);
-      const fast = intBetween(rng, slow + 10, 200);
-      const head = intBetween(rng, 3, 20);
-      const gap = fast - slow;
-      if ((slow * head) % gap !== 0) return null;
-      const minutes = (slow * head) / gap;
-      if (minutes < 2 || minutes > 60) return null;
-      return {
-        content: `동생이 분속 $${slow}\\,\\mathrm{m}$로 집을 나선 뒤 $${head}$분 후에 형이 분속 $${fast}\\,\\mathrm{m}$로 같은 길을 따라나섰다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
-        answer: `$${minutes}$분 후`,
-        solution: `형이 출발한 지 $x$분 후에 만난다고 하면 동생은 $${head}+x$분 동안 걸었다.\n두 사람이 걸은 거리가 같으므로 $${slow}(${head}+x)=${fast}x$이다.\n$${gap}x=${slow * head}$이므로 $x=${minutes}$이다.`,
-        facts: { slow, fast, head, minutes },
-      };
-    }),
+  def(
+    MINOR_APPLY,
+    "35A",
+    "뒤따라가 따라잡는 경우",
+    SEC.일속력,
+    "심화하",
+    (rng) =>
+      attempt(300, () => {
+        const slow = intBetween(rng, 40, 90);
+        const fast = intBetween(rng, slow + 10, 200);
+        const head = intBetween(rng, 3, 20);
+        const gap = fast - slow;
+        if ((slow * head) % gap !== 0) return null;
+        const minutes = (slow * head) / gap;
+        if (minutes < 2 || minutes > 60) return null;
+        return {
+          content: `동생이 분속 $${slow}\\,\\mathrm{m}$로 집을 나선 뒤 $${head}$분 후에 형이 분속 $${fast}\\,\\mathrm{m}$로 같은 길을 따라나섰다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
+          answer: `$${minutes}$분 후`,
+          solution: `형이 출발한 지 $x$분 후에 만난다고 하면 동생은 $${head}+x$분 동안 걸었다.\n두 사람이 걸은 거리가 같으므로 $${slow}(${head}+x)=${fast}x$이다.\n$${gap}x=${slow * head}$이므로 $x=${minutes}$이다.`,
+          facts: { slow, fast, head, minutes },
+        };
+      }),
   ),
 ];

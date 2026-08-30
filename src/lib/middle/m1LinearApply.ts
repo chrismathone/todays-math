@@ -211,7 +211,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("20", "긴 의자에 대한 문제", SEC.나이, "심화", (rng) =>
+  def("20", "긴 의자에 대한 문제", SEC.나이, "심화하", (rng) =>
     attempt(300, () => {
       const b = intBetween(rng, 5, 8);
       const a = b - intBetween(rng, 1, 2);
@@ -232,7 +232,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   ),
 
   // ── (증가와 감소, 원가와 정가) ───────────────────────
-  def("09", "증가 감소에 대한 문제", SEC.증감, "심화", (rng) =>
+  def("09", "증가 감소에 대한 문제", SEC.증감, "심화하", (rng) =>
     attempt(80, () => {
       const a = pick(rng, [5, 10] as const);
       const b = pick(rng, [5, 10] as const);
@@ -275,7 +275,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "11",
     "거리 속력 시간에 대한 문제 속력이 바뀌는 경우",
     SEC.거리,
-    "심화",
+    "심화하",
     (rng) => {
       const [v1, v2] = pick(rng, [
         [2, 3],
@@ -300,7 +300,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "12",
     "거리 속력 시간에 대한 문제 시간 차가 발생하는 경우",
     SEC.거리,
-    "심화",
+    "심화하",
     (rng) => {
       const [v1, v2, coef] = pick(rng, [
         [3, 4, 5],
@@ -323,7 +323,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "13",
     "거리 속력 시간에 대한 문제 시간 차를 두고 출발하는 경우",
     SEC.거리,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const u = pick(rng, [40, 50, 60, 80] as const);
@@ -365,7 +365,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "22",
     "거리 속력 시간에 대한 문제 기차가 다리 또는 터널을 지나는 경우",
     SEC.거리,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const v = pick(rng, [15, 20, 25, 30] as const);
@@ -419,7 +419,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     },
   ),
 
-  def("16", "농도에 대한 문제 소금을 더 넣는 경우", SEC.도형, "심화", (rng) =>
+  def("16", "농도에 대한 문제 소금을 더 넣는 경우", SEC.도형, "심화하", (rng) =>
     attempt(400, () => {
       const A = pick(rng, [5, 8, 10] as const);
       const C = pick(rng, [10, 20, 25] as const);
@@ -442,7 +442,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "17",
     "농도에 대한 문제 농도가 다른 두 소금물을 섞는 경우",
     SEC.도형,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, () => {
         const a = pick(rng, [6, 8, 10, 12, 15] as const);
@@ -597,7 +597,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화", (rng) => {
+  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화하", (rng) => {
     const a = intBetween(rng, 2, 6) * 5;
     const b = intBetween(rng, 2, 6) * 5;
     const turnsA = intBetween(rng, 3, 12) * b;
@@ -658,7 +658,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("35", "연속한 증가와 감소", SEC.증감, "심화", (rng) =>
+  def("35", "연속한 증가와 감소", SEC.증감, "심화하", (rng) =>
     attempt(200, () => {
       const up = pick(rng, [20, 25, 50] as const);
       const down = pick(rng, [20, 25, 40] as const);
@@ -902,7 +902,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("50", "자릿수 배수 관계", SEC.수, "심화", (rng) =>
+  def("50", "자릿수 배수 관계", SEC.수, "심화하", (rng) =>
     attempt(200, () => {
       const ones = intBetween(rng, 1, 4);
       const m = intBetween(rng, 2, 9);

@@ -18,7 +18,7 @@
  */
 import { writeFileSync } from "node:fs";
 
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -28,16 +28,20 @@ import {
 const outPath = process.argv[2] ?? "elem-specs.json";
 const seedCount = Number(process.argv[3] ?? 40);
 
-type Row = { grade: string; section: string; tier: string; seed: number; spec: unknown };
+type Row = {
+  grade: string;
+  section: string;
+  tier: string;
+  seed: number;
+  spec: unknown;
+};
 const rows: Row[] = [];
 const seen = new Set<string>();
 let generated = 0;
 
 for (const unit of elementaryUnits()) {
-  const tiers: (ElemTier | undefined)[] = [
-    undefined,
-    ...(supportedTiers(unit).length > 0 ? ELEM_TIERS : []),
-  ];
+  // D-113 — 축 전체가 아니라 **그 소단원이 내는 갈래**를 훑는다(안 채운 갈래는 던진다).
+  const tiers: (ElemTier | undefined)[] = [undefined, ...supportedTiers(unit)];
   for (const tier of tiers) {
     for (let seed = 0; seed < seedCount; seed += 1) {
       let problem;
@@ -65,5 +69,11 @@ for (const unit of elementaryUnits()) {
   }
 }
 
-writeFileSync(outPath, JSON.stringify({ generated, unique: rows.length, rows }, null, 0), "utf-8");
-process.stdout.write(`생성 ${generated} · 서로 다른 스펙 ${rows.length} → ${outPath}\n`);
+writeFileSync(
+  outPath,
+  JSON.stringify({ generated, unique: rows.length, rows }, null, 0),
+  "utf-8",
+);
+process.stdout.write(
+  `생성 ${generated} · 서로 다른 스펙 ${rows.length} → ${outPath}\n`,
+);

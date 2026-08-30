@@ -374,7 +374,7 @@ export const M2_FUNC: TypeEntry[] = [
     "09",
     "세 점이 한 직선 위에 있을 조건",
     SEC.기울기,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -3, 3);
@@ -444,7 +444,7 @@ export const M2_FUNC: TypeEntry[] = [
     "12",
     "함숫값을 이용하여 일차함수의 그래프의 기울기 구하기",
     SEC.기울기,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const m = nonZero(rng, -4, 4);
@@ -665,7 +665,7 @@ export const M2_FUNC: TypeEntry[] = [
     "28",
     "일차함수의 활용 금속 막대의 길이",
     SEC.온도길이,
-    "심화",
+    "심화하",
     (rng) => {
       const baseTemp = intBetween(rng, 5, 15);
       const baseLength = intBetween(rng, 40, 70);
@@ -727,7 +727,7 @@ export const M2_FUNC: TypeEntry[] = [
     "31",
     "일차함수의 활용 두 양초의 길이",
     SEC.온도길이,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const rateA = intBetween(rng, 2, 4);
@@ -751,7 +751,7 @@ export const M2_FUNC: TypeEntry[] = [
     "32",
     "일차함수의 활용 두 시점에서 길이 구하기",
     SEC.온도길이,
-    "심화",
+    "심화하",
     (rng) => {
       const rate = intBetween(rng, 2, 5);
       const t1 = intBetween(rng, 2, 5);
@@ -930,7 +930,7 @@ export const M2_FUNC: TypeEntry[] = [
     "75",
     "함숫값의 차가 주어질 때 함숫값 구하기",
     SEC.함숫값,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const a = nonZero(rng, -4, 4);
@@ -1049,7 +1049,7 @@ export const M2_FUNC: TypeEntry[] = [
     "80",
     "기울기가 같은 두 직선에서 미지수 구하기",
     SEC.기울기,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -3, 3);
@@ -1160,7 +1160,7 @@ export const M2_FUNC: TypeEntry[] = [
     "85",
     "x절편이 같은 두 일차함수의 그래프",
     SEC.절편,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const x0 = nonZero(rng, -5, 5);
@@ -1186,7 +1186,7 @@ export const M2_FUNC: TypeEntry[] = [
     "86",
     "두 절편의 합이 주어질 때 상수 구하기",
     SEC.절편,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -5, 5);
@@ -1309,7 +1309,7 @@ export const M2_FUNC: TypeEntry[] = [
     "74",
     "두 점으로 식을 세워 다른 점의 좌표 구하기",
     SEC.식구하기,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -3, 3);
@@ -1442,7 +1442,7 @@ export const M2_FUNC: TypeEntry[] = [
     "80",
     "평행이동한 그래프가 주어진 그래프와 일치할 조건",
     SEC.성질,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const m = nonZero(rng, -4, 4);
@@ -1550,7 +1550,7 @@ export const M2_FUNC: TypeEntry[] = [
     "73",
     "연립방정식의 해가 주어질 때 두 상수의 곱",
     SEC.연립해,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const p = nonZero(rng, -4, 4);

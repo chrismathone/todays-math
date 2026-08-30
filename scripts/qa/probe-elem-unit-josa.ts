@@ -54,7 +54,6 @@
  * M=0 이면 그건 «못 셈»이다. 읽을 수 없는 단위는 **모름**으로 따로 세어 드러낸다
  * (조용히 넘기면 새 단위가 들어올 때 그 자리는 영영 0이다).
  */
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -244,8 +243,8 @@ const unknown = new Map<string, number>();
 const rows = new Map<string, { n: number; ex: string }>();
 
 for (const u of units) {
-  const tiers = supportedTiers(u).length > 0 ? ELEM_TIERS : [];
-  for (const tier of [undefined, ...tiers])
+  // D-113 — 축 전체가 아니라 **그 소단원이 내는 갈래**를 훑는다(안 채운 갈래는 던진다).
+  for (const tier of [undefined, ...supportedTiers(u)])
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(u, seed, tier);
       for (const text of [p.content, String(p.solution ?? "")]) {

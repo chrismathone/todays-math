@@ -1128,7 +1128,7 @@ export const M3_ANGLE_APPLY: TypeEntry[] = [
     }),
   ),
 
-  def("04", "원에 내접하는 다각형", "심화", (rng) =>
+  def("04", "원에 내접하는 다각형", "심화하", (rng) =>
     attempt(160, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       if (mode === 0) {
@@ -1213,7 +1213,7 @@ $\\angle ABC$는 호 $CDEA$에 대한 원주각이므로 $\\angle ABC=\\dfrac{1}
     }),
   ),
 
-  def("05", "원에 내접하는 사각형의 성질의 응용", "심화", (rng) =>
+  def("05", "원에 내접하는 사각형의 성질의 응용", "심화하", (rng) =>
     attempt(160, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       const angA = intBetween(rng, 30, 60);
@@ -1265,7 +1265,7 @@ $\\angle ABC$는 호 $CDEA$에 대한 원주각이므로 $\\angle ABC=\\dfrac{1}
     }),
   ),
 
-  def("06", "두 원에서 내접하는 사각형의 성질의 응용", "심화", (rng) =>
+  def("06", "두 원에서 내접하는 사각형의 성질의 응용", "심화하", (rng) =>
     attempt(160, () => {
       const mode = pick(rng, [0, 1, 2] as const);
       // $\angle PAB$ 가 보는 호는 **Q 를 지나는 쪽**이라 두 원의 교각(≈80°)보다 커야
@@ -1539,7 +1539,7 @@ $\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ATB=90^\
   def(
     "11",
     "접선과 현이 이루는 각의 응용 한 점에서 원에 그은 두 접선",
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const b = 2 * intBetween(rng, 20, 35);
@@ -1588,7 +1588,7 @@ $\\angle BDE=\\dfrac{1}{2}(180^\\circ-${b}^\\circ)=${90 - b / 2}^\\circ$이고, 
       }),
   ),
 
-  def("12", "두 원에서 접선과 현이 이루는 각 ⑴", "심화", (rng) =>
+  def("12", "두 원에서 접선과 현이 이루는 각 ⑴", "심화하", (rng) =>
     attempt(160, () => {
       const a = intBetween(rng, 40, 75);
       const c = intBetween(rng, 40, 75);
@@ -1645,7 +1645,7 @@ $\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=${c}^\\circ
     }),
   ),
 
-  def("13", "두 원에서 접선과 현이 이루는 각 ⑵", "심화", (rng) =>
+  def("13", "두 원에서 접선과 현이 이루는 각 ⑵", "심화하", (rng) =>
     attempt(160, () => {
       const a = intBetween(rng, 35, 70);
       const b = intBetween(rng, 35, 70);
@@ -1702,7 +1702,7 @@ $\\angle ATE$와 $\\angle DTF$는 맞꼭지각이므로 $\\angle ATE=${c}^\\circ
   def(
     "14",
     "접선과 현이 이루는 각의 응용 삼각형의 닮음을 이용하는 경우",
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const k = intBetween(rng, 2, 5);

@@ -9,7 +9,6 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { defaultRatioFor } from "@/contracts/difficulty";
-import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   elemProblemType,
@@ -18,7 +17,6 @@ import {
   listedForms,
   PILOT_FORM_KEYS,
   pilotFamilyKey,
-  supportedTiers,
 } from "@/lib/elementary/generate";
 import { sameStemFrame, stemFrame } from "@/lib/elementary/stemFrame";
 import { expandFamily } from "@/lib/engine/expandEngine";
@@ -26,8 +24,17 @@ import type { SelectableProblem } from "@/lib/generator/balanceDifficulty";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
+
 const SEEDS = [20260826, 7, 1009, 7919, 4242, 17, 99, 31337];
-const TIER_NAMES = new Set(["연산", "기본", "응용", "심화"]);
+const TIER_NAMES = new Set([
+  "연산",
+  "기본",
+  "응용",
+  "심화하",
+  "심화중",
+  "심화상",
+]);
 
 function unitOf(key: string) {
   const [grade, code] = key.split("|") as [string, string];
@@ -74,11 +81,11 @@ describe("적재기 familyKey 는 소단원×문형", () => {
 });
 
 describe("파일럿 3소단원 · 문형 10", () => {
-  it("PILOT_FORM_KEYS 가 실재 소단원이고 4단 경로는 그대로다", () => {
+  it("PILOT_FORM_KEYS 가 실재 소단원이고 핵심 넷 경로는 그대로다", () => {
     expect(PILOT_FORM_KEYS).toHaveLength(3);
     for (const key of PILOT_FORM_KEYS) {
       const unit = unitOf(key);
-      expect(supportedTiers(unit)).toEqual(ELEM_TIERS);
+      expectCoreTiers(unit, key);
       const plain = generateElementaryProblem(unit, 20260826, "연산");
       expect(plain.formId).toBeUndefined();
     }
@@ -96,7 +103,7 @@ describe("파일럿 3소단원 · 문형 10", () => {
         key,
       ).toBe(true);
       expect(new Set(forms.map((f) => f.tier)), key).toEqual(
-        new Set(ELEM_TIERS),
+        new Set(tiersOf(unit)),
       );
     }
   });
@@ -109,7 +116,7 @@ describe("파일럿 3소단원 · 문형 10", () => {
         const p = generateElementaryForm(unit, 20260826, form.id);
         expect(p.formId).toBe(form.id);
       }
-      const byTier = ELEM_TIERS.map(
+      const byTier = tiersOf(unit).map(
         (t) => forms.filter((f) => f.tier === t).length,
       );
       expect(

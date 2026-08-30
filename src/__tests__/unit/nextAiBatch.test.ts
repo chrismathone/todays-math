@@ -78,7 +78,7 @@ describe("subtract — 이미 만든 것을 뺀다", () => {
       },
       {
         unitId: "u1",
-        difficulty: "심화",
+        difficulty: "심화하",
         questionType: "객관식",
         problemType: "개념",
       },

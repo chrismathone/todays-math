@@ -76,7 +76,9 @@ describe("[초등 출제 CLI] 프리셋 배분 (D-71 안A)", () => {
       연산: 3,
       기본: 3,
       응용: 2,
-      심화: 0,
+      심화하: 0,
+      심화중: 0,
+      심화상: 0,
     });
   });
 
@@ -86,7 +88,9 @@ describe("[초등 출제 CLI] 프리셋 배분 (D-71 안A)", () => {
       연산: 1,
       기본: 0,
       응용: 0,
-      심화: 0,
+      심화하: 0,
+      심화중: 0,
+      심화상: 0,
     });
   });
 
@@ -101,7 +105,7 @@ describe("[초등 출제 CLI] 프리셋 배분 (D-71 안A)", () => {
   });
 
   it("0% 갈래는 0문항이다 — 하위반 심화·상위반 연산", () => {
-    expect(allocateByPreset("하위반", 25).심화).toBe(0);
+    expect(allocateByPreset("하위반", 25).심화하).toBe(0);
     expect(allocateByPreset("상위반", 25).연산).toBe(0);
   });
 });
@@ -177,18 +181,22 @@ describe("[초등 출제 CLI] 세트 생성", () => {
   });
 
   it("직접 배분(tierCounts) — 준 구성 그대로 나오고, 개수는 합에서 나온다", () => {
+    // ⚠️ tierCounts 는 `Partial<Record<ElemTier, number>>` 다 — 0 은 «생략»과 다르다.
+    //    명시한 갈래는 반드시 1 이상이어야 한다(스크립트가 그렇게 던진다, 아래
+    //    「엉뚱한 갈래 이름·0 이하 개수는 던진다」와 같은 규칙). 안 낼 갈래는 아예
+    //    키를 안 준다 — «심화중: 0» 을 적으면 그 자체가 던지는 입력이 된다.
     const items = generateSet({
       grade: "초3",
       code: "1-1-2",
       seed: 20260823,
-      tierCounts: { 연산: 1, 응용: 2, 심화: 1 },
+      tierCounts: { 연산: 1, 응용: 2, 심화하: 1 },
     });
     expect(items).toHaveLength(4);
     const got: Record<string, number> = {};
     for (const item of items) {
       got[item.tier as ElemTier] = (got[item.tier as ElemTier] ?? 0) + 1;
     }
-    expect(got).toEqual({ 연산: 1, 응용: 2, 심화: 1 });
+    expect(got).toEqual({ 연산: 1, 응용: 2, 심화하: 1 });
   });
 
   it("직접 배분에 count 를 같이 주면 합과 같아야 한다 — 어긋나면 던진다", () => {

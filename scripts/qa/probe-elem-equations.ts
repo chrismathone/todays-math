@@ -30,7 +30,7 @@ import {
   elementaryUnits,
   generateElementaryProblem,
 } from "../../src/lib/elementary/generate";
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import { supportedTiers } from "../../src/lib/elementary/generate";
 import { SweepTally, openFence } from "./elemProbeFence";
 
@@ -382,10 +382,11 @@ if (process.argv.includes("--selftest")) {
     /^(예|아니요)$/.test(answer.trim());
 
   for (const unit of units) {
-    const tiers: (ElemTier | undefined)[] =
-      supportedTiers(unit).length > 0
-        ? [undefined, ...ELEM_TIERS]
-        : [undefined];
+    // D-113 — 축 전체가 아니라 **그 소단원이 내는 갈래**를 훑는다(안 채운 갈래는 던진다).
+    const tiers: (ElemTier | undefined)[] = [
+      undefined,
+      ...supportedTiers(unit),
+    ];
     for (const tier of tiers) {
       const where = `${unit.grade} ${unit.section}${tier ? ` «${tier}»` : ""}`;
       tally.count(unit.grade, unit.section, tier, seedCount);

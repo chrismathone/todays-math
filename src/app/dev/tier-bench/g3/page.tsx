@@ -11,6 +11,7 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import type { ElemProblem } from "@/lib/elementary/types";
 
 /**
  * **초3 난이도 사다리 — 네 갈래를 한 줄에 나란히** (매쓰홀릭 벤치마킹용).
@@ -61,7 +62,9 @@ const TIER_NOTE: Record<string, string> = {
   연산: "1단 · 절차 한 번 (식이 그대로 주어짐)",
   기본: "2단 · 식을 스스로 세움 (문장·그림 한 겹)",
   응용: "3단 · 두 단계 (중간값·개념 결합)",
-  심화: "4단 · 역산·조건 조합",
+  심화하: "4단 · 역산·조건 조합",
+  심화중: "5단 · 채우는 중 (D-113)",
+  심화상: "6단 · 채우는 중 (D-113)",
 };
 
 export default async function TierBenchG3Page({
@@ -94,12 +97,24 @@ export default async function TierBenchG3Page({
   const units =
     chapter === "전체" ? all : all.filter((u) => u.chapter === chapter);
 
-  // 네 갈래를 만들고 그림까지 그린다. 그림 실패는 **삼키지 않고** 칸에 찍는다 —
+  // 여섯 갈래를 만들고 그림까지 그린다. 그림 실패는 **삼키지 않고** 칸에 찍는다 —
   // 조용히 비워 두면 「그림이 없는 문항」과 「그림이 깨진 문항」이 같아 보인다.
+  // `심화중`·`심화상` 은 아직 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도
+  // 있다 — `supportedTiers` 로 먼저 물어보고, 없으면 **만들지 않는다**(문항을
+  // 만들려다 던지면 화면이 통째로 500이 된다).
   const rows = await Promise.all(
     units.map(async (unit) => {
+      const supported = new Set(supportedTiers(unit));
       const cells = await Promise.all(
         ELEM_TIERS.map(async (tier) => {
+          if (!supported.has(tier)) {
+            return {
+              tier,
+              p: null as ElemProblem | null,
+              svg: null as string | null,
+              err: null as string | null,
+            };
+          }
           const p = generateElementaryProblem(unit, seed, tier);
           if (!p.figureSpec) {
             return {
@@ -122,7 +137,10 @@ export default async function TierBenchG3Page({
     }),
   );
 
-  const problemCount = rows.length * ELEM_TIERS.length;
+  const problemCount = rows.reduce(
+    (sum, r) => sum + r.cells.filter((c) => c.p !== null).length,
+    0,
+  );
 
   return (
     <main className="mx-auto max-w-[1600px] px-6 py-8">
@@ -130,7 +148,7 @@ export default async function TierBenchG3Page({
         DEV · 난이도 벤치마킹
       </p>
       <h1 className="mt-2 text-xl font-black">
-        초3 난이도 사다리 — 네 갈래 나란히 보기
+        초3 난이도 사다리 — 여섯 갈래 나란히 보기
       </h1>
       <p className="mt-2 max-w-[860px] text-[13px] leading-relaxed text-text-2">
         매쓰홀릭 화면을 옆에 띄우고 <b>한 줄씩</b> 대 보시라고 만든 화면입니다.
@@ -181,8 +199,9 @@ export default async function TierBenchG3Page({
       </nav>
 
       <p className="mt-4 text-[12px] text-text-2">
-        {chapter} — 소단원 {rows.length}개 · 문항 {problemCount}건 (소단원마다
-        네 갈래) · 씨앗 {seed}
+        {chapter} — 소단원 {rows.length}개 · 만든 문항 {problemCount}건 (축은
+        여섯 갈래, `심화중`·`심화상` 은 채우는 중이라 소단원마다 있을 수도 없을
+        수도 있다) · 씨앗 {seed}
       </p>
 
       <div className="mt-6 space-y-10">
@@ -191,7 +210,7 @@ export default async function TierBenchG3Page({
             <h2 className="mb-3 text-[13px] font-black">{unit.section}</h2>
             {/* 넓은 내용은 제 칸 안에서 가로로 구른다 — 본문이 가로로 밀리면 안 된다 */}
             <div className="overflow-x-auto">
-              <div className="grid min-w-[1240px] grid-cols-4 gap-4">
+              <div className="grid min-w-[1860px] grid-cols-6 gap-4">
                 {cells.map(({ tier, p, svg, err }) => (
                   <article
                     key={tier}
@@ -203,22 +222,35 @@ export default async function TierBenchG3Page({
                     <p className="mb-2 text-[10px] leading-snug text-text-2">
                       {TIER_NOTE[tier]}
                     </p>
-                    {err ? (
-                      <p className="mb-2 text-[12px] text-g-red-text">
-                        그림 실패: {err}
+                    {p === null ? (
+                      <p className="text-[12px] text-text-3">
+                        아직 안 채움 ({tier})
                       </p>
-                    ) : null}
-                    <PaperProblemView content={p.content} figureSvg={svg} />
-                    <div className="mt-2 text-[12px] text-text-1">
-                      <span className="font-extrabold tracking-wide text-text-2">
-                        정답
-                      </span>{" "}
-                      <MathText as="span" text={p.answer} />
-                    </div>
-                    <div className="mt-1 text-[12px] text-text-2">
-                      <p className="mb-1 font-extrabold tracking-wide">해설</p>
-                      <PaperProblemView content={p.solution} framed={false} />
-                    </div>
+                    ) : (
+                      <>
+                        {err ? (
+                          <p className="mb-2 text-[12px] text-g-red-text">
+                            그림 실패: {err}
+                          </p>
+                        ) : null}
+                        <PaperProblemView content={p.content} figureSvg={svg} />
+                        <div className="mt-2 text-[12px] text-text-1">
+                          <span className="font-extrabold tracking-wide text-text-2">
+                            정답
+                          </span>{" "}
+                          <MathText as="span" text={p.answer} />
+                        </div>
+                        <div className="mt-1 text-[12px] text-text-2">
+                          <p className="mb-1 font-extrabold tracking-wide">
+                            해설
+                          </p>
+                          <PaperProblemView
+                            content={p.solution}
+                            framed={false}
+                          />
+                        </div>
+                      </>
+                    )}
                   </article>
                 ))}
               </div>

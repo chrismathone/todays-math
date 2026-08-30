@@ -992,7 +992,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "04",
     "이등변삼각형의 성질의 응용 각의 이등분선",
     SEC.이등변,
-    "심화",
+    "심화하",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       const a = 2 * intBetween(rng, 20, 40);
@@ -1110,7 +1110,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "11",
     "합동인 삼각형을 찾아 각의 크기 구하기",
     SEC.이등변,
-    "심화",
+    "심화하",
     (rng): Body => {
       const a = 2 * intBetween(rng, 20, 36);
       const x = 90 - a / 2;
@@ -1223,7 +1223,7 @@ export const M2_GEO_TRI: TypeEntry[] = [
     "16",
     "사다리꼴에서 높이가 같은 두 삼각형의 넓이",
     SEC.평삼넓이,
-    "심화",
+    "심화하",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {

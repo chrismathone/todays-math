@@ -7,12 +7,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import { type ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const UNIT = elementaryUnits().find(
   (u) => u.grade === "초5" && u.section.startsWith("1-6-2"),
@@ -61,7 +62,7 @@ function checkApply(seed: number): void {
 
 /** 심화 — 넓이 → 한 변 → 둘레 → 남은 변 → 넓이. 네 걸음이 실제로 서는지 본다. */
 function checkDeep(seed: number): void {
-  const p = problem("심화", seed);
+  const p = problem("심화하", seed);
   const [area, given] = katexNumbers(p.content) as [number, number];
 
   // ⚠️ 초5 는 제곱근이 없다 — 「넓이 → 한 변」이 곱셈구구로 서야 한다.
@@ -79,12 +80,12 @@ function checkDeep(seed: number): void {
 }
 
 describe("[초5 1-6-2] 난이도 4단 (D-71)", () => {
-  it("넷이 전부 등록돼 있다", () => {
-    expect(supportedTiers(UNIT)).toEqual(ELEM_TIERS);
+  it("핵심 넷이 전부 등록돼 있다", () => {
+    expectCoreTiers(UNIT);
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       const a = problem(tier, 11);
       const b = problem(tier, 11);
       expect(a.content, tier).toBe(b.content);
@@ -92,15 +93,18 @@ describe("[초5 1-6-2] 난이도 4단 (D-71)", () => {
     }
   });
 
-  it("같은 씨앗에서 네 갈래 발문이 서로 갈린다", () => {
+  it("같은 씨앗에서 갈래마다 발문이 서로 갈린다", () => {
+    const tiers = tiersOf(UNIT);
     for (const seed of SEEDS) {
-      const rows = ELEM_TIERS.map((t) => problem(t, seed).content);
-      expect(new Set(rows).size, `씨앗 ${seed}\n${rows.join("\n")}`).toBe(4);
+      const rows = tiers.map((t) => problem(t, seed).content);
+      expect(new Set(rows).size, `씨앗 ${seed}\n${rows.join("\n")}`).toBe(
+        tiers.length,
+      );
     }
   });
 
   it("갈래마다 씨앗에 반응한다 (R9)", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       const rows = new Set(SEEDS.map((s) => problem(tier, s).content));
       expect(rows.size, `${tier}\n${[...rows].join("\n")}`).toBeGreaterThan(1);
     }
@@ -120,7 +124,7 @@ describe("[초5 1-6-2] 난이도 4단 (D-71)", () => {
 
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       for (const seed of SEEDS) {
         const p = problem(tier, seed);
         for (const [where, text] of [
@@ -197,10 +201,10 @@ describe("[초5 1-6-2] 난이도 4단 (D-71)", () => {
   it("해설이 걸음 순서대로이고 갈래마다 길이가 는다", () => {
     for (const seed of SEEDS) {
       const len = (t: ElemTier) => problem(t, seed).solution.length;
-      expect(len("심화"), `씨앗 ${seed}`).toBeGreaterThan(len("응용"));
+      expect(len("심화하"), `씨앗 ${seed}`).toBeGreaterThan(len("응용"));
       expect(len("응용"), `씨앗 ${seed}`).toBeGreaterThan(len("연산"));
       // 심화 해설은 한 변 → 둘레 → 남은 변 → 넓이가 **그 차례로** 나와야 한다.
-      const s = problem("심화", seed).solution;
+      const s = problem("심화하", seed).solution;
       const order = ["한 변", "둘레", "합은", "넓이는"].map((k) =>
         s.indexOf(k),
       );
@@ -216,7 +220,7 @@ describe("[초5 1-6-2] 난이도 4단 (D-71)", () => {
   });
 
   it("네 갈래 모두 1-6-2 소단원을 그대로 단다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       const p = problem(tier, 20260821);
       expect(p.section).toBe(UNIT.section);
       expect(p.orderIndex).toBe(UNIT.orderIndex);

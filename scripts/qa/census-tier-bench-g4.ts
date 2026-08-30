@@ -112,7 +112,11 @@ const units = elementaryUnits().filter(
 
 const rows: Row[] = [];
 for (const unit of units) {
+  // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+  // `ELEM_TIERS`(축 전체) 가 아니라 `supportedTiers(unit)`(등록된 것)로 만든다.
+  const supported = new Set(supportedTiers(unit));
   for (const tier of ELEM_TIERS) {
+    if (!supported.has(tier)) continue;
     tally.count(unit.grade, unit.section, tier, SEEDS.length);
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(unit, seed, tier);
@@ -160,21 +164,26 @@ function pct(n: number, d: number): string {
 
 if (mode === "json") {
   // 시안 화면이 읽는다. 갈래별로 씨앗 하나(첫째)만 — 사람이 한 줄씩 견주는 화면이다.
+  // `심화중`·`심화상` 은 채우는 중이라(D-113) 행이 없을 수 있다 — 그때는 그 갈래를
+  // **빼고** 내보낸다(비어 있는 항목을 지어내면 「채웠다」는 거짓말이 된다).
   const out = units.map((u) => ({
     chapter: u.chapter,
     section: u.section,
-    tiers: ELEM_TIERS.map((t) => {
+    tiers: ELEM_TIERS.flatMap((t) => {
       const r = rows.find(
         (x) => x.section === u.section && x.tier === t && x.seed === SEEDS[0],
-      )!;
-      return {
-        tier: t,
-        content: r.content,
-        answer: r.answer,
-        solution: r.solution,
-        marks: r.marks,
-        hasFigure: r.hasFigure,
-      };
+      );
+      if (!r) return [];
+      return [
+        {
+          tier: t,
+          content: r.content,
+          answer: r.answer,
+          solution: r.solution,
+          marks: r.marks,
+          hasFigure: r.hasFigure,
+        },
+      ];
     }),
   }));
   console.log(JSON.stringify(out, null, 2));
@@ -221,7 +230,7 @@ if (mode === "holic") {
    *
    * ⚠️ 여기 수치는 **가설을 좁혀 줄 뿐 등급을 매기지 않는다.** 「이 문항이 저쪽
    *    심화(중)인가」는 지면에 없다 — 사람이 시안 화면에서 본다. */
-  const deep = rows.filter((r) => r.tier === "심화");
+  const deep = rows.filter((r) => r.tier === "심화하");
 
   console.log("══ ㉠ 「저쪽 심화(중) 층이 우리에게 없다」 ══\n");
   // 저쪽 심화(중)의 실물 셋(복면산 · 경우의 수 · 카드 나눠 두 번째로 큰 수)이 공통으로
@@ -263,15 +272,20 @@ if (mode === "holic") {
     "  갈래   틀1종인 소단원   최빈틀이 12씨앗 중 차지하는 몫(중앙값)   소단원당 틀(중앙값)",
   );
   for (const tier of ELEM_TIERS) {
-    const perUnit = units.map((u) => {
-      const mine = rows.filter(
-        (r) => r.section === u.section && r.tier === tier,
-      );
-      const c = new Map<string, number>();
-      for (const r of mine) c.set(r.frame, (c.get(r.frame) ?? 0) + 1);
-      const top = Math.max(...c.values());
-      return { frames: c.size, topShare: top / mine.length };
-    });
+    // `심화중`·`심화상` 이 아직 없는 소단원은 `mine` 이 비고, 그러면 `Math.max()` 가
+    // `-Infinity` 를 낸다 — 중앙값 계산에서 뺀다(D-113, 「채우는 중」과 「0종」은 다르다).
+    const perUnit = units
+      .map((u) => {
+        const mine = rows.filter(
+          (r) => r.section === u.section && r.tier === tier,
+        );
+        if (mine.length === 0) return null;
+        const c = new Map<string, number>();
+        for (const r of mine) c.set(r.frame, (c.get(r.frame) ?? 0) + 1);
+        const top = Math.max(...c.values());
+        return { frames: c.size, topShare: top / mine.length };
+      })
+      .filter((p): p is { frames: number; topShare: number } => p !== null);
     const one = perUnit.filter((p) => p.frames === 1).length;
     console.log(
       `  ${tier}   ${String(one).padStart(11)}/${units.length}   ` +
@@ -340,7 +354,7 @@ if (mode === "holic") {
   const soleMark = new Map<string, string[]>();
   for (const u of units) {
     const ms = rows
-      .filter((r) => r.section === u.section && r.tier === "심화")
+      .filter((r) => r.section === u.section && r.tier === "심화하")
       .map((r) => r.marks);
     if (!ms.every((m) => m.length > 0)) continue; // 표지 0 이 하나라도 있으면 사람 몫
     const uniq = [...new Set(ms.flat())];
@@ -359,7 +373,7 @@ if (mode === "holic") {
     );
   const wrongOnly = rows.filter(
     (r) =>
-      r.tier === "심화" &&
+      r.tier === "심화하" &&
       r.marks.length === 1 &&
       r.marks[0] === "잘못 계산·바르게 (D-72 4단 예시)",
   );

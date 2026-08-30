@@ -837,7 +837,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "18",
     "일부가 보이지 않는 상대도수의 분포를 나타낸 그래프",
     SEC.상대도수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, (): Body | null => {
         const n = 5;
@@ -885,7 +885,7 @@ export const M1_STAT_FIG: TypeEntry[] = [
     "19",
     "도수의 총합이 다른 두 집단의 비교",
     SEC.상대도수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, (): Body | null => {
         const n = 4;

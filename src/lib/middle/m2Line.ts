@@ -353,7 +353,7 @@ export const M2_LINE: TypeEntry[] = [
     "13",
     "두 일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이",
     SEC.절편,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const c = nonZero(rng, -6, 6);
@@ -459,42 +459,48 @@ export const M2_LINE: TypeEntry[] = [
    * (주어진 $y=ax+b$ 자신은 뺀다). 발문이 한 가지뿐이면 한 유형에서 여러 문항을
    * 못 뽑는다 — 실제로 4문항을 못 채워 던졌다.
    */
-  def(MINOR_G2, "02", "일차함수 의 그래프와 의 부호", SEC.성질, "심화", (rng) =>
-    attempt(120, () => {
-      const a = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
-      const b = pick(rng, [-4, -3, -2, -1, 1, 2, 3, 4] as const);
-      // 묻는 식 $y=({\pm}s)x+({\pm}i)$ — `sSrc` 가 0 이면 기울기가 $a$, 1 이면 $b$.
-      const sSrc = intBetween(rng, 0, 1);
-      const sNeg = intBetween(rng, 0, 1);
-      const iNeg = intBetween(rng, 0, 1);
-      if (sSrc === 0 && sNeg === 0 && iNeg === 0) return null; // 주어진 식 그대로
-      const sName = sSrc === 0 ? "a" : "b";
-      const iName = sSrc === 0 ? "b" : "a";
-      const sVal = sSrc === 0 ? a : b;
-      const iVal = sSrc === 0 ? b : a;
-      const m2 = sNeg === 1 ? -sVal : sVal;
-      const n2 = iNeg === 1 ? -iVal : iVal;
-      const form = `${sNeg === 1 ? "-" : ""}${sName}x${iNeg === 1 ? "-" : "+"}${iName}`;
-      const sTex = `${sNeg === 1 ? "-" : ""}${sName}`;
-      const iTex = `${iNeg === 1 ? "-" : ""}${iName}`;
-      const quad = quadNotPassed(m2, n2);
-      return {
-        content: `오른쪽 그림은 일차함수 $y=ax+b$의 그래프이다. 이때 일차함수 $y=${form}$의 그래프는 제 몇 사분면을 지나지 않는지 구하시오.`,
-        answer: `제$${quad}$사분면`,
-        solution:
-          `그래프가 오른쪽 ${a > 0 ? "위" : "아래"}로 향하므로 $a${a > 0 ? ">" : "<"}0$이고, $y$절편이 ${b > 0 ? "양수" : "음수"}이므로 $b${b > 0 ? ">" : "<"}0$이다.\n` +
-          `따라서 $y=${form}$의 기울기 $${sTex}$는 ${m2 > 0 ? "양수" : "음수"}이고 $y$절편 $${iTex}$는 ${n2 > 0 ? "양수" : "음수"}이므로, 그래프는 오른쪽 ${m2 > 0 ? "위" : "아래"}로 향하고 $y$축과 ${n2 > 0 ? "양" : "음"}의 부분에서 만난다.\n` +
-          `그러므로 제$${quad}$사분면을 지나지 않는다.`,
-        facts: { a, b, sSrc, sNeg, iNeg, m2, n2, quad },
-        figureSpec: {
-          version: "elem-1",
-          kind: "linearGraph",
-          lines: [{ slope: a, yIntercept: b }],
-          xRange: [-4, 4],
-          yRange: [-5, 5],
-        },
-      };
-    }),
+  def(
+    MINOR_G2,
+    "02",
+    "일차함수 의 그래프와 의 부호",
+    SEC.성질,
+    "심화하",
+    (rng) =>
+      attempt(120, () => {
+        const a = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
+        const b = pick(rng, [-4, -3, -2, -1, 1, 2, 3, 4] as const);
+        // 묻는 식 $y=({\pm}s)x+({\pm}i)$ — `sSrc` 가 0 이면 기울기가 $a$, 1 이면 $b$.
+        const sSrc = intBetween(rng, 0, 1);
+        const sNeg = intBetween(rng, 0, 1);
+        const iNeg = intBetween(rng, 0, 1);
+        if (sSrc === 0 && sNeg === 0 && iNeg === 0) return null; // 주어진 식 그대로
+        const sName = sSrc === 0 ? "a" : "b";
+        const iName = sSrc === 0 ? "b" : "a";
+        const sVal = sSrc === 0 ? a : b;
+        const iVal = sSrc === 0 ? b : a;
+        const m2 = sNeg === 1 ? -sVal : sVal;
+        const n2 = iNeg === 1 ? -iVal : iVal;
+        const form = `${sNeg === 1 ? "-" : ""}${sName}x${iNeg === 1 ? "-" : "+"}${iName}`;
+        const sTex = `${sNeg === 1 ? "-" : ""}${sName}`;
+        const iTex = `${iNeg === 1 ? "-" : ""}${iName}`;
+        const quad = quadNotPassed(m2, n2);
+        return {
+          content: `오른쪽 그림은 일차함수 $y=ax+b$의 그래프이다. 이때 일차함수 $y=${form}$의 그래프는 제 몇 사분면을 지나지 않는지 구하시오.`,
+          answer: `제$${quad}$사분면`,
+          solution:
+            `그래프가 오른쪽 ${a > 0 ? "위" : "아래"}로 향하므로 $a${a > 0 ? ">" : "<"}0$이고, $y$절편이 ${b > 0 ? "양수" : "음수"}이므로 $b${b > 0 ? ">" : "<"}0$이다.\n` +
+            `따라서 $y=${form}$의 기울기 $${sTex}$는 ${m2 > 0 ? "양수" : "음수"}이고 $y$절편 $${iTex}$는 ${n2 > 0 ? "양수" : "음수"}이므로, 그래프는 오른쪽 ${m2 > 0 ? "위" : "아래"}로 향하고 $y$축과 ${n2 > 0 ? "양" : "음"}의 부분에서 만난다.\n` +
+            `그러므로 제$${quad}$사분면을 지나지 않는다.`,
+          facts: { a, b, sSrc, sNeg, iNeg, m2, n2, quad },
+          figureSpec: {
+            version: "elem-1",
+            kind: "linearGraph",
+            lines: [{ slope: a, yIntercept: b }],
+            xRange: [-4, 4],
+            yRange: [-5, 5],
+          },
+        };
+      }),
   ),
 
   /**
@@ -655,7 +661,7 @@ export const M2_LINE: TypeEntry[] = [
     "15",
     "두 일차함수의 그래프가 축과 만나는 두 점 사이의 거리가 주어진 경우",
     SEC.절편,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const m1 = nonZero(rng, -4, 4);
@@ -786,7 +792,7 @@ export const M2_LINE: TypeEntry[] = [
     //    middleTypeCoverage.test.ts 가 글자 그대로 대조하므로 지우면 빨개진다.
     "일차방정식 의 그래프와\u0008 의 부호",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(60, () => {
         const sa = pick(rng, [1, -1] as const);
@@ -937,7 +943,7 @@ export const M2_LINE: TypeEntry[] = [
     "09",
     "두 일차방정식의 그래프의 교점을 지나는 직선의 방정식",
     SEC.연립해,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(250, () => {
         const p = nonZero(rng, -4, 4);
@@ -973,7 +979,7 @@ export const M2_LINE: TypeEntry[] = [
     "10",
     "세 직선이 한 점에서 만날 때",
     SEC.연립해,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(250, () => {
         const p = nonZero(rng, -4, 4);
@@ -1055,7 +1061,7 @@ export const M2_LINE: TypeEntry[] = [
     "12",
     "직선으로 둘러싸인 도형의 넓이",
     SEC.연립해,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const p = nonZero(rng, -3, 3);
@@ -1133,7 +1139,7 @@ export const M2_LINE: TypeEntry[] = [
     "14",
     "직선과 선분이 만날 조건",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const xa = intBetween(rng, 1, 5);
@@ -1169,7 +1175,7 @@ export const M2_LINE: TypeEntry[] = [
     "15",
     "도형의 넓이를 이등분하는 직선",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const cx = attempt(60, () => {

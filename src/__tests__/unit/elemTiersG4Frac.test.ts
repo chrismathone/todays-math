@@ -26,12 +26,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["2-1-1", "2-1-2", "2-1-3", "2-1-4"] as const;
 const SEEDS = Array.from({ length: 16 }, (_, i) => 20260823 + i * 7919);
@@ -130,7 +131,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return wrap(mixedForm(2 * x!.num + y!.num, x!.den));
   },
   // 더할 것을 뺐다: 어떤 수 = 잘못된 값 + b, 바른 답 = 어떤 수 + b. 차는 $2b$.
-  "2-1-1|심화": (c) => {
+  "2-1-1|심화하": (c) => {
     const [add, wrong] = fracsIn(c);
     const den = add!.den;
     return wrap(
@@ -154,7 +155,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return wrap(mixedForm(x!.num - y!.num - z!.num, x!.den));
   },
   // 조건 결합 — 셈이 아니라 **전수로 세어** 대조한다.
-  "2-1-2|심화": (c) => {
+  "2-1-2|심화하": (c) => {
     const [x, y] = fracsIn(c);
     const den = x!.den;
     const gap = x!.num - y!.num;
@@ -181,7 +182,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     );
   },
   // 수 카드 — 만들 수 있는 대분수를 **전부 만들어** 최대·최소를 고른다.
-  "2-1-3|심화": (c) => {
+  "2-1-3|심화하": (c) => {
     const cards = c.match(/수 카드 \$(\d+)\$, \$(\d+)\$, \$(\d+)\$/);
     expect(cards, `수 카드를 못 읽음: ${c}`).toBeTruthy();
     const den = Number(c.match(/분모가 \$(\d+)\$인/)![1]);
@@ -214,7 +215,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     );
   },
   // 부등식 — $\square$ 에 $1$ 부터 분모 직전까지 **전부 넣어 보고** 답을 짠다.
-  "2-1-4|심화": (c) => {
+  "2-1-4|심화하": (c) => {
     const [left, right] = fracsIn(c);
     const subWhole = Number(c.match(/(\d+)\\frac\{\\square\}\{(\d+)\}/)![1]);
     const den = left!.den;
@@ -232,7 +233,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
 
 describe("초4 2-1 분수의 덧셈과 뺄셈 — 4단 등록", () => {
   it.each(CODES)("%s 는 네 갈래가 다 있다", (code) => {
-    expect(supportedTiers(unitOf("초4", code))).toEqual([...ELEM_TIERS]);
+    expectCoreTiers(unitOf("초4", code), code);
   });
 });
 
@@ -240,7 +241,7 @@ describe("답의 꼴 — 기약·대분수 정본 (gcd 로 독립 검산)", () =
   it("답에 든 분수는 기약이고 분자가 분모보다 작다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           for (const f of fracsIn(p.answer)) {
@@ -260,7 +261,7 @@ describe("답의 꼴 — 기약·대분수 정본 (gcd 로 독립 검산)", () =
   it("답 문자열이 발문에서 다시 세운 정본 꼴과 글자까지 같다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         const rederive = REDERIVE[`${code}|${tier}`];
         expect(rederive, `${code} «${tier}» 재도출이 없다`).toBeTruthy();
         for (const seed of SEEDS) {
@@ -282,7 +283,7 @@ describe("소단원 이름이 약속하는 성질이 지면에 선다", () => {
   it("2-1-1·2-1-2 의 발문 분수는 전부 진분수다", () => {
     const bad: string[] = [];
     for (const code of ["2-1-1", "2-1-2"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           for (const f of fracsIn(p.content)) {
@@ -299,7 +300,7 @@ describe("소단원 이름이 약속하는 성질이 지면에 선다", () => {
   it("2-1-3·2-1-4 의 발문에는 대분수가 적어도 하나 있다", () => {
     const bad: string[] = [];
     for (const code of ["2-1-3", "2-1-4"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           if (!fracsIn(p.content).some((f) => f.whole > 0)) {
@@ -313,7 +314,7 @@ describe("소단원 이름이 약속하는 성질이 지면에 선다", () => {
 
   it("뺄셈 소단원의 답은 늘 양수다 (구성으로 보장되는가)", () => {
     for (const code of ["2-1-2", "2-1-4"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           expect(p.answer, `${code} «${tier}» s${seed}`).not.toMatch(/-\d/);
@@ -330,7 +331,7 @@ describe("동분모 — 초4 를 초5 1-5 와 가르는 판별자", () => {
   it("초4 2-1 은 표준·갈래 전부 발문 분모가 하나뿐이다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초4", code))]) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           const dens = new Set(fracsIn(p.content).map((f) => f.den));
@@ -347,7 +348,7 @@ describe("동분모 — 초4 를 초5 1-5 와 가르는 판별자", () => {
   it("초5 1-5 에는 분모가 다른 발문이 실제로 있다", () => {
     let mixed = 0;
     for (const code of ["1-5-1", "1-5-2", "1-5-3", "1-5-4"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초5", code))) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unitOf("초5", code), seed, tier);
           if (new Set(fracsIn(p.content).map((f) => f.den)).size > 1)
@@ -362,7 +363,7 @@ describe("동분모 — 초4 를 초5 1-5 와 가르는 판별자", () => {
 describe("겹침 — 초5 1-5 · 초4 2-1 표준", () => {
   const mine = new Map<string, string>();
   for (const code of CODES) {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("초4", code))) {
       for (const seed of WIDE) {
         const p = gen(code, seed, tier);
         mine.set(p.content, `초4 ${code} «${tier}»`);
@@ -373,7 +374,7 @@ describe("겹침 — 초5 1-5 · 초4 2-1 표준", () => {
   it("초5 1-5 와 발문이 한 건도 안 겹친다", () => {
     const hit: string[] = [];
     for (const code of ["1-5-1", "1-5-2", "1-5-3", "1-5-4"] as const) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초5", code))]) {
         for (const seed of WIDE) {
           const p = generateElementaryProblem(unitOf("초5", code), seed, tier);
           const where = mine.get(p.content);
@@ -390,7 +391,7 @@ describe("겹침 — 초5 1-5 · 초4 2-1 표준", () => {
       skeletons.set(skeleton(content), where);
     const hit: string[] = [];
     for (const code of ["1-5-1", "1-5-2", "1-5-3", "1-5-4"] as const) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초5", code))]) {
         for (const seed of WIDE) {
           const p = generateElementaryProblem(unitOf("초5", code), seed, tier);
           const where = skeletons.get(skeleton(p.content));
@@ -423,7 +424,7 @@ describe("변형 — 씨앗이 바뀌면 발문이 바뀐다", () => {
   it("갈래마다 씨앗 16개에서 발문이 8가지 이상", () => {
     const thin: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         if (seen.size < 8) thin.push(`${code} «${tier}» ${seen.size}가지`);
       }
@@ -468,7 +469,7 @@ describe("눈으로 찾아 고친 자리 — 전수 쓸기로 잠근다", () => 
     // 늘 대분수로 서는 쪽을 골랐고, 그 의도를 여기 남긴다. 표준을 이것에 맞추지 말 것.
     const bad: string[] = [];
     let seen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("초4", "2-1-4"))) {
       for (const seed of SWEEP) {
         const p = gen("2-1-4", seed, tier);
         for (const m of p.solution.matchAll(/\$(\d+)-(\d+)=(\d+)\$/g)) {
@@ -558,7 +559,7 @@ describe("조사 — 분수 뒤 조사는 «분자의 소리»가 정한다", ()
   it("초4 2-1 은 표준·갈래 전부 발문·해설의 조사가 맞다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초4", code))]) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const f of [

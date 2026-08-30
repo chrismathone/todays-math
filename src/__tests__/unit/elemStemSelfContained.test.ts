@@ -41,7 +41,6 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -57,7 +56,9 @@ describe("[초등] 발문이 부른 조건은 발문에 적혀 있다", () => {
 
     let looked = 0;
     for (const u of units) {
-      const tiers = supportedTiers(u).length > 0 ? ELEM_TIERS : [];
+      // 등록된 갈래만 돈다 — 축 전체(ELEM_TIERS)로 돌면 아직 안 채운 갈래
+      // (심화중·심화상)에서 던진다. 미등록 소단원은 그대로 []다(0도 유효한 값).
+      const tiers = supportedTiers(u);
       for (const tier of [undefined, ...tiers])
         for (const seed of SEEDS) {
           const c = generateElementaryProblem(u, seed, tier).content;

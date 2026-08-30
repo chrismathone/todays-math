@@ -24,9 +24,32 @@
  * `shiftDifficulty`(한 단계 올리기/내리기) · `balanceDifficulty` 의 인접 대체 ·
  * DB enum 정렬이 전부 이 순서를 뜻으로 쓴다.
  */
-export const DIFFICULTY_LADDER = ["연산", "기본", "응용", "심화"] as const;
+export const DIFFICULTY_LADDER = [
+  "연산",
+  "기본",
+  "응용",
+  "심화하",
+  "심화중",
+  "심화상",
+] as const;
 
 export type Difficulty = (typeof DIFFICULTY_LADDER)[number];
+
+/**
+ * **모든 소단원이 반드시 갖는 갈래.** 여기를 못 채우면 그 소단원은 등록이 안 된다.
+ *
+ * 🔴 위 여섯 중 `심화중`·`심화상` 은 **아직 채우는 중**이다(D-113, 2026-08-30).
+ *    둘을 필수로 두면 230개 소단원이 **전부 컴파일 오류**가 되어 축 확대와 내용
+ *    채우기를 나눌 수 없다. 그래서 축은 먼저 세우고 내용은 학년별로 채운다.
+ *    다 차면 이 배열을 `DIFFICULTY_LADDER` 와 같게 만들고 아래 상수를 지운다.
+ */
+export const CORE_DIFFICULTIES = ["연산", "기본", "응용", "심화하"] as const;
+
+/** 지금 채우는 중인 갈래. 등록 안 된 소단원에서는 출제에 **안 뽑힌다**. */
+export const EXTENDING_DIFFICULTIES = ["심화중", "심화상"] as const;
+
+export type CoreDifficulty = (typeof CORE_DIFFICULTIES)[number];
+export type ExtendingDifficulty = (typeof EXTENDING_DIFFICULTIES)[number];
 
 /** 난이도 배분 — 갈래마다 몇 문항. `Class.difficultyRatio`(jsonb)와 출제 요청이 공유한다. */
 export type DifficultyRatio = Record<Difficulty, number>;
@@ -39,11 +62,18 @@ export type DifficultyRatio = Record<Difficulty, number>;
  *    63개 반에 넣었다. 한쪽만 고치면 새 반과 옛 반이 다른 기본값을 갖는다 —
  *    `src/__tests__/unit/contracts.smoke.test.ts` 가 둘을 대조한다.
  */
+/**
+ * ⚠️ **새 갈래 둘은 0 이다 — 지금은 그게 맞다.** 콘텐츠가 아직 없는데 비율을 주면
+ *    출제가 그 자리를 못 채워 **시험지가 조용히 얇아진다.** 채워지는 대로 원장님이
+ *    프리셋을 정하시면 그때 옮긴다(D-71: 숫자는 원장님이 언제든 조정).
+ */
 export const DEFAULT_DIFFICULTY_RATIO: DifficultyRatio = {
   연산: 1,
   기본: 3,
   응용: 3,
-  심화: 1,
+  심화하: 1,
+  심화중: 0,
+  심화상: 0,
 };
 
 /**

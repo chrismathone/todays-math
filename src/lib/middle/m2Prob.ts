@@ -405,27 +405,33 @@ export const M2_PROB: TypeEntry[] = [
     }),
   ),
 
-  def("05A", "확률에서 경우의 수 구하기", SEC.뜻과성질, "심화", (rng): Body => {
-    const [num, den] = pick(rng, NICE_PROBS);
-    const scale = intBetween(rng, 2, 6);
-    const finalTotal = den * scale;
-    const winning = num * scale;
-    // 더 넣은 꽝 제비 — 처음 꽝 제비가 $1$개 이상 남게 뽑는다.
-    const added = intBetween(rng, 1, finalTotal - winning - 1);
-    const losingBefore = finalTotal - winning - added;
-    return {
-      content: `당첨 제비 $${winning}$개와 꽝 제비 $${losingBefore}$개가 들어 있는 상자에 꽝 제비 몇 개를 더 넣었더니 이 상자에서 제비 한 개를 뽑을 때 당첨 제비를 뽑을 확률이 $\\dfrac{${num}}{${den}}$ 이 되었다. 더 넣은 꽝 제비는 몇 개인지 구하시오.`,
-      answer: `$${added}$개`,
-      solution: `더 넣은 꽝 제비를 $x$개라 하면 제비는 모두 $(${winning}+${losingBefore}+x)$개이므로 $\\dfrac{${winning}}{${winning + losingBefore}+x}=\\dfrac{${num}}{${den}}$ 이다.\n$${num}\\times(${winning + losingBefore}+x)=${den}\\times${winning}$ 에서 $${winning + losingBefore}+x=${finalTotal}$ 이므로 $x=${added}$ 이다.`,
-      facts: {
-        winning,
-        losingBefore,
-        probabilityNumerator: num,
-        probabilityDenominator: den,
-        added,
-      },
-    };
-  }),
+  def(
+    "05A",
+    "확률에서 경우의 수 구하기",
+    SEC.뜻과성질,
+    "심화하",
+    (rng): Body => {
+      const [num, den] = pick(rng, NICE_PROBS);
+      const scale = intBetween(rng, 2, 6);
+      const finalTotal = den * scale;
+      const winning = num * scale;
+      // 더 넣은 꽝 제비 — 처음 꽝 제비가 $1$개 이상 남게 뽑는다.
+      const added = intBetween(rng, 1, finalTotal - winning - 1);
+      const losingBefore = finalTotal - winning - added;
+      return {
+        content: `당첨 제비 $${winning}$개와 꽝 제비 $${losingBefore}$개가 들어 있는 상자에 꽝 제비 몇 개를 더 넣었더니 이 상자에서 제비 한 개를 뽑을 때 당첨 제비를 뽑을 확률이 $\\dfrac{${num}}{${den}}$ 이 되었다. 더 넣은 꽝 제비는 몇 개인지 구하시오.`,
+        answer: `$${added}$개`,
+        solution: `더 넣은 꽝 제비를 $x$개라 하면 제비는 모두 $(${winning}+${losingBefore}+x)$개이므로 $\\dfrac{${winning}}{${winning + losingBefore}+x}=\\dfrac{${num}}{${den}}$ 이다.\n$${num}\\times(${winning + losingBefore}+x)=${den}\\times${winning}$ 에서 $${winning + losingBefore}+x=${finalTotal}$ 이므로 $x=${added}$ 이다.`,
+        facts: {
+          winning,
+          losingBefore,
+          probabilityNumerator: num,
+          probabilityDenominator: den,
+          added,
+        },
+      };
+    },
+  ),
 
   // 06 ─────────────────────────────────────────────
   def("06", "사건 또는 사건 가 일어날 확률", SEC.계산, "응용", (rng) => {
@@ -517,7 +523,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 09 ─────────────────────────────────────────────
-  def("09", "확률의 덧셈과 곱셈", SEC.계산, "심화", (rng) =>
+  def("09", "확률의 덧셈과 곱셈", SEC.계산, "심화하", (rng) =>
     attempt(100, (): Body | null => {
       const a1 = intBetween(rng, 1, 4);
       const a2 = intBetween(rng, 1, 4);
@@ -610,7 +616,7 @@ export const M2_PROB: TypeEntry[] = [
   ),
 
   // 12 ─────────────────────────────────────────────
-  def("12", "승패에 대한 확률", SEC.계산, "심화", (rng): Body => {
+  def("12", "승패에 대한 확률", SEC.계산, "심화하", (rng): Body => {
     const cond = pick(rng, [0, 1, 2, 3, 4] as const);
     const who = pick(rng, [0, 1] as const); // 0: A(1·3회), 1: B(2·4회)
     const c = DICE_CONDS[cond]!;
@@ -635,7 +641,7 @@ export const M2_PROB: TypeEntry[] = [
   }),
 
   // 13 ─────────────────────────────────────────────
-  def("13", "이전 사건에 영향을 받는 확률", SEC.계산, "심화", (rng) =>
+  def("13", "이전 사건에 영향을 받는 확률", SEC.계산, "심화하", (rng) =>
     attempt(100, (): Body | null => {
       const pw = pick(rng, NICE_PROBS);
       const pl = pick(rng, NICE_PROBS);

@@ -1233,7 +1233,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "09",
     "여러 가지 사각형의 판별 ⑴",
     SEC.등변사다리꼴,
-    "심화",
+    "심화하",
     (rng): Body => {
       const s = intBetween(rng, 7, 16);
       const t = attempt(60, () => {
@@ -1370,7 +1370,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "17",
     "여러 가지 사각형의 판별 ⑵",
     SEC.등변사다리꼴,
-    "심화",
+    "심화하",
     (rng): Body => {
       const q = intBetween(rng, 2, 9);
       const p = attempt(60, () => {
@@ -1899,7 +1899,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
     "27",
     "정사각형의 대각선 위의 점",
     SEC.직사각형류,
-    "심화",
+    "심화하",
     (rng): Body => {
       // $P$ 가 중심 $O$ 와 $D$ 사이에 있어야 $\angle APC$ 가 우각이 되지 않는다
       // ($\angle PAB=45^\circ$ 이면 $A$·$P$·$C$ 가 한 직선 위에 놓인다).

@@ -18,7 +18,7 @@
  * throw 가 하나라도 있으면 실패(exit 1)한다. 던지는 조합이 남아 있다면 그것은
  * 「방어선이 지켰다」가 아니라 「구성이 그 씨앗을 못 만든다」는 뜻이다.
  */
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -32,11 +32,16 @@ const countArg = Number(
 
 type Unit = ReturnType<typeof elementaryUnits>[number];
 
-/** 표준(`undefined`) + 등록된 4단. 갈래를 안 쓸면 그 축은 이 쓸기 밖이다(D-72). */
+/**
+ * 표준(`undefined`) + **그 소단원이 실제로 내는 갈래**.
+ *
+ * 🔴 D-113(2026-08-30): 종전에는 `supportedTiers(unit).length > 0 ? [undefined, ...ELEM_TIERS]`
+ *    였다. `ELEM_TIERS` 는 **축 전체**(여섯)라, 축을 넓히자 아직 안 채운 갈래를
+ *    만들려다 판정기가 통째로 죽었다. `supportedTiers` 는 등록 안 된 소단원에서
+ *    `[]` 를 주므로 아래 한 줄이 옛 두 갈래를 **정확히** 대신한다.
+ */
 function variantsOf(unit: Unit): (ElemTier | undefined)[] {
-  return supportedTiers(unit).length > 0
-    ? [undefined, ...ELEM_TIERS]
-    : [undefined];
+  return [undefined, ...supportedTiers(unit)];
 }
 
 const units = elementaryUnits().filter(

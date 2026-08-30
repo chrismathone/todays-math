@@ -166,7 +166,7 @@ for (const t of registeredTypes()) {
     못만든것 += 1;
     continue;
   }
-  if (p.difficulty !== "심화") continue;
+  if (p.difficulty !== "심화하") continue;
   심화수 += 1;
   const only = bareOperationInstruction(p.content);
   if (!only) continue;

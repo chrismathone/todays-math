@@ -295,7 +295,7 @@ const EXT_FACT_KEYS: Record<string, readonly string[]> = {
 /** 등록할 때 적은 난이도 — 사다리를 조용히 옮기면 여기서 빨개진다. */
 const EXPECTED_TIER: Record<string, string> = {
   [K90]: "연산",
-  [K91]: "심화",
+  [K91]: "심화하",
   [K92]: "기본",
   [K93]: "기본",
   [C90]: "연산",

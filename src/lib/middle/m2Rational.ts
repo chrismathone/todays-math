@@ -953,7 +953,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "10",
     "유한소수가 되도록 하는 미지수의 값과 기약분수",
     SEC.유리수와소수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const k = pick(rng, [8, 10, 16, 20, 25, 40, 50] as const);
@@ -1077,7 +1077,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "15",
     "기약분수의 분모 분자를 잘못 보고 소수로 나타낸 경우",
     SEC.분수표현,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(500, () => {
         const a = pick(rng, SHORT_PERIOD_DENS);
@@ -1163,7 +1163,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 17 ─────────────────────────────────────────────
-  def("17", "순환소수의 대소 관계", SEC.식계산, "심화", (rng) =>
+  def("17", "순환소수의 대소 관계", SEC.식계산, "심화하", (rng) =>
     attempt(300, () => {
       // 명제 네 개 — 각각 (좌, 우) 값과 표기된 부등호. 값 비교는 분수 교차곱.
       type Stmt = {
@@ -1335,7 +1335,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
     "19",
     "두 분수 사이에 있는 유한소수의 개수",
     SEC.유리수와소수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, () => {
         const A = pick(rng, [3, 4, 5, 6] as const);
@@ -1361,7 +1361,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   ),
 
   // 20 ─────────────────────────────────────────────
-  def("20", "순환소수가 포함된 식의 계산 ⑵", SEC.식계산, "심화", (rng) =>
+  def("20", "순환소수가 포함된 식의 계산 ⑵", SEC.식계산, "심화하", (rng) =>
     attempt(200, () => {
       const A = intBetween(rng, 1, 9);
       const B = intBetween(rng, 1, 9);

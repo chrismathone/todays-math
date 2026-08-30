@@ -142,7 +142,7 @@ function linearSystemFamily(id: string, mode: number): ComboFamily {
         content,
         answer,
         solution,
-        difficulty: mode < 2 ? "기본" : mode < 7 ? "응용" : "심화",
+        difficulty: mode < 2 ? "기본" : mode < 7 ? "응용" : "심화하",
         facts: { mode, x, y, p, q },
       };
     },
@@ -390,7 +390,7 @@ const FACTOR_SUPPLEMENTS: TypeEntry[] = [
     "50",
     "인수분해한 두 일차식의 상수항의 합",
     "인수분해",
-    "심화",
+    "심화하",
     (rng) => {
       // 🔴 인수분해가 **하나로 정해져야** 답이 하나다.
       //    최고차항의 계수를 $1$ 또는 소수로만 잡으면 두 일차식으로 가르는 방법이
@@ -637,7 +637,7 @@ const INEQUALITY_SUPPLEMENTS: TypeEntry[] = [
         "두 문자의 차의 값의 범위",
       ][mode]!,
       "부등식",
-      mode < 3 ? "기본" : mode < 6 ? "응용" : "심화",
+      mode < 3 ? "기본" : mode < 6 ? "응용" : "심화하",
       (rng): Body => {
         if (mode === 0) {
           const a = intBetween(rng, 2, 9);
@@ -763,7 +763,7 @@ const INEQUALITY_SUPPLEMENTS: TypeEntry[] = [
         "해가 주어진 일차부등식에서 계수 구하기",
       ][mode]!,
       "일차부등식의 풀이",
-      mode === 0 ? "기본" : mode < 4 ? "기본" : mode < 6 ? "응용" : "심화",
+      mode === 0 ? "기본" : mode < 4 ? "기본" : mode < 6 ? "응용" : "심화하",
       (rng): Body => {
         const a = intBetween(rng, 2, 6);
         const r = intBetween(rng, 1, 9);
@@ -1063,7 +1063,7 @@ const LINEAR_APPLY_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map(
         "두 시각의 길이로 다 타는 시간 구하기",
       ][mode]!,
       "일차함수의 활용(속력, 도형, 기타)",
-      mode < 4 ? "기본" : "심화",
+      mode < 4 ? "기본" : "심화하",
       (rng): Body => {
         if (mode === 0) {
           const rate = intBetween(rng, 2, 5);
@@ -1158,7 +1158,7 @@ const RIGHT_CONGRUENT_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map(
         "직각삼각형의 내각의 이등분선이 만드는 선분",
       ][mode]!,
       "직각삼각형의 합동",
-      mode < 3 ? "기본" : mode === 3 ? "응용" : "심화",
+      mode < 3 ? "기본" : mode === 3 ? "응용" : "심화하",
       (rng): Body => {
         if (mode === 0) {
           // 🔴 빗변이 가장 길어야 삼각형이 된다 — 다리를 따로 뽑으면
@@ -1260,7 +1260,7 @@ const PLATONIC_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3] as const).map((mode) =>
       "정다면체의 각 면의 중심을 이어 만든 정다면체",
     ][mode]!,
     "정다면체",
-    mode < 2 ? "기본" : mode === 2 ? "응용" : "심화",
+    mode < 2 ? "기본" : mode === 2 ? "응용" : "심화하",
     (rng): Body => {
       const i = intBetween(rng, 0, PLATONIC.length - 1);
       const [name, shape, atVertex, F, V, E] = PLATONIC[i]!;

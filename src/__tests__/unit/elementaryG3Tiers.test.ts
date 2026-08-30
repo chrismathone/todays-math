@@ -7,12 +7,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import { type ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const UNIT = elementaryUnits().find(
   (u) => u.grade === "초3" && u.section.startsWith("1-1-2"),
@@ -82,11 +83,11 @@ function additionsOf(
 
 describe("[초3 난이도] 1-1-2 네 갈래", () => {
   it("소단원이 네 갈래를 전부 낸다", () => {
-    expect(supportedTiers(UNIT)).toEqual(ELEM_TIERS);
+    expectCoreTiers(UNIT);
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       const a = generateElementaryProblem(UNIT, 11, tier);
       const b = generateElementaryProblem(UNIT, 11, tier);
       expect(a.content, tier).toBe(b.content);
@@ -96,7 +97,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
   });
 
   it("정답은 발문의 수로 다시 계산한 값과 같다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(UNIT, seed, tier);
         const where = `${tier} seed ${seed}: ${p.content}`;
@@ -110,7 +111,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
 
   it("심화는 잘못 더한 수가 바른 수의 자릿수를 맞바꾼 것이고, 되짚기가 성립한다", () => {
     for (const seed of SEEDS) {
-      const p = generateElementaryProblem(UNIT, seed, "심화");
+      const p = generateElementaryProblem(UNIT, seed, "심화하");
       const [right, wrong, wrongSum] = nums(p.content) as [
         number,
         number,
@@ -135,7 +136,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
 
   it("모든 갈래의 모든 덧셈이 (세 자리)+(세 자리)이고 받아올림이 두 번 이상이다", () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(UNIT, seed, tier);
         for (const [a, b] of additionsOf(tier, p.content, p.answer)) {
@@ -157,7 +158,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
     // 「두 번, 세 번」은 나열이라 매번 세 번일 필요는 없지만, **한 번도 안 나오면**
     // 그 낱말이 구조적으로 0인 것이다 — 예전 `addWithCarries` 가 그랬다.
     const three = new Set<ElemTier>();
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       for (let seed = 0; seed < 120; seed += 1) {
         const p = generateElementaryProblem(UNIT, seed, tier);
         for (const [a, b] of additionsOf(tier, p.content, p.answer)) {
@@ -165,11 +166,11 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
         }
       }
     }
-    expect([...three].sort()).toEqual([...ELEM_TIERS].sort());
+    expect([...three].sort()).toEqual([...tiersOf(UNIT)].sort());
   });
 
   it("씨앗을 바꾸면 갈래마다 문항이 바뀐다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       const seen = new Set(
         SEEDS.map((s) => generateElementaryProblem(UNIT, s, tier).content),
       );
@@ -179,13 +180,16 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
 
   it("네 갈래 발문이 서로 갈린다 — 문장 틀도 다르다", () => {
     for (const seed of SEEDS) {
-      const made = ELEM_TIERS.map((t) =>
-        generateElementaryProblem(UNIT, seed, t),
+      const tiers = tiersOf(UNIT);
+      const made = tiers.map((t) => generateElementaryProblem(UNIT, seed, t));
+      expect(new Set(made.map((p) => p.content)).size, `seed ${seed}`).toBe(
+        tiers.length,
       );
-      expect(new Set(made.map((p) => p.content)).size, `seed ${seed}`).toBe(4);
-      // 수를 지운 «틀»까지 달라야 한다 — 숫자만 다른 네 갈래는 갈래가 아니다.
+      // 수를 지운 «틀»까지 달라야 한다 — 숫자만 다른 갈래는 갈래가 아니다.
       const stems = made.map((p) => p.content.replace(/\$[^$]*\$/g, "#"));
-      expect(new Set(stems).size, `seed ${seed}: ${stems.join(" | ")}`).toBe(4);
+      expect(new Set(stems).size, `seed ${seed}: ${stems.join(" | ")}`).toBe(
+        tiers.length,
+      );
     }
   });
 
@@ -206,7 +210,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
   });
 
   it("모든 갈래의 수가 KaTeX 안에 있다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(UNIT)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(UNIT, seed, tier);
         for (const [label, text] of [
@@ -233,7 +237,7 @@ describe("[초3 난이도] 1-1-2 네 갈래", () => {
         `${base}+${base + more}=${base + (base + more)}`,
       );
 
-      const deep = generateElementaryProblem(UNIT, seed, "심화");
+      const deep = generateElementaryProblem(UNIT, seed, "심화하");
       const [right, wrong, wrongSum] = nums(deep.content) as [
         number,
         number,

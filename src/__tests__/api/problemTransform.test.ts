@@ -100,9 +100,16 @@ beforeEach(() => {
 describe("shiftDifficulty — 난이도 사다리 (계약 SSOT)", () => {
   it("한 단계 올리고 내리며, 양 끝에서는 제자리다", () => {
     expect(shiftDifficulty("기본", "up")).toBe("응용");
-    expect(shiftDifficulty("응용", "up")).toBe("심화");
-    expect(shiftDifficulty("심화", "up")).toBe("심화"); // 상한
-    expect(shiftDifficulty("심화", "down")).toBe("응용");
+    expect(shiftDifficulty("응용", "up")).toBe("심화하");
+    // D-113(2026-08-30) — 축이 여섯이 되며 **위로 둘이 열렸다.** 변형은 AI 가 만들고
+    // 산출물은 `pending` 이라(D-22), 초등 엔진이 아직 안 채운 갈래도 목표가 될 수 있다.
+    // ⚠️ 여기 값을 사다리에서 만들어 쓰면 동어반복이 된다 — **글자로 못 박는다.**
+    expect(shiftDifficulty("심화하", "up")).toBe("심화중");
+    expect(shiftDifficulty("심화중", "up")).toBe("심화상");
+    expect(shiftDifficulty("심화상", "up")).toBe("심화상"); // 상한
+    expect(shiftDifficulty("심화상", "down")).toBe("심화중");
+    expect(shiftDifficulty("심화중", "down")).toBe("심화하");
+    expect(shiftDifficulty("심화하", "down")).toBe("응용");
     expect(shiftDifficulty("응용", "down")).toBe("기본");
     expect(shiftDifficulty("기본", "down")).toBe("연산");
     expect(shiftDifficulty("연산", "down")).toBe("연산"); // 하한 (D-106: 밑단은 연산)

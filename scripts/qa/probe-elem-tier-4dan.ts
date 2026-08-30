@@ -210,9 +210,9 @@ if (census) {
   let deepN = 0;
   let otherN = 0;
   for (const u of units) {
-    tally.count(u.grade, u.section, "심화", SEEDS.length);
+    tally.count(u.grade, u.section, "심화하", SEEDS.length);
     for (const s of SEEDS) {
-      const d = generateElementaryProblem(u, s, "심화");
+      const d = generateElementaryProblem(u, s, "심화하");
       deepN += 1;
       for (const g of grams(d.content)) deepDf.set(g, (deepDf.get(g) ?? 0) + 1);
       for (const t of ["응용", "기본"] as const) {
@@ -264,9 +264,9 @@ let 표지있음 = 0;
 const 쓰인키 = new Set<string>();
 
 for (const unit of units) {
-  tally.count(unit.grade, unit.section, "심화", SEEDS.length);
+  tally.count(unit.grade, unit.section, "심화하", SEEDS.length);
   const deep = SEEDS.map(
-    (s) => generateElementaryProblem(unit, s, "심화").content,
+    (s) => generateElementaryProblem(unit, s, "심화하").content,
   );
   const key = elemKey(unit.grade, unit.section);
   const v = judgeDeep(key, deep, ledger.초등);

@@ -163,7 +163,7 @@ export const M3_TYPES: TypeEntry[] = [
     "03",
     "현의 수직이등분선 원의 일부분이 주어진 경우",
     SEC.현,
-    "심화",
+    "심화하",
     (rng) => {
       const [d, h, r] = pick(rng, TRIPLES);
       const c = r - d;
@@ -187,7 +187,7 @@ export const M3_TYPES: TypeEntry[] = [
     "04",
     "현의 수직이등분선 원이 접힌 경우",
     SEC.현,
-    "심화",
+    "심화하",
     (rng) => {
       // 접힌 호 그림은 FigureSpec v2 에 없다(09 §1) — 발문이 그림 없이 완결된다.
       const om = intBetween(rng, 2, 9);
@@ -297,7 +297,7 @@ export const M3_TYPES: TypeEntry[] = [
     "03",
     "원주각과 중심각의 크기 두 접선이 주어진 경우",
     SEC.원주각,
-    "심화",
+    "심화하",
     (rng) => {
       const p = 2 * intBetween(rng, 20, 36);
       const aob = 180 - p;
@@ -349,7 +349,7 @@ export const M3_TYPES: TypeEntry[] = [
     "06",
     "원주각의 성질과 삼각비의 값",
     SEC.원주각,
-    "심화",
+    "심화하",
     (rng) => {
       const [bc, r, num, den] = pick(rng, [
         [6, 5, 3, 5],
@@ -425,23 +425,29 @@ export const M3_TYPES: TypeEntry[] = [
     },
   ),
 
-  def("원주각", "09", "원주각의 크기와 호의 길이⑶", SEC.원주각, "심화", (rng) =>
-    attempt(80, () => {
-      const pool = [4, 5, 6, 9, 10, 12] as const;
-      const m = pick(rng, pool);
-      const n = pick(rng, pool);
-      if (m === n) return null;
-      const u = 180 / m;
-      const v = 180 / n;
-      const x = u + v;
-      return {
-        content: `원 위에 네 점 $A$, $B$, $C$, $D$가 이 순서대로 있고, 두 현 $AC$와 $BD$는 원 안의 점 $P$에서 만난다. 호 $AB$의 길이는 원주의 $\\dfrac{1}{${m}}$, 호 $CD$의 길이는 원주의 $\\dfrac{1}{${n}}$일 때, $\\angle APB$의 크기를 구하시오.`,
-        answer: `$${x}^\\circ$`,
-        solution: `호 $AB$에 대한 원주각 $\\angle ADB=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${m}}=${u}^\\circ$이고, 호 $CD$에 대한 원주각 $\\angle DAC=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${n}}=${v}^\\circ$이다.\n삼각형 $APD$에서 $\\angle APB$는 꼭짓점 $P$에서의 외각이므로 $\\angle APB=${u}^\\circ+${v}^\\circ=${x}^\\circ$이다.`,
-        facts: { m, n, x },
-        figureSpec: null,
-      };
-    }),
+  def(
+    "원주각",
+    "09",
+    "원주각의 크기와 호의 길이⑶",
+    SEC.원주각,
+    "심화하",
+    (rng) =>
+      attempt(80, () => {
+        const pool = [4, 5, 6, 9, 10, 12] as const;
+        const m = pick(rng, pool);
+        const n = pick(rng, pool);
+        if (m === n) return null;
+        const u = 180 / m;
+        const v = 180 / n;
+        const x = u + v;
+        return {
+          content: `원 위에 네 점 $A$, $B$, $C$, $D$가 이 순서대로 있고, 두 현 $AC$와 $BD$는 원 안의 점 $P$에서 만난다. 호 $AB$의 길이는 원주의 $\\dfrac{1}{${m}}$, 호 $CD$의 길이는 원주의 $\\dfrac{1}{${n}}$일 때, $\\angle APB$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `호 $AB$에 대한 원주각 $\\angle ADB=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${m}}=${u}^\\circ$이고, 호 $CD$에 대한 원주각 $\\angle DAC=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${n}}=${v}^\\circ$이다.\n삼각형 $APD$에서 $\\angle APB$는 꼭짓점 $P$에서의 외각이므로 $\\angle APB=${u}^\\circ+${v}^\\circ=${x}^\\circ$이다.`,
+          facts: { m, n, x },
+          figureSpec: null,
+        };
+      }),
   ),
 
   def(
@@ -449,7 +455,7 @@ export const M3_TYPES: TypeEntry[] = [
     "10",
     "반원에 대한 원주각의 크기의 응용",
     SEC.원주각,
-    "심화",
+    "심화하",
     (rng) => {
       const a = intBetween(rng, 15, 40);
       const x = 90 + a;
@@ -516,20 +522,27 @@ export const M3_TYPES: TypeEntry[] = [
     };
   }),
 
-  def("원과 직선", "20A", "현으로 원의 넓이 구하기", SEC.현, "심화", (rng) => {
-    const [l1, l2, r] = pick(rng, TRIPLES);
-    const [d, h] = pick(rng, [
-      [l1, l2],
-      [l2, l1],
-    ] as const);
-    return {
-      content: `원 $O$의 중심에서 현 $AB$에 이르는 거리가 $${d}\\,\\mathrm{cm}$이고 $\\overline{AB}=${2 * h}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
-      answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
-      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 반지름의 길이는 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 원 $O$의 넓이는 $\\pi\\times${r}^2=${r * r}\\pi\\,(\\mathrm{cm}^2)$이다.`,
-      facts: { d, h, r, area: r * r },
-      figureSpec: null,
-    };
-  }),
+  def(
+    "원과 직선",
+    "20A",
+    "현으로 원의 넓이 구하기",
+    SEC.현,
+    "심화하",
+    (rng) => {
+      const [l1, l2, r] = pick(rng, TRIPLES);
+      const [d, h] = pick(rng, [
+        [l1, l2],
+        [l2, l1],
+      ] as const);
+      return {
+        content: `원 $O$의 중심에서 현 $AB$에 이르는 거리가 $${d}\\,\\mathrm{cm}$이고 $\\overline{AB}=${2 * h}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
+        answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 반지름의 길이는 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 원 $O$의 넓이는 $\\pi\\times${r}^2=${r * r}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { d, h, r, area: r * r },
+        figureSpec: null,
+      };
+    },
+  ),
 
   ...M3_TANGENT_TYPES,
   ...M3_POLY,

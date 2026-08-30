@@ -8,7 +8,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -16,6 +16,8 @@ import {
 } from "@/lib/elementary/generate";
 import { renderMathHtml } from "@/lib/math/renderMathHtml";
 import { preprocessMathText } from "@/lib/math/textPreprocess";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["1-6-1", "1-6-3", "1-6-4", "1-6-5"] as const;
 
@@ -128,13 +130,13 @@ const SINO_SIDES: Record<string, number> = {
 describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
   it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -146,18 +148,20 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
         expect(
           new Set(rows).size,
           `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(unitOf(code)).length);
       }
     }
   });
 
   it("갈래마다 씨앗에 반응한다 (R9)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThan(2);
       }
@@ -167,7 +171,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -187,7 +191,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
 
   it("도형 이름은 한자 수사다 (R4)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           expect(
@@ -278,7 +282,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
       }
 
       // 심화 — 귀퉁이를 잘라도 둘레는 처음 직사각형과 같다
-      const deep = problem("1-6-1", "심화", seed);
+      const deep = problem("1-6-1", "심화하", seed);
       const [w, h, cw, ch] = nums(deep.content) as [
         number,
         number,
@@ -322,7 +326,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
       );
 
       // 심화 — 넓이(m²)와 가로(cm)에서 세로(m) 를 되찾는다
-      const deep = problem("1-6-3", "심화", seed);
+      const deep = problem("1-6-3", "심화하", seed);
       const [area, wcm] = nums(deep.content) as [number, number];
       expect(wcm % 100, deep.content).toBe(0);
       expect(area % (wcm / 100), deep.content).toBe(0);
@@ -369,7 +373,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
       );
 
       // 심화 — 넓이가 같은 두 도형을 잇는다(네 걸음)
-      const deep = problem("1-6-4", "심화", seed);
+      const deep = problem("1-6-4", "심화하", seed);
       const [pb, ph, tb] = nums(deep.content) as [number, number, number];
       const th = (2 * pb * ph) / tb;
       expect(
@@ -438,7 +442,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
       expect(aA, `되찾은 변이 0 이하다: ${app.content}`).toBeGreaterThan(0);
 
       // 심화 — 합과 차를 조합한다
-      const deep = problem("1-6-5", "심화", seed);
+      const deep = problem("1-6-5", "심화하", seed);
       const [dArea, dh, dd] = nums(deep.content) as [number, number, number];
       const sum = (dArea * 2) / dh;
       expect(
@@ -458,7 +462,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
     // 30회 실측(2026-08-23). 후보를 약수에서 유도하도록 고쳤고, 여기서 잠근다.
     const fails: string[] = [];
     for (const code of ["1-6-4", "1-6-5", "1-6-1", "1-6-3"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (let seed = 0; seed < 1000; seed += 1) {
           try {
             problem(code, tier, seed);
@@ -476,7 +480,7 @@ describe("[초5 1-6] 난이도 4단 확대 (D-72)", () => {
   it("이웃 소단원과 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of [...CODES, "1-6-2", ...CODES11]) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const key = p.content;
@@ -522,13 +526,13 @@ function opsIn(...texts: string[]): Set<string> {
 describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES11) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES11) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -540,11 +544,13 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES11) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
         expect(
           new Set(rows).size,
           `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(unitOf(code)).length);
       }
     }
   });
@@ -552,7 +558,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   // 리드 지시(2026-08-23): 갈래마다 변형 8개 이상. R9 의 「>2」보다 세게 잠근다.
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES11) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -562,7 +568,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES11) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -582,7 +588,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
 
   it("혼합 계산에는 그림이 없다 — 갈래 넷 전부", () => {
     for (const code of CODES11) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           expect(
             problem(code, tier, seed).figureSpec,
@@ -596,7 +602,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   /* ── 소단원 이름이 내건 연산 집합 (D-66 ⑼) ── */
 
   it("1-1-1 — 덧뺄 또는 곱나눗 **한 가족만** 쓴다 (수식 기준)", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-1-1"))) {
       for (const seed of SEEDS) {
         const p = problem("1-1-1", tier, seed);
         const ops = opsIn(p.content, p.solution);
@@ -607,7 +613,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
           `${tier} @${seed}: 두 가족이 섞였다 ${[...ops].join("")}\n${p.content}`,
         ).toBe(false);
         // 심화(잘못 계산)는 한쪽 연산이 말로만 나올 수 있다 — 나머지 갈래는 둘 다 있어야 한다.
-        if (tier !== "심화") {
+        if (tier !== "심화하") {
           expect(
             ops.size,
             `${tier} @${seed}: 한 연산뿐이면 «섞여 있는 식»이 아니다\n${p.content}`,
@@ -618,13 +624,13 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   });
 
   it("1-1-2 — 덧·뺄에 곱셈 «또는» 나눗셈 하나만 낀다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-1-2"))) {
       for (const seed of SEEDS) {
         const p = problem("1-1-2", tier, seed);
         // 심화(□ 역산)의 해설은 «거꾸로 계산»이라 반대 연산(×↔÷)이 함께 나온다 —
         // 소단원 이름이 조건을 거는 것은 **주어진 식**(발문)이다.
         const ops =
-          tier === "심화" ? opsIn(p.content) : opsIn(p.content, p.solution);
+          tier === "심화하" ? opsIn(p.content) : opsIn(p.content, p.solution);
         expect(ops.has("+"), `${tier} @${seed}\n${p.content}`).toBe(true);
         expect(ops.has("−"), `${tier} @${seed}\n${p.content}`).toBe(true);
         expect(
@@ -636,7 +642,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   });
 
   it("1-1-3 — 네 연산이 전부 든다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-1-3"))) {
       for (const seed of SEEDS) {
         const p = problem("1-1-3", tier, seed);
         const ops = opsIn(p.content, p.solution);
@@ -761,7 +767,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
 
   it("1-1-1 심화 — 어떤 수를 되찾아 바르게 계산한 값이 맞다", () => {
     for (const seed of SEEDS) {
-      const p = problem("1-1-1", "심화", seed);
+      const p = problem("1-1-1", "심화하", seed);
       const ans = answerNumber(p.answer, "1-1-1 심화");
       if (p.content.includes("더해야")) {
         // 잘못: x−b=c → x=c+b, 바르게: x+b=c+2b
@@ -823,7 +829,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
 
   it("1-1-2 심화 — □를 발문의 식에 되넣으면 등식이 선다", () => {
     for (const seed of SEEDS) {
-      const p = problem("1-1-2", "심화", seed);
+      const p = problem("1-1-2", "심화하", seed);
       const [a, c, d, r] = nums(p.content) as [number, number, number, number];
       const ans = answerNumber(p.answer, "1-1-2 심화");
       if (p.content.includes("\\square\\times")) {
@@ -882,7 +888,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
 
   it("1-1-3 심화 — 차가 맞거나 □가 등식에 되들어간다", () => {
     for (const seed of SEEDS) {
-      const p = problem("1-1-3", "심화", seed);
+      const p = problem("1-1-3", "심화하", seed);
       const ans = answerNumber(p.answer, "1-1-3 심화");
       if (p.content.includes("괄호를 빠뜨리고")) {
         const [a, b, c, d, e, a2, b2, c2, d2, e2] = nums(p.content) as [
@@ -927,7 +933,7 @@ describe("[초5 1-1] 난이도 4단 확대 (D-72 2차)", () => {
   it("1-1 세 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES11) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -962,13 +968,13 @@ const related = (x: number, y: number): boolean => x % y === 0 || y % x === 0;
 describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
   it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES12) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES12) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -980,18 +986,20 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES12) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
         expect(
           new Set(rows).size,
           `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(unitOf(code)).length);
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES12) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -1001,7 +1009,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES12) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -1021,7 +1029,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
 
   it("약수와 배수에는 그림이 없다 — 갈래 넷 전부", () => {
     for (const code of CODES12) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           expect(
             problem(code, tier, seed).figureSpec,
@@ -1036,7 +1044,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
 
   it("1-2-1·1-2-2 발문에는 공약수·공배수 계열 낱말이 없다", () => {
     for (const code of ["1-2-1", "1-2-2"]) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           expect(
@@ -1050,7 +1058,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
 
   it("1-2-3 발문은 공약수 쪽이고 1-2-5 발문은 공배수 쪽이다", () => {
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("1-2-3"))) {
         const c3 = problem("1-2-3", tier, seed).content;
         expect(/공약수/.test(c3), `1-2-3 ${tier} @${seed}\n${c3}`).toBe(true);
         expect(/공배수/.test(c3), `1-2-3 ${tier} @${seed}\n${c3}`).toBe(false);
@@ -1110,7 +1118,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         expect(aA, app.content).toBe(divs(num).filter((v) => v > K).length);
       }
 
-      const deep = problem("1-2-1", "심화", seed);
+      const deep = problem("1-2-1", "심화하", seed);
       if (deep.content.includes("\\square")) {
         const shownD = nums(deep.content);
         const num = Math.max(...shownD);
@@ -1189,7 +1197,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         expect(nums(app.answer), app.content).toEqual(good);
       }
 
-      const deep = problem("1-2-2", "심화", seed);
+      const deep = problem("1-2-2", "심화하", seed);
       // ㉯(범위 속 배수)도 「…보다 작을 때」를 담는다 — «보다 크고»가 갈라 준다.
       if (!deep.content.includes("보다 크고")) {
         const [num] = nums(deep.content) as [number];
@@ -1252,7 +1260,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
 
       // 심화 — 응용(「공약수를 모두 더하면」)을 **거꾸로** 돌리거나(합에서 최대공약수를
       // 되짚는다) 공약수 안에서 **조건을 하나 더 겹친다**(짝수만 센다).
-      const deep = problem("1-2-3", "심화", seed);
+      const deep = problem("1-2-3", "심화하", seed);
       if (deep.content.includes("모두 더하면")) {
         const [cnt, sum] = nums(deep.content) as [number, number];
         const g = answerNumber(deep.answer, "1-2-3 심화");
@@ -1319,7 +1327,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         }
       }
 
-      const deep = problem("1-2-4", "심화", seed);
+      const deep = problem("1-2-4", "심화하", seed);
       const dA = answerNumber(deep.answer, "1-2-4 심화");
       if (deep.content.includes("나머지가")) {
         const [a, r1, b, r2] = nums(deep.content) as [
@@ -1405,7 +1413,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
 
       // 심화 — **최소공배수를 발문이 안 준다.** 「$k$번째로 작은 공배수」에서 되짚은 뒤
       // 범위 안 공배수를 세거나(개수) 더한다(합). 여기서도 최소공배수를 **다시** 구한다.
-      const deep = problem("1-2-5", "심화", seed);
+      const deep = problem("1-2-5", "심화하", seed);
       const [k, kth, limit] = nums(deep.content) as [number, number, number];
       expect(
         kth % k,
@@ -1473,7 +1481,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         expect(aA, app.content).toBe((m / a) * (m / b));
       }
 
-      const deep = problem("1-2-6", "심화", seed);
+      const deep = problem("1-2-6", "심화하", seed);
       const dA = answerNumber(deep.answer, "1-2-6 심화");
       if (deep.content.includes("나머지가")) {
         const [a, b, r] = nums(deep.content) as [number, number, number];
@@ -1509,7 +1517,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
     let hit4 = 0;
     let hit6 = 0;
     for (let seed = 1; seed <= 200; seed += 1) {
-      const d4 = problem("1-2-4", "심화", seed);
+      const d4 = problem("1-2-4", "심화하", seed);
       if (d4.content.includes("나머지가")) {
         hit4 += 1;
         const [a, r1, b, r2] = nums(d4.content) as [
@@ -1524,7 +1532,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
         );
         expect(gcd2(a - r1, b - r2), d4.content).toBe(ans);
       }
-      const d6 = problem("1-2-6", "심화", seed);
+      const d6 = problem("1-2-6", "심화하", seed);
       if (d6.content.includes("나머지가")) {
         hit6 += 1;
         const [a, b, r] = nums(d6.content) as [number, number, number];
@@ -1543,7 +1551,7 @@ describe("[초5 1-2] 난이도 4단 확대 (D-72 3차)", () => {
   it("1-2 여섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES12) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -1644,13 +1652,13 @@ function inferRel(
 describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES13) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES13) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -1662,18 +1670,20 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES13) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
         expect(
           new Set(rows).size,
           `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(unitOf(code)).length);
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES13) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -1683,7 +1693,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES13) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -1703,13 +1713,13 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
 
   it("표는 1-3-1·1-3-2 에만 붙고(□·△ 가로꼴), 1-3-3 은 그림이 없다", () => {
     for (const code of ["1-3-1", "1-3-2"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           tablePairs(problem(code, tier, seed), `${code} ${tier} @${seed}`);
         }
       }
     }
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-3-3"))) {
       for (const seed of SEEDS) {
         expect(
           problem("1-3-3", tier, seed).figureSpec,
@@ -1730,7 +1740,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       return [...(s.headers ?? []), ...(s.rows ?? []).flat()].join(" ");
     };
     for (const code of CODES13) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -1767,7 +1777,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   /* ── 낱말 축 (D-66 ⑸) ── */
 
   it("낱말 축 — «식으로 나타내»는 1-3-2·1-3-3 에만 있고 1-3-1 에는 없다", () => {
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-3-1"))) {
       for (const seed of SEEDS) {
         const c1 = problem("1-3-1", tier, seed).content;
         expect(/식으로 나타내/.test(c1), `1-3-1 ${tier} @${seed}\n${c1}`).toBe(
@@ -1788,7 +1798,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("낱말 축 — 1-3-1·1-3-2 는 추상 표만, 1-3-3 은 생활 장면 + □·△ 지정", () => {
     const lifeWords =
       /자동차|세발자전거|오리|거미|곤충|봉지|접시|화분|상자|통나무|리본|철사|빨랫줄|테이프|막대|도막|나이|동생|형|언니|누나/;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-3-1"))) {
       for (const seed of SEEDS) {
         for (const code of ["1-3-1", "1-3-2"] as const) {
           const c = problem(code, tier, seed).content;
@@ -1826,9 +1836,9 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       }
     }
     const numberTiers: [string, readonly ElemTier[]][] = [
-      ["1-3-1", ELEM_TIERS],
-      ["1-3-2", ["심화"]],
-      ["1-3-3", ["응용", "심화"]],
+      ["1-3-1", tiersOf(unitOf("1-3-1"))],
+      ["1-3-2", ["심화하"]],
+      ["1-3-3", ["응용", "심화하"]],
     ];
     for (const [code, tiers] of numberTiers) {
       for (const tier of tiers) {
@@ -1887,7 +1897,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       expect(answerNumber(ap.answer, "1-3-1 응용"), ap.content).toBe(af(m));
 
       // 심화 — 표 밖 역산
-      const dp = problem("1-3-1", "심화", seed);
+      const dp = problem("1-3-1", "심화하", seed);
       const dpp = tablePairs(dp, "1-3-1 심화");
       const df = inferRel(dpp, "1-3-1 심화");
       const v = nums(dp.content)[2]!;
@@ -1928,7 +1938,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       }
 
       // 심화 — ㉠(정방향) + ㉡(역방향)
-      const dp = problem("1-3-2", "심화", seed);
+      const dp = problem("1-3-2", "심화하", seed);
       const pairs = tablePairs(dp, "1-3-2 심화");
       const f = inferRel(pairs, "1-3-2 심화");
       const i1 = pairs.findIndex(([, b]) => b === "㉠");
@@ -1965,7 +1975,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
 
   it("1-3-3 — 장면의 수로 답이 다시 선다 (배·자르기 +1·나이 차)", () => {
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("1-3-3"))) {
         const p = problem("1-3-3", tier, seed);
         const c = p.content;
         const ns = nums(c);
@@ -2014,7 +2024,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
     let hitTick = 0;
     for (let seed = 1; seed <= 200; seed += 1) {
       // 1-3-3 심화 — 자르기는 △−1(off-by-one 방향), 배는 나눗셈이 떨어진다
-      const d3 = problem("1-3-3", "심화", seed);
+      const d3 = problem("1-3-3", "심화하", seed);
       const n3 = nums(d3.content);
       if (d3.content.includes("자르면")) {
         hitCut += 1;
@@ -2033,7 +2043,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
           expect(Number(b), r2.content).toBeGreaterThanOrEqual(1);
       }
       // 1-3-2 심화 — ㉡의 이웃 □ 간격이 3 미만이면 사이 수가 하나뿐이라 역산이 죽는다
-      const d2 = problem("1-3-2", "심화", seed);
+      const d2 = problem("1-3-2", "심화하", seed);
       const pr = tablePairs(d2, `1-3-2 심화 @${seed}`);
       const i2 = pr.findIndex(([a]) => a === "㉡");
       if (i2 > 0 && i2 < 3) {
@@ -2076,7 +2086,7 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("1-3 세 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES13) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -2131,13 +2141,13 @@ const simp2 = (a: number, b: number): [number, number] => [
 describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
   it("다섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES14) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -2149,18 +2159,20 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES14) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
         expect(
           new Set(rows).size,
           `${code} 씨앗 ${seed}\n${rows.join("\n")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(unitOf(code)).length);
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -2169,7 +2181,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
 
   it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const answers = new Set(
           SEEDS.map((s) => problem(code, tier, s).answer),
         );
@@ -2184,7 +2196,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed} 그림`).toBeNull();
@@ -2211,7 +2223,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       [/소수/, "1-4-5"],
     ];
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           for (const [re, ownerCode] of axes) {
@@ -2226,7 +2238,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
     }
     // 주인 소단원 쪽 필수 낱말
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("1-4-2"))) {
         expect(/약분|기약/.test(problem("1-4-2", tier, seed).content)).toBe(
           true,
         );
@@ -2292,7 +2304,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       else expect(y - x, ap.content).toBe(cond);
 
       // 심화 — 더한 수 역산 / 범위 속 유일한 분모
-      const dp = problem("1-4-1", "심화", seed);
+      const dp = problem("1-4-1", "심화하", seed);
       const [dn, dd] = fracChunks(dp.content)[0]!;
       if (dp.content.includes("더했습니다")) {
         const add = Number(/분모에 \$(\d+)\$[을를]/.exec(dp.content)![1]);
@@ -2354,7 +2366,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       }
 
       // 심화 — 약분 전 합 역산 / 약분되는 진분수 전수
-      const dp = problem("1-4-2", "심화", seed);
+      const dp = problem("1-4-2", "심화하", seed);
       const ansD = answerNumber(dp.answer, "1-4-2 심화");
       if (dp.content.includes("어떤 분수의")) {
         const t2 = Number(/각각 \$(\d+)\$[으]?로 나누어/.exec(dp.content)![1]);
@@ -2411,7 +2423,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       else expect(ansA, ap.content).toBe(Math.abs(p - q));
 
       // 심화 — 원분수 역산 / 공통분모 개수
-      const dp = problem("1-4-3", "심화", seed);
+      const dp = problem("1-4-3", "심화하", seed);
       if (dp.content.includes("어떤 분수를 구하시오")) {
         const [da, dd1] = fracChunks(dp.content)[0]!;
         const den2 = Number(/분모가 \$(\d+)\$인/.exec(dp.content)![1]);
@@ -2477,7 +2489,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       expect(answerFrac(ap.answer, "1-4-4 응용"), ap.content).toEqual(want);
 
       // 심화 — □ 개수를 전수로 다시 센다
-      const dp = problem("1-4-4", "심화", seed);
+      const dp = problem("1-4-4", "심화하", seed);
       const ansD = answerNumber(dp.answer, "1-4-4 심화");
       let la: number;
       let ld: number;
@@ -2553,7 +2565,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       expect(ap.answer, ap.content).toBe(want[1]);
 
       // 심화 — 소수 경계 사이 □/d 를 전수로 다시 센다
-      const dp = problem("1-4-5", "심화", seed);
+      const dp = problem("1-4-5", "심화하", seed);
       const dmDeep = /0\.(\d)<\\frac\{\\square\}\{(\d+)\}<0\.(\d)/.exec(
         dp.content,
       )!;
@@ -2578,19 +2590,19 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
         rf[1]![0] * rf[0]![1],
       );
       // 1-4-4 심화 — 답 ≥ 1
-      const d4 = problem("1-4-4", "심화", seed);
+      const d4 = problem("1-4-4", "심화하", seed);
       expect(
         answerNumber(d4.answer, `@${seed}`),
         `범위가 비었다: ${d4.content}`,
       ).toBeGreaterThanOrEqual(1);
       // 1-4-5 심화 — 답 ≥ 1
-      const d5 = problem("1-4-5", "심화", seed);
+      const d5 = problem("1-4-5", "심화하", seed);
       expect(
         answerNumber(d5.answer, `@${seed}`),
         `범위가 비었다: ${d5.content}`,
       ).toBeGreaterThanOrEqual(1);
       // 1-4-1 심화 범위 갈래 — 범위 속 분모 후보가 정확히 하나
-      const d1 = problem("1-4-1", "심화", seed);
+      const d1 = problem("1-4-1", "심화하", seed);
       if (d1.content.includes("보다 크고")) {
         hitUnique += 1;
         const [, dd] = fracChunks(d1.content)[0]!;
@@ -2627,7 +2639,7 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
   it("1-4 다섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES14) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -2785,13 +2797,13 @@ const subV = (x: [number, number], y: [number, number]): [number, number] => {
 describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES15) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -2803,15 +2815,19 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES15) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -2820,7 +2836,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
 
   it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const answers = new Set(
           SEEDS.map((s) => problem(code, tier, s).answer),
         );
@@ -2835,7 +2851,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
@@ -2856,7 +2872,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
 
   it("답이 언제나 기약이고 가분수를 그대로 내지 않는다 (⑴⑷)", () => {
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           answerFracValue(p.answer, `${code} ${tier} @${seed}`);
@@ -2867,7 +2883,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
 
   it("이름 약속 — 「진분수」는 진분수만, 「대분수」는 대분수가 낀다 (⑵)", () => {
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("1-5-1"))) {
         for (const code of ["1-5-1", "1-5-3"] as const) {
           const c = problem(code, tier, seed).content;
           // 이름이 거는 것은 **피연산자**다 — 진분수끼리 더해도 «합»은 대분수가 될 수
@@ -2876,7 +2892,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
           const chunks = [...c.matchAll(/\$([^$]+)\$/g)]
             .map((m) => m[1]!)
             .filter((x) => x.includes("\\frac"));
-          const operands = tier === "심화" ? chunks.slice(0, -1) : chunks;
+          const operands = tier === "심화하" ? chunks.slice(0, -1) : chunks;
           for (const piece of operands) {
             expect(
               /\d\\frac\{/.test(piece),
@@ -2904,7 +2920,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
 
   it("뺄셈 갈래는 결과가 언제나 양수다 (⑶)", () => {
     for (const code of ["1-5-3", "1-5-4"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const [num] = answerFracValue(p.answer, `${code} ${tier} @${seed}`);
@@ -2935,7 +2951,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
           ).toEqual(sum);
         }
         // 심화 — 답 + 발문의 더한 수 = 발문의 합
-        const dp = problem(code, "심화", seed);
+        const dp = problem(code, "심화하", seed);
         const label = `${code} 심화 @${seed}`;
         const vs = fracValuesIn(dp.content);
         expect(vs.length, label).toBe(2);
@@ -2960,7 +2976,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
         // 심화 — 두 꼴은 **구조가 반대**다. 한 덩어리로 보면 부호가 뒤집힌다.
         //   □ 식  : `A-□=R`      → A − 답 = R   (답이 빼는 수)
         //   문장  : `어떤 수에서 X를 뺐더니 R` → 답 − X = R (답이 처음 수)
-        const dp = problem(code, "심화", seed);
+        const dp = problem(code, "심화하", seed);
         const dLabel = `${code} 심화 @${seed}`;
         const dvs = fracValuesIn(dp.content);
         expect(dvs.length, dLabel).toBe(2);
@@ -2997,7 +3013,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("경계 쓸기 200 — 뺄셈 결과 양수·기약·정본 꼴 (구성 보장)", () => {
     for (let seed = 1; seed <= 200; seed += 1) {
       for (const code of CODES15) {
-        for (const tier of ELEM_TIERS) {
+        for (const tier of tiersOf(unitOf(code))) {
           const p = problem(code, tier, seed);
           const [num] = answerFracValue(p.answer, `${code} ${tier} @${seed}`);
           expect(num, `${code} ${tier} @${seed}`).toBeGreaterThan(0);
@@ -3008,7 +3024,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
 
   it("\\frac 가 붉음 없이 그려진다 (렌더)", () => {
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const p = problem(code, tier, 11);
         const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
         expect(html, `${code} ${tier}`).not.toContain("katex-error");
@@ -3055,7 +3071,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
     }
     const clash: string[] = [];
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           if (g4Contents.has(c))
@@ -3069,7 +3085,7 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   it("1-5 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES15) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -3126,13 +3142,13 @@ const intsIn = (t: string): number[] =>
 describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
   it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES21) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -3144,15 +3160,19 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES21) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -3161,7 +3181,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
 
   it("갈래마다 답이 상수가 아니다 (답 분포)", () => {
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const answers = new Set(
           SEEDS.map((s) => problem(code, tier, s).answer),
         );
@@ -3176,7 +3196,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
@@ -3201,7 +3221,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
     // ⚠️ 「반올림」은 「올림」을 **글자로 품는다** — 먼저 지우고 봐야 한다
     // (옛 표준이 `includes("올림")` 때문에 2-1-6 에서 올림 문항을 내던 그 자리).
     const hasUp = (c: string) => c.replace(/반올림/g, "").includes("올림");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-1-1"))) {
       for (const seed of SEEDS) {
         const c1 = problem("2-1-1", tier, seed).content;
         expect(/이상|이하/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(
@@ -3306,11 +3326,11 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
       ).toBe(hi2! - lo2! - 1);
 
       // 심화 역산 — 개수에서 끝값을 되짚는다(이상·이하는 +1, 초과·미만은 −1)
-      const d1 = problem("2-1-1", "심화", seed);
+      const d1 = problem("2-1-1", "심화하", seed);
       const [aa, cnt] = intsIn(d1.content);
       const b1 = Number(/^\$(\d+)\$$/.exec(d1.answer)![1]);
       expect(b1 - aa! + 1, d1.content).toBe(cnt);
-      const d2 = problem("2-1-2", "심화", seed);
+      const d2 = problem("2-1-2", "심화하", seed);
       const [aa2, cnt2] = intsIn(d2.content);
       const b2 = Number(/^\$(\d+)\$$/.exec(d2.answer)![1]);
       expect(b2 - aa2! - 1, d2.content).toBe(cnt2);
@@ -3420,7 +3440,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
         ["2-1-4", ceilT],
         ["2-1-6", roundT],
       ] as const) {
-        const p = problem(code, "심화", seed);
+        const p = problem(code, "심화하", seed);
         const label = `${code} 심화 @${seed}`;
         const place = PLACE_OF[/([십백천])의 자리/.exec(p.content)![1]!]!;
         const target = intsIn(p.content)[0]!;
@@ -3441,7 +3461,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
       }
 
       // 2-1-5 심화는 **조건 조합** — 두 어림을 동시에 만족하는 범위다
-      const d5 = problem("2-1-5", "심화", seed);
+      const d5 = problem("2-1-5", "심화하", seed);
       const label5 = `2-1-5 심화 @${seed}`;
       const place5 = PLACE_OF[/([십백천])의 자리/.exec(d5.content)![1]!]!;
       const [u, dn] = intsIn(d5.content);
@@ -3530,7 +3550,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
     const N = 1000;
     const bad: string[] = [];
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -3573,7 +3593,7 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
   it("2-1 여섯 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES21) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -3606,13 +3626,13 @@ const mulV = (x: [number, number], y: [number, number]): [number, number] => {
 describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES22) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -3624,15 +3644,19 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES22) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -3643,7 +3667,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
     const N = 500;
     const bad: string[] = [];
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -3662,7 +3686,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
@@ -3685,7 +3709,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
 
   it("답은 언제나 기약이고, 발문은 기약을 요구하지 않는다 (①)", () => {
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const label = `${code} ${tier} @${seed}`;
@@ -3746,7 +3770,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
     const wholeFirst =
       /(?:^|[^}\d])(?:\d+|\\square)\\times\\frac\{\d+\}\{\d+\}/;
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-2-1"))) {
         const c1 = `${problem("2-2-1", tier, seed).content} ${problem("2-2-1", tier, seed).solution}`;
         const c2 = `${problem("2-2-2", tier, seed).content} ${problem("2-2-2", tier, seed).solution}`;
         // 제 차례가 있어야 하고 —
@@ -3820,7 +3844,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
 
   it("2-2-4 — 대분수가 반드시 끼고, 가분수 전환이 해설에 선다 (③)", () => {
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-2-4"))) {
         const p = problem("2-2-4", tier, seed);
         const label = `2-2-4 ${tier} @${seed}`;
         expect(
@@ -3839,7 +3863,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
     // ⚠️ 이 갈래는 2026-08-23 까지 **응용** 자리에 있었다. D-72 가 4단 예시로 글자
     //    그대로 드는 문형(「잘못 계산했더니」)이라 3단에 두면 사다리가 뒤집힌다.
     for (const seed of SEEDS) {
-      const p = problem("2-2-4", "심화", seed);
+      const p = problem("2-2-4", "심화하", seed);
       const label = `2-2-4 심화 @${seed}`;
       const m = /(\d+)\\frac\{(\d+)\}\{(\d+)\}\\times(\d+)/.exec(p.content)!;
       const [w, a, d, k] = [1, 2, 3, 4].map((i) => Number(m[i]));
@@ -3891,7 +3915,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
 
     const clash: string[] = [];
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           const exact = others.get(c);
@@ -3923,7 +3947,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
 
     let mine = 0;
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const pr = problem(code, tier, seed);
           const label = `${code} ${tier} @${seed}`;
@@ -3979,7 +4003,7 @@ describe("[초5 2-2] 난이도 4단 확대 (D-72 8차)", () => {
   it("2-2 네 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES22) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -4060,13 +4084,13 @@ function collapse([v, d]: [number, number]): [number, number] {
 describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
   it("일곱 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES24) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -4078,15 +4102,19 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES24) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -4097,7 +4125,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     const N = 500;
     const bad: string[] = [];
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -4116,7 +4144,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
@@ -4142,7 +4170,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     const decFirst = /(?:^|[^\d.])\d+\.\d+\\times(?:\d+|\\square)(?!\.)/;
     const wholeFirst = /(?:^|[^\d.])(?:\d+|\\square)\\times\d+\.\d+/;
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-4-1"))) {
         for (const code of ["2-4-1", "2-4-2"] as const) {
           const c = problem(code, tier, seed).content;
           const s = problem(code, tier, seed).solution;
@@ -4175,7 +4203,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     /** 발문·해설의 소수 토큰 값들(정수 스케일 → 실수 비교는 스케일로). */
     const decsIn = (t: string) => decTokens(t).filter(([, d]) => d > 0);
     for (const seed of SEEDS) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-4-1"))) {
         // 2-4-1·2-4-3: 곱하는 소수가 1보다 작다 → 발문에 «0.x» 가 반드시 있다
         for (const code of ["2-4-1", "2-4-3"] as const) {
           const c = problem(code, tier, seed).content;
@@ -4248,7 +4276,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
   it("소수 세 자리 이상이 없다 — 초5 범위 (2-4-7 은 자리를 옮기는 소단원이라 뺀다)", () => {
     for (const code of CODES24) {
       if (code === "2-4-7") continue;
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -4328,7 +4356,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
       //   어떤 수 × A = X · 어떤 수 × B = 답  ⟹  답 × A = X × B.
       // ⚠️ 이 항등식은 「어떤 수」를 지면에서 **읽지 않고** 검산한다 — 발문에 없는
       //    값을 시험이 되만들면 그 순간 생성기와 같은 식을 두 벌 쓰는 셈이 된다.
-      const dp2 = problem("2-4-7", "심화", seed);
+      const dp2 = problem("2-4-7", "심화하", seed);
       const label = `2-4-7 심화 @${seed}`;
       const toks = decTokens(dp2.content);
       expect(toks.length, `${label}\n${dp2.content}`).toBe(3);
@@ -4367,7 +4395,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
 
     const clash: string[] = [];
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           if (others.get(c)) clash.push(`완전 일치 ${code} ${tier}\n    ${c}`);
@@ -4387,7 +4415,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
     //    그래서 판별자는 이웃마다 **다시 재서** 고른다.
     let mine = 0;
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(
@@ -4424,7 +4452,7 @@ describe("[초5 2-4] 난이도 4단 확대 (D-72 9차)", () => {
   it("2-4 일곱 소단원끼리 발문이 겹치지 않는다 (D-66 ⑸)", () => {
     const seen = new Map<string, string>();
     for (const code of CODES24) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           const owner = `${code} «${tier}»`;
@@ -4455,13 +4483,13 @@ function fracIn(text: string): [number, number] | null {
 describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
   it("세 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES26) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES26) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -4473,15 +4501,19 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES26) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES26) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
         expect(rows.size, `${code} ${tier}`).toBeGreaterThanOrEqual(8);
       }
@@ -4492,7 +4524,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     const N = 500;
     const bad: string[] = [];
     for (const code of CODES26) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -4511,7 +4543,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1) — 그림은 없다", () => {
     const bad: string[] = [];
     for (const code of CODES26) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           expect(p.figureSpec, `${code} ${tier} @${seed}`).toBeNull();
@@ -4583,7 +4615,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     //    그 오답이 **정답과 같아져** 갈래가 통째로 뜻을 잃는다 — 값 검산은 그때도 초록이다.
     //    구성이 보장하므로 **전량**으로 잰다.
     for (let seed = 0; seed < 200; seed += 1) {
-      const p = problem("2-6-1", "심화", seed);
+      const p = problem("2-6-1", "심화하", seed);
       const label = `2-6-1 심화 @${seed}`;
       // $1$모둠 $n1$명 … $a1$점 … $2$모둠 $n2$명 … $a2$점
       const v = intsIn(p.content);
@@ -4632,7 +4664,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     // ⚠️ 「적어도 몇 점」은 답이 자연수라야 뜻이 선다. `t·(k+m) − a·k` 는 넷이 다
     //    정수라 언제나 정수이고 `t > a` 라 언제나 양수다 — 그러니 **전량**이다.
     for (let seed = 0; seed < 200; seed += 1) {
-      const p = problem("2-6-2", "심화", seed);
+      const p = problem("2-6-2", "심화하", seed);
       const label = `2-6-2 심화 @${seed}`;
       const [k, a, m, total, t] = intsIn(p.content);
       expect(total, `${label} 전체 경기 수가 안 맞는다\n${p.content}`).toBe(
@@ -4679,7 +4711,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     //    전체를 늘리는가). 발문에 「빨간 구슬만」이 반드시 있어야 한다.
     //    그리고 답을 먼저 잡고 파랑을 유도하므로 검산은 **항등식**이다 — 전량으로 잰다.
     for (let seed = 0; seed < 200; seed += 1) {
-      const p = problem("2-6-3", "심화", seed);
+      const p = problem("2-6-3", "심화하", seed);
       const label = `2-6-3 심화 @${seed}`;
       expect(
         /빨간 구슬만 더 넣어/.test(p.content),
@@ -4735,7 +4767,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
 
     const clash: string[] = [];
     for (const code of CODES26) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           if (std.get(c)) clash.push(`완전 일치 ${code} ${tier}\n    ${c}`);
@@ -4752,7 +4784,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     //    가드도 못 본다.** 수가 그 낱말과 어울리는지는 코드가 아니라 세상이 정한다.
     const bad: string[] = [];
     for (let seed = 0; seed < 200; seed += 1) {
-      const deep = problem("2-6-1", "심화", seed);
+      const deep = problem("2-6-1", "심화하", seed);
       for (const v of intsIn(deep.content).filter((x) => x > 20)) {
         if (v < 40 || v > 100) bad.push(`2-6-1 심화 @${seed} 점수 ${v}`);
       }
@@ -4760,7 +4792,7 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
       for (const v of intsIn(pages.content)) {
         if (v > 60) bad.push(`2-6-1 기본 @${seed} 쪽수 ${v}`);
       }
-      const marbles = problem("2-6-3", "심화", seed);
+      const marbles = problem("2-6-3", "심화하", seed);
       for (const v of intsIn(marbles.content)) {
         if (v > 30) bad.push(`2-6-3 심화 @${seed} 구슬 ${v}개`);
       }
@@ -4792,13 +4824,13 @@ function shapeItems(p: {
 describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
   it("네 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES23) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -4810,8 +4842,12 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES23) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
@@ -4823,7 +4859,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     //    「무엇이 학생에게 달라 보이는가」가 이 규칙이 지키려는 것이므로 **그림도 센다**
     //    — 「그림도 R5 다」와 같은 자리다(2026-08-23).
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(
           SEEDS.map((s) => {
             const p = problem(code, tier, s);
@@ -4839,7 +4875,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     // ⚠️ 위 시험이 그림을 세므로, 그림 없는 갈래까지 느슨해지면 안 된다. 그림이 없는
     //    갈래는 예전 잣대(발문 글자)를 **그대로** 지킨다.
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const some = problem(code, tier, SEEDS[0]!);
         if (some.figureSpec) continue;
         const rows = new Set(SEEDS.map((s) => problem(code, tier, s).content));
@@ -4854,7 +4890,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     const N = 500;
     const bad: string[] = [];
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -4873,7 +4909,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -4899,7 +4935,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     //    28/40 씨앗). 발문·정답·해설은 멀쩡해서 **값 검산도 R1 도 전부 초록이었다** —
     //    그림을 직접 들여다봐야만 보이는 부류다. 구성이 보장하므로 **전량**으로 잰다.
     let seen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("2-3-1"))) {
       for (let seed = 0; seed < 200; seed += 1) {
         const p = problem("2-3-1", tier, seed);
         const items = shapeItems(p);
@@ -4923,7 +4959,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
     // ⚠️ 「~이 되게 하려면 어느 것과 같게 하나」는 짝 없는 도형이 둘 이상이면 **답이
     //    여럿**이 된다. 값 검산으로는 안 보인다 — 어느 답을 대도 조건을 만족하니까.
     for (let seed = 0; seed < 200; seed += 1) {
-      const p = problem("2-3-1", "심화", seed);
+      const p = problem("2-3-1", "심화하", seed);
       const items = shapeItems(p);
       expect(items.length, `2-3-1 심화 @${seed}`).toBe(4);
       const count = new Map<string, number>();
@@ -4977,7 +5013,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
       );
 
       // 심화: (둘레 − 밑변) ÷ 2 — **자연수여야** 「각각 몇 cm」가 뜻을 가진다
-      const d = problem("2-3-2", "심화", seed);
+      const d = problem("2-3-2", "심화하", seed);
       const [total, base] = intsIn(d.content);
       expect(
         (total! - base!) % 2,
@@ -5012,7 +5048,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
         ).toBe(want);
       }
       // 심화: 완성 = 2·off + on 이므로 (완성 − 축 위) 가 **짝수**여야 한다
-      const d = problem("2-3-3", "심화", seed);
+      const d = problem("2-3-3", "심화하", seed);
       const [done, on] = intsIn(d.content);
       expect((done! - on!) % 2, `2-3-3 심화 @${seed} 절반이 안 나뉜다`).toBe(0);
       expect(answerNumber(d.answer, `2-3-3 심화 @${seed}`), d.content).toBe(
@@ -5040,7 +5076,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
       );
 
       // 심화: 연속한 세 자연수 — 둘레 ÷ 2 가 **3의 배수**여야 한다
-      const d = problem("2-3-4", "심화", seed);
+      const d = problem("2-3-4", "심화하", seed);
       const [round] = intsIn(d.content);
       expect(round! % 2, `2-3-4 심화 @${seed} 둘레가 홀수다`).toBe(0);
       expect(
@@ -5074,7 +5110,7 @@ describe("[초5 2-3] 난이도 4단 확대 (D-72 12차)", () => {
 
     const clash: string[] = [];
     for (const code of CODES23) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           if (std.get(`SKEL:${skeleton(p.content)}`))
@@ -5155,13 +5191,13 @@ function dimsOf(p: {
 describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
   it("여섯 소단원 모두 갈래 넷이 등록돼 있다", () => {
     for (const code of CODES25) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = problem(code, tier, 11);
         const b = problem(code, tier, 11);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -5173,15 +5209,19 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
   it("한 소단원 안에서 네 갈래 발문이 서로 갈린다", () => {
     for (const code of CODES25) {
       for (const seed of SEEDS) {
-        const rows = ELEM_TIERS.map((t) => problem(code, t, seed).content);
-        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(4);
+        const rows = tiersOf(unitOf(code)).map(
+          (t) => problem(code, t, seed).content,
+        );
+        expect(new Set(rows).size, `${code} 씨앗 ${seed}`).toBe(
+          tiersOf(unitOf(code)).length,
+        );
       }
     }
   });
 
   it("갈래마다 씨앗 16개에서 서로 다른 문항이 8개 이상이다 (발문+그림)", () => {
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const rows = new Set(
           SEEDS.map((s) => {
             const p = problem(code, tier, s);
@@ -5200,7 +5240,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     const N = 500;
     const bad: string[] = [];
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Map<string, number>();
         for (let seed = 0; seed < N; seed += 1) {
           const ans = problem(code, tier, seed).answer;
@@ -5219,7 +5259,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
   it("모든 수가 KaTeX 안에 있다 (R1)", () => {
     const bad: string[] = [];
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const [where, text] of [
@@ -5245,7 +5285,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     //    전부 맞아서 **어느 가드도 안 물었다** — 네 갈래를 렌더해 보고서야 찾았다
     //    (2026-08-23). 구성이 보장하므로 **전량**으로 잰다.
     for (let seed = 0; seed < 200; seed += 1) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("2-5-1"))) {
         const one = problem("2-5-1", tier, seed);
         expect(
           /직육면체/.test(one.content),
@@ -5308,7 +5348,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
       );
 
       // 심화: 그 합에서 높이를 되찾는다 — **나눗셈이 딱 떨어져야** 뜻이 선다
-      const dp = problem("2-5-3", "심화", seed);
+      const dp = problem("2-5-3", "심화하", seed);
       // ⚠️ 발문 가운데 「$4$개」가 끼므로 **자리로 세면 어긋난다**(실측: 합 대신 4를 집었다).
       //    묻는 값은 이름으로 집는다.
       const [dw, dd] = intsIn(dp.content);
@@ -5343,7 +5383,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
       );
 
       // 심화: 보이는 합 ÷ 3 × 4 — **3으로 나누어떨어져야** 한다
-      const dp = problem("2-5-4", "심화", seed);
+      const dp = problem("2-5-4", "심화하", seed);
       const vis = Number(/합이 \$(\d+)\$/.exec(dp.content)![1]);
       expect(vis! % 3, `2-5-4 심화 @${seed} 보이는 합이 3으로 안 나뉜다`).toBe(
         0,
@@ -5372,7 +5412,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
       ).toBe(true);
 
       // 심화: 둘레 → 한 모서리 → 모서리 합(12배). 14로 나누어떨어져야 한다
-      const dp = problem("2-5-5", "심화", seed);
+      const dp = problem("2-5-5", "심화하", seed);
       const [per] = intsIn(dp.content);
       expect(per! % 14, `2-5-5 심화 @${seed} 둘레가 14로 안 나뉜다`).toBe(0);
       expect(answerNumber(dp.answer, `2-5-5 심화 @${seed}`), dp.content).toBe(
@@ -5393,7 +5433,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
       //    그림이 역산의 답을 글자로 찍고 있어서 뗐고, 그러면 `dimsOf` 가 설 데가
       //    없다. 심화는 아래 「발문에 실린 두 넓이가 답의 근거다」가 잠근다 —
       //    참을 그림이 아니라 **발문**에서 가져오므로 그쪽이 원래 옳은 자리다.
-      const dp = problem("2-5-6", "심화", seed);
+      const dp = problem("2-5-6", "심화하", seed);
       const [w, a1, a2] = intsIn(dp.content);
       expect(a1! % w!, `2-5-6 심화 @${seed} 첫 나눗셈이 안 떨어진다`).toBe(0);
       expect(a2! % w!, `2-5-6 심화 @${seed} 둘째 나눗셈이 안 떨어진다`).toBe(0);
@@ -5423,7 +5463,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
 
     const clash: string[] = [];
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const c = problem(code, tier, seed).content;
           if (others.has(skeleton(c)))
@@ -5440,7 +5480,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     // ⚠️ 초6 1-6-1「직육면체의 겉넓이」·1-6-2「부피」는 g6 가 이미 갈래를 썼다.
     //    여기서 쓰면 학년을 넘고 남의 문항과 겹친다.
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
           for (const word of ["겉넓이", "부피", "cm³", "m³"]) {
@@ -5467,7 +5507,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     //    해설의 뺄셈은 산술적으로 맞으므로 값 검산·등식 판정기도 못 잡는 자리다.
     const bad: string[] = [];
     for (const code of CODES25) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (let seed = 0; seed < 200; seed += 1) {
           const p = problem(code, tier, seed);
           const v = answerNumber(p.answer, `${code} ${tier} @${seed}`);
@@ -5498,7 +5538,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     //    게다가 부풀린 값도 $w$ 로 나누어떨어져 「나눗셈이 떨어지나」 가드까지 통과했다.
     //    참을 그림에서 가져오면 발문이 거짓말을 해도 안 보인다.
     for (const seed of SEEDS) {
-      const dp = problem("2-5-6", "심화", seed);
+      const dp = problem("2-5-6", "심화하", seed);
       const [w, a1, a2] = intsIn(dp.content);
       expect(answerNumber(dp.answer, `2-5-6 심화 @${seed}`), dp.content).toBe(
         4 * (w! + a1! / w! + a2! / w!),
@@ -5510,7 +5550,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     // ⚠️ 이 조건이 답을 하나로 만든다. 깨져도 답은 여전히 «어떤 수»라서 값 검산이
     //    안 물고, 배수 관계를 되짚는 시험이 없어 변이가 초록이었다.
     for (const seed of SEEDS) {
-      const dp = problem("2-5-1", "심화", seed);
+      const dp = problem("2-5-1", "심화하", seed);
       const [total, k, h] = intsIn(dp.content);
       expect(total! % 4, `2-5-1 심화 @${seed} 합이 $4$ 로 안 나뉜다`).toBe(0);
       const d = answerNumber(dp.answer, `2-5-1 심화 @${seed}`);
@@ -5610,7 +5650,7 @@ describe("[초5 2-5] 난이도 4단 확대 (D-72 13차)", () => {
     for (const u of elementaryUnits().filter((x) => x.grade === "초5")) {
       if (!supportedTiers(u).length) continue;
       for (let seed = 0; seed < 60; seed += 1) {
-        const p = generateElementaryProblem(u, seed, "심화");
+        const p = generateElementaryProblem(u, seed, "심화하");
         const leak = figureLeak(
           p.content,
           p.figureSpec as Record<string, unknown> | null,

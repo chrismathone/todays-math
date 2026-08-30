@@ -9,7 +9,6 @@ import {
   generateElementaryProblem,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 
 const SEEDS = 12;
 const SEED0 = 20260826;
@@ -39,7 +38,10 @@ for (const unit of elementaryUnits()) {
   if (tiers.length === 0) continue;
   const perTier: Record<string, number> = {};
   const all = new Set<string>();
-  for (const tier of ELEM_TIERS) {
+  // 축 전체(`ELEM_TIERS`)가 아니라 **등록된 갈래**만 만든다 — `심화중`·`심화상` 은
+  // 채우는 중이라(D-113) 아직 없는 소단원에서 던지고, 그걸 「생성 실패」로 세면
+  // 「아직 안 채움」과 「엔진이 깨졌다」가 같은 숫자로 섞인다.
+  for (const tier of tiers) {
     const fps = new Set<string>();
     for (let i = 0; i < SEEDS; i += 1) {
       try {

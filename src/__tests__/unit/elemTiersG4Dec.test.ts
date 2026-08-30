@@ -18,12 +18,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = [
   "2-3-1",
@@ -142,7 +143,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     const digits = one(c, /\$\d+\.(\d{3})\$에서/);
     return `$${fmt(Number(digits[1]) * 10 + Number(digits[2]), 3)}$`;
   },
-  "2-3-1|심화": (c) => {
+  "2-3-1|심화하": (c) => {
     const w = Number(one(c, /자연수 부분은 \$(\d+)\$/));
     const a = Number(one(c, /소수 첫째 자리 숫자는 \$(\d+)\$/));
     const k = Number(one(c, /보다 \$(\d+)\$ 큰/));
@@ -170,7 +171,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     const [lo, hi] = decsIn(c);
     return `$${scale(hi!).i - scale(lo!).i - 1}$개`;
   },
-  "2-3-2|심화": (c) => {
+  "2-3-2|심화하": (c) => {
     const [lo, hi] = decsIn(c);
     const d = Number(one(c, /소수 둘째 자리 숫자가 \$(\d+)\$인/));
     const out: string[] = [];
@@ -192,7 +193,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return `$${shift(decsIn(c)[0]!, -(k === 100 ? 2 : 1))}$`;
   },
   "2-3-3|응용": (c) => `$${shift(decsIn(c)[0]!, -1)}$`,
-  "2-3-3|심화": (c) => {
+  "2-3-3|심화하": (c) => {
     const given = decsIn(c)[0];
     if (given !== undefined) {
       // 「어떤 수의 1/10 이 X」 → 어떤 수는 X 를 오른쪽으로 한 칸, 그 10배는 한 칸 더.
@@ -220,7 +221,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     )}$`;
   },
   // 수 카드 — 만들 수 있는 짝을 **전부 만들어** 합이 가장 큰 것을 고른다.
-  "2-3-4|심화": (c) => {
+  "2-3-4|심화하": (c) => {
     const cards = [
       ...one(c, /수 카드 ((?:\$\d+\$(?:, )?){4})/).matchAll(/\d+/g),
     ]
@@ -249,7 +250,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return `$${fmt(scale(vs[1]!).i + scale(vs[3]!).i, 1)}$`;
   },
   // 뺄 것을 더했다 — 되짚어 한 번, 바르게 한 번 더 뺀다.
-  "2-3-5|심화": (c) => {
+  "2-3-5|심화하": (c) => {
     const [sub, wrong] = decsIn(c);
     return `$${fmt(scale(wrong!).i - scale(sub!).i * 2, 1)}$`;
   },
@@ -269,7 +270,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return `$${fmt(scale(known!).i * 2 - scale(gap!).i, 2)}$`;
   },
   // 두 자리를 바꿔 쓴 값으로 더했다 — 그 값을 빼서 되짚고 바른 값을 더한다.
-  "2-3-6|심화": (c) => {
+  "2-3-6|심화하": (c) => {
     const [right, wrongAdd, got] = decsIn(c);
     return `$${fmt(scale(got!).i - scale(wrongAdd!).i + scale(right!).i, 2)}$`;
   },
@@ -290,7 +291,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     return `$${fmt(some - scale(second!).i, 2)}$`;
   },
   // 세 수의 짝을 **전부** 견주어 가장 작은 차를 고른다.
-  "2-3-7|심화": (c) => {
+  "2-3-7|심화하": (c) => {
     const vs = decsIn(c).map((d) => scale(d).i);
     let best = Infinity;
     for (let i = 0; i < vs.length; i += 1) {
@@ -321,7 +322,7 @@ const PERM4: number[][] = (() => {
 
 describe("초4 2-3 소수의 덧셈과 뺄셈 — 4단 등록", () => {
   it.each(CODES)("%s 는 네 갈래가 다 있다", (code) => {
-    expect(supportedTiers(unitOf("초4", code))).toEqual([...ELEM_TIERS]);
+    expectCoreTiers(unitOf("초4", code), code);
   });
 });
 
@@ -360,7 +361,7 @@ describe("소수의 꼴 — 꼬리 $0$ 과 자릿수", () => {
     () => {
       const bad: string[] = [];
       for (const code of CODES) {
-        for (const tier of [undefined, ...ELEM_TIERS]) {
+        for (const tier of [undefined, ...tiersOf(unitOf("초4", code))]) {
           for (const seed of SWEEP) {
             const p = gen(code, seed, tier);
             for (const [where, text] of [
@@ -385,7 +386,7 @@ describe("소수의 꼴 — 꼬리 $0$ 과 자릿수", () => {
     () => {
       const bad: string[] = [];
       for (const code of CODES) {
-        for (const tier of ELEM_TIERS) {
+        for (const tier of tiersOf(unitOf("초4", code))) {
           for (const seed of SWEEP) {
             const p = gen(code, seed, tier);
             const all = [
@@ -417,7 +418,7 @@ describe("소수의 꼴 — 꼬리 $0$ 과 자릿수", () => {
   it.each(Object.keys(NAMED_PLACES))(
     "%s 는 발문의 가장 깊은 자리가 이름이 약속한 자리다",
     (code) => {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           const places = placesIn(p.content);
@@ -452,7 +453,7 @@ describe("눈으로 찾아 고친 자리 — 전수 쓸기로 잠근다", () => 
   it("2-3-6 응용·심화의 「어떤 수」는 $1$ 보다 크다", () => {
     // 되짚은 값이 $0$ 이하이면 「어떤 수」가 음수가 되어 초4 범위 밖이다.
     const bad: string[] = [];
-    for (const tier of ["응용", "심화"] as const) {
+    for (const tier of ["응용", "심화하"] as const) {
       for (const seed of SWEEP) {
         const p = gen("2-3-6", seed, tier);
         for (const d of decsIn(p.solution)) {
@@ -471,7 +472,7 @@ describe("초3 1-6 과 가르는 것은 «자릿수»다", () => {
   it("2-3-1·2-3-2 발문에는 두 자리 이상 소수가 있다", () => {
     const bad: string[] = [];
     for (const code of ["2-3-1", "2-3-2"] as const) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           if (!placesIn(p.content).some((d) => d >= 2)) {
@@ -488,7 +489,7 @@ describe("초3 1-6 과 가르는 것은 «자릿수»다", () => {
     const deep: string[] = [];
     let seen = 0;
     for (const code of G3) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초3", code))]) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unitOf("초3", code), seed, tier);
           for (const d of placesIn(p.content)) {
@@ -507,7 +508,7 @@ describe("초3 1-6 과 가르는 것은 «자릿수»다", () => {
     const mine = new Map<string, string>();
     const skel = new Map<string, string>();
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           mine.set(p.content, `초4 ${code} «${tier}»`);
@@ -517,7 +518,7 @@ describe("초3 1-6 과 가르는 것은 «자릿수»다", () => {
     }
     const hit: string[] = [];
     for (const code of G3) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf("초3", code))]) {
         for (const seed of WIDE) {
           const p = generateElementaryProblem(unitOf("초3", code), seed, tier);
           if (mine.has(p.content)) hit.push(`발문 ${mine.get(p.content)}`);
@@ -534,7 +535,7 @@ describe("값 — 발문만 읽어 다시 세운다", () => {
   it("답이 재도출과 글자까지 같다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         const rederive = REDERIVE[`${code}|${tier}`];
         expect(rederive, `${code} «${tier}» 재도출이 없다`).toBeTruthy();
         for (const seed of SEEDS) {
@@ -555,7 +556,7 @@ describe("겹침 — 같은 소단원의 표준과", () => {
     const mine = new Map<string, string>();
     const skel = new Map<string, string>();
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           mine.set(p.content, `${code} «${tier}»`);
@@ -587,7 +588,7 @@ describe("겹침 — 2-3 안에서 소단원끼리", () => {
     const seen = new Map<string, string>();
     const hit: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         for (const seed of SEEDS) {
           const sk = skeleton(gen(code, seed, tier).content);
           const prev = seen.get(sk);
@@ -605,7 +606,7 @@ describe("변형 — 씨앗이 바뀌면 발문이 바뀐다", () => {
   it("갈래마다 씨앗 16개에서 발문이 8가지 이상", () => {
     const thin: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf("초4", code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         if (seen.size < 8) thin.push(`${code} «${tier}» ${seen.size}가지`);
       }

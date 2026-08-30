@@ -704,7 +704,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("11", "덧셈과 뺄셈의 활용 ⑵", SEC.덧뺄, "심화", (rng) =>
+  def("11", "덧셈과 뺄셈의 활용 ⑵", SEC.덧뺄, "심화하", (rng) =>
     attempt(200, () => {
       const S = intBetween(rng, -8, 8); // ← 세 줄의 공통 합을 먼저
       const p1 = intBetween(rng, -9, 9);
@@ -788,7 +788,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("14", "네 유리수 중에서 세 수를 뽑아 곱하기", SEC.곱, "심화", (rng) =>
+  def("14", "네 유리수 중에서 세 수를 뽑아 곱하기", SEC.곱, "심화하", (rng) =>
     attempt(300, () => {
       // 역산이 없는 유형 — 네 수를 뽑고 «극값이 유일하고 깔끔한가»를 조건으로 건다.
       const vs = [
@@ -880,7 +880,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("16", "의 계산", SEC.곱, "심화", (rng) =>
+  def("16", "의 계산", SEC.곱, "심화하", (rng) =>
     attempt<Body>(200, (): Body | null => {
       // 역산이 없는 유형 — 홀짝 규칙으로 접는다. 테스트는 구체적인 $n$ 을 넣어 센다.
       const shape = rng() < 0.35 ? 1 : 2;
@@ -1060,7 +1060,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("21", "덧셈 뺄셈 곱셈 나눗셈의 혼합 계산", SEC.나눗, "심화", (rng) =>
+  def("21", "덧셈 뺄셈 곱셈 나눗셈의 혼합 계산", SEC.나눗, "심화하", (rng) =>
     attempt(300, () => {
       // 뼈대: $\dfrac{1}{A}\times\left[B-\left\{C^{2}+\left(\dfrac{p}{u}-\dfrac{r}{w}\right)\times D\right\}\right]+E$
       const T = intBetween(rng, -9, 9); // ← 답을 먼저
@@ -1168,7 +1168,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("24", "유리수의 부호 결정", SEC.나눗, "심화", (rng) =>
+  def("24", "유리수의 부호 결정", SEC.나눗, "심화하", (rng) =>
     attempt(200, () => {
       // 역산이 없는 유형 — 부호를 먼저 정하고 그 부호만 남기는 조건을 고른다.
       const sa = rng() < 0.5 ? 1 : -1;
@@ -1210,7 +1210,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("25", "문자로 주어진 수의 대소 관계", SEC.나눗, "심화", (rng) =>
+  def("25", "문자로 주어진 수의 대소 관계", SEC.나눗, "심화하", (rng) =>
     attempt(300, () => {
       // 역산이 없는 유형 — 구간의 표본점에 실제로 대입해 «늘 그 하나가 극값인가»를 본다.
       const r = pick(rng, RANGES);
@@ -1305,7 +1305,7 @@ export const M1_CALC: TypeEntry[] = [
     }),
   ),
 
-  def("27", "수직선에서 유리수의 혼합 계산의 활용", SEC.나눗, "심화", (rng) =>
+  def("27", "수직선에서 유리수의 혼합 계산의 활용", SEC.나눗, "심화하", (rng) =>
     attempt(300, () => {
       const m = intBetween(rng, 1, 4);
       const nRatio = intBetween(rng, 1, 4);

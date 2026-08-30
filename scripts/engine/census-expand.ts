@@ -2,7 +2,6 @@
  * 360 소단원 분모에서 변형 3 · 객관식 파생이 몇 갈래나 서는가.
  * DB 없음. 엔진 + expandFamily.
  */
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -51,9 +50,11 @@ function tally(b: Bucket, skippedMcq: number, variantOk: boolean): void {
 const elem = empty();
 const elemSections = new Set<string>();
 for (const unit of elementaryUnits()) {
-  if (supportedTiers(unit).length === 0) continue;
+  const tiers = supportedTiers(unit);
+  if (tiers.length === 0) continue;
   elemSections.add(`${unit.grade}|${unit.section}`);
-  for (const tier of ELEM_TIERS) {
+  // 축 전체가 아니라 **등록된 갈래**만 — `심화중`·`심화상` 은 채우는 중이다(D-113).
+  for (const tier of tiers) {
     const familyKey = `elem:${unit.grade}|${unit.section}|${tier}`;
     const problemType =
       tier === "연산" ? "계산" : tier === "기본" ? "개념" : "활용";

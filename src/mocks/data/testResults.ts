@@ -77,7 +77,7 @@ export const MOCK_TEST_RESULT_PROBLEM_OBJECTIVE_WRONG: FixtureProblemRow = {
   unitId: MOCK_UNITS[1]!.id,
   source: "manual",
   originProblemId: null,
-  difficulty: "심화",
+  difficulty: "심화하",
   problemType: "개념",
   content: "다음 중 옳은 것은? (채점 테스트 전용 객관식 문항, 상 난이도)",
   answer: "4",

@@ -142,7 +142,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
         () => new HttpResponse("broken", { status: 500 }),
       ),
     );
-    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화하");
 
     expect(
       await screen.findByText("목록을 불러오지 못했습니다"),
@@ -206,7 +206,7 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
     const emptyComboUnit = MOCK_UNITS[8]!;
 
     await pickUnit(user, emptyComboUnit.id);
-    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화하");
 
     await waitFor(() => {
       expect(screen.getByText("등록된 문제가 없습니다")).toBeInTheDocument();
@@ -398,7 +398,7 @@ describe("[T3.3 S-08] 문제은행 — 페이지네이션", () => {
 describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
   it("활성 필터와 다른 새 문제를 결과 목록에 끼워 넣지 않는다", async () => {
     const { user } = await renderBank();
-    await user.selectOptions(screen.getByLabelText("난이도"), "심화");
+    await user.selectOptions(screen.getByLabelText("난이도"), "심화하");
     await screen.findByText(/밑변의 길이가/);
     await user.click(screen.getByRole("button", { name: "등록" }));
 

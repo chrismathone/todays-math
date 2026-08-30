@@ -271,7 +271,11 @@ const bump = (m: Map<string, number>, k: string) =>
   m.set(k, (m.get(k) ?? 0) + 1);
 
 for (const unit of units) {
+  // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+  // `ELEM_TIERS`(축 전체) 가 아니라 `supportedTiers(unit)`(등록된 것)만 만든다.
+  const supported = new Set(supportedTiers(unit));
   for (const tier of ELEM_TIERS) {
+    if (!supported.has(tier)) continue;
     tally.count(unit.grade, unit.section, tier, SEEDS.length);
     const row = rows.get(tier)!;
     const skeletons = new Set<string>();
@@ -301,7 +305,8 @@ fence.close();
 
 console.log(`훑은 것 — ${tally.line()} · ${fence.scopeLine()}\n`);
 
-const pct = (n: number, d: number) => `${((n / d) * 100).toFixed(1)}%`;
+const pct = (n: number, d: number) =>
+  d === 0 ? "—" : `${((n / d) * 100).toFixed(1)}%`;
 
 console.log("갈래별 발문 꼴 (중앙값)");
 console.log(
@@ -343,6 +348,12 @@ console.log("\n문형 되풀이 — 한 소단원의 12씨앗이 낸 뼈대 가�
 console.log("  갈래   뼈대1   뼈대≤2   중앙값   최저   가장 얇은 소단원");
 for (const tier of ELEM_TIERS) {
   const v = rows.get(tier)!.varietyPerUnit;
+  // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원이 하나도 없을 수 있다 —
+  // 그러면 「가장 얇은 소단원」이 없다. `!` 로 밀어붙이면 던진다.
+  if (v.length === 0) {
+    console.log(`  ${tier}  (아직 안 채움 — 소단원 0개)`);
+    continue;
+  }
   const one = v.filter((x) => x.kinds === 1).length;
   const two = v.filter((x) => x.kinds <= 2).length;
   const worst = [...v].sort((a, b) => a.kinds - b.kinds)[0]!;

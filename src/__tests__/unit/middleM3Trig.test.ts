@@ -22,7 +22,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { DIFFICULTY_LADDER } from "../../contracts/difficulty";
+import { CORE_DIFFICULTIES } from "../../contracts/difficulty";
 import { bareNumbers } from "../../lib/elementary/rules";
 import {
   generateMiddleProblem,
@@ -929,7 +929,10 @@ describe("중3 삼각비 35유형 (RPM 3-2 삼각비 21 + 삼각비의 활용 14
       const d = generateMiddleProblem(e.key, 20260829).difficulty;
       got[d] = (got[d] ?? 0) + 1;
     }
-    for (const tier of DIFFICULTY_LADDER) {
+    // D-113(2026-08-30) — 축을 여섯으로 넓혔지만 **중등은 핵심 넷만** 낸다
+    // (`resolveMiddleTier` 는 등록값을 내리기만 하고, 등록값에 확대 갈래가 없다).
+    // 사다리 전체를 돌면 「아직 안 채운 것」과 「비어 버린 것」이 구분되지 않는다.
+    for (const tier of CORE_DIFFICULTIES) {
       expect(got[tier] ?? 0, `「${tier}」 유형 수`).toBeGreaterThan(0);
     }
   });

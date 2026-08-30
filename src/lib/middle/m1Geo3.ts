@@ -655,7 +655,7 @@ const SECTOR_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def("04", "보조선을 그어 호의 길이 구하기", SEC.기본, "심화", (rng): Body =>
+  def("04", "보조선을 그어 호의 길이 구하기", SEC.기본, "심화하", (rng): Body =>
     attempt(200, (): Body | null => {
       const x = intBetween(rng, 6, 20);
       const c1 = intBetween(rng, 1, 4);

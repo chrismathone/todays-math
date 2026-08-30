@@ -165,7 +165,7 @@ describe("[T7.1] POST /api/tests/{id}/submit — 자동 채점 + 예상 점수 �
       correct: 1,
       total: 1,
     });
-    expect(report.difficultyDistribution.심화).toEqual({
+    expect(report.difficultyDistribution.심화하).toEqual({
       correct: 0,
       total: 1,
     });

@@ -572,7 +572,7 @@ const MUL: TypeEntry[] = [
     "09",
     "곱셈 공식의 도형에의 활용 ⑵",
     SEC.곱셈,
-    "심화",
+    "심화하",
     (rng) => {
       // 폭이 일정한 길을 가장자리로 몰면 (ax-w)(bx-w) 짜리 직사각형이 남는다.
       const a = intBetween(rng, 2, 6);
@@ -802,7 +802,7 @@ const MUL: TypeEntry[] = [
     "13",
     "곱셈 공식을 이용한 분모의 유리화",
     SEC.곱셈,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -879,7 +879,7 @@ const MUL: TypeEntry[] = [
     "14",
     "의 꼴이 주어질 때 식의 값 구하기",
     SEC.곱셈,
-    "심화",
+    "심화하",
     (rng) => {
       // x=a±√b 이면 (x-a)^2=b — 발문의 식을 (x-a)^2 꼴로 몰아서 값을 낸다.
       const a = intBetween(rng, 1, 6);
@@ -991,7 +991,7 @@ const MUL: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_MUL, "17", "의 꼴의 전개", SEC.곱셈, "심화", (rng) =>
+  def(MINOR_MUL, "17", "의 꼴의 전개", SEC.곱셈, "심화하", (rng) =>
     // 상수항의 합이 같아지도록 둘씩 짝지으면 x^2+sx 가 공통부분이 된다.
     attempt<Gen>(120, () => {
       const d = nonZero(rng, -4, 4);
@@ -1047,7 +1047,7 @@ const MUL: TypeEntry[] = [
     "18",
     "의 꼴이 주어질 때 식의 값 구하기",
     SEC.곱셈,
-    "심화",
+    "심화하",
     (rng) =>
       // x^2+ax±1=0 의 양변을 x 로 나누면 x±1/x 의 값이 나온다.
       attempt<Gen>(120, () => {
@@ -1304,7 +1304,7 @@ const FAC: TypeEntry[] = [
     "05",
     "근호 안이 완전제곱식으로 인수분해되는 식",
     SEC.인수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Gen>(80, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -1582,7 +1582,7 @@ const FAC: TypeEntry[] = [
     "12",
     "계수 또는 상수항을 잘못 보고 인수분해한 경우",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Gen>(200, () => {
         // 바른 이차식 (x+m)(x+n) 을 먼저 정한다 — 잘못 본 두 답은 그것에서 만든다.
@@ -1837,7 +1837,7 @@ const FAC: TypeEntry[] = [
     "18",
     "항이 개인 식의 인수분해 개의 항씩 묶기",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Gen>(120, () => {
         const mode = pick(rng, [0, 1] as const);
@@ -2037,7 +2037,7 @@ const FAC: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_FAC, "21", "의 꼴의 인수분해", SEC.응용, "심화", (rng) =>
+  def(MINOR_FAC, "21", "의 꼴의 인수분해", SEC.응용, "심화하", (rng) =>
     // 상수항의 합이 같도록 둘씩 묶으면 x^2+sx 가 공통부분이 된다.
     attempt<Gen>(200, () => {
       const d = nonZero(rng, -3, 3);
@@ -2104,7 +2104,7 @@ const FAC: TypeEntry[] = [
     "22",
     "항이 개 이상인 식의 인수분해",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Gen>(120, () => {
         // 차수가 낮은 문자 y 에 대해 내림차순으로 정리하면 (x+a) 가 공통으로 묶인다.

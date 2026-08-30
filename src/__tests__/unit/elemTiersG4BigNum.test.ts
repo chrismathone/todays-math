@@ -14,9 +14,10 @@ import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = [
   "1-1-1",
@@ -105,15 +106,15 @@ const WITH_BATCHIM = new Set(["은", "이", "을", "과"]);
 const WITHOUT_BATCHIM = new Set(["는", "가", "를", "와"]);
 
 describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
-  it("일곱 소단원이 네 갈래를 전부 낸다", () => {
+  it("일곱 소단원이 핵심 갈래를 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = gen(code, 31337, tier);
         const b = gen(code, 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -128,7 +129,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
     const eq = /\$([\d+\-\\a-z]+)=(\d+)\$/g;
     const pure = /^\d+(?:(?:\+|-|\\times|\\div)\d+)*$/;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const m of p.solution.matchAll(eq)) {
@@ -149,7 +150,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       const cap = SCALE_CAP[code];
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -165,7 +166,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         expect(
           seen.size,
@@ -180,7 +181,8 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
       const all: string[] = [];
       for (const code of CODES) {
         all.push(generateElementaryProblem(unitOf(code), seed).content);
-        for (const tier of ELEM_TIERS) all.push(gen(code, seed, tier).content);
+        for (const tier of tiersOf(unitOf(code)))
+          all.push(gen(code, seed, tier).content);
       }
       const dup = all.filter((c, i) => all.indexOf(c) !== i);
       expect(dup, `seed ${seed}: ${dup[0] ?? ""}`).toEqual([]);
@@ -190,7 +192,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
   it("모든 수가 KaTeX 안에 있고, 수 뒤 조사가 소리와 맞는다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const [label, text] of [
@@ -284,7 +286,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
 
       // 심화 — 응용을 **거꾸로** 돌린다. ⓐ 지폐 몫을 만들고 남은 돈을 동전 수로 되짚는다.
       // ⓑ 자릿값으로 한 수를 세운 뒤 $10000$ 까지 모자란 몫을 구한다. 둘 다 두 걸음이다.
-      const deep = gen("1-1-1", seed, "심화");
+      const deep = gen("1-1-1", seed, "심화하");
       const coin = deep.content.match(
         /^\$1000\$원짜리 지폐 \$(\d)\$장과 \$100\$원짜리 동전을 모았더니 \$10000\$원이 되었습니다/,
       );
@@ -348,7 +350,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
       // 그림이 답의 배열 그대로면 그림이 답을 말한다(D-66 ⑺).
       expect(spec.cards.join("")).not.toBe(String(best));
 
-      const deep = gen("1-1-2", seed, "심화");
+      const deep = gen("1-1-2", seed, "심화하");
       const dm = deep.content.match(
         /만의 자리 숫자가 \$(\d)\$, 백의 자리 숫자가 \$(\d)\$인 .*가장 (큰|작은)/,
       );
@@ -396,7 +398,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
       }
 
       // 심화 — 자릿값을 **둘** 겹친다. 예전엔 환산 한 번이라 응용과 무게가 같았다.
-      const deep = gen("1-1-3", seed, "심화");
+      const deep = gen("1-1-3", seed, "심화하");
       m = deep.content.match(
         /^\$10000\$이 \$(\d+)\$개, \$1000\$이 \$(\d)\$개인 수는 \$100\$이 모두 몇 개/,
       );
@@ -456,7 +458,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
         expect(answerNum(apply.answer)).toBe(Number(m![1]) * 10000000);
       }
 
-      const deep = gen("1-1-4", seed, "심화");
+      const deep = gen("1-1-4", seed, "심화하");
       m = deep.content.match(/\$1000\$만이 \$(\d)\$개 늘어나면 \$(\d)\$억/);
       if (m) {
         expect(answerNum(deep.answer)).toBe(
@@ -517,7 +519,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
         );
       }
 
-      const deep = gen("1-1-5", seed, "심화");
+      const deep = gen("1-1-5", seed, "심화하");
       m = deep.content.match(
         /\$1000\$억이 \$(\d)\$개 줄었더니 \$(\d)\$조 \$(\d+)\$억이 되었습니다/,
       );
@@ -575,7 +577,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
         `=${mid}$`,
       );
 
-      const deep = gen("1-1-6", seed, "심화");
+      const deep = gen("1-1-6", seed, "심화하");
       m = deep.content.match(
         /어떤 수에서 \$(\d+)\$씩 \$(\d)\$번 뛰어 세어야 할 것을 잘못하여 \$(\d+)\$씩 \$(\d)\$번 뛰어 세었더니 \$(\d+)\$/,
       );
@@ -631,7 +633,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
       expect(answerNum(apply.answer)).toBe(Math.max(a, Number(m![3])));
 
       // □ 부등식 — 발문의 식을 그대로 읽어 0~9 를 전수 대입한다.
-      const deep = gen("1-1-7", seed, "심화");
+      const deep = gen("1-1-7", seed, "심화하");
       m = deep.content.match(/\$(\d*)\\square(\d*)(<|>)(\d+)\$/);
       expect(m, deep.content).toBeTruthy();
       const numB = Number(m![4]);

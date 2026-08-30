@@ -150,7 +150,14 @@ async function main() {
   /** 화면이 보는 「가용」 — 행이 아니라 갈래다(422 가 이 함수로 만든다). */
   const capacityOf = (pool: PoolRow[]) => countFamilies(pool);
 
-  const ratio: DifficultyRatio = { 연산: 0, 기본: 0, 응용: 0, 심화: 0 };
+  const ratio: DifficultyRatio = {
+    연산: 0,
+    기본: 0,
+    응용: 0,
+    심화하: 0,
+    심화중: 0,
+    심화상: 0,
+  };
   const required = Number(flagValue("--required", String(targets.length)));
   // 난이도를 한 갈래에 몰아 두면 「그 갈래가 모자라서」 실패한 것과 구분이 안 된다.
   // 대상 문항의 실제 난이도 분포를 그대로 쓰고, 모자란 몫은 첫 갈래에 얹는다.

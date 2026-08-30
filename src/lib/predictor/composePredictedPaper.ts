@@ -98,13 +98,17 @@ import { largestRemainder, normalizeScores } from "./scoreNormalizer";
 const LABEL_TO_DIFFICULTY: Record<DifficultyLabel, Difficulty> = {
   하: "기본",
   중: "응용",
-  상: "심화",
+  상: "심화하",
 };
 const DIFFICULTY_TO_LABEL: Record<Difficulty, DifficultyLabel> = {
   연산: "하",
   기본: "하",
   응용: "중",
-  심화: "상",
+  심화하: "상",
+  // 기출 라벨은 상/중/하 **셋뿐**이라 심화 셋이 전부 「상」으로 접힌다.
+  // 접히는 것이 맞다 — 없는 칸을 지어내지 않는다(위 주석과 같은 규칙).
+  심화중: "상",
+  심화상: "상",
 };
 
 /** 완화 비용 — 범위(단원)가 어긋나는 것이 가장 나쁘다. 시험 범위가 다르면 시험이 아니다. */

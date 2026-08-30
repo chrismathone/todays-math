@@ -20,14 +20,14 @@ import type { Difficulty } from "@/contracts/common.contract";
 export function mapNumericDifficulty(value: number): Difficulty {
   if (value <= 3) return "기본";
   if (value <= 7) return "응용";
-  return "심화";
+  return "심화하";
 }
 
 /** 배점 기반 휴리스틱 — 기출 문항의 difficulty 필드가 비어 있을 때. */
 export function mapScoreToDifficulty(score: number | undefined): Difficulty {
   if (score === undefined) return "응용";
   if (score <= 3) return "기본";
-  if (score >= 5) return "심화";
+  if (score >= 5) return "심화하";
   return "응용";
 }
 
@@ -51,7 +51,7 @@ export function mapDifficultyLabel(
     first === "high" ||
     first.startsWith("상")
   ) {
-    return "심화";
+    return "심화하";
   }
   if (first === "mid" || first === "중" || first === "medium") {
     return "응용";

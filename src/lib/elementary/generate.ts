@@ -68,9 +68,19 @@ export function elementaryChapters(): { grade: string; chapter: string }[] {
   return out;
 }
 
-/** 이 소단원이 낼 수 있는 난이도 갈래. 등록은 넷 전부이거나 없거나 — 타입이 강제한다. */
+/**
+ * 이 소단원이 **실제로 낼 수 있는** 난이도 갈래.
+ *
+ * 핵심 넷(`연산·기본·응용·심화하`)은 등록되면 반드시 있다 — 타입이 강제한다.
+ * 🔴 `심화중`·`심화상` 은 채우는 중이라 **소단원마다 있을 수도 없을 수도 있다**
+ *    (D-113). 그래서 「등록됐으면 여섯 전부」로 답하면 안 된다 — 출제가 없는 갈래를
+ *    뽑으려다 던지거나, 더 나쁘게는 **「심화중을 냈다」는 시험지가 거짓말**이 된다.
+ *    등록된 것만 세어서 돌려준다.
+ */
 export function supportedTiers(unit: UnitSeed): readonly ElemTier[] {
-  return TIERS[tierKey(unit)] ? ELEM_TIERS : [];
+  const variants = TIERS[tierKey(unit)];
+  if (!variants) return [];
+  return ELEM_TIERS.filter((tier) => variants[tier] !== undefined);
 }
 
 export function generateElementaryProblem(
@@ -92,11 +102,18 @@ export function generateElementaryProblem(
         `난이도 갈래가 없는 소단원입니다: ${unit.grade} ${unit.section} — «${tier}» (supportedTiers 로 먼저 확인)`,
       );
     }
+    // 🔴 **그 갈래가 실제로 등록됐는지 따로 묻는다** (D-113). 소단원이 등록됐다는
+    //    것과 `심화중`·`심화상` 이 채워졌다는 것은 다른 말이다. 여기를 안 막으면
+    //    `variants[tier]` 가 `undefined` 라 「is not a function」으로 죽는데, 그
+    //    메시지로는 **무엇이 없는지**를 알 수 없다.
+    const make = variants[tier];
+    if (!make) {
+      throw new Error(
+        `아직 채우지 않은 갈래입니다: ${unit.grade} ${unit.section} — «${tier}» (supportedTiers 로 먼저 확인)`,
+      );
+    }
     return tidy(
-      variants[tier](
-        unit,
-        createRng(seed + unit.orderIndex * 17 + TIER_SALT[tier]),
-      ),
+      make(unit, createRng(seed + unit.orderIndex * 17 + TIER_SALT[tier])),
     );
   }
   // tier 를 안 주면 예전 그대로다 — 기존 관문(230 소단원 × 씨앗 1,260)이 이 경로를 지킨다.

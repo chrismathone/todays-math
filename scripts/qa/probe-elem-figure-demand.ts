@@ -29,7 +29,7 @@
  */
 import { writeFileSync } from "node:fs";
 
-import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
+import { type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -79,8 +79,9 @@ const units = elementaryUnits().filter(
 );
 
 for (const unit of units) {
+  // D-113 — 축 전체가 아니라 **그 소단원이 내는 갈래**를 훑는다(안 채운 갈래는 던진다).
   const tiers: (ElemTier | undefined)[] = withTiers
-    ? [undefined, ...(supportedTiers(unit).length > 0 ? ELEM_TIERS : [])]
+    ? [undefined, ...supportedTiers(unit)]
     : [undefined];
   const row: Row = {
     grade: unit.grade,

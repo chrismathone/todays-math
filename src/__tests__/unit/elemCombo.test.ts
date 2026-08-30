@@ -13,7 +13,6 @@ import {
   elementaryUnits,
   generateElementaryComboProblem,
   supportedCombos,
-  supportedTiers,
   validateElementaryComboDefinition,
 } from "../../lib/elementary/generate";
 import { gcd } from "../../lib/elementary/math";
@@ -23,6 +22,8 @@ import {
   runawayDecimals,
   tooAdvanced,
 } from "../../lib/elementary/rules";
+
+import { expectCoreTiers } from "../helpers/elemTiers";
 
 const AREA_FRACTION = "초5|2-2-3::초5|1-6-2";
 const SWEEP = Array.from({ length: 96 }, (_, i) => i + 1);
@@ -61,13 +62,20 @@ const REMAINDER =
   /가로가 \$(\d+)\\,\\mathrm\{m\}\$, 세로가 \$(\d+)\\,\\mathrm\{m\}\$[\s\S]*전체 넓이의 \$\\frac\{(\d+)\}\{(\d+)\}\$[\s\S]*남은 [\s\S]* \$\\frac\{(\d+)\}\{(\d+)\}\$/;
 
 describe("[초등 결합형] 기존 4단과 분리된 승인 등록부", () => {
-  it("기존 230개 소단원과 4단 계약을 바꾸지 않는다", () => {
-    expect(ELEM_TIERS).toEqual(["연산", "기본", "응용", "심화"]);
+  it("기존 230개 소단원과 핵심 넷 계약을 바꾸지 않는다", () => {
+    expect(ELEM_TIERS).toEqual([
+      "연산",
+      "기본",
+      "응용",
+      "심화하",
+      "심화중",
+      "심화상",
+    ]);
     const units = elementaryUnits();
     expect(units).toHaveLength(230);
-    expect(units.filter((u) => supportedTiers(u).length === 4)).toHaveLength(
-      230,
-    );
+    // ⚠️ 길이가 정확히 4여야 하는 게 아니다(D-113) — 확대 두 갈래(심화중·심화상)가
+    // 채워지면 5·6도 정상이다. 참은 「핵심 넷을 반드시 포함하는가」다.
+    for (const u of units) expectCoreTiers(u, `${u.grade} ${u.section}`);
   });
 
   it("등록부는 실재하는 이전 소단원만 가리키고 문형을 둘 이상 가진다", () => {

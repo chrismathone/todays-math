@@ -27,12 +27,13 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["2-2-1", "2-2-2", "2-2-3", "2-2-4", "2-2-5"] as const;
 /**
@@ -98,7 +99,7 @@ function counted(n: number, why: string) {
 describe("[초4 2-2] 등록", () => {
   it("다섯 소단원에 네 갈래가 다 붙어 있다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual([...ELEM_TIERS]);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -107,7 +108,7 @@ describe("[초4 2-2] 등록", () => {
     for (const code of CODES) {
       const std = new Set(SWEEP.map((s) => skeleton(gen(code, s).content)));
       expect(std.size, `${code} 표준 뼈대`).toBeGreaterThan(0);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const k = skeleton(gen(code, s, tier).content);
           expect(
@@ -123,7 +124,7 @@ describe("[초4 2-2] 등록", () => {
 
   it("갈래마다 변형이 여덟 가지 이상이다 (R4)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const forms = new Set(SWEEP.map((s) => gen(code, s, tier).content));
         expect(forms.size, `${code} «${tier}» 변형`).toBeGreaterThanOrEqual(8);
       }
@@ -138,7 +139,7 @@ describe("[초4 2-2] 대단원 약속", () => {
     let looked = 0;
     let ambiguous = 0;
     for (const code of CODES) {
-      for (const tier of [undefined, ...ELEM_TIERS]) {
+      for (const tier of [undefined, ...tiersOf(unitOf(code))]) {
         for (const s of SWEEP) {
           const p = gen(code, s, tier);
           looked += 1;
@@ -157,7 +158,7 @@ describe("[초4 2-2] 대단원 약속", () => {
   it("**세 각을 다 적은 자리는 합이 늘 $180^\\circ$ 다** — 그림이 없어도 성립해야 한다", () => {
     let checked = 0;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const s of SWEEP) {
           const p = gen(code, s, tier);
           const m = p.content.match(
@@ -244,7 +245,7 @@ describe("[초4 2-2-1] 변의 길이에 따라 분류", () => {
     let looked = 0;
     const ways = new Set<string>();
     for (const s of SWEEP) {
-      const p = gen("2-2-1", s, "심화");
+      const p = gen("2-2-1", s, "심화하");
       const [total, d] = cmsIn(p.content);
       const three = cmsIn(p.answer);
       expect(three.length, `씨앗 ${s}`).toBe(3);
@@ -326,7 +327,7 @@ describe("[초4 2-2-2] 이등변삼각형의 성질", () => {
   it("**4단 — 배 관계가 실제로 성립하고 정삼각형이 아니다**", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-2-2", s, "심화");
+      const p = gen("2-2-2", s, "심화하");
       const k = Number(p.content.match(/\$(\d+)\$배/)![1]);
       const apexIsBig = p.content.startsWith(
         "이등변삼각형에서 꼭지각의 크기가 한 밑각",
@@ -399,7 +400,7 @@ describe("[초4 2-2-3] 정삼각형의 성질", () => {
   it("**4단 — 남김없이 나누어떨어진다**. 안 떨어지면 「남김없이」가 거짓말이다", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-2-3", s, "심화");
+      const p = gen("2-2-3", s, "심화하");
       const [total, side] = cmsIn(p.content);
       const count = countIn(p.answer);
       expect(side! * 3 * count!, `씨앗 ${s}: ${p.content}`).toBe(total);
@@ -482,7 +483,7 @@ describe("[초4 2-2-4] 각의 크기에 따라 분류", () => {
   it("**4단 — 큰 각이 감춰져 있고, 잘못된 근거가 «참이면서 쓸모없다»** (㉣)", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-2-4", s, "심화");
+      const p = gen("2-2-4", s, "심화하");
       const shown = degsIn(p.content);
       // **두 각만 보인다.** 셋을 다 보여 주면 셈이 한 단계도 없어 3단보다 가벼워진다.
       expect(shown.length, `씨앗 ${s}: ${p.content}`).toBe(2);
@@ -545,7 +546,7 @@ describe("[초4 2-2-5] 두 가지 기준으로 분류", () => {
       /이등변삼각형|정삼각형|세 변의 길이|변의 길이에 따라|변의 길이와|두 가지 기준/;
     const byAngle = /예각|직각|둔각|각의 크기에 따라|두 가지 기준/;
     let looked = 0;
-    for (const tier of [undefined, ...ELEM_TIERS]) {
+    for (const tier of [undefined, ...tiersOf(unitOf("2-2-5"))]) {
       for (const s of SWEEP) {
         const c = gen("2-2-5", s, tier).content;
         expect(bySide.test(c), `«${tier ?? "표준"}» 변 기준이 없다: ${c}`).toBe(
@@ -605,7 +606,7 @@ describe("[초4 2-2-5] 두 가지 기준으로 분류", () => {
   it("**4단 — 두 경우의 «부류가 서로 다르다»**. 같으면 경우를 나눈 보람이 없다", () => {
     let looked = 0;
     for (const s of SWEEP) {
-      const p = gen("2-2-5", s, "심화");
+      const p = gen("2-2-5", s, "심화하");
       const [given] = degsIn(p.content);
       const apexCase = [given!, (180 - given!) / 2, (180 - given!) / 2];
       const baseCase = [given!, given!, 180 - given! * 2];

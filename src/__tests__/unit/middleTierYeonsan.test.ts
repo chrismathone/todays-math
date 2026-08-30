@@ -19,7 +19,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import { CORE_DIFFICULTIES } from "@/contracts/difficulty";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
 import { loneInstruction, resolveMiddleTier } from "@/lib/middle/tier";
 
@@ -165,7 +165,10 @@ describe("[D-106] 중등 밑단 — 연산 판정", () => {
       const d = generateMiddleProblem(t.key, SEED).difficulty;
       count.set(d, (count.get(d) ?? 0) + 1);
     }
-    for (const tier of DIFFICULTY_LADDER) {
+    // D-113(2026-08-30) — 축을 여섯으로 넓혔지만 **중등은 핵심 넷만** 낸다
+    // (`resolveMiddleTier` 는 등록값을 내리기만 하고, 등록값에 확대 갈래가 없다).
+    // 사다리 전체를 돌면 「아직 안 채운 것」과 「비어 버린 것」이 구분되지 않는다.
+    for (const tier of CORE_DIFFICULTIES) {
       expect(count.get(tier) ?? 0).toBeGreaterThan(0);
     }
     // 합이 등록 수와 같아야 한다 — 어느 갈래도 «모름» 으로 새지 않는다.
@@ -199,7 +202,7 @@ describe("[D-106] 중등 밑단 — 연산 판정", () => {
     it("㉡ 같은 지시문이라도 응용·심화는 그대로 둔다 — 사다리를 옮기지 않는다", () => {
       const c = "다음 식을 계산하시오.\n$\sqrt{18}\div\sqrt{2}$";
       expect(resolveMiddleTier("응용", c, false)).toBe("응용");
-      expect(resolveMiddleTier("심화", c, false)).toBe("심화");
+      expect(resolveMiddleTier("심화하", c, false)).toBe("심화하");
     });
 
     it("㉢ 발문에 상황·조건이 있으면 연산이 아니다", () => {

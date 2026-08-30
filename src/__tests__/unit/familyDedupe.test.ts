@@ -56,7 +56,15 @@ const hasDuplicateFamily = (items: readonly SelectableProblem[]) =>
   new Set(familyIds(items)).size !== items.length;
 
 const ratioOf = (over: Partial<DifficultyRatio>): DifficultyRatio =>
-  ({ 연산: 0, 기본: 0, 응용: 0, 심화: 0, ...over }) as DifficultyRatio;
+  ({
+    연산: 0,
+    기본: 0,
+    응용: 0,
+    심화하: 0,
+    심화중: 0,
+    심화상: 0,
+    ...over,
+  }) as DifficultyRatio;
 
 describe("문항류 정체 — familyIdOf", () => {
   it("같은 키라도 **단원이 다르면 다른 류**다 (DB 복합키와 같은 규칙)", () => {
@@ -189,7 +197,7 @@ describe("출제 전체 경로 — selectProblems", () => {
       ["연산", "구|연산"],
       ["기본", "구|기본"],
       ["응용", "구|응용"],
-      ["심화", "구|심화"],
+      ["심화하", "구|심화하"],
     ] as const) {
       for (let i = 0; i < 4; i += 1) {
         pool.push(problem(`${key}-${i}`, { difficulty: tier, familyKey: key }));
@@ -197,7 +205,14 @@ describe("출제 전체 경로 — selectProblems", () => {
     }
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: ratioOf({ 연산: 2, 기본: 2, 응용: 2, 심화: 2 }),
+      difficultyRatio: ratioOf({
+        연산: 2,
+        기본: 2,
+        응용: 2,
+        심화하: 2,
+        심화중: 0,
+        심화상: 0,
+      }),
       count: 8,
       recentProblemIds: [],
       seed: "seed-1",

@@ -561,7 +561,7 @@ const COORD: TypeEntry[] = [
     "11",
     "그래프의 해석 두 그래프의 비교",
     SEC.그래프이해,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Body>(500, (): Body | null => {
         const SPEED = [6, 10, 12, 15, 20, 30] as const;
@@ -970,7 +970,7 @@ const PROP: TypeEntry[] = [
     "10",
     "정비례 관계 의 그래프와 도형의 넓이",
     SEC.정비례,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         // 기울기를 «정수 셋»으로만 두면 조합이 여덟뿐이라 같은 문항이 되풀이된다.
@@ -1026,7 +1026,7 @@ const PROP: TypeEntry[] = [
     "22",
     "도형의 넓이를 이등분하는 직선",
     SEC.정비례,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const branch = intBetween(rng, 0, 2);
@@ -1516,7 +1516,7 @@ const INV: TypeEntry[] = [
     "20",
     "반비례 관계 의 그래프와 도형의 넓이",
     SEC.반비례,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Body>(400, (): Body | null => {
         const k = pick(rng, INV_K);
@@ -1561,7 +1561,7 @@ const INV: TypeEntry[] = [
     "21",
     "정비례 관계와 반비례 관계의 그래프가 만나는 점",
     SEC.반비례,
-    "심화",
+    "심화하",
     (rng) =>
       attempt<Body>(500, (): Body | null => {
         // 만나는 점 $(p, q)$ 를 **먼저** 정하면 $a=\dfrac{q}{p}$, $b=pq$ 가 함께 정해진다.

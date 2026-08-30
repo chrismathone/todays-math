@@ -11,12 +11,14 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { ELEM_TIERS, type ElemTier } from "@/lib/elementary/difficulty";
+import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
   supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 // ⚠️ 문턱(`0.8`)도 **세는 함수도** 판정기와 **같은 모듈**에서 가져온다.
 // 여기에 숫자를 다시 적으면 한쪽만 옮겨도 아무도 모른다.
@@ -176,7 +178,7 @@ function truthOf(content: string): R | null {
 describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
   it("소단원 셋이 갈래 넷을 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -185,7 +187,7 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
     let checked = 0;
     for (const code of CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const want = truthOf(p.content);
@@ -207,7 +209,9 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) * SEEDS.length,
+    );
   });
 
   it("연산은 식을 주고, 기본은 안 준다 — 축이 실제로 갈린다", () => {
@@ -230,7 +234,7 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         // 2단과 3단을 가르는 것은 **한 겹인가**다 (D-72). 그것을 그대로 잰다 —
         // 「발문에 있는 두 수를 그대로 한 번 나누면 답인가」.
         //
@@ -273,10 +277,12 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
     for (const code of CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
     }
   });
@@ -284,7 +290,7 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
   it("같은 씨앗이면 같은 문항이고, 씨앗 16개면 갈래마다 8가지 이상 나온다", () => {
     for (const code of CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -306,7 +312,7 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -337,7 +343,9 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
 
   it("소단원 이름이 내건 조건을 갈래 넷이 전부 지킨다", () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    // 이 자리는 code 를 셋 동시에 다룬다(아래 at()) — 대표로 1-1-1 의 갈래를 돈다.
+    // 셋은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다.
+    for (const tier of tiersOf(unitOf("1-1-1"))) {
       for (const seed of SEEDS) {
         const at = (code: string) =>
           generateElementaryProblem(unitOf(code), seed, tier).content;
@@ -370,12 +378,21 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
     for (const code of CODES) {
       const unit = unitOf(code);
       const plain = generateElementaryProblem(unit, 20260823);
-      const tiers = ELEM_TIERS.map(
+      const tiers = tiersOf(unit).map(
         (t: ElemTier) => generateElementaryProblem(unit, 20260823, t).content,
       );
       // 옛 경로는 갈래 소금을 안 타므로 씨앗이 다르다 — 우연히 같아지면 배선이 샌 것이다.
+      //
+      // 🔴 2026-08-30: 이 자리에 **그 «우연히 같아지면»을 재는 단언이 없었다.**
+      //    있던 것은 `expect(tiers).toHaveLength(ELEM_TIERS.length)` 뿐인데,
+      //    `tiers` 를 그 목록으로 만들었으니 **늘 참**이다(갈래를 등록 갈래로 옮기며
+      //    동어반복이 눈에 보이게 됐다). 주석이 말하는 것을 실제로 묻는다 —
+      //    초6 1-1 전 갈래 실측으로 12/12 가 다르다.
       expect(plain.content.length, code).toBeGreaterThan(0);
-      expect(tiers).toHaveLength(4);
+      expect(
+        tiers.filter((c: string) => c === plain.content),
+        `${code}: 갈래 문항이 갈래 없는 문항과 같다 — 갈래 소금이 안 탔다`,
+      ).toEqual([]);
     }
   });
 });
@@ -469,7 +486,7 @@ function plainNums(text: string): number[] {
 describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -479,7 +496,7 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
     for (const code of G6_CODES) {
       const unit = unitOf(code);
       const pyramidSection = code === "1-2-4" || code === "1-2-5";
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -588,7 +605,10 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("연산은 입체 이름을 주고, 기본은 그림에서 읽게 한다", () => {
@@ -617,7 +637,7 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         // 3단 — 2단보다 **한 걸음 더** 간다. 절대 개수로 재지 않고 **기본과 견준다**.
         //
         // ⚠️ 등식 개수의 절대값으로 재면 1-2-3 응용(「옆면 전체의 가로 = 밑면의 둘레」)이 걸린다.
@@ -669,12 +689,14 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
     for (const code of G6_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -693,7 +715,7 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
     const bad: string[] = [];
     for (const code of G6_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -846,7 +868,7 @@ function truthOf13(content: string): R | null {
 describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_13_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -855,7 +877,7 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
     let checked = 0;
     for (const code of G6_13_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const want = truthOf13(p.content);
@@ -876,7 +898,10 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_13_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_13_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("소단원 이름이 내건 «몫의 성질»을 정답이 지킨다 — 판정기가 발문에서 못 재는 그 축", () => {
@@ -961,7 +986,7 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
     for (const code of G6_13_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         // 손 목록이라 일부러 좁게 둔다 — 심화 갈래를 새로 만들면 여기가 먼저 빨개진다.
         expect(
           /잘못하여|나누었더니|알맞은 수|가장 작은/.test(deep.content),
@@ -987,12 +1012,14 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
     for (const code of G6_13_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -1011,7 +1038,7 @@ describe("[초6 갈래] 1-3 소수의 나눗셈", () => {
     const bad: string[] = [];
     for (const code of G6_13_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1267,7 +1294,7 @@ function truthOf14(content: string): R | null {
 describe("[초6 갈래] 1-4 비와 비율", () => {
   it("소단원 여섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_14_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -1328,7 +1355,7 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
     let checked = 0;
     for (const code of G6_14_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1364,7 +1391,10 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_14_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_14_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("연산은 이름표 붙은 값이고, 기본은 상황문이며, 응용은 등식이 하나 더 많다", () => {
@@ -1411,7 +1441,7 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
     for (const code of G6_14_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         expect(
           /어떤 수|배입니다|비교하는 양이|같은 빠르기로|가 남학생입니다|원래 가격|찬성률이|비율이 \$/.test(
             deep.content,
@@ -1431,12 +1461,14 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
     for (const code of G6_14_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -1455,7 +1487,7 @@ describe("[초6 갈래] 1-4 비와 비율", () => {
     const bad: string[] = [];
     for (const code of G6_14_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1632,7 +1664,7 @@ function truthOf15(content: string, spec: unknown): R | null {
 describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_15_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -1641,7 +1673,7 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
     for (const code of G6_15_CODES) {
       const unit = unitOf(code);
       const drawing = code === "1-5-2" || code === "1-5-4";
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1670,7 +1702,7 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
     let checked = 0;
     for (const code of G6_15_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1705,7 +1737,10 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_15_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_15_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("연산 문형이 서고, 기본은 그 문형이 아니며, 응용은 되짚지 않는다", () => {
@@ -1723,7 +1758,7 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
         const calc = generateElementaryProblem(unit, seed, "연산");
         const basic = generateElementaryProblem(unit, seed, "기본");
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         expect(
           CALC_SHAPE[code]!.test(calc.content),
           `${code} 연산 seed=${seed}: ${calc.content}`,
@@ -1748,12 +1783,14 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
     for (const code of G6_15_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -1772,7 +1809,7 @@ describe("[초6 갈래] 1-5 여러 가지 그래프", () => {
     const bad: string[] = [];
     for (const code of G6_15_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -1879,7 +1916,7 @@ function truthOf16(content: string): R | null {
 describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
   it("소단원 셋이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_16_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -1888,7 +1925,7 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
     let checked = 0;
     for (const code of G6_16_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const want = truthOf16(p.content);
@@ -1909,7 +1946,10 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_16_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_16_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("단위 표기가 묻는 것과 맞는다 — 넓이는 cm², 부피는 cm³·m³", () => {
@@ -1965,7 +2005,7 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
         const calc = generateElementaryProblem(unit, seed, "연산");
         const basic = generateElementaryProblem(unit, seed, "기본");
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         expect(
           CALC_SHAPE[code]!.test(calc.content.replace(/\n+/g, " ")),
           `${code} 연산 seed=${seed}: ${calc.content}`,
@@ -1990,12 +2030,14 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
     for (const code of G6_16_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -2014,7 +2056,7 @@ describe("[초6 갈래] 1-6 직육면체의 겉넓이와 부피", () => {
     const bad: string[] = [];
     for (const code of G6_16_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -2104,7 +2146,7 @@ function truthOf21(content: string): R | null {
 describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_21_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -2113,7 +2155,7 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
     let checked = 0;
     for (const code of G6_21_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -2174,14 +2216,17 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_21_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_21_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("답·발문 분수는 기약이고 대분수는 정본 꼴이다 (시험이 gcd 로 직접 잰다)", () => {
     const bad: string[] = [];
     for (const code of G6_21_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -2215,7 +2260,9 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
 
   it("소단원 이름의 분모·피연산자 조건을 갈래 넷이 지면에서 지킨다", () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    // 이 자리는 code 를 넷 동시에 다룬다(아래 at()) — 대표로 2-1-1 의 갈래를 돈다.
+    // 이 그룹은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다.
+    for (const tier of tiersOf(unitOf("2-1-1"))) {
       for (const seed of SEEDS) {
         const at = (code: string) =>
           generateElementaryProblem(unitOf(code), seed, tier).content;
@@ -2270,7 +2317,7 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
         const calc = generateElementaryProblem(unit, seed, "연산");
         const basic = generateElementaryProblem(unit, seed, "기본");
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         expect(
           CALC_SHAPE[code]!.test(calc.content),
           `${code} 연산 seed=${seed}: ${calc.content}`,
@@ -2295,12 +2342,14 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
     for (const code of G6_21_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -2319,7 +2368,7 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
     const bad: string[] = [];
     for (const code of G6_21_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -2443,7 +2492,7 @@ function truthOf22(content: string): R | null {
 describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_22_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -2452,7 +2501,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     let checked = 0;
     for (const code of G6_22_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -2479,16 +2528,21 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    // 2-2-4 전량(64)과 2-2-5 의 몫·나머지 갈래(연산·기본 32)는 전용 검사 몫이다.
+    // 2-2-4 전량과 2-2-5 의 몫·나머지 갈래(연산·기본 32)는 전용 검사 몫이다.
+    // 32 는 «연산·기본 두 핵심 갈래 × 16 시드» 고정값이다 — 축이 늘어나도 몫·나머지
+    // 문형은 그 둘에서만 나므로 tiersOf 로 다시 셀 값이 아니다.
     expect(checked).toBe(
-      G6_22_CODES.length * ELEM_TIERS.length * SEEDS.length - 64 - 32,
+      G6_22_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length -
+        tiersOf(unitOf("2-2-4")).length * SEEDS.length -
+        32,
     );
   });
 
   it("2-2-4 는 반올림이 뜻을 가진다 — 그 자리에서 딱 떨어지지 않고, 값도 맞다", () => {
     const bad: string[] = [];
     const unit = unitOf("2-2-4");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-4 ${tier} seed=${seed}`;
@@ -2550,7 +2604,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
   it("2-2-5 는 몫이 자연수이고 남는 수는 나누어지는 수와 같은 소수 자리다", () => {
     const bad: string[] = [];
     const unit = unitOf("2-2-5");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-5 ${tier} seed=${seed}`;
@@ -2596,7 +2650,9 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     // 와일드카드로 세므로 통과시킨다. 그런데 학생은 지면만 본다: 조건이 되는 종류가
     // □ 뒤에 숨으면 그 문항은 그 소단원이 아니다(2-2-2·2-2-3 심화가 실측으로 걸렸다).
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    // 이 자리는 code 를 셋 동시에 다룬다(아래 at()) — 대표로 2-2-1 의 갈래를 돈다.
+    // 이 그룹은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다.
+    for (const tier of tiersOf(unitOf("2-2-1"))) {
       for (const seed of SEEDS) {
         const at = (code: string) =>
           generateElementaryProblem(unitOf(code), seed, tier).content;
@@ -2647,7 +2703,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     ];
     const bad: string[] = [];
     const unit = unitOf("2-2-4");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (let seed = 0; seed < 2000; seed += 1) {
         const p = generateElementaryProblem(unit, seed, tier);
         const hit = ORDERED_WORDS.find(
@@ -2687,7 +2743,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
         const calc = generateElementaryProblem(unit, seed, "연산");
         const basic = generateElementaryProblem(unit, seed, "기본");
         const apply = generateElementaryProblem(unit, seed, "응용");
-        const deep = generateElementaryProblem(unit, seed, "심화");
+        const deep = generateElementaryProblem(unit, seed, "심화하");
         expect(
           CALC_SHAPE[code]!.test(calc.content),
           `${code} 연산 seed=${seed}: ${calc.content}`,
@@ -2712,12 +2768,14 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     for (const code of G6_22_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -2736,7 +2794,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
     const bad: string[] = [];
     for (const code of G6_22_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -3098,7 +3156,7 @@ function truthOf24(
 describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
   it("소단원 다섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_24_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -3107,7 +3165,7 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
     let checked = 0;
     for (const code of G6_24_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -3139,14 +3197,17 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_24_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_24_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("2-4-2 의 답은 늘 «가장 간단한 자연수의 비»다 (시험이 최대공약수를 잰다)", () => {
     // 소단원 이름이 내건 조건은 **답**에 있다. 값이 맞아도 기약이 아니면 답이 아니다.
     const bad: string[] = [];
     const unit = unitOf("2-4-2");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (let seed = 0; seed < 400; seed += 1) {
         const p = generateElementaryProblem(unit, seed, tier);
         const got = readOrdered(p.answer);
@@ -3184,7 +3245,7 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
       const calc = at("연산");
       const basic = at("기본");
       const apply = at("응용");
-      const deep = at("심화");
+      const deep = at("심화하");
       if (!/^다음 비를 .*\$\d+:\d+\$$/.test(calc))
         bad.push(`연산 seed=${seed}: 자연수 비 하나가 아니다 — ${calc}`);
       if (!/\d\.\d/.test(basic) || basic.includes("\\frac"))
@@ -3242,7 +3303,7 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
   it("비례배분은 몫이 자연수다 — 전체가 «항의 합»으로 나누어떨어진다", () => {
     const bad: string[] = [];
     const unit = unitOf("2-4-5");
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (let seed = 0; seed < 500; seed += 1) {
         const p = generateElementaryProblem(unit, seed, tier);
         const flat = p.content.replace(/\n+/g, " ");
@@ -3294,7 +3355,7 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
     const bad: string[] = [];
     const unit = unitOf("2-4-5");
     let seen = 0;
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unit)) {
       for (let seed = 0; seed < 2000; seed += 1) {
         const flat = generateElementaryProblem(
           unit,
@@ -3384,8 +3445,8 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
         const deep = DEEP_MARK[code];
         if (!deep) continue;
         expect(
-          deep.test(at("심화")),
-          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화")}`,
+          deep.test(at("심화하")),
+          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화하")}`,
         ).toBe(true);
         expect(
           deep.test(at("응용")),
@@ -3399,12 +3460,14 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
     for (const code of G6_24_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -3428,7 +3491,7 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
     let fracExempt = 0;
     for (const code of G6_24_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -3723,7 +3786,7 @@ function truthOf25(
 describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
   it("소단원 넷이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_25_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -3732,7 +3795,7 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     let checked = 0;
     for (const code of G6_25_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -3761,7 +3824,10 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_25_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_25_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("원 안팎 도형에는 «꼭 맞게»와 짝이 맞는 조건이 늘 붙는다 — 씨앗 0~499 전수", () => {
@@ -3771,7 +3837,7 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     const seen = { 정육각형: 0, 마름모: 0, 정사각형: 0 };
     for (const code of ["2-5-1", "2-5-3"] as const) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 500; seed += 1) {
           const c = generateElementaryProblem(unit, seed, tier).content.replace(
             /\n+/g,
@@ -3817,14 +3883,14 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
       연산: "3",
       기본: "3",
       응용: "3.1",
-      심화: "3.14",
+      심화하: "3.14",
     };
     const bad: string[] = [];
     let withPi = 0;
     for (const code of G6_25_CODES) {
       const unit = unitOf(code);
       const needsPi = code === "2-5-2" || code === "2-5-4";
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -3874,7 +3940,9 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     }
     expect(bad.slice(0, 8)).toEqual([]);
     // 분모 — 원주율을 쓰는 갈래가 정말 있는가. 0 이면 위 검사는 아무것도 안 잰 것이다.
-    expect(withPi).toBe(2 * ELEM_TIERS.length * 300);
+    expect(withPi).toBe(
+      (tiersOf(unitOf("2-5-2")).length + tiersOf(unitOf("2-5-4")).length) * 300,
+    );
   });
 
   it("연산 문형이 서고, 기본은 그 문형이 아니며, 심화만 되짚는다", () => {
@@ -3904,8 +3972,8 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
           `${code} 기본 seed=${seed}: 연산 문형이다 — ${at("기본")}`,
         ).toBe(false);
         expect(
-          DEEP_MARK[code]!.test(at("심화")),
-          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화")}`,
+          DEEP_MARK[code]!.test(at("심화하")),
+          `${code} 심화 seed=${seed}: 되짚는 표지가 없다 — ${at("심화하")}`,
         ).toBe(true);
         expect(
           DEEP_MARK[code]!.test(at("응용")),
@@ -3919,12 +3987,14 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     for (const code of G6_25_CODES) {
       const unit = unitOf(code);
       for (const seed of SEEDS) {
-        const shown = ELEM_TIERS.map(
+        const shown = tiersOf(unit).map(
           (t) => generateElementaryProblem(unit, seed, t).content,
         );
-        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(4);
+        expect(new Set(shown).size, `${code} seed=${seed}`).toBe(
+          tiersOf(unit).length,
+        );
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -3943,7 +4013,7 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
     const bad: string[] = [];
     for (const code of G6_25_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4054,7 +4124,7 @@ function truthOf23(
       return h ? one23(filled) : null;
     case "2-3-1 응용":
       return h ? one23(Math.abs(tallN - oneN)) : null;
-    case "2-3-1 심화": {
+    case "2-3-1 심화하": {
       const v = g(/놓인 칸이 \$(\d+)\$칸이고, 그중 \$(\d+)\$칸은 두 층 이상/);
       return need(v) ? one23(v[0]! + v[1]!) : null;
     }
@@ -4067,7 +4137,7 @@ function truthOf23(
       const v = g(/쌓기나무 \$(\d+)\$개로 이 모양을 만들었다면/);
       return h && need(v) ? pair23(total, v[0]! - total) : null;
     }
-    case "2-3-2 심화": {
+    case "2-3-2 심화하": {
       // 준비한 것에서 **남은 것을 먼저 빼고** 나눈다(두 걸음). 예전에는 나눗셈 한 번이었다.
       const v = g(
         /쌓기나무 \$(\d+)\$개로 똑같은 모양 \$(\d+)\$개를 만들었더니 \$(\d+)\$개가 남았습니다/,
@@ -4086,7 +4156,7 @@ function truthOf23(
       return h
         ? one23(cell.filter((v) => v >= 2).reduce((s, v) => s + v, 0))
         : null;
-    case "2-3-3 심화": {
+    case "2-3-3 심화하": {
       const v = g(/칸이 \$(\d+)\$칸이고, 칸에 적힌 수를 모두 더하니 \$(\d+)\$/);
       return need(v) ? one23(v[1]! - v[0]!) : null;
     }
@@ -4098,7 +4168,7 @@ function truthOf23(
       return h ? one23(tallN) : null;
     case "2-3-4 응용":
       return h ? one23(filled - tallN) : null;
-    case "2-3-4 심화": {
+    case "2-3-4 심화하": {
       // $2$층을 조건에서 먼저 만들고, 전체에서 두 층을 뺀다(두 걸음).
       // 예전에는 세 수를 그냥 더하는 것이라 되짚기도 조건 겹침도 없었다.
       const v = g(
@@ -4123,7 +4193,7 @@ function truthOf23(
       const box = cols * rows * t[0]!;
       return tier === "기본" ? one23(box - total) : pair23(box - total, box);
     }
-    case "2-3-5 심화": {
+    case "2-3-5 심화하": {
       const v = g(
         /쌓기나무를 \$(\d+)\$개 더 쌓았더니 가로 \$(\d+)\$칸, 세로 \$(\d+)\$칸, 높이 \$(\d+)\$층인/,
       );
@@ -4147,7 +4217,7 @@ function truthOf23(
       );
       return h && need(v) ? one23(total * v[0]! - v[1]!) : null;
     }
-    case "2-3-6 심화": {
+    case "2-3-6 심화하": {
       const v = g(
         /쌓기나무 \$(\d+)\$개로 만드는 모양을 여러 개 만들었더니 쌓기나무 \$(\d+)\$개 중 \$(\d+)\$개가 남았습니다/,
       );
@@ -4163,7 +4233,7 @@ function truthOf23(
 describe("[초6 갈래] 2-3 공간과 입체", () => {
   it("소단원 여섯이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_23_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -4173,7 +4243,7 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
     let fromFigure = 0;
     for (const code of G6_23_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4204,7 +4274,10 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_23_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_23_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
     // 분모 — **그림에서 센 자리가 정말 있는가.** 그림 갈래 16개 × 씨앗이다.
     // 0 이 되면 이 검사는 발문만 보는 것이 되어 이 단원의 축을 통째로 잃는다.
     expect(fromFigure).toBe(16 * SEEDS.length);
@@ -4220,7 +4293,7 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
     let figSites = 0;
     for (const code of G6_23_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4272,11 +4345,11 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
     let tallMin = Number.POSITIVE_INFINITY;
     for (const code of G6_23_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
-          if (tier === "심화" && p.figureSpec)
+          if (tier === "심화하" && p.figureSpec)
             bad.push(`${where}: 심화에 그림이 붙었다 — 되짚을 것이 없어진다`);
           const got = readAns23(p.answer);
           if (!got) {
@@ -4307,7 +4380,7 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
   it("같은 씨앗이면 같은 문항, 씨앗 16개면 갈래마다 여러 문항", () => {
     for (const code of G6_23_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -4331,7 +4404,7 @@ describe("[초6 갈래] 2-3 공간과 입체", () => {
     const bad: string[] = [];
     for (const code of G6_23_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4399,7 +4472,7 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
       return D === null || H === null ? null : D * H;
     case "2-6-1 응용":
       return R === null || H === null ? null : 2 * (2 * R + H);
-    case "2-6-1 심화": {
+    case "2-6-1 심화하": {
       if (PERI === null || H === null) return null;
       if (PERI % 2 !== 0) return null;
       const across = PERI / 2 - H;
@@ -4413,7 +4486,7 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
     case "2-6-2 응용":
       // 넓이 = 2r × 3.1 × h. 십분의 일 단위 정수로 견준다(부동소수 안 씀).
       return R === null || H === null ? null : 2 * R * 31 * H;
-    case "2-6-2 심화": {
+    case "2-6-2 심화하": {
       // 답(반지름)은 넓이 ÷ 높이 ÷ 3.14 ÷ 2 다. 백분의 일 단위로 나눠떨어져야 한다.
       const a = q.match(/넓이가 \$([\d.]+)\$ cm²/);
       if (!a || H === null) return null;
@@ -4428,7 +4501,7 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
       return D === null || H === null ? null : (D * H) / 2;
     case "2-6-3 응용":
       return R === null || H === null ? null : R * H;
-    case "2-6-3 심화": {
+    case "2-6-3 심화하": {
       if (AREA === null || H === null) return null;
       return AREA % H === 0 ? AREA / H : null;
     }
@@ -4440,7 +4513,7 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
     case "2-6-4 응용":
       // 둘레 = 2r × 3.1, 십분의 일 단위.
       return R === null ? null : 2 * R * 31;
-    case "2-6-4 심화": {
+    case "2-6-4 심화하": {
       if (!CIRC) return null;
       const c = toCents26(CIRC[1]!);
       return c === null || c % 628 !== 0 ? null : c / 628;
@@ -4456,7 +4529,7 @@ const TENTHS_26 = new Set(["2-6-2 응용", "2-6-4 응용"]);
 describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
   it("소단원 넷이 갈래 넷을 전부 낸다", () => {
     for (const code of G6_26_CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
@@ -4465,7 +4538,7 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
     let checked = 0;
     for (const code of G6_26_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4491,7 +4564,10 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    expect(checked).toBe(G6_26_CODES.length * ELEM_TIERS.length * SEEDS.length);
+    expect(checked).toBe(
+      G6_26_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
+        SEEDS.length,
+    );
   });
 
   it("**그림의 치수가 발문과 같다** — 씨앗 0~299 전수", () => {
@@ -4501,11 +4577,11 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
     const seen = new Map<string, number>();
     for (const code of G6_26_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const f = p.figureSpec;
-          if (tier === "심화") {
+          if (tier === "심화하") {
             if (f)
               bad.push(`${code} 심화 seed=${seed}: 역산인데 그림이 붙었다`);
             continue;
@@ -4568,13 +4644,13 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
       연산: "3",
       기본: "3",
       응용: "3.1",
-      심화: "3.14",
+      심화하: "3.14",
     };
     const bad: string[] = [];
     let withPi = 0;
     for (const code of G6_26_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const said = p.content.match(/\(원주율: \$([\d.]+)\$\)/);
@@ -4613,7 +4689,7 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
   it("같은 씨앗이면 같은 문항, 씨앗 16개면 갈래마다 여러 문항", () => {
     for (const code of G6_26_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         const a = generateElementaryProblem(unit, 4242, tier);
         const b = generateElementaryProblem(unit, 4242, tier);
         expect(a.content, `${code} ${tier} 재현`).toBe(b.content);
@@ -4635,7 +4711,7 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
     const bad: string[] = [];
     for (const code of G6_26_CODES) {
       const unit = unitOf(code);
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unit)) {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
@@ -4797,7 +4873,7 @@ describe("[초6 그래프] 역산의 답이 지면에 찍히지 않는다", () =
     for (const code of REVERSE) {
       const u = unitOf(code);
       for (let seed = 0; seed < 400; seed += 1) {
-        const p = generateElementaryProblem(u, seed, "심화");
+        const p = generateElementaryProblem(u, seed, "심화하");
         const pcts = pctsOf(p.figureSpec);
         if (pcts.length === 0) {
           bad.push(`${code} seed=${seed}: 비율을 찍는 그림이 없다`);
@@ -4864,7 +4940,7 @@ describe("[초6 전량] 정답 쏠림", () => {
     let g233Set: string[] = [];
     for (const u of elementaryUnits().filter((x) => x.grade === "초6")) {
       const tiers =
-        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+        supportedTiers(u).length > 0 ? [undefined, ...tiersOf(u)] : [undefined];
       for (const tier of tiers) {
         const items = Array.from({ length: 400 }, (_, seed) => {
           const p = generateElementaryProblem(u, seed, tier);
@@ -4946,7 +5022,7 @@ describe("[초6 전량] 단위 뒤 조사", () => {
     let seen = 0;
     for (const u of elementaryUnits().filter((x) => x.grade === "초6")) {
       const tiers =
-        supportedTiers(u).length > 0 ? [undefined, ...ELEM_TIERS] : [undefined];
+        supportedTiers(u).length > 0 ? [undefined, ...tiersOf(u)] : [undefined];
       for (const tier of tiers) {
         for (let seed = 0; seed < 200; seed += 1) {
           const p = generateElementaryProblem(u, seed, tier);

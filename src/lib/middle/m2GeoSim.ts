@@ -1539,7 +1539,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "15",
     "접은 도형에서의 닮은 삼각형",
     SEC.닮음조건,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [p, q, cd] = pick(rng, SIM15_FOLDS);
       const x = (p * cd) / q;
@@ -1901,7 +1901,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "08",
     "닮은 두 입체도형의 겉넓이의 비와 부피의 비의 활용",
     SEC.넓이부피비,
-    "심화",
+    "심화하",
     (rng): Body => {
       const m = intBetween(rng, 2, 4);
       const v = intBetween(rng, 1, 5);
@@ -2000,7 +2000,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "03",
     "삼각형에서 평행선 사이의 선분의 길이의 비의 응용 ⑴",
     SEC.삼평행비,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [g1u, g2u] = pick(rng, COPRIME_UP);
       const m = intBetween(rng, 2, 4);
@@ -2028,7 +2028,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "04",
     "삼각형에서 평행선 사이의 선분의 길이의 비의 응용⑵",
     SEC.삼평행비,
-    "심화",
+    "심화하",
     (rng): Body => {
       const [f1, f2] = pick(rng, [
         [9, 3],
@@ -2130,7 +2130,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
     "07",
     "삼각형의 외각의 이등분선의 성질",
     SEC.각이등분,
-    "심화",
+    "심화하",
     (rng): Body => {
       const r = intBetween(rng, 1, 4);
       const t = intBetween(rng, 1, 3);
@@ -2338,7 +2338,7 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
     "55",
     "비와 전체 길이로 두 부분의 차 구하기",
     SEC.평행선비,
-    "심화",
+    "심화하",
     (rng): Body => {
       const q = intBetween(rng, 1, 4);
       const p = q + intBetween(rng, 1, 4);
@@ -2600,7 +2600,7 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
     "18",
     "외각의 이등분선에서 밑변",
     SEC.각이등분,
-    "심화",
+    "심화하",
     (rng): Body => {
       const q = intBetween(rng, 1, 4);
       const p = q + intBetween(rng, 1, 3);
@@ -2623,7 +2623,7 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
     "19",
     "내각과 외각의 이등분선의 교점",
     SEC.각이등분,
-    "심화",
+    "심화하",
     // ⚠️ 예전 발문은 「서로 닮은 두 삼각형에서 … 둘째 삼각형의 외각의 이등분선이
     //    만드는 바깥 선분에서 짧은 변에 대응하는 부분의 길이」였다 — **제목(내각과
     //    외각의 이등분선의 교점)과 아무 상관이 없고**, 둘째 삼각형의 꼭짓점을 안

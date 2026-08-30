@@ -512,7 +512,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "10A",
     "중앙값과 최빈값을 함께 구하기",
     SEC2.대푯값,
-    "심화",
+    "심화하",
     (rng) => {
       const pool: number[] = [];
       for (let v = 2; v <= 26; v += 1) pool.push(v);
@@ -966,7 +966,7 @@ export const M1_BOOK2: TypeEntry[] = [
     "28A",
     "나누어지는 삼각형의 개수로 대각선의 개수 구하기",
     SEC2.다각형,
-    "심화",
+    "심화하",
     (rng) => {
       const triangles = intBetween(rng, 3, 12);
       const n = triangles + 2;

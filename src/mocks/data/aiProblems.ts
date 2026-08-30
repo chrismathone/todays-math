@@ -143,7 +143,7 @@ export const MOCK_AI_GENERATED_PROBLEMS: ProblemEntity[] = [
     source: "ai_generated",
     originProblemId: null,
     familyKey: null,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     content:
       "농도를 알 수 없는 소금물 $A$ $200\\text{g}$과 $15\\%$ 소금물 $B$ $100\\text{g}$을 섞었더니 $10\\%$ 소금물이 되었다. 소금물 $A$의 농도를 구하는 풀이 과정을 서술하시오.",

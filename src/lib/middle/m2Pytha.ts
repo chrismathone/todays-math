@@ -514,7 +514,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "08",
     "삼각형의 변의 길이와 각의 크기 사이의 관계",
     SEC.정리,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(60, () => {
         const [p, q, r] = pick(rng, TRIPLES);
@@ -549,24 +549,30 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 09 직각삼각형의 닮음과 피타고라스 정리 (빗변 위의 수선) ─────────
-  def("09", "직각삼각형의 닮음과 피타고라스 정리", SEC.정리, "심화", (rng) => {
-    const [a, b, c] = pick(rng, TRIPLES);
-    // △ABC(∠C=90°) 넓이를 두 가지로: (1/2)ab = (1/2)*c*h → h = ab/c.
-    const h = frac(a * b, c);
-    return {
-      content: `직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=${b}\\,\\mathrm{cm}$, $\\overline{CB}=${a}\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.`,
-      answer: `$${h}\\,\\mathrm{cm}$`,
-      solution: `피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${a}^2+${b}^2}=${c}\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times${a}\\times${b}=\\dfrac{1}{2}\\times${c}\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{${a * b}}{${c}}=${h}\\,\\mathrm{cm}$이다.`,
-      facts: { a, b, c },
-      figureSpec: figAltitude({
-        legA: b,
-        legB: a,
-        hyp: c,
-        dimA: `${b} cm`,
-        dimB: `${a} cm`,
-      }),
-    };
-  }),
+  def(
+    "09",
+    "직각삼각형의 닮음과 피타고라스 정리",
+    SEC.정리,
+    "심화하",
+    (rng) => {
+      const [a, b, c] = pick(rng, TRIPLES);
+      // △ABC(∠C=90°) 넓이를 두 가지로: (1/2)ab = (1/2)*c*h → h = ab/c.
+      const h = frac(a * b, c);
+      return {
+        content: `직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=${b}\\,\\mathrm{cm}$, $\\overline{CB}=${a}\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${h}\\,\\mathrm{cm}$`,
+        solution: `피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{${a}^2+${b}^2}=${c}\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times${a}\\times${b}=\\dfrac{1}{2}\\times${c}\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{${a * b}}{${c}}=${h}\\,\\mathrm{cm}$이다.`,
+        facts: { a, b, c },
+        figureSpec: figAltitude({
+          legA: b,
+          legB: a,
+          hyp: c,
+          dimA: `${b} cm`,
+          dimB: `${a} cm`,
+        }),
+      };
+    },
+  ),
 
   // ── 10 피타고라스 정리를 이용한 직각삼각형의 성질 (기하평균) ────────
   def(
@@ -599,7 +605,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "11",
     "피타고라스 정리를 이용한 사각형의 성질 ⑴",
     SEC.활용,
-    "심화",
+    "심화하",
     (rng) => {
       const QUADS = [
         [10, 15, 6, 17],
@@ -624,7 +630,7 @@ export const M2_PYTHA: TypeEntry[] = [
     "12",
     "피타고라스 정리를 이용한 사각형의 성질 ⑵",
     SEC.활용,
-    "심화",
+    "심화하",
     (rng) => {
       const QUADS = [
         [10, 15, 6, 17],
@@ -663,7 +669,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 14 히포크라테스의 원의 넓이 ──────────────────────────────────────
-  def("14", "히포크라테스의 원의 넓이", SEC.활용, "심화", (rng) => {
+  def("14", "히포크라테스의 원의 넓이", SEC.활용, "심화하", (rng) => {
     const [a, b, c] = pick(rng, TRIPLES);
     const area = (a * b) / 2;
     return {
@@ -676,7 +682,7 @@ export const M2_PYTHA: TypeEntry[] = [
   }),
 
   // ── 15 입체도형에서의 최단 거리 (직육면체 표면) ─────────────────────
-  def("15", "입체도형에서의 최단 거리", SEC.활용, "심화", (rng) =>
+  def("15", "입체도형에서의 최단 거리", SEC.활용, "심화하", (rng) =>
     attempt(60, () => {
       const [leg, q, r] = pick(rng, TRIPLES);
       const split = intBetween(rng, 1, leg - 1);
@@ -693,7 +699,7 @@ export const M2_PYTHA: TypeEntry[] = [
   ),
 
   // ── 16 피타고라스 정리 종이접기 ──────────────────────────────────────
-  def("16", "피타고라스 정리 종이접기", SEC.활용, "심화", (rng) => {
+  def("16", "피타고라스 정리 종이접기", SEC.활용, "심화하", (rng) => {
     const [p, q, r] = pick(rng, TRIPLES);
     const w = r + p; // AB
     const h = q; // AD = BC

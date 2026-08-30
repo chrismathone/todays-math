@@ -518,7 +518,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "10",
     "의 꼴을 포함한 식을 간단히 하기",
     SEC.제곱근,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const p = intBetween(rng, 1, 5);
@@ -620,7 +620,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "14",
     "가 정수 또는 자연수가 되도록 하는 자연수 의 값 구하기",
     SEC.제곱근,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(60, () => {
         const a = intBetween(rng, 20, 200);
@@ -668,7 +668,7 @@ const SQRT_TYPES: TypeEntry[] = [
     "16",
     "제곱근의 성질과 대소 관계",
     SEC.제곱근,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const a = intBetween(rng, 2, 8);
@@ -705,7 +705,7 @@ const SQRT_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_SQRT, "18", "이하의 자연수 구하기", SEC.제곱근, "심화", (rng) =>
+  def(MINOR_SQRT, "18", "이하의 자연수 구하기", SEC.제곱근, "심화하", (rng) =>
     attempt(60, () => {
       const n = intBetween(rng, 10, 30);
       let total = 0;
@@ -910,7 +910,7 @@ const IRR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_IRR, "08", "세 실수의 대소 관계", SEC.무리수, "심화", (rng) =>
+  def(MINOR_IRR, "08", "세 실수의 대소 관계", SEC.무리수, "심화하", (rng) =>
     attempt(200, () => {
       const parts = [0, 1, 2].map(() => {
         const useRad = intBetween(rng, 0, 3) > 0;
@@ -1100,7 +1100,7 @@ const CALC_TYPES: TypeEntry[] = [
     "06",
     "제곱근을 문자를 사용하여 나타내기",
     SEC.근호계산,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const x = intBetween(rng, 1, 4);
@@ -1372,7 +1372,7 @@ const CALC_TYPES: TypeEntry[] = [
     "15",
     "분배법칙을 이용한 분모의 유리화",
     SEC.근호계산,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const a = pick(rng, MULT_SF);
@@ -1417,7 +1417,7 @@ const CALC_TYPES: TypeEntry[] = [
     "16",
     "근호를 포함한 식의 혼합 계산",
     SEC.근호계산,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const p = intBetween(rng, 1, 4);
@@ -1446,7 +1446,7 @@ const CALC_TYPES: TypeEntry[] = [
     "17",
     "제곱근의 계산 결과가 유리수가 될 조건",
     SEC.근호계산,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const k = intBetween(rng, 1, 4);
@@ -1517,7 +1517,7 @@ const CALC_TYPES: TypeEntry[] = [
     "20",
     "무리수의 정수 부분과 소수 부분",
     SEC.근호계산,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const n = pick(rng, SQUAREFREE);

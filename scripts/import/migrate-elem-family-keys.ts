@@ -46,7 +46,7 @@ const TIER_TO_FORM: Record<string, string> = {
   연산: "01",
   기본: "02",
   응용: "03",
-  심화: "04",
+  심화하: "04",
 };
 
 type Row = { id: string; before: string; after: string };

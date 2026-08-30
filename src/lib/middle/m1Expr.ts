@@ -231,7 +231,7 @@ function solutionApplicationSupplement(
     rpmType,
     rpmTitle,
     SEC.해응용,
-    mode < 2 ? "응용" : "심화",
+    mode < 2 ? "응용" : "심화하",
     (rng): Body => {
       const r = intBetween(rng, 2, 9);
       const p = intBetween(rng, 2, 6);
@@ -416,7 +416,7 @@ const LINEAR_SOLVE_SUPPLEMENTS: TypeEntry[] = [
     "35",
     "괄호가 중첩된 일차방정식의 풀이",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(600, (): Body | null => {
         const r = intNonzero(rng, -8, 8);
@@ -445,7 +445,7 @@ const LINEAR_SOLVE_SUPPLEMENTS: TypeEntry[] = [
     "36",
     "괄호와 분수가 있는 일차방정식의 풀이",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(800, (): Body | null => {
         const r = intNonzero(rng, -8, 8);
@@ -1171,7 +1171,7 @@ const EXPR_TYPES: TypeEntry[] = [
     }),
   ),
 
-  def(MINOR_EXPR, "18", "바르게 계산한 식 구하기", SEC.일차2, "심화", (rng) =>
+  def(MINOR_EXPR, "18", "바르게 계산한 식 구하기", SEC.일차2, "심화하", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       const hasY = rng() < 0.5;
@@ -1267,7 +1267,7 @@ const EXPR_TYPES: TypeEntry[] = [
     "20",
     "의 꼴이 포함된 일차식의 계산",
     SEC.일차2,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, (): Body | null => {
         // ctx 0: n이 자연수 · 1: n이 홀수 · 2: n이 짝수
@@ -1764,7 +1764,7 @@ const EQ_TYPES: TypeEntry[] = [
     "13",
     "계수에 소수와 분수가 섞인 일차방정식의 풀이",
     SEC.일차방정식,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(800, (): Body | null => {
         const r = intNonzero(rng, -9, 9);
@@ -1860,7 +1860,7 @@ const EQ_TYPES: TypeEntry[] = [
     "16",
     "두 일차방정식의 해가 서로 같은 경우",
     SEC.해응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, (): Body | null => {
         // 두 방정식이 공유하는 해 r 을 먼저 뽑고, 양쪽을 그 해에 맞춰 역산한다.
@@ -1893,7 +1893,7 @@ const EQ_TYPES: TypeEntry[] = [
     "17",
     "해에 대한 조건이 주어진 경우",
     SEC.해응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(600, (): Body | null => {
         const mode = intBetween(rng, 0, 1);
@@ -1931,7 +1931,7 @@ const EQ_TYPES: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_EQ, "18", "특수한 해를 갖는 경우", SEC.해응용, "심화", (rng) =>
+  def(MINOR_EQ, "18", "특수한 해를 갖는 경우", SEC.해응용, "심화하", (rng) =>
     attempt(400, (): Body | null => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -2013,7 +2013,7 @@ const EXPR_VALUE_SUPPLEMENTS: TypeEntry[] = [
     "51",
     "식의 값을 이용하여 다른 식의 값 구하기",
     SEC.식의값,
-    "심화",
+    "심화하",
     (rng): Body => {
       // 🔴 $x$, $y$ 를 따로 못 구한다 — **덩어리째** 대입해야 풀린다. 그래서 심화다.
       const p = intBetween(rng, 2, 5);

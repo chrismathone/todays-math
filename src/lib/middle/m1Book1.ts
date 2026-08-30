@@ -397,7 +397,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "17",
     "거듭제곱의 대소",
     SEC1.소수,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, () => {
         const bases = pickDistinct(rng, [2, 3, 5, 7] as const, 3);
@@ -655,7 +655,7 @@ export const M1_BOOK1: TypeEntry[] = [
     "06",
     "사분면 위의 점 두 수의 부호를 이용하는 경우",
     SEC1.좌표응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(100, () => {
         const c = intBetween(rng, 0, SIGN_CONDS.length - 1);

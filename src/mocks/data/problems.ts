@@ -76,7 +76,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 0,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "활용",
     source: "manual",
     reviewStatus: "pending",
@@ -112,7 +112,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 1,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -149,7 +149,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 2,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "rejected",
@@ -184,7 +184,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 3,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -219,7 +219,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 4,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -253,7 +253,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 5,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "pending",
@@ -288,7 +288,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 6,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",
@@ -323,7 +323,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   },
   {
     unitIdx: 7,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -373,7 +373,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 11 (424 일차부등식의 활용(수, 평균, 정가)) ──
   {
     unitIdx: 11,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "서술형",
     source: "manual",
     reviewStatus: "approved",
@@ -399,7 +399,7 @@ const PROBLEM_SPECS: ProblemSpec[] = [
   // ── unit 13 (426 일차부등식의 활용(속력, 도형, 기타)) — 도형 기호 LaTeX 필수 케이스 ──
   {
     unitIdx: 13,
-    difficulty: "심화",
+    difficulty: "심화하",
     problemType: "활용",
     source: "manual",
     reviewStatus: "approved",

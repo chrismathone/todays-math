@@ -40,8 +40,13 @@ z.config(ko());
 export {
   DIFFICULTY_LADDER,
   DEFAULT_DIFFICULTY_RATIO,
+  // 확대 중인 갈래를 가르는 둘 (D-113) — 엔진이 「필수 넷 + 선택 둘」을 이걸로 쓴다.
+  CORE_DIFFICULTIES,
+  EXTENDING_DIFFICULTIES,
+  type CoreDifficulty,
   type Difficulty,
   type DifficultyRatio,
+  type ExtendingDifficulty,
 } from "./difficulty";
 
 export const difficultySchema = z.enum(DIFFICULTY_LADDER_VALUES, {
@@ -97,7 +102,8 @@ export const idParamSchema = z.strictObject({ id: uuidSchema });
 
 /**
  * 난이도 배분 — Class.difficultyRatio(jsonb) 기본값 및 출제 요청의 배분 오버라이드가 공유하는 형태.
- * 예: {연산:1, 기본:3, 응용:3, 심화:1} (04-database-design.md §2.6 · D-106)
+ * 예: {연산:1, 기본:3, 응용:3, 심화하:1, 심화중:0, 심화상:0}
+ * (04-database-design.md §2.6 · D-106 · 축 확대는 D-113)
  *
  * ⚠️ 갈래를 **손으로 적지 않는다.** 사다리에서 만들어야 갈래가 늘 때 여기가 저절로 따라온다.
  */

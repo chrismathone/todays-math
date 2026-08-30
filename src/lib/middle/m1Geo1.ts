@@ -1293,7 +1293,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "09",
     "일부를 잘라 낸 입체도형에서의 위치 관계",
     SEC.공간평면,
-    "심화",
+    "심화하",
     (rng) => {
       const refIdx = intBetween(rng, 0, ALL_EDGES_09.length - 1);
       const ref = ALL_EDGES_09[refIdx]!;
@@ -1318,7 +1318,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "10",
     "전개도가 주어졌을 때의 위치 관계",
     SEC.공간평면,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, (): Body | null => {
         const pairs: [string, string][] = [];
@@ -1482,7 +1482,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "16",
     "평행선에서 각의 크기 구하기 평행한 보조선을 긋는 경우 (2)",
     SEC.평행선,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, (): Body | null => {
         const a = intBetween(rng, 10, 50);
@@ -1545,7 +1545,7 @@ const M1_GEO1_POS: TypeEntry[] = [
     "19",
     "공간에서 여러 가지 위치 관계",
     SEC.공간평면,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, (): Body | null => {
         const idx = distinctIndices(rng, SPACE_CLAIMS.length, 4);
@@ -1564,7 +1564,7 @@ const M1_GEO1_POS: TypeEntry[] = [
 
   // 20 — 평행선에서의 활용(2): 두 평행선 위 점에서 각을 1:(n-1)로 나눌 때
   // 교점의 각 = 180/n (n=2 는 이등분선의 직각 성질과 같은 자리).
-  def(MINOR_POS, "20", "평행선에서의 활용 (2)", SEC.평행선, "심화", (rng) => {
+  def(MINOR_POS, "20", "평행선에서의 활용 (2)", SEC.평행선, "심화하", (rng) => {
     const n = pick(rng, [2, 3, 4, 5, 6] as const);
     const ans = 180 / n;
     return {
@@ -1656,7 +1656,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     "74",
     "각뿔에서 꼬인 위치에 있는 모서리의 쌍의 개수",
     SEC.두직선,
-    "심화",
+    "심화하",
     (rng): Body => {
       const n = intBetween(rng, 4, 7);
       return {
@@ -1728,7 +1728,7 @@ export const M1_GEO1_EXT: TypeEntry[] = [
     "73",
     "중점이 겹칠 때 선분의 길이",
     SEC.점선면,
-    "심화",
+    "심화하",
     (rng): Body => {
       const unit = intBetween(rng, 2, 8);
       const ab = 4 * unit; // M=AB중점, N=AM중점, P=NB중점 이 정수가 되게

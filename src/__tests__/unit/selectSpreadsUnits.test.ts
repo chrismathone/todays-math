@@ -99,7 +99,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 20; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { 연산: 0, 기본: 0, 응용: 4, 심화: 0 },
+        difficultyRatio: {
+          연산: 0,
+          기본: 0,
+          응용: 4,
+          심화하: 0,
+          심화중: 0,
+          심화상: 0,
+        },
         count: 4,
         recentProblemIds: [],
         seed: `spread-${seed}`,
@@ -122,7 +129,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { 연산: 0, 기본: 0, 응용: 5, 심화: 0 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 0,
+        응용: 5,
+        심화하: 0,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 5,
       recentProblemIds: [],
       seed: "many-units",
@@ -141,7 +155,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
   it("단원이 하나뿐이면 고르는 순서가 예전 그대로다", () => {
     const { problems } = selectProblems({
       pool: DAILY_POOL,
-      difficultyRatio: { 연산: 0, 기본: 3, 응용: 4, 심화: 1 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 3,
+        응용: 4,
+        심화하: 1,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 8,
       recentProblemIds: [],
       seed: "daily:2026-08-19",
@@ -169,7 +190,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
     const { problems } = selectProblems({
       pool,
-      difficultyRatio: { 연산: 0, 기본: 0, 응용: 2, 심화: 0 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 0,
+        응용: 2,
+        심화하: 0,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 2,
       recentProblemIds: [],
       seed: "seat-beats-unit",
@@ -204,7 +232,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 10; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { 연산: 0, 기본: 2, 응용: 1, 심화: 0 },
+        difficultyRatio: {
+          연산: 0,
+          기본: 2,
+          응용: 1,
+          심화하: 0,
+          심화중: 0,
+          심화상: 0,
+        },
         count: 3,
         recentProblemIds: [],
         seed: `sum-not-unit-${seed}`,
@@ -234,7 +269,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
     for (let seed = 0; seed < 10; seed += 1) {
       const { problems } = selectProblems({
         pool,
-        difficultyRatio: { 연산: 0, 기본: 2, 응용: 1, 심화: 0 },
+        difficultyRatio: {
+          연산: 0,
+          기본: 2,
+          응용: 1,
+          심화하: 0,
+          심화중: 0,
+          심화상: 0,
+        },
         count: 3,
         recentProblemIds: [],
         seed: `sum-not-type-${seed}`,
@@ -255,7 +297,14 @@ describe("[확인테스트] 범위 안 단원을 고루 훑는다", () => {
 
     const { problems, substitutions } = selectProblems({
       pool,
-      difficultyRatio: { 연산: 0, 기본: 2, 응용: 0, 심화: 0 },
+      difficultyRatio: {
+        연산: 0,
+        기본: 2,
+        응용: 0,
+        심화하: 0,
+        심화중: 0,
+        심화상: 0,
+      },
       count: 2,
       recentProblemIds: [],
       seed: "ratio-holds",
@@ -278,9 +327,9 @@ const DAILY_POOL: SelectableProblem[] = [
   problem("d-07", "u-only", { difficulty: "응용", problemType: "활용" }),
   problem("d-08", "u-only", { difficulty: "응용", problemType: "서술형" }),
   problem("d-09", "u-only", { difficulty: "응용", problemType: "계산" }),
-  problem("d-10", "u-only", { difficulty: "심화", problemType: "활용" }),
-  problem("d-11", "u-only", { difficulty: "심화", problemType: "서술형" }),
-  problem("d-12", "u-only", { difficulty: "심화", problemType: "개념" }),
+  problem("d-10", "u-only", { difficulty: "심화하", problemType: "활용" }),
+  problem("d-11", "u-only", { difficulty: "심화하", problemType: "서술형" }),
+  problem("d-12", "u-only", { difficulty: "심화하", problemType: "개념" }),
 ];
 
 /**

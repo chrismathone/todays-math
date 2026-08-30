@@ -57,8 +57,8 @@
  *    나란히 찍는다. 이 결함도 그걸로 나왔다. 사람이 보는 것이 지금으로선 유일한 그물이다.
  *
  * ㉣ **눈금은 «배선»을 못 지킨다.** `--selftest` 는 `isFlatDeep` 을 **직접** 부르므로,
- *    쓸기가 어느 갈래를 보는지(`"심화"`)를 바꿔도 눈금은 초록이다. 실측(2026-08-23):
- *    `"심화"` → `"응용"` 으로 바꾸니 **눈금 종료 0**(못 잡음), 전량 쓸기 종료 1(잡음).
+ *    쓸기가 어느 갈래를 보는지(`"심화하"`)를 바꿔도 눈금은 초록이다. 실측(2026-08-23):
+ *    `"심화하"` → `"응용"` 으로 바꾸니 **눈금 종료 0**(못 잡음), 전량 쓸기 종료 1(잡음).
  *    이번엔 쓸기가 잡았지만 그건 **오늘 자료 덕**이다 — 응용에는 맨 「계산하시오」가
  *    정상으로 있어서 갈래를 잘못 보면 걸린다. 그런 갈래가 없어지는 날 이 그물은
  *    조용히 사라진다. **배선을 지키는 것은 눈금이 아니라 사람이 읽는 것뿐이다.**
@@ -241,9 +241,9 @@ if (census) {
   // 발문 첫머리 분포 — **열쇠를 손으로 짓지 않기 위한** 자리다.
   const heads = new Map<string, number>();
   for (const u of units) {
-    tally.count(u.grade, u.section, "심화", SEEDS.length);
+    tally.count(u.grade, u.section, "심화하", SEEDS.length);
     for (const seed of SEEDS) {
-      const c = generateElementaryProblem(u, seed, "심화").content.trim();
+      const c = generateElementaryProblem(u, seed, "심화하").content.trim();
       heads.set(
         c.slice(0, 10).replace(/\s+/g, " "),
         (heads.get(c.slice(0, 10).replace(/\s+/g, " ")) ?? 0) + 1,
@@ -264,12 +264,12 @@ const flat: string[] = [];
 for (const unit of units) {
   // ⚠️ 세는 것은 **실제로 만들어 본 것**만이다. 안 만든 갈래까지 분모에 넣으면
   //    「훑었다」가 부풀고, 그 분모를 보고 다음 사람이 안심한다.
-  tally.count(unit.grade, unit.section, "심화", SEEDS.length);
+  tally.count(unit.grade, unit.section, "심화하", SEEDS.length);
   const hits = SEEDS.filter((s) =>
-    isFlatDeep(generateElementaryProblem(unit, s, "심화").content),
+    isFlatDeep(generateElementaryProblem(unit, s, "심화하").content),
   );
   if (hits.length === 0) continue;
-  const sample = generateElementaryProblem(unit, hits[0]!, "심화");
+  const sample = generateElementaryProblem(unit, hits[0]!, "심화하");
   flat.push(
     `${unit.grade} ${unit.section}\n      씨앗 ${hits.length}/${SEEDS.length}` +
       `\n      ${sample.content.replace(/\n+/g, " ⏎ ").slice(0, 110)}`,
@@ -282,7 +282,8 @@ fence.close();
 console.log(
   `훑은 것 — ${tally.line()} · ${fence.scopeLine()}\n` +
     `(재는 것은 **심화가 맨 계산인가** 하나뿐이다 — 「응용보다 어려운가」는 못 잰다.\n` +
-    ` 갈래 축은 ${ELEM_TIERS.length}단이지만 여기서 만드는 것은 «심화»뿐이다)\n`,
+    ` 갈래 축은 ${ELEM_TIERS.length}단(D-113)이지만 여기서 보는 것은 «심화하»뿐이다.\n` +
+    ` 확대 갈래(심화중·심화상)가 차면 그 높이는 이 자가 아니라 사람이 본다)\n`,
 );
 if (flat.length === 0) {
   console.log("✅ 맨 계산인 심화 0");

@@ -14,8 +14,9 @@ import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = ["1-6-1", "1-6-2", "1-6-3", "1-6-4", "1-6-5"] as const;
 
@@ -125,13 +126,13 @@ function ruleCount(t: number[]): number {
 describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
   it("다섯 소단원이 네 갈래를 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = gen(code, 31337, tier);
         const b = gen(code, 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -146,7 +147,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
     const eq = /\$([\d+\-\\a-z]+)=(\d+)\$/g;
     const pure = /^\d+(?:(?:\+|-|\\times|\\div)\d+)*$/;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const m of p.solution.matchAll(eq)) {
@@ -166,7 +167,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
   it("규모가 띠 안이다 — 모든 수가 99000 이하", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -184,7 +185,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
   //    둘 이상 서면 답이 여럿이라 문항이 죽는다(반증 가능 형태).
   it("1-6-1 배열은 규칙이 정확히 하나만 선다", () => {
     const bad: string[] = [];
-    for (const tier of ELEM_TIERS) {
+    for (const tier of tiersOf(unitOf("1-6-1"))) {
       for (let seed = 0; seed < 120; seed += 1) {
         const p = gen("1-6-1", seed, tier);
         for (const t of sequences(p.content)) {
@@ -213,7 +214,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         expect(
           seen.size,
@@ -228,7 +229,8 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
       const all: string[] = [];
       for (const code of CODES) {
         all.push(generateElementaryProblem(unitOf(code), seed).content);
-        for (const tier of ELEM_TIERS) all.push(gen(code, seed, tier).content);
+        for (const tier of tiersOf(unitOf(code)))
+          all.push(gen(code, seed, tier).content);
       }
       const dup = all.filter((c, i) => all.indexOf(c) !== i);
       expect(dup, `seed ${seed}: ${dup[0] ?? ""}`).toEqual([]);
@@ -238,7 +240,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
   it("모든 수가 KaTeX 안에 있다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const [label, text] of [
@@ -297,7 +299,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
         expect(answerNum(apply.answer)).toBe(t[0]! * 2 ** 5);
       }
 
-      const deep = gen("1-6-1", seed, "심화");
+      const deep = gen("1-6-1", seed, "심화하");
       let m = deep.content.match(
         /\$(\d+)\$씩 커지는 규칙으로 .*다섯째 수가 \$(\d+)\$[이가]/,
       );
@@ -352,7 +354,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
       // 심화 — 예전엔 「첫째부터 넷째까지 모두 몇 개」로 **더하기만** 했다. 그런데 응용이
       // 「모형이 $19$개인 것은 몇째」로 **되짚는다** — 사다리가 뒤집혀 있었다.
       // 이제 «누적»을 되짚는다: 합이 주어지고 «몇째까지»를 묻는다.
-      const deep = gen("1-6-2", seed, "심화");
+      const deep = gen("1-6-2", seed, "심화하");
       const dt = bareTerms(deep.content);
       t = dt.slice(0, 3);
       const d = t[1]! - t[0]!;
@@ -405,7 +407,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
       expect(dS, "합이 200씩").toBe(200);
       expect(answerNum(apply.answer)).toBe(rows[0]![2] + dS * 5);
 
-      const deep = gen("1-6-3", seed, "심화");
+      const deep = gen("1-6-3", seed, "심화하");
       const m = deep.content.match(/합이 \$(\d+)\$[이가] 되는/);
       expect(m, deep.content).toBeTruthy();
       rows = [...deep.content.matchAll(/\$(\d+)\+(\d+)=(\d+)\$/g)].map(
@@ -453,7 +455,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
         expect(evalLhs(r[1]!), `${r[1]}=${r[2]}`).toBe(Number(r[2]));
       }
 
-      const deep = gen("1-6-4", seed, "심화");
+      const deep = gen("1-6-4", seed, "심화하");
       m = deep.answer.match(/^\$([\d\\times+]+)=(\d+)\$$/);
       expect(m, deep.answer).toBeTruthy();
       expect(evalLhs(m![1]!), `답의 식이 참이 아니다: ${deep.answer}`).toBe(
@@ -493,7 +495,7 @@ describe("[초4 4단] 1-6 규칙 찾기 — 다섯 소단원", () => {
         Number(m![1]) + Number(m![2]) - Number(m![3]),
       );
 
-      const deep = gen("1-6-5", seed, "심화");
+      const deep = gen("1-6-5", seed, "심화하");
       m = deep.content.match(/\$(\d+)\+(\d+)=\\square-(\d+)\$/);
       if (m) {
         deepKinds.add("뺄셈건너");

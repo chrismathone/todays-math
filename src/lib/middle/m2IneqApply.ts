@@ -165,7 +165,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "14",
     "부등식의 해의 조건이 주어진 경우",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) => {
       const d = intBetween(rng, 1, 6);
       const n = intBetween(rng, 3, 8);
@@ -215,7 +215,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "09",
     "원가 정가에 대한 문제",
     SEC.수평균정가,
-    "심화",
+    "심화하",
     (rng) => {
       const m = pick(rng, [20, 25, 30, 40] as const);
       const k = pick(rng, [5, 10, 15] as const);
@@ -353,7 +353,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "35",
     "할인 판매와 목표 이익",
     SEC.수평균정가,
-    "심화",
+    "심화하",
     (rng) => {
       const cost = 1000 * intBetween(rng, 5, 16);
       const profit = pick(rng, [10, 20, 25] as const);
@@ -456,7 +456,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "07",
     "유리한 방법을 선택하는 문제⑵",
     SEC.개수예금,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(80, () => {
         const p = pick(rng, [5000, 8000, 10000, 12000] as const);
@@ -492,7 +492,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "10",
     "거리 속력 시간에 대한 문제 ⑴",
     SEC.속력도형,
-    "심화",
+    "심화하",
     (rng) => {
       const [v1, v2] = pick(rng, [
         [2, 3],
@@ -518,7 +518,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "11",
     "거리 속력 시간에 대한 문제 ⑵",
     SEC.속력도형,
-    "심화",
+    "심화하",
     (rng) => {
       const v = pick(rng, [50, 60, 80] as const);
       const s = pick(rng, [10, 15, 20] as const);
@@ -651,20 +651,26 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     },
   ),
 
-  def(MINOR_APPLY, "28", "여러 바퀴를 도는 시간", SEC.속력도형, "심화", (rng) =>
-    attempt(80, () => {
-      const lap = pick(rng, [200, 300, 400] as const);
-      const speed = pick(rng, [50, 60, 80, 100] as const);
-      const laps = intBetween(rng, 3, 10);
-      const limit = (lap * laps) / speed;
-      if (!Number.isInteger(limit)) return null;
-      return {
-        content: `한 바퀴의 길이가 $${lap} m$인 산책로를 분속 $${speed} m$로 걸어 $${limit}$분 이내에 운동하려고 한다. 최대 몇 바퀴까지 돌 수 있는지 구하시오.`,
-        answer: `$${laps}$바퀴`,
-        solution: `도는 횟수를 자연수 $x$라 하면 $\\dfrac{${lap}x}{${speed}}\\le${limit}$이다. 풀면 $x\\le${laps}$이므로 최대 $${laps}$바퀴까지 돌 수 있다.`,
-        facts: { lap, speed, laps, limit },
-      };
-    }),
+  def(
+    MINOR_APPLY,
+    "28",
+    "여러 바퀴를 도는 시간",
+    SEC.속력도형,
+    "심화하",
+    (rng) =>
+      attempt(80, () => {
+        const lap = pick(rng, [200, 300, 400] as const);
+        const speed = pick(rng, [50, 60, 80, 100] as const);
+        const laps = intBetween(rng, 3, 10);
+        const limit = (lap * laps) / speed;
+        if (!Number.isInteger(limit)) return null;
+        return {
+          content: `한 바퀴의 길이가 $${lap} m$인 산책로를 분속 $${speed} m$로 걸어 $${limit}$분 이내에 운동하려고 한다. 최대 몇 바퀴까지 돌 수 있는지 구하시오.`,
+          answer: `$${laps}$바퀴`,
+          solution: `도는 횟수를 자연수 $x$라 하면 $\\dfrac{${lap}x}{${speed}}\\le${limit}$이다. 풀면 $x\\le${laps}$이므로 최대 $${laps}$바퀴까지 돌 수 있다.`,
+          facts: { lap, speed, laps, limit },
+        };
+      }),
   ),
 
   // ── 일차부등식의 활용 (농도) ─────────────────────────
@@ -694,7 +700,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "13",
     "농도에 대한 문제 두 소금물을 섞는 경우",
     SEC.농도,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(400, () => {
         const a = pick(rng, [8, 10, 12, 15] as const);
@@ -715,7 +721,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       }),
   ),
 
-  def(MINOR_APPLY, "14", "합금 식품에 대한 문제", SEC.농도, "심화", (rng) => {
+  def(MINOR_APPLY, "14", "합금 식품에 대한 문제", SEC.농도, "심화하", (rng) => {
     const mat = pick(rng, [
       { noun: "구리", eul: "를", ga: "가", thing: "합금" },
       { noun: "단백질", eul: "을", ga: "이", thing: "식품" },
@@ -828,7 +834,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "19",
     "소금물을 물로 치환하는 문제",
     SEC.농도,
-    "심화",
+    "심화하",
     (rng) => {
       const A = pick(rng, [10, 12, 15, 20] as const);
       const C = pick(rng, [5, 6, 8, 10] as const);
@@ -873,7 +879,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "21",
     "순수한 물질을 섞는 함량 문제",
     SEC.농도,
-    "심화",
+    "심화하",
     (rng) => {
       const C = pick(rng, [20, 25, 40, 50] as const);
       const A = pick(rng, [5, 10, 15] as const);
@@ -996,7 +1002,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "74",
     "해 중 자연수의 개수가 주어질 때 상수의 최솟값",
     SEC.응용,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(120, () => {
         const m = intBetween(rng, 2, 7);
@@ -1109,7 +1115,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "74",
     "예산 안에서 비싼 쪽을 최대 몇 개 살 수 있는가",
     SEC.개수예금,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(200, () => {
         const p1 = pick(rng, [500, 700, 800] as const);

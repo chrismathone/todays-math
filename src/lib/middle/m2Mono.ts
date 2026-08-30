@@ -630,7 +630,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   // 07 ─────────────────────────────────────────────
   // 문자는 **소문자** `a` 를 쓴다 — 홑 대문자 수식은 전처리가 직립 Roman 으로
   // 바꿔(`PURE_LABEL_REGEX`) 같은 지면에서 기울임과 섞인다.
-  defMono("07", "지수법칙의 응용 ⑵", SEC.지수법칙, "심화", (rng) =>
+  defMono("07", "지수법칙의 응용 ⑵", SEC.지수법칙, "심화하", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 5] as const);
       const s = intBetween(rng, 0, 2);
@@ -766,7 +766,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
     "12",
     "단항식의 곱셈과 나눗셈의 혼합 계산",
     SEC.단항곱나눗,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const [v0, v1] = pickVars(rng);
@@ -804,7 +804,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
 
   // 13 ─────────────────────────────────────────────
   // □ 를 **먼저 정하고** 우변을 만든다.
-  defMono("13", " 안에 알맞은 식 구하기", SEC.단항곱나눗, "심화", (rng) =>
+  defMono("13", " 안에 알맞은 식 구하기", SEC.단항곱나눗, "심화하", (rng) =>
     attempt(300, () => {
       const [v0, v1] = pickVars(rng);
       const box = randMono(rng, [v0, v1], 2, [2, 3, 4, 5, -2, -3, -4] as const);
@@ -903,7 +903,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 15 ─────────────────────────────────────────────
-  defMono("15", "지수법칙의 응용 ⑶", SEC.지수법칙, "심화", (rng) =>
+  defMono("15", "지수법칙의 응용 ⑶", SEC.지수법칙, "심화하", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 5, 7] as const);
       const terms = intBetween(rng, 2, 3);
@@ -932,7 +932,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
   ),
 
   // 16 ─────────────────────────────────────────────
-  defMono("16", "일의 자리의 숫자 구하기", SEC.지수법칙, "심화", (rng) =>
+  defMono("16", "일의 자리의 숫자 구하기", SEC.지수법칙, "심화하", (rng) =>
     attempt(200, () => {
       const p = pick(rng, [2, 3, 7, 8] as const);
       const k = intBetween(rng, 2, 3);
@@ -1174,7 +1174,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
     "08",
     "덧셈 뺄셈 곱셈 나눗셈이 혼합된 식의 계산",
     SEC.다항곱나눗,
-    "심화",
+    "심화하",
     (rng) =>
       attempt(300, () => {
         const [v0, v1] = pickVars(rng);
@@ -1353,7 +1353,7 @@ export const M2_POLY_TYPES: TypeEntry[] = [
   }),
 
   // 13 ─────────────────────────────────────────────
-  defPoly("13", "식의 값 ⑵", SEC.다항곱나눗, "심화", (rng) =>
+  defPoly("13", "식의 값 ⑵", SEC.다항곱나눗, "심화하", (rng) =>
     attempt(200, () => {
       const base = pick(rng, [-3, -2, 2, 3] as const);
       const b = intBetween(rng, 2, 3);

@@ -11,6 +11,7 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import type { ElemProblem } from "@/lib/elementary/types";
 
 /**
  * **초6 난이도 사다리 — 네 갈래를 나란히** (매쓰홀릭 벤치마킹용 검수 화면).
@@ -55,7 +56,9 @@ const AXIS: Record<string, string> = {
   연산: "1단 · 절차 한 번 (식·값이 그대로 주어짐)",
   기본: "2단 · 식을 스스로 세움 (문장·그림 한 겹)",
   응용: "3단 · 두 단계 (중간값·다른 개념 결합)",
-  심화: "4단 · 역산·조건 조합 (「잘못 계산했더니」·「전체가 ~일 때」)",
+  심화하: "4단 · 역산·조건 조합 (「잘못 계산했더니」·「전체가 ~일 때」)",
+  심화중: "5단 · 채우는 중 (D-113)",
+  심화상: "6단 · 채우는 중 (D-113)",
 };
 
 export default async function TierBenchG6Page({
@@ -86,24 +89,37 @@ export default async function TierBenchG6Page({
     ? Number(query.seed)
     : SEEDS[0]!;
 
-  // 네 갈래를 **한 씨앗으로** 만든다 — 갈래끼리 견주려면 같은 자리에서 나와야 한다.
+  // 여섯 갈래를 **한 씨앗으로** 만든다 — 갈래끼리 견주려면 같은 자리에서 나와야
+  // 한다. `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도
+  // 있다 — `supportedTiers` 로 먼저 물어보고, 없으면 만들지 않는다.
   const rows = await Promise.all(
-    units.map(async (unit) => ({
-      unit,
-      cells: await Promise.all(
-        ELEM_TIERS.map(async (tier) => {
-          const p = generateElementaryProblem(unit, seed, tier);
-          if (!p.figureSpec) return { tier, p, svg: null, err: null };
-          const drawn = await renderFigureSpec(p.figureSpec);
-          return {
-            tier,
-            p,
-            svg: drawn.ok ? drawn.svg : null,
-            err: drawn.ok ? null : drawn.error,
-          };
-        }),
-      ),
-    })),
+    units.map(async (unit) => {
+      const supported = new Set(supportedTiers(unit));
+      return {
+        unit,
+        cells: await Promise.all(
+          ELEM_TIERS.map(async (tier) => {
+            if (!supported.has(tier)) {
+              return {
+                tier,
+                p: null as ElemProblem | null,
+                svg: null as string | null,
+                err: null as string | null,
+              };
+            }
+            const p = generateElementaryProblem(unit, seed, tier);
+            if (!p.figureSpec) return { tier, p, svg: null, err: null };
+            const drawn = await renderFigureSpec(p.figureSpec);
+            return {
+              tier,
+              p,
+              svg: drawn.ok ? drawn.svg : null,
+              err: drawn.ok ? null : drawn.error,
+            };
+          }),
+        ),
+      };
+    }),
   );
 
   const href = (c: string, s: number) =>
@@ -115,7 +131,7 @@ export default async function TierBenchG6Page({
         DEV · 난이도 벤치마킹
       </p>
       <h1 className="mt-2 text-xl font-black">
-        초6 난이도 사다리 — 네 갈래를 나란히
+        초6 난이도 사다리 — 여섯 갈래를 나란히
       </h1>
       <p className="mt-2 max-w-[820px] text-[13px] leading-relaxed text-text-2">
         매쓰홀릭 화면을 옆에 띄우고 <b>한 줄씩</b> 대 보십시오. 한 줄이 한
@@ -166,58 +182,78 @@ export default async function TierBenchG6Page({
         </span>
       </nav>
 
-      <div className="mt-6 grid grid-cols-4 gap-3 border-b border-divider pb-2">
-        {ELEM_TIERS.map((tier) => (
-          <div key={tier}>
-            <p className="text-[13px] font-black">{tier}</p>
-            <p className="mt-0.5 text-[11px] leading-snug text-text-2">
-              {AXIS[tier]}
-            </p>
-          </div>
-        ))}
+      <div className="mt-6 overflow-x-auto">
+        <div className="grid min-w-[1560px] grid-cols-6 gap-3 border-b border-divider pb-2">
+          {ELEM_TIERS.map((tier) => (
+            <div key={tier}>
+              <p className="text-[13px] font-black">{tier}</p>
+              <p className="mt-0.5 text-[11px] leading-snug text-text-2">
+                {AXIS[tier]}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <ol className="mt-2 min-w-[1560px]">
+          {rows.map(({ unit, cells }) => (
+            <li key={unit.section} className="border-b border-divider py-5">
+              <p className="mb-3 text-[12px] font-extrabold tracking-wide text-text-1">
+                {unit.section}
+              </p>
+              <div className="grid grid-cols-6 gap-3 [align-items:start]">
+                {cells.map(({ tier, p, svg, err }) => (
+                  <div key={tier} className="border border-divider p-3">
+                    <p className="mb-2 text-[10px] font-extrabold tracking-[0.14em] text-text-2">
+                      {tier}
+                    </p>
+                    {p === null ? (
+                      <p className="text-[12px] text-text-3">
+                        아직 안 채움 ({tier})
+                      </p>
+                    ) : (
+                      <>
+                        {err ? (
+                          <p className="mb-2 text-[12px] text-g-red-text">
+                            그림 실패 — {err}
+                          </p>
+                        ) : null}
+                        <PaperProblemView content={p.content} figureSvg={svg} />
+                        <div className="mt-2 text-[12px] text-text-1">
+                          <span className="font-extrabold tracking-wide text-text-2">
+                            정답
+                          </span>{" "}
+                          <MathText as="span" text={p.answer} />
+                        </div>
+                        <div className="mt-1 text-[12px] text-text-2">
+                          <p className="mb-1 font-extrabold tracking-wide">
+                            해설
+                          </p>
+                          <PaperProblemView
+                            content={p.solution}
+                            framed={false}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
 
-      <ol className="mt-2">
-        {rows.map(({ unit, cells }) => (
-          <li key={unit.section} className="border-b border-divider py-5">
-            <p className="mb-3 text-[12px] font-extrabold tracking-wide text-text-1">
-              {unit.section}
-            </p>
-            <div className="grid grid-cols-4 gap-3 [align-items:start]">
-              {cells.map(({ tier, p, svg, err }) => (
-                <div key={tier} className="border border-divider p-3">
-                  <p className="mb-2 text-[10px] font-extrabold tracking-[0.14em] text-text-2">
-                    {tier}
-                  </p>
-                  {err ? (
-                    <p className="mb-2 text-[12px] text-g-red-text">
-                      그림 실패 — {err}
-                    </p>
-                  ) : null}
-                  <PaperProblemView content={p.content} figureSvg={svg} />
-                  <div className="mt-2 text-[12px] text-text-1">
-                    <span className="font-extrabold tracking-wide text-text-2">
-                      정답
-                    </span>{" "}
-                    <MathText as="span" text={p.answer} />
-                  </div>
-                  <div className="mt-1 text-[12px] text-text-2">
-                    <p className="mb-1 font-extrabold tracking-wide">해설</p>
-                    <PaperProblemView content={p.solution} framed={false} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ol>
-
       <p className="mt-6 text-[12px] leading-relaxed text-text-2">
-        소단원 {units.length}개 · 문항 {units.length * ELEM_TIERS.length}건 (
-        {chapter}). 초6 전체는 소단원 {all.length}개입니다. 갈래별 «발문 꼴»의
-        실측 수치는 <code>scripts/qa/census-tier-bench-g6.ts</code>, 심화가 4단
-        모양인지는 <code>scripts/qa/probe-elem-tier-4dan.ts 초6</code> 가
-        찍습니다.
+        소단원 {units.length}개 · 만든 문항{" "}
+        {rows.reduce(
+          (sum, r) => sum + r.cells.filter((c) => c.p !== null).length,
+          0,
+        )}
+        건 ({chapter}, 축은 여섯 갈래이나 심화중·심화상은 채우는 중이라
+        소단원마다 있을 수도 없을 수도 있다). 초6 전체는 소단원 {all.length}
+        개입니다. 갈래별 «발문 꼴»의 실측 수치는{" "}
+        <code>scripts/qa/census-tier-bench-g6.ts</code>, 심화가 4단 모양인지는{" "}
+        <code>scripts/qa/probe-elem-tier-4dan.ts 초6</code> 가 찍습니다.
       </p>
     </main>
   );

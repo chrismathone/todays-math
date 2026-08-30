@@ -15,8 +15,9 @@ import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
-  supportedTiers,
 } from "@/lib/elementary/generate";
+
+import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
 const CODES = [
   "1-3-1",
@@ -115,13 +116,13 @@ const RO_FORM: Record<string, string> = {
 describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
   it("일곱 소단원이 네 갈래를 전부 낸다", () => {
     for (const code of CODES) {
-      expect(supportedTiers(unitOf(code)), code).toEqual(ELEM_TIERS);
+      expectCoreTiers(unitOf(code), code);
     }
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const a = gen(code, 31337, tier);
         const b = gen(code, 31337, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -136,7 +137,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
     const eq = /\$([\d+\-\\a-z]+)=(\d+)\$/g;
     const pure = /^\d+(?:(?:\+|-|\\times|\\div)\d+)*$/;
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           for (const m of p.solution.matchAll(eq)) {
@@ -157,7 +158,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       const cap = SCALE_CAP[code];
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const all = `${p.content} ${p.answer} ${p.solution}`;
@@ -200,7 +201,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
             bad.push(`${code} 표준 seed ${seed}: 나누는 수 ${b}`);
         }
       }
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
           const ds = divisorsOf(p.content);
@@ -238,7 +239,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
 
   it("갈래마다 씨앗 16개에서 서로 다른 발문이 8개 이상이다 (변형 8+)", () => {
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(SEEDS.map((s) => gen(code, s, tier).content));
         expect(
           seen.size,
@@ -253,7 +254,8 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       const all: string[] = [];
       for (const code of CODES) {
         all.push(generateElementaryProblem(unitOf(code), seed).content);
-        for (const tier of ELEM_TIERS) all.push(gen(code, seed, tier).content);
+        for (const tier of tiersOf(unitOf(code)))
+          all.push(gen(code, seed, tier).content);
       }
       const dup = all.filter((c, i) => all.indexOf(c) !== i);
       expect(dup, `seed ${seed}: ${dup[0] ?? ""}`).toEqual([]);
@@ -292,7 +294,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       }
     };
     for (const code of CODES) {
-      for (const tier of ELEM_TIERS) {
+      for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           check(`${code} ${tier} seed ${seed}`, gen(code, seed, tier));
         }
@@ -340,7 +342,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       expect(pay % 10000, "낸 돈은 만원 단위").toBe(0);
       expect(answerNum(apply.answer)).toBe(pay - total);
 
-      const deep = gen("1-3-1", seed, "심화");
+      const deep = gen("1-3-1", seed, "심화하");
       m = deep.content.match(
         /어떤 수에 \$(\d+)\$[을를] 곱해야 할 것을 잘못하여 더했더니 \$(\d+)\$[이가]/,
       );
@@ -372,7 +374,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
         Number(m![1]) * Number(m![2]) - Number(m![3]),
       );
 
-      const deep = gen("1-3-2", seed, "심화");
+      const deep = gen("1-3-2", seed, "심화하");
       m = deep.content.match(
         /\$(\d+)\$[을를] 곱해야 할 것을 잘못하여 .*바꾼 \$(\d+)\$[을를] 곱했더니 \$(\d+)\$[이가]/,
       );
@@ -412,7 +414,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       const est = Math.round(x / 100) * 100 * (Math.round(y / 10) * 10);
       expect(answerNum(apply.answer)).toBe(Math.abs(est - x * y));
 
-      const deep = gen("1-3-3", seed, "심화");
+      const deep = gen("1-3-3", seed, "심화하");
       m = deep.content.match(
         /몇백으로 어림하면 \$(\d+)\$[이가] 되는 세 자리 수 중에서 가장 (큰|작은)/,
       );
@@ -458,7 +460,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       expect(a2 % b2, "딱 떨어지면 «적어도»가 안 선다").toBeGreaterThan(0);
       expect(answerNum(apply.answer)).toBe(Math.floor(a2 / b2) + 1);
 
-      const deep = gen("1-3-4", seed, "심화");
+      const deep = gen("1-3-4", seed, "심화하");
       m = deep.content.match(
         /어떤 수를 \$(\d+)\$(?:으로|로) 나누어야 할 것을 잘못하여 \$(\d+)\$[을를] 곱했더니 \$(\d+)\$[이가]/,
       );
@@ -495,7 +497,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
         (Number(m![1]) - Number(m![2])) / Number(m![3]),
       );
 
-      const deep = gen("1-3-5", seed, "심화");
+      const deep = gen("1-3-5", seed, "심화하");
       m = deep.content.match(
         /어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫이 \$(\d+)\$, 나머지가 \$(\d+)\$[이가]/,
       );
@@ -528,7 +530,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       expect(a % b).toBeGreaterThan(0);
       expect(answerNum(apply.answer)).toBe(Math.floor(a / b) + 1);
 
-      const deep = gen("1-3-6", seed, "심화");
+      const deep = gen("1-3-6", seed, "심화하");
       m = deep.content.match(
         /어떤 수를 \$(\d+)\$(?:으로|로) 나누어야 할 것을 잘못하여 .*바꾼 \$(\d+)\$(?:으로|로) 나누었더니 몫이 \$(\d+)\$, 나머지가 \$(\d+)\$[이가]/,
       );
@@ -549,7 +551,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
   it("1-3-6 심화의 잘못 나눈 나머지는 0 이 아니다 (씨앗 200)", () => {
     const bad: string[] = [];
     for (let seed = 0; seed < 200; seed += 1) {
-      const p = gen("1-3-6", seed, "심화");
+      const p = gen("1-3-6", seed, "심화하");
       const m = p.content.match(/나머지가 \$(\d+)\$[이가]/);
       expect(m, p.content).toBeTruthy();
       if (Number(m![1]) < 1) bad.push(`seed ${seed}: ${p.content}`);
@@ -585,7 +587,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       expect(k1, "어림 몫이 같으면 답이 없다").not.toBe(k2);
       expect(apply.answer).toBe(k1 > k2 ? "가" : "나");
 
-      const deep = gen("1-3-7", seed, "심화");
+      const deep = gen("1-3-7", seed, "심화하");
       m = deep.content.match(
         /몇십으로 어림하면 \$(\d+)\$[이가] 되는 두 자리 수/,
       );

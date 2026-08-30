@@ -26,7 +26,7 @@ const UNIT = elementaryUnits().find(
   (u) => u.grade === "초4" && u.section.startsWith("1-5-3"),
 )!;
 const SEEDS = Array.from({ length: 16 }, (_, i) => 20260000 + i * 7);
-const G4_TIER_DEEP = G4_TIERS["초4|1-5-3"]!.심화;
+const G4_TIER_DEEP = G4_TIERS["초4|1-5-3"]!.심화하;
 
 // ⚠️ **넷을 다 넣는다.** 처음엔 셋만 넣었는데, 그러면 R1·씨앗 재현·다양성·갈래 겹침이
 // **심화만 구조적으로 안 본다** — 「없는 축은 변이시킬 수 없다」가 시험 자신에게 걸린다.
@@ -34,7 +34,7 @@ const TIERS = [
   ["연산", G4_TIER_CALC],
   ["기본", G4_TIER_BASIC],
   ["응용", G4_TIER_APPLY],
-  ["심화", G4_TIER_DEEP],
+  ["심화하", G4_TIER_DEEP],
 ] as const;
 
 /** 정답에서 수 하나를 꺼낸다 — 「$15$명」·「$2$배」·「$300$원」이 다 같은 꼴이다. */

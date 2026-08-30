@@ -661,7 +661,7 @@ export const M2_QUAD: TypeEntry[] = [
     "12",
     "평행사변형의 성질의 응용 두 내각의 이등분선이 주어진 경우",
     SEC.성질,
-    "심화",
+    "심화하",
     (rng): Body => {
       const mode = intBetween(rng, 0, 1);
       if (mode === 0) {
@@ -695,7 +695,7 @@ export const M2_QUAD: TypeEntry[] = [
     "13",
     "평행사변형이 되는 조건의 응용 ⑵",
     SEC.조건,
-    "심화",
+    "심화하",
     (rng): Body => {
       const s = intBetween(rng, 5, 16);
       const T = intBetween(rng, 6, 22);
@@ -799,7 +799,7 @@ export const M2_QUAD: TypeEntry[] = [
     "19A",
     "한 쌍의 대변 조건으로 둘레 구하기",
     SEC.조건,
-    "심화",
+    "심화하",
     (rng): Body => {
       const sideA = intBetween(rng, 5, 18);
       const sideB = intBetween(rng, 5, 18);

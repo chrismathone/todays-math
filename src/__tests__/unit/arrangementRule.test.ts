@@ -136,7 +136,7 @@ describe("배치 판정 — 열쇠", () => {
       "가로가 $15$ cm, 세로가 $8$ cm인 직사각형 모양 종이의 한 귀퉁이에서 가로가 $4$ cm, 세로가 $3$ cm인 직사각형을 잘라 냈습니다. 남은 도형의 둘레는 몇 cm입니까?";
     expect(classifyArrangement(c)).toBe("배치미정");
     expect(
-      reviewedArrangementOf("elem:초5|1-6-1 정다각형과 사각형의 둘레|심화"),
+      reviewedArrangementOf("elem:초5|1-6-1 정다각형과 사각형의 둘레|심화하"),
     ).toMatch(/^멀쩡/);
   });
 });

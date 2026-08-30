@@ -294,7 +294,7 @@ if (wantSix) {
     if (supportedTiers(unit).length === 0) continue;
     // ⚠️ Ⓐ 는 「그 자리의 **모든** 산출이 한 걸음 역산인가」로 센다. 「하나라도」로
     //    세면 문형 넷 중 하나만 그래도 걸려 「지면이 얇다」가 과장된다.
-    const deeps = pick(unit, "심화");
+    const deeps = pick(unit, "심화하");
     const seen = {
       a: deeps.length > 0 && deeps.every((c) => isOneStepInverse(frameOf(c))),
       b: pick(unit, "응용").some((c) => BARE_CALC_HEAD.test(c.trim())),
@@ -321,9 +321,12 @@ if (wantSix) {
   for (const [name] of TOPHAT_MARKS) dHits.set(name, new Set());
   let dSeen = 0;
   for (const unit of units) {
-    if (supportedTiers(unit).length === 0) continue;
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다 —
+    // 등록된 갈래만 만든다.
+    const supported = new Set(supportedTiers(unit));
+    if (supported.size === 0) continue;
     const texts = [
-      ...ELEM_TIERS.flatMap((t) =>
+      ...ELEM_TIERS.filter((t) => supported.has(t)).flatMap((t) =>
         Array.from(
           { length: SEEDS },
           (_, i) =>
@@ -432,6 +435,8 @@ if (wantThin) {
   const ones: string[] = [];
 
   for (const unit of units) {
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다.
+    const supported = new Set(supportedTiers(unit));
     const counts: string[] = [];
     for (const tier of ELEM_TIERS) {
       const seen = new Set<string>();
@@ -444,7 +449,10 @@ if (wantThin) {
               ),
             );
       } else {
-        if (supportedTiers(unit).length === 0) continue;
+        if (!supported.has(tier)) {
+          counts.push(`${tier}  —`);
+          continue;
+        }
         for (let i = 0; i < SEEDS; i += 1)
           seen.add(
             frameOf(
@@ -495,8 +503,11 @@ if (wantMarks) {
     tally[tier] = { n: 0, marked: 0, marks: new Map() };
 
   for (const unit of units) {
-    if (supportedTiers(unit).length === 0) continue;
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다.
+    const supported = new Set(supportedTiers(unit));
+    if (supported.size === 0) continue;
     for (const tier of ELEM_TIERS) {
+      if (!supported.has(tier)) continue;
       for (let i = 0; i < SEEDS; i += 1) {
         const p = generateElementaryProblem(unit, SEED0 + i * STEP, tier);
         const found = marksOf(p.content);
@@ -552,8 +563,11 @@ for (const unit of units) {
       }
     }
   } else {
-    if (supportedTiers(unit).length === 0) continue;
+    // `심화중`·`심화상` 은 채우는 중이라(D-113) 소단원마다 있을 수도 없을 수도 있다.
+    const supported = new Set(supportedTiers(unit));
+    if (supported.size === 0) continue;
     for (const tier of ELEM_TIERS) {
+      if (!supported.has(tier)) continue;
       const b = byTier.get(tier)!;
       b.units.add(unit.section);
       for (let i = 0; i < SEEDS; i += 1) {
