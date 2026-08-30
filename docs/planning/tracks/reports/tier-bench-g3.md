@@ -270,6 +270,43 @@ lint:affordance(D-30) 통과 · 내 파일 타입 오류 0
 ⚠️ **`census-elem-tier-frames.ts` 는 학년 인자를 받는 «공용» 연장이다.**
 g4·g5·g6 세션이 각자 같은 것을 만들면 병합에서 넷이 부딪힌다. 리드에게 알렸다.
 
+### 7.1 관문 — **내 것 아닌 빨강 둘** (리드가 볼 것)
+
+```
+npm run test →  Test Files  2 failed | 323 passed | 1 skipped (326)
+                     Tests  2 failed | 13,214 passed | 129 skipped (13,345)
+                  Duration  1,104.90s
+npm run type-check    → 0 (오류 없음)
+npm run lint:affordance → 통과 (D-30)
+```
+
+둘 다 **내 커밋 전에도 빨갛다.** 근거를 적어 둔다 — 다음 사람이 다시 조사하지 않게.
+
+**㉠ `serverExternalPackages.test.ts` — 부하 탓 (내 것 아님)**
+`Test timed out in 20000ms`. **혼자 돌리면 1.6초에 통과**한다(전량 재확인).
+물결 4세션이 한 기계에서 도는 중이라 vitest 워커가 굶은 자리다
+(CLAUDE.md 메모리 `vitest-forks-pool-starves` 와 같은 자리). 관문 자체가
+1,105초 걸린 것도 같은 원인이다.
+
+**㉡ `PrintCheck.test.tsx > 근거가 가리키는 파일은 실재한다` — main 의 결함**
+`middle-dimension-outside: .tmp-orca/chordgap.ts: expected false to be true`
+— 혼자 돌려도 **재현된다**(부하 탓이 아니다). 확인한 것:
+
+| 물음 | 답 |
+|---|---|
+| 그 줄을 넣은 커밋 | `62c3b493` (치수선 트랙) — **내 기준 커밋 `9942a85d` 의 조상** |
+| 내 기준 커밋에도 그 줄이 있나 | **있다** (`git show 9942a85d:…items.ts` 에서 1건) |
+| 내가 `items.ts` 를 건드렸나 | **아니다** (diff 0줄) |
+| `.tmp-orca/` 가 커밋된 적 있나 | **한 번도 없다** (`git rev-list --all --objects` 0건) |
+| 왜 없나 | **`.gitignore:45` 가 막는다** (`git check-ignore -v` 로 확인) |
+
+→ 판정 근거로 **gitignore 된 스크래치 파일**을 적어 두어서, 그 파일이 살아 있는
+**그 워크트리 밖에서는 누구에게나 빨갛다.** 이 저장소가 2026-08-18 에 적은
+「되돌리기 파일이 커밋되는지 `git check-ignore -v` 로 확인하라」와 **같은 부류**다.
+고치지 않았다 — 다른 트랙의 근거 문구이고, `chordgap.ts` 의 내용을 내가 복원할 수
+없다. **치수선 트랙이 근거를 커밋된 자리로 옮기거나 문구로 바꿔야 한다.**
+늘 빨간 관문은 훅을 우회하게 만든다(2026-08-20).
+
 ---
 
 ## 8. 못 잰 것 — 「없다」를 적을 때 무엇을 보고 없다고 했나
