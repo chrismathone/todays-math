@@ -167,7 +167,17 @@ def main() -> int:
 
     orig = io.open(path, "rb").read()
     base = hashlib.md5(orig).hexdigest()
-    text = orig.decode("utf-8")
+    # 🔴 **줄끝을 맞춘 뒤에 센다.** 전량 하네스는 텍스트 모드로 읽어 `\r\n` 이 `\n` 으로
+    #    접힌 글에 앵커를 대는데, 여기는 **바이트로** 읽는다(원복을 바이트로 하려고).
+    #    그러면 **여러 줄짜리 앵커가 CRLF 작업본에서만 0개**가 되어 「코드가 움직였다」로
+    #    오판한다 — 목록은 한 벌인데 **대는 글이 두 벌**이던 자리다.
+    #    2026-08-30 실측: `git checkout HEAD -- <파일>` 이 autocrlf 로 CRLF 를 되살리자
+    #    새 변이 여덟 중 **셋**이 그렇게 막혔다(그 전 실행에서는 prettier 가 LF 로
+    #    써 둬서 같은 앵커가 멀쩡히 물었다 — **파일은 그대로인데 판정만 달라졌다**).
+    #    막히는 쪽이라 조용히 틀리진 않지만, 「판정 못 함」이 「앵커가 죽었다」로 읽힌다.
+    #    ⚠️ 원복은 여전히 **`orig` 바이트 그대로**다 — 줄끝을 되돌리는 것은 적용 쓰기뿐이다.
+    crlf = b"\r\n" in orig
+    text = orig.decode("utf-8").replace("\r\n", "\n")
 
     # ⑴ 앵커가 정확히 하나인가 — 아니면 판정을 **거부**한다
     cnt = text.count(old)
@@ -197,7 +207,10 @@ def main() -> int:
         print("⛔ 기준 산출물을 못 얻었다 — 판정하지 않는다")
         return 3
 
-    io.open(path, "wb").write(text.replace(old, new, 1).encode("utf-8"))
+    mutated = text.replace(old, new, 1)
+    if crlf:
+        mutated = mutated.replace("\n", "\r\n")
+    io.open(path, "wb").write(mutated.encode("utf-8"))
     verdict = None
     fails: list[str] = []
     try:
