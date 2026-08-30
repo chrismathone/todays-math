@@ -254,43 +254,36 @@ export function sweep(seeds = SEEDS): { rows: Row[]; failed: string[] } {
 /** 직전 `loadedFromLedger()` 가 되돌림 목록으로 **실제로 뺀** 행 수. 눈금이 이것을 본다. */
 export let lastRevertHits = 0;
 
-/** 적재 원장에서 «지면에 실제로 나간 유형 키 → 행 수» 를 되찾는다. */
-export function loadedFromLedger(): Map<string, number> {
-  const dir = path.join(REPO, "docs", "planning", "tracks", "reports");
-  const removed = new Set<string>();
-  for (const name of LEDGER_REVERTS) {
-    const d = JSON.parse(
-      readFileSync(path.join(dir, `${name}.json`), "utf-8"),
-    ) as {
-      rows: { problemId: string }[];
-    };
-    for (const r of d.rows) removed.add(r.problemId);
-  }
-  const out = new Map<string, number>();
+export type LedgerRow = { externalId: string; problemId: string };
+
+/**
+ * 원장 행 → «유형 키 → 행 수».
+ *
+ * 🔴 **파일 읽기와 갈라 놓았다.** 붙여 두면 「engine-mid 인데 못 읽은 행」 가드를
+ *    시험할 방법이 없다 — 오늘 원장에 그런 행이 0개라 그 줄을 지워도 눈금이 초록이었다
+ *    (변이가 짚었다). 순수 함수로 빼면 눈금이 **일부러 깨진 행**을 먹여 볼 수 있다.
+ *    「가드를 새로 쓰면 일부러 걸리는 입력을 하나 넣어 빨개지는지 보라」(2026-08-21).
+ */
+export function countMiddleRows(
+  added: readonly LedgerRow[],
+  removedIds: ReadonlySet<string>,
+): { byKey: Map<string, number>; revertHits: number } {
+  const byKey = new Map<string, number>();
   const pat = /^engine-mid:(.+?)\|s\d+\|v\d+(?:\|.+)?$/;
   let bad = 0;
-  // 되돌림 목록이 **실제로 무엇을 뺐나**. 0 이면 그 목록은 아무 일도 안 한 것이고,
-  // 그러면 「되돌린 것을 뺐다」는 이 함수의 계약이 검사되지 않은 채로 남는다.
-  lastRevertHits = 0;
-  for (const name of LEDGERS) {
-    const d = JSON.parse(
-      readFileSync(path.join(dir, `${name}.json`), "utf-8"),
-    ) as {
-      rows: { externalId: string; problemId: string }[];
-    };
-    for (const r of d.rows) {
-      if (removed.has(r.problemId)) {
-        lastRevertHits += 1;
-        continue;
-      }
-      const m = pat.exec(r.externalId);
-      if (!m) {
-        // 초등 행(engine-elem:)은 이 자의 몫이 아니다 — 조용히 버리지 않고 센다.
-        if (r.externalId.startsWith("engine-mid:")) bad += 1;
-        continue;
-      }
-      out.set(m[1]!, (out.get(m[1]!) ?? 0) + 1);
+  let revertHits = 0;
+  for (const r of added) {
+    if (removedIds.has(r.problemId)) {
+      revertHits += 1;
+      continue;
     }
+    const m = pat.exec(r.externalId);
+    if (!m) {
+      // 초등 행(engine-elem:)은 이 자의 몫이 아니다 — 조용히 버리지 않고 센다.
+      if (r.externalId.startsWith("engine-mid:")) bad += 1;
+      continue;
+    }
+    byKey.set(m[1]!, (byKey.get(m[1]!) ?? 0) + 1);
   }
   if (bad > 0) {
     throw new Error(
@@ -298,7 +291,25 @@ export function loadedFromLedger(): Map<string, number> {
         ` 이 자가 조용히 0을 내지 않게 던진다(적재기 load-engine-problems.ts 를 보라).`,
     );
   }
-  return out;
+  return { byKey, revertHits };
+}
+
+/** 적재 원장에서 «지면에 실제로 나간 유형 키 → 행 수» 를 되찾는다. */
+export function loadedFromLedger(): Map<string, number> {
+  const dir = path.join(REPO, "docs", "planning", "tracks", "reports");
+  const read = (name: string) =>
+    (
+      JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf-8")) as {
+        rows: LedgerRow[];
+      }
+    ).rows;
+  const removed = new Set<string>();
+  for (const name of LEDGER_REVERTS)
+    for (const r of read(name)) removed.add(r.problemId);
+  const added = LEDGERS.flatMap(read);
+  const got = countMiddleRows(added, removed);
+  lastRevertHits = got.revertHits;
+  return got.byKey;
 }
 
 /* ══════════════════════ 눈금 ══════════════════════ */
@@ -470,6 +481,13 @@ function gauges(): Gauge[] {
     true,
   ]);
   g.push([
+    "꼴 — 수식은 통째로 접는다 (문자만 다른 두 발문은 같은 꼴)",
+    () =>
+      frameOf("다음 식을 전개하시오.\n$(x+3)(x+5)$") ===
+      frameOf("다음 식을 전개하시오.\n$(y-7)(y+2)$"),
+    true,
+  ]);
+  g.push([
     "꼴 — 수식 **밖**의 수도 지운다 (이 줄이 없으면 위 치환은 장식이다)",
     () =>
       frameOf("$4$장이 아니라 4장의 카드") ===
@@ -522,6 +540,35 @@ function gauges(): Gauge[] {
       loadedFromLedger();
       return lastRevertHits === 90;
     },
+    true,
+  ]);
+  g.push([
+    "원장 — **못 읽은 engine-mid 행이 있으면 던진다** (일부러 깨진 행을 먹인다)",
+    () => {
+      try {
+        countMiddleRows(
+          [{ externalId: "engine-mid:새모양-키", problemId: "p1" }],
+          new Set(),
+        );
+        return false;
+      } catch {
+        return true;
+      }
+    },
+    true,
+  ]);
+  g.push([
+    "원장 — 초등 행은 조용히 건너뛴다 (던지면 이 자가 초등을 물게 된다)",
+    () =>
+      countMiddleRows(
+        [
+          {
+            externalId: "engine-elem:초5|1-1|1-1-1|f1|단답형|s1",
+            problemId: "p2",
+          },
+        ],
+        new Set(),
+      ).byKey.size === 0,
     true,
   ]);
   g.push([
