@@ -341,3 +341,32 @@ CLAUDE.md 2026-08-27·08-30 의 「엔진을 고친 것과 적재본을 고친 �
 곁가지 둘: 이 워크트리는 `.husky/_` 가 없어 **훅이 조용히 안 돌고 있었다**(메인에서 복사 →
 빈 커밋으로 lint-staged 가 실제로 도는 것을 확인). 그리고 `prisma generate` 가 안 돌아
 **모든 dev 페이지가 500**이었다(내 화면 문제가 아니었다).
+
+---
+
+## 8. 🔴 리드에게 — 관문이 **내 것이 아닌 이유로** 빨갛다
+
+`npm run test` 결과: **326파일 / 13,345 tests 중 1 failed.**
+
+```
+FAIL src/__tests__/components/PrintCheck.test.tsx > 근거가 가리키는 파일은 실재한다
+AssertionError: middle-dimension-outside: .tmp-orca/chordgap.ts: expected false to be true
+```
+
+**내 변경 탓이 아니다** — 근거 셋:
+
+1. `git diff --name-only 9942a85d..HEAD` = 내가 더한 **새 파일 3개뿐**이다
+   (`tier-bench-g5.md` · `census-tier-frames-g5.ts` · `dev/tier-bench/g5/page.tsx`).
+   `src/app/dev/print-check/items.ts` 는 **건드리지 않았다.**
+2. 그 항목은 `62c3b493`(2026-08-30, 도형 세션)이 넣었다 — `git log -S'.tmp-orca/chordgap.ts'`.
+3. 내 커밋은 파일을 **더하기만** 하므로, 되돌려도 `.tmp-orca/chordgap.ts` 가 생기지 않는다.
+   즉 기준 커밋에서도 똑같이 빨갛다.
+
+**뿌리**: `.tmp-orca/` 는 **`.gitignore` 에 없는데도** 그 파일이 커밋되지 않았다
+(`git check-ignore -v .tmp-orca` → 무시 안 됨 / `ls -d .tmp-orca` → 없음).
+근거가 **그 세션의 컴퓨터에만** 있다 — CLAUDE.md 2026-08-18 「되돌리기가 이 컴퓨터에만
+있었다」와 같은 자리이고, 이번에는 **관문이 그것을 잡았다.**
+
+⚠️ **늘 우는 가드는 꺼진다**(2026-08-20). 지금 이 저장소를 받는 모든 세션이 빨간 관문을
+보게 되므로 병합 전에 정리가 필요하다. 고치는 길은 둘 — 그 파일을 커밋하거나,
+`items.ts` 의 근거 문자열을 커밋된 자리로 바꾸거나. **그 세션의 몫이라 나는 안 건드렸다.**
