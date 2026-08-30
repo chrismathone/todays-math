@@ -14020,7 +14020,12 @@ function w2Two(kind: "proper" | "mixed"): W2TwoTask[] {
         if (p2[0] <= 0 || o2[0] <= 0) continue;
         if (!holds(p2) || !holds(o2)) continue;
         if (p2[1] > 24 || o2[1] > 24) continue;
-        if (w2eq(o1, o2)) continue; // 겹치면 답이 둘이 된다
+        // 🔴 **「다른 후보 둘이 겹치면 버린다」는 안 건다 — 걸 수 없다.**
+        //    변이가 그것을 「산출물이 그대로다」로 되돌려 줬고, 재 보니 참이다:
+        //    `o1 = a + 2d1 > a > a - 2d2 = o2` 라 **겹칠 수가 없다.**
+        //    죽은 줄을 남겨 두면 다음 사람이 「여기가 답의 유일성을 지킨다」고 읽는다.
+        //    유일성을 실제로 지키는 것은 이 부등식이고, 시험이 `both.length === 1` 로
+        //    **산출물에서** 다시 센다(`elemTiersG5W2` ⑵).
         if (w2eq(p1, p2) || w2eq(d1, d2)) continue;
         if (w2eq(a, p1) || w2eq(a, p2) || w2eq(a, d1) || w2eq(a, d2)) continue;
         out.push({ a, p1, d1, o1, p2, d2, o2 });

@@ -885,10 +885,18 @@ G5_MUTS = [
         "      if (!holds(p1) || !holds(o1)) continue;",
         "      if (!holds(p1)) continue;",
     ),
+    # ⚠️ 여기 있던 「두 조건의 다른 후보가 겹쳐도 통과」는 **판정 거부**(산출물이 그대로)
+    #    를 냈고, 그 거부가 옳았다 — `o1 = a+2d1 > a > a-2d2 = o2` 라 겹칠 수가 없다.
+    #    죽은 줄이었으므로 생성기에서 **지웠고**, 그 자리에 실제로 무는 둘을 넣는다.
     (
-        "[물결2 1-5 심화상] 두 조건의 다른 후보가 겹쳐도 통과 (답이 둘)",
-        "        if (w2eq(o1, o2)) continue; // 겹치면 답이 둘이 된다",
-        "        if (w2eq(o1, o2) && false) continue; // 변이",
+        "[물결2 1-5 심화상] 둘째 조건의 다른 후보가 성질을 안 만족해도 통과",
+        "        if (!holds(p2) || !holds(o2)) continue;",
+        "        if (!holds(p2)) continue;",
+    ),
+    (
+        "[물결2 1-5 심화상] 답이 첫째 조건의 «다른 후보»다",
+        "  return makeDeep(unit, content(t), expr(L(t.a)), [",
+        "  return makeDeep(unit, content(t), expr(L(t.o1)), [",
     ),
     (
         "[물결2 1-6-1 심화중] 답이 «다른 붙이기»의 긴 변이다",
