@@ -7847,6 +7847,13 @@ function ballKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
  * `page` 는 발문의 `$…$` 안에 찍힐 수 전부(정수), `answer` 는 답이다.
  * 순방향으로 닿거나 답이 지면에 그대로 있으면 **후보에서 뺀다.**
  */
+/**
+ * 🔴 **`pad` 는 반드시 $1$ 부터 돈다.** 아래 풀들은 구간을 `값 ± pad` 로 만드는데,
+ * `pad` 를 $3$ 부터 돌리면 「구간 안에 후보가 둘 이상인가」 가드가 **죽은 코드**가 된다
+ * (구간 폭이 늘 $6$ 이상이라 조건이 참일 수가 없다). 실제로 그렇게 짰다가 변이 시험이
+ * 「⛔ 산출물이 그대로다」로 잡아냈다 — 가드는 있는데 **아무것도 안 거르고 있었다.**
+ * 좁은 `pad` 를 **들여보내고 가드가 거르게** 두어야 그 가드를 망가뜨려 볼 수 있다.
+ */
 function backsolveSafe(page: readonly number[], answer: number): boolean {
   const nums = page.map((v) => rat(v));
   const ans = rat(answer);
@@ -7880,7 +7887,7 @@ for (let s = 3; s <= 8; s += 1)
     for (const n of TIER_SIDES) {
       const area = one * n;
       if (area > 400) continue; // 규모는 축이 아니다 (D-115 ⑽③)
-      for (let pad = 3; pad < one; pad += 1) {
+      for (let pad = 1; pad < one; pad += 1) {
         const lo = area - pad;
         const up = area + pad;
         if (lo <= 0) continue;
@@ -7967,7 +7974,7 @@ const PRISM_NET_MID: { s: number; lo: number; up: number; n: number }[] = [];
 for (let s = 4; s <= 9; s += 1)
   for (const n of TIER_SIDES) {
     const per = s * n;
-    for (let pad = 2; pad < s; pad += 1) {
+    for (let pad = 1; pad < s; pad += 1) {
       const lo = per - pad;
       const up = per + pad;
       if (lo <= 0 || up - lo < 4) continue;
@@ -8015,7 +8022,7 @@ for (let s = 4; s <= 10; s += 1)
     for (const n of TIER_SIDES) {
       const area = one * n;
       if (area > 400) continue;
-      for (let pad = 3; pad < one; pad += 1) {
+      for (let pad = 1; pad < one; pad += 1) {
         const lo = area - pad;
         const up = area + pad;
         if (lo <= 0 || up - lo < 5) continue;
@@ -8181,7 +8188,7 @@ for (let w = 2; w <= 8; w += 1)
     for (let h = 3; h <= 9; h += 1) {
       const s = base + per * h;
       if (s > 500) continue;
-      for (let pad = 4; pad < per; pad += 1) {
+      for (let pad = 1; pad < per; pad += 1) {
         const lo = s - pad;
         const up = s + pad;
         if (lo <= base || up - lo < 6) continue;
@@ -8472,7 +8479,7 @@ for (let am = 1; am <= 3; am += 1) {
       if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만
       const a = w / g;
       if (a < 2 || a > 60) continue;
-      for (let pad = 2; pad < b; pad += 1) {
+      for (let pad = 1; pad < b; pad += 1) {
         const lo = x - pad;
         const up = x + pad;
         if (lo <= 0 || up - lo < 4) continue;
@@ -8525,7 +8532,7 @@ for (let a = 2; a <= 8; a += 1)
     for (let k = 3; k <= 12; k += 1) {
       const sum = s * k;
       if (sum > 130) continue;
-      for (let pad = 2; pad < s; pad += 1) {
+      for (let pad = 1; pad < s; pad += 1) {
         const lo = sum - pad;
         const up = sum + pad;
         if (lo <= 0 || up - lo < 4) continue;
@@ -8608,7 +8615,7 @@ for (let a = 2; a <= 6; a += 1)
       const part = b * k;
       const total = (a + b) * k;
       if (total > 140) continue;
-      for (let pad = 2; pad < b; pad += 1) {
+      for (let pad = 1; pad < b; pad += 1) {
         const lo = part - pad;
         const up = part + pad;
         if (lo <= 0 || up - lo < 4) continue;
