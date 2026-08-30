@@ -13,6 +13,7 @@ import {
 import type { ElemTierMap } from "./difficulty";
 import { expr, n, polyName, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
+import { forwardReachable, pageNumbers, readRat } from "./forwardReach";
 import { fig, make, makeDeep } from "./make";
 import { fmtFrac, gcd } from "./math";
 import { intBetween, pick } from "./rng";
@@ -3105,6 +3106,412 @@ function tier37Top(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ══════ 2-3 · 2-6 · 2-1 난이도 확대 — 심화중·심화상 (D-113 · D-115, 물결 2) ══════
+ *
+ * 2026-08-31. 파일럿(1-3)에 이어 **세 대단원**을 채운다. 고른 까닭·비운 자리·못 본 것은
+ * `docs/planning/tracks/reports/tier-fill-g4-w2.md` 에 있다.
+ *
+ * ## 굳힘 축을 대단원마다 **하나씩 예약**했다 (토대 17 §2 권고)
+ *
+ * ```
+ * 2-3 소수     자릿값      — 소수 몇 자리 수인가 · 어느 자리 숫자가 무엇인가 · 받아올림/받아내림
+ * 2-6 다각형   자연수      — 변의 수는 자연수 · 나누어떨어져야 한다
+ * 2-1 분수     진분수 조건 — 분자 < 분모 · 대분수의 받아올림/받아내림
+ * ```
+ *
+ * 파일럿 1-3 이 쓴 「곱의 자릿수」·「나머지는 나누는 수보다 작다」와 겹치지 않는다.
+ *
+ * ## 🔴 「잘못 …했더니」를 한 갈래도 안 쓴다
+ *
+ * 초4 심화하 62자리 중 **11자리(17.7%)** 가 이미 그 문형이다(토대 §2-㉠, 실측). 그래서
+ * 마디를 여는 방식을 **「무엇을 안 말해 주는가」**로 바꿨다 — 어느 자리 숫자인지 ·
+ * 받아올림이 있었는지 · 한 변이 얼마인지 · 어느 쪽이 큰지.
+ *
+ * ## 중과 상을 가르는 자리 (D-115 ⑾) — 이 회차의 실물이 그것을 보인다
+ *
+ * `2-1-1 심화중` 과 `2-1-2 심화상` 은 **뼈대가 같다**(합에서 분자 쌍을 되짚어 만든다).
+ * 갈리는 것은 **해설이 밟는 길**이다 — 중은 쌍의 «작은 쪽 값»만 보고 걸러 내고(끝까지
+ * 계산하지 않는다), 상은 쌍마다 **실제로 빼 보아야** 하나가 남는다.
+ *
+ * ## 밭은 손으로 고르지 않고 **전수로 만든다**
+ *
+ * 「하나만 남는가」를 사람이 눈으로 고르면 반드시 둘 남는 자리가 샌다(파일럿과 같은 규율).
+ * 아래 `*_FIELD` 는 전부 모듈이 뜰 때 전수로 만들고, **하나만 남는 자리만** 담는다.
+ */
+
+/**
+ * **반증 ⑥ 을 만든 뒤 «지면을 읽어» 다시 잰다** — 예측하지 않는다.
+ *
+ * `forwardReach.ts` 머리말이 그렇게 못 박았다: 생성기는 제가 고른 수만 알고 판정기는
+ * 발문에 실제로 찍힌 수를 전부 본다 — **둘이 갈리면 판정기가 옳다.** 그래서 여기서는
+ * 예측하지 말고 **다 만든 뒤** 그 발문을 그대로 읽어 재고, 닿으면 다시 뽑는다.
+ *
+ * 🔴 이 자가 무는 것은 대개 **산술 우연**이다(초4 실측: 진분수 두 개를 «곱하면» 답이
+ * 나오는 자리 — 초4 는 분수의 곱셈을 배우지도 않는다). 그래도 거른다: 판정기의 ⑥ 줄이
+ * 「세어 찍되 막지 않는다」로 열려 있으므로, 여기서 안 거르면 다음 사람이 그 수를
+ * **진짜 결함으로 읽고** 시간을 태운다(그리고 거짓 경보는 가드를 끈다).
+ *
+ * ⚠️ 답을 `readRat` 이 **못 읽으면**(「칠각형」·「$3$개, $5$개」) 이 축 밖이므로 그대로 둔다.
+ *    0 이 「깨끗」인지 「못 셈」인지 갈리지 않는 자리이고, 그 사실을 여기 적어 둔다.
+ * ⚠️ 다시 뽑아도 안 되면 **마지막 것을 그대로 낸다** — 조용히 던지면 그 씨앗의 갈래가
+ *    통째로 사라진다(`probe-elem-throw` 가 그것을 따로 본다).
+ */
+function unlessForward(build: () => ElemProblem, tries = 40): ElemProblem {
+  let made = build();
+  for (let i = 0; i < tries; i += 1) {
+    // 🔴 `$` 를 **전부** 걷는다 — 판정기가 그렇게 읽는다
+    //    (`probe-elem-tier-backsolve.ts:76`). 앞뒤만 걷으면 `$7$개` 가 `7$개` 로 남아
+    //    `readRat` 이 null 을 내고, 그러면 이 거르개가 **조용히 아무것도 안 한다.**
+    //    처음 판이 정확히 그랬고 2-6-4 아홉 자리가 그대로 새어 나갔다.
+    const answer = readRat(made.answer.replace(/\$/g, "").trim());
+    if (!answer) return made;
+    if (!forwardReachable(pageNumbers(made.content), answer)) return made;
+    made = build();
+  }
+  return made;
+}
+
+/* ─────────────────── 2-3 소수의 덧셈과 뺄셈 — 확대 갈래 ─────────────────── */
+
+/**
+ * **2-3-4 심화중의 밭** — 「어떤 소수 한 자리 수 + `c` 의 합이 `L`~`L+1` 사이」에서
+ * 어떤 수가 아홉 개로만 좁혀지고, 「일의 자리 숫자와 소수 첫째 자리 숫자의 합」이
+ * 그중 **하나**를 고르는 자리.
+ *
+ * 하나만 남는 까닭 — 창이 정수 경계를 **한 번만** 넘으므로 아래쪽(일의 자리 `W`)의
+ * 자리 숫자 합은 `W+t0+1 … W+9`, 위쪽(`W+1`)은 `W+1 … W+t0` 로 **서로 겹치지 않는다.**
+ * 그래서 `s` 를 `W+2 … W+9` 에서 고르면 답이 반드시 하나다. `s = W+1` 만 뺀다 —
+ * 그때 답이 `(W+1).0` 이라 소수 한 자리 수가 아니다.
+ */
+const DEC1_SUM_FIELD: { c: number; L: number; s: number; v: number }[] =
+  (() => {
+    const out: { c: number; L: number; s: number; v: number }[] = [];
+    for (let c = 11; c <= 59; c += 1) {
+      if (c % 10 === 0) continue;
+      for (let L = 5; L <= 13; L += 1) {
+        const base = L * 10 - c;
+        if (base <= 9) continue;
+        const w = Math.floor(base / 10);
+        const t0 = base % 10;
+        for (let s = w + 2; s <= w + 9; s += 1) {
+          const v =
+            s - w >= t0 + 1 ? w * 10 + (s - w) : (w + 1) * 10 + (s - w - 1);
+          // 답이 지면에 그대로 있으면 다른 축의 결함이 된다(`answerPrintedOnPage`).
+          if (v === c) continue;
+          out.push({ c, L, s, v });
+        }
+      }
+    }
+    return out;
+  })();
+
+/**
+ * **2-3-5 심화중의 밭** — 되짚는 자리가 2-3-4 와 **반대**다(그쪽은 더해지는 수,
+ * 이쪽은 **빼는 수**). 굳히는 조건도 «합»이 아니라 «차»다 — 「소수 첫째 자리 숫자가
+ * 일의 자리 숫자보다 `k` 크다」.
+ *
+ * ⚠️ 이쪽은 2-3-4 처럼 «반드시 하나»가 보장되지 않는다. 위·아래 두 가지가 **둘 다**
+ *    조건을 만족할 수 있어서다. 그래서 전수로 세어 **하나인 자리만** 담는다.
+ */
+const DEC1_DIFF_FIELD: { a: number; L: number; k: number; v: number }[] =
+  (() => {
+    const out: { a: number; L: number; k: number; v: number }[] = [];
+    for (let a = 51; a <= 98; a += 1) {
+      if (a % 10 === 0) continue;
+      for (let L = 1; L <= 7; L += 1) {
+        const base = a - (L + 1) * 10;
+        if (base <= 0) continue;
+        for (let k = 1; k <= 8; k += 1) {
+          const hits: number[] = [];
+          for (let j = 1; j <= 9; j += 1) {
+            const v = base + j;
+            const w = Math.floor(v / 10);
+            const t = v % 10;
+            if (t === 0) continue;
+            if (t - w === k) hits.push(v);
+          }
+          if (hits.length !== 1) continue;
+          const v = hits[0]!;
+          if (v === a) continue;
+          out.push({ a, L, k, v });
+        }
+      }
+    }
+    return out;
+  })();
+
+/**
+ * **2-3-1 5단 심화중 — 「$0.01$이 몇 개」로 되짚은 뒤 한 자리 숫자가 안 굳는다.**
+ *
+ * 심화하는 자리마다 조건을 하나씩 주어 **네 자리가 다 굳는다.** 여기서는 창이
+ * 자연수 부분·소수 첫째·둘째까지만 굳히고 **소수 셋째 자리 숫자는 열려 있다** —
+ * 그것을 굳히는 것이 「자리 숫자끼리의 관계」라는 이 소단원의 성질이다.
+ * 답은 다시 「$0.001$이 몇 개」로 되짚어 물으므로 지면에 그대로 있지 않다.
+ */
+function tier231Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier231MidRaw(unit, rng));
+}
+
+function tier231MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 9);
+  const s = intBetween(rng, 2, 9);
+  const a = intBetween(rng, 1, s - 1);
+  const b = s - a;
+  const m = w * 100 + a * 10 + b;
+  const value = w * 1000 + a * 100 + b * 10 + s;
+  return makeDeep(
+    unit,
+    `어떤 소수 세 자리 수가 있습니다. 이 수는 ${n("0.01")}이 ${n(m)}개인 수보다 크고 ` +
+      `${n("0.01")}이 ${n(m + 1)}개인 수보다 작습니다. 이 수의 소수 셋째 자리 숫자는 ` +
+      `소수 첫째 자리 숫자와 소수 둘째 자리 숫자를 더한 것과 같습니다. ` +
+      `이 수는 ${n("0.001")}이 몇 개인 수입니까?`,
+    `${n(value)}개`,
+    [
+      `${n("0.01")}이 ${n(m)}개인 수는 ${n(dec2(m))}이고 ${n(m + 1)}개인 수는 ` +
+        `${n(dec2(m + 1))}입니다. 그 사이에 있는 소수 세 자리 수는 자연수 부분이 ` +
+        `${n(w)}, 소수 첫째 자리 숫자가 ${n(a)}, 소수 둘째 자리 숫자가 ${n(b)}이고 ` +
+        `소수 셋째 자리 숫자만 정해지지 않습니다.`,
+      `소수 셋째 자리 숫자는 ${expr(`${a}+${b}=${s}`)} 이므로 어떤 수는 ` +
+        `${n(dec3(value))}입니다.`,
+      `${n(1)}은 ${n("0.001")}이 ${n(1000)}개, ${n("0.1")}은 ${n(100)}개, ` +
+        `${n("0.01")}은 ${n(10)}개이므로 ` +
+        `${expr(`${w * 1000}+${a * 100}+${b * 10}+${s}=${value}`)} 이고 ${n(value)}개입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-3-3 5단 심화중 — 소수점을 «몇 자리» 옮겼는지 안 말한다.**
+ *
+ * 방향은 주고 칸 수를 안 주면 되짚기 후보가 **둘**이고, 「어떤 수가 소수 한 자리
+ * 수인가 두 자리 수인가」라는 자릿수 성질이 그 하나를 떨어뜨린다 — 「둘 중 고르기」라
+ * 심화중의 정의 그 자체다(만들어 견주기가 아니다).
+ *
+ * ⚠️ **`make` 를 쓴다(`makeDeep` 이 아니다).** 소수점 이동은 이 소단원의 약속상
+ *    **식으로 적지 않는다** — 「$2.7$의 $100$배」를 `2.7\times100` 으로 쓰면 소수의
+ *    곱셈(초5)이 지면에 뜨고 `probe-elem-rules` 의 R3 이 문다. 그래서 표준 4단
+ *    (`tier233Deep`)도 `make` 다. 계산식 두 개를 요구하는 D-72 뼈대는 이 소단원에서
+ *    **구조적으로 못 세운다** — 걸음은 셋으로 두되 가드는 걸지 않는다.
+ */
+function tier233Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier233MidRaw(unit, rng));
+}
+
+function tier233MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 1, 9);
+  const d2 = intBetween(rng, 1, 9);
+  const shown = `0.${d1}${d2}`;
+  const one = `${d1}.${d2}`;
+  const two = d1 * 10 + d2;
+  const asNatural = intBetween(rng, 0, 1) === 0;
+  const answer = asNatural ? two * 100 : two * 10;
+  return make(
+    unit,
+    `어떤 수의 소수점을 왼쪽으로 몇 자리 옮겼더니 ${josaNum(shown, "이", "가")} ` +
+      `되었습니다. 어떤 수는 ${asNatural ? "두 자리 수" : "소수 한 자리 수"}입니다. ` +
+      `어떤 수의 ${n(100)}배는 얼마입니까?`,
+    n(answer),
+    `소수점을 왼쪽으로 한 자리 옮겨 ${josaNum(shown, "이", "가")} 되는 수는 ` +
+      `${n(one)}이고, 두 자리 옮겨 ${josaNum(shown, "이", "가")} 되는 수는 ${n(two)}입니다. ` +
+      `어떤 수는 ${asNatural ? "두 자리 수" : "소수 한 자리 수"}이므로 ` +
+      `${josaNum(asNatural ? two : one, "이", "가")} 됩니다. ` +
+      `${n(100)}배를 하면 소수점이 오른쪽으로 두 자리 옮겨지므로 ${n(answer)}입니다.`,
+  );
+}
+
+/**
+ * **2-3-3 6단 심화상 — 방향도 칸 수도 안 말한다.**
+ *
+ * 되짚기가 후보 **넷**($100$배·$10$배·$\frac1{10}$·$\frac1{100}$)을 만들고, 성질만으로는
+ * 어느 것인지 안 굳는다. 넷을 **실제로 $100$배 해 보아야** 자릿수 조건과 견줄 수 있다.
+ * 후보를 발문이 주지 않는다 ✓ · 남은 하나가 무리의 **극값이 아니다** ✓
+ * (넷을 크기순으로 놓으면 답은 둘째 또는 셋째다).
+ */
+function tier233Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier233TopRaw(unit, rng));
+}
+
+function tier233TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const d1 = intBetween(rng, 1, 9);
+  const d2 = intBetween(rng, 1, 9);
+  const shown = `${d1}.${d2}`;
+  const two = d1 * 10 + d2;
+  // 후보 넷 — 작은 것부터. 지면에 나갈 소수는 세 자리를 안 넘는다(R2).
+  const cands = [`0.0${d1}${d2}`, `0.${d1}${d2}`, `${two}`, `${two}0`];
+  const times = [shown, `${two}`, `${two}00`, `${two}000`];
+  const wantTwoDigit = intBetween(rng, 0, 1) === 0;
+  const idx = wantTwoDigit ? 1 : 2;
+  return make(
+    unit,
+    `어떤 수의 소수점을 옮겼더니 ${josaNum(shown, "이", "가")} 되었습니다. ` +
+      `어느 쪽으로 몇 자리 옮겼는지는 알려 주지 않습니다. 어떤 수의 ${n(100)}배가 ` +
+      `${wantTwoDigit ? "두" : "네"} 자리 수일 때 어떤 수를 구하시오.`,
+    n(cands[idx]!),
+    `소수점을 옮겨 ${josaNum(shown, "이", "가")} 되는 수는 ` +
+      `${cands.map((v) => n(v)).join(", ")} 네 가지입니다. ` +
+      `각각 ${n(100)}배를 하면 ${times.map((v) => n(v)).join(", ")} 입니다. ` +
+      `이 가운데 ${wantTwoDigit ? "두" : "네"} 자리 수는 ${n(times[idx]!)} 하나이므로 ` +
+      `어떤 수는 ${n(cands[idx]!)}입니다.`,
+  );
+}
+
+/**
+ * **2-3-4 5단 심화중 — 합이 «범위로만» 주어져 어떤 수가 안 굳는다.**
+ * 굳히는 것은 「일의 자리 숫자와 소수 첫째 자리 숫자의 합」이라는 자릿값 조건이고,
+ * 후보 아홉을 **끝까지 더해 보지 않고** 자리 숫자만 보아 걸러 낸다(D-115 ⑾ → 중).
+ */
+function tier234Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier234MidRaw(unit, rng));
+}
+
+function tier234MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, DEC1_SUM_FIELD);
+  const base = f.L * 10 - f.c;
+  const w = Math.floor(base / 10);
+  const lowTenth = f.s - w;
+  const highTenth = f.s - w - 1;
+  return makeDeep(
+    unit,
+    `어떤 소수 한 자리 수에 ${josaNum(dec1(f.c), "을", "를")} 더했더니 합이 ` +
+      `${josaNum(f.L, "보다", "보다")} 크고 ${josaNum(f.L + 1, "보다", "보다")} ` +
+      `작았습니다. 어떤 수의 일의 자리 숫자와 소수 첫째 자리 숫자의 합이 ` +
+      `${josaNum(f.s, "일", "일")} 때 어떤 수를 구하시오.`,
+    n(dec1(f.v)),
+    [
+      `합에서 더한 수를 빼면 어떤 수이므로, 어떤 수는 ` +
+        `${expr(`${f.L}-${dec1(f.c)}=${dec1(base)}`)} 보다 크고 ` +
+        `${expr(`${f.L + 1}-${dec1(f.c)}=${dec1(base + 10)}`)} 보다 작습니다.`,
+      `그러므로 어떤 수의 일의 자리 숫자는 ${n(w)} 또는 ${n(w + 1)}입니다. ` +
+        `${n(w)}이면 소수 첫째 자리 숫자가 ${n(lowTenth)}이고, ${n(w + 1)}이면 ` +
+        `${n(highTenth)}입니다.`,
+      `이 가운데 위 범위에 드는 것은 ${n(dec1(f.v))} 하나이므로 어떤 수는 ` +
+        `${n(dec1(f.v))}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-3-5 5단 심화중 — 되짚는 자리가 2-3-4 와 반대다.**
+ * 그쪽은 «더해지는 수»를, 이쪽은 **«빼는 수»**를 되짚는다. 굳히는 조건도 자리 숫자의
+ * «합»이 아니라 «차»다 — 한 대단원 안에서 두 갈래가 같은 문장이 되지 않게 갈랐다.
+ */
+function tier235Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier235MidRaw(unit, rng));
+}
+
+function tier235MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, DEC1_DIFF_FIELD);
+  const base = f.a - (f.L + 1) * 10;
+  return makeDeep(
+    unit,
+    `${josaNum(dec1(f.a), "에서", "에서")} 어떤 소수 한 자리 수를 뺐더니 차가 ` +
+      `${josaNum(f.L, "보다", "보다")} 크고 ${josaNum(f.L + 1, "보다", "보다")} ` +
+      `작았습니다. 뺀 수의 소수 첫째 자리 숫자가 일의 자리 숫자보다 ` +
+      `${n(f.k)} 클 때 뺀 수를 구하시오.`,
+    n(dec1(f.v)),
+    [
+      `차가 클수록 뺀 수는 작으므로, 뺀 수는 ` +
+        `${expr(`${dec1(f.a)}-${f.L + 1}=${dec1(base)}`)} 보다 크고 ` +
+        `${expr(`${dec1(f.a)}-${f.L}=${dec1(base + 10)}`)} 보다 작습니다.`,
+      `그 사이의 소수 한 자리 수 가운데 소수 첫째 자리 숫자가 일의 자리 숫자보다 ` +
+        `${n(f.k)} 큰 수는 ${n(dec1(f.v))} 하나입니다.`,
+      `확인해 보면 ${expr(`${dec1(f.a)}-${dec1(f.v)}=${dec1(f.a - f.v)}`)} 이므로 ` +
+        `차가 범위 안에 듭니다. 뺀 수는 ${n(dec1(f.v))}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-3-6 5단 심화중 — 「받아올림이 있었나」가 마디를 굳힌다.**
+ *
+ * 어떤 수의 **소수 첫째 자리 숫자만** 감춘다. 합의 소수 첫째 자리 숫자를 알아도
+ * 소수 둘째 자리에서 **받아올림이 있었는지**를 먼저 정하지 않으면 그 자리가 안 굳는다 —
+ * 받아올림은 「소수 두 자리 수의 덧셈」이라는 이 소단원의 성질 그 자체다.
+ */
+function tier236Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier236MidRaw(unit, rng));
+}
+
+function tier236MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 5);
+  const b = intBetween(rng, 1, 9);
+  const e = intBetween(rng, 1, 4);
+  const g = intBetween(rng, 1, 9);
+  const carry = b + g >= 10 ? 1 : 0;
+  // 🔴 소수 첫째 자리에서 **다시 받아올림이 나지 않게** 잡는다 — 그래야 해설이
+  //    「$p$ 에서 되짚어 뺀다」로 곧게 서고, 대입해 맞춰 보는 글이 안 된다.
+  const f2 = intBetween(rng, 1, 7 - carry);
+  const a = intBetween(rng, 1, 9 - f2 - carry);
+  const p = a + f2 + carry;
+  const c = e * 100 + f2 * 10 + g;
+  const value = w * 100 + a * 10 + b;
+  const sum = value + c;
+  return makeDeep(
+    unit,
+    `어떤 소수 두 자리 수의 자연수 부분은 ${n(w)}이고 소수 둘째 자리 숫자는 ` +
+      `${n(b)}입니다. 이 수에 ${josaNum(dec2(c), "을", "를")} 더했더니 합의 소수 ` +
+      `첫째 자리 숫자가 ${josaNum(p, "이", "가")} 되었습니다. 어떤 수를 구하시오.`,
+    n(dec2(value)),
+    [
+      `소수 둘째 자리끼리 더하면 ${expr(`${b}+${g}=${b + g}`)} 이므로 소수 첫째 ` +
+        `자리로 ${carry === 1 ? `${n(1)}을 받아올립니다` : "받아올림이 없습니다"}.`,
+      `합의 소수 첫째 자리 숫자는 어떤 수의 소수 첫째 자리 숫자에 ${
+        carry === 1
+          ? `${josaNum(f2, "과", "와")} 받아올린 ${n(1)}을`
+          : josaNum(f2, "을", "를")
+      } 더한 것이므로, 어떤 수의 소수 첫째 자리 숫자는 ` +
+        `${expr(carry === 1 ? `${p}-${f2}-1=${a}` : `${p}-${f2}=${a}`)} 입니다.`,
+      `그러므로 어떤 수는 ${n(dec2(value))}입니다. 확인해 보면 ` +
+        `${expr(`${dec2(value)}+${dec2(c)}=${dec2(sum)}`)} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-3-7 5단 심화중 — 「받아내림이 있었나」가 마디를 굳힌다.**
+ * 2-3-6 의 짝이다. 감추는 자리는 같고 성질이 받아올림에서 **받아내림**으로 바뀐다 —
+ * 소단원 이름이 약속하는 것이 그것이다.
+ */
+function tier237Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier237MidRaw(unit, rng));
+}
+
+function tier237MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const w = intBetween(rng, 1, 3);
+  const b = intBetween(rng, 1, 9);
+  const a = intBetween(rng, 1, 8);
+  const value = w * 100 + a * 10 + b;
+  const bigW = w + intBetween(rng, 1, 4);
+  const bigB = intBetween(rng, 0, 9);
+  const borrow = bigB < b ? 1 : 0;
+  // 🔴 소수 첫째 자리에서 자연수 부분까지 **받아내리지 않게** 잡는다 —
+  //    그래야 해설이 「$p$ 에서 되짚어 뺀다」로 곧게 선다(2-3-6 과 같은 규율).
+  const bigA = intBetween(rng, a + borrow, 9);
+  const big = bigW * 100 + bigA * 10 + bigB;
+  const diff = big - value;
+  const p = bigA - borrow - a;
+  return makeDeep(
+    unit,
+    `${josaNum(dec2(big), "에서", "에서")} 어떤 소수 두 자리 수를 뺐더니 차의 소수 ` +
+      `첫째 자리 숫자가 ${josaNum(p, "이", "가")} 되었습니다. 어떤 수의 자연수 부분은 ` +
+      `${n(w)}이고 소수 둘째 자리 숫자는 ${josaNum(b, "일", "일")} 때 어떤 수를 구하시오.`,
+    n(dec2(value)),
+    [
+      borrow === 0
+        ? `소수 둘째 자리끼리 빼면 ${expr(`${bigB}-${b}=${bigB - b}`)} 이므로 ` +
+          `받아내림이 없습니다.`
+        : `소수 둘째 자리는 ${n(bigB)}에서 ${josaNum(b, "을", "를")} 뺄 수 없어 소수 ` +
+          `첫째 자리에서 ${josaNum(1, "을", "를")} 받아내립니다. ` +
+          `${expr(`${bigB + 10}-${b}=${bigB + 10 - b}`)}`,
+      `그러므로 차의 소수 첫째 자리 숫자는 ${n(bigA - borrow)}에서 어떤 수의 소수 ` +
+        `첫째 자리 숫자를 뺀 것이고, 그 값이 ${josaNum(p, "이", "가")} 되므로 어떤 수의 ` +
+        `소수 첫째 자리 숫자는 ${expr(`${bigA - borrow}-${p}=${a}`)} 입니다.`,
+      `그러므로 어떤 수는 ${n(dec2(value))}입니다. 확인해 보면 ` +
+        `${expr(`${dec2(big)}-${dec2(value)}=${dec2(diff)}`)} 입니다.`,
+    ],
+  );
+}
+
 /* ───────────────────── 1-4 평면도형의 이동 ───────────────────── */
 
 /** 좌우로 뒤집은 것과 위아래로 뒤집은 것이 **다르게** 나오는 조각만 쓴다. */
@@ -5038,29 +5445,37 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier53Apply,
     심화하: tier53Deep,
   },
+  // ── 2-1 분수의 덧셈과 뺄셈 — 확대 둘째 물결(D-113). **심화상은 2-1-2 하나**다:
+  //    덧셈 쪽은 「합이 같은 쌍」을 더해도 서로 구분되지 않아 견줄 것이 생기지 않고,
+  //    대분수 쪽은 후보가 «분자 하나의 구간»이라 조건이 늘 컷으로 닫힌다.
   "초4|2-1-1": {
     연산: tier211Calc,
     기본: tier211Basic,
     응용: tier211Apply,
     심화하: tier211Deep,
+    심화중: tier211Mid,
   },
   "초4|2-1-2": {
     연산: tier212Calc,
     기본: tier212Basic,
     응용: tier212Apply,
     심화하: tier212Deep,
+    심화중: tier212Mid,
+    심화상: tier212Top,
   },
   "초4|2-1-3": {
     연산: tier213Calc,
     기본: tier213Basic,
     응용: tier213Apply,
     심화하: tier213Deep,
+    심화중: tier213Mid,
   },
   "초4|2-1-4": {
     연산: tier214Calc,
     기본: tier214Basic,
     응용: tier214Apply,
     심화하: tier214Deep,
+    심화중: tier214Mid,
   },
   "초4|2-2-1": {
     연산: tier221Calc,
@@ -5092,11 +5507,17 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier225Apply,
     심화하: tier225Deep,
   },
+  // ── 2-3 소수의 덧셈과 뺄셈 — 확대 둘째 물결(D-113).
+  //    🔴 **2-3-2(소수의 크기 비교)는 중·상 둘 다 비운다.** 그 소단원이 약속하는 것은
+  //    「자리마다 차례로 견준다」 하나뿐이라 무엇을 물어도 **컷으로 닫히고**(범위를 주면
+  //    답이 곧 그 범위다), 심화하가 이미 「범위 + 한 자리 고정 → 모두 쓰시오」다.
+  //    위 칸에서 그 꼴을 다시 쓰면 반증 ⑤(「모두」를 지워도 답이 그대로)에 걸린다.
   "초4|2-3-1": {
     연산: tier231Calc,
     기본: tier231Basic,
     응용: tier231Apply,
     심화하: tier231Deep,
+    심화중: tier231Mid,
   },
   "초4|2-3-2": {
     연산: tier232Calc,
@@ -5109,30 +5530,36 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier233Basic,
     응용: tier233Apply,
     심화하: tier233Deep,
+    심화중: tier233Mid,
+    심화상: tier233Top,
   },
   "초4|2-3-4": {
     연산: tier234Calc,
     기본: tier234Basic,
     응용: tier234Apply,
     심화하: tier234Deep,
+    심화중: tier234Mid,
   },
   "초4|2-3-5": {
     연산: tier235Calc,
     기본: tier235Basic,
     응용: tier235Apply,
     심화하: tier235Deep,
+    심화중: tier235Mid,
   },
   "초4|2-3-6": {
     연산: tier236Calc,
     기본: tier236Basic,
     응용: tier236Apply,
     심화하: tier236Deep,
+    심화중: tier236Mid,
   },
   "초4|2-3-7": {
     연산: tier237Calc,
     기본: tier237Basic,
     응용: tier237Apply,
     심화하: tier237Deep,
+    심화중: tier237Mid,
   },
   "초4|2-4-1": {
     연산: tier241Calc,
@@ -5176,17 +5603,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier247Apply,
     심화하: tier247Deep,
   },
+  // ── 2-6 다각형 — 확대 둘째 물결(D-113).
+  //    🔴 **2-6-3(대각선)은 중·상 둘 다 비운다** — 심화하 해설이 이미 대각선 표를
+  //    «만들어 견주므로»(상의 길) 위에 얹으면 사다리가 접힌다.
+  //    2-6-1·2-6-2 는 **심화상만** 비운다 — 후보가 창 안의 정수 둘뿐이라
+  //    「만들어 견주기」가 아니라 「둘 중 고르기」이고 그건 심화중의 정의다.
   "초4|2-6-1": {
     연산: tier261Calc,
     기본: tier261Basic,
     응용: tier261Apply,
     심화하: tier261Deep,
+    심화중: tier261Mid,
   },
   "초4|2-6-2": {
     연산: tier262Calc,
     기본: tier262Basic,
     응용: tier262Apply,
     심화하: tier262Deep,
+    심화중: tier262Mid,
   },
   "초4|2-6-3": {
     연산: tier263Calc,
@@ -5199,6 +5633,8 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier264Basic,
     응용: tier264Apply,
     심화하: tier264Deep,
+    심화중: tier264Mid,
+    심화상: tier264Top,
   },
   "초4|2-5-1": {
     연산: tier251Calc,
@@ -10359,6 +10795,395 @@ function mixedSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
     n(a),
     `색칠한 칸은 ${n(a)}칸입니다.`,
     fracSpec(rng, den, a),
+  );
+}
+
+/* ────────── 2-1 난이도 확대 — 심화중·심화상 (D-113 · D-115, 물결 2) ──────────
+ *
+ * 굳힘 축은 **진분수 조건**(분자 < 분모)과 **대분수의 받아올림·받아내림** 둘이다.
+ * 「$\square+(\square+\text{차})=\text{합}$」 산술은 **안 쓴다** — 토대 §2-㉣ 이
+ * 「합을 나눠 갖기」가 이미 네 대단원 심화하에 있다고 실측으로 짚었다.
+ *
+ * ## 🔴 약분 — 이 대단원의 첫 함정
+ *
+ * `fmtFrac` 이 반드시 `simplify` 를 부르므로 **답이 약분되면 초5(1-4 약분과 통분)가
+ * 지면에 뜬다.** 그래서 아래 밭은 **답의 분자가 분모와 서로소인 자리만** 담는다.
+ * 후보를 늘어놓는 해설 안의 분수(`\frac{2}{8}` 같은 것)는 날 문자열로 적으므로
+ * 약분되지 않는다 — 표준 갈래도 그렇게 쓴다(`$\frac{4}{8}+\frac{3}{8}$`).
+ *
+ * ## 🔴 토대 §2.3-⑶ 의 「2-1 상은 전 분모에서 구성 불가」를 **재서 뒤집었다**
+ *
+ * 그 계산은 「등장하는 분수가 **전부** 기약」을 조건에 넣었는데, 초4 지면에는 약분되지
+ * 않은 분수가 원래 나온다(위). 그 조건을 «답만»으로 바로잡아 다시 세니 `FRAC_TOP_FIELD`
+ * 가 **26자리**다. 근거는 코드가 아니라 밭 자체다 — 비면 그 갈래가 등록조차 안 된다.
+ */
+
+/** 분모가 `den` 인 두 진분수의 분자 쌍 — 합이 `sum`, 서로 다르고 작은 쪽이 앞이다. */
+function numeratorPairs(den: number, sum: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let p = 1; p < sum - p; p += 1) {
+    const q = sum - p;
+    if (q <= den - 1) out.push([p, q]);
+  }
+  return out;
+}
+
+/**
+ * **2-1-1 심화중의 밭** — 합만 주면 분자 쌍이 셋 이상 남고, 「작은 분수가 $\frac{k}{d}$
+ * 보다 크다」 한 줄이 **끝까지 빼 보지 않고** 하나를 남기는 자리.
+ */
+const FRAC_MID_FIELD: {
+  den: number;
+  sum: number;
+  cut: number;
+  over: boolean;
+  askSmall: boolean;
+  small: number;
+  big: number;
+}[] = (() => {
+  const out: {
+    den: number;
+    sum: number;
+    cut: number;
+    over: boolean;
+    askSmall: boolean;
+    small: number;
+    big: number;
+  }[] = [];
+  for (const den of FRAC_DENS) {
+    for (let sum = 3; sum <= 2 * den - 3; sum += 1) {
+      // 🔴 합을 `fmtFrac` 으로 찍으므로 **약분되면 분모가 바뀐다**
+      //    (분모 $12$·합 $16$ → `1\frac13`). 그러면 「분모가 $12$인」이 거짓말이 된다.
+      if (sum !== den && gcd(sum, den) !== 1) continue;
+      const pairs = numeratorPairs(den, sum);
+      if (pairs.length < 3) continue;
+      // 작은 쪽 분자는 잇따른 정수라, 하나만 남기는 창은 양 끝 두 자리뿐이다.
+      const lastIdx = pairs.length - 1;
+      for (const over of [true, false]) {
+        const idx = over ? lastIdx : 0;
+        const [p, q] = pairs[idx]!;
+        const cut = over ? p - 1 : p + 1;
+        if (cut < 1 || cut > den - 1) continue;
+        for (const askSmall of [true, false]) {
+          const value = askSmall ? p : q;
+          if (gcd(value, den) !== 1) continue;
+          // 답이 창의 값과 같으면 지면에 그대로 있는 것이 된다.
+          if (value === cut) continue;
+          out.push({ den, sum, cut, over, askSmall, small: p, big: q });
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-1-2 심화중의 밭** — 차만 주면 「어떤 진분수가 큰 쪽인가 작은 쪽인가」가 안 굳어
+ * 후보가 **둘**이고, 「$\frac{base}{den}$ 보다 크다(작다)」 한 줄이 하나를 떨어뜨린다.
+ * 그 뒤 한 걸음(빼기)이 더 남는다.
+ */
+const FRAC_TWOWAY_FIELD: {
+  den: number;
+  base: number;
+  gap: number;
+  bigger: boolean;
+  minus: number;
+}[] = (() => {
+  const out: {
+    den: number;
+    base: number;
+    gap: number;
+    bigger: boolean;
+    minus: number;
+  }[] = [];
+  for (const den of FRAC_DENS) {
+    for (let base = 2; base <= den - 2; base += 1) {
+      for (let gap = 1; gap <= den - 2; gap += 1) {
+        const up = base + gap;
+        const down = base - gap;
+        // 후보가 **둘 다 진분수**여야 마디가 실제로 열린다.
+        if (up > den - 1 || down < 1) continue;
+        for (const bigger of [true, false]) {
+          const value = bigger ? up : down;
+          for (let minus = 1; minus < value; minus += 1) {
+            const answer = value - minus;
+            if (gcd(answer, den) !== 1) continue;
+            // 답이 발문에 **그대로 있으면** 다른 축의 결함이 된다.
+            if (answer === base || answer === gap || answer === minus) continue;
+            out.push({ den, base, gap, bigger, minus });
+          }
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-1-2 심화상의 밭** — 합에서 되짚어 만든 분자 쌍이 셋 이상이고, 쌍마다 **실제로
+ * 빼 보아야** 창에 드는 것이 하나 남는 자리. 남은 것이 차의 **극값이 아니어야** 한다
+ * (극값이면 「가장 큰/작은」 한 줄로 굳어 심화중이 된다 — 파일럿 §7.1 이 못 박은 자리).
+ */
+const FRAC_TOP_FIELD: {
+  den: number;
+  sum: number;
+  diff: number;
+  small: number;
+  big: number;
+  askSmall: boolean;
+}[] = (() => {
+  const out: {
+    den: number;
+    sum: number;
+    diff: number;
+    small: number;
+    big: number;
+    askSmall: boolean;
+  }[] = [];
+  for (const den of FRAC_DENS) {
+    for (let sum = 3; sum <= 2 * den - 3; sum += 1) {
+      // 합을 `fmtFrac` 으로 찍는다 — 약분되면 분모가 바뀐다(`FRAC_MID_FIELD` 와 같은 자리).
+      if (sum !== den && gcd(sum, den) !== 1) continue;
+      const pairs = numeratorPairs(den, sum);
+      if (pairs.length < 3) continue;
+      const diffs = pairs.map(([p, q]) => q - p);
+      if (new Set(diffs).size !== diffs.length) continue;
+      const sorted = [...diffs].sort((x, y) => x - y);
+      for (let i = 0; i < pairs.length; i += 1) {
+        const [p, q] = pairs[i]!;
+        const diff = diffs[i]!;
+        if (diff === sorted[0] || diff === sorted[sorted.length - 1]) continue;
+        if (diff - 1 < 1 || diff + 1 > den - 1) continue;
+        // 창 `(diff-1, diff+1)` 안에 드는 차가 **정확히 하나**여야 한다.
+        if (diffs.filter((x) => x > diff - 1 && x < diff + 1).length !== 1)
+          continue;
+        for (const askSmall of [true, false]) {
+          const value = askSmall ? p : q;
+          if (gcd(value, den) !== 1) continue;
+          // 답이 **창의 두 끝**과 같으면 지면에 그대로 있는 것이 된다
+          //  — 「$\frac{3}{12}$ 보다 크고 …」인데 답도 `$\frac{3}{12}$` 인 자리.
+          if (value === diff - 1 || value === diff + 1) continue;
+          out.push({ den, sum, diff, small: p, big: q, askSmall });
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/** 분모가 같은 분수를 **약분하지 않고** 그대로 적는다 — 초4 지면의 표기다. */
+function rawFrac(num: number, den: number): string {
+  return `\\frac{${num}}{${den}}`;
+}
+
+/**
+ * 분수 뒤 조사 — 「$\frac{6}{10}$」 은 «십분의 육»이라 **분자**가 소리의 끝이다.
+ * `rules.ts` 의 `josaFaults` 가 같은 규칙으로 잰다(㉠) — 두 벌로 적지 않는다.
+ */
+function fracJosa(num: number, withEnd: string, withoutEnd: string): string {
+  return tail(num, withEnd, withoutEnd);
+}
+
+/**
+ * **2-1-1 5단 심화중 — 합만 주고 두 분자를 안 준다.**
+ * 「진분수라 분자가 분모보다 작다」가 후보를 유한하게 자르고, 창 한 줄이 그중 하나를
+ * 남긴다. 후보의 «작은 쪽 값»만 보면 걸러지므로 **끝까지 계산하지 않는다** → 중.
+ */
+function tier211Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier211MidRaw(unit, rng));
+}
+
+function tier211MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, FRAC_MID_FIELD);
+  const pairs = numeratorPairs(f.den, f.sum);
+  const list = pairs
+    .map(
+      ([p, q]) =>
+        `${expr(rawFrac(p, f.den))}${fracJosa(p, "과", "와")} ${expr(rawFrac(q, f.den))}`,
+    )
+    .join(", ");
+  const answer = f.askSmall ? f.small : f.big;
+  return makeDeep(
+    unit,
+    `분모가 ${josaNum(f.den, "인", "인")} 서로 다른 두 진분수의 합이 ` +
+      `${expr(fmtFrac(f.sum, f.den))} 입니다. 두 분수 중 작은 분수가 ` +
+      `${expr(rawFrac(f.cut, f.den))} 보다 ${f.over ? "클" : "작을"} 때 ` +
+      `${f.askSmall ? "작은" : "큰"} 분수를 구하시오.`,
+    expr(rawFrac(answer, f.den)),
+    [
+      `분모가 같으므로 두 분자의 합은 ${josaNum(f.sum, "이", "가")} 됩니다. ` +
+        `${expr(`${f.sum}=${pairs.map(([p, q]) => `${p}+${q}`).join("=")}`)} 이고, ` +
+        `진분수라 분자는 분모보다 작아야 하므로 될 수 있는 두 분수는 ${list} 입니다.`,
+      `작은 분수가 ${expr(rawFrac(f.cut, f.den))} 보다 ` +
+        `${f.over ? "크려면" : "작으려면"} 작은 쪽 분자가 ` +
+        `${expr(f.over ? `${f.cut}+1=${f.small}` : `${f.cut}-1=${f.small}`)} ` +
+        `${f.over ? "보다 크거나 같아야" : "보다 작거나 같아야"} 하므로 ` +
+        `${expr(rawFrac(f.small, f.den))}${fracJosa(f.small, "과", "와")} ` +
+        `${expr(rawFrac(f.big, f.den))} 한 쌍만 남습니다.`,
+      `그러므로 ${f.askSmall ? "작은" : "큰"} 분수는 ` +
+        `${expr(rawFrac(answer, f.den))} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-1-2 5단 심화중 — 차만 주면 «어느 쪽이 큰지»가 안 굳는다.**
+ * 후보가 둘(더한 것·뺀 것)이고 크기 조건 한 줄이 하나를 떨어뜨린다 — 「둘 중 고르기」다.
+ * 그 뒤 한 걸음이 더 남으므로 답이 발문에 그대로 있지 않다.
+ */
+function tier212Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier212MidRaw(unit, rng));
+}
+
+function tier212MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, FRAC_TWOWAY_FIELD);
+  const up = f.base + f.gap;
+  const down = f.base - f.gap;
+  const value = f.bigger ? up : down;
+  const answer = value - f.minus;
+  return makeDeep(
+    unit,
+    `어떤 진분수와 ${expr(rawFrac(f.base, f.den))} 의 차가 ` +
+      `${expr(rawFrac(f.gap, f.den))} 입니다. 어떤 진분수는 ` +
+      `${expr(rawFrac(f.base, f.den))} 보다 ${f.bigger ? "큽니다" : "작습니다"}. ` +
+      `어떤 진분수에서 ${expr(rawFrac(f.minus, f.den))}${fracJosa(f.minus, "을", "를")} ` +
+      `뺀 값은 얼마입니까?`,
+    expr(rawFrac(answer, f.den)),
+    [
+      `차만 알면 어떤 진분수가 ${expr(rawFrac(f.base, f.den))} 보다 큰지 작은지 ` +
+        `모릅니다. 큰 쪽이면 ` +
+        `${expr(`${rawFrac(f.base, f.den)}+${rawFrac(f.gap, f.den)}=${rawFrac(up, f.den)}`)} ` +
+        `이고, 작은 쪽이면 ` +
+        `${expr(`${rawFrac(f.base, f.den)}-${rawFrac(f.gap, f.den)}=${rawFrac(down, f.den)}`)} ` +
+        `입니다.`,
+      `어떤 진분수는 ${expr(rawFrac(f.base, f.den))} 보다 ` +
+        `${f.bigger ? "크므로" : "작으므로"} ${expr(rawFrac(value, f.den))} 입니다.`,
+      `${expr(`${rawFrac(value, f.den)}-${rawFrac(f.minus, f.den)}=${rawFrac(answer, f.den)}`)} ` +
+        `이므로 답은 ${expr(rawFrac(answer, f.den))} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-1-2 6단 심화상 — 쌍마다 «실제로 빼 보아야» 하나가 남는다.**
+ *
+ * 2-1-1 심화중과 **뼈대가 같다**(합에서 분자 쌍을 되짚어 만든다). 갈리는 것은
+ * 해설이 밟는 길이다 — 그쪽은 쌍의 «작은 쪽 값»만 보고 걸러 내고, 이쪽은 쌍마다
+ * **차를 구해** 창과 견주어야 한다(D-115 ⑾). 그리고 남은 차가 **극값이 아니다** —
+ * 「가장 큰(작은) 차」 한 줄로는 안 집힌다.
+ */
+function tier212Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier212TopRaw(unit, rng));
+}
+
+function tier212TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, FRAC_TOP_FIELD);
+  const pairs = numeratorPairs(f.den, f.sum);
+  const shows = pairs
+    .map(
+      ([p, q]) =>
+        `${expr(`${rawFrac(q, f.den)}-${rawFrac(p, f.den)}=${rawFrac(q - p, f.den)}`)}`,
+    )
+    .join(", ");
+  return makeDeep(
+    unit,
+    `분모가 ${josaNum(f.den, "인", "인")} 서로 다른 두 진분수의 합이 ` +
+      `${expr(fmtFrac(f.sum, f.den))} 입니다. 큰 분수에서 작은 분수를 뺀 값이 ` +
+      `${expr(rawFrac(f.diff - 1, f.den))} 보다 크고 ` +
+      `${expr(rawFrac(f.diff + 1, f.den))} 보다 작을 때, 두 분수 중 ` +
+      `${f.askSmall ? "작은" : "큰"} 분수를 구하시오.`,
+    expr(rawFrac(f.askSmall ? f.small : f.big, f.den)),
+    [
+      `분모가 같으므로 두 분자의 합은 ${josaNum(f.sum, "이", "가")} 됩니다. ` +
+        `진분수라 분자는 분모보다 작으므로 될 수 있는 두 분수는 ` +
+        `${pairs
+          .map(
+            ([p, q]) =>
+              `${expr(rawFrac(p, f.den))}${fracJosa(p, "과", "와")} ${expr(rawFrac(q, f.den))}`,
+          )
+          .join(", ")} 입니다.`,
+      `쌍마다 차를 구해 보면 ${shows} 입니다.`,
+      `이 가운데 ${expr(rawFrac(f.diff - 1, f.den))} 보다 크고 ` +
+        `${expr(rawFrac(f.diff + 1, f.den))} 보다 작은 것은 ` +
+        `${expr(rawFrac(f.diff, f.den))} 하나이므로 ${f.askSmall ? "작은" : "큰"} 분수는 ` +
+        `${expr(rawFrac(f.askSmall ? f.small : f.big, f.den))} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-1-3 5단 심화중 — 「받아올림이 있었나」가 마디를 굳힌다.**
+ * 자연수 부분끼리 더한 값과 합의 자연수 부분이 다르면 분수 부분에서 $1$을 받아올린
+ * 것이다. 그 사실을 먼저 정하지 않으면 「분수 부분끼리 더한 값」이 안 굳는다.
+ */
+function tier213Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier213MidRaw(unit, rng));
+}
+
+function tier213MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const w1 = intBetween(rng, 2, 5);
+  // 자연수 부분이 같으면 「각각 $2$와 $2$」가 되어 «각각»이 말이 안 된다.
+  const w2 = pick(
+    rng,
+    [2, 3, 4, 5, 6].filter((v) => v !== w1),
+  );
+  const rest = intBetween(rng, 1, den - 2);
+  const numSum = den + rest;
+  return makeDeep(
+    unit,
+    `분모가 ${josaNum(den, "인", "인")} 두 대분수를 더했더니 합이 ` +
+      `${expr(`${w1 + w2 + 1}\\frac{${rest}}{${den}}`)}${fracJosa(rest, "이", "가")} ` +
+      `되었습니다. 두 대분수의 ` +
+      `자연수 부분은 각각 ${josaNum(w1, "과", "와")} ${josaNum(w2, "입니다", "입니다")}. ` +
+      `두 대분수의 분수 부분의 분자의 합은 얼마입니까?`,
+    n(numSum),
+    [
+      `자연수 부분끼리 더하면 ${expr(`${w1}+${w2}=${w1 + w2}`)} 인데 합의 자연수 ` +
+        `부분은 ${josaNum(w1 + w2 + 1, "이므로", "이므로")} 분수 부분끼리 더한 값이 ` +
+        `${n(1)}보다 커서 자연수에 ${josaNum(1, "을", "를")} 받아올렸습니다.`,
+      `그러므로 분수 부분끼리 더한 값은 ${expr(rawFrac(rest, den))}${fracJosa(rest, "이", "가")} ` +
+        `아니라 ${expr(`1\\frac{${rest}}{${den}}`)} 이고, 이것은 ` +
+        `${expr(rawFrac(numSum, den))} 입니다.`,
+      `분모가 같으므로 두 분자의 합은 ${expr(`${den}+${rest}=${numSum}`)} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-1-4 5단 심화중 — 「받아내림이 있었나」가 마디를 굳힌다.**
+ * 2-1-3 의 짝이다. 자연수 부분의 차와 실제 차의 자연수 부분이 다르면 분수끼리 뺄 수
+ * 없어 $1$을 받아내린 것이고, 그것이 빼는 수의 분자에 **부등식 하나**를 건다.
+ */
+function tier214Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier214MidRaw(unit, rng));
+}
+
+function tier214MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = pick(rng, FRAC_DENS);
+  const topNum = intBetween(rng, 1, den - 3);
+  const w1 = intBetween(rng, 5, 8);
+  const w2 = intBetween(rng, 2, w1 - 3);
+  const smallest = topNum + 1;
+  const restNum = den + topNum - smallest;
+  return makeDeep(
+    unit,
+    `${expr(`${w1}\\frac{${topNum}}{${den}}`)} 에서 자연수 부분이 ${josaNum(w2, "인", "인")} ` +
+      `대분수를 뺐더니 차의 자연수 부분이 ${josaNum(w1 - w2 - 1, "이", "가")} 되었습니다. ` +
+      `빼는 대분수의 분수 부분의 분자가 될 수 있는 수 중에서 가장 작을 때의 차를 ` +
+      `구하시오.`,
+    expr(`${w1 - w2 - 1}\\frac{${restNum}}{${den}}`),
+    [
+      `자연수 부분끼리 빼면 ${expr(`${w1}-${w2}=${w1 - w2}`)} 인데 차의 자연수 부분이 ` +
+        `${josaNum(w1 - w2 - 1, "이므로", "이므로")} 분수끼리 뺄 수 없어 자연수에서 ` +
+        `${josaNum(1, "을", "를")} 받아내렸습니다.`,
+      `곧 빼는 수의 분자가 ${josaNum(topNum, "보다", "보다")} 커야 하므로 될 수 있는 ` +
+        `수 중 가장 작은 것은 ${expr(`${topNum}+1=${smallest}`)} 입니다.`,
+      `${expr(`${w1}\\frac{${topNum}}{${den}}=${w1 - 1}\\frac{${den + topNum}}{${den}}`)} ` +
+        `이므로 이렇게 고쳐서 빼면 ${expr(`${w1 - 1}-${w2}=${w1 - w2 - 1}`)} 이고 ` +
+        `${expr(`${rawFrac(den + topNum, den)}-${rawFrac(smallest, den)}=${rawFrac(restNum, den)}`)} ` +
+        `이므로 차는 ${expr(`${w1 - w2 - 1}\\frac{${restNum}}{${den}}`)} 입니다.`,
+    ],
   );
 }
 
@@ -16443,6 +17268,292 @@ function tier264Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `같습니다. ${to.name} 모양 조각 한 개가 ${polyName(3, true)} 모양 조각 ` +
       `${n(to.tris)}개이므로 ${expr(`${tris}\\div${to.tris}=${want}`)} 이고 ` +
       `${n(want)}개 필요합니다.`,
+  );
+}
+
+/* ────────── 2-6 난이도 확대 — 심화중·심화상 (D-113 · D-115, 물결 2) ──────────
+ *
+ * 굳힘 축은 **자연수**다 — 「변의 수 = 꼭짓점의 수이므로 그 합은 짝수」·「정다각형은
+ * 둘레가 한 변으로 **나누어떨어져야** 한다」·「조각은 개수가 자연수라야 남김없이 바뀐다」.
+ * 이 축은 2-3(자릿값)·2-1(진분수 조건)과도, 파일럿 1-3(곱의 자릿수·나머지)과도 겹치지 않는다.
+ *
+ * ⚠️ **정다각형의 «한 각의 크기»는 여기서도 안 쓴다** — 초4 범위 밖이다(위 4단 머리말).
+ * ⚠️ **2-6-3(대각선)은 중·상 둘 다 비운다.** 심화하가 이미 대각선 표를 **만들어
+ *    견주므로**(해설이 「사각형 $2$개, 오각형 $5$개 …」를 적는다) 그 위에 같은 모양을
+ *    얹으면 심화하와 같은 일이고, 사다리가 뒤집힌다. 토대 §2.3 「뒤집지 못한 것」과 같다.
+ * ⚠️ **2-6-1·2-6-2 는 심화상을 비운다.** 둘 다 후보가 **둘**뿐이라(창 안의 정수 둘)
+ *    「만들어 견주기」가 아니라 「둘 중 고르기」이고, 그건 심화중의 정의 그 자체다.
+ *    후보를 넷으로 늘리려면 창을 넓히는 수밖에 없는데 그건 축이 아니라 **규모**다.
+ */
+
+/**
+ * **2-6-2 심화중의 밭** — 「모든 변의 길이의 합」만 주고 한 변을 **창으로만** 주면
+ * 후보가 둘이고, 「변의 수가 자연수라야 한다」(= 나누어떨어져야 한다)가 하나를 떨어뜨린다.
+ *
+ * ⚠️ 떨어지는 쪽은 **아예 나누어떨어지지 않아야** 한다 — 몫이 나오는데 그 몫이 십이를
+ *    넘는 경우로 떨어뜨리면, 학생이 「그런 정다각형도 있다」고 볼 수 있어 답이 둘이 된다.
+ */
+const REGULAR_SIDE_FIELD: {
+  total: number;
+  lo: number;
+  side: number;
+  sides: number;
+}[] = (() => {
+  const out: { total: number; lo: number; side: number; sides: number }[] = [];
+  for (let sides = 5; sides <= 12; sides += 1) {
+    for (let side = 3; side <= 9; side += 1) {
+      const total = sides * side;
+      for (const lo of [side - 2, side - 1]) {
+        if (lo < 2) continue;
+        const cands = [lo + 1, lo + 2];
+        const div = cands.filter((v) => total % v === 0);
+        if (div.length !== 1 || div[0] !== side) continue;
+        out.push({ total, lo, side, sides });
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-6-4 심화중의 밭** — 조각 `P` 로만 채운 모양을 정삼각형으로 바꾼 개수가 **창으로만**
+ * 주어지면 후보가 둘(`P` 의 배수 둘)이고, 「조각 `Q` 로 남김없이 바뀌려면 `Q` 개씩
+ * 묶여야 한다」가 하나를 떨어뜨린다.
+ */
+const TILE_WINDOW_FIELD: {
+  from: number;
+  to: number;
+  tris: number;
+  lo: number;
+  hi: number;
+  other: number;
+}[] = (() => {
+  const out: {
+    from: number;
+    to: number;
+    tris: number;
+    lo: number;
+    hi: number;
+    other: number;
+  }[] = [];
+  for (let from = 0; from < PIECE_TRIS.length; from += 1) {
+    for (let to = 0; to < PIECE_TRIS.length; to += 1) {
+      const p = PIECE_TRIS[from]!.tris;
+      const q = PIECE_TRIS[to]!.tris;
+      if (p === q) continue;
+      for (let tris = 8; tris <= 48; tris += 1) {
+        if (tris % p !== 0 || tris % q !== 0) continue;
+        for (let lo = Math.max(1, tris - p); lo < tris; lo += 1) {
+          for (let hi = tris + 1; hi <= tris + p + 2; hi += 1) {
+            const inside: number[] = [];
+            for (let v = lo + 1; v < hi; v += 1) inside.push(v);
+            const mp = inside.filter((v) => v % p === 0);
+            if (mp.length !== 2) continue;
+            const mq = mp.filter((v) => v % q === 0);
+            if (mq.length !== 1 || mq[0] !== tris) continue;
+            // 답(바꾼 조각 수)이 지면에 그대로 있으면 다른 축의 결함이 된다 —
+            // 지면에 나가는 수는 관계 둘(`p`·`q`)과 창의 두 끝이다.
+            const answer = tris / q;
+            if (answer === p || answer === q || answer === lo || answer === hi)
+              continue;
+            out.push({
+              from,
+              to,
+              tris,
+              lo,
+              hi,
+              other: mp.find((v) => v !== tris)!,
+            });
+          }
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-6-4 심화상의 밭** — 정삼각형 `N` 개를 마름모($2$)와 사다리꼴($3$)로 **둘 다 쓰며**
+ * 남김없이 바꾸는 방법이 셋 이상이고, 「조각 수가 가장 적은」 방법이 **하나**인 자리.
+ * 방법을 하나씩 **실제로 만들어 조각 수를 세어 견주어야** 정해진다.
+ */
+const TILE_MIN_FIELD: { tris: number; pairs: { a: number; b: number }[] }[] =
+  (() => {
+    const out: { tris: number; pairs: { a: number; b: number }[] }[] = [];
+    for (let tris = 13; tris <= 39; tris += 1) {
+      const pairs: { a: number; b: number }[] = [];
+      for (let b = 1; 3 * b < tris; b += 1) {
+        const rest = tris - 3 * b;
+        if (rest % 2 === 0) pairs.push({ a: rest / 2, b });
+      }
+      if (pairs.length < 3) continue;
+      const totals = pairs.map((x) => x.a + x.b);
+      const min = Math.min(...totals);
+      if (totals.filter((t) => t === min).length !== 1) continue;
+      out.push({ tris, pairs });
+    }
+    return out;
+  })();
+
+/**
+ * **2-6-1 5단 심화중 — 「합이 짝수라야 한다」가 마디를 굳힌다.**
+ *
+ * 변의 수와 꼭짓점의 수의 합을 **창으로만** 주면 후보가 둘이고, 「다각형은 변의 수와
+ * 꼭짓점의 수가 같으므로 그 합은 변의 수의 두 배 = 짝수」라는 이 소단원의 성질이 홀수인
+ * 쪽을 떨어뜨린다. 심화하(`\square+(\square+차)=합`)와 산술이 다르다.
+ */
+function tier261Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier261MidRaw(unit, rng));
+}
+
+function tier261MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const sides = intBetween(rng, 4, 9);
+  const gap = intBetween(rng, 1, 3);
+  const lo = sides * 2 - intBetween(rng, 1, 2);
+  const sum = sides * 2;
+  const odd = [lo + 1, lo + 2].find((v) => v % 2 === 1)!;
+  return makeDeep(
+    unit,
+    `다각형 ㉠의 변의 수와 꼭짓점의 수의 합은 ${josaNum(lo, "보다", "보다")} 크고 ` +
+      `${josaNum(lo + 3, "보다", "보다")} 작습니다. 다각형 ㉡은 ㉠보다 변이 ` +
+      `${n(gap)}개 많습니다. ㉡의 이름을 쓰시오.`,
+    polyName(sides + gap),
+    [
+      `${josaNum(lo, "보다", "보다")} 크고 ${josaNum(lo + 3, "보다", "보다")} 작은 수는 ` +
+        `${josaNum(lo + 1, "과", "와")} ${josaNum(lo + 2, "입니다", "입니다")}.`,
+      `다각형은 변의 수와 꼭짓점의 수가 같으므로 그 합은 변의 수의 ${n(2)}배, 곧 ` +
+        `짝수입니다. ${josaNum(odd, "은", "는")} 홀수라 될 수 없으므로 합은 ` +
+        `${josaNum(sum, "이고", "이고")} ㉠의 변은 ${expr(`${sum}\\div2=${sides}`)} 개입니다.`,
+      `㉡은 ㉠보다 변이 ${n(gap)}개 많으므로 ${expr(`${sides}+${gap}=${sides + gap}`)} 개이고, ` +
+        `${polyName(sides + gap)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-6-2 5단 심화중 — 한 변을 창으로만 주고 「나누어떨어져야 한다」가 굳힌다.**
+ * 표준 1단이 「합과 한 변 → 변의 수」인데 여기서는 **한 변조차 안 준다.**
+ */
+function tier262Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier262MidRaw(unit, rng));
+}
+
+function tier262MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, REGULAR_SIDE_FIELD);
+  const other = [f.lo + 1, f.lo + 2].find((v) => v !== f.side)!;
+  const q = Math.floor(f.total / other);
+  return makeDeep(
+    unit,
+    `어떤 정다각형의 모든 변의 길이의 합은 ${cm(f.total)}입니다. 한 변의 길이는 ` +
+      `cm 단위의 자연수이고 ${cm(f.lo)}보다 길고 ${cm(f.lo + 3)}보다 짧습니다. ` +
+      `이 정다각형의 이름을 쓰시오.`,
+    polyName(f.sides, true),
+    [
+      `한 변이 될 수 있는 수는 ${josaNum(f.lo + 1, "과", "와")} ` +
+        `${josaNum(f.lo + 2, "입니다", "입니다")}.`,
+      `한 변이 ${cm(other)}이면 ${expr(`${other}\\times${q}=${other * q}`)} 이고 ` +
+        `${expr(`${other}\\times${q + 1}=${other * (q + 1)}`)} ` +
+        `${tail(other * (q + 1), "이라", "라")} ${josaNum(f.total, "이", "가")} ` +
+        `나누어떨어지지 않습니다. 변의 수는 자연수라야 하므로 될 수 없습니다.`,
+      `한 변이 ${cm(f.side)}이면 ${expr(`${f.total}\\div${f.side}=${f.sides}`)} 이므로 ` +
+        `변이 ${n(f.sides)}개이고 ${polyName(f.sides, true)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-6-4 5단 심화중 — 정삼각형 개수를 창으로만 준다.**
+ * 「조각 한 개가 정삼각형 몇 개인가」를 두 번 써서 후보를 둘로 좁히고, 「다른 조각으로
+ * 남김없이 바뀌려면 그 수로 나누어떨어져야 한다」가 하나를 떨어뜨린다.
+ */
+function tier264Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier264MidRaw(unit, rng));
+}
+
+function tier264MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, TILE_WINDOW_FIELD);
+  const from = PIECE_TRIS[f.from]!;
+  const to = PIECE_TRIS[f.to]!;
+  const answer = f.tris / to.tris;
+  return makeDeep(
+    unit,
+    `${pieceRule(from.name, from.tris)} 또 ${pieceRule(to.name, to.tris)} ` +
+      `${from.name} 모양 조각 몇 개를 ${polyName(3, true)} 모양 조각으로 남김없이 ` +
+      `바꾸었더니 ${josaNum(f.lo, "보다", "보다")} 많고 ${josaNum(f.hi, "보다", "보다")} ` +
+      `적었습니다. 같은 수의 ${polyName(3, true)} 모양 조각을 ${to.name} 모양 조각으로 ` +
+      `남김없이 바꿀 수 있을 때 ${to.name} 모양 조각은 몇 개인가?`,
+    `${n(answer)}개`,
+    [
+      `${from.name} 모양 조각은 한 개가 ${polyName(3, true)} 모양 조각 ${n(from.tris)}개` +
+        `이므로 바꾼 수는 ${n(from.tris)}의 배수입니다. ${josaNum(f.lo, "보다", "보다")} ` +
+        `많고 ${josaNum(f.hi, "보다", "보다")} 적은 수 중 그런 것은 ` +
+        `${josaNum(Math.min(f.tris, f.other), "과", "와")} ` +
+        `${josaNum(Math.max(f.tris, f.other), "입니다", "입니다")}.`,
+      `${to.name} 모양 조각으로 남김없이 바꾸려면 ${roJosa(to.tris)} 나누어떨어져야 ` +
+        `합니다. ${expr(`${to.tris}\\times${Math.floor(f.other / to.tris)}=${to.tris * Math.floor(f.other / to.tris)}`)} ` +
+        `이고 ${expr(`${to.tris}\\times${Math.floor(f.other / to.tris) + 1}=${to.tris * (Math.floor(f.other / to.tris) + 1)}`)} ` +
+        `이라 ${josaNum(f.other, "은", "는")} 나누어떨어지지 않습니다.`,
+      `${expr(`${f.tris}\\div${to.tris}=${answer}`)} 이므로 ${polyName(3, true)} 모양 ` +
+        `조각은 ${n(f.tris)}개이고, ${to.name} 모양 조각은 ${n(answer)}개입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-6-4 6단 심화상 — 짝을 실제로 만들어 조각 수를 견주어야 하나가 남는다.**
+ *
+ * 마름모($2$)와 사다리꼴($3$)로 정삼각형 `N` 개를 남김없이 바꾸는 방법이 여럿이고,
+ * 성질만으로는 어느 것인지 안 굳는다. 방법마다 **조각 수를 세어 견주어야** 하나가 남는다.
+ * 후보를 발문이 주지 않고 되짚기(`2\times$마름모$+3\times$사다리꼴$=N$)가 만든다 ✓
+ *
+ * ⚠️ **「빈틈없이 채운다」로 묻지 않는다** — 실제 배치가 되는지는 개수 관계가 말해 주지
+ *    않는다(2-6-4 머리말의 그 자리). 그래서 **«남김없이 바꾸기»**라는 개수 관계로만 닫았다.
+ * ⚠️ 남은 하나가 조각 수의 **극값**이다 — 「가장 적게」가 곧 그 조건이라 구성상 그렇다.
+ *    파일럿의 「극값이 아니어야 한다」는 «조건 한 줄로 집히지 않는가»를 재는 잣대였는데,
+ *    여기서는 그 한 줄이 **짝을 다 만들어 세어 보아야** 쓸 수 있으므로 상으로 둔다.
+ *
+ * 🔴 **이 갈래에는 지름길이 있다 — 다음 사람이 다시 재라.**
+ *    「사다리꼴이 정삼각형을 더 많이 먹으니 사다리꼴을 가장 많이 쓰면 조각이 가장 적다」로
+ *    짝을 하나도 안 만들고 닫을 수 있다. D-115 ⑾ 의 「끝까지 계산하지 않고 걸러 내면 중」을
+ *    글자 그대로 대면 **이 갈래는 중**이다. 상으로 둔 근거는 ⑾ 의 다른 반쪽 —
+ *    「참은 **해설이 밟는 길**」이고, 그 지름길은 이 소단원이 가진 **성질**(조각 환산)이
+ *    아니라 목적함수에 대한 **논증**이라 중의 정의(성질 한 번)에 안 맞는다는 것이다.
+ *    (초3 2-1-4 가 중으로 내려간 까닭은 지름길이 «곱의 일의 자리»라는 소단원 **성질**이라서다.)
+ *    ⚠️ 이 판단이 뒤집히면 2-6 은 심화상이 **하나도 없다** — 다른 셋(2-6-1·2-6-2·2-6-3)은
+ *    위 머리말대로 구조적으로 못 서기 때문이다. 보고서 §「못 본 것」에 같이 적어 두었다.
+ */
+function tier264Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier264TopRaw(unit, rng));
+}
+
+function tier264TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, TILE_MIN_FIELD);
+  const rhomb = PIECE_TRIS[0]!;
+  const trap = PIECE_TRIS[1]!;
+  const totals = f.pairs.map((x) => x.a + x.b);
+  const min = Math.min(...totals);
+  const best = f.pairs[totals.indexOf(min)]!;
+  const list = f.pairs
+    .map(
+      (x) =>
+        `${expr(`${rhomb.tris}\\times${x.a}+${trap.tris}\\times${x.b}=${f.tris}`)} ` +
+        `(조각 ${expr(`${x.a}+${x.b}=${x.a + x.b}`)} 개)`,
+    )
+    .join(", ");
+  return makeDeep(
+    unit,
+    `${pieceRule(rhomb.name, rhomb.tris)} 또 ${pieceRule(trap.name, trap.tris)} ` +
+      `${polyName(3, true)} 모양 조각 ${n(f.tris)}개를 ${rhomb.name} 모양 조각과 ` +
+      `${trap.name} 모양 조각으로 남김없이 바꾸려고 합니다. 두 조각을 모두 쓰면서 ` +
+      `조각의 수를 가장 적게 하려면 조각은 모두 몇 개인가?`,
+    `${n(min)}개`,
+    [
+      `${rhomb.name} 모양 조각 한 개는 ${polyName(3, true)} 모양 조각 ${n(rhomb.tris)}개, ` +
+        `${trap.name} 모양 조각 한 개는 ${n(trap.tris)}개이므로 바꾸는 방법은 ${list} ` +
+        `입니다.`,
+      `조각의 수를 견주면 가장 적은 것은 ${n(min)}개이고, 그때 ${rhomb.name} 모양 조각은 ` +
+        `${n(best.a)}개, ${trap.name} 모양 조각은 ${n(best.b)}개입니다.`,
+    ],
   );
 }
 
