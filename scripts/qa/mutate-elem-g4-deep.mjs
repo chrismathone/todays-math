@@ -18,6 +18,8 @@ const TARGET = "src/lib/elementary/g4.ts";
 const TESTS = [
   "src/__tests__/unit/elemTiersG4MulDivDeep.test.ts",
   "src/__tests__/unit/elemTiersG4MulDiv.test.ts",
+  // 확대를 채우면 **분모 가드**가 같이 움직인다 — 그 자리도 여기서 잰다.
+  "src/__tests__/unit/elemGenCore.test.ts",
 ];
 
 const MUTATIONS = [
@@ -50,6 +52,13 @@ const MUTATIONS = [
     label: "1-3-5 심화상 — 몫이 나머지의 배수인 자리를 **첫 하나**만 낸다",
     from: "  const vals = rs.map((r) => b * (r * k) + r);",
     to: "  const vals = rs.slice(0, 1).map((r) => b * (r * k) + r);",
+  },
+  {
+    // 분모 가드 — 「핵심 넷이 다 있나」가 확대를 채운 뒤에도 «아니오»를 낼 수 있나.
+    // (tsc 는 이것을 막지만 vitest 는 타입을 안 본다 — 그래서 여기서 잰다.)
+    label: "1-3-1 등록에서 **핵심 갈래 하나**(심화하)를 뺀다",
+    from: "    심화하: tier31Deep,\n    심화중: tier31Mid,",
+    to: "    심화중: tier31Mid,",
   },
 ];
 
@@ -98,8 +107,13 @@ console.log("✅ 기준 초록 — 판정 시작\n");
 
 let verdictBad = 0;
 try {
-  for (const m of MUTATIONS) {
+  for (let m of MUTATIONS) {
     const src = ORIGINAL.toString("utf8");
+    // ⚠️ **줄끝을 맞춘다.** 이 저장소는 autocrlf 라 `git checkout` 을 한 번만 거쳐도
+    //    파일이 CRLF 가 된다. 앵커를 LF 로 적어 두면 여러 줄짜리 치환이 **말없이 0곳**
+    //    이 되고, 하네스는 그것을 「판정 못 함」으로 찍는다(실제로 그렇게 다섯이 죽었다).
+    const eol = src.includes("\r\n") ? "\r\n" : "\n";
+    m = { ...m, from: m.from.split("\n").join(eol), to: m.to.split("\n").join(eol) };
     const hits = src.split(m.from).length - 1;
     if (hits !== 1) {
       console.log(`⛔ ${m.label}\n     치환 자리 ${hits}곳 — 판정하지 않는다`);
