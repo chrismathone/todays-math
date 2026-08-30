@@ -5524,12 +5524,15 @@ function sameDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
       `큰 수를 작은 수로 나누려고 합니다. 몫이 자연수가 되는 경우는 모두 몇 가지입니까?`,
     num(yes.length),
     [
+      // ⚠️ 나열의 조사는 **마지막으로 읽히는 수**가 정한다 — 목록 길이·차례가 씨앗마다
+      //    달라지므로 여기 조사는 리터럴로 쓸 수 없다(`probe-elem-rules` R조사가 잡았다).
       `두 수의 소수점을 오른쪽으로 한 자리씩 옮겨도 몫은 같으므로 ` +
-        `${quad.map((v) => num(v)).join(", ")} 로 바꾸어 봅니다.`,
+        `${quad.map((v) => num(v)).join(", ")}${numRo(quad[3]!)} 바꾸어 봅니다.`,
       `나누어떨어지는 것은 ${yes
         .map(([a, b]) => expr(`${a}\\div${b}=${a / b}`))
         .join(", ")} 입니다.`,
-      `${no.map(([a, b]) => expr(`${a}\\div${b}`)).join(", ")} 은 나누어떨어지지 않으므로 ` +
+      `${no.map(([a, b]) => expr(`${a}\\div${b}`)).join(", ")} ` +
+        `${numJosa(no[no.length - 1]![1], "은", "는")} 나누어떨어지지 않으므로 ` +
         `모두 ${num(yes.length)}가지입니다.`,
     ],
   );
@@ -5649,10 +5652,13 @@ function natDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
     [
       `${num(b)}${scaledRo(g.b10)} 나눌 때는 두 수의 소수점을 오른쪽으로 한 자리씩 옮겨 ` +
         `${num(g.b10)}${numRo(g.b10)} 나눕니다.`,
+      // ⚠️ 조사는 나열의 **마지막 수**가 정한다 — 앞은 몫, 뒤는 나누는 수로 끝난다.
       `${hit
         .map((v) => expr(`${v * 10}\\div${g.b10}=${(v * 10) / g.b10}`))
-        .join(", ")} 은 나누어떨어지고, ` +
-        `${miss.map((v) => expr(`${v * 10}\\div${g.b10}`)).join(", ")} 은 나누어떨어지지 않습니다.`,
+        .join(", ")} ` +
+        `${numJosa((hit[hit.length - 1]! * 10) / g.b10, "은", "는")} 나누어떨어지고, ` +
+        `${miss.map((v) => expr(`${v * 10}\\div${g.b10}`)).join(", ")} ` +
+        `${numJosa(g.b10, "은", "는")} 나누어떨어지지 않습니다.`,
       `따라서 ${hit.map((v) => num(v)).join(", ")} 입니다.`,
     ],
   );
