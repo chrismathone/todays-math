@@ -2739,8 +2739,8 @@ function tier31Mid(unit: UnitSeed, rng: Rng): ElemProblem {
       `${five ? "작은" : "큰"} 수를 구하시오.`,
     n(m),
     [
-      `${expr(`${b}\\times${lo}=${b * lo}`)} 은 네 자리 수입니다.`,
-      `${expr(`${b}\\times${hi}=${b * hi}`)} 는 다섯 자리 수입니다.`,
+      `${expr(`${b}\\times${lo}=${b * lo}`)} ${tail(b * lo, "은", "는")} 네 자리 수입니다.`,
+      `${expr(`${b}\\times${hi}=${b * hi}`)} ${tail(b * hi, "은", "는")} 다섯 자리 수입니다.`,
       `따라서 곱이 ${five ? "다섯" : "네"} 자리 수가 되는 어떤 수 중에서 가장 ` +
         `${five ? "작은" : "큰"} 수는 ${n(m)}입니다.`,
     ],
@@ -2765,11 +2765,13 @@ function tier31Top(unit: UnitSeed, rng: Rng): ElemProblem {
       `${josaNum(high, "보다", "보다")} 작은 수가 되었습니다. 곱한 몇십을 구하시오.`,
     n(t),
     [
-      `${expr(`${a}\\times${t - 10}=${a * (t - 10)}`)} 은 ${josaNum(low, "보다", "보다")} 작습니다.`,
-      `${expr(`${a}\\times${t}=${p}`)} 는 ${josaNum(low, "보다", "보다")} 크고 ` +
-        `${josaNum(high, "보다", "보다")} 작습니다.`,
-      `${expr(`${a}\\times${t + 10}=${a * (t + 10)}`)} 은 ${josaNum(high, "보다", "보다")} ` +
-        `큽니다. 몇십이 커지면 곱도 커지므로 곱한 몇십은 ${n(t)}입니다.`,
+      `${expr(`${a}\\times${t - 10}=${a * (t - 10)}`)} ${tail(a * (t - 10), "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${t}=${p}`)} ${tail(p, "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 크고 ${josaNum(high, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${t + 10}=${a * (t + 10)}`)} ${tail(a * (t + 10), "은", "는")} ` +
+        `${josaNum(high, "보다", "보다")} 큽니다. 몇십이 커지면 곱도 커지므로 곱한 몇십은 ` +
+        `${n(t)}입니다.`,
     ],
   );
 }
@@ -2791,8 +2793,8 @@ function tier32Mid(unit: UnitSeed, rng: Rng): ElemProblem {
       `${five ? "작은" : "큰"} 수를 구하시오.`,
     n(m),
     [
-      `${expr(`${a}\\times${lo}=${a * lo}`)} 는 네 자리 수입니다.`,
-      `${expr(`${a}\\times${hi}=${a * hi}`)} 는 다섯 자리 수입니다.`,
+      `${expr(`${a}\\times${lo}=${a * lo}`)} ${tail(a * lo, "은", "는")} 네 자리 수입니다.`,
+      `${expr(`${a}\\times${hi}=${a * hi}`)} ${tail(a * hi, "은", "는")} 다섯 자리 수입니다.`,
       `따라서 ${expr("\\square")} 안에 들어갈 수 있는 수 중에서 가장 ` +
         `${five ? "작은" : "큰"} 수는 ${n(m)}입니다.`,
     ],
@@ -2818,12 +2820,13 @@ function tier32Top(unit: UnitSeed, rng: Rng): ElemProblem {
       `두 자리 수를 구하시오.`,
     n(k),
     [
-      `${expr(`${a}\\times${k - 1}=${a * (k - 1)}`)} 은 ${josaNum(low, "보다", "보다")} 작습니다.`,
-      `${expr(`${a}\\times${k}=${p}`)} 는 ${josaNum(low, "보다", "보다")} 크고 ` +
-        `${josaNum(high, "보다", "보다")} 작습니다.`,
-      `${expr(`${a}\\times${k + 1}=${a * (k + 1)}`)} 은 ${josaNum(high, "보다", "보다")} ` +
-        `큽니다. 곱하는 수가 커지면 곱도 커지므로 ${expr("\\square")} 안에 알맞은 수는 ` +
-        `${n(k)}입니다.`,
+      `${expr(`${a}\\times${k - 1}=${a * (k - 1)}`)} ${tail(a * (k - 1), "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${k}=${p}`)} ${tail(p, "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 크고 ${josaNum(high, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${k + 1}=${a * (k + 1)}`)} ${tail(a * (k + 1), "은", "는")} ` +
+        `${josaNum(high, "보다", "보다")} 큽니다. 곱하는 수가 커지면 곱도 커지므로 ` +
+        `${expr("\\square")} 안에 알맞은 수는 ${n(k)}입니다.`,
     ],
   );
 }
@@ -2937,10 +2940,12 @@ function tier34Top(unit: UnitSeed, rng: Rng): ElemProblem {
       `되었습니다. 나눈 수를 구하시오.`,
     n(b),
     [
-      `${expr(`${b - 10}\\times${q + 1}=${(b - 10) * (q + 1)}`)} 이 ${josaNum(x, "보다", "보다")} ` +
+      `${expr(`${b - 10}\\times${q + 1}=${(b - 10) * (q + 1)}`)} ` +
+        `${tail((b - 10) * (q + 1), "이", "가")} ${josaNum(x, "보다", "보다")} ` +
         `작거나 같으므로 ${roJosa(b - 10)} 나누면 몫이 ${josaNum(q, "보다", "보다")} 큽니다.`,
-      `${expr(`${b + 10}\\times${q}=${(b + 10) * q}`)} 이 ${josaNum(x, "보다", "보다")} ` +
-        `크므로 ${roJosa(b + 10)} 나누면 몫이 ${josaNum(q, "보다", "보다")} 작습니다.`,
+      `${expr(`${b + 10}\\times${q}=${(b + 10) * q}`)} ${tail((b + 10) * q, "이", "가")} ` +
+        `${josaNum(x, "보다", "보다")} 크므로 ${roJosa(b + 10)} 나누면 몫이 ` +
+        `${josaNum(q, "보다", "보다")} 작습니다.`,
       `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b}\\times${q + 1}=${b * (q + 1)}`)} ` +
         `이므로 ${josaNum(x, "은", "는")} 그 사이에 있습니다. 나눈 수는 ${n(b)}입니다.`,
     ],
@@ -2996,7 +3001,8 @@ function tier35Top(unit: UnitSeed, rng: Rng): ElemProblem {
       `${expr(`${miss}\\times${t0}=${miss * t0}`)}, ` +
         `${expr(`${miss}\\times${t0 + 1}=${miss * (t0 + 1)}`)} 이므로 ` +
         `${josaNum(c.n, "은", "는")} ${roJosa(miss)} 나누어떨어지지 않습니다.`,
-      `${expr(`${c.b}\\times${c.q}=${c.n}`)} 이므로 나눈 수는 ${n(c.b)}입니다.`,
+      `이렇게 차례로 보면 나누어떨어지는 것은 ${expr(`${c.b}\\times${c.q}=${c.n}`)} ` +
+        `하나뿐이므로 나눈 수는 ${n(c.b)}입니다.`,
     ],
   );
 }
@@ -3042,7 +3048,8 @@ function tier36Top(unit: UnitSeed, rng: Rng): ElemProblem {
     n(c.b),
     [
       `나머지가 ${n(c.r)}이므로 나누는 수는 ${josaNum(c.r, "보다", "보다")} 큽니다.`,
-      `${expr(`${c.n}-${c.r}=${base}`)} 이 (나누는 수)와 (몫)의 곱입니다.`,
+      `${expr(`${c.n}-${c.r}=${base}`)} ${tail(base, "이", "가")} (나누는 수)와 ` +
+        `(몫)의 곱입니다.`,
       `${josaNum(c.r, "보다", "보다")} 큰 두 자리 수 중에서 ${josaNum(base, "을", "를")} ` +
         `나누어떨어지게 하고 몫이 두 자리 수가 되는 것을 찾으면 ` +
         `${expr(`${c.b}\\times${c.q}=${base}`)} 이므로 나눈 수는 ${n(c.b)}입니다.`,
