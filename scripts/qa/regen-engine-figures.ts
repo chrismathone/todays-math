@@ -28,7 +28,14 @@
  * DB 보다 **먼저** 쓰고 **누적**만 한다(2026-08-20 「덮어쓰면 앞 회차는 못 되돌린다」).
  * 되돌릴 때는 **지금 값이 자기가 쓴 값일 때만** 되돌린다(2026-08-18).
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
+import { gunzipSync, gzipSync } from "node:zlib";
 import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
@@ -60,9 +67,25 @@ type LedgerRow = {
 
 type Ledger = { label: string; rows: LedgerRow[] };
 
-function readLedger(file: string): Ledger {
-  if (!existsSync(file)) return { label: "regen-engine-figures", rows: [] };
-  return JSON.parse(readFileSync(file, "utf8")) as Ledger;
+/**
+ * 원장을 읽는다 — **`.gz` 를 먼저** 본다.
+ *
+ * 🔴 이 원장은 SVG 를 통째로 담아 금세 커진다(2026-08-30 회차에서 **28MB**).
+ *    그대로 커밋하면 저장소가 무거워지고, 안 커밋하면 되돌리기가 **이 컴퓨터에만**
+ *    남는다 — 그건 2026-08-18 에 실제로 물린 사고다. gzip 으로 1.3MB 가 되므로
+ *    **압축해서 커밋한다.** 옛 `.json` 도 그대로 읽는다(그때 쓴 원장이 있다).
+ */
+export function ledgerPaths(file: string): { json: string; gz: string } {
+  const json = file.endsWith(".gz") ? file.slice(0, -3) : file;
+  return { json, gz: `${json}.gz` };
+}
+
+export function readLedger(file: string): Ledger {
+  const { json, gz } = ledgerPaths(file);
+  if (existsSync(gz))
+    return JSON.parse(gunzipSync(readFileSync(gz)).toString("utf8")) as Ledger;
+  if (existsSync(json)) return JSON.parse(readFileSync(json, "utf8")) as Ledger;
+  return { label: "regen-engine-figures", rows: [] };
 }
 
 /** 처음 before · 마지막 after 로 **누적**한다 — 회차를 견뎌야 한다(2026-08-20). */
@@ -298,11 +321,20 @@ async function main() {
     throw new Error(
       `원장이 줄었다 (${prev.rows.length} → ${merged.length}) — 덮어쓰면 앞 회차를 못 되돌린다`,
     );
+  // **압축해서** 쓴다 — 안 그러면 28MB 라 커밋을 못 하고, 그러면 되돌리기가
+  // 이 컴퓨터에만 남는다(2026-08-18 사고). 옛 `.json` 이 있으면 지운다 — 둘이
+  // 남으면 다음 사람이 **어느 것이 정본인지** 모른다.
+  const { json: ledgerJson, gz: ledgerGz } = ledgerPaths(ledgerFile);
   writeFileSync(
-    ledgerFile,
-    JSON.stringify({ label: "regen-engine-figures", rows: merged }, null, 1),
+    ledgerGz,
+    gzipSync(
+      JSON.stringify({ label: "regen-engine-figures", rows: merged }, null, 1),
+    ),
   );
-  console.log(`원장 ${merged.length}행 → ${path.relative(REPO, ledgerFile)}`);
+  // ⚠️ `rmSync` 는 **금지**다 — Node(win32)가 비ASCII 경로에서 메시지 없이 죽는다
+  //    (2026-08-19, `noRmSync.test.ts` 가 지킨다. 방금 그 시험이 나를 잡았다).
+  if (existsSync(ledgerJson)) unlinkSync(ledgerJson);
+  console.log(`원장 ${merged.length}행 → ${path.relative(REPO, ledgerGz)}`);
 
   let wrote = 0;
   for (const row of ledgerRows) {
