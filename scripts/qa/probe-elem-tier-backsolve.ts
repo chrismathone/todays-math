@@ -47,7 +47,6 @@ import {
   forwardReachable,
   pageNumbers,
   readRat,
-  type Rat,
 } from "../../src/lib/elementary/forwardReach";
 
 import { isDirectScript } from "../import/isDirectScript";

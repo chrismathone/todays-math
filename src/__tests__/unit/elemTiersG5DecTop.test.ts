@@ -1,43 +1,48 @@
 /**
- * **초5 2-4 소수의 곱셈 — 확대 갈래 «심화중»·«심화상» (D-113 파일럿, 2026-08-30).**
+ * **초5 2-4 소수의 곱셈 — 확대 갈래 «심화중»·«심화상» (D-113, 되짚기 축).**
  *
- * ## 무엇을 잠그나 — 축을 셋 세웠고, **셋이 서로 다른 것을 본다**
+ * 🔴 **이 파일의 첫 판은 «열거 축»을 잠갔고, 그 축은 기각됐다.** 리드가 문형 전량
+ *    (6,900행)에 두 축을 대 보니 열거는 갈래를 1.5~2배밖에 안 가르고 되짚기는
+ *    22~40배 가른다. 그래서 잠그는 것을 통째로 바꿨다 — **옛 축의 시험은 지웠다.**
+ *    (남겨 두면 다음 사람이 「두 축 다 지킨다」고 읽는다.)
  *
- * ⑴ **심화중이 «후보 줄을 범위로 자른 것»인가** — 시험이 발문의 후보 줄을 **직접
- *    전수로** 훑어 답을 다시 만든다. 그래서 «빠뜨린 답»과 «범위 밖인데 넣은 답»이
- *    둘 다 걸린다. 그리고 답이 **둘 이상**임을 요구한다 — 하나면 그건 심화하의
- *    한 걸음 역산이지 열거가 아니다.
+ * ## 확정 잣대와, 이 시험이 그중 **무엇을** 잠그나
  *
- * ⑵ **심화상이 «배열을 전수 탐색해야 나오는 것»인가** — 시험이 발문의 «꼴»과 카드로
- *    배열을 **전부 만들어** 곱을 견준다. 핵심은 마지막 한 줄이다:
- *    **만들 수 있는 가장 큰 곱이 조건에 걸려 빠진다.** 그래야 「큰 수를 앞자리에」라는
- *    요령이 막히고, 학생이 실제로 여럿을 만들어 견주게 된다.
- *    이것이 이 시험에서 **심화상을 심화중 위에 세우는 유일한 반증 가능한 문장**이다.
+ * ```
+ * 심화하  마디마다 값이 하나로 굳는다                     ← 안 건드림
+ * 심화중  굳지 않는 마디가 하나, **소단원의 성질**이 굳힌다   ← ⑴⑵⑶
+ * 심화상  성질로도 안 굳어 **만들어 견주어야** 하나가 남고,
+ *         그 후보를 **발문이 주지 않고 되짚기가 만든다**      ← ⑷⑸⑹
+ * ```
  *
- * ⑶ **소단원의 약속** — 만들 수 있는 배열이 **전부** 그 소단원의 꼴인가.
- *    참은 내 코드가 아니라 **교육과정 SSOT 의 소단원 이름**에서 온다
- *    (`(1보다 작은 소수)×(자연수)` 를 괄호째 읽어 조건으로 쓴다).
+ * ⑴ **되짚기가 실제로 갈라진다** — 발문이 방향을 안 말하므로 원래 수 후보가 **둘**이고,
+ *    그중 **정확히 하나**만 소단원의 성질을 만족한다. 시험이 두 후보를 직접 만들어 센다.
+ * ⑵ **방향을 발문이 말하지 않는다** — 말하면 마디가 굳어 심화하가 된다.
+ * ⑶ **값 검산** — 잘못 쓴 값과 바른 값이 지면의 수로 다시 선다.
+ * ⑷ **창이 하나만 남기지 않는다** — 조건에 드는 후보가 둘 이상이라, 창만 보고는 못 풀고
+ *    **인수 되짚기로** 갈라야 답이 나온다. 이것이 심화상을 심화중 위에 세우는 축이다.
+ * ⑸ **후보를 발문이 주지 않는다** — 미끼는 곱을 만들지 못한다(시험이 직접 확인).
+ * ⑹ **반증 ⑥** — 발문의 수에 순방향 곱셈만으로 답이 나오지 않는다.
+ *    규칙은 제품 모듈(`forwardReach.ts`) 하나를 쓴다 — 옮겨 적지 않는다.
  *
- * 그리고 사다리를 **셀 수 있는 형태**로 한 줄 더 잠근다 — 두 갈래의 해설 계산 걸음이
- * 같은 소단원 «심화하»보다 많다(잣대는 제품 함수 `countCalcSteps` 하나를 쓴다).
+ * ## 🔴 이 시험이 **못 보는 것**
  *
- * ## 🔴 이 시험이 **못 보는 것** (다음 사람 몫 — 여기 안 적으면 「검사됐다」로 읽힌다)
- *
- * · **「어려운가」자체.** 걸음 수도 후보 수도 **모양**이지 어려움이 아니다. 이 저장소가
- *   전 학년 10,944문항에 열쇠 셋을 대 보고 전부 버린 자리다
- *   (`probe-elem-tier-ladder.ts` ㉡-b). 높이는 원장님이 `/dev/tier-bench/g5` 에서 보신다.
- * · **「심화상이 심화중보다 학생에게 어렵나」.** 이 자가 재는 것은 «후보 공간이 한 줄이
- *   아니라 배열이다» 하나뿐이다. **배열이 곧 더 어렵다는 것은 가정**이고, 실측한 계산
- *   걸음은 둘이 **겹친다**(심화중 4~6 · 심화상 4~9). 그 가정을 확정하는 것이 이 파일럿의
- *   목적이지 이 시험의 결론이 아니다.
- * · **다른 지름길.** ⑵ 가 막는 것은 「가장 큰 곱을 그냥 고르기」 **한 가지**다. 후보 둘만
- *   견주면 되는 배치처럼 다른 요령은 못 본다.
- * · **지면(문형) 경로.** 이 파일럿은 갈래만 채웠다 — 적재본에는 한 건도 안 나간다.
- *   그 사실은 `probe-elem-extending-tiers.ts` 가 두 줄로 따로 찍는다.
+ * · **「어려운가」 자체.** 난이도는 지면에 없다(`probe-elem-tier-ladder.ts` ㉡-b).
+ *   높이는 원장님이 `/dev/tier-bench/g5` 에서 보신다.
+ * · **「마디가 굳는가」를 사람처럼은 못 잰다.** ⑴ 은 «성질을 만족하는 후보가 하나»를
+ *   세는 것이지, 학생이 그 성질을 실제로 써야 하는지는 못 본다.
+ * · **해설이 무엇을 시키는지**는 안 본다. 리드가 짚은 초3 2-1-4 처럼 «생성기는 전수,
+ *   해설은 한 줄»인 부류는 여기서 안 걸린다 — 사람이 네 갈래를 나란히 봐야 한다.
+ * · **지면(문형) 경로.** 갈래만 봤다. 적재본에는 한 건도 안 나간다.
  */
 import { describe, expect, it } from "vitest";
 
 import type { ElemTier } from "@/lib/elementary/difficulty";
+import {
+  forwardReachable,
+  pageNumbers,
+  rat,
+} from "@/lib/elementary/forwardReach";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -70,16 +75,12 @@ const unitOf = (code: string) =>
 const problem = (code: string, tier: ElemTier, seed: number) =>
   generateElementaryProblem(unitOf(code), seed, tier);
 
-/* ── 시험이 쓰는 자 — 값은 **정수 스케일**로만 다룬다(부동소수 금지) ────────── */
+/* ── 시험이 쓰는 자 — 정수 스케일로만 (부동소수 금지) ─────────────────────── */
 
-/** `[정수 스케일 값, 소수점 아래 자릿수]`. */
 type S = [number, number];
-
-/** 자릿수가 다른 둘을 견주기 위한 공통 분모. */
-const q = ([v, d]: S): number => v * (10000 / 10 ** d);
+const q = ([v, d]: S): number => v * (100000 / 10 ** d);
 const mulS = (a: S, b: S): S => [a[0] * b[0], a[1] + b[1]];
 
-/** `"0.35"` → `[35, 2]`. 수가 아니면 null — 애매하면 읽지 않는다. */
 function readDec(tok: string): S | null {
   const m = /^(\d+)(?:\.(\d+))?$/.exec(tok.trim());
   if (!m) return null;
@@ -87,7 +88,17 @@ function readDec(tok: string): S | null {
   return [Number(m[1] + frac), frac.length];
 }
 
-/** 지면 표기 — 꼬리 0 을 접는다(`[60,1]` → `"6"`). */
+/** 꼬리 0 을 접은 뒤 남는 소수 자릿수. */
+function places([v, d]: S): number {
+  let val = v;
+  let dp = d;
+  while (dp > 0 && val % 10 === 0) {
+    val /= 10;
+    dp -= 1;
+  }
+  return dp;
+}
+
 function text([v, d]: S): string {
   let val = v;
   let dp = d;
@@ -98,292 +109,47 @@ function text([v, d]: S): string {
   return dp === 0 ? String(val) : (val / 10 ** dp).toFixed(dp);
 }
 
-/** `$6,\ 7,\ 8$` → `["6","7","8"]`. 한 덩어리가 아니면 여기서 빨개진다. */
-function answerList(answer: string): string[] {
-  const m = /^\$(.+)\$$/.exec(answer);
-  expect(m, `정답이 KaTeX 한 덩어리가 아니다: ${answer}`).not.toBeNull();
-  return m![1]!.split(",\\ ").map((s) => s.trim());
-}
+const answerOf = (a: string, label: string): S => {
+  const m = /^\$(\d+(?:\.\d+)?)\$$/.exec(a);
+  expect(m, `${label}: 수 답이 아니다 — ${a}`).not.toBeNull();
+  return readDec(m![1]!)!;
+};
 
-/* ── ⑴ 심화중 — 후보 줄을 시험이 직접 훑는다 ──────────────────────────────── */
-
-/**
- * `$0.7\times\square$` 같은 식에서 **고정값과 후보 줄**을 읽는다.
- *
- * ⚠️ 자연수 후보를 **40 까지** 훑는다 — 생성기가 쓰는 20 보다 넓다. 생성기와 같은
- *    범위를 쓰면 「생성기가 안 본 후보가 실은 범위 안이었다」를 구조적으로 못 본다.
- * ⚠️ `0.\square`·`1.\square` 의 □ 에는 **0 도 넣어 본다.** 발문은 「들어갈 수 있는 수」
- *    라고만 했으므로 0 이 조건에 맞으면 그것도 답이어야 한다.
- */
-function midSpace(
-  frame: string,
-): { fixed: S; cands: { label: number; s: S }[] } | null {
-  const parts = frame.split("\\times");
-  if (parts.length !== 2) return null;
-  const [l, r] = parts as [string, string];
-  const boxLeft = l.includes("\\square");
-  const other = boxLeft ? r : l;
-  const boxTok = (boxLeft ? l : r).trim();
-  if (other.includes("\\square")) return null;
-  const fixed = readDec(other);
-  if (!fixed) return null;
-  if (boxTok === "\\square") {
-    return {
-      fixed,
-      cands: Array.from({ length: 40 }, (_, i) => ({
-        label: i + 1,
-        s: [i + 1, 0] as S,
-      })),
-    };
-  }
-  const digit = /^(\d)\.\\square$/.exec(boxTok);
-  if (digit) {
-    return {
-      fixed,
-      cands: Array.from({ length: 10 }, (_, i) => ({
-        label: i,
-        s: [Number(digit[1]) * 10 + i, 1] as S,
-      })),
-    };
-  }
+/** 소단원 이름이 내건 «어떤 수»의 성질. 참을 **교육과정 SSOT** 에서 뽑는다. */
+function propertyOf(section: string): ((v: S) => boolean) | null {
+  if (/곱의 소수점의 위치/.test(section)) return (v) => places(v) === 2;
+  const m = /\((1보다 [작크]ㄴ? ?소수|1보다 작은 소수|1보다 큰 소수)\)/.exec(
+    section,
+  );
+  if (/1보다 작은 소수/.test(section) && !/1보다 큰 소수/.test(section))
+    return (v) => places(v) === 1 && q(v) > 0 && q(v) < q([1, 0]);
+  if (/1보다 큰 소수/.test(section) && !/1보다 작은 소수/.test(section))
+    return (v) => places(v) === 1 && q(v) > q([1, 0]);
+  void m;
   return null;
 }
 
-/** 발문만 보고 **답이 무엇이어야 하는가**를 시험이 다시 만든다. */
-function midTruth(content: string): string[] {
-  const band = /\$([\d.]+)\$보다 크고 \$([\d.]+)\$보다 작/.exec(content);
-  expect(band, `범위를 못 읽었다:\n${content}`).not.toBeNull();
-  const lo = q(readDec(band![1]!)!);
-  const hi = q(readDec(band![2]!)!);
+/* ── 심화중 — 「소수점을 한 자리 잘못 옮겼다」 ───────────────────────────── */
 
-  // ㉠ 「$…$에 …을 각각 곱했습니다」 — 후보가 **곱하는 수 목록**이고 답은 그 **곱**이다.
-  const each = /^\$([\d.]+)\$에 (.+?)을 각각 곱했습니다/.exec(content);
-  if (each) {
-    const base = readDec(each[1]!)!;
-    const muls = [...each[2]!.matchAll(/\$([\d.]+)\$/g)].map((m) =>
-      readDec(m[1]!)!,
+type MidRead = { k: S; product: S } | null;
+
+/** 발문에서 «곱하는 수»와 «잘못 계산한 값»을 읽는다. */
+function readMid(content: string): MidRead {
+  const m =
+    /어떤 수에 \$([\d.]+)\$[을를] 곱해야 할 것을.*?곱했더니 \$([\d.]+)\$/.exec(
+      content,
+    ) ??
+    /\$([\d.]+)\$에 어떤 수를 곱해야 할 것을.*?곱했더니 \$([\d.]+)\$/.exec(
+      content,
     );
-    expect(muls.length, "곱하는 수 목록이 비었다").toBeGreaterThan(2);
-    return muls
-      .map((m) => mulS(base, m))
-      .filter((p) => q(p) > lo && q(p) < hi)
-      .map(text);
-  }
-
-  // ㉡ 「$…\times\square$의 값이」 — 후보가 **한 줄**이고 답은 후보의 이름이다.
-  const frame = /^\$([^$]+)\$의 값이/.exec(content);
-  expect(frame, `식을 못 읽었다:\n${content}`).not.toBeNull();
-  const space = midSpace(frame![1]!);
-  expect(space, `후보 줄을 못 읽었다: ${frame![1]}`).not.toBeNull();
-  return space!.cands
-    .filter((c) => {
-      const p = q(mulS(space!.fixed, c.s));
-      return p > lo && p < hi;
-    })
-    .map((c) => String(c.label));
-}
-
-/* ── ⑵ 심화상 — 배열을 시험이 직접 전부 만든다 ────────────────────────────── */
-
-type Filling = { text: string; prod: S; ops: S[] };
-
-/**
- * 발문의 «꼴»(`0.\square\times\square\square`)과 카드로 **배열을 전부** 만든다.
- * 카드를 서로 다른 자리에 넣는 모든 차례를 훑으므로, 「한 번씩 모두」든
- * 「중에서 두 장」이든 같은 코드가 덮는다.
- *
- * `powers` 가 있으면 꼴이 **곱셈식이 아니라 소수 하나**이고, 그 소수에 곱하는 수를
- * 차례로 붙인다(2-4-7).
- */
-function arrangements(
-  frame: string,
-  cards: readonly number[],
-  powers: readonly number[],
-): Filling[] {
-  const slots = (frame.match(/\\square/g) ?? []).length;
-  const out: Filling[] = [];
-  const walk = (used: number[], rest: number[]) => {
-    if (used.length === slots) {
-      let i = 0;
-      const filled = frame.replace(/\\square/g, () => String(used[i++]));
-      if (powers.length > 0) {
-        const v = readDec(filled);
-        if (!v) return;
-        for (const p of powers) {
-          out.push({
-            text: `${filled}\\times${p}`,
-            prod: mulS(v, [p, 0]),
-            ops: [v, [p, 0]],
-          });
-        }
-        return;
-      }
-      const halves = filled.split("\\times");
-      if (halves.length !== 2) return;
-      const a = readDec(halves[0]!);
-      const b = readDec(halves[1]!);
-      if (!a || !b) return;
-      out.push({ text: filled, prod: mulS(a, b), ops: [a, b] });
-      return;
-    }
-    for (let k = 0; k < rest.length; k += 1) {
-      walk(
-        [...used, rest[k]!],
-        rest.filter((_, j) => j !== k),
-      );
-    }
-  };
-  walk([], [...cards]);
-  return out;
-}
-
-type TopParts = {
-  cards: number[];
-  frame: string;
-  powers: number[];
-  bound: S;
-};
-
-function topParse(content: string): TopParts {
-  const head = /^수 카드 (.+?)(?: 한 번씩| 중에서)/.exec(content);
-  expect(head, `카드를 못 읽었다:\n${content}`).not.toBeNull();
-  const cards = [...head![1]!.matchAll(/\$(\d)\$/g)].map((m) => Number(m[1]));
-  expect(cards.length, `카드가 모자란다: ${head![1]}`).toBeGreaterThan(2);
-
-  const chunks = [...content.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
-  const frame = chunks.find((c) => c.includes("\\square"));
-  expect(frame, `꼴을 못 읽었다:\n${content}`).not.toBeUndefined();
-
-  const powerText = /그 소수에 (.+?) 중 한 수를 곱합니다/.exec(content);
-  const powers = powerText
-    ? [...powerText[1]!.matchAll(/\$(\d+)\$/g)].map((m) => Number(m[1]))
-    : [];
-
-  const boundText = /\$([\d.]+)\$보다 작은 것 가운데/.exec(content);
-  expect(boundText, `경계를 못 읽었다:\n${content}`).not.toBeNull();
-  return { cards, frame: frame!, powers, bound: readDec(boundText![1]!)! };
-}
-
-/* ── ⑶ 소단원의 약속 — 참은 **교육과정 SSOT 의 소단원 이름**에서 온다 ───────── */
-
-/** `"… (1보다 작은 소수)×(자연수)의 계산"` → 피연산자 둘의 조건. 못 읽으면 null. */
-function operandRule(section: string): ((v: S) => boolean)[] | null {
-  const m = /\(([^)]+)\)×\(([^)]+)\)/.exec(section);
   if (!m) return null;
-  const of = (name: string): ((v: S) => boolean) | null => {
-    if (name === "1보다 작은 소수")
-      return (v) => q(v) > 0 && q(v) < 10000 && q(v) % 10000 !== 0;
-    if (name === "1보다 큰 소수")
-      return (v) => q(v) > 10000 && q(v) % 10000 !== 0;
-    if (name === "자연수") return (v) => q(v) % 10000 === 0;
-    return null;
-  };
-  const a = of(m[1]!);
-  const b = of(m[2]!);
-  return a && b ? [a, b] : null;
+  const k = readDec(m[1]!);
+  const product = readDec(m[2]!);
+  return k && product ? { k, product } : null;
 }
 
-/* ── 눈금 — **이 시험의 자가 «아니오»를 낼 수 있는가** ─────────────────────── */
-
-describe("[초5 2-4 확대] 눈금 — 시험이 쓰는 자가 살아 있다", () => {
-  it("심화중 자 — 범위를 바꾸면 답이 따라 바뀐다 (양성·음성)", () => {
-    const base =
-      "$0.7\\times\\square$의 값이 $4$보다 크고 $6$보다 작을 때, $\\square$ 안에 들어갈 수 있는 자연수를 모두 구하시오.";
-    expect(midTruth(base)).toEqual(["6", "7", "8"]);
-    // 위 경계를 넓히면 $0.7\times9=6.3$ 이 들어온다 — 자가 «범위»를 실제로 본다.
-    expect(midTruth(base.replace("$6$보다 작을", "$7$보다 작을"))).toEqual([
-      "6",
-      "7",
-      "8",
-      "9",
-    ]);
-    // 곱하는 수를 바꾸면 답이 통째로 달라진다 — 자가 «고정값»도 실제로 본다.
-    expect(midTruth(base.replace("$0.7\\times", "$0.5\\times"))).toEqual([
-      "9",
-      "10",
-      "11",
-    ]);
-  });
-
-  it("심화중 자 — 「각각 곱했습니다」 꼴은 **곱**을 답으로 돌려준다", () => {
-    const c =
-      "$2.1$에 $0.01$, $0.1$, $10$, $100$, $1000$을 각각 곱했습니다. 그 곱 중에서 $0.5$보다 크고 $1000$보다 작은 것을 모두 구하시오.";
-    expect(midTruth(c)).toEqual(["21", "210"]);
-    expect(midTruth(c.replace("$1000$보다 작은", "$100$보다 작은"))).toEqual([
-      "21",
-    ]);
-  });
-
-  it("배열 자 — 카드 셋으로 여섯 가지를 만들고 곱을 바르게 낸다", () => {
-    const made = arrangements(
-      "0.\\square\\times\\square\\square",
-      [3, 6, 8],
-      [],
-    );
-    expect(made).toHaveLength(6);
-    expect(made.map((f) => text(f.prod)).sort()).toEqual(
-      ["20.4", "22.8", "25.8", "28.8", "49.8", "50.4"].sort(),
-    );
-    // 「큰 수를 앞자리에」가 여기서는 통한다 — 그래서 발문이 **조건**을 걸어야 한다.
-    expect(text(made.map((f) => f.prod).sort((a, b) => q(b) - q(a))[0]!)).toBe(
-      "50.4",
-    );
-  });
-
-  it("배열 자 — 곱하는 수까지 붙이는 꼴(2-4-7)도 전부 만든다", () => {
-    const made = arrangements(
-      "\\square.\\square\\square",
-      [1, 7, 8],
-      [10, 100, 1000],
-    );
-    expect(made).toHaveLength(18);
-    expect(made.some((f) => f.text === "1.87\\times100")).toBe(true);
-    expect(text(made.find((f) => f.text === "1.87\\times100")!.prod)).toBe(
-      "187",
-    );
-  });
-
-  it("🔴 축 ⑵ 의 자 — 「가장 큰 곱이 빠진다」가 **거짓일 수도** 있다 (음성 대조)", () => {
-    // 이 축은 오늘 실물에서 늘 참이다(생성기가 그렇게 고른다). 그러면 전량 초록이
-    // «깨끗»인지 «못 셈»인지 안 갈린다 — 손으로 지은 발문으로 자가 «아니오»를 내는
-    // 것을 여기서 못 박는다. 실물 검사는 아래 본 검사가 한다.
-    const escapes = (content: string) => {
-      const t = topParse(content);
-      const all = arrangements(t.frame, t.cards, t.powers);
-      return (
-        q(all.reduce((a, b) => (q(a.prod) >= q(b.prod) ? a : b)).prod) >
-        q(t.bound)
-      );
-    };
-    const head =
-      "수 카드 $3$, $6$, $8$을 한 번씩 모두 사용하여 $0.\\square\\times\\square\\square$ 꼴의 곱셈식을 만듭니다. $0.3\\times68$도 그중 하나입니다. 만들 수 있는 곱 중에서 ";
-    // 경계가 가장 큰 곱($50.4$)보다 **아래** — 요령이 막힌다(참).
-    expect(
-      escapes(`${head}$45$보다 작은 것 가운데 가장 큰 곱을 구하시오.`),
-    ).toBe(true);
-    // 경계가 모든 곱보다 **위** — 「가장 큰 것을 그냥 고르면」 끝난다(거짓).
-    expect(
-      escapes(`${head}$99$보다 작은 것 가운데 가장 큰 곱을 구하시오.`),
-    ).toBe(false);
-  });
-
-  it("소단원 이름 자 — 조건을 이름에서 읽고, 어기면 거짓을 낸다", () => {
-    const r = operandRule("2-4-1 (1보다 작은 소수)×(자연수)의 계산")!;
-    expect(r).not.toBeNull();
-    expect(r[0]!([3, 1])).toBe(true); // 0.3
-    expect(r[0]!([13, 1])).toBe(false); // 1.3 은 1보다 작지 않다
-    expect(r[0]!([2, 0])).toBe(false); // 2 는 소수가 아니다
-    expect(r[1]!([5, 0])).toBe(true); // 5
-    expect(r[1]!([5, 1])).toBe(false); // 0.5 는 자연수가 아니다
-    // 이름이 그 꼴이 아니면 **판정하지 않는다**(조용히 통과시키지 않으려고 null 이다).
-    expect(operandRule("2-4-7 곱의 소수점의 위치")).toBeNull();
-  });
-});
-
-/* ── 본 검사 ──────────────────────────────────────────────────────────────── */
-
-describe("[초5 2-4 확대] 심화중 — 「후보 줄을 범위로 자른다」", () => {
-  it("일곱 소단원 모두 심화중·심화상이 등록돼 있다", () => {
+describe("[초5 2-4 확대] 심화중 — 「굳지 않는 마디를 소단원의 성질이 굳힌다」", () => {
+  it("일곱 소단원 모두 여섯 갈래가 등록돼 있다", () => {
     for (const code of CODES) {
       expect(tiersOf(unitOf(code)), code).toEqual([
         "연산",
@@ -396,267 +162,285 @@ describe("[초5 2-4 확대] 심화중 — 「후보 줄을 범위로 자른다�
     }
   });
 
-  it("답이 발문의 범위에서 **전수로** 다시 나온다 (씨앗 16)", () => {
+  it("🔴 되짚기 후보가 **둘**이고, 성질을 만족하는 것은 **하나**뿐이다", () => {
     let checked = 0;
     for (const code of CODES) {
+      const holds = propertyOf(unitOf(code).section);
+      expect(holds, `${code}: 소단원 이름에서 성질을 못 읽었다`).not.toBeNull();
       for (const seed of SEEDS) {
         const p = problem(code, "심화중", seed);
-        const want = midTruth(p.content);
+        const read = readMid(p.content);
         expect(
-          answerList(p.answer),
+          read,
+          `${code} @${seed} 발문을 못 읽었다\n${p.content}`,
+        ).not.toBeNull();
+        const { k, product } = read!;
+        const answer = answerOf(p.answer, `${code} 심화중 @${seed}`);
+
+        // 되짚기 ① — 잘못 쓴 수는 하나로 굳는다: wrong × k = product
+        // 곱셈으로만 확인한다(나눗셈은 이 학년 밖이다).
+        const wrongs: S[] = [];
+        for (let v = 1; v <= 9999; v += 1) {
+          for (let d = 0; d <= 4; d += 1) {
+            const cand: S = [v, d];
+            if (q(mulS(cand, k)) === q(product)) wrongs.push(cand);
+          }
+        }
+        const wrong = wrongs.find((w) => places(w) >= 0);
+        expect(wrong, `${code} @${seed} 잘못 쓴 수를 못 찾았다`).toBeDefined();
+
+        // 되짚기 ② — 소수점을 한 자리 옮긴 **두** 후보. 방향은 발문에 없다.
+        const cands: S[] = [
+          [wrong![0], wrong![1] - 1],
+          [wrong![0], wrong![1] + 1],
+        ].map(([v, d]) => {
+          let val = v;
+          let dp = d;
+          while (dp < 0) {
+            val *= 10;
+            dp += 1;
+          }
+          return [val, dp] as S;
+        });
+        const fit = cands.filter((c) => holds!(c));
+        expect(
+          fit.length,
+          `${code} 심화중 @${seed} 성질을 만족하는 후보가 ${fit.length}개다 — ` +
+            `하나여야 마디가 «굳는다»\n${p.content}`,
+        ).toBe(1);
+
+        // ⑶ 값 검산 — 바른 값이 그 후보로 다시 선다.
+        expect(
+          text(mulS(fit[0]!, k)),
           `${code} 심화중 @${seed}\n${p.content}`,
-        ).toEqual(want);
+        ).toBe(text(answer));
         checked += 1;
       }
     }
-    // 분모를 지킨다 — 한 번도 안 돌면 위 단정은 아무것도 증명하지 않는다.
     expect(checked).toBe(CODES.length * SEEDS.length);
   });
 
-  it("답이 **둘 이상**이다 — 하나면 그건 심화하의 한 걸음 역산이다", () => {
+  it("⑵ 발문이 **방향을 말하지 않는다** — 말하면 마디가 굳어 심화하가 된다", () => {
     for (const code of CODES) {
       for (const seed of SEEDS) {
-        const p = problem(code, "심화중", seed);
+        const c = problem(code, "심화중", seed).content;
+        expect(c, `${code} @${seed}`).toContain("한 자리 잘못 옮긴");
         expect(
-          answerList(p.answer).length,
-          `${code} 심화중 @${seed} 답이 하나다\n${p.content}`,
-        ).toBeGreaterThanOrEqual(2);
-      }
-    }
-  });
-
-  it("해설이 **양쪽 경계**를 둘 다 짚는다 (한쪽만 재고 맞히지 못하게)", () => {
-    for (const code of CODES) {
-      if (code === "2-4-7") continue; // 후보가 다섯뿐이라 해설이 전부를 늘어놓는다
-      for (const seed of SEEDS) {
-        const p = problem(code, "심화중", seed);
-        expect(
-          p.solution,
-          `${code} 심화중 @${seed} 아래 경계가 없다\n${p.solution}`,
-        ).toMatch(/보다 작고/);
-        expect(
-          p.solution,
-          `${code} 심화중 @${seed} 위 경계가 없다\n${p.solution}`,
-        ).toMatch(/보다 크므로/);
+          /(오른쪽|왼쪽)으로/.test(c),
+          `${code} 심화중 @${seed} 발문이 옮긴 방향을 말한다 — 되짚기가 굳는다\n${c}`,
+        ).toBe(false);
       }
     }
   });
 });
 
-describe("[초5 2-4 확대] 심화상 — 「배열을 전부 만들어 견줘야 한다」", () => {
-  it("답이 발문의 배열 공간에서 **전수로** 다시 나온다 (씨앗 16)", () => {
+/* ── 심화상 — 「만들어 견주어야 하나가 남는다」 ──────────────────────────── */
+
+type TopRead = { product: S; probe: S; lo: S; hi: S } | null;
+
+function readTop(content: string): TopRead {
+  const p = /곱했더니 \$([\d.]+)\$[이가] 되었습니다/.exec(content);
+  const w = /\$([\d.]+)\$보다 크고 \$([\d.]+)\$보다 작을 때/.exec(content);
+  const pr =
+    /\$([\d.]+)\$[과와] .*?를 곱한 값/.exec(content) ??
+    /와 \$([\d.]+)\$[을를] 곱한 값/.exec(content);
+  if (!p || !w || !pr) return null;
+  const product = readDec(p[1]!);
+  const lo = readDec(w[1]!);
+  const hi = readDec(w[2]!);
+  const probe = readDec(pr[1]!);
+  return product && lo && hi && probe ? { product, probe, lo, hi } : null;
+}
+
+describe("[초5 2-4 확대] 심화상 — 「창만으로는 못 풀고 되짚기로 갈라야 한다」", () => {
+  it("🔴 조건 창에 드는 후보가 **둘 이상**이고, 곱을 만드는 것은 **하나**뿐이다", () => {
+    // 이것이 심화상을 심화중 위에 세우는 유일한 반증 가능한 문장이다.
+    // 창이 하나만 남기면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
     let checked = 0;
     for (const code of CODES) {
+      if (code === "2-4-7") continue; // 2-4-7 은 꼴이 달라 아래에서 따로 본다
+      const holdsDec = propertyOf(unitOf(code).section);
+      expect(holdsDec, `${code}: 성질을 못 읽었다`).not.toBeNull();
       for (const seed of SEEDS) {
         const p = problem(code, "심화상", seed);
-        const t = topParse(p.content);
-        const all = arrangements(t.frame, t.cards, t.powers);
+        const read = readTop(p.content);
         expect(
-          all.length,
-          `${code} 심화상 @${seed} 배열을 못 만들었다\n${p.content}`,
-        ).toBeGreaterThan(3);
-        const hits = all.filter((f) => q(f.prod) < q(t.bound));
-        const best = hits.reduce((a, b) => (q(a.prod) >= q(b.prod) ? a : b));
-        expect(p.answer, `${code} 심화상 @${seed}\n${p.content}`).toBe(
-          `$${text(best.prod)}$`,
-        );
+          read,
+          `${code} @${seed} 발문을 못 읽었다\n${p.content}`,
+        ).not.toBeNull();
+        const { product, probe, lo, hi } = read!;
+
+        // 창에 드는 후보를 **시험이 직접** 만든다.
+        // ⚠️ **어느 후보 줄인지는 발문이 말한다** — 「그 자연수」면 자연수, 「두 소수 중
+        //    하나」면 소수다. 첫 판은 둘을 섞어 두어 «짝이 둘»이라는 **거짓 빨강**이
+        //    났다(2-4-2 @202: 소수 $2.6$ 이 자연수 자리에 섞여 들었다).
+        const naturals: S[] = [];
+        for (let v = 2; v <= 9; v += 1) naturals.push([v, 0]);
+        const decs: S[] = [];
+        for (let v = 1; v <= 49; v += 1) {
+          const cand: S = [v, 1];
+          if (holdsDec!(cand)) decs.push(cand);
+        }
+        const winPool = /그 자연수/.test(p.content) ? naturals : decs;
+        const pool = decs;
+        const inWindow = winPool.filter((o) => {
+          const val = q(mulS(probe, o));
+          return val > q(lo) && val < q(hi);
+        });
+        expect(
+          inWindow.length,
+          `${code} 심화상 @${seed} 창에 드는 후보가 ${inWindow.length}개다 — ` +
+            `둘 이상이어야 되짚기가 필요하다\n${p.content}`,
+        ).toBeGreaterThanOrEqual(2);
+
+        // 그중 곱을 만드는 짝이 정확히 하나 — 그 짝의 다른 인수가 답이다.
+        const partners = inWindow
+          .map((o) => {
+            const hit = pool.find(
+              (d) => places(d) >= 1 && q(mulS(d, o)) === q(product),
+            );
+            return hit ? { o, d: hit } : null;
+          })
+          .filter((x): x is { o: S; d: S } => x !== null);
+        expect(
+          partners.length,
+          `${code} 심화상 @${seed} 곱을 만드는 짝이 ${partners.length}개다\n${p.content}`,
+        ).toBe(1);
+        expect(
+          text(partners[0]!.d),
+          `${code} 심화상 @${seed}\n${p.content}`,
+        ).toBe(text(answerOf(p.answer, `${code} @${seed}`)));
         checked += 1;
       }
     }
-    expect(checked).toBe(CODES.length * SEEDS.length);
+    expect(checked).toBe((CODES.length - 1) * SEEDS.length);
   });
 
-  it("🔴 **가장 큰 곱이 조건에 걸려 빠진다** — 「큰 수를 앞자리에」가 안 통한다", () => {
-    for (const code of CODES) {
-      for (const seed of SEEDS) {
-        const p = problem(code, "심화상", seed);
-        const t = topParse(p.content);
-        const all = arrangements(t.frame, t.cards, t.powers);
-        const top = all.reduce((a, b) => (q(a.prod) >= q(b.prod) ? a : b));
-        expect(
-          q(top.prod) > q(t.bound),
-          `${code} 심화상 @${seed} 가장 큰 곱이 조건 안에 있다 — 요령으로 풀린다\n${p.content}`,
-        ).toBe(true);
-        expect(
-          p.answer,
-          `${code} 심화상 @${seed} 답이 곧 가장 큰 곱이다\n${p.content}`,
-        ).not.toBe(`$${text(top.prod)}$`);
-      }
-    }
-  });
-
-  it("견줄 것이 넉넉하다 — 서로 다른 곱이 다섯 가지 이상, 조건에 든 것이 둘 이상", () => {
-    for (const code of CODES) {
-      for (const seed of SEEDS) {
-        const p = problem(code, "심화상", seed);
-        const t = topParse(p.content);
-        const all = arrangements(t.frame, t.cards, t.powers);
-        const kinds = new Set(all.map((f) => q(f.prod)));
-        expect(
-          kinds.size,
-          `${code} 심화상 @${seed} 곱이 ${kinds.size}가지뿐이다\n${p.content}`,
-        ).toBeGreaterThanOrEqual(5);
-        const hits = all.filter((f) => q(f.prod) < q(t.bound));
-        expect(
-          new Set(hits.map((f) => q(f.prod))).size,
-          `${code} 심화상 @${seed} 조건에 든 것이 하나뿐이다 — 견줄 짝이 없다\n${p.content}`,
-        ).toBeGreaterThanOrEqual(2);
-      }
-    }
-  });
-
-  it("답이 정수로 접히지 않는다 — 「소수의 곱셈」이 지면에서 사라지면 안 된다", () => {
-    // ⚠️ 2-4-7 은 **자리를 옮기는** 소단원이라 정수 답이 정상이다 — 여기서 뺀다.
-    for (const code of CODES) {
-      if (code === "2-4-7") continue;
-      for (const seed of SEEDS) {
-        const p = problem(code, "심화상", seed);
-        expect(
-          p.answer,
-          `${code} 심화상 @${seed} 답이 정수다 — 소수가 지면에서 사라졌다\n${p.content}`,
-        ).toMatch(/^\$\d+\.\d+\$$/);
-      }
-    }
-  });
-
-  it("2-4-7 은 **곱하는 수도** 골라야 한다 — 조건에 든 것이 한 가지 곱하는 수뿐이 아니다", () => {
+  it("2-4-7 은 **두 후보를 다 계산해 봐야** 갈린다 (자리 옮기기가 판정에 든다)", () => {
     for (const seed of SEEDS) {
       const p = problem("2-4-7", "심화상", seed);
-      const t = topParse(p.content);
-      expect(t.powers.length, `2-4-7 @${seed} 곱하는 수 목록이 없다`).toBe(3);
-      const hits = arrangements(t.frame, t.cards, t.powers).filter(
-        (f) => q(f.prod) < q(t.bound),
-      );
-      const used = new Set(hits.map((f) => f.text.split("\\times")[1]));
-      expect(
-        used.size,
-        `2-4-7 심화상 @${seed} 조건에 든 것이 «${[...used].join()}» 하나뿐이다 — 자리 옮기기가 판정에서 빠진다\n${p.content}`,
-      ).toBeGreaterThanOrEqual(2);
-    }
-  });
-});
-
-describe("[초5 2-4 확대] 소단원의 약속 — 탐색의 «재료»가 그 소단원이다", () => {
-  it("심화상이 만들 수 있는 배열이 **전부** 소단원 이름의 꼴이다", () => {
-    let judged = 0;
-    const skipped: string[] = [];
-    for (const code of CODES) {
-      const unit = unitOf(code);
-      const rule = operandRule(unit.section);
-      if (!rule) {
-        skipped.push(code);
-        continue;
-      }
-      for (const seed of SEEDS) {
-        const p = problem(code, "심화상", seed);
-        const t = topParse(p.content);
-        for (const f of arrangements(t.frame, t.cards, t.powers)) {
-          expect(
-            rule[0]!(f.ops[0]!) && rule[1]!(f.ops[1]!),
-            `${code} 심화상 @${seed} «${f.text}» 가 «${unit.section}» 의 꼴이 아니다`,
-          ).toBe(true);
-          judged += 1;
+      const two =
+        /어떤 소수에 \$(\d+)\$ 또는 \$(\d+)\$[을를] 곱했더니 \$([\d.]+)\$/.exec(
+          p.content,
+        );
+      expect(two, `2-4-7 @${seed}\n${p.content}`).not.toBeNull();
+      const cut = /\$([\d.]+)\$보다 (작을|클) 때/.exec(p.content)!;
+      const probe = /어떤 소수에 \$([\d.]+)\$[을를] 곱한 값/.exec(p.content)!;
+      const [a, b] = [Number(two![1]), Number(two![2])];
+      const product = readDec(two![3]!)!;
+      // 두 후보 — 곱을 각각 되짚는다(곱셈으로만 확인).
+      // ⚠️ `[87,1]` 과 `[870,2]` 는 **같은 수**다(8.7). 표기로 세면 후보가 부풀어
+      //    «넷»이라는 거짓 빨강이 난다 — 첫 판이 그랬다. 값으로 접어서 센다.
+      const seen = new Set<number>();
+      const cands: S[] = [];
+      for (let v = 1; v <= 999; v += 1)
+        for (let d = 1; d <= 3; d += 1) {
+          const c: S = [v, d];
+          if (
+            q(mulS(c, [a, 0])) !== q(product) &&
+            q(mulS(c, [b, 0])) !== q(product)
+          )
+            continue;
+          if (seen.has(q(c))) continue;
+          seen.add(q(c));
+          cands.push(c);
         }
-      }
-    }
-    // 판정한 수와 **건너뛴 것**을 같이 적는다 — 0 이 「깨끗」인지 「못 셈」인지 갈려야 한다.
-    expect(judged, "판정한 배열이 없다").toBeGreaterThan(500);
-    expect(skipped, "이름이 «(A)×(B)» 꼴이 아니어서 판정 밖인 소단원").toEqual([
-      "2-4-7",
-    ]);
-  });
-
-  it("심화중도 소단원의 소수를 쓴다 — 「1보다 작은/큰」이 발문에 실제로 있다", () => {
-    for (const code of ["2-4-1", "2-4-3", "2-4-5"] as const) {
-      for (const seed of SEEDS) {
-        const c = problem(code, "심화중", seed).content;
-        const decs = [...c.matchAll(/(\d+\.\d+)/g)]
-          .map((m) => readDec(m[1]!)!)
-          .filter((v) => q(v) < 10000 && q(v) > 0);
-        expect(
-          decs.length,
-          `${code} 심화중 @${seed} 1보다 작은 소수가 없다\n${c}`,
-        ).toBeGreaterThan(0);
-      }
-    }
-    for (const code of ["2-4-2", "2-4-4", "2-4-6"] as const) {
-      for (const seed of SEEDS) {
-        const c = problem(code, "심화중", seed).content;
-        const decs = [...c.matchAll(/(\d+\.\d+)/g)]
-          .map((m) => readDec(m[1]!)!)
-          .filter((v) => q(v) > 10000);
-        expect(
-          decs.length,
-          `${code} 심화중 @${seed} 1보다 큰 소수가 없다\n${c}`,
-        ).toBeGreaterThan(0);
-      }
+      expect(
+        cands.length,
+        `2-4-7 심화상 @${seed} 후보가 ${cands.length}개다 — 둘이어야 한다\n${p.content}`,
+      ).toBe(2);
+      const m = readDec(probe[1]!)!;
+      const bound = readDec(cut[1]!)!;
+      const keep = cands.filter((c) =>
+        cut[2] === "작을" ? q(mulS(c, m)) < q(bound) : q(mulS(c, m)) > q(bound),
+      );
+      expect(
+        keep.length,
+        `2-4-7 심화상 @${seed} 조건이 ${keep.length}개를 남긴다\n${p.content}`,
+      ).toBe(1);
+      expect(text(keep[0]!), `2-4-7 @${seed}\n${p.content}`).toBe(
+        text(answerOf(p.answer, `2-4-7 @${seed}`)),
+      );
     }
   });
 });
 
-/**
- * 🔴 **렌더 실패의 열쇠는 `katex-error` 가 아니다** (2026-08-30 실측).
- *
- * 이 저장소의 초등 갈래 시험 여러 곳이 `not.toContain("katex-error")` 로 렌더를
- * 지키는데, `renderMathHtml` 의 머리말은 스스로 **「katex-error 를 절대 포함하지
- * 않는다」** 고 적어 두었다 — 3단 방어가 실패를 `.math-raw` **중립 폴백**으로 바꾼다.
- * 즉 그 검사들은 **구조적으로 0** 이다(음성 대조를 대 보고 알았다: 미지 명령·짝 안 맞는
- * 중괄호·닫히지 않은 명령·미지 환경 넷 다 붉지 않고 **날것으로** 떨어진다).
- *
- * 그래서 여기서는 **`math-raw` 를 같이** 본다. 전 학년 실측(초등 9,312문항, 표준+갈래)
- * 에서 둘 다 **0건**이므로 이 열쇠를 더해도 거짓 경보가 안 난다.
- */
-const renderFails = (html: string) =>
-  html.includes("katex-error") ||
-  /color:\s*#cc0000/i.test(html) ||
-  html.includes("math-raw");
+/* ── 반증 ⑥ · 지면 · 사다리 ──────────────────────────────────────────────── */
 
-describe("[초5 2-4 확대] 지면 — 값이 맞는 것과 옳게 보이는 것은 다른 질문이다", () => {
-  it("**검출기가 살아 있다** — 실패한 수식을 실제로 문다 (음성 대조)", () => {
-    // 0 이 「깨끗」인지 「못 셈」인지 갈라야 한다. 첫 판은 `katex-error` 만 봤고
-    // **이 눈금이 그 자리에서 빨개져서** 열쇠를 고쳤다.
-    for (const tex of [
-      "$\\notacommand{3}$",
-      "$\\frac{1}{$",
-      "$\\sqrt$",
-      "$\\begin{nope}1\\end{nope}$",
-    ]) {
-      expect(renderFails(renderMathHtml(tex)), `못 문다: ${tex}`).toBe(true);
-    }
-    // 반대쪽 — 멀쩡한 것을 물면 거짓 경보가 되고, 거짓 경보는 가드를 끈다.
-    for (const tex of [
-      "$0.3\\times68=20.4$",
-      "$0.\\square\\times\\square\\square$",
-      "$\\square.\\square\\times\\square.\\square$",
-    ]) {
-      expect(renderFails(renderMathHtml(tex)), `거짓 경보: ${tex}`).toBe(false);
-    }
-  });
-
-  it("새 꼴(`0.□×□□`·`□.□×□.□`·`□.□□`)이 지면에서 성하게 그려진다", () => {
-    // ⚠️ 이 대단원은 기존 렌더 검사의 **밖**이었다(그 검사들은 1-5·2-3 블록에만 있다).
-    //    확대 갈래는 `\square` 를 소수점 **안**에 넣는 새 꼴을 쓰므로 실제로 그려 본다.
-    //    값 검산은 이 부류를 구조적으로 못 본다 — 값은 맞고 글자만 날것이기 때문이다.
+describe("[초5 2-4 확대] 반증문과 지면", () => {
+  it("⑥ 발문의 수에 **순방향 곱셈만으로** 답이 나오지 않는다", () => {
+    // 규칙은 제품 모듈 하나를 쓴다 — 옮겨 적으면 두 벌이 되어 한쪽만 고쳐도 모른다.
     for (const code of CODES) {
       for (const tier of ["심화중", "심화상"] as const) {
         for (const seed of SEEDS) {
           const p = problem(code, tier, seed);
-          const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
+          const m = /^\$(\d+(?:\.\d+)?)\$$/.exec(p.answer)!;
+          const [w, f = ""] = m[1]!.split(".");
           expect(
-            renderFails(html),
-            `${code} ${tier} @${seed} 지면에 날 LaTeX 이 나간다\n${p.content}`,
+            forwardReachable(
+              pageNumbers(p.content),
+              rat(Number(w! + f), 10 ** f.length),
+            ),
+            `${code} ${tier} @${seed} 순방향으로 풀린다 — 되짚기가 아니다\n${p.content}`,
           ).toBe(false);
         }
       }
     }
   });
-});
 
-describe("[초5 2-4 확대] 사다리 — 셀 수 있는 형태로 한 줄", () => {
-  it("두 갈래의 해설 계산 걸음이 같은 씨앗의 «심화하»보다 많다", () => {
-    // 잣대는 제품 함수 하나(`countCalcSteps`)를 쓴다 — 규칙을 옮겨 적지 않는다.
-    // ⚠️ 이 자는 **심화중과 심화상을 서로 가르지 못한다**(실측으로 겹친다).
-    //    둘 사이의 축은 위 «배열 전수 탐색»이고, 여기는 심화하와의 층만 잠근다.
+  it("⑥ 의 자가 **«예»도 낼 수 있다** — 연산·기본·응용은 순방향으로 닿는다 (음성 대조)", () => {
+    // 위 검사가 전량 초록인 것이 «깨끗»인지 «못 셈»인지 갈라야 한다.
+    let looked = 0;
+    for (const code of CODES) {
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS.slice(0, 8)) {
+          const p = problem(code, tier, seed);
+          const m = /^\$(\d+(?:\.\d+)?)\$$/.exec(p.answer);
+          if (!m) continue;
+          const [w, f = ""] = m[1]!.split(".");
+          expect(
+            forwardReachable(
+              pageNumbers(p.content),
+              rat(Number(w! + f), 10 ** f.length),
+            ),
+            `${code} ${tier} @${seed} 가 순방향으로 안 닿는다 — 반증 ④ 후보다\n${p.content}`,
+          ).toBe(true);
+          looked += 1;
+        }
+      }
+    }
+    expect(looked, "음성 대조를 하나도 못 했다").toBeGreaterThan(100);
+  });
+
+  it("지면이 성하다 — 날 LaTeX 이 안 나간다", () => {
+    // ⚠️ `renderMathHtml` 은 「katex-error 를 절대 포함하지 않는다」고 스스로 적어
+    //    두었다 — 실패는 `.math-raw` **중립 폴백**으로 온다(2026-08-30 실측).
+    const fails = (h: string) =>
+      h.includes("katex-error") ||
+      /color:\s*#cc0000/i.test(h) ||
+      h.includes("math-raw");
+    expect(fails(renderMathHtml("$\\notacommand{3}$")), "검출기가 죽었다").toBe(
+      true,
+    );
+    expect(fails(renderMathHtml("$0.3\\times68=20.4$")), "거짓 경보").toBe(
+      false,
+    );
+    for (const code of CODES) {
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          expect(
+            fails(renderMathHtml(`${p.content} ${p.answer} ${p.solution}`)),
+            `${code} ${tier} @${seed}\n${p.content}`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  it("사다리 — 두 갈래의 해설 계산 걸음이 같은 씨앗의 «심화하»보다 많다", () => {
+    // ⚠️ 이 자는 **심화중과 심화상을 서로 가르지 못한다**. 둘 사이의 축은 위
+    //    「창이 둘 이상」이고, 여기는 심화하와의 층만 잠근다.
     for (const code of CODES) {
       for (const seed of SEEDS) {
         const low = countCalcSteps(problem(code, "심화하", seed).solution);

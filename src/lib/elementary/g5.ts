@@ -9552,9 +9552,6 @@ const scMul = (a: Sc, b: Sc): Sc => [a[0] * b[0], a[1] + b[1]];
 /** 지면 표기 — `dec` 가 꼬리 0 을 접는다. */
 const scText = (s: Sc): string => dec(s[0], s[1]);
 
-/** 성질 문구 「$1$보다 작은/큰 …」 이 지면에 남기는 수. */
-const ONE: Sc = [1, 0];
-
 /** 꼬리 0 을 접은 뒤 남는 소수 자릿수. 0 이면 자연수다. */
 function scPlaces(s: Sc): number {
   let v = s[0];
