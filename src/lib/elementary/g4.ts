@@ -2583,6 +2583,528 @@ function tier37Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-3 난이도 확대 — 심화중·심화상 (D-113, 2026-08-30) ──────────
+ *
+ * **파일럿이다.** 원장님이 `/dev/tier-bench/g4` 에서 여섯 갈래를 나란히 보시고 잣대를
+ * 확정하실 때까지 이 대단원 일곱 소단원 밖으로 나가지 않는다(D-71·D-07).
+ *
+ * ## 왜 1-3 인가
+ *
+ * `tier-bench-g4.md` §6.1 #5 가 지목한 자리다 — 「우리 최고점(1-3-2·1-3-6)이 저쪽
+ * 심화(하)인지 심화(중)인지. **우리 천장의 절대 위치**가 여기서 정해진다」. 같은
+ * 보고서 §3.2 에서 이 대단원은 **천장과 바닥을 같이** 갖는다(심하 둘 · 응용≈심화 셋).
+ *
+ * ## 잣대 — **되짚기 축** (리드 확정 2026-08-30)
+ *
+ * ⚠️ **처음 초안은 «열거» 축이었고 기각됐다.** 문형 전량 6,900행 실측에서 열거는
+ *    갈래를 1.5~2배밖에 안 가르고(초4는 기본 7.4% > 응용 5.5% 로 **뒤집혀** 있다)
+ *    되짚기는 22~40배 가른다. 게다가 심화하 안에서 열거형은 평균 **0.39걸음**으로
+ *    그 소단원 «연산»(0.79)보다도 얕았다 — 열거를 꼭대기의 정의로 쓰면 **가장 얕은
+ *    것을 꼭대기로 올리게 된다.** 그래서 축을 바꿨다.
+ *
+ * ```
+ * 심화하  되짚기 사슬의 **마디마다 값이 하나로 굳는다**            (기준선 — 안 건드림)
+ * 심화중  굳지 않는 마디가 **하나** 있고, 발문의 다른 조건이나
+ *         **그 소단원의 성질**이 그 마디를 굳혀 주어야 답이 선다
+ * 심화상  그 마디를 성질만으로는 **못 굳혀**, 그 소단원의 계산으로 나올 수 있는
+ *         값들을 **실제로 만들어 견주어야** 하나가 남는다. 그리고 그 후보를
+ *         **발문이 주지 않고 되짚기가 만든다**
+ * ```
+ *
+ * 🔴 **참은 생성기가 아니라 해설이다.** 생성기가 전수로 훑어도 해설이 한 줄로 접으면
+ *    학생 경로는 그만큼이다. 아래 해설들은 **견주는 자리를 실제로 적는다** —
+ *    심화상 해설은 「이 후보는 왜 안 되고 저것은 왜 되는가」를 계산으로 보인다.
+ *
+ * ### 반증 ④ — 뒤집힘 필터를 이 일곱에 실제로 댔다
+ *
+ * 같은 소단원의 연산·기본·응용 중 하나라도 이 잣대를 통과하면 그 소단원은 비워야 한다.
+ * 일곱 소단원 × 세 갈래 **스물하나 전부**, 답이 발문의 수에 그 소단원 연산을
+ * **순방향으로만** 적용해 나온다(=되짚기가 없다) — 그래서 굳지 않는 마디가 아예 없다.
+ * 유일한 되짚기는 1-3-5 «연산»의 `$b\times\square=a$` 인데 **마디가 하나로 굳으므로**
+ * 반증 ①에 의해 심화하 급이다. **뒤집힘 0 — 일곱 다 채운다.**
+ * 그 순방향 성질은 `elemTiersG4MulDivDeep.test.ts` 가 **셋 전부에 실제로 대어** 잠근다.
+ *
+ * 🔴 **규모로 올리지 않았다**(원장님). 곱은 다섯 자리 안, 나눗셈은 표준과 같은 띠 —
+ *    `elemTiersG4MulDiv.test.ts` 의 `SCALE_CAP` 이 새 갈래에도 그대로 걸린다.
+ *
+ * 🔴 **문형(`FORMS`)에는 안 넣었다.** 순서는 잣대 → 갈래 → 문형 12(D-114) → 적재다.
+ *    그래서 이 파일럿은 **적재본에 안 들어간다**(계량기가 두 줄을 따로 찍는다).
+ */
+
+/** 열 자리로 어림. 생성기·시험이 같은 규칙을 쓰되 시험은 이것을 안 부른다(동어반복 금지). */
+function roundTen(value: number): number {
+  return Math.round(value / 10) * 10;
+}
+
+/**
+ * **1-3-5 심화상의 밭** — 「$N$ 을 두 자리 수로 나누어떨어지게 하고 몫이 한 자리」인
+ * 나누는 수가 **정확히 하나**인 자리. 손으로 고르지 않고 전수로 만든다.
+ *
+ * 하나여야 하는 까닭: 심화상은 「견주어 보니 **하나가 남는다**」이지 「여럿을 다
+ * 적는다」가 아니다(리드 반증 ⑤ — 「모두」를 지워도 답이 그대로면 그 열거는 등급의
+ * 근거가 아니다).
+ */
+const DIV_ONE_DIGIT_FIELD: { b: number; q: number; n: number }[] = (() => {
+  const out: { b: number; q: number; n: number }[] = [];
+  for (let b = 11; b <= 39; b += 1) {
+    if (b % 10 === 0) continue;
+    for (let q = 3; q <= 9; q += 1) {
+      const n = b * q;
+      let hits = 0;
+      for (let d = 10; d <= 99; d += 1) {
+        if (n % d !== 0) continue;
+        const t = n / d;
+        if (t >= 1 && t <= 9) hits += 1;
+      }
+      if (hits === 1) out.push({ b, q, n });
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-3-6 심화상의 밭** — 「$N$ 을 두 자리 수로 나누면 몫이 두 자리이고 나머지가 $r$」
+ * 인 나누는 수가 **정확히 하나**인 자리.
+ *
+ * ⚠️ 나머지를 안 걸면 $b$ 와 몫이 **서로 바꿔치기 되어 답이 늘 둘**이다
+ *    ($391=17\times23$ 은 $17$ 로도 $23$ 으로도 몫이 두 자리). 「나머지는 나누는 수보다
+ *    작다」는 소단원 성질이 그 대칭을 깬다 — 그래서 $r$ 이 몫보다 크거나 같은 자리만 산다.
+ */
+const DIV_TWO_DIGIT_FIELD: { b: number; q: number; r: number; n: number }[] =
+  (() => {
+    const out: { b: number; q: number; r: number; n: number }[] = [];
+    for (let b = 12; b <= 29; b += 1) {
+      if (b % 10 === 0) continue;
+      for (let q = 11; q <= 28; q += 1) {
+        for (let r = 1; r <= b - 1; r += 1) {
+          const n = b * q + r;
+          let hits = 0;
+          let only = 0;
+          for (let d = 10; d <= 99; d += 1) {
+            if (n % d !== r) continue;
+            const t = Math.floor(n / d);
+            if (t < 10 || t > 99) continue;
+            hits += 1;
+            only = d;
+          }
+          if (hits === 1 && only === b) out.push({ b, q, r, n });
+        }
+      }
+    }
+    return out;
+  })();
+
+/**
+ * **1-3-7 심화상의 밭** — 「몇십으로 어림하면 `bb`」인 두 자리 수 열 개 가운데 `a` 를
+ * 나누어떨어지게 하는 것이 **정확히 하나**인 자리. 어림값별로 나눠 담는다 —
+ * 한 통에 쏟으면 작은 어림값이 압도한다(실측으로 씨앗 셋이 전부 $20$ 이었다).
+ *
+ * ⚠️ 상한 `900` 은 시험의 `SCALE_CAP["1-3-7"]` 과 같은 뜻이지만 그 상수를 가져다
+ *    쓰지 않는다 — 제품이 제 시험의 기대값을 정하면 그 시험은 도장이 된다.
+ */
+const DIV_ROUGH_FIELD: { bb: number; a: number; d: number }[][] = (() => {
+  const out: { bb: number; a: number; d: number }[][] = [];
+  for (let bb = 20; bb <= 90; bb += 10) {
+    const window: number[] = [];
+    for (let d = bb - 5; d <= bb + 4; d += 1) window.push(d);
+    const rows: { bb: number; a: number; d: number }[] = [];
+    for (let a = 100; a <= 900; a += 1) {
+      const divs = window.filter((d) => a % d === 0);
+      // 🔴 나누는 수가 **어림값 그 자체**면 답이 발문에 그대로 적혀 있다
+      //    (「어림하면 $20$」인데 답도 $20$). 시험의 「후보를 발문이 주지 않는다」가
+      //    실제로 잡아 준 자리다 — 되짚기가 만든 후보가 아니라 발문이 준 값이 된다.
+      if (divs.length === 1 && divs[0] !== bb)
+        rows.push({ bb, a, d: divs[0]! });
+    }
+    if (rows.length > 0) out.push(rows);
+  }
+  return out;
+})();
+
+/**
+ * **1-3-1 5단 심화중 — 곱의 «자릿수»가 어떤 수를 굳힌다.**
+ * 되짚기 마디(어떤 수)는 범위로만 열리고, 「몇 자리 수인가」(소단원 성질)와
+ * 「가장 작은/큰」(발문 조건)이 그 마디를 **한 번에** 굳힌다.
+ */
+function tier31Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const five = intBetween(rng, 0, 1) === 0;
+  const m = five ? Math.ceil(10000 / b) : Math.floor(9999 / b);
+  const lo = five ? m - 1 : m;
+  const hi = five ? m : m + 1;
+  return makeDeep(
+    unit,
+    `어떤 수에 ${josaNum(b, "을", "를")} 곱했더니 곱이 ${five ? "다섯" : "네"} 자리 ` +
+      `수가 되었습니다. 어떤 수가 될 수 있는 세 자리 수 중에서 가장 ` +
+      `${five ? "작은" : "큰"} 수를 구하시오.`,
+    n(m),
+    [
+      `${expr(`${b}\\times${lo}=${b * lo}`)} ${tail(b * lo, "은", "는")} 네 자리 수입니다.`,
+      `${expr(`${b}\\times${hi}=${b * hi}`)} ${tail(b * hi, "은", "는")} 다섯 자리 수입니다.`,
+      `따라서 곱이 ${five ? "다섯" : "네"} 자리 수가 되는 어떤 수 중에서 가장 ` +
+        `${five ? "작은" : "큰"} 수는 ${n(m)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-1 6단 심화상 — 곱한 «몇십»을 되짚기가 만들고, 곱해 봐야 하나가 남는다.**
+ * 발문은 몇십을 하나도 알려 주지 않는다. 후보 여덟(20~90)은 「(세 자리)×(몇십)」이라는
+ * **소단원 성질이 만든 것**이고, 어느 것인지는 **실제로 곱해 범위와 견주어야** 정해진다.
+ */
+function tier31Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  // 양옆 이웃(t-10·t+10)이 몇십 띠 안에 있어야 해설이 «위도 아래도 안 된다»를 보인다.
+  const t = intBetween(rng, 3, 8) * 10;
+  const p = a * t;
+  const low = Math.floor(p / 100) * 100 - 100 * intBetween(rng, 1, 8);
+  const high = Math.ceil(p / 100) * 100 + 100 * intBetween(rng, 1, 8);
+  return makeDeep(
+    unit,
+    `${josaNum(a, "에", "에")} 어떤 몇십을 곱했더니 ${josaNum(low, "보다", "보다")} 크고 ` +
+      `${josaNum(high, "보다", "보다")} 작은 수가 되었습니다. 곱한 몇십을 구하시오.`,
+    n(t),
+    [
+      `${expr(`${a}\\times${t - 10}=${a * (t - 10)}`)} ${tail(a * (t - 10), "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${t}=${p}`)} ${tail(p, "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 크고 ${josaNum(high, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${t + 10}=${a * (t + 10)}`)} ${tail(a * (t + 10), "은", "는")} ` +
+        `${josaNum(high, "보다", "보다")} 큽니다. 몇십이 커지면 곱도 커지므로 곱한 몇십은 ` +
+        `${n(t)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-2 5단 심화중 — 곱의 «자릿수»가 곱한 두 자리 수를 굳힌다.**
+ * 1-3-1 심화중과 되짚는 자리가 반대다(그쪽은 «어떤 수», 이쪽은 «곱한 수»).
+ */
+function tier32Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const five = intBetween(rng, 0, 1) === 0;
+  const m = five ? Math.ceil(10000 / a) : Math.floor(9999 / a);
+  const lo = five ? m - 1 : m;
+  const hi = five ? m : m + 1;
+  return makeDeep(
+    unit,
+    `${expr(`${a}\\times\\square`)} 의 곱이 ${five ? "다섯" : "네"} 자리 수가 ` +
+      `되었습니다. ${expr("\\square")} 안에 들어갈 수 있는 두 자리 수 중에서 가장 ` +
+      `${five ? "작은" : "큰"} 수를 구하시오.`,
+    n(m),
+    [
+      `${expr(`${a}\\times${lo}=${a * lo}`)} ${tail(a * lo, "은", "는")} 네 자리 수입니다.`,
+      `${expr(`${a}\\times${hi}=${a * hi}`)} ${tail(a * hi, "은", "는")} 다섯 자리 수입니다.`,
+      `따라서 ${expr("\\square")} 안에 들어갈 수 있는 수 중에서 가장 ` +
+        `${five ? "작은" : "큰"} 수는 ${n(m)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-2 6단 심화상 — 곱한 두 자리 수를 되짚기가 만들고, 곱해 봐야 하나가 남는다.**
+ * 후보가 몇십 여덟(1-3-1)이 아니라 **두 자리 수 아흔**이라 어림으로 자리를 좁힌 뒤
+ * 이웃끼리 견주어야 한다.
+ */
+function tier32Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = intBetween(rng, 123, 897);
+  const k = twoDigit(rng);
+  const p = a * k;
+  const step = Math.min(8, Math.floor((a - 10) / 10));
+  const low = Math.floor(p / 10) * 10 - 10 * intBetween(rng, 1, step);
+  const high = Math.ceil(p / 10) * 10 + 10 * intBetween(rng, 1, step);
+  return makeDeep(
+    unit,
+    `${expr(`${a}\\times\\square`)} 의 곱이 ${josaNum(low, "보다", "보다")} 크고 ` +
+      `${josaNum(high, "보다", "보다")} 작습니다. ${expr("\\square")} 안에 알맞은 ` +
+      `두 자리 수를 구하시오.`,
+    n(k),
+    [
+      `${expr(`${a}\\times${k - 1}=${a * (k - 1)}`)} ${tail(a * (k - 1), "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${k}=${p}`)} ${tail(p, "은", "는")} ` +
+        `${josaNum(low, "보다", "보다")} 크고 ${josaNum(high, "보다", "보다")} 작습니다.`,
+      `${expr(`${a}\\times${k + 1}=${a * (k + 1)}`)} ${tail(a * (k + 1), "은", "는")} ` +
+        `${josaNum(high, "보다", "보다")} 큽니다. 곱하는 수가 커지면 곱도 커지므로 ` +
+        `${expr("\\square")} 안에 알맞은 수는 ${n(k)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-3 5단 심화중 — 어림한 곱에서 어림값을 되찾고, 그 «원상»을 조건이 굳힌다.**
+ * 되짚기가 두 겹이다(어림 곱 → 어림값 → 어떤 수). 굳지 않는 마디는 원상 하나뿐이고
+ * 「가장 큰/작은」이 그것을 굳힌다.
+ */
+function tier33Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const aa = intBetween(rng, 2, 9) * 100;
+  const b = intBetween(rng, 2, 9) * 10;
+  const est = aa * b;
+  const wantBig = intBetween(rng, 0, 1) === 0;
+  const ans = wantBig ? aa + 49 : aa - 50;
+  return makeDeep(
+    unit,
+    `어떤 세 자리 수를 몇백으로 어림하여 ${josaNum(b, "과", "와")} 곱했더니 어림한 곱이 ` +
+      `${josaNum(est, "이", "가")} 되었습니다. 어떤 수가 될 수 있는 수 중에서 가장 ` +
+      `${wantBig ? "큰" : "작은"} 수를 구하시오.`,
+    n(ans),
+    [
+      `${expr(`${aa}\\times${b}=${est}`)} 이므로 몇백으로 어림한 값은 ${n(aa)}입니다.`,
+      `백의 자리 아래가 ${n(50)} 이상이면 올리고 ${n(50)} 미만이면 버리므로, ` +
+        `${expr(`${aa}-50=${aa - 50}`)} 부터 ${expr(`${aa}+49=${aa + 49}`)} 까지가 ` +
+        `${josaNum(aa, "이", "가")} 됩니다.`,
+      `가장 ${wantBig ? "큰" : "작은"} 수는 ${n(ans)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-3 6단 심화상 — 어림이 후보를 만들고, 실제 곱이 하나를 고른다.**
+ * 어림한 곱에서 어림값을 되찾으면 두 자리 수 후보 **열 개**가 열리는데,
+ * 「몇십으로 어림하면 그 값」이라는 성질만으로는 안 굳는다 —
+ * 열 개를 **실제로 곱해** 실제 곱과 견주어야 하나가 남는다.
+ */
+function tier33Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const a = roughA(rng);
+  const aa = Math.round(a / 100) * 100;
+  // 어림값이 몇십이어야 원상 열 개가 모두 두 자리다 — $15$ 아래는 «몇십»이 $10$ 이 된다.
+  let k = intBetween(rng, 15, 94);
+  if (k % 10 === 0) k += 1;
+  const bb = roundTen(k);
+  const est = aa * bb;
+  const real = a * k;
+  return makeDeep(
+    unit,
+    `${josaNum(a, "과", "와")} 어떤 두 자리 수의 곱을 어림하려고 합니다. ` +
+      `${josaNum(a, "은", "는")} 몇백으로, 어떤 두 자리 수는 몇십으로 어림했더니 ` +
+      `어림한 곱이 ${josaNum(est, "이", "가")} 되었습니다. 실제 곱이 ` +
+      `${josaNum(real, "일", "일")} 때 어떤 두 자리 수를 구하시오.`,
+    n(k),
+    [
+      `${josaNum(a, "을", "를")} 몇백으로 어림하면 ${n(aa)}입니다. ` +
+        `${expr(`${aa}\\times${bb}=${est}`)} 이므로 어떤 두 자리 수를 몇십으로 어림한 ` +
+        `값은 ${n(bb)}입니다.`,
+      `몇십으로 어림하여 ${josaNum(bb, "이", "가")} 되는 두 자리 수는 ${n(bb - 5)}부터 ` +
+        `${n(bb + 4)}까지의 ${n(10)}개입니다.`,
+      `이 수들을 ${josaNum(a, "과", "와")} 차례로 곱해 실제 곱과 견주면 ` +
+        `${expr(`${a}\\times${k}=${real}`)} 이므로 어떤 두 자리 수는 ${n(k)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-4 5단 심화중 — 「나머지가 가장 크다」를 소단원 성질이 수로 굳힌다.**
+ * 되짚기 마디(나머지)는 발문이 값을 안 준다. 「나머지는 나누는 수보다 작다」는
+ * **그 소단원의 성질**과 「가장 큰」이 그 마디를 한 번에 굳힌다.
+ */
+function tier34Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = intBetween(rng, 2, 9) * 10;
+  const q = intBetween(rng, 2, 9);
+  const r = b - 1;
+  const x = b * q + r;
+  return makeDeep(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누었더니 몫이 ${josaNum(q, "이", "가")} 되고 나머지는 ` +
+      `가장 큰 수가 되었습니다. 어떤 수를 구하시오.`,
+    n(x),
+    [
+      `나머지는 나누는 수보다 작아야 하므로 가장 큰 나머지는 ${expr(`${b}-1=${r}`)} 입니다.`,
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${x}`)} 이므로 ` +
+        `어떤 수는 ${n(x)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-4 6단 심화상 — 나눈 «몇십»을 되짚기가 만들고, 곱해 봐야 하나가 남는다.**
+ * 몫만 주고 나누는 수를 감춘다. 후보 여덟은 「몇십으로 나누기」라는 소단원 성질이
+ * 만든 것이고, 어느 것인지는 **몇십마다 몫이 얼마가 되는지 만들어 견주어야** 정해진다.
+ */
+function tier34Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  let b = 0;
+  let q = 0;
+  let x = 0;
+  for (let tries = 0; tries < 40 && x === 0; tries += 1) {
+    b = intBetween(rng, 3, 8) * 10;
+    q = intBetween(rng, 2, 9);
+    // 이웃 몇십이 «몫이 더 크다/더 작다»로 갈려야 해설이 셋으로 닫힌다.
+    const lo = Math.max(b * q, (b - 10) * (q + 1));
+    const hi = Math.min(b * (q + 1), (b + 10) * q) - 1;
+    if (lo <= hi) x = intBetween(rng, lo, hi);
+  }
+  if (x === 0)
+    throw new Error("초4 1-3-4 심화상: 이웃이 갈리는 자리를 못 찾았다");
+  return makeDeep(
+    unit,
+    `${josaNum(x, "을", "를")} 어떤 몇십으로 나누었더니 몫이 ${josaNum(q, "이", "가")} ` +
+      `되었습니다. 나눈 수를 구하시오.`,
+    n(b),
+    [
+      `${expr(`${b - 10}\\times${q + 1}=${(b - 10) * (q + 1)}`)} ` +
+        `${tail((b - 10) * (q + 1), "이", "가")} ${josaNum(x, "보다", "보다")} ` +
+        `작거나 같으므로 ${roJosa(b - 10)} 나누면 몫이 ${josaNum(q, "보다", "보다")} 큽니다.`,
+      `${expr(`${b + 10}\\times${q}=${(b + 10) * q}`)} ${tail((b + 10) * q, "이", "가")} ` +
+        `${josaNum(x, "보다", "보다")} 크므로 ${roJosa(b + 10)} 나누면 몫이 ` +
+        `${josaNum(q, "보다", "보다")} 작습니다.`,
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b}\\times${q + 1}=${b * (q + 1)}`)} ` +
+        `이므로 ${josaNum(x, "은", "는")} 그 사이에 있습니다. 나눈 수는 ${n(b)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-5 5단 심화중 — 「몫과 나머지가 같다」를 조건이 굳힌다.**
+ * 심화하는 몫과 나머지를 둘 다 알려 준다. 여기서는 관계만 주므로 마디가 열리고,
+ * 「한 자리 수」(소단원 성질 — 이 소단원의 몫은 한 자리다)와 「가장 큰」이 굳힌다.
+ */
+function tier35Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 3);
+  const t = 9;
+  const x = b * t + t;
+  return makeDeep(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누었더니 몫과 나머지가 같은 한 자리 수가 되었습니다. ` +
+      `어떤 수가 될 수 있는 수 중에서 가장 큰 수를 구하시오.`,
+    n(x),
+    [
+      `몫과 나머지가 같은 한 자리 수 중에서 가장 큰 수는 ${n(t)}입니다.`,
+      `${expr(`${b}\\times${t}=${b * t}`)} 이고 ${expr(`${b * t}+${t}=${x}`)} 이므로 ` +
+        `어떤 수는 ${n(x)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-5 6단 심화상 — 나누는 수를 되짚기가 만들고, 곱해 봐야 하나가 남는다.**
+ * 나누는 수도 몫도 안 준다. 「나누어떨어진다 · 몫이 한 자리」라는 성질만으로는 안 굳고,
+ * 두 자리 수마다 한 자리 수를 곱해 그 수가 나오는지 **만들어 견주어야** 한다.
+ * 밭은 전수로 만들어 **답이 하나뿐인 자리**만 쓴다(`DIV_ONE_DIGIT_FIELD`).
+ */
+function tier35Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIV_ONE_DIGIT_FIELD);
+  const low = Math.max(10, Math.ceil(c.n / 9));
+  // 「안 되는 후보」를 하나 실제로 곱해 보인다 — 해설이 «견주기»를 안 적으면 학생 경로는
+  // 그냥 답을 받는 것이 된다(리드: **참은 생성기가 아니라 해설이다**).
+  let miss = low;
+  while (miss < 100 && (miss === c.b || c.n % miss === 0)) miss += 1;
+  if (miss >= 100)
+    throw new Error(`초4 1-3-5 심화상: 견줄 후보가 없다 (${c.n})`);
+  const t0 = Math.floor(c.n / miss);
+  return makeDeep(
+    unit,
+    `${josaNum(c.n, "을", "를")} 어떤 두 자리 수로 나누었더니 나누어떨어지고 몫이 ` +
+      `한 자리 수가 되었습니다. 나눈 수를 구하시오.`,
+    n(c.b),
+    [
+      `몫이 한 자리 수이므로 나누는 수는 ${josaNum(low, "보다", "보다")} 작지 않습니다. ` +
+        `두 자리 수에 한 자리 수를 곱해 ${josaNum(c.n, "이", "가")} 되는지 차례로 봅니다.`,
+      `${expr(`${miss}\\times${t0}=${miss * t0}`)}, ` +
+        `${expr(`${miss}\\times${t0 + 1}=${miss * (t0 + 1)}`)} 이므로 ` +
+        `${josaNum(c.n, "은", "는")} ${roJosa(miss)} 나누어떨어지지 않습니다.`,
+      `이렇게 차례로 보면 나누어떨어지는 것은 ${expr(`${c.b}\\times${c.q}=${c.n}`)} ` +
+        `하나뿐이므로 나눈 수는 ${n(c.b)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-6 5단 심화중 — 나머지가 가장 클 때 하나를 더하면 몫이 하나 는다.**
+ * 굳지 않는 마디(나머지)를 소단원 성질이 굳히고, 되짚은 뒤 나눗셈이 **한 번 더** 남는다.
+ */
+function tier36Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const b = tensOnes(rng, 2);
+  const q = intBetween(rng, 11, 33);
+  const r = b - 1;
+  const x = b * q + r;
+  return makeDeep(
+    unit,
+    `어떤 수를 ${roJosa(b)} 나누었더니 몫이 ${josaNum(q, "이", "가")} 되고 나머지는 ` +
+      `가장 큰 수가 되었습니다. 어떤 수보다 ${n(1)} 큰 수를 ${roJosa(b)} 나눈 몫을 ` +
+      `구하시오.`,
+    n(q + 1),
+    [
+      `나머지는 나누는 수보다 작으므로 가장 큰 나머지는 ${expr(`${b}-1=${r}`)} 입니다.`,
+      `${expr(`${b}\\times${q}=${b * q}`)} 이고 ${expr(`${b * q}+${r}=${x}`)} 이므로 ` +
+        `어떤 수는 ${n(x)}입니다.`,
+      `${expr(`${x}+1=${x + 1}`)} 이고 ${expr(`${x + 1}\\div${b}=${q + 1}`)} 이므로 ` +
+        `몫은 ${n(q + 1)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-6 6단 심화상 — 나머지가 대칭을 깨고, 나눈 수를 견주어 찾는다.**
+ * 나누는 수도 몫도 안 준다. 나머지를 빼면 (나누는 수)×(몫)이 남는데 그 짝이 여럿이라
+ * 성질만으로는 안 굳는다 — **「나머지는 나누는 수보다 작다」가 짝의 한쪽을 떨어뜨린다.**
+ * 밭은 전수로 만들어 답이 하나뿐인 자리만 쓴다(`DIV_TWO_DIGIT_FIELD`).
+ */
+function tier36Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIV_TWO_DIGIT_FIELD);
+  const base = c.n - c.r;
+  return makeDeep(
+    unit,
+    `${josaNum(c.n, "을", "를")} 어떤 두 자리 수로 나누었더니 몫이 두 자리 수이고 ` +
+      `나머지가 ${josaNum(c.r, "이", "가")} 되었습니다. 나눈 수를 구하시오.`,
+    n(c.b),
+    [
+      `나머지가 ${n(c.r)}이므로 나누는 수는 ${josaNum(c.r, "보다", "보다")} 큽니다.`,
+      `${expr(`${c.n}-${c.r}=${base}`)} ${tail(base, "이", "가")} (나누는 수)와 ` +
+        `(몫)의 곱입니다.`,
+      `${josaNum(c.r, "보다", "보다")} 큰 두 자리 수 중에서 ${josaNum(base, "을", "를")} ` +
+        `나누어떨어지게 하고 몫이 두 자리 수가 되는 것을 찾으면 ` +
+        `${expr(`${c.b}\\times${c.q}=${base}`)} 이므로 나눈 수는 ${n(c.b)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-7 5단 심화중 — 어림한 몫에서 어림값을 되찾고, 그 원상을 조건이 굳힌다.**
+ * 되짚기가 두 겹이다(어림 몫 → 어림한 나누는 수 → 실제 나누는 수).
+ */
+function tier37Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const bb = intBetween(rng, 2, 9) * 10;
+  const k = intBetween(rng, 3, 9);
+  const a = bb * k;
+  return makeDeep(
+    unit,
+    `${expr(`${a}\\div\\square`)} 에서 나누는 수 ${expr("\\square")} 를 몇십으로 어림하여 ` +
+      `몫을 어림했더니 ${josaNum(k, "이", "가")} 되었습니다. ${expr("\\square")} 안에 ` +
+      `들어갈 수 있는 두 자리 수 중에서 가장 큰 수를 구하시오.`,
+    n(bb + 4),
+    [
+      `어림한 나누는 수를 ${expr("\\square")} 라 하면 ` +
+        `${expr(`\\square\\times${k}=${a}`)} 이므로 어림한 값은 ${n(bb)}입니다.`,
+      `몇십으로 어림하여 ${josaNum(bb, "이", "가")} 되는 두 자리 수는 ` +
+        `${expr(`${bb}-5=${bb - 5}`)} 부터 ${expr(`${bb}+4=${bb + 4}`)} 까지이므로 ` +
+        `가장 큰 수는 ${n(bb + 4)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-3-7 6단 심화상 — 어림이 후보 열 개를 만들고, 나눠 봐야 하나가 남는다.**
+ * 어림값은 원상을 열 개까지만 좁힌다. 그 열 개 중 어느 것인지는 **실제로 나누어
+ * 떨어지는지 견주어야** 정해지고, 밭은 전수로 만들어 **하나만 떨어지는 자리**만 쓴다.
+ */
+function tier37Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, pick(rng, DIV_ROUGH_FIELD));
+  return makeDeep(
+    unit,
+    `${josaNum(c.a, "을", "를")} 어떤 두 자리 수로 나누었더니 나누어떨어졌습니다. ` +
+      `나누는 수를 몇십으로 어림하면 ${josaNum(c.bb, "이", "가")} 됩니다. ` +
+      `나누는 수를 구하시오.`,
+    n(c.d),
+    [
+      `몇십으로 어림하여 ${josaNum(c.bb, "이", "가")} 되는 두 자리 수는 ` +
+        `${expr(`${c.bb}-5=${c.bb - 5}`)} 부터 ${expr(`${c.bb}+4=${c.bb + 4}`)} ` +
+        `까지의 ${n(10)}개입니다.`,
+      `이 수들로 ${josaNum(c.a, "을", "를")} 차례로 나누어 보면 ` +
+        `${expr(`${c.a}\\div${c.d}=${c.a / c.d}`)} 만 나누어떨어지므로 나누는 수는 ` +
+        `${n(c.d)}입니다.`,
+    ],
+  );
+}
+
 /* ───────────────────── 1-4 평면도형의 이동 ───────────────────── */
 
 /** 좌우로 뒤집은 것과 위아래로 뒤집은 것이 **다르게** 나오는 조각만 쓴다. */
@@ -4387,47 +4909,62 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier26Apply,
     심화하: tier26Deep,
   },
+  // ── 1-3 곱셈과 나눗셈 — **여섯 갈래 파일럿** (D-113). 이 일곱만 확대 둘을 갖는다.
   "초4|1-3-1": {
     연산: tier31Calc,
     기본: tier31Basic,
     응용: tier31Apply,
     심화하: tier31Deep,
+    심화중: tier31Mid,
+    심화상: tier31Top,
   },
   "초4|1-3-2": {
     연산: tier32Calc,
     기본: tier32Basic,
     응용: tier32Apply,
     심화하: tier32Deep,
+    심화중: tier32Mid,
+    심화상: tier32Top,
   },
   "초4|1-3-3": {
     연산: tier33Calc,
     기본: tier33Basic,
     응용: tier33Apply,
     심화하: tier33Deep,
+    심화중: tier33Mid,
+    심화상: tier33Top,
   },
   "초4|1-3-4": {
     연산: tier34Calc,
     기본: tier34Basic,
     응용: tier34Apply,
     심화하: tier34Deep,
+    심화중: tier34Mid,
+    심화상: tier34Top,
   },
   "초4|1-3-5": {
     연산: tier35Calc,
     기본: tier35Basic,
     응용: tier35Apply,
     심화하: tier35Deep,
+    심화중: tier35Mid,
+    심화상: tier35Top,
   },
   "초4|1-3-6": {
     연산: tier36Calc,
     기본: tier36Basic,
     응용: tier36Apply,
     심화하: tier36Deep,
+    심화중: tier36Mid,
+    심화상: tier36Top,
   },
   "초4|1-3-7": {
     연산: tier37Calc,
     기본: tier37Basic,
     응용: tier37Apply,
     심화하: tier37Deep,
+    심화중: tier37Mid,
+    심화상: tier37Top,
   },
   "초4|1-4-1": {
     연산: tier41Calc,
