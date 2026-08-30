@@ -5227,6 +5227,570 @@ function remDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ══════ 2-2 소수의 나눗셈 — **확대 갈래** 심화중·심화상 (D-113 파일럿, 2026-08-30) ══════
+//
+// 이 대단원을 파일럿으로 고른 근거는 `docs/planning/tracks/reports/tier-bench-g6.md` §5 다:
+// 초6 에서 사다리가 뒤집힌 11소단원 중 **2-2-1·2-2-2·2-2-3 은 12씨앗 전부**가 그렇고
+// (심화하가 한 걸음 역산, 같은 소단원 응용이 두 걸음), 그러면서 이 대단원은 **계산 단원**이라
+// 「숫자를 키우지 않고 구조로 올린다」가 가장 어려운 자리다. 여기서 되면 다른 데서도 된다.
+//
+// 🔴 **지면에 쓸 수 있는 수의 종류가 소단원마다 잠겨 있다** — 이걸 모르고 쓰면 판정기가 전량
+//    빨개진다(실제로 여기서 설계를 두 번 되돌렸다).
+//    · 2-2-1 「자릿수가 같은 (소수)÷(소수)」 — 발문의 수가 **전부 소수 한 자리**여야 한다.
+//      `kindsPresent("소수","소수")` 가 **요구하지 않은 종류(자연수·분수)를 금지**하므로
+//      「수 카드 $3$, $6$, $8$」류는 이 소단원에서 **아예 못 쓴다.** 그래서 카드도 소수로 낸다.
+//    · 2-2-2 「자릿수가 다른」 — 자연수 금지 + 소수 자릿수가 **갈려야** 한다.
+//    · 2-2-3 「(자연수)÷(소수)」 — 자연수와 소수가 **둘 다** 지면에 서야 한다(분수 금지).
+//    · 2-2-4 「몫을 반올림하여」 — 발문이나 해설에 `$a\div b$` 한 덩어리가 있어야 하고
+//      그 몫이 요구한 자리에서 **딱 떨어지면 안 된다**.
+//    · 2-2-5 「남는 양」 — 해설의 **첫 뺄셈**이 곧 남는 수다(판정기가 그것을 읽는다).
+//
+// ## 두 갈래가 무엇을 시키는가 (`docs/planning/tracks/reports/tier-bench-g6.md` §3.1 잣대)
+//
+// 심화중 = **후보를 열거해 고른다 · 역산 뒤 한 걸음 더 · 조건이 겹친 역산** → 답이 하나.
+// 심화상 = **여러 경우를 탐색·비교** → 답이 **여럿을 나열하거나 후보를 세는 값**이다.
+//
+// ⚠️ 그 「답의 모양」은 **잠글 수 있는 축**이지 난이도 그 자체가 아니다. 목록을 손으로 지어
+//    붙여도 같은 모양이 나온다 — 그래서 시험(`elemTiersG6Deep.test.ts`)은 모양만 보지 않고
+//    **발문에 실린 후보를 다시 훑어** 답이 그 조건을 만족하는 전부인지 대조한다.
+
+/**
+ * 소수 뒤의 「로/으로」 — **ㄹ 받침은 「로」**다(일로·칠로·팔로).
+ *
+ * `numRo` 는 정수 전용이라(`Math.trunc` 로 소수를 깎는다) 여기서는 못 쓴다.
+ * `centsJosa` 와 같이 **꼬리 0 을 떼고 마지막으로 소리 나는 숫자**로 정하므로
+ * ×10 이든 ×100 이든 같은 함수로 답한다.
+ */
+function scaledRo(scaled: number): string {
+  let d = scaled;
+  while (d % 10 === 0 && d !== 0) d /= 10;
+  const last = d % 10;
+  return last === 3 || last === 6 ? "으로" : "로";
+}
+
+/**
+ * 2-2-1 심화중 재료 — 「$B$로 나눈 몫이 $Q$」에서 어떤 수 `x` 를 되짚고, 그 `x` 를 다시 `C` 로 나눈다.
+ * 네 수가 **모두 소수 한 자리**여야 소단원 조건이 지면에 선다(위 잠금 참조).
+ */
+const SAME_CHAIN: {
+  x10: number;
+  b10: number;
+  q10: number;
+  c10: number;
+  ans: number;
+}[] = [];
+for (let b10 = 11; b10 <= 49; b10 += 1) {
+  if (b10 % 10 === 0) continue;
+  for (let q10 = 11; q10 <= 95; q10 += 1) {
+    if (q10 % 10 === 0) continue;
+    const prod = q10 * b10; // ×100
+    if (prod % 10 !== 0) continue; // x 가 소수 한 자리로 떨어져야 한다
+    const x10 = prod / 10;
+    if (x10 % 10 === 0 || x10 > 900) continue; // 꼬리 0 은 지면에 안 쓴다
+    for (let c10 = 5; c10 <= 49; c10 += 1) {
+      if (c10 % 10 === 0 || c10 === b10) continue;
+      if (x10 % c10 !== 0) continue;
+      const ans = x10 / c10;
+      if (ans < 2 || ans > 30) continue;
+      SAME_CHAIN.push({ x10, b10, q10, c10, ans });
+    }
+  }
+}
+
+/**
+ * 2-2-1 심화상 카드 — **소수 한 자리 네 장**. 자연수 카드를 못 쓰는 까닭은 위 잠금 참조.
+ * 값은 「몫이 자연수가 되는 짝」의 수(`hits`)별로 갈라 담는다 — 안 가르면 무작위 네 장의
+ * **96%가 짝 하나뿐**이라(실측 20만 회) 답이 늘 같은 수가 된다.
+ */
+const SAME_QUADS: Record<number, number[][]> = { 2: [], 3: [], 4: [] };
+{
+  const cards: number[] = [];
+  for (let v = 5; v <= 39; v += 1) if (v % 10 !== 0) cards.push(v);
+  for (let i = 0; i < cards.length; i += 1)
+    for (let j = i + 1; j < cards.length; j += 1)
+      for (let k = j + 1; k < cards.length; k += 1)
+        for (let l = k + 1; l < cards.length; l += 1) {
+          const quad = [cards[i]!, cards[j]!, cards[k]!, cards[l]!];
+          let hits = 0;
+          for (let p = 0; p < 4; p += 1)
+            for (let q = p + 1; q < 4; q += 1)
+              if (quad[q]! % quad[p]! === 0) hits += 1;
+          // 아래는 «못 만드는 것»이 아니라 «안 쓰는 것»이다 —
+          // 짝이 하나뿐이면 해설의 계산식이 하나라 `makeDeep` 이 막고(4단이 아니다),
+          // 다섯 이상이면 「나누어떨어지지 않는 것」이 없어 견줄 것이 사라진다.
+          if (hits >= 2 && hits <= 4) SAME_QUADS[hits]!.push(quad);
+        }
+}
+
+/** 2-2-2 심화중 재료 — 「나눌 것을 잘못하여 곱했다」. `a100` 은 두 자리, `b10` 은 한 자리다. */
+const DIFF_WRONG: {
+  x10: number;
+  b10: number;
+  a100: number;
+  ans10: number;
+}[] = [];
+for (let b10 = 11; b10 <= 49; b10 += 1) {
+  if (b10 % 10 === 0) continue;
+  for (let x10 = 11; x10 <= 99; x10 += 1) {
+    if (x10 % 10 === 0) continue;
+    const a100 = x10 * b10;
+    if (a100 % 10 === 0 || a100 > 5000) continue; // 두 자리로 보여야 «자릿수가 다른»이 선다
+    if ((x10 * 10) % b10 !== 0) continue;
+    const ans10 = (x10 * 10) / b10;
+    if (ans10 % 10 === 0 || ans10 < 11) continue;
+    DIFF_WRONG.push({ x10, b10, a100, ans10 });
+  }
+}
+
+/** 2-2-2 심화상 재료 — 나누는 수 하나에 딸린 «쓸 수 있는 몫(×10)» 목록. */
+const DIFF_QUOT: { b10: number; qs: number[] }[] = [];
+for (let b10 = 11; b10 <= 49; b10 += 1) {
+  if (b10 % 10 === 0) continue;
+  const qs: number[] = [];
+  for (let q10 = 11; q10 <= 59; q10 += 1) {
+    if (q10 % 10 === 0) continue;
+    const a100 = q10 * b10;
+    if (a100 % 10 === 0 || a100 > 3000) continue;
+    qs.push(q10);
+  }
+  if (qs.length >= 8) DIFF_QUOT.push({ b10, qs });
+}
+
+/** 2-2-3 심화중 재료 — 되짚은 어떤 수가 **자연수**이고, 그것을 다시 소수로 나눈다. */
+const NAT_CHAIN: {
+  x: number;
+  b10: number;
+  q: number;
+  c10: number;
+  ans10: number;
+}[] = [];
+for (let b10 = 11; b10 <= 49; b10 += 1) {
+  if (b10 % 10 === 0) continue;
+  for (let q = 2; q <= 12; q += 1) {
+    if ((q * b10) % 10 !== 0) continue;
+    const x = (q * b10) / 10;
+    if (x < 8 || x > 90) continue;
+    for (let c10 = 11; c10 <= 49; c10 += 1) {
+      if (c10 % 10 === 0 || c10 === b10) continue;
+      if ((100 * x) % c10 !== 0) continue;
+      const ans10 = (100 * x) / c10;
+      if (ans10 % 10 === 0 || ans10 < 21 || ans10 > 600) continue;
+      NAT_CHAIN.push({ x, b10, q, c10, ans10 });
+    }
+  }
+}
+
+/** 2-2-3 심화상 재료 — 나누는 소수 하나에 딸린 «몫이 자연수인 수»와 «아닌 수». */
+const NAT_PICK: { b10: number; ok: number[]; no: number[] }[] = [];
+for (let b10 = 11; b10 <= 49; b10 += 1) {
+  if (b10 % 10 === 0) continue;
+  const ok: number[] = [];
+  const no: number[] = [];
+  for (let n = 12; n <= 99; n += 1) {
+    if ((n * 10) % b10 === 0) {
+      if ((n * 10) / b10 >= 5) ok.push(n);
+    } else no.push(n);
+  }
+  if (ok.length >= 3 && no.length >= 2) NAT_PICK.push({ b10, ok, no });
+}
+
+/**
+ * 2-2-4 심화상 재료 — **반올림을 되짚는다.** 몫을 소수 `place` 자리까지 반올림한 값이 `r`
+ * 이려면 몫이 `[r-0.5·10^-place, r+0.5·10^-place)` 안에 있어야 하고, 그러면 나누어지는 수는
+ * 그 범위에 `b` 를 곱한 구간의 자연수다. 그 구간이 **자연수를 둘 이상 셋 이하** 담을 때만 쓴다.
+ */
+const ROUND_BACK: { b: number; r10: number; ns: number[] }[] = [];
+for (let b = 17; b <= 39; b += 1) {
+  for (let r10 = 21; r10 <= 95; r10 += 1) {
+    if (r10 % 10 === 0) continue;
+    const lo100 = (r10 * 10 - 5) * b;
+    const hi100 = (r10 * 10 + 5) * b;
+    // 경계가 자연수에 딱 걸리면 「크거나 같고」와 「작은」의 차이가 답을 가르므로 안 쓴다.
+    if (lo100 % 100 === 0 || hi100 % 100 === 0) continue;
+    const ns: number[] = [];
+    for (
+      let n = Math.floor(lo100 / 100) + 1;
+      n <= Math.floor(hi100 / 100);
+      n += 1
+    )
+      ns.push(n);
+    if (ns.length < 2 || ns.length > 3) continue;
+    // 확인식의 `\ldots` 가 참이려면 그 몫이 «한 자리 더»에서도 안 끝나야 한다.
+    if (ns.some((n) => (n * 100) % b === 0)) continue;
+    ROUND_BACK.push({ b, r10, ns });
+  }
+}
+
+/** 2-2-5 심화중 재료 — 되짚은 처음 양을 **다른 크기로 다시** 담는다. */
+const REM_CHAIN: {
+  per1: number;
+  people1: number;
+  rem1: number;
+  total10: number;
+  per2: number;
+  q2: number;
+  rem2: number;
+}[] = [];
+for (let per1 = 3; per1 <= 7; per1 += 1)
+  for (let people1 = 4; people1 <= 9; people1 += 1)
+    for (let rem1 = 1; rem1 < per1 * 10; rem1 += 1) {
+      if (rem1 % 10 === 0) continue;
+      const total10 = per1 * 10 * people1 + rem1;
+      if (total10 > 900) continue;
+      for (const per2 of [12, 15, 18, 24, 25, 35, 45]) {
+        if (per2 === per1 * 10) continue;
+        const q2 = Math.floor(total10 / per2);
+        const rem2 = total10 - q2 * per2;
+        if (q2 < 5 || q2 > 20) continue;
+        if (rem2 <= 0 || rem2 % 10 === 0) continue;
+        REM_CHAIN.push({ per1, people1, rem1, total10, per2, q2, rem2 });
+      }
+    }
+
+/**
+ * 2-2-5 심화상 재료 — 한 사람 몫을 **네 가지 중 하나로** 골랐을 때 남는 양을 견준다.
+ * 문턱과 **딱 같은** 나머지가 있으면 「보다 적은」이 헷갈리므로 그 짝은 안 쓴다.
+ */
+const REM_PICK: {
+  total10: number;
+  pers: number[];
+  limit: number;
+  ok: number[];
+}[] = [];
+for (let total10 = 180; total10 <= 700; total10 += 1) {
+  if (total10 % 10 === 0) continue;
+  for (const pers of [
+    [3, 4, 5, 6],
+    [4, 5, 6, 7],
+    [5, 6, 7, 8],
+    [4, 6, 7, 9],
+  ]) {
+    const rems = pers.map(
+      (p) => total10 - Math.floor(total10 / (p * 10)) * p * 10,
+    );
+    if (rems.some((r) => r === 0)) continue;
+    if (pers.some((p) => Math.floor(total10 / (p * 10)) < 3)) continue;
+    for (const limit of [10, 15, 20, 25]) {
+      if (rems.some((r) => r === limit)) continue;
+      const ok = pers.filter((_, i) => rems[i]! < limit);
+      if (ok.length < 2 || ok.length > pers.length - 1) continue;
+      REM_PICK.push({ total10, pers, limit, ok });
+    }
+  }
+}
+
+// ── 2-2-1 자릿수가 같은 (소수)÷(소수) ──
+
+/**
+ * 심화중 — **역산 뒤 한 걸음 더.** 심화하가 「곱을 나눗셈으로 한 번 되돌린다」에서 끝나는데,
+ * 여기서는 되돌린 그 수를 **다시 나눈다.** 두 걸음이 모두 (소수)÷(소수) 라 소단원을 안 벗어난다.
+ */
+function sameDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_CHAIN);
+  const b = decStr(c.b10, 1);
+  const q = decStr(c.q10, 1);
+  const d = decStr(c.c10, 1);
+  const x = decStr(c.x10, 1);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(b)}${scaledRo(c.b10)} 나눈 몫이 ${num(q)}입니다. ` +
+      `같은 수를 ${num(d)}${scaledRo(c.c10)} 나눈 몫을 구하시오.`,
+    num(c.ans),
+    [
+      `나눗셈을 곱셈으로 되돌리면 어떤 수는 ${expr(`${q}\\times${b}=${x}`)} 입니다.`,
+      `${expr(`${x}\\div${d}=${c.ans}`)} 이므로 몫은 ${num(c.ans)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — **여섯 경우를 다 훑어야 답이 나온다.** 네 수에서 두 수를 뽑는 방법이 여섯이고,
+ * 각각 나누어떨어지는지 봐야 한다. 답은 «후보를 세는 값»이다.
+ *
+ * 셈은 소수점을 옮겨 **자연수의 나눗셈**으로 한다 — 이 소단원의 알맹이가 그것이고,
+ * 나누어떨어지지 않는 짝의 몫을 소수로 적으면 `2.9166\ldots` 같은 것이 지면에 나간다.
+ */
+function sameDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const hits = pick(rng, [2, 3, 4] as const);
+  const quad = pick(rng, SAME_QUADS[hits]!);
+  const pairs: [number, number][] = [];
+  for (let i = 0; i < 4; i += 1)
+    for (let j = i + 1; j < 4; j += 1) pairs.push([quad[j]!, quad[i]!]);
+  const yes = pairs.filter(([a, b]) => a % b === 0);
+  const no = pairs.filter(([a, b]) => a % b !== 0);
+  return makeDeep(
+    unit,
+    `${quad.map((v) => num(decStr(v, 1))).join(", ")} 네 수 중에서 서로 다른 두 수를 뽑아 ` +
+      `큰 수를 작은 수로 나누려고 합니다. 몫이 자연수가 되는 경우는 모두 몇 가지입니까?`,
+    num(yes.length),
+    [
+      `두 수의 소수점을 오른쪽으로 한 자리씩 옮겨도 몫은 같으므로 ` +
+        `${quad.map((v) => num(v)).join(", ")} 로 바꾸어 봅니다.`,
+      `나누어떨어지는 것은 ${yes
+        .map(([a, b]) => expr(`${a}\\div${b}=${a / b}`))
+        .join(", ")} 입니다.`,
+      `${no.map(([a, b]) => expr(`${a}\\div${b}`)).join(", ")} 은 나누어떨어지지 않으므로 ` +
+        `모두 ${num(yes.length)}가지입니다.`,
+    ],
+  );
+}
+
+// ── 2-2-2 자릿수가 다른 (소수)÷(소수) ──
+
+/**
+ * 심화중 — **조건이 겹친 역산.** 「나눌 것을 곱했다」는 D-72 가 4단 예시로 글자 그대로 드는
+ * 문형인데, 심화하(한 번 되돌리기)와 달리 되돌린 뒤 **바르게 한 번 더** 나눈다.
+ * 곱한 결과가 두 자리 소수라 「자릿수가 다른」이 발문에 그대로 선다.
+ */
+function diffDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_WRONG);
+  const b = decStr(c.b10, 1);
+  const a = decStr(c.a100, 2);
+  const x = decStr(c.x10, 1);
+  const ans = decStr(c.ans10, 1);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(b)}${scaledRo(c.b10)} 나누어야 할 것을 잘못하여 곱했더니 ` +
+      `${num(a)}${centsJosa(c.a100, "이", "가")} 되었습니다. 바르게 계산한 몫을 구하시오.`,
+    num(ans),
+    [
+      `곱셈을 나눗셈으로 되돌리면 어떤 수는 ${expr(`${a}\\div${b}=${x}`)} 입니다.`,
+      `바르게 계산하면 ${expr(`${x}\\div${b}=${ans}`)} 입니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — **후보 넷을 다 나눠 보고 견준다.** 문턱은 후보 중 하나의 몫과 **똑같이** 두어,
+ * 「보다 큰」을 「보다 크거나 같은」으로 읽으면 틀리게 했다(경계가 함정이다).
+ */
+function diffDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = pick(rng, DIFF_QUOT);
+  const qs: number[] = [];
+  for (let t = 0; t < 200 && qs.length < 4; t += 1) {
+    const q = pick(rng, g.qs);
+    if (!qs.includes(q)) qs.push(q);
+  }
+  if (qs.length < 4) throw new Error("2-2-2 심화상: 몫 넷을 못 골랐습니다");
+  const sorted = [...qs].sort((x, y) => x - y);
+  const limit = sorted[1]!; // 두 번째로 작은 몫 — 그 후보는 «크지 않다»(경계)
+  // 지면 차례는 뽑은 차례 그대로 — 답이 늘 뒤쪽 둘이 되지 않게.
+  const rows = qs.map((q10) => ({ q10, a100: q10 * g.b10 }));
+  const winners = rows.filter((r) => r.q10 > limit);
+  const b = decStr(g.b10, 1);
+  return makeDeep(
+    unit,
+    `${rows.map((r) => num(decStr(r.a100, 2))).join(", ")} 중에서 ` +
+      `${num(b)}${scaledRo(g.b10)} 나눈 몫이 ${num(decStr(limit, 1))}보다 큰 수를 모두 구하시오.`,
+    winners.map((r) => num(decStr(r.a100, 2))).join(", "),
+    [
+      `각각 ${num(b)}${scaledRo(g.b10)} 나눕니다. ` +
+        `${rows
+          .map((r) => expr(`${decStr(r.a100, 2)}\\div${b}=${decStr(r.q10, 1)}`))
+          .join(", ")} 입니다.`,
+      `몫이 ${num(decStr(limit, 1))}보다 큰 것은 ` +
+        `${winners.map((r) => num(decStr(r.a100, 2))).join(", ")} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-2-3 (자연수)÷(소수) ──
+
+/**
+ * 심화중 — **역산 뒤 한 걸음 더.** 심화하가 `\square\div2.5=8` 한 걸음인데, 여기서는
+ * 되짚은 자연수를 **다른 소수로 다시** 나눈다. 답이 소수라 「(자연수)÷(소수)」의 몫이
+ * 자연수가 아닐 수 있다는 것까지 본다.
+ */
+function natDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_CHAIN);
+  const b = decStr(c.b10, 1);
+  const d = decStr(c.c10, 1);
+  const ans = decStr(c.ans10, 1);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(b)}${scaledRo(c.b10)} 나눈 몫이 ${num(c.q)}입니다. ` +
+      `같은 수를 ${num(d)}${scaledRo(c.c10)} 나눈 몫을 구하시오.`,
+    num(ans),
+    [
+      `나눗셈을 곱셈으로 되돌리면 어떤 수는 ${expr(`${c.q}\\times${b}=${c.x}`)} 입니다.`,
+      `${expr(`${c.x}\\div${d}=${ans}`)} 이므로 몫은 ${num(ans)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — **자연수 넷을 같은 소수로 나눠 보고 «자연수가 되는 것»을 모두 찾는다.**
+ * 소수점을 옮겨 자연수 나눗셈으로 바꾸는 것이 이 소단원의 알맹이라, 판정도 거기서 한다.
+ */
+function natDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const g = pick(rng, NAT_PICK);
+  const yes: number[] = [];
+  for (let t = 0; t < 200 && yes.length < 3; t += 1) {
+    const v = pick(rng, g.ok);
+    if (!yes.includes(v)) yes.push(v);
+  }
+  const no: number[] = [];
+  for (let t = 0; t < 200 && no.length < 1; t += 1) {
+    const v = pick(rng, g.no);
+    if (!no.includes(v)) no.push(v);
+  }
+  if (yes.length < 3 || no.length < 1) {
+    throw new Error("2-2-3 심화상: 후보 넷을 못 골랐습니다");
+  }
+  const rows = [...yes, ...no].sort((x, y) => x - y);
+  const b = decStr(g.b10, 1);
+  const hit = rows.filter((n) => (n * 10) % g.b10 === 0);
+  const miss = rows.filter((n) => (n * 10) % g.b10 !== 0);
+  return makeDeep(
+    unit,
+    `${rows.map((v) => num(v)).join(", ")} 중에서 ${num(b)}${scaledRo(g.b10)} 나눈 몫이 ` +
+      `자연수인 수를 모두 구하시오.`,
+    hit.map((v) => num(v)).join(", "),
+    [
+      `${num(b)}${scaledRo(g.b10)} 나눌 때는 두 수의 소수점을 오른쪽으로 한 자리씩 옮겨 ` +
+        `${num(g.b10)}${numRo(g.b10)} 나눕니다.`,
+      `${hit
+        .map((v) => expr(`${v * 10}\\div${g.b10}=${(v * 10) / g.b10}`))
+        .join(", ")} 은 나누어떨어지고, ` +
+        `${miss.map((v) => expr(`${v * 10}\\div${g.b10}`)).join(", ")} 은 나누어떨어지지 않습니다.`,
+      `따라서 ${hit.map((v) => num(v)).join(", ")} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-2-4 몫을 반올림하여 나타내기 ──
+
+/**
+ * 심화중 — **세 몫을 각각 반올림해 견준다.** 심화하가 한 나눗셈을 두 자리로 보는 것이라면,
+ * 여기서는 후보 셋을 다 반올림해 봐야 고를 수 있다(후보를 열거해 고른다).
+ * 반올림한 값이 셋 다 달라야 「가장 큰 것」이 하나로 정해진다.
+ */
+function roundMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const place = pick(rng, [1, 2] as const);
+  const placeName = place === 1 ? "첫" : "둘";
+  for (let t = 0; t < 200; t += 1) {
+    const cs = [
+      roundCase(rng, place),
+      roundCase(rng, place),
+      roundCase(rng, place),
+    ];
+    const cuts = cs.map((c) => c.cut);
+    if (new Set(cuts).size !== 3) continue;
+    if (new Set(cs.map((c) => `${c.a}/${c.b}`)).size !== 3) continue;
+    const best = Math.max(...cuts);
+    return makeDeep(
+      unit,
+      `${cs.map((c) => expr(`${c.a}\\div${c.b}`)).join(", ")} 의 몫을 각각 반올림하여 ` +
+        `소수 ${placeName}째 자리까지 나타낼 때, 가장 큰 값을 구하시오.`,
+      expr(decStr(best, place)),
+      [
+        `각각 나누면 ${cs
+          .map((c) =>
+            expr(`${c.a}\\div${c.b}=${decStr(c.shown, place + 1)}\\ldots`),
+          )
+          .join(", ")} 입니다.`,
+        `소수 ${placeName}째 자리까지 반올림하면 ` +
+          `${cs.map((c) => expr(decStr(c.cut, place))).join(", ")} 이므로 ` +
+          `가장 큰 값은 ${expr(decStr(best, place))} 입니다.`,
+      ],
+    );
+  }
+  throw new Error("2-2-4 심화중: 반올림 값이 서로 다른 셋을 못 만들었습니다");
+}
+
+/**
+ * 심화상 — **반올림을 되짚어 «될 수 있는 수»를 모두 찾는다.**
+ * 반올림한 값 하나가 **구간**을 가리킨다는 것을 알아야 풀린다 — 답이 여럿이다.
+ */
+function roundTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, ROUND_BACK);
+  const r = decStr(c.r10, 1);
+  const lo = decStr(c.r10 * 10 - 5, 2);
+  const hi = decStr(c.r10 * 10 + 5, 2);
+  const loP = fromCents((c.r10 * 10 - 5) * c.b);
+  const hiP = fromCents((c.r10 * 10 + 5) * c.b);
+  const first = c.ns[0]!;
+  const shown = Math.floor((first * 100) / c.b);
+  return makeDeep(
+    unit,
+    `${expr(`\\square\\div${c.b}`)} 의 몫을 반올림하여 소수 첫째 자리까지 나타내면 ` +
+      `${num(r)}입니다. ${expr("\\square")} 안에 들어갈 수 있는 자연수를 모두 구하시오.`,
+    c.ns.map((v) => num(v)).join(", "),
+    [
+      `반올림하여 ${num(r)}${centsJosa(c.r10, "이", "가")} 되려면 몫은 ` +
+        `${num(lo)}보다 크거나 같고 ${num(hi)}보다 작아야 합니다.`,
+      `${expr(`${lo}\\times${c.b}=${loP}`)}, ${expr(`${hi}\\times${c.b}=${hiP}`)} 이므로 ` +
+        `${expr("\\square")} 는 ${num(loP)}보다 크거나 같고 ${num(hiP)}보다 작은 자연수입니다.`,
+      `따라서 ${c.ns.map((v) => num(v)).join(", ")} 입니다. ` +
+        `${expr(`${first}\\div${c.b}`)} 의 몫이 ${expr(`${decStr(shown, 2)}\\ldots`)} 인 것으로 확인할 수 있습니다.`,
+    ],
+  );
+}
+
+// ── 2-2-5 나누어 주고 남는 양 알아보기 ──
+
+/**
+ * 심화중 — **역산 뒤 한 걸음 더.** 심화하가 「몫과 남는 수로 처음 양을 되짚는다」에서 끝나는데,
+ * 여기서는 되짚은 처음 양을 **다른 크기의 그릇으로 다시** 나눈다.
+ */
+function remMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(rng, REM_CHAIN);
+  const total = decStr(c.total10, 1);
+  const rem1 = decStr(c.rem1, 1);
+  const per2 = decStr(c.per2, 1);
+  const prod = fromTenths(c.per2 * c.q2);
+  return makeDeep(
+    unit,
+    `${s.thing}${josa(s.thing, "을", "를")} 한 ${s.into}에 ${unitNum(c.per1, s.unit)}씩 담았더니 ` +
+      `${num(c.people1)}${s.into}${josa(s.into, "이", "가")} 되고 ${unitNum(rem1, s.unit)} ` +
+      `${unitJosa(s.unit, "이", "가")} 남았습니다. 이 ${s.thing}${josa(s.thing, "을", "를")} ` +
+      `한 ${s.into}에 ${unitNum(per2, s.unit)}씩 담으면 몇 ${s.into}까지 담을 수 있습니까?`,
+    num(c.q2),
+    [
+      `담은 양은 ${expr(`${c.per1}\\times${c.people1}=${c.per1 * c.people1}`)} 이고, ` +
+        `남은 양을 더하면 처음에 있던 ${s.thing}${josa(s.thing, "은", "는")} ` +
+        `${expr(`${c.per1 * c.people1}+${rem1}=${total}`)} 입니다.`,
+      `${expr(`${per2}\\times${c.q2}=${prod}`)} 이므로 ${num(c.q2)}${s.into}까지 담을 수 있고, ` +
+        `${expr(`${total}-${prod}=${decStr(c.rem2, 1)}`)} 만큼 남습니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — **네 가지 방법을 다 해 보고 조건에 맞는 것을 모두 찾는다.**
+ * 「몫」이 아니라 **남는 양**을 견주므로 나눗셈을 네 번 하고 그 나머지를 비교해야 한다.
+ */
+function remTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(rng, REM_PICK);
+  const total = decStr(c.total10, 1);
+  const rows = c.pers.map((p) => {
+    const q = Math.floor(c.total10 / (p * 10));
+    return { p, q, prod: p * q, rem: c.total10 - p * q * 10 };
+  });
+  return makeDeep(
+    unit,
+    `${s.thing} ${unitNum(total, s.unit)}${unitJosa(s.unit, "을", "를")} 한 사람에게 ` +
+      `${c.pers.map((p) => unitNum(p, s.unit)).join(", ")} 중 한 가지 방법으로 똑같이 나누어 ` +
+      `주려고 합니다. 남는 ${s.thing}${josa(s.thing, "이", "가")} ${unitNum(c.limit / 10, s.unit)}보다 ` +
+      `적은 경우는 한 사람에게 몇 ${s.unit}씩 줄 때인지 모두 구하시오.`,
+    c.ok.map((p) => num(p)).join(", "),
+    [
+      `한 사람에게 주는 양마다 남는 양을 구합니다. ` +
+        `${rows
+          .map(
+            (r) =>
+              `${expr(`${r.p}\\times${r.q}=${r.prod}`)} 이므로 ` +
+              `${expr(`${total}-${r.prod}=${decStr(r.rem, 1)}`)}`,
+          )
+          .join(", ")} 입니다.`,
+      `남는 양이 ${unitNum(c.limit / 10, s.unit)}보다 적은 것은 ` +
+        `${c.ok.map((p) => unitNum(p, s.unit)).join(", ")} 씩 줄 때입니다.`,
+    ],
+  );
+}
+
 // ── 난이도 갈래 (D-72 확대 9차분) — 초6 `2-4 비례식과 비례배분` (5소단원 · 20갈래) ──
 //
 // 앞 여덟 차분과 다른 점 하나가 이 대단원 전체를 지배한다 — **답이 «순서 있는 짝»** 이다.
@@ -7243,30 +7807,40 @@ export const G6_TIERS: ElemTierMap = {
     기본: sameDpWord,
     응용: sameDpApply,
     심화하: sameDpDeep,
+    심화중: sameDpMid,
+    심화상: sameDpTop,
   },
   "초6|2-2-2": {
     연산: diffDpCalc,
     기본: diffDpWord,
     응용: diffDpApply,
     심화하: diffDpDeep,
+    심화중: diffDpMid,
+    심화상: diffDpTop,
   },
   "초6|2-2-3": {
     연산: natDpCalc,
     기본: natDpWord,
     응용: natDpApply,
     심화하: natDpDeep,
+    심화중: natDpMid,
+    심화상: natDpTop,
   },
   "초6|2-2-4": {
     연산: roundCalc,
     기본: roundWord,
     응용: roundApply,
     심화하: roundDeep,
+    심화중: roundMid,
+    심화상: roundTop,
   },
   "초6|2-2-5": {
     연산: remCalc,
     기본: remWord,
     응용: remApply,
     심화하: remDeep,
+    심화중: remMid,
+    심화상: remTop,
   },
   "초6|2-4-1": {
     연산: ratioPropCalc,
