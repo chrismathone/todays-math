@@ -5619,6 +5619,375 @@ function mul214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 2-1 곱셈 «심화중»·«심화상» — D-113 파일럿 (2026-08-30) ──────────────────
+ *
+ * 축을 여섯으로 넓히며(D-113) **한 대단원만** 시안으로 채운다. 잣대:
+ *   · 심화중 — **후보를 열거해 그중 하나를 고른다**
+ *   · 심화상 — **여러 경우를 탐색·비교**하고 답이 후보 **전체**다(나열 또는 개수)
+ *
+ * 왜 이 대단원인가 — `docs/planning/tracks/reports/tier-bench-g3.md` §2 ㉠ 이
+ * 「매쓰홀릭 심화(중)에 가장 가까운 초3 문항은 **2-1-4 수 카드 하나뿐**」이라고
+ * 실측으로 짚었다. 우리 천장이 어디인지가 여기서 정해진다.
+ *
+ * 🔴 **후보 «전량»이 이름 약속 안이어야 한다.** 이 소단원들은 이름이 곱의 꼴과
+ *    올림 횟수를 약속한다(2-1-1 은 0~1번, 2-1-2 는 2~3번). 학생이 넣어 볼 수 있는
+ *    숫자가 아홉이면 **그 아홉의 곱이 전부** 약속 안이어야 한다 — 몇 개만 맞추고
+ *    나머지를 「어차피 조건에 걸린다」로 두면 그 문항은 지면에서 소단원을 벗어난다.
+ *    그래서 아래 틀은 **전수 열거로 만들고, 약속을 못 지키는 틀은 목록에서 뺀다**
+ *    (문턱으로 거르지 않는다 — 가드가 걸러 낼 값을 생성기가 만들면 안 된다).
+ *    문턱을 못 놓는 틀도 같이 뺀다. 그래서 이 생성기는 **어떤 씨앗에서도 안 던진다.**
+ *
+ * 🔴 **`\square` 를 놓는 자리가 판정기를 좌우한다.** `probe-elem-section-conditions`
+ *    의 곱 꼴 검사는 발문의 **첫** `(\d+)\times(\d+)` 를 읽는다. `$4\square7\times30$`
+ *    처럼 가린 자리 **뒤에** 숫자가 남으면 `7\times30` 이 잡혀 엉뚱한 짝으로 판정된다.
+ *    그래서 2-1-3·2-1-4 는 **오른쪽 인수의 맨 앞자리**를 가린다(`$34\times\square5$`) —
+ *    `\times` 바로 뒤가 `\` 라 그 정규식이 아예 안 문다. 2-1-1·2-1-2 는 그 꼴 검사가
+ *    안 붙는 이름이라(자리수 검사만 붙는다) 왼쪽을 가려도 된다.
+ *
+ * ⚠️ **2-1-1·2-1-2 에는 수 카드 틀을 안 넣었다.** 카드 순서를 바꾸면 같은 숫자가
+ *    일·십·백 어디에나 서므로 **여섯 가지 전부**가 올림 약속을 지켜야 하는데,
+ *    그러면 카드가 전부 아주 작거나(0~1번) 전부 $5$ 이상(2~3번)으로 묶여 소재가
+ *    서너 벌로 굳는다. 게다가 2-1-2 는 곱이 네 자리라 발문에 세 자리 수가 한 번도
+ *    안 서서 자리수 검사가 걸린다. **못 하는 것을 억지로 넣지 않고 여기 적어 둔다.**
+ *
+ * ⚠️ **못 재는 것**: 이 틀들이 「저쪽 심화(중) 높이인가」는 코드가 못 정한다. 시안이므로
+ *    원장님이 `/dev/tier-bench/g3` 에서 보시고 잣대를 확정하신다(D-07·D-71).
+ */
+
+/** 소단원 이름이 약속한 곱의 갈래 — **이름에서** 읽는다(지면에서 읽으면 동어반복이다). */
+type Mul21Kind = "3x1-1" | "3x1-2" | "3shapes" | "2x2";
+
+function mul21Kind(section: string): Mul21Kind {
+  if (section.includes("(몇십몇)×(몇십몇)")) return "2x2";
+  if (section.includes("(세 자리 수)"))
+    return section.includes("(2)") ? "3x1-2" : "3x1-1";
+  return "3shapes";
+}
+
+/** 가려진 자리에 숫자를 넣어 가며 곱을 견주는 틀 하나. */
+type Mask21 = {
+  /** 지면에 실릴 식 — `\square` 가 **정확히 하나**. */
+  latex: string;
+  /** 학생이 넣어 볼 수 있는 숫자. 맨 앞자리라 기본은 $1$~$9$ 다. */
+  domain: readonly number[];
+  /** 발문이 후보 범위를 밝히는가 — 곱하는 수를 가릴 때만 참이다. */
+  said: boolean;
+  product: (d: number) => number;
+  /** 그 숫자를 넣은 완성 식 — 해설이 쓴다. */
+  step: (d: number) => string;
+};
+
+const DIGITS_1_9 = [1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
+const MULTS_2_9 = [2, 3, 4, 5, 6, 7, 8, 9] as const;
+
+/** (세 자리)×(한 자리) — 이름이 약속한 올림 횟수를 **후보 전량**이 지키는 틀만. */
+function mask3x1(band: readonly [number, number]): Mask21[] {
+  const out: Mask21[] = [];
+  const inBand = (c: number) => c >= band[0] && c <= band[1];
+  // ㉠ 백의 자리를 가린다 — 곱하는 수는 지면에 서 있다.
+  for (let b = 2; b <= 9; b += 1) {
+    for (let t = 0; t <= 9; t += 1) {
+      for (let o = 0; o <= 9; o += 1) {
+        const at = (d: number) => d * 100 + t * 10 + o;
+        if (!DIGITS_1_9.every((d) => inBand(mulCarries3x1(at(d), b)))) continue;
+        out.push({
+          latex: `\\square${t}${o}\\times${b}`,
+          domain: DIGITS_1_9,
+          said: false,
+          product: (d) => at(d) * b,
+          step: (d) => `${at(d)}\\times${b}=${at(d) * b}`,
+        });
+      }
+    }
+  }
+  // ㉡ 곱하는 수를 가린다 — 세 자리 수가 지면에 서고, 발문이 후보 범위를 밝힌다.
+  for (let a = 100; a <= 999; a += 1) {
+    if (!MULTS_2_9.every((b) => inBand(mulCarries3x1(a, b)))) continue;
+    out.push({
+      latex: `${a}\\times\\square`,
+      domain: MULTS_2_9,
+      said: true,
+      product: (b) => a * b,
+      step: (b) => `${a}\\times${b}=${a * b}`,
+    });
+  }
+  return out;
+}
+
+/** 2-1-3 — 이름이 늘어놓은 세 꼴. 어느 것이든 **오른쪽**을 가린다. */
+function mask3shapes(): Mask21[] {
+  const out: Mask21[] = [];
+  // (몇)×(몇십몇)
+  for (let a = 3; a <= 9; a += 1) {
+    for (let o = 1; o <= 9; o += 1) {
+      out.push({
+        latex: `${a}\\times\\square${o}`,
+        domain: DIGITS_1_9,
+        said: false,
+        product: (d) => a * (d * 10 + o),
+        step: (d) => `${a}\\times${d * 10 + o}=${a * (d * 10 + o)}`,
+      });
+    }
+  }
+  // (몇십몇)×(몇십) · (몇십)×(몇십) — 왼쪽이 몇십이든 몇십몇이든 이름 안이다.
+  for (let a = 12; a <= 98; a += 1) {
+    out.push({
+      latex: `${a}\\times\\square0`,
+      domain: DIGITS_1_9,
+      said: false,
+      product: (d) => a * d * 10,
+      step: (d) => `${a}\\times${d * 10}=${a * d * 10}`,
+    });
+  }
+  return out;
+}
+
+/** 2-1-4 — 양쪽 다 몇십몇이라 가린 자리에 $0$ 이 오면 안 된다(맨 앞자리를 가린다). */
+function mask2x2(): Mask21[] {
+  const out: Mask21[] = [];
+  for (let a = 12; a <= 98; a += 1) {
+    if (a % 10 === 0) continue;
+    for (let o = 1; o <= 9; o += 1) {
+      out.push({
+        latex: `${a}\\times\\square${o}`,
+        domain: DIGITS_1_9,
+        said: false,
+        product: (d) => a * (d * 10 + o),
+        step: (d) => `${a}\\times${d * 10 + o}=${a * (d * 10 + o)}`,
+      });
+    }
+  }
+  return out;
+}
+
+/**
+ * `lo` 와 `hi` 사이의 **둥근** 수 하나. 없으면 null.
+ * 문턱이 `1837` 이면 지면이 지저분하다 — 큰 자리부터 찾아 가운데 것을 고른다.
+ */
+function roundBetween(lo: number, hi: number): number | null {
+  for (const m of [1000, 500, 100, 50, 10, 5, 1]) {
+    const first = Math.floor(lo / m) * m + m;
+    const last = Math.ceil(hi / m) * m - m;
+    if (first <= last) {
+      const count = (last - first) / m + 1;
+      return first + Math.floor((count - 1) / 2) * m;
+    }
+  }
+  return null;
+}
+
+/** 심화중이 쓸 문턱 — 답 하나, **조건에 맞는 후보 둘 이상**, 어긋나는 후보 하나 이상. */
+type Cut21 = { T: number; ans: number; wantMax: boolean };
+
+function cuts21Mid(f: Mask21): Cut21[] {
+  const ds = f.domain;
+  const out: Cut21[] = [];
+  for (let i = 1; i + 1 < ds.length; i += 1) {
+    const up = roundBetween(f.product(ds[i]!), f.product(ds[i + 1]!));
+    if (up !== null) out.push({ T: up, ans: ds[i]!, wantMax: true });
+    const down = roundBetween(f.product(ds[i - 1]!), f.product(ds[i]!));
+    if (down !== null) out.push({ T: down, ans: ds[i]!, wantMax: false });
+  }
+  return out;
+}
+
+/** 심화상이 쓸 두 문턱 — 답은 **그 사이 후보 전부**(둘 이상 넷 이하). */
+type Range21 = { T1: number; T2: number; ans: number[] };
+
+function cuts21High(f: Mask21): Range21[] {
+  const ds = f.domain;
+  const out: Range21[] = [];
+  for (let i = 1; i + 1 < ds.length; i += 1) {
+    for (let j = i + 1; j + 1 < ds.length; j += 1) {
+      if (j - i + 1 > 4) break;
+      const lo = roundBetween(f.product(ds[i - 1]!), f.product(ds[i]!));
+      const hi = roundBetween(f.product(ds[j]!), f.product(ds[j + 1]!));
+      if (lo !== null && hi !== null)
+        out.push({ T1: lo, T2: hi, ans: [...ds.slice(i, j + 1)] });
+    }
+  }
+  return out;
+}
+
+/**
+ * 소단원별 틀 목록. **문턱을 못 놓는 틀은 여기서 뺀다** — 뽑고 나서 되뽑는 고리를
+ * 두지 않는다(되뽑기는 씨앗에 따라 던진다, `probe-elem-throw` 가 게이트다).
+ */
+const MASK21_CACHE = new Map<Mul21Kind, Mask21[]>();
+
+function masks21(section: string): Mask21[] {
+  const kind = mul21Kind(section);
+  const hit = MASK21_CACHE.get(kind);
+  if (hit) return hit;
+  const raw =
+    kind === "3x1-1"
+      ? mask3x1([0, 1])
+      : kind === "3x1-2"
+        ? mask3x1([2, 3])
+        : kind === "3shapes"
+          ? mask3shapes()
+          : mask2x2();
+  const kept = raw.filter(
+    (f) => cuts21Mid(f).length > 0 && cuts21High(f).length > 0,
+  );
+  MASK21_CACHE.set(kind, kept);
+  return kept;
+}
+
+/** 조건 문장 — 「$T$ 보다 …」가 **한 번만** 서야 시험이 읽는다. */
+function cond21(eq: string, sq: string, T: string, less: boolean): string[] {
+  const 서술 = less ? "작습니다" : "큽니다";
+  const 관형 = less ? "작은" : "큰";
+  return [
+    `${eq} 의 곱이 ${T} 보다 ${서술}.`,
+    `${eq} 의 곱을 구했더니 ${T} 보다 ${서술}.`,
+    // ⚠️ 「$\square$ 에 숫자를 하나씩 넣어」는 **쓰지 않는다** — 그건 이 갈래가
+    //    시키려는 «후보를 열거한다» 그 자체라, 발문이 말해 버리면 난이도가 내려간다.
+    //    해설은 말해도 된다(푼 뒤에 읽는 것이다).
+    `${eq} 의 곱이 ${T} 보다 ${관형} 수가 되어야 합니다.`,
+  ];
+}
+
+/** 물음 문장(심화중) — 방향 낱말이 **하나만** 들어간다. */
+function ask21Pick(sq: string, wantMax: boolean): string[] {
+  const 큰 = wantMax ? "큰" : "작은";
+  return [
+    `${sq} 에 들어갈 수 있는 숫자 중 가장 ${큰} 것을 구하시오.`,
+    `${sq} 에 알맞은 숫자 가운데 가장 ${큰} 것을 쓰시오.`,
+    `${sq} 에 넣을 수 있는 가장 ${큰} 숫자는 얼마인지 구하시오.`,
+    `조건에 맞는 ${sq} 의 숫자 중 가장 ${큰} 것을 쓰시오.`,
+  ];
+}
+
+/** 「$L$ 부터 $H$ 까지」 — 곱하는 수를 가릴 때 후보 범위를 지면이 밝힌다. */
+function said21(sq: string, ds: readonly number[]): string[] {
+  const lo = n(ds[0]!);
+  const hi = n(ds[ds.length - 1]!);
+  return [
+    `${sq} 에는 ${lo} 부터 ${hi} 까지의 한 자리 수가 들어갑니다.`,
+    `곱하는 수는 ${lo} 부터 ${hi} 까지의 한 자리 수입니다.`,
+  ];
+}
+
+/** 5단 — 후보를 열거해 **그중 하나**를 고른다. */
+function mul21Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, masks21(unit.section));
+  const cut = pick(rng, cuts21Mid(f));
+  const eq = expr(f.latex);
+  const sq = expr(`\\square`);
+  const T = n(cut.T);
+  const next = cut.ans + (cut.wantMax ? 1 : -1);
+  const parts = [
+    pick(rng, cond21(eq, sq, T, cut.wantMax)),
+    ...(f.said ? [pick(rng, said21(sq, f.domain))] : []),
+    pick(rng, ask21Pick(sq, cut.wantMax)),
+  ];
+  return makeDeep(unit, parts.join(" "), n(cut.ans), [
+    `${sq} 에 숫자를 하나씩 넣어 곱을 구해 봅니다.`,
+    `${expr(f.step(cut.ans))} 이므로 ${T} 보다 ${cut.wantMax ? "작고" : "크고"},`,
+    `${expr(f.step(next))} 이므로 ${T} 보다 ${cut.wantMax ? "큽니다" : "작습니다"}.`,
+    `따라서 ${sq} 에 들어갈 수 있는 숫자 중 가장 ${cut.wantMax ? "큰" : "작은"} 것은 ${n(cut.ans)} 입니다.`,
+  ]);
+}
+
+/** 수 여러 개를 **한 덩어리** KaTeX 로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function list21(values: readonly number[]): string {
+  return expr(values.join(",\\ "));
+}
+
+/** 6단 ㉠ — 범위 두 겹. 답은 **그 사이 후보 전부**다. */
+function mul21HighRange(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, masks21(unit.section));
+  const r = pick(rng, cuts21High(f));
+  const eq = expr(f.latex);
+  const sq = expr(`\\square`);
+  const T1 = n(r.T1);
+  const T2 = n(r.T2);
+  const ds = f.domain;
+  const below = ds[ds.indexOf(r.ans[0]!) - 1]!;
+  const above = ds[ds.indexOf(r.ans[r.ans.length - 1]!) + 1]!;
+  const parts = [
+    pick(rng, [
+      `${eq} 의 곱이 ${T1} 보다 크고 ${T2} 보다 작습니다.`,
+      `${eq} 의 곱을 구했더니 ${T1} 보다 크고 ${T2} 보다 작습니다.`,
+      // 위 `cond21` 과 같은 까닭으로 **푸는 방법을 발문이 말하지 않는다**.
+      `${eq} 의 곱이 ${T1} 보다 크고 ${T2} 보다 작은 수가 되어야 합니다.`,
+    ]),
+    ...(f.said ? [pick(rng, said21(sq, ds))] : []),
+    pick(rng, [
+      `${sq} 에 들어갈 수 있는 숫자를 모두 구하시오.`,
+      `${sq} 에 알맞은 숫자를 모두 쓰시오.`,
+      `조건을 만족하는 ${sq} 의 숫자를 모두 구하시오.`,
+      `${sq} 에 넣을 수 있는 숫자를 모두 쓰시오.`,
+    ]),
+  ];
+  return makeDeep(unit, parts.join(" "), list21(r.ans), [
+    `${sq} 에 숫자를 하나씩 넣어 곱을 구해 봅니다.`,
+    `${r.ans.map((d) => expr(f.step(d))).join(", ")} 이므로 조건에 맞습니다.`,
+    `${expr(f.step(below))} 이므로 ${T1} 보다 작고, ${expr(f.step(above))} 이므로 ${T2} 보다 큽니다.`,
+    `따라서 ${sq} 에 들어갈 수 있는 숫자는 ${list21(r.ans)} 입니다.`,
+  ]);
+}
+
+/** 세 장 중 두 장으로 만드는 두 자리 수 — 순서가 다르면 다른 수다(여섯 가지). */
+function made2Of(cards: readonly number[]): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < cards.length; i += 1) {
+    for (let j = 0; j < cards.length; j += 1) {
+      if (i !== j) out.push(cards[i]! * 10 + cards[j]!);
+    }
+  }
+  return out.sort((x, y) => x - y);
+}
+
+/**
+ * 6단 ㉡ — **수 카드 배열의 경우의 수**. 여섯 가지를 다 만들어 견주어야 답이 나온다.
+ * 2-1-3·2-1-4 만 쓴다(위 머리말의 ⚠️ 참조).
+ */
+function mul21HighCards(unit: UnitSeed, rng: Rng): ElemProblem {
+  const cards = distinctIdx(rng, 9, 3)
+    .map((i) => i + 1)
+    .sort((a, b) => a - b);
+  const mult =
+    mul21Kind(unit.section) === "2x2"
+      ? tensOnes21(rng)
+      : intBetween(rng, 2, 9) * 10;
+  const made = made2Of(cards);
+  const ps = made.map((v) => v * mult);
+  const askBig = altCase(rng);
+  // 조건에 맞는 것이 둘 이상, 어긋나는 것이 하나 이상인 자리만 문턱으로 쓴다.
+  const cuts: number[] = [];
+  for (let k = 1; k < ps.length; k += 1) {
+    const okCount = askBig ? ps.length - k : k;
+    if (okCount < 2 || okCount > ps.length - 1) continue;
+    const T = roundBetween(ps[k - 1]!, ps[k]!);
+    if (T !== null) cuts.push(T);
+  }
+  const T = pick(rng, cuts);
+  const okProducts = ps.filter((p) => (askBig ? p > T : p < T));
+  const 큰 = askBig ? "큰" : "작은";
+  const stem = pick(rng, [
+    `수 카드 ${cards.map((c) => n(c)).join(", ")} 세 장 중 두 장을 뽑아 두 자리 수를 만든 뒤 ${n(mult)} 배 합니다. 곱이 ${n(T)} 보다 ${큰} 경우는 모두 몇 가지인지 구하시오.`,
+    `수 카드 ${cards.map((c) => n(c)).join(", ")} 세 장이 있습니다. 이 가운데 두 장으로 두 자리 수를 만들어 ${n(mult)} 배 할 때, 곱이 ${n(T)} 보다 ${큰} 경우는 모두 몇 가지인지 쓰시오.`,
+    `수 카드 ${cards.map((c) => n(c)).join(", ")} 세 장에서 두 장을 골라 두 자리 수를 만듭니다. 그 수를 ${n(mult)} 배 한 곱이 ${n(T)} 보다 ${큰} 경우는 모두 몇 가지인지 구하시오.`,
+    `수 카드 ${cards.map((c) => n(c)).join(", ")} 세 장 가운데 두 장으로 두 자리 수를 만들어 ${n(mult)} 배 합니다. 그 곱이 ${n(T)} 보다 ${큰} 경우가 모두 몇 가지인지 쓰시오.`,
+  ]);
+  return makeDeep(unit, stem, n(okProducts.length), [
+    `두 장을 뽑아 만들 수 있는 두 자리 수는 ${list21(made)} 입니다.`,
+    `${made.map((v) => expr(`${v}\\times${mult}=${v * mult}`)).join(", ")} 입니다.`,
+    `이 가운데 ${n(T)} 보다 ${큰} 것은 ${list21(okProducts)} 이므로 모두 ${n(okProducts.length)} 가지입니다.`,
+  ]);
+}
+
+/** 6단 — 2-1-3·2-1-4 는 두 틀을 번갈아 쓴다(한 문형의 되풀이를 막는다). */
+function mul21High(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = mul21Kind(unit.section);
+  const cards = kind === "3shapes" || kind === "2x2";
+  return cards && altCase(rng)
+    ? mul21HighCards(unit, rng)
+    : mul21HighRange(unit, rng);
+}
+
 // ── 2-2 나눗셈 (D-72 확대) ───────────────────────────────────────────────
 //
 // 이름 약속: 2-2-1·2-2-2 는 (몇십)÷(몇)·(몇십몇)÷(몇) 이고 **내림 유무**가 갈린다,
@@ -11822,29 +12191,41 @@ export const G3_TIERS: ElemTierMap = {
     응용: cmp167Apply,
     심화하: cmp167Deep,
   },
+  // ⚠️ `심화중`·`심화상` 은 **이 대단원에만** 있다 — D-113 파일럿(2026-08-30).
+  //    원장님이 `/dev/tier-bench/g3` 에서 여섯을 나란히 보시고 잣대를 확정하시면
+  //    그때 나머지를 채운다. 문형(`G3_FORMS`)에는 안 넣었다 — 넣으면 소단원마다
+  //    열이던 문형이 열둘이 되어 **지면 구성**이 바뀌고, 그건 D-07 결정이다.
   "초3|2-1-1": {
     연산: mul21Calc,
     기본: mul21Word,
     응용: mul21Apply,
     심화하: mul21Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
   "초3|2-1-2": {
     연산: mul21Calc,
     기본: mul21Word,
     응용: mul21Apply,
     심화하: mul21Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
   "초3|2-1-3": {
     연산: mul213Calc,
     기본: mul213Word,
     응용: mul213Apply,
     심화하: mul213Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
   "초3|2-1-4": {
     연산: mul214Calc,
     기본: mul214Word,
     응용: mul214Apply,
     심화하: mul214Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
   "초3|2-2-1": {
     연산: div22Calc,

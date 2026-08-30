@@ -2450,8 +2450,11 @@ describe("[초3 4단] 2-1 곱셈 — 네 소단원 (표준 포함)", () => {
               `${code} ${tier} seed ${seed}: ${s.a}${s.op}${s.b}`,
             ).toBe(s.c);
           }
-          // 1~3단은 마지막 스텝이 곧 답이다. 4단은 되짚는 갈래라 아래에서 따로 본다.
-          if (tier !== "심화하")
+          // 1~3단은 마지막 스텝이 곧 답이다. **심화 셋**은 되짚거나 후보를 견주는
+          // 갈래라 마지막 셈이 답이 아니다 — 각자 아래(심화하)와
+          // `elemTiersG3Mul21Extend.test.ts`(심화중·심화상)에서 **답을 발문에서
+          // 다시 세워** 확인한다. 여기서 느슨하게 두는 대신 그쪽이 더 세게 문다.
+          if (!tier.startsWith("심화"))
             expect(
               answerOf(p.answer),
               `${code} ${tier} seed ${seed}: ${p.solution}`,
@@ -2681,10 +2684,13 @@ describe("[초3 4단] 2-1 곱셈 — 네 소단원 (표준 포함)", () => {
             "#",
           ),
         );
+        // ⚠️ 상수 `4` 를 쓰면 갈래를 채운 날 이 시험이 **거짓으로** 빨개진다
+        //    (D-113 으로 2-1 은 여섯이 됐다). 이 시험이 원래 물으려던 것은
+        //    「등록된 갈래가 전부 서로 다르다」이고, 그 수는 갈래와 함께 움직인다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(tiersOf(planeUnit(code)).length);
       }
     }
   });

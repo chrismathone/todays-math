@@ -65,6 +65,10 @@ type Cond = { lo?: number; hi?: number };
 /**
  * 발문이 내건 곱의 범위. **꼴이 하나도 안 맞거나 둘 이상 맞으면 null** —
  * 「못 읽었다」를 통과로 만들지 않는다.
+ *
+ * ⚠️ 「작」 쪽은 활용형(작습니다·작은·작고)이 **한 음절을 나눠 갖는데** 「크」 쪽은
+ *    안 그렇다(큽니다·큰·커야·크고). 그래서 큰 쪽만 첫 음절을 늘어놓는다 — **손 열쇠**다.
+ *    목록에 없는 말투(「컸습니다」)를 쓰면 조용히 통과하는 대신 **null 이 되어 빨개진다.**
  */
 function condOf(content: string): Cond | null {
   const both = [...content.matchAll(/\$(\d+)\$ 보다 크고 \$(\d+)\$ 보다 작/g)];
@@ -72,7 +76,7 @@ function condOf(content: string): Cond | null {
     return { lo: Number(both[0]![1]), hi: Number(both[0]![2]) };
   if (both.length > 1) return null;
   const less = [...content.matchAll(/\$(\d+)\$ 보다 작/g)];
-  const more = [...content.matchAll(/\$(\d+)\$ 보다 크/g)];
+  const more = [...content.matchAll(/\$(\d+)\$ 보다 [크큰커큽]/g)];
   if (less.length === 1 && more.length === 0)
     return { hi: Number(less[0]![1]) };
   if (more.length === 1 && less.length === 0)
