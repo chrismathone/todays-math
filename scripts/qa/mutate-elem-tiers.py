@@ -806,11 +806,11 @@ G5_MUTS = [
     ),
     (
         # 창이 하나만 남기면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
-        # ⚠️ 위쪽 `inWindow.length < 2` 를 물면 **산출물이 안 바뀐다** — 아래
-        #    `decoys.length === 0` 이 같은 것을 이미 막고 있어서다(실측). 일하는 줄을 문다.
-        "[2-4 심화상] 창이 후보를 **하나만** 남겨도 통과",
-        "            if (decoys.length === 0) continue;",
-        "            if (decoys.length < 0) continue;",
+        # ⚠️ 예전에는 `decoys.length === 0` 도 같은 것을 막고 있어 **어느 쪽을 물어도
+        #    산출물이 안 바뀌었다**(하네스가 «판정 거부»로 알려 줬다). 둘을 하나로 줄였다.
+        "[2-4 심화상] 창이 후보를 **하나만** 남겨도 통과 (되짚기가 장식이 된다)",
+        "        if (inWindow.length < 2 || inWindow.length > 4) continue;",
+        "        if (inWindow.length < 1 || inWindow.length > 4) continue;",
     ),
     (
         "[2-4 심화상] 창 안 다른 후보가 같은 곱을 만들어도 통과 (답이 둘이 된다)",

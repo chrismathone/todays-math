@@ -9756,8 +9756,12 @@ function topTasks(spec: TopSpec, render: (t: TopTask) => string): TopTask[] {
           return v > scQ(lo) && v < scQ(hi);
         });
         // 🔴 창이 하나만 남기면 학생이 창만 보고 답을 얻는다 — 되짚기가 장식이 된다.
-        // ⚠️ 아래 `decoys.length === 0` 이 «하나만 남는 경우»를 이미 막는다(실측:
-        //    이 줄만 풀면 산출물이 안 바뀐다). 남겨 둔 것은 **상한**이 일하기 때문이다.
+        // 🔴 **이 한 줄이 이 갈래의 정의다.** 창이 후보를 하나만 남기면 학생이 창만
+        //    보고 답을 얻어 되짚기가 장식이 된다. 상한은 해설이 읽히게 두는 몫이다.
+        //
+        // ⚠️ 예전에는 아래에 `decoys.length === 0` 도 있었는데, **둘이 서로를 가려**
+        //    어느 쪽을 변이시켜도 산출물이 안 바뀌었다(하네스가 «판정 거부»로 알려 줬다).
+        //    같은 것을 두 번 막으면 **둘 다 시험할 수 없게 된다** — 하나로 줄였다.
         if (inWindow.length < 2 || inWindow.length > 4) continue;
         if (inWindow.some((o) => scPlaces(scMul(probe, o)) > spec.maxPlaces))
           continue;
@@ -9778,7 +9782,6 @@ function topTasks(spec: TopSpec, render: (t: TopTask) => string): TopTask[] {
             );
             if (rival) continue;
             const decoys = inWindow.filter((o) => scQ(o) !== scQ(other));
-            if (decoys.length === 0) continue;
             const task: TopTask = {
               product,
               dec: decv,
