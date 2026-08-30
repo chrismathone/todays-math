@@ -6,6 +6,10 @@
  *     npx tsx scripts/qa/census-tier-frames-m3.ts --axes       # 물음 ④ 후보 축을 나란히
  *     npx tsx scripts/qa/census-tier-frames-m3.ts --frames     # 「얇다」
  *     npx tsx scripts/qa/census-tier-frames-m3.ts --sixgrade   # 6단에 댈 신호 Ⓐ~Ⓔ
+ *     npx tsx scripts/qa/census-tier-frames-m3.ts --grid [소단원…]  # 사람이 읽을 격자
+ *
+ * 변이 시험: `PYTHONIOENCODING=utf-8 python scripts/qa/mutate-census-tier-m3.py`
+ * (2026-08-31 실측 — 변이 16개 **전부 빨강**)
  *
  * ## 이 자가 **재는 것**과 **못 재는 것**
  *
