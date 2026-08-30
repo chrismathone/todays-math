@@ -48,6 +48,15 @@ import {
 
 const SEEDS = Array.from({ length: 24 }, (_, i) => i * 37 + 5);
 
+/**
+ * 🔴 **반증 ⑥ 만 씨앗을 넓게 쓴다.** 이 축은 «풀에 몇 %가 나쁜가»를 잡는 것이라
+ * 24씨앗으로는 **놓친다** — 실측으로 1-6-1 심화중의 가드를 통째로 꺼도 지면에 실제로
+ * 닿는 것은 **3.2%**(600씨앗 중 19)뿐이라, 24씨앗이면 절반 가까이 그냥 지나간다
+ * (변이 시험이 「GREEN ← 가드가 아니다」를 내서 드러났다. 가드는 멀쩡했고 **표본이
+ * 얇았다**). 생성은 싸므로 여기만 넓힌다.
+ */
+const WIDE_SEEDS = Array.from({ length: 240 }, (_, i) => i * 7 + 3);
+
 const CODES = [
   "1-2-1",
   "1-2-2",
@@ -413,7 +422,7 @@ describe("[초6 확대 2차분] 잣대 — 마디가 안 굳고, 성질이 굳�
       const unit = unitOf(code);
       for (const tier of supportedTiers(unit)) {
         if (tier !== "심화중" && tier !== "심화상") continue;
-        for (const seed of SEEDS) {
+        for (const seed of WIDE_SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const ans = readRat(p.answer.replace(/\$/g, "").trim());
           if (!ans) {
@@ -431,8 +440,8 @@ describe("[초6 확대 2차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     expect(bad.slice(0, 6)).toEqual([]);
     // 「못 잰 자리」를 **세어 못 박는다** — 0 이 «깨끗»인지 «못 셈»인지 갈리게.
     // 답이 이름(1-2-4 심화중)·비(2-4-2)·비례식(2-4-3)인 셋 × 씨앗.
-    expect(unreadable).toBe(3 * SEEDS.length);
-    expect(measured).toBe(17 * SEEDS.length - 3 * SEEDS.length);
+    expect(unreadable).toBe(3 * WIDE_SEEDS.length);
+    expect(measured).toBe(17 * WIDE_SEEDS.length - 3 * WIDE_SEEDS.length);
   });
 
   it("㉤ 반증 ④ — 연산·기본·응용은 «구간으로 마디를 여는» 축을 안 쓴다", () => {

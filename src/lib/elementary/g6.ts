@@ -8278,10 +8278,11 @@ for (let w = 2; w <= 9; w += 1)
       const p = d * h;
       const v = w * p;
       if (v > 400) continue;
-      let hits = 0;
-      for (let x = 1; x * x <= p; x += 1)
-        if (p % x === 0 && p / x - x === gap) hits += 1;
-      if (hits !== 1) continue;
+      // 🔴 **답이 하나인 것은 가드가 아니라 대수가 보장한다.** 곱이 $p$ 이고 차가
+      //    `gap` 인 자연수 짝은 $x(x+gap)=p$ 의 해라 **많아야 하나**다. 그래서 여기
+      //    「짝이 정확히 하나인가」를 세는 코드를 두었다가 지웠다 — 늘 참이라
+      //    **아무것도 안 거르는 장식**이었고, 변이 시험이 「산출물이 그대로」로 잡았다.
+      //    이 자리에서 실제로 일하는 가드는 아래 반증 ⑥ 하나다(실측 61/279 를 거른다).
       if (!backsolveSafe([v, w, gap], d)) continue;
       VOL_PAIR_MID.push({ v, w, gap, d, h });
     }

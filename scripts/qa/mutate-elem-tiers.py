@@ -1331,16 +1331,21 @@ G6_MUTS = [
         "        if (!backsolveSafe([w, d, lo, up], -1)) continue;\n        SURF_RANGE_MID.push",
     ),
     (
-        # ㉡ — 곱이 같고 차도 같은 짝이 둘이면 답이 둘이 된다.
-        "차 조건 무력화 — 1-6-2 심화중이 «차가 같은 짝»이 둘이어도 좋다",
-        "      if (hits !== 1) continue;\n      if (!backsolveSafe([v, w, gap], d)) continue;",
-        "      if (hits < 1) continue;\n      if (!backsolveSafe([v, w, gap], d)) continue;",
+        # ㉣ 반증 ⑥ — 1-6-2 심화중 (실측 61/279 를 거른다).
+        #    ⚠️ 처음엔 「짝이 정확히 하나인가」를 겨눴는데 그 가드는 **대수적으로 늘 참**이라
+        #    「산출물이 그대로」로 거부됐다. 죽은 가드를 지우고 살아 있는 것을 겨눈다.
+        "반증 ⑥ 가드 제거 — 1-6-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 61건)",
+        "      if (!backsolveSafe([v, w, gap], d)) continue;\n      VOL_PAIR_MID.push",
+        "      if (!backsolveSafe([v, w, gap], -1)) continue;\n      VOL_PAIR_MID.push",
     ),
     (
-        # ㉢ — 삼조가 하나뿐이면 «만들어 견줄 것»이 없다. 그건 심화중도 아니다.
-        "후보 훼손 — 1-6-2 심화상이 삼조가 하나뿐인 부피를 쓴다",
-        "  if (triples.length < 3 || triples.length > 6) continue;",
-        "  if (triples.length < 1 || triples.length > 6) continue;",
+        # ㉢ — 상한이 삼조를 둘 이상 남기면 답이 하나로 안 선다.
+        #    ⚠️ 「삼조가 하나뿐인 부피」를 겨눴더니 **cap 고리가 아예 안 돌아** 새 항목이
+        #    하나도 안 들어왔다(초록). 결함을 «가능»하게만 만들고 «반드시 밟도록» 안 만든
+        #    그 자리다(파일럿 §8.6). 그래서 상한 쪽을 겨눈다.
+        "후보 훼손 — 1-6-2 심화상의 상한이 삼조를 둘 이상 남긴다",
+        "    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
+        "    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
     ),
     (
         # ㉢ — 한 묶음 후보가 하나면 둘째 비 조건이 아무 일도 안 한다.
