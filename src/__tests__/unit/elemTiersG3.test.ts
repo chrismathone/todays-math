@@ -729,10 +729,12 @@ describe("[초3 4단] 1-2 평면도형 — 다섯 소단원", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -1073,10 +1075,12 @@ describe("[초3 4단] 1-3 나눗셈 — 네 소단원", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -1306,10 +1310,12 @@ describe("[초3 4단] 1-4 곱셈 — 다섯 소단원 (표준 포함)", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -1752,10 +1758,12 @@ describe("[초3 4단] 1-5 길이와 시간 — 여섯 소단원", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -2255,10 +2263,12 @@ describe("[초3 4단] 1-6 분수와 소수 — 일곱 소단원", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -3240,10 +3250,12 @@ describe("[초3 4단] 2-2 나눗셈 — 네 소단원 (표준 포함)", () => {
             "#",
           ),
         );
+        // ⚠️ 갈래 수를 **손으로 적지 않는다** — D-113 으로 확대 갈래가 차면
+        // 「4」는 조용히 틀린 수가 된다. 물을 것은 「둘이 같아지지 않는가」다.
         expect(
           new Set(stems).size,
           `${code} seed ${seed}: ${stems.join(" | ")}`,
-        ).toBe(4);
+        ).toBe(stems.length);
       }
     }
   });
@@ -3587,7 +3599,9 @@ describe("[초3 4단] 2-4 분수", () => {
         ).toBeLessThan(den);
         judged += 1;
       }
-    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      everyTier("2-4-1").length * SEEDS24.length,
+    );
   });
 
   it("2-4-2 는 **단위분수**, 2-4-3 은 **분자 2 이상** — 이름이 약속한 그대로 (전량)", () => {
@@ -3619,7 +3633,9 @@ describe("[초3 4단] 2-4 분수", () => {
           ).toBe(1);
           judged += 1;
         }
-    expect(judged, "한 문항도 안 읽었다").toBe(2 * 5 * SEEDS24.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      (everyTier("2-4-2").length + everyTier("2-4-3").length) * SEEDS24.length,
+    );
   });
 
   it("2-4-1 은 답 자리라 **안 거른다** — 약분되는 답이 실제로 나온다 (반대쪽 확인)", () => {
@@ -3664,7 +3680,9 @@ describe("[초3 4단] 2-4 분수", () => {
         }
         judged += 1;
       }
-    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      everyTier("2-4-4").length * SEEDS24.length,
+    );
   });
 
   it("2-4-5 는 발문이 **가분수**이고, 대분수 변환이 지면에서 다시 나온다 (전량)", () => {
@@ -3676,8 +3694,14 @@ describe("[초3 4단] 2-4 분수", () => {
         // 대분수는 `숫자\frac{}{}` 꼴로 지면에 선다. 가분수는 `\frac{큰}{작은}`.
         const mixed = [...all.matchAll(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/g)];
         const improper = fracsIn(all).filter(([a, b]) => a >= b);
+        // ⚠️ D-113 확대 갈래는 **분모나 분자를 가린다** — 분모가 □ 인 분수도
+        //    이 소단원의 가분수다(분모는 한 자리 수라 분자가 항상 크다).
+        //    이것을 «안 보임»으로 읽으면 채운 갈래가 오히려 빨개진다.
+        const boxed = [
+          ...all.matchAll(/\\frac\{(?:\d+|\\square)\}\{(?:\d+|\\square)\}/g),
+        ];
         expect(
-          mixed.length + improper.length,
+          mixed.length + improper.length + boxed.length,
           `${tier ?? "표준"} 씨앗 ${seed} — 대분수도 가분수도 안 보인다`,
         ).toBeGreaterThan(0);
         for (const m of mixed) {
@@ -3691,7 +3715,9 @@ describe("[초3 4단] 2-4 분수", () => {
         }
         judged += 1;
       }
-    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      everyTier("2-4-5").length * SEEDS24.length,
+    );
   });
 
   it("2-4-5 해설은 **나눗셈을 등식으로 적지 않는다** — 표준과 같은 꼴 (전량)", () => {
@@ -3714,7 +3740,9 @@ describe("[초3 4단] 2-4 분수", () => {
         }
         judged += 1;
       }
-    expect(judged, "해설을 한 자리도 안 읽었다").toBe(5 * SEEDS24.length);
+    expect(judged, "해설을 한 자리도 안 읽었다").toBe(
+      everyTier("2-4-5").length * SEEDS24.length,
+    );
   });
 
   it("2-4-6 은 분모가 **모두 같고** 분자가 서로 달라 답이 하나다 (전량)", () => {
@@ -3736,7 +3764,9 @@ describe("[초3 4단] 2-4 분수", () => {
         ).toBe(fs.length);
         judged += 1;
       }
-    expect(judged, "한 문항도 안 읽었다").toBe(5 * SEEDS24.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      everyTier("2-4-6").length * SEEDS24.length,
+    );
   });
 
   it("2-4-6 심화의 답은 조건 사이에서 다시 나오고, **개수가 아니라 분수**다", () => {
@@ -3814,6 +3844,27 @@ describe("[초3 4단] 2-4 — 답을 발문에서 다시 세운다", () => {
               ints2(p.content),
               `${where} — 답이 발문에 그대로 있다`,
             ).not.toContain(got);
+          } else if (tier === "심화중") {
+            // D-113 확대 갈래 — 전체를 **범위 + 「묶음 수로 나누어떨어짐」**으로
+            // 되짚는다. 발문에 전체가 아예 없으므로 «범위»를 자리가 아니라
+            // 말투로 읽는다(틀마다 수가 나오는 차례가 다르다).
+            const bm = p.content.match(
+              /\$(\d+)\$[^$]*보다 많고 \$(\d+)\$[^$]*보다 적/,
+            );
+            expect(bm, `${where} — 범위를 못 읽었다`).toBeTruthy();
+            const [lo, hi] = [Number(bm![1]), Number(bm![2])];
+            const totals: number[] = [];
+            for (let v = lo + 1; v < hi; v += 1)
+              if (v % den === 0) totals.push(v);
+            expect(totals, `${where} — 전체가 하나로 안 굳는다`).toHaveLength(
+              1,
+            );
+            expect(got, where).toBe((totals[0]! / den) * take);
+            // 답이 발문에 그대로 있으면 되짚을 것이 없다.
+            expect(
+              ints2(p.content),
+              `${where} — 답이 발문에 그대로 있다`,
+            ).not.toContain(got);
           } else if (tier === "응용") {
             // 두 단계 — 분수만큼을 덜어 낸 나머지.
             expect(got, where).toBe(first - (first / den) * take);
@@ -3823,7 +3874,10 @@ describe("[초3 4단] 2-4 — 답을 발문에서 다시 세운다", () => {
           judged += 1;
         }
       }
-    expect(judged, "한 문항도 안 읽었다").toBe(2 * 4 * SEEDS_R.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(
+      (tiersOf(unitOf2("2-4-2")).length + tiersOf(unitOf2("2-4-3")).length) *
+        SEEDS_R.length,
+    );
   });
 
   it("2-4-6 — 연산·기본·응용의 답이 지면의 분자에서 다시 나온다", () => {
@@ -4876,6 +4930,33 @@ describe("[초3 4단] 2-6 그림그래프 — 두 소단원", () => {
     for (const tier of tiersOf(planeUnit("2-6-2")))
       for (const seed of GRAPH_SEEDS) {
         const p = generateElementaryProblem(planeUnit("2-6-2"), seed, tier);
+        // ⚠️ D-113 확대 갈래는 **답 모양이 다르다** — 중은 «나타내는 수», 상은
+        //    «큰 그림 수»를 묻는다. 그래도 재는 것은 같다: 지면의 그림 수와
+        //    자릿값이 맞는가. 여기를 «답 모양이 아니다»로 두면 채운 갈래가
+        //    아무 검사도 안 받는다(0 이 «깨끗»과 «못 셈»을 안 가르는 그 자리다).
+        if (tier === "심화중" || tier === "심화상") {
+          const tm = p.content.match(/(?:모두|합해|그림) \$(\d+)\$개/);
+          if (!tm) {
+            bad.push(`${tier} ${seed}: 그림 수를 못 읽었다 — ${p.content}`);
+            continue;
+          }
+          const total = Number(tm[1]);
+          const got = Number(/\$(\d+)\$/.exec(p.answer)![1]);
+          // 중은 값을, 상은 큰 그림 수를 답한다 — 어느 쪽이든 자릿값이 맞아야 한다.
+          const bigN = tier === "심화중" ? Math.floor(got / 10) : got;
+          const smallN = total - bigN;
+          if (smallN < 0 || smallN > 9)
+            bad.push(
+              `${tier} ${seed}: 작은 그림 ${smallN}개 — 일의 자리가 아니다`,
+            );
+          if (bigN < 1) bad.push(`${tier} ${seed}: 큰 그림 ${bigN}개`);
+          const v = bigN * 10 + smallN;
+          if (!p.solution.includes(`10\\times${bigN}+${smallN}=${v}`))
+            bad.push(
+              `${tier} ${seed}: 해설에 자릿값 등식이 없다 — ${p.solution.slice(0, 60)}`,
+            );
+          continue;
+        }
         const bs = bigSmall(p.answer);
         if (!bs) {
           bad.push(`${tier} ${seed}: 답 모양이 아니다 — ${p.answer}`);
