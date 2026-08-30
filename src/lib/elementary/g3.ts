@@ -5,6 +5,7 @@ import type { ElemTierMap } from "./difficulty";
 import { expr, fracLatex, n, unitNum } from "./format";
 import { fracSpec } from "./fracFig";
 import { fig, make, makeDeep } from "./make";
+import { answerPrintedOnPage, forwardReachable, rat } from "./forwardReach";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
@@ -6448,6 +6449,290 @@ function div224Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 2-2 나눗셈 «심화중»·«심화상» — D-113 물결 2 (2026-08-31) ──────────────────
+ *
+ * ── 이 대단원에서 마디를 여는 자리 ──────────────────────────────────────────
+ * 되짚기 식 「나뉘는 수 = 나누는 수 × 몫 (+ 나머지)」에서 **한 자리를 비우면** 마디가
+ * 안 굳는다. 비울 수 있는 자리는 둘뿐이다 —
+ *   ㉠ **나머지를 모른다** → 나뉘는 수 후보가 나누는 수만큼 **잇달아** 생긴다.
+ *   ㉡ **나누는 수를 모른다** → 「나머지 < 나누는 수」가 후보를 만든다.
+ * 굳히는 성질도 전부 이 대단원의 이름 안에 있다 — **나머지 < 나누는 수** ·
+ * **나누어떨어지는가** · **몫이 몇 자리인가**(백의 자리와 나누는 수의 크기로 안다).
+ *
+ * ── 중·상을 가르는 자리 (D-115 ⑾) ──────────────────────────────────────────
+ *   · **심화중** — 성질이 후보를 «끝까지 나누지 않고» 걸러 낸다.
+ *       2-2-3 후보가 **잇달아 놓인 수**라 곱셈구구 한 줄이 하나를 집는다.
+ *       2-2-4 **백의 자리와 나누는 수의 크기**만 보면 몫이 몇 자리인지 안다.
+ *   · **심화상** — 성질이 **한 개도 못 걸러** 후보를 **실제로 다 나눠 봐야** 한다.
+ *       2-2-3 후보가 흩어져 있고 거르는 조건이 «나머지»다.
+ *       2-2-4 후보(나누는 수)가 전부 두 자리 몫을 내어 자릿수로는 못 가른다.
+ *
+ * ── 🔴 2-2-1·2-2-2 는 둘 다 비운다 — **세어서** 정했다 ────────────────────────
+ * ㉠ 이 **이름 약속으로 막혀 있다**(두 이름에 「나머지」가 없고 생성기도 `div2`
+ * (나누어떨어짐)로만 뽑는다 — 여기서 나머지를 쓰면 2-2-3 과 갈래가 겹친다).
+ * 그러면 ㉡ 뿐인데 굳힐 성질이 「내림이 있나」 하나다. 전수로 세니 —
+ *   · 두 자리 나뉘는 수를 내는 **몫 23가지 중 18가지**에서 후보의 내림 여부가
+ *     **전부 같다** → 그 구절을 지워도 답이 그대로다(**반증 ⑤**).
+ *   · 「내림 여부가 정확히 하나를 남기는」 자리는 **(몫,내림) 46짝 중 3짝**뿐이다:
+ *     몫 $14$·내림 없음 → $28$ · 몫 $23$·내림 있음 → $92$ · 몫 $24$·내림 없음 → $48$.
+ * 문항이 사실상 셋으로 굳는다 — 파일럿이 `2-1-1` 심화상을 「기준 수 $105$ 하나뿐」으로
+ * 비운 것과 **같은 자리**다(원장님 다양성 원칙). **비우고 근거를 남긴다.**
+ *
+ * ⚠️ **2-2-4 에 나머지를 쓰기로 정했다** — 토대 17 §3(2-2 함정 ⑵)이 「먼저 정하라」고
+ *    한 그 약속이다. 2-2-3 과 갈리는 자리는 **되짚는 자리**다:
+ *    2-2-3 은 **나뉘는 수**를 되짚고, 2-2-4 는 **나누는 수·몫**을 되짚는다.
+ *    나뉘는 수는 늘 세 자리로 지면에 서고, 그것이 이 소단원의 이름이다.
+ *
+ * 🔴 **후보 전량이 지면에 나가므로 목록을 전수 열거로 만들고, 약속을 못 지키는 틀은
+ *    목록에서 뺀다**(문턱으로 거르지 않는다 — 파일럿과 같은 태도).
+ *    그래서 **어떤 씨앗에서도 안 던진다.**
+ *
+ * ⚠️ **반증 ⑥ 을 목록에서 건다.** 발문에 찍히는 수는 아래 넷뿐이고(2-2-3 중 $b_1,q,b_2$ ·
+ *    2-2-3 상 $L,U,b_1,r_1,b_2,r_2$ · 2-2-4 $N,r$), 그 수로 순방향으로 닿는 틀은
+ *    목록에 안 넣는다. 「생성기가 센 수 == 지면에 찍힌 수」는 시험이 따로 잠근다.
+ */
+
+/** 2-2-3 심화중 — 나머지를 모른다. 후보는 잇달아 놓이고 «나누어떨어짐»이 하나를 남긴다. */
+type Rem223Mid = {
+  b1: number;
+  q: number;
+  b2: number;
+  cand: number[];
+  ans: number;
+};
+
+function rem223MidPool(): Rem223Mid[] {
+  const out: Rem223Mid[] = [];
+  for (let b1 = 3; b1 <= 9; b1 += 1)
+    for (let q = 3; q <= 15; q += 1) {
+      const cand: number[] = [];
+      for (let r = 1; r <= b1 - 1; r += 1) cand.push(b1 * q + r);
+      // 해설이 후보를 통째로 적으므로 **전부 두 자리**라야 한다.
+      if (!cand.every((v) => v >= 10 && v <= 99)) continue;
+      for (let b2 = 3; b2 <= 9; b2 += 1) {
+        if (b2 === b1) continue;
+        const hits = cand.filter((x) => x % b2 === 0);
+        // 여럿이 남으면 성질이 마디를 못 굳히고, 하나도 없으면 답이 없다.
+        if (hits.length !== 1) continue;
+        const ans = hits[0]!;
+        // 답인 나뉘는 수는 **몇십몇**이다(소단원 이름).
+        if (ans % 10 === 0) continue;
+        if (forwardReachable([rat(b1), rat(q), rat(b2)], rat(ans))) continue;
+        out.push({ b1, q, b2, cand, ans });
+      }
+    }
+  return out;
+}
+
+/** 2-2-3 심화상 — 후보가 흩어져 있고 «나머지»라 하나씩 실제로 나눠 봐야 한다. */
+type Rem223High = {
+  L: number;
+  U: number;
+  b1: number;
+  r1: number;
+  b2: number;
+  r2: number;
+  cand: number[];
+  ans: number;
+};
+
+function rem223HighPool(): Rem223High[] {
+  const out: Rem223High[] = [];
+  const bounds: [number, number][] = [];
+  for (let L = 10; L <= 80; L += 10)
+    for (const w of [20, 30]) if (L + w <= 100) bounds.push([L, L + w]);
+  for (const [L, U] of bounds)
+    for (let b1 = 3; b1 <= 9; b1 += 1)
+      for (let r1 = 1; r1 <= b1 - 1; r1 += 1) {
+        const cand: number[] = [];
+        for (let x = L + 1; x < U; x += 1) if (x % b1 === r1) cand.push(x);
+        // 셋 미만이면 심화중과 구별이 안 되고, 여섯 이상이면 지면이 넘친다.
+        if (cand.length < 3 || cand.length > 5) continue;
+        if (!cand.every((v) => v >= 10 && v <= 99 && v % 10 !== 0)) continue;
+        for (let b2 = 3; b2 <= 9; b2 += 1) {
+          if (b2 === b1) continue;
+          for (let r2 = 1; r2 <= b2 - 1; r2 += 1) {
+            const hits = cand.filter((x) => x % b2 === r2);
+            if (hits.length !== 1) continue;
+            const ans = hits[0]!;
+            if (
+              forwardReachable(
+                [rat(L), rat(U), rat(b1), rat(r1), rat(b2), rat(r2)],
+                rat(ans),
+              )
+            )
+              continue;
+            out.push({ L, U, b1, r1, b2, r2, cand, ans });
+          }
+        }
+      }
+  return out;
+}
+
+/** 2-2-4 심화중 — 나누는 수를 모른다. «몫이 세 자리인가»가 하나를 남긴다. */
+type Div224Mid = {
+  N: number;
+  r: number;
+  M: number;
+  cand: number[];
+  ans: number;
+};
+
+function div224MidPool(): Div224Mid[] {
+  const out: Div224Mid[] = [];
+  for (let N = 100; N <= 999; N += 1)
+    for (let r = 2; r <= 8; r += 1) {
+      const M = N - r;
+      if (M < 100) continue;
+      const cand: number[] = [];
+      // 나머지 < 나누는 수 — 후보를 만드는 것도 이 소단원의 성질이다.
+      for (let b = 3; b <= 9; b += 1) if (b > r && M % b === 0) cand.push(b);
+      if (cand.length < 2) continue;
+      const three = cand.filter((b) => M / b >= 100);
+      if (three.length !== 1) continue;
+      // 나머지 후보의 몫도 두 자리라야 지면이 이 소단원 안에 머문다.
+      if (!cand.every((b) => M / b >= 10)) continue;
+      const ans = three[0]!;
+      if (forwardReachable([rat(N), rat(r)], rat(ans))) continue;
+      out.push({ N, r, M, cand, ans });
+    }
+  return out;
+}
+
+/** 2-2-4 심화상 — 성질이 후보를 하나도 못 자른다. 차례로 나누어 나머지를 견준다. */
+type Div224High = {
+  N: number;
+  r: number;
+  cand: number[];
+  b: number;
+  q: number;
+};
+
+function div224HighPool(): Div224High[] {
+  const out: Div224High[] = [];
+  for (let N = 100; N <= 999; N += 1)
+    for (let r = 4; r <= 6; r += 1) {
+      const cand: number[] = [];
+      for (let b = r + 1; b <= 9; b += 1) cand.push(b);
+      const hits = cand.filter((b) => N % b === r);
+      if (hits.length !== 1) continue;
+      const b = hits[0]!;
+      const q = (N - r) / b;
+      // **후보 전부가 두 자리 몫**이어야 「몫이 몇 자리인가」가 무력해진다.
+      if (
+        !cand.every((x) => Math.floor(N / x) >= 10 && Math.floor(N / x) <= 99)
+      )
+        continue;
+      if (forwardReachable([rat(N), rat(r)], rat(q))) continue;
+      out.push({ N, r, cand, b, q });
+    }
+  return out;
+}
+
+// 목록은 한 번만 만든다(약속을 못 지키는 틀은 여기서 이미 빠졌다).
+let REM223_MID: Rem223Mid[] | null = null;
+let REM223_HIGH: Rem223High[] | null = null;
+let DIV224_MID: Div224Mid[] | null = null;
+let DIV224_HIGH: Div224High[] | null = null;
+
+/** 수 여러 개를 **한 덩어리** KaTeX 로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function list22(values: readonly number[]): string {
+  return expr(values.join(",\\ "));
+}
+
+/** 5단 · 2-2-3 — 나머지를 모른다 → 잇달은 후보 → «나누어떨어짐»이 하나를 남긴다. */
+function rem223Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  REM223_MID ??= rem223MidPool();
+  const f = pick(rng, REM223_MID);
+  const lo = f.b1 * f.q;
+  const hi = f.b1 * (f.q + 1);
+  const first = f.cand[0]!;
+  const last = f.cand[f.cand.length - 1]!;
+  const m = f.ans / f.b2;
+  const stem = pick(rng, [
+    `나누는 수가 ${n(f.b1)} 인 나눗셈에서 몫이 ${n(f.q)} 이고 나머지가 있습니다. 이 나눗셈의 나뉘는 수는 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어집니다. 나뉘는 수를 구하시오.`,
+    `어떤 두 자리 수는 나누는 수가 ${n(f.b1)} 인 나눗셈에서 몫이 ${n(f.q)} 이고 나머지가 있습니다. 또 나누는 수가 ${n(f.b2)} 인 나눗셈에서는 나누어떨어집니다. 어떤 수를 구하시오.`,
+    `어떤 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 몫이 ${n(f.q)} 이고 나머지가 남습니다. 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 남는 것이 없습니다. 어떤 수는 얼마인지 쓰시오.`,
+    `나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어지는 두 자리 수가 있습니다. 이 수는 나누는 수가 ${n(f.b1)} 인 나눗셈에서 몫이 ${n(f.q)} 이고 나머지가 있습니다. 이 수를 구하시오.`,
+    `나누는 수가 ${n(f.b1)} 인 나눗셈의 몫이 ${n(f.q)} 이고 나머지가 있는 두 자리 수 가운데, 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어지는 수를 구하시오.`,
+    `어떤 두 자리 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누었더니 몫이 ${n(f.q)} 이고 나머지가 있었습니다. 같은 수를 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 나머지가 없습니다. 어떤 수를 쓰시오.`,
+  ]);
+  return makeDeep(unit, stem, n(f.ans), [
+    `나머지는 나누는 수보다 작으므로 ${n(1)} 부터 ${n(f.b1 - 1)} 까지입니다. 나뉘는 수는 ${expr(`${f.b1}\\times${f.q}=${lo}`)} 에 그 나머지를 더한 수이므로 ${n(first)} 부터 ${n(last)} 까지인 ${list22(f.cand)} 입니다.`,
+    `이 가운데 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어지는 수는 ${expr(`${f.b2}\\times${m}=${f.ans}`)} 하나뿐입니다.`,
+    `따라서 나뉘는 수는 ${n(f.ans)} 입니다. ${expr(`${f.ans}\\div${f.b1}`)} 의 몫은 ${n(f.q)}, 나머지는 ${n(f.ans - lo)} 입니다.`,
+  ]);
+}
+
+/** 6단 · 2-2-3 — 성질이 아무것도 못 잘라 내어 **후보를 하나씩 실제로 나눈다.** */
+function rem223High(unit: UnitSeed, rng: Rng): ElemProblem {
+  REM223_HIGH ??= rem223HighPool();
+  const f = pick(rng, REM223_HIGH);
+  const first = f.cand[0]!;
+  const stem = pick(rng, [
+    `${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 두 자리 수가 있습니다. 나누는 수가 ${n(f.b1)} 인 나눗셈에서 나머지가 ${n(f.r1)} 이고, 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나머지가 ${n(f.r2)} 입니다. 이 수를 구하시오.`,
+    `나누는 수가 ${n(f.b1)} 인 나눗셈에서 나머지가 ${n(f.r1)} 이고 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나머지가 ${n(f.r2)} 인 두 자리 수가 있습니다. 이 수가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때 이 수를 구하시오.`,
+    `어떤 두 자리 수는 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작습니다. 나누는 수가 ${n(f.b1)} 인 나눗셈에서는 나머지가 ${n(f.r1)} 이고, 나누는 수가 ${n(f.b2)} 인 나눗셈에서는 나머지가 ${n(f.r2)} 입니다. 어떤 수를 쓰시오.`,
+    `${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데, 나누는 수가 ${n(f.b1)} 인 나눗셈의 나머지가 ${n(f.r1)} 이고 나누는 수가 ${n(f.b2)} 인 나눗셈의 나머지가 ${n(f.r2)} 인 수를 구하시오.`,
+    `두 자리 수 하나가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작습니다. 이 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 ${n(f.r1)} 만큼 남고, 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 ${n(f.r2)} 만큼 남습니다. 이 수를 구하시오.`,
+  ]);
+  // **하나씩 실제로 나눈다** — 이 갈래를 상으로 만드는 것이 바로 이 걸음이다.
+  const tries = f.cand
+    .map((x) => {
+      const qq = Math.floor(x / f.b2);
+      return `${expr(`${f.b2}\\times${qq}=${f.b2 * qq}`)} 에서 ${n(x)} 의 나머지는 ${n(x - f.b2 * qq)}`;
+    })
+    .join(", ");
+  return makeDeep(unit, stem, n(f.ans), [
+    `나누는 수가 ${n(f.b1)} 인 나눗셈에서 나머지가 ${n(f.r1)} 인 수는 ${expr(`${f.b1}\\times${(first - f.r1) / f.b1}+${f.r1}=${first}`)} 처럼 만들어지고, 그다음부터는 ${n(f.b1)} 씩 커집니다.`,
+    `${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 것은 ${list22(f.cand)} 입니다.`,
+    `이 수들을 나누는 수가 ${n(f.b2)} 인 나눗셈으로 하나씩 나누어 봅니다. ${tries} 입니다.`,
+    `나머지가 ${n(f.r2)} 인 것은 ${n(f.ans)} 뿐입니다. ${expr(`${f.ans}\\div${f.b1}`)} 의 나머지는 ${n(f.r1)} 입니다.`,
+  ]);
+}
+
+/** 5단 · 2-2-4 — 나누는 수를 모른다 → «몫이 세 자리인가»가 하나를 남긴다. */
+function div224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  DIV224_MID ??= div224MidPool();
+  const f = pick(rng, DIV224_MID);
+  const q = f.M / f.ans;
+  const hundreds = Math.floor(f.M / 100);
+  const stem = pick(rng, [
+    `나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 인 나눗셈이 있습니다. 나누는 수는 한 자리 수이고 몫은 세 자리 수입니다. 나누는 수를 구하시오.`,
+    `나뉘는 수가 ${n(f.N)} 인 나눗셈에서 나누는 수는 한 자리 수이고 나머지는 ${n(f.r)} 입니다. 몫이 세 자리 수일 때 나누는 수를 구하시오.`,
+    `한 자리 수로 나누는 나눗셈이 있습니다. 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 이며 몫이 세 자리 수일 때, 나누는 수를 구하시오.`,
+    `나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 인 나눗셈에서 몫이 세 자리 수입니다. 한 자리 수인 나누는 수는 얼마인지 쓰시오.`,
+  ]);
+  return makeDeep(unit, stem, n(f.ans), [
+    `나머지가 ${n(f.r)} 이므로 나뉘는 수에서 나머지를 빼면 ${expr(`${f.N}-${f.r}=${f.M}`)} 입니다. 이 수가 나누는 수로 나누어떨어집니다.`,
+    `나머지보다 큰 한 자리 수 가운데 나누어떨어지게 하는 수는 ${list22(f.cand)} 입니다.`,
+    `몫이 세 자리 수가 되려면 나누는 수가 백의 자리 숫자보다 크지 않아야 합니다. 백의 자리 숫자는 ${n(hundreds)} 이므로 나누는 수는 ${n(f.ans)} 이고, 몫은 ${expr(`${f.M}\\div${f.ans}=${q}`)} 에서 ${n(q)} 입니다.`,
+  ]);
+}
+
+/** 6단 · 2-2-4 — 성질이 후보를 하나도 못 자른다. 차례로 나누어 나머지를 견준다. */
+function div224High(unit: UnitSeed, rng: Rng): ElemProblem {
+  DIV224_HIGH ??= div224HighPool();
+  const f = pick(rng, DIV224_HIGH);
+  const stem = pick(rng, [
+    `나뉘는 수가 ${n(f.N)} 이고 나누는 수가 한 자리 수인 나눗셈에서 나머지가 ${n(f.r)} 입니다. 이 나눗셈의 몫을 구하시오.`,
+    `어떤 한 자리 수로 나누는 나눗셈에서 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 입니다. 몫은 얼마인지 구하시오.`,
+    `나뉘는 수가 ${n(f.N)} 인 나눗셈이 있습니다. 나누는 수는 한 자리 수이고 나머지는 ${n(f.r)} 입니다. 몫을 구하시오.`,
+    `나누는 수가 한 자리 수인 나눗셈에서 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 일 때 몫을 쓰시오.`,
+  ]);
+  const tries = f.cand
+    .map((b) => {
+      const qq = Math.floor(f.N / b);
+      return `${expr(`${b}\\times${qq}=${b * qq}`)} 에서 나머지는 ${n(f.N - b * qq)}`;
+    })
+    .join(", ");
+  return makeDeep(unit, stem, n(f.q), [
+    `나머지가 ${n(f.r)} 이므로 나누는 수는 ${n(f.r)} 보다 커야 합니다. 곧 한 자리 수 가운데 ${list22(f.cand)} 입니다.`,
+    `이 수들로 차례로 나누어 봅니다. ${tries} 입니다.`,
+    `나머지가 ${n(f.r)} 인 것은 나누는 수가 ${n(f.b)} 일 때이므로 몫은 ${n(f.q)} 입니다.`,
+  ]);
+}
+
 // ══ 2-4 분수 (2-4-1 ~ 2-4-6) ═══════════════════════════════════════════
 //
 // ⚠️ **기약 규칙은 소단원마다 다르고, 그것이 옳다** — `frac32` 의 두 주석을 먼저 읽을 것.
@@ -6961,6 +7246,234 @@ function cmp246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     expr(`\\frac{${ans}}{${den}}`),
     `분모가 같으므로 분자만 견주면 됩니다. 분자는 ${n(lo)} 보다 크고 ${n(hi)} 보다 작아야 하므로 ${n(lo + 1)} 부터 ${n(ans)} 까지입니다. 그중 가장 큰 분자는 ${n(ans)} 이므로 답은 ${expr(`\\frac{${ans}}{${den}}`)} 입니다.`,
   );
+}
+
+/* ── 2-4 분수 «심화중»·«심화상» — D-113 물결 2 (2026-08-31) ────────────────────
+ *
+ * ── 이 대단원에서 마디를 여는 자리 ──────────────────────────────────────────
+ *   ㉡ **전체를 모른다** (2-4-1·2-4-2·2-4-3) — 부분에서 전체를 되짚을 때 전체가
+ *      범위로만 주어지면 마디가 안 굳고, **「똑같이 나누므로 전체가 묶음 수로
+ *      나누어떨어져야 한다」**가 하나를 남긴다. 소단원 이름 그 자체다.
+ *   ㉠ **나머지를 모른다** (2-4-5) — 「분자 = 분모 × 자연수부 + 나머지」에서 나머지를
+ *      비우면 후보가 분모 개수만큼 생기고, **「나머지는 분모보다 작다」**(대분수의
+ *      정의)가 굳힌다.
+ *
+ * ── 중·상을 가르는 자리 (D-115 ⑾) ──────────────────────────────────────────
+ *   · **심화중** — 성질이 후보를 «끝까지 만들어 보지 않고» 걸러 낸다.
+ *       2-4-1·2·3 곱셈구구 한 줄로 「범위 안 배수」 하나를 집는다.
+ *       2-4-5 「분모보다 작은 수 가운데 가장 큰 수」는 분모만 보면 곧 나온다.
+ *   · **심화상** — 성질이 **한 개도 못 걸러**(후보가 전부 「나머지 < 분모」를 지킨다)
+ *       후보를 **하나씩 실제로 가분수로 만들어** 범위와 견주어야 한다 (2-4-5).
+ *
+ * ── 🔴 2-4-4·2-4-6 은 비운다 — **세어서** 정했다 (씨앗 40) ────────────────────
+ *   · **2-4-4** 심화하가 「$\square$ 에 들어갈 수 있는 수는 모두 몇 개」로 **24/40**.
+ *     그 위에 얹을 수 있는 것은 **열거 축의 규모 키우기**뿐인데, 그 축은 D-115 ⑵ 가
+ *     **측정으로 기각**했다(열거형 심화하가 그 소단원의 «연산»보다 얕다).
+ *   · **2-4-6** 심화하가 「범위 안에서 가장 큰 분수」로 **40/40**. 같은 자리다.
+ *     그리고 이 소단원의 성질은 「분모가 같으면 분자만 견준다」 한 줄이라, 그 한 줄이
+ *     **후보를 만드는 데도 굳히는 데도 동시에** 쓰인다(토대 17 §3 1-6 이 적은 그 모양).
+ *   ⚠️ 판정기의 ④ 는 2-4-6 을 지목하지만(3건) **그것이 근거는 아니다** — 그 소단원의
+ *     답이 분수라 `readRat` 이 기본·응용을 통째로 못 읽고, 연산은 8건 중 5건이 닿는다.
+ *     비우는 근거는 위의 «열거 축이 이미 심화하의 것»이다.
+ *
+ * ⚠️ **2-4-5 는 심화중·심화상이 같은 사슬을 나눠 쓴다** — 중은 나머지를 성질이
+ *    굳히고, 상은 성질이 못 굳혀 후보를 다 만들어 본다. 발문이 겹치지 않게
+ *    중은 **분모**를, 상은 **가분수 자체**를 묻는다.
+ *
+ * 🔴 목록은 전수 열거로 만들고 반증 ⑥ 을 목록에서 건다(발문에 찍히는 수로 순방향에
+ *    닿는 틀은 안 넣는다). 그래서 어떤 씨앗에서도 안 던진다.
+ */
+
+/** 2-4-1·2-4-2·2-4-3 심화중 — 전체가 «묶음 수로 나누어떨어져야 한다»가 굳힌다. */
+type Frac24Mid = {
+  d: number;
+  L: number;
+  U: number;
+  T: number;
+  m: number;
+  k: number;
+};
+
+/**
+ * 창(`L`~`U`) 안에 묶음 수의 배수가 **정확히 하나** 있는 틀만 남긴다.
+ * `k` 는 뽑는 묶음 수 — 2-4-2 는 단위분수라 늘 $1$ 이다.
+ */
+function frac24MidPool(kFrom: number): Frac24Mid[] {
+  const out: Frac24Mid[] = [];
+  for (let d = 3; d <= 8; d += 1)
+    for (let m = 3; m <= 12; m += 1) {
+      const T = d * m;
+      if (T < 20 || T > 96) continue;
+      for (let L = 10; L < T; L += 5)
+        for (let U = L + 5; U <= 100; U += 5) {
+          if (U <= T || U - L > 20) continue;
+          let cnt = 0;
+          for (let v = L + 1; v < U; v += 1) if (v % d === 0) cnt += 1;
+          if (cnt !== 1) continue;
+          const kTo = kFrom === 1 ? 1 : d - 1;
+          for (let k = kFrom; k <= kTo; k += 1) {
+            // 2-4-1 은 답이 분수, 2-4-2·3 은 답이 개수라 반증 ⑥ 의 답이 다르다.
+            const ansFrac = rat(k, d);
+            const ansCount = rat(k * m);
+            const nums = [rat(L), rat(U), rat(d), rat(k), rat(k, d)];
+            if (forwardReachable(nums, ansFrac)) continue;
+            if (forwardReachable(nums, ansCount)) continue;
+            // 답이 지면에 그대로 서면 되짚기가 필요 없다.
+            if (answerPrintedOnPage(nums, ansCount)) continue;
+            out.push({ d, L, U, T, m, k });
+          }
+        }
+    }
+  return out;
+}
+
+/** 2-4-5 심화중 — 나머지가 「분모보다 작은 수 가운데 가장 큰 수」. */
+type Mixed245Mid = { d: number; w: number; N: number };
+
+function mixed245MidPool(): Mixed245Mid[] {
+  const out: Mixed245Mid[] = [];
+  for (let d = 3; d <= 9; d += 1)
+    for (let w = 2; w <= 8; w += 1) {
+      // 답(분모)이 발문의 자연수 부분과 같으면 지면에 답이 서 버린다.
+      if (d === w) continue;
+      const N = (w + 1) * d - 1;
+      if (N < 10 || N > 99) continue;
+      if (forwardReachable([rat(N), rat(w)], rat(d))) continue;
+      out.push({ d, w, N });
+    }
+  return out;
+}
+
+/** 2-4-5 심화상 — 자연수 부분과 분자가 같은 가분수를 **다 만들어** 범위와 견준다. */
+type Mixed245High = {
+  d: number;
+  L: number;
+  U: number;
+  cand: number[];
+  ans: number;
+  r: number;
+};
+
+function mixed245HighPool(): Mixed245High[] {
+  const out: Mixed245High[] = [];
+  const gcd2 = (a: number, b: number): number => (b === 0 ? a : gcd2(b, a % b));
+  for (let d = 4; d <= 8; d += 1) {
+    const cand: number[] = [];
+    for (let r = 1; r <= d - 1; r += 1) cand.push(r * (d + 1));
+    for (let L = 5; L <= 90; L += 5)
+      for (let U = L + 5; U <= 95; U += 5) {
+        if (U - L > 15) continue;
+        const hits = cand.filter((v) => v > L && v < U);
+        if (hits.length !== 1) continue;
+        const ans = hits[0]!;
+        const r = ans / (d + 1);
+        // 답인 분수는 기약으로 둔다 — 이 소단원의 표준(`coprimeNums`)과 같은 태도다.
+        if (gcd2(r, d) !== 1) continue;
+        if (r < 2) continue;
+        if (forwardReachable([rat(d), rat(L), rat(U)], rat(ans, d))) continue;
+        out.push({ d, L, U, cand, ans, r });
+      }
+  }
+  return out;
+}
+
+let FRAC24_MID_UNIT: Frac24Mid[] | null = null;
+let FRAC24_MID_MANY: Frac24Mid[] | null = null;
+let MIXED245_MID: Mixed245Mid[] | null = null;
+let MIXED245_HIGH: Mixed245High[] | null = null;
+
+/** 5단 · 2-4-1 — 전체를 되짚어 「꺼낸 것이 전체의 얼마인가」를 분수로 답한다. */
+function part241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  FRAC24_MID_MANY ??= frac24MidPool(2);
+  const f = pick(rng, FRAC24_MID_MANY);
+  const stuff = pick(rng, FRAC24_STUFF);
+  const P = f.k * f.m;
+  const stem = pick(rng, [
+    `${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누고 그중 몇 묶음을 꺼냈더니 ${n(P)}개였습니다. ${stuff} 수가 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적을 때, 꺼낸 것은 전체의 얼마인지 분수로 나타내시오.`,
+    `${stuff} 수는 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 이 ${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누었더니 남는 것이 없었고, 그중 몇 묶음이 ${n(P)}개였습니다. ${n(P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+    `${n(f.L)}개보다 많고 ${n(f.U)}개보다 적은 ${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. 이 가운데 ${n(P)}개는 전체의 얼마인지 분수로 나타내시오.`,
+    `${stuff} 수가 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 똑같이 ${n(f.d)}묶음으로 나누어 담았더니 남는 ${stuff}${josa(stuff, "이", "가")} 없었습니다. ${n(P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+  ]);
+  return makeDeep(unit, stem, expr(`\\frac{${f.k}}{${f.d}}`), [
+    `똑같이 ${n(f.d)}묶음으로 나누므로 전체는 ${n(f.d)}묶음으로 나누어떨어져야 합니다. ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데 그런 수는 ${expr(`${f.d}\\times${f.m}=${f.T}`)} 에서 ${n(f.T)} 뿐입니다.`,
+    `한 묶음은 ${expr(`${f.T}\\div${f.d}=${f.m}`)} 에서 ${n(f.m)}개이므로, ${n(P)}개는 ${expr(`${f.m}\\times${f.k}=${P}`)} 에서 ${n(f.k)}묶음입니다.`,
+    `전체 ${n(f.d)}묶음 가운데 ${n(f.k)}묶음이므로 ${expr(`\\frac{${f.k}}{${f.d}}`)} 입니다.`,
+  ]);
+}
+
+/** 5단 · 2-4-2·2-4-3 — 같은 되짚기, 답은 «몇 개». `unitOnly` 는 단위분수 소단원. */
+function frac24MidOf(unitOnly: boolean) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    if (unitOnly) FRAC24_MID_UNIT ??= frac24MidPool(1);
+    else FRAC24_MID_MANY ??= frac24MidPool(2);
+    const pool = (unitOnly ? FRAC24_MID_UNIT : FRAC24_MID_MANY)!;
+    const f = pick(rng, pool);
+    const stuff = pick(rng, FRAC24_STUFF);
+    const fr = expr(`\\frac{${f.k}}{${f.d}}`);
+    const ans = f.k * f.m;
+    const stem = pick(rng, [
+      `${stuff}${josa(stuff, "이", "가")} ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 이 ${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. 전체의 ${fr} 만큼은 몇 개인지 쓰시오.`,
+      `${n(f.L)}개보다 많고 ${n(f.U)}개보다 적은 ${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누었더니 남는 것이 없었습니다. 전체의 ${fr} 만큼은 몇 개입니까?`,
+      `${stuff} 수는 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적으며, 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. 전체의 ${fr} 만큼은 몇 개인지 구하시오.`,
+      `${stuff}${josa(stuff, "을", "를")} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. ${stuff} 수가 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적을 때, 전체의 ${fr} 만큼은 몇 개인지 쓰시오.`,
+    ]);
+    return makeDeep(unit, stem, n(ans), [
+      `똑같이 ${n(f.d)}묶음으로 나누므로 전체는 ${n(f.d)}묶음으로 나누어떨어져야 합니다. ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데 그런 수는 ${expr(`${f.d}\\times${f.m}=${f.T}`)} 에서 ${n(f.T)} 뿐입니다.`,
+      `한 묶음은 ${expr(`${f.T}\\div${f.d}=${f.m}`)} 에서 ${n(f.m)}개입니다.`,
+      unitOnly
+        ? `${fr} 만큼은 한 묶음이므로 ${n(ans)}개입니다.`
+        : `${fr} 만큼은 ${n(f.k)}묶음이므로 ${expr(`${f.m}\\times${f.k}=${ans}`)} 에서 ${n(ans)}개입니다.`,
+    ]);
+  };
+}
+
+/** 5단 · 2-4-5 — 나머지를 모른다 → 「분모보다 작은 수 가운데 가장 큰 수」가 굳힌다. */
+function mixed245Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  MIXED245_MID ??= mixed245MidPool();
+  const f = pick(rng, MIXED245_MID);
+  const box = expr(`\\frac{${f.N}}{\\square}`);
+  const sq = expr(`\\square`);
+  const stem = pick(rng, [
+    `어떤 가분수를 대분수로 나타냈더니 자연수 부분이 ${n(f.w)} 이고, 분수 부분의 분자는 분모보다 작은 수 가운데 가장 큰 수였습니다. 이 가분수가 ${box} 일 때 ${sq} 에 알맞은 수를 구하시오.`,
+    `분자가 ${n(f.N)} 인 가분수가 있습니다. 대분수로 나타냈더니 자연수 부분이 ${n(f.w)} 이고 분수 부분의 분자는 분모보다 작은 수 가운데 가장 큽니다. 이 가분수는 ${box} 입니다. 분모를 구하시오.`,
+    `어떤 대분수의 자연수 부분은 ${n(f.w)} 이고, 분수 부분의 분자는 분모보다 작은 수 가운데 가장 큰 수입니다. 이 대분수를 가분수로 고치면 ${box} 입니다. ${sq} 에 알맞은 수를 쓰시오.`,
+    `대분수로 나타내면 자연수 부분이 ${n(f.w)} 이고 분수 부분의 분자가 분모보다 ${n(1)} 작은 가분수가 ${box} 입니다. ${sq} 에 알맞은 수를 구하시오.`,
+  ]);
+  return makeDeep(unit, stem, n(f.d), [
+    `대분수의 분수 부분은 진분수이므로 분자가 분모보다 작습니다. 그 가운데 가장 큰 수는 분모보다 ${n(1)} 작은 수입니다.`,
+    `그러면 분자에 ${n(1)} 만 더해도 자연수가 되고, 그 자연수는 ${n(f.w + 1)} 입니다. 곧 ${expr(`${f.N}+1=${f.N + 1}`)} 이고, 이 수는 분모를 ${n(f.w + 1)}번 더한 수입니다.`,
+    `분모는 ${expr(`${f.N + 1}\\div${f.w + 1}=${f.d}`)} 에서 ${n(f.d)} 입니다.`,
+  ]);
+}
+
+/** 6단 · 2-4-5 — 성질이 아무것도 못 잘라 내어 **후보를 다 만들어** 견준다. */
+function mixed245High(unit: UnitSeed, rng: Rng): ElemProblem {
+  MIXED245_HIGH ??= mixed245HighPool();
+  const f = pick(rng, MIXED245_HIGH);
+  const shape = expr(`\\square\\frac{\\square}{${f.d}}`);
+  const box = expr(`\\frac{\\square}{${f.d}}`);
+  const stem = pick(rng, [
+    `분모가 ${n(f.d)} 인 가분수를 대분수로 나타냈더니 ${shape} 처럼 자연수 부분과 분수 부분의 분자가 같았습니다. 이 가분수의 분자가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때, 이 가분수를 구하시오.`,
+    `대분수로 나타내면 자연수 부분과 분수 부분의 분자가 같아지는 가분수는 ${box} 입니다. 분자가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때 이 가분수를 쓰시오.`,
+    `어떤 가분수는 ${box} 이고, 대분수로 고치면 ${shape} 처럼 자연수 부분과 분수 부분의 분자가 같습니다. 분자가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때 이 가분수를 구하시오.`,
+    `분모가 ${n(f.d)} 인 어떤 가분수는 ${box} 입니다. 대분수로 고쳤더니 자연수 부분과 분수 부분의 분자가 같았고, 분자는 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작습니다. 이 가분수를 쓰시오.`,
+  ]);
+  const half = Math.ceil(f.cand.length / 2);
+  const line = (from: number, to: number): string =>
+    expr(
+      f.cand
+        .slice(from, to)
+        .map((v, i) => {
+          const r = from + i + 1;
+          return `${r}\\frac{${r}}{${f.d}}=\\frac{${v}}{${f.d}}`;
+        })
+        .join(",\\ "),
+    );
+  return makeDeep(unit, stem, expr(`\\frac{${f.ans}}{${f.d}}`), [
+    `자연수 부분과 분수 부분의 분자가 같은 대분수를 작은 것부터 만들어 가분수로 고쳐 봅니다.`,
+    `${line(0, half)}, ${line(half, f.cand.length)} 입니다.`,
+    `이 가운데 분자가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 것은 ${expr(`\\frac{${f.ans}}{${f.d}}`)} 뿐입니다.`,
+  ]);
 }
 
 // ── 2-5 들이와 무게 (D-72 확대) ──────────────────────────────────────────
@@ -7756,6 +8269,147 @@ function graph262Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개`,
     `가 ${place}${josa(place, "은", "는")} ${expr(`10\\times${bigA}+${smallA}=${base}`)} 입니다. 나 ${place}${josa(place, "은", "는")} ${expr(`${base}+${gap}=${value}`)} 이고, ${expr(`${value}=10\\times${tens}+${ones}`)} 이므로 큰 그림 ${n(tens)}개, 작은 그림 ${n(ones)}개를 그립니다.`,
   );
+}
+
+/* ── 2-6 그림그래프 «심화중»·«심화상» — D-113 물결 2 (2026-08-31) ──────────────
+ *
+ * ── 이 대단원에서 마디를 여는 자리 ──────────────────────────────────────────
+ * 2-6-2 는 「값 ↔ (큰 그림 수, 작은 그림 수)」가 **일대일**이라 값을 주면 늘 굳는다
+ * (그게 지금 심화하다). 마디를 열려면 값이 아니라 **그림을 모두 몇 개 그렸는가**를
+ * 주어야 한다 — 그러면 $(a,b)$ 가 $a+b$ 만으로는 안 굳고, 값은 $10a+b=9a+(a+b)$ 로
+ * 후보가 여럿 생긴다. 굳히는 성질은 이 소단원의 규약 하나다:
+ * **「작은 그림은 $9$ 개를 넘지 않는다 — 열 개가 되면 큰 그림 한 개로 바꾼다.」**
+ *
+ * ── 중·상을 가르는 자리 (D-115 ⑾) ──────────────────────────────────────────
+ *   · **심화중** — 그림이 **열 개를 넘게** 그려져 그 규약이 실제로 작동한다.
+ *     큰 그림은 적어도 $(총-9)$ 개라는 것이 **한 번에** 나오고, 값을 만들어 보지
+ *     않아도 가장 작은 것이 정해진다.
+ *   · **심화상** — 그림이 **아홉 개 이하**라 그 규약이 **한 후보도 못 자른다**
+ *     (어떤 $a$ 를 잡아도 작은 그림이 $9$ 개 이하다). 그래서 큰 그림 수를 $0$ 부터
+ *     차례로 **실제로 만들어** 범위와 견주어야 하나가 남는다.
+ *
+ * ── 🔴 2-6-1 은 둘 다 비운다 — **세어서** 정했다 ─────────────────────────────
+ * 2-6-1 에서 마디를 열 수 있는 축은 「값이 범위 안에 있다」 하나이고, 굳히는 성질은
+ * 「값은 한 칸이 나타내는 수의 배수다」 하나다. 엔진이 쓰는 단위는 $2\cdot5\cdot10$
+ * 뿐인데(`graphSpec`), 십의 자리 경계로 자른 창 16개를 전수로 세면 —
+ * ```
+ * 단위 10 → 창 안 후보 0개(8창) · 1개(8창)
+ * 단위  5 → 1개(8창) · 3개(8창)
+ * 단위  2 → 4개(8창) · 9개(8창)
+ * ```
+ * 후보가 **하나**일 때는 창의 두 끝을 단위로 나누기만 하면 나오므로 **순방향**이고
+ * (반증 ⑥), 후보가 **여럿**일 때는 남은 성질이 없어 답이 안 정해진다. 곧 이 소단원
+ * 에서는 「후보가 여럿 생기고 성질이 하나를 남긴다」가 **구성상 일어나지 않는다.**
+ * (토대 17 §2.2 적대 검토 ⑶ 이 같은 계산으로 「2-6-1 심화중은 비운다」고 했다.)
+ *
+ * ⚠️ **그림그래프를 그리지 않는다** — 2-6-2 의 규약 그대로다(`g3.ts` 2-6 머리말).
+ *    그리면 세는 것으로 답이 나오고, 표를 두어도 안 쓰는 수가 지면에 선다.
+ *
+ * 🔴 목록은 전수 열거로 만들고 반증 ⑥ 을 목록에서 건다. 자리 수는 **얇다**
+ *    (중 8 · 상 14). 발문의 옷·소재·자리 이름으로 갈리지만 «수»는 그만큼뿐이라,
+ *    이 사실을 보고서에 적어 둔다.
+ */
+
+/** 2-6-2 심화중 — 그림이 열 개를 넘어 「작은 그림 ≤ $9$」가 실제로 자른다. */
+type Graph262Mid = { total: number; big: number; ans: number };
+
+function graph262MidPool(): Graph262Mid[] {
+  const out: Graph262Mid[] = [];
+  // 총 $11$~$18$ — 아래로는 규약이 안 걸리고, 위로는 값이 세 자리가 된다.
+  for (let total = 11; total <= 18; total += 1) {
+    const big = total - 9;
+    const ans = big * 10 + 9;
+    if (forwardReachable([rat(10), rat(1), rat(total)], rat(ans))) continue;
+    out.push({ total, big, ans });
+  }
+  return out;
+}
+
+/** 2-6-2 심화상 — 그림이 아홉 개 이하라 규약이 한 후보도 못 자른다. */
+type Graph262High = {
+  total: number;
+  L: number;
+  U: number;
+  vals: number[];
+  big: number;
+  small: number;
+  value: number;
+};
+
+function graph262HighPool(): Graph262High[] {
+  const out: Graph262High[] = [];
+  for (let total = 4; total <= 7; total += 1) {
+    const vals: number[] = [];
+    for (let a = 0; a <= total; a += 1) vals.push(9 * a + total);
+    for (let L = 10; L <= 80; L += 10)
+      for (const w of [10, 20]) {
+        const U = L + w;
+        const hits = vals.filter((v) => v > L && v < U);
+        if (hits.length !== 1) continue;
+        const value = hits[0]!;
+        const big = (value - total) / 9;
+        const small = total - big;
+        // 큰 그림도 작은 그림도 있어야 이 소단원의 «나타내기»가 된다.
+        if (big < 1 || small < 1) continue;
+        const nums = [rat(10), rat(1), rat(total), rat(L), rat(U)];
+        if (forwardReachable(nums, rat(big))) continue;
+        // 답이 지면에 그대로 서면 되짚기가 필요 없다(작은 그림 한 개는 $1$ 이다).
+        if (answerPrintedOnPage(nums, rat(big))) continue;
+        out.push({ total, L, U, vals, big, small, value });
+      }
+  }
+  return out;
+}
+
+let GRAPH262_MID: Graph262Mid[] | null = null;
+let GRAPH262_HIGH: Graph262High[] | null = null;
+
+/** 5단 · 2-6-2 — 「작은 그림은 $9$ 개를 넘지 않는다」가 가장 작은 값을 정한다. */
+function graph262Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  GRAPH262_MID ??= graph262MidPool();
+  const f = pick(rng, GRAPH262_MID);
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const head = `그림그래프로 나타낼 때 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다.`;
+  const stem = pick(rng, [
+    `${head} 어느 ${place}의 ${stuff.name} 수를 나타내는 데 큰 그림과 작은 그림을 모두 ${n(f.total)}개 그렸습니다. 이 ${place}의 ${stuff.name} 수가 가장 작을 때 얼마인지 쓰시오.`,
+    `${head} 가 ${place}의 ${stuff.name} 수를 나타내는 데 그림을 모두 ${n(f.total)}개 그렸습니다. 가 ${place}의 ${stuff.name} 수가 될 수 있는 수 가운데 가장 작은 것을 쓰시오.`,
+    `${head} 어느 ${place}의 ${stuff.name} 수를 큰 그림과 작은 그림을 합해 ${n(f.total)}개로 나타냈습니다. 이 ${place}의 ${stuff.name} 수는 가장 작을 때 얼마인지 구하시오.`,
+    `${head} 그림을 모두 ${n(f.total)}개 그려 어느 ${place}의 ${stuff.name} 수를 나타냈습니다. 그 수가 가장 작을 때 얼마인지 구하시오.`,
+  ]);
+  return makeDeep(unit, stem, n(f.ans), [
+    `작은 그림은 ${n(9)}개를 넘을 수 없습니다. 작은 그림이 열 개가 되면 큰 그림 한 개로 바꾸기 때문입니다.`,
+    `그림이 모두 ${n(f.total)}개이므로 큰 그림은 적어도 ${expr(`${f.total}-9=${f.big}`)} 에서 ${n(f.big)}개입니다.`,
+    `큰 그림이 적을수록 나타내는 수가 작으므로 큰 그림 ${n(f.big)}개와 작은 그림 ${n(9)}개일 때 가장 작고, ${expr(`10\\times${f.big}+9=${f.ans}`)} 입니다.`,
+  ]);
+}
+
+/** 6단 · 2-6-2 — 규약이 한 후보도 못 잘라 **값을 차례로 만들어** 범위와 견준다. */
+function graph262High(unit: UnitSeed, rng: Rng): ElemProblem {
+  GRAPH262_HIGH ??= graph262HighPool();
+  const f = pick(rng, GRAPH262_HIGH);
+  const stuff = pick(rng, GRAPH_STUFF);
+  const place = pick(rng, stuff.places);
+  const head = `그림그래프로 나타낼 때 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다.`;
+  const stem = pick(rng, [
+    `${head} 가 ${place}의 ${stuff.name} 수를 나타내는 데 큰 그림과 작은 그림을 모두 ${n(f.total)}개 그렸습니다. 가 ${place}의 ${stuff.name} 수가 ${n(f.L)}${stuff.unit}보다 많고 ${n(f.U)}${stuff.unit}보다 적을 때, 큰 그림은 몇 개 그렸는지 쓰시오.`,
+    `${head} 어느 ${place}의 ${stuff.name} 수를 그림 ${n(f.total)}개로 나타냈습니다. 그 수가 ${n(f.L)}${stuff.unit}보다 많고 ${n(f.U)}${stuff.unit}보다 적다면 큰 그림은 몇 개 그렸는지 구하시오.`,
+    `${head} ${stuff.name} 수가 ${n(f.L)}${stuff.unit}보다 많고 ${n(f.U)}${stuff.unit}보다 적은 ${place}${josa(place, "이", "가")} 있습니다. 이 ${place}의 ${stuff.name} 수를 나타내는 데 그림을 모두 ${n(f.total)}개 그렸다면 큰 그림은 몇 개인지 쓰시오.`,
+    `${head} 어느 ${place}의 ${stuff.name} 수를 큰 그림과 작은 그림을 합해 ${n(f.total)}개로 나타냈고, 그 수는 ${n(f.L)}${stuff.unit}보다 많고 ${n(f.U)}${stuff.unit}보다 적습니다. 큰 그림은 몇 개 그렸는지 구하시오.`,
+  ]);
+  const half = Math.ceil(f.vals.length / 2);
+  const line = (from: number, to: number): string =>
+    expr(
+      f.vals
+        .slice(from, to)
+        .map((v, i) => `10\\times${from + i}+${f.total - from - i}=${v}`)
+        .join(",\\ "),
+    );
+  return makeDeep(unit, stem, n(f.big), [
+    `그림이 모두 ${n(f.total)}개이므로 작은 그림은 어느 경우에도 ${n(9)}개를 넘지 않습니다. 그래서 큰 그림 수를 ${n(0)}개부터 차례로 늘려 가며 나타내는 수를 만들어 봅니다.`,
+    `${line(0, half)}, ${line(half, f.vals.length)} 입니다.`,
+    `이 가운데 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수는 ${n(f.value)} 뿐이므로 큰 그림은 ${n(f.big)}개, 작은 그림은 ${n(f.small)}개입니다.`,
+  ]);
 }
 
 // ── 2-3 원 (D-72 확대) ──────────────────────────────────────────────────
@@ -12307,6 +12961,14 @@ export const G3_TIERS: ElemTierMap = {
     심화하: mul214Deep,
     심화중: mul21Mid,
   },
+  // ⚠️ 2-2-1·2-2-2 는 **심화중·심화상을 둘 다 비웠다** — 세어서 정했다.
+  //    ㉠(나머지를 모른다)는 두 소단원 이름이 금지하고(생성기도 `div2` 로만 뽑는다),
+  //    남는 ㉡(나누는 수를 모른다)에서 굳힐 성질은 「내림이 있나」 하나인데 —
+  //    두 자리 나뉘는 수를 내는 **몫 23가지 중 18가지에서 후보의 내림 여부가 전부
+  //    같아**(반증 ⑤) 그 구절이 아무것도 안 가르고, 정확히 하나를 남기는 자리는
+  //    **(몫,내림) 46짝 중 3짝**뿐이다($14$·없음→$28$ / $23$·있음→$92$ / $24$·없음→$48$).
+  //    문항이 셋으로 굳는다 — 파일럿이 2-1-1 심화상을 「기준 수 $105$ 하나뿐」으로
+  //    비운 것과 같은 자리다. 보고서 `tier-fill-g3-w2.md` §3.
   "초3|2-2-1": {
     연산: div22Calc,
     기본: div22Word,
@@ -12324,12 +12986,19 @@ export const G3_TIERS: ElemTierMap = {
     기본: rem223Word,
     응용: rem223Apply,
     심화하: rem223Deep,
+    심화중: rem223Mid,
+    심화상: rem223High,
   },
   "초3|2-4-1": {
     연산: part241Calc,
     기본: part241Word,
     응용: part241Apply,
     심화하: part241Deep,
+    심화중: part241Mid,
+    // ⚠️ 심화상은 비운다 — 이 소단원의 굳히는 성질(「전체가 묶음 수로 나누어떨어진다」)은
+    //    범위 안 배수를 **늘 하나로** 집는다. 성질이 못 굳히는 자리를 만들려면 창을
+    //    넓혀야 하는데 그러면 답이 여럿이 되어 문항이 아니다. 2-4 의 심화상은
+    //    성질이 무력한 2-4-5(대분수) 에 둔다.
   },
   // (1) 은 단위분수, (2) 는 분자 2 이상 — **분자 하나로만** 갈리므로 같은 공장을 쓴다.
   "초3|2-4-2": {
@@ -12337,13 +13006,18 @@ export const G3_TIERS: ElemTierMap = {
     기본: frac24WordOf(true),
     응용: frac24ApplyOf(true),
     심화하: frac24DeepOf(true),
+    심화중: frac24MidOf(true),
   },
   "초3|2-4-3": {
     연산: frac24CalcOf(false),
     기본: frac24WordOf(false),
     응용: frac24ApplyOf(false),
     심화하: frac24DeepOf(false),
+    심화중: frac24MidOf(false),
   },
+  // ⚠️ 2-4-4 는 **둘 다 비웠다** — 심화하가 이미 「$\square$ 에 들어갈 수 있는 수는
+  //    모두 몇 개」다(씨앗 40 중 **24**). 그 위에 얹을 수 있는 것은 «열거 축의 규모
+  //    키우기»뿐인데 그 축은 D-115 ⑵ 가 **측정으로 기각**했다.
   "초3|2-4-4": {
     연산: kind244Calc,
     기본: kind244Word,
@@ -12355,7 +13029,14 @@ export const G3_TIERS: ElemTierMap = {
     기본: mixed245Word,
     응용: mixed245Apply,
     심화하: mixed245Deep,
+    심화중: mixed245Mid,
+    심화상: mixed245High,
   },
+  // ⚠️ 2-4-6 도 **둘 다 비웠다** — 심화하가 「범위 안에서 가장 큰 분수」로 **40/40**
+  //    이고, 이 소단원의 성질은 「분모가 같으면 분자만 견준다」 한 줄이라 그 한 줄이
+  //    **후보를 만드는 데도 굳히는 데도 동시에** 쓰인다. 남는 축은 열거뿐이다.
+  //    (판정기의 ④ 가 이 소단원을 지목하지만 그것은 근거가 아니다 — 답이 분수라
+  //     기본·응용을 `readRat` 이 통째로 못 읽는다. 보고서 §3.)
   "초3|2-4-6": {
     연산: cmp246Calc,
     기본: cmp246Word,
@@ -12367,6 +13048,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: div224Word,
     응용: div224Apply,
     심화하: div224Deep,
+    심화중: div224Mid,
+    심화상: div224High,
   },
   "초3|1-1-1": {
     연산: sub111Calc,
@@ -12428,6 +13111,12 @@ export const G3_TIERS: ElemTierMap = {
     응용: capSumApplyOf(CAP_KG),
     심화하: capSumDeepOf(CAP_KG),
   },
+  // ⚠️ 2-6-1 은 **둘 다 비웠다** — 세어서 정했다. 마디를 열 축은 「값이 범위 안」
+  //    하나이고 굳힐 성질은 「값은 한 칸이 나타내는 수의 배수」 하나인데, 엔진이 쓰는
+  //    단위 $2\cdot5\cdot10$ 로 십의 자리 창 16개를 전수로 세면 후보가 **하나**(단위
+  //    $5\cdot10$)이거나 **넷 이상**(단위 $2$)이다. 하나면 창의 두 끝을 단위로 나누어
+  //    바로 나오므로 **순방향**(반증 ⑥)이고, 여럿이면 남은 성질이 없어 답이 안 정해진다.
+  //    곧 「후보가 여럿 + 성질이 하나를 남긴다」가 **구성상 일어나지 않는다.**
   "초3|2-6-1": {
     연산: graph261Calc,
     기본: graph261Word,
@@ -12439,6 +13128,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: graph262Word,
     응용: graph262Apply,
     심화하: graph262Deep,
+    심화중: graph262Mid,
+    심화상: graph262High,
   },
   "초3|2-3-1": {
     연산: circ231Calc,
