@@ -301,6 +301,93 @@ const REDERIVE: Record<string, (content: string) => string> = {
     }
     return `$${fmt(best, 2)}$`;
   },
+
+  /* ── 확대 갈래 (D-113 둘째 물결, 2026-08-31) ───────────────────────────
+   *
+   * 이 자리는 **저절로 늘어난다** — `tiersOf(unit)` 를 도는 시험이라 소단원에
+   * `심화중`·`심화상` 을 등록하는 순간 「재도출이 없다」로 빨개진다(D-113 ⑺ 의 설계).
+   * 아래는 그 요구에 답한 것이고, **발문만 읽어** 답을 다시 세운다.
+   */
+
+  // 창이 자연수부·첫째·둘째를 굳히고 「셋째 = 첫째 + 둘째」가 넷째를 굳힌다.
+  "2-3-1|심화중": (c) => {
+    const m = Number(one(c, /\$0\.01\$이 \$(\d+)\$개인 수보다 크고/));
+    const a = Math.floor(m / 10) % 10;
+    const b = m % 10;
+    return `$${m * 10 + a + b}$개`;
+  },
+  // 방향은 주고 칸 수를 안 준다 — 「소수 한 자리 수 / 두 자리 수」가 하나를 고른다.
+  "2-3-3|심화중": (c) => {
+    // `shift` 는 `dp` 를 $0$ 에서 자른다 — 여기서도 **정수 스케일 그대로** 다룬다.
+    const { i, dp } = scale(one(c, /\$(0\.\d\d)\$[이가] 되었습니다/));
+    const text = (d: number) => (d >= 0 ? fmt(i, d) : String(i * 10 ** -d));
+    // 왼쪽으로 한 자리 옮겨 그 값이 되는 수는 `dp-1`, 두 자리면 `dp-2` 다.
+    const picked = c.includes("어떤 수는 두 자리 수") ? dp - 2 : dp - 1;
+    return `$${text(picked - 2)}$`;
+  },
+  // 방향도 칸 수도 안 준다 — 후보 넷을 실제로 $100$배 해 자릿수와 견준다.
+  "2-3-3|심화상": (c) => {
+    // ⚠️ `shift` 를 못 쓴다 — 그 헬퍼는 `dp` 를 $0$ 에서 **자른다**. 「$29$ 의 $100$배」가
+    //    `29` 로 나와 후보 셋이 살아남았다(실측). **정수 스케일 그대로** 다룬다.
+    const { i, dp } = scale(one(c, /\$(\d\.\d)\$[이가] 되었습니다/));
+    const text = (d: number) => (d >= 0 ? fmt(i, d) : String(i * 10 ** -d));
+    const digits = (d: number) => (d <= 0 ? text(d).length : 0);
+    const want = c.includes("두 자리 수일 때") ? 2 : 4;
+    // 소수점을 왼쪽·오른쪽으로 한 칸·두 칸 — 되짚기가 만드는 후보 넷이다.
+    const alive = [dp + 2, dp + 1, dp - 1, dp - 2].filter(
+      (d) => digits(d - 2) === want,
+    );
+    expect(alive, `2-3-3 심화상 후보가 하나가 아니다: ${c}`).toHaveLength(1);
+    return `$${text(alive[0]!)}$`;
+  },
+  // 합이 범위로만 → 후보 아홉 → 「일의 자리 + 소수 첫째 자리 = s」가 하나를 고른다.
+  "2-3-4|심화중": (c) => {
+    const add = scale(decsIn(c)[0]!).i;
+    const lo = Number(one(c, /합이 \$(\d+)\$보다 크고/));
+    const s = Number(one(c, /합이 \$(\d+)\$일 때/));
+    const base = lo * 10 - add;
+    const alive: number[] = [];
+    for (let k = 1; k <= 9; k += 1) {
+      const v = base + k;
+      if (v % 10 !== 0 && Math.floor(v / 10) + (v % 10) === s) alive.push(v);
+    }
+    expect(alive, `2-3-4 심화중 후보가 하나가 아니다: ${c}`).toHaveLength(1);
+    return `$${fmt(alive[0]!, 1)}$`;
+  },
+  // 되짚는 자리가 반대(빼는 수)이고 굳힘도 「차」다.
+  "2-3-5|심화중": (c) => {
+    const from = scale(decsIn(c)[0]!).i;
+    const lo = Number(one(c, /차가 \$(\d+)\$보다 크고/));
+    const k = Number(one(c, /일의 자리 숫자보다 \$(\d+)\$ 클 때/));
+    const base = from - (lo + 1) * 10;
+    const alive: number[] = [];
+    for (let j = 1; j <= 9; j += 1) {
+      const v = base + j;
+      if (v % 10 !== 0 && (v % 10) - Math.floor(v / 10) === k) alive.push(v);
+    }
+    expect(alive, `2-3-5 심화중 후보가 하나가 아니다: ${c}`).toHaveLength(1);
+    return `$${fmt(alive[0]!, 1)}$`;
+  },
+  // 소수 첫째 자리 숫자만 감춘다 — **받아올림**이 그 자리를 굳힌다.
+  "2-3-6|심화중": (c) => {
+    const w = Number(one(c, /자연수 부분은 \$(\d+)\$이고/));
+    const b = Number(one(c, /소수 둘째 자리 숫자는 \$(\d+)\$입니다/));
+    const add = scale(decsIn(c)[0]!).i;
+    const p = Number(one(c, /첫째 자리 숫자가 \$(\d+)\$[이가] 되었습니다/));
+    const carry = b + (add % 10) >= 10 ? 1 : 0;
+    const a = p - (Math.floor(add / 10) % 10) - carry;
+    return `$${fmt(w * 100 + a * 10 + b, 2)}$`;
+  },
+  // 2-3-6 의 짝 — **받아내림**.
+  "2-3-7|심화중": (c) => {
+    const big = scale(decsIn(c)[0]!).i;
+    const w = Number(one(c, /자연수 부분은 \$(\d+)\$이고/));
+    const b = Number(one(c, /소수 둘째 자리 숫자는 \$(\d+)\$일 때/));
+    const p = Number(one(c, /첫째 자리 숫자가 \$(\d+)\$[이가] 되었습니다/));
+    const borrow = big % 10 < b ? 1 : 0;
+    const a = (Math.floor(big / 10) % 10) - borrow - p;
+    return `$${fmt(w * 100 + a * 10 + b, 2)}$`;
+  },
 };
 
 /** 넉 장을 두 소수에 늘어놓는 모든 차례. 「가장 큰 합」을 전수로 확인하는 데 쓴다. */

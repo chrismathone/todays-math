@@ -3233,6 +3233,8 @@ const DEC1_DIFF_FIELD: { a: number; L: number; k: number; v: number }[] =
           if (hits.length !== 1) continue;
           const v = hits[0]!;
           if (v === a) continue;
+          // 해설이 검산으로 `a - v` 를 찍는다 — 그 값에 **꼬리 $0$** 이 붙으면 안 된다.
+          if ((a - v) % 10 === 0) continue;
           out.push({ a, L, k, v });
         }
       }
@@ -3436,7 +3438,12 @@ function tier236MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const w = intBetween(rng, 1, 5);
   const b = intBetween(rng, 1, 9);
   const e = intBetween(rng, 1, 4);
-  const g = intBetween(rng, 1, 9);
+  // 🔴 `b + g` 가 딱 $10$ 이면 합의 소수 둘째 자리가 $0$ 이라 해설에 **꼬리 $0$** 이 뜬다
+  //    (「$5.46+2.24=7.70$」). `elemTiersG4Dec` 이 발문·정답·해설 셋 다 센다.
+  const g = pick(
+    rng,
+    [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((v) => (b + v) % 10 !== 0),
+  );
   const carry = b + g >= 10 ? 1 : 0;
   // 🔴 소수 첫째 자리에서 **다시 받아올림이 나지 않게** 잡는다 — 그래야 해설이
   //    「$p$ 에서 되짚어 뺀다」로 곧게 서고, 대입해 맞춰 보는 글이 안 된다.
@@ -3482,7 +3489,11 @@ function tier237MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 1, 8);
   const value = w * 100 + a * 10 + b;
   const bigW = w + intBetween(rng, 1, 4);
-  const bigB = intBetween(rng, 0, 9);
+  // 🔴 `bigB` 가 $0$ 이면 빼어지는 수에, `bigB === b` 면 차에 **꼬리 $0$** 이 뜬다.
+  const bigB = pick(
+    rng,
+    [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((v) => v !== b),
+  );
   const borrow = bigB < b ? 1 : 0;
   // 🔴 소수 첫째 자리에서 자연수 부분까지 **받아내리지 않게** 잡는다 —
   //    그래야 해설이 「$p$ 에서 되짚어 뺀다」로 곧게 선다(2-3-6 과 같은 규율).
@@ -10851,7 +10862,11 @@ const FRAC_MID_FIELD: {
     big: number;
   }[] = [];
   for (const den of FRAC_DENS) {
-    for (let sum = 3; sum <= 2 * den - 3; sum += 1) {
+    for (let sum = 3; sum <= den; sum += 1) {
+      // 🔴 합이 den 을 넘으면 지면에 **대분수**가 뜬다 — 「진분수의 덧셈·뺄셈」이
+      //    약속하는 것은 발문의 분수가 전부 진분수라는 것이고, elemTiersG4Frac 이
+      //    그것을 전량으로 잠근다(실측으로 걸렸다). 합이 정확히 den 이면 `fmtFrac` 이
+      //    `1` 로 찍으므로 분수가 아니다 — 그 자리는 산다.
       // 🔴 합을 `fmtFrac` 으로 찍으므로 **약분되면 분모가 바뀐다**
       //    (분모 $12$·합 $16$ → `1\frac13`). 그러면 「분모가 $12$인」이 거짓말이 된다.
       if (sum !== den && gcd(sum, den) !== 1) continue;
@@ -10928,6 +10943,8 @@ const FRAC_TOP_FIELD: {
   den: number;
   sum: number;
   diff: number;
+  lo: number;
+  hi: number;
   small: number;
   big: number;
   askSmall: boolean;
@@ -10936,12 +10953,18 @@ const FRAC_TOP_FIELD: {
     den: number;
     sum: number;
     diff: number;
+    lo: number;
+    hi: number;
     small: number;
     big: number;
     askSmall: boolean;
   }[] = [];
   for (const den of FRAC_DENS) {
-    for (let sum = 3; sum <= 2 * den - 3; sum += 1) {
+    for (let sum = 3; sum <= den; sum += 1) {
+      // 🔴 합이 den 을 넘으면 지면에 **대분수**가 뜬다 — 「진분수의 덧셈·뺄셈」이
+      //    약속하는 것은 발문의 분수가 전부 진분수라는 것이고, elemTiersG4Frac 이
+      //    그것을 전량으로 잠근다(실측으로 걸렸다). 합이 정확히 den 이면 `fmtFrac` 이
+      //    `1` 로 찍으므로 분수가 아니다 — 그 자리는 산다.
       // 합을 `fmtFrac` 으로 찍는다 — 약분되면 분모가 바뀐다(`FRAC_MID_FIELD` 와 같은 자리).
       if (sum !== den && gcd(sum, den) !== 1) continue;
       const pairs = numeratorPairs(den, sum);
@@ -10953,17 +10976,23 @@ const FRAC_TOP_FIELD: {
         const [p, q] = pairs[i]!;
         const diff = diffs[i]!;
         if (diff === sorted[0] || diff === sorted[sorted.length - 1]) continue;
-        if (diff - 1 < 1 || diff + 1 > den - 1) continue;
-        // 창 `(diff-1, diff+1)` 안에 드는 차가 **정확히 하나**여야 한다.
-        if (diffs.filter((x) => x > diff - 1 && x < diff + 1).length !== 1)
-          continue;
-        for (const askSmall of [true, false]) {
-          const value = askSmall ? p : q;
-          if (gcd(value, den) !== 1) continue;
-          // 답이 **창의 두 끝**과 같으면 지면에 그대로 있는 것이 된다
-          //  — 「$\frac{3}{12}$ 보다 크고 …」인데 답도 `$\frac{3}{12}$` 인 자리.
-          if (value === diff - 1 || value === diff + 1) continue;
-          out.push({ den, sum, diff, small: p, big: q, askSmall });
+        // 차는 `sum - 2p` 라 **둘씩 건너뛴다** — 그래서 창을 한 칸 넓혀도 여전히 하나만
+        // 남는다. 넓히는 까닭은 **변형 폭**이다(`elemTiersG4Frac` 이 「씨앗 16개에서
+        // 발문 8가지 이상」을 요구한다 — 좁은 창만 쓰면 7가지로 걸렸다).
+        for (const lo of [diff - 1, diff - 2]) {
+          for (const hi of [diff + 1, diff + 2]) {
+            if (lo < 1 || hi > den - 1) continue;
+            // 창 안에 드는 차가 **정확히 하나**여야 한다.
+            if (diffs.filter((x) => x > lo && x < hi).length !== 1) continue;
+            for (const askSmall of [true, false]) {
+              const value = askSmall ? p : q;
+              if (gcd(value, den) !== 1) continue;
+              // 답이 **창의 두 끝**과 같으면 지면에 그대로 있는 것이 된다
+              //  — 「$\frac{3}{12}$ 보다 크고 …」인데 답도 `$\frac{3}{12}$` 인 자리.
+              if (value === lo || value === hi) continue;
+              out.push({ den, sum, diff, lo, hi, small: p, big: q, askSmall });
+            }
+          }
         }
       }
     }
@@ -11089,8 +11118,8 @@ function tier212TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `분모가 ${josaNum(f.den, "인", "인")} 서로 다른 두 진분수의 합이 ` +
       `${expr(fmtFrac(f.sum, f.den))} 입니다. 큰 분수에서 작은 분수를 뺀 값이 ` +
-      `${expr(rawFrac(f.diff - 1, f.den))} 보다 크고 ` +
-      `${expr(rawFrac(f.diff + 1, f.den))} 보다 작을 때, 두 분수 중 ` +
+      `${expr(rawFrac(f.lo, f.den))} 보다 크고 ` +
+      `${expr(rawFrac(f.hi, f.den))} 보다 작을 때, 두 분수 중 ` +
       `${f.askSmall ? "작은" : "큰"} 분수를 구하시오.`,
     expr(rawFrac(f.askSmall ? f.small : f.big, f.den)),
     [
@@ -11103,8 +11132,8 @@ function tier212TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
           )
           .join(", ")} 입니다.`,
       `쌍마다 차를 구해 보면 ${shows} 입니다.`,
-      `이 가운데 ${expr(rawFrac(f.diff - 1, f.den))} 보다 크고 ` +
-        `${expr(rawFrac(f.diff + 1, f.den))} 보다 작은 것은 ` +
+      `이 가운데 ${expr(rawFrac(f.lo, f.den))} 보다 크고 ` +
+        `${expr(rawFrac(f.hi, f.den))} 보다 작은 것은 ` +
         `${expr(rawFrac(f.diff, f.den))} 하나이므로 ${f.askSmall ? "작은" : "큰"} 분수는 ` +
         `${expr(rawFrac(f.askSmall ? f.small : f.big, f.den))} 입니다.`,
     ],

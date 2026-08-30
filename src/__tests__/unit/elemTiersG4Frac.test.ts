@@ -91,6 +91,28 @@ function mixedForm(total: number, den: number): string {
   return `${w}\\frac{${r}}{${den}}`;
 }
 
+/**
+ * 「합이 $1$ / $\frac{7}{9}$」 에서 **분자 합**을 읽는다 (확대 갈래가 쓴다).
+ * 합이 정확히 분모면 `fmtFrac` 이 `1` 로 찍으므로 분수가 아니다.
+ */
+function sumNumerators(content: string, den: number): number {
+  const proper = /합이 \$\\frac\{(\d+)\}\{(\d+)\}\$/.exec(content);
+  if (proper) return Number(proper[1]);
+  const whole = /합이 \$(\d+)\$/.exec(content);
+  expect(whole, `합을 못 읽었다: ${content}`).toBeTruthy();
+  return Number(whole![1]) * den;
+}
+
+/** 분모 `den`, 분자 합 `sum` 인 **서로 다른** 두 진분수의 분자 쌍(작은 쪽 오름차순). */
+function numeratorPairsIn(den: number, sum: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let p = 1; p < sum - p; p += 1) {
+    const q = sum - p;
+    if (q <= den - 1) out.push([p, q]);
+  }
+  return out;
+}
+
 /** 수를 가린 골격. 「같은 문장인데 수만 다른」 겹침을 여기서 본다. */
 function skeleton(content: string): string {
   return content
@@ -214,6 +236,84 @@ const REDERIVE: Record<string, (content: string) => string> = {
       mixedForm(Math.max(...fs) - Math.min(...fs), fracsIn(c)[0]!.den),
     );
   },
+  /* ── 확대 갈래 (D-113 둘째 물결, 2026-08-31) ───────────────────────────
+   *
+   * 이 자리는 **저절로 늘어난다** — `tiersOf(unit)` 를 도는 시험이라 소단원에
+   * `심화중`·`심화상` 을 등록하는 순간 「재도출이 없다」로 빨개진다(D-113 ⑺ 의 설계).
+   * 아래도 **발문만 읽어** 답을 다시 세운다.
+   */
+
+  /** 분모 `den`, 분자 합 `sum` 인 서로 다른 두 진분수의 분자 쌍(작은 쪽 오름차순). */
+  // (아래 셋이 같이 쓴다 — 시험 안에서 한 곳에 둔다.)
+  "2-1-1|심화중": (c) => {
+    const den = Number(c.match(/분모가 \$(\d+)\$인/)![1]);
+    const sum = sumNumerators(c, den);
+    const cut = Number(
+      c.match(/작은 분수가 \$\\frac\{(\d+)\}\{\d+\}\$ 보다/)![1],
+    );
+    const over = c.includes("보다 클 때");
+    const alive = numeratorPairsIn(den, sum).filter(([p]) =>
+      over ? p > cut : p < cut,
+    );
+    expect(alive, `2-1-1 심화중 후보가 하나가 아니다: ${c}`).toHaveLength(1);
+    const [small, big] = alive[0]!;
+    return wrap(
+      `\\frac{${c.includes("때 작은 분수를") ? small : big}}{${den}}`,
+    );
+  },
+  // 차만 주면 「어느 쪽이 큰지」가 안 굳는다 — 크기 조건이 하나를 고르고 한 걸음이 남는다.
+  "2-1-2|심화중": (c) => {
+    // ⚠️ `fracsIn` 을 자리로 destructure 하면 안 된다 — 기준 분수가 **두 번** 나온다
+    //    (「…와 $A$ 의 차가 $B$」·「어떤 진분수는 $A$ 보다 큽니다」). 이름으로 읽는다.
+    const den = Number(c.match(/\\frac\{\d+\}\{(\d+)\}/)![1]);
+    const base = Number(
+      c.match(/어떤 진분수와 \$\\frac\{(\d+)\}\{\d+\}\$ 의 차가/)![1],
+    );
+    const gap = Number(
+      c.match(/의 차가 \$\\frac\{(\d+)\}\{\d+\}\$ 입니다/)![1],
+    );
+    const minus = Number(
+      c.match(/어떤 진분수에서 \$\\frac\{(\d+)\}\{\d+\}\$[을를] 뺀/)![1],
+    );
+    const value = c.includes("보다 큽니다") ? base + gap : base - gap;
+    return wrap(`\\frac{${value - minus}}{${den}}`);
+  },
+  // 합에서 쌍을 만든 뒤 **쌍마다 실제로 빼 보아야** 창에 드는 것이 하나 남는다.
+  "2-1-2|심화상": (c) => {
+    const den = Number(c.match(/분모가 \$(\d+)\$인/)![1]);
+    const sum = sumNumerators(c, den);
+    const lo = Number(
+      c.match(/뺀 값이 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 크고/)![1],
+    );
+    const hi = Number(
+      c.match(/보다 크고 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 작을 때/)![1],
+    );
+    const alive = numeratorPairsIn(den, sum).filter(
+      ([p, q]) => q - p > lo && q - p < hi,
+    );
+    expect(alive, `2-1-2 심화상 후보가 하나가 아니다: ${c}`).toHaveLength(1);
+    const [small, big] = alive[0]!;
+    return wrap(
+      `\\frac{${c.includes("작은 분수를 구하시오") ? small : big}}{${den}}`,
+    );
+  },
+  // 자연수 부분이 하나 커졌다 = **받아올림**. 분수 부분의 합은 `1 + r/d` 다.
+  "2-1-3|심화중": (c) => {
+    const [sum] = fracsIn(c);
+    return wrap(String(sum!.den + sum!.num));
+  },
+  // 자연수 부분의 차보다 하나 작다 = **받아내림**. 빼는 분자의 최솟값은 `topNum + 1`.
+  "2-1-4|심화중": (c) => {
+    const [top] = fracsIn(c);
+    const diffWhole = Number(
+      c.match(/차의 자연수 부분이 \$(\d+)\$[이가] 되었습니다/)![1],
+    );
+    const smallest = top!.num + 1;
+    return wrap(
+      `${diffWhole}\\frac{${top!.den + top!.num - smallest}}{${top!.den}}`,
+    );
+  },
+
   // 부등식 — $\square$ 에 $1$ 부터 분모 직전까지 **전부 넣어 보고** 답을 짠다.
   "2-1-4|심화하": (c) => {
     const [left, right] = fracsIn(c);
