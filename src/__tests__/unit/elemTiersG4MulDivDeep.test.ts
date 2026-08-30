@@ -383,6 +383,22 @@ describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 �
     }
   });
 
+  // 답이 값 하나면 「훑었다」는 자국이 지면에 안 남는다. ⚠️ 이 꼴은 **갈래를 가르지
+  // 못한다** — 1-3-7 심화하의 «원상» 갈래도 두 값을 낸다(파일 머리 표). 여기서는
+  // 심화상 **자신**의 바닥으로만 쓴다: 훑어 놓고 하나만 적으면 이 자리가 빨개진다.
+  it("심화상 — 답이 값 여럿의 나열이거나 «몇 개»를 세는 값이다", () => {
+    const bad: string[] = [];
+    for (const code of CODES) {
+      for (const seed of SEEDS) {
+        const { answer } = gen(code, seed, "심화상");
+        const isCount = /^\$\d+\$개$/.test(answer);
+        const isList = /^\$\d+\$(?:, \$\d+\$)+$/.test(answer);
+        if (!isCount && !isList) bad.push(`${code} seed ${seed}: «${answer}»`);
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
   it("심화상 — **후보 하나를 빼면 답이 달라진다** (후보 집합이 장식이 아니다)", () => {
     const bad: string[] = [];
     for (const code of CODES) {
