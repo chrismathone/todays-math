@@ -113,13 +113,21 @@ export function enumerates(solution: string): boolean {
   return enumeratedSteps(solution) >= 3;
 }
 
-/** ㉣ **발문 밖 보조 문자** — 해설이 새로 세운 홑문자 변수의 수. */
+/**
+ * ㉣ **발문 밖 보조 문자** — 해설이 새로 세운 홑문자 변수의 수.
+ *
+ * ⚠️ 처음에는 LaTeX 명령(`\sqrt` 따위)을 먼저 지웠다. **변이 시험이 그 줄을 장식으로
+ *    짚었다** — 지워도 안 지워도 눈금이 초록이었다. 실측하니 중3 2,224조각에서
+ *    **결과가 한 번도 안 달라진다**: 아래 정규식은 «앞뒤가 영문자가 아닌 홑글자»만
+ *    무는데, LaTeX 명령 이름은 전부 두 글자 이상이라 애초에 안 걸린다. 그래서 지웠다 —
+ *    시험할 수 없는 가드는 장식이고, 부품이 적을수록 눈멀 곳도 적다.
+ *    (한 글자짜리 명령이 생기면 이 셈이 어긋난다. 그건 §5 에 적었다.)
+ */
 export function auxLetters(content: string, solution: string): number {
   const grab = (t: string) => {
     const out = new Set<string>();
     for (const m of t.matchAll(/\$[^$]*\$/g)) {
-      const body = m[0].replace(/\\[a-zA-Z]+/g, " ");
-      for (const c of body.matchAll(/(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z])/g))
+      for (const c of m[0].matchAll(/(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z])/g))
         out.add(c[0]);
     }
     return out;
@@ -190,6 +198,10 @@ export function frameOf(content: string): string {
     .replace(/\s+/g, " ")
     .trim();
 }
+// ⚠️ **이 열쇠는 «한글 뼈대»만 본다.** 우리 발문은 수를 전부 `$…$` 안에 넣으므로
+//    `plainText` 가 수식을 통째로 `◇` 로 접는다 — 그래서 «수식만 다른 두 유형»은
+//    같은 꼴로 세어진다. 곧 이 수는 다양성의 **하한**이고, 위 `[0-9]+` 치환은
+//    수식 **밖**의 수(「$4$장」이 아니라 「4장」)만 맡는다.
 
 /* ══════════════════════ 쓸기 ══════════════════════ */
 
@@ -239,6 +251,9 @@ export function sweep(seeds = SEEDS): { rows: Row[]; failed: string[] } {
   return { rows, failed };
 }
 
+/** 직전 `loadedFromLedger()` 가 되돌림 목록으로 **실제로 뺀** 행 수. 눈금이 이것을 본다. */
+export let lastRevertHits = 0;
+
 /** 적재 원장에서 «지면에 실제로 나간 유형 키 → 행 수» 를 되찾는다. */
 export function loadedFromLedger(): Map<string, number> {
   const dir = path.join(REPO, "docs", "planning", "tracks", "reports");
@@ -254,6 +269,9 @@ export function loadedFromLedger(): Map<string, number> {
   const out = new Map<string, number>();
   const pat = /^engine-mid:(.+?)\|s\d+\|v\d+(?:\|.+)?$/;
   let bad = 0;
+  // 되돌림 목록이 **실제로 무엇을 뺐나**. 0 이면 그 목록은 아무 일도 안 한 것이고,
+  // 그러면 「되돌린 것을 뺐다」는 이 함수의 계약이 검사되지 않은 채로 남는다.
+  lastRevertHits = 0;
   for (const name of LEDGERS) {
     const d = JSON.parse(
       readFileSync(path.join(dir, `${name}.json`), "utf-8"),
@@ -261,7 +279,10 @@ export function loadedFromLedger(): Map<string, number> {
       rows: { externalId: string; problemId: string }[];
     };
     for (const r of d.rows) {
-      if (removed.has(r.problemId)) continue;
+      if (removed.has(r.problemId)) {
+        lastRevertHits += 1;
+        continue;
+      }
       const m = pat.exec(r.externalId);
       if (!m) {
         // 초등 행(engine-elem:)은 이 자의 몫이 아니다 — 조용히 버리지 않고 센다.
@@ -357,8 +378,14 @@ function gauges(): Gauge[] {
     true,
   ]);
   g.push([
-    "㉣ 음성 — LaTeX 명령을 문자로 세지 않는다",
+    "㉣ 음성 — 여러 글자 이름(LaTeX 명령)은 홑문자가 아니다",
     () => auxLetters("$1$", "$\\sqrt{2}\\times\\dfrac{1}{2}$") === 0,
+    true,
+  ]);
+  g.push([
+    "㉣ 음성 — 명령 안의 홑글자는 세지만 발문에 있으면 새 문자가 아니다",
+    () =>
+      auxLetters("$\\overline{AB}=x$", "$x=2$이므로 $\\overline{AB}=2$") === 0,
     true,
   ]);
 
@@ -443,6 +470,13 @@ function gauges(): Gauge[] {
     true,
   ]);
   g.push([
+    "꼴 — 수식 **밖**의 수도 지운다 (이 줄이 없으면 위 치환은 장식이다)",
+    () =>
+      frameOf("$4$장이 아니라 4장의 카드") ===
+      frameOf("$4$장이 아니라 7장의 카드"),
+    true,
+  ]);
+  g.push([
     "꼴 — 지시가 다르면 다른 꼴이다",
     () =>
       frameOf("다음 식을 전개하시오.\n$(x+3)(x+5)$") !==
@@ -479,6 +513,23 @@ function gauges(): Gauge[] {
     () => {
       const led = loadedFromLedger();
       return m3Types().filter((e) => led.has(e.key)).length > 200;
+    },
+    true,
+  ]);
+  g.push([
+    "원장 — 되돌림 목록이 **실제로 행을 뺀다** (0 이면 그 필터는 장식이다)",
+    () => {
+      loadedFromLedger();
+      return lastRevertHits === 90;
+    },
+    true,
+  ]);
+  g.push([
+    "원장 — 등록됐는데 안 실린 중3 유형이 있다 (§1.2 의 근거가 살아 있나)",
+    () => {
+      const led = loadedFromLedger();
+      const miss = m3Types().filter((e) => !led.has(e.key)).length;
+      return miss > 0 && miss < 50;
     },
     true,
   ]);
