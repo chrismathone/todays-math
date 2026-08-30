@@ -867,6 +867,59 @@ def _box_intersects_circle(box: Box, center: Point, radius: float,
     return minimum <= radius + padding and maximum >= radius - padding
 
 
+def _convex_hull(points: Sequence[tuple[float, float]]) -> tuple[tuple[float, float], ...]:
+    """Convex hull (monotone chain), counter-clockwise in screen coordinates.
+
+    Fewer than three distinct points yields an empty hull — there is no interior
+    to speak of, and callers must treat that as "everything is outside".
+    """
+
+    unique = sorted({(round(x, 6), round(y, 6)) for x, y in points})
+    if len(unique) < 3:
+        return ()
+
+    def cross(o: tuple[float, float], a: tuple[float, float],
+              b: tuple[float, float]) -> float:
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    def chain(sequence: Sequence[tuple[float, float]]) -> list[tuple[float, float]]:
+        stack: list[tuple[float, float]] = []
+        for point in sequence:
+            while len(stack) >= 2 and cross(stack[-2], stack[-1], point) <= 0:
+                stack.pop()
+            stack.append(point)
+        return stack
+
+    lower = chain(unique)
+    upper = chain(unique[::-1])
+    hull = lower[:-1] + upper[:-1]
+    return tuple(hull) if len(hull) >= 3 else ()
+
+
+def _hull_depth(hull: Sequence[tuple[float, float]], x: float, y: float) -> float:
+    """Signed distance from the hull boundary — **positive inside**.
+
+    The chain above is built in one consistent orientation, but the figure's own
+    coordinate handedness is not ours to assume, so both signs are tried and the
+    larger taken.  Getting this backwards would silently invert the whole
+    penalty: every dimension outside the shape would look like it is inside.
+    """
+
+    if len(hull) < 3:
+        return -math.inf
+    best = math.inf
+    flipped = math.inf
+    for index in range(len(hull)):
+        ax, ay = hull[index]
+        bx, by = hull[(index + 1) % len(hull)]
+        ex, ey = bx - ax, by - ay
+        length = math.hypot(ex, ey) or 1.0
+        side = ((x - ax) * ey - (y - ay) * ex) / length
+        best = min(best, side)
+        flipped = min(flipped, -side)
+    return max(best, flipped)
+
+
 def _merge_bounds(boxes: Iterable[Box]) -> Box:
     materialized = list(boxes)
     if not materialized:
@@ -2052,6 +2105,43 @@ class FigureScene:
                 cost += 15.0
         return hard, cost
 
+    def _shape_hull(self) -> tuple[tuple[float, float], ...]:
+        """**그려지는 잉크**의 볼록 껍질 — 「도형 몸통」의 대용.
+
+        🔴 보조점(`self.points`)이 아니라 **잉크**로 만든다. 교점·수선의 발처럼
+           그리지 않는 점까지 넣으면 껍질이 도형보다 커져, 실제로는 바깥인
+           치수가 「안쪽」으로 찍힌다 — 벌점이 거꾸로 걸린다.
+
+        오목한 도형(접은 종이 등)에서는 껍질이 실제 도형보다 넓다. 그래도
+        「껍질 안」은 「도형 바로 곁」이라 벌점을 줄 자리는 맞다. 여기서 재는
+        것은 **금지**가 아니라 **선호**이므로, 바깥이 다 막히면 안쪽이 이긴다.
+        """
+
+        cached = getattr(self, "_shape_hull_cache", None)
+        if cached is not None:
+            return cached
+        ink: list[tuple[float, float]] = []
+        for segment in self.segments.values():
+            for ref in (segment.p1, segment.p2):
+                point = self.points[ref]
+                ink.append((point.x, point.y))
+        for arc in self.arcs.values():
+            try:
+                ink.extend((s.x, s.y) for s in self._arc_stroke_samples(arc))
+            except GeometryValidationError:
+                continue
+        for circle_obj in self.circles.values():
+            if not circle_obj.draw:
+                continue
+            center = self.points[circle_obj.center]
+            for step in range(16):
+                theta = step * math.tau / 16.0
+                ink.append((center.x + circle_obj.radius * math.cos(theta),
+                            center.y + circle_obj.radius * math.sin(theta)))
+        hull = _convex_hull(ink)
+        self._shape_hull_cache = hull
+        return hull
+
     def _dimension_layout(self, dimension: DimensionMark, occupied: Sequence[Box],
                           earlier: Sequence[DimensionLayout]) -> DimensionLayout:
         """Choose the shortest collision-free side/curvature candidate."""
@@ -2098,12 +2188,40 @@ class FigureScene:
                  else ["left", "right"])
 
         candidates: list[tuple[tuple[int, int, int, int, int, int,
-                                          float, float, int, int, int, int],
+                                          float, float, float, int, int, int, int],
                                DimensionLayout]] = []
         for font_rank, font_size in enumerate(fonts):
             for offset_rank, offset in enumerate(offsets):
                 for side_rank, side in enumerate(sides):
                     sign = 1.0 if side == "left" else -1.0
+                    # 🔴 **치수는 도형 «밖» 으로 나가야 한다.**
+                    #
+                    # 원장님이 지면에서 찾으셨다(2026-08-30): 등변사다리꼴의 `9 cm`
+                    # 가 도형 **안쪽**으로 크게 휘어 들어와 있었다.
+                    #
+                    # 뿌리는 「안쪽인가」를 세는 축이 **아예 없었다**는 것이다.
+                    # 대리로 쓰던 `side_crowding` 은 창이 `along ∈ [-15%, 115%]` 라
+                    # 눈이 먼다 — 사다리꼴은 아랫변이 윗변보다 길어 B·C 가 **둘 다
+                    # 창 밖**으로 나가고 붐빔이 0이 된다. 그러면 두 쪽 점수가
+                    # **완전히 같아져** `side_rank` 가 갈랐고, 목록이
+                    # `["left","right"]` 라 **늘 left** 였다 — 동전 던지기였다.
+                    #
+                    # ⚠️ **곡선이 아니라 «쪽» 을 본다.** 처음에는 곡선 샘플 중 안쪽인
+                    #    것을 셌는데, 그러면 벌어짐이 클수록 점수가 좋아져 치수가
+                    #    도형에서 **더 멀리 밀려났다** — 원장님이 같은 날 지적하신
+                    #    「크게 휜 치수선」을 되레 키운다. 쪽만 보면 안쪽밖에 없는
+                    #    도형(평행선 사이 · 접힌 종이)에서는 두 쪽이 **동점**이 되어
+                    #    `offset_rank` 가 갈라 **가장 얕은** 벌어짐이 이긴다.
+                    #
+                    # 「금지」가 아니라 「벌점」이다 — 여섯째 항이라 충돌 여섯 가지가
+                    # 먼저다. 바깥이 다 막힌 자리에서는 안쪽이 그대로 이긴다.
+                    inside_probe_x = midpoint_x + nx * sign * 2.0
+                    inside_probe_y = midpoint_y + ny * sign * 2.0
+                    inside_shape = (
+                        1 if _hull_depth(self._shape_hull(),
+                                         inside_probe_x, inside_probe_y) > 0.0
+                        else 0
+                    )
                     control = Point(
                         f"{dimension.name}:control",
                         midpoint_x + nx * sign * 2.0 * offset,
@@ -2201,7 +2319,26 @@ class FigureScene:
                         for segment in self.segments.values():
                             a, b = self.points[segment.p1], self.points[segment.p2]
                             chord_scale = math.hypot(b.x - a.x, b.y - a.y)
-                            chord_tolerance = max(1.0e-9, chord_scale * 1.0e-7)
+                            # 🔴 **부동소수 오차가 아니라 «좌표 반올림»을 견뎌야 한다.**
+                            #
+                            # 종전 문턱은 `chord_scale * 1e-7` (175px 짜리 변에서
+                            # 0.0000175px) 이었다. 그런데 스펙의 점 좌표는 소수 둘째
+                            # 자리로 **반올림돼 들어온다** — 「AB 를 1:3 으로 나누는
+                            # 점 D」는 실제로 AB 에서 0.0013px 어긋나 있고, 그건 옛
+                            # 문턱의 **75배**다. 그래서 「D 와 B 는 둘 다 AB 위」라는
+                            # 사실이 성립하지 않아, 바깥으로 나가는 치수 곡선이
+                            # **제 현과 교차한다**고 세어졌다. 바깥이 통째로 막히니
+                            # 치수가 도형 **안쪽**으로 가거나(원장님 지적 2026-08-30)
+                            # 아예 **떨어져 나갔다**(실측 33자리 중 12자리가 이것).
+                            #
+                            # 문턱은 손으로 고르지 않고 **분포에서** 골랐다
+                            # (`.tmp-orca/chordgap.ts`, 등록 v2 치수 496자리):
+                            #   ㉠ 「반올림으로 어긋난 것」 91건 — 최대 **0.0045px**
+                            #   ㉡ 「정말 선분 옆인 것」 55건 — 최소 **3.39px**
+                            # 사이 [0.0045, 3.39] 는 **비어 있다.** 0.25 는 ㉠ 최대의
+                            # 55배이고 ㉡ 최소의 1/13.5 라 두 무리 어디에도 안 닿는다.
+                            # 지면으로는 0.05mm — 도형 선(1.9px)의 1/8 이다.
+                            chord_tolerance = max(0.25, chord_scale * 1.0e-7)
                             own_chord = {segment.p1, segment.p2} == endpoint_pair or (
                                 # 긴 변의 **일부**를 재는 치수(반지름 4 cm 가 지름 선분
                                 # 위에 있는 부채꼴 고리 등): 두 끝점이 같은 선분 위에
@@ -2292,7 +2429,9 @@ class FigureScene:
                         score = (
                             clipped, text_collisions, point_collisions,
                             geometry_crossings, circle_crossings, earlier_collisions,
-                            float(side_crowding), float(near_geometry),
+                            # 「도형 안을 지나나」가 「그 쪽이 붐비나」보다 앞이다 —
+                            # 지면에서 훨씬 나쁘고, 붐빔은 그것의 흐린 대용이었다.
+                            float(inside_shape), float(side_crowding), float(near_geometry),
                             # 곡선을 변에 **가깝게** 두는 것이 먼저고, 그다음이
                             # 「값은 가운데」다 — 값을 옮겨서 될 일을 오프셋으로 풀면
                             # 치수선이 도형에서 멀어져 무엇을 잰 것인지 흐려진다.

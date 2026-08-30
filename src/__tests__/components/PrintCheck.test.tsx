@@ -117,7 +117,7 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 49: middle-length-dimension 추가 (2026-08-29 원장님 지적 「길이 치수선은 왜 자꾸 빠지나?」.
     //     중2-2 26유형이 유령 점에 날 글자를 얹고 있었다 → `withDims` 로 옮겼다.
     //     종이에서 볼 것은 «치수 점선이 도형을 감싸듯 크게 휘지 않나»다).
-    expect(ITEMS.length).toBe(49);
+    expect(ITEMS.length).toBe(50);
   });
 
   /**
