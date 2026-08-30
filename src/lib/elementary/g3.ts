@@ -6656,6 +6656,9 @@ function rem223Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어지는 두 자리 수가 있습니다. 이 수는 나누는 수가 ${n(f.b1)} 인 나눗셈에서 몫이 ${n(f.q)} 이고 나머지가 있습니다. 이 수를 구하시오.`,
     `나누는 수가 ${n(f.b1)} 인 나눗셈의 몫이 ${n(f.q)} 이고 나머지가 있는 두 자리 수 가운데, 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나누어떨어지는 수를 구하시오.`,
     `어떤 두 자리 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누었더니 몫이 ${n(f.q)} 이고 나머지가 있었습니다. 같은 수를 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 나머지가 없습니다. 어떤 수를 쓰시오.`,
+    `두 자리 수 하나를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 몫이 ${n(f.q)} 이고 나머지가 남는데, 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 남는 것이 없습니다. 그 수를 구하시오.`,
+    `어떤 수는 나누는 수가 ${n(f.b2)} 인 나눗셈에서 남는 것이 없습니다. 또 나누는 수가 ${n(f.b1)} 인 나눗셈에서는 몫이 ${n(f.q)} 이고 나머지가 있습니다. 어떤 수는 얼마인지 구하시오.`,
+    `어떤 두 자리 수는 나누는 수가 ${n(f.b1)} 인 나눗셈에서 몫이 ${n(f.q)} 이고 나머지가 남습니다. 그런데 나누는 수가 ${n(f.b2)} 인 나눗셈에서는 나누어떨어집니다. 어떤 수를 구하시오.`,
   ]);
   return makeDeep(unit, stem, n(f.ans), [
     `나머지는 나누는 수보다 작으므로 ${n(1)} 부터 ${n(f.b1 - 1)} 까지입니다. 나뉘는 수는 ${expr(`${f.b1}\\times${f.q}=${lo}`)} 에 그 나머지를 더한 수이므로 ${n(first)} 부터 ${n(last)} 까지인 ${list22(f.cand)} 입니다.`,
@@ -6675,6 +6678,9 @@ function rem223High(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 두 자리 수는 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작습니다. 나누는 수가 ${n(f.b1)} 인 나눗셈에서는 나머지가 ${n(f.r1)} 이고, 나누는 수가 ${n(f.b2)} 인 나눗셈에서는 나머지가 ${n(f.r2)} 입니다. 어떤 수를 쓰시오.`,
     `${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데, 나누는 수가 ${n(f.b1)} 인 나눗셈의 나머지가 ${n(f.r1)} 이고 나누는 수가 ${n(f.b2)} 인 나눗셈의 나머지가 ${n(f.r2)} 인 수를 구하시오.`,
     `두 자리 수 하나가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작습니다. 이 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 ${n(f.r1)} 만큼 남고, 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 ${n(f.r2)} 만큼 남습니다. 이 수를 구하시오.`,
+    `나누는 수가 ${n(f.b1)} 인 나눗셈에서 나머지가 ${n(f.r1)} 이고 나누는 수가 ${n(f.b2)} 인 나눗셈에서 나머지가 ${n(f.r2)} 인 두 자리 수를 찾습니다. 그 수가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때 얼마인지 쓰시오.`,
+    `어떤 두 자리 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 나머지가 ${n(f.r1)} 이고, 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 나머지가 ${n(f.r2)} 입니다. 어떤 수가 ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작을 때 구하시오.`,
+    `${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 두 자리 수를 나누는 수가 ${n(f.b1)} 인 나눗셈으로 나누면 나머지가 ${n(f.r1)} 입니다. 그 수를 나누는 수가 ${n(f.b2)} 인 나눗셈으로 나누면 나머지가 ${n(f.r2)} 입니다. 그 수를 쓰시오.`,
   ]);
   // **하나씩 실제로 나눈다** — 이 갈래를 상으로 만드는 것이 바로 이 걸음이다.
   const tries = f.cand
@@ -6702,6 +6708,10 @@ function div224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `나뉘는 수가 ${n(f.N)} 인 나눗셈에서 나누는 수는 한 자리 수이고 나머지는 ${n(f.r)} 입니다. 몫이 세 자리 수일 때 나누는 수를 구하시오.`,
     `한 자리 수로 나누는 나눗셈이 있습니다. 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 이며 몫이 세 자리 수일 때, 나누는 수를 구하시오.`,
     `나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 인 나눗셈에서 몫이 세 자리 수입니다. 한 자리 수인 나누는 수는 얼마인지 쓰시오.`,
+    `어떤 한 자리 수로 나누는 나눗셈에서 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 입니다. 몫이 세 자리 수가 되게 하는 나누는 수를 구하시오.`,
+    `나눗셈의 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 입니다. 나누는 수가 한 자리 수이고 몫이 세 자리 수일 때, 나누는 수를 쓰시오.`,
+    `세 자리 수를 한 자리 수로 나누었더니 몫도 세 자리 수였고 나머지가 ${n(f.r)} 입니다. 나뉘는 수가 ${n(f.N)} 일 때 나누는 수를 구하시오.`,
+    `나뉘는 수가 ${n(f.N)} 이고 몫이 세 자리 수인 나눗셈이 있습니다. 나누는 수는 한 자리 수이고 나머지가 ${n(f.r)} 일 때 나누는 수는 얼마인지 구하시오.`,
   ]);
   return makeDeep(unit, stem, n(f.ans), [
     `나머지가 ${n(f.r)} 이므로 나뉘는 수에서 나머지를 빼면 ${expr(`${f.N}-${f.r}=${f.M}`)} 입니다. 이 수가 나누는 수로 나누어떨어집니다.`,
@@ -6719,6 +6729,10 @@ function div224High(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 한 자리 수로 나누는 나눗셈에서 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 입니다. 몫은 얼마인지 구하시오.`,
     `나뉘는 수가 ${n(f.N)} 인 나눗셈이 있습니다. 나누는 수는 한 자리 수이고 나머지는 ${n(f.r)} 입니다. 몫을 구하시오.`,
     `나누는 수가 한 자리 수인 나눗셈에서 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 일 때 몫을 쓰시오.`,
+    `나뉘는 수가 ${n(f.N)} 인 세 자리 수 나눗셈에서 나누는 수는 한 자리 수이고 나머지는 ${n(f.r)} 입니다. 몫을 쓰시오.`,
+    `나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 인 나눗셈에서 나누는 수가 한 자리 수입니다. 몫을 구하시오.`,
+    `한 자리 수로 나누는 나눗셈이 있습니다. 나뉘는 수가 ${n(f.N)} 이고 나머지가 ${n(f.r)} 일 때, 이 나눗셈의 몫은 얼마인지 쓰시오.`,
+    `어떤 나눗셈은 나누는 수가 한 자리 수이고 나뉘는 수가 ${n(f.N)} 이며 나머지가 ${n(f.r)} 입니다. 몫을 구하시오.`,
   ]);
   const tries = f.cand
     .map((b) => {
@@ -7298,7 +7312,9 @@ type Frac24Mid = {
  * 창(`L`~`U`) 안에 묶음 수의 배수가 **정확히 하나** 있는 틀만 남긴다.
  * `k` 는 뽑는 묶음 수 — 2-4-2 는 단위분수라 늘 $1$ 이다.
  */
-function frac24MidPool(kFrom: number): Frac24Mid[] {
+function frac24MidPool(kFrom: number, coprime: boolean): Frac24Mid[] {
+  const gcd24 = (a: number, b: number): number =>
+    b === 0 ? a : gcd24(b, a % b);
   const out: Frac24Mid[] = [];
   for (let d = 3; d <= 8; d += 1)
     for (let m = 3; m <= 12; m += 1) {
@@ -7312,6 +7328,9 @@ function frac24MidPool(kFrom: number): Frac24Mid[] {
           if (cnt !== 1) continue;
           const kTo = kFrom === 1 ? 1 : d - 1;
           for (let k = kFrom; k <= kTo; k += 1) {
+            // ⚠️ **발문에 실리는 분수는 기약**이다(2-4-2·3). 답인 분수는 안 거른다
+            //    (2-4-1) — `frac32` 머리말의 그 비대칭을 여기서도 지킨다.
+            if (coprime && gcd24(k, d) !== 1) continue;
             // 2-4-1 은 답이 분수, 2-4-2·3 은 답이 개수라 반증 ⑥ 의 답이 다르다.
             const ansFrac = rat(k, d);
             const ansCount = rat(k * m);
@@ -7377,15 +7396,25 @@ function mixed245HighPool(): Mixed245High[] {
   return out;
 }
 
-let FRAC24_MID_UNIT: Frac24Mid[] | null = null;
-let FRAC24_MID_MANY: Frac24Mid[] | null = null;
+// 세 소단원이 같은 되짚기를 쓰지만 **분자 약속이 다르다** — 목록을 하나로 두면
+// 2-4-3 의 발문 분수가 약분되는 틀이 섮인다(기존 시험이 그것을 물었다).
+const FRAC24_MID_CACHE = new Map<string, Frac24Mid[]>();
+
+function frac24MidOfPool(kFrom: number, coprime: boolean): Frac24Mid[] {
+  const key = `${kFrom}-${coprime}`;
+  const hit = FRAC24_MID_CACHE.get(key);
+  if (hit) return hit;
+  const built = frac24MidPool(kFrom, coprime);
+  FRAC24_MID_CACHE.set(key, built);
+  return built;
+}
 let MIXED245_MID: Mixed245Mid[] | null = null;
 let MIXED245_HIGH: Mixed245High[] | null = null;
 
 /** 5단 · 2-4-1 — 전체를 되짚어 「꺼낸 것이 전체의 얼마인가」를 분수로 답한다. */
 function part241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  FRAC24_MID_MANY ??= frac24MidPool(2);
-  const f = pick(rng, FRAC24_MID_MANY);
+  // 2-4-1 은 분수가 **답**이라 기약을 안 거른다(`frac32` 머리말).
+  const f = pick(rng, frac24MidOfPool(2, false));
   const stuff = pick(rng, FRAC24_STUFF);
   const P = f.k * f.m;
   const stem = pick(rng, [
@@ -7404,10 +7433,8 @@ function part241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 5단 · 2-4-2·2-4-3 — 같은 되짚기, 답은 «몇 개». `unitOnly` 는 단위분수 소단원. */
 function frac24MidOf(unitOnly: boolean) {
   return (unit: UnitSeed, rng: Rng): ElemProblem => {
-    if (unitOnly) FRAC24_MID_UNIT ??= frac24MidPool(1);
-    else FRAC24_MID_MANY ??= frac24MidPool(2);
-    const pool = (unitOnly ? FRAC24_MID_UNIT : FRAC24_MID_MANY)!;
-    const f = pick(rng, pool);
+    // 분수가 **발문에 주어지는 값**이므로 기약이어야 한다.
+    const f = pick(rng, frac24MidOfPool(unitOnly ? 1 : 2, true));
     const stuff = pick(rng, FRAC24_STUFF);
     const fr = expr(`\\frac{${f.k}}{${f.d}}`);
     const ans = f.k * f.m;
