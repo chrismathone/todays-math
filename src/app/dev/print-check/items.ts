@@ -1495,7 +1495,7 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/unit/figureAngleLabelPlacement.test.ts (각 라벨 자리 · 변이 3개 빨강)",
       "scripts/qa/figureDimSide.ts (판정 자 — 나온 SVG 만 본다, 엔진 안을 안 본다)",
       "src/__tests__/unit/figureDimOutside.test.ts (양성 대조 + 원장님 두 자리 + 떨어짐 0)",
-      ".tmp-orca/chordgap.ts (문턱을 손으로 안 고르고 **분포에서** 골랐다)",
+      "scripts/qa/measure-chord-gap.ts (문턱을 손으로 안 고르고 **분포에서** 골랐다)",
     ],
     scale:
       "전후 실측(같은 자 · v2 그림 812장 · 씨앗 2 × 변형 2): 치수 곡선 465 → **477**(+12), " +
