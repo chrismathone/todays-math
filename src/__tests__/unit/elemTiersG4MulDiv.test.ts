@@ -204,12 +204,24 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
       for (const tier of tiersOf(unitOf(code))) {
         for (const seed of SEEDS) {
           const p = gen(code, seed, tier);
+          // 🔴 **«심화상»은 나누는 수를 일부러 감춘다** (D-113 되짚기 축 — 그 수를
+          //    되찾는 것이 문항의 알맹이다). 그러면 발문에는 나누는 수가 없고 **답에**
+          //    있다. 약속(«몇십몇»)은 그 수가 어디 적혀 있든 지켜져야 하므로, 감춘
+          //    갈래에서만 답을 본다. 나머지 갈래는 여전히 **발문에서** 찾지 못하면 빨강 —
+          //    그래야 다른 갈래가 조용히 나누는 수를 지우고 이 검사를 빠져나가지 못한다.
+          const hides = tier === "심화상";
           const ds = divisorsOf(p.content);
+          const from =
+            ds.length > 0
+              ? ds
+              : hides
+                ? [...p.answer.matchAll(/\$(\d+)\$/g)].map((m) => Number(m[1]))
+                : [];
           expect(
-            ds.length,
+            from.length,
             `${code} ${tier} seed ${seed}: ${p.content}`,
           ).toBeGreaterThan(0);
-          for (const b of ds) {
+          for (const b of from) {
             if (b < 11 || b > 99 || b % 10 === 0)
               bad.push(`${code} ${tier} seed ${seed}: 나누는 수 ${b}`);
           }

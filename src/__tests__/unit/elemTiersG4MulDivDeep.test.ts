@@ -2,48 +2,46 @@
  * 초4 1-3 「곱셈과 나눗셈」 **심화중·심화상** — D-113 파일럿 한 대단원.
  *
  * 값·표기·규모·겹침은 `elemTiersG4MulDiv.test.ts` 가 `tiersOf(unit)` 로 돌기 때문에
- * **새 갈래도 그대로 덮인다**(2026-08-30 수술). 여기 두 벌로 적지 않는다. 이 파일이
- * 맡는 것은 그 파일이 **구조적으로 못 보는 것** 하나다 —
+ * **새 갈래도 그대로 덮인다**(2026-08-30 수술). 여기 두 벌로 적지 않는다.
+ * 이 파일이 맡는 것은 그 파일이 **구조적으로 못 보는 것** 하나다 —
  *
- *     「이 문항의 답에 닿으려면 **경우를 훑어야 하나**」
+ *     「되짚기 사슬에 **굳지 않는 마디**가 있는가, 그리고 무엇이 그것을 굳히는가」
  *
- * ## 축 — «시험이 답을 얻으려고 실제로 훑은 후보 수»
+ * ## 잣대 (리드 확정 2026-08-30 — **되짚기 축**)
  *
- * 심화상 일곱은 시험이 **발문에서** 후보 집합을 다시 만들어 훑어야만 답이 재현된다.
- * 그래서 이 파일은 세 가지를 같이 잰다:
+ * ```
+ * 심화하  마디마다 값이 하나로 굳는다                       (기준선 — 이 파일이 안 건드림)
+ * 심화중  굳지 않는 마디가 하나 있고, 발문의 조건이나
+ *         그 소단원의 성질이 그 마디를 굳혀 준다
+ * 심화상  성질만으로는 못 굳혀, 그 소단원의 계산으로 나올 수 있는 값들을
+ *         **실제로 만들어 견주어야** 하나가 남는다.
+ *         그 후보를 **발문이 주지 않고 되짚기가 만든다**
+ * ```
  *
- *   ⑴ **훑기의 결과가 지면의 답과 같다** — 참은 발문에서 온다(생성기를 되부르지 않는다).
- *   ⑵ **후보가 여덟 이상이다** — g4 벤치 보고서 §4 ㉠ 이 지적한 자리다:
- *      「「모두 몇 개」가 붙어도 후보가 **3가지**면 탐색이라 할 것이 없다」(초4 2-3-7).
- *      여덟은 그 3가지를 **확실히 가르는** 값으로 잡았고, 지금 실측은 12~900이다.
- *   ⑶ **후보 하나를 빼면 답이 달라진다** — 답이 훑기와 무관하면(=후보를 안 봐도 나오면)
- *      이 단정이 빨개진다. 「후보 집합이 장식인가」를 묻는 자리다.
+ * ## 이 파일이 그 잣대를 **세는 형태**로 옮긴 방법
  *
- * 카드 두 갈래(1-3-1·1-3-2)에는 **음성 대조**를 하나 더 둔다: 「큰 수부터 앞자리에」라는
- * 그럴듯한 지름길로 얻는 답이 **참 답과 갈린다**. 안 갈리면 그 문항은 훑을 것이 없다.
+ * 소단원마다 시험이 **발문에서** 그 마디의 후보 무리를 다시 만든다(생성기를 안 부른다).
  *
- * ## 🔴 이 자가 **못 보는 것** — 「심화중이 심화하보다 어려운가」
- *
- * 못 잰다. 그리고 그건 「아직 안 만들었다」가 아니라 **재 봤는데 안 갈렸다**이다.
- * 다음 사람이 같은 것을 다시 시도하지 않도록 실측을 적어 둔다(2026-08-30):
- *
- * | 대 본 축 | 왜 안 갈리나 |
+ * | | 잠그는 것 |
  * |---|---|
- * | 해설의 **계산 걸음 수**(`countCalcSteps`) | 1-3-5 에서 심화하·심화중이 **둘 다 2**다. 심화중이 더한 것은 「몫과 나머지가 같은 한 자리 수 중 가장 큰 것」을 세우는 일인데 그건 셈이 아니다 |
- * | 답까지 만드는 **감춘 중간값 수** | 1-3-7 **심화하**가 3(어림값·어림몫·실제몫)이라 심화중(1)보다 많다 |
- * | **답의 꼴**(값 여럿인가) | 초4 전량 실측(`census-elem-list-answers.ts`, 씨앗 12): 나열형 답이 **연산 1.6% · 기본 4.3% · 심화하 5.6%** 에 이미 있다. 2-1-4 «심화하»가 「$\square$ 에 들어갈 수 있는 수를 모두」(답 `$4$, $5$`)이고 1-3-7 «심화하»도 두 값을 낸다 |
- * | 발문의 「**모두 구하시오**」 | 같은 실측에서 기본 4.8% · 심화하 4.8% — 심화상(42.9%)보다 낮을 뿐 **0이 아니다** |
+ * | 심화중 | 성질로 거른 뒤에도 후보가 **여럿**이고, 답은 그 무리의 **극값**이다 — 「가장 큰/작은」이라는 조건 **한 번**이 집는 자리. 그리고 반대쪽 극값을 집으면 **다른 답**이 나온다(마디가 정말 열려 있다는 증거) |
+ * | 심화상 | 후보 무리에 그 소단원 계산을 **하나씩 실제로 걸어** 정확히 하나가 남고, 그 하나가 무리의 **극값이 아니다** — 극값이면 조건 한 번으로 집히므로 심화중이다. 그리고 후보 값이 발문의 수에 **없다**(되짚기가 만든 것이다) |
+ * | 반증 ④ | 같은 소단원의 **연산·기본·응용**은 발문의 수에 그 소단원 연산을 **순방향으로만** 걸어 답이 나온다 = 굳지 않는 마디가 아예 없다. 그러니 이 축이 난이도를 **뒤집지 않는다** |
  *
- * 이 대단원에서 심화하 → 심화중을 가르는 성질이 **소단원마다 다르기 때문**이다
- * (되짚기 한 겹 더 · 어림의 원상 둘 겹침 · 관계에서 후보를 스스로 세우기). 한 축으로
- * 접으면 그 축은 어딘가에서 반드시 거짓이 된다 — 그러면 **거짓 경보가 가드를 끈다.**
- * 그래서 심화중에는 **바닥만** 건다(값이 맞다 · 답이 발문에 그대로 있지 않다 ·
- * 발문에 없는 값을 만들어야 한다). **높이는 원장님이 `/dev/tier-bench/g4` 에서 여섯을
- * 나란히 보고 정하신다** — 그것이 이 파일럿의 목적이다(D-71·D-07).
+ * ## 🔴 못 보는 것 — 반드시 읽어라
  *
- * ⚠️ 그리고 ⑴~⑶ 도 **「후보가 많다 = 어렵다」를 뜻하지 않는다.** 후보 900개를 규칙
- *    하나로 건너뛰면 한 걸음이다(1-3-6 이 실제로 그렇다 — 그게 그 문항의 알맹이다).
- *    이 축이 지키는 것은 **「훑지 않고는 답이 안 나온다」** 하나다.
+ * ㉠ **「후보가 많다 = 어렵다」가 아니다.** 후보 아흔이어도 어림 한 번으로 열로 줄면
+ *    걸음은 짧다. 이 축이 지키는 것은 「무엇이 마디를 굳히는가」이지 «양»이 아니다.
+ * ㉡ **후보 무리를 만드는 규칙은 내가 적은 것이다.** 학생이 밟을 무리와 같은지는
+ *    사람이 본다 — 그래서 이 파일럿은 원장님 시안(`/dev/tier-bench/g4`)이 목적이다.
+ * ㉢ **「답이 나열이다 · 「모두 구하시오」」는 갈래를 못 가른다.** 초4 전량 실측
+ *    (`census-elem-list-answers.ts`, 씨앗 12): 나열형 답이 연산 1.6% · 기본 4.3% ·
+ *    **심화하 5.6%(4소단원)** 에 이미 있고, 2-1-4 «심화하»가 「$\square$ 에 들어갈 수
+ *    있는 수를 **모두**」다. 그래서 이 파일은 그 꼴을 **축으로 안 쓴다.**
+ * ㉣ **열거(후보를 훑는 양)는 기각된 축이다.** 문형 전량 6,900행 실측에서 열거는
+ *    갈래를 1.5~2배밖에 안 가르고(초4는 기본 7.4% > 응용 5.5% 로 뒤집힌다),
+ *    심화하 안에서 열거형은 평균 **0.39걸음**으로 그 소단원 «연산»(0.79)보다 얕았다.
+ *    이 파일의 앞 판이 그 축이었고 **갈아엎었다** — 다시 그쪽으로 돌아가지 말 것.
  */
 import { describe, expect, it } from "vitest";
 
@@ -75,11 +73,8 @@ function unitOf(code: string) {
   return u!;
 }
 
-const gen = (
-  code: string,
-  seed: number,
-  tier: "심화하" | "심화중" | "심화상",
-) => generateElementaryProblem(unitOf(code), seed, tier);
+const gen = (code: string, seed: number, tier: string) =>
+  generateElementaryProblem(unitOf(code), seed, tier as never);
 
 /** 글에 실린 수 전부(KaTeX 안). 발문에서 참을 꺼내는 유일한 창구다. */
 function numbersIn(text: string): number[] {
@@ -91,244 +86,203 @@ function numbersIn(text: string): number[] {
 /** 어림 — 생성기의 함수를 부르지 않고 규칙을 여기서 다시 쓴다(동어반복 금지). */
 const round10 = (v: number) => Math.round(v / 10) * 10;
 const round100 = (v: number) => Math.round(v / 100) * 100;
+const digitsOf = (v: number) => String(v).length;
 
-/** 서로 다른 카드 `size` 장을 자리까지 정해 늘어놓은 것 전부. */
-function layouts(cards: readonly number[], size: number): number[][] {
-  if (size === 0) return [[]];
-  const out: number[][] = [];
-  for (let i = 0; i < cards.length; i += 1) {
-    const rest = [...cards.slice(0, i), ...cards.slice(i + 1)];
-    for (const tail of layouts(rest, size - 1)) out.push([cards[i]!, ...tail]);
-  }
-  return out;
-}
+const range = (lo: number, hi: number) =>
+  Array.from({ length: hi - lo + 1 }, (_, i) => lo + i);
 
-const digitsToNumber = (ds: readonly number[]) =>
-  ds.reduce((acc, d) => acc * 10 + d, 0);
-
-/** 발문 첫머리의 수 카드 목록. */
-function cardsIn(content: string): number[] {
-  const head = content.match(/^((?:\$\d+\$(?:, )?)+) 의 수 카드/);
-  expect(head, `수 카드 목록을 못 읽었다: ${content}`).toBeTruthy();
-  return numbersIn(head![1]!);
-}
+/** 그 소단원이 여는 후보 무리 — 「몇십」·「두 자리 수」·「세 자리 수」. */
+const TENS = range(2, 9).map((t) => t * 10);
+const TWO = range(10, 99);
+const THREE = range(100, 999);
 
 /**
- * 심화상 한 문항의 **후보 집합과 그 위의 셈**. 후보는 발문이 열어 놓은 경우를 남김없이
- * 담고, `solve` 는 그 위에서만 답을 만든다 — 그래서 후보를 빼면 답이 흔들린다.
+ * 심화중 한 문항 — **굳지 않는 마디의 후보 무리**와, 그 무리의 극값에서 답을 만드는 법.
+ * 무리는 오직 발문에서 나온다.
  */
-type Search = {
-  candidates: number[];
-  solve: (cs: readonly number[]) => string;
+type Mid = {
+  pool: number[];
+  pick: "min" | "max";
+  answer: (v: number) => string;
 };
 
-const listAnswer = (vs: readonly number[]) =>
-  [...vs]
-    .sort((a, b) => a - b)
-    .map((v) => `$${v}$`)
-    .join(", ");
+/**
+ * 심화상 한 문항 — **되짚기가 연 후보 무리**와, 그 위에 거는 **그 소단원의 계산**.
+ * `keep` 은 후보마다 실제로 곱하거나 나눈다.
+ */
+type Top = {
+  pool: number[];
+  keep: (v: number) => boolean;
+  answer: (v: number) => string;
+};
 
-function searchOf(code: Code, content: string): Search {
+function midOf(code: Code, content: string): Mid {
+  const num = (re: RegExp, at = 1) => {
+    const m = content.match(re);
+    expect(m, `${code} 심화중 발문을 못 읽었다: ${content}`).toBeTruthy();
+    return Number(m![at]);
+  };
   if (code === "1-3-1") {
-    // 카드 넷 → (세 자리 수)×(몇십). 몇십에 놓을 카드 4 × 남은 세 장의 배열 6.
-    const cards = cardsIn(content);
-    expect(cards.length, content).toBe(4);
-    const candidates: number[] = [];
-    for (const three of layouts(cards, 3)) {
-      const tens = cards.find((c) => !three.includes(c))! * 10;
-      candidates.push(digitsToNumber(three) * tens);
-    }
+    const b = num(/^어떤 수에 \$(\d+)\$[을를] 곱했더니/);
+    const want = content.includes("다섯 자리") ? 5 : 4;
+    const small = content.includes("가장 작은");
     return {
-      candidates,
-      solve: (cs) => `$${Math.max(...cs)}$, $${Math.min(...cs)}$`,
+      pool: THREE.filter((v) => digitsOf(b * v) === want),
+      pick: small ? "min" : "max",
+      answer: (v) => `$${v}$`,
     };
   }
   if (code === "1-3-2") {
-    // 카드 다섯 → (세 자리 수)×(두 자리 수). 5P3 × 2P2 = 120.
-    const cards = cardsIn(content);
-    expect(cards.length, content).toBe(5);
-    const candidates: number[] = [];
-    for (const three of layouts(cards, 3)) {
-      const rest = cards.filter((c) => !three.includes(c));
-      for (const two of layouts(rest, 2)) {
-        candidates.push(digitsToNumber(three) * digitsToNumber(two));
-      }
-    }
+    const a = num(/^\$(\d+)\\times\\square\$ 의 곱이/);
+    const want = content.includes("다섯 자리") ? 5 : 4;
+    const small = content.includes("가장 작은");
     return {
-      candidates,
-      solve: (cs) => `$${Math.max(...cs)}$, $${Math.min(...cs)}$`,
+      pool: TWO.filter((v) => digitsOf(a * v) === want),
+      pick: small ? "min" : "max",
+      answer: (v) => `$${v}$`,
     };
   }
   if (code === "1-3-3") {
-    // 카드 넷 중 두 장으로 만든 두 자리 수 12가지 중 «몇십으로 어림한 값»이 맞는 것.
-    const cards = cardsIn(content);
-    expect(cards.length, content).toBe(4);
-    const a = content.match(/\$(\d+)\$[은는] 몇백으로/);
-    const est = content.match(/어림했더니 \$(\d+)\$[이가] 되었습니다/);
-    expect(a && est, content).toBeTruthy();
-    const aa = round100(Number(a![1]));
-    const target = Number(est![1]);
-    expect(target % aa, `어림한 곱이 몇백으로 안 나뉜다: ${content}`).toBe(0);
-    const bb = target / aa;
-    const candidates = layouts(cards, 2).map((ds) => digitsToNumber(ds));
+    const b = num(/몇백으로 어림하여 \$(\d+)\$[과와] 곱했더니/);
+    const est = num(/어림한 곱이 \$(\d+)\$[이가] 되었습니다/);
+    expect(est % b, `어림한 곱이 몇십으로 안 나뉜다: ${content}`).toBe(0);
+    const aa = est / b;
     return {
-      candidates,
-      solve: (cs) => listAnswer(cs.filter((v) => round10(v) === bb)),
+      pool: THREE.filter((v) => round100(v) === aa),
+      pick: content.includes("가장 큰") ? "max" : "min",
+      answer: (v) => `$${v}$`,
     };
   }
   if (code === "1-3-4") {
-    // 범위 안의 수를 **하나도 빼지 않고** 훑는다 — 규칙(등차)을 시험이 쓰지 않는다.
-    const m = content.match(
-      /^\$(\d+)\$부터 \$(\d+)\$까지의 수 중에서 \$(\d+)\$(?:으로|로) 나누었을 때 나머지가 \$(\d+)\$인/,
-    );
-    expect(m, content).toBeTruthy();
-    const [from, to, b, r] = [1, 2, 3, 4].map((i) => Number(m![i]));
-    const candidates: number[] = [];
-    for (let v = from!; v <= to!; v += 1) candidates.push(v);
+    const b = num(/^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니/);
+    const q = num(/몫이 \$(\d+)\$[이가] 되고/);
     return {
-      candidates,
-      solve: (cs) => `$${cs.filter((v) => v % b! === r!).length}$개`,
+      pool: range(0, b - 1), // 나머지 — 발문이 값을 안 준다
+      pick: "max", // 「나머지는 나누는 수보다 작다」(소단원 성질) + 「가장 큰」
+      answer: (r) => `$${b * q + r}$`,
     };
   }
   if (code === "1-3-5") {
-    // 몫이 한 자리인 «어떤 수» 전부(몫 1~9 × 나머지 0~b-1)를 훑는다.
-    const m = content.match(
-      /^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 나머지가 있고, 몫은 나머지의 \$(\d+)\$배인/,
+    const b = num(
+      /^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫과 나머지가 같은/,
     );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    const k = Number(m![2]);
-    const candidates: number[] = [];
-    for (let v = b; v <= b * 9 + b - 1; v += 1) candidates.push(v);
     return {
-      candidates,
-      solve: (cs) =>
-        listAnswer(
-          cs.filter((v) => {
-            const r = v % b;
-            return r >= 1 && Math.floor(v / b) === r * k;
-          }),
-        ),
+      pool: range(1, 9).filter((t) => t < b), // 한 자리 수이고 나머지는 나누는 수보다 작다
+      pick: "max",
+      answer: (t) => `$${b * t + t}$`,
     };
   }
   if (code === "1-3-6") {
-    // 세 자리 수 900개를 통째로 훑는다 — «나머지의 폭»이라는 규칙을 시험이 쓰지 않는다.
-    const m = content.match(
-      /^어떤 세 자리 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫이 \$(\d+)\$[이가] 되었습니다/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    const q = Number(m![2]);
-    const candidates: number[] = [];
-    for (let v = 100; v <= 999; v += 1) candidates.push(v);
+    const b = num(/^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니/);
+    const q = num(/몫이 \$(\d+)\$[이가] 되고/);
     return {
-      candidates,
-      solve: (cs) => `$${cs.filter((v) => Math.floor(v / b) === q).length}$개`,
+      pool: range(0, b - 1),
+      pick: "max",
+      answer: (r) => `$${Math.floor((b * q + r + 1) / b)}$`,
     };
   }
-  // 1-3-7 — 두 자리 수 90개를 훑는다. 어림의 창(bb-5~bb+4)도 시험이 미리 쓰지 않는다.
-  const m = content.match(
-    /^\$(\d+)\$[을를] 어떤 두 자리 수로 나누려고 합니다\. 나누는 수를 몇십으로 어림하면 \$(\d+)\$[이가] 되고, 나누어떨어집니다/,
-  );
-  expect(m, content).toBeTruthy();
-  const a = Number(m![1]);
-  const bb = Number(m![2]);
-  const candidates: number[] = [];
-  for (let v = 10; v <= 99; v += 1) candidates.push(v);
+  const a = num(/^\$(\d+)\\div\\square\$ 에서/);
+  const k = num(/몫을 어림했더니 \$(\d+)\$[이가] 되었습니다/);
+  expect(a % k, `어림한 몫이 자연수가 아니다: ${content}`).toBe(0);
+  const bb = a / k;
   return {
-    candidates,
-    solve: (cs) =>
-      listAnswer(cs.filter((v) => round10(v) === bb && a % v === 0)),
+    pool: TWO.filter((v) => round10(v) === bb),
+    pick: "max",
+    answer: (v) => `$${v}$`,
+  };
+}
+
+function topOf(code: Code, content: string): Top {
+  const num = (re: RegExp, at = 1) => {
+    const m = content.match(re);
+    expect(m, `${code} 심화상 발문을 못 읽었다: ${content}`).toBeTruthy();
+    return Number(m![at]);
+  };
+  const id = (v: number) => `$${v}$`;
+  if (code === "1-3-1") {
+    const a = num(/^\$(\d+)\$에 어떤 몇십을 곱했더니/);
+    const low = num(/곱했더니 \$(\d+)\$보다 크고/);
+    const high = num(/크고 \$(\d+)\$보다 작은/);
+    // 후보는 「몇십」 — 소단원 성질이 열고, **곱해 봐야** 어느 것인지 정해진다.
+    return { pool: TENS, keep: (t) => a * t > low && a * t < high, answer: id };
+  }
+  if (code === "1-3-2") {
+    const a = num(/^\$(\d+)\\times\\square\$ 의 곱이/);
+    const low = num(/의 곱이 \$(\d+)\$보다 크고/);
+    const high = num(/크고 \$(\d+)\$보다 작습니다/);
+    return { pool: TWO, keep: (k) => a * k > low && a * k < high, answer: id };
+  }
+  if (code === "1-3-3") {
+    const a = num(/^\$(\d+)\$[과와] 어떤 두 자리 수의 곱을/);
+    const est = num(/어림한 곱이 \$(\d+)\$[이가] 되었습니다/);
+    const real = num(/실제 곱이 \$(\d+)\$일 때/);
+    return {
+      pool: TWO,
+      keep: (k) => round100(a) * round10(k) === est && a * k === real,
+      answer: id,
+    };
+  }
+  if (code === "1-3-4") {
+    const x = num(/^\$(\d+)\$[을를] 어떤 몇십으로 나누었더니/);
+    const q = num(/몫이 \$(\d+)\$[이가] 되었습니다/);
+    return { pool: TENS, keep: (t) => Math.floor(x / t) === q, answer: id };
+  }
+  if (code === "1-3-5") {
+    const nn = num(
+      /^\$(\d+)\$[을를] 어떤 두 자리 수로 나누었더니 나누어떨어지고/,
+    );
+    return {
+      pool: TWO,
+      keep: (d) => nn % d === 0 && nn / d >= 1 && nn / d <= 9,
+      answer: id,
+    };
+  }
+  if (code === "1-3-6") {
+    const nn = num(
+      /^\$(\d+)\$[을를] 어떤 두 자리 수로 나누었더니 몫이 두 자리/,
+    );
+    const r = num(/나머지가 \$(\d+)\$[이가] 되었습니다/);
+    return {
+      pool: TWO,
+      keep: (d) => nn % d === r && digitsOf(Math.floor(nn / d)) === 2,
+      answer: id,
+    };
+  }
+  const a = num(
+    /^\$(\d+)\$[을를] 어떤 두 자리 수로 나누었더니 나누어떨어졌습니다/,
+  );
+  const bb = num(/몇십으로 어림하면 \$(\d+)\$[이가] 됩니다/);
+  return {
+    pool: TWO,
+    keep: (d) => a % d === 0 && round10(d) === bb,
+    answer: id,
   };
 }
 
 /**
- * 심화중 한 문항의 **답과, 답에 닿는 동안 만들어야 하는 값들**.
- * 사슬은 **내가 적은 것**이다 — 학생이 밟을 사슬과 같은지는 사람이 본다.
- * 이 자가 지키는 것은 「발문의 수만 옮겨 적으면 답이 안 된다」 하나다.
+ * **반증 ④ — 뒤집힘 필터.** 발문이 **되짚어야 할 대상을 말로 부르는가**.
+ *
+ * 리드의 반증 ⑥은 「발문이 준 수에 그 소단원 연산을 순방향으로만 적용해 답이 나오면
+ * 중·상이 아니다」다. 그것을 **닫힘 집합**(두 걸음 안의 모든 결과)으로 재 봤고
+ * **버렸다** — 재 본 결과를 남긴다:
+ *
+ * | 무엇이 났나 | 왜 |
+ * |---|---|
+ * | 거짓 경보 — 1-3-3 «응용» 16/16 이 「순방향으로 못 닿는다」 | 어림→곱→차라서 **세 걸음**이다. 걸음을 늘리면 아래가 더 나빠진다 |
+ * | 거짓 통과 — 1-3-1 «심화상» 답 $80$·$30$ 이 「닿는다」 | 답이 **작은 수**라 큰 수들의 덧뺄셈·어림에서 **우연히** 나온다 |
+ *
+ * 닫힘 집합은 커질수록 작은 답을 우연히 삼킨다. 그래서 이 자는 그 축을 안 쓰고,
+ * 되짚기의 **자국**을 본다 — 발문이 미지의 대상을 말로 부르는가(`어떤 …`·□).
+ *
+ * ⚠️ **못 보는 것**: 말을 안 쓰고 마디를 여는 발문은 이 열쇠에 안 걸린다.
+ *    그리고 말을 써도 **한 식으로 굳는** 자리가 있다(표준 1-3-5 «연산»
+ *    `$23\times\square=161$` — 리드 반증 ①의 그 자리). 그 둘은 아래에서 갈라 본다.
  */
-function midOf(
-  code: Code,
-  content: string,
-): { answer: string; made: number[] } {
-  if (code === "1-3-1") {
-    const m = content.match(
-      /^어떤 수에 \$(\d+)\$[을를] 곱해야 할 것을 잘못하여 더했더니 \$(\d+)\$[이가]/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    const wrong = Number(m![2]);
-    const x = wrong - b;
-    const right = x * b;
-    return { answer: `$${right - wrong}$`, made: [x, right] };
-  }
-  if (code === "1-3-2") {
-    const m = content.match(
-      /^어떤 수에 \$(\d+)\$[을를] 곱해야 할 것을 잘못하여 \$(\d+)\$의 십의 자리 숫자와 일의 자리 숫자를 바꾼 수를 곱했더니 \$(\d+)\$[이가]/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    expect(Number(m![2]), "바꿀 수가 곱할 수와 달라졌다").toBe(b);
-    const wrong = Number(m![3]);
-    const bs = (b % 10) * 10 + Math.floor(b / 10);
-    expect(wrong % bs, `잘못 곱한 값이 안 떨어진다: ${content}`).toBe(0);
-    const x = wrong / bs;
-    const right = x * b;
-    return {
-      answer: `$${Math.abs(right - wrong)}$`,
-      made: [bs, x, right],
-    };
-  }
-  if (code === "1-3-3") {
-    const m = content.match(
-      /^몇백으로 어림하면 \$(\d+)\$[이가] 되는 세 자리 수 중에서 가장 큰 수와, 몇십으로 어림하면 \$(\d+)\$[이가] 되는 두 자리 수 중에서 가장 작은 수의 곱/,
-    );
-    expect(m, content).toBeTruthy();
-    const big = Number(m![1]) + 49;
-    const small = Number(m![2]) - 5;
-    return { answer: `$${big * small}$`, made: [big, small] };
-  }
-  if (code === "1-3-4") {
-    const m = content.match(
-      /^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫이 \$(\d+)\$[이가] 되고 나머지는 가장 큰 수/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    const q = Number(m![2]);
-    return { answer: `$${b * q + (b - 1)}$`, made: [b - 1, b * q] };
-  }
-  if (code === "1-3-5") {
-    const m = content.match(
-      /^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫과 나머지가 같은 한 자리 수/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    // 「몫과 나머지가 같은 한 자리 수」의 최댓값 — 발문에 없는 값이다.
-    const t = 9;
-    return { answer: `$${b * t + t}$`, made: [t, b * t] };
-  }
-  if (code === "1-3-6") {
-    const m = content.match(
-      /^어떤 수를 \$(\d+)\$(?:으로|로) 나누었더니 몫이 \$(\d+)\$[이가] 되고 나머지는 가장 큰 수가 되었습니다\. 어떤 수보다 \$1\$ 큰 수를 \$(\d+)\$(?:으로|로) 나눈 몫/,
-    );
-    expect(m, content).toBeTruthy();
-    const b = Number(m![1]);
-    const q = Number(m![2]);
-    expect(Number(m![3]), "두 번째 나누는 수가 달라졌다").toBe(b);
-    const x = b * q + (b - 1);
-    expect((x + 1) % b, "한 큰 수가 안 떨어진다").toBe(0);
-    return { answer: `$${(x + 1) / b}$`, made: [b - 1, x, x + 1] };
-  }
-  const m = content.match(
-    /^\$(\d+)\\div\\square\$ 에서 나누는 수 \$\\square\$ 를 몇십으로 어림하여 몫을 어림했더니 \$(\d+)\$[이가]/,
-  );
-  expect(m, content).toBeTruthy();
-  const a = Number(m![1]);
-  const k = Number(m![2]);
-  expect(a % k, `어림한 몫이 자연수가 아니다: ${content}`).toBe(0);
-  const bb = a / k;
-  expect(bb % 10, `어림한 나누는 수가 몇십이 아니다: ${content}`).toBe(0);
-  return { answer: `$${bb + 4}$`, made: [bb] };
+const NAMES_UNKNOWN = /어떤 수|어떤 몇십|어떤 두 자리 수|\\square|□/;
+
+/** 「$b\times\square=a$」처럼 **한 식이 그 자리를 곧바로 굳히는가.** */
+function hardensInOneStep(content: string): boolean {
+  return /\$\d+\\times\\square=\d+\$/.test(content);
 }
 
 describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 파일럿)", () => {
@@ -336,8 +290,7 @@ describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 �
     for (const code of CODES) {
       const unit = unitOf(code);
       expectCoreTiers(unit, code);
-      const tiers = tiersOf(unit);
-      expect(tiers, `${code}: 여섯 갈래가 아니다`).toEqual([
+      expect(tiersOf(unit), `${code}: 여섯 갈래가 아니다`).toEqual([
         "연산",
         "기본",
         "응용",
@@ -348,18 +301,26 @@ describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 �
     }
   });
 
-  // ── 심화상 — 훑기 축 ────────────────────────────────────────────────
+  // ── 심화중 — 「굳지 않는 마디를 조건 한 번이 집는다」 ────────────────────
 
-  it("심화상 — 발문에서 후보를 다시 만들어 **훑은 결과**가 지면의 답과 같다", () => {
+  it("심화중 — 마디의 후보가 여럿이고, 답은 그 무리의 **극값**이다", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       for (const seed of SEEDS) {
-        const p = gen(code, seed, "심화상");
-        const { candidates, solve } = searchOf(code, p.content);
-        const got = solve(candidates);
+        const p = gen(code, seed, "심화중");
+        const { pool, pick, answer } = midOf(code, p.content);
+        if (pool.length < 2) {
+          bad.push(
+            `${code} seed ${seed}: 마디 후보가 ${pool.length}개 — 안 열렸다`,
+          );
+          continue;
+        }
+        const got = answer(
+          pick === "min" ? Math.min(...pool) : Math.max(...pool),
+        );
         if (got !== p.answer) {
           bad.push(
-            `${code} seed ${seed}: 훑기 «${got}» ≠ 지면 «${p.answer}»\n      ${p.content.replace(/\n/g, " ")}`,
+            `${code} seed ${seed}: 극값에서 «${got}» ≠ 지면 «${p.answer}»`,
           );
         }
       }
@@ -367,89 +328,40 @@ describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 �
     expect(bad.slice(0, 5)).toEqual([]);
   });
 
-  it("심화상 — 훑은 후보가 **여덟 이상**이다 (「후보 3가지」는 탐색이 아니다)", () => {
-    const smallest = new Map<Code, number>();
-    for (const code of CODES) {
-      for (const seed of SEEDS) {
-        const p = gen(code, seed, "심화상");
-        const size = searchOf(code, p.content).candidates.length;
-        smallest.set(code, Math.min(smallest.get(code) ?? size, size));
-      }
-    }
-    for (const code of CODES) {
-      expect(
-        smallest.get(code),
-        `${code}: 후보가 ${smallest.get(code)}개뿐이다`,
-      ).toBeGreaterThanOrEqual(8);
-    }
-  });
-
-  // 답이 값 하나면 「훑었다」는 자국이 지면에 안 남는다. ⚠️ 이 꼴은 **갈래를 가르지
-  // 못한다** — 1-3-7 심화하의 «원상» 갈래도 두 값을 낸다(파일 머리 표). 여기서는
-  // 심화상 **자신**의 바닥으로만 쓴다: 훑어 놓고 하나만 적으면 이 자리가 빨개진다.
-  it("심화상 — 답이 값 여럿의 나열이거나 «몇 개»를 세는 값이다", () => {
-    const bad: string[] = [];
-    for (const code of CODES) {
-      for (const seed of SEEDS) {
-        const { answer } = gen(code, seed, "심화상");
-        const isCount = /^\$\d+\$개$/.test(answer);
-        const isList = /^\$\d+\$(?:, \$\d+\$)+$/.test(answer);
-        if (!isCount && !isList) bad.push(`${code} seed ${seed}: «${answer}»`);
-      }
-    }
-    expect(bad.slice(0, 5)).toEqual([]);
-  });
-
-  it("심화상 — **후보 하나를 빼면 답이 달라진다** (후보 집합이 장식이 아니다)", () => {
-    const bad: string[] = [];
-    for (const code of CODES) {
-      for (const seed of SEEDS) {
-        const p = gen(code, seed, "심화상");
-        const { candidates, solve } = searchOf(code, p.content);
-        const full = solve(candidates);
-        const shaken = candidates.some(
-          (_, i) =>
-            solve([...candidates.slice(0, i), ...candidates.slice(i + 1)]) !==
-            full,
-        );
-        if (!shaken) bad.push(`${code} seed ${seed}: ${p.content}`);
-      }
-    }
-    expect(bad.slice(0, 5)).toEqual([]);
-  });
-
-  // 카드 두 갈래의 음성 대조 — 「큰 수부터 앞자리에」로는 최댓값이 안 나온다.
-  // 이 단정이 초록이라는 것은 「지름길로 찍으면 틀린다」는 뜻이다.
-  it("심화상 카드 갈래 — 그럴듯한 지름길로 얻는 곱은 참 최댓값과 갈린다", () => {
-    for (const code of ["1-3-1", "1-3-2"] as const) {
-      for (const seed of SEEDS) {
-        const p = gen(code, seed, "심화상");
-        const cards = [...cardsIn(p.content)].sort((a, b) => b - a);
-        const three = digitsToNumber(cards.slice(0, 3));
-        const shortcut =
-          code === "1-3-1"
-            ? three * cards[3]! * 10
-            : three * digitsToNumber(cards.slice(3, 5));
-        const truth = Math.max(...searchOf(code, p.content).candidates);
-        expect(
-          shortcut,
-          `${code} seed ${seed}: 지름길이 참 최댓값과 같다 — 훑을 것이 없다`,
-        ).not.toBe(truth);
-      }
-    }
-  });
-
-  // ── 심화중 — 바닥만 건다(높이는 사람이 본다, 파일 머리 참조) ──────────
-
-  it("심화중 — 답을 발문에서 다시 구한다 (일곱 소단원)", () => {
+  // 음성 대조 — 반대쪽 극값이 **같은 답**을 주면 그 마디는 안 열린 것이고,
+  // 「가장 큰/작은」이라는 조건이 아무 일도 안 한 것이다(=심화하다).
+  it("심화중 — 반대쪽 극값을 집으면 **다른 답**이 나온다 (마디가 정말 열려 있다)", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       for (const seed of SEEDS) {
         const p = gen(code, seed, "심화중");
-        const { answer } = midOf(code, p.content);
-        if (answer !== p.answer) {
+        const { pool, answer } = midOf(code, p.content);
+        if (answer(Math.min(...pool)) === answer(Math.max(...pool))) {
+          bad.push(`${code} seed ${seed}: 양 끝이 같은 답이다 — ${p.content}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
+  // ── 심화상 — 「성질로는 못 굳혀, 계산해 견주어야 하나가 남는다」 ─────────
+
+  it("심화상 — 후보에 소단원 계산을 걸면 **정확히 하나**가 남고, 그것이 답이다", () => {
+    const bad: string[] = [];
+    for (const code of CODES) {
+      for (const seed of SEEDS) {
+        const p = gen(code, seed, "심화상");
+        const { pool, keep, answer } = topOf(code, p.content);
+        const left = pool.filter(keep);
+        if (left.length !== 1) {
           bad.push(
-            `${code} seed ${seed}: 다시 구한 값 «${answer}» ≠ 지면 «${p.answer}»`,
+            `${code} seed ${seed}: 남은 후보 ${left.length}개 — ${p.content}`,
+          );
+          continue;
+        }
+        if (answer(left[0]!) !== p.answer) {
+          bad.push(
+            `${code} seed ${seed}: «${answer(left[0]!)}» ≠ 지면 «${p.answer}»`,
           );
         }
       }
@@ -457,64 +369,129 @@ describe("[초4 6단] 1-3 곱셈과 나눗셈 — 심화중·심화상 (D-113 �
     expect(bad.slice(0, 5)).toEqual([]);
   });
 
-  it("심화중 — 답이 발문에 그대로 있지 않고, 발문에 없는 값을 만들어야 한다", () => {
+  // 🔴 **이것이 심화중과 가르는 자리다.** 답이 무리의 극값이면 「가장 큰/작은」이라는
+  //    조건 한 번으로 집히므로 심화중이지 심화상이 아니다.
+  it("심화상 — 남은 하나가 후보 무리의 **극값이 아니다** (조건 한 번으로는 안 집힌다)", () => {
     const bad: string[] = [];
     for (const code of CODES) {
       for (const seed of SEEDS) {
-        const p = gen(code, seed, "심화중");
-        const given = new Set(numbersIn(p.content));
-        const { made } = midOf(code, p.content);
-        for (const v of numbersIn(p.answer)) {
-          if (given.has(v))
-            bad.push(`${code} seed ${seed}: 답 ${v} 가 발문에 있다`);
-        }
-        if (made.every((v) => given.has(v))) {
-          bad.push(`${code} seed ${seed}: 발문의 수만으로 답이 나온다`);
+        const p = gen(code, seed, "심화상");
+        const { pool } = topOf(code, p.content);
+        const v = Number(p.answer.replace(/[^\d]/g, ""));
+        if (v === Math.min(...pool) || v === Math.max(...pool)) {
+          bad.push(
+            `${code} seed ${seed}: 답 ${v} 가 무리의 끝이다 — ${p.content}`,
+          );
         }
       }
     }
     expect(bad.slice(0, 5)).toEqual([]);
   });
 
-  // ── 눈금 — 이 자가 «아니오»를 낼 수 있나 ──────────────────────────────
-  //
-  // 위 단정이 전부 초록인 것이 «깨끗»인지 «못 셈»인지 갈라야 한다. 지어낸 지면을
-  // 대어 훑기와 사슬이 실제로 갈라내는지 회차마다 보인다(양성·음성 둘 다).
-  it("눈금 — 훑기가 틀린 답을 잡고 맞는 답을 통과시킨다", () => {
-    const card4 = "$2$, $3$, $5$, $8$ 의 수 카드가 한 장씩 있습니다.";
-    const s = searchOf("1-3-1", card4);
-    expect(s.candidates.length, "카드 넷의 후보는 24가지다").toBe(24);
-    // 양성 — 참 답(훑어서 나온 값)
-    expect(s.solve(s.candidates)).toBe("$42560$, $7160$");
-    // 음성 — 후보를 셋만 남기면 답이 달라진다(=후보 집합이 답을 정한다)
-    expect(s.solve(s.candidates.slice(0, 3))).not.toBe("$42560$, $7160$");
-
-    const div = searchOf(
-      "1-3-7",
-      "$120$을 어떤 두 자리 수로 나누려고 합니다. 나누는 수를 몇십으로 어림하면 $20$이 되고, 나누어떨어집니다. 나누는 수가 될 수 있는 수를 모두 구하시오.",
-    );
-    expect(div.candidates.length, "두 자리 수는 90개다").toBe(90);
-    expect(div.solve(div.candidates)).toBe("$15$, $20$, $24$");
-    // 음성 — 어림 조건이 없으면 $10$·$12$ 같은 것이 섞여 답이 달라진다
-    expect(div.solve(div.candidates.filter((v) => v !== 15))).not.toBe(
-      "$15$, $20$, $24$",
-    );
+  it("심화상 — 후보를 **발문이 주지 않는다** (되짚기가 만든 것이다)", () => {
+    const bad: string[] = [];
+    for (const code of CODES) {
+      for (const seed of SEEDS) {
+        const p = gen(code, seed, "심화상");
+        const { pool, keep } = topOf(code, p.content);
+        const given = new Set(numbersIn(p.content));
+        const named = pool.filter(keep).filter((v) => given.has(v));
+        if (named.length > 0) {
+          bad.push(
+            `${code} seed ${seed}: 답 후보 ${named} 가 발문에 적혀 있다`,
+          );
+        }
+        // 후보 무리 자체도 발문이 열거하지 않는다 — 무리가 발문의 수보다 훨씬 크다.
+        if (pool.length <= given.size) {
+          bad.push(
+            `${code} seed ${seed}: 후보 무리(${pool.length})가 발문의 수만큼 작다`,
+          );
+        }
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
   });
 
-  it("눈금 — 심화중 사슬이 지어낸 지면에서도 같은 답을 낸다", () => {
-    // 양성 — 「$40$을 곱해야 할 것을 더했더니 $556$」 → 어떤 수 $516$ · 바른 값 $20640$
+  // ── 반증 ④ — 뒤집힘 필터를 **실제로 댄다** ──────────────────────────────
+
+  it("반증④ — 연산·기본·응용에는 **열린 마디가 없다** (있어도 한 식으로 굳는다)", () => {
+    const bad: string[] = [];
+    let named = 0;
+    for (const code of CODES) {
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const p = gen(code, seed, tier);
+          if (!NAMES_UNKNOWN.test(p.content)) continue;
+          named += 1;
+          if (!hardensInOneStep(p.content)) {
+            bad.push(
+              `${code} ${tier} seed ${seed}: 미지의 대상을 부르는데 한 식으로 안 굳는다 — ${p.content.replace(/\n/g, " ")}`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+    // 🔴 분모 — 미지의 대상을 부르는 자리가 하나도 없으면 위 단정은 **한 번도 안 돈다.**
+    //    표준 1-3-5 «연산»이 그 자리다(`$23\times\square=161$`). 그것이 사라지면
+    //    이 시험은 「깨끗」이 아니라 「못 셈」이 되므로 여기서 먼저 빨개진다.
     expect(
-      midOf(
-        "1-3-1",
-        "어떤 수에 $40$을 곱해야 할 것을 잘못하여 더했더니 $556$이 되었습니다. 바르게 계산한 값은 잘못 계산한 값보다 얼마나 더 큰가?",
-      ),
-    ).toEqual({ answer: "$20084$", made: [516, 20640] });
-    // 음성 — 잘못 계산한 값이 달라지면 답도 달라져야 한다(사슬이 발문을 실제로 읽는다)
-    expect(
-      midOf(
-        "1-3-1",
-        "어떤 수에 $40$을 곱해야 할 것을 잘못하여 더했더니 $557$이 되었습니다. 바르게 계산한 값은 잘못 계산한 값보다 얼마나 더 큰가?",
-      ).answer,
-    ).not.toBe("$20084$");
+      named,
+      "미지의 대상을 부르는 하위 갈래가 하나도 없다",
+    ).toBeGreaterThan(0);
+  });
+
+  // 위 필터가 «아니오»를 낼 수 있어야 그 초록이 뜻이 있다 — 확대 둘은 반드시 부르고,
+  // 부른 자리가 한 식으로 굳으면 안 된다.
+  it("반증④ 음성 대조 — 심화중·심화상은 마디를 부르고, 한 식으로는 안 굳는다", () => {
+    const bad: string[] = [];
+    for (const code of CODES) {
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = gen(code, seed, tier);
+          if (!NAMES_UNKNOWN.test(p.content)) {
+            bad.push(`${code} ${tier} seed ${seed}: 미지의 대상을 안 부른다`);
+          }
+          if (hardensInOneStep(p.content)) {
+            bad.push(
+              `${code} ${tier} seed ${seed}: 한 식으로 굳는다 — 심화하다`,
+            );
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
+  // ── 눈금 — 이 자가 «아니오»를 낼 수 있나 (양성·음성 둘 다) ──────────────
+
+  it("눈금 — 지어낸 지면에서 마디와 견주기가 실제로 갈라낸다", () => {
+    // 심화중 양성 — 「$60$ 을 곱해 다섯 자리, 가장 작은 세 자리 수」 → $167$
+    const mid = midOf(
+      "1-3-1",
+      "어떤 수에 $60$을 곱했더니 곱이 다섯 자리 수가 되었습니다. 어떤 수가 될 수 있는 세 자리 수 중에서 가장 작은 수를 구하시오.",
+    );
+    expect(mid.pool.length, "마디가 안 열렸다").toBeGreaterThan(1);
+    expect(mid.answer(Math.min(...mid.pool))).toBe("$167$");
+    // 음성 — 반대쪽 끝은 다른 답이어야 한다(조건이 일을 한다)
+    expect(mid.answer(Math.max(...mid.pool))).not.toBe("$167$");
+
+    // 심화상 양성 — 후보 아흔에 나눗셈을 걸면 하나만 남는다
+    const top = topOf(
+      "1-3-7",
+      "$665$를 어떤 두 자리 수로 나누었더니 나누어떨어졌습니다. 나누는 수를 몇십으로 어림하면 $20$이 됩니다. 나누는 수를 구하시오.",
+    );
+    expect(top.pool.length).toBe(90);
+    expect(top.pool.filter(top.keep)).toEqual([19]);
+    // 음성 — 어림 조건을 뺀 «계산만» 으로는 하나가 안 남는다(성질이 필요하다)
+    expect(TWO.filter((d) => 665 % d === 0).length).toBeGreaterThan(1);
+
+    // 마디 열쇠 — 양성·음성
+    expect(NAMES_UNKNOWN.test("어떤 수에 $60$을 곱했더니")).toBe(true);
+    expect(NAMES_UNKNOWN.test("$684$에 $67$을 곱하시오.")).toBe(false);
+    expect(hardensInOneStep(String.raw`$23\times\square=161$ 에서`)).toBe(true);
+    expect(hardensInOneStep(String.raw`$684\times\square$ 의 곱이`)).toBe(
+      false,
+    );
   });
 });
