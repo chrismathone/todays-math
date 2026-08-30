@@ -150,10 +150,10 @@ function oneStepAway(page: Dec[], want: Dec): string | null {
 function retrace(
   code: string,
   content: string,
-): { first: string[]; final: string[] } | null {
+): { first: string[]; final: string[]; window: number } | null {
   const ds = decsIn(content);
 
-  // ── 2-2-1·2-2-2·2-2-3 — 「$A$ 로 나눈 몫이 …」가 어떤 수를 배수열로 묶는다 ──
+  // ── 2-2-1·2-2-2·2-2-3 — 「$A$ 로 나눈 몫이 …」가 어떤 수를 **배수열**로 묶는다 ──
   if (code === "2-2-1" || code === "2-2-2" || code === "2-2-3") {
     const two = /나눈 몫도/.test(content); // 심화상은 나눗셈 조건이 둘이다
     if (ds.length !== (two ? 4 : 3)) return null;
@@ -161,69 +161,75 @@ function retrace(
     const b = two ? ds[1]! : null;
     const lo = ds[two ? 2 : 1]!;
     const up = ds[two ? 3 : 2]!;
-    // 어떤 수의 «해상도» — 2-2-2 는 소수 두 자리, 2-2-1 은 한 자리, 2-2-3 은 자연수.
-    const dp = code === "2-2-2" ? 2 : code === "2-2-1" ? 1 : 0;
-    const unit = 10 ** dp; // 그 해상도의 한 눈금(정수 배율)
-    const scale = 10 ** Math.max(dp, a.dp, b?.dp ?? 0, lo.dp, up.dp);
-    const at = (d: Dec) => d.scaled * (scale / 10 ** d.dp);
-    const divides = (x: number, d: Dec) => x % (d.scaled * (scale / 10 ** d.dp) / 10 ** 0) === 0;
-    void divides;
-    const aS = at(a);
+    // 전부 ×100 정수로 옮겨 **정수 곱셈으로만** 견준다(부동소수를 안 거친다).
+    const c100 = (d: Dec) => d.scaled * 10 ** (2 - d.dp);
+    const a100 = c100(a);
+    const b100 = b ? c100(b) : 0;
+    // 몫의 해상도 — 발문이 말한다. 「자연수」면 1, 「소수 한 자리 수」면 0.1.
+    const qStep = /몫이 자연수|몫도 자연수/.test(content) ? 100 : 10;
+    // 어떤 수의 해상도 — 소단원이 정한다.
+    const xMod = code === "2-2-3" ? 100 : code === "2-2-1" ? 10 : 1;
+    const twoDp = code === "2-2-2"; // 「소수 두 자리 수」라고 발문이 못 박는다
+    const inRange = (x100: number) => x100 > c100(lo) && x100 < c100(up);
+    const okShape = (x100: number) =>
+      x100 % xMod === 0 && (!twoDp || x100 % 10 !== 0);
+    // 범위 «만»으로 남는 값 — 이것이 둘 이상이어야 소단원 성질이 일을 한다(㉡).
+    let window = 0;
+    for (let x = c100(lo) + 1; x < c100(up); x += 1)
+      if (okShape(x)) window += 1;
     const first: string[] = [];
-    for (let k = 1; ; k += 1) {
-      const x = aS * k; // 어떤 수 (scale 배율)
-      if (x >= at(up)) break;
-      if (x <= at(lo)) continue;
-      // 그 해상도로 적을 수 있는 수인가 — 2-2-3 은 자연수, 2-2-2 는 두 자리까지
-      if (x % (scale / unit) !== 0) continue;
-      // 꼬리 0 은 지면 표기가 달라지므로 «그 자릿수의 수»가 아니다(2-2-2 만 요구)
-      if (code === "2-2-2" && (x / (scale / unit)) % 10 === 0) continue;
-      first.push(show({ scaled: x / (scale / unit), dp }));
+    for (let j = 1; ; j += 1) {
+      const x100 = (a100 * (j * qStep)) / 100;
+      if (x100 >= c100(up)) break;
+      if (!Number.isInteger(x100) || !inRange(x100) || !okShape(x100)) continue;
+      first.push(show({ scaled: x100, dp: 2 }).replace(/\.?0+$/, "") || "0");
     }
+    const asDec = (t: string) => decOf(t)!;
     const final = b
       ? first.filter((t) => {
-          const x = decOf(t)!;
-          return (at(x) * 10) % (at(b) * 10) === 0;
+          const x100 = c100(asDec(t));
+          return qStep === 100 ? x100 % b100 === 0 : (x100 * 10) % b100 === 0;
         })
       : first;
-    return { first, final };
+    return { first, final, window };
   }
 
   // ── 2-2-4 — 반올림한 값 하나가 **구간**을 가리킨다 ──
   if (code === "2-2-4") {
     const midHead = content.match(/\$\\square\\div(\d+)\$/);
-    const topHead = content.match(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림/);
+    const heads = [
+      ...content.matchAll(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림/g),
+    ].map((m) => Number(m[1]));
     const rs = [...content.matchAll(/나타내면 \$(\d+)\.(\d)\$/g)].map((m) =>
       Number(`${m[1]}${m[2]}`),
     );
-    const b1 = midHead ? Number(midHead[1]) : topHead ? Number(topHead[1]) : NaN;
-    if (!Number.isFinite(b1) || rs.length === 0) return null;
+    const b1 = midHead ? Number(midHead[1]) : heads[0];
+    if (b1 === undefined || !Number.isFinite(b1) || rs.length === 0)
+      return null;
     const lo100 = (rs[0]! * 10 - 5) * b1;
     const hi100 = (rs[0]! * 10 + 5) * b1;
-    const first: number[] = [];
+    const ns: number[] = [];
     for (let n = Math.ceil(lo100 / 100); n * 100 < hi100; n += 1)
-      if (n * 100 >= lo100) first.push(n);
+      if (n * 100 >= lo100) ns.push(n);
     if (midHead) {
       // 심화중 — 「가장 큰 자연수」가 하나를 고른다
       return {
-        first: first.map(String),
-        final: first.length > 0 ? [String(first[first.length - 1])] : [],
+        first: ns.map(String),
+        final: ns.length > 0 ? [String(ns[ns.length - 1])] : [],
+        window: ns.length,
       };
     }
     // 심화상 — 둘째 반올림을 각 후보에 실제로 해 본다
-    const b2 = Number(
-      content.match(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림[^$]*$/)?.[1] ??
-        [...content.matchAll(/\$(\d+)\$(?:로|으로) 나눈 몫을 반올림/g)][1]?.[1] ??
-        NaN,
-    );
-    if (!Number.isFinite(b2) || rs.length < 2) return null;
+    const b2 = heads[1];
+    if (b2 === undefined || rs.length < 2) return null;
     return {
-      first: first.map(String),
-      final: first.filter((n) => round1(n, b2) === rs[1]!).map(String),
+      first: ns.map(String),
+      final: ns.filter((n) => round1(n, b2) === rs[1]!).map(String),
+      window: ns.length,
     };
   }
 
-  // ── 2-2-5 — 「$k$ 명에게 주고 조금 남는다」·「$r$ 이 남는다」가 구간·배수열을 만든다 ──
+  // ── 2-2-5 — 「$k$ 명에게 주고 조금 남는다」·「$r$ 이 남는다」 ──
   if (code === "2-2-5") {
     const mid = content.match(
       /\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주었더니 \$(\d+)\$명[^$]*\$(\d+)\\,/,
@@ -232,15 +238,16 @@ function retrace(
       const per = Number(mid[1]);
       const k = Number(mid[2]);
       const rmin = Number(mid[3]);
-      // 되짚기: 처음 양은 (per·k, per·k+per) 안의 소수 첫째 자리 수 — **여럿**이다
+      // 되짚기: 처음 양은 `(per·k, per·k+per)` 안의 소수 첫째 자리 수 — **여럿**이다
       const first: string[] = [];
       for (let t = per * k * 10 + 1; t < (per * k + per) * 10; t += 1)
         first.push(show({ scaled: t, dp: 1 }));
-      // 남는 양 하한이 좁히고, 「가장 적은」이 하나를 고른다
-      const ok = first.filter(
-        (t) => decOf(t)!.scaled > (per * k + rmin) * 10,
-      );
-      return { first, final: ok.length > 0 ? [ok[0]!] : [] };
+      const ok = first.filter((t) => decOf(t)!.scaled > (per * k + rmin) * 10);
+      return {
+        first,
+        final: ok.length > 0 ? [ok[0]!] : [],
+        window: first.length,
+      };
     }
     const top = content.match(
       /\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주면 \$([\d.]+)\\,\\mathrm\{[a-zA-Z]+\}\$[^$]*\$(\d+)\\,\\mathrm\{[a-zA-Z]+\}\$씩 나누어 주면 \$([\d.]+)\\,\\mathrm\{[a-zA-Z]+\}\$[^$]*\$([\d.]+)\\,/,
@@ -261,7 +268,7 @@ function retrace(
       const v = decOf(t)!.scaled;
       return v > b * 10 && (v - rb10) % (b * 10) === 0;
     });
-    return { first, final };
+    return { first, final, window: first.length };
   }
   return null;
 }
@@ -310,21 +317,34 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () =
     expect(checked).toBe(CODES.length * 2 * SEEDS.length);
   });
 
-  it("㉡ 첫 조건은 후보를 **둘 이상** 만든다 — 하나면 마디가 굳은 것이고 심화하다", () => {
-    // 🔴 이것이 심화중·심화상의 **정의**다(반증 ①). 이 검사가 죽으면 「되짚기 축」이
-    //    이름만 남고, 마디가 굳는 문항이 위 두 칸에 조용히 앉는다.
+  it("㉡ 마디가 **정말 안 굳는다** — 조건 하나만으로는 값이 안 정해진다 (반증 ①)", () => {
+    // 🔴 이것이 심화중·심화상의 **정의**다. 검사가 죽으면 「되짚기 축」이 이름만 남고,
+    //    마디가 굳는 문항이 위 두 칸에 조용히 앉는다.
+    //
+    // ⚠️ **두 갈래를 같은 수로 재면 안 된다** — 굳히는 방식이 다르다.
+    //    심화중: 되짚기가 배수열·구간을 만들고 **발문의 조건**(범위·「가장 큰」)이 고른다.
+    //            → 그 **조건만** 남겼을 때 값이 여럿이어야 소단원 성질이 일을 한다(`window`).
+    //    심화상: **성질까지 써도** 후보가 여럿이고, 둘째 계산이 하나를 남긴다(`first`).
+    //    처음에 둘 다 `first` 로 쟀더니 심화중이 「후보 1개」로 전량 빨갛게 났다 —
+    //    구성이 범위 안에 배수를 **정확히 하나** 두기 때문이다. 그건 결함이 아니라
+    //    **내 자가 심화중의 정의를 잘못 옮긴 것**이었다.
     const bad: string[] = [];
     for (const code of CODES) {
       const unit = unitOf(code);
-      for (const tier of ["심화중", "심화상"] as const) {
-        for (const seed of SEEDS) {
-          const p = generateElementaryProblem(unit, seed, tier);
-          const r = retrace(code, p.content)!;
-          if (r.first.length < 2) {
-            bad.push(
-              `${code} ${tier} seed=${seed}: 첫 조건이 후보를 ${r.first.length}개만 만든다 — ${p.content}`,
-            );
-          }
+      for (const seed of SEEDS) {
+        const mid = generateElementaryProblem(unit, seed, "심화중");
+        const rm = retrace(code, mid.content)!;
+        if (rm.window < 2) {
+          bad.push(
+            `${code} 심화중 seed=${seed}: 조건만으로 값이 ${rm.window}개 — 마디가 굳었다(심화하다) — ${mid.content}`,
+          );
+        }
+        const top = generateElementaryProblem(unit, seed, "심화상");
+        const rt = retrace(code, top.content)!;
+        if (rt.first.length < 2) {
+          bad.push(
+            `${code} 심화상 seed=${seed}: 첫 조건이 후보를 ${rt.first.length}개만 만든다 — ${top.content}`,
+          );
         }
       }
     }
@@ -401,9 +421,10 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () =
     }
     expect(bad.slice(0, 6)).toEqual([]);
     // 음성 대조 — 이 자가 「한 걸음」을 실제로 잡는가.
-    expect(caught, "연산 갈래에서 한 걸음을 하나도 못 잡았다 — 이 자가 죽었다").toBeGreaterThan(
-      CODES.length * SEEDS.length * 0.5,
-    );
+    expect(
+      caught,
+      "연산 갈래에서 한 걸음을 하나도 못 잡았다 — 이 자가 죽었다",
+    ).toBeGreaterThan(CODES.length * SEEDS.length * 0.5);
   });
 
   it("㉤ 반증 ④ — 같은 소단원의 **연산·기본·응용**은 이 잣대를 통과하지 않는다", () => {
@@ -415,6 +436,7 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () =
     //       같이 적었다 — 15갈래(5소단원 × 3)를 실제로 읽었다.
     const bad: string[] = [];
     let judged = 0;
+    let reached = 0; // 되짚기 표지가 있어 **한 걸음인지 실제로 재 본** 자리
     for (const code of CODES) {
       const unit = unitOf(code);
       for (const tier of ["연산", "기본", "응용"] as const) {
@@ -427,6 +449,7 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () =
           if (!backword) continue;
           const ans = answerDecs(p.answer);
           if (ans.length !== 1) continue;
+          reached += 1;
           if (oneStepAway(decsIn(p.content), ans[0]!)) continue;
           bad.push(
             `${code} ${tier} seed=${seed}: 되짚기 축을 통과한다 — 이 소단원은 비워야 한다 (${p.content})`,
@@ -436,6 +459,13 @@ describe("[초6 확대] 2-2 소수의 나눗셈 — 되짚기 축 (D-113)", () =
     }
     expect(bad.slice(0, 6)).toEqual([]);
     expect(judged).toBe(CODES.length * 3 * SEEDS.length);
+    // 🔴 **「0건」이 «깨끗»인지 «못 셈»인지 가른다.** 되짚기 표지가 있는 자리에
+    //    한 번도 안 닿았으면 위의 0 은 아무것도 증명하지 않는다. 실측: 2-2-1·2-2-2·
+    //    2-2-3 의 **연산**이 `…=\square` 를 쓰므로 반드시 닿는다(48자리).
+    expect(
+      reached,
+      "되짚기 표지가 있는 연산·기본·응용에 한 번도 안 닿았다 — 이 필터는 아무것도 안 쟀다",
+    ).toBeGreaterThanOrEqual(3 * SEEDS.length);
   });
 
   it("심화중·심화상은 씨앗마다 갈리고, 같은 씨앗이면 늘 같다", () => {

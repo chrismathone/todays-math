@@ -5282,6 +5282,28 @@ function scaledRo(scaled: number): string {
  * 2-2-1 심화중 재료 — 「$A$ 로 나눈 몫이 자연수」가 어떤 수를 **$A$ 의 배수열**로 묶고,
  * 범위가 그중 하나를 고른다. 범위 안에 배수가 **정확히 하나**여야 답이 선다.
  */
+/**
+ * 🔴 **반증 ⑥ 가드** — 발문에 실린 수 둘을 **한 번 곱하거나 나눠서** 답이 나오면
+ * 그 문항은 되짚기가 아니라 한 걸음이다. 배수·구간으로 지은 문항에서도 **우연히**
+ * 그렇게 되는 짝이 있다(실측: `2.4\times3.6=8.64` · `72\div1.2=60` — 시험이 잡았다).
+ *
+ * 값은 `[정수 배율, 소수 자릿수]` 로 받아 **정수 곱으로만** 견준다(부동소수를 안 거친다).
+ */
+function oneStepHits(
+  page: readonly (readonly [number, number])[],
+  ans: readonly [number, number],
+): boolean {
+  const [as, ad] = ans;
+  const p10 = (e: number) => 10 ** e;
+  for (const [us, ud] of page)
+    for (const [vs, vd] of page) {
+      if (us === vs && ud === vd) continue;
+      if (us * vs * p10(ad) === as * p10(ud + vd)) return true;
+      if (vs !== 0 && us * p10(vd + ad) === as * vs * p10(ud)) return true;
+    }
+  return false;
+}
+
 const SAME_MULT: { a10: number; k: number; lo10: number; up10: number }[] = [];
 for (let a10 = 11; a10 <= 39; a10 += 1) {
   if (a10 % 10 === 0) continue;
@@ -5295,6 +5317,17 @@ for (let a10 = 11; a10 <= 39; a10 += 1) {
       let hits = 0;
       for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;
       if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo10, 1],
+            [up10, 1],
+          ],
+          [x10, 1],
+        )
+      )
+        continue;
       SAME_MULT.push({ a10, k, lo10, up10 });
     }
   }
@@ -5326,6 +5359,18 @@ for (let a10 = 11; a10 <= 29; a10 += 1) {
         if (list.length < 3 || list.length > 6) continue;
         const win = list.filter((v) => v % b10 === 0);
         if (win.length !== 1 || win[0]! % 10 === 0) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo10, 1],
+              [up10, 1],
+            ],
+            [win[0]!, 1],
+          )
+        )
+          continue;
         SAME_TWO.push({ a10, b10, lo10, up10, x10: win[0]! });
       }
     }
@@ -5354,6 +5399,17 @@ for (let a10 = 11; a10 <= 39; a10 += 1) {
         if (v > lo100 && v % 10 !== 0) hits += 1;
       }
       if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo100, 2],
+            [up100, 2],
+          ],
+          [x100, 2],
+        )
+      )
+        continue;
       DIFF_MULT.push({ a10, m, lo100, up100 });
     }
   }
@@ -5384,6 +5440,18 @@ for (let a10 = 11; a10 <= 29; a10 += 1) {
         if (list.length < 3 || list.length > 6) continue;
         const win = list.filter((v) => v % b10 === 0);
         if (win.length !== 1) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo100, 2],
+              [up100, 2],
+            ],
+            [win[0]!, 2],
+          )
+        )
+          continue;
         DIFF_TWO.push({ a10, b10, lo100, up100, x100: win[0]! });
       }
     }
@@ -5406,6 +5474,17 @@ for (let a10 = 11; a10 <= 49; a10 += 1) {
       let hits = 0;
       for (let n = lo + 1; n < up; n += 1) if ((n * 10) % a10 === 0) hits += 1;
       if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo, 0],
+            [up, 0],
+          ],
+          [x, 0],
+        )
+      )
+        continue;
       NAT_MULT.push({ a10, lo, up, x });
     }
   }
@@ -5433,6 +5512,18 @@ for (let a10 = 11; a10 <= 39; a10 += 1) {
         if (list.length < 3 || list.length > 6) continue;
         const win = list.filter((n) => (n * 10) % b10 === 0);
         if (win.length !== 1) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo, 0],
+              [up, 0],
+            ],
+            [win[0]!, 0],
+          )
+        )
+          continue;
         NAT_TWO.push({ a10, b10, lo, up, x: win[0]! });
       }
     }
