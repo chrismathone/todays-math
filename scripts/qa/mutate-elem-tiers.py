@@ -348,6 +348,35 @@ G3_MUTS = [
         '  const top = three.indexOf(Math.max(...three));',
         '  const top = three.indexOf(Math.min(...three));',
     ),
+    # ── 초3 2-1 «심화중·심화상» (D-113 파일럿, 2026-08-30) ──
+    # 잠그는 시험은 `elemTiersG3Mul21Extend.test.ts` 다(위 TARGETS 에 함께 적었다).
+    # 마지막 하나는 **옛 시험**(elemTiersG3 의 이름 약속)이 무는지를 본다 —
+    # 새 갈래가 소단원 밖으로 새는 것을 옛 가드가 잡아야 확대가 안전하다.
+    (
+        '[2-1 D-113] 심화중: 답을 옆 후보로 민다',
+        '    n(cut.ans), [',
+        '    n(next), [',
+    ),
+    (
+        '[2-1 D-113] 심화중: 문턱을 꼭대기 위로 올려 후보가 다 통과한다',
+        '    const up = roundBetween(f.product(ds[i]!), f.product(ds[i + 1]!));',
+        '    const up = f.product(ds[ds.length - 1]!) + 1;',
+    ),
+    (
+        '[2-1 D-113] 심화상: 나열을 첫 후보 하나로 줄인다',
+        '    list21(r.ans), [',
+        '    list21(r.ans.slice(0, 1)), [',
+    ),
+    (
+        '[2-1 D-113] 심화상: 카드 개수를 «전부»로 센다',
+        '    n(okProducts.length), [',
+        '    n(ps.length), [',
+    ),
+    (
+        '[2-1 D-113] 올림 약속 필터를 끈다 — 후보가 소단원 밖으로 샌다',
+        '        if (!DIGITS_1_9.every((d) => inBand(mulCarries3x1(at(d), b)))) continue;',
+        '        if (!DIGITS_1_9.some((d) => inBand(mulCarries3x1(at(d), b)))) continue;',
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -1471,6 +1500,9 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elementaryG3Tiers.test.ts",
             "src/__tests__/unit/elemTiersG3.test.ts",
+            # D-113 파일럿(심화중·심화상). 이 파일을 안 적으면 확대 갈래를 무는
+            # 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
+            "src/__tests__/unit/elemTiersG3Mul21Extend.test.ts",
         ],
         "grade": "초3",
         "sections": [
