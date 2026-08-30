@@ -65,8 +65,30 @@ const add = (a: Rat, b: Rat) => rat(a.n * b.d + b.n * a.d, a.d * b.d);
 const sub = (a: Rat, b: Rat) => rat(a.n * b.d - b.n * a.d, a.d * b.d);
 const same = (a: Rat, b: Rat) => a.n === b.n && a.d === b.d;
 
+/**
+ * **답이 지면에 그대로 찍혀 있다** — 연산을 한 번도 안 쓰고 값이 맞는 자리.
+ *
+ * 🔴 이것은 «순방향 도달»이 **아니다** (2026-08-31 정정). 반증 ⑥ 의 문장은
+ *    「발문이 준 수에 그 소단원 **연산을 순방향으로 적용해** 답이 나오면」이다 —
+ *    **연산을 0번 쓰는 것은 적용이 아니다.**
+ *
+ *    실물로 걸린 자리: 초3 `2-1-1 심화중` 「어떤 한 자리 수를 $116$ 에 곱했더니
+ *    **곱의 일의 자리 숫자가 $6$**. 올림이 한 번. 어떤 수는?」 → 답 $6$.
+ *    지면의 `$6$` 은 **곱의 일의 자리**이지 피연산자가 아니다. 값만 같다.
+ *    (일의 자리가 6인 수에 한 자리 수를 곱해 일의 자리가 6이 되려면 $k∈\{1,6\}$ 이라
+ *     답이 자주 6 이 된다 — 우연이 아니라 **역할이 다른 것**이다.)
+ *
+ *    「답이 발문에 그대로 있다」는 그것대로 결함일 수 있지만 **다른 축**이다.
+ *    여기서 세면 이 자가 그 부류를 통째로 오판한다.
+ */
+export function answerPrintedOnPage(
+  nums: readonly Rat[],
+  answer: Rat,
+): boolean {
+  return nums.some((v) => same(v, answer));
+}
+
 export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
-  if (nums.some((v) => same(v, answer))) return true;
   const products: Rat[] = [];
   for (let i = 0; i < nums.length; i += 1) {
     for (let j = i + 1; j < nums.length; j += 1) {
