@@ -14,8 +14,9 @@
  *
  * ## 스펙은 어디서 오나 — `externalId` 가 되짚어 준다
  *
- *   engine-mid:<유형키>|s<씨앗>|v<변형>          → generateMiddleProblem(키, 씨앗, 변형)
- *   engine-elem:<학년>|<단원>|<소단원>|<갈래>|s<씨앗> → generateElementaryProblem(단원, 씨앗, 갈래)
+ *   engine-mid:<유형키>|s<씨앗>|v<변형>|<문항유형>              → generateMiddleProblem
+ *   engine-elem:<학년>|<단원>|<소단원>|f<문형>|<문항유형>|s<씨앗> → generateElementaryForm
+ *   (옛 형식 — 문항유형·문형이 없던 시절 — 도 그대로 받는다. `respec` 주석 참조.)
  *
  * 생성기는 **결정론적**이라 같은 입력이면 같은 스펙이 나온다. 그것을 믿지 않고,
  * 되짚은 `content` 가 DB 의 `content` 와 **다르면 그 행은 건너뛴다** — 생성기가 그
@@ -35,10 +36,12 @@ import { PrismaClient } from "@prisma/client";
 import type { ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
+  generateElementaryForm,
   generateElementaryProblem,
 } from "../../src/lib/elementary/generate";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { generateMiddleProblem } from "../../src/lib/middle/generate";
+import { isDirectScript } from "../import/isDirectScript";
 
 // 관리용 스크립트는 자기 클라이언트를 쓴다 — `src/lib/db` 의 바깥벽 확장은 읽기를
 // `pool='shared'` 로 좁혀서 「내가 고친 행이 정말 보이나」가 동어반복이 된다.
@@ -72,13 +75,50 @@ function mergeLedgerRows(prev: LedgerRow[], next: LedgerRow[]): LedgerRow[] {
   return [...byId.values()];
 }
 
-/** `externalId` 를 되짚어 그때의 문항(그러므로 그림 스펙)을 다시 만든다. */
-function respec(externalId: string): { content: string; spec: unknown } | null {
-  const mid = /^engine-mid:(.+)\|s(\d+)\|v(\d+)$/.exec(externalId);
+/**
+ * `externalId` 를 되짚어 그때의 문항(그러므로 그림 스펙)을 다시 만든다.
+ *
+ * 🔴 **형식이 두 벌이다 — 적재기가 바꿨는데 여기가 안 따라갔었다.**
+ *    2026-08-30 에 드라이런을 돌리니 5,005건 중 **4,640건이 「되짚기 실패」**였다.
+ *    `load-engine-problems.ts` 는 뒤에 `|{문항유형}` 을 붙이고, 초등은 갈래(tier)가
+ *    아니라 **문형**(`f{id}`)으로 낸다. 여기 정규식은 `$` 로 끝을 못 박고 있어서
+ *    새 형식이 하나도 안 걸렸다. 「목록을 손으로 쓰면 세는 쪽과 고치는 쪽이 같이
+ *    눈이 먼다」의 또 한 번(CLAUDE.md 2026-08-18) — 다만 여기서는 **조용히 0** 이
+ *    아니라 「되짚기 실패」로 세어져서 드러났다. 그 수를 찍게 해 둔 것이 살렸다.
+ *
+ *    지금 적재기가 쓰는 것(정본은 `load-engine-problems.ts`):
+ *      중등  `engine-mid:{키}|s{씨앗}|v{변형}|{문항유형}`
+ *      초등  `engine-elem:{학년}|{대단원}|{소단원}|f{문형}|{문항유형}|s{씨앗}`
+ *    옛 형식(문항유형·문형이 없던 시절)도 그대로 받는다 — 그때 적재된 행이 아직 있다.
+ */
+export function respec(
+  externalId: string,
+): { content: string; spec: unknown } | null {
+  // 중등 — 뒤에 `|{문항유형}` 이 붙었든 안 붙었든 받는다.
+  const mid = /^engine-mid:(.+)\|s(\d+)\|v(\d+)(?:\|[^|]*)?$/.exec(externalId);
   if (mid) {
     const p = generateMiddleProblem(mid[1]!, Number(mid[2]), Number(mid[3]));
     return { content: p.content, spec: p.figureSpec ?? null };
   }
+
+  // 초등 ⑴ **문형** 판 — `f{문형}` 이면 갈래가 아니라 문형으로 되짚는다.
+  const elemForm =
+    /^engine-elem:([^|]+)\|([^|]+)\|([^|]+)\|f([^|]+)\|[^|]*\|s(\d+)$/.exec(
+      externalId,
+    );
+  if (elemForm) {
+    const unit = elementaryUnits().find(
+      (u) =>
+        u.grade === elemForm[1] &&
+        u.chapter === elemForm[2] &&
+        u.section === elemForm[3],
+    );
+    if (!unit) return null;
+    const p = generateElementaryForm(unit, Number(elemForm[5]), elemForm[4]!);
+    return { content: p.content, spec: p.figureSpec ?? null };
+  }
+
+  // 초등 ⑵ 옛 **갈래** 판.
   const elem = /^engine-elem:([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|s(\d+)$/.exec(
     externalId,
   );
@@ -99,6 +139,27 @@ function respec(externalId: string): { content: string; spec: unknown } | null {
 }
 
 const norm = (s: string) => s.replace(/\s+/g, " ").trim();
+
+/**
+ * 「적재본의 발문이 지금 생성기의 것과 **같은가**」.
+ *
+ * 🔴 **적재기가 덧붙인 것을 «차이»로 세면 안 된다.** 한 문항이 단답형·객관식 **두 벌**로
+ *    들어가는데, 객관식 본문에는 적재기가 보기 ①~⑤ 를 **뒤에 붙인다**. 엔진 원문과
+ *    다른 게 당연하다 — 그냥 견주면 객관식 절반이 통째로 「발문이 달라졌다」로 빠지고,
+ *    그 그림은 영영 안 고쳐진다. (CLAUDE.md 2026-08-29 「3,903행이 바뀌었다」와 같은 함정.)
+ *
+ * ⚠️ 그렇다고 `startsWith` 하나로 느슨하게 두면 **진짜 발문 변경을 놓친다** — 발문이
+ *    줄어들었는데 옛 발문이 새 발문으로 시작하면 통과해 버린다. 그래서 남는 꼬리가
+ *    **정말 보기인지**(동그라미 숫자로 시작하는지) 함께 묻는다.
+ */
+export function sameStem(engine: string, loaded: string): boolean {
+  const a = norm(engine);
+  const b = norm(loaded);
+  if (a === b) return true;
+  if (!b.startsWith(a)) return false;
+  const tail = b.slice(a.length).trim();
+  return /^[①②③④⑤]/.test(tail);
+}
 
 async function main() {
   const args = process.argv.slice(2);
@@ -174,7 +235,7 @@ async function main() {
       failures.push(`${row.problemCode}: externalId 를 못 되짚음`);
       continue;
     }
-    if (norm(again.content) !== norm(row.content)) {
+    if (!sameStem(again.content, row.content)) {
       // 생성기가 그 사이 바뀌었다 — 그림만 갈아 끼우면 발문과 그림이 갈린다.
       drifted += 1;
       failures.push(`${row.problemCode}: 발문이 달라졌다(생성기 변경)`);
@@ -255,8 +316,13 @@ async function main() {
   await prisma.$disconnect();
 }
 
-main().catch(async (error) => {
-  console.error(error);
-  await prisma.$disconnect();
-  process.exit(1);
-});
+// 🔴 **import 만으로 돌면 안 된다.** 시험이 `respec`·`sameStem` 을 부르려고 이 모듈을
+//    읽는 순간 `main()` 이 돌아 공유 DB 에 붙는다(D-31 이 막는 것은 «쓰기»지 «연결»이
+//    아니다). 저장소에 이미 있는 `isDirectScript` 로 직접 실행일 때만 돈다.
+if (isDirectScript(import.meta.url)) {
+  main().catch(async (error) => {
+    console.error(error);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
+}
