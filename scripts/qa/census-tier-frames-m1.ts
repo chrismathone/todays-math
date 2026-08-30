@@ -445,6 +445,26 @@ function main(): void {
     console.log(
       "「못 잼」 = 그 소단원의 심화하에서 축이 한 번도 안 걸린다 → 그 소단원의 «갈림»은 근거가 없다.",
     );
+
+    // 브리프 ④㉠ — 「되짚기 사슬의 마디 수」를 **분포로** 낸다. 위 표의 B3 은 이것을
+    // 문턱 하나로 접은 것이라, 문턱이 가르는지 «수 자체»가 가르는지 안 갈린다.
+    console.log("\n| 갈래 | 문항 | 해설 마디 평균 | 마디 0 | 1 | 2 | 3+ |");
+    console.log("|---|---|---|---|---|---|---|");
+    for (const t of ORDER.slice(0, 4)) {
+      const rows = docs.filter((d) => d.tier === t);
+      if (rows.length === 0) continue;
+      const n = rows.map((d) => solutionNodes(d.solution));
+      const bucket = [0, 1, 2, 3].map(
+        (k) => n.filter((x) => (k === 3 ? x >= 3 : x === k)).length,
+      );
+      console.log(
+        `| ${t} | ${rows.length} | ${(n.reduce((a, b) => a + b, 0) / n.length).toFixed(2)} | ` +
+          bucket
+            .map((b) => `${((b / n.length) * 100).toFixed(1)}%`)
+            .join(" | ") +
+          " |",
+      );
+    }
     return;
   }
 
