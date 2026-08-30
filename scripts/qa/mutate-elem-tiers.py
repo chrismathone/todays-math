@@ -1343,15 +1343,20 @@ G6_MUTS = [
         #    ⚠️ 「삼조가 하나뿐인 부피」를 겨눴더니 **cap 고리가 아예 안 돌아** 새 항목이
         #    하나도 안 들어왔다(초록). 결함을 «가능»하게만 만들고 «반드시 밟도록» 안 만든
         #    그 자리다(파일럿 §8.6). 그래서 상한 쪽을 겨눈다.
+        #    ⚠️ 가드만 풀면 **새 항목이 하나도 안 들어온다** — 고리가 이미 `longest[1]`
+        #    에서 끊겨 `kept` 가 늘 하나다. 「결함을 «가능»하게만 만들고 «반드시 밟도록»
+        #    안 만든」 그 자리라, 고리와 가드를 **함께** 푼다.
         "후보 훼손 — 1-6-2 심화상의 상한이 삼조를 둘 이상 남긴다",
-        "    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
-        "    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
+        "  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
+        "  for (let cap = longest[0]! + 1; cap <= longest[2]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
     ),
     (
-        # ㉢ — 한 묶음 후보가 하나면 둘째 비 조건이 아무 일도 안 한다.
-        "후보 훼손 — 2-4-5 심화상이 한 묶음 후보가 하나뿐인 구간을 쓴다",
-        "            if (cands.length < 3 || cands.length > 5) continue;",
-        "            if (cands.length < 1 || cands.length > 5) continue;",
+        # ㉢ — 둘째 비 조건을 통과하는 전체가 둘이면 답이 하나로 안 선다.
+        #    ⚠️ 처음엔 「후보가 셋 이상인가」를 겨눴는데 창 너비가 늘 $3s+2$·$4s+2$ 라
+        #    후보 수가 언제나 3~4 다 — **그 가드는 죽어 있다.** 살아 있는 것은 이쪽이다.
+        "후보 훼손 — 2-4-5 심화상의 둘째 비 조건이 전체를 하나로 못 남긴다",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length !== 1) continue;",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length < 1) continue;",
     ),
     (
         # ㉠ — 간단히 했을 때 후항이 $b$ 가 아닌 세로가 들어오면 **발문이 거짓말**이 된다.

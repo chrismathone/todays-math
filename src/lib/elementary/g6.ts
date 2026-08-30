@@ -8681,6 +8681,9 @@ for (let a = 2; a <= 6; a += 1)
             const up = lo + width;
             if (up > 200) continue;
             const cands = multiplesBetween(lo, up, s);
+            // ⚠️ 창 너비가 $3s+2$·$4s+2$ 라 후보 수는 **늘 3~4** 다 — 이 줄은 그 사실을
+            //    적어 둔 것이지 거르는 가드가 아니다(변이가 「산출물이 그대로」로 잡았다).
+            //    이 자리에서 실제로 일하는 것은 바로 아래 「둘째 비가 하나로 남기는가」다.
             if (cands.length < 3 || cands.length > 5) continue;
             const win = cands.filter((v) => ((v / s) * a) % t === 0);
             if (win.length !== 1) continue;
