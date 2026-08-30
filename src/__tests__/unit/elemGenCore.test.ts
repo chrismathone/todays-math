@@ -9,6 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { CORE_DIFFICULTIES } from "../../contracts/difficulty";
 import { ELEM_TIERS, type ElemTier } from "../../lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -155,9 +156,24 @@ describe("[초등 출제 CLI] 세트 생성", () => {
     expect(new Set(keys).size).toBe(6);
   });
 
-  it("소단원 230개가 전부 갈래 넷을 낸다 — «갈래 없음» 가드의 분모", () => {
+  /**
+   * 🔴 **여기서 「넷」을 세면 안 된다** (D-113, 2026-08-30). 종전에는
+   * `r.tiers.length !== 4` 였는데, 축이 여섯이 되고 초4 1-3 이 확대 둘을 채우자
+   * **멀쩡한 일곱 소단원이 「갈래 없음」으로 잡혔다.** 이 시험이 지키려는 것은
+   * 「갈래가 **없는** 소단원이 생겼나」이지 「몇 개인가」가 아니다 —
+   * 확대(`심화중`·`심화상`)는 소단원마다 있을 수도 없을 수도 있다.
+   *
+   * 그래서 **핵심 넷이 다 있는가**로 묻는다. 목록은 계약(`CORE_DIFFICULTIES`)에서
+   * 가져오므로 손 상수가 아니고, 확대를 더 채워도 이 자리는 안 움직인다.
+   */
+  it("소단원 230개가 전부 **핵심 넷**을 낸다 — «갈래 없음» 가드의 분모", () => {
     const rows = listCoverage();
-    const tierless = rows.filter((r) => r.tiers.length !== 4);
+    const tierless = rows.filter(
+      (r) =>
+        !CORE_DIFFICULTIES.every((t) =>
+          (r.tiers as readonly string[]).includes(t),
+        ),
+    );
     expect(
       tierless.map((r) => `${r.grade} ${r.code}`),
       "갈래가 넷이 아닌 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
