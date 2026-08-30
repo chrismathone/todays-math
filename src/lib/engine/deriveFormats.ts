@@ -276,9 +276,20 @@ export function numericMistakes(answer: string): Mistake[] {
  * 분수·소수 정답도 그대로 둔다(역수·자리 실수가 그 종류 안에서 나온다).
  */
 function sameKind(answer: Rat, candidate: Rat): boolean {
+  // 🔴 **부호를 먼저 본다** (2026-08-30). 종전에는 `answer.d !== 1` 이 맨 앞이라
+  //    **정답이 분수면 모든 후보가 통과**했고, `sign-flip` 이 만든 음수가 그대로
+  //    지면에 나갔다. 초3 「전체를 $6$조각으로 나눈 한 조각은?」(정답 $1/6$) 보기에
+  //    `$-\frac{1}{6}$` 이 있었다 — 적재본 실측 **468건**.
+  //    이 함수의 주석은 이미 「초등 교육과정에 음수가 없다」고 적어 두었는데,
+  //    그 가드가 **정수 정답에만** 걸려 있었다. 분수는 구조적으로 안 걸렸다.
+  //    (「같은 규칙을 쓰는 자리가 둘이면 한 숫자를 두 곳이 쓰게 하라」의 다른 얼굴 —
+  //     여기서는 «부호»와 «분모»가 한 조건에 얽혀 한쪽이 다른 쪽을 가렸다.)
+  //
+  //    정답이 **음수**면 부호 실수가 진짜 오답이므로 그대로 푼다(중등).
+  if (answer.n >= 0 && candidate.n < 0) return false;
   if (answer.d !== 1) return true;
   if (candidate.d !== 1) return false;
-  return answer.n < 0 || candidate.n >= 0;
+  return true;
 }
 
 function parseNumericAnswer(raw: string): {

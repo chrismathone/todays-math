@@ -360,6 +360,30 @@ describe("계산 실수 목록 — 값이 목록을 가른다", () => {
   });
 
   /**
+   * 🔴 **위 시험은 «정수» 정답만 본다.** 그래서 「정답이 분수·소수면 부호 가드가
+   *    통째로 꺼진다」를 구조적으로 못 봤다 — `sameKind` 의 첫 줄이
+   *    `if (answer.d !== 1) return true;` 라 **분모가 1이 아니면 무엇이든 통과**했다.
+   *    초3 정답 `$0.3$` 의 보기에 `$-0.03$` 이 나갔다 — 적재본 실측 **293건**
+   *    (초등 261 · 중등 32, 2026-08-30).
+   *
+   * ⚠️ 여기서도 「없다」만 재면 `numericMistakes` 가 빈 목록을 내도 초록이다.
+   *    개수 하한과 **음의 분수 정답에는 있다**를 같이 잰다.
+   */
+  it("🔴 음이 아닌 **분수·소수** 정답에도 음수 오답이 없다 (음의 분수에는 있다)", () => {
+    for (const answer of ["$\\frac{1}{6}$", "$0.3$", "$3.3$"]) {
+      const got = numericMistakes(answer);
+      expect(got.length, answer).toBeGreaterThanOrEqual(3);
+      expect(
+        got.filter((m) => /^\$\s*-/.test(m.value)).map((m) => m.value),
+        `${answer} 의 보기에 음수가 있다`,
+      ).toEqual([]);
+    }
+    // 정답이 음수면 부호 실수는 **진짜 오답**이다 — 살아 있어야 한다(중등).
+    const minus = numericMistakes("$-\\frac{1}{6}$");
+    expect(minus.some((m) => /^\$\s*-/.test(m.value))).toBe(true);
+  });
+
+  /**
    * 위 가드를 켜면 `sign-flip`·`reciprocal`·`denominator-plus` 가 빠져 정수
    * 정답의 후보가 모자란다. **자릿수 실수**로 채운다 — 없는 자리는 안 만든다.
    */
