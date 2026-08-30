@@ -1157,15 +1157,15 @@ G6_MUTS = [
     #    (`ROUND_BACK` 의 naive 가드 1,123 → 490 · `NAT_TWO` 8,323 → 7,939).
     (
         # ㉠ — 범위 안에 배수가 둘이면 답이 하나로 안 선다(문항 자체가 틀린다).
-        "범위 훼손 — 2-2-1 심화중이 범위 안에 배수를 둘 이상 둔다",
-        "      for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;\n      if (hits !== 1) continue;",
-        "      for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;\n      if (hits < 1) continue;",
+        "범위 훼손 — 2-2-1 심화중의 범위가 눈금 하나뿐이라 성질이 일을 안 한다",
+        "    for (const pad of [5, 7, 9, 11]) {",
+        "    for (const pad of [1]) {",
     ),
     (
         # ㉡ — 첫 조건이 후보를 하나만 만들면 마디가 굳은 것이고 그건 심화하다.
-        "후보 훼손 — 2-2-1 심화상이 후보 하나짜리 범위를 쓴다",
-        "          if (m * a10 > lo10) list.push(m * a10);\n        if (list.length < 3 || list.length > 6) continue;",
-        "          if (m * a10 > lo10) list.push(m * a10);\n        if (list.length < 1 || list.length > 6) continue;",
+        "답 훼손 — 2-2-1 심화상이 둘째 조건을 안 보고 첫 후보를 답한다",
+        "    num(decStr(c.x10, 1)),\n    [\n      `먼저 ${num(a)}의 배수를 찾습니다.",
+        "    num(decStr(cands[0]!, 1)),\n    [\n      `먼저 ${num(a)}의 배수를 찾습니다.",
     ),
     (
         # ㉣ 반증 ⑥ — 「발문의 두 수를 한 번 계산하면 답」인 짝이 되살아난다.
