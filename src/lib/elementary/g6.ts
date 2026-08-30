@@ -4,6 +4,7 @@ import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
+import { answerPrintedOnPage, forwardReachable, rat } from "./forwardReach";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
@@ -7806,6 +7807,923 @@ function ballKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ══════ 확대 갈래 2차분 — `1-2` · `1-6` · `2-4` (D-113 · D-115, 2026-08-31) ══════
+//
+// 파일럿(`2-2 소수의 나눗셈`, 위)에 이어 **세 대단원**을 세운다. 고른 근거와 각 대단원이
+// 예약한 «굳힘 축» 은 `docs/planning/tracks/reports/tier-fill-g6-w2.md` §1 에 있다.
+// 여기 적는 것은 **코드가 지켜야 하는 약속**이다.
+//
+// ## 🔴 반증 ⑥ 가드는 **규칙 한 곳**에서 온다 — `forwardReach.ts`
+//
+// 파일럿은 `oneStepHits`(한 걸음 정수 곱)를 손으로 다시 썼고, 적대 검토가 그 때문에
+// 「잣대와 가드가 두 벌」이 되어 80자리 중 **10자리**가 새는 것을 실측으로 잡았다
+// (`17-elem-backsolve-dossier.md` §2.4-2.1). 그래서 이 차분은 판정기가 쓰는 바로 그
+// 함수(`forwardReachable`)를 **후보를 만들 때** 부른다. 입력만 다르다 —
+// 여기서는 「지면에 찍힐 수」를 예측하고, 판정기는 **찍힌 지면을 읽는다.** 갈리면 판정기가 옳다.
+//
+// ## 세 대단원이 «굳히는 성질» — 서로 겹치지 않게 하나씩 예약했다
+//
+//   1-2  성분이 밑면 변의 수 $n$ 의 **일차식**이다 — 모서리 $3n$·꼭짓점 $2n$·면 $n+2$
+//        (각뿔은 $2n$·$n+1$·$n+1$). 그래서 성분을 **범위**로만 주면 「$3$의 배수」·
+//        「면 수 = 꼭짓점 수」 같은 **세는 성질**이 하나를 고른다.
+//   1-6  **세 모서리의 곱**(부피)과 **겉넓이의 구조**. 곱만 알면 두 모서리가 동시에 안 굳는다.
+//   2-4  **한 묶음 $k$**. 비만 알면 실제 값이 안 굳고, 「가장 간단한 자연수의 비」(서로소)나
+//        「그 몫이 자연수」가 굳힌다.
+//
+// 🔴 **1-2 에서 「옆면 넓이 $=n\times s\times h$ 인수 짝」을 쓰지 않는다.** 그것은 1-6 의
+//    삼조 축과 같은 모양이고(적대 검토 §1.4 가 1-6 에 예약했다), 게다가 $n$ 후보가
+//    $3\sim8$ **여섯**뿐이라 «만들어 견주기»가 **기각된 열거 축**과 구별되지 않는다(§3-③).
+//    그래서 1-2 의 심화상은 «입체의 종류를 안 말한다» 하나뿐이고 나머지 넷은 **비웠다.**
+//
+// ## 그림을 안 붙인다
+//
+// `prism`·`pyramid` 겨냥도는 **밑면의 변의 수를 그대로 보여 준다** — 이 갈래들이 안 굳게
+// 두려는 바로 그 값이다. `cuboid` 는 세 모서리를 글자로 찍는다(09 §4). 그래서 확대 갈래는
+// 심화하와 같이 **그림 없이 말로만** 낸다.
+
+/**
+ * **반증 ⑥ + 「답을 발문에 두지 않는다」 가드** — 규칙은 `forwardReach.ts` 한 곳이다.
+ *
+ * `page` 는 발문의 `$…$` 안에 찍힐 수 전부(정수), `answer` 는 답이다.
+ * 순방향으로 닿거나 답이 지면에 그대로 있으면 **후보에서 뺀다.**
+ */
+function backsolveSafe(page: readonly number[], answer: number): boolean {
+  const nums = page.map((v) => rat(v));
+  const ans = rat(answer);
+  return !forwardReachable(nums, ans) && !answerPrintedOnPage(nums, ans);
+}
+
+/** 구간 $(lo, up)$ 안의 `m` 의 배수를 모두. 끝점은 **넣지 않는다**(「보다 크고/작고」). */
+function multiplesBetween(lo: number, up: number, m: number): number[] {
+  const out: number[] = [];
+  for (let v = Math.floor(lo / m) * m; v < up; v += m) if (v > lo) out.push(v);
+  return out;
+}
+
+// ── 1-2-1 각기둥 알아보기와 밑면·옆면 — 심화중 ──────────────────────────────
+//
+// 안 굳는 마디: **옆면 전체의 넓이**(구간으로만 준다).
+// 굳히는 성질: 「각기둥의 옆면은 모두 합동인 직사각형이고 그 수는 밑면의 변의 수와 같다」
+//            → 전체 넓이는 **옆면 하나 넓이의 배수**다. 구간 안에 그 배수가 하나뿐이다.
+// 심화하와 겹치지 않는다 — 심화하는 밑면을 **이름으로 주고**($n$ 이 굳어 있다) 높이를 되짚는다.
+
+const PRISM_AREA_MID: {
+  s: number;
+  h: number;
+  lo: number;
+  up: number;
+  n: number;
+}[] = [];
+for (let s = 3; s <= 8; s += 1)
+  for (let h = 3; h <= 9; h += 1) {
+    const one = s * h;
+    for (const n of TIER_SIDES) {
+      const area = one * n;
+      if (area > 400) continue; // 규모는 축이 아니다 (D-115 ⑽③)
+      for (let pad = 3; pad < one; pad += 1) {
+        const lo = area - pad;
+        const up = area + pad;
+        if (lo <= 0) continue;
+        // 구간 안에 «다른 후보»가 적어도 하나 더 있어야 성질이 일한다.
+        if (up - lo < 5) continue;
+        if (multiplesBetween(lo, up, one).length !== 1) continue;
+        if (!backsolveSafe([s, h, lo, up], n)) continue;
+        PRISM_AREA_MID.push({ s, h, lo, up, n });
+      }
+    }
+  }
+
+function prismAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PRISM_AREA_MID);
+  const one = c.s * c.h;
+  const area = one * c.n;
+  return makeDeep(
+    unit,
+    `밑면의 변의 길이가 모두 ${unitNum(c.s, "cm")} 로 같고 높이가 ${unitNum(c.h, "cm")} 인 각기둥이 있습니다. ` +
+      `옆면 전체의 넓이가 ${num(c.lo)} cm²보다 넓고 ${num(c.up)} cm²보다 좁을 때, ` +
+      `이 각기둥의 옆면은 몇 개입니까?`,
+    num(c.n),
+    [
+      `각기둥의 옆면은 모두 가로가 ${unitNum(c.s, "cm")}, 세로가 ${unitNum(c.h, "cm")} 인 직사각형이므로 ` +
+        `옆면 하나의 넓이는 ${expr(`${c.s}\\times${c.h}=${one}`)} cm²입니다.`,
+      `옆면 전체의 넓이는 옆면 하나의 넓이의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(one)}의 배수는 ` +
+        `${expr(`${one}\\times${c.n}=${area}`)} 뿐이므로 옆면은 ${num(c.n)}개이고, ` +
+        `이 각기둥은 ${sino(c.n)}각기둥입니다.`,
+    ],
+  );
+}
+
+// ── 1-2-2 각기둥의 이름과 구성 요소 — 심화중 ────────────────────────────────
+//
+// 안 굳는 마디: **모서리의 수**(구간). 굳히는 성질: 「각기둥의 모서리는 밑면 변의 수의 $3$배」.
+
+const PRISM_EDGE_MID: {
+  lo: number;
+  up: number;
+  n: number;
+  ask: "면" | "꼭짓점";
+}[] = [];
+for (const n of TIER_SIDES) {
+  const e = 3 * n;
+  for (let lo = e - 4; lo <= e - 1; lo += 1)
+    for (let up = e + 1; up <= e + 4; up += 1) {
+      if (lo < 5 || up - lo < 3) continue; // 구간 안에 후보가 둘 이상이어야 성질이 일한다
+      if (multiplesBetween(lo, up, 3).length !== 1) continue;
+      for (const ask of ["면", "꼭짓점"] as const) {
+        const ans = ask === "면" ? n + 2 : 2 * n;
+        if (!backsolveSafe([lo, up], ans)) continue;
+        PRISM_EDGE_MID.push({ lo, up, n, ask });
+      }
+    }
+}
+
+function prismEdgeMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PRISM_EDGE_MID);
+  const e = 3 * c.n;
+  const ans = c.ask === "면" ? c.n + 2 : 2 * c.n;
+  const calc =
+    c.ask === "면" ? `${c.n}+2=${c.n + 2}` : `${c.n}\\times2=${2 * c.n}`;
+  return makeDeep(
+    unit,
+    `어떤 각기둥의 모서리가 ${num(c.lo)}개보다 많고 ${num(c.up)}개보다 적습니다. ` +
+      `이 각기둥의 ${c.ask}은 몇 개입니까?`,
+    num(ans),
+    [
+      `각기둥의 모서리의 수는 밑면의 변의 수의 ${num(3)}배이므로 ${num(3)}의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(3)}의 배수는 ${num(e)} 하나입니다.`,
+      `${expr(`${e}\\div3=${c.n}`)} 이므로 밑면은 ${polyName(c.n)}이고 ${sino(c.n)}각기둥입니다. ` +
+        `${c.ask}의 수는 ${expr(calc)} 입니다.`,
+    ],
+  );
+}
+
+// ── 1-2-3 각기둥의 전개도 — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **옆면을 이어 붙인 가로 길이**(구간).
+// 굳히는 성질: 「전개도에서 그 가로는 **밑면의 둘레**와 같다」 → 한 변 길이의 배수.
+
+const PRISM_NET_MID: { s: number; lo: number; up: number; n: number }[] = [];
+for (let s = 4; s <= 9; s += 1)
+  for (const n of TIER_SIDES) {
+    const per = s * n;
+    for (let pad = 2; pad < s; pad += 1) {
+      const lo = per - pad;
+      const up = per + pad;
+      if (lo <= 0 || up - lo < 4) continue;
+      if (multiplesBetween(lo, up, s).length !== 1) continue;
+      if (!backsolveSafe([s, lo, up], n)) continue;
+      PRISM_NET_MID.push({ s, lo, up, n });
+    }
+  }
+
+function prismNetMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PRISM_NET_MID);
+  const per = c.s * c.n;
+  return makeDeep(
+    unit,
+    `밑면의 변의 길이가 모두 ${unitNum(c.s, "cm")} 로 같은 각기둥의 전개도가 있습니다. ` +
+      `전개도에서 옆면을 이어 붙인 부분의 가로 길이가 ${unitNum(c.lo, "cm")} 보다 길고 ` +
+      `${unitNum(c.up, "cm")} 보다 짧을 때, 이 각기둥의 옆면은 몇 개입니까?`,
+    num(c.n),
+    [
+      `전개도에서 옆면을 이어 붙인 부분의 가로 길이는 밑면의 둘레와 같습니다. ` +
+        `밑면의 변의 길이가 모두 ${num(c.s)} cm이므로 그 길이는 ${num(c.s)}의 배수입니다.`,
+      `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(c.s)}의 배수는 ` +
+        `${expr(`${c.s}\\times${c.n}=${per}`)} 뿐입니다. 따라서 밑면은 ${polyName(c.n)}이고 ` +
+        `옆면은 ${expr(`${per}\\div${c.s}=${c.n}`)} 개입니다.`,
+    ],
+  );
+}
+
+// ── 1-2-4 각뿔 알아보기와 밑면·옆면 — 심화중 ────────────────────────────────
+//
+// 1-2-1 의 짝이되 **옆면이 삼각형**이라 굳히는 성질이 다르다(넓이에 $\div2$ 가 붙는다).
+// 묻는 것도 다르다 — 1-2-1 은 «옆면의 수», 여기는 «밑면의 이름»(R5).
+
+const PYR_AREA_MID: {
+  s: number;
+  h: number;
+  lo: number;
+  up: number;
+  n: number;
+}[] = [];
+for (let s = 4; s <= 10; s += 1)
+  for (let h = 4; h <= 12; h += 1) {
+    if ((s * h) % 2 !== 0) continue; // 옆면 하나의 넓이가 자연수라야 한다
+    const one = (s * h) / 2;
+    for (const n of TIER_SIDES) {
+      const area = one * n;
+      if (area > 400) continue;
+      for (let pad = 3; pad < one; pad += 1) {
+        const lo = area - pad;
+        const up = area + pad;
+        if (lo <= 0 || up - lo < 5) continue;
+        if (multiplesBetween(lo, up, one).length !== 1) continue;
+        if (!backsolveSafe([s, h, lo, up], n)) continue;
+        PYR_AREA_MID.push({ s, h, lo, up, n });
+      }
+    }
+  }
+
+function pyrAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PYR_AREA_MID);
+  const one = (c.s * c.h) / 2;
+  const area = one * c.n;
+  return makeDeep(
+    unit,
+    `밑면의 변의 길이가 모두 ${unitNum(c.s, "cm")} 로 같은 각뿔이 있습니다. ` +
+      `옆면인 삼각형의 높이가 ${unitNum(c.h, "cm")} 이고 옆면 전체의 넓이가 ` +
+      `${num(c.lo)} cm²보다 넓고 ${num(c.up)} cm²보다 좁을 때, 이 각뿔의 밑면은 어떤 도형입니까?`,
+    polyName(c.n),
+    [
+      `각뿔의 옆면은 모두 밑변이 ${unitNum(c.s, "cm")}, 높이가 ${unitNum(c.h, "cm")} 인 삼각형이므로 ` +
+        `옆면 하나의 넓이는 ${expr(`${c.s}\\times${c.h}\\div2=${one}`)} cm²입니다.`,
+      `옆면 전체의 넓이는 옆면 하나의 넓이의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(one)}의 배수는 ` +
+        `${expr(`${one}\\times${c.n}=${area}`)} 뿐이므로 옆면은 ${num(c.n)}개이고 ` +
+        `밑면은 ${polyName(c.n)}입니다.`,
+    ],
+  );
+}
+
+// ── 1-2-4 각뿔 알아보기 — 심화상 ────────────────────────────────────────────
+//
+// 🔴 후보를 **발문이 주지 않는다.** 「입체도형」이라고만 하므로 되짚기가 각기둥·각뿔
+//    **둘**을 만들고, 성질만으로는 어느 쪽인지 못 고른다 — 각각의 꼭짓점을 **실제로
+//    계산해** 조건에 대 봐야 하나가 남는다(D-115 ⑾: 끝까지 계산해야 하면 «상»).
+//    이 소단원의 이름이 「각뿔 **알아보기**」이고, 각뿔을 각기둥과 가르는 것이 바로
+//    「밑면이 하나·옆면이 삼각형」이라 반증 ③ 도 안 건드린다.
+
+const SOLID_KIND_TOP: { f: number; cap: number }[] = [];
+for (let f = 5; f <= 9; f += 1) {
+  const nPrism = f - 2;
+  const nPyr = f - 1;
+  const vPrism = 2 * nPrism;
+  const vPyr = nPyr + 1;
+  // 각뿔만 남는 상한 — 각뿔의 꼭짓점보다 크고 각기둥의 꼭짓점 이하.
+  for (let cap = vPyr + 1; cap <= vPrism; cap += 1) {
+    if (!backsolveSafe([f, cap], 2 * nPyr)) continue;
+    SOLID_KIND_TOP.push({ f, cap });
+  }
+}
+
+function solidKindTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SOLID_KIND_TOP);
+  const nPrism = c.f - 2;
+  const nPyr = c.f - 1;
+  return makeDeep(
+    unit,
+    `어떤 입체도형의 면이 ${num(c.f)}개입니다. 이 입체도형의 꼭짓점이 ${num(c.cap)}개보다 적을 때, ` +
+      `모서리는 몇 개입니까?`,
+    num(2 * nPyr),
+    [
+      `옆면이 직사각형이면 각기둥이고 옆면이 삼각형이면 각뿔입니다. ` +
+        `면이 ${num(c.f)}개인 입체도형은 둘 다 될 수 있으므로 각각 따져 봅니다.`,
+      `각기둥이라면 밑면 ${num(2)}개를 뺀 ${expr(`${c.f}-2=${nPrism}`)} 개가 옆면이므로 ` +
+        `밑면은 ${polyName(nPrism)}이고 꼭짓점은 ${expr(`${nPrism}\\times2=${2 * nPrism}`)} 개인데, ` +
+        `이것은 ${num(c.cap)}개보다 적지 않습니다.`,
+      `각뿔이라면 밑면 ${num(1)}개를 뺀 ${expr(`${c.f}-1=${nPyr}`)} 개가 옆면이므로 ` +
+        `밑면은 ${polyName(nPyr)}이고 꼭짓점은 ${expr(`${nPyr}+1=${nPyr + 1}`)} 개로 ` +
+        `${num(c.cap)}개보다 적습니다. 따라서 모서리는 ${expr(`${nPyr}\\times2=${2 * nPyr}`)} 개입니다.`,
+    ],
+  );
+}
+
+// ── 1-2-5 각뿔의 이름과 구성 요소 — 심화중 ──────────────────────────────────
+//
+// 굳히는 성질이 1-2-2 와 다르다 — 「각뿔은 **면의 수와 꼭짓점의 수가 같다**」.
+// (토대 문서가 「그 성질 때문에 심화하 둘이 같은 문항이 됐다」고 적은 자리를,
+//  중복을 만드는 대신 **마디를 굳히는 데** 쓴다.)
+
+const PYR_SUM_MID: {
+  lo: number;
+  up: number;
+  n: number;
+  kind: "꼭짓점" | "모서리";
+}[] = [];
+for (const n of TIER_SIDES) {
+  // ㉠ 면 + 꼭짓점 — 각뿔은 둘이 같으므로 합이 **짝수**다.
+  const even = 2 * (n + 1);
+  for (let lo = even - 3; lo <= even - 1; lo += 1)
+    for (let up = even + 1; up <= even + 3; up += 1) {
+      if (lo < 5 || up - lo < 3) continue;
+      let evens = 0;
+      for (let v = lo + 1; v < up; v += 1) if (v % 2 === 0) evens += 1;
+      if (evens !== 1) continue;
+      if (!backsolveSafe([lo, up], 2 * n)) continue;
+      PYR_SUM_MID.push({ lo, up, n, kind: "꼭짓점" });
+    }
+  // ㉡ 면 + 모서리 — $(n+1)+2n=3n+1$ 이라 **$1$ 을 빼면 $3$ 의 배수**다.
+  const tri = 3 * n + 1;
+  for (let lo = tri - 3; lo <= tri - 1; lo += 1) {
+    const up = lo + 4;
+    if (lo < 5) continue;
+    let hits = 0;
+    for (let v = lo + 1; v < up; v += 1) if ((v - 1) % 3 === 0) hits += 1;
+    if (hits !== 1) continue;
+    if (!backsolveSafe([lo, up], n + 1)) continue;
+    PYR_SUM_MID.push({ lo, up, n, kind: "모서리" });
+  }
+}
+
+function pyrSumMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PYR_SUM_MID);
+  if (c.kind === "꼭짓점") {
+    const sum = 2 * (c.n + 1);
+    return makeDeep(
+      unit,
+      `어떤 각뿔의 면의 개수와 꼭짓점의 개수를 합하면 ${num(c.lo)}개보다 많고 ${num(c.up)}개보다 적습니다. ` +
+        `이 각뿔의 모서리는 몇 개입니까?`,
+      num(2 * c.n),
+      [
+        `각뿔은 면의 개수와 꼭짓점의 개수가 같습니다. 그러므로 두 개수의 합은 ` +
+          `면의 개수의 ${num(2)}배, 곧 짝수입니다.`,
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 짝수는 ${num(sum)} 하나이므로 ` +
+          `면은 ${expr(`${sum}\\div2=${c.n + 1}`)} 개입니다. 면은 밑면 ${num(1)}개와 옆면을 더한 것이므로 ` +
+          `밑면은 ${polyName(c.n)}이고, 모서리는 ${expr(`${c.n}\\times2=${2 * c.n}`)} 개입니다.`,
+      ],
+    );
+  }
+  const sum = 3 * c.n + 1;
+  return makeDeep(
+    unit,
+    `어떤 각뿔의 면의 개수와 모서리의 개수를 합하면 ${num(c.lo)}개보다 많고 ${num(c.up)}개보다 적습니다. ` +
+      `이 각뿔의 꼭짓점은 몇 개입니까?`,
+    num(c.n + 1),
+    [
+      `밑면의 변이 ${expr("\\square")} 개인 각뿔은 면이 ${expr("\\square+1")} 개, ` +
+        `모서리가 ${expr("\\square\\times2")} 개이므로 두 개수의 합은 ${expr("\\square\\times3+1")} 입니다. ` +
+        `그러므로 합에서 ${num(1)}을 빼면 ${num(3)}의 배수입니다.`,
+      `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 수 가운데 ${num(1)}을 뺐을 때 ${num(3)}의 배수가 되는 것은 ` +
+        `${num(sum)} 하나입니다. ${expr(`(${sum}-1)\\div3=${c.n}`)} 이므로 밑면은 ${polyName(c.n)}이고, ` +
+        `꼭짓점은 ${expr(`${c.n}+1=${c.n + 1}`)} 개입니다.`,
+    ],
+  );
+}
+
+// ── 1-6-1 직육면체의 겉넓이 — 심화중 ────────────────────────────────────────
+//
+// 안 굳는 마디: **겉넓이**(구간). 굳히는 성질: 「겉넓이 = 두 밑면 + 옆면 네 면」이고
+// 옆면의 넓이는 **밑면의 둘레의 배수**다. 심화하는 겉넓이를 값으로 주어 높이가 곧바로 굳는다.
+
+const SURF_RANGE_MID: {
+  w: number;
+  d: number;
+  lo: number;
+  up: number;
+  h: number;
+}[] = [];
+for (let w = 2; w <= 8; w += 1)
+  for (let d = w + 1; d <= 9; d += 1) {
+    const base = 2 * w * d;
+    const per = 2 * (w + d);
+    for (let h = 3; h <= 9; h += 1) {
+      const s = base + per * h;
+      if (s > 500) continue;
+      for (let pad = 4; pad < per; pad += 1) {
+        const lo = s - pad;
+        const up = s + pad;
+        if (lo <= base || up - lo < 6) continue;
+        if (multiplesBetween(lo - base, up - base, per).length !== 1) continue;
+        if (!backsolveSafe([w, d, lo, up], h)) continue;
+        SURF_RANGE_MID.push({ w, d, lo, up, h });
+      }
+    }
+  }
+
+function surfRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SURF_RANGE_MID);
+  const base = 2 * c.w * c.d;
+  const per = 2 * (c.w + c.d);
+  return makeDeep(
+    unit,
+    `가로가 ${unitNum(c.w, "cm")}, 세로가 ${unitNum(c.d, "cm")} 인 직육면체의 겉넓이가 ` +
+      `${num(c.lo)} cm²보다 넓고 ${num(c.up)} cm²보다 좁습니다. ` +
+      `높이가 자연수 cm일 때, 이 직육면체의 높이는 몇 cm입니까?`,
+    num(c.h),
+    [
+      `두 밑면의 넓이는 ${expr(`${c.w}\\times${c.d}\\times2=${base}`)} cm²입니다.`,
+      `옆면 네 면의 가로를 이으면 밑면의 둘레와 같으므로 그 길이는 ` +
+        `${expr(`(${c.w}+${c.d})\\times2=${per}`)} cm이고, 옆면의 넓이는 ${num(per)}의 배수입니다.`,
+      `겉넓이에서 두 밑면을 빼면 옆면의 넓이이므로 옆면의 넓이는 ${num(c.lo - base)}보다 크고 ` +
+        `${num(c.up - base)}보다 작습니다. 그런 ${num(per)}의 배수는 ${num(per * c.h)} 하나이므로 ` +
+        `높이는 ${expr(`${per * c.h}\\div${per}=${c.h}`)} cm입니다.`,
+    ],
+  );
+}
+
+// ── 1-6-1 직육면체의 겉넓이 — 심화상 ────────────────────────────────────────
+//
+// 🔴 후보를 되짚기가 만든다 — 「밑면이 정사각형」이라 겉넓이가 한 변의 **두 번 곱**을
+//    품고, 초등 과정에는 그것을 되짚는 규칙이 없다. 한 변을 하나씩 늘려 **겉넓이를 실제로
+//    만들어 견주어야** 하나가 남는다. 한 변이 커지면 겉넓이도 반드시 커지므로 **답은 하나**다
+//    (토대 함정 ㉣ 「겉넓이 방정식은 답이 여럿이기 쉽다」를 이 단조성으로 막는다).
+
+const SURF_SQUARE_TOP: { a: number; h: number; s: number }[] = [];
+for (let a = 2; a <= 9; a += 1)
+  for (let h = 3; h <= 12; h += 1) {
+    if (h === a) continue;
+    const s = 2 * a * a + 4 * a * h;
+    if (s > 600) continue;
+    if (!backsolveSafe([h, s], a)) continue;
+    SURF_SQUARE_TOP.push({ a, h, s });
+  }
+
+function surfSquareTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SURF_SQUARE_TOP);
+  const area = (t: number) => 2 * t * t + 4 * t * c.h;
+  const line = (t: number) =>
+    expr(`${t}\\times${t}\\times2+${t}\\times4\\times${c.h}=${area(t)}`);
+  return makeDeep(
+    unit,
+    `밑면이 정사각형인 직육면체의 높이가 ${unitNum(c.h, "cm")} 이고 겉넓이가 ${num(c.s)} cm²입니다. ` +
+      `밑면의 한 변의 길이가 자연수 cm일 때, 밑면의 한 변은 몇 cm입니까?`,
+    num(c.a),
+    [
+      `밑면이 정사각형이므로 겉넓이는 밑면 두 개의 넓이에 옆면 네 개의 넓이를 더한 것입니다. ` +
+        `밑면의 한 변을 하나씩 늘려 가며 겉넓이를 만들어 견줍니다.`,
+      `한 변이 ${num(c.a - 1)} cm이면 ${line(c.a - 1)} 이고, ` +
+        `한 변이 ${num(c.a)} cm이면 ${line(c.a)} 이며, ` +
+        `한 변이 ${num(c.a + 1)} cm이면 ${line(c.a + 1)} 입니다.`,
+      `한 변이 길어지면 겉넓이도 커지므로 겉넓이가 ${num(c.s)} cm²인 것은 ` +
+        `한 변이 ${num(c.a)} cm일 때뿐입니다.`,
+    ],
+  );
+}
+
+// ── 1-6-2 직육면체의 부피 — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **세로와 높이가 동시에 미지**다(곱만 안다). 굳히는 조건: 두 모서리의 «차».
+// 심화하는 세 모서리 중 **둘을 발문이 주어** 마디가 하나도 안 남는다.
+
+const VOL_PAIR_MID: {
+  v: number;
+  w: number;
+  gap: number;
+  d: number;
+  h: number;
+}[] = [];
+for (let w = 2; w <= 9; w += 1)
+  for (let h = 2; h <= 9; h += 1)
+    for (let gap = 1; gap <= 6; gap += 1) {
+      const d = h + gap;
+      const p = d * h;
+      const v = w * p;
+      if (v > 400) continue;
+      let hits = 0;
+      for (let x = 1; x * x <= p; x += 1)
+        if (p % x === 0 && p / x - x === gap) hits += 1;
+      if (hits !== 1) continue;
+      if (!backsolveSafe([v, w, gap], d)) continue;
+      VOL_PAIR_MID.push({ v, w, gap, d, h });
+    }
+
+function volPairMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, VOL_PAIR_MID);
+  const p = c.d * c.h;
+  return makeDeep(
+    unit,
+    `부피가 ${num(c.v)} cm³이고 가로가 ${unitNum(c.w, "cm")} 인 직육면체가 있습니다. ` +
+      `세로와 높이가 모두 자연수 cm이고 세로가 높이보다 ${unitNum(c.gap, "cm")} 더 깁니다. ` +
+      `이 직육면체의 세로는 몇 cm입니까?`,
+    num(c.d),
+    [
+      `부피는 세 모서리의 길이의 곱이므로 세로와 높이의 곱은 ` +
+        `${expr(`${c.v}\\div${c.w}=${p}`)} 입니다.`,
+      `곱이 ${num(p)}이면서 차가 ${num(c.gap)}인 두 자연수를 찾으면 ` +
+        `${expr(`${c.d}\\times${c.h}=${p}`)} 이고 ${expr(`${c.d}-${c.h}=${c.gap}`)} 이므로 ` +
+        `세로는 ${unitNum(c.d, "cm")}, 높이는 ${unitNum(c.h, "cm")} 입니다.`,
+    ],
+  );
+}
+
+// ── 1-6-2 직육면체의 부피 — 심화상 ──────────────────────────────────────────
+//
+// 🔴 후보를 되짚기가 만든다 — 부피 값이 **서로 다른 세 자연수의 곱**으로 갈라지는 방법이
+//    셋 이상이고, 발문은 그 삼조를 하나도 주지 않는다. 각 삼조의 **가장 긴 모서리를 실제로
+//    보아야** 하나가 남는다.
+
+/** 곱이 `v` 인 **서로 다른** 세 자연수 삼조를 오름차순으로 전부. */
+function volumeTriples(v: number): [number, number, number][] {
+  const out: [number, number, number][] = [];
+  for (let a = 1; a * a * a < v; a += 1) {
+    if (v % a !== 0) continue;
+    const rest = v / a;
+    for (let b = a + 1; b * b < rest; b += 1) {
+      if (rest % b !== 0) continue;
+      const c = rest / b;
+      if (c > b) out.push([a, b, c]);
+    }
+  }
+  return out;
+}
+
+const VOL_TRIPLE_TOP: { v: number; cap: number }[] = [];
+for (let v = 24; v <= 240; v += 1) {
+  const triples = volumeTriples(v);
+  if (triples.length < 3 || triples.length > 6) continue;
+  const longest = triples.map((t) => t[2]).sort((x, y) => x - y);
+  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {
+    const kept = triples.filter((t) => t[2] < cap);
+    if (kept.length !== 1) continue;
+    const sum = kept[0]![0] + kept[0]![1] + kept[0]![2];
+    if (!backsolveSafe([v, cap], sum)) continue;
+    VOL_TRIPLE_TOP.push({ v, cap });
+  }
+}
+
+function volTripleTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, VOL_TRIPLE_TOP);
+  const triples = volumeTriples(c.v);
+  const win = triples.find((t) => t[2] < c.cap)!;
+  const sum = win[0] + win[1] + win[2];
+  return makeDeep(
+    unit,
+    `부피가 ${num(c.v)} cm³인 직육면체가 있습니다. 세 모서리의 길이는 모두 다른 자연수 cm이고, ` +
+      `가장 긴 모서리가 ${unitNum(c.cap, "cm")} 보다 짧습니다. ` +
+      `이 직육면체의 세 모서리의 길이의 합은 몇 cm입니까?`,
+    num(sum),
+    [
+      `부피는 세 모서리의 길이의 곱입니다. ${num(c.v)}${numJosa(c.v, "을", "를")} ` +
+        `서로 다른 세 자연수의 곱으로 나타내는 방법을 모두 찾습니다.`,
+      `${triples
+        .map((t) => expr(`${t[0]}\\times${t[1]}\\times${t[2]}=${c.v}`))
+        .join(", ")} 입니다.`,
+      `이 중 가장 긴 모서리가 ${num(c.cap)}보다 짧은 것은 ` +
+        `${expr(`${win[0]}\\times${win[1]}\\times${win[2]}=${c.v}`)} 뿐입니다. ` +
+        `세 모서리의 길이의 합은 ${expr(`${win[0]}+${win[1]}+${win[2]}=${sum}`)} cm입니다.`,
+    ],
+  );
+}
+
+// ── 1-6-3 ㎥ 알아보기 — 심화중 ──────────────────────────────────────────────
+//
+// 이 소단원이 더하는 것은 **환산**이다. 부피를 $\mathrm{cm}^3$ 구간으로 주면 먼저
+// $\mathrm{m}^3$ 로 옮겨야 밑면 넓이의 배수라는 성질을 쓸 수 있다.
+//
+// 🔴 **심화상은 비웠다** — 여기서 후보를 만드는 축은 1-6-2 의 «세 모서리 삼조» 하나뿐이고,
+//    그것을 m 단위로 옮기면 «단위만 다른 같은 문항»이 된다. 걸음을 하나 늘리는 것은
+//    마디를 늘리는 것이 아니다(D-115 ⑶ · 토대 함정 ㉡).
+
+const CUBIC_RANGE_MID: {
+  w: number;
+  d: number;
+  lo: number;
+  up: number;
+  h: number;
+}[] = [];
+for (let w = 2; w <= 6; w += 1)
+  for (let d = w; d <= 6; d += 1) {
+    const base = w * d;
+    for (let h = 2; h <= 9; h += 1) {
+      const v = base * h;
+      for (let pad = 1; pad < base; pad += 1) {
+        const lo = v - pad;
+        const up = v + pad;
+        if (lo <= 0 || up - lo < 3) continue;
+        if (multiplesBetween(lo, up, base).length !== 1) continue;
+        if (!backsolveSafe([w, d, lo * 1000000, up * 1000000], h)) continue;
+        CUBIC_RANGE_MID.push({ w, d, lo, up, h });
+      }
+    }
+  }
+
+function cubicRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, CUBIC_RANGE_MID);
+  const base = c.w * c.d;
+  const v = base * c.h;
+  return makeDeep(
+    unit,
+    `가로가 ${unitNum(c.w, "m")}, 세로가 ${unitNum(c.d, "m")} 인 직육면체 모양 창고가 있습니다. ` +
+      `이 창고의 부피가 ${num(c.lo * 1000000)} cm³보다 크고 ${num(c.up * 1000000)} cm³보다 작습니다. ` +
+      `높이가 자연수 m일 때, 이 창고의 높이는 몇 m입니까?`,
+    num(c.h),
+    [
+      `${expr("1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3")} 이므로 부피는 ` +
+        `${expr(`${c.lo * 1000000}\\div1000000=${c.lo}`)} m³보다 크고 ` +
+        `${expr(`${c.up * 1000000}\\div1000000=${c.up}`)} m³보다 작습니다.`,
+      `밑면의 넓이는 ${expr(`${c.w}\\times${c.d}=${base}`)} m²이므로 부피는 ${num(base)}의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(base)}의 배수는 ` +
+        `${expr(`${base}\\times${c.h}=${v}`)} 뿐이므로 높이는 ${num(c.h)} m입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-1 비의 성질 — 심화중 ────────────────────────────────────────────────
+//
+// 안 굳는 마디: **곱한 수**(= 한 묶음의 크기). 심화하는 그 수를 **발문이 준다.**
+// 굳히는 성질: 「가장 간단한 자연수의 비는 두 항의 공약수가 $1$ 뿐이다」 — 이 대단원이
+// 예약한 축이다(토대 §1.4).
+
+const RATIO_PROP_MID: { pa: number; pb: number; g: number }[] = [];
+for (let a = 1; a <= 9; a += 1)
+  for (let b = a + 1; b <= 12; b += 1) {
+    if (gcd(a, b) !== 1) continue;
+    for (let g = 2; g <= 9; g += 1) {
+      const pa = a * g;
+      const pb = b * g;
+      if (pb > 96) continue;
+      if (!backsolveSafe([pa, pb], b - a)) continue;
+      RATIO_PROP_MID.push({ pa, pb, g });
+    }
+  }
+
+function ratioPropMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, RATIO_PROP_MID);
+  const a = c.pa / c.g;
+  const b = c.pb / c.g;
+  return makeDeep(
+    unit,
+    `어떤 비의 전항과 후항에 각각 같은 수를 곱했더니 ${expr(`${c.pa}:${c.pb}`)}${numJosa(c.pb, "이", "가")} 되었습니다. ` +
+      `처음 비가 가장 간단한 자연수의 비일 때, 처음 비의 전항과 후항의 차는 얼마입니까?`,
+    num(b - a),
+    [
+      `가장 간단한 자연수의 비는 두 항의 공약수가 ${num(1)} 뿐인 비입니다. ` +
+        `${num(c.pa)}${numJosa(c.pa, "과", "와")} ${num(c.pb)}의 최대공약수는 ${num(c.g)}입니다.`,
+      `전항과 후항을 각각 ${num(c.g)}${numRo(c.g)} 나누면 ` +
+        `${expr(`${c.pa}\\div${c.g}:${c.pb}\\div${c.g}=${a}:${b}`)} 입니다. ` +
+        `두 항의 차는 ${expr(`${b}-${a}=${b - a}`)} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-2 간단한 자연수의 비로 나타내기 — 심화중 ────────────────────────────
+//
+// 안 굳는 마디: **실제 두 길이**(비만 알면 $ak:bk$ 로 흩어진다).
+// 굳히는 성질: 지면의 비를 **가장 간단한 자연수의 비로 고쳐야** 「가로가 $a$의 배수」를 안다.
+// ⚠️ 이 소단원은 지면에 «아직 간단히 할 것»이 남아 있어야 성립한다
+//    (`probe-elem-section-conditions` 의 `간단한 자연수의 비`). 그래서 비를 **일부러
+//    서로소가 아니게** 싣는다.
+
+const SIMPLE_RATIO_MID: {
+  am: number;
+  lo: number;
+  up: number;
+  x: number;
+  b: number;
+}[] = [];
+for (let am = 1; am <= 3; am += 1) {
+  const w = am * 100;
+  for (let b = 3; b <= 9; b += 1)
+    for (let x = 6; x <= 240; x += 1) {
+      if (x % b !== 0) continue;
+      const g = gcd(w, x);
+      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만
+      const a = w / g;
+      if (a < 2 || a > 60) continue;
+      for (let pad = 2; pad < b; pad += 1) {
+        const lo = x - pad;
+        const up = x + pad;
+        if (lo <= 0 || up - lo < 4) continue;
+        if (multiplesBetween(lo, up, b).length !== 1) continue;
+        if (!backsolveSafe([am, lo, up, b], x)) continue;
+        SIMPLE_RATIO_MID.push({ am, lo, up, x, b });
+      }
+    }
+}
+
+function simpleRatioMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SIMPLE_RATIO_MID);
+  const w = c.am * 100;
+  const g = gcd(w, c.x);
+  const a = w / g;
+  return makeDeep(
+    unit,
+    `어떤 직사각형 모양 게시판의 가로는 ${unitNum(c.am, "m")} 이고, 세로는 ` +
+      `${unitNum(c.lo, "cm")} 보다 길고 ${unitNum(c.up, "cm")} 보다 짧은 자연수 cm입니다. ` +
+      `가로와 세로의 길이의 비를 가장 간단한 자연수의 비로 나타내면 후항이 ${num(c.b)} 입니다. ` +
+      `이 비를 쓰시오.`,
+    expr(`${a}:${c.b}`),
+    [
+      `두 길이의 단위를 맞춥니다. ${expr("1\\,\\mathrm{m}=100\\,\\mathrm{cm}")} 이므로 ` +
+        `가로는 ${expr(`${c.am}\\times100=${w}`)} cm입니다.`,
+      `가장 간단한 자연수의 비의 후항이 ${num(c.b)}이므로 세로는 ${num(c.b)}의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(c.b)}의 배수는 ${num(c.x)} 하나입니다.`,
+      `${num(w)}${numJosa(w, "과", "와")} ${num(c.x)}의 최대공약수 ${num(g)}${numRo(g)} ` +
+        `두 항을 나누면 ${expr(`${w}\\div${g}:${c.x}\\div${g}=${a}:${c.b}`)} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-3 비례식 알아보기 — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **두 번째 비의 한 묶음**. 심화하는 「두 항의 차」를 값으로 주어 한 번에 굳는다.
+// 여기서는 **합의 구간**만 주고, 「두 항의 합은 $(a+b)$ 의 배수」라는 비례식의 성질이 고른다.
+
+const PROP_EQ_MID: {
+  a: number;
+  b: number;
+  lo: number;
+  up: number;
+  k: number;
+}[] = [];
+for (let a = 2; a <= 8; a += 1)
+  for (let b = a + 1; b <= 9; b += 1) {
+    if (gcd(a, b) !== 1) continue;
+    const s = a + b;
+    for (let k = 3; k <= 12; k += 1) {
+      const sum = s * k;
+      if (sum > 130) continue;
+      for (let pad = 2; pad < s; pad += 1) {
+        const lo = sum - pad;
+        const up = sum + pad;
+        if (lo <= 0 || up - lo < 4) continue;
+        if (multiplesBetween(lo, up, s).length !== 1) continue;
+        if (!backsolveSafe([a, b, lo, up], a * k)) continue;
+        if (!backsolveSafe([a, b, lo, up], b * k)) continue;
+        PROP_EQ_MID.push({ a, b, lo, up, k });
+      }
+    }
+  }
+
+function propEqMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PROP_EQ_MID);
+  const s = c.a + c.b;
+  return makeDeep(
+    unit,
+    `비례식 ${expr(`${c.a}:${c.b}=\\square:\\square`)} 에서 두 번째 비의 전항과 후항이 모두 자연수이고, ` +
+      `두 항의 합이 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작습니다. 이 비례식을 완성하여 쓰시오.`,
+    expr(`${c.a}:${c.b}=${c.a * c.k}:${c.b * c.k}`),
+    [
+      `두 번째 비는 ${expr(`${c.a}:${c.b}`)} 의 두 항에 같은 수를 곱한 비이므로 ` +
+        `두 항의 합은 ${expr(`${c.a}+${c.b}=${s}`)} 의 배수입니다.`,
+      `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(s)}의 배수는 ` +
+        `${expr(`${s}\\times${c.k}=${s * c.k}`)} 뿐입니다. 두 항에 각각 ${num(c.k)}${numJosa(c.k, "을", "를")} 곱하면 ` +
+        `${expr(`${c.a}:${c.b}=${c.a * c.k}:${c.b * c.k}`)} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-4 비례식의 성질 — 심화중 ────────────────────────────────────────────
+//
+// 안 굳는 마디: **두 내항**(곱만 안다). 굳히는 조건: 「두 내항이 같은 수」.
+// 심화하는 내항 둘을 발문이 주어 한 번의 나눗셈으로 끝난다.
+
+const PROP_RULE_MID: { a: number; b: number; x: number }[] = [];
+for (let a = 2; a <= 24; a += 1)
+  for (let b = 2; b <= 48; b += 1) {
+    if (a === b) continue;
+    const p = a * b;
+    const x = Math.round(Math.sqrt(p));
+    if (x * x !== p || x < 3 || x > 20) continue;
+    if (!backsolveSafe([a, b], x)) continue;
+    PROP_RULE_MID.push({ a, b, x });
+  }
+
+function propRuleMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, PROP_RULE_MID);
+  const p = c.a * c.b;
+  return makeDeep(
+    unit,
+    `비례식 ${expr(`${c.a}:\\square=\\square:${c.b}`)} 에서 두 ${expr("\\square")} 에 똑같은 자연수가 들어갑니다. ` +
+      `이 자연수는 얼마입니까?`,
+    num(c.x),
+    [
+      `비례식에서 외항의 곱과 내항의 곱은 같습니다. 외항의 곱은 ` +
+        `${expr(`${c.a}\\times${c.b}=${p}`)} 입니다.`,
+      `내항의 곱도 ${num(p)}이고 두 내항이 같으므로, 같은 수를 두 번 곱해 ${num(p)}${numJosa(p, "이", "가")} ` +
+        `되는 수를 찾습니다. ${expr(`${c.x}\\times${c.x}=${p}`)} 이므로 ` +
+        `${expr("\\square")} 는 ${num(c.x)}입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-5 비례배분 — 심화중 ─────────────────────────────────────────────────
+//
+// 안 굳는 마디: **한 묶음의 크기**. 굳히는 성질: 「한 사람의 몫은 그 사람의 묶음 수의 배수」
+// + 발문의 구간. 심화하는 «차»를 값으로 주어 한 번에 굳는다.
+
+const SHARE_RANGE_MID: {
+  a: number;
+  b: number;
+  lo: number;
+  up: number;
+  k: number;
+}[] = [];
+for (let a = 2; a <= 6; a += 1)
+  for (let b = 2; b <= 7; b += 1) {
+    if (a === b || gcd(a, b) !== 1) continue;
+    for (let k = 3; k <= 12; k += 1) {
+      const part = b * k;
+      const total = (a + b) * k;
+      if (total > 140) continue;
+      for (let pad = 2; pad < b; pad += 1) {
+        const lo = part - pad;
+        const up = part + pad;
+        if (lo <= 0 || up - lo < 4) continue;
+        if (multiplesBetween(lo, up, b).length !== 1) continue;
+        if (!backsolveSafe([a, b, lo, up], total)) continue;
+        SHARE_RANGE_MID.push({ a, b, lo, up, k });
+      }
+    }
+  }
+
+function shareRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SHARE_RANGE_MID);
+  const kid = pick(rng, SHARE_KIDS);
+  const item = pick(rng, SHARE_ITEMS);
+  const s = c.a + c.b;
+  const total = s * c.k;
+  return makeDeep(
+    unit,
+    `${item.name}${josa(item.name, "을", "를")} ${kid.one}${josa(kid.one, "과", "와")} ` +
+      `${kid.two}${josa(kid.two, "이", "가")} ${expr(`${c.a}:${c.b}`)}${numRo(c.b)} 나누어 가지려고 합니다. ` +
+      `두 사람이 갖는 ${item.name} 수가 모두 자연수이고 ${kid.two}${josa(kid.two, "이", "가")} 갖는 ` +
+      `${item.name}${josa(item.name, "이", "가")} ${num(c.lo)}${item.c}보다 많고 ${num(c.up)}${item.c}보다 적을 때, ` +
+      `${item.name}${josa(item.name, "은", "는")} 모두 몇 ${item.c}입니까?`,
+    num(total),
+    [
+      `${kid.two}${josa(kid.two, "은", "는")} ${num(c.b)}묶음이므로 ${kid.two}${josa(kid.two, "이", "가")} 갖는 ` +
+        `${item.name} 수는 ${num(c.b)}의 배수입니다.`,
+      `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(c.b)}의 배수는 ` +
+        `${expr(`${c.b}\\times${c.k}=${c.b * c.k}`)} 뿐이므로 한 묶음은 ${num(c.k)}${item.c}입니다. ` +
+        `전체는 ${expr(`${c.a}+${c.b}=${s}`)} 묶음이므로 ` +
+        `${expr(`${c.k}\\times${s}=${total}`)}${item.c}입니다.`,
+    ],
+  );
+}
+
+// ── 2-4-5 비례배분 — 심화상 ─────────────────────────────────────────────────
+//
+// 🔴 성질만으로 못 굳힌다 — 구간이 한 묶음 후보를 **셋 이상** 남기고, 발문은 그 후보를
+//    주지 않는다. 각 후보로 **한 사람의 몫을 실제로 만들어** 「그것을 다시 나눌 수 있는가」에
+//    대 봐야 하나가 남는다(D-115 ⑾: 끝까지 계산해야 하면 «상»).
+
+const SHARE_SPLIT_TOP: {
+  a: number;
+  b: number;
+  c2: number;
+  d2: number;
+  lo: number;
+  up: number;
+  k: number;
+}[] = [];
+for (let a = 2; a <= 6; a += 1)
+  for (let b = 2; b <= 6; b += 1) {
+    if (a === b || gcd(a, b) !== 1) continue;
+    const s = a + b;
+    for (let c2 = 1; c2 <= 4; c2 += 1)
+      for (let d2 = c2 + 1; d2 <= 6; d2 += 1) {
+        if (gcd(c2, d2) !== 1) continue;
+        const t = c2 + d2;
+        if (t < 3 || a % t === 0) continue; // 늘 나누어떨어지면 조건이 아무 일도 안 한다
+        for (let lo = 20; lo <= 160; lo += 1)
+          for (const width of [3 * s + 2, 4 * s + 2]) {
+            const up = lo + width;
+            if (up > 200) continue;
+            const cands = multiplesBetween(lo, up, s);
+            if (cands.length < 3 || cands.length > 5) continue;
+            const win = cands.filter((v) => ((v / s) * a) % t === 0);
+            if (win.length !== 1) continue;
+            const k = win[0]! / s;
+            if (!backsolveSafe([a, b, lo, up, c2, d2], win[0]!)) continue;
+            SHARE_SPLIT_TOP.push({ a, b, c2, d2, lo, up, k });
+          }
+      }
+  }
+
+function shareSplitTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SHARE_SPLIT_TOP);
+  const kid = pick(rng, SHARE_KIDS);
+  const item = pick(rng, SHARE_ITEMS);
+  const s = c.a + c.b;
+  const t = c.c2 + c.d2;
+  const total = s * c.k;
+  const cands = multiplesBetween(c.lo, c.up, s);
+  const share = (v: number) => (v / s) * c.a;
+  return makeDeep(
+    unit,
+    `${item.name}${josa(item.name, "을", "를")} ${kid.one}${josa(kid.one, "과", "와")} ` +
+      `${kid.two}${josa(kid.two, "이", "가")} ${expr(`${c.a}:${c.b}`)}${numRo(c.b)} 나누어 가졌습니다. ` +
+      `두 사람이 가진 ${item.name} 수는 모두 자연수이고, ${item.name}${josa(item.name, "은", "는")} 모두 ` +
+      `${num(c.lo)}${item.c}보다 많고 ${num(c.up)}${item.c}보다 적습니다. ` +
+      `${kid.one}${josa(kid.one, "이", "가")} 가진 ${item.name}${josa(item.name, "을", "를")} 다시 ` +
+      `${expr(`${c.c2}:${c.d2}`)}${numRo(c.d2)} 나누면 두 몫이 모두 자연수가 될 때, ` +
+      `${item.name}${josa(item.name, "은", "는")} 모두 몇 ${item.c}입니까?`,
+    num(total),
+    [
+      `전체를 ${expr(`${c.a}+${c.b}=${s}`)} 묶음으로 나누므로 전체는 ${num(s)}의 배수입니다. ` +
+        `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 ${num(s)}의 배수는 ` +
+        `${cands.map((v) => expr(`${s}\\times${v / s}=${v}`)).join(", ")} 입니다.`,
+      `${kid.one}${josa(kid.one, "은", "는")} ${num(c.a)}묶음이므로 각 경우에 ` +
+        `${kid.one}${josa(kid.one, "이", "가")} 가진 ${item.name} 수는 차례로 ` +
+        `${cands.map((v) => expr(`${v / s}\\times${c.a}=${share(v)}`)).join(", ")} ${item.c}입니다.`,
+      `이것을 다시 ${expr(`${c.c2}:${c.d2}`)}${numRo(c.d2)} 나누려면 ` +
+        `${expr(`${c.c2}+${c.d2}=${t}`)} 묶음으로 나누어떨어져야 합니다. ` +
+        `${cands
+          .filter((v) => v !== total)
+          .map((v) => num(share(v)))
+          .join(
+            ", ",
+          )}${numJosa(share(cands.filter((v) => v !== total).at(-1)!), "은", "는")} ` +
+        `${num(t)}${numRo(t)} 나누어떨어지지 않고 ` +
+        `${expr(`${share(total)}\\div${t}=${share(total) / t}`)} 만 나누어떨어지므로 ` +
+        `${item.name}${josa(item.name, "은", "는")} 모두 ${num(total)}${item.c}입니다.`,
+    ],
+  );
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -7834,30 +8752,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: prismFaceRead,
     응용: prismFaceApply,
     심화하: prismFaceDeep,
+    심화중: prismAreaMid,
   },
   "초6|1-2-2": {
     연산: prismPartCalc,
     기본: prismPartRead,
     응용: prismPartApply,
     심화하: prismPartDeep,
+    심화중: prismEdgeMid,
   },
   "초6|1-2-3": {
     연산: netCalc,
     기본: netRead,
     응용: netApply,
     심화하: netDeep,
+    심화중: prismNetMid,
   },
   "초6|1-2-4": {
     연산: pyrFaceCalc,
     기본: pyrFaceRead,
     응용: pyrFaceApply,
     심화하: pyrFaceDeep,
+    심화중: pyrAreaMid,
+    심화상: solidKindTop,
   },
   "초6|1-2-5": {
     연산: pyrPartCalc,
     기본: pyrPartRead,
     응용: pyrPartApply,
     심화하: pyrPartDeep,
+    심화중: pyrSumMid,
   },
   "초6|1-3-1": {
     연산: decNatCalc,
@@ -7960,18 +8884,23 @@ export const G6_TIERS: ElemTierMap = {
     기본: surfWord,
     응용: surfApply,
     심화하: surfDeep,
+    심화중: surfRangeMid,
+    심화상: surfSquareTop,
   },
   "초6|1-6-2": {
     연산: volCalc,
     기본: volWord,
     응용: volApply,
     심화하: volDeep,
+    심화중: volPairMid,
+    심화상: volTripleTop,
   },
   "초6|1-6-3": {
     연산: cubicCalc,
     기본: cubicWord,
     응용: cubicApply,
     심화하: cubicDeep,
+    심화중: cubicRangeMid,
   },
   "초6|2-1-1": {
     연산: sameDenCalc,
@@ -8048,30 +8977,36 @@ export const G6_TIERS: ElemTierMap = {
     기본: ratioPropWord,
     응용: ratioPropApply,
     심화하: ratioPropDeep,
+    심화중: ratioPropMid,
   },
   "초6|2-4-2": {
     연산: simpleRatioCalc,
     기본: simpleRatioWord,
     응용: simpleRatioApply,
     심화하: simpleRatioDeep,
+    심화중: simpleRatioMid,
   },
   "초6|2-4-3": {
     연산: propEqCalc,
     기본: propEqWord,
     응용: propEqApply,
     심화하: propEqDeep,
+    심화중: propEqMid,
   },
   "초6|2-4-4": {
     연산: propRuleCalc,
     기본: propRuleWord,
     응용: propRuleApply,
     심화하: propRuleDeep,
+    심화중: propRuleMid,
   },
   "초6|2-4-5": {
     연산: shareCalc,
     기본: shareWord,
     응용: shareApply,
     심화하: shareDeep,
+    심화중: shareRangeMid,
+    심화상: shareSplitTop,
   },
   "초6|2-5-1": {
     연산: circPiCalc,
