@@ -42,6 +42,11 @@ import {
 } from "../../src/lib/middle/generate";
 import type { TypeEntry } from "../../src/lib/middle/types";
 
+import {
+  forwardReachable,
+  pageNumbers,
+  readRat,
+} from "../../src/lib/elementary/forwardReach";
 import { loneInstruction } from "../../src/lib/middle/tier";
 import { OPERATION_INSTRUCTION_WORDS } from "./tier4Rules";
 import { enumeratedSteps } from "./probe-elem-tier-enumeration";
@@ -529,6 +534,28 @@ function gauges(): Gauge[] {
     true,
   ]);
 
+  // ── 반증문 ⑥ (남의 규칙을 그대로 부른다 — 눈금은 «내가 제대로 먹이는가»를 본다) ──
+  g.push([
+    "⑥ 양성 — 곱으로 닿는다 ($12 \\times 8 = 96$)",
+    () => forwardReachable(pageNumbers("$12$와 $8$의 곱"), readRat("96")!),
+    true,
+  ]);
+  g.push([
+    "⑥ 양성 — 곱한 뒤 한 번 더한다 ($12 \\times 8 + 4 = 100$)",
+    () => forwardReachable(pageNumbers("$12$ $8$ $4$"), readRat("100")!),
+    true,
+  ]);
+  g.push([
+    "⑥ 🔴 **알려진 눈멂** — 순수 덧셈은 못 본다 ($12+8=20$ 인데 «안 닿는다»)",
+    () => !forwardReachable(pageNumbers("$12$와 $8$의 합"), readRat("20")!),
+    true,
+  ]);
+  g.push([
+    "⑥ 음성 — 근호 답은 «수 답»이 아니라 이 자의 축 밖이다",
+    () => readRat("3\\sqrt{7}") === null,
+    true,
+  ]);
+
   // ── 원장 ──
   g.push([
     "원장 — 중3 유형이 실제로 실려 있다 (0 이면 이 자가 눈이 먼 것)",
@@ -763,6 +790,54 @@ function reportAxes(): void {
       `  ${t}  ${pct(s.filter((r) => r.hasFigure).length, s.length)}  (n=${s.length})`,
     );
   }
+  reportForwardReach(rows);
+}
+
+/**
+ * **초등 반증문 ⑥ 의 자를 중3 에 그대로 대 본다** —
+ * 「발문의 수에 순방향 사칙연산만 써서 답이 나오면 중·상이 아니다」(D-115 ⑷ ⑥).
+ * 규칙은 `src/lib/elementary/forwardReach.ts` 를 **그대로 부른다**(옮겨 적지 않는다).
+ *
+ * 🔴 **성적보다 «분모»가 먼저다.** 중3 은 답이 근호·각도·식인 것이 많아 이 자가
+ * 아예 못 보는 행이 절반이 넘는다. 「몇 %가 도달하나」를 적기 전에 **「몇 %를 볼 수
+ * 있나」**를 같이 적지 않으면 그 비율은 다른 갈래끼리 견줄 수 없는 값이 된다.
+ */
+function reportForwardReach(rows: Row[]): void {
+  console.log(
+    "\n반증문 ⑥ — 순방향 도달 (규칙은 src/lib/elementary/forwardReach.ts 를 그대로 부른다)",
+  );
+  console.log(
+    "갈래     행   «수 답»=이 자가 볼 수 있는 분모     그중 순방향 도달",
+  );
+  for (const t of CORE) {
+    const sub = rows.filter((r) => r.tier === t);
+    const rat = sub
+      .map((r) => ({ r, a: readRat(r.answer.replace(/\$/g, "").trim()) }))
+      .filter((x) => x.a !== null);
+    const reach = rat.filter((x) =>
+      forwardReachable(pageNumbers(x.r.content), x.a!),
+    );
+    console.log(
+      `${t.padEnd(7)}${String(sub.length).padStart(4)}` +
+        `${`${rat.length} (${pct(rat.length, sub.length)})`.padStart(24)}` +
+        `${`${reach.length} (${pct(reach.length, rat.length)})`.padStart(22)}`,
+    );
+  }
+  console.log(
+    "  ⚠️ 이 자는 «되짚기가 필요한가»를 못 잰다 — 재는 것은 «순방향으로도 되나» 하나뿐이다.",
+  );
+  console.log(
+    "  🔴 **연산 갈래가 대조군이다** — 연산은 정의상 순방향으로 풀리므로 도달률이 100% 에",
+  );
+  console.log(
+    "     가까워야 한다. 그보다 한참 낮으면 낮은 쪽은 문항이 아니라 **자**다.",
+  );
+  console.log(
+    "     이 자는 곱셈을 축으로만 닿는다 — **순수 덧뺄셈·나눗셈이 구조적으로 안 걸린다**",
+  );
+  console.log(
+    "     (눈금이 그 눈멂을 실물로 박아 두었다). 그러니 표의 도달률은 **하한**이다.",
+  );
 }
 
 function reportFrames(): void {
