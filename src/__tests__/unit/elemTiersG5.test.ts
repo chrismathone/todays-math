@@ -2073,6 +2073,9 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       const html = renderMathHtml(`$${rel}$`);
       expect(html, rel).not.toContain("katex-error");
       expect(html, rel).not.toMatch(/color:\s*#cc0000/i);
+      // 🔴 실패는 붉음이 아니라 **날것 폴백**으로 온다 — `renderMathHtml` 은
+      //    「katex-error 를 절대 포함하지 않는다」고 스스로 적어 두었다(2026-08-30 실측).
+      expect(html, rel).not.toContain("math-raw");
     }
     // 실제 생성물 한 벌 — 발문·정답·해설 통째로
     for (const code of CODES13) {
@@ -2080,6 +2083,9 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
       const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
       expect(html, code).not.toContain("katex-error");
       expect(html, code).not.toMatch(/color:\s*#cc0000/i);
+      // 🔴 실패는 붉음이 아니라 **날것 폴백**으로 온다 — `renderMathHtml` 은
+      //    「katex-error 를 절대 포함하지 않는다」고 스스로 적어 두었다(2026-08-30 실측).
+      expect(html, code).not.toContain("math-raw");
     }
   });
 
@@ -2624,6 +2630,9 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
       expect(html, code).not.toContain("katex-error");
       expect(html, code).not.toMatch(/color:\s*#cc0000/i);
+      // 🔴 실패는 붉음이 아니라 **날것 폴백**으로 온다 — `renderMathHtml` 은
+      //    「katex-error 를 절대 포함하지 않는다」고 스스로 적어 두었다(2026-08-30 실측).
+      expect(html, code).not.toContain("math-raw");
     }
     // 빈칸 낀 분수 꼴도 — 1-4-1 연산·1-4-4 심화가 쓰는 모양 그대로
     for (const tex of [
@@ -2633,6 +2642,9 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       const html = renderMathHtml(tex);
       expect(html, tex).not.toContain("katex-error");
       expect(html, tex).not.toMatch(/color:\s*#cc0000/i);
+      // 🔴 실패는 붉음이 아니라 **날것 폴백**으로 온다 — `renderMathHtml` 은
+      //    「katex-error 를 절대 포함하지 않는다」고 스스로 적어 두었다(2026-08-30 실측).
+      expect(html, tex).not.toContain("math-raw");
     }
   });
 
@@ -3029,6 +3041,9 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
         const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
         expect(html, `${code} ${tier}`).not.toContain("katex-error");
         expect(html, `${code} ${tier}`).not.toMatch(/color:\s*#cc0000/i);
+        // 🔴 실패는 붉음이 아니라 **날것 폴백**으로 온다 — `renderMathHtml` 은
+        //    「katex-error 를 절대 포함하지 않는다」고 스스로 적어 두었다.
+        expect(html, `${code} ${tier}`).not.toContain("math-raw");
       }
     }
   });

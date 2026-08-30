@@ -43,6 +43,7 @@ import {
   generateElementaryProblem,
 } from "@/lib/elementary/generate";
 import { countCalcSteps } from "@/lib/elementary/make";
+import { renderMathHtml } from "@/lib/math/renderMathHtml";
 
 import { tiersOf } from "../helpers/elemTiers";
 
@@ -588,6 +589,64 @@ describe("[초5 2-4 확대] 소단원의 약속 — 탐색의 «재료»가 그 
           decs.length,
           `${code} 심화중 @${seed} 1보다 큰 소수가 없다\n${c}`,
         ).toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+/**
+ * 🔴 **렌더 실패의 열쇠는 `katex-error` 가 아니다** (2026-08-30 실측).
+ *
+ * 이 저장소의 초등 갈래 시험 여러 곳이 `not.toContain("katex-error")` 로 렌더를
+ * 지키는데, `renderMathHtml` 의 머리말은 스스로 **「katex-error 를 절대 포함하지
+ * 않는다」** 고 적어 두었다 — 3단 방어가 실패를 `.math-raw` **중립 폴백**으로 바꾼다.
+ * 즉 그 검사들은 **구조적으로 0** 이다(음성 대조를 대 보고 알았다: 미지 명령·짝 안 맞는
+ * 중괄호·닫히지 않은 명령·미지 환경 넷 다 붉지 않고 **날것으로** 떨어진다).
+ *
+ * 그래서 여기서는 **`math-raw` 를 같이** 본다. 전 학년 실측(초등 9,312문항, 표준+갈래)
+ * 에서 둘 다 **0건**이므로 이 열쇠를 더해도 거짓 경보가 안 난다.
+ */
+const renderFails = (html: string) =>
+  html.includes("katex-error") ||
+  /color:\s*#cc0000/i.test(html) ||
+  html.includes("math-raw");
+
+describe("[초5 2-4 확대] 지면 — 값이 맞는 것과 옳게 보이는 것은 다른 질문이다", () => {
+  it("**검출기가 살아 있다** — 실패한 수식을 실제로 문다 (음성 대조)", () => {
+    // 0 이 「깨끗」인지 「못 셈」인지 갈라야 한다. 첫 판은 `katex-error` 만 봤고
+    // **이 눈금이 그 자리에서 빨개져서** 열쇠를 고쳤다.
+    for (const tex of [
+      "$\\notacommand{3}$",
+      "$\\frac{1}{$",
+      "$\\sqrt$",
+      "$\\begin{nope}1\\end{nope}$",
+    ]) {
+      expect(renderFails(renderMathHtml(tex)), `못 문다: ${tex}`).toBe(true);
+    }
+    // 반대쪽 — 멀쩡한 것을 물면 거짓 경보가 되고, 거짓 경보는 가드를 끈다.
+    for (const tex of [
+      "$0.3\\times68=20.4$",
+      "$0.\\square\\times\\square\\square$",
+      "$\\square.\\square\\times\\square.\\square$",
+    ]) {
+      expect(renderFails(renderMathHtml(tex)), `거짓 경보: ${tex}`).toBe(false);
+    }
+  });
+
+  it("새 꼴(`0.□×□□`·`□.□×□.□`·`□.□□`)이 지면에서 성하게 그려진다", () => {
+    // ⚠️ 이 대단원은 기존 렌더 검사의 **밖**이었다(그 검사들은 1-5·2-3 블록에만 있다).
+    //    확대 갈래는 `\square` 를 소수점 **안**에 넣는 새 꼴을 쓰므로 실제로 그려 본다.
+    //    값 검산은 이 부류를 구조적으로 못 본다 — 값은 맞고 글자만 날것이기 때문이다.
+    for (const code of CODES) {
+      for (const tier of ["심화중", "심화상"] as const) {
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          const html = renderMathHtml(`${p.content} ${p.answer} ${p.solution}`);
+          expect(
+            renderFails(html),
+            `${code} ${tier} @${seed} 지면에 날 LaTeX 이 나간다\n${p.content}`,
+          ).toBe(false);
+        }
       }
     }
   });
