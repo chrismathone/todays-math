@@ -2458,6 +2458,28 @@ function truthOf22(content: string): R | null {
     }
     return null;
   }
+  // ── 확대 갈래 «심화중» (D-113) ────────────────────────────────────────────
+  // 🔴 **아래 셋은 기존 열쇠보다 «먼저» 와야 한다.** 「잘못하여 … 곱했더니」는 아래
+  //    「곱했더니」 열쇠에 그대로 걸리는데, 되짚은 뒤 **한 걸음이 더** 있다 —
+  //    순서를 뒤집으면 참이 한 걸음 모자란 값이 되어 «맞는 답»을 틀렸다고 한다.
+  // 2-2-2 심화중 — 나눌 것을 잘못 곱했다: [나누는 수, 잘못 계산한 값] → (a÷b)÷b
+  if (content.includes("잘못하여")) {
+    const [b, a] = [at(0), at(1)];
+    return b && a && ns.length === 2 ? rdiv(rdiv(a, b), b) : null;
+  }
+  // 2-2-1·2-2-3 심화중 — 되짚은 수를 **다시** 나눈다: [나눈 수, 몫, 다시 나눌 수]
+  if (content.includes("나눈 몫이")) {
+    const [b, q, c] = [at(0), at(1), at(2)];
+    return b && q && c && ns.length === 3 ? rdiv(rmul(q, b), c) : null;
+  }
+  // 2-2-5 심화중 — 되짚은 처음 양을 **다른 그릇**으로 다시 담는다:
+  // [한 그릇, 그릇 수, 남은 양, 새 한 그릇] → 몫을 자연수까지
+  if (content.includes("담으면 몇")) {
+    const [per1, cnt, rem, per2] = [at(0), at(1), at(2), at(3)];
+    if (!per1 || !cnt || !rem || !per2 || ns.length !== 4) return null;
+    const total = rat(per1.n * cnt.n * rem.d + rem.n, rem.d);
+    return rat(Math.floor((total.n * per2.d) / (total.d * per2.n) + 1e-9));
+  }
   // 심화 2-2-1 — 곱을 나눗셈으로 되돌린다: [곱한 수, 결과]
   if (content.includes("곱했더니")) {
     const [b, a] = [at(0), at(1)];
@@ -2499,6 +2521,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
   it("정답은 발문이 말하는 값과 같다 (시험이 ×10 정수로 다시 계산)", () => {
     const bad: string[] = [];
     let checked = 0;
+    let skippedTop = 0;
     for (const code of G6_22_CODES) {
       const unit = unitOf(code);
       for (const tier of tiersOf(unit)) {
@@ -2508,6 +2531,14 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
           const flat = p.content.replace(/\n+/g, " ");
           // 2-2-4 는 답이 «반올림한 값»이라 값 검산을 따로 한다(아래 전용 검사).
           if (code === "2-2-4") continue;
+          // 🔴 **심화상(D-113)은 이 자가 구조적으로 못 잰다** — 답이 「$8.4$, $9.6$」처럼
+          //    여럿이거나 「$3$」처럼 **후보를 센 값**이라 «발문이 말하는 한 값»이 아니다.
+          //    조용히 건너뛰면 그 갈래가 통째로 가드 밖이 되므로 **건너뛴 수를 세어 못 박고**,
+          //    실제 판정은 `elemTiersG6Deep.test.ts` 가 **발문의 후보를 다시 훑어서** 한다.
+          if (tier === "심화상") {
+            skippedTop += 1;
+            continue;
+          }
           // 2-2-5 의 몫·나머지 쌍도 전용 검사가 본다.
           if (/몫과 남는 수|몇 명에게 나누어 줄 수 있고/.test(p.content)) {
             continue;
@@ -2528,6 +2559,13 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
+    // 건너뛴 심화상도 **세어서** 못 박는다 — 「몇 건을 이 자가 안 봤나」가 안 보이면
+    // 나중에 갈래가 하나 빠져도 분모만 조용히 줄어든다(D-113).
+    expect(skippedTop).toBe(
+      G6_22_CODES.filter(
+        (c) => c !== "2-2-4" && tiersOf(unitOf(c)).includes("심화상"),
+      ).length * SEEDS.length,
+    );
     // 2-2-4 전량과 2-2-5 의 몫·나머지 갈래(연산·기본 32)는 전용 검사 몫이다.
     // 32 는 «연산·기본 두 핵심 갈래 × 16 시드» 고정값이다 — 축이 늘어나도 몫·나머지
     // 문형은 그 둘에서만 나므로 tiersOf 로 다시 셀 값이 아니다.
@@ -2535,7 +2573,8 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       G6_22_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
         SEEDS.length -
         tiersOf(unitOf("2-2-4")).length * SEEDS.length -
-        32,
+        32 -
+        skippedTop,
     );
   });
 
@@ -2546,6 +2585,90 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-4 ${tier} seed=${seed}`;
+        const place0 = /둘째 자리까지/.test(p.content) ? 2 : 1;
+        /** 정수 나눗셈으로 반올림을 **다시 짓는다** — 부동소수를 안 거친다. */
+        const roundTo = (a: number, b: number, pl: number) => {
+          const scale = a * 10 ** pl;
+          return Math.floor(scale / b) + ((scale % b) * 2 >= b ? 1 : 0);
+        };
+
+        // ── 확대 갈래 «심화중» (D-113) — 세 몫을 각각 반올림해 가장 큰 것 ──
+        // ⚠️ 아래 기본 경로는 `$a\div b$` 를 **첫 하나만** 읽는다. 그대로 두면
+        //    「우연히 첫째가 가장 클 때」 통과한다 — 재는 게 아니라 요행이다.
+        //    그래서 여기서 **셋을 다** 읽어 최댓값을 짓는다.
+        if (/가장 큰 값을 구하시오/.test(p.content)) {
+          const all = [...p.content.matchAll(/\$(\d+)\\div(\d+)\$/g)].map(
+            (x) => [Number(x[1]), Number(x[2])] as const,
+          );
+          if (all.length !== 3) {
+            bad.push(`${where}: 나눗셈 셋을 못 읽음 — ${p.content}`);
+            continue;
+          }
+          const cuts = all.map(([a, b]) => roundTo(a, b, place0));
+          for (const [a, b] of all) {
+            if ((a * 10 ** place0) % b === 0) {
+              bad.push(
+                `${where}: ${a}÷${b} 이 소수 ${place0}자리에서 딱 떨어진다`,
+              );
+            }
+            if ((a * 10 ** (place0 + 1)) % b === 0) {
+              bad.push(
+                `${where}: ${a}÷${b} 이 소수 ${place0 + 1}자리에서 끝나는데 해설이 \\ldots 라 적는다`,
+              );
+            }
+          }
+          // «가장 큰 것»이 하나로 정해져야 답이 하나다 — 겹치면 문항 자체가 틀린다.
+          if (new Set(cuts).size !== 3) {
+            bad.push(`${where}: 반올림한 값이 겹친다 — ${cuts.join(", ")}`);
+          }
+          const want = rat(Math.max(...cuts), 10 ** place0);
+          if (!req(want, readMixedAnswer(p.answer))) {
+            bad.push(`${where}: 답 ${p.answer} (${rshow(want)} 이어야)`);
+          }
+          continue;
+        }
+
+        // ── 확대 갈래 «심화상» (D-113) — 반올림을 되짚어 «될 수 있는 수»를 모두 ──
+        // 시험이 **범위를 다시 지어** 그 안의 자연수를 전부 센다(엔진 풀을 안 본다).
+        if (/들어갈 수 있는 자연수를 모두/.test(p.content)) {
+          const head = p.content.match(/\$\\square\\div(\d+)\$/);
+          const shownR = p.content.match(/나타내면 \$(\d+)\.(\d)\$/);
+          if (!head || !shownR) {
+            bad.push(
+              `${where}: 나누는 수·반올림한 값을 못 읽음 — ${p.content}`,
+            );
+            continue;
+          }
+          const b = Number(head[1]);
+          const r10 = Number(`${shownR[1]}${shownR[2]}`);
+          const lo100 = (r10 * 10 - 5) * b;
+          const hi100 = (r10 * 10 + 5) * b;
+          const want: number[] = [];
+          for (let n = Math.ceil(lo100 / 100); n * 100 < hi100; n += 1) {
+            if (n * 100 >= lo100) want.push(n);
+          }
+          const got = [...p.answer.matchAll(/\$(\d+)\$/g)].map((x) =>
+            Number(x[1]),
+          );
+          if (want.length < 2) {
+            bad.push(
+              `${where}: 될 수 있는 수가 ${want.length}개뿐 — 답이 여럿이 아니다`,
+            );
+          }
+          if (want.join(",") !== got.join(",")) {
+            bad.push(
+              `${where}: 답 ${p.answer} (${want.join(", ")} 이어야) — ${p.content}`,
+            );
+          }
+          // 되짚기가 참이려면 **경계 밖은 반올림 값이 달라야** 한다(범위가 헐거우면 답이 는다).
+          for (const n of [want[0]! - 1, want[want.length - 1]! + 1]) {
+            if (roundTo(n, b, 1) === r10) {
+              bad.push(`${where}: ${n} 도 조건을 만족하는데 답에 없다`);
+            }
+          }
+          continue;
+        }
+
         // 문장형 갈래(기본·응용)는 발문에 식이 없다 — 그때는 «앞 수 ÷ 뒤 수»로 읽는다.
         const m = p.content.match(/\$(\d+)\\div(\d+)\$/);
         const nums = scaledNumsIn(p.content);
@@ -2609,6 +2732,12 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-5 ${tier} seed=${seed}`;
         const nums = scaledNumsIn(p.content);
+        // 🔴 **답의 «모양»만 보면 다른 문항을 몫·나머지로 읽는다.** 아래 정규식은
+        //    「$6$, $9$」처럼 쉼표로 이어진 두 값에도 걸리는데, 2-2-5 심화상(D-113)의
+        //    답이 정확히 그 모양이다(실측으로 거짓 빨강이 났다). **무엇을 묻는가는
+        //    발문에서** 봐야 한다 — 답 모양은 그 다음이다.
+        if (!/몫과 남는 수|몇 명에게 나누어 줄 수 있고/.test(p.content))
+          continue;
         // 몫·나머지를 함께 답하는 갈래만 이 규약을 잰다.
         const pair = p.answer.match(
           /^(?:몫 )?\$(\d+)\$(?:명)?, (?:남는 수 )?\$(\d+(?:\.\d+)?)\$/,
