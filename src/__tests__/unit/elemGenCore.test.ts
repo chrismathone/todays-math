@@ -9,6 +9,10 @@
  */
 import { describe, expect, it } from "vitest";
 
+import {
+  CORE_DIFFICULTIES,
+  DIFFICULTY_LADDER,
+} from "../../contracts/difficulty";
 import { ELEM_TIERS, type ElemTier } from "../../lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -155,16 +159,53 @@ describe("[초등 출제 CLI] 세트 생성", () => {
     expect(new Set(keys).size).toBe(6);
   });
 
-  it("소단원 230개가 전부 갈래 넷을 낸다 — «갈래 없음» 가드의 분모", () => {
-    const rows = listCoverage();
-    const tierless = rows.filter((r) => r.tiers.length !== 4);
+  /**
+   * 🔴 **열쇠가 «넷»이면 축이 넓어지는 날 거짓 경보가 난다** (D-113, 2026-08-30).
+   *
+   * 종전에는 `r.tiers.length !== 4` 였다. 그런데 이 시험이 지키려는 것은
+   * 「갈래가 **없는** 소단원이 생겼나」이지 「넷인가」가 아니다 — 위 주석이 그렇게 적어
+   * 두었는데 **잣대만 개수였다.** 그래서 2-4 일곱 소단원에 `심화중`·`심화상` 을 채우자
+   * **멀쩡한 확대를 결함으로** 물었다(초5 2-4-1~7). 이 저장소가 2026-08-25 에 적은
+   * 「타입은 배열 길이를 안 센다 — 값이 늘어도 손 목록은 조용히 셋으로 남는다」의
+   * 뒷면이다: 이번엔 손 상수가 **시끄럽게** 틀렸다.
+   *
+   * 이제 **핵심 넷(`CORE_DIFFICULTIES`)을 다 갖는가**를 묻는다. 그 목록은 계약이
+   * 정하므로 두 벌이 되지 않고, 확대 갈래를 채워도 안 흔들리며, 갈래가 **비면**
+   * 여전히 먼저 빨개진다. 사다리 밖의 이름이 새어 들어오는 것도 같이 막는다.
+   */
+  it("소단원 230개가 전부 **핵심 넷**을 낸다 — «갈래 없음» 가드의 분모", () => {
+    /** 「이 소단원의 갈래 목록이 성한가」 — 밖으로 빼서 **눈금을 댈 수 있게** 한다. */
+    const broken = (tiers: readonly string[]) =>
+      !CORE_DIFFICULTIES.every((t) => tiers.includes(t)) ||
+      !tiers.every((t) => (DIFFICULTY_LADDER as readonly string[]).includes(t));
+    // 🔴 **눈금** — 실물이 늘 성해서 전량 초록이면 «깨끗»과 «못 셈»이 안 갈린다.
+    expect(broken([...CORE_DIFFICULTIES]), "핵심 넷은 성하다").toBe(false);
     expect(
-      tierless.map((r) => `${r.grade} ${r.code}`),
-      "갈래가 넷이 아닌 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
-        "`generate.ts` 의 「난이도 갈래가 없는 소단원입니다」가 그날 다시 살아난다. " +
+      broken([...CORE_DIFFICULTIES, "심화중", "심화상"]),
+      "확대까지 채운 것도 성하다",
+    ).toBe(false);
+    expect(broken([]), "갈래가 없으면 잡는다").toBe(true);
+    expect(broken(["연산", "기본", "응용"]), "핵심이 빠지면 잡는다").toBe(true);
+    expect(
+      broken([...CORE_DIFFICULTIES, "심화"]),
+      "사다리 밖 옛 이름이 남으면 잡는다",
+    ).toBe(true);
+
+    const rows = listCoverage();
+    const bad = rows.filter((r) => broken(r.tiers));
+    expect(
+      bad.map((r) => `${r.grade} ${r.code} [${r.tiers.join("·")}]`),
+      "핵심 갈래가 빠졌거나 사다리 밖 이름이 있는 소단원이 생겼다 — " +
+        "`gen-core.ts` 의 needTierRegistry()·`generate.ts` 의 " +
+        "「난이도 갈래가 없는 소단원입니다」가 그날 다시 살아난다. " +
         "위 주석이 가리키는 두 시험을 되살려 그 가드를 다시 재라",
     ).toEqual([]);
     expect(rows).toHaveLength(230);
+    // **분모를 한 번 더 지킨다** — 「핵심 넷을 다 갖는가」는 갈래가 하나도 없으면
+    // `every` 가 거짓이라 잡히지만, 목록이 통째로 비면 위 단정이 공허하게 초록이다.
+    expect(rows.every((r) => r.tiers.length >= CORE_DIFFICULTIES.length)).toBe(
+      true,
+    );
   });
 
   it("tier 와 preset 을 같이 주면 던진다", () => {
