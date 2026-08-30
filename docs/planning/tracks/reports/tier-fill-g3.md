@@ -245,9 +245,43 @@ npx tsx scripts/qa/probe-elem-equations.ts 초3          ✅ 안 맞는 등식 0
 npx tsx scripts/qa/probe-elem-throw.ts 초3              ✅ throw 0 (씨앗 0~999 · 288,000건)
 npx tsx scripts/qa/probe-elem-tier-4dan.ts 초3          ✅ 미검토 0
 npx tsx scripts/qa/probe-elem-tier-ladder.ts 초3        ✅ 맨 계산인 심화 0
+npx tsx scripts/qa/census-elem-list-answers.ts --selftest ✅ 눈금 6건 (양성 2 · 음성 4)
 npm run type-check                                      ✅ 0
 npm run lint / lint:affordance                          ✅ 오류 0 (경고 34는 전부 남의 자리)
+
+npm run test  →  Test Files  1 failed | 325 passed | 1 skipped (327)
+                     Tests  1 failed | 13,224 passed | 129 skipped (13,354)
+                  Duration  769.32s
 ```
+
+### 7.1 관문의 그 하나 — **내 것이 아니다** (근거를 적어 둔다)
+
+`PrintCheck.test.tsx > 근거가 가리키는 파일은 실재한다`
+— `middle-dimension-outside: .tmp-orca/chordgap.ts: expected false to be true`
+
+| 물음 | 답 |
+|---|---|
+| 그 줄을 넣은 자리 | `src/app/dev/print-check/items.ts:1498` (치수선 트랙) |
+| 내 기준 커밋(`f1c5ee71`)에도 있나 | **있다** (`git show f1c5ee71:…items.ts` 에서 1건) |
+| 내가 그 파일을 건드렸나 | **아니다** (`git diff f1c5ee71 -- …items.ts` 0줄) |
+| `.tmp-orca/chordgap.ts` 가 커밋된 적 있나 | **한 번도 없다** (`git log --all --` 0건, `.gitignore:45`) |
+
+**고치지 않았다.** 그 줄이 가리키는 것은 「문턱을 분포에서 골랐다」는 다른 트랙의
+**근거**인데, 그 일회용 스크립트를 내가 복원할 수 없다. 문구만 바꾸면 근거가
+사라진다(「지운 게 증거였다」, 2026-08-16). 치수선 트랙이 근거를 **커밋된 자리로
+옮기거나** 문구로 바꿔야 한다. 이 보고서는 그 전례를 그대로 따랐다
+(`tier-bench-g3.md` §7.1 이 같은 것을 같은 근거로 남겨 두었다).
+
+⚠️ 반대로 **이번 회차에 내가 쓴 계량기는 커밋했다** — `scripts/qa/census-elem-list-answers.ts`.
+§5.0 의 수치가 `.tmp-orca` 에만 있었으면 그것도 chordgap 과 같은 자리가 된다.
+
+### 7.2 부하로 흔들린 자리 — 첫 회차 6빨강 → 둘째 회차 1빨강
+
+첫 전량 회차는 6개가 빨갰다. 내 것은 **하나**였고(§6 의 「갈래 넷」 상수, 고쳤다),
+나머지 다섯 중 넷은 **혼자 돌리면 통과**한다(`elemComboCli` 는 자식 프로세스가
+`status: null` 로 죽었고, `elemTiersG4Line`·`middleM3Stat2` 는 120초·20초 시간 초과,
+`elementaryFigure` 는 재현 안 됨). 메모리 `vitest-forks-pool-starves` 의 그 자리다.
+**「N failed」를 보면 먼저 혼자 돌려 갈라라** — 안 그러면 남의 부하를 내 결함으로 읽는다.
 
 **훑은 갈래·판정 소단원 수가 실제로 늘었다** — 판정기들이 새 갈래를 정말 보고 있다는
 뜻이다. 늘지 않았으면 「위반 0」이 «깨끗»이 아니라 «안 봤다»였을 것이다.
