@@ -12,7 +12,7 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 
 import type { ElemTierMap } from "./difficulty";
 
-import { decLatex, expr, fracLatex, n, polyName } from "./format";
+import { decLatex, expr, fracLatex, josa, n, polyName } from "./format";
 import { fracSpec } from "./fracFig";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divisors, gcd, lcm, simplify, subFrac } from "./math";
@@ -9490,48 +9490,63 @@ function dm247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
- * 2-4 확대 갈래 «심화중»·«심화상» — D-113 파일럿 (2026-08-30)
+ * 2-4 확대 갈래 «심화중»·«심화상» — D-113 파일럿 (2026-08-30, **되짚기 축**)
  *
- * **왜 이 대단원인가.** 초5 벤치마킹 보고서
- * (`docs/planning/tracks/reports/tier-bench-g5.md` §2.4 Ⓐ · §3.2 · §5.1-1)가 지목한
- * **가장 낮은 자리**다 — 일곱 소단원의 심화가 **전부** `a\times\square=b` 한 걸음
- * 역산이라, 저쪽 6단에 대면 여섯이 「기본~실력(하)」에 앉는다(보고서가 「심화가 최저」로
- * 적은 네 자리가 2-4-1·2·3·4·5·6 이다). 여기서 되면 다른 데서도 된다.
+ * 🔴 **첫 판은 «열거 축»이었고 기각됐다.** 리드가 문형 경로 전량(6,900행)에 두 축을
+ *    나란히 대 보니 열거는 갈래를 **1.5~2배**밖에 안 가르는데 되짚기는 **22~40배**
+ *    가른다. 게다가 심화하 **안에서** 열거형은 평균 0.39걸음으로 **그 소단원의 연산
+ *    (0.79)보다도 얕았다** — 열거를 위 두 칸의 정의로 쓰면 가장 얕은 것을 꼭대기로
+ *    올리는 셈이다. 그래서 이 블록을 통째로 다시 짰다.
  *
- * **두 갈래를 가르는 것은 후보 공간의 «모양»이다** — 낱말이 아니다.
+ * ## 확정 잣대 — 되짚기 사슬의 «마디»가 굳는가
  *
- *   심화중  후보가 **한 줄**이다(자연수 1,2,3… · 숫자 1~9 · 10·100·1000…).
- *           범위가 그 줄을 자르고 답은 잘린 토막 **전부**다. 한 걸음 역산과 달리
- *           **양쪽 경계**를 다 재야 하고, 답이 하나로 정해지지 않는다.
- *   심화상  후보가 **배열**이다 — 같은 카드를 어느 자리에 놓는가. 전부 만들어
- *           견주지 않으면 답이 안 나오고, **가장 큰 곱이 조건에 걸려 빠진다.**
- *           그래서 「큰 수를 앞자리에」 같은 요령이 통하지 않는다.
+ *   심화하  마디마다 값이 **하나로 굳는다**  `0.4×□=2.8` → □=7   (기존, 안 건드림)
+ *   심화중  **굳지 않는 마디가 하나** 있고, **그 소단원의 성질**이 한 번에 굳혀 준다
+ *   심화상  성질만으로는 못 굳혀서, 그 소단원의 계산으로 나올 수 있는 값들을
+ *           **실제로 만들어 견주어야** 하나가 남는다. 그리고 그 후보를
+ *           **발문이 주지 않고 되짚기가 만든다.**
  *
- * 🔴 **숫자를 키우지 않았다**(원장님). 카드는 한 자리 숫자뿐이고 곱은 소수 두 자리
- *    안에 머문다. 오르는 것은 **구조**다.
+ * ## 이 파일이 쓰는 두 뼈대
  *
- * ⚠️ **소단원의 약속을 지킨다.** 「(1보다 작은 소수)×(자연수)」의 심화상도 그 꼴의
- *    곱셈식만 만든다 — 탐색의 «재료»가 그 소단원의 개념이 아니면 그건 다른 단원이다.
- *    그래서 2-4-5 는 `0.\square\times0.\square`, 2-4-6 은 `\square.\square\times
- *    \square.\square` 처럼 **꼴이 소단원마다 다르다.**
+ * **㉠ 심화중 — 소수점을 한 자리 «잘못» 옮겼다** (`misplacedMid`)
+ *    되짚기로 «잘못 쓴 수»까지는 하나로 굳는다. 그런데 **어느 쪽으로 옮겼는지를
+ *    발문이 말하지 않는다** — 원래 수 후보가 둘이다. 그 마디를 **소단원의 이름**
+ *    (「1보다 작은 소수 한 자리 수」…)이 한 번에 굳힌다.
+ *    ⚠️ 방향을 발문에 적으면 마디가 굳어 **심화하가 된다.** 안 적는 것이 이 갈래다.
  *
- * ⚠️ **이 파일럿은 갈래만 채운다 — 문형(`G5_FORMS`)은 안 건드린다.** 문형은 소단원마다
- *    정확히 열 개라 둘을 더하면 지면 구성이 바뀌고, 그건 원장님 결정(D-07)이다.
- *    그래서 **적재본에는 한 건도 안 들어간다** — `probe-elem-extending-tiers.ts` 가
- *    갈래·문형 두 줄을 따로 찍으니 「채웠다」가 「지면에 나간다」로 안 읽힌다.
+ * **㉡ 심화상 — 곱만 알고 두 인수를 모른다** (`factorTop`)
+ *    인수분해는 하나로 안 굳고, 소단원의 성질로도 여러 짝이 남는다. 그래서
+ *    **짝마다 둘째 곱셈을 실제로 해 보고** 조건에 맞는 것을 골라야 한다.
+ *
+ *    🔴 **둘째 걸음만으로 풀리면 안 된다.** 조건 창에 드는 후보가 **둘 이상**이도록
+ *    잡아, 「그중 어느 것이 곱을 만드는가」를 **인수 되짚기로** 갈라야만 답이 나오게
+ *    했다(예: 창이 $6$·$7$ 을 남기고 $2.4$ 를 만드는 것은 $6$ 뿐이다). 이 조건이
+ *    없으면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
+ *
+ * ## 반증문 ⑥ 을 **생성기가 스스로 막는다**
+ *
+ * 「발문이 준 수에 순방향 곱셈만으로 답이 나오면 중·상이 아니다」 — `forwardReach`
+ * 가 그것을 세고, 걸리는 후보는 **애초에 안 만든다.** 판정기
+ * (`scripts/qa/probe-elem-tier-backsolve.ts`)가 ④ 와 함께 밖에서 다시 잰다.
+ *
+ * 🔴 **숫자를 안 키웠다**(원장님). 소수는 한 자리, 자연수는 한 자리, 곱은 소수 두 자리
+ *    안에 머문다(2-4-7 만 세 자리 — 그 소단원이 자리를 옮기는 단원이라서다).
+ *
+ * ⚠️ **갈래만 채운다 — 문형(`G5_FORMS`)은 안 건드린다**(D-113·D-114, 순서는 잣대 →
+ *    갈래 → 문형 12 → 적재다). 그래서 적재본에는 한 건도 안 들어간다.
  * ──────────────────────────────────────────────────────────────────────────── */
 
 /** 정수 스케일 수 — `[값, 소수점 아래 자릿수]`. 견주기·곱하기를 부동소수 없이 한다. */
 type Sc = readonly [number, number];
 
-/** 자릿수가 다른 둘을 견주기 위한 공통 분모(만분의 일). */
-const SC_Q = 10000;
+/** 자릿수가 다른 둘을 견주기 위한 공통 분모(십만분의 일). */
+const SC_Q = 100000;
 const scQ = (s: Sc): number => s[0] * (SC_Q / 10 ** s[1]);
 const scMul = (a: Sc, b: Sc): Sc => [a[0] * b[0], a[1] + b[1]];
 /** 지면 표기 — `dec` 가 꼬리 0 을 접는다. */
 const scText = (s: Sc): string => dec(s[0], s[1]);
 
-/** 꼬리 0 을 접은 뒤 남는 소수 자릿수. 0 이면 답이 **정수로 접힌** 것이다. */
+/** 꼬리 0 을 접은 뒤 남는 소수 자릿수. 0 이면 자연수다. */
 function scPlaces(s: Sc): number {
   let v = s[0];
   let d = s[1];
@@ -9542,730 +9557,727 @@ function scPlaces(s: Sc): number {
   return d;
 }
 
-/** 후보 하나 — **값**과 **답에 적히는 표기**가 다를 수 있다(`0.\square` 의 답은 숫자다). */
-type Cand = { s: Sc; label: number | string };
+/** 소수점을 오른쪽(`+1`)·왼쪽(`-1`)으로 한 자리 옮긴 수. 자릿수는 정규화한다. */
+function scShift(s: Sc, dir: 1 | -1): Sc {
+  let v = s[0];
+  let d = s[1] - dir;
+  while (d < 0) {
+    v *= 10;
+    d += 1;
+  }
+  return [v, d];
+}
 
-type RangeTask = {
-  fixed: Sc;
-  lo: Sc;
-  hi: Sc;
-  hits: readonly Cand[];
-  below: Cand;
-  above: Cand;
-};
+/** `$6$, $7$로는` — 나열 뒤 «(으)로» 를 마지막 수의 소리에 맞춘다. */
+function listRo(values: readonly Sc[]): string {
+  const last = values[values.length - 1]!;
+  return `${values.map((v) => n(scText(v))).join(", ")}${dro(scText(last))}는`;
+}
 
 /**
- * 씨앗과 무관한 표라 **한 번만** 만든다 — 안 그러면 씨앗 500개 쓸기가 수억 번이 된다.
- * 순수 함수의 캐시라 답을 바꾸지 않는다.
- */
-const RANGE_CACHE = new Map<string, RangeTask[]>();
-
-/**
- * 「범위가 후보 줄을 자른다」 — 조건에 맞는 (고정값 · 아래 경계 · 위 경계)를 **전부** 모은다.
+ * **반증 ⑥ 을 기계로 막는다** — 발문의 수에 곱셈(과 한 번의 덧뺄셈)만 순방향으로
+ * 써서 답이 나오면 그 문항은 중·상이 아니다.
  *
- * ⚠️ 경계를 **엄격히 밖**으로 요구한다. 곱이 경계와 «같으면» 해설의
- *    「$…$은 $A$보다 작습니다」가 **거짓**이 된다 — 값은 맞는데 문장이 틀리는 부류라
- *    값 검산이 구조적으로 못 본다.
- * ⚠️ 후보 줄의 **양 끝**은 답이 될 수 없게 막는다. 끝이면 「그 바깥은 왜 안 되나」를
- *    보여 줄 짝이 없어서, 학생이 경계를 **한쪽만** 재고도 맞힌다 — 그러면 이 갈래가
- *    심화하(한 걸음)와 같아진다.
+ * ⚠️ 이 자는 «되짚기가 필요한가»를 못 잰다. **«순방향으로도 되나»만** 잰다 —
+ *    걸리면 확실히 아니고, 안 걸린다고 반드시 되짚기인 것은 아니다(그건 사람이 본다).
  */
-function rangeTasks(
-  key: string,
-  fixedPool: readonly Sc[],
-  candPool: readonly Cand[],
-  boundPool: readonly Sc[],
-  min: number,
-  max: number,
-): RangeTask[] {
-  const cached = RANGE_CACHE.get(key);
-  if (cached) return cached;
-  const out: RangeTask[] = [];
-  for (const fixed of fixedPool) {
-    // 후보가 오름차순이므로 곱도 오름차순이다 — 범위에 드는 것은 늘 이어진 토막이다.
-    const prod = candPool.map((c) => scQ(scMul(fixed, c.s)));
-    for (let i = 0; i < boundPool.length; i += 1) {
-      const qlo = scQ(boundPool[i]!);
-      for (let j = i + 1; j < boundPool.length; j += 1) {
-        const qhi = scQ(boundPool[j]!);
-        let first = -1;
-        let last = -1;
-        for (let k = 0; k < prod.length; k += 1) {
-          if (prod[k]! > qlo && prod[k]! < qhi) {
-            if (first < 0) first = k;
-            last = k;
-          }
-        }
-        if (first < 1 || last >= prod.length - 1) continue;
-        const count = last - first + 1;
-        if (count < min || count > max) continue;
-        if (prod[first - 1]! >= qlo || prod[last + 1]! <= qhi) continue;
-        out.push({
-          fixed,
-          lo: boundPool[i]!,
-          hi: boundPool[j]!,
-          hits: candPool.slice(first, last + 1),
-          below: candPool[first - 1]!,
-          above: candPool[last + 1]!,
-        });
+function forwardReach(nums: readonly Sc[], answer: Sc): boolean {
+  const want = scQ(answer);
+  for (const a of nums) if (scQ(a) === want) return true;
+  for (let i = 0; i < nums.length; i += 1) {
+    for (let j = 0; j < nums.length; j += 1) {
+      if (i === j) continue;
+      const p = scQ(scMul(nums[i]!, nums[j]!));
+      if (p === want) return true;
+      for (let k = 0; k < nums.length; k += 1) {
+        if (k === i || k === j) continue;
+        const q = scQ(nums[k]!);
+        if (p + q === want || p - q === want) return true;
       }
     }
   }
-  RANGE_CACHE.set(key, out);
+  return false;
+}
+
+/* ── ㉠ 심화중 — 「소수점을 한 자리 잘못 옮긴 수로 계산했다」 ─────────────── */
+
+type MisTask = { a: Sc; k: Sc; wrong: Sc; product: Sc; right: Sc };
+
+const MIS_CACHE = new Map<string, MisTask[]>();
+
+type MisSpec = {
+  key: string;
+  /** 참값 소수 후보 — 그 소단원의 성질을 만족하는 것만. */
+  aPool: readonly Sc[];
+  /** 곱하는 수 후보. */
+  kPool: readonly Sc[];
+  /** 어느 쪽으로 잘못 옮겼나 — **발문에는 안 적는다**(그래야 마디가 안 굳는다). */
+  dir: 1 | -1;
+  /** 소단원의 성질. 되짚기가 만든 두 후보 중 **하나만** 이걸 만족해야 한다. */
+  holds: (v: Sc) => boolean;
+  /** 지면에 나가는 수의 소수 자릿수 상한. */
+  maxPlaces: number;
+  /** 발문에 소단원 이름이 내건 크기의 소수가 있어야 한다. */
+  shows: "under" | "over" | "any";
+  /** 바른 값이 «소수»로 남아야 하나 (2-4-7 만 정수 답이 정상이다). */
+  answerDecimal: boolean;
+};
+
+/** 발문에 보이는 수가 소단원 이름의 크기를 갖췄나. */
+function showsOk(shown: readonly Sc[], want: MisSpec["shows"]): boolean {
+  if (want === "any") return true;
+  return shown.some(
+    (s) =>
+      scPlaces(s) >= 1 &&
+      (want === "under" ? scQ(s) > 0 && scQ(s) < SC_Q : scQ(s) > SC_Q),
+  );
+}
+
+function misTasks(spec: MisSpec): MisTask[] {
+  const cached = MIS_CACHE.get(spec.key);
+  if (cached) return cached;
+  const out: MisTask[] = [];
+  for (const a of spec.aPool) {
+    if (!spec.holds(a)) continue;
+    const wrong = scShift(a, spec.dir);
+    // 되짚기가 만드는 **다른 후보** — 발문이 방향을 안 말하므로 이것도 살아 있다.
+    const other = scShift(wrong, spec.dir === 1 ? 1 : -1);
+    // 🔴 마디가 «굳지 않아야» 한다. 다른 후보도 성질을 만족하면 답이 둘이 된다.
+    if (spec.holds(other)) continue;
+    for (const k of spec.kPool) {
+      const product = scMul(wrong, k);
+      const right = scMul(a, k);
+      if (
+        [product, right, a, wrong, k].some((s) => scPlaces(s) > spec.maxPlaces)
+      )
+        continue;
+      if (scQ(product) === scQ(right)) continue;
+      // 답이 정수로 접히면 「소수의 곱셈」이 지면에서 사라진다(2-4-7 은 자리를
+      // 옮기는 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다).
+      if (spec.answerDecimal && scPlaces(right) < 1) continue;
+      const shown = [product, k];
+      if (!showsOk(shown, spec.shows)) continue;
+      if (forwardReach(shown, right)) continue;
+      out.push({ a, k, wrong, product, right });
+    }
+  }
+  MIS_CACHE.set(spec.key, out);
   return out;
 }
 
-type MidSpec = {
-  key: string;
-  fixedPool: readonly Sc[];
-  candPool: readonly Cand[];
-  boundPool: readonly Sc[];
-  min: number;
-  max: number;
-  /** 발문의 식 — □ 자리를 그대로 둔다. */
-  frame: (fixed: Sc) => string;
-  /** 후보 하나를 넣은 계산식(등호 포함). */
-  calc: (fixed: Sc, cand: Cand) => string;
-  /** 「$\square$ 안에 들어갈 수 있는 …」 — 「자연수」·「수」. */
-  what: string;
-};
-
-/** **심화중 뼈대** — 「범위로 후보를 열거해 **모두** 구한다」. */
-function rangeMid(unit: UnitSeed, rng: Rng, spec: MidSpec): ElemProblem {
-  const tasks = rangeTasks(
-    spec.key,
-    spec.fixedPool,
-    spec.candPool,
-    spec.boundPool,
-    spec.min,
-    spec.max,
-  );
-  // 표가 비면 `pick` 이 undefined 를 내고 지면이 조용히 깨진다 — 여기서 멈춘다.
+/**
+ * 심화중 문항 하나.
+ *
+ * `order` 는 그 소단원이 약속한 **차례**다 — 2-4-1·2 는 소수가 앞, 2-4-3·4 는 자연수가
+ * 앞이다. 발문과 해설의 식이 그 차례를 지켜야 소단원 이름이 거짓말이 되지 않는다(반증 ③).
+ */
+function misplacedMid(
+  unit: UnitSeed,
+  rng: Rng,
+  spec: MisSpec,
+  property: string,
+  order: "dec" | "whole",
+): ElemProblem {
+  const tasks = misTasks(spec);
   if (tasks.length === 0) {
     throw new Error(
       `«심화중» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
     );
   }
   const t = pick(rng, tasks);
-  const box = expr("\\square");
-  const listed = t.hits
-    .map((c, i) =>
-      i === t.hits.length - 1
-        ? lj(spec.calc(t.fixed, c), "이", "가")
-        : expr(spec.calc(t.fixed, c)),
-    )
-    .join(", ");
-  const answer = nums(t.hits.map((c) => c.label));
+  const times = (x: Sc, y: Sc) =>
+    order === "dec"
+      ? `${scText(x)}\\times${scText(y)}`
+      : `${scText(y)}\\times${scText(x)}`;
+  const kText = scText(t.k);
+  const head =
+    order === "dec"
+      ? `어떤 수에 ${dj(kText, "을", "를")} 곱해야 할 것을, 어떤 수의 소수점을 한 자리 잘못 옮긴 수에 ${dj(kText, "을", "를")} 곱했더니`
+      : `${n(kText)}에 어떤 수를 곱해야 할 것을, ${n(kText)}에 어떤 수의 소수점을 한 자리 잘못 옮긴 수를 곱했더니`;
   return makeDeep(
     unit,
-    `${expr(spec.frame(t.fixed))}의 값이 ${n(scText(t.lo))}보다 크고 ${n(scText(t.hi))}보다 작을 때, ` +
-      `${box} 안에 들어갈 수 있는 ${spec.what}를 모두 구하시오.`,
-    answer,
+    `${head} ${dj(scText(t.product), "이", "가")} 되었습니다. ` +
+      `어떤 수가 ${property}일 때 바르게 계산한 값을 구하시오.`,
+    expr(scText(t.right)),
     [
-      `${box}에 수를 차례로 넣어 곱을 구해 봅니다.`,
-      `${listed} 조건에 맞습니다.`,
-      `${lj(spec.calc(t.fixed, t.below), "은", "는")} ${n(scText(t.lo))}보다 작고 ` +
-        `${lj(spec.calc(t.fixed, t.above), "은", "는")} ${n(scText(t.hi))}보다 크므로 조건에 맞지 않습니다.`,
-      `따라서 ${box} 안에 들어갈 수 있는 ${spec.what}는 ${answer}입니다.`,
+      `잘못 쓴 수부터 되짚습니다. ${expr(`${times(t.wrong, t.k)}=${scText(t.product)}`)}이므로 잘못 쓴 수는 ${expr(scText(t.wrong))}입니다.`,
+      `소수점을 한쪽으로 옮기면 ${dj(scText(t.a), "이", "가")} 되고 반대쪽으로 옮기면 ${property}가 아니므로, 어떤 수는 ${expr(scText(t.a))}입니다.`,
+      `바르게 계산하면 ${expr(`${times(t.a, t.k)}=${scText(t.right)}`)}입니다.`,
     ],
   );
 }
 
-/** `0.2`~`0.9` — 1보다 작은 소수 한 자리. */
-const MID_UNDER_ONE: Sc[] = [2, 3, 4, 5, 6, 7, 8, 9].map((t) => [t, 1] as Sc);
+/* ── ㉡ 심화상 — 「곱만 알고 두 인수를 모른다 → 짝마다 계산해 견준다」 ────── */
 
-/** `1.1`~`4.9` — 1보다 큰 소수 한 자리(`overOneT` 와 같은 범위). */
-const MID_OVER_ONE: Sc[] = (() => {
+type TopTask = {
+  product: Sc;
+  /** 답 — 되짚기로만 갈라지는 인수. */
+  dec: Sc;
+  /** 창 조건이 걸리는 인수. */
+  other: Sc;
+  probe: Sc;
+  lo: Sc;
+  hi: Sc;
+  /** 창에는 들지만 곱을 못 만드는 «미끼» — 되짚기를 강제하는 근거다. */
+  decoys: Sc[];
+};
+
+const TOP_CACHE = new Map<string, TopTask[]>();
+
+type TopSpec = {
+  key: string;
+  /** 답이 되는 인수의 후보(그 소단원의 성질). */
+  decPool: readonly Sc[];
+  /** 창 조건이 걸리는 인수의 후보. */
+  otherPool: readonly Sc[];
+  probePool: readonly Sc[];
+  boundPool: readonly Sc[];
+  maxPlaces: number;
+  shows: "under" | "over" | "any";
+};
+
+function topTasks(spec: TopSpec): TopTask[] {
+  const cached = TOP_CACHE.get(spec.key);
+  if (cached) return cached;
+  const out: TopTask[] = [];
+  for (const probe of spec.probePool) {
+    for (let i = 0; i < spec.boundPool.length; i += 1) {
+      const lo = spec.boundPool[i]!;
+      for (let j = i + 1; j < spec.boundPool.length; j += 1) {
+        const hi = spec.boundPool[j]!;
+        const inWindow = spec.otherPool.filter((o) => {
+          const v = scQ(scMul(probe, o));
+          return v > scQ(lo) && v < scQ(hi);
+        });
+        // 🔴 창이 하나만 남기면 학생이 창만 보고 답을 얻는다 — 되짚기가 장식이 된다.
+        if (inWindow.length < 2 || inWindow.length > 4) continue;
+        if (inWindow.some((o) => scPlaces(scMul(probe, o)) > spec.maxPlaces))
+          continue;
+        for (const other of inWindow) {
+          for (const decv of spec.decPool) {
+            if (scPlaces(decv) < 1) continue;
+            // 「두 소수 중 하나」와 「나머지」가 같은 값이면 발문이 뜻을 잃는다.
+            if (scQ(decv) === scQ(other)) continue;
+            const product = scMul(decv, other);
+            if (scPlaces(product) > spec.maxPlaces) continue;
+            // 창 안의 다른 후보가 같은 곱을 만들면 답이 둘이다.
+            const rival = inWindow.some(
+              (o) =>
+                scQ(o) !== scQ(other) &&
+                spec.decPool.some(
+                  (d) => scPlaces(d) >= 1 && scQ(scMul(d, o)) === scQ(product),
+                ),
+            );
+            if (rival) continue;
+            const decoys = inWindow.filter((o) => scQ(o) !== scQ(other));
+            if (decoys.length === 0) continue;
+            const shown = [product, probe, lo, hi];
+            if (!showsOk(shown, spec.shows)) continue;
+            if (forwardReach(shown, decv)) continue;
+            out.push({ product, dec: decv, other, probe, lo, hi, decoys });
+          }
+        }
+      }
+    }
+  }
+  TOP_CACHE.set(spec.key, out);
+  return out;
+}
+
+function factorTop(
+  unit: UnitSeed,
+  rng: Rng,
+  spec: TopSpec,
+  words: { pair: string; other: string; ask: string },
+  order: "dec" | "whole",
+): ElemProblem {
+  const tasks = topTasks(spec);
+  if (tasks.length === 0) {
+    throw new Error(
+      `«심화상» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
+  const t = pick(rng, tasks);
+  const times = (x: Sc, y: Sc) =>
+    order === "dec"
+      ? `${scText(x)}\\times${scText(y)}`
+      : `${scText(y)}\\times${scText(x)}`;
+  const probeOf = (o: Sc) =>
+    `${times(t.probe, o)}=${scText(scMul(t.probe, o))}`;
+  const window = [t.other, ...t.decoys].sort((a, b) => scQ(a) - scQ(b));
+  const listed = window
+    .map((o, i) =>
+      i === window.length - 1 ? lj(probeOf(o), "이", "가") : expr(probeOf(o)),
+    )
+    .join(", ");
+  const probeText = scText(t.probe);
+  const cond =
+    order === "dec"
+      ? `${dj(probeText, "과", "와")} ${words.other}를 곱한 값`
+      : `${words.other}와 ${dj(probeText, "을", "를")} 곱한 값`;
+  return makeDeep(
+    unit,
+    `${words.pair}${josa(words.pair, "을", "를")} 곱했더니 ${dj(scText(t.product), "이", "가")} 되었습니다. ` +
+      `${cond}이 ${n(scText(t.lo))}보다 크고 ${n(scText(t.hi))}보다 작을 때, ${words.ask}를 구하시오.`,
+    expr(scText(t.dec)),
+    [
+      `먼저 조건에 맞는 ${words.other}를 찾습니다. ${listed} 그 사이에 듭니다.`,
+      `그중 어느 것이 ${dj(scText(t.product), "을", "를")} 만드는지 봅니다. ${listRo(t.decoys)} 짝을 만들 수 없습니다.`,
+      `${expr(`${times(t.dec, t.other)}=${scText(t.product)}`)}이므로 ${words.ask}는 ${expr(scText(t.dec))}입니다.`,
+    ],
+  );
+}
+
+/* ── 후보 묶음 — 소단원 이름이 그대로 조건이다 ─────────────────────────────── */
+
+/** `0.1`~`0.9` — 1보다 작은 소수 한 자리 수. */
+const P_UNDER1: Sc[] = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((t) => [t, 1] as Sc);
+
+/** 심화상의 «답» 후보에서는 `0.1` 을 뺀다 — 「$0.1$ 을 곱한다」는 2-4-7 의
+ *  개념(자리 옮기기)이라, 이 소단원의 답으로 두면 무엇을 물었는지가 흐려진다. */
+const P_UNDER1_ANS: Sc[] = P_UNDER1.filter((s) => s[0] >= 2);
+
+/** `1.1`~`4.9` — 1보다 큰 소수 한 자리 수(`overOneT` 와 같은 범위). */
+const P_OVER1: Sc[] = (() => {
   const out: Sc[] = [];
   for (let w = 1; w <= 4; w += 1)
     for (let f = 1; f <= 9; f += 1) out.push([w * 10 + f, 1]);
   return out;
 })();
 
-/** 자연수 후보 `1`~`20`. 맨 앞(`1`)은 위 가드가 답에서 뺀다. */
-const MID_NAT: Cand[] = Array.from({ length: 20 }, (_, i) => ({
-  s: [i + 1, 0] as Sc,
-  label: i + 1,
-}));
+/** 둘째 걸음의 곱하는 수로 쓰는 `1.1`~`2.9` — 곱이 두 자리를 안 넘게 좁혔다. */
+const P_OVER1_SMALL: Sc[] = P_OVER1.filter((s) => s[0] <= 29);
 
-/** `0.\square` 의 □ — 값은 `0.1`~`0.9`, 답은 **숫자**. */
-const MID_TENTH: Cand[] = Array.from({ length: 9 }, (_, i) => ({
-  s: [i + 1, 1] as Sc,
-  label: i + 1,
-}));
+/** 한 자리 자연수 `2`~`9`. */
+const P_NAT: Sc[] = [2, 3, 4, 5, 6, 7, 8, 9].map((k) => [k, 0] as Sc);
 
-/** `1.\square` 의 □ — 값은 `1.1`~`1.9`, 답은 **숫자**. */
-const MID_ONE_TENTH: Cand[] = Array.from({ length: 9 }, (_, i) => ({
-  s: [11 + i, 1] as Sc,
-  label: i + 1,
-}));
+/** 소수 두 자리 `0.11`~`0.99`(끝자리 0 은 지면에서 접히므로 뺀다) — 2-4-7 참값. */
+const P_HUND: Sc[] = (() => {
+  const out: Sc[] = [];
+  for (let v = 11; v <= 99; v += 1) if (v % 10 !== 0) out.push([v, 2]);
+  return out;
+})();
+
+/** 자리를 옮기는 수. */
+const P_POWERS: Sc[] = [
+  [10, 0],
+  [100, 0],
+  [1000, 0],
+];
+
+const isUnder1Digit = (v: Sc) =>
+  scPlaces(v) === 1 && scQ(v) > 0 && scQ(v) < SC_Q;
+const isOver1Digit = (v: Sc) => scPlaces(v) === 1 && scQ(v) > SC_Q;
+const isTwoPlaces = (v: Sc) => scPlaces(v) === 2;
 
 /** 경계로 쓸 «반듯한 수»들. */
-function scRange(lo: number, hi: number, step: number, places: number): Sc[] {
+function scSteps(lo: number, hi: number, step: number, places: number): Sc[] {
   const out: Sc[] = [];
   for (let v = lo; v <= hi; v += step) out.push([v, places]);
   return out;
 }
 
-/** 2-4-1 심화중 — 소수는 그대로 두고 **자연수 쪽**을 범위로 자른다. */
+const UNDER_ONE_WORD = `${n(1)}보다 작은 소수 한 자리 수`;
+const OVER_ONE_WORD = `${n(1)}보다 큰 소수 한 자리 수`;
+
+/* ── 심화중 일곱 ──────────────────────────────────────────────────────────── */
+
 function dm241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-241-mid",
-    fixedPool: MID_UNDER_ONE,
-    candPool: MID_NAT,
-    boundPool: scRange(1, 17, 1, 0),
-    min: 2,
-    max: 4,
-    frame: (f) => `${scText(f)}\\times\\square`,
-    calc: (f, c) => `${scText(f)}\\times${c.label}=${scText(scMul(f, c.s))}`,
-    what: "자연수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-241-mid",
+      aPool: P_UNDER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "dec",
+  );
 }
 
-/** 2-4-2 심화중 — 2-4-1 과 같은 틀, 소수가 1보다 크다(소단원의 약속). */
 function dm242Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-242-mid",
-    fixedPool: MID_OVER_ONE,
-    candPool: MID_NAT,
-    boundPool: scRange(5, 95, 5, 0),
-    min: 2,
-    max: 4,
-    frame: (f) => `${scText(f)}\\times\\square`,
-    calc: (f, c) => `${scText(f)}\\times${c.label}=${scText(scMul(f, c.s))}`,
-    what: "자연수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-242-mid",
+      aPool: P_OVER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "dec",
+  );
 }
 
-/** 2-4-3 심화중 — 차례가 반대다(자연수가 앞). */
 function dm243Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-243-mid",
-    fixedPool: MID_UNDER_ONE,
-    candPool: MID_NAT,
-    boundPool: scRange(1, 17, 1, 0),
-    min: 2,
-    max: 4,
-    frame: (f) => `\\square\\times${scText(f)}`,
-    calc: (f, c) => `${c.label}\\times${scText(f)}=${scText(scMul(f, c.s))}`,
-    what: "자연수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-243-mid",
+      aPool: P_UNDER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "whole",
+  );
 }
 
-/** 2-4-4 심화중 — 자연수가 앞이고 소수가 1보다 크다. */
 function dm244Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-244-mid",
-    fixedPool: MID_OVER_ONE,
-    candPool: MID_NAT,
-    boundPool: scRange(5, 95, 5, 0),
-    min: 2,
-    max: 4,
-    frame: (f) => `\\square\\times${scText(f)}`,
-    calc: (f, c) => `${c.label}\\times${scText(f)}=${scText(scMul(f, c.s))}`,
-    what: "자연수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-244-mid",
+      aPool: P_OVER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "whole",
+  );
 }
 
-/** 2-4-5 심화중 — 후보가 **자연수가 아니라 소수**다(둘 다 1보다 작아야 한다). */
 function dm245Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-245-mid",
-    fixedPool: MID_UNDER_ONE,
-    candPool: MID_TENTH,
-    boundPool: scRange(5, 75, 5, 2),
-    min: 2,
-    max: 4,
-    frame: (f) => `${scText(f)}\\times0.\\square`,
-    calc: (f, c) =>
-      `${scText(f)}\\times${scText(c.s)}=${scText(scMul(f, c.s))}`,
-    what: "수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-245-mid",
+      aPool: P_UNDER1,
+      kPool: P_UNDER1,
+      dir: 1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "dec",
+  );
 }
 
-/** 2-4-6 심화중 — 후보 소수가 **1보다 크다**(`1.\square`). */
 function dm246Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return rangeMid(unit, rng, {
-    key: "g5-246-mid",
-    fixedPool: MID_OVER_ONE,
-    candPool: MID_ONE_TENTH,
-    boundPool: scRange(10, 95, 5, 1),
-    min: 2,
-    max: 4,
-    frame: (f) => `${scText(f)}\\times1.\\square`,
-    calc: (f, c) =>
-      `${scText(f)}\\times${scText(c.s)}=${scText(scMul(f, c.s))}`,
-    what: "수",
-  });
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-246-mid",
+      aPool: P_OVER1,
+      kPool: P_OVER1,
+      dir: 1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "dec",
+  );
 }
 
-/**
- * 2-4-7 심화중 — 후보 줄이 **자리를 옮기는 다섯**이다. 다른 여섯과 달리 답이
- * «곱하는 수»가 아니라 **곱** 자체다(이 소단원이 묻는 것이 자리이기 때문).
- */
-const MID_POWERS: Cand[] = [
-  { s: [1, 2], label: "0.01" },
-  { s: [1, 1], label: "0.1" },
-  { s: [10, 0], label: 10 },
-  { s: [100, 0], label: 100 },
-  { s: [1000, 0], label: 1000 },
-];
-
-/** `1.1`~`9.9` — 끝자리 0 은 지면에서 자리가 접히므로 뺀다. */
-const MID_TENTHS_ALL: Sc[] = (() => {
-  const out: Sc[] = [];
-  for (let v = 11; v <= 99; v += 1) if (v % 10 !== 0) out.push([v, 1]);
-  return out;
-})();
-
-const MID_POWER_BOUNDS: Sc[] = [
-  [1, 2],
-  [5, 2],
-  [1, 1],
-  [5, 1],
-  [1, 0],
-  [5, 0],
-  [10, 0],
-  [50, 0],
-  [100, 0],
-  [500, 0],
-  [1000, 0],
-  [5000, 0],
-];
-
+/** 2-4-7 은 굳히는 성질이 **자릿수**다 — 그 소단원이 묻는 것이 곧 자리이기 때문. */
 function dm247Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = rangeTasks(
-    "g5-247-mid",
-    MID_TENTHS_ALL,
-    MID_POWERS,
-    MID_POWER_BOUNDS,
-    2,
-    3,
-  );
-  if (tasks.length === 0) {
-    throw new Error(
-      `«심화중» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
-    );
-  }
-  const t = pick(rng, tasks);
-  const base = scText(t.fixed);
-  const say = (c: Cand) =>
-    `${base}\\times${c.label}=${scText(scMul(t.fixed, c.s))}`;
-  const all = MID_POWERS.map((c, i) =>
-    i === MID_POWERS.length - 1 ? lj(say(c), "이", "가") : expr(say(c)),
-  ).join(", ");
-  const hits = nums(t.hits.map((c) => scText(scMul(t.fixed, c.s))));
-  return makeDeep(
+  return misplacedMid(
     unit,
-    `${n(base)}에 ${MID_POWERS.map((c) => n(c.label)).join(", ")}을 각각 곱했습니다. ` +
-      `그 곱 중에서 ${n(scText(t.lo))}보다 크고 ${n(scText(t.hi))}보다 작은 것을 모두 구하시오.`,
-    hits,
-    [
-      `곱하는 수에 따라 소수점이 오른쪽 또는 왼쪽으로 옮겨집니다.`,
-      `${all} 나옵니다.`,
-      `이 중에서 ${n(scText(t.lo))}보다 크고 ${n(scText(t.hi))}보다 작은 것은 ${hits}입니다.`,
-    ],
+    rng,
+    {
+      key: "g5-247-mid",
+      aPool: P_HUND,
+      kPool: P_POWERS,
+      dir: 1,
+      holds: isTwoPlaces,
+      maxPlaces: 3,
+      shows: "any",
+      answerDecimal: false,
+    },
+    "소수 두 자리 수",
+    "dec",
   );
 }
 
-/* ── 심화상 — 「카드를 배열해 곱을 견준다」 ─────────────────────────────────── */
-
-type CardItem = { text: string; prod: Sc };
-
-type CardTask = {
-  cards: readonly number[];
-  /** 곱이 작은 것부터. */
-  items: readonly CardItem[];
-  /** 발문에 보여 줄 하나 — 만드는 차례 그대로 첫째다(씨앗과 무관하게 정해진다). */
-  example: CardItem;
-  bound: Sc;
-  hits: readonly CardItem[];
-  best: CardItem;
-  /** 조건에 걸려 **빠지는** 가장 큰 곱. 이게 있어야 요령이 막힌다. */
-  top: CardItem;
-};
-
-const CARD_CACHE = new Map<string, CardTask[]>();
-
-/** 서로 다른 숫자 `size` 개를 고르는 모든 방법 (`1`~`9`, 오름차순). `0` 은 자리를 접는다. */
-function digitSets(size: number): number[][] {
-  const out: number[][] = [];
-  const walk = (start: number, acc: number[]) => {
-    if (acc.length === size) {
-      out.push([...acc]);
-      return;
-    }
-    for (let d = start; d <= 9; d += 1) walk(d + 1, [...acc, d]);
-  };
-  walk(1, []);
-  return out;
-}
-
-/**
- * 「카드 묶음 + 조건」 표. 씨앗과 무관하므로 한 번만 만든다.
- *
- * 🔴 **가장 큰 곱이 조건에 걸려 빠지는 것만 남긴다.** 안 그러면 「큰 수를 앞자리에」로
- *    끝나서 탐색이 뜻을 잃는다 — 이 갈래를 심화중 위에 세우는 것이 바로 이 한 줄이다.
- * ⚠️ 으뜸이 둘이면 「가장 큰 곱」이 하나가 아니다. 답이 하나로 안 정해지는 문항은 낸다.
- */
-function cardTasks(
-  key: string,
-  size: number,
-  build: (cards: readonly number[]) => CardItem[],
-  boundPool: readonly Sc[],
-  min: number,
-  max: number,
-  wantDecimal: boolean,
-  /** 소단원마다 더 요구할 것 — 2-4-7 은 「고른 곱하는 수가 한 가지면 안 된다」. */
-  extra?: (hits: readonly CardItem[]) => boolean,
-): CardTask[] {
-  const cached = CARD_CACHE.get(key);
-  if (cached) return cached;
-  const out: CardTask[] = [];
-  for (const cards of digitSets(size)) {
-    const made = build(cards);
-    const items = [...made].sort((a, b) => scQ(a.prod) - scQ(b.prod));
-    const top = items[items.length - 1]!;
-    if (scQ(top.prod) === scQ(items[items.length - 2]!.prod)) continue;
-    for (const bound of boundPool) {
-      const q = scQ(bound);
-      const hits = items.filter((it) => scQ(it.prod) < q);
-      if (hits.length < min || hits.length > max) continue;
-      // 🔴 **가장 큰 곱이 경계보다 크다** — 이 갈래의 알맹이다. 이것이 곧
-      //    「가장 큰 곱은 고른 것 안에 없다」이므로 «hits 가 전부는 아니다»를 따로
-      //    적을 필요가 없다(적어 봤더니 **0자리**를 깎았다 — 지웠다).
-      //
-      //    ⚠️ 이 한 줄이 깎는 것도 실측 **1자리 / 291**(2-4-1)·**0자리 / 285**(2-4-6)뿐이다.
-      //    `max` 가 항목 수보다 작으면 대개 저절로 지켜지기 때문이다. 그러니 이것은
-      //    **오늘 일하는 가드가 아니라 회귀 가드**다 — `max` 를 올리는 날 처음 일한다.
-      //    (`.tmp` 재기: 가드를 하나씩 꺼서 후보 수를 견줬다. 아래 둘도 같은 방법으로 쟀다.)
-      if (scQ(top.prod) <= q) continue;
-      const best = hits[hits.length - 1]!;
-      // 으뜸이 둘이면 해설이 그중 하나만 「가장 큰 곱」으로 이름 짓는다(값은 같다).
-      // 실측 **2자리**씩 깎는다.
-      if (scQ(best.prod) === scQ(hits[hits.length - 2]!.prod)) continue;
-      // 답이 정수로 접히면 「소수의 곱셈」이 지면에서 사라진다(2-4-7 은 자리를 옮기는
-      // 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다). 실측 **39자리 / 291**(2-4-1)·
-      // **8자리 / 285**(2-4-6) — 셋 중 이것만 오늘 실제로 일한다.
-      if (wantDecimal && scPlaces(best.prod) === 0) continue;
-      if (extra && !extra(hits)) continue;
-      out.push({ cards, items, example: made[0]!, bound, hits, best, top });
-    }
-  }
-  CARD_CACHE.set(key, out);
-  return out;
-}
-
-/** `수 카드 $3$, $6$, $8$` — 조사를 붙일지는 부르는 쪽이 정한다(「… 중에서」는 조사가 없다). */
-function cardList(
-  cards: readonly number[],
-  josaPair?: readonly [string, string],
-): string {
-  const last = cards[cards.length - 1]!;
-  const tail = josaPair ? nj(last, josaPair[0], josaPair[1]) : n(last);
-  return [...cards.slice(0, -1).map((c) => n(c)), tail].join(", ");
-}
-
-/** **심화상 뼈대** — 「만든 곱을 모두 견주되, 가장 큰 것은 조건에 걸려 빠진다」. */
-function cardTop(unit: UnitSeed, t: CardTask, head: string): ElemProblem {
-  const say = (it: CardItem) => `${it.text}=${scText(it.prod)}`;
-  const listed = t.hits
-    .map((it, i) =>
-      i === t.hits.length - 1 ? lj(say(it), "이", "가") : expr(say(it)),
-    )
-    .join(", ");
-  return makeDeep(
-    unit,
-    `${head} 만들 수 있는 곱 중에서 ${n(scText(t.bound))}보다 작은 것 가운데 가장 큰 곱을 구하시오.`,
-    expr(scText(t.best.prod)),
-    [
-      `카드를 어느 자리에 놓는지에 따라 곱이 달라지므로 만들 수 있는 곱을 모두 구해 견줍니다.`,
-      `그중 ${listed} ${n(scText(t.bound))}보다 작습니다.`,
-      `가장 큰 곱은 ${expr(say(t.top))}이지만 ${n(scText(t.bound))}보다 크므로 조건에 맞지 않습니다.`,
-      `따라서 조건에 맞는 가장 큰 곱은 ${expr(scText(t.best.prod))}입니다.`,
-    ],
-  );
-}
-
-/** `0.\square\times\square\square` — 카드 셋을 한 번씩. */
-function buildCards241(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (const d of cards) {
-    const rest = cards.filter((c) => c !== d);
-    for (const [x, y] of [
-      [rest[0]!, rest[1]!],
-      [rest[1]!, rest[0]!],
-    ] as const) {
-      const whole = x * 10 + y;
-      out.push({ text: `${dec(d, 1)}\\times${whole}`, prod: [d * whole, 1] });
-    }
-  }
-  return out;
-}
-
-/** `\square.\square\times\square`. */
-function buildCards242(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (const a of cards) {
-    const rest = cards.filter((c) => c !== a);
-    for (const [b, z] of [
-      [rest[0]!, rest[1]!],
-      [rest[1]!, rest[0]!],
-    ] as const) {
-      const t = a * 10 + b;
-      out.push({ text: `${dec(t, 1)}\\times${z}`, prod: [t * z, 1] });
-    }
-  }
-  return out;
-}
-
-/** `\square\square\times0.\square`. */
-function buildCards243(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (const d of cards) {
-    const rest = cards.filter((c) => c !== d);
-    for (const [x, y] of [
-      [rest[0]!, rest[1]!],
-      [rest[1]!, rest[0]!],
-    ] as const) {
-      const whole = x * 10 + y;
-      out.push({ text: `${whole}\\times${dec(d, 1)}`, prod: [whole * d, 1] });
-    }
-  }
-  return out;
-}
-
-/** `\square\times\square.\square`. */
-function buildCards244(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (const z of cards) {
-    const rest = cards.filter((c) => c !== z);
-    for (const [a, b] of [
-      [rest[0]!, rest[1]!],
-      [rest[1]!, rest[0]!],
-    ] as const) {
-      const t = a * 10 + b;
-      out.push({ text: `${z}\\times${dec(t, 1)}`, prod: [z * t, 1] });
-    }
-  }
-  return out;
-}
-
-/** `0.\square\times0.\square` — 넉 장 중 **두 장**을 고른다(곱셈은 차례를 안 가린다). */
-function buildCards245(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (let i = 0; i < cards.length; i += 1)
-    for (let j = i + 1; j < cards.length; j += 1) {
-      const a = cards[i]!;
-      const b = cards[j]!;
-      out.push({
-        text: `${dec(a, 1)}\\times${dec(b, 1)}`,
-        prod: [a * b, 2],
-      });
-    }
-  return out;
-}
-
-/** `\square.\square\times\square.\square` — 넉 장을 한 번씩. 차례가 같은 짝은 한 번만. */
-function buildCards246(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (let i = 0; i < 4; i += 1)
-    for (let j = 0; j < 4; j += 1) {
-      if (i === j) continue;
-      const rest = [0, 1, 2, 3].filter((k) => k !== i && k !== j);
-      for (const [p, q] of [
-        [rest[0]!, rest[1]!],
-        [rest[1]!, rest[0]!],
-      ] as const) {
-        const left = cards[i]! * 10 + cards[j]!;
-        const right = cards[p]! * 10 + cards[q]!;
-        if (left > right) continue;
-        out.push({
-          text: `${dec(left, 1)}\\times${dec(right, 1)}`,
-          prod: [left * right, 2],
-        });
-      }
-    }
-  return out;
-}
-
-/** `\square.\square\square` 를 만들어 `10`·`100`·`1000` 중 하나를 곱한다. */
-const CARD_POWERS = [10, 100, 1000] as const;
-
-function buildCards247(cards: readonly number[]): CardItem[] {
-  const out: CardItem[] = [];
-  for (const a of cards) {
-    const rest = cards.filter((c) => c !== a);
-    for (const [b, c] of [
-      [rest[0]!, rest[1]!],
-      [rest[1]!, rest[0]!],
-    ] as const) {
-      const v = a * 100 + b * 10 + c;
-      for (const mul of CARD_POWERS) {
-        out.push({ text: `${dec(v, 2)}\\times${mul}`, prod: [v * mul, 2] });
-      }
-    }
-  }
-  return out;
-}
+/* ── 심화상 여섯 + 2-4-7 ─────────────────────────────────────────────────── */
 
 function dm241Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-241-top",
-    3,
-    buildCards241,
-    scRange(5, 75, 5, 0),
-    3,
-    5,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("0.\\square\\times\\square\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-241-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_NAT,
+      probePool: P_UNDER1,
+      boundPool: scSteps(1, 9, 1, 0),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `어떤 ${UNDER_ONE_WORD}와 어떤 한 자리 자연수`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "dec",
   );
 }
 
 function dm242Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-242-top",
-    3,
-    buildCards242,
-    scRange(5, 65, 5, 0),
-    3,
-    5,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("\\square.\\square\\times\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-242-top",
+      decPool: P_OVER1,
+      otherPool: P_NAT,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(2, 26, 2, 0),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `어떤 ${OVER_ONE_WORD}와 어떤 한 자리 자연수`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "dec",
   );
 }
 
 function dm243Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-243-top",
-    3,
-    buildCards243,
-    scRange(5, 75, 5, 0),
-    3,
-    5,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("\\square\\square\\times0.\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-243-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_NAT,
+      probePool: P_UNDER1,
+      boundPool: scSteps(1, 9, 1, 0),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `어떤 한 자리 자연수와 어떤 ${UNDER_ONE_WORD}`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "whole",
   );
 }
 
 function dm244Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-244-top",
-    3,
-    buildCards244,
-    scRange(5, 65, 5, 0),
-    3,
-    5,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("\\square\\times\\square.\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-244-top",
+      decPool: P_OVER1,
+      otherPool: P_NAT,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(2, 26, 2, 0),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `어떤 한 자리 자연수와 어떤 ${OVER_ONE_WORD}`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "whole",
   );
 }
 
 function dm245Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-245-top",
-    4,
-    buildCards245,
-    scRange(5, 70, 5, 2),
-    3,
-    5,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards)} 중에서 두 장을 뽑아 ` +
-      `${expr("0.\\square\\times0.\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-245-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_UNDER1,
+      probePool: P_UNDER1,
+      boundPool: scSteps(5, 90, 5, 2),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `${UNDER_ONE_WORD} 둘`,
+      other: "두 소수 중 하나",
+      ask: "나머지 한 소수",
+    },
+    "dec",
   );
 }
 
 function dm246Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-246-top",
-    4,
-    buildCards246,
-    scRange(5, 80, 5, 0),
-    4,
-    6,
-    true,
-  );
-  const t = pick(rng, tasks);
-  return cardTop(
+  return factorTop(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("\\square.\\square\\times\\square.\\square")} 꼴의 곱셈식을 만듭니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    rng,
+    {
+      key: "g5-246-top",
+      decPool: P_OVER1,
+      otherPool: P_OVER1,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(10, 140, 5, 1),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `${OVER_ONE_WORD} 둘`,
+      other: "두 소수 중 하나",
+      ask: "나머지 한 소수",
+    },
+    "dec",
   );
 }
 
+/* ── 2-4-7 심화상 — 「어느 수를 곱했는지 모른다」 ──────────────────────────── */
+
+type PointTask = {
+  product: Sc;
+  powers: [Sc, Sc];
+  answer: Sc;
+  otherCand: Sc;
+  probe: Sc;
+  /** 후보 둘을 가르는 **하나뿐인** 경계. */
+  cut: Sc;
+  side: "less" | "greater";
+};
+
+const POINT_CACHE = new Map<string, PointTask[]>();
+
 /**
- * 2-4-7 심화상.
- *
- * ⚠️ **조건에 든 것이 «곱하는 수 한 가지»뿐이면 탐색이 반쪽이 된다** — 실측으로
- *    걸렸다(첫 판은 여섯 자리가 전부 `\times10` 이었다). 그러면 학생이 소수만
- *    늘어놓으면 되고, 이 소단원이 묻는 **자리 옮기기**가 판정에서 빠진다.
- *    그래서 고른 것 안에 **곱하는 수가 두 가지 이상** 있기를 요구한다.
- *    ×10 여섯이 통째로 들어오므로 조건에 드는 것이 일곱을 넘고, 그래서 여기만 상한이 8이다.
+ * 되짚기가 **두 후보**를 만든다(어느 수를 곱했는지 모르므로). 둘 다 소수라
+ * 「소수다」라는 성질로는 안 굳고, **각각에 다시 곱해 봐야** 하나가 남는다.
  */
+function pointTasks(): PointTask[] {
+  const cached = POINT_CACHE.get("g5-247-top");
+  if (cached) return cached;
+  const out: PointTask[] = [];
+  const probes: Sc[] = [
+    [1, 1],
+    [1, 2],
+    [10, 0],
+    [100, 0],
+  ];
+  const bounds: Sc[] = [
+    [1, 3],
+    [5, 3],
+    [1, 2],
+    [5, 2],
+    [1, 1],
+    [5, 1],
+    [1, 0],
+    [5, 0],
+    [10, 0],
+    [50, 0],
+    [100, 0],
+    [500, 0],
+  ];
+  for (let i = 0; i < P_POWERS.length; i += 1) {
+    for (let j = i + 1; j < P_POWERS.length; j += 1) {
+      const a = P_POWERS[i]!;
+      const b = P_POWERS[j]!;
+      for (const base of P_HUND) {
+        // 곱은 둘 중 **한쪽**으로 만든다 — 어느 쪽인지는 발문이 말하지 않는다.
+        for (const [used, unused] of [
+          [a, b],
+          [b, a],
+        ] as const) {
+          const product = scMul(base, used);
+          if (scPlaces(product) > 3) continue;
+          // 다른 후보 — 곱을 반대쪽 수로 되짚은 값.
+          const ratio = scQ(unused) / scQ(used);
+          const otherCand: Sc = [
+            base[0],
+            base[1] + Math.round(Math.log10(ratio)),
+          ];
+          if (otherCand[1] < 1 || otherCand[1] > 3) continue;
+          if (scPlaces(otherCand) < 1 || scPlaces(base) < 1) continue;
+          for (const probe of probes) {
+            // 🔴 둘째 걸음의 곱하는 수가 발문이 준 두 수 중 하나면, 조건이 앞 문장을
+            //    되풀이하는 꼴이 되어 되짚기가 겉돈다(실측으로 걸렸다).
+            if (scQ(probe) === scQ(used) || scQ(probe) === scQ(unused))
+              continue;
+            const v1 = scMul(base, probe);
+            const v2 = scMul(otherCand, probe);
+            if (scPlaces(v1) > 3 || scPlaces(v2) > 3) continue;
+            if (scQ(v1) === scQ(v2)) continue;
+            // 🔴 **경계는 하나만 쓴다.** 후보가 둘뿐이라 한쪽만 잘라도 갈리는데,
+            //    양쪽을 쓰면 한쪽이 «$0.005$보다 크고» 처럼 아무것도 안 하는 말이
+            //    된다(첫 판에서 실제로 그렇게 나갔다). 학생이 읽는 조건은 실제로
+            //    일하는 것만 남긴다.
+            for (const cut of bounds) {
+              const side: "less" | "greater" | null =
+                scQ(v1) < scQ(cut) && scQ(v2) > scQ(cut)
+                  ? "less"
+                  : scQ(v1) > scQ(cut) && scQ(v2) < scQ(cut)
+                    ? "greater"
+                    : null;
+              if (side === null) continue;
+              const shown = [product, a, b, probe, cut];
+              if (forwardReach(shown, base)) continue;
+              out.push({
+                product,
+                powers: [a, b],
+                answer: base,
+                otherCand,
+                probe,
+                cut,
+                side,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+  POINT_CACHE.set("g5-247-top", out);
+  return out;
+}
+
 function dm247Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const tasks = cardTasks(
-    "g5-247-top",
-    3,
-    buildCards247,
-    [
-      [20, 0],
-      [50, 0],
-      [100, 0],
-      [200, 0],
-      [500, 0],
-      [1000, 0],
-      [2000, 0],
-      [5000, 0],
-    ],
-    4,
-    8,
-    false,
-    (hits) => new Set(hits.map((it) => it.text.split("\\times")[1])).size >= 2,
-  );
+  const tasks = pointTasks();
+  if (tasks.length === 0) {
+    throw new Error(
+      `«심화상» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
   const t = pick(rng, tasks);
-  return cardTop(
+  const [p1, p2] = t.powers;
+  const say = (v: Sc) =>
+    `${scText(v)}\\times${scText(t.probe)}=${scText(scMul(v, t.probe))}`;
+  return makeDeep(
     unit,
-    t,
-    `수 카드 ${cardList(t.cards, ["을", "를"])} 한 번씩 모두 사용하여 ` +
-      `${expr("\\square.\\square\\square")} 꼴의 소수를 만들고, ` +
-      `그 소수에 ${CARD_POWERS.map((v) => n(v)).join(", ")} 중 한 수를 곱합니다. ` +
-      `${expr(t.example.text)}도 그중 하나입니다.`,
+    `어떤 소수에 ${n(scText(p1))} 또는 ${dj(scText(p2), "을", "를")} 곱했더니 ` +
+      `${dj(scText(t.product), "이", "가")} 되었습니다. ` +
+      `어떤 소수에 ${dj(scText(t.probe), "을", "를")} 곱한 값이 ` +
+      `${n(scText(t.cut))}보다 ${t.side === "less" ? "작을" : "클"} 때, 어떤 소수를 구하시오.`,
+    expr(scText(t.answer)),
+    [
+      `소수점을 되돌리면 어떤 소수는 ${expr(scText(t.answer))} 또는 ${expr(scText(t.otherCand))}입니다. 둘 다 소수라 이것만으로는 못 정합니다.`,
+      `${dj(scText(t.probe), "을", "를")} 각각 곱해 봅니다. ${expr(say(t.answer))}, ${expr(say(t.otherCand))}입니다.`,
+      `${n(scText(t.cut))}보다 ${t.side === "less" ? "작은" : "큰"} 것은 ${expr(scText(scMul(t.answer, t.probe)))}이므로 어떤 소수는 ${expr(scText(t.answer))}입니다.`,
+    ],
   );
 }
 
