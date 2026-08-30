@@ -43,13 +43,15 @@
  *    누가 사람 판정을 받았는지는 `probe-elem-tier-4dan.ts --list` 와 원장
  *    (`scripts/qa/reports/tier4-review.json`)이 안다.
  */
-import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
+// ⚠️ `ElemTier` 의 집은 `difficulty.ts` 다. `types.ts` 는 그것을 **가져다 쓸 뿐
+//    다시 내보내지 않는다** — 거기서 import 하면 `TS2459` 로 관문이 빨개진다
+//    (2026-08-30 병합에서 실제로 났다. 갈래 상수와 갈래 타입은 한 집에서 가져온다).
+import { ELEM_TIERS, type ElemTier } from "../../src/lib/elementary/difficulty";
 import {
   elementaryUnits,
   generateElementaryProblem,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
-import type { ElemTier } from "../../src/lib/elementary/types";
 
 import { SweepTally, openFence } from "./elemProbeFence";
 import { marksOf } from "./tier4Rules";
