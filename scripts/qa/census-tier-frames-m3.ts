@@ -797,6 +797,33 @@ function reportFrames(): void {
     );
 }
 
+/**
+ * 소단원 × 갈래 격자 — **사람이 읽으라고** 뽑는다.
+ *
+ * 보고서 §2 의 6단 배정은 이 출력을 눈으로 읽고 내린 판단이다. 임시 파일로 뽑아
+ * 놓고 보고서에서 그 경로를 근거로 대면 **다음 사람에게는 없는 파일**이 된다
+ * (이 저장소가 2026-08-18 「되돌리기가 이 컴퓨터에만 있었다」로 데인 자리와 같은 성질).
+ * 그래서 계량기 안에 둔다 — 판단은 다시 못 돌려도 **판단의 재료는 다시 뽑힌다.**
+ */
+function reportGrid(only: string[]): void {
+  const { rows } = sweep([SEEDS[0]!]);
+  const secs = [...new Set(rows.map((r) => r.sec))];
+  for (const s of secs) {
+    if (only.length && !only.includes(s)) continue;
+    console.log(`\n══════ ${s} ══════`);
+    for (const t of CORE) {
+      const hits = rows.filter((r) => r.sec === s && r.tier === t);
+      console.log(`── ${t} (${hits.length})`);
+      for (const r of hits) {
+        const key = r.key.split("|").pop();
+        console.log(
+          `   ${key} ${r.hasFigure ? "[그림]" : ""} ${r.content.replace(/\s*\n+\s*/g, " ").slice(0, 155)}`,
+        );
+      }
+    }
+  }
+}
+
 function reportSixGrade(): void {
   const { rows } = sweep();
   const secs = [...new Set(rows.map((r) => r.sec))];
@@ -847,8 +874,10 @@ function main(): void {
   if (a.includes("--axes")) return reportAxes();
   if (a.includes("--frames")) return reportFrames();
   if (a.includes("--sixgrade")) return reportSixGrade();
+  if (a.includes("--grid"))
+    return reportGrid(a.filter((x) => !x.startsWith("--")));
   console.log(
-    "쓰임: --selftest | --tiers | --axes | --frames | --sixgrade\n" +
+    "쓰임: --selftest | --tiers | --axes | --frames | --sixgrade | --grid [소단원…]\n" +
       "  (머리말을 읽어라 — 「지면」은 DB 가 아니라 적재 원장이다)",
   );
 }
