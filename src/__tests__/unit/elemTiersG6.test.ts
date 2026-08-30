@@ -2499,6 +2499,7 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
   it("정답은 발문이 말하는 값과 같다 (시험이 ×10 정수로 다시 계산)", () => {
     const bad: string[] = [];
     let checked = 0;
+    let skippedTop = 0;
     for (const code of G6_22_CODES) {
       const unit = unitOf(code);
       for (const tier of tiersOf(unit)) {
@@ -2508,6 +2509,16 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
           const flat = p.content.replace(/\n+/g, " ");
           // 2-2-4 는 답이 «반올림한 값»이라 값 검산을 따로 한다(아래 전용 검사).
           if (code === "2-2-4") continue;
+          // 🔴 **확대 갈래(D-113)는 이 자가 구조적으로 못 잰다.** 새 잣대(되짚기 축,
+          //    2026-08-30 확정)의 답은 「$A$ 의 배수 중 범위 안에 든 것」·「반올림 구간의
+          //    자연수」처럼 **발문의 두 수를 한 번 계산해서 나오는 값이 아니다** — 그게
+          //    바로 그 갈래의 정의다(반증 ⑥). 이 자는 「앞 수 ÷ 뒤 수」류만 읽는다.
+          //    조용히 건너뛰면 그 갈래가 통째로 가드 밖이 되므로 **건너뛴 수를 세어 못 박고**,
+          //    실제 판정은 `elemTiersG6Deep.test.ts` 가 **되짚기를 다시 밟아서** 한다.
+          if (tier === "심화중" || tier === "심화상") {
+            skippedTop += 1;
+            continue;
+          }
           // 2-2-5 의 몫·나머지 쌍도 전용 검사가 본다.
           if (/몫과 남는 수|몇 명에게 나누어 줄 수 있고/.test(p.content)) {
             continue;
@@ -2528,6 +2539,13 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
+    // 건너뛴 심화상도 **세어서** 못 박는다 — 「몇 건을 이 자가 안 봤나」가 안 보이면
+    // 나중에 갈래가 하나 빠져도 분모만 조용히 줄어든다(D-113).
+    expect(skippedTop).toBe(
+      G6_22_CODES.filter((c) => c !== "2-2-4")
+        .flatMap((c) => tiersOf(unitOf(c)))
+        .filter((t) => t === "심화중" || t === "심화상").length * SEEDS.length,
+    );
     // 2-2-4 전량과 2-2-5 의 몫·나머지 갈래(연산·기본 32)는 전용 검사 몫이다.
     // 32 는 «연산·기본 두 핵심 갈래 × 16 시드» 고정값이다 — 축이 늘어나도 몫·나머지
     // 문형은 그 둘에서만 나므로 tiersOf 로 다시 셀 값이 아니다.
@@ -2535,17 +2553,28 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       G6_22_CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) *
         SEEDS.length -
         tiersOf(unitOf("2-2-4")).length * SEEDS.length -
-        32,
+        32 -
+        skippedTop,
     );
   });
 
   it("2-2-4 는 반올림이 뜻을 가진다 — 그 자리에서 딱 떨어지지 않고, 값도 맞다", () => {
     const bad: string[] = [];
+    let skippedExt = 0;
     const unit = unitOf("2-2-4");
     for (const tier of tiersOf(unit)) {
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-4 ${tier} seed=${seed}`;
+        // 🔴 **확대 갈래(D-113)는 여기서 안 잰다.** 새 잣대(되짚기 축)의 2-2-4 는
+        //    「$\square\div b$ 의 몫을 반올림하면 $r$」처럼 **나누어지는 수가 미지수**라
+        //    아래 「앞 수 ÷ 뒤 수」 읽기가 구조적으로 못 읽는다 — 그게 그 갈래의 정의다.
+        //    조용히 넘기지 않고 **건너뛴 수를 세어 못 박는다**. 값·구간·반올림 뜻은
+        //    `elemTiersG6Deep.test.ts` 가 **구간을 다시 지어** 잰다.
+        if (tier === "심화중" || tier === "심화상") {
+          skippedExt += 1;
+          continue;
+        }
         // 문장형 갈래(기본·응용)는 발문에 식이 없다 — 그때는 «앞 수 ÷ 뒤 수»로 읽는다.
         const m = p.content.match(/\$(\d+)\\div(\d+)\$/);
         const nums = scaledNumsIn(p.content);
@@ -2599,6 +2628,12 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
+    // 분모를 같이 못 박는다 — 「몇 건을 이 자가 안 봤나」가 안 보이면 갈래가 하나
+    // 빠져도 조용히 줄어든다(D-113).
+    expect(skippedExt).toBe(
+      tiersOf(unit).filter((t) => t === "심화중" || t === "심화상").length *
+        SEEDS.length,
+    );
   });
 
   it("2-2-5 는 몫이 자연수이고 남는 수는 나누어지는 수와 같은 소수 자리다", () => {
@@ -2609,6 +2644,12 @@ describe("[초6 갈래] 2-2 소수의 나눗셈", () => {
         const p = generateElementaryProblem(unit, seed, tier);
         const where = `2-2-5 ${tier} seed=${seed}`;
         const nums = scaledNumsIn(p.content);
+        // 🔴 **답의 «모양»만 보면 다른 문항을 몫·나머지로 읽는다.** 아래 정규식은
+        //    「$6$, $9$」처럼 쉼표로 이어진 두 값에도 걸리는데, 2-2-5 심화상(D-113)의
+        //    답이 정확히 그 모양이다(실측으로 거짓 빨강이 났다). **무엇을 묻는가는
+        //    발문에서** 봐야 한다 — 답 모양은 그 다음이다.
+        if (!/몫과 남는 수|몇 명에게 나누어 줄 수 있고/.test(p.content))
+          continue;
         // 몫·나머지를 함께 답하는 갈래만 이 규약을 잰다.
         const pair = p.answer.match(
           /^(?:몫 )?\$(\d+)\$(?:명)?, (?:남는 수 )?\$(\d+(?:\.\d+)?)\$/,

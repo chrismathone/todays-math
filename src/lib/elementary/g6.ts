@@ -5227,6 +5227,771 @@ function remDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ══════ 2-2 소수의 나눗셈 — **확대 갈래** 심화중·심화상 (D-113, 잣대 확정 2026-08-30) ══════
+//
+// 이 대단원을 파일럿으로 고른 근거는 `docs/planning/tracks/reports/tier-bench-g6.md` §5 다:
+// 초6 에서 사다리가 뒤집힌 11소단원 중 **2-2-1·2-2-2·2-2-3 은 12씨앗 전부**가 그렇고,
+// 그러면서 이 대단원은 **계산 단원**이라 「숫자를 안 키우고 구조로 올린다」가 가장 어렵다.
+//
+// ## 🔴 잣대 — **되짚기 사슬의 «굳지 않는 마디»** (리드 확정 2026-08-30)
+//
+// 처음에는 **열거**(「모두 구하시오」·「몇 가지」)를 축으로 썼는데 **기각됐다.**
+// 문형 전량 6,900행 실측에서 열거는 갈래를 1.5~2배밖에 안 가르고(초4 는 기본>응용으로
+// 이미 뒤집혀 있다), 심화하 **안에서** 걸음 수를 재니 열거형 76건이 평균 0.39걸음으로
+// **그 소단원의 «연산»(0.79)보다도 얕았다.** 되짚기 축은 22~40배 가른다.
+//
+//   심화하 (안 건드림) — 되짚기 사슬의 **마디마다 값이 하나로 굳는다**
+//   심화중            — 굳지 않는 마디가 **하나** 있고, **그 소단원의 성질**과 발문의
+//                       조건이 그 마디를 굳혀 주어야 답이 선다
+//   심화상            — 그 마디를 성질만으로는 못 굳혀, **되짚기가 만든 후보**를 실제로
+//                       계산해 견주어야 하나가 남는다 (후보를 발문이 주지 않는다)
+//
+// 이 대단원에서 마디를 굳히는 **소단원 성질**은 하나뿐이다 —
+// **「소수점을 함께 옮기면 (소수)÷(소수) 가 자연수의 나눗셈이 된다」.**
+// 그래서 「몫이 자연수/소수 한 자리 수」가 어떤 수를 **배수열**로 묶고, 범위가 하나를 고른다.
+// 2-2-4 는 **반올림한 값 하나가 구간을 가리킨다**는 것이 그 성질이고,
+// 2-2-5 는 **몫이 자연수·남는 양이 한 사람 몫보다 적다**가 그것이다.
+//
+// ## 반증문 — 하나라도 참이면 그 배정이 틀렸다 (지면에서 확인한 것)
+//
+// ① 모든 마디가 굳으면 심화하다 → 새 갈래는 **전부** 굳지 않는 마디를 하나 갖는다.
+// ⑤ 「모두 구하시오」를 지워도 답이 그대로면 그 열거는 근거가 아니다 →
+//    **새 갈래의 답은 전부 «하나»** 다. 열거 문형은 통째로 버렸다.
+// ⑥ 발문이 준 수에 소단원 연산을 **순방향으로만** 적용해 답이 나오면 중·상이 아니다 →
+//    2-2-4 는 그것을 **구성이 막는다**(`ROUND_BACK` 의 `naive` 가드).
+//
+// 🔴 **지면에 쓸 수 있는 수의 종류가 소단원마다 잠겨 있다** — 설계를 두 번 되돌렸다.
+//    `kindsPresent` 가 «요구 안 한 종류»를 금지하므로 2-2-1·2-2-2 발문에는 **자연수를
+//    한 개도** 못 쓴다. 그래서 범위의 두 끝도 소수로 낸다.
+
+/**
+ * 소수 뒤의 「로/으로」 — **ㄹ 받침은 「로」**다(일로·칠로·팔로).
+ *
+ * `numRo` 는 정수 전용이라(`Math.trunc` 로 소수를 깎는다) 여기서는 못 쓴다.
+ * `centsJosa` 와 같이 **꼬리 0 을 떼고 마지막으로 소리 나는 숫자**로 정하므로
+ * ×10 이든 ×100 이든 같은 함수로 답한다.
+ */
+function scaledRo(scaled: number): string {
+  let d = scaled;
+  while (d % 10 === 0 && d !== 0) d /= 10;
+  const last = d % 10;
+  return last === 3 || last === 6 ? "으로" : "로";
+}
+
+/**
+ * 2-2-1 심화중 재료 — 「$A$ 로 나눈 몫이 자연수」가 어떤 수를 **$A$ 의 배수열**로 묶고,
+ * 범위가 그중 하나를 고른다. 범위 안에 배수가 **정확히 하나**여야 답이 선다.
+ */
+/**
+ * 🔴 **반증 ⑥ 가드** — 발문에 실린 수 둘을 **한 번 곱하거나 나눠서** 답이 나오면
+ * 그 문항은 되짚기가 아니라 한 걸음이다. 배수·구간으로 지은 문항에서도 **우연히**
+ * 그렇게 되는 짝이 있다(실측: `2.4\times3.6=8.64` · `72\div1.2=60` — 시험이 잡았다).
+ *
+ * 값은 `[정수 배율, 소수 자릿수]` 로 받아 **정수 곱으로만** 견준다(부동소수를 안 거친다).
+ */
+function oneStepHits(
+  page: readonly (readonly [number, number])[],
+  ans: readonly [number, number],
+): boolean {
+  const [as, ad] = ans;
+  const p10 = (e: number) => 10 ** e;
+  for (const [us, ud] of page)
+    for (const [vs, vd] of page) {
+      if (us === vs && ud === vd) continue;
+      if (us * vs * p10(ad) === as * p10(ud + vd)) return true;
+      if (vs !== 0 && us * p10(vd + ad) === as * vs * p10(ud)) return true;
+    }
+  return false;
+}
+
+const SAME_MULT: { a10: number; k: number; lo10: number; up10: number }[] = [];
+for (let a10 = 11; a10 <= 39; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let k = 3; k <= 9; k += 1) {
+    const x10 = a10 * k;
+    if (x10 % 10 === 0 || x10 > 900) continue;
+    for (const pad of [5, 7, 9, 11]) {
+      const lo10 = x10 - pad;
+      const up10 = x10 + pad;
+      if (lo10 <= 0 || lo10 % 10 === 0 || up10 % 10 === 0) continue;
+      let hits = 0;
+      for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;
+      if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo10, 1],
+            [up10, 1],
+          ],
+          [x10, 1],
+        )
+      )
+        continue;
+      SAME_MULT.push({ a10, k, lo10, up10 });
+    }
+  }
+}
+
+/**
+ * 2-2-1 심화상 재료 — 첫 조건이 후보를 **셋 이상** 만들고, 둘째 나눗셈을 각 후보에
+ * 실제로 해 봐야 **하나**가 남는다. 후보를 발문이 주지 않는다는 것이 이 갈래의 알맹이다.
+ */
+const SAME_TWO: {
+  a10: number;
+  b10: number;
+  lo10: number;
+  up10: number;
+  x10: number;
+}[] = [];
+for (let a10 = 11; a10 <= 29; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let b10 = 11; b10 <= 39; b10 += 1) {
+    if (b10 % 10 === 0 || b10 === a10) continue;
+    for (let lo10 = 21; lo10 <= 160; lo10 += 1) {
+      if (lo10 % 10 === 0) continue;
+      for (const width of [30, 40, 50]) {
+        const up10 = lo10 + width;
+        if (up10 % 10 === 0 || up10 > 220) continue;
+        const list: number[] = [];
+        for (let m = 1; m * a10 < up10; m += 1)
+          if (m * a10 > lo10) list.push(m * a10);
+        if (list.length < 3 || list.length > 6) continue;
+        const win = list.filter((v) => v % b10 === 0);
+        if (win.length !== 1 || win[0]! % 10 === 0) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo10, 1],
+              [up10, 1],
+            ],
+            [win[0]!, 1],
+          )
+        )
+          continue;
+        SAME_TWO.push({ a10, b10, lo10, up10, x10: win[0]! });
+      }
+    }
+  }
+}
+
+/**
+ * 2-2-2 심화중 재료 — 어떤 수가 **소수 두 자리**, 몫이 **소수 한 자리**다.
+ * 그러면 「자릿수가 다른 (소수)÷(소수)」가 발문에 그대로 선다(범위의 두 끝이 두 자리).
+ */
+const DIFF_MULT: { a10: number; m: number; lo100: number; up100: number }[] =
+  [];
+for (let a10 = 11; a10 <= 39; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let m = 21; m <= 90; m += 1) {
+    if (m % 10 === 0) continue;
+    const x100 = a10 * m;
+    if (x100 % 10 === 0 || x100 > 2500) continue;
+    for (const pad of [8, 11, 14, 17]) {
+      const lo100 = x100 - pad;
+      const up100 = x100 + pad;
+      if (lo100 <= 0 || lo100 % 10 === 0 || up100 % 10 === 0) continue;
+      let hits = 0;
+      for (let t = 1; t * a10 < up100; t += 1) {
+        const v = t * a10;
+        if (v > lo100 && v % 10 !== 0) hits += 1;
+      }
+      if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo100, 2],
+            [up100, 2],
+          ],
+          [x100, 2],
+        )
+      )
+        continue;
+      DIFF_MULT.push({ a10, m, lo100, up100 });
+    }
+  }
+}
+
+/** 2-2-2 심화상 재료 — 위와 같은 구조를 두 자리 소수로. */
+const DIFF_TWO: {
+  a10: number;
+  b10: number;
+  lo100: number;
+  up100: number;
+  x100: number;
+}[] = [];
+for (let a10 = 11; a10 <= 29; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let b10 = 11; b10 <= 39; b10 += 1) {
+    if (b10 % 10 === 0 || b10 === a10) continue;
+    for (let lo100 = 201; lo100 <= 900; lo100 += 1) {
+      if (lo100 % 10 === 0) continue;
+      for (const width of [60, 90]) {
+        const up100 = lo100 + width;
+        if (up100 % 10 === 0 || up100 > 1200) continue;
+        const list: number[] = [];
+        for (let t = 1; t * a10 < up100; t += 1) {
+          const v = t * a10;
+          if (v > lo100 && v % 10 !== 0) list.push(v);
+        }
+        if (list.length < 3 || list.length > 6) continue;
+        const win = list.filter((v) => v % b10 === 0);
+        if (win.length !== 1) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo100, 2],
+              [up100, 2],
+            ],
+            [win[0]!, 2],
+          )
+        )
+          continue;
+        DIFF_TWO.push({ a10, b10, lo100, up100, x100: win[0]! });
+      }
+    }
+  }
+}
+
+/** 2-2-3 심화중 재료 — 되짚은 어떤 수가 **자연수**다((자연수)÷(소수) 소단원). */
+const NAT_MULT: { a10: number; lo: number; up: number; x: number }[] = [];
+for (let a10 = 11; a10 <= 49; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let k = 4; k <= 40; k += 1) {
+    const x10 = a10 * k;
+    if (x10 % 10 !== 0) continue;
+    const x = x10 / 10;
+    if (x < 12 || x > 99) continue;
+    for (const pad of [3, 4, 5, 6]) {
+      const lo = x - pad;
+      const up = x + pad;
+      if (lo < 2) continue;
+      let hits = 0;
+      for (let n = lo + 1; n < up; n += 1) if ((n * 10) % a10 === 0) hits += 1;
+      if (hits !== 1) continue;
+      if (
+        oneStepHits(
+          [
+            [a10, 1],
+            [lo, 0],
+            [up, 0],
+          ],
+          [x, 0],
+        )
+      )
+        continue;
+      NAT_MULT.push({ a10, lo, up, x });
+    }
+  }
+}
+
+/** 2-2-3 심화상 재료 — 후보를 만든 뒤 둘째 소수로 각각 나눠 봐야 하나가 남는다. */
+const NAT_TWO: {
+  a10: number;
+  b10: number;
+  lo: number;
+  up: number;
+  x: number;
+}[] = [];
+for (let a10 = 11; a10 <= 39; a10 += 1) {
+  if (a10 % 10 === 0) continue;
+  for (let b10 = 11; b10 <= 49; b10 += 1) {
+    if (b10 % 10 === 0 || b10 === a10) continue;
+    for (let lo = 8; lo <= 80; lo += 1) {
+      for (const width of [12, 16, 20, 24]) {
+        const up = lo + width;
+        if (up > 99) continue;
+        const list: number[] = [];
+        for (let n = lo + 1; n < up; n += 1)
+          if ((n * 10) % a10 === 0) list.push(n);
+        if (list.length < 3 || list.length > 6) continue;
+        const win = list.filter((n) => (n * 10) % b10 === 0);
+        if (win.length !== 1) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [b10, 1],
+              [lo, 0],
+              [up, 0],
+            ],
+            [win[0]!, 0],
+          )
+        )
+          continue;
+        NAT_TWO.push({ a10, b10, lo, up, x: win[0]! });
+      }
+    }
+  }
+}
+
+/** 정수 나눗셈으로 **소수 첫째 자리까지 반올림** — 부동소수를 안 거친다. */
+function round1(n: number, b: number): number {
+  const s = n * 10;
+  return Math.floor(s / b) + ((s % b) * 2 >= b ? 1 : 0);
+}
+
+/**
+ * 2-2-4 재료 — **반올림한 값 하나가 구간을 가리킨다**는 것이 이 소단원의 성질이다.
+ * 몫이 `r` 로 반올림되려면 몫이 `[r-0.05, r+0.05)` 안에 있어야 하고, 그러면 나누어지는
+ * 자연수는 그 구간에 `b` 를 곱한 범위의 정수다 — **마디가 구간이라 안 굳는다.**
+ *
+ * 🔴 `naive` 가드가 **반증 ⑥** 이다 — 「몫 × 나누는 수」 한 번으로 답이 나오면 그 문항은
+ *    되짚기가 아니라 한 걸음이다. 실제로 좁은 구간에서는 늘 그렇게 되므로 걸러 낸다.
+ */
+const ROUND_BACK: { b: number; r10: number; ns: number[] }[] = [];
+for (let b = 17; b <= 39; b += 1) {
+  for (let r10 = 21; r10 <= 95; r10 += 1) {
+    if (r10 % 10 === 0) continue;
+    const lo100 = (r10 * 10 - 5) * b;
+    const hi100 = (r10 * 10 + 5) * b;
+    if (lo100 % 100 === 0 || hi100 % 100 === 0) continue;
+    const ns: number[] = [];
+    for (
+      let n = Math.floor(lo100 / 100) + 1;
+      n <= Math.floor(hi100 / 100);
+      n += 1
+    )
+      ns.push(n);
+    if (ns.length < 2 || ns.length > 4) continue;
+    // 해설이 「$…\ldots$」라 적으므로 그 몫이 두 자리에서 끝나면 안 된다.
+    if (ns.some((n) => (n * 100) % b === 0)) continue;
+    const naive = (r10 * b) / 10;
+    const big = ns[ns.length - 1]!;
+    if (
+      big === Math.round(naive) ||
+      big === Math.floor(naive) ||
+      big === Math.ceil(naive)
+    )
+      continue;
+    ROUND_BACK.push({ b, r10, ns });
+  }
+}
+
+/** 2-2-4 심화상 재료 — 두 반올림 조건이 교차해 **하나**만 남는다. */
+const ROUND_CROSS: {
+  b1: number;
+  r1: number;
+  b2: number;
+  r2: number;
+  ns: number[];
+  x: number;
+}[] = [];
+for (const g of ROUND_BACK) {
+  for (let b2 = 11; b2 <= 39; b2 += 1) {
+    if (b2 === g.b) continue;
+    const byValue = new Map<number, number[]>();
+    for (const n of g.ns) {
+      const r = round1(n, b2);
+      byValue.set(r, [...(byValue.get(r) ?? []), n]);
+    }
+    for (const [r2, members] of byValue) {
+      if (members.length !== 1 || r2 % 10 === 0) continue;
+      const x = members[0]!;
+      if ((x * 100) % b2 === 0) continue;
+      const naive2 = (r2 * b2) / 10;
+      if (
+        x === Math.round(naive2) ||
+        x === Math.floor(naive2) ||
+        x === Math.ceil(naive2)
+      )
+        continue;
+      // 해설이 후보마다 «두 자리 + \ldots» 를 적는다 — 자름이 꼬리 0 이면
+      // 지면에 `9.70\ldots` 가 나간다(초등 지면에 안 쓴다).
+      if (g.ns.some((n) => Math.floor((n * 100) / b2) % 10 === 0)) continue;
+      ROUND_CROSS.push({ b1: g.b, r1: g.r10, b2, r2, ns: g.ns, x });
+    }
+  }
+}
+
+/**
+ * 2-2-5 심화중 재료 — 「$per$ 씩 주면 $k$ 명에게 주고 조금 남는다」가 처음 양을
+ * **구간** `(per·k, per·k+per)` 으로만 묶는다(굳지 않는 마디). 남는 양의 하한이
+ * 그 구간을 좁히고, 「소수 첫째 자리까지의 수 중 가장 적은」이 하나를 고른다.
+ *
+ * ⚠️ 하한을 **처음 양**에 걸면 안 된다 — 그러면 「$k$ 명」이 아무 일도 안 하고
+ *    답이 「하한 다음 수」로 바로 나온다(반증 ⑥). **남는 양**에 걸어야 되짚기가 산다.
+ */
+const REM_RANGE: { per: number; k: number; rmin: number; total10: number }[] =
+  [];
+for (let per = 3; per <= 8; per += 1)
+  for (let k = 4; k <= 9; k += 1)
+    for (let rmin = 1; rmin < per - 1; rmin += 1) {
+      const total10 = per * k * 10 + rmin * 10 + 1;
+      if (total10 > 900) continue;
+      REM_RANGE.push({ per, k, rmin, total10 });
+    }
+
+/**
+ * 2-2-5 심화상 재료 — 「$a$ 씩 주면 $ra$ 남는다」가 후보를 **배수열**로 만들고,
+ * 각 후보를 실제로 $b$ 로 나눠 남는 양을 견주어야 하나가 남는다.
+ */
+const REM_CROSS: {
+  a: number;
+  ra10: number;
+  b: number;
+  rb10: number;
+  cap10: number;
+  x10: number;
+}[] = [];
+for (let a = 3; a <= 7; a += 1)
+  for (let b = a + 1; b <= 9; b += 1)
+    for (let ra10 = 1; ra10 < a * 10; ra10 += 1) {
+      if (ra10 % 10 === 0) continue;
+      for (let rb10 = 1; rb10 < b * 10; rb10 += 1) {
+        if (rb10 % 10 === 0 || rb10 === ra10) continue;
+        if (ra10 % 10 !== rb10 % 10) continue; // 같은 양이므로 소수 첫째 자리가 같다
+        const list: number[] = [];
+        for (let ka = 1; ka <= 14; ka += 1) {
+          const t = a * 10 * ka + ra10;
+          if (t > 700) break;
+          list.push(t);
+        }
+        if (list.length < 5) continue;
+        const fits = (t: number) =>
+          t > b * 10 && (t - rb10) % (b * 10) === 0 && t - rb10 > 0;
+        const win = list.filter(fits);
+        if (win.length !== 1) continue;
+        const x10 = win[0]!;
+        const cap10 = x10 + a * 10 * 3 + 5;
+        if (cap10 % 10 === 0) continue; // `46.0` 은 초등 지면에 안 쓴다
+        const under = list.filter((t) => t < cap10);
+        if (under.length < 4 || under.filter(fits).length !== 1) continue;
+        REM_CROSS.push({ a, ra10, b, rb10, cap10, x10 });
+      }
+    }
+
+// ── 2-2-1 자릿수가 같은 (소수)÷(소수) ──
+
+/**
+ * 심화중 — **굳지 않는 마디 하나.** 「$A$ 로 나눈 몫이 자연수」는 어떤 수를 $A$ 의
+ * 배수열로만 묶는다(마디가 안 굳는다). 소단원 성질(소수점을 옮기면 자연수의 나눗셈)로
+ * 배수열을 만들고, 범위가 그중 하나를 고른다.
+ */
+function sameDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_MULT);
+  const a = decStr(c.a10, 1);
+  const x10 = c.a10 * c.k;
+  const near = [c.k - 1, c.k, c.k + 1];
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫이 자연수입니다. ` +
+      `어떤 수가 ${num(decStr(c.lo10, 1))}보다 크고 ${num(decStr(c.up10, 1))}보다 작을 때, ` +
+      `어떤 수를 구하시오.`,
+    num(decStr(x10, 1)),
+    [
+      `몫이 자연수이므로 어떤 수는 ${num(a)}의 배수입니다. ` +
+        `두 수의 소수점을 오른쪽으로 한 자리씩 옮기면 ${num(c.a10)}의 배수를 찾는 것과 같습니다.`,
+      `${near
+        .map((m) => expr(`${a}\\times${m}=${fromTenths(c.a10 * m)}`))
+        .join(", ")} 중에서 ` +
+        `${num(decStr(c.lo10, 1))}보다 크고 ${num(decStr(c.up10, 1))}보다 작은 것은 ` +
+        `${num(decStr(x10, 1))} 뿐입니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — 성질만으로는 **못 굳힌다.** 첫 조건이 후보를 셋 이상 만들고, 그 후보를
+ * 발문이 주지 않으므로 **직접 만들어** 둘째 나눗셈을 각각 해 봐야 하나가 남는다.
+ */
+function sameDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, SAME_TWO);
+  const a = decStr(c.a10, 1);
+  const b = decStr(c.b10, 1);
+  const cands: number[] = [];
+  for (let m = 1; m * c.a10 < c.up10; m += 1)
+    if (m * c.a10 > c.lo10) cands.push(m * c.a10);
+  const miss = cands.filter((v) => v !== c.x10);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫도 자연수이고, ` +
+      `${num(b)}${scaledRo(c.b10)} 나눈 몫도 자연수입니다. ` +
+      `어떤 수가 ${num(decStr(c.lo10, 1))}보다 크고 ${num(decStr(c.up10, 1))}보다 작을 때, ` +
+      `어떤 수를 구하시오.`,
+    num(decStr(c.x10, 1)),
+    [
+      `먼저 ${num(a)}의 배수를 찾습니다. ` +
+        `${cands
+          .map((v) => expr(`${a}\\times${v / c.a10}=${fromTenths(v)}`))
+          .join(", ")} 입니다.`,
+      `이 중 ${num(b)}${scaledRo(c.b10)} 나누어떨어지는 것을 찾습니다. ` +
+        `${miss.map((v) => expr(`${fromTenths(v)}\\div${b}`)).join(", ")} ` +
+        `${numJosa(c.b10, "은", "는")} 나누어떨어지지 않고, ` +
+        `${expr(`${decStr(c.x10, 1)}\\div${b}=${c.x10 / c.b10}`)} 만 나누어떨어집니다.`,
+    ],
+  );
+}
+
+// ── 2-2-2 자릿수가 다른 (소수)÷(소수) ──
+
+/**
+ * 심화중 — 2-2-1 과 같은 사슬이되 **몫이 소수 한 자리 수**라 어떤 수가 두 자리다.
+ * 그래서 「자릿수가 다른 (소수)÷(소수)」가 지면에 그대로 선다.
+ */
+function diffDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_MULT);
+  const a = decStr(c.a10, 1);
+  const x100 = c.a10 * c.m;
+  // ⚠️ **이웃을 «앞뒤 하나»로 잡으면 안 된다.** 곱하는 수는 소수 한 자리라 `3.0` 처럼
+  //    꼬리 0 이 되는 것을 빼야 하는데, 그러면 남는 것이 **하나뿐**일 때가 있다 —
+  //    그때 `makeDeep` 이 「계산식이 둘 미만」으로 던진다(판정기가 실제로 잡았다).
+  //    가까운 쪽부터 살아 있는 것을 **셋** 모은다.
+  const near = [c.m];
+  for (let d = 1; d <= 4 && near.length < 3; d += 1) {
+    for (const m of [c.m - d, c.m + d]) {
+      if (near.length >= 3 || m < 11 || m % 10 === 0) continue;
+      near.push(m);
+    }
+  }
+  near.sort((p1, p2) => p1 - p2);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫이 소수 한 자리 수입니다. ` +
+      `어떤 수가 소수 두 자리 수이고 ${num(decStr(c.lo100, 2))}보다 크고 ` +
+      `${num(decStr(c.up100, 2))}보다 작을 때, 어떤 수를 구하시오.`,
+    num(decStr(x100, 2)),
+    [
+      `몫이 소수 한 자리 수이므로 어떤 수는 ${num(a)}에 소수 한 자리 수를 곱한 값입니다.`,
+      `${near
+        .map((m) => expr(`${a}\\times${decStr(m, 1)}=${fromCents(c.a10 * m)}`))
+        .join(", ")} 중에서 ` +
+        `${num(decStr(c.lo100, 2))}보다 크고 ${num(decStr(c.up100, 2))}보다 작은 소수 두 자리 수는 ` +
+        `${num(decStr(x100, 2))} 뿐입니다.`,
+    ],
+  );
+}
+
+/** 심화상 — 후보를 만든 뒤 둘째 나눗셈을 각각 해 봐야 하나가 남는다. */
+function diffDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, DIFF_TWO);
+  const a = decStr(c.a10, 1);
+  const b = decStr(c.b10, 1);
+  const cands: number[] = [];
+  for (let t = 1; t * c.a10 < c.up100; t += 1) {
+    const v = t * c.a10;
+    if (v > c.lo100 && v % 10 !== 0) cands.push(v);
+  }
+  const miss = cands.filter((v) => v !== c.x100);
+  return makeDeep(
+    unit,
+    `어떤 수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫도 소수 한 자리 수이고, ` +
+      `${num(b)}${scaledRo(c.b10)} 나눈 몫도 소수 한 자리 수입니다. ` +
+      `어떤 수가 소수 두 자리 수이고 ${num(decStr(c.lo100, 2))}보다 크고 ` +
+      `${num(decStr(c.up100, 2))}보다 작을 때, 어떤 수를 구하시오.`,
+    num(decStr(c.x100, 2)),
+    [
+      `먼저 ${num(a)}에 소수 한 자리 수를 곱해 소수 두 자리 수가 되는 것을 찾습니다. ` +
+        `${cands
+          .map((v) =>
+            expr(`${a}\\times${decStr(v / c.a10, 1)}=${decStr(v, 2)}`),
+          )
+          .join(", ")} 입니다.`,
+      `이 중 ${num(b)}${scaledRo(c.b10)} 나눈 몫도 소수 한 자리 수인 것을 찾습니다. ` +
+        `${miss.map((v) => expr(`${decStr(v, 2)}\\div${b}`)).join(", ")} ` +
+        `${numJosa(c.b10, "은", "는")} 소수 한 자리 수가 아니고, ` +
+        `${expr(`${decStr(c.x100, 2)}\\div${b}=${decStr(c.x100 / c.b10, 1)}`)} 입니다.`,
+    ],
+  );
+}
+
+// ── 2-2-3 (자연수)÷(소수) ──
+
+/** 심화중 — 되짚은 어떤 수가 **자연수**라 배수열이 성기다(그만큼 범위가 넓어도 된다). */
+function natDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_MULT);
+  const a = decStr(c.a10, 1);
+  const near = [c.x - c.a10, c.x, c.x + c.a10].filter((v) => v > 0);
+  return makeDeep(
+    unit,
+    `어떤 자연수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫이 자연수입니다. ` +
+      `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작을 때, 어떤 수를 구하시오.`,
+    num(c.x),
+    [
+      `몫이 자연수이므로 어떤 수는 ${num(a)}의 배수이고, 자연수이므로 ` +
+        `${num(c.a10)}의 배수이기도 합니다.`,
+      `${near.map((v) => expr(`${v}\\div${a}=${(v * 10) / c.a10}`)).join(", ")} ` +
+        `중에서 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 것은 ${num(c.x)} 뿐입니다.`,
+    ],
+  );
+}
+
+/** 심화상 — 후보를 만든 뒤 둘째 소수로 각각 나눠 봐야 하나가 남는다. */
+function natDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_TWO);
+  const a = decStr(c.a10, 1);
+  const b = decStr(c.b10, 1);
+  const cands: number[] = [];
+  for (let n = c.lo + 1; n < c.up; n += 1)
+    if ((n * 10) % c.a10 === 0) cands.push(n);
+  const miss = cands.filter((v) => v !== c.x);
+  return makeDeep(
+    unit,
+    `어떤 자연수를 ${num(a)}${scaledRo(c.a10)} 나눈 몫도 자연수이고, ` +
+      `${num(b)}${scaledRo(c.b10)} 나눈 몫도 자연수입니다. ` +
+      `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작을 때, 어떤 수를 구하시오.`,
+    num(c.x),
+    [
+      `먼저 ${num(a)}${scaledRo(c.a10)} 나누어떨어지는 자연수를 찾습니다. ` +
+        `${cands
+          .map((v) => expr(`${v}\\div${a}=${(v * 10) / c.a10}`))
+          .join(", ")} 입니다.`,
+      `이 중 ${num(b)}${scaledRo(c.b10)} 나누어떨어지는 것을 찾습니다. ` +
+        `${miss.map((v) => expr(`${v}\\div${b}`)).join(", ")} ` +
+        `${numJosa(c.b10, "은", "는")} 나누어떨어지지 않고, ` +
+        `${expr(`${c.x}\\div${b}=${(c.x * 10) / c.b10}`)} 만 나누어떨어집니다.`,
+    ],
+  );
+}
+
+// ── 2-2-4 몫을 반올림하여 나타내기 ──
+
+/**
+ * 심화중 — **반올림한 값 하나가 구간을 가리킨다.** 그 구간이 굳지 않는 마디이고,
+ * 「자연수 중 가장 큰 것」이 하나를 고른다. 구성이 「몫 × 나누는 수」 한 번으로
+ * 답이 나오는 짝을 걸러 내므로(반증 ⑥) 되짚기를 안 하면 못 푼다.
+ */
+function roundMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, ROUND_BACK);
+  const r = decStr(c.r10, 1);
+  const lo = decStr(c.r10 * 10 - 5, 2);
+  const hi = decStr(c.r10 * 10 + 5, 2);
+  const loP = fromCents((c.r10 * 10 - 5) * c.b);
+  const hiP = fromCents((c.r10 * 10 + 5) * c.b);
+  const big = c.ns[c.ns.length - 1]!;
+  const shown = Math.floor((big * 100) / c.b);
+  return makeDeep(
+    unit,
+    `${expr(`\\square\\div${c.b}`)} 의 몫을 반올림하여 소수 첫째 자리까지 나타내면 ` +
+      `${num(r)}입니다. ${expr("\\square")} 안에 들어갈 수 있는 가장 큰 자연수를 구하시오.`,
+    num(big),
+    [
+      `반올림하여 ${num(r)}${centsJosa(c.r10, "이", "가")} 되려면 몫은 ` +
+        `${num(lo)}보다 크거나 같고 ${num(hi)}보다 작아야 합니다.`,
+      `${expr(`${lo}\\times${c.b}=${loP}`)}, ${expr(`${hi}\\times${c.b}=${hiP}`)} 이므로 ` +
+        `${expr("\\square")} 는 ${num(loP)}보다 크거나 같고 ${num(hiP)}보다 작은 자연수입니다. ` +
+        `그중 가장 큰 수는 ${num(big)}입니다.`,
+      `${expr(`${big}\\div${c.b}`)} 의 몫이 ${expr(`${decStr(shown, 2)}\\ldots`)} 인 것으로 확인할 수 있습니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — 구간이 자연수 여럿을 남기고, **그 후보를 발문이 주지 않는다.**
+ * 둘째 반올림을 각 후보에 실제로 해 봐야 하나가 남는다.
+ */
+function roundTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, ROUND_CROSS);
+  const r1 = decStr(c.r1, 1);
+  const r2 = decStr(c.r2, 1);
+  const lo = decStr(c.r1 * 10 - 5, 2);
+  const hi = decStr(c.r1 * 10 + 5, 2);
+  const loP = fromCents((c.r1 * 10 - 5) * c.b1);
+  const hiP = fromCents((c.r1 * 10 + 5) * c.b1);
+  return makeDeep(
+    unit,
+    `어떤 자연수를 ${num(c.b1)}${numRo(c.b1)} 나눈 몫을 반올림하여 소수 첫째 자리까지 ` +
+      `나타내면 ${num(r1)}이고, ${num(c.b2)}${numRo(c.b2)} 나눈 몫을 반올림하여 ` +
+      `소수 첫째 자리까지 나타내면 ${num(r2)}입니다. 어떤 수를 구하시오.`,
+    num(c.x),
+    [
+      `${num(c.b1)}${numRo(c.b1)} 나눈 몫이 ${num(r1)}${centsJosa(c.r1, "이", "가")} 되려면 ` +
+        `몫이 ${num(lo)}보다 크거나 같고 ${num(hi)}보다 작아야 하므로, ` +
+        `${expr(`${lo}\\times${c.b1}=${loP}`)}, ${expr(`${hi}\\times${c.b1}=${hiP}`)} 에서 ` +
+        `어떤 수는 ${c.ns.map((v) => num(v)).join(", ")} 중 하나입니다.`,
+      `각각 ${num(c.b2)}${numRo(c.b2)} 나누어 반올림해 봅니다. ` +
+        `${c.ns
+          .map((v) =>
+            expr(
+              `${v}\\div${c.b2}=${decStr(Math.floor((v * 100) / c.b2), 2)}\\ldots`,
+            ),
+          )
+          .join(", ")} 이므로 ` +
+        `${c.ns.map((v) => num(decStr(round1(v, c.b2), 1))).join(", ")} 입니다.`,
+      // ⚠️ 해설에 **`$a\div b$` 한 덩어리**를 반드시 남긴다. 발문은 「$37$로 나눈」처럼
+      //    말로 쓰므로 `probe-elem-section-conditions` 의 「몫을 반올림하여」 검사가
+      //    읽을 식이 **어디에도 없어** 40/40 위반이 났다(실제로 잡혔다).
+      `${expr(`${c.x}\\div${c.b2}`)} 의 몫만 ${num(r2)}${centsJosa(c.r2, "이", "가")} 되므로 ` +
+        `어떤 수는 ${num(c.x)}입니다.`,
+    ],
+  );
+}
+
+// ── 2-2-5 나누어 주고 남는 양 알아보기 ──
+
+/**
+ * 심화중 — 「$k$ 명에게 주고 조금 남는다」가 처음 양을 **구간**으로만 묶는다(굳지 않는
+ * 마디). 남는 양의 하한이 그 구간을 좁히고, 「가장 적은 소수 첫째 자리 수」가 하나를 고른다.
+ */
+function remMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(rng, REM_RANGE);
+  const given = c.per * c.k;
+  const total = decStr(c.total10, 1);
+  return makeDeep(
+    unit,
+    `${s.thing}${josa(s.thing, "을", "를")} 한 사람에게 ${unitNum(c.per, s.unit)}씩 ` +
+      `나누어 주었더니 ${num(c.k)}명에게 줄 수 있고 조금 남았습니다. ` +
+      `남는 ${s.thing}${josa(s.thing, "이", "가")} ${unitNum(c.rmin, s.unit)}보다 많고 ` +
+      `${s.thing}의 양이 소수 첫째 자리까지의 수일 때, ${s.thing}${josa(s.thing, "은", "는")} ` +
+      `가장 적어야 몇 ${s.unit}입니까?`,
+    expr(total),
+    [
+      `${num(c.k)}명에게 준 양은 ${expr(`${c.per}\\times${c.k}=${given}`)} 입니다.`,
+      `남는 양이 ${unitNum(c.rmin, s.unit)}보다 많아야 하므로 ` +
+        `${s.thing}${josa(s.thing, "은", "는")} ${expr(`${given}+${c.rmin}=${given + c.rmin}`)} ` +
+        `보다 많습니다. 소수 첫째 자리까지의 수 중 가장 적은 것은 ${expr(total)} 입니다.`,
+      `${expr(`${total}-${given}=${decStr(c.total10 - given * 10, 1)}`)} 이므로 남는 양도 조건에 맞습니다.`,
+    ],
+  );
+}
+
+/**
+ * 심화상 — 「$a$ 씩 주면 $ra$ 남는다」가 후보를 **배수열**로 만들고, 그 후보를 발문이
+ * 주지 않는다. 각 후보를 실제로 $b$ 로 나눠 남는 양을 견주어야 하나가 남는다.
+ */
+function remTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const s = pick(rng, DEC_POUR);
+  const c = pick(rng, REM_CROSS);
+  const cands: number[] = [];
+  for (let k = 1; ; k += 1) {
+    const t = c.a * 10 * k + c.ra10;
+    if (t >= c.cap10) break;
+    cands.push(t);
+  }
+  const ra = decStr(c.ra10, 1);
+  const rb = decStr(c.rb10, 1);
+  return makeDeep(
+    unit,
+    `${s.thing}${josa(s.thing, "을", "를")} 한 사람에게 ${unitNum(c.a, s.unit)}씩 나누어 주면 ` +
+      `${unitNum(ra, s.unit)}${unitJosa(s.unit, "이", "가")} 남고, ${unitNum(c.b, s.unit)}씩 ` +
+      `나누어 주면 ${unitNum(rb, s.unit)}${unitJosa(s.unit, "이", "가")} 남습니다. ` +
+      `${s.thing}${josa(s.thing, "이", "가")} ${unitNum(decStr(c.cap10, 1), s.unit)}보다 적을 때, ` +
+      `${s.thing}${josa(s.thing, "은", "는")} 몇 ${s.unit}입니까?`,
+    expr(decStr(c.x10, 1)),
+    [
+      `${unitNum(c.a, s.unit)}씩 주고 ${unitNum(ra, s.unit)}${unitJosa(s.unit, "이", "가")} 남으므로 ` +
+        `${s.thing}의 양은 ${cands.map((t) => expr(decStr(t, 1))).join(", ")} 중 하나입니다.`,
+      `각각 ${unitNum(c.b, s.unit)}씩 나누어 봅니다. ` +
+        `${cands
+          .map((t) => {
+            const q = Math.floor(t / (c.b * 10));
+            return expr(
+              `${decStr(t, 1)}-${c.b * q}=${decStr(t - c.b * q * 10, 1)}`,
+            );
+          })
+          .join(", ")} 입니다.`,
+      `남는 양이 ${unitNum(rb, s.unit)}${unitJosa(s.unit, "이", "가")} 되는 것은 ` +
+        `${expr(decStr(c.x10, 1))} 뿐입니다.`,
+    ],
+  );
+}
+
 // ── 난이도 갈래 (D-72 확대 9차분) — 초6 `2-4 비례식과 비례배분` (5소단원 · 20갈래) ──
 //
 // 앞 여덟 차분과 다른 점 하나가 이 대단원 전체를 지배한다 — **답이 «순서 있는 짝»** 이다.
@@ -7243,30 +8008,40 @@ export const G6_TIERS: ElemTierMap = {
     기본: sameDpWord,
     응용: sameDpApply,
     심화하: sameDpDeep,
+    심화중: sameDpMid,
+    심화상: sameDpTop,
   },
   "초6|2-2-2": {
     연산: diffDpCalc,
     기본: diffDpWord,
     응용: diffDpApply,
     심화하: diffDpDeep,
+    심화중: diffDpMid,
+    심화상: diffDpTop,
   },
   "초6|2-2-3": {
     연산: natDpCalc,
     기본: natDpWord,
     응용: natDpApply,
     심화하: natDpDeep,
+    심화중: natDpMid,
+    심화상: natDpTop,
   },
   "초6|2-2-4": {
     연산: roundCalc,
     기본: roundWord,
     응용: roundApply,
     심화하: roundDeep,
+    심화중: roundMid,
+    심화상: roundTop,
   },
   "초6|2-2-5": {
     연산: remCalc,
     기본: remWord,
     응용: remApply,
     심화하: remDeep,
+    심화중: remMid,
+    심화상: remTop,
   },
   "초6|2-4-1": {
     연산: ratioPropCalc,
