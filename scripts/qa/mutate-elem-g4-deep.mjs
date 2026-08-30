@@ -1,7 +1,7 @@
 /**
- * 변이 하네스 — 초4 1-3 확대 갈래(D-113)의 가드가 **망가뜨리면 빨개지는가**.
+ * 변이 하네스 — 초4 1-3 확대 갈래(D-113 **되짚기 축**)의 가드가 **망가뜨리면 빨개지는가**.
  *
- * 순서(이 저장소가 2026-08-21 에 한 겹 더 붙인 것):
+ * 순서(이 저장소가 쌓아 온 그대로):
  *   ⑴ 대상 파일이 **커밋돼 있는가** — 이 스크립트는 그 파일을 덮어쓴다.
  *   ⑵ 변이 **전에** 시험이 초록인가(음성 대조) — 아니면 판정을 거부한다.
  *   ⑶ 치환이 **정확히 한 자리**에 먹었는가 — 안 먹었으면 판정하지 않는다.
@@ -10,6 +10,10 @@
  *
  * 되돌리기는 **시작할 때 읽어 둔 바이트 그대로**(git show HEAD: 가 아니다 —
  * 그러면 커밋 안 된 수정을 덮는다, 2026-08-23).
+ *
+ * ⚠️ 앵커의 줄끝은 **파일에서 읽어 맞춘다.** autocrlf 저장소라 `git checkout` 한 번이면
+ *    대상이 CRLF 가 되고, LF 앵커로 적은 여러 줄 치환이 **말없이 0곳**이 된다
+ *    (실측으로 다섯이 그렇게 죽었다 — ⑶ 이 없었으면 「가드가 아니다」로 읽었을 것이다).
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -24,34 +28,40 @@ const TESTS = [
 
 const MUTATIONS = [
   {
-    label: "1-3-1 심화상 — 후보 24가지 중 **첫 하나**만 보고 최대·최소를 정한다",
-    from: "  for (const a of arrangements(cards, 3)) {\n    const tens = cards.find((c) => !a.used.includes(c))! * 10;",
-    to: "  for (const a of arrangements(cards, 3).slice(0, 1)) {\n    const tens = cards.find((c) => !a.used.includes(c))! * 10;",
+    // 심화중의 마디를 **닫는다** — 후보가 하나면 「가장 큰/작은」이 아무 일도 안 한다(=심화하).
+    label: "1-3-4 심화중 — 「가장 큰 나머지」를 고정값으로 박아 마디를 닫는다",
+    from: "  const q = intBetween(rng, 2, 9);\n  const r = b - 1;\n  const x = b * q + r;",
+    to: "  const q = intBetween(rng, 2, 9);\n  const r = b - 2;\n  const x = b * q + r;",
   },
   {
-    label: "1-3-3 심화상 — 카드를 넷에서 **셋**으로 줄인다(후보 12 → 6)",
-    from: "    cards = drawCards(rng, [1, 2, 3, 4, 5, 6, 7, 8, 9], 4);\n    field = roughPairField(cards);",
-    to: "    cards = drawCards(rng, [1, 2, 3, 4, 5, 6, 7, 8, 9], 3);\n    field = roughPairField(cards);",
+    // 심화중의 답을 반대쪽 극값으로 — 조건을 거꾸로 읽는다.
+    label: "1-3-1 심화중 — 「가장 작은」을 「가장 큰」으로 뒤집는다",
+    from: "  const m = five ? Math.ceil(10000 / b) : Math.floor(9999 / b);",
+    to: "  const m = five ? Math.floor(9999 / b) : Math.ceil(10000 / b);",
   },
   {
-    label: "1-3-7 심화상 — 나누어떨어지는 수가 **하나뿐인** 자리도 낸다",
-    from: "      if (divs.length >= 2 && divs.length <= 4) rows.push({ bb, a, divs });",
-    to: "      if (divs.length >= 1 && divs.length <= 4) rows.push({ bb, a, divs });",
+    // 심화상의 창을 넓혀 **하나가 안 남게** 한다.
+    label: "1-3-1 심화상 — 범위를 이웃 몇십까지 넓힌다(둘 이상 남는다)",
+    from: "  const low = Math.floor(p / 100) * 100 - 100 * intBetween(rng, 1, 8);\n  const high = Math.ceil(p / 100) * 100 + 100 * intBetween(rng, 1, 8);",
+    to: "  const low = Math.floor(p / 100) * 100 - 100 * intBetween(rng, 1, 8) - a * 20;\n  const high = Math.ceil(p / 100) * 100 + 100 * intBetween(rng, 1, 8) + a * 20;",
   },
   {
-    label: "1-3-4 심화중 — 「가장 큰 나머지」를 하나 작게 잡는다",
-    from: "function tier34Mid(unit: UnitSeed, rng: Rng): ElemProblem {\n  const b = intBetween(rng, 2, 9) * 10;\n  const q = intBetween(rng, 2, 9);\n  const r = b - 1;",
-    to: "function tier34Mid(unit: UnitSeed, rng: Rng): ElemProblem {\n  const b = intBetween(rng, 2, 9) * 10;\n  const q = intBetween(rng, 2, 9);\n  const r = b - 2;",
+    // 심화상의 답을 **후보 무리의 끝**으로 민다 — 끝이면 조건 한 번으로 집히므로 심화중이다.
+    label: "1-3-2 심화상 — 곱하는 수를 두 자리 수의 **맨 끝**(99)으로 박는다",
+    from: "  const a = intBetween(rng, 123, 897);\n  const k = twoDigit(rng);\n  const p = a * k;",
+    to: "  const a = intBetween(rng, 123, 897);\n  const k = 99;\n  const p = a * k;",
   },
   {
-    label: "1-3-6 심화중 — 되짚기를 한 겹 빼고 발문에 있는 몫을 그대로 답한다",
-    from: "      `구하시오.`,\n    n(q + 1),",
-    to: "      `구하시오.`,\n    n(q),",
+    // 심화상의 후보를 **발문이 주게** 한다 — 되짚기가 만든 것이 아니게 된다.
+    label: "1-3-7 심화상 — 나누는 수가 어림값 그 자체인 자리도 낸다(답이 발문에 적힌다)",
+    from: "      if (divs.length === 1 && divs[0] !== bb) rows.push({ bb, a, d: divs[0]! });",
+    to: "      if (divs.length === 1) rows.push({ bb, a, d: divs[0]! });",
   },
   {
-    label: "1-3-5 심화상 — 몫이 나머지의 배수인 자리를 **첫 하나**만 낸다",
-    from: "  const vals = rs.map((r) => b * (r * k) + r);",
-    to: "  const vals = rs.slice(0, 1).map((r) => b * (r * k) + r);",
+    // 심화상이 **하나로 안 굳는** 밭을 쓰게 한다.
+    label: "1-3-6 심화상 — 답이 둘 이상인 자리도 밭에 넣는다",
+    from: "          if (hits === 1 && only === b) out.push({ b, q, r, n });",
+    to: "          if (hits >= 1 && only !== 0) out.push({ b, q, r, n });",
   },
   {
     // 분모 가드 — 「핵심 넷이 다 있나」가 확대를 채운 뒤에도 «아니오»를 낼 수 있나.
@@ -64,11 +74,10 @@ const MUTATIONS = [
 
 /** 지금 산출물 — 「파일이 바뀌었다」와 「동작이 바뀌었다」를 가르는 지문. */
 function fingerprint() {
-  return execFileSync(
-    "npx",
-    ["tsx", "scripts/qa/fingerprintElemG4Deep.ts"],
-    { encoding: "utf8", shell: true, env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
-  );
+  return execFileSync("npx", ["tsx", "scripts/qa/fingerprintElemG4Deep.ts"], {
+    encoding: "utf8",
+    shell: true,
+  });
 }
 
 function runTests() {
@@ -80,7 +89,10 @@ function runTests() {
     });
     return { green: true, out: "" };
   } catch (e) {
-    return { green: false, out: String(e.stdout ?? "") + String(e.stderr ?? "") };
+    return {
+      green: false,
+      out: String(e.stdout ?? "") + String(e.stderr ?? ""),
+    };
   }
 }
 
@@ -89,7 +101,9 @@ const dirty = execFileSync("git", ["status", "--porcelain", "--", TARGET], {
   encoding: "utf8",
 });
 if (dirty.trim() !== "") {
-  console.error(`🛑 ${TARGET} 에 커밋 안 된 수정이 있다 — 이 스크립트는 그 파일을 덮어쓴다.`);
+  console.error(
+    `🛑 ${TARGET} 에 커밋 안 된 수정이 있다 — 이 스크립트는 그 파일을 덮어쓴다.`,
+  );
   process.exit(2);
 }
 
@@ -109,11 +123,12 @@ let verdictBad = 0;
 try {
   for (let m of MUTATIONS) {
     const src = ORIGINAL.toString("utf8");
-    // ⚠️ **줄끝을 맞춘다.** 이 저장소는 autocrlf 라 `git checkout` 을 한 번만 거쳐도
-    //    파일이 CRLF 가 된다. 앵커를 LF 로 적어 두면 여러 줄짜리 치환이 **말없이 0곳**
-    //    이 되고, 하네스는 그것을 「판정 못 함」으로 찍는다(실제로 그렇게 다섯이 죽었다).
     const eol = src.includes("\r\n") ? "\r\n" : "\n";
-    m = { ...m, from: m.from.split("\n").join(eol), to: m.to.split("\n").join(eol) };
+    m = {
+      ...m,
+      from: m.from.split("\n").join(eol),
+      to: m.to.split("\n").join(eol),
+    };
     const hits = src.split(m.from).length - 1;
     if (hits !== 1) {
       console.log(`⛔ ${m.label}\n     치환 자리 ${hits}곳 — 판정하지 않는다`);
@@ -136,13 +151,17 @@ try {
     const r = runTests();
     const failed = [...r.out.matchAll(/× ([^\n]*)/g)].map((x) => x[1].trim());
     if (r.green) {
-      console.log(`🟢 ${m.label}\n     초록 ← **가드가 아니다**`);
+      console.log(`GREEN ${m.label}\n     초록 <- **가드가 아니다**`);
       verdictBad += 1;
     } else if (failed.length === 0) {
-      console.log(`⛔ ${m.label}\n     빨간데 실패한 시험을 못 댄다 — 판정하지 않는다`);
+      console.log(
+        `⛔ ${m.label}\n     빨간데 실패한 시험을 못 댄다 — 판정하지 않는다`,
+      );
       verdictBad += 1;
     } else {
-      console.log(`🔴 ${m.label}\n     ↳ ${[...new Set(failed)].slice(0, 3).join("\n     ↳ ")}`);
+      console.log(
+        `RED   ${m.label}\n     -> ${[...new Set(failed)].slice(0, 3).join("\n     -> ")}`,
+      );
     }
     writeFileSync(TARGET, ORIGINAL);
   }
