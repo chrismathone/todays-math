@@ -348,6 +348,42 @@ G3_MUTS = [
         '  const top = three.indexOf(Math.max(...three));',
         '  const top = three.indexOf(Math.min(...three));',
     ),
+    # ── 초3 2-1 «심화중·심화상» — D-113 **되짚기 축** (2026-08-30) ──
+    # 첫 판(열거 축)의 변이 다섯은 코드째 사라졌다 — 축이 기각돼 생성기를 다시 짰다.
+    # 잠그는 시험은 `elemTiersG3Mul21Extend.test.ts` 다(아래 TARGETS 에 함께 적었다).
+    # ⚠️ 「chosen 을 반대로」는 **변이가 아니었다** — 발문의 올림 말도 `chosen` 에서
+    #    나오므로 문항이 그대로 앞뒤가 맞는다(실측 GREEN). 그래서 버리고,
+    #    **반증 1 을 곧장 겨누는** 변이로 바꿨다.
+    (
+        '[2-1 D-113] 심화중: 되짚기 후보가 하나뿐인 짝도 넣는다(그건 심화하다)',
+        '      // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 1).\n      if (k.length !== 2) continue;',
+        '      // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 1).\n      if (k.length < 1) continue;',
+    ),
+    (
+        '[2-1 D-113] 심화중: 올림이 같은 짝도 목록에 넣는다(성질이 못 가른다)',
+        '      if (cx === cy) continue;',
+        '      if (false && cx === cy) continue;',
+    ),
+    (
+        '[2-1 D-113] 심화중: 올림 약속 밖 후보도 목록에 넣는다',
+        '      if (!inBand(cx) || !inBand(cy)) continue;',
+        '      if (!inBand(cx) && !inBand(cy)) continue;',
+    ),
+    (
+        '[2-1 D-113] 심화상: 후보가 둘뿐인 짝도 넣는다(심화중과 겹친다)',
+        '      if (ks.length < 3) continue;',
+        '      if (ks.length < 2) continue;',
+    ),
+    (
+        '[2-1 D-113] 심화상: 답을 이웃 후보로 민다',
+        '  const ans = f.ks[f.idx]!;',
+        '  const ans = f.ks[(f.idx + 1) % f.ks.length]!;',
+    ),
+    (
+        '[2-1 D-113] 2-1-4 심화하: 해설이 한 배치만 찍는다(리드가 짚은 옛 결함)',
+        '  const shown = alt.map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
+        '  const shown = [alt[0]!].map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -1471,6 +1507,9 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elementaryG3Tiers.test.ts",
             "src/__tests__/unit/elemTiersG3.test.ts",
+            # D-113 파일럿(심화중·심화상). 이 파일을 안 적으면 확대 갈래를 무는
+            # 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
+            "src/__tests__/unit/elemTiersG3Mul21Extend.test.ts",
         ],
         "grade": "초3",
         "sections": [

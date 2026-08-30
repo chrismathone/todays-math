@@ -9,7 +9,10 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { CORE_DIFFICULTIES } from "../../contracts/difficulty";
+import {
+  CORE_DIFFICULTIES,
+  DIFFICULTY_LADDER,
+} from "../../contracts/difficulty";
 import { ELEM_TIERS, type ElemTier } from "../../lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -156,31 +159,31 @@ describe("[초등 출제 CLI] 세트 생성", () => {
     expect(new Set(keys).size).toBe(6);
   });
 
-  /**
-   * 🔴 **여기서 「넷」을 세면 안 된다** (D-113, 2026-08-30). 종전에는
-   * `r.tiers.length !== 4` 였는데, 축이 여섯이 되고 초4 1-3 이 확대 둘을 채우자
-   * **멀쩡한 일곱 소단원이 「갈래 없음」으로 잡혔다.** 이 시험이 지키려는 것은
-   * 「갈래가 **없는** 소단원이 생겼나」이지 「몇 개인가」가 아니다 —
-   * 확대(`심화중`·`심화상`)는 소단원마다 있을 수도 없을 수도 있다.
-   *
-   * 그래서 **핵심 넷이 다 있는가**로 묻는다. 목록은 계약(`CORE_DIFFICULTIES`)에서
-   * 가져오므로 손 상수가 아니고, 확대를 더 채워도 이 자리는 안 움직인다.
-   */
   it("소단원 230개가 전부 **핵심 넷**을 낸다 — «갈래 없음» 가드의 분모", () => {
+    // ⚠️ 종전에는 `r.tiers.length !== 4` 였다. 그 상수는 **축이 넷일 때만** 맞는 말이라,
+    //    D-113 으로 확대 갈래(심화중·심화상)를 한 소단원이라도 채우는 순간 이 시험이
+    //    **거짓으로** 빨개진다(2026-08-30 초3 2-1 파일럿에서 실제로 그랬다).
+    //    이 시험이 원래 지키려던 것은 「갈래가 **없는** 소단원이 생겼는가」이므로,
+    //    길이가 아니라 **핵심 넷을 다 갖췄는가**로 묻는다. 확대는 있어도 없어도 된다.
+    //    「타입은 배열 길이를 안 센다」(CLAUDE.md 2026-08-25)의 같은 자리다.
     const rows = listCoverage();
-    const tierless = rows.filter(
-      (r) =>
-        !CORE_DIFFICULTIES.every((t) =>
-          (r.tiers as readonly string[]).includes(t),
-        ),
+    const missing = rows.filter((r) =>
+      CORE_DIFFICULTIES.some((t) => !r.tiers.includes(t)),
     );
     expect(
-      tierless.map((r) => `${r.grade} ${r.code}`),
-      "갈래가 넷이 아닌 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
+      missing.map((r) => `${r.grade} ${r.code}: ${r.tiers.join("·")}`),
+      "핵심 갈래가 빠진 소단원이 생겼다 — `gen-core.ts` 의 needTierRegistry()·" +
         "`generate.ts` 의 「난이도 갈래가 없는 소단원입니다」가 그날 다시 살아난다. " +
         "위 주석이 가리키는 두 시험을 되살려 그 가드를 다시 재라",
     ).toEqual([]);
     expect(rows).toHaveLength(230);
+    // 사다리에 없는 갈래가 새어 들어오지도 않아야 한다(오타 갈래·옛 이름).
+    const strays = rows.flatMap((r) =>
+      r.tiers
+        .filter((t) => !(DIFFICULTY_LADDER as readonly string[]).includes(t))
+        .map((t) => `${r.grade} ${r.code}: ${t}`),
+    );
+    expect(strays, "사다리에 없는 갈래 이름").toEqual([]);
   });
 
   it("tier 와 preset 을 같이 주면 던진다", () => {

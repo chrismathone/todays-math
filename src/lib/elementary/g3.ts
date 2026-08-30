@@ -5611,12 +5611,453 @@ function mul214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
         `수 카드 ${list} 의 숫자를 한 번씩만 써서 (몇십몇)×(몇십몇) 곱셈식을 만들 때, 만들 수 있는 가장 작은 곱을 쓰시오.`,
         `${list} 의 네 숫자를 모두 한 번씩 사용해 두 자리 수 두 개를 만들어 곱합니다. 곱이 가장 작게 되는 값을 구하시오.`,
       ]);
+  // 🔴 **해설이 답에 이르러야 한다** (리드 지적, 2026-08-30). 옛 해설은
+  //    「십의 자리 숫자가 클수록 곱이 큽니다」 한 줄로 접고 답을 적었다 —
+  //    그 성질은 십의 자리 **두 수만** 정해 주고 남은 두 수의 자리를 안 말한다.
+  //    `87\times92` 와 `82\times97` 이 그 문장으로는 안 갈린다(씨앗 0~299 전량).
+  //    126가지 카드 조합을 전수로 확인했다: **정답은 늘 그 둘 중 하나이고, 둘의
+  //    곱은 늘 다르다.** 그러니 해설은 남은 두 배치를 **실제로 곱해 견주어야** 한다.
+  const desc = [...cards].sort((p, q) => q - p);
+  const [d1, d2, d3, d4] = desc as [number, number, number, number];
+  // 큰 곱은 십의 자리에 큰 두 수(d1·d2), 작은 곱은 작은 두 수(d4·d3)를 놓는다.
+  const alt: [number, number][] = askBig
+    ? [
+        [d1 * 10 + d3, d2 * 10 + d4],
+        [d1 * 10 + d4, d2 * 10 + d3],
+      ]
+    : [
+        [d4 * 10 + d1, d3 * 10 + d2],
+        [d4 * 10 + d2, d3 * 10 + d1],
+      ];
+  const shown = alt.map(([u, v]) => expr(`${u}\\times${v}=${u * v}`));
   return make(
     unit,
     stem,
     n(bestP),
-    `${askBig ? "십의 자리 숫자가 클수록 곱이 큽니다." : "십의 자리 숫자가 작을수록 곱이 작습니다."} 만들 수 있는 곱을 비교하면 가장 ${askBig ? "큰" : "작은"} 곱은 ${expr(`${bestA}\\times${bestB}=${bestP}`)} 입니다.`,
+    `가장 ${askBig ? "큰" : "작은"} 곱을 만들려면 십의 자리에 ${askBig ? "큰" : "작은"} 두 수를 놓아야 하므로, ` +
+      `십의 자리에 놓는 수는 ${list21(askBig ? [d1, d2] : [d4, d3])} 입니다. ` +
+      `남은 두 수를 놓는 방법은 두 가지이므로 곱해서 견줍니다. ` +
+      `${shown.join(", ")} 이므로 가장 ${askBig ? "큰" : "작은"} 곱은 ${n(bestP)} 입니다.`,
   );
+}
+
+/* ── 2-1 곱셈 «심화중»·«심화상» — D-113 파일럿, **되짚기 축** (2026-08-30) ─────
+ *
+ * 🔴 **첫 판(열거 축)은 기각됐다.** 「후보를 열거해 고른다」로 짰더니 리드 패널이
+ *    문형 전량 6,900행으로 두 축을 재어 **열거는 갈래를 1.5~2배밖에 안 가르고
+ *    되짚기는 22~40배 가른다**는 것을 보였다. 게다가 심화하 **안에서** 열거형은
+ *    평균 0.39 걸음으로 **그 소단원의 «연산»(0.79)보다도 얕았다.**
+ *    내 초3 산출물도 한 칸씩 낮게 앉았다(2-1-3 «심화중» → 실은 심화하).
+ *
+ * ── 확정 잣대 (되짚기 사슬) ─────────────────────────────────────────────────
+ *   · **심화하**(기준선, 안 건드림) — 사슬의 **마디마다 값이 하나로 굳는다.**
+ *   · **심화중** — 하나로 굳지 않는 마디가 **하나** 있고, 발문의 다른 조건이나
+ *     **그 소단원의 성질**이 그 마디를 굳혀 준다.
+ *   · **심화상** — 그 마디를 **성질만으로는 못 굳혀**, 그 소단원의 계산으로 나올 수
+ *     있는 값들을 **실제로 만들어 견주어야** 하나가 남는다. 후보는 발문이 주지 않고
+ *     **되짚기가 만든다.**
+ *
+ * ── 이 대단원에서 되짚기를 만드는 자리 — **곱의 일의 자리** ──────────────────
+ * 초3 2-1 은 **나눗셈을 못 쓴다**(2-2 에서 배운다, D-66⑶). 그래서 곱에서 인수를
+ * 되짚는 길은 **곱셈구구뿐**이다: 「$a$ 의 일의 자리가 $o$ 인데 곱의 일의 자리가 $r$ 이면
+ * 곱하는 수는 무엇인가」 — 이 되짚기가 **후보를 만든다**(발문이 주지 않는다).
+ *   · $o$ 가 홀수(1·3·7·9)면 후보가 **하나** → 그건 심화하다(반증 1).
+ *   · $o$ 가 짝수면 **둘**, $o=5$ 면 **넷·다섯** 이 나온다. 그 마디가 안 굳는 자리다.
+ *
+ * 굳히는 방법이 두 칸을 가른다:
+ *   · **심화중 — 올림 횟수**(2-1-1·2-1-2) 또는 **곱의 자릿수**(2-1-3). 둘 다 곱을
+ *     끝까지 하지 않고 **자리마다 어림해서** 아는 «성질»이다. 소단원 이름이 약속한
+ *     바로 그것이라 반증 3 을 정면으로 지난다.
+ *   · **심화상 — 후보가 셋 이상인데 올림도 자릿수도 전부 같다.** 그러면 성질이
+ *     아무것도 못 잘라 내고, **후보를 하나씩 실제로 곱해 견주어야** 하나가 남는다.
+ *
+ * ⚠️ **2-1-4 는 심화상을 비웠다.** 까닭은 이 파일 아래 `mul21High` 주석과 보고서
+ *    §2.2 에 적었다.
+ *
+ * 🔴 **후보 «전량»이 이름 약속 안이어야 한다.** 해설이 후보를 하나씩 곱해 보이므로
+ *    그 곱이 전부 소단원의 꼴·올림 안이어야 한다. 그래서 아래 틀은 **전수 열거로
+ *    만들고 약속을 못 지키는 틀은 목록에서 뺀다**(문턱으로 거르지 않는다).
+ *    문턱을 못 놓는 틀도 같이 뺀다 — 그래서 **어떤 씨앗에서도 안 던진다.**
+ */
+
+/** 소단원 이름이 약속한 곱의 갈래 — **이름에서** 읽는다(지면에서 읽으면 동어반복이다). */
+type Mul21Kind = "3x1-1" | "3x1-2" | "3shapes" | "2x2";
+
+function mul21Kind(section: string): Mul21Kind {
+  if (section.includes("(몇십몇)×(몇십몇)")) return "2x2";
+  if (section.includes("(세 자리 수)"))
+    return section.includes("(2)") ? "3x1-2" : "3x1-1";
+  return "3shapes";
+}
+
+/**
+ * **곱의 일의 자리로 곱하는 수를 되짚는다** — 곱셈구구가 후보를 만든다.
+ * `o` 는 곱해지는 수의 일의 자리, `r` 은 곱의 일의 자리.
+ */
+function reverseOnes21(o: number, r: number): number[] {
+  const out: number[] = [];
+  for (let k = 1; k <= 9; k += 1) if ((o * k) % 10 === r) out.push(k);
+  return out;
+}
+
+/** 「올림이 N번」을 지면 말로. 수를 KaTeX 밖에 쓰지 않으려고 한글로 적는다. */
+const CARRY_WORD = [
+  "한 번도 없었습니다",
+  "한 번 있었습니다",
+  "두 번 있었습니다",
+  "세 번 있었습니다",
+] as const;
+const CARRY_WORD_MID = [
+  "올림이 없고",
+  "올림이 한 번이고",
+  "올림이 두 번이고",
+  "올림이 세 번이고",
+] as const;
+const CARRY_WORD_END = [
+  "올림이 없습니다",
+  "올림이 한 번입니다",
+  "올림이 두 번입니다",
+  "올림이 세 번입니다",
+] as const;
+
+/** 자릿수 이름 — 「두 자리 수」·「세 자리 수」·「네 자리 수」. */
+const DIGIT_WORD21 = ["", "한", "두", "세", "네"] as const;
+const digitsOf21 = (v: number) => String(v).length;
+
+/**
+ * `lo` 와 `hi` 사이의 **둥근** 수 하나. 없으면 null.
+ * 문턱이 `1837` 이면 지면이 지저분하다 — 큰 자리부터 찾아 가운데 것을 고른다.
+ */
+function roundBetween(lo: number, hi: number): number | null {
+  for (const m of [1000, 500, 100, 50, 10, 5, 1]) {
+    const first = Math.floor(lo / m) * m + m;
+    const last = Math.ceil(hi / m) * m - m;
+    if (first <= last) {
+      const count = (last - first) / m + 1;
+      return first + Math.floor((count - 1) / 2) * m;
+    }
+  }
+  return null;
+}
+
+// ── 심화중 — 되짚기가 후보 둘을 만들고, **소단원 성질**이 하나를 굳힌다 ──────────
+
+/** (세 자리)×(한 자리) — 굳히는 성질은 **올림 횟수**(소단원 이름 그 자체). */
+type Mid3x1 = {
+  a: number;
+  r: number;
+  x: number;
+  y: number;
+  cx: number;
+  cy: number;
+};
+
+function mid3x1Pool(band: readonly [number, number]): Mid3x1[] {
+  const out: Mid3x1[] = [];
+  const inBand = (c: number) => c >= band[0] && c <= band[1];
+  for (let a = 102; a <= 998; a += 1) {
+    const o = a % 10;
+    for (let r = 0; r <= 9; r += 1) {
+      const k = reverseOnes21(o, r);
+      // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 1).
+      if (k.length !== 2) continue;
+      const [x, y] = k as [number, number];
+      const cx = mulCarries3x1(a, x);
+      const cy = mulCarries3x1(a, y);
+      // 해설이 두 곱을 다 보이므로 **둘 다** 이름 약속 안이어야 한다.
+      if (!inBand(cx) || !inBand(cy)) continue;
+      // 올림이 같으면 그 성질이 아무것도 못 가른다.
+      if (cx === cy) continue;
+      out.push({ a, r, x, y, cx, cy });
+    }
+  }
+  return out;
+}
+
+/** 2-1-3 (몇)×(몇십몇) — 굳히는 성질은 **곱의 자릿수**. */
+type Mid213 = { a: number; r: number; x: number; y: number };
+
+function mid213Pool(): Mid213[] {
+  const out: Mid213[] = [];
+  for (let a = 12; a <= 98; a += 1) {
+    const o = a % 10;
+    if (o === 0) continue; // 몇십은 (몇)×(몇십몇) 꼴이 아니다
+    for (let r = 0; r <= 9; r += 1) {
+      const k = reverseOnes21(o, r);
+      if (k.length !== 2) continue;
+      const [x, y] = k as [number, number];
+      if (digitsOf21(a * x) === digitsOf21(a * y)) continue;
+      out.push({ a, r, x, y });
+    }
+  }
+  return out;
+}
+
+/**
+ * 2-1-4 (몇십몇)×(몇십몇) — 되짚기가 **곱의 크기**로 후보를 만들고,
+ * **일의 자리 성질**(곱셈구구)이 하나를 굳힌다.
+ *
+ * ⚠️ 후보 창을 **한 십의 자리 안**에 둔다. 그래야 창 안의 모든 수가 몇십몇이고
+ *    (몇십이 섞이면 그 곱이 소단원 꼴을 벗어난다) 해설이 전부 찍어도 안전하다.
+ */
+type Mid214 = {
+  a: number;
+  lo: number;
+  hi: number;
+  ans: number;
+  r: number;
+  T1: number;
+  T2: number;
+};
+
+function mid214Pool(): Mid214[] {
+  const out: Mid214[] = [];
+  for (let a = 12; a <= 98; a += 1) {
+    if (a % 10 === 0) continue;
+    const oa = a % 10;
+    for (let d = 1; d <= 9; d += 1) {
+      for (let lo = d * 10 + 1; lo <= d * 10 + 7; lo += 1) {
+        for (let hi = lo + 2; hi <= d * 10 + 9; hi += 1) {
+          const win: number[] = [];
+          for (let b = lo; b <= hi; b += 1) win.push(b);
+          // 창 밖 이웃이 있어야 문턱을 놓는다.
+          const T1 = roundBetween(a * (lo - 1), a * lo);
+          const T2 = roundBetween(a * hi, a * (hi + 1));
+          if (T1 === null || T2 === null) continue;
+          for (let r = 0; r <= 9; r += 1) {
+            const hits = win.filter((b) => ((b % 10) * oa) % 10 === r);
+            if (hits.length !== 1) continue;
+            out.push({ a, lo, hi, ans: hits[0]!, r, T1, T2 });
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+// ── 심화상 — 성질이 아무것도 못 잘라 내어 **후보를 실제로 곱해 견준다** ─────────
+
+/**
+ * 후보가 **셋 이상**이고 올림·자릿수가 **전부 같은** 틀. 그러면 성질로는 한 개도
+ * 못 걸러 내고, 곱을 끝까지 해서 크기를 견주어야 하나가 남는다.
+ */
+type High21 = {
+  a: number;
+  r: number;
+  ks: number[];
+  idx: number;
+  /** 아래 문턱 — 후보 맨 앞을 고를 때는 없다(그때는 위 문턱만으로 갈린다). */
+  T1: number | null;
+  T2: number | null;
+};
+
+function high21Pool(
+  aFrom: number,
+  aTo: number,
+  band: readonly [number, number] | null,
+  shapeOk: (a: number) => boolean,
+): High21[] {
+  const out: High21[] = [];
+  const inBand = (c: number) => band === null || (c >= band[0] && c <= band[1]);
+  for (let a = aFrom; a <= aTo; a += 1) {
+    if (!shapeOk(a)) continue;
+    const o = a % 10;
+    for (let r = 0; r <= 9; r += 1) {
+      const ks = reverseOnes21(o, r);
+      if (ks.length < 3) continue;
+      const carries = ks.map((k) => mulCarries3x1(a, k));
+      if (!carries.every((c) => inBand(c))) continue;
+      // **성질이 아무것도 못 가른다** — 올림도 자릿수도 후보끼리 같다.
+      if (band !== null && !carries.every((c) => c === carries[0])) continue;
+      const ps = ks.map((k) => a * k);
+      if (!ps.every((p) => digitsOf21(p) === digitsOf21(ps[0]!))) continue;
+      // ⚠️ 가운데 후보만 쓰면 **답이 두 가지로 굳는다**(실측: {2,4,6,8} 에서 4·6뿐).
+      //    맨 앞·맨 뒤 후보는 문턱이 한쪽만 있으면 갈리므로 같이 쓴다.
+      for (let idx = 0; idx < ks.length; idx += 1) {
+        const T1 = idx > 0 ? roundBetween(ps[idx - 1]!, ps[idx]!) : null;
+        const T2 =
+          idx + 1 < ks.length ? roundBetween(ps[idx]!, ps[idx + 1]!) : null;
+        if (idx > 0 && T1 === null) continue;
+        if (idx + 1 < ks.length && T2 === null) continue;
+        out.push({ a, r, ks, idx, T1, T2 });
+      }
+    }
+  }
+  return out;
+}
+
+// ── 목록은 한 번만 만든다(문턱을 못 놓는 틀은 여기서 이미 빠졌다) ───────────────
+
+const MID21_CACHE = new Map<Mul21Kind, unknown[]>();
+const HIGH21_CACHE = new Map<Mul21Kind, High21[]>();
+
+function midPoolOf(kind: Mul21Kind): unknown[] {
+  const hit = MID21_CACHE.get(kind);
+  if (hit) return hit;
+  const built: unknown[] =
+    kind === "3x1-1"
+      ? mid3x1Pool([0, 1])
+      : kind === "3x1-2"
+        ? mid3x1Pool([2, 3])
+        : kind === "3shapes"
+          ? mid213Pool()
+          : mid214Pool();
+  MID21_CACHE.set(kind, built);
+  return built;
+}
+
+function highPoolOf(kind: Mul21Kind): High21[] {
+  const hit = HIGH21_CACHE.get(kind);
+  if (hit) return hit;
+  const built =
+    kind === "3x1-1"
+      ? high21Pool(102, 998, [0, 1], () => true)
+      : kind === "3x1-2"
+        ? high21Pool(102, 998, [2, 3], () => true)
+        : // 2-1-3 은 (몇)×(몇십몇) — 올림 약속이 없으니 자릿수만 같으면 된다.
+          high21Pool(12, 98, null, (a) => a % 10 !== 0);
+  HIGH21_CACHE.set(kind, built);
+  return built;
+}
+
+/** 5단 — 되짚기가 후보 둘을 만들고 **소단원 성질**이 하나를 굳힌다. */
+function mul21Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = mul21Kind(unit.section);
+  if (kind === "2x2") return mul214Mid(unit, rng);
+  if (kind === "3shapes") return mul213Mid(unit, rng);
+  const f = pick(rng, midPoolOf(kind) as Mid3x1[]);
+  // 「올림이 적은 쪽」을 물을지 「많은 쪽」을 물을지 — 둘 다 이름 약속 안이다.
+  // ⚠️ 다만 두 가지는 피한다. **답이 $1$** 이면 곱이 곱해지는 수 그대로라 되짚기를
+  //    건너뛰고, **답이 곱의 일의 자리 $r$ 과 같으면** 발문에 답이 그대로 서 버린다.
+  const low = f.cx < f.cy ? f.x : f.y;
+  const high = f.cx > f.cy ? f.x : f.y;
+  const score = (v: number) => (v === 1 ? 0 : v === f.r ? 1 : 2);
+  const wantLow =
+    score(low) !== score(high) ? score(low) > score(high) : altCase(rng);
+  const chosen = wantLow ? low : high;
+  const other = chosen === f.x ? f.y : f.x;
+  const cChosen = chosen === f.x ? f.cx : f.cy;
+  const cOther = other === f.x ? f.cx : f.cy;
+  const stem = pick(rng, [
+    `어떤 한 자리 수를 ${n(f.a)} 에 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 입니다. 이 곱셈에서 올림이 ${CARRY_WORD[cChosen]!}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고, 계산할 때 올림이 ${CARRY_WORD[cChosen]!}. 어떤 수를 구하시오.`,
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱셈에서 올림이 ${CARRY_WORD[cChosen]!}. 어떤 수는 얼마인지 쓰시오.`,
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 이고 올림이 ${CARRY_WORD[cChosen]!}. 어떤 수를 구하시오.`,
+  ]);
+  return makeDeep(unit, stem, n(chosen), [
+    `${n(f.a)} 의 일의 자리 숫자가 ${n(f.a % 10)} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 경우를 곱셈구구에서 찾으면 곱하는 수는 ${n(f.x)} 또는 ${n(f.y)} 입니다.`,
+    `${expr(`${f.a}\\times${chosen}=${f.a * chosen}`)} 에서 ${CARRY_WORD_MID[cChosen]!}, ${expr(`${f.a}\\times${other}=${f.a * other}`)} 에서 ${CARRY_WORD_END[cOther]!}.`,
+    `따라서 어떤 수는 ${n(chosen)} 입니다.`,
+  ]);
+}
+
+/** 5단 · 2-1-3 — 굳히는 성질은 **곱의 자릿수**다. */
+function mul213Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, midPoolOf("3shapes") as Mid213[]);
+  // ⚠️ 답이 $1$ 이거나 곱의 일의 자리 $r$ 과 같은 쪽은 피한다(위 `mul21Mid` 주석).
+  const score213 = (v: number) => (v === 1 ? 0 : v === f.r ? 1 : 2);
+  const takeX =
+    score213(f.x) !== score213(f.y)
+      ? score213(f.x) > score213(f.y)
+      : altCase(rng);
+  const chosen = takeX ? f.x : f.y;
+  const other = takeX ? f.y : f.x;
+  const dw = DIGIT_WORD21[digitsOf21(f.a * chosen)]!;
+  const dwOther = DIGIT_WORD21[digitsOf21(f.a * other)]!;
+  const stem = pick(rng, [
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 인 ${dw} 자리 수입니다. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱했더니 일의 자리 숫자가 ${n(f.r)} 인 ${dw} 자리 수가 되었습니다. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱한 값이 ${dw} 자리 수이고 일의 자리 숫자가 ${n(f.r)} 입니다. 어떤 수는 얼마인지 쓰시오.`,
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱이 ${dw} 자리 수이고, 그 곱의 일의 자리 숫자가 ${n(f.r)} 입니다. 어떤 수를 구하시오.`,
+  ]);
+  return makeDeep(unit, stem, n(chosen), [
+    `${n(f.a)} 의 일의 자리 숫자가 ${n(f.a % 10)} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 경우를 곱셈구구에서 찾으면 곱하는 수는 ${n(f.x)} 또는 ${n(f.y)} 입니다.`,
+    `${expr(`${chosen}\\times${f.a}=${f.a * chosen}`)} 에서 곱은 ${dw} 자리 수이고, ${expr(`${other}\\times${f.a}=${f.a * other}`)} 에서 곱은 ${dwOther} 자리 수입니다.`,
+    `따라서 어떤 수는 ${n(chosen)} 입니다.`,
+  ]);
+}
+
+/** 5단 · 2-1-4 — 곱의 크기가 후보를 만들고 **일의 자리 성질**이 하나를 굳힌다. */
+function mul214Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, midPoolOf("2x2") as Mid214[]);
+  const win: number[] = [];
+  for (let b = f.lo; b <= f.hi; b += 1) win.push(b);
+  const stem = pick(rng, [
+    `${n(f.a)} 에 어떤 두 자리 수를 곱했더니 곱이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수를 구하시오.`,
+    `어떤 두 자리 수와 ${n(f.a)} 의 곱이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이면 어떤 수는 얼마인지 쓰시오.`,
+    `${n(f.a)} 에 어떤 두 자리 수를 곱한 값이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작으며, 일의 자리 숫자가 ${n(f.r)} 입니다. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 두 자리 수를 곱한 곱이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작고, 곱의 일의 자리 숫자가 ${n(f.r)} 입니다. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 두 자리 수 하나를 곱했더니 곱이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작았습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 곱한 수를 구하시오.`,
+    `어떤 두 자리 수와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작습니다. 어떤 수는 얼마인지 쓰시오.`,
+    `${n(f.a)} 에 곱해서 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작은 곱이 나오는 두 자리 수가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 그 두 자리 수를 구하시오.`,
+    `어떤 두 자리 수에 ${n(f.a)} 만큼 곱했더니 곱이 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작으며 일의 자리 숫자가 ${n(f.r)} 입니다. 어떤 수를 구하시오.`,
+  ]);
+  return makeDeep(unit, stem, n(f.ans), [
+    `${n(f.a)} 에 곱해서 ${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작은 곱이 나오는 두 자리 수는 ${list21(win)} 입니다.`,
+    `${win.map((b) => expr(`${f.a}\\times${b}=${f.a * b}`)).join(", ")} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 것은 ${expr(`${f.a}\\times${f.ans}=${f.a * f.ans}`)} 뿐입니다.`,
+    `따라서 어떤 수는 ${n(f.ans)} 입니다.`,
+  ]);
+}
+
+/** 수 여러 개를 **한 덩어리** KaTeX 로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function list21(values: readonly number[]): string {
+  return expr(values.join(",\\ "));
+}
+
+/**
+ * 6단 — 되짚기가 후보 **셋 이상**을 만들고, 올림·자릿수가 전부 같아 **성질이 한 개도
+ * 못 걸러 낸다.** 후보를 하나씩 실제로 곱해 크기를 견주어야 하나가 남는다.
+ *
+ * ⚠️ **2-1-4 는 여기서 비운다.** (몇십몇)×(몇십몇) 은 되짚을 인수가 두 자리라
+ *    곱셈구구가 후보를 못 만든다 — 곱의 크기로 후보를 만들면 그것을 굳히는 것이
+ *    «일의 자리»뿐이고, 그건 **성질 한 번**이라 정의상 심화중이다. 성질로 못 굳히는
+ *    자리를 이 소단원에서 세우려면 **수 카드 배열**이 필요한데, 그 문항은 이미
+ *    `mul214Deep`(심화하)에 있다 — 리드가 「해설이 결합을 제대로 풀면 그것이 바로
+ *    심화상」이라고 짚은 그 문항이다. 배정을 옮기려면 `FORMS` 를 건드려야 해서
+ *    (이번 회차 금지) **비우고 근거를 남긴다.** 보고서 §2.2.
+ */
+/** 곱의 크기 조건을 한 곳에서 만든다 — 한쪽 문턱만 있는 자리도 있다. */
+function range21(f: High21): { decl: string; adj: string } {
+  if (f.T1 !== null && f.T2 !== null)
+    return {
+      decl: `${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작습니다`,
+      adj: `${n(f.T1)} 보다 크고 ${n(f.T2)} 보다 작은`,
+    };
+  if (f.T2 !== null)
+    return {
+      decl: `${n(f.T2)} 보다 작습니다`,
+      adj: `${n(f.T2)} 보다 작은`,
+    };
+  return { decl: `${n(f.T1!)} 보다 큽니다`, adj: `${n(f.T1!)} 보다 큰` };
+}
+
+function mul21High(unit: UnitSeed, rng: Rng): ElemProblem {
+  const kind = mul21Kind(unit.section);
+  const f = pick(rng, highPoolOf(kind));
+  const ans = f.ks[f.idx]!;
+  const threes = kind === "3shapes";
+  const step = (k: number) =>
+    threes
+      ? expr(`${k}\\times${f.a}=${f.a * k}`)
+      : expr(`${f.a}\\times${k}=${f.a * k}`);
+  const { decl, adj } = range21(f);
+  const stem = pick(rng, [
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이고 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱한 값의 일의 자리 숫자가 ${n(f.r)} 이고, 그 값이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+    // ⚠️ 마지막을 「그 수를 구하시오」로 두면 **자리수 조건 판정기가 문다** — 곱의
+    //    일의 자리가 $0$ 인 씨앗에서는 발문에 한 자리 수가 한 번도 안 서고,
+    //    「어떤 수」가 없으면 그것을 갈음할 미지수도 없다(실측 7/40). 「어떤 수」로 적는다.
+    `${n(f.a)} 에 곱해서 ${adj} 곱이 나오게 하는 한 자리 수가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수인지 구하시오.`,
+    `어떤 한 자리 수와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 그 곱이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+  ]);
+  return makeDeep(unit, stem, n(ans), [
+    `${n(f.a)} 의 일의 자리 숫자가 ${n(f.a % 10)} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 경우를 곱셈구구에서 찾으면 곱하는 수는 ${list21(f.ks)} 입니다.`,
+    `${f.ks.map((k) => step(k)).join(", ")} 이므로 ${adj} 것은 ${step(ans)} 뿐입니다.`,
+    `따라서 어떤 수는 ${n(ans)} 입니다.`,
+  ]);
 }
 
 // ── 2-2 나눗셈 (D-72 확대) ───────────────────────────────────────────────
@@ -11822,29 +12263,49 @@ export const G3_TIERS: ElemTierMap = {
     응용: cmp167Apply,
     심화하: cmp167Deep,
   },
+  // ⚠️ `심화중`·`심화상` 은 **이 대단원에만** 있다 — D-113 파일럿(2026-08-30).
+  //    원장님이 `/dev/tier-bench/g3` 에서 여섯을 나란히 보시고 잣대를 확정하시면
+  //    그때 나머지를 채운다. 문형(`G3_FORMS`)에는 안 넣었다 — 넣으면 소단원마다
+  //    열이던 문형이 열둘이 되어 **지면 구성**이 바뀌고, 그건 D-07 결정이다.
+  // ⚠️ 2-1-1 은 **심화상을 비웠다.** 심화상은 「되짚기 후보 셋 이상 + 올림·자릿수가
+  //    후보끼리 전부 같음」이라야 서는데, 후보가 셋 이상이려면 곱해지는 수의 일의
+  //    자리가 $5$ 여야 하고(곱셈구구), 그러면 곱하는 수가 커질 때 올림이 늘어
+  //    **「올림 0~1번」 약속을 벗어난다.** 전수로 세니 남는 기준 수가 $105$ **하나**라
+  //    문항이 사실상 하나로 굳는다 — 원장님 다양성 원칙에 어긋난다. 보고서 §2.2.
   "초3|2-1-1": {
     연산: mul21Calc,
     기본: mul21Word,
     응용: mul21Apply,
     심화하: mul21Deep,
+    심화중: mul21Mid,
   },
   "초3|2-1-2": {
     연산: mul21Calc,
     기본: mul21Word,
     응용: mul21Apply,
     심화하: mul21Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
   "초3|2-1-3": {
     연산: mul213Calc,
     기본: mul213Word,
     응용: mul213Apply,
     심화하: mul213Deep,
+    심화중: mul21Mid,
+    심화상: mul21High,
   },
+  // ⚠️ 2-1-4 는 **심화상을 비웠다** — 억지로 채우지 않는다. (몇십몇)×(몇십몇) 은
+  //    되짚을 인수가 두 자리라 곱셈구구가 후보를 못 만들고, 곱의 크기로 후보를
+  //    만들면 그것을 굳히는 것이 «일의 자리» 하나뿐이라 **정의상 심화중**이다.
+  //    성질로 못 굳히는 자리는 수 카드 배열인데, 그 문항은 이미 `mul214Deep`
+  //    (심화하)에 있다. 옮기려면 `FORMS` 를 건드려야 해서 이번 회차엔 못 옮긴다.
   "초3|2-1-4": {
     연산: mul214Calc,
     기본: mul214Word,
     응용: mul214Apply,
     심화하: mul214Deep,
+    심화중: mul21Mid,
   },
   "초3|2-2-1": {
     연산: div22Calc,
