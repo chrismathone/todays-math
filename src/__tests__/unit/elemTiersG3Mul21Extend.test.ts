@@ -429,6 +429,59 @@ describe("[초3 D-113] 2-1 곱셈 — 되짚기 축", () => {
     }
   });
 
+  /**
+   * 리드가 짚은 「해설이 접었다」의 **근거를 여기 못 박는다** — 카드 넉 장에서
+   * 「십의 자리에 큰(작은) 두 수」로 좁힌 뒤에도 **배치가 둘 남고 그 곱이 서로 다르다.**
+   * 126가지 조합 전량에서 그렇다 = 그 성질만으로는 절대 답에 못 이른다.
+   * (이 수치가 `.tmp-orca` 에만 있으면 근거가 아니다 — 시험 안에 둔다.)
+   */
+  it("카드 넉 장은 성질로 좁혀도 늘 두 배치가 남는다 — 126가지 전량", () => {
+    let combos = 0;
+    let ruleFinishes = 0;
+    const badMax: string[] = [];
+    const badMin: string[] = [];
+    for (let a = 1; a <= 9; a += 1)
+      for (let b = a + 1; b <= 9; b += 1)
+        for (let c = b + 1; c <= 9; c += 1)
+          for (let d = c + 1; d <= 9; d += 1) {
+            combos += 1;
+            const cards = [a, b, c, d];
+            const [d1, d2, d3, d4] = [...cards].sort((x, y) => y - x) as [
+              number,
+              number,
+              number,
+              number,
+            ];
+            let max = -1;
+            let min = Number.MAX_SAFE_INTEGER;
+            for (let i = 0; i < 4; i += 1)
+              for (let j = 0; j < 4; j += 1)
+                for (let k = 0; k < 4; k += 1)
+                  for (let l = 0; l < 4; l += 1) {
+                    if (new Set([i, j, k, l]).size !== 4) continue;
+                    const v =
+                      (cards[i]! * 10 + cards[j]!) *
+                      (cards[k]! * 10 + cards[l]!);
+                    if (v > max) max = v;
+                    if (v < min) min = v;
+                  }
+            const mA = (d1 * 10 + d3) * (d2 * 10 + d4);
+            const mB = (d1 * 10 + d4) * (d2 * 10 + d3);
+            const nA = (d4 * 10 + d1) * (d3 * 10 + d2);
+            const nB = (d4 * 10 + d2) * (d3 * 10 + d1);
+            if (Math.max(mA, mB) !== max) badMax.push(cards.join(""));
+            if (Math.min(nA, nB) !== min) badMin.push(cards.join(""));
+            if (mA === mB || nA === nB) ruleFinishes += 1;
+          }
+    expect(combos, "조합을 하나도 안 봤다").toBe(126);
+    expect(badMax, "성질로 좁힌 둘 안에 최대 곱이 없는 조합").toEqual([]);
+    expect(badMin, "성질로 좁힌 둘 안에 최소 곱이 없는 조합").toEqual([]);
+    expect(
+      ruleFinishes,
+      "성질만으로 끝나는(두 배치의 곱이 같은) 조합 — 하나라도 있으면 해설이 그때는 접어도 된다",
+    ).toBe(0);
+  });
+
   it("두 갈래 모두 씨앗에 따라 답이 갈린다 — 상수답 금지", () => {
     for (const code of MUL21) {
       for (const tier of supportedTiers(unitOf(code)).filter((t) =>
