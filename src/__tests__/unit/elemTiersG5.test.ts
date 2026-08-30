@@ -4650,9 +4650,12 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     for (let seed = 0; seed < 200; seed += 1) {
       const p = problem("2-6-1", "심화하", seed);
       const label = `2-6-1 심화 @${seed}`;
-      // $1$모둠 $n1$명 … $a1$점 … $2$모둠 $n2$명 … $a2$점
+      // 가 모둠 $n1$명 … $a1$점 … 나 모둠 $n2$명 … $a2$점
+      // ⚠️ 모둠 이름을 «$1$모둠»으로 적던 때는 앞의 두 자리를 건너뛰어야 했다.
+      //    「가·나」로 바꾸면서(반증 ⑥ 오작동, 2026-08-31) 자리도 앞으로 당겼다 —
+      //    자리로 읽는 검사는 발문 표기가 바뀌면 **조용히 엉뚱한 수를 읽는다.**
       const v = intsIn(p.content);
-      const [, n1, a1, , n2, a2] = v;
+      const [n1, a1, n2, a2] = v;
       expect(n1, `${label} 발문을 못 읽었다\n${p.content}`).toBeGreaterThan(0);
       expect(
         n1,
