@@ -6,6 +6,7 @@
  * 사실상 사라진다 — 검수 잔고가 실제보다 적어 보인다. 그게 이 프로젝트가 반복해서 낸
  * 결함이라(CLAUDE.md 「지표가 실패를 셀 수 있는 형태인지 먼저 확인하라」) 데이터부터 막는다.
  */
+import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 
 import { render, screen } from "@testing-library/react";
@@ -132,6 +133,45 @@ describe("실물 출력 검수 목록 — 데이터", () => {
         expect(existsSync(path), `${item.id}: ${path}`).toBe(true);
       }
     }
+  });
+
+  /**
+   * 🔴 **«있다»는 «커밋됐다»가 아니다.** 위 검사는 `existsSync` 뿐이라, 근거가
+   * `.tmp-orca/`(gitignore) 를 가리켜도 **그 파일을 만든 워크트리에서만** 초록이다.
+   * 2026-08-30 에 실제로 그랬다 — `middle-dimension-outside` 가
+   * `.tmp-orca/chordgap.ts` 를 인용했고, 그것을 만든 창에서는 관문이 초록인데
+   * 초3 파일럿의 새 워크트리에서는 **빨강**이었다. 「우리 컴퓨터에서 되는가와
+   * 배포본에서 되는가는 다른 질문」(2026-08-20)의 또 한 얼굴이다.
+   *
+   * 그래서 **git 에게 묻는다.** 한 번에 물어야 한다 — 근거마다 프로세스를 띄우면
+   * 느려지고, 느린 시험은 사람이 안 돌린다.
+   */
+  it("🔴 근거는 **커밋되는** 파일이어야 한다 (있기만 한 것은 그 창에서만 초록이다)", () => {
+    const paths = [
+      ...new Set(
+        ITEMS.flatMap((i) => i.evidence)
+          .map((ev) => ev.split(/[\s:(]/)[0])
+          .filter((p) => p.includes("/") && !p.startsWith("커밋")),
+      ),
+    ];
+    expect(
+      paths.length,
+      "근거 경로를 하나도 못 모았다 — 이 검사는 아무것도 안 재고 있다",
+    ).toBeGreaterThan(10);
+    // `check-ignore` 는 무시되는 것만 찍고, 하나도 없으면 종료 코드 1 이다.
+    let ignored = "";
+    try {
+      ignored = execFileSync("git", ["check-ignore", "--stdin"], {
+        input: paths.join("\n"),
+        encoding: "utf-8",
+      });
+    } catch {
+      ignored = ""; // 종료 1 = 무시되는 것이 없다
+    }
+    expect(
+      ignored.trim().split("\n").filter(Boolean),
+      "gitignore 에 걸린 근거 — 다른 워크트리에서는 없는 파일이다",
+    ).toEqual([]);
   });
 
   it("id 가 겹치지 않는다 — 겹치면 한 항목이 조용히 덮인다", () => {
