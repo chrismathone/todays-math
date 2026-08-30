@@ -12,8 +12,14 @@ import type { UnitSeed } from "../../../prisma/seed-data/units";
 
 import type { ElemTierMap } from "./difficulty";
 
-import { decLatex, expr, fracLatex, n, polyName } from "./format";
+import { decLatex, expr, fracLatex, josa, n, polyName } from "./format";
 import { fracSpec } from "./fracFig";
+import {
+  forwardReachable,
+  pageNumbers,
+  ratOfScaled,
+  type Rat,
+} from "./forwardReach";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divisors, gcd, lcm, simplify, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
@@ -9489,6 +9495,815 @@ function dm247Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────────────────────────────────────────────────────────────────────────
+ * 2-4 확대 갈래 «심화중»·«심화상» — D-113 파일럿 (2026-08-30, **되짚기 축**)
+ *
+ * 🔴 **첫 판은 «열거 축»이었고 기각됐다.** 리드가 문형 경로 전량(6,900행)에 두 축을
+ *    나란히 대 보니 열거는 갈래를 **1.5~2배**밖에 안 가르는데 되짚기는 **22~40배**
+ *    가른다. 게다가 심화하 **안에서** 열거형은 평균 0.39걸음으로 **그 소단원의 연산
+ *    (0.79)보다도 얕았다** — 열거를 위 두 칸의 정의로 쓰면 가장 얕은 것을 꼭대기로
+ *    올리는 셈이다. 그래서 이 블록을 통째로 다시 짰다.
+ *
+ * ## 확정 잣대 — 되짚기 사슬의 «마디»가 굳는가
+ *
+ *   심화하  마디마다 값이 **하나로 굳는다**  `0.4×□=2.8` → □=7   (기존, 안 건드림)
+ *   심화중  **굳지 않는 마디가 하나** 있고, **그 소단원의 성질**이 한 번에 굳혀 준다
+ *   심화상  성질만으로는 못 굳혀서, 그 소단원의 계산으로 나올 수 있는 값들을
+ *           **실제로 만들어 견주어야** 하나가 남는다. 그리고 그 후보를
+ *           **발문이 주지 않고 되짚기가 만든다.**
+ *
+ * ## 이 파일이 쓰는 두 뼈대
+ *
+ * **㉠ 심화중 — 소수점을 한 자리 «잘못» 옮겼다** (`misplacedMid`)
+ *    되짚기로 «잘못 쓴 수»까지는 하나로 굳는다. 그런데 **어느 쪽으로 옮겼는지를
+ *    발문이 말하지 않는다** — 원래 수 후보가 둘이다. 그 마디를 **소단원의 이름**
+ *    (「1보다 작은 소수 한 자리 수」…)이 한 번에 굳힌다.
+ *    ⚠️ 방향을 발문에 적으면 마디가 굳어 **심화하가 된다.** 안 적는 것이 이 갈래다.
+ *
+ * **㉡ 심화상 — 곱만 알고 두 인수를 모른다** (`factorTop`)
+ *    인수분해는 하나로 안 굳고, 소단원의 성질로도 여러 짝이 남는다. 그래서
+ *    **짝마다 둘째 곱셈을 실제로 해 보고** 조건에 맞는 것을 골라야 한다.
+ *
+ *    🔴 **둘째 걸음만으로 풀리면 안 된다.** 조건 창에 드는 후보가 **둘 이상**이도록
+ *    잡아, 「그중 어느 것이 곱을 만드는가」를 **인수 되짚기로** 갈라야만 답이 나오게
+ *    했다(예: 창이 $6$·$7$ 을 남기고 $2.4$ 를 만드는 것은 $6$ 뿐이다). 이 조건이
+ *    없으면 학생이 창만 보고 답을 얻어 되짚기가 장식이 된다.
+ *
+ * ## 반증문 ⑥ 을 **생성기가 스스로 막는다**
+ *
+ * 「발문이 준 수에 순방향 곱셈만으로 답이 나오면 중·상이 아니다」 — `forwardReach`
+ * 가 그것을 세고, 걸리는 후보는 **애초에 안 만든다.** 판정기
+ * (`scripts/qa/probe-elem-tier-backsolve.ts`)가 ④ 와 함께 밖에서 다시 잰다.
+ *
+ * 🔴 **숫자를 안 키웠다**(원장님). 소수는 한 자리, 자연수는 한 자리, 곱은 소수 두 자리
+ *    안에 머문다(2-4-7 만 세 자리 — 그 소단원이 자리를 옮기는 단원이라서다).
+ *
+ * ⚠️ **갈래만 채운다 — 문형(`G5_FORMS`)은 안 건드린다**(D-113·D-114, 순서는 잣대 →
+ *    갈래 → 문형 12 → 적재다). 그래서 적재본에는 한 건도 안 들어간다.
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/** 정수 스케일 수 — `[값, 소수점 아래 자릿수]`. 견주기·곱하기를 부동소수 없이 한다. */
+type Sc = readonly [number, number];
+
+/** 자릿수가 다른 둘을 견주기 위한 공통 분모(십만분의 일). */
+const SC_Q = 100000;
+const scQ = (s: Sc): number => s[0] * (SC_Q / 10 ** s[1]);
+const scMul = (a: Sc, b: Sc): Sc => [a[0] * b[0], a[1] + b[1]];
+/** 지면 표기 — `dec` 가 꼬리 0 을 접는다. */
+const scText = (s: Sc): string => dec(s[0], s[1]);
+
+/** 꼬리 0 을 접은 뒤 남는 소수 자릿수. 0 이면 자연수다. */
+function scPlaces(s: Sc): number {
+  let v = s[0];
+  let d = s[1];
+  while (d > 0 && v % 10 === 0) {
+    v /= 10;
+    d -= 1;
+  }
+  return d;
+}
+
+/** 소수점을 오른쪽(`+1`)·왼쪽(`-1`)으로 한 자리 옮긴 수. 자릿수는 정규화한다. */
+function scShift(s: Sc, dir: 1 | -1): Sc {
+  let v = s[0];
+  let d = s[1] - dir;
+  while (d < 0) {
+    v *= 10;
+    d += 1;
+  }
+  return [v, d];
+}
+
+/** `$6$, $7$로는` — 나열 뒤 «(으)로» 를 마지막 수의 소리에 맞춘다. */
+function listRo(values: readonly Sc[]): string {
+  const last = values[values.length - 1]!;
+  return `${values.map((v) => n(scText(v))).join(", ")}${dro(scText(last))}는`;
+}
+
+/** 지면에 나갈 수를 유리수로 — 규칙은 `forwardReach.ts` **한 곳**에 있다. */
+const scRat = (v: Sc): Rat => ratOfScaled(v[0], v[1]);
+
+/**
+ * 반증 ⑥ — 후보를 만들 때 **미리** 거른다.
+ *
+ * ⚠️ 여기서 넘기는 목록은 **지면에 찍힐 수를 «예측»한 것**이다. 예측이 새면
+ *    순방향으로 풀리는 문항이 통과한다 — 2026-08-30 에 「$1$보다 작은 소수」의 `$1$`
+ *    과 창의 경계를 빠뜨려 **14건**이 그렇게 샜다. 그래서 **판정기가 지면을 직접 읽어
+ *    다시 잰다**(`probe-elem-tier-backsolve.ts`). 둘이 갈리면 판정기가 옳다.
+ */
+const forwardReach = (content: string, answer: Sc): boolean =>
+  forwardReachable(pageNumbers(content), scRat(answer));
+
+/* ── ㉠ 심화중 — 「소수점을 한 자리 잘못 옮긴 수로 계산했다」 ─────────────── */
+
+type MisTask = { a: Sc; k: Sc; wrong: Sc; product: Sc; right: Sc };
+
+const MIS_CACHE = new Map<string, MisTask[]>();
+
+type MisSpec = {
+  key: string;
+  /** 참값 소수 후보 — 그 소단원의 성질을 만족하는 것만. */
+  aPool: readonly Sc[];
+  /** 곱하는 수 후보. */
+  kPool: readonly Sc[];
+  /** 어느 쪽으로 잘못 옮겼나 — **발문에는 안 적는다**(그래야 마디가 안 굳는다). */
+  dir: 1 | -1;
+  /** 소단원의 성질. 되짚기가 만든 두 후보 중 **하나만** 이걸 만족해야 한다. */
+  holds: (v: Sc) => boolean;
+  /** 지면에 나가는 수의 소수 자릿수 상한. */
+  maxPlaces: number;
+  /** 발문에 소단원 이름이 내건 크기의 소수가 있어야 한다. */
+  shows: "under" | "over" | "any";
+  /** 바른 값이 «소수»로 남아야 하나 (2-4-7 만 정수 답이 정상이다). */
+  answerDecimal: boolean;
+};
+
+/** 발문에 보이는 수가 소단원 이름의 크기를 갖췄나. */
+function showsOk(shown: readonly Sc[], want: MisSpec["shows"]): boolean {
+  if (want === "any") return true;
+  return shown.some(
+    (s) =>
+      scPlaces(s) >= 1 &&
+      (want === "under" ? scQ(s) > 0 && scQ(s) < SC_Q : scQ(s) > SC_Q),
+  );
+}
+
+function misTasks(spec: MisSpec, render: (t: MisTask) => string): MisTask[] {
+  const cached = MIS_CACHE.get(spec.key);
+  if (cached) return cached;
+  const out: MisTask[] = [];
+  for (const a of spec.aPool) {
+    if (!spec.holds(a)) continue;
+    const wrong = scShift(a, spec.dir);
+    // 되짚기가 만드는 **다른 후보** — 발문이 방향을 안 말하므로 이것도 살아 있다.
+    const other = scShift(wrong, spec.dir === 1 ? 1 : -1);
+    // 🔴 마디가 «굳지 않아야» 한다. 다른 후보도 성질을 만족하면 답이 둘이 된다.
+    // ⚠️ **오늘 이 줄은 0자리를 깎는다**(변이가 «산출물 그대로»로 거부된다) —
+    //    지금 `holds` 가 전부 **자릿수**를 걸어서 반대쪽 후보가 늘 탈락하기 때문이다.
+    //    회귀 가드로 남긴다: 자릿수를 안 거는 성질을 쓰는 날 처음 일한다.
+    //    그 «굳음» 자체는 시험이 따로 센다(`elemTiersG5DecTop` ⑴).
+    if (spec.holds(other)) continue;
+    for (const k of spec.kPool) {
+      const product = scMul(wrong, k);
+      const right = scMul(a, k);
+      if (
+        [product, right, a, wrong, k].some((s) => scPlaces(s) > spec.maxPlaces)
+      )
+        continue;
+      if (scQ(product) === scQ(right)) continue;
+      // 🔴 어떤 수와 곱하는 수가 **같으면** 바른 값이 지면에 보이는 `k×k` 라,
+      //    학생이 되짚지 않고 두 수를 곱해 맞힌다(판정기가 실측으로 잡았다).
+      if (scQ(a) === scQ(k)) continue;
+      // 답이 정수로 접히면 「소수의 곱셈」이 지면에서 사라진다(2-4-7 은 자리를
+      // 옮기는 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다).
+      if (spec.answerDecimal && scPlaces(right) < 1) continue;
+      const task: MisTask = { a, k, wrong, product, right };
+      if (!showsOk([product, k], spec.shows)) continue;
+      // 🔴 **지면을 예측하지 않고 읽는다** — 예측하던 판이 14건을 흘렸다.
+      if (forwardReach(render(task), right)) continue;
+      out.push(task);
+    }
+  }
+  MIS_CACHE.set(spec.key, out);
+  return out;
+}
+
+/**
+ * 심화중 문항 하나.
+ *
+ * `order` 는 그 소단원이 약속한 **차례**다 — 2-4-1·2 는 소수가 앞, 2-4-3·4 는 자연수가
+ * 앞이다. 발문과 해설의 식이 그 차례를 지켜야 소단원 이름이 거짓말이 되지 않는다(반증 ③).
+ */
+function misplacedMid(
+  unit: UnitSeed,
+  rng: Rng,
+  spec: MisSpec,
+  property: string,
+  order: "dec" | "whole",
+): ElemProblem {
+  // 🔴 **발문을 여기서 만들어 걸개에 넘긴다.** 걸개가 「지면에 무엇이 찍힐까」를
+  //    예측하면 반드시 샌다 — 성질 문구의 `$1$` 과 되풀이되는 곱하는 수를 빠뜨려
+  //    순방향으로 풀리는 문항 14건이 그렇게 통과했다(2026-08-30 실측).
+  const content = (task: MisTask) => {
+    const kt = scText(task.k);
+    const lead =
+      order === "dec"
+        ? `어떤 수에 ${dj(kt, "을", "를")} 곱해야 할 것을, 어떤 수의 소수점을 한 자리 잘못 옮긴 수에 ${dj(kt, "을", "를")} 곱했더니`
+        : `${n(kt)}에 어떤 수를 곱해야 할 것을, ${n(kt)}에 어떤 수의 소수점을 한 자리 잘못 옮긴 수를 곱했더니`;
+    return (
+      `${lead} ${dj(scText(task.product), "이", "가")} 되었습니다. ` +
+      `어떤 수가 ${property}일 때 바르게 계산한 값을 구하시오.`
+    );
+  };
+  const tasks = misTasks(spec, content);
+  if (tasks.length === 0) {
+    throw new Error(
+      `«심화중» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
+  const t = pick(rng, tasks);
+  const times = (x: Sc, y: Sc) =>
+    order === "dec"
+      ? `${scText(x)}\\times${scText(y)}`
+      : `${scText(y)}\\times${scText(x)}`;
+  return makeDeep(unit, content(t), expr(scText(t.right)), [
+    `잘못 쓴 수부터 되짚습니다. ${expr(`${times(t.wrong, t.k)}=${scText(t.product)}`)}이므로 잘못 쓴 수는 ${expr(scText(t.wrong))}입니다.`,
+    `소수점을 한쪽으로 옮기면 ${dj(scText(t.a), "이", "가")} 되고 반대쪽으로 옮기면 ${property}가 아니므로, 어떤 수는 ${expr(scText(t.a))}입니다.`,
+    `바르게 계산하면 ${expr(`${times(t.a, t.k)}=${scText(t.right)}`)}입니다.`,
+  ]);
+}
+
+/* ── ㉡ 심화상 — 「곱만 알고 두 인수를 모른다 → 짝마다 계산해 견준다」 ────── */
+
+type TopTask = {
+  product: Sc;
+  /** 답 — 되짚기로만 갈라지는 인수. */
+  dec: Sc;
+  /** 창 조건이 걸리는 인수. */
+  other: Sc;
+  probe: Sc;
+  lo: Sc;
+  hi: Sc;
+  /** 창에는 들지만 곱을 못 만드는 «미끼» — 되짚기를 강제하는 근거다. */
+  decoys: Sc[];
+};
+
+const TOP_CACHE = new Map<string, TopTask[]>();
+
+type TopSpec = {
+  key: string;
+  /** 답이 되는 인수의 후보(그 소단원의 성질). */
+  decPool: readonly Sc[];
+  /** 창 조건이 걸리는 인수의 후보. */
+  otherPool: readonly Sc[];
+  probePool: readonly Sc[];
+  boundPool: readonly Sc[];
+  maxPlaces: number;
+  shows: "under" | "over" | "any";
+};
+
+function topTasks(spec: TopSpec, render: (t: TopTask) => string): TopTask[] {
+  const cached = TOP_CACHE.get(spec.key);
+  if (cached) return cached;
+  const out: TopTask[] = [];
+  for (const probe of spec.probePool) {
+    for (let i = 0; i < spec.boundPool.length; i += 1) {
+      const lo = spec.boundPool[i]!;
+      for (let j = i + 1; j < spec.boundPool.length; j += 1) {
+        const hi = spec.boundPool[j]!;
+        const inWindow = spec.otherPool.filter((o) => {
+          const v = scQ(scMul(probe, o));
+          return v > scQ(lo) && v < scQ(hi);
+        });
+        // 🔴 창이 하나만 남기면 학생이 창만 보고 답을 얻는다 — 되짚기가 장식이 된다.
+        // 🔴 **이 한 줄이 이 갈래의 정의다.** 창이 후보를 하나만 남기면 학생이 창만
+        //    보고 답을 얻어 되짚기가 장식이 된다. 상한은 해설이 읽히게 두는 몫이다.
+        //
+        // ⚠️ 예전에는 아래에 `decoys.length === 0` 도 있었는데, **둘이 서로를 가려**
+        //    어느 쪽을 변이시켜도 산출물이 안 바뀌었다(하네스가 «판정 거부»로 알려 줬다).
+        //    같은 것을 두 번 막으면 **둘 다 시험할 수 없게 된다** — 하나로 줄였다.
+        if (inWindow.length < 2 || inWindow.length > 4) continue;
+        if (inWindow.some((o) => scPlaces(scMul(probe, o)) > spec.maxPlaces))
+          continue;
+        for (const other of inWindow) {
+          for (const decv of spec.decPool) {
+            if (scPlaces(decv) < 1) continue;
+            // 「두 소수 중 하나」와 「나머지」가 같은 값이면 발문이 뜻을 잃는다.
+            if (scQ(decv) === scQ(other)) continue;
+            const product = scMul(decv, other);
+            if (scPlaces(product) > spec.maxPlaces) continue;
+            // 창 안의 다른 후보가 같은 곱을 만들면 답이 둘이다.
+            const rival = inWindow.some(
+              (o) =>
+                scQ(o) !== scQ(other) &&
+                spec.decPool.some(
+                  (d) => scPlaces(d) >= 1 && scQ(scMul(d, o)) === scQ(product),
+                ),
+            );
+            if (rival) continue;
+            const decoys = inWindow.filter((o) => scQ(o) !== scQ(other));
+            const task: TopTask = {
+              product,
+              dec: decv,
+              other,
+              probe,
+              lo,
+              hi,
+              decoys,
+            };
+            if (!showsOk([product, probe, lo, hi], spec.shows)) continue;
+            if (forwardReach(render(task), decv)) continue;
+            out.push(task);
+          }
+        }
+      }
+    }
+  }
+  TOP_CACHE.set(spec.key, out);
+  return out;
+}
+
+function factorTop(
+  unit: UnitSeed,
+  rng: Rng,
+  spec: TopSpec,
+  words: { pair: string; other: string; ask: string },
+  order: "dec" | "whole",
+): ElemProblem {
+  // 발문을 여기서 만들어 걸개에 넘긴다 — 「무엇이 찍힐까」를 예측하지 않는다.
+  const content = (task: TopTask) => {
+    const pt = scText(task.probe);
+    const cond =
+      order === "dec"
+        ? `${dj(pt, "과", "와")} ${words.other}를 곱한 값`
+        : `${words.other}와 ${dj(pt, "을", "를")} 곱한 값`;
+    return (
+      `${words.pair}${josa(words.pair, "을", "를")} 곱했더니 ${dj(scText(task.product), "이", "가")} 되었습니다. ` +
+      `${cond}이 ${n(scText(task.lo))}보다 크고 ${n(scText(task.hi))}보다 작을 때, ${words.ask}를 구하시오.`
+    );
+  };
+  const tasks = topTasks(spec, content);
+  if (tasks.length === 0) {
+    throw new Error(
+      `«심화상» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
+  const t = pick(rng, tasks);
+  const times = (x: Sc, y: Sc) =>
+    order === "dec"
+      ? `${scText(x)}\\times${scText(y)}`
+      : `${scText(y)}\\times${scText(x)}`;
+  const probeOf = (o: Sc) =>
+    `${times(t.probe, o)}=${scText(scMul(t.probe, o))}`;
+  const window = [t.other, ...t.decoys].sort((a, b) => scQ(a) - scQ(b));
+  const listed = window
+    .map((o, i) =>
+      i === window.length - 1 ? lj(probeOf(o), "이", "가") : expr(probeOf(o)),
+    )
+    .join(", ");
+  return makeDeep(unit, content(t), expr(scText(t.dec)), [
+    `먼저 조건에 맞는 ${words.other}를 찾습니다. ${listed} 그 사이에 듭니다.`,
+    `그중 어느 것이 ${dj(scText(t.product), "을", "를")} 만드는지 봅니다. ${listRo(t.decoys)} 짝을 만들 수 없습니다.`,
+    `${expr(`${times(t.dec, t.other)}=${scText(t.product)}`)}이므로 ${words.ask}는 ${expr(scText(t.dec))}입니다.`,
+  ]);
+}
+
+/* ── 후보 묶음 — 소단원 이름이 그대로 조건이다 ─────────────────────────────── */
+
+/** `0.1`~`0.9` — 1보다 작은 소수 한 자리 수. */
+const P_UNDER1: Sc[] = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((t) => [t, 1] as Sc);
+
+/** 심화상의 «답» 후보에서는 `0.1` 을 뺀다 — 「$0.1$ 을 곱한다」는 2-4-7 의
+ *  개념(자리 옮기기)이라, 이 소단원의 답으로 두면 무엇을 물었는지가 흐려진다. */
+const P_UNDER1_ANS: Sc[] = P_UNDER1.filter((s) => s[0] >= 2);
+
+/** `1.1`~`4.9` — 1보다 큰 소수 한 자리 수(`overOneT` 와 같은 범위). */
+const P_OVER1: Sc[] = (() => {
+  const out: Sc[] = [];
+  for (let w = 1; w <= 4; w += 1)
+    for (let f = 1; f <= 9; f += 1) out.push([w * 10 + f, 1]);
+  return out;
+})();
+
+/** 둘째 걸음의 곱하는 수로 쓰는 `1.1`~`2.9` — 곱이 두 자리를 안 넘게 좁혔다. */
+const P_OVER1_SMALL: Sc[] = P_OVER1.filter((s) => s[0] <= 29);
+
+/** 한 자리 자연수 `2`~`9`. */
+const P_NAT: Sc[] = [2, 3, 4, 5, 6, 7, 8, 9].map((k) => [k, 0] as Sc);
+
+/** 소수 두 자리 `0.11`~`0.99`(끝자리 0 은 지면에서 접히므로 뺀다) — 2-4-7 참값. */
+const P_HUND: Sc[] = (() => {
+  const out: Sc[] = [];
+  for (let v = 11; v <= 99; v += 1) if (v % 10 !== 0) out.push([v, 2]);
+  return out;
+})();
+
+/** 자리를 옮기는 수. */
+const P_POWERS: Sc[] = [
+  [10, 0],
+  [100, 0],
+  [1000, 0],
+];
+
+const isUnder1Digit = (v: Sc) =>
+  scPlaces(v) === 1 && scQ(v) > 0 && scQ(v) < SC_Q;
+const isOver1Digit = (v: Sc) => scPlaces(v) === 1 && scQ(v) > SC_Q;
+const isTwoPlaces = (v: Sc) => scPlaces(v) === 2;
+
+/** 경계로 쓸 «반듯한 수»들. */
+function scSteps(lo: number, hi: number, step: number, places: number): Sc[] {
+  const out: Sc[] = [];
+  for (let v = lo; v <= hi; v += step) out.push([v, places]);
+  return out;
+}
+
+const UNDER_ONE_WORD = `${n(1)}보다 작은 소수 한 자리 수`;
+const OVER_ONE_WORD = `${n(1)}보다 큰 소수 한 자리 수`;
+
+/* ── 심화중 일곱 ──────────────────────────────────────────────────────────── */
+
+function dm241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-241-mid",
+      aPool: P_UNDER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "dec",
+  );
+}
+
+function dm242Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-242-mid",
+      aPool: P_OVER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "dec",
+  );
+}
+
+function dm243Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-243-mid",
+      aPool: P_UNDER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "whole",
+  );
+}
+
+function dm244Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-244-mid",
+      aPool: P_OVER1,
+      kPool: P_NAT,
+      dir: -1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "whole",
+  );
+}
+
+function dm245Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-245-mid",
+      aPool: P_UNDER1,
+      kPool: P_UNDER1,
+      dir: 1,
+      holds: isUnder1Digit,
+      maxPlaces: 2,
+      shows: "under",
+      answerDecimal: true,
+    },
+    UNDER_ONE_WORD,
+    "dec",
+  );
+}
+
+function dm246Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-246-mid",
+      aPool: P_OVER1,
+      kPool: P_OVER1,
+      dir: 1,
+      holds: isOver1Digit,
+      maxPlaces: 2,
+      shows: "over",
+      answerDecimal: true,
+    },
+    OVER_ONE_WORD,
+    "dec",
+  );
+}
+
+/** 2-4-7 은 굳히는 성질이 **자릿수**다 — 그 소단원이 묻는 것이 곧 자리이기 때문. */
+function dm247Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return misplacedMid(
+    unit,
+    rng,
+    {
+      key: "g5-247-mid",
+      aPool: P_HUND,
+      kPool: P_POWERS,
+      dir: 1,
+      holds: isTwoPlaces,
+      maxPlaces: 3,
+      shows: "any",
+      answerDecimal: false,
+    },
+    "소수 두 자리 수",
+    "dec",
+  );
+}
+
+/* ── 심화상 여섯 + 2-4-7 ─────────────────────────────────────────────────── */
+
+function dm241Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-241-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_NAT,
+      probePool: P_UNDER1,
+      boundPool: scSteps(1, 9, 1, 0),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `어떤 ${UNDER_ONE_WORD}와 어떤 한 자리 자연수`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "dec",
+  );
+}
+
+function dm242Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-242-top",
+      decPool: P_OVER1,
+      otherPool: P_NAT,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(2, 26, 2, 0),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `어떤 ${OVER_ONE_WORD}와 어떤 한 자리 자연수`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "dec",
+  );
+}
+
+function dm243Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-243-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_NAT,
+      probePool: P_UNDER1,
+      boundPool: scSteps(1, 9, 1, 0),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `어떤 한 자리 자연수와 어떤 ${UNDER_ONE_WORD}`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "whole",
+  );
+}
+
+function dm244Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-244-top",
+      decPool: P_OVER1,
+      otherPool: P_NAT,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(2, 26, 2, 0),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `어떤 한 자리 자연수와 어떤 ${OVER_ONE_WORD}`,
+      other: "그 자연수",
+      ask: "처음의 소수",
+    },
+    "whole",
+  );
+}
+
+function dm245Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-245-top",
+      decPool: P_UNDER1_ANS,
+      otherPool: P_UNDER1,
+      probePool: P_UNDER1,
+      boundPool: scSteps(5, 90, 5, 2),
+      maxPlaces: 2,
+      shows: "under",
+    },
+    {
+      pair: `${UNDER_ONE_WORD} 둘`,
+      other: "두 소수 중 하나",
+      ask: "나머지 한 소수",
+    },
+    "dec",
+  );
+}
+
+function dm246Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return factorTop(
+    unit,
+    rng,
+    {
+      key: "g5-246-top",
+      decPool: P_OVER1,
+      otherPool: P_OVER1,
+      probePool: P_OVER1_SMALL,
+      boundPool: scSteps(10, 140, 5, 1),
+      maxPlaces: 2,
+      shows: "over",
+    },
+    {
+      pair: `${OVER_ONE_WORD} 둘`,
+      other: "두 소수 중 하나",
+      ask: "나머지 한 소수",
+    },
+    "dec",
+  );
+}
+
+/* ── 2-4-7 심화상 — 「어느 수를 곱했는지 모른다」 ──────────────────────────── */
+
+type PointTask = {
+  product: Sc;
+  powers: [Sc, Sc];
+  answer: Sc;
+  otherCand: Sc;
+  probe: Sc;
+  /** 후보 둘을 가르는 **하나뿐인** 경계. */
+  cut: Sc;
+  side: "less" | "greater";
+};
+
+const POINT_CACHE = new Map<string, PointTask[]>();
+
+/**
+ * 되짚기가 **두 후보**를 만든다(어느 수를 곱했는지 모르므로). 둘 다 소수라
+ * 「소수다」라는 성질로는 안 굳고, **각각에 다시 곱해 봐야** 하나가 남는다.
+ */
+function pointTasks(): PointTask[] {
+  const cached = POINT_CACHE.get("g5-247-top");
+  if (cached) return cached;
+  const out: PointTask[] = [];
+  const probes: Sc[] = [
+    [1, 1],
+    [1, 2],
+    [10, 0],
+    [100, 0],
+  ];
+  const bounds: Sc[] = [
+    [1, 3],
+    [5, 3],
+    [1, 2],
+    [5, 2],
+    [1, 1],
+    [5, 1],
+    [1, 0],
+    [5, 0],
+    [10, 0],
+    [50, 0],
+    [100, 0],
+    [500, 0],
+  ];
+  for (let i = 0; i < P_POWERS.length; i += 1) {
+    for (let j = i + 1; j < P_POWERS.length; j += 1) {
+      const a = P_POWERS[i]!;
+      const b = P_POWERS[j]!;
+      for (const base of P_HUND) {
+        // 곱은 둘 중 **한쪽**으로 만든다 — 어느 쪽인지는 발문이 말하지 않는다.
+        for (const [used, unused] of [
+          [a, b],
+          [b, a],
+        ] as const) {
+          const product = scMul(base, used);
+          if (scPlaces(product) > 3) continue;
+          // 다른 후보 — 곱을 반대쪽 수로 되짚은 값.
+          const ratio = scQ(unused) / scQ(used);
+          const otherCand: Sc = [
+            base[0],
+            base[1] + Math.round(Math.log10(ratio)),
+          ];
+          if (otherCand[1] < 1 || otherCand[1] > 3) continue;
+          if (scPlaces(otherCand) < 1 || scPlaces(base) < 1) continue;
+          for (const probe of probes) {
+            // 🔴 둘째 걸음의 곱하는 수가 발문이 준 두 수 중 하나면, 조건이 앞 문장을
+            //    되풀이하는 꼴이 되어 되짚기가 겉돈다(실측으로 걸렸다).
+            if (scQ(probe) === scQ(used) || scQ(probe) === scQ(unused))
+              continue;
+            const v1 = scMul(base, probe);
+            const v2 = scMul(otherCand, probe);
+            if (scPlaces(v1) > 3 || scPlaces(v2) > 3) continue;
+            if (scQ(v1) === scQ(v2)) continue;
+            // 🔴 **경계는 하나만 쓴다.** 후보가 둘뿐이라 한쪽만 잘라도 갈리는데,
+            //    양쪽을 쓰면 한쪽이 «$0.005$보다 크고» 처럼 아무것도 안 하는 말이
+            //    된다(첫 판에서 실제로 그렇게 나갔다). 학생이 읽는 조건은 실제로
+            //    일하는 것만 남긴다.
+            for (const cut of bounds) {
+              const side: "less" | "greater" | null =
+                scQ(v1) < scQ(cut) && scQ(v2) > scQ(cut)
+                  ? "less"
+                  : scQ(v1) > scQ(cut) && scQ(v2) < scQ(cut)
+                    ? "greater"
+                    : null;
+              if (side === null) continue;
+              const task: PointTask = {
+                product,
+                powers: [a, b],
+                answer: base,
+                otherCand,
+                probe,
+                cut,
+                side,
+              };
+              // 여기서도 «찍힌 지면»을 읽는다 — 예측하지 않는다.
+              if (forwardReach(pointContent(task), base)) continue;
+              out.push(task);
+            }
+          }
+        }
+      }
+    }
+  }
+  POINT_CACHE.set("g5-247-top", out);
+  return out;
+}
+
+/** 2-4-7 심화상의 발문 — **걸개와 지면이 같은 글을 본다**(예측 금지). */
+function pointContent(t: PointTask): string {
+  const [p1, p2] = t.powers;
+  return (
+    `어떤 소수에 ${n(scText(p1))} 또는 ${dj(scText(p2), "을", "를")} 곱했더니 ` +
+    `${dj(scText(t.product), "이", "가")} 되었습니다. ` +
+    `어떤 소수에 ${dj(scText(t.probe), "을", "를")} 곱한 값이 ` +
+    `${n(scText(t.cut))}보다 ${t.side === "less" ? "작을" : "클"} 때, 어떤 소수를 구하시오.`
+  );
+}
+
+function dm247Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const tasks = pointTasks();
+  if (tasks.length === 0) {
+    throw new Error(
+      `«심화상» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
+  const t = pick(rng, tasks);
+  const say = (v: Sc) =>
+    `${scText(v)}\\times${scText(t.probe)}=${scText(scMul(v, t.probe))}`;
+  return makeDeep(unit, pointContent(t), expr(scText(t.answer)), [
+    `소수점을 되돌리면 어떤 소수는 ${expr(scText(t.answer))} 또는 ${expr(scText(t.otherCand))}입니다. 둘 다 소수라 이것만으로는 못 정합니다.`,
+    `${dj(scText(t.probe), "을", "를")} 각각 곱해 봅니다. ${expr(say(t.answer))}, ${expr(say(t.otherCand))}입니다.`,
+    `${n(scText(t.cut))}보다 ${t.side === "less" ? "작은" : "큰"} 것은 ${expr(scText(scMul(t.answer, t.probe)))}이므로 어떤 소수는 ${expr(scText(t.answer))}입니다.`,
+  ]);
+}
+
 /** 문형 05 — 소수점을 잠시 무시하고 곱한 수. 1보다 작은 소수×자연수. */
 function dm241IgnorePoint(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 9);
@@ -13115,47 +13930,63 @@ export const G5_TIERS: ElemTierMap = {
     응용: fm224Apply,
     심화하: fm224Deep,
   },
+  // ⚠️ 이 일곱만 여섯 갈래다 — D-113 파일럿(2026-08-30). 나머지 초5 49개는 핵심 넷.
+  //    원장님이 `/dev/tier-bench/g5` 에서 잣대를 확정하신 뒤에 나머지를 채운다.
   "초5|2-4-1": {
     연산: dm241Calc,
     기본: dm241Read,
     응용: dm241Apply,
     심화하: dm241Deep,
+    심화중: dm241Mid,
+    심화상: dm241Top,
   },
   "초5|2-4-2": {
     연산: dm242Calc,
     기본: dm242Read,
     응용: dm242Apply,
     심화하: dm242Deep,
+    심화중: dm242Mid,
+    심화상: dm242Top,
   },
   "초5|2-4-3": {
     연산: dm243Calc,
     기본: dm243Read,
     응용: dm243Apply,
     심화하: dm243Deep,
+    심화중: dm243Mid,
+    심화상: dm243Top,
   },
   "초5|2-4-4": {
     연산: dm244Calc,
     기본: dm244Read,
     응용: dm244Apply,
     심화하: dm244Deep,
+    심화중: dm244Mid,
+    심화상: dm244Top,
   },
   "초5|2-4-5": {
     연산: dm245Calc,
     기본: dm245Read,
     응용: dm245Apply,
     심화하: dm245Deep,
+    심화중: dm245Mid,
+    심화상: dm245Top,
   },
   "초5|2-4-6": {
     연산: dm246Calc,
     기본: dm246Read,
     응용: dm246Apply,
     심화하: dm246Deep,
+    심화중: dm246Mid,
+    심화상: dm246Top,
   },
   "초5|2-4-7": {
     연산: dm247Calc,
     기본: dm247Read,
     응용: dm247Apply,
     심화하: dm247Deep,
+    심화중: dm247Mid,
+    심화상: dm247Top,
   },
   "초5|2-6-1": {
     연산: avg261Calc,
