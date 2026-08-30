@@ -14188,6 +14188,7 @@ type W2RectTask = {
   b: number;
   area: number;
   per: number;
+  square: number;
   pairs: [number, number][];
 };
 
@@ -14199,9 +14200,16 @@ function w2Rect(): W2RectTask[] {
       if (area > 72) continue;
       const pairs = w2Pairs(area);
       if (pairs.length < 3 || pairs.length > 5) continue;
+      // 🔴 **묻는 값이 «넓이»여야 한다.** 1-6-1 과 1-6-2 를 가르는 것은 답의 종류다
+      //    (1-6-1 응용은 «길이», 1-6-2 응용은 «넓이» — g5.ts 1-6 머리말·
+      //    `elementaryG5Tiers` 가 「넓이는 몇 cm²입니까?」로 못 박는다).
+      //    첫 판은 가로(길이)를 물었다가 그 시험에 걸렸다 — 되짚은 가로를 **한 변으로
+      //    하는 정사각형의 넓이**로 한 걸음 더 가서 소단원 안에 남는다.
+      if (a > 12) continue; // 정사각형 넓이가 곱셈구구 밖으로 나가지 않게
       const per = 2 * (a + b);
-      if (a === area || a === per) continue;
-      out.push({ a, b, area, per, pairs });
+      const square = a * a;
+      if (square === area || square === per) continue;
+      out.push({ a, b, area, per, square, pairs });
     }
   }
   return out;
@@ -14209,9 +14217,9 @@ function w2Rect(): W2RectTask[] {
 
 function area62Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W2RectTask) =>
-    `가로와 세로의 길이가 모두 자연수 cm인 직사각형이 있습니다. 넓이가 ${n(t.area)} cm²이고 둘레가 ${n(t.per)} cm일 때, 가로가 세로보다 길다면 가로는 몇 cm입니까?`;
+    `가로와 세로의 길이가 모두 자연수 cm이고 가로가 세로보다 긴 직사각형이 있습니다. 넓이가 ${n(t.area)} cm²이고 둘레가 ${n(t.per)} cm일 때, 이 직사각형의 가로를 한 변으로 하는 정사각형의 넓이는 몇 cm²입니까?`;
   const pool = w2Pool("162top", () =>
-    w2Rect().filter((t) => !w2Bad(content(t), w2int(t.a))),
+    w2Rect().filter((t) => !w2Bad(content(t), w2int(t.square))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const list = t.pairs
@@ -14220,10 +14228,11 @@ function area62Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const pers = t.pairs
     .map(([x, y]) => expr(`(${x}+${y})\\times2=${2 * (x + y)}`))
     .join(", ");
-  return makeDeep(unit, content(t), n(t.a), [
+  return makeDeep(unit, content(t), n(t.square), [
     `넓이가 ${n(t.area)} cm²이 되는 가로와 세로의 짝은 ${list}입니다.`,
     `둘레를 차례로 구하면 ${pers}입니다.`,
     `둘레가 ${n(t.per)} cm인 것은 ${n(t.b)} cm와 ${n(t.a)} cm이므로 가로는 ${n(t.a)} cm입니다.`,
+    `정사각형의 넓이는 한 변을 두 번 곱한 ${expr(`${t.a}\\times${t.a}=${t.square}`)}이므로 ${n(t.square)} cm²입니다.`,
   ]);
 }
 

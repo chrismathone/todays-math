@@ -352,7 +352,12 @@ describe("[초5 물결 2] 확대 갈래 — 1-5 · 1-6 · 2-6", () => {
       expect(pairs.length, p.content).toBeGreaterThanOrEqual(3);
       const hit = pairs.filter(([x, y]) => 2 * (x + y) === per);
       expect(hit.length, p.content).toBe(1);
-      expect(intsOf(p.answer)[0], p.content).toBe(hit[0]![1]);
+      // 🔴 **묻는 값이 «넓이»다** — 그래야 1-6-1(길이)과 갈린다.
+      //    되짚은 가로를 한 변으로 하는 정사각형의 넓이.
+      expect(intsOf(p.answer)[0], p.content).toBe(hit[0]![1] ** 2);
+      expect(p.content, "1-6-2 는 넓이를 묻는다").toMatch(
+        /넓이는 몇 cm²입니까\?$/,
+      );
     }
   });
 
