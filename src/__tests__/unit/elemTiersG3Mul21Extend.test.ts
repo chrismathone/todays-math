@@ -1,44 +1,42 @@
 /**
- * 초3 `2-1 곱셈` **심화중·심화상** — D-113 파일럿 (2026-08-30).
+ * 초3 `2-1 곱셈` **심화중·심화상** — D-113 파일럿, **되짚기 축** (2026-08-30).
  *
- * ## 이 파일이 재는 축 — 「답이 후보 **하나**냐 후보 **전체**냐」
+ * ## 축이 바뀌었다 — 첫 판(열거 축)은 **기각**됐다
  *
- * 난이도는 지면에 없다. 「어렵다」를 글자로는 못 읽는다(`probe-elem-tier-ladder.ts`
- * 머리말과 같은 한계). 그래서 여기서는 **말투가 아니라 «답이 무엇인가»** 를 축으로 잡는다.
+ * 처음엔 「답이 후보 하나냐 후보 전체냐」로 잠갔다. 리드 패널이 문형 전량 6,900행으로
+ * 두 축을 재어 **열거는 갈래를 1.5~2배밖에 안 가르고 되짚기는 22~40배 가른다**는 것을
+ * 보였고, 심화하 **안에서** 열거형은 평균 0.39 걸음으로 그 소단원의 «연산»(0.79)보다도
+ * 얕았다. 내 초3 산출물도 실제로 한 칸씩 낮게 앉았다.
  *
- *   · **심화중** — 후보를 열거해 **그중 하나**를 고른다. 정답은 값 하나이고,
- *     **바로 옆 후보는 조건을 어긴다**(그래서 열거를 건너뛸 수 없다).
- *   · **심화상** — 후보 **전체**가 답이다. 값을 둘 이상 나열하거나, 후보를 **센다**.
+ * ## 지금 축 — **되짚기 사슬의 마디가 굳는가**
  *
- * 이 축을 고른 까닭: 「모두·가장 큰·몇 가지」 같은 **탐색 표지 낱말**로 재면 그건 손
- * 목록이라 샌다(2026-08-18 「목록을 손으로 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다」).
- * 반면 «정답이 후보 집합의 한 원소인가, 집합 그 자체인가» 는 **발문에서 다시 세워서**
- * 확인할 수 있다 — 아래 판정은 전부 발문의 수만 읽어 후보를 **처음부터 다시 열거**한다.
- * 생성기의 계산을 되부르지 않으므로 동어반복이 아니다.
+ *   · **심화하**(기준선) — 마디마다 값이 **하나로 굳는다**.
+ *   · **심화중** — 굳지 않는 마디가 **하나** 있고, **그 소단원의 성질**이 굳혀 준다.
+ *   · **심화상** — 성질로도 **아무것도 못 잘라 내어**, 후보를 실제로 곱해 견주어야 한다.
  *
- * ## ⚠️ 이 축이 **못 보는 것**
+ * 이 대단원의 되짚기는 **곱의 일의 자리**다. 초3 2-1 은 나눗셈을 못 쓰므로(D-66⑶)
+ * 인수를 되짚는 길이 곱셈구구뿐이다 — 아래 판정은 **발문의 수만 읽어 그 곱셈구구를
+ * 처음부터 다시 돌려** 후보를 만든다. 생성기를 되부르지 않으므로 동어반복이 아니다.
  *
- * 1. **「그 후보 열거가 초등학생에게 실제로 어려운가」** 는 못 잰다. 후보가 아홉이든
- *    셋이든 이 시험에는 같아 보인다. 그건 원장님이 `/dev/tier-bench/g3` 에서 보실 몫이다.
- * 2. **심화하와의 높이 차**는 안 잰다. 심화하는 「역산 한 번」이고 여기는 「열거」인데,
- *    둘 중 무엇이 위인지는 **사람이 정하는 잣대**(D-113)이지 측정이 아니다.
- *    이 파일이 잠그는 것은 「심화중과 심화상이 **서로** 다른 일을 시킨다」까지다.
+ * ## 이 파일이 잠그는 것
  *
- *    🔴 **그래서 「나열 답」을 갈래 표지로 읽으면 안 된다.** 리드 지적으로 전 학년을
- *    재 봤다(씨앗 12 · 갈래 928): 쉼표로 값을 나열하는 답이 **연산 10갈래 · 기본 6 ·
- *    응용 7 · 심화하 7** 에 이미 있다(초4 2-1-4 대분수의 뺄셈 12/12 등). 「모두
- *    구하시오」라는 **낱말**은 더 심해서 연산 58건·기본 60건에도 선다. 즉 둘 다
- *    **갈래를 가르는 성질이 아니다.** 이 파일의 축은 「나열이면 심화상」이 아니라
- *    **«그 소단원 안에서 심화중은 후보 하나, 심화상은 그 후보 집합 전체»** 라는
- *    소단원 안의 약속이고, 그 약속을 **발문에서 다시 세워** 확인한다.
- *    (초3 에는 나열 답을 내는 심화하가 **0갈래**라 이 파일럿에서는 겹침이 없다 —
- *     다른 학년을 채울 때는 그 학년의 심화하부터 세어 보고 축을 정할 것.)
- * 3. **읽을 수 없는 발문은 «통과»가 아니라 «빨강»이다.** 아래 파서가 문항을 못 읽으면
- *    그 자리에서 실패한다 — 0 이 «깨끗»인지 «못 셈»인지 갈리지 않으면 안 되기 때문이다.
- *    그래서 발문 문법을 넓히면 파서도 같이 넓혀야 한다(그게 이 시험의 이빨이다).
- * 4. **방향 낱말(「가장 큰」·「가장 작은」)은 손 열쇠다.** 대신 «둘 중 정확히 하나만
- *    맞아야 한다» 로 걸어 두었다 — 목록에 없는 말투를 쓰면 조용히 통과하는 대신 **빨개진다.**
- *    (2-1-4 심화하 시험이 이미 쓰는 그 수법이다.)
+ *   ⑴ 심화중 — 되짚기 후보가 **둘 이상**(마디가 안 굳는다)이고, 정답이 그중 하나이며,
+ *      발문이 내건 **성질이 정확히 하나만** 남긴다. **성질을 빼면 여럿이 남는다** —
+ *      그래야 그 성질이 등급의 근거다(안 그러면 심화하다, 반증 1).
+ *   ⑵ 심화상 — 후보가 **셋 이상**이고 **올림도 자릿수도 후보끼리 모두 같아**
+ *      성질이 한 개도 못 걸러 낸다. 곱의 크기로만 하나가 남는다.
+ *   ⑶ **반증 ④(뒤집힘 필터)** — 같은 소단원의 **연산·기본·응용**은 발문의 수를
+ *      **순방향**으로 조합하면 답이 나온다(= 되짚기 축이 그 갈래를 안 집는다).
+ *      심화 셋은 안 나온다. **양성·음성 대조군이 한 시험 안에 다 있다.**
+ *   ⑷ 2-1-4 심화하(수 카드)의 **해설이 답에 이른다** — 리드가 짚은 결함.
+ *
+ * ## ⚠️ 못 보는 것
+ *
+ * 1. 「그 되짚기가 초등학생에게 실제로 어려운가」는 못 잰다 — 원장님 몫이다.
+ * 2. 순방향 도달 검사는 **수를 최대 셋까지, 연산을 두 번까지**만 조합한다. 그보다
+ *    복잡한 순방향 경로가 있으면 못 본다(그러면 ⑶ 의 음성 쪽이 느슨해진다).
+ * 3. 읽을 수 없는 발문은 **통과가 아니라 빨강**이다 — 파서가 못 읽으면 그 자리에서
+ *    실패한다. 발문 문법을 넓히면 파서도 같이 넓혀야 한다.
  */
 import { describe, expect, it } from "vitest";
 
@@ -59,142 +57,158 @@ function unitOf(code: string) {
   return u!;
 }
 
-/** 답에 실린 수를 **나온 순서대로**. `$5,\ 6,\ 7$` 도 `$12$` 도 같은 자로 읽는다. */
-function answerValues(answer: string): number[] {
-  expect(answer, `정답이 KaTeX 한 덩어리가 아니다: ${answer}`).toMatch(
-    /^\$[^$]*\$$/,
+/** KaTeX 안에 찍힌 수를 나온 순서대로. */
+function nums(text: string): number[] {
+  return [...text.matchAll(/\$([^$]*)\$/g)].flatMap((m) =>
+    [...m[1]!.matchAll(/\d+/g)].map((d) => Number(d[0])),
   );
-  return [...answer.matchAll(/\d+/g)].map((m) => Number(m[0]));
 }
 
-// ── 발문 파서 — **생성기를 안 부른다.** 지면의 글자만 읽는다 ─────────────────
+function answerOf(answer: string): number {
+  expect(answer, `정답이 한 값이 아니다: ${answer}`).toMatch(/^\$\d+\$$/);
+  return Number(answer.slice(1, -1));
+}
 
-/** 조건 — `lo < 곱 < hi`. 한쪽만 있으면 그쪽만 있다. */
-type Cond = { lo?: number; hi?: number };
+/** (세 자리)×(한 자리) 올림 횟수 — 생성기와 **따로** 센다. */
+function carries3x1(a: number, b: number): number {
+  let count = 0;
+  let carry = 0;
+  for (let d = 0; d < 3; d += 1) {
+    const v = (Math.floor(a / 10 ** d) % 10) * b + carry;
+    carry = Math.floor(v / 10);
+    if (carry > 0) count += 1;
+  }
+  return count;
+}
+
+/** **되짚기를 여기서 다시 돌린다** — 곱셈구구가 만드는 후보. */
+function reverseOnes(o: number, r: number): number[] {
+  const out: number[] = [];
+  for (let k = 1; k <= 9; k += 1) if ((o * k) % 10 === r) out.push(k);
+  return out;
+}
+
+// ── 발문 파서 ────────────────────────────────────────────────────────────────
 
 /**
- * 발문이 내건 곱의 범위. **꼴이 하나도 안 맞거나 둘 이상 맞으면 null** —
- * 「못 읽었다」를 통과로 만들지 않는다.
+ * 곱해지는 **기준 수**.
  *
- * ⚠️ 「작」 쪽은 활용형(작습니다·작은·작고)이 **한 음절을 나눠 갖는데** 「크」 쪽은
- *    안 그렇다(큽니다·큰·커야·크고). 그래서 큰 쪽만 첫 음절을 늘어놓는다 — **손 열쇠**다.
- *    목록에 없는 말투(「컸습니다」)를 쓰면 조용히 통과하는 대신 **null 이 되어 빨개진다.**
+ * ⚠️ 처음엔 「자리 범위 안에서 가장 큰 수」로 읽었다. **문턱($500$·$700$)이 그 범위에
+ *    들어와** 기준 수를 문턱으로 읽었고, 그러면 되짚기를 엉뚱한 수로 돌린다.
+ *    조건이 말한 수(문턱·일의 자리)를 **먼저 빼고** 남은 것에서 고른다.
  */
-function condOf(content: string): Cond | null {
+function baseOf(content: string, min: number, max: number): number | null {
+  const said = new Set<number>();
+  for (const m of content.matchAll(/\$(\d+)\$ 보다 [크작]/g))
+    said.add(Number(m[1]));
+  for (const m of content.matchAll(/일의 자리 숫자가 \$(\d+)\$/g))
+    said.add(Number(m[1]));
+  const cand = nums(content).filter(
+    (v) => v >= min && v <= max && !said.has(v),
+  );
+  return cand.length === 1 ? cand[0]! : null;
+}
+
+/** 「곱의 일의 자리 숫자가 $r$」 — **정확히 한 번**이어야 읽는다. */
+function onesDigitOf(content: string): number | null {
+  const m = [...content.matchAll(/일의 자리 숫자가 \$(\d+)\$/g)];
+  return m.length === 1 ? Number(m[0]![1]) : null;
+}
+
+/** 「올림이 …」 — 손 열쇠다. **정확히 하나만** 맞아야 하고 아니면 null(=빨강). */
+function carryWordOf(content: string): number | null {
+  const words = [
+    /올림이 한 번도 없었습니다/,
+    /올림이 한 번 있었습니다/,
+    /올림이 두 번 있었습니다/,
+    /올림이 세 번 있었습니다/,
+  ];
+  const hit = words
+    .map((re, i) => (re.test(content) ? i : -1))
+    .filter((i) => i >= 0);
+  return hit.length === 1 ? hit[0]! : null;
+}
+
+/** 「… 자리 수」 — 마찬가지로 정확히 하나. */
+function digitWordOf(content: string): number | null {
+  const words = [/두 자리 수/, /세 자리 수/, /네 자리 수/];
+  const hit = words
+    .map((re, i) => (re.test(content) ? i + 2 : -1))
+    .filter((i) => i >= 0);
+  return hit.length === 1 ? hit[0]! : null;
+}
+
+/**
+ * 곱의 크기 조건 — 두 겹일 수도, **한쪽뿐**일 수도 있다(맨 앞·맨 뒤 후보를 고를 때).
+ * `[아래끝, 위끝]` 로 돌려주고 없는 쪽은 `null` 이다. 꼴이 안 맞으면 `null`(=빨강).
+ *
+ * ⚠️ 「크」 쪽은 활용형이 첫 음절을 안 나눈다(크고·큰·큽니다) — 손 열쇠라 닫힌 집합으로
+ *    적고 **정확히 하나만** 맞아야 읽는다. 목록에 없는 말투를 쓰면 조용히 통과하는
+ *    대신 빨개진다.
+ */
+function rangeOf(content: string): [number | null, number | null] | null {
   const both = [...content.matchAll(/\$(\d+)\$ 보다 크고 \$(\d+)\$ 보다 작/g)];
-  if (both.length === 1)
-    return { lo: Number(both[0]![1]), hi: Number(both[0]![2]) };
+  if (both.length === 1) return [Number(both[0]![1]), Number(both[0]![2])];
   if (both.length > 1) return null;
   const less = [...content.matchAll(/\$(\d+)\$ 보다 작/g)];
-  const more = [...content.matchAll(/\$(\d+)\$ 보다 [크큰커큽]/g)];
+  const more = [...content.matchAll(/\$(\d+)\$ 보다 [크큰큽]/g)];
   if (less.length === 1 && more.length === 0)
-    return { hi: Number(less[0]![1]) };
+    return [null, Number(less[0]![1])];
   if (more.length === 1 && less.length === 0)
-    return { lo: Number(more[0]![1]) };
+    return [Number(more[0]![1]), null];
   return null;
 }
 
-const holds = (p: number, c: Cond) =>
-  (c.lo === undefined || p > c.lo) && (c.hi === undefined || p < c.hi);
-
-/** 무엇을 물었나. **정확히 하나만** 맞아야 한다 — 아니면 null(=빨강). */
-type Ask = "가장큰" | "가장작은" | "모두" | "몇가지";
-function askOf(content: string): Ask | null {
-  const hits: Ask[] = [];
-  if (/가장 큰|가장 클/.test(content)) hits.push("가장큰");
-  if (/가장 작은|가장 작을/.test(content)) hits.push("가장작은");
-  if (/모두 구하시오|모두 쓰시오/.test(content)) hits.push("모두");
-  if (/모두 몇 가지/.test(content)) hits.push("몇가지");
-  return hits.length === 1 ? hits[0]! : null;
+/** 후보가 그 크기 조건을 지키나. */
+function inRange(p: number, lo: number | null, hi: number | null): boolean {
+  return (lo === null || p > lo) && (hi === null || p < hi);
 }
 
 /**
- * ㉠ **마스크 틀** — `$…\square…\times…$` 하나. 가려진 쪽에 숫자를 넣어 가며 견준다.
- * 후보 domain 은 발문이 「$L$ 부터 $H$ 까지」로 밝히면 그것, 아니면 **맨 앞자리**라
- * $1$~$9$ 다(두 자리 수의 십의 자리·한 자리 수 그 자체 — 어느 쪽도 $0$ 이 못 온다).
+ * **순방향으로 답이 나오나** — 발문의 수 둘·셋을 ×·+·− 로 한두 번 엮어 본다.
+ * 반증 ⑥ 의 자다. 「수를 그대로 베낀 것」은 순방향이 아니므로 **연산을 반드시 한 번은**
+ * 쓴다.
  */
-type MaskTask = { values: { d: number; p: number }[] };
-
-function maskTaskOf(content: string): MaskTask | null {
-  const spans = [...content.matchAll(/\$([^$]*\\square[^$]*)\$/g)]
-    .map((m) => m[1]!)
-    .filter((s) => s.includes("\\times"));
-  if (spans.length !== 1) return null;
-  const [left, right, ...rest] = spans[0]!.split("\\times");
-  if (rest.length > 0 || left === undefined || right === undefined) return null;
-  const masked = left.includes("\\square") ? left : right;
-  const other = left.includes("\\square") ? right : left;
-  if (right.includes("\\square") && left.includes("\\square")) return null;
-  if ((masked.match(/\\square/g) ?? []).length !== 1) return null;
-  if (!/^\d+$/.test(other)) return null;
-  const said = [...content.matchAll(/\$(\d+)\$ 부터 \$(\d+)\$ 까지/g)];
-  if (said.length > 1) return null;
-  const lo = said.length === 1 ? Number(said[0]![1]) : 1;
-  const hi = said.length === 1 ? Number(said[0]![2]) : 9;
-  const values: { d: number; p: number }[] = [];
-  for (let d = lo; d <= hi; d += 1) {
-    const v = Number(masked.replace("\\square", String(d)));
-    if (!Number.isFinite(v)) return null;
-    values.push({ d, p: v * Number(other) });
-  }
-  return values.length >= 3 ? { values } : null;
-}
-
-/**
- * ㉡ **수 카드 틀** — 카드로 수를 만들어 같은 수를 곱한다. 만들 수 있는 수는
- * 「세 자리 수」면 세 장 전부의 순서, 「두 자리 수」면 세 장 중 두 장의 순서다.
- */
-function cardTaskOf(content: string): MaskTask | null {
-  if (!content.includes("수 카드")) return null;
-  const cardsM = content.match(/수 카드 ((?:\$\d+\$,\s*)+\$\d+\$)/);
-  const timesM = [...content.matchAll(/\$(\d+)\$ 배/g)];
-  if (!cardsM || timesM.length !== 1) return null;
-  const cards = [...cardsM[1]!.matchAll(/\d+/g)].map((m) => Number(m[0]));
-  if (cards.length !== 3 || new Set(cards).size !== 3) return null;
-  const three = /세 자리 수/.test(content);
-  const two = /두 자리 수/.test(content);
-  if (three === two) return null; // 둘 다이거나 둘 다 아니면 못 읽은 것이다
-  const mult = Number(timesM[0]![1]);
-  const made: number[] = [];
-  for (let i = 0; i < 3; i += 1)
-    for (let j = 0; j < 3; j += 1) {
+function forwardReaches(content: string, answer: number): boolean {
+  const ns = nums(content);
+  const ops = (x: number, y: number) => [x * y, x + y, x - y, y - x];
+  for (let i = 0; i < ns.length; i += 1) {
+    for (let j = 0; j < ns.length; j += 1) {
       if (i === j) continue;
-      if (three) {
-        const k = [0, 1, 2].find((x) => x !== i && x !== j)!;
-        made.push(cards[i]! * 100 + cards[j]! * 10 + cards[k]!);
-      } else {
-        made.push(cards[i]! * 10 + cards[j]!);
+      for (const v of ops(ns[i]!, ns[j]!)) {
+        if (v === answer) return true;
+        for (let k = 0; k < ns.length; k += 1) {
+          if (k === i || k === j) continue;
+          if (ops(v, ns[k]!).includes(answer)) return true;
+        }
       }
     }
-  return {
-    values: made.map((v, idx) => ({ d: idx, p: v * mult })),
-  };
+  }
+  return false;
 }
 
-/** 두 틀 중 **정확히 하나**여야 한다. */
-function taskOf(
-  content: string,
-): { kind: "마스크" | "카드"; task: MaskTask } | null {
-  const mask = maskTaskOf(content);
-  const card = cardTaskOf(content);
-  if (mask && card) return null;
-  if (mask) return { kind: "마스크", task: mask };
-  if (card) return { kind: "카드", task: card };
-  return null;
-}
-
-describe("[초3 D-113] 2-1 곱셈 — 심화중·심화상", () => {
-  it("네 소단원이 심화중·심화상을 낸다", () => {
-    for (const code of MUL21) {
-      const tiers = supportedTiers(unitOf(code));
-      expect(tiers, `${code}`).toContain("심화중");
-      expect(tiers, `${code}`).toContain("심화상");
-    }
+describe("[초3 D-113] 2-1 곱셈 — 되짚기 축", () => {
+  it("채운 자리와 **비운 자리**가 그대로다", () => {
+    // 네 소단원 모두 심화중은 선다.
+    for (const code of MUL21)
+      expect(supportedTiers(unitOf(code)), `${code} 심화중`).toContain(
+        "심화중",
+      );
+    // 심화상은 **둘만** 선다. 비운 자리도 잠근다 — 누가 채우면 그 근거를 다시 세우게 한다.
+    for (const code of ["2-1-2", "2-1-3"] as const)
+      expect(supportedTiers(unitOf(code)), `${code} 심화상`).toContain(
+        "심화상",
+      );
+    for (const code of ["2-1-1", "2-1-4"] as const)
+      expect(
+        supportedTiers(unitOf(code)),
+        `${code} 심화상을 채웠다 — 보고서 §2.2 의 «비운 까닭»을 다시 보고, 근거가 바뀌었으면 이 줄을 고쳐라`,
+      ).not.toContain("심화상");
   });
 
   it("같은 씨앗·같은 갈래면 같은 문항이다", () => {
     for (const code of MUL21) {
-      for (const tier of ["심화중", "심화상"] as const) {
+      for (const tier of supportedTiers(unitOf(code))) {
         const a = generateElementaryProblem(unitOf(code), 424242, tier);
         const b = generateElementaryProblem(unitOf(code), 424242, tier);
         expect(a.content, `${code} ${tier}`).toBe(b.content);
@@ -205,157 +219,221 @@ describe("[초3 D-113] 2-1 곱셈 — 심화중·심화상", () => {
   });
 
   /**
-   * 🔴 **이 시험의 알맹이 ⑴ — 심화중의 답은 후보 «하나»이고 옆 후보는 조건을 어긴다.**
-   *
-   * 「옆 후보가 어긴다」를 같이 요구하는 것이 핵심이다. 그것이 없으면 조건이 아무나
-   * 다 통과시키는 헐렁한 문항이어도 초록이다 — 그러면 열거할 까닭이 사라진다.
+   * 🔴 **알맹이 ⑴ — 심화중: 마디가 안 굳고, 성질이 하나만 남긴다.**
+   * 「성질을 빼면 여럿이 남는다」를 같이 요구하는 것이 핵심이다 — 없으면 성질이
+   * 장식이어도 초록이고, 그건 심화하다(반증 1).
    */
-  it("심화중 — 답은 후보 하나이고, 바로 옆 후보는 조건을 어긴다", () => {
+  it("심화중 — 되짚기 후보가 여럿이고 소단원 성질이 정확히 하나를 남긴다", () => {
     let judged = 0;
-    for (const code of MUL21) {
+    for (const code of ["2-1-1", "2-1-2", "2-1-3"] as const) {
+      const threeByOne = code !== "2-1-3";
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unitOf(code), seed, "심화중");
         const where = `${code} 심화중 seed ${seed}: ${p.content.replace(/\n/g, " ")}`;
-        const t = taskOf(p.content);
-        const cond = condOf(p.content);
-        const ask = askOf(p.content);
-        expect(t, `${where} — 후보 틀을 못 읽었다`).toBeTruthy();
-        expect(cond, `${where} — 조건을 못 읽었다`).toBeTruthy();
-        expect(ask, `${where} — 무엇을 묻는지 못 읽었다`).toBeTruthy();
-        expect(t!.kind, `${where} — 심화중은 마스크 틀이다`).toBe("마스크");
-        expect(["가장큰", "가장작은"], `${where}`).toContain(ask!);
-
-        const vals = t!.task.values;
-        const ok = vals.filter((v) => holds(v.p, cond!));
-        const bad = vals.filter((v) => !holds(v.p, cond!));
-        expect(
-          ok.length,
-          `${where} — 조건에 맞는 후보가 둘 미만`,
-        ).toBeGreaterThanOrEqual(2);
-        expect(
-          bad.length,
-          `${where} — 조건을 어기는 후보가 없다`,
-        ).toBeGreaterThanOrEqual(1);
-
-        const want =
-          ask === "가장큰"
-            ? Math.max(...ok.map((v) => v.d))
-            : Math.min(...ok.map((v) => v.d));
-        const answers = answerValues(p.answer);
-        expect(answers, `${where} — 심화중의 답은 값 하나다`).toHaveLength(1);
-        expect(answers[0], `${where}`).toBe(want);
-
-        // 옆 후보가 실제로 어긴다 — 열거를 건너뛸 수 없다는 증거.
-        const next = vals.find(
-          (v) => v.d === want + (ask === "가장큰" ? 1 : -1),
+        const a = baseOf(
+          p.content,
+          threeByOne ? 100 : 10,
+          threeByOne ? 999 : 99,
         );
-        expect(next, `${where} — 답 바로 옆에 후보가 없다`).toBeTruthy();
+        const r = onesDigitOf(p.content);
+        expect(a, `${where} — 기준 수를 못 읽었다`).toBeTruthy();
+        expect(r, `${where} — 곱의 일의 자리를 못 읽었다`).not.toBeNull();
+
+        // 되짚기를 여기서 다시 돌린다.
+        const ks = reverseOnes(a! % 10, r!);
         expect(
-          holds(next!.p, cond!),
-          `${where} — 옆 후보도 조건에 맞는다`,
-        ).toBe(false);
+          ks.length,
+          `${where} — 되짚기 후보가 하나뿐이다(그러면 심화하다)`,
+        ).toBeGreaterThanOrEqual(2);
+        const ans = answerOf(p.answer);
+        expect(ks, `${where} — 답이 되짚기 후보가 아니다`).toContain(ans);
+
+        // 성질이 정확히 하나를 남기는가 — 그리고 **성질을 빼면 여럿**인가.
+        const survivors = threeByOne
+          ? (() => {
+              const want = carryWordOf(p.content);
+              expect(want, `${where} — 올림 조건을 못 읽었다`).not.toBeNull();
+              return ks.filter((k) => carries3x1(a!, k) === want);
+            })()
+          : (() => {
+              const want = digitWordOf(p.content);
+              expect(want, `${where} — 자릿수 조건을 못 읽었다`).not.toBeNull();
+              return ks.filter((k) => String(a! * k).length === want);
+            })();
+        expect(survivors, `${where} — 성질이 남긴 후보`).toEqual([ans]);
         judged += 1;
       }
     }
-    expect(judged, "한 문항도 안 읽었다").toBe(MUL21.length * SEEDS.length);
+    expect(judged, "한 문항도 안 읽었다").toBe(3 * SEEDS.length);
+  });
+
+  /** 2-1-4 심화중 — 곱의 크기가 후보를 만들고 일의 자리 성질이 하나를 굳힌다. */
+  it("2-1-4 심화중 — 범위가 만든 후보를 일의 자리 성질이 하나로 굳힌다", () => {
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(unitOf("2-1-4"), seed, "심화중");
+      const where = `2-1-4 심화중 seed ${seed}: ${p.content.replace(/\n/g, " ")}`;
+      const range = rangeOf(p.content);
+      const r = onesDigitOf(p.content);
+      expect(range, `${where} — 범위를 못 읽었다`).toBeTruthy();
+      expect(r, `${where} — 일의 자리를 못 읽었다`).not.toBeNull();
+      const a = baseOf(p.content, 11, 99);
+      expect(a, `${where} — 기준 수를 못 읽었다`).toBeTruthy();
+      const [T1, T2] = range!;
+      // 범위가 만드는 후보를 여기서 다시 만든다(몇십몇만).
+      const win: number[] = [];
+      for (let b = 10; b <= 99; b += 1)
+        if (b % 10 !== 0 && inRange(a! * b, T1, T2)) win.push(b);
+      expect(
+        win.length,
+        `${where} — 범위가 만든 후보가 둘 미만`,
+      ).toBeGreaterThanOrEqual(2);
+      const survivors = win.filter((b) => ((b % 10) * (a! % 10)) % 10 === r);
+      expect(survivors, `${where} — 일의 자리가 남긴 후보`).toEqual([
+        answerOf(p.answer),
+      ]);
+    }
   });
 
   /**
-   * 🔴 **이 시험의 알맹이 ⑵ — 심화상의 답은 후보 «전체»에서 나온다.**
-   * 나열이면 그 집합 그대로, 개수면 그 집합의 크기다. 둘 다 후보를 다 열어야 나온다.
+   * 🔴 **알맹이 ⑵ — 심화상: 성질이 한 개도 못 걸러 낸다.**
+   * 후보끼리 올림도 자릿수도 같아야 한다. 하나라도 다르면 그 성질로 잘리므로 심화중이다.
    */
-  it("심화상 — 답은 후보 전체(나열)이거나 후보의 개수다", () => {
+  it("심화상 — 후보 셋 이상이고 성질로는 하나도 못 걸러, 곱의 크기로만 갈린다", () => {
     let judged = 0;
-    let 나열 = 0;
-    let 개수 = 0;
-    for (const code of MUL21) {
+    for (const code of ["2-1-2", "2-1-3"] as const) {
+      const threeByOne = code !== "2-1-3";
       for (const seed of SEEDS) {
         const p = generateElementaryProblem(unitOf(code), seed, "심화상");
         const where = `${code} 심화상 seed ${seed}: ${p.content.replace(/\n/g, " ")}`;
-        const t = taskOf(p.content);
-        const cond = condOf(p.content);
-        const ask = askOf(p.content);
-        expect(t, `${where} — 후보 틀을 못 읽었다`).toBeTruthy();
-        expect(cond, `${where} — 조건을 못 읽었다`).toBeTruthy();
-        expect(ask, `${where} — 무엇을 묻는지 못 읽었다`).toBeTruthy();
-        expect(["모두", "몇가지"], `${where}`).toContain(ask!);
+        const a = baseOf(
+          p.content,
+          threeByOne ? 100 : 10,
+          threeByOne ? 999 : 99,
+        );
+        const r = onesDigitOf(p.content);
+        const range = rangeOf(p.content);
+        expect(a, `${where} — 기준 수를 못 읽었다`).toBeTruthy();
+        expect(r, `${where} — 일의 자리를 못 읽었다`).not.toBeNull();
+        expect(range, `${where} — 범위를 못 읽었다`).toBeTruthy();
 
-        const vals = t!.task.values;
-        const ok = vals.filter((v) => holds(v.p, cond!));
-        const bad = vals.filter((v) => !holds(v.p, cond!));
+        const ks = reverseOnes(a! % 10, r!);
         expect(
-          ok.length,
-          `${where} — 조건에 맞는 후보가 둘 미만`,
-        ).toBeGreaterThanOrEqual(2);
+          ks.length,
+          `${where} — 후보가 셋 미만이면 심화중 자리다`,
+        ).toBeGreaterThanOrEqual(3);
+        // 성질이 아무것도 못 자른다.
+        const digits = ks.map((k) => String(a! * k).length);
         expect(
-          bad.length,
-          `${where} — 조건을 어기는 후보가 없다`,
-        ).toBeGreaterThanOrEqual(1);
-
-        const answers = answerValues(p.answer);
-        if (ask === "모두") {
-          expect(answers, `${where} — 나열이 후보 전체와 다르다`).toEqual(
-            ok.map((v) => v.d),
-          );
-          나열 += 1;
-        } else {
-          expect(answers, `${where} — 개수는 값 하나다`).toHaveLength(1);
-          expect(answers[0], `${where} — 개수가 후보 수와 다르다`).toBe(
-            ok.length,
-          );
-          개수 += 1;
+          new Set(digits).size,
+          `${where} — 자릿수가 갈린다(그 성질로 잘리므로 심화중이다)`,
+        ).toBe(1);
+        if (threeByOne) {
+          const cs = ks.map((k) => carries3x1(a!, k));
+          expect(
+            new Set(cs).size,
+            `${where} — 올림이 갈린다(그 성질로 잘리므로 심화중이다)`,
+          ).toBe(1);
         }
+        // 곱의 크기로만 하나가 남는다.
+        const [T1, T2] = range!;
+        const survivors = ks.filter((k) => inRange(a! * k, T1, T2));
+        expect(survivors, `${where} — 범위가 남긴 후보`).toEqual([
+          answerOf(p.answer),
+        ]);
         judged += 1;
       }
     }
-    expect(judged, "한 문항도 안 읽었다").toBe(MUL21.length * SEEDS.length);
-    // 두 꼴이 **둘 다** 살아 있어야 한다 — 한쪽이 0 이면 그 갈래는 한 문형의 되풀이다.
-    expect(나열, "「모두 구하시오」 꼴이 하나도 안 나왔다").toBeGreaterThan(0);
-    expect(개수, "「모두 몇 가지」 꼴이 하나도 안 나왔다").toBeGreaterThan(0);
-  });
-
-  /** 심화중의 답이 발문에 그대로 보이면 열거할 까닭이 없다. */
-  it("심화중 — 답이 발문에 그대로 서 있지 않다", () => {
-    for (const code of MUL21) {
-      for (const seed of SEEDS) {
-        const p = generateElementaryProblem(unitOf(code), seed, "심화중");
-        const ans = answerValues(p.answer)[0]!;
-        // 조건 문턱·곱하는 수와 겹칠 수 있으므로 **답만 홀로 선 자리**를 본다.
-        expect(
-          p.content.includes(`$${ans}$ 입니다`),
-          `${code} 심화중 seed ${seed}: 답이 발문에 적혀 있다`,
-        ).toBe(false);
-      }
-    }
+    expect(judged, "한 문항도 안 읽었다").toBe(2 * SEEDS.length);
   });
 
   /**
-   * 해설이 **후보를 실제로 견준다** — 계산식이 둘 이상이고, 그 값이 다 맞는다.
-   * (D-72 `makeDeep` 이 걸음 수를 이미 막지만, 여기서는 **값**을 다시 센다.)
+   * 🔴 **알맹이 ⑶ — 반증 ④ 뒤집힘 필터.** 양성 대조군(연산·기본·응용)과
+   * 음성 대조군(심화 셋)이 **한 시험 안에** 있다. 양성이 무너지면 이 자가
+   * 「되짚기를 못 재는 것」이고, 음성이 무너지면 그 문항이 순방향이다.
    */
-  it("심화중·심화상 해설의 곱이 전부 맞고 두 개 이상이다", () => {
+  it("반증 ④ — 연산·기본·응용은 순방향으로 답이 나오고, 심화 셋은 안 나온다", () => {
+    const forwardHits: string[] = [];
+    const reverseMiss: string[] = [];
     for (const code of MUL21) {
-      for (const tier of ["심화중", "심화상"] as const) {
+      for (const tier of supportedTiers(unitOf(code))) {
+        let forward = 0;
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unitOf(code), seed, tier);
-          const muls = [
-            ...p.solution.matchAll(/\$(\d+)\\times(\d+)=(\d+)\$/g),
-          ].map((m) => [Number(m[1]), Number(m[2]), Number(m[3])] as const);
-          expect(
-            muls.length,
-            `${code} ${tier} seed ${seed}: 견준 곱이 둘 미만 — ${p.solution}`,
-          ).toBeGreaterThanOrEqual(2);
-          for (const [a, b, c] of muls)
-            expect(a * b, `${code} ${tier} seed ${seed}: ${a}×${b}`).toBe(c);
+          if (forwardReaches(p.content, answerOf(p.answer))) forward += 1;
         }
+        const mine = tier === "심화중" || tier === "심화상";
+        const core = !tier.startsWith("심화");
+        if (core && forward < SEEDS.length)
+          forwardHits.push(
+            `${code} ${tier}: 순방향 도달 ${forward}/${SEEDS.length}`,
+          );
+        // ⚠️ **심화하는 0 을 요구하지 않는다.** 기준선이라 내 손이 안 닿는 데다,
+        //    수가 셋이면 «우연히» 맞는 조합이 생긴다(실측 2-1-2 심화하 1/24 —
+        //    그 문항은 되짚기가 맞고 순방향 조합이 우연히 같은 값을 냈다).
+        //    **내가 채운 두 갈래는 0 이어야 한다** — 거기서 우연이 나오면 그건
+        //    발문이 순방향으로도 풀린다는 뜻이라 반증 ⑥ 이다.
+        if (mine && forward > 0)
+          reverseMiss.push(`${code} ${tier}: 순방향으로 ${forward}건이 풀린다`);
+        if (tier === "심화하" && forward > SEEDS.length / 4)
+          reverseMiss.push(
+            `${code} 심화하: 순방향 ${forward}/${SEEDS.length} — 우연이라기엔 너무 많다`,
+          );
       }
+    }
+    // 양성 — 이 줄이 빨개지면 이 자가 «순방향»을 못 읽는 것이다(음성의 0이 뜻을 잃는다).
+    expect(forwardHits, "연산·기본·응용이 순방향으로 안 풀린다").toEqual([]);
+    // 음성 — 되짚기 갈래가 순방향으로 풀리면 그건 중·상이 아니다(반증 6).
+    expect(reverseMiss, "심화 갈래가 순방향으로 풀린다").toEqual([]);
+  });
+
+  /**
+   * 🔴 **알맹이 ⑷ — 2-1-4 심화하 해설이 답에 이른다** (리드 지적).
+   * 옛 해설은 「십의 자리 숫자가 클수록 곱이 큽니다」로 접어 `87×92` 와 `82×97` 을
+   * 안 갈랐다(씨앗 0~299 전량). 이제 남은 두 배치를 **실제로 곱해 견주어야** 한다.
+   */
+  it("2-1-4 심화하 — 해설이 남은 두 배치를 곱해 견주고 그 답에 이른다", () => {
+    for (let seed = 0; seed < 60; seed += 1) {
+      const p = generateElementaryProblem(unitOf("2-1-4"), seed, "심화하");
+      const where = `2-1-4 심화하 seed ${seed}`;
+      const steps = [
+        ...p.solution.matchAll(/\$(\d+)\\times(\d+)=(\d+)\$/g),
+      ].map((m) => [Number(m[1]), Number(m[2]), Number(m[3])] as const);
+      // 두 배치를 견준다 — 하나만 찍으면 「접었다」는 옛 결함 그대로다.
+      expect(steps.length, `${where}: 견준 곱이 둘이 아니다`).toBe(2);
+      for (const [x, y, z] of steps)
+        expect(x * y, `${where}: ${x}×${y}`).toBe(z);
+      expect(
+        steps[0]![2] !== steps[1]![2],
+        `${where}: 두 배치의 곱이 같아 견줄 것이 없다`,
+      ).toBe(true);
+      // 정답이 그 둘 중 하나이고, 카드 전수 비교의 최댓값·최솟값과 같다.
+      const ans = answerOf(p.answer);
+      expect(
+        [steps[0]![2], steps[1]![2]],
+        `${where}: 정답이 견준 두 곱 안에 없다 — 해설이 답에 이르지 못한다`,
+      ).toContain(ans);
+      const cards = nums(p.content);
+      expect(cards.length, `${where}: 카드가 넷이 아니다`).toBe(4);
+      const askBig = /가장 큰|가장 클 때|가장 크게/.test(p.content);
+      let best = askBig ? -1 : Number.MAX_SAFE_INTEGER;
+      for (let i = 0; i < 4; i += 1)
+        for (let j = 0; j < 4; j += 1)
+          for (let k = 0; k < 4; k += 1)
+            for (let l = 0; l < 4; l += 1) {
+              if (new Set([i, j, k, l]).size !== 4) continue;
+              const v =
+                (cards[i]! * 10 + cards[j]!) * (cards[k]! * 10 + cards[l]!);
+              if (askBig ? v > best : v < best) best = v;
+            }
+      expect(ans, `${where}: 전수 비교와 다르다`).toBe(best);
     }
   });
 
-  /** 씨앗을 바꾸면 갈래마다 답이 갈린다 — 상수답 금지. */
-  it("두 갈래 모두 씨앗에 따라 답이 갈린다", () => {
+  it("두 갈래 모두 씨앗에 따라 답이 갈린다 — 상수답 금지", () => {
     for (const code of MUL21) {
-      for (const tier of ["심화중", "심화상"] as const) {
+      for (const tier of supportedTiers(unitOf(code)).filter((t) =>
+        ["심화중", "심화상"].includes(t),
+      )) {
         const seen = new Set<string>();
         for (let seed = 0; seed < 40; seed += 1)
           seen.add(generateElementaryProblem(unitOf(code), seed, tier).answer);
