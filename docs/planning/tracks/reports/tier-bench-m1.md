@@ -38,6 +38,28 @@ npx tsx scripts/qa/probe-middle-tier-4dan.ts
 **모집단**: 중1 유형 **526** × 씨앗 3(`20260827`·`7`·`4242`) × 변형 3 = **4,734문항**.
 씨앗 `20260827` 과 변형 3 은 **적재기가 실제로 쓴 값**이다(`engine-load-중등전량-3변형-형식3종.json`).
 
+### 0.0 ⚠️ 이 워크트리에서 관문을 돌리기 전에 두 가지를 먼저 했다
+
+새 워크트리라 **관문이 내 것과 무관한 이유로 빨갰다.** 다음 사람이 같은 데서 헤매지 않게 적는다.
+
+| 증상 | 무엇을 했나 |
+|------|------------|
+| 시험 파일 **16개**가 `@prisma/client did not initialize yet` 로 죽는다 | `npx prisma generate` — `node_modules` 는 커밋 대상이 아니라 워크트리마다 다시 해야 한다(초5 벤치도 같은 데 걸렸다) |
+| 쓸기가 «울타리 1» — `probe-middle-combo.ts` 가 말뭉치가 없어 **못 돈다** | `npx tsx scripts/qa/build-middle-corpus.ts` → `npx tsx scripts/qa/census-middle-solution-vocab.ts` (DB 를 안 쓴다. 산출물은 `C:/tmp/middle-combo/<워크트리>/` — 저장소 밖) |
+
+둘 다 고친 뒤 **관문이 초록이다** (2026-08-31 06:09 · 커밋 `27a9ac3b` 기준):
+
+```
+npm run test
+→ Test Files  331 passed | 1 skipped (332)
+   Tests  13,272 passed | 129 skipped (13,401)
+   판정기 26개를 실데이터에 댔다 · 빨강 0 · **울타리 0**
+   (🔴 「게이트가 막는다」 줄 없음)
+```
+⚠️ **«울타리»는 결함이 아니지만 «깨끗»도 아니다** — `run-tests.mjs:154` 가 그 회차로는 안 민다.
+그리고 첫 회차에 `npm run test | tail` 로 돌렸더니 **셸 종료 코드가 0** 이었다(파이프의 코드다).
+판정은 파이프 뒤 코드가 아니라 **게이트가 찍는 🔴 줄**로 했다.
+
 ### 0.1 🔴 «돌려서 나온 것»과 «읽고 적은 것»을 가른다
 
 | 표시 | 뜻 |
