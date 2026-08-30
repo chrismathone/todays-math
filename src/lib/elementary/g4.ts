@@ -17418,6 +17418,10 @@ const TILE_MIN_FIELD: { tris: number; pairs: { a: number; b: number }[] }[] =
       if (pairs.length < 3) continue;
       const totals = pairs.map((x) => x.a + x.b);
       const min = Math.min(...totals);
+      // ⚠️ **이 줄은 지금 아무것도 안 거른다** — 조각 수는 `a+b = (N-b)/2` 라 `b` 마다
+      //    늘 다르므로 최소는 **구조적으로** 하나다. 변이 하네스가 「산출물이 그대로다」로
+      //    그것을 짚어 줬다. 지우지 않는 까닭은 «하나가 남는다»가 심화상의 정의라서
+      //    조각 값이 바뀌면(2·3 이 아닌 짝) 그때 물어야 하기 때문이다.
       if (totals.filter((t) => t === min).length !== 1) continue;
       out.push({ tris, pairs });
     }
