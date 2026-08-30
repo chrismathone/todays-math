@@ -154,6 +154,30 @@ export function isOneStepInverse(frame: string): boolean {
   return ONE_STEP_BOX.test(frame) || ONE_STEP_SOME.test(frame);
 }
 
+/**
+ * Ⓓ **매쓰홀릭 「심화(중)」의 표지가 우리에게 있는가.**
+ *
+ * 리드 실측(2026-08-30)에서 저쪽 심화(중)의 성격을 셋으로 읽었다 — **복면산**(기호에
+ * 숫자를 앉힌다) · **경우의 수**(「몇 가지」) · **수 카드 배열**(만들 수 있는 수 중
+ * 몇째로 큰 것). 셋 다 「답이 하나 나오는 절차」가 아니라 **구조를 탐색**하는 물음이다.
+ *
+ * ⚠️ **저작권 — 저쪽 문항은 한 글자도 안 들어온다.** 아래 눈금의 양성 대조는 저쪽
+ *    발문이 아니라 **같은 꼴로 내가 지은 문자열**이다. 여기서 재는 것은 «눈금»이지
+ *    «문항»이 아니다.
+ *
+ * ⚠️ **이 표지는 새는 쪽으로 헐겁다.** 「두 번째로 작은 수」는 저쪽에서 수 카드 배열의
+ *    표지지만 우리 「$24$의 약수 중 두 번째로 작은 수」는 그냥 나열이다. 그래서 걸린
+ *    자리는 **반드시 눈으로 본다** — 헐거운 쪽으로 두는 까닭은, 좁게 잡으면 「0」이
+ *    «없다»인지 «못 셈»인지 안 갈리기 때문이다.
+ */
+export const TOPHAT_MARKS: [string, RegExp][] = [
+  ["경우의 수 (몇 가지)", /몇 가지/],
+  ["수 카드 배열", /수 카드/],
+  ["복면산 (기호 자리에 숫자)", /㉠㉡|㉠.{0,4}㉡.{0,4}㉢/],
+  ["만들 수 있는 수", /만들 수 있는/],
+  ["몇째로 큰·작은", /(두|세|네) 번째로 (큰|작은)/],
+];
+
 if (wantSix) {
   /* 눈금 — 양성·음성 **둘 다**. 양성만 대면 지어냄이 구조적으로 0이 된다.
    * 실물에서 그대로 가져온다(지어낸 문자열은 「검출기가 도는가」만 본다). */
@@ -209,10 +233,33 @@ if (wantSix) {
   const pos = SIX_GAUGE.filter((g) => g[2]).length;
   console.log(
     bad === 0
-      ? `\n✅ Ⓐ 눈금 ${SIX_GAUGE.length}건 맞다 (양성 ${pos} · 음성 ${SIX_GAUGE.length - pos})\n`
-      : `\n❌ Ⓐ 눈금 ${bad}건 어긋남 — **아래 수치를 믿지 마라**\n`,
+      ? `\n✅ Ⓐ 눈금 ${SIX_GAUGE.length}건 맞다 (양성 ${pos} · 음성 ${SIX_GAUGE.length - pos})`
+      : `\n❌ Ⓐ 눈금 ${bad}건 어긋남 — **아래 수치를 믿지 마라**`,
   );
-  if (bad > 0) process.exit(1);
+
+  /* Ⓓ 눈금 — 「0」이 «없다»인지 «못 셈»인지 갈라야 한다. 양성은 **내가 지은** 문자열이다
+   * (저쪽 발문을 넣지 않는다). 이게 없으면 아래 0 은 아무것도 증명하지 않는다. */
+  const TOPHAT_GAUGE: [string, boolean][] = [
+    ["합이 $859$가 되는 경우는 모두 몇 가지입니까?", true],
+    ["수 카드 $4$장을 늘어놓아 만든 수 중 가장 큰 수를 구하시오.", true],
+    ["㉠㉡㉢$+$㉢㉡㉠$=666$일 때 ㉠에 알맞은 수를 구하시오.", true],
+    ["만들 수 있는 세 자리 수 중에서 두 번째로 큰 수를 쓰시오.", true],
+    // 음성 — 이것들이 걸리면 이 표지는 못 쓴다.
+    ["계산하시오. $3.5\\times2$", false],
+    ["어떤 수에 $5$를 더했더니 $12$가 되었습니다. 어떤 수를 구하시오.", false],
+    ["가로가 $4$ cm인 직사각형의 넓이는 몇 cm²입니까?", false],
+  ];
+  let badT = 0;
+  for (const [text, want] of TOPHAT_GAUGE) {
+    const got = TOPHAT_MARKS.some(([, re]) => re.test(text));
+    if (got !== want) badT += 1;
+  }
+  console.log(
+    badT === 0
+      ? `✅ Ⓓ 눈금 ${TOPHAT_GAUGE.length}건 맞다 (양성 ${TOPHAT_GAUGE.filter((g) => g[1]).length} · 음성 ${TOPHAT_GAUGE.filter((g) => !g[1]).length}) — 「0」을 «없다»로 읽어도 된다\n`
+      : `❌ Ⓓ 눈금 ${badT}건 어긋남 — **아래 0 을 «없다»로 읽지 마라**\n`,
+  );
+  if (bad > 0 || badT > 0) process.exit(1);
 
   let aHit = 0;
   let bHit = 0;
@@ -221,17 +268,38 @@ if (wantSix) {
   const bList: string[] = [];
   const cList: string[] = [];
 
+  // 🔴 경로를 **둘 다** 볼 수 있어야 한다. 지면에 나가는 것은 문형이므로,
+  //    「갈래에서 얇다」와 「지면에서 얇다」는 다른 말이다. `--forms` 로 가른다.
+  const pick = (
+    unit: (typeof units)[number],
+    tier: (typeof ELEM_TIERS)[number],
+  ): string[] => {
+    if (wantForms)
+      return listedForms(unit)
+        .filter((f) => f.tier === tier)
+        .flatMap((f) =>
+          Array.from(
+            { length: SEEDS },
+            (_, i) =>
+              generateElementaryForm(unit, SEED0 + i * STEP, f.id).content,
+          ),
+        );
+    return Array.from(
+      { length: SEEDS },
+      (_, i) => generateElementaryProblem(unit, SEED0 + i * STEP, tier).content,
+    );
+  };
+
   for (const unit of units) {
     if (supportedTiers(unit).length === 0) continue;
-    const seen = { a: false, b: false, c: false };
-    for (let i = 0; i < SEEDS; i += 1) {
-      const deep = generateElementaryProblem(unit, SEED0 + i * STEP, "심화");
-      const app = generateElementaryProblem(unit, SEED0 + i * STEP, "응용");
-      const calc = generateElementaryProblem(unit, SEED0 + i * STEP, "연산");
-      if (isOneStepInverse(frameOf(deep.content))) seen.a = true;
-      if (BARE_CALC_HEAD.test(app.content.trim())) seen.b = true;
-      if (marksOf(calc.content).length > 0) seen.c = true;
-    }
+    // ⚠️ Ⓐ 는 「그 자리의 **모든** 산출이 한 걸음 역산인가」로 센다. 「하나라도」로
+    //    세면 문형 넷 중 하나만 그래도 걸려 「지면이 얇다」가 과장된다.
+    const deeps = pick(unit, "심화");
+    const seen = {
+      a: deeps.length > 0 && deeps.every((c) => isOneStepInverse(frameOf(c))),
+      b: pick(unit, "응용").some((c) => BARE_CALC_HEAD.test(c.trim())),
+      c: pick(unit, "연산").some((c) => marksOf(c).length > 0),
+    };
     if (seen.a) {
       aHit += 1;
       aList.push(unit.section);
@@ -247,19 +315,57 @@ if (wantSix) {
   }
 
   const n = units.filter((u) => supportedTiers(u).length > 0).length;
+  /* Ⓓ — 저쪽 「심화(중)」 표지를 **갈래+문형 전량**에 댄다. 경로를 안 가른다:
+   * 여기서 묻는 것은 「우리 초5 에 그런 부류가 **어디에든** 있는가」이기 때문이다. */
+  const dHits = new Map<string, Set<string>>();
+  for (const [name] of TOPHAT_MARKS) dHits.set(name, new Set());
+  let dSeen = 0;
+  for (const unit of units) {
+    if (supportedTiers(unit).length === 0) continue;
+    const texts = [
+      ...ELEM_TIERS.flatMap((t) =>
+        Array.from(
+          { length: SEEDS },
+          (_, i) =>
+            generateElementaryProblem(unit, SEED0 + i * STEP, t).content,
+        ),
+      ),
+      ...listedForms(unit).flatMap((f) =>
+        Array.from(
+          { length: SEEDS },
+          (_, i) =>
+            generateElementaryForm(unit, SEED0 + i * STEP, f.id).content,
+        ),
+      ),
+    ];
+    dSeen += texts.length;
+    for (const [name, re] of TOPHAT_MARKS)
+      if (texts.some((c) => re.test(c))) dHits.get(name)!.add(unit.section);
+  }
+
   const show = (t: string, hit: number, list: string[]) => {
     console.log(`── ${t} — ${hit}/${n} 소단원 ──`);
     for (const s of list) console.log(`   · ${s}`);
     console.log("");
   };
   console.log(
-    `${GRADE} — 매쓰홀릭 6단에 대기 위한 신호 (씨앗 ${SEEDS} · 갈래 경로)\n`,
+    `${GRADE} — 매쓰홀릭 6단에 대기 위한 신호 (씨앗 ${SEEDS} · 경로: ${wantForms ? "문형" : "갈래"})\n`,
   );
-  show("Ⓐ 심화가 «한 걸음 역산»인 씨앗이 있다", aHit, aList);
+  show("Ⓐ 심화가 «한 걸음 역산»뿐이다 (그 자리 전량)", aHit, aList);
   show("Ⓑ 응용이 맨 「계산하시오」인 씨앗이 있다", bHit, bList);
   show("Ⓒ 연산에 4단 표지가 있는 씨앗이 있다", cHit, cList);
+  console.log(`── Ⓓ 매쓰홀릭 「심화(중)」 표지 — 갈래+문형 ${dSeen}건에 댐 ──`);
+  for (const [name] of TOPHAT_MARKS) {
+    const s = dHits.get(name)!;
+    console.log(
+      `   ${name.padEnd(22)} ${s.size}개 소단원${s.size ? " — " + [...s].join(" / ") : ""}`,
+    );
+  }
   console.log(
-    `⚠️ 이 셋은 **모양**이지 어려움이 아니다. 6단 배정은 사람이 읽고 적는다 —\n` +
+    `   ⚠️ 걸린 자리는 **눈으로 봐야 한다** — 이 표지는 새는 쪽으로 헐겁다.\n`,
+  );
+  console.log(
+    `⚠️ 이 넷은 **모양**이지 어려움이 아니다. 6단 배정은 사람이 읽고 적는다 —\n` +
       `   이 수치는 «어디를 눈으로 볼지»를 고르는 자다.`,
   );
   process.exit(0);
