@@ -381,8 +381,8 @@ G3_MUTS = [
     ),
     (
         '[2-1 D-113] 2-1-4 심화하: 해설이 한 배치만 찍는다(리드가 짚은 옛 결함)',
-        '  const shown = alt.map(([u, v]) => expr(`${u}\times${v}=${u * v}`));',
-        '  const shown = [alt[0]!].map(([u, v]) => expr(`${u}\times${v}=${u * v}`));',
+        '  const shown = alt.map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
+        '  const shown = [alt[0]!].map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
     ),
 ]
 
