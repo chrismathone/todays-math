@@ -96,6 +96,29 @@ export function headOf(content: string): string {
   return content.trim().replace(/\s+/g, " ").slice(0, 12);
 }
 
+/**
+ * **발문 뼈대** — 수를 전부 지운 문자열. 「이 갈래가 한 소단원에서 **몇 가지 문형**을
+ * 내는가」를 세는 열쇠다(리드 가설 ㉡ 「응용이 얇다」를 반증 가능하게 만드는 자리).
+ *
+ * 같은 문형이 씨앗마다 다른 수로 나오므로, 수를 지우면 **문형이 같은 것끼리 뭉친다.**
+ *
+ * ⚠️ **위아래로 다 샌다 — 그래서 이 수는 «다양성»이 아니라 «다양성의 대리»다.**
+ *  · **부풀 때**: 같은 문형인데 소재 낱말이 바뀌면(사과/배, 가로/세로) 다른 뼈대가 된다.
+ *    → 이 수는 진짜 문형 수의 **상한**이다.
+ *  · **줄 때**: 다른 문형인데 말투가 같으면 한 뼈대로 뭉친다.
+ *    → 그래서 **1 이 나오면 그건 확실하다** — 「12씨앗이 한 문형뿐」은 부풀 수가 없다.
+ *
+ * 그러므로 **낮은 쪽만 근거로 쓴다.** 「뼈대 1~2」는 반증된 얇음이고,
+ * 「뼈대 10」은 「열 가지 문형」이 아니라 「많아야 열 가지」다.
+ *
+ * (`tier4Rules` 머리말이 같은 열쇠를 «심화 vs 응용 대조»에 썼다가 0갈래로 버렸다.
+ *  버린 것은 **갈래끼리 견주는** 쓰임이고, 여기 쓰는 것은 **한 갈래 안의** 되풀이다 —
+ *  다른 물음이라 그 실패가 이 쓰임을 막지 않는다.)
+ */
+export function skeletonOf(content: string): string {
+  return content.replace(/\d+/g, "#").replace(/\s+/g, " ").trim();
+}
+
 function median(xs: number[]): number {
   if (xs.length === 0) return 0;
   const s = [...xs].sort((a, b) => a - b);
@@ -121,6 +144,30 @@ const GAUGE: [string, () => number, number][] = [
   ],
   ["해설 걸음 — 빈 줄은 안 센다", () => solutionLines("가\n\n나\n\n다"), 3],
   ["해설 걸음 1", () => solutionLines("한 줄"), 1],
+];
+
+const SKELETON_GAUGE: [string, string, string, boolean][] = [
+  // 양성 — 수만 다른 같은 문형은 **뭉쳐야** 한다.
+  [
+    "같은 문형, 다른 수 → 한 뼈대",
+    "사과 $3$개의 무게는 몇 kg입니까?",
+    "사과 $17$개의 무게는 몇 kg입니까?",
+    true,
+  ],
+  // 음성 — 정말 다른 문형은 **갈라져야** 한다. 이게 없으면
+  // 「늘 같다고 답하는 자」도 만점이다(CLAUDE.md 2026-08-20).
+  [
+    "다른 문형 → 다른 뼈대",
+    "사과 $3$개의 무게는 몇 kg입니까?",
+    "어떤 수에 $3$을 곱하면 얼마입니까?",
+    false,
+  ],
+  [
+    "소재만 달라도 갈라진다 (알려진 «부풀 때» — 그래서 상한이다)",
+    "사과 $3$개의 무게는?",
+    "배 $3$개의 무게는?",
+    false,
+  ],
 ];
 
 const TAIL_GAUGE: [string, string, string][] = [
@@ -149,6 +196,13 @@ if (process.argv.includes("--selftest")) {
       `  ${got === want ? "✅" : "❌"} ${why} — 기대 «${want}» / 실제 «${got}»`,
     );
   }
+  for (const [why, a, b, same] of SKELETON_GAUGE) {
+    const got = skeletonOf(a) === skeletonOf(b);
+    if (got !== same) bad += 1;
+    console.log(
+      `  ${got === same ? "✅" : "❌"} 뼈대 — ${why} — 기대 ${same ? "같음" : "다름"} / 실제 ${got ? "같음" : "다름"}`,
+    );
+  }
   // 배선 — `marksOf` 를 정말 부르고 있나. 옮겨 적었으면 이 줄이 갈라진다.
   // 양성(표지 있음)과 음성(표지 없음)을 **둘 다** 댄다 — 양성만 대면
   // 「늘 표지가 있다고 답하는 자」도 만점이다(CLAUDE.md 2026-08-20).
@@ -162,7 +216,7 @@ if (process.argv.includes("--selftest")) {
   );
   console.log(
     bad === 0
-      ? `\n✅ 눈금 ${GAUGE.length + TAIL_GAUGE.length + 1}건 전부 맞다 — 자가 값에 따라 변한다`
+      ? `\n✅ 눈금 ${GAUGE.length + TAIL_GAUGE.length + SKELETON_GAUGE.length + 1}건 전부 맞다 — 자가 값에 따라 변한다`
       : `\n❌ 눈금 ${bad}건 어긋남 — **이 계량기의 수치를 믿을 수 없다**`,
   );
   process.exit(bad === 0 ? 0 : 1);
@@ -191,6 +245,8 @@ type Row = {
   heads: Map<string, number>;
   tails: Map<string, number>;
   total: number;
+  /** 소단원마다 «12씨앗이 낸 뼈대 가짓수». 리드 가설 ㉡ 「응용이 얇다」의 자리. */
+  varietyPerUnit: { section: string; kinds: number }[];
 };
 
 const rows = new Map<ElemTier, Row>();
@@ -205,6 +261,7 @@ for (const t of ELEM_TIERS) {
     heads: new Map(),
     tails: new Map(),
     total: 0,
+    varietyPerUnit: [],
   });
 }
 
@@ -215,8 +272,10 @@ for (const unit of units) {
   for (const tier of ELEM_TIERS) {
     tally.count(unit.grade, unit.section, tier, SEEDS.length);
     const row = rows.get(tier)!;
+    const skeletons = new Set<string>();
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(unit, seed, tier);
+      skeletons.add(skeletonOf(p.content));
       row.total += 1;
       row.hangul.push(hangulCount(p.content));
       row.math.push(mathRunCount(p.content));
@@ -228,6 +287,10 @@ for (const unit of units) {
       bump(row.heads, headOf(p.content));
       bump(row.tails, tailOf(p.content));
     }
+    row.varietyPerUnit.push({
+      section: unit.section,
+      kinds: skeletons.size,
+    });
   }
 }
 
@@ -267,6 +330,30 @@ for (const tier of ELEM_TIERS) {
     `  ${tier}: ${list.length === 0 ? "(없음)" : list.map(([k, v]) => `${k} ${v}`).join(" · ")}`,
   );
 }
+
+/* ── 문형 되풀이 (리드 가설 ㉡ 「응용이 얇다」) ──
+ *
+ * ⚠️ **낮은 쪽만 근거로 쓴다** — `skeletonOf` 머리말 참조. 뼈대 수는 진짜 문형 수의
+ *    **상한**이라, 「1」은 확실한 얇음이고 「10」은 「많아야 열 가지」다.
+ *    그래서 평균이 아니라 **«1~2인 소단원이 몇 개인가»**를 센다.
+ */
+console.log("\n문형 되풀이 — 한 소단원의 12씨앗이 낸 뼈대 가짓수 (상한)");
+console.log("  갈래   뼈대1   뼈대≤2   중앙값   최저   가장 얇은 소단원");
+for (const tier of ELEM_TIERS) {
+  const v = rows.get(tier)!.varietyPerUnit;
+  const one = v.filter((x) => x.kinds === 1).length;
+  const two = v.filter((x) => x.kinds <= 2).length;
+  const worst = [...v].sort((a, b) => a.kinds - b.kinds)[0]!;
+  console.log(
+    `  ${tier}  ${String(one).padStart(5)}` +
+      `${String(two).padStart(8)}` +
+      `${String(median(v.map((x) => x.kinds))).padStart(9)}` +
+      `${String(worst.kinds).padStart(7)}   ${worst.section}`,
+  );
+}
+console.log(
+  `  (소단원 ${units.length}개 · 씨앗 ${SEEDS.length}개. 「뼈대1」 = 12씨앗이 전부 같은 문형)`,
+);
 
 if (showHeads) {
   for (const tier of ELEM_TIERS) {
