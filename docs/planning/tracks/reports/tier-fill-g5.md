@@ -21,6 +21,7 @@
 | 종이에 대신 빠르게 | `npx tsx scripts/qa/dump-elem-tiers.ts 초5 2-4` |
 | 남은 수 | `npx tsx scripts/qa/probe-elem-extending-tiers.ts 초5` |
 | 새 시험 | `npx vitest run src/__tests__/unit/elemTiersG5DecTop.test.ts` |
+| **「모두 구하시오」가 갈래를 가르나** | `npx tsx scripts/qa/census-elem-answer-lists.ts` (`--selftest` 눈금 9건) |
 | 변이 | `python scripts/qa/mutate-elem-tiers.py g5 --from=72 --to=80` |
 
 ---
@@ -193,7 +194,8 @@ python scripts/qa/mutate-elem-tiers.py g5 --from=72 --to=80
 #### ㉠-1 🔴 리드 지적을 재 봤다 — **「모두 구하시오」는 심화하와 안 갈린다** (전 학년 실측)
 
 리드가 「초4 2-1-4 의 심화하가 이미 «□ 안에 들어갈 수 있는 수를 모두 구하시오» 다」라고
-알려 줘서, 전 학년(230소단원 × 등록 갈래 × 씨앗 8 = **11,152문항**)에 대고 세었다.
+알려 줘서, 전 학년(230소단원 × **등록된** 갈래 × 씨앗 8 = **7,472문항**)에 대고 세었다.
+**다시 잴 수 있게 연장으로 남겼다** — `scripts/qa/census-elem-answer-lists.ts`(눈금 9건).
 
 | 갈래 | 정답이 «나열» (덩어리 안 쉼표) | (덩어리 밖 쉼표) | 둘 중 하나 | 발문이 「모두 …」 |
 |------|------|------|------|------|
