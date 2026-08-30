@@ -258,7 +258,7 @@ for (const tier of ELEM_TIERS) {
 }
 
 console.log(
-  "\n갈래별 4단 표지 내역 (readLadder — 좁은 손 목록, 말로 된 역산은 못 본다)",
+  "\n갈래별 4단 표지 내역 (tier4Rules.marksOf — 말로 건 역산·조건은 못 본다)",
 );
 for (const tier of ELEM_TIERS) {
   const r = rows.get(tier)!;
