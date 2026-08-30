@@ -14,6 +14,12 @@ import type { ElemTierMap } from "./difficulty";
 
 import { decLatex, expr, fracLatex, josa, n, polyName } from "./format";
 import { fracSpec } from "./fracFig";
+import {
+  forwardReachable,
+  pageNumbers,
+  ratOfScaled,
+  type Rat,
+} from "./forwardReach";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divisors, gcd, lcm, simplify, subFrac } from "./math";
 import { intBetween, pick } from "./rng";
@@ -9546,6 +9552,9 @@ const scMul = (a: Sc, b: Sc): Sc => [a[0] * b[0], a[1] + b[1]];
 /** 지면 표기 — `dec` 가 꼬리 0 을 접는다. */
 const scText = (s: Sc): string => dec(s[0], s[1]);
 
+/** 성질 문구 「$1$보다 작은/큰 …」 이 지면에 남기는 수. */
+const ONE: Sc = [1, 0];
+
 /** 꼬리 0 을 접은 뒤 남는 소수 자릿수. 0 이면 자연수다. */
 function scPlaces(s: Sc): number {
   let v = s[0];
@@ -9574,30 +9583,19 @@ function listRo(values: readonly Sc[]): string {
   return `${values.map((v) => n(scText(v))).join(", ")}${dro(scText(last))}는`;
 }
 
+/** 지면에 나갈 수를 유리수로 — 규칙은 `forwardReach.ts` **한 곳**에 있다. */
+const scRat = (v: Sc): Rat => ratOfScaled(v[0], v[1]);
+
 /**
- * **반증 ⑥ 을 기계로 막는다** — 발문의 수에 곱셈(과 한 번의 덧뺄셈)만 순방향으로
- * 써서 답이 나오면 그 문항은 중·상이 아니다.
+ * 반증 ⑥ — 후보를 만들 때 **미리** 거른다.
  *
- * ⚠️ 이 자는 «되짚기가 필요한가»를 못 잰다. **«순방향으로도 되나»만** 잰다 —
- *    걸리면 확실히 아니고, 안 걸린다고 반드시 되짚기인 것은 아니다(그건 사람이 본다).
+ * ⚠️ 여기서 넘기는 목록은 **지면에 찍힐 수를 «예측»한 것**이다. 예측이 새면
+ *    순방향으로 풀리는 문항이 통과한다 — 2026-08-30 에 「$1$보다 작은 소수」의 `$1$`
+ *    과 창의 경계를 빠뜨려 **14건**이 그렇게 샜다. 그래서 **판정기가 지면을 직접 읽어
+ *    다시 잰다**(`probe-elem-tier-backsolve.ts`). 둘이 갈리면 판정기가 옳다.
  */
-function forwardReach(nums: readonly Sc[], answer: Sc): boolean {
-  const want = scQ(answer);
-  for (const a of nums) if (scQ(a) === want) return true;
-  for (let i = 0; i < nums.length; i += 1) {
-    for (let j = 0; j < nums.length; j += 1) {
-      if (i === j) continue;
-      const p = scQ(scMul(nums[i]!, nums[j]!));
-      if (p === want) return true;
-      for (let k = 0; k < nums.length; k += 1) {
-        if (k === i || k === j) continue;
-        const q = scQ(nums[k]!);
-        if (p + q === want || p - q === want) return true;
-      }
-    }
-  }
-  return false;
-}
+const forwardReach = (content: string, answer: Sc): boolean =>
+  forwardReachable(pageNumbers(content), scRat(answer));
 
 /* ── ㉠ 심화중 — 「소수점을 한 자리 잘못 옮긴 수로 계산했다」 ─────────────── */
 
@@ -9633,7 +9631,7 @@ function showsOk(shown: readonly Sc[], want: MisSpec["shows"]): boolean {
   );
 }
 
-function misTasks(spec: MisSpec): MisTask[] {
+function misTasks(spec: MisSpec, render: (t: MisTask) => string): MisTask[] {
   const cached = MIS_CACHE.get(spec.key);
   if (cached) return cached;
   const out: MisTask[] = [];
@@ -9652,13 +9650,17 @@ function misTasks(spec: MisSpec): MisTask[] {
       )
         continue;
       if (scQ(product) === scQ(right)) continue;
+      // 🔴 어떤 수와 곱하는 수가 **같으면** 바른 값이 지면에 보이는 `k×k` 라,
+      //    학생이 되짚지 않고 두 수를 곱해 맞힌다(판정기가 실측으로 잡았다).
+      if (scQ(a) === scQ(k)) continue;
       // 답이 정수로 접히면 「소수의 곱셈」이 지면에서 사라진다(2-4-7 은 자리를
       // 옮기는 소단원이라 정수 답이 정상이므로 부르는 쪽이 끈다).
       if (spec.answerDecimal && scPlaces(right) < 1) continue;
-      const shown = [product, k];
-      if (!showsOk(shown, spec.shows)) continue;
-      if (forwardReach(shown, right)) continue;
-      out.push({ a, k, wrong, product, right });
+      const task: MisTask = { a, k, wrong, product, right };
+      if (!showsOk([product, k], spec.shows)) continue;
+      // 🔴 **지면을 예측하지 않고 읽는다** — 예측하던 판이 14건을 흘렸다.
+      if (forwardReach(render(task), right)) continue;
+      out.push(task);
     }
   }
   MIS_CACHE.set(spec.key, out);
@@ -9678,7 +9680,21 @@ function misplacedMid(
   property: string,
   order: "dec" | "whole",
 ): ElemProblem {
-  const tasks = misTasks(spec);
+  // 🔴 **발문을 여기서 만들어 걸개에 넘긴다.** 걸개가 「지면에 무엇이 찍힐까」를
+  //    예측하면 반드시 샌다 — 성질 문구의 `$1$` 과 되풀이되는 곱하는 수를 빠뜨려
+  //    순방향으로 풀리는 문항 14건이 그렇게 통과했다(2026-08-30 실측).
+  const content = (task: MisTask) => {
+    const kt = scText(task.k);
+    const lead =
+      order === "dec"
+        ? `어떤 수에 ${dj(kt, "을", "를")} 곱해야 할 것을, 어떤 수의 소수점을 한 자리 잘못 옮긴 수에 ${dj(kt, "을", "를")} 곱했더니`
+        : `${n(kt)}에 어떤 수를 곱해야 할 것을, ${n(kt)}에 어떤 수의 소수점을 한 자리 잘못 옮긴 수를 곱했더니`;
+    return (
+      `${lead} ${dj(scText(task.product), "이", "가")} 되었습니다. ` +
+      `어떤 수가 ${property}일 때 바르게 계산한 값을 구하시오.`
+    );
+  };
+  const tasks = misTasks(spec, content);
   if (tasks.length === 0) {
     throw new Error(
       `«심화중» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
@@ -9689,22 +9705,11 @@ function misplacedMid(
     order === "dec"
       ? `${scText(x)}\\times${scText(y)}`
       : `${scText(y)}\\times${scText(x)}`;
-  const kText = scText(t.k);
-  const head =
-    order === "dec"
-      ? `어떤 수에 ${dj(kText, "을", "를")} 곱해야 할 것을, 어떤 수의 소수점을 한 자리 잘못 옮긴 수에 ${dj(kText, "을", "를")} 곱했더니`
-      : `${n(kText)}에 어떤 수를 곱해야 할 것을, ${n(kText)}에 어떤 수의 소수점을 한 자리 잘못 옮긴 수를 곱했더니`;
-  return makeDeep(
-    unit,
-    `${head} ${dj(scText(t.product), "이", "가")} 되었습니다. ` +
-      `어떤 수가 ${property}일 때 바르게 계산한 값을 구하시오.`,
-    expr(scText(t.right)),
-    [
-      `잘못 쓴 수부터 되짚습니다. ${expr(`${times(t.wrong, t.k)}=${scText(t.product)}`)}이므로 잘못 쓴 수는 ${expr(scText(t.wrong))}입니다.`,
-      `소수점을 한쪽으로 옮기면 ${dj(scText(t.a), "이", "가")} 되고 반대쪽으로 옮기면 ${property}가 아니므로, 어떤 수는 ${expr(scText(t.a))}입니다.`,
-      `바르게 계산하면 ${expr(`${times(t.a, t.k)}=${scText(t.right)}`)}입니다.`,
-    ],
-  );
+  return makeDeep(unit, content(t), expr(scText(t.right)), [
+    `잘못 쓴 수부터 되짚습니다. ${expr(`${times(t.wrong, t.k)}=${scText(t.product)}`)}이므로 잘못 쓴 수는 ${expr(scText(t.wrong))}입니다.`,
+    `소수점을 한쪽으로 옮기면 ${dj(scText(t.a), "이", "가")} 되고 반대쪽으로 옮기면 ${property}가 아니므로, 어떤 수는 ${expr(scText(t.a))}입니다.`,
+    `바르게 계산하면 ${expr(`${times(t.a, t.k)}=${scText(t.right)}`)}입니다.`,
+  ]);
 }
 
 /* ── ㉡ 심화상 — 「곱만 알고 두 인수를 모른다 → 짝마다 계산해 견준다」 ────── */
@@ -9736,7 +9741,7 @@ type TopSpec = {
   shows: "under" | "over" | "any";
 };
 
-function topTasks(spec: TopSpec): TopTask[] {
+function topTasks(spec: TopSpec, render: (t: TopTask) => string): TopTask[] {
   const cached = TOP_CACHE.get(spec.key);
   if (cached) return cached;
   const out: TopTask[] = [];
@@ -9771,10 +9776,18 @@ function topTasks(spec: TopSpec): TopTask[] {
             if (rival) continue;
             const decoys = inWindow.filter((o) => scQ(o) !== scQ(other));
             if (decoys.length === 0) continue;
-            const shown = [product, probe, lo, hi];
-            if (!showsOk(shown, spec.shows)) continue;
-            if (forwardReach(shown, decv)) continue;
-            out.push({ product, dec: decv, other, probe, lo, hi, decoys });
+            const task: TopTask = {
+              product,
+              dec: decv,
+              other,
+              probe,
+              lo,
+              hi,
+              decoys,
+            };
+            if (!showsOk([product, probe, lo, hi], spec.shows)) continue;
+            if (forwardReach(render(task), decv)) continue;
+            out.push(task);
           }
         }
       }
@@ -9791,7 +9804,19 @@ function factorTop(
   words: { pair: string; other: string; ask: string },
   order: "dec" | "whole",
 ): ElemProblem {
-  const tasks = topTasks(spec);
+  // 발문을 여기서 만들어 걸개에 넘긴다 — 「무엇이 찍힐까」를 예측하지 않는다.
+  const content = (task: TopTask) => {
+    const pt = scText(task.probe);
+    const cond =
+      order === "dec"
+        ? `${dj(pt, "과", "와")} ${words.other}를 곱한 값`
+        : `${words.other}와 ${dj(pt, "을", "를")} 곱한 값`;
+    return (
+      `${words.pair}${josa(words.pair, "을", "를")} 곱했더니 ${dj(scText(task.product), "이", "가")} 되었습니다. ` +
+      `${cond}이 ${n(scText(task.lo))}보다 크고 ${n(scText(task.hi))}보다 작을 때, ${words.ask}를 구하시오.`
+    );
+  };
+  const tasks = topTasks(spec, content);
   if (tasks.length === 0) {
     throw new Error(
       `«심화상» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
@@ -9810,22 +9835,11 @@ function factorTop(
       i === window.length - 1 ? lj(probeOf(o), "이", "가") : expr(probeOf(o)),
     )
     .join(", ");
-  const probeText = scText(t.probe);
-  const cond =
-    order === "dec"
-      ? `${dj(probeText, "과", "와")} ${words.other}를 곱한 값`
-      : `${words.other}와 ${dj(probeText, "을", "를")} 곱한 값`;
-  return makeDeep(
-    unit,
-    `${words.pair}${josa(words.pair, "을", "를")} 곱했더니 ${dj(scText(t.product), "이", "가")} 되었습니다. ` +
-      `${cond}이 ${n(scText(t.lo))}보다 크고 ${n(scText(t.hi))}보다 작을 때, ${words.ask}를 구하시오.`,
-    expr(scText(t.dec)),
-    [
-      `먼저 조건에 맞는 ${words.other}를 찾습니다. ${listed} 그 사이에 듭니다.`,
-      `그중 어느 것이 ${dj(scText(t.product), "을", "를")} 만드는지 봅니다. ${listRo(t.decoys)} 짝을 만들 수 없습니다.`,
-      `${expr(`${times(t.dec, t.other)}=${scText(t.product)}`)}이므로 ${words.ask}는 ${expr(scText(t.dec))}입니다.`,
-    ],
-  );
+  return makeDeep(unit, content(t), expr(scText(t.dec)), [
+    `먼저 조건에 맞는 ${words.other}를 찾습니다. ${listed} 그 사이에 듭니다.`,
+    `그중 어느 것이 ${dj(scText(t.product), "을", "를")} 만드는지 봅니다. ${listRo(t.decoys)} 짝을 만들 수 없습니다.`,
+    `${expr(`${times(t.dec, t.other)}=${scText(t.product)}`)}이므로 ${words.ask}는 ${expr(scText(t.dec))}입니다.`,
+  ]);
 }
 
 /* ── 후보 묶음 — 소단원 이름이 그대로 조건이다 ─────────────────────────────── */
@@ -10234,9 +10248,7 @@ function pointTasks(): PointTask[] {
                     ? "greater"
                     : null;
               if (side === null) continue;
-              const shown = [product, a, b, probe, cut];
-              if (forwardReach(shown, base)) continue;
-              out.push({
+              const task: PointTask = {
                 product,
                 powers: [a, b],
                 answer: base,
@@ -10244,7 +10256,10 @@ function pointTasks(): PointTask[] {
                 probe,
                 cut,
                 side,
-              });
+              };
+              // 여기서도 «찍힌 지면»을 읽는다 — 예측하지 않는다.
+              if (forwardReach(pointContent(task), base)) continue;
+              out.push(task);
             }
           }
         }
@@ -10255,6 +10270,17 @@ function pointTasks(): PointTask[] {
   return out;
 }
 
+/** 2-4-7 심화상의 발문 — **걸개와 지면이 같은 글을 본다**(예측 금지). */
+function pointContent(t: PointTask): string {
+  const [p1, p2] = t.powers;
+  return (
+    `어떤 소수에 ${n(scText(p1))} 또는 ${dj(scText(p2), "을", "를")} 곱했더니 ` +
+    `${dj(scText(t.product), "이", "가")} 되었습니다. ` +
+    `어떤 소수에 ${dj(scText(t.probe), "을", "를")} 곱한 값이 ` +
+    `${n(scText(t.cut))}보다 ${t.side === "less" ? "작을" : "클"} 때, 어떤 소수를 구하시오.`
+  );
+}
+
 function dm247Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const tasks = pointTasks();
   if (tasks.length === 0) {
@@ -10263,22 +10289,13 @@ function dm247Top(unit: UnitSeed, rng: Rng): ElemProblem {
     );
   }
   const t = pick(rng, tasks);
-  const [p1, p2] = t.powers;
   const say = (v: Sc) =>
     `${scText(v)}\\times${scText(t.probe)}=${scText(scMul(v, t.probe))}`;
-  return makeDeep(
-    unit,
-    `어떤 소수에 ${n(scText(p1))} 또는 ${dj(scText(p2), "을", "를")} 곱했더니 ` +
-      `${dj(scText(t.product), "이", "가")} 되었습니다. ` +
-      `어떤 소수에 ${dj(scText(t.probe), "을", "를")} 곱한 값이 ` +
-      `${n(scText(t.cut))}보다 ${t.side === "less" ? "작을" : "클"} 때, 어떤 소수를 구하시오.`,
-    expr(scText(t.answer)),
-    [
-      `소수점을 되돌리면 어떤 소수는 ${expr(scText(t.answer))} 또는 ${expr(scText(t.otherCand))}입니다. 둘 다 소수라 이것만으로는 못 정합니다.`,
-      `${dj(scText(t.probe), "을", "를")} 각각 곱해 봅니다. ${expr(say(t.answer))}, ${expr(say(t.otherCand))}입니다.`,
-      `${n(scText(t.cut))}보다 ${t.side === "less" ? "작은" : "큰"} 것은 ${expr(scText(scMul(t.answer, t.probe)))}이므로 어떤 소수는 ${expr(scText(t.answer))}입니다.`,
-    ],
-  );
+  return makeDeep(unit, pointContent(t), expr(scText(t.answer)), [
+    `소수점을 되돌리면 어떤 소수는 ${expr(scText(t.answer))} 또는 ${expr(scText(t.otherCand))}입니다. 둘 다 소수라 이것만으로는 못 정합니다.`,
+    `${dj(scText(t.probe), "을", "를")} 각각 곱해 봅니다. ${expr(say(t.answer))}, ${expr(say(t.otherCand))}입니다.`,
+    `${n(scText(t.cut))}보다 ${t.side === "less" ? "작은" : "큰"} 것은 ${expr(scText(scMul(t.answer, t.probe)))}이므로 어떤 소수는 ${expr(scText(t.answer))}입니다.`,
+  ]);
 }
 
 /** 문형 05 — 소수점을 잠시 무시하고 곱한 수. 1보다 작은 소수×자연수. */
