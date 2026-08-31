@@ -88,44 +88,20 @@ export function answerPrintedOnPage(
   return nums.some((v) => same(v, answer));
 }
 
-/**
- * **÷ 한 걸음** — 지면의 두 수 `a`·`b` 에 대해 `a ÷ b` 가 답과 같은가.
+/*
+ * 🔴 **÷ 한 걸음 축은 여기 넣지 마라 — 재고 버린 것이다.**
  *
- * 🔴 `forwardReachable` 의 허용 꼴 넷(`a×b` · `a×b×c` · `a×b±c` · `a×b±c×d`)은
- * **전부 곱을 문다.** 그래서 나눗셈이 첫 걸음인 소단원에서는 그 자가 구조적으로 0 이고,
- * 그 0 은 «깨끗»이 아니라 **«못 셈»** 이다. 실측(2026-08-31 적대 검토 D 축):
+ * 2026-08-31 반증 회차가 실측했다. `probe-elem-tier-backsolve.ts` 머리말이 정본이다:
+ * 「÷ 를 × 처럼」 재면 연산 28.5 · 기본 29.2 · 응용 27.4 · 심화하 31.6 · 심화중 9.2
+ * · 심화상 28.0% — **갈래를 안 가른다.** 심화상의 28% 를 거짓으로 물어 늘 우는 가드가
+ * 되고, 이미 착지한 문항까지 흔든다(2026-08-20 「거짓 경보는 가드를 끈다」).
  *
- * ```
- * 초6 1-1-1 연산  forwardReachable 0/200   ÷한걸음 200/200
- * 초6 1-1-2 연산  forwardReachable 0/200   ÷한걸음 200/200
- * ```
- *
- * 연산 갈래는 **정의상 순방향**이다 — 그 자리에서 0 을 내는 자는 죽은 자다.
- *
- * ⚠️ **한 걸음만 본다.** 두 걸음(`a÷b±c`)은 **쓰면 안 된다** — 음성 대조가 양성을 넘는다
- * (리드 실측: 초6 2-4-4 응용에서 진짜 45 대 답+1 40).
- *
- * ⚠️ **이 자를 쓸 때는 갈래마다 «답+1» 음성 대조를 같이 재라.** 지면에 수가 많으면
- * 아무 답이나 걸린다 — 초6 `2-4-1 심화중` 은 진짜 답 **0%** 인데 답+1 이 **23.5%** 다
- * (거짓 경보 발생기). 두 값이 비슷하면 그 갈래에서 이 축은 **뜻이 없다.**
+ * 「나눗셈 소단원에서 `forwardReachable` 이 0 이다」는 참이지만, 그 0 을 메우는 값이
+ * 이것은 아니다 — **못 셈을 잡음으로 바꾸는 것은 고침이 아니다.**
+ * 초6 2-4-1 심화중 실측: 진짜 답 0/200 인데 **답+1 이 47/200(23.5%)** 이다.
+ * 쓸 자리가 있다고 판단하면 **갈래마다 «답+1» 음성 대조를 같이 재고, 공용 자가 아니라
+ * 그 생성기 안에서** 걸러라(± 한 걸음이 `g6.ts` 안에 사는 것과 같은 까닭).
  */
-export function divOneStepReachable(
-  nums: readonly Rat[],
-  answer: Rat,
-): boolean {
-  for (let i = 0; i < nums.length; i += 1)
-    for (let j = 0; j < nums.length; j += 1) {
-      if (i === j) continue;
-      const a = nums[i]!;
-      const b = nums[j]!;
-      if (a.n === 0 || b.n === 0) continue; // 0 으로 나누거나 0 을 나누는 것은 걸음이 아니다
-      if (same(a, answer) || same(b, answer)) continue; // 재료와 같으면 «한 걸음»이 아니다
-      // a/b == answer  ⟺  a.n·b.d·answer.d == answer.n·a.d·b.n
-      if (a.n * b.d * answer.d === answer.n * a.d * b.n) return true;
-    }
-  return false;
-}
-
 export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
   const products: Rat[] = [];
   for (let i = 0; i < nums.length; i += 1) {

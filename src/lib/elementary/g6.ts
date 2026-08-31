@@ -6,7 +6,6 @@ import { fig, make, makeDeep } from "./make";
 import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
 import {
   answerPrintedOnPage,
-  divOneStepReachable,
   forwardReachable,
   pageNumbers,
   rat,
@@ -8852,10 +8851,7 @@ function backsolveSafeStem(content: string, answer: Rat): boolean {
   return (
     !forwardReachable(nums, answer) &&
     !answerPrintedOnPage(nums, answer) &&
-    !pmOneStepReachable(nums, answer) &&
-    // 🔴 ÷ 한 걸음 — 반증 ⑥ 의 자가 나눗셈 소단원에서 **구조적으로 0** 이라 이 축이 필요하다
-    //    (적대 검토 ⑺ · 리드 지시 ⑥). 1-1-2 심화중이 실측 6.5% 걸렸고 답+1 은 0% 였다.
-    !divOneStepReachable(nums, answer)
+    !pmOneStepReachable(nums, answer)
   );
 }
 
@@ -9071,6 +9067,12 @@ for (let q = 4; q <= 25; q += 1)
           if (win.length < 3 || win.length > 8) continue;
           // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.
           if (win[0]! >= k) continue;
+          // 🔴 창의 **두 끝이 나뉘어 답이 되는** 자리는 안 낸다 — 실측으로 이 갈래에서만
+          //    7.0% 가 그랬고(전부 「$2$ 보다 크고 $8$ 보다 작다」→ $8\div2=4$),
+          //    같은 자의 **답+1 음성 대조는 0.0%** 였다(잡음이 아니다).
+          //    ⚠️ 공용 `forwardReach` 에 ÷ 축을 넣는 길은 **리드가 취소**했다 —
+          //    갈래를 안 가르고 심화상의 28% 를 거짓으로 문다. 그래서 **여기서만** 막는다.
+          if (up % lo === 0 && up / lo === k) continue;
           if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(k)))
             continue;
           wins.push([lo, up]);

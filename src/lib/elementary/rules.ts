@@ -142,6 +142,8 @@ const JOSA_NEEDS_BATCHIM: Record<string, boolean> = {
  *  · `$3$ kg을` 처럼 **단위가 소리를 바꾸는 것**(「킬로그램」이라 «을») — 수식 밖 낱말이
  *    소리의 끝을 정하므로 이 스캐너의 규칙으로는 못 잰다.
  *  · 「$4$ 대 $7$의 비」처럼 수식 사이에 낱말이 낀 것 — 마지막 수식만 본다.
+ *  · 🔴 **지수로 끝나는 것**(`$x^2$` · `$5^{x}$` · `$30^\circ$`) — 마지막 소리가 숫자가
+ *    아니라 「제곱」·「도」다. **잴 수 있는데 안 켰다**(아래 ㉤ 에 근거와 켜는 법).
  */
 export function josaFaults(text: string): string[] {
   const bad: string[] = [];
@@ -151,11 +153,32 @@ export function josaFaults(text: string): string[] {
   let m = re.exec(text);
   while (m !== null) {
     const span = m[1]!;
+    // ㉤ 🔴 **지수로 끝나면 마지막 소리는 그 숫자가 아니라 「제곱」이다** — 판정 밖.
+    //    `$y=ax^2$` 은 「에이 엑스의 **제곱**」이라 «으로»가 맞는데, 끝 숫자 $2$ 를
+    //    「이」로 읽으면 «로»를 요구해 **거짓 경보**가 난다. 2026-08-31 에 이 한 부류가
+    //    중3 이차함수 08·14 에서 **관문을 막았다.**
+    //
+    //    ⚠️ 지수는 **끝에 홀로 선 것**만 문다. `\^[^{}]*$` 로 헐겁게 잡으면
+    //       `$y=ax^2+bx+c$` 의 `^` 까지 물어 「씨」를 「제곱」으로 읽는다(실측 결함).
+    //
+    //    🔴 **잴 수는 있는데 이 회차는 안 켰다 — «못 잼»이 아니라 «안 잼»이다.**
+    //    「제곱」은 받침 ㅂ 이고 「도」($^\circ$)는 무받침이라 소리가 정해진다. 그래서
+    //    켜면 판정이 된다. 실측(2026-08-31, 씨앗 8×변형 6 전 유형):
+    //      · 초등 — 지수로 끝나는 조사 자리 **8**, 전부 `\mathrm{m}^2` 같은 **단위**라
+    //        「제곱미터」로 읽힌다. 즉 켜도 **초등에는 값이 0이다.**
+    //      · 중등 — **84자리**가 걸린다(`$3x^{2}$를`→을 · `$-15x^{3}y^{2}$가`→이 …).
+    //        그중 **14자리**가 `midTypesB.test.ts` 안이라 켜는 순간 관문이 빨개진다.
+    //    켜려면 그 84자리를 **같이** 고쳐야 한다. 안 고치고 켜면 늘 우는 가드가 되고,
+    //    늘 우는 가드는 꺼진다(2026-08-20). 중등 엔진은 이 회차 소관이 아니라 **넘긴다.**
+    //    켤 때는 `final = powArg === "\\circ" ? "none" : "other"` 한 줄이면 된다.
+    const POW = /\^(?:\{([^{}]+)\}|(-?\d+|[A-Za-z]|\\circ))$/;
+    const pow = POW.test(span);
     const asFrac = span.match(/\\frac\{(\d+)\}\{\d+\}$/);
     const asNum = span.match(/(\d+)$/);
-    const digits = asFrac?.[1] ?? asNum?.[1];
-    if (digits !== undefined) {
-      const final = JOSA_FINAL[digits.slice(-1)!]!;
+    const digits = pow ? undefined : (asFrac?.[1] ?? asNum?.[1]);
+    const final =
+      digits === undefined ? undefined : JOSA_FINAL[digits.slice(-1)!]!;
+    if (final !== undefined) {
       const josa = m[2]!;
       if (josa === "로" || josa === "으로") {
         // ㉣ ㄹ 받침과 무받침은 「로」, 그 밖의 받침은 「으로」.

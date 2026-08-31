@@ -45,7 +45,6 @@ import {
 } from "@/lib/elementary/generate";
 import {
   answerPrintedOnPage,
-  divOneStepReachable,
   forwardReachable,
   pageNumbers,
   readRat,
@@ -233,9 +232,16 @@ function splitOf(code: string, content: string): Split | null {
     const step = m / d;
     const cands: number[] = [];
     for (let v = step; v < cap; v += step) if (v >= 2) cands.push(v);
+    const fixed = cands.filter((v) => (d * v) / gcd(imp, d * v) === m);
     return {
       open: cands.length,
-      fixed: cands.filter((v) => (d * v) / gcd(imp, d * v) === m).length,
+      fixed: fixed.length,
+      // 🔴 「답이 후보열의 **첫째**인가」 — `g6.ts` 의 `if (g < 2) continue;` 를 지키는
+      //    유일한 축이다. 약분이 없으면($\gcd=1$) `step` 이 곧 답이라 후보열이
+      //    답부터 시작하고, 「가장 작은 것」 한 수로 풀린다.
+      //    리드 실측(씨앗 0~799): 그 줄을 지우면 **548/800** 이 그렇게 된다(기준 0).
+      atStart: fixed.length === 1 && fixed[0] === cands[0],
+      atEnd: fixed.length === 1 && fixed[0] === cands[cands.length - 1],
     };
   }
 
@@ -392,6 +398,15 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
         if (s.fixed !== 1)
           bad.push(
             `${code} 심화상 seed=${seed}: 둘째 조건이 하나로 못 남긴다(${s.fixed}) — ${p.content}`,
+          );
+        // 🔴 **답이 후보열의 첫째면 「가장 작은 것」 한 수로 풀린다** — 「여럿을 만들어
+        //    견준다」가 겉모습만 남는다. `1-1-3` 에서는 `g6.ts` 의 `if (g < 2) continue;`
+        //    가 이것을 막는데, 2026-08-31 까지 **그 줄을 지켜 주는 시험이 없었다**
+        //    (지워도 공식 4파일 117/117 초록. 리드가 찾았다).
+        //    지금은 지우면 여기서 548/800 꼴로 빨개진다.
+        if (s.atStart === true)
+          bad.push(
+            `${code} 심화상 seed=${seed}: 답이 후보열의 **첫째**다 — ${p.content}`,
           );
       }
     }
@@ -631,53 +646,75 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     expect(coneChecked).toBe(WIDE_SEEDS.length);
   });
 
-  it("🔴 ㉫ ÷ **한 걸음** — 지면의 두 수를 나눠서 답이 나오지 않는다 (적대 ⑺)", () => {
-    // 🔴 반증 ⑥ 의 자는 허용 꼴 넷이 **전부 곱을 물어**, 나눗셈이 첫 걸음인 소단원에서
-    //    구조적으로 0 이다. 판정기 자신이 정한 양성 대조군(「연산 = 정의상 순방향」)에서
-    //    실측 **1-1-1 연산 0/200 · 1-1-2 연산 0/200** 이었다 — 그 0 은 «못 셈»이다.
-    //    그런데 보고서 §4.4 는 그 0 을 세 갈래의 근거로 적었다.
+  it("🔴 ㉫ ÷ **한 걸음** — 재고 **버린** 축이다. 남은 것은 `1-1-2` 국소 가드 하나 (적대 ⑺)", () => {
+    // 🔴 **공용 축은 리드가 취소했다(2026-08-31).** 「÷ 를 × 처럼」 전 갈래에 재면
+    //    연산 28.5 · 기본 29.2 · 응용 27.4 · 심화하 31.6 · 심화중 9.2 · 심화상 28.0% 로
+    //    **갈래를 안 가른다** — 심화상의 28% 를 거짓으로 물어 늘 우는 가드가 된다.
+    //    `probe-elem-tier-backsolve.ts` 머리말이 그 측정의 정본이다.
     //
-    // ⚠️ **이 축은 갈래마다 «답+1» 음성 대조를 같이 재야 뜻이 있다.** 지면에 수가 많으면
-    //    아무 답이나 걸린다 — 초6 `2-4-1 심화중` 은 진짜 답 0% 인데 답+1 이 **23.5%** 다.
-    //    두 값이 비슷하면 그 갈래에서 이 축은 신호가 아니라 잡음이다.
-    const bad: string[] = [];
-    const noise: string[] = [];
-    for (const { code, tier } of BUILT) {
-      const unit = unitOf(code);
-      let hit = 0;
-      let neg = 0;
-      let n = 0;
-      for (const seed of WIDE_SEEDS) {
-        const p = generateElementaryProblem(unit, seed, tier);
-        const a = readRat(p.answer.replace(/\$/g, "").trim());
-        if (!a) continue;
-        n += 1;
-        const nums = pageNumbers(p.content);
-        if (divOneStepReachable(nums, a)) hit += 1;
-        if (divOneStepReachable(nums, { n: a.n + a.d, d: a.d })) neg += 1;
-      }
-      if (hit > 0)
-        bad.push(`${code} ${tier}: ÷ 한 걸음으로 닿는다 ${hit}/${n}`);
-      // 잡음인 갈래는 «0» 이 아무 뜻이 없다 — 다음 사람이 근거로 쓰지 않게 적어 둔다.
-      if (neg > n * 0.1) noise.push(`${code} ${tier}: 답+1 이 ${neg}/${n}`);
-    }
-    expect(bad).toEqual([]);
-    // 🔴 이 회차의 갈래에서는 «답+1» 도 낮다 — 그래서 위 0 이 «깨끗»이다.
-    expect(noise).toEqual([]);
+    // 🔴 그런데 **이 회차 갈래에 대고 재니 한 자리에서만 신호였다**(씨앗 400, 아래 표).
+    //    그래서 공용 자가 아니라 **그 생성기의 창 고르기**에서 막았다
+    //    (`g6.ts` 의 `up % lo === 0 && up / lo === k`). ± 한 걸음이 g6 안에 사는 것과 같다.
+    //
+    //      갈래           진짜 답   답+1(잡음)   판정
+    //      1-1-1 심화중   2.3%      0.5%         잡음과 구분 안 됨
+    //      1-1-2 심화중   7.0%      0.0%         🔴 신호  → 막았다 → 0.0%
+    //      2-5-4 심화중   5.3%      4.0%         잡음과 구분 안 됨
+    //      2-6-3 심화상   0.0%      3.8%         자가 잡음만 낸다
+    //
+    // ⚠️ 이 시험의 자는 **제품 규칙의 사본이 아니라 계량기**다. 제품이 막는 것은
+    //    「창의 두 끝이 나뉘어 답이 되는 자리」 하나이고, 이 자는 지면의 **모든 쌍**을 본다.
+    //    그 줄을 지우면 1-1-2 가 7% 로 돌아와 이 시험이 빨개진다(실측으로 확인했다).
+    const divOneStep = (nums: readonly Rat[], answer: Rat): boolean => {
+      const same = (x: Rat, y: Rat) => x.n * y.d === y.n * x.d;
+      for (let i = 0; i < nums.length; i += 1)
+        for (let j = 0; j < nums.length; j += 1) {
+          if (i === j) continue;
+          const a = nums[i]!;
+          const b = nums[j]!;
+          if (a.n === 0 || b.n === 0) continue;
+          if (same(a, answer) || same(b, answer)) continue;
+          if (a.n * b.d * answer.d === answer.n * a.d * b.n) return true;
+        }
+      return false;
+    };
 
-    // 🔴 양성·음성 눈금 — 이 자가 «예»와 «아니오»를 둘 다 낼 수 있어야 한다.
+    // 🔴 양성·음성 눈금을 **판정보다 먼저** 둔다 — 자가 「예」와 「아니오」를 둘 다
+    //    낼 수 있어야 아래 0 이 «깨끗»이고, 아니면 «못 셈»이다.
+    expect(divOneStep(pageNumbers("$12$ $4$"), readRat("3")!), "양성").toBe(
+      true,
+    );
     expect(
-      divOneStepReachable(pageNumbers("$12$ $4$"), readRat("3")!),
-      "양성 — $12\\div4=3$",
-    ).toBe(true);
-    expect(
-      divOneStepReachable(pageNumbers("$12$ $5$"), readRat("3")!),
+      divOneStep(pageNumbers("$12$ $5$"), readRat("3")!),
       "음성 — 나누어떨어지지 않는다",
     ).toBe(false);
     expect(
-      divOneStepReachable(pageNumbers("$12$ $4$"), readRat("12")!),
+      divOneStep(pageNumbers("$12$ $4$"), readRat("12")!),
       "음성 — 답이 지면의 수 그대로면 «한 걸음»이 아니다",
     ).toBe(false);
+
+    // 🔴 여기서 지키는 것은 **`1-1-2` 하나뿐**이다. 다른 갈래는 위 표대로 잡음이라
+    //    0 을 요구하면 거짓 경보가 된다 — 요구하지 않고 **수치만 남긴다.**
+    const unit = unitOf("1-1-2");
+    let hit = 0;
+    let neg = 0;
+    let n = 0;
+    for (const seed of WIDE_SEEDS) {
+      const p = generateElementaryProblem(unit, seed, "심화중");
+      const a = readRat(p.answer.replace(/\$/g, "").trim());
+      if (!a) continue;
+      n += 1;
+      const nums = pageNumbers(p.content);
+      if (divOneStep(nums, a)) hit += 1;
+      if (divOneStep(nums, { n: a.n + a.d, d: a.d })) neg += 1;
+    }
+    expect(n, "1-1-2 심화중 표본이 있어야 한다").toBeGreaterThan(20);
+    expect(`1-1-2 적중 ${hit}/${n}`).toBe(`1-1-2 적중 0/${n}`);
+    // 음성 대조가 커지면 위 0 이 «깨끗»이 아니라 우연이 된다.
+    expect(
+      neg,
+      `답+1 음성 대조가 ${neg}/${n} — 이 갈래에서 자가 잡음이 됐다`,
+    ).toBe(0);
   });
 
   it("🔴 ㉪ `2-6-2` 와 `2-5-2` 는 **같은 문항이 되지 않는다** (적대 검토 ⑷)", () => {
