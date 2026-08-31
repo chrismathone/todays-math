@@ -900,6 +900,90 @@ G5_MUTS = [
         "      if (forwardReach(render(task), right)) continue;",
         "      if (forwardReach(render(task), right) && false) continue;",
     ),
+    # ── 물결 2 (1-5 · 1-6 · 2-6) 확대 갈래 — 잠금은 `elemTiersG5W2.test.ts` 다 ──
+    (
+        "[물결2 1-5-1 심화중] 답이 버려야 할 쪽 후보다",
+        "  return makeDeep(unit, content(t), expr(fracLatex(an, ad)), [",
+        "  return makeDeep(unit, content(t), expr(fracLatex(t.hi[0], t.hi[1])), [",
+    ),
+    (
+        "[물결2 1-5-3 심화중] 더한 쪽도 진분수여도 통과 (마디가 안 굳는다)",
+        "      if (w2proper(hi)) continue; // 더한 쪽도 진분수면 마디가 안 굳는다",
+        "      if (w2proper(hi) && false) continue; // 변이",
+    ),
+    (
+        "[물결2 1-5-4 심화중] 뺀 쪽도 대분수여도 통과 (마디가 안 굳는다)",
+        "      if (w2mixed(lo)) continue; // 뺀 쪽도 대분수면 마디가 안 굳는다",
+        "      if (w2mixed(lo) && false) continue; // 변이",
+    ),
+    (
+        "[물결2 1-5 심화상] 다른 후보가 성질을 안 만족해도 통과 (성질이 갈라 준다 = 중)",
+        "      if (!holds(p1) || !holds(o1)) continue;",
+        "      if (!holds(p1)) continue;",
+    ),
+    # ⚠️ 여기 있던 「두 조건의 다른 후보가 겹쳐도 통과」는 **판정 거부**(산출물이 그대로)
+    #    를 냈고, 그 거부가 옳았다 — `o1 = a+2d1 > a > a-2d2 = o2` 라 겹칠 수가 없다.
+    #    죽은 줄이었으므로 생성기에서 **지웠고**, 그 자리에 실제로 무는 둘을 넣는다.
+    (
+        "[물결2 1-5 심화상] 둘째 조건의 다른 후보가 성질을 안 만족해도 통과",
+        "        if (!holds(p2) || !holds(o2)) continue;",
+        "        if (!holds(p2)) continue;",
+    ),
+    (
+        "[물결2 1-5 심화상] 답이 첫째 조건의 «다른 후보»다",
+        "  return makeDeep(unit, content(t), expr(L(t.a)), [",
+        "  return makeDeep(unit, content(t), expr(L(t.o1)), [",
+    ),
+    (
+        "[물결2 1-6-1 심화중] 답이 «다른 붙이기»의 긴 변이다",
+        "        const ans = Math.max(joined, 2 * other);",
+        "        const ans = Math.max(2 * joined, other);",
+    ),
+    (
+        "[물결2 1-6-1 심화상] 발문의 «변의 수의 차»가 한 개 어긋난다",
+        "        out.push({ s1, s2, diff: n1 - n2, per, steps });",
+        "        out.push({ s1, s2, diff: n1 - n2 + 1, per, steps });",
+    ),
+    (
+        "[물결2 1-6-2 심화상] 넓이의 짝이 둘뿐이어도 통과 (견줄 것이 없다)",
+        "      const pairs = w2Pairs(area);\n      if (pairs.length < 3 || pairs.length > 5) continue;",
+        "      const pairs = w2Pairs(area);\n      if (pairs.length !== 2) continue;",
+    ),
+    (
+        "[물결2 1-6-4 심화상] 답이 삼각형의 밑변이 아니라 높이다",
+        "  return makeDeep(unit, content(t), n(t.y), [\n    `평행사변형의 넓이는",
+        "  return makeDeep(unit, content(t), n(t.x), [\n    `평행사변형의 넓이는",
+    ),
+    (
+        "[물결2 1-6-5 심화중] 긴 대각선이 짧은 대각선의 배수가 아니다",
+        "      const long = short * mult;",
+        "      const long = short * mult + 2;",
+    ),
+    (
+        "[물결2 1-6-5 심화상] 합이 짝을 하나로 못 골라도 통과",
+        "      const sum = x + y;\n      if (pairs.filter(([u, v]) => u + v === sum).length !== 1) continue;",
+        "      const sum = x + y + 2;\n      if (pairs.filter(([u, v]) => u + v === sum).length !== 1) continue;",
+    ),
+    (
+        "[물결2 2-6-1 심화중] 답이 나 모둠이 아니라 가 모둠의 점수 합",
+        "            const ans = naAvg * na;",
+        "            const ans = naAvg * ga;",
+    ),
+    (
+        "[물결2 2-6-2 심화중] 앞의 경기가 한 경기뿐 (되짚을 것이 없다)",
+        "          if (front < 2 || front > 12) continue;",
+        "          if (front !== 1) continue;",
+    ),
+    (
+        "[물결2 2-6-3 심화중] 가능성의 첫 배수가 곧 답 (마디가 이미 굳어 있다)",
+        "      for (let times = 2; times <= 6; times += 1) {",
+        "      for (let times = 1; times <= 1; times += 1) {",
+    ),
+    (
+        "[물결2 2-6-3 심화상] 첫 후보가 곧 답 (만들어 견줄 것이 없다)",
+        "      for (let k = 2; k <= 4; k += 1) {\n        const add = k * (b - 2 * a);",
+        "      for (let k = 1; k <= 1; k += 1) {\n        const add = k * (b - 2 * a);",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -1698,6 +1782,8 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elemTiersG5.test.ts",
             "src/__tests__/unit/elemTiersG5DecTop.test.ts",
+            # 물결 2(1-5·1-6·2-6)의 확대 갈래를 잠그는 자리.
+            "src/__tests__/unit/elemTiersG5W2.test.ts",
         ],
         "grade": "초5",
         "sections": [
@@ -1719,8 +1805,14 @@ TARGETS = {
             "1-5-2",
             "1-5-3",
             "1-5-4",
+            # 🔴 물결 2 에서 1-6-1·1-6-2·1-6-5 에 확대 갈래가 붙었다. 여기 안 넣으면
+            #    그 소단원만 건드리는 변이가 프로브에 안 잡혀 «산출물이 그대로다»로
+            #    **거짓 판정 거부**가 난다(2026-08-24 g4 가 하마터면 밟을 뻔한 자리).
+            "1-6-1",
+            "1-6-2",
             "1-6-3",
             "1-6-4",
+            "1-6-5",
             "2-1-1",
             "2-1-2",
             "2-1-3",

@@ -15,8 +15,10 @@ import type { ElemTierMap } from "./difficulty";
 import { decLatex, expr, fracLatex, josa, n, polyName } from "./format";
 import { fracSpec } from "./fracFig";
 import {
+  answerPrintedOnPage,
   forwardReachable,
   pageNumbers,
+  rat,
   ratOfScaled,
   type Rat,
 } from "./forwardReach";
@@ -10996,7 +10998,11 @@ function avg261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = n1 * a1 + n2 * a2;
   return make(
     unit,
-    `${n(1)}모둠 ${n(n1)}명의 수학 점수 평균은 ${n(a1)}점이고, ${n(2)}모둠 ${n(n2)}명의 평균은 ${n(a2)}점입니다. 두 모둠 전체의 평균은 몇 점입니까?`,
+    // 🔴 모둠 이름을 «가·나» 로 적는다 (2026-08-31). `$1$모둠`·`$2$모둠` 으로 적으면
+    //    그 `1`·`2` 가 **지면 수**가 되어 반증 ⑥ 이 오작동한다 — 실측으로 씨앗 여덟 중
+    //    넷이 «순방향으로 닿는다»로 잡혔고 전부 산술 우연이었다(토대 초5 §7).
+    //    난이도는 한 글자도 안 바뀐다. 같은 소단원의 확대 갈래도 «가·나» 를 쓴다.
+    `가 모둠 ${n(n1)}명의 수학 점수 평균은 ${n(a1)}점이고, 나 모둠 ${n(n2)}명의 평균은 ${n(a2)}점입니다. 두 모둠 전체의 평균은 몇 점입니까?`,
     n(A),
     `모둠마다 인원이 다르므로 두 평균을 더해 ${n(2)}로 나누면 안 됩니다. 점수의 합을 구해 전체 인원으로 나눕니다. ${expr(`${n1}\\times${a1}=${n1 * a1}`)}, ${expr(`${n2}\\times${a2}=${n2 * a2}`)}이므로 합은 ${n(sum)}점이고, 전체 인원이 ${n(n1 + n2)}명이므로 ${expr(`${sum}\\div${n1 + n2}=${A}`)}입니다.`,
   );
@@ -13736,6 +13742,901 @@ function net256Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * 확대 갈래 «심화중»·«심화상» — 물결 2: 1-5 · 1-6 · 2-6 (D-113 · D-115, 2026-08-31)
+ *
+ * 잣대는 D-115 ⑶·⑷·⑾ 그대로다.
+ *
+ * ```
+ * 심화하  되짚기 사슬의 마디마다 값이 **하나로 굳는다**            (안 건드렸다)
+ * 심화중  굳지 않는 마디가 **하나** 있고 **그 소단원의 성질**이 굳힌다.
+ *         굳히는 성질이 후보를 «끝까지 계산하지 않고» 걸러 낸다 (⑾)
+ * 심화상  성질로 못 굳혀 후보를 **실제로 다 만들어 견주어야** 하나가 남고,
+ *         그 후보를 **발문이 주지 않고 되짚기가 만든다**
+ * ```
+ *
+ * 🔴 **비운 자리가 있다.** 1-5-2(둘) · 1-6-2 심화중 · 1-6-3(둘) · 1-5-1 심화상 ·
+ *    2-6-1 심화상 · 2-6-2 심화상. 까닭은 `tier-fill-g5-w2.md` §3 에 한 줄씩 적었다 —
+ *    억지로 세우면 그것이 결함이다(D-115 ⑹).
+ *
+ * ## 이 회차가 지키는 규약 셋
+ *
+ * ⑴ **지면을 예측하지 않고 읽는다.** 후보를 고를 때 발문을 실제로 만들어
+ *    `pageNumbers` 로 읽고 `forwardReachable` 에 댄다(반증 ⑥). 파일럿이
+ *    「지면에 무엇이 찍힐까」를 예측하다 14건을 흘린 자리다(2026-08-30).
+ * ⑵ **답이 발문에 그대로 있으면 버린다** — 반증 ⑥ 과는 **다른 축**이고
+ *    (`forwardReach.ts` 의 `answerPrintedOnPage` 머리말), 여기서는 둘 다 건다.
+ * ⑶ **개수는 한글로 적는다.** 「$4$명」의 `4` 는 자료가 아니라 낱말인데 지면 수가 되어
+ *    ⑥ 이 오작동한다(초5 2-5 함정 ⑷ 실측). 그래서 「네 명」·「세 경기」로 적는다.
+ */
+
+/** 세는 수 — 한글. ⑶ 참조. */
+const W2_COUNT: Record<number, string> = {
+  2: "두",
+  3: "세",
+  4: "네",
+  5: "다섯",
+  6: "여섯",
+  7: "일곱",
+  8: "여덟",
+  9: "아홉",
+};
+
+/** 정수 하나를 유리수로. */
+const w2int = (v: number): Rat => rat(v, 1);
+
+/**
+ * 반증 ⑥ + 「답이 지면에 그대로」. **참은 찍힌 발문에서 온다** — 규칙은
+ * `forwardReach.ts` 한 곳이고 여기서는 입력만 만든다.
+ */
+function w2Bad(content: string, answer: Rat): boolean {
+  const nums = pageNumbers(content);
+  return answerPrintedOnPage(nums, answer) || forwardReachable(nums, answer);
+}
+
+/** 후보 줄은 한 번만 만든다 — 씨앗마다 다시 훑으면 시험이 느려진다. */
+const W2_POOLS = new Map<string, unknown[]>();
+function w2Pool<T>(key: string, build: () => T[]): T[] {
+  const hit = W2_POOLS.get(key);
+  if (hit) return hit as T[];
+  const made = build();
+  W2_POOLS.set(key, made as unknown[]);
+  return made;
+}
+
+/** 후보가 하나도 없으면 **던진다** — 조용히 다른 꼴을 내면 아무도 모른다. */
+function w2Pick<T>(
+  unit: UnitSeed,
+  tier: string,
+  rng: Rng,
+  pool: readonly T[],
+): T {
+  if (pool.length === 0) {
+    throw new Error(
+      `«${tier}» 후보가 하나도 없습니다: ${unit.grade} ${unit.section}`,
+    );
+  }
+  return pick(rng, pool);
+}
+
+/** `[분자, 분모]` — 늘 기약이고 양수다. */
+type W2Fr = readonly [number, number];
+
+const w2add = (x: W2Fr, y: W2Fr): W2Fr => addFrac(x[0], x[1], y[0], y[1]);
+const w2sub = (x: W2Fr, y: W2Fr): W2Fr => subFrac(x[0], x[1], y[0], y[1]);
+/** `x < y` 인가 — 부동소수를 판정에 쓰지 않는다. */
+const w2lt = (x: W2Fr, y: W2Fr): boolean => x[0] * y[1] < y[0] * x[1];
+const w2eq = (x: W2Fr, y: W2Fr): boolean => x[0] === y[0] && x[1] === y[1];
+const w2rat = (x: W2Fr): Rat => rat(x[0], x[1]);
+/** 진분수인가 — `0 < x < 1`. 이 대단원에서 **굳히는 성질**이다. */
+const w2proper = (x: W2Fr): boolean => x[0] > 0 && x[0] < x[1];
+/** 대분수인가 — `1` 보다 크고 자연수가 아니다. */
+const w2mixed = (x: W2Fr): boolean => x[0] > x[1] && x[1] !== 1;
+
+/** 기약 진분수 전부 (분모가 `dens` 안). */
+function w2ProperAll(dens: readonly number[]): W2Fr[] {
+  const out: W2Fr[] = [];
+  for (const d of dens)
+    for (let i = 1; i < d; i += 1) if (gcd(i, d) === 1) out.push([i, d]);
+  return out;
+}
+
+/** 곱이 `p` 인 자연수 짝 `[작은, 큰]` — 같은 짝은 뺀다. */
+function w2Pairs(p: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(p)) {
+    const e = p / d;
+    if (d < e) out.push([d, e]);
+  }
+  return out;
+}
+
+/* ────────── 1-5 분수의 덧셈과 뺄셈 — 확대 갈래 ──────────
+ *
+ * 굳히는 성질은 **소단원 이름**이다(D-113 반증 ③): 1-5-1·1-5-3 은 «진분수»,
+ * 1-5-2·1-5-4 는 «대분수». ⚠️ 후보를 지우는 근거가 «음수라서»면 그것은 학년 제약이지
+ * 소단원 성질이 아니다(토대 초5 1-5 함정 ⑴) — 그래서 아래 셋은 **버려지는 후보가
+ * 양수인데도 그 소단원의 수가 아니어서** 지워지도록 구성으로 잡았다.
+ *
+ * 🔴 **1-5-2 는 심화중도 비웠다.** 1-5-1 에서 마디를 여는 것은 «진분수+진분수는 $2$보다
+ *    작다»인데 **대분수 덧셈에는 그런 상한이 없다** — 자연수 부분 후보가 무한해
+ *    창(범위)이나 발문 조건을 붙여야 하고, 그러면 굳히는 근거가 소단원 성질이 아니게 된다.
+ * 🔴 **덧셈 둘의 심화상도 비웠다.** 덧셈은 역이 유일해 «되짚기가 만드는 후보»가
+ *    구조적으로 안 생긴다. 조건을 둘 붙이면 그것은 1-5-3 판과 같은 문항이 된다.
+ */
+
+const W2_FRAC_DENS = [3, 4, 5, 6, 8, 9, 10, 12] as const;
+
+/* ── 1-5-1 심화중 — 「합의 **자연수 부분**을 안 말한다」 ── */
+
+type W2SumTask = { b: W2Fr; f: W2Fr; a: W2Fr; hi: W2Fr };
+
+function w2Sum151(): W2SumTask[] {
+  const out: W2SumTask[] = [];
+  const all = w2ProperAll(W2_FRAC_DENS);
+  for (const b of all) {
+    for (const f of all) {
+      if (b[1] === f[1]) continue; // 통분이 살아 있어야 이 대단원 계산이다
+      if (!w2lt(b, f)) continue; // f > b 라야 «$1$을 더한 쪽»이 진분수를 벗어난다
+      const a = w2sub(f, b);
+      if (!w2proper(a)) continue;
+      if (w2eq(a, b) || w2eq(a, f)) continue;
+      if (a[1] > 24) continue;
+      // 되짚기가 만드는 **다른 후보** — 합이 `1\frac{f}` 인 쪽. 이것이 진분수면
+      // 마디가 안 굳어 답이 둘이 된다.
+      const other = w2add(a, [1, 1]);
+      if (w2proper(other)) continue;
+      out.push({ b, f, a, hi: other });
+    }
+  }
+  return out;
+}
+
+function add151Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2SumTask) =>
+    `어떤 진분수에 ${frj(t.b[0], t.b[1], "을", "를")} 더한 값의 분수 부분이 ${frj(t.f[0], t.f[1], "이", "가")} 되었습니다. 어떤 수를 구하시오.`;
+  const pool = w2Pool("151mid", () =>
+    w2Sum151().filter((t) => !w2Bad(content(t), w2rat(t.a))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const [an, ad] = t.a;
+  const [bn, bd] = t.b;
+  const [fn, fd] = t.f;
+  return makeDeep(unit, content(t), expr(fracLatex(an, ad)), [
+    `진분수에 진분수를 더하면 ${n(2)}보다 작으므로, 합은 ${fr(fn, fd)} 또는 ${mx(1, fn, fd)}입니다.`,
+    `합이 ${mx(1, fn, fd)}이면 어떤 수는 합이 ${fr(fn, fd)}일 때보다 ${n(1)}만큼 크므로 ${n(1)}보다 커서 진분수가 아닙니다. 그러므로 합은 ${fr(fn, fd)}입니다.`,
+    `어떤 수는 ${expr(`\\frac{${fn}}{${fd}}-\\frac{${bn}}{${bd}}=${fracLatex(an, ad)}`)}입니다. 검산하면 ${expr(`${fracLatex(an, ad)}+\\frac{${bn}}{${bd}}=${fracLatex(fn, fd)}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-5-3 심화중 — 「차의 **방향**을 안 말한다」 ── */
+
+type W2DiffTask = { p: W2Fr; q: W2Fr; lo: W2Fr; hi: W2Fr };
+
+function w2Diff153(): W2DiffTask[] {
+  const out: W2DiffTask[] = [];
+  const all = w2ProperAll(W2_FRAC_DENS);
+  for (const p of all) {
+    for (const q of all) {
+      if (p[1] === q[1]) continue;
+      if (!w2lt(q, p)) continue; // 뺀 쪽이 양수여야 한다
+      const lo = w2sub(p, q);
+      const hi = w2add(p, q);
+      if (!w2proper(lo)) continue;
+      if (w2proper(hi)) continue; // 더한 쪽도 진분수면 마디가 안 굳는다
+      if (w2eq(lo, p) || w2eq(lo, q)) continue;
+      if (lo[1] > 24 || hi[1] > 24) continue;
+      out.push({ p, q, lo, hi });
+    }
+  }
+  return out;
+}
+
+function sub153Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2DiffTask) =>
+    `어떤 진분수와 ${fr(t.p[0], t.p[1])}의 차가 ${fr(t.q[0], t.q[1])}입니다. 어떤 수를 구하시오.`;
+  const pool = w2Pool("153mid", () =>
+    w2Diff153().filter((t) => !w2Bad(content(t), w2rat(t.lo))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const [pn, pd] = t.p;
+  const [qn, qd] = t.q;
+  return makeDeep(unit, content(t), expr(fracLatex(t.lo[0], t.lo[1])), [
+    `차가 ${fr(qn, qd)}이므로 어떤 수는 ${fr(pn, pd)}보다 ${fr(qn, qd)}만큼 크거나 작습니다.`,
+    `더한 쪽은 ${expr(`\\frac{${pn}}{${pd}}+\\frac{${qn}}{${qd}}=${fracLatex(t.hi[0], t.hi[1])}`)}입니다. 이 값은 ${n(1)}보다 크므로 진분수가 아닙니다.`,
+    `그러므로 어떤 수는 ${expr(`\\frac{${pn}}{${pd}}-\\frac{${qn}}{${qd}}=${fracLatex(t.lo[0], t.lo[1])}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-5-4 심화중 — 같은 축, 굳히는 성질이 «대분수» ── */
+
+type W2MixTask = { p: W2Fr; q: W2Fr; lo: W2Fr; hi: W2Fr };
+
+function w2Diff154(): W2MixTask[] {
+  const out: W2MixTask[] = [];
+  const props = w2ProperAll(W2_FRAC_DENS);
+  const bases: W2Fr[] = [];
+  for (const f of props)
+    for (const w of [1, 2, 3]) bases.push([w * f[1] + f[0], f[1]]);
+  for (const p of bases) {
+    for (const q of props) {
+      if (p[1] === q[1]) continue;
+      const lo = w2sub(p, q);
+      const hi = w2add(p, q);
+      if (lo[0] <= 0) continue;
+      if (w2mixed(lo)) continue; // 뺀 쪽도 대분수면 마디가 안 굳는다
+      if (!w2mixed(hi)) continue;
+      if (hi[1] > 24 || lo[1] > 24) continue;
+      out.push({ p, q, lo, hi });
+    }
+  }
+  return out;
+}
+
+function sub154Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2MixTask) =>
+    `어떤 대분수와 ${expr(fracLatex(t.p[0], t.p[1]))}의 차가 ${fr(t.q[0], t.q[1])}입니다. 어떤 수를 구하시오.`;
+  const pool = w2Pool("154mid", () =>
+    w2Diff154().filter((t) => !w2Bad(content(t), w2rat(t.hi))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = fracLatex(t.p[0], t.p[1]);
+  const [qn, qd] = t.q;
+  return makeDeep(unit, content(t), expr(fracLatex(t.hi[0], t.hi[1])), [
+    `차가 ${fr(qn, qd)}이므로 어떤 수는 ${expr(P)}보다 ${fr(qn, qd)}만큼 크거나 작습니다.`,
+    `뺀 쪽은 ${expr(`${P}-\\frac{${qn}}{${qd}}=${fracLatex(t.lo[0], t.lo[1])}`)}입니다. 이 값은 ${n(1)}보다 작으므로 대분수가 아닙니다.`,
+    `그러므로 어떤 수는 ${expr(`${P}+\\frac{${qn}}{${qd}}=${fracLatex(t.hi[0], t.hi[1])}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-5-3 · 1-5-4 심화상 — 「조건 둘, 어느 쪽도 성질로 안 갈린다」 ──
+ *
+ * 조건 하나마다 후보가 **둘**인데 **둘 다 그 소단원의 수**라 성질이 아무것도 안 지운다.
+ * 네 값을 실제로 만들어 견주어야 겹치는 하나가 남는다(D-115 ⑾ 의 «상»).
+ */
+
+type W2TwoTask = {
+  a: W2Fr;
+  p1: W2Fr;
+  d1: W2Fr;
+  o1: W2Fr;
+  p2: W2Fr;
+  d2: W2Fr;
+  o2: W2Fr;
+};
+
+function w2Two(kind: "proper" | "mixed"): W2TwoTask[] {
+  const out: W2TwoTask[] = [];
+  const props = w2ProperAll([3, 4, 5, 6, 8, 10, 12]);
+  const holds = kind === "proper" ? w2proper : w2mixed;
+  const answers: W2Fr[] =
+    kind === "proper" ? props : props.map((f): W2Fr => [2 * f[1] + f[0], f[1]]);
+  for (const a of answers) {
+    for (const d1 of props) {
+      const p1 = w2add(a, d1);
+      const o1 = w2add(p1, d1);
+      if (!holds(p1) || !holds(o1)) continue;
+      if (p1[1] > 24 || o1[1] > 24) continue;
+      for (const d2 of props) {
+        if (d2[1] === d1[1]) continue;
+        const p2 = w2sub(a, d2);
+        const o2 = w2sub(p2, d2);
+        if (p2[0] <= 0 || o2[0] <= 0) continue;
+        if (!holds(p2) || !holds(o2)) continue;
+        if (p2[1] > 24 || o2[1] > 24) continue;
+        // 🔴 **「다른 후보 둘이 겹치면 버린다」는 안 건다 — 걸 수 없다.**
+        //    변이가 그것을 「산출물이 그대로다」로 되돌려 줬고, 재 보니 참이다:
+        //    `o1 = a + 2d1 > a > a - 2d2 = o2` 라 **겹칠 수가 없다.**
+        //    죽은 줄을 남겨 두면 다음 사람이 「여기가 답의 유일성을 지킨다」고 읽는다.
+        //    유일성을 실제로 지키는 것은 이 부등식이고, 시험이 `both.length === 1` 로
+        //    **산출물에서** 다시 센다(`elemTiersG5W2` ⑵).
+        if (w2eq(p1, p2) || w2eq(d1, d2)) continue;
+        if (w2eq(a, p1) || w2eq(a, p2) || w2eq(a, d1) || w2eq(a, d2)) continue;
+        out.push({ a, p1, d1, o1, p2, d2, o2 });
+      }
+    }
+  }
+  return out;
+}
+
+function w2TwoProblem(
+  unit: UnitSeed,
+  rng: Rng,
+  key: string,
+  kindWord: "진분수" | "대분수",
+): ElemProblem {
+  const content = (t: W2TwoTask) =>
+    `어떤 ${kindWord}가 있습니다. 이 수와 ${expr(fracLatex(t.p1[0], t.p1[1]))}의 차는 ${expr(fracLatex(t.d1[0], t.d1[1]))}이고, 이 수와 ${expr(fracLatex(t.p2[0], t.p2[1]))}의 차는 ${expr(fracLatex(t.d2[0], t.d2[1]))}입니다. 어떤 수를 구하시오.`;
+  const pool = w2Pool(key, () =>
+    w2Two(kindWord === "진분수" ? "proper" : "mixed").filter(
+      (t) => !w2Bad(content(t), w2rat(t.a)),
+    ),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const L = (x: W2Fr) => fracLatex(x[0], x[1]);
+  return makeDeep(unit, content(t), expr(L(t.a)), [
+    `첫째 조건에서 어떤 수는 ${expr(`${L(t.p1)}+${L(t.d1)}=${L(t.o1)}`)} 또는 ${expr(`${L(t.p1)}-${L(t.d1)}=${L(t.a)}`)}입니다. 둘 다 ${kindWord}라 여기서는 갈리지 않습니다.`,
+    `둘째 조건에서 어떤 수는 ${expr(`${L(t.p2)}+${L(t.d2)}=${L(t.a)}`)} 또는 ${expr(`${L(t.p2)}-${L(t.d2)}=${L(t.o2)}`)}입니다.`,
+    `두 조건을 모두 만족하는 것은 ${lj(L(t.a), "이므로", "이므로")} 어떤 수는 ${expr(L(t.a))}입니다.`,
+  ]);
+}
+
+const sub153Top = (unit: UnitSeed, rng: Rng): ElemProblem =>
+  w2TwoProblem(unit, rng, "153top", "진분수");
+
+const sub154Top = (unit: UnitSeed, rng: Rng): ElemProblem =>
+  w2TwoProblem(unit, rng, "154top", "대분수");
+
+/* ────────── 1-6 다각형의 둘레와 넓이 — 확대 갈래 ──────────
+ *
+ * 되짚을 값은 **공식의 곱(또는 합)** 이고, 굳히는 것은 그 소단원의 도형 성질이다.
+ *
+ * 🔴 **창(범위)을 쓰지 않는다.** 「곱 → 인수 짝 → 창으로 둘 남김 → 곱해 견줌」은
+ *    파일럿 2-4 가 이미 가져갔고, 토대 §2.1 §1 ㉠ 이 「1-6 은 범위가 아니라 **둘레**로
+ *    짝을 고르라」고 못 박았다. 그래서 1-6-2 는 **둘레**로, 1-6-4 는 **차**로,
+ *    1-6-5 는 **합**으로 고른다 — 형제끼리도 고르는 축이 다르다(D-66 ⑸).
+ * 🔴 **1-6-2 심화중과 1-6-3 둘은 비웠다.** 까닭은 보고서 §3.
+ */
+
+/* ── 1-6-1 심화중 — 「어느 변끼리 이어 붙였는지 안 말한다」 ── */
+
+type W2JoinTask = {
+  w: number;
+  h: number;
+  joined: number;
+  per: number;
+  ans: number;
+};
+
+function w2Join(): W2JoinTask[] {
+  const out: W2JoinTask[] = [];
+  for (let h = 2; h <= 12; h += 1) {
+    for (let w = h + 1; w <= 15; w += 1) {
+      for (const joined of [w, h]) {
+        const other = joined === w ? h : w;
+        const per = 2 * (joined + 2 * other);
+        const ans = Math.max(joined, 2 * other);
+        if (ans === joined) continue; // 정사각형이거나 긴 변이 발문의 수다
+        if (ans === w || ans === h || ans === per) continue;
+        out.push({ w, h, joined, per, ans });
+      }
+    }
+  }
+  return out;
+}
+
+function per61Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2JoinTask) =>
+    `가로가 ${n(t.w)} cm, 세로가 ${n(t.h)} cm인 직사각형 모양 종이 두 장을 변끼리 꼭 맞게 이어 붙여 하나의 큰 직사각형을 만들었습니다. 만든 직사각형의 둘레가 ${n(t.per)} cm일 때, 만든 직사각형의 긴 변은 몇 cm입니까?`;
+  const pool = w2Pool("161mid", () =>
+    w2Join().filter((t) => !w2Bad(content(t), w2int(t.ans))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const one = 2 * (t.w + t.h);
+  const both = 2 * one;
+  const gap = both - t.per;
+  const other = t.joined === t.w ? t.h : t.w;
+  return makeDeep(unit, content(t), n(t.ans), [
+    `종이 한 장의 둘레는 ${expr(`(${t.w}+${t.h})\\times2=${one}`)} cm이므로 두 장의 둘레의 합은 ${expr(`${one}\\times2=${both}`)} cm입니다.`,
+    `이어 붙이면 붙인 자리의 두 변이 둘레에서 빠집니다. 빠진 길이는 ${expr(`${both}-${t.per}=${gap}`)} cm이므로 붙인 변은 ${expr(`${gap}\\div2=${t.joined}`)} cm입니다.`,
+    `곧 ${n(t.joined)} cm인 변끼리 붙였으므로 만든 직사각형은 한 변이 ${n(t.joined)} cm, 다른 한 변이 ${expr(`${other}+${other}=${2 * other}`)} cm입니다. 긴 변은 ${n(t.ans)} cm입니다.`,
+  ]);
+}
+
+/* ── 1-6-1 심화상 — 「둘레가 같은 두 정다각형」 ── */
+
+type W2PolyStep = { per: number; n1: number; n2: number; ok: boolean };
+type W2PolyTask = {
+  s1: number;
+  s2: number;
+  diff: number;
+  per: number;
+  steps: W2PolyStep[];
+};
+
+function w2Poly(): W2PolyTask[] {
+  const out: W2PolyTask[] = [];
+  for (let s1 = 2; s1 <= 12; s1 += 1) {
+    for (let s2 = s1 + 1; s2 <= 15; s2 += 1) {
+      const base = lcm(s1, s2);
+      for (let k = 2; k <= 4; k += 1) {
+        const per = base * k;
+        // 규모로 어렵게 만들지 않는다(토대 1-6 함정 ⑹) — 나눗셈은 곱셈구구 안이다.
+        if (per > 120) continue;
+        const n1 = per / s1;
+        const n2 = per / s2;
+        if (n2 < 3 || n1 > 15) continue;
+        const steps: W2PolyStep[] = [];
+        for (let j = 1; j <= k; j += 1) {
+          const p = base * j;
+          steps.push({ per: p, n1: p / s1, n2: p / s2, ok: p / s2 >= 3 });
+        }
+        if (!steps.some((s) => !s.ok || s.n1 - s.n2 !== n1 - n2)) continue;
+        out.push({ s1, s2, diff: n1 - n2, per, steps });
+      }
+    }
+  }
+  return out;
+}
+
+function per61Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2PolyTask) =>
+    `한 변의 길이가 ${n(t.s1)} cm인 정다각형과 한 변의 길이가 ${n(t.s2)} cm인 정다각형의 둘레가 같습니다. 두 정다각형의 변의 수의 차가 ${n(t.diff)}개일 때, 두 정다각형의 둘레는 몇 cm입니까?`;
+  const pool = w2Pool("161top", () =>
+    w2Poly().filter((t) => !w2Bad(content(t), w2int(t.per))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const 걸음: string[] = [
+    `두 정다각형의 둘레는 같으므로 ${nro(t.s1)}도 ${nro(t.s2)}도 나누어떨어져야 합니다.`,
+  ];
+  for (const s of t.steps) {
+    const head = `둘레가 ${n(s.per)} cm이면 변의 수는 ${expr(`${s.per}\\div${t.s1}=${s.n1}`)}개와 ${expr(`${s.per}\\div${t.s2}=${s.n2}`)}개입니다.`;
+    걸음.push(
+      s.ok
+        ? `${head} 차는 ${expr(`${s.n1}-${s.n2}=${s.n1 - s.n2}`)}개입니다.`
+        : `${head} 변이 ${n(s.n2)}개인 다각형은 없으므로 될 수 없습니다.`,
+    );
+  }
+  걸음.push(`차가 ${n(t.diff)}개인 것은 둘레가 ${n(t.per)} cm일 때입니다.`);
+  return makeDeep(unit, content(t), n(t.per), 걸음);
+}
+
+/* ── 1-6-2 심화상 — 「넓이가 만드는 인수 짝을 **둘레**로 고른다」 ── */
+
+type W2RectTask = {
+  a: number;
+  b: number;
+  area: number;
+  per: number;
+  square: number;
+  pairs: [number, number][];
+};
+
+function w2Rect(): W2RectTask[] {
+  const out: W2RectTask[] = [];
+  for (let b = 2; b <= 10; b += 1) {
+    for (let a = b + 1; a <= 20; a += 1) {
+      const area = a * b;
+      if (area > 72) continue;
+      const pairs = w2Pairs(area);
+      if (pairs.length < 3 || pairs.length > 5) continue;
+      // 🔴 **묻는 값이 «넓이»여야 한다.** 1-6-1 과 1-6-2 를 가르는 것은 답의 종류다
+      //    (1-6-1 응용은 «길이», 1-6-2 응용은 «넓이» — g5.ts 1-6 머리말·
+      //    `elementaryG5Tiers` 가 「넓이는 몇 cm²입니까?」로 못 박는다).
+      //    첫 판은 가로(길이)를 물었다가 그 시험에 걸렸다 — 되짚은 가로를 **한 변으로
+      //    하는 정사각형의 넓이**로 한 걸음 더 가서 소단원 안에 남는다.
+      if (a > 12) continue; // 정사각형 넓이가 곱셈구구 밖으로 나가지 않게
+      const per = 2 * (a + b);
+      const square = a * a;
+      if (square === area || square === per) continue;
+      out.push({ a, b, area, per, square, pairs });
+    }
+  }
+  return out;
+}
+
+function area62Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2RectTask) =>
+    `가로와 세로의 길이가 모두 자연수 cm이고 가로가 세로보다 긴 직사각형이 있습니다. 넓이가 ${n(t.area)} cm²이고 둘레가 ${n(t.per)} cm일 때, 이 직사각형의 가로를 한 변으로 하는 정사각형의 넓이는 몇 cm²입니까?`;
+  const pool = w2Pool("162top", () =>
+    w2Rect().filter((t) => !w2Bad(content(t), w2int(t.square))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const list = t.pairs
+    .map(([x, y]) => `${nj(x, "과", "와")} ${n(y)}`)
+    .join(", ");
+  const pers = t.pairs
+    .map(([x, y]) => expr(`(${x}+${y})\\times2=${2 * (x + y)}`))
+    .join(", ");
+  return makeDeep(unit, content(t), n(t.square), [
+    `넓이가 ${n(t.area)} cm²이 되는 가로와 세로의 짝은 ${list}입니다.`,
+    `둘레를 차례로 구하면 ${pers}입니다.`,
+    `둘레가 ${n(t.per)} cm인 것은 ${n(t.b)} cm와 ${n(t.a)} cm이므로 가로는 ${n(t.a)} cm입니다.`,
+    `정사각형의 넓이는 한 변을 두 번 곱한 ${expr(`${t.a}\\times${t.a}=${t.square}`)}이므로 ${n(t.square)} cm²입니다.`,
+  ]);
+}
+
+/* ── 1-6-4 심화중 — 「넓이의 합을 어떻게 나누는지 안 굳는다」 ── */
+
+type W2ParaTask = {
+  base: number;
+  height: number;
+  sum: number;
+  tri: number;
+  para: number;
+};
+
+function w2Para(): W2ParaTask[] {
+  const out: W2ParaTask[] = [];
+  for (let base = 3; base <= 14; base += 1) {
+    for (let height = 2; height <= 14; height += 1) {
+      if (base === height) continue;
+      const prod = base * height;
+      if (prod % 2 !== 0) continue;
+      const tri = prod / 2;
+      const sum = tri * 3;
+      if (sum > 240) continue;
+      if (height === sum || height === base) continue;
+      out.push({ base, height, sum, tri, para: prod });
+    }
+  }
+  return out;
+}
+
+function area64Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2ParaTask) =>
+    `밑변의 길이가 같고 높이도 같은 평행사변형과 삼각형이 있습니다. 두 도형의 넓이의 합이 ${n(t.sum)} cm²이고 밑변이 ${n(t.base)} cm일 때, 높이는 몇 cm입니까?`;
+  const pool = w2Pool("164mid", () =>
+    w2Para().filter((t) => !w2Bad(content(t), w2int(t.height))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.height), [
+    `밑변과 높이가 같으면 삼각형의 넓이는 평행사변형의 반입니다. 그러므로 두 넓이의 합은 삼각형 넓이의 ${n(3)}배입니다.`,
+    `삼각형의 넓이는 ${expr(`${t.sum}\\div3=${t.tri}`)} cm²이고, 평행사변형의 넓이는 ${expr(`${t.tri}\\times2=${t.para}`)} cm²입니다.`,
+    `평행사변형의 밑변이 ${n(t.base)} cm이므로 높이는 ${expr(`${t.para}\\div${t.base}=${t.height}`)} cm입니다.`,
+  ]);
+}
+
+/* ── 1-6-4 심화상 — 「넓이의 $2$배가 만드는 짝을 **차**로 고른다」 ── */
+
+type W2TriTask = {
+  pb: number;
+  ph: number;
+  area: number;
+  prod: number;
+  pairs: [number, number][];
+  x: number;
+  y: number;
+  diff: number;
+};
+
+function w2Tri(): W2TriTask[] {
+  const out: W2TriTask[] = [];
+  for (let pb = 2; pb <= 9; pb += 1) {
+    for (let ph = 2; ph <= 9; ph += 1) {
+      const area = pb * ph;
+      const prod = area * 2;
+      const pairs = w2Pairs(prod);
+      if (pairs.length < 3 || pairs.length > 5) continue;
+      for (const [x, y] of pairs) {
+        const diff = y - x;
+        if (pairs.filter(([u, v]) => v - u === diff).length !== 1) continue;
+        if (y === pb || y === ph || y === diff || y === area) continue;
+        out.push({ pb, ph, area, prod, pairs, x, y, diff });
+      }
+    }
+  }
+  return out;
+}
+
+function area64Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2TriTask) =>
+    `밑변이 ${n(t.pb)} cm, 높이가 ${n(t.ph)} cm인 평행사변형과 넓이가 같은 삼각형이 있습니다. 이 삼각형의 밑변과 높이가 모두 자연수 cm이고 밑변이 높이보다 ${n(t.diff)} cm 길 때, 삼각형의 밑변은 몇 cm입니까?`;
+  const pool = w2Pool("164top", () =>
+    w2Tri().filter((t) => !w2Bad(content(t), w2int(t.y))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const list = t.pairs
+    .map(([x, y]) => `${nj(x, "과", "와")} ${n(y)}`)
+    .join(", ");
+  const diffs = t.pairs.map(([x, y]) => expr(`${y}-${x}=${y - x}`)).join(", ");
+  return makeDeep(unit, content(t), n(t.y), [
+    `평행사변형의 넓이는 ${expr(`${t.pb}\\times${t.ph}=${t.area}`)} cm²이고 삼각형도 넓이가 같습니다. 삼각형은 넓이에 ${n(2)}를 곱하면 밑변과 높이의 곱이므로 ${expr(`${t.area}\\times2=${t.prod}`)}입니다.`,
+    `곱이 ${n(t.prod)}인 자연수 짝은 ${list}입니다. 차를 차례로 구하면 ${diffs}입니다.`,
+    `차가 ${n(t.diff)} cm인 것은 ${n(t.x)} cm와 ${n(t.y)} cm이므로 밑변은 ${n(t.y)} cm입니다.`,
+  ]);
+}
+
+/* ── 1-6-5 심화중 — 「대각선의 곱을 어떻게 가르는지 안 굳는다」 ── */
+
+type W2RhombTask = {
+  short: number;
+  mult: number;
+  area: number;
+  prod: number;
+  long: number;
+};
+
+function w2Rhomb(): W2RhombTask[] {
+  const out: W2RhombTask[] = [];
+  for (let short = 3; short <= 12; short += 1) {
+    for (const mult of [2, 3]) {
+      const prod = short * short * mult;
+      if (prod % 2 !== 0) continue;
+      const area = prod / 2;
+      const long = short * mult;
+      if (area > 100) continue;
+      if (long === area || long === mult || long === short) continue;
+      out.push({ short, mult, area, prod, long });
+    }
+  }
+  return out;
+}
+
+function area65Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2RhombTask) =>
+    `어떤 마름모의 넓이가 ${n(t.area)} cm²입니다. 긴 대각선의 길이가 짧은 대각선의 길이의 ${n(t.mult)}배일 때, 긴 대각선은 몇 cm입니까?`;
+  const pool = w2Pool("165mid", () =>
+    w2Rhomb().filter((t) => !w2Bad(content(t), w2int(t.long))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const sq = t.short * t.short;
+  return makeDeep(unit, content(t), n(t.long), [
+    `마름모의 넓이에 ${n(2)}를 곱하면 두 대각선의 길이의 곱이므로 ${expr(`${t.area}\\times2=${t.prod}`)}입니다.`,
+    `긴 대각선이 짧은 대각선의 ${n(t.mult)}배이므로, 짧은 대각선을 두 번 곱한 값의 ${n(t.mult)}배가 ${n(t.prod)}입니다. ${expr(`${t.prod}\\div${t.mult}=${sq}`)}이고 곱셈구구에서 두 번 곱해 ${lj(String(sq), "이", "가")} 되는 수는 ${n(t.short)}입니다.`,
+    `짧은 대각선이 ${n(t.short)} cm이므로 긴 대각선은 그 ${n(t.mult)}배인 ${n(t.long)} cm입니다.`,
+  ]);
+}
+
+/* ── 1-6-5 심화상 — 「두 변의 곱이 만드는 짝을 **합**으로 고른다」 ── */
+
+type W2TrapTask = {
+  h: number;
+  area: number;
+  prod: number;
+  pairs: [number, number][];
+  x: number;
+  y: number;
+  sum: number;
+};
+
+function w2Trap(): W2TrapTask[] {
+  const out: W2TrapTask[] = [];
+  for (let x = 1; x <= 10; x += 1) {
+    for (let y = x + 1; y <= 20; y += 1) {
+      const prod = x * y;
+      if (prod > 72) continue;
+      const pairs = w2Pairs(prod);
+      if (pairs.length < 3 || pairs.length > 5) continue;
+      const sum = x + y;
+      if (pairs.filter(([u, v]) => u + v === sum).length !== 1) continue;
+      for (let h = 2; h <= 10; h += 1) {
+        if ((sum * h) % 2 !== 0) continue;
+        const area = (sum * h) / 2;
+        if (area > 200) continue;
+        if (y === h || y === area || y === prod) continue;
+        out.push({ h, area, prod, pairs, x, y, sum });
+      }
+    }
+  }
+  return out;
+}
+
+function area65Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2TrapTask) =>
+    `높이가 ${n(t.h)} cm인 사다리꼴의 넓이가 ${n(t.area)} cm²입니다. 윗변과 아랫변의 길이가 모두 자연수 cm이고 두 변의 길이의 곱이 ${n(t.prod)}일 때, 아랫변은 몇 cm입니까?`;
+  const pool = w2Pool("165top", () =>
+    w2Trap().filter((t) => !w2Bad(content(t), w2int(t.y))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const list = t.pairs
+    .map(([x, y]) => `${nj(x, "과", "와")} ${n(y)}`)
+    .join(", ");
+  const sums = t.pairs.map(([x, y]) => expr(`${x}+${y}=${x + y}`)).join(", ");
+  return makeDeep(unit, content(t), n(t.y), [
+    `사다리꼴은 넓이에 ${n(2)}를 곱하고 높이로 나누면 두 변의 길이의 합이므로 ${expr(`${t.area}\\times2\\div${t.h}=${t.sum}`)} cm입니다.`,
+    `곱이 ${n(t.prod)}인 자연수 짝은 ${list}입니다. 합을 차례로 구하면 ${sums}입니다.`,
+    `합이 ${n(t.sum)} cm인 것은 ${n(t.x)} cm와 ${n(t.y)} cm이므로 아랫변은 ${n(t.y)} cm입니다.`,
+  ]);
+}
+
+/* ────────── 2-6 평균과 가능성 — 확대 갈래 ──────────
+ *
+ * 굳히는 재료는 소단원이 가르치는 것 그 자체다 — ㉠ 평균은 자료 사이에 있고
+ * **인원이 많은 쪽으로 치우친다**(2-6-1) ㉡ 평균보다 많은 만큼과 모자란 만큼이
+ * **맞물린다**(2-6-2) ㉢ 가능성 분수만으로는 **개수가 안 굳는다**(2-6-3).
+ *
+ * 🔴 **2-6-1·2-6-2 의 심화상은 비웠다.** 까닭은 보고서 §3 — 둘 다 후보를 만들려면
+ *    인원(경기) 짝을 훑어야 하는데 그것이 곧 열거이고, 열거 축은 D-115 ⑵ 가 기각했다.
+ */
+
+/* ── 2-6-1 심화중 — 「어느 모둠이 어느 평균인지 안 말한다」 ── */
+
+type W2AvgTask = {
+  low: number;
+  high: number;
+  ga: number;
+  na: number;
+  naHigh: boolean;
+  total: number;
+  ans: number;
+};
+
+function w2Avg261(): W2AvgTask[] {
+  const out: W2AvgTask[] = [];
+  for (let low = 55; low <= 85; low += 5) {
+    for (let high = low + 10; high <= 95; high += 5) {
+      for (let ga = 3; ga <= 9; ga += 1) {
+        for (let na = 3; na <= 9; na += 1) {
+          if (ga === na) continue;
+          for (const naHigh of [true, false]) {
+            const naAvg = naHigh ? high : low;
+            const gaAvg = naHigh ? low : high;
+            const sum = naAvg * na + gaAvg * ga;
+            if (sum % (ga + na) !== 0) continue;
+            const total = sum / (ga + na);
+            if (total === low || total === high) continue;
+            const ans = naAvg * na;
+            if (ans === low || ans === high || ans === total) continue;
+            // 성질이 **실제로 일해야** 한다 — 인원이 많은 쪽의 평균에 더 가깝다.
+            const bigAvg = na > ga ? naAvg : gaAvg;
+            if (
+              Math.abs(total - bigAvg) >=
+              Math.abs(total - (na > ga ? gaAvg : naAvg))
+            )
+              continue;
+            out.push({ low, high, ga, na, naHigh, total, ans });
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+function avg261Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2AvgTask) =>
+    `가 모둠과 나 모둠의 수학 점수 평균은 ${n(t.low)}점과 ${n(t.high)}점입니다. 가 모둠은 ${W2_COUNT[t.ga]} 명, 나 모둠은 ${W2_COUNT[t.na]} 명이고 두 모둠 전체의 평균은 ${n(t.total)}점입니다. 나 모둠 학생들의 점수의 합은 몇 점입니까?`;
+  const pool = w2Pool("261mid", () =>
+    w2Avg261().filter((t) => !w2Bad(content(t), w2int(t.ans))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const naAvg = t.naHigh ? t.high : t.low;
+  const bigLabel = t.na > t.ga ? "나" : "가";
+  const bigAvg = t.na > t.ga ? naAvg : t.naHigh ? t.low : t.high;
+  return makeDeep(unit, content(t), n(t.ans), [
+    `전체 평균 ${n(t.total)}점은 ${n(t.low)}점보다 ${expr(`${t.total}-${t.low}=${t.total - t.low}`)}점 높고, ${n(t.high)}점보다 ${expr(`${t.high}-${t.total}=${t.high - t.total}`)}점 낮습니다.`,
+    `평균은 학생 수가 많은 쪽으로 치우치므로, 학생 수가 더 많은 ${bigLabel} 모둠의 평균이 더 가까운 ${n(bigAvg)}점입니다.`,
+    `그러므로 나 모둠의 평균은 ${n(naAvg)}점이고, 나 모둠 학생들의 점수의 합은 ${expr(`${naAvg}\\times${t.na}=${t.ans}`)}점입니다.`,
+  ]);
+}
+
+/* ── 2-6-2 심화중 — 「앞의 경기 수를 안 말한다」 ── */
+
+type W2GameTask = {
+  low: number;
+  high: number;
+  total: number;
+  back: number;
+  front: number;
+  ans: number;
+  who: string;
+};
+
+function w2Avg262(): W2GameTask[] {
+  const out: W2GameTask[] = [];
+  for (let low = 4; low <= 12; low += 1) {
+    for (let total = low + 1; total <= 18; total += 1) {
+      for (let high = total + 1; high <= 22; high += 1) {
+        for (let back = 2; back <= 4; back += 1) {
+          const over = (high - total) * back;
+          if (over % (total - low) !== 0) continue;
+          const front = over / (total - low);
+          if (front < 2 || front > 12) continue;
+          const ans = front + back;
+          if (ans === low || ans === high || ans === total) continue;
+          out.push({ low, high, total, back, front, ans, who: "" });
+        }
+      }
+    }
+  }
+  return out;
+}
+
+function avg262Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2GameTask) =>
+    `${wj(t.who, "은", "는")} 앞의 몇 경기에서 평균 ${n(t.low)}점을 얻었고, 뒤의 ${W2_COUNT[t.back]} 경기에서는 평균 ${n(t.high)}점을 얻었습니다. 전체 평균이 ${n(t.total)}점일 때 ${wj(t.who, "은", "는")} 모두 몇 경기를 했습니까?`;
+  const pool = w2Pool("262mid", () =>
+    w2Avg262()
+      .flatMap((t) => FRAC_NAMES.map((who) => ({ ...t, who })))
+      .filter((t) => !w2Bad(content(t), w2int(t.ans))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const over = (t.high - t.total) * t.back;
+  return makeDeep(unit, content(t), n(t.ans), [
+    `뒤의 ${W2_COUNT[t.back]} 경기는 전체 평균보다 ${expr(`${t.high}-${t.total}=${t.high - t.total}`)}점씩 많으므로 모두 ${expr(`${t.high - t.total}\\times${t.back}=${over}`)}점이 남습니다.`,
+    `앞의 경기들은 전체 평균보다 ${expr(`${t.total}-${t.low}=${t.total - t.low}`)}점씩 모자랍니다. 모자란 만큼이 남는 만큼과 같아야 하므로 앞의 경기는 ${expr(`${over}\\div${t.total - t.low}=${t.front}`)}경기입니다.`,
+    `그러므로 모두 ${expr(`${t.front}+${t.back}=${t.ans}`)}경기입니다.`,
+  ]);
+}
+
+/* ── 2-6-3 심화중 — 「가능성만으로는 개수가 안 굳는다」 ── */
+
+type W2PosTask = {
+  a: number;
+  b: number;
+  times: number;
+  blue: number;
+  red: number;
+};
+
+function w2Pos263(): W2PosTask[] {
+  const out: W2PosTask[] = [];
+  for (let b = 3; b <= 12; b += 1) {
+    for (let a = 1; a < b; a += 1) {
+      if (gcd(a, b) !== 1) continue;
+      for (let times = 2; times <= 6; times += 1) {
+        if (b * times > 60) continue;
+        const blue = (b - a) * times;
+        const red = a * times;
+        if (red === blue || red === a || red === b) continue;
+        out.push({ a, b, times, blue, red });
+      }
+    }
+  }
+  return out;
+}
+
+function pos263Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2PosTask) =>
+    `주머니에 빨간 구슬과 파란 구슬만 들어 있습니다. 구슬 한 개를 꺼낼 때 꺼낸 구슬이 빨간색일 가능성이 ${frj(t.a, t.b, "이고", "이고")} 파란 구슬이 ${n(t.blue)}개일 때, 빨간 구슬은 몇 개입니까?`;
+  const pool = w2Pool("263mid", () =>
+    w2Pos263().filter((t) => !w2Bad(content(t), w2int(t.red))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.red), [
+    `빨간색일 가능성이 ${fr(t.a, t.b)}이므로 전체를 ${nj(t.b, "묶음으로", "묶음으로")} 똑같이 나누면 빨간 구슬이 ${n(t.a)}묶음, 파란 구슬이 ${expr(`${t.b}-${t.a}=${t.b - t.a}`)}묶음입니다.`,
+    `파란 구슬이 ${n(t.blue)}개이므로 한 묶음은 ${expr(`${t.blue}\\div${t.b - t.a}=${t.times}`)}개입니다.`,
+    `빨간 구슬은 ${n(t.a)}묶음이므로 ${expr(`${t.times}\\times${t.a}=${t.red}`)}개입니다.`,
+  ]);
+}
+
+/* ── 2-6-3 심화상 — 「되짚기가 만든 줄에 한 번 더 계산해 견준다」 ── */
+
+type W2PosTopTask = {
+  a: number;
+  b: number;
+  k: number;
+  add: number;
+  red: number;
+  blue: number;
+};
+
+function w2Pos263Top(): W2PosTopTask[] {
+  const out: W2PosTopTask[] = [];
+  for (let b = 3; b <= 12; b += 1) {
+    for (let a = 1; a < b; a += 1) {
+      if (gcd(a, b) !== 1) continue;
+      if (b <= 2 * a) continue; // 반반이 되려면 지금 가능성이 반보다 작아야 한다
+      for (let k = 2; k <= 4; k += 1) {
+        const add = k * (b - 2 * a);
+        if (add < 2 || add > 20) continue;
+        if (b * k > 60) continue;
+        const blue = (b - a) * k;
+        const red = a * k;
+        if (blue === add || blue === a || blue === b) continue;
+        out.push({ a, b, k, add, red, blue });
+      }
+    }
+  }
+  return out;
+}
+
+function pos263Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W2PosTopTask) =>
+    `주머니에 빨간 구슬과 파란 구슬만 들어 있습니다. 구슬 한 개를 꺼낼 때 꺼낸 구슬이 빨간색일 가능성은 ${fr(t.a, t.b)}입니다. 이 주머니에 빨간 구슬 ${n(t.add)}개를 더 넣었더니 빨간색일 가능성이 반반이 되었습니다. 파란 구슬은 몇 개입니까?`;
+  const pool = w2Pool("263top", () =>
+    w2Pos263Top().filter((t) => !w2Bad(content(t), w2int(t.blue))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const 걸음: string[] = [
+    `반반이 되었다는 것은 더 넣은 뒤 빨간 구슬과 파란 구슬의 수가 같다는 뜻입니다. 파란 구슬은 늘지 않으므로, 파란 구슬의 수가 곧 더 넣은 뒤의 빨간 구슬의 수입니다.`,
+    `가능성이 ${fr(t.a, t.b)}인 주머니는 빨간 구슬이 ${n(t.a)}개·파란 구슬이 ${nj(t.b - t.a, "개일", "개일")} 수도 있고, 그것을 똑같이 몇 배 한 것일 수도 있습니다.`,
+  ];
+  for (let j = 1; j <= t.k; j += 1) {
+    const red = t.a * j;
+    const blue = (t.b - t.a) * j;
+    const after = red + t.add;
+    걸음.push(
+      after === blue
+        ? `빨간 ${n(red)}개·파란 ${n(blue)}개이면 더 넣은 뒤 빨간 구슬은 ${expr(`${red}+${t.add}=${after}`)}개로 파란 구슬과 같습니다.`
+        : `빨간 ${n(red)}개·파란 ${n(blue)}개이면 더 넣은 뒤 빨간 구슬은 ${expr(`${red}+${t.add}=${after}`)}개라 파란 구슬 ${n(blue)}개와 다릅니다.`,
+    );
+  }
+  걸음.push(`그러므로 파란 구슬은 ${n(t.blue)}개입니다.`);
+  return makeDeep(unit, content(t), n(t.blue), 걸음);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -13851,6 +14752,7 @@ export const G5_TIERS: ElemTierMap = {
     기본: add151Read,
     응용: add151Apply,
     심화하: add151Deep,
+    심화중: add151Mid,
   },
   "초5|1-5-2": {
     연산: add152Calc,
@@ -13863,12 +14765,16 @@ export const G5_TIERS: ElemTierMap = {
     기본: sub153Read,
     응용: sub153Apply,
     심화하: sub153Deep,
+    심화중: sub153Mid,
+    심화상: sub153Top,
   },
   "초5|1-5-4": {
     연산: sub154Calc,
     기본: sub154Read,
     응용: sub154Apply,
     심화하: sub154Deep,
+    심화중: sub154Mid,
+    심화상: sub154Top,
   },
   "초5|2-1-1": {
     연산: rng211Calc,
@@ -13993,18 +14899,22 @@ export const G5_TIERS: ElemTierMap = {
     기본: avg261Read,
     응용: avg261Apply,
     심화하: avg261Deep,
+    심화중: avg261Mid,
   },
   "초5|2-6-2": {
     연산: avg262Calc,
     기본: avg262Read,
     응용: avg262Apply,
     심화하: avg262Deep,
+    심화중: avg262Mid,
   },
   "초5|2-6-3": {
     연산: pos263Calc,
     기본: pos263Read,
     응용: pos263Apply,
     심화하: pos263Deep,
+    심화중: pos263Mid,
+    심화상: pos263Top,
   },
   "초5|2-3-1": {
     연산: cong231Calc,
@@ -14071,6 +14981,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: per61Read,
     응용: per61Apply,
     심화하: per61Deep,
+    심화중: per61Mid,
+    심화상: per61Top,
   },
   "초5|1-6-3": {
     연산: unit63Calc,
@@ -14083,17 +14995,22 @@ export const G5_TIERS: ElemTierMap = {
     기본: area64Read,
     응용: area64Apply,
     심화하: area64Deep,
+    심화중: area64Mid,
+    심화상: area64Top,
   },
   "초5|1-6-5": {
     연산: area65Calc,
     기본: area65Read,
     응용: area65Apply,
     심화하: area65Deep,
+    심화중: area65Mid,
+    심화상: area65Top,
   },
   "초5|1-6-2": {
     연산: area62Calc,
     기본: area62Read,
     응용: area62Apply,
     심화하: area62Deep,
+    심화상: area62Top,
   },
 };

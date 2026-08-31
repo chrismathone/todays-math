@@ -2894,9 +2894,14 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
   });
 
   it("이름 약속 — 「진분수」는 진분수만, 「대분수」는 대분수가 낀다 (⑵)", () => {
+    // ⚠️ **소단원마다 자기 갈래를 돈다**(2026-08-31 물결 2). 형제 넷을 한 루프에 넣고
+    //    대표 하나(`1-5-1`)의 `tiersOf` 로 돌면, **형제 중 하나만 확대 갈래를 채운 날**
+    //    다른 형제에서 `generateElementaryProblem` 이 던진다 —
+    //    `helpers/elemTiers` 머리말이 「그러면 루프를 소단원마다 쪼개라」고 적어 둔 자리다.
+    //    실제로 1-5-1 에 «심화중» 이 붙고 1-5-2 는 비운 날 이 시험이 빨개졌다.
     for (const seed of SEEDS) {
-      for (const tier of tiersOf(unitOf("1-5-1"))) {
-        for (const code of ["1-5-1", "1-5-3"] as const) {
+      for (const code of ["1-5-1", "1-5-3"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           // 이름이 거는 것은 **피연산자**다 — 진분수끼리 더해도 «합»은 대분수가 될 수
           // 있고(교과서도 그렇게 쓴다), 심화의 역산 발문은 그 합을 내건다.
@@ -2912,14 +2917,18 @@ describe("[초5 1-5] 난이도 4단 확대 (D-72 6차)", () => {
             ).toBe(false);
           }
         }
-        for (const code of ["1-5-2", "1-5-4"] as const) {
+      }
+      for (const code of ["1-5-2", "1-5-4"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           expect(
             /\d\\frac\{/.test(c),
             `${code} ${tier} @${seed} 대분수 소단원에 대분수가 없다\n${c}`,
           ).toBe(true);
         }
-        // 덧셈 소단원은 뺄셈 문장을 쓰지 않는다.
+      }
+      // 덧셈 소단원은 뺄셈 문장을 쓰지 않는다.
+      for (const tier of tiersOf(unitOf("1-5-1"))) {
         expect(
           /뺐더니|뺀 |덜어|남은|더 많이|중에서/.test(
             problem("1-5-1", tier, seed).content,
@@ -4641,9 +4650,12 @@ describe("[초5 2-6] 난이도 4단 확대 (D-72 10차)", () => {
     for (let seed = 0; seed < 200; seed += 1) {
       const p = problem("2-6-1", "심화하", seed);
       const label = `2-6-1 심화 @${seed}`;
-      // $1$모둠 $n1$명 … $a1$점 … $2$모둠 $n2$명 … $a2$점
+      // 가 모둠 $n1$명 … $a1$점 … 나 모둠 $n2$명 … $a2$점
+      // ⚠️ 모둠 이름을 «$1$모둠»으로 적던 때는 앞의 두 자리를 건너뛰어야 했다.
+      //    「가·나」로 바꾸면서(반증 ⑥ 오작동, 2026-08-31) 자리도 앞으로 당겼다 —
+      //    자리로 읽는 검사는 발문 표기가 바뀌면 **조용히 엉뚱한 수를 읽는다.**
       const v = intsIn(p.content);
-      const [, n1, a1, , n2, a2] = v;
+      const [n1, a1, n2, a2] = v;
       expect(n1, `${label} 발문을 못 읽었다\n${p.content}`).toBeGreaterThan(0);
       expect(
         n1,
