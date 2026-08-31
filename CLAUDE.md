@@ -19,7 +19,7 @@
 | `docs/planning/11-score-predictor.md` | **기출 예상 점수 판독기 설계 SSOT** — 실측 근거·엔진 계층<br>·backtest 결과·배점 보정기(§10). '오늘의 시험' 작업 전 필독 |
 | `docs/planning/12-discard-candidates.md` | 폐기 후보 문항 목록 (`build-discard-list.ts` 가 생성) |
 | `docs/planning/15-remaining-defects-review.md` | 적대적 리뷰 잔여 결함 해결 방안 검토 — 우선순위·원장님 결정 대기 항목 |
-| `docs/planning/16-figure-recovery-ledger.md` | **그림 유실·회수 원장 — 「지금 몇 건이 그림 없이 남았나」**<br>를 확인하는 자리. 판정 명령·회수 이력·남은 사유. 그림 작업 전 필독 |
+| `docs/planning/16-figure-recovery-ledger.md` | 그림 유실·회수 원장 — **🔴 세던 모집단이 삭제돼 지금은 «기록»이다 (D-117)**.<br>「몇 건 남았나」를 물으면 0 이 나오는데 그건 «셀 것이 없다»는 뜻. 재추출 뒤 다시 기준선을 박을 것 |
 | `docs/planning/18-qa-playbook.md` | **대량 검수·판정 실무서 — 「같은 함정에 또 빠지지 않기」**<br>판정 코드 쓰기 전 점검표 · **이미 있는 연장 311개 색인** · 이미 잰 수치<br>· **해 보고 버린 것**. 문항·그림·해설을 걸러 내는 일 **시작 전 필독** |
 | `docs/planning/08-import-ledger.md` | **문항 이관 원장 — N드라이브 기출 위치·중복 방지·토큰 절약 원칙.**<br>이관/검수 작업 전 필독. 같은 조사를 반복하지 말 것.<br>**§5.1 추출은 `(완료)` 표기 원본에서만 (D-37)** |
 
