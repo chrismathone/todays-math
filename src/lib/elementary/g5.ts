@@ -14727,8 +14727,12 @@ function w3Sum121(): W3SumTask[] {
   for (let m = 9; m <= 45; m += 1) {
     const owners = w3SecondLargestOwners(m);
     if (owners.length < 2) continue;
-    // 해설이 후보를 **전부** 늘어놓으므로 후보가 다 두 자리여야 한다(규모는 난이도 축이 아니다).
-    if (owners.some((v) => v > 99)) continue;
+    // 해설이 후보를 **전부** 늘어놓으므로 후보가 다 지면에 앉을 만해야 한다.
+    // ⚠️ 두 자리(99)로 조이면 후보 줄이 **열 개**뿐이고, 그러면 씨앗 열여섯에서
+    //    서로 다른 발문이 여섯밖에 안 나와 「변형 8+」 시험이 문다(실제로 물렸다).
+    //    이 소단원의 심화하 ㉯ 가 이미 세 자리(`limit` 최대 ~$314$)를 쓰므로
+    //    150 은 규모를 키우는 것이 아니다 — 열쇠는 구조이지 크기가 아니다.
+    if (owners.some((v) => v > 150)) continue;
     for (const v of owners) {
       const s = w3DivSum(v);
       // 합이 갈라야 «만들어 견주기»가 답을 하나로 만든다

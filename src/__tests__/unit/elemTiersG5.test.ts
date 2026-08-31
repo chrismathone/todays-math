@@ -3245,58 +3245,58 @@ describe("[초5 2-1] 난이도 4단 확대 (D-72 7차)", () => {
     // ⚠️ 「반올림」은 「올림」을 **글자로 품는다** — 먼저 지우고 봐야 한다
     // (옛 표준이 `includes("올림")` 때문에 2-1-6 에서 올림 문항을 내던 그 자리).
     const hasUp = (c: string) => c.replace(/반올림/g, "").includes("올림");
-    for (const tier of tiersOf(unitOf("2-1-1"))) {
-      for (const seed of SEEDS) {
-        const c1 = problem("2-1-1", tier, seed).content;
-        expect(/이상|이하/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(
-          true,
-        );
-        expect(/초과|미만/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(
-          false,
-        );
-        const c2 = problem("2-1-2", tier, seed).content;
-        expect(/초과|미만/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(
-          true,
-        );
-        expect(/이상|이하/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(
-          false,
-        );
-        // 어림 셋 — 제 낱말이 반드시 있고, 반올림은 2-1-6 에만 있다.
-        //
-        // ⚠️ **발문+해설**에서 찾는다. 「기본」 갈래는 생활 장면에서 학생이 어림을
-        //    **스스로 고르는** 것이 그 갈래의 정체라 발문에 낱말을 일부러 안 쓴다
-        //    (「올림하시오」라고 말해 주면 판별이 사라진다). 발문만 보면 그 갈래가
-        //    통째로 빨개지는데, 그것은 제품이 아니라 시험이 틀린 것이다.
-        const both4 = (t: ElemTier) => {
-          const p = problem("2-1-4", t, seed);
-          return `${p.content} ${p.solution}`;
-        };
-        expect(hasUp(both4(tier)), `2-1-4 ${tier}`).toBe(true);
-        const p5 = problem("2-1-5", tier, seed);
-        expect(
-          `${p5.content} ${p5.solution}`.includes("버림"),
-          `2-1-5 ${tier}`,
-        ).toBe(true);
-        const p6 = problem("2-1-6", tier, seed);
-        expect(
-          `${p6.content} ${p6.solution}`.includes("반올림"),
-          `2-1-6 ${tier}`,
-        ).toBe(true);
-        for (const code of ["2-1-4", "2-1-5"] as const) {
-          expect(
-            problem(code, tier, seed).content.includes("반올림"),
-            `${code} ${tier} 에 반올림`,
-          ).toBe(false);
-        }
-        // 소수는 2-1-6 에만 (소단원 이름이 「어림의 활용」이라 거기가 자리다)
-        for (const code of ["2-1-4", "2-1-5"] as const) {
-          expect(
-            /\d\.\d/.test(problem(code, tier, seed).content),
-            `${code} ${tier} 에 소수`,
-          ).toBe(false);
-        }
-      }
-    }
+    // 🔴 **소단원마다 «그 소단원이 내는 갈래»를 돈다.** 예전에는 대표 하나
+    //    (`2-1-1`)의 `tiersOf` 로 여섯을 다 돌았는데, 확대 갈래(D-113)가 한쪽에만
+    //    붙는 순간 다른 소단원에서 **던진다** — 물결 3 이 2-1-1 에만 «심화중»을
+    //    세우자 곧바로 났다(물결 2 가 1-5 에서 겪은 그 자리이고,
+    //    `helpers/elemTiers` 머리말이 미리 적어 둔 함정이다).
+    const each = (code: string, fn: (tier: ElemTier, seed: number) => void) => {
+      for (const tier of tiersOf(unitOf(code)))
+        for (const seed of SEEDS) fn(tier, seed);
+    };
+    each("2-1-1", (tier, seed) => {
+      const c1 = problem("2-1-1", tier, seed).content;
+      expect(/이상|이하/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(true);
+      expect(/초과|미만/.test(c1), `2-1-1 ${tier} @${seed}\n${c1}`).toBe(false);
+    });
+    each("2-1-2", (tier, seed) => {
+      const c2 = problem("2-1-2", tier, seed).content;
+      expect(/초과|미만/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(true);
+      expect(/이상|이하/.test(c2), `2-1-2 ${tier} @${seed}\n${c2}`).toBe(false);
+    });
+    // 어림 셋 — 제 낱말이 반드시 있고, 반올림은 2-1-6 에만 있다.
+    //
+    // ⚠️ **발문+해설**에서 찾는다. 「기본」 갈래는 생활 장면에서 학생이 어림을
+    //    **스스로 고르는** 것이 그 갈래의 정체라 발문에 낱말을 일부러 안 쓴다
+    //    (「올림하시오」라고 말해 주면 판별이 사라진다). 발문만 보면 그 갈래가
+    //    통째로 빨개지는데, 그것은 제품이 아니라 시험이 틀린 것이다.
+    each("2-1-4", (tier, seed) => {
+      const p = problem("2-1-4", tier, seed);
+      expect(hasUp(`${p.content} ${p.solution}`), `2-1-4 ${tier}`).toBe(true);
+      expect(p.content.includes("반올림"), `2-1-4 ${tier} 에 반올림`).toBe(
+        false,
+      );
+      // 소수는 2-1-6 에만 (소단원 이름이 「어림의 활용」이라 거기가 자리다)
+      expect(/\d\.\d/.test(p.content), `2-1-4 ${tier} 에 소수`).toBe(false);
+    });
+    each("2-1-5", (tier, seed) => {
+      const p = problem("2-1-5", tier, seed);
+      expect(
+        `${p.content} ${p.solution}`.includes("버림"),
+        `2-1-5 ${tier}`,
+      ).toBe(true);
+      expect(p.content.includes("반올림"), `2-1-5 ${tier} 에 반올림`).toBe(
+        false,
+      );
+      expect(/\d\.\d/.test(p.content), `2-1-5 ${tier} 에 소수`).toBe(false);
+    });
+    each("2-1-6", (tier, seed) => {
+      const p = problem("2-1-6", tier, seed);
+      expect(
+        `${p.content} ${p.solution}`.includes("반올림"),
+        `2-1-6 ${tier}`,
+      ).toBe(true);
+    });
   });
 
   /* ── 경계 — 이 대단원의 알맹이 ── */
