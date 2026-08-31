@@ -7601,17 +7601,37 @@ function cylKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
 
 // ── 2-6-2 원기둥의 전개도 알아보기 ──
 
-/** 연산 — 옆면인 직사각형의 가로(= 밑면의 둘레). 표준은 반지름을 주므로 여기서는 **지름**을 준다. */
+/**
+ * 🔴 **2-5-2 와 첫 걸음이 달라야 한다** (적대 검토 ⑷).
+ *
+ * 예전 세 갈래는 2-5-2 와 **계산이 글자 그대로 같았다** — 실측 연산 11/11 · 응용 59/59 ·
+ * 심화하 80/80 이 «풀이가 합쳐지는» 자리였다:
+ *
+ * ```
+ * [2-5-2 연산]  지름 12cm 원의 원주는?              12×3=36
+ * [2-6-2 연산]  밑면 지름 12cm 원기둥 옆면 가로는?   12×3=36   ← 같은 식
+ * [2-5-2 심화하] 굴렁쇠 9바퀴에 508.68cm → 반지름    ÷9 · ÷3.14 · ÷2
+ * [2-6-2 심화하] 옆넓이 508.68cm², 높이 9 → 반지름   ÷9 · ÷3.14 · ÷2   ← 같은 사슬
+ * ```
+ *
+ * 두 소단원은 **2학기 5·6단원**이라 한 확인테스트에 실린다. 학생은 같은 문항을 두 번 푼다.
+ *
+ * 그래서 이 셋을 **전개도에만 있는 값** — 옆면(직사각형)의 **둘레** — 로 옮긴다.
+ * 원에는 «둘레와 높이를 더하는» 자리가 없으므로 사슬에 **덧셈/뺄셈이 하나 낀다**.
+ * 기본(색종이 가로)은 겹치지 않아 그대로 둔다.
+ */
 function cylNetCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 12);
   const h = intBetween(rng, 3, 15);
   const d = 2 * r;
+  const side = d * 3;
   return make(
     unit,
-    `밑면의 지름이 ${unitNum(d, "cm")} 인 원기둥의 전개도입니다. ` +
-      `옆면인 직사각형의 가로는 몇 cm인가? (원주율: ${num(3)})`,
-    num(d * 3),
-    `옆면의 가로는 밑면의 둘레와 같습니다. ${expr(`${d}\\times3=${d * 3}`)}`,
+    `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도입니다. ` +
+      `옆면인 직사각형의 둘레는 몇 cm인가? (원주율: ${num(3)})`,
+    num(2 * (side + h)),
+    `옆면의 가로는 밑면의 둘레와 같으므로 ${expr(`${d}\\times3=${side}`)} 이고, 세로는 높이인 ${num(h)} 입니다. ` +
+      `직사각형의 둘레는 ${expr(`(${side}+${h})\\times2=${2 * (side + h)}`)} 입니다.`,
     fig("netCylinder", { r, h, pi: 3, layout: pick(rng, CYL_NET_LAYOUTS) }),
   );
 }
@@ -7632,38 +7652,47 @@ function cylNetWord(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 응용 — 두 걸음. 가로를 구한 뒤 옆면의 넓이. 원주율 `$3.1$`. */
+/** 응용 — 세 걸음. 반지름 → 가로 → 둘레. 원주율 `$3.1$`. */
 function cylNetApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 10);
   const h = intBetween(rng, 3, 12);
   // 십분의 일 단위 정수로만 셈해 부동소수점을 안 거친다(R2).
   const latT = 2 * r * 31;
-  const areaT = latT * h;
+  const perimT = 2 * (latT + h * 10);
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 ` +
-      `옆면의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,
-    num(fromTenths(areaT)),
+      `옆면의 둘레는 몇 cm인가? (원주율: ${num("3.1")})`,
+    num(fromTenths(perimT)),
     `옆면의 가로는 밑면의 둘레와 같으므로 ${expr(`2\\times${r}\\times3.1=${fromTenths(latT)}`)} 이고, ` +
       `세로는 높이인 ${num(h)} 입니다. ` +
-      `${expr(`${fromTenths(latT)}\\times${h}=${fromTenths(areaT)}`)}`,
+      `${expr(`(${fromTenths(latT)}+${h})\\times2=${fromTenths(perimT)}`)}`,
     fig("netCylinder", { r, h, pi: 3.1, layout: pick(rng, CYL_NET_LAYOUTS) }),
   );
 }
 
-/** 심화 — 역산. 옆면의 넓이와 높이에서 밑면의 반지름(그림 없음). 원주율 `$3.14$`. */
+/**
+ * 심화 — 역산. 옆면의 **둘레**와 높이에서 밑면의 반지름(그림 없음). 원주율 `$3.14$`.
+ *
+ * 첫 걸음이 «÷ 높이» 가 아니라 **«÷2 뒤 − 높이»** 라, 2-5-2 심화하(거리 ÷ 바퀴 수)와
+ * 사슬이 갈린다.
+ */
 function cylNetDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 9);
   const h = intBetween(rng, 3, 12);
   // 백분의 일 단위 정수. 답(반지름)에서 거꾸로 지어 나눗셈이 딱 떨어지게 한다.
   const circC = 2 * r * 314;
-  const areaC = circC * h;
+  const halfC = circC + h * 100;
+  const perimC = 2 * halfC;
   return make(
     unit,
-    `어떤 원기둥의 전개도에서 옆면의 넓이가 ${num(fromCents(areaC))} cm²이고 ` +
+    `어떤 원기둥의 전개도에서 옆면의 둘레가 ${num(fromCents(perimC))} cm이고 ` +
       `이 원기둥의 높이가 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
     num(r),
-    `옆면의 가로는 ${expr(`${fromCents(areaC)}\\div${h}=${fromCents(circC)}`)} 이고, 이것이 밑면의 둘레입니다. ` +
+    `직사각형의 둘레는 (가로)+(세로)의 두 배이므로 가로와 세로의 합은 ` +
+      `${expr(`${fromCents(perimC)}\\div2=${fromCents(halfC)}`)} 입니다. ` +
+      `세로가 높이 ${num(h)} 이므로 가로는 ${expr(`${fromCents(halfC)}-${h}=${fromCents(circC)}`)} 이고, ` +
+      `이것이 밑면의 둘레입니다. ` +
       `밑면의 지름은 ${expr(`${fromCents(circC)}\\div3.14=${2 * r}`)} 이므로 ` +
       `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
   );

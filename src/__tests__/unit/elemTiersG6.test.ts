@@ -4856,20 +4856,26 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
       return across % 2 === 0 ? across / 2 : null;
     }
 
+    // ⚠️ 세 갈래가 **옆면의 «둘레»** 로 옮겨졌다(적대 검토 ⑷ — 예전에는 2-5-2 와
+    //    계산이 글자 그대로 같았다). 원에는 «둘레와 높이를 더하는» 자리가 없어서
+    //    사슬에 덧셈/뺄셈이 하나 낀다.
     case "2-6-2 연산":
-      return D === null ? null : 3 * D;
+      // 둘레 = (가로 + 세로) × 2, 가로 = 지름 × 3.
+      return D === null || H === null ? null : 2 * (3 * D + H);
     case "2-6-2 기본":
       return R === null ? null : 6 * R;
     case "2-6-2 응용":
-      // 넓이 = 2r × 3.1 × h. 십분의 일 단위 정수로 견준다(부동소수 안 씀).
-      return R === null || H === null ? null : 2 * R * 31 * H;
+      // 둘레 = (2r×3.1 + h) × 2. 십분의 일 단위 정수로 견준다(부동소수 안 씀).
+      return R === null || H === null ? null : 2 * (2 * R * 31 + H * 10);
     case "2-6-2 심화하": {
-      // 답(반지름)은 넓이 ÷ 높이 ÷ 3.14 ÷ 2 다. 백분의 일 단위로 나눠떨어져야 한다.
-      const a = q.match(/넓이가 \$([\d.]+)\$ cm²/);
+      // 답(반지름)은 (둘레 ÷ 2 − 높이) ÷ 3.14 ÷ 2 다. 백분의 일 단위로 나눠떨어져야 한다.
+      const a = q.match(/둘레가 \$([\d.]+)\$ cm/);
       if (!a || H === null) return null;
       const c = toCents26(a[1]!);
-      if (c === null || c % (H * 628) !== 0) return null;
-      return c / (H * 628);
+      if (c === null || c % 2 !== 0) return null;
+      const lat = c / 2 - H * 100;
+      if (lat <= 0 || lat % 628 !== 0) return null;
+      return lat / 628;
     }
 
     case "2-6-3 연산":

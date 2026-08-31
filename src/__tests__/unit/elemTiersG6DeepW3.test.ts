@@ -609,6 +609,67 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     expect(coneChecked).toBe(WIDE_SEEDS.length);
   });
 
+  it("🔴 ㉪ `2-6-2` 와 `2-5-2` 는 **같은 문항이 되지 않는다** (적대 검토 ⑷)", () => {
+    // 🔴 두 소단원은 **2학기 5·6단원**이라 한 확인테스트에 실린다. 그런데 세 단이
+    //    글자 그대로 같은 계산이었다 — 실측 연산 11/11 · 응용 59/59 · 심화하 80/80.
+    //
+    //      [2-5-2 연산]  지름 12cm 원의 원주는?              12×3=36
+    //      [2-6-2 연산]  밑면 지름 12cm 원기둥 옆면 가로는?   12×3=36
+    //
+    //    보고서 §1 이 「반드시 같이 봐야 하는 짝」이라 적고 §5 ㉢ 이 「심화하를 전부 읽고
+    //    피했다」고 적은 바로 그 자리인데, **그 읽기가 이 100% 짝을 못 봤다.**
+    //    그래서 사람의 읽기가 아니라 **두 열쇠로 기계가** 지킨다.
+    //
+    //    K3 = 지면의 수 집합 + 답  ·  K4 = 해설의 계산식 집합
+    const nums = (t: string) =>
+      [...t.matchAll(/\$([^$]*)\$/g)].flatMap(
+        (m) => m[1]!.match(/\d+(?:\.\d+)?/g) ?? [],
+      );
+    const k3 = (p: { content: string; answer: string }) =>
+      `${nums(p.content).sort().join(",")}|${p.answer}`;
+    const k4 = (p: { solution?: string | null }) =>
+      (p.solution ?? "")
+        .match(/\$[^$]*=[^$]*\$/g)
+        ?.map((s) => s.replace(/\s/g, ""))
+        .sort()
+        .join(";") ?? "";
+
+    const a = unitOf("2-5-2");
+    const b = unitOf("2-6-2");
+    const shared = supportedTiers(a).filter((t) =>
+      supportedTiers(b).includes(t),
+    );
+    expect(shared.length, "견줄 갈래가 없다").toBeGreaterThan(3);
+
+    const bad: string[] = [];
+    for (const tier of shared) {
+      const A3 = new Set<string>();
+      const A4 = new Set<string>();
+      for (const seed of WIDE_SEEDS) {
+        const p = generateElementaryProblem(a, seed, tier);
+        A3.add(k3(p));
+        A4.add(k4(p));
+      }
+      for (const seed of WIDE_SEEDS) {
+        const p = generateElementaryProblem(b, seed, tier);
+        if (A3.has(k3(p))) bad.push(`${tier}: K3 이 겹친다 — ${p.content}`);
+        const key = k4(p);
+        if (key && A4.has(key))
+          bad.push(`${tier}: K4 가 겹친다 — ${p.solution}`);
+      }
+    }
+    expect(bad.slice(0, 4)).toEqual([]);
+
+    // 🔴 **양성 눈금** — 두 열쇠가 «겹친다»를 낼 수 있는가. 자기 자신과 견주면 반드시 겹친다.
+    const self = generateElementaryProblem(a, WIDE_SEEDS[0]!, "연산");
+    expect(k3(self)).toBe(
+      k3(generateElementaryProblem(a, WIDE_SEEDS[0]!, "연산")),
+    );
+    expect(k4(self).length, "K4 가 계산식을 하나도 못 읽는다").toBeGreaterThan(
+      0,
+    );
+  });
+
   it("🔴 ㉩ 답이 후보 열의 **끝에 고정되지 않는다** (적대 검토 ⑴⑵)", () => {
     // 🔴 이 축이 **아예 없었다.** `splitOf` 는 「몇 개가 열리나 · 몇 개가 굳나」만 셌고,
     //    「**어느 것이** 굳나」는 안 봤다. 그래서 두 갈래가 각각
