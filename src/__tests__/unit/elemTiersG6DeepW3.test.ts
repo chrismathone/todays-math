@@ -76,6 +76,25 @@ const SEEDS = Array.from({ length: 24 }, (_, i) => i * 37 + 5);
 const MIN_SERIES: Record<string, number> = { "1-1-1": 3 };
 
 /**
+ * 🔴 **창 자체의 최소 길이** — `open` 에 거는 하한이다.
+ *
+ * `1-1-2` 는 셋이다: 해설이 **창 안의 수를 그대로 늘어놓는다**
+ * (「$lo$ 보다 크고 $up$ 보다 작은 수 $3$, $4$, $5$ 중에서 …」). 둘만 남으면
+ * «여럿을 만들어 견주기»가 한눈에 끝나 심화중의 값이 안 선다.
+ * 생성기 쪽 `win.length < 3` 이 그 뜻인데 **어떤 시험도 그것을 안 물고 있었다**
+ * (2026-08-31 변이가 초록으로 찍었다 — 「창이 답 하나만 담아도 좋다」).
+ *
+ * ⚠️ **`MIN_SERIES` 와 헷갈리지 말 것.** 1-1-1 에서는 `open` 에 하한을 걸었다가
+ * **공허하게 통과**했다 — 거기서 `open` 은 배수열 길이와 **무관**하기 때문이다.
+ * 1-1-2 는 다르다: 굳히는 성질이 「$p$ 의 약수」인데 후보를 여는 것은 **창 자체**라
+ * `open` 이 곧 «만들어 견줄 수의 개수»다. 같은 이름의 두 값이 **다른 것을 잰다.**
+ *
+ * ⚠️ D-115 ㉠ 의 바닥은 **2** 다. 3 은 이 갈래에서 내가 **더 세게 잡은 값**이고,
+ * 잣대가 아니라 판단이다 — 다음 회차가 근거를 대면 2 로 내려도 된다.
+ */
+const MIN_OPEN: Record<string, number> = { "1-1-2": 3 };
+
+/**
  * 🔴 **반증 ⑥ 만 씨앗을 넓게 쓴다** — 2차분 §8.2 가 실측으로 남긴 교훈이다.
  * 풀에서 걸러지는 비율과 지면에 닿는 비율이 열 배 가까이 벌어져, 24씨앗이면 절반을 놓친다.
  */
@@ -362,6 +381,11 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
           bad.push(
             `${code} 심화중 seed=${seed}: 성질이 만드는 열이 짧다(${s.series} < ${wantSeries}) — ${p.content}`,
           );
+        const wantOpen = MIN_OPEN[code];
+        if (wantOpen !== undefined && s.open < wantOpen)
+          bad.push(
+            `${code} 심화중 seed=${seed}: 창이 짧다(${s.open} < ${wantOpen}) — ${p.content}`,
+          );
         if (s.fixed !== 1)
           bad.push(
             `${code} 심화중 seed=${seed}: 성질이 하나로 못 굳힌다(${s.fixed}) — ${p.content}`,
@@ -376,9 +400,12 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     const bad: string[] = [];
     let checked = 0;
     const tops = BUILT.filter((b) => b.tier === "심화상");
+    // 🔴 **씨앗을 넓게 둔다.** 24씩앗으로는 2-6-3 의 «짝이 둘뿐» 변이가 **초록**이었다 —
+    //    풀에 새 묶음(`자리/짝수`)이 생겨도 씨앗이 적으면 그 묶음을 안 들려 지면에 안 나온다
+    //    (2차분 §8.2 가 「풀에서 걸러지는 비율과 지면에 닿는 비율이 열 배」라 적은 자리).
     for (const { code } of tops) {
       const unit = unitOf(code);
-      for (const seed of SEEDS) {
+      for (const seed of WIDE_SEEDS) {
         const p = generateElementaryProblem(unit, seed, "심화상");
         const s = splitOf(code, p.content);
         if (!s) {
@@ -411,7 +438,7 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
       }
     }
     expect(bad.slice(0, 6)).toEqual([]);
-    expect(checked).toBe(tops.length * SEEDS.length);
+    expect(checked).toBe(tops.length * WIDE_SEEDS.length);
   });
 
   it("㉣ 반증 ⑥ — 발문의 수에 순방향 연산을 적용해서는 답이 안 나온다", () => {

@@ -8,6 +8,7 @@ import {
   answerPrintedOnPage,
   forwardReachable,
   pageNumbers,
+  pmOneStepReachable,
   rat,
   type Rat,
 } from "./forwardReach";
@@ -8814,37 +8815,14 @@ function shareSplitTop(unit: UnitSeed, rng: Rng): ElemProblem {
  *
  * `pageNumbers` 는 판정기가 쓰는 그 함수다. 규칙도 입력도 한 벌이 된다.
  */
-/**
- * ±**한 걸음** — 지면의 두 수 `a`·`b` 에 대해 `a+b` 또는 `a−b` 가 답과 같은가.
+/*
+ * 🔴 **± 한 걸음 자는 이제 공용판을 물린다** — 이 파일에 사본을 두지 마라.
  *
- * 🔴 `forwardReachable` 의 허용 꼴 넷(`a×b` · `a×b×c` · `a×b±c` · `a×b±c×d`)은
- * **전부 곱을 문다.** 그래서 곱이 첫 걸음이 아닌 자리에서는 그 자가 «0」을 내는데,
- * 그 0 은 «깨끗»이 아니라 **«못 셈»** 이다(2026-08-31 리드 지시 — 초3 이 1-1-4 심화중을
- * 전수 20,625/20,625 «두 수의 차»로 재서 갈래를 거뒀고, 초4 는 「⑥ 0건」이 144자리
- * 전량 «못 셈»이었다). 그 사각지대를 이 자가 덮는다.
- *
- * 규칙은 리드가 못 박은 그대로다 — `0` 을 더하거나 빼는 것은 한 걸음이 아니고,
- * 결과가 `a` 와도 `b` 와도 다를 때만 «한 걸음»이며, 두 걸음은 일부러 안 본다.
- *
- * ⚠️ 초3 이 세운 공용 `pmOneStepReachable` 은 아직 main 에 없다. 물결이 도는 중에
- * 공용 판정기를 흔들지 말라는 지시라 **이 파일 안에서** 같은 규칙을 잰다.
- * 공용판이 착지하면 이쪽을 지우고 그것을 물릴 것.
+ * 물결이 돌 때는 공용 `pmOneStepReachable` 이 main 에 없어 여기서 재고 있었다.
+ * 그것이 착지해서 사본을 지우고 `forwardReach.ts` 의 것을 import 한다
+ * (리드 실측: 두 판이 129,000 판정에서 갈림 0). 규칙을 두 벌 두면 한쪽만 고쳐도
+ * 아무도 모른다 — 이 저장소가 여러 번 적은 그 자리다.
  */
-function pmOneStepReachable(nums: readonly Rat[], answer: Rat): boolean {
-  const eq = (x: Rat, y: Rat) => x.n * y.d === y.n * x.d;
-  for (let i = 0; i < nums.length; i += 1)
-    for (let j = 0; j < nums.length; j += 1) {
-      if (i === j) continue;
-      const a = nums[i]!;
-      const b = nums[j]!;
-      if (a.n === 0 || b.n === 0) continue; // 0 을 더하고 빼는 것은 걸음이 아니다
-      if (eq(answer, a) || eq(answer, b)) continue; // 결과가 재료와 같으면 안 센다
-      const sum: Rat = { n: a.n * b.d + b.n * a.d, d: a.d * b.d };
-      const dif: Rat = { n: a.n * b.d - b.n * a.d, d: a.d * b.d };
-      if (eq(sum, answer) || eq(dif, answer)) return true;
-    }
-  return false;
-}
 
 function backsolveSafeStem(content: string, answer: Rat): boolean {
   const nums = pageNumbers(content);
@@ -9219,8 +9197,8 @@ type RollCase = {
 
 const rollTurnsStem = (c: RollCase, roller: string): string =>
   `${roller}${josa(roller, "을", "를")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314), "cm")} 를 갔습니다. ` +
-  `이 ${roller}의 지름이 ${num(c.lo)} cm보다 길고 ${num(c.up)} cm보다 짧은 자연수 cm일 때, ` +
-  `몇 바퀴 굴렸습니까? (원주율: ${num("3.14")})`;
+  `이 ${roller}의 지름이 ${num(c.lo)} cm보다 길고 ${num(c.up)} cm보다 짧은 자연수 cm이고, ` +
+  `굴린 바퀴 수도 자연수일 때, 몇 바퀴 굴렸습니까? (원주율: ${num("3.14")})`;
 
 const ROLL_TOP: RollCase[] = [];
 for (let d = 6; d <= 24; d += 1)
@@ -9230,9 +9208,11 @@ for (let d = 6; d <= 24; d += 1)
     for (let lo = 3; lo < d; lo += 1) {
       const up = lo + 6;
       if (up <= d) continue;
+      // 🔴 **발문이 말하는 조건만으로** 센다 — 예전엔 «바퀴 수 2~30» 까지
+      // 걸었는데, 그 상한은 지면에 없다. 지면이 안 말하는 조건으로 걸러내면
+      // «답이 하나»가 **우리만 아는 사실**이 된다(학생은 둘로 본다).
       const hit: number[] = [];
-      for (let dd = lo + 1; dd < up; dd += 1)
-        if (prod % dd === 0 && prod / dd >= 2 && prod / dd <= 30) hit.push(dd);
+      for (let dd = lo + 1; dd < up; dd += 1) if (prod % dd === 0) hit.push(dd);
       if (hit.length !== 1 || hit[0] !== d) continue;
       const c: RollCase = { d, turns, prod, lo, up };
       if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))
@@ -9253,7 +9233,7 @@ function rollTurnsTop(unit: UnitSeed, rng: Rng): ElemProblem {
     `지름이 될 수 있는 수는 ${cands.map((v) => num(v)).join(", ")} 입니다. ` +
       `${num(c.prod)}${numJosa(c.prod, "을", "를")} 각각 나누어 보면 ` +
       `${miss.map((v) => expr(`${c.prod}\\div${v}`)).join(", ")}` +
-      `${numJosa(miss.at(-1)!, "은", "는")} 나누어떨어지지 않고 ` +
+      `${numJosa(miss.at(-1)!, "은", "는")} 나누어떨어지지 않아 바퀴 수가 자연수가 아니고 ` +
       `${expr(`${c.prod}\\div${c.d}=${c.turns}`)} 만 나누어떨어집니다.`,
     `지름은 ${unitNum(c.d, "cm")} 이고 ${num(c.turns)}바퀴 굴렸습니다.`,
   ]);
