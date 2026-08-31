@@ -15,7 +15,7 @@
   ⑵ **파일 바이트**가 바뀌었나 — 안 바뀌면 치환이 헛돈 것이다.
   ⑶ 🔴 **산출물이 바뀌었나** — 파일이 바뀌어도 뜻이 안 바뀌면 「가드가 아니다」가
      거짓말이 되고, **멀쩡한 가드를 의심하고 고치러 간다**(가드가 없는 것보다 나쁘다).
-     지문은 `probe-mid-top-m2.ts --dump` (문항 600개의 sha1).
+     지문은 `probe-middle-extending-tiers.ts --dump` (문항 600개의 sha1).
   ⑷ 그제서야 시험이 빨개지나 — 빨간데 **실패한 시험 이름을 못 대면 판정 거부**.
      (옛 결함의 유일한 징후가 「빨간데 근거 줄이 비었다」였다.)
 
@@ -42,7 +42,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODULE = os.path.join(ROOT, "src", "lib", "middle", "m2Top.ts")
 TEST = "src/__tests__/unit/middleTopM2.test.ts"
-PROBE = "scripts/qa/probe-mid-top-m2.ts"
+PROBE = "scripts/qa/probe-middle-extending-tiers.ts"
 
 # (이름, [(앵커, 치환), …], 무엇을 지키는 시험인가)
 #

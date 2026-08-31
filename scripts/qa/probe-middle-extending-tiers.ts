@@ -6,13 +6,13 @@
  * 「값은 맞고 **지면만 흉한**」 부류를 훑는다 — 값 검산으로는 구조적으로 안 잡힌다.
  *
  * ```bash
- * npx tsx scripts/qa/probe-mid-top-m2.ts --selftest   # 눈금 (양성 6 · 음성 6)
- * npx tsx scripts/qa/probe-mid-top-m2.ts              # 전부 (아래 넷을 차례로)
- * npx tsx scripts/qa/probe-mid-top-m2.ts --smell      # ㈃ 지면 냄새·조사
- * npx tsx scripts/qa/probe-mid-top-m2.ts --anchor     # ㉠ 굳힘이 자리를 고르는가
- * npx tsx scripts/qa/probe-mid-top-m2.ts --erase      # ㉡ 조건을 지우면 답이 바뀌는가
- * npx tsx scripts/qa/probe-mid-top-m2.ts --overlap    # ㉢ 아래 갈래와 겹치는가
- * npx tsx scripts/qa/probe-mid-top-m2.ts --dump       # 변이 하네스가 쓰는 산출물 지문
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --selftest   # 눈금 (양성 6 · 음성 6)
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts              # 전부 (아래 넷을 차례로)
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --smell      # ㈃ 지면 냄새·조사
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --anchor     # ㉠ 굳힘이 자리를 고르는가
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --erase      # ㉡ 조건을 지우면 답이 바뀌는가
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --overlap    # ㉢ 아래 갈래와 겹치는가
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --dump       # 변이 하네스가 쓰는 산출물 지문
  * ```
  *
  * ## 참이 어디서 오나
