@@ -37,7 +37,7 @@
  *      막는다** — `assertThirdNumberMatters` 가 그것이다.
  *    → `94T` 는 후보 목록이 아예 없다(값이 하나로 굳는다). 대신 ㉡ 로 잰다.
  *    ⚠️ 「축이 없다」와 「축이 초록이다」는 다른 말이다. 어느 쪽인지
- *      `scripts/qa/probe-mid-top-m1.ts` 가 **갈래마다 따로 찍는다.**
+ *      `scripts/qa/probe-middle-top-m1.ts` 가 **갈래마다 따로 찍는다.**
  *
  * ㉡ **「굳힘이 항등식」** — 굳힘 조건을 지우고 같은 씨앗으로 돌려 답이 그대로면
  *    그것은 굳힘이 아니라 장식이다. 초등에서 이 검사로만 갈래 넷이 걸렸다.
@@ -412,7 +412,7 @@ const RATIO_ROOT: TypeEntry[] = [
     SEC.일차방정식,
     "심화중",
     (rng): Body =>
-      attempt(800, (): Body | null => {
+      attempt(2000, (): Body | null => {
         const r: [number, number, number] = [
           intBetween(rng, 2, 7),
           intBetween(rng, 2, 7),
@@ -420,7 +420,13 @@ const RATIO_ROOT: TypeEntry[] = [
         ];
         // 비가 더 줄어들면 지면이 「가장 간단한 자연수의 비」가 아니다.
         if (gcd(gcd(r[0], r[1]), r[2]) !== 1) return null;
-        if (r[0] === r[1] && r[1] === r[2]) return null;
+        // 🔴 **세 자리가 서로 달라야 «세 문자»가 실제로 셋이다.** 첫 판은 이것을
+        //    안 걸어 `a:b:c=3:4:3`(그래서 $a=c$)·`2:2:3` 이 나왔고, 계수가 마주치면
+        //    두 항이 통째로 지워져(`2a+2b-2c` 의 $a$·$c$) **사실상 한 문자짜리
+        //    문항**이 됐다. 값은 맞고 지면만 헐거워지는 부류라 값 검산도, ㉠·㉡
+        //    판정기도 구조적으로 못 본다 — **해설을 눈으로 읽어서야** 나왔다
+        //    (브리프 §5 「자기가 지은 해설은 눈으로도 읽어라」가 잡은 것이다).
+        if (r[0] === r[1] || r[1] === r[2] || r[0] === r[2]) return null;
         const co: [number, number, number] = [
           intBetween(rng, 2, 5),
           intBetween(rng, -4, 4),
@@ -428,6 +434,17 @@ const RATIO_ROOT: TypeEntry[] = [
         ];
         if (co[1] === 0) return null; // 계수 0은 지면에서 항이 사라진다
         if (Math.abs(co[1]) === 1) return null; // `1b` 를 안 쓴다
+        // 🔴 비의 세 자리를 다르게 해도 **계수가 마주치면** 두 항이 지워진다
+        //    (`c1*r1 = -c3*r3` 이면 $2\times6t-4\times3t=0$). 그러면 위와 같은
+        //    자리로 되돌아가므로 항의 값끼리도 안 지워지게 막는다.
+        const terms = [co[0] * r[0], co[1] * r[1], co[2] * r[2]];
+        if (
+          terms[0]! + terms[1]! === 0 ||
+          terms[1]! + terms[2]! === 0 ||
+          terms[0]! + terms[2]! === 0
+        ) {
+          return null;
+        }
         const k = ratioValue(r, co);
         if (k === null || k === 0) return null;
         if (Math.abs(k) > 9) return null;

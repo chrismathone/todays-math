@@ -6,9 +6,9 @@
  * (「0 은 «깨끗»과 «못 셈»을 안 가른다」 — 이 저장소가 여러 번 데인 자리).
  *
  * ```bash
- * npx tsx scripts/qa/probe-mid-top-m1.ts --selftest   # 눈금 (양성 6 · 음성 6)
- * npx tsx scripts/qa/probe-mid-top-m1.ts              # ㉠㉡㉢ + 해설 깊이
- * npx tsx scripts/qa/probe-mid-top-m1.ts --overlap    # ㉢ 만 (천장 포함)
+ * npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 12건 (양성 7 · 음성 5)
+ * npx tsx scripts/qa/probe-middle-top-m1.ts              # ㉠㉡㉢ + 해설 깊이
+ * npx tsx scripts/qa/probe-middle-top-m1.ts --overlap    # ㉢ 만 (천장 포함)
  * ```
  *
  * ## 무엇을 재나
@@ -582,10 +582,16 @@ function selftest(): number {
   for (const [name, want, got, why] of cases) {
     const ok = want === got;
     if (!ok) bad += 1;
-    console.log(`${ok ? "  ✅" : "  🔴"} ${name} — ${why}`);
+    console.log(`${ok ? "  ✅" : "  ❌"} ${name} — ${why}`);
   }
+  // 🔴 형식은 **관문이 읽는 모양**이어야 한다 — `elemProbeGauges.test.ts` 가
+  //    `눈금 N건` 을 세고, 그 수를 그냥 믿지 않고 판정 줄(`✅`/`❌`)을 **다시** 센다.
+  //    그리고 파일 이름이 `probe-middle-*` 라야 그 그물에 걸린다 — 처음엔
+  //    `probe-mid-top-m1.ts` 였고, 그러면 이 눈금은 **한 번도 자동으로 안 돈다**
+  //    (관문은 초록인데 아무것도 안 지킨다 — 「축이 없다」의 또 한 얼굴이다).
   console.log(
-    `\n눈금 ${cases.length - bad}/${cases.length} (양성 ${cases.filter((c) => c[1]).length} · 음성 ${cases.filter((c) => !c[1]).length})`,
+    `\n눈금 ${cases.length}건 — ${bad === 0 ? "전부 통과" : `${bad}건 어긋남`}` +
+      ` (양성 ${cases.filter((c) => c[1]).length} · 음성 ${cases.filter((c) => !c[1]).length})`,
   );
   return bad;
 }

@@ -409,6 +409,27 @@ describe("중1 상위 갈래 — 물린 결함의 회귀 잠금", () => {
     }
   });
 
+  it("⑸ `94T` 의 비가 «세 문자»를 실제로 셋으로 쓴다 — 두 항이 지워지면 안 된다", () => {
+    for (const seed of SEEDS) {
+      for (let v = 0; v < VARIANTS; v += 1) {
+        const p = generateMiddleProblem(K94, seed, v);
+        const r = [p.facts.r1!, p.facts.r2!, p.facts.r3!];
+        const c = [p.facts.c1!, p.facts.c2!, p.facts.c3!];
+        // 첫 판은 `a:b:c=3:4:3`(그래서 $a=c$)을 냈고, 계수가 마주쳐 두 항이
+        // 통째로 지워져 **사실상 한 문자짜리** 문항이 됐다. 값 검산도 ㉠·㉡
+        // 판정기도 못 보는 부류라 **해설을 눈으로 읽어서야** 나왔다.
+        expect(
+          new Set(r).size,
+          `${seed}/${v}: 비가 ${r} 라 자리가 겹친다`,
+        ).toBe(3);
+        const t = [c[0]! * r[0]!, c[1]! * r[1]!, c[2]! * r[2]!];
+        expect(t[0]! + t[1]!, `${seed}/${v}: 두 항이 지워진다`).not.toBe(0);
+        expect(t[1]! + t[2]!, `${seed}/${v}: 두 항이 지워진다`).not.toBe(0);
+        expect(t[0]! + t[2]!, `${seed}/${v}: 두 항이 지워진다`).not.toBe(0);
+      }
+    }
+  });
+
   it("⑷ `95T` 의 둘째 조건이 실제로 거르고, 살아남는 자리가 띄엄띄엄이다", () => {
     for (const seed of SEEDS) {
       for (let v = 0; v < VARIANTS; v += 1) {
