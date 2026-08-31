@@ -500,6 +500,64 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
           const where = `${code} ${tier} seed=${seed}`;
+
+          // ── 확대 갈래 둘은 **밑면을 아무 데서도 이름으로 말하지 않는다** ──
+          //
+          // 아래 판독기는 「이 문항의 밑면은 몇 각형인가」를 먼저 알아내고 공식을 대는데,
+          // 그 둘은 **밑면이 곧 답**이거나(㉠) **입체의 종류부터 안 정해져**(㉡) 그럴 수
+          // 없다. 그래서 발문의 수만으로 **여기서 다시 푼다** — 답이 하나로 굳는지까지
+          // 같이 잰다(구성이 범위를 잘못 잡으면 답이 둘이 되는데, 그건 값 검산이
+          // 구조적으로 못 보는 부류다).
+          {
+            const nums = plainNums(p.content);
+            // ㉠ 「밑면은 어떤 도형입니까」 — 옆면 하나의 넓이의 배수가 구간에 하나뿐이어야 한다.
+            if (/밑면은 어떤 도형입니까/.test(p.content)) {
+              checked += 1;
+              const [side, high, lo, up] = nums as [
+                number,
+                number,
+                number,
+                number,
+              ];
+              const one = pyramidSection ? (side * high) / 2 : side * high;
+              const fits = [3, 4, 5, 6, 7, 8].filter(
+                (k) => one * k > lo && one * k < up,
+              );
+              if (fits.length !== 1) {
+                bad.push(
+                  `${where}: 구간이 밑면을 하나로 안 굳힌다 (${fits.join(",")}) — ${p.content}`,
+                );
+              } else {
+                const want = Object.entries(SINO_NUM).find(
+                  ([, v]) => v === fits[0],
+                )![0];
+                if (p.answer !== `${want}각형`) {
+                  bad.push(`${where}: ${p.answer} (${want}각형 이어야)`);
+                }
+              }
+              continue;
+            }
+            // ㉡ 「어떤 입체도형」 — 각기둥·각뿔 둘을 다 만들어 조건에 대 본다.
+            if (/어떤 입체도형/.test(p.content)) {
+              checked += 1;
+              const [faces, cap] = nums as [number, number];
+              const live: number[] = [];
+              // 각기둥: 면 = n+2 · 꼭짓점 = 2n · 모서리 = 3n
+              if (faces - 2 >= 3 && 2 * (faces - 2) < cap)
+                live.push(3 * (faces - 2));
+              // 각뿔: 면 = n+1 · 꼭짓점 = n+1 · 모서리 = 2n
+              if (faces - 1 >= 3 && faces < cap) live.push(2 * (faces - 1));
+              if (live.length !== 1) {
+                bad.push(
+                  `${where}: 조건이 입체를 하나로 안 굳힌다 (${live.join(",")}) — ${p.content}`,
+                );
+              } else if (answerNum(p.answer) !== live[0]) {
+                bad.push(`${where}: ${p.answer} (${live[0]} 이어야)`);
+              }
+              continue;
+            }
+          }
+
           // 밑면의 변의 수는 발문에 있으면 발문에서, 없으면(기본 갈래) 해설에서 읽는다.
           const n = baseSidesOf(p.content) ?? baseSidesOf(p.solution);
           if (n === null) {
@@ -1846,6 +1904,72 @@ function truthOf16(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
 
+  // ══ 확대 갈래 (D-113 2차분) — **구간·인수** 꼴이라 앞의 「값 하나」 판독기보다 먼저 본다 ══
+  //
+  // ⚠️ 순서가 뜻이다. 「겉넓이가 … 높이는」·「부피가 … 높이는 몇 m」는 아래 심화하
+  //    판독기가 먼저 무는데, 확대 갈래는 겉넓이·부피를 **구간**으로 주므로 그 자리의
+  //    `at(2)` 가 «구간의 왼쪽 끝»이 되어 조용히 다른 값을 참으로 삼는다.
+
+  /** 구간 $(lo, up)$ 안에서 `f(k)` 가 참이 되는 자연수 `k` — 하나가 아니면 null. */
+  const onlyK = (from: number, to: number, f: (k: number) => number) => {
+    const hit: number[] = [];
+    for (let k = 1; k <= 60; k += 1) {
+      const v = f(k);
+      if (v > from && v < to) hit.push(k);
+    }
+    return hit.length === 1 ? hit[0]! : null;
+  };
+
+  // 1-6-1 심화중 — 겉넓이가 **구간**이고 높이가 자연수: 하나로 굳는 높이를 여기서 다시 찾는다.
+  if (content.includes("겉넓이가") && content.includes("보다 넓고")) {
+    const [w, d, lo, up] = [at(0), at(1), at(2), at(3)];
+    if (!w || !d || !lo || !up) return null;
+    const k = onlyK(lo.n, up.n, (h) => 2 * w.n * d.n + 2 * (w.n + d.n) * h);
+    return k === null ? null : rat(k);
+  }
+  // 1-6-1 심화상 — 밑면이 정사각형: $2a^2+4ah=S$ 를 만족하는 자연수 $a$ 는 하나뿐이다.
+  if (content.includes("밑면이 정사각형") && content.includes("한 변은 몇")) {
+    const [h, S] = [at(0), at(1)];
+    if (!h || !S) return null;
+    const hit = [];
+    for (let a = 1; a <= 40; a += 1)
+      if (2 * a * a + 4 * a * h.n === S.n) hit.push(a);
+    return hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-6-2 심화중 — 부피·가로·차에서 세로: 곱이 $V\div w$ 이고 차가 주어진 짝은 하나뿐이다.
+  if (content.includes("부피가") && content.includes("세로는 몇 cm입니까")) {
+    const [V, w, gap] = [at(0), at(1), at(2)];
+    if (!V || !w || !gap || V.n % w.n !== 0) return null;
+    const p = V.n / w.n;
+    const hit: number[] = [];
+    for (let x = 1; x * x <= p; x += 1)
+      if (p % x === 0 && p / x - x === gap.n) hit.push(p / x);
+    return hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-6-2 심화상 — 서로 다른 세 자연수의 곱 중 «가장 긴 것»이 상한보다 짧은 삼조의 합.
+  if (content.includes("세 모서리의 길이의 합은 몇")) {
+    const [V, cap] = [at(0), at(1)];
+    if (!V || !cap) return null;
+    const kept: number[] = [];
+    for (let a = 1; a * a * a < V.n; a += 1) {
+      if (V.n % a !== 0) continue;
+      const rest = V.n / a;
+      for (let b = a + 1; b * b < rest; b += 1) {
+        if (rest % b !== 0) continue;
+        const c = rest / b;
+        if (c > b && c < cap.n) kept.push(a + b + c);
+      }
+    }
+    return kept.length === 1 ? rat(kept[0]!) : null;
+  }
+  // 1-6-3 심화중 — cm³ **구간**을 m³ 로 옮긴 뒤 밑면 넓이의 배수를 찾는다.
+  if (content.includes("부피가") && content.includes("보다 크고")) {
+    const [w, d, lo, up] = [at(0), at(1), at(2), at(3)];
+    if (!w || !d || !lo || !up) return null;
+    const k = onlyK(lo.n / 1000000, up.n / 1000000, (h) => w.n * d.n * h);
+    return k === null ? null : rat(k);
+  }
+
   // 1-6-1 심화 ⓐ — 두 변과 겉넓이에서 높이: h = (S − 2wd) ÷ (2(w+d))
   if (content.includes("겉넓이가") && content.includes("높이는")) {
     const [w, d, S] = [at(0), at(1), at(2)];
@@ -2938,6 +3062,94 @@ function truthOf24(
   code: string,
   c: string,
 ): { shape: string; terms: number[] } | null {
+  // ══ 확대 갈래 (D-113 2차분) ══
+  //
+  // 이 대단원의 안 굳는 마디는 전부 **한 묶음 $k$** 다. 그래서 여기서도 «구간 안의
+  // 배수»를 다시 세고 **하나가 아니면 null** 을 낸다 — 답이 둘인 문항은 값이 맞아도
+  // 지면이 틀린 것이라, 「구성이 하나로 굳혔는가」까지 이 자가 잰다.
+  const nsOf = (t: string) => decNumbersIn(t).map((v) => v.n);
+  /** 구간 $(lo, up)$ 안의 `m` 의 배수가 정확히 하나면 그 값. */
+  const onlyMultiple = (lo: number, up: number, m: number) => {
+    const hit: number[] = [];
+    for (let v = m; v < up; v += m) if (v > lo) hit.push(v);
+    return hit.length === 1 ? hit[0]! : null;
+  };
+
+  if (code === "2-4-1" && c.includes("가장 간단한 자연수의 비일 때")) {
+    const [P, Q] = nsOf(c);
+    if (P === undefined || Q === undefined) return null;
+    const g = gcd(P, Q);
+    return asNum(Q / g - P / g);
+  }
+  if (code === "2-4-2" && c.includes("후항이")) {
+    const [am, lo, up, b] = nsOf(c);
+    if (
+      am === undefined ||
+      lo === undefined ||
+      up === undefined ||
+      b === undefined
+    )
+      return null;
+    const x = onlyMultiple(lo, up, b);
+    if (x === null) return null;
+    const w = am * 100;
+    const g = gcd(w, x);
+    return x / g === b ? { shape: "비", terms: [w / g, b] } : null;
+  }
+  if (code === "2-4-3" && c.includes("두 항의 합이")) {
+    const [a, b, lo, up] = nsOf(c);
+    if (
+      a === undefined ||
+      b === undefined ||
+      lo === undefined ||
+      up === undefined
+    )
+      return null;
+    const sum = onlyMultiple(lo, up, a + b);
+    if (sum === null) return null;
+    const k = sum / (a + b);
+    return { shape: "비례식", terms: [a, b, a * k, b * k] };
+  }
+  if (code === "2-4-4" && c.includes("똑같은 자연수")) {
+    const [a, b] = nsOf(c);
+    if (a === undefined || b === undefined) return null;
+    const p = a * b;
+    const x = Math.round(Math.sqrt(p));
+    return x * x === p ? asNum(x) : null;
+  }
+  if (code === "2-4-5" && c.includes("갖는") && c.includes("모두 몇")) {
+    // 심화중 — 한 사람의 몫이 구간 안이고, 그 몫이 그 사람의 묶음 수의 배수다.
+    const [a, b, lo, up] = nsOf(c);
+    if (
+      a === undefined ||
+      b === undefined ||
+      lo === undefined ||
+      up === undefined
+    )
+      return null;
+    const part = onlyMultiple(lo, up, b);
+    return part === null ? null : asNum((part / b) * (a + b));
+  }
+  if (code === "2-4-5" && c.includes("다시")) {
+    // 심화상 — 전체가 구간 안의 $(a+b)$ 의 배수이고, 첫 사람의 몫이 둘째 비로 갈라진다.
+    const [a, b, lo, up, c2, d2] = nsOf(c);
+    if (
+      a === undefined ||
+      b === undefined ||
+      lo === undefined ||
+      up === undefined ||
+      c2 === undefined ||
+      d2 === undefined
+    )
+      return null;
+    const s = a + b;
+    const t = c2 + d2;
+    const hit: number[] = [];
+    for (let v = s; v < up; v += s)
+      if (v > lo && ((v / s) * a) % t === 0) hit.push(v);
+    return hit.length === 1 ? asNum(hit[0]!) : null;
+  }
+
   if (code === "2-4-1") {
     // 심화ⓑ 가 연산ⓐ 와 같은 말(「전항과 후항에 각각 …을 곱」)을 쓴다 — 먼저 가른다.
     let m = c.match(
@@ -3370,7 +3582,8 @@ describe("[초6 갈래] 2-4 비례식과 비례배분", () => {
         } else if (flat.startsWith("둘레가 ")) {
           const around = Number(flat.match(/^둘레가 \$(\d+)/)?.[1]);
           total = around % 2 === 0 ? around / 2 : NaN;
-        } else if (/처음 .*모두 몇/.test(flat)) {
+        } else if (/처음 .*모두 몇/.test(flat) || /[은는] 모두 몇/.test(flat)) {
+          // 확대 갈래도 **답이 전체**다 — 전체가 지면에 없으면 이 자가 못 읽는다.
           total = Number(p.answer.match(/^\$(\d+)\$$/)?.[1] ?? NaN);
         } else {
           total = Number(flat.match(/\$(\d+)\$[가-힣]+[을를] /)?.[1] ?? NaN);

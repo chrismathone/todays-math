@@ -1409,6 +1409,81 @@ G6_MUTS = [
         "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = win[0]!;",
         "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = list[0]!;",
     ),
+    # ── 확대 갈래 **2차분** — 1-2 · 1-6 · 2-4 (D-113·D-115, 2026-08-31) ──────────
+    #
+    # ⚠️ 이 아홉은 `elemTiersG6DeepW2.test.ts` 와 `elemTiersG6.test.ts` 를 같이 겨눈다.
+    #
+    # 🔴 **먼저 «그 가드가 무엇을 거르는가»를 셌다** (파일럿이 다섯을 헛돌린 뒤 남긴 교훈).
+    #    반증 ⑥ 가드가 실제로 거르는 수 — 1-2-1 중 **1,802/6,954** · 1-6-1 중 **994/3,528** ·
+    #    1-6-2 중 61/279 · 1-2-2 중 3/96 · 2-4-1 중 8/332.
+    #    반대로 **0 을 거르는 자리 셋**이 있다 — 1-2-4 상 · 1-6-1 상 · 2-4-4 중.
+    #    거기 가드는 **지금 시험할 수 없다**(구성이 바뀌면 살아난다 — 그래서 안 지웠다).
+    #    그 셋에는 반증 ⑥ 변이를 안 만든다: 만들면 「산출물이 그대로」로 거부될 뿐이다.
+    (
+        # ㉠ — 구간에 후보가 하나뿐이면 마디가 이미 굳은 것이고 그건 심화하다.
+        "구간 훼손 — 1-2-1 심화중의 구간에 후보가 하나뿐이라 성질이 일을 안 한다",
+        "        if (up - lo < 5) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+        "        if (up - lo < 1) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다.
+        #    (`false &&` 는 쓰지 않는다 — 파일럿이 연산자 묶임에 물린 자리다.)
+        "반증 ⑥ 가드 제거 — 1-2-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 1,802건)",
+        "        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+        "        if (!backsolveSafe([s, h, lo, up], -1)) continue;\n        PRISM_AREA_MID.push",
+    ),
+    (
+        # ㉡ — 구간 안에 $3$ 의 배수가 둘이면 답이 둘이 된다(지면 자체가 틀린다).
+        "배수 성질 무력화 — 1-2-2 심화중의 구간에 $3$ 의 배수가 둘이어도 좋다",
+        "      if (multiplesBetween(lo, up, 3).length !== 1) continue;",
+        "      if (multiplesBetween(lo, up, 3).length < 1) continue;",
+    ),
+    (
+        # ㉢ — 상한을 각기둥의 꼭짓점보다 위로 올리면 **둘 다** 조건을 통과한다.
+        "후보 훼손 — 1-2-4 심화상의 조건이 각기둥·각뿔을 둘 다 통과시킨다",
+        "  for (let cap = vPyr + 1; cap <= vPrism; cap += 1) {",
+        "  for (let cap = vPrism + 1; cap <= vPrism + 2; cap += 1) {",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-6-1 심화중.
+        "반증 ⑥ 가드 제거 — 1-6-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 994건)",
+        "        if (!backsolveSafe([w, d, lo, up], h)) continue;\n        SURF_RANGE_MID.push",
+        "        if (!backsolveSafe([w, d, lo, up], -1)) continue;\n        SURF_RANGE_MID.push",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-6-2 심화중 (실측 61/279 를 거른다).
+        #    ⚠️ 처음엔 「짝이 정확히 하나인가」를 겨눴는데 그 가드는 **대수적으로 늘 참**이라
+        #    「산출물이 그대로」로 거부됐다. 죽은 가드를 지우고 살아 있는 것을 겨눈다.
+        "반증 ⑥ 가드 제거 — 1-6-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 61건)",
+        "      if (!backsolveSafe([v, w, gap], d)) continue;\n      VOL_PAIR_MID.push",
+        "      if (!backsolveSafe([v, w, gap], -1)) continue;\n      VOL_PAIR_MID.push",
+    ),
+    (
+        # ㉢ — 상한이 삼조를 둘 이상 남기면 답이 하나로 안 선다.
+        #    ⚠️ 「삼조가 하나뿐인 부피」를 겨눴더니 **cap 고리가 아예 안 돌아** 새 항목이
+        #    하나도 안 들어왔다(초록). 결함을 «가능»하게만 만들고 «반드시 밟도록» 안 만든
+        #    그 자리다(파일럿 §8.6). 그래서 상한 쪽을 겨눈다.
+        #    ⚠️ 가드만 풀면 **새 항목이 하나도 안 들어온다** — 고리가 이미 `longest[1]`
+        #    에서 끊겨 `kept` 가 늘 하나다. 「결함을 «가능»하게만 만들고 «반드시 밟도록»
+        #    안 만든」 그 자리라, 고리와 가드를 **함께** 푼다.
+        "후보 훼손 — 1-6-2 심화상의 상한이 삼조를 둘 이상 남긴다",
+        "  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
+        "  for (let cap = longest[0]! + 1; cap <= longest[2]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
+    ),
+    (
+        # ㉢ — 둘째 비 조건을 통과하는 전체가 둘이면 답이 하나로 안 선다.
+        #    ⚠️ 처음엔 「후보가 셋 이상인가」를 겨눴는데 창 너비가 늘 $3s+2$·$4s+2$ 라
+        #    후보 수가 언제나 3~4 다 — **그 가드는 죽어 있다.** 살아 있는 것은 이쪽이다.
+        "후보 훼손 — 2-4-5 심화상의 둘째 비 조건이 전체를 하나로 못 남긴다",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length !== 1) continue;",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length < 1) continue;",
+    ),
+    (
+        # ㉠ — 간단히 했을 때 후항이 $b$ 가 아닌 세로가 들어오면 **발문이 거짓말**이 된다.
+        "후항 조건 무력화 — 2-4-2 심화중이 간단히 해도 후항이 다른 세로를 쓴다",
+        "      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만",
+        "      if (x / g !== b && false) continue; // 간단히 하면 후항이 b 가 되는 세로만",
+    ),
 ]
 
 G4_MUTS = [
@@ -1897,6 +1972,7 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elemTiersG6.test.ts",
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
         ],
         "grade": "초6",
         "sections": [
