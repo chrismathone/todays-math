@@ -29,6 +29,7 @@ import { ELEM_TIERS } from "../../src/lib/elementary/difficulty";
 import {
   elemProblemType,
   elementaryUnits,
+  expectedFormCount,
   generateElementaryForm,
   listedForms,
   pilotFamilyKey,
@@ -44,7 +45,18 @@ import {
 const SEEDS = 8;
 const SEED0 = 20260826;
 const STEP = 1009;
-const TARGET_FORMS = 10;
+/**
+ * **표준 시험지**의 문항 수 — 확대 갈래가 늘어도 이 값은 안 움직인다.
+ *
+ * 🔴 문형 12(D-114)로 문형은 10·11·12 셋이 되었지만, 반 기본 배분
+ * `DEFAULT_DIFFICULTY_RATIO` 는 확대 갈래를 **0** 으로 둔다(D-113 ⑻).
+ * 그러니 ⑸ 의 「시험지가 서는가」는 여전히 **열 문항**을 물어야 한다 —
+ * 12로 바꾸면 프리셋이 요청하지도 않는 갈래를 내놓으라고 하는 셈이다.
+ *
+ * ⚠️ **문형이 몇 개여야 하는가**는 이 상수가 아니라 `expectedFormCount(unit)` 가
+ *    안다(소단원마다 다르다). 둘을 섞지 마라.
+ */
+const SHEET_ITEMS = 10;
 
 const wantJson = process.argv.includes("--json");
 const gradeAt = process.argv.indexOf("--grade");
@@ -308,9 +320,13 @@ for (const unit of elementaryUnits()) {
   if (ids.some((id) => tierNames.has(id)))
     problems.push("문형 id 에 난이도 이름을 썼다 — 축이 직교하지 않는다");
 
-  // ⑴ 개수
-  if (forms.length < TARGET_FORMS)
-    problems.push(`문형이 ${forms.length}개 — ${TARGET_FORMS}개가 필요하다`);
+  // ⑴ 개수 — 기대값은 **갈래에서 센다**(D-114). 확대 갈래를 채운 소단원은 11·12 다.
+  const wantForms = expectedFormCount(unit);
+  if (forms.length !== wantForms)
+    problems.push(
+      `문형이 ${forms.length}개 — ${wantForms}개여야 한다` +
+        ` (기본 10 + 확대 갈래 ${wantForms - 10})`,
+    );
 
   // ⑶ 서로 다른 물음인가 · ⑹ 그림
   const shapes = new Map<string, string[]>();
@@ -460,21 +476,21 @@ for (const unit of elementaryUnits()) {
   }
 
   // ⑸ 시험지 10문항·10갈래
-  if (forms.length >= TARGET_FORMS) {
+  if (forms.length >= SHEET_ITEMS) {
     try {
       const { problems: picked, shortfall } = selectProblems({
         pool,
-        difficultyRatio: defaultRatioFor(TARGET_FORMS),
-        count: TARGET_FORMS,
+        difficultyRatio: defaultRatioFor(SHEET_ITEMS),
+        count: SHEET_ITEMS,
         recentProblemIds: [],
         seed: `probe-${unit.grade}-${unit.section}`,
       });
       if (shortfall.length > 0)
         problems.push(`시험지가 모자란다: ${JSON.stringify(shortfall)}`);
-      if (picked.length !== TARGET_FORMS)
+      if (picked.length !== SHEET_ITEMS)
         problems.push(`시험지가 ${picked.length}문항`);
       const fams = new Set(picked.map((p) => familyIdOf(p))).size;
-      if (fams !== TARGET_FORMS)
+      if (fams !== SHEET_ITEMS)
         problems.push(`한 시험지에 갈래가 ${fams}개 — 같은 문항류가 겹쳤다`);
     } catch (err) {
       problems.push(

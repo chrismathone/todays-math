@@ -1,5 +1,6 @@
 import {
   DIFFICULTY_LADDER,
+  EXTENDING_DIFFICULTIES,
   type CoreDifficulty,
   type Difficulty,
   type ExtendingDifficulty,
@@ -54,6 +55,20 @@ export const TIER_PRESETS: Record<ClassPreset, Record<ElemTier, number>> = {
  *    `scripts/qa/probe-elem-extending-tiers.ts`. 0 이 「깨끗」인지 「못 셈」인지
  *    갈리지 않으면 이 확대는 조용히 멈춘 채 끝난 것처럼 보인다.
  */
+/**
+ * 문형 12 (D-114) — 확대 갈래가 **문형에서 받는 id**.
+ *
+ * 기본 문형이 `01`~`10` 이므로 `심화중`=`11` · `심화상`=`12` 다.
+ * 🔴 **사다리에서 파생한다** — 손으로 `[["심화중","11"],["심화상","12"]]` 라고
+ *    적으면 갈래를 하나 더 열 때 이 목록만 그대로 남아 그 갈래가 **지면에
+ *    영영 안 나간다.** 에러는 안 난다(문형이 하나 적을 뿐이다).
+ *
+ * 붙이는 곳은 `forms.ts` 한 곳이다 — 소단원마다 손으로 배선하지 않는다.
+ */
+export const EXTENDING_FORM_IDS: ReadonlyArray<
+  readonly [ExtendingDifficulty, string]
+> = EXTENDING_DIFFICULTIES.map((tier, i) => [tier, String(11 + i)] as const);
+
 export type TierVariants = Record<CoreDifficulty, ChapterHandler> &
   Partial<Record<ExtendingDifficulty, ChapterHandler>>;
 

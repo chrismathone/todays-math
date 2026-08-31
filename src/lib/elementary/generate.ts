@@ -31,7 +31,9 @@ export {
 } from "./combo";
 export type { ElemComboDefinition } from "./combo";
 export {
+  coreForms,
   elemProblemType,
+  expectedFormCount,
   generateElementaryForm,
   listedForms,
   PILOT_FORM_KEYS,

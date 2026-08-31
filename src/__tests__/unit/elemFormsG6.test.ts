@@ -6,8 +6,11 @@ import { describe, expect, it } from "vitest";
 import {
   elementaryUnits,
   generateElementaryForm,
+  coreForms,
   listedForms,
+  supportedTiers,
 } from "@/lib/elementary/generate";
+import { EXTENDING_FORM_IDS } from "@/lib/elementary/difficulty";
 
 const SEEDS = [20260826, 7, 1009, 7919, 4242, 17, 99, 31337, 555, 42];
 
@@ -50,7 +53,7 @@ describe("초6 1-1-1 (자연수)÷(자연수) — 묻는 대상이 답이다", (
   const unit = unitOf("1-1-1");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫은 나누어지는 수 / 나누는 수", () => {
@@ -204,7 +207,7 @@ describe("초6 1-1-2 (분수)÷(자연수) — 분모에 곱한다", () => {
   const unit = unitOf("1-1-2");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫은 분자 / (분모×나누는 수)", () => {
@@ -313,7 +316,7 @@ describe("초6 1-1-3 (대분수)÷(자연수) — 가분수로 고친 다음 나
   };
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫은 가분수 분자 / (분모×나누는 수)", () => {
@@ -427,7 +430,7 @@ describe("초6 1-2-1 각기둥 밑면과 옆면 — 묻는 면이 답이다", ()
   const unit = unitOf("1-2-1");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 옆면 수 = 밑면 변의 수", () => {
@@ -504,7 +507,7 @@ describe("초6 1-2-2 각기둥 이름과 구성 요소 — 세는 자리가 다�
   const unit = unitOf("1-2-2");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("05 이름 앞의 수가 밑면 변의 수", () => {
@@ -563,7 +566,7 @@ describe("초6 1-2-3 각기둥의 전개도 — 펼친 그림에서 묻는다", 
   const unit = unitOf("1-2-3");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("02 접으면 n각기둥", () => {
@@ -620,7 +623,7 @@ describe("초6 1-2-4 각뿔 밑면과 옆면 — 밑면 1 · 옆면 삼각형", 
   const unit = unitOf("1-2-4");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 옆면 수 = 밑면 변의 수", () => {
@@ -684,7 +687,7 @@ describe("초6 1-2-5 각뿔 이름과 구성 요소 — 밑면과 꼭짓점을 �
   const unit = unitOf("1-2-5");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("05 이름 앞의 수가 밑면 변의 수", () => {
@@ -751,7 +754,7 @@ describe("초6 1-3-1 (소수)÷(자연수) — 몫이 1보다 크다", () => {
   const unit = unitOf("1-3-1");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫 × 나누는 수 = 나누어지는 수", () => {
@@ -840,7 +843,7 @@ describe("초6 1-3-2 몫이 1보다 작은 (소수)÷(자연수)", () => {
   const unit = unitOf("1-3-2");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫 × 나누는 수 = 나누어지는 수 · 몫<1", () => {
@@ -909,7 +912,7 @@ describe("초6 1-3-3 소수점 아래 0을 내려 계산", () => {
   const unit = unitOf("1-3-3");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫 × 나누는 수 = 나누어지는 수", () => {
@@ -958,7 +961,7 @@ describe("초6 1-3-4 몫의 소수 첫째 자리에 0", () => {
   const unit = unitOf("1-3-4");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 몫 × 나누는 수 = 나누어지는 수 · 소수 첫째 0", () => {
@@ -997,7 +1000,7 @@ describe("초6 1-3-5 (자연수)÷(자연수) 몫을 소수로", () => {
   const unit = unitOf("1-3-5");
 
   it("등록이 10개", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01 자연수÷자연수의 몫이 소수", () => {
@@ -1034,7 +1037,7 @@ describe("초6 1-3-5 (자연수)÷(자연수) 몫을 소수로", () => {
 describe("초6 1-4 비와 비율", () => {
   it("1-4-1 05 어떤 수 × k = 큰 수", () => {
     const unit = unitOf("1-4-1");
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
       const m = p.content.match(/\$(\d+)\$.*?\$(\d+)\$배/);
@@ -1045,7 +1048,7 @@ describe("초6 1-4 비와 비율", () => {
 
   it("1-4-2 06 앞항 · 07 뒷항 · 08 합", () => {
     const unit = unitOf("1-4-2");
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
     for (const seed of SEEDS) {
       const f = generateElementaryForm(unit, seed, "06");
       const ratio = f.content.match(/\$(\d+):(\d+)\$/);
@@ -1062,7 +1065,7 @@ describe("초6 1-4 비와 비율", () => {
 
   it("1-4-5 08 두 %의 합 · 09 나머지 %", () => {
     const unit = unitOf("1-4-5");
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
     for (const seed of SEEDS) {
       const s = generateElementaryForm(unit, seed, "08");
       const ps = [...s.content.matchAll(/\$(\d+)\\%\$/g)].map((x) =>
@@ -1078,17 +1081,58 @@ describe("초6 1-4 비와 비율", () => {
   });
 });
 
-describe("초6 전량 문형 10", () => {
-  it("소단원마다 01–10", () => {
-    const ids = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
+describe("초6 전량 문형 — 기본 01–10, 확대 갈래는 11·12", () => {
+  const CORE_IDS = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
+
+  it("소단원마다 기본 01–10", () => {
     const units = elementaryUnits().filter((u) => u.grade === "초6");
     expect(units.length).toBe(56);
     for (const u of units) {
       expect(
+        coreForms(u).map((f) => f.id),
+        u.section,
+      ).toEqual(CORE_IDS);
+    }
+  });
+
+  /**
+   * 🔴 문형 12(D-114) — **확대 갈래를 채우면 문형도 따라와야 한다.**
+   *
+   * 이것이 D-114 가 막으려는 바로 그 결함이다: 갈래만 채우면 계량기는
+   * 「다 찼다」고 하는데 적재기(`generateElementaryForm`)는 문형만 돌아
+   * **지면에 한 건도 안 나간다.** 그래서 여기서는 문형 목록을 **갈래에서**
+   * 유도해 대조한다 — 손으로 적은 기대값이 아니다.
+   *
+   * ⚠️ 「전부 12개」로 못 박지 마라 — 확대 갈래는 선택이라 채우는 내내 빨갛다.
+   */
+  it("확대 갈래를 채운 소단원은 문형 11·12 가 따라왔다", () => {
+    const units = elementaryUnits().filter((u) => u.grade === "초6");
+    let withExtending = 0;
+    for (const u of units) {
+      const want = [
+        ...CORE_IDS,
+        ...EXTENDING_FORM_IDS.filter(([tier]) =>
+          supportedTiers(u).includes(tier),
+        ).map(([, id]) => id),
+      ];
+      if (want.length > CORE_IDS.length) withExtending += 1;
+      expect(
         listedForms(u).map((f) => f.id),
         u.section,
-      ).toEqual(ids);
+      ).toEqual(want);
+      // 갈래와 문형이 **같은 함수**를 가리키는지까지 본다 — id 만 맞고
+      // 다른 생성기를 달면 지면이 조용히 갈린다.
+      for (const [tier, id] of EXTENDING_FORM_IDS) {
+        if (!supportedTiers(u).includes(tier)) continue;
+        const form = listedForms(u).find((f) => f.id === id)!;
+        expect(form.tier, `${u.section} 문형 ${id}`).toBe(tier);
+      }
     }
+    // 음성 대조 — 하나도 안 채워졌으면 이 시험은 아무것도 안 지킨다.
+    expect(
+      withExtending,
+      "초6 에 확대 갈래를 채운 소단원이 하나도 없다 — 이 시험이 장식이 된다",
+    ).toBeGreaterThan(0);
   });
 });
 

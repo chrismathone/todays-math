@@ -14,6 +14,7 @@ import {
   elemProblemType,
   generateElementaryForm,
   generateElementaryProblem,
+  coreForms,
   listedForms,
   PILOT_FORM_KEYS,
   pilotFamilyKey,
@@ -94,7 +95,7 @@ describe("파일럿 3소단원 · 문형 10", () => {
   it("소단원마다 문형 10개 · id 는 난이도 이름이 아니다", () => {
     for (const key of PILOT_FORM_KEYS) {
       const unit = unitOf(key);
-      const forms = listedForms(unit);
+      const forms = coreForms(unit);
       expect(forms, key).toHaveLength(10);
       const ids = forms.map((f) => f.id);
       expect(new Set(ids).size, key).toBe(10);
@@ -102,7 +103,10 @@ describe("파일럿 3소단원 · 문형 10", () => {
         ids.every((id) => !TIER_NAMES.has(id)),
         key,
       ).toBe(true);
-      expect(new Set(forms.map((f) => f.tier)), key).toEqual(
+      // 🔴 여기는 **확대 갈래까지** 봐야 한다 — 문형 12(D-114)가 갈래를 따라왔는지
+      //    묻는 자리다. `coreForms` 로 물으면 심화중·심화상을 채운 소단원에서
+      //    「문형이 갈래를 안 덮는다」가 **구조적으로 안 보인다.**
+      expect(new Set(listedForms(unit).map((f) => f.tier)), key).toEqual(
         new Set(tiersOf(unit)),
       );
     }

@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import {
   elementaryUnits,
   generateElementaryForm,
+  coreForms,
   listedForms,
 } from "@/lib/elementary/generate";
 
@@ -35,7 +36,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   const unit = unitOf("1-1-1");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01·02 두 수의 합", () => {
@@ -164,7 +165,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   const unit = unitOf("1-1-2");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01·02 두 수의 합", () => {
@@ -249,7 +250,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   const unit = unitOf("1-1-3");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01·02 두 수의 차", () => {
@@ -341,7 +342,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   const unit = unitOf("1-1-4");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01·02 두 수의 차", () => {
@@ -421,7 +422,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   const unit = unitOf("1-2-1");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("05·06·07 정의는 선분·반직선·직선", () => {
@@ -473,7 +474,7 @@ describe("초3 1-2-2 각·직각 — 세는 대상이 답이다", () => {
   const unit = unitOf("1-2-2");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("07 정의는 직각", () => {
@@ -526,7 +527,7 @@ describe("초3 1-2-3 직각삼각형 — 세는 대상이 답이다", () => {
   const unit = unitOf("1-2-3");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("07 정의는 직각삼각형", () => {
@@ -581,7 +582,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   const unit = unitOf("1-2-4");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("03 네 변의 합 = 2(가로+세로)", () => {
@@ -637,7 +638,7 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
   const unit = unitOf("1-2-5");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("03 네 변의 합 = 4×한 변", () => {
@@ -683,7 +684,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   const unit = unitOf("1-3-1");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("01·02 몫 = 나뉘는 수÷나누는 수", () => {
@@ -762,7 +763,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   const unit = unitOf("1-3-2");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("03 두 몫의 합", () => {
@@ -830,7 +831,7 @@ describe("초3 1-3-3 몫을 곱셈식으로", () => {
   const unit = unitOf("1-3-3");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("05 빈칸×나누는 수 = 나뉘는 수", () => {
@@ -881,7 +882,7 @@ describe("초3 1-3-4 몫을 곱셈구구로", () => {
   const unit = unitOf("1-3-4");
 
   it("등록이 10개다", () => {
-    expect(listedForms(unit)).toHaveLength(10);
+    expect(coreForms(unit)).toHaveLength(10);
   });
 
   it("05 이용하는 구구는 나누는 수 단", () => {
@@ -923,7 +924,7 @@ describe("초3 전 소단원 문형 10", () => {
     const units = elementaryUnits().filter((u) => u.grade === "초3");
     expect(units.length).toBe(56);
     for (const u of units) {
-      expect(listedForms(u).length, u.section).toBe(10);
+      expect(coreForms(u).length, u.section).toBe(10);
     }
   });
 });
