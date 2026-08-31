@@ -6,6 +6,7 @@ import { fig, make, makeDeep } from "./make";
 import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
 import {
   answerPrintedOnPage,
+  divOneStepReachable,
   forwardReachable,
   pageNumbers,
   rat,
@@ -8851,7 +8852,10 @@ function backsolveSafeStem(content: string, answer: Rat): boolean {
   return (
     !forwardReachable(nums, answer) &&
     !answerPrintedOnPage(nums, answer) &&
-    !pmOneStepReachable(nums, answer)
+    !pmOneStepReachable(nums, answer) &&
+    // 🔴 ÷ 한 걸음 — 반증 ⑥ 의 자가 나눗셈 소단원에서 **구조적으로 0** 이라 이 축이 필요하다
+    //    (적대 검토 ⑺ · 리드 지시 ⑥). 1-1-2 심화중이 실측 6.5% 걸렸고 답+1 은 0% 였다.
+    !divOneStepReachable(nums, answer)
   );
 }
 

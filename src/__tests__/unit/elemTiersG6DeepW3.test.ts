@@ -45,6 +45,7 @@ import {
 } from "@/lib/elementary/generate";
 import {
   answerPrintedOnPage,
+  divOneStepReachable,
   forwardReachable,
   pageNumbers,
   readRat,
@@ -628,6 +629,55 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     }
     expect(bad.slice(0, 6)).toEqual([]);
     expect(coneChecked).toBe(WIDE_SEEDS.length);
+  });
+
+  it("🔴 ㉫ ÷ **한 걸음** — 지면의 두 수를 나눠서 답이 나오지 않는다 (적대 ⑺)", () => {
+    // 🔴 반증 ⑥ 의 자는 허용 꼴 넷이 **전부 곱을 물어**, 나눗셈이 첫 걸음인 소단원에서
+    //    구조적으로 0 이다. 판정기 자신이 정한 양성 대조군(「연산 = 정의상 순방향」)에서
+    //    실측 **1-1-1 연산 0/200 · 1-1-2 연산 0/200** 이었다 — 그 0 은 «못 셈»이다.
+    //    그런데 보고서 §4.4 는 그 0 을 세 갈래의 근거로 적었다.
+    //
+    // ⚠️ **이 축은 갈래마다 «답+1» 음성 대조를 같이 재야 뜻이 있다.** 지면에 수가 많으면
+    //    아무 답이나 걸린다 — 초6 `2-4-1 심화중` 은 진짜 답 0% 인데 답+1 이 **23.5%** 다.
+    //    두 값이 비슷하면 그 갈래에서 이 축은 신호가 아니라 잡음이다.
+    const bad: string[] = [];
+    const noise: string[] = [];
+    for (const { code, tier } of BUILT) {
+      const unit = unitOf(code);
+      let hit = 0;
+      let neg = 0;
+      let n = 0;
+      for (const seed of WIDE_SEEDS) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const a = readRat(p.answer.replace(/\$/g, "").trim());
+        if (!a) continue;
+        n += 1;
+        const nums = pageNumbers(p.content);
+        if (divOneStepReachable(nums, a)) hit += 1;
+        if (divOneStepReachable(nums, { n: a.n + a.d, d: a.d })) neg += 1;
+      }
+      if (hit > 0)
+        bad.push(`${code} ${tier}: ÷ 한 걸음으로 닿는다 ${hit}/${n}`);
+      // 잡음인 갈래는 «0» 이 아무 뜻이 없다 — 다음 사람이 근거로 쓰지 않게 적어 둔다.
+      if (neg > n * 0.1) noise.push(`${code} ${tier}: 답+1 이 ${neg}/${n}`);
+    }
+    expect(bad).toEqual([]);
+    // 🔴 이 회차의 갈래에서는 «답+1» 도 낮다 — 그래서 위 0 이 «깨끗»이다.
+    expect(noise).toEqual([]);
+
+    // 🔴 양성·음성 눈금 — 이 자가 «예»와 «아니오»를 둘 다 낼 수 있어야 한다.
+    expect(
+      divOneStepReachable(pageNumbers("$12$ $4$"), readRat("3")!),
+      "양성 — $12\\div4=3$",
+    ).toBe(true);
+    expect(
+      divOneStepReachable(pageNumbers("$12$ $5$"), readRat("3")!),
+      "음성 — 나누어떨어지지 않는다",
+    ).toBe(false);
+    expect(
+      divOneStepReachable(pageNumbers("$12$ $4$"), readRat("12")!),
+      "음성 — 답이 지면의 수 그대로면 «한 걸음»이 아니다",
+    ).toBe(false);
   });
 
   it("🔴 ㉪ `2-6-2` 와 `2-5-2` 는 **같은 문항이 되지 않는다** (적대 검토 ⑷)", () => {

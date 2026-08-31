@@ -88,6 +88,44 @@ export function answerPrintedOnPage(
   return nums.some((v) => same(v, answer));
 }
 
+/**
+ * **÷ 한 걸음** — 지면의 두 수 `a`·`b` 에 대해 `a ÷ b` 가 답과 같은가.
+ *
+ * 🔴 `forwardReachable` 의 허용 꼴 넷(`a×b` · `a×b×c` · `a×b±c` · `a×b±c×d`)은
+ * **전부 곱을 문다.** 그래서 나눗셈이 첫 걸음인 소단원에서는 그 자가 구조적으로 0 이고,
+ * 그 0 은 «깨끗»이 아니라 **«못 셈»** 이다. 실측(2026-08-31 적대 검토 D 축):
+ *
+ * ```
+ * 초6 1-1-1 연산  forwardReachable 0/200   ÷한걸음 200/200
+ * 초6 1-1-2 연산  forwardReachable 0/200   ÷한걸음 200/200
+ * ```
+ *
+ * 연산 갈래는 **정의상 순방향**이다 — 그 자리에서 0 을 내는 자는 죽은 자다.
+ *
+ * ⚠️ **한 걸음만 본다.** 두 걸음(`a÷b±c`)은 **쓰면 안 된다** — 음성 대조가 양성을 넘는다
+ * (리드 실측: 초6 2-4-4 응용에서 진짜 45 대 답+1 40).
+ *
+ * ⚠️ **이 자를 쓸 때는 갈래마다 «답+1» 음성 대조를 같이 재라.** 지면에 수가 많으면
+ * 아무 답이나 걸린다 — 초6 `2-4-1 심화중` 은 진짜 답 **0%** 인데 답+1 이 **23.5%** 다
+ * (거짓 경보 발생기). 두 값이 비슷하면 그 갈래에서 이 축은 **뜻이 없다.**
+ */
+export function divOneStepReachable(
+  nums: readonly Rat[],
+  answer: Rat,
+): boolean {
+  for (let i = 0; i < nums.length; i += 1)
+    for (let j = 0; j < nums.length; j += 1) {
+      if (i === j) continue;
+      const a = nums[i]!;
+      const b = nums[j]!;
+      if (a.n === 0 || b.n === 0) continue; // 0 으로 나누거나 0 을 나누는 것은 걸음이 아니다
+      if (same(a, answer) || same(b, answer)) continue; // 재료와 같으면 «한 걸음»이 아니다
+      // a/b == answer  ⟺  a.n·b.d·answer.d == answer.n·a.d·b.n
+      if (a.n * b.d * answer.d === answer.n * a.d * b.n) return true;
+    }
+  return false;
+}
+
 export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
   const products: Rat[] = [];
   for (let i = 0; i < nums.length; i += 1) {
