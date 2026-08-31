@@ -8879,6 +8879,67 @@ function backsolveSafeStem(content: string, answer: Rat): boolean {
 //    둘 다 걸었는데, 창을 양쪽으로 닫으면 앞엣것이 뒤엣것에 **완전히 먹힌다**
 //    (M-6: 「어느 하나만 읽어도 나머지가 필요 없다」). 안 읽어도 되는 조건을 지면에
 //    남기면 학생에게 거짓말을 하는 것이다.
+// ── 2-5-4 원의 넓이 구하는 방법 — 심화중 ────────────────────────────────────
+//
+// 🔴 이 자리는 3차분이 **비웠다가 적대 검토가 되살린** 자리다. 비움의 근거가
+//    「원의 넓이는 구간으로 못 굳힌다」였는데, **main 에 이미 같은 꼴이 서 있다** —
+//    `surfRangeMid`(초6 1-6-1 심화중, 물결 2 착지분)가 「겉넓이가 $lo$ 보다 넓고
+//    $up$ 보다 좁고, 높이가 자연수」다. 같은 잣대를 두 자리에 다르게 대면 안 된다.
+//
+// 마디: 반지름은 구간만으로 안 굳는다(실수는 얼마든지 있다).
+// 굳힘: 이 소단원의 성질 — (넓이)=(반지름)×(반지름)×(원주율) 이고 **반지름이 자연수**라,
+//       (반지름)×(반지름) 은 «같은 수를 두 번 곱한 수»여야 한다. 구간 안에 그런 수가 하나다.
+//       후보를 **끝까지 계산하지 않고** 걸러 내므로 D-115 ⑾ 로 «중» 이다.
+type AreaRangeCase = { lo: number; up: number; r: number };
+
+const areaRangeStem = (c: AreaRangeCase): string =>
+  `어떤 원의 넓이가 ${num(fromCents(c.lo * 314))} cm²보다 넓고 ` +
+  `${num(fromCents(c.up * 314))} cm²보다 좁습니다. ` +
+  `반지름이 자연수 cm일 때, 이 원의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
+
+const AREA_RANGE_MID: AreaRangeCase[] = [];
+for (let lo = 1; lo <= 200; lo += 1)
+  for (let up = lo + 4; up <= Math.min(lo + 40, 240); up += 1) {
+    const sq: number[] = [];
+    for (let r = 1; r * r < up; r += 1) if (r * r > lo) sq.push(r);
+    if (sq.length !== 1) continue; // 구간 안의 «제곱수»가 하나여야 답이 선다
+    const r = sq[0]!;
+    if (r < 2 || r > 15) continue; // 지면에 얹히는 크기
+    // 구간 안에 **답이 아닌 자연수**가 둘은 있어야 성질이 일을 한다.
+    let others = 0;
+    for (let v = lo + 1; v < up; v += 1) if (v !== r * r) others += 1;
+    if (others < 3) continue;
+    const c: AreaRangeCase = { lo, up, r };
+    if (!backsolveSafeStem(areaRangeStem(c), rat(r))) continue;
+    AREA_RANGE_MID.push(c);
+  }
+
+/**
+ * 🔴 **답을 먼저 고른다.** 그냥 균등하게 뽑으면 작은 반지름을 담는 구간이 훨씬 많아
+ * 「무조건 $2$」류가 나온다(1-1-2·2-6-3 과 같은 처방).
+ */
+const AREA_RANGE_BY_ANS = new Map<number, AreaRangeCase[]>();
+for (const c of AREA_RANGE_MID) {
+  const l = AREA_RANGE_BY_ANS.get(c.r);
+  if (l) l.push(c);
+  else AREA_RANGE_BY_ANS.set(c.r, [c]);
+}
+const AREA_RANGE_ANSWERS = [...AREA_RANGE_BY_ANS.keys()].sort((x, y) => x - y);
+
+function areaRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, AREA_RANGE_BY_ANS.get(pick(rng, AREA_RANGE_ANSWERS))!);
+  return makeDeep(unit, areaRangeStem(c), num(c.r), [
+    `(원의 넓이)=(반지름)×(반지름)×(원주율)이므로, 넓이를 ${num("3.14")}${numRo(314)} 나누면 ` +
+      `(반지름)×(반지름)이 됩니다.`,
+    `${expr(`${fromCents(c.lo * 314)}\\div3.14=${c.lo}`)}, ` +
+      `${expr(`${fromCents(c.up * 314)}\\div3.14=${c.up}`)} 이므로 ` +
+      `(반지름)×(반지름)은 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작습니다.`,
+    `그 사이에서 같은 수를 두 번 곱해 나오는 수는 ` +
+      `${expr(`${c.r}\\times${c.r}=${c.r * c.r}`)} 하나이므로 ` +
+      `반지름은 ${unitNum(c.r, "cm")} 입니다.`,
+  ]);
+}
+
 type NatDivReduceCase = {
   b: number;
   m: number;
@@ -9687,6 +9748,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: circAreaWord,
     응용: circAreaApply,
     심화하: circAreaDeep,
+    심화중: areaRangeMid,
   },
   "초6|2-3-1": {
     연산: viewCalc,

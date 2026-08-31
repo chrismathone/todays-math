@@ -4090,6 +4090,18 @@ function truthOf25(
   }
 
   if (code === "2-5-4") {
+    if (c.includes("보다 넓고")) {
+      // 🔴 심화중 — 넓이 **구간** ÷ 원주율 → (반지름)×(반지름) 의 구간.
+      //    그 안의 «제곱수»가 하나여야 답이 선다(적대 검토 ④-㉰ 가 되살린 자리).
+      const lo = centsAfter(c, /넓이가 \$([\d.]+)\$ cm²보다 넓고/);
+      const up = centsAfter(c, /\$([\d.]+)\$ cm²보다 좁습니다/);
+      if (!Number.isFinite(lo) || !Number.isFinite(up)) return null;
+      if (lo % 314 !== 0 || up % 314 !== 0) return null;
+      const hit: number[] = [];
+      for (let r = 1; r * r < up / 314; r += 1)
+        if (r * r > lo / 314) hit.push(r);
+      return hit.length === 1 ? asCents(100 * hit[0]!) : null;
+    }
     if (c.includes("넓이가")) {
       // 심화 — 넓이에서 반지름·지름을 되짚는다 (D-74: 원주율 $3.14$)
       const a = centsAfter(c, /넓이가 \$([\d.]+)\$ cm²인 원/);

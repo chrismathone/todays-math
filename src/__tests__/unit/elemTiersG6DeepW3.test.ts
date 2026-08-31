@@ -87,6 +87,8 @@ const BUILT: { code: string; tier: "심화중" | "심화상" }[] = [
   { code: "1-1-2", tier: "심화중" },
   { code: "1-1-3", tier: "심화상" },
   { code: "2-5-2", tier: "심화상" },
+  // 🔴 적대 검토 ④-㉰ 가 되살린 자리 — main 의 `surfRangeMid` 와 같은 꼴이다.
+  { code: "2-5-4", tier: "심화중" },
   { code: "2-6-1", tier: "심화중" },
   { code: "2-6-2", tier: "심화중" },
   { code: "2-6-3", tier: "심화상" },
@@ -233,6 +235,25 @@ function splitOf(code: string, content: string): Split | null {
     return {
       open: cands.length,
       fixed: cands.filter((v) => (d * v) / gcd(imp, d * v) === m).length,
+    };
+  }
+
+  if (code === "2-5-4") {
+    // 넓이 구간 ÷ 원주율 → (반지름)×(반지름) 의 구간. 그 안의 «제곱수»가 하나여야 한다.
+    // (적대 검토 ④-㉰ 가 되살린 자리 — main 의 `surfRangeMid` 와 같은 꼴이다.)
+    const lo = centsOf(content, /넓이가 \$([\d.]+)\$ cm²보다 넓고/);
+    const up = centsOf(content, /\$([\d.]+)\$ cm²보다 좁습니다/);
+    if (lo === null || up === null) return null;
+    if (lo % 314 !== 0 || up % 314 !== 0) return null;
+    const [L, U] = [lo / 314, up / 314];
+    const open: number[] = [];
+    for (let v = L + 1; v < U; v += 1) open.push(v);
+    const fixed = open.filter((v) => Number.isInteger(Math.sqrt(v)));
+    return {
+      open: open.length,
+      fixed: fixed.length,
+      atEnd: fixed.length === 1 && fixed[0] === open[open.length - 1],
+      atStart: fixed.length === 1 && fixed[0] === open[0],
     };
   }
 
