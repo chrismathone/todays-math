@@ -47,6 +47,8 @@ import { PrismaClient } from "@prisma/client";
 import { middleComboDefinitions } from "../../src/lib/middle/combo";
 import { registeredTypes } from "../../src/lib/middle/generate";
 
+import { isDirectScript } from "../import/isDirectScript";
+
 const LEDGER = "docs/planning/tracks/reports/unloaded-types.json";
 
 /** 적재본이 이만큼도 없으면 이 검사는 뜻이 없다 — 「전부 안 나간다」가 되어 버린다. */
@@ -196,4 +198,15 @@ async function main(): Promise<void> {
   }
 }
 
-main();
+// 🔴 **직접 부를 때만 돈다.** `unloadedTypes.test.ts` 가 이 파일에서 순수 함수 둘을
+//    가져오는데, 맨몸 `main()` 이면 **import 만으로 공유 DB 질의가 나간다.** `.env` 가
+//    없는 워크트리에서는 그것이 Prisma 검증 오류가 되어, **시험은 13,302건 전부 초록인데
+//    vitest 종료 코드만 1** 이 된다(2026-08-31 실측 — 「N passed」 뒤에 숨는 그 자리다).
+//    관문은 **망 없이** 돌아야 하고, 공유 DB 를 보는 검사는 pre-push 자리다(D-115 ⑼㉢).
+//    ⚠️ 처음에 여기 「다른 QA 스크립트 **전부**가 이 울타리를 쓴다」고 적었는데
+//       **거짓이다**(2026-08-31 적대 검토). 세어 보면 `scripts/qa` 안에만 맨몸
+//       `main()` 이 **33개**다(울타리를 쓰는 것은 57개). 다만 **지금** 관문을
+//       깨뜨릴 수 있는 것은 «시험이 import 하는» 것뿐이고, 그 교집합은 **0개**다 —
+//       그래서 이 한 줄이 그때 유일한 자리였다. 새 시험이 그 33개 중 하나에서
+//       순수 함수를 꺼내 쓰는 순간 같은 결함이 다시 난다.
+if (isDirectScript(import.meta.url)) main();

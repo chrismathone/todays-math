@@ -246,17 +246,22 @@ describe("[초3 4단] 1-1 덧셈과 뺄셈 — 파일럿 밖 세 소단원", () 
   });
 
   it("네 갈래 발문이 서로 갈리고, 파일럿(1-1-2)과도 겹치지 않는다", () => {
+    // ⚠️ 기대값을 **손으로 적지 않는다.** 예전에는 `.toBe(16)`(4소단원 × 4갈래)이었는데,
+    //    확대 갈래를 채우면 그 수가 늘어 「겹친다」가 아니라 **「채웠다」로 빨개진다.**
+    //    묻는 것은 「몇 개인가」가 아니라 **「둘이 같아지지 않는가」**다 (D-113 ⑺).
     for (const seed of SEEDS) {
       const seen = new Set<string>();
+      let made = 0;
       for (const code of [...CODES, "1-1-2"] as const) {
         const u = elementaryUnits().find(
           (x) => x.grade === "초3" && x.section.startsWith(code),
         )!;
         for (const tier of tiersOf(u)) {
           seen.add(generateElementaryProblem(u, seed, tier).content);
+          made += 1;
         }
       }
-      expect(seen.size, `seed ${seed}: 같은 발문이 겹친다`).toBe(16);
+      expect(seen.size, `seed ${seed}: 같은 발문이 겹친다`).toBe(made);
     }
   });
 
@@ -1184,6 +1189,12 @@ describe("[초3 4단] 1-4 곱셈 — 다섯 소단원 (표준 포함)", () => {
                   `${code} ${tier ?? "표준"} seed ${seed}: ${s.a} — 몇십이 아니다`,
                 );
             } else {
+              // ⚠️ **한 자리 × 한 자리는 이 약속의 대상이 아니다.** 소단원이 약속한 것은
+              //    (몇십몇)×(몇) 의 올림 종류이고, 되짚기 해설은 그 종류를 «끝까지 곱하지
+              //    않고» 가르려고 **자릿수끼리의 곱**($4\times7$)을 적는다(D-115 ⑾).
+              //    그것까지 「몇십몇이 아니다」로 세면 심화중이 구조적으로 못 선다.
+              //    좁히는 것이 아니다 — 두 자리 피승수는 그대로 전부 잰다.
+              if (s.a < 10) continue;
               if (s.a < 11 || s.a > 99 || s.a % 10 === 0)
                 bad.push(
                   `${code} ${tier ?? "표준"} seed ${seed}: ${s.a} — 몇십몇이 아니다`,
@@ -1224,10 +1235,18 @@ describe("[초3 4단] 1-4 곱셈 — 다섯 소단원 (표준 포함)", () => {
               `${code} ${tier ?? "표준"} seed ${seed}: ${s.a}${s.op}${s.b}`,
             ).toBe(s.c);
           }
-          expect(
-            answerOf(p.answer),
-            `${code} ${tier ?? "표준"} seed ${seed}: ${p.solution}`,
-          ).toBe(st[st.length - 1]!.c);
+          // 🔴 **되짚기 갈래는 답이 마지막 «값»이 아니라 마지막 «피연산자»다.**
+          //    순방향 갈래(연산·기본·응용·심화하)에서는 마지막 셈의 결과가 곧 답이지만,
+          //    심화중은 「곱하는 수」를 되짚으므로 답이 마지막 곱셈의 **인수**로 선다
+          //    ($44\times2=88$ 의 $2$). 잠금을 지우지 않고 **갈래마다 옳은 잣대**를 댄다 —
+          //    지우면 「답이 해설 어디에도 없다」는 결함이 통째로 안 보인다.
+          const last = st[st.length - 1]!;
+          const at = `${code} ${tier ?? "표준"} seed ${seed}: ${p.solution}`;
+          if (tier === "심화중" || tier === "심화상") {
+            expect([last.a, last.b], at).toContain(answerOf(p.answer));
+          } else {
+            expect(answerOf(p.answer), at).toBe(last.c);
+          }
         }
       }
     }
