@@ -116,6 +116,50 @@ export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
 }
 
 /**
+ * **지면 두 수의 `+`·`−` 한 걸음으로 답에 닿는가** — 곱이 없는 소단원의 반증 ⑥.
+ *
+ * ## 🔴 왜 이 축이 따로 필요한가 (2026-08-31, 초3 물결 3 적대 검토)
+ *
+ * `forwardReachable` 의 허용 꼴은 `a×b` · `a×b×c` · `a×b±c` · `a×b±c×d` **넷뿐**이라
+ * **곱이 첫 걸음이 아니면 길이 아예 없다.** 그래서 덧셈·뺄셈 소단원에서는 그 자가
+ * **한 씨앗도 못 거른다** — 그 「⑥ 0건」은 «깨끗»이 아니라 **«못 셈»**이다.
+ *
+ * 실제로 그 눈먼 자리에서 갈래 하나가 통째로 잘못 섰다: 초3 `1-1-4 심화중`
+ * 「어떤 수와 $B$ 의 차가 $D$ … 받아내림이 두 번」은 답이 **전수 20,625/20,625 로
+ * $B-D$** 였다. 지면 두 수를 한 번 빼면 그대로 답이다. `forwardReachable` 은
+ * 그것을 늘 `false` 로 봤다.
+ *
+ * ## 눈금 (양성·음성 대조군이 **둘 다** 있다)
+ *
+ * 이 자가 「무엇이든 닿는다」고 하면 쓸모가 없고, 「아무것도 안 닿는다」면 못 세는
+ * 것이다. 초3 `1-1-4` 로 재면 **연산 닿음 · 기본 닿음 · 응용 안 닿음**이다 —
+ * 음성 대조군이 있으므로 이 축은 실제로 갈린다. 시험이 그 셋을 다 잠근다.
+ *
+ * ⚠️ **0 을 더하거나 빼는 것은 «한 걸음»이 아니다.** 값이 안 변하면 연산을 적용한
+ *    것이 아니라 지면의 수가 그대로 답인 것이고, 그건 `answerPrintedOnPage` 의 축이다.
+ *    (`forwardReachable` 이 「곱이 피연산자 그대로면 곱셈이 아무 일도 안 한 것」을
+ *     빼는 것과 같은 규칙이다.)
+ *
+ * ⚠️ **이 자는 «두 걸음 이상»을 안 본다.** 일부러 그렇다 — 반증 ⑥ 이 겨누는 것은
+ *    「학생이 무심코 한 번 계산하면 답이 나오는가」다. 넓히면 정당한 응용·심화가
+ *    걸려서 **늘 우는 가드**가 되고, 늘 우는 가드는 꺼진다(2026-08-20).
+ */
+export function pmOneStepReachable(nums: readonly Rat[], answer: Rat): boolean {
+  for (let i = 0; i < nums.length; i += 1) {
+    for (let j = 0; j < nums.length; j += 1) {
+      if (i === j) continue;
+      const a = nums[i]!;
+      const b = nums[j]!;
+      const s = add(a, b);
+      if (!same(s, a) && !same(s, b) && same(s, answer)) return true;
+      const d = sub(a, b);
+      if (!same(d, a) && !same(d, b) && same(d, answer)) return true;
+    }
+  }
+  return false;
+}
+
+/**
  * `"0.35"` → 7/20 · `"\frac{3}{4}"` → 3/4 · `"1\frac{1}{12}"` → 13/12 ·
  * `"12\,\mathrm{cm}"`·`"3000개"`·`"66^\circ"` → 꼬리를 떼고 수만. 못 읽으면 null.
  *

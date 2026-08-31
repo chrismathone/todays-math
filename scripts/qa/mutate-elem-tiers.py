@@ -420,6 +420,76 @@ G3_MUTS = [
         "  for (let total = 4; total <= 7; total += 1) {",
         "  for (let total = 4; total <= 12; total += 1) {",
     ),
+    # ── 초3 물결 3 — 1-4 «심화중» (D-113 · D-115, 2026-08-31) ──
+    # 잠그는 시험은 `elemTiersG3W3Extend.test.ts` 다(아래 TARGETS 에 함께 적었다).
+    #
+    # 🔴 **1-1 변이 넷을 뺐다** — 그 갈래(「차의 방향」 심화중)를 거뒀기 때문이다.
+    #    적대 검토가 전수로 재니 답이 20,625/20,625 로 «지면 두 수의 차»였다(반증 ⑥).
+    #    앵커가 없는 변이를 남겨 두면 하네스가 `??` 로 시끄럽게 울고, 그 소음이
+    #    다음 사람의 판정을 흐린다.
+    #
+    # ⚠️ **이 목록이 못 재는 것 하나** — `pmOneStepReachable`(「+·− 한 걸음」) 축의
+    #    가드는 여기서 판정할 수 없다. 그 함수는 **생성기가 안 부르므로** 훼손해도
+    #    산출물이 안 바뀌고, 하네스는 ⑵ 에서 «산출물이 그대로다»로 **판정을 거부**한다
+    #    (그게 옳은 동작이다 — 안 그러면 거짓 초록이 난다). 그 축은 손으로 훼손해
+    #    눈금 시험이 빨개지는 것을 확인했고, 그 사실을 보고서 §8 에 적었다.
+    (
+        "1-4 심화중 훼손 — 되짚기 후보가 하나뿐인 자리도 넣는다(그건 심화하다)",
+        "        // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 ①).\n        if (cand.length < 2) continue;",
+        "        // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 ①).\n        if (cand.length < 1) continue;",
+    ),
+    (
+        "1-4 심화중 훼손 — 성질이 후보를 여럿 남기는 자리도 넣는다(답이 안 정해진다)",
+        "        if (cand.filter((k) => mulCarryClassOf(t, o, k) === want).length !== 1)",
+        "        if (cand.filter((k) => mulCarryClassOf(t, o, k) === want).length < 1)",
+    ),
+    (
+        "1-4 심화중 훼손 — 소단원 이름을 안 보고 올림 종류를 고정한다",
+        "  const want = mulCarryOfSection(unit.section);",
+        '  const want: MulCarry = "both";',
+    ),
+    (
+        "1-4 심화중 훼손 — 답이 지면에 이미 찍힌 자리도 넣는다(반증 ⑥)",
+        "        if (answerPrintedOnPage(page, rat(b))) continue;",
+        "        if (false && answerPrintedOnPage(page, rat(b))) continue;",
+    ),
+    (
+        "1-4 심화중 훼손 — 해설이 «버릴 후보»의 두 자리 곱을 먼저 보인다",
+        r"      `곱하는 수가 ${n(k)} 일 때는 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +",
+        r"      `곱하는 수가 ${n(k)} 일 때는 ${expr(`${t * 10 + o}\\times${k}=${(t * 10 + o) * k}`)} 이라 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +",
+    ),
+    # ── 적대 검토(2026-08-31)가 연 자리 넷 ──────────────────────────────────
+    (
+        "1-4 심화중 훼손 — 파일럿 2-1-3 과 겹치는 자리를 도로 넣는다(같은 문항이 된다)",
+        # ⚠️ prettier 가 이 줄을 **접는다** — 앵커는 «포맷 뒤» 모양이어야 한다
+        #    (메모리 `format-kills-mutation-anchors`: 포맷 → 앵커 재검증 → md5 순서).
+        "        if (cand.some((k) => tensCarryOf(k) !== tensCarryOf(cand[0]!)))\n          continue;",
+        "        if (false && cand.some((k) => tensCarryOf(k) !== tensCarryOf(cand[0]!)))\n          continue;",
+    ),
+    (
+        "1-4 심화중 훼손 — 발문에 «$1$ 보다 큰» 울타리를 도로 붙인다(지면에 낱 수가 하나 는다)",
+        "    `${n(f.a)} 에 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. 곱한 수를 쓰시오.`,",
+        "    `${n(f.a)} 에 ${n(1)} 보다 큰 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. 곱한 수를 쓰시오.`,",
+    ),
+    # 🔴 아래 둘이 **해설 산문** 축이다 — 2026-08-31 까지 이 축에는 가드가 하나도 없었고,
+    #    적대 검토의 변이 B 는 8,000표본의 9.1%에서 **결론을 뒤집는데도 초록**이었다.
+    #
+    # ⚠️ **검토가 든 변이 B 를 글자 그대로 옮기면 «판정 거부»가 난다** — `mul14Why` 의
+    #    «십의 자리» 가지가 새 겹침 가드 뒤로 **구조적으로 죽었기** 때문이다(후보들의
+    #    십의 자리 올림이 같으니 버릴 후보는 반드시 일의 자리에서 갈린다 — 실측
+    #    8,000표본 중 십의 자리 가지 **0회**). 죽은 가지를 겨누는 변이는 영영 판정되지
+    #    않는다. 그래서 같은 «값»을 **살아 있는 경로**(정답 문장)에서 겨눈다.
+    #    그 가지가 되살아나면 시험이 빨개진다(`checkMul14Why` 의 마지막 단정).
+    (
+        "1-4 심화중 훼손 — 정답 문장이 십의 자리 곱에 «올림을 안 더한다»(적대 검토 변이 B)",
+        "      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${words}.`,",
+        "      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b)} 입니다. 그래서 ${words}.`,",
+    ),
+    (
+        "1-4 심화중 훼손 — 정답 문장이 맺는 올림 문구를 소단원과 다르게(적대 검토 변이 C 류)",
+        "      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${words}.`,\n    `따라서 곱하는 수는",
+        '      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${mulCarryWords("none")}.`,\n    `따라서 곱하는 수는',
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -900,6 +970,90 @@ G5_MUTS = [
         "      if (forwardReach(render(task), right)) continue;",
         "      if (forwardReach(render(task), right) && false) continue;",
     ),
+    # ── 물결 2 (1-5 · 1-6 · 2-6) 확대 갈래 — 잠금은 `elemTiersG5W2.test.ts` 다 ──
+    (
+        "[물결2 1-5-1 심화중] 답이 버려야 할 쪽 후보다",
+        "  return makeDeep(unit, content(t), expr(fracLatex(an, ad)), [",
+        "  return makeDeep(unit, content(t), expr(fracLatex(t.hi[0], t.hi[1])), [",
+    ),
+    (
+        "[물결2 1-5-3 심화중] 더한 쪽도 진분수여도 통과 (마디가 안 굳는다)",
+        "      if (w2proper(hi)) continue; // 더한 쪽도 진분수면 마디가 안 굳는다",
+        "      if (w2proper(hi) && false) continue; // 변이",
+    ),
+    (
+        "[물결2 1-5-4 심화중] 뺀 쪽도 대분수여도 통과 (마디가 안 굳는다)",
+        "      if (w2mixed(lo)) continue; // 뺀 쪽도 대분수면 마디가 안 굳는다",
+        "      if (w2mixed(lo) && false) continue; // 변이",
+    ),
+    (
+        "[물결2 1-5 심화상] 다른 후보가 성질을 안 만족해도 통과 (성질이 갈라 준다 = 중)",
+        "      if (!holds(p1) || !holds(o1)) continue;",
+        "      if (!holds(p1)) continue;",
+    ),
+    # ⚠️ 여기 있던 「두 조건의 다른 후보가 겹쳐도 통과」는 **판정 거부**(산출물이 그대로)
+    #    를 냈고, 그 거부가 옳았다 — `o1 = a+2d1 > a > a-2d2 = o2` 라 겹칠 수가 없다.
+    #    죽은 줄이었으므로 생성기에서 **지웠고**, 그 자리에 실제로 무는 둘을 넣는다.
+    (
+        "[물결2 1-5 심화상] 둘째 조건의 다른 후보가 성질을 안 만족해도 통과",
+        "        if (!holds(p2) || !holds(o2)) continue;",
+        "        if (!holds(p2)) continue;",
+    ),
+    (
+        "[물결2 1-5 심화상] 답이 첫째 조건의 «다른 후보»다",
+        "  return makeDeep(unit, content(t), expr(L(t.a)), [",
+        "  return makeDeep(unit, content(t), expr(L(t.o1)), [",
+    ),
+    (
+        "[물결2 1-6-1 심화중] 답이 «다른 붙이기»의 긴 변이다",
+        "        const ans = Math.max(joined, 2 * other);",
+        "        const ans = Math.max(2 * joined, other);",
+    ),
+    (
+        "[물결2 1-6-1 심화상] 발문의 «변의 수의 차»가 한 개 어긋난다",
+        "        out.push({ s1, s2, diff: n1 - n2, per, steps });",
+        "        out.push({ s1, s2, diff: n1 - n2 + 1, per, steps });",
+    ),
+    (
+        "[물결2 1-6-2 심화상] 넓이의 짝이 둘뿐이어도 통과 (견줄 것이 없다)",
+        "      const pairs = w2Pairs(area);\n      if (pairs.length < 3 || pairs.length > 5) continue;",
+        "      const pairs = w2Pairs(area);\n      if (pairs.length !== 2) continue;",
+    ),
+    (
+        "[물결2 1-6-4 심화상] 답이 삼각형의 밑변이 아니라 높이다",
+        "  return makeDeep(unit, content(t), n(t.y), [\n    `평행사변형의 넓이는",
+        "  return makeDeep(unit, content(t), n(t.x), [\n    `평행사변형의 넓이는",
+    ),
+    (
+        "[물결2 1-6-5 심화중] 긴 대각선이 짧은 대각선의 배수가 아니다",
+        "      const long = short * mult;",
+        "      const long = short * mult + 2;",
+    ),
+    (
+        "[물결2 1-6-5 심화상] 합이 짝을 하나로 못 골라도 통과",
+        "      const sum = x + y;\n      if (pairs.filter(([u, v]) => u + v === sum).length !== 1) continue;",
+        "      const sum = x + y + 2;\n      if (pairs.filter(([u, v]) => u + v === sum).length !== 1) continue;",
+    ),
+    (
+        "[물결2 2-6-1 심화중] 답이 나 모둠이 아니라 가 모둠의 점수 합",
+        "            const ans = naAvg * na;",
+        "            const ans = naAvg * ga;",
+    ),
+    (
+        "[물결2 2-6-2 심화중] 앞의 경기가 한 경기뿐 (되짚을 것이 없다)",
+        "          if (front < 2 || front > 12) continue;",
+        "          if (front !== 1) continue;",
+    ),
+    (
+        "[물결2 2-6-3 심화중] 가능성의 첫 배수가 곧 답 (마디가 이미 굳어 있다)",
+        "      for (let times = 2; times <= 6; times += 1) {",
+        "      for (let times = 1; times <= 1; times += 1) {",
+    ),
+    (
+        "[물결2 2-6-3 심화상] 첫 후보가 곧 답 (만들어 견줄 것이 없다)",
+        "      for (let k = 2; k <= 4; k += 1) {\n        const add = k * (b - 2 * a);",
+        "      for (let k = 1; k <= 1; k += 1) {\n        const add = k * (b - 2 * a);",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -1325,6 +1479,81 @@ G6_MUTS = [
         "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = win[0]!;",
         "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = list[0]!;",
     ),
+    # ── 확대 갈래 **2차분** — 1-2 · 1-6 · 2-4 (D-113·D-115, 2026-08-31) ──────────
+    #
+    # ⚠️ 이 아홉은 `elemTiersG6DeepW2.test.ts` 와 `elemTiersG6.test.ts` 를 같이 겨눈다.
+    #
+    # 🔴 **먼저 «그 가드가 무엇을 거르는가»를 셌다** (파일럿이 다섯을 헛돌린 뒤 남긴 교훈).
+    #    반증 ⑥ 가드가 실제로 거르는 수 — 1-2-1 중 **1,802/6,954** · 1-6-1 중 **994/3,528** ·
+    #    1-6-2 중 61/279 · 1-2-2 중 3/96 · 2-4-1 중 8/332.
+    #    반대로 **0 을 거르는 자리 셋**이 있다 — 1-2-4 상 · 1-6-1 상 · 2-4-4 중.
+    #    거기 가드는 **지금 시험할 수 없다**(구성이 바뀌면 살아난다 — 그래서 안 지웠다).
+    #    그 셋에는 반증 ⑥ 변이를 안 만든다: 만들면 「산출물이 그대로」로 거부될 뿐이다.
+    (
+        # ㉠ — 구간에 후보가 하나뿐이면 마디가 이미 굳은 것이고 그건 심화하다.
+        "구간 훼손 — 1-2-1 심화중의 구간에 후보가 하나뿐이라 성질이 일을 안 한다",
+        "        if (up - lo < 5) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+        "        if (up - lo < 1) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다.
+        #    (`false &&` 는 쓰지 않는다 — 파일럿이 연산자 묶임에 물린 자리다.)
+        "반증 ⑥ 가드 제거 — 1-2-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 1,802건)",
+        "        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+        "        if (!backsolveSafe([s, h, lo, up], -1)) continue;\n        PRISM_AREA_MID.push",
+    ),
+    (
+        # ㉡ — 구간 안에 $3$ 의 배수가 둘이면 답이 둘이 된다(지면 자체가 틀린다).
+        "배수 성질 무력화 — 1-2-2 심화중의 구간에 $3$ 의 배수가 둘이어도 좋다",
+        "      if (multiplesBetween(lo, up, 3).length !== 1) continue;",
+        "      if (multiplesBetween(lo, up, 3).length < 1) continue;",
+    ),
+    (
+        # ㉢ — 상한을 각기둥의 꼭짓점보다 위로 올리면 **둘 다** 조건을 통과한다.
+        "후보 훼손 — 1-2-4 심화상의 조건이 각기둥·각뿔을 둘 다 통과시킨다",
+        "  for (let cap = vPyr + 1; cap <= vPrism; cap += 1) {",
+        "  for (let cap = vPrism + 1; cap <= vPrism + 2; cap += 1) {",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-6-1 심화중.
+        "반증 ⑥ 가드 제거 — 1-6-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 994건)",
+        "        if (!backsolveSafe([w, d, lo, up], h)) continue;\n        SURF_RANGE_MID.push",
+        "        if (!backsolveSafe([w, d, lo, up], -1)) continue;\n        SURF_RANGE_MID.push",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-6-2 심화중 (실측 61/279 를 거른다).
+        #    ⚠️ 처음엔 「짝이 정확히 하나인가」를 겨눴는데 그 가드는 **대수적으로 늘 참**이라
+        #    「산출물이 그대로」로 거부됐다. 죽은 가드를 지우고 살아 있는 것을 겨눈다.
+        "반증 ⑥ 가드 제거 — 1-6-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 61건)",
+        "      if (!backsolveSafe([v, w, gap], d)) continue;\n      VOL_PAIR_MID.push",
+        "      if (!backsolveSafe([v, w, gap], -1)) continue;\n      VOL_PAIR_MID.push",
+    ),
+    (
+        # ㉢ — 상한이 삼조를 둘 이상 남기면 답이 하나로 안 선다.
+        #    ⚠️ 「삼조가 하나뿐인 부피」를 겨눴더니 **cap 고리가 아예 안 돌아** 새 항목이
+        #    하나도 안 들어왔다(초록). 결함을 «가능»하게만 만들고 «반드시 밟도록» 안 만든
+        #    그 자리다(파일럿 §8.6). 그래서 상한 쪽을 겨눈다.
+        #    ⚠️ 가드만 풀면 **새 항목이 하나도 안 들어온다** — 고리가 이미 `longest[1]`
+        #    에서 끊겨 `kept` 가 늘 하나다. 「결함을 «가능»하게만 만들고 «반드시 밟도록»
+        #    안 만든」 그 자리라, 고리와 가드를 **함께** 푼다.
+        "후보 훼손 — 1-6-2 심화상의 상한이 삼조를 둘 이상 남긴다",
+        "  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
+        "  for (let cap = longest[0]! + 1; cap <= longest[2]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
+    ),
+    (
+        # ㉢ — 둘째 비 조건을 통과하는 전체가 둘이면 답이 하나로 안 선다.
+        #    ⚠️ 처음엔 「후보가 셋 이상인가」를 겨눴는데 창 너비가 늘 $3s+2$·$4s+2$ 라
+        #    후보 수가 언제나 3~4 다 — **그 가드는 죽어 있다.** 살아 있는 것은 이쪽이다.
+        "후보 훼손 — 2-4-5 심화상의 둘째 비 조건이 전체를 하나로 못 남긴다",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length !== 1) continue;",
+        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length < 1) continue;",
+    ),
+    (
+        # ㉠ — 간단히 했을 때 후항이 $b$ 가 아닌 세로가 들어오면 **발문이 거짓말**이 된다.
+        "후항 조건 무력화 — 2-4-2 심화중이 간단히 해도 후항이 다른 세로를 쓴다",
+        "      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만",
+        "      if (x / g !== b && false) continue; // 간단히 하면 후항이 b 가 되는 세로만",
+    ),
 ]
 
 G4_MUTS = [
@@ -1662,10 +1891,19 @@ TARGETS = {
             # D-113 물결 2(2-2 · 2-4 · 2-6 의 심화중·심화상). 안 적으면 그 갈래를
             # 물는 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
             "src/__tests__/unit/elemTiersG3W2Extend.test.ts",
+            # D-113 물결 3(1-1 · 1-4 의 심화중). 안 적으면 그 갈래를 무는 변이가
+            # **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
+            "src/__tests__/unit/elemTiersG3W3Extend.test.ts",
         ],
         "grade": "초3",
         "sections": [
             "1-1-2",
+            "1-1-3",
+            "1-1-4",
+            "1-4-2",
+            "1-4-3",
+            "1-4-4",
+            "1-4-5",
             "1-3-3",
             "2-1-1",
             "2-1-2",
@@ -1698,6 +1936,8 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elemTiersG5.test.ts",
             "src/__tests__/unit/elemTiersG5DecTop.test.ts",
+            # 물결 2(1-5·1-6·2-6)의 확대 갈래를 잠그는 자리.
+            "src/__tests__/unit/elemTiersG5W2.test.ts",
         ],
         "grade": "초5",
         "sections": [
@@ -1719,8 +1959,14 @@ TARGETS = {
             "1-5-2",
             "1-5-3",
             "1-5-4",
+            # 🔴 물결 2 에서 1-6-1·1-6-2·1-6-5 에 확대 갈래가 붙었다. 여기 안 넣으면
+            #    그 소단원만 건드리는 변이가 프로브에 안 잡혀 «산출물이 그대로다»로
+            #    **거짓 판정 거부**가 난다(2026-08-24 g4 가 하마터면 밟을 뻔한 자리).
+            "1-6-1",
+            "1-6-2",
             "1-6-3",
             "1-6-4",
+            "1-6-5",
             "2-1-1",
             "2-1-2",
             "2-1-3",
@@ -1805,6 +2051,7 @@ TARGETS = {
         "test": [
             "src/__tests__/unit/elemTiersG6.test.ts",
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
         ],
         "grade": "초6",
         "sections": [
