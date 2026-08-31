@@ -5408,17 +5408,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier44Apply,
     심화하: tier44Deep,
   },
+  // ── 1-6 규칙 찾기 — 확대 셋째 물결(D-113). 「배열의 자리」가 굳힘 축이다.
+  //    🔴 **1-6-3·1-6-4·1-6-5 는 중·상 둘 다 비운다** — 마디를 하나 열려면 «몇씩
+  //    커지는가»를 감춰야 하는데 그 후보를 자르는 것이 **약수**(초5-1)라 반증 ③ 이다.
+  //    1-6-5 는 기본·응용·심화하의 발문 문장이 글자 그대로 같아 얹을 자리가 없다.
+  //    1-6-1 상·1-6-2 중도 비운다 — 근거는 보고서 §3.
   "초4|1-6-1": {
     연산: tier61Calc,
     기본: tier61Basic,
     응용: tier61Apply,
     심화하: tier61Deep,
+    심화중: tier61Mid,
   },
   "초4|1-6-2": {
     연산: tier62Calc,
     기본: tier62Basic,
     응용: tier62Apply,
     심화하: tier62Deep,
+    심화상: tier62Top,
   },
   "초4|1-6-3": {
     연산: tier63Calc,
@@ -5438,17 +5445,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier65Apply,
     심화하: tier65Deep,
   },
+  // ── 1-5 막대그래프 — 확대 셋째 물결(D-113). 눈금 한 칸이 굳힘 축이다.
+  //    🔴 **1-5-3 은 중·상 둘 다 비운다** — 막대를 둘 지우고 전체를 주는 판은
+  //    짝을 셋 이상 만들 수 있는 자리가 `barSplits` 전수에서 **0**이고(보고서 §3),
+  //    마디를 하나만 여는 판은 1-5-1 심화중과 같은 일이다. 1-5-1 상도 비운다.
   "초4|1-5-1": {
     연산: tier51Calc,
     기본: tier51Basic,
     응용: tier51Apply,
     심화하: tier51Deep,
+    심화중: tier51Mid,
   },
   "초4|1-5-2": {
     연산: tier52Calc,
     기본: tier52Basic,
     응용: tier52Apply,
     심화하: tier52Deep,
+    심화중: tier52Mid,
+    심화상: tier52Top,
   },
   "초4|1-5-3": {
     연산: tier53Calc,
@@ -5578,17 +5592,24 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier241Apply,
     심화하: tier241Deep,
   },
+  // ── 2-4 사각형 — 확대 셋째 물결(D-113). 「이름이 성질을 되돌려 준다」가 굳힘 축이다.
+  //    🔴 **심화상은 일곱 소단원 모두 비운다** — 2-4-7 의 후보 무리(사다리꼴·평행사변형·
+  //    마름모·직사각형·정사각형)는 **교과 어휘가 주는 것**이라 「되짚기가 만든다」를 어기고
+  //    (토대 §3-㉡), 나머지 여섯은 셈 축이 ×4·÷4·합·차 하나뿐인 일차·단조라 컷으로 닫힌다.
+  //    2-4-1·2-4-4·2-4-6 은 심화중도 비운다 — 근거는 보고서 §3.
   "초4|2-4-2": {
     연산: tier242Calc,
     기본: tier242Basic,
     응용: tier242Apply,
     심화하: tier242Deep,
+    심화중: tier242Mid,
   },
   "초4|2-4-3": {
     연산: tier243Calc,
     기본: tier243Basic,
     응용: tier243Apply,
     심화하: tier243Deep,
+    심화중: tier243Mid,
   },
   "초4|2-4-4": {
     연산: tier244Calc,
@@ -5601,6 +5622,7 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier245Basic,
     응용: tier245Apply,
     심화하: tier245Deep,
+    심화중: tier245Mid,
   },
   "초4|2-4-6": {
     연산: tier246Calc,
@@ -5613,6 +5635,7 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier247Basic,
     응용: tier247Apply,
     심화하: tier247Deep,
+    심화중: tier247Mid,
   },
   // ── 2-6 다각형 — 확대 둘째 물결(D-113).
   //    🔴 **2-6-3(대각선)은 중·상 둘 다 비운다** — 심화하 해설이 이미 대각선 표를
@@ -17867,3 +17890,809 @@ export const G4: Record<string, ChapterHandler> = {
 export const G4_TIER_CALC = tier53Calc;
 export const G4_TIER_BASIC = tier53Basic;
 export const G4_TIER_APPLY = tier53Apply;
+
+/* ══════ 1-5 · 1-6 · 2-4 난이도 확대 — 심화중·심화상 (D-113 · D-115, 물결 3) ══════
+ *
+ * 2026-08-31. 파일럿(1-3)·둘째 물결(2-3·2-6·2-1)에 이어 **세 대단원**을 채운다.
+ * 고른 까닭·비운 자리·못 본 것은 `docs/planning/tracks/reports/tier-fill-g4-w3.md`.
+ *
+ * ## 굳힘 축을 대단원마다 하나씩 **예약**한다 (토대 17 §2 권고, 물결 2 가 시작한 규약)
+ *
+ * ```
+ * 1-3 (파일럿)  곱의 자릿수 · 나머지는 나누는 수보다 작다
+ * 2-3 (물결 2)  소수의 자릿값 · 받아올림/받아내림
+ * 2-6 (물결 2)  변의 수는 자연수 · 나누어떨어져야 한다
+ * 2-1 (물결 2)  진분수 조건(분자 < 분모)
+ * ─────────────────────────────────────────────────────────
+ * 1-5 (여기)    **눈금 한 칸** — 모든 막대에 같다 · 값은 한 칸의 배수 · 세로 눈금 상한
+ * 1-6 (여기)    **배열의 자리** — 첫째부터 차례로만 간다 · 자리를 하나씩 늘려 견준다
+ * 2-4 (여기)    **이름이 성질을 되돌려 준다** — 마주 보는 두 변이 같다 · 수직 꺾임의 홀짝
+ * ```
+ *
+ * ## 🔴 「잘못 …했더니」를 한 갈래도 안 쓴다
+ *
+ * 초4 심화하 62자리 중 11자리(17.7%)가 이미 그 문형이다(토대 §2-㉠). 여기서도 마디를
+ * 여는 방식을 **「무엇을 안 말해 주는가」**로 둔다 — 어느 막대와 견주는지 · 어느 항목이
+ * 그 칸 수인지 · 몇째인지 · 늘어나는 개수가 얼마인지 · 직선이 몇 개인지 · 세 직선의
+ * 차례가 어떤지 · 잰 두 변이 마주 보는지 이웃하는지 · 네 변까지 같은지.
+ *
+ * ## 각도를 한 갈래도 안 쓴다 (2-4)
+ *
+ * 토대 §3 2-4 함정 첫 줄이 돌려 보고 못 박은 자리다 — 「각도로 사다리를 세우면
+ * 1-2-4(각도의 합과 차)와 통째로 겹친다」. 그래서 2-4 의 확대 넷은 **변·거리·개수**로만
+ * 간다. 그리고 1-2 각도와 2-2 삼각형은 **같은 축**(고정된 합 $180^\circ$/$360^\circ$)
+ * 위에 있어 한 회차가 둘을 같이 들고 갈라야 한다 — 이 물결은 그 둘을 **안 건드린다**.
+ *
+ * ## 밭은 손으로 고르지 않고 **전수로 만든다**
+ *
+ * 「하나만 남는가」를 눈으로 고르면 둘 남는 자리가 반드시 샌다(파일럿·물결 2 와 같은 규율).
+ * 아래 `*_FIELD` 는 모듈이 뜰 때 전수로 만들고 **하나만 남는 자리만** 담는다.
+ * 비면 그 갈래는 등록조차 못 하므로, 근거는 문장이 아니라 **밭 자체**다.
+ */
+
+/* ─────────────────── 1-5 막대그래프 — 확대 갈래 ───────────────────
+ *
+ * 🔴 **물결 2 가 미룬 까닭을 측정으로 뒤집었다.** 그 회차는 「축을 차트 엔진이 정한다」로
+ * 1-5·2-5 를 함께 미뤘는데, 그 제약(`CHART_ACCEPTS_UNKNOWN`)은 **`lineChart` 것**이다.
+ * `barChart` 는 열려 있고, 실제로 렌더해 보면 지워진 막대가 **둘**이어도(5,062자)
+ * **셋**이어도(5,069자) 그린다. 그래서 1-5 는 이번에 채우고 2-5 는 그대로 남긴다.
+ *
+ * 재료는 표준·4단이 쓰는 `barSplits`·`BAR_SCALES`·`BAR_THEMES` **그대로**다 —
+ * 재료를 두 벌로 두면 한쪽만 고쳐도 아무도 모른다.
+ */
+
+/** 값(크기 순)을 라벨 자리에 **섞어** 앉힌다 — 늘 오름차순이면 가장 긴 막대가 늘 끝이다. */
+function barSlots(rng: Rng): number[] {
+  const slot = [0, 1, 2, 3];
+  for (let i = 3; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    [slot[i], slot[j]] = [slot[j]!, slot[i]!];
+  }
+  return slot;
+}
+
+/** `slot[t]` = 크기 순서 `t` 인 값이 앉을 라벨 자리. 그것을 라벨 차례로 뒤집어 준다. */
+function barCells(
+  theme: BarTheme,
+  sorted: readonly number[],
+  slot: readonly number[],
+): { label: string; rank: number; value: number }[] {
+  return theme.labels.map((label, at) => {
+    const rank = slot.indexOf(at);
+    return { label, rank, value: sorted[rank]! };
+  });
+}
+
+function barIntroOf(scale: BarScale, theme: BarTheme): string {
+  return (
+    `${josa(scale.who, "이", "가")} 좋아하는 ` +
+    `${josa(theme.item, "을", "를")} 조사하여 나타낸 막대그래프입니다.`
+  );
+}
+
+function barTableIntroOf(scale: BarScale, theme: BarTheme): string {
+  return (
+    `${josa(scale.who, "이", "가")} 좋아하는 ` +
+    `${josa(theme.item, "을", "를")} 조사하여 나타낸 표입니다.`
+  );
+}
+
+/** 그리기 갈래의 표. 세로로 세운다(`barTable` 과 같은 규격). */
+function barTableOf(
+  theme: BarTheme,
+  cells: readonly { label: string; value: number }[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: [theme.item, "학생 수(명)"],
+    rows: cells.map((c) => [c.label, String(c.value)]),
+  });
+}
+
+/**
+ * **1-5-1 심화중의 밭** — 지워진 막대가 «어느 막대보다» 더 많은지 안 말한다.
+ *
+ * 되짚기가 후보 셋(보이는 세 값에 각각 `k` 를 더한 것)을 만들고, 그 가운데 **세로 눈금
+ * 안에 그릴 수 있는 것이 하나뿐**이라야 답이 선다. 그 조건이 곧
+ * 「둘째로 작은 값 + `k` 가 축 맨 위를 넘는다」이므로 전수로 그것만 담는다.
+ *
+ * ⚠️ 최댓값은 숨기지 않는다(`tier53Deep` 과 같은 약속) — 숨기면 축이 그 크기를 귀띔한다.
+ *    그래서 지워질 수 있는 자리는 크기 순서 `1`·`2` 뿐이고, 견주는 상대는 늘 가장 작은
+ *    값이다(그것 말고는 `k` 를 더하면 축을 넘는다).
+ */
+const BAR_HIDE_FIELD: {
+  scale: BarScale;
+  total: number;
+  sorted: number[];
+  hideRank: number;
+}[] = (() => {
+  const out: {
+    scale: BarScale;
+    total: number;
+    sorted: number[];
+    hideRank: number;
+  }[] = [];
+  for (const scale of BAR_SCALES) {
+    for (const total of scale.totals) {
+      for (const sorted of barSplits(total, scale)) {
+        const [v1, v2, v3, v4] = sorted as [number, number, number, number];
+        // 지워진 것이 셋째로 큰 값이면 남는 셋은 v1·v2·v4 다.
+        if (v3 - v1 > v4 - v2) out.push({ scale, total, sorted, hideRank: 2 });
+        // 지워진 것이 둘째로 작은 값이면 남는 셋은 v1·v3·v4 다.
+        if (v2 - v1 > v4 - v3) out.push({ scale, total, sorted, hideRank: 1 });
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-5-1 5단 심화중 — 지워진 막대를 «어느 것과» 견주는지 안 말한다.**
+ *
+ * 심화하는 견줄 상대를 이름으로 준다(마디가 하나로 굳는다). 여기서는 그 이름을 지워
+ * 후보가 셋이 되고, **「세로 눈금은 가장 큰 수까지 나타낼 수 있어야 한다」**는 이 대단원의
+ * 성질이 둘을 떨어뜨린다. 후보를 **끝까지 더해 보지 않고** 「상대가 얼마보다 많을 수
+ * 없는가」 한 번으로 걸러 내므로 중이다(D-115 ⑾).
+ */
+function tier51Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier51MidRaw(unit, rng));
+}
+
+function tier51MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, BAR_THEMES));
+  const f = pick(rng, BAR_HIDE_FIELD);
+  const cells = barCells(theme, f.sorted, barSlots(rng));
+  const hidden = cells.find((c) => c.rank === f.hideRank)!;
+  const ref = cells.find((c) => c.rank === 0)!;
+  const top = f.sorted[3]!;
+  const gap = hidden.value - ref.value;
+  const limit = top - gap;
+  const shown = cells.filter((c) => c.rank !== f.hideRank);
+  const figure = fig("barChart", {
+    values: cells.map((c) =>
+      c.rank === f.hideRank
+        ? { label: c.label, unknown: true }
+        : { label: c.label, value: c.value },
+    ),
+    yMax: top,
+    yStep: f.scale.step,
+    yLabel: theme.unit,
+  });
+  return makeDeep(
+    unit,
+    `${barIntroOf(f.scale, theme)} 세로 눈금은 ${n(top)}${theme.unit}까지 ` +
+      `나타내었습니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 나머지 세 가지 ` +
+      `가운데 어느 한 가지를 좋아하는 학생보다 ${n(gap)}${theme.unit} 더 많습니다. ` +
+      `어느 것보다 많은지는 알려 주지 않습니다. ` +
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 ${theme.unit}인가?`,
+    `${n(hidden.value)}${theme.unit}`,
+    [
+      `지워진 막대도 이 그래프 안에 그려져 있으므로 ` +
+        `${n(top)}${josa(theme.unit, "을", "를")} 넘을 수 없습니다. 그러므로 ` +
+        `${n(gap)}${josa(theme.unit, "이", "가")} 더 많다고 한 상대는 ` +
+        `${expr(`${top}-${gap}=${limit}`)} 보다 많을 수 없습니다.`,
+      `나머지 세 가지는 ` +
+        `${shown.map((c) => `${n(c.value)}${theme.unit}`).join(", ")}인데 이 가운데 ` +
+        `${n(limit)}${josa(theme.unit, "을", "를")} 넘지 않는 것은 ` +
+        `${josa(ref.label, "의", "의")} ${n(ref.value)}${theme.unit} 하나입니다. ` +
+        `${expr(`${ref.value}+${gap}=${hidden.value}`)} 이므로 ` +
+        `${josa(hidden.label, "을", "를")} 좋아하는 학생은 ` +
+        `${n(hidden.value)}${theme.unit}입니다.`,
+    ],
+    figure,
+  );
+}
+
+/**
+ * **1-5-2 심화중의 밭** — 「어느 항목의 막대가 `cells` 칸인지」를 안 말한다.
+ *
+ * 표의 값 가운데 `cells` 로 나누어떨어지는 것이 **정확히 둘**이라야 후보가 둘이고,
+ * 그중 **하나만** 네 값을 모두 눈금에 꼭 맞게 그릴 수 있어야 답이 선다.
+ * 죽는 후보가 못 그리는 값(`deadMiss`)까지 밭이 들고 다닌다 — 해설이 그 값을 지목한다.
+ */
+const BAR_CELL_FIELD: {
+  scale: BarScale;
+  total: number;
+  sorted: number[];
+  cells: number;
+  unitSize: number;
+  dead: number;
+  deadMiss: number;
+}[] = (() => {
+  const out: {
+    scale: BarScale;
+    total: number;
+    sorted: number[];
+    cells: number;
+    unitSize: number;
+    dead: number;
+    deadMiss: number;
+  }[] = [];
+  for (const scale of BAR_SCALES) {
+    for (const total of scale.totals) {
+      for (const sorted of barSplits(total, scale)) {
+        for (let cells = 2; cells <= 9; cells += 1) {
+          const cands = [
+            ...new Set(
+              sorted.filter((v) => v % cells === 0).map((v) => v / cells),
+            ),
+          ];
+          if (cands.length !== 2) continue;
+          const alive = cands.filter((u) => sorted.every((v) => v % u === 0));
+          if (alive.length !== 1) continue;
+          const unitSize = alive[0]!;
+          if (unitSize === cells) continue; // 답이 발문에 그대로 있으면 안 된다
+          const dead = cands.find((u) => u !== unitSize)!;
+          const deadMiss = sorted.find((v) => v % dead !== 0);
+          if (deadMiss === undefined) continue;
+          out.push({
+            scale,
+            total,
+            sorted,
+            cells,
+            unitSize,
+            dead,
+            deadMiss,
+          });
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-5-2 5단 심화중 — 「어느 항목의 막대인지」를 안 말한다.**
+ *
+ * 심화하는 항목을 이름으로 준다(`돼지의 막대가 6칸`) — 나눗셈 한 번에 굳는다.
+ * 여기서는 이름을 지워 「눈금 한 칸」의 후보가 둘이 되고, **「눈금 한 칸은 모든 막대에
+ * 같다」**는 이 소단원의 성질이 하나를 떨어뜨린다. 지는 쪽은 **끝까지 그려 보지 않고**
+ * 「그 칸으로는 못 그리는 값이 있다」 한 줄로 죽는다 → 중.
+ */
+function tier52Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier52MidRaw(unit, rng));
+}
+
+function tier52MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, BAR_THEMES));
+  const f = pick(rng, BAR_CELL_FIELD);
+  const cells = barCells(theme, f.sorted, barSlots(rng));
+  const two = cells
+    .filter((c) => c.value % f.cells === 0)
+    .sort((a, b) => a.value - b.value);
+  const [lo, hi] = two as [
+    { label: string; value: number },
+    { label: string; value: number },
+  ];
+  return makeDeep(
+    unit,
+    `${barTableIntroOf(f.scale, theme)} 이 표를 보고 막대그래프를 그렸더니 어떤 한 ` +
+      `${josa(theme.item, "의", "의")} 막대가 ${n(f.cells)}칸이 되었습니다. 어느 ` +
+      `${josa(theme.item, "인지는", "인지는")} 알려 주지 않습니다. 모든 막대가 눈금에 ` +
+      `꼭 맞게 그려졌을 때 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내는가?`,
+    `${n(f.unitSize)}${theme.unit}`,
+    [
+      `막대가 ${n(f.cells)}칸이면 그 학생 수는 눈금 한 칸의 ${n(f.cells)}배입니다. ` +
+        `표에서 ${roJosa(f.cells)} 나누어떨어지는 수는 ${n(lo.value)}${theme.unit}과 ` +
+        `${n(hi.value)}${theme.unit}이므로, 눈금 한 칸은 ` +
+        `${expr(`${lo.value}\\div${f.cells}=${lo.value / f.cells}`)} 에서 ` +
+        `${n(lo.value / f.cells)}${theme.unit}이거나 ` +
+        `${expr(`${hi.value}\\div${f.cells}=${hi.value / f.cells}`)} 에서 ` +
+        `${n(hi.value / f.cells)}${theme.unit}입니다.`,
+      `눈금 한 칸은 모든 막대에 같습니다. 한 칸이 ${n(f.dead)}${theme.unit}이면 ` +
+        `${n(f.deadMiss)}${theme.unit}인 막대를 눈금에 꼭 맞게 그릴 수 없으므로, ` +
+        `세로 눈금 한 칸은 ${n(f.unitSize)}${theme.unit}입니다.`,
+    ],
+    barTableOf(theme, cells),
+  );
+}
+
+/**
+ * **1-5-2 심화상의 밭** — 「어느 두 항목의 막대인지」도 안 말한다.
+ *
+ * 두 막대의 **칸 수의 차**만 주면 후보가 셋 이상 생긴다(네 값에서 두 값을 고르는 여섯
+ * 가지 차를 각각 나눈 것). 성질 하나로는 안 굳어 **둘을 차례로 대 보아야** 하나가
+ * 남는다 — ㉠ 「눈금 한 칸은 모든 막대에 같다」 ㉡ 「세로 눈금은 가장 큰 수까지 나타낼
+ * 수 있어야 한다」. 밭은 **둘 다 실제로 일하는 자리만** 담는다(㉠ 이 아무도 안 죽이거나
+ * ㉡ 뒤에 둘이 남는 자리는 버린다).
+ */
+const BAR_GAP_FIELD: {
+  scale: BarScale;
+  total: number;
+  sorted: number[];
+  gapCells: number;
+  ticks: number;
+  unitSize: number;
+  cands: number[];
+  alive: number[];
+  deadDivs: { unit: number; miss: number }[];
+  deadTick: number;
+}[] = (() => {
+  const out: {
+    scale: BarScale;
+    total: number;
+    sorted: number[];
+    gapCells: number;
+    ticks: number;
+    unitSize: number;
+    cands: number[];
+    alive: number[];
+    deadDivs: { unit: number; miss: number }[];
+    deadTick: number;
+  }[] = [];
+  for (const scale of BAR_SCALES) {
+    for (const total of scale.totals) {
+      for (const sorted of barSplits(total, scale)) {
+        const top = sorted[3]!;
+        for (let gapCells = 2; gapCells <= 9; gapCells += 1) {
+          const seen = new Set<number>();
+          for (let i = 0; i < 4; i += 1) {
+            for (let j = 0; j < i; j += 1) {
+              const d = sorted[i]! - sorted[j]!;
+              if (d > 0 && d % gapCells === 0) seen.add(d / gapCells);
+            }
+          }
+          const cands = [...seen].sort((a, b) => a - b);
+          if (cands.length < 3) continue;
+          const alive = cands.filter((u) => sorted.every((v) => v % u === 0));
+          if (alive.length < 2) continue;
+          if (cands.length <= alive.length) continue; // ㉠ 이 아무도 안 죽인다
+          // 🔴 죽는 후보를 **하나만** 적으면 해설이 「나머지는 왜 죽었나」를 건너뛴다
+          //    (첫 판이 그랬다 — 후보 다섯 중 하나만 짚고 「남는 것은 둘」이라 했다).
+          //    그래서 죽는 것을 **전부** 그 못 그리는 값과 함께 들고 다닌다.
+          const deadDivs = cands
+            .filter((u) => !alive.includes(u))
+            .map((u) => ({ unit: u, miss: sorted.find((v) => v % u !== 0)! }));
+          for (let ticks = 3; ticks <= 9; ticks += 1) {
+            const left = alive.filter((u) => u * ticks >= top);
+            if (left.length !== 1) continue;
+            const unitSize = left[0]!;
+            if (unitSize < 2) continue;
+            if (unitSize === gapCells || unitSize === ticks) continue;
+            const deadTick = alive.find((u) => u !== unitSize)!;
+            // 🔴 답의 둘째 쪽(가장 긴 막대의 칸 수)이 발문의 수와 같으면 안 된다.
+            //    그리고 답을 두 쪽으로 물어야 R9-c 가 안 문다 — 「한 칸」만 물으면
+            //    이 밭에서 답이 **늘 $10$명**이라 찍으면 맞는다(실측 122/126).
+            const drawCells = top / unitSize;
+            if (
+              drawCells === ticks ||
+              drawCells === gapCells ||
+              drawCells === unitSize
+            ) {
+              continue;
+            }
+            out.push({
+              scale,
+              total,
+              sorted,
+              gapCells,
+              ticks,
+              unitSize,
+              cands,
+              alive,
+              deadDivs,
+              deadTick,
+            });
+          }
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-5-2 6단 심화상 — 후보를 만들어 두 성질에 차례로 대 본다.**
+ *
+ * 심화중은 후보가 둘이라 성질 한 번으로 끝난다. 여기서는 후보가 셋 이상이고 성질
+ * **둘**을 차례로 대야 하나가 남는다 — 후보를 발문이 주지 않고 **두 값의 차를 직접
+ * 만들어** 얻는다(되짚기가 만든다 ✓). 남는 하나는 두 성질을 **둘 다** 통과한 것이라
+ * 「가장 큰/작은」 한 줄로는 안 집힌다.
+ */
+function tier52Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier52TopRaw(unit, rng));
+}
+
+function tier52TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, BAR_THEMES));
+  const f = pick(rng, BAR_GAP_FIELD);
+  const cells = barCells(theme, f.sorted, barSlots(rng));
+  const top = f.sorted[3]!;
+  const topLabel = cells.find((c) => c.rank === 3)!;
+  const wide = f.sorted[3]! - f.sorted[0]!;
+  return makeDeep(
+    unit,
+    `${barTableIntroOf(f.scale, theme)} 이 표를 보고 막대그래프를 그리려고 합니다. ` +
+      `모든 막대는 눈금에 꼭 맞게 그려야 하고, 세로 눈금은 ${n(f.ticks)}칸까지만 ` +
+      `있습니다. 어떤 두 ${josa(theme.item, "의", "의")} 막대의 칸 수의 차가 ` +
+      `${n(f.gapCells)}칸일 때, 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내고 ` +
+      `${josa(topLabel.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
+    `${n(f.unitSize)}${theme.unit}, ${n(top / f.unitSize)}칸`,
+    [
+      `두 막대의 칸 수의 차가 ${n(f.gapCells)}칸이면 두 학생 수의 차는 눈금 한 칸의 ` +
+        `${n(f.gapCells)}배입니다. 표에서 두 수의 차를 모두 구해 ` +
+        `${roJosa(f.gapCells)} 나누어 보면 ` +
+        `${expr(`${wide}\\div${f.gapCells}=${wide / f.gapCells}`)} 처럼 나누어떨어지는 ` +
+        `것이 있고, 눈금 한 칸이 될 수 있는 수는 ` +
+        `${f.cands.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
+      `눈금 한 칸은 모든 막대에 같습니다. ` +
+        `${f.deadDivs
+          .map(
+            (d) =>
+              `한 칸이 ${n(d.unit)}${theme.unit}이면 ${n(d.miss)}${theme.unit}인 막대를 ` +
+              `눈금에 꼭 맞게 그릴 수 없습니다`,
+          )
+          .join(". ")}. 그래서 남는 것은 ` +
+        `${f.alive.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
+      `세로 눈금은 ${n(f.ticks)}칸까지입니다. 한 칸이 ${n(f.deadTick)}${theme.unit}이면 ` +
+        `${expr(`${f.deadTick}\\times${f.ticks}=${f.deadTick * f.ticks}`)} 에서 ` +
+        `${n(f.deadTick * f.ticks)}${theme.unit}까지밖에 못 나타내어 ` +
+        `${josa(topLabel.label, "의", "의")} ${n(top)}${theme.unit}을 그릴 수 없습니다. ` +
+        `한 칸이 ${n(f.unitSize)}${theme.unit}이면 ` +
+        `${expr(`${f.unitSize}\\times${f.ticks}=${f.unitSize * f.ticks}`)} 까지 ` +
+        `나타낼 수 있으므로, 세로 눈금 한 칸은 ${n(f.unitSize)}${theme.unit}입니다.`,
+      `${josa(topLabel.label, "은", "는")} ${n(top)}${theme.unit}이므로 ` +
+        `${expr(`${top}\\div${f.unitSize}=${top / f.unitSize}`)} 에서 ` +
+        `${n(top / f.unitSize)}칸으로 그립니다.`,
+    ],
+    barTableOf(theme, cells),
+  );
+}
+
+/* ─────────────────── 1-6 규칙 찾기 — 확대 갈래 ───────────────────
+ *
+ * 굳힘 축은 **배열의 자리**다 — 「배열은 첫째부터 차례로만 간다」·「자리는 자연수 하나」.
+ * ⚠️ 약수·공배수(초5-1 1-4)로 후보를 자르지 않는다(반증 ③). 후보를 만드는 것도 자르는
+ *    것도 **자리를 하나씩 옮겨 보는 일**이어야 한다.
+ */
+
+/**
+ * **1-6-1 심화중의 밭** — 「$A$ 가 몇째인지」를 안 말한다.
+ *
+ * 첫째 수 후보는 `A` 에서 `step` 씩 거꾸로 뺀 수 전부이고, 「첫째 수는 한 자리 수」가
+ * 그중 하나를 고른다. 그러려면 그 등차 무리 안에 **한 자리 수가 정확히 하나**여야 한다 —
+ * 곧 `first + step > 9`(위쪽에 또 있으면 안 된다)이고 `first - step < 1`(아래쪽에도
+ * 없어야 한다). 두 부등식이 `10 - step <= first <= step` 으로 접히므로 전수로 그것만 담는다.
+ *
+ * ⚠️ `first !== step` 을 요구한다 — 같으면 답이 발문의 수와 같아진다.
+ */
+const SEQ_FIRST_FIELD: { step: number; first: number; back: number }[] =
+  (() => {
+    const out: { step: number; first: number; back: number }[] = [];
+    for (let step = 6; step <= 9; step += 1) {
+      for (let first = Math.max(1, 10 - step); first <= step; first += 1) {
+        if (first === step) continue;
+        for (let back = 4; back <= 10; back += 1) {
+          const shown = first + step * back;
+          if (shown > 99) continue;
+          out.push({ step, first, back });
+        }
+      }
+    }
+    return out;
+  })();
+
+/**
+ * **1-6-1 5단 심화중 — 「몇째인지」를 안 말한다.**
+ *
+ * 심화하는 자리를 준다(「다섯째 수가 $50$」) — 뺄셈 한 번에 굳는다. 여기서는 자리를
+ * 지워 첫째 후보가 여럿 되고, 발문의 「첫째 수는 한 자리 수」가 하나를 고른다.
+ * 후보를 **끝까지 다 적어 보지 않고** 「한 칸 위가 벌써 두 자리 수」 한 줄로 닫으므로 중이다.
+ */
+function tier61Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier61MidRaw(unit, rng));
+}
+
+function tier61MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, SEQ_FIRST_FIELD);
+  const shown = f.first + f.step * f.back;
+  return makeDeep(
+    unit,
+    `${n(f.step)}씩 커지는 규칙으로 수를 늘어놓았습니다. 이 배열에 ` +
+      `${josaNum(shown, "이", "가")} 들어 있고, 첫째 수는 한 자리 수입니다. ` +
+      `첫째 수는 얼마인가?`,
+    n(f.first),
+    [
+      `${n(f.step)}씩 커지는 규칙이므로 배열의 수는 첫째 수에 ${josaNum(f.step, "을", "를")} ` +
+        `거듭 더해서 나옵니다. 그러므로 첫째 수는 ${n(shown)}에서 ${josaNum(f.step, "을", "를")} ` +
+        `거꾸로 빼어 나오는 수 가운데 하나입니다.`,
+      `${n(shown)}에서 ${n(f.step)}씩 ${n(f.back)}번 빼면 ` +
+        `${expr(`${shown}-${f.step}\\times${f.back}=${f.first}`)} 입니다. 여기에 ` +
+        `${josaNum(f.step, "을", "를")} 다시 더한 ` +
+        `${expr(`${f.first}+${f.step}=${f.first + f.step}`)} ` +
+        `${tail(f.first + f.step, "은", "는")} 두 자리 수이므로, ` +
+        `배열의 수 가운데 한 자리 수는 ${n(f.first)} 하나뿐입니다. 그러므로 첫째 수는 ` +
+        `${n(f.first)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **1-6-2 심화상의 밭** — 자리도 늘어나는 개수도 **둘 다** 안 준다.
+ *
+ * 첫째 개수 `first` 와 합 `total` 만 주고 늘어나는 개수는 **창**으로만 준다. 창 안의
+ * 수를 하나씩 잡아 **자리를 늘려 가며 실제로 더해 보아야** 합이 딱 맞는 것이 하나
+ * 남는다. 밭은 창 안의 후보가 셋 이상이고 **그중 정확히 하나만** 합에 닿는 자리만 담는다.
+ *
+ * ⚠️ 답이 「$k$째」라 `readRat` 이 못 읽는다 — 반증 ⑥ 축 **밖**이다(0 이 «깨끗»인지
+ *    «못 셈»인지 안 갈리는 자리라 여기 적어 둔다).
+ */
+function seqStopAt(first: number, grow: number, total: number): number {
+  let sum = 0;
+  for (let k = 1; k <= 12; k += 1) {
+    sum += first + grow * (k - 1);
+    if (sum === total) return k;
+    if (sum > total) return 0;
+  }
+  return 0;
+}
+
+const SEQ_SUM_FIELD: {
+  first: number;
+  grow: number;
+  upto: number;
+  total: number;
+  lo: number;
+  hi: number;
+}[] = (() => {
+  const out: {
+    first: number;
+    grow: number;
+    upto: number;
+    total: number;
+    lo: number;
+    hi: number;
+  }[] = [];
+  for (let first = 1; first <= 6; first += 1) {
+    for (let grow = 2; grow <= 9; grow += 1) {
+      for (let upto = 4; upto <= 8; upto += 1) {
+        const total = upto * first + (grow * upto * (upto - 1)) / 2;
+        if (total > 200) continue;
+        if (seqStopAt(first, grow, total) !== upto) continue;
+        for (let lo = Math.max(1, grow - 5); lo < grow; lo += 1) {
+          for (let hi = grow + 1; hi <= grow + 5; hi += 1) {
+            const width = hi - lo - 1;
+            if (width < 3 || width > 6) continue;
+            let clash = false;
+            for (let g = lo + 1; g <= hi - 1; g += 1) {
+              if (g !== grow && seqStopAt(first, g, total) > 0) clash = true;
+            }
+            if (clash) continue;
+            out.push({ first, grow, upto, total, lo, hi });
+          }
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-6-2 6단 심화상 — 창 안의 개수를 하나씩 잡아 실제로 쌓아 본다.**
+ *
+ * 심화하는 늘어나는 개수를 준다(「$4$개씩 늘어난다 → 합이 $72$면 몇째까지」) — 차례로
+ * 더하기 한 번이면 굳는다. 여기서는 그 수를 **창으로만** 주어, 창 안의 후보마다
+ * 배열을 실제로 쌓아 합과 견주어야 한다. 후보를 발문이 값으로 주지 않고 **자리를
+ * 늘려 가는 일**이 만든다(D-115 상의 정의 그대로).
+ */
+function tier62Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier62TopRaw(unit, rng));
+}
+
+function tier62TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, SEQ_SUM_FIELD);
+  const terms = Array.from({ length: f.upto }, (_, i) => f.first + f.grow * i);
+  // 창 안에서 지는 후보 하나를 **실제로 쌓아** 보인다 — 「안 된다」로 얼버무리지 않는다.
+  const others = [];
+  for (let g = f.lo + 1; g <= f.hi - 1; g += 1)
+    if (g !== f.grow) others.push(g);
+  const loser = others[0]!;
+  const loserTerms: number[] = [];
+  let sum = 0;
+  for (let k = 1; k <= 12; k += 1) {
+    loserTerms.push(f.first + loser * (k - 1));
+    sum += f.first + loser * (k - 1);
+    if (sum >= f.total) break;
+  }
+  const loserSum = sum;
+  const loserPrev = loserSum - loserTerms[loserTerms.length - 1]!;
+  return makeDeep(
+    unit,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(f.first)}개이고 같은 개수씩 ` +
+      `늘어납니다. 첫째부터 어떤 째까지 놓았더니 모형이 모두 ${n(f.total)}개였고, ` +
+      `늘어나는 개수는 ${n(f.lo)}개보다 많고 ${n(f.hi)}개보다 적습니다. ` +
+      `첫째부터 몇째까지 놓았는가?`,
+    ORDINAL[f.upto - 1]!,
+    [
+      `늘어나는 개수는 ${n(f.lo + 1)}개부터 ${n(f.hi - 1)}개까지 가운데 하나입니다. ` +
+        `하나씩 잡아 첫째부터 차례로 놓아 보고 합이 ${n(f.total)}개가 되는지 봅니다.`,
+      `${n(loser)}개씩이면 ${loserTerms.map((v) => n(v)).join(", ")}개로 놓여 ` +
+        `${expr(`${loserTerms.join("+")}=${loserSum}`)} 이고, 한 자리 앞까지는 ` +
+        `${n(loserPrev)}개라 ${n(f.total)}개를 건너뜁니다.`,
+      `${n(f.grow)}개씩이면 ${terms.map((v) => n(v)).join(", ")}개로 놓여 ` +
+        `${expr(`${terms.join("+")}=${f.total}`)} 입니다. 나머지 개수로는 차례로 더해도 ` +
+        `${n(f.total)}개가 되지 않으므로, ${ORDINAL[f.upto - 1]!}까지 놓은 것입니다.`,
+    ],
+  );
+}
+
+/* ─────────────────── 2-4 사각형 — 확대 갈래 ───────────────────
+ *
+ * 굳힘 축은 **「이름이 성질을 되돌려 준다」**다 — 마주 보는 두 변은 길이가 같다 ·
+ * 수직으로 꺾인 횟수의 홀짝 · 평행선 사이의 거리는 어디에서 재어도 같다.
+ * 🔴 **각도를 한 갈래도 안 쓴다**(1-2-4 와 통째로 겹친다, 토대 §3 2-4 함정 첫 줄).
+ * 🔴 **`□+(□+차)=합` 을 한 갈래도 안 쓴다** — 2-4-4·2-4-5 심화하와 2-6-1 심화하가
+ *    이미 그 산술이다(토대 §2-㉣).
+ */
+
+/**
+ * **2-4-2 5단 심화중 — 직선이 «몇 개인지» 안 말한다.**
+ *
+ * 응용은 직선 수를 주고 「가와 수직인 것이 몇 개인가」를 순방향으로 센다. 여기서는 그
+ * 수를 지워, 「평행한 직선이 $c$개」에서 직선 수 후보가 **둘**($2c+1$·$2c+2$)이 되고
+ * **수직 꺾임의 홀짝**이 하나를 떨어뜨린다.
+ */
+function tier242Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier242MidRaw(unit, rng));
+}
+
+function tier242MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const para = intBetween(rng, 2, 5);
+  const odd = para * 2 + 1;
+  const even = para * 2 + 2;
+  return makeDeep(
+    unit,
+    `직선 여러 개가 차례로 있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
+      `맨 앞에 있는 직선과 서로 평행한 직선은 그 직선을 빼고 모두 ${n(para)}개이고, ` +
+      `맨 뒤에 있는 직선은 맨 앞에 있는 직선과 서로 수직입니다. 직선은 모두 몇 개인가?`,
+    `${n(even)}개`,
+    [
+      `수직으로 한 번 꺾일 때마다 방향이 바뀌므로, 맨 앞 직선에서 짝수 번 꺾인 직선은 ` +
+        `맨 앞 직선과 평행하고 홀수 번 꺾인 직선은 수직입니다. 평행한 직선이 ` +
+        `${n(para)}개이므로 짝수 번 꺾인 자리가 ${n(para)}군데 있고, 직선은 ` +
+        `${expr(`${para}\\times2+1=${odd}`)} 개이거나 ${expr(`${para}\\times2+2=${even}`)} ` +
+        `개입니다.`,
+      `맨 뒤 직선이 맨 앞 직선과 수직이려면 맨 뒤까지 꺾인 횟수가 홀수여야 합니다. ` +
+        `${n(odd)}개이면 ${n(odd - 1)}번 꺾여 짝수라 안 되고, ${n(even)}개이면 ` +
+        `${n(even - 1)}번 꺾여 홀수입니다. 그러므로 직선은 ${n(even)}개입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-4-3 심화중의 밭** — 세 평행선이 놓인 **차례**를 안 말한다.
+ *
+ * 가운데가 직선 나이면 거리는 두 값의 합, 아니면 차다 — 후보 둘. 「가와 다 사이가
+ * 가와 나 사이보다 짧다」가 합 쪽을 곧바로 죽인다(더해서 짧아질 수는 없다).
+ * 그러려면 차가 `near` 보다 짧아야 하므로 `far < 2 * near` 이고, 답이 발문의 두 수와
+ * 같아지지 않게 `near !== 2 * far` 도 요구한다.
+ */
+const PARA_ORDER_FIELD: { near: number; far: number }[] = (() => {
+  const out: { near: number; far: number }[] = [];
+  for (let near = 5; near <= 15; near += 1) {
+    for (let far = 3; far <= 15; far += 1) {
+      if (far === near) continue;
+      if (far >= near * 2) continue; // 차가 near 보다 짧아야 조건이 문다
+      if (near === far * 2) continue; // 답이 far 와 같아진다
+      out.push({ near, far });
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-4-3 5단 심화중 — 세 평행선의 «차례»를 안 말한다.**
+ *
+ * 심화하는 「이 순서로」가 배치를 통째로 정한다(마디가 없다). 여기서는 그 한 마디를
+ * 열어 후보가 «합»과 «차» 둘이 되고, 발문의 비교 조건 한 줄이 하나를 죽인다.
+ */
+function tier243Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier243MidRaw(unit, rng));
+}
+
+function tier243MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, PARA_ORDER_FIELD);
+  const both = f.near + f.far;
+  const big = Math.max(f.near, f.far);
+  const small = Math.min(f.near, f.far);
+  const apart = big - small;
+  return makeDeep(
+    unit,
+    `직선 가, 직선 나, 직선 다는 모두 서로 평행합니다. 직선 가와 직선 나 사이의 거리는 ` +
+      `${cm(f.near)}이고, 직선 나와 직선 다 사이의 거리는 ${cm(f.far)}입니다. 세 직선이 ` +
+      `놓인 차례는 알려 주지 않습니다. 직선 가와 직선 다 사이의 거리가 직선 가와 직선 나 ` +
+      `사이의 거리보다 짧을 때, 직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+    cm(apart),
+    [
+      `직선 나가 직선 가와 직선 다 사이에 있으면 직선 가와 직선 다 사이의 거리는 두 ` +
+        `거리를 더한 ${expr(`${f.near}+${f.far}=${both}`)} 에서 ${cm(both)}입니다. ` +
+        `직선 나가 두 직선 사이에 없으면 두 거리의 차인 ` +
+        `${expr(`${big}-${small}=${apart}`)} 에서 ${cm(apart)}입니다.`,
+      `${cm(both)}는 직선 가와 직선 나 사이의 거리인 ${cm(f.near)}보다 길어 조건에 맞지 ` +
+        `않습니다. 그러므로 직선 가와 직선 다 사이의 거리는 ${cm(apart)}입니다.`,
+    ],
+  );
+}
+
+/** 평행사변형·직사각형 소재 — 「네 변의 길이」가 뜻을 갖는 물건. */
+const QUAD_ITEMS = ["밭", "창틀", "액자", "표지판"] as const;
+
+/**
+ * **2-4-5 5단 심화중 — 잰 두 변이 «마주 보는지 이웃하는지» 안 말한다.**
+ *
+ * 응용은 「한 변」을 주어 이웃한 변이 곧바로 나온다. 여기서는 **길이가 같은 두 변**을
+ * 주되 그 둘이 어느 쌍인지 말하지 않아 후보가 둘이 되고, 「마주 보는 두 변은 길이가
+ * 같다」는 이 소단원의 정의 성질이 하나를 죽인다 — 이웃한 쌍이라면 네 변이 모두 같아
+ * 합이 달라지므로, **끝까지 재 보지 않고** 곱셈 한 번으로 걸러 낸다.
+ */
+function tier245Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier245MidRaw(unit, rng));
+}
+
+function tier245MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const item = pick(rng, QUAD_ITEMS);
+  const same = intBetween(rng, 5, 14);
+  const rest = pick(
+    rng,
+    Array.from({ length: 12 }, (_, i) => i + 3).filter((v) => v !== same),
+  );
+  const total = same * 2 + rest * 2;
+  return makeDeep(
+    unit,
+    `평행사변형 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합은 ` +
+      `${cm(total)}이고, 네 변 가운데 두 변의 길이가 둘 다 ${cm(same)}입니다. ` +
+      `나머지 두 변의 길이는 각각 몇 cm인가?`,
+    cm(rest),
+    [
+      `평행사변형은 마주 보는 두 변의 길이가 서로 같습니다. 길이가 같은 그 두 변이 ` +
+        `이웃한 두 변이라면 네 변이 모두 ${cm(same)}가 되어 네 변의 길이의 합이 ` +
+        `${expr(`${same}\\times4=${same * 4}`)} 인데, ${cm(total)}와 다르므로 그럴 수 ` +
+        `없습니다.`,
+      `그러므로 그 두 변은 마주 보는 두 변입니다. 나머지 두 변의 길이의 합은 ` +
+        `${expr(`${total}-${same}\\times2=${total - same * 2}`)} 이고, 나머지 두 변도 ` +
+        `서로 마주 보아 길이가 같으므로 ` +
+        `${expr(`${total - same * 2}\\div2=${rest}`)} 에서 ${cm(rest)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-4-7 5단 심화중 — 「네 변까지 같은지」를 안 말한다.**
+ *
+ * 기본은 「네 변은 모두 같지 않다」를 말로 준다. 여기서는 그 말을 지워 이름 후보가
+ * 둘(직사각형·정사각형)이 되고, **「네 변이 모두 같으면 한 변은 합의 $4$분의 $1$」**을
+ * 한 번 계산해 정사각형 쪽을 죽인다.
+ *
+ * ⚠️ **정사각형 가지는 안 낸다** — 그 가지에서는 이웃한 변의 길이가 발문에 이미 적힌
+ *    수와 같아져 「답이 발문에 그대로」가 된다. 마디는 그대로 열려 있고 죽는 쪽만 고정이다.
+ */
+function tier247Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier247MidRaw(unit, rng));
+}
+
+function tier247MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const side = intBetween(rng, 4, 15);
+  // 합의 $4$분의 $1$ 이 자연수로 떨어지게 — 해설이 그 값을 지면에 적는다.
+  const rest = pick(
+    rng,
+    Array.from({ length: 13 }, (_, i) => i + 3).filter(
+      (v) => v !== side && (v + side) % 2 === 0,
+    ),
+  );
+  const total = (side + rest) * 2;
+  return makeDeep(
+    unit,
+    `어떤 사각형은 네 각의 크기가 모두 같습니다. 이 사각형의 네 변의 길이의 합은 ` +
+      `${cm(total)}이고 한 변의 길이는 ${cm(side)}입니다. 이 사각형의 이름을 쓰고, ` +
+      `그 변과 이웃한 변의 길이를 구하시오.`,
+    `직사각형, ${cm(rest)}`,
+    [
+      `네 각의 크기가 모두 같은 사각형은 직사각형이고, 그중 네 변의 길이까지 모두 같은 ` +
+        `것이 정사각형입니다. 네 변이 모두 같다면 한 변은 ` +
+        `${expr(`${total}\\div4=${total / 4}`)} 인데 ${cm(side)}와 다르므로 정사각형이 ` +
+        `아닙니다.`,
+      `그러므로 이 사각형은 직사각형입니다. 직사각형은 마주 보는 두 변의 길이가 같으므로 ` +
+        `이웃한 두 변의 길이의 합은 ${expr(`${total}\\div2=${total / 2}`)} 이고, ` +
+        `이웃한 변의 길이는 ${expr(`${total / 2}-${side}=${rest}`)} 에서 ${cm(rest)}입니다.`,
+    ],
+  );
+}
