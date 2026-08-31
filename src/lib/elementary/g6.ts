@@ -4,7 +4,13 @@ import type { ElemTierMap } from "./difficulty";
 import { expr, n as num, polyName, sino, unitNum } from "./format";
 import { fig, make, makeDeep } from "./make";
 import { addFrac, divFrac, fmtFrac, gcd, lcm, mulFrac, subFrac } from "./math";
-import { answerPrintedOnPage, forwardReachable, rat } from "./forwardReach";
+import {
+  answerPrintedOnPage,
+  forwardReachable,
+  pageNumbers,
+  rat,
+  type Rat,
+} from "./forwardReach";
 import { intBetween, pick } from "./rng";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
@@ -8735,6 +8741,466 @@ function shareSplitTop(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+// ══════ 확대 갈래 3차분 — `1-1` · `2-5` · `2-6` (D-113 · D-115, 2026-08-31) ══════
+//
+// 고른 근거와 각 대단원이 예약한 «굳힘 축» 은
+// `docs/planning/tracks/reports/tier-fill-g6-w3.md` §1 에 있다. 여기 적는 것은
+// **코드가 지켜야 하는 약속**과, 이 회차가 **재서** 알게 된 것이다.
+//
+// ## 세 대단원이 «굳히는 성질» — 서로 겹치지 않게 하나씩 예약했다
+//
+//   1-1  **약분** — 몫을 기약분수로 적는 순간 분모가 되돌아온다. 1-1-1 은 「몫의 기약
+//        분모」가 어떤 수를 배수열로 흩뜨리고 **몫의 크기**(㉠ $1$ 보다 작다/크다)가 창의
+//        위쪽을 준다(발문이 두 끝을 다 주지 않는다 — 2-2 파일럿의 뼈대를 안 물려받는다).
+//        1-1-2·1-1-3 은 「분모에 나누는 수를 곱한 뒤 약분한다」가 **나누는 수**를 감춘다.
+//   2-5  **부등식이 구간을 만든다** — 원주는 지름의 $3$ 배보다 길고 $4$ 배보다 짧다.
+//        🔴 그런데 이 축은 **심화중에서 못 선다**(아래 비움 ㉠ — 재서 알았다).
+//   2-6  **모양 성질이 두 미지수를 하나로 묶는다** — 앞에서 본 모양이 정사각형이면
+//        밑면의 지름과 높이가 같고, 전개도의 옆면이 정사각형이면 밑면의 둘레와
+//        높이가 같다. 둘 다 이 대단원의 **진짜 성질**이라 반증 ③ 을 안 건드린다.
+//
+// ## 🔴 비움 — 재서 비웠다 (읽고 적은 것이 아니다)
+//
+//   ㉠ **2-5 심화중 넷.** 「원주가 $c$ 이고 지름이 자연수」 꼴은 구간 $(c/4,\ c/3)$ 이
+//      자연수를 **하나만** 남겨야 하는데, 그 자연수가 **진짜 그 원의 지름**이려면
+//      $c \approx 3.14d$ 여야 한다. 둘을 같이 요구하면 남는 자리가 **2개**다
+//      (내접 정육각형·외접 정사각형 판은 6개, 2-5-3 어림 판은 8개).
+//      창의 배율이 $4/3$(또는 $2$)이라 값이 조금만 커지면 이웃 자연수가 같이 들어온다 —
+//      **구조적인 한계이지 재료 부족이 아니다.** 세는 판은 보고서 §3 에 있다.
+//   ㉡ **2-6-2 심화상.** 「옆면이 정사각형」이 두 미지수를 **하나**로 묶는 순간
+//      옆면 둘레·넓이·높이가 전부 반지름의 **단조 함수**가 된다. 그러면 어떤 부등식을
+//      더 걸어도 후보 중 «가장 작은(큰) 것»이 답이라 **끝까지 계산하지 않고 걸러진다** —
+//      D-115 ⑾ 이 그것을 «중»이라 못 박았다. 마디를 여는 성질이 곧 상을 닫는다.
+//   ㉢ **1-1 심화중 하나(1-1-3)·심화상 둘.** 토대(`17-…-dossier.md` §3 초6 1-1)가 든 실물
+//      「$\frac49\div\square$ 의 몫의 **분모가 $27$**」 은 **후보 셋이 전부 답**이다
+//      (돌려서 확인: $k=3\to\frac4{27}$ · $k=6\to\frac2{27}$ · $k=12\to\frac1{27}$).
+//      「분자 후보 셋 이상 → 어떤 분수가 기약인 것 하나」 판은 전수로 세니 **0자리**다.
+//      남는 길은 「$A$ 로도 $B$ 로도」(= 2-2 심화상 그대로)와 수 카드(= 심화하·1-3-5 와
+//      셋째 사본)뿐이라 1-1-1·1-1-2 의 심화상을 **비운다**.
+//   ㉣ **2-6-3 심화중 · 2-6-1 심화상 · 2-6-4 둘.** 앞의 둘은 «곱과 차» 또는 «인수 짝»이라
+//      w2 가 1-6 에 세운 것과 같은 모양이고(토대 §1.4 가 1-6 에 예약했다), 2-6-4(구)는
+//      미지수가 반지름 **하나**뿐이라 마디가 늘 굳는다.
+//
+// ## 🔴 반증 ⑥ 가드는 지면을 **예측하지 않고 지어서 읽는다**
+//
+// 첫 판은 「찍힐 수」를 손으로 나열해 넘겼다가 `\frac{p}{q}` 를 **두 값**(분자·분모)으로
+// 세었다. 판정기는 그것을 **한 값** $p/q$ 로 읽는다(`pageNumbers` 주석이 그렇게 못 박았다).
+// 그래서 1-1-2 심화중 8건이 생성기 가드를 통과하고 판정기에서 «순방향으로 닿는다»로
+// 잡혔다 — 실제로 답 $\square = \frac{p}{q}\times m$ 이라 **곱 한 번이면 나온다.**
+// 그 갈래는 통째로 다시 지었고, 가드는 이제 **발문 문자열을 만들어 `pageNumbers` 로 읽는다.**
+// 지면을 만드는 함수가 한 곳이라 발문과 가드가 갈릴 자리가 없다.
+//
+// ## 그림을 안 붙인다
+//
+// 확대 갈래는 전부 역산이다. `cylinder` 는 높이를 글자로 찍고 `cone`·`netCylinder` 는
+// 밑면을 그대로 보여 준다 — 되짚을 값을 그림이 알려 주면 마디가 안 열린다.
+// 기존 시험이 「심화하만 그림 없음」이라 적어 두었던 자리를 «심화 계열 전부»로 넓혔다.
+
+/**
+ * 반증 ⑥ + 「답이 지면에 그대로 있다」 — **발문을 지어서 판정기와 같은 눈으로 읽는다.**
+ *
+ * `pageNumbers` 는 판정기가 쓰는 그 함수다. 규칙도 입력도 한 벌이 된다.
+ */
+function backsolveSafeStem(content: string, answer: Rat): boolean {
+  const nums = pageNumbers(content);
+  return !forwardReachable(nums, answer) && !answerPrintedOnPage(nums, answer);
+}
+
+// ── 1-1-1 (자연수)÷(자연수)의 몫을 분수로 — 심화중 ──────────────────────────
+//
+// 안 굳는 마디: **어떤 수.** 몫의 기약 분모가 $m$ 이라는 것만으로는 어떤 수가
+// $g=b\div m$ 의 배수열로 흩어진다.
+// 굳히는 성질 둘 — 둘 다 이 소단원의 것이다:
+//   ㉠ **약분** — 약분한 뒤 분모가 $m$ 이 되려면 $b$ 와의 공통인 수가 **정확히** $g$ 여야 한다.
+//   ㉡ **몫의 크기** — 「몫이 $1$ 보다 작다」 ⟺ 어떤 수 < $b$ (창의 위쪽을 **발문이 안 준다**).
+// 발문이 주는 것은 **아래쪽 한 끝뿐**이다.
+//
+// ⚠️ 이 소단원은 발문에 **분수·소수를 한 개도 못 쓴다**(`kindsPresent("자연수","자연수")`).
+//    그래서 몫을 값으로 주지 못하고 «분모»와 «크기»로만 말한다.
+
+type NatDivReduceCase = {
+  b: number;
+  m: number;
+  g: number;
+  lo: number;
+  a: number;
+  set: number[];
+  band: 0 | 1;
+};
+
+const natDivReduceStem = (c: NatDivReduceCase): string =>
+  `어떤 자연수를 ${num(c.b)}${numRo(c.b)} 나눈 몫을 기약분수로 나타냈더니 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었습니다. ` +
+  (c.band === 0
+    ? `그 몫은 ${num(1)}보다 작습니다. `
+    : `그 몫은 ${num(1)}보다 크고 ${num(2)}보다 작습니다. `) +
+  `어떤 수가 ${num(c.lo)}보다 클 때, 어떤 수를 구하시오.`;
+
+const NAT_DIV_REDUCE_MID: NatDivReduceCase[] = [];
+for (let b = 6; b <= 30; b += 1)
+  for (let g = 2; g < b; g += 1) {
+    if (b % g !== 0) continue;
+    const m = b / g;
+    if (m < 2) continue; // 분모가 1 이면 몫이 자연수라 이 소단원이 아니다
+    const base: number[] = [];
+    for (let x = 1; x < b; x += 1) if (gcd(x, b) === g) base.push(x);
+    // 후보가 셋 이상이어야 «성질이 만든 배수열»이 지면에서 보인다.
+    // (둘이면 창의 두 끝이 곧 답이라 반증 ⑥ 이 거의 다 문다 — 실측으로 전량 걸렸다.)
+    if (base.length < 3) continue;
+    for (const band of [0, 1] as const) {
+      const set = base.map((x) => x + band * b);
+      const a = set[set.length - 1]!;
+      const lo = set[set.length - 2]!;
+      const c: NatDivReduceCase = { b, m, g, lo, a, set, band };
+      if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;
+      NAT_DIV_REDUCE_MID.push(c);
+    }
+  }
+
+function natDivReduceMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NAT_DIV_REDUCE_MID);
+  const where =
+    c.band === 0
+      ? `몫이 ${num(1)}보다 작으므로 어떤 수는 ${num(c.b)}보다 작습니다.`
+      : `몫이 ${num(1)}보다 크고 ${num(2)}보다 작으므로 어떤 수는 ${num(c.b)}보다 크고 ${num(2 * c.b)}보다 작습니다.`;
+  return makeDeep(unit, natDivReduceStem(c), num(c.a), [
+    `몫은 어떤 수를 분자로, ${num(c.b)}${numJosa(c.b, "을", "를")} 분모로 하는 분수입니다. ` +
+      `기약분수의 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었으므로 분자와 분모를 ` +
+      `${expr(`${c.b}\\div${c.m}=${c.g}`)} 로 약분한 것입니다.`,
+    `${where} 그 안에서 ${num(c.b)}${numJosa(c.b, "과", "와")} 약분하여 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되는 수는 ` +
+      `${c.set.map((v) => num(v)).join(", ")} 입니다.`,
+    `이 중 ${num(c.lo)}보다 큰 것은 ${num(c.a)} 뿐입니다. ` +
+      `${expr(`${c.a}\\div${c.b}=\\frac{${c.a}}{${c.b}}=${fmtFrac(c.a, c.b)}`)} 로 분모가 ${num(c.m)}입니다.`,
+  ]);
+}
+
+// ── 1-1-2 (분수)÷(자연수) — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **나누는 수.** (분수)÷(자연수)는 분모에 나누는 수를 곱하므로 몫의 분모는
+// $q\times\square$ 인데, 분자와 약분이 되면 그보다 작아진다.
+// 굳히는 성질: 「**몫의 분모가 처음과 같아졌다**」 — 이 대단원이 되짚기 재료로 삼는 바로
+// 그 현상이다($\frac67\div6=\frac17$ — 분모가 $7$ 로 되돌아왔다). 그러려면 곱한 만큼을
+// 도로 약분해야 하므로 **분자가 나누는 수로 나누어떨어져야** 한다.
+//
+// 🔴 **앞판을 버리고 다시 지었다.** 처음엔 「몫의 기약 분모가 $m$」 을 주었는데,
+//    그러면 답이 $\square = \frac pq \times m$ 이라 **곱 한 번이면 나온다**(반증 ⑥).
+//    판정기가 8건을 잡아 줬다 — 생성기 가드가 지면을 **예측**하다 분수를 두 값으로 센 탓이다.
+
+type FracReturnCase = {
+  p: number;
+  q: number;
+  k: number;
+  lo: number;
+  up: number;
+};
+
+const fracReturnStem = (c: FracReturnCase): string =>
+  `${expr(`\\frac{${c.p}}{${c.q}}`)}${numJosa(c.p, "을", "를")} 어떤 자연수로 나누었더니 ` +
+  `몫의 분모가 처음과 같은 ${num(c.q)}${numJosa(c.q, "이", "가")} 되었습니다. ` +
+  `어떤 자연수가 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작을 때, 어떤 자연수를 구하시오.`;
+
+const FRAC_RETURN_MID: FracReturnCase[] = [];
+for (let q = 4; q <= 15; q += 1)
+  for (let p = 2; p < q; p += 1) {
+    if (gcd(p, q) !== 1) continue;
+    const divs: number[] = [];
+    for (let k = 2; k <= p; k += 1) if (p % k === 0) divs.push(k);
+    if (divs.length < 2) continue; // 후보가 하나면 마디가 안 열린다
+    for (let i = 0; i < divs.length; i += 1) {
+      const k = divs[i]!;
+      const lo = i === 0 ? 1 : divs[i - 1]!;
+      const up = i === divs.length - 1 ? k + 2 : divs[i + 1]!;
+      if (up - lo < 3) continue; // 창에 «답이 아닌 수»가 하나도 없으면 창이 답을 준다
+      const c: FracReturnCase = { p, q, k, lo, up };
+      if (!backsolveSafeStem(fracReturnStem(c), rat(k))) continue;
+      FRAC_RETURN_MID.push(c);
+    }
+  }
+
+function fracReturnMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, FRAC_RETURN_MID);
+  const inWindow: number[] = [];
+  for (let v = c.lo + 1; v < c.up; v += 1) inWindow.push(v);
+  return makeDeep(unit, fracReturnStem(c), num(c.k), [
+    `(분수)÷(자연수)는 분자는 그대로 두고 분모에 나누는 수를 곱하므로 몫은 ` +
+      `${expr(`\\frac{${c.p}}{${c.q}\\times\\square}`)} 입니다.`,
+    `몫의 분모가 다시 ${num(c.q)}${numJosa(c.q, "이", "가")} 되려면 곱한 만큼을 도로 약분해야 하고, ` +
+      `그러려면 분자 ${num(c.p)}${numJosa(c.p, "이", "가")} ${expr("\\square")} 로 나누어떨어져야 합니다. ` +
+      `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 수 ${inWindow.map((v) => num(v)).join(", ")} 중에서 ` +
+      `${num(c.p)}${numJosa(c.p, "을", "를")} 나누어떨어지게 하는 것은 ${num(c.k)} 뿐입니다.`,
+    `${expr(`${c.q}\\times${c.k}=${c.q * c.k}`)} 이므로 ` +
+      `${expr(`\\frac{${c.p}}{${c.q}}\\div${c.k}=\\frac{${c.p}}{${c.q * c.k}}=${fmtFrac(c.p / c.k, c.q)}`)} ` +
+      `로 분모가 ${num(c.q)}입니다.`,
+  ]);
+}
+
+// ── 1-1-3 (대분수)÷(자연수) — 심화상 ────────────────────────────────────────
+//
+// 🔴 **처음엔 여기에 심화중을 세웠다가 «상»으로 옮겼다 — 해설이 그렇게 시켰다.**
+//    가분수의 분자 $imp$ 는 분모 $d$ 와 서로소이므로 약분되는 것은 **나누는 수 쪽**이고,
+//    그래서 $m=d\times\square\div\gcd(imp,\square)$ 다. 학생이 $\gcd$ 를 미리 알 길이 없으니
+//    해설이 「나누는 수를 하나씩 넣어 본다」로 갈 수밖에 없다 — D-115 ⑾ 은 그것을
+//    **«상»** 이라 못 박았다(끝까지 계산해 견주어야 한다). 1-1-2 는 굳히는 성질이
+//    「나누어떨어지는가」 하나라 **계산하지 않고** 걸러지므로 «중»이다.
+//
+// 🔴 후보를 **되짚기가 만든다** — 몫의 분모가 $m$ 이려면 $d\times\square$ 가 $m$ 의 배수여야
+//    하므로 $\square$ 는 $m\div d$ 의 **배수**다. 발문은 창의 한쪽 끝만 말할 뿐 후보를 안 준다.
+//
+// ⚠️ 이 자리는 토대(§3 초6 1-1)가 든 실물 「$\frac49\div\square$ 의 몫의 분모가 $27$」 이
+//    **답이 셋**이던 바로 그 부류다($k=3,6,12$ 가 전부 분모 $27$). 그래서 창 안의 배수열
+//    후보 가운데 **정확히 하나**만 분모 $m$ 을 내는 것을 구성이 세어서 보장한다.
+
+type MixedDivisorCase = {
+  w: number;
+  t: number;
+  d: number;
+  k: number;
+  m: number;
+  cap: number;
+  cands: number[];
+};
+
+const mixedDivisorStem = (c: MixedDivisorCase): string =>
+  `${expr(`${c.w}\\frac{${c.t}}{${c.d}}`)}${numJosa(c.t, "을", "를")} ${num(c.cap)}보다 작은 어떤 자연수로 ` +
+  `나누었더니 몫을 기약분수로 나타낸 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었습니다. ` +
+  `어떤 자연수를 구하시오.`;
+
+const MIXED_NAT_DIVISOR_TOP: MixedDivisorCase[] = [];
+for (let d = 2; d <= 9; d += 1)
+  for (let t = 1; t < d; t += 1) {
+    if (gcd(t, d) !== 1) continue;
+    for (let w = 1; w <= 5; w += 1) {
+      const imp = w * d + t;
+      for (let k = 2; k <= 30; k += 1) {
+        const g = gcd(imp, k);
+        if (g < 2) continue; // 약분이 일어나야 배수열이 «답이 아닌 후보»를 만든다
+        const m = (d * k) / g;
+        if (m % d !== 0) continue; // 배수열의 걸음이 자연수여야 한다
+        if (m > 72) continue; // 규모는 축이 아니다 (D-115 ⑽③ · 원장님)
+        const step = m / d;
+        if (step < 2) continue; // 걸음이 1 이면 후보가 «모든 자연수»라 창이 뜻을 잃는다
+        for (let cap = k + 1; cap <= Math.min(k + 3 * step, 40); cap += 1) {
+          const cands: number[] = [];
+          for (let v = step; v < cap; v += step) if (v >= 2) cands.push(v);
+          if (cands.length < 3 || cands.length > 5) continue;
+          const hit = cands.filter((v) => (d * v) / gcd(imp, v) === m);
+          if (hit.length !== 1 || hit[0] !== k) continue;
+          const c: MixedDivisorCase = { w, t, d, k, m, cap, cands };
+          if (!backsolveSafeStem(mixedDivisorStem(c), rat(k))) continue;
+          MIXED_NAT_DIVISOR_TOP.push(c);
+        }
+      }
+    }
+  }
+
+function mixedNatDivisorTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, MIXED_NAT_DIVISOR_TOP);
+  const imp = c.w * c.d + c.t;
+  const step = c.m / c.d;
+  const shown = (v: number) => {
+    const den = c.d * v;
+    const g = gcd(imp, den);
+    return expr(`\\frac{${imp}}{${den}}=${fmtFrac(imp / g, den / g)}`);
+  };
+  return makeDeep(unit, mixedDivisorStem(c), num(c.k), [
+    `대분수를 가분수로 고치면 ${expr(`${c.w}\\frac{${c.t}}{${c.d}}=\\frac{${imp}}{${c.d}}`)} 이고, ` +
+      `분모에 나누는 수를 곱하므로 몫은 ${expr(`\\frac{${imp}}{${c.d}\\times\\square}`)} 입니다.`,
+    `약분한 뒤 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되려면 ${expr(`${c.d}\\times\\square`)} ` +
+      `${numJosa(c.d, "이", "가")} ${num(c.m)}의 배수여야 하므로 ${expr("\\square")} 는 ` +
+      `${expr(`${c.m}\\div${c.d}=${step}`)} 의 배수입니다. ` +
+      `${num(c.cap)}보다 작은 것은 ${c.cands.map((v) => num(v)).join(", ")} 입니다.`,
+    `각각 나누어 몫을 기약분수로 나타내면 ${c.cands.map((v) => shown(v)).join(", ")} 이므로, ` +
+      `분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되는 것은 ${num(c.k)}${numRo(c.k)} 나눌 때뿐입니다.`,
+  ]);
+}
+
+// ── 2-5-2 원주와 지름 구하기 — 심화상 ───────────────────────────────────────
+//
+// 🔴 후보를 되짚기가 만든다 — 「굴러간 거리 = (원주)×(바퀴 수)」를 되짚으면
+//    **(지름)×(바퀴 수)** 라는 곱 하나만 남고, 지름과 바퀴 수 어느 쪽도 안 굳는다.
+//    발문은 지름이 놓일 **창**만 말할 뿐 후보를 주지 않으므로, 창 안의 자연수를
+//    **하나씩 실제로 나누어** 딱 떨어지는 것을 찾아야 한다.
+//
+// 이 대단원에서 후보가 생기는 자리는 여기 하나뿐이다(사슬이 한 방향이라 성질을
+// 두 번 걸어도 같은 구간이 다시 나온다) — 그래서 2-5 의 나머지 일곱 자리는 비웠다.
+
+type RollCase = {
+  d: number;
+  turns: number;
+  prod: number;
+  lo: number;
+  up: number;
+};
+
+const rollTurnsStem = (c: RollCase, roller: string): string =>
+  `${roller}${josa(roller, "을", "를")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314), "cm")} 를 갔습니다. ` +
+  `이 ${roller}의 지름이 ${num(c.lo)} cm보다 길고 ${num(c.up)} cm보다 짧은 자연수 cm일 때, ` +
+  `몇 바퀴 굴렸습니까? (원주율: ${num("3.14")})`;
+
+const ROLL_TOP: RollCase[] = [];
+for (let d = 6; d <= 24; d += 1)
+  for (let turns = 3; turns <= 15; turns += 1) {
+    const prod = d * turns;
+    if (prod > 260) continue;
+    for (let lo = 3; lo < d; lo += 1) {
+      const up = lo + 6;
+      if (up <= d) continue;
+      const hit: number[] = [];
+      for (let dd = lo + 1; dd < up; dd += 1)
+        if (prod % dd === 0 && prod / dd >= 2 && prod / dd <= 30) hit.push(dd);
+      if (hit.length !== 1 || hit[0] !== d) continue;
+      const c: RollCase = { d, turns, prod, lo, up };
+      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))
+        continue;
+      ROLL_TOP.push(c);
+    }
+  }
+
+function rollTurnsTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, ROLL_TOP);
+  const roller = pick(rng, ROLLERS);
+  const cands: number[] = [];
+  for (let dd = c.lo + 1; dd < c.up; dd += 1) cands.push(dd);
+  const miss = cands.filter((v) => v !== c.d);
+  return makeDeep(unit, rollTurnsStem(c, roller), num(c.turns), [
+    `굴러간 거리는 (원주)×(바퀴 수)이고 원주는 (지름)×(원주율)입니다. ` +
+      `그러므로 (지름)×(바퀴 수)는 ${expr(`${fromCents(c.prod * 314)}\\div3.14=${c.prod}`)} 입니다.`,
+    `지름이 될 수 있는 수는 ${cands.map((v) => num(v)).join(", ")} 입니다. ` +
+      `${num(c.prod)}${numJosa(c.prod, "을", "를")} 각각 나누어 보면 ` +
+      `${miss.map((v) => expr(`${c.prod}\\div${v}`)).join(", ")}` +
+      `${numJosa(miss.at(-1)!, "은", "는")} 나누어떨어지지 않고 ` +
+      `${expr(`${c.prod}\\div${c.d}=${c.turns}`)} 만 나누어떨어집니다.`,
+    `지름은 ${unitNum(c.d, "cm")} 이고 ${num(c.turns)}바퀴 굴렸습니다.`,
+  ]);
+}
+
+// ── 2-6-1 원기둥 알아보기 — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **밑면의 지름과 높이가 동시에 미지**다(앞에서 본 직사각형의 넓이만 안다).
+// 굳히는 성질: 「앞에서 본 모양이 **정사각형**」 — 이 소단원이 가르치는 «앞에서 본 모양»
+// 그 자체다(원기둥은 직사각형). 정사각형이면 밑면의 지름과 높이가 같다.
+// 심화하는 **둘레와 높이를 둘 다** 주어 마디가 하나도 안 남는다.
+
+type CylSquareCase = { r: number; area: number };
+
+const cylSquareStem = (c: CylSquareCase, thing: string): string =>
+  `원기둥 모양 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양이 정사각형이고 ` +
+  `그 넓이가 ${num(c.area)} cm²입니다. 이 ${thing}의 밑면의 반지름은 몇 cm인가?`;
+
+const CYL_SQUARE_MID: CylSquareCase[] = [];
+for (let r = 2; r <= 13; r += 1) {
+  // 규모는 축이 아니다 — 반지름 13 이면 앞에서 본 정사각형이 이미 $26$ cm다.
+  const c: CylSquareCase = { r, area: 4 * r * r };
+  if (!backsolveSafeStem(cylSquareStem(c, CYL_THINGS[0]), rat(r))) continue;
+  CYL_SQUARE_MID.push(c);
+}
+
+function cylSquareMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, CYL_SQUARE_MID);
+  const thing = pick(rng, CYL_THINGS);
+  const d = 2 * c.r;
+  return makeDeep(unit, cylSquareStem(c, thing), num(c.r), [
+    `원기둥을 앞에서 보면 가로가 밑면의 지름이고 세로가 높이인 직사각형입니다. ` +
+      `그것이 정사각형이므로 밑면의 지름과 높이가 같습니다.`,
+    `같은 수를 두 번 곱해 ${num(c.area)}${numJosa(c.area, "이", "가")} 되는 수를 찾으면 ` +
+      `${expr(`${d}\\times${d}=${c.area}`)} 이므로 한 변은 ${unitNum(d, "cm")} 이고, 이것이 밑면의 지름입니다.`,
+    `반지름은 ${expr(`${d}\\div2=${c.r}`)} 입니다.`,
+  ]);
+}
+
+// ── 2-6-2 원기둥의 전개도 — 심화중 ──────────────────────────────────────────
+//
+// 안 굳는 마디: **밑면의 둘레와 높이가 동시에 미지**다(옆면의 둘레만 안다).
+// 굳히는 성질: 「전개도의 옆면이 **정사각형**」 — 옆면의 가로는 밑면의 둘레이고 세로는
+// 높이이므로, 정사각형이면 **밑면의 둘레와 높이가 같다.** 2-6-1 과 묶는 값이 다르다
+// (거기는 «지름과 높이», 여기는 «둘레와 높이»)이고 원주율을 쓰는 것도 여기뿐이다.
+//
+// ⚠️ `probe-elem-tier-enumeration` 이 이 갈래를 「심화중인데 늘어놓는다」로 세운다.
+//    **거짓이다** — 늘어놓은 것이 아니라 한 사슬의 걸음이 셋(÷4 · ÷3.14 · ÷2)이라
+//    같은 연산이 셋 찍힌 것뿐이다. 그 자의 머리말이 「못 보는 것」 둘째로 적어 둔 자리다.
+
+type NetSquareCase = { r: number; side: number; perim: number };
+
+const netSquareStem = (c: NetSquareCase): string =>
+  `어떤 원기둥의 전개도에서 옆면이 정사각형이고 그 둘레가 ${unitNum(fromCents(c.perim), "cm")} 입니다. ` +
+  `이 원기둥의 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
+
+const NET_SQUARE_MID: NetSquareCase[] = [];
+for (let r = 2; r <= 13; r += 1) {
+  // 규모는 축이 아니다 — 반지름 13 이면 옆면 둘레가 이미 $326.56$ cm다.
+  const side = 2 * r * 314; // 밑면의 둘레(백분의 일)
+  const c: NetSquareCase = { r, side, perim: 4 * side };
+  if (!backsolveSafeStem(netSquareStem(c), rat(r))) continue;
+  NET_SQUARE_MID.push(c);
+}
+
+function netSquareMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, NET_SQUARE_MID);
+  return makeDeep(unit, netSquareStem(c), num(c.r), [
+    `옆면은 가로가 밑면의 둘레이고 세로가 높이인 직사각형입니다. ` +
+      `그것이 정사각형이므로 밑면의 둘레와 높이가 같습니다.`,
+    `정사각형의 한 변은 ${expr(`${fromCents(c.perim)}\\div4=${fromCents(c.side)}`)} 이고, ` +
+      `이것이 밑면의 둘레입니다.`,
+    `밑면의 지름은 ${expr(`${fromCents(c.side)}\\div3.14=${2 * c.r}`)} 이므로 ` +
+      `반지름은 그 반인 ${unitNum(c.r, "cm")} 입니다.`,
+  ]);
+}
+
+// ── 2-6-3 원뿔 알아보기 — 심화상 ────────────────────────────────────────────
+//
+// 🔴 후보를 되짚기가 만든다 — 앞에서 본 이등변삼각형의 넓이는
+//    (밑변)×(높이)÷2 = (지름)×(높이)÷2 = **(반지름)×(높이)** 다. 넓이 하나로는
+//    두 값이 안 굳고, 그 곱을 두 자연수로 가르는 방법이 **셋 이상** 나온다.
+//    발문은 그 짝을 하나도 주지 않으므로 짝을 **만들어** 조건에 대 봐야 한다.
+//
+// 토대 §3-② 가 「2-6-3 심화상은 뒤집을 수 있다」고 적은 자리다. 같은 모양이 되는
+// 2-6-1 심화상은 그래서 **비웠다** — 둘 중 하나만 세운다.
+
+type ConePairCase = {
+  area: number;
+  cap: number;
+  r: number;
+  h: number;
+  pairs: [number, number][];
+};
+
+const conePairStem = (c: ConePairCase): string =>
+  `어떤 원뿔을 앞에서 본 모양은 넓이가 ${num(c.area)} cm²인 삼각형입니다. ` +
+  `이 원뿔의 밑면의 반지름과 높이가 모두 자연수 cm이고 높이가 밑면의 반지름보다 길며 ` +
+  `${num(c.cap)} cm보다 짧을 때, 밑면의 반지름은 몇 cm인가?`;
+
+const CONE_PAIR_TOP: ConePairCase[] = [];
+for (let area = 12; area <= 160; area += 1) {
+  const pairs: [number, number][] = [];
+  for (let r = 1; r * r < area; r += 1)
+    if (area % r === 0) pairs.push([r, area / r]);
+  if (pairs.length < 3 || pairs.length > 5) continue;
+  const heights = pairs.map((p) => p[1]).sort((x, y) => x - y);
+  for (let cap = heights[0]! + 1; cap <= heights[1]!; cap += 1) {
+    const kept = pairs.filter((p) => p[1] < cap);
+    if (kept.length !== 1) continue;
+    const [r, h] = kept[0]!;
+    if (h > 40 || r > 20) continue;
+    const c: ConePairCase = { area, cap, r, h, pairs };
+    if (!backsolveSafeStem(conePairStem(c), rat(r))) continue;
+    CONE_PAIR_TOP.push(c);
+  }
+}
+
+function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pick(rng, CONE_PAIR_TOP);
+  return makeDeep(unit, conePairStem(c), num(c.r), [
+    // ⚠️ 「(지름)×(높이)÷2」 처럼 **KaTeX 밖에 맨 숫자**를 쓰면 D-66 표기 검사가 문다.
+    //    말로 적는다 — 지면에서도 그 편이 읽힌다.
+    `원뿔을 앞에서 보면 밑변이 밑면의 지름이고 높이가 원뿔의 높이인 이등변삼각형입니다. ` +
+      `삼각형의 넓이는 (밑변)×(높이)를 반으로 나눈 것이고 밑변은 반지름의 두 배이므로, ` +
+      `넓이는 (반지름)×(높이)와 같습니다.`,
+    `곱이 ${num(c.area)}이고 높이가 반지름보다 긴 두 자연수 짝을 모두 찾으면 ` +
+      `${c.pairs.map((p) => expr(`${p[0]}\\times${p[1]}=${c.area}`)).join(", ")} 입니다.`,
+    `이 중 높이가 ${num(c.cap)}보다 짧은 것은 ${expr(`${c.r}\\times${c.h}=${c.area}`)} 뿐이므로 ` +
+      `밑면의 반지름은 ${unitNum(c.r, "cm")} 입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -8745,18 +9211,21 @@ export const G6_TIERS: ElemTierMap = {
     기본: natDivWord,
     응용: natDivApply,
     심화하: natDivDeep,
+    심화중: natDivReduceMid,
   },
   "초6|1-1-2": {
     연산: fracNatCalc,
     기본: fracNatWord,
     응용: fracNatApply,
     심화하: fracNatDeep,
+    심화중: fracReturnMid,
   },
   "초6|1-1-3": {
     연산: mixedNatCalc,
     기본: mixedNatWord,
     응용: mixedNatApply,
     심화하: mixedNatDeep,
+    심화상: mixedNatDivisorTop,
   },
   "초6|1-2-1": {
     연산: prismFaceCalc,
@@ -9030,6 +9499,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: circLenWord,
     응용: circLenApply,
     심화하: circLenDeep,
+    심화상: rollTurnsTop,
   },
   "초6|2-5-3": {
     연산: circAppCalc,
@@ -9084,18 +9554,21 @@ export const G6_TIERS: ElemTierMap = {
     기본: cylKnowWord,
     응용: cylKnowApply,
     심화하: cylKnowDeep,
+    심화중: cylSquareMid,
   },
   "초6|2-6-2": {
     연산: cylNetCalc,
     기본: cylNetWord,
     응용: cylNetApply,
     심화하: cylNetDeep,
+    심화중: netSquareMid,
   },
   "초6|2-6-3": {
     연산: coneKnowCalc,
     기본: coneKnowWord,
     응용: coneKnowApply,
     심화하: coneKnowDeep,
+    심화상: conePairTop,
   },
   "초6|2-6-4": {
     연산: ballKnowCalc,
