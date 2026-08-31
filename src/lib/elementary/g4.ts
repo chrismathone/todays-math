@@ -5447,7 +5447,10 @@ export const G4_TIERS: ElemTierMap = {
   },
   // ── 1-5 막대그래프 — 확대 셋째 물결(D-113). 눈금 한 칸이 굳힘 축이다.
   //    🔴 **1-5-3 은 중·상 둘 다 비운다** — 막대를 둘 지우고 전체를 주는 판은
-  //    짝을 셋 이상 만들 수 있는 자리가 `barSplits` 전수에서 **0**이고(보고서 §3),
+  //    「최댓값을 안 숨기는 **240자리**에서 짝 셋 이상은 **18자리**이고, 그 18에서
+  //    «보이는 막대 하나를 기준으로 한 부등식»이 정확히 진짜 짝만 남기는 자리가 **0**」
+  //    이다(2026-08-31 적대 검토가 조건 없는 0 을 정정했다 — 옛 문장 「전수에서 0」은
+  //    조건을 빼먹어 다음 사람이 그대로 인용하게 되어 있었다).
   //    마디를 하나만 여는 판은 1-5-1 심화중과 같은 일이다. 1-5-1 상도 비운다.
   "초4|1-5-1": {
     연산: tier51Calc,
@@ -5456,13 +5459,21 @@ export const G4_TIERS: ElemTierMap = {
     심화하: tier51Deep,
     심화중: tier51Mid,
   },
+  // 🔴 **1-5-2 는 중·상 둘 다 비운다** — 물결 3 이 세웠다가 **적대 검토가 거뒀다**
+  //    (2026-08-31, `…/reports/tier-fill-g4-w3-adversarial.md` §1⑷). 잰 값:
+  //    · 중 — 「눈금 한 칸은 모든 막대에 같다」가 후보를 **한 번도 안 갈랐다**. 밭 52자리
+  //      전량에서 살아남는 것이 늘 «작은 쪽»이라 「나누어떨어지는 둘 중 작은 쪽」만으로
+  //      **20,000/20,000** 맞는다. 밭을 넓혀도(52 → 64) 지름길이 81.3% 라 미봉이다.
+  //    · 상 — 「칸 수의 차」를 **아예 안 읽어도** 19,656/20,000(98.3%)에서 답이 하나다.
+  //      마지막 거르개가 위로 닫힌 집합이라 「살아남은 것 중 가장 큰 것」이 **설계상 100%**.
+  //    🔴 뿌리는 `BAR_SCALES` 의 「값 넷이 모두 `step` 의 배수」 격자다 — 그 격자가
+  //       지름길을 **강제**한다(후보가 정확히 둘인 한 큰 쪽 생존이 0). 되살리려면 갈래를
+  //       다시 짜기 전에 **규모부터 넓혀라** — 1-5-3 비움도 같은 뿌리다(보고서 §10-6).
   "초4|1-5-2": {
     연산: tier52Calc,
     기본: tier52Basic,
     응용: tier52Apply,
     심화하: tier52Deep,
-    심화중: tier52Mid,
-    심화상: tier52Top,
   },
   "초4|1-5-3": {
     연산: tier53Calc,
@@ -5617,12 +5628,18 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier244Apply,
     심화하: tier244Deep,
   },
+  // 🔴 **2-4-5 심화중은 비운다** — 물결 3 이 세웠다가 **적대 검토가 거뒀다**
+  //    (2026-08-31, 원장 §1⑵·§1⑶). 「마주 보는 두 변은 길이가 같다」가 죽이는 가지가
+  //    **산술 모순**($P=4a$)이라 답에 미치는 영향이 0이고, 답이 같은 소단원 **응용과
+  //    같은 닫힌 꼴** $P\div2-a$ 다 — 발문의 수와 정답이 통째로 같은 자리가 **110/110**.
+  //    응용이 이미 그 길을 순방향으로 쓰므로 그 위에 마디 하나만 여는 판이 안 선다.
+  //    ⚠️ 밭 범위를 응용 밖으로 미는 것은 **미봉**이다 — 겹침 수치만 0이 되고 답이
+  //       여전히 $P\div2-a$ 라 반증 ⑥ 이 그대로 남는다.
   "초4|2-4-5": {
     연산: tier245Calc,
     기본: tier245Basic,
     응용: tier245Apply,
     심화하: tier245Deep,
-    심화중: tier245Mid,
   },
   "초4|2-4-6": {
     연산: tier246Calc,
@@ -17904,17 +17921,18 @@ export const G4_TIER_APPLY = tier53Apply;
  * 2-6 (물결 2)  변의 수는 자연수 · 나누어떨어져야 한다
  * 2-1 (물결 2)  진분수 조건(분자 < 분모)
  * ─────────────────────────────────────────────────────────
- * 1-5 (여기)    **눈금 한 칸** — 모든 막대에 같다 · 값은 한 칸의 배수 · 세로 눈금 상한
+ * 1-5 (여기)    **눈금 한 칸** — 세로 눈금 상한이 후보를 하나로 줄인다
  * 1-6 (여기)    **배열의 자리** — 첫째부터 차례로만 간다 · 자리를 하나씩 늘려 견준다
- * 2-4 (여기)    **이름이 성질을 되돌려 준다** — 마주 보는 두 변이 같다 · 수직 꺾임의 홀짝
+ * 2-4 (여기)    **이름이 성질을 되돌려 준다** — 네 변이 같으면 한 변은 합의 4분의 1
+ *               · 수직 꺾임의 홀짝 · 세 평행선의 차례
  * ```
  *
  * ## 🔴 「잘못 …했더니」를 한 갈래도 안 쓴다
  *
  * 초4 심화하 62자리 중 11자리(17.7%)가 이미 그 문형이다(토대 §2-㉠). 여기서도 마디를
- * 여는 방식을 **「무엇을 안 말해 주는가」**로 둔다 — 어느 막대와 견주는지 · 어느 항목이
- * 그 칸 수인지 · 몇째인지 · 늘어나는 개수가 얼마인지 · 직선이 몇 개인지 · 세 직선의
- * 차례가 어떤지 · 잰 두 변이 마주 보는지 이웃하는지 · 네 변까지 같은지.
+ * 여는 방식을 **「무엇을 안 말해 주는가」**로 둔다 — 어느 막대와 견주는지 · 몇째인지 ·
+ * 늘어나는 개수가 얼마인지 · 직선이 몇 개인지 · 세 직선의 차례가 어떤지 · 네 변까지
+ * 같은지.
  *
  * ## 각도를 한 갈래도 안 쓴다 (2-4)
  *
@@ -17928,6 +17946,15 @@ export const G4_TIER_APPLY = tier53Apply;
  * 「하나만 남는가」를 눈으로 고르면 둘 남는 자리가 반드시 샌다(파일럿·물결 2 와 같은 규율).
  * 아래 `*_FIELD` 는 모듈이 뜰 때 전수로 만들고 **하나만 남는 자리만** 담는다.
  * 비면 그 갈래는 등록조차 못 하므로, 근거는 문장이 아니라 **밭 자체**다.
+ *
+ * ## 🔴 그런데 «밭이 하나만 남긴다»는 «마디가 열렸다»가 아니다 (2026-08-31 적대 검토)
+ *
+ * 밭이 「살아남는 후보가 정확히 하나」만 담아도, **죽는 가지가 늘 같은 쪽**이면 학생은
+ * 성질을 한 번도 안 대고 그 한 쪽을 바로 고른다. 이 회차가 그렇게 셋을 잃었다 —
+ * `1-5-2 중`(늘 작은 쪽 20,000/20,000) · `1-5-2 상`(조건을 안 읽어도 98.3%) ·
+ * `2-4-5 중`(죽는 가지가 산술 모순이라 답에 영향 0). `2-4-3 중` 만 **방향을 던져** 살렸다.
+ * 그러니 밭을 세운 뒤에 **「죽는 쪽이 늘 같은가」를 전수로 한 번 더 세라** —
+ * 늘 같으면 그 갈래는 심화중이 아니라 «기본에 문장을 하나 더 붙인 것»이다.
  */
 
 /* ─────────────────── 1-5 막대그래프 — 확대 갈래 ───────────────────
@@ -17968,24 +17995,6 @@ function barIntroOf(scale: BarScale, theme: BarTheme): string {
     `${josa(scale.who, "이", "가")} 좋아하는 ` +
     `${josa(theme.item, "을", "를")} 조사하여 나타낸 막대그래프입니다.`
   );
-}
-
-function barTableIntroOf(scale: BarScale, theme: BarTheme): string {
-  return (
-    `${josa(scale.who, "이", "가")} 좋아하는 ` +
-    `${josa(theme.item, "을", "를")} 조사하여 나타낸 표입니다.`
-  );
-}
-
-/** 그리기 갈래의 표. 세로로 세운다(`barTable` 과 같은 규격). */
-function barTableOf(
-  theme: BarTheme,
-  cells: readonly { label: string; value: number }[],
-): Record<string, unknown> {
-  return fig("table", {
-    headers: [theme.item, "학생 수(명)"],
-    rows: cells.map((c) => [c.label, String(c.value)]),
-  });
 }
 
 /**
@@ -18079,274 +18088,6 @@ function tier51MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
         `${n(hidden.value)}${theme.unit}입니다.`,
     ],
     figure,
-  );
-}
-
-/**
- * **1-5-2 심화중의 밭** — 「어느 항목의 막대가 `cells` 칸인지」를 안 말한다.
- *
- * 표의 값 가운데 `cells` 로 나누어떨어지는 것이 **정확히 둘**이라야 후보가 둘이고,
- * 그중 **하나만** 네 값을 모두 눈금에 꼭 맞게 그릴 수 있어야 답이 선다.
- * 죽는 후보가 못 그리는 값(`deadMiss`)까지 밭이 들고 다닌다 — 해설이 그 값을 지목한다.
- */
-const BAR_CELL_FIELD: {
-  scale: BarScale;
-  total: number;
-  sorted: number[];
-  cells: number;
-  unitSize: number;
-  dead: number;
-  deadMiss: number;
-}[] = (() => {
-  const out: {
-    scale: BarScale;
-    total: number;
-    sorted: number[];
-    cells: number;
-    unitSize: number;
-    dead: number;
-    deadMiss: number;
-  }[] = [];
-  for (const scale of BAR_SCALES) {
-    for (const total of scale.totals) {
-      for (const sorted of barSplits(total, scale)) {
-        for (let cells = 2; cells <= 9; cells += 1) {
-          const cands = [
-            ...new Set(
-              sorted.filter((v) => v % cells === 0).map((v) => v / cells),
-            ),
-          ];
-          if (cands.length !== 2) continue;
-          const alive = cands.filter((u) => sorted.every((v) => v % u === 0));
-          if (alive.length !== 1) continue;
-          const unitSize = alive[0]!;
-          if (unitSize === cells) continue; // 답이 발문에 그대로 있으면 안 된다
-          const dead = cands.find((u) => u !== unitSize)!;
-          const deadMiss = sorted.find((v) => v % dead !== 0);
-          if (deadMiss === undefined) continue;
-          out.push({
-            scale,
-            total,
-            sorted,
-            cells,
-            unitSize,
-            dead,
-            deadMiss,
-          });
-        }
-      }
-    }
-  }
-  return out;
-})();
-
-/**
- * **1-5-2 5단 심화중 — 「어느 항목의 막대인지」를 안 말한다.**
- *
- * 심화하는 항목을 이름으로 준다(`돼지의 막대가 6칸`) — 나눗셈 한 번에 굳는다.
- * 여기서는 이름을 지워 「눈금 한 칸」의 후보가 둘이 되고, **「눈금 한 칸은 모든 막대에
- * 같다」**는 이 소단원의 성질이 하나를 떨어뜨린다. 지는 쪽은 **끝까지 그려 보지 않고**
- * 「그 칸으로는 못 그리는 값이 있다」 한 줄로 죽는다 → 중.
- */
-function tier52Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return unlessForward(() => tier52MidRaw(unit, rng));
-}
-
-function tier52MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
-  const theme = pick(rng, themeShare(unit, BAR_THEMES));
-  const f = pick(rng, BAR_CELL_FIELD);
-  const cells = barCells(theme, f.sorted, barSlots(rng));
-  const two = cells
-    .filter((c) => c.value % f.cells === 0)
-    .sort((a, b) => a.value - b.value);
-  // 밭이 「나누어떨어지는 값이 정확히 둘」인 자리만 담으므로 여기서 둘이 아니면
-  // 밭과 생성이 갈린 것이다 — 조용히 `undefined` 를 지면에 내지 않고 던진다.
-  if (two.length !== 2)
-    throw new Error(`초4 1-5-2 심화중: 후보가 둘이 아니다 (${two.length})`);
-  const lo = two[0]!;
-  const hi = two[1]!;
-  return makeDeep(
-    unit,
-    `${barTableIntroOf(f.scale, theme)} 이 표를 보고 막대그래프를 그렸더니 어떤 한 ` +
-      `${josa(theme.item, "의", "의")} 막대가 ${n(f.cells)}칸이 되었습니다. 어느 ` +
-      `${josa(theme.item, "인지는", "인지는")} 알려 주지 않습니다. 모든 막대가 눈금에 ` +
-      `꼭 맞게 그려졌을 때 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내는가?`,
-    `${n(f.unitSize)}${theme.unit}`,
-    [
-      `막대가 ${n(f.cells)}칸이면 그 학생 수를 ${n(f.cells)}칸으로 똑같이 나눈 것이 ` +
-        `눈금 한 칸입니다. 표의 네 수 가운데 ${n(f.cells)}칸으로 똑같이 나누어지는 것은 ` +
-        `${n(lo.value)}${theme.unit}과 ${n(hi.value)}${theme.unit}이므로, 눈금 한 칸은 ` +
-        `${expr(`${lo.value}\\div${f.cells}=${lo.value / f.cells}`)} 에서 ` +
-        `${n(lo.value / f.cells)}${theme.unit}이거나 ` +
-        `${expr(`${hi.value}\\div${f.cells}=${hi.value / f.cells}`)} 에서 ` +
-        `${n(hi.value / f.cells)}${theme.unit}입니다.`,
-      `눈금 한 칸은 모든 막대에 같습니다. 한 칸이 ${n(f.dead)}${theme.unit}이면 ` +
-        `${n(f.deadMiss)}${theme.unit}인 막대를 눈금에 꼭 맞게 그릴 수 없으므로, ` +
-        `세로 눈금 한 칸은 ${n(f.unitSize)}${theme.unit}입니다.`,
-    ],
-    barTableOf(theme, cells),
-  );
-}
-
-/**
- * **1-5-2 심화상의 밭** — 「어느 두 항목의 막대인지」도 안 말한다.
- *
- * 두 막대의 **칸 수의 차**만 주면 후보가 셋 이상 생긴다(네 값에서 두 값을 고르는 여섯
- * 가지 차를 각각 나눈 것). 성질 하나로는 안 굳어 **둘을 차례로 대 보아야** 하나가
- * 남는다 — ㉠ 「눈금 한 칸은 모든 막대에 같다」 ㉡ 「세로 눈금은 가장 큰 수까지 나타낼
- * 수 있어야 한다」. 밭은 **둘 다 실제로 일하는 자리만** 담는다(㉠ 이 아무도 안 죽이거나
- * ㉡ 뒤에 둘이 남는 자리는 버린다).
- */
-const BAR_GAP_FIELD: {
-  scale: BarScale;
-  total: number;
-  sorted: number[];
-  gapCells: number;
-  ticks: number;
-  unitSize: number;
-  cands: number[];
-  alive: number[];
-  deadDivs: { unit: number; miss: number }[];
-  deadTick: number;
-}[] = (() => {
-  const out: {
-    scale: BarScale;
-    total: number;
-    sorted: number[];
-    gapCells: number;
-    ticks: number;
-    unitSize: number;
-    cands: number[];
-    alive: number[];
-    deadDivs: { unit: number; miss: number }[];
-    deadTick: number;
-  }[] = [];
-  for (const scale of BAR_SCALES) {
-    for (const total of scale.totals) {
-      for (const sorted of barSplits(total, scale)) {
-        const top = sorted[3]!;
-        for (let gapCells = 2; gapCells <= 9; gapCells += 1) {
-          const seen = new Set<number>();
-          for (let i = 0; i < 4; i += 1) {
-            for (let j = 0; j < i; j += 1) {
-              const d = sorted[i]! - sorted[j]!;
-              if (d > 0 && d % gapCells === 0) seen.add(d / gapCells);
-            }
-          }
-          const cands = [...seen].sort((a, b) => a - b);
-          if (cands.length < 3) continue;
-          const alive = cands.filter((u) => sorted.every((v) => v % u === 0));
-          if (alive.length < 2) continue;
-          // ⚠️ **이 줄은 지금 아무것도 안 자른다** — 변이 하네스가 「산출물이 그대로다」로
-          //    판정을 거부해서 세어 봤다: ㉡ 앞까지 살아남는 (나눔, 칸 수 차) 조합 **76개**
-          //    가운데 「후보가 전부 네 값을 나눈다」인 것이 **0개**다. 후보가 셋 이상이려면
-          //    차가 서로 다른 세 값을 내야 하고, 그러면 그중 하나는 네 값의 공통 약수가
-          //    아니게 되기 때문이다. 「가드가 없다」가 아니라 **지금은 안 무는 불변식**이고,
-          //    후보를 만드는 방식이 바뀌면 그때 문다. 지우지 말 것.
-          if (cands.length <= alive.length) continue; // ㉠ 이 아무도 안 죽인다
-          // 🔴 죽는 후보를 **하나만** 적으면 해설이 「나머지는 왜 죽었나」를 건너뛴다
-          //    (첫 판이 그랬다 — 후보 다섯 중 하나만 짚고 「남는 것은 둘」이라 했다).
-          //    그래서 죽는 것을 **전부** 그 못 그리는 값과 함께 들고 다닌다.
-          const deadDivs = cands
-            .filter((u) => !alive.includes(u))
-            .map((u) => ({ unit: u, miss: sorted.find((v) => v % u !== 0)! }));
-          for (let ticks = 3; ticks <= 9; ticks += 1) {
-            const left = alive.filter((u) => u * ticks >= top);
-            if (left.length !== 1) continue;
-            const unitSize = left[0]!;
-            if (unitSize < 2) continue;
-            if (unitSize === gapCells || unitSize === ticks) continue;
-            // 🔴 남는 하나가 후보 무리의 **가장 큰 값이면 안 된다** — 그러면
-            //    「한 칸이 클수록 좋으니 가장 큰 것」 한 줄로 집혀 심화중이 된다
-            //    (파일럿 §7.1 이 상과 중을 가른 그 자리). 실측으로 이 줄이 126 → 62.
-            if (unitSize === Math.max(...cands)) continue;
-            const deadTick = alive.find((u) => u !== unitSize)!;
-            // 🔴 답의 둘째 쪽(가장 긴 막대의 칸 수)이 발문의 수와 같으면 안 된다.
-            //    그리고 답을 두 쪽으로 물어야 R9-c 가 안 문다 — 「한 칸」만 물으면
-            //    이 밭에서 답이 **늘 $10$명**이라 찍으면 맞는다(실측 122/126).
-            const drawCells = top / unitSize;
-            if (
-              drawCells === ticks ||
-              drawCells === gapCells ||
-              drawCells === unitSize
-            ) {
-              continue;
-            }
-            out.push({
-              scale,
-              total,
-              sorted,
-              gapCells,
-              ticks,
-              unitSize,
-              cands,
-              alive,
-              deadDivs,
-              deadTick,
-            });
-          }
-        }
-      }
-    }
-  }
-  return out;
-})();
-
-/**
- * **1-5-2 6단 심화상 — 후보를 만들어 두 성질에 차례로 대 본다.**
- *
- * 심화중은 후보가 둘이라 성질 한 번으로 끝난다. 여기서는 후보가 셋 이상이고 성질
- * **둘**을 차례로 대야 하나가 남는다 — 후보를 발문이 주지 않고 **두 값의 차를 직접
- * 만들어** 얻는다(되짚기가 만든다 ✓). 남는 하나는 두 성질을 **둘 다** 통과한 것이라
- * 「가장 큰/작은」 한 줄로는 안 집힌다.
- */
-function tier52Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  return unlessForward(() => tier52TopRaw(unit, rng));
-}
-
-function tier52TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
-  const theme = pick(rng, themeShare(unit, BAR_THEMES));
-  const f = pick(rng, BAR_GAP_FIELD);
-  const cells = barCells(theme, f.sorted, barSlots(rng));
-  const top = f.sorted[3]!;
-  const topLabel = cells.find((c) => c.rank === 3)!;
-  const wide = f.sorted[3]! - f.sorted[0]!;
-  return makeDeep(
-    unit,
-    `${barTableIntroOf(f.scale, theme)} 이 표를 보고 막대그래프를 그리려고 합니다. ` +
-      `모든 막대는 눈금에 꼭 맞게 그려야 하고, 세로 눈금은 ${n(f.ticks)}칸까지만 ` +
-      `있습니다. 어떤 두 ${josa(theme.item, "의", "의")} 막대의 칸 수의 차가 ` +
-      `${n(f.gapCells)}칸일 때, 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내고 ` +
-      `${josa(topLabel.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
-    `${n(f.unitSize)}${theme.unit}, ${n(top / f.unitSize)}칸`,
-    [
-      `두 막대의 칸 수의 차가 ${n(f.gapCells)}칸이면 두 학생 수의 차를 ` +
-        `${n(f.gapCells)}칸으로 똑같이 나눈 것이 눈금 한 칸입니다. 표에서 두 수의 차를 ` +
-        `모두 구해 ${n(f.gapCells)}칸으로 나누어 보면 ` +
-        `${expr(`${wide}\\div${f.gapCells}=${wide / f.gapCells}`)} 처럼 똑같이 ` +
-        `나누어지는 것이 있고, 눈금 한 칸이 될 수 있는 수는 ` +
-        `${f.cands.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
-      `눈금 한 칸은 모든 막대에 같습니다. ` +
-        `${f.deadDivs
-          .map(
-            (d) =>
-              `한 칸이 ${n(d.unit)}${theme.unit}이면 ${n(d.miss)}${theme.unit}인 막대를 ` +
-              `눈금에 꼭 맞게 그릴 수 없습니다`,
-          )
-          .join(". ")}. 그래서 남는 것은 ` +
-        `${f.alive.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
-      `세로 눈금은 ${n(f.ticks)}칸까지입니다. 한 칸이 ${n(f.deadTick)}${theme.unit}이면 ` +
-        `${expr(`${f.deadTick}\\times${f.ticks}=${f.deadTick * f.ticks}`)} 에서 ` +
-        `${n(f.deadTick * f.ticks)}${theme.unit}까지밖에 못 나타내어 ` +
-        `${josa(topLabel.label, "의", "의")} ${n(top)}${theme.unit}을 그릴 수 없습니다. ` +
-        `한 칸이 ${n(f.unitSize)}${theme.unit}이면 ` +
-        `${expr(`${f.unitSize}\\times${f.ticks}=${f.unitSize * f.ticks}`)} 까지 ` +
-        `나타낼 수 있으므로, 세로 눈금 한 칸은 ${n(f.unitSize)}${theme.unit}입니다.`,
-      `${josa(topLabel.label, "은", "는")} ${n(top)}${theme.unit}이므로 ` +
-        `${expr(`${top}\\div${f.unitSize}=${top / f.unitSize}`)} 에서 ` +
-        `${n(top / f.unitSize)}칸으로 그립니다.`,
-    ],
-    barTableOf(theme, cells),
   );
 }
 
@@ -18619,6 +18360,13 @@ const PARA_ORDER_FIELD: { near: number; far: number }[] = (() => {
  *
  * 심화하는 「이 순서로」가 배치를 통째로 정한다(마디가 없다). 여기서는 그 한 마디를
  * 열어 후보가 «합»과 «차» 둘이 되고, 발문의 비교 조건 한 줄이 하나를 죽인다.
+ *
+ * 🔴 **비교 방향을 씨앗마다 던진다** — 2026-08-31 적대 검토가 짚은 자리다. 방향을
+ *    「짧을 때」로 굳혀 두면 `both > near` 도 `apart < near` 도 **밭 전량에서 늘 참**
+ *    이라 그 문장이 정보를 한 비트도 안 싣는다. 학생이 조건을 안 읽고 두 수를 빼기만
+ *    해도 맞았다(실측 2,400/2,400 · 반증 ⑥). 방향을 던지면 «더할지 뺄지»가 **조건에서만**
+ *    나온다. 밭 115쌍 × 방향 2 = 230자리에서 살아남는 후보가 늘 정확히 하나이고 답이
+ *    발문의 수와 같아지는 자리도 0이다(`.tmp-rev/jatdae-rebut/fix-check.ts` 로 재현).
  */
 function tier243Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   return unlessForward(() => tier243MidRaw(unit, rng));
@@ -18630,62 +18378,27 @@ function tier243MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const big = Math.max(f.near, f.far);
   const small = Math.min(f.near, f.far);
   const apart = big - small;
+  // 방향을 던진다 — 머리말 🔴 참조. `apart < near` 와 `both > near` 가 둘 다 밭에서
+  // 항등이므로, 어느 쪽을 묻든 살아남는 후보는 정확히 하나이고 서로 다르다.
+  const wantShorter = intBetween(rng, 0, 1) === 0;
+  const answer = wantShorter ? apart : both;
+  const dead = wantShorter ? both : apart;
   return makeDeep(
     unit,
     `직선 가, 직선 나, 직선 다는 모두 서로 평행합니다. 직선 가와 직선 나 사이의 거리는 ` +
       `${cm(f.near)}이고, 직선 나와 직선 다 사이의 거리는 ${cm(f.far)}입니다. 세 직선이 ` +
       `놓인 차례는 알려 주지 않습니다. 직선 가와 직선 다 사이의 거리가 직선 가와 직선 나 ` +
-      `사이의 거리보다 짧을 때, 직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
-    cm(apart),
+      `사이의 거리보다 ${wantShorter ? "짧을" : "길"} 때, 직선 가와 직선 다 사이의 ` +
+      `거리는 몇 cm인가?`,
+    cm(answer),
     [
       `직선 나가 직선 가와 직선 다 사이에 있으면 직선 가와 직선 다 사이의 거리는 두 ` +
         `거리를 더한 ${expr(`${f.near}+${f.far}=${both}`)} 에서 ${cm(both)}입니다. ` +
         `직선 나가 두 직선 사이에 없으면 두 거리의 차인 ` +
         `${expr(`${big}-${small}=${apart}`)} 에서 ${cm(apart)}입니다.`,
-      `${cm(both)}는 직선 가와 직선 나 사이의 거리인 ${cm(f.near)}보다 길어 조건에 맞지 ` +
-        `않습니다. 그러므로 직선 가와 직선 다 사이의 거리는 ${cm(apart)}입니다.`,
-    ],
-  );
-}
-
-/** 평행사변형·직사각형 소재 — 「네 변의 길이」가 뜻을 갖는 물건. */
-const QUAD_ITEMS = ["밭", "창틀", "액자", "표지판"] as const;
-
-/**
- * **2-4-5 5단 심화중 — 잰 두 변이 «마주 보는지 이웃하는지» 안 말한다.**
- *
- * 응용은 「한 변」을 주어 이웃한 변이 곧바로 나온다. 여기서는 **길이가 같은 두 변**을
- * 주되 그 둘이 어느 쌍인지 말하지 않아 후보가 둘이 되고, 「마주 보는 두 변은 길이가
- * 같다」는 이 소단원의 정의 성질이 하나를 죽인다 — 이웃한 쌍이라면 네 변이 모두 같아
- * 합이 달라지므로, **끝까지 재 보지 않고** 곱셈 한 번으로 걸러 낸다.
- */
-function tier245Mid(unit: UnitSeed, rng: Rng): ElemProblem {
-  return unlessForward(() => tier245MidRaw(unit, rng));
-}
-
-function tier245MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
-  const item = pick(rng, QUAD_ITEMS);
-  const same = intBetween(rng, 5, 14);
-  const rest = pick(
-    rng,
-    Array.from({ length: 12 }, (_, i) => i + 3).filter((v) => v !== same),
-  );
-  const total = same * 2 + rest * 2;
-  return makeDeep(
-    unit,
-    `평행사변형 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합은 ` +
-      `${cm(total)}이고, 네 변 가운데 두 변의 길이가 둘 다 ${cm(same)}입니다. ` +
-      `나머지 두 변의 길이는 각각 몇 cm인가?`,
-    cm(rest),
-    [
-      `평행사변형은 마주 보는 두 변의 길이가 서로 같습니다. 길이가 같은 그 두 변이 ` +
-        `이웃한 두 변이라면 네 변이 모두 ${cm(same)}가 되어 네 변의 길이의 합이 ` +
-        `${expr(`${same}\\times4=${same * 4}`)} 인데, ${cm(total)}와 다르므로 그럴 수 ` +
-        `없습니다.`,
-      `그러므로 그 두 변은 마주 보는 두 변입니다. 나머지 두 변의 길이의 합은 ` +
-        `${expr(`${total}-${same}\\times2=${total - same * 2}`)} 이고, 나머지 두 변도 ` +
-        `서로 마주 보아 길이가 같으므로 ` +
-        `${expr(`${total - same * 2}\\div2=${rest}`)} 에서 ${cm(rest)}입니다.`,
+      `${cm(dead)}는 직선 가와 직선 나 사이의 거리인 ${cm(f.near)}보다 ` +
+        `${wantShorter ? "길어" : "짧아"} 조건에 맞지 않습니다. 그러므로 직선 가와 ` +
+        `직선 다 사이의 거리는 ${cm(answer)}입니다.`,
     ],
   );
 }

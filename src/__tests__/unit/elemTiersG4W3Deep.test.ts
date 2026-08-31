@@ -21,12 +21,18 @@
  * ㉠ **후보 무리를 만드는 규칙은 내가 적은 것이다.** 학생이 밟을 무리와 같은지는 사람이 본다.
  * ㉡ **반증 ⑥ 은 «배선»만 본다** — 생성기가 같은 규칙으로 미리 거르므로 절반이 동어반복이다.
  *    그래서 검출기의 «예»를 같은 회차에 보인다. 그리고 **답이 낱말인 갈래**
- *    (`1-6-2 심화상`「일곱째」·`1-5-2 심화상`「$10$명, $7$칸」·`2-4-7 심화중`「직사각형, …」)는
- *    `readRat` 이 못 읽어 그 축 **밖**이다 — 그 0 은 «깨끗»이 아니라 «못 셈»이다.
+ *    (`1-6-2 심화상`「일곱째」·`2-4-7 심화중`「직사각형, …」)는 `readRat` 이 못 읽어
+ *    그 축 **밖**이다 — 그 0 은 «깨끗»이 아니라 «못 셈»이다.
+ *    🔴 그리고 **재는 축 자체가 좁다** — `forwardReachable` 의 허용 꼴이 전부 곱을 물어
+ *    **나눗셈·덧뺄셈 한 걸음은 구조적으로 «아니오»를 못 낸다**(적대 검토 §6). 그래서
+ *    이 파일의 ⑥ 은 「0건(÷·± 못 셈)」이고, 그 둘은 **사람이 손으로 대야 한다** —
+ *    2026-08-31 에 그렇게 대어 `2-4-3 심화중`(뺄셈 한 걸음)을 잡았다.
  * ㉢ **높이는 못 잰다** — 여섯을 나란히 놓고 사람이 본다(`dump-elem-tiers`).
- * ㉣ **지름길은 못 본다**(D-115 ⑽②). `1-6-1 심화중`은 「$A$ 를 $d$ 로 나눈 나머지」로,
- *    `1-5-2 심화상`은 「한 칸이 클수록 좋다」로 가로지를 수 있다. 잣대의 참은 **해설이
- *    밟는 길**이므로 갈래는 그대로 두되, 이 사실을 여기 적어 둔다.
+ * ㉣ **지름길은 못 본다**(D-115 ⑽②). `1-6-1 심화중`은 「$A$ 를 $d$ 로 나눈 나머지」로
+ *    가로지를 수 있다. 잣대의 참은 **해설이 밟는 길**이므로 갈래는 그대로 두되, 이
+ *    사실을 여기 적어 둔다. ⚠️ 다만 **지름길이 100% 면 그것은 사각지대가 아니라 결함**
+ *    이다 — 2026-08-31 적대 검토가 그 선으로 `1-5-2 중`(100%)·`1-5-2 상`(98.3%)을
+ *    거뒀다. 이 파일이 그 축을 못 재므로 **밭을 세울 때 사람이 전수로 세야 한다**.
  */
 import { describe, expect, it } from "vitest";
 
@@ -86,13 +92,6 @@ function barValues(spec: unknown): BarCell[] {
   return s!.values!;
 }
 
-/** 표 스펙의 값 목록. */
-function tableValues(spec: unknown): { label: string; value: number }[] {
-  const s = spec as { kind?: string; rows?: string[][] } | null;
-  expect(s?.kind, "표가 아니다").toBe("table");
-  return s!.rows!.map((r) => ({ label: r[0]!, value: Number(r[1]) }));
-}
-
 const ORDINALS = [
   "첫째",
   "둘째",
@@ -115,7 +114,10 @@ const ORDINALS = [
 const REGISTERED: Record<string, ("심화중" | "심화상")[]> = {
   // 1-5 막대그래프 — 1-5-3 은 둘 다 비움(짝을 셋 이상 만들 수 있는 자리가 전수 0)
   "1-5-1": ["심화중"],
-  "1-5-2": ["심화중", "심화상"],
+  // 🔴 **적대 검토가 거뒀다**(2026-08-31, 원장 §1⑷) — 중은 「나누어떨어지는 둘 중
+  //    작은 쪽」만으로 20,000/20,000, 상은 「칸 수의 차」를 **안 읽어도** 98.3%.
+  //    뿌리는 `BAR_SCALES` 의 「값 넷이 모두 step 의 배수」 격자다.
+  "1-5-2": [],
   "1-5-3": [],
   // 1-6 규칙 찾기 — 1-6-3·1-6-4·1-6-5 는 둘 다 비움(후보를 자르는 것이 약수라 초5)
   "1-6-1": ["심화중"],
@@ -128,7 +130,9 @@ const REGISTERED: Record<string, ("심화중" | "심화상")[]> = {
   "2-4-2": ["심화중"],
   "2-4-3": ["심화중"],
   "2-4-4": [],
-  "2-4-5": ["심화중"],
+  // 🔴 **적대 검토가 거뒀다**(원장 §1⑵) — 죽는 가지가 산술 모순($P=4a$)이라 답에
+  //    영향이 0이고, 같은 소단원 **응용과 발문의 수·정답이 통째로 같은 자리 110/110**.
+  "2-4-5": [],
   "2-4-6": [],
   "2-4-7": ["심화중"],
 };
@@ -158,7 +162,7 @@ describe("초4 물결3 — 등록", () => {
           made += 1;
         }
     // 분모 — 0 이면 이 시험은 아무것도 안 지킨다.
-    expect(made).toBe(9 * SEEDS.length);
+    expect(made).toBe(6 * SEEDS.length); // 적대 검토가 셋을 거뒀다(9 → 6)
   });
 });
 
@@ -193,28 +197,6 @@ describe("초4 1-5 막대그래프 — 심화중의 마디", () => {
         (p.figureSpec as { yMax?: number }).yMax,
         `1-5-1 seed=${seed}`,
       ).toBe(top);
-    }
-  });
-
-  it("1-5-2: 어느 항목인지 안 굳고 «한 칸은 모든 막대에 같다»가 하나를 죽인다", () => {
-    for (const seed of SEEDS) {
-      const p = gen("1-5-2", seed, "심화중");
-      const cells = grab(p.content, /막대가 \$(\d+)\$칸이 되었습니다/);
-      const rows = tableValues(p.figureSpec);
-      const values = rows.map((r) => r.value);
-      // ⑴ 마디가 열려 있다 — 그 칸 수로 나누어떨어지는 값이 둘이라 한 칸 후보가 둘.
-      const cands = [
-        ...new Set(values.filter((v) => v % cells === 0).map((v) => v / cells)),
-      ];
-      expect(cands, `1-5-2 seed=${seed} 후보`).toHaveLength(2);
-      // ⑵ 네 값을 모두 나타낼 수 있는 것은 하나뿐이다.
-      const alive = cands.filter((u) => values.every((v) => v % u === 0));
-      expect(alive, `1-5-2 seed=${seed}`).toHaveLength(1);
-      expect(p.answer).toBe(`$${alive[0]}$명`);
-      // ⑶ 음성 대조 — 그 성질을 끄면 둘이 남는다.
-      expect(cands.length).toBe(2);
-      // 답이 발문의 수와 겹치지 않는다.
-      expect(numbersIn(p.content)).not.toContain(alive[0]);
     }
   });
 });
@@ -270,7 +252,8 @@ describe("초4 2-4 사각형 — 심화중의 마디", () => {
     }
   });
 
-  it("2-4-3: 세 직선의 차례가 안 굳고 비교 조건이 «합»을 죽인다", () => {
+  it("2-4-3: 세 직선의 차례가 안 굳고 **발문이 말한 방향**이 하나를 죽인다", () => {
+    const dirs = new Set<string>();
     for (const seed of SEEDS) {
       const p = gen("2-4-3", seed, "심화중");
       const near = grab(
@@ -281,41 +264,35 @@ describe("초4 2-4 사각형 — 심화중의 마디", () => {
         p.content,
         /직선 나와 직선 다 사이의 거리는 \$(\d+)\\,\\mathrm\{cm\}\$/,
       );
+      // 🔴 **조건 «문구»를 읽는다.** 수만 읽으면 방향을 뒤집는 변이가 시험을 통과하고,
+      //    그러면 지면의 굳힘 근거가 거짓이 되어도 아무도 모른다(적대 검토 §2-14).
+      const dm = /사이의 거리보다 (짧을|길) 때/.exec(p.content);
+      expect(
+        dm,
+        `2-4-3 seed=${seed} 방향 문구를 못 읽었다:\n${p.content}`,
+      ).toBeTruthy();
+      const word = dm![1]!;
+      dirs.add(word);
+      const wantShorter = word === "짧을";
       // ⑴ 후보 둘 — 나가 가운데면 합, 아니면 차.
       const cands = [near + far, Math.abs(near - far)];
       expect(new Set(cands).size, `2-4-3 seed=${seed}`).toBe(2);
-      // ⑵ 「가–다 가 가–나 보다 짧다」가 하나를 남긴다.
-      const alive = cands.filter((d) => d < near);
+      // ⑵ **발문이 말한 방향**이 정확히 하나를 남긴다.
+      const alive = cands.filter((d) => (wantShorter ? d < near : d > near));
       expect(alive, `2-4-3 seed=${seed}`).toHaveLength(1);
       expect(p.answer).toBe(`$${alive[0]}\\,\\mathrm{cm}$`);
-      // ⑶ 음성 대조 — 조건을 「길다」로 뒤집으면 합이 남는다.
-      const flipped = cands.filter((d) => d > near);
-      expect(flipped).toEqual([near + far]);
+      // ⑶ 음성 대조 — 방향을 뒤집으면 **다른 쪽**이 남는다. 그래야 그 문장이 일을 한다.
+      const flipped = cands.filter((d) => (wantShorter ? d > near : d < near));
+      expect(flipped, `2-4-3 seed=${seed} 뒤집기`).toHaveLength(1);
+      expect(flipped[0], `2-4-3 seed=${seed}`).not.toBe(alive[0]);
       // 답이 발문의 두 수와 다르다(그러면 되짚기가 아니라 옮겨 적기가 된다).
       expect(alive[0]).not.toBe(near);
       expect(alive[0]).not.toBe(far);
     }
-  });
-
-  it("2-4-5: 잰 두 변의 쌍이 안 굳고 «마주 보는 두 변은 같다»가 하나를 죽인다", () => {
-    for (const seed of SEEDS) {
-      const p = gen("2-4-5", seed, "심화중");
-      const total = grab(
-        p.content,
-        /네 변의 길이의 합은 \$(\d+)\\,\\mathrm\{cm\}\$/,
-      );
-      const same = grab(p.content, /둘 다 \$(\d+)\\,\\mathrm\{cm\}\$/);
-      // ⑴ 후보 둘 — 그 두 변이 이웃한 쌍이면 네 변이 모두 같고, 마주 보는 쌍이면 아니다.
-      const asNeighbour = same * 4;
-      expect(asNeighbour).not.toBe(total); // 마디가 실제로 갈린다
-      // ⑵ 성질이 이웃한 쌍을 죽인다 → 나머지 두 변은 (합 − 같은 두 변) ÷ 2.
-      const rest = (total - same * 2) / 2;
-      expect(Number.isInteger(rest), `2-4-5 seed=${seed}`).toBe(true);
-      expect(rest).toBeGreaterThan(0);
-      expect(p.answer).toBe(`$${rest}\\,\\mathrm{cm}$`);
-      // ⑶ 음성 대조 — 이웃한 쌍이었다면 답은 `same` 이 되어 달라진다.
-      expect(rest).not.toBe(same);
-    }
+    // 🔴 **두 방향이 씨앗마다 던져진다.** 한 방향으로 굳으면 `both > near` 도
+    //    `apart < near` 도 밭에서 항등이라 그 문장이 정보를 한 비트도 안 싣고,
+    //    학생은 조건을 안 읽고 늘 같은 연산만 해도 맞는다(적대 검토 §1⑴, 실측 2,400/2,400).
+    expect([...dirs].sort(), "2-4-3 방향이 던져진다").toEqual(["길", "짧을"]);
   });
 
   it("2-4-7: 이름이 안 굳고 «네 변이 같으면 한 변은 합의 4분의 1»이 정사각형을 죽인다", () => {
@@ -342,44 +319,7 @@ describe("초4 2-4 사각형 — 심화중의 마디", () => {
 
 /* ═══════════ C. 심화상 — 성질만으로 못 굳혀 «만들어 견주어야» 한다 ═══════════ */
 
-describe("초4 물결3 — 심화상 둘", () => {
-  it("1-5-2 심화상: 후보를 만들어 성질 **둘**에 차례로 대야 하나가 남는다", () => {
-    for (const seed of SEEDS) {
-      const p = gen("1-5-2", seed, "심화상");
-      const ticks = grab(p.content, /세로 눈금은 \$(\d+)\$칸까지만/);
-      const gapCells = grab(p.content, /칸 수의 차가 \$(\d+)\$칸일 때/);
-      const rows = tableValues(p.figureSpec);
-      const values = rows.map((r) => r.value);
-      const top = Math.max(...values);
-      // ⑴ 후보를 **되짚기가 만든다** — 두 값의 차를 칸 수로 나눈다.
-      const seen = new Set<number>();
-      for (let i = 0; i < values.length; i += 1)
-        for (let j = 0; j < i; j += 1) {
-          const d = Math.abs(values[i]! - values[j]!);
-          if (d > 0 && d % gapCells === 0) seen.add(d / gapCells);
-        }
-      const cands = [...seen].sort((a, b) => a - b);
-      expect(cands.length, `1-5-2상 seed=${seed} 후보`).toBeGreaterThanOrEqual(
-        3,
-      );
-      // ⑵ 성질 ㉠ — 「한 칸은 모든 막대에 같다」. 하나로는 안 굳는다.
-      const alive = cands.filter((u) => values.every((v) => v % u === 0));
-      expect(alive.length, "㉠ 하나로는 안 굳는다").toBeGreaterThanOrEqual(2);
-      expect(alive.length, "㉠ 이 실제로 무언가를 죽인다").toBeLessThan(
-        cands.length,
-      );
-      // ⑶ 성질 ㉡ — 「눈금은 가장 큰 수까지 나타낼 수 있어야 한다」가 하나를 남긴다.
-      const left = alive.filter((u) => u * ticks >= top);
-      expect(left, `1-5-2상 seed=${seed}`).toHaveLength(1);
-      const unitSize = left[0]!;
-      expect(p.answer).toBe(`$${unitSize}$명, $${top / unitSize}$칸`);
-      // 남은 하나가 후보 무리의 **가장 큰 값이 아니다** — 그러면 한 줄로 집혀 중이다.
-      expect(unitSize).not.toBe(Math.max(...cands));
-      // 후보를 발문이 주지 않는다 — 답이 발문의 수에 없다.
-      expect(numbersIn(p.content)).not.toContain(unitSize);
-    }
-  });
-
+describe("초4 물결3 — 심화상 하나 (1-5-2 상은 적대 검토가 거뒀다)", () => {
   it("1-6-2 심화상: 창 안의 개수를 하나씩 잡아 **실제로 쌓아** 보아야 하나가 남는다", () => {
     for (const seed of SEEDS) {
       const p = gen("1-6-2", seed, "심화상");
@@ -508,7 +448,189 @@ describe("초4 물결3 — 반증 ⑥", () => {
         }
     // 🔴 분모를 **둘 다** 찍는다 — 잰 것과 «이 축이 못 보는 것»을 갈라야 0 이 뜻을 가진다.
     expect(measured).toBeGreaterThan(50);
-    expect(skipped).toBe(3 * SEEDS.length); // 1-5-2상 · 1-6-2상 · 2-4-7중
+    expect(skipped).toBe(2 * SEEDS.length); // 1-6-2상(「일곱째」) · 2-4-7중(이름+수)
+  });
+});
+
+/* ═══════ E-2. 해설의 «이유» — 산문이 성한가 (적대 검토 §2-13) ═══════ */
+
+/**
+ * 🔴 **산문에는 가드가 하나도 없었다.** 2026-08-31 적대 검토가 해설 문장을 열한 가지로
+ * 망가뜨렸는데 **열한 건 전부 초록**이었다 — 값 검사와 잣대 판정기는 「수가 맞나」만
+ * 보고 「그 수를 왜 골랐다고 적었나」는 안 본다(2026-08-24 「값이 맞으면 시험이 다
+ * 초록이다」와 같은 자리).
+ *
+ * 아래 넷은 그 검토자가 **눈금을 대어 만든 자**(`.tmp-rev/kill-guards/probe-prose.ts`,
+ * 음성 3 · 양성 4 통과)를 그대로 옮긴 것이다. 규칙을 새로 짓지 않았다.
+ * ⚠️ 이 자들은 **글자만** 본다 — 틀이 바뀌면 「문장을 못 읽었다」로 **빨개진다**.
+ *    그게 옳다. 조용히 0이 되면 그 순간 다시 가드가 없는 것이 된다.
+ */
+function faults242(sol: string, answer: string): string[] {
+  const out: string[] = [];
+  const a =
+    /그 가운데 (홀수|짝수) 번 꺾인 것이 \$(\d+)\$개이므로, 마지막으로 (홀수|짝수) 번 꺾인 것은 \$(\d+)\\times2(-1)?=(\d+)\$ 번/.exec(
+      sol,
+    );
+  if (a) {
+    const p1 = a[1]!;
+    const p2 = a[3]!;
+    const m = Number(a[6]);
+    if (p1 !== p2) out.push(`㉠ 앞뒤 홀짝 낱말이 다르다: ${p1} vs ${p2}`);
+    if (m % 2 !== (p2 === "홀수" ? 1 : 0))
+      out.push(`㉠ 「${p2} 번 꺾인 것」이라는데 그 수가 ${m} 이다`);
+  } else out.push("㉠ 문장을 못 읽었다 (틀이 바뀌었다)");
+
+  const b =
+    /맨 뒤 직선이 맨 앞 직선과 (수직|평행)(?:이|하)?려면 맨 뒤까지 꺾인 횟수가 (홀수|짝수)여야/.exec(
+      sol,
+    );
+  if (b) {
+    const want = b[1] === "수직" ? "홀수" : "짝수";
+    if (b[2] !== want)
+      out.push(`㉡ ${b[1]}인데 ${b[2]}라고 적었다 (참 ${want})`);
+  } else out.push("㉡ 문장을 못 읽었다");
+
+  const c =
+    /\$(\d+)\$개이면 \$(\d+)\$번 꺾여 (홀수|짝수)라 안 되고, \$(\d+)\$개이면 \$(\d+)\$번 꺾여 (홀수|짝수)입니다/.exec(
+      sol,
+    );
+  if (c) {
+    const j = Number(c[2]);
+    const i = Number(c[5]);
+    if (j % 2 !== (c[3] === "홀수" ? 1 : 0))
+      out.push(`㉢ ${j}번을 ${c[3]}라 적었다`);
+    if (i % 2 !== (c[6] === "홀수" ? 1 : 0))
+      out.push(`㉢ ${i}번을 ${c[6]}라 적었다`);
+    if (c[3] === c[6]) out.push(`㉢ 버린 쪽과 고른 쪽의 홀짝이 같다 (${c[3]})`);
+    if (Number(answer.replace(/[^0-9]/g, "")) !== Number(c[4]))
+      out.push(`㉢ 고른 쪽 ${c[4]} 이 정답과 다르다`);
+  } else out.push("㉢ 문장을 못 읽었다");
+  return out;
+}
+
+function faults247(sol: string): string[] {
+  const out: string[] = [];
+  const m =
+    /네 각의 크기가 모두 같은 사각형은 ([가-힣]+)이고, 그중 네 변(?:의 길이)?까지 (?:모두 )?같은 것이 ([가-힣]+)입니다/.exec(
+      sol,
+    );
+  if (!m) return ["㉣ 정의문을 못 읽었다"];
+  if (m[1] !== "직사각형")
+    out.push(`㉣ 「네 각이 같은 사각형」을 ${m[1]} 이라 적었다`);
+  if (m[2] !== "정사각형")
+    out.push(`㉣ 「네 변까지 같은 것」을 ${m[2]} 라 적었다`);
+  if (m[1] === m[2]) out.push(`㉣ 두 이름이 같다 (${m[1]}) — 정의가 무너진다`);
+  return out;
+}
+
+function faults161(sol: string): string[] {
+  const out: string[] = [];
+  const m =
+    /\$(\d+)\$에서 \$(\d+)\$씩 \$(\d+)\$번 빼면 \$(\d+)-(\d+)\\times(\d+)=(\d+)\$/.exec(
+      sol,
+    );
+  if (!m) return ["㉤ 문장을 못 읽었다"];
+  if (m[3] !== m[6]) out.push(`㉤ 「${m[3]}번 빼면」인데 식은 ×${m[6]} 이다`);
+  if (m[1] !== m[4]) out.push(`㉤ 「${m[1]}에서」인데 식은 ${m[4]} 이다`);
+  if (m[2] !== m[5]) out.push(`㉤ 「${m[2]}씩」인데 식은 ${m[5]} 이다`);
+  return out;
+}
+
+/** 2-4-3 — 발문이 말한 방향과 **해설이 버리는 이유**가 맞물리는가(이 회차가 더한 것). */
+function faults243(content: string, sol: string, answer: string): string[] {
+  const out: string[] = [];
+  const d = /사이의 거리보다 (짧을|길) 때/.exec(content);
+  if (!d) return ["㉥ 발문의 방향 문구를 못 읽었다"];
+  const m =
+    /\$(\d+)\\,\\mathrm\{cm\}\$는 직선 가와 직선 나 사이의 거리인 \$(\d+)\\,\\mathrm\{cm\}\$보다 (짧아|길어) 조건에 맞지 않습니다\. 그러므로 직선 가와 직선 다 사이의 거리는 \$(\d+)\\,\\mathrm\{cm\}\$입니다/.exec(
+      sol,
+    );
+  if (!m) return ["㉥ 해설의 버리는 문장을 못 읽었다"];
+  const dead = Number(m[1]);
+  const near = Number(m[2]);
+  const why = m[3]!;
+  const got = Number(m[4]);
+  // 버리는 이유는 발문이 **요구한 방향의 반대**여야 한다.
+  const want = d[1] === "짧을" ? "길어" : "짧아";
+  if (why !== want)
+    out.push(
+      `㉥ 발문은 「${d[1]} 때」인데 버리는 이유가 「${why}」다 (참 「${want}」)`,
+    );
+  // 그 이유가 실제 수와도 맞아야 한다.
+  if ((why === "길어") !== dead > near)
+    out.push(`㉥ ${dead} 이 ${near} 보다 「${why}」라고 적었다`);
+  if (dead === got) out.push("㉥ 버린 값과 고른 값이 같다");
+  if (Number(answer.replace(/[^0-9]/g, "")) !== got)
+    out.push(`㉥ 해설이 고른 ${got} 이 정답과 다르다`);
+  return out;
+}
+
+describe("초4 물결3 — 해설의 «이유»", () => {
+  it("검출기가 «예»를 낼 수 있다 — 산문을 망가뜨리면 잡는다 (눈금)", () => {
+    const p242 = gen("2-4-2", SEEDS[0]!, "심화중");
+    const p247 = gen("2-4-7", SEEDS[0]!, "심화중");
+    const p161 = gen("1-6-1", SEEDS[0]!, "심화중");
+    const p243 = gen("2-4-3", SEEDS[0]!, "심화중");
+    // 음성 — 지금 지면은 성하다.
+    expect(faults242(p242.solution, p242.answer)).toEqual([]);
+    expect(faults247(p247.solution)).toEqual([]);
+    expect(faults161(p161.solution)).toEqual([]);
+    expect(faults243(p243.content, p243.solution, p243.answer)).toEqual([]);
+    // 양성 — 손상을 **글자에** 먹이면 걸린다.
+    expect(
+      faults242(
+        p242.solution.replace(
+          /횟수가 (홀수|짝수)여야/,
+          (_m, w: string) => `횟수가 ${w === "홀수" ? "짝수" : "홀수"}여야`,
+        ),
+        p242.answer,
+      ).length,
+    ).toBeGreaterThan(0);
+    expect(
+      faults247(
+        p247.solution.replace(
+          "같은 사각형은 직사각형이고",
+          "같은 사각형은 정사각형이고",
+        ),
+      ).length,
+    ).toBeGreaterThan(0);
+    expect(
+      faults161(
+        p161.solution.replace(
+          /씩 \$(\d+)\$번 빼면/,
+          (_m, k: string) => `씩 $${Number(k) + 1}$번 빼면`,
+        ),
+      ).length,
+    ).toBeGreaterThan(0);
+    expect(
+      faults243(
+        p243.content,
+        p243.solution.replace(
+          /보다 (짧아|길어) 조건에/,
+          (_m, w: string) => `보다 ${w === "짧아" ? "길어" : "짧아"} 조건에`,
+        ),
+        p243.answer,
+      ).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("세운 갈래 넷의 해설 산문이 씨앗마다 성하다", () => {
+    for (const seed of SEEDS) {
+      const p242 = gen("2-4-2", seed, "심화중");
+      expect(
+        faults242(p242.solution, p242.answer),
+        `2-4-2 seed=${seed}`,
+      ).toEqual([]);
+      const p247 = gen("2-4-7", seed, "심화중");
+      expect(faults247(p247.solution), `2-4-7 seed=${seed}`).toEqual([]);
+      const p161 = gen("1-6-1", seed, "심화중");
+      expect(faults161(p161.solution), `1-6-1 seed=${seed}`).toEqual([]);
+      const p243 = gen("2-4-3", seed, "심화중");
+      expect(
+        faults243(p243.content, p243.solution, p243.answer),
+        `2-4-3 seed=${seed}`,
+      ).toEqual([]);
+    }
   });
 });
 
@@ -528,7 +650,7 @@ describe("초4 물결3 — 지면 약속", () => {
   });
 
   it("2-4 의 새 갈래는 **각도를 한 자리도 안 쓴다** (1-2-4 와 겹친다)", () => {
-    for (const code of ["2-4-2", "2-4-3", "2-4-5", "2-4-7"])
+    for (const code of ["2-4-2", "2-4-3", "2-4-7"])
       for (const seed of SEEDS) {
         const p = gen(code, seed, "심화중");
         expect(
@@ -540,7 +662,7 @@ describe("초4 물결3 — 지면 약속", () => {
 
   it("2-4 의 새 갈래는 `□+(□+차)=합` 을 한 자리도 안 쓴다", () => {
     // 2-4-4·2-4-5 심화하와 2-6-1 심화하가 이미 그 산술이다(토대 §2-㉣).
-    for (const code of ["2-4-2", "2-4-3", "2-4-5", "2-4-7"])
+    for (const code of ["2-4-2", "2-4-3", "2-4-7"])
       for (const seed of SEEDS) {
         const p = gen(code, seed, "심화중");
         expect(p.solution.includes("\\square"), `${code} seed=${seed}`).toBe(

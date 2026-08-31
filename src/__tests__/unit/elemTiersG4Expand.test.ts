@@ -96,7 +96,9 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
   // 정체성의 뼈대 — 그림 종류가 소단원을 가른다. 1-5-2 갈래가 barChart 를 내면
   // 「그리기」가 「읽기」로 무너진 것이고, 표준 1-5-2 와의 구분 근거가 사라진다.
   it("1-5-1 갈래는 그래프(barChart), 1-5-2 갈래는 표(table)다", () => {
-    // 두 소단원은 같은 D-72 트랜치라 지금은 같은 갈래를 낸다 — 1-5-1 을 기준으로 돈다.
+    // ⚠️ **두 소단원의 갈래 목록이 같다고 가정하지 않는다.** 2026-08-31 적대 검토가
+    //    1-5-2 의 확대 갈래 둘을 거두어 목록이 갈렸다 — 한쪽을 기준으로 돌면 없는
+    //    갈래를 불러 「아직 채우지 않은 갈래입니다」로 죽는다. 각자 제 목록을 돈다.
     for (const tier of tiersOf(unitOf("1-5-1"))) {
       for (const seed of SEEDS) {
         const p1 = generateElementaryProblem(unitOf("1-5-1"), seed, tier);
@@ -104,7 +106,10 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
           (p1.figureSpec as BarSpec).kind,
           `1-5-1 ${tier} seed ${seed}`,
         ).toBe("barChart");
-
+      }
+    }
+    for (const tier of tiersOf(unitOf("1-5-2"))) {
+      for (const seed of SEEDS) {
         const p2 = generateElementaryProblem(unitOf("1-5-2"), seed, tier);
         const spec = p2.figureSpec as TableSpec;
         expect(spec.kind, `1-5-2 ${tier} seed ${seed}`).toBe("table");
