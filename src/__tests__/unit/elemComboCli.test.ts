@@ -8,11 +8,23 @@ const TSX = path.join(ROOT, "node_modules", "tsx", "dist", "cli.mjs");
 const CLI = path.join(ROOT, "scripts", "elem", "gen-cli.ts");
 const COMBO = "초5|2-2-3::초5|1-6-2";
 
+/**
+ * ⚠️ **예산은 `spawnSync` 쪽이 병목이다** (2026-08-31). 아래 주석이 경고한 「부하 때만
+ *    빨간」 실패가 실제로 났는데, 늘린 것은 **vitest** 예산(`90_000`)이고 자식
+ *    프로세스 예산은 `20_000` 그대로였다. 부하가 걸리면 `tsx` 기동만 20초를 넘어
+ *    `spawnSync` 가 자식을 죽이고 `status` 가 **`null`** 로 온다 —
+ *    「시간 초과」가 아니라 **「$0$ 이어야 하는데 `null`」** 이라 사유가 안 보인다.
+ *    (실측: 아무도 안 쓸 때 CLI 한 번이 7.6초, 관문 부하에서는 20초 초과.)
+ *
+ *    2026-08-31 관문 네 회차에서 **네 번 다** 이것만 빨갰다. 늘 우는 가드는 꺼진다 —
+ *    그래서 자식 예산을 `40_000` 으로 올린다(두 번 띄우는 시험도 $80$초로 아래
+ *    `90_000` 안에 든다). 재는 것은 하나도 안 줄었다.
+ */
 function run(args: string[]) {
   return spawnSync(process.execPath, [TSX, CLI, ...args], {
     cwd: ROOT,
     encoding: "utf8",
-    timeout: 20_000,
+    timeout: 40_000,
   });
 }
 
