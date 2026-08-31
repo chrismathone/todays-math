@@ -18159,10 +18159,12 @@ function tier52MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const two = cells
     .filter((c) => c.value % f.cells === 0)
     .sort((a, b) => a.value - b.value);
-  const [lo, hi] = two as [
-    { label: string; value: number },
-    { label: string; value: number },
-  ];
+  // 밭이 「나누어떨어지는 값이 정확히 둘」인 자리만 담으므로 여기서 둘이 아니면
+  // 밭과 생성이 갈린 것이다 — 조용히 `undefined` 를 지면에 내지 않고 던진다.
+  if (two.length !== 2)
+    throw new Error(`초4 1-5-2 심화중: 후보가 둘이 아니다 (${two.length})`);
+  const lo = two[0]!;
+  const hi = two[1]!;
   return makeDeep(
     unit,
     `${barTableIntroOf(f.scale, theme)} 이 표를 보고 막대그래프를 그렸더니 어떤 한 ` +
@@ -18172,7 +18174,7 @@ function tier52MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(f.unitSize)}${theme.unit}`,
     [
       `막대가 ${n(f.cells)}칸이면 그 학생 수는 눈금 한 칸의 ${n(f.cells)}배입니다. ` +
-        `표에서 ${roJosa(f.cells)} 나누어떨어지는 수는 ${n(lo.value)}${theme.unit}과 ` +
+        `표에서 ${n(f.cells)}칸으로 나누어떨어지는 수는 ${n(lo.value)}${theme.unit}과 ` +
         `${n(hi.value)}${theme.unit}이므로, 눈금 한 칸은 ` +
         `${expr(`${lo.value}\\div${f.cells}=${lo.value / f.cells}`)} 에서 ` +
         `${n(lo.value / f.cells)}${theme.unit}이거나 ` +
@@ -18248,6 +18250,10 @@ const BAR_GAP_FIELD: {
             const unitSize = left[0]!;
             if (unitSize < 2) continue;
             if (unitSize === gapCells || unitSize === ticks) continue;
+            // 🔴 남는 하나가 후보 무리의 **가장 큰 값이면 안 된다** — 그러면
+            //    「한 칸이 클수록 좋으니 가장 큰 것」 한 줄로 집혀 심화중이 된다
+            //    (파일럿 §7.1 이 상과 중을 가른 그 자리). 실측으로 이 줄이 126 → 62.
+            if (unitSize === Math.max(...cands)) continue;
             const deadTick = alive.find((u) => u !== unitSize)!;
             // 🔴 답의 둘째 쪽(가장 긴 막대의 칸 수)이 발문의 수와 같으면 안 된다.
             //    그리고 답을 두 쪽으로 물어야 R9-c 가 안 문다 — 「한 칸」만 물으면
@@ -18309,8 +18315,8 @@ function tier52TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(f.unitSize)}${theme.unit}, ${n(top / f.unitSize)}칸`,
     [
       `두 막대의 칸 수의 차가 ${n(f.gapCells)}칸이면 두 학생 수의 차는 눈금 한 칸의 ` +
-        `${n(f.gapCells)}배입니다. 표에서 두 수의 차를 모두 구해 ` +
-        `${roJosa(f.gapCells)} 나누어 보면 ` +
+        `${n(f.gapCells)}배입니다. 표에서 두 수의 차를 모두 구한 뒤 ` +
+        `${n(f.gapCells)}칸으로 나누어 보면 ` +
         `${expr(`${wide}\\div${f.gapCells}=${wide / f.gapCells}`)} 처럼 나누어떨어지는 ` +
         `것이 있고, 눈금 한 칸이 될 수 있는 수는 ` +
         `${f.cands.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
@@ -18528,32 +18534,55 @@ function tier62TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
  * **2-4-2 5단 심화중 — 직선이 «몇 개인지» 안 말한다.**
  *
  * 응용은 직선 수를 주고 「가와 수직인 것이 몇 개인가」를 순방향으로 센다. 여기서는 그
- * 수를 지워, 「평행한 직선이 $c$개」에서 직선 수 후보가 **둘**($2c+1$·$2c+2$)이 되고
+ * 수를 지워, 「맨 앞과 평행한(또는 수직인) 직선이 $c$개」에서 직선 수 후보가 **둘**이 되고
  * **수직 꺾임의 홀짝**이 하나를 떨어뜨린다.
+ *
+ * ⚠️ **축을 둘 두었다** — 세는 대상(평행/수직)과 맨 뒤 직선의 관계(수직/평행). 처음에는
+ *    한 축뿐이라 씨앗 16개에서 **발문이 네 가지**밖에 안 나왔다(시험이 잡았다).
+ *    「씨앗을 바꿔도 같은 문항」은 규모를 키워 메울 것이 아니라 **축을 늘려** 메운다.
  */
 function tier242Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   return unlessForward(() => tier242MidRaw(unit, rng));
 }
 
 function tier242MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
-  const para = intBetween(rng, 2, 5);
-  const odd = para * 2 + 1;
-  const even = para * 2 + 2;
+  const cnt = intBetween(rng, 2, 5);
+  const countsParallel = intBetween(rng, 0, 1) === 0;
+  const lastPerp = intBetween(rng, 0, 1) === 0;
+  // 세는 것이 «평행»이면 직선 수는 `2c+1`·`2c+2`, «수직»이면 `2c`·`2c+1` 이다.
+  const lower = countsParallel ? cnt * 2 + 1 : cnt * 2;
+  const upper = lower + 1;
+  // 맨 뒤까지 꺾인 횟수는 `직선 수 − 1` 이다. 수직이려면 홀수여야 한다.
+  const lowerIsOddTurns = (lower - 1) % 2 === 1;
+  const answer = lowerIsOddTurns === lastPerp ? lower : upper;
+  const dead = answer === lower ? upper : lower;
+  const kindWord = countsParallel ? "평행한" : "수직인";
+  // 「수직」은 «입니다»·«하려면», 「평행」은 «합니다»·«하려면» — 엔진의 기존 2-4-2 표기 그대로다.
+  const lastSentence = lastPerp ? "수직입니다" : "평행합니다";
+  const lastClause = lastPerp ? "수직이려면" : "평행하려면";
+  const parity = countsParallel ? "짝수" : "홀수";
+  const lastTurn = lower - 1;
   return makeDeep(
     unit,
     `직선 여러 개가 차례로 있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
-      `맨 앞에 있는 직선과 서로 평행한 직선은 그 직선을 빼고 모두 ${n(para)}개이고, ` +
-      `맨 뒤에 있는 직선은 맨 앞에 있는 직선과 서로 수직입니다. 직선은 모두 몇 개인가?`,
-    `${n(even)}개`,
+      `맨 앞에 있는 직선과 서로 ${kindWord} 직선은 그 직선을 빼고 모두 ${n(cnt)}개이고, ` +
+      `맨 뒤에 있는 직선은 맨 앞에 있는 직선과 서로 ${lastSentence}. ` +
+      `직선은 모두 몇 개인가?`,
+    `${n(answer)}개`,
     [
       `수직으로 한 번 꺾일 때마다 방향이 바뀌므로, 맨 앞 직선에서 짝수 번 꺾인 직선은 ` +
-        `맨 앞 직선과 평행하고 홀수 번 꺾인 직선은 수직입니다. 평행한 직선이 ` +
-        `${n(para)}개이므로 짝수 번 꺾인 자리가 ${n(para)}군데 있고, 직선은 ` +
-        `${expr(`${para}\\times2+1=${odd}`)} 개이거나 ${expr(`${para}\\times2+2=${even}`)} ` +
+        `맨 앞 직선과 평행하고 홀수 번 꺾인 직선은 수직입니다. 맨 앞 직선 뒤로 ` +
+        `${n(1)}번, ${n(2)}번, … 꺾인 직선이 차례로 있는데 그 가운데 ${parity} 번 꺾인 ` +
+        `것이 ${n(cnt)}개이므로, 마지막으로 ${parity} 번 꺾인 것은 ` +
+        `${expr(`${cnt}\\times2${countsParallel ? "" : "-1"}=${lastTurn}`)} 번 꺾인 ` +
+        `직선입니다. 그러므로 직선은 맨 앞 것까지 세어 ` +
+        `${expr(`${lastTurn}+1=${lower}`)} 개이거나 ${expr(`${lower}+1=${upper}`)} ` +
         `개입니다.`,
-      `맨 뒤 직선이 맨 앞 직선과 수직이려면 맨 뒤까지 꺾인 횟수가 홀수여야 합니다. ` +
-        `${n(odd)}개이면 ${n(odd - 1)}번 꺾여 짝수라 안 되고, ${n(even)}개이면 ` +
-        `${n(even - 1)}번 꺾여 홀수입니다. 그러므로 직선은 ${n(even)}개입니다.`,
+      `맨 뒤 직선이 맨 앞 직선과 ${lastClause} 맨 뒤까지 꺾인 횟수가 ` +
+        `${lastPerp ? "홀수" : "짝수"}여야 합니다. ${n(dead)}개이면 ${n(dead - 1)}번 ` +
+        `꺾여 ${(dead - 1) % 2 === 1 ? "홀수" : "짝수"}라 안 되고, ${n(answer)}개이면 ` +
+        `${n(answer - 1)}번 꺾여 ${(answer - 1) % 2 === 1 ? "홀수" : "짝수"}입니다. ` +
+        `그러므로 직선은 ${n(answer)}개입니다.`,
     ],
   );
 }
