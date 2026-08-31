@@ -420,6 +420,55 @@ G3_MUTS = [
         "  for (let total = 4; total <= 7; total += 1) {",
         "  for (let total = 4; total <= 12; total += 1) {",
     ),
+    # ── 초3 물결 3 — 1-1 · 1-4 «심화중» (D-113 · D-115, 2026-08-31) ──
+    # 잠그는 시험은 `elemTiersG3W3Extend.test.ts` 다(아래 TARGETS 에 함께 적었다).
+    # ⚠️ 1-1 의 «받아내림 횟수» 축에는 **조건 판정기가 없다**(토대 17 §3 1-1 함정 (b)) —
+    #    그래서 아래 변이 넷이 그 축의 유일한 확인이다.
+    (
+        "1-1 심화중 훼손 — 두 후보의 받아내림이 같은 씨앗도 넣는다(성질이 장식이 된다)",
+        "      if (kUp === kDown) continue;",
+        "      if (false && kUp === kDown) continue;",
+    ),
+    (
+        "1-1 심화중 훼손 — 작은 쪽 후보가 세 자리가 아니어도 넣는다",
+        "      const room = Math.min(known - 100, 999 - known);",
+        "      const room = Math.min(known - 20, 999 - known);",
+    ),
+    (
+        "1-1 심화중 훼손 — 소단원 이름이 약속한 받아내림 횟수를 한 칸 넓힌다",
+        "      if (kUp >= minB && kUp <= maxB) opts.push({ ans: up, k: kUp });",
+        "      if (kUp >= minB && kUp <= maxB + 1) opts.push({ ans: up, k: kUp });",
+    ),
+    (
+        "1-1 심화중 훼손 — 작은 쪽 후보의 받아내림을 거꾸로 센다",
+        "      const kDown = borrowCount(known, down);",
+        "      const kDown = borrowCount(down, known);",
+    ),
+    (
+        "1-4 심화중 훼손 — 되짚기 후보가 하나뿐인 자리도 넣는다(그건 심화하다)",
+        "        // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 ①).\n        if (cand.length < 2) continue;",
+        "        // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 ①).\n        if (cand.length < 1) continue;",
+    ),
+    (
+        "1-4 심화중 훼손 — 성질이 후보를 여럿 남기는 자리도 넣는다(답이 안 정해진다)",
+        "        if (cand.filter((k) => mulCarryClassOf(t, o, k) === want).length !== 1)",
+        "        if (cand.filter((k) => mulCarryClassOf(t, o, k) === want).length < 1)",
+    ),
+    (
+        "1-4 심화중 훼손 — 소단원 이름을 안 보고 올림 종류를 고정한다",
+        "  const want = mulCarryOfSection(unit.section);",
+        '  const want: MulCarry = "both";',
+    ),
+    (
+        "1-4 심화중 훼손 — 답이 지면에 이미 찍힌 자리도 넣는다(반증 ⑥)",
+        "        if (answerPrintedOnPage(page, rat(b))) continue;",
+        "        if (false && answerPrintedOnPage(page, rat(b))) continue;",
+    ),
+    (
+        "1-4 심화중 훼손 — 해설이 «버릴 후보»의 두 자리 곱을 먼저 보인다",
+        r"      `곱하는 수가 ${n(k)} 일 때는 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +",
+        r"      `곱하는 수가 ${n(k)} 일 때는 ${expr(`${t * 10 + o}\\times${k}=${(t * 10 + o) * k}`)} 이라 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +",
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -1662,10 +1711,19 @@ TARGETS = {
             # D-113 물결 2(2-2 · 2-4 · 2-6 의 심화중·심화상). 안 적으면 그 갈래를
             # 물는 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
             "src/__tests__/unit/elemTiersG3W2Extend.test.ts",
+            # D-113 물결 3(1-1 · 1-4 의 심화중). 같은 까닭으로 여기 적는다 —
+            # 1-1 의 «받아내림 횟수» 축은 조건 판정기가 없어 이 파일이 유일한 가드다.
+            "src/__tests__/unit/elemTiersG3W3Extend.test.ts",
         ],
         "grade": "초3",
         "sections": [
             "1-1-2",
+            "1-1-3",
+            "1-1-4",
+            "1-4-2",
+            "1-4-3",
+            "1-4-4",
+            "1-4-5",
             "1-3-3",
             "2-1-1",
             "2-1-2",
