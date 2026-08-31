@@ -194,12 +194,29 @@ describe("2-1|연립일차방정식|91 — 자연수 해 중 합이 소수인 �
       expect(num(p.answer, /(-?\d+)/), p.content).toBe(
         hits[0]![0] * hits[0]![1],
       );
-      // 「$x=y$ 면 그것이 답」이라는 지름길이 없어야 한다.
-      expect(
-        all.some(([x, y]) => x === y),
-        p.content,
-      ).toBe(false);
     }
+  });
+
+  it("「$x=y$ 면 그것이 답」이라는 지름길이 없다 (씨앗 200개)", () => {
+    // 🔴 **씨앗 여섯으로는 이 경계를 못 넘는다.** 변이(「$x=y$ 차단 가드 제거」)를
+    //    넣어도 여섯 씨앗에서는 그런 문항이 한 건도 안 뽑혀 시험이 **초록**이었다 —
+    //    가드가 없는 게 아니라 **픽스처가 경계를 안 갈랐다**(2026-08-21 그 자리).
+    //    분모를 200씨앗 × 변형 3 으로 넓히자 빨개진다.
+    const bad: string[] = [];
+    for (let s = 0; s < 200; s += 1) {
+      for (const v of VARIANTS) {
+        const p = generateMiddleProblem(KEY, 20260901 + s * 7919, v);
+        const eq = /\$(\d+)x\+(\d+)y=(\d+)\$/.exec(p.content)!;
+        const [pp, qq, n] = [1, 2, 3].map((i) => Number(eq[i]));
+        for (let y = 1; qq! * y + pp! <= n!; y += 1) {
+          if ((n! - qq! * y) % pp! !== 0) continue;
+          if ((n! - qq! * y) / pp! === y) bad.push(p.content);
+        }
+      }
+    }
+    expect(bad.slice(0, 3), `$x=y$ 인 해가 있는 문항 ${bad.length}건`).toEqual(
+      [],
+    );
   });
 
   it("해설이 후보를 하나도 빠뜨리지 않고 늘어놓는다 (분모를 지킨다)", () => {

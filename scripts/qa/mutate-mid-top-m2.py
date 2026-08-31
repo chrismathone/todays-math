@@ -44,69 +44,104 @@ MODULE = os.path.join(ROOT, "src", "lib", "middle", "m2Top.ts")
 TEST = "src/__tests__/unit/middleTopM2.test.ts"
 PROBE = "scripts/qa/probe-mid-top-m2.ts"
 
-# (이름, 앵커, 치환, 무엇을 지키는 시험인가)
+# (이름, [(앵커, 치환), …], 무엇을 지키는 시험인가)
 #
 # 앵커는 **파일에 그대로 있는 글자**여야 하고 파일 안에서 **정확히 하나**여야 한다.
 # 역슬래시가 필요하면 bytes([92]) 로 조립하라 — 도구 JSON 층이 한 겹 벗긴다.
-MUTATIONS: list[tuple[str, str, str, str]] = [
+#
+# 🔴 **한 변이가 두 자리를 고쳐야 할 때가 있다.** 홀수 변을 되살리려면 「모집단
+#    (`LEGS`)의 걸음」과 「`legTriangles` 의 홀수 갈래」를 **둘 다** 되돌려야 한다 —
+#    한쪽만 바꾸면 인수 곱이 정수가 아니라 후보가 0이 되고, 산출물이 **그대로**다.
+#    실제로 처음에 한쪽만 바꿨다가 하네스가 「산출물이 그대로」로 **판정을 거부**했다.
+Edit = tuple[str, str]
+MUTATIONS: list[tuple[str, list[Edit], str]] = [
     (
         "정답 m 을 하나 어긋나게",
-        "      const m = (C - A + B) / v;",
-        "      const m = (C - A + B) / v + 1;",
+        [("      const m = (C - A + B) / v;", "      const m = (C - A + B) / v + 1;")],
         "|90 발문의 방정식에 대입해 등식을 확인하는 검산",
     ),
     (
         "해설이 적는 k 를 어긋나게",
-        "}}=${k}$이다. ` +",
-        "}}=${k + 1}$이다. ` +",
+        [("}}=${k}$이다. ` +", "}}=${k + 1}$이다. ` +")],
         "|90 「해설이 적는 k 가 발문에서 다시 구한 값과 같다」",
     ),
     (
         "합이 소수인 해의 유일성 가드 제거",
-        "      if (hits.length !== 1) return null;",
-        "      if (hits.length < 1) return null;",
+        [
+            (
+                "      if (hits.length !== 1) return null;",
+                "      if (hits.length < 1) return null;",
+            )
+        ],
         "|91 「합이 소수인 해가 하나뿐」 전수 검산",
     ),
     (
         "해설의 후보 목록에서 하나 빼기",
-        '      const rowY = sols.map(([, y]) => `$${y}$`).join(", ");',
-        '      const rowY = sols.slice(1).map(([, y]) => `$${y}$`).join(", ");',
+        [
+            (
+                '      const rowY = sols.map(([, y]) => `$${y}$`).join(", ");',
+                '      const rowY = sols.slice(1).map(([, y]) => `$${y}$`).join(", ");',
+            )
+        ],
         "|91 「해설이 후보를 하나도 빠뜨리지 않는다」",
     ),
     (
         "x=y 지름길 차단 가드 제거",
-        "      if (sols.some(([x, y]) => x === y)) return null;",
-        "      if (sols.some(([x, y]) => x < 0)) return null;",
+        [
+            (
+                "      if (sols.some(([x, y]) => x === y)) return null;",
+                "      if (sols.some(([x, y]) => x < 0)) return null;",
+            )
+        ],
         "|91 「x=y 인 해가 없다」 불변식",
     ),
     (
         "순열의 나누는 밑을 늘 2 로",
-        "      const answer = base / groupWays;",
-        "      const answer = base / 2;",
+        [("      const answer = base / groupWays;", "      const answer = base / 2;")],
         "경우의 수 90 순열 전수 세기",
     ),
     (
         "이웃 짝과 순서 짝을 겹치게",
-        "      const orderIdx = shuffled.slice(2, 2 + orderSize);",
-        "      const orderIdx = shuffled.slice(1, 1 + orderSize);",
+        [
+            (
+                "      const orderIdx = shuffled.slice(2, 2 + orderSize);",
+                "      const orderIdx = shuffled.slice(1, 1 + orderSize);",
+            )
+        ],
         "경우의 수 90 「두 짝이 겹치지 않는다」 불변식",
     ),
     (
         "두 조건이 둘 다 물어야 한다는 가드 제거",
-        "      if (both.length === onlyA.length || both.length === onlyB.length) {",
-        "      if (both.length < 0) {",
+        [
+            (
+                "      if (both.length === onlyA.length || both.length === onlyB.length) {",
+                "      if (both.length < 0) {",
+            )
+        ],
         "경우의 수 91 「조건 하나가 장식이면 안 된다」",
     ),
     (
-        "피타고라스 한 변에 홀수 허용",
-        "  for (let a = 6; a <= 30; a += 2) {",
-        "  for (let a = 6; a <= 30; a += 1) {",
+        "피타고라스 한 변에 홀수 허용 (두 자리를 함께)",
+        [
+            (
+                "  for (let a = 6; a <= 30; a += 2) {",
+                "  for (let a = 6; a <= 30; a += 1) {",
+            ),
+            (
+                "  const product = (a * a) / 4;",
+                "  const product = a % 2 === 0 ? (a * a) / 4 : a * a;",
+            ),
+        ],
         "피타고라스 90 「한 변은 늘 짝수다」",
     ),
     (
         "삼각형 개수를 하나 부풀리기",
-        "      const answer =\n        ask === 0\n          ? `$${tri.length}$`",
-        "      const answer =\n        ask === 0\n          ? `$${tri.length + 1}$`",
+        [
+            (
+                "      const answer =\n        ask === 0\n          ? `$${tri.length}$`",
+                "      const answer =\n        ask === 0\n          ? `$${tri.length + 1}$`",
+            )
+        ],
         "피타고라스 90 b 전수 탐색 검산",
     ),
 ]
@@ -160,7 +195,7 @@ def failed_tests() -> tuple[int, list[str]]:
 def main() -> int:
     args = sys.argv[1:]
     if "--list" in args:
-        for i, (name, _a, _b, guard) in enumerate(MUTATIONS, 1):
+        for i, (name, _edits, guard) in enumerate(MUTATIONS, 1):
             print(f"{i:2}. {name}  ← {guard}")
         return 0
 
@@ -188,15 +223,17 @@ def main() -> int:
     picked = [int(a) for a in args if a.isdigit()]
     verdicts: list[tuple[str, str]] = []
     try:
-        for i, (name, anchor, repl, guard) in enumerate(MUTATIONS, 1):
+        for i, (name, edits, guard) in enumerate(MUTATIONS, 1):
             if picked and i not in picked:
                 continue
             text = original.decode("utf-8")
-            n = text.count(anchor)
-            if n != 1:
-                verdicts.append((name, f"⛔ 판정 거부 — 앵커가 {n}개다"))
+            counts = [text.count(a) for a, _r in edits]
+            if any(n != 1 for n in counts):
+                verdicts.append((name, f"⛔ 판정 거부 — 앵커 적중 {counts}"))
                 continue
-            io.open(MODULE, "wb").write(text.replace(anchor, repl).encode("utf-8"))
+            for a, r in edits:
+                text = text.replace(a, r)
+            io.open(MODULE, "wb").write(text.encode("utf-8"))
             after = io.open(MODULE, "rb").read()
             if hashlib.md5(after).hexdigest() == base_md5:
                 verdicts.append((name, "⛔ 판정 거부 — 파일이 안 바뀌었다"))
