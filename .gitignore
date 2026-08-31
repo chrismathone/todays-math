@@ -42,7 +42,10 @@ worktree/
 
 # T3.0 이관 덤프 — 집계 마크다운만 커밋
 scripts/import/reports/*.json
-.tmp-orca/
+# 세션 임시 작업터 — 오르카·리드·적대 검토가 저마다 판정기를 여기 짓는다.
+# 🔴 이름을 하나씩 적으면 샌다. 2026-08-31 에 적대 검토가 `.tmp-adv/` 를 쓰자
+#    `npm run lint` 가 임시 파일 여섯으로 빨개졌고, 늘 우는 가드는 꺼진다.
+.tmp-*/
 .qa-artifacts/
 
 # QA 감사 상세 리포트(대용량, 재생성 가능) — 통과 원장(ocr-audit-clean.txt)만 커밋한다
