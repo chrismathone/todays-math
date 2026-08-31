@@ -774,31 +774,53 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
  * 없어 구조적으로 0이었다. 가드로 거르지 않고 **뽑는 풀 자체**를 조건으로 만든다.
  * b 는 예전 그대로 2..5 다(원장님 「숫자 규모를 키우는 축은 아님」).
  */
-function mulPools(): Record<
-  "none" | "ones" | "tens" | "both",
-  { t: number; o: number; b: number }[]
-> {
-  const pools: Record<
-    "none" | "ones" | "tens" | "both",
-    { t: number; o: number; b: number }[]
-  > = { none: [], ones: [], tens: [], both: [] };
+type MulCarry = "none" | "ones" | "tens" | "both";
+
+const MUL_CARRIES: readonly MulCarry[] = ["none", "ones", "tens", "both"];
+
+/**
+ * $(\text{몇십몇})\times(\text{몇})$ 의 올림 종류. **한 곳에서만 정한다** —
+ * 표준·4단 풀(`mulPools`)과 확대 갈래(`mul14MidPool`)가 같은 규칙을 두 벌로
+ * 적으면 한쪽만 고쳐도 아무도 모른다.
+ */
+function mulCarryClassOf(t: number, o: number, b: number): MulCarry {
+  const onesCarry = o * b >= 10;
+  const tensCarry = t * b + Math.floor((o * b) / 10) >= 10;
+  return onesCarry
+    ? tensCarry
+      ? "both"
+      : "ones"
+    : tensCarry
+      ? "tens"
+      : "none";
+}
+
+/** 소단원 **이름**이 약속한 올림 종류. 지면에서 읽으면 동어반복이 된다. */
+function mulCarryOfSection(section: string): MulCarry {
+  return section.includes("일의 자리") && section.includes("십의 자리")
+    ? "both"
+    : section.includes("일의 자리")
+      ? "ones"
+      : section.includes("십의 자리")
+        ? "tens"
+        : "none";
+}
+
+function mulPools(): Record<MulCarry, { t: number; o: number; b: number }[]> {
+  const pools: Record<MulCarry, { t: number; o: number; b: number }[]> = {
+    none: [],
+    ones: [],
+    tens: [],
+    both: [],
+  };
   for (let t = 1; t <= 9; t += 1) {
     for (let o = 1; o <= 9; o += 1) {
       for (let b = 2; b <= 5; b += 1) {
-        const onesCarry = o * b >= 10;
-        const tensCarry = t * b + Math.floor((o * b) / 10) >= 10;
-        const key = onesCarry
-          ? tensCarry
-            ? "both"
-            : "ones"
-          : tensCarry
-            ? "tens"
-            : "none";
-        pools[key].push({ t, o, b });
+        pools[mulCarryClassOf(t, o, b)].push({ t, o, b });
       }
     }
   }
-  for (const key of ["none", "ones", "tens", "both"] as const) {
+  for (const key of MUL_CARRIES) {
     if (pools[key].length === 0)
       throw new Error(`곱셈 풀이 비었습니다: ${key}`);
   }
@@ -812,15 +834,7 @@ function mulCaseOf(section: string, rng: Rng): { a: number; b: number } {
   if (section.includes("(몇십)×(몇)")) {
     return { a: intBetween(rng, 2, 9) * 10, b: intBetween(rng, 2, 9) };
   }
-  const pool =
-    section.includes("일의 자리") && section.includes("십의 자리")
-      ? MUL_POOLS.both
-      : section.includes("일의 자리")
-        ? MUL_POOLS.ones
-        : section.includes("십의 자리")
-          ? MUL_POOLS.tens
-          : MUL_POOLS.none;
-  const { t, o, b } = pick(rng, pool);
+  const { t, o, b } = pick(rng, MUL_POOLS[mulCarryOfSection(section)]);
   return { a: t * 10 + o, b };
 }
 
@@ -2139,6 +2153,142 @@ function reverseSub(
     return { some, right, wrong, wrongDiff, rightDiff };
   }
   throw new Error("뺄셈 역산 수를 못 만들었습니다");
+}
+
+/* ── 1-1 덧셈과 뺄셈 «심화중» — D-113 물결 3 (2026-08-31) ────────────────────
+ *
+ * ## 되짚기 재료 — **「두 수의 차」에는 방향이 없다**
+ *
+ * 「어떤 세 자리 수와 $B$ 의 **차**가 $D$」 라고만 하면 어떤 수는 $B+D$ 이거나
+ * $B-D$ 다. 그 마디는 **안 굳는다**(후보 둘). 굳히는 것은 소단원 **이름 그 자체**인
+ * **받아내림 횟수**다 — `1-1-3` 은 「없는·한 번 있는」, `1-1-4` 는 「두 번 있는」.
+ * 성질은 자리마다 「위에서 빌려야 하나」만 보므로 **끝까지 빼지 않고** 가른다
+ * → D-115 ⑾ 로 **심화중**이다(상이 아니다).
+ *
+ * ## 🔴 토대 17 §2.2 의 판정을 **뒤집었다** — 근거는 셈이다
+ *
+ * §2.2 ⑵ 는 1-1 심화중을 비우라고 했고, 그 근거(「$B$ 를 더했더니 합의 십의 자리
+ * 숫자가 $d$」 모형)는 **옳다.** 내가 다시 셌다:
+ *
+ * ```
+ * 어떤 수의 일의 자리를 보여주면 → 십의 자리 후보 1개  (90,000/90,000)  굳는다 = 심화하
+ * 일의 자리도 가리면            → (십,일) 짝이 늘 10개 (9,000/9,000)    복면산
+ * ```
+ *
+ * 그러나 §2.2 는 **덧셈 모형만** 봤다. **뺄셈에는 «차의 방향»이라는 축이 하나 더
+ * 있고** 그것은 복면산이 아니다 — 가린 자리가 없고 수를 둘 다 보여 준다.
+ * 전수(세 자리 $B$ × 세 자리 $D$, 두 후보가 모두 세 자리인 것):
+ *
+ * ```
+ * (B,D) 짝 122,850  중  받아내림 횟수가 갈리는 짝  79,250 (64.5%)
+ *   → 1-1-3 자리 117,250 · 1-1-4 자리 41,250
+ * ```
+ *
+ * ## ⚠️ ㉠ 「자리 넘김」 가족을 **여기 하나에 모았다** (토대 17 §2.2 ㉠)
+ *
+ * 같은 축이 `1-5-6`(시간의 뺄셈)·`2-5`(들이·무게)에서도 선다. 셋 다 세우면
+ * 한 시험지에 **같은 문항**이 셋 나간다. 그래서 **1-1 에만** 두고 1-5 는 비웠다.
+ * 고른 근거 셋(전부 세어서 나온 값):
+ *
+ * ```
+ * ㉠ 「받아내림 횟수」가 1-1-3·1-1-4 의 **이름 그 자체**다(반증 ③ 가장 강함).
+ *    1-5-6 의 이름은 「시간의 뺄셈」이지 받아내림이 아니다.
+ * ㉡ 씨앗을 거르는 비율 — 1-1 은 64.5% 가 통과, 1-5-6 은 50.8% 다
+ *    (기준분,간격분 3,540 짝 중 1,800). 절반을 버리는 축보다 낫다.
+ * ㉢ 답이 **수 하나**라 `readRat` 이 읽는다. 1-5-6 의 답은 「몇 시 몇 분」이라
+ *    반증 ⑥ 검사가 **구조적으로** 못 본다(토대 §3 2-2 함정 ⑺).
+ * ```
+ *
+ * 🔴 되돌리려면: 이 블록과 `G3_TIERS` 의 1-1-3·1-1-4 심화중 두 줄을 빼고, 같은
+ * 구조를 1-5-6 에 두면 된다. 보고서 §4 에 그 자리를 적어 두었다.
+ *
+ * ## 함정
+ *
+ * ⑴ **덧셈 두 소단원(1-1-1·1-1-2)에는 이 축이 없다** — 「합이 $S$」는 방향이 없어
+ *    어떤 수가 늘 하나로 굳는다(반증 ①). 억지로 자리를 가리면 복면산이다.
+ * ⑵ 「잘못 계산했더니」는 **네 소단원 심화하가 이미 다 쓴다**(토대 §3 1-1 함정 (a)).
+ *    여기서는 안 쓴다 — 마디를 여는 방식이 「무엇을 **안** 말해 주는가」다.
+ * ⑶ 해설은 후보를 **다 빼 보지 않는다** — 자리마다 「빌려야 하나」만 본다.
+ *    다 빼 보이면 그건 심화상의 길이고(D-115 ⑾) 열거 판정기가 운다.
+ */
+
+/** `a-b` 의 받아내림을 **자리 이름으로** 적는다 — 끝까지 빼지 않고 가르는 말. */
+function borrowWords(a: number, b: number): string {
+  const [, a1, a0] = digits(a);
+  const [, b1, b0] = digits(b);
+  const ones = a0 < b0;
+  const tens = a1 - (ones ? 1 : 0) < b1;
+  if (!ones && !tens) return "받아내림이 없습니다";
+  if (ones && !tens) return "일의 자리에서만 받아내림이 있어 한 번입니다";
+  if (!ones && tens) return "십의 자리에서만 받아내림이 있어 한 번입니다";
+  return "일의 자리와 십의 자리에서 모두 받아내림이 있어 두 번입니다";
+}
+
+/** 발문이 내거는 조건. 횟수는 한글로 적는다 — 수식으로 적으면 지면의 «수»로 읽힌다. */
+function borrowClause(k: number): string {
+  if (k === 0) return "받아내림이 없었습니다";
+  return k === 1
+    ? "받아내림이 한 번 있었습니다"
+    : "받아내림이 두 번 있었습니다";
+}
+
+/** 같은 조건을 해설에서 가리킬 때의 말. `borrowClause` 와 짝이다. */
+function borrowPickWords(k: number): string {
+  if (k === 0) return "받아내림이 없는 것";
+  return k === 1 ? "받아내림이 한 번 있는 것" : "받아내림이 두 번 있는 것";
+}
+
+/**
+ * 5단 · 1-1-3·1-1-4 — 차의 방향이 안 굳고 **받아내림 횟수**가 하나를 남긴다.
+ *
+ * `minB..maxB` 는 소단원 이름이 약속한 횟수다(1-1-3 은 `0..1`, 1-1-4 는 `2..2`).
+ * 발문이 내거는 횟수는 **답 쪽 후보의 실제 횟수**이므로 이름 약속 안에 있다.
+ */
+function sub11MidOf(minB: number, maxB: number) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    for (let tries = 0; tries < 240; tries += 1) {
+      const known = intBetween(rng, 201, 898);
+      const room = Math.min(known - 100, 999 - known);
+      if (room < 100) continue;
+      const diff = intBetween(rng, 100, room);
+      const up = known + diff;
+      const down = known - diff;
+      const kUp = borrowCount(up, known);
+      const kDown = borrowCount(known, down);
+      // 두 후보의 횟수가 같으면 성질이 아무것도 안 자른다 — 그 씨앗은 문항이 아니다(반증 ⑤).
+      if (kUp === kDown) continue;
+      const opts: { ans: number; k: number }[] = [];
+      if (kUp >= minB && kUp <= maxB) opts.push({ ans: up, k: kUp });
+      if (kDown >= minB && kDown <= maxB) opts.push({ ans: down, k: kDown });
+      if (opts.length === 0) continue;
+      const { ans, k } = opts.length === 1 ? opts[0]! : pick(rng, opts);
+      const page = [rat(known), rat(diff)];
+      // 답이 지면에 이미 있거나 순방향으로 엮이면 되짚기가 아니다(반증 ⑥).
+      if (answerPrintedOnPage(page, rat(ans))) continue;
+      if (forwardReachable(page, rat(ans))) continue;
+      const cond = borrowClause(k);
+      // ⚠️ **수 뒤에 «과/와·을/를·이/가» 를 쓰지 않는다.** 수는 읽는 소리로 갈리므로
+      //    글자만 봐서는 못 정한다(`josa` 머리말) — 「의·보다·만큼·입니다」로만 잇는다.
+      const stem = pick(rng, [
+        `어떤 세 자리 수와 ${n(known)} 의 차는 ${n(diff)} 입니다. 이 뺄셈에서 ${cond}. 어떤 수를 구하시오.`,
+        `어떤 세 자리 수가 있습니다. 이 수와 ${n(known)} 의 차는 ${n(diff)} 입니다. 큰 수에서 작은 수를 뺄 때 ${cond}. 어떤 수를 쓰시오.`,
+        `세 자리 수 두 개의 차가 ${n(diff)} 입니다. 한 수는 ${n(known)} 입니다. 큰 수에서 작은 수를 빼는 계산에서 ${cond}. 다른 한 수를 구하시오.`,
+        `한 수가 ${n(known)} 인 두 세 자리 수의 차는 ${n(diff)} 입니다. 그 차를 구하는 뺄셈에서 ${cond}. 나머지 한 수는 얼마인지 쓰시오.`,
+        `두 세 자리 수가 있습니다. 한 수는 ${n(known)} 입니다. 두 수의 차는 ${n(diff)} 이며 뺄셈을 할 때 ${cond}. 다른 한 수를 쓰시오.`,
+        `차가 ${n(diff)} 인 두 세 자리 수가 있습니다. 그중 하나는 ${n(known)} 입니다. 큰 수에서 작은 수를 뺄 때 ${cond}. 나머지 한 수를 구하시오.`,
+        `어떤 세 자리 수와 ${n(known)} 의 차가 ${n(diff)} 입니다. 그 차를 구하는 뺄셈에서 ${cond}. 어떤 수는 얼마인지 구하시오.`,
+        `${n(known)} 보다 크거나 작은 어떤 세 자리 수가 있습니다. 두 수의 차는 ${n(diff)} 이고, 큰 수에서 작은 수를 빼는 계산에서 ${cond}. 어떤 수를 쓰시오.`,
+      ]);
+      return makeDeep(unit, stem, n(ans), [
+        `차가 ${n(diff)} 이므로 어떤 수는 ${n(known)} 보다 ${n(diff)} 만큼 크거나 ${n(diff)} 만큼 작습니다. ` +
+          `${expr(`${known}+${diff}=${up}`)} 이고 ${expr(`${known}-${diff}=${down}`)} 이므로 후보는 ${n(up)}, ${n(down)} 입니다.`,
+        `${n(up)} 에서 ${n(known)} 만큼 뺄 때는 ${borrowWords(up, known)}. ` +
+          `${n(known)} 에서 ${n(down)} 만큼 뺄 때는 ${borrowWords(known, down)}.`,
+        `${borrowPickWords(k)}은 ${n(ans)} 쪽이므로 어떤 수는 ${n(ans)} 입니다.`,
+      ]);
+    }
+    throw new Error("차의 방향 되짚기 수를 못 만들었습니다");
+  };
 }
 
 // ── 1-2 평면도형 (D-72 확대) ──────────────────────────────────────────
@@ -3476,6 +3626,164 @@ function mul14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     n(p),
     `잘못 계산한 식에서 어떤 수를 되짚습니다. ${expr(`${x}+${b}=${a}`)} 이므로 어떤 수는 ${n(a)} 입니다. 바르게 계산하면 ${expr(`${a}\\times${b}=${p}`)} 입니다.`,
   );
+}
+
+/* ── 1-4 곱셈 «심화중» — D-113 물결 3 (2026-08-31) ──────────────────────────
+ *
+ * ## 되짚기 재료 — **곱의 일의 자리**
+ *
+ * 초3 은 이 자리에서 나눗셈을 못 쓴다(1-3 은 곱셈구구 범위·몫 한 자리뿐이고
+ * (몇십몇)÷(몇)은 2-2 다). 그래서 곱에서 인수를 되짚는 길은 **곱셈구구뿐**이고,
+ * 「$a$ 의 일의 자리 $o$ 에 곱해 일의 자리가 $r$ 이 되는 한 자리 수」는 **둘~넷**이다.
+ * 그 마디는 안 굳는다. 굳히는 것은 소단원 **이름 그 자체**인 **올림의 종류**다 —
+ * 1-4-2 없음 · 1-4-3 십의 자리에서만 · 1-4-4 일의 자리에서만 · 1-4-5 둘 다.
+ * 자리마다 「$o\times k$ 가 $10$ 을 넘나」만 보면 되므로 **끝까지 곱하지 않고**
+ * 가른다 → D-115 ⑾ 로 **심화중**이다.
+ *
+ * ## 자리 수 (전수, `mulCarryClassOf` 를 그대로 부르며 셌다)
+ *
+ * ```
+ *            자리   후보가 하나(=심화하)   성질이 못 자름(=상 후보)
+ * 1-4-2       13            21                      0
+ * 1-4-3       23            69                      0
+ * 1-4-4       25            28                      5
+ * 1-4-5       52           242                    170
+ * ```
+ * 토대 17 §3 이 실측으로 적은 값(13·23·25·52)과 **한 건도 안 어긋난다.**
+ *
+ * ## 🔴 심화상은 **비웠다** — 토대 17 §2.2 §2 의 권고 그대로
+ *
+ * 「성질이 못 자름」 175자리(1-4-4 5 · 1-4-5 170)가 곧 심화상 후보다. 그런데 그것을
+ * 세우려면 후보를 **곱의 크기**로 갈라야 하고, 그건 **파일럿 `2-1-2`·`2-1-3`
+ * 심화상 그 자체**다(「$555$ 에 곱해 일의 자리가 $0$, 곱이 $3000$~$4000$」).
+ * §2.2 는 「1-4 는 심화중만 두고 심화상은 2-1 에 남긴다」고 권했고 그대로 따랐다.
+ * 그리고 1-4-2·1-4-3 은 **구조적으로 0**이다(위 표) — 일의 자리에서 올림이 없어야
+ * 하므로 성질이 반드시 하나로 줄인다.
+ *
+ * ## ⚠️ 파일럿 `2-1` 과의 겹침을 **어떻게 갈랐나** (§2.2 ㉡)
+ *
+ * ```
+ * 2-1-1·2-1-2 심화중  세 자리 × 한 자리 · 굳히는 성질 = 올림 «횟수»(두 번/세 번)
+ * 1-4-2~5 심화중      두 자리 × 한 자리 · 굳히는 성질 = 올림 «자리»(어느 자리에서)
+ * ```
+ * 곱해지는 수의 자릿수는 **소단원 이름이 구성으로** 가르고, 성질은 «횟수»와 «자리»로
+ * 갈랐다. 발문도 「올림이 세 번 있었습니다」와 「십의 자리에서만 올림이 있습니다」로
+ * 다르다. 겹침이 사라지지는 않지만 §2.2 가 말한 대로 「같은 문항」에서
+ * 「같은 가족의 다른 문항」으로 내려간다.
+ *
+ * ## 함정
+ *
+ * ⑴ 🔴 `probe-elem-section-conditions` 의 `mulCarryClass` 는 발문·해설의 **첫**
+ *    `$ab\times c$` 하나만 읽는다. 그래서 해설은 **버릴 후보의 두 자리 곱을 절대 안
+ *    쓴다** — 후보 검토는 «일의 자리끼리의 곱»(한 자리 × 한 자리)으로만 하고,
+ *    두 자리 곱은 **정답 것 하나**만 맨 끝에 적는다.
+ * ⑵ 그 규칙은 **열거 판정기**도 같이 만족시킨다 — 해설의 곱셈 등식이 둘이라
+ *    문턱(셋)에 안 닿는다. 후보를 다 곱해 보이면 그건 상의 길이다(D-115 ⑾).
+ * ⑶ 곱하는 수는 **$1$ 보다 크다**고 발문이 못 박는다. $o=r$ 인 자리(예: $25\times3$)
+ *    에서는 $1$ 도 후보가 되어 답이 둘이 된다.
+ * ⑷ 답이 $r$ 과 같은 자리는 `answerPrintedOnPage` 가 뺀다($16\times2$ 류).
+ * ⑸ **1-4-1 은 비웠다** — (몇십)×(몇) 은 일의 자리 곱이 늘 $0$ 이라 곱의 일의 자리가
+ *    항상 $0$ 이고, 남는 성질이 「곱이 두 자리냐 세 자리냐」 하나다. 그건 파일럿
+ *    `2-1-3` 심화중의 성질 그 자체다(§2.2 권고: 「2-1 은 자릿수·크기로」).
+ */
+
+type Mul14Mid = { a: number; b: number; r: number; cand: number[] };
+
+function mul14MidPool(want: MulCarry): Mul14Mid[] {
+  const out: Mul14Mid[] = [];
+  for (let t = 1; t <= 9; t += 1)
+    for (let o = 1; o <= 9; o += 1)
+      for (let b = 2; b <= 9; b += 1) {
+        if (mulCarryClassOf(t, o, b) !== want) continue;
+        const r = (o * b) % 10;
+        const cand: number[] = [];
+        // 발문이 「$1$ 보다 큰 한 자리 수」라 후보도 $2$ 부터다.
+        for (let k = 2; k <= 9; k += 1) if ((o * k) % 10 === r) cand.push(k);
+        // 후보가 하나면 되짚기만으로 굳는다 — 그건 심화하다(반증 ①).
+        if (cand.length < 2) continue;
+        // 성질이 정확히 하나만 남겨야 한다. 여럿이면 답이 안 정해지고(문항이 아니다),
+        // 그런 자리는 «곱의 크기»로 갈라야 하는데 그건 파일럿 2-1 의 심화상이다.
+        if (cand.filter((k) => mulCarryClassOf(t, o, k) === want).length !== 1)
+          continue;
+        const a = t * 10 + o;
+        const page = [rat(a), rat(r)];
+        if (answerPrintedOnPage(page, rat(b))) continue;
+        if (forwardReachable(page, rat(b))) continue;
+        out.push({ a, b, r, cand });
+      }
+  if (out.length === 0) throw new Error(`1-4 심화중 풀이 비었습니다: ${want}`);
+  return out;
+}
+
+const MUL14_MID: Partial<Record<MulCarry, Mul14Mid[]>> = {};
+
+/**
+ * 소단원 이름이 약속한 올림 종류를 **말로**. 발문과 해설이 같은 말을 쓴다.
+ * 어미는 자리마다 다르므로 뿌리 하나에서 셋을 만든다 — 문자열을 되고치면 샌다.
+ */
+function mulCarryStem(c: MulCarry): string {
+  if (c === "none") return "올림이 없";
+  if (c === "ones") return "일의 자리에서만 올림이 있";
+  if (c === "tens") return "십의 자리에서만 올림이 있";
+  return "일의 자리와 십의 자리에서 모두 올림이 있";
+}
+
+const mulCarryWords = (c: MulCarry) => `${mulCarryStem(c)}습니다`;
+const mulCarryAdnom = (c: MulCarry) => `${mulCarryStem(c)}는`;
+const mulCarryIf = (c: MulCarry) => `${mulCarryStem(c)}다면`;
+
+/**
+ * 후보 하나를 **왜 버리는가** — 어긋나는 **첫 자리**만 말한다.
+ * 두 자리 곱을 쓰지 않는 것이 이 함수의 알맹이다(위 함정 ⑴·⑵).
+ */
+function mul14Why(t: number, o: number, k: number, want: MulCarry): string {
+  const onesCarry = o * k >= 10;
+  const wantOnes = want === "ones" || want === "both";
+  // ⚠️ 수 뒤에 «을/를·이/가» 를 쓰지 않는다 — 읽는 소리로 갈린다(`josa` 머리말).
+  //    「$k$ 일 때는 … 입니다」 만 쓴다.
+  if (onesCarry !== wantOnes) {
+    return (
+      `곱하는 수가 ${n(k)} 일 때는 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +
+      `일의 자리에서 올림이 ${onesCarry ? "생깁니다" : "생기지 않습니다"}`
+    );
+  }
+  const tens = t * k + Math.floor((o * k) / 10);
+  return (
+    `곱하는 수가 ${n(k)} 일 때는 십의 자리끼리의 곱에 올림까지 더하면 ${n(tens)} 입니다. ` +
+    `십의 자리에서 올림이 ${tens >= 10 ? "생깁니다" : "생기지 않습니다"}`
+  );
+}
+
+/** 5단 · 1-4-2~5 — 곱의 일의 자리가 후보를 만들고 **올림의 종류**가 하나를 남긴다. */
+function mul14Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const want = mulCarryOfSection(unit.section);
+  MUL14_MID[want] ??= mul14MidPool(want);
+  const f = pick(rng, MUL14_MID[want]!);
+  const t = Math.floor(f.a / 10);
+  const o = f.a % 10;
+  const words = mulCarryWords(want);
+  const stem = pick(rng, [
+    `곱셈식 ${expr(`${f.a}\\times\\square`)} 의 ${expr(`\\square`)} 에는 ${n(1)} 보다 큰 한 자리 수가 들어갑니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. ${expr(`\\square`)} 에 알맞은 수를 구하시오.`,
+    `${n(f.a)} 에 ${n(1)} 보다 큰 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. 곱한 수를 쓰시오.`,
+    `어떤 수는 ${n(1)} 보다 큰 한 자리 수입니다. ${n(f.a)} 에 어떤 수를 곱한 값은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱셈은 ${words}. 어떤 수를 구하시오.`,
+    `${expr(`${f.a}\\times\\square`)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 입니다. 이 곱셈은 ${words}. ${expr(`\\square`)} 가 ${n(1)} 보다 큰 한 자리 수일 때 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${n(1)} 보다 큰 한 자리 수 가운데, ${n(f.a)} 에 곱했을 때 곱의 일의 자리 숫자가 ${n(f.r)} 이고 ${mulCarryAdnom(want)} 수를 구하시오.`,
+    `${n(f.a)} 에 한 자리 수를 곱하려고 합니다. 곱하는 수는 ${n(1)} 보다 크고, 곱의 일의 자리 숫자는 ${n(f.r)} 이며, 이 곱셈은 ${words}. 곱하는 수를 쓰시오.`,
+    `${n(f.a)} 에 ${n(1)} 보다 큰 한 자리 수를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이었습니다. 그 곱셈이 ${mulCarryIf(want)} 곱한 한 자리 수는 얼마인지 쓰시오.`,
+    `곱하는 수가 ${n(1)} 보다 큰 한 자리 수입니다. ${n(f.a)} 에 그 수를 곱한 곱의 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱셈은 ${words}. 곱하는 수를 구하시오.`,
+  ]);
+  const why = f.cand
+    .filter((k) => k !== f.b)
+    .map((k) => mul14Why(t, o, k, want))
+    .join(". ");
+  return makeDeep(unit, stem, n(f.b), [
+    `곱의 일의 자리 숫자는 ${n(f.a)} 의 일의 자리인 ${n(o)} 에 곱하는 수를 곱한 값에서 정해집니다. ` +
+      `그 일의 자리가 ${n(f.r)} 인 수는 ${expr(f.cand.join(",\\ "))} 입니다.`,
+    `${why}.`,
+    `곱하는 수가 ${n(f.b)} 일 때는 일의 자리끼리의 곱이 ${expr(`${o}\\times${f.b}=${o * f.b}`)}, ` +
+      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${words}.`,
+    `따라서 곱하는 수는 ${n(f.b)} 이고 ${expr(`${f.a}\\times${f.b}=${f.a * f.b}`)} 입니다.`,
+  ]);
 }
 
 // ── 1-5 길이와 시간 (D-72 확대) ──────────────────────────────────────────
@@ -12836,36 +13144,63 @@ export const G3_TIERS: ElemTierMap = {
     응용: div134Apply,
     심화하: div134Deep,
   },
+  // ⚠️ **1-4-1 은 심화중·심화상을 둘 다 비운다** — (몇십)×(몇) 은 일의 자리 곱이 늘
+  //    $0$ 이라 「곱의 일의 자리」가 후보를 못 만들고, 남는 성질이 「곱이 두 자리냐
+  //    세 자리냐」 하나뿐이다. 그건 파일럿 `2-1-3` 심화중의 성질 **그 자체**여서
+  //    한 시험지에 나란히 나가면 같은 문항으로 읽힌다(토대 17 §2.2 §2 권고:
+  //    「1-4 는 올림 «종류»로, 2-1 은 자릿수·크기로 갈래를 갈라 적어 둔다」).
   "초3|1-4-1": {
     연산: mul14Calc,
     기본: mul14Word,
     응용: mul14Apply,
     심화하: mul14Deep,
   },
+  // ⚠️ **1-4-2~5 는 심화상을 비운다** — 성질이 후보를 하나도 못 자르는 자리는
+  //    전수로 **175개**(1-4-4 5 · 1-4-5 170) 있지만, 그것을 가르려면 «곱의 크기»가
+  //    필요하고 그건 파일럿 `2-1-2`·`2-1-3` 심화상 그 자체다. §2.2 권고대로
+  //    **심화상은 2-1 에 남긴다.** 1-4-2·1-4-3 은 아예 **구조적으로 0**이다.
   "초3|1-4-2": {
     연산: mul14Calc,
     기본: mul14Word,
     응용: mul14Apply,
     심화하: mul14Deep,
+    심화중: mul14Mid,
   },
   "초3|1-4-3": {
     연산: mul14Calc,
     기본: mul14Word,
     응용: mul14Apply,
     심화하: mul14Deep,
+    심화중: mul14Mid,
   },
   "초3|1-4-4": {
     연산: mul14Calc,
     기본: mul14Word,
     응용: mul14Apply,
     심화하: mul14Deep,
+    심화중: mul14Mid,
   },
   "초3|1-4-5": {
     연산: mul14Calc,
     기본: mul14Word,
     응용: mul14Apply,
     심화하: mul14Deep,
+    심화중: mul14Mid,
   },
+  // ⚠️ **1-5 여섯 소단원 전량 — 심화중·심화상을 비운다** (물결 3, 세어서 정했다)
+  //
+  //   1-5-1·1-5-2·1-5-4·1-5-5  사슬이 «환산 한 마디 + 역연산 한 번»이라 마디가
+  //        늘 하나로 굳는다(반증 ①). 환산은 일대일 대응이라 후보가 안 생긴다.
+  //   1-5-3  후보를 여는 축이 «어림보다 긴가 짧은가» **하나뿐**인데, 그 둘을 가르는
+  //        성질은 무엇을 대도 **방향과 같은 말**이 된다 — 후보가 $10g+d$ 와 $10g-d$ 라
+  //        cm 자리는 늘 $g$ 와 $g-1$, mm 자리는 늘 $d$ 와 $10-d$ 다. 토대 17 §3 이
+  //        든 실물(「실제는 $7$ cm 몇 mm」)도 방향을 다시 말해 주는 것이라, 그 문항은
+  //        **현행 심화하보다 걸음이 적다**(심화하는 되짚은 뒤 둘째 어림과 또 견준다).
+  //   1-5-6  선다. 그러나 **1-1-3·1-1-4 심화중과 같은 문항**이다 — 「차의 방향」이
+  //        후보 둘을 만들고 「자리 넘김」이 하나를 남기는 그 구조로, 진법(60↔10)과
+  //        단위만 다르다. 토대 17 §2.2 ㉠ 이 「셋이 서로를 모른 채 같은 재료를
+  //        신청했다」고 짚은 그 가족이라 **한 자리에만** 둔다. 1-1 을 고른 근거는
+  //        `sub11MidOf` 머리말에 셋을 세어 적었다.
   "초3|1-5-1": {
     연산: lenCalcOf(LEN_CM),
     기본: lenWordOf(LEN_CM),
@@ -13078,6 +13413,12 @@ export const G3_TIERS: ElemTierMap = {
     심화중: div224Mid,
     심화상: div224High,
   },
+  // ⚠️ **1-1-1·1-1-2(덧셈)는 심화중·심화상을 둘 다 비운다** — 세어서 정했다(물결 3).
+  //    「합이 $S$」에는 **방향이 없어** 어떤 수가 늘 하나로 굳는다(반증 ①). 토대 17
+  //    §2.2 ⑵ 가 검산한 「합의 십의 자리 숫자」 모형을 다시 셌더니 그대로였다 —
+  //    어떤 수의 일의 자리를 보여주면 후보 **1개(90,000/90,000)** 라 심화하이고,
+  //    일의 자리도 가리면 (십,일) 짝이 **늘 10개(9,000/9,000)** 라 복면산이다.
+  //    복면산은 초3 지면 규약이 없어 **원장님 확정 전에는 금지**다(파일럿 §2.1b).
   "초3|1-1-1": {
     연산: sub111Calc,
     기본: sub111Word,
@@ -13090,17 +13431,23 @@ export const G3_TIERS: ElemTierMap = {
     응용: add3TwoStep,
     심화하: add3Reverse,
   },
+  // ⚠️ **1-1-3·1-1-4 는 심화상을 비운다** — 「차의 방향」은 후보를 **구성상 정확히
+  //    둘**만 만들고(위·아래 하나씩), 받아내림 여부는 자리마다 «끝까지 빼지 않고»
+  //    가른다. 성질이 반드시 이기므로 정의상 심화중에서 멈춘다(D-115 ⑾).
+  //    셋 이상을 만들려면 자리를 가려야 하고 그것이 복면산이다.
   "초3|1-1-3": {
     연산: subCalcOf(0, 1),
     기본: subWordOf(0, 1),
     응용: subApplyOf(0, 1),
     심화하: subDeepOf(0, 1),
+    심화중: sub11MidOf(0, 1),
   },
   "초3|1-1-4": {
     연산: subCalcOf(2, 2),
     기본: subWordOf(2, 2),
     응용: subApplyOf(2, 2),
     심화하: subDeepOf(2, 2),
+    심화중: sub11MidOf(2, 2),
   },
   "초3|2-5-1": {
     연산: capCmpCalcOf(CAP_L),
