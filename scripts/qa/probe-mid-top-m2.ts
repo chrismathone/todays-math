@@ -12,6 +12,7 @@
  * npx tsx scripts/qa/probe-mid-top-m2.ts --anchor     # ㉠ 굳힘이 자리를 고르는가
  * npx tsx scripts/qa/probe-mid-top-m2.ts --erase      # ㉡ 조건을 지우면 답이 바뀌는가
  * npx tsx scripts/qa/probe-mid-top-m2.ts --overlap    # ㉢ 아래 갈래와 겹치는가
+ * npx tsx scripts/qa/probe-mid-top-m2.ts --dump       # 변이 하네스가 쓰는 산출물 지문
  * ```
  *
  * ## 참이 어디서 오나
@@ -36,6 +37,8 @@
  *    닮음(천장)을 먼저 찍고**, 천장이 낮으면 «겹침 없음»이 아니라 «판정 불가»로
  *    적는다(초6 §7.6).
  */
+import { createHash } from "node:crypto";
+
 import {
   registeredTypes,
   generateMiddleProblem,
@@ -507,6 +510,24 @@ function runSelftest(): number {
   return wrong;
 }
 
+/**
+ * 변이 하네스가 **「산출물이 바뀌었나」**(브리프 §3 ㉣ ⑵)를 물을 때 쓰는 지문.
+ *
+ * 🔴 파일이 바뀌는 것과 **동작이 바뀌는 것**은 다르다. ⑵ 를 건너뛰면
+ *    「가드가 아니다」가 거짓말이 되고 **멀쩡한 가드를 의심하고 고치러 간다**
+ *    — 가드가 없는 것보다 나쁘다(2026-08-21).
+ */
+function runDump(keys: string[]): void {
+  for (const key of keys) {
+    const h = createHash("sha1");
+    for (const p of samples(key)) {
+      h.update(`${p.content} ${p.answer} ${p.solution} `);
+      h.update(`${p.difficulty} ${JSON.stringify(p.facts)}\n`);
+    }
+    console.log(`${h.digest("hex").slice(0, 16)}  ${key}`);
+  }
+}
+
 function main(): void {
   const args = process.argv.slice(2);
   const only = (name: string): boolean =>
@@ -514,6 +535,10 @@ function main(): void {
 
   if (args.includes("--selftest")) {
     process.exitCode = runSelftest() === 0 ? 0 : 1;
+    return;
+  }
+  if (args.includes("--dump")) {
+    runDump(topKeys());
     return;
   }
 

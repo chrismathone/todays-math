@@ -145,10 +145,21 @@ describe("2-1|연립일차방정식|90 — 비로 굳힌 값을 해로 하는 �
     }
   });
 
-  it("해설이 $t$ 로 놓는 걸음과 $k$ 의 값을 실제로 적는다", () => {
+  it("해설이 적는 $k$ 가 발문에서 다시 구한 값과 같다", () => {
     for (const p of rows(KEY)) {
-      const k = /=(\d+)\$이다\. \(\$t\$가 약분되므로/.exec(p.solution);
-      expect(k, p.solution).not.toBeNull();
+      // 「$k$ 를 적는가」만 보면 **아무 수나 적어도 초록**이다 — 값을 견준다.
+      const ratio = /\$(\d*)a=(\d*)b\$/.exec(p.content)!;
+      const pp = ratio[1] === "" ? 1 : Number(ratio[1]);
+      const qq = ratio[2] === "" ? 1 : Number(ratio[2]);
+      const frac = /\\dfrac\{(\d*)a\+(\d*)b\}\{a-b\}/.exec(p.content)!;
+      const ca = frac[1] === "" ? 1 : Number(frac[1]);
+      const cb = frac[2] === "" ? 1 : Number(frac[2]);
+      const want = (ca * qq + cb * pp) / (qq - pp);
+      const shown = /=(-?\d+)\$이다\. \(\$t\$가 약분되므로/.exec(p.solution);
+      expect(shown, p.solution).not.toBeNull();
+      expect(Number(shown![1]), `${p.content}\n해설의 $k$ 가 다르다`).toBe(
+        want,
+      );
       expect(p.solution).toContain("로 놓을 수 있다");
       expect(p.solution).toContain("양변에");
     }
