@@ -1484,6 +1484,97 @@ G6_MUTS = [
         "      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만",
         "      if (x / g !== b && false) continue; // 간단히 하면 후항이 b 가 되는 세로만",
     ),
+    # ── 확대 갈래 3차분 (2026-08-31) — 1-1 · 2-5 · 2-6 ──────────────────
+    #
+    # 🔴 **먼저 «그 가드가 무엇을 거르는가»를 셌다**(2차분 §7 의 교훈). 실측 —
+    #    1-1-1 후보수 64/102 · 1-1-1 반증 ⑥ 14/38 · 1-1-2 창 5/55 · 1-1-2 반증 ⑥ 21/50 ·
+    #    1-1-3 후보 하나 3,913/5,741 · 1-1-3 반증 ⑥ 793/1,828 ·
+    #    2-5-2 창 360/1,091 · 2-5-2 반증 ⑥ 74/731 · 2-6-3 짝수 99/149.
+    #    반대로 **0 을 거르는 자리 셋** — 2-6-1·2-6-2·2-6-3 의 반증 ⑥ 이다.
+    #    발문에 수가 한둘뿐이라 순방향 모형이 닿을 곳이 없다. 그 셋에는 변이를 안 만든다
+    #    (만들면 「산출물이 그대로」로 거부될 뿐이고, 가드는 구성이 바뀌면 살아난다).
+    (
+        # ㉠ — 성질이 만드는 배수열이 둘뿐이면 창의 두 끝이 곧 답이라 마디가 얕다.
+        "후보 훼손 — 1-1-1 심화중의 배수열이 둘뿐이어도 좋다 (실측 64/102)",
+        "    if (base.length < 3) continue;",
+        "    if (base.length < 2) continue;",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다.
+        "반증 ⑥ 가드 제거 — 1-1-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 14/38)",
+        "      if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;",
+        "      if (!backsolveSafeStem(natDivReduceStem(c), rat(-1))) continue;",
+    ),
+    (
+        # ㉠ — 창에 «답이 아닌 수»가 하나도 없으면 창이 곧 답이라 성질이 일을 안 한다.
+        "구간 훼손 — 1-1-2 심화중의 창이 답 하나만 담아도 좋다 (실측 5/55)",
+        "      if (up - lo < 3) continue; // 창에 «답이 아닌 수»가 하나도 없으면 창이 답을 준다",
+        "      if (up - lo < 1) continue; // 창에 «답이 아닌 수»가 하나도 없으면 창이 답을 준다",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-1-2. 이 자리가 앞판에서 실제로 샌 곳이다(생성기가 분수를 두 값으로 셌다).
+        "반증 ⑥ 가드 제거 — 1-1-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 21/50)",
+        "      if (!backsolveSafeStem(fracReturnStem(c), rat(k))) continue;",
+        "      if (!backsolveSafeStem(fracReturnStem(c), rat(-1))) continue;",
+    ),
+    (
+        # ㉢ — 창 안의 배수열 후보 가운데 분모 m 을 내는 것이 둘이면 **답이 둘**이다.
+        #    토대가 든 실물(4/9 ÷ □ 의 분모가 27)이 정확히 그 부류였다.
+        "후보 훼손 — 1-1-3 심화상의 후보 가운데 답이 둘이어도 좋다 (실측 3,913/5,741)",
+        "          if (hit.length !== 1 || hit[0] !== k) continue;",
+        "          if (hit.length < 1 || !hit.includes(k)) continue;",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-1-3.
+        "반증 ⑥ 가드 제거 — 1-1-3 심화상이 «한 걸음이면 나오는» 짝을 쓴다 (실측 793/1,828)",
+        "          if (!backsolveSafeStem(mixedDivisorStem(c), rat(k))) continue;",
+        "          if (!backsolveSafeStem(mixedDivisorStem(c), rat(-1))) continue;",
+    ),
+    (
+        # ㉢ — 창 안에서 나누어떨어지는 지름이 둘이면 바퀴 수가 하나로 안 선다.
+        "후보 훼손 — 2-5-2 심화상의 창 안에 지름이 둘이어도 좋다 (실측 360/1,091)",
+        "      if (hit.length !== 1 || hit[0] !== d) continue;",
+        "      if (hit.length < 1 || !hit.includes(d)) continue;",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 2-5-2.
+        "반증 ⑥ 가드 제거 — 2-5-2 심화상이 «한 걸음이면 나오는» 짝을 쓴다 (실측 74/731)",
+        "      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))",
+        "      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(-1)))",
+    ),
+    (
+        # 🔴 ㉧ — **이 회차가 새로 세운 축.** 굴러간 거리를 $1$ cm 늘리면 「지름이 자연수」와
+        #    「원주 = 지름×3.14」가 어긋나 **있을 수 없는 원**이 지면에 나간다.
+        #    값 검산은 이 부류를 못 본다(창 안에 답이 하나면 산술은 그대로 맞는다).
+        "지면 모순 — 2-5-2 심화상의 거리가 «3.14×지름×바퀴 수»와 어긋난다",
+        "  `${roller}${josa(roller, \"을\", \"를\")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314), \"cm\")} 를 갔습니다. ` +",
+        "  `${roller}${josa(roller, \"을\", \"를\")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314 + 100), \"cm\")} 를 갔습니다. ` +",
+    ),
+    (
+        # 🔴 ㉧ — 「앞에서 본 모양이 정사각형」이라 적어 놓고 넓이가 정사각형이 아니면
+        #    발문이 거짓말이다. 이 부류도 값 검산이 아니라 **모양 검사**가 잡아야 한다.
+        "모양 모순 — 2-6-1 심화중의 앞모양 넓이가 정사각형이 아니다",
+        "  const c: CylSquareCase = { r, area: 4 * r * r };",
+        "  const c: CylSquareCase = { r, area: 2 * r * (2 * r + 2) };",
+    ),
+    (
+        # 🔴 ㉧ — 「옆면이 정사각형」인데 둘레가 한 변의 네 배가 아니면 발문이 거짓말이다.
+        "모양 모순 — 2-6-2 심화중의 옆면 둘레가 한 변의 네 배가 아니다",
+        "  const c: NetSquareCase = { r, side, perim: 4 * side };",
+        "  const c: NetSquareCase = { r, side, perim: 4 * side + 200 };",
+    ),
+    (
+        # ㉢ — 짝이 둘뿐이면 «만들어 견주기»가 한눈에 끝나 심화중과 구분이 안 된다.
+        "후보 훼손 — 2-6-3 심화상의 짝이 둘뿐이어도 좋다 (실측 99/149)",
+        "  if (pairs.length < 3 || pairs.length > 5) continue;",
+        "  if (pairs.length < 2 || pairs.length > 5) continue;",
+    ),
+    (
+        # ㉢ — 높이 상한이 짝을 둘 이상 남기면 답이 하나로 안 선다.
+        "후보 훼손 — 2-6-3 심화상의 높이 상한이 짝을 둘 이상 남긴다",
+        "    const kept = pairs.filter((p) => p[1] < cap);\n    if (kept.length !== 1) continue;",
+        "    const kept = pairs.filter((p) => p[1] < cap);\n    if (kept.length < 1) continue;",
+    ),
 ]
 
 G4_MUTS = [
