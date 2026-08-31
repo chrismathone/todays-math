@@ -29,6 +29,7 @@
 """
 from __future__ import annotations
 
+import glob
 import hashlib
 import io
 import json
@@ -2064,9 +2065,13 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG6.test.ts",
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW3.test.ts",
         ],
         "grade": "초6",
         "sections": [
+            "1-1-1",
+            "1-1-2",
+            "1-1-3",
             "1-2-1",
             "1-2-2",
             "1-2-3",
@@ -2137,6 +2142,23 @@ def run(args: list[str]) -> tuple[int, str]:
 # 남의 **중간 상태**가 컴파일을 깨서 이 자리가 난다. 그때 그 파일 이름이 보여야
 # 「내 변이가 이상한가」와 「과녁이 움직였나」를 가를 수 있다.
 LAST_PROBE_ERR = ""
+
+
+def unlisted_tests(target: dict) -> list[str]:
+    """이 대상의 학년에 있는 시험 파일 가운데 «test» 목록에 **없는** 것.
+
+    목록이 새면 그 파일이 무는 변이가 GREEN 으로 찍힌다 — 오판은 한 방향뿐이다.
+    검증기가 이 함수를 그대로 부른다(세는 쪽과 쓰는 쪽을 두 벌 두지 않는다).
+    """
+    stem = os.path.splitext(os.path.basename(target["file"]))[0].upper()
+    listed = {os.path.basename(t) for t in target["test"]}
+    return sorted(
+        os.path.basename(f)
+        for f in glob.glob(
+            os.path.join(ROOT, "src/__tests__/unit/elemTiers%s*.test.ts" % stem)
+        )
+        if os.path.basename(f) not in listed
+    )
 
 
 def probe(grade: str, sections: list[str]) -> str:
@@ -2395,6 +2417,17 @@ def main() -> int:
         os.remove(PROBE_PATH)
 
     sections = target.get("sections") or [target["section"]]
+
+    # ── 목록에 없는 형제 시험 파일 ──
+    # 🔴 `test` 는 **손 목록**이다. 회차마다 시험 파일이 하나씨 늘어나는데 이 목록에
+    #    안 적으면, 그 파일이 무는 변이가 **GREEN(「시험이 못 잡는다」)** 으로 찍힌다.
+    #    빠뜨림이 만드는 오판은 **한 방향뿐**이다 — RED 를 GREEN 으로 바꿋다.
+    #    (2026-08-31 실제로 났다: 물결 3 이 `elemTiersG6DeepW3` 을 안 적어 초록 둘을
+    #     받았고, 넣고 다시 돌리니 둘 다 빨강이었다.)
+    #    그래서 **막지 않고**(다른 학년의 회차를 세우지 않는다) GREEN 이 나는
+    #    **바로 그 줄에** 경고를 붙인다 — 판단이 갈리는 자리에서만 운다.
+    unlisted = unlisted_tests(target)
+
     base = probe(target["grade"], sections)
     if not base.startswith("["):
         print("기준 산출물을 못 얻었습니다:", base[:400])
@@ -2427,6 +2460,12 @@ def main() -> int:
         f"변이 [{lo}..{hi}] / 전체 {len(target['muts'])}"
     )
     print(f"훑을 소단원 {len(sections)}개: {' '.join(sections)}\n")
+    if unlisted:
+        print(
+            f"⚠️ 같은 학년의 시험 파일 {len(unlisted)}개가 «test» 목록에 없다 — "
+            f"**이 회차의 GREEN 은 그만큼 못 믿는다**: {' '.join(unlisted)}"
+        )
+    print()
 
     ok = True
     try:
@@ -2514,6 +2553,12 @@ def main() -> int:
                         print(f"        ↳ {t}")
                     if code == 0:
                         print("        ← 시험이 못 잡는다")
+                        if unlisted:
+                            print(
+                                f"        ⚠️ 다만 목록에 없는 시험 파일 {len(unlisted)}개가 있다"
+                                f"({' '.join(unlisted)}) — 이 초록은 «못 잡는다»가 아니라"
+                                " «안 돌렸다»일 수 있다"
+                            )
                         ok = False
             io.open(path, "wb").write(src_bytes)
             clear_inflight(which)
