@@ -42,15 +42,20 @@ const MUTATIONS = [
   },
   {
     // 심화중의 굳히는 성질(「한 칸은 모든 막대에 같다」)을 **안 쓴다**.
-    label: "1-5-2 심화중 — 두 후보 가운데 성질을 안 보고 그냥 첫째를 고른다",
+    //
+    // ⚠️ 처음엔 `cands[0]` 을 골랐는데 하네스가 **판정을 거부**했다(산출물 그대로).
+    //    살아남는 후보가 이 밭에서는 **늘 작은 쪽**이라 `alive[0] === cands[0]` 이다.
+    //    그 변이는 「가드가 없다」가 아니라 **구조적으로 아무것도 안 바꾼다**는 뜻이다.
+    //    그래서 큰 쪽을 고르게 바꿨다 — 그제서야 성질을 안 쓴 것이 지면에 나타난다.
+    label: "1-5-2 심화중 — 두 후보 가운데 성질을 안 보고 큰 쪽을 고른다",
     from: "          const unitSize = alive[0]!;",
-    to: "          const unitSize = cands[0]!;",
+    to: "          const unitSize = cands[cands.length - 1]!;",
   },
   {
     // 심화상의 「성질 ㉠ 이 실제로 무언가를 죽인다」를 끈다 — 한 성질이 장식이 된다.
     label: "1-5-2 심화상 밭 — ㉠(모든 막대에 같다)이 아무도 안 죽여도 넣는다",
-    from: "            if (cands.length <= alive.length) continue; // ㉠ 이 아무도 안 죽인다",
-    to: "            if (cands.length < 0) continue; // ㉠ 이 아무도 안 죽인다",
+    from: "          if (cands.length <= alive.length) continue; // ㉠ 이 아무도 안 죽인다",
+    to: "          if (cands.length < 0) continue; // ㉠ 이 아무도 안 죽인다",
   },
   {
     // 심화상의 「남은 하나가 극값이 아니다」를 끈다 — 극값이면 한 줄로 집혀 심화중이다.
