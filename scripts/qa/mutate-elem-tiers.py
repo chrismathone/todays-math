@@ -992,8 +992,8 @@ G5_MUTS = [
     ),
     (
         "[물결3 1-2-1 심화상] 후보가 하나뿐인 자리도 넣는다 (견줄 것이 없다)",
-        "    const owners = w3SecondLargestOwners(m);\n    if (owners.length < 2) continue;\n    // 해설이 후보를 **전부** 늘어놓으므로",
-        "    const owners = w3SecondLargestOwners(m);\n    if (owners.length < 1) continue;\n    // 해설이 후보를 **전부** 늘어놓으므로",
+        "      if (cands.length < 2 || cands.length > 5) continue;",
+        "      if (cands.length < 1 || cands.length > 5) continue;",
     ),
     (
         "[물결3 1-2-4 심화중] 서로소 짝이 여럿인 자리도 넣는다 (답이 안 정해진다)",

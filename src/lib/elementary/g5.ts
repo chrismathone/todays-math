@@ -14699,6 +14699,7 @@ function w3Second121(): W3SecondTask[] {
     const evens = owners.filter((v) => v % 2 === 0);
     if (evens.length !== 1) continue; // 「짝수」가 **하나만** 남겨야 굳는다
     if (evens[0]! > 90) continue; // 규모를 키우는 것은 축이 아니다(이 대단원은 두 자리다)
+    if (owners.some((v) => v > 150)) continue; // 지우는 후보도 지면에 앉을 만해야 한다
     out.push({ m, even: evens[0]!, odd: owners.filter((v) => v % 2 !== 0) });
   }
   return out;
@@ -14718,42 +14719,54 @@ function fac121Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
-/* ── 1-2-1 심화상 — 「짝수인지 안 말한다 — 후보마다 약수를 다 더해 견준다」 ── */
+/* ── 1-2-1 심화상 — 「배수의 **개수**만 주어 후보를 여럿 만들고, 약수의 합으로 견준다」 ──
+ *
+ * 🔴 첫 판은 심화중과 **같은 첫 문장**(「두 번째로 큰 약수가 …」)이었다. 그러면 두 갈래가
+ *    같은 `m` 을 뽑는 씨앗에서 **답까지 같아진다**(실측: 씨앗 20266955 에서 둘 다 $22$).
+ *    시험의 「여섯 갈래 발문이 갈린다」는 글자가 달라 통과하는데, **지면에서는 한 문항**이다.
+ *    넷을 실물로 뽑아 나란히 놓고서야 보였다 — 그래서 상은 **배수 쪽**에서 연다.
+ *    심화하 ㉯ 는 「약수 → 어떤 수 → 배수 개수」로 **앞으로** 가고, 이 상은 그 길을
+ *    **거꾸로** 간다(개수 → 어떤 수 후보 → 약수의 합).
+ */
 
-type W3SumTask = { m: number; ans: number; others: number[]; sum: number };
+type W3CntTask = {
+  N: number;
+  c: number;
+  sum: number;
+  ans: number;
+  cands: number[];
+};
 
-function w3Sum121(): W3SumTask[] {
-  const out: W3SumTask[] = [];
-  for (let m = 9; m <= 45; m += 1) {
-    const owners = w3SecondLargestOwners(m);
-    if (owners.length < 2) continue;
-    // 해설이 후보를 **전부** 늘어놓으므로 후보가 다 지면에 앉을 만해야 한다.
-    // ⚠️ 두 자리(99)로 조이면 후보 줄이 **열 개**뿐이고, 그러면 씨앗 열여섯에서
-    //    서로 다른 발문이 여섯밖에 안 나와 「변형 8+」 시험이 문다(실제로 물렸다).
-    //    이 소단원의 심화하 ㉯ 가 이미 세 자리(`limit` 최대 ~$314$)를 쓰므로
-    //    150 은 규모를 키우는 것이 아니다 — 열쇠는 구조이지 크기가 아니다.
-    if (owners.some((v) => v > 150)) continue;
-    for (const v of owners) {
-      const s = w3DivSum(v);
-      // 합이 갈라야 «만들어 견주기»가 답을 하나로 만든다
-      if (owners.some((o) => o !== v && w3DivSum(o) === s)) continue;
-      out.push({ m, ans: v, others: owners.filter((o) => o !== v), sum: s });
+function w3Cnt121(): W3CntTask[] {
+  const out: W3CntTask[] = [];
+  for (let N = 30; N <= 90; N += 1) {
+    for (let c = 2; c <= 5; c += 1) {
+      const cands: number[] = [];
+      for (let v = 2; v <= N; v += 1)
+        if (Math.floor((N - 1) / v) === c) cands.push(v);
+      // 마디가 열려야 하고(후보 둘 이상), 해설이 늘어놓을 만해야 한다.
+      if (cands.length < 2 || cands.length > 5) continue;
+      for (const v of cands) {
+        const s = w3DivSum(v);
+        // 약수의 합이 갈라야 «만들어 견주기»가 답을 하나로 만든다
+        if (cands.some((o) => o !== v && w3DivSum(o) === s)) continue;
+        out.push({ N, c, sum: s, ans: v, cands });
+      }
     }
   }
   return out;
 }
 
 function fac121Top(unit: UnitSeed, rng: Rng): ElemProblem {
-  const content = (t: W3SumTask) =>
-    `어떤 수의 약수 중에서 두 번째로 큰 수가 ${n(t.m)}이고, 어떤 수의 약수를 모두 더하면 ${n(t.sum)}입니다. 어떤 수를 구하시오.`;
+  const content = (t: W3CntTask) =>
+    `어떤 수의 배수 중에서 ${n(t.N)}보다 작은 수가 모두 ${n(t.c)}개입니다. 어떤 수의 약수를 모두 더하면 ${n(t.sum)}일 때, 어떤 수를 구하시오.`;
   const pool = w2Pool("w3-121top", () =>
-    w3Sum121().filter((t) => !w2Bad(content(t), w2int(t.ans))),
+    w3Cnt121().filter((t) => !w2Bad(content(t), w2int(t.ans))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
-  const all = [t.ans, ...t.others].sort((x, y) => x - y);
   const 걸음 = [
-    `약수는 짝을 이루므로 어떤 수는 두 번째로 작은 약수와 ${n(t.m)}의 곱입니다. 그런 수를 모두 만들면 ${nums(all)}입니다.`,
-    ...all.map(
+    `${n(t.c)}번째 배수는 ${n(t.N)}보다 작고 ${n(t.c + 1)}번째 배수는 ${n(t.N)}보다 크거나 같아야 합니다. 그런 수는 ${nums(t.cands)}입니다.`,
+    ...t.cands.map(
       (v) =>
         `${n(v)}의 약수는 ${nums(divisors(v))}이고 모두 더하면 ${expr(`${divisors(v).join("+")}=${w3DivSum(v)}`)}입니다.`,
     ),

@@ -258,18 +258,36 @@ describe("[초5 물결 3] 확대 갈래 — 1-2 · 2-1 · 2-3", () => {
 
   /* ── ⑵ 1-2-1 심화상 — 성질로는 안 갈리고 «약수의 합»을 다 구해야 갈린다 ── */
 
-  it("1-2-1 심화상 — 후보가 둘 이상이고 약수의 합이 맞는 것이 하나뿐이다", () => {
+  it("1-2-1 심화상 — 개수가 만든 후보가 둘 이상이고 약수의 합이 맞는 것이 하나뿐이다", () => {
     for (const seed of SEEDS) {
       const p = problem("1-2-1", "심화상", seed);
-      const [m, sum] = intsOf(p.content) as [number, number];
-      const owners = ownersOfSecondLargest(m);
-      expect(owners.length, `${p.content}\n후보 ${owners}`).toBeGreaterThan(1);
-      const hit = owners.filter((v) => divSum(v) === sum);
-      expect(hit.length, `${p.content}\n후보 ${owners}`).toBe(1);
+      const [N, c, sum] = intsOf(p.content) as [number, number, number];
+      // 되짚기가 만드는 후보 — 「배수 중 $N$ 보다 작은 것이 $c$ 개」인 수 전부.
+      const cands: number[] = [];
+      for (let v = 2; v <= N; v += 1)
+        if (Math.floor((N - 1) / v) === c) cands.push(v);
+      expect(cands.length, `${p.content}\n후보 ${cands}`).toBeGreaterThan(1);
+      const hit = cands.filter((v) => divSum(v) === sum);
+      expect(hit.length, `${p.content}\n후보 ${cands}`).toBe(1);
       expect(answerInt(p.answer), p.content).toBe(hit[0]);
-      // 🔴 성질(짝을 이룬다)만으로는 못 갈린다 — 후보가 둘 이상 남는 것이 그 뜻이다.
-      //    그리고 후보의 약수합이 서로 달라야 «견주기»가 답을 하나로 만든다.
-      expect(new Set(owners.map(divSum)).size, p.content).toBe(owners.length);
+      // 🔴 개수만으로는 못 갈린다 — 후보가 둘 이상 남는 것이 그 뜻이다.
+      //    ⚠️ 「후보의 약수합이 **전부** 서로 다르다」로 적었다가 빨개졌다 — 답이 아닌
+      //    후보 둘이 같은 합을 내는 것은 **정상**이다($14$·$15$ 는 둘 다 $24$).
+      //    답을 하나로 만드는 것은 「합이 $S$ 인 후보가 하나」이고 그건 위에서 이미 셌다.
+      //    여기서는 「그 합이 정말 답의 것이고, 다른 후보의 것이 아니다」를 못 박는다.
+      for (const v of cands)
+        if (v !== hit[0]) expect(divSum(v), `${p.content}\n${v}`).not.toBe(sum);
+      // 🔴 심화중과 **첫 문장이 다르다** — 중은 약수 쪽, 상은 배수 쪽에서 연다.
+      //    (같으면 같은 씨앗에서 답까지 같아지는 자리가 실제로 있었다.)
+      expect(p.content.startsWith("어떤 수의 배수 중에서"), p.content).toBe(
+        true,
+      );
+      expect(
+        problem("1-2-1", "심화중", seed).content.startsWith(
+          "어떤 수의 약수 중에서",
+        ),
+        "심화중",
+      ).toBe(true);
     }
   });
 
