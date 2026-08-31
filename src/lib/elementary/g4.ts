@@ -18173,9 +18173,9 @@ function tier52MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
       `꼭 맞게 그려졌을 때 세로 눈금 한 칸은 몇 ${theme.unit}을 나타내는가?`,
     `${n(f.unitSize)}${theme.unit}`,
     [
-      `막대가 ${n(f.cells)}칸이면 그 학생 수는 눈금 한 칸의 ${n(f.cells)}배입니다. ` +
-        `표에서 ${n(f.cells)}칸으로 나누어떨어지는 수는 ${n(lo.value)}${theme.unit}과 ` +
-        `${n(hi.value)}${theme.unit}이므로, 눈금 한 칸은 ` +
+      `막대가 ${n(f.cells)}칸이면 그 학생 수를 ${n(f.cells)}칸으로 똑같이 나눈 것이 ` +
+        `눈금 한 칸입니다. 표의 네 수 가운데 ${n(f.cells)}칸으로 똑같이 나누어지는 것은 ` +
+        `${n(lo.value)}${theme.unit}과 ${n(hi.value)}${theme.unit}이므로, 눈금 한 칸은 ` +
         `${expr(`${lo.value}\\div${f.cells}=${lo.value / f.cells}`)} 에서 ` +
         `${n(lo.value / f.cells)}${theme.unit}이거나 ` +
         `${expr(`${hi.value}\\div${f.cells}=${hi.value / f.cells}`)} 에서 ` +
@@ -18237,6 +18237,12 @@ const BAR_GAP_FIELD: {
           if (cands.length < 3) continue;
           const alive = cands.filter((u) => sorted.every((v) => v % u === 0));
           if (alive.length < 2) continue;
+          // ⚠️ **이 줄은 지금 아무것도 안 자른다** — 변이 하네스가 「산출물이 그대로다」로
+          //    판정을 거부해서 세어 봤다: ㉡ 앞까지 살아남는 (나눔, 칸 수 차) 조합 **76개**
+          //    가운데 「후보가 전부 네 값을 나눈다」인 것이 **0개**다. 후보가 셋 이상이려면
+          //    차가 서로 다른 세 값을 내야 하고, 그러면 그중 하나는 네 값의 공통 약수가
+          //    아니게 되기 때문이다. 「가드가 없다」가 아니라 **지금은 안 무는 불변식**이고,
+          //    후보를 만드는 방식이 바뀌면 그때 문다. 지우지 말 것.
           if (cands.length <= alive.length) continue; // ㉠ 이 아무도 안 죽인다
           // 🔴 죽는 후보를 **하나만** 적으면 해설이 「나머지는 왜 죽었나」를 건너뛴다
           //    (첫 판이 그랬다 — 후보 다섯 중 하나만 짚고 「남는 것은 둘」이라 했다).
@@ -18314,11 +18320,11 @@ function tier52TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
       `${josa(topLabel.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
     `${n(f.unitSize)}${theme.unit}, ${n(top / f.unitSize)}칸`,
     [
-      `두 막대의 칸 수의 차가 ${n(f.gapCells)}칸이면 두 학생 수의 차는 눈금 한 칸의 ` +
-        `${n(f.gapCells)}배입니다. 표에서 두 수의 차를 모두 구한 뒤 ` +
-        `${n(f.gapCells)}칸으로 나누어 보면 ` +
-        `${expr(`${wide}\\div${f.gapCells}=${wide / f.gapCells}`)} 처럼 나누어떨어지는 ` +
-        `것이 있고, 눈금 한 칸이 될 수 있는 수는 ` +
+      `두 막대의 칸 수의 차가 ${n(f.gapCells)}칸이면 두 학생 수의 차를 ` +
+        `${n(f.gapCells)}칸으로 똑같이 나눈 것이 눈금 한 칸입니다. 표에서 두 수의 차를 ` +
+        `모두 구해 ${n(f.gapCells)}칸으로 나누어 보면 ` +
+        `${expr(`${wide}\\div${f.gapCells}=${wide / f.gapCells}`)} 처럼 똑같이 ` +
+        `나누어지는 것이 있고, 눈금 한 칸이 될 수 있는 수는 ` +
         `${f.cands.map((u) => `${n(u)}${theme.unit}`).join(", ")}입니다.`,
       `눈금 한 칸은 모든 막대에 같습니다. ` +
         `${f.deadDivs
