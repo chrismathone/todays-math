@@ -14859,7 +14859,11 @@ function w3LcmSum126(): W3LcmSumTask[] {
   for (let M = 12; M <= 72; M += 1) {
     const ds = divisors(M);
     if (ds.length > 8) continue; // 해설이 약수를 늘어놓을 수 있는 만큼만
-    for (let S = 6; S <= M; S += 1) {
+    // ⚠️ `S <= M` 으로 조이면 «작은 수가 $1$» 인 판(합이 `M + 1`)이 **범위 밖으로 밀려**
+    //    아래 `p === 1` 가드가 **죽은 줄**이 된다 — 변이 하네스가 「산출물이 그대로다」로
+    //    알려 줬다(같은 것을 두 곳에서 막으면 둘 다 시험할 수 없다, 파일럿 §6-4).
+    //    한 칸 넓혀 그 가드가 실제로 일하게 둔다.
+    for (let S = 6; S <= M + 1; S += 1) {
       const pairs: [number, number][] = [];
       for (const p of ds) {
         const q = S - p;

@@ -311,6 +311,9 @@ describe("[초5 물결 3] 확대 갈래 — 1-2 · 2-1 · 2-3", () => {
       expect(answerInt(p.answer), p.content).toBe(hit[0]);
       // 🔴 **기본**(가장 큰 정사각형)과 같은 문항이 아니다 — 답이 최대공약수가 아니다.
       expect(hit[0], p.content).not.toBe(gcd(a, b));
+      // 🔴 한 변이 $1$ cm 이면 «가장 작은 정사각형»이라 견줄 것이 시시하고 장수가 터진다.
+      //    변이 하네스가 이 줄이 **없다**는 것을 초록으로 알려 줬다.
+      expect(hit[0], p.content).toBeGreaterThan(1);
     }
   });
 
