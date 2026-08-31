@@ -47,6 +47,8 @@ import { PrismaClient } from "@prisma/client";
 import { middleComboDefinitions } from "../../src/lib/middle/combo";
 import { registeredTypes } from "../../src/lib/middle/generate";
 
+import { isDirectScript } from "../import/isDirectScript";
+
 const LEDGER = "docs/planning/tracks/reports/unloaded-types.json";
 
 /** 적재본이 이만큼도 없으면 이 검사는 뜻이 없다 — 「전부 안 나간다」가 되어 버린다. */
@@ -196,4 +198,10 @@ async function main(): Promise<void> {
   }
 }
 
-main();
+// 🔴 **직접 부를 때만 돈다.** `unloadedTypes.test.ts` 가 이 파일에서 순수 함수 둘을
+//    가져오는데, 맨몸 `main()` 이면 **import 만으로 공유 DB 질의가 나간다.** `.env` 가
+//    없는 워크트리에서는 그것이 Prisma 검증 오류가 되어, **시험은 13,302건 전부 초록인데
+//    vitest 종료 코드만 1** 이 된다(2026-08-31 실측 — 「N passed」 뒤에 숨는 그 자리다).
+//    관문은 **망 없이** 돌아야 하고, 공유 DB 를 보는 검사는 pre-push 자리다(D-115 ⑼㉢).
+//    다른 QA 스크립트 전부가 이 울타리를 쓴다 — 여기만 빠져 있었다.
+if (isDirectScript(import.meta.url)) main();

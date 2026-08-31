@@ -2255,6 +2255,12 @@ function sub11MidOf(minB: number, maxB: number) {
       const down = known - diff;
       const kUp = borrowCount(up, known);
       const kDown = borrowCount(known, down);
+      // ⚠️ 해설이 후보를 만들며 **지면에 $known-diff$ 를 적는다.** 그 뺄셈도 소단원이
+      //    약속한 받아내림 횟수 안이어야 한다 — 「모든 셈이 (세 자리)−(세 자리)이고
+      //    소단원이 약속한 받아내림이다」가 이 대단원의 기존 잠금이다.
+      //    전수로 세니 자리가 1-1-3 은 117,250 → 96,625, 1-1-4 는 41,250 → 20,625 다.
+      const kPage = borrowCount(known, diff);
+      if (kPage < minB || kPage > maxB) continue;
       // 두 후보의 횟수가 같으면 성질이 아무것도 안 자른다 — 그 씨앗은 문항이 아니다(반증 ⑤).
       if (kUp === kDown) continue;
       const opts: { ans: number; k: number }[] = [];
@@ -2270,18 +2276,26 @@ function sub11MidOf(minB: number, maxB: number) {
       // ⚠️ **수 뒤에 «과/와·을/를·이/가» 를 쓰지 않는다.** 수는 읽는 소리로 갈리므로
       //    글자만 봐서는 못 정한다(`josa` 머리말) — 「의·보다·만큼·입니다」로만 잇는다.
       const stem = pick(rng, [
-        `어떤 세 자리 수와 ${n(known)} 의 차는 ${n(diff)} 입니다. 이 뺄셈에서 ${cond}. 어떤 수를 구하시오.`,
+        `어떤 세 자리 수와 ${n(known)} 의 차는 ${n(diff)} 입니다. 그 차를 구하는 뺄셈에서 ${cond}. 어떤 수를 구하시오.`,
         `어떤 세 자리 수가 있습니다. 이 수와 ${n(known)} 의 차는 ${n(diff)} 입니다. 큰 수에서 작은 수를 뺄 때 ${cond}. 어떤 수를 쓰시오.`,
         `세 자리 수 두 개의 차가 ${n(diff)} 입니다. 한 수는 ${n(known)} 입니다. 큰 수에서 작은 수를 빼는 계산에서 ${cond}. 다른 한 수를 구하시오.`,
         `한 수가 ${n(known)} 인 두 세 자리 수의 차는 ${n(diff)} 입니다. 그 차를 구하는 뺄셈에서 ${cond}. 나머지 한 수는 얼마인지 쓰시오.`,
-        `두 세 자리 수가 있습니다. 한 수는 ${n(known)} 입니다. 두 수의 차는 ${n(diff)} 이며 뺄셈을 할 때 ${cond}. 다른 한 수를 쓰시오.`,
+        `두 세 자리 수가 있습니다. 한 수는 ${n(known)} 입니다. 두 수의 차는 ${n(diff)} 이며 큰 수에서 작은 수를 뺄 때 ${cond}. 다른 한 수를 쓰시오.`,
         `차가 ${n(diff)} 인 두 세 자리 수가 있습니다. 그중 하나는 ${n(known)} 입니다. 큰 수에서 작은 수를 뺄 때 ${cond}. 나머지 한 수를 구하시오.`,
         `어떤 세 자리 수와 ${n(known)} 의 차가 ${n(diff)} 입니다. 그 차를 구하는 뺄셈에서 ${cond}. 어떤 수는 얼마인지 구하시오.`,
         `${n(known)} 보다 크거나 작은 어떤 세 자리 수가 있습니다. 두 수의 차는 ${n(diff)} 이고, 큰 수에서 작은 수를 빼는 계산에서 ${cond}. 어떤 수를 쓰시오.`,
       ]);
+      // ⚠️ **답 쪽 식을 마지막에 적는다.** 이 저장소의 잠금이 「정답 = 해설의 **마지막**
+      //    계산 걸음의 값」이고(`elemTiersG3.test.ts`), 되짚기 갈래는 후보를 둘 만든다 —
+      //    순서를 안 정하면 그 잠금이 씨앗마다 깨졌다 붙었다 한다.
+      const upFirst = ans === down;
+      const eqs = upFirst
+        ? `${expr(`${known}+${diff}=${up}`)} 이고 ${expr(`${known}-${diff}=${down}`)}`
+        : `${expr(`${known}-${diff}=${down}`)} 이고 ${expr(`${known}+${diff}=${up}`)}`;
       return makeDeep(unit, stem, n(ans), [
-        `차가 ${n(diff)} 이므로 어떤 수는 ${n(known)} 보다 ${n(diff)} 만큼 크거나 ${n(diff)} 만큼 작습니다. ` +
-          `${expr(`${known}+${diff}=${up}`)} 이고 ${expr(`${known}-${diff}=${down}`)} 이므로 후보는 ${n(up)}, ${n(down)} 입니다.`,
+        `차가 ${n(diff)} 이므로 어떤 수는 ${n(known)} 보다 ${n(diff)} 만큼 ` +
+          `${upFirst ? "크거나 작습니다" : "작거나 큽니다"}. ` +
+          `${eqs} 이므로 후보는 ${n(down)}, ${n(up)} 입니다.`,
         `${n(up)} 에서 ${n(known)} 만큼 뺄 때는 ${borrowWords(up, known)}. ` +
           `${n(known)} 에서 ${n(down)} 만큼 뺄 때는 ${borrowWords(known, down)}.`,
         `${borrowPickWords(k)}은 ${n(ans)} 쪽이므로 어떤 수는 ${n(ans)} 입니다.`,
@@ -3766,7 +3780,7 @@ function mul14Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `곱셈식 ${expr(`${f.a}\\times\\square`)} 의 ${expr(`\\square`)} 에는 ${n(1)} 보다 큰 한 자리 수가 들어갑니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. ${expr(`\\square`)} 에 알맞은 수를 구하시오.`,
     `${n(f.a)} 에 ${n(1)} 보다 큰 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 이 곱셈은 ${words}. 곱한 수를 쓰시오.`,
     `어떤 수는 ${n(1)} 보다 큰 한 자리 수입니다. ${n(f.a)} 에 어떤 수를 곱한 값은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱셈은 ${words}. 어떤 수를 구하시오.`,
-    `${expr(`${f.a}\\times\\square`)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 입니다. 이 곱셈은 ${words}. ${expr(`\\square`)} 가 ${n(1)} 보다 큰 한 자리 수일 때 ${expr(`\\square`)} 에 알맞은 수를 쓰시오.`,
+    `${expr(`${f.a}\\times\\square`)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 입니다. 이 곱셈은 ${words}. ${expr(`\\square`)} 에 들어갈 ${n(1)} 보다 큰 한 자리 수를 쓰시오.`,
     `${n(1)} 보다 큰 한 자리 수 가운데, ${n(f.a)} 에 곱했을 때 곱의 일의 자리 숫자가 ${n(f.r)} 이고 ${mulCarryAdnom(want)} 수를 구하시오.`,
     `${n(f.a)} 에 한 자리 수를 곱하려고 합니다. 곱하는 수는 ${n(1)} 보다 크고, 곱의 일의 자리 숫자는 ${n(f.r)} 이며, 이 곱셈은 ${words}. 곱하는 수를 쓰시오.`,
     `${n(f.a)} 에 ${n(1)} 보다 큰 한 자리 수를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이었습니다. 그 곱셈이 ${mulCarryIf(want)} 곱한 한 자리 수는 얼마인지 쓰시오.`,
