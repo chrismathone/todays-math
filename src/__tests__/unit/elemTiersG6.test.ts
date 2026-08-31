@@ -126,24 +126,26 @@ function truthOf(content: string): R | null {
   // 세 갈래 모두 **시험이 조건을 다시 풀고**, 답이 하나로 굳는지까지 여기서 잰다 —
   // 「답이 둘인 문항」은 값 검산이 구조적으로 못 보는 부류다.
 
-  // 1-1-1 심화중 — 「$b$ 로 나눈 몫의 기약 분모가 $m$」 + 몫의 크기 + 하한.
+  // 1-1-1 심화중 — 「$b$ 로 나눈 몫의 기약 분모가 $m$」 + **양쪽으로 닫은 창** $(lo, hi)$.
+  //
+  // ⚠️ 예전 발문은 「몫이 $1$보다 작다」(밴드) + 하한 한 쪽이었는데, 답이 늘 배수열의
+  //    마지막이라 하한이 정보를 한 비트도 안 실었다(적대 검토 ⑴, 실측 100%).
+  //    창이 양쪽으로 닫히면서 밴드 문장은 지워졌다 — 판독기도 같이 옮긴다.
   if (
     content.includes("기약분수로 나타냈더니 분모가") &&
     content.includes("어떤 자연수를")
   ) {
     const b = Number(content.match(/어떤 자연수를 \$(\d+)\$/)?.[1] ?? NaN);
     const m = Number(content.match(/분모가 \$(\d+)\$/)?.[1] ?? NaN);
-    const lo = Number(
-      content.match(/어떤 수가 \$(\d+)\$보다 클 때/)?.[1] ?? NaN,
+    const win = content.match(
+      /어떤 수가 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
     );
-    if (!Number.isFinite(b) || !Number.isFinite(m) || !Number.isFinite(lo))
-      return null;
+    if (!Number.isFinite(b) || !Number.isFinite(m) || !win) return null;
     if (b % m !== 0) return null;
     const g = b / m;
-    const band = /\$1\$보다 크고 \$2\$보다 작습니다/.test(content) ? 1 : 0;
     const hit: number[] = [];
-    for (let a = band * b + 1; a < (band + 1) * b; a += 1)
-      if (a > lo && gcd(a, b) === g) hit.push(a);
+    for (let a = Number(win[1]) + 1; a < Number(win[2]); a += 1)
+      if (gcd(a, b) === g) hit.push(a);
     return hit.length === 1 ? rat(hit[0]!) : null;
   }
   // 1-1-2 심화중 — 「몫의 분모가 처음과 같은 $q$」 ⟺ 분자 $p$ 가 나누는 수로 나누어떨어진다.
@@ -4824,14 +4826,18 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
     return side / 628;
   }
   if (tier === "심화상" && code === "2-6-3") {
-    // 앞에서 본 삼각형의 넓이 = (반지름)×(높이). 짝을 만들어 조건에 대 본다.
-    const cap = one(/\$(\d+)\$ cm보다 짧을 때/);
-    if (AREA === null || cap === null) return null;
+    // 앞에서 본 삼각형의 넓이 = (반지름)×(높이). 짝을 만들어 **차**를 견준다.
+    //
+    // ⚠️ 예전 조건은 「높이가 $cap$ 보다 짧을 때」였는데 짝을 **하나도 안 걸렀다**
+    //    (적대 검토 ⑵ 실측 0/1200) — 답이 늘 마지막 짝이라 D-115 ⑾ 로는 «중»이었다.
+    //    이제 「높이와 반지름의 차」라 짝마다 계산해 견주어야 한다.
+    const diff = one(/차가 \$(\d+)\$ cm일 때/);
+    if (AREA === null || diff === null) return null;
     const hit: number[] = [];
     for (let r = 1; r * r < AREA; r += 1) {
       if (AREA % r !== 0) continue;
       const h = AREA / r;
-      if (h > r && h < cap) hit.push(r);
+      if (h > r && h - r === diff) hit.push(r);
     }
     return hit.length === 1 ? hit[0]! : null;
   }

@@ -148,7 +148,14 @@ const intsBetween = (lo: number, up: number) => {
   return out;
 };
 
-type Split = { open: number; fixed: number; series?: number };
+type Split = {
+  open: number;
+  fixed: number;
+  series?: number;
+  /** 답이 후보 열의 **마지막**인가 — 리드가 요구한 축(㉩). */
+  atEnd?: boolean;
+  atStart?: boolean;
+};
 
 /**
  * 갈래마다 **«열린 수»와 «굳은 수»** 를 다시 센다 — 엔진 풀을 안 부른다(되부르면 동어반복).
@@ -160,28 +167,39 @@ function splitOf(code: string, content: string): Split | null {
   const n = natsIn(content);
 
   if (code === "1-1-1") {
-    // 「$b$ 로 나눈 몫의 기약 분모가 $m$」 + 몫의 크기(창의 위쪽) + 하한.
+    // 「$b$ 로 나눈 몫의 기약 분모가 $m$」 + **양쪽으로 닫은 창** $(lo, hi)$.
+    //
+    // ⚠️ 예전 발문은 「몫이 $1$보다 작다」(밴드) + 하한 한 쪽이었는데, 답이 늘 배수열의
+    //    **마지막**이라 하한이 정보를 한 비트도 안 실었다(적대 검토 A·B·C 100%).
+    //    이제 창이 양쪽으로 닫히고 답의 자리가 흩어진다 — 밴드 문장은 창에 먹혀서 지웠다.
     const b = n[0];
     const m = n[1];
-    const lo = n[n.length - 1];
-    if (b === undefined || m === undefined || lo === undefined) return null;
+    const lo = n[2];
+    const hi = n[3];
+    if (
+      b === undefined ||
+      m === undefined ||
+      lo === undefined ||
+      hi === undefined
+    )
+      return null;
     if (b % m !== 0) return null;
     const g = b / m;
-    const band = /\$1\$보다 크고 \$2\$보다 작습니다/.test(content) ? 1 : 0;
-    const inRange: number[] = [];
-    for (let a = band * b + 1; a < (band + 1) * b; a += 1)
-      if (a > lo) inRange.push(a);
-    // 🔴 `series` 는 **하한을 빼고** 성질만 건 것 — 해설이 지면에 늘어놓는 그 열이다.
-    //    `open`(구간의 자연수 전부)과 **다른 수**다. 처음엔 `open` 에 최소치를 걸었다가
+    const win: number[] = [];
+    for (let v = lo + 1; v < hi; v += 1) win.push(v);
+    const fixed = win.filter((a) => gcd(a, b) === g);
+    // 🔴 `series` 는 창을 빼고 **성질만** 건 것 — 생성기의 `base.length >= 3` 이 그 뜻이다.
+    //    `open`(창 안의 자연수 전부)과 **다른 수**다. 처음엔 `open` 에 최소치를 걸었다가
     //    변이가 초록으로 남았다 — `open` 은 배수열 길이와 무관해서 **공허하게 통과**했다.
-    //    「재는 쪽이 무엇을 재는지」를 안 물으면 가드가 아니라 장식이 된다(§9.8).
     const series: number[] = [];
-    for (let a = band * b + 1; a < (band + 1) * b; a += 1)
-      if (gcd(a, b) === g) series.push(a);
+    for (let x = 1; x < b; x += 1) if (gcd(x, b) === g) series.push(x);
     return {
-      open: inRange.length,
-      fixed: inRange.filter((a) => gcd(a, b) === g).length,
+      open: win.length,
+      fixed: fixed.length,
       series: series.length,
+      // 🔴 리드가 요구한 축 — 「답이 열의 **마지막**인가」. 비율로 잰다(㉩).
+      atEnd: fixed.length === 1 && fixed[0] === win[win.length - 1],
+      atStart: fixed.length === 1 && fixed[0] === win[0],
     };
   }
 
@@ -260,16 +278,23 @@ function splitOf(code: string, content: string): Split | null {
   }
 
   if (code === "2-6-3") {
-    // 앞에서 본 삼각형의 넓이 = (반지름)×(높이). 짝을 만들어 높이 조건에 대 본다.
+    // 앞에서 본 삼각형의 넓이 = (반지름)×(높이). 짝을 만들어 **차**를 견준다.
+    //
+    // ⚠️ 예전 굳힘은 「높이가 $cap$ cm보다 짧을 때」였는데, `cap` 의 범위가 짝을
+    //    **하나도 안 걸렀다**(적대 검토 실측 0/1200) — 답은 늘 마지막 짝이었다.
+    //    이제 「높이와 반지름의 **차**」라 짝마다 실제로 계산해 견주어야 한다(D-115 ⑾).
     const area = n[0];
-    const cap = n[1];
-    if (area === undefined || cap === undefined) return null;
+    const diff = n[1];
+    if (area === undefined || diff === undefined) return null;
     const pairs: [number, number][] = [];
     for (let r = 1; r * r < area; r += 1)
       if (area % r === 0) pairs.push([r, area / r]);
+    const fixed = pairs.filter(([r, h]) => h - r === diff);
     return {
       open: pairs.length,
-      fixed: pairs.filter(([, h]) => h < cap).length,
+      fixed: fixed.length,
+      atEnd: fixed.length === 1 && fixed[0]![0] === pairs[pairs.length - 1]![0],
+      atStart: fixed.length === 1 && fixed[0]![0] === pairs[0]![0],
     };
   }
   return null;
@@ -412,8 +437,10 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     //    「**정사각형 모양** 화단」은 그저 소재다(정다각형 결합 갈래). 축은 낱말이 아니라
     //    «앞에서 본 모양 / 옆면이 정사각형이라 두 값이 같다»는 **관계**이므로 그것을 센다.
     //    거짓 경보는 가드를 끈다(2026-08-20).
+    // ⚠️ 2-6-3 은 굳힘이 「$cap$ 보다 짧을 때」에서 **「높이와 반지름의 차가 $d$」**로
+    //    바뀌었다(적대 검토 ⑵ — 옛 조건은 짝을 하나도 안 걸렀다). 그 관계도 이 축이다.
     const 확대표지 =
-      /보다 (?:크고|많고|길고|넓고|클 때|짧은|작은|짧을 때)|(?:앞에서 본 모양이|옆면이) 정사각형/;
+      /보다 (?:크고|많고|길고|넓고|클 때|짧은|작은|짧을 때)|(?:앞에서 본 모양이|옆면이) 정사각형|차가 \$\d+\$ cm일 때/;
     const built = new Set(BUILT.map((b) => b.code));
     const bad: string[] = [];
     let checked = 0;
@@ -560,7 +587,7 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     for (const seed of WIDE_SEEDS) {
       const p = generateElementaryProblem(unitOf("2-6-3"), seed, "심화상");
       const m = p.content.match(
-        /넓이가 \$(\d+)\$ cm²인 삼각형.*?\$(\d+)\$ cm보다 짧을 때/s,
+        /넓이가 \$(\d+)\$ cm²인 삼각형[^]*?차가 \$(\d+)\$ cm일 때/,
       );
       if (!m) {
         bad.push(`2-6-3 seed=${seed}: 발문을 못 읽음 — ${p.content}`);
@@ -568,11 +595,11 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
       }
       coneChecked += 1;
       const area = Number(m[1]);
-      const cap = Number(m[2]);
+      const diff = Number(m[2]);
       // (앞모양 넓이) = (지름)×(높이)÷2 = (반지름)×(높이)
       const fit: number[] = [];
       for (let r = 1; r * r < area; r += 1)
-        if (area % r === 0 && area / r < cap) fit.push(r);
+        if (area % r === 0 && area / r - r === diff) fit.push(r);
       if (fit.length !== 1 || fit[0] !== Number(p.answer.replace(/\$/g, "")))
         bad.push(
           `2-6-3 seed=${seed}: 발문이 정하는 반지름이 ${fit.length}개다(${fit.join(",")}) — ${p.content}`,
@@ -580,6 +607,58 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
     }
     expect(bad.slice(0, 6)).toEqual([]);
     expect(coneChecked).toBe(WIDE_SEEDS.length);
+  });
+
+  it("🔴 ㉩ 답이 후보 열의 **끝에 고정되지 않는다** (적대 검토 ⑴⑵)", () => {
+    // 🔴 이 축이 **아예 없었다.** `splitOf` 는 「몇 개가 열리나 · 몇 개가 굳나」만 셌고,
+    //    「**어느 것이** 굳나」는 안 봤다. 그래서 두 갈래가 각각
+    //      1-1-1 심화중 — 답이 늘 배수열의 마지막(23/23 · 1200/1200 = **100%**)
+    //      2-6-3 심화상 — 답이 늘 마지막 짝(672/672 · 1200/1200 = **100%**)
+    //    이었는데도 시험이 전부 초록이었다. 학생은 굳히는 조건을 **안 읽고** 맞힌다.
+    //
+    // ⚠️ **문턱은 «우연»에서 온다.** 후보가 $k$ 개면 마지막일 확률이 $1/k$ 이고,
+    //    이 두 갈래의 후보 수는 3~8 이라 우연은 대략 12~33% 다. 40% 를 넘으면
+    //    그것은 우연이 아니라 **구조**다. (100% 를 0% 로 만들라는 뜻이 아니다 —
+    //    마지막이 답인 문항이 아예 없으면 그 자체가 또 하나의 규칙이 된다.)
+    const LIMIT = 0.4;
+    const rows: string[] = [];
+    for (const { code, tier } of BUILT) {
+      const unit = unitOf(code);
+      let n = 0;
+      let end = 0;
+      let start = 0;
+      for (const seed of WIDE_SEEDS) {
+        const s = splitOf(
+          code,
+          generateElementaryProblem(unit, seed, tier).content,
+        );
+        if (!s || s.atEnd === undefined) continue; // 이 축을 안 재는 갈래
+        n += 1;
+        if (s.atEnd) end += 1;
+        if (s.atStart) start += 1;
+      }
+      if (n === 0) continue;
+      const bad =
+        end / n > LIMIT
+          ? `마지막 ${end}/${n} = ${((100 * end) / n).toFixed(1)}%`
+          : start / n > LIMIT
+            ? `처음 ${start}/${n} = ${((100 * start) / n).toFixed(1)}%`
+            : "";
+      if (bad) rows.push(`${code} ${tier}: 답이 열의 끝에 쏠린다 — ${bad}`);
+    }
+    expect(rows).toEqual([]);
+
+    // 🔴 **양성 눈금** — 이 자가 «예»를 낼 수 있는가. 답을 창의 마지막에 둔 합성 발문.
+    const stuck = splitOf(
+      "1-1-1",
+      "어떤 자연수를 $24$로 나눈 몫을 기약분수로 나타냈더니 분모가 $8$이 되었습니다. " +
+        "어떤 수가 $18$보다 크고 $22$보다 작을 때, 어떤 수를 구하시오.",
+    );
+    expect(stuck?.fixed, "합성 발문이 하나로 안 굳는다").toBe(1);
+    expect(
+      stuck?.atEnd,
+      "양성 눈금 — 답 $21$ 이 창 $19..21$ 의 마지막이다",
+    ).toBe(true);
   });
 
   it("🔴 ㉨ ±**한 걸음** — 지면의 두 수를 더하거나 빼서 답이 나오지 않는다", () => {

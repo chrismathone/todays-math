@@ -8838,22 +8838,32 @@ function backsolveSafeStem(content: string, answer: Rat): boolean {
 // ⚠️ 이 소단원은 발문에 **분수·소수를 한 개도 못 쓴다**(`kindsPresent("자연수","자연수")`).
 //    그래서 몫을 값으로 주지 못하고 «분모»와 «크기»로만 말한다.
 
+// ⚠️ **답을 열의 «마지막»에 고정하지 않는다.** 첫 판은 `a = set[len-1]` ·
+//    `lo = set[len-2]` 라, 학생이 하한을 **안 읽고** 후보 중 가장 큰 것만 골라도
+//    100% 맞았다(적대 검토 A·B·C 축 실측 23/23 · 1200/1200 — 정의역 23은
+//    포화가 증명된 전수다). 창의 하한이 **한 비트도** 정보를 안 실었다.
+//
+//    이제 답을 열 **안에서** 고르고 창을 그 둘레(이웃과 이웃 사이)로 잡는다.
+//    그러면 답의 자리가 흩어지고, 「가장 큰 것」·「가장 작은 것」 어느 쪽도 안 통한다.
+//
+// ⚠️ 그리고 **조건 하나를 지웠다.** 예전 발문은 「몫이 $1$보다 작다」와 「$lo$보다 크다」를
+//    둘 다 걸었는데, 창을 양쪽으로 닫으면 앞엣것이 뒤엣것에 **완전히 먹힌다**
+//    (M-6: 「어느 하나만 읽어도 나머지가 필요 없다」). 안 읽어도 되는 조건을 지면에
+//    남기면 학생에게 거짓말을 하는 것이다.
 type NatDivReduceCase = {
   b: number;
   m: number;
   g: number;
   lo: number;
+  hi: number;
   a: number;
-  set: number[];
+  win: number[];
   band: 0 | 1;
 };
 
 const natDivReduceStem = (c: NatDivReduceCase): string =>
   `어떤 자연수를 ${num(c.b)}${numRo(c.b)} 나눈 몫을 기약분수로 나타냈더니 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었습니다. ` +
-  (c.band === 0
-    ? `그 몫은 ${num(1)}보다 작습니다. `
-    : `그 몫은 ${num(1)}보다 크고 ${num(2)}보다 작습니다. `) +
-  `어떤 수가 ${num(c.lo)}보다 클 때, 어떤 수를 구하시오.`;
+  `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 어떤 수를 구하시오.`;
 
 const NAT_DIV_REDUCE_MID: NatDivReduceCase[] = [];
 for (let b = 6; b <= 30; b += 1)
@@ -8864,32 +8874,45 @@ for (let b = 6; b <= 30; b += 1)
     const base: number[] = [];
     for (let x = 1; x < b; x += 1) if (gcd(x, b) === g) base.push(x);
     // 후보가 셋 이상이어야 «성질이 만든 배수열»이 지면에서 보인다.
-    // (둘이면 창의 두 끝이 곧 답이라 반증 ⑥ 이 거의 다 문다 — 실측으로 전량 걸렸다.)
     if (base.length < 3) continue;
     for (const band of [0, 1] as const) {
       const set = base.map((x) => x + band * b);
-      const a = set[set.length - 1]!;
-      const lo = set[set.length - 2]!;
-      const c: NatDivReduceCase = { b, m, g, lo, a, set, band };
-      if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;
-      NAT_DIV_REDUCE_MID.push(c);
+      for (let k = 0; k < set.length; k += 1) {
+        // 창은 **이웃과 이웃 사이** 어디든 — 답만 담되 그 자리는 창마다 달라진다.
+        //
+        // ⚠️ 이웃과 이웃을 **꽉 채워** 잡으면(lo = 앞이웃 · hi = 뒷이웃) 배수열이
+        //    고르게 놓인 자리에서 답이 **늘 창의 한가운데**가 된다 — 실측 76.6%.
+        //    「가장 큰 것」을 깨고 「가운데」를 새로 만든 셈이라, 양쪽을 **따로**
+        //    좁혀 답의 자리를 흩뜨린다.
+        const prev = k > 0 ? set[k - 1]! : band * b;
+        const next = k + 1 < set.length ? set[k + 1]! : (band + 1) * b;
+        const a = set[k]!;
+        for (let lo = Math.max(1, prev); lo < a; lo += 1)
+          for (let hi = a + 1; hi <= next; hi += 1) {
+            const win: number[] = [];
+            for (let v = lo + 1; v < hi; v += 1) win.push(v);
+            // 창 안에 «답이 아닌 수»가 둘은 있어야 성질이 일을 한다.
+            // 여덟을 넘으면 해설이 늘어놓기에 길다.
+            if (win.length < 3 || win.length > 8) continue;
+            const c: NatDivReduceCase = { b, m, g, lo, hi, a, win, band };
+            if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;
+            NAT_DIV_REDUCE_MID.push(c);
+          }
+      }
     }
   }
 
 function natDivReduceMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pick(rng, NAT_DIV_REDUCE_MID);
-  const where =
-    c.band === 0
-      ? `몫이 ${num(1)}보다 작으므로 어떤 수는 ${num(c.b)}보다 작습니다.`
-      : `몫이 ${num(1)}보다 크고 ${num(2)}보다 작으므로 어떤 수는 ${num(c.b)}보다 크고 ${num(2 * c.b)}보다 작습니다.`;
   return makeDeep(unit, natDivReduceStem(c), num(c.a), [
     `몫은 어떤 수를 분자로, ${num(c.b)}${numJosa(c.b, "을", "를")} 분모로 하는 분수입니다. ` +
       `기약분수의 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었으므로 분자와 분모를 ` +
-      `${expr(`${c.b}\\div${c.m}=${c.g}`)}${numRo(c.g)} 약분한 것입니다.`,
-    `${where} 그 안에서 ${num(c.b)}${numJosa(c.b, "과", "와")} 약분하여 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되는 수는 ` +
-      `${c.set.map((v) => num(v)).join(", ")} 입니다.`,
-    `이 중 ${num(c.lo)}보다 큰 것은 ${num(c.a)} 뿐입니다. ` +
-      `${expr(`${c.a}\\div${c.b}=\\frac{${c.a}}{${c.b}}=${fmtFrac(c.a, c.b)}`)}` +
+      `${expr(`${c.b}\\div${c.m}=${c.g}`)}${numRo(c.g)} 약분한 것입니다. ` +
+      `곧 어떤 수는 ${num(c.b)}${numJosa(c.b, "과", "와")}의 최대공약수가 ${num(c.g)}인 수입니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 수는 ` +
+      `${c.win.map((v) => num(v)).join(", ")} 입니다. ` +
+      `이 중 ${num(c.b)}${numJosa(c.b, "과", "와")}의 최대공약수가 ${num(c.g)}인 것은 ${num(c.a)} 뿐입니다.`,
+    `${expr(`${c.a}\\div${c.b}=\\frac{${c.a}}{${c.b}}=${fmtFrac(c.a, c.b)}`)}` +
       `${numRo(lastSpokenNumber(fmtFrac(c.a, c.b)))} 분모가 ${num(c.m)}입니다.`,
   ]);
 }
@@ -8919,26 +8942,72 @@ const fracReturnStem = (c: FracReturnCase): string =>
   `몫의 분모가 처음과 같은 ${num(c.q)}${numJosa(c.q, "이", "가")} 되었습니다. ` +
   `어떤 자연수가 ${num(c.lo)}보다 크고 ${num(c.up)}보다 작을 때, 어떤 자연수를 구하시오.`;
 
-const FRAC_RETURN_MID: FracReturnCase[] = [];
-for (let q = 4; q <= 15; q += 1)
+/**
+ * ⚠️ **두 단계로 뽑는다.** 창 조합을 한 줄로 펴서 균등하게 뽑으면, 조합이 많은
+ * 유형(예 $p=14$)이 그만큼 무겁게 나와 「무조건 $7$」이 26.9% 가 된다.
+ * 유형을 먼저 고르고 그 안에서 창을 고르면 답이 고르게 흩어진다.
+ */
+type FracReturnGroup = {
+  p: number;
+  q: number;
+  k: number;
+  wins: [number, number][];
+};
+
+const FRAC_RETURN_MID: FracReturnGroup[] = [];
+for (let q = 4; q <= 25; q += 1)
   for (let p = 2; p < q; p += 1) {
     if (gcd(p, q) !== 1) continue;
     const divs: number[] = [];
     for (let k = 2; k <= p; k += 1) if (p % k === 0) divs.push(k);
     if (divs.length < 2) continue; // 후보가 하나면 마디가 안 열린다
-    for (let i = 0; i < divs.length; i += 1) {
+    // ⚠️ **`i = 0` 을 뺀다.** 가장 작은 약수는 거의 늘 $2$ 이고, 그 자리는 `lo = 1` 이라
+    //    창이 $2$ 부터 시작한다 — 그래서 「무조건 $2$」가 44.8% 였다(적대 검토 C 축,
+    //    대조군의 10배). 답이 «가장 작은 약수»가 아니게 만들면 그 전략이 죽는다.
+    for (let i = 1; i < divs.length; i += 1) {
       const k = divs[i]!;
-      const lo = i === 0 ? 1 : divs[i - 1]!;
-      const up = i === divs.length - 1 ? k + 2 : divs[i + 1]!;
-      if (up - lo < 3) continue; // 창에 «답이 아닌 수»가 하나도 없으면 창이 답을 준다
-      const c: FracReturnCase = { p, q, k, lo, up };
-      if (!backsolveSafeStem(fracReturnStem(c), rat(k))) continue;
-      FRAC_RETURN_MID.push(c);
+      const prev = divs[i - 1]!;
+      const next = i + 1 < divs.length ? divs[i + 1]! : k + 3;
+      const wins: [number, number][] = [];
+      // 창을 **양쪽으로 따로** 좁혀 답의 자리를 흩뜨린다(1-1-1 과 같은 처방).
+      for (let lo = prev; lo < k; lo += 1)
+        for (let up = k + 1; up <= next; up += 1) {
+          const win: number[] = [];
+          for (let v = lo + 1; v < up; v += 1) win.push(v);
+          if (win.length < 3 || win.length > 8) continue;
+          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.
+          if (win[0]! >= k) continue;
+          if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(k)))
+            continue;
+          wins.push([lo, up]);
+        }
+      if (wins.length > 0) FRAC_RETURN_MID.push({ p, q, k, wins });
     }
   }
 
+/**
+ * 🔴 **답을 먼저 고른다.** 유형만 고르게 뽑아도 「무조건 $4$」가 26.9% 였다 —
+ * $4$ 를 답으로 갖는 유형($p = 4, 8, 12, 16, 20, 24$)이 그만큼 많기 때문이다.
+ * 답 값으로 한 겹 묶으면 그 쏠림이 사라진다.
+ *
+ * ⚠️ 대신 «$q$ 를 키워 큰 약수를 만드는» 길은 안 갔다 — D-115 ⑽③ 이
+ * 「규모는 축이 아니다」로 못 박은 자리이고, 분모만 커진 문항은 더 어렵지 않다.
+ */
+const FRAC_RETURN_BY_ANS = new Map<number, FracReturnGroup[]>();
+for (const g of FRAC_RETURN_MID) {
+  const list = FRAC_RETURN_BY_ANS.get(g.k);
+  if (list) list.push(g);
+  else FRAC_RETURN_BY_ANS.set(g.k, [g]);
+}
+const FRAC_RETURN_ANSWERS = [...FRAC_RETURN_BY_ANS.keys()].sort(
+  (x, y) => x - y,
+);
+
 function fracReturnMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, FRAC_RETURN_MID);
+  const ansPick = pick(rng, FRAC_RETURN_ANSWERS);
+  const grp = pick(rng, FRAC_RETURN_BY_ANS.get(ansPick)!);
+  const [lo, up] = pick(rng, grp.wins);
+  const c: FracReturnCase = { p: grp.p, q: grp.q, k: grp.k, lo, up };
   const inWindow: number[] = [];
   for (let v = c.lo + 1; v < c.up; v += 1) inWindow.push(v);
   return makeDeep(unit, fracReturnStem(c), num(c.k), [
@@ -9176,9 +9245,26 @@ function netSquareMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 토대 §3-② 가 「2-6-3 심화상은 뒤집을 수 있다」고 적은 자리다. 같은 모양이 되는
 // 2-6-1 심화상은 그래서 **비웠다** — 둘 중 하나만 세운다.
 
+/**
+ * 2-6-3 심화상 — 앞모양 넓이에서 (반지름, 높이) 짝을 **만들어 견준다**.
+ *
+ * 🔴 첫 판은 굳힘이 「높이가 $cap$ cm보다 짧을 때」였는데, `cap` 의 범위가
+ * 「가장 작은 높이 초과 ~ 둘째로 작은 높이 이하」라 **살아남는 짝이 정의상 하나**였다.
+ * 그러면 그 조건은 지면에서 아무 일도 안 하고(적대 검토 실측 **0/1200**), 답은 늘
+ * 「$\sqrt{넓이}$ 아래 가장 큰 약수」다(**672/672 · 1200/1200 — 전수**).
+ * D-115 ⑾ 로 재면 그것은 «상»이 아니라 **«중»** 이다 — 만들고 **마지막을 집는** 것이라
+ * 「끝까지 계산해 견주는」 일이 없다.
+ *
+ * ⚠️ §9.9 가 이 함수에서 죽은 검사(`kept.length !== 1`)를 지웠지만, **그 검사를 죽게
+ * 만든 구조는 그대로 남아 있었다.** 코드를 지우는 것과 구조를 고치는 것은 다른 일이다.
+ *
+ * 이제 굳힘을 **비단조**로 바꾼다 — 「높이와 반지름의 **차**가 $d$ cm」.
+ * 짝마다 차를 **실제로 계산해** 견주어야 하나가 남으므로 ⑾ 의 «상» 이고,
+ * $d$ 를 짝마다 다르게 고르므로 답의 자리가 극단에 고정되지 않는다.
+ */
 type ConePairCase = {
   area: number;
-  cap: number;
+  diff: number;
   r: number;
   h: number;
   pairs: [number, number][];
@@ -9186,34 +9272,66 @@ type ConePairCase = {
 
 const conePairStem = (c: ConePairCase): string =>
   `어떤 원뿔을 앞에서 본 모양은 넓이가 ${num(c.area)} cm²인 삼각형입니다. ` +
-  `이 원뿔의 밑면의 반지름과 높이가 모두 자연수 cm이고 높이가 밑면의 반지름보다 길며 ` +
-  `${num(c.cap)} cm보다 짧을 때, 밑면의 반지름은 몇 cm인가?`;
+  `이 원뿔의 밑면의 반지름과 높이가 모두 자연수 cm이고 높이가 밑면의 반지름보다 길며, ` +
+  `높이와 반지름의 차가 ${num(c.diff)} cm일 때, 밑면의 반지름은 몇 cm인가?`;
 
 const CONE_PAIR_TOP: ConePairCase[] = [];
 for (let area = 12; area <= 160; area += 1) {
   const pairs: [number, number][] = [];
   for (let r = 1; r * r < area; r += 1)
     if (area % r === 0) pairs.push([r, area / r]);
-  if (pairs.length < 3 || pairs.length > 5) continue;
-  const heights = pairs.map((p) => p[1]).sort((x, y) => x - y);
-  // ⚠️ `cap` 이 [가장 작은 높이+1 .. 둘째로 작은 높이] 이므로 **높이가 `cap` 보다 짧은
-  //    짝은 언제나 정확히 하나**다. 여기서 「하나만 남았나」를 다시 묻던 줄은 그 범위와
-  //    **대수적으로 같은 말**이라 아무것도 안 갈랐다 — 변이 시험이 「산출물이 그대로」로
-  //    찍어 줬다(2026-08-31). 죽은 검사를 남기면 다음 사람이 그것을 가드로 읽는다.
-  //    지우고, **지면이 답을 하나로 정하는가**는 시험 ㉧ 이 발문에서 다시 풀어 지킨다
-  //    (그래서 이 범위를 넓히는 변이가 빨개진다).
-  for (let cap = heights[0]! + 1; cap <= heights[1]!; cap += 1) {
-    const kept = pairs.filter((p) => p[1] < cap);
-    const [r, h] = kept[0]!;
-    if (h > 40 || r > 20) continue;
-    const c: ConePairCase = { area, cap, r, h, pairs };
+  // 짝이 셋은 있어야 «만들어 견주기»가 한눈에 안 끝난다.
+  if (pairs.length < 3 || pairs.length > 6) continue;
+  for (const [r, h] of pairs) {
+    const diff = h - r;
+    // 차는 짝마다 다르다(`r` 이 커지면 `h` 는 작아지므로 `h - r` 은 **엄격히 줄어든다**).
+    // 그래도 그 사실에 기대지 않고 **세어서** 확인한다 — 하나가 아니면 안 쓴다.
+    if (pairs.filter(([x, y]) => y - x === diff).length !== 1) continue;
+    if (h > 40 || r > 20) continue; // 지면에 얹히는 크기
+    const c: ConePairCase = { area, diff, r, h, pairs };
     if (!backsolveSafeStem(conePairStem(c), rat(r))) continue;
     CONE_PAIR_TOP.push(c);
   }
 }
 
+/**
+ * 🔴 **답의 «자리»를 먼저 고른다.** 차 조건만 넣어도 「가장 큰 반지름」이 38.5% 였다 —
+ * 짝이 셋인 넓이가 많고 그 안에서 마지막 자리가 흔하기 때문이다. 지름길이 **자리**에
+ * 붙어 있으므로 자리로 묶어 고르게 뽑는다(1-1-2 는 같은 이유로 **답 값**으로 묶었다).
+ */
+const CONE_BY_POS = new Map<string, ConePairCase[]>();
+for (const c of CONE_PAIR_TOP) {
+  // ⚠️ **절대 자리로 묶으면 안 된다.** 「다섯째」는 짝이 여섯인 넓이에서만 나오므로
+  //    그 묶음을 고르면 그대로 «마지막에서 둘째»가 된다 — 실제로 그렇게 했다가
+  //    「가장 큰 반지름」이 38.5% → **42.8%** 로 **올랐다.** 묶음은 «몇 개 중 몇째»다.
+  const at = c.pairs.findIndex(([r]) => r === c.r);
+  const key = `${at}/${c.pairs.length}`;
+  const list = CONE_BY_POS.get(key);
+  if (list) list.push(c);
+  else CONE_BY_POS.set(key, [c]);
+}
+const CONE_POSITIONS = [...CONE_BY_POS.keys()].sort();
+
 function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, CONE_PAIR_TOP);
+  // 자리를 고르게 뽑고, **그 안에서 답 값도** 고르게 뽑는다 — 둘이 상충해서
+  // (자리만 고르면 「무조건 $2$」가 26.0%, 답 값을 키에 넣으면 「가장 큰 것」이
+  //  46.8% 로 되레 오른다) 두 겹으로 나눈다.
+  const bucket = CONE_BY_POS.get(pick(rng, CONE_POSITIONS))!;
+  const byAns = new Map<number, ConePairCase[]>();
+  for (const x of bucket) {
+    const l = byAns.get(x.r);
+    if (l) l.push(x);
+    else byAns.set(x.r, [x]);
+  }
+  const c = pick(
+    rng,
+    byAns.get(
+      pick(
+        rng,
+        [...byAns.keys()].sort((x, y) => x - y),
+      ),
+    )!,
+  );
   return makeDeep(unit, conePairStem(c), num(c.r), [
     // ⚠️ 「(지름)×(높이)÷2」 처럼 **KaTeX 밖에 맨 숫자**를 쓰면 D-66 표기 검사가 문다.
     //    말로 적는다 — 지면에서도 그 편이 읽힌다.
@@ -9222,7 +9340,9 @@ function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
       `넓이는 (반지름)×(높이)와 같습니다.`,
     `곱이 ${num(c.area)}이고 높이가 반지름보다 긴 두 자연수 짝을 모두 찾으면 ` +
       `${c.pairs.map((p) => expr(`${p[0]}\\times${p[1]}=${c.area}`)).join(", ")} 입니다.`,
-    `이 중 높이가 ${num(c.cap)}보다 짧은 것은 ${expr(`${c.r}\\times${c.h}=${c.area}`)} 뿐이므로 ` +
+    `짝마다 높이와 반지름의 차를 구하면 ` +
+      `${c.pairs.map((p) => expr(`${p[1]}-${p[0]}=${p[1] - p[0]}`)).join(", ")} 이므로, ` +
+      `차가 ${num(c.diff)}인 것은 ${expr(`${c.r}\\times${c.h}=${c.area}`)} 뿐입니다. ` +
       `밑면의 반지름은 ${unitNum(c.r, "cm")} 입니다.`,
   ]);
 }
