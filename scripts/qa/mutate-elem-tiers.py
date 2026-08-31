@@ -384,6 +384,42 @@ G3_MUTS = [
         '  const shown = alt.map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
         '  const shown = [alt[0]!].map(([u, v]) => expr(`${u}\\\\times${v}=${u * v}`));',
     ),
+    # 물결 2 (2-2 · 2-4 · 2-6 확대 갈래) 변이 일곱 — 2026-08-31
+    (
+        "2-2-3 심화중 훼손 — 굳히는 성질을 «나누어떨어짐»이 아닌 것으로 바꾼다",
+        "        const hits = cand.filter((x) => x % b2 === 0);",
+        "        const hits = cand.filter((x) => x % b2 === 1);",
+    ),
+    (
+        "2-2-4 심화중 훼손 — «몫이 세 자리»를 뒤집는다(성질이 반대로 자른다)",
+        "      const three = cand.filter((b) => M / b >= 100);",
+        "      const three = cand.filter((b) => M / b < 100);",
+    ),
+    (
+        "2-2-4 심화상 훼손 — 후보끼리 몫의 자릿수가 갈리는 자리도 넣는다(그건 중이다)",
+        "        !cand.every((x) => Math.floor(N / x) >= 10 && Math.floor(N / x) <= 99)",
+        "        !cand.every((x) => Math.floor(N / x) >= 10 && Math.floor(N / x) <= 999)",
+    ),
+    (
+        "2-4 심화중 훼손 — 창 안에 묶음 수의 배수가 여럿인 자리도 넣는다(답이 안 정해진다)",
+        "          if (cnt !== 1) continue;",
+        "          if (cnt < 1) continue;",
+    ),
+    (
+        "2-4-5 심화중 훼손 — 나머지를 «가장 큰 수»가 아닌 것으로 만든다",
+        "      const N = (w + 1) * d - 1;",
+        "      const N = (w + 1) * d - 2;",
+    ),
+    (
+        "2-6-2 심화중 훼손 — 그림이 아홉 개 이하인 자리도 넣는다(규약이 아무것도 안 자른다)",
+        "  for (let total = 11; total <= 18; total += 1) {",
+        "  for (let total = 8; total <= 18; total += 1) {",
+    ),
+    (
+        "2-6-2 심화상 훼손 — 그림이 열 개를 넘는 자리도 넣는다(규약이 잘라 주면 중이다)",
+        "  for (let total = 4; total <= 7; total += 1) {",
+        "  for (let total = 4; total <= 12; total += 1) {",
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -1623,6 +1659,9 @@ TARGETS = {
             # D-113 파일럿(심화중·심화상). 이 파일을 안 적으면 확대 갈래를 무는
             # 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
             "src/__tests__/unit/elemTiersG3Mul21Extend.test.ts",
+            # D-113 물결 2(2-2 · 2-4 · 2-6 의 심화중·심화상). 안 적으면 그 갈래를
+            # 물는 변이가 **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
+            "src/__tests__/unit/elemTiersG3W2Extend.test.ts",
         ],
         "grade": "초3",
         "sections": [
@@ -1642,6 +1681,8 @@ TARGETS = {
             "2-4-3",
             "2-4-4",
             "2-4-6",
+            "2-6-1",
+            "2-6-2",
         ],
         "muts": G3_MUTS,
     },
