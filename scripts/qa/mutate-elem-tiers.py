@@ -1054,6 +1054,88 @@ G5_MUTS = [
         "      for (let k = 2; k <= 4; k += 1) {\n        const add = k * (b - 2 * a);",
         "      for (let k = 1; k <= 1; k += 1) {\n        const add = k * (b - 2 * a);",
     ),
+    # ── 물결 3 (1-2 · 2-1 · 2-3) ──
+    (
+        "[물결3 1-2-1 심화중] 답이 짝수 후보가 아니라 홀수 후보다",
+        "  return makeDeep(unit, content(t), n(t.even), [",
+        "  return makeDeep(unit, content(t), n(t.odd[0]!), [",
+    ),
+    (
+        "[물결3 1-2-1 심화상] 후보가 하나뿐인 자리도 넣는다 (견줄 것이 없다)",
+        "      if (cands.length < 2 || cands.length > 5) continue;",
+        "      if (cands.length < 1 || cands.length > 5) continue;",
+    ),
+    (
+        "[물결3 1-2-4 심화중] 서로소 짝이 여럿인 자리도 넣는다 (답이 안 정해진다)",
+        "      if (pairs.length !== 1) continue; // 성질이 **한 번에** 하나를 남겨야 «중»이다",
+        "      if (pairs.length < 1) continue; // 성질이 **한 번에** 하나를 남겨야 «중»이다",
+    ),
+    (
+        "[물결3 1-2-4 심화중] 답이 더 큰 수가 아니라 더 작은 수",
+        "  return makeDeep(unit, content(t), n(t.g * t.q), [",
+        "  return makeDeep(unit, content(t), n(t.g * t.p), [",
+    ),
+    (
+        "[물결3 1-2-4 심화상] 한 변이 최대공약수인 자리도 넣는다 (기본과 같은 문항)",
+        "      if (d < 2) continue;\n      const tried = desc.slice(0, i + 1);",
+        "      if (d < 1) continue;\n      const tried = desc.slice(0, i + 1);",
+    ),
+    (
+        # ⚠️ 첫 판은 `pairs.length !== 1` → `< 1` 이었는데 **산출물이 그대로**였다 —
+        #    그런 (M, S) 는 첫 짝의 최소공배수가 M 이 아니라 다음 줄이 이미 걸러 낸다.
+        #    그래서 «그 다음 줄»을 지우는 쪽으로 바꿨다.
+        "[물결3 1-2-6 심화중] 두 수의 최소공배수가 정말 $M$ 인지 안 본다",
+        "      const [p, q] = pairs[0]!;\n      if (lcm(p, q) !== M) continue;",
+        "      const [p, q] = pairs[0]!;",
+    ),
+    # ⚠️ 「1-2-6 심화중의 `p === 1` 가드를 끈다」 변이는 **뺐다.** 그런 가드가 없기
+    #    때문이다 — 두 번 넣어 봤고 두 번 다 「산출물이 그대로다」였다. 그 자리를
+    #    지키는 것은 `S <= M` 과 `w2Bad`(답이 지면에 그대로)이고, 시험이 산출물에서
+    #    다시 센다. **없는 가드에 변이를 걸면 판정 거부가 «시험이 약하다»로 읽힌다.**
+    (
+        # ⚠️ `k = 2` 로 여는 변이는 **산출물을 안 바꾼다** — `w2Bad` 가 `k = 2` 자리를
+        #    전량 걸러 내기 때문이다(실측 41 → 36, `k = 2` 는 0건). 그래서 `k = 1` 로 연다.
+        #    그 빨강은 `makeDeep`(걸음이 둘 미만이면 만들 때 죽는다)을 지나 온다 —
+        #    「한 걸음짜리 심화가 지면까지 갈 수 없다」는 그 가드가 무는 것이다.
+        "[물결3 1-2-6 심화상] 첫 공배수가 곧 답 (차례로 대 볼 것이 없다)",
+        "        if (k < 3 || k > 6) continue;",
+        "        if (k < 1 || k > 6) continue;",
+    ),
+    (
+        "[물결3 2-1-1 심화중] 범위 안 첫 배수를 «$a$ 미만»에서 고른다 (개수가 어긋난다)",
+        "      const first = Math.ceil(a / k) * k;",
+        "      const first = Math.floor(a / k) * k;",
+    ),
+    (
+        "[물결3 2-1-4 심화중] 백·천의 자리까지 올림한 결과도 넣는다 (자리가 안 굳는다)",
+        "    if (A % 100 === 0) continue;\n    out.push({ A });",
+        "    out.push({ A });",
+    ),
+    (
+        "[물결3 2-1-4 심화상] 가장 작은 수를 한 칸 아래로",
+        "  return makeDeep(unit, content(t), n(t.A - t.c + 1), [",
+        "  return makeDeep(unit, content(t), n(t.A - t.c), [",
+    ),
+    (
+        "[물결3 2-1-6 심화중] 반올림도 담는 값을 단서로 준다 (어림이 안 굳는다)",
+        "    for (let v = A + 5; v <= A + 9; v += 1) out.push({ A, v, up: false });",
+        "    for (let v = A + 3; v <= A + 9; v += 1) out.push({ A, v, up: false });",
+    ),
+    (
+        "[물결3 2-1-6 심화상] 반올림의 가장 작은 수를 한 칸 위로",
+        "  const answer = (t: W3RoundTopTask) => (t.up ? t.A - 99 : t.A - 50);",
+        "  const answer = (t: W3RoundTopTask) => (t.up ? t.A - 99 : t.A - 49);",
+    ),
+    (
+        "[물결3 2-3-4 심화중] 셋째 변이 두 변 사이인 자리도 넣는다 (되짚기가 장식이 된다)",
+        "        if (z > x && z < y) continue;",
+        "        if (z > x && z < y - 1000) continue;",
+    ),
+    (
+        "[물결3 2-3-4 심화하] 해설의 `\\div` 를 홑 역슬래시로 되돌린다 (지면에 날 글자)",
+        "둘레의 절반인 ${expr(`${round}\\\\div2=${half}`)} cm입니다.",
+        "둘레의 절반인 ${expr(`${round}\\div2=${half}`)} cm입니다.",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -1938,12 +2020,17 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG5DecTop.test.ts",
             # 물결 2(1-5·1-6·2-6)의 확대 갈래를 잠그는 자리.
             "src/__tests__/unit/elemTiersG5W2.test.ts",
+            # 물결 3(1-2·2-1·2-3)의 확대 갈래를 잠그는 자리.
+            "src/__tests__/unit/elemTiersG5W3.test.ts",
         ],
         "grade": "초5",
         "sections": [
             "1-1-1",
             "1-1-2",
             "1-1-3",
+            # 🔴 물결 3 에서 1-2-1 에 확대 갈래가 붙었다 — 여기 안 넣으면 그 소단원만
+            #    건드리는 변이가 프로브에 안 잡혀 «산출물이 그대로다»로 판정 거부된다.
+            "1-2-1",
             "1-2-4",
             "1-2-5",
             "1-2-6",
