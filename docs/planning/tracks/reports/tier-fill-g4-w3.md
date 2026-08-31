@@ -516,3 +516,10 @@ Test Files  2 failed | 333 passed | 1 skipped (336)
 ```
 
 그리고 **`1-5-3` 을 되살리려면 `BAR_SCALES` 부터**다(§10-6).
+
+그리고 **변이 하네스를 다시 돌리기 전에 앵커부터 세라** —
+`node scripts/qa/check-mutation-anchors.mjs` 가 `mutate-elem-g4-w3.mjs` 의 `from:` 열네가
+`g4.ts` 에서 **정확히 한 곳씩** 물는지 센다. prettier 가 줄을 접으면
+치환이 **0곳**이 되고, 그러면 하네스가 «판정 거부» 를 낸다 —
+이번 1차에서 실제로 한 건 그러했다(§6.4 ㈞). 이번 커밋 뒤에도 돌렸다 —
+**14/14 살아 있다.**
