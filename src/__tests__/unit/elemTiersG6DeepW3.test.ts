@@ -44,9 +44,11 @@ import {
   supportedTiers,
 } from "@/lib/elementary/generate";
 import {
+  answerPrintedOnPage,
   forwardReachable,
   pageNumbers,
   readRat,
+  type Rat,
 } from "@/lib/elementary/forwardReach";
 
 import {
@@ -55,6 +57,18 @@ import {
 } from "../../../scripts/qa/probe-elem-tier-enumeration";
 
 const SEEDS = Array.from({ length: 24 }, (_, i) => i * 37 + 5);
+
+/**
+ * ㉠ 의 «열린 후보» 최소치. 기본은 둘(D-115 가 요구하는 값)이고, **더 요구하는 자리만**
+ * 여기 적는다.
+ *
+ * 1-1-1 은 셋이다 — 성질이 만드는 것이 «배수열»이고 해설이 그 열을 **지면에 늘어놓기**
+ * 때문이다. 둘이면 창의 두 끝이 곧 답이라 열이 열로 안 보인다. 생성기 쪽 `base.length < 3`
+ * 가 그 뜻인데 **어떤 시험도 그것을 안 물고 있었다**(2026-08-31 변이 시험이 초록으로
+ * 찍었다). 손 상수를 생성기와 시험에 두 벌 두는 것이 아니라, 시험은 **지면에서 다시 풀어**
+ * 센다(`splitOf`) — 그래서 생성기의 그 줄을 무르면 여기가 빨개진다.
+ */
+const MIN_OPEN: Record<string, number> = { "1-1-1": 3 };
 
 /**
  * 🔴 **반증 ⑥ 만 씨앗을 넓게 쓴다** — 2차분 §8.2 가 실측으로 남긴 교훈이다.
@@ -273,9 +287,10 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
           continue;
         }
         checked += 1;
-        if (s.open < 2)
+        const want = MIN_OPEN[code] ?? 2;
+        if (s.open < want)
           bad.push(
-            `${code} 심화중 seed=${seed}: 마디가 이미 굳어 있다(열린 후보 ${s.open}) — ${p.content}`,
+            `${code} 심화중 seed=${seed}: 마디가 얕다(열린 후보 ${s.open} < ${want}) — ${p.content}`,
           );
         if (s.fixed !== 1)
           bad.push(
@@ -333,6 +348,15 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
       forwardReachable(pageNumbers("$\\frac{3}{8}$ $48$"), readRat("18")!),
       "양성 눈금 — 분수를 한 값으로 읽으면 $\\frac38\\times48=18$ 이 잡힌다",
     ).toBe(true);
+    // 🔴 둘째 자의 눈금 — 양성과 음성을 **둘 다** 댄다.
+    expect(
+      answerPrintedOnPage(pageNumbers("$19$ $25$"), readRat("19")!),
+      "양성 눈금 — 답이 지면에 그대로 있다",
+    ).toBe(true);
+    expect(
+      answerPrintedOnPage(pageNumbers("$19$ $25$"), readRat("20")!),
+      "음성 눈금 — 지면에 없는 답은 «있다»가 아니다",
+    ).toBe(false);
 
     const bad: string[] = [];
     let measured = 0;
@@ -343,9 +367,19 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
         const ans = readRat(p.answer.replace(/\$/g, "").trim());
         expect(ans, `${code} ${tier}: 답을 못 읽음 — ${p.answer}`).toBeTruthy();
         measured += 1;
-        if (forwardReachable(pageNumbers(p.content), ans!))
+        const nums = pageNumbers(p.content);
+        if (forwardReachable(nums, ans!))
           bad.push(
             `${code} ${tier} seed=${seed}: 순방향으로 닿는다 — ${p.content}`,
+          );
+        // 🔴 생성기 가드(`backsolveSafeStem`)는 **둘**을 본다 — 순방향과 «답이 지면에
+        //    그대로 있나». 이 시험은 앞엣것만 봤고, 그래서 2-5-2 의 가드를 통째로
+        //    무르는 변이가 **초록**으로 찍혔다(2026-08-31). 새로 들어온 짝이 거의 다
+        //    뒤엣것이었기 때문이다 — 답이 바퀴 수인데 창의 두 끝과 겹칠 수 있다.
+        //    **가드가 보는 것을 시험도 다 봐야 한다.**
+        if (answerPrintedOnPage(nums, ans!))
+          bad.push(
+            `${code} ${tier} seed=${seed}: 답이 지면에 그대로 있다 — ${p.content}`,
           );
       }
     }
@@ -497,6 +531,102 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
         `2-6-2 seed=${seed}: 옆면이 정사각형이 아니다`,
       ).toBe(perim);
     }
+
+    // 🔴 2-6-3 — **지면이 답을 하나로 정하는가.** 발문은 「넓이가 $A$ 인 삼각형 ·
+    //    반지름과 높이가 자연수 · 높이가 반지름보다 길며 $cap$ 보다 짧다」고만 말한다.
+    //    그 말만으로 짝이 둘이면 답이 둘이고, 그건 값 검산이 **구조적으로 못 본다**
+    //    (엔진이 고른 하나로 계산하면 산술은 그대로 맞는다).
+    //    생성기에 있던 「하나만 남았나」 줄은 `cap` 의 범위와 대수적으로 같은 말이라
+    //    아무것도 안 갈랐다(변이가 「산출물 그대로」로 찍었다). 그래서 지웠고,
+    //    지키는 일은 여기서 **발문을 다시 풀어서** 한다.
+    let coneChecked = 0;
+    for (const seed of WIDE_SEEDS) {
+      const p = generateElementaryProblem(unitOf("2-6-3"), seed, "심화상");
+      const m = p.content.match(
+        /넓이가 \$(\d+)\$ cm²인 삼각형.*?\$(\d+)\$ cm보다 짧을 때/s,
+      );
+      if (!m) {
+        bad.push(`2-6-3 seed=${seed}: 발문을 못 읽음 — ${p.content}`);
+        continue;
+      }
+      coneChecked += 1;
+      const area = Number(m[1]);
+      const cap = Number(m[2]);
+      // (앞모양 넓이) = (지름)×(높이)÷2 = (반지름)×(높이)
+      const fit: number[] = [];
+      for (let r = 1; r * r < area; r += 1)
+        if (area % r === 0 && area / r < cap) fit.push(r);
+      if (fit.length !== 1 || fit[0] !== Number(p.answer.replace(/\$/g, "")))
+        bad.push(
+          `2-6-3 seed=${seed}: 발문이 정하는 반지름이 ${fit.length}개다(${fit.join(",")}) — ${p.content}`,
+        );
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+    expect(coneChecked).toBe(WIDE_SEEDS.length);
+  });
+
+  it("🔴 ㉨ ±**한 걸음** — 지면의 두 수를 더하거나 빼서 답이 나오지 않는다", () => {
+    // 🔴 반증 ⑥ 의 자(`forwardReachable`)는 허용 꼴 넷이 **전부 곱을 문다.**
+    //    그래서 곱이 첫 걸음이 아닌 자리에서는 구조적으로 0 이고, 그 0 은 «깨끗»이
+    //    아니라 **«못 셈»** 이다(2026-08-31 리드 지시 · 초3 1-1-4 는 전수 «두 수의 차»,
+    //    초4 는 「⑥ 0건」 144자리가 전량 못 셈이었다). 그 사각지대를 이 축이 덮는다.
+    //
+    //    규칙: 지면의 두 수 `a`·`b` 에 대해 `a+b` 또는 `a−b` 가 답과 같고 그 결과가
+    //    `a` 와도 `b` 와도 다르면 «한 걸음». `0` 은 세지 않고, 두 걸음은 일부러 안 본다.
+    const eq = (x: Rat, y: Rat) => x.n * y.d === y.n * x.d;
+    const pmOneStep = (nums: readonly Rat[], answer: Rat): boolean => {
+      for (let i = 0; i < nums.length; i += 1)
+        for (let j = 0; j < nums.length; j += 1) {
+          if (i === j) continue;
+          const a = nums[i]!;
+          const b = nums[j]!;
+          if (a.n === 0 || b.n === 0) continue;
+          if (eq(answer, a) || eq(answer, b)) continue;
+          if (
+            eq({ n: a.n * b.d + b.n * a.d, d: a.d * b.d }, answer) ||
+            eq({ n: a.n * b.d - b.n * a.d, d: a.d * b.d }, answer)
+          )
+            return true;
+        }
+      return false;
+    };
+
+    // 🔴 눈금 — 양성 둘·음성 둘. 이 자가 «예»와 «아니오»를 **둘 다** 낼 수 있어야
+    //    아래의 0 이 «깨끗»이다(2026-08-20 「판정자의 성적표에는 음성 대조군도 있어야」).
+    expect(
+      pmOneStep(pageNumbers("$25$ $19$"), readRat("6")!),
+      "양성 — $25-19=6$",
+    ).toBe(true);
+    expect(
+      pmOneStep(pageNumbers("$\\frac{3}{4}$ $\\frac{1}{4}$"), readRat("1")!),
+      "양성 — 분수도 잰다",
+    ).toBe(true);
+    expect(
+      pmOneStep(pageNumbers("$25$ $19$"), readRat("25")!),
+      "음성 — 답이 지면의 수 그대로면 «한 걸음»이 아니다",
+    ).toBe(false);
+    expect(
+      pmOneStep(pageNumbers("$25$ $19$"), readRat("475")!),
+      "음성 — 곱은 이 축이 보는 것이 아니다",
+    ).toBe(false);
+
+    const bad: string[] = [];
+    let measured = 0;
+    for (const { code, tier } of BUILT) {
+      const unit = unitOf(code);
+      for (const seed of WIDE_SEEDS) {
+        const p = generateElementaryProblem(unit, seed, tier);
+        const ans = readRat(p.answer.replace(/\$/g, "").trim());
+        expect(ans, `${code} ${tier}: 답을 못 읽음 — ${p.answer}`).toBeTruthy();
+        measured += 1;
+        if (pmOneStep(pageNumbers(p.content), ans!))
+          bad.push(
+            `${code} ${tier} seed=${seed}: 두 수의 합·차로 답이 나온다 — ${p.content}`,
+          );
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+    expect(measured).toBe(BUILT.length * WIDE_SEEDS.length);
   });
 
   it("답은 하나이고 「모두 …시오」로 도망가지 않는다 (반증 ⑤)", () => {

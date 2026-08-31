@@ -8801,9 +8801,45 @@ function shareSplitTop(unit: UnitSeed, rng: Rng): ElemProblem {
  *
  * `pageNumbers` 는 판정기가 쓰는 그 함수다. 규칙도 입력도 한 벌이 된다.
  */
+/**
+ * ±**한 걸음** — 지면의 두 수 `a`·`b` 에 대해 `a+b` 또는 `a−b` 가 답과 같은가.
+ *
+ * 🔴 `forwardReachable` 의 허용 꼴 넷(`a×b` · `a×b×c` · `a×b±c` · `a×b±c×d`)은
+ * **전부 곱을 문다.** 그래서 곱이 첫 걸음이 아닌 자리에서는 그 자가 «0」을 내는데,
+ * 그 0 은 «깨끗»이 아니라 **«못 셈»** 이다(2026-08-31 리드 지시 — 초3 이 1-1-4 심화중을
+ * 전수 20,625/20,625 «두 수의 차»로 재서 갈래를 거뒀고, 초4 는 「⑥ 0건」이 144자리
+ * 전량 «못 셈»이었다). 그 사각지대를 이 자가 덮는다.
+ *
+ * 규칙은 리드가 못 박은 그대로다 — `0` 을 더하거나 빼는 것은 한 걸음이 아니고,
+ * 결과가 `a` 와도 `b` 와도 다를 때만 «한 걸음»이며, 두 걸음은 일부러 안 본다.
+ *
+ * ⚠️ 초3 이 세운 공용 `pmOneStepReachable` 은 아직 main 에 없다. 물결이 도는 중에
+ * 공용 판정기를 흔들지 말라는 지시라 **이 파일 안에서** 같은 규칙을 잰다.
+ * 공용판이 착지하면 이쪽을 지우고 그것을 물릴 것.
+ */
+function pmOneStepReachable(nums: readonly Rat[], answer: Rat): boolean {
+  const eq = (x: Rat, y: Rat) => x.n * y.d === y.n * x.d;
+  for (let i = 0; i < nums.length; i += 1)
+    for (let j = 0; j < nums.length; j += 1) {
+      if (i === j) continue;
+      const a = nums[i]!;
+      const b = nums[j]!;
+      if (a.n === 0 || b.n === 0) continue; // 0 을 더하고 빼는 것은 걸음이 아니다
+      if (eq(answer, a) || eq(answer, b)) continue; // 결과가 재료와 같으면 안 센다
+      const sum: Rat = { n: a.n * b.d + b.n * a.d, d: a.d * b.d };
+      const dif: Rat = { n: a.n * b.d - b.n * a.d, d: a.d * b.d };
+      if (eq(sum, answer) || eq(dif, answer)) return true;
+    }
+  return false;
+}
+
 function backsolveSafeStem(content: string, answer: Rat): boolean {
   const nums = pageNumbers(content);
-  return !forwardReachable(nums, answer) && !answerPrintedOnPage(nums, answer);
+  return (
+    !forwardReachable(nums, answer) &&
+    !answerPrintedOnPage(nums, answer) &&
+    !pmOneStepReachable(nums, answer)
+  );
 }
 
 // ── 1-1-1 (자연수)÷(자연수)의 몫을 분수로 — 심화중 ──────────────────────────
@@ -9175,9 +9211,14 @@ for (let area = 12; area <= 160; area += 1) {
     if (area % r === 0) pairs.push([r, area / r]);
   if (pairs.length < 3 || pairs.length > 5) continue;
   const heights = pairs.map((p) => p[1]).sort((x, y) => x - y);
+  // ⚠️ `cap` 이 [가장 작은 높이+1 .. 둘째로 작은 높이] 이므로 **높이가 `cap` 보다 짧은
+  //    짝은 언제나 정확히 하나**다. 여기서 「하나만 남았나」를 다시 묻던 줄은 그 범위와
+  //    **대수적으로 같은 말**이라 아무것도 안 갈랐다 — 변이 시험이 「산출물이 그대로」로
+  //    찍어 줬다(2026-08-31). 죽은 검사를 남기면 다음 사람이 그것을 가드로 읽는다.
+  //    지우고, **지면이 답을 하나로 정하는가**는 시험 ㉧ 이 발문에서 다시 풀어 지킨다
+  //    (그래서 이 범위를 넓히는 변이가 빨개진다).
   for (let cap = heights[0]! + 1; cap <= heights[1]!; cap += 1) {
     const kept = pairs.filter((p) => p[1] < cap);
-    if (kept.length !== 1) continue;
     const [r, h] = kept[0]!;
     if (h > 40 || r > 20) continue;
     const c: ConePairCase = { area, cap, r, h, pairs };
