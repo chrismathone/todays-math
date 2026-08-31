@@ -28,51 +28,77 @@ function run(args: string[]) {
   });
 }
 
+/**
+ * ⚠️ **셋이 같은 예산을 쓴다** (2026-08-31, 물결 3).
+ *
+ * 예산을 넉넉히 준 것은 **가운데 하나뿐**이었다. 나머지 둘은 vitest 기본 `20_000`
+ * 이라, `tsx` 기동이 한 번만 4~8초인데 부하가 걸리면 그대로 넘긴다 — 관문 두 회차에서
+ * **첫째와 셋째가 번갈아** 빨갰고 그 파일만 따로 돌리면 4.4초에 통과했다.
+ * 「부하 때만 빨간」 시험은 아무것도 안 재면서 관문을 막고, 그러면 다음 사람이
+ * 관문을 우회한다(2026-08-20 「거짓 경보는 가드를 끈다」).
+ *
+ * 🔴 **재는 것은 하나도 안 줄었다** — 늘린 것은 기다리는 시간뿐이다.
+ */
+const 예산 = 90_000;
+
 describe("[초등 결합형 CLI] 명시적인 별도 경로", () => {
-  it("--list-combos는 승인 등록부의 id와 두 문형을 보여 준다", () => {
-    const result = run(["--list-combos"]);
-    expect(result.status, result.stderr).toBe(0);
-    expect(result.stdout).toContain(COMBO);
-    expect(result.stdout).toContain("nested-part");
-    expect(result.stdout).toContain("remainder-part");
-  });
+  it(
+    "--list-combos는 승인 등록부의 id와 두 문형을 보여 준다",
+    () => {
+      const result = run(["--list-combos"]);
+      expect(result.status, result.stderr).toBe(0);
+      expect(result.stdout).toContain(COMBO);
+      expect(result.stdout).toContain("nested-part");
+      expect(result.stdout).toContain("remainder-part");
+    },
+    예산,
+  );
 
   // ⚠️ **예산을 넉넉히 준다.** 이 시험은 `tsx` 로 CLI 를 **두 번** 띄운다 —
   //    아무도 안 쓸 때도 15.5초가 걸린다(실측). vitest 기본 예산이 20초라 여유가
   //    22% 뿐이고, 다른 세션이 같이 돌면 그대로 **시간 초과로 빨개진다**(2026-08-28
   //    관문에서 실제로 그랬다. 따로 돌리면 통과). 「부하 때만 빨간」 시험은 아무것도
   //    안 재면서 관문을 막고, 그러면 다음 사람이 관문을 우회한다.
-  it("--combo는 같은 씨앗으로 같은 JSON 세트를 낸다", () => {
-    const args = ["--combo", COMBO, "--count", "3", "--seed", "20260824"];
-    const first = run(args);
-    const second = run(args);
-    expect(first.status, first.stderr).toBe(0);
-    expect(second.status, second.stderr).toBe(0);
-    const a = JSON.parse(first.stdout);
-    const b = JSON.parse(second.stdout);
-    // 실행 시각만 재현 대상이 아니다.
-    delete a.meta.generatedAt;
-    delete b.meta.generatedAt;
-    expect(a).toEqual(b);
-    expect(a.meta.comboId).toBe(COMBO);
-    expect(a.items).toHaveLength(3);
-    expect(
-      a.items.every(
-        (item: { problem: { kind: string } }) => item.problem.kind === "combo",
-      ),
-    ).toBe(true);
-  }, 90_000);
+  it(
+    "--combo는 같은 씨앗으로 같은 JSON 세트를 낸다",
+    () => {
+      const args = ["--combo", COMBO, "--count", "3", "--seed", "20260824"];
+      const first = run(args);
+      const second = run(args);
+      expect(first.status, first.stderr).toBe(0);
+      expect(second.status, second.stderr).toBe(0);
+      const a = JSON.parse(first.stdout);
+      const b = JSON.parse(second.stdout);
+      // 실행 시각만 재현 대상이 아니다.
+      delete a.meta.generatedAt;
+      delete b.meta.generatedAt;
+      expect(a).toEqual(b);
+      expect(a.meta.comboId).toBe(COMBO);
+      expect(a.items).toHaveLength(3);
+      expect(
+        a.items.every(
+          (item: { problem: { kind: string } }) =>
+            item.problem.kind === "combo",
+        ),
+      ).toBe(true);
+    },
+    예산,
+  );
 
-  it("결합형과 기존 grade/section/tier 옵션은 섞지 못한다", () => {
-    const result = run([
-      "--combo",
-      COMBO,
-      "--grade",
-      "초5",
-      "--section",
-      "2-2-3",
-    ]);
-    expect(result.status).not.toBe(0);
-    expect(result.stderr).toMatch(/결합형|같이/);
-  });
+  it(
+    "결합형과 기존 grade/section/tier 옵션은 섞지 못한다",
+    () => {
+      const result = run([
+        "--combo",
+        COMBO,
+        "--grade",
+        "초5",
+        "--section",
+        "2-2-3",
+      ]);
+      expect(result.status).not.toBe(0);
+      expect(result.stderr).toMatch(/결합형|같이/);
+    },
+    예산,
+  );
 });
