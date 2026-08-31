@@ -312,6 +312,13 @@ const GCD_LCM_SUMS: TypeEntry[] = [
           if (!idx.includes(i)) idx.push(i);
         }
         const powers = idx.map((i) => pick(rng, PRIME_POWERS[i]!));
+        // 🔴 **$n$ 이 무제곱이면 「서로소」 조건이 장식이 된다.** 지수가 전부 $1$ 이면
+        //    곱이 $n$ 인 **모든** 쌍이 저절로 서로소라, 그 조건을 안 읽어도 답이 같다.
+        //    첫 판이 그랬다 — 판정기가 「굳힘 조건을 지운 답」이 **54.2%** 로 맞는다고
+        //    찍어서야 드러났다(초6 이 물린 ㉠ 과 같은 부류: 정보는 있고 선택력이 0).
+        //    소인수 하나는 반드시 제곱 이상이어야 서로소가 실제로 거른다.
+        if (powers.every((p, i) => p === PRIME_POWERS[idx[i]!]![0]))
+          return null;
         const n = powers.reduce((p, q) => p * q, 1);
         const l = g * n;
         if (l > 2400) return null; // 지면에 다섯 자리 수를 안 쓴다
