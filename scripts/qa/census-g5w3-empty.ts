@@ -307,6 +307,100 @@ function reachControl(): void {
   say();
 }
 
+/* ── ⓙ 🔴 **덧뺄셈 한 걸음** — 반증 ⑥ 자가 구조적으로 못 보는 축 (리드 2026-08-31) ──
+ *
+ * `forwardReachable` 의 허용 꼴 넷(`a×b` · `a×b×c` · `a×b±c` · `a×b±c×d`)은 **전부 곱을
+ * 문다.** 곱이 첫 걸음이 아니면 길이 아예 없으므로, **덧뺄셈만으로 푸는 소단원에서 그
+ * 「⑥ 0건」은 «깨끗»이 아니라 «못 셈»** 이다. 초3 이 `pmOneStepReachable` 를 세웠으나
+ * 아직 main 에 없고 공용 판정기에 안 물렸다 — 그래서 같은 규칙을 여기서 **직접** 잰다.
+ *
+ * 규칙(리드가 준 그대로): 지면의 두 수 `a`·`b` 에 대해 `a+b` 또는 `a-b` 가 답과 같고
+ * 그 결과가 `a` 와도 `b` 와도 다르면 **한 걸음**이다. `0` 을 더하거나 빼는 것은 걸음이
+ * 아니고, 두 걸음은 일부러 안 본다.
+ *
+ * ⚠️ **「닿는다 = 결함」이 아니다.** 셋을 갈라야 한다 —
+ *    ㉠ 그 소단원의 연산이 `+`·`-` 인가  ㉡ 닿는 길이 뜻이 있는가
+ *    ㉢ 지면의 그 수가 **자료**인가 **낱말**인가.
+ *    다만 **답이 지면 두 수의 차·합으로 전수 나오면 그 갈래는 심화중이 아니다.**
+ */
+
+/** 지면의 두 수로 «한 걸음»에 닿나 — 닿으면 그 식을 글로 돌려준다. */
+function pmOneStep(content: string, answer: number): string | null {
+  const nums = pageNumbers(content)
+    .filter((r) => r.d === 1)
+    .map((r) => r.n);
+  for (let i = 0; i < nums.length; i += 1) {
+    for (let j = 0; j < nums.length; j += 1) {
+      if (i === j) continue;
+      const a = nums[i]!;
+      const b = nums[j]!;
+      if (a === 0 || b === 0) continue; // `0` 을 더하고 빼는 것은 걸음이 아니다
+      if (a + b === answer && answer !== a && answer !== b)
+        return `${a}+${b}=${answer}`;
+      if (a - b === answer && answer !== a && answer !== b)
+        return `${a}-${b}=${answer}`;
+    }
+  }
+  return null;
+}
+
+const W3_FILLED: [string, string][] = [
+  ["1-2-1", "심화중"],
+  ["1-2-1", "심화상"],
+  ["1-2-4", "심화중"],
+  ["1-2-4", "심화상"],
+  ["1-2-6", "심화중"],
+  ["1-2-6", "심화상"],
+  ["2-1-1", "심화중"],
+  ["2-1-4", "심화중"],
+  ["2-1-4", "심화상"],
+  ["2-1-6", "심화중"],
+  ["2-1-6", "심화상"],
+  ["2-3-4", "심화중"],
+];
+
+function pmCensus(): void {
+  say(
+    "ⓙ 🔴 덧뺄셈 «한 걸음» — 반증 ⑥ 자가 구조적으로 못 보는 축 (리드 2026-08-31)",
+  );
+  // 눈금 먼저 — 이 자가 «닿는다»를 낼 수 있는가. 못 내면 아래 0 은 뜻이 없다.
+  const probe = pmOneStep("$50$과 $14$", 36);
+  say(
+    probe
+      ? `   눈금 — 일부러 걸리는 글에서 «${probe}» 를 찾았다 ✅`
+      : "   🔴 눈금 실패 — 이 자가 «닿는다»를 못 낸다. 아래 숫자를 근거로 쓰지 마라.",
+  );
+  // ⚠️ 씨앗 열여섯으로는 얇다 — 이 축은 **후보 줄 전체**를 훑어야 뜻이 있으므로
+  //    씨앗을 200개로 넓힌다(초3 이 전 학년을 잰 것과 같은 무게로 맞춘다).
+  const WIDE = Array.from({ length: 200 }, (_, i) => 20260821 + i * 7919);
+  for (const [code, tier] of W3_FILLED) {
+    let hit = 0;
+    let read = 0;
+    let sample = "";
+    for (const s of WIDE) {
+      const p = problem(code, tier, s);
+      const m = /^\$(\d+)\$$/.exec(p.answer.trim());
+      if (!m) continue;
+      read += 1;
+      const path = pmOneStep(p.content, Number(m[1]));
+      if (path) {
+        hit += 1;
+        if (!sample) sample = path;
+      }
+    }
+    say(
+      `   ${code} ${tier}  ${hit}/${read}${sample ? `   예: ${sample}` : ""}`,
+    );
+  }
+  say(
+    "   → 「닿는다 = 결함」이 아니다. ㉠ 소단원 연산이 +·− 인가 ㉡ 그 길이 뜻이 있는가",
+  );
+  say(
+    "     ㉢ 그 수가 자료인가 낱말인가 — 셋을 가른 판단은 보고서 §2.1 에 적었다.",
+  );
+  say();
+}
+
 export function report(): string {
   lines.length = 0;
   say("초5 물결 3 — 비운 스무 칸의 근거 (1-2 · 2-1 · 2-3)");
@@ -320,6 +414,7 @@ export function report(): string {
   census232();
   census233();
   reachControl();
+  pmCensus();
   say("⚠️ 이 자는 **막지 않고 센다** — exit 0 이 「깨끗」을 뜻하지 않는다.");
   say("   그리고 세지 **않은** 비움이 있다: 1-2-5 상 · 2-1-1 상 · 2-1-3 둘 ·");
   say(

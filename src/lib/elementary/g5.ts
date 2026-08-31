@@ -14662,6 +14662,44 @@ function pos263Top(unit: UnitSeed, rng: Rng): ElemProblem {
  *    그래서 자를 **가드로는 쓰되**(아래 `w2Bad`) 「안 닿는다」를 근거로 삼지 않는다.
  * ══════════════════════════════════════════════════════════════════════════ */
 
+/**
+ * 🔴 **덧뺄셈 «한 걸음»으로 닿나** — 반증 ⑥ 자가 **구조적으로 못 보는** 축
+ * (리드 지시 2026-08-31).
+ *
+ * `forwardReachable` 의 허용 꼴 넷은 **전부 곱을 문다**(`a×b` · `a×b×c` · `a×b±c` ·
+ * `a×b±c×d`). 곱이 첫 걸음이 아니면 길이 아예 없으므로, 덧뺄셈만으로 푸는 자리에서
+ * 그 「0건」은 «깨끗»이 아니라 **«못 셈»** 이다. 초3 이 `pmOneStepReachable` 를
+ * `forwardReach.ts` 에 세웠으나 아직 main 에 없어 공용 판정기에 안 물렸다 —
+ * **물리면 도는 물결의 관문이 흔들리므로** 그때까지 이 회차의 갈래는 여기서 막는다.
+ *
+ * 규칙: 지면의 두 수 `a`·`b` 에 대해 `a+b` 또는 `a-b` 가 답과 같고 그 값이 `a` 와도
+ * `b` 와도 다르면 한 걸음이다(`0` 을 더하고 빼는 것은 걸음이 아니다).
+ *
+ * ⚠️ 「닿는다 = 결함」은 아니다 — 실제로 여기서 걸린 넷은 **산술 우연**이었다
+ * (1-2-1 심화상에서 `약수의 합 − 배수의 개수`, 200씨앗 중 4). 그 소단원의 연산이
+ * `+`·`-` 가 아니고 그 길에 뜻도 없다. 그래도 **못 가르는 것은 버리는 쪽**으로 둔다 —
+ * 잃는 것이 2%뿐이고, 남기면 학생이 우연히 맞히는 자리가 지면에 나간다.
+ */
+function w3PmOneStep(content: string, answer: Rat): boolean {
+  if (answer.d !== 1) return false;
+  const nums = pageNumbers(content)
+    .filter((r) => r.d === 1)
+    .map((r) => r.n);
+  for (const a of nums) {
+    for (const b of nums) {
+      if (a === b || a === 0 || b === 0) continue;
+      for (const v of [a + b, a - b])
+        if (v === answer.n && v !== a && v !== b) return true;
+    }
+  }
+  return false;
+}
+
+/** 이 회차의 가드 — `w2Bad`(반증 ⑥ · 답이 지면에) 에 **덧뺄셈 한 걸음**을 더한다. */
+function w3Bad(content: string, answer: Rat): boolean {
+  return w2Bad(content, answer) || w3PmOneStep(content, answer);
+}
+
 /** 약수를 모두 더한 값. */
 function w3DivSum(v: number): number {
   return divisors(v).reduce((s, d) => s + d, 0);
@@ -14709,7 +14747,7 @@ function fac121Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3SecondTask) =>
     `어떤 수의 약수 중에서 두 번째로 큰 수가 ${n(t.m)}입니다. 어떤 수가 짝수일 때 어떤 수를 구하시오.`;
   const pool = w2Pool("w3-121mid", () =>
-    w3Second121().filter((t) => !w2Bad(content(t), w2int(t.even))),
+    w3Second121().filter((t) => !w3Bad(content(t), w2int(t.even))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   return makeDeep(unit, content(t), n(t.even), [
@@ -14761,7 +14799,7 @@ function fac121Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3CntTask) =>
     `어떤 수의 배수 중에서 ${n(t.N)}보다 작은 수가 모두 ${n(t.c)}개입니다. 어떤 수의 약수를 모두 더하면 ${n(t.sum)}일 때, 어떤 수를 구하시오.`;
   const pool = w2Pool("w3-121top", () =>
-    w3Cnt121().filter((t) => !w2Bad(content(t), w2int(t.ans))),
+    w3Cnt121().filter((t) => !w3Bad(content(t), w2int(t.ans))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const 걸음 = [
@@ -14806,7 +14844,7 @@ function gcd124Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3GcdSumTask) =>
     `어떤 두 수의 최대공약수가 ${n(t.g)}이고 두 수의 합이 ${n(t.S)}입니다. 두 수 중 어느 수도 다른 수의 약수가 아닐 때, 더 큰 수를 구하시오.`;
   const pool = w2Pool("w3-124mid", () =>
-    w3GcdSum124().filter((t) => !w2Bad(content(t), w2int(t.g * t.q))),
+    w3GcdSum124().filter((t) => !w3Bad(content(t), w2int(t.g * t.q))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   return makeDeep(unit, content(t), n(t.g * t.q), [
@@ -14848,7 +14886,7 @@ function gcd124Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3CutTask) =>
     `가로가 ${n(t.a)} cm, 세로가 ${n(t.b)} cm인 직사각형 모양 색도화지를 남는 부분 없이 크기가 같은 정사각형으로 잘랐더니 정사각형이 모두 ${n(t.count)}장이 되었습니다. 정사각형 한 변의 길이는 몇 cm입니까?`;
   const pool = w2Pool("w3-124top", () =>
-    w3Cut124().filter((t) => !w2Bad(content(t), w2int(t.d))),
+    w3Cut124().filter((t) => !w3Bad(content(t), w2int(t.d))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const 걸음 = [
@@ -14907,7 +14945,7 @@ function lcm126Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3LcmSumTask) =>
     `어떤 두 수의 최소공배수가 ${n(t.M)}이고 두 수의 합이 ${n(t.S)}입니다. 두 수 중 더 큰 수를 구하시오.`;
   const pool = w2Pool("w3-126mid", () =>
-    w3LcmSum126().filter((t) => !w2Bad(content(t), w2int(t.q))),
+    w3LcmSum126().filter((t) => !w3Bad(content(t), w2int(t.q))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   return makeDeep(unit, content(t), n(t.q), [
@@ -14958,7 +14996,7 @@ function lcm126Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3RemTask) =>
     `어떤 수를 ${nro(t.a)} 나누어도 ${nro(t.b)} 나누어도 나머지가 ${n(t.r)}입니다. 어떤 수가 ${n(t.c)}의 배수일 때, 어떤 수 중에서 가장 작은 수를 구하시오.`;
   const pool = w2Pool("w3-126top", () =>
-    w3Rem126().filter((t) => !w2Bad(content(t), w2int(t.k * t.m + t.r))),
+    w3Rem126().filter((t) => !w3Bad(content(t), w2int(t.k * t.m + t.r))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const 걸음: string[] = [
@@ -15005,7 +15043,7 @@ function rng211Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3RangeTask) =>
     `${n(t.a)} 이상 □ 이하인 자연수 중에서 ${n(t.k)}의 배수는 모두 ${n(t.c)}개입니다. □가 ${n(t.k)}의 배수일 때 □에 알맞은 수를 구하시오.`;
   const pool = w2Pool("w3-211mid", () =>
-    w3Range211().filter((t) => !w2Bad(content(t), w2int(t.target))),
+    w3Range211().filter((t) => !w3Bad(content(t), w2int(t.target))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   return makeDeep(unit, content(t), n(t.target), [
@@ -15033,7 +15071,7 @@ function up214Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3UpTask) =>
     `어떤 자연수를 올림하여 어느 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 어느 자리까지 올림했는지는 말해 주지 않았습니다. 어떤 수가 될 수 있는 수 중에서 가장 작은 수를 구하시오.`;
   const pool = w2Pool("w3-214mid", () =>
-    w3Up214().filter((t) => !w2Bad(content(t), w2int(t.A - 9))),
+    w3Up214().filter((t) => !w3Bad(content(t), w2int(t.A - 9))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   const tens = Math.floor((t.A % 100) / 10);
@@ -15061,7 +15099,7 @@ function up214Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3UpCountTask) =>
     `어떤 자연수를 올림하여 어느 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 어떤 수가 될 수 있는 자연수가 모두 ${n(t.c)}개일 때, 그중 가장 작은 수를 구하시오.`;
   const pool = w2Pool("w3-214top", () =>
-    w3UpCount214().filter((t) => !w2Bad(content(t), w2int(t.A - t.c + 1))),
+    w3UpCount214().filter((t) => !w3Bad(content(t), w2int(t.A - t.c + 1))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const 자리 = t.c === 100 ? "백" : "천";
@@ -15092,7 +15130,7 @@ function round216Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 자연수를 어림하여 십의 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 올림·버림·반올림 중 어느 것으로 어림했는지는 말해 주지 않았고, ${nj(t.v, "은", "는")} 어떤 수가 될 수 있습니다. 어떤 수가 될 수 있는 수 중에서 ${t.up ? "가장 작은" : "가장 큰"} 수를 구하시오.`;
   const answer = (t: W3RoundTask) => (t.up ? t.A - 9 : t.A + 9);
   const pool = w2Pool("w3-216mid", () =>
-    w3Round216().filter((t) => !w2Bad(content(t), w2int(answer(t)))),
+    w3Round216().filter((t) => !w3Bad(content(t), w2int(answer(t)))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   const 걸음 = t.up
@@ -15128,7 +15166,7 @@ function round216Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3RoundTopTask) =>
     `어떤 자연수를 어림하여 백의 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 올림·버림·반올림 중 어느 것으로 어림했는지는 말해 주지 않았습니다. 어떤 수가 될 수 있는 수 중에서 가장 큰 수가 ${n(high(t))}일 때, 가장 작은 수를 구하시오.`;
   const pool = w2Pool("w3-216top", () =>
-    w3RoundTop216().filter((t) => !w2Bad(content(t), w2int(answer(t)))),
+    w3RoundTop216().filter((t) => !w3Bad(content(t), w2int(answer(t)))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   return makeDeep(unit, content(t), n(answer(t)), [
@@ -15170,7 +15208,7 @@ function sym234Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const gap = (t: W3PointTask) =>
     Math.max(t.x, t.y, t.z) - Math.min(t.x, t.y, t.z);
   const pool = w2Pool("w3-234mid", () =>
-    w3Point234().filter((t) => !w2Bad(content(t), w2int(gap(t)))),
+    w3Point234().filter((t) => !w3Bad(content(t), w2int(gap(t)))),
   );
   const t = w2Pick(unit, "심화중", rng, pool);
   const hi = Math.max(t.x, t.y, t.z);
