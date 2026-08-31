@@ -38,6 +38,12 @@ const eslintConfig = defineConfig([
     // 커밋되지 않는데(.gitignore), 남아 있으면 게이트가 남의 조사 파일 때문에
     // 빨개진다(2026-08-20: `find-poly.ts` 의 any 1건).
     ".measure/**",
+    // 🔴 **이름을 하나씩 적으면 샌다.** 위 둘(`.probe`·`.measure`)이 그렇게 붙었고,
+    //    2026-08-31 에 세션 스크래치 `.tmp-orca/`·`.tmp-adv/` 가 또 빨개졌다
+    //    (`preset-probe` 의 any 6건). `.gitignore` 는 이미 `.tmp-*/` 로 고쳤는데
+    //    **ESLint 는 `.gitignore` 를 안 본다** — 여기 따로 적어야 한다.
+    //    늘 우는 가드는 꺼진다(2026-08-20). 세션 임시 작업터는 통째로 뺀다.
+    ".tmp-*/**",
   ]),
 ]);
 
