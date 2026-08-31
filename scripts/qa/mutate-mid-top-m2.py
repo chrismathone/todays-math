@@ -127,8 +127,13 @@ MUTATIONS: list[tuple[str, list[Edit], str]] = [
                 "  for (let a = 6; a <= 30; a += 2) {",
                 "  for (let a = 6; a <= 30; a += 1) {",
             ),
+            # ⚠️ 앵커가 **두 곳**에 걸린다 — 생성기 안에도 같은 줄이 있고, 그쪽은
+            #    들여쓰기가 깊어 이 짧은 앵커를 **부분 문자열로 품는다.**
+            #    하네스가 「앵커 적중 [1, 2]」로 판정을 거부해서 알았다.
+            #    앞 줄을 붙여 유일하게 만든다.
             (
-                "  const product = (a * a) / 4;",
+                "n: number; b: number; c: number }> {\n  const product = (a * a) / 4;",
+                "n: number; b: number; c: number }> {\n"
                 "  const product = a % 2 === 0 ? (a * a) / 4 : a * a;",
             ),
         ],
