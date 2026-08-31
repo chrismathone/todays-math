@@ -36,6 +36,7 @@ import { M1_STAT_FIG } from "./m1StatFig";
 import { M1_TYPES_10 } from "./m1Types10";
 import { M2_TYPES } from "./m2";
 import { M3_TYPES } from "./m3";
+import { M3_TOP } from "./m3Top";
 import { MID_SUP_B } from "./midSupB";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -61,6 +62,8 @@ const ALL: TypeEntry[] = [
   ...MID_SUP_B,
   // 중1 소단원 넷을 8 → 10유형으로 올린 몫 — 같은 이유로 명부 밖이다(m1Types10.ts 머리말).
   ...M1_TYPES_10,
+  // 중3 확대 갈래(심화중·심화상) — D-116. 같은 이유로 명부 밖이다(m3Top.ts 머리말).
+  ...M3_TOP,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();
