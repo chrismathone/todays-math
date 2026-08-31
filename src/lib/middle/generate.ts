@@ -36,6 +36,7 @@ import { M1_STAT_FIG } from "./m1StatFig";
 import { M1_TOP } from "./m1Top";
 import { M1_TYPES_10 } from "./m1Types10";
 import { M2_TYPES } from "./m2";
+import { M2_TOP } from "./m2Top";
 import { M3_TYPES } from "./m3";
 import { MID_SUP_B } from "./midSupB";
 import type { MidProblem, TypeEntry } from "./types";
@@ -64,6 +65,8 @@ const ALL: TypeEntry[] = [
   ...M1_TYPES_10,
   // 중1 상위 갈래(`심화중`·`심화상`) — D-116. 같은 이유로 명부 밖이다(m1Top.ts 머리말).
   ...M1_TOP,
+  // 중2 확대 갈래(심화중·심화상) — D-116, 학년별 병렬 세션 소유 모듈(m2Top.ts 머리말).
+  ...M2_TOP,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();
