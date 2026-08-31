@@ -47,6 +47,8 @@ import { PrismaClient } from "@prisma/client";
 import { middleComboDefinitions } from "../../src/lib/middle/combo";
 import { registeredTypes } from "../../src/lib/middle/generate";
 
+import { isDirectScript } from "../import/isDirectScript";
+
 const LEDGER = "docs/planning/tracks/reports/unloaded-types.json";
 
 /** 적재본이 이만큼도 없으면 이 검사는 뜻이 없다 — 「전부 안 나간다」가 되어 버린다. */
@@ -196,4 +198,13 @@ async function main(): Promise<void> {
   }
 }
 
-main();
+// 🔴 **직접 부를 때만 돈다.** 이 모듈은 `unloadedTypes.test.ts` 가 `unloaded()`·
+//    `loadedFragments()` 를 쓰려고 **import** 하는데, 그때 `main()` 이 같이 돌아
+//    공유 DB 에 붙는다. `.env` 가 없는 워크트리에서는 그것이 «처리되지 않은 거부»가 되어
+//    **시험 13,354건이 전량 통과해도 vitest 종료 코드가 1** 이 된다(실측 2026-08-31).
+//    이 파일 머리말이 스스로 「관문은 **망 없이** 돌아야 한다」고 적어 둔 그 자리다 —
+//    `isDirectScript` 는 이 저장소의 다른 판정기가 모두 쓰는 규약이고, pre-push 는
+//    `npx tsx scripts/qa/checkUnloadedTypes.ts` 로 **직접** 부르므로 그대로 돈다.
+if (isDirectScript(import.meta.url)) {
+  main();
+}
