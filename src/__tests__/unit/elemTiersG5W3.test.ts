@@ -330,6 +330,11 @@ describe("[초5 물결 3] 확대 갈래 — 1-2 · 2-1 · 2-3", () => {
       expect(pairs.length, `${p.content}\n${JSON.stringify(pairs)}`).toBe(1);
       const [x, y] = pairs[0]!;
       expect(lcm(x, y), p.content).toBe(M);
+      // 🔴 해설이 «$x \times y = M$» 이라고 **적는다** — 그 문장이 참이어야 한다.
+      //    `lcm` 만 보면 $8$·$28$(최소공배수 $56$, 곱 $224$)이 새고, 값 검산은
+      //    답이 맞아서 조용하다. `probe-elem-equations` 가 그 자리를 잡아 줬다.
+      expect(x * y, p.content).toBe(M);
+      expect(gcd(x, y), p.content).toBe(1);
       expect(answerInt(p.answer), p.content).toBe(y);
       // 🔴 작은 수가 $1$ 이면 큰 수가 곧 최소공배수라 **마디가 없다**(심화하다).
       expect(x, p.content).toBeGreaterThan(1);
