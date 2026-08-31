@@ -53,19 +53,59 @@ export function unfilledPlaceholders(text: string): string[] {
 // 30여 자리를 잡는데 표준은 구조적으로 0). 대단원 블록을 서로 본떠 썼으니 같은 자리가
 // 여러 학년에 있다. 이 함수를 부르는 쪽은 반드시 `[undefined, ...ELEM_TIERS]` 로 돈다.
 
-/** 끝 숫자를 한자 수사로 읽었을 때 받침이 있는가. 영·일·삼·육·칠·팔 만 있다. */
-const JOSA_BATCHIM: Record<string, boolean> = {
-  "0": true,
-  "1": true,
-  "2": false,
-  "3": true,
-  "4": false,
-  "5": false,
-  "6": true,
-  "7": true,
-  "8": true,
-  "9": false,
+/**
+ * 끝 숫자를 한자 수사로 읽었을 때의 **받침 갈래**.
+ *
+ * 🔴 예전에는 이 표가 `boolean`(받침이 있나) 하나였다. 그래서 **「로/으로」를 표현할 수
+ * 없었다** — 그 조사만은 「받침이 있나」가 아니라 「**ㄹ 받침인가**」로 갈리기 때문이다
+ * (일·칠·팔은 받침이 있어도 「로」). 표현할 수 없으니 목록에도 없었고, 그러니
+ * **12,240행을 먹여도 0** 이었다. 2026-08-31 적대 검토가 초6 3차분에서 **195문항**을
+ * 찾아 낸 자리다 — 그때까지 이 함수의 「0」이 「깨끗」으로 읽히고 있었다.
+ *
+ * `"l"` = ㄹ 받침(일·칠·팔) · `"other"` = 그 밖의 받침(영·삼·육, 그리고 십·백·천·만) ·
+ * `"none"` = 받침 없음(이·사·오·구).
+ */
+const JOSA_FINAL: Record<string, "none" | "l" | "other"> = {
+  "0": "other", // 십(ㅂ)·백(ㄱ)·천(ㄴ)·만(ㄴ)·영(ㅇ) — 어느 쪽으로 읽어도 ㄹ 이 아니다
+  "1": "l", // 일
+  "2": "none", // 이
+  "3": "other", // 삼
+  "4": "none", // 사
+  "5": "none", // 오
+  "6": "other", // 육
+  "7": "l", // 칠
+  "8": "l", // 팔
+  "9": "none", // 구
 };
+
+/** 끝 숫자를 한자 수사로 읽었을 때 받침이 있는가. **표는 하나다** — 위에서 유도한다. */
+const JOSA_BATCHIM: Record<string, boolean> = Object.fromEntries(
+  Object.entries(JOSA_FINAL).map(([d, f]) => [d, f !== "none"]),
+);
+
+/**
+ * 수 뒤의 「로/으로」. **ㄹ 받침은 「로」**다(일로·칠로·팔로).
+ *
+ * 🔴 생성기와 판정기가 **같은 표**(`JOSA_FINAL`)를 물게 하려고 여기 둔다.
+ * 예전에는 이 함수가 `g6.ts` 에만 있었고 `g4.ts` 에는 없었다 — 그래서 초4 는
+ * 조사를 하드코딩했고 **525행**이 틀렸다(2026-08-31 적대 검토 뒤 실측).
+ * 세는 쪽과 쓰는 쪽이 갈리면 둘 다 눈이 먼다.
+ */
+export function numRo(value: number): string {
+  const last = String(Math.abs(Math.trunc(value))).slice(-1);
+  return JOSA_FINAL[last] === "other" ? "으로" : "로";
+}
+
+/**
+ * `fmtFrac` 이 낸 글자에서 **마지막으로 읽히는 수**.
+ * `11\frac{1}{4}` 는 「십일과 사분의 일」이라 끝소리가 **분자**다.
+ */
+export function lastSpokenNumber(latex: string): number {
+  const frac = latex.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+  if (frac) return Number(frac[1]);
+  const nums = latex.match(/\d+/g);
+  return nums ? Number(nums[nums.length - 1]) : 0;
+}
 
 /** 조사가 받침 뒤에 쓰는 것인가. */
 const JOSA_NEEDS_BATCHIM: Record<string, boolean> = {
@@ -83,10 +123,12 @@ const JOSA_NEEDS_BATCHIM: Record<string, boolean> = {
  * `$...$` 뒤 조사 중 **틀린 것**만 돌려준다. 잡힌 자리를 있는 그대로 적는다
  * (띄어쓰기까지 보여야 어디를 고칠지 안다).
  *
- * 규칙 셋:
+ * 규칙 넷:
  *  ㉠ **분수는 분자를 마지막에 읽는다** — `\frac{6}{10}` 은 「십분의 육」이라 «을».
  *  ㉡ 그 밖은 **끝 숫자**의 소리로 정한다.
  *  ㉢ 뒤에 한글이 이어지면 조사가 아니다 — 「$3$ **은행**나무」의 «은» 은 낱말의 첫 글자다.
+ *  ㉣ 🔴 **「로/으로」는 «받침이 있나»가 아니라 «ㄹ 받침인가»로 갈린다** — 일·칠·팔은
+ *    받침이 있어도 「로」다. 다른 조사와 규칙이 달라서 `JOSA_FINAL` 이 세 갈래다.
  *
  * ⚠️ **㉢ 은 정확도 문제가 아니라 «가드 생존» 문제다.** 2026-08-23 elem-g5 실측:
  * ㉢ 없이 재면 「$49$ **이**상인」의 «이» 를 조사로 읽어 **거짓 양성 41자리**가 났고
@@ -100,19 +142,50 @@ const JOSA_NEEDS_BATCHIM: Record<string, boolean> = {
  *  · `$3$ kg을` 처럼 **단위가 소리를 바꾸는 것**(「킬로그램」이라 «을») — 수식 밖 낱말이
  *    소리의 끝을 정하므로 이 스캐너의 규칙으로는 못 잰다.
  *  · 「$4$ 대 $7$의 비」처럼 수식 사이에 낱말이 낀 것 — 마지막 수식만 본다.
+ *  · 🔴 **지수로 끝나는 것**(`$x^2$` · `$5^{x}$` · `$30^\circ$`) — 마지막 소리가 숫자가
+ *    아니라 「제곱」·「도」다. **잴 수 있는데 안 켰다**(아래 ㉤ 에 근거와 켜는 법).
  */
 export function josaFaults(text: string): string[] {
   const bad: string[] = [];
-  const re = /\$([^$]*)\$ ?(을|를|이|가|과|와|은|는)(?![가-힣])/g;
+  // ⚠️ 「으로」를 「로」보다 **먼저** 놓아야 한다 — 뒤에 두면 `으로` 의 `로` 만 물어
+  //    앞의 `으` 가 낱말로 남고 판정이 뒤집힌다.
+  const re = /\$([^$]*)\$ ?(으로|로|을|를|이|가|과|와|은|는)(?![가-힣])/g;
   let m = re.exec(text);
   while (m !== null) {
     const span = m[1]!;
+    // ㉤ 🔴 **지수로 끝나면 마지막 소리는 그 숫자가 아니라 「제곱」이다** — 판정 밖.
+    //    `$y=ax^2$` 은 「에이 엑스의 **제곱**」이라 «으로»가 맞는데, 끝 숫자 $2$ 를
+    //    「이」로 읽으면 «로»를 요구해 **거짓 경보**가 난다. 2026-08-31 에 이 한 부류가
+    //    중3 이차함수 08·14 에서 **관문을 막았다.**
+    //
+    //    ⚠️ 지수는 **끝에 홀로 선 것**만 문다. `\^[^{}]*$` 로 헐겁게 잡으면
+    //       `$y=ax^2+bx+c$` 의 `^` 까지 물어 「씨」를 「제곱」으로 읽는다(실측 결함).
+    //
+    //    🔴 **잴 수는 있는데 이 회차는 안 켰다 — «못 잼»이 아니라 «안 잼»이다.**
+    //    「제곱」은 받침 ㅂ 이고 「도」($^\circ$)는 무받침이라 소리가 정해진다. 그래서
+    //    켜면 판정이 된다. 실측(2026-08-31, 씨앗 8×변형 6 전 유형):
+    //      · 초등 — 지수로 끝나는 조사 자리 **8**, 전부 `\mathrm{m}^2` 같은 **단위**라
+    //        「제곱미터」로 읽힌다. 즉 켜도 **초등에는 값이 0이다.**
+    //      · 중등 — **84자리**가 걸린다(`$3x^{2}$를`→을 · `$-15x^{3}y^{2}$가`→이 …).
+    //        그중 **14자리**가 `midTypesB.test.ts` 안이라 켜는 순간 관문이 빨개진다.
+    //    켜려면 그 84자리를 **같이** 고쳐야 한다. 안 고치고 켜면 늘 우는 가드가 되고,
+    //    늘 우는 가드는 꺼진다(2026-08-20). 중등 엔진은 이 회차 소관이 아니라 **넘긴다.**
+    //    켤 때는 `final = powArg === "\\circ" ? "none" : "other"` 한 줄이면 된다.
+    const POW = /\^(?:\{([^{}]+)\}|(-?\d+|[A-Za-z]|\\circ))$/;
+    const pow = POW.test(span);
     const asFrac = span.match(/\\frac\{(\d+)\}\{\d+\}$/);
     const asNum = span.match(/(\d+)$/);
-    const digits = asFrac?.[1] ?? asNum?.[1];
-    if (digits !== undefined) {
-      const want = JOSA_BATCHIM[digits.slice(-1)!]!;
-      if (JOSA_NEEDS_BATCHIM[m[2]!] !== want) bad.push(m[0]);
+    const digits = pow ? undefined : (asFrac?.[1] ?? asNum?.[1]);
+    const final =
+      digits === undefined ? undefined : JOSA_FINAL[digits.slice(-1)!]!;
+    if (final !== undefined) {
+      const josa = m[2]!;
+      if (josa === "로" || josa === "으로") {
+        // ㉣ ㄹ 받침과 무받침은 「로」, 그 밖의 받침은 「으로」.
+        if ((final === "other") !== (josa === "으로")) bad.push(m[0]);
+      } else if (JOSA_NEEDS_BATCHIM[josa] !== (final !== "none")) {
+        bad.push(m[0]);
+      }
     }
     m = re.exec(text);
   }

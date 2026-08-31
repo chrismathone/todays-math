@@ -88,6 +88,20 @@ export function answerPrintedOnPage(
   return nums.some((v) => same(v, answer));
 }
 
+/*
+ * 🔴 **÷ 한 걸음 축은 여기 넣지 마라 — 재고 버린 것이다.**
+ *
+ * 2026-08-31 반증 회차가 실측했다. `probe-elem-tier-backsolve.ts` 머리말이 정본이다:
+ * 「÷ 를 × 처럼」 재면 연산 28.5 · 기본 29.2 · 응용 27.4 · 심화하 31.6 · 심화중 9.2
+ * · 심화상 28.0% — **갈래를 안 가른다.** 심화상의 28% 를 거짓으로 물어 늘 우는 가드가
+ * 되고, 이미 착지한 문항까지 흔든다(2026-08-20 「거짓 경보는 가드를 끈다」).
+ *
+ * 「나눗셈 소단원에서 `forwardReachable` 이 0 이다」는 참이지만, 그 0 을 메우는 값이
+ * 이것은 아니다 — **못 셈을 잡음으로 바꾸는 것은 고침이 아니다.**
+ * 초6 2-4-1 심화중 실측: 진짜 답 0/200 인데 **답+1 이 47/200(23.5%)** 이다.
+ * 쓸 자리가 있다고 판단하면 **갈래마다 «답+1» 음성 대조를 같이 재고, 공용 자가 아니라
+ * 그 생성기 안에서** 걸러라(± 한 걸음이 `g6.ts` 안에 사는 것과 같은 까닭).
+ */
 export function forwardReachable(nums: readonly Rat[], answer: Rat): boolean {
   const products: Rat[] = [];
   for (let i = 0; i < nums.length; i += 1) {

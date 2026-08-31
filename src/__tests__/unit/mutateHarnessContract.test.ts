@@ -234,4 +234,56 @@ describe("[변이 하네스] 전량 판과 낱개 판이 같은 것을 잰다", 
     }
     expect(bad).toEqual([]);
   });
+
+  // ── 🔴 「시험 목록이 새는 것」을 재는 축 자체를 잠근다 ──────────────────────
+  //
+  // 2026-08-31 적대 검토: `unlisted_tests` 가 `elemTiers{G6}*.test.ts` 라는 **이름 모양
+  // 글로브**로 훑어, 이름이 그 꼴이 아닌 가드(`elemFigureReference` 등)를 통째로 못 봤다.
+  // 변이 둘로 **거짓 초록이 실증**됐고, 리드 재현으로 무는 파일이 **그 하나**임을 확인했다.
+  //
+  // ⚠️ 그때 「글로브를 좁혀도 아무것도 안 빨개진다」는 것이 더 나쁜 자리였다 —
+  //    **재는 축을 지키는 시험이 없었다.** 그래서 여기 둘을 못 박는다.
+  it("🔴 목록 누수를 재는 축이 «이름 모양»이 아니라 «엔진을 부르는가»다", () => {
+    const start = harness.indexOf("def engine_test_files");
+    expect(start, "engine_test_files 가 없다").toBeGreaterThan(-1);
+    const body = harness.slice(start, harness.indexOf("\ndef ", start + 5));
+
+    // ㉠ 이름 모양 글로브로 되돌아가면 빨개진다.
+    expect(body, "이름 모양 글로브로 되돌아갔다").not.toContain("elemTiers%s");
+    // ㉡ 엔진 함수 이름으로 훑어야 한다.
+    expect(body).toContain("generateElementaryProblem");
+    // ㉢ `.test.ts` 전부를 훑어야 한다 — 한 디렉터리만 보면 또 샌다.
+    expect(body).toContain("os.walk");
+  });
+
+  it("🔴 GREEN 은 **목록 밖까지 다시 돌린 뒤에만** 찍힌다", () => {
+    // 좁은 목록으로 초록이 나면 그대로 「시험이 못 잡는다」로 찍던 자리다.
+    // 이제는 `engine_test_files()` 를 합쳐 한 번 더 돌리고, 거기서 빨개지면 RED 다.
+    //
+    // ⚠️ **범위를 `judge_tests` 본문 안으로 좁힌다.** 처음엔 「GREEN 을 찍기 전 어딘가에
+    //    `failed_tests(` 가 있나」로 썼는데, 그 범위에 **다른 호출**(음성 대조)이 들어와
+    //    넓은 재실행을 통째로 지워도 **초록**이었다 — 2026-08-18 「LOOP 가 있나」와 같은
+    //    자리다. 낱말이 파일 안 다른 곳에도 있으면 그 검사는 구조적으로 못 갈라낸다.
+    const start = harness.indexOf("def judge_tests");
+    expect(start, "judge_tests 가 없다").toBeGreaterThan(-1);
+    const body = harness.slice(start, harness.indexOf("\ndef ", start + 5));
+
+    expect(body, "넓은 목록을 안 만든다").toContain("engine_test_files()");
+    // 만들기만 하고 **돌리지 않으면** 아무것도 안 지킨다.
+    expect(body, "넓은 목록을 만들기만 하고 돌리지 않는다").toContain(
+      "failed_tests(wide)",
+    );
+    // 그리고 그 결과가 실제로 판정을 가른다.
+    expect(body).toContain('return ("RED_WIDE"');
+    expect(body).toContain('return ("GREEN"');
+
+    // 두 판이 **같은** 판정을 쓴다 — 낱개 판이 자기 판정을 다시 적으면 갈린다.
+    expect(oneShot, "낱개 판이 judge_tests 를 안 부른다").toContain(
+      "mod.judge_tests(",
+    );
+    expect(
+      oneShot.includes("RED_WIDE"),
+      "낱개 판이 «목록 밖» 판정을 안 다룬다",
+    ).toBe(true);
+  });
 });

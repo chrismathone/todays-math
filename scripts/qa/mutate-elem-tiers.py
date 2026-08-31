@@ -29,6 +29,7 @@
 """
 from __future__ import annotations
 
+import glob
 import hashlib
 import io
 import json
@@ -142,8 +143,8 @@ G3_MUTS = [
     ),
     (
         "갈래 뭉개기 — 심화를 연산으로",
-        "    심화: add3Reverse,",
-        "    심화: add3Calc,",
+        "    심화하: add3Reverse,",
+        "    심화하: add3Calc,",
     ),
     # ── 초3 2-1 곱셈 · 2-2 나눗셈 확대(elem-g3, 2026-08-23) ──
     # 이름 약속 잠금과 표준 수리를 지키는 변이다. 표준을 고치는 변이가 섞여 있어
@@ -508,8 +509,8 @@ G5_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-1-1 심화를 연산으로",
-        "    심화: mix111Deep,",
-        "    심화: mix111Calc,",
+        '    { id: "04", tier: "심화하", generate: mix111Deep },',
+        '    { id: "04", tier: "심화하", generate: mix111Calc },',
     ),
     (
         "단위 환산 훼손 — 1-6-3 연산 갈래가 m²→cm² 를 ×1000 으로",
@@ -1153,8 +1154,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-2-1 심화를 연산으로",
-        "    심화: prismFaceDeep,",
-        "    심화: prismFaceCalc,",
+        "    심화하: prismFaceDeep,",
+        "    심화하: prismFaceCalc,",
     ),
     (
         "축 훼손 — 기본이 밑면 이름을 말해 버린다",
@@ -1195,8 +1196,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-3-4 심화를 연산으로",
-        "    심화: decZeroDeep,",
-        "    심화: decZeroCalc,",
+        "    심화하: decZeroDeep,",
+        "    심화하: decZeroCalc,",
     ),
     # ── 4차분 (1-4 비와 비율) — 최대 함정은 **비의 어순**(«B에 대한 A의 비» = A:B).
     #    시험이 어순 규칙을 독립 구현했는지, 뒤집힌 비를 정말 무는지 문다.
@@ -1212,8 +1213,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-4-5 심화를 연산으로",
-        "    심화: pctDeep,",
-        "    심화: pctCalc,",
+        "    심화하: pctDeep,",
+        "    심화하: pctCalc,",
     ),
     # ── 5차분 (1-5 여러 가지 그래프) — 참이 그림 스펙에 있는 첫 트랜치.
     #    «스펙에서 되뽑는 검산»과 «합100 단정»이 정말 무는지 문다.
@@ -1231,8 +1232,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-5-3 심화를 연산으로",
-        "    심화: pieReadDeep,",
-        "    심화: pieReadCalc,",
+        "    심화하: pieReadDeep,",
+        "    심화하: pieReadCalc,",
     ),
     # ── 6차분 (1-6 겉넓이·부피) — 환산·공식·배선을 문다. 환산 훼손은 g5 1-6-3 선례 미러.
     (
@@ -1249,8 +1250,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 1-6-2 심화를 연산으로",
-        "    심화: volDeep,",
-        "    심화: volCalc,",
+        "    심화하: volDeep,",
+        "    심화하: volCalc,",
     ),
     # ── 7차분 (2-1 분수의 나눗셈) — 뒤집기 누락(이 단원의 고전 오류)·기약 규약·배선을 문다.
     (
@@ -1267,8 +1268,8 @@ G6_MUTS = [
     ),
     (
         "갈래 뭉개기 — 2-1-5 심화를 연산으로",
-        "    심화: mixedFracDeep,",
-        "    심화: mixedFracCalc,",
+        "    심화하: mixedFracDeep,",
+        "    심화하: mixedFracCalc,",
     ),
     # ── 8차분 (2-2 소수의 나눗셈) — 반올림 구성·남는 수 자리·소수점 옮기기를 문다.
     (
@@ -1478,8 +1479,8 @@ G6_MUTS = [
     (
         # D-74 — 「$3$ 이라 적고 $3.1$ 로 계산」. 양쪽 산술이 다 맞아 지면에서만 틀린다.
         "규약 어긋남 — 2-6-2 응용이 $3$ 이라 적고 해설은 $3.1$ 로 계산한다",
-        '`옆면의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,',
-        '`옆면의 넓이는 몇 cm²인가? (원주율: ${num(3)})`,',
+        '`옆면의 둘레는 몇 cm인가? (원주율: ${num("3.1")})`,',
+        '`옆면의 둘레는 몇 cm인가? (원주율: ${num(3)})`,',
     ),
     (
         "공식 훼손 — 2-6-3 응용이 삼각형 넓이에서 «$2$ 로 나누기»를 빠뜨린다",
@@ -1635,6 +1636,133 @@ G6_MUTS = [
         "후항 조건 무력화 — 2-4-2 심화중이 간단히 해도 후항이 다른 세로를 쓴다",
         "      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만",
         "      if (x / g !== b && false) continue; // 간단히 하면 후항이 b 가 되는 세로만",
+    ),
+    # ── 확대 갈래 3차분 (2026-08-31) — 1-1 · 2-5 · 2-6 ──────────────────
+    #
+    # 🔴 **먼저 «그 가드가 무엇을 거르는가»를 셌다**(2차분 §7 의 교훈). 실측 —
+    #    1-1-1 후보수 64/102 · 1-1-1 반증 ⑥ 14/38 · 1-1-2 창 5/55 · 1-1-2 반증 ⑥ 21/50 ·
+    #    1-1-3 후보 하나 3,913/5,741 · 1-1-3 반증 ⑥ 793/1,828 ·
+    #    2-5-2 창 360/1,091 · 2-5-2 반증 ⑥ 74/731 · 2-6-3 짝수 99/149.
+    #    반대로 **0 을 거르는 자리 셋** — 2-6-1·2-6-2·2-6-3 의 반증 ⑥ 이다.
+    #    발문에 수가 한둘뿐이라 순방향 모형이 닿을 곳이 없다. 그 셋에는 변이를 안 만든다
+    #    (만들면 「산출물이 그대로」로 거부될 뿐이고, 가드는 구성이 바뀌면 살아난다).
+    (
+        # ㉠ — 성질이 만드는 배수열이 둘뿐이면 창의 두 끝이 곧 답이라 마디가 얕다.
+        "후보 훼손 — 1-1-1 심화중의 배수열이 둘뿐이어도 좋다 (실측 64/102)",
+        "    if (base.length < 3) continue;",
+        "    if (base.length < 2) continue;",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다.
+        "반증 ⑥ 가드 제거 — 1-1-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 14/38)",
+        "      if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;",
+        "      if (!backsolveSafeStem(natDivReduceStem(c), rat(-1))) continue;",
+    ),
+    (
+        # ㉠ — 창에 «답이 아닌 수»가 하나도 없으면 창이 곧 답이라 성질이 일을 안 한다.
+        "구간 훼손 — 1-1-2 심화중의 창이 답 하나만 담아도 좋다 (실측 5/55)",
+        "          if (win.length < 3 || win.length > 8) continue;\n          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
+        "          if (win.length < 1 || win.length > 8) continue;\n          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-1-2. 이 자리가 앞판에서 실제로 샌 곳이다(생성기가 분수를 두 값으로 셌다).
+        "반증 ⑥ 가드 제거 — 1-1-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 21/50)",
+        "          if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(k)))",
+        "          if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(-1)))",
+    ),
+    (
+        # ㉢ — 창 안의 배수열 후보 가운데 분모 m 을 내는 것이 둘이면 **답이 둘**이다.
+        #    토대가 든 실물(4/9 ÷ □ 의 분모가 27)이 정확히 그 부류였다.
+        "후보 훼손 — 1-1-3 심화상의 후보 가운데 답이 둘이어도 좋다 (실측 3,913/5,741)",
+        "          if (hit.length !== 1 || hit[0] !== k) continue;",
+        "          if (hit.length < 1 || !hit.includes(k)) continue;",
+    ),
+    (
+        # 🔴 리드가 찾았다(2026-08-31) — 이 줄을 지워도 공식 4파일이 117/117 초록이었다.
+        #    약분이 없으면 걸음이 곧 답이라 **후보열이 답부터 시작**한다.
+        "지름길 열림 — 1-1-3 심화상의 답이 후보열의 «첫째»가 된다 (리드 실측 548/800)",
+        "        if (g < 2) continue;",
+        "        if (g < 0) continue;",
+    ),
+    (
+        # 🔴 이 회차가 ÷ 축을 공용에서 걷어내고 **여기서만** 막은 자리(§13.1).
+        "지름길 열림 — 1-1-2 심화중의 창 두 끝이 나뉘어 답이 된다 (실측 7.0%, 잡음 0.0%)",
+        "          if (up % lo === 0 && up / lo === k) continue;",
+        "          if (up % lo === 0 && up / lo === -1) continue;",
+    ),
+    (
+        # 🔴 적대 검토 ④-㉰ 가 되살린 갈래 — 여태 변이가 하나도 없었다.
+        "굳힘 훼손 — 2-5-4 심화중의 구간에 제곱수가 둘이어도 좋다",
+        "    if (sq.length !== 1) continue;",
+        "    if (sq.length < 1) continue;",
+    ),
+    (
+        # 🔴 1-1-1 의 창을 **한쪽만** 닫으면 답이 다시 열의 끝에 붙는다(적대 ① 이 잰 자리).
+        "구간 훼손 — 1-1-1 심화중의 창이 위쪽으로 안 닫힌다",
+        "        for (let hi = a + 1; hi <= next; hi += 1) {",
+        "        for (let hi = a + 1; hi <= next + 99; hi += 1) {",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 1-1-3.
+        "반증 ⑥ 가드 제거 — 1-1-3 심화상이 «한 걸음이면 나오는» 짝을 쓴다 (실측 793/1,828)",
+        "          if (!backsolveSafeStem(mixedDivisorStem(c), rat(k))) continue;",
+        "          if (!backsolveSafeStem(mixedDivisorStem(c), rat(-1))) continue;",
+    ),
+    (
+        # ㉢ — 창 안에서 나누어떨어지는 지름이 둘이면 바퀴 수가 하나로 안 선다.
+        "후보 훼손 — 2-5-2 심화상의 창 안에 지름이 둘이어도 좋다 (실측 360/1,091)",
+        "      if (hit.length !== 1 || hit[0] !== d) continue;",
+        "      if (hit.length < 1 || !hit.includes(d)) continue;",
+    ),
+    (
+        # ㉣ 반증 ⑥ — 2-5-2.
+        "반증 ⑥ 가드 제거 — 2-5-2 심화상이 «한 걸음이면 나오는» 짝을 쓴다 (실측 74/731)",
+        "      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))",
+        "      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(-1)))",
+    ),
+    (
+        # 🔴 ㉧ — **이 회차가 새로 세운 축.** 굴러간 거리를 $1$ cm 늘리면 「지름이 자연수」와
+        #    「원주 = 지름×3.14」가 어긋나 **있을 수 없는 원**이 지면에 나간다.
+        #    값 검산은 이 부류를 못 본다(창 안에 답이 하나면 산술은 그대로 맞는다).
+        "지면 모순 — 2-5-2 심화상의 거리가 «3.14×지름×바퀴 수»와 어긋난다",
+        "  `${roller}${josa(roller, \"을\", \"를\")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314), \"cm\")} 를 갔습니다. ` +",
+        "  `${roller}${josa(roller, \"을\", \"를\")} 몇 바퀴 굴렸더니 ${unitNum(fromCents(c.prod * 314 + 100), \"cm\")} 를 갔습니다. ` +",
+    ),
+    (
+        # 🔴 ㉧ — 「앞에서 본 모양이 정사각형」이라 적어 놓고 넓이가 정사각형이 아니면
+        #    발문이 거짓말이다. 이 부류도 값 검산이 아니라 **모양 검사**가 잡아야 한다.
+        "모양 모순 — 2-6-1 심화중의 앞모양 넓이가 정사각형이 아니다",
+        "  const c: CylSquareCase = { r, area: 4 * r * r };",
+        "  const c: CylSquareCase = { r, area: 2 * r * (2 * r + 2) };",
+    ),
+    (
+        # 🔴 ㉧ — 「옆면이 정사각형」인데 둘레가 한 변의 네 배가 아니면 발문이 거짓말이다.
+        "모양 모순 — 2-6-2 심화중의 옆면 둘레가 한 변의 네 배가 아니다",
+        "  const c: NetSquareCase = { r, side, perim: 4 * side };",
+        "  const c: NetSquareCase = { r, side, perim: 4 * side + 200 };",
+    ),
+    (
+        # ㉢ — 짝이 둘뿐이면 «만들어 견주기»가 한눈에 끝나 심화중과 구분이 안 된다.
+        "후보 훼손 — 2-6-3 심화상의 짝이 둘뿐이어도 좋다 (실측 99/149)",
+        "  if (pairs.length < 3 || pairs.length > 6) continue;",
+        "  if (pairs.length < 2 || pairs.length > 6) continue;",
+    ),
+    (
+        # 🔴 적대 검토 A-16 을 **변이로 등록**한다 — 그 회차에는 이것이
+        #    「GREEN(시험이 못 잡는다)」이었고, 물어 주는 `elemFigureReference` 가
+        #    하네스 목록 **밖**에 있었다. 이제 GREEN 은 넓은 목록으로 다시
+        #    돌린 뒤에만 찍히므로 **이 변이가 RED 가 되어야 그 구멍이 막힌 것이다.**
+        "없는 그림 지목 — 2-6-1 심화중 발문이 「다음 그림과 같이」로 시작한다 (A-16)",
+        "  `원기둥 모양 ${thing}${josa(thing, \"을\", \"를\")} 앞에서 본 모양이 정사각형이고 ` +",
+        "  `다음 그림과 같이 원기둥 모양 ${thing}${josa(thing, \"을\", \"를\")} 앞에서 본 모양이 정사각형이고 ` +",
+    ),
+    (
+        # 🔴 리드 지시(2026-08-31) — 반증 ⑥ 의 자는 곱을 안 물면 구조적으로 0 이다.
+        #    그 사각지대를 덮는 ±한 걸음 축. 이 가드를 무르면 실측으로
+        #    1-1-1 10/240 · 1-1-3 10/240 · 2-5-2 25/240 이 되살아난다.
+        "±한 걸음 가드 제거 — 지면의 두 수를 더하거나 빼서 답이 나와도 좋다",
+        "    !pmOneStepReachable(nums, answer)",
+        "    !pmOneStepReachable(nums, rat(-1))",
     ),
 ]
 
@@ -2139,9 +2267,13 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG6.test.ts",
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW3.test.ts",
         ],
         "grade": "초6",
         "sections": [
+            "1-1-1",
+            "1-1-2",
+            "1-1-3",
             "1-2-1",
             "1-2-2",
             "1-2-3",
@@ -2212,6 +2344,82 @@ def run(args: list[str]) -> tuple[int, str]:
 # 남의 **중간 상태**가 컴파일을 깨서 이 자리가 난다. 그때 그 파일 이름이 보여야
 # 「내 변이가 이상한가」와 「과녁이 움직였나」를 가를 수 있다.
 LAST_PROBE_ERR = ""
+
+
+def engine_test_files() -> list[str]:
+    """초등 **엔진을 실제로 부르는** 시험 파일 전부(직접이든 헬퍼를 거쳐서든).
+
+    🔴 예전에는 `elemTiers{G6}*.test.ts` 라는 **이름 모양 글로브**로 훑었다.
+    그러면 이름이 그 꼴이 아닌 가드 — `elemFigureReference` · `elemStemSelfContained` ·
+    `choiceCountRule` 처럼 **학년을 넘어 서 있는 것들** — 을 통째로 못 본다.
+    2026-08-31 적대 검토가 변이 둘(A-16 · A-18: 발문이 «없는 그림»을 가리키게)로
+    **거짓 초록을 실증**했다: 하네스 4파일은 GREEN 인데 목록 밖 `elemFigureReference` 는 RED 였다.
+    2026-08-20 「접두사처럼 생긴 경로를 접두사로 믿지 마라 · 놓칠 자리가 아예 없는 쪽이 낫다」
+    와 같은 처방이다 — **이름이 아니라 «엔진을 부르는가»로 훑는다.**
+    """
+    root = os.path.join(ROOT, "src", "__tests__")
+    helpers: set[str] = set()
+    tests: list[str] = []
+    for base, _dirs, names in os.walk(root):
+        for name in names:
+            if not name.endswith(".ts"):
+                continue
+            path = os.path.join(base, name)
+            try:
+                txt = io.open(path, encoding="utf-8").read()
+            except OSError:
+                continue
+            rel = os.path.relpath(path, ROOT).replace(os.sep, "/")
+            if name.endswith(".test.ts"):
+                tests.append((rel, txt))
+            elif "generateElementaryProblem" in txt:
+                # 엔진을 부르는 **헬퍼** — 이것을 무는 시험도 엔진을 무는 것이다.
+                helpers.add(os.path.splitext(name)[0])
+    out = []
+    for rel, txt in tests:
+        if "generateElementaryProblem" in txt or any(
+            ("/%s\"" % h) in txt or ("/%s'" % h) in txt for h in helpers
+        ):
+            out.append(rel)
+    return sorted(out)
+
+
+def unlisted_tests(target: dict) -> list[str]:
+    """엔진을 부르는 시험 파일 가운데 이 대상의 «test» 목록에 **없는** 것.
+
+    목록이 새면 그 파일이 무는 변이가 GREEN 으로 찍힌다 — 오판은 한 방향뿐이다.
+    검증기가 이 함수를 그대로 부른다(세는 쪽과 쓰는 쪽을 두 벌 두지 않는다).
+    """
+    listed = {t.replace(os.sep, "/") for t in target["test"]}
+    return [f for f in engine_test_files() if f not in listed]
+
+UNREADABLE = "(판정 결과를 못 읽었다"
+
+
+def judge_tests(target: dict) -> tuple[str, list[str], list[str]]:
+    """변이가 걸린 상태에서 ⑷ 를 판정한다 — **전량 판과 낱개 판이 같은 것을 부른다.**
+
+    돌려주는 것: `(판정, 좁은 목록의 실패, 넓은 목록의 실패)`
+      · `"REFUSE"`   — 빨간데 실패한 시험을 못 댄다(러너가 안 떴다)
+      · `"RED"`      — 목록 안의 시험이 물었다
+      · `"RED_WIDE"` — 목록 **밖**의 시험이 물었다(목록이 새는 자리다)
+      · `"GREEN"`    — 엔진을 무는 시험 **전부**를 돌렸는데도 아무도 안 물었다
+
+    🔴 GREEN 은 **비싸게** 확인한다. 좋은 회차에는 초록이 없어 거의 안 돌고,
+    돌 때는 «거짓 초록»을 막는 자리다 — 2026-08-31 적대 검토가 A-16·A-18 로
+    실증한 그 구멍(하네스 4파일 GREEN ↔ 목록 밖 `elemFigureReference` RED)을
+    **구조적으로** 없앤다.
+    """
+    code, names = failed_tests(target["test"])
+    if code != 0 and (not names or names[0].startswith(UNREADABLE)):
+        return ("REFUSE", names, [])
+    if code != 0:
+        return ("RED", names, [])
+    wide = sorted(set(target["test"]) | set(engine_test_files()))
+    w_code, w_names = failed_tests(wide)
+    if w_code != 0:
+        return ("RED_WIDE", names, w_names)
+    return ("GREEN", names, [])
 
 
 def probe(grade: str, sections: list[str]) -> str:
@@ -2470,6 +2678,17 @@ def main() -> int:
         os.remove(PROBE_PATH)
 
     sections = target.get("sections") or [target["section"]]
+
+    # ── 목록에 없는 형제 시험 파일 ──
+    # 🔴 `test` 는 **손 목록**이다. 회차마다 시험 파일이 하나씨 늘어나는데 이 목록에
+    #    안 적으면, 그 파일이 무는 변이가 **GREEN(「시험이 못 잡는다」)** 으로 찍힌다.
+    #    빠뜨림이 만드는 오판은 **한 방향뿐**이다 — RED 를 GREEN 으로 바꿋다.
+    #    (2026-08-31 실제로 났다: 물결 3 이 `elemTiersG6DeepW3` 을 안 적어 초록 둘을
+    #     받았고, 넣고 다시 돌리니 둘 다 빨강이었다.)
+    #    그래서 **막지 않고**(다른 학년의 회차를 세우지 않는다) GREEN 이 나는
+    #    **바로 그 줄에** 경고를 붙인다 — 판단이 갈리는 자리에서만 운다.
+    unlisted = unlisted_tests(target)
+
     base = probe(target["grade"], sections)
     if not base.startswith("["):
         print("기준 산출물을 못 얻었습니다:", base[:400])
@@ -2502,6 +2721,12 @@ def main() -> int:
         f"변이 [{lo}..{hi}] / 전체 {len(target['muts'])}"
     )
     print(f"훑을 소단원 {len(sections)}개: {' '.join(sections)}\n")
+    if unlisted:
+        print(
+            f"⚠️ 같은 학년의 시험 파일 {len(unlisted)}개가 «test» 목록에 없다 — "
+            f"**이 회차의 GREEN 은 그만큼 못 믿는다**: {' '.join(unlisted)}"
+        )
+    print()
 
     ok = True
     try:
@@ -2572,24 +2797,33 @@ def main() -> int:
                 )
                 ok = False
             else:
-                code, names = failed_tests(target["test"])
                 # ⚠️ **빨간데 어느 시험인지 못 대면 그것은 판정이 아니다.** 러너가
                 #    기동 단계에서 죽어도 종료 코드는 0이 아니라, 「가드가 물었다」와
                 #    구분되지 않는다 — 낱개 판이 없어진 리포터 이름 때문에 **모든
                 #    변이를 RED 로 찍던** 그 모양 그대로다(2026-08-23).
-                unreadable = code != 0 and (
-                    not names or names[0].startswith("(판정 결과를 못 읽었다")
-                )
-                if unreadable:
+                #
+                # 🔴 판정은 `judge_tests` 한 곳에 있다 — 낱개 판도 **그것을** 부른다.
+                verdict, names, wide_names = judge_tests(target)
+                if verdict == "REFUSE":
                     print(f"  ??    {name}\n        ← **빨간데 실패한 시험을 못 댄다**(러너가 안 떴다). 판정하지 않는다")
                     ok = False
+                elif verdict == "RED_WIDE":
+                    print(f"  RED   {name}")
+                    print(
+                        "        ↳ 목록 **밖** 시험이 문다 — "
+                        + (wide_names[0] if wide_names else "(이름을 못 댄다)")
+                    )
+                    print(
+                        f"        ⚠️ 좁은 목록({len(target['test'])}파일)으로는 초록이었다 — `test` 에 넣어라"
+                    )
+                elif verdict == "GREEN":
+                    print(f"  GREEN {name}")
+                    print("        ← 시험이 못 잡는다 (엔진을 무는 시험 전부를 돌렸다)")
+                    ok = False
                 else:
-                    print(f"  {'RED  ' if code else 'GREEN'} {name}")
+                    print(f"  RED   {name}")
                     for t in names[:3]:
                         print(f"        ↳ {t}")
-                    if code == 0:
-                        print("        ← 시험이 못 잡는다")
-                        ok = False
             io.open(path, "wb").write(src_bytes)
             clear_inflight(which)
     finally:

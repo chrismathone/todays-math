@@ -225,20 +225,21 @@ def main() -> int:
             elif after == before:
                 verdict = "⛔ **산출물이 그대로다** — 판정하지 않는다(뜻이 안 바뀌었다)"
             else:
-                # ⑷ 시험이 빨개지나
-                code, fails = run_tests(mod, t["test"])
-                if code != 0 and (
-                    not fails or any(f.startswith(UNREADABLE) for f in fails)
-                ):
+                # ⑷ 시험이 빨개지나 — 🔴 판정은 **전량 판의 `judge_tests`** 가 한다.
+                #    여기 따로 적으면 두 벌이 된다. 실제로 그랬다: 넓은 목록 재확인이
+                #    전량 판에만 있어 A-16 이 낱개 판에서 **GREEN** 으로 찍혔다(2026-08-31).
+                kind, fails, wide = mod.judge_tests(t)
+                if kind == "REFUSE":
                     # 빨간데 **어느 시험인지 못 대는** 상태 — 근거 없는 빨강이다.
                     # 옛 판이 정확히 이 모양으로 45개 변이를 전부 「RED」로 찍었다.
                     verdict = "⛔ 빨간데 실패한 시험을 못 댄다 — 러너가 안 떴다. 판정하지 않는다"
+                elif kind == "RED_WIDE":
+                    fails = wide
+                    verdict = "RED   (가드가 문다 — **목록 밖** 시험이다. `test` 에 넣어라)"
+                elif kind == "RED":
+                    verdict = "RED   (가드가 문다)"
                 else:
-                    verdict = (
-                        "RED   (가드가 문다)"
-                        if code != 0
-                        else "GREEN ← **가드가 아니다**"
-                    )
+                    verdict = "GREEN ← **가드가 아니다**"
     finally:
         io.open(path, "wb").write(orig)
 

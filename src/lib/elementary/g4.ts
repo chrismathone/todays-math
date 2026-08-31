@@ -17,6 +17,8 @@ import { forwardReachable, pageNumbers, readRat } from "./forwardReach";
 import { fig, make, makeDeep } from "./make";
 import { fmtFrac, gcd } from "./math";
 import { intBetween, pick } from "./rng";
+// 🔴 「로/으로」는 **판정기가 쓰는 그 표**(`JOSA_FINAL`)에서 온다 — 두 벌로 적지 않는다.
+import { numRo } from "./rules";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /** 각도. `45°` 같은 날 글자를 남기지 않는다(R1). */
@@ -5918,8 +5920,8 @@ function tier61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `규칙에 따라 수를 늘어놓을 때 처음으로 ${josaNum(L, "을", "를")} 넘는 수는 몇째에 ` +
       `오는가? ${terms.map((v) => n(v)).join(", ")}`,
     ORDINAL[k - 1]!,
-    `${n(d)}씩 커지는 규칙입니다. ${ORDINAL[k - 2]!} 수는 ${expr(`${a}+${d}\\times${k - 2}=${a + d * (k - 2)}`)} 로 ` +
-      `${n(L)}보다 크지 않고, ${ORDINAL[k - 1]!} 수는 ${expr(`${a}+${d}\\times${k - 1}=${a + d * (k - 1)}`)} 로 ` +
+    `${n(d)}씩 커지는 규칙입니다. ${ORDINAL[k - 2]!} 수는 ${expr(`${a}+${d}\\times${k - 2}=${a + d * (k - 2)}`)}${numRo(a + d * (k - 2))} ` +
+      `${n(L)}보다 크지 않고, ${ORDINAL[k - 1]!} 수는 ${expr(`${a}+${d}\\times${k - 1}=${a + d * (k - 1)}`)}${numRo(a + d * (k - 1))} ` +
       `처음으로 ${josaNum(L, "을", "를")} 넘습니다.`,
   );
 }
@@ -9779,8 +9781,8 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
       expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}=\\square`),
       expr(fmtFrac(total, den)),
       borrow
-        ? `분수끼리 뺄 수 없으므로 ${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)} ` +
-            `으로 고칩니다. ${expr(`${w1 - 1}-${w2}=${w1 - 1 - w2}`)}, ` +
+        ? `분수끼리 뺄 수 없으므로 ${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)}` +
+            `${numRo(a + den)} 고칩니다. ${expr(`${w1 - 1}-${w2}=${w1 - 1 - w2}`)}, ` +
             `${expr(`\\frac{${a + den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a + den - b}}{${den}}`)} 이므로 ` +
             `답은 ${expr(fmtFrac(total, den))} 입니다.`
         : `자연수는 자연수끼리, 분수는 분수끼리 뺍니다. ${expr(`${w1}-${w2}=${w1 - w2}`)}, ` +
@@ -10392,7 +10394,7 @@ function tier214Calc(unit: UnitSeed, rng: Rng): ElemProblem {
       `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)}`,
     expr(fmtFrac(total, den)),
     `분수끼리 뺄 수 없으므로 ` +
-      `${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)} 으로 고칩니다. ` +
+      `${expr(`${w1}\\frac{${a}}{${den}}=${w1 - 1}\\frac{${a + den}}{${den}}`)}${numRo(a + den)} 고칩니다. ` +
       `${expr(`${w1 - 1}-${w2}=${w1 - 1 - w2}`)} 이고 ` +
       `${expr(`\\frac{${a + den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a + den - b}}{${den}}`)} 이므로 ` +
       `${expr(fmtFrac(total, den))} 입니다.`,
@@ -10410,7 +10412,7 @@ function tier214Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const cut = expr(`${w}\\frac{${b}}{${den}}`);
   const got = expr(fmtFrac(total, den));
   const how =
-    `${expr(`${whole}=${whole - 1}\\frac{${den}}{${den}}`)} 으로 고칩니다. ` +
+    `${expr(`${whole}=${whole - 1}\\frac{${den}}{${den}}`)}${numRo(den)} 고칩니다. ` +
     `${expr(`${whole - 1}-${w}=${whole - 1 - w}`)} 이고 ` +
     `${expr(`\\frac{${den}}{${den}}-\\frac{${b}}{${den}}=\\frac{${den - b}}{${den}}`)} 이므로 ` +
     `${got} 입니다.`;
@@ -10456,7 +10458,7 @@ function tier214Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     `자연수 부분을 비교하면 가장 무거운 가방은 ${hi} kg, 가장 가벼운 가방은 ${lo} kg입니다. ` +
       (q < p
         ? `분수끼리 뺄 수 없으므로 ` +
-          `${expr(`${wLo + 2}\\frac{${q}}{${den}}=${wLo + 1}\\frac{${q + den}}{${den}}`)} 으로 고쳐 ` +
+          `${expr(`${wLo + 2}\\frac{${q}}{${den}}=${wLo + 1}\\frac{${q + den}}{${den}}`)}${numRo(q + den)} 고쳐 ` +
           `${expr(`${wLo + 1}-${wLo}=1`)} 이고 ` +
           `${expr(`\\frac{${q + den}}{${den}}-\\frac{${p}}{${den}}=\\frac{${q + den - p}}{${den}}`)} 이므로 ` +
           `${got} 입니다.`
@@ -10486,7 +10488,7 @@ function tier214Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     : Array.from({ length: den - m - 2 }, (_, i) => m + 2 + i);
   const tie =
     `빼는 수가 ${same} 일 때 ` +
-    `${expr(`${w1}\\frac{${a}}{${den}}-1\\frac{${m + 1}}{${den}}=${w2}\\frac{${c}}{${den}}`)} 로 ` +
+    `${expr(`${w1}\\frac{${a}}{${den}}-1\\frac{${m + 1}}{${den}}=${w2}\\frac{${c}}{${den}}`)}${numRo(c)} ` +
     `두 값이 같아집니다. 빼는 수가 작을수록 뺀 값은 커집니다. `;
   return make(
     unit,

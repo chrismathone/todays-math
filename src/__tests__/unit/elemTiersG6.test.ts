@@ -118,6 +118,64 @@ function truthOf(content: string): R | null {
   const ns = numbersIn(content);
   const at = (i: number) => ns[i] ?? null;
 
+  // ══ 확대 갈래 (D-113 3차분) — **약분 축**. 앞의 「나누었더니」 판독기보다 먼저 본다 ══
+  //
+  // ⚠️ 순서가 뜻이다. 셋 다 「나누었더니/나눈 몫」을 쓰므로 아래 심화하 판독기가 먼저
+  //    물면 엉뚱한 두 수를 나눠 «참»을 지어낸다.
+  //
+  // 세 갈래 모두 **시험이 조건을 다시 풀고**, 답이 하나로 굳는지까지 여기서 잰다 —
+  // 「답이 둘인 문항」은 값 검산이 구조적으로 못 보는 부류다.
+
+  // 1-1-1 심화중 — 「$b$ 로 나눈 몫의 기약 분모가 $m$」 + **양쪽으로 닫은 창** $(lo, hi)$.
+  //
+  // ⚠️ 예전 발문은 「몫이 $1$보다 작다」(밴드) + 하한 한 쪽이었는데, 답이 늘 배수열의
+  //    마지막이라 하한이 정보를 한 비트도 안 실었다(적대 검토 ⑴, 실측 100%).
+  //    창이 양쪽으로 닫히면서 밴드 문장은 지워졌다 — 판독기도 같이 옮긴다.
+  if (
+    content.includes("기약분수로 나타냈더니 분모가") &&
+    content.includes("어떤 자연수를")
+  ) {
+    const b = Number(content.match(/어떤 자연수를 \$(\d+)\$/)?.[1] ?? NaN);
+    const m = Number(content.match(/분모가 \$(\d+)\$/)?.[1] ?? NaN);
+    const win = content.match(
+      /어떤 수가 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+    );
+    if (!Number.isFinite(b) || !Number.isFinite(m) || !win) return null;
+    if (b % m !== 0) return null;
+    const g = b / m;
+    const hit: number[] = [];
+    for (let a = Number(win[1]) + 1; a < Number(win[2]); a += 1)
+      if (gcd(a, b) === g) hit.push(a);
+    return hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-1-2 심화중 — 「몫의 분모가 처음과 같은 $q$」 ⟺ 분자 $p$ 가 나누는 수로 나누어떨어진다.
+  if (content.includes("몫의 분모가 처음과 같은")) {
+    const f = content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+    const win = content.match(/\$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/);
+    if (!f || !win) return null;
+    const [p, q] = [Number(f[1]), Number(f[2])];
+    const [lo, up] = [Number(win[1]), Number(win[2])];
+    const hit: number[] = [];
+    for (let k = lo + 1; k < up; k += 1)
+      if (k >= 2 && p % k === 0 && (q * k) / gcd(p, q * k) === q) hit.push(k);
+    return hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-1-3 심화상 — 배수열 후보 가운데 기약 분모가 $m$ 인 것 하나.
+  if (content.includes("몫을 기약분수로 나타낸 분모가")) {
+    const mix = content.match(/\$(\d+)\\frac\{(\d+)\}\{(\d+)\}\$/);
+    const cap = Number(
+      content.match(/\$(\d+)\$보다 작은 어떤 자연수/)?.[1] ?? NaN,
+    );
+    const m = Number(content.match(/분모가 \$(\d+)\$/)?.[1] ?? NaN);
+    if (!mix || !Number.isFinite(cap) || !Number.isFinite(m)) return null;
+    const [w, t, d] = [Number(mix[1]), Number(mix[2]), Number(mix[3])];
+    const imp = w * d + t;
+    const hit: number[] = [];
+    for (let k = 2; k < cap; k += 1)
+      if ((d * k) / gcd(imp, d * k) === m) hit.push(k);
+    return hit.length === 1 ? rat(hit[0]!) : null;
+  }
+
   // 심화 ⓑ — 수 카드로 몫이 가장 큰 나눗셈식
   if (content.includes("수 카드")) {
     const vals = ns.map((v) => v.n / v.d);
@@ -341,37 +399,44 @@ describe("[초6 갈래] 1-1 분수의 나눗셈", () => {
     expect(bad.slice(0, 8)).toEqual([]);
   });
 
-  it("소단원 이름이 내건 조건을 갈래 넷이 전부 지킨다", () => {
+  it("소단원 이름이 내건 조건을 그 소단원이 내는 갈래가 전부 지킨다", () => {
     const bad: string[] = [];
-    // 이 자리는 code 를 셋 동시에 다룬다(아래 at()) — 대표로 1-1-1 의 갈래를 돈다.
-    // 셋은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다.
-    for (const tier of tiersOf(unitOf("1-1-1"))) {
-      for (const seed of SEEDS) {
-        const at = (code: string) =>
-          generateElementaryProblem(unitOf(code), seed, tier).content;
-        // 1-1-1 «(자연수)÷(자연수)» — 발문에 나오는 수가 전부 자연수여야 한다.
-        const c1 = at("1-1-1");
-        if (numbersIn(c1).some((v) => v.d !== 1)) {
-          bad.push(`1-1-1 ${tier} seed=${seed}: 자연수가 아닌 수 — ${c1}`);
-        }
-        // 1-1-2 «(분수)÷(자연수)» — 나누어지는 양이 **진분수**여야 한다(대분수·가분수 금지).
-        const c2 = at("1-1-2");
-        const f2 = c2.match(/\\frac\{(\d+)\}\{(\d+)\}/);
-        if (
-          !f2 ||
-          Number(f2[1]) >= Number(f2[2]) ||
-          /\d+\s*\\frac\{/.test(c2)
-        ) {
-          bad.push(`1-1-2 ${tier} seed=${seed}: 진분수가 아니다 — ${c2}`);
-        }
-        // 1-1-3 «(대분수)÷(자연수)» — 발문에 대분수가 있어야 한다.
-        const c3 = at("1-1-3");
-        if (!/\d+\s*\\frac\{/.test(c3)) {
-          bad.push(`1-1-3 ${tier} seed=${seed}: 대분수가 없다 — ${c3}`);
+    // ⚠️ 앞판은 **대표로 1-1-1 의 갈래 집합**을 돌며 셋을 한꺼번에 불렀다. 주석도
+    //    「셋은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다」고 적어 두었는데,
+    //    D-113 확대 3차분에서 그것이 **깨졌다** — 같은 축이라도 소단원마다 서는 칸이
+    //    다르다(1-1-1·1-1-2 는 «중», 1-1-3 은 «상»). 그래서 코드마다 자기 갈래를 돈다.
+    const checkers: Record<string, (c: string) => string | null> = {
+      // 1-1-1 «(자연수)÷(자연수)» — 발문에 나오는 수가 전부 자연수여야 한다.
+      "1-1-1": (c) =>
+        numbersIn(c).some((v) => v.d !== 1) ? `자연수가 아닌 수 — ${c}` : null,
+      // 1-1-2 «(분수)÷(자연수)» — 나누어지는 양이 **진분수**여야 한다(대분수·가분수 금지).
+      "1-1-2": (c) => {
+        const f = c.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+        return !f || Number(f[1]) >= Number(f[2]) || /\d+\s*\\frac\{/.test(c)
+          ? `진분수가 아니다 — ${c}`
+          : null;
+      },
+      // 1-1-3 «(대분수)÷(자연수)» — 발문에 대분수가 있어야 한다.
+      "1-1-3": (c) =>
+        /\d+\s*\\frac\{/.test(c) ? null : `대분수가 없다 — ${c}`,
+    };
+    let checked = 0;
+    for (const code of CODES) {
+      const unit = unitOf(code);
+      for (const tier of tiersOf(unit)) {
+        for (const seed of SEEDS) {
+          const c = generateElementaryProblem(unit, seed, tier).content;
+          checked += 1;
+          const why = checkers[code]!(c);
+          if (why) bad.push(`${code} ${tier} seed=${seed}: ${why}`);
         }
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
+    // 분모 — 갈래가 늘면 여기도 같이 는다. 0 이면 위 검사는 아무것도 안 잰 것이다.
+    expect(checked).toBe(
+      CODES.reduce((n, c) => n + tiersOf(unitOf(c)).length, 0) * SEEDS.length,
+    );
   });
 
   it("갈래를 안 주면 예전 문항이 그대로 나온다", () => {
@@ -3959,6 +4024,21 @@ function truthOf25(
   }
 
   if (code === "2-5-2") {
+    if (c.includes("몇 바퀴 굴렸더니")) {
+      // 확대 갈래 (D-113 3차분) 심화상 — 거리 ÷ 원주율 = (지름)×(바퀴 수).
+      // 창 안의 자연수 가운데 그 곱을 나누어떨어지게 하는 것이 **하나**여야 한다.
+      const l = centsAfter(c, /굴렸더니 \$([\d.]+)\\,\\mathrm\{cm\}\$/);
+      const win = c.match(/지름이 \$(\d+)\$ cm보다 길고 \$(\d+)\$ cm보다 짧은/);
+      if (!Number.isFinite(l) || !win) return null;
+      // `l` 은 **센트**다. 거리 ÷ 원주율 = `l/100 ÷ 3.14` = `l/314` — 여기서 곱하기 100 을
+      // 한 번 더 하면 값이 백 배가 된다(첫 판이 그렇게 틀렸고 이 시험이 잡았다).
+      if (l % 314 !== 0) return null;
+      const prod = l / 314; // (지름)×(바퀴 수)
+      const hit: number[] = [];
+      for (let d = Number(win[1]) + 1; d < Number(win[2]); d += 1)
+        if (prod % d === 0 && prod / d >= 2) hit.push(prod / d);
+      return hit.length === 1 ? asCents(hit[0]! * 100) : null;
+    }
     if (c.includes("굴렸더니")) {
       // 심화 — 굴러간 거리와 바퀴 수에서 반지름 (D-74: 원주율 $3.14$)
       const l = centsAfter(c, /굴렸더니 \$([\d.]+)\\,\\mathrm\{cm\}\$/);
@@ -4010,6 +4090,18 @@ function truthOf25(
   }
 
   if (code === "2-5-4") {
+    if (c.includes("보다 넓고")) {
+      // 🔴 심화중 — 넓이 **구간** ÷ 원주율 → (반지름)×(반지름) 의 구간.
+      //    그 안의 «제곱수»가 하나여야 답이 선다(적대 검토 ④-㉰ 가 되살린 자리).
+      const lo = centsAfter(c, /넓이가 \$([\d.]+)\$ cm²보다 넓고/);
+      const up = centsAfter(c, /\$([\d.]+)\$ cm²보다 좁습니다/);
+      if (!Number.isFinite(lo) || !Number.isFinite(up)) return null;
+      if (lo % 314 !== 0 || up % 314 !== 0) return null;
+      const hit: number[] = [];
+      for (let r = 1; r * r < up / 314; r += 1)
+        if (r * r > lo / 314) hit.push(r);
+      return hit.length === 1 ? asCents(100 * hit[0]!) : null;
+    }
     if (c.includes("넓이가")) {
       // 심화 — 넓이에서 반지름·지름을 되짚는다 (D-74: 원주율 $3.14$)
       const a = centsAfter(c, /넓이가 \$([\d.]+)\$ cm²인 원/);
@@ -4138,6 +4230,11 @@ describe("[초6 갈래] 2-5 원의 둘레와 넓이", () => {
       기본: "3",
       응용: "3.1",
       심화하: "3.14",
+      // D-74 의 「심화」는 하나였다. 축이 여섯이 된 뒤(D-113) 심화 **계열 셋**이 같은
+      // 층이므로 셋 다 `$3.14$` 다 — 같은 층이 다른 원주율을 쓰면 지면에서
+      // 「$3$ 이라 적고 $3.14$ 로 계산」과 구분이 안 된다.
+      심화중: "3.14",
+      심화상: "3.14",
     };
     const bad: string[] = [];
     let withPi = 0;
@@ -4719,6 +4816,44 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
   const PERI = one(/둘레가 \$(\d+)\\,\\mathrm\{cm\}\$/);
   const CIRC = q.match(/둘레가 \$([\d.]+)\\,\\mathrm\{cm\}\$ 였습니다/);
 
+  // ══ 확대 갈래 (D-113 3차분) — **모양 성질이 두 미지수를 묶는다** ══
+  //
+  // 아래 `switch` 보다 먼저 본다. 셋 다 발문이 「넓이가 …」·「둘레가 …」를 쓰는데,
+  // 그 자리를 심화하 판독기가 먼저 물면 다른 값을 «참»으로 삼는다.
+  if (tier === "심화중" && code === "2-6-1") {
+    // 앞에서 본 모양이 정사각형 ⟹ 한 변 = 지름 = 높이. 넓이의 «같은 수 두 번 곱»을 되짚는다.
+    if (AREA === null) return null;
+    const side = Math.round(Math.sqrt(AREA));
+    if (side * side !== AREA || side % 2 !== 0) return null;
+    return side / 2;
+  }
+  if (tier === "심화중" && code === "2-6-2") {
+    // 옆면이 정사각형 ⟹ 한 변 = 밑면의 둘레 = 높이. 둘레 ÷ 4 ÷ 3.14 ÷ 2.
+    const per = q.match(/둘레가 \$([\d.]+)\\,\\mathrm\{cm\}\$/);
+    if (!per) return null;
+    const c = toCents26(per[1]!);
+    if (c === null || c % 4 !== 0) return null;
+    const side = c / 4;
+    if (side % 628 !== 0) return null;
+    return side / 628;
+  }
+  if (tier === "심화상" && code === "2-6-3") {
+    // 앞에서 본 삼각형의 넓이 = (반지름)×(높이). 짝을 만들어 **차**를 견준다.
+    //
+    // ⚠️ 예전 조건은 「높이가 $cap$ 보다 짧을 때」였는데 짝을 **하나도 안 걸렀다**
+    //    (적대 검토 ⑵ 실측 0/1200) — 답이 늘 마지막 짝이라 D-115 ⑾ 로는 «중»이었다.
+    //    이제 「높이와 반지름의 차」라 짝마다 계산해 견주어야 한다.
+    const diff = one(/차가 \$(\d+)\$ cm일 때/);
+    if (AREA === null || diff === null) return null;
+    const hit: number[] = [];
+    for (let r = 1; r * r < AREA; r += 1) {
+      if (AREA % r !== 0) continue;
+      const h = AREA / r;
+      if (h > r && h - r === diff) hit.push(r);
+    }
+    return hit.length === 1 ? hit[0]! : null;
+  }
+
   switch (`${code} ${tier}`) {
     case "2-6-1 연산":
       return R === null ? null : 2 * R;
@@ -4733,20 +4868,26 @@ function truthOf26(code: string, tier: ElemTier, q: string): number | null {
       return across % 2 === 0 ? across / 2 : null;
     }
 
+    // ⚠️ 세 갈래가 **옆면의 «둘레»** 로 옮겨졌다(적대 검토 ⑷ — 예전에는 2-5-2 와
+    //    계산이 글자 그대로 같았다). 원에는 «둘레와 높이를 더하는» 자리가 없어서
+    //    사슬에 덧셈/뺄셈이 하나 낀다.
     case "2-6-2 연산":
-      return D === null ? null : 3 * D;
+      // 둘레 = (가로 + 세로) × 2, 가로 = 지름 × 3.
+      return D === null || H === null ? null : 2 * (3 * D + H);
     case "2-6-2 기본":
       return R === null ? null : 6 * R;
     case "2-6-2 응용":
-      // 넓이 = 2r × 3.1 × h. 십분의 일 단위 정수로 견준다(부동소수 안 씀).
-      return R === null || H === null ? null : 2 * R * 31 * H;
+      // 둘레 = (2r×3.1 + h) × 2. 십분의 일 단위 정수로 견준다(부동소수 안 씀).
+      return R === null || H === null ? null : 2 * (2 * R * 31 + H * 10);
     case "2-6-2 심화하": {
-      // 답(반지름)은 넓이 ÷ 높이 ÷ 3.14 ÷ 2 다. 백분의 일 단위로 나눠떨어져야 한다.
-      const a = q.match(/넓이가 \$([\d.]+)\$ cm²/);
+      // 답(반지름)은 (둘레 ÷ 2 − 높이) ÷ 3.14 ÷ 2 다. 백분의 일 단위로 나눠떨어져야 한다.
+      const a = q.match(/둘레가 \$([\d.]+)\$ cm/);
       if (!a || H === null) return null;
       const c = toCents26(a[1]!);
-      if (c === null || c % (H * 628) !== 0) return null;
-      return c / (H * 628);
+      if (c === null || c % 2 !== 0) return null;
+      const lat = c / 2 - H * 100;
+      if (lat <= 0 || lat % 628 !== 0) return null;
+      return lat / 628;
     }
 
     case "2-6-3 연산":
@@ -4835,9 +4976,13 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
         for (let seed = 0; seed < 300; seed += 1) {
           const p = generateElementaryProblem(unit, seed, tier);
           const f = p.figureSpec;
-          if (tier === "심화하") {
+          // 심화 **계열 셋**은 전부 역산이다 — 되짚을 값을 그림이 알려 주면 마디가
+          // 안 열린다(`cylinder` 는 높이를 글자로 찍고 `cone`·`netCylinder` 는
+          // 밑면을 그대로 보여 준다). 앞판은 「심화하」만 적어 두었는데, D-113 으로
+          // 축이 여섯이 되면서 그 문자열이 **확대 갈래를 놓쳤다.**
+          if (tier === "심화하" || tier === "심화중" || tier === "심화상") {
             if (f)
-              bad.push(`${code} 심화 seed=${seed}: 역산인데 그림이 붙었다`);
+              bad.push(`${code} ${tier} seed=${seed}: 역산인데 그림이 붙었다`);
             continue;
           }
           if (!f) {
@@ -4899,6 +5044,8 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
       기본: "3",
       응용: "3.1",
       심화하: "3.14",
+      심화중: "3.14",
+      심화상: "3.14",
     };
     const bad: string[] = [];
     let withPi = 0;
@@ -4936,8 +5083,10 @@ describe("[초6 갈래] 2-6 원기둥, 원뿔, 구", () => {
       }
     }
     expect(bad.slice(0, 8)).toEqual([]);
-    // 분모 — 원주율을 적는 자리가 정말 있는가(2-6-2 넷 + 2-6-4 응용·심화).
-    expect(withPi).toBe(6 * 300);
+    // 분모 — 원주율을 적는 자리가 정말 있는가(2-6-2 **전 갈래** + 2-6-4 응용·심화하).
+    // ⚠️ 앞판은 `6 * 300` 손 상수였다. 2-6-2 에 갈래가 하나 늘자 바로 어긋났다 —
+    //    갈래 수에서 유도해 두면 다음 회차가 손으로 세지 않아도 된다.
+    expect(withPi).toBe((tiersOf(unitOf("2-6-2")).length + 2) * 300);
   });
 
   it("같은 씨앗이면 같은 문항, 씨앗 16개면 갈래마다 여러 문항", () => {
