@@ -12,6 +12,8 @@ import {
   type Rat,
 } from "./forwardReach";
 import { intBetween, pick } from "./rng";
+// 🔴 「로/으로」는 **판정기가 쓰는 그 표**(`JOSA_FINAL`)에서 온다 — 두 벌로 적지 않는다.
+import { lastSpokenNumber, numRo } from "./rules";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
 
 /**
@@ -1017,7 +1019,7 @@ function decDiv62(unit: UnitSeed, rng: Rng): ElemProblem {
       `몫을 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
       expr(q),
       `나누는 수가 자연수가 되도록 두 수의 소수점을 함께 한 자리씩 옮겨 ` +
-        `${expr(`${decStr(c.a, 1)}\\div${c.b}`)} 로 계산합니다. ${expr(`${a}\\div${b}=${q}`)}`,
+        `${expr(`${decStr(c.a, 1)}\\div${c.b}`)}${numRo(c.b)} 계산합니다. ${expr(`${a}\\div${b}=${q}`)}`,
     );
   }
 
@@ -1622,24 +1624,6 @@ function numJosa(
   withoutFinal: string,
 ): string {
   return numHasFinal(value) ? withFinal : withoutFinal;
-}
-
-/** 수 뒤의 「로/으로」. **ㄹ 받침은 「로」**다(일로·칠로·팔로) — 받침 유무만으로는 못 가른다. */
-function numRo(value: number): string {
-  const last = Math.abs(Math.trunc(value)) % 10;
-  if (last === 0) return "으로";
-  return last === 3 || last === 6 ? "으로" : "로";
-}
-
-/**
- * `fmtFrac` 이 낸 글자에서 **마지막으로 읽히는 수**.
- * `11\frac{1}{4}` 는 「십일과 사분의 일」이라 끝소리가 **분자** 다.
- */
-function lastSpokenNumber(latex: string): number {
-  const frac = latex.match(/\\frac\{(\d+)\}\{(\d+)\}/);
-  if (frac) return Number(frac[1]);
-  const nums = latex.match(/\d+/g);
-  return nums ? Number(nums[nums.length - 1]) : 0;
 }
 
 /**
@@ -3218,7 +3202,7 @@ function biCalc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${num(a)} 대 ${num(b)}${numJosa(b, "을", "를")} 비로 나타내시오.`,
     expr(`${a}:${b}`),
-    `「${num(a)} 대 ${num(b)}」는 기호 ${expr(":")} 을 써서 ${expr(`${a}:${b}`)} 로 나타냅니다.`,
+    `「${num(a)} 대 ${num(b)}」는 기호 ${expr(":")} 을 써서 ${expr(`${a}:${b}`)}${numRo(b)} 나타냅니다.`,
   );
 }
 
@@ -4872,7 +4856,7 @@ function diffDpCalc(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음 나눗셈의 몫을 구하시오.\n\n${expr(`${a}\\div${b}=\\square`)}`,
     expr(q),
     `나누는 수가 자연수가 되도록 두 수의 소수점을 함께 한 자리씩 옮겨 ` +
-      `${expr(`${decStr(c.a, 1)}\\div${c.b}`)} 로 계산합니다. ${expr(`${a}\\div${b}=${q}`)}`,
+      `${expr(`${decStr(c.a, 1)}\\div${c.b}`)}${numRo(c.b)} 계산합니다. ${expr(`${a}\\div${b}=${q}`)}`,
   );
 }
 
@@ -8901,11 +8885,12 @@ function natDivReduceMid(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, natDivReduceStem(c), num(c.a), [
     `몫은 어떤 수를 분자로, ${num(c.b)}${numJosa(c.b, "을", "를")} 분모로 하는 분수입니다. ` +
       `기약분수의 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었으므로 분자와 분모를 ` +
-      `${expr(`${c.b}\\div${c.m}=${c.g}`)} 로 약분한 것입니다.`,
+      `${expr(`${c.b}\\div${c.m}=${c.g}`)}${numRo(c.g)} 약분한 것입니다.`,
     `${where} 그 안에서 ${num(c.b)}${numJosa(c.b, "과", "와")} 약분하여 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되는 수는 ` +
       `${c.set.map((v) => num(v)).join(", ")} 입니다.`,
     `이 중 ${num(c.lo)}보다 큰 것은 ${num(c.a)} 뿐입니다. ` +
-      `${expr(`${c.a}\\div${c.b}=\\frac{${c.a}}{${c.b}}=${fmtFrac(c.a, c.b)}`)} 로 분모가 ${num(c.m)}입니다.`,
+      `${expr(`${c.a}\\div${c.b}=\\frac{${c.a}}{${c.b}}=${fmtFrac(c.a, c.b)}`)}` +
+      `${numRo(lastSpokenNumber(fmtFrac(c.a, c.b)))} 분모가 ${num(c.m)}입니다.`,
   ]);
 }
 
@@ -8964,8 +8949,8 @@ function fracReturnMid(unit: UnitSeed, rng: Rng): ElemProblem {
       `${num(c.lo)}보다 크고 ${num(c.up)}보다 작은 수 ${inWindow.map((v) => num(v)).join(", ")} 중에서 ` +
       `${num(c.p)}${numJosa(c.p, "을", "를")} 나누어떨어지게 하는 것은 ${num(c.k)} 뿐입니다.`,
     `${expr(`${c.q}\\times${c.k}=${c.q * c.k}`)} 이므로 ` +
-      `${expr(`\\frac{${c.p}}{${c.q}}\\div${c.k}=\\frac{${c.p}}{${c.q * c.k}}=${fmtFrac(c.p / c.k, c.q)}`)} ` +
-      `로 분모가 ${num(c.q)}입니다.`,
+      `${expr(`\\frac{${c.p}}{${c.q}}\\div${c.k}=\\frac{${c.p}}{${c.q * c.k}}=${fmtFrac(c.p / c.k, c.q)}`)}` +
+      `${numRo(lastSpokenNumber(fmtFrac(c.p / c.k, c.q)))} 분모가 ${num(c.q)}입니다.`,
   ]);
 }
 
