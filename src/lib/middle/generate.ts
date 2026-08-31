@@ -33,6 +33,7 @@ import { M1_REAL } from "./m1Real";
 import { M1_SOLID_TYPES } from "./m1Solid";
 import { M1_STAT_TYPES } from "./m1Stat";
 import { M1_STAT_FIG } from "./m1StatFig";
+import { M1_TOP } from "./m1Top";
 import { M1_TYPES_10 } from "./m1Types10";
 import { M2_TYPES } from "./m2";
 import { M3_TYPES } from "./m3";
@@ -61,6 +62,8 @@ const ALL: TypeEntry[] = [
   ...MID_SUP_B,
   // 중1 소단원 넷을 8 → 10유형으로 올린 몫 — 같은 이유로 명부 밖이다(m1Types10.ts 머리말).
   ...M1_TYPES_10,
+  // 중1 상위 갈래(`심화중`·`심화상`) — D-116. 같은 이유로 명부 밖이다(m1Top.ts 머리말).
+  ...M1_TOP,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();
