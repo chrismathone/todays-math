@@ -3744,13 +3744,13 @@ function mul14Why(t: number, o: number, k: number, want: MulCarry): string {
   if (onesCarry !== wantOnes) {
     return (
       `곱하는 수가 ${n(k)} 일 때는 일의 자리끼리의 곱이 ${n(o * k)} 입니다. ` +
-      `일의 자리에서 올림이 ${onesCarry ? "생깁니다" : "생기지 않습니다"}`
+      `그래서 일의 자리에서 올림이 ${onesCarry ? "생깁니다" : "생기지 않습니다"}`
     );
   }
   const tens = t * k + Math.floor((o * k) / 10);
   return (
     `곱하는 수가 ${n(k)} 일 때는 십의 자리끼리의 곱에 올림까지 더하면 ${n(tens)} 입니다. ` +
-    `십의 자리에서 올림이 ${tens >= 10 ? "생깁니다" : "생기지 않습니다"}`
+    `그래서 십의 자리에서 올림이 ${tens >= 10 ? "생깁니다" : "생기지 않습니다"}`
   );
 }
 
