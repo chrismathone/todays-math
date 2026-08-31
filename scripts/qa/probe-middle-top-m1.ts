@@ -29,7 +29,7 @@
  * **쌍마다 천장을 먼저 찍고**, 천장이 문턱 아래면 «겹침 없음»이 아니라 **«판정 불가»**
  * 로 적는다. 한글 낱말 Jaccard 를 같이 낸다(심화에서는 이쪽이 듣는다).
  *
- * **⑸ 해설 깊이** — 규칙을 옮겨 적지 않는다. `probe-mid-solution-depth.ts` 의
+ * **⑸ 해설 깊이** — 규칙을 옮겨 적지 않는다. `probe-middle-solution-depth.ts` 의
  * `isThin` 을 **그대로 import** 한다(두 벌이 되면 한쪽만 고쳐도 아무도 모른다).
  *
  * ## 🔴 이 자가 못 보는 것
@@ -54,7 +54,7 @@ import {
   solveSameRemainder,
   M1_TOP,
 } from "../../src/lib/middle/m1Top";
-import { isThin } from "./probe-mid-solution-depth";
+import { isThin } from "./probe-middle-solution-depth";
 import { isDirectScript } from "../import/isDirectScript";
 
 const SEEDS = [20260827, 7, 4242, 99991, 31337, 5150131, 20260901, 12345];
@@ -422,7 +422,7 @@ function reportOverlap(rows: Row[]): void {
 
 function reportDepth(rows: Row[]): void {
   console.log(
-    "\n## ⑸ 해설 깊이 — `probe-mid-solution-depth` 의 자를 그대로 쓴다\n",
+    "\n## ⑸ 해설 깊이 — `probe-middle-solution-depth` 의 자를 그대로 쓴다\n",
   );
   console.log("| 유형 | 표본 | 걸음 건너뛰기 | 해설 길이 중앙값 |");
   console.log("|---|---|---|---|");
@@ -551,7 +551,7 @@ function selftest(): number {
     "양성 ⑸: 생략 표지 뒤에 답만 오면 얇다",
     true,
     isThin("경우의 수를 구하시오.", "표로 정리하여 세면 모두 $3$가지이다."),
-    "probe-mid-solution-depth 의 나쁜 실례",
+    "probe-middle-solution-depth 의 나쁜 실례",
   );
   add(
     "음성 ⑸: 중간 결과가 있으면 얇지 않다",

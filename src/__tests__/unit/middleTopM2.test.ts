@@ -18,7 +18,7 @@
  *
  * ## 이 시험이 못 보는 것
  *
- * 「해설이 학생에게 충분한가」는 여기서 못 잰다 — 자는 `scripts/qa/probe-mid-solution-depth.ts`
+ * 「해설이 학생에게 충분한가」는 여기서 못 잰다 — 자는 `scripts/qa/probe-middle-solution-depth.ts`
  * 이고 그 자도 «생략 표지 없는 부실»은 못 본다. 그래서 보고서에 **눈으로 읽은
  * 기록**을 따로 남겼다(`tracks/reports/mid-top-m2.md` §5).
  */

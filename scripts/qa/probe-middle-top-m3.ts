@@ -32,9 +32,9 @@
  * 않는다(브리프 §6).
  *
  * ```bash
- * npx tsx scripts/qa/probe-m3-top.ts --selftest   # 눈금 (양성 5 · 음성 5)
- * npx tsx scripts/qa/probe-m3-top.ts              # ㉠ ㉡ ㉢ 전량
- * npx tsx scripts/qa/probe-m3-top.ts --overlap    # ㉢ 만 (천장 포함, 느리다)
+ * npx tsx scripts/qa/probe-middle-top-m3.ts --selftest   # 눈금 (양성 5 · 음성 5)
+ * npx tsx scripts/qa/probe-middle-top-m3.ts              # ㉠ ㉡ ㉢ 전량
+ * npx tsx scripts/qa/probe-middle-top-m3.ts --overlap    # ㉢ 만 (천장 포함, 느리다)
  * ```
  */
 import { pathToFileURL } from "node:url";
@@ -325,7 +325,7 @@ function selftest(): void {
     console.log(`  ${pass ? "✅" : "🔴"} ${r.name.padEnd(44)} ${r.why}`);
   }
   console.log(
-    `\n눈금 ${ok}/${rows.length} — ${ok === rows.length ? "통과" : "🔴 실패"}`,
+    `\n${ok === rows.length ? "✅" : "❌"} 눈금 ${rows.length}건 ${ok === rows.length ? "전부 맞다" : `중 ${rows.length - ok}건 어긋났다`}`,
   );
   if (ok !== rows.length) process.exitCode = 1;
 }

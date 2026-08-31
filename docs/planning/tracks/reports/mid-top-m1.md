@@ -24,7 +24,7 @@ npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 12건 (양성 7 
 npx tsx scripts/qa/probe-middle-top-m1.ts              # ㉠㉡㉢ + 해설 깊이
 npx tsx scripts/qa/probe-middle-top-m1.ts --overlap    # ㉢ 만 (천장·기준선 포함)
 npx tsx scripts/qa/probe-middle-top-m1.ts --rubric     # 반증 ④ 를 사람이 읽을 목록
-npx tsx scripts/qa/probe-mid-solution-depth.ts         # 원장님 완료 조건 (남의 자)
+npx tsx scripts/qa/probe-middle-solution-depth.ts         # 원장님 완료 조건 (남의 자)
 npx vitest run src/__tests__/unit/middleM1Top.test.ts  # 44 시험
 ```
 
@@ -209,11 +209,11 @@ D-115 반증 ④ 는 「같은 소단원의 **연산·기본·응용** 중 하�
 
 ## 6. 🔴 원장님 완료 조건 — 「풀이가 충분한가」 [실측]
 
-**남의 자로 잰다** — `probe-mid-solution-depth.ts` 의 `isThin` 을 **그대로 import**
+**남의 자로 잰다** — `probe-middle-solution-depth.ts` 의 `isThin` 을 **그대로 import**
 한다(규칙을 옮겨 적으면 두 벌이 되어 한쪽만 고쳐도 아무도 모른다).
 
 ```
-npx tsx scripts/qa/probe-mid-solution-depth.ts    # 눈금 5/5 통과
+npx tsx scripts/qa/probe-middle-solution-depth.ts    # 눈금 5/5 통과
 ```
 
 ### 중1 (행 4,770)

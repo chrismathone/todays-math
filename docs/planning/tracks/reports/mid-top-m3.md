@@ -51,8 +51,8 @@ $-\sqrt t<k<\sqrt t$ 의 **양쪽**을 다 쓴다(초6 `2-6-3` 이 「높이−�
 ## 2. 🔴 브리프 §3 의 함정 셋 — **돌려서** 잰 값
 
 ```bash
-npx tsx scripts/qa/probe-m3-top.ts --selftest   # 눈금 10건 (양성 5 · 음성 5) → 10/10
-npx tsx scripts/qa/probe-m3-top.ts              # ㉠ ㉡ ㉢ + 비움 근거
+npx tsx scripts/qa/probe-middle-top-m3.ts --selftest   # 눈금 10건 (양성 5 · 음성 5) → 10/10
+npx tsx scripts/qa/probe-middle-top-m3.ts              # ㉠ ㉡ ㉢ + 비움 근거
 ```
 
 ### ㉠ 굳힘을 **안 읽고** 극단을 집으면 몇 %가 맞나 (씨앗 400)
@@ -107,7 +107,7 @@ S > 4c        → 답이 후보의 **최솟값**
 ### ㉤ 해설이 충분한가 — 원장님이 건 완료 조건 (D-116 ⑸)
 
 ```bash
-npx tsx scripts/qa/probe-mid-solution-depth.ts     # 눈금 5/5 통과
+npx tsx scripts/qa/probe-middle-solution-depth.ts     # 눈금 5/5 통과
 ```
 
 | 중3 갈래 | 행 | 해설 중앙값 | 🔴 걸음 건너뜀 |
@@ -128,7 +128,7 @@ npx tsx scripts/qa/probe-mid-solution-depth.ts     # 눈금 5/5 통과
 ## 3. 안 세운 것과 그 근거 — **비운 것도 산출물이다**
 
 ```bash
-npx tsx scripts/qa/probe-m3-top.ts --empty      # 아래 두 표를 다시 찍는다
+npx tsx scripts/qa/probe-middle-top-m3.ts --empty      # 아래 두 표를 다시 찍는다
 ```
 
 ### ⑴ 3-1 Ⅱ «인수분해와 이차방정식» 의 `이차방정식의 활용` — **반증 ④ 위반**
@@ -200,8 +200,8 @@ D-115 반증문 ④: 「같은 소단원의 연산·기본·응용 중 **하나�
 | 무엇 | 명령 | 결과 |
 |---|---|---|
 | 새 시험 | `npx vitest run src/__tests__/unit/middleM3Top.test.ts` | **18/18** |
-| 판정기 눈금 | `probe-m3-top.ts --selftest` | **10/10** (양성 5 · 음성 5) |
-| 해설 깊이 눈금 | `probe-mid-solution-depth.ts --selftest` | **5/5** |
+| 판정기 눈금 | `probe-middle-top-m3.ts --selftest` | **10/10** (양성 5 · 음성 5) |
+| 해설 깊이 눈금 | `probe-middle-solution-depth.ts --selftest` | **5/5** |
 | 타입 | `npm run type-check` | **0** |
 | 린트 | `npm run lint` | 통과 (경고는 전부 기존 파일) |
 | 전량 관문 | `npm run test` | **342 파일 · 13,428 tests · 판정기 27/27 · 종료 코드 0** (§5.1) |
@@ -325,7 +325,7 @@ npx tsx scripts/qa/census-middle-solution-vocab.ts
 3. **§3 ⑷ 의 «통찰형»은 잣대부터 원장님 확정이 필요하다.** 후보가 없는 부류라 지금
    잣대로는 영영 밑바닥이다.
 4. `이차방정식의 활용|14` 의 조사 오류(§6 ⑵)를 소유 세션에 넘겨 주기 바란다.
-5. **판정기를 물려받을 때 눈금부터 돌려라** — `probe-m3-top.ts --selftest` 는 양성
+5. **판정기를 물려받을 때 눈금부터 돌려라** — `probe-middle-top-m3.ts --selftest` 는 양성
    5 · 음성 5 다. 음성이 없으면 「깨끗」과 「못 셈」이 안 갈린다.
 6. **새 워크트리에서는 관문 전에 준비물 셋을 갖춰라**(§5.1 ⑵). 없으면 「내 탓 아닌」
    빨강으로 시간을 태운다:

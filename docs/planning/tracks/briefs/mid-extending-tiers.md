@@ -15,7 +15,7 @@
 | **저쪽 실물의 꼴** | `tracks/reports/matholic-mid-scan.md` **§4** | 이 일의 근거 전부가 여기 있다 |
 | 잣대 | `07-coding-convention.md` **D-115 ⑾**, **D-116** | 중·상을 가르는 문장 |
 | 초등이 물린 함정 | `tracks/reports/tier-fill-g6-w3-adversarial.md` **§7.1·§7.5** | **가장 값진 문서다. 안 읽으면 같은 곳에 빠진다** |
-| 해설 문턱 | `scripts/qa/probe-mid-solution-depth.ts` 머리말 | 원장님이 새로 건 완료 조건 |
+| 해설 문턱 | `scripts/qa/probe-middle-solution-depth.ts` 머리말 | 원장님이 새로 건 완료 조건 |
 | 중등 조사 셋 | `tracks/reports/tier-bench-m{1,2,3}.md` 중 **자기 학년** | 지금 풀이 어디가 얇은지 |
 
 ---
@@ -116,8 +116,8 @@ grep -rn "심화중\|심화상" src/lib/middle/     →  0건
 ## 5. 🔴 완료 조건에 **«풀이가 충분한가»** 가 들어간다 (원장님)
 
 ```bash
-npx tsx scripts/qa/probe-mid-solution-depth.ts --selftest   # 눈금 5건
-npx tsx scripts/qa/probe-mid-solution-depth.ts              # 갈래별 분포
+npx tsx scripts/qa/probe-middle-solution-depth.ts --selftest   # 눈금 5건
+npx tsx scripts/qa/probe-middle-solution-depth.ts              # 갈래별 분포
 ```
 
 착수 시점 실측(1,376유형 × 12,384행): 해설 중앙값은 갈래를 따라 늘지만

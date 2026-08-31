@@ -36,9 +36,9 @@
  * (2026-08-27·08-30). 적재본을 재려면 자를 따로 세워야 한다.
  *
  * ```bash
- * npx tsx scripts/qa/probe-mid-solution-depth.ts --selftest   # 눈금 6건 (양성 3 · 음성 3)
- * npx tsx scripts/qa/probe-mid-solution-depth.ts              # 갈래별 분포
- * npx tsx scripts/qa/probe-mid-solution-depth.ts --list       # 전 표본이 부족한 유형
+ * npx tsx scripts/qa/probe-middle-solution-depth.ts --selftest   # 눈금 6건 (양성 3 · 음성 3)
+ * npx tsx scripts/qa/probe-middle-solution-depth.ts              # 갈래별 분포
+ * npx tsx scripts/qa/probe-middle-solution-depth.ts --list       # 전 표본이 부족한 유형
  * ```
  */
 import {
@@ -104,15 +104,15 @@ function selftest(): number {
     const ok = got === want;
     if (!ok) bad += 1;
     console.log(
-      `${ok ? "  " : "🔴"} ${key.padEnd(30)} 손 ${want ? "부족" : "충분"} / 자 ${
+      `${ok ? "✅" : "❌"} ${key.padEnd(30)} 손 ${want ? "부족" : "충분"} / 자 ${
         got ? "부족" : "충분"
       }   ${why}`,
     );
   }
   console.log(
     bad === 0
-      ? `눈금 ${CALIBRATION.length}/${CALIBRATION.length} — 통과`
-      : `🔴 눈금 ${CALIBRATION.length - bad}/${CALIBRATION.length} — 아래 수치를 쓰지 마라`,
+      ? `✅ 눈금 ${CALIBRATION.length}건 전부 맞다`
+      : `❌ 눈금 ${CALIBRATION.length}건 중 ${bad}건 어긋났다 — 아래 수치를 쓰지 마라`,
   );
   return bad;
 }

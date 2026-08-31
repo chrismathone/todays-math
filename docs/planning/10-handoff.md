@@ -134,6 +134,32 @@ D-113 의 연산은 「그 소단원의 연산을 그대로 한 번」이라 **�
 6. ⏳ 프리셋 이동 (가드 ㉠㉡ 이 순서를 강제한다 · ㉢ pre-push 는 아직 안 씀)
 ```
 
+#### 🔴 2026-09-01 새로 드러난 빚 — **중등 판정기 22개가 관문 그물 밖이다**
+
+관문의 판정기 쓸기와 눈금 검사는 디렉터리를 **`^probe-(elem|middle)-`** 로 걸러서
+훑는다(`elemProbeGauges.test.ts` ⑷ · `sweep-elem-probes.mjs`). 그런데 중등 쪽에는
+**`probe-m{N}-*` 라는 별개 관례가 24개**나 서 있었고, 그것들은 **눈금이 한 번도
+자동으로 안 돈다** — 관문은 초록인데 그 자들이 살아 있는지 아무도 안 묻는다.
+
+```
+probe-m1-expr · probe-m1-geo1 · probe-m1-geo2 · probe-m1geo3-circle · probe-m1-num
+probe-m1-prop · probe-m1-solid · probe-m2-center · probe-m2-geo · probe-m2-line
+probe-m2-mono · probe-m2-numprob · probe-m2-pytha · probe-m2-quad · probe-m2-system
+probe-m3-func · probe-m3-poly · probe-m3-stat2 · probe-m3-trig
+probe-mid2-quad-ext · probe-mid2-quad-paper · probe-mid3-types10
+```
+
+⚠️ **리드가 만든 `probe-mid-solution-depth` 도 같은 자리에 있었다** — 2026-09-01 에
+`probe-middle-solution-depth` 로 옮겨 그물 안으로 들였다. 중3 세션의
+`probe-m3-top` 도 같이 옮겼다 — **둘을 옮겨 24 → 22.**
+(세는 법: `ls scripts/qa/probe-*.ts` 에서 `^probe-(elem|middle)-` 를 빼고
+남은 것 중 `^probe-(m[0-9]|mid)` — 그림·인쇄 판정기 17개는 이 그물 소관이 아니다.)
+
+**⚠️ 「그물 밖 이름을 전부 잡는」 가드는 넣지 마라** — 실제로 넣어 봤더니
+`probe-4d`·`probe-cube-*`·`probe-figure-*` 까지 **56개**가 걸렸다. 그림·인쇄용
+판정기는 원래 이 그물 소관이 아니다. **늘 우는 가드는 꺼진다**(2026-08-20).
+고치려면 22개를 **한 번에 옮기고** 표에 등록하는 별도 회차가 필요하다.
+
 #### 2026-09-01 적재 회차에서 배운 것 둘
 
 **⑴ 🔴 `seedBase` 를 새로 주면 «이미 있는 것»이 통째로 새 문항이 된다.**
@@ -1172,7 +1198,18 @@ DB 수리 도구는 `scripts/qa/repair-mcq-choices.ts` (마른 실행이 기본)
 
 ### 0-C.5 🔴 원장님 판단이 필요한 것 — 넷
 
-**㉠ `probe-middle-combo` 눈금 2건 — 관문의 유일한 빨강.**
+**㉠ `probe-middle-combo` 눈금 2건 — 2026-09-01 에 «저절로» 초록이 됐다.**
+
+🔴 **고쳐서가 아니다.** 중등 확대 갈래 11개가 들어와 등록 유형이 1,376 → **1,387**
+이 되자 말뭉치를 다시 만들어야 했고(`build-middle-corpus.ts` ·
+`census-middle-solution-vocab.ts`), 그때 **어휘 가중치가 움직여** 두 유형이
+문턱을 넘었다. 실측 — 둘 다 `결합형`, 눈금 **옛 25/25 · 새 양성 5/5 · 새 음성 7/7**,
+집계 1387 = 결합형 48 + 아님 1093 + 미분류 246 + 실패 0.
+
+⚠️ **밑에 적힌 구조 결함은 그대로다** — 「같은 개념군 안에서 후보가 서넛으로
+갈라져 문턱을 못 넘는다」. 유형이 또 늘면 **반대 방향으로도 움직인다.**
+그러니 이 초록을 「해결됨」으로 읽지 말 것. 아래가 그때의 진단이다:
+
 
 ```
 3-1|이차방정식의 활용|15: 기대 결합형(닮음 근거), 실제 미분류

@@ -41,8 +41,8 @@ import {
   quadrantOf,
   type Sift,
 } from "../../lib/middle/m3Top";
-import { isThin } from "../../../scripts/qa/probe-mid-solution-depth";
-import { edgeScore, siftScore } from "../../../scripts/qa/probe-m3-top";
+import { isThin } from "../../../scripts/qa/probe-middle-solution-depth";
+import { edgeScore, siftScore } from "../../../scripts/qa/probe-middle-top-m3";
 
 const MEDIAN_KEY = "3-2|산포도|11T";
 const VERTEX_KEY = "3-1|이차함수의 그래프 ⑵|22T";

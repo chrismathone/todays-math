@@ -38,7 +38,7 @@
 ```bash
 npx tsx scripts/qa/probe-middle-extending-tiers.ts --selftest    # 눈금 12건 (양성 6 · 음성 6)
 npx tsx scripts/qa/probe-middle-extending-tiers.ts               # ㈃ 냄새 · ㉠ · ㉡ · ㉢ 전부
-npx tsx scripts/qa/probe-mid-solution-depth.ts       # 해설 깊이 (남의 자 — 안 고쳤다)
+npx tsx scripts/qa/probe-middle-solution-depth.ts       # 해설 깊이 (남의 자 — 안 고쳤다)
 npx vitest run src/__tests__/unit/middleTopM2.test.ts # 값 검산 12건
 python scripts/qa/mutate-mid-top-m2.py               # 변이 10개 — 시험이 가드인가
 ```
@@ -221,7 +221,7 @@ $q>p$ 면 목록 뒤로 갈수록 작아지고, **작은 수일수록 소수가 
 
 ## 3. 완료 조건 — 「풀이가 충분한가」 (D-116 ⑸, 원장님)
 
-`scripts/qa/probe-mid-solution-depth.ts` 를 **안 고치고** 그대로 돌렸다
+`scripts/qa/probe-middle-solution-depth.ts` 를 **안 고치고** 그대로 돌렸다
 (눈금 5/5 통과).
 
 | 중2 갈래 | 행 | 해설 중앙 | 🔴 걸음 건너뜀 |
