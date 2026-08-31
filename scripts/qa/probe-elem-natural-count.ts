@@ -6,7 +6,7 @@
  *
  * ## ⚠️ 이 자는 **막는 자가 아니라 세는 자**다
  *
- * 규칙만으로 훑으면 **27갈래**가 걸리는데 **26이 거짓**이다. 막는 자로 두면
+ * 규칙만으로 훑으면 **36갈래**가 걸리는데 **35가 거짓**이다. 막는 자로 두면
  * 늘 울고, 늘 우는 가드는 꺼진다(2026-08-20). 그래서 규칙은 후보만 좁히고,
  * 판정은 아래 표에 **근거와 함께** 적어 둔다. 새로 나타난 갈래만 신고한다.
  *
@@ -50,7 +50,7 @@
  * ```bash
  * npx tsx scripts/qa/probe-elem-natural-count.ts --selftest   # 눈금 5건
  * npx tsx scripts/qa/probe-elem-natural-count.ts              # 새로 나타난 갈래만
- * npx tsx scripts/qa/probe-elem-natural-count.ts --all        # 27갈래 전량 + 근거
+ * npx tsx scripts/qa/probe-elem-natural-count.ts --all        # 36갈래 전량 + 근거
  * ```
  */
 import {
@@ -169,18 +169,20 @@ const CALIBRATION: ReadonlyArray<readonly [string, string, boolean]> = [
 
 function selftest(): number {
   let bad = 0;
-  console.log("### 눈금 (양성 2 · 음성 3)");
+  const pos = CALIBRATION.filter((c) => c[2]).length;
   for (const [label, text, want] of CALIBRATION) {
     const got = usesRangeWithoutNatural(text);
     if (got !== want) bad += 1;
+    // ⚠️ 판정 줄은 `✅`/`❌` 로 시작해야 한다 — `elemProbeGauges` 가 **요약 수를
+    //    그냥 믿지 않고** 이 줄을 세어 대조한다(요약이 손으로 적히는 것을 막는다).
     console.log(
-      `${got === want ? "  " : "🔴"} ${label.padEnd(28)} 자 ${got ? "걸림" : "안 걸림"}`,
+      `${got === want ? "✅" : "❌"} ${label.padEnd(28)} 자 ${got ? "걸림" : "안 걸림"}`,
     );
   }
   console.log(
     bad === 0
-      ? `눈금 ${CALIBRATION.length}/${CALIBRATION.length} — 통과`
-      : `🔴 눈금 실패 ${bad}건`,
+      ? `✅ 눈금 ${CALIBRATION.length}건 전부 맞다 (양성 ${pos} · 음성 ${CALIBRATION.length - pos})`
+      : `❌ 눈금 ${CALIBRATION.length}건 중 ${bad}건 어긋났다`,
   );
   return bad;
 }
@@ -206,8 +208,11 @@ function sweep(): Map<string, string> {
 }
 
 function main(): void {
-  if (selftest() !== 0) {
-    process.exitCode = 1;
+  const bad = selftest();
+  // 눈금만 물으면 여기서 끝낸다 — 전량 쓸기는 62,640문항이라
+  // `elemProbeGauges` 의 90초 제한을 넘긴다.
+  if (bad !== 0 || process.argv.includes("--selftest")) {
+    process.exitCode = bad === 0 ? 0 : 1;
     return;
   }
   console.log("");
