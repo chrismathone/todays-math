@@ -31,7 +31,7 @@ import {
   pageNumbers,
   rat,
 } from "../../src/lib/elementary/forwardReach";
-import { divisors, gcd, lcm } from "../../src/lib/elementary/math";
+import { divisors, gcd } from "../../src/lib/elementary/math";
 
 import { isDirectScript } from "../import/isDirectScript";
 
