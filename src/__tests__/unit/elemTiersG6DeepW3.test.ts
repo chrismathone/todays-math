@@ -59,16 +59,21 @@ import {
 const SEEDS = Array.from({ length: 24 }, (_, i) => i * 37 + 5);
 
 /**
- * ㉠ 의 «열린 후보» 최소치. 기본은 둘(D-115 가 요구하는 값)이고, **더 요구하는 자리만**
- * 여기 적는다.
+ * 🔴 **성질이 만드는 «열»의 최소 길이** — `open` 이 아니라 `series` 를 잰다.
  *
- * 1-1-1 은 셋이다 — 성질이 만드는 것이 «배수열»이고 해설이 그 열을 **지면에 늘어놓기**
- * 때문이다. 둘이면 창의 두 끝이 곧 답이라 열이 열로 안 보인다. 생성기 쪽 `base.length < 3`
- * 가 그 뜻인데 **어떤 시험도 그것을 안 물고 있었다**(2026-08-31 변이 시험이 초록으로
- * 찍었다). 손 상수를 생성기와 시험에 두 벌 두는 것이 아니라, 시험은 **지면에서 다시 풀어**
- * 센다(`splitOf`) — 그래서 생성기의 그 줄을 무르면 여기가 빨개진다.
+ * 1-1-1 은 셋이다: 해설이 「$24$ 와 약분하여 분모가 $8$ 이 되는 수는 $3$, $9$, $15$, $21$」
+ * 처럼 **그 열을 지면에 늘어놓기** 때문이다. 둘이면 열이 열로 안 보인다.
+ * 생성기 쪽 `base.length < 3` 이 그 뜻인데 **어떤 시험도 그것을 안 물고 있었다**
+ * (2026-08-31 변이가 초록으로 찍었다).
+ *
+ * ⚠️ **처음 고침은 틀렸다.** 같은 최소치를 `open`(하한 위의 자연수 전부)에 걸었더니
+ * 변이가 **여전히 초록**이었다 — `open` 은 배수열 길이와 무관해서 늘 3 이상이라
+ * 공허하게 통과한다. **가드를 새로 쓰면 «일부러 걸리는 입력»에 대 보라**(이 저장소가
+ * 2026-08-21 에 적은 그대로). 여기서는 변이 하네스가 그 노릇을 했다.
+ *
+ * 손 상수를 생성기와 시험에 두 벌 두는 것이 아니다 — 시험은 **지면에서 다시 풀어** 센다.
  */
-const MIN_OPEN: Record<string, number> = { "1-1-1": 3 };
+const MIN_SERIES: Record<string, number> = { "1-1-1": 3 };
 
 /**
  * 🔴 **반증 ⑥ 만 씨앗을 넓게 쓴다** — 2차분 §8.2 가 실측으로 남긴 교훈이다.
@@ -143,7 +148,7 @@ const intsBetween = (lo: number, up: number) => {
   return out;
 };
 
-type Split = { open: number; fixed: number };
+type Split = { open: number; fixed: number; series?: number };
 
 /**
  * 갈래마다 **«열린 수»와 «굳은 수»** 를 다시 센다 — 엔진 풀을 안 부른다(되부르면 동어반복).
@@ -166,9 +171,17 @@ function splitOf(code: string, content: string): Split | null {
     const inRange: number[] = [];
     for (let a = band * b + 1; a < (band + 1) * b; a += 1)
       if (a > lo) inRange.push(a);
+    // 🔴 `series` 는 **하한을 빼고** 성질만 건 것 — 해설이 지면에 늘어놓는 그 열이다.
+    //    `open`(구간의 자연수 전부)과 **다른 수**다. 처음엔 `open` 에 최소치를 걸었다가
+    //    변이가 초록으로 남았다 — `open` 은 배수열 길이와 무관해서 **공허하게 통과**했다.
+    //    「재는 쪽이 무엇을 재는지」를 안 물으면 가드가 아니라 장식이 된다(§9.8).
+    const series: number[] = [];
+    for (let a = band * b + 1; a < (band + 1) * b; a += 1)
+      if (gcd(a, b) === g) series.push(a);
     return {
       open: inRange.length,
       fixed: inRange.filter((a) => gcd(a, b) === g).length,
+      series: series.length,
     };
   }
 
@@ -287,10 +300,14 @@ describe("[초6 확대 3차분] 잣대 — 마디가 안 굳고, 성질이 굳�
           continue;
         }
         checked += 1;
-        const want = MIN_OPEN[code] ?? 2;
-        if (s.open < want)
+        if (s.open < 2)
           bad.push(
-            `${code} 심화중 seed=${seed}: 마디가 얕다(열린 후보 ${s.open} < ${want}) — ${p.content}`,
+            `${code} 심화중 seed=${seed}: 마디가 이미 굳어 있다(열린 후보 ${s.open}) — ${p.content}`,
+          );
+        const wantSeries = MIN_SERIES[code];
+        if (wantSeries !== undefined && (s.series ?? 0) < wantSeries)
+          bad.push(
+            `${code} 심화중 seed=${seed}: 성질이 만드는 열이 짧다(${s.series} < ${wantSeries}) — ${p.content}`,
           );
         if (s.fixed !== 1)
           bad.push(
