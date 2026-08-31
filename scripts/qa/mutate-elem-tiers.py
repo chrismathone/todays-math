@@ -1735,6 +1735,15 @@ G6_MUTS = [
         "  for (let cap = heights[0]! + 1; cap <= heights[2]!; cap += 1) {",
     ),
     (
+        # 🔴 적대 검토 A-16 을 **변이로 등록**한다 — 그 회차에는 이것이
+        #    「GREEN(시험이 못 잡는다)」이었고, 물어 주는 `elemFigureReference` 가
+        #    하네스 목록 **밖**에 있었다. 이제 GREEN 은 넓은 목록으로 다시
+        #    돌린 뒤에만 찍히므로 **이 변이가 RED 가 되어야 그 구멍이 막힌 것이다.**
+        "없는 그림 지목 — 2-6-1 심화중 발문이 「다음 그림과 같이」로 시작한다 (A-16)",
+        "  `원기둥 모양 ${thing}${josa(thing, \"을\", \"를\")} 앞에서 본 모양이 정사각형이고 ` +",
+        "  `다음 그림과 같이 원기둥 모양 ${thing}${josa(thing, \"을\", \"를\")} 앞에서 본 모양이 정사각형이고 ` +",
+    ),
+    (
         # 🔴 리드 지시(2026-08-31) — 반증 ⑥ 의 자는 곱을 안 물면 구조적으로 0 이다.
         #    그 사각지대를 덮는 ±한 걸음 축. 이 가드를 무르면 실측으로
         #    1-1-1 10/240 · 1-1-3 10/240 · 2-5-2 25/240 이 되살아난다.
@@ -2324,21 +2333,80 @@ def run(args: list[str]) -> tuple[int, str]:
 LAST_PROBE_ERR = ""
 
 
+def engine_test_files() -> list[str]:
+    """초등 **엔진을 실제로 부르는** 시험 파일 전부(직접이든 헬퍼를 거쳐서든).
+
+    🔴 예전에는 `elemTiers{G6}*.test.ts` 라는 **이름 모양 글로브**로 훑었다.
+    그러면 이름이 그 꼴이 아닌 가드 — `elemFigureReference` · `elemStemSelfContained` ·
+    `choiceCountRule` 처럼 **학년을 넘어 서 있는 것들** — 을 통째로 못 본다.
+    2026-08-31 적대 검토가 변이 둘(A-16 · A-18: 발문이 «없는 그림»을 가리키게)로
+    **거짓 초록을 실증**했다: 하네스 4파일은 GREEN 인데 목록 밖 `elemFigureReference` 는 RED 였다.
+    2026-08-20 「접두사처럼 생긴 경로를 접두사로 믿지 마라 · 놓칠 자리가 아예 없는 쪽이 낫다」
+    와 같은 처방이다 — **이름이 아니라 «엔진을 부르는가»로 훑는다.**
+    """
+    root = os.path.join(ROOT, "src", "__tests__")
+    helpers: set[str] = set()
+    tests: list[str] = []
+    for base, _dirs, names in os.walk(root):
+        for name in names:
+            if not name.endswith(".ts"):
+                continue
+            path = os.path.join(base, name)
+            try:
+                txt = io.open(path, encoding="utf-8").read()
+            except OSError:
+                continue
+            rel = os.path.relpath(path, ROOT).replace(os.sep, "/")
+            if name.endswith(".test.ts"):
+                tests.append((rel, txt))
+            elif "generateElementaryProblem" in txt:
+                # 엔진을 부르는 **헬퍼** — 이것을 무는 시험도 엔진을 무는 것이다.
+                helpers.add(os.path.splitext(name)[0])
+    out = []
+    for rel, txt in tests:
+        if "generateElementaryProblem" in txt or any(
+            ("/%s\"" % h) in txt or ("/%s'" % h) in txt for h in helpers
+        ):
+            out.append(rel)
+    return sorted(out)
+
+
 def unlisted_tests(target: dict) -> list[str]:
-    """이 대상의 학년에 있는 시험 파일 가운데 «test» 목록에 **없는** 것.
+    """엔진을 부르는 시험 파일 가운데 이 대상의 «test» 목록에 **없는** 것.
 
     목록이 새면 그 파일이 무는 변이가 GREEN 으로 찍힌다 — 오판은 한 방향뿐이다.
     검증기가 이 함수를 그대로 부른다(세는 쪽과 쓰는 쪽을 두 벌 두지 않는다).
     """
-    stem = os.path.splitext(os.path.basename(target["file"]))[0].upper()
-    listed = {os.path.basename(t) for t in target["test"]}
-    return sorted(
-        os.path.basename(f)
-        for f in glob.glob(
-            os.path.join(ROOT, "src/__tests__/unit/elemTiers%s*.test.ts" % stem)
-        )
-        if os.path.basename(f) not in listed
-    )
+    listed = {t.replace(os.sep, "/") for t in target["test"]}
+    return [f for f in engine_test_files() if f not in listed]
+
+UNREADABLE = "(판정 결과를 못 읽었다"
+
+
+def judge_tests(target: dict) -> tuple[str, list[str], list[str]]:
+    """변이가 걸린 상태에서 ⑷ 를 판정한다 — **전량 판과 낱개 판이 같은 것을 부른다.**
+
+    돌려주는 것: `(판정, 좁은 목록의 실패, 넓은 목록의 실패)`
+      · `"REFUSE"`   — 빨간데 실패한 시험을 못 댄다(러너가 안 떴다)
+      · `"RED"`      — 목록 안의 시험이 물었다
+      · `"RED_WIDE"` — 목록 **밖**의 시험이 물었다(목록이 새는 자리다)
+      · `"GREEN"`    — 엔진을 무는 시험 **전부**를 돌렸는데도 아무도 안 물었다
+
+    🔴 GREEN 은 **비싸게** 확인한다. 좋은 회차에는 초록이 없어 거의 안 돌고,
+    돌 때는 «거짓 초록»을 막는 자리다 — 2026-08-31 적대 검토가 A-16·A-18 로
+    실증한 그 구멍(하네스 4파일 GREEN ↔ 목록 밖 `elemFigureReference` RED)을
+    **구조적으로** 없앤다.
+    """
+    code, names = failed_tests(target["test"])
+    if code != 0 and (not names or names[0].startswith(UNREADABLE)):
+        return ("REFUSE", names, [])
+    if code != 0:
+        return ("RED", names, [])
+    wide = sorted(set(target["test"]) | set(engine_test_files()))
+    w_code, w_names = failed_tests(wide)
+    if w_code != 0:
+        return ("RED_WIDE", names, w_names)
+    return ("GREEN", names, [])
 
 
 def probe(grade: str, sections: list[str]) -> str:
@@ -2716,30 +2784,33 @@ def main() -> int:
                 )
                 ok = False
             else:
-                code, names = failed_tests(target["test"])
                 # ⚠️ **빨간데 어느 시험인지 못 대면 그것은 판정이 아니다.** 러너가
                 #    기동 단계에서 죽어도 종료 코드는 0이 아니라, 「가드가 물었다」와
                 #    구분되지 않는다 — 낱개 판이 없어진 리포터 이름 때문에 **모든
                 #    변이를 RED 로 찍던** 그 모양 그대로다(2026-08-23).
-                unreadable = code != 0 and (
-                    not names or names[0].startswith("(판정 결과를 못 읽었다")
-                )
-                if unreadable:
+                #
+                # 🔴 판정은 `judge_tests` 한 곳에 있다 — 낱개 판도 **그것을** 부른다.
+                verdict, names, wide_names = judge_tests(target)
+                if verdict == "REFUSE":
                     print(f"  ??    {name}\n        ← **빨간데 실패한 시험을 못 댄다**(러너가 안 떴다). 판정하지 않는다")
                     ok = False
+                elif verdict == "RED_WIDE":
+                    print(f"  RED   {name}")
+                    print(
+                        "        ↳ 목록 **밖** 시험이 문다 — "
+                        + (wide_names[0] if wide_names else "(이름을 못 댄다)")
+                    )
+                    print(
+                        f"        ⚠️ 좁은 목록({len(target['test'])}파일)으로는 초록이었다 — `test` 에 넣어라"
+                    )
+                elif verdict == "GREEN":
+                    print(f"  GREEN {name}")
+                    print("        ← 시험이 못 잡는다 (엔진을 무는 시험 전부를 돌렸다)")
+                    ok = False
                 else:
-                    print(f"  {'RED  ' if code else 'GREEN'} {name}")
+                    print(f"  RED   {name}")
                     for t in names[:3]:
                         print(f"        ↳ {t}")
-                    if code == 0:
-                        print("        ← 시험이 못 잡는다")
-                        if unlisted:
-                            print(
-                                f"        ⚠️ 다만 목록에 없는 시험 파일 {len(unlisted)}개가 있다"
-                                f"({' '.join(unlisted)}) — 이 초록은 «못 잡는다»가 아니라"
-                                " «안 돌렸다»일 수 있다"
-                            )
-                        ok = False
             io.open(path, "wb").write(src_bytes)
             clear_inflight(which)
     finally:
