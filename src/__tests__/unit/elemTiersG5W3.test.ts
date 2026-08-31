@@ -328,6 +328,8 @@ describe("[초5 물결 3] 확대 갈래 — 1-2 · 2-1 · 2-3", () => {
       const [x, y] = pairs[0]!;
       expect(lcm(x, y), p.content).toBe(M);
       expect(answerInt(p.answer), p.content).toBe(y);
+      // 🔴 작은 수가 $1$ 이면 큰 수가 곧 최소공배수라 **마디가 없다**(심화하다).
+      expect(x, p.content).toBeGreaterThan(1);
       // 🔴 성질을 빼면 안 굳는다 — 합이 `S` 인 자연수 짝은 얼마든지 있다.
       expect(Math.floor((S - 1) / 2), p.content).toBeGreaterThan(1);
     }

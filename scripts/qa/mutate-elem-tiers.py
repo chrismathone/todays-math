@@ -984,6 +984,82 @@ G5_MUTS = [
         "      for (let k = 2; k <= 4; k += 1) {\n        const add = k * (b - 2 * a);",
         "      for (let k = 1; k <= 1; k += 1) {\n        const add = k * (b - 2 * a);",
     ),
+    # ── 물결 3 (1-2 · 2-1 · 2-3) ──
+    (
+        "[물결3 1-2-1 심화중] 답이 짝수 후보가 아니라 홀수 후보다",
+        "  return makeDeep(unit, content(t), n(t.even), [",
+        "  return makeDeep(unit, content(t), n(t.odd[0]!), [",
+    ),
+    (
+        "[물결3 1-2-1 심화상] 후보가 하나뿐인 자리도 넣는다 (견줄 것이 없다)",
+        "    const owners = w3SecondLargestOwners(m);\n    if (owners.length < 2) continue;\n    // 해설이 후보를 **전부** 늘어놓으므로",
+        "    const owners = w3SecondLargestOwners(m);\n    if (owners.length < 1) continue;\n    // 해설이 후보를 **전부** 늘어놓으므로",
+    ),
+    (
+        "[물결3 1-2-4 심화중] 서로소 짝이 여럿인 자리도 넣는다 (답이 안 정해진다)",
+        "      if (pairs.length !== 1) continue; // 성질이 **한 번에** 하나를 남겨야 «중»이다",
+        "      if (pairs.length < 1) continue; // 성질이 **한 번에** 하나를 남겨야 «중»이다",
+    ),
+    (
+        "[물결3 1-2-4 심화중] 답이 더 큰 수가 아니라 더 작은 수",
+        "  return makeDeep(unit, content(t), n(t.g * t.q), [",
+        "  return makeDeep(unit, content(t), n(t.g * t.p), [",
+    ),
+    (
+        "[물결3 1-2-4 심화상] 한 변이 최대공약수인 자리도 넣는다 (기본과 같은 문항)",
+        "      if (d < 2) continue;\n      const tried = desc.slice(0, i + 1);",
+        "      if (d < 1) continue;\n      const tried = desc.slice(0, i + 1);",
+    ),
+    (
+        "[물결3 1-2-6 심화중] 합이 맞는 약수 짝이 여럿인 자리도 넣는다",
+        "      if (pairs.length !== 1) continue;\n      const [p, q] = pairs[0]!;\n      if (lcm(p, q) !== M) continue;",
+        "      if (pairs.length < 1) continue;\n      const [p, q] = pairs[0]!;\n      if (lcm(p, q) !== M) continue;",
+    ),
+    (
+        "[물결3 1-2-6 심화중] 작은 수가 $1$ 인 자리도 넣는다 (큰 수가 곧 최소공배수)",
+        "      if (p === 1) continue; // 한 수가 `1` 이면",
+        "      if (p === 0) continue; // 한 수가 `1` 이면",
+    ),
+    (
+        "[물결3 1-2-6 심화상] 첫 공배수가 곧 답 (차례로 대 볼 것이 없다)",
+        "        if (k < 3 || k > 6) continue;",
+        "        if (k < 1 || k > 6) continue;",
+    ),
+    (
+        "[물결3 2-1-1 심화중] 범위 안 첫 배수를 «$a$ 미만»에서 고른다 (개수가 어긋난다)",
+        "      const first = Math.ceil(a / k) * k;",
+        "      const first = Math.floor(a / k) * k;",
+    ),
+    (
+        "[물결3 2-1-4 심화중] 백·천의 자리까지 올림한 결과도 넣는다 (자리가 안 굳는다)",
+        "    if (A % 100 === 0) continue;\n    out.push({ A });",
+        "    out.push({ A });",
+    ),
+    (
+        "[물결3 2-1-4 심화상] 가장 작은 수를 한 칸 아래로",
+        "  return makeDeep(unit, content(t), n(t.A - t.c + 1), [",
+        "  return makeDeep(unit, content(t), n(t.A - t.c), [",
+    ),
+    (
+        "[물결3 2-1-6 심화중] 반올림도 담는 값을 단서로 준다 (어림이 안 굳는다)",
+        "    for (let v = A + 5; v <= A + 9; v += 1) out.push({ A, v, up: false });",
+        "    for (let v = A + 3; v <= A + 9; v += 1) out.push({ A, v, up: false });",
+    ),
+    (
+        "[물결3 2-1-6 심화상] 반올림의 가장 작은 수를 한 칸 위로",
+        "  const answer = (t: W3RoundTopTask) => (t.up ? t.A - 99 : t.A - 50);",
+        "  const answer = (t: W3RoundTopTask) => (t.up ? t.A - 99 : t.A - 49);",
+    ),
+    (
+        "[물결3 2-3-4 심화중] 셋째 변이 두 변 사이인 자리도 넣는다 (되짚기가 장식이 된다)",
+        "        if (z > x && z < y) continue;",
+        "        if (z > x && z < y - 1000) continue;",
+    ),
+    (
+        "[물결3 2-3-4 심화하] 해설의 `\\div` 를 홑 역슬래시로 되돌린다 (지면에 날 글자)",
+        "둘레의 절반인 ${expr(`${round}\\\\div2=${half}`)} cm입니다.",
+        "둘레의 절반인 ${expr(`${round}\\div2=${half}`)} cm입니다.",
+    ),
 ]
 
 # 초6 1-2 각기둥과 각뿔 (elem-g6, cfe1fb15 검수 마감). 도형형이라 변이도 도형 축을 문다 —
@@ -1784,12 +1860,17 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG5DecTop.test.ts",
             # 물결 2(1-5·1-6·2-6)의 확대 갈래를 잠그는 자리.
             "src/__tests__/unit/elemTiersG5W2.test.ts",
+            # 물결 3(1-2·2-1·2-3)의 확대 갈래를 잠그는 자리.
+            "src/__tests__/unit/elemTiersG5W3.test.ts",
         ],
         "grade": "초5",
         "sections": [
             "1-1-1",
             "1-1-2",
             "1-1-3",
+            # 🔴 물결 3 에서 1-2-1 에 확대 갈래가 붙었다 — 여기 안 넣으면 그 소단원만
+            #    건드리는 변이가 프로브에 안 잡혀 «산출물이 그대로다»로 판정 거부된다.
+            "1-2-1",
             "1-2-4",
             "1-2-5",
             "1-2-6",
