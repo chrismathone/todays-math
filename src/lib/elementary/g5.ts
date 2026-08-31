@@ -12106,7 +12106,10 @@ function sym234Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `둘레가 ${n(round)} cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 길이가 같고, 이웃한 세 변의 길이가 연속한 세 자연수일 때 가장 짧은 변은 몇 cm입니까?`,
     n(k),
-    `마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 ${expr(`${round}\div2=${half}`)} cm입니다. 연속한 세 자연수의 합이 ${n(half)}이므로 가운데 수는 ${expr(`${half}\div3=${k + 1}`)}이고, 가장 짧은 변은 ${expr(`${k + 1}-1=${k}`)}, 곧 ${n(k)} cm입니다.`,
+    // ⚠️ 여기 두 자리가 **홑 역슬래시**라 지면에 `$60div2=30$` 이 날 글자로 나갔다
+    //    (토대 17 §7 · 물결 2 보고서 §7-4 가 「다음 회차가 반드시 고칠 것」으로 넘긴 자리).
+    //    초등 엔진 전량에서 이 한 자리뿐이었다 — 난이도는 한 글자도 안 바뀐다.
+    `마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 ${expr(`${round}\\div2=${half}`)} cm입니다. 연속한 세 자연수의 합이 ${n(half)}이므로 가운데 수는 ${expr(`${half}\\div3=${k + 1}`)}이고, 가장 짧은 변은 ${expr(`${k + 1}-1=${k}`)}, 곧 ${n(k)} cm입니다.`,
   );
 }
 
@@ -14637,6 +14640,517 @@ function pos263Top(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, content(t), n(t.blue), 걸음);
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * 확대 갈래 «심화중»·«심화상» — 물결 3: 1-2 · 2-1 · 2-3 (D-113 · D-115, 2026-08-31)
+ *
+ * 잣대는 D-115 ⑶·⑷·⑾ 그대로다(물결 2 머리말 참조). 이 회차가 **예약한 굳힘 축**은
+ * 대단원마다 하나씩이고, 앞 회차가 쓴 축(1-5 진분수/대분수 · 1-6 둘레 · 2-6 평균·가능성 ·
+ * 파일럿 2-4 «창»)과 겹치지 않는다.
+ *
+ * ```
+ * 1-2  약수와 배수        «약수는 짝을 이룬다» · «두 몫은 서로소» · «공배수는 최소공배수의 배수»
+ * 2-1  수의 범위와 어림     «그 자리까지 어림하면 그 자리 아래는 0» · «세 어림의 끝 규칙이 서로 다르다»
+ * 2-3  합동과 대칭         «점대칭도형은 마주 보는 변끼리 길이가 같다»
+ * ```
+ *
+ * 🔴 **비운 자리가 스무 칸이다.** 1-2-2·1-2-3·1-2-5 여섯 · 2-1-1 상 · 2-1-2·2-1-3·2-1-5 여섯 ·
+ *    2-3-1·2-3-2·2-3-3 여섯 · 2-3-4 상. 까닭은 `tier-fill-g5-w3.md` §3 에 한 줄씩 적었다 —
+ *    억지로 세우면 그것이 결함이다(D-115 ⑹).
+ *
+ * ⚠️ 이 세 대단원은 **반증 ⑥ 자가 거의 못 본다**(`forwardReachable` 이 아는 길은 곱셈이
+ *    든 네 모양뿐이라 «약수를 나열한다»·«어림한다»·«구간을 센다»가 통째로 없다).
+ *    그래서 자를 **가드로는 쓰되**(아래 `w2Bad`) 「안 닿는다」를 근거로 삼지 않는다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/** 약수를 모두 더한 값. */
+function w3DivSum(v: number): number {
+  return divisors(v).reduce((s, d) => s + d, 0);
+}
+
+/**
+ * 「두 번째로 큰 약수가 `m`」인 수를 **전부** 만든다.
+ *
+ * 약수는 짝을 이루므로 두 번째로 큰 약수는 «그 수 ÷ 두 번째로 작은 약수»다.
+ * 곧 후보는 `m × p` 이고 `p` 가 그 수의 **두 번째로 작은 약수**여야 한다 —
+ * 그 검사를 빼면 `m` 이 두 번째로 큰 약수가 아닌 수가 섞인다.
+ */
+function w3SecondLargestOwners(m: number): number[] {
+  const out: number[] = [];
+  for (let p = 2; p <= m; p += 1) {
+    const v = m * p;
+    const ds = divisors(v);
+    if (ds[1] !== p) continue;
+    if (ds[ds.length - 2] !== m) continue;
+    out.push(v);
+  }
+  return out;
+}
+
+/* ── 1-2-1 심화중 — 「두 번째로 **작은** 약수가 무엇인지 안 말한다」 ── */
+
+type W3SecondTask = { m: number; even: number; odd: number[] };
+
+function w3Second121(): W3SecondTask[] {
+  const out: W3SecondTask[] = [];
+  // `m` 이 홀수라야 후보가 둘 이상 생긴다 — 짝수면 `p` 가 `2` 하나뿐이라 마디가 안 열린다.
+  for (let m = 9; m <= 45; m += 2) {
+    const owners = w3SecondLargestOwners(m);
+    if (owners.length < 2) continue;
+    const evens = owners.filter((v) => v % 2 === 0);
+    if (evens.length !== 1) continue; // 「짝수」가 **하나만** 남겨야 굳는다
+    if (evens[0]! > 90) continue; // 규모를 키우는 것은 축이 아니다(이 대단원은 두 자리다)
+    out.push({ m, even: evens[0]!, odd: owners.filter((v) => v % 2 !== 0) });
+  }
+  return out;
+}
+
+function fac121Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3SecondTask) =>
+    `어떤 수의 약수 중에서 두 번째로 큰 수가 ${n(t.m)}입니다. 어떤 수가 짝수일 때 어떤 수를 구하시오.`;
+  const pool = w2Pool("w3-121mid", () =>
+    w3Second121().filter((t) => !w2Bad(content(t), w2int(t.even))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.even), [
+    `약수는 짝을 이루므로 두 번째로 작은 약수와 두 번째로 큰 약수를 곱하면 어떤 수가 됩니다.`,
+    `어떤 수가 짝수이면 ${nj(2, "은", "는")} 약수이므로 두 번째로 작은 약수는 ${n(2)}입니다.`,
+    `그러므로 어떤 수는 ${expr(`2\\times${t.m}=${t.even}`)}입니다. ${n(t.even)}의 약수는 ${nums(divisors(t.even))}이고, ${expr(`${t.even}\\div2=${t.m}`)}이므로 두 번째로 큰 수가 ${n(t.m)}인 것이 맞습니다.`,
+  ]);
+}
+
+/* ── 1-2-1 심화상 — 「짝수인지 안 말한다 — 후보마다 약수를 다 더해 견준다」 ── */
+
+type W3SumTask = { m: number; ans: number; others: number[]; sum: number };
+
+function w3Sum121(): W3SumTask[] {
+  const out: W3SumTask[] = [];
+  for (let m = 9; m <= 45; m += 1) {
+    const owners = w3SecondLargestOwners(m);
+    if (owners.length < 2) continue;
+    // 해설이 후보를 **전부** 늘어놓으므로 후보가 다 두 자리여야 한다(규모는 난이도 축이 아니다).
+    if (owners.some((v) => v > 99)) continue;
+    for (const v of owners) {
+      const s = w3DivSum(v);
+      // 합이 갈라야 «만들어 견주기»가 답을 하나로 만든다
+      if (owners.some((o) => o !== v && w3DivSum(o) === s)) continue;
+      out.push({ m, ans: v, others: owners.filter((o) => o !== v), sum: s });
+    }
+  }
+  return out;
+}
+
+function fac121Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3SumTask) =>
+    `어떤 수의 약수 중에서 두 번째로 큰 수가 ${n(t.m)}이고, 어떤 수의 약수를 모두 더하면 ${n(t.sum)}입니다. 어떤 수를 구하시오.`;
+  const pool = w2Pool("w3-121top", () =>
+    w3Sum121().filter((t) => !w2Bad(content(t), w2int(t.ans))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const all = [t.ans, ...t.others].sort((x, y) => x - y);
+  const 걸음 = [
+    `약수는 짝을 이루므로 어떤 수는 두 번째로 작은 약수와 ${n(t.m)}의 곱입니다. 그런 수를 모두 만들면 ${nums(all)}입니다.`,
+    ...all.map(
+      (v) =>
+        `${n(v)}의 약수는 ${nums(divisors(v))}이고 모두 더하면 ${expr(`${divisors(v).join("+")}=${w3DivSum(v)}`)}입니다.`,
+    ),
+    `합이 ${n(t.sum)}인 것은 ${n(t.ans)}뿐이므로 어떤 수는 ${n(t.ans)}입니다.`,
+  ];
+  return makeDeep(unit, content(t), n(t.ans), 걸음);
+}
+
+/* ── 1-2-4 심화중 — 「두 몫이 무엇인지 안 말한다 / «두 몫은 서로소»가 굳힌다」 ── */
+
+/** 합이 `T` 이면서 서로소이고 **둘 다 `1` 보다 큰** 짝. */
+function w3CoprimeSumPairs(T: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let p = 2; p * 2 < T; p += 1) {
+    if (gcd(p, T - p) === 1) out.push([p, T - p]);
+  }
+  return out;
+}
+
+type W3GcdSumTask = { g: number; S: number; T: number; p: number; q: number };
+
+function w3GcdSum124(): W3GcdSumTask[] {
+  const out: W3GcdSumTask[] = [];
+  for (let g = 3; g <= 12; g += 1) {
+    for (let T = 5; T <= 14; T += 1) {
+      const pairs = w3CoprimeSumPairs(T);
+      if (pairs.length !== 1) continue; // 성질이 **한 번에** 하나를 남겨야 «중»이다
+      const [p, q] = pairs[0]!;
+      if (g * q > 99) continue; // 규모를 키우는 것은 축이 아니다
+      out.push({ g, S: g * T, T, p, q });
+    }
+  }
+  return out;
+}
+
+function gcd124Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3GcdSumTask) =>
+    `어떤 두 수의 최대공약수가 ${n(t.g)}이고 두 수의 합이 ${n(t.S)}입니다. 두 수 중 어느 수도 다른 수의 약수가 아닐 때, 더 큰 수를 구하시오.`;
+  const pool = w2Pool("w3-124mid", () =>
+    w3GcdSum124().filter((t) => !w2Bad(content(t), w2int(t.g * t.q))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.g * t.q), [
+    `두 수를 최대공약수로 나눈 두 몫의 합은 ${expr(`${t.S}\\div${t.g}=${t.T}`)}입니다.`,
+    `두 몫을 모두 나누어떨어지게 하는 수는 ${n(1)}뿐이고, 어느 수도 다른 수의 약수가 아니므로 두 몫은 둘 다 ${n(1)}보다 큽니다. 합이 ${n(t.T)}이면서 그런 두 수는 ${nj(t.p, "과", "와")} ${n(t.q)}뿐입니다.`,
+    `두 수는 ${expr(`${t.g}\\times${t.p}=${t.g * t.p}`)}, ${expr(`${t.g}\\times${t.q}=${t.g * t.q}`)}입니다. 더 큰 수는 ${n(t.g * t.q)}입니다.`,
+  ]);
+}
+
+/* ── 1-2-4 심화상 — 「공약수마다 잘리는 장수를 실제로 세어 견준다」 ── */
+
+type W3CutTask = {
+  a: number;
+  b: number;
+  d: number;
+  count: number;
+  tried: number[];
+};
+
+function w3Cut124(): W3CutTask[] {
+  const out: W3CutTask[] = [];
+  for (const [a, b] of GCD_PAIRS) {
+    const g = gcd(a, b);
+    // 한 변이 길수록 장수가 적어진다 — 큰 공약수부터 차례로 대 본다(해설이 그 길을 밟는다).
+    const desc = divisors(g).slice().reverse();
+    for (let i = 1; i < desc.length; i += 1) {
+      const d = desc[i]!;
+      // `d = 최대공약수` 는 **기본**(가장 큰 정사각형)과 같은 문항이라 뺀다.
+      if (d < 2) continue;
+      const tried = desc.slice(0, i + 1);
+      if (tried.length > 4) continue; // 해설이 늘어놓을 수 있는 만큼만
+      out.push({ a, b, d, count: (a / d) * (b / d), tried });
+    }
+  }
+  return out;
+}
+
+function gcd124Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3CutTask) =>
+    `가로가 ${n(t.a)} cm, 세로가 ${n(t.b)} cm인 직사각형 모양 색도화지를 남는 부분 없이 크기가 같은 정사각형으로 잘랐더니 정사각형이 모두 ${n(t.count)}장이 되었습니다. 정사각형 한 변의 길이는 몇 cm입니까?`;
+  const pool = w2Pool("w3-124top", () =>
+    w3Cut124().filter((t) => !w2Bad(content(t), w2int(t.d))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const 걸음 = [
+    `정사각형의 한 변은 가로와 세로를 모두 나누어떨어지게 해야 하므로 두 수의 공약수입니다. 공약수는 ${nums(divisors(gcd(t.a, t.b)))}입니다. 한 변이 길수록 장수가 적어지므로 큰 공약수부터 차례로 대 봅니다.`,
+    ...t.tried.map(
+      (d) =>
+        `한 변이 ${n(d)} cm이면 가로로 ${n(t.a / d)}장, 세로로 ${n(t.b / d)}장이므로 ${expr(`${t.a / d}\\times${t.b / d}=${(t.a / d) * (t.b / d)}`)}장입니다.`,
+    ),
+    `${n(t.count)}장이 되는 것은 한 변이 ${n(t.d)} cm일 때뿐입니다.`,
+  ];
+  return makeDeep(unit, content(t), n(t.d), 걸음);
+}
+
+/* ── 1-2-6 심화중 — 「두 수가 무엇인지 안 말한다 / «두 수는 최소공배수의 약수»가 굳힌다」 ── */
+
+type W3LcmSumTask = { M: number; S: number; p: number; q: number };
+
+function w3LcmSum126(): W3LcmSumTask[] {
+  const out: W3LcmSumTask[] = [];
+  // 이 대단원의 규모는 «최소공배수 ≤ 72» 로 묶여 있다(1-2 머리말) — 키우는 것은 축이 아니다.
+  for (let M = 12; M <= 72; M += 1) {
+    const ds = divisors(M);
+    if (ds.length > 8) continue; // 해설이 약수를 늘어놓을 수 있는 만큼만
+    for (let S = 6; S <= M; S += 1) {
+      const pairs: [number, number][] = [];
+      for (const p of ds) {
+        const q = S - p;
+        if (q <= p) continue;
+        if (M % q !== 0) continue;
+        pairs.push([p, q]);
+      }
+      // 성질(두 수는 최소공배수의 약수)이 **한 번에** 하나를 남겨야 «중»이다
+      if (pairs.length !== 1) continue;
+      const [p, q] = pairs[0]!;
+      if (lcm(p, q) !== M) continue;
+      if (p === 1) continue; // 한 수가 `1` 이면 다른 수가 곧 최소공배수라 마디가 없다
+      out.push({ M, S, p, q });
+    }
+  }
+  return out;
+}
+
+function lcm126Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3LcmSumTask) =>
+    `어떤 두 수의 최소공배수가 ${n(t.M)}이고 두 수의 합이 ${n(t.S)}입니다. 두 수 중 더 큰 수를 구하시오.`;
+  const pool = w2Pool("w3-126mid", () =>
+    w3LcmSum126().filter((t) => !w2Bad(content(t), w2int(t.q))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.q), [
+    `공배수는 최소공배수의 배수이므로 두 수는 모두 ${n(t.M)}의 약수입니다. ${n(t.M)}의 약수는 ${nums(divisors(t.M))}입니다.`,
+    `이 중 합이 ${n(t.S)}인 두 수는 ${nj(t.p, "과", "와")} ${n(t.q)}뿐입니다. ${expr(`${t.p}+${t.q}=${t.S}`)}입니다.`,
+    `${nj(t.p, "과", "와")} ${nj(t.q, "을", "를")} 모두 나누어떨어지게 하는 수는 ${n(1)}뿐이므로 최소공배수는 ${expr(`${t.p}\\times${t.q}=${t.M}`)}입니다. 더 큰 수는 ${n(t.q)}입니다.`,
+  ]);
+}
+
+/* ── 1-2-6 심화상 — 「몇 번째 공배수인지 안 말한다 — 후보를 차례로 대 봐야 갈린다」 ── */
+
+type W3RemTask = {
+  a: number;
+  b: number;
+  r: number;
+  c: number;
+  k: number;
+  m: number;
+};
+
+function w3Rem126(): W3RemTask[] {
+  const out: W3RemTask[] = [];
+  for (const [a, b] of LCM_PAIRS) {
+    const m = lcm(a, b);
+    for (let r = 1; r < Math.min(a, b); r += 1) {
+      for (let c = 3; c <= 9; c += 1) {
+        let k = 0;
+        for (let i = 1; i <= 8; i += 1) {
+          if ((i * m + r) % c === 0) {
+            k = i;
+            break;
+          }
+        }
+        // `k = 1` 이면 심화하 ㉮ 와 같은 답이고, `k` 가 없으면 문항이 안 선다.
+        if (k < 3 || k > 6) continue;
+        if (k * m + r > 300) continue;
+        out.push({ a, b, r, c, k, m });
+      }
+    }
+  }
+  return out;
+}
+
+function lcm126Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3RemTask) =>
+    `어떤 수를 ${nro(t.a)} 나누어도 ${nro(t.b)} 나누어도 나머지가 ${n(t.r)}입니다. 어떤 수가 ${n(t.c)}의 배수일 때, 어떤 수 중에서 가장 작은 수를 구하시오.`;
+  const pool = w2Pool("w3-126top", () =>
+    w3Rem126().filter((t) => !w2Bad(content(t), w2int(t.k * t.m + t.r))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const 걸음: string[] = [
+    `나머지 ${nj(t.r, "을", "를")} 빼면 ${nj(t.a, "과", "와")} ${nro(t.b)} 모두 나누어떨어지므로 그 수는 두 수의 공배수입니다. 공배수는 최소공배수 ${n(t.m)}의 배수이므로 어떤 수는 ${n(t.m)}씩 커집니다.`,
+  ];
+  for (let i = 1; i <= t.k; i += 1) {
+    const v = i * t.m + t.r;
+    걸음.push(
+      v % t.c === 0
+        ? `${expr(`${i * t.m}+${t.r}=${v}`)}이고, ${nj(v, "은", "는")} ${nro(t.c)} 나누어떨어집니다.`
+        : `${expr(`${i * t.m}+${t.r}=${v}`)}이고, ${nj(v, "은", "는")} ${nro(t.c)} 나누면 ${nj(v % t.c, "이", "가")} 남습니다.`,
+    );
+  }
+  걸음.push(`그러므로 가장 작은 수는 ${n(t.k * t.m + t.r)}입니다.`);
+  return makeDeep(unit, content(t), n(t.k * t.m + t.r), 걸음);
+}
+
+/* ── 2-1-1 심화중 — 「끝이 어디인지 안 말한다 / «이하는 끝을 포함한다»가 굳힌다」 ── */
+
+type W3RangeTask = {
+  a: number;
+  k: number;
+  c: number;
+  first: number;
+  target: number;
+};
+
+function w3Range211(): W3RangeTask[] {
+  const out: W3RangeTask[] = [];
+  for (let a = 12; a <= 40; a += 1) {
+    for (let k = 3; k <= 8; k += 1) {
+      const first = Math.ceil(a / k) * k;
+      for (let c = 3; c <= 6; c += 1) {
+        const target = first + (c - 1) * k;
+        if (target > 99) continue;
+        out.push({ a, k, c, first, target });
+      }
+    }
+  }
+  return out;
+}
+
+function rng211Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3RangeTask) =>
+    `${n(t.a)} 이상 □ 이하인 자연수 중에서 ${n(t.k)}의 배수는 모두 ${n(t.c)}개입니다. □가 ${n(t.k)}의 배수일 때 □에 알맞은 수를 구하시오.`;
+  const pool = w2Pool("w3-211mid", () =>
+    w3Range211().filter((t) => !w2Bad(content(t), w2int(t.target))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.target), [
+    `${n(t.a)} 이상인 ${n(t.k)}의 배수 중에서 가장 작은 수는 ${expr(`${t.k}\\times${t.first / t.k}=${t.first}`)}입니다.`,
+    `${n(t.k)}의 배수가 ${n(t.c)}개 들어가려면 ${n(t.c)}번째인 ${expr(`${t.k}\\times${t.target / t.k}=${t.target}`)}까지 들어가야 합니다. «이하»는 □ 자신을 포함하므로 □가 ${n(t.target)}이면 ${n(t.target)}도 셈에 들어갑니다.`,
+    `□가 ${n(t.target)}부터 ${n(t.target + t.k - 1)}까지 어느 수여도 ${n(t.k)}의 배수는 ${n(t.c)}개입니다. 그중 ${n(t.k)}의 배수는 ${n(t.target)}뿐이므로 □는 ${n(t.target)}입니다.`,
+  ]);
+}
+
+/* ── 2-1-4 심화중 — 「어느 자리까지 올림했는지 안 말한다 / 자릿값 성질이 굳힌다」 ── */
+
+type W3UpTask = { A: number };
+
+function w3Up214(): W3UpTask[] {
+  const out: W3UpTask[] = [];
+  // 십의 자리 아래만 `0` 인 수 — 백·천의 자리까지 올림한 결과일 수 **없다**.
+  for (let A = 1210; A <= 9990; A += 10) {
+    if (A % 100 === 0) continue;
+    out.push({ A });
+  }
+  return out;
+}
+
+function up214Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3UpTask) =>
+    `어떤 자연수를 올림하여 어느 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 어느 자리까지 올림했는지는 말해 주지 않았습니다. 어떤 수가 될 수 있는 수 중에서 가장 작은 수를 구하시오.`;
+  const pool = w2Pool("w3-214mid", () =>
+    w3Up214().filter((t) => !w2Bad(content(t), w2int(t.A - 9))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const tens = Math.floor((t.A % 100) / 10);
+  return makeDeep(unit, content(t), n(t.A - 9), [
+    `어느 자리까지 올림하면 그 자리 아래는 모두 ${n(0)}이 됩니다. ${n(t.A)}은 십의 자리 숫자가 ${n(tens)}이므로 백의 자리나 천의 자리까지 올림한 것이 아닙니다. 곧 십의 자리까지 올림한 것입니다.`,
+    `십의 자리까지 올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}-9=${t.A - 9}`)}부터 ${n(t.A)}까지입니다.`,
+    `${expr(`${t.A}-10=${t.A - 10}`)}을 올림하면 ${nj(t.A - 10, "이", "가")} 되어 ${nj(t.A, "이", "가")} 아니므로, 가장 작은 수는 ${n(t.A - 9)}입니다.`,
+  ]);
+}
+
+/* ── 2-1-4 심화상 — 「자리 후보 셋마다 범위를 실제로 만들어 개수를 세어 견준다」 ── */
+
+type W3UpCountTask = { A: number; c: number };
+
+function w3UpCount214(): W3UpCountTask[] {
+  const out: W3UpCountTask[] = [];
+  // 천의 자리 아래가 모두 `0` — 십·백·천 **셋 다** 후보다.
+  for (let A = 2000; A <= 9000; A += 1000) {
+    for (const c of [100, 1000]) out.push({ A, c });
+  }
+  return out;
+}
+
+function up214Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3UpCountTask) =>
+    `어떤 자연수를 올림하여 어느 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 어떤 수가 될 수 있는 자연수가 모두 ${n(t.c)}개일 때, 그중 가장 작은 수를 구하시오.`;
+  const pool = w2Pool("w3-214top", () =>
+    w3UpCount214().filter((t) => !w2Bad(content(t), w2int(t.A - t.c + 1))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const 자리 = t.c === 100 ? "백" : "천";
+  return makeDeep(unit, content(t), n(t.A - t.c + 1), [
+    `${nj(t.A, "은", "는")} 백의 자리·십의 자리·일의 자리가 모두 ${n(0)}이므로 십·백·천 중 어느 자리까지 올림한 것인지 알 수 없습니다. 자리마다 어떤 수의 범위를 만들어 봅니다.`,
+    `십의 자리까지라면 ${expr(`${t.A}-9=${t.A - 9}`)}부터 ${n(t.A)}까지로 ${n(10)}개, 백의 자리까지라면 ${expr(`${t.A}-99=${t.A - 99}`)}부터 ${n(t.A)}까지로 ${n(100)}개, 천의 자리까지라면 ${expr(`${t.A}-999=${t.A - 999}`)}부터 ${n(t.A)}까지로 ${n(1000)}개입니다.`,
+    `${n(t.c)}개인 것은 ${자리}의 자리까지 올림한 때이므로 가장 작은 수는 ${n(t.A - t.c + 1)}입니다.`,
+  ]);
+}
+
+/* ── 2-1-6 심화중 — 「어떤 어림인지 안 말한다 / 끝 규칙이 «계산 없이» 둘을 지운다」 ── */
+
+type W3RoundTask = { A: number; v: number; up: boolean };
+
+function w3Round216(): W3RoundTask[] {
+  const out: W3RoundTask[] = [];
+  for (let A = 120; A <= 990; A += 10) {
+    // 버림만 담는 자리 — 반올림 범위(`A+4` 까지)를 넘고 올림 범위(`A` 까지)도 넘는다.
+    for (let v = A + 5; v <= A + 9; v += 1) out.push({ A, v, up: false });
+    // 올림만 담는 자리 — 반올림 범위(`A-5` 부터)보다 작다.
+    for (let v = A - 9; v <= A - 6; v += 1) out.push({ A, v, up: true });
+  }
+  return out;
+}
+
+function round216Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3RoundTask) =>
+    `어떤 자연수를 어림하여 십의 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 올림·버림·반올림 중 어느 것으로 어림했는지는 말해 주지 않았고, ${nj(t.v, "은", "는")} 어떤 수가 될 수 있습니다. 어떤 수가 될 수 있는 수 중에서 ${t.up ? "가장 작은" : "가장 큰"} 수를 구하시오.`;
+  const answer = (t: W3RoundTask) => (t.up ? t.A - 9 : t.A + 9);
+  const pool = w2Pool("w3-216mid", () =>
+    w3Round216().filter((t) => !w2Bad(content(t), w2int(answer(t)))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const 걸음 = t.up
+    ? [
+        `${nj(t.v, "은", "는")} ${n(t.A)}보다 작으므로 버림하여 ${nj(t.A, "이", "가")} 되는 수가 아닙니다. 버림하면 어림한 값이 원래 수보다 크지 않기 때문입니다.`,
+        `반올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}-5=${t.A - 5}`)}부터이므로 ${nj(t.v, "은", "는")} 반올림한 것도 아닙니다. 곧 올림한 것입니다.`,
+        `올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}-9=${t.A - 9}`)}부터 ${n(t.A)}까지이므로 가장 작은 수는 ${n(t.A - 9)}입니다.`,
+      ]
+    : [
+        `${nj(t.v, "은", "는")} ${n(t.A)}보다 크므로 올림하여 ${nj(t.A, "이", "가")} 되는 수가 아닙니다. 올림하면 어림한 값이 원래 수보다 작지 않기 때문입니다.`,
+        `반올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}+4=${t.A + 4}`)}까지이므로 ${nj(t.v, "은", "는")} 반올림한 것도 아닙니다. 곧 버림한 것입니다.`,
+        `버림하여 ${nj(t.A, "이", "가")} 되는 수는 ${n(t.A)}부터 ${expr(`${t.A}+9=${t.A + 9}`)}까지이므로 가장 큰 수는 ${n(t.A + 9)}입니다.`,
+      ];
+  return makeDeep(unit, content(t), n(answer(t)), 걸음);
+}
+
+/* ── 2-1-6 심화상 — 「세 어림의 범위를 다 만들어 끝값으로 견준다」 ── */
+
+type W3RoundTopTask = { A: number; up: boolean };
+
+function w3RoundTop216(): W3RoundTopTask[] {
+  const out: W3RoundTopTask[] = [];
+  for (let A = 1200; A <= 9900; A += 100) {
+    out.push({ A, up: true }); // 가장 큰 수가 `A` → 올림
+    out.push({ A, up: false }); // 가장 큰 수가 `A+49` → 반올림
+  }
+  return out;
+}
+
+function round216Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const high = (t: W3RoundTopTask) => (t.up ? t.A : t.A + 49);
+  const answer = (t: W3RoundTopTask) => (t.up ? t.A - 99 : t.A - 50);
+  const content = (t: W3RoundTopTask) =>
+    `어떤 자연수를 어림하여 백의 자리까지 나타냈더니 ${n(t.A)}이 되었습니다. 올림·버림·반올림 중 어느 것으로 어림했는지는 말해 주지 않았습니다. 어떤 수가 될 수 있는 수 중에서 가장 큰 수가 ${n(high(t))}일 때, 가장 작은 수를 구하시오.`;
+  const pool = w2Pool("w3-216top", () =>
+    w3RoundTop216().filter((t) => !w2Bad(content(t), w2int(answer(t)))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  return makeDeep(unit, content(t), n(answer(t)), [
+    `어림한 방법마다 어떤 수의 범위를 실제로 만들어 봅니다.`,
+    `올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}-99=${t.A - 99}`)}부터 ${n(t.A)}까지, 버림하여 ${nj(t.A, "이", "가")} 되는 수는 ${n(t.A)}부터 ${expr(`${t.A}+99=${t.A + 99}`)}까지, 반올림하여 ${nj(t.A, "이", "가")} 되는 수는 ${expr(`${t.A}-50=${t.A - 50}`)}부터 ${expr(`${t.A}+49=${t.A + 49}`)}까지입니다.`,
+    `가장 큰 수가 ${n(high(t))}인 것은 ${t.up ? "올림" : "반올림"}한 때뿐이므로 가장 작은 수는 ${n(answer(t))}입니다.`,
+  ]);
+}
+
+/* ── 2-3-4 심화중 — 「두 변이 마주 보는 짝인지 안 말한다 / «마주 보는 변은 같다»가 굳힌다」 ── */
+
+type W3PointTask = { P: number; x: number; y: number; z: number };
+
+function w3Point234(): W3PointTask[] {
+  const out: W3PointTask[] = [];
+  for (let x = 4; x <= 20; x += 1) {
+    for (let y = x + 1; y <= 20; y += 1) {
+      for (let z = 4; z <= 20; z += 1) {
+        // 세 길이가 모두 달라야 «가장 긴 변»과 «가장 짧은 변»이 하나로 정해진다.
+        if (z === x || z === y) continue;
+        // 🔴 되짚어 얻은 `z` 가 `x`·`y` **사이**면 답이 `y-x` 라 되짚기가 장식이 된다
+        //    (반증 ⑤ 와 같은 자리 — 그 마디를 지워도 답이 그대로다).
+        //    `z` 가 가장 길거나 가장 짧아야 그 마디가 답을 정한다.
+        if (z > x && z < y) continue;
+        // 육각형이 지면에서 그럴듯하려면 세 변의 길이가 지나치게 벌어지면 안 된다.
+        const lo = Math.min(x, y, z);
+        const hi = Math.max(x, y, z);
+        if (hi > lo * 3) continue;
+        out.push({ P: (x + y + z) * 2, x, y, z });
+      }
+    }
+  }
+  return out;
+}
+
+function sym234Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W3PointTask) =>
+    `둘레가 ${n(t.P)} cm인 점대칭 육각형이 있습니다. 마주 보는 변끼리 길이가 같고, 이 육각형의 변 중에 길이가 ${n(t.x)} cm인 것과 ${n(t.y)} cm인 것이 있습니다. 이 육각형에서 가장 긴 변과 가장 짧은 변의 길이의 차는 몇 cm입니까?`;
+  const gap = (t: W3PointTask) =>
+    Math.max(t.x, t.y, t.z) - Math.min(t.x, t.y, t.z);
+  const pool = w2Pool("w3-234mid", () =>
+    w3Point234().filter((t) => !w2Bad(content(t), w2int(gap(t)))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const hi = Math.max(t.x, t.y, t.z);
+  const lo = Math.min(t.x, t.y, t.z);
+  return makeDeep(unit, content(t), n(gap(t)), [
+    `마주 보는 변끼리 길이가 같으므로, 길이가 서로 다른 ${n(t.x)} cm인 변과 ${n(t.y)} cm인 변은 마주 볼 수 없습니다. 곧 두 변은 이웃한 세 변 중 둘입니다.`,
+    `마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 ${expr(`${t.P}\\div2=${t.P / 2}`)} cm입니다.`,
+    `나머지 한 변은 ${expr(`${t.P / 2}-${t.x}-${t.y}=${t.z}`)} cm입니다.`,
+    `여섯 변의 길이는 ${n(t.x)} cm, ${n(t.y)} cm, ${n(t.z)} cm 세 가지뿐이므로 차는 ${expr(`${hi}-${lo}=${gap(t)}`)}, 곧 ${n(gap(t))} cm입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -14668,6 +15182,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: fac121Read,
     응용: fac121Apply,
     심화하: fac121Deep,
+    심화중: fac121Mid,
+    심화상: fac121Top,
   },
   "초5|1-2-2": {
     연산: rel122Calc,
@@ -14686,6 +15202,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: gcd124Read,
     응용: gcd124Apply,
     심화하: gcd124Deep,
+    심화중: gcd124Mid,
+    심화상: gcd124Top,
   },
   "초5|1-2-5": {
     연산: commul125Calc,
@@ -14698,6 +15216,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: lcm126Read,
     응용: lcm126Apply,
     심화하: lcm126Deep,
+    심화중: lcm126Mid,
+    심화상: lcm126Top,
   },
   "초5|1-3-1": {
     연산: corr131Calc,
@@ -14781,6 +15301,7 @@ export const G5_TIERS: ElemTierMap = {
     기본: rng211Read,
     응용: rng211Apply,
     심화하: rng211Deep,
+    심화중: rng211Mid,
   },
   "초5|2-1-2": {
     연산: rng212Calc,
@@ -14799,6 +15320,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: up214Read,
     응용: up214Apply,
     심화하: up214Deep,
+    심화중: up214Mid,
+    심화상: up214Top,
   },
   "초5|2-1-5": {
     연산: down215Calc,
@@ -14811,6 +15334,8 @@ export const G5_TIERS: ElemTierMap = {
     기본: round216Read,
     응용: round216Apply,
     심화하: round216Deep,
+    심화중: round216Mid,
+    심화상: round216Top,
   },
   "초5|2-2-1": {
     연산: fm221Calc,
@@ -14939,6 +15464,7 @@ export const G5_TIERS: ElemTierMap = {
     기본: sym234Read,
     응용: sym234Apply,
     심화하: sym234Deep,
+    심화중: sym234Mid,
   },
   "초5|2-5-1": {
     연산: boxRectCalc,
