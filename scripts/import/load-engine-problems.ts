@@ -57,6 +57,10 @@ import {
   generateMiddleProblem,
   typesForSection,
 } from "../../src/lib/middle/generate";
+import {
+  generateMiddleComboProblem,
+  middleComboDefinitions,
+} from "../../src/lib/middle/combo";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
 
@@ -97,10 +101,30 @@ type MiddleTarget = {
   maxTypes?: number;
 };
 
+/**
+ * 🔴 **결합형** — `registeredTypes()` **밖**이라 `MiddleTarget` 으로는 못 부른다.
+ *
+ * 원장님이 승인하신 문형 여섯(D-109/D-110)이 엔진에만 살고 지면에 한 건도 안
+ * 나가고 있었다. 부르는 곳이 **시험뿐**이었기 때문이다 —
+ * `checkUnloadedTypes` 가 「결합형은 `registeredTypes()` 밖이다. 안 세면
+ * 구조적으로 0이다」라고 적어 두고 6자리를 빚으로 들고 있었다.
+ *
+ * ⚠️ `externalId` 에 **`comboId` 를 그대로 싣는다** — 그 검사기가
+ *    `externalId.includes(d.id)` 로 「나갔나」를 묻기 때문이다. 다른 모양으로
+ *    적으면 넣고도 **빚이 안 줄어든다**(그리고 아무 에러도 안 난다).
+ */
+type ComboTarget = {
+  engine: "combo";
+  /** 비우면 등록된 결합형 전부 */
+  ids?: string[];
+  /** 결합형마다 몇 벌 (기본 3) */
+  variants?: number;
+};
+
 type Plan = {
   label: string;
   seedBase?: number;
-  targets: (ElemTarget | MiddleTarget)[];
+  targets: (ElemTarget | MiddleTarget | ComboTarget)[];
 };
 
 type Row = {
@@ -303,6 +327,74 @@ export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
   return rows;
 }
 
+/**
+ * 결합형을 행으로 — `generateMiddleComboProblem` 을 **적재기가 처음 부른다**.
+ *
+ * 형식 3종 파생은 초등·중등과 **같은 `expandFamily`** 를 쓴다. 규칙이 두 벌이
+ * 되면 한쪽만 고쳐도 아무도 모른다.
+ *
+ * ⚠️ 결합형에는 `figureSpec` 이 없다(`MidComboProblem` 에 그 필드가 없다).
+ *    나중에 생기면 여기도 같이 고쳐야 한다 — 안 그러면 그림이 조용히 안 나간다.
+ */
+export function buildComboRows(t: ComboTarget, seedBase: number): Row[] {
+  const defs = middleComboDefinitions();
+  const want = t.ids ? new Set(t.ids) : null;
+  const picked = want ? defs.filter((d) => want.has(d.id)) : defs;
+  if (picked.length === 0)
+    throw new Error(
+      `결합형을 못 찾았다: ${JSON.stringify(t.ids)}` +
+        ` — middleComboDefinitions() 로 id 를 확인하라`,
+    );
+  if (want && picked.length !== want.size)
+    throw new Error(
+      `결합형 ${want.size}개를 물었는데 ${picked.length}개만 찾았다 — 멈춘다`,
+    );
+  const variants = t.variants ?? 3;
+  const rows: Row[] = [];
+  for (const def of picked) {
+    const familyKey = `mid:${def.id}`;
+    const got = expandFamily((v) => {
+      const p = generateMiddleComboProblem(def.id, seedBase, v);
+      return {
+        content: p.content,
+        answer: p.answer,
+        solution: p.solution,
+        familyKey,
+        problemType:
+          p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
+        difficulty: p.difficulty,
+        variant: v,
+      };
+    }, variants);
+    midSkippedMcq += got.skippedMcq;
+    for (const item of got.items) {
+      const it = item as typeof item & {
+        difficulty: Difficulty;
+        problemType: string;
+        variant: number;
+      };
+      rows.push({
+        // 🔴 `comboId` 를 그대로 싣는다 — `checkUnloadedTypes` 가
+        //    `externalId.includes(id)` 로 「나갔나」를 묻는다.
+        externalId: `engine-mid-combo:${def.id}|s${seedBase}|v${it.variant}|${it.questionType}`,
+        familyKey,
+        unitKey: `${def.anchorGrade} / ${def.anchorSection}`,
+        grade: def.anchorGrade,
+        section: def.anchorSection,
+        content: it.content,
+        answer: it.answer,
+        solution: it.solution,
+        difficulty: it.difficulty,
+        problemType: it.problemType,
+        questionType: it.questionType,
+        figureSpec: null,
+        origin: `중등 결합형 ${def.id}`,
+      });
+    }
+  }
+  return rows;
+}
+
 /** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
 let midSkippedMcq = 0;
 
@@ -388,9 +480,17 @@ async function apply(planFile: string, doApply: boolean) {
     const made =
       t.engine === "elem"
         ? buildElemRows(t, seedBase)
-        : buildMiddleRows(t, seedBase);
+        : t.engine === "combo"
+          ? buildComboRows(t, seedBase)
+          : buildMiddleRows(t, seedBase);
     console.log(
-      `   · ${t.engine === "elem" ? `${t.grade} ${t.chapter}` : `${t.grade} ${t.unitSection}`} → ${made.length}문항`,
+      `   · ${
+        t.engine === "elem"
+          ? `${t.grade} ${t.chapter}`
+          : t.engine === "combo"
+            ? `결합형 ${(t.ids ?? middleComboDefinitions().map((d) => d.id)).length}개`
+            : `${t.grade} ${t.unitSection}`
+      } → ${made.length}문항`,
     );
     rows.push(...made);
   }
