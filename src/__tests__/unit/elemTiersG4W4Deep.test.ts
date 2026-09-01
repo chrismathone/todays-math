@@ -12,7 +12,7 @@
  * ⑵ 마디      굳힘을 걸기 **전에** 후보가 여럿이다
  * ⑶ 굳힘      굳힘을 걸면 **정확히 하나**가 남고 그것이 답이다
  * ⑷ 음성 대조 조건 문구를 **뒤집으면 다른 쪽**이 남는다 (굳힘이 장식이 아니다)
- * ⑸ 지름길    100% 인 지름길이 없다 — 자는 `measure-elem-g4w4-shortcuts.ts` 한 곳
+ * ⑸ 지름길    100% 인 지름길이 없다 — 자는 `probe-elem-g4w4-shortcuts.ts` 한 곳
  * ⑹ 지면      「잘못」 0 · 규모 · 발문 가짓수 · 표의 지운 칸 수 · 그림 규약
  * ```
  *
@@ -22,7 +22,7 @@
  * 갈랐다」로 잡았다. 밭이 「하나만 남긴다」를 보장해도 **죽는 쪽이 늘 같으면** 학생은
  * 굳힘을 안 대고 그 쪽을 바로 고른다. 그 회차가 남긴 규율 —
  * **「지름길은 적어 두는 것이 아니라 전수로 세어 %를 내는 것」** — 을 여기서 시험으로 건다.
- * 셈은 `scripts/qa/measure-elem-g4w4-shortcuts.ts` **한 곳**에 있고 이 시험이 그것을
+ * 셈은 `scripts/qa/probe-elem-g4w4-shortcuts.ts` **한 곳**에 있고 이 시험이 그것을
  * `import` 한다(두 벌로 적으면 한쪽만 고쳐도 아무도 모른다).
  *
  * ## 이 시험이 **못 보는 것**
@@ -43,7 +43,7 @@ import {
   measureIsoSide,
   measureTableHide,
   measureThreshold,
-} from "../../../scripts/qa/measure-elem-g4w4-shortcuts";
+} from "../../../scripts/qa/probe-elem-g4w4-shortcuts";
 import type { ElemTier } from "@/lib/elementary/difficulty";
 import {
   forwardReachable,

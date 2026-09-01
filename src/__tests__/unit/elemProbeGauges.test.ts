@@ -37,7 +37,8 @@
  * 쓸기(`초3` 같은 인자)는 여기서 **부르지 않는다.**
  */
 import { execFile } from "node:child_process";
-import { readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { probeNetTs } from "../../../scripts/qa/probeNet.mjs";
 import path from "node:path";
 import { promisify } from "node:util";
 
@@ -89,6 +90,12 @@ const GAUGED: [name: string, gauges: number][] = [
   // 눈금 5건(양성 2 · **음성 3**). 음성 셋은 「자연수를 적었다」·「범위가 없다」·
   // 「약수로 막았다」다 — 없으면 재현율만 재고 거짓 경보가 구조적으로 0이 된다.
   ["probe-elem-natural-count", 5],
+  // 2026-09-01 — 초4 물결 4 가 만든 «지름길 자». 원래 이름이 `measure-…` 라
+  // 관문 쓸기(`probe-elem-*` 를 훑는다)와 이 표 **둘 다 밖**에 있었다 — 만든 쪽이
+  // 보고서에 그렇게 적어 두고 리드에게 넘겼다. 이름을 옮겨 그물 안으로 들였다.
+  // 눈금 5건(양성 2 · **음성 3**). 음성 셋은 「절반」·「우연보다 조금 낫다」·
+  // 「하나도 안 맞는다」다 — 없으면 「지름길이 있다」만 재고 거짓 경보가 0이 된다.
+  ["probe-elem-g4w4-shortcuts", 5],
   // 2026-08-30 — D-113 의 **되짚기 축** 반증문 ④·⑥ 을 기계로 잰다.
   // 눈금은 문자열 픽스처로 `forwardReachable`·`pageNumbers` 를 직접 댄다
   // (양성 5 · 음성 3 · 지면 읽기 2). 🔴 **음성에 「`$1$` 을 곱해 만든 뺄셈」이 있다** —
@@ -176,6 +183,17 @@ const GAUGED: [name: string, gauges: number][] = [
   //    **리드가 만든 것이다.** `probe-m{N}-*` 관례를 따르는 중등 자가 23개 있고
   //    그것들은 눈금이 자동으로 안 돈다(2026-09-01 실측). 남은 22개는 빚이다.
   ["probe-middle-solution-depth", 5],
+  // 🔴 2026-09-01 — 이름이 `probe-(elem|middle)-` 이 아니라 **그물 밖에 있던 판정기 둘**.
+  //    둘 다 `--selftest` 과 눈금을 갖추고 있었는데 **한 번도 자동으로 안 돌았다.**
+  //    이름을 바꾸지 않고 **소속 규칙을 성질로** 바꿔서 들였다(위 ⑷ 주석).
+  //    ⚠️ 이 둘은 초등·중등을 **둘 다** 재므로 `elem`/`middle` 어느 이름도 맞지 않는다 —
+  //       이름으로 소속을 정하면 이런 판정기는 갈 곳이 없다. 그것이 규칙을 바꾼 까닭이다.
+  //    `probe-figure-dependent` 눈금 10건(양성 3 · 음성 7) — 「그림 없이 배치가
+  //    안 정해지는 문항」. 양성에 원장님이 짚으신 `J30303-A08-002` 가 들어 있다.
+  ["probe-figure-dependent", 10],
+  //    `probe-wordy-operators` 눈금 15건(양성 6 · 음성 8 · 지목 1) — 「엔진이 말 대신
+  //    기호를 내는가」. 음성에 `\degree`·행렬식·합동식이 있다(일부러 뺀 교과 표기다).
+  ["probe-wordy-operators", 15],
 ];
 
 /**
@@ -240,10 +258,27 @@ describe("[초등·중등 판정기] 눈금이 자동으로 돈다", () => {
   }, 180_000);
 
   it("판정기 목록이 새지 않는다 — 디렉터리에 있는 것이 두 표에 다 있다", () => {
-    const onDisk = readdirSync(QA_DIR)
-      .filter((f) => /^probe-(elem|middle)-.*\.ts$/.test(f))
-      .map((f) => f.replace(/\.ts$/, ""))
-      .sort();
+    // 🔴 **소속을 «이름»이 아니라 «성질»로 정한다 (2026-09-01).**
+    //
+    //    종전에는 `^probe-(elem|middle)-` 만 훑었다. 그런데 이 저장소의 `probe-`
+    //    접두사는 **두 가지**를 가리킨다 —
+    //      ⑴ 눈금을 가진 **판정기** (`--selftest` 이 있다)
+    //      ⑵ 변이 하네스용 **산출물 지문** (`mutate-<같은 어간>.*` 과 짝, 눈금이 없다)
+    //    이름만 보면 그 둘을 못 가른다. 실제로 ⑴ 인데 ⑵ 의 이름을 단 판정기가
+    //    **셋** 있었고(`probe-m3-top`·`probe-mid-solution-depth`·그리고 아래 둘),
+    //    그것들은 눈금이 **한 번도 자동으로 안 돌았다.**
+    //
+    //    ⚠️ 반대로 「그물 밖 이름을 전부 잡는」 가드는 넣으면 안 된다 — 실제로 넣어
+    //       봤더니 `probe-4d`·`probe-cube-*`·`probe-figure-*` 까지 **56개**가 걸렸다.
+    //       **늘 우는 가드는 꺼진다**(2026-08-20).
+    //
+    //    그래서 **파일이 `--selftest` 을 받으면 판정기**로 본다. 이름은 거들 뿐이다
+    //    (기존 이름꼴도 그대로 요구해서 **느슨해지지 않게** 한다 — 합집합이다).
+    // 🔴 **소속 규칙은 `scripts/qa/probeNet.mjs` 한 곳이다.** 여기와 실데이터
+    //    쓸기가 각자 규칙을 갖고 있었고, 2026-09-01 에 **갈렸다** — 쓸기 쪽
+    //    정규식이 `[a-z-]+` 라 이름에 숫자가 든 판정기를 안 받아서 일곱이 통째로
+    //    빠져 있었다(그중 하나는 **빨간 채로**). 두 벌로 두지 않는다.
+    const onDisk = probeNetTs(QA_DIR);
     const known = [
       ...GAUGED.map((g) => g[0]),
       ...UNGAUGED.map((u) => u[0]),
@@ -259,6 +294,32 @@ describe("[초등·중등 판정기] 눈금이 자동으로 돈다", () => {
       "파일이 없는 항목",
     ).toEqual([]);
     expect(onDisk.length, "판정기를 하나도 못 찾았다").toBeGreaterThan(5);
+  });
+
+  // ⑷-b 🔴 **실데이터 쓸기가 제 규칙을 따로 갖지 못하게 막는다.**
+  //
+  //    2026-09-01 에 `sweep-elem-probes.mjs` 가 `^probe-(elem|middle)-[a-z-]+`
+  //    라는 **제 정규식**을 갖고 있어서, 이름에 숫자가 든 판정기 다섯과 접두사가
+  //    다른 둘, 합쳐 **일곱**이 실데이터 쓸기 밖에 있었다. 쓸기는 「판정기 29개
+  //    전부 깨끗」이라 찍었는데 그 29 는 «판정기 전부»가 아니었다 —
+  //    **0(또는 29)은 «깨끗»과 «못 셈»을 안 가른다.** 게다가 그 일곱 중
+  //    `probe-middle-tier-4dan` 은 **실제로 빨갰다**(미검토 2유형).
+  //
+  //    ⚠️ 낱말이 아니라 **구조**로 막는다 — 「쓸기가 디렉터리를 스스로 훑지
+  //       않는다」. 목록을 만들려면 `probeNet.mjs` 를 부를 수밖에 없다.
+  //       (「`LOOP` 가 있나」로 재시도를 지키다 도장이 된 2026-08-18 의 그 자리.)
+  it("실데이터 쓸기는 판정기 목록을 **스스로 훑지 않는다** — 공용 규칙 하나만 쓴다", () => {
+    const sweep = readFileSync(
+      path.join(process.cwd(), "scripts", "qa", "sweep-elem-probes.mjs"),
+      "utf-8",
+    );
+    expect(sweep, "쓸기가 probeNet.mjs 를 안 쓴다").toContain(
+      'from "./probeNet.mjs"',
+    );
+    expect(
+      sweep.includes("readdirSync"),
+      "쓸기가 디렉터리를 스스로 훑는다 — 규칙이 두 벌이 된다",
+    ).toBe(false);
   });
 
   for (const [name, gauges] of GAUGED) {

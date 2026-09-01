@@ -216,7 +216,7 @@ $\{$좌우, 위아래$\}$ 로 유한하다. 적대 검토(§5 더 비운다 ⑵)
 
 물결 3 적대 검토가 그 회차의 갈래 아홉 중 **넷**을 이 자리에서 잡았다.
 그 회차가 남긴 규율 — **「지름길은 적어 두는 것이 아니라 전수로 세어 %를 내는 것」** —
-을 자로 만들었다: `scripts/qa/measure-elem-g4w4-shortcuts.ts`(눈금 5건 · 양성 2 · 음성 3).
+을 자로 만들었다: `scripts/qa/probe-elem-g4w4-shortcuts.ts`(눈금 5건 · 양성 2 · 음성 3).
 
 씨앗 **1,000개** 표본:
 
@@ -319,7 +319,7 @@ npx tsx scripts/qa/probe-elem-tier-4dan.ts 초4            # 고칠것 0 · 미�
 npx tsx scripts/qa/probe-elem-rules.ts 초4                # 전 규칙 0
 npx tsx scripts/qa/probe-elem-section-conditions.ts 초4   # 위반 0
 npx tsx scripts/qa/probe-elem-extending-tiers.ts 초4      # 남은 수
-npx tsx scripts/qa/measure-elem-g4w4-shortcuts.ts         # 🔴 지름길 (이 회차가 만든 자)
+npx tsx scripts/qa/probe-elem-g4w4-shortcuts.ts         # 🔴 지름길 (이 회차가 만든 자)
 node scripts/qa/check-mutation-anchors.mjs                # 앵커가 포맷 뒤에도 무는가
 node scripts/qa/mutate-elem-g4-w4.mjs                     # 변이
 node scripts/qa/sweep-elem-probes.mjs                     # 실데이터 쓸기
@@ -415,7 +415,7 @@ npm run test                                              # 정식 관문
 | **마디** | 굳힘을 걸기 **전에** 후보가 여럿이고(1-2-3 은 두 시각의 답이 다르고, 2-2-1 은 두 삼각형이 다 서고 최단 변이 다르며, 2-2-2 는 문턱이 두 합 사이, 2-5-2 는 창이 둘 이상 넓고, 2-5-3 은 후보가 셋 이상) |
 | **굳힘** | 굳힘을 걸면 **정확히 하나**가 남고 그것이 답이다 |
 | **음성 대조** | **죽는 가지가 조건을 실제로 어긴다.** ⚠️ 처음엔 「조건을 뒤집으면 다른 쪽이 남는다」로 썼는데 그것은 참이 아니다 — 문턱이 작은 쪽 최단 변과 **같을 수 있어**(밭이 그것을 허용한다) 뒤집으면 **둘 다 죽는다**. 시험이 그 자리에서 빨개져 잡았다 |
-| 🔴 **지름길** | `measure-elem-g4w4-shortcuts.ts` 를 `import` 해 「100% 인 규칙이 없다」를 건다. **분모도 못 박는다**(0 을 「깨끗」으로 안 읽게) |
+| 🔴 **지름길** | `probe-elem-g4w4-shortcuts.ts` 를 `import` 해 「100% 인 규칙이 없다」를 건다. **분모도 못 박는다**(0 을 「깨끗」으로 안 읽게) |
 | 🔴 **해설의 «이유»** | 검출기 셋(`faultsClock`·`faultsIsoSide`·`faultsIsoAngle`)이 **글자만 보고** 판정한다 — 「이르므로/늦으므로」·「길므로/짧으므로」·「크므로/작으므로」가 발문의 조건과 맞물리나, 그리고 해설이 고른 갈래 이름이 그 판정과 맞나. **눈금**(음성 3 · 양성 3)이 같은 시험에 박혀 있다 |
 | 지면 약속 | 「잘못」 0 · 규모($<100000$) · 씨앗 16에서 발문 8가지 이상 · 1-2-3·2-2 는 그림 없음 · 2-5-3 은 「그래프에서」·「그림과 같이」 금지 · 표의 지운 칸이 **정확히 $[1,4]$** |
 | **반증 ⑥** | 답을 읽을 수 있는 자리는 전량 안 닿음 + **못 잰 자리를 따로 세고** 1-2-3·2-5-3 이 축 밖임을 못 박는다 + 검출기가 «예»를 낼 수 있음을 같은 회차에 보인다 |

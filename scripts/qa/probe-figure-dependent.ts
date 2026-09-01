@@ -82,12 +82,17 @@ async function main() {
   const json = args.includes("--json");
 
   const cal = runSelfTest();
+  // ⚠️ 「눈금 N건」은 **관문이 읽는 형식**이다 (`elemProbeGauges.test.ts` 가
+  //    `/눈금 (\d+)건/` 으로 센다). 이 줄이 없으면 그 시험이 「못 읽었다」로 막는다.
+  //    N 은 **세어서** 낸다 — 손으로 적으면 픽스처를 늘려도 그대로 남는다.
   console.log(
-    "── 눈금 (양성 " +
+    "눈금 " +
+      (POSITIVE_FIXTURES.length + NEGATIVE_FIXTURES.length) +
+      "건 (양성 " +
       POSITIVE_FIXTURES.length +
       " · 음성 " +
       NEGATIVE_FIXTURES.length +
-      ") ──",
+      ")",
   );
   for (const l of cal.lines) console.log(l);
   if (!cal.ok) {

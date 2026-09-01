@@ -96,13 +96,16 @@ export function runSelfTest(): { ok: boolean; lines: string[] } {
     const v = classifyArrangement(f.content);
     const good = v === "배치미정";
     if (!good) ok = false;
-    lines.push(`  ${good ? "🟢" : "🔴"} 양성 → ${v.padEnd(6)} · ${f.why}`);
+    // ⚠️ 표식은 **✅/❌** 다 — 관문(`elemProbeGauges.test.ts`)이 판정 줄을
+    //    `/^\s*[✅❌]/` 로 세어 「요약이 말한 N」과 대조한다(요약 수를 손으로 적는 것을
+    //    막는 장치다). 다른 이모지로 바꾸면 그 대조가 **0줄**을 세고 막는다.
+    lines.push(`  ${good ? "✅" : "❌"} 양성 → ${v.padEnd(6)} · ${f.why}`);
   }
   for (const f of NEGATIVE_FIXTURES) {
     const v = classifyArrangement(f.content);
     const good = v !== "배치미정";
     if (!good) ok = false;
-    lines.push(`  ${good ? "🟢" : "🔴"} 음성 → ${v.padEnd(6)} · ${f.why}`);
+    lines.push(`  ${good ? "✅" : "❌"} 음성 → ${v.padEnd(6)} · ${f.why}`);
   }
   return { ok, lines };
 }
@@ -128,14 +131,18 @@ export function behaviourSignature(): string {
   ];
   const parts = [
     runSelfTest().lines.join("\n"),
-    probes.map((p) => p + " → " + JSON.stringify(sharedVertexShapes(p))).join("\n"),
+    probes
+      .map((p) => p + " → " + JSON.stringify(sharedVertexShapes(p)))
+      .join("\n"),
   ];
   try {
     const snap = JSON.parse(
       readFileSync("scripts/qa/reports/figure-dependent-snapshot.json", "utf8"),
     ) as { 목록: { code: string; content: string }[] };
     parts.push(
-      snap.목록.map((r) => r.code + ":" + classifyArrangement(r.content)).join("\n"),
+      snap.목록
+        .map((r) => r.code + ":" + classifyArrangement(r.content))
+        .join("\n"),
     );
   } catch {
     parts.push("(스냅숏 없음)");

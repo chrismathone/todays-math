@@ -1,8 +1,8 @@
 /**
  * **초4 물결 4 의 새 갈래에 «지름길»이 있나** — 전수로 세어 %를 낸다.
  *
- *     npx tsx scripts/qa/measure-elem-g4w4-shortcuts.ts
- *     npx tsx scripts/qa/measure-elem-g4w4-shortcuts.ts --selftest
+ *     npx tsx scripts/qa/probe-elem-g4w4-shortcuts.ts
+ *     npx tsx scripts/qa/probe-elem-g4w4-shortcuts.ts --selftest
  *
  * ── 왜 있나 ──────────────────────────────────────────────────────────────────
  *
@@ -412,7 +412,7 @@ function main(): void {
     for (const [label, rep, want] of cases) {
       const got = faults([rep]).length > 0;
       if (got !== want) {
-        console.log(`🔴 눈금 실패 — ${label}: 기대 ${want} · 실제 ${got}`);
+        console.log(`❌ 눈금 실패 — ${label}: 기대 ${want} · 실제 ${got}`);
         bad += 1;
       } else {
         console.log(`  ✅ ${label}`);

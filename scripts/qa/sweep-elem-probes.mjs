@@ -48,7 +48,8 @@
  *    (그중 `classifications.json` 은 **만드는 명령이 아예 없다** — 10-handoff §0-A.2.)
  */
 import { spawnSync } from "node:child_process";
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { probeNetPy, probeNetTs } from "./probeNet.mjs";
 import path from "node:path";
 
 const GAUGE_TEST = "src/__tests__/unit/elemProbeGauges.test.ts";
@@ -58,7 +59,7 @@ const TSX = path.join("node_modules", "tsx", "dist", "cli.mjs");
 function noVerdictNames() {
   const src = readFileSync(GAUGE_TEST, "utf-8");
   // 눈금 목록은 `["probe-elem-rules", 27]`(수) · 판정 안 함은 `["probe-elem-charts", "…"]`(글).
-  const re = new RegExp('\\["(probe-(?:elem|middle)-[a-z-]+)",\\s*"', "g");
+  const re = new RegExp('\\["(probe-(?:elem|middle)-[a-z0-9-]+)",\\s*"', "g");
   return new Set([...src.matchAll(re)].map((m) => m[1]));
 }
 
@@ -76,11 +77,16 @@ function noVerdictNames() {
  */
 function probeNames() {
   const skip = noVerdictNames();
-  const re = new RegExp("^probe-(elem|middle)-[a-z-]+\\.(ts|py)$");
-  return readdirSync("scripts/qa")
-    .filter((f) => re.test(f))
-    .filter((f) => !skip.has(f.replace(new RegExp("\\.(ts|py)$"), "")))
-    .sort();
+  // 🔴 **소속 규칙은 `probeNet.mjs` 한 곳이다.** 여기서 정규식을 따로 쓰면
+  //    눈금 시험(`elemProbeGauges.test.ts` ⑷)과 갈린다 — 2026-09-01 에 실제로
+  //    갈려서 판정기 일곱이 이 쓸기에서 빠졌고(이름에 숫자가 있으면 옛 정규식이
+  //    안 받았다) 그중 `probe-middle-tier-4dan` 은 **빨간 채로** 있었다.
+  const names = [
+    ...probeNetTs("scripts/qa").map((n) => `${n}.ts`),
+    ...probeNetPy("scripts/qa"),
+  ];
+  // `.ts`·`.py` 둘 다 확장자가 세 글자다 — 뒤 세 글자를 떼면 이름이 된다.
+  return names.filter((f) => !skip.has(f.slice(0, -3))).sort();
 }
 
 const names = probeNames();
