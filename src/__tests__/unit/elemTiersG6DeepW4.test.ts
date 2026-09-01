@@ -396,3 +396,186 @@ describe("[초6 4차분] 1-3 소수의 나눗셈 — 나누는 수를 감춘다"
     }
   });
 });
+
+// ══════════ 4차분 — `1-4 비와 비율` ══════════
+//
+// 굳힘 축은 「비율은 두 수를 하나로 뭉갠다 + **항·사람은 자연수**」다. 그래서 이 파일이
+// 잠그는 것은 **정수성의 «운반체»** 다 — 1-4 는 사람·항, 1-5 는 눈금 cm(토대 §1.4 의 두 칸이
+// 서로를 가리켜 모순이라, 살릴 수 있는 읽기를 골라 코드와 시험에 못 박는다).
+//
+// 🔴 심화상은 비웠다. 근거는 보고서 §2.2 — 선형 사슬에서 조건 둘은 접히고,
+//    접히지 않게 둘째를 값 비교로 두면 첫 창이 잉여가 된다.
+
+const G14 = [
+  ["1-4-3", "심화중"],
+  ["1-4-5", "심화중"],
+  ["1-4-6", "심화중"],
+] as const;
+
+/** 「… $lo$ 보다 크고(많고) $hi$ 보다 작을(적을) 때」의 창. */
+function windowOf14(content: string): [number, number] | null {
+  const m = content.match(
+    /\$(\d+)\$(?:명)?보다 (?:크고|많고) \$(\d+)\$(?:명)?보다 (?:작을|적을) 때/,
+  );
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+/** 그 창을 굳히는 배수열의 모듈러스 — 발문 글자에서 다시 얻는다(엔진을 안 부른다). */
+function modulusOf14(content: string): number | null {
+  const f = content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+  if (f && content.includes("두 항이 모두 자연수")) return Number(f[2]);
+  const p = content.match(/\$(\d+)\\%\$/);
+  if (p) {
+    const v = Number(p[1]);
+    return 100 / g(v, 100);
+  }
+  return null;
+}
+
+describe("[초6 4차분] 1-4 비와 비율 — 값을 안 주고 정수성으로 굳힌다", () => {
+  it("㉠㉡ 창이 후보를 여럿 만들고, 배수는 정확히 하나다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, tier] of G14) {
+        const p = gen(code, seed, tier);
+        const w = windowOf14(p.content);
+        const m = modulusOf14(p.content);
+        expect(
+          w,
+          `${code} seed=${seed}: 창을 못 읽음 — ${p.content}`,
+        ).toBeTruthy();
+        expect(
+          m,
+          `${code} seed=${seed}: 배수열을 못 읽음 — ${p.content}`,
+        ).toBeTruthy();
+        const nat = w![1] - w![0] - 1;
+        // 🔴 1-4-3 만 일곱이다 — 공용 반증 ⑥ 자가 이 갈래에서 창의 **두 끝**을
+        //    구조적으로 걷어낸다(답이 $\frac pq\times$기준량이라 기준량이 창의 끝에
+        //    붙으면 `a×b±c` 꼴이 된다. 실측: 자리 0 이 1,428 → 0).
+        //    막을 수 없으므로 창을 넓혀 그 누수의 몫을 줄인다 — 그 사실을 여기 잠근다.
+        expect(
+          nat,
+          `${code} seed=${seed}: 창 안 자연수가 모자라 성질이 일하지 못한다 — ${p.content}`,
+        ).toBeGreaterThanOrEqual(code === "1-4-3" ? 7 : 5);
+        const hit: number[] = [];
+        for (let v = w![0] + 1; v < w![1]; v += 1)
+          if (v % m! === 0) hit.push(v);
+        expect(
+          hit,
+          `${code} seed=${seed}: 창 안 배수가 하나여야 한다 — ${p.content}`,
+        ).toHaveLength(1);
+      }
+    }
+  });
+
+  it("㉣ 반증 ⑥ — 순방향으로도 ±한 걸음으로도 안 닿고, 답이 지면에 없다", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE_SEEDS) {
+      for (const [code, tier] of G14) {
+        const p = gen(code, seed, tier);
+        const ans = readRat(p.answer.replace(/\$/g, "").trim()) as Rat | null;
+        expect(
+          ans,
+          `${code} seed=${seed}: 답을 못 읽음 — ${p.answer}`,
+        ).toBeTruthy();
+        const nums = pageNumbers(p.content);
+        if (forwardReachable(nums, ans!)) bad.push(`${code} ${seed} 순방향`);
+        if (answerPrintedOnPage(nums, ans!))
+          bad.push(`${code} ${seed} 지면에 답`);
+        if (pmOneStep(nums as R[], ans as R))
+          bad.push(`${code} ${seed} ±한 걸음`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("㉤ 반증 ④ — 연산·기본·응용은 이 축(정수성 + 창)을 안 쓴다", () => {
+    const 표지 = [
+      /두 항이 모두 자연수/,
+      /수가 자연수이고 전체/,
+      /찬성한 학생 수가 자연수/,
+    ];
+    const bad: string[] = [];
+    for (const code of [
+      "1-4-1",
+      "1-4-2",
+      "1-4-3",
+      "1-4-4",
+      "1-4-5",
+      "1-4-6",
+    ] as const) {
+      const unit = unitOf(code);
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const c = generateElementaryProblem(unit, seed, tier).content;
+          for (const re of 표지)
+            if (re.test(c)) bad.push(`${code} ${tier} ${seed}: ${re}`);
+        }
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("㉥ 심화중은 해설이 후보를 안 늘어놓는다 · ㉦ 그림이 없다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, tier] of G14) {
+        const p = gen(code, seed, tier);
+        expect(
+          enumeratedSteps(p.solution),
+          `${code} seed=${seed}: 해설이 늘어놓는다 — «상» 의 길이다`,
+        ).toBeLessThan(ENUM_THRESHOLD);
+        expect(p.figureSpec, `${code} seed=${seed}: 그림이 붙었다`).toBeNull();
+      }
+    }
+  });
+
+  it("🔴 ㉧′ 정수성의 운반체가 «사람·항»이다 — 눈금 cm 는 1-5 몫이다", () => {
+    // 🔴 음성 대조를 **리터럴로** 못 박는다. 살아 있는 1-5 를 쓰면 그쪽이 비어 있는 동안
+    //    이 열쇠가 «아니오»를 낼 수 있는지 확인할 수 없다(D-115 ⑼ 와 같은 처방).
+    const 눈금_지면 =
+      "전체 길이가 $20\\,\\mathrm{cm}$ 인 띠그래프에서 $35\\%$ 를 차지하는 " +
+      "항목의 길이가 자연수 cm 일 때, 띠의 전체 길이는 몇 cm입니까?";
+    const 눈금축 = (c: string) => /cm|눈금|띠그래프|원그래프/.test(c);
+    expect(눈금축(눈금_지면), "열쇠가 «예»를 못 낸다 — 도장이다").toBe(true);
+
+    for (const seed of SEEDS) {
+      for (const [code, tier] of G14) {
+        const c = gen(code, seed, tier).content;
+        expect(
+          눈금축(c),
+          `${code} seed=${seed}: 1-5 의 눈금 축을 썼다 — ${c}`,
+        ).toBe(false);
+        expect(
+          /자연수/.test(c),
+          `${code} seed=${seed}: 정수성을 지면이 말하지 않는다 — ${c}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("🔴 ㉨ 지름길 — 답의 자리가 창의 첫·끝·가운데에 몰리지 않는다", () => {
+    for (const [code, tier] of G14) {
+      let n = 0;
+      let chance = 0;
+      const hit = { 첫: 0, 끝: 0, 가운데: 0 };
+      for (const seed of WIDE_SEEDS) {
+        const p = gen(code, seed, tier);
+        const w = windowOf14(p.content)!;
+        const m = modulusOf14(p.content)!;
+        let base = 0;
+        for (let v = w[0] + 1; v < w[1]; v += 1) if (v % m === 0) base = v;
+        const nat = w[1] - w[0] - 1;
+        n += 1;
+        chance += 1 / nat;
+        if (base === w[0] + 1) hit.첫 += 1;
+        if (base === w[1] - 1) hit.끝 += 1;
+        if (base === w[0] + 1 + Math.floor(nat / 2)) hit.가운데 += 1;
+      }
+      for (const [name, v] of Object.entries(hit)) {
+        expect(
+          v / n,
+          `${code}: 「${name}」 지름길 ${((v / n) * 100).toFixed(1)}% (우연 ${((chance / n) * 100).toFixed(1)}%)`,
+        ).toBeLessThan(0.35);
+      }
+    }
+  });
+});

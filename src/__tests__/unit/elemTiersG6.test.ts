@@ -1379,6 +1379,69 @@ const rlt = (a: R, b: R) => a.n * b.d < b.n * a.d;
 function truthOf14(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
+  // ══ 확대 갈래 (4차분 · 물결 4) — **값을 안 주고 «정수성 + 창»으로 굳힌다** ══
+  //
+  // ⚠️ 순서가 뜻이다. 아래 심화하 판독기(「찬성률이」·「비율이 $」)가 먼저 물면
+  //    창의 두 끝을 «찬성 인원»·«합»으로 읽어 그럴듯한 «참»을 지어낸다.
+  //
+  // 셋 다 시험이 창 안에서 배수를 **다시 찾고**, 하나로 굳는지까지 여기서 잰다.
+  {
+    /** 창 안 자연수 가운데 $m$ 의 배수 — 정확히 하나일 때만 값을 준다. */
+    const lone14 = (lo: number, hi: number, m: number): number | null => {
+      let hit: number | null = null;
+      for (let v = lo + 1; v < hi; v += 1) {
+        if (v % m !== 0) continue;
+        if (hit !== null) return null;
+        hit = v;
+      }
+      return hit;
+    };
+    const pctOf = (c: string) => {
+      const m = c.match(/\$(\d+)\\%\$/);
+      return m ? Number(m[1]) : null;
+    };
+    const winOf = (c: string, re: RegExp): [number, number] | null => {
+      const m = c.match(re);
+      return m ? [Number(m[1]), Number(m[2])] : null;
+    };
+
+    // 1-4-3 심화중 — 비율 $\frac pq$ + 「두 항이 자연수」 → 기준량은 $q$ 의 배수.
+    if (content.includes("두 항이 모두 자연수이고 기준량이")) {
+      const f = content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      const w = winOf(
+        content,
+        /기준량이 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+      );
+      if (!f || !w) return null;
+      const [p, q] = [Number(f[1]), Number(f[2])];
+      const base = lone14(w[0], w[1], q);
+      return base === null ? null : rat((base / q) * p);
+    }
+    // 1-4-5 심화중 — $p\%$ + 「그 학생 수가 자연수」 → 전체는 기약분모의 배수.
+    if (content.includes("수가 자연수이고 전체 학생이")) {
+      const p = pctOf(content);
+      const w = winOf(
+        content,
+        /전체 학생이 \$(\d+)\$명보다 많고 \$(\d+)\$명보다 적을 때/,
+      );
+      if (p === null || !w) return null;
+      const b = 100 / gcd(p, 100);
+      const total = lone14(w[0], w[1], b);
+      return total === null ? null : rat((total * p) / 100);
+    }
+    // 1-4-6 심화중 — 같은 굳힘, 묻는 것은 **여집합**(반대한 학생).
+    if (content.includes("찬성한 학생 수가 자연수이고 투표한 학생이")) {
+      const p = pctOf(content);
+      const w = winOf(
+        content,
+        /투표한 학생이 \$(\d+)\$명보다 많고 \$(\d+)\$명보다 적을 때/,
+      );
+      if (p === null || !w) return null;
+      const b = 100 / gcd(p, 100);
+      const total = lone14(w[0], w[1], b);
+      return total === null ? null : rat(total - (total * p) / 100);
+    }
+  }
 
   // 1-4-1 심화 ⓑ — 어떤 수를 되짚어 다른 배를 구한다.
   // ⚠️ 1-4-5 심화 ⓐ(「어떤 수의 $p\%$ 는 $V$. 어떤 수의 $q\%$ 는?」)도 여기로 온다 —

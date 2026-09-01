@@ -9762,6 +9762,303 @@ function zeroTenthQuotientTop(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+// ══════════ 4차분(물결 4) — 초6 `1-4 비와 비율` ══════════
+//
+// ## 예약한 굳힘 축 — **「비율은 두 수를 하나로 뭉갠다 + 항·사람은 자연수」**
+//
+// 토대 §1.4 는 1-4 에 「기준량이 바뀐다」를 예약하고 「전체가 $q$의 배수」는 1-5 로
+// 넘기라고 적었다. 그런데 **같은 표의 1-5 칸은 「사람 수가 자연수(=1-4)」를 쓰지 말라**고
+// 적는다 — 두 칸이 서로를 가리킨다. 살릴 수 있는 읽기는 하나뿐이다:
+// **정수성의 «운반체»를 가른다.** 1-4 는 **사람·항**, 1-5 는 **눈금 cm** 다.
+// 토대 §3 의 1-5 항이 그것을 뒷받침한다 — 「「사람 수가 자연수」는 그래프 개념이 아니라
+// 수 개념으로 읽힐 수 있다. **그리기 소단원에서만** 안전하게 통과한다」.
+//
+// ## 🔴 심화상은 **비웠다** — 조건 둘이 접히거나, 안 접히면 창이 잉여가 된다
+//
+// 토대의 심화상 꼴은 「백분율 두 겹(그중 $\%$) → 후보를 각각 계산해 자연수인지 견주기」다.
+// 그런데 사슬이 **선형**이라 조건 둘은 늘 한 줄로 접힌다(전체가 $b_1$ 의 배수 ∧ $b_2$ 의
+// 배수 ⇒ 최소공배수의 배수 — 해설 한 줄). 접히지 않게 둘째를 **값 비교**로 두면
+// 그 비교 하나가 답을 정해 **첫 창이 잉여**가 된다(M-6 — 안 읽어도 되는 조건).
+// 곧 이 축에는 «후보를 만들어 견주는» 자리가 구조적으로 없다. 1-5 심화상을 비운
+// 토대 §3 의 논거와 **같은 모양**이고, 이 회차의 1-3-2 심화상 비움과도 같다.
+//
+// ## 겹침 — 심화하가 이미 쓴 것을 피한다
+//
+// 1-4 는 토대가 「기존 심화하와 겹치기 가장 쉬운 대단원」이라 찍은 자리다. 실물을 뽑아
+// 보니 심화하 여섯이 전부 **한 걸음 역산**이고, 그 여섯이 값을 **전부 준다**:
+// 「어떤 수의 $5$배는 $15$」·「합 $10$·차 $2$」·「비율 $\frac35$·합 $24$」·「$4$시간 $240$km」·
+// 「$40$명 중 $20\%$ 의 $25\%$」·「찬성률 $60\%$·찬성 $150$명」. 새 칸은 그 «주는 값»을
+// **하나 빼고 정수성으로 대신**한다 — 그것이 이 회차가 오르는 한 칸이다.
+//
+// ## 세 소단원이 **묻는 것을 다르게** 한다 (R5)
+//
+//     1-4-3  기준량 창 → **비교하는 양**
+//     1-4-5  전체 창   → **그 $p\%$ 인 학생 수**
+//     1-4-6  전체 창   → **반대한 학생 수**(여집합)
+
+/** 백분율을 기약분수로 — `36` → `[9, 25]`. 배수열의 모듈러스는 그 분모다. */
+function pctFraction(p: number): [number, number] {
+  const g = gcd(p, 100);
+  return [p / g, 100 / g];
+}
+
+/**
+ * 「$lo$ 보다 크고 $hi$ 보다 작은 자연수 중 $m$ 의 배수」가 **정확히 하나**인가.
+ * 하나가 아니면 답이 안 서거나(둘 이상) 못 선다(0).
+ */
+function loneMultiple(lo: number, hi: number, m: number): number | null {
+  let hit: number | null = null;
+  for (let v = lo + 1; v < hi; v += 1) {
+    if (v % m !== 0) continue;
+    if (hit !== null) return null;
+    hit = v;
+  }
+  return hit;
+}
+
+/** 창 안 자연수 가운데 답이 몇째인가 — 「가운데·끝」 지름길을 흩뜨리는 묶음 열쇠. */
+const slotOf = (lo: number, hi: number, v: number) =>
+  `${v - lo - 1}/${hi - lo - 1}`;
+
+// ── 1-4-3 비율 — 심화중 ─────────────────────────────────────────────────────
+//
+// 안 굳는 마디: **한 묶음의 크기.** 비율 $\frac pq$ 는 실제 두 양을 $(pk,\ qk)$ 배수열로만 준다.
+// 굳히는 성질: 이 소단원의 것 — 「두 항이 자연수」가 기준량을 $q$ 의 배수로 묶고,
+// 창이 그중 하나를 고른다. 후보를 **끝까지 계산하지 않고** 걸러 내므로 «중» 이다.
+//
+// ⚠️ 심화하는 **합**을 준다(「합이 $24$」) — 그러면 한 묶음이 한 줄로 굳는다.
+//    여기서는 그 값을 빼고 정수성으로 대신했다. 사다리가 정확히 한 칸 오른다.
+// ⚠️ 토대 함정 ⑶ — 이 꼴은 반증 ⑥ 이 자주 문다(답 $pk$ 가 $p\times q$ 와 우연히 같아진다).
+//    실측으로 후보의 **21.9%** 가 그렇게 깎였다.
+type RateWindowCase = {
+  p: number;
+  q: number;
+  lo: number;
+  hi: number;
+  base: number;
+  ans: number;
+  slot: string;
+};
+
+const rateWindowStem = (c: RateWindowCase): string =>
+  `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 인 비가 있습니다. 두 항이 모두 자연수이고 ` +
+  `기준량이 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 비교하는 양은 얼마입니까?`;
+
+const RATE_WINDOW_MID: RateWindowCase[] = [];
+for (let q = 4; q <= 15; q += 1)
+  for (let p = 2; p < q; p += 1) {
+    if (gcd(p, q) !== 1) continue;
+    for (let k = 2; k <= 8; k += 1) {
+      const base = q * k;
+      const ans = p * k;
+      if (ans < 3 || base > 120) continue;
+      for (let lo = Math.max(1, base - 8); lo < base; lo += 1)
+        for (let hi = base + 1; hi <= base + 8; hi += 1) {
+          const span = hi - lo - 1;
+          // 🔴 **창을 일곱 이상으로 잡는다** — 이 갈래에서는 공용 반증 ⑥ 자가
+          //    창의 **두 끝**을 구조적으로 걷어내기 때문이다(측정: 자리 0 이 1,428 → 0).
+          //    답이 $rac pq	imes$(기준량)인데 기준량이 $lo+1$ 이면
+          //    $rac pq	imes lo+rac pq$ 가 되어 `a	imes b+c` 꼴에 걸린다(끝도 대칭).
+          //    막을 수는 없으니 **창을 넓혀 그 누수의 몫을 줄인다**(2/5 → 2/7 아래).
+          if (span < 7 || span > 12) continue;
+          if (loneMultiple(lo, hi, q) !== base) continue;
+          const c: RateWindowCase = {
+            p,
+            q,
+            lo,
+            hi,
+            base,
+            ans,
+            slot: slotOf(lo, hi, base),
+          };
+          if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;
+          RATE_WINDOW_MID.push(c);
+        }
+    }
+  }
+const RATE_WINDOW_BINS = binByAnswerThenSlot(RATE_WINDOW_MID);
+
+function rateWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    RATE_WINDOW_BINS.bins,
+    RATE_WINDOW_BINS.answers,
+  );
+  return makeDeep(unit, rateWindowStem(c), num(c.ans), [
+    `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 이므로 비교하는 양은 ${num(c.p)}묶음, ` +
+      `기준량은 ${num(c.q)}묶음입니다. 두 항이 자연수이려면 기준량이 ${num(c.q)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(c.q)}의 배수는 ` +
+      `${expr(`${c.q}\\times${c.base / c.q}=${c.base}`)} 하나이므로 기준량은 ${num(c.base)}입니다.`,
+    `한 묶음은 ${expr(`${c.base}\\div${c.q}=${c.base / c.q}`)} 이므로 비교하는 양은 ` +
+      `${expr(`${c.base / c.q}\\times${c.p}=${c.ans}`)} 입니다.`,
+  ]);
+}
+
+// ── 1-4-5 백분율 — 심화중 ───────────────────────────────────────────────────
+//
+// 안 굳는 마디: **전체.** 백분율만으로는 실제 인원이 배수열로만 묶인다.
+// 굳히는 성질: 「사람 수는 자연수」 — 백분율을 기약분수로 고치면 전체가 그 분모의
+// 배수여야 한다. 창이 그중 하나를 고른다.
+//
+// ⚠️ 토대 실측: 이 꼴(「전체의 $p\%$ 가 자연수 + 전체가 범위 안」)은 반증 ⑥ 이
+//    **0/80** 이라 1-4 에서 가장 안전한 축이다. 우리 판에서도 깎임이 12.5% 로 낮다.
+// ⚠️ 심화하 ⓐ 는 「어떤 수의 $p\%$ 가 $V$」로 **값을 준다.** 여기서는 안 준다.
+type PctWindowCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  ans: number;
+  slot: string;
+};
+
+/** 백분율 갈래가 쓰는 소재 — 「무엇의 몇 %인가」가 소단원마다 달라야 한다(R5). */
+/**
+ * 백분율 갈래가 쓰는 소재. **소재마다 그럴듯한 백분율의 폭이 다르다** —
+ * 「$94\%$ 가 안경을 쓴 학생」은 값이 맞아도 지면에서 거짓말이다(첫 판이 그랬다).
+ * 그래서 소재에 폭을 묶고, 그 폭 안에 드는 소재가 하나도 없으면 그 자리를 안 만든다.
+ */
+const PCT_GROUPS = [
+  { who: "안경을 쓴", unit: "학생", lo: 8, hi: 45 },
+  { who: "여학생인", unit: "학생", lo: 35, hi: 65 },
+  { who: "버스로 통학하는", unit: "학생", lo: 10, hi: 60 },
+  { who: "강아지를 기르는", unit: "학생", lo: 5, hi: 40 },
+] as const;
+
+/** 그 백분율에 어울리는 소재들. 없으면 그 자리는 안 만든다. */
+const pctGroupsFor = (p: number) =>
+  PCT_GROUPS.filter((g) => p >= g.lo && p <= g.hi);
+
+const pctWindowStem = (c: PctWindowCase, g: (typeof PCT_GROUPS)[number]) =>
+  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${g.who} ${g.unit}입니다. ` +
+  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
+  `${num(c.hi)}명보다 적을 때, ${g.who} ${g.unit}은 몇 명입니까?`;
+
+const PCT_WINDOW_MID: PctWindowCase[] = [];
+for (let p = 4; p <= 96; p += 1) {
+  const [a, b] = pctFraction(p);
+  if (b < 5 || b > 50) continue; // 배수열이 너무 촘촘하거나 너무 성기면 창이 안 선다
+  for (let k = 1; k <= 10; k += 1) {
+    const total = b * k;
+    const ans = a * k;
+    if (total < 20 || total > 300 || ans < 2) continue;
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 14) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: PctWindowCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        const fit = pctGroupsFor(p);
+        if (fit.length === 0) continue; // 그럴듯한 소재가 없는 백분율
+        // 소재는 지면 글자만 바꾸므로 첫 소재로 대표해 가드를 건다(수는 같다).
+        if (!backsolveSafeStem(pctWindowStem(c, fit[0]!), rat(ans))) continue;
+        PCT_WINDOW_MID.push(c);
+      }
+  }
+}
+const PCT_WINDOW_BINS = binByAnswerThenSlot(PCT_WINDOW_MID);
+
+function pctWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    PCT_WINDOW_BINS.bins,
+    PCT_WINDOW_BINS.answers,
+  );
+  const g = pick(rng, pctGroupsFor(c.p));
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, pctWindowStem(c, g), num(c.ans), [
+    `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ` +
+      `${g.who} ${g.unit} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 ${g.unit}은 ${num(c.total)}명입니다.`,
+    `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
+      `${g.who} ${g.unit}은 ${num(c.ans)}명입니다.`,
+  ]);
+}
+
+// ── 1-4-6 백분율이 사용되는 경우 — 심화중 ───────────────────────────────────
+//
+// 같은 굳힘 성질이지만 **묻는 것이 다르다**(R5) — 여기서는 여집합(반대한 학생)을 묻는다.
+// 그래서 전체를 굳힌 뒤 한 걸음이 더 든다.
+//
+// ⚠️ 심화하 ⓑ 는 「찬성률 $60\%$·찬성한 학생 $150$명」으로 **인원을 준다.**
+//    여기서는 그 값을 빼고 정수성으로 대신한다.
+type VoteWindowCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  yes: number;
+  ans: number;
+  slot: string;
+};
+
+const voteWindowStem = (c: VoteWindowCase): string =>
+  `어느 학교 투표에서 찬성률이 ${expr(`${c.p}\\%`)} 였습니다. 찬성한 학생 수가 자연수이고 ` +
+  `투표한 학생이 ${num(c.lo)}명보다 많고 ${num(c.hi)}명보다 적을 때, 반대한 학생은 몇 명입니까? ` +
+  `(모든 학생이 찬성이나 반대 가운데 하나를 골랐습니다.)`;
+
+const VOTE_WINDOW_MID: VoteWindowCase[] = [];
+// 찬성률이 $5\%$ 나 $95\%$ 인 투표는 지면에서 거짓말이다 — 폭을 좁힌다.
+for (let p = 30; p <= 90; p += 1) {
+  const [a, b] = pctFraction(p);
+  if (b < 5 || b > 50) continue;
+  for (let k = 1; k <= 10; k += 1) {
+    const total = b * k;
+    const yes = a * k;
+    const ans = total - yes;
+    if (total < 20 || total > 300 || yes < 2 || ans < 2) continue;
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 14) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: VoteWindowCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          yes,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        if (!backsolveSafeStem(voteWindowStem(c), rat(ans))) continue;
+        VOTE_WINDOW_MID.push(c);
+      }
+  }
+}
+const VOTE_WINDOW_BINS = binByAnswerThenSlot(VOTE_WINDOW_MID);
+
+function voteWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    VOTE_WINDOW_BINS.bins,
+    VOTE_WINDOW_BINS.answers,
+  );
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, voteWindowStem(c), num(c.ans), [
+    `찬성률 ${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. 찬성한 학생 수가 자연수이려면 ` +
+      `투표한 학생 수가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 투표한 학생은 ${num(c.total)}명입니다.`,
+    `찬성한 학생은 ${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.yes}`)} 명이므로 ` +
+      `반대한 학생은 ${expr(`${c.total}-${c.yes}=${c.ans}`)} 명입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -9874,6 +10171,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: rateWord,
     응용: rateApply,
     심화하: rateDeep,
+    심화중: rateWindowMid,
   },
   "초6|1-4-4": {
     연산: rateUseCalc,
@@ -9886,12 +10184,14 @@ export const G6_TIERS: ElemTierMap = {
     기본: pctWord,
     응용: pctApply,
     심화하: pctDeep,
+    심화중: pctWindowMid,
   },
   "초6|1-4-6": {
     연산: pctUseCalc,
     기본: pctUseWord,
     응용: pctUseApply,
     심화하: pctUseDeep,
+    심화중: voteWindowMid,
   },
   "초6|1-5-1": {
     연산: stripReadCalc,
