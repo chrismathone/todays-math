@@ -15221,6 +15221,325 @@ function sym234Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * 확대 갈래 «심화중»·«심화상» — 물결 4: 1-1 · 1-3 · 1-4 · 2-2 · 2-5
+ * (D-113 · D-115, 2026-09-01)
+ *
+ * 잣대는 D-115 ⑶·⑷·⑾ 그대로다(물결 2·3 머리말 참조). 이 회차가 **예약한 굳힘 축**은
+ * 대단원마다 하나씩이고, 앞 회차가 쓴 축과 겹치지 않는다.
+ *
+ * ```
+ * 1-1  자연수의 혼합 계산   «모든 중간값이 자연수 — 나눗셈이 나누어떨어진다»
+ *                          마디를 여는 것: **식의 구조를 안 말한다**(괄호 자리 · 기호)
+ * 1-3  대응 관계           «대응 관계는 표의 어느 칸에서나 같아야 한다»
+ *                          마디를 여는 것: **어느 칸이 규칙에서 벗어났는지 안 말한다**
+ * 1-4  약분과 통분         «크기가 같은 분수는 같은 수를 곱한 것» · «기약분수는 서로소»
+ *                          · «공통분모는 두 분모의 공배수»
+ * 2-2  분수의 곱셈         «진분수다» · «한 자리 자연수다» · «대분수의 자연수 부분»
+ *                          🔴 **창(범위)은 안 쓴다** — 파일럿 2-4 심화상이 가져간 축이다
+ *                          (토대 17 §2.1 ㉠: 동형이 넷이라고 짚은 자리)
+ * 2-5  직육면체            «평행한 두 면은 합동» · «보이지 않는 모서리는 세 방향 하나씩»
+ * ```
+ *
+ * 🔴 **비운 자리가 스물셋이다.** 까닭은 `tier-fill-g5-w4.md` §3 에 한 줄씩 적었다 —
+ *    억지로 세우면 그것이 결함이다(D-115 ⑹).
+ *
+ * ⚠️ 반증 ⑥ 자(`forwardReachable`)는 이 다섯 대단원에서 **많이 못 본다** — 답이 분수인
+ *    1-4·2-2 는 `readRat` 이 행을 통째로 건너뛰고(실측 2-2 는 128행 중 122행), 1-3 은
+ *    표 값이 `figure` 에 있어 지면 수가 헤더뿐이다. 그래서 자를 **가드로는 쓰되**
+ *    (`w3Bad`) 「안 닿는다」를 근거로 삼지 않는다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ────────── 1-1 자연수의 혼합 계산 — 확대 갈래 ──────────
+ *
+ * 🔴 **1-1-1 은 둘 다 비웠다.** 이 소단원은 한 층((+,−) 또는 (×,÷))에 **수가 셋**이고,
+ *    그러면 「값이 달라지는 괄호 자리」가 **최대 하나**다(`a-b+c` 는 `a-(b+c)` 하나,
+ *    `a+b-c` 는 아예 없다 — `a+(b-c)` 가 같은 값이다). 후보가 하나면 마디가 애초에
+ *    안 열리므로 심화중의 정의가 성립하지 않는다. 수를 넷으로 늘리는 것은 구조가
+ *    아니라 규모다(이 소단원의 갈래 넷이 모두 수 셋이다).
+ *    `scripts/qa/census-g5w4-empty.ts` 가 이것을 **전수로** 센다.
+ *
+ * 🔴 **1-1-2 심화상도 비웠다.** 이 소단원은 곱셈(나눗셈)이 **하나**뿐이라 괄호 자리
+ *    후보가 늘 둘인데, 그 둘의 대소가 **구조로 정해진다**:
+ *    `a+b\times c-d` 는 늘 `(a+b)\times c-d > a+b\times c-d > a+b\times(c-d)` 이고
+ *    `a+b\div c-d` 는 늘 `(a+b)\div c-d < a+b\div c-d < a+b\div(c-d)` 다.
+ *    「후보를 실제로 다 계산해 견주어야 하나가 남는다」가 성립하지 않는다(계산 없이
+ *    안다). 같은 자를 전수로 돌린 값이 §3 에 있다.
+ */
+
+/** 혼합 계산 한 줄 — 짝수 자리는 수, 홀수 자리는 기호. */
+type W4Tok = number | "+" | "-" | "*" | "/";
+
+/**
+ * 초5 규칙으로 계산한다 — ×÷ 를 앞에서부터, 그다음 +− 를 앞에서부터.
+ *
+ * **중간값이 자연수가 아니면 `null`** 을 돌려준다(나누어떨어지지 않거나 음수가 된다).
+ * 그 `null` 이 이 대단원의 굳힘 축 **그 자체**라, 갈래도 시험도 이 함수 하나를 본다 —
+ * 규칙을 두 벌 두면 한쪽만 고쳐도 아무도 모른다.
+ */
+function w4Eval(toks: readonly W4Tok[]): number | null {
+  const vals: number[] = [toks[0] as number];
+  const ops: ("+" | "-")[] = [];
+  for (let i = 1; i < toks.length; i += 2) {
+    const op = toks[i] as string;
+    const v = toks[i + 1] as number;
+    if (op === "*" || op === "/") {
+      const prev = vals[vals.length - 1]!;
+      if (op === "*") vals[vals.length - 1] = prev * v;
+      else {
+        if (v === 0 || prev % v !== 0) return null;
+        vals[vals.length - 1] = prev / v;
+      }
+    } else {
+      ops.push(op as "+" | "-");
+      vals.push(v);
+    }
+  }
+  let acc = vals[0]!;
+  // 🔴 `0` 도 막는다 — 초등에서 «자연수»는 $1$ 부터다. 이걸 안 막으면 `(9-9)` 를 묶어
+  //    `4\times0=0` 이 되는 자리가 「모두 자연수」로 통과해 지면에 나간다(실측으로 났다).
+  if (acc < 1) return null;
+  for (let i = 0; i < ops.length; i += 1) {
+    acc = ops[i] === "+" ? acc + vals[i + 1]! : acc - vals[i + 1]!;
+    if (acc < 1) return null;
+  }
+  return acc;
+}
+
+/** 수 자리 `i`~`j` 를 괄호로 묶어 계산한다. 괄호 **안**이 자연수가 아니어도 `null`. */
+function w4Grouped(
+  toks: readonly W4Tok[],
+  i: number,
+  j: number,
+): number | null {
+  const inner = w4Eval(toks.slice(2 * i, 2 * j + 1));
+  if (inner === null) return null;
+  return w4Eval([...toks.slice(0, 2 * i), inner, ...toks.slice(2 * j + 1)]);
+}
+
+const W4_SYM: Record<string, string> = {
+  "+": "+",
+  "-": "-",
+  "*": "\\times",
+  "/": "\\div",
+};
+
+/** LaTeX 로. 수 자리 `i`~`j` 를 괄호로 묶는다(`i < 0` 이면 안 묶는다). */
+function w4Latex(toks: readonly W4Tok[], i = -1, j = -1): string {
+  let out = "";
+  for (let k = 0; k < toks.length; k += 1) {
+    if (k % 2 === 0) {
+      const idx = k / 2;
+      if (idx === i) out += "(";
+      out += String(toks[k]);
+      if (idx === j) out += ")";
+    } else out += W4_SYM[toks[k] as string]!;
+  }
+  return out;
+}
+
+/* ── 1-1-2 심화중 — 「$\bigcirc$ 가 $\times$ 인지 $\div$ 인지 안 말한다」 ──
+ *
+ * 마디: `a-b\bigcirc c+d` 의 기호가 안 굳는다(후보 둘).
+ * 굳힘: **모든 계산 결과가 자연수** — 한쪽은 나누어떨어지지 않거나 음수가 되어 죽는다.
+ *       후보를 «끝까지 계산하지 않고» 걸러 낸다(D-115 ⑾ → 심화중).
+ */
+
+type W4SymTask = { a: number; b: number; c: number; d: number; op: "*" | "/" };
+
+function w4Sym112(): W4SymTask[] {
+  const out: W4SymTask[] = [];
+  for (let b = 3; b <= 12; b += 1)
+    for (let c = 2; c <= 9; c += 1)
+      for (let a = 10; a <= 90; a += 1)
+        for (let d = 2; d <= 20; d += 1) {
+          const mul = w4Eval([a, "-", b, "*", c, "+", d]);
+          const div = w4Eval([a, "-", b, "/", c, "+", d]);
+          if (mul === null && div === null) continue;
+          if (mul !== null && div !== null) continue; // 마디가 안 굳는다
+          out.push({ a, b, c, d, op: mul === null ? "/" : "*" });
+        }
+  return out;
+}
+
+function mix112Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4SymTask) =>
+    `$\\bigcirc$ 안에 $\\times$와 $\\div$ 중 알맞은 것을 써넣어 계산하려고 합니다. 계산하는 동안 나오는 값이 모두 자연수가 되도록 써넣었을 때, 계산한 값은 얼마입니까?  ${expr(`${t.a}-${t.b}\\bigcirc ${t.c}+${t.d}`)}`;
+  const pool = w2Pool("w4-112mid", () =>
+    w4Sym112().filter((t) => {
+      const v = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d]);
+      return v !== null && v > 0 && !w3Bad(content(t), w2int(v));
+    }),
+  );
+  // 🔴 **답이 되는 기호를 먼저 뽑는다.** 그냥 뽑으면 `\div` 가 죽는 짝(=답이 `\times`)이
+  //    훨씬 많다 — 실측 200씨앗에서 171 : 29 였다. 한쪽으로 몰리면 「늘 곱셈」이
+  //    답을 대신한다.
+  const wantOp: "*" | "/" = altCase(rng) ? "*" : "/";
+  const half = pool.filter((x) => x.op === wantOp);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const kept = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d])!;
+  const dead = t.op === "*" ? "/" : "*";
+  const deadWhy =
+    dead === "/"
+      ? `${lj(`${t.b}\\div${t.c}`, "은", "는")} 나누어떨어지지 않으므로`
+      : `${expr(`${t.b}\\times${t.c}=${t.b * t.c}`)}이고 ${lj(`${t.a}-${t.b * t.c}`, "은", "는")} 자연수가 될 수 없으므로`;
+  const first =
+    t.op === "*"
+      ? `${expr(`${t.b}\\times${t.c}=${t.b * t.c}`)}`
+      : `${expr(`${t.b}\\div${t.c}=${t.b / t.c}`)}`;
+  const mid = t.op === "*" ? t.a - t.b * t.c : t.a - t.b / t.c;
+  return makeDeep(unit, content(t), n(kept), [
+    `곱셈과 나눗셈을 먼저 계산하므로 $\\bigcirc$ 안의 기호가 정해지면 ${expr(`${t.b}\\bigcirc ${t.c}`)}를 먼저 계산합니다.`,
+    `${expr(`\\bigcirc=${W4_SYM[dead]!}`)}이면 ${deadWhy} 쓸 수 없습니다.`,
+    `${expr(`\\bigcirc=${W4_SYM[t.op]!}`)}이면 ${first}이고, ${expr(`${t.a}-${t.op === "*" ? t.b * t.c : t.b / t.c}=${mid}`)}, ${expr(`${mid}+${t.d}=${kept}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-1-3 심화중 — 「괄호가 어디에 있었는지 안 말한다」 ──
+ *
+ * 마디: `a\div b+c\times d-e` 에서 **이웃한 두 수**를 괄호로 묶는 자리가 넷인데
+ *       그중 값이 달라지는 자리가 둘이다(나머지 둘은 ×÷ 를 묶는 것이라 그대로다).
+ * 굳힘: **모든 계산 결과가 자연수** — 한 자리는 나누어떨어지지 않거나 음수가 되어 죽는다.
+ */
+
+type W4ParenTask = {
+  toks: W4Tok[];
+  base: number;
+  spot: 1 | 3; // 1 = `(b+c)`, 3 = `(d-e)`
+  value: number;
+};
+
+function w4Paren113(): W4ParenTask[] {
+  const out: W4ParenTask[] = [];
+  for (let b = 2; b <= 9; b += 1)
+    for (let q = 2; q <= 12; q += 1) {
+      const a = b * q;
+      if (a > 96) continue;
+      for (let c = 2; c <= 9; c += 1)
+        for (let d = 3; d <= 12; d += 1)
+          for (let e = 2; e <= 12; e += 1) {
+            const toks: W4Tok[] = [a, "/", b, "+", c, "*", d, "-", e];
+            const base = w4Eval(toks);
+            if (base === null || base === 0) continue;
+            const g1 = w4Grouped(toks, 1, 2); // a÷(b+c)×d−e
+            const g3 = w4Grouped(toks, 3, 4); // a÷b+c×(d−e)
+            const alive: (1 | 3)[] = [];
+            if (g1 !== null && g1 !== base) alive.push(1);
+            if (g3 !== null && g3 !== base) alive.push(3);
+            if (alive.length !== 1) continue;
+            // 죽은 쪽이 «수가 모자라서»가 아니라 **나누어떨어지지 않아서** 죽어야
+            // 학생이 실제로 나눗셈을 확인한다. `(d-e)` 쪽은 뺄셈이라 예외로 둔다.
+            const spot = alive[0]!;
+            const value = spot === 1 ? g1! : g3!;
+            if (value <= 0) continue;
+            out.push({ toks, base, spot, value });
+          }
+    }
+  return out;
+}
+
+function mix113Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 🔴 묶는 자리를 «덧셈이나 뺄셈으로 이어진» 것으로 **발문이 좁힌다**. 안 좁히면
+  //    `(a\div b)`·`(c\times d)` 를 묶는 두 자리가 «값이 그대로»라 「자연수인가」로는
+  //    안 갈리고, 그걸 빼려면 처음 값을 지면에 적어야 한다(수가 하나 더 늘어난다).
+  const content = (t: W4ParenTask) =>
+    `괄호가 하나 있는 식에서 괄호가 지워져 ${lj(w4Latex(t.toks), "이", "가")} 되었습니다. 괄호는 덧셈이나 뺄셈으로 이어진 이웃한 두 수를 묶고 있었고, 괄호 안을 먼저 계산해도 계산하는 동안 나오는 값이 모두 자연수였습니다. 처음 식을 바르게 계산한 값은 얼마입니까?`;
+  const pool = w2Pool("w4-113mid", () =>
+    w4Paren113().filter((t) => !w3Bad(content(t), w2int(t.value))),
+  );
+  // 🔴 **살아남는 자리를 먼저 뽑는다.** 그냥 풀에서 뽑으면 `(b+c)` 가 사는 것은
+  //    `b+c` 가 `a` 를 나누어야 해서 드물다 — 실측 200씨앗에서 20 : 180 이었다.
+  //    한쪽으로 몰리면 「늘 뒤쪽을 묶으면 된다」가 답을 대신한다.
+  const wantSpot = altCase(rng) ? 1 : 3;
+  const half = pool.filter((t) => t.spot === wantSpot);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const [a, , b, , c, , d, , e] = t.toks as [
+    number,
+    string,
+    number,
+    string,
+    number,
+    string,
+    number,
+    string,
+    number,
+  ];
+  const g1 = w4Grouped(t.toks, 1, 2);
+  const g3 = w4Grouped(t.toks, 3, 4);
+  const why1 =
+    g1 === null
+      ? a % (b + c) !== 0
+        ? `${expr(`${b}+${c}=${b + c}`)}인데 ${lj(`${a}\\div${b + c}`, "은", "는")} 나누어떨어지지 않습니다.`
+        : `${expr(`${a}\\div${b + c}\\times${d}=${(a / (b + c)) * d}`)}인데 여기서 ${nro(e)} 빼면 자연수가 되지 않습니다.`
+      : `${expr(`${b}+${c}=${b + c}`)}이고 ${expr(`${a}\\div${b + c}=${a / (b + c)}`)}, ${expr(`${a / (b + c)}\\times${d}=${(a / (b + c)) * d}`)}이므로 ${expr(`${(a / (b + c)) * d}-${e}=${g1}`)}입니다.`;
+  const why3 =
+    g3 === null
+      ? `${lj(`${d}-${e}`, "은", "는")} 자연수가 되지 않습니다.`
+      : `${expr(`${d}-${e}=${d - e}`)}이고 ${expr(`${c}\\times${d - e}=${c * (d - e)}`)}, ${expr(`${a}\\div${b}=${a / b}`)}이므로 ${expr(`${a / b}+${c * (d - e)}=${g3}`)}입니다.`;
+  return makeDeep(unit, content(t), n(t.value), [
+    `덧셈이나 뺄셈으로 이어진 이웃한 두 수는 ${expr(`${b}+${c}`)}와 ${expr(`${d}-${e}`)} 두 자리입니다.`,
+    `${lj(`(${b}+${c})`, "을", "를")} 묶으면 ${why1}`,
+    `${lj(`(${d}-${e})`, "을", "를")} 묶으면 ${why3}`,
+    `계산하는 동안 나오는 값이 모두 자연수인 자리는 한 곳뿐이므로 처음 식의 값은 ${n(t.value)}입니다.`,
+  ]);
+}
+
+/* ── 1-1-3 심화상 — 「$\times$ 와 $\div$ 를 하나씩, 어느 자리인지 안 말한다」 ──
+ *
+ * 마디: `a\bigcirc b+c\bigcirc d-e` 의 배치가 안 굳는다(후보 둘).
+ * 🔴 **성질로 안 갈린다** — 두 배치가 **모두** 자연수다. 그래서 둘을 실제로 계산해
+ *    견주어야 하나가 남는다(D-115 ⑾ → 심화상). 그리고 어느 쪽이 큰지는 구조로 안
+ *    정해진다(`a\times b` 와 `c\times d` 중 어느 것이 큰가에 달렸다).
+ */
+
+type W4TopTask = { a: number; b: number; c: number; d: number; e: number };
+
+const w4TopPair = (t: W4TopTask): [number, number] => [
+  w4Eval([t.a, "*", t.b, "+", t.c, "/", t.d, "-", t.e])!,
+  w4Eval([t.a, "/", t.b, "+", t.c, "*", t.d, "-", t.e])!,
+];
+
+function w4Top113(): W4TopTask[] {
+  const out: W4TopTask[] = [];
+  for (let b = 2; b <= 9; b += 1)
+    for (let d = 2; d <= 9; d += 1)
+      for (let ka = 2; ka <= 12; ka += 1)
+        for (let kc = 2; kc <= 12; kc += 1) {
+          const a = b * ka;
+          const c = d * kc;
+          if (a > 60 || c > 60) continue;
+          for (let e = 2; e <= 30; e += 1) {
+            const x = w4Eval([a, "*", b, "+", c, "/", d, "-", e]);
+            const y = w4Eval([a, "/", b, "+", c, "*", d, "-", e]);
+            if (x === null || y === null) continue;
+            if (x === y) continue; // 견줄 것이 없으면 마디가 뜻이 없다
+            // 🔴 **규모는 축이 아니다**(D-115 기각된 축). 이 소단원의 다른 갈래는
+            //    답이 두 자리 언저리다 — 곱을 키워 어렵게 만들지 않는다.
+            if (Math.max(x, y) > 150) continue;
+            out.push({ a, b, c, d, e });
+          }
+        }
+  return out;
+}
+
+function mix113Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4TopTask) =>
+    `두 $\\bigcirc$ 안에 $\\times$와 $\\div$를 하나씩 써넣으려고 합니다. 어느 쪽에 써넣어도 계산하는 동안 나오는 값이 모두 자연수일 때, 계산한 두 값 중 더 큰 값은 얼마입니까?  ${expr(`${t.a}\\bigcirc ${t.b}+${t.c}\\bigcirc ${t.d}-${t.e}`)}`;
+  const pool = w2Pool("w4-113top", () =>
+    w4Top113().filter((t) => {
+      const [x, y] = w4TopPair(t);
+      return !w3Bad(content(t), w2int(Math.max(x, y)));
+    }),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const [x, y] = w4TopPair(t);
+  return makeDeep(unit, content(t), n(Math.max(x, y)), [
+    `앞을 $\\times$, 뒤를 $\\div$로 하면 ${expr(`${t.a}\\times${t.b}=${t.a * t.b}`)}, ${expr(`${t.c}\\div${t.d}=${t.c / t.d}`)}이므로 ${expr(`${t.a * t.b}+${t.c / t.d}-${t.e}=${x}`)}입니다.`,
+    `앞을 $\\div$, 뒤를 $\\times$로 하면 ${expr(`${t.a}\\div${t.b}=${t.a / t.b}`)}, ${expr(`${t.c}\\times${t.d}=${t.c * t.d}`)}이므로 ${expr(`${t.a / t.b}+${t.c * t.d}-${t.e}=${y}`)}입니다.`,
+    `두 값을 견주면 ${nj(Math.max(x, y), "이", "가")} 더 큽니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -15240,12 +15559,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: mix112Read,
     응용: mix112Apply,
     심화하: mix112Deep,
+    심화중: mix112Mid,
   },
   "초5|1-1-3": {
     연산: mix113Calc,
     기본: mix113Read,
     응용: mix113Apply,
     심화하: mix113Deep,
+    심화중: mix113Mid,
+    심화상: mix113Top,
   },
   "초5|1-2-1": {
     연산: fac121Calc,
