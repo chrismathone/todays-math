@@ -2252,19 +2252,21 @@ describe("[초5 1-4] 난이도 4단 확대 (D-72 5차)", () => {
       }
     }
     // 주인 소단원 쪽 필수 낱말
-    for (const seed of SEEDS) {
-      for (const tier of tiersOf(unitOf("1-4-2"))) {
-        expect(/약분|기약/.test(problem("1-4-2", tier, seed).content)).toBe(
-          true,
-        );
-        expect(/통분|공통분모/.test(problem("1-4-3", tier, seed).content)).toBe(
-          true,
-        );
-        expect(/소수|0\./.test(problem("1-4-5", tier, seed).content)).toBe(
-          true,
-        );
-      }
-    }
+    // ⚠️ 소단원마다 **자기가 내는 갈래**를 돈다(D-113 ⑺). 1-4-2 의 목록으로 1-4-3·1-4-5
+    //    까지 돌면, 확대 갈래를 한쪽만 채운 날 없는 갈래를 만들려다 던진다
+    //    (2026-09-01 물결 4 에서 실제로 났다 — 1-4-2·1-4-3 만 채웠다).
+    const mustHave: [string, RegExp][] = [
+      ["1-4-2", /약분|기약/],
+      ["1-4-3", /통분|공통분모/],
+      ["1-4-5", /소수|0\./],
+    ];
+    for (const seed of SEEDS)
+      for (const [code, re] of mustHave)
+        for (const tier of tiersOf(unitOf(code)))
+          expect(
+            re.test(problem(code, tier, seed).content),
+            `${code} ${tier} @${seed}`,
+          ).toBe(true);
   });
 
   /* ── 산술 독립 검산 — 참은 찍힌 발문·답에서 (gcd·lcm 은 시험 것) ── */

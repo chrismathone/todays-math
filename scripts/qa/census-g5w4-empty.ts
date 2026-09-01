@@ -17,6 +17,14 @@
  * 그래서 세는 함수마다 **양성·음성 대조**를 `--selftest` 에 같이 뒀다. 세는 쪽이
  * 눈이 멀면 셋 다 통과해 버리는 것을 막는다(2026-08-20 · 08-21).
  */
+import {
+  answerPrintedOnPage,
+  forwardReachable,
+  pageNumbers,
+  rat,
+} from "../../src/lib/elementary/forwardReach";
+import { gcd } from "../../src/lib/elementary/math";
+
 import { isDirectScript } from "../import/isDirectScript";
 
 /* ── 혼합 계산 한 줄 — 이 자가 **스스로** 계산한다(제품을 안 부른다) ────────── */
@@ -155,6 +163,81 @@ export function censusOrder113(): { rows: number; frontBigger: number } {
   return { rows, frontBigger };
 }
 
+/* ── ㉢ 1-4-1 심화중 — 「분모 갈래」가 반증 ⑥ 을 넘길 수 있나 ─────────────────
+ *
+ * 마디를 「지면의 수가 분모인가 분자인가」로 열면, **분모 갈래**의 답은 어떤 물음으로
+ * 물어도 «지면의 분수 × 그 수» 한 걸음에서 나온다. 그래서 반증 ⑥ 이 그 갈래를
+ * 통째로 걷어 내고, 남는 것은 분자 갈래뿐이라 **마디가 죽는다**(「지면의 수는 늘 분자」).
+ */
+
+export function census141(ask: "other" | "sum"): {
+  rows: number;
+  numOk: number;
+  denOk: number;
+} {
+  let rows = 0;
+  let numOk = 0;
+  let denOk = 0;
+  for (let b = 3; b <= 12; b += 1)
+    for (let a = 2; a < b; a += 1) {
+      if (gcd(a, b) !== 1) continue;
+      for (let k = 2; k <= 9; k += 1) {
+        if (b * k > 72) continue;
+        const cases: [boolean, number][] = [];
+        if ((a * k) % b !== 0) cases.push([true, a * k]);
+        if ((b * k) % a !== 0) cases.push([false, b * k]);
+        for (const [isNum, M] of cases) {
+          const ans = ask === "sum" ? (a + b) * k : isNum ? b * k : a * k;
+          if (ans > 96) continue;
+          rows += 1;
+          const content = `${fracTex(a, b)}와 크기가 같은 분수가 있습니다. 그 분수의 분모와 분자 중 한 수가 $${M}$입니다.`;
+          const nums = pageNumbers(content);
+          const bad =
+            answerPrintedOnPage(nums, rat(ans, 1)) ||
+            forwardReachable(nums, rat(ans, 1));
+          if (!bad) {
+            if (isNum) numOk += 1;
+            else denOk += 1;
+          }
+        }
+      }
+    }
+  return { rows, numOk, denOk };
+}
+
+const fracTex = (a: number, b: number) => `$\\frac{${a}}{${b}}$`;
+
+/* ── ㉣ 1-4-2 심화상 — 약분 배수에 **모든 값이 비례**하는가 ──────────────────
+ *
+ * 되짚기 값이 「몇으로 약분했나」 하나뿐인데 분모·분자·합·차가 전부 그 수에 비례한다.
+ * 그러면 어떤 조건을 주어도 **나눗셈 한 번**으로 굳으므로 「후보를 다 만들어
+ * 견주어야 하나가 남는다」(심화상의 정의)가 성립하지 않는다.
+ */
+export function census142(): { rows: number; ambiguous: number } {
+  let rows = 0;
+  let ambiguous = 0;
+  for (let b = 3; b <= 12; b += 1)
+    for (let a = 2; a < b; a += 1) {
+      if (gcd(a, b) !== 1) continue;
+      rows += 1;
+      // 배수 `k` 마다 네 값을 만든다 — 같은 값이 두 `k` 에서 나오면 «안 굳는» 것이다.
+      for (const of4 of [
+        (k: number) => b * k, // 분모
+        (k: number) => a * k, // 분자
+        (k: number) => (a + b) * k, // 합
+        (k: number) => (b - a) * k, // 차
+      ]) {
+        const seen = new Set<number>();
+        for (let k = 2; k <= 12; k += 1) {
+          const v = of4(k);
+          if (seen.has(v)) ambiguous += 1;
+          seen.add(v);
+        }
+      }
+    }
+  return { rows, ambiguous };
+}
+
 /* ── 눈금 — 이 자가 «아니오»를 낼 수 있나 ──────────────────────────────────── */
 
 type Gauge = { label: string; ok: () => boolean };
@@ -189,6 +272,20 @@ function gauges(): Gauge[] {
         const c = censusOrder113();
         return c.rows > 100 && c.frontBigger > 0 && c.frontBigger < c.rows;
       },
+    },
+    {
+      // 양성 — 반증 ⑥ 자를 부르는 쪽이 **살아남는 것도** 셀 수 있다.
+      //   (분자 갈래가 0 이면 이 자가 그냥 전부를 걷어 내는 것이라 아무것도 못 잰다)
+      label: "양성 — 1-4-1 에서 «분자 갈래»는 살아남는다",
+      ok: () => census141("sum").numOk > 50,
+    },
+    {
+      label: "음성 — 1-4-1 에서 «분모 갈래»는 두 물음 다 살아남지 못한다",
+      ok: () => census141("sum").denOk === 0 && census141("other").denOk === 0,
+    },
+    {
+      label: "음성 — 1-4-2 는 약분 배수마다 네 값이 서로 다르다(굳는다)",
+      ok: () => census142().ambiguous === 0,
     },
   ];
 }
@@ -233,7 +330,30 @@ function main(): void {
       `(${((d.frontBigger / d.rows) * 100).toFixed(2)}%) → **여기서는 안 정해진다**`,
   );
   console.log(
-    `   → 1-1-2 는 계산 없이 어느 쪽이 큰지 안다. 「다 계산해 견주어야」가 성립하지 않아 심화상을 비운다.`,
+    `   → 1-1-2 는 계산 없이 어느 쪽이 큰지 안다. 「다 계산해 견주어야」가 성립하지 않아 심화상을 비운다.\n`,
+  );
+
+  console.log("㉢ 1-4-1 심화중 — 「지면의 수가 분모인 갈래」가 반증 ⑥ 을 넘나");
+  for (const ask of ["other", "sum"] as const) {
+    const c = census141(ask);
+    console.log(
+      `   묻는 것이 «${ask === "other" ? "나머지 한 수" : "분모와 분자의 합"}» — 후보 ${c.rows}개 중 ` +
+        `분자 갈래 생존 ${c.numOk} · **분모 갈래 생존 ${c.denOk}**`,
+    );
+  }
+  console.log(
+    `   → 분모 갈래는 답이 «지면의 분수 × 그 수» 한 걸음이라 늘 걸린다. 걸러 내면 ` +
+      `분자 갈래만 남아 「지면의 수는 늘 분자」가 되고 마디가 죽는다. 그래서 비운다.\n`,
+  );
+
+  const f = census142();
+  console.log("㉣ 1-4-2 심화상 — 약분 배수에 네 값이 다 비례하는가");
+  console.log(
+    `   기약 진분수 ${f.rows}개 · 배수 $2$~$12$ 에서 «같은 값이 두 배수에서 나오는» 자리 ${f.ambiguous}개`,
+  );
+  console.log(
+    `   → 분모·분자·합·차 어느 것을 주어도 배수가 나눗셈 한 번으로 굳는다. ` +
+      `「후보를 다 만들어 견주어야」가 성립하지 않아 심화상을 비운다.`,
   );
 }
 

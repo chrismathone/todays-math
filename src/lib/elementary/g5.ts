@@ -15929,6 +15929,208 @@ function corr132Top(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ────────── 1-4 약분과 통분 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「크기가 같은 분수는 분모와 분자에 같은 수를 곱한 것」**(1-4-1) ·
+ * **「기약분수는 분모와 분자가 서로소」**(1-4-2) · **「공통분모는 두 분모의 공배수」**(1-4-3).
+ * 마디를 여는 것: **어느 쪽 수인지 / 몇 배 했는지 / 어느 분수의 분자인지 안 말한다**.
+ *
+ * ⚠️ **이웃 낱말이 잠겨 있다**(D-66 ⑸ · 시험이 문다): «크기가 같은»은 1-4-1 만,
+ *    «약분»·«기약»은 1-4-2 만, «통분»·«공통분모»는 1-4-3 만, «소수»는 1-4-5 만.
+ *
+ * 🔴 **여섯 칸을 비웠다.**
+ *    · **1-4-1 심화상** — 「같은 수를 곱한다」가 **일대일**이라 배수 하나를 정하면 분수가
+ *      통째로 정해진다. 후보를 여럿 남기려면 범위를 얹어야 하는데 그건 심화하가 이미
+ *      쓴다(`eq141Deep` ㉯ 가 「분모가 $13$보다 크고 $19$보다 작은」이다).
+ *    · **1-4-2 심화상** — 되짚기 값이 «몇으로 약분했나»(g) 하나뿐인데 분모·분자·합·차가
+ *      **전부 $g$ 에 비례**한다. 어떤 조건을 주어도 나눗셈 한 번으로 굳으므로
+ *      「후보를 다 만들어 견주어야」가 성립하지 않는다(`census-g5w4-empty.ts` 가 전수로 센다).
+ *    · **1-4-4 둘** — 되짚을 값이 없고 심화하가 이미 열거다(`$\frac13<\frac{\square}9<\frac79$`).
+ *    · **1-4-5 둘** — 분수↔소수가 한 걸음 일대일이라 견줄 둘째 걸음이 안 선다.
+ */
+
+/** 기약 진분수 짝 — 확대 갈래가 쓰는 재료. */
+type W4Frac = { a: number; b: number };
+
+const W4_PROPER: W4Frac[] = (() => {
+  const out: W4Frac[] = [];
+  for (let b = 3; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1) if (gcd(a, b) === 1) out.push({ a, b });
+  return out;
+})();
+
+/* ── 1-4-2 심화중 — 「무엇으로 약분했는지 안 말한다」 ──
+ *
+ * 마디: **몇으로 약분했는가**(후보가 배수만큼 여럿).
+ * 굳힘: 「기약분수는 분모와 분자가 **서로소**」라 그 꼴이 유일하고, 발문이 준 **차**가
+ *       배수를 하나로 남긴다. 끝까지 계산하지 않고 나눗셈 한 번으로 갈린다(→ 심화중).
+ */
+
+type W4RedTask = { a: number; b: number; k: number; D: number };
+
+function w4Red142(): W4RedTask[] {
+  const out: W4RedTask[] = [];
+  for (const { a, b } of W4_PROPER)
+    for (let k = 2; k <= 9; k += 1) {
+      // 분모를 키우는 것은 축이 아니다(토대 17 §3 「발문 분모 ≤ 48」).
+      if (a < 2 || b * k > 48) continue;
+      out.push({ a, b, k, D: (b - a) * k });
+    }
+  return out;
+}
+
+function red142Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4RedTask) =>
+    `어떤 분수를 약분하여 기약분수 ${fro(t.a, t.b)} 나타냈습니다. 어떤 분수의 분모와 분자의 차가 ${nj(t.D, "일", "일")} 때, 어떤 분수의 분모를 구하시오.`;
+  const pool = w2Pool("w4-142mid", () =>
+    w4Red142().filter((t) => !w3Bad(content(t), w2int(t.b * t.k))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.b * t.k), [
+    `약분은 분모와 분자를 같은 수로 나누는 것이므로, 어떤 분수는 ${frj(t.a, t.b, "과", "와")} 분모와 분자에 각각 같은 수를 곱한 분수입니다.`,
+    `기약분수의 분모와 분자의 차는 ${expr(`${t.b}-${t.a}=${t.b - t.a}`)}이고, 같은 수를 곱하면 차도 그 수만큼 커집니다. 곱한 수는 ${expr(`${t.D}\\div${t.b - t.a}=${t.k}`)}입니다.`,
+    `어떤 분수의 분모는 ${expr(`${t.b}\\times${t.k}=${t.b * t.k}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-4-3 심화중 — 「어느 분수의 분자인지 안 말한다」 ──
+ *
+ * 마디: 지면의 분자가 **어느 분수의 것인가**(후보 둘).
+ * 굳힘: 「공통분모는 두 분모의 **공배수**」 → 한쪽으로 읽으면 공배수가 안 된다.
+ * ⚠️ 심화하 ㉮ 는 분자를 **둘 다** 준다 — 그러면 마디가 안 열린다(토대 17 §3 함정).
+ */
+
+type W4ComTask = {
+  a: number;
+  b: number;
+  c: number;
+  d: number;
+  m: number;
+  N: number;
+  fromFirst: boolean;
+};
+
+function w4Com143(): W4ComTask[] {
+  const out: W4ComTask[] = [];
+  for (const { a, b } of W4_PROPER)
+    for (const { a: c, b: d } of W4_PROPER) {
+      // 한쪽이 다른 쪽의 약수면 통분해도 한 분수가 그대로라 «통분»이 안 보인다.
+      if (b === d || gcd(b, d) === 1) continue;
+      if (b % d === 0 || d % b === 0) continue; // 곱과 최소공배수가 갈려야 이 소단원이다
+      const L = lcm(b, d);
+      if (L > 60) continue;
+      for (let t = 1; t <= 2; t += 1) {
+        const m = L * t;
+        if (m > 90) continue;
+        const p = a * (m / b);
+        const q = c * (m / d);
+        for (const [N, fromFirst] of [
+          [p, true],
+          [q, false],
+        ] as const) {
+          // 다른 쪽으로 읽어도 «공배수»가 되면 답이 둘이다 — 그때는 못 쓴다.
+          const otherNum = fromFirst ? c : a;
+          const otherDen = fromFirst ? d : b;
+          if (N % otherNum === 0) {
+            const m2 = otherDen * (N / otherNum);
+            if (m2 !== m && m2 % b === 0 && m2 % d === 0) continue;
+          }
+          out.push({ a, b, c, d, m, N, fromFirst });
+        }
+      }
+    }
+  return out;
+}
+
+function com143Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4ComTask) =>
+    `${frj(t.a, t.b, "과", "와")} ${frj(t.c, t.d, "을", "를")} 통분했더니 한 분수의 분자가 ${nj(t.N, "이", "가")} 되었습니다. 공통분모를 구하시오.`;
+  const pool = w2Pool("w4-143mid", () =>
+    w4Com143().filter((t) => !w3Bad(content(t), w2int(t.m))),
+  );
+  const wantFirst = altCase(rng);
+  const half = pool.filter((x) => x.fromFirst === wantFirst);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const mine = t.fromFirst ? { p: t.a, q: t.b } : { p: t.c, q: t.d };
+  const other = t.fromFirst ? { p: t.c, q: t.d } : { p: t.a, q: t.b };
+  const deadWhy =
+    t.N % other.p !== 0
+      ? `${lj(`${t.N}\\div${other.p}`, "은", "는")} 나누어떨어지지 않아 분자가 될 수 없습니다.`
+      : `공통분모가 ${lj(`${other.q}\\times${t.N / other.p}=${other.q * (t.N / other.p)}`, "이", "가")} 되는데, 이 수는 ${nj(t.b, "과", "와")} ${n(t.d)}의 공배수가 아닙니다.`;
+  return makeDeep(unit, content(t), n(t.m), [
+    `공통분모는 두 분모 ${nj(t.b, "과", "와")} ${n(t.d)}의 공배수여야 합니다.`,
+    `${nj(t.N, "이", "가")} ${frj(other.p, other.q, "의", "의")} 분자라면 ${deadWhy}`,
+    `그러므로 ${nj(t.N, "은", "는")} ${frj(mine.p, mine.q, "의", "의")} 분자입니다. ${expr(`${t.N}\\div${mine.p}=${t.N / mine.p}`)}이므로 공통분모는 ${expr(`${mine.q}\\times${t.N / mine.p}=${t.m}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-4-3 심화상 — 「한쪽 분수를 통째로 모르고, 분모 후보를 만들어 견준다」 ──
+ *
+ * 🔴 심화중과 갈리는 문장: 후보(어떤 진분수의 분모)를 **발문이 안 주고** 되짚기가
+ *    만들며, 「공통분모가 될 수 있는 가장 작은 수가 $M$」 하나로는 **안 갈린다** —
+ *    후보마다 「분모와 분자의 합이 $S$ 인 진분수를 만들 수 있는가」를 **실제로 따져
+ *    봐야** 하나가 남는다(D-115 ⑾ → 심화상).
+ */
+
+type W4ComTopTask = { a: number; b: number; M: number; S: number; e: number };
+
+/** `lcm(b, e) = M` 인 분모 후보 전부 — 되짚기가 만드는 줄. */
+function w4DenCands(b: number, M: number): number[] {
+  const out: number[] = [];
+  for (let e = 2; e <= M; e += 1) if (lcm(b, e) === M) out.push(e);
+  return out;
+}
+
+function w4ComTop143(): W4ComTopTask[] {
+  const out: W4ComTopTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let t = 1; t <= 6; t += 1) {
+      const M = b * t;
+      if (M > 72 || M === b) continue;
+      const cands = w4DenCands(b, M);
+      if (cands.length < 3) continue; // 마디가 열려야 한다
+      for (let S = 7; S <= 40; S += 1) {
+        const hit = cands.filter((e) => {
+          const c = S - e;
+          return c > 0 && c < e;
+        });
+        if (hit.length !== 1) continue;
+        // 해설에 셈이 둘 이상 남아야 한다(D-72 4단) — 모두 「미다」로
+        // 끝나면 빼셈을 한 번도 안 적게 된다.
+        if (cands.filter((e) => S - e > 0).length < 2) continue;
+        const e = hit[0]!;
+        if (e < 3) continue;
+        out.push({ a: 1, b, M, S, e });
+      }
+    }
+  return out;
+}
+
+function com143Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4ComTopTask) =>
+    `어떤 진분수와 분모가 ${nj(t.b, "인", "인")} 진분수를 통분하려고 합니다. 공통분모가 될 수 있는 수 중 가장 작은 수가 ${nj(t.M, "이고", "이고")} 어떤 진분수의 분모와 분자의 합이 ${nj(t.S, "일", "일")} 때, 어떤 진분수의 분모를 구하시오.`;
+  const pool = w2Pool("w4-143top", () =>
+    w4ComTop143().filter((t) => !w3Bad(content(t), w2int(t.e))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const cands = w4DenCands(t.b, t.M);
+  // 🔴 **음수를 지면에 쓰지 않는다.** 합보다 큰 분모는 뺄셈 자체가 안 되므로
+  //    「$34-36=-2$」 가 아니라 「뺄 수 없다」로 적는다(초5 는 음수를 안 배운다).
+  const lines = cands.map((e) => {
+    const c = t.S - e;
+    if (c <= 0)
+      return `분모가 ${nj(e, "이면", "이면")} ${n(t.S)}에서 ${nj(e, "을", "를")} 뺄 수 없어 분자를 만들지 못합니다.`;
+    if (c >= e)
+      return `분모가 ${nj(e, "이면", "이면")} 분자가 ${lj(`${t.S}-${e}=${c}`, "이라", "라")} 분모보다 작지 않아 진분수가 아닙니다.`;
+    return `분모가 ${nj(e, "이면", "이면")} 분자가 ${lj(`${t.S}-${e}=${c}`, "이라", "라")} 진분수가 됩니다.`;
+  });
+  return makeDeep(unit, content(t), n(t.e), [
+    `공통분모가 될 수 있는 수 중 가장 작은 수가 ${nj(t.M, "이므로", "이므로")}, 어떤 진분수의 분모는 ${nj(t.b, "과", "와")} 함께 그 수를 만드는 수여야 합니다. 그런 분모는 ${nums(cands)}입니다.`,
+    `분모마다 분자를 만들어 봅니다. ${lines.join(" ")}`,
+    `진분수가 되는 것은 분모가 ${nj(t.e, "일", "일")} 때뿐이므로 어떤 진분수의 분모는 ${n(t.e)}입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -16032,12 +16234,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: sim142Read,
     응용: sim142Apply,
     심화하: sim142Deep,
+    심화중: red142Mid,
   },
   "초5|1-4-3": {
     연산: com143Calc,
     기본: com143Read,
     응용: com143Apply,
     심화하: com143Deep,
+    심화중: com143Mid,
+    심화상: com143Top,
   },
   "초5|1-4-4": {
     연산: cmp144Calc,

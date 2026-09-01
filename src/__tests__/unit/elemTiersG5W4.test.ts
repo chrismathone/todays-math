@@ -57,6 +57,11 @@ const FILLED: Record<string, readonly ElemTier[]> = {
   "1-3-1": ["심화중"],
   "1-3-2": ["심화중", "심화상"],
   "1-3-3": [],
+  "1-4-1": [],
+  "1-4-2": ["심화중"],
+  "1-4-3": ["심화중", "심화상"],
+  "1-4-4": [],
+  "1-4-5": [],
 };
 
 const unitOf = (code: string) =>
@@ -570,5 +575,110 @@ describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", ()
         ).not.toBe(cells[j]![1] * cells[i]![0]);
       }
     }
+  });
+
+  /* ══ 1-4 약분과 통분 ═════════════════════════════════════════════════════ */
+
+  /** 발문의 `\frac{a}{b}` 덩어리들. */
+  const fracsIn = (text: string): [number, number][] =>
+    [...text.matchAll(/\\frac\{(\d+)\}\{(\d+)\}/g)].map((m) => [
+      Number(m[1]),
+      Number(m[2]),
+    ]);
+
+  const gcd2 = (a: number, b: number): number => (b === 0 ? a : gcd2(b, a % b));
+  const lcm2 = (a: number, b: number): number => (a / gcd2(a, b)) * b;
+
+  /* ── ⑴ 1-4-2 심화중 — 「몇으로 약분했나」를 차가 굳힌다 ── */
+
+  it("1-4-2 심화중 — 기약분수의 차가 배수를 하나로 남기고 답이 그 분모다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-4-2", "심화중", seed);
+      const [[a, b]] = fracsIn(p.content) as [[number, number]];
+      const D = Number(/차가 \$(\d+)\$/.exec(p.content)![1]);
+      expect(gcd2(a, b), `기약이 아니다: ${p.content}`).toBe(1);
+      // 마디가 열린다 — 곱한 수가 무엇인지 발문이 안 말한다.
+      expect(D % (b - a), p.content).toBe(0);
+      const k = D / (b - a);
+      expect(
+        k,
+        `배수가 $1$ 이면 약분한 적이 없다: ${p.content}`,
+      ).toBeGreaterThan(1);
+      expect(answerInt(p.answer), p.content).toBe(b * k);
+      // 🔴 규모를 키우는 것은 축이 아니다(토대 17 §3 「발문 분모 ≤ 48」).
+      expect(b * k, p.content).toBeLessThanOrEqual(48);
+    }
+  });
+
+  /* ── ⑴ 1-4-3 심화중 — 「어느 분수의 분자인가」를 공배수가 굳힌다 ── */
+
+  it("1-4-3 심화중 — 두 읽기 중 «공배수»가 되는 것이 하나뿐이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-4-3", "심화중", seed);
+      const [[a, b], [c, d]] = fracsIn(p.content) as [
+        [number, number],
+        [number, number],
+      ];
+      const N = Number(/분자가 \$(\d+)\$/.exec(p.content)![1]);
+      const reading = (num: number, den: number): number | null => {
+        if (N % num !== 0) return null;
+        const m = den * (N / num);
+        return m % b === 0 && m % d === 0 ? m : null;
+      };
+      const live = [reading(a, b), reading(c, d)].filter(
+        (v): v is number => v !== null,
+      );
+      // 마디가 열린다(후보 둘) — 그리고 공배수 조건이 하나만 남긴다.
+      expect(new Set(live).size, `${p.content}\n산 것 ${live}`).toBe(1);
+      expect(answerInt(p.answer), p.content).toBe(live[0]);
+      // 통분이 **두 분수 다** 바뀌어야 이 소단원이다(한쪽이 약수면 한 분수가 그대로다).
+      expect(b % d === 0 || d % b === 0, p.content).toBe(false);
+      expect(answerInt(p.answer) % lcm2(b, d), p.content).toBe(0);
+    }
+  });
+
+  /* ── ⑵ 1-4-3 심화상 — 분모 후보를 만들어 «진분수가 되는가»를 다 따져야 한다 ── */
+
+  it("1-4-3 심화상 — 분모 후보가 셋 이상이고 진분수가 되는 것이 하나뿐이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-4-3", "심화상", seed);
+      const [b, M, S] = [...p.content.matchAll(/\$(\d+)\$/g)].map((m) =>
+        Number(m[1]),
+      ) as [number, number, number];
+      // 되짚기가 만드는 줄 — 시험이 직접 만든다.
+      const cands: number[] = [];
+      for (let e = 2; e <= M; e += 1) if (lcm2(b, e) === M) cands.push(e);
+      expect(
+        cands.length,
+        `${p.content}\n후보 ${cands}`,
+      ).toBeGreaterThanOrEqual(3);
+      // 🔴 성질 하나로는 안 갈린다 — 후보마다 분자를 **만들어 봐야** 한다.
+      const hit = cands.filter((e) => S - e > 0 && S - e < e);
+      expect(hit.length, `${p.content}\n산 것 ${hit}`).toBe(1);
+      expect(answerInt(p.answer), p.content).toBe(hit[0]);
+      // 해설이 뺄셈을 두 번 이상 적을 수 있어야 한다(음수는 안 적는다).
+      expect(
+        cands.filter((e) => S - e > 0).length,
+        p.content,
+      ).toBeGreaterThanOrEqual(2);
+      expect(p.solution, "음수가 지면에 나갔다").not.toMatch(/=-\d/);
+    }
+  });
+
+  it("1-4 확대 갈래에서 이웃 낱말을 안 쓴다 (D-66 ⑸)", () => {
+    const owner: [RegExp, string][] = [
+      [/크기가 같은/, "1-4-1"],
+      [/약분|기약/, "1-4-2"],
+      [/통분|공통분모/, "1-4-3"],
+      [/소수/, "1-4-5"],
+    ];
+    for (const code of ["1-4-2", "1-4-3"] as const)
+      for (const tier of FILLED[code]!)
+        for (const seed of SEEDS) {
+          const c = problem(code, tier, seed).content;
+          for (const [re, own] of owner)
+            if (code !== own)
+              expect(re.test(c), `${code} ${tier} @${seed}\n${c}`).toBe(false);
+        }
   });
 });
