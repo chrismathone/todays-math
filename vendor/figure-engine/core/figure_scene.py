@@ -82,6 +82,10 @@ _CHEVRON_ARM = 6.5          # 평행 » 한 획 길이 (RPM 화살촉 5.4×3.4pt
 _CHEVRON_HALF_ANGLE_DEG = 30.0
 _CHEVRON_GAP = 4.0          # 이중 » 사이 간격
 _RIGHT_ANGLE_SCALE = 0.55   # 직각기호 한 변 = 호 반지름 × 0.55 (실측 0.45~0.55)
+# 짧은 변에 맞춰 줄일 때의 비율과, 「이보다 작아지면 못 읽는다」는 바닥 (2026-09-02).
+# 0.85 는 기호가 변 끝을 안 넘게 하는 값이고, 6.0px 는 지면 등급 240px 에서 눈에 보이는 하한이다.
+_RIGHT_ANGLE_FIT = 0.85
+_RIGHT_ANGLE_MIN_SIDE = 6.0
 # 치수 값 글자의 하한. 지면 등급 240px · viewBox 220 안팎에서 10 단위는 약 11px 이라
 # 본문(12.5px) 아래다 — 그래서 «더 줄이지 말고 던진다» 는 뜻의 바닥이다.
 _DIMENSION_MIN_FONT = 10.0
@@ -1637,7 +1641,15 @@ class FigureScene:
                     raise GeometryValidationError(
                         f"angle {angle.name!r} is marked right but measures "
                         f"{actual:.2f}° — fix the geometry, not the mark")
-                if radius * _RIGHT_ANGLE_SCALE > min(l1, l2):
+                # 🔴 직각기호 크기가 **고정**이라 짧은 변에서 그림을 통째로 던졌다
+                #    (2026-09-02). `radius(22.0) × 0.55 = 12.10px` 를 짧은 변과 견주는데,
+                #    「수선의 발 H 와 가까운 꼭짓점」 사이 토막은 실측 8.5~10.2px 라
+                #    발문 값 그대로 축척해 그리면 쪼그라든다. 그러면 **그림이 아예 안 나가고**
+                #    지면에 「그림과 같이」만 남는다.
+                #    이제 기호를 **짧은 변에 맞춰 줄이고**(아래 `side` 참조), 읽을 수 없을
+                #    만큼 작아질 때만 던진다. 실측 3,140개 직각 중 클램프가 건드리는 자리는
+                #    18개(0.57%)이고, 260표본 전후 대조에서 **성공→실패 0**이었다.
+                if _RIGHT_ANGLE_FIT * min(l1, l2) < _RIGHT_ANGLE_MIN_SIDE:
                     raise GeometryValidationError(
                         f"angle {angle.name!r} right-angle square does not fit "
                         "inside its rays")
@@ -1710,7 +1722,9 @@ class FigureScene:
             length2 = math.hypot(p2.x - vertex.x, p2.y - vertex.y)
             if length1 <= _EPS or length2 <= _EPS:
                 return []
-            side = radius * _RIGHT_ANGLE_SCALE
+            # 짧은 변을 넘지 않게 **줄인다** — 넘으면 기호가 도형 밖으로 튀어나온다.
+            side = min(radius * _RIGHT_ANGLE_SCALE,
+                       _RIGHT_ANGLE_FIT * min(length1, length2))
             u1x, u1y = (p1.x - vertex.x) / length1, (p1.y - vertex.y) / length1
             u2x, u2y = (p2.x - vertex.x) / length2, (p2.y - vertex.y) / length2
             return [(

@@ -3,6 +3,10 @@
   {
    "at": "2026-09-01T23:35:22.972Z",
    "count": 106
+  },
+  {
+   "at": "2026-09-01T23:49:30.964Z",
+   "count": 4
   }
  ],
  "rows": [
@@ -1068,6 +1072,42 @@
    "afterLength": 5536,
    "droppedDimensions": [
     "d_BP"
+   ]
+  },
+  {
+   "problemId": "3295081e-6a44-46e4-9bd7-e6d7ac4ab22c",
+   "externalId": "engine-mid:3-2|삼각비|04|s20260827|v12|단답형",
+   "problemCode": "J30501-A04-019",
+   "before": null,
+   "afterLength": 17083,
+   "droppedDimensions": []
+  },
+  {
+   "problemId": "49427149-4773-49ab-81a3-bf8afd72386a",
+   "externalId": "engine-mid:3-2|삼각비|04|s20260827|v12|객관식",
+   "problemCode": "J30501-A04-020",
+   "before": null,
+   "afterLength": 17083,
+   "droppedDimensions": []
+  },
+  {
+   "problemId": "096801e7-45c0-4770-8526-6edaa13db652",
+   "externalId": "engine-mid:3-2|삼각비|05|s20260827|v4|단답형",
+   "problemCode": "J30501-A05-009",
+   "before": null,
+   "afterLength": 9724,
+   "droppedDimensions": [
+    "d_AH"
+   ]
+  },
+  {
+   "problemId": "c87266b8-932f-4516-b5f0-5a7d6267cce1",
+   "externalId": "engine-mid:3-2|삼각비|05|s20260827|v4|객관식",
+   "problemCode": "J30501-A05-010",
+   "before": null,
+   "afterLength": 9724,
+   "droppedDimensions": [
+    "d_AH"
    ]
   }
  ]
