@@ -579,3 +579,188 @@ describe("[초6 4차분] 1-4 비와 비율 — 값을 안 주고 정수성으로
     }
   });
 });
+
+// ══════════ 4차분 — `2-1 분수의 나눗셈` · `1-5 여러 가지 그래프` ══════════
+//
+// 두 대단원을 한 파일에 두는 까닭: **둘 다 «축을 남에게서 갈라 내는» 일**이라
+// 그 가름을 한자리에서 잠가야 한다.
+//   2-1 ↔ 2-2 … 2-1 은 **수치 범위를 발문에 안 적는다**(창은 진분수 약속이 준다)
+//   1-5 ↔ 1-4 … 1-5 는 정수성의 운반체가 **눈금 cm** 다
+//
+// 🔴 2-1-1 **심화중은 비웠다** — 「$\square$ 가 두 자리 수」로 고르면 후보가 배수열이라
+//    두 자리 수는 늘 꼬리다(답이 언제나 가장 큰 후보 = 지름길 100%). 보고서 §2.4.
+
+// 🔴 2-1-1 은 **중·상 둘 다 비웠다** — 「두 자리 수」는 늘 꼬리(지름길 100%)이고,
+//    「견줄 값」을 적으려면 자연수가 발문에 들어가는데 이 소단원의 조건 검사가
+//    그것을 금지한다(`kindsPresent("분수","분수")`). 근거는 `g6.ts` 의 그 자리 주석과
+//    보고서 §2.4 에 있다. 남은 자리는 2-1-5 하나다.
+const G21 = [["2-1-5", "심화중"]] as const;
+
+/** 「$\frac{\square}{d}$」의 분모. */
+const squareDen = (c: string) => {
+  const m = c.match(/\\frac\{\\square\}\{(\d+)\}/);
+  return m ? Number(m[1]) : null;
+};
+/** 「$\div\frac{a}{d}$」의 나누는 분자. */
+const divisorTop = (c: string) => {
+  const m = c.match(/\\div\\frac\{(\d+)\}\{\d+\}/);
+  return m ? Number(m[1]) : null;
+};
+
+describe("[초6 4차분] 2-1 분수의 나눗셈 — 소단원 약속이 창을 공짜로 준다", () => {
+  it("㉠㉡ 진분수 약속이 후보를 셋 이상 만들고, 성질이 하나를 남긴다", () => {
+    for (const seed of SEEDS) {
+      // 2-1-5 심화중 — 진분수부 후보 $1..d-1$ 에서 「가분수 분자가 $a$ 의 배수」 하나.
+      const mid = gen("2-1-5", seed, "심화중");
+      const d5 = squareDen(mid.content)!;
+      const a5 = divisorTop(mid.content)!;
+      const w = Number(
+        mid.content.match(/\$(\d+)\\frac\{\\square\}/)?.[1] ?? NaN,
+      );
+      expect(
+        Number.isFinite(w) && d5 > 0 && a5 > 0,
+        `2-1-5 seed=${seed}: 발문을 못 읽음 — ${mid.content}`,
+      ).toBe(true);
+      const hit: number[] = [];
+      for (let s = 1; s < d5; s += 1) if ((w * d5 + s) % a5 === 0) hit.push(s);
+      // 🔴 **기약을 빼고** 센다 — 발문은 「진분수」라고만 하므로, 기약을 조건으로
+      //    세어 유일하다고 하면 지면에는 답이 둘인 문항이 나간다(실제로 그랬다).
+      expect(
+        hit,
+        `2-1-5 seed=${seed}: 「진분수」만으로 답이 하나여야 한다 — ${mid.content}`,
+      ).toHaveLength(1);
+      expect(
+        d5 > 3 && hit[0]! < d5,
+        `2-1-5 seed=${seed}: 진분수 약속이 창을 안 준다`,
+      ).toBe(true);
+    }
+  });
+
+  it("🔴 ㉧″ 발문에 «수치 범위»가 없다 — 창은 소단원 약속이 준다 (2-2 와 가르는 축)", () => {
+    const 범위문 = /\$[\d.]+\$(?:명|cm)?보다 (?:크고|많고|길고)/;
+    // 양성 대조 — 2-2 심화중은 그 문장을 **쓴다**. 못 쓰면 이 열쇠가 도장이다.
+    let 걸린 = 0;
+    for (const seed of SEEDS)
+      for (const code of ["2-2-1", "2-2-3"] as const)
+        if (범위문.test(gen(code, seed, "심화중").content)) 걸린 += 1;
+    expect(걸린, "2-2 심화중이 범위문을 안 쓴다 — 열쇠가 죽었다").toBe(
+      SEEDS.length * 2,
+    );
+    // 음성 — 2-1 의 확대 갈래는 범위를 안 적는다.
+    for (const seed of SEEDS)
+      for (const [code, tier] of G21) {
+        const c = gen(code, seed, tier).content;
+        expect(
+          범위문.test(c),
+          `${code} ${tier} seed=${seed}: 범위를 적었다 — ${c}`,
+        ).toBe(false);
+        expect(
+          c.includes("진분수"),
+          `${code} ${tier} seed=${seed}: 진분수 약속을 안 썼다 — ${c}`,
+        ).toBe(true);
+      }
+  });
+
+  it("㉣ 반증 ⑥ · ㉥ 해설의 길 · ㉦ 그림 없음", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE_SEEDS)
+      for (const [code, tier] of G21) {
+        const p = gen(code, seed, tier);
+        const ans = readRat(p.answer.replace(/\$/g, "").trim()) as Rat | null;
+        const nums = pageNumbers(p.content);
+        if (!ans) bad.push(`${code} ${seed} 답 못 읽음`);
+        else {
+          if (forwardReachable(nums, ans)) bad.push(`${code} ${seed} 순방향`);
+          if (answerPrintedOnPage(nums, ans))
+            bad.push(`${code} ${seed} 지면에 답`);
+          if (pmOneStep(nums as R[], ans as R))
+            bad.push(`${code} ${seed} ±한 걸음`);
+        }
+      }
+    expect(bad.slice(0, 8)).toEqual([]);
+    for (const seed of SEEDS) {
+      // 중은 안 늘어놓는다 — D-115 ⑾. (이 대단원에 «상» 은 없다 — 위 주석의 ⑵)
+      expect(
+        enumeratedSteps(gen("2-1-5", seed, "심화중").solution),
+        `2-1-5 심화중 seed=${seed}: 해설이 늘어놓는다 — «상» 의 길이다`,
+      ).toBeLessThan(ENUM_THRESHOLD);
+      for (const [code, tier] of G21)
+        expect(
+          gen(code, seed, tier).figureSpec,
+          `${code} ${tier}: 그림`,
+        ).toBeNull();
+    }
+  });
+});
+
+describe("[초6 4차분] 1-5-2 띠그래프로 나타내기 — 눈금이 굳힌다", () => {
+  it("㉠㉡ 창이 후보를 여럿 만들고 배수는 하나 · ㉦ 그림이 없다", () => {
+    for (const seed of SEEDS) {
+      const p = gen("1-5-2", seed, "심화중");
+      const w = p.content.match(
+        /전체 길이가 \$(\d+)\$ cm 보다 길고 \$(\d+)\$ cm 보다 짧을 때/,
+      );
+      const pct = Number(p.content.match(/\$(\d+)\\%\$/)?.[1] ?? NaN);
+      expect(w, `1-5-2 seed=${seed}: 창을 못 읽음 — ${p.content}`).toBeTruthy();
+      expect(Number.isFinite(pct), `1-5-2 seed=${seed}: 비율을 못 읽음`).toBe(
+        true,
+      );
+      const [lo, hi] = [Number(w![1]), Number(w![2])];
+      expect(
+        hi - lo - 1,
+        `1-5-2 seed=${seed}: 창이 좁다`,
+      ).toBeGreaterThanOrEqual(5);
+      const b = 100 / g(pct, 100);
+      const hit: number[] = [];
+      for (let v = lo + 1; v < hi; v += 1) if (v % b === 0) hit.push(v);
+      expect(
+        hit,
+        `1-5-2 seed=${seed}: 창 안 배수가 하나여야 한다`,
+      ).toHaveLength(1);
+      expect(p.figureSpec, `1-5-2 seed=${seed}: 그림이 붙었다`).toBeNull();
+    }
+  });
+
+  it("🔴 ㉧‴ 정수성의 운반체가 «눈금 cm» 다 — 사람 수는 1-4 몫이다", () => {
+    // 음성 대조를 **리터럴로** 못 박는다(살아 있는 1-4 를 쓰면 그쪽을 고칠 때 같이 흔들린다).
+    const 사람축 = (c: string) =>
+      /명보다 많고|학생 수가 자연수|반대한 학생/.test(c);
+    const 사람_지면 =
+      "어느 학교 전체 학생의 $36\\%$ 가 안경을 쓴 학생입니다. 안경을 쓴 학생 수가 " +
+      "자연수이고 전체 학생이 $94$명보다 많고 $109$명보다 적을 때, 전체 학생은 몇 명입니까?";
+    expect(사람축(사람_지면), "열쇠가 «예»를 못 낸다 — 도장이다").toBe(true);
+    for (const seed of SEEDS) {
+      const c = gen("1-5-2", seed, "심화중").content;
+      expect(
+        사람축(c),
+        `1-5-2 seed=${seed}: 1-4 의 «사람 수» 축을 썼다 — ${c}`,
+      ).toBe(false);
+      expect(
+        /자연수 cm/.test(c),
+        `1-5-2 seed=${seed}: 눈금을 안 말한다 — ${c}`,
+      ).toBe(true);
+    }
+  });
+
+  it("㉣ 반증 ⑥ · ㉥ 해설이 안 늘어놓는다", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE_SEEDS) {
+      const p = gen("1-5-2", seed, "심화중");
+      const ans = readRat(p.answer.replace(/\$/g, "").trim()) as Rat | null;
+      const nums = pageNumbers(p.content);
+      if (!ans) bad.push(`1-5-2 ${seed} 답 못 읽음`);
+      else {
+        if (forwardReachable(nums, ans)) bad.push(`1-5-2 ${seed} 순방향`);
+        if (answerPrintedOnPage(nums, ans)) bad.push(`1-5-2 ${seed} 지면에 답`);
+        if (pmOneStep(nums as R[], ans as R))
+          bad.push(`1-5-2 ${seed} ±한 걸음`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+    for (const seed of SEEDS)
+      expect(
+        enumeratedSteps(gen("1-5-2", seed, "심화중").solution),
+        `1-5-2 seed=${seed}: 해설이 늘어놓는다`,
+      ).toBeLessThan(ENUM_THRESHOLD);
+  });
+});

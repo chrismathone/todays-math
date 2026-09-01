@@ -1805,6 +1805,32 @@ G6_MUTS = [
         "  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {",
         "  for (let ac = (d - 1) * 100 + 10; ac < (d + 1) * 100; ac += 10) {",
     ),
+    # ── 4차분(물결 4) — 1-4 비와 비율 · 「정수성 + 창」 ──
+    (
+        "반증 ⑥ 가드 제거 (1-4-3) — 순방향·±한 걸음으로 닿아도 좋다",
+        "          if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;",
+        "          if (false) continue;",
+    ),
+    (
+        "유일성 가드 무르기 (1-4-3) — 창 안에 배수가 여럿이어도 낸다",
+        "          if (loneMultiple(lo, hi, q) !== base) continue;",
+        "          if (loneMultiple(lo, hi, q) === null && false) continue;",
+    ),
+    (
+        "창 좁히기 (1-4-3) — 창 안 자연수를 둘까지 허용",
+        "          if (span < 7 || span > 12) continue;",
+        "          if (span < 2 || span > 12) continue;",
+    ),
+    (
+        "🔴 운반체 뒤집기 (1-4-5) — 정수성을 «사람»이 아니라 «눈금 cm» 로 말한다",
+        "  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +",
+        "  `${g.who} ${g.unit} 길이가 눈금 cm 이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +",
+    ),
+    (
+        "검산 훼손 (1-4-6) — 반대한 학생 수를 하나 올린다",
+        "    const ans = total - yes;",
+        "    const ans = total - yes + 1;",
+    ),
 ]
 
 G4_MUTS = [

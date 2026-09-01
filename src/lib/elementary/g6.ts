@@ -10059,6 +10059,203 @@ function voteWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+// ══════════ 4차분(물결 4) — 초6 `2-1 분수의 나눗셈` · `1-5 여러 가지 그래프` ══════════
+//
+// ## 2-1 의 예약 축 — **「소단원 약속이 창을 공짜로 준다」**
+//
+// 토대 §1.4 가 2-1 에 예약한 것이다: 「진분수라 «분자 < 분모»라는 범위를 소단원이
+// 공짜로 준다 — **수치 범위를 발문에 안 적는다**」. 그리고 🔴 로 금지한 것이 둘이다:
+// 「몫이 자연수 + 수치 범위」(= 2-2-3 심화중 **그대로**, 게다가 2-1 과 2-2 는 **같은 학기
+// 인접 대단원**이라 한 확인테스트에 실린다)와 「어떤 수에 곱했더니」(= 심화하·2-2-1).
+//
+// 그래서 이 갈래의 발문에는 **「… 보다 크고 … 보다 작은」이 없다.** 창은 진분수 약속이
+// 준다. 시험 축 ㉧″ 가 그것을 잠근다(양성 대조는 2-2 심화중이 그 문장을 **쓴다**는 것).
+//
+// ## 1-5 의 예약 축 — **눈금**
+//
+// 1-4 와 1-5 는 정수성의 **운반체**로 갈린다(§1-4 블록 머리말). 여기서는 **띠의 눈금 cm** 다 —
+// 「눈금에 그리려면 길이가 자연수여야 한다」는 것이 **그리기 소단원의 진짜 요구**이고,
+// 토대 §3 이 「사람 수가 자연수」를 1-5 에서 반증 ③ 경계로 찍은 그 자리를 피한다.
+// 읽기 소단원(1-5-1·3·5)은 자료가 `figureSpec` 에 있어 발문에 수가 없다 — 비운다.
+
+// ── 2-1-1 분모가 같은 (분수)÷(분수) — 🔴 **중·상 둘 다 비운다** ────────────────
+//
+// 두 근거는 서로 다르고, 둘 다 **재서** 나왔다.
+//
+// ⑴ **심화중** — 창을 「$square$ 가 두 자리 수」로 주면, 후보가 $a$ 의 배수열이라
+//    두 자리 수는 **언제나 꼬리**다. 곧 답이 늘 «가장 큰 후보»가 되어 그 한 줄이
+//    100% 통한다(구성상 참이다 — 씨앗을 볼 것도 없다). 이 대단원에서 꼬리를 안
+//    만드는 다른 선택자는 전부 밖에 있다 — 기약(=1-1 예약축) · 약수(초5) ·
+//    짝홀(분수 개념이 아니다).
+//
+// ⑵ **심화상** — 「후보를 만들어 **견주는**」 조건(차·합·크기)을 지면에 적으려면
+//    **자연수 하나**가 발문에 들어가야 한다. 그런데 이 소단원의 조건 검사는
+//    `kindsPresent("분수","분수")` 라 **요구하지 않은 종류(자연수)를 금지**한다
+//    (`probe-elem-section-conditions`). 실제로 「그 몫보다 $15$만큼 클 때」로 지어
+//    돌렸더니 그 판정기가 **위반**을 냈다. 기존 갈래 넷도 전부 자연수가 없다
+//    (연산 `$rac38divrac18=square$` · 심화하 「어떤 수에 $rac45$ 를 곱했더니」).
+//    곧 이 소단원은 **지면에 견줄 값을 적을 수 없다.**
+//
+// 그래서 2-1 은 **2-1-5(대분수)** 한 자리만 세운다 — 거기서는 대분수의 정수부가
+// 자연수 자리를 정당하게 차지하고, 진분수부가 꼬리 없이 흩어진다.
+
+// ── 2-1-5 (가분수)÷(분수), (대분수)÷(분수) — 심화중 ─────────────────────────
+//
+// 안 굳는 마디: **대분수의 진분수 부분.** 대분수를 가분수로 고치면 분자가
+// $(정수부\times분모+\square)$ 인데, 그 $\square$ 를 발문이 안 준다.
+// 굳히는 성질: 「몫이 자연수」 — 그 분자가 나누는 분수의 분자의 배수여야 한다.
+// 창은 **소단원 약속이 공짜로 준다**($\square$ 는 분모보다 작다) — 수치 범위를 안 적는다.
+//
+// 🔴 **꼬리 쏠림이 없다.** 2-1-1 의 「두 자리 수」와 달리 여기서 남는 $\square$ 는
+//    나머지가 정하는 **한 자리**라, 정수부와 나누는 분자를 바꾸면 $1$ 부터 $분모-1$ 까지
+//    고르게 흩어진다(시험 ㉨″ 가 그것을 잰다).
+type MixedTopCase = {
+  /** 대분수의 정수부. */
+  w: number;
+  /** 분모(둘이 같다). */
+  d: number;
+  /** 나누는 분수의 분자. */
+  a: number;
+  /** 답: 진분수 부분의 분자. */
+  ans: number;
+  slot: string;
+};
+
+const mixedTopStem = (c: MixedTopCase): string =>
+  `${expr(`${c.w}\\frac{\\square}{${c.d}}\\div\\frac{${c.a}}{${c.d}}`)} 의 몫이 자연수입니다. ` +
+  `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수일 때, ${expr("\\square")} 안에 알맞은 수를 구하시오.`;
+
+const MIXED_TOP_MID: MixedTopCase[] = [];
+for (let d = 5; d <= 15; d += 1)
+  for (let a = 2; a < d; a += 1) {
+    if (gcd(a, d) !== 1) continue; // 발문의 분수는 기약이다
+    for (let w = 1; w <= 5; w += 1) {
+      // 🔴 **유일성은 «기약» 을 빼고 따진다.** 발문은 「진분수」라고만 하지
+      //    「기약분수」라고 하지 않는다 — 기약을 조건으로 세어 유일하다고 하면
+      //    지면에는 답이 **둘인 문항**이 나간다($3\frac{2}{14}$ 도 진분수다).
+      //    실제로 시험이 그것을 잡았다(2-1-5 심화중, 씨앗 8자리).
+      //    ⚠️ 「기약분수다」를 발문에 얹는 길은 안 간다 — 약분은 토대 §1.4 가
+      //       **1-1 에 예약**한 축이고 초5 개념이다(반증 ③).
+      const hit: number[] = [];
+      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);
+      if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다
+      // 답 자체는 기약이어야 해설의 대분수가 정본 꼴로 선다.
+      if (gcd(hit[0]!, d) !== 1) continue;
+      const ans = hit[0]!;
+      const c: MixedTopCase = { w, d, a, ans, slot: `${ans}/${d}` };
+      if (!backsolveSafeStem(mixedTopStem(c), rat(ans))) continue;
+      MIXED_TOP_MID.push(c);
+    }
+  }
+const MIXED_TOP_BINS = binByAnswerThenSlot(MIXED_TOP_MID);
+
+function mixedTopMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    MIXED_TOP_BINS.bins,
+    MIXED_TOP_BINS.answers,
+  );
+  const imp = c.w * c.d + c.ans;
+  const q = imp / c.a;
+  return makeDeep(unit, mixedTopStem(c), num(c.ans), [
+    `대분수를 가분수로 고치면 분자는 ` +
+      `${expr(`${c.w}\\times${c.d}+\\square=${c.w * c.d}+\\square`)} 입니다. ` +
+      `분모가 같으므로 몫은 그 분자를 ${num(c.a)}${numRo(c.a)} 나눈 것입니다.`,
+    `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수이므로 ${expr("\\square")} 는 ` +
+      `${num(1)}부터 ${num(c.d - 1)}까지입니다. 그 가운데 ` +
+      `${expr(`${c.w * c.d}+\\square`)} 가 ${num(c.a)}의 배수가 되는 것은 ` +
+      `${expr(`${c.w * c.d}+${c.ans}=${imp}`)} 뿐입니다.`,
+    // ⚠️ 「로/으로」는 끝소리가 정한다 — 손으로 적으면 판정기가 문다(1-3-2 에서 한 번 물렸다).
+    `${expr(`${c.w}\\frac{${c.ans}}{${c.d}}\\div\\frac{${c.a}}{${c.d}}=${imp}\\div${c.a}=${q}`)}` +
+      `${numRo(q)} 몫이 자연수인 것을 확인할 수 있습니다.`,
+  ]);
+}
+
+// ── 1-5-2 띠그래프로 나타내기 — 심화중 ──────────────────────────────────────
+//
+// 안 굳는 마디: **띠의 전체 길이.** 비율만으로는 항목의 길이가 배수열로만 묶인다.
+// 굳히는 성질: **눈금** — 띠에 그리려면 그 항목의 길이가 자연수 cm 여야 하므로
+// 전체 길이가 기약분모의 배수다. 창이 그중 하나를 고른다.
+//
+// ⚠️ 심화하는 전체 길이와 항목 길이를 **둘 다** 준다(「$40$ cm 띠에서 만화 $18$ cm」).
+//    여기서는 둘 다 감추고 비율만 준다 — 사다리가 한 칸 오른다.
+// ⚠️ 이 갈래는 **그림이 없다.** 띠를 그리면 길이가 지면에 나와 마디가 안 열린다.
+type BandLenCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  ans: number;
+  slot: string;
+};
+
+/** 띠그래프 소재 — 「무엇을 조사했나」. 1-4 의 «사람 수» 소재와 겹치지 않게 고른다. */
+const BAND_TOPICS = [
+  { survey: "즐겨 읽는 책", item: "만화" },
+  { survey: "좋아하는 과목", item: "수학" },
+  { survey: "학교에 오는 방법", item: "도보" },
+  { survey: "좋아하는 계절", item: "여름" },
+] as const;
+
+const bandLenStem = (c: BandLenCase, t: (typeof BAND_TOPICS)[number]) =>
+  `${t.survey}${josa(t.survey, "을", "를")} 조사해 띠그래프로 나타내려고 합니다. ` +
+  `${t.item}의 비율이 ${expr(`${c.p}\\%`)} 이고, 띠에서 ` +
+  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이가 자연수 cm 입니다. ` +
+  `띠의 전체 길이가 ${num(c.lo)} cm 보다 길고 ${num(c.hi)} cm 보다 짧을 때, ` +
+  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 몇 cm 입니까?`;
+
+const BAND_LEN_MID: BandLenCase[] = [];
+for (let p = 5; p <= 95; p += 5) {
+  // 띠그래프의 비율은 $5$의 배수다 — `split100` 이 만드는 풀과 결을 맞춘다.
+  const [a, b] = pctFraction(p);
+  if (b < 4 || b > 20) continue;
+  for (let k = 1; k <= 6; k += 1) {
+    const total = b * k;
+    const ans = a * k;
+    if (total < 10 || total > 60 || ans < 2) continue; // 지면에 그릴 수 있는 띠 길이
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 12) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: BandLenCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))
+          continue;
+        BAND_LEN_MID.push(c);
+      }
+  }
+}
+const BAND_LEN_BINS = binByAnswerThenSlot(BAND_LEN_MID);
+
+function bandLenMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    BAND_LEN_BINS.bins,
+    BAND_LEN_BINS.answers,
+  );
+  const t = pick(rng, BAND_TOPICS);
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, bandLenStem(c, t), num(c.ans), [
+    `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ${t.item}의 길이가 ` +
+      `자연수 cm 이려면 띠의 전체 길이가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 길이는 ` +
+      `${unitNum(c.total, "cm")} 입니다.`,
+    `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
+      `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 ${unitNum(c.ans, "cm")} 입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -10204,6 +10401,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: stripDrawWord,
     응용: stripDrawApply,
     심화하: stripDrawDeep,
+    심화중: bandLenMid,
   },
   "초6|1-5-3": {
     연산: pieReadCalc,
@@ -10251,6 +10449,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: sameDenWord,
     응용: sameDenApply,
     심화하: sameDenDeep,
+    // 확대 갈래 둘 다 비움 — 근거는 위 «2-1-1 … 비운다» 주석.
   },
   "초6|2-1-2": {
     연산: diffDenCalc,
@@ -10275,6 +10474,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: mixedFracWord,
     응용: mixedFracApply,
     심화하: mixedFracDeep,
+    심화중: mixedTopMid,
   },
   "초6|2-2-1": {
     연산: sameDpCalc,
