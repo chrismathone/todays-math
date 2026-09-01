@@ -36,7 +36,6 @@
  * 프로덕션에서 보인다** — 2026-08-20 의 「DB 는 즉시 최신인데 파일은 밀어야 간다」가
  * 구조적으로 안 생긴다.
  */
-import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -66,6 +65,7 @@ import {
   generateMiddleComboProblem,
   middleComboDefinitions,
 } from "../../src/lib/middle/combo";
+import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
 
@@ -420,28 +420,27 @@ let midSkippedMcq = 0;
 
 // ────────────────────────────── 그림 ──────────────────────────────
 
-/** FigureSpec → SVG 문자열. 제품과 **같은 경로**(render_spec.py)를 탄다. */
-function renderFigure(spec: Record<string, unknown>): string | null {
-  const r = spawnSync(
-    "python",
-    [path.join(REPO, "scripts", "figure", "render_spec.py")],
-    {
-      input: JSON.stringify(spec),
-      cwd: REPO,
-      encoding: "utf-8",
-      maxBuffer: 8 * 1024 * 1024,
-      env: { ...process.env, PYTHONIOENCODING: "utf-8" },
-    },
-  );
-  try {
-    const got = JSON.parse(r.stdout) as { svg?: string; error?: string };
-    if (got.svg) return got.svg;
-    console.log(`   ⚠️ 그림 실패: ${got.error ?? "사유 없음"}`);
-  } catch {
-    console.log(
-      `   ⚠️ 그림 렌더가 JSON 을 안 냈다: ${(r.stderr || "").slice(0, 160)}`,
-    );
-  }
+/** 한 스펙을 그린 결과 — **뺀 치수 이름을 함께** 들고 온다. */
+type FigureDraw = { svg: string; dropped: readonly string[] };
+
+/**
+ * FigureSpec → SVG. **제품 함수를 그대로 부른다.**
+ *
+ * 🔴 종전에는 이 자리가 `spawnSync` 한 번이었다 — 재시도도, 치수 떨어뜨림도,
+ *    시간 제한도 없었다. 그래서 제품 지면에는 나오는 그림이 **적재본에만 없었다**
+ *    (2026-09-02 실측: 그림 없이 들어간 214행 · 서로 다른 스펙 54개 중 맨손 54/54
+ *    실패, 제품 함수 51/54 성공). 「같은 규칙을 쓰는 자리가 둘이면 한 숫자를 두 곳이
+ *    쓰게 하라」(2026-08-18).
+ *
+ * ⚠️ 제품 함수는 자리가 없는 치수를 **빼고** 다시 그린다. 조용히 빠지면 「달았다」가
+ *    거짓말이 되므로 이름을 그대로 올려 보내 부르는 쪽이 세어 찍게 한다.
+ */
+async function renderFigure(
+  spec: Record<string, unknown>,
+): Promise<FigureDraw | null> {
+  const res = await renderFigureSpec(spec);
+  if (res.ok) return { svg: res.svg, dropped: res.droppedDimensions ?? [] };
+  console.log(`   ⚠️ 그림 실패: ${res.error}`);
   return null;
 }
 
@@ -674,24 +673,45 @@ async function apply(planFile: string, doApply: boolean) {
    * 🔵 남은 병목: 렌더러가 `stdin→stdout` **한 장** 구조라 배치 입력이 없다.
    *    JSONL 배치 모드를 주면 파이썬 기동 93ms 를 스펙 수만큼이 아니라 **한 번**만 낸다.
    */
-  const bySpec = new Map<string, string | null>();
+  const bySpec = new Map<string, FigureDraw | null>();
+  /** 놓을 자리가 없어 **떨어뜨린** 치수 — 이름마다 몇 장인가. */
+  const droppedDims = new Map<string, number>();
+  /** ⚠️ 이름을 `droppedRows` 로 두면 위(중복 제거 건수)와 부딪힌다 — 뜻이 다르다. */
+  let dimDroppedFigures = 0;
   for (const r of fresh) {
     if (!r.figureSpec) continue;
     const key = JSON.stringify(r.figureSpec);
-    let svg = bySpec.get(key);
-    if (svg === undefined) {
-      svg = renderFigure(r.figureSpec);
-      bySpec.set(key, svg);
+    let drawing = bySpec.get(key);
+    if (drawing === undefined) {
+      drawing = await renderFigure(r.figureSpec);
+      bySpec.set(key, drawing);
     }
-    if (svg) {
-      svgs.set(r.externalId, svg);
+    if (drawing) {
+      svgs.set(r.externalId, drawing.svg);
       drawn += 1;
+      if (drawing.dropped.length > 0) {
+        dimDroppedFigures += 1;
+        for (const d of drawing.dropped)
+          droppedDims.set(d, (droppedDims.get(d) ?? 0) + 1);
+      }
     } else failed += 1;
   }
   if (drawn + failed > 0)
     console.log(
       `그림 ${drawn}장 그림 · 실패 ${failed}` +
         ` · 렌더 호출 ${bySpec.size}회 (같은 스펙 ${drawn + failed - bySpec.size}건은 다시 안 그렸다)`,
+    );
+  // 🔴 **조용히 빼지 않는다.** 자리가 없어 떨어뜨린 치수를 세어 찍는다 — 안 찍으면
+  //    「치수가 사라진 그림」이 멀쩡해 보이는 오답으로 들어간다(2026-08-30).
+  if (dimDroppedFigures > 0)
+    console.log(
+      `   ⚠️ 자리가 없어 **치수를 뺀 그림 ${dimDroppedFigures}장** — ` +
+        [...droppedDims.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .map(([n, c]) => `${n}×${c}`)
+          .join(" · ") +
+        `
+      발문이 그 값을 말하지 않으면 못 푸는 문항이 된다. 확인할 것.`,
     );
 
   // ── **DB 에 이미 있는 같은 문항**도 막는다 ────────────────────────────────
