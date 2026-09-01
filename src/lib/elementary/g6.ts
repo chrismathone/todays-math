@@ -9705,7 +9705,7 @@ const bringZeroSlotStem = (c: DivisorSlotCase): string =>
 
 const BRING_ZERO_SLOT = buildDivisorSlot(
   (xc, d) => centsQuotientDp(xc, d) === 2,
-  { xlo: 110, xhi: 4990, winMin: 1, winMax: 6 },
+  { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },
   bringZeroSlotStem,
   (c) => rat(c.d),
 );
