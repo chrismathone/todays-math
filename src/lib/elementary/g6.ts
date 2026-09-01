@@ -10126,7 +10126,11 @@ const mixedTopStem = (c: MixedTopCase): string =>
   `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수일 때, ${expr("\\square")} 안에 알맞은 수를 구하시오.`;
 
 const MIXED_TOP_MID: MixedTopCase[] = [];
-for (let d = 5; d <= 15; d += 1)
+// 🔴 분모 상한이 $15$ 였을 때 자리가 **24개**뿐이라 답이 창 가운데로 쏠렸다
+//    (설계 공간에서 $29.2\%$ · 우연 $9.5\%$). $20$ 으로 넓히니 자리 **64개** ·
+//    가운데 $18.8\%$ 로 내려갔다 — 시험 ㉨″ 가 그것을 잰다. 심화하가 이미
+//    $1\frac1{24}$ 를 쓰므로 이 범위는 소단원 밖으로 안 나간다.
+for (let d = 5; d <= 20; d += 1)
   for (let a = 2; a < d; a += 1) {
     if (gcd(a, d) !== 1) continue; // 발문의 분수는 기약이다
     for (let w = 1; w <= 5; w += 1) {

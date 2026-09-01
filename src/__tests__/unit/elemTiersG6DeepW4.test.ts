@@ -691,6 +691,37 @@ describe("[초6 4차분] 2-1 분수의 나눗셈 — 소단원 약속이 창을 
         ).toBeNull();
     }
   });
+
+  // 🔴 `g6.ts` 의 2-1-5 머리말이 「시험 ㉨″ 가 그것을 잰다」고 **단언**하고 있었는데
+  //    그 시험이 없었다. 단언을 가드로 옮긴다(2026-08-25 교훈).
+  //    ⚠️ 실측(씨앗 120)은 첫 0.0% · 끝 0.0% · 가운데 21.0%(우연 9.7%)다.
+  //    첫·끝이 0인 것은 **공용 반증 ⑥ 자가 그 꼴을 걷어내기 때문**이고(가드 앞 5자리 → 뒤 0),
+  //    1-4-3 에서 찾은 것과 같은 부류다 — 보고서 §2.3·§6 에 적었다.
+  it("🔴 ㉨″ 지름길 — 답이 진분수 창의 첫·끝·가운데에 몰리지 않는다", () => {
+    let n = 0;
+    let chance = 0;
+    const hit = { 첫: 0, 끝: 0, 가운데: 0 };
+    for (const seed of WIDE_SEEDS) {
+      const p = gen("2-1-5", seed, "심화중");
+      const d5 = squareDen(p.content)!;
+      const ans = Number(p.answer.replace(/\$/g, "").trim());
+      expect(
+        d5 > 1 && Number.isFinite(ans),
+        `2-1-5 seed=${seed}: 열쇠가 지면을 못 읽는다 — ${p.content}`,
+      ).toBe(true);
+      const k = d5 - 1; // 창은 「진분수」 약속이 준다: $1$ 부터 $d-1$ 까지
+      n += 1;
+      chance += 1 / k;
+      if (ans === 1) hit.첫 += 1;
+      if (ans === k) hit.끝 += 1;
+      if (ans === 1 + Math.floor(k / 2)) hit.가운데 += 1;
+    }
+    for (const [name, v] of Object.entries(hit))
+      expect(
+        v / n,
+        `2-1-5: 「${name}」 지름길 ${((v / n) * 100).toFixed(1)}% (우연 ${((chance / n) * 100).toFixed(1)}%)`,
+      ).toBeLessThan(0.35);
+  });
 });
 
 describe("[초6 4차분] 1-5-2 띠그래프로 나타내기 — 눈금이 굳힌다", () => {
@@ -762,5 +793,46 @@ describe("[초6 4차분] 1-5-2 띠그래프로 나타내기 — 눈금이 굳힌
         enumeratedSteps(gen("1-5-2", seed, "심화중").solution),
         `1-5-2 seed=${seed}: 해설이 늘어놓는다`,
       ).toBeLessThan(ENUM_THRESHOLD);
+  });
+
+  // 🔴 안 굳는 마디는 **띠의 전체 길이**다 — 지름길은 그 자리로 재야 한다.
+  //    답(항목 길이)은 전체 길이에 비례하므로 창 안 자리가 곧 답의 자리다.
+  //    실측(씨앗 120): 첫 9.0% · 끝 10.5% · 가운데 14.0% (우연 12.3%) — 우연에 붙어 있다.
+  it("🔴 ㉨‴ 지름길 — 전체 길이가 창의 첫·끝·가운데에 몰리지 않는다", () => {
+    let n = 0;
+    let chance = 0;
+    const hit = { 첫: 0, 끝: 0, 가운데: 0 };
+    for (const seed of WIDE_SEEDS) {
+      const p = gen("1-5-2", seed, "심화중");
+      const mp = p.content.match(/비율이 \$(\d+)\\%\$/);
+      const mw = p.content.match(
+        /전체 길이가 \$(\d+)\$ cm 보다 길고 \$(\d+)\$ cm 보다 짧을 때/,
+      );
+      expect(
+        mp !== null && mw !== null,
+        `1-5-2 seed=${seed}: 열쇠가 지면을 못 읽는다 — ${p.content}`,
+      ).toBe(true);
+      const pct = Number(mp![1]);
+      const lo = Number(mw![1]);
+      const hi = Number(mw![2]);
+      const cands: number[] = [];
+      for (let v = lo + 1; v < hi; v += 1) cands.push(v);
+      const win = cands.filter((v) => (v * pct) % 100 === 0);
+      expect(
+        win,
+        `1-5-2 seed=${seed}: 눈금이 하나를 남겨야 한다 — ${p.content}`,
+      ).toHaveLength(1);
+      const k = cands.length;
+      n += 1;
+      chance += 1 / k;
+      if (win[0] === cands[0]) hit.첫 += 1;
+      if (win[0] === cands[k - 1]) hit.끝 += 1;
+      if (win[0] === cands[Math.floor(k / 2)]) hit.가운데 += 1;
+    }
+    for (const [name, v] of Object.entries(hit))
+      expect(
+        v / n,
+        `1-5-2: 「${name}」 지름길 ${((v / n) * 100).toFixed(1)}% (우연 ${((chance / n) * 100).toFixed(1)}%)`,
+      ).toBeLessThan(0.35);
   });
 });
