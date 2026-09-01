@@ -14700,6 +14700,28 @@ function w3Bad(content: string, answer: Rat): boolean {
   return w2Bad(content, answer) || w3PmOneStep(content, answer);
 }
 
+/**
+ * 🔴 **같은 발문·같은 답이면 한 번만 잰다** — 풀을 만드는 시간 때문이다.
+ *
+ * 후보 줄이 커지면 `w3Bad` 를 그 수만큼 돌게 되고, 그게 **관문의 20초 예산**을
+ * 갉아먹는다(2026-09-01 물결 4 에서 `elementaryDifficulty` 가 실제로 시간 초과로
+ * 떨어졌다 — 풀 만드는 데 8.1초였다). 발문이 몇 가지 값에만 달린 갈래는 열쇠를
+ * 주고 결과를 되쓴다. ⚠️ **열쇠에 발문·답을 정하는 값이 다 들어가야 한다** —
+ * 빠뜨리면 다른 문항의 판정을 되쓰게 된다.
+ */
+function w4BadMemo(
+  seen: Map<string, boolean>,
+  key: string,
+  content: () => string,
+  answer: number,
+): boolean {
+  const hit = seen.get(key);
+  if (hit !== undefined) return hit;
+  const bad = w3Bad(content(), w2int(answer));
+  seen.set(key, bad);
+  return bad;
+}
+
 /** 약수를 모두 더한 값. */
 function w3DivSum(v: number): number {
   return divisors(v).reduce((s, d) => s + d, 0);
@@ -15351,8 +15373,9 @@ function w4Sym112(): W4SymTask[] {
   const out: W4SymTask[] = [];
   for (let b = 3; b <= 12; b += 1)
     for (let c = 2; c <= 9; c += 1)
-      for (let a = 10; a <= 90; a += 1)
-        for (let d = 2; d <= 20; d += 1) {
+      // 범위는 «변형이 여덟 이상»을 지키는 선까지만 — 넓히면 풀 만드는 시간이 는다.
+      for (let a = 10; a <= 70; a += 1)
+        for (let d = 2; d <= 15; d += 1) {
           const mul = w4Eval([a, "-", b, "*", c, "+", d]);
           const div = w4Eval([a, "-", b, "/", c, "+", d]);
           if (mul === null && div === null) continue;
@@ -15420,8 +15443,8 @@ function w4Paren113(): W4ParenTask[] {
       const a = b * q;
       if (a > 96) continue;
       for (let c = 2; c <= 9; c += 1)
-        for (let d = 3; d <= 12; d += 1)
-          for (let e = 2; e <= 12; e += 1) {
+        for (let d = 3; d <= 11; d += 1)
+          for (let e = 2; e <= 10; e += 1) {
             const toks: W4Tok[] = [a, "/", b, "+", c, "*", d, "-", e];
             const base = w4Eval(toks);
             if (base === null || base === 0) continue;
@@ -15512,7 +15535,7 @@ function w4Top113(): W4TopTask[] {
           const a = b * ka;
           const c = d * kc;
           if (a > 60 || c > 60) continue;
-          for (let e = 2; e <= 30; e += 1) {
+          for (let e = 2; e <= 20; e += 1) {
             const x = w4Eval([a, "*", b, "+", c, "/", d, "-", e]);
             const y = w4Eval([a, "/", b, "+", c, "*", d, "-", e]);
             if (x === null || y === null) continue;
@@ -15684,9 +15707,18 @@ function w4Odd131(): W4OddTask[] {
 function corr131Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W4OddTask) =>
     `표는 □가 ${n(t.xs[0]!)}부터 ${n(t.step)}씩 커질 때의 △를 나타낸 것입니다. 그런데 △ 줄에서 한 칸만 대응 관계에 맞지 않습니다. 그 칸의 수를 바르게 고치면 얼마입니까?`;
-  const pool = w2Pool("w4-131mid", () =>
-    w4Odd131().filter((t) => !w3Bad(content(t), w2int(t.right))),
-  );
+  const pool = w2Pool("w4-131mid", () => {
+    const seen = new Map<string, boolean>();
+    return w4Odd131().filter(
+      (t) =>
+        !w4BadMemo(
+          seen,
+          `${t.xs[0]}|${t.step}|${t.right}`,
+          () => content(t),
+          t.right,
+        ),
+    );
+  });
   const t = w2Pick(unit, "심화중", rng, pool);
   const good = [0, 1, 2, 3].filter((i) => i !== t.bad);
   return makeDeep(
@@ -15836,12 +15868,12 @@ const W4_PAIRS: [number, number][] = [
  *    음수는 못 나간다. 부호를 지우면 이번엔 「차가 다르다」가 거짓이 될 수 있다.
  */
 const W4_RELS_SMALL: W4Rel[] = W4_RELS.filter((r) =>
-  r.kind === "mul" ? r.k <= 6 : r.kind === "add" ? r.c <= 10 : false,
+  r.kind === "mul" ? r.k <= 5 : r.kind === "add" ? r.c <= 8 : false,
 );
 
 function w4Odd132(): W4Odd2Task[] {
   const out: W4Odd2Task[] = [];
-  const offs = [-3, -2, 2, 3];
+  const offs = [-3, -2, 2];
   for (let x0 = 2; x0 <= 5; x0 += 1)
     for (const d1 of [2, 3])
       for (const d2 of [2, 3])
@@ -15907,9 +15939,12 @@ function w4Odd132(): W4Odd2Task[] {
 function corr132Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W4Odd2Task) =>
     `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것인데, ${W2_COUNT[2]!} 칸이 대응 관계에 맞지 않습니다. 대응 관계를 식으로 나타내고, □가 ${nj(t.far, "일", "일")} 때 △를 구하시오.`;
-  const pool = w2Pool("w4-132top", () =>
-    w4Odd132().filter((t) => !w3Bad(content(t), w2int(t.ans))),
-  );
+  const pool = w2Pool("w4-132top", () => {
+    const seen = new Map<string, boolean>();
+    return w4Odd132().filter(
+      (t) => !w4BadMemo(seen, `${t.far}|${t.ans}`, () => content(t), t.ans),
+    );
+  });
   const t = w2Pick(unit, "심화상", rng, pool);
   const [ka, kb] = t.keepPair;
   const dead = W4_PAIRS.filter(([i, j]) => !(i === ka && j === kb));
