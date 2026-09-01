@@ -1764,6 +1764,47 @@ G6_MUTS = [
         "    !pmOneStepReachable(nums, answer)",
         "    !pmOneStepReachable(nums, rat(-1))",
     ),
+    # ── 4차분(물결 4) — 1-3 소수의 나눗셈 · 「나누는 수를 감춘다 + 몫의 «자리»」 ──
+    (
+        "반증 ⑥ 가드 제거 — 1-3-2 심화중이 순방향·±한 걸음으로 닿아도 좋다",
+        "      if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;",
+        "      if (false) continue;",
+    ),
+    (
+        "유일성 가드 무르기 — 창 안에 조건을 지키는 나누는 수가 여럿이어도 낸다",
+        "        if (hit.length !== 1) continue;",
+        "        if (hit.length < 1) continue;",
+    ),
+    (
+        "창 좁히기 — 1-3-3 후보를 하나까지 허용(견줄 것이 없어진다)",
+        "  { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },",
+        "  { xlo: 110, xhi: 4990, winMin: 1, winMax: 6 },",
+    ),
+    (
+        "«견줄 후보 둘» 가드 제거 — 값이 적히는 후보가 하나뿐이어도 «상» 이라 한다",
+        "        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 2)",
+        "        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 0)",
+    ),
+    (
+        "🔴 감추는 자리 뒤집기 — 1-3-3 발문이 2-2 의 뼈대(나누어지는 수를 감춤)를 쓴다",
+        "  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;",
+        "  `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;",
+    ),
+    (
+        "소단원 성질 훼손 — 1-3-3 이 「$0$을 내린다」(몫 두 자리) 대신 한 자리를 고른다",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2,",
+        "  (xc, d) => centsQuotientDp(xc, d) === 1,",
+    ),
+    (
+        "소단원 성질 훼손 — 1-3-4 가 「첫째 자리 $0$」 대신 첫째 자리 $1$ 을 고른다",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 1,",
+    ),
+    (
+        "1-3-2 의 창 훼손 — $A$ 가 나누는 수보다 커질 수 있게 한다(「가장 작은」이 어긋난다)",
+        "  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {",
+        "  for (let ac = (d - 1) * 100 + 10; ac < (d + 1) * 100; ac += 10) {",
+    ),
 ]
 
 G4_MUTS = [
@@ -2268,6 +2309,7 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW3.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW4.test.ts",
         ],
         "grade": "초6",
         "sections": [

@@ -1,0 +1,398 @@
+/**
+ * 초6 확대 갈래 **4차분(물결 4)** — `1-3 소수의 나눗셈` (D-113 축 · D-115 잣대, 2026-09-01).
+ *
+ * 값이 맞는지는 `elemTiersG6.test.ts` 가 이미 잰다(발문을 다시 읽어 유리수로 검산한다).
+ * 여기서는 **잣대**를 잰다. 축은 2·3차분과 같고, 이 회차가 **하나를 더한다** — ㉧.
+ *
+ * | 축 | 무엇을 재나 |
+ * |---|---|
+ * | ㉠ 마디가 정말 안 굳나 | 굳히는 성질을 **빼면** 후보가 여럿이어야 한다 |
+ * | ㉡ 성질이 하나로 굳히나 | 그 성질을 걸면 정확히 **하나**가 남는다 |
+ * | ㉢ «중»과 «상»이 갈리나 | 심화상은 후보를 **다 계산해야** 갈리고, 심화중은 비교로 갈린다 |
+ * | ㉣ 반증 ⑥ | 발문의 수에 순방향 연산·±한 걸음을 대어 답이 나오면 안 된다 |
+ * | ㉤ 반증 ④ | 같은 소단원의 연산·기본·응용이 이 축을 안 쓴다 |
+ * | ㉥ 해설이 늘어놓나 | 심화중은 안 늘어놓고 심화상은 늘어놓는다 (D-115 ⑾) |
+ * | ㉦ 그림 | 확대 갈래는 역산이라 그림이 없다 |
+ * | 🔴 ㉧ **감추는 자리가 2-2 와 다른가** | 이 회차가 새로 세운 축 — 아래 참조 |
+ *
+ * ## 🔴 ㉧ 는 왜 필요한가 — **겹침을 막는 것이 성질이 아니라 «감추는 자리»다**
+ *
+ * 토대 §2.4 의 적대 검토가 1-3 에 🔴 를 둘 찍었다: 「몫이 소수 한 자리」→배수열은
+ * **2-2-2 심화중 그대로**이고, 「$A$ 로도 $B$ 로도」는 **2-2-1·2-2-2 심화상 그대로**다.
+ * 그런데 성질을 바꿔도(«$0$을 내린다» 로) **문장 뼈대는 그대로 겹친다** — 2-2 의 확대
+ * 갈래 다섯이 전부 「어떤 수를 $d$ 로 나누었더니 <성질>. **어떤 수가 $lo$ 보다 크고
+ * $hi$ 보다 작을 때**…」이기 때문이다. 겹치는 알맹이는 **나누어지는 수를 감추는 것**이다.
+ *
+ * 그래서 4차분은 감추는 자리를 옮겼다 — 1-3 은 **나누는 수**를 감춘다. 이 축이 그것을
+ * 잠근다. **양성 대조군을 같이 둔다**: 2-2 의 심화중이 그 뼈대에 **걸려야** 한다.
+ * 안 그러면 이 검사는 «아니오»를 낼 수 없는 도장이다(2026-08-23).
+ *
+ * ## 🔴 이 파일이 **못 보는 것**
+ *
+ * 1. **「학생이 몇 번 생각하나」는 못 잰다.** 재는 것은 후보의 **개수**와 **해설의 모양**이다.
+ * 2. **㉤ 는 대리 지표다.** 「이 축의 표지가 연산·기본·응용에 없다」는 「그것들이 되짚기를
+ *    안 시킨다」와 같은 말이 아니다. 다섯 소단원 갈래를 눈으로 읽은 결과가 보고서 §2.1 에 있다.
+ * 3. **비운 일곱(1-3-1 둘 · 1-3-2 상 · 1-3-3 중 · 1-3-4 중 · 1-3-5 둘)은 여기서 안 지킨다.**
+ *    금지는 잣대가 아니라 판단이라 다음 회차가 **측정을 대고** 뒤집을 수 있어야 한다
+ *    (3차분이 같은 판단을 했다). 근거는 보고서 §2.1·§3 에 수와 함께 적었다.
+ * 4. **㉨(지름길)의 문턱은 «측정한 값보다 넉넉하게» 잡은 것이다.** 지금 실측이
+ *    문턱의 절반이 못 되므로 이 자는 **회귀를 잡는 자**이지 최적을 증명하는 자가 아니다.
+ */
+import { describe, expect, it } from "vitest";
+
+import {
+  elementaryUnits,
+  generateElementaryProblem,
+} from "@/lib/elementary/generate";
+import {
+  answerPrintedOnPage,
+  forwardReachable,
+  pageNumbers,
+  readRat,
+  type Rat,
+} from "@/lib/elementary/forwardReach";
+
+import {
+  ENUM_THRESHOLD,
+  enumeratedSteps,
+} from "../../../scripts/qa/probe-elem-tier-enumeration";
+
+const SEEDS = Array.from({ length: 24 }, (_, i) => i * 37 + 5);
+/** 지름길은 **분포**라 표본이 두꺼워야 한다 — 24씨앗은 절반을 놓친다(2026-08-30 메모리). */
+const WIDE_SEEDS = Array.from({ length: 120 }, (_, i) => i * 17 + 3);
+
+const unitOf = (code: string) => {
+  const u = elementaryUnits().find(
+    (x) => x.grade === "초6" && x.section.startsWith(code),
+  );
+  expect(u, `${code} 소단원`).toBeTruthy();
+  return u!;
+};
+
+const gen = (code: string, seed: number, tier: "심화중" | "심화상") =>
+  generateElementaryProblem(unitOf(code), seed, tier);
+
+// ── 시험이 직접 드는 유리수 (엔진 것을 안 쓴다) ────────────────────────────
+type R = { n: number; d: number };
+const g = (a: number, b: number): number =>
+  b === 0 ? Math.abs(a) : g(b, a % b);
+const rr = (n: number, d = 1): R => {
+  const k = g(n, d) || 1;
+  return { n: n / k, d: d / k };
+};
+/** 소수 글자를 유리수로. `4.25` → `17/4`. */
+function readDec(tok: string): R | null {
+  const m = tok.match(/^(\d+)(?:\.(\d+))?$/);
+  if (!m) return null;
+  const frac = m[2] ?? "";
+  return rr(Number(`${m[1]}${frac}`), 10 ** frac.length);
+}
+/**
+ * 소수 자릿수 — 분모에 $2$·$5$ 말고 다른 소인수가 남으면 **안 끝난다**(null).
+ * 생성기의 `centsQuotientDp` 를 안 부른다(부르면 동어반복이다).
+ */
+function decDp(v: R): number | null {
+  let d = v.d;
+  let two = 0;
+  let five = 0;
+  while (d % 2 === 0) {
+    d /= 2;
+    two += 1;
+  }
+  while (d % 5 === 0) {
+    d /= 5;
+    five += 1;
+  }
+  return d === 1 ? Math.max(two, five) : null;
+}
+const tenthOf = (v: R) => Math.floor((v.n * 10) / v.d) % 10;
+
+/**
+ * ±**한 걸음**으로 답에 닿나 — 🔴 **일부러 여기에 다시 짓는다.**
+ *
+ * 생성기는 공용 `pmOneStepReachable` 을 쓴다. 시험이 그것을 부르면 동어반복이 되어
+ * 「가드를 지우는」 변이가 초록이 된다(3차분이 같은 까닭으로 자기 판을 남겼다).
+ * 「규칙을 두 벌 두지 마라」의 **의도된 예외**다.
+ */
+function pmOneStep(nums: readonly R[], ans: R): boolean {
+  for (const a of nums)
+    for (const b of nums) {
+      if (a === b) continue;
+      for (const v of [
+        rr(a.n * b.d + b.n * a.d, a.d * b.d),
+        rr(a.n * b.d - b.n * a.d, a.d * b.d),
+      ]) {
+        if (v.n === ans.n && v.d === ans.d) return true;
+      }
+    }
+  return false;
+}
+
+// ── 발문 판독 (생성기 분기를 안 쓴다 — 지면 글자만 읽는다) ─────────────────
+
+/** 「나누는 수가 $lo$ 보다 크고 $hi$ 보다 작을 때」의 후보 자연수. */
+function windowCandidates(content: string): number[] | null {
+  const m = content.match(
+    /나누는 수가 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+  );
+  if (!m) return null;
+  const out: number[] = [];
+  for (let d = Number(m[1]) + 1; d < Number(m[2]); d += 1) out.push(d);
+  return out;
+}
+
+/** 「$X$ 를 어떤 자연수로 나누었더니」의 $X$. */
+function dividendOf(content: string): R | null {
+  const m = content.match(/\$(\d+(?:\.\d+)?)\$[을를] 어떤 자연수로/);
+  return m ? readDec(m[1]!) : null;
+}
+
+/** 그 소단원의 «자리» 성질 — 1-3-3 은 「$0$을 내려 두 자리」, 1-3-4 는 「첫째 자리 $0$」. */
+const PLACE_RULE: Record<string, (q: R) => boolean> = {
+  "1-3-3": (q) => decDp(q) === 2,
+  "1-3-4": (q) => decDp(q) === 2 && tenthOf(q) === 0,
+};
+
+/** 창 안에서 그 성질을 지키는 나누는 수들. */
+function hits(code: "1-3-3" | "1-3-4", content: string): number[] {
+  const cands = windowCandidates(content);
+  const x = dividendOf(content);
+  expect(cands, `${code}: 창을 못 읽음 — ${content}`).toBeTruthy();
+  expect(x, `${code}: 나누어지는 수를 못 읽음 — ${content}`).toBeTruthy();
+  return cands!.filter((d) => PLACE_RULE[code]!(rr(x!.n, x!.d * d)));
+}
+
+describe("[초6 4차분] 1-3 소수의 나눗셈 — 나누는 수를 감춘다", () => {
+  it("㉠ 마디가 안 굳는다 — 굳히는 성질을 빼면 후보가 여럿이다", () => {
+    for (const seed of SEEDS) {
+      // 1-3-2 — 나누는 수를 모르면 「어떤 소수」가 여럿이다.
+      // (몫만으로는 못 굳는다. $q\times d$ 가 $d$ 마다 다른 값이다.)
+      const mid = gen("1-3-2", seed, "심화중");
+      const q = readDec(
+        mid.content.match(/몫이 \$(\d+(?:\.\d+)?)\$[이가] 되었습니다/)?.[1] ??
+          "",
+      );
+      expect(q, `1-3-2 seed=${seed}: 몫을 못 읽음`).toBeTruthy();
+      const open = new Set<string>();
+      for (let d = 2; d <= 12; d += 1) {
+        const v = rr(q!.n * d, q!.d);
+        if (decDp(v) === 1) open.add(`${v.n}/${v.d}`);
+      }
+      expect(
+        open.size,
+        `1-3-2 seed=${seed}: 나누는 수를 몰라도 답이 하나다 — 마디가 안 열렸다`,
+      ).toBeGreaterThanOrEqual(2);
+
+      // 1-3-3·1-3-4 — 자리 성질을 빼면 창 안 자연수가 전부 후보다.
+      for (const code of ["1-3-3", "1-3-4"] as const) {
+        const p = gen(code, seed, "심화상");
+        const cands = windowCandidates(p.content);
+        expect(
+          cands?.length ?? 0,
+          `${code} seed=${seed}: 창이 후보를 셋은 만들어야 한다 — ${p.content}`,
+        ).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+
+  it("㉡ 성질이 정확히 하나를 남긴다 — 답이 둘인 문항은 값 검산이 못 본다", () => {
+    for (const seed of SEEDS) {
+      for (const code of ["1-3-3", "1-3-4"] as const) {
+        const p = gen(code, seed, "심화상");
+        expect(
+          hits(code, p.content),
+          `${code} seed=${seed}: 조건을 지키는 나누는 수가 하나여야 한다 — ${p.content}`,
+        ).toHaveLength(1);
+      }
+      // 1-3-2 — 「$A$ 보다 큰 자연수 중 가장 작은 수」는 하나다. 그리고 $A$ 는
+      // 자연수가 아니어야 「가장 작은」이 흔들리지 않는다.
+      const mid = gen("1-3-2", seed, "심화중");
+      const a = readDec(
+        mid.content.match(
+          /나누는 수가 \$(\d+(?:\.\d+)?)\$[을를] 나누면/,
+        )?.[1] ?? "",
+      );
+      expect(a, `1-3-2 seed=${seed}: $A$ 를 못 읽음`).toBeTruthy();
+      expect(
+        a!.d,
+        `1-3-2 seed=${seed}: $A$ 가 자연수면 「가장 작은」이 애매하다`,
+      ).toBeGreaterThan(1);
+    }
+  });
+
+  it("㉢ «중»은 비교로 갈리고 «상»은 다 계산해야 갈린다 (D-115 ⑾)", () => {
+    for (const seed of SEEDS) {
+      for (const code of ["1-3-3", "1-3-4"] as const) {
+        const p = gen(code, seed, "심화상");
+        const x = dividendOf(p.content)!;
+        const cands = windowCandidates(p.content)!;
+        // «값이 지면에 적히는»(소수 두 자리 안에 끝나는) 후보가 둘은 있어야
+        // 학생이 실제로 **견줄 거리**가 생긴다. 하나뿐이면 나머지는 「안 끝난다」로
+        // 한꺼번에 버려져 «계산해 견주기»가 아니라 «걸러 내기»가 된다.
+        const printable = cands.filter((d) => {
+          const k = decDp(rr(x.n, x.d * d));
+          return k !== null && k <= 2;
+        });
+        expect(
+          printable.length,
+          `${code} seed=${seed}: 견줄 후보가 둘은 있어야 «상» 이다 — ${p.content}`,
+        ).toBeGreaterThanOrEqual(2);
+      }
+      // 1-3-2 는 반대다 — 「$A$ 보다 큰가」는 **나눠 보지 않고** 갈린다.
+      // 그래서 발문에 창(두 끝)이 없어야 한다(창이 있으면 후보를 늘어놓게 된다).
+      const mid = gen("1-3-2", seed, "심화중");
+      expect(
+        windowCandidates(mid.content),
+        `1-3-2 seed=${seed}: 심화중에 후보 창이 생겼다 — «상» 의 모양이다`,
+      ).toBeNull();
+    }
+  });
+
+  it("㉣ 반증 ⑥ — 순방향으로도 ±한 걸음으로도 안 닿고, 답이 지면에 없다", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE_SEEDS) {
+      for (const [code, tier] of [
+        ["1-3-2", "심화중"],
+        ["1-3-3", "심화상"],
+        ["1-3-4", "심화상"],
+      ] as const) {
+        const p = gen(code, seed, tier);
+        const ans = readRat(p.answer.replace(/\$/g, "").trim()) as Rat | null;
+        expect(
+          ans,
+          `${code} seed=${seed}: 답을 못 읽음 — ${p.answer}`,
+        ).toBeTruthy();
+        const nums = pageNumbers(p.content);
+        if (forwardReachable(nums, ans!)) bad.push(`${code} ${seed} 순방향`);
+        if (answerPrintedOnPage(nums, ans!))
+          bad.push(`${code} ${seed} 지면에 답`);
+        if (pmOneStep(nums as R[], ans as R))
+          bad.push(`${code} ${seed} ±한 걸음`);
+      }
+    }
+    expect(bad.slice(0, 8)).toEqual([]);
+  });
+
+  it("㉤ 반증 ④ — 연산·기본·응용은 이 축의 표지를 안 쓴다", () => {
+    const 표지 = [
+      /나누는 수가 \$\d+\$보다 크고/,
+      /가장 작은 수/,
+      /소수 두 자리 수가 되었습니다/,
+      /소수점 아래 \$0\$을 내려 계산하게 되어/,
+    ];
+    const bad: string[] = [];
+    for (const code of ["1-3-1", "1-3-2", "1-3-3", "1-3-4", "1-3-5"] as const) {
+      const unit = unitOf(code);
+      for (const tier of ["연산", "기본", "응용"] as const) {
+        for (const seed of SEEDS) {
+          const c = generateElementaryProblem(unit, seed, tier).content;
+          for (const re of 표지) {
+            if (re.test(c)) bad.push(`${code} ${tier} seed=${seed}: ${re}`);
+          }
+        }
+      }
+    }
+    expect(bad.slice(0, 6)).toEqual([]);
+  });
+
+  it("㉥ 심화중은 해설이 안 늘어놓고, 심화상은 늘어놓는다 (D-115 ⑾)", () => {
+    for (const seed of SEEDS) {
+      expect(
+        enumeratedSteps(gen("1-3-2", seed, "심화중").solution),
+        `1-3-2 심화중 seed=${seed}: 해설이 후보를 늘어놓는다 — «상» 의 길이다`,
+      ).toBeLessThan(ENUM_THRESHOLD);
+      for (const code of ["1-3-3", "1-3-4"] as const) {
+        expect(
+          enumeratedSteps(gen(code, seed, "심화상").solution),
+          `${code} 심화상 seed=${seed}: 후보를 안 늘어놓는다 — «중» 의 길이다`,
+        ).toBeGreaterThanOrEqual(ENUM_THRESHOLD);
+      }
+    }
+  });
+
+  it("㉦ 확대 갈래에 그림이 없다 — 되짚을 값을 그림이 알려 주면 마디가 안 열린다", () => {
+    for (const seed of SEEDS) {
+      for (const [code, tier] of [
+        ["1-3-2", "심화중"],
+        ["1-3-3", "심화상"],
+        ["1-3-4", "심화상"],
+      ] as const) {
+        expect(
+          gen(code, seed, tier).figureSpec,
+          `${code} ${tier} seed=${seed}: 그림이 붙었다`,
+        ).toBeNull();
+      }
+    }
+  });
+
+  it("🔴 ㉧ 감추는 자리가 2-2 와 다르다 — 그리고 2-2 는 그 뼈대에 «걸린다»(양성 대조)", () => {
+    // 2-2 의 뼈대: 「어떤 수가 $lo$ 보다 크고 $hi$ 보다 작을 때」 = **나누어지는 수**를 감춘다.
+    // ⚠️ 사이에 낀 말을 허용해야 한다 — 2-2-2 는 「어떤 수가 **소수 두 자리 수이고**
+    //    $8.27$ 보다 크고 …」라 딱 붙은 판으로 재면 **셋 중 하나가 안 걸린다**(실측 48/72).
+    //    양성 대조가 반쪽이면 이 축의 «아니오»도 반쪽이다.
+    const 이차이_뼈대 =
+      /어떤 수가[^.]*\$[\d.]+\$보다 크고 \$[\d.]+\$보다 작을 때/;
+
+    // 🔴 양성 대조 — 이 열쇠가 «예»를 낼 수 있는가. 못 내면 아래 «아니오»는 도장이다.
+    let 걸린_이차이 = 0;
+    for (const seed of SEEDS) {
+      for (const code of ["2-2-1", "2-2-2", "2-2-3"] as const) {
+        if (이차이_뼈대.test(gen(code, seed, "심화중").content))
+          걸린_이차이 += 1;
+      }
+    }
+    expect(
+      걸린_이차이,
+      "2-2 심화중이 이 뼈대에 안 걸린다 — 열쇠가 죽었다(«아니오»만 내는 도장)",
+    ).toBe(SEEDS.length * 3);
+
+    // 음성 — 1-3 의 확대 갈래는 그 뼈대를 쓰지 않고, **나누는 수**를 감춘다.
+    for (const seed of SEEDS) {
+      for (const [code, tier] of [
+        ["1-3-2", "심화중"],
+        ["1-3-3", "심화상"],
+        ["1-3-4", "심화상"],
+      ] as const) {
+        const c = gen(code, seed, tier).content;
+        expect(
+          이차이_뼈대.test(c),
+          `${code} ${tier} seed=${seed}: 2-2 의 뼈대(나누어지는 수를 감춤)를 썼다 — ${c}`,
+        ).toBe(false);
+        expect(
+          /나누는 수|어떤 자연수로 나누었더니|자연수로 나누었더니/.test(c),
+          `${code} ${tier} seed=${seed}: 나누는 수를 감추지 않았다 — ${c}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("🔴 ㉨ 지름길 — 「가장 큼·가장 작음·가운데」가 우연보다 크게 앞서지 않는다", () => {
+    for (const code of ["1-3-3", "1-3-4"] as const) {
+      let n = 0;
+      let chance = 0;
+      const hit = { 큼: 0, 작음: 0, 가운데: 0 };
+      for (const seed of WIDE_SEEDS) {
+        const p = gen(code, seed, "심화상");
+        const cands = windowCandidates(p.content)!;
+        const d = hits(code, p.content)[0]!;
+        n += 1;
+        chance += 1 / cands.length;
+        if (d === Math.max(...cands)) hit.큼 += 1;
+        if (d === Math.min(...cands)) hit.작음 += 1;
+        if (d === cands[Math.floor(cands.length / 2)]) hit.가운데 += 1;
+      }
+      const 비율 = (v: number) => v / n;
+      // 실측(2026-09-01, 씨앗 120): 1-3-3 큼 .33 작음 .28 가운데 .26 (우연 .27) ·
+      //                             1-3-4 큼 .19 작음 .34 가운데 .21 (우연 .24)
+      // 문턱은 그 위로 넉넉히 잡는다 — 「무조건 가장 큰 것」(=1.00)이 들어오면 빨개진다.
+      for (const [name, v] of Object.entries(hit)) {
+        expect(
+          비율(v),
+          `${code}: 「${name}」 지름길 ${(비율(v) * 100).toFixed(1)}% (우연 ${((chance / n) * 100).toFixed(1)}%)`,
+        ).toBeLessThan(0.45);
+      }
+      // 그리고 우연 확률 자체가 너무 크면(창이 좁으면) 위 문턱이 뜻을 잃는다.
+      expect(chance / n, `${code}: 창이 너무 좁다`).toBeLessThan(0.34);
+    }
+  });
+});

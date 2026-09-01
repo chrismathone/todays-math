@@ -926,9 +926,87 @@ function decShape(answer: string): { dp: number; tenth: string | null } {
  * 발문이 말하는 값을 **다시** 만든다 — 갈래를 발문의 낱말로 가른다(생성기 분기를 옮겨 적지 않는다).
  * 못 읽으면 null 을 주고, 부르는 쪽이 위반으로 처리한다.
  */
+/**
+ * 유리수의 **소수 자릿수**. $2$·$5$ 말고 다른 소인수가 남으면 «안 끝난다»(null).
+ * 생성기의 `centsQuotientDp` 를 안 부른다 — 부르면 동어반복이다.
+ */
+function decDpOf13(v: R): number | null {
+  let d = v.d;
+  let two = 0;
+  let five = 0;
+  while (d % 2 === 0) {
+    d /= 2;
+    two += 1;
+  }
+  while (d % 5 === 0) {
+    d /= 5;
+    five += 1;
+  }
+  return d === 1 ? Math.max(two, five) : null;
+}
+
+/**
+ * 「$X$ 를 어떤 자연수로 나누었더니 … 나누는 수가 $lo$ 보다 크고 $hi$ 보다 작을 때」 발문에서
+ * **창 안의 자연수를 전부 훑어** 조건을 지키는 것을 돌려준다. 못 읽으면 null.
+ */
+function divisorsMatching13(
+  content: string,
+  keep: (quotient: R) => boolean,
+): number[] | null {
+  const xm = content.match(/\$(\d+(?:\.\d+)?)\$[을를] 어떤 자연수로/);
+  const wm = content.match(
+    /나누는 수가 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+  );
+  if (!xm || !wm) return null;
+  const x = readDecTok(xm[1]!);
+  if (!x) return null;
+  const out: number[] = [];
+  for (let d = Number(wm[1]) + 1; d < Number(wm[2]); d += 1) {
+    if (keep(rdiv(x, rat(d)))) out.push(d);
+  }
+  return out;
+}
+
 function truthOf13(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
+  // ══ 확대 갈래 (4차분 · 물결 4) — **나누는 수를 감춘다**. 아래 심화하 판독기보다 먼저 본다 ══
+  //
+  // ⚠️ 순서가 뜻이다. 셋 다 「나누었더니」를 쓰므로 아래 판독기가 먼저 물면 엉뚱한 두 수를
+  //    나눠 «참»을 지어낸다(1-1 의 확대 갈래에서 이미 한 번 물린 자리).
+  //
+  // 셋 다 시험이 **조건을 다시 풀고** 답이 하나로 굳는지까지 여기서 잰다 —
+  // 「답이 둘인 문항」은 값 검산이 구조적으로 못 보는 부류다.
+
+  // 1-3-2 심화중 — 「$A$ 를 나누면 몫이 $1$보다 작아지는 자연수 중 가장 작은 수」로 나눈 몫이 $q$.
+  if (content.includes("작아지는") && content.includes("가장 작은 수")) {
+    const qm = content.match(/몫이 \$(\d+(?:\.\d+)?)\$[이가] 되었습니다/);
+    const am = content.match(/나누는 수가 \$(\d+(?:\.\d+)?)\$[을를] 나누면/);
+    if (!qm || !am) return null;
+    const q = readDecTok(qm[1]!);
+    const a = readDecTok(am[1]!);
+    if (!q || !a) return null;
+    // 몫이 $1$보다 작다 ⟺ 나누는 수 > $A$. 그중 가장 작은 자연수.
+    const d = Math.floor(a.n / a.d) + 1;
+    return rmul(q, rat(d));
+  }
+  // 1-3-3 심화상 — 창 안의 자연수 중 「$0$을 내려 몫이 소수 두 자리」인 것 하나.
+  if (content.includes("소수점 아래 $0$을 내려 계산하게 되어")) {
+    const hit = divisorsMatching13(content, (v) => decDpOf13(v) === 2);
+    return hit && hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-3-4 심화상 — 그 중 「몫의 소수 첫째 자리가 $0$」인 것 하나. 답은 **몫**이다.
+  if (content.includes("몫이 소수 첫째 자리에 $0$이 있는")) {
+    const x = readDecTok(
+      content.match(/\$(\d+(?:\.\d+)?)\$[을를] 어떤 자연수로/)?.[1] ?? "",
+    );
+    const hit = divisorsMatching13(
+      content,
+      (v) => decDpOf13(v) === 2 && Math.floor((v.n * 10) / v.d) % 10 === 0,
+    );
+    if (!x || !hit || hit.length !== 1) return null;
+    return rdiv(x, rat(hit[0]!));
+  }
 
   // 심화 — 수 카드로 몫이 가장 작은 나눗셈식
   if (content.includes("수 카드") && content.includes("가장 작은")) {

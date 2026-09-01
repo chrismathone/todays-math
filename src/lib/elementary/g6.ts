@@ -9432,6 +9432,336 @@ function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+// ══════════ 4차분(물결 4) — 초6 `1-3 소수의 나눗셈` ══════════
+//
+// ## 예약한 굳힘 축 — **「나누는 수를 감춘다 + 몫의 «자리»」**
+//
+// 토대 §1.4 는 1-3 에 「몫의 **자리**」($1$보다 작다 · $0$을 내린다 · 첫째 자리 $0$)를
+// 예약하고 「몫이 소수 한 자리」(= 2-2-2 심화중의 열쇠)를 **금지**했다. 그런데 «자리»
+// 성질만 지켜도 **문장 뼈대가 2-2 와 같아진다** — 2-2 의 확대 갈래 다섯이 전부
+// 「어떤 수를 $d$ 로 나누었더니 <성질>. 어떤 수가 $lo$ 보다 크고 $hi$ 보다 작을 때…」이고,
+// 그 뼈대의 알맹이는 **나누어지는 수를 감추는 것**이다. 그래서 감추는 자리를 옮겼다:
+//
+//     2-2 (이미 착지)   **나누어지는 수**를 감춘다 → 배수열 + 수치 범위
+//     1-3 (여기)        **나누는 수**를 감춘다   → 자리 성질이 후보를 가른다
+//
+// 겹침을 막는 것은 이 한 줄이다. 그래서 시험(`elemTiersG6DeepW4.test.ts`)이 그것을
+// **잠근다** — 이 갈래의 발문에 「어떤 수가 … 보다 크고 … 보다 작을 때」가 나오면 빨개진다.
+//
+// ## 왜 1-3-1·1-3-5 는 비웠나 (보고서 §2.1 에 수와 함께)
+//
+// 예약된 «자리» 성질 셋은 **1-3-2·1-3-3·1-3-4 의 이름 그 자체**다. 1-3-1 에 남는 자리
+// 성질은 「몫이 소수 한 자리」 하나뿐이고 그것은 토대가 2-2 에 예약했다(반증 ③).
+// 1-3-5 는 `kindsPresent("자연수","자연수")` 가 **발문에 소수를 한 개도 못 쓰게** 해서
+// «자리» 조건을 지면에 적을 방법이 없고, 「어림셈」은 값을 굳히는 성질이 아니라
+// **확인 절차**라 마디를 열지 못한다.
+//
+// ## 1-3-2 는 «상»을 비웠다 — 부등식은 후보를 «만들어 견주게» 못 한다
+//
+// 「몫이 $1$보다 작다」는 부등식 하나이고, 부등식 둘로 창을 닫아 자연수를 하나만 남기면
+// **두 끝 중 하나가 반드시 잉여**가 된다(창 안 자연수가 하나면 위 끝은 아래 끝이 정한
+// 값을 못 바꾼다 — 실측 100%). 안 읽어도 되는 조건을 지면에 남기는 것은 학생에게 하는
+// 거짓말이라(M-6) 그 판을 버리고, 대신 **가장 작은 수**로 마디를 굳혔다.
+
+/** 소수(×100 정수)를 자연수로 나눈 몫의 **소수 자릿수**. 여덟 자리 안에 안 끝나면 `null`. */
+function centsQuotientDp(xc: number, d: number): number | null {
+  for (let k = 0; k <= 8; k += 1) {
+    if ((xc * 10 ** k) % (100 * d) === 0) return k;
+  }
+  return null;
+}
+
+/**
+ * 그 몫을 지면 글자로. 안 끝나면 `null` — 부르는 쪽이 **값을 안 적고 말로** 적는다.
+ *
+ * ⚠️ 소수 **세** 자리부터는 값을 적으면 안 된다. 1-3 시험이 `\d+\.\d{3,}` 를
+ *    「샌 소수」로 문다(그 대단원의 몫은 두 자리까지다). 그래서 `dp >= 3` 은
+ *    끝나더라도 «안 적는» 쪽으로 돌린다 — 잘라 적으면 값이 틀린 글이 된다.
+ */
+function centsQuotientText(xc: number, d: number): string | null {
+  const k = centsQuotientDp(xc, d);
+  if (k === null || k > 2) return null;
+  return decStr((xc * 10 ** k) / (100 * d), k);
+}
+
+/** 몫의 **소수 첫째 자리 숫자** — 안 끝나도 잰다(한 자리만 내리면 된다). */
+function centsQuotientTenth(xc: number, d: number): number {
+  return Math.floor((xc * 10) / (100 * d)) % 10;
+}
+
+/**
+ * **답을 먼저, 그다음 «창 안에서 답이 몇째인가»를 고른다** — 두 겹 뽑기.
+ *
+ * 실측(씨앗 6,000 표본)으로 정한 순서다. 자리를 먼저 고르면 답이 쏠리고
+ * (1-3-3 은 「무조건 $5$」가 **90%**), 답을 먼저 고르면 자리 지름길이 남는다.
+ * 둘을 견주어 **답 먼저**를 골랐다 — 답 쏠림은 지면에서 바로 통하는 지름길이고,
+ * 자리 지름길은 우연 확률과의 차가 훨씬 작았다:
+ *
+ * ```
+ *              답 분포                 가장 큼 / 가장 작음 / 가운데   (우연)
+ * 1-3-3 자리먼저  5 가 48%              13.3 / 26.7 / 26.7           23.1
+ * 1-3-3 답먼저    다섯 값 20% 씩        32.9 / 27.6 / 25.7           27.1
+ * 1-3-4 자리먼저  5 가 33% · 6 이 31%   22.2 / 22.3 / 22.2           22.2
+ * 1-3-4 답먼저    다섯 값 20% 씩        18.8 / 33.8 / 21.4           23.7
+ * ```
+ */
+function pickByAnswerThenSlot<T extends { ans: number; slot: string }>(
+  rng: Rng,
+  bins: Map<number, Map<string, T[]>>,
+  answers: readonly number[],
+): T {
+  const bySlot = bins.get(pick(rng, answers))!;
+  const slots = [...bySlot.keys()].sort();
+  return pick(rng, bySlot.get(pick(rng, slots))!);
+}
+
+/** 답 → 자리 → 사례. 위 뽑기가 읽는 모양으로 묶는다. */
+function binByAnswerThenSlot<T extends { ans: number; slot: string }>(
+  rows: readonly T[],
+): { bins: Map<number, Map<string, T[]>>; answers: number[] } {
+  const bins = new Map<number, Map<string, T[]>>();
+  for (const r of rows) {
+    let bySlot = bins.get(r.ans);
+    if (!bySlot) {
+      bySlot = new Map();
+      bins.set(r.ans, bySlot);
+    }
+    const list = bySlot.get(r.slot);
+    if (list) list.push(r);
+    else bySlot.set(r.slot, [r]);
+  }
+  return { bins, answers: [...bins.keys()].sort((a, b) => a - b) };
+}
+
+// ── 1-3-2 몫이 $1$보다 작은 (소수)÷(자연수) — 심화중 ────────────────────────
+//
+// 안 굳는 마디: **나누는 수.** 「몫이 $1$보다 작다」는 그것을 «$A$ 보다 큰 자연수» 라는
+// 열린 집합으로만 준다.
+// 굳히는 성질: 이 소단원 그 자체 — 「몫이 $1$보다 작다 ⟺ 나누어지는 수가 나누는 수보다
+// 작다」. 그 집합에서 **가장 작은 수**가 하나를 고른다. 후보를 **끝까지 나눠 보지 않고**
+// 비교만으로 걸러 내므로 D-115 ⑾ 로 «중» 이다.
+//
+// ⚠️ 심화하(「어떤 수를 $2$로 나누었더니 $0.6$ → $6$으로 나눈 몫」)는 나누는 수를 **둘 다**
+//    발문이 준다. 여기서는 그중 하나를 부등식 뒤로 숨겼다 — 사다리가 정확히 한 칸 오른다.
+type UnderOneSmallestCase = {
+  /** 나누는 수(중간값). 답이 아니다. */
+  d: number;
+  /** 부등식이 걸리는 소수(×100) — $d-1 < A < d$ 라 「가장 작은 자연수」가 $d$ 다. */
+  ac: number;
+  /** 몫(×100) — $1$보다 작다(이 소단원). */
+  qc: number;
+  /** 답: 어떤 소수(×100). */
+  xc: number;
+  ans: number;
+  slot: string;
+};
+
+const underOneSmallestStem = (c: UnderOneSmallestCase): string =>
+  `어떤 소수를 자연수로 나누었더니 몫이 ${num(fromCents(c.qc))}${centsJosa(c.qc, "이", "가")} 되었습니다. ` +
+  `나누는 수가 ${num(fromCents(c.ac))}${centsJosa(c.ac, "을", "를")} 나누면 몫이 ${num(1)}보다 작아지는 ` +
+  `자연수 중에서 가장 작은 수일 때, 어떤 소수를 구하시오.`;
+
+const UNDER_ONE_SMALLEST: UnderOneSmallestCase[] = [];
+for (let d = 2; d <= 9; d += 1)
+  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {
+    if (ac % 100 === 0) continue; // 자연수면 「가장 작은」이 $A$ 자신이 되어 뜻이 흔들린다
+    // 확인 줄에 $A\div d$ 를 적으려면 그 몫도 지면에 적을 수 있어야 한다.
+    const aq = centsQuotientText(ac, d);
+    if (aq === null) continue;
+    for (let qc = 10; qc <= 90; qc += 10) {
+      const xc = qc * d;
+      if (xc % 100 === 0) continue; // 답이 자연수면 「어떤 소수」가 아니다
+      if (xc === ac) continue;
+      const c: UnderOneSmallestCase = {
+        d,
+        ac,
+        qc,
+        xc,
+        ans: xc,
+        slot: `q${qc}`,
+      };
+      // 반증 ⑥ + 답이 지면에 그대로 + ±한 걸음. 실측으로 $A-1$ 이 답과 같아지는
+      // 자리가 3.2% 있었고 이 자가 그것을 뺀다.
+      if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;
+      UNDER_ONE_SMALLEST.push(c);
+    }
+  }
+
+const UNDER_ONE_SMALLEST_BINS = binByAnswerThenSlot(UNDER_ONE_SMALLEST);
+
+function underOneSmallestMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    UNDER_ONE_SMALLEST_BINS.bins,
+    UNDER_ONE_SMALLEST_BINS.answers,
+  );
+  const a = fromCents(c.ac);
+  const q = fromCents(c.qc);
+  const x = fromCents(c.xc);
+  const aq = centsQuotientText(c.ac, c.d)!;
+  return makeDeep(unit, underOneSmallestStem(c), num(x), [
+    `몫이 ${num(1)}보다 작으려면 나누어지는 수가 나누는 수보다 작아야 합니다. ` +
+      `${num(a)}${centsJosa(c.ac, "을", "를")} 나누어 몫이 ${num(1)}보다 작아지는 자연수는 ` +
+      `${num(a)}보다 큰 수이므로, 그중 가장 작은 수는 ${num(c.d)}입니다.`,
+    `어떤 소수를 ${num(c.d)}${numRo(c.d)} 나눈 몫이 ${num(q)}이므로, 어떤 소수는 ` +
+      `${expr(`${q}\\times${c.d}=${x}`)} 입니다.`,
+    // ⚠️ 「로/으로」는 **끝소리**가 정한다 — 손으로 「로」라 적었다가 판정기가 물었다
+    //    (`$4.3\div5=0.86$ 로` → 「팔육」은 받침이 있어 «으로»다). 그 표를 쓰는
+    //    `numRo`·`lastSpokenNumber` 에 맡긴다.
+    `${expr(`${x}\\div${c.d}=${q}`)} 이고, ${expr(`${a}\\div${c.d}=${aq}`)}` +
+      `${numRo(lastSpokenNumber(`${a}\\div${c.d}=${aq}`))} ` +
+      `몫이 ${num(1)}보다 작은 것도 확인됩니다.`,
+  ]);
+}
+
+// ── 1-3-3 소수점 아래 $0$을 내려 계산하는 (소수)÷(자연수) — 심화상 ──────────
+// ── 1-3-4 몫의 소수 첫째 자리에 $0$이 있는 (소수)÷(자연수) — 심화상 ────────
+//
+// 안 굳는 마디: **나누는 수.** 창이 자연수 후보를 서넛 만들고, 그 소단원의 자리 성질이
+// 하나만 남긴다 — 그런데 **그 성질은 미리 계산할 규칙이 없다.** 「$0$을 내려야 하는가」도
+// 「첫째 자리가 $0$인가」도 실제로 나눠 보아야 안다. 후보를 **다 계산해 견주므로**
+// D-115 ⑾ 로 «상» 이다(그래서 이 둘은 «중»을 비운다 — 같은 성질로 «중»을 지으면
+// 해설이 똑같이 늘어놓는다).
+//
+// ⚠️ 후보 몫 중 **소수 세 자리 이상**이거나 안 끝나는 것은 값을 **안 적는다** —
+//    잘라 적으면 틀린 글이 되고, 그대로 적으면 1-3 시험의 「샌 소수」에 걸린다.
+//    대신 「소수 두 자리 수가 아닙니다」로 적는다(참이고, 학생이 두 자리까지만
+//    내려 보면 확인된다). 값이 적히는 후보가 **둘 이상**일 때만 자리를 만든다.
+type DivisorSlotCase = {
+  /** 나누어지는 소수(×100). */
+  xc: number;
+  lo: number;
+  hi: number;
+  /** 조건을 지키는 유일한 나누는 수. */
+  d: number;
+  cands: number[];
+  ans: number;
+  slot: string;
+};
+
+function buildDivisorSlot(
+  keep: (xc: number, d: number) => boolean,
+  bounds: { xlo: number; xhi: number; winMin: number; winMax: number },
+  stemOf: (c: DivisorSlotCase) => string,
+  answerOf: (c: DivisorSlotCase) => Rat,
+): DivisorSlotCase[] {
+  const rows: DivisorSlotCase[] = [];
+  for (let xc = bounds.xlo; xc <= bounds.xhi; xc += 10) {
+    if (xc % 100 === 0) continue; // 나누어지는 수는 소수 한 자리 수다
+    for (let lo = 1; lo <= 9; lo += 1)
+      for (
+        let hi = lo + bounds.winMin + 1;
+        hi <= lo + bounds.winMax + 1;
+        hi += 1
+      ) {
+        const cands: number[] = [];
+        for (let d = lo + 1; d < hi; d += 1) cands.push(d);
+        if (cands.length < bounds.winMin || cands.length > bounds.winMax)
+          continue;
+        if (cands[0]! < 2 || cands[cands.length - 1]! > 9) continue;
+        // 값이 적히는 후보가 둘은 있어야 해설이 «견주는» 글이 된다.
+        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 2)
+          continue;
+        const hit = cands.filter((d) => keep(xc, d));
+        if (hit.length !== 1) continue;
+        const d = hit[0]!;
+        const c: DivisorSlotCase = {
+          xc,
+          lo,
+          hi,
+          d,
+          cands,
+          ans: d,
+          slot: `${cands.indexOf(d)}/${cands.length}`,
+        };
+        if (!backsolveSafeStem(stemOf(c), answerOf(c))) continue;
+        rows.push(c);
+      }
+  }
+  return rows;
+}
+
+/** 후보를 하나씩 나눠 본 결과를 지면 글로. 값이 안 적히는 것은 **말로** 적는다. */
+function divisorTrialLine(c: DivisorSlotCase): string {
+  const shown: string[] = [];
+  const unshown: number[] = [];
+  const x = fromCents(c.xc);
+  for (const d of c.cands) {
+    const q = centsQuotientText(c.xc, d);
+    if (q === null) unshown.push(d);
+    else shown.push(expr(`${x}\\div${d}=${q}`));
+  }
+  const tail =
+    unshown.length === 0
+      ? ""
+      : ` 그리고 ${unshown.map((d) => expr(`${x}\\div${d}`)).join(", ")} 의 몫은 소수 두 자리 수가 아닙니다.`;
+  return `나누는 수가 될 수 있는 수를 하나씩 나누어 봅니다. ${shown.join(", ")} 입니다.${tail}`;
+}
+
+const bringZeroSlotStem = (c: DivisorSlotCase): string =>
+  `${num(fromCents(c.xc))}${centsJosa(c.xc, "을", "를")} 어떤 자연수로 나누었더니 ` +
+  `소수점 아래 ${num(0)}을 내려 계산하게 되어 몫이 소수 두 자리 수가 되었습니다. ` +
+  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;
+
+const BRING_ZERO_SLOT = buildDivisorSlot(
+  (xc, d) => centsQuotientDp(xc, d) === 2,
+  { xlo: 110, xhi: 4990, winMin: 1, winMax: 6 },
+  bringZeroSlotStem,
+  (c) => rat(c.d),
+);
+const BRING_ZERO_BINS = binByAnswerThenSlot(BRING_ZERO_SLOT);
+
+function bringZeroDivisorTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    BRING_ZERO_BINS.bins,
+    BRING_ZERO_BINS.answers,
+  );
+  const x = fromCents(c.xc);
+  const q = centsQuotientText(c.xc, c.d)!;
+  return makeDeep(unit, bringZeroSlotStem(c), num(c.d), [
+    `나누는 수가 될 수 있는 자연수는 ${c.cands.map((d) => num(d)).join(", ")} 입니다.`,
+    divisorTrialLine(c),
+    `나누어지는 수는 소수 한 자리 수인데 몫이 소수 두 자리 수이므로, 소수점 아래 ` +
+      `${num(0)}을 내려 계산한 것은 ${expr(`${x}\\div${c.d}=${q}`)} 뿐입니다. ` +
+      `나누는 수는 ${num(c.d)}입니다.`,
+  ]);
+}
+
+const zeroTenthSlotStem = (c: DivisorSlotCase): string =>
+  `${num(fromCents(c.xc))}${centsJosa(c.xc, "을", "를")} 어떤 자연수로 나누었더니 ` +
+  `몫이 소수 첫째 자리에 ${num(0)}이 있는 소수 두 자리 수가 되었습니다. ` +
+  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 그 몫을 구하시오.`;
+
+/**
+ * ⚠️ 1-3-3 과 **묻는 것을 갈랐다**(R5) — 저쪽은 나누는 수를, 여기는 **몫**을 묻는다.
+ * 답이 몫이면 「무조건 $5$로 나눠라」가 답을 바로 주지 못하고, 지면에서도 이 소단원의
+ * 이름(첫째 자리에 $0$이 있는 몫)이 **답 자체**로 보인다.
+ */
+const ZERO_TENTH_SLOT = buildDivisorSlot(
+  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,
+  { xlo: 210, xhi: 4990, winMin: 3, winMax: 6 },
+  zeroTenthSlotStem,
+  (c) => rat(c.xc, 100 * c.d),
+);
+const ZERO_TENTH_BINS = binByAnswerThenSlot(ZERO_TENTH_SLOT);
+
+function zeroTenthQuotientTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    ZERO_TENTH_BINS.bins,
+    ZERO_TENTH_BINS.answers,
+  );
+  const x = fromCents(c.xc);
+  const q = centsQuotientText(c.xc, c.d)!;
+  return makeDeep(unit, zeroTenthSlotStem(c), num(q), [
+    `나누는 수가 될 수 있는 자연수는 ${c.cands.map((d) => num(d)).join(", ")} 입니다.`,
+    divisorTrialLine(c),
+    `이 중 몫의 소수 첫째 자리에 ${num(0)}이 있는 것은 ` +
+      `${expr(`${x}\\div${c.d}=${q}`)} 뿐이므로, 몫은 ${num(q)}입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -9505,18 +9835,21 @@ export const G6_TIERS: ElemTierMap = {
     기본: decUnderWord,
     응용: decUnderApply,
     심화하: decUnderDeep,
+    심화중: underOneSmallestMid,
   },
   "초6|1-3-3": {
     연산: decBringCalc,
     기본: decBringWord,
     응용: decBringApply,
     심화하: decBringDeep,
+    심화상: bringZeroDivisorTop,
   },
   "초6|1-3-4": {
     연산: decZeroCalc,
     기본: decZeroWord,
     응용: decZeroApply,
     심화하: decZeroDeep,
+    심화상: zeroTenthQuotientTop,
   },
   "초6|1-3-5": {
     연산: natDecCalc,
