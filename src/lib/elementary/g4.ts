@@ -18830,7 +18830,15 @@ function tier222MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
 function w4DipFirstValues(rng: Rng, theme: LineTheme): number[] {
   const up0 = intBetween(rng, 2, 5);
   const down = intBetween(rng, 1, up0 - 1);
-  const up2 = intBetween(rng, down + 1, down + 4);
+  /*
+   * 🔴 오르는 폭이 **값으로 $2$ 이상**이어야 한다. $1$ 이면 「그 어떤 수」가 될 수 있는
+   * 수가 **하나뿐**이라 「가장 작은 수」라는 말이 빈말이 된다 — 마디가 안 열린다.
+   * 걸음이 $1$ 인 소재(기온·무게)에서만 생기고, 실측으로 씨앗 600 중 **41자리**였다
+   * (`measure-elem-g4w4-shortcuts.ts` 가 잡았다). 위쪽 $v_1-v_0$ 은 `up0 >= 2` 라
+   * 저절로 $2$ 이상이므로 여기만 막으면 된다.
+   */
+  const lift = theme.step >= 2 ? 1 : 2;
+  const up2 = intBetween(rng, down + lift, down + 4);
   const up3 = intBetween(rng, 1, 5);
   const first = intBetween(rng, theme.base[0], theme.base[1]) * theme.step;
   const v1 = first + up0 * theme.step;
