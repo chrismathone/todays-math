@@ -276,6 +276,18 @@ source                    manual 23,493 · ai_generated 10 · transformed 5
   파이썬 판정기가 생기면 **거기서 눈이 먼다** — `probeNet.mjs` 머리말에 적어 두었다.
 * `probe-mid2-quad-paper` · `probe-quad-arrangement` 는 `--selftest` 이 없어 여전히 밖이다.
   붙이면 새 규칙이 **저절로** 들인다.
+* 🔴 **`--selftest` 을 가졌는데 이름이 `probe-` 가 아닌 파일이 열 개 있다** (2026-09-01 실측,
+  `scripts/qa/*.ts` 390개 중 `--selftest` 41개 · 그물 안 31 · **밖 10**):
+  `census-elem-answer-lists` · `census-elem-list-answers` · `census-g5w4-empty` ·
+  `census-tier-bench-g6` · `census-tier-frames-{g5,m1,m2,m3}` · `census-tier-missed-axes` ·
+  `emit-label-gauge`. **전부 «자»이지 «판정기»가 아니다** — 실데이터 모드가 종료 코드를
+  안 낸다(세기만 한다). 그물에 넣으면 「비어야 한다」를 강제하게 되어 다음 회차가
+  재료를 찾아 채울 때 **늘 빨갛다**(g5 가 `census-g5w4-empty.ts` 머리말에 그렇게 적었고
+  그 판단이 옳다). 그래서 **이름 규약이 곧 소속 규약**이다 —
+  `probe-` = 막는 판정기 · `census-`/`measure-` = 재는 자.
+  ⚠️ 그러니 **자가 판정기가 되면 이름을 바꿔야** 한다. 초4 물결4 의
+  `measure-elem-g4w4-shortcuts` 가 정확히 그랬다(결함이 있으면 종료 1을 낸다) —
+  만든 쪽이 보고서에 적어 넘겼고 오늘 옮겼다. **이 열 개는 그 검사를 통과한 것들이다.**
 
 변이 둘 다 빨강: ① 등록에서 빼면 「표에 없는 판정기」 ② 성질 규칙을 끄면 「파일이 없는 항목」.
 
