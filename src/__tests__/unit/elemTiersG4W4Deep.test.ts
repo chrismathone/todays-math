@@ -237,24 +237,41 @@ describe("2-2-1 심화중 — 두 삼각형을 «가장 짧은 변»이 가른�
       ].filter((c) => (longer ? c.min > bar : c.min < bar));
       expect(alive, `s${seed}: 살아남은 가지`).toHaveLength(1);
       expect(p.answer, `s${seed}`).toContain(`$${alive[0]!.sum}\\,`);
-      // ⑷ 음성 대조 — 조건을 뒤집으면 다른 쪽이 남는다.
-      const flipped = [
+      /*
+       * ⑷ 음성 대조 — **죽는 가지가 조건을 실제로 어긴다.**
+       * ⚠️ 처음에는 「조건 문구를 뒤집으면 다른 쪽이 남는다」로 썼는데 그것은 참이 아니다:
+       *    문턱이 작은 쪽 최단 변과 **같을 수 있어**(밭이 `lo <= bar` 를 허용한다)
+       *    「$bar$보다 짧다」로 뒤집으면 **둘 다 죽는다.** 조건을 뒤집는 것은 다른 문항을
+       *    만드는 일이고, 여기서 물을 것은 「이 문항에서 굳힘이 일을 했나」다.
+       */
+      const dead = [
         { min: minA, sum: 2 * side },
         { min: minB, sum: total - side },
-      ].filter((c) => (longer ? c.min < bar : c.min > bar));
-      expect(flipped, `s${seed}`).toHaveLength(1);
-      expect(flipped[0]!.sum, `s${seed}`).not.toBe(alive[0]!.sum);
+      ].filter((c) => c.sum !== alive[0]!.sum);
+      expect(dead, `s${seed}`).toHaveLength(1);
+      expect(
+        longer ? dead[0]!.min > bar : dead[0]!.min < bar,
+        `s${seed}: 죽는 가지가 조건을 어기지 않는다 — 굳힘이 장식이다`,
+      ).toBe(false);
       seen += 1;
     }
     expect(seen).toBe(SEEDS.length);
   });
 
+  /**
+   * ⚠️ 열쇠를 「두 변의 길이의 합」으로 잡으면 **내 발문이 스스로 걸린다** —
+   * 답을 묻는 문장이 「길이가 **같은 두 변의 길이의 합**은 몇 cm인가?」이기 때문이다.
+   * 삼각형 부등식은 「두 변의 합이 **나머지 한 변보다** 크다」로만 쓰이므로 그 꼴을 본다.
+   * (밭을 만들 때는 그 성질을 **생성 필터**로 쓴다 — 지면이 근거로 쓰는 것만 막는다.)
+   */
   it("삼각형 부등식을 발문·해설이 근거로 쓰지 않는다 (초4 교과 밖 — 반증 ③)", () => {
     for (const seed of WIDE) {
       const p = gen("2-2-1", seed, "심화중");
       for (const body of [p.content, p.solution]) {
-        expect(body, `s${seed}`).not.toContain("두 변의 길이의 합");
+        expect(body, `s${seed}`).not.toContain("나머지 한 변보다 크");
+        expect(body, `s${seed}`).not.toContain("나머지 한 변보다 길");
         expect(body, `s${seed}`).not.toContain("부등식");
+        expect(body, `s${seed}`).not.toContain("삼각형이 될 수");
       }
     }
   });
@@ -496,31 +513,43 @@ describe("지면 약속", () => {
 
 describe("반증 ⑥ — 순방향으로 답이 나오면 중·상이 아니다", () => {
   it("답을 읽을 수 있는 갈래는 전량 안 닿는다 · 못 잰 자리를 따로 센다", () => {
-    let read = 0;
-    let skipped = 0;
+    const stat: Record<string, { read: number; skipped: number }> = {};
     const bad: string[] = [];
     for (const [code, tier] of BUILT) {
+      stat[code] = { read: 0, skipped: 0 };
       for (const seed of SEEDS) {
         const p = gen(code, seed, tier);
         const answer = readRat(p.answer.replace(/\$/g, "").trim());
         if (!answer) {
-          skipped += 1;
+          stat[code]!.skipped += 1;
           continue;
         }
-        read += 1;
+        stat[code]!.read += 1;
         if (forwardReachable(pageNumbers(p.content), answer)) {
           bad.push(`${code} «${tier}» s${seed}: ${p.answer}`);
         }
       }
     }
     expect(bad.slice(0, 5)).toEqual([]);
-    // 🔴 **못 잰 자리를 세어 찍는다.** 1-2-3(답이 낱말) · 2-2-1·2-2-2(단위) ·
-    //    2-5-2(단위) · 2-5-3(두 쪽)은 `readRat` 이 못 읽는다 — 그 0 은 «깨끗»이 아니다.
-    //    실측으로 다섯 갈래 **전부** 축 밖이라 `read` 가 0 이다. 그것이 사실이므로
-    //    사실대로 못 박는다 — 「전량 안 닿는다」로 적으면 다음 사람이 속는다.
+    /*
+     * 🔴 **못 잰 자리를 세어 못 박는다** — 0 이 «깨끗»인지 «못 셈»인지 갈려야 한다.
+     * 실측(씨앗 16): 1-2-3 은 답이 낱말(예각·직각·둔각)이라 **16/16 축 밖**,
+     * 2-5-3 은 답이 두 쪽(「$650$명, $1100$명」)이라 **16/16 축 밖**이다.
+     * 2-2-1·2-2-2 는 `readRat` 이 단위 꼬리를 떼므로 읽힌다 — 거기서는 0 이 참말이다.
+     * ⚠️ 그리고 그 «닿음 0» 조차 좁다: `forwardReachable` 의 허용 꼴이 넷 다 곱을 물어
+     *    덧뺄셈·나눗셈 한 걸음에는 «예»를 못 낸다(2-2-1 의 답 $S-a$ 가 바로 그 부류다).
+     *    그 자리는 자가 아니라 **사람이 손으로** 봤다(보고서 §5).
+     */
+    const read = Object.values(stat).reduce((a, s) => a + s.read, 0);
+    const skipped = Object.values(stat).reduce((a, s) => a + s.skipped, 0);
     expect(read + skipped).toBe(BUILT.length * SEEDS.length);
-    expect(skipped).toBe(BUILT.length * SEEDS.length);
-    expect(read).toBe(0);
+    // 분모가 0이면 「닿음 0」이 공허하다 — 실제로 읽은 자리가 있어야 한다.
+    expect(read, JSON.stringify(stat)).toBeGreaterThan(SEEDS.length);
+    expect(stat["1-2-3"]!.read, "1-2-3 은 답이 낱말이라 축 밖이다").toBe(0);
+    expect(stat["2-5-3"]!.read, "2-5-3 은 답이 두 쪽이라 축 밖이다").toBe(0);
+    expect(skipped, JSON.stringify(stat)).toBeGreaterThanOrEqual(
+      2 * SEEDS.length,
+    );
   });
 
   it("검출기가 «예»를 낼 수 있다 — 같은 회차에 보인다", () => {
@@ -530,6 +559,133 @@ describe("반증 ⑥ — 순방향으로 답이 나오면 중·상이 아니다"
     expect(forwardReachable(pageNumbers("$12$, $5$"), readRat("53")!)).toBe(
       false,
     );
+  });
+});
+
+/* ─────────────────── 해설의 «이유» — 값이 아니라 글자를 본다 ─────────────────── */
+
+/**
+ * 🔴 물결 3 적대 검토가 「해설의 «이유»에 가드가 하나도 없다」를 짚었다 —
+ * 해설 문장을 열한 가지로 망가뜨렸는데 **열한 건 다 초록**이었다. 값 검사와 잣대
+ * 판정기는 「수가 맞나」만 보고 **「그 수를 왜 골랐다고 적었나」는 안 본다.**
+ *
+ * 아래 넷은 **글자만 보고** 판정한다. 그리고 각각 **눈금**(음성·양성)이 같은 시험에 있다 —
+ * 없으면 검출기가 조용히 0 이 되는 날 아무도 모른다.
+ */
+function faultsClock(content: string, solution: string): string[] {
+  const bad: string[] = [];
+  const early = content.includes("이릅니다");
+  const want = early ? "이르므로" : "늦으므로";
+  const wrong = early ? "늦으므로" : "이르므로";
+  if (!solution.includes(want)) bad.push(`해설에 「${want}」가 없다`);
+  if (solution.includes(wrong)) bad.push(`해설이 조건과 반대로 적었다`);
+  return bad;
+}
+
+function faultsIsoSide(content: string, solution: string): string[] {
+  const bad: string[] = [];
+  const longer = content.includes("보다 깁니다");
+  const want = longer ? "길므로" : "짧으므로";
+  const wrong = longer ? "짧으므로" : "길므로";
+  if (!solution.includes(want)) bad.push(`해설에 「${want}」가 없다`);
+  if (solution.includes(wrong)) bad.push(`해설이 조건과 반대로 적었다`);
+  return bad;
+}
+
+function faultsIsoAngle(content: string, solution: string): string[] {
+  const bad: string[] = [];
+  const bigger = content.includes("보다 큽니다");
+  const want = bigger ? "크므로" : "작으므로";
+  // 「크므로 … 나머지 한 각」·「작으므로 … 같은 두 각 중 하나」가 짝이다.
+  const branch = bigger ? "나머지 한 각" : "같은 두 각 중 하나";
+  if (!solution.includes(want)) bad.push(`해설에 「${want}」가 없다`);
+  if (!solution.includes(`${want} `)) bad.push(`판정 문장이 끊겼다`);
+  if (!solution.includes(branch))
+    bad.push(`해설이 고른 갈래가 「${branch}」가 아니다`);
+  return bad;
+}
+
+describe("해설의 «이유»가 성하다 — 값이 아니라 글자를 본다", () => {
+  it("1-2-3 · 2-2-1 · 2-2-2 의 판정 문장이 발문의 조건과 맞물린다", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE) {
+      const c = gen("1-2-3", seed, "심화중");
+      for (const f of faultsClock(c.content, c.solution))
+        bad.push(`1-2-3 s${seed}: ${f}`);
+      const s = gen("2-2-1", seed, "심화중");
+      for (const f of faultsIsoSide(s.content, s.solution))
+        bad.push(`2-2-1 s${seed}: ${f}`);
+      const a = gen("2-2-2", seed, "심화중");
+      for (const f of faultsIsoAngle(a.content, a.solution))
+        bad.push(`2-2-2 s${seed}: ${f}`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
+  it("2-2-1 해설이 고른 «앞/뒤의 경우»가 답과 맞물린다", () => {
+    const bad: string[] = [];
+    for (const seed of WIDE) {
+      const p = gen("2-2-1", seed, "심화중");
+      const [total, side] = grab(p.content, CM) as [number, number];
+      const answer = grab(p.answer, CM)[0]!;
+      // 「앞의 경우」 = 주어진 변이 같은 두 변 중 하나 → 합이 $2a$.
+      const wantFront = answer === 2 * side;
+      expect(answer === 2 * side || answer === total - side, `s${seed}`).toBe(
+        true,
+      );
+      const said = p.solution.includes("앞의 경우입니다");
+      if (said !== wantFront)
+        bad.push(`s${seed}: 해설이 고른 경우가 답과 어긋난다`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
+  it("2-5-2 해설이 «앞쪽 최댓값을 가진 때»를 이름으로 짚는다", () => {
+    type LineSpec = { values?: { label: string; value: number }[] };
+    const bad: string[] = [];
+    for (const seed of WIDE) {
+      const p = gen("2-5-2", seed, "심화중");
+      const vals = (p.figureSpec as LineSpec | null)?.values ?? [];
+      const vs = vals.map((v) => v.value);
+      const grew = Number(
+        new RegExp("값은 \\$(\\d+)\\$\\S* 늘었습니다").exec(p.content)![1],
+      );
+      const at = vs.indexOf(vs[4]! - grew);
+      const before = vs.slice(0, at);
+      const peakAt = before.indexOf(Math.max(...before));
+      const label = vals[peakAt]!.label.replace(/^(\d+)/, "$$$1$$");
+      if (!p.solution.includes(`${label}의 `)) {
+        bad.push(`s${seed}: 해설이 「${label}」을 안 짚는다`);
+      }
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+
+  it("자체 눈금 — 검출기 셋이 실제로 잡고, 맞는 것은 통과시킨다", () => {
+    // 음성 3 — 맞는 짝.
+    expect(faultsClock("… 이릅니다. …", "… 이르므로 그 시각은 …")).toEqual([]);
+    expect(
+      faultsIsoSide("… 보다 깁니다. …", "… 길므로 앞의 경우입니다."),
+    ).toEqual([]);
+    expect(
+      faultsIsoAngle(
+        "… 보다 큽니다. …",
+        "… 크므로 $6^\\circ$는 나머지 한 각입니다.",
+      ),
+    ).toEqual([]);
+    // 양성 3 — 뒤집힌 짝.
+    expect(
+      faultsClock("… 이릅니다. …", "… 늦으므로 그 시각은 …").length,
+    ).toBeGreaterThan(0);
+    expect(
+      faultsIsoSide("… 보다 깁니다. …", "… 짧으므로 뒤의 경우입니다.").length,
+    ).toBeGreaterThan(0);
+    expect(
+      faultsIsoAngle(
+        "… 보다 큽니다. …",
+        "… 작으므로 $6^\\circ$는 같은 두 각 중 하나입니다.",
+      ).length,
+    ).toBeGreaterThan(0);
   });
 });
 
