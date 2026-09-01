@@ -3377,6 +3377,187 @@ function div134Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
+/* ── 1-3 나눗셈 «심화중» — D-113 물결 4 (2026-09-01) ──────────────────────────
+ *
+ * ── 이 대단원에서 마디를 여는 자리 ──────────────────────────────────────────
+ * 초3 나눗셈은 **나머지가 없고 몫이 한 자리**다(소단원 이름이 그 약속이다). 그래서
+ * 되짚기의 길은 **곱셈구구뿐**이고, 「전체 수는 되짚었는데 «몇 개씩 몇 묶음»인지
+ * 모른다」가 되는 순간 마디가 안 굳는다 — 곱이 $a$ 인 곱셈구구가 **여럿**이기 때문이다.
+ * 굳히는 성질은 그 둘의 **크기 관계**다(한 곱셈식에서 나눗셈식이 둘 나오고, 그 둘을
+ * 가르는 것이 곧 «어느 쪽이 나누는 수인가»이다 — 1-3 의 이름 그 자체).
+ *
+ * ── 왜 1-3-3 한 자리인가 ────────────────────────────────────────────────────
+ * `1-3-3 심화하` 가 이미 「$b_0$ 씩 묶었더니 $q_0$ 묶음 → $c$ 씩 다시 묶으면?」이다.
+ * 거기서 **둘째 나누는 수 $c$ 를 안 주는 것**이 이 갈래다 — 사다리 한 칸이 정확히
+ * 「발문이 $c$ 를 주는가」로 갈린다(토대 17 §3 1-3 함정 (b) 가 짚은 그 자리).
+ * 나머지 셋은 **비운다** — 같은 재료라 옷만 갈아입힌 같은 문항이 되고(D-66⑸),
+ * 1-3-4 심화하는 아예 **같은 풀**(`DIV_COMBOS`)을 쓴다. 보고서 §4 에 수를 적었다.
+ *
+ * ── 🔴 심화상은 **비웠다 — 세어서** ────────────────────────────────────────
+ * 성질(크기 관계)이 후보를 **하나도 못 자르는** 자리는 전수로 **12짝**이고, 거기에
+ * 「묶음 수가 한 묶음의 수의 $m$ 배」를 걸어 정확히 하나가 남는 자리는 **4자리 ·
+ * 서로 다른 (전체 수, 답) 2가지**($a=12$ · $a=18$)뿐이다. 파일럿이 `2-1-1` 심화상을
+ * 「기준 수 $105$ 하나뿐」으로, 물결 2 가 `2-2-1·2-2-2` 를 「3짝」으로 비운 것과
+ * **같은 자리**다(원장님 다양성 원칙).
+ *
+ * ── 🔴 반증 ⑥ 을 이 안에서 잰다 — 공용 자가 여기서 눈이 멀다 ────────────────
+ * `forwardReachable` 의 허용 꼴은 전부 `a×b…` 라 **나눗셈이 아예 없다.** 그래서
+ * 나눗셈 대단원에서는 1단 「$18\div2$」조차 «안 닿음»이고, 그 0 은 «깨끗»이 아니라
+ * **«못 셈»**이다(`probe-elem-tier-backsolve` 가 1-3-1~4 를 「못 재는 소단원」으로 찍는다).
+ * 공용 자에 ÷ 를 넣는 것은 **재고 버린 것**이므로(`forwardReach.ts` 머리말 — 심화상의
+ * 28%를 거짓으로 문다) 여기 **생성기 안에** 두고, 이 좁은 수 범위에서만 쓴다.
+ */
+
+/**
+ * 지면에 찍힌 수 둘을 `+ − × ÷` 로 **한 번** 엮어 답에 닿나 (반증 ⑥, 1-3 전용).
+ *
+ * ⚠️ 「아무 일도 안 하는 연산」은 빼야 한다 — `×1`·`÷1` 은 지면의 수를 그대로 돌려주어
+ *    무엇이든 «닿음»으로 만든다(`forwardReachable` 이 곱에 같은 가드를 두는 까닭).
+ *    여기서는 지면의 수가 모두 $2$ 이상이라 곱은 안전하지만, 규칙은 같이 적어 둔다.
+ */
+function div13OneStep(nums: readonly number[], answer: number): boolean {
+  for (const a of nums)
+    for (const b of nums) {
+      if (a === b) continue;
+      if (a + b === answer) return true;
+      if (a - b === answer) return true;
+      if (a * b !== a && a * b !== b && a * b === answer) return true;
+      if (b !== 0 && a % b === 0 && a / b !== a && a / b === answer)
+        return true;
+    }
+  return false;
+}
+
+/** 곱이 $a$ 인 곱셈구구 짝 — 두 수가 모두 $2\sim9$(몫 한 자리라는 소단원 약속). */
+function guguPairs(a: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let k = 2; k <= 9; k += 1) {
+    if (a % k !== 0) continue;
+    const q = a / k;
+    if (q < 2 || q > 9) continue;
+    out.push([k, q]);
+  }
+  return out;
+}
+
+type Div133Mid = {
+  /** 전체 수 — 지면에 **없다**(되짚기가 만든다) */
+  a: number;
+  /** 처음 한 묶음의 수 · 처음 묶음 수 (지면에 찍히는 둘) */
+  b0: number;
+  q0: number;
+  /** 다시 묶을 수 있는 짝 전부 — 해설이 이대로 늘어놓는다 */
+  cand: [number, number][];
+  /** 굳히는 성질의 방향: 묶음 수가 한 묶음의 수보다 많다(true) / 적다(false) */
+  more: boolean;
+  /** 성질이 남긴 하나 */
+  k: number;
+  q: number;
+  /** 묶음 수를 묻는가(true) / 한 묶음의 수를 묻는가 */
+  askGroups: boolean;
+};
+
+/**
+ * 🔴 **문턱으로 거르지 않고 목록을 전수로 만든다** — 그래서 어떤 씨앗에서도 안 던진다.
+ * 걸러 내는 조건이 곧 이 갈래의 정의다:
+ *   ⑴ 다시 묶을 짝이 **둘 이상** — 하나면 마디가 굳어 심화하다(반증 ①)
+ *   ⑵ 크기 관계가 **정확히 하나**를 남긴다 — 여럿이면 답이 안 서고, 없으면 문항이 아니다
+ *   ⑶ 답이 지면에 이미 없다 · ⑷ 지면 두 수의 한 걸음으로 안 닿는다(반증 ⑥)
+ */
+function div133MidPool(): Div133Mid[] {
+  const out: Div133Mid[] = [];
+  for (let b0 = 2; b0 <= 9; b0 += 1)
+    for (let q0 = 2; q0 <= 9; q0 += 1) {
+      const a = b0 * q0;
+      // 🔴 **아래 «둘 이상» 은 지금 풀에서 구조적으로 죽은 가지다** — 지우지 않는다.
+      //    변이 하네스가 `< 2` → `< 1` 을 걸었을 때 «산출물이 그대로다»로 판정을
+      //    거부했고, 전수로 재니 늘어나는 자리가 **0**이었다. 까닭은 항등식이다:
+      //    짝이 둘뿐이면 그 둘은 $(b_0,q_0)$ 와 $(q_0,b_0)$ 이므로, $b_0$ 를 뺀 하나는
+      //    반드시 $(q_0,b_0)$ 이고 그 답은 $b_0$ 또는 $q_0$ — **아래 «답이 지면에
+      //    있다» 가드가 이미 전부 잡는다.** 그래도 남기는 까닭은 ⑴ 뜻을 적어 두는
+      //    자리이고 ⑵ 다른 조건이 바뀌면 되살아나기 때문이다. 「가드가 있다」로
+      //    읽지 말 것 — 지금 무는 것은 아래 가드다(물결 3 §9.1 과 같은 자리).
+      const cand = guguPairs(a).filter(([k]) => k !== b0);
+      if (cand.length < 2) continue;
+      for (const more of [true, false]) {
+        const hits = cand.filter(([k, q]) => (more ? q > k : q < k));
+        if (hits.length !== 1) continue;
+        const [k, q] = hits[0]!;
+        for (const askGroups of [true, false]) {
+          const ans = askGroups ? q : k;
+          if (ans === b0 || ans === q0) continue;
+          if (div13OneStep([b0, q0], ans)) continue;
+          out.push({ a, b0, q0, cand, more, k, q, askGroups });
+        }
+      }
+    }
+  if (out.length === 0) throw new Error("1-3-3 심화중 풀이 비었습니다");
+  return out;
+}
+
+let DIV133_MID: Div133Mid[] | null = null;
+
+/** 곱셈구구 짝을 지면 한 덩어리로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function guguList(pairs: readonly [number, number][]): string {
+  return expr(pairs.map(([k, q]) => `${k}\\times${q}`).join(",\\ "));
+}
+
+/**
+ * 5단 · 1-3-3 — 둘째 나누는 수를 **안 준다.** 곱셈구구가 짝을 여럿 만들고,
+ * **묶음 수와 한 묶음의 수의 크기 관계**가 하나만 남긴다.
+ *
+ * ⚠️ 해설은 짝을 **늘어놓되 계산하지 않는다** — 늘어놓는 것은 되짚기가 만든 «목록»이고,
+ *    거르는 데는 더 계산이 들지 않는다(눈으로 견준다). 그래서 D-115 ⑾ 로 **중**이다.
+ *    (물결 2 의 `2-2-3 심화중` 이 후보 $61,62,63$ 을 늘어놓는 것과 **같은 모양**이다.)
+ */
+function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  DIV133_MID ??= div133MidPool();
+  const f = pick(rng, DIV133_MID);
+  const thing = pick(rng, PACK_STUFF);
+  const 은는 = josa(thing, "은", "는");
+  const 이가 = josa(thing, "이", "가");
+  const 을를 = josa(thing, "을", "를");
+  // ⚠️ 담는 그릇의 낱말을 **발문과 해설이 같이** 쓴다 — 앞판은 발문이 「봉지」인데
+  //    해설이 「묶음」이라 한 문항 안에서 낱말이 갈렸다(지면에서 바로 보인다).
+  const [w, vPast, vIf, vAgain] = pick(rng, [
+    ["묶음", "묶었더니", "묶으면", "묶었더니"],
+    ["봉지", "담았더니", "담으면", "담았더니"],
+    ["상자", "담았더니", "담으면", "담았더니"],
+  ] as const);
+  const w이가 = josa(w, "이", "가");
+  const cmp = f.more
+    ? `${w} 수가 한 ${w}의 수보다 많았습니다`
+    : `${w} 수가 한 ${w}의 수보다 적었습니다`;
+  const 묶기 = vAgain === "묶었더니";
+  // 「한 묶음에 $6$개씩 묶으면」은 겹말이다 — 묶기에서는 그릇 말을 안 붙인다.
+  const 그릇 = 묶기 ? "" : `한 ${w}에 `;
+  const ask = f.askGroups
+    ? `다시 ${묶기 ? "묶은" : "담은"} ${w}${josa(w, "은", "는")} 몇 ${w}인지 쓰시오.`
+    : `다시 ${묶기 ? "묶을" : "담을"} 때 한 ${w}에 넣은 수는 몇 개인지 쓰시오.`;
+  const ans = f.askGroups ? f.q : f.k;
+  const 다시 = `같은 ${thing}${을를} 처음과 다른 수씩 남김없이 다시 ${vAgain} 한 ${w}의 수와 ${w} 수가 모두 한 자리 수였고, ${cmp}.`;
+  const stem = pick(rng, [
+    `${thing}${이가} 있습니다. 이 ${thing}${을를} ${그릇}${n(f.b0)}개씩 ${vPast} 남는 것 없이 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
+    `${thing} 몇 개를 ${그릇}${n(f.b0)}개씩 ${vPast} 꼭 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
+    `${thing}${은는} ${그릇}${n(f.b0)}개씩 ${vIf} 남는 것 없이 ${n(f.q0)}${w}${w이가} 됩니다. ${다시} ${ask}`,
+    `${thing} 몇 개가 있습니다. ${그릇}${n(f.b0)}개씩 ${vIf} 남는 것 없이 ${n(f.q0)}${w}입니다. ${다시} ${ask}`,
+  ]);
+  const why = f.more
+    ? `${w} 수가 한 ${w}의 수보다 많은 것`
+    : `${w} 수가 한 ${w}의 수보다 적은 것`;
+  // 🔴 마지막 나눗셈은 **답이 몫이 되는 쪽**으로 적는다 — 그러지 않으면 해설이
+  //    답과 다른 수로 끝나 「정답은 마지막 걸음의 값」이라는 이 대단원의 읽는 법이 깨진다.
+  const lastDiv = f.askGroups
+    ? `${f.a}\\div${f.k}=${f.q}`
+    : `${f.a}\\div${f.q}=${f.k}`;
+  return makeDeep(unit, stem, n(ans), [
+    `먼저 전체 수를 되짚습니다. ${expr(`${f.b0}\\times${f.q0}=${f.a}`)} 이므로 모두 ${n(f.a)}개입니다.`,
+    `남김없이 나누어 담는 방법은 곱이 ${n(f.a)} 인 곱셈식에서 찾습니다. 두 수가 모두 한 자리 수이고 처음 ${n(f.b0)}개씩이 아닌 것은 ${guguList(f.cand)} 입니다.`,
+    `${why}은 ${expr(`${f.k}\\times${f.q}`)} 하나뿐이므로 ${n(f.k)}개씩 ${n(f.q)}${w}입니다. ` +
+      `${expr(lastDiv)} 이므로 답은 ${n(ans)} 입니다.`,
+  ]);
+}
+
 // ── 1-4 곱셈 (D-72 확대) ────────────────────────────────────────────────
 //
 // 다섯 소단원이 **같은 네 갈래 함수**를 쓴다 — 수의 약속(몇십·올림 종류)은 `mulCaseOf` 가
@@ -7644,6 +7825,120 @@ function part241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+/* ── 2-4-1 «심화상» — D-113 물결 4 (2026-09-01) ──────────────────────────────
+ *
+ * 🔴 **물결 2 가 §7 에 스스로 열어 둔 물음을 닫는다.** 그 회차는 2-4-1·2-4-2·2-4-3 의
+ * 심화상을 비우며 「이 하나는 **«없다»가 아니라 «내가 못 찾았다»**에 가깝다 — 전수로
+ * 반증하지 않았다」고 적었다. 전수로 세었다 — **있다.**
+ *
+ * ── 무엇이 중과 상을 가르나 ────────────────────────────────────────────────
+ * 물결 2 의 심화중은 창 안에 «묶음 수의 배수»가 **하나뿐**이라, 이 소단원의 성질
+ * (「똑같이 나누므로 전체가 묶음 수로 나누어떨어져야 한다」)이 **곧바로** 굳힌다.
+ * 창을 넓혀 배수가 **여럿**이 되면 그 성질은 **한 후보도 못 자른다.** 그때
+ * 「그중 몇 묶음이 $P$ 개」를 같이 주면, 후보마다 **한 묶음을 실제로 구해**
+ * $P$ 가 온전한 묶음 수가 되는지 견주어야 하나가 남는다 — 그것이 «상»이다(D-115 ⑾).
+ *
+ * ⚠️ **2-4-2·2-4-3 에는 못 쓴다 — 구성상 불가다.** 그쪽은 분수를 **발문이 주고
+ *    개수를 답**하므로, 후보 전체 수가 여럿이면 답도 여럿이 된다. 그 둘은 그대로 비운다.
+ *
+ * 전수 실측: 자리 **1,581** · 서로 다른 (분모, 분자) **21** ·
+ *            서로 다른 (분모, 분자, 준 개수) **187** · 후보 수 2~5개.
+ */
+type Frac241High = {
+  d: number;
+  L: number;
+  U: number;
+  /** 창 안의 «묶음 수의 배수» 전부 — 해설이 이대로 늘어놓는다 */
+  cands: number[];
+  T: number;
+  m: number;
+  k: number;
+  /** 지면에 주는 개수 = $k \times m$ */
+  P: number;
+};
+
+/**
+ * 🔴 **답이 분수라 반증 ⑥ 을 «유리수까지» 본다.** 공용 `forwardReachable` 은 지면의
+ *    정수를 엮어 정수를 만들므로 **진분수인 답에는 구조적으로 못 닿는다** — 그 0 은
+ *    «깨끗»이 아니라 «못 셈»이다. 그래서 「지면 두 수를 분수로 읽는 길」($P/U$ 같은)을
+ *    여기서 따로 본다.
+ */
+function frac241FracOneStep(
+  nums: readonly number[],
+  kn: number,
+  kd: number,
+): boolean {
+  const eq = (a: number, b: number) => a * kd === kn * b;
+  for (const a of nums)
+    for (const b of nums) {
+      if (a === b) continue;
+      if (eq(a + b, 1) || eq(a - b, 1)) return true;
+      if (a * b !== a && a * b !== b && eq(a * b, 1)) return true;
+      if (b !== 0 && eq(a, b)) return true;
+    }
+  return nums.some((v) => eq(v, 1));
+}
+
+function frac241HighPool(): Frac241High[] {
+  const out: Frac241High[] = [];
+  for (let d = 3; d <= 8; d += 1)
+    for (let L = 10; L <= 90; L += 5)
+      for (const w of [10, 15, 20, 25]) {
+        const U = L + w;
+        if (U > 100) continue;
+        const cands: number[] = [];
+        for (let t = L + 1; t < U; t += 1)
+          if (t % d === 0 && t / d >= 3 && t / d <= 12) cands.push(t);
+        // 하나면 물결 2 의 «심화중» 이다(성질이 곧바로 굳힌다).
+        // 여섯 이상이면 해설이 후보를 다 적을 수 없다.
+        if (cands.length < 2 || cands.length > 5) continue;
+        if (!cands.every((t) => t >= 20 && t <= 96)) continue;
+        for (let k = 2; k < d; k += 1)
+          for (const T of cands) {
+            const m = T / d;
+            const P = k * m;
+            // 🔴 **다른 후보에서는 «아예 나누어떨어지지 않아야» 한다.**
+            //    「$P$ 개가 몇 묶음이 되기는 하는데 그 수가 전체 묶음 수 이상」인 자리를
+            //    남겨 두면, 해설의 「딱 떨어지는 것은 … 뿐입니다」가 **글자 그대로는
+            //    거짓**이 된다(실제로 첫 판이 그런 문항을 냈다 — $30$개·한 묶음 $5$개는
+            //    $6$묶음이라 «전체»가 되어 버려 버려지는데, 해설은 「안 떨어진다」로 읽힌다).
+            //    전수로 재니 이 울타리의 값은 1,581 → **1,492자리**뿐이다(서로 다른
+            //    (분모,분자,준 개수) 187 은 그대로) — 값싸게 해설을 참으로 만든다.
+            if (!cands.every((t) => t === T || P % (t / d) !== 0)) continue;
+            if (frac241FracOneStep([L, U, d, P], k, d)) continue;
+            out.push({ d, L, U, cands, T, m, k, P });
+          }
+      }
+  if (out.length === 0) throw new Error("2-4-1 심화상 풀이 비었습니다");
+  return out;
+}
+
+let FRAC241_HIGH: Frac241High[] | null = null;
+
+/** 6단 · 2-4-1 — 성질이 후보를 하나도 못 자른다. 후보마다 한 묶음을 만들어 견준다. */
+function part241High(unit: UnitSeed, rng: Rng): ElemProblem {
+  FRAC241_HIGH ??= frac241HighPool();
+  const f = pick(rng, FRAC241_HIGH);
+  const stuff = pick(rng, FRAC24_STUFF);
+  const 을를 = josa(stuff, "을", "를");
+  const 이가 = josa(stuff, "이", "가");
+  const stem = pick(rng, [
+    `${stuff}${이가} ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 이 ${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없고, 그중 몇 묶음이 ${n(f.P)}개입니다. ${n(f.P)}개는 전체의 얼마인지 분수로 나타내시오.`,
+    `${n(f.L)}개보다 많고 ${n(f.U)}개보다 적은 ${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누었더니 남는 것이 없었습니다. 그 가운데 몇 묶음이 ${n(f.P)}개일 때, ${n(f.P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} 수는 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없으며, 그중 몇 묶음을 세었더니 ${n(f.P)}개였습니다. ${n(f.P)}개는 전체의 얼마인지 분수로 나타내시오.`,
+    `${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. ${stuff} 수가 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적고 그중 몇 묶음이 ${n(f.P)}개일 때, ${n(f.P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+  ]);
+  // **후보마다 한 묶음을 실제로 만든다** — 이 걸음이 이 갈래를 상으로 만든다.
+  const tries = f.cands
+    .map((t) => expr(`${t}\\div${f.d}=${t / f.d}`))
+    .join(", ");
+  return makeDeep(unit, stem, expr(`\\frac{${f.k}}{${f.d}}`), [
+    `똑같이 ${n(f.d)}묶음으로 나누므로 전체는 ${n(f.d)}묶음으로 나누어떨어져야 합니다. ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데 그런 수는 ${list22(f.cands)} 입니다.`,
+    `후보마다 한 묶음이 몇 개인지 구해 봅니다. ${tries} 입니다.`,
+    `${n(f.P)}개가 묶음으로 딱 떨어지는 것은 한 묶음이 ${n(f.m)}개일 때뿐이므로 전체는 ${n(f.T)}개입니다. ${expr(`${f.P}\\div${f.m}=${f.k}`)} 에서 ${n(f.k)}묶음이므로 전체 ${n(f.d)}묶음 가운데 ${expr(`\\frac{${f.k}}{${f.d}}`)} 입니다.`,
+  ]);
+}
+
 /** 5단 · 2-4-2·2-4-3 — 같은 되짚기, 답은 «몇 개». `unitOnly` 는 단위분수 소단원. */
 function frac24MidOf(unitOnly: boolean) {
   return (unit: UnitSeed, rng: Rng): ElemProblem => {
@@ -8241,6 +8536,326 @@ function capSumDeepOf(cfg: CapCfg) {
       mixedCap(cfg, Math.floor(first / 1000), first % 1000),
       `처음 양은 나중 양에서 더 담은 양을 뺀 것입니다. ${cfg.small}끼리 뺄 수 없으므로 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jReul} $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jRo} 바꾸어 ${expr(`${endS + 1000}-${addS}=${first % 1000}`)} 이고, ${expr(`${endB - 1}-${addB}=${Math.floor(first / 1000)}`)} 이므로 ${mixedCap(cfg, Math.floor(first / 1000), first % 1000)} 입니다.`,
     );
+  };
+}
+
+/* ── 2-5 들이와 무게 «심화중»·«심화상» — D-113 물결 4 (2026-09-01) ────────────
+ *
+ * ── 🔴 먼저: **「자리 넘김」 축은 죽었다.** 되살리지 마라 ───────────────────
+ * 토대 17 §2.2 ⑴ 이 2-5 의 신청 예시(「$3\,L\ \square\,mL + 2\,L\ 480\,mL
+ * = 6\,L\ 230\,mL$」)를 전수로 검산해 **심화하**임을 보였고(후보가 늘 하나 —
+ * 반증 ①, 「받아올림이 한 번」을 지워도 답이 같다 — 반증 ⑤), 물결 3 이 그 뿌리가
+ * **항등식**임을 진법과 무관하게 확인했다($a-b=c$ 이면 $b+c=a$ 라 두 뺄셈의 자리
+ * 넘김이 같은 덧셈의 넘김이다 — 시각 1,036,080짝 · 길이 4,498,500짝 · 어긋남 0).
+ * 밑이 $1000$ 이고 미지수가 $[1,999]$ 이면 **mod 되짚기의 답이 정확히 하나**다.
+ * 그래서 **합·차의 한 자리를 가리는 모든 판**은 마디가 굳는다.
+ *
+ * ── 그러면 무엇이 남는가 — **«몇 그릇인가»가 안 굳는다** ────────────────────
+ * 이 대단원은 **나눗셈을 안 쓴다**(해설에 한 번도 안 나오고, $7000\div1400$ 은 초3
+ * 범위 밖이다). 그래서 「같은 그릇으로 몇 번 부었나」를 물으면 되짚기가 후보
+ * $1,2,3,\ldots$ 를 **만들고** 발문은 그것을 주지 않는다. 이 마디를 굳히는 이 소단원의
+ * 성질이 곧 **자리 넘김**이다 — 작은 자리는 $1000$ 보다 작으므로, **작은 자리만
+ * 더해 가며 끝자리를 보면** 후보가 걸러진다.
+ *
+ * ── 중·상을 가르는 자리 (D-115 ⑾) ──────────────────────────────────────────
+ *   · **심화중** — 합을 «몇 L 몇 mL» 로 준다. 작은 자리만 보면 후보가 **하나**로
+ *     줄어든다(그 자리 성질이 «끝까지 계산하지 않고» 걸러 낸다). 큰 자리는 확인일 뿐이다.
+ *     $S$ 를 더해 가는 끝자리가 $1\!\sim\!9$ 번에서 **한 번만** 그 값이 되는 자리만 쓴다.
+ *   · **심화상** — 합을 «$L_1$ L 보다 많고 $L_2$ L 보다 적다» 는 **범위**로만 준다.
+ *     그러면 작은 자리가 지면에 없어 그 성질이 **한 후보도 못 자르고**, 그릇 수를
+ *     하나씩 **실제로 만들어** 범위와 견주어야 한다.
+ *
+ * ── 🔴 비운 자리 넷 — 2-5-1·2-5-2·2-5-4·2-5-5 ──────────────────────────────
+ * 비교(2-5-1·2-5-4)는 답이 「가·나」·부등호라 **되짚을 값이 없다.** 단위(2-5-2·2-5-5)는
+ * 환산이 **일대일**이라 마디가 늘 굳고(반증 ①), 거기에 이 갈래를 넣으면 굳히는 성질이
+ * 「합과 차」의 것이 되어 **반증 ③** 에 걸린다(토대 17 §3 2-5 함정 ⑶ 이 같은 말을 한다).
+ *
+ * ── 반증 ⑥ 도 여기서 잰다 ──────────────────────────────────────────────────
+ * 답이 「$4\,\mathrm{L}\ 811\,\mathrm{mL}$」 꼴이라 공용 자의 `readRat` 이 이 대단원을
+ * **한 문항도 안 읽는다**(토대 17 §3 이 실측으로 적었다). 그래서 지면의 수 넷
+ * ($B,S,E_B,E_S$ 또는 $B,S,L_1,L_2$)을 `+ − × ÷` 로 한 번 엮어 답에 닿으면 목록에서 뺀다.
+ */
+
+/** 지면의 수 둘을 한 번 엮어 답에 닿나 (반증 ⑥, 2-5 전용 — 1-3 판과 같은 규칙). */
+function cap25OneStep(nums: readonly number[], answer: number): boolean {
+  return div13OneStep(nums, answer);
+}
+
+/*
+ * ⚠️ **수 뒤에 조사를 붙이지 마라** — g3 의 규약은 「끝소리로 고른다」가 아니라
+ *    **「붙이지 않는다」**이고, `elemTiersG3.test.ts` 가 초3 **전 소단원 전 갈래**에서
+ *    「판정할 자리 0」을 잠근다. 앞판이 g4 의 `NUM_BATCHIM` 표를 여기 옮겨 적어
+ *    「$250$이 되는 것은」을 냈다가 그 시험이 물었다. 표를 지우고 **문장을 바꿨다**
+ *    (「끝자리가 $250$ 인 것은」). 조사표를 다시 들여오지 마라.
+ */
+
+type Cap25Mid = {
+  /** 한 그릇의 양 */
+  b: number;
+  s: number;
+  /** 그릇 수 = 답 */
+  k: number;
+  /** 모두 부은 뒤 */
+  eb: number;
+  es: number;
+  /** 작은 자리만 더해 갈 때의 끝자리 — 해설이 이대로 늘어놓는다 */
+  tail: number[];
+};
+
+/**
+ * 🔴 목록을 **전수로** 만든다(문턱으로 거르지 않는다) — 그래서 어떤 씨앗에서도 안 던진다.
+ *   ⑴ 작은 자리 끝자리가 $1\!\sim\!9$ 번에서 **한 번만** $E_S$ 가 된다(성질이 굳힌다)
+ *   ⑵ 합의 작은 자리가 $0$ 이 아니다 — 지면에 「$7\,L\ 0\,mL$」 가 나가면 안 된다
+ *   ⑶ 답이 지면에 없고, 지면 두 수의 한 걸음으로 안 닿는다(반증 ⑥)
+ *   ⑷ 그릇 수가 $3$ 이상 — 둘이면 «두 번 더하기»라 응용과 구별되지 않는다
+ */
+function cap25MidPool(): Cap25Mid[] {
+  const out: Cap25Mid[] = [];
+  for (let b = 1; b <= 2; b += 1)
+    for (let s = 100; s <= 900; s += 50)
+      // 🔴 **아래 하한 $3$ 도 지금 풀에서 죽은 가지다** — 변이(`k = 3` → `k = 2`)에
+      //    하네스가 판정을 거부했고 전수로 재니 늘어나는 자리가 **0**이었다.
+      //    그릇이 둘이면 큰 자리가 $2$ 또는 $3$ 이 되어 `page.includes(2)` 나
+      //    「$3-1$」 한 걸음에 반드시 걸린다. 지우지 않는 까닭은 위와 같다.
+      for (let k = 3; k <= 7; k += 1) {
+        const total = (b * 1000 + s) * k;
+        if (total >= 10000) continue;
+        const es = total % 1000;
+        if (es === 0) continue;
+        const eb = Math.floor(total / 1000);
+        const same: number[] = [];
+        for (let j = 1; j <= 9; j += 1) if ((s * j) % 1000 === es) same.push(j);
+        if (same.length !== 1) continue;
+        const page = [b, s, eb, es];
+        if (page.includes(k)) continue;
+        if (cap25OneStep(page, k)) continue;
+        const tail = Array.from({ length: k }, (_, i) => (s * (i + 1)) % 1000);
+        out.push({ b, s, k, eb, es, tail });
+      }
+  if (out.length === 0) throw new Error("2-5 심화중 풀이 비었습니다");
+  return out;
+}
+
+type Cap25High = {
+  b: number;
+  s: number;
+  /** 그릇 수 = 답 */
+  k: number;
+  /** 범위 (큰 단위) */
+  lo: number;
+  hi: number;
+  /** 하나씩 만들어 본 합(작은 단위) — 해설이 이대로 늘어놓는다 */
+  runs: number[];
+};
+
+/**
+ * 🔴 범위가 **딱 하나**를 남기는 자리만 쓴다. 그리고 바로 앞·뒤 그릇 수가 실제로
+ *    빗나가는 것을 해설이 보여야 하므로, $k+1$ 까지의 합이 지면 범위 안에 든다
+ *    (10,000 을 넘으면 견줄 것이 못 된다).
+ */
+function cap25HighPool(): Cap25High[] {
+  const out: Cap25High[] = [];
+  for (let b = 1; b <= 2; b += 1)
+    for (let s = 100; s <= 900; s += 50) {
+      const per = b * 1000 + s;
+      for (let lo = 2; lo <= 8; lo += 1)
+        for (let hi = lo + 1; hi <= 9; hi += 1) {
+          const hits: number[] = [];
+          for (let k = 2; k <= 9; k += 1) {
+            const t = per * k;
+            if (t > lo * 1000 && t < hi * 1000) hits.push(k);
+          }
+          if (hits.length !== 1) continue;
+          const k = hits[0]!;
+          // 셋 미만이면 만들어 견주는 일이 아니고, $k+1$ 이 네 자리를 넘으면 못 견준다.
+          // 🔴 앞쪽(`k < 3`)은 지금 풀에서 죽은 가지다 — 변이(`< 2`)에 하네스가 판정을
+          //    거부했고 전수로 늘어나는 자리가 **0**이었다(그릇이 둘이면 지면의 수
+          //    한 걸음에 반드시 걸린다). **뒤쪽은 살아 있다** — 그 변이는 RED 다.
+          if (k < 3 || per * (k + 1) >= 10000) continue;
+          const page = [b, s, lo, hi];
+          if (page.includes(k)) continue;
+          if (cap25OneStep(page, k)) continue;
+          const runs = Array.from({ length: k + 1 }, (_, i) => per * (i + 1));
+          out.push({ b, s, k, lo, hi, runs });
+        }
+    }
+  if (out.length === 0) throw new Error("2-5 심화상 풀이 비었습니다");
+  return out;
+}
+
+let CAP25_MID: Cap25Mid[] | null = null;
+let CAP25_HIGH: Cap25High[] | null = null;
+
+/** 수 여러 개를 **한 덩어리** KaTeX 로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function list25(values: readonly number[]): string {
+  return expr(values.join(",\\ "));
+}
+
+/**
+ * 「붓다」는 들이의 말이다 — 무게 쪽(감자·밀가루)은 **담는다.** 한 낱말이라도
+ * 어긋나면 지면에서 바로 보인다(「사과를 부었더니」).
+ */
+const CAP25_VERB = {
+  L: {
+    past: "부었더니",
+    iff: "부으면",
+    adj: "부은",
+    now: "부을",
+    ing: "붓는",
+    /** 담아 오는 쪽 그릇 — 감자를 「병」에 담지 않는다 */
+    packs: ["병", "통"],
+  },
+  kg: {
+    past: "담았더니",
+    iff: "담으면",
+    adj: "담은",
+    now: "담을",
+    ing: "담는",
+    packs: ["봉지", "자루"],
+  },
+} as const;
+
+function cap25Verb(cfg: CapCfg) {
+  return cfg.big === "L" ? CAP25_VERB.L : CAP25_VERB.kg;
+}
+
+/**
+ * 심화중·심화상이 **같은 발문 틀**을 쓴다 — 다른 것은 마지막 조건(합이냐 범위냐)뿐이다.
+ *
+ * ⚠️ **세는 말을 해설과 같이 쓴다.** 앞판은 발문이 「몇 번 부었는지」인데 해설이
+ *    「$3$개입니다」로 끝나 한 문항 안에서 세는 말이 갈렸다(지면에서 바로 보인다).
+ *    그래서 틀과 세는 말을 **한 곳에서 같이** 돌려준다.
+ */
+function cap25Stem(
+  rng: Rng,
+  cfg: CapCfg,
+  p: {
+    thing: string;
+    을를: string;
+    이가: string;
+    vessel: string;
+    per: string;
+    /** 「… 가 되었습니다」 / 「… 보다 적었습니다」 */
+    tailText: string;
+    /** 「모두 … 라면」 / 「… 보다 적다면」 — 조건절 꼴 */
+    tailIf: string;
+  },
+): [string, string] {
+  const { thing, 을를, 이가, per, tailText, tailIf } = p;
+  const v = cap25Verb(cfg);
+  const pack = pick(rng, v.packs);
+  // 담아 오는 그릇과 붓는 그릇이 같은 낱말이면 「봉지를 여러 봉지 모아 한 봉지에」가 된다.
+  const vessel = p.vessel === pack ? `큰 ${p.vessel}` : p.vessel;
+  // ⚠️ **다섯 틀이 모두 「… 씩 담았습니다」로 시작한다** — 소단원 조건 검사
+  //    (`probe-elem-section-conditions` 의 「합과 차」)가 문장형에서 그 말을 찾는다.
+  //    앞판은 「여러 번 부었더니」로만 적었다가 24/40 씨앗이 위반으로 걸렸다.
+  //    낱말을 맞추는 것이 옳다 — 공용 판정기를 넓히면 다른 물결의 관문이 흔들린다.
+  const rows: readonly (readonly [string, string])[] = [
+    [
+      `똑같은 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}에 담긴 ${thing}${을를} 모두 한 ${vessel}에 ${v.past} ${thing}${이가} ${tailText}. ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `${pack}마다 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}들을 모두 한 ${vessel}에 ${v.past} ${tailText}. ${v.adj} ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `한 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}${josa(pack, "으로", "로")} ${vessel}에 여러 번 ${v.past} ${thing}${이가} 모두 ${tailText}. 몇 번 ${v.past.slice(0, -2)}는지 쓰시오.`,
+      "번",
+    ],
+    [
+      `똑같은 그릇에 ${thing}${을를} ${per} 씩 담았습니다. 이 그릇들을 한 ${vessel}에 모두 ${v.past.replace("더니", "습니다")}. ${v.adj} ${thing}${이가} ${tailIf} 그릇은 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `한 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이런 ${pack}${josa(pack, "을", "를")} 몇 ${pack} 사서 한 ${vessel}에 모두 ${v.past} ${tailText}. 산 ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+  ];
+  const row = pick(rng, rows);
+  return [row[0], row[1]];
+}
+
+/**
+ * 5단 · 2-5-3 · 2-5-6 — 「몇 그릇인가」가 안 굳고, **작은 자리의 끝자리**가 굳힌다.
+ *
+ * ⚠️ 해설은 끝자리를 **늘어놓되 큰 자리는 안 센다** — 그것이 D-115 ⑾ 의 «끝까지
+ *    계산하지 않고 걸러 낸다»이고, 그래서 상이 아니라 **중**이다. 큰 자리는 맨 끝
+ *    한 줄에서 **확인**으로만 쓴다.
+ */
+function capSumMidOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    CAP25_MID ??= cap25MidPool();
+    const f = pick(rng, CAP25_MID);
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const 을를 = josa(thing, "을", "를");
+    const 이가 = josa(thing, "이", "가");
+    const per = mixedCap(cfg, f.b, f.s);
+    const end = mixedCap(cfg, f.eb, f.es);
+    const [stem, cnt] = cap25Stem(rng, cfg, {
+      thing,
+      을를,
+      이가,
+      vessel,
+      per,
+      tailText: `${end} ${cfg.jGa} 되었습니다`,
+      // 「$9\,kg\ 300\,g$ **이**라면」 — 단위를 읽은 소리 뒤 조사다(cfg.jNun 과 같은 축).
+      tailIf: `모두 ${end} ${cfg.jNun === "은" ? "이라면" : "라면"}`,
+    });
+    const carry = Math.floor((f.s * f.k) / 1000);
+    const v = cap25Verb(cfg);
+    return makeDeep(unit, stem, n(f.k), [
+      `${cfg.small}끼리만 봅니다. 한 번 ${v.now} 때마다 ${cfg.small} 자리는 ${n(f.s)} 씩 커지고, $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jGa} 되면 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jRo} 받아올림합니다. 그래서 ${cfg.small} 자리는 차례로 ${list25(f.tail)} 입니다.`,
+      // ⚠️ **수 뒤에 조사를 붙이지 않는다**(g3 규약 — `josa` 주석. 시험이 전수로 잠근다).
+      //    「$250$ 이 되는 것은」이 아니라 「끝자리가 $250$ 인 것은」으로 적는다.
+      // ⚠️ **「뿐」이라 쓰지 않는다** — 위 목록은 $k$ 번째까지만 늘어놓으므로 그 글만으로는
+      //    «그 뒤에 또 없다»를 못 보인다. 「처음」이라 적고 **다음 걸음이 확인**한다.
+      `${cfg.small} 자리가 ${n(f.es)} 인 것은 ${n(f.k)} 번째가 처음입니다.`,
+      `확인하면 ${cfg.small}끼리는 ${expr(`${f.s}\\times${f.k}=${f.s * f.k}`)}, ${cfg.big}끼리는 ${expr(`${f.b}\\times${f.k}=${f.b * f.k}`)} 이고, ${unitNum(f.s * f.k, cfg.small)} ${cfg.jNun} ${mixedCap(cfg, carry, f.es)} 이므로 ${expr(`${f.b * f.k}+${carry}=${f.eb}`)} 에서 ${end} 입니다. 따라서 ${n(f.k)}${cnt}입니다.`,
+    ]);
+  };
+}
+
+/**
+ * 6단 · 2-5-3 · 2-5-6 — 합을 **범위로만** 주어 자리 성질이 한 후보도 못 자른다.
+ * 그릇 수를 하나씩 **실제로 만들어** 범위와 견주어야 한다.
+ */
+function capSumHighOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    CAP25_HIGH ??= cap25HighPool();
+    const f = pick(rng, CAP25_HIGH);
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const 을를 = josa(thing, "을", "를");
+    const 이가 = josa(thing, "이", "가");
+    const per = mixedCap(cfg, f.b, f.s);
+    const perSmall = f.b * 1000 + f.s;
+    const lo = unitNum(f.lo, cfg.big);
+    const hi = unitNum(f.hi, cfg.big);
+    const [stem, cnt] = cap25Stem(rng, cfg, {
+      thing,
+      을를,
+      이가,
+      vessel,
+      per,
+      tailText: `${lo} 보다 많고 ${hi} 보다 적었습니다`,
+      tailIf: `${lo} 보다 많고 ${hi} 보다 적다면`,
+    });
+    // 하나씩 **실제로 만든다** — 이 걸음이 이 갈래를 상으로 만든다.
+    const v = cap25Verb(cfg);
+    const builds = f.runs
+      .slice(1)
+      .map(
+        (val, i) =>
+          `${n(i + 2)}${cnt}까지 ${v.iff} ${expr(`${f.runs[i]!}+${perSmall}=${val}`)}`,
+      )
+      .join(", ");
+    return makeDeep(unit, stem, n(f.k), [
+      `한 번에 ${v.ing} 양은 ${per}, 곧 ${unitNum(perSmall, cfg.small)} 입니다. 수를 하나씩 늘려 가며 모두 얼마가 되는지 만들어 봅니다.`,
+      `처음 한 ${cnt}${josa(cnt, "은", "는")} ${unitNum(perSmall, cfg.small)}, ${builds} 입니다.`,
+      `${lo} ${cfg.jNun} ${unitNum(f.lo * 1000, cfg.small)}, ${hi} ${cfg.jNun} ${unitNum(f.hi * 1000, cfg.small)} 입니다. 이 사이에 있는 것은 ${unitNum(f.runs[f.k - 1]!, cfg.small)} 하나뿐이므로 ${n(f.k)}${cnt}입니다.`,
+    ]);
   };
 }
 
@@ -13038,11 +13653,22 @@ export const G3_TIERS: ElemTierMap = {
     응용: div132Apply,
     심화하: div132Deep,
   },
+  // ⚠️ **1-3-1 · 1-3-2 · 1-3-4 는 심화중을 비운다** — 재료가 하나뿐이기 때문이다.
+  //    초3 나눗셈에서 마디를 여는 길은 「곱이 $a$ 인 곱셈구구가 여럿」 하나이고,
+  //    그 짝이 **둘 이상 남는 전체 수는 $12,16,18,24,36$ 다섯**뿐이다(전수).
+  //    네 소단원에 같은 재료를 옷만 갈아입혀 넣으면 한 시험지에 같은 문항이 넷 선다
+  //    (D-66⑸). 그래서 **사다리 한 칸이 «발문이 둘째 나누는 수를 주는가»로 갈리는**
+  //    1-3-3 하나에만 둔다 — 그 자리의 심화하가 정확히 그 수를 주는 문항이다.
+  //    ⚠️ 1-3-4 심화하는 1-3-3 심화하와 **같은 풀**(`DIV_COMBOS`)을 이미 쓴다.
+  // ⚠️ **심화상은 넷 다 비운다 — 세어서.** 크기 관계가 후보를 하나도 못 자르는 자리가
+  //    전수 12짝이고, 거기에 「몫이 나누는 수의 $m$ 배」를 걸어 하나가 남는 자리는
+  //    **4자리 · 서로 다른 (전체 수, 답) 2가지**뿐이다. 보고서 `tier-fill-g3-w4.md` §4.
   "초3|1-3-3": {
     연산: div133Calc,
     기본: div133Word,
     응용: div133Apply,
     심화하: div133Deep,
+    심화중: div133Mid,
   },
   "초3|1-3-4": {
     연산: div134Calc,
@@ -13282,10 +13908,14 @@ export const G3_TIERS: ElemTierMap = {
     응용: part241Apply,
     심화하: part241Deep,
     심화중: part241Mid,
-    // ⚠️ 심화상은 비운다 — 이 소단원의 굳히는 성질(「전체가 묶음 수로 나누어떨어진다」)은
-    //    범위 안 배수를 **늘 하나로** 집는다. 성질이 못 굳히는 자리를 만들려면 창을
-    //    넓혀야 하는데 그러면 답이 여럿이 되어 문항이 아니다. 2-4 의 심화상은
-    //    성질이 무력한 2-4-5(대분수) 에 둔다.
+    // 🔴 **심화상을 세웠다 (물결 4, 2026-09-01)** — 물결 2 가 여기 적어 둔 「비운다」를
+    //    뒤집는다. 그 회차의 근거는 「창을 넓히면 답이 여럿이 되어 문항이 아니다」였는데,
+    //    **「그중 몇 묶음이 $P$ 개」를 같이 주면** 후보마다 한 묶음을 실제로 구해
+    //    $P$ 가 온전한 묶음 수가 되는지 견주게 되어 답이 **하나로** 선다.
+    //    전수 실측 **1,581자리** · 서로 다른 (분모,분자,준 개수) **187**.
+    //    (물결 2 는 스스로 「«없다»가 아니라 «내가 못 찾았다»에 가깝다 — 전수로
+    //     반증하지 않았다」고 §7 에 적어 두었다. 그 물음을 닫는다.)
+    심화상: part241High,
   },
   // (1) 은 단위분수, (2) 는 분자 2 이상 — **분자 하나로만** 갈리므로 같은 공장을 쓴다.
   "초3|2-4-2": {
@@ -13396,12 +14026,17 @@ export const G3_TIERS: ElemTierMap = {
     응용: subApplyOf(2, 2),
     심화하: subDeepOf(2, 2),
   },
+  // ⚠️ **2-5-1 · 2-5-4(비교)는 둘 다 비운다** — 답이 「가·나」·부등호라 **되짚을 값이
+  //    없다.** 억지로 넣으면 실은 단위(2-5-2·2-5-5) 문항이 되어 반증 ③ 이다.
   "초3|2-5-1": {
     연산: capCmpCalcOf(CAP_L),
     기본: capCmpWordOf(CAP_L),
     응용: capCmpApplyOf(CAP_L),
     심화하: capCmpDeepOf(CAP_L),
   },
+  // ⚠️ **2-5-2 · 2-5-5(단위)도 둘 다 비운다** — 환산은 **일대일**이라 되짚어도
+  //    마디가 늘 하나로 굳는다(반증 ①). 「몇 그릇인가」를 여기에 넣으면 굳히는 성질이
+  //    「합과 차」의 자리 넘김이 되어 소단원 밖이다(반증 ③, 토대 17 §3 2-5 함정 ⑶).
   "초3|2-5-2": {
     연산: capUnitCalcOf(CAP_L),
     기본: capUnitWordOf(CAP_L),
@@ -13413,6 +14048,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: capSumWordOf(CAP_L),
     응용: capSumApplyOf(CAP_L),
     심화하: capSumDeepOf(CAP_L),
+    심화중: capSumMidOf(CAP_L),
+    심화상: capSumHighOf(CAP_L),
   },
   "초3|2-5-4": {
     연산: capCmpCalcOf(CAP_KG),
@@ -13431,6 +14068,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: capSumWordOf(CAP_KG),
     응용: capSumApplyOf(CAP_KG),
     심화하: capSumDeepOf(CAP_KG),
+    심화중: capSumMidOf(CAP_KG),
+    심화상: capSumHighOf(CAP_KG),
   },
   // ⚠️ 2-6-1 은 **둘 다 비웠다** — 세어서 정했다. 마디를 열 축은 「값이 범위 안」
   //    하나이고 굳힐 성질은 「값은 한 칸이 나타내는 수의 배수」 하나인데, 엔진이 쓰는
