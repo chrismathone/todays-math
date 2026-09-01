@@ -327,10 +327,10 @@ npm run test                            §6
 ## 6. 관문
 
 ```
-npm run test          → §6.1
+npm run test                            ✅ 모두 초록 · **종료 코드 0** (§6.1)
 node scripts/qa/sweep-elem-probes.mjs   판정기 29개 · 빨강 0 · 울타리 0   ✅
-npx tsc --noEmit      오류 0
-npx eslint …          깨끗
+npx tsc --noEmit                        오류 0
+npx eslint …                            깨끗
 ```
 
 ### 6.1 관문 결과 — **초록. 그런데 첫 회차는 빨갰고, 그 절반이 내 탓이었다**
