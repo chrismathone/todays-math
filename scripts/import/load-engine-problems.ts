@@ -43,7 +43,11 @@ import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import { expandFamily } from "../../src/lib/engine/expandEngine";
-import { dedupeByVariant, distinctKey } from "../../src/lib/engine/variants";
+import {
+  dedupeByVariant,
+  distinctKey,
+  occupiesPoolSlot,
+} from "../../src/lib/engine/variants";
 import {
   elemProblemType,
   elementaryUnits,
@@ -680,18 +684,32 @@ async function apply(planFile: string, doApply: boolean) {
       answer: true,
       problemCode: true,
       figureSvg: true,
+      // 🔴 「이미 있다」는 «출제 풀에 이미 있다»여야 한다 — 이 둘을 안 읽으면
+      //    잠긴 행이 자리를 차지해 **새 문항이 못 들어온다**(실측 단답형 41건).
+      reviewStatus: true,
+      directUseAllowed: true,
     },
   });
   const norm = (x: string) => x.replace(/\s+/g, " ").trim();
+  // 🔴 **자리를 차지하는 것만** 「이미 있다」로 센다 (2026-09-01).
+  //    종전에는 `familyKey` 로만 골라 **잠긴 행까지** 자리로 셌다. 초등에는
+  //    2026-08-24 옛 형식 1,751행이 `directUseAllowed=false` 로 잠겨 있는데,
+  //    새 단답형이 그 잠긴 행과 발문·정답이 같아 **버려졌다.** 객관식은 보기가
+  //    붙어 열쇠가 달라 살아남았고 — 그래서 **짝 없는 객관식 41행**이 생기고
+  //    그 짝인 **단답형 41건은 아예 못 들어왔다.** 풀은 그 문항을 한 벌도 못 가진다.
+  //    판정은 `occupiesPoolSlot` 한 곳에 있다 — 옮겨 적지 마라.
+  const occupying = already.filter(occupiesPoolSlot);
+  const blocked = already.filter((p) => !occupiesPoolSlot(p));
+  const keyOfDb = (p: (typeof already)[number]) =>
+    `${norm(p.content)}||${norm(p.answer)}||${p.figureSvg ?? ""}`;
   const seenInDb = new Map<string, string>();
-  for (const p of already)
-    seenInDb.set(
-      `${norm(p.content)}||${norm(p.answer)}||${p.figureSvg ?? ""}`,
-      p.problemCode,
-    );
+  for (const p of occupying) seenInDb.set(keyOfDb(p), p.problemCode);
+  /** 잠겨서 자리를 안 내주는 행 — **조용히 넘기지 않고 세어 찍는다.** */
+  const blockedKeys = new Map<string, string>();
+  for (const p of blocked) blockedKeys.set(keyOfDb(p), p.problemCode);
   /** 그림을 뺀 옛 열쇠 — 「그림만 달라 살아남은 것」을 세려고 함께 둔다. */
   const seenInDbNoFig = new Set(
-    already.map((p) => `${norm(p.content)}||${norm(p.answer)}`),
+    occupying.map((p) => `${norm(p.content)}||${norm(p.answer)}`),
   );
   const beforeDbDedupe = fresh.length;
   let rescuedByFigure = 0;
@@ -723,6 +741,27 @@ async function apply(planFile: string, doApply: boolean) {
       `   🟢 발문·정답은 같은데 **그림이 달라** 살린 것 ${rescuedByFigure}건` +
         ` — 옛 열쇠였으면 통째로 버려졌다.`,
     );
+  // 🔴 **잠긴 행과 겹치는 것은 조용히 넘기지 않는다.** 그 행이 「일부러 잠근 것」이면
+  //    같은 문항이 새 번호로 되살아나는 셈이라, 사람이 볼 수 있어야 한다.
+  const 잠긴것과겹침 = [...keptStems.values()].filter((stem) =>
+    blockedKeys.has(
+      `${norm(stem.content)}||${norm(stem.answer)}||${svgs.get(stem.externalId) ?? ""}`,
+    ),
+  );
+  if (잠긴것과겹침.length > 0) {
+    console.log(
+      `   🟢 **잠긴 행**(출제 못 함)과 같아서 살린 것 ${잠긴것과겹침.length}건` +
+        ` — 종전에는 이것이 자리를 차지해 문항이 통째로 안 들어왔다.`,
+    );
+    for (const s of 잠긴것과겹침.slice(0, 5))
+      console.log(
+        `      ${s.origin} ← 잠긴 ${blockedKeys.get(
+          `${norm(s.content)}||${norm(s.answer)}||${svgs.get(s.externalId) ?? ""}`,
+        )}`,
+      );
+    if (잠긴것과겹침.length > 5)
+      console.log(`      … 그리고 ${잠긴것과겹침.length - 5}건 더`);
+  }
   fresh.length = 0;
   fresh.push(...kept);
 
