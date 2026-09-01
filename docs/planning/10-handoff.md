@@ -89,6 +89,15 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 
 ### 0-M.3 성적
 
+**관문** — `npx vitest run` **355 passed | 1 skipped (356)** · **13,651 passed | 129 skipped**
+· 종료 코드 0 · 582초. 저장소의 시험 파일이 정확히 **356개**이므로 **사라진 파일이 없다**
+(⚠️ `npx vitest run` 에는 `run-tests.mjs` 의 「모은 파일 == 결과 있는 파일」 가드가 **없다** —
+그래서 분모를 `git ls-files` 로 따로 세어 맞췄다). 13,651 은 §0-L 의 13,646 보다 정확히 **5개**
+많고, 그게 이 회차가 더한 `loaderFigureCache.test.ts` 다.
+**적재를 돌리는 중에 함께 돌렸는데도 통과했다** — 이 회차에서는 「forks 풀이 굶는다」가 안 났다.
+🔵 **남은 것은 판정기 실데이터 쓸기(36개)뿐이다** — 적재가 끝난 뒤에 돌려야 뜻이 있다
+(데이터가 바뀌는 중에 재면 무엇을 잰 것인지 알 수 없다).
+
 **늘리기 전 분모**(2026-09-02 새벽, 초3~중3):
 전체 **23,859행** · 출제자격 **22,108** · **360/360 단원** · 단원 깊이 최소 29 · 중앙 **60** · 최대 120
 · `problem` 표 **75MB**(행당 약 3.2KB) · 그림 있는 엔진 행 **21.6%**.
@@ -260,6 +269,24 @@ ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts \
 → 그래도 적재기 쪽도 고쳐야 한다(작다): 실패한 `externalId` 와 사유를 **원장 옆 파일에
 적는다.** 그러면 형제가 없는 경우까지 잡힌다. 고친 뒤에는 ⑴ 그 행만 잠그거나
 ⑵ 도형 엔진의 배치 결함 셋을 고친 뒤 `scripts/qa/refresh-engine-figures.ts` 로 되그린다.
+
+### 0-M.8 이 회차가 남긴 것 · 남은 것
+
+**(채우는 중 — 마지막 웨이브가 끝나면 학년별 착지분과 남은 학년을 여기 적는다.)**
+
+**이어 돌리는 법** — 적재기는 멱등이라 남은 학년의 계획을 그대로 돌리면 된다:
+
+```bash
+ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts \
+  --plan scripts/import/plans/2026-09-02-대량확대-<학년>.json --apply
+```
+
+되돌리려면 학년마다 원장이 하나씩 있다:
+
+```bash
+ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts \
+  --revert "docs/planning/tracks/reports/engine-load-대량확대-12벌-<학년>.json"
+```
 
 ## 0-L. 인수인계 (2026-09-01 밤 — 앞 회차. **최신은 §0-M**)
 
