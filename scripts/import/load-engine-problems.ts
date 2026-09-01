@@ -654,15 +654,45 @@ async function apply(planFile: string, doApply: boolean) {
   let drawn = 0;
   let failed = 0;
   const svgs = new Map<string, string>();
+  /**
+   * 🔴 **같은 스펙을 두 번 그리지 않는다** (2026-09-02).
+   *
+   * 한 변형이 **단답형·객관식 두 행**이 되는데 그림 스펙은 같다. 행마다 그리면
+   * 같은 그림을 두 번 그린다. 실측(중3 12벌) — 그림이 붙는 행 1,776개가 서로 다른
+   * 스펙 **745개**뿐이었다(중복 **58.1%**).
+   *
+   * 이 중복이 그대로 시간이 되는 이유는 `renderFigure` 가 **문항마다 파이썬
+   * 프로세스를 띄우기** 때문이다 — 실측 **319ms/회**(빈 파이썬만도 93ms).
+   * 12벌 전량(넣을 것 60,268행)이면 그림 행이 약 13,000개라 **69분**이고,
+   * 그동안 INSERT 는 **한 행도 시작하지 않는다**(렌더가 앞이다).
+   *
+   * ⚠️ 캐시가 옳으려면 렌더러가 **결정적**이어야 한다 — 같은 스펙을 두 번 그려
+   *    **바이트가 같은 것을 확인**했다(표본 4/4). 스펙이 같은데 다른 그림이 나오는
+   *    날이 오면 이 캐시가 조용히 틀린 그림을 붙인다. `render_spec.py` 에 무작위를
+   *    넣게 되면 **여기부터** 고쳐야 한다.
+   *
+   * 🔵 남은 병목: 렌더러가 `stdin→stdout` **한 장** 구조라 배치 입력이 없다.
+   *    JSONL 배치 모드를 주면 파이썬 기동 93ms 를 스펙 수만큼이 아니라 **한 번**만 낸다.
+   */
+  const bySpec = new Map<string, string | null>();
   for (const r of fresh) {
     if (!r.figureSpec) continue;
-    const svg = renderFigure(r.figureSpec);
+    const key = JSON.stringify(r.figureSpec);
+    let svg = bySpec.get(key);
+    if (svg === undefined) {
+      svg = renderFigure(r.figureSpec);
+      bySpec.set(key, svg);
+    }
     if (svg) {
       svgs.set(r.externalId, svg);
       drawn += 1;
     } else failed += 1;
   }
-  if (drawn + failed > 0) console.log(`그림 ${drawn}장 그림 · 실패 ${failed}`);
+  if (drawn + failed > 0)
+    console.log(
+      `그림 ${drawn}장 그림 · 실패 ${failed}` +
+        ` · 렌더 호출 ${bySpec.size}회 (같은 스펙 ${drawn + failed - bySpec.size}건은 다시 안 그렸다)`,
+    );
 
   // ── **DB 에 이미 있는 같은 문항**도 막는다 ────────────────────────────────
   // 위의 중복 제거는 이번 회차 **안**만 본다. 다른 씨앗으로 다시 돌리면 같은 문항이
