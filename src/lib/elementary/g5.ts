@@ -16315,9 +16315,16 @@ function mul223Mid(unit: UnitSeed, rng: Rng): ElemProblem {
  *    발문은 곱한 값을 안 준다 — 준다면 심화중과 같은 문항이 된다.
  */
 
+/**
+ * 🔴 **한 진분수를 지면에 실어 준다.** 처음 판은 두 분모와 «간단히 한 분모»만 주고
+ *    분수를 한 개도 안 실었는데, `probe-elem-section-conditions` 가 그것을 잡았다 —
+ *    이 소단원의 이름이 「진분수의 곱셈」이라 **발문에 진분수가 있어야** 한다.
+ *    한쪽을 실어도 답은 안 새어 나간다: 곱한 값을 안 주므로 나머지 분자는
+ *    **짝마다 곱해서 간단히 해 봐야** 갈린다(D-115 ⑾ → 심화상).
+ */
 function w4MulTop223(): W4Mul3Task[] {
   const out: W4Mul3Task[] = [];
-  for (let d1 = 4; d1 <= 12; d1 += 1)
+  for (let d1 = 6; d1 <= 12; d1 += 1)
     for (let d2 = 4; d2 <= 12; d2 += 1) {
       if (d1 === d2) continue;
       const D0 = d1 * d2;
@@ -16325,17 +16332,13 @@ function w4MulTop223(): W4Mul3Task[] {
         for (let b = 2; b < d2; b += 1) {
           if (gcd(a, d1) !== 1 || gcd(b, d2) !== 1) continue;
           const den = simplify(a * b, D0)[1];
-          // 진분수 조건만으로 남는 짝 전부 — 그중 «간단히 한 분모»가 맞는 것이 하나여야 한다.
-          const live: [number, number][] = [];
+          // 마디가 열려야 한다 — 지면이 준 진분수에 맞대어 볼 분자 후보가 넷 이상.
+          if (d1 - 2 < 4) continue;
+          // 그 후보 중 «간단히 한 분모»가 맞는 것이 하나여야 답이 선다.
+          const live: number[] = [];
           for (let x = 2; x < d1; x += 1)
-            for (let y = 2; y < d2; y += 1)
-              if (simplify(x * y, D0)[1] === den) live.push([x, y]);
+            if (simplify(x * b, D0)[1] === den) live.push(x);
           if (live.length !== 1) continue;
-          // 마디가 열려야 한다 — 진분수 짝이 여럿이어야 「다 해 봐야」가 뜻을 갖는다.
-          let proper = 0;
-          for (let x = 2; x < d1; x += 1)
-            for (let y = 2; y < d2; y += 1) proper += 1;
-          if (proper < 6) continue;
           out.push({ d1, d2, a, b });
         }
     }
@@ -16345,30 +16348,27 @@ function w4MulTop223(): W4Mul3Task[] {
 function mul223Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const den = (t: W4Mul3Task) => simplify(t.a * t.b, t.d1 * t.d2)[1];
   const content = (t: W4Mul3Task) =>
-    `분모가 ${nj(t.d1, "인", "인")} 진분수와 분모가 ${nj(t.d2, "인", "인")} 진분수를 곱했습니다. 두 진분수의 분자는 모두 ${nj(1, "보다", "보다")} 크고, 곱한 값을 가장 간단한 분수로 나타내면 분모가 ${nj(den(t), "입니다", "입니다")}. 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자를 구하시오.`;
+    `분모가 ${nj(t.d1, "인", "인")} 진분수와 ${frj(t.b, t.d2, "을", "를")} 곱했습니다. 곱한 값을 가장 간단한 분수로 나타내면 분모가 ${n(den(t))}입니다. 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자를 구하시오. (분자는 ${nj(1, "보다", "보다")} 큽니다.)`;
   const pool = w2Pool("w4-223top", () =>
     w4MulTop223().filter((t) => !w3Bad(content(t), w2int(t.a))),
   );
   const t = w2Pick(unit, "심화상", rng, pool);
   const D0 = t.d1 * t.d2;
-  // 🔴 표본을 **고루** 뽑는다. 앞에서부터 넷을 자르면 앞 분자가 늘 `2` 로 고정돼
-  //    「앞 분자는 이미 아는 것」처럼 읽힌다(첫 판이 그랬다).
-  const others: [number, number][] = [];
-  for (let x = 2; x < t.d1; x += 1)
-    for (let y = 2; y < t.d2; y += 1)
-      if (x !== t.a || y !== t.b) others.push([x, y]);
-  const step = Math.max(1, Math.floor(others.length / 4));
+  // 표본은 **고루** 뽑는다 — 앞에서부터 자르면 늘 작은 분자만 보인다.
+  const others: number[] = [];
+  for (let x = 2; x < t.d1; x += 1) if (x !== t.a) others.push(x);
+  const step = Math.max(1, Math.floor(others.length / 3));
   const some = others
     .filter((_, i) => i % step === 0)
-    .slice(0, 4)
-    .map(([x, y]) =>
+    .slice(0, 3)
+    .map((x) =>
       expr(
-        `\\frac{${x}}{${t.d1}}\\times\\frac{${y}}{${t.d2}}=${w4FracText(x * y, D0)}`,
+        `\\frac{${x}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(x * t.b, D0)}`,
       ),
     );
   return makeDeep(unit, content(t), n(t.a), [
-    `분자끼리, 분모끼리 곱하면 분모는 ${expr(`${t.d1}\\times${t.d2}=${D0}`)}입니다. 그런데 곱한 값을 간단히 하면 분모가 달라지므로, 분자 짝을 하나씩 곱해 보아야 합니다.`,
-    `${some.join(", ")} 처럼 간단히 한 분모가 ${nj(den(t), "이", "가")} 아닌 짝은 답이 될 수 없습니다.`,
+    `분자끼리, 분모끼리 곱하면 분모는 ${expr(`${t.d1}\\times${t.d2}=${D0}`)}입니다. 그런데 곱한 값을 간단히 하면 분모가 달라지므로, 분자를 하나씩 넣어 곱해 보아야 합니다.`,
+    `${some.join(", ")} 처럼 간단히 한 분모가 ${nj(den(t), "이", "가")} 아닌 것은 답이 될 수 없습니다.`,
     `${expr(`\\frac{${t.a}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(t.a * t.b, D0)}`)}만 분모가 ${nj(den(t), "이므로", "이므로")} 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자는 ${n(t.a)}입니다.`,
   ]);
 }
@@ -16433,6 +16433,164 @@ function mix224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `대분수를 가분수로 고쳐 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 가분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 처음 대분수를 고친 가분수의 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
     `자연수가 한 자리 수인 (가분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다. 처음 수가 대분수이므로 가분수로 고치면 분자가 분모 ${nj(t.b, "보다", "보다")} 커야 하고, 그런 짝은 하나뿐입니다.`,
     `그 짝은 ${lj(`\\frac{${t.p}}{${t.b}}`, "이", "가")} 되고, 대분수로 고치면 ${lj(fracLatex(t.p, t.b), "이", "가")} 됩니다. 검산하면 ${expr(`\\frac{${t.p}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 가분수의 분자는 ${n(t.p)}입니다.`,
+  ]);
+}
+
+/* ────────── 2-5 직육면체 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「평행한 두 면은 합동」**(2-5-3) · **「겨냥도의 보이는 아홉은 세 모서리
+ * 합의 $3$배, 모든 모서리는 $4$배」**(2-5-4). 마디를 여는 것: **넓이의 인수 짝** ·
+ * **그 합이 어느 무리의 것인지 안 말한다**.
+ *
+ * ⚠️ 이 대단원의 규약(토대 17 §3 함정 · `elemTiersG5.test.ts`):
+ *    ㉠ **겉넓이·부피는 초6** — 낱말도 못 쓴다.
+ *    ㉡ **2-5-1·2-5-2 는 «한 면의 넓이·둘레»를 통째로 안 쓴다**(초5 1-6 과 겹친다).
+ *       그래서 넓이를 재료로 쓰는 갈래는 2-5-3·2-5-6 에만 두었다.
+ *    ㉢ **개수는 한글로 적는다** — 「$4$개」의 `4` 가 지면 수가 되어 반증 ⑥ 이 오작동한다.
+ *    ㉣ 꼭짓점 이름이 없으므로 면·모서리는 **치수로** 지목한다.
+ *
+ * 🔴 **아홉 칸을 비웠다.** 2-5-1·2-5-2·2-5-5 여섯 · 2-5-3 상 · 2-5-4 상 · 2-5-6 중.
+ *    · 2-5-2·2-5-5(정육면체)는 되짚을 값이 **한 모서리 하나**뿐이라 인수 짝이 안 생긴다
+ *      (토대 17 §2.1 ⑶). 나눗수 $12$·$14$ 는 지면에 없어 자도 못 본다.
+ *    · 2-5-1 은 위 ㉡ 때문에 넓이를 못 쓰고, 모서리만으로는 심화하(「가로는 세로의 $k$배」)와
+ *      같은 자리에 선다.
+ *    · 2-5-6 심화중은 심화하가 이미 「가로를 주고 두 넓이로 나눈다」를 쓴다 — 그 사이에
+ *      설 자리가 없다(넓이를 둘만 주면 답이 넷까지 남고, 좁히는 것은 창뿐인데 그건 파일럿 축이다).
+ */
+
+/* ── 2-5-3 심화중 — 「어느 두 모서리가 같은지 안 말한다」 ──
+ *
+ * 마디: 넓이 $A$ 의 **인수 짝**(어느 것이 그 면의 가로·세로인가).
+ * 굳힘: 「평행한 두 면은 합동」이라 넓이가 같은 면이 네 개면 **두 모서리가 같고**,
+ *       나머지 두 면은 그 두 모서리로 된 **정사각형**이다 — 같은 수를 두 번 곱해
+ *       $B$ 가 되는 수 하나가 곧바로 정해진다(계산 끝까지 안 간다 → 심화중).
+ */
+
+type W4CubTask = { w: number; x: number };
+
+function w4Cub253(): W4CubTask[] {
+  const out: W4CubTask[] = [];
+  for (let x = 2; x <= 9; x += 1)
+    for (let w = 2; w <= 12; w += 1) {
+      if (w === x) continue; // 정육면체가 되면 「네 개」가 거짓이다
+      if (w * x > 96 || x * x > 96) continue;
+      if ((w + 2 * x) * 4 > 140) continue;
+      out.push({ w, x });
+    }
+  return out;
+}
+
+function cub253Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4CubTask) =>
+    `직육면체에서 넓이가 ${n(t.w * t.x)} cm²인 면이 ${W2_COUNT[4]!} 개이고, 나머지 ${W2_COUNT[2]!} 면의 넓이는 ${n(t.x * t.x)} cm²입니다. 이 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-253mid", () =>
+    w4Cub253().filter((t) => !w3Bad(content(t), w2int((t.w + 2 * t.x) * 4))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const sum3 = t.w + 2 * t.x;
+  return makeDeep(unit, content(t), n(sum3 * 4), [
+    `직육면체에서 평행한 두 면은 모양과 크기가 같으므로 넓이가 같은 면은 ${W2_COUNT[2]!} 개씩 세 쌍입니다. 넓이가 같은 면이 ${W2_COUNT[4]!} 개이면 세 모서리 중 ${W2_COUNT[2]!} 모서리의 길이가 같습니다.`,
+    `나머지 ${W2_COUNT[2]!} 면은 그 같은 두 모서리로 이루어진 정사각형입니다. 같은 수를 두 번 곱해 ${nj(t.x * t.x, "이", "가")} 되는 수는 ${nj(t.x, "이므로", "이므로")} 같은 두 모서리는 ${expr(`${t.x}\\times${t.x}=${t.x * t.x}`)}에서 ${n(t.x)} cm입니다.`,
+    `나머지 한 모서리는 ${expr(`${t.w * t.x}\\div${t.x}=${t.w}`)}에서 ${n(t.w)} cm입니다. 모든 모서리는 세 방향으로 ${W2_COUNT[4]!} 개씩이므로 ${expr(`(${t.w}+${t.x}+${t.x})\\times4=${sum3 * 4}`)}, 곧 ${n(sum3 * 4)} cm입니다.`,
+  ]);
+}
+
+/* ── 2-5-4 심화중 — 「그 합이 어느 무리의 것인지 안 말한다」 ──
+ *
+ * 마디: 지면의 합이 **보이는 아홉 개**의 것인가 **모든 열두 개**의 것인가(후보 둘).
+ * 굳힘: 보이는 아홉은 세 모서리 합의 $3$배, 모든 모서리는 $4$배다 —
+ *       세 모서리의 합이 자연수여야 하므로 **나누어떨어지는 쪽**만 산다(→ 심화중).
+ */
+
+type W4SeeTask = { T: number; nine: boolean };
+
+function w4See254(): W4SeeTask[] {
+  const out: W4SeeTask[] = [];
+  for (let T = 6; T <= 30; T += 1) {
+    // 두 후보 중 **하나만** 나누어떨어져야 한다.
+    for (const nine of [true, false]) {
+      const S = nine ? T * 3 : T * 4;
+      const byNine = S % 3 === 0;
+      const byAll = S % 4 === 0;
+      if (byNine === byAll) continue;
+      out.push({ T, nine });
+    }
+  }
+  return out;
+}
+
+function cub254Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = (t: W4SeeTask) => (t.nine ? t.T * 3 : t.T * 4);
+  const content = (t: W4SeeTask) =>
+    `어떤 직육면체의 겨냥도에서 보이는 모서리 아홉 개의 길이의 합과 이 직육면체의 모든 모서리 길이의 합 중 하나가 ${n(total(t))} cm입니다. 세 모서리의 길이가 모두 자연수 cm일 때, 보이지 않는 모서리 세 개의 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-254mid", () =>
+    w4See254().filter((t) => !w3Bad(content(t), w2int(t.T))),
+  );
+  const wantNine = altCase(rng);
+  const half = pool.filter((x) => x.nine === wantNine);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const S = total(t);
+  const dead = t.nine
+    ? `${nj(S, "이", "가")} 모든 모서리 길이의 합이라면 ${lj(`${S}\\div4`, "은", "는")} 나누어떨어지지 않으므로 쓸 수 없습니다.`
+    : `${nj(S, "이", "가")} 보이는 아홉 개의 합이라면 ${lj(`${S}\\div3`, "은", "는")} 나누어떨어지지 않으므로 쓸 수 없습니다.`;
+  return makeDeep(unit, content(t), n(t.T), [
+    `보이지 않는 모서리 세 개는 가로·세로·높이 방향으로 하나씩이므로 그 합은 세 모서리의 합입니다. 보이는 아홉 개는 세 방향으로 ${W2_COUNT[3]!} 개씩이라 그 ${W2_COUNT[3]!} 배이고, 모든 모서리 열두 개는 ${W2_COUNT[4]!} 배입니다.`,
+    dead,
+    `그러므로 ${nj(S, "은", "는")} ${t.nine ? "보이는 아홉 개" : "모든 모서리"}의 합이고, 보이지 않는 세 모서리의 합은 ${expr(`${S}\\div${t.nine ? 3 : 4}=${t.T}`)}에서 ${n(t.T)} cm입니다. 검산하면 ${expr(`${t.T}\\times${t.nine ? 3 : 4}=${S}`)}입니다.`,
+  ]);
+}
+
+/* ── 2-5-6 심화상 — 「세 넓이가 서로 얽힌다」 ──
+ *
+ * 🔴 토대 17 §2.1 이 「가장 튼튼한 자리 셋」으로 꼽은 자리다 — **3차원에만 있고**
+ *    파일럿 2-4 의 «창»과 겹치지 않는다. 한 넓이의 인수 짝을 되짚기가 만들고,
+ *    짝마다 **나머지 두 면의 넓이를 실제로 곱해 봐야** 하나가 남는다(→ 심화상).
+ */
+
+type W4NetTask = { w: number; d: number; h: number };
+
+function w4Net256(): W4NetTask[] {
+  const out: W4NetTask[] = [];
+  for (let w = 2; w <= 9; w += 1)
+    for (let d = w + 1; d <= 10; d += 1)
+      for (let h = d + 1; h <= 12; h += 1) {
+        if (w * d > 96 || w * h > 96 || d * h > 96) continue;
+        if ((w + d + h) * 4 > 140) continue;
+        // 마디가 열려야 한다 — 첫 넓이의 인수 짝이 여럿이어야 「만들어 견주기」가 산다.
+        if (w2Pairs(w * d).length < 2) continue;
+        out.push({ w, d, h });
+      }
+  return out;
+}
+
+function net256Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4NetTask) =>
+    `어떤 직육면체의 전개도에서 세 가지 면의 넓이가 ${nums([t.w * t.d, t.w * t.h, t.d * t.h])} cm²입니다. 이 전개도를 접어 만든 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-256top", () =>
+    w4Net256().filter((t) => !w3Bad(content(t), w2int((t.w + t.d + t.h) * 4))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const A = t.w * t.d;
+  const B = t.w * t.h;
+  const C = t.d * t.h;
+  const sum3 = t.w + t.d + t.h;
+  // 표본은 **답에 가까운 짝부터** 둘만 보인다 — `(1, A)` 같은 짝을 그대로 보이면
+  // 검산 곱이 네 자리로 커져 지면이 규모 축으로 읽힌다.
+  const tried = w2Pairs(A)
+    .filter(([p]) => p !== t.w)
+    .sort((x, y) => Math.abs(x[0] - t.w) - Math.abs(y[0] - t.w))
+    .slice(0, 2)
+    .map(([p, q]) => {
+      const hh = B % p === 0 ? B / p : null;
+      return hh === null
+        ? `모서리가 ${nums([p, q])}이면 ${lj(`${B}\\div${p}`, "은", "는")} 나누어떨어지지 않아 남은 모서리를 못 만듭니다.`
+        : `모서리가 ${nums([p, q])}이면 남은 모서리는 ${expr(`${B}\\div${p}=${hh}`)}인데 ${lj(`${q}\\times${hh}=${q * hh}`, "이라", "라")} ${nj(C, "이", "가")} 되지 않습니다.`;
+    });
+  return makeDeep(unit, content(t), n(sum3 * 4), [
+    `한 면의 넓이는 두 모서리의 곱입니다. 넓이가 ${nj(A, "인", "인")} 면의 두 모서리를 먼저 정해 보면 곱이 ${nj(A, "인", "인")} 짝은 ${w4PairList(w2Pairs(A))}입니다.`,
+    `짝마다 나머지 두 면의 넓이를 만들어 봅니다. ${tried.join(" ")}`,
+    `모서리가 ${nums([t.w, t.d])}이면 남은 모서리는 ${expr(`${B}\\div${t.w}=${t.h}`)}이고 ${lj(`${t.d}\\times${t.h}=${C}`, "이라", "라")} 세 넓이가 모두 맞습니다.`,
+    `세 모서리는 ${nums([t.w, t.d, t.h])} cm이고 각각 ${W2_COUNT[4]!} 개씩이므로 ${expr(`(${t.w}+${t.d}+${t.h})\\times4=${sum3 * 4}`)}, 곧 ${n(sum3 * 4)} cm입니다.`,
   ]);
 }
 
@@ -16782,12 +16940,14 @@ export const G5_TIERS: ElemTierMap = {
     기본: box253Read,
     응용: box253Apply,
     심화하: box253Deep,
+    심화중: cub253Mid,
   },
   "초5|2-5-4": {
     연산: box254Calc,
     기본: box254Read,
     응용: box254Apply,
     심화하: box254Deep,
+    심화중: cub254Mid,
   },
   "초5|2-5-5": {
     연산: net255Calc,
@@ -16800,6 +16960,7 @@ export const G5_TIERS: ElemTierMap = {
     기본: net256Read,
     응용: net256Apply,
     심화하: net256Deep,
+    심화상: net256Top,
   },
   "초5|1-6-1": {
     연산: per61Calc,

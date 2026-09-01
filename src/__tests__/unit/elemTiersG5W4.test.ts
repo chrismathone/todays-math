@@ -66,6 +66,12 @@ const FILLED: Record<string, readonly ElemTier[]> = {
   "2-2-2": ["심화중"],
   "2-2-3": ["심화중", "심화상"],
   "2-2-4": ["심화중"],
+  "2-5-1": [],
+  "2-5-2": [],
+  "2-5-3": ["심화중"],
+  "2-5-4": ["심화중"],
+  "2-5-5": [],
+  "2-5-6": ["심화상"],
 };
 
 const unitOf = (code: string) =>
@@ -743,22 +749,20 @@ describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", ()
   it("2-2-3 심화상 — 진분수 짝이 여럿이고, 간단히 한 분모가 맞는 것이 하나뿐이다", () => {
     for (const seed of SEEDS) {
       const p = problem("2-2-3", "심화상", seed);
-      const [d1, d2] = [...p.content.matchAll(/분모가 \$(\d+)\$인/g)].map((m) =>
-        Number(m[1]),
-      ) as [number, number];
+      const d1 = Number(/분모가 \$(\d+)\$인 진분수와/.exec(p.content)![1]);
+      const [b, d2] = fracsIn(p.content)[0]!;
       const D = Number(/분모가 \$(\d+)\$입니다/.exec(p.content)![1]);
-      // 🔴 심화중과 갈리는 문장 — 진분수 짝이 **여럿** 남는다.
-      const proper: [number, number][] = [];
-      for (let x = 2; x < d1; x += 1)
-        for (let y = 2; y < d2; y += 1) proper.push([x, y]);
-      expect(proper.length, p.content).toBeGreaterThan(4);
+      // 이 소단원은 이름이 「진분수의 곱셈」이라 **발문에 진분수가 있어야** 한다
+      // (`probe-elem-section-conditions` 가 첫 판을 그것으로 잡았다).
+      expect(b, p.content).toBeLessThan(d2);
+      // 🔴 심화중과 갈리는 문장 — 맞대어 볼 분자 후보가 **여럿** 남는다.
+      const cands: number[] = [];
+      for (let x = 2; x < d1; x += 1) cands.push(x);
+      expect(cands.length, p.content).toBeGreaterThanOrEqual(4);
       // 그리고 **실제로 곱해서 간단히 해 봐야** 하나가 남는다.
-      const hit = proper.filter(([x, y]) => {
-        const g = gcd2(x * y, d1 * d2);
-        return (d1 * d2) / g === D;
-      });
+      const hit = cands.filter((x) => (d1 * d2) / gcd2(x * b, d1 * d2) === D);
       expect(hit.length, `${p.content}\n산 것 ${JSON.stringify(hit)}`).toBe(1);
-      expect(answerInt(p.answer), p.content).toBe(hit[0]![0]);
+      expect(answerInt(p.answer), p.content).toBe(hit[0]);
     }
   });
 
@@ -790,6 +794,104 @@ describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", ()
             /기약|약분하여 나타/.test(problem(code, tier, seed).content),
             `${code} ${tier} @${seed}`,
           ).toBe(false);
+  });
+
+  /* ══ 2-5 직육면체 ════════════════════════════════════════════════════════ */
+
+  /* ── ⑴ 2-5-3 심화중 — 「평행한 면은 합동」이 인수 짝을 하나로 남긴다 ── */
+
+  it("2-5-3 심화중 — 넓이 짝이 여럿이고 «나머지 두 면이 정사각형»이 하나만 남긴다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-5-3", "심화중", seed);
+      const [A, B] = [...p.content.matchAll(/\$(\d+)\$ cm²/g)].map((m) =>
+        Number(m[1]),
+      ) as [number, number];
+      // 마디가 열린다 — 넓이 `A` 의 인수 짝이 여럿이다.
+      const pairs: [number, number][] = [];
+      for (let d = 1; d <= A; d += 1) if (A % d === 0) pairs.push([d, A / d]);
+      expect(pairs.length, p.content).toBeGreaterThan(2);
+      // 굳힘 — 같은 두 모서리는 「두 번 곱해 `B` 가 되는 수」다.
+      const x = Math.round(Math.sqrt(B));
+      expect(x * x, `${p.content}: 나머지 두 면이 정사각형이 아니다`).toBe(B);
+      expect(A % x, `${p.content}: 넓이 ${A} 가 ${x} 로 안 나뉜다`).toBe(0);
+      const w = A / x;
+      expect(w, `${p.content}: 정육면체면 「네 개」가 거짓이다`).not.toBe(x);
+      expect(answerInt(p.answer), p.content).toBe((w + 2 * x) * 4);
+      // ㉢ 개수는 한글로 — 「$4$개」의 `4` 가 지면 수가 되면 반증 ⑥ 이 오작동한다.
+      expect(/\$\d+\$\s*개/.test(p.content), p.content).toBe(false);
+    }
+  });
+
+  /* ── ⑴ 2-5-4 심화중 — 「$3$배인가 $4$배인가」를 나누어떨어짐이 굳힌다 ── */
+
+  it("2-5-4 심화중 — 두 읽기 중 나누어떨어지는 것이 하나뿐이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-5-4", "심화중", seed);
+      const S = Number(/하나가 \$(\d+)\$ cm/.exec(p.content)![1]);
+      const live = [3, 4].filter((k) => S % k === 0);
+      expect(live.length, `${p.content}\n산 것 ${live}`).toBe(1);
+      expect(answerInt(p.answer), p.content).toBe(S / live[0]!);
+      // 세 모서리가 자연수 하나씩 나올 만큼은 커야 한다.
+      expect(S / live[0]!, p.content).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  it("2-5-4 심화중 — 「늘 $3$배」도 「늘 $4$배」도 아니다 (⑹)", () => {
+    let nine = 0;
+    for (const seed of WIDE) {
+      const S = Number(
+        /하나가 \$(\d+)\$ cm/.exec(
+          problem("2-5-4", "심화중", seed).content,
+        )![1],
+      );
+      if (S % 3 === 0) nine += 1;
+    }
+    expect(
+      nine,
+      `보이는 아홉 쪽인 씨앗 ${nine}/${WIDE.length}`,
+    ).toBeGreaterThan(WIDE.length * 0.3);
+    expect(nine).toBeLessThan(WIDE.length * 0.7);
+  });
+
+  /* ── ⑵ 2-5-6 심화상 — 세 넓이가 얽혀 «만들어 견주어야» 갈린다 ── */
+
+  it("2-5-6 심화상 — 첫 넓이의 인수 짝이 여럿이고 세 넓이를 다 만드는 짝이 하나다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-5-6", "심화상", seed);
+      const [A, B, C] = [...p.content.matchAll(/\$?(\d+)\$?/g)]
+        .map((m) => Number(m[1]))
+        .filter((v) => v > 1)
+        .slice(0, 3) as [number, number, number];
+      // 되짚기가 만드는 줄 — 시험이 직접 만든다.
+      const pairs: [number, number][] = [];
+      for (let w = 1; w * w < A; w += 1)
+        if (A % w === 0) pairs.push([w, A / w]);
+      // 🔴 심화중과 갈리는 문장 — 성질 하나로는 안 갈리고 짝마다 곱해 봐야 한다.
+      expect(
+        pairs.length,
+        `${p.content}\n짝 ${JSON.stringify(pairs)}`,
+      ).toBeGreaterThan(1);
+      const hit = pairs.filter(([w, d]) => B % w === 0 && d * (B / w) === C);
+      expect(hit.length, `${p.content}\n산 것 ${JSON.stringify(hit)}`).toBe(1);
+      const [w, d] = hit[0]!;
+      const h = B / w;
+      expect(answerInt(p.answer), p.content).toBe((w + d + h) * 4);
+      // 규모는 축이 아니다 — 모서리 합이 세 자리를 크게 안 넘는다.
+      expect(answerInt(p.answer), p.content).toBeLessThanOrEqual(140);
+    }
+  });
+
+  it("2-5 확대 갈래는 겉넓이·부피를 쓰지 않는다 (초6 내용)", () => {
+    for (const code of ["2-5-3", "2-5-4", "2-5-6"] as const)
+      for (const tier of FILLED[code]!)
+        for (const seed of SEEDS) {
+          const p = problem(code, tier, seed);
+          for (const word of ["겉넓이", "부피", "cm³"])
+            expect(
+              `${p.content} ${p.solution}`.includes(word),
+              `${code} ${tier} @${seed} 에 «${word}»`,
+            ).toBe(false);
+        }
   });
 
   it("1-4 확대 갈래에서 이웃 낱말을 안 쓴다 (D-66 ⑸)", () => {
