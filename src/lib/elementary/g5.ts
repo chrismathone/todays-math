@@ -14700,6 +14700,28 @@ function w3Bad(content: string, answer: Rat): boolean {
   return w2Bad(content, answer) || w3PmOneStep(content, answer);
 }
 
+/**
+ * 🔴 **같은 발문·같은 답이면 한 번만 잰다** — 풀을 만드는 시간 때문이다.
+ *
+ * 후보 줄이 커지면 `w3Bad` 를 그 수만큼 돌게 되고, 그게 **관문의 20초 예산**을
+ * 갉아먹는다(2026-09-01 물결 4 에서 `elementaryDifficulty` 가 실제로 시간 초과로
+ * 떨어졌다 — 풀 만드는 데 8.1초였다). 발문이 몇 가지 값에만 달린 갈래는 열쇠를
+ * 주고 결과를 되쓴다. ⚠️ **열쇠에 발문·답을 정하는 값이 다 들어가야 한다** —
+ * 빠뜨리면 다른 문항의 판정을 되쓰게 된다.
+ */
+function w4BadMemo(
+  seen: Map<string, boolean>,
+  key: string,
+  content: () => string,
+  answer: number,
+): boolean {
+  const hit = seen.get(key);
+  if (hit !== undefined) return hit;
+  const bad = w3Bad(content(), w2int(answer));
+  seen.set(key, bad);
+  return bad;
+}
+
 /** 약수를 모두 더한 값. */
 function w3DivSum(v: number): number {
   return divisors(v).reduce((s, d) => s + d, 0);
@@ -15221,6 +15243,1392 @@ function sym234Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * 확대 갈래 «심화중»·«심화상» — 물결 4: 1-1 · 1-3 · 1-4 · 2-2 · 2-5
+ * (D-113 · D-115, 2026-09-01)
+ *
+ * 잣대는 D-115 ⑶·⑷·⑾ 그대로다(물결 2·3 머리말 참조). 이 회차가 **예약한 굳힘 축**은
+ * 대단원마다 하나씩이고, 앞 회차가 쓴 축과 겹치지 않는다.
+ *
+ * ```
+ * 1-1  자연수의 혼합 계산   «모든 중간값이 자연수 — 나눗셈이 나누어떨어진다»
+ *                          마디를 여는 것: **식의 구조를 안 말한다**(괄호 자리 · 기호)
+ * 1-3  대응 관계           «대응 관계는 표의 어느 칸에서나 같아야 한다»
+ *                          마디를 여는 것: **어느 칸이 규칙에서 벗어났는지 안 말한다**
+ * 1-4  약분과 통분         «크기가 같은 분수는 같은 수를 곱한 것» · «기약분수는 서로소»
+ *                          · «공통분모는 두 분모의 공배수»
+ * 2-2  분수의 곱셈         «진분수다» · «한 자리 자연수다» · «대분수의 자연수 부분»
+ *                          🔴 **창(범위)은 안 쓴다** — 파일럿 2-4 심화상이 가져간 축이다
+ *                          (토대 17 §2.1 ㉠: 동형이 넷이라고 짚은 자리)
+ * 2-5  직육면체            «평행한 두 면은 합동» · «보이지 않는 모서리는 세 방향 하나씩»
+ * ```
+ *
+ * 🔴 **비운 자리가 스물셋이다.** 까닭은 `tier-fill-g5-w4.md` §3 에 한 줄씩 적었다 —
+ *    억지로 세우면 그것이 결함이다(D-115 ⑹).
+ *
+ * ⚠️ 반증 ⑥ 자(`forwardReachable`)는 이 다섯 대단원에서 **많이 못 본다** — 답이 분수인
+ *    1-4·2-2 는 `readRat` 이 행을 통째로 건너뛰고(실측 2-2 는 128행 중 122행), 1-3 은
+ *    표 값이 `figure` 에 있어 지면 수가 헤더뿐이다. 그래서 자를 **가드로는 쓰되**
+ *    (`w3Bad`) 「안 닿는다」를 근거로 삼지 않는다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ────────── 1-1 자연수의 혼합 계산 — 확대 갈래 ──────────
+ *
+ * 🔴 **1-1-1 은 둘 다 비웠다.** 이 소단원은 한 층((+,−) 또는 (×,÷))에 **수가 셋**이고,
+ *    그러면 「값이 달라지는 괄호 자리」가 **최대 하나**다(`a-b+c` 는 `a-(b+c)` 하나,
+ *    `a+b-c` 는 아예 없다 — `a+(b-c)` 가 같은 값이다). 후보가 하나면 마디가 애초에
+ *    안 열리므로 심화중의 정의가 성립하지 않는다. 수를 넷으로 늘리는 것은 구조가
+ *    아니라 규모다(이 소단원의 갈래 넷이 모두 수 셋이다).
+ *    `scripts/qa/census-g5w4-empty.ts` 가 이것을 **전수로** 센다.
+ *
+ * 🔴 **1-1-2 심화상도 비웠다.** 이 소단원은 곱셈(나눗셈)이 **하나**뿐이라 괄호 자리
+ *    후보가 늘 둘인데, 그 둘의 대소가 **구조로 정해진다**:
+ *    `a+b\times c-d` 는 늘 `(a+b)\times c-d > a+b\times c-d > a+b\times(c-d)` 이고
+ *    `a+b\div c-d` 는 늘 `(a+b)\div c-d < a+b\div c-d < a+b\div(c-d)` 다.
+ *    「후보를 실제로 다 계산해 견주어야 하나가 남는다」가 성립하지 않는다(계산 없이
+ *    안다). 같은 자를 전수로 돌린 값이 §3 에 있다.
+ */
+
+/** 혼합 계산 한 줄 — 짝수 자리는 수, 홀수 자리는 기호. */
+type W4Tok = number | "+" | "-" | "*" | "/";
+
+/**
+ * 초5 규칙으로 계산한다 — ×÷ 를 앞에서부터, 그다음 +− 를 앞에서부터.
+ *
+ * **중간값이 자연수가 아니면 `null`** 을 돌려준다(나누어떨어지지 않거나 음수가 된다).
+ * 그 `null` 이 이 대단원의 굳힘 축 **그 자체**라, 갈래도 시험도 이 함수 하나를 본다 —
+ * 규칙을 두 벌 두면 한쪽만 고쳐도 아무도 모른다.
+ */
+function w4Eval(toks: readonly W4Tok[]): number | null {
+  const vals: number[] = [toks[0] as number];
+  const ops: ("+" | "-")[] = [];
+  for (let i = 1; i < toks.length; i += 2) {
+    const op = toks[i] as string;
+    const v = toks[i + 1] as number;
+    if (op === "*" || op === "/") {
+      const prev = vals[vals.length - 1]!;
+      if (op === "*") vals[vals.length - 1] = prev * v;
+      else {
+        if (v === 0 || prev % v !== 0) return null;
+        vals[vals.length - 1] = prev / v;
+      }
+    } else {
+      ops.push(op as "+" | "-");
+      vals.push(v);
+    }
+  }
+  let acc = vals[0]!;
+  // 🔴 `0` 도 막는다 — 초등에서 «자연수»는 $1$ 부터다. 이걸 안 막으면 `(9-9)` 를 묶어
+  //    `4\times0=0` 이 되는 자리가 「모두 자연수」로 통과해 지면에 나간다(실측으로 났다).
+  if (acc < 1) return null;
+  for (let i = 0; i < ops.length; i += 1) {
+    acc = ops[i] === "+" ? acc + vals[i + 1]! : acc - vals[i + 1]!;
+    if (acc < 1) return null;
+  }
+  return acc;
+}
+
+/** 수 자리 `i`~`j` 를 괄호로 묶어 계산한다. 괄호 **안**이 자연수가 아니어도 `null`. */
+function w4Grouped(
+  toks: readonly W4Tok[],
+  i: number,
+  j: number,
+): number | null {
+  const inner = w4Eval(toks.slice(2 * i, 2 * j + 1));
+  if (inner === null) return null;
+  return w4Eval([...toks.slice(0, 2 * i), inner, ...toks.slice(2 * j + 1)]);
+}
+
+const W4_SYM: Record<string, string> = {
+  "+": "+",
+  "-": "-",
+  "*": "\\times",
+  "/": "\\div",
+};
+
+/** LaTeX 로. 수 자리 `i`~`j` 를 괄호로 묶는다(`i < 0` 이면 안 묶는다). */
+function w4Latex(toks: readonly W4Tok[], i = -1, j = -1): string {
+  let out = "";
+  for (let k = 0; k < toks.length; k += 1) {
+    if (k % 2 === 0) {
+      const idx = k / 2;
+      if (idx === i) out += "(";
+      out += String(toks[k]);
+      if (idx === j) out += ")";
+    } else out += W4_SYM[toks[k] as string]!;
+  }
+  return out;
+}
+
+/* ── 1-1-2 심화중 — 「$\bigcirc$ 가 $\times$ 인지 $\div$ 인지 안 말한다」 ──
+ *
+ * 마디: `a-b\bigcirc c+d` 의 기호가 안 굳는다(후보 둘).
+ * 굳힘: **모든 계산 결과가 자연수** — 한쪽은 나누어떨어지지 않거나 음수가 되어 죽는다.
+ *       후보를 «끝까지 계산하지 않고» 걸러 낸다(D-115 ⑾ → 심화중).
+ */
+
+type W4SymTask = { a: number; b: number; c: number; d: number; op: "*" | "/" };
+
+function w4Sym112(): W4SymTask[] {
+  const out: W4SymTask[] = [];
+  for (let b = 3; b <= 12; b += 1)
+    for (let c = 2; c <= 9; c += 1)
+      // 범위는 «변형이 여덟 이상»을 지키는 선까지만 — 넓히면 풀 만드는 시간이 는다.
+      for (let a = 10; a <= 70; a += 1)
+        for (let d = 2; d <= 15; d += 1) {
+          const mul = w4Eval([a, "-", b, "*", c, "+", d]);
+          const div = w4Eval([a, "-", b, "/", c, "+", d]);
+          if (mul === null && div === null) continue;
+          if (mul !== null && div !== null) continue; // 마디가 안 굳는다
+          out.push({ a, b, c, d, op: mul === null ? "/" : "*" });
+        }
+  return out;
+}
+
+function mix112Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 🔴 **기호를 낱말로 적는다.** 이 소단원은 「×·÷ 가 정확히 하나」가 규약이라
+  //    (`elemTiersG5.test.ts` 가 발문과 해설을 함께 본다) 두 기호를 다 찍으면
+  //    1-1-3 침범으로 잡힌다. 그래서 발문은 낱말로, 해설은 **살아남은 기호만** 쓴다.
+  const content = (t: W4SymTask) =>
+    `$\\bigcirc$ 안에 곱셈 기호와 나눗셈 기호 중 알맞은 것을 써넣어 계산하려고 합니다. 계산하는 동안 나오는 값이 모두 자연수가 되도록 써넣었을 때, 계산한 값은 얼마입니까?  ${expr(`${t.a}-${t.b}\\bigcirc ${t.c}+${t.d}`)}`;
+  const pool = w2Pool("w4-112mid", () =>
+    w4Sym112().filter((t) => {
+      const v = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d]);
+      return v !== null && v > 0 && !w3Bad(content(t), w2int(v));
+    }),
+  );
+  // 🔴 **답이 되는 기호를 먼저 뽑는다.** 그냥 뽑으면 `\div` 가 죽는 짝(=답이 `\times`)이
+  //    훨씬 많다 — 실측 200씨앗에서 171 : 29 였다. 한쪽으로 몰리면 「늘 곱셈」이
+  //    답을 대신한다.
+  const wantOp: "*" | "/" = altCase(rng) ? "*" : "/";
+  const half = pool.filter((x) => x.op === wantOp);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const kept = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d])!;
+  // 죽는 쪽은 **기호를 안 찍고 낱말로** 설명한다(위 주석).
+  const deadWhy =
+    t.op === "*"
+      ? `나눗셈 기호를 써넣으면 ${nj(t.b, "을", "를")} ${nro(t.c)} 나누는 것인데 나누어떨어지지 않습니다.`
+      : `곱셈 기호를 써넣으면 ${nj(t.b, "과", "와")} ${n(t.c)}의 곱이 ${nj(t.b * t.c, "이라", "라")} ${n(t.a)}에서 뺄 수 없습니다.`;
+  const first =
+    t.op === "*"
+      ? expr(`${t.b}\\times${t.c}=${t.b * t.c}`)
+      : expr(`${t.b}\\div${t.c}=${t.b / t.c}`);
+  const inner = t.op === "*" ? t.b * t.c : t.b / t.c;
+  const mid = t.a - inner;
+  return makeDeep(unit, content(t), n(kept), [
+    `곱셈과 나눗셈을 먼저 계산하므로 $\\bigcirc$ 안의 기호가 정해지면 그 자리를 먼저 계산합니다.`,
+    deadWhy,
+    `${t.op === "*" ? "곱셈" : "나눗셈"} 기호를 써넣으면 ${first}이고, ${expr(`${t.a}-${inner}=${mid}`)}, ${expr(`${mid}+${t.d}=${kept}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-1-3 심화중 — 「괄호가 어디에 있었는지 안 말한다」 ──
+ *
+ * 마디: `a\div b+c\times d-e` 에서 **이웃한 두 수**를 괄호로 묶는 자리가 넷인데
+ *       그중 값이 달라지는 자리가 둘이다(나머지 둘은 ×÷ 를 묶는 것이라 그대로다).
+ * 굳힘: **모든 계산 결과가 자연수** — 한 자리는 나누어떨어지지 않거나 음수가 되어 죽는다.
+ */
+
+type W4ParenTask = {
+  toks: W4Tok[];
+  base: number;
+  spot: 1 | 3; // 1 = `(b+c)`, 3 = `(d-e)`
+  value: number;
+};
+
+function w4Paren113(): W4ParenTask[] {
+  const out: W4ParenTask[] = [];
+  for (let b = 2; b <= 9; b += 1)
+    for (let q = 2; q <= 12; q += 1) {
+      const a = b * q;
+      if (a > 96) continue;
+      for (let c = 2; c <= 9; c += 1)
+        for (let d = 3; d <= 11; d += 1)
+          for (let e = 2; e <= 10; e += 1) {
+            const toks: W4Tok[] = [a, "/", b, "+", c, "*", d, "-", e];
+            const base = w4Eval(toks);
+            if (base === null || base === 0) continue;
+            const g1 = w4Grouped(toks, 1, 2); // a÷(b+c)×d−e
+            const g3 = w4Grouped(toks, 3, 4); // a÷b+c×(d−e)
+            const alive: (1 | 3)[] = [];
+            if (g1 !== null && g1 !== base) alive.push(1);
+            if (g3 !== null && g3 !== base) alive.push(3);
+            if (alive.length !== 1) continue;
+            // 죽은 쪽이 «수가 모자라서»가 아니라 **나누어떨어지지 않아서** 죽어야
+            // 학생이 실제로 나눗셈을 확인한다. `(d-e)` 쪽은 뺄셈이라 예외로 둔다.
+            const spot = alive[0]!;
+            const value = spot === 1 ? g1! : g3!;
+            if (value <= 0) continue;
+            out.push({ toks, base, spot, value });
+          }
+    }
+  return out;
+}
+
+function mix113Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 🔴 묶는 자리를 «덧셈이나 뺄셈으로 이어진» 것으로 **발문이 좁힌다**. 안 좁히면
+  //    `(a\div b)`·`(c\times d)` 를 묶는 두 자리가 «값이 그대로»라 「자연수인가」로는
+  //    안 갈리고, 그걸 빼려면 처음 값을 지면에 적어야 한다(수가 하나 더 늘어난다).
+  const content = (t: W4ParenTask) =>
+    `괄호가 하나 있는 식에서 괄호가 지워져 ${lj(w4Latex(t.toks), "이", "가")} 되었습니다. 괄호는 덧셈이나 뺄셈으로 이어진 이웃한 두 수를 묶고 있었고, 괄호 안을 먼저 계산해도 계산하는 동안 나오는 값이 모두 자연수였습니다. 처음 식을 바르게 계산한 값은 얼마입니까?`;
+  const pool = w2Pool("w4-113mid", () =>
+    w4Paren113().filter((t) => !w3Bad(content(t), w2int(t.value))),
+  );
+  // 🔴 **살아남는 자리를 먼저 뽑는다.** 그냥 풀에서 뽑으면 `(b+c)` 가 사는 것은
+  //    `b+c` 가 `a` 를 나누어야 해서 드물다 — 실측 200씨앗에서 20 : 180 이었다.
+  //    한쪽으로 몰리면 「늘 뒤쪽을 묶으면 된다」가 답을 대신한다.
+  const wantSpot = altCase(rng) ? 1 : 3;
+  const half = pool.filter((t) => t.spot === wantSpot);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const [a, , b, , c, , d, , e] = t.toks as [
+    number,
+    string,
+    number,
+    string,
+    number,
+    string,
+    number,
+    string,
+    number,
+  ];
+  const g1 = w4Grouped(t.toks, 1, 2);
+  const g3 = w4Grouped(t.toks, 3, 4);
+  const why1 =
+    g1 === null
+      ? a % (b + c) !== 0
+        ? `${expr(`${b}+${c}=${b + c}`)}인데 ${lj(`${a}\\div${b + c}`, "은", "는")} 나누어떨어지지 않습니다.`
+        : `${expr(`${a}\\div${b + c}\\times${d}=${(a / (b + c)) * d}`)}인데 여기서 ${nro(e)} 빼면 자연수가 되지 않습니다.`
+      : `${expr(`${b}+${c}=${b + c}`)}이고 ${expr(`${a}\\div${b + c}=${a / (b + c)}`)}, ${expr(`${a / (b + c)}\\times${d}=${(a / (b + c)) * d}`)}이므로 ${expr(`${(a / (b + c)) * d}-${e}=${g1}`)}입니다.`;
+  const why3 =
+    g3 === null
+      ? `${lj(`${d}-${e}`, "은", "는")} 자연수가 되지 않습니다.`
+      : `${expr(`${d}-${e}=${d - e}`)}이고 ${expr(`${c}\\times${d - e}=${c * (d - e)}`)}, ${expr(`${a}\\div${b}=${a / b}`)}이므로 ${expr(`${a / b}+${c * (d - e)}=${g3}`)}입니다.`;
+  return makeDeep(unit, content(t), n(t.value), [
+    `덧셈이나 뺄셈으로 이어진 이웃한 두 수는 ${lj(`${b}+${c}`, "과", "와")} ${expr(`${d}-${e}`)} 두 자리입니다.`,
+    `${lj(`(${b}+${c})`, "을", "를")} 묶으면 ${why1}`,
+    `${lj(`(${d}-${e})`, "을", "를")} 묶으면 ${why3}`,
+    `계산하는 동안 나오는 값이 모두 자연수인 자리는 한 곳뿐이므로 처음 식의 값은 ${n(t.value)}입니다.`,
+  ]);
+}
+
+/* ── 1-1-3 심화상 — 「$\times$ 와 $\div$ 를 하나씩, 어느 자리인지 안 말한다」 ──
+ *
+ * 마디: `a\bigcirc b+c\bigcirc d-e` 의 배치가 안 굳는다(후보 둘).
+ * 🔴 **성질로 안 갈린다** — 두 배치가 **모두** 자연수다. 그래서 둘을 실제로 계산해
+ *    견주어야 하나가 남는다(D-115 ⑾ → 심화상). 그리고 어느 쪽이 큰지는 구조로 안
+ *    정해진다(`a\times b` 와 `c\times d` 중 어느 것이 큰가에 달렸다).
+ */
+
+type W4TopTask = { a: number; b: number; c: number; d: number; e: number };
+
+const w4TopPair = (t: W4TopTask): [number, number] => [
+  w4Eval([t.a, "*", t.b, "+", t.c, "/", t.d, "-", t.e])!,
+  w4Eval([t.a, "/", t.b, "+", t.c, "*", t.d, "-", t.e])!,
+];
+
+function w4Top113(): W4TopTask[] {
+  const out: W4TopTask[] = [];
+  for (let b = 2; b <= 9; b += 1)
+    for (let d = 2; d <= 9; d += 1)
+      for (let ka = 2; ka <= 12; ka += 1)
+        for (let kc = 2; kc <= 12; kc += 1) {
+          const a = b * ka;
+          const c = d * kc;
+          if (a > 60 || c > 60) continue;
+          for (let e = 2; e <= 20; e += 1) {
+            const x = w4Eval([a, "*", b, "+", c, "/", d, "-", e]);
+            const y = w4Eval([a, "/", b, "+", c, "*", d, "-", e]);
+            if (x === null || y === null) continue;
+            if (x === y) continue; // 견줄 것이 없으면 마디가 뜻이 없다
+            // 🔴 **규모는 축이 아니다**(D-115 기각된 축). 이 소단원의 다른 갈래는
+            //    답이 두 자리 언저리다 — 곱을 키워 어렵게 만들지 않는다.
+            if (Math.max(x, y) > 150) continue;
+            out.push({ a, b, c, d, e });
+          }
+        }
+  return out;
+}
+
+function mix113Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4TopTask) =>
+    `두 $\\bigcirc$ 안에 $\\times$와 $\\div$를 하나씩 써넣으려고 합니다. 어느 쪽에 써넣어도 계산하는 동안 나오는 값이 모두 자연수일 때, 계산한 두 값 중 더 큰 값은 얼마입니까?  ${expr(`${t.a}\\bigcirc ${t.b}+${t.c}\\bigcirc ${t.d}-${t.e}`)}`;
+  const pool = w2Pool("w4-113top", () =>
+    w4Top113().filter((t) => {
+      const [x, y] = w4TopPair(t);
+      return !w3Bad(content(t), w2int(Math.max(x, y)));
+    }),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const [x, y] = w4TopPair(t);
+  return makeDeep(unit, content(t), n(Math.max(x, y)), [
+    `앞을 $\\times$, 뒤를 $\\div$로 하면 ${expr(`${t.a}\\times${t.b}=${t.a * t.b}`)}, ${expr(`${t.c}\\div${t.d}=${t.c / t.d}`)}이므로 ${expr(`${t.a * t.b}+${t.c / t.d}-${t.e}=${x}`)}입니다.`,
+    `앞을 $\\div$, 뒤를 $\\times$로 하면 ${expr(`${t.a}\\div${t.b}=${t.a / t.b}`)}, ${expr(`${t.c}\\times${t.d}=${t.c * t.d}`)}이므로 ${expr(`${t.a / t.b}+${t.c * t.d}-${t.e}=${y}`)}입니다.`,
+    `두 값을 견주면 ${nj(Math.max(x, y), "이", "가")} 더 큽니다.`,
+  ]);
+}
+
+/* ────────── 1-3 대응 관계 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「대응 관계는 표의 어느 칸에서나 같아야 한다」** — 이 소단원이 가진
+ * 유일한 성질이고 해설이 되풀이하는 문장이다.
+ * 마디를 여는 것: **어느 칸이 규칙에서 벗어났는지 안 말한다**(중·상) ·
+ *                 **짝을 하나만 주어 관계 후보가 둘 남는다**(1-3-2 중).
+ *
+ * ⚠️ **정본 관계 꼴 셋 밖으로 안 나간다** — `△=□×k` · `△=□+c` · `△=□-c`.
+ *    두 계수 꼴(`△=□×k+c`)은 시험이 빨갛고 1-1 혼합 계산 침범이다.
+ * ⚠️ 이웃 낱말 규약: **1-3-1 은 「식으로 나타내」를 안 쓴다**(값·규칙 읽기만).
+ *
+ * 🔴 **1-3-1 심화상과 1-3-3 둘을 비웠다.** 1-3-1 은 중과 같은 표를 쓰면 지면에서
+ *    한 문항이 되고(상은 1-3-2 로 보냈다), **1-3-3 은 표가 없어** 「어느 칸이 안
+ *    맞나」를 쓸 자리 자체가 없다 — 생활 장면은 관계가 한 문장으로 굳는다.
+ */
+
+/** 정본 관계 꼴 셋. */
+type W4Rel =
+  | { kind: "mul"; k: number }
+  | { kind: "add"; c: number }
+  | { kind: "sub"; c: number };
+
+const w4RelAt = (r: W4Rel, x: number): number =>
+  r.kind === "mul" ? x * r.k : r.kind === "add" ? x + r.c : x - r.c;
+
+const w4RelLatex = (r: W4Rel): string =>
+  r.kind === "mul"
+    ? relMulLatex(r.k)
+    : r.kind === "add"
+      ? relAddLatex(r.c)
+      : relSubLatex(r.c);
+
+const w4RelWords = (r: W4Rel): string =>
+  r.kind === "mul"
+    ? `△는 언제나 □의 ${n(r.k)}배`
+    : r.kind === "add"
+      ? `△는 언제나 □보다 ${n(r.c)}만큼 큰 수`
+      : `△는 언제나 □보다 ${n(r.c)}만큼 작은 수`;
+
+/**
+ * 한 짝에서 관계를 **확인**할 때 쓰는 셈 한 줄(거꾸로 — 배·차를 낸다).
+ * 「…로/으로」가 뒤에 붙는 자리가 있어 **날 LaTeX** 도 함께 돌려준다 — 조사는
+ * `format.ts` 규칙 하나(`lro`)를 거쳐야 한다(손으로 「로」를 박으면 지면에서 틀린다).
+ */
+const w4RelStepTex = (r: W4Rel, x: number, y: number): string =>
+  r.kind === "mul"
+    ? `${y}\\div${x}=${r.k}`
+    : r.kind === "add"
+      ? `${y}-${x}=${r.c}`
+      : `${x}-${y}=${r.c}`;
+
+const w4RelStep = (r: W4Rel, x: number, y: number): string =>
+  expr(w4RelStepTex(r, x, y));
+
+/** 관계를 **앞으로** 적용한 셈 한 줄 — `$19+4=23$`. */
+const w4RelForward = (r: W4Rel, x: number): string =>
+  r.kind === "mul"
+    ? expr(`${x}\\times${r.k}=${x * r.k}`)
+    : r.kind === "add"
+      ? expr(`${x}+${r.c}=${x + r.c}`)
+      : expr(`${x}-${r.c}=${x - r.c}`);
+
+/** 「□가 $x$ 인 칸」 — 표의 칸을 가리키는 말은 한 곳에 둔다. */
+const w4Cell = (x: number): string => `□가 ${n(x)}인 칸`;
+
+/**
+ * 짝 여럿에 **다 맞는** 정본 관계를 전부 만든다 — 이 소단원의 유일한 성질
+ * (「어느 칸에서나 같아야 한다」)을 그대로 편 것이다. 규모는 토대 17 §3 이 적은
+ * 대로 `k ∈ [2,8]` · `c ∈ [2,15]` 로 묶는다(수를 키우는 것은 축이 아니다).
+ */
+function w4RelsFitting(pairs: readonly (readonly [number, number])[]): W4Rel[] {
+  const out: W4Rel[] = [];
+  for (let k = 2; k <= 8; k += 1)
+    if (pairs.every(([x, y]) => y === x * k)) out.push({ kind: "mul", k });
+  for (let c = 2; c <= 15; c += 1) {
+    if (pairs.every(([x, y]) => y === x + c)) out.push({ kind: "add", c });
+    if (pairs.every(([x, y]) => y === x - c && y >= 1))
+      out.push({ kind: "sub", c });
+  }
+  return out;
+}
+
+const W4_RELS: W4Rel[] = [
+  ...Array.from({ length: 7 }, (_, i) => ({ kind: "mul", k: i + 2 }) as W4Rel),
+  ...Array.from({ length: 14 }, (_, i) => ({ kind: "add", c: i + 2 }) as W4Rel),
+  ...Array.from({ length: 14 }, (_, i) => ({ kind: "sub", c: i + 2 }) as W4Rel),
+];
+
+/* ── 1-3-1 심화중 — 「네 칸 중 한 칸이 대응 관계에 맞지 않는다」 ──
+ *
+ * 마디: **어느 칸인가**(후보 넷). 굳힘: 나머지 셋이 **같은 관계**를 만들어야 한다 —
+ * 성질 한 번이고, 끝까지 계산하지 않고 걸러 낸다(D-115 ⑾ → 심화중).
+ */
+
+type W4OddTask = {
+  xs: number[];
+  ys: number[]; // 지면에 찍히는 줄(한 칸이 어긋나 있다)
+  step: number;
+  rel: W4Rel;
+  bad: number; // 어긋난 칸의 자리
+  right: number; // 그 칸의 바른 값
+};
+
+function w4Odd131(): W4OddTask[] {
+  const out: W4OddTask[] = [];
+  // 🔴 **커지는 폭도 씨앗이 정한다.** 폭을 $1$ 로 못 박으면 발문이 첫 수 하나로만
+  //    갈려 씨앗 16개에서 변형이 여섯밖에 안 나온다(기존 시험이 「변형 8+」로 잡았다).
+  for (let step = 1; step <= 3; step += 1)
+    for (let from = 1; from <= 9; from += 1) {
+      const xs = [from, from + step, from + 2 * step, from + 3 * step];
+      for (const rel of W4_RELS) {
+        const truth = xs.map((x) => w4RelAt(rel, x));
+        if (truth.some((y) => y < 1)) continue;
+        if (truth[3]! > 60) continue;
+        for (let bad = 0; bad < 4; bad += 1)
+          for (let off = -6; off <= 6; off += 1) {
+            if (off === 0) continue;
+            const w = truth[bad]! + off;
+            if (w < 1) continue;
+            const ys = truth.map((y, i) => (i === bad ? w : y));
+            // 「그 칸을 빼면 관계가 하나로 선다」 · 「다른 칸을 빼면 아무 관계도 안 선다」
+            const pairs = (skip: number) =>
+              xs
+                .map((x, i) => [x, ys[i]!] as const)
+                .filter((_, i) => i !== skip);
+            if (w4RelsFitting(pairs(bad)).length !== 1) continue;
+            let ok = true;
+            for (let j = 0; j < 4 && ok; j += 1)
+              if (j !== bad && w4RelsFitting(pairs(j)).length > 0) ok = false;
+            if (!ok) continue;
+            out.push({ xs, ys, step, rel, bad, right: truth[bad]! });
+          }
+      }
+    }
+  return out;
+}
+
+function corr131Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4OddTask) =>
+    `표는 □가 ${n(t.xs[0]!)}부터 ${n(t.step)}씩 커질 때의 △를 나타낸 것입니다. 그런데 △ 줄에서 한 칸만 대응 관계에 맞지 않습니다. 그 칸의 수를 바르게 고치면 얼마입니까?`;
+  const pool = w2Pool("w4-131mid", () => {
+    const seen = new Map<string, boolean>();
+    return w4Odd131().filter(
+      (t) =>
+        !w4BadMemo(
+          seen,
+          `${t.xs[0]}|${t.step}|${t.right}`,
+          () => content(t),
+          t.right,
+        ),
+    );
+  });
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const good = [0, 1, 2, 3].filter((i) => i !== t.bad);
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.right),
+    [
+      `대응 관계는 어느 칸에서나 같아야 합니다. ${w4Cell(t.xs[good[0]!]!)}과 ${w4Cell(t.xs[good[1]!]!)}을 보면 ${w4RelStep(t.rel, t.xs[good[0]!]!, t.ys[good[0]!]!)}, ${lro(w4RelStepTex(t.rel, t.xs[good[1]!]!, t.ys[good[1]!]!))} 같습니다.`,
+      `${w4Cell(t.xs[good[2]!]!)}도 ${lro(w4RelStepTex(t.rel, t.xs[good[2]!]!, t.ys[good[2]!]!))} 같으므로 ${w4RelWords(t.rel)}입니다.`,
+      `${w4Cell(t.xs[t.bad]!)}만 △가 ${nj(t.ys[t.bad]!, "이라서", "라서")} 맞지 않습니다. 바르게 고치면 ${w4RelForward(t.rel, t.xs[t.bad]!)}입니다.`,
+    ],
+    corrTable(t.xs, t.ys),
+  );
+}
+
+/* ── 1-3-2 심화중 — 「짝을 하나만 주어 관계 후보가 둘 남는다」 ──
+ *
+ * 마디: **관계가 `×k` 인지 `+c` 인지**(후보 둘 — 짝이 하나면 둘 다 정본 꼴로 선다).
+ * 굳힘: 「대응 관계는 어느 칸에서나 같다」 + △가 그 값일 때 □도 **자연수**여야 한다 —
+ * 한쪽은 나누어떨어지지 않아 죽는다(계산 끝까지 안 간다 → 심화중).
+ */
+
+type W4TwoRelTask = {
+  a: number;
+  b: number;
+  T: number;
+  x: number;
+  mid: number[]; // 표의 가운데 두 칸(△ 는 비어 있다)
+  keep: W4Rel;
+  drop: W4Rel;
+  ans: number;
+};
+
+function w4TwoRel132(): W4TwoRelTask[] {
+  const out: W4TwoRelTask[] = [];
+  for (let a = 2; a <= 12; a += 1)
+    for (let k = 2; k <= 8; k += 1) {
+      const b = a * k;
+      const c = b - a;
+      if (c < 2 || c > 15) continue; // 정본 꼴 밖이면 후보가 애초에 하나다
+      const mul: W4Rel = { kind: "mul", k };
+      const add: W4Rel = { kind: "add", c };
+      // 🔴 `T` 를 작은 쪽까지 연다. `T ≥ 20` 으로 두면 `△-c` 가 늘 자연수라
+      //    **살아남는 관계가 언제나 `+c`** 가 된다(실측: 씨앗 셋 다 그랬다).
+      //    그러면 「늘 더하기」가 답을 대신한다.
+      for (let T = 2; T <= 90; T += 1) {
+        const mulOk = T % k === 0 && T / k >= 1;
+        const addOk = T - c >= 1;
+        if (mulOk === addOk) continue;
+        const keep = mulOk ? mul : add;
+        const drop = mulOk ? add : mul;
+        // ⚠️ `x` 를 몇 개로 묶는다 — 후보 줄이 커지면 `w3Bad` 를 그 수만큼 돌게 되어
+        //    풀을 처음 만드는 데 20초를 넘긴다(시험이 실제로 시간 초과로 떨어졌다).
+        for (const x of [13, 17, 21, 25, 29]) {
+          if (x === a) continue;
+          const ans = w4RelAt(keep, x);
+          if (ans < 1 || ans > 120) continue;
+          if (ans === w4RelAt(drop, x)) continue; // 후보가 같은 답을 내면 마디가 뜻이 없다
+          // 표는 네 칸이다(이 소단원의 대응표 규약). 가운데 두 칸은 △ 가 비어 있어
+          // **짝이 하나뿐**이라는 것이 지면에서 그대로 보인다.
+          const mid = [
+            a + Math.floor((x - a) / 3),
+            a + Math.floor((2 * (x - a)) / 3),
+          ];
+          if (mid[0]! <= a || mid[1]! <= mid[0]! || mid[1]! >= x) continue;
+          // `T` 가 표에 찍힌 수와 같으면 지면에서 어느 값인지 헷갈린다.
+          if ([a, b, x, ans, ...mid].includes(T)) continue;
+          out.push({ a, b, T, x, mid, keep, drop, ans });
+        }
+      }
+    }
+  return out;
+}
+
+function corr132Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4TwoRelTask) =>
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것인데, △ 줄은 한 칸만 적혀 있습니다. △가 ${n(t.T)}일 때에도 □는 자연수일 때, 대응 관계를 식으로 나타내고 ㉠에 알맞은 수를 구하시오.`;
+  const pool = w2Pool("w4-132mid", () =>
+    w4TwoRel132().filter((t) => !w3Bad(content(t), w2int(t.ans))),
+  );
+  // 살아남는 관계가 한쪽으로 몰리지 않게 **먼저 고른다**(위 주석 참조).
+  const wantKind = altCase(rng) ? "mul" : "add";
+  const half = pool.filter((x) => x.keep.kind === wantKind);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const dropWhy =
+    t.drop.kind === "mul"
+      ? `${lj(`${t.T}\\div${t.drop.k}`, "은", "는")} 나누어떨어지지 않아 □가 자연수가 되지 않습니다.`
+      : `□는 △에서 ${nj(t.drop.c, "을", "를")} 뺀 수인데 △가 ${nj(t.T, "이라", "라")} ${n(t.drop.c)}보다 크지 않으므로 □가 자연수가 되지 않습니다.`;
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.ans),
+    [
+      `짝이 하나뿐이면 대응 관계로 ${lj(w4RelLatex(t.keep), "과", "와")} ${lj(w4RelLatex(t.drop), "이", "가")} 모두 가능합니다. ${w4RelStep({ kind: "mul", k: t.b / t.a }, t.a, t.b)}이고 ${w4RelStep({ kind: "add", c: t.b - t.a }, t.a, t.b)}이기 때문입니다.`,
+      `${lj(w4RelLatex(t.drop), "은", "는")} 쓸 수 없습니다 — ${dropWhy}`,
+      `그러므로 ${lj(w4RelLatex(t.keep), "이", "가")} 대응 관계이고, ㉠은 □가 ${nj(t.x, "일", "일")} 때이므로 ${w4RelForward(t.keep, t.x)}입니다.`,
+    ],
+    corrTable([t.a, t.mid[0]!, t.mid[1]!, t.x], [t.b, "", "", "㉠"]),
+  );
+}
+
+/* ── 1-3-2 심화상 — 「네 칸 중 **두 칸**이 안 맞는데, 짝마다 관계를 세워 봐야 갈린다」 ──
+ *
+ * 🔴 심화중(1-3-1)과 갈리는 문장: 어긋난 칸이 **둘**이라 「나머지가 다 같다」가
+ *    성립하지 않는다. 두 칸씩 짝지은 **여섯 짝을 각각 세워 봐야** 관계가 서는 짝이
+ *    하나임을 알 수 있다(D-115 ⑾ → 심화상). 그리고 묻는 것은 고친 칸이 아니라 **먼 항**이다.
+ *
+ * ⚠️ 표는 이 소단원 규약대로 **네 칸**이다(`elemTiersG5.test.ts` 의 `tablePairs`).
+ *    처음에 세 칸으로 짰다가 그 시험이 잡았다.
+ */
+
+type W4Odd2Task = {
+  xs: number[];
+  ys: number[];
+  rel: W4Rel;
+  keepPair: [number, number]; // 성한 두 칸
+  far: number;
+  ans: number;
+};
+
+/** 관계가 서는 짝 — 「정확히 하나」일 때만 참으로 센다. */
+const w4OnePair = (
+  xs: readonly number[],
+  ys: readonly number[],
+  i: number,
+  j: number,
+): W4Rel | null => {
+  const fits = w4RelsFitting([
+    [xs[i]!, ys[i]!],
+    [xs[j]!, ys[j]!],
+  ]);
+  return fits.length === 1 ? fits[0]! : null;
+};
+
+const W4_PAIRS: [number, number][] = [
+  [0, 1],
+  [0, 2],
+  [0, 3],
+  [1, 2],
+  [1, 3],
+  [2, 3],
+];
+
+/**
+ * 규모를 줄인 관계 목록 — 후보 줄이 폭발하지 않게 묶는다(풀 만드는 시간).
+ * 🔴 `-c` 는 뺀다 — 그러면 △가 □보다 작아져 해설의 「차」가 음수가 되고, 초5 지면에
+ *    음수는 못 나간다. 부호를 지우면 이번엔 「차가 다르다」가 거짓이 될 수 있다.
+ */
+const W4_RELS_SMALL: W4Rel[] = W4_RELS.filter((r) =>
+  r.kind === "mul" ? r.k <= 5 : r.kind === "add" ? r.c <= 8 : false,
+);
+
+function w4Odd132(): W4Odd2Task[] {
+  const out: W4Odd2Task[] = [];
+  const offs = [-3, -2, 2];
+  for (let x0 = 2; x0 <= 5; x0 += 1)
+    for (const d1 of [2, 3])
+      for (const d2 of [2, 3])
+        for (const d3 of [2, 3]) {
+          const xs = [x0, x0 + d1, x0 + d1 + d2, x0 + d1 + d2 + d3];
+          for (const rel of W4_RELS_SMALL) {
+            const truth = xs.map((x) => w4RelAt(rel, x));
+            if (truth.some((y) => y < 1) || truth[3]! > 90) continue;
+            for (const [ka, kb] of W4_PAIRS) {
+              const badIdx = [0, 1, 2, 3].filter((i) => i !== ka && i !== kb);
+              for (const o1 of offs)
+                for (const o2 of offs) {
+                  const ys = truth.slice();
+                  ys[badIdx[0]!] = truth[badIdx[0]!]! + o1;
+                  ys[badIdx[1]!] = truth[badIdx[1]!]! + o2;
+                  if (ys.some((y) => y < 1)) continue;
+                  // 성한 짝에서만 관계가 **하나** 서고, 나머지 다섯 짝에서는 안 선다.
+                  const keep = w4OnePair(xs, ys, ka, kb);
+                  if (!keep || w4RelLatex(keep) !== w4RelLatex(rel)) continue;
+                  let ok = true;
+                  for (const [i, j] of W4_PAIRS) {
+                    if (i === ka && j === kb) continue;
+                    if (
+                      w4RelsFitting([
+                        [xs[i]!, ys[i]!],
+                        [xs[j]!, ys[j]!],
+                      ]).length > 0
+                    ) {
+                      ok = false;
+                      break;
+                    }
+                  }
+                  if (!ok) continue;
+                  // 🔴 해설이 「차가 다르고 배도 같지 않다」고 적는다 — 그 문장이
+                  //    **참이어야** 한다. 정본 꼴 밖(차가 $16$ 이상 같다든가, 배가
+                  //    자연수가 아닌 채로 같다든가)이면 `w4RelsFitting` 은 «안 선다»를
+                  //    내지만 그 문장은 거짓이 된다.
+                  for (const [i, j] of W4_PAIRS) {
+                    if (i === ka && j === kb) continue;
+                    const di = ys[i]! - xs[i]!;
+                    const dj = ys[j]! - xs[j]!;
+                    if (di <= 0 || dj <= 0 || di === dj) ok = false;
+                    if (ys[i]! * xs[j]! === ys[j]! * xs[i]!) ok = false;
+                    if (!ok) break;
+                  }
+                  if (!ok) continue;
+                  // 🔴 먼 항이 **발문의 유일한 수**다 — 몇 개로 묶으면 씨앗 16개에서
+                  //    발문 변형이 그 수만큼밖에 안 나온다(기존 시험의 「변형 8+」에
+                  //    실제로 걸렸다: 둘). 대신 여기서만 넓히고 나머지는 묶어 둔다.
+                  for (let far = 14; far <= 30; far += 1) {
+                    if (xs.includes(far)) continue;
+                    const ans = w4RelAt(rel, far);
+                    if (ans < 1 || ans > 150) continue;
+                    out.push({ xs, ys, rel, keepPair: [ka, kb], far, ans });
+                  }
+                }
+            }
+          }
+        }
+  return out;
+}
+
+function corr132Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Odd2Task) =>
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것인데, ${W2_COUNT[2]!} 칸이 대응 관계에 맞지 않습니다. 대응 관계를 식으로 나타내고, □가 ${nj(t.far, "일", "일")} 때 △를 구하시오.`;
+  const pool = w2Pool("w4-132top", () => {
+    const seen = new Map<string, boolean>();
+    return w4Odd132().filter(
+      (t) => !w4BadMemo(seen, `${t.far}|${t.ans}`, () => content(t), t.ans),
+    );
+  });
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const [ka, kb] = t.keepPair;
+  const dead = W4_PAIRS.filter(([i, j]) => !(i === ka && j === kb));
+  const noFit = (i: number, j: number) =>
+    `${nums([t.xs[i]!, t.xs[j]!])} 짝은 차가 ${nj(t.ys[i]! - t.xs[i]!, "과", "와")} ${nro(t.ys[j]! - t.xs[j]!)} 다르고 배도 같지 않습니다.`;
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.ans),
+    [
+      `맞지 않는 칸이 둘이므로 「나머지가 다 같다」로는 고를 수 없습니다. 두 칸씩 짝지은 여섯 짝에서 대응 관계가 서는지 하나씩 세워 봅니다.`,
+      dead.map(([i, j]) => noFit(i, j)).join(" "),
+      `${w4Cell(t.xs[ka]!)}과 ${w4Cell(t.xs[kb]!)}만 ${w4RelStep(t.rel, t.xs[ka]!, t.ys[ka]!)}, ${lro(w4RelStepTex(t.rel, t.xs[kb]!, t.ys[kb]!))} 같아 ${lj(w4RelLatex(t.rel), "이", "가")} 섭니다.`,
+      `□가 ${nj(t.far, "일", "일")} 때 △는 ${w4RelForward(t.rel, t.far)}입니다.`,
+    ],
+    corrTable(t.xs, t.ys),
+  );
+}
+
+/* ────────── 1-4 약분과 통분 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「크기가 같은 분수는 분모와 분자에 같은 수를 곱한 것」**(1-4-1) ·
+ * **「기약분수는 분모와 분자가 서로소」**(1-4-2) · **「공통분모는 두 분모의 공배수」**(1-4-3).
+ * 마디를 여는 것: **어느 쪽 수인지 / 몇 배 했는지 / 어느 분수의 분자인지 안 말한다**.
+ *
+ * ⚠️ **이웃 낱말이 잠겨 있다**(D-66 ⑸ · 시험이 문다): «크기가 같은»은 1-4-1 만,
+ *    «약분»·«기약»은 1-4-2 만, «통분»·«공통분모»는 1-4-3 만, «소수»는 1-4-5 만.
+ *
+ * 🔴 **여섯 칸을 비웠다.**
+ *    · **1-4-1 심화상** — 「같은 수를 곱한다」가 **일대일**이라 배수 하나를 정하면 분수가
+ *      통째로 정해진다. 후보를 여럿 남기려면 범위를 얹어야 하는데 그건 심화하가 이미
+ *      쓴다(`eq141Deep` ㉯ 가 「분모가 $13$보다 크고 $19$보다 작은」이다).
+ *    · **1-4-2 심화상** — 되짚기 값이 «몇으로 약분했나»(g) 하나뿐인데 분모·분자·합·차가
+ *      **전부 $g$ 에 비례**한다. 어떤 조건을 주어도 나눗셈 한 번으로 굳으므로
+ *      「후보를 다 만들어 견주어야」가 성립하지 않는다(`census-g5w4-empty.ts` 가 전수로 센다).
+ *    · **1-4-4 둘** — 되짚을 값이 없고 심화하가 이미 열거다(`$\frac13<\frac{\square}9<\frac79$`).
+ *    · **1-4-5 둘** — 분수↔소수가 한 걸음 일대일이라 견줄 둘째 걸음이 안 선다.
+ */
+
+/** 기약 진분수 짝 — 확대 갈래가 쓰는 재료. */
+type W4Frac = { a: number; b: number };
+
+const W4_PROPER: W4Frac[] = (() => {
+  const out: W4Frac[] = [];
+  for (let b = 3; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1) if (gcd(a, b) === 1) out.push({ a, b });
+  return out;
+})();
+
+/* ── 1-4-2 심화중 — 「무엇으로 약분했는지 안 말한다」 ──
+ *
+ * 마디: **몇으로 약분했는가**(후보가 배수만큼 여럿).
+ * 굳힘: 「기약분수는 분모와 분자가 **서로소**」라 그 꼴이 유일하고, 발문이 준 **차**가
+ *       배수를 하나로 남긴다. 끝까지 계산하지 않고 나눗셈 한 번으로 갈린다(→ 심화중).
+ */
+
+type W4RedTask = { a: number; b: number; k: number; D: number };
+
+function w4Red142(): W4RedTask[] {
+  const out: W4RedTask[] = [];
+  for (const { a, b } of W4_PROPER)
+    for (let k = 2; k <= 9; k += 1) {
+      // 분모를 키우는 것은 축이 아니다(토대 17 §3 「발문 분모 ≤ 48」).
+      if (a < 2 || b * k > 48) continue;
+      out.push({ a, b, k, D: (b - a) * k });
+    }
+  return out;
+}
+
+function red142Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4RedTask) =>
+    `어떤 분수를 약분하여 기약분수 ${fro(t.a, t.b)} 나타냈습니다. 어떤 분수의 분모와 분자의 차가 ${nj(t.D, "일", "일")} 때, 어떤 분수의 분모를 구하시오.`;
+  const pool = w2Pool("w4-142mid", () =>
+    w4Red142().filter((t) => !w3Bad(content(t), w2int(t.b * t.k))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  return makeDeep(unit, content(t), n(t.b * t.k), [
+    `약분은 분모와 분자를 같은 수로 나누는 것이므로, 어떤 분수는 ${frj(t.a, t.b, "과", "와")} 분모와 분자에 각각 같은 수를 곱한 분수입니다.`,
+    `기약분수의 분모와 분자의 차는 ${expr(`${t.b}-${t.a}=${t.b - t.a}`)}이고, 같은 수를 곱하면 차도 그 수만큼 커집니다. 곱한 수는 ${expr(`${t.D}\\div${t.b - t.a}=${t.k}`)}입니다.`,
+    `어떤 분수의 분모는 ${expr(`${t.b}\\times${t.k}=${t.b * t.k}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-4-3 심화중 — 「어느 분수의 분자인지 안 말한다」 ──
+ *
+ * 마디: 지면의 분자가 **어느 분수의 것인가**(후보 둘).
+ * 굳힘: 「공통분모는 두 분모의 **공배수**」 → 한쪽으로 읽으면 공배수가 안 된다.
+ * ⚠️ 심화하 ㉮ 는 분자를 **둘 다** 준다 — 그러면 마디가 안 열린다(토대 17 §3 함정).
+ */
+
+type W4ComTask = {
+  a: number;
+  b: number;
+  c: number;
+  d: number;
+  m: number;
+  N: number;
+  fromFirst: boolean;
+};
+
+function w4Com143(): W4ComTask[] {
+  const out: W4ComTask[] = [];
+  for (const { a, b } of W4_PROPER)
+    for (const { a: c, b: d } of W4_PROPER) {
+      // 한쪽이 다른 쪽의 약수면 통분해도 한 분수가 그대로라 «통분»이 안 보인다.
+      if (b === d || gcd(b, d) === 1) continue;
+      if (b % d === 0 || d % b === 0) continue; // 곱과 최소공배수가 갈려야 이 소단원이다
+      const L = lcm(b, d);
+      if (L > 60) continue;
+      for (let t = 1; t <= 2; t += 1) {
+        const m = L * t;
+        if (m > 90) continue;
+        const p = a * (m / b);
+        const q = c * (m / d);
+        for (const [N, fromFirst] of [
+          [p, true],
+          [q, false],
+        ] as const) {
+          // 다른 쪽으로 읽어도 «공배수»가 되면 답이 둘이다 — 그때는 못 쓴다.
+          const otherNum = fromFirst ? c : a;
+          const otherDen = fromFirst ? d : b;
+          if (N % otherNum === 0) {
+            const m2 = otherDen * (N / otherNum);
+            if (m2 !== m && m2 % b === 0 && m2 % d === 0) continue;
+          }
+          out.push({ a, b, c, d, m, N, fromFirst });
+        }
+      }
+    }
+  return out;
+}
+
+function com143Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4ComTask) =>
+    `${frj(t.a, t.b, "과", "와")} ${frj(t.c, t.d, "을", "를")} 통분했더니 한 분수의 분자가 ${nj(t.N, "이", "가")} 되었습니다. 공통분모를 구하시오.`;
+  const pool = w2Pool("w4-143mid", () =>
+    w4Com143().filter((t) => !w3Bad(content(t), w2int(t.m))),
+  );
+  const wantFirst = altCase(rng);
+  const half = pool.filter((x) => x.fromFirst === wantFirst);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const mine = t.fromFirst ? { p: t.a, q: t.b } : { p: t.c, q: t.d };
+  const other = t.fromFirst ? { p: t.c, q: t.d } : { p: t.a, q: t.b };
+  const deadWhy =
+    t.N % other.p !== 0
+      ? `${lj(`${t.N}\\div${other.p}`, "은", "는")} 나누어떨어지지 않아 분자가 될 수 없습니다.`
+      : `공통분모가 ${lj(`${other.q}\\times${t.N / other.p}=${other.q * (t.N / other.p)}`, "이", "가")} 되는데, 이 수는 ${nj(t.b, "과", "와")} ${n(t.d)}의 공배수가 아닙니다.`;
+  return makeDeep(unit, content(t), n(t.m), [
+    `공통분모는 두 분모 ${nj(t.b, "과", "와")} ${n(t.d)}의 공배수여야 합니다.`,
+    `${nj(t.N, "이", "가")} ${frj(other.p, other.q, "의", "의")} 분자라면 ${deadWhy}`,
+    `그러므로 ${nj(t.N, "은", "는")} ${frj(mine.p, mine.q, "의", "의")} 분자입니다. ${expr(`${t.N}\\div${mine.p}=${t.N / mine.p}`)}이므로 공통분모는 ${expr(`${mine.q}\\times${t.N / mine.p}=${t.m}`)}입니다.`,
+  ]);
+}
+
+/* ── 1-4-3 심화상 — 「한쪽 분수를 통째로 모르고, 분모 후보를 만들어 견준다」 ──
+ *
+ * 🔴 심화중과 갈리는 문장: 후보(어떤 진분수의 분모)를 **발문이 안 주고** 되짚기가
+ *    만들며, 「공통분모가 될 수 있는 가장 작은 수가 $M$」 하나로는 **안 갈린다** —
+ *    후보마다 「분모와 분자의 합이 $S$ 인 진분수를 만들 수 있는가」를 **실제로 따져
+ *    봐야** 하나가 남는다(D-115 ⑾ → 심화상).
+ */
+
+type W4ComTopTask = { a: number; b: number; M: number; S: number; e: number };
+
+/** `lcm(b, e) = M` 인 분모 후보 전부 — 되짚기가 만드는 줄. */
+function w4DenCands(b: number, M: number): number[] {
+  const out: number[] = [];
+  for (let e = 2; e <= M; e += 1) if (lcm(b, e) === M) out.push(e);
+  return out;
+}
+
+function w4ComTop143(): W4ComTopTask[] {
+  const out: W4ComTopTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let t = 1; t <= 6; t += 1) {
+      const M = b * t;
+      if (M > 72 || M === b) continue;
+      const cands = w4DenCands(b, M);
+      if (cands.length < 3) continue; // 마디가 열려야 한다
+      for (let S = 7; S <= 40; S += 1) {
+        const hit = cands.filter((e) => {
+          const c = S - e;
+          return c > 0 && c < e;
+        });
+        if (hit.length !== 1) continue;
+        // 해설에 셈이 둘 이상 남아야 한다(D-72 4단) — 모두 「미다」로
+        // 끝나면 빼셈을 한 번도 안 적게 된다.
+        if (cands.filter((e) => S - e > 0).length < 2) continue;
+        const e = hit[0]!;
+        if (e < 3) continue;
+        out.push({ a: 1, b, M, S, e });
+      }
+    }
+  return out;
+}
+
+function com143Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4ComTopTask) =>
+    `어떤 진분수와 분모가 ${nj(t.b, "인", "인")} 진분수를 통분하려고 합니다. 공통분모가 될 수 있는 수 중 가장 작은 수가 ${nj(t.M, "이고", "이고")} 어떤 진분수의 분모와 분자의 합이 ${nj(t.S, "일", "일")} 때, 어떤 진분수의 분모를 구하시오.`;
+  const pool = w2Pool("w4-143top", () =>
+    w4ComTop143().filter((t) => !w3Bad(content(t), w2int(t.e))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const cands = w4DenCands(t.b, t.M);
+  // 🔴 **음수를 지면에 쓰지 않는다.** 합보다 큰 분모는 뺄셈 자체가 안 되므로
+  //    「$34-36=-2$」 가 아니라 「뺄 수 없다」로 적는다(초5 는 음수를 안 배운다).
+  const lines = cands.map((e) => {
+    const c = t.S - e;
+    if (c <= 0)
+      return `분모가 ${nj(e, "이면", "이면")} ${n(t.S)}에서 ${nj(e, "을", "를")} 뺄 수 없어 분자를 만들지 못합니다.`;
+    if (c >= e)
+      return `분모가 ${nj(e, "이면", "이면")} 분자가 ${lj(`${t.S}-${e}=${c}`, "이라", "라")} 분모보다 작지 않아 진분수가 아닙니다.`;
+    return `분모가 ${nj(e, "이면", "이면")} 분자가 ${lj(`${t.S}-${e}=${c}`, "이라", "라")} 진분수가 됩니다.`;
+  });
+  return makeDeep(unit, content(t), n(t.e), [
+    `공통분모가 될 수 있는 수 중 가장 작은 수가 ${nj(t.M, "이므로", "이므로")}, 어떤 진분수의 분모는 ${nj(t.b, "과", "와")} 함께 그 수를 만드는 수여야 합니다. 그런 분모는 ${nums(cands)}입니다.`,
+    `분모마다 분자를 만들어 봅니다. ${lines.join(" ")}`,
+    `진분수가 되는 것은 분모가 ${nj(t.e, "일", "일")} 때뿐이므로 어떤 진분수의 분모는 ${n(t.e)}입니다.`,
+  ]);
+}
+
+/* ────────── 2-2 분수의 곱셈 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「진분수다(분자<분모)」·「대분수다」·「한 자리 자연수다」** — 셋 다
+ * **소단원 이름 그 자체**라 반증 ③ 을 안 건드린다.
+ * 마디를 여는 것: **곱한 수(또는 분자)를 안 말하고 «분자끼리의 곱»까지만 굳힌다**.
+ *
+ * 🔴 **창(범위)은 안 쓴다.** 토대 17 §2.1 ㉠ 이 「곱만 알고 두 인수를 모른다 + 창」이
+ *    파일럿 2-4 심화상과 **동형이 넷**이라고 짚었다. 여기서는 **분모 조건으로만** 가른다.
+ *
+ * ⚠️ 이 소단원의 시험이 잠근 규약 셋(`elemTiersG5.test.ts`):
+ *    ㉠ **차례가 곧 소단원이다** — 2-2-1 은 `\frac{a}{b}\times n`, 2-2-2 는 `n\times\frac{a}{b}`.
+ *       상대의 차례는 **발문에** 있으면 안 된다.
+ *    ㉡ **발문이 「기약」을 요구하면 안 된다**(`/기약|약분하여 나타/`).
+ *    ㉢ 2-2-4 는 **발문에 대분수**가 있어야 하고 **해설에 「가분수」** 가 있어야 한다.
+ *
+ * 🔴 **2-2-1·2-2-2·2-2-4 의 심화상은 비웠다.** 이 대단원에서 「성질로 못 갈라 실제로
+ *    곱해 봐야」가 서는 자리는 **곱을 약분해 봐야 아는 조건** 하나뿐인데, 그것을 두
+ *    소단원에 쓰면 지면에서 한 문항이 된다. 그래서 2-2-3 에만 두었다.
+ */
+
+/** `n/d` 를 지면 표기로 — 약분하고 대분수로 접는다(R2). */
+const w4FracText = (num: number, den: number): string => {
+  const [p, q] = simplify(num, den);
+  return fracLatex(p, q);
+};
+
+/** 곱이 `P` 이고 **한 자리 자연수**가 끼는 짝 — 해설이 늘어놓는 줄. */
+function w4OneDigitPairs(P: number): [number, number][] {
+  return divisors(P)
+    .map((d) => [d, P / d] as [number, number])
+    .filter(([, e]) => e >= 2 && e <= 9);
+}
+
+const w4PairList = (pairs: readonly (readonly [number, number])[]): string =>
+  pairs.map(([d, e]) => expr(`(${d},\\ ${e})`)).join(", ");
+
+/* ── 2-2-1 심화중 — 「곱한 자연수를 안 말한다」 ── */
+
+type W4MulTask = { b: number; a: number; k: number };
+
+/** 곱이 `X` 인 짝 `(분자, 자연수)` 중 «진분수 · 한 자리 자연수»를 지키는 것. */
+function w4MulPairs(P: number, b: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d < b && e >= 2 && e <= 9) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mul221(): W4MulTask[] {
+  const out: W4MulTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1)
+      for (let k = 2; k <= 9; k += 1) {
+        if (gcd(a, b) !== 1) continue; // 처음 진분수는 기약이어야 지면이 깨끗하다
+        if (a * k > 60) continue;
+        // 곱한 결과가 자연수로 떨어지면 해설 첫 걸음이 「$16=\frac{112}{7}$」처럼
+        // **등호 앞에 연산이 없는** 꼴이 되어 `countCalcSteps` 가 셈으로 안 센다
+        // (D-72 4단 가드가 실제로 던졌다). 지면도 분수 꼴이 깔끔하다.
+        if ((a * k) % b === 0) continue;
+        // 굳힘이 실제로 일해야 한다 — 「한 자리 자연수」만으로 짝이 하나면 «진분수다»가
+        // 아무것도 안 걸러 내서 마디가 안 열린다(첫 판에서 실제로 났다).
+        if (w4OneDigitPairs(a * k).length < 2) continue;
+        if (w4MulPairs(a * k, b).length !== 1) continue;
+        out.push({ b, a, k });
+      }
+  return out;
+}
+
+function mul221Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4MulTask) =>
+    `분모가 ${nj(t.b, "인", "인")} 진분수에 한 자리 자연수를 곱했더니 ${lj(w4FracText(t.a * t.k, t.b), "이", "가")} 되었습니다. 처음 진분수의 분자를 구하시오.`;
+  const pool = w2Pool("w4-221mid", () =>
+    w4Mul221().filter((t) => !w3Bad(content(t), w2int(t.a))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.a), [
+    `분모는 그대로 두고 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "이고", "고")} 곱한 수가 한 자리 자연수인 (분자, 곱한 수) 짝은 ${w4PairList(all)}입니다.`,
+    `분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`\\frac{${t.a}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 분자는 ${n(t.a)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-2 심화중 — 「곱한 진분수의 분자를 안 말한다」 ── */
+
+function w4Mul222(): W4MulTask[] {
+  const out: W4MulTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1)
+      for (let k = 2; k <= 9; k += 1) {
+        if (gcd(a, b) !== 1) continue;
+        if (a * k > 60) continue;
+        // 곱한 결과가 자연수로 떨어지면 해설 첫 걸음이 「$16=\frac{112}{7}$」처럼
+        // **등호 앞에 연산이 없는** 꼴이 되어 `countCalcSteps` 가 셈으로 안 센다
+        // (D-72 4단 가드가 실제로 던졌다). 지면도 분수 꼴이 깔끔하다.
+        if ((a * k) % b === 0) continue;
+        // 2-2-1 과 같은 까닭 — 「한 자리 자연수」만으로 짝이 하나면 마디가 안 열린다.
+        if (w4OneDigitPairs(a * k).length < 2) continue;
+        if (w4MulPairs(a * k, b).length !== 1) continue;
+        out.push({ b, a, k });
+      }
+  return out;
+}
+
+function mul222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4MulTask) =>
+    `어떤 한 자리 자연수와 분모가 ${nj(t.b, "인", "인")} 진분수를 곱했더니 ${lj(w4FracText(t.a * t.k, t.b), "이", "가")} 되었습니다. 어떤 자연수를 구하시오.`;
+  const pool = w2Pool("w4-222mid", () =>
+    w4Mul222().filter((t) => !w3Bad(content(t), w2int(t.k))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.k), [
+    `자연수를 분자에 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 자연수와 진분수의 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "이고", "고")} 자연수가 한 자리 수인 (진분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다.`,
+    `진분수의 분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`${t.k}\\times\\frac{${t.a}}{${t.b}}=${w4FracText(P, t.b)}`)}이므로 어떤 자연수는 ${n(t.k)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-3 심화중 — 「두 분모만 주고 분자를 안 말한다」 ──
+ *
+ * 마디: 분자 짝(곱만 굳는다). 굳힘: **두 분수가 다 진분수**여야 한다 —
+ * 계산 끝까지 안 가고 크기 비교만으로 걸러 낸다(→ 심화중).
+ */
+
+type W4Mul3Task = { d1: number; d2: number; a: number; b: number };
+
+/** 곱이 `P` 인 짝 중 `a < d1` · `b < d2` 인 것. */
+function w4ProperPairs(P: number, d1: number, d2: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d < d1 && e < d2) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mul223(): W4Mul3Task[] {
+  const out: W4Mul3Task[] = [];
+  for (let d1 = 4; d1 <= 12; d1 += 1)
+    for (let d2 = 4; d2 <= 12; d2 += 1) {
+      if (d1 === d2) continue;
+      for (let a = 2; a < d1; a += 1)
+        for (let b = 2; b < d2; b += 1) {
+          if (gcd(a, d1) !== 1 || gcd(b, d2) !== 1) continue;
+          const P = a * b;
+          const pairs = w4ProperPairs(P, d1, d2);
+          if (pairs.length !== 1) continue; // 진분수 조건이 하나만 남겨야 한다
+          // 곱이 약분돼야 「분모를 두 분모의 곱으로 고친다」는 걸음이 뜻을 갖는다.
+          if (gcd(P, d1 * d2) === 1) continue;
+          if (divisors(P).length < 4) continue; // 마디가 열려야 한다(짝이 여럿)
+          out.push({ d1, d2, a, b });
+        }
+    }
+  return out;
+}
+
+function mul223Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Mul3Task) =>
+    `분모가 ${nj(t.d1, "인", "인")} 진분수와 분모가 ${nj(t.d2, "인", "인")} 진분수를 곱했더니 ${lj(w4FracText(t.a * t.b, t.d1 * t.d2), "이", "가")} 되었습니다. 두 진분수의 분자의 합을 구하시오.`;
+  const pool = w2Pool("w4-223mid", () =>
+    w4Mul223().filter((t) => !w3Bad(content(t), w2int(t.a + t.b))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.b;
+  const all = divisors(P).map((d) => [d, P / d] as [number, number]);
+  return makeDeep(unit, content(t), n(t.a + t.b), [
+    `분자끼리, 분모끼리 곱하므로 분모는 ${expr(`${t.d1}\\times${t.d2}=${t.d1 * t.d2}`)}이고, 곱을 그 분모로 고치면 ${lj(`\\frac{${P}}{${t.d1 * t.d2}}`, "이", "가")} 됩니다. 곧 두 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "인", "인")} 두 수의 짝은 ${w4PairList(all)}입니다.`,
+    `앞의 분자는 ${nj(t.d1, "보다", "보다")}, 뒤의 분자는 ${nj(t.d2, "보다", "보다")} 작아야 하므로 짝은 ${expr(`\\frac{${t.a}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(P, t.d1 * t.d2)}`)}뿐입니다. 분자의 합은 ${expr(`${t.a}+${t.b}=${t.a + t.b}`)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-3 심화상 — 「곱을 실제로 약분해 봐야 갈린다」 ──
+ *
+ * 🔴 심화중과 갈리는 문장: 진분수 조건만으로는 짝이 **둘 이상** 남고, 남은 짝마다
+ *    **곱해서 간단히 해 봐야** 분모가 맞는 것 하나가 남는다(D-115 ⑾ → 심화상).
+ *    발문은 곱한 값을 안 준다 — 준다면 심화중과 같은 문항이 된다.
+ */
+
+/**
+ * 🔴 **한 진분수를 지면에 실어 준다.** 처음 판은 두 분모와 «간단히 한 분모»만 주고
+ *    분수를 한 개도 안 실었는데, `probe-elem-section-conditions` 가 그것을 잡았다 —
+ *    이 소단원의 이름이 「진분수의 곱셈」이라 **발문에 진분수가 있어야** 한다.
+ *    한쪽을 실어도 답은 안 새어 나간다: 곱한 값을 안 주므로 나머지 분자는
+ *    **짝마다 곱해서 간단히 해 봐야** 갈린다(D-115 ⑾ → 심화상).
+ */
+function w4MulTop223(): W4Mul3Task[] {
+  const out: W4Mul3Task[] = [];
+  for (let d1 = 6; d1 <= 12; d1 += 1)
+    for (let d2 = 4; d2 <= 12; d2 += 1) {
+      if (d1 === d2) continue;
+      const D0 = d1 * d2;
+      for (let a = 2; a < d1; a += 1)
+        for (let b = 2; b < d2; b += 1) {
+          if (gcd(a, d1) !== 1 || gcd(b, d2) !== 1) continue;
+          const den = simplify(a * b, D0)[1];
+          // 마디가 열려야 한다 — 지면이 준 진분수에 맞대어 볼 분자 후보가 넷 이상.
+          if (d1 - 2 < 4) continue;
+          // 그 후보 중 «간단히 한 분모»가 맞는 것이 하나여야 답이 선다.
+          const live: number[] = [];
+          for (let x = 2; x < d1; x += 1)
+            if (simplify(x * b, D0)[1] === den) live.push(x);
+          if (live.length !== 1) continue;
+          out.push({ d1, d2, a, b });
+        }
+    }
+  return out;
+}
+
+function mul223Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = (t: W4Mul3Task) => simplify(t.a * t.b, t.d1 * t.d2)[1];
+  const content = (t: W4Mul3Task) =>
+    `분모가 ${nj(t.d1, "인", "인")} 진분수와 ${frj(t.b, t.d2, "을", "를")} 곱했습니다. 곱한 값을 가장 간단한 분수로 나타내면 분모가 ${n(den(t))}입니다. 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자를 구하시오. (분자는 ${nj(1, "보다", "보다")} 큽니다.)`;
+  const pool = w2Pool("w4-223top", () =>
+    w4MulTop223().filter((t) => !w3Bad(content(t), w2int(t.a))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const D0 = t.d1 * t.d2;
+  // 표본은 **고루** 뽑는다 — 앞에서부터 자르면 늘 작은 분자만 보인다.
+  const others: number[] = [];
+  for (let x = 2; x < t.d1; x += 1) if (x !== t.a) others.push(x);
+  const step = Math.max(1, Math.floor(others.length / 3));
+  const some = others
+    .filter((_, i) => i % step === 0)
+    .slice(0, 3)
+    .map((x) =>
+      expr(
+        `\\frac{${x}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(x * t.b, D0)}`,
+      ),
+    );
+  return makeDeep(unit, content(t), n(t.a), [
+    `분자끼리, 분모끼리 곱하면 분모는 ${expr(`${t.d1}\\times${t.d2}=${D0}`)}입니다. 그런데 곱한 값을 간단히 하면 분모가 달라지므로, 분자를 하나씩 넣어 곱해 보아야 합니다.`,
+    `${some.join(", ")} 처럼 간단히 한 분모가 ${nj(den(t), "이", "가")} 아닌 것은 답이 될 수 없습니다.`,
+    `${expr(`\\frac{${t.a}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(t.a * t.b, D0)}`)}만 분모가 ${nj(den(t), "이므로", "이므로")} 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자는 ${n(t.a)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-4 심화중 — 「곱한 자연수를 안 말한다 / «대분수다»가 굳힌다」 ── */
+
+type W4Mix4Task = { b: number; p: number; k: number };
+
+/**
+ * 곱이 `P` 인 짝 `(가분수 분자, 자연수)` 중 «대분수 · 한 자리 자연수»를 지키는 것.
+ *
+ * 🔴 굳히는 성질은 **「대분수를 가분수로 고치면 분자가 분모보다 크다」**다.
+ *    처음엔 「분모의 배수면 자연수가 되니 못 쓴다」로 잡았는데, 처음 분수가 기약이면
+ *    (`gcd(p,b)=1`) 그런 후보가 **구조적으로 하나도 안 생겨** 풀이 통째로 비었다 —
+ *    분모의 배수인 분자가 있으려면 곱한 자연수가 분모의 배수여야 하고, 그러면
+ *    곱한 결과가 자연수가 되어 이 소단원의 대분수 규약이 깨진다.
+ */
+function w4MixedPairs(P: number, b: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d > b && e >= 2 && e <= 9) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mix224(): W4Mix4Task[] {
+  const out: W4Mix4Task[] = [];
+  for (let b = 3; b <= 9; b += 1)
+    for (let p = b + 1; p <= 5 * b; p += 1) {
+      if (p % b === 0) continue; // 대분수여야 한다
+      if (gcd(p, b) !== 1) continue; // 분수부가 기약이어야 지면이 깨끗하다
+      for (let k = 2; k <= 9; k += 1) {
+        if (p * k > 200) continue;
+        // 🔴 곱한 결과도 **대분수**여야 한다 — 이 소단원은 발문에 대분수가 있어야 하고
+        //    (`elemTiersG5.test.ts`), 자연수로 떨어지면 그 규약이 깨진다.
+        if ((p * k) % b === 0) continue;
+        // 마디가 열려야 한다 — 한 자리 자연수인 짝이 둘 이상이어야 «대분수다»가
+        // 실제로 하나를 지운다.
+        if (w4OneDigitPairs(p * k).length < 2) continue;
+        if (w4MixedPairs(p * k, b).length !== 1) continue;
+        out.push({ b, p, k });
+      }
+    }
+  return out;
+}
+
+function mix224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Mix4Task) =>
+    `분모가 ${nj(t.b, "인", "인")} 대분수에 한 자리 자연수를 곱했더니 ${lj(w4FracText(t.p * t.k, t.b), "이", "가")} 되었습니다. 처음 대분수를 가분수로 나타내면 분자는 얼마입니까?`;
+  // 🔴 묻는 것을 «자연수 부분»에서 «가분수의 분자»로 바꿨다 — 답의 폭 때문이다.
+  //    「한 자리 자연수인 짝 중 분자가 분모보다 큰 것이 하나」라는 조건이 곱을 작게
+  //    묶어서, 자연수 부분이 실측 500씨앗에서 **두 가지(최빈 92.6%)** 밖에 안 나왔다.
+  //    기존 시험 「답의 가짓수 ≥4 · 최빈 ≤45%」가 그것을 잡았다.
+  const pool = w2Pool("w4-224mid", () =>
+    w4Mix224().filter((t) => !w3Bad(content(t), w2int(t.p))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.p * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.p), [
+    `대분수를 가분수로 고쳐 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 가분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 처음 대분수를 고친 가분수의 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `자연수가 한 자리 수인 (가분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다. 처음 수가 대분수이므로 가분수로 고치면 분자가 분모 ${nj(t.b, "보다", "보다")} 커야 하고, 그런 짝은 하나뿐입니다.`,
+    `그 짝은 ${lj(`\\frac{${t.p}}{${t.b}}`, "이", "가")} 되고, 대분수로 고치면 ${lj(fracLatex(t.p, t.b), "이", "가")} 됩니다. 검산하면 ${expr(`\\frac{${t.p}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 가분수의 분자는 ${n(t.p)}입니다.`,
+  ]);
+}
+
+/* ────────── 2-5 직육면체 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「평행한 두 면은 합동」**(2-5-3) · **「겨냥도의 보이는 아홉은 세 모서리
+ * 합의 $3$배, 모든 모서리는 $4$배」**(2-5-4). 마디를 여는 것: **넓이의 인수 짝** ·
+ * **그 합이 어느 무리의 것인지 안 말한다**.
+ *
+ * ⚠️ 이 대단원의 규약(토대 17 §3 함정 · `elemTiersG5.test.ts`):
+ *    ㉠ **겉넓이·부피는 초6** — 낱말도 못 쓴다.
+ *    ㉡ **2-5-1·2-5-2 는 «한 면의 넓이·둘레»를 통째로 안 쓴다**(초5 1-6 과 겹친다).
+ *       그래서 넓이를 재료로 쓰는 갈래는 2-5-3·2-5-6 에만 두었다.
+ *    ㉢ **개수는 한글로 적는다** — 「$4$개」의 `4` 가 지면 수가 되어 반증 ⑥ 이 오작동한다.
+ *    ㉣ 꼭짓점 이름이 없으므로 면·모서리는 **치수로** 지목한다.
+ *
+ * 🔴 **아홉 칸을 비웠다.** 2-5-1·2-5-2·2-5-5 여섯 · 2-5-3 상 · 2-5-4 상 · 2-5-6 중.
+ *    · 2-5-2·2-5-5(정육면체)는 되짚을 값이 **한 모서리 하나**뿐이라 인수 짝이 안 생긴다
+ *      (토대 17 §2.1 ⑶). 나눗수 $12$·$14$ 는 지면에 없어 자도 못 본다.
+ *    · 2-5-1 은 위 ㉡ 때문에 넓이를 못 쓰고, 모서리만으로는 심화하(「가로는 세로의 $k$배」)와
+ *      같은 자리에 선다.
+ *    · 2-5-6 심화중은 심화하가 이미 「가로를 주고 두 넓이로 나눈다」를 쓴다 — 그 사이에
+ *      설 자리가 없다(넓이를 둘만 주면 답이 넷까지 남고, 좁히는 것은 창뿐인데 그건 파일럿 축이다).
+ */
+
+/* ── 2-5-3 심화중 — 「어느 두 모서리가 같은지 안 말한다」 ──
+ *
+ * 마디: 넓이 $A$ 의 **인수 짝**(어느 것이 그 면의 가로·세로인가).
+ * 굳힘: 「평행한 두 면은 합동」이라 넓이가 같은 면이 네 개면 **두 모서리가 같고**,
+ *       나머지 두 면은 그 두 모서리로 된 **정사각형**이다 — 같은 수를 두 번 곱해
+ *       $B$ 가 되는 수 하나가 곧바로 정해진다(계산 끝까지 안 간다 → 심화중).
+ */
+
+type W4CubTask = { w: number; x: number };
+
+function w4Cub253(): W4CubTask[] {
+  const out: W4CubTask[] = [];
+  for (let x = 2; x <= 9; x += 1)
+    for (let w = 2; w <= 12; w += 1) {
+      if (w === x) continue; // 정육면체가 되면 「네 개」가 거짓이다
+      if (w * x > 96 || x * x > 96) continue;
+      if ((w + 2 * x) * 4 > 140) continue;
+      out.push({ w, x });
+    }
+  return out;
+}
+
+function cub253Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4CubTask) =>
+    `직육면체에서 넓이가 ${n(t.w * t.x)} cm²인 면이 ${W2_COUNT[4]!} 개이고, 나머지 ${W2_COUNT[2]!} 면의 넓이는 ${n(t.x * t.x)} cm²입니다. 이 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-253mid", () =>
+    w4Cub253().filter((t) => !w3Bad(content(t), w2int((t.w + 2 * t.x) * 4))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const sum3 = t.w + 2 * t.x;
+  return makeDeep(unit, content(t), n(sum3 * 4), [
+    `직육면체에서 평행한 두 면은 모양과 크기가 같으므로 넓이가 같은 면은 ${W2_COUNT[2]!} 개씩 세 쌍입니다. 넓이가 같은 면이 ${W2_COUNT[4]!} 개이면 세 모서리 중 ${W2_COUNT[2]!} 모서리의 길이가 같습니다.`,
+    `나머지 ${W2_COUNT[2]!} 면은 그 같은 두 모서리로 이루어진 정사각형입니다. 같은 수를 두 번 곱해 ${nj(t.x * t.x, "이", "가")} 되는 수는 ${nj(t.x, "이므로", "이므로")} 같은 두 모서리는 ${expr(`${t.x}\\times${t.x}=${t.x * t.x}`)}에서 ${n(t.x)} cm입니다.`,
+    `나머지 한 모서리는 ${expr(`${t.w * t.x}\\div${t.x}=${t.w}`)}에서 ${n(t.w)} cm입니다. 모든 모서리는 세 방향으로 ${W2_COUNT[4]!} 개씩이므로 ${expr(`(${t.w}+${t.x}+${t.x})\\times4=${sum3 * 4}`)}, 곧 ${n(sum3 * 4)} cm입니다.`,
+  ]);
+}
+
+/* ── 2-5-4 심화중 — 「그 합이 어느 무리의 것인지 안 말한다」 ──
+ *
+ * 마디: 지면의 합이 **보이는 아홉 개**의 것인가 **모든 열두 개**의 것인가(후보 둘).
+ * 굳힘: 보이는 아홉은 세 모서리 합의 $3$배, 모든 모서리는 $4$배다 —
+ *       세 모서리의 합이 자연수여야 하므로 **나누어떨어지는 쪽**만 산다(→ 심화중).
+ */
+
+type W4SeeTask = { T: number; nine: boolean };
+
+function w4See254(): W4SeeTask[] {
+  const out: W4SeeTask[] = [];
+  for (let T = 6; T <= 30; T += 1) {
+    // 두 후보 중 **하나만** 나누어떨어져야 한다.
+    for (const nine of [true, false]) {
+      const S = nine ? T * 3 : T * 4;
+      const byNine = S % 3 === 0;
+      const byAll = S % 4 === 0;
+      if (byNine === byAll) continue;
+      out.push({ T, nine });
+    }
+  }
+  return out;
+}
+
+function cub254Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const total = (t: W4SeeTask) => (t.nine ? t.T * 3 : t.T * 4);
+  const content = (t: W4SeeTask) =>
+    `어떤 직육면체의 겨냥도에서 보이는 모서리 아홉 개의 길이의 합과 이 직육면체의 모든 모서리 길이의 합 중 하나가 ${n(total(t))} cm입니다. 세 모서리의 길이가 모두 자연수 cm일 때, 보이지 않는 모서리 세 개의 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-254mid", () =>
+    w4See254().filter((t) => !w3Bad(content(t), w2int(t.T))),
+  );
+  const wantNine = altCase(rng);
+  const half = pool.filter((x) => x.nine === wantNine);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const S = total(t);
+  const dead = t.nine
+    ? `${nj(S, "이", "가")} 모든 모서리 길이의 합이라면 ${lj(`${S}\\div4`, "은", "는")} 나누어떨어지지 않으므로 쓸 수 없습니다.`
+    : `${nj(S, "이", "가")} 보이는 아홉 개의 합이라면 ${lj(`${S}\\div3`, "은", "는")} 나누어떨어지지 않으므로 쓸 수 없습니다.`;
+  return makeDeep(unit, content(t), n(t.T), [
+    `보이지 않는 모서리 세 개는 가로·세로·높이 방향으로 하나씩이므로 그 합은 세 모서리의 합입니다. 보이는 아홉 개는 세 방향으로 ${W2_COUNT[3]!} 개씩이라 그 ${W2_COUNT[3]!} 배이고, 모든 모서리 열두 개는 ${W2_COUNT[4]!} 배입니다.`,
+    dead,
+    `그러므로 ${nj(S, "은", "는")} ${t.nine ? "보이는 아홉 개" : "모든 모서리"}의 합이고, 보이지 않는 세 모서리의 합은 ${expr(`${S}\\div${t.nine ? 3 : 4}=${t.T}`)}에서 ${n(t.T)} cm입니다. 검산하면 ${expr(`${t.T}\\times${t.nine ? 3 : 4}=${S}`)}입니다.`,
+  ]);
+}
+
+/* ── 2-5-6 심화상 — 「세 넓이가 서로 얽힌다」 ──
+ *
+ * 🔴 토대 17 §2.1 이 「가장 튼튼한 자리 셋」으로 꼽은 자리다 — **3차원에만 있고**
+ *    파일럿 2-4 의 «창»과 겹치지 않는다. 한 넓이의 인수 짝을 되짚기가 만들고,
+ *    짝마다 **나머지 두 면의 넓이를 실제로 곱해 봐야** 하나가 남는다(→ 심화상).
+ */
+
+type W4NetTask = { w: number; d: number; h: number };
+
+function w4Net256(): W4NetTask[] {
+  const out: W4NetTask[] = [];
+  for (let w = 2; w <= 9; w += 1)
+    for (let d = w + 1; d <= 10; d += 1)
+      for (let h = d + 1; h <= 12; h += 1) {
+        if (w * d > 96 || w * h > 96 || d * h > 96) continue;
+        if ((w + d + h) * 4 > 140) continue;
+        // 마디가 열려야 한다 — 첫 넓이의 인수 짝이 여럿이어야 「만들어 견주기」가 산다.
+        if (w2Pairs(w * d).length < 2) continue;
+        out.push({ w, d, h });
+      }
+  return out;
+}
+
+function net256Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4NetTask) =>
+    `어떤 직육면체의 전개도에서 세 가지 면의 넓이가 ${nums([t.w * t.d, t.w * t.h, t.d * t.h])} cm²입니다. 이 전개도를 접어 만든 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`;
+  const pool = w2Pool("w4-256top", () =>
+    w4Net256().filter((t) => !w3Bad(content(t), w2int((t.w + t.d + t.h) * 4))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const A = t.w * t.d;
+  const B = t.w * t.h;
+  const C = t.d * t.h;
+  const sum3 = t.w + t.d + t.h;
+  // 표본은 **답에 가까운 짝부터** 둘만 보인다 — `(1, A)` 같은 짝을 그대로 보이면
+  // 검산 곱이 네 자리로 커져 지면이 규모 축으로 읽힌다.
+  const tried = w2Pairs(A)
+    .filter(([p]) => p !== t.w)
+    .sort((x, y) => Math.abs(x[0] - t.w) - Math.abs(y[0] - t.w))
+    .slice(0, 2)
+    .map(([p, q]) => {
+      const hh = B % p === 0 ? B / p : null;
+      return hh === null
+        ? `모서리가 ${nums([p, q])}이면 ${lj(`${B}\\div${p}`, "은", "는")} 나누어떨어지지 않아 남은 모서리를 못 만듭니다.`
+        : `모서리가 ${nums([p, q])}이면 남은 모서리는 ${expr(`${B}\\div${p}=${hh}`)}인데 ${lj(`${q}\\times${hh}=${q * hh}`, "이라", "라")} ${nj(C, "이", "가")} 되지 않습니다.`;
+    });
+  return makeDeep(unit, content(t), n(sum3 * 4), [
+    `한 면의 넓이는 두 모서리의 곱입니다. 넓이가 ${nj(A, "인", "인")} 면의 두 모서리를 먼저 정해 보면 곱이 ${nj(A, "인", "인")} 짝은 ${w4PairList(w2Pairs(A))}입니다.`,
+    `짝마다 나머지 두 면의 넓이를 만들어 봅니다. ${tried.join(" ")}`,
+    `모서리가 ${nums([t.w, t.d])}이면 남은 모서리는 ${expr(`${B}\\div${t.w}=${t.h}`)}이고 ${lj(`${t.d}\\times${t.h}=${C}`, "이라", "라")} 세 넓이가 모두 맞습니다.`,
+    `세 모서리는 ${nums([t.w, t.d, t.h])} cm이고 각각 ${W2_COUNT[4]!} 개씩이므로 ${expr(`(${t.w}+${t.d}+${t.h})\\times4=${sum3 * 4}`)}, 곧 ${n(sum3 * 4)} cm입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -15240,12 +16648,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: mix112Read,
     응용: mix112Apply,
     심화하: mix112Deep,
+    심화중: mix112Mid,
   },
   "초5|1-1-3": {
     연산: mix113Calc,
     기본: mix113Read,
     응용: mix113Apply,
     심화하: mix113Deep,
+    심화중: mix113Mid,
+    심화상: mix113Top,
   },
   "초5|1-2-1": {
     연산: fac121Calc,
@@ -15294,12 +16705,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: corr131Read,
     응용: corr131Apply,
     심화하: corr131Deep,
+    심화중: corr131Mid,
   },
   "초5|1-3-2": {
     연산: corr132Calc,
     기본: corr132Read,
     응용: corr132Apply,
     심화하: corr132Deep,
+    심화중: corr132Mid,
+    심화상: corr132Top,
   },
   "초5|1-3-3": {
     연산: corr133Calc,
@@ -15318,12 +16732,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: sim142Read,
     응용: sim142Apply,
     심화하: sim142Deep,
+    심화중: red142Mid,
   },
   "초5|1-4-3": {
     연산: com143Calc,
     기본: com143Read,
     응용: com143Apply,
     심화하: com143Deep,
+    심화중: com143Mid,
+    심화상: com143Top,
   },
   "초5|1-4-4": {
     연산: cmp144Calc,
@@ -15412,24 +16829,29 @@ export const G5_TIERS: ElemTierMap = {
     기본: fm221Read,
     응용: fm221Apply,
     심화하: fm221Deep,
+    심화중: mul221Mid,
   },
   "초5|2-2-2": {
     연산: fm222Calc,
     기본: fm222Read,
     응용: fm222Apply,
     심화하: fm222Deep,
+    심화중: mul222Mid,
   },
   "초5|2-2-3": {
     연산: fm223Calc,
     기본: fm223Read,
     응용: fm223Apply,
     심화하: fm223Deep,
+    심화중: mul223Mid,
+    심화상: mul223Top,
   },
   "초5|2-2-4": {
     연산: fm224Calc,
     기본: fm224Read,
     응용: fm224Apply,
     심화하: fm224Deep,
+    심화중: mix224Mid,
   },
   // ⚠️ 이 일곱만 여섯 갈래다 — D-113 파일럿(2026-08-30). 나머지 초5 49개는 핵심 넷.
   //    원장님이 `/dev/tier-bench/g5` 에서 잣대를 확정하신 뒤에 나머지를 채운다.
@@ -15553,12 +16975,14 @@ export const G5_TIERS: ElemTierMap = {
     기본: box253Read,
     응용: box253Apply,
     심화하: box253Deep,
+    심화중: cub253Mid,
   },
   "초5|2-5-4": {
     연산: box254Calc,
     기본: box254Read,
     응용: box254Apply,
     심화하: box254Deep,
+    심화중: cub254Mid,
   },
   "초5|2-5-5": {
     연산: net255Calc,
@@ -15571,6 +16995,7 @@ export const G5_TIERS: ElemTierMap = {
     기본: net256Read,
     응용: net256Apply,
     심화하: net256Deep,
+    심화상: net256Top,
   },
   "초5|1-6-1": {
     연산: per61Calc,
