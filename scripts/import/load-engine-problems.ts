@@ -43,6 +43,7 @@ import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import { expandFamily } from "../../src/lib/engine/expandEngine";
+import { dedupeByVariant, distinctKey } from "../../src/lib/engine/variants";
 import {
   elemProblemType,
   elementaryUnits,
@@ -134,6 +135,18 @@ type Row = {
    * 숫자만 바꾼 아류. DB 트리거가 이 값으로 `-001`, `-002` 를 이어 준다.
    */
   familyKey: string;
+  /**
+   * **한 변형의 두 형식을 묶는 값** (2026-09-01). 단답형과 객관식은 같은 발문에서
+   * 파생한 «한 문항»이다. 아래 중복 제거가 이 값으로 둘을 **같이** 버리거나
+   * 같이 남긴다.
+   *
+   * 🔴 없앴을 때 무슨 일이 났나 — 중복 열쇠가 **파생 뒤의 글자**를 봤다.
+   *    객관식 본문에는 무작위 오답이 붙어 있어서 다른 문항류의 같은 문항과
+   *    **안 겹친다.** 그래서 단답형만 「중복」으로 버려지고 객관식은 살아남아,
+   *    가드가 막으려던 바로 그 모양(같은 문항이 다른 번호를 받음)이 됐다.
+   *    실측 초등 문항류 **35개 · 짝 없는 객관식 41행**.
+   */
+  variantKey: string;
   unitKey: string; // 사람이 읽을 단원 표시 — 못 찾았을 때 무엇이 없는지 적으려고
   grade: string;
   section: string;
@@ -240,6 +253,7 @@ export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
         };
         rows.push({
           externalId: `engine-elem:${unit.grade}|${unit.chapter}|${unit.section}|f${form.id}|${it.questionType}|s${it.seed}`,
+          variantKey: `elem:${unit.grade}|${unit.section}|f${form.id}|s${it.seed}`,
           familyKey,
           unitKey: `${unit.grade} / ${unit.chapter} / ${unit.section}`,
           grade: unit.grade,
@@ -307,6 +321,7 @@ export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
       };
       rows.push({
         externalId: `engine-mid:${entry.key}|s${seedBase}|v${it.variant}|${it.questionType}`,
+        variantKey: `mid:${entry.key}|s${seedBase}|v${it.variant}`,
         familyKey,
         unitKey: `${entry.grade} / ${entry.unitSection}`,
         grade: entry.grade,
@@ -377,6 +392,7 @@ export function buildComboRows(t: ComboTarget, seedBase: number): Row[] {
         // 🔴 `comboId` 를 그대로 싣는다 — `checkUnloadedTypes` 가
         //    `externalId.includes(id)` 로 「나갔나」를 묻는다.
         externalId: `engine-mid-combo:${def.id}|s${seedBase}|v${it.variant}|${it.questionType}`,
+        variantKey: `mid-combo:${def.id}|s${seedBase}|v${it.variant}`,
         familyKey,
         unitKey: `${def.anchorGrade} / ${def.anchorSection}`,
         grade: def.anchorGrade,
@@ -501,30 +517,52 @@ async function apply(planFile: string, doApply: boolean) {
   // 변형 두 벌(v0·v1)이 **같은 수를 뽑는 일**이 실제로 있다 — 뽑을 수 있는 값이
   // 적은 유형에서 그렇다. 그때 두 행은 본문·정답이 글자까지 같은데 코드만 다르다.
   //
-  // 열쇠는 **본문 + 정답**이다. 본문만 보면 「답이 여럿인 문항」을 한 건으로 뭉개고,
-  // 정답만 보면 다른 문항이 우연히 같은 답을 낸 것을 지운다.
-  const seen = new Map<string, Row>();
-  const dropped: string[] = [];
-  const unique: Row[] = [];
-  for (const r of rows) {
-    const key = `${r.content.replace(/\s+/g, " ").trim()}||${r.answer.replace(/\s+/g, " ").trim()}`;
-    const first = seen.get(key);
-    if (first) {
-      dropped.push(`${r.origin} ← ${first.origin} 과 같음`);
-      continue;
-    }
-    seen.set(key, r);
-    unique.push(r);
-  }
+  // 열쇠는 **본문 + 정답 + 그림**이다. 본문만 보면 「답이 여럿인 문항」을 한 건으로
+  // 뭉개고, 정답만 보면 다른 문항이 우연히 같은 답을 낸 것을 지운다.
+  //
+  // 🔴 **그림이 열쇠에 들어간다** (2026-09-01). 종전에는 `본문+정답` 뿐이었다.
+  //    그런데 변형을 고르는 `collectDistinctVariants` 는 2026-08-28 에 이미
+  //    그림을 열쇠에 넣었다 — **열쇠가 두 벌이었고 한쪽만 그림을 봤다.**
+  //    그래서 앞에서 옳게 고른 「발문·정답은 같고 그림만 다른」 변형을 여기서
+  //    다시 버렸다. 실측 초등 문항류 **16개**가 그 때문에 얕았다
+  //    (「가, 나, 다 가운데 직각삼각형은 몇 개인가」 부류 — 그림이 매번 다른데
+  //     개수를 묻는 발문과 답은 겹친다).
+  //
+  //    규칙을 옮겨 적지 않는다 — `distinctKey` 를 **그대로 부른다**.
+  //
+  // 🔴 **판정은 «변형» 단위다** (2026-09-01). 단답형과 객관식은 같은 발문에서
+  //    파생한 «한 문항»이므로 **같이 버리거나 같이 남긴다.** 종전에는 행마다
+  //    따로 판정했는데, 객관식 본문에는 **무작위 오답**이 붙어 있어 다른
+  //    문항류의 같은 문항과 안 겹친다 — 그래서 단답형만 버려지고 객관식이
+  //    살아남아, 이 가드가 막으려던 바로 그 모양이 됐다(실측 문항류 35개 ·
+  //    짝 없는 객관식 41행). 그래서 판정은 **그 변형의 단답형 글자**로 한다.
+  const rowKey = (r: Row) =>
+    distinctKey({
+      content: r.content.replace(/\s+/g, " ").trim(),
+      answer: r.answer.replace(/\s+/g, " ").trim(),
+      figureSpec: r.figureSpec,
+    });
+  const run = dedupeByVariant(rows, rowKey);
+  const dropped = run.dropped.map(
+    (d) => `${d.stem.origin} ← ${d.against} 과 같음`,
+  );
+  const unique = run.kept;
+  const droppedRows = rows.length - unique.length;
   if (dropped.length > 0) {
     console.log(
-      `   ⚠️ 같은 문항 ${dropped.length}건을 뺐다 (본문+정답이 같다)`,
+      `   ⚠️ 같은 문항 ${dropped.length}건을 뺐다 (본문+정답+그림이 같다)` +
+        ` — 형식까지 세면 ${droppedRows}행`,
     );
     for (const d of dropped.slice(0, 5)) console.log(`      · ${d}`);
   }
   // 분모를 못 맞추면 멈춘다 — 조용히 줄면 「전부 넣었다」로 읽힌다.
-  if (unique.length + dropped.length !== rows.length)
+  // ⚠️ `dropped` 는 **변형** 수이고 한 변형이 1~2행이다 — 행으로 견줘야 한다.
+  if (unique.length + droppedRows !== rows.length)
     throw new Error("중복 제거에서 분모가 안 맞는다 — 멈춘다");
+  if (dropped.length > 0 && droppedRows < dropped.length)
+    throw new Error(
+      `버린 변형 ${dropped.length}개보다 버린 행 ${droppedRows}이 적다 — 짝이 안 묶였다`,
+    );
   rows.length = 0;
   rows.push(...unique);
   console.log(`서로 다른 문항 ${rows.length}건`);
@@ -602,32 +640,88 @@ async function apply(planFile: string, doApply: boolean) {
   if (ready.length !== fresh.length + existing.size)
     throw new Error("분모가 안 맞는다 — 멈춘다");
 
+  // ── 그림을 **여기서** 그린다 — DB 대조가 그림을 봐야 하기 때문이다 ──────────
+  //
+  // 🔴 종전에는 이 렌더가 DB 대조 **뒤**, 그것도 `--apply` 일 때만 돌았다.
+  //    그래서 아래 대조가 그림을 볼 수가 없었고, 드라이런의 「넣을 것」도
+  //    그림 문항에서는 참이 아니었다. 이제 드라이런도 그림을 그린다 —
+  //    느려지지만 **드라이런이 거짓말을 안 한다.** (`fresh` 는 이미
+  //    `externalId` 로 걸러진 «새 행»뿐이라 재적재에서는 몇 건 안 된다.)
+  let drawn = 0;
+  let failed = 0;
+  const svgs = new Map<string, string>();
+  for (const r of fresh) {
+    if (!r.figureSpec) continue;
+    const svg = renderFigure(r.figureSpec);
+    if (svg) {
+      svgs.set(r.externalId, svg);
+      drawn += 1;
+    } else failed += 1;
+  }
+  if (drawn + failed > 0) console.log(`그림 ${drawn}장 그림 · 실패 ${failed}`);
+
   // ── **DB 에 이미 있는 같은 문항**도 막는다 ────────────────────────────────
   // 위의 중복 제거는 이번 회차 **안**만 본다. 다른 씨앗으로 다시 돌리면 같은 문항이
   // 또 나올 수 있고(뽑을 값이 적은 유형), 그러면 원장님이 지적하신 그 모양이 된다.
   // 대조 범위를 **같은 문항류**로 좁힌다 — 다른 유형끼리는 본문이 같을 수 없다.
+  //
+  // 🔴 **열쇠에 그림이 들어간다** (2026-09-01). 위 회차 안 중복 제거와 **같은
+  //    이야기**다 — 그림만 다른 변형을 여기서 버리면 앞의 고침이 아무 소용이 없다.
+  //    DB 에는 `figureSpec` 컬럼이 없고 `figureSvg` 만 있으므로, 새 행 쪽은
+  //    방금 그린 SVG 로 견준다. 「그림까지 같다」와 「그림만 다르다」를 **따로
+  //    세어 찍는다** — 뒤엣것이 이번 고침으로 되살아나는 몫이고, 조용하면
+  //    다음 사람이 「원래 그만큼이었다」고 읽는다.
   const families = [...new Set(fresh.map((r) => r.familyKey))];
   const already = await prisma.problem.findMany({
     where: { familyKey: { in: families } },
-    select: { familyKey: true, content: true, answer: true, problemCode: true },
+    select: {
+      familyKey: true,
+      content: true,
+      answer: true,
+      problemCode: true,
+      figureSvg: true,
+    },
   });
+  const norm = (x: string) => x.replace(/\s+/g, " ").trim();
   const seenInDb = new Map<string, string>();
   for (const p of already)
     seenInDb.set(
-      `${p.content.replace(/\s+/g, " ").trim()}||${p.answer.replace(/\s+/g, " ").trim()}`,
+      `${norm(p.content)}||${norm(p.answer)}||${p.figureSvg ?? ""}`,
       p.problemCode,
     );
+  /** 그림을 뺀 옛 열쇠 — 「그림만 달라 살아남은 것」을 세려고 함께 둔다. */
+  const seenInDbNoFig = new Set(
+    already.map((p) => `${norm(p.content)}||${norm(p.answer)}`),
+  );
   const beforeDbDedupe = fresh.length;
-  const kept = fresh.filter((r) => {
-    const code = seenInDb.get(
-      `${r.content.replace(/\s+/g, " ").trim()}||${r.answer.replace(/\s+/g, " ").trim()}`,
-    );
-    if (code) console.log(`   ⚠️ DB 에 이미 있다 (${code}): ${r.origin}`);
-    return !code;
-  });
+  let rescuedByFigure = 0;
+  // 🔴 여기도 판정은 **변형** 단위다 — 위 회차 안 중복 제거와 같은 까닭이다.
+  //    행마다 따로 물으면 객관식의 무작위 오답 때문에 짝이 갈린다.
+  const dbRun = dedupeByVariant(
+    fresh,
+    (stem) =>
+      `${norm(stem.content)}||${norm(stem.answer)}||${svgs.get(stem.externalId) ?? ""}`,
+    (key) => seenInDb.get(key),
+  );
+  for (const d of dbRun.dropped)
+    console.log(`   ⚠️ DB 에 이미 있다 (${d.against}): ${d.stem.origin}`);
+  // 「그림이 달라 살아남은 것」은 **남은 변형**에서만 센다 (변형당 한 번).
+  const keptStems = new Map<string, Row>();
+  for (const r of dbRun.kept)
+    if (r.questionType === "단답형" || !keptStems.has(r.variantKey))
+      keptStems.set(r.variantKey, r);
+  for (const [, stem] of keptStems)
+    if (seenInDbNoFig.has(`${norm(stem.content)}||${norm(stem.answer)}`))
+      rescuedByFigure += 1;
+  const kept = dbRun.kept;
   if (kept.length !== beforeDbDedupe)
     console.log(
       `   DB 중복 ${beforeDbDedupe - kept.length}건을 뺐다 · 남은 것 ${kept.length}`,
+    );
+  if (rescuedByFigure > 0)
+    console.log(
+      `   🟢 발문·정답은 같은데 **그림이 달라** 살린 것 ${rescuedByFigure}건` +
+        ` — 옛 열쇠였으면 통째로 버려졌다.`,
     );
   fresh.length = 0;
   fresh.push(...kept);
@@ -689,20 +783,6 @@ async function apply(planFile: string, doApply: boolean) {
     console.log("넣을 것이 없다.");
     return;
   }
-
-  // 그림 먼저 (실패해도 문항은 들어가되, 몇 건이 그림 없이 갔는지 찍는다).
-  let drawn = 0;
-  let failed = 0;
-  const svgs = new Map<string, string>();
-  for (const r of fresh) {
-    if (!r.figureSpec) continue;
-    const svg = renderFigure(r.figureSpec);
-    if (svg) {
-      svgs.set(r.externalId, svg);
-      drawn += 1;
-    } else failed += 1;
-  }
-  console.log(`그림 ${drawn}장 그림 · 실패 ${failed}`);
 
   const prev = readLedger(ledgerFile);
   const created: LedgerRow[] = [];

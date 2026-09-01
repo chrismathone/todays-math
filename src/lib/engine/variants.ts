@@ -40,9 +40,20 @@ export type CollectResult<T> = {
   shortBy: number;
 };
 
-/** 다름의 열쇠 — 발문·정답·**그림**. 그림이 없으면 `null` 이 붙는다. */
-function distinctKey(item: { content: string; answer: string }): string {
-  const spec = (item as { figureSpec?: unknown }).figureSpec;
+/**
+ * 다름의 열쇠 — 발문·정답·**그림**. 그림이 없으면 `null` 이 붙는다.
+ *
+ * 🔴 **내보낸다.** 적재기가 뒤에서 한 번 더 중복을 거르는데 그 열쇠가
+ * `본문+정답` 뿐이었다 — 여기서 옳게 고른 «그림만 다른» 변형을 그쪽이 다시
+ * 버렸다(실측 초등 문항류 16개). 「같은 규칙을 쓰는 자리가 둘이면 한 숫자를
+ * 두 곳이 쓰게 하라」(2026-08-18). 옮겨 적지 말고 이것을 불러라.
+ */
+export function distinctKey(item: {
+  content: string;
+  answer: string;
+  figureSpec?: unknown;
+}): string {
+  const spec = item.figureSpec;
   return `${item.content}\n${item.answer}\n${
     spec === undefined || spec === null ? "null" : JSON.stringify(spec)
   }`;
@@ -91,4 +102,45 @@ export function collectDistinctVariantsResult<
     out.push(item);
   }
   return { items: out, shortBy: n - out.length };
+}
+
+// ─────────────────────── 중복 제거 (변형 단위) ───────────────────────
+
+/**
+ * **한 변형의 두 형식을 같이 버리거나 같이 남긴다.**
+ *
+ * 판정은 그 변형의 **단답형 글자**로 한다. 객관식 본문에는 무작위 오답이 붙어
+ * 있어서, 행마다 따로 물으면 **같은 문항인데 객관식만 안 겹친다** — 그러면
+ * 단답형만 버려지고 객관식이 살아남아, 이 가드가 막으려던 바로 그 모양
+ * (같은 문항이 다른 번호를 받음)이 된다. 실측 초등 문항류 **35개 · 짝 없는
+ * 객관식 41행**이 그렇게 생겼다.
+ *
+ * @param keyOf   변형 대표(단답형)에서 «다름의 열쇠»를 뽑는다.
+ * @param lookup  주면 **바깥**(DB)에 이미 있는지 묻는다. 안 주면 이 목록 **안**에서 견준다.
+ */
+export function dedupeByVariant<
+  T extends { variantKey: string; questionType: string; origin: string },
+>(
+  rows: readonly T[],
+  keyOf: (stem: T) => string,
+  lookup?: (key: string) => string | undefined,
+): { kept: T[]; dropped: { stem: T; against: string }[] } {
+  const stemOf = new Map<string, T>();
+  for (const r of rows)
+    if (r.questionType === "단답형" || !stemOf.has(r.variantKey))
+      stemOf.set(r.variantKey, r);
+  const seen = new Map<string, string>();
+  const droppedKeys = new Set<string>();
+  const dropped: { stem: T; against: string }[] = [];
+  for (const [variantKey, stem] of stemOf) {
+    const key = keyOf(stem);
+    const prior = lookup ? lookup(key) : seen.get(key);
+    if (prior !== undefined) {
+      droppedKeys.add(variantKey);
+      dropped.push({ stem, against: prior });
+      continue;
+    }
+    if (!lookup) seen.set(key, stem.origin);
+  }
+  return { kept: rows.filter((r) => !droppedKeys.has(r.variantKey)), dropped };
 }

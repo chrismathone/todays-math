@@ -4,14 +4,24 @@
  *     npx tsx scripts/qa/census-elem-variant-depth.ts
  *     npx tsx scripts/qa/census-elem-variant-depth.ts --selftest   # 이 자가 «아니오»를 낼 수 있나
  *
- * ── 🔴 왜 «행»이 아니라 «발문» 인가 ────────────────────────────────────────
+ * ── 🔴 왜 «행»이 아니라 «발문+정답+그림» 인가 ─────────────────────────────
  *
- * 적재기는 한 문항을 **단답형·객관식 두 벌**로 넣는다. 그래서 행으로 세면
- *   · 객관식을 못 만든 문항류는 변형이 3개인데 3행이라 «얇다»로 보이고,
- *   · 변형이 하나뿐인데 두 형식이 다 나온 문항류는 2행이라 «괜찮다»로 보인다.
- * 실측으로 두 방식이 **45 vs 147** 로 갈렸다 — 세 배 넘게 다르다.
- * 「파생물을 정본과 견줄 때 «누가 무엇을 덧붙였나»를 먼저 빼라」(2026-08-29·08-30)가
- * 여기서는 «형식을 빼라»가 된다. 그래서 **단답형만** 보고 발문을 집합으로 센다.
+ * ⑴ **형식을 뺀다.** 적재기는 한 문항을 **단답형·객관식 두 벌**로 넣는다.
+ *    행으로 세면 객관식을 못 만든 문항류는 변형 3개인데 3행이라 «얇다»로 보이고,
+ *    변형이 하나뿐인데 두 형식이 다 나온 것은 2행이라 «괜찮다»로 보인다.
+ *    실측으로 두 방식이 **45 vs 147** 로 갈렸다. 그래서 **단답형만** 본다.
+ *    「파생물을 정본과 견줄 때 «누가 무엇을 덧붙였나»를 먼저 빼라」(08-29·08-30).
+ *
+ * ⑵ 🔴 **그림을 넣는다** (2026-09-01). 처음 판은 `content` 만 셌다. 그런데
+ *    초등에서 얕다고 나온 것이 죄다 도형 문항이었다:
+ *
+ *        「그림에서 가, 나, 다 가운데 직각삼각형은 모두 몇 개인지 쓰시오.」
+ *
+ *    발문이 글자까지 같아도 **그림이 다르면 다른 문항**이다. 이 자는 그것을
+ *    한 건으로 뭉갰다 — 147건 가운데 **48건이 그렇게 거짓이었고**, 그 48건은
+ *    **정답까지 전부 갈린다**(48/48). 「없는 축은 셀 수 없다」의 그 자리이고,
+ *    적재기의 «다름의 열쇠»가 2026-08-28 에 겪은 결함과 **같은 결함**이다.
+ *    그래서 열쇠를 그쪽과 맞춘다 — 발문·정답·그림.
  *
  * ── ⚠️ 이 자는 판정기가 아니다 ────────────────────────────────────────────
  *
@@ -33,15 +43,30 @@ import { isDirectScript } from "../import/isDirectScript";
 
 export type FamilyDepth = { familyKey: string; tier: string; 발문: number };
 
-/** 발문 집합으로 깊이를 센다 — **형식은 빼고** 본다. */
-export function depthOf(
-  rows: readonly { familyKey: string; difficulty: string; content: string }[],
-): FamilyDepth[] {
+export type DepthRow = {
+  familyKey: string;
+  difficulty: string;
+  content: string;
+  answer?: string | null;
+  figureSvg?: string | null;
+};
+
+/**
+ * 깊이를 센다 — **형식은 빼고, 그림은 넣고** 본다.
+ * 열쇠는 `발문 + 정답 + 그림`. 셋 중 하나라도 다르면 다른 문항이다.
+ * (`발문` 이라는 필드 이름은 예전 그대로 두되 뜻은 «서로 다른 문항 수»다.)
+ */
+export function depthOf(rows: readonly DepthRow[]): FamilyDepth[] {
   const per = new Map<string, { tier: string; set: Set<string> }>();
+  const norm = (x: string) => x.replace(/\s+/g, " ").trim();
   for (const r of rows) {
     if (!per.has(r.familyKey))
       per.set(r.familyKey, { tier: r.difficulty, set: new Set() });
-    per.get(r.familyKey)!.set.add(r.content.replace(/\s+/g, " ").trim());
+    per
+      .get(r.familyKey)!
+      .set.add(
+        `${norm(r.content)}||${norm(r.answer ?? "")}||${r.figureSvg ?? ""}`,
+      );
   }
   return [...per].map(([familyKey, v]) => ({
     familyKey,
@@ -50,11 +75,75 @@ export function depthOf(
   }));
 }
 
-const 눈금: [
-  string,
-  { familyKey: string; difficulty: string; content: string }[],
-  number[],
-][] = [
+const 눈금: [string, DepthRow[], number[]][] = [
+  // 🔴 **그림 축** — 이 자가 2026-09-01 에 눈멀어 있던 자리다. 양성·음성 둘 다 둔다.
+  [
+    "음성 · 발문·정답이 같아도 **그림이 다르면** 다른 문항",
+    [
+      {
+        familyKey: "elem:초3|1-2-3 직각삼각형 알아보기|f05",
+        difficulty: "기본",
+        content: "가, 나, 다 가운데 직각삼각형은 몇 개인지 쓰시오.",
+        answer: "$2$개",
+        figureSvg: "<svg>가</svg>",
+      },
+      {
+        familyKey: "elem:초3|1-2-3 직각삼각형 알아보기|f05",
+        difficulty: "기본",
+        content: "가, 나, 다 가운데 직각삼각형은 몇 개인지 쓰시오.",
+        answer: "$2$개",
+        figureSvg: "<svg>나</svg>",
+      },
+      {
+        familyKey: "elem:초3|1-2-3 직각삼각형 알아보기|f05",
+        difficulty: "기본",
+        content: "가, 나, 다 가운데 직각삼각형은 몇 개인지 쓰시오.",
+        answer: "$2$개",
+        figureSvg: "<svg>다</svg>",
+      },
+    ],
+    [3],
+  ],
+  [
+    "양성 · 그림까지 같으면 **한 문항**이다 (그림 축이 부풀리지 않는다)",
+    [
+      {
+        familyKey: "elem:초3|1-2-3 직각삼각형 알아보기|f05",
+        difficulty: "기본",
+        content: "가, 나, 다 가운데 직각삼각형은 몇 개인지 쓰시오.",
+        answer: "$2$개",
+        figureSvg: "<svg>가</svg>",
+      },
+      {
+        familyKey: "elem:초3|1-2-3 직각삼각형 알아보기|f05",
+        difficulty: "기본",
+        content: "가, 나, 다 가운데 직각삼각형은 몇 개인지 쓰시오.",
+        answer: "$2$개",
+        figureSvg: "<svg>가</svg>",
+      },
+    ],
+    [1],
+  ],
+  [
+    "음성 · 발문·그림이 같아도 **정답이 다르면** 다른 문항",
+    [
+      {
+        familyKey: "elem:초4|2-2-1 삼각형|f03",
+        difficulty: "기본",
+        content: "각도를 구하시오.",
+        answer: "$30$도",
+        figureSvg: "<svg/>",
+      },
+      {
+        familyKey: "elem:초4|2-2-1 삼각형|f03",
+        difficulty: "기본",
+        content: "각도를 구하시오.",
+        answer: "$40$도",
+        figureSvg: "<svg/>",
+      },
+    ],
+    [2],
+  ],
   // 양성 — 얕은 것을 실제로 얕다고 하나
   [
     "양성 · 발문이 하나뿐",
@@ -155,13 +244,21 @@ async function main(): Promise<void> {
   try {
     const rows = await prisma.problem.findMany({
       where: { familyKey: { startsWith: "elem:" }, questionType: "단답형" },
-      select: { familyKey: true, difficulty: true, content: true },
+      select: {
+        familyKey: true,
+        difficulty: true,
+        content: true,
+        answer: true,
+        figureSvg: true,
+      },
     });
     const depths = depthOf(
       rows.map((r) => ({
         familyKey: String(r.familyKey),
         difficulty: String(r.difficulty),
         content: String(r.content),
+        answer: r.answer == null ? null : String(r.answer),
+        figureSvg: r.figureSvg == null ? null : String(r.figureSvg),
       })),
     );
     if (depths.length === 0) {
@@ -175,8 +272,10 @@ async function main(): Promise<void> {
     }
     const dist = new Map<number, number>();
     for (const d of depths) dist.set(d.발문, (dist.get(d.발문) ?? 0) + 1);
-    console.log(`초등 적재본 — 문항류 ${depths.length}개\n`);
-    console.log("서로 다른 발문   문항류");
+    console.log(
+      `초등 적재본 — 문항류 ${depths.length}개 (열쇠: 발문+정답+그림)\n`,
+    );
+    console.log("서로 다른 문항   문항류");
     for (const [n, c] of [...dist].sort((a, b) => a[0] - b[0]))
       console.log(
         `  ${String(n).padStart(4)}         ${String(c).padStart(5)}`,
