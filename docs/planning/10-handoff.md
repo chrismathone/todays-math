@@ -3,7 +3,7 @@
 작성: **2026-08-15** · 큐브 QA 갱신: **2026-08-21**
 
 > **다른 컴퓨터에서 이 문서 하나만 읽고 이어할 수 있게 쓴 문서다.**
-> 순서: **§0-K(2026-08-31 새벽, 최신)** → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
+> 순서: **§0-L(2026-09-01 밤, 최신)** → §0-K → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
 
 ---
 
@@ -35,7 +35,108 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 > ⑵ `maxDuration = 300` 이 **실제로 300초가 됐다**(Hobby 에서는 60으로 깎이고 있었다).
 > ⑶ 그 대신 **커밋 작성자 규칙**이 생겼다 — §0-A.1 의 상자를 반드시 읽을 것.
 
-## 0-K. 인수인계 (2026-08-31 새벽 — **최신. 여기부터 읽는다**)
+## 0-L. 인수인계 (2026-09-01 밤 — **최신. 여기부터 읽는다**)
+
+> 한 줄: **다른 컴퓨터에서 pull 한 직후 관문을 돌리면 46파일이 빨갛다. 코드 탓이 아니다.**
+> 이 회차는 문항도 엔진도 안 건드렸다 — 435커밋을 당겨 **관문을 처음부터 끝까지 돌린 회차**다.
+> 결론: **전부 초록.** 막고 있던 것은 코드가 아니라 **환경 둘**이었다.
+
+### 0-L.1 🔴 pull 직후 이 넷을 먼저 돌려라 — 안 돌리면 「46파일 빨강」을 보고 코드를 의심한다
+
+```bash
+npm install                                       # ⑴ mathjax-full 이 새로 들어왔다
+npx prisma generate                               # ⑵ Difficulty 가 4단 → 6단이 됐다 (D-113)
+npx tsx scripts/qa/build-middle-corpus.ts         # ⑶ 저장소 밖 말뭉치 (등록 1,387유형)
+npx tsx scripts/qa/census-middle-solution-vocab.ts
+```
+
+**⑴ 을 빼먹으면** — 실패 파일 **46개**가 뜨는데 테스트 실패는 4건뿐인 이상한 모양이 된다.
+전부 한 뿌리다: `src/lib/figure/mathjaxLabel.ts` 의 `mathjax-full/js/...` import 해결 실패.
+**판정기 `probe-middle-label-outward` 도 같이 빨개진다**(그 판정기가 그림 라벨을 쓴다).
+`package.json` 에는 선언돼 있고 `node_modules` 에만 없으므로 **선언을 아무리 봐도 안 보인다** —
+확인은 이 한 줄이다:
+
+```bash
+node -e "const p=require('./package.json'),fs=require('fs');const a={...p.dependencies,...p.devDependencies};console.log(Object.keys(a).filter(n=>!fs.existsSync('node_modules/'+n+'/package.json')))"
+```
+
+**⑵ 를 빼먹으면** — `tsc --noEmit` 이 4곳에서 난다(`generatePredictedPaper` · `serializers` ·
+`submitTestResult` · `replaceTestProblem`). 메시지는 전부 **`Type '"심화"' is not assignable`** 이다.
+스키마는 6단(`연산·기본·응용·심화하·심화중·심화상`)인데 생성 클라이언트가 옛 4단(`심화`)이라
+그렇다. 🔴 **그런데 vitest 는 타입을 안 보므로 관문은 낡은 클라이언트로도 초록이다** —
+「관문이 초록이니 됐다」로 넘기면 이 넷을 못 본다. **관문과 `tsc` 는 다른 질문이다.**
+
+**⑶ 은 §0-K.5 에 이미 적혀 있다** — 중등 유형을 더할 때마다 다시 지어야 하고,
+안 지으면 `probe-middle-combo` 가 「입력 분모 불일치」로 막는다.
+
+### 0-L.2 관문 성적 (2026-09-01 밤, `79b3ab9b`)
+
+| 검사 | 결과 |
+|---|---|
+| vitest | **355파일 · 13,775테스트** · 실패 0 |
+| 판정기 실데이터 쓸기 | **36개 전부 깨끗** · 빨강 0 · 울타리 0 |
+| `npx tsc --noEmit` | **0** |
+| `npm run lint` (추적 코드) | **0 에러** · 경고 42 |
+
+빨강으로 뜬 5건은 **전부 «시간 초과»**였고 **단독으로는 767테스트 전량 초록**이다
+(`elemTiersG4Line` · `elementaryDifficulty` · `elemStemSelfContained` · `middleM3Func` ·
+`middleM3Stat2`). 그때 **다른 오르카 세션(`eywa_refactoring`)이 vitest 를 14워커로** 돌리고
+있었다 — 관문이 스스로 「⏱ 시간 초과로 보인다 · 단독으로 다시 돌려 보라」고 찍어 준다.
+**그 줄을 믿고 단독으로 돌려라.** 안 그러면 「내 병합이 깨뜨렸나」부터 의심하게 된다
+(2026-08-31 에 실제로 그랬다).
+
+### 0-L.3 🔴 관문을 **배경으로 돌리다 네 번 죽었다** — 나눠 돌리는 법 (그리고 `--shard` 는 안 된다)
+
+첫 회차는 배경에서 543초에 정상으로 끝났는데, 그 뒤 배경 작업이 **계속 외부에서 종료**됐다
+(1회는 몇 분 뒤, 3회는 몇 초 만에). 셸에서 떼어 내 `Start-Process` 로 돌리는 것도 실패했다.
+그래서 **파일 목록을 넷으로 쪼개 앞단에서** 돌렸다:
+
+```bash
+npx vitest list --filesOnly | grep '\.test\.' | sed 's/[[:space:]]*$//' | sort > /tmp/all.txt
+split -n l/4 -d /tmp/all.txt /tmp/chunk
+for i in 00 01 02 03; do node scripts/qa/run-tests.mjs $(tr '\n' ' ' < /tmp/chunk$i); done
+node scripts/qa/sweep-elem-probes.mjs      # 파일 인자를 준 회차는 쓸기를 건너뛴다 — 따로 돌린다
+```
+
+**왜 이렇게 해야 하나 — `--shard` 를 쓰면 안 된다.** `run-tests.mjs` 의 존재 이유가
+「모은 파일 == 결과 있는 파일」인데, 그 «모은 파일»을 `vitest list --filesOnly ...args` 로 얻는다.
+🔴 **`vitest list` 는 `--shard` 를 무시한다** — 실측으로 `--shard=1/3` 도 **355**를 낸다.
+그러면 조각이 118개만 돌고 게이트는 **「234개가 결과 없이 사라졌다」**는 거짓 경보를 낸다.
+**파일 목록을 명시하면** `list` 도 `run` 도 같은 목록을 보므로 **조각마다 가드가 정확히 선다**.
+(Windows 명령줄 한계 8,191자 — 넷으로 쪼개면 조각당 약 3,900자라 들어간다.)
+
+### 0-L.4 곁가지 — 미추적 잔재를 갈랐다
+
+`git status` 에 미추적 12건이 있었다. **성격이 셋으로 갈린다.**
+
+```
+커밋함   scripts/classify/apply-confirmed-grade-remediation.ts   ← 아래 🔴 를 읽어라
+커밋함   scripts/sync/ledgers/eywa-sync-2026-08-25T*.json  (2건)  ← 같은 자리 5건이 이미 추적 중이다
+커밋함   scratch/BRIEF-dim-outside.md                            ← 브리프는 «왜 그렇게 했나»의 기록이다
+안 함    scratch/{q-a14,q-ai,q-dbg}.ts · pick-color.mjs · specs.json
+안 함    elem-초5-*.html (3건)                                    ← /elem-gen 이 낸 미리보기 산출물
+```
+
+🔴 **`apply-confirmed-grade-remediation.ts` 는 «남은 일»이 아니라 «이미 죽은 스크립트»다.**
+2026-08-27 부터 미커밋으로 있었다. 가리키는 문항 **15개 중 DB 에 살아 있는 것이 0개**다 —
+같은 날 `delete-legacy-corpus.ts` 가 기출·RPM 을 지웠기 때문이다(D-117). **돌려도 아무 일도
+안 일어난다.** 기록으로만 커밋한다. 되살릴 일이 있으면 그 15개 UUID 가 무엇이었는지가
+근거이지, 이 스크립트를 돌리는 것이 아니다.
+
+⚠️ **안 커밋한 `scratch/q-*.ts` 셋은 `npm run lint` 의 에러 5건을 내는 바로 그 파일들이다**
+(`no-explicit-any`). 미추적이라 커밋 훅을 안 거쳤다. 커밋하면 **모두의 lint 가 빨개진다** —
+「늘 우는 가드는 꺼진다」(2026-08-20). 일회용 디버그 스크립트라 잃어도 되는 것들이다.
+🔴 **그래서 다른 컴퓨터에서 lint 는 0 에러다.** 여기서 5건이 보였다고 코드를 의심하지 마라.
+
+### 0-L.5 이 회차가 저장소에 남긴 것
+
+**엔진·문항·판정기를 한 줄도 안 고쳤다.** 고친 것은 이 컴퓨터의 `node_modules` 뿐이고,
+`npm install` 이 흔든 `package-lock.json` 의 `optional`/`peer` 표식은 플랫폼 잡음이라
+`git checkout HEAD -- package-lock.json` 으로 되돌렸다. **잔고는 §0-K 그대로다.**
+
+---
+
+## 0-K. 인수인계 (2026-08-31 새벽 — 앞 회차. **최신은 §0-L**)
 
 > 한 줄: **토대와 가드를 먼저 세우고 물결 1을 띄웠다.** 채우기 전에 판정기 둘이
 > 눈이 멀어 있던 것을 찾아 고쳤고, 잣대의 약한 자리 하나를 못 박았다.

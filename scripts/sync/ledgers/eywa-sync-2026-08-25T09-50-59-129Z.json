@@ -1,0 +1,3902 @@
+{
+ "runId": "eywa-sync-2026-08-25T09-50-59-129Z",
+ "transport": "db",
+ "before": {
+  "students": [
+   {
+    "id": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "eywaStudentId": "3053c26a-3ede-4f9f-8ced-e745f15435b6",
+    "name": "박서연E",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "eywaStudentId": "4a17ab9a-c560-4251-a287-37b54cc32d87",
+    "name": "임수민",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "eywaStudentId": "803a8ede-ccdb-4a5b-afc8-42b48cc2f87e",
+    "name": "장현승",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "eywaStudentId": "d41d2e37-7e21-4d6b-8e10-76ab6ab5da22",
+    "name": "김이현",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "eywaStudentId": "23973be1-5567-405d-9a56-ed2075970052",
+    "name": "이현지",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "eywaStudentId": "9451dacc-def2-49af-90a8-c26511ab7255",
+    "name": "김준서A",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "eywaWithdrawnAt": null
+   },
+   {
+    "id": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "eywaStudentId": "fea662d8-3840-496f-ac71-e2d3c427175e",
+    "name": "김하나",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaWithdrawnAt": null
+   }
+  ],
+  "classes": [
+   {
+    "id": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "eywaClassId": "5984ef1b-4750-4ae5-80cf-9e21a55e33aa",
+    "name": "초등M 초5 MS1A",
+    "grade": "초5"
+   },
+   {
+    "id": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "eywaClassId": "2914f6bc-d7cd-4a1d-85b9-fcbd0ec72324",
+    "name": "중등M 초6 MS2A",
+    "grade": "초6"
+   }
+  ],
+  "progressRows": [
+   {
+    "eywaReportId": "8b2fb812-c025-44e0-932b-dc851cc9f433",
+    "unitId": "79b10dc0-9ee2-4ed1-8a04-cd8f5094394d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2025-12-10T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "a5b0eb26-2a19-4d97-b80b-f4fad9a476ba",
+    "unitId": "afdcc2d4-c2f9-45aa-b6ea-4186c9c45e82",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2025-12-17T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "b9ef4ba0-9a2d-49c0-887e-0f6b1d208eec",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2025-12-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "927eb663-157a-4d47-9f5b-a983cfac4e23",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-02-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.764Z"
+   },
+   {
+    "eywaReportId": "4349b26a-dbfc-4b31-850b-1636212706eb",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-02-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "c91ec1d5-1aa6-4b3f-b818-bedae3b6e3fc",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-02-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "0223dcc3-a6dc-4b47-9236-81768a9b7e4e",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-02-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "a7291cc0-833e-4178-8597-b32dd425bb38",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-02-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.025Z"
+   },
+   {
+    "eywaReportId": "47539f1a-c289-4a3e-bccf-8549687a7adb",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "b882def9-f995-4814-aace-917ebcce7a19",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "b882def9-f995-4814-aace-917ebcce7a19",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.196Z"
+   },
+   {
+    "eywaReportId": "68ae2e7e-c3fa-42f9-8d27-c3369214ddbb",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "42019a52-d911-4037-aa04-1b6bb82f57c4",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "ea44974f-7c89-4115-9e3a-49969ebec5da",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "07f374df-3d1a-473c-a737-f8f57d546fa4",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "1c7b1cdd-b09a-4791-a7ed-c49184009368",
+    "unitId": "f1fc063c-75c8-4c34-b864-5a0f480d82a6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "5c91bee9-61f6-4a42-9b92-84b12f5e311b",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-04-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "23e6fd36-d96c-4a6e-b8eb-bf8ce4ae970c",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-04-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "306410eb-cb61-4a61-8963-e65b86ec11ab",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-04-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "9e3ba53f-3234-4a15-bf20-c366d69ba7c2",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-04-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "ceaf319c-4609-4d39-bc01-91a16d5ceb2b",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "f9e29beb-9637-4a2e-aeb0-d6ebc33271c4",
+    "unitId": "25942506-e2d4-4e2b-9c94-ff43ea1edb05",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "e72b3733-c860-41cf-8bca-bbed35a5ebfc",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-07T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "0ef66783-0a88-4dc1-9af6-b822604c0acc",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "c9298007-7f7b-4902-85f6-a95ce04d23f9",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "a06f7b67-2b8e-4b4e-a713-ca9be339fd03",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "a4eda01d-dc89-473f-8bd3-9a9b0afbf685",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-05-28T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "0285d448-56bc-408f-adb1-bd9b62a30d3e",
+    "unitId": "2c9b27e8-9080-41bf-8b64-8117cbf231bd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-01T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "ae013738-6346-455a-a698-e2ffae52f05a",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "1b5fffef-1793-4b66-b6f8-170be53bda4e",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "3bb935e5-91a4-4a2b-a257-35827e5b54d1",
+    "unitId": "697b8fdb-ad59-4ea3-88d3-0b4653f510c5",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "60c5efa7-7d74-4c7d-8c13-d5a5faaa1026",
+    "unitId": "7f4b615b-3b55-440d-9eba-735e4885317a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "447d15d9-2d54-4cfe-9235-96522811153c",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "447d15d9-2d54-4cfe-9235-96522811153c",
+    "unitId": "c194e64c-1729-4f1a-8446-454f04a4cd09",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "2e1a0f74-bc3e-4572-abb2-bd5eacdbec75",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-25T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "7306d1d0-d08c-4af5-8bbd-6f4f44ea1b18",
+    "unitId": "c34b44e0-7262-4b0d-b347-f50e4e4dcef7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "7306d1d0-d08c-4af5-8bbd-6f4f44ea1b18",
+    "unitId": "60d0c7a6-4020-456d-a2b6-c6bdbec634d6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "924d1b93-59c4-47f4-9de0-c2df8e5b6acc",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "924d1b93-59c4-47f4-9de0-c2df8e5b6acc",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "924d1b93-59c4-47f4-9de0-c2df8e5b6acc",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.438Z"
+   },
+   {
+    "eywaReportId": "0de0d05c-712a-4553-b25a-25f4953cd86b",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "de18d33b-8e8b-41f8-8dff-7600d422551f",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "de18d33b-8e8b-41f8-8dff-7600d422551f",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "0a0a48a3-a828-4a78-a5d7-8268dac63170",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "9b24f5e0-7f4b-43c1-b895-250872892c0e",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "9b24f5e0-7f4b-43c1-b895-250872892c0e",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "9a202d02-735d-4126-b220-61143b7b3c0e",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:06.871Z"
+   },
+   {
+    "eywaReportId": "9a202d02-735d-4126-b220-61143b7b3c0e",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:06.872Z"
+   },
+   {
+    "eywaReportId": "9a202d02-735d-4126-b220-61143b7b3c0e",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:06.873Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.695Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.696Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.697Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.698Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.699Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.700Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.701Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.702Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.703Z"
+   },
+   {
+    "eywaReportId": "ac06cd58-b9ac-4283-ba74-5387a73e47b6",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:50.704Z"
+   },
+   {
+    "eywaReportId": "c9fc362f-6c13-4602-b91d-73192dba5beb",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:35.218Z"
+   },
+   {
+    "eywaReportId": "c9fc362f-6c13-4602-b91d-73192dba5beb",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:35.219Z"
+   },
+   {
+    "eywaReportId": "c9fc362f-6c13-4602-b91d-73192dba5beb",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:35.220Z"
+   },
+   {
+    "eywaReportId": "c9fc362f-6c13-4602-b91d-73192dba5beb",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:35.221Z"
+   },
+   {
+    "eywaReportId": "10837c42-2f09-409f-a031-02e626007e85",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:14.256Z"
+   },
+   {
+    "eywaReportId": "10837c42-2f09-409f-a031-02e626007e85",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:14.257Z"
+   },
+   {
+    "eywaReportId": "72236571-288b-4e76-8c24-fd8ee178b041",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:10.808Z"
+   },
+   {
+    "eywaReportId": "72236571-288b-4e76-8c24-fd8ee178b041",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:10.809Z"
+   },
+   {
+    "eywaReportId": "7190ba23-01f4-4d75-8739-c5a46bdc100f",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:56.542Z"
+   },
+   {
+    "eywaReportId": "7190ba23-01f4-4d75-8739-c5a46bdc100f",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "04e1c787-0c11-49fb-b52b-233548c772c4",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:56.543Z"
+   },
+   {
+    "eywaReportId": "91e85cb9-0e99-463b-843e-e8a610466a83",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2025-12-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "124a493f-df16-4d63-b9a8-a0e2afb87184",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2025-12-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.358Z"
+   },
+   {
+    "eywaReportId": "8f78c2c9-fd97-465e-946b-a8e9f360cdcd",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-01-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "255074a7-2d09-4648-8ba1-29e8aec7b89e",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-01-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "988d35e8-de57-478a-8d9b-ff0db10119fc",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-01-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.516Z"
+   },
+   {
+    "eywaReportId": "da830999-ee84-4f6f-9ee9-e618ac8cf0c5",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-01-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.671Z"
+   },
+   {
+    "eywaReportId": "6a7e89c1-013c-4103-93a8-a90f659a4daa",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-02-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "b4d2aff8-f24d-40bf-be42-b1d9894304a0",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-02-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "a83d8e92-5566-4017-ac52-9385bdd9f855",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-02-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "5bb337f4-4009-4945-a611-5c9afd4dd58d",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-02-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.025Z"
+   },
+   {
+    "eywaReportId": "6893e64f-8fb8-49a0-b741-79376e167281",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-02-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "b518027e-fa0e-4d4d-ab8c-2b6b84641749",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "f457388f-d97b-4420-8fe5-a64c413ebd7c",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "e44d44d2-7e0c-4d38-b69b-7d23064bf2a0",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "0a2892f4-477e-41c6-bf2f-7a07f89fc3ad",
+    "unitId": "f1fc063c-75c8-4c34-b864-5a0f480d82a6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "774d153b-7b03-41b1-a035-b28c7e2d6079",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "72a1f40c-050a-441a-9c01-4b69d07b9f26",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-03-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "8a65b503-c62c-4944-8e33-c805d91b3a33",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "134f8b78-1ab9-40b0-8b94-98ee59080b37",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "12f0f10c-06c2-4e05-8fd2-aa3d690df0d5",
+    "unitId": "9a07affd-e0e4-4ecb-9ff6-d594140eb182",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-07T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "fa03b55f-2917-4e59-99d8-6786a9b9f273",
+    "unitId": "fe939e87-9e9b-4c87-838a-a24e48650974",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "ccfb7571-455a-4568-a730-fa47fbadab96",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-14T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "7165f18b-2056-4b79-8a9e-9977aa0d1eec",
+    "unitId": "2ac0f2e2-d6fd-4428-98f2-b4b73c48e99b",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "6609c130-d891-4656-bf3d-aee1c93afd7a",
+    "unitId": "6f7a3919-bc68-471b-9259-77cb16fbeaf7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "eb2d57a1-43f8-4961-a85e-6f0e8021da2c",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "ea269486-a008-4eea-a4f9-9174b7e8247b",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "b64923f9-a29a-436d-a850-3277f42f3abc",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "7b9bbc5d-121e-47d1-a492-67c124353c80",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "46287c7b-5188-4e67-866e-444658206ec6",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "f3491a72-84ce-4e04-8bd8-352f2c19dc6c",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-25T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "ac45994c-5fcc-4e54-bfaa-8d51712b52e8",
+    "unitId": "7ac610fb-5228-4f12-902e-77b2601ad8ba",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "3185bcbc-572a-44ff-b1c1-5ebc9c7d66df",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "667e97f9-31e6-4ed3-a66c-a29756cb9264",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "667e97f9-31e6-4ed3-a66c-a29756cb9264",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "451a3ee2-5599-4061-ac82-9d0d3e57b3ee",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "246e00fe-a7bc-4b60-b737-bf82b4d2573c",
+    "unitId": "c194e64c-1729-4f1a-8446-454f04a4cd09",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-19T00:00:00.000Z",
+    "createdAt": "2026-07-19T19:01:33.608Z"
+   },
+   {
+    "eywaReportId": "246e00fe-a7bc-4b60-b737-bf82b4d2573c",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-19T00:00:00.000Z",
+    "createdAt": "2026-07-19T19:01:33.609Z"
+   },
+   {
+    "eywaReportId": "246e00fe-a7bc-4b60-b737-bf82b4d2573c",
+    "unitId": "9d29b898-99ab-4e88-b6d6-dc17c7179534",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-19T00:00:00.000Z",
+    "createdAt": "2026-07-19T19:01:33.610Z"
+   },
+   {
+    "eywaReportId": "e1499c7b-542d-4522-ae09-39e757867002",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "e1499c7b-542d-4522-ae09-39e757867002",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "4f3a9ede-c559-4525-88eb-4747f70fd00d",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:03.614Z"
+   },
+   {
+    "eywaReportId": "4f3a9ede-c559-4525-88eb-4747f70fd00d",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:03.615Z"
+   },
+   {
+    "eywaReportId": "4f3a9ede-c559-4525-88eb-4747f70fd00d",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:03.616Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.560Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.561Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.562Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.563Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.564Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.565Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.566Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.567Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.568Z"
+   },
+   {
+    "eywaReportId": "2a2e9f40-ad80-47a7-b126-32fa1e66cb79",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:46.569Z"
+   },
+   {
+    "eywaReportId": "5bcd807e-6386-4a32-b159-1bedaa646819",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:32.484Z"
+   },
+   {
+    "eywaReportId": "5bcd807e-6386-4a32-b159-1bedaa646819",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:32.485Z"
+   },
+   {
+    "eywaReportId": "5bcd807e-6386-4a32-b159-1bedaa646819",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:32.486Z"
+   },
+   {
+    "eywaReportId": "5bcd807e-6386-4a32-b159-1bedaa646819",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:32.487Z"
+   },
+   {
+    "eywaReportId": "ded94170-8667-455c-b4e2-bb00eb419377",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:05.890Z"
+   },
+   {
+    "eywaReportId": "ded94170-8667-455c-b4e2-bb00eb419377",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:05.891Z"
+   },
+   {
+    "eywaReportId": "1c56142a-94e5-4f91-bd09-0fe011361279",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:06.736Z"
+   },
+   {
+    "eywaReportId": "1c56142a-94e5-4f91-bd09-0fe011361279",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:06.737Z"
+   },
+   {
+    "eywaReportId": "73152710-8261-4201-8f0e-7c121adbfbac",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:53.243Z"
+   },
+   {
+    "eywaReportId": "73152710-8261-4201-8f0e-7c121adbfbac",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "c36fc335-3c65-4cf0-be89-41e38f2615c9",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:53.244Z"
+   },
+   {
+    "eywaReportId": "373b5a39-b6f1-4dae-ae0e-8207bcfa8468",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2025-12-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "0b47ad1a-954b-4630-94ca-3a8715e6c8d3",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2025-12-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "43c6e1b5-392b-4318-844b-17ad51a10ef9",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2025-12-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "7f63dd85-32a6-442f-ae3e-dc21ddc89ce3",
+    "unitId": "f2a28c99-b091-4af0-8194-3da1bdb129e6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2025-12-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.358Z"
+   },
+   {
+    "eywaReportId": "e126be0a-9f49-46ac-88df-d2d15e7d68f4",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-01-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "787b028d-66f7-497d-b2b6-2194eeea5f77",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-01-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "c3f75bc3-5a46-4811-bed2-2c03e8177986",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-01-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.516Z"
+   },
+   {
+    "eywaReportId": "05843b1c-add2-463f-98f2-011ca49606d1",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-01-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.671Z"
+   },
+   {
+    "eywaReportId": "e5411290-08f9-4a50-8f50-982dd565a80f",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-02-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "f552b01e-6803-43fc-b6fa-1eac38801f34",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-02-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "c583a3cc-1099-4caa-b805-32b9044da04c",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-02-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "c2f73343-0375-4408-8ee3-b8d6288fa8eb",
+    "unitId": "aa3fd4ea-6ff4-4db8-af72-ad78f1782c75",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-02-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.025Z"
+   },
+   {
+    "eywaReportId": "b1822322-333d-458d-8f70-b5c6da5d0263",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-02-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "56ca0704-bdbf-4139-b53f-f94c439bbfc4",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "cd4a57b6-fed6-4ac0-b382-8588841cdfa8",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "911e9ec3-4e00-4e3e-8db0-f28a7938b00b",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "4415c3a8-9281-44f3-a280-20ae18340882",
+    "unitId": "9a07affd-e0e4-4ecb-9ff6-d594140eb182",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-03-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.467Z"
+   },
+   {
+    "eywaReportId": "9d654da3-1d95-442c-9eff-e2e55d22aed2",
+    "unitId": "89b14126-de63-4a64-a7f4-93bffee57833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "afe863e5-36e5-4a68-b1e0-5b78e0dd8219",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "58e8b6d1-9d09-42d9-b912-0816ef4d4eb4",
+    "unitId": "2ac0f2e2-d6fd-4428-98f2-b4b73c48e99b",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "b12af074-c94e-4ac8-b00f-793820f40c05",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-13T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.786Z"
+   },
+   {
+    "eywaReportId": "380a4b97-3f8d-4c9b-b248-af22226b8893",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "c6ff1ac5-1c92-4dec-9c04-97750b011b35",
+    "unitId": "b0737e7e-25d9-448b-b77d-5f554745062c",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-20T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "eb2325cb-2905-4ffb-ba15-70d1f2a7be9f",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "b0361bc9-1b98-4915-9620-76097aebe822",
+    "unitId": "39dd5ecd-5f5c-459f-8fd0-467e32ed9b84",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "343c897d-2635-47ec-94bf-e25ab17ecb0d",
+    "unitId": "2c9b27e8-9080-41bf-8b64-8117cbf231bd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-04-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "b9321bb1-857e-49e5-be09-14f79b53001c",
+    "unitId": "7ac610fb-5228-4f12-902e-77b2601ad8ba",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "d888a45c-f6ca-404c-ac0e-548e32bdbea6",
+    "unitId": "03071758-7ed4-4255-b1b0-18f6a0f7d6cf",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-07T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "afdc629f-fa2b-4cf0-8bb6-6316cad8acaa",
+    "unitId": "03071758-7ed4-4255-b1b0-18f6a0f7d6cf",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "cd9ca634-710d-4988-a892-a598b509ab1a",
+    "unitId": "697b8fdb-ad59-4ea3-88d3-0b4653f510c5",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-14T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "d0d521a7-392e-4ecd-8da3-cb76a1e3b9b2",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "2fd891b1-3537-41d2-96b7-f8c252e93bed",
+    "unitId": "7f4b615b-3b55-440d-9eba-735e4885317a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-05-28T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "2d108735-8862-4d0f-b818-2300513de2c2",
+    "unitId": "8ea6ab3b-ce21-41e8-8c76-b53b336981b9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "6dde2286-02ab-4c68-b328-0a9d94390811",
+    "unitId": "8ea6ab3b-ce21-41e8-8c76-b53b336981b9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "00908296-d71c-42d5-8122-2bcf79a7dd62",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "e150ac75-c435-42e0-b434-be1e24b68439",
+    "unitId": "c194e64c-1729-4f1a-8446-454f04a4cd09",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "ac66eae7-b1da-4e3f-99f5-dcbeb95fb346",
+    "unitId": "c34b44e0-7262-4b0d-b347-f50e4e4dcef7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "f3da34bc-7a7e-43a7-a8a7-321ad88fb18a",
+    "unitId": "e1704a1f-3f72-4bf3-b712-7929afb7cbf1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-25T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "275ff4f2-7dd8-4eb6-af99-914ddf1e304f",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "25b7d075-c02d-47d4-85ff-a8ece4070da8",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "25b7d075-c02d-47d4-85ff-a8ece4070da8",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "25b7d075-c02d-47d4-85ff-a8ece4070da8",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.196Z"
+   },
+   {
+    "eywaReportId": "4228d097-33a6-467b-b93a-f869a7f33ea6",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "7d594444-c8c9-460b-a59d-cb010c683765",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "7d594444-c8c9-460b-a59d-cb010c683765",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "5c15b476-0473-4d1b-bcd0-e94c6af24acd",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "4153c39d-354d-4991-86a9-db9417f53d3e",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "4153c39d-354d-4991-86a9-db9417f53d3e",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "09d7aa32-3732-4013-9511-1bca8371d555",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:08.977Z"
+   },
+   {
+    "eywaReportId": "09d7aa32-3732-4013-9511-1bca8371d555",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:08.978Z"
+   },
+   {
+    "eywaReportId": "09d7aa32-3732-4013-9511-1bca8371d555",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:08.979Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.650Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.651Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.652Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.653Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.654Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.655Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.656Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.657Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.658Z"
+   },
+   {
+    "eywaReportId": "8625eef4-4e62-42e5-9496-0be9dedc02c3",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:52.659Z"
+   },
+   {
+    "eywaReportId": "dceabaf4-d4ff-4b9a-ba8a-8739c8e9167a",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.848Z"
+   },
+   {
+    "eywaReportId": "dceabaf4-d4ff-4b9a-ba8a-8739c8e9167a",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.849Z"
+   },
+   {
+    "eywaReportId": "dceabaf4-d4ff-4b9a-ba8a-8739c8e9167a",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.850Z"
+   },
+   {
+    "eywaReportId": "dceabaf4-d4ff-4b9a-ba8a-8739c8e9167a",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.851Z"
+   },
+   {
+    "eywaReportId": "8930fc8a-17af-4500-b5cc-fa325176adbf",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:17.020Z"
+   },
+   {
+    "eywaReportId": "8930fc8a-17af-4500-b5cc-fa325176adbf",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:17.021Z"
+   },
+   {
+    "eywaReportId": "67791365-871e-49a4-b9e1-da6ac10688fc",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:12.847Z"
+   },
+   {
+    "eywaReportId": "67791365-871e-49a4-b9e1-da6ac10688fc",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:12.848Z"
+   },
+   {
+    "eywaReportId": "213120b6-ed55-47e1-ace6-4cc3a13763d7",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:58.443Z"
+   },
+   {
+    "eywaReportId": "213120b6-ed55-47e1-ace6-4cc3a13763d7",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "68e389f6-0330-4045-b6f3-f32f850aa297",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:58.444Z"
+   },
+   {
+    "eywaReportId": "5a2c3677-4665-4699-aae9-f7010c0794b3",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2025-12-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "03aa2307-1827-4989-89dc-38f401b1d5e5",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2025-12-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "da33333b-d107-4ab8-a04d-c6b1eb989fac",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2025-12-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "619b5a02-93b5-412b-b30a-ec2a6328c2a0",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2025-12-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.358Z"
+   },
+   {
+    "eywaReportId": "07d6218c-ea6d-4ccc-bd0a-4fd34a797f7e",
+    "unitId": "aa3fd4ea-6ff4-4db8-af72-ad78f1782c75",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2025-12-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.358Z"
+   },
+   {
+    "eywaReportId": "2612eb3e-89de-4653-8810-212094364d86",
+    "unitId": "aa3fd4ea-6ff4-4db8-af72-ad78f1782c75",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-01-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "b9fe3257-aaba-429e-934c-91bc27053013",
+    "unitId": "189cdb5f-7f9b-4b1b-9c37-44b871d058ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-01-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "05e1d5ea-72ad-42e7-a102-30a73b4ee3a4",
+    "unitId": "189cdb5f-7f9b-4b1b-9c37-44b871d058ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-01-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.516Z"
+   },
+   {
+    "eywaReportId": "76f0995c-769c-4a75-9e6c-e96ba27a0646",
+    "unitId": "07608b11-124b-4b25-a94c-43a5006ad0dc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-01-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.671Z"
+   },
+   {
+    "eywaReportId": "01ceb77e-87c1-4de6-883b-33c51bc1170b",
+    "unitId": "07608b11-124b-4b25-a94c-43a5006ad0dc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-01-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.764Z"
+   },
+   {
+    "eywaReportId": "f7e4b7de-eeea-40e3-9842-8652e19f1dac",
+    "unitId": "1274505c-a93d-42ae-abf8-ceca36fc5d39",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.764Z"
+   },
+   {
+    "eywaReportId": "c77fc6f0-afde-4b35-9b83-3cce62b60865",
+    "unitId": "1274505c-a93d-42ae-abf8-ceca36fc5d39",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "dbcc4bff-f1a6-489a-8552-e6666571f4d6",
+    "unitId": "1274505c-a93d-42ae-abf8-ceca36fc5d39",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "0fba75ba-8533-4596-a6b4-76a88fdc81e1",
+    "unitId": "1274505c-a93d-42ae-abf8-ceca36fc5d39",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "56cfeb5a-8c91-49b4-adff-a7eab5b7132b",
+    "unitId": "1274505c-a93d-42ae-abf8-ceca36fc5d39",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "97b62447-eecf-4f67-8bbc-6392fa1e08e5",
+    "unitId": "2ac0f2e2-d6fd-4428-98f2-b4b73c48e99b",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.025Z"
+   },
+   {
+    "eywaReportId": "aff5e85f-e285-4e70-a698-9c0887f72ca9",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-02-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "1b9bfe12-836f-4a10-9b6f-8dd1ffa4ea32",
+    "unitId": "819cbf4b-630e-4b25-979f-f9138cc0c689",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "1b9bfe12-836f-4a10-9b6f-8dd1ffa4ea32",
+    "unitId": "b0737e7e-25d9-448b-b77d-5f554745062c",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.110Z"
+   },
+   {
+    "eywaReportId": "7c6107fc-07bc-4017-854b-170ba5a1951b",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "d42c1fa5-062f-4fa6-ba79-c306ac224e51",
+    "unitId": "7ac610fb-5228-4f12-902e-77b2601ad8ba",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "d42c1fa5-062f-4fa6-ba79-c306ac224e51",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.290Z"
+   },
+   {
+    "eywaReportId": "5ffd7932-f586-4907-a626-2dc5024e396e",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "08b1297e-e752-46ea-a4e8-dbeab4c56e91",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "08b1297e-e752-46ea-a4e8-dbeab4c56e91",
+    "unitId": "7ac610fb-5228-4f12-902e-77b2601ad8ba",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.379Z"
+   },
+   {
+    "eywaReportId": "a389b9f3-3b16-4105-883f-048479a54c45",
+    "unitId": "03071758-7ed4-4255-b1b0-18f6a0f7d6cf",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "50b7f5c8-ecd4-4829-a2dc-9a2f9da93806",
+    "unitId": "697b8fdb-ad59-4ea3-88d3-0b4653f510c5",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.467Z"
+   },
+   {
+    "eywaReportId": "99fb8461-9cb5-4eb5-8f59-cf982af11bed",
+    "unitId": "f175332e-9b76-45ec-a436-bc6b265d244d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "99fb8461-9cb5-4eb5-8f59-cf982af11bed",
+    "unitId": "7f4b615b-3b55-440d-9eba-735e4885317a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.572Z"
+   },
+   {
+    "eywaReportId": "cad42e3c-b2d4-4467-9888-ed6459b207e2",
+    "unitId": "8ea6ab3b-ce21-41e8-8c76-b53b336981b9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "0d9e5c22-bba8-4852-9e21-7dcccaba9ee0",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "d9198b25-878c-4992-add7-9c02f8145406",
+    "unitId": "c34b44e0-7262-4b0d-b347-f50e4e4dcef7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-13T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.786Z"
+   },
+   {
+    "eywaReportId": "31d97fb5-1be6-471d-bc98-744723ee5986",
+    "unitId": "e1704a1f-3f72-4bf3-b712-7929afb7cbf1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "a4c9a4b5-ebf1-4c85-b424-98f610366847",
+    "unitId": "e1704a1f-3f72-4bf3-b712-7929afb7cbf1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-20T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "dad75cfb-fec1-47bd-aeff-b7373e73d100",
+    "unitId": "65d045b4-9e35-4a8b-a425-1844ed64e298",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "6c34257d-94b5-4c05-a74f-153de312fef3",
+    "unitId": "604053fc-0d02-4933-84d5-ee65b873c932",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "4f907785-ffe6-43d5-bed5-cf4bc4f9830e",
+    "unitId": "2a5e9aaa-1d51-4a70-ae87-4eef377c78ef",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-04-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "a420cd12-01fe-47c7-a641-9135820439ae",
+    "unitId": "604053fc-0d02-4933-84d5-ee65b873c932",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "10694f74-6d57-41a3-9198-70d9c0998d17",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-05-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "432af749-d52a-4535-bdb9-4b9cbafb44d1",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "aacf30cf-fd58-40e2-a1c2-20aa8a240211",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-05-28T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "375a3300-0092-4812-8268-a175872925b3",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "ea41a4a1-9ead-4067-8cb2-68d8a6a19f8a",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "4e0f1693-1350-4e04-9028-64eb77ac2a78",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-06-25T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "96d75a6e-2594-45fc-93fc-d99668c7f67f",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "1214297d-9aa6-459c-ae9f-0c37138d9c0b",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "1214297d-9aa6-459c-ae9f-0c37138d9c0b",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "1214297d-9aa6-459c-ae9f-0c37138d9c0b",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.438Z"
+   },
+   {
+    "eywaReportId": "29a33b5b-19f5-4981-a85b-f4a4c0c92a9a",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "d61d31b9-3a5f-4e6e-8c9b-e30dfd8ffb99",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "d61d31b9-3a5f-4e6e-8c9b-e30dfd8ffb99",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "03030836-f767-40e4-9e2c-f636df146b39",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "d37445dc-1d03-4eba-b839-2197fd6447fc",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "d37445dc-1d03-4eba-b839-2197fd6447fc",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "090300e4-11ff-4bcb-a57c-2bc8f6f225f4",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:07.973Z"
+   },
+   {
+    "eywaReportId": "090300e4-11ff-4bcb-a57c-2bc8f6f225f4",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:07.974Z"
+   },
+   {
+    "eywaReportId": "090300e4-11ff-4bcb-a57c-2bc8f6f225f4",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:07.975Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.658Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.659Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.660Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.661Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.662Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.663Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.664Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.665Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.666Z"
+   },
+   {
+    "eywaReportId": "201c1140-23c8-4f2d-9491-c2a6299f4d4f",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:51.667Z"
+   },
+   {
+    "eywaReportId": "4bf734e7-645c-4e22-880d-1dff62c26780",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.054Z"
+   },
+   {
+    "eywaReportId": "4bf734e7-645c-4e22-880d-1dff62c26780",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.055Z"
+   },
+   {
+    "eywaReportId": "4bf734e7-645c-4e22-880d-1dff62c26780",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.056Z"
+   },
+   {
+    "eywaReportId": "4bf734e7-645c-4e22-880d-1dff62c26780",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:36.057Z"
+   },
+   {
+    "eywaReportId": "04005c3e-7cbd-4c52-8cb2-970515c5dd44",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:15.680Z"
+   },
+   {
+    "eywaReportId": "04005c3e-7cbd-4c52-8cb2-970515c5dd44",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:15.681Z"
+   },
+   {
+    "eywaReportId": "5e7a1b5b-3926-4b1e-a79c-f419ac48dcf1",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:11.880Z"
+   },
+   {
+    "eywaReportId": "5e7a1b5b-3926-4b1e-a79c-f419ac48dcf1",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:11.881Z"
+   },
+   {
+    "eywaReportId": "9d09c21b-3daf-4ad5-97ab-f6e982fbfe96",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:57.517Z"
+   },
+   {
+    "eywaReportId": "9d09c21b-3daf-4ad5-97ab-f6e982fbfe96",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "f82ff940-600a-4a7f-a7fd-9fee1c2cf2a1",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:57.518Z"
+   },
+   {
+    "eywaReportId": "363efb31-45d1-4367-807b-db3e74e06eee",
+    "unitId": "502cdf7f-31d8-45d8-9b62-766d1d212bfd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2025-12-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "789846e0-1594-47fe-867b-22b04c5f12ac",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2025-12-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.191Z"
+   },
+   {
+    "eywaReportId": "26346759-e544-490a-a326-57b52ecfc286",
+    "unitId": "8fbbf9b0-a087-48f9-a8e7-dd75935aa968",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2025-12-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "f881ab80-97c4-4bfb-9e21-d7c02162f482",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2025-12-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.275Z"
+   },
+   {
+    "eywaReportId": "e0754929-de13-4bb3-930a-f5741b5c7d8c",
+    "unitId": "4b79f028-95cc-4ad7-8db4-1e51debd6df8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2025-12-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.358Z"
+   },
+   {
+    "eywaReportId": "09c251e3-26a9-4f14-8bb2-75aa1d2d9170",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-01-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.437Z"
+   },
+   {
+    "eywaReportId": "dc5d999f-8777-473d-919b-3438697ad082",
+    "unitId": "c1f937b3-8247-46f6-878b-e528557a4833",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-01-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.671Z"
+   },
+   {
+    "eywaReportId": "b773fc08-b857-41cc-9194-dbecdbd60970",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-01-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.764Z"
+   },
+   {
+    "eywaReportId": "ed7df000-fab5-4ad9-901f-4424856e6d8d",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.764Z"
+   },
+   {
+    "eywaReportId": "022bef1c-cc46-4763-902f-97970666c06a",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "9a1def5f-897b-4ce6-828b-8ea3880ccecc",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.843Z"
+   },
+   {
+    "eywaReportId": "45853e5a-3240-46eb-aa5d-0a48e2199df5",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:53.938Z"
+   },
+   {
+    "eywaReportId": "ba4a4bc0-81c6-444f-bdb0-25195600b5c0",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.025Z"
+   },
+   {
+    "eywaReportId": "5e805850-67bd-4e34-b2d6-acb80751d001",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-02-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "2b152671-c33b-44c3-bdb0-75fa0c7c49e5",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.109Z"
+   },
+   {
+    "eywaReportId": "df96da34-7d6e-429c-a4ec-6c81670a6998",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "d3309c2d-f429-4ce9-aa09-7511a36f2717",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "00d3c451-f941-46e9-b1ec-e95fe407c7aa",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "f6c433e5-9e62-420a-8048-b0122f8e6d22",
+    "unitId": "f1fc063c-75c8-4c34-b864-5a0f480d82a6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "e4a465c3-f1b6-4282-8c9f-6cf442ffad17",
+    "unitId": "dc4ca06a-b6dd-4ed2-8477-2383c7516463",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "34c82c76-3556-4e3b-965d-69fec9470ef2",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.467Z"
+   },
+   {
+    "eywaReportId": "2ac27271-0355-498a-9fbc-cd0eee72e7aa",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "a1726352-4630-44e6-8f81-d8c2edbea26e",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-13T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.786Z"
+   },
+   {
+    "eywaReportId": "f7e84413-c154-4e6f-b7da-2889ce4dc4aa",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "83eb1baa-a483-4ddd-8d63-b29dab6e67d9",
+    "unitId": "25942506-e2d4-4e2b-9c94-ff43ea1edb05",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-20T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "edd633a1-f9a3-419b-9690-cf49981a2343",
+    "unitId": "fe939e87-9e9b-4c87-838a-a24e48650974",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "2ccd6dad-58f7-4ab3-bafb-c1311399a388",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "3dd71d54-a036-4bbf-8217-3e128b43411e",
+    "unitId": "2ac0f2e2-d6fd-4428-98f2-b4b73c48e99b",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-04-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "441ca84a-d2e5-48a9-9b93-a80a96f56440",
+    "unitId": "6f7a3919-bc68-471b-9259-77cb16fbeaf7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "16c16acd-d12c-42bd-9f22-ce8e842a7cf6",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-07T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "a74763ae-1563-48ed-ae0e-5006290eab11",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "fa387197-74ac-4515-afa7-152bc4f71e1e",
+    "unitId": "2c9b27e8-9080-41bf-8b64-8117cbf231bd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-14T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.154Z"
+   },
+   {
+    "eywaReportId": "88b2a193-b896-4f02-81c8-ba2d3f72b9de",
+    "unitId": "7064c9fa-3a8b-4f44-9ca9-312cad1590ce",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "64b321ad-5bad-461e-b445-8feea14f26cf",
+    "unitId": "f175332e-9b76-45ec-a436-bc6b265d244d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "c24f7626-2446-4dd9-9207-460b2764fe56",
+    "unitId": "8ea6ab3b-ce21-41e8-8c76-b53b336981b9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-05-28T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "3c5a8564-8739-4545-9b5d-b26549634c11",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-01T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "168ceafa-e68d-45fe-81e7-524f2341ee35",
+    "unitId": "60d0c7a6-4020-456d-a2b6-c6bdbec634d6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "13348ea9-1667-4eb0-914a-2de42e4748cf",
+    "unitId": "c34b44e0-7262-4b0d-b347-f50e4e4dcef7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "2ccf218b-1fc2-4ba2-9a75-4521beda0cb8",
+    "unitId": "65d045b4-9e35-4a8b-a425-1844ed64e298",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "0cbea671-4251-43da-a63f-09291fbc32ac",
+    "unitId": "604053fc-0d02-4933-84d5-ee65b873c932",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "43785095-f23f-40b7-9d65-40ebaffa837d",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "43785095-f23f-40b7-9d65-40ebaffa837d",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "43785095-f23f-40b7-9d65-40ebaffa837d",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.438Z"
+   },
+   {
+    "eywaReportId": "24dd67d7-27e7-4df6-a757-bddaa08f3cef",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "24dd67d7-27e7-4df6-a757-bddaa08f3cef",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "24dd67d7-27e7-4df6-a757-bddaa08f3cef",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.438Z"
+   },
+   {
+    "eywaReportId": "263a04c6-2d17-4f00-93e0-1f8c9a41ba14",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "f63affc4-cf3d-436b-bf5c-a1fb0c9ca499",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.436Z"
+   },
+   {
+    "eywaReportId": "f63affc4-cf3d-436b-bf5c-a1fb0c9ca499",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.437Z"
+   },
+   {
+    "eywaReportId": "36edaf2f-bf9f-421a-9097-5ef27571be15",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "512ad1e6-3596-4b95-bf11-f80b8c9c68b0",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "512ad1e6-3596-4b95-bf11-f80b8c9c68b0",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "7cb3c92e-0742-41e3-b04a-8ebfc033e66e",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:05.846Z"
+   },
+   {
+    "eywaReportId": "7cb3c92e-0742-41e3-b04a-8ebfc033e66e",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:05.847Z"
+   },
+   {
+    "eywaReportId": "7cb3c92e-0742-41e3-b04a-8ebfc033e66e",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:05.848Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.772Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.773Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.774Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.775Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.776Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.777Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.778Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.779Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.780Z"
+   },
+   {
+    "eywaReportId": "cd054e08-2b5a-45f2-8e3a-c6198a8f0eb5",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:49.781Z"
+   },
+   {
+    "eywaReportId": "0e0e00a0-88e4-4add-a980-0ba837893610",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-01T00:00:00.000Z",
+    "createdAt": "2026-08-01T03:09:38.885Z"
+   },
+   {
+    "eywaReportId": "0e0e00a0-88e4-4add-a980-0ba837893610",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-01T00:00:00.000Z",
+    "createdAt": "2026-08-01T03:09:38.886Z"
+   },
+   {
+    "eywaReportId": "0e0e00a0-88e4-4add-a980-0ba837893610",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-01T00:00:00.000Z",
+    "createdAt": "2026-08-01T03:09:38.887Z"
+   },
+   {
+    "eywaReportId": "0e0e00a0-88e4-4add-a980-0ba837893610",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-01T00:00:00.000Z",
+    "createdAt": "2026-08-01T03:09:38.888Z"
+   },
+   {
+    "eywaReportId": "df862ec1-4146-45e8-a571-3069ca1bccbc",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:11.993Z"
+   },
+   {
+    "eywaReportId": "df862ec1-4146-45e8-a571-3069ca1bccbc",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:11.994Z"
+   },
+   {
+    "eywaReportId": "7b0d46f5-8d2e-428b-8348-6d12261f5453",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:09.647Z"
+   },
+   {
+    "eywaReportId": "7b0d46f5-8d2e-428b-8348-6d12261f5453",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:09.648Z"
+   },
+   {
+    "eywaReportId": "33b48e8d-bcd5-4267-9555-d867f89034be",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:55.305Z"
+   },
+   {
+    "eywaReportId": "33b48e8d-bcd5-4267-9555-d867f89034be",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "4847f2f8-6c32-4c60-a66e-00197b472b58",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:55.306Z"
+   },
+   {
+    "eywaReportId": "8e4bd52b-1313-48e2-a311-ababc9403851",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.195Z"
+   },
+   {
+    "eywaReportId": "8e4bd52b-1313-48e2-a311-ababc9403851",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.196Z"
+   },
+   {
+    "eywaReportId": "a113cc00-99ce-40a1-8ab1-c497d2344116",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-12T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "35b38428-e5eb-4af4-860f-90791be0b403",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.289Z"
+   },
+   {
+    "eywaReportId": "85fe4be2-9d68-4429-a021-a5ab5316df15",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "554af275-74f6-4411-876b-3c47bd14972d",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.378Z"
+   },
+   {
+    "eywaReportId": "a502af11-6882-4d54-985f-d2a03cbd858d",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-26T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.467Z"
+   },
+   {
+    "eywaReportId": "4f712f81-52fb-4b55-b584-2b83025893d7",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-03-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "e84dc675-0f53-4831-a834-cbdfb582a79e",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.571Z"
+   },
+   {
+    "eywaReportId": "a45effbc-06ef-4a6f-96d2-a90e9914b6d5",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "a623f3b4-978e-4f9c-bc7e-cd3a5b9e6144",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.659Z"
+   },
+   {
+    "eywaReportId": "546d0581-f08c-42d7-a438-e008dbbd2439",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-16T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.786Z"
+   },
+   {
+    "eywaReportId": "8e7dd192-9958-4f72-ab56-fd67ca9d13c7",
+    "unitId": "802487c9-f7df-4b96-b602-e7afe3519533",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "8e7dd192-9958-4f72-ab56-fd67ca9d13c7",
+    "unitId": "178574f2-5aa6-49e8-8f22-cfb6284268d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-19T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.873Z"
+   },
+   {
+    "eywaReportId": "5e6b3159-9c41-4a7b-86a7-8d312b84adce",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-20T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.872Z"
+   },
+   {
+    "eywaReportId": "c1010427-6fb9-4dc3-b687-a27ddf491b9a",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-23T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "1ac60e84-382f-47d8-b7ca-50caac6dc820",
+    "unitId": "f1fc063c-75c8-4c34-b864-5a0f480d82a6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-27T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:54.957Z"
+   },
+   {
+    "eywaReportId": "20fb3941-1fe9-4141-9daf-ede587e6734c",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-04-30T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "fa786c74-eef2-4024-9a2b-0a6211fe4fda",
+    "unitId": "86516ee7-e8e2-4f22-8d93-23f02e81a65d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-05-04T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.057Z"
+   },
+   {
+    "eywaReportId": "f7ffd316-1631-498b-b9d9-102fcb955ae0",
+    "unitId": "25942506-e2d4-4e2b-9c94-ff43ea1edb05",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-05-18T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "b418d5f6-f1bb-469d-8b2b-4194c16a147b",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-05-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.251Z"
+   },
+   {
+    "eywaReportId": "0130af4c-a6b9-492c-9f43-1ccf2a627b91",
+    "unitId": "eaf7a7f5-5cd1-4fca-baf4-159394f5dc68",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-05-28T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "0be1efc7-4e02-4958-8854-b217bc2b5b08",
+    "unitId": "6f7a3919-bc68-471b-9259-77cb16fbeaf7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-01T00:00:00.000Z",
+    "createdAt": "2026-07-10T08:44:55.356Z"
+   },
+   {
+    "eywaReportId": "40a50ba0-ed19-4bcd-a2c0-426de3800992",
+    "unitId": "0eb3f3ac-68c9-4e81-8377-47d16ee6b874",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "3947bd5c-288a-44a2-b6b7-7591dc7d8a66",
+    "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-11T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "c194e64c-1729-4f1a-8446-454f04a4cd09",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "7c8c8826-d313-4f1e-9072-6838b2612196",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.545Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "9d29b898-99ab-4e88-b6d6-dc17c7179534",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.546Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "60d0c7a6-4020-456d-a2b6-c6bdbec634d6",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.547Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "c34b44e0-7262-4b0d-b347-f50e4e4dcef7",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.548Z"
+   },
+   {
+    "eywaReportId": "cc383864-d879-4d85-8e2d-0daa8648164f",
+    "unitId": "e1704a1f-3f72-4bf3-b712-7929afb7cbf1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-21T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.549Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "c3dc1c8f-5208-4e1d-8553-d9c3023b3442",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "65d045b4-9e35-4a8b-a425-1844ed64e298",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.545Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "8f5241e1-4b8f-491a-bfcd-76166961afdb",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.546Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "df6150a3-51ef-472c-b078-017a1aee02cd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.547Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "2a5e9aaa-1d51-4a70-ae87-4eef377c78ef",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.548Z"
+   },
+   {
+    "eywaReportId": "8435aba5-fdd2-49d0-b373-17ff0b65f7b7",
+    "unitId": "604053fc-0d02-4933-84d5-ee65b873c932",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-22T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.549Z"
+   },
+   {
+    "eywaReportId": "bb316def-0e35-4fa3-9d7e-295afb3a7aa4",
+    "unitId": "f175332e-9b76-45ec-a436-bc6b265d244d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-25T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "5383b164-3ceb-4f86-bdeb-7d53b219c1d5",
+    "unitId": "df6150a3-51ef-472c-b078-017a1aee02cd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "5383b164-3ceb-4f86-bdeb-7d53b219c1d5",
+    "unitId": "65d045b4-9e35-4a8b-a425-1844ed64e298",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.545Z"
+   },
+   {
+    "eywaReportId": "5383b164-3ceb-4f86-bdeb-7d53b219c1d5",
+    "unitId": "2a5e9aaa-1d51-4a70-ae87-4eef377c78ef",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-06-29T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.546Z"
+   },
+   {
+    "eywaReportId": "07609541-8eba-4bc2-b4c4-7550ad630357",
+    "unitId": "bf0bf4e5-3722-43ba-8fd3-62e371769155",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "07609541-8eba-4bc2-b4c4-7550ad630357",
+    "unitId": "8b065c44-38ca-4533-9da0-3323cd76e263",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.545Z"
+   },
+   {
+    "eywaReportId": "07609541-8eba-4bc2-b4c4-7550ad630357",
+    "unitId": "82c0ffee-fdc1-4d46-aa3f-8ce33a2f87f9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.546Z"
+   },
+   {
+    "eywaReportId": "068cacac-5a28-49b4-a17c-8184c2e0dcbf",
+    "unitId": "a670cd52-4f93-413a-9f06-75bb3964cadd",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-05T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "0b309852-903e-4180-bbd9-86a4f863b599",
+    "unitId": "811fdebf-3d2e-41bb-85f5-f0cc4309fb22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.544Z"
+   },
+   {
+    "eywaReportId": "0b309852-903e-4180-bbd9-86a4f863b599",
+    "unitId": "58e78fc3-96df-4e83-a351-46e08e885bdc",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.545Z"
+   },
+   {
+    "eywaReportId": "5740ec55-7479-4b59-b8cd-0fb9fdbdb75b",
+    "unitId": "806e067b-ec62-4b94-9508-c164016a8ec0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "3a02f50c-1852-42d2-8cbd-54dd0b94e1fa",
+    "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "3a02f50c-1852-42d2-8cbd-54dd0b94e1fa",
+    "unitId": "d448cca7-858c-4e12-9b8c-f2d0fc46fd38",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "f0213bbb-4dc6-47af-9937-1aac32ece78f",
+    "unitId": "7394219f-b9fc-4121-92e2-04be0c7f25e1",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:04.825Z"
+   },
+   {
+    "eywaReportId": "f0213bbb-4dc6-47af-9937-1aac32ece78f",
+    "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:04.826Z"
+   },
+   {
+    "eywaReportId": "f0213bbb-4dc6-47af-9937-1aac32ece78f",
+    "unitId": "2934a462-7cd6-4777-ad44-5cd0193de8d8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T09:17:04.827Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.525Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.526Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.527Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.528Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.529Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.530Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "d583be25-29e8-42a7-8e03-d7708247f452",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.531Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "f11aa5be-eed8-4129-af1a-35cd6beedfd0",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.532Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "18f9b484-a233-44c3-bc95-cdf0fa66313a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.533Z"
+   },
+   {
+    "eywaReportId": "3e4d64f9-12eb-4f27-b898-a67e1b9e5c05",
+    "unitId": "55cf7dac-2236-413a-ab03-2ce689d3f46a",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T09:06:48.534Z"
+   },
+   {
+    "eywaReportId": "fbeac70a-2378-4c63-83cb-8cfc1ed34b8f",
+    "unitId": "b5e978a6-30ad-4b67-8da9-2c0471333ed9",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:34.029Z"
+   },
+   {
+    "eywaReportId": "fbeac70a-2378-4c63-83cb-8cfc1ed34b8f",
+    "unitId": "6bac6f2b-6ae9-437b-bc2a-d0ca82cb1582",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:34.030Z"
+   },
+   {
+    "eywaReportId": "fbeac70a-2378-4c63-83cb-8cfc1ed34b8f",
+    "unitId": "6864c6c7-2a7f-48f8-9465-4c89c5879e22",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:34.031Z"
+   },
+   {
+    "eywaReportId": "fbeac70a-2378-4c63-83cb-8cfc1ed34b8f",
+    "unitId": "57e79cf9-60c9-4bab-8e17-bddfd48d5d8e",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T08:31:34.032Z"
+   },
+   {
+    "eywaReportId": "8d671c23-ebb3-4868-a69e-254419a3f919",
+    "unitId": "aedf3d06-c057-43ac-8063-83647667b56d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:10.093Z"
+   },
+   {
+    "eywaReportId": "8d671c23-ebb3-4868-a69e-254419a3f919",
+    "unitId": "e551583e-4fb4-4ea4-94cd-17dde793195d",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-06T00:00:00.000Z",
+    "createdAt": "2026-08-06T09:33:10.094Z"
+   },
+   {
+    "eywaReportId": "0e78d23b-a4f8-4612-860d-53ba922342db",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:08.415Z"
+   },
+   {
+    "eywaReportId": "0e78d23b-a4f8-4612-860d-53ba922342db",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:15:08.416Z"
+   },
+   {
+    "eywaReportId": "9ea2f029-b6f3-4f30-ac19-333daafb4d50",
+    "unitId": "88723a8f-b671-4294-8893-f8c54c9ec8e8",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:54.301Z"
+   },
+   {
+    "eywaReportId": "9ea2f029-b6f3-4f30-ac19-333daafb4d50",
+    "unitId": "0dc2f680-f98c-44dc-9725-53e69456b663",
+    "classId": "946fbe35-1967-429b-9eb6-afc00310763a",
+    "studentId": "5f9f6710-7235-4815-90fe-8d72dfc67d4f",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:20:54.302Z"
+   },
+   {
+    "eywaReportId": "f908c31a-f4e5-4c8e-9819-452b522d8445",
+    "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "f908c31a-f4e5-4c8e-9819-452b522d8445",
+    "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "f908c31a-f4e5-4c8e-9819-452b522d8445",
+    "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.196Z"
+   },
+   {
+    "eywaReportId": "f908c31a-f4e5-4c8e-9819-452b522d8445",
+    "unitId": "b00ee45e-4eec-4b9d-a3ee-f592d25ec10d",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-02T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.197Z"
+   },
+   {
+    "eywaReportId": "55f16715-dc80-4db9-8089-042c059fda16",
+    "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "55f16715-dc80-4db9-8089-042c059fda16",
+    "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "55f16715-dc80-4db9-8089-042c059fda16",
+    "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-06T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.196Z"
+   },
+   {
+    "eywaReportId": "73f2d04a-a86c-4cb4-98cf-234ce71c8659",
+    "unitId": "91b815cc-6fcd-4d22-898c-17f127ed010a",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T19:01:29.754Z"
+   },
+   {
+    "eywaReportId": "73f2d04a-a86c-4cb4-98cf-234ce71c8659",
+    "unitId": "9acad796-0f05-47a2-82a3-a8413500b19c",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-08T00:00:00.000Z",
+    "createdAt": "2026-07-10T19:01:29.755Z"
+   },
+   {
+    "eywaReportId": "823e5816-ca22-4214-b1a9-62f7504061c6",
+    "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.194Z"
+   },
+   {
+    "eywaReportId": "823e5816-ca22-4214-b1a9-62f7504061c6",
+    "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-09T00:00:00.000Z",
+    "createdAt": "2026-07-10T06:14:21.195Z"
+   },
+   {
+    "eywaReportId": "5e69878c-e910-4078-be29-ab0b6e469833",
+    "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-16T00:00:00.000Z",
+    "createdAt": "2026-07-16T19:28:50.919Z"
+   },
+   {
+    "eywaReportId": "bef9ab72-a662-4a7e-a6fd-288beb58f70c",
+    "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.860Z"
+   },
+   {
+    "eywaReportId": "bef9ab72-a662-4a7e-a6fd-288beb58f70c",
+    "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.861Z"
+   },
+   {
+    "eywaReportId": "bef9ab72-a662-4a7e-a6fd-288beb58f70c",
+    "unitId": "d9477f71-58e7-4d2f-8ab7-1c7beb3dbce1",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.862Z"
+   },
+   {
+    "eywaReportId": "bef9ab72-a662-4a7e-a6fd-288beb58f70c",
+    "unitId": "136d07ea-9333-4864-8195-3b53128cc7e8",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-20T00:00:00.000Z",
+    "createdAt": "2026-07-20T19:14:44.863Z"
+   },
+   {
+    "eywaReportId": "df0d1d5d-42a9-4973-b85c-0b5977e6a9f7",
+    "unitId": "51040c22-dc10-4104-9a88-045862ba9d0c",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-22T00:00:00.000Z",
+    "createdAt": "2026-07-23T18:31:01.467Z"
+   },
+   {
+    "eywaReportId": "94124b0c-1a45-4267-ac9f-faba3b2eff08",
+    "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T18:31:01.467Z"
+   },
+   {
+    "eywaReportId": "94124b0c-1a45-4267-ac9f-faba3b2eff08",
+    "unitId": "136d07ea-9333-4864-8195-3b53128cc7e8",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-23T00:00:00.000Z",
+    "createdAt": "2026-07-23T18:31:01.468Z"
+   },
+   {
+    "eywaReportId": "70873cee-6d04-4605-978a-646df28e6c87",
+    "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T12:03:37.563Z"
+   },
+   {
+    "eywaReportId": "70873cee-6d04-4605-978a-646df28e6c87",
+    "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-27T00:00:00.000Z",
+    "createdAt": "2026-07-27T12:03:37.564Z"
+   },
+   {
+    "eywaReportId": "3ecc71ae-fc1c-4f2e-842a-1faf2003d3ad",
+    "unitId": "478e42ea-5098-4da8-947b-f47e6ae1ed90",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-29T00:00:00.000Z",
+    "createdAt": "2026-07-30T06:18:08.596Z"
+   },
+   {
+    "eywaReportId": "def1a16f-cfcd-4502-8783-37173278e578",
+    "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-30T00:00:00.000Z",
+    "createdAt": "2026-07-30T11:59:43.776Z"
+   },
+   {
+    "eywaReportId": "def1a16f-cfcd-4502-8783-37173278e578",
+    "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-07-30T00:00:00.000Z",
+    "createdAt": "2026-07-30T11:59:43.777Z"
+   },
+   {
+    "eywaReportId": "513e6423-60f2-4108-803b-c6383284d906",
+    "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T12:02:14.698Z"
+   },
+   {
+    "eywaReportId": "513e6423-60f2-4108-803b-c6383284d906",
+    "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-03T00:00:00.000Z",
+    "createdAt": "2026-08-03T12:02:14.699Z"
+   },
+   {
+    "eywaReportId": "1e255ce1-69da-40aa-b771-f5aff5cae27f",
+    "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:57:23.932Z"
+   },
+   {
+    "eywaReportId": "1e255ce1-69da-40aa-b771-f5aff5cae27f",
+    "unitId": "b107b8ef-1798-4878-aaaf-7bdf4eac5489",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:57:23.933Z"
+   },
+   {
+    "eywaReportId": "1e255ce1-69da-40aa-b771-f5aff5cae27f",
+    "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:57:23.934Z"
+   },
+   {
+    "eywaReportId": "1e255ce1-69da-40aa-b771-f5aff5cae27f",
+    "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:57:23.935Z"
+   },
+   {
+    "eywaReportId": "1e255ce1-69da-40aa-b771-f5aff5cae27f",
+    "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T11:57:23.936Z"
+   },
+   {
+    "eywaReportId": "6451f92e-3025-48b1-a489-51e5d4d753c3",
+    "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T12:00:57.642Z"
+   },
+   {
+    "eywaReportId": "6451f92e-3025-48b1-a489-51e5d4d753c3",
+    "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T12:00:57.643Z"
+   },
+   {
+    "eywaReportId": "6451f92e-3025-48b1-a489-51e5d4d753c3",
+    "unitId": "b107b8ef-1798-4878-aaaf-7bdf4eac5489",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T12:00:57.644Z"
+   },
+   {
+    "eywaReportId": "6451f92e-3025-48b1-a489-51e5d4d753c3",
+    "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T12:00:57.645Z"
+   },
+   {
+    "eywaReportId": "6451f92e-3025-48b1-a489-51e5d4d753c3",
+    "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-10T00:00:00.000Z",
+    "createdAt": "2026-08-10T12:00:57.646Z"
+   },
+   {
+    "eywaReportId": "5f757ab0-a500-48ae-b594-ec2feb20d2c3",
+    "unitId": "51040c22-dc10-4104-9a88-045862ba9d0c",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-12T00:00:00.000Z",
+    "createdAt": "2026-08-13T13:56:27.409Z"
+   },
+   {
+    "eywaReportId": "5f757ab0-a500-48ae-b594-ec2feb20d2c3",
+    "unitId": "cce5e825-71d2-4739-95a5-c90f496eb7f2",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-12T00:00:00.000Z",
+    "createdAt": "2026-08-13T13:56:27.410Z"
+   },
+   {
+    "eywaReportId": "5f757ab0-a500-48ae-b594-ec2feb20d2c3",
+    "unitId": "47afab47-8727-4185-8832-8942cecc9562",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-12T00:00:00.000Z",
+    "createdAt": "2026-08-13T13:56:27.411Z"
+   },
+   {
+    "eywaReportId": "c843e098-77bf-448e-89a9-a9815644937d",
+    "unitId": "063a81fa-a34f-4744-9ab4-a60b41184735",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:54:52.951Z"
+   },
+   {
+    "eywaReportId": "c843e098-77bf-448e-89a9-a9815644937d",
+    "unitId": "c967065d-b309-4431-9d15-f6b12671ee6a",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-13T00:00:00.000Z",
+    "createdAt": "2026-08-13T11:54:52.952Z"
+   },
+   {
+    "eywaReportId": "697830d4-0d5d-4a5c-b6e2-31d0cd5996ab",
+    "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-20T00:00:00.000Z",
+    "createdAt": "2026-08-20T11:00:02.666Z"
+   },
+   {
+    "eywaReportId": "697830d4-0d5d-4a5c-b6e2-31d0cd5996ab",
+    "unitId": "58a0e885-68c4-43a0-983b-ce18a8c4579e",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-20T00:00:00.000Z",
+    "createdAt": "2026-08-20T11:00:02.667Z"
+   },
+   {
+    "eywaReportId": "697830d4-0d5d-4a5c-b6e2-31d0cd5996ab",
+    "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-20T00:00:00.000Z",
+    "createdAt": "2026-08-20T11:00:02.668Z"
+   },
+   {
+    "eywaReportId": "0816baf5-877c-4094-b4ec-dc0f14470600",
+    "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-23T00:00:00.000Z",
+    "createdAt": "2026-08-23T07:59:04.548Z"
+   },
+   {
+    "eywaReportId": "0816baf5-877c-4094-b4ec-dc0f14470600",
+    "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-23T00:00:00.000Z",
+    "createdAt": "2026-08-23T07:59:04.549Z"
+   },
+   {
+    "eywaReportId": "0afd51f2-d841-4021-bca8-d237702e3951",
+    "unitId": "aac676fa-c37c-4517-850d-36ee73eb2e8c",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-24T00:00:00.000Z",
+    "createdAt": "2026-08-24T11:41:30.175Z"
+   },
+   {
+    "eywaReportId": "0afd51f2-d841-4021-bca8-d237702e3951",
+    "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-24T00:00:00.000Z",
+    "createdAt": "2026-08-24T11:41:30.176Z"
+   },
+   {
+    "eywaReportId": "0afd51f2-d841-4021-bca8-d237702e3951",
+    "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-24T00:00:00.000Z",
+    "createdAt": "2026-08-24T11:41:30.177Z"
+   },
+   {
+    "eywaReportId": "0afd51f2-d841-4021-bca8-d237702e3951",
+    "unitId": "d495853c-37b3-4d8a-89e6-45e90602491a",
+    "classId": "a715a6b0-df31-40f3-8213-47bf49cae3f6",
+    "studentId": "19143302-bd3b-4bce-afb9-8f3b4e1ac445",
+    "recordedAt": "2026-08-24T00:00:00.000Z",
+    "createdAt": "2026-08-24T11:41:30.178Z"
+   }
+  ]
+ },
+ "planned": {
+  "classes": 2,
+  "students": 16,
+  "progressRows": 1243
+ }
+}
