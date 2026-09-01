@@ -1776,17 +1776,24 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
 
   /* ── 낱말 축 (D-66 ⑸) ── */
 
+  // ⚠️ 소단원마다 **자기가 내는 갈래**를 돈다(D-113 ⑺). 한 소단원의 갈래 목록으로
+  //    세 소단원을 다 돌면, 확대 갈래를 한쪽만 채운 날 없는 갈래를 만들려다 던진다
+  //    (2026-09-01 물결 4 에서 실제로 났다 — 1-3-1 만 심화중을 채웠다).
   it("낱말 축 — «식으로 나타내»는 1-3-2·1-3-3 에만 있고 1-3-1 에는 없다", () => {
-    for (const tier of tiersOf(unitOf("1-3-1"))) {
-      for (const seed of SEEDS) {
+    for (const seed of SEEDS) {
+      for (const tier of tiersOf(unitOf("1-3-1"))) {
         const c1 = problem("1-3-1", tier, seed).content;
         expect(/식으로 나타내/.test(c1), `1-3-1 ${tier} @${seed}\n${c1}`).toBe(
           false,
         );
+      }
+      for (const tier of tiersOf(unitOf("1-3-2"))) {
         const c2 = problem("1-3-2", tier, seed).content;
         expect(/식으로 나타내/.test(c2), `1-3-2 ${tier} @${seed}\n${c2}`).toBe(
           true,
         );
+      }
+      for (const tier of tiersOf(unitOf("1-3-3"))) {
         const c3 = problem("1-3-3", tier, seed).content;
         expect(/식으로 나타내/.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(
           tier === "연산" || tier === "기본",
@@ -1798,14 +1805,16 @@ describe("[초5 1-3] 난이도 4단 확대 (D-72 4차)", () => {
   it("낱말 축 — 1-3-1·1-3-2 는 추상 표만, 1-3-3 은 생활 장면 + □·△ 지정", () => {
     const lifeWords =
       /자동차|세발자전거|오리|거미|곤충|봉지|접시|화분|상자|통나무|리본|철사|빨랫줄|테이프|막대|도막|나이|동생|형|언니|누나/;
-    for (const tier of tiersOf(unitOf("1-3-1"))) {
-      for (const seed of SEEDS) {
-        for (const code of ["1-3-1", "1-3-2"] as const) {
+    for (const seed of SEEDS) {
+      for (const code of ["1-3-1", "1-3-2"] as const) {
+        for (const tier of tiersOf(unitOf(code))) {
           const c = problem(code, tier, seed).content;
           expect(lifeWords.test(c), `${code} ${tier} @${seed}\n${c}`).toBe(
             false,
           );
         }
+      }
+      for (const tier of tiersOf(unitOf("1-3-3"))) {
         const c3 = problem("1-3-3", tier, seed).content;
         expect(lifeWords.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(true);
         expect(/표는|빈칸/.test(c3), `1-3-3 ${tier} @${seed}\n${c3}`).toBe(

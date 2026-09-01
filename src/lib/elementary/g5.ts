@@ -15363,8 +15363,11 @@ function w4Sym112(): W4SymTask[] {
 }
 
 function mix112Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  // 🔴 **기호를 낱말로 적는다.** 이 소단원은 「×·÷ 가 정확히 하나」가 규약이라
+  //    (`elemTiersG5.test.ts` 가 발문과 해설을 함께 본다) 두 기호를 다 찍으면
+  //    1-1-3 침범으로 잡힌다. 그래서 발문은 낱말로, 해설은 **살아남은 기호만** 쓴다.
   const content = (t: W4SymTask) =>
-    `$\\bigcirc$ 안에 $\\times$와 $\\div$ 중 알맞은 것을 써넣어 계산하려고 합니다. 계산하는 동안 나오는 값이 모두 자연수가 되도록 써넣었을 때, 계산한 값은 얼마입니까?  ${expr(`${t.a}-${t.b}\\bigcirc ${t.c}+${t.d}`)}`;
+    `$\\bigcirc$ 안에 곱셈 기호와 나눗셈 기호 중 알맞은 것을 써넣어 계산하려고 합니다. 계산하는 동안 나오는 값이 모두 자연수가 되도록 써넣었을 때, 계산한 값은 얼마입니까?  ${expr(`${t.a}-${t.b}\\bigcirc ${t.c}+${t.d}`)}`;
   const pool = w2Pool("w4-112mid", () =>
     w4Sym112().filter((t) => {
       const v = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d]);
@@ -15378,20 +15381,21 @@ function mix112Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const half = pool.filter((x) => x.op === wantOp);
   const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
   const kept = w4Eval([t.a, "-", t.b, t.op, t.c, "+", t.d])!;
-  const dead = t.op === "*" ? "/" : "*";
+  // 죽는 쪽은 **기호를 안 찍고 낱말로** 설명한다(위 주석).
   const deadWhy =
-    dead === "/"
-      ? `${lj(`${t.b}\\div${t.c}`, "은", "는")} 나누어떨어지지 않으므로`
-      : `${expr(`${t.b}\\times${t.c}=${t.b * t.c}`)}이고 ${lj(`${t.a}-${t.b * t.c}`, "은", "는")} 자연수가 될 수 없으므로`;
+    t.op === "*"
+      ? `나눗셈 기호를 써넣으면 ${nj(t.b, "을", "를")} ${nro(t.c)} 나누는 것인데 나누어떨어지지 않습니다.`
+      : `곱셈 기호를 써넣으면 ${nj(t.b, "과", "와")} ${n(t.c)}의 곱이 ${nj(t.b * t.c, "이라", "라")} ${n(t.a)}에서 뺄 수 없습니다.`;
   const first =
     t.op === "*"
-      ? `${expr(`${t.b}\\times${t.c}=${t.b * t.c}`)}`
-      : `${expr(`${t.b}\\div${t.c}=${t.b / t.c}`)}`;
-  const mid = t.op === "*" ? t.a - t.b * t.c : t.a - t.b / t.c;
+      ? expr(`${t.b}\\times${t.c}=${t.b * t.c}`)
+      : expr(`${t.b}\\div${t.c}=${t.b / t.c}`);
+  const inner = t.op === "*" ? t.b * t.c : t.b / t.c;
+  const mid = t.a - inner;
   return makeDeep(unit, content(t), n(kept), [
-    `곱셈과 나눗셈을 먼저 계산하므로 $\\bigcirc$ 안의 기호가 정해지면 ${expr(`${t.b}\\bigcirc ${t.c}`)}를 먼저 계산합니다.`,
-    `${expr(`\\bigcirc=${W4_SYM[dead]!}`)}이면 ${deadWhy} 쓸 수 없습니다.`,
-    `${expr(`\\bigcirc=${W4_SYM[t.op]!}`)}이면 ${first}이고, ${expr(`${t.a}-${t.op === "*" ? t.b * t.c : t.b / t.c}=${mid}`)}, ${expr(`${mid}+${t.d}=${kept}`)}입니다.`,
+    `곱셈과 나눗셈을 먼저 계산하므로 $\\bigcirc$ 안의 기호가 정해지면 그 자리를 먼저 계산합니다.`,
+    deadWhy,
+    `${t.op === "*" ? "곱셈" : "나눗셈"} 기호를 써넣으면 ${first}이고, ${expr(`${t.a}-${inner}=${mid}`)}, ${expr(`${mid}+${t.d}=${kept}`)}입니다.`,
   ]);
 }
 
@@ -15477,7 +15481,7 @@ function mix113Mid(unit: UnitSeed, rng: Rng): ElemProblem {
       ? `${lj(`${d}-${e}`, "은", "는")} 자연수가 되지 않습니다.`
       : `${expr(`${d}-${e}=${d - e}`)}이고 ${expr(`${c}\\times${d - e}=${c * (d - e)}`)}, ${expr(`${a}\\div${b}=${a / b}`)}이므로 ${expr(`${a / b}+${c * (d - e)}=${g3}`)}입니다.`;
   return makeDeep(unit, content(t), n(t.value), [
-    `덧셈이나 뺄셈으로 이어진 이웃한 두 수는 ${expr(`${b}+${c}`)}와 ${expr(`${d}-${e}`)} 두 자리입니다.`,
+    `덧셈이나 뺄셈으로 이어진 이웃한 두 수는 ${lj(`${b}+${c}`, "과", "와")} ${expr(`${d}-${e}`)} 두 자리입니다.`,
     `${lj(`(${b}+${c})`, "을", "를")} 묶으면 ${why1}`,
     `${lj(`(${d}-${e})`, "을", "를")} 묶으면 ${why3}`,
     `계산하는 동안 나오는 값이 모두 자연수인 자리는 한 곳뿐이므로 처음 식의 값은 ${n(t.value)}입니다.`,
@@ -15538,6 +15542,391 @@ function mix113Top(unit: UnitSeed, rng: Rng): ElemProblem {
     `앞을 $\\div$, 뒤를 $\\times$로 하면 ${expr(`${t.a}\\div${t.b}=${t.a / t.b}`)}, ${expr(`${t.c}\\times${t.d}=${t.c * t.d}`)}이므로 ${expr(`${t.a / t.b}+${t.c * t.d}-${t.e}=${y}`)}입니다.`,
     `두 값을 견주면 ${nj(Math.max(x, y), "이", "가")} 더 큽니다.`,
   ]);
+}
+
+/* ────────── 1-3 대응 관계 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「대응 관계는 표의 어느 칸에서나 같아야 한다」** — 이 소단원이 가진
+ * 유일한 성질이고 해설이 되풀이하는 문장이다.
+ * 마디를 여는 것: **어느 칸이 규칙에서 벗어났는지 안 말한다**(중·상) ·
+ *                 **짝을 하나만 주어 관계 후보가 둘 남는다**(1-3-2 중).
+ *
+ * ⚠️ **정본 관계 꼴 셋 밖으로 안 나간다** — `△=□×k` · `△=□+c` · `△=□-c`.
+ *    두 계수 꼴(`△=□×k+c`)은 시험이 빨갛고 1-1 혼합 계산 침범이다.
+ * ⚠️ 이웃 낱말 규약: **1-3-1 은 「식으로 나타내」를 안 쓴다**(값·규칙 읽기만).
+ *
+ * 🔴 **1-3-1 심화상과 1-3-3 둘을 비웠다.** 1-3-1 은 중과 같은 표를 쓰면 지면에서
+ *    한 문항이 되고(상은 1-3-2 로 보냈다), **1-3-3 은 표가 없어** 「어느 칸이 안
+ *    맞나」를 쓸 자리 자체가 없다 — 생활 장면은 관계가 한 문장으로 굳는다.
+ */
+
+/** 정본 관계 꼴 셋. */
+type W4Rel =
+  | { kind: "mul"; k: number }
+  | { kind: "add"; c: number }
+  | { kind: "sub"; c: number };
+
+const w4RelAt = (r: W4Rel, x: number): number =>
+  r.kind === "mul" ? x * r.k : r.kind === "add" ? x + r.c : x - r.c;
+
+const w4RelLatex = (r: W4Rel): string =>
+  r.kind === "mul"
+    ? relMulLatex(r.k)
+    : r.kind === "add"
+      ? relAddLatex(r.c)
+      : relSubLatex(r.c);
+
+const w4RelWords = (r: W4Rel): string =>
+  r.kind === "mul"
+    ? `△는 언제나 □의 ${n(r.k)}배`
+    : r.kind === "add"
+      ? `△는 언제나 □보다 ${n(r.c)}만큼 큰 수`
+      : `△는 언제나 □보다 ${n(r.c)}만큼 작은 수`;
+
+/**
+ * 한 짝에서 관계를 **확인**할 때 쓰는 셈 한 줄(거꾸로 — 배·차를 낸다).
+ * 「…로/으로」가 뒤에 붙는 자리가 있어 **날 LaTeX** 도 함께 돌려준다 — 조사는
+ * `format.ts` 규칙 하나(`lro`)를 거쳐야 한다(손으로 「로」를 박으면 지면에서 틀린다).
+ */
+const w4RelStepTex = (r: W4Rel, x: number, y: number): string =>
+  r.kind === "mul"
+    ? `${y}\\div${x}=${r.k}`
+    : r.kind === "add"
+      ? `${y}-${x}=${r.c}`
+      : `${x}-${y}=${r.c}`;
+
+const w4RelStep = (r: W4Rel, x: number, y: number): string =>
+  expr(w4RelStepTex(r, x, y));
+
+/** 관계를 **앞으로** 적용한 셈 한 줄 — `$19+4=23$`. */
+const w4RelForward = (r: W4Rel, x: number): string =>
+  r.kind === "mul"
+    ? expr(`${x}\\times${r.k}=${x * r.k}`)
+    : r.kind === "add"
+      ? expr(`${x}+${r.c}=${x + r.c}`)
+      : expr(`${x}-${r.c}=${x - r.c}`);
+
+/** 「□가 $x$ 인 칸」 — 표의 칸을 가리키는 말은 한 곳에 둔다. */
+const w4Cell = (x: number): string => `□가 ${n(x)}인 칸`;
+
+/**
+ * 짝 여럿에 **다 맞는** 정본 관계를 전부 만든다 — 이 소단원의 유일한 성질
+ * (「어느 칸에서나 같아야 한다」)을 그대로 편 것이다. 규모는 토대 17 §3 이 적은
+ * 대로 `k ∈ [2,8]` · `c ∈ [2,15]` 로 묶는다(수를 키우는 것은 축이 아니다).
+ */
+function w4RelsFitting(pairs: readonly (readonly [number, number])[]): W4Rel[] {
+  const out: W4Rel[] = [];
+  for (let k = 2; k <= 8; k += 1)
+    if (pairs.every(([x, y]) => y === x * k)) out.push({ kind: "mul", k });
+  for (let c = 2; c <= 15; c += 1) {
+    if (pairs.every(([x, y]) => y === x + c)) out.push({ kind: "add", c });
+    if (pairs.every(([x, y]) => y === x - c && y >= 1))
+      out.push({ kind: "sub", c });
+  }
+  return out;
+}
+
+const W4_RELS: W4Rel[] = [
+  ...Array.from({ length: 7 }, (_, i) => ({ kind: "mul", k: i + 2 }) as W4Rel),
+  ...Array.from({ length: 14 }, (_, i) => ({ kind: "add", c: i + 2 }) as W4Rel),
+  ...Array.from({ length: 14 }, (_, i) => ({ kind: "sub", c: i + 2 }) as W4Rel),
+];
+
+/* ── 1-3-1 심화중 — 「네 칸 중 한 칸이 대응 관계에 맞지 않는다」 ──
+ *
+ * 마디: **어느 칸인가**(후보 넷). 굳힘: 나머지 셋이 **같은 관계**를 만들어야 한다 —
+ * 성질 한 번이고, 끝까지 계산하지 않고 걸러 낸다(D-115 ⑾ → 심화중).
+ */
+
+type W4OddTask = {
+  xs: number[];
+  ys: number[]; // 지면에 찍히는 줄(한 칸이 어긋나 있다)
+  step: number;
+  rel: W4Rel;
+  bad: number; // 어긋난 칸의 자리
+  right: number; // 그 칸의 바른 값
+};
+
+function w4Odd131(): W4OddTask[] {
+  const out: W4OddTask[] = [];
+  // 🔴 **커지는 폭도 씨앗이 정한다.** 폭을 $1$ 로 못 박으면 발문이 첫 수 하나로만
+  //    갈려 씨앗 16개에서 변형이 여섯밖에 안 나온다(기존 시험이 「변형 8+」로 잡았다).
+  for (let step = 1; step <= 3; step += 1)
+    for (let from = 1; from <= 9; from += 1) {
+      const xs = [from, from + step, from + 2 * step, from + 3 * step];
+      for (const rel of W4_RELS) {
+        const truth = xs.map((x) => w4RelAt(rel, x));
+        if (truth.some((y) => y < 1)) continue;
+        if (truth[3]! > 60) continue;
+        for (let bad = 0; bad < 4; bad += 1)
+          for (let off = -6; off <= 6; off += 1) {
+            if (off === 0) continue;
+            const w = truth[bad]! + off;
+            if (w < 1) continue;
+            const ys = truth.map((y, i) => (i === bad ? w : y));
+            // 「그 칸을 빼면 관계가 하나로 선다」 · 「다른 칸을 빼면 아무 관계도 안 선다」
+            const pairs = (skip: number) =>
+              xs
+                .map((x, i) => [x, ys[i]!] as const)
+                .filter((_, i) => i !== skip);
+            if (w4RelsFitting(pairs(bad)).length !== 1) continue;
+            let ok = true;
+            for (let j = 0; j < 4 && ok; j += 1)
+              if (j !== bad && w4RelsFitting(pairs(j)).length > 0) ok = false;
+            if (!ok) continue;
+            out.push({ xs, ys, step, rel, bad, right: truth[bad]! });
+          }
+      }
+    }
+  return out;
+}
+
+function corr131Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4OddTask) =>
+    `표는 □가 ${n(t.xs[0]!)}부터 ${n(t.step)}씩 커질 때의 △를 나타낸 것입니다. 그런데 △ 줄에서 한 칸만 대응 관계에 맞지 않습니다. 그 칸의 수를 바르게 고치면 얼마입니까?`;
+  const pool = w2Pool("w4-131mid", () =>
+    w4Odd131().filter((t) => !w3Bad(content(t), w2int(t.right))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const good = [0, 1, 2, 3].filter((i) => i !== t.bad);
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.right),
+    [
+      `대응 관계는 어느 칸에서나 같아야 합니다. ${w4Cell(t.xs[good[0]!]!)}과 ${w4Cell(t.xs[good[1]!]!)}을 보면 ${w4RelStep(t.rel, t.xs[good[0]!]!, t.ys[good[0]!]!)}, ${lro(w4RelStepTex(t.rel, t.xs[good[1]!]!, t.ys[good[1]!]!))} 같습니다.`,
+      `${w4Cell(t.xs[good[2]!]!)}도 ${lro(w4RelStepTex(t.rel, t.xs[good[2]!]!, t.ys[good[2]!]!))} 같으므로 ${w4RelWords(t.rel)}입니다.`,
+      `${w4Cell(t.xs[t.bad]!)}만 △가 ${nj(t.ys[t.bad]!, "이라서", "라서")} 맞지 않습니다. 바르게 고치면 ${w4RelForward(t.rel, t.xs[t.bad]!)}입니다.`,
+    ],
+    corrTable(t.xs, t.ys),
+  );
+}
+
+/* ── 1-3-2 심화중 — 「짝을 하나만 주어 관계 후보가 둘 남는다」 ──
+ *
+ * 마디: **관계가 `×k` 인지 `+c` 인지**(후보 둘 — 짝이 하나면 둘 다 정본 꼴로 선다).
+ * 굳힘: 「대응 관계는 어느 칸에서나 같다」 + △가 그 값일 때 □도 **자연수**여야 한다 —
+ * 한쪽은 나누어떨어지지 않아 죽는다(계산 끝까지 안 간다 → 심화중).
+ */
+
+type W4TwoRelTask = {
+  a: number;
+  b: number;
+  T: number;
+  x: number;
+  mid: number[]; // 표의 가운데 두 칸(△ 는 비어 있다)
+  keep: W4Rel;
+  drop: W4Rel;
+  ans: number;
+};
+
+function w4TwoRel132(): W4TwoRelTask[] {
+  const out: W4TwoRelTask[] = [];
+  for (let a = 2; a <= 12; a += 1)
+    for (let k = 2; k <= 8; k += 1) {
+      const b = a * k;
+      const c = b - a;
+      if (c < 2 || c > 15) continue; // 정본 꼴 밖이면 후보가 애초에 하나다
+      const mul: W4Rel = { kind: "mul", k };
+      const add: W4Rel = { kind: "add", c };
+      // 🔴 `T` 를 작은 쪽까지 연다. `T ≥ 20` 으로 두면 `△-c` 가 늘 자연수라
+      //    **살아남는 관계가 언제나 `+c`** 가 된다(실측: 씨앗 셋 다 그랬다).
+      //    그러면 「늘 더하기」가 답을 대신한다.
+      for (let T = 2; T <= 90; T += 1) {
+        const mulOk = T % k === 0 && T / k >= 1;
+        const addOk = T - c >= 1;
+        if (mulOk === addOk) continue;
+        const keep = mulOk ? mul : add;
+        const drop = mulOk ? add : mul;
+        // ⚠️ `x` 를 몇 개로 묶는다 — 후보 줄이 커지면 `w3Bad` 를 그 수만큼 돌게 되어
+        //    풀을 처음 만드는 데 20초를 넘긴다(시험이 실제로 시간 초과로 떨어졌다).
+        for (const x of [13, 17, 21, 25, 29]) {
+          if (x === a) continue;
+          const ans = w4RelAt(keep, x);
+          if (ans < 1 || ans > 120) continue;
+          if (ans === w4RelAt(drop, x)) continue; // 후보가 같은 답을 내면 마디가 뜻이 없다
+          // 표는 네 칸이다(이 소단원의 대응표 규약). 가운데 두 칸은 △ 가 비어 있어
+          // **짝이 하나뿐**이라는 것이 지면에서 그대로 보인다.
+          const mid = [
+            a + Math.floor((x - a) / 3),
+            a + Math.floor((2 * (x - a)) / 3),
+          ];
+          if (mid[0]! <= a || mid[1]! <= mid[0]! || mid[1]! >= x) continue;
+          // `T` 가 표에 찍힌 수와 같으면 지면에서 어느 값인지 헷갈린다.
+          if ([a, b, x, ans, ...mid].includes(T)) continue;
+          out.push({ a, b, T, x, mid, keep, drop, ans });
+        }
+      }
+    }
+  return out;
+}
+
+function corr132Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4TwoRelTask) =>
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것인데, △ 줄은 한 칸만 적혀 있습니다. △가 ${n(t.T)}일 때에도 □는 자연수일 때, 대응 관계를 식으로 나타내고 ㉠에 알맞은 수를 구하시오.`;
+  const pool = w2Pool("w4-132mid", () =>
+    w4TwoRel132().filter((t) => !w3Bad(content(t), w2int(t.ans))),
+  );
+  // 살아남는 관계가 한쪽으로 몰리지 않게 **먼저 고른다**(위 주석 참조).
+  const wantKind = altCase(rng) ? "mul" : "add";
+  const half = pool.filter((x) => x.keep.kind === wantKind);
+  const t = w2Pick(unit, "심화중", rng, half.length > 0 ? half : pool);
+  const dropWhy =
+    t.drop.kind === "mul"
+      ? `${lj(`${t.T}\\div${t.drop.k}`, "은", "는")} 나누어떨어지지 않아 □가 자연수가 되지 않습니다.`
+      : `□는 △에서 ${nj(t.drop.c, "을", "를")} 뺀 수인데 △가 ${nj(t.T, "이라", "라")} ${n(t.drop.c)}보다 크지 않으므로 □가 자연수가 되지 않습니다.`;
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.ans),
+    [
+      `짝이 하나뿐이면 대응 관계로 ${lj(w4RelLatex(t.keep), "과", "와")} ${lj(w4RelLatex(t.drop), "이", "가")} 모두 가능합니다. ${w4RelStep({ kind: "mul", k: t.b / t.a }, t.a, t.b)}이고 ${w4RelStep({ kind: "add", c: t.b - t.a }, t.a, t.b)}이기 때문입니다.`,
+      `${lj(w4RelLatex(t.drop), "은", "는")} 쓸 수 없습니다 — ${dropWhy}`,
+      `그러므로 ${lj(w4RelLatex(t.keep), "이", "가")} 대응 관계이고, ㉠은 □가 ${nj(t.x, "일", "일")} 때이므로 ${w4RelForward(t.keep, t.x)}입니다.`,
+    ],
+    corrTable([t.a, t.mid[0]!, t.mid[1]!, t.x], [t.b, "", "", "㉠"]),
+  );
+}
+
+/* ── 1-3-2 심화상 — 「네 칸 중 **두 칸**이 안 맞는데, 짝마다 관계를 세워 봐야 갈린다」 ──
+ *
+ * 🔴 심화중(1-3-1)과 갈리는 문장: 어긋난 칸이 **둘**이라 「나머지가 다 같다」가
+ *    성립하지 않는다. 두 칸씩 짝지은 **여섯 짝을 각각 세워 봐야** 관계가 서는 짝이
+ *    하나임을 알 수 있다(D-115 ⑾ → 심화상). 그리고 묻는 것은 고친 칸이 아니라 **먼 항**이다.
+ *
+ * ⚠️ 표는 이 소단원 규약대로 **네 칸**이다(`elemTiersG5.test.ts` 의 `tablePairs`).
+ *    처음에 세 칸으로 짰다가 그 시험이 잡았다.
+ */
+
+type W4Odd2Task = {
+  xs: number[];
+  ys: number[];
+  rel: W4Rel;
+  keepPair: [number, number]; // 성한 두 칸
+  far: number;
+  ans: number;
+};
+
+/** 관계가 서는 짝 — 「정확히 하나」일 때만 참으로 센다. */
+const w4OnePair = (
+  xs: readonly number[],
+  ys: readonly number[],
+  i: number,
+  j: number,
+): W4Rel | null => {
+  const fits = w4RelsFitting([
+    [xs[i]!, ys[i]!],
+    [xs[j]!, ys[j]!],
+  ]);
+  return fits.length === 1 ? fits[0]! : null;
+};
+
+const W4_PAIRS: [number, number][] = [
+  [0, 1],
+  [0, 2],
+  [0, 3],
+  [1, 2],
+  [1, 3],
+  [2, 3],
+];
+
+/**
+ * 규모를 줄인 관계 목록 — 후보 줄이 폭발하지 않게 묶는다(풀 만드는 시간).
+ * 🔴 `-c` 는 뺀다 — 그러면 △가 □보다 작아져 해설의 「차」가 음수가 되고, 초5 지면에
+ *    음수는 못 나간다. 부호를 지우면 이번엔 「차가 다르다」가 거짓이 될 수 있다.
+ */
+const W4_RELS_SMALL: W4Rel[] = W4_RELS.filter((r) =>
+  r.kind === "mul" ? r.k <= 6 : r.kind === "add" ? r.c <= 10 : false,
+);
+
+function w4Odd132(): W4Odd2Task[] {
+  const out: W4Odd2Task[] = [];
+  const offs = [-3, -2, 2, 3];
+  for (let x0 = 2; x0 <= 5; x0 += 1)
+    for (const d1 of [2, 3])
+      for (const d2 of [2, 3])
+        for (const d3 of [2, 3]) {
+          const xs = [x0, x0 + d1, x0 + d1 + d2, x0 + d1 + d2 + d3];
+          for (const rel of W4_RELS_SMALL) {
+            const truth = xs.map((x) => w4RelAt(rel, x));
+            if (truth.some((y) => y < 1) || truth[3]! > 90) continue;
+            for (const [ka, kb] of W4_PAIRS) {
+              const badIdx = [0, 1, 2, 3].filter((i) => i !== ka && i !== kb);
+              for (const o1 of offs)
+                for (const o2 of offs) {
+                  const ys = truth.slice();
+                  ys[badIdx[0]!] = truth[badIdx[0]!]! + o1;
+                  ys[badIdx[1]!] = truth[badIdx[1]!]! + o2;
+                  if (ys.some((y) => y < 1)) continue;
+                  // 성한 짝에서만 관계가 **하나** 서고, 나머지 다섯 짝에서는 안 선다.
+                  const keep = w4OnePair(xs, ys, ka, kb);
+                  if (!keep || w4RelLatex(keep) !== w4RelLatex(rel)) continue;
+                  let ok = true;
+                  for (const [i, j] of W4_PAIRS) {
+                    if (i === ka && j === kb) continue;
+                    if (
+                      w4RelsFitting([
+                        [xs[i]!, ys[i]!],
+                        [xs[j]!, ys[j]!],
+                      ]).length > 0
+                    ) {
+                      ok = false;
+                      break;
+                    }
+                  }
+                  if (!ok) continue;
+                  // 🔴 해설이 「차가 다르고 배도 같지 않다」고 적는다 — 그 문장이
+                  //    **참이어야** 한다. 정본 꼴 밖(차가 $16$ 이상 같다든가, 배가
+                  //    자연수가 아닌 채로 같다든가)이면 `w4RelsFitting` 은 «안 선다»를
+                  //    내지만 그 문장은 거짓이 된다.
+                  for (const [i, j] of W4_PAIRS) {
+                    if (i === ka && j === kb) continue;
+                    const di = ys[i]! - xs[i]!;
+                    const dj = ys[j]! - xs[j]!;
+                    if (di <= 0 || dj <= 0 || di === dj) ok = false;
+                    if (ys[i]! * xs[j]! === ys[j]! * xs[i]!) ok = false;
+                    if (!ok) break;
+                  }
+                  if (!ok) continue;
+                  // 🔴 먼 항이 **발문의 유일한 수**다 — 몇 개로 묶으면 씨앗 16개에서
+                  //    발문 변형이 그 수만큼밖에 안 나온다(기존 시험의 「변형 8+」에
+                  //    실제로 걸렸다: 둘). 대신 여기서만 넓히고 나머지는 묶어 둔다.
+                  for (let far = 14; far <= 30; far += 1) {
+                    if (xs.includes(far)) continue;
+                    const ans = w4RelAt(rel, far);
+                    if (ans < 1 || ans > 150) continue;
+                    out.push({ xs, ys, rel, keepPair: [ka, kb], far, ans });
+                  }
+                }
+            }
+          }
+        }
+  return out;
+}
+
+function corr132Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Odd2Task) =>
+    `표는 두 양 □와 △ 사이의 대응 관계를 나타낸 것인데, ${W2_COUNT[2]!} 칸이 대응 관계에 맞지 않습니다. 대응 관계를 식으로 나타내고, □가 ${nj(t.far, "일", "일")} 때 △를 구하시오.`;
+  const pool = w2Pool("w4-132top", () =>
+    w4Odd132().filter((t) => !w3Bad(content(t), w2int(t.ans))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const [ka, kb] = t.keepPair;
+  const dead = W4_PAIRS.filter(([i, j]) => !(i === ka && j === kb));
+  const noFit = (i: number, j: number) =>
+    `${nums([t.xs[i]!, t.xs[j]!])} 짝은 차가 ${nj(t.ys[i]! - t.xs[i]!, "과", "와")} ${nro(t.ys[j]! - t.xs[j]!)} 다르고 배도 같지 않습니다.`;
+  return makeDeep(
+    unit,
+    content(t),
+    n(t.ans),
+    [
+      `맞지 않는 칸이 둘이므로 「나머지가 다 같다」로는 고를 수 없습니다. 두 칸씩 짝지은 여섯 짝에서 대응 관계가 서는지 하나씩 세워 봅니다.`,
+      dead.map(([i, j]) => noFit(i, j)).join(" "),
+      `${w4Cell(t.xs[ka]!)}과 ${w4Cell(t.xs[kb]!)}만 ${w4RelStep(t.rel, t.xs[ka]!, t.ys[ka]!)}, ${lro(w4RelStepTex(t.rel, t.xs[kb]!, t.ys[kb]!))} 같아 ${lj(w4RelLatex(t.rel), "이", "가")} 섭니다.`,
+      `□가 ${nj(t.far, "일", "일")} 때 △는 ${w4RelForward(t.rel, t.far)}입니다.`,
+    ],
+    corrTable(t.xs, t.ys),
+  );
 }
 
 /**
@@ -15616,12 +16005,15 @@ export const G5_TIERS: ElemTierMap = {
     기본: corr131Read,
     응용: corr131Apply,
     심화하: corr131Deep,
+    심화중: corr131Mid,
   },
   "초5|1-3-2": {
     연산: corr132Calc,
     기본: corr132Read,
     응용: corr132Apply,
     심화하: corr132Deep,
+    심화중: corr132Mid,
+    심화상: corr132Top,
   },
   "초5|1-3-3": {
     연산: corr133Calc,

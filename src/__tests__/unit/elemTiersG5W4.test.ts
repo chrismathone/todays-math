@@ -54,6 +54,9 @@ const FILLED: Record<string, readonly ElemTier[]> = {
   "1-1-1": [],
   "1-1-2": ["심화중"],
   "1-1-3": ["심화중", "심화상"],
+  "1-3-1": ["심화중"],
+  "1-3-2": ["심화중", "심화상"],
+  "1-3-3": [],
 };
 
 const unitOf = (code: string) =>
@@ -157,6 +160,67 @@ function evalGrouped(
     String(inner),
     ...toks.slice(2 * j + 1),
   ]);
+}
+
+/* ── 1-3 대응 관계 — 시험이 **스스로** 정본 관계 꼴 셋을 편다 ─────────────────
+ *
+ * `△=□×k`(k ∈ [2,8]) · `△=□+c` · `△=□-c`(c ∈ [2,15]). 규칙을 옮겨 적은 것이
+ * 아니라 이 소단원의 유일한 성질(「어느 칸에서나 같아야 한다」)의 정의다.
+ */
+type Rel = { kind: "mul" | "add" | "sub"; v: number };
+
+const relAt = (r: Rel, x: number): number =>
+  r.kind === "mul" ? x * r.v : r.kind === "add" ? x + r.v : x - r.v;
+
+function relsFitting(pairs: readonly (readonly [number, number])[]): Rel[] {
+  const out: Rel[] = [];
+  for (let k = 2; k <= 8; k += 1)
+    if (pairs.every(([x, y]) => y === x * k)) out.push({ kind: "mul", v: k });
+  for (let c = 2; c <= 15; c += 1) {
+    if (pairs.every(([x, y]) => y === x + c)) out.push({ kind: "add", v: c });
+    if (pairs.every(([x, y]) => y === x - c && y >= 1))
+      out.push({ kind: "sub", v: c });
+  }
+  return out;
+}
+
+/**
+ * 대응표를 읽는다 — `figureSpec` 이 참이다(지면에 그려지는 것이 그것이다).
+ * 수가 아닌 칸(빈칸·㉠)은 `null` 로 돌려준다 — 「비어 있음」도 지면의 사실이다.
+ */
+function readTable(spec: unknown): [number, number | null][] {
+  const s = spec as { headers?: string[]; rows?: string[][] } | null;
+  expect(s?.headers, "표가 없다").toBeTruthy();
+  const xs = s!.headers!.slice(1).map(Number);
+  const ys = s!
+    .rows![0]!.slice(1)
+    .map((v) => (/^\d+$/.test(v) ? Number(v) : null));
+  expect(xs.length, "표의 줄 길이가 다르다").toBe(ys.length);
+  return xs.map((x, i) => [x, ys[i]!]);
+}
+
+/** 수가 다 찬 표만 — 「한 칸이 안 맞는다」류가 쓴다. */
+function readFullTable(spec: unknown): [number, number][] {
+  const cells = readTable(spec);
+  for (const [, y] of cells) expect(y, "표에 빈칸이 있다").not.toBeNull();
+  return cells as [number, number][];
+}
+
+/** 「한 칸만 안 맞는다」를 시험이 직접 푼다 — 답이 하나로 서는지까지 본다. */
+function solveOdd(cells: readonly (readonly [number, number])[]): {
+  bad: number;
+  rel: Rel;
+} {
+  const hits: { bad: number; rel: Rel }[] = [];
+  for (let i = 0; i < cells.length; i += 1) {
+    const fits = relsFitting(cells.filter((_, j) => j !== i));
+    if (fits.length === 1) hits.push({ bad: i, rel: fits[0]! });
+  }
+  expect(
+    hits.length,
+    `한 칸만 안 맞는 것이 아니다: ${JSON.stringify(cells)}`,
+  ).toBe(1);
+  return hits[0]!;
 }
 
 describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", () => {
@@ -385,5 +449,126 @@ describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", ()
           answerInt(problem("1-1-3", tier, seed).answer),
           `${tier} @${seed}`,
         ).toBeLessThanOrEqual(150);
+  });
+
+  /* ══ 1-3 대응 관계 ═══════════════════════════════════════════════════════ */
+
+  /* ── ⑴ 1-3-1 심화중 — 네 칸 중 «나머지가 다 같은» 칸이 하나뿐이다 ── */
+
+  it("1-3-1 심화중 — 표 네 칸 중 한 칸만 안 맞고, 답이 그 칸의 바른 값이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-3-1", "심화중", seed);
+      const cells = readFullTable(p.figureSpec);
+      expect(cells.length, p.content).toBe(4);
+      // 마디가 열린다 — 후보가 넷이다. 그리고 성질이 하나만 남긴다(solveOdd 가 센다).
+      const { bad, rel } = solveOdd(cells);
+      expect(answerInt(p.answer), p.content).toBe(relAt(rel, cells[bad]![0]));
+      // 🔴 어긋난 칸이 실제로 어긋나 있다 — 안 그러면 문항이 안 선다.
+      expect(cells[bad]![1], p.content).not.toBe(relAt(rel, cells[bad]![0]));
+      // 🔴 1-3-1 은 「식으로 나타내」를 안 쓴다(이웃 낱말 규약).
+      expect(p.content.includes("식으로"), p.content).toBe(false);
+      expect(p.solution!.includes("triangle="), p.solution!).toBe(false);
+    }
+  });
+
+  it("1-3-1 심화중 — 관계 꼴이 «늘 더하기»가 아니다 (⑹)", () => {
+    const kinds = new Set(
+      WIDE.map((s) => {
+        const cells = readFullTable(problem("1-3-1", "심화중", s).figureSpec);
+        return solveOdd(cells).rel.kind;
+      }),
+    );
+    expect(kinds.size, `나온 관계 꼴 ${[...kinds]}`).toBeGreaterThan(1);
+  });
+
+  /* ── ⑴ 1-3-2 심화중 — 짝 하나로 후보 둘, «□가 자연수»가 하나를 지운다 ── */
+
+  it("1-3-2 심화중 — 관계 후보가 둘이고 그중 하나만 조건을 지킨다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-3-2", "심화중", seed);
+      // 참은 **지면**이다 — 짝 하나와 빈칸은 표에 있고, 조건 `T` 만 발문에 있다.
+      const cells = readTable(p.figureSpec);
+      expect(cells.length, p.content).toBe(4);
+      const known = cells.filter(([, y]) => y !== null) as [number, number][];
+      expect(known.length, `짝이 하나여야 마디가 열린다\n${p.content}`).toBe(1);
+      const [a, b] = known[0]!;
+      const x = cells[cells.length - 1]![0];
+      const T = Number(/△가 \$(\d+)\$일 때/.exec(p.content)![1]);
+      // 마디가 열린다 — 짝이 하나뿐이라 정본 꼴 둘이 **모두** 선다.
+      const fits = relsFitting([[a, b]]);
+      expect(fits.length, `${p.content}\n${JSON.stringify(fits)}`).toBe(2);
+      // 굳힘 — △가 `T` 일 때 □가 자연수인 관계가 하나뿐이다.
+      const live = fits.filter((r) =>
+        r.kind === "mul" ? T % r.v === 0 && T / r.v >= 1 : T - r.v >= 1,
+      );
+      expect(live.length, `${p.content}\n산 것 ${JSON.stringify(live)}`).toBe(
+        1,
+      );
+      expect(answerInt(p.answer), p.content).toBe(relAt(live[0]!, x));
+      // 🔴 후보 둘이 같은 답을 내면 마디가 뜻이 없다.
+      const dead = fits.find((r) => r !== live[0]!)!;
+      expect(relAt(dead, x), p.content).not.toBe(relAt(live[0]!, x));
+    }
+  });
+
+  it("1-3-2 심화중 — 살아남는 관계가 «늘 같은 꼴»이 아니다 (⑹)", () => {
+    let mul = 0;
+    for (const seed of WIDE) {
+      const sol = problem("1-3-2", "심화중", seed).solution!;
+      if (sol.slice(sol.indexOf("그러므로")).includes("times")) mul += 1;
+    }
+    expect(mul, `곱이 답인 씨앗 ${mul}/${WIDE.length}`).toBeGreaterThan(
+      WIDE.length * 0.25,
+    );
+    expect(mul).toBeLessThan(WIDE.length * 0.75);
+  });
+
+  /* ── ⑵ 1-3-2 심화상 — 세 칸이라 «짝마다 관계를 세워 봐야» 갈린다 ── */
+
+  it("1-3-2 심화상 — 여섯 짝 중 관계가 서는 짝이 하나뿐이고, 답은 먼 항이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("1-3-2", "심화상", seed);
+      const cells = readFullTable(p.figureSpec);
+      expect(cells.length, p.content).toBe(4);
+      // 🔴 심화중과 갈리는 문장 — 어긋난 칸이 **둘**이라 «나머지가 다 같다»로 못 고른다.
+      //    두 칸씩 짝지은 **여섯** 짝을 세워 봐야 하나가 남는다.
+      const pairs: [number, number][] = [
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [1, 2],
+        [1, 3],
+        [2, 3],
+      ];
+      const standing = pairs.filter(
+        ([i, j]) => relsFitting([cells[i]!, cells[j]!]).length === 1,
+      );
+      expect(
+        standing.length,
+        `${JSON.stringify(cells)}\n서는 짝 ${JSON.stringify(standing)}`,
+      ).toBe(1);
+      const [ka, kb] = standing[0]!;
+      const rel = relsFitting([cells[ka]!, cells[kb]!])[0]!;
+      const far = Number(/□가 \$(\d+)\$일 때/.exec(p.content)![1]);
+      expect(answerInt(p.answer), p.content).toBe(relAt(rel, far));
+      // 남은 두 칸이 실제로 둘 다 어긋나 있다.
+      for (const i of [0, 1, 2, 3])
+        if (i !== ka && i !== kb)
+          expect(cells[i]![1], p.content).not.toBe(relAt(rel, cells[i]![0]));
+      // 먼 항은 표에 없다 — 있으면 읽기만 하면 된다.
+      expect(cells.map((c) => c[0]).includes(far), p.content).toBe(false);
+      // 🔴 해설이 「차가 다르고 배도 같지 않다」고 적는다 — 그 문장이 **참이어야** 한다.
+      for (const [i, j] of pairs) {
+        if (i === ka && j === kb) continue;
+        const di = cells[i]![1] - cells[i]![0];
+        const dj = cells[j]![1] - cells[j]![0];
+        expect(di, p.content).toBeGreaterThan(0);
+        expect(di, `${p.content}\n${i}·${j} 차가 같다`).not.toBe(dj);
+        expect(
+          cells[i]![1] * cells[j]![0],
+          `${p.content}\n${i}·${j} 배가 같다`,
+        ).not.toBe(cells[j]![1] * cells[i]![0]);
+      }
+    }
   });
 });
