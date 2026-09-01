@@ -8417,6 +8417,317 @@ function capSumDeepOf(cfg: CapCfg) {
   };
 }
 
+/* ── 2-5 들이와 무게 «심화중»·«심화상» — D-113 물결 4 (2026-09-01) ────────────
+ *
+ * ── 🔴 먼저: **「자리 넘김」 축은 죽었다.** 되살리지 마라 ───────────────────
+ * 토대 17 §2.2 ⑴ 이 2-5 의 신청 예시(「$3\,L\ \square\,mL + 2\,L\ 480\,mL
+ * = 6\,L\ 230\,mL$」)를 전수로 검산해 **심화하**임을 보였고(후보가 늘 하나 —
+ * 반증 ①, 「받아올림이 한 번」을 지워도 답이 같다 — 반증 ⑤), 물결 3 이 그 뿌리가
+ * **항등식**임을 진법과 무관하게 확인했다($a-b=c$ 이면 $b+c=a$ 라 두 뺄셈의 자리
+ * 넘김이 같은 덧셈의 넘김이다 — 시각 1,036,080짝 · 길이 4,498,500짝 · 어긋남 0).
+ * 밑이 $1000$ 이고 미지수가 $[1,999]$ 이면 **mod 되짚기의 답이 정확히 하나**다.
+ * 그래서 **합·차의 한 자리를 가리는 모든 판**은 마디가 굳는다.
+ *
+ * ── 그러면 무엇이 남는가 — **«몇 그릇인가»가 안 굳는다** ────────────────────
+ * 이 대단원은 **나눗셈을 안 쓴다**(해설에 한 번도 안 나오고, $7000\div1400$ 은 초3
+ * 범위 밖이다). 그래서 「같은 그릇으로 몇 번 부었나」를 물으면 되짚기가 후보
+ * $1,2,3,\ldots$ 를 **만들고** 발문은 그것을 주지 않는다. 이 마디를 굳히는 이 소단원의
+ * 성질이 곧 **자리 넘김**이다 — 작은 자리는 $1000$ 보다 작으므로, **작은 자리만
+ * 더해 가며 끝자리를 보면** 후보가 걸러진다.
+ *
+ * ── 중·상을 가르는 자리 (D-115 ⑾) ──────────────────────────────────────────
+ *   · **심화중** — 합을 «몇 L 몇 mL» 로 준다. 작은 자리만 보면 후보가 **하나**로
+ *     줄어든다(그 자리 성질이 «끝까지 계산하지 않고» 걸러 낸다). 큰 자리는 확인일 뿐이다.
+ *     $S$ 를 더해 가는 끝자리가 $1\!\sim\!9$ 번에서 **한 번만** 그 값이 되는 자리만 쓴다.
+ *   · **심화상** — 합을 «$L_1$ L 보다 많고 $L_2$ L 보다 적다» 는 **범위**로만 준다.
+ *     그러면 작은 자리가 지면에 없어 그 성질이 **한 후보도 못 자르고**, 그릇 수를
+ *     하나씩 **실제로 만들어** 범위와 견주어야 한다.
+ *
+ * ── 🔴 비운 자리 넷 — 2-5-1·2-5-2·2-5-4·2-5-5 ──────────────────────────────
+ * 비교(2-5-1·2-5-4)는 답이 「가·나」·부등호라 **되짚을 값이 없다.** 단위(2-5-2·2-5-5)는
+ * 환산이 **일대일**이라 마디가 늘 굳고(반증 ①), 거기에 이 갈래를 넣으면 굳히는 성질이
+ * 「합과 차」의 것이 되어 **반증 ③** 에 걸린다(토대 17 §3 2-5 함정 ⑶ 이 같은 말을 한다).
+ *
+ * ── 반증 ⑥ 도 여기서 잰다 ──────────────────────────────────────────────────
+ * 답이 「$4\,\mathrm{L}\ 811\,\mathrm{mL}$」 꼴이라 공용 자의 `readRat` 이 이 대단원을
+ * **한 문항도 안 읽는다**(토대 17 §3 이 실측으로 적었다). 그래서 지면의 수 넷
+ * ($B,S,E_B,E_S$ 또는 $B,S,L_1,L_2$)을 `+ − × ÷` 로 한 번 엮어 답에 닿으면 목록에서 뺀다.
+ */
+
+/** 지면의 수 둘을 한 번 엮어 답에 닿나 (반증 ⑥, 2-5 전용 — 1-3 판과 같은 규칙). */
+function cap25OneStep(nums: readonly number[], answer: number): boolean {
+  return div13OneStep(nums, answer);
+}
+
+/*
+ * ⚠️ **수 뒤에 조사를 붙이지 마라** — g3 의 규약은 「끝소리로 고른다」가 아니라
+ *    **「붙이지 않는다」**이고, `elemTiersG3.test.ts` 가 초3 **전 소단원 전 갈래**에서
+ *    「판정할 자리 0」을 잠근다. 앞판이 g4 의 `NUM_BATCHIM` 표를 여기 옮겨 적어
+ *    「$250$이 되는 것은」을 냈다가 그 시험이 물었다. 표를 지우고 **문장을 바꿨다**
+ *    (「끝자리가 $250$ 인 것은」). 조사표를 다시 들여오지 마라.
+ */
+
+type Cap25Mid = {
+  /** 한 그릇의 양 */
+  b: number;
+  s: number;
+  /** 그릇 수 = 답 */
+  k: number;
+  /** 모두 부은 뒤 */
+  eb: number;
+  es: number;
+  /** 작은 자리만 더해 갈 때의 끝자리 — 해설이 이대로 늘어놓는다 */
+  tail: number[];
+};
+
+/**
+ * 🔴 목록을 **전수로** 만든다(문턱으로 거르지 않는다) — 그래서 어떤 씨앗에서도 안 던진다.
+ *   ⑴ 작은 자리 끝자리가 $1\!\sim\!9$ 번에서 **한 번만** $E_S$ 가 된다(성질이 굳힌다)
+ *   ⑵ 합의 작은 자리가 $0$ 이 아니다 — 지면에 「$7\,L\ 0\,mL$」 가 나가면 안 된다
+ *   ⑶ 답이 지면에 없고, 지면 두 수의 한 걸음으로 안 닿는다(반증 ⑥)
+ *   ⑷ 그릇 수가 $3$ 이상 — 둘이면 «두 번 더하기»라 응용과 구별되지 않는다
+ */
+function cap25MidPool(): Cap25Mid[] {
+  const out: Cap25Mid[] = [];
+  for (let b = 1; b <= 2; b += 1)
+    for (let s = 100; s <= 900; s += 50)
+      for (let k = 3; k <= 7; k += 1) {
+        const total = (b * 1000 + s) * k;
+        if (total >= 10000) continue;
+        const es = total % 1000;
+        if (es === 0) continue;
+        const eb = Math.floor(total / 1000);
+        const same: number[] = [];
+        for (let j = 1; j <= 9; j += 1) if ((s * j) % 1000 === es) same.push(j);
+        if (same.length !== 1) continue;
+        const page = [b, s, eb, es];
+        if (page.includes(k)) continue;
+        if (cap25OneStep(page, k)) continue;
+        const tail = Array.from({ length: k }, (_, i) => (s * (i + 1)) % 1000);
+        out.push({ b, s, k, eb, es, tail });
+      }
+  if (out.length === 0) throw new Error("2-5 심화중 풀이 비었습니다");
+  return out;
+}
+
+type Cap25High = {
+  b: number;
+  s: number;
+  /** 그릇 수 = 답 */
+  k: number;
+  /** 범위 (큰 단위) */
+  lo: number;
+  hi: number;
+  /** 하나씩 만들어 본 합(작은 단위) — 해설이 이대로 늘어놓는다 */
+  runs: number[];
+};
+
+/**
+ * 🔴 범위가 **딱 하나**를 남기는 자리만 쓴다. 그리고 바로 앞·뒤 그릇 수가 실제로
+ *    빗나가는 것을 해설이 보여야 하므로, $k+1$ 까지의 합이 지면 범위 안에 든다
+ *    (10,000 을 넘으면 견줄 것이 못 된다).
+ */
+function cap25HighPool(): Cap25High[] {
+  const out: Cap25High[] = [];
+  for (let b = 1; b <= 2; b += 1)
+    for (let s = 100; s <= 900; s += 50) {
+      const per = b * 1000 + s;
+      for (let lo = 2; lo <= 8; lo += 1)
+        for (let hi = lo + 1; hi <= 9; hi += 1) {
+          const hits: number[] = [];
+          for (let k = 2; k <= 9; k += 1) {
+            const t = per * k;
+            if (t > lo * 1000 && t < hi * 1000) hits.push(k);
+          }
+          if (hits.length !== 1) continue;
+          const k = hits[0]!;
+          // 셋 미만이면 만들어 견주는 일이 아니고, $k+1$ 이 네 자리를 넘으면 못 견준다.
+          if (k < 3 || per * (k + 1) >= 10000) continue;
+          const page = [b, s, lo, hi];
+          if (page.includes(k)) continue;
+          if (cap25OneStep(page, k)) continue;
+          const runs = Array.from({ length: k + 1 }, (_, i) => per * (i + 1));
+          out.push({ b, s, k, lo, hi, runs });
+        }
+    }
+  if (out.length === 0) throw new Error("2-5 심화상 풀이 비었습니다");
+  return out;
+}
+
+let CAP25_MID: Cap25Mid[] | null = null;
+let CAP25_HIGH: Cap25High[] | null = null;
+
+/** 수 여러 개를 **한 덩어리** KaTeX 로 — 숫자마다 감싸면 지면에서 띄어쓰기가 깨진다. */
+function list25(values: readonly number[]): string {
+  return expr(values.join(",\\ "));
+}
+
+/**
+ * 「붓다」는 들이의 말이다 — 무게 쪽(감자·밀가루)은 **담는다.** 한 낱말이라도
+ * 어긋나면 지면에서 바로 보인다(「사과를 부었더니」).
+ */
+const CAP25_VERB = {
+  L: {
+    past: "부었더니",
+    iff: "부으면",
+    adj: "부은",
+    now: "부을",
+    ing: "붓는",
+    /** 담아 오는 쪽 그릇 — 감자를 「병」에 담지 않는다 */
+    packs: ["병", "통"],
+  },
+  kg: {
+    past: "담았더니",
+    iff: "담으면",
+    adj: "담은",
+    now: "담을",
+    ing: "담는",
+    packs: ["봉지", "자루"],
+  },
+} as const;
+
+function cap25Verb(cfg: CapCfg) {
+  return cfg.big === "L" ? CAP25_VERB.L : CAP25_VERB.kg;
+}
+
+/**
+ * 심화중·심화상이 **같은 발문 틀**을 쓴다 — 다른 것은 마지막 조건(합이냐 범위냐)뿐이다.
+ *
+ * ⚠️ **세는 말을 해설과 같이 쓴다.** 앞판은 발문이 「몇 번 부었는지」인데 해설이
+ *    「$3$개입니다」로 끝나 한 문항 안에서 세는 말이 갈렸다(지면에서 바로 보인다).
+ *    그래서 틀과 세는 말을 **한 곳에서 같이** 돌려준다.
+ */
+function cap25Stem(
+  rng: Rng,
+  cfg: CapCfg,
+  p: {
+    thing: string;
+    을를: string;
+    이가: string;
+    vessel: string;
+    per: string;
+    /** 「… 가 되었습니다」 / 「… 보다 적었습니다」 */
+    tailText: string;
+    /** 「모두 … 라면」 / 「… 보다 적다면」 — 조건절 꼴 */
+    tailIf: string;
+  },
+): [string, string] {
+  const { thing, 을를, 이가, per, tailText, tailIf } = p;
+  const v = cap25Verb(cfg);
+  const pack = pick(rng, v.packs);
+  // 담아 오는 그릇과 붓는 그릇이 같은 낱말이면 「봉지를 여러 봉지 모아 한 봉지에」가 된다.
+  const vessel = p.vessel === pack ? `큰 ${p.vessel}` : p.vessel;
+  // ⚠️ **다섯 틀이 모두 「… 씩 담았습니다」로 시작한다** — 소단원 조건 검사
+  //    (`probe-elem-section-conditions` 의 「합과 차」)가 문장형에서 그 말을 찾는다.
+  //    앞판은 「여러 번 부었더니」로만 적었다가 24/40 씨앗이 위반으로 걸렸다.
+  //    낱말을 맞추는 것이 옳다 — 공용 판정기를 넓히면 다른 물결의 관문이 흔들린다.
+  const rows: readonly (readonly [string, string])[] = [
+    [
+      `똑같은 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}에 담긴 ${thing}${을를} 모두 한 ${vessel}에 ${v.past} ${thing}${이가} ${tailText}. ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `${pack}마다 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}들을 모두 한 ${vessel}에 ${v.past} ${tailText}. ${v.adj} ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `한 컵에 ${thing}${을를} ${per} 씩 담았습니다. 이 컵으로 ${vessel}에 여러 번 ${v.past} ${thing}${이가} 모두 ${tailText}. 몇 번 ${v.past.slice(0, -2)}는지 쓰시오.`,
+      "번",
+    ],
+    [
+      `똑같은 그릇에 ${thing}${을를} ${per} 씩 담았습니다. 이 그릇들을 한 ${vessel}에 모두 ${v.past.replace("더니", "습니다")}. ${v.adj} ${thing}${이가} ${tailIf} 그릇은 몇 개인지 쓰시오.`,
+      "개",
+    ],
+    [
+      `한 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이런 ${pack}${josa(pack, "을", "를")} 몇 ${pack} 사서 한 ${vessel}에 모두 ${v.past} ${tailText}. 산 ${pack}${josa(pack, "은", "는")} 몇 개인지 쓰시오.`,
+      "개",
+    ],
+  ];
+  const row = pick(rng, rows);
+  return [row[0], row[1]];
+}
+
+/**
+ * 5단 · 2-5-3 · 2-5-6 — 「몇 그릇인가」가 안 굳고, **작은 자리의 끝자리**가 굳힌다.
+ *
+ * ⚠️ 해설은 끝자리를 **늘어놓되 큰 자리는 안 센다** — 그것이 D-115 ⑾ 의 «끝까지
+ *    계산하지 않고 걸러 낸다»이고, 그래서 상이 아니라 **중**이다. 큰 자리는 맨 끝
+ *    한 줄에서 **확인**으로만 쓴다.
+ */
+function capSumMidOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    CAP25_MID ??= cap25MidPool();
+    const f = pick(rng, CAP25_MID);
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const 을를 = josa(thing, "을", "를");
+    const 이가 = josa(thing, "이", "가");
+    const per = mixedCap(cfg, f.b, f.s);
+    const end = mixedCap(cfg, f.eb, f.es);
+    const [stem, cnt] = cap25Stem(rng, cfg, {
+      thing,
+      을를,
+      이가,
+      vessel,
+      per,
+      tailText: `${end} ${cfg.jGa} 되었습니다`,
+      // 「$9\,kg\ 300\,g$ **이**라면」 — 단위를 읽은 소리 뒤 조사다(cfg.jNun 과 같은 축).
+      tailIf: `모두 ${end} ${cfg.jNun === "은" ? "이라면" : "라면"}`,
+    });
+    const carry = Math.floor((f.s * f.k) / 1000);
+    const v = cap25Verb(cfg);
+    return makeDeep(unit, stem, n(f.k), [
+      `${cfg.small}끼리만 봅니다. 한 번 ${v.now} 때마다 ${cfg.small} 자리는 ${n(f.s)} 씩 커지고, $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jGa} 되면 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jRo} 받아올림합니다. 그래서 ${cfg.small} 자리는 차례로 ${list25(f.tail)} 입니다.`,
+      // ⚠️ **수 뒤에 조사를 붙이지 않는다**(g3 규약 — `josa` 주석. 시험이 전수로 잠근다).
+      //    「$250$ 이 되는 것은」이 아니라 「끝자리가 $250$ 인 것은」으로 적는다.
+      `${cfg.small} 자리가 ${n(f.es)} 인 것은 ${n(f.k)} 번째뿐입니다.`,
+      `확인하면 ${cfg.small}끼리는 ${expr(`${f.s}\\times${f.k}=${f.s * f.k}`)}, ${cfg.big}끼리는 ${expr(`${f.b}\\times${f.k}=${f.b * f.k}`)} 이고, ${unitNum(f.s * f.k, cfg.small)} ${cfg.jNun} ${mixedCap(cfg, carry, f.es)} 이므로 ${expr(`${f.b * f.k}+${carry}=${f.eb}`)} 에서 ${end} 입니다. 따라서 ${n(f.k)}${cnt}입니다.`,
+    ]);
+  };
+}
+
+/**
+ * 6단 · 2-5-3 · 2-5-6 — 합을 **범위로만** 주어 자리 성질이 한 후보도 못 자른다.
+ * 그릇 수를 하나씩 **실제로 만들어** 범위와 견주어야 한다.
+ */
+function capSumHighOf(cfg: CapCfg) {
+  return (unit: UnitSeed, rng: Rng): ElemProblem => {
+    CAP25_HIGH ??= cap25HighPool();
+    const f = pick(rng, CAP25_HIGH);
+    const vessel = pick(rng, cfg.vessels);
+    const thing = pick(rng, cfg.stuff);
+    const 을를 = josa(thing, "을", "를");
+    const 이가 = josa(thing, "이", "가");
+    const per = mixedCap(cfg, f.b, f.s);
+    const perSmall = f.b * 1000 + f.s;
+    const lo = unitNum(f.lo, cfg.big);
+    const hi = unitNum(f.hi, cfg.big);
+    const [stem, cnt] = cap25Stem(rng, cfg, {
+      thing,
+      을를,
+      이가,
+      vessel,
+      per,
+      tailText: `${lo} 보다 많고 ${hi} 보다 적었습니다`,
+      tailIf: `${lo} 보다 많고 ${hi} 보다 적다면`,
+    });
+    // 하나씩 **실제로 만든다** — 이 걸음이 이 갈래를 상으로 만든다.
+    const v = cap25Verb(cfg);
+    const builds = f.runs
+      .slice(1)
+      .map(
+        (val, i) =>
+          `${n(i + 2)}${cnt}까지 ${v.iff} ${expr(`${f.runs[i]!}+${perSmall}=${val}`)}`,
+      )
+      .join(", ");
+    return makeDeep(unit, stem, n(f.k), [
+      `한 번에 ${v.ing} 양은 ${per}, 곧 ${unitNum(perSmall, cfg.small)} 입니다. 수를 하나씩 늘려 가며 모두 얼마가 되는지 만들어 봅니다.`,
+      `처음 한 ${cnt}${josa(cnt, "은", "는")} ${unitNum(perSmall, cfg.small)}, ${builds} 입니다.`,
+      `${lo} ${cfg.jNun} ${unitNum(f.lo * 1000, cfg.small)}, ${hi} ${cfg.jNun} ${unitNum(f.hi * 1000, cfg.small)} 입니다. 이 사이에 있는 것은 ${unitNum(f.runs[f.k - 1]!, cfg.small)} 하나뿐이므로 ${n(f.k)}${cnt}입니다.`,
+    ]);
+  };
+}
+
 // ── 2-6 그림그래프 (D-72 확대) ───────────────────────────────────────────
 //
 // 두 소단원이 **반대 방향**이다 — 2-6-1 은 그림그래프를 **읽고**, 2-6-2 는 표를 보고
@@ -13580,12 +13891,17 @@ export const G3_TIERS: ElemTierMap = {
     응용: subApplyOf(2, 2),
     심화하: subDeepOf(2, 2),
   },
+  // ⚠️ **2-5-1 · 2-5-4(비교)는 둘 다 비운다** — 답이 「가·나」·부등호라 **되짚을 값이
+  //    없다.** 억지로 넣으면 실은 단위(2-5-2·2-5-5) 문항이 되어 반증 ③ 이다.
   "초3|2-5-1": {
     연산: capCmpCalcOf(CAP_L),
     기본: capCmpWordOf(CAP_L),
     응용: capCmpApplyOf(CAP_L),
     심화하: capCmpDeepOf(CAP_L),
   },
+  // ⚠️ **2-5-2 · 2-5-5(단위)도 둘 다 비운다** — 환산은 **일대일**이라 되짚어도
+  //    마디가 늘 하나로 굳는다(반증 ①). 「몇 그릇인가」를 여기에 넣으면 굳히는 성질이
+  //    「합과 차」의 자리 넘김이 되어 소단원 밖이다(반증 ③, 토대 17 §3 2-5 함정 ⑶).
   "초3|2-5-2": {
     연산: capUnitCalcOf(CAP_L),
     기본: capUnitWordOf(CAP_L),
@@ -13597,6 +13913,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: capSumWordOf(CAP_L),
     응용: capSumApplyOf(CAP_L),
     심화하: capSumDeepOf(CAP_L),
+    심화중: capSumMidOf(CAP_L),
+    심화상: capSumHighOf(CAP_L),
   },
   "초3|2-5-4": {
     연산: capCmpCalcOf(CAP_KG),
@@ -13615,6 +13933,8 @@ export const G3_TIERS: ElemTierMap = {
     기본: capSumWordOf(CAP_KG),
     응용: capSumApplyOf(CAP_KG),
     심화하: capSumDeepOf(CAP_KG),
+    심화중: capSumMidOf(CAP_KG),
+    심화상: capSumHighOf(CAP_KG),
   },
   // ⚠️ 2-6-1 은 **둘 다 비웠다** — 세어서 정했다. 마디를 열 축은 「값이 범위 안」
   //    하나이고 굳힐 성질은 「값은 한 칸이 나타내는 수의 배수」 하나인데, 엔진이 쓰는
