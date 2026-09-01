@@ -16131,6 +16131,311 @@ function com143Top(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+/* ────────── 2-2 분수의 곱셈 — 확대 갈래 ──────────
+ *
+ * 굳힘 축(예약): **「진분수다(분자<분모)」·「대분수다」·「한 자리 자연수다」** — 셋 다
+ * **소단원 이름 그 자체**라 반증 ③ 을 안 건드린다.
+ * 마디를 여는 것: **곱한 수(또는 분자)를 안 말하고 «분자끼리의 곱»까지만 굳힌다**.
+ *
+ * 🔴 **창(범위)은 안 쓴다.** 토대 17 §2.1 ㉠ 이 「곱만 알고 두 인수를 모른다 + 창」이
+ *    파일럿 2-4 심화상과 **동형이 넷**이라고 짚었다. 여기서는 **분모 조건으로만** 가른다.
+ *
+ * ⚠️ 이 소단원의 시험이 잠근 규약 셋(`elemTiersG5.test.ts`):
+ *    ㉠ **차례가 곧 소단원이다** — 2-2-1 은 `\frac{a}{b}\times n`, 2-2-2 는 `n\times\frac{a}{b}`.
+ *       상대의 차례는 **발문에** 있으면 안 된다.
+ *    ㉡ **발문이 「기약」을 요구하면 안 된다**(`/기약|약분하여 나타/`).
+ *    ㉢ 2-2-4 는 **발문에 대분수**가 있어야 하고 **해설에 「가분수」** 가 있어야 한다.
+ *
+ * 🔴 **2-2-1·2-2-2·2-2-4 의 심화상은 비웠다.** 이 대단원에서 「성질로 못 갈라 실제로
+ *    곱해 봐야」가 서는 자리는 **곱을 약분해 봐야 아는 조건** 하나뿐인데, 그것을 두
+ *    소단원에 쓰면 지면에서 한 문항이 된다. 그래서 2-2-3 에만 두었다.
+ */
+
+/** `n/d` 를 지면 표기로 — 약분하고 대분수로 접는다(R2). */
+const w4FracText = (num: number, den: number): string => {
+  const [p, q] = simplify(num, den);
+  return fracLatex(p, q);
+};
+
+/** 곱이 `P` 이고 **한 자리 자연수**가 끼는 짝 — 해설이 늘어놓는 줄. */
+function w4OneDigitPairs(P: number): [number, number][] {
+  return divisors(P)
+    .map((d) => [d, P / d] as [number, number])
+    .filter(([, e]) => e >= 2 && e <= 9);
+}
+
+const w4PairList = (pairs: readonly (readonly [number, number])[]): string =>
+  pairs.map(([d, e]) => expr(`(${d},\\ ${e})`)).join(", ");
+
+/* ── 2-2-1 심화중 — 「곱한 자연수를 안 말한다」 ── */
+
+type W4MulTask = { b: number; a: number; k: number };
+
+/** 곱이 `X` 인 짝 `(분자, 자연수)` 중 «진분수 · 한 자리 자연수»를 지키는 것. */
+function w4MulPairs(P: number, b: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d < b && e >= 2 && e <= 9) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mul221(): W4MulTask[] {
+  const out: W4MulTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1)
+      for (let k = 2; k <= 9; k += 1) {
+        if (gcd(a, b) !== 1) continue; // 처음 진분수는 기약이어야 지면이 깨끗하다
+        if (a * k > 60) continue;
+        // 곱한 결과가 자연수로 떨어지면 해설 첫 걸음이 「$16=\frac{112}{7}$」처럼
+        // **등호 앞에 연산이 없는** 꼴이 되어 `countCalcSteps` 가 셈으로 안 센다
+        // (D-72 4단 가드가 실제로 던졌다). 지면도 분수 꼴이 깔끔하다.
+        if ((a * k) % b === 0) continue;
+        // 굳힘이 실제로 일해야 한다 — 「한 자리 자연수」만으로 짝이 하나면 «진분수다»가
+        // 아무것도 안 걸러 내서 마디가 안 열린다(첫 판에서 실제로 났다).
+        if (w4OneDigitPairs(a * k).length < 2) continue;
+        if (w4MulPairs(a * k, b).length !== 1) continue;
+        out.push({ b, a, k });
+      }
+  return out;
+}
+
+function mul221Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4MulTask) =>
+    `분모가 ${nj(t.b, "인", "인")} 진분수에 한 자리 자연수를 곱했더니 ${lj(w4FracText(t.a * t.k, t.b), "이", "가")} 되었습니다. 처음 진분수의 분자를 구하시오.`;
+  const pool = w2Pool("w4-221mid", () =>
+    w4Mul221().filter((t) => !w3Bad(content(t), w2int(t.a))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.a), [
+    `분모는 그대로 두고 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "이고", "고")} 곱한 수가 한 자리 자연수인 (분자, 곱한 수) 짝은 ${w4PairList(all)}입니다.`,
+    `분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`\\frac{${t.a}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 분자는 ${n(t.a)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-2 심화중 — 「곱한 진분수의 분자를 안 말한다」 ── */
+
+function w4Mul222(): W4MulTask[] {
+  const out: W4MulTask[] = [];
+  for (let b = 4; b <= 12; b += 1)
+    for (let a = 1; a < b; a += 1)
+      for (let k = 2; k <= 9; k += 1) {
+        if (gcd(a, b) !== 1) continue;
+        if (a * k > 60) continue;
+        // 곱한 결과가 자연수로 떨어지면 해설 첫 걸음이 「$16=\frac{112}{7}$」처럼
+        // **등호 앞에 연산이 없는** 꼴이 되어 `countCalcSteps` 가 셈으로 안 센다
+        // (D-72 4단 가드가 실제로 던졌다). 지면도 분수 꼴이 깔끔하다.
+        if ((a * k) % b === 0) continue;
+        // 2-2-1 과 같은 까닭 — 「한 자리 자연수」만으로 짝이 하나면 마디가 안 열린다.
+        if (w4OneDigitPairs(a * k).length < 2) continue;
+        if (w4MulPairs(a * k, b).length !== 1) continue;
+        out.push({ b, a, k });
+      }
+  return out;
+}
+
+function mul222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4MulTask) =>
+    `어떤 한 자리 자연수와 분모가 ${nj(t.b, "인", "인")} 진분수를 곱했더니 ${lj(w4FracText(t.a * t.k, t.b), "이", "가")} 되었습니다. 어떤 자연수를 구하시오.`;
+  const pool = w2Pool("w4-222mid", () =>
+    w4Mul222().filter((t) => !w3Bad(content(t), w2int(t.k))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.k), [
+    `자연수를 분자에 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 자연수와 진분수의 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "이고", "고")} 자연수가 한 자리 수인 (진분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다.`,
+    `진분수의 분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`${t.k}\\times\\frac{${t.a}}{${t.b}}=${w4FracText(P, t.b)}`)}이므로 어떤 자연수는 ${n(t.k)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-3 심화중 — 「두 분모만 주고 분자를 안 말한다」 ──
+ *
+ * 마디: 분자 짝(곱만 굳는다). 굳힘: **두 분수가 다 진분수**여야 한다 —
+ * 계산 끝까지 안 가고 크기 비교만으로 걸러 낸다(→ 심화중).
+ */
+
+type W4Mul3Task = { d1: number; d2: number; a: number; b: number };
+
+/** 곱이 `P` 인 짝 중 `a < d1` · `b < d2` 인 것. */
+function w4ProperPairs(P: number, d1: number, d2: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d < d1 && e < d2) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mul223(): W4Mul3Task[] {
+  const out: W4Mul3Task[] = [];
+  for (let d1 = 4; d1 <= 12; d1 += 1)
+    for (let d2 = 4; d2 <= 12; d2 += 1) {
+      if (d1 === d2) continue;
+      for (let a = 2; a < d1; a += 1)
+        for (let b = 2; b < d2; b += 1) {
+          if (gcd(a, d1) !== 1 || gcd(b, d2) !== 1) continue;
+          const P = a * b;
+          const pairs = w4ProperPairs(P, d1, d2);
+          if (pairs.length !== 1) continue; // 진분수 조건이 하나만 남겨야 한다
+          // 곱이 약분돼야 「분모를 두 분모의 곱으로 고친다」는 걸음이 뜻을 갖는다.
+          if (gcd(P, d1 * d2) === 1) continue;
+          if (divisors(P).length < 4) continue; // 마디가 열려야 한다(짝이 여럿)
+          out.push({ d1, d2, a, b });
+        }
+    }
+  return out;
+}
+
+function mul223Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Mul3Task) =>
+    `분모가 ${nj(t.d1, "인", "인")} 진분수와 분모가 ${nj(t.d2, "인", "인")} 진분수를 곱했더니 ${lj(w4FracText(t.a * t.b, t.d1 * t.d2), "이", "가")} 되었습니다. 두 진분수의 분자의 합을 구하시오.`;
+  const pool = w2Pool("w4-223mid", () =>
+    w4Mul223().filter((t) => !w3Bad(content(t), w2int(t.a + t.b))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.a * t.b;
+  const all = divisors(P).map((d) => [d, P / d] as [number, number]);
+  return makeDeep(unit, content(t), n(t.a + t.b), [
+    `분자끼리, 분모끼리 곱하므로 분모는 ${expr(`${t.d1}\\times${t.d2}=${t.d1 * t.d2}`)}이고, 곱을 그 분모로 고치면 ${lj(`\\frac{${P}}{${t.d1 * t.d2}}`, "이", "가")} 됩니다. 곧 두 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `곱이 ${nj(P, "인", "인")} 두 수의 짝은 ${w4PairList(all)}입니다.`,
+    `앞의 분자는 ${nj(t.d1, "보다", "보다")}, 뒤의 분자는 ${nj(t.d2, "보다", "보다")} 작아야 하므로 짝은 ${expr(`\\frac{${t.a}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(P, t.d1 * t.d2)}`)}뿐입니다. 분자의 합은 ${expr(`${t.a}+${t.b}=${t.a + t.b}`)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-3 심화상 — 「곱을 실제로 약분해 봐야 갈린다」 ──
+ *
+ * 🔴 심화중과 갈리는 문장: 진분수 조건만으로는 짝이 **둘 이상** 남고, 남은 짝마다
+ *    **곱해서 간단히 해 봐야** 분모가 맞는 것 하나가 남는다(D-115 ⑾ → 심화상).
+ *    발문은 곱한 값을 안 준다 — 준다면 심화중과 같은 문항이 된다.
+ */
+
+function w4MulTop223(): W4Mul3Task[] {
+  const out: W4Mul3Task[] = [];
+  for (let d1 = 4; d1 <= 12; d1 += 1)
+    for (let d2 = 4; d2 <= 12; d2 += 1) {
+      if (d1 === d2) continue;
+      const D0 = d1 * d2;
+      for (let a = 2; a < d1; a += 1)
+        for (let b = 2; b < d2; b += 1) {
+          if (gcd(a, d1) !== 1 || gcd(b, d2) !== 1) continue;
+          const den = simplify(a * b, D0)[1];
+          // 진분수 조건만으로 남는 짝 전부 — 그중 «간단히 한 분모»가 맞는 것이 하나여야 한다.
+          const live: [number, number][] = [];
+          for (let x = 2; x < d1; x += 1)
+            for (let y = 2; y < d2; y += 1)
+              if (simplify(x * y, D0)[1] === den) live.push([x, y]);
+          if (live.length !== 1) continue;
+          // 마디가 열려야 한다 — 진분수 짝이 여럿이어야 「다 해 봐야」가 뜻을 갖는다.
+          let proper = 0;
+          for (let x = 2; x < d1; x += 1)
+            for (let y = 2; y < d2; y += 1) proper += 1;
+          if (proper < 6) continue;
+          out.push({ d1, d2, a, b });
+        }
+    }
+  return out;
+}
+
+function mul223Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const den = (t: W4Mul3Task) => simplify(t.a * t.b, t.d1 * t.d2)[1];
+  const content = (t: W4Mul3Task) =>
+    `분모가 ${nj(t.d1, "인", "인")} 진분수와 분모가 ${nj(t.d2, "인", "인")} 진분수를 곱했습니다. 두 진분수의 분자는 모두 ${nj(1, "보다", "보다")} 크고, 곱한 값을 가장 간단한 분수로 나타내면 분모가 ${nj(den(t), "입니다", "입니다")}. 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자를 구하시오.`;
+  const pool = w2Pool("w4-223top", () =>
+    w4MulTop223().filter((t) => !w3Bad(content(t), w2int(t.a))),
+  );
+  const t = w2Pick(unit, "심화상", rng, pool);
+  const D0 = t.d1 * t.d2;
+  // 🔴 표본을 **고루** 뽑는다. 앞에서부터 넷을 자르면 앞 분자가 늘 `2` 로 고정돼
+  //    「앞 분자는 이미 아는 것」처럼 읽힌다(첫 판이 그랬다).
+  const others: [number, number][] = [];
+  for (let x = 2; x < t.d1; x += 1)
+    for (let y = 2; y < t.d2; y += 1)
+      if (x !== t.a || y !== t.b) others.push([x, y]);
+  const step = Math.max(1, Math.floor(others.length / 4));
+  const some = others
+    .filter((_, i) => i % step === 0)
+    .slice(0, 4)
+    .map(([x, y]) =>
+      expr(
+        `\\frac{${x}}{${t.d1}}\\times\\frac{${y}}{${t.d2}}=${w4FracText(x * y, D0)}`,
+      ),
+    );
+  return makeDeep(unit, content(t), n(t.a), [
+    `분자끼리, 분모끼리 곱하면 분모는 ${expr(`${t.d1}\\times${t.d2}=${D0}`)}입니다. 그런데 곱한 값을 간단히 하면 분모가 달라지므로, 분자 짝을 하나씩 곱해 보아야 합니다.`,
+    `${some.join(", ")} 처럼 간단히 한 분모가 ${nj(den(t), "이", "가")} 아닌 짝은 답이 될 수 없습니다.`,
+    `${expr(`\\frac{${t.a}}{${t.d1}}\\times\\frac{${t.b}}{${t.d2}}=${w4FracText(t.a * t.b, D0)}`)}만 분모가 ${nj(den(t), "이므로", "이므로")} 분모가 ${nj(t.d1, "인", "인")} 진분수의 분자는 ${n(t.a)}입니다.`,
+  ]);
+}
+
+/* ── 2-2-4 심화중 — 「곱한 자연수를 안 말한다 / «대분수다»가 굳힌다」 ── */
+
+type W4Mix4Task = { b: number; p: number; k: number };
+
+/**
+ * 곱이 `P` 인 짝 `(가분수 분자, 자연수)` 중 «대분수 · 한 자리 자연수»를 지키는 것.
+ *
+ * 🔴 굳히는 성질은 **「대분수를 가분수로 고치면 분자가 분모보다 크다」**다.
+ *    처음엔 「분모의 배수면 자연수가 되니 못 쓴다」로 잡았는데, 처음 분수가 기약이면
+ *    (`gcd(p,b)=1`) 그런 후보가 **구조적으로 하나도 안 생겨** 풀이 통째로 비었다 —
+ *    분모의 배수인 분자가 있으려면 곱한 자연수가 분모의 배수여야 하고, 그러면
+ *    곱한 결과가 자연수가 되어 이 소단원의 대분수 규약이 깨진다.
+ */
+function w4MixedPairs(P: number, b: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (const d of divisors(P)) {
+    const e = P / d;
+    if (d > b && e >= 2 && e <= 9) out.push([d, e]);
+  }
+  return out;
+}
+
+function w4Mix224(): W4Mix4Task[] {
+  const out: W4Mix4Task[] = [];
+  for (let b = 3; b <= 9; b += 1)
+    for (let p = b + 1; p <= 5 * b; p += 1) {
+      if (p % b === 0) continue; // 대분수여야 한다
+      if (gcd(p, b) !== 1) continue; // 분수부가 기약이어야 지면이 깨끗하다
+      for (let k = 2; k <= 9; k += 1) {
+        if (p * k > 200) continue;
+        // 🔴 곱한 결과도 **대분수**여야 한다 — 이 소단원은 발문에 대분수가 있어야 하고
+        //    (`elemTiersG5.test.ts`), 자연수로 떨어지면 그 규약이 깨진다.
+        if ((p * k) % b === 0) continue;
+        // 마디가 열려야 한다 — 한 자리 자연수인 짝이 둘 이상이어야 «대분수다»가
+        // 실제로 하나를 지운다.
+        if (w4OneDigitPairs(p * k).length < 2) continue;
+        if (w4MixedPairs(p * k, b).length !== 1) continue;
+        out.push({ b, p, k });
+      }
+    }
+  return out;
+}
+
+function mix224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const content = (t: W4Mix4Task) =>
+    `분모가 ${nj(t.b, "인", "인")} 대분수에 한 자리 자연수를 곱했더니 ${lj(w4FracText(t.p * t.k, t.b), "이", "가")} 되었습니다. 처음 대분수를 가분수로 나타내면 분자는 얼마입니까?`;
+  // 🔴 묻는 것을 «자연수 부분»에서 «가분수의 분자»로 바꿨다 — 답의 폭 때문이다.
+  //    「한 자리 자연수인 짝 중 분자가 분모보다 큰 것이 하나」라는 조건이 곱을 작게
+  //    묶어서, 자연수 부분이 실측 500씨앗에서 **두 가지(최빈 92.6%)** 밖에 안 나왔다.
+  //    기존 시험 「답의 가짓수 ≥4 · 최빈 ≤45%」가 그것을 잡았다.
+  const pool = w2Pool("w4-224mid", () =>
+    w4Mix224().filter((t) => !w3Bad(content(t), w2int(t.p))),
+  );
+  const t = w2Pick(unit, "심화중", rng, pool);
+  const P = t.p * t.k;
+  const all = w4OneDigitPairs(P);
+  return makeDeep(unit, content(t), n(t.p), [
+    `대분수를 가분수로 고쳐 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 가분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 처음 대분수를 고친 가분수의 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
+    `자연수가 한 자리 수인 (가분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다. 처음 수가 대분수이므로 가분수로 고치면 분자가 분모 ${nj(t.b, "보다", "보다")} 커야 하고, 그런 짝은 하나뿐입니다.`,
+    `그 짝은 ${lj(`\\frac{${t.p}}{${t.b}}`, "이", "가")} 되고, 대분수로 고치면 ${lj(fracLatex(t.p, t.b), "이", "가")} 됩니다. 검산하면 ${expr(`\\frac{${t.p}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 가분수의 분자는 ${n(t.p)}입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-71 파일럿 + D-72 확대) — 키는 `tierKey` 형식(`"초5|1-6-2"`), 값은 넷 전부.
  * 축은 D-72 확정판(연산=절차 한 번 · 기본=식을 스스로 · 응용=두 단계 · 심화=역산·조건 조합).
@@ -16331,24 +16636,29 @@ export const G5_TIERS: ElemTierMap = {
     기본: fm221Read,
     응용: fm221Apply,
     심화하: fm221Deep,
+    심화중: mul221Mid,
   },
   "초5|2-2-2": {
     연산: fm222Calc,
     기본: fm222Read,
     응용: fm222Apply,
     심화하: fm222Deep,
+    심화중: mul222Mid,
   },
   "초5|2-2-3": {
     연산: fm223Calc,
     기본: fm223Read,
     응용: fm223Apply,
     심화하: fm223Deep,
+    심화중: mul223Mid,
+    심화상: mul223Top,
   },
   "초5|2-2-4": {
     연산: fm224Calc,
     기본: fm224Read,
     응용: fm224Apply,
     심화하: fm224Deep,
+    심화중: mix224Mid,
   },
   // ⚠️ 이 일곱만 여섯 갈래다 — D-113 파일럿(2026-08-30). 나머지 초5 49개는 핵심 넷.
   //    원장님이 `/dev/tier-bench/g5` 에서 잣대를 확정하신 뒤에 나머지를 채운다.

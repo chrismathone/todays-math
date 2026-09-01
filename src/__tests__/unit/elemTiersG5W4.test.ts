@@ -62,6 +62,10 @@ const FILLED: Record<string, readonly ElemTier[]> = {
   "1-4-3": ["심화중", "심화상"],
   "1-4-4": [],
   "1-4-5": [],
+  "2-2-1": ["심화중"],
+  "2-2-2": ["심화중"],
+  "2-2-3": ["심화중", "심화상"],
+  "2-2-4": ["심화중"],
 };
 
 const unitOf = (code: string) =>
@@ -663,6 +667,129 @@ describe("[초5 물결 4] 확대 갈래 — 1-1 · 1-3 · 1-4 · 2-2 · 2-5", ()
       ).toBeGreaterThanOrEqual(2);
       expect(p.solution, "음수가 지면에 나갔다").not.toMatch(/=-\d/);
     }
+  });
+
+  /* ══ 2-2 분수의 곱셈 ═════════════════════════════════════════════════════ */
+
+  /** 곱이 `P` 인 짝 — 시험이 직접 만든다(제품의 목록을 안 부른다). */
+  const pairsOf = (P: number): [number, number][] => {
+    const out: [number, number][] = [];
+    for (let d = 1; d <= P; d += 1) if (P % d === 0) out.push([d, P / d]);
+    return out;
+  };
+
+  /** 발문에 찍힌 곱한 값을 «분모 `b` 짜리 분자»로 되돌린다 — 참은 지면이다. */
+  function numeratorOnPage(text: string, b: number): number {
+    const mixed = /(\d+)\\frac\{(\d+)\}\{(\d+)\}/.exec(text);
+    if (mixed) {
+      const [w, p, q] = [1, 2, 3].map((i) => Number(mixed[i]));
+      expect(b % q!, `${text}: 분모 ${q} 가 ${b} 의 약수가 아니다`).toBe(0);
+      return (w! * q! + p!) * (b / q!);
+    }
+    const plain = /\\frac\{(\d+)\}\{(\d+)\}/.exec(text)!;
+    const [p, q] = [1, 2].map((i) => Number(plain[i]));
+    expect(b % q!, text).toBe(0);
+    return p! * (b / q!);
+  }
+
+  /* ── ⑴ 2-2-1 · 2-2-2 심화중 — 「진분수다」가 짝을 하나로 남긴다 ── */
+
+  it("2-2-1·2-2-2 심화중 — 한 자리 자연수 짝이 여럿이고 진분수가 하나만 남긴다", () => {
+    for (const code of ["2-2-1", "2-2-2"] as const)
+      for (const seed of SEEDS) {
+        const p = problem(code, "심화중", seed);
+        const b = Number(/분모가 \$(\d+)\$인/.exec(p.content)![1]);
+        const P = numeratorOnPage(p.content, b);
+        // 마디가 열린다 — 「한 자리 자연수」만으로는 짝이 여럿이다.
+        const oneDigit = pairsOf(P).filter(([, e]) => e >= 2 && e <= 9);
+        expect(
+          oneDigit.length,
+          `${code} @${seed}\n${p.content}\n한 자리 짝 ${JSON.stringify(oneDigit)}`,
+        ).toBeGreaterThan(1);
+        // 굳힘 — 「분자 < 분모」가 정확히 하나를 남긴다.
+        const live = oneDigit.filter(([d]) => d < b);
+        expect(live.length, `${code} @${seed}\n${p.content}`).toBe(1);
+        const [a, k] = live[0]!;
+        expect(answerInt(p.answer), `${code} @${seed}\n${p.content}`).toBe(
+          code === "2-2-1" ? a : k,
+        );
+      }
+  });
+
+  /* ── ⑴ 2-2-3 심화중 — 두 진분수 조건이 짝을 하나로 남긴다 ── */
+
+  it("2-2-3 심화중 — 곱 짝이 여럿이고 두 진분수 조건이 하나만 남긴다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-2-3", "심화중", seed);
+      const [d1, d2] = [...p.content.matchAll(/분모가 \$(\d+)\$인/g)].map((m) =>
+        Number(m[1]),
+      ) as [number, number];
+      const P = numeratorOnPage(p.content, d1 * d2);
+      const all = pairsOf(P);
+      expect(
+        all.length,
+        `${p.content}\n짝 ${JSON.stringify(all)}`,
+      ).toBeGreaterThan(2);
+      const live = all.filter(([x, y]) => x < d1 && y < d2);
+      expect(live.length, `${p.content}\n산 것 ${JSON.stringify(live)}`).toBe(
+        1,
+      );
+      expect(answerInt(p.answer), p.content).toBe(live[0]![0] + live[0]![1]);
+    }
+  });
+
+  /* ── ⑵ 2-2-3 심화상 — 진분수만으로는 안 갈리고 «곱해서 간단히 해 봐야» 갈린다 ── */
+
+  it("2-2-3 심화상 — 진분수 짝이 여럿이고, 간단히 한 분모가 맞는 것이 하나뿐이다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-2-3", "심화상", seed);
+      const [d1, d2] = [...p.content.matchAll(/분모가 \$(\d+)\$인/g)].map((m) =>
+        Number(m[1]),
+      ) as [number, number];
+      const D = Number(/분모가 \$(\d+)\$입니다/.exec(p.content)![1]);
+      // 🔴 심화중과 갈리는 문장 — 진분수 짝이 **여럿** 남는다.
+      const proper: [number, number][] = [];
+      for (let x = 2; x < d1; x += 1)
+        for (let y = 2; y < d2; y += 1) proper.push([x, y]);
+      expect(proper.length, p.content).toBeGreaterThan(4);
+      // 그리고 **실제로 곱해서 간단히 해 봐야** 하나가 남는다.
+      const hit = proper.filter(([x, y]) => {
+        const g = gcd2(x * y, d1 * d2);
+        return (d1 * d2) / g === D;
+      });
+      expect(hit.length, `${p.content}\n산 것 ${JSON.stringify(hit)}`).toBe(1);
+      expect(answerInt(p.answer), p.content).toBe(hit[0]![0]);
+    }
+  });
+
+  /* ── ⑴ 2-2-4 심화중 — 「대분수다」가 짝을 하나로 남긴다 ── */
+
+  it("2-2-4 심화중 — 한 자리 자연수 짝이 여럿이고 «분자 > 분모»가 하나만 남긴다", () => {
+    for (const seed of SEEDS) {
+      const p = problem("2-2-4", "심화중", seed);
+      const b = Number(/분모가 \$(\d+)\$인/.exec(p.content)![1]);
+      const P = numeratorOnPage(p.content, b);
+      const oneDigit = pairsOf(P).filter(([, e]) => e >= 2 && e <= 9);
+      expect(oneDigit.length, p.content).toBeGreaterThan(1);
+      const live = oneDigit.filter(([d]) => d > b);
+      expect(live.length, `${p.content}\n산 것 ${JSON.stringify(live)}`).toBe(
+        1,
+      );
+      expect(answerInt(p.answer), p.content).toBe(live[0]![0]);
+      // 처음 수도 곱한 결과도 **대분수**여야 이 소단원이다.
+      expect(live[0]![0] % b, p.content).not.toBe(0);
+      expect(P % b, p.content).not.toBe(0);
+    }
+  });
+
+  it("2-2 확대 갈래는 발문에서 «기약»을 요구하지 않는다", () => {
+    for (const code of ["2-2-1", "2-2-2", "2-2-3", "2-2-4"] as const)
+      for (const tier of FILLED[code]!)
+        for (const seed of SEEDS)
+          expect(
+            /기약|약분하여 나타/.test(problem(code, tier, seed).content),
+            `${code} ${tier} @${seed}`,
+          ).toBe(false);
   });
 
   it("1-4 확대 갈래에서 이웃 낱말을 안 쓴다 (D-66 ⑸)", () => {
