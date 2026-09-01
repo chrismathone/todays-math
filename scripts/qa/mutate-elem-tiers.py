@@ -1831,6 +1831,27 @@ G6_MUTS = [
         "    const ans = total - yes;",
         "    const ans = total - yes + 1;",
     ),
+    # ── 4차분(물결 4) — 2-1-5 · 1-5-2 ──
+    (
+        "🔴 유일성을 «기약» 을 넣고 센다 (2-1-5) — 지면에 답이 둘인 문항이 나간다",
+        "      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);",
+        "      for (let s = 1; s < d; s += 1)\n        if (gcd(s, d) === 1 && (w * d + s) % a === 0) hit.push(s);",
+    ),
+    (
+        "유일성 가드 무르기 (2-1-5) — 조건을 지키는 진분수부가 여럿이어도 낸다",
+        "      if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다",
+        "      if (hit.length < 1) continue;",
+    ),
+    (
+        "반증 ⑥ 가드 제거 (1-5-2) — 순방향·±한 걸음으로 닿아도 좋다",
+        "        if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))",
+        "        if (false)",
+    ),
+    (
+        "🔴 운반체 뒤집기 (1-5-2) — 눈금 cm 가 아니라 «사람 수» 로 말한다",
+        "  `${t.item}${josa(t.item, \"이\", \"가\")} 차지하는 길이가 자연수 cm 입니다. ` +",
+        "  `${t.item}${josa(t.item, \"이\", \"가\")} 고른 학생 수가 자연수이고 ` +",
+    ),
 ]
 
 G4_MUTS = [
