@@ -62,6 +62,36 @@ export function tiersFullyFilled(rows: readonly UnitTiers[]): Difficulty[] {
   );
 }
 
+/**
+ * 🔴 **㉠ 이 못 보는 것 — 「하나 이상」과 「전부」는 다른 말이다.**
+ *
+ * ㉠ 은 「그 갈래를 내는 소단원이 **하나 이상**」만 묻는다. 그런데 `/elem-gen --preset`
+ * 은 **고른 소단원 하나**에서 배분대로 낸다 — 그 소단원에 그 갈래가 없으면
+ * `generateElementaryProblem` 이 **던진다**(「아직 채우지 않은 갈래입니다」).
+ * 그래서 ㉠ 만 있으면 «84/230 만 찬 상태에서 프리셋을 옮기는» 변경이 **초록으로
+ * 통과하고**, 원장님 도구가 146개 소단원에서 죽는다. 2026-09-01 에 실제로 재서
+ * 드러났다 — 제안값 `0/25/40/13/12/10` 을 230소단원에 대니 8문항에서 **328번**,
+ * 30문항에서 **1,130번** 던졌다.
+ *
+ * ⚠️ **`supportedTiers`(갈래)로 센다 — `listedForms`(문형)가 아니다.** 던지는 쪽이
+ *    갈래를 보기 때문이다(㉡ 은 반대로 문형을 본다 — 적재기가 문형을 돌므로).
+ *    오늘은 둘이 같은 수지만, 한쪽만 채우는 날 이 구분이 답을 가른다(D-114 ⑴).
+ */
+export function presetGaps(
+  presets: Record<string, Record<string, number>>,
+  rows: readonly { key: string; varTiers: readonly string[] }[],
+): { preset: string; tier: string; missing: number }[] {
+  const out: { preset: string; tier: string; missing: number }[] = [];
+  for (const [name, pct] of Object.entries(presets)) {
+    for (const tier of DIFFICULTY_LADDER) {
+      if ((pct[tier] ?? 0) <= 0) continue;
+      const missing = rows.filter((r) => !r.varTiers.includes(tier)).length;
+      if (missing > 0) out.push({ preset: name, tier, missing });
+    }
+  }
+  return out;
+}
+
 function engineRows(): UnitTiers[] {
   return elementaryUnits().map((u) => ({
     key: `${u.grade}|${u.section.split(" ")[0]}`,
@@ -90,6 +120,24 @@ describe("[D-115] 프리셋과 콘텐츠 — 양방향 가드", () => {
     }
   });
 
+  it("㉠′ 프리셋이 요구하는 갈래는 **모든** 소단원이 내야 한다 — /elem-gen 이 거기서 던진다", () => {
+    const rows = elementaryUnits().map((u) => ({
+      key: `${u.grade}|${u.section.split(" ")[0]}`,
+      varTiers: supportedTiers(u) as readonly string[],
+    }));
+    const gaps = presetGaps(TIER_PRESETS, rows);
+    expect(
+      gaps,
+      "프리셋이 요구하는 갈래를 못 내는 소단원이 있다 — `/elem-gen --preset` 이 거기서 던진다." +
+        gaps
+          .map(
+            (g) =>
+              `\n   · ${g.preset} «${g.tier}» — ${g.missing}개 소단원에 없다`,
+          )
+          .join("") +
+        "\n   콘텐츠를 먼저 채워라. 세는 법: supportedTiers 가 그 갈래를 돌려주는 소단원 수 (D-115 ⑻).",
+    ).toEqual([]);
+  });
   it("㉡ **230/230 이 문형으로 내는** 갈래는 프리셋 중 하나가 비율을 줘야 한다", () => {
     const filled = tiersFullyFilled(engineRows());
     for (const tier of filled) {
@@ -170,6 +218,70 @@ describe("[D-115] 프리셋과 콘텐츠 — 양방향 가드", () => {
       const zero = Object.fromEntries(DIFFICULTY_LADDER.map((t) => [t, 0]));
       expect(tiersDemanded({ 상위반: zero }, { ...zero, 응용: 3 })).toEqual([
         "응용",
+      ]);
+    });
+
+    // ── ㉠′ 의 눈금 — 이 자는 **오늘 살아 있는 프리셋에서는 늘 초록**이다
+    //    (심화중·심화상 비율이 0이라 요구가 없다). 그러니 지어낸 표로 직접 댄다.
+    const v = (key: string, varTiers: string[]) => ({ key, varTiers });
+    const CORE4 = ["연산", "기본", "응용", "심화하"];
+    const 제안상위반 = {
+      상위반: {
+        연산: 0,
+        기본: 25,
+        응용: 40,
+        심화하: 13,
+        심화중: 12,
+        심화상: 10,
+      },
+    };
+
+    it("🔴 양성 — 84/230 만 찬 상태에서 제안값을 옮기면 **구멍이 잡힌다**", () => {
+      // 실제 2026-09-01 모양: 넷은 전부, 심화중은 일부, 심화상은 더 적다.
+      const rows = [
+        v("초X|1-1-1", [...CORE4, "심화중", "심화상"]),
+        v("초X|1-1-2", [...CORE4, "심화중"]),
+        v("초X|1-1-3", CORE4),
+      ];
+      expect(presetGaps(제안상위반, rows)).toEqual([
+        { preset: "상위반", tier: "심화중", missing: 1 },
+        { preset: "상위반", tier: "심화상", missing: 2 },
+      ]);
+    });
+
+    // 🔴 이 음성 대조는 **리터럴**이다 — 살아 있는 `TIER_PRESETS` 를 넣었더니
+    //    제품을 옮기는 변이에서 눈금까지 같이 빨개졌다(2026-09-01, 변이로 확인).
+    //    눈금의 참이 제품에서 오면 그 눈금은 제품이 바뀔 때 뜻을 잃는다.
+    it("음성 — 확대 갈래에 비율을 안 주면 핵심 넷만 있는 표에서도 구멍이 없다", () => {
+      const 현행상위반 = {
+        상위반: {
+          연산: 0,
+          기본: 25,
+          응용: 40,
+          심화하: 35,
+          심화중: 0,
+          심화상: 0,
+        },
+      };
+      const rows = [v("초X|1-1-1", CORE4), v("초X|1-1-2", CORE4)];
+      expect(presetGaps(현행상위반, rows)).toEqual([]);
+    });
+
+    it("음성 — 다 채우면 제안값을 옮겨도 구멍이 없다 (옮겨도 되는 날의 모양)", () => {
+      const full = [...CORE4, "심화중", "심화상"];
+      const rows = [v("초X|1-1-1", full), v("초X|1-1-2", full)];
+      expect(presetGaps(제안상위반, rows)).toEqual([]);
+    });
+
+    it("🔴 **한 소단원만 빠져도 구멍이다** — 「거의 다 찼다」로 옮기면 그 하나에서 던진다", () => {
+      const full = [...CORE4, "심화중", "심화상"];
+      const rows = [
+        v("초X|1-1-1", full),
+        v("초X|1-1-2", full),
+        v("초X|1-1-3", [...CORE4, "심화상"]),
+      ];
+      expect(presetGaps(제안상위반, rows)).toEqual([
+        { preset: "상위반", tier: "심화중", missing: 1 },
       ]);
     });
   });
