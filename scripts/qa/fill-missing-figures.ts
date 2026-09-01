@@ -46,6 +46,12 @@ import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import { buildElemRows, buildMiddleRows } from "../import/load-engine-problems";
+import {
+  elementaryUnits,
+  generateElementaryForm,
+} from "../../src/lib/elementary/generate";
+import { generateMiddleComboProblem } from "../../src/lib/middle/combo";
+import { generateMiddleProblem } from "../../src/lib/middle/generate";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 
 const prisma = new PrismaClient();
@@ -176,6 +182,75 @@ export function dropIsCoveredByStem(
   };
 }
 
+/**
+ * **`externalId` 하나로 스펙을 되만든다 — 계획 파일이 필요 없다.**
+ *
+ * 🔴 처음엔 계획 파일을 훑어 만들었다. 그러면 **계획이 지금 요구하는 변형만** 나온다 —
+ * 214행 중 **104행이 «못 만든 것»으로 빠졌다.** 그 행들은 앞 회차가 다른 벌 수로 넣은
+ * 것이라 지금 계획에 그 변형 번호가 없다. 계획을 분모로 삼는 순간, **안 뽑힌 변형은
+ * 구조적으로 0**이 된다(2026-08-25 「재는 단위를 산출물에 매지 마라」와 같은 자리).
+ *
+ * `externalId` 는 생성 입력을 **전부** 담는다(`refresh-engine-figures.ts` 머리말이 적어 둔
+ * 근거다). 그래서 엔진을 직접 부르면 계획과 무관하게 되만들어진다.
+ *
+ * ⚠️ 중등 유형 키에는 `|` 가 들어 있다(`1-2|다각형|04`). 그래서 앞에서 자르지 말고
+ *    **꼬리에서** 자른다 — `…|s{씨앗}|v{변형}|{문항형식}`.
+ */
+export function specFromExternalId(
+  externalId: string,
+): Record<string, unknown> | null {
+  const mid = /^engine-mid:(.+)\|s(\d+)\|v(\d+)\|[^|]+$/.exec(externalId);
+  if (mid) {
+    try {
+      const p = generateMiddleProblem(
+        mid[1]!,
+        Number(mid[2]),
+        Number(mid[3]),
+      ) as {
+        figureSpec?: unknown;
+      };
+      return (p.figureSpec as Record<string, unknown>) ?? null;
+    } catch {
+      return null;
+    }
+  }
+  const combo = /^engine-mid-combo:(.+)\|s(\d+)\|v(\d+)\|[^|]+$/.exec(
+    externalId,
+  );
+  if (combo) {
+    try {
+      const p = generateMiddleComboProblem(
+        combo[1]!,
+        Number(combo[2]),
+        Number(combo[3]),
+      ) as { figureSpec?: unknown };
+      return (p.figureSpec as Record<string, unknown>) ?? null;
+    } catch {
+      return null;
+    }
+  }
+  const elem =
+    /^engine-elem:([^|]+)\|([^|]+)\|([^|]+)\|f([^|]+)\|[^|]+\|s(\d+)$/.exec(
+      externalId,
+    );
+  if (elem) {
+    const unit = elementaryUnits().find(
+      (u) =>
+        u.grade === elem[1] && u.chapter === elem[2] && u.section === elem[3],
+    );
+    if (!unit) return null;
+    try {
+      const p = generateElementaryForm(unit, Number(elem[5]), elem[4]!) as {
+        figureSpec?: unknown;
+      };
+      return (p.figureSpec as Record<string, unknown>) ?? null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
 /** externalId → 그 행의 figureSpec. 계획 파일 전부를 훑어 한 번만 만든다. */
 function buildSpecIndex(
   planGlobDir: string,
@@ -237,10 +312,20 @@ async function main(): Promise<void> {
   // 🔴 **분모를 먼저 세어 찍는다** — 「고친 것 + 건너뛴 것」이 대상 수와 안 맞으면 멈춘다.
   const noSpec: string[] = [];
   const todo: InputRow[] = [];
+  let direct = 0;
   for (const r of input) {
+    if (!specs.has(r.external_id)) {
+      // 계획에 없으면 **externalId 로 직접** 되만든다 — 계획을 분모로 삼지 않는다.
+      const s2 = specFromExternalId(r.external_id);
+      if (s2) {
+        specs.set(r.external_id, s2);
+        direct += 1;
+      }
+    }
     if (specs.has(r.external_id)) todo.push(r);
     else noSpec.push(r.external_id);
   }
+  console.log(`externalId 로 직접 되만든 것 ${direct}행`);
   console.log(
     `스펙을 되만든 것 ${todo.length} · 못 만든 것 ${noSpec.length}` +
       (noSpec.length > 0 ? ` (예: ${noSpec.slice(0, 3).join(", ")})` : ""),
