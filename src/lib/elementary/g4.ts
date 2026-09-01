@@ -18632,9 +18632,16 @@ function tier23Mid(unit: UnitSeed, rng: Rng): ElemProblem {
  * 둘 다 **실제로 만들어지는 삼각형이어야** 밭에 담는다. 한쪽이 애초에 안 서면 굳힘이
  * 아무 일도 안 하고 「$a$ 는 늘 나머지 한 변」이 100% 지름길이 된다.
  *
- * 굳히는 것은 **가장 짧은 변의 길이**다 — 두 가지의 최단 변이 서로 다른 자리만 담고,
- * 문턱 $t$ 를 그 사이에 놓는다. 「$t$보다 길다」와 「$t$보다 짧다」를 **둘 다** 만들어
- * 죽는 쪽이 씨앗마다 갈리게 한다(실측 ㉮ 45.1% · ㉯ 54.9%).
+ * 🔴 **굳히는 것은 «길이가 같은 두 변이 아닌 나머지 한 변»이다** — ㉮ 는 $S-2a$,
+ * ㉯ 는 $a$ 다. 그 둘의 **순서가 $S=3a$ 에서 뒤집힌다**($S<3a$ 면 $S-2a<a$, $S>3a$ 면
+ * 그 반대). 그래서 「$t$보다 길다/짧다」라는 **같은 문구가 무리마다 다른 가지**를 살린다.
+ *
+ * ⚠️ **처음 판은 «가장 짧은 변»을 견줬고, 그것이 결함이었다.** 밭이 늘 $S<3a$ 라
+ *    최단 변의 순서가 **구조적으로 고정**돼 「깁니다 → ㉯ · 짧습니다 → ㉮」가 **100%** 였다
+ *    (`measure-elem-g4w4-shortcuts.ts` 의 「문구만 보고 갈래를 고른다」 축이 잰 값).
+ *    변이 하네스가 먼저 신호를 줬다 — 「최단 변이 같아도 넣는다」·「㉮ 가 삼각형이
+ *    아니어도 넣는다」가 **산출물을 하나도 안 바꿨다**(그 가드들이 죽어 있었다는 뜻이고,
+ *    죽어 있던 까닭이 곧 순서가 고정이라는 사실이었다). 열쇠를 바꾸니 **68.0%** 가 됐다.
  *
  * ⚠️ **삼각형 부등식은 «생성 필터»로만 쓴다.** 발문·해설이 근거로 쓰면 초4 교과 밖이라
  *    반증 ③ 이다(토대 §3 2-2 함정 ①). 여기서는 밭을 만들 때만 쓴다.
@@ -18646,7 +18653,7 @@ const ISO_SIDE_FIELD: {
   side: number;
   bar: number;
   longer: boolean;
-  pairSum: number;
+  takeA: boolean;
 }[] = (() => {
   const stands = (x: number, y: number, z: number) =>
     x > 0 && y > 0 && z > 0 && x + y > z && y + z > x && z + x > y;
@@ -18655,42 +18662,30 @@ const ISO_SIDE_FIELD: {
     side: number;
     bar: number;
     longer: boolean;
-    pairSum: number;
+    takeA: boolean;
   }[] = [];
   for (let total = 20; total <= 60; total += 1) {
     for (let side = 5; side < total; side += 1) {
       const oddA = total - 2 * side;
-      // 🔴 가장 짧은 변을 $5\,$cm 이상으로 둔다. $(20,20,2)$ 도 삼각형이지만 지면에서는
-      //    바늘처럼 보이고, 「가장 짧은 변이 …보다 길다」가 사실상 한 눈에 갈린다.
+      // 🔴 어느 변도 $5\,$cm 아래로 안 간다. $(20,20,2)$ 도 삼각형이지만 지면에서는
+      //    바늘처럼 보이고, 「…보다 길다」가 사실상 한 눈에 갈린다.
       if (oddA < 5 || oddA === side) continue;
       if (!stands(side, side, oddA)) continue;
       if ((total - side) % 2 !== 0) continue;
       const pairB = (total - side) / 2;
       if (pairB === side || pairB < 5) continue;
       if (!stands(pairB, pairB, side)) continue;
-      const minA = Math.min(side, oddA);
-      const minB = Math.min(pairB, side);
-      if (minA === minB) continue;
-      const lo = Math.min(minA, minB);
-      const hi = Math.max(minA, minB);
+      // 견주는 값 — ㉮ 의 나머지 한 변은 `oddA`, ㉯ 의 나머지 한 변은 `side` 다.
+      const lo = Math.min(oddA, side);
+      const hi = Math.max(oddA, side);
       for (let bar = lo; bar < hi; bar += 1) {
-        // 「가장 짧은 변이 $bar$ 보다 길다」 → 최단이 큰 쪽만 남는다.
-        out.push({
-          total,
-          side,
-          bar,
-          longer: true,
-          pairSum: minA > bar ? 2 * side : total - side,
-        });
-        // 「$bar$ 보다 짧다」 → 최단이 작은 쪽만 남는다($bar$ 가 lo 와 같으면 둘 다 죽는다).
+        // 문턱이 발문에 이미 적힌 한 변과 같으면 같은 수가 두 뜻으로 나온다 — 뺀다.
+        if (bar === side) continue;
+        // 「나머지 한 변이 $bar$ 보다 길다」 → 그 값이 큰 쪽만 남는다.
+        out.push({ total, side, bar, longer: true, takeA: oddA > bar });
+        // 「$bar$ 보다 짧다」 → 작은 쪽만 남는다($bar$ 가 lo 와 같으면 둘 다 죽는다).
         if (bar > lo) {
-          out.push({
-            total,
-            side,
-            bar,
-            longer: false,
-            pairSum: minA < bar ? 2 * side : total - side,
-          });
+          out.push({ total, side, bar, longer: false, takeA: oddA < bar });
         }
       }
     }
@@ -18703,9 +18698,9 @@ const ISO_SIDE_FIELD: {
  *
  * 기본은 같은 마디를 열되 **두 가지를 다 답으로 둔다**(집합 얼굴) — 굳히지 않으므로
  * 심화중 잣대를 통과하지 못한다(반증 ⑤). 응용은 「길이가 같은 두 변이 **아닌** 나머지
- * 한 변」이라고 못 박아 마디가 아예 안 열린다. 여기서는 그 말을 지우고, **가장 짧은
- * 변의 길이**라는 조건 한 줄이 한 가지를 죽인다. 답(같은 두 변의 합)까지 가지 않고
- * 최단 변만 견주어 닫으므로 중이다(D-115 ⑾).
+ * 한 변의 길이가 $16\,$cm일 때」로 **값을 못 박아** 마디가 아예 안 열린다. 여기서는 그
+ * 값을 **범위**로만 주어, 두 가지를 다 만든 뒤 그 한 변을 견주어야 하나가 남는다.
+ * 답(같은 두 변의 합)까지 가지 않고 나머지 한 변만 견주어 닫으므로 중이다(D-115 ⑾).
  */
 function tier221Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   return unlessForward(() => tier221MidRaw(unit, rng));
@@ -18715,28 +18710,26 @@ function tier221MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const f = pick(rng, ISO_SIDE_FIELD);
   const oddA = f.total - 2 * f.side;
   const pairB = (f.total - f.side) / 2;
-  const minA = Math.min(f.side, oddA);
-  const minB = Math.min(pairB, f.side);
-  const takeA = f.pairSum === 2 * f.side;
+  const pairSum = f.takeA ? 2 * f.side : f.total - f.side;
   return makeDeep(
     unit,
     `세 변의 길이의 합이 ${cm(f.total)}인 이등변삼각형이 있습니다. 이 삼각형의 한 변의 ` +
-      `길이는 ${cm(f.side)}이고, 가장 짧은 변의 길이는 ${cm(f.bar)}보다 ` +
-      `${f.longer ? "깁니다" : "짧습니다"}. 길이가 같은 두 변의 길이의 합은 몇 cm인가?`,
-    cm(f.pairSum),
+      `길이는 ${cm(f.side)}이고, 길이가 같은 두 변이 아닌 나머지 한 변의 길이는 ` +
+      `${cm(f.bar)}보다 ${f.longer ? "깁니다" : "짧습니다"}. 길이가 같은 두 변의 길이의 ` +
+      `합은 몇 cm인가?`,
+    cm(pairSum),
     [
       `이등변삼각형은 길이가 같은 변이 두 개입니다. ${cm(f.side)}인 변이 길이가 같은 두 ` +
         `변 중 하나이면 나머지 한 변은 ${expr(`${f.total}-${f.side}\\times2=${oddA}`)} 이고, ` +
         `${cm(f.side)}인 변이 나머지 한 변이면 길이가 같은 두 변은 각각 ` +
         `${expr(`(${f.total}-${f.side})\\div2=${pairB}`)} 입니다. 어느 쪽인지 말하지 ` +
         `않았으므로 두 가지를 다 생각해야 합니다.`,
-      `앞의 경우 세 변은 ${cm(f.side)}, ${cm(f.side)}, ${cm(oddA)}이므로 가장 짧은 변은 ` +
-        `${cm(minA)}이고, 뒤의 경우 세 변은 ${cm(pairB)}, ${cm(pairB)}, ${cm(f.side)}이므로 ` +
-        `가장 짧은 변은 ${cm(minB)}입니다. 가장 짧은 변이 ${cm(f.bar)}보다 ` +
-        `${f.longer ? "길므로" : "짧으므로"} ${takeA ? "앞" : "뒤"}의 경우입니다. ` +
+      `앞의 경우 나머지 한 변은 ${cm(oddA)}이고, 뒤의 경우 나머지 한 변은 ` +
+        `${cm(f.side)}입니다. 나머지 한 변이 ${cm(f.bar)}보다 ` +
+        `${f.longer ? "길므로" : "짧으므로"} ${f.takeA ? "앞" : "뒤"}의 경우입니다. ` +
         `그러므로 길이가 같은 두 변의 길이의 합은 ` +
-        `${takeA ? expr(`${f.side}\\times2=${f.pairSum}`) : expr(`${f.total}-${f.side}=${f.pairSum}`)} ` +
-        `에서 ${cm(f.pairSum)}입니다.`,
+        `${f.takeA ? expr(`${f.side}\\times2=${pairSum}`) : expr(`${f.total}-${f.side}=${pairSum}`)} ` +
+        `에서 ${cm(pairSum)}입니다.`,
     ],
   );
 }
@@ -18745,46 +18738,65 @@ function tier221MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
  * **2-2-2 심화중의 밭** — 각 축에서 같은 마디를 연다. 2-2-1 과 **다른 것을 견준다**:
  * 저쪽은 변의 길이, 이쪽은 **크기가 같은 두 각의 합**이다.
  *
- *   ㉮ $a^\circ$ 가 나머지 한 각(꼭지각) → 같은 두 각의 합 $180-a$, 가장 큰 각 $(180-a)\div2$
- *   ㉯ $a^\circ$ 가 같은 두 각 중 하나   → 같은 두 각의 합 $2a$,     가장 큰 각 $180-2a$
+ *   ㉮ $a^\circ$ 가 나머지 한 각(꼭지각) → 같은 두 각은 각각 $(180-a)\div2$, 합 $180-a$
+ *   ㉯ $a^\circ$ 가 같은 두 각 중 하나   → 나머지 한 각은 $180-2a$,        합 $2a$
  *
- * $a<60$ 으로 잡아 두 가지 모두 가장 큰 각이 $a^\circ$ 가 **아니게** 한다 — 그러면
- * 답이 발문의 수와 같아지지 않는다(`answerPrintedOnPage`). $180-a$ 가 짝수여야 하므로
- * $a$ 는 짝수다. 정삼각형($a=60$)은 두 가지가 하나로 겹쳐 마디가 안 열리므로 뺀다.
+ * 🔴 **두 합의 순서가 $a=60^\circ$ 에서 뒤집힌다** — $a<60$ 이면 $2a<180-a$, $a>60$ 이면
+ * 그 반대다. 그래서 「$s$보다 크다/작다」라는 **같은 문구가 무리마다 다른 가지**를 살린다.
+ * 처음 판은 $a<60$ 만 담았고, 그러면 「크다 → ㉮」가 **100%** 인 지름길이 된다
+ * (2-2-1 이 물린 그 자리 — `measure-elem-g4w4-shortcuts.ts` 가 잰다). 지금은 **65.3%** 다.
  *
- * 문턱 $s$ 는 $2a$ 와 $180-a$ **사이**에서 뽑는다. 「$s$보다 크다」면 ㉮, 「작다」면 ㉯ 가
- * 남는다 — 두 문구를 다 만들어 죽는 쪽이 갈리게 한다.
+ * ⚠️ 물음이 「가장 큰 각」이면 $a>60$ 무리에서 답이 $a$ 그 자체가 되어 **발문에 그대로**
+ *    있게 된다(`answerPrintedOnPage`). 그래서 **두 무리에 다 서는** 물음 하나로 바꿨다 —
+ *    「가장 큰 각과 가장 작은 각의 크기의 차」(㉮ 는 $|3a-180|\div2$, ㉯ 는 $|3a-180|$).
+ * ⚠️ $180-a$ 가 짝수여야 하므로 $a$ 는 짝수다. $a=60$(정삼각형)은 두 가지가 하나로 겹쳐
+ *    마디가 안 열리므로 뺀다. $a<90$ 이라야 ㉯ 의 나머지 한 각이 양수다.
+ * ⚠️ $20^\circ$ 부터다 — 그보다 작은 각은 1-2 가 재는 각의 띠 밖이고, 두 합이 극단으로
+ *    갈라져 문턱이 아무 일도 안 하는 것처럼 보인다.
  */
 const ISO_ANGLE_FIELD: {
   given: number;
   bar: number;
   bigger: boolean;
-  answer: number;
+  takeA: boolean;
 }[] = (() => {
-  const out: { given: number; bar: number; bigger: boolean; answer: number }[] =
+  const out: { given: number; bar: number; bigger: boolean; takeA: boolean }[] =
     [];
-  // 🔴 주어진 각은 $20^\circ$ 부터다. $2^\circ$·$6^\circ$ 는 지면에서 그릴 수도 잴 수도
-  //    없는 각이고(1-2 가 재는 각의 띠 밖이다), 두 가지의 «같은 두 각의 합»이 $4$와 $178$
-  //    처럼 극단으로 갈라져 문턱이 아무 일도 안 하는 것처럼 보인다.
-  for (let given = 20; given <= 58; given += 2) {
+  for (let given = 20; given <= 88; given += 2) {
+    if (given === 60) continue;
     const sumApex = 180 - given; // ㉮ 같은 두 각의 합
     const sumBase = 2 * given; // ㉯ 같은 두 각의 합
-    if (sumApex <= sumBase) continue;
-    for (let bar = sumBase + 1; bar < sumApex; bar += 1) {
-      out.push({ given, bar, bigger: true, answer: (180 - given) / 2 });
-      out.push({ given, bar, bigger: false, answer: 180 - 2 * given });
+    const gapA = Math.abs(3 * given - 180) / 2; // ㉮ 최대−최소
+    const gapB = Math.abs(3 * given - 180); // ㉯ 최대−최소
+    if (!Number.isInteger(gapA) || gapA <= 0 || gapA === gapB) continue;
+    // 답이 발문에 그대로 있으면 다른 축의 결함이 된다(`answerPrintedOnPage`).
+    if (gapA === given || gapB === given) continue;
+    const lo = Math.min(sumApex, sumBase);
+    const hi = Math.max(sumApex, sumBase);
+    for (let bar = lo + 1; bar < hi; bar += 1) {
+      if (bar === gapA || bar === gapB) continue;
+      out.push({ given, bar, bigger: true, takeA: sumApex > bar });
+      out.push({ given, bar, bigger: false, takeA: sumApex < bar });
     }
   }
   return out;
 })();
+
+/** 세 각을 오름차순으로 — ㉮ 는 $(a,\,p,\,p)$, ㉯ 는 $(a,\,a,\,q)$ 다. */
+function isoAngles(given: number, takeA: boolean): number[] {
+  const three = takeA
+    ? [given, (180 - given) / 2, (180 - given) / 2]
+    : [given, given, 180 - 2 * given];
+  return [...three].sort((x, y) => x - y);
+}
 
 /**
  * **2-2-2 5단 심화중 — 주어진 한 각이 «어느 쪽»인지 안 말한다.**
  *
  * 연산·기본·응용은 「크기가 같은 두 각」·「두 밑각」·「꼭지각」을 **말로 지목한다** —
  * 마디가 안 열린다. 여기서는 그 말을 지우고, 「크기가 같은 두 각의 합」이 문턱보다
- * 큰지 작은지 한 줄이 한 가지를 죽인다. 답(가장 큰 각)까지 가지 않고 «합»만 견주어
- * 닫으므로 중이다.
+ * 큰지 작은지 한 줄이 한 가지를 죽인다. 답(가장 큰 각과 가장 작은 각의 차)까지 가지
+ * 않고 «합»만 견주어 닫으므로 중이다(D-115 ⑾).
  */
 function tier222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   return unlessForward(() => tier222MidRaw(unit, rng));
@@ -18794,25 +18806,24 @@ function tier222MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const f = pick(rng, ISO_ANGLE_FIELD);
   const sumApex = 180 - f.given;
   const sumBase = 2 * f.given;
+  const three = isoAngles(f.given, f.takeA);
+  const small = three[0]!;
+  const big = three[2]!;
   return makeDeep(
     unit,
     `이등변삼각형의 한 각의 크기가 ${deg(f.given)}입니다. 이 삼각형에서 크기가 같은 두 ` +
       `각의 크기의 합은 ${deg(f.bar)}보다 ${f.bigger ? "큽니다" : "작습니다"}. ` +
-      `이 삼각형에서 가장 큰 각의 크기는 몇 도인가?`,
-    deg(f.answer),
+      `이 삼각형에서 가장 큰 각과 가장 작은 각의 크기의 차는 몇 도인가?`,
+    deg(big - small),
     [
       `이등변삼각형은 크기가 같은 두 각이 있습니다. ${deg(f.given)}가 그 두 각 중 ` +
         `하나이면 두 각의 합은 ${expr(`${f.given}\\times2=${sumBase}`)} 이고, ` +
         `${deg(f.given)}가 나머지 한 각이면 두 각의 합은 ` +
         `${expr(`180-${f.given}=${sumApex}`)} 입니다.`,
       `그 합이 ${deg(f.bar)}보다 ${f.bigger ? "크므로" : "작으므로"} ${deg(f.given)}는 ` +
-        `${f.bigger ? "나머지 한 각" : "크기가 같은 두 각 중 하나"}입니다. ` +
-        `${
-          f.bigger
-            ? `크기가 같은 두 각은 각각 ${expr(`${sumApex}\\div2=${f.answer}`)} 이고`
-            : `나머지 한 각은 ${expr(`180-${sumBase}=${f.answer}`)} 이고`
-        } ` +
-        `${deg(f.given)}보다 크므로 가장 큰 각의 크기는 ${deg(f.answer)}입니다.`,
+        `${f.takeA ? "나머지 한 각" : "크기가 같은 두 각 중 하나"}입니다. ` +
+        `세 각의 크기는 ${three.map((v) => deg(v)).join(", ")}이므로 ` +
+        `${expr(`${big}-${small}=${big - small}`)} 에서 ${deg(big - small)}입니다.`,
     ],
   );
 }

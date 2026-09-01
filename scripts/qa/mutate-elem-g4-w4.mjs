@@ -46,34 +46,43 @@ const MUTATIONS = [
     to: "      out.push({ angle, after: t, early: true, hour: early, kind: k1 });",
   },
   {
-    // 두 삼각형의 **최단 변이 같아도** 넣는다 → 조건이 둘을 못 가른다.
-    label: "2-2-1 밭 — 두 가지의 최단 변이 같아도 넣는다",
-    from: "      if (minA === minB) continue;",
-    to: "      if (minA === minB + 1000) continue;",
-  },
-  {
-    // ㉮ 가 **삼각형이 아니어도** 넣는다 → 마디가 애초에 하나뿐이다.
-    label: "2-2-1 밭 — ㉮ 가 삼각형이 아니어도 넣는다",
-    from: "      if (!stands(side, side, oddA)) continue;",
-    to: "      if (!stands(side, side, oddA) && false) continue;",
+    // 문턱이 발문에 이미 적힌 한 변과 **같아도** 넣는다 → 같은 수가 두 뜻으로 나온다.
+    label: "2-2-1 밭 — 문턱이 «한 변»과 같아도 넣는다",
+    from: "        if (bar === side) continue;",
+    to: "        if (bar === side + 1000) continue;",
   },
   {
     // 답을 **한쪽으로 고정** → 굳힘이 장식이 된다(지름길 100%).
     label: "2-2-1 — 답을 늘 «주어진 변이 나머지 한 변»으로 고정",
-    from: "          pairSum: minA > bar ? 2 * side : total - side,",
-    to: "          pairSum: total - side,",
+    from: "  const pairSum = f.takeA ? 2 * f.side : f.total - f.side;",
+    to: "  const pairSum = f.total - f.side;",
+  },
+  {
+    // 문턱 창을 한 칸 넓힌다 → 조건이 **아무도 안 남기는** 자리가 생긴다.
+    label: "2-2-1 밭 — 문턱 창을 $hi$ 까지 넓힌다 (둘 다 죽는 자리)",
+    from: "      for (let bar = lo; bar < hi; bar += 1) {",
+    to: "      for (let bar = lo; bar <= hi; bar += 1) {",
   },
   {
     // 문턱이 두 합 **사이**가 아니어도 넣는다 → 둘 다 살거나 둘 다 죽는다.
     label: "2-2-2 밭 — 문턱이 두 합 사이가 아니어도 넣는다",
-    from: "    for (let bar = sumBase + 1; bar < sumApex; bar += 1) {",
-    to: "    for (let bar = 1; bar < sumApex; bar += 1) {",
+    from: "    for (let bar = lo + 1; bar < hi; bar += 1) {",
+    to: "    for (let bar = 1; bar < hi; bar += 1) {",
   },
   {
-    // 「작습니다」 자리의 답을 반대 갈래 값으로 → 조건과 답이 어긋난다.
-    label: "2-2-2 밭 — 「작습니다」의 답을 반대 갈래 값으로",
-    from: "      out.push({ given, bar, bigger: false, answer: 180 - 2 * given });",
-    to: "      out.push({ given, bar, bigger: false, answer: (180 - given) / 2 });",
+    // 「작습니다」 자리의 답을 반대 갈래로 → 조건과 답이 어긋난다.
+    label: "2-2-2 밭 — 「작습니다」의 갈래를 반대로",
+    from: "      out.push({ given, bar, bigger: false, takeA: sumApex < bar });",
+    to: "      out.push({ given, bar, bigger: false, takeA: sumApex > bar });",
+  },
+  {
+    /*
+     * 🔴 **$a>60$ 무리를 다시 뺀다** — 처음 판이 그랬고, 그러면 두 합의 순서가 고정돼
+     * 「크다 → 나머지 한 각」이 **100%** 가 된다. 자가 그것을 잡아야 한다.
+     */
+    label: "2-2-2 밭 — $a>60$ 무리를 뺀다 (문구→갈래 100%)",
+    from: "  for (let given = 20; given <= 88; given += 2) {",
+    to: "  for (let given = 20; given <= 58; given += 2) {",
   },
   {
     // 오르는 폭 $1$ 을 다시 허용 → $T$ 가 하나로 굳어 「가장 작은 수」가 빈말이 된다.
@@ -143,13 +152,13 @@ const MUTATIONS = [
   },
   {
     label: "2-2-1 해설 — 고른 «앞/뒤의 경우»를 맞바꾼다",
-    from: '        `${f.longer ? "길므로" : "짧으므로"} ${takeA ? "앞" : "뒤"}의 경우입니다. ` +',
-    to: '        `${f.longer ? "길므로" : "짧으므로"} ${takeA ? "뒤" : "앞"}의 경우입니다. ` +',
+    from: '        `${f.longer ? "길므로" : "짧으므로"} ${f.takeA ? "앞" : "뒤"}의 경우입니다. ` +',
+    to: '        `${f.longer ? "길므로" : "짧으므로"} ${f.takeA ? "뒤" : "앞"}의 경우입니다. ` +',
   },
   {
     label: "2-2-2 해설 — 고른 갈래 이름을 맞바꾼다",
-    from: '        `${f.bigger ? "나머지 한 각" : "크기가 같은 두 각 중 하나"}입니다. ` +',
-    to: '        `${f.bigger ? "크기가 같은 두 각 중 하나" : "나머지 한 각"}입니다. ` +',
+    from: '        `${f.takeA ? "나머지 한 각" : "크기가 같은 두 각 중 하나"}입니다. ` +',
+    to: '        `${f.takeA ? "크기가 같은 두 각 중 하나" : "나머지 한 각"}입니다. ` +',
   },
   {
     label: "2-5-2 해설 — 앞쪽 최댓값을 가진 때를 «바로 앞 때»로 적는다",

@@ -146,22 +146,29 @@ export function measureIsoSide(count: number): TierReport {
   let open = 0;
   let asPair = 0;
   let asOdd = 0;
+  let byWord = 0;
   for (const seed of seeds) {
     const p = generateElementaryProblem(unit, seed, "심화중");
     const [total, side, bar] = nums(p.content, CM) as [number, number, number];
     const answer = nums(p.answer, CM)[0]!;
     const oddA = total - 2 * side;
     const pairB = (total - side) / 2;
-    // 마디가 열렸다 = 두 가지가 **둘 다 삼각형이고** 가장 짧은 변이 서로 다르다.
+    // 마디가 열렸다 = 두 가지가 **둘 다 삼각형이고** «나머지 한 변»이 서로 다르다.
     const standsA = oddA > 0 && side + side > oddA && side + oddA > side;
     const standsB =
       Number.isInteger(pairB) && pairB > 0 && pairB + pairB > side;
-    const minA = Math.min(side, oddA);
-    const minB = Math.min(pairB, side);
-    if (standsA && standsB && minA !== minB) open += 1;
-    if (2 * side === answer) asPair += 1;
+    if (standsA && standsB && oddA !== side) open += 1;
+    const takeA = 2 * side === answer;
+    if (takeA) asPair += 1;
     if (total - side === answer) asOdd += 1;
     if (bar <= 0) throw new Error(`2-2-1 s${seed}: 문턱을 못 읽었다`);
+    /*
+     * 🔴 **견주지 않고 «조건 문구»만 보고 갈래를 고른다.**
+     * 처음 판(견주는 값이 «가장 짧은 변»)에서는 이 규칙이 **100%** 였다 — 밭이 늘
+     * $S<3a$ 라 최단 변의 순서가 구조적으로 고정이었기 때문이다. 견주는 값을
+     * «나머지 한 변»으로 바꾸면 순서가 $S=3a$ 에서 뒤집혀 이 규칙이 무너진다.
+     */
+    if (p.content.includes("보다 깁니다") ? !takeA : takeA) byWord += 1;
   }
   const n = seeds.length;
   return {
@@ -177,6 +184,12 @@ export function measureIsoSide(count: number): TierReport {
         chance: 0.5,
       },
       { name: "늘 «주어진 변이 나머지 한 변»으로", hit: asOdd, n, chance: 0.5 },
+      {
+        name: "🔴 견주지 않고 문구만 — 「깁니다→나머지 한 변 · 짧습니다→같은 두 변」",
+        hit: byWord,
+        n,
+        chance: 0.5,
+      },
     ],
   };
 }
@@ -189,16 +202,28 @@ export function measureIsoAngle(count: number): TierReport {
   let open = 0;
   let asApex = 0;
   let asBase = 0;
+  let byWord = 0;
   for (const seed of seeds) {
     const p = generateElementaryProblem(unit, seed, "심화중");
     const [given, bar] = nums(p.content, DEG) as [number, number];
     const answer = nums(p.answer, DEG)[0]!;
     const sumApex = 180 - given;
     const sumBase = 2 * given;
-    // 마디가 열렸다 = 두 갈래의 «같은 두 각의 합»이 문턱을 사이에 두고 갈린다.
-    if (sumBase < bar && bar < sumApex) open += 1;
-    if ((180 - given) / 2 === answer) asApex += 1;
-    if (180 - 2 * given === answer) asBase += 1;
+    // 마디가 열렸다 = 두 갈래의 «같은 두 각의 합»이 문턱을 **사이에 두고** 갈린다.
+    // ⚠️ $a>60$ 이면 두 합의 순서가 뒤집히므로 min/max 로 봐야 한다.
+    if (Math.min(sumApex, sumBase) < bar && bar < Math.max(sumApex, sumBase)) {
+      open += 1;
+    }
+    // 답은 「가장 큰 각 − 가장 작은 각」이다 — ㉮ 는 $|3a-180|\div2$, ㉯ 는 $|3a-180|$.
+    const takeA = Math.abs(3 * given - 180) / 2 === answer;
+    if (takeA) asApex += 1;
+    if (Math.abs(3 * given - 180) === answer) asBase += 1;
+    /*
+     * 🔴 **견주지 않고 «조건 문구»만 보고 갈래를 고른다.**
+     * 처음 판($a<60$ 만 담았다)에서는 이 규칙이 **100%** 였다. $a>60$ 무리를 넣으면
+     * 두 합의 순서가 뒤집혀 무너진다 — 2-2-1 이 물린 그 자리와 같은 부류다.
+     */
+    if (p.content.includes("보다 큽니다") ? takeA : !takeA) byWord += 1;
   }
   const n = seeds.length;
   return {
@@ -216,6 +241,12 @@ export function measureIsoAngle(count: number): TierReport {
       {
         name: "늘 «주어진 각이 같은 두 각 중 하나»로",
         hit: asBase,
+        n,
+        chance: 0.5,
+      },
+      {
+        name: "🔴 견주지 않고 문구만 — 「큽니다→나머지 한 각 · 작습니다→같은 두 각」",
+        hit: byWord,
         n,
         chance: 0.5,
       },

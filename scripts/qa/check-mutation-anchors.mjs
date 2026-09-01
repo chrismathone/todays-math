@@ -5,10 +5,26 @@
  * MUTATIONS 는 export 되어 있지 않으므로, 스크립트 원문에서 `from:` 다음의
  * **JS 문자열 리터럴**을 괄호 짝이 아니라 따옴표 상태기계로 떠낸다.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 
-const src = readFileSync("scripts/qa/mutate-elem-g4-w3.mjs", "utf8");
-const g4 = readFileSync("src/lib/elementary/g4.ts", "utf8").split("\r\n").join("\n");
+/**
+ * 🔴 **하네스 이름을 손으로 적지 않는다.** 처음에는 `mutate-elem-g4-w3.mjs` 하나를
+ * 박아 두었는데, 물결 4 가 `mutate-elem-g4-w4.mjs` 를 더한 날 이 자는 **아무 말도
+ * 안 했다** — 새 하네스의 앵커가 포맷에 죽어도 초록이다. 손 목록은 샌다(09 §4-22).
+ */
+const HARNESSES = readdirSync("scripts/qa")
+  .filter((f) => /^mutate-elem-g4-w\d+\.mjs$/.test(f))
+  .sort();
+if (HARNESSES.length === 0) {
+  console.log("🔴 g4 변이 하네스를 하나도 못 찾았다 — 이 자가 눈이 멀었다.");
+  process.exit(2);
+}
+const src = HARNESSES.map((f) =>
+  readFileSync(`scripts/qa/${f}`, "utf8"),
+).join("\n");
+const g4 = readFileSync("src/lib/elementary/g4.ts", "utf8")
+  .split("\r\n")
+  .join("\n");
 
 const BS = String.fromCharCode(92); // 역슬래시 한 글자 — 리터럴로 안 적는다
 

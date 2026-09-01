@@ -9,6 +9,12 @@
  *    남은 갈래의 지면을 하나도 안 바꾼다.
  * ⚠️ **그림 스펙도 찍는다** — 2-5-2 는 꺾은선 값이, 2-5-3 은 표의 지운 칸이
  *    발문 글자에 안 나타난다. 안 찍으면 그림만 흔드는 변이가 거부된다.
+ *
+ * 🔴 **씨앗은 열둘이다 — 여섯으로는 얇았다.** 물결 4 의 변이 「오르는 폭이 $1$ 이어도
+ *    넣는다」가 「산출물이 그대로다」로 **거부**됐는데, 재 보니 그 변이는 걸음이 $1$ 인
+ *    소재에서만 갈리고 그때도 절반은 같은 값이 나온다(둘의 범위가 겹친다). 씨앗 여섯 중
+ *    셋만 그 소재였고 셋이 다 겹쳤다 — 곧 **결함이 아니라 표본이 얇았던 것**이다.
+ *    「판정이 놀라운 값을 내면 재는 쪽을 먼저 의심하라」(2026-08-29).
  */
 import {
   elementaryUnits,
@@ -52,7 +58,7 @@ for (const code of CODES) {
   const tiers = supportedTiers(u);
   out.push(`${code}|갈래=${tiers.join(",")}`);
   for (const tier of tiers) {
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < 12; i += 1) {
       let line: string;
       try {
         const p = generateElementaryProblem(u, 20260901 + i * 6421, tier);

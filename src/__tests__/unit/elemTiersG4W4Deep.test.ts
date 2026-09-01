@@ -183,8 +183,6 @@ describe("1-2-3 심화중 — 시각 후보 둘을 «$6$시보다 이르다/늦�
       expect(p.answer, `s${seed}`).toBe(early ? kinds[0] : kinds[1]);
       // ⑷ 음성 대조 — 조건을 뒤집으면 **다른 쪽**이 답이다.
       expect(early ? kinds[1] : kinds[0], `s${seed}`).not.toBe(p.answer);
-      // 두 바늘이 겹치는 $12$시는 「이루는 각」이 없다.
-      for (const h of hours) expect(wrap(h), `s${seed}`).not.toBe(12);
       seen += 1;
     }
     expect(seen).toBe(SEEDS.length);
@@ -194,6 +192,25 @@ describe("1-2-3 심화중 — 시각 후보 둘을 «$6$시보다 이르다/늦�
     for (const seed of WIDE) {
       expect(gen("1-2-3", seed, "심화중").figureSpec, `s${seed}`).toBeNull();
     }
+  });
+
+  /**
+   * 🔴 **씨앗 열여섯으로는 이 검사가 초록이었다.** 변이 하네스가 「$12$시를 안 막는다」에
+   * 「초록 ← 가드가 아니다」를 냈다 — 두 바늘이 겹쳐 각이 $0^\circ$ 가 되는 자리를
+   * 표본이 한 번도 안 밟은 것이다. 넓은 훑기로 옮겼다.
+   */
+  it("$t$시간 뒤가 $12$시가 되지 않는다 — 두 바늘이 겹치면 «이루는 각»이 없다", () => {
+    let seen = 0;
+    for (const seed of WIDE) {
+      const p = gen("1-2-3", seed, "심화중");
+      const angle = grab(p.content, DEG)[0]!;
+      const after = grab(p.content, PLAIN)[1]!;
+      for (const h of [angle / 30, 12 - angle / 30]) {
+        expect(((h + after - 1) % 12) + 1, `s${seed}`).not.toBe(12);
+      }
+      seen += 1;
+    }
+    expect(seen).toBe(WIDE.length);
   });
 });
 
@@ -225,16 +242,20 @@ describe("2-2-1 심화중 — 두 삼각형을 «가장 짧은 변»이 가른�
         stands(pairB, pairB, side),
         `s${seed}: ㉯ ${pairB},${pairB},${side}`,
       ).toBe(true);
-      const minA = Math.min(side, oddA);
-      const minB = Math.min(pairB, side);
-      expect(minA, `s${seed}: 최단 변이 같으면 조건이 못 가른다`).not.toBe(
-        minB,
+      // 🔴 견주는 값은 **길이가 같은 두 변이 아닌 나머지 한 변**이다 — ㉮ 는 $S-2a$,
+      //    ㉯ 는 $a$. 그 둘의 순서가 $S=3a$ 에서 뒤집혀 「문구만 보고 고르기」가 무너진다.
+      expect(oddA, `s${seed}: 나머지 한 변이 같으면 조건이 못 가른다`).not.toBe(
+        side,
       );
+      expect(
+        bar,
+        `s${seed}: 문턱이 한 변과 같으면 같은 수가 두 뜻이 된다`,
+      ).not.toBe(side);
       // ⑶ 굳힘이 **정확히 하나**를 남긴다.
       const alive = [
-        { min: minA, sum: 2 * side },
-        { min: minB, sum: total - side },
-      ].filter((c) => (longer ? c.min > bar : c.min < bar));
+        { odd: oddA, sum: 2 * side },
+        { odd: side, sum: total - side },
+      ].filter((c) => (longer ? c.odd > bar : c.odd < bar));
       expect(alive, `s${seed}: 살아남은 가지`).toHaveLength(1);
       expect(p.answer, `s${seed}`).toContain(`$${alive[0]!.sum}\\,`);
       /*
@@ -245,12 +266,12 @@ describe("2-2-1 심화중 — 두 삼각형을 «가장 짧은 변»이 가른�
        *    만드는 일이고, 여기서 물을 것은 「이 문항에서 굳힘이 일을 했나」다.
        */
       const dead = [
-        { min: minA, sum: 2 * side },
-        { min: minB, sum: total - side },
+        { odd: oddA, sum: 2 * side },
+        { odd: side, sum: total - side },
       ].filter((c) => c.sum !== alive[0]!.sum);
       expect(dead, `s${seed}`).toHaveLength(1);
       expect(
-        longer ? dead[0]!.min > bar : dead[0]!.min < bar,
+        longer ? dead[0]!.odd > bar : dead[0]!.odd < bar,
         `s${seed}: 죽는 가지가 조건을 어기지 않는다 — 굳힘이 장식이다`,
       ).toBe(false);
       seen += 1;
@@ -290,23 +311,34 @@ describe("2-2-2 심화중 — 두 갈래를 «같은 두 각의 합»이 가른�
       // ⑵ 마디 — 두 갈래의 «같은 두 각의 합»이 서로 다르다.
       const sumApex = 180 - given;
       const sumBase = 2 * given;
-      expect(sumBase, `s${seed}`).toBeLessThan(sumApex);
-      // ⑶ 문턱이 **사이**에 있어야 정확히 하나가 죽는다.
-      expect(bar, `s${seed}: ${sumBase} < ${bar} < ${sumApex}`).toBeGreaterThan(
-        sumBase,
-      );
-      expect(bar, `s${seed}`).toBeLessThan(sumApex);
+      expect(sumApex, `s${seed}`).not.toBe(sumBase);
+      /*
+       * 🔴 **$a>60$ 무리가 있어야 한다.** $a<60$ 만 담으면 두 합의 순서가 구조적으로
+       * 고정이라 「크다 → 나머지 한 각」이 **100%** 인 지름길이 된다(자가 잰 값).
+       * 그래서 문턱은 두 합의 min/max **사이**여야 한다 — 순서를 가정하지 않는다.
+       */
+      const lo = Math.min(sumApex, sumBase);
+      const hi = Math.max(sumApex, sumBase);
+      expect(bar, `s${seed}: ${lo} < ${bar} < ${hi}`).toBeGreaterThan(lo);
+      expect(bar, `s${seed}`).toBeLessThan(hi);
+      // ⑶ 굳힘 — 답은 「가장 큰 각 − 가장 작은 각」이고 갈래마다 다르다.
       const answer = grab(p.answer, DEG)[0]!;
-      expect(answer, `s${seed}`).toBe(bigger ? sumApex / 2 : 180 - 2 * given);
-      // ⑷ 음성 대조 — 뒤집으면 다른 쪽.
-      expect(bigger ? 180 - 2 * given : sumApex / 2, `s${seed}`).not.toBe(
-        answer,
-      );
+      const gapA = Math.abs(3 * given - 180) / 2;
+      const gapB = Math.abs(3 * given - 180);
+      expect(gapA, `s${seed}`).not.toBe(gapB);
+      const takeA = bigger ? sumApex > bar : sumApex < bar;
+      expect(answer, `s${seed}`).toBe(takeA ? gapA : gapB);
+      // ⑷ 음성 대조 — **죽는 가지가 조건을 실제로 어긴다.**
+      expect(
+        bigger ? sumBase > bar : sumBase < bar,
+        `s${seed}: 죽는 가지가 조건을 어기지 않는다 — 굳힘이 장식이다`,
+      ).toBe(!takeA);
       // 답이 발문의 수와 같아지면 다른 축의 결함이다(`answerPrintedOnPage`).
       expect(answer, `s${seed}`).not.toBe(given);
       expect(answer, `s${seed}`).not.toBe(bar);
-      // 두 갈래 모두 «가장 큰 각»이 주어진 각이 아니어야 한다.
-      expect(given, `s${seed}`).toBeLessThan(60);
+      // 정삼각형($a=60$)은 두 가지가 하나로 겹쳐 마디가 안 열린다.
+      expect(given, `s${seed}`).not.toBe(60);
+      expect(given, `s${seed}`).toBeLessThan(90);
       seen += 1;
     }
     expect(seen).toBe(SEEDS.length);
@@ -592,16 +624,25 @@ function faultsIsoSide(content: string, solution: string): string[] {
   return bad;
 }
 
+/**
+ * ⚠️ **갈래 이름은 «크다/작다»만으로 못 정한다** — $a>60$ 이면 두 합의 순서가 뒤집히기
+ * 때문이고, 그 뒤집힘이 이 갈래의 지름길을 무너뜨리는 장치다. 그래서 이 검출기는 발문의
+ * 수까지 읽어 **어느 합이 살아남는지**를 셈한 뒤 문장과 맞대어 본다.
+ */
 function faultsIsoAngle(content: string, solution: string): string[] {
   const bad: string[] = [];
   const bigger = content.includes("보다 큽니다");
+  const [given, bar] = grab(content, DEG) as [number, number];
   const want = bigger ? "크므로" : "작으므로";
-  // 「크므로 … 나머지 한 각」·「작으므로 … 같은 두 각 중 하나」가 짝이다.
-  const branch = bigger ? "나머지 한 각" : "같은 두 각 중 하나";
+  const takeA = bigger ? 180 - given > bar : 180 - given < bar;
+  const branch = takeA ? "나머지 한 각" : "크기가 같은 두 각 중 하나";
+  const wrong = takeA ? "크기가 같은 두 각 중 하나" : "나머지 한 각";
   if (!solution.includes(want)) bad.push(`해설에 「${want}」가 없다`);
   if (!solution.includes(`${want} `)) bad.push(`판정 문장이 끊겼다`);
-  if (!solution.includes(branch))
+  if (!solution.includes(`${branch}입니다`))
     bad.push(`해설이 고른 갈래가 「${branch}」가 아니다`);
+  if (solution.includes(`${wrong}입니다`))
+    bad.push(`해설이 반대 갈래를 골랐다`);
   return bad;
 }
 
@@ -669,8 +710,8 @@ describe("해설의 «이유»가 성하다 — 값이 아니라 글자를 본�
     ).toEqual([]);
     expect(
       faultsIsoAngle(
-        "… 보다 큽니다. …",
-        "… 크므로 $6^\\circ$는 나머지 한 각입니다.",
+        "한 각의 크기가 $26^\\circ$입니다. 합은 $59^\\circ$보다 큽니다.",
+        "… 크므로 $26^\\circ$는 나머지 한 각입니다.",
       ),
     ).toEqual([]);
     // 양성 3 — 뒤집힌 짝.
@@ -682,8 +723,21 @@ describe("해설의 «이유»가 성하다 — 값이 아니라 글자를 본�
     ).toBeGreaterThan(0);
     expect(
       faultsIsoAngle(
-        "… 보다 큽니다. …",
-        "… 작으므로 $6^\\circ$는 같은 두 각 중 하나입니다.",
+        "한 각의 크기가 $26^\\circ$입니다. 합은 $59^\\circ$보다 큽니다.",
+        "… 작으므로 $26^\\circ$는 크기가 같은 두 각 중 하나입니다.",
+      ).length,
+    ).toBeGreaterThan(0);
+    // 🔴 **$a>60$ 무리** — 같은 「큽니다」인데 살아남는 갈래가 반대다.
+    expect(
+      faultsIsoAngle(
+        "한 각의 크기가 $70^\\circ$입니다. 합은 $120^\\circ$보다 큽니다.",
+        "… 크므로 $70^\\circ$는 크기가 같은 두 각 중 하나입니다.",
+      ),
+    ).toEqual([]);
+    expect(
+      faultsIsoAngle(
+        "한 각의 크기가 $70^\\circ$입니다. 합은 $120^\\circ$보다 큽니다.",
+        "… 크므로 $70^\\circ$는 나머지 한 각입니다.",
       ).length,
     ).toBeGreaterThan(0);
   });
