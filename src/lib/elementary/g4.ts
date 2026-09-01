@@ -19004,7 +19004,26 @@ function tableFigureHidden(
 function tier253Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const theme = pick(rng, themeShare(unit, LINE_THEMES));
   const f = pick(rng, TABLE_HIDE_FIELD);
-  const base = intBetween(rng, theme.base[0], theme.base[1]);
+  /*
+   * 🔴 **답이 발문에 그대로 있으면 안 된다.** 발문에는 때 이름의 수(「$10$일」)와 눈금 한
+   * 칸이 찍히는데, 걸음이 작은 소재(강낭콩·비의 양, `step` $2$)에서는 지워진 값이 그 수와
+   * **겹칠 수 있다** — 실측으로 씨앗 20260915 가 그랬다(답 $10\,$cm · 발문의 「$10$일」).
+   * 씨앗 열여섯으로는 안 걸렸고 **200 으로 넓히자 나왔다.**
+   * 그래서 첫 값을 고를 때 겹치지 않는 것만 고른다(다 겹치면 마지막 것을 쓴다 —
+   * 조용히 던지면 그 씨앗의 갈래가 통째로 사라진다).
+   */
+  const printed = new Set<number>([theme.step]);
+  for (const l of theme.labels) {
+    for (const m of l.math.matchAll(/\d+/g)) printed.add(Number(m[0]));
+  }
+  const bases: number[] = [];
+  for (let b = theme.base[0]; b <= theme.base[1]; b += 1) bases.push(b);
+  const clean = bases.filter(
+    (b) =>
+      !printed.has((b + f.answer.lo) * theme.step) &&
+      !printed.has((b + f.answer.hi) * theme.step),
+  );
+  const base = pick(rng, clean.length > 0 ? clean : bases);
   const cell = (v: number) => (base + v) * theme.step;
   const marks = [0];
   for (const g of f.gaps) marks.push(marks[marks.length - 1]! + g);

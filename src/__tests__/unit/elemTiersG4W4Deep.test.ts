@@ -58,6 +58,14 @@ import {
 
 import { expectCoreTiers, tiersOf } from "../helpers/elemTiers";
 
+/**
+ * 씨앗 둘 — 좁은 것은 **분모를 못 박는 자리**(반증 ⑥ 의 읽음/못 읽음)에만 쓴다.
+ *
+ * 🔴 **구조 검사는 전부 넓은 쪽으로 돈다.** 변이 하네스가 두 번 「초록 ← 가드가 아니다」를
+ * 냈는데 두 번 다 **가드가 아니라 표본이 얇았던 것**이다 — 「$12$시」와 「문턱 창을 $hi$
+ * 까지」가 밭의 **가장자리**에만 있어 씨앗 열여섯이 한 번도 안 밟았다.
+ * 「0 은 «깨끗»과 «못 셈»을 안 가른다」가 **시험의 표본**에 걸린 자리다.
+ */
 const SEEDS = Array.from({ length: 16 }, (_, i) => 20260901 + i * 101);
 const WIDE = Array.from({ length: 200 }, (_, i) => 20260901 + i * 7);
 
@@ -140,7 +148,7 @@ describe("초4 물결 4 — 등록", () => {
     let made = 0;
     for (const [code, tiers] of Object.entries(REGISTERED)) {
       for (const tier of tiers) {
-        for (const seed of SEEDS) {
+        for (const seed of WIDE) {
           const p = gen(code, seed, tier);
           expect(
             p.content.length,
@@ -153,7 +161,7 @@ describe("초4 물결 4 — 등록", () => {
         }
       }
     }
-    expect(made).toBe(5 * SEEDS.length);
+    expect(made).toBe(5 * WIDE.length);
   });
 });
 
@@ -167,7 +175,7 @@ describe("1-2-3 심화중 — 시각 후보 둘을 «$6$시보다 이르다/늦�
 
   it("후보가 둘이고, 둘이 서로 다른 답을 내며, 조건이 하나를 고른다", () => {
     let seen = 0;
-    for (const seed of SEEDS) {
+    for (const seed of WIDE) {
       const p = gen("1-2-3", seed, "심화중");
       const angle = grab(p.content, DEG)[0]!;
       const after = grab(p.content, PLAIN)[1]!;
@@ -185,7 +193,7 @@ describe("1-2-3 심화중 — 시각 후보 둘을 «$6$시보다 이르다/늦�
       expect(early ? kinds[1] : kinds[0], `s${seed}`).not.toBe(p.answer);
       seen += 1;
     }
-    expect(seen).toBe(SEEDS.length);
+    expect(seen).toBe(WIDE.length);
   });
 
   it("그림을 붙이지 않는다 — 시계를 그리면 시각이 바로 보여 마디가 닫힌다", () => {
@@ -217,7 +225,7 @@ describe("1-2-3 심화중 — 시각 후보 둘을 «$6$시보다 이르다/늦�
 describe("2-2-1 심화중 — 두 삼각형을 «나머지 한 변»이 가른다", () => {
   it("두 가지가 다 삼각형이고, 나머지 한 변이 다르며, 조건이 하나를 고른다", () => {
     let seen = 0;
-    for (const seed of SEEDS) {
+    for (const seed of WIDE) {
       const p = gen("2-2-1", seed, "심화중");
       const [total, side, bar] = grab(p.content, CM) as [
         number,
@@ -276,7 +284,7 @@ describe("2-2-1 심화중 — 두 삼각형을 «나머지 한 변»이 가른�
       ).toBe(false);
       seen += 1;
     }
-    expect(seen).toBe(SEEDS.length);
+    expect(seen).toBe(WIDE.length);
   });
 
   /**
@@ -301,7 +309,7 @@ describe("2-2-1 심화중 — 두 삼각형을 «나머지 한 변»이 가른�
 describe("2-2-2 심화중 — 두 갈래를 «같은 두 각의 합»이 가른다", () => {
   it("문턱이 두 합 사이에 있고($a>60$ 이면 순서가 뒤집힌다), 조건이 하나를 고른다", () => {
     let seen = 0;
-    for (const seed of SEEDS) {
+    for (const seed of WIDE) {
       const p = gen("2-2-2", seed, "심화중");
       const [given, bar] = grab(p.content, DEG) as [number, number];
       const bigger = p.content.includes("보다 큽니다");
@@ -341,7 +349,7 @@ describe("2-2-2 심화중 — 두 갈래를 «같은 두 각의 합»이 가른�
       expect(given, `s${seed}`).toBeLessThan(90);
       seen += 1;
     }
-    expect(seen).toBe(SEEDS.length);
+    expect(seen).toBe(WIDE.length);
   });
 });
 
@@ -350,7 +358,7 @@ describe("2-5-2 심화중 — 문턱을 안 준다", () => {
 
   it("되짚은 때 앞에 «내려간 구간»이 있고, 그 앞의 최댓값이 답이다", () => {
     let seen = 0;
-    for (const seed of SEEDS) {
+    for (const seed of WIDE) {
       const p = gen("2-5-2", seed, "심화중");
       const vs = ((p.figureSpec as LineSpec | null)?.values ?? []).map(
         (v) => v.value,
@@ -376,7 +384,7 @@ describe("2-5-2 심화중 — 문턱을 안 준다", () => {
       expect(start - 1, `s${seed}`).not.toBe(peak);
       seen += 1;
     }
-    expect(seen).toBe(SEEDS.length);
+    expect(seen).toBe(WIDE.length);
   });
 
   it("«바로 앞 때»가 답이 아닌 자리가 실제로 있다 — 지름길이 강제되지 않는다", () => {
@@ -402,7 +410,7 @@ describe("2-5-3 심화상 — 지워진 두 값을 만들어 견준다", () => {
 
   it("표의 지운 칸이 정확히 둘이고, 후보가 셋 이상이며, 하나만 살아남는다", () => {
     let seen = 0;
-    for (const seed of SEEDS) {
+    for (const seed of WIDE) {
       const p = gen("2-5-3", seed, "심화상");
       const rows = (p.figureSpec as TableSpec | null)?.rows ?? [];
       expect(rows, `s${seed}`).toHaveLength(5);
@@ -441,7 +449,7 @@ describe("2-5-3 심화상 — 지워진 두 값을 만들어 견준다", () => {
       for (const a of answer) expect(printed, `s${seed}`).not.toContain(a);
       seen += 1;
     }
-    expect(seen).toBe(SEEDS.length);
+    expect(seen).toBe(WIDE.length);
   });
 
   it("발문이 표만 가리킨다 — 「그래프에서」·「그림과 같이」를 안 쓴다 (2-5-3 규약)", () => {
@@ -549,7 +557,7 @@ describe("반증 ⑥ — 순방향으로 답이 나오면 중·상이 아니다"
     const bad: string[] = [];
     for (const [code, tier] of BUILT) {
       stat[code] = { read: 0, skipped: 0 };
-      for (const seed of SEEDS) {
+      for (const seed of WIDE) {
         const p = gen(code, seed, tier);
         const answer = readRat(p.answer.replace(/\$/g, "").trim());
         if (!answer) {
@@ -574,13 +582,13 @@ describe("반증 ⑥ — 순방향으로 답이 나오면 중·상이 아니다"
      */
     const read = Object.values(stat).reduce((a, s) => a + s.read, 0);
     const skipped = Object.values(stat).reduce((a, s) => a + s.skipped, 0);
-    expect(read + skipped).toBe(BUILT.length * SEEDS.length);
+    expect(read + skipped).toBe(BUILT.length * WIDE.length);
     // 분모가 0이면 「닿음 0」이 공허하다 — 실제로 읽은 자리가 있어야 한다.
-    expect(read, JSON.stringify(stat)).toBeGreaterThan(SEEDS.length);
+    expect(read, JSON.stringify(stat)).toBeGreaterThan(WIDE.length);
     expect(stat["1-2-3"]!.read, "1-2-3 은 답이 낱말이라 축 밖이다").toBe(0);
     expect(stat["2-5-3"]!.read, "2-5-3 은 답이 두 쪽이라 축 밖이다").toBe(0);
     expect(skipped, JSON.stringify(stat)).toBeGreaterThanOrEqual(
-      2 * SEEDS.length,
+      2 * WIDE.length,
     );
   });
 
