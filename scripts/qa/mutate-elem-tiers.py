@@ -491,6 +491,110 @@ G3_MUTS = [
         "      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${words}.`,\n    `따라서 곱하는 수는",
         '      `십의 자리끼리의 곱에 올림까지 더하면 ${n(t * f.b + Math.floor((o * f.b) / 10))} 입니다. 그래서 ${mulCarryWords("none")}.`,\n    `따라서 곱하는 수는',
     ),
+    # ── 초3 물결 4 — 1-3-3 «심화중» · 2-5 «심화중·심화상» · 2-4-1 «심화상» ──────
+    # 잠그는 시험 셋을 아래 TARGETS 에 함께 적었다. 안 적으면 이 변이들이 **초록**으로
+    # 찍혀 「가드가 없다」가 거짓말이 된다.
+    #
+    # ⚠️ **앵커에 문맥을 붙였다** — `if (cand.length < 2) continue;` 는 g3.ts 에 **네 곳**,
+    #    `if (hits.length !== 1) continue;` 는 **여덟 곳**이다. 한 줄만 쓰면 하네스의
+    #    count==1 단정이 깨진다(그게 옳은 동작이다 — 조용히 엉뚱한 자리를 바꾸면 안 된다).
+    # 🔴 **아래 셋은 «판정 거부»(산출물이 그대로)로 끝나는 것이 맞다.** 그 세 가드는
+    #    지금 풀에서 **구조적으로 죽어** 있고(전수로 늘어나는 자리 0), 그 사실을 g3.ts 에
+    #    단정으로 적어 두었다. 목록에 남기는 까닭은 **되살아나면 바로 보이게** 하기
+    #    위해서다 — 다른 조건을 넓히는 회차가 오면 이 셋이 «판정 거부»에서 RED/GREEN 으로
+    #    바뀌고, 그때 그 가드가 처음으로 일을 시작한다(물결 3 §9.1 과 같은 자리).
+    #    ⚠️ 그러니 이 셋의 «??»를 「시험이 못 잡는다」로 읽지 마라.
+    (
+        "1-3-3 심화중 훼손 — 다시 묶을 짝이 하나뿐인 자리도 넣는다(죽은 가지 — ?? 가 맞다)",
+        "      const cand = guguPairs(a).filter(([k]) => k !== b0);\n      if (cand.length < 2) continue;",
+        "      const cand = guguPairs(a).filter(([k]) => k !== b0);\n      if (cand.length < 1) continue;",
+    ),
+    # ── 위 셋을 대신해 **살아 있는 경로**를 무는 변이 셋 ───────────────────────
+    (
+        "1-3-3 심화중 훼손 — 곱셈구구 울타리를 넓힌다(몫이 한 자리가 아니게 된다)",
+        "    const q = a / k;\n    if (q < 2 || q > 9) continue;\n    out.push([k, q]);",
+        "    const q = a / k;\n    if (q < 2 || q > 12) continue;\n    out.push([k, q]);",
+    ),
+    (
+        "2-5 심화중 훼손 — 해설의 끝자리 목록이 받아올림을 안 접는다",
+        "        const tail = Array.from({ length: k }, (_, i) => (s * (i + 1)) % 1000);",
+        "        const tail = Array.from({ length: k }, (_, i) => s * (i + 1));",
+    ),
+    (
+        "2-5 심화상 훼손 — 뒤 후보가 네 자리를 넘어도 넣는다(견줄 것이 못 된다)",
+        "          if (k < 3 || per * (k + 1) >= 10000) continue;",
+        "          if (k < 3 || per * (k + 1) >= 100000) continue;",
+    ),
+    (
+        "1-3-3 심화중 훼손 — 크기 관계가 여럿을 남기는 자리도 넣는다(답이 안 정해진다)",
+        "        const hits = cand.filter(([k, q]) => (more ? q > k : q < k));\n        if (hits.length !== 1) continue;",
+        "        const hits = cand.filter(([k, q]) => (more ? q > k : q < k));\n        if (hits.length < 1) continue;",
+    ),
+    (
+        "1-3-3 심화중 훼손 — 반증 ⑥ 가드를 끈다(지면 두 수의 한 걸음)",
+        "          if (div13OneStep([b0, q0], ans)) continue;",
+        "          if (false && div13OneStep([b0, q0], ans)) continue;",
+    ),
+    (
+        "1-3-3 심화중 훼손 — 답이 지면에 이미 찍힌 자리도 넣는다",
+        "          if (ans === b0 || ans === q0) continue;",
+        "          if (false && (ans === b0 || ans === q0)) continue;",
+    ),
+    (
+        "1-3-3 심화중 훼손 — 해설이 후보를 하나 빠뜨린다",
+        "처음 ${n(f.b0)}개씩이 아닌 것은 ${guguList(f.cand)} 입니다.`,",
+        "처음 ${n(f.b0)}개씩이 아닌 것은 ${guguList(f.cand.slice(1))} 입니다.`,",
+    ),
+    (
+        "1-3-3 심화중 훼손 — 해설의 마지막 나눗셈이 답과 다른 수로 끝난다",
+        "  const lastDiv = f.askGroups\n    ? `${f.a}\\\\div${f.k}=${f.q}`\n    : `${f.a}\\\\div${f.q}=${f.k}`;",
+        "  const lastDiv = f.askGroups\n    ? `${f.a}\\\\div${f.q}=${f.k}`\n    : `${f.a}\\\\div${f.k}=${f.q}`;",
+    ),
+    (
+        "2-5 심화중 훼손 — 작은 자리 끝자리가 후보를 여럿 남기는 자리도 넣는다",
+        "        if (same.length !== 1) continue;",
+        "        if (same.length < 1) continue;",
+    ),
+    (
+        "2-5 심화중 훼손 — 그릇이 둘짜리도 넣는다(두 번 더하기라 응용이다)",
+        "      for (let k = 3; k <= 7; k += 1) {\n        const total = (b * 1000 + s) * k;",
+        "      for (let k = 2; k <= 7; k += 1) {\n        const total = (b * 1000 + s) * k;",
+    ),
+    (
+        "2-5 심화중 훼손 — 작은 자리가 $0$ 인 자리도 넣는다(지면에 「$N$ L $0$ mL」)",
+        "        const es = total % 1000;\n        if (es === 0) continue;",
+        "        const es = total % 1000;\n        if (false && es === 0) continue;",
+    ),
+    (
+        "2-5 심화상 훼손 — 범위가 후보를 여럿 남기는 자리도 넣는다",
+        "          if (hits.length !== 1) continue;\n          const k = hits[0]!;",
+        "          if (hits.length < 1) continue;\n          const k = hits[0]!;",
+    ),
+    (
+        "2-5 심화상 훼손 — 해설이 $k+1$ 번째를 안 만든다(견줄 것이 없다)",
+        "          const runs = Array.from({ length: k + 1 }, (_, i) => per * (i + 1));",
+        "          const runs = Array.from({ length: k }, (_, i) => per * (i + 1));",
+    ),
+    (
+        "2-5 심화상 훼손 — 셋 미만인 자리도 넣는다(만들어 견주는 일이 아니다)",
+        "          if (k < 3 || per * (k + 1) >= 10000) continue;",
+        "          if (k < 2 || per * (k + 1) >= 10000) continue;",
+    ),
+    (
+        "2-4-1 심화상 훼손 — 창 안 배수가 하나뿐인 자리도 넣는다(그건 심화중이다)",
+        "        if (cands.length < 2 || cands.length > 5) continue;",
+        "        if (cands.length < 1 || cands.length > 5) continue;",
+    ),
+    (
+        "2-4-1 심화상 훼손 — 다른 후보에서도 떨어지는 자리를 도로 넣는다(해설이 거짓이 된다)",
+        "            if (!cands.every((t) => t === T || P % (t / d) !== 0)) continue;",
+        "            if (false && !cands.every((t) => t === T || P % (t / d) !== 0))\n              continue;",
+    ),
+    (
+        "2-4-1 심화상 훼손 — 해설이 후보를 다 나누지 않는다(만들어 견주지 않는다)",
+        "  const tries = f.cands\n    .map((t) => expr(`${t}\\\\div${f.d}=${t / f.d}`))\n    .join(\", \");",
+        "  const tries = f.cands\n    .slice(0, 1)\n    .map((t) => expr(`${t}\\\\div${f.d}=${t / f.d}`))\n    .join(\", \");",
+    ),
 ]
 
 # 초5 — 1-1 혼합 계산(3ee85b47) 셋 + 1-6 확대(8ed2da00) 하나. 1-6-3 변이는 그 트랜치에서
@@ -2104,6 +2208,11 @@ TARGETS = {
             # D-113 물결 3(1-1 · 1-4 의 심화중). 안 적으면 그 갈래를 무는 변이가
             # **초록**으로 찍혀 「가드가 없다」가 거짓말이 된다.
             "src/__tests__/unit/elemTiersG3W3Extend.test.ts",
+            # D-113 물결 4(1-3-3 심화중 · 2-5 심화중·상 · 2-4-1 심화상 · 비운 열다섯).
+            "src/__tests__/unit/elemTiersG3W4Div13.test.ts",
+            "src/__tests__/unit/elemTiersG3W4Cap25.test.ts",
+            "src/__tests__/unit/elemTiersG3W4Frac241.test.ts",
+            "src/__tests__/unit/elemTiersG3W4Empty.test.ts",
         ],
         "grade": "초3",
         "sections": [
@@ -2131,6 +2240,11 @@ TARGETS = {
             "2-4-6",
             "2-6-1",
             "2-6-2",
+            # 🔴 물결 4 에서 2-5-3·2-5-6 에 확대 갈래가 붙었다 — 여기 안 넣으면 그
+            #    소단원만 건드리는 변이가 프로브에 안 잡혀 «산출물이 그대로다»로
+            #    **거짓 판정 거부**가 난다(g4·g5 가 같은 자리에 적어 둔 그대로).
+            "2-5-3",
+            "2-5-6",
         ],
         "muts": G3_MUTS,
     },
