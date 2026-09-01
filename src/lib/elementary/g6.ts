@@ -9432,6 +9432,834 @@ function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+// ══════════ 4차분(물결 4) — 초6 `1-3 소수의 나눗셈` ══════════
+//
+// ## 예약한 굳힘 축 — **「나누는 수를 감춘다 + 몫의 «자리»」**
+//
+// 토대 §1.4 는 1-3 에 「몫의 **자리**」($1$보다 작다 · $0$을 내린다 · 첫째 자리 $0$)를
+// 예약하고 「몫이 소수 한 자리」(= 2-2-2 심화중의 열쇠)를 **금지**했다. 그런데 «자리»
+// 성질만 지켜도 **문장 뼈대가 2-2 와 같아진다** — 2-2 의 확대 갈래 다섯이 전부
+// 「어떤 수를 $d$ 로 나누었더니 <성질>. 어떤 수가 $lo$ 보다 크고 $hi$ 보다 작을 때…」이고,
+// 그 뼈대의 알맹이는 **나누어지는 수를 감추는 것**이다. 그래서 감추는 자리를 옮겼다:
+//
+//     2-2 (이미 착지)   **나누어지는 수**를 감춘다 → 배수열 + 수치 범위
+//     1-3 (여기)        **나누는 수**를 감춘다   → 자리 성질이 후보를 가른다
+//
+// 겹침을 막는 것은 이 한 줄이다. 그래서 시험(`elemTiersG6DeepW4.test.ts`)이 그것을
+// **잠근다** — 이 갈래의 발문에 「어떤 수가 … 보다 크고 … 보다 작을 때」가 나오면 빨개진다.
+//
+// ## 왜 1-3-1·1-3-5 는 비웠나 (보고서 §2.1 에 수와 함께)
+//
+// 예약된 «자리» 성질 셋은 **1-3-2·1-3-3·1-3-4 의 이름 그 자체**다. 1-3-1 에 남는 자리
+// 성질은 「몫이 소수 한 자리」 하나뿐이고 그것은 토대가 2-2 에 예약했다(반증 ③).
+// 1-3-5 는 `kindsPresent("자연수","자연수")` 가 **발문에 소수를 한 개도 못 쓰게** 해서
+// «자리» 조건을 지면에 적을 방법이 없고, 「어림셈」은 값을 굳히는 성질이 아니라
+// **확인 절차**라 마디를 열지 못한다.
+//
+// ## 1-3-2 는 «상»을 비웠다 — 부등식은 후보를 «만들어 견주게» 못 한다
+//
+// 「몫이 $1$보다 작다」는 부등식 하나이고, 부등식 둘로 창을 닫아 자연수를 하나만 남기면
+// **두 끝 중 하나가 반드시 잉여**가 된다(창 안 자연수가 하나면 위 끝은 아래 끝이 정한
+// 값을 못 바꾼다 — 실측 100%). 안 읽어도 되는 조건을 지면에 남기는 것은 학생에게 하는
+// 거짓말이라(M-6) 그 판을 버리고, 대신 **가장 작은 수**로 마디를 굳혔다.
+
+/** 소수(×100 정수)를 자연수로 나눈 몫의 **소수 자릿수**. 여덟 자리 안에 안 끝나면 `null`. */
+function centsQuotientDp(xc: number, d: number): number | null {
+  for (let k = 0; k <= 8; k += 1) {
+    if ((xc * 10 ** k) % (100 * d) === 0) return k;
+  }
+  return null;
+}
+
+/**
+ * 그 몫을 지면 글자로. 안 끝나면 `null` — 부르는 쪽이 **값을 안 적고 말로** 적는다.
+ *
+ * ⚠️ 소수 **세** 자리부터는 값을 적으면 안 된다. 1-3 시험이 `\d+\.\d{3,}` 를
+ *    「샌 소수」로 문다(그 대단원의 몫은 두 자리까지다). 그래서 `dp >= 3` 은
+ *    끝나더라도 «안 적는» 쪽으로 돌린다 — 잘라 적으면 값이 틀린 글이 된다.
+ */
+function centsQuotientText(xc: number, d: number): string | null {
+  const k = centsQuotientDp(xc, d);
+  if (k === null || k > 2) return null;
+  return decStr((xc * 10 ** k) / (100 * d), k);
+}
+
+/** 몫의 **소수 첫째 자리 숫자** — 안 끝나도 잰다(한 자리만 내리면 된다). */
+function centsQuotientTenth(xc: number, d: number): number {
+  return Math.floor((xc * 10) / (100 * d)) % 10;
+}
+
+/**
+ * **답을 먼저, 그다음 «창 안에서 답이 몇째인가»를 고른다** — 두 겹 뽑기.
+ *
+ * 실측(씨앗 6,000 표본)으로 정한 순서다. 자리를 먼저 고르면 답이 쏠리고
+ * (1-3-3 은 「무조건 $5$」가 **90%**), 답을 먼저 고르면 자리 지름길이 남는다.
+ * 둘을 견주어 **답 먼저**를 골랐다 — 답 쏠림은 지면에서 바로 통하는 지름길이고,
+ * 자리 지름길은 우연 확률과의 차가 훨씬 작았다:
+ *
+ * ```
+ *              답 분포                 가장 큼 / 가장 작음 / 가운데   (우연)
+ * 1-3-3 자리먼저  5 가 48%              13.3 / 26.7 / 26.7           23.1
+ * 1-3-3 답먼저    다섯 값 20% 씩        32.9 / 27.6 / 25.7           27.1
+ * 1-3-4 자리먼저  5 가 33% · 6 이 31%   22.2 / 22.3 / 22.2           22.2
+ * 1-3-4 답먼저    다섯 값 20% 씩        18.8 / 33.8 / 21.4           23.7
+ * ```
+ */
+function pickByAnswerThenSlot<T extends { ans: number; slot: string }>(
+  rng: Rng,
+  bins: Map<number, Map<string, T[]>>,
+  answers: readonly number[],
+): T {
+  const bySlot = bins.get(pick(rng, answers))!;
+  const slots = [...bySlot.keys()].sort();
+  return pick(rng, bySlot.get(pick(rng, slots))!);
+}
+
+/** 답 → 자리 → 사례. 위 뽑기가 읽는 모양으로 묶는다. */
+function binByAnswerThenSlot<T extends { ans: number; slot: string }>(
+  rows: readonly T[],
+): { bins: Map<number, Map<string, T[]>>; answers: number[] } {
+  const bins = new Map<number, Map<string, T[]>>();
+  for (const r of rows) {
+    let bySlot = bins.get(r.ans);
+    if (!bySlot) {
+      bySlot = new Map();
+      bins.set(r.ans, bySlot);
+    }
+    const list = bySlot.get(r.slot);
+    if (list) list.push(r);
+    else bySlot.set(r.slot, [r]);
+  }
+  return { bins, answers: [...bins.keys()].sort((a, b) => a - b) };
+}
+
+// ── 1-3-2 몫이 $1$보다 작은 (소수)÷(자연수) — 심화중 ────────────────────────
+//
+// 안 굳는 마디: **나누는 수.** 「몫이 $1$보다 작다」는 그것을 «$A$ 보다 큰 자연수» 라는
+// 열린 집합으로만 준다.
+// 굳히는 성질: 이 소단원 그 자체 — 「몫이 $1$보다 작다 ⟺ 나누어지는 수가 나누는 수보다
+// 작다」. 그 집합에서 **가장 작은 수**가 하나를 고른다. 후보를 **끝까지 나눠 보지 않고**
+// 비교만으로 걸러 내므로 D-115 ⑾ 로 «중» 이다.
+//
+// ⚠️ 심화하(「어떤 수를 $2$로 나누었더니 $0.6$ → $6$으로 나눈 몫」)는 나누는 수를 **둘 다**
+//    발문이 준다. 여기서는 그중 하나를 부등식 뒤로 숨겼다 — 사다리가 정확히 한 칸 오른다.
+type UnderOneSmallestCase = {
+  /** 나누는 수(중간값). 답이 아니다. */
+  d: number;
+  /** 부등식이 걸리는 소수(×100) — $d-1 < A < d$ 라 「가장 작은 자연수」가 $d$ 다. */
+  ac: number;
+  /** 몫(×100) — $1$보다 작다(이 소단원). */
+  qc: number;
+  /** 답: 어떤 소수(×100). */
+  xc: number;
+  ans: number;
+  slot: string;
+};
+
+const underOneSmallestStem = (c: UnderOneSmallestCase): string =>
+  `어떤 소수를 자연수로 나누었더니 몫이 ${num(fromCents(c.qc))}${centsJosa(c.qc, "이", "가")} 되었습니다. ` +
+  `나누는 수가 ${num(fromCents(c.ac))}${centsJosa(c.ac, "을", "를")} 나누면 몫이 ${num(1)}보다 작아지는 ` +
+  `자연수 중에서 가장 작은 수일 때, 어떤 소수를 구하시오.`;
+
+const UNDER_ONE_SMALLEST: UnderOneSmallestCase[] = [];
+for (let d = 2; d <= 9; d += 1)
+  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {
+    if (ac % 100 === 0) continue; // 자연수면 「가장 작은」이 $A$ 자신이 되어 뜻이 흔들린다
+    // 확인 줄에 $A\div d$ 를 적으려면 그 몫도 지면에 적을 수 있어야 한다.
+    const aq = centsQuotientText(ac, d);
+    if (aq === null) continue;
+    for (let qc = 10; qc <= 90; qc += 10) {
+      const xc = qc * d;
+      if (xc % 100 === 0) continue; // 답이 자연수면 「어떤 소수」가 아니다
+      if (xc === ac) continue;
+      const c: UnderOneSmallestCase = {
+        d,
+        ac,
+        qc,
+        xc,
+        ans: xc,
+        slot: `q${qc}`,
+      };
+      // 반증 ⑥ + 답이 지면에 그대로 + ±한 걸음. 실측으로 $A-1$ 이 답과 같아지는
+      // 자리가 3.2% 있었고 이 자가 그것을 뺀다.
+      if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;
+      UNDER_ONE_SMALLEST.push(c);
+    }
+  }
+
+const UNDER_ONE_SMALLEST_BINS = binByAnswerThenSlot(UNDER_ONE_SMALLEST);
+
+function underOneSmallestMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    UNDER_ONE_SMALLEST_BINS.bins,
+    UNDER_ONE_SMALLEST_BINS.answers,
+  );
+  const a = fromCents(c.ac);
+  const q = fromCents(c.qc);
+  const x = fromCents(c.xc);
+  const aq = centsQuotientText(c.ac, c.d)!;
+  return makeDeep(unit, underOneSmallestStem(c), num(x), [
+    `몫이 ${num(1)}보다 작으려면 나누어지는 수가 나누는 수보다 작아야 합니다. ` +
+      `${num(a)}${centsJosa(c.ac, "을", "를")} 나누어 몫이 ${num(1)}보다 작아지는 자연수는 ` +
+      `${num(a)}보다 큰 수이므로, 그중 가장 작은 수는 ${num(c.d)}입니다.`,
+    `어떤 소수를 ${num(c.d)}${numRo(c.d)} 나눈 몫이 ${num(q)}이므로, 어떤 소수는 ` +
+      `${expr(`${q}\\times${c.d}=${x}`)} 입니다.`,
+    // ⚠️ 「로/으로」는 **끝소리**가 정한다 — 손으로 「로」라 적었다가 판정기가 물었다
+    //    (`$4.3\div5=0.86$ 로` → 「팔육」은 받침이 있어 «으로»다). 그 표를 쓰는
+    //    `numRo`·`lastSpokenNumber` 에 맡긴다.
+    `${expr(`${x}\\div${c.d}=${q}`)} 이고, ${expr(`${a}\\div${c.d}=${aq}`)}` +
+      `${numRo(lastSpokenNumber(`${a}\\div${c.d}=${aq}`))} ` +
+      `몫이 ${num(1)}보다 작은 것도 확인됩니다.`,
+  ]);
+}
+
+// ── 1-3-3 소수점 아래 $0$을 내려 계산하는 (소수)÷(자연수) — 심화상 ──────────
+// ── 1-3-4 몫의 소수 첫째 자리에 $0$이 있는 (소수)÷(자연수) — 심화상 ────────
+//
+// 안 굳는 마디: **나누는 수.** 창이 자연수 후보를 서넛 만들고, 그 소단원의 자리 성질이
+// 하나만 남긴다 — 그런데 **그 성질은 미리 계산할 규칙이 없다.** 「$0$을 내려야 하는가」도
+// 「첫째 자리가 $0$인가」도 실제로 나눠 보아야 안다. 후보를 **다 계산해 견주므로**
+// D-115 ⑾ 로 «상» 이다(그래서 이 둘은 «중»을 비운다 — 같은 성질로 «중»을 지으면
+// 해설이 똑같이 늘어놓는다).
+//
+// ⚠️ 후보 몫 중 **소수 세 자리 이상**이거나 안 끝나는 것은 값을 **안 적는다** —
+//    잘라 적으면 틀린 글이 되고, 그대로 적으면 1-3 시험의 「샌 소수」에 걸린다.
+//    대신 「소수 두 자리 수가 아닙니다」로 적는다(참이고, 학생이 두 자리까지만
+//    내려 보면 확인된다). 값이 적히는 후보가 **둘 이상**일 때만 자리를 만든다.
+type DivisorSlotCase = {
+  /** 나누어지는 소수(×100). */
+  xc: number;
+  lo: number;
+  hi: number;
+  /** 조건을 지키는 유일한 나누는 수. */
+  d: number;
+  cands: number[];
+  ans: number;
+  slot: string;
+};
+
+function buildDivisorSlot(
+  keep: (xc: number, d: number) => boolean,
+  bounds: { xlo: number; xhi: number; winMin: number; winMax: number },
+  stemOf: (c: DivisorSlotCase) => string,
+  answerOf: (c: DivisorSlotCase) => Rat,
+): DivisorSlotCase[] {
+  const rows: DivisorSlotCase[] = [];
+  for (let xc = bounds.xlo; xc <= bounds.xhi; xc += 10) {
+    if (xc % 100 === 0) continue; // 나누어지는 수는 소수 한 자리 수다
+    for (let lo = 1; lo <= 9; lo += 1)
+      for (
+        let hi = lo + bounds.winMin + 1;
+        hi <= lo + bounds.winMax + 1;
+        hi += 1
+      ) {
+        const cands: number[] = [];
+        for (let d = lo + 1; d < hi; d += 1) cands.push(d);
+        if (cands.length < bounds.winMin || cands.length > bounds.winMax)
+          continue;
+        if (cands[0]! < 2 || cands[cands.length - 1]! > 9) continue;
+        // 값이 적히는 후보가 둘은 있어야 해설이 «견주는» 글이 된다.
+        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 2)
+          continue;
+        const hit = cands.filter((d) => keep(xc, d));
+        if (hit.length !== 1) continue;
+        const d = hit[0]!;
+        const c: DivisorSlotCase = {
+          xc,
+          lo,
+          hi,
+          d,
+          cands,
+          ans: d,
+          slot: `${cands.indexOf(d)}/${cands.length}`,
+        };
+        if (!backsolveSafeStem(stemOf(c), answerOf(c))) continue;
+        rows.push(c);
+      }
+  }
+  return rows;
+}
+
+/** 후보를 하나씩 나눠 본 결과를 지면 글로. 값이 안 적히는 것은 **말로** 적는다. */
+function divisorTrialLine(c: DivisorSlotCase): string {
+  const shown: string[] = [];
+  const unshown: number[] = [];
+  const x = fromCents(c.xc);
+  for (const d of c.cands) {
+    const q = centsQuotientText(c.xc, d);
+    if (q === null) unshown.push(d);
+    else shown.push(expr(`${x}\\div${d}=${q}`));
+  }
+  const tail =
+    unshown.length === 0
+      ? ""
+      : ` 그리고 ${unshown.map((d) => expr(`${x}\\div${d}`)).join(", ")} 의 몫은 소수 두 자리 수가 아닙니다.`;
+  return `나누는 수가 될 수 있는 수를 하나씩 나누어 봅니다. ${shown.join(", ")} 입니다.${tail}`;
+}
+
+const bringZeroSlotStem = (c: DivisorSlotCase): string =>
+  `${num(fromCents(c.xc))}${centsJosa(c.xc, "을", "를")} 어떤 자연수로 나누었더니 ` +
+  `소수점 아래 ${num(0)}을 내려 계산하게 되어 몫이 소수 두 자리 수가 되었습니다. ` +
+  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;
+
+const BRING_ZERO_SLOT = buildDivisorSlot(
+  (xc, d) => centsQuotientDp(xc, d) === 2,
+  { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },
+  bringZeroSlotStem,
+  (c) => rat(c.d),
+);
+const BRING_ZERO_BINS = binByAnswerThenSlot(BRING_ZERO_SLOT);
+
+function bringZeroDivisorTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    BRING_ZERO_BINS.bins,
+    BRING_ZERO_BINS.answers,
+  );
+  const x = fromCents(c.xc);
+  const q = centsQuotientText(c.xc, c.d)!;
+  return makeDeep(unit, bringZeroSlotStem(c), num(c.d), [
+    `나누는 수가 될 수 있는 자연수는 ${c.cands.map((d) => num(d)).join(", ")} 입니다.`,
+    divisorTrialLine(c),
+    `나누어지는 수는 소수 한 자리 수인데 몫이 소수 두 자리 수이므로, 소수점 아래 ` +
+      `${num(0)}을 내려 계산한 것은 ${expr(`${x}\\div${c.d}=${q}`)} 뿐입니다. ` +
+      `나누는 수는 ${num(c.d)}입니다.`,
+  ]);
+}
+
+const zeroTenthSlotStem = (c: DivisorSlotCase): string =>
+  `${num(fromCents(c.xc))}${centsJosa(c.xc, "을", "를")} 어떤 자연수로 나누었더니 ` +
+  `몫이 소수 첫째 자리에 ${num(0)}이 있는 소수 두 자리 수가 되었습니다. ` +
+  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 그 몫을 구하시오.`;
+
+/**
+ * ⚠️ 1-3-3 과 **묻는 것을 갈랐다**(R5) — 저쪽은 나누는 수를, 여기는 **몫**을 묻는다.
+ * 답이 몫이면 「무조건 $5$로 나눠라」가 답을 바로 주지 못하고, 지면에서도 이 소단원의
+ * 이름(첫째 자리에 $0$이 있는 몫)이 **답 자체**로 보인다.
+ */
+const ZERO_TENTH_SLOT = buildDivisorSlot(
+  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,
+  { xlo: 210, xhi: 4990, winMin: 3, winMax: 6 },
+  zeroTenthSlotStem,
+  (c) => rat(c.xc, 100 * c.d),
+);
+const ZERO_TENTH_BINS = binByAnswerThenSlot(ZERO_TENTH_SLOT);
+
+function zeroTenthQuotientTop(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    ZERO_TENTH_BINS.bins,
+    ZERO_TENTH_BINS.answers,
+  );
+  const x = fromCents(c.xc);
+  const q = centsQuotientText(c.xc, c.d)!;
+  return makeDeep(unit, zeroTenthSlotStem(c), num(q), [
+    `나누는 수가 될 수 있는 자연수는 ${c.cands.map((d) => num(d)).join(", ")} 입니다.`,
+    divisorTrialLine(c),
+    `이 중 몫의 소수 첫째 자리에 ${num(0)}이 있는 것은 ` +
+      `${expr(`${x}\\div${c.d}=${q}`)} 뿐이므로, 몫은 ${num(q)}입니다.`,
+  ]);
+}
+
+// ══════════ 4차분(물결 4) — 초6 `1-4 비와 비율` ══════════
+//
+// ## 예약한 굳힘 축 — **「비율은 두 수를 하나로 뭉갠다 + 항·사람은 자연수」**
+//
+// 토대 §1.4 는 1-4 에 「기준량이 바뀐다」를 예약하고 「전체가 $q$의 배수」는 1-5 로
+// 넘기라고 적었다. 그런데 **같은 표의 1-5 칸은 「사람 수가 자연수(=1-4)」를 쓰지 말라**고
+// 적는다 — 두 칸이 서로를 가리킨다. 살릴 수 있는 읽기는 하나뿐이다:
+// **정수성의 «운반체»를 가른다.** 1-4 는 **사람·항**, 1-5 는 **눈금 cm** 다.
+// 토대 §3 의 1-5 항이 그것을 뒷받침한다 — 「「사람 수가 자연수」는 그래프 개념이 아니라
+// 수 개념으로 읽힐 수 있다. **그리기 소단원에서만** 안전하게 통과한다」.
+//
+// ## 🔴 심화상은 **비웠다** — 조건 둘이 접히거나, 안 접히면 창이 잉여가 된다
+//
+// 토대의 심화상 꼴은 「백분율 두 겹(그중 $\%$) → 후보를 각각 계산해 자연수인지 견주기」다.
+// 그런데 사슬이 **선형**이라 조건 둘은 늘 한 줄로 접힌다(전체가 $b_1$ 의 배수 ∧ $b_2$ 의
+// 배수 ⇒ 최소공배수의 배수 — 해설 한 줄). 접히지 않게 둘째를 **값 비교**로 두면
+// 그 비교 하나가 답을 정해 **첫 창이 잉여**가 된다(M-6 — 안 읽어도 되는 조건).
+// 곧 이 축에는 «후보를 만들어 견주는» 자리가 구조적으로 없다. 1-5 심화상을 비운
+// 토대 §3 의 논거와 **같은 모양**이고, 이 회차의 1-3-2 심화상 비움과도 같다.
+//
+// ## 겹침 — 심화하가 이미 쓴 것을 피한다
+//
+// 1-4 는 토대가 「기존 심화하와 겹치기 가장 쉬운 대단원」이라 찍은 자리다. 실물을 뽑아
+// 보니 심화하 여섯이 전부 **한 걸음 역산**이고, 그 여섯이 값을 **전부 준다**:
+// 「어떤 수의 $5$배는 $15$」·「합 $10$·차 $2$」·「비율 $\frac35$·합 $24$」·「$4$시간 $240$km」·
+// 「$40$명 중 $20\%$ 의 $25\%$」·「찬성률 $60\%$·찬성 $150$명」. 새 칸은 그 «주는 값»을
+// **하나 빼고 정수성으로 대신**한다 — 그것이 이 회차가 오르는 한 칸이다.
+//
+// ## 세 소단원이 **묻는 것을 다르게** 한다 (R5)
+//
+//     1-4-3  기준량 창 → **비교하는 양**
+//     1-4-5  전체 창   → **그 $p\%$ 인 학생 수**
+//     1-4-6  전체 창   → **반대한 학생 수**(여집합)
+
+/** 백분율을 기약분수로 — `36` → `[9, 25]`. 배수열의 모듈러스는 그 분모다. */
+function pctFraction(p: number): [number, number] {
+  const g = gcd(p, 100);
+  return [p / g, 100 / g];
+}
+
+/**
+ * 「$lo$ 보다 크고 $hi$ 보다 작은 자연수 중 $m$ 의 배수」가 **정확히 하나**인가.
+ * 하나가 아니면 답이 안 서거나(둘 이상) 못 선다(0).
+ */
+function loneMultiple(lo: number, hi: number, m: number): number | null {
+  let hit: number | null = null;
+  for (let v = lo + 1; v < hi; v += 1) {
+    if (v % m !== 0) continue;
+    if (hit !== null) return null;
+    hit = v;
+  }
+  return hit;
+}
+
+/** 창 안 자연수 가운데 답이 몇째인가 — 「가운데·끝」 지름길을 흩뜨리는 묶음 열쇠. */
+const slotOf = (lo: number, hi: number, v: number) =>
+  `${v - lo - 1}/${hi - lo - 1}`;
+
+// ── 1-4-3 비율 — 심화중 ─────────────────────────────────────────────────────
+//
+// 안 굳는 마디: **한 묶음의 크기.** 비율 $\frac pq$ 는 실제 두 양을 $(pk,\ qk)$ 배수열로만 준다.
+// 굳히는 성질: 이 소단원의 것 — 「두 항이 자연수」가 기준량을 $q$ 의 배수로 묶고,
+// 창이 그중 하나를 고른다. 후보를 **끝까지 계산하지 않고** 걸러 내므로 «중» 이다.
+//
+// ⚠️ 심화하는 **합**을 준다(「합이 $24$」) — 그러면 한 묶음이 한 줄로 굳는다.
+//    여기서는 그 값을 빼고 정수성으로 대신했다. 사다리가 정확히 한 칸 오른다.
+// ⚠️ 토대 함정 ⑶ — 이 꼴은 반증 ⑥ 이 자주 문다(답 $pk$ 가 $p\times q$ 와 우연히 같아진다).
+//    실측으로 후보의 **21.9%** 가 그렇게 깎였다.
+type RateWindowCase = {
+  p: number;
+  q: number;
+  lo: number;
+  hi: number;
+  base: number;
+  ans: number;
+  slot: string;
+};
+
+const rateWindowStem = (c: RateWindowCase): string =>
+  `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 인 비가 있습니다. 두 항이 모두 자연수이고 ` +
+  `기준량이 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 비교하는 양은 얼마입니까?`;
+
+const RATE_WINDOW_MID: RateWindowCase[] = [];
+for (let q = 4; q <= 15; q += 1)
+  for (let p = 2; p < q; p += 1) {
+    if (gcd(p, q) !== 1) continue;
+    for (let k = 2; k <= 8; k += 1) {
+      const base = q * k;
+      const ans = p * k;
+      if (ans < 3 || base > 120) continue;
+      for (let lo = Math.max(1, base - 8); lo < base; lo += 1)
+        for (let hi = base + 1; hi <= base + 8; hi += 1) {
+          const span = hi - lo - 1;
+          // 🔴 **창을 일곱 이상으로 잡는다** — 이 갈래에서는 공용 반증 ⑥ 자가
+          //    창의 **두 끝**을 구조적으로 걷어내기 때문이다(측정: 자리 0 이 1,428 → 0).
+          //    답이 $rac pq	imes$(기준량)인데 기준량이 $lo+1$ 이면
+          //    $rac pq	imes lo+rac pq$ 가 되어 `a	imes b+c` 꼴에 걸린다(끝도 대칭).
+          //    막을 수는 없으니 **창을 넓혀 그 누수의 몫을 줄인다**(2/5 → 2/7 아래).
+          if (span < 7 || span > 12) continue;
+          if (loneMultiple(lo, hi, q) !== base) continue;
+          const c: RateWindowCase = {
+            p,
+            q,
+            lo,
+            hi,
+            base,
+            ans,
+            slot: slotOf(lo, hi, base),
+          };
+          if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;
+          RATE_WINDOW_MID.push(c);
+        }
+    }
+  }
+const RATE_WINDOW_BINS = binByAnswerThenSlot(RATE_WINDOW_MID);
+
+function rateWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    RATE_WINDOW_BINS.bins,
+    RATE_WINDOW_BINS.answers,
+  );
+  return makeDeep(unit, rateWindowStem(c), num(c.ans), [
+    `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 이므로 비교하는 양은 ${num(c.p)}묶음, ` +
+      `기준량은 ${num(c.q)}묶음입니다. 두 항이 자연수이려면 기준량이 ${num(c.q)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(c.q)}의 배수는 ` +
+      `${expr(`${c.q}\\times${c.base / c.q}=${c.base}`)} 하나이므로 기준량은 ${num(c.base)}입니다.`,
+    `한 묶음은 ${expr(`${c.base}\\div${c.q}=${c.base / c.q}`)} 이므로 비교하는 양은 ` +
+      `${expr(`${c.base / c.q}\\times${c.p}=${c.ans}`)} 입니다.`,
+  ]);
+}
+
+// ── 1-4-5 백분율 — 심화중 ───────────────────────────────────────────────────
+//
+// 안 굳는 마디: **전체.** 백분율만으로는 실제 인원이 배수열로만 묶인다.
+// 굳히는 성질: 「사람 수는 자연수」 — 백분율을 기약분수로 고치면 전체가 그 분모의
+// 배수여야 한다. 창이 그중 하나를 고른다.
+//
+// ⚠️ 토대 실측: 이 꼴(「전체의 $p\%$ 가 자연수 + 전체가 범위 안」)은 반증 ⑥ 이
+//    **0/80** 이라 1-4 에서 가장 안전한 축이다. 우리 판에서도 깎임이 12.5% 로 낮다.
+// ⚠️ 심화하 ⓐ 는 「어떤 수의 $p\%$ 가 $V$」로 **값을 준다.** 여기서는 안 준다.
+type PctWindowCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  ans: number;
+  slot: string;
+};
+
+/** 백분율 갈래가 쓰는 소재 — 「무엇의 몇 %인가」가 소단원마다 달라야 한다(R5). */
+/**
+ * 백분율 갈래가 쓰는 소재. **소재마다 그럴듯한 백분율의 폭이 다르다** —
+ * 「$94\%$ 가 안경을 쓴 학생」은 값이 맞아도 지면에서 거짓말이다(첫 판이 그랬다).
+ * 그래서 소재에 폭을 묶고, 그 폭 안에 드는 소재가 하나도 없으면 그 자리를 안 만든다.
+ */
+const PCT_GROUPS = [
+  { who: "안경을 쓴", unit: "학생", lo: 8, hi: 45 },
+  { who: "여학생인", unit: "학생", lo: 35, hi: 65 },
+  { who: "버스로 통학하는", unit: "학생", lo: 10, hi: 60 },
+  { who: "강아지를 기르는", unit: "학생", lo: 5, hi: 40 },
+] as const;
+
+/** 그 백분율에 어울리는 소재들. 없으면 그 자리는 안 만든다. */
+const pctGroupsFor = (p: number) =>
+  PCT_GROUPS.filter((g) => p >= g.lo && p <= g.hi);
+
+const pctWindowStem = (c: PctWindowCase, g: (typeof PCT_GROUPS)[number]) =>
+  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${g.who} ${g.unit}입니다. ` +
+  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
+  `${num(c.hi)}명보다 적을 때, ${g.who} ${g.unit}은 몇 명입니까?`;
+
+const PCT_WINDOW_MID: PctWindowCase[] = [];
+for (let p = 4; p <= 96; p += 1) {
+  const [a, b] = pctFraction(p);
+  if (b < 5 || b > 50) continue; // 배수열이 너무 촘촘하거나 너무 성기면 창이 안 선다
+  for (let k = 1; k <= 10; k += 1) {
+    const total = b * k;
+    const ans = a * k;
+    if (total < 20 || total > 300 || ans < 2) continue;
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 14) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: PctWindowCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        const fit = pctGroupsFor(p);
+        if (fit.length === 0) continue; // 그럴듯한 소재가 없는 백분율
+        // 소재는 지면 글자만 바꾸므로 첫 소재로 대표해 가드를 건다(수는 같다).
+        if (!backsolveSafeStem(pctWindowStem(c, fit[0]!), rat(ans))) continue;
+        PCT_WINDOW_MID.push(c);
+      }
+  }
+}
+const PCT_WINDOW_BINS = binByAnswerThenSlot(PCT_WINDOW_MID);
+
+function pctWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    PCT_WINDOW_BINS.bins,
+    PCT_WINDOW_BINS.answers,
+  );
+  const g = pick(rng, pctGroupsFor(c.p));
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, pctWindowStem(c, g), num(c.ans), [
+    `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ` +
+      `${g.who} ${g.unit} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 ${g.unit}은 ${num(c.total)}명입니다.`,
+    `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
+      `${g.who} ${g.unit}은 ${num(c.ans)}명입니다.`,
+  ]);
+}
+
+// ── 1-4-6 백분율이 사용되는 경우 — 심화중 ───────────────────────────────────
+//
+// 같은 굳힘 성질이지만 **묻는 것이 다르다**(R5) — 여기서는 여집합(반대한 학생)을 묻는다.
+// 그래서 전체를 굳힌 뒤 한 걸음이 더 든다.
+//
+// ⚠️ 심화하 ⓑ 는 「찬성률 $60\%$·찬성한 학생 $150$명」으로 **인원을 준다.**
+//    여기서는 그 값을 빼고 정수성으로 대신한다.
+type VoteWindowCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  yes: number;
+  ans: number;
+  slot: string;
+};
+
+const voteWindowStem = (c: VoteWindowCase): string =>
+  `어느 학교 투표에서 찬성률이 ${expr(`${c.p}\\%`)} 였습니다. 찬성한 학생 수가 자연수이고 ` +
+  `투표한 학생이 ${num(c.lo)}명보다 많고 ${num(c.hi)}명보다 적을 때, 반대한 학생은 몇 명입니까? ` +
+  `(모든 학생이 찬성이나 반대 가운데 하나를 골랐습니다.)`;
+
+const VOTE_WINDOW_MID: VoteWindowCase[] = [];
+// 찬성률이 $5\%$ 나 $95\%$ 인 투표는 지면에서 거짓말이다 — 폭을 좁힌다.
+for (let p = 30; p <= 90; p += 1) {
+  const [a, b] = pctFraction(p);
+  if (b < 5 || b > 50) continue;
+  for (let k = 1; k <= 10; k += 1) {
+    const total = b * k;
+    const yes = a * k;
+    const ans = total - yes;
+    if (total < 20 || total > 300 || yes < 2 || ans < 2) continue;
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 14) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: VoteWindowCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          yes,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        if (!backsolveSafeStem(voteWindowStem(c), rat(ans))) continue;
+        VOTE_WINDOW_MID.push(c);
+      }
+  }
+}
+const VOTE_WINDOW_BINS = binByAnswerThenSlot(VOTE_WINDOW_MID);
+
+function voteWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    VOTE_WINDOW_BINS.bins,
+    VOTE_WINDOW_BINS.answers,
+  );
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, voteWindowStem(c), num(c.ans), [
+    `찬성률 ${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. 찬성한 학생 수가 자연수이려면 ` +
+      `투표한 학생 수가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 투표한 학생은 ${num(c.total)}명입니다.`,
+    `찬성한 학생은 ${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.yes}`)} 명이므로 ` +
+      `반대한 학생은 ${expr(`${c.total}-${c.yes}=${c.ans}`)} 명입니다.`,
+  ]);
+}
+
+// ══════════ 4차분(물결 4) — 초6 `2-1 분수의 나눗셈` · `1-5 여러 가지 그래프` ══════════
+//
+// ## 2-1 의 예약 축 — **「소단원 약속이 창을 공짜로 준다」**
+//
+// 토대 §1.4 가 2-1 에 예약한 것이다: 「진분수라 «분자 < 분모»라는 범위를 소단원이
+// 공짜로 준다 — **수치 범위를 발문에 안 적는다**」. 그리고 🔴 로 금지한 것이 둘이다:
+// 「몫이 자연수 + 수치 범위」(= 2-2-3 심화중 **그대로**, 게다가 2-1 과 2-2 는 **같은 학기
+// 인접 대단원**이라 한 확인테스트에 실린다)와 「어떤 수에 곱했더니」(= 심화하·2-2-1).
+//
+// 그래서 이 갈래의 발문에는 **「… 보다 크고 … 보다 작은」이 없다.** 창은 진분수 약속이
+// 준다. 시험 축 ㉧″ 가 그것을 잠근다(양성 대조는 2-2 심화중이 그 문장을 **쓴다**는 것).
+//
+// ## 1-5 의 예약 축 — **눈금**
+//
+// 1-4 와 1-5 는 정수성의 **운반체**로 갈린다(§1-4 블록 머리말). 여기서는 **띠의 눈금 cm** 다 —
+// 「눈금에 그리려면 길이가 자연수여야 한다」는 것이 **그리기 소단원의 진짜 요구**이고,
+// 토대 §3 이 「사람 수가 자연수」를 1-5 에서 반증 ③ 경계로 찍은 그 자리를 피한다.
+// 읽기 소단원(1-5-1·3·5)은 자료가 `figureSpec` 에 있어 발문에 수가 없다 — 비운다.
+
+// ── 2-1-1 분모가 같은 (분수)÷(분수) — 🔴 **중·상 둘 다 비운다** ────────────────
+//
+// 두 근거는 서로 다르고, 둘 다 **재서** 나왔다.
+//
+// ⑴ **심화중** — 창을 「$square$ 가 두 자리 수」로 주면, 후보가 $a$ 의 배수열이라
+//    두 자리 수는 **언제나 꼬리**다. 곧 답이 늘 «가장 큰 후보»가 되어 그 한 줄이
+//    100% 통한다(구성상 참이다 — 씨앗을 볼 것도 없다). 이 대단원에서 꼬리를 안
+//    만드는 다른 선택자는 전부 밖에 있다 — 기약(=1-1 예약축) · 약수(초5) ·
+//    짝홀(분수 개념이 아니다).
+//
+// ⑵ **심화상** — 「후보를 만들어 **견주는**」 조건(차·합·크기)을 지면에 적으려면
+//    **자연수 하나**가 발문에 들어가야 한다. 그런데 이 소단원의 조건 검사는
+//    `kindsPresent("분수","분수")` 라 **요구하지 않은 종류(자연수)를 금지**한다
+//    (`probe-elem-section-conditions`). 실제로 「그 몫보다 $15$만큼 클 때」로 지어
+//    돌렸더니 그 판정기가 **위반**을 냈다. 기존 갈래 넷도 전부 자연수가 없다
+//    (연산 `$rac38divrac18=square$` · 심화하 「어떤 수에 $rac45$ 를 곱했더니」).
+//    곧 이 소단원은 **지면에 견줄 값을 적을 수 없다.**
+//
+// 그래서 2-1 은 **2-1-5(대분수)** 한 자리만 세운다 — 거기서는 대분수의 정수부가
+// 자연수 자리를 정당하게 차지하고, 진분수부가 꼬리 없이 흩어진다.
+
+// ── 2-1-5 (가분수)÷(분수), (대분수)÷(분수) — 심화중 ─────────────────────────
+//
+// 안 굳는 마디: **대분수의 진분수 부분.** 대분수를 가분수로 고치면 분자가
+// $(정수부\times분모+\square)$ 인데, 그 $\square$ 를 발문이 안 준다.
+// 굳히는 성질: 「몫이 자연수」 — 그 분자가 나누는 분수의 분자의 배수여야 한다.
+// 창은 **소단원 약속이 공짜로 준다**($\square$ 는 분모보다 작다) — 수치 범위를 안 적는다.
+//
+// 🔴 **꼬리 쏠림이 없다.** 2-1-1 의 「두 자리 수」와 달리 여기서 남는 $\square$ 는
+//    나머지가 정하는 **한 자리**라, 정수부와 나누는 분자를 바꾸면 $1$ 부터 $분모-1$ 까지
+//    고르게 흩어진다(시험 ㉨″ 가 그것을 잰다).
+type MixedTopCase = {
+  /** 대분수의 정수부. */
+  w: number;
+  /** 분모(둘이 같다). */
+  d: number;
+  /** 나누는 분수의 분자. */
+  a: number;
+  /** 답: 진분수 부분의 분자. */
+  ans: number;
+  slot: string;
+};
+
+const mixedTopStem = (c: MixedTopCase): string =>
+  `${expr(`${c.w}\\frac{\\square}{${c.d}}\\div\\frac{${c.a}}{${c.d}}`)} 의 몫이 자연수입니다. ` +
+  `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수일 때, ${expr("\\square")} 안에 알맞은 수를 구하시오.`;
+
+const MIXED_TOP_MID: MixedTopCase[] = [];
+// 🔴 분모 상한이 $15$ 였을 때 자리가 **24개**뿐이라 답이 창 가운데로 쏠렸다
+//    (설계 공간에서 $29.2\%$ · 우연 $9.5\%$). $20$ 으로 넓히니 자리 **64개** ·
+//    가운데 $18.8\%$ 로 내려갔다 — 시험 ㉨″ 가 그것을 잰다. 심화하가 이미
+//    $1\frac1{24}$ 를 쓰므로 이 범위는 소단원 밖으로 안 나간다.
+for (let d = 5; d <= 20; d += 1)
+  for (let a = 2; a < d; a += 1) {
+    if (gcd(a, d) !== 1) continue; // 발문의 분수는 기약이다
+    for (let w = 1; w <= 5; w += 1) {
+      // 🔴 **유일성은 «기약» 을 빼고 따진다.** 발문은 「진분수」라고만 하지
+      //    「기약분수」라고 하지 않는다 — 기약을 조건으로 세어 유일하다고 하면
+      //    지면에는 답이 **둘인 문항**이 나간다($3\frac{2}{14}$ 도 진분수다).
+      //    실제로 시험이 그것을 잡았다(2-1-5 심화중, 씨앗 8자리).
+      //    ⚠️ 「기약분수다」를 발문에 얹는 길은 안 간다 — 약분은 토대 §1.4 가
+      //       **1-1 에 예약**한 축이고 초5 개념이다(반증 ③).
+      const hit: number[] = [];
+      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);
+      if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다
+      // 답 자체는 기약이어야 해설의 대분수가 정본 꼴로 선다.
+      if (gcd(hit[0]!, d) !== 1) continue;
+      const ans = hit[0]!;
+      const c: MixedTopCase = { w, d, a, ans, slot: `${ans}/${d}` };
+      if (!backsolveSafeStem(mixedTopStem(c), rat(ans))) continue;
+      MIXED_TOP_MID.push(c);
+    }
+  }
+const MIXED_TOP_BINS = binByAnswerThenSlot(MIXED_TOP_MID);
+
+function mixedTopMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    MIXED_TOP_BINS.bins,
+    MIXED_TOP_BINS.answers,
+  );
+  const imp = c.w * c.d + c.ans;
+  const q = imp / c.a;
+  return makeDeep(unit, mixedTopStem(c), num(c.ans), [
+    `대분수를 가분수로 고치면 분자는 ` +
+      `${expr(`${c.w}\\times${c.d}+\\square=${c.w * c.d}+\\square`)} 입니다. ` +
+      `분모가 같으므로 몫은 그 분자를 ${num(c.a)}${numRo(c.a)} 나눈 것입니다.`,
+    `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수이므로 ${expr("\\square")} 는 ` +
+      `${num(1)}부터 ${num(c.d - 1)}까지입니다. 그 가운데 ` +
+      `${expr(`${c.w * c.d}+\\square`)} 가 ${num(c.a)}의 배수가 되는 것은 ` +
+      `${expr(`${c.w * c.d}+${c.ans}=${imp}`)} 뿐입니다.`,
+    // ⚠️ 「로/으로」는 끝소리가 정한다 — 손으로 적으면 판정기가 문다(1-3-2 에서 한 번 물렸다).
+    `${expr(`${c.w}\\frac{${c.ans}}{${c.d}}\\div\\frac{${c.a}}{${c.d}}=${imp}\\div${c.a}=${q}`)}` +
+      `${numRo(q)} 몫이 자연수인 것을 확인할 수 있습니다.`,
+  ]);
+}
+
+// ── 1-5-2 띠그래프로 나타내기 — 심화중 ──────────────────────────────────────
+//
+// 안 굳는 마디: **띠의 전체 길이.** 비율만으로는 항목의 길이가 배수열로만 묶인다.
+// 굳히는 성질: **눈금** — 띠에 그리려면 그 항목의 길이가 자연수 cm 여야 하므로
+// 전체 길이가 기약분모의 배수다. 창이 그중 하나를 고른다.
+//
+// ⚠️ 심화하는 전체 길이와 항목 길이를 **둘 다** 준다(「$40$ cm 띠에서 만화 $18$ cm」).
+//    여기서는 둘 다 감추고 비율만 준다 — 사다리가 한 칸 오른다.
+// ⚠️ 이 갈래는 **그림이 없다.** 띠를 그리면 길이가 지면에 나와 마디가 안 열린다.
+type BandLenCase = {
+  p: number;
+  b: number;
+  lo: number;
+  hi: number;
+  total: number;
+  ans: number;
+  slot: string;
+};
+
+/** 띠그래프 소재 — 「무엇을 조사했나」. 1-4 의 «사람 수» 소재와 겹치지 않게 고른다. */
+const BAND_TOPICS = [
+  { survey: "즐겨 읽는 책", item: "만화" },
+  { survey: "좋아하는 과목", item: "수학" },
+  { survey: "학교에 오는 방법", item: "도보" },
+  { survey: "좋아하는 계절", item: "여름" },
+] as const;
+
+const bandLenStem = (c: BandLenCase, t: (typeof BAND_TOPICS)[number]) =>
+  `${t.survey}${josa(t.survey, "을", "를")} 조사해 띠그래프로 나타내려고 합니다. ` +
+  `${t.item}의 비율이 ${expr(`${c.p}\\%`)} 이고, 띠에서 ` +
+  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이가 자연수 cm 입니다. ` +
+  `띠의 전체 길이가 ${num(c.lo)} cm 보다 길고 ${num(c.hi)} cm 보다 짧을 때, ` +
+  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 몇 cm 입니까?`;
+
+const BAND_LEN_MID: BandLenCase[] = [];
+for (let p = 5; p <= 95; p += 5) {
+  // 띠그래프의 비율은 $5$의 배수다 — `split100` 이 만드는 풀과 결을 맞춘다.
+  const [a, b] = pctFraction(p);
+  if (b < 4 || b > 20) continue;
+  for (let k = 1; k <= 6; k += 1) {
+    const total = b * k;
+    const ans = a * k;
+    if (total < 10 || total > 60 || ans < 2) continue; // 지면에 그릴 수 있는 띠 길이
+    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+        const span = hi - lo - 1;
+        if (span < 5 || span > 12) continue;
+        if (loneMultiple(lo, hi, b) !== total) continue;
+        const c: BandLenCase = {
+          p,
+          b,
+          lo,
+          hi,
+          total,
+          ans,
+          slot: slotOf(lo, hi, total),
+        };
+        if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))
+          continue;
+        BAND_LEN_MID.push(c);
+      }
+  }
+}
+const BAND_LEN_BINS = binByAnswerThenSlot(BAND_LEN_MID);
+
+function bandLenMid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const c = pickByAnswerThenSlot(
+    rng,
+    BAND_LEN_BINS.bins,
+    BAND_LEN_BINS.answers,
+  );
+  const t = pick(rng, BAND_TOPICS);
+  const [a, b] = pctFraction(c.p);
+  return makeDeep(unit, bandLenStem(c, t), num(c.ans), [
+    `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
+      `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ${t.item}의 길이가 ` +
+      `자연수 cm 이려면 띠의 전체 길이가 ${num(b)}의 배수여야 합니다.`,
+    `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
+      `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 길이는 ` +
+      `${unitNum(c.total, "cm")} 입니다.`,
+    `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
+      `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 ${unitNum(c.ans, "cm")} 입니다.`,
+  ]);
+}
+
 /**
  * 난이도 갈래 (D-72 확대) — 키는 `tierKey` 형식(`"초6|1-1-1"`), 값은 넷 전부.
  * `TierVariants` 가 넷을 컴파일로 강제한다 — 일부만 채우면 프리셋 비율이 조용히 못 선다.
@@ -9505,18 +10333,21 @@ export const G6_TIERS: ElemTierMap = {
     기본: decUnderWord,
     응용: decUnderApply,
     심화하: decUnderDeep,
+    심화중: underOneSmallestMid,
   },
   "초6|1-3-3": {
     연산: decBringCalc,
     기본: decBringWord,
     응용: decBringApply,
     심화하: decBringDeep,
+    심화상: bringZeroDivisorTop,
   },
   "초6|1-3-4": {
     연산: decZeroCalc,
     기본: decZeroWord,
     응용: decZeroApply,
     심화하: decZeroDeep,
+    심화상: zeroTenthQuotientTop,
   },
   "초6|1-3-5": {
     연산: natDecCalc,
@@ -9541,6 +10372,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: rateWord,
     응용: rateApply,
     심화하: rateDeep,
+    심화중: rateWindowMid,
   },
   "초6|1-4-4": {
     연산: rateUseCalc,
@@ -9553,12 +10385,14 @@ export const G6_TIERS: ElemTierMap = {
     기본: pctWord,
     응용: pctApply,
     심화하: pctDeep,
+    심화중: pctWindowMid,
   },
   "초6|1-4-6": {
     연산: pctUseCalc,
     기본: pctUseWord,
     응용: pctUseApply,
     심화하: pctUseDeep,
+    심화중: voteWindowMid,
   },
   "초6|1-5-1": {
     연산: stripReadCalc,
@@ -9571,6 +10405,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: stripDrawWord,
     응용: stripDrawApply,
     심화하: stripDrawDeep,
+    심화중: bandLenMid,
   },
   "초6|1-5-3": {
     연산: pieReadCalc,
@@ -9618,6 +10453,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: sameDenWord,
     응용: sameDenApply,
     심화하: sameDenDeep,
+    // 확대 갈래 둘 다 비움 — 근거는 위 «2-1-1 … 비운다» 주석.
   },
   "초6|2-1-2": {
     연산: diffDenCalc,
@@ -9642,6 +10478,7 @@ export const G6_TIERS: ElemTierMap = {
     기본: mixedFracWord,
     응용: mixedFracApply,
     심화하: mixedFracDeep,
+    심화중: mixedTopMid,
   },
   "초6|2-2-1": {
     연산: sameDpCalc,

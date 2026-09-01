@@ -1868,6 +1868,94 @@ G6_MUTS = [
         "    !pmOneStepReachable(nums, answer)",
         "    !pmOneStepReachable(nums, rat(-1))",
     ),
+    # ── 4차분(물결 4) — 1-3 소수의 나눗셈 · 「나누는 수를 감춘다 + 몫의 «자리»」 ──
+    (
+        "반증 ⑥ 가드 제거 — 1-3-2 심화중이 순방향·±한 걸음으로 닿아도 좋다",
+        "      if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;",
+        "      if (false) continue;",
+    ),
+    (
+        "유일성 가드 무르기 — 창 안에 조건을 지키는 나누는 수가 여럿이어도 낸다",
+        "        if (hit.length !== 1) continue;",
+        "        if (hit.length < 1) continue;",
+    ),
+    (
+        "창 좁히기 — 1-3-3 후보를 하나까지 허용(견줄 것이 없어진다)",
+        "  { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },",
+        "  { xlo: 110, xhi: 4990, winMin: 1, winMax: 6 },",
+    ),
+    (
+        "«견줄 후보 둘» 가드 제거 — 값이 적히는 후보가 하나뿐이어도 «상» 이라 한다",
+        "        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 2)",
+        "        if (cands.filter((d) => centsQuotientText(xc, d) !== null).length < 0)",
+    ),
+    (
+        "🔴 감추는 자리 뒤집기 — 1-3-3 발문이 2-2 의 뼈대(나누어지는 수를 감춤)를 쓴다",
+        "  `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;",
+        "  `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;",
+    ),
+    (
+        "소단원 성질 훼손 — 1-3-3 이 「$0$을 내린다」(몫 두 자리) 대신 한 자리를 고른다",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2,",
+        "  (xc, d) => centsQuotientDp(xc, d) === 1,",
+    ),
+    (
+        "소단원 성질 훼손 — 1-3-4 가 「첫째 자리 $0$」 대신 첫째 자리 $1$ 을 고른다",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,",
+        "  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 1,",
+    ),
+    (
+        "1-3-2 의 창 훼손 — $A$ 가 나누는 수보다 커질 수 있게 한다(「가장 작은」이 어긋난다)",
+        "  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {",
+        "  for (let ac = (d - 1) * 100 + 10; ac < (d + 1) * 100; ac += 10) {",
+    ),
+    # ── 4차분(물결 4) — 1-4 비와 비율 · 「정수성 + 창」 ──
+    (
+        "반증 ⑥ 가드 제거 (1-4-3) — 순방향·±한 걸음으로 닿아도 좋다",
+        "          if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;",
+        "          if (false) continue;",
+    ),
+    (
+        "유일성 가드 무르기 (1-4-3) — 창 안에 배수가 여럿이어도 낸다",
+        "          if (loneMultiple(lo, hi, q) !== base) continue;",
+        "          if (loneMultiple(lo, hi, q) === null && false) continue;",
+    ),
+    (
+        "창 좁히기 (1-4-3) — 창 안 자연수를 둘까지 허용",
+        "          if (span < 7 || span > 12) continue;",
+        "          if (span < 2 || span > 12) continue;",
+    ),
+    (
+        "🔴 운반체 뒤집기 (1-4-5) — 정수성을 «사람»이 아니라 «눈금 cm» 로 말한다",
+        "  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +",
+        "  `${g.who} ${g.unit} 길이가 눈금 cm 이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +",
+    ),
+    (
+        "검산 훼손 (1-4-6) — 반대한 학생 수를 하나 올린다",
+        "    const ans = total - yes;",
+        "    const ans = total - yes + 1;",
+    ),
+    # ── 4차분(물결 4) — 2-1-5 · 1-5-2 ──
+    (
+        "🔴 유일성을 «기약» 을 넣고 센다 (2-1-5) — 지면에 답이 둘인 문항이 나간다",
+        "      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);",
+        "      for (let s = 1; s < d; s += 1)\n        if (gcd(s, d) === 1 && (w * d + s) % a === 0) hit.push(s);",
+    ),
+    (
+        "유일성 가드 무르기 (2-1-5) — 조건을 지키는 진분수부가 여럿이어도 낸다",
+        "      if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다",
+        "      if (hit.length < 1) continue;",
+    ),
+    (
+        "반증 ⑥ 가드 제거 (1-5-2) — 순방향·±한 걸음으로 닿아도 좋다",
+        "        if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))",
+        "        if (false)",
+    ),
+    (
+        "🔴 운반체 뒤집기 (1-5-2) — 눈금 cm 가 아니라 «사람 수» 로 말한다",
+        "  `${t.item}${josa(t.item, \"이\", \"가\")} 차지하는 길이가 자연수 cm 입니다. ` +",
+        "  `${t.item}${josa(t.item, \"이\", \"가\")} 고른 학생 수가 자연수이고 ` +",
+    ),
 ]
 
 G4_MUTS = [
@@ -2382,6 +2470,7 @@ TARGETS = {
             "src/__tests__/unit/elemTiersG6Deep.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW2.test.ts",
             "src/__tests__/unit/elemTiersG6DeepW3.test.ts",
+            "src/__tests__/unit/elemTiersG6DeepW4.test.ts",
         ],
         "grade": "초6",
         "sections": [

@@ -926,9 +926,87 @@ function decShape(answer: string): { dp: number; tenth: string | null } {
  * 발문이 말하는 값을 **다시** 만든다 — 갈래를 발문의 낱말로 가른다(생성기 분기를 옮겨 적지 않는다).
  * 못 읽으면 null 을 주고, 부르는 쪽이 위반으로 처리한다.
  */
+/**
+ * 유리수의 **소수 자릿수**. $2$·$5$ 말고 다른 소인수가 남으면 «안 끝난다»(null).
+ * 생성기의 `centsQuotientDp` 를 안 부른다 — 부르면 동어반복이다.
+ */
+function decDpOf13(v: R): number | null {
+  let d = v.d;
+  let two = 0;
+  let five = 0;
+  while (d % 2 === 0) {
+    d /= 2;
+    two += 1;
+  }
+  while (d % 5 === 0) {
+    d /= 5;
+    five += 1;
+  }
+  return d === 1 ? Math.max(two, five) : null;
+}
+
+/**
+ * 「$X$ 를 어떤 자연수로 나누었더니 … 나누는 수가 $lo$ 보다 크고 $hi$ 보다 작을 때」 발문에서
+ * **창 안의 자연수를 전부 훑어** 조건을 지키는 것을 돌려준다. 못 읽으면 null.
+ */
+function divisorsMatching13(
+  content: string,
+  keep: (quotient: R) => boolean,
+): number[] | null {
+  const xm = content.match(/\$(\d+(?:\.\d+)?)\$[을를] 어떤 자연수로/);
+  const wm = content.match(
+    /나누는 수가 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+  );
+  if (!xm || !wm) return null;
+  const x = readDecTok(xm[1]!);
+  if (!x) return null;
+  const out: number[] = [];
+  for (let d = Number(wm[1]) + 1; d < Number(wm[2]); d += 1) {
+    if (keep(rdiv(x, rat(d)))) out.push(d);
+  }
+  return out;
+}
+
 function truthOf13(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
+  // ══ 확대 갈래 (4차분 · 물결 4) — **나누는 수를 감춘다**. 아래 심화하 판독기보다 먼저 본다 ══
+  //
+  // ⚠️ 순서가 뜻이다. 셋 다 「나누었더니」를 쓰므로 아래 판독기가 먼저 물면 엉뚱한 두 수를
+  //    나눠 «참»을 지어낸다(1-1 의 확대 갈래에서 이미 한 번 물린 자리).
+  //
+  // 셋 다 시험이 **조건을 다시 풀고** 답이 하나로 굳는지까지 여기서 잰다 —
+  // 「답이 둘인 문항」은 값 검산이 구조적으로 못 보는 부류다.
+
+  // 1-3-2 심화중 — 「$A$ 를 나누면 몫이 $1$보다 작아지는 자연수 중 가장 작은 수」로 나눈 몫이 $q$.
+  if (content.includes("작아지는") && content.includes("가장 작은 수")) {
+    const qm = content.match(/몫이 \$(\d+(?:\.\d+)?)\$[이가] 되었습니다/);
+    const am = content.match(/나누는 수가 \$(\d+(?:\.\d+)?)\$[을를] 나누면/);
+    if (!qm || !am) return null;
+    const q = readDecTok(qm[1]!);
+    const a = readDecTok(am[1]!);
+    if (!q || !a) return null;
+    // 몫이 $1$보다 작다 ⟺ 나누는 수 > $A$. 그중 가장 작은 자연수.
+    const d = Math.floor(a.n / a.d) + 1;
+    return rmul(q, rat(d));
+  }
+  // 1-3-3 심화상 — 창 안의 자연수 중 「$0$을 내려 몫이 소수 두 자리」인 것 하나.
+  if (content.includes("소수점 아래 $0$을 내려 계산하게 되어")) {
+    const hit = divisorsMatching13(content, (v) => decDpOf13(v) === 2);
+    return hit && hit.length === 1 ? rat(hit[0]!) : null;
+  }
+  // 1-3-4 심화상 — 그 중 「몫의 소수 첫째 자리가 $0$」인 것 하나. 답은 **몫**이다.
+  if (content.includes("몫이 소수 첫째 자리에 $0$이 있는")) {
+    const x = readDecTok(
+      content.match(/\$(\d+(?:\.\d+)?)\$[을를] 어떤 자연수로/)?.[1] ?? "",
+    );
+    const hit = divisorsMatching13(
+      content,
+      (v) => decDpOf13(v) === 2 && Math.floor((v.n * 10) / v.d) % 10 === 0,
+    );
+    if (!x || !hit || hit.length !== 1) return null;
+    return rdiv(x, rat(hit[0]!));
+  }
 
   // 심화 — 수 카드로 몫이 가장 작은 나눗셈식
   if (content.includes("수 카드") && content.includes("가장 작은")) {
@@ -1301,6 +1379,69 @@ const rlt = (a: R, b: R) => a.n * b.d < b.n * a.d;
 function truthOf14(content: string): R | null {
   const ns = decNumbersIn(content);
   const at = (i: number) => ns[i] ?? null;
+  // ══ 확대 갈래 (4차분 · 물결 4) — **값을 안 주고 «정수성 + 창»으로 굳힌다** ══
+  //
+  // ⚠️ 순서가 뜻이다. 아래 심화하 판독기(「찬성률이」·「비율이 $」)가 먼저 물면
+  //    창의 두 끝을 «찬성 인원»·«합»으로 읽어 그럴듯한 «참»을 지어낸다.
+  //
+  // 셋 다 시험이 창 안에서 배수를 **다시 찾고**, 하나로 굳는지까지 여기서 잰다.
+  {
+    /** 창 안 자연수 가운데 $m$ 의 배수 — 정확히 하나일 때만 값을 준다. */
+    const lone14 = (lo: number, hi: number, m: number): number | null => {
+      let hit: number | null = null;
+      for (let v = lo + 1; v < hi; v += 1) {
+        if (v % m !== 0) continue;
+        if (hit !== null) return null;
+        hit = v;
+      }
+      return hit;
+    };
+    const pctOf = (c: string) => {
+      const m = c.match(/\$(\d+)\\%\$/);
+      return m ? Number(m[1]) : null;
+    };
+    const winOf = (c: string, re: RegExp): [number, number] | null => {
+      const m = c.match(re);
+      return m ? [Number(m[1]), Number(m[2])] : null;
+    };
+
+    // 1-4-3 심화중 — 비율 $\frac pq$ + 「두 항이 자연수」 → 기준량은 $q$ 의 배수.
+    if (content.includes("두 항이 모두 자연수이고 기준량이")) {
+      const f = content.match(/\\frac\{(\d+)\}\{(\d+)\}/);
+      const w = winOf(
+        content,
+        /기준량이 \$(\d+)\$보다 크고 \$(\d+)\$보다 작을 때/,
+      );
+      if (!f || !w) return null;
+      const [p, q] = [Number(f[1]), Number(f[2])];
+      const base = lone14(w[0], w[1], q);
+      return base === null ? null : rat((base / q) * p);
+    }
+    // 1-4-5 심화중 — $p\%$ + 「그 학생 수가 자연수」 → 전체는 기약분모의 배수.
+    if (content.includes("수가 자연수이고 전체 학생이")) {
+      const p = pctOf(content);
+      const w = winOf(
+        content,
+        /전체 학생이 \$(\d+)\$명보다 많고 \$(\d+)\$명보다 적을 때/,
+      );
+      if (p === null || !w) return null;
+      const b = 100 / gcd(p, 100);
+      const total = lone14(w[0], w[1], b);
+      return total === null ? null : rat((total * p) / 100);
+    }
+    // 1-4-6 심화중 — 같은 굳힘, 묻는 것은 **여집합**(반대한 학생).
+    if (content.includes("찬성한 학생 수가 자연수이고 투표한 학생이")) {
+      const p = pctOf(content);
+      const w = winOf(
+        content,
+        /투표한 학생이 \$(\d+)\$명보다 많고 \$(\d+)\$명보다 적을 때/,
+      );
+      if (p === null || !w) return null;
+      const b = 100 / gcd(p, 100);
+      const total = lone14(w[0], w[1], b);
+      return total === null ? null : rat(total - (total * p) / 100);
+    }
+  }
 
   // 1-4-1 심화 ⓑ — 어떤 수를 되짚어 다른 배를 구한다.
   // ⚠️ 1-4-5 심화 ⓐ(「어떤 수의 $p\%$ 는 $V$. 어떤 수의 $q\%$ 는?」)도 여기로 온다 —
@@ -1676,6 +1817,25 @@ function truthOf15(content: string, spec: unknown): R | null {
   const at = (i: number) => ns[i] ?? null;
   const slices = chartPcts(spec);
   const named = slices ? labelsInOrder(content, slices) : [];
+  // ══ 확대 갈래 (4차분 · 물결 4) — 1-5-2 심화중 · **눈금**이 굳힌다 ══
+  //
+  // 띠의 전체 길이가 안 굳고, 「그 항목의 길이가 자연수 cm」가 기약분모의 배수로 묶는다.
+  // 시험이 창 안에서 배수를 **다시 찾고**, 하나로 굳는지까지 잰다.
+  if (content.includes("차지하는 길이가 자연수 cm")) {
+    const p = Number(content.match(/\$(\d+)\\%\$/)?.[1] ?? NaN);
+    const w = content.match(
+      /전체 길이가 \$(\d+)\$ cm 보다 길고 \$(\d+)\$ cm 보다 짧을 때/,
+    );
+    if (!Number.isFinite(p) || !w) return null;
+    const b = 100 / gcd(p, 100);
+    let hit: number | null = null;
+    for (let v = Number(w[1]) + 1; v < Number(w[2]); v += 1) {
+      if (v % b !== 0) continue;
+      if (hit !== null) return null;
+      hit = v;
+    }
+    return hit === null ? null : rat((hit * p) / 100);
+  }
 
   // 1-5-5 심화 — 최고 명수에서 전체를 되짚어 최저 명수로
   if (content.includes("가장 높은 항목을 고른 학생이")) {
@@ -2290,6 +2450,43 @@ function fracPairsIn(text: string): [number, number][] {
 function truthOf21(content: string): R | null {
   const ns = numbersIn(content);
   const at = (i: number) => ns[i] ?? null;
+  // ══ 확대 갈래 (4차분 · 물결 4) — **소단원 약속이 창을 공짜로 준다** ══
+  //
+  // ⚠️ 순서가 뜻이다. 아래 심화하 판독기(「알맞은 수」)가 먼저 물면 엉뚱한 식을 읽는다.
+  // 시험이 후보를 **다시 만들어** 하나로 굳는지까지 여기서 잰다.
+  {
+    const denOf = (c: string) => {
+      const m = c.match(/\\frac\{\\square\}\{(\d+)\}/);
+      return m ? Number(m[1]) : null;
+    };
+    const divTopOf = (c: string) => {
+      const m = c.match(/\\div\\frac\{(\d+)\}\{\d+\}/);
+      return m ? Number(m[1]) : null;
+    };
+    // 2-1-5 심화중 — 대분수의 진분수부. 「가분수 분자가 $a$ 의 배수」인 $\square$ 하나.
+    if (
+      content.includes("의 몫이 자연수입니다") &&
+      /\d\\frac\{\\square\}/.test(content)
+    ) {
+      const w = Number(content.match(/\$(\d+)\\frac\{\\square\}/)?.[1] ?? NaN);
+      const d = denOf(content);
+      const a = divTopOf(content);
+      if (!Number.isFinite(w) || d === null || a === null) return null;
+      const hit: number[] = [];
+      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);
+      return hit.length === 1 ? rat(hit[0]!) : null;
+    }
+    // 2-1-1 심화상 — 「분자가 몫보다 $k$ 만큼 크다」. 후보를 만들어 차를 견준다.
+    if (content.includes("그 몫보다") && content.includes("만큼 클 때")) {
+      const d = denOf(content);
+      const a = divTopOf(content);
+      const k = Number(content.match(/그 몫보다 \$(\d+)\$만큼/)?.[1] ?? NaN);
+      if (d === null || a === null || !Number.isFinite(k)) return null;
+      const hit: number[] = [];
+      for (let m = 1; m * a < d; m += 1) if (m * a - m === k) hit.push(m * a);
+      return hit.length === 1 ? rat(hit[0]!) : null;
+    }
+  }
 
   // 2-1-4 심화 ⓐ — 역수 관계를 되짚는다
   if (content.includes("어떤 분수")) {
@@ -2449,45 +2646,58 @@ describe("[초6 갈래] 2-1 분수의 나눗셈", () => {
 
   it("소단원 이름의 분모·피연산자 조건을 갈래 넷이 지면에서 지킨다", () => {
     const bad: string[] = [];
-    // 이 자리는 code 를 넷 동시에 다룬다(아래 at()) — 대표로 2-1-1 의 갈래를 돈다.
-    // 이 그룹은 같은 회차에 같이 채워지므로 지금은 갈래 집합이 같다.
-    for (const tier of tiersOf(unitOf("2-1-1"))) {
-      for (const seed of SEEDS) {
-        const at = (code: string) =>
-          generateElementaryProblem(unitOf(code), seed, tier).content;
-        // 2-1-1 «분모가 같은» — 발문 분수가 둘 이상이고 분모가 전부 같다.
-        const c1 = fracPairsIn(at("2-1-1"));
-        if (c1.length < 2 || c1.some(([, d]) => d !== c1[0]![1])) {
-          bad.push(`2-1-1 ${tier} seed=${seed}: 분모가 어긋났다`);
-        }
-        // 2-1-2 «분모가 다른» — 서로 다른 분모가 둘 이상.
-        const c2 = fracPairsIn(at("2-1-2"));
-        if (c2.length < 2 || new Set(c2.map(([, d]) => d)).size < 2) {
-          bad.push(`2-1-2 ${tier} seed=${seed}: 분모가 전부 같다`);
-        }
-        // 2-1-3 «(자연수)÷(분수)» — 자연수와 분수가 함께 보인다(□·어떤 수 포함).
-        const c3raw = at("2-1-3");
-        const c3 = numbersIn(c3raw);
-        const hasNat =
-          c3.some((v) => v.d === 1) ||
-          c3raw.includes("\\square") ||
-          c3raw.includes("어떤 수");
-        if (!hasNat || !c3.some((v) => v.d > 1)) {
-          bad.push(
-            `2-1-3 ${tier} seed=${seed}: 자연수·분수 짝이 없다 — ${c3raw}`,
+    // 🔴 **대표 하나로 돌면 안 된다** (2026-09-01, 물결 4). 예전에는 2-1-1 의 갈래로
+    //    넷을 다 돌렸는데, 확대 갈래는 **소단원마다 있을 수도 없을 수도** 있어서
+    //    2-1-1 만 채우는 순간 2-1-2 에서 `generateElementaryProblem` 이 **던진다**
+    //    (`helpers/elemTiers.ts` 머리말이 「그건 결함이 아니라 설계다 — 루프를
+    //     소단원마다 쪼개라」고 적어 둔 그 자리다). 그래서 **그 소단원이 실제로 내는
+    //    갈래**만 돈다. 검사 내용은 그대로다.
+    // ⚠️ 분모 세기는 `\frac{\square}{d}` 도 **한 분수로** 센다. 확대 갈래는 분자를
+    //    감추므로(4차분) 숫자 분수만 세면 「분모가 하나뿐」이 되어 거짓 빨강이 난다 —
+    //    그런데 그 발문의 분모 관계는 지면에 **그대로 보인다**.
+    const densIn = (c: string): number[] => [
+      ...fracPairsIn(c).map(([, d]) => d),
+      ...[...c.matchAll(/\\frac\{\\square\}\{(\d+)\}/g)].map((m) =>
+        Number(m[1]),
+      ),
+    ];
+    const each = (code: string, run: (c: string, tier: ElemTier) => void) => {
+      for (const tier of tiersOf(unitOf(code)))
+        for (const seed of SEEDS)
+          run(
+            generateElementaryProblem(unitOf(code), seed, tier).content,
+            tier,
           );
-        }
-        // 2-1-5 «(가분수), (대분수)» — 어느 한쪽은 지면에 선다.
-        const c5 = at("2-1-5");
-        const hasMixed = /\d+\\frac\{/.test(c5);
-        const hasImproper = fracPairsIn(c5).some(([n, d]) => n >= d);
-        if (!hasMixed && !hasImproper) {
-          bad.push(
-            `2-1-5 ${tier} seed=${seed}: 가분수도 대분수도 없다 — ${c5}`,
-          );
-        }
-      }
-    }
+    };
+    // 2-1-1 «분모가 같은» — 발문 분수가 둘 이상이고 분모가 전부 같다.
+    each("2-1-1", (c, tier) => {
+      const d = densIn(c);
+      if (d.length < 2 || d.some((v) => v !== d[0]))
+        bad.push(`2-1-1 ${tier}: 분모가 어긋났다 — ${c}`);
+    });
+    // 2-1-2 «분모가 다른» — 서로 다른 분모가 둘 이상.
+    each("2-1-2", (c, tier) => {
+      const d = densIn(c);
+      if (d.length < 2 || new Set(d).size < 2)
+        bad.push(`2-1-2 ${tier}: 분모가 전부 같다 — ${c}`);
+    });
+    // 2-1-3 «(자연수)÷(분수)» — 자연수와 분수가 함께 보인다(□·어떤 수 포함).
+    each("2-1-3", (c, tier) => {
+      const ns = numbersIn(c);
+      const hasNat =
+        ns.some((v) => v.d === 1) ||
+        c.includes("\\square") ||
+        c.includes("어떤 수");
+      if (!hasNat || !ns.some((v) => v.d > 1))
+        bad.push(`2-1-3 ${tier}: 자연수·분수 짝이 없다 — ${c}`);
+    });
+    // 2-1-5 «(가분수), (대분수)» — 어느 한쪽은 지면에 선다.
+    each("2-1-5", (c, tier) => {
+      const hasMixed = /\d+\\frac\{/.test(c);
+      const hasImproper = fracPairsIn(c).some(([n, d]) => n >= d);
+      if (!hasMixed && !hasImproper)
+        bad.push(`2-1-5 ${tier}: 가분수도 대분수도 없다 — ${c}`);
+    });
     expect(bad.slice(0, 8)).toEqual([]);
   });
 
