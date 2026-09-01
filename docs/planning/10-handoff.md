@@ -40,6 +40,15 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 > 한 줄: **다른 컴퓨터에서 pull 한 직후 관문을 돌리면 46파일이 빨갛다. 코드 탓이 아니다.**
 > 이 회차는 문항도 엔진도 안 건드렸다 — 435커밋을 당겨 **관문을 처음부터 끝까지 돌린 회차**다.
 > 결론: **전부 초록.** 막고 있던 것은 코드가 아니라 **환경 둘**이었다.
+>
+> ✅ **2026-09-02 다른 컴퓨터에서 전수 대조해 고쳤다** — 이 절의 주장을 저장소에 하나씩 대 봤다.
+> 고친 것 넷: **⑴ 「tsc 4곳」은 닫힌 열거라 샜다**(다섯째가 있다 → 판별 문구로 바꿈) ·
+> **⑵ 「입력 분모 불일치」는 두 경우 중 하나**(없을 때는 「울타리」다) ·
+> **⑶ 관문 표의 수가 «모은 수»였다**(커밋 메시지 관례인 «통과 수»와 다른 열) ·
+> **⑷ `--shard=1/3` 은 118/234 가 아니라 119/236**. 그리고 「같은 날 `delete-legacy-corpus.ts` 가
+> 지웠다」는 **15건 중 9건에 대해 틀렸다**(§0-L.4). **핵심 발견 셋은 참으로 재확인됐다** —
+> `vitest list` 가 `--shard` 를 무시하는 것, 말뭉치·`prisma generate` 선행, 미추적 scratch 가
+> lint 집계에 섞이는 것. 다만 **「배경 관문이 죽는다」는 그 회차 사정**이다(§0-L.3).
 
 ### 0-L.1 🔴 pull 직후 이 넷을 먼저 돌려라 — 안 돌리면 「46파일 빨강」을 보고 코드를 의심한다
 
@@ -60,23 +69,64 @@ npx tsx scripts/qa/census-middle-solution-vocab.ts
 node -e "const p=require('./package.json'),fs=require('fs');const a={...p.dependencies,...p.devDependencies};console.log(Object.keys(a).filter(n=>!fs.existsSync('node_modules/'+n+'/package.json')))"
 ```
 
-**⑵ 를 빼먹으면** — `tsc --noEmit` 이 4곳에서 난다(`generatePredictedPaper` · `serializers` ·
-`submitTestResult` · `replaceTestProblem`). 메시지는 전부 **`Type '"심화"' is not assignable`** 이다.
-스키마는 6단(`연산·기본·응용·심화하·심화중·심화상`)인데 생성 클라이언트가 옛 4단(`심화`)이라
-그렇다. 🔴 **그런데 vitest 는 타입을 안 보므로 관문은 낡은 클라이언트로도 초록이다** —
-「관문이 초록이니 됐다」로 넘기면 이 넷을 못 본다. **관문과 `tsc` 는 다른 질문이다.**
+**⑵ 를 빼먹으면** — `tsc --noEmit` 이 **«Prisma 행의 `difficulty` → 계약 `Difficulty`» 이음매마다**
+난다. 메시지는 전부 **`Type '"심화"' is not assignable`** 이다. 스키마는 6단
+(`연산·기본·응용·심화하·심화중·심화상`)인데 생성 클라이언트가 옛 4단(`심화`)이라 그렇다.
+**자리 수를 세지 마라 — 손으로 적은 목록은 이음매가 늘 때마다 샌다.** 지금 확인된 자리는
+**적어도 다섯**이다: `serializers` · `generatePredictedPaper` · `submitTestResult` ·
+`replaceTestProblem` · **`findEligibleProblems`**. 판별법은 «캐스팅 없이 Prisma 행의
+`difficulty` 를 계약 `Difficulty` 자리에 넣는가»이고, **전부 `npx prisma generate` 한 번이면
+사라진다.** 하나 더 떠도 저장소가 달라진 게 아니라 이 목록이 낡은 것이다.
+🔴 **그런데 vitest 는 타입을 안 보므로 관문은 낡은 클라이언트로도 초록이다**
+(`vitest.config.mts` 에 `typecheck` 블록이 없고 `run-tests.mjs` 도 tsc 를 안 부른다 —
+`tsc` 는 **pre-push** 에서야 돈다). 「관문이 초록이니 됐다」로 넘기면 이걸 못 본다.
+**관문과 `tsc` 는 다른 질문이다.**
 
-**⑶ 은 §0-K.5 에 이미 적혀 있다** — 중등 유형을 더할 때마다 다시 지어야 하고,
-안 지으면 `probe-middle-combo` 가 「입력 분모 불일치」로 막는다.
+**⑶ 은 §0-K.5 에 이미 적혀 있다** — 중등 유형을 더할 때마다 다시 지어야 한다.
+안 지으면 `probe-middle-combo` 가 막는데 **두 경우의 문구가 다르다:**
 
-### 0-L.2 관문 성적 (2026-09-01 밤, `79b3ab9b`)
+- **말뭉치가 아예 없으면**(새 컴퓨터·새 워크트리) 「**울타리 — 읽을 파일이 없어 못 돈다**」 +
+  되살리는 명령을 찍고 **exit 2**. 쓸기가 그것을 울타리로 세어 exit 4, 관문이
+  「판정기 일부를 못 쟀다(울타리)」로 막는다.
+- **말뭉치가 있는데 낡았으면**(중등 유형을 더한 뒤, 1,376 → 1,387) 「**입력 분모 불일치**」다.
+  vitest 는 전량 초록인데 종료 코드만 1이라 헷갈린다.
+
+⚠️ **말뭉치 자리는 워크트리마다 다르다** — `C:/tmp/middle-combo/<폴더이름>-<cwd 해시 8자>`
+(`scripts/qa/comboPaths.ts`). 옆 워크트리에 있어도 이 워크트리에는 없다. 저장소 뿌리가 아닌
+곳에서 부르면 또 갈리니 그때는 `--corpus=` 로 명시할 것. (기준선
+`scripts/qa/reports/middle-combo-baseline.json` 은 저장소 안이라 pull 만으로 갖춰진다.)
+
+### 0-L.2 관문 성적 (2026-09-01 밤, `79b3ab9b` **작업 트리** — 미추적 12건 포함)
 
 | 검사 | 결과 |
 |---|---|
-| vitest | **355파일 · 13,775테스트** · 실패 0 |
+| vitest | **354파일 통과 · 1건 건너뜀 (모은 355)** · **13,646테스트 통과 · 129건 건너뜀 (모은 13,775)** · 실패 0 |
 | 판정기 실데이터 쓸기 | **36개 전부 깨끗** · 빨강 0 · 울타리 0 |
-| `npx tsc --noEmit` | **0** |
-| `npm run lint` (추적 코드) | **0 에러** · 경고 42 |
+| `npx tsc --noEmit` | **0** (단, ⑵ `prisma generate` 를 먼저 돌린 뒤) |
+| `npm run lint` (`npx eslint`, 인자 없음) | 추적 트리 기준 **0 에러 · 경고 41** |
+
+> 🔴 **수를 한 칸만 적지 마라 — vitest 요약 줄을 그대로 옮겨라.** 이 저장소의 커밋 메시지
+> 관례(`79b3ab9b` 「354파일 13,646」 · `cb4d0be3` 「353」 · `71bf5f64` 「342」)는 전부
+> **통과 수**다. 「355파일 13,775」로 적으면 **모은 수**라 같은 열이 아니어서 「하루 만에
+> 파일이 늘었나」로 읽힌다.
+> · **건너뛴 1파일** = `scoreNormalizerCorpus.test.ts`. 배점 보정기 코퍼스가 저장소 밖
+>   (`PREDICTOR_CORPUS_DIR`, 기본 `../handoff-a-index/...`)이라 `describe.skipIf` 가 통째로 건너뛴다.
+> · **건너뛴 129테스트** = `middleM1Extra` 의 남의 유형 **128** + 배점 코퍼스 **1**.
+>   128 은 `M1EXTRA_TYPES` 112유형 중 명부(`EXPECTED_SECTION`) 48만 `it.runIf(owned)` 두 시험을
+>   도는 데서 나온다(2×(112−48)) — **데이터로 정해지므로 어느 컴퓨터에서나 같다.** 1 은 환경 의존.
+>
+> 🔴 **lint 경고 「42」는 어떤 명령도 찍지 않는다.** `eslint.config.mjs` 의 globalIgnores 는
+> `.probe/`·`.measure/`·`.tmp-*/` 만 빼고 **`scratch/` 는 안 뺀다**(`.eslintignore` 도 없다).
+> 그래서 **미추적 파일을 `scratch/` 에 두면 그만큼 집계에 붙는다** — 이 회차에는 미추적
+> `scratch/q-{a14,ai,dbg}.ts` 가 에러 5 · `pick-color.mjs` 가 경고 1을 더해 원문이
+> 「✖ 47 problems (5 errors, 42 warnings)」였다. 42 는 **에러만 빼고 경고는 안 뺀 값**이다.
+> 추적 트리만 재면 `79b3ab9b`·`c3735d02` 둘 다 **41**이다(2026-09-02 실측).
+> **41과 다른 수가 나오면 코드를 의심하기 전에 `git status --porcelain` 으로 미추적
+> `scratch/*.{ts,mjs,js,tsx}` 부터 세라.**
+>
+> ⚠️ **손으로 보정한 수를 관문 표에 넣을 때는 「어떤 명령의 무엇을 뺀 값인지」를 같은 칸에
+> 적어라.** 안 적으면 재현이 안 되고, 재현 안 되는 숫자는 근거가 아니라 헛수고를 만든다.
+> 이 표에서 커밋 트리로 **재현되는 칸은 vitest·tsc**, **안 되는 칸은 lint 경고 수**다.
 
 빨강으로 뜬 5건은 **전부 «시간 초과»**였고 **단독으로는 767테스트 전량 초록**이다
 (`elemTiersG4Line` · `elementaryDifficulty` · `elemStemSelfContained` · `middleM3Func` ·
@@ -85,29 +135,61 @@ node -e "const p=require('./package.json'),fs=require('fs');const a={...p.depend
 **그 줄을 믿고 단독으로 돌려라.** 안 그러면 「내 병합이 깨뜨렸나」부터 의심하게 된다
 (2026-08-31 에 실제로 그랬다).
 
-### 0-L.3 🔴 관문을 **배경으로 돌리다 네 번 죽었다** — 나눠 돌리는 법 (그리고 `--shard` 는 안 된다)
+### 0-L.3 관문 나눠 돌리는 법 — (그 회차 사정) 배경이 죽었다, 그리고 **`--shard` 는 안 된다**
 
-첫 회차는 배경에서 543초에 정상으로 끝났는데, 그 뒤 배경 작업이 **계속 외부에서 종료**됐다
-(1회는 몇 분 뒤, 3회는 몇 초 만에). 셸에서 떼어 내 `Start-Process` 로 돌리는 것도 실패했다.
-그래서 **파일 목록을 넷으로 쪼개 앞단에서** 돌렸다:
+🔴 **먼저 배경으로 한 번 돌려 보라.** 죽으면 그때 아래 4분할로 내려온다.
+
+**그 회차(그 컴퓨터)의 사정이다.** 첫 배경 회차는 543초에 정상으로 끝났는데, 그 뒤 배경
+작업이 네 번 **외부에서 종료**됐다(1회는 몇 분 뒤, 3회는 몇 초 만에). `Start-Process` 로
+셸에서 떼어 내는 것도 실패했다. **저장소에는 배경 실행을 죽이는 장치가 없다** — 확인함:
+`vitest.config.mts` 에 `pool`·`poolOptions`·`teardownTimeout`·`maxWorkers` 가 없고
+(`testTimeout: 20000` 은 시험 하나의 상한이다), 훅 둘은 프로세스를 다루지 않으며,
+`run-tests.mjs` 에도 타이머·kill·abort 가 없다(`scripts/` 의 `taskkill` 은 HWP COM 전용).
+같은 시각 다른 오르카 세션이 vitest 를 **14워커**로 돌리고 있었다(§0-L.2) — 원인은 그쪽일
+가능성이 크다. **다른 회차에서는 배경 관문이 멀쩡히 완주했다**(2026-09-01 밤 이 저장소에서
+1,008초 · 576초 · 536초, 셋 다 종료 코드 0). 같은 일이 나면 「원래 그런 것」으로 넘기지 말고
+그 자리에서 원인을 세라.
+
+죽어서 나눠 돌려야 하면 — **Git Bash 에서** 돌린다:
 
 ```bash
-npx vitest list --filesOnly | grep '\.test\.' | sed 's/[[:space:]]*$//' | sort > /tmp/all.txt
-split -n l/4 -d /tmp/all.txt /tmp/chunk
-for i in 00 01 02 03; do node scripts/qa/run-tests.mjs $(tr '\n' ' ' < /tmp/chunk$i); done
+d=$(mktemp -d)   # ⚠️ /tmp 는 워크트리가 공유한다 — 고정 이름을 쓰면 옆 세션이 덮는다
+npx vitest list --filesOnly | grep '\.test\.' | sed 's/[[:space:]]*$//' | sort > "$d/all.txt"
+split -n l/4 -d "$d/all.txt" "$d/chunk"
+for i in 00 01 02 03; do node scripts/qa/run-tests.mjs $(tr '\n' ' ' < "$d/chunk$i"); done
 node scripts/qa/sweep-elem-probes.mjs      # 파일 인자를 준 회차는 쓸기를 건너뛴다 — 따로 돌린다
 ```
 
-**왜 이렇게 해야 하나 — `--shard` 를 쓰면 안 된다.** `run-tests.mjs` 의 존재 이유가
-「모은 파일 == 결과 있는 파일」인데, 그 «모은 파일»을 `vitest list --filesOnly ...args` 로 얻는다.
-🔴 **`vitest list` 는 `--shard` 를 무시한다** — 실측으로 `--shard=1/3` 도 **355**를 낸다.
-그러면 조각이 118개만 돌고 게이트는 **「234개가 결과 없이 사라졌다」**는 거짓 경보를 낸다.
-**파일 목록을 명시하면** `list` 도 `run` 도 같은 목록을 보므로 **조각마다 가드가 정확히 선다**.
-(Windows 명령줄 한계 8,191자 — 넷으로 쪼개면 조각당 약 3,900자라 들어간다.)
+**왜 넷으로 쪼개나** — 명령줄 길이 때문이 **아니라** 배경 실행이 계속 죽었기 때문이다(위 문단).
+회차를 짧게 끊어 앞단에서 돌리려는 것이다. 길이만 보면 한 번에 전량을 명시해도 된다.
+
+**왜 `--shard` 를 쓰면 안 되나 — 이건 저장소 성질이라 어느 컴퓨터에서나 참이다.**
+`run-tests.mjs` 의 존재 이유가 「모은 파일 == 결과 있는 파일」인데, 그 «모은 파일»을
+`vitest list --filesOnly ...args` 로 얻는다. 🔴 **`vitest list` 는 `--shard` 를 무시한다** —
+실측으로 `--shard=1/3` 도 **355**를 낸다(2026-09-02 재확인). 구조로도 그렇다: `--filesOnly` 는
+`getRelevantTestSpecifications()` 를 그대로 찍고 끝나는데 샤드는 **오직 풀 실행 안에서만**
+걸린다. 그러면 조각(1/3)은 **119파일**만 돌고 게이트는
+**「파일 236개가 결과 없이 사라졌다 (모음 355 · 결과 119)」**는 거짓 경보를 낸다
+(`2/3`·`3/3` 은 118파일 · 237개).
+**파일 목록을 명시하면** `list` 도 `run` 도 같은 목록을 보므로 **조각마다 가드가 정확히 선다** —
+이는 조각을 몇으로 나누든(전량 한 번이어도) 마찬가지다.
+
+> 각주 ㉠ 분배는 vitest 의 `calculateShardRange(파일수, index, count)` 가 정한다 —
+> `base=⌊355/3⌋=118`, `remainder=355%3=1`, `remainder >= index` 인 조각만 `base+1`.
+> **파일 수가 달라지면 이 식으로 자기 수를 다시 계산할 것** — 숫자를 그대로 베끼지 마라.
+>
+> 각주 ㉡ **8,191자는 `cmd.exe` 의 한계다**(`lint-staged.config.mjs` 가 그렇게 적어 두었고,
+> 이 저장소가 실제로 물린 것도 npm→cmd.exe 경로다 — CLAUDE.md 2026-08-25). 이 절의
+> `node scripts/qa/run-tests.mjs …` 는 셸이 node.exe 를 **직접** 띄우고 `run-tests.mjs` 도
+> `spawnSync(process.execPath, …)` 를 shell 없이 부르므로 cmd.exe 를 안 거친다 —
+> **355파일 전량 15,243자를 한 줄에 넘겨도 들어간다**(실측). 반대로 `npm run test -- <파일들>` 은
+> cmd.exe 를 거치므로 거기서는 죽는다. **한계를 인용하기 전에 그 명령이 cmd 를 거치는지부터 보라.**
 
 ### 0-L.4 곁가지 — 미추적 잔재를 갈랐다
 
 `git status` 에 미추적 12건이 있었다. **성격이 셋으로 갈린다.**
+⚠️ **아래 12건은 그 컴퓨터에만 있던 미커밋 파일이다** — 다른 체크아웃에는 없다(2026-09-02
+확인). 「안 함」 쪽이 안 보인다고 **「내가 뭘 지웠나」를 의심하지 마라.**
 
 ```
 커밋함   scripts/classify/apply-confirmed-grade-remediation.ts   ← 아래 🔴 를 읽어라
@@ -118,15 +200,44 @@ node scripts/qa/sweep-elem-probes.mjs      # 파일 인자를 준 회차는 쓸�
 ```
 
 🔴 **`apply-confirmed-grade-remediation.ts` 는 «남은 일»이 아니라 «이미 죽은 스크립트»다.**
-2026-08-27 부터 미커밋으로 있었다. 가리키는 문항 **15개 중 DB 에 살아 있는 것이 0개**다 —
-같은 날 `delete-legacy-corpus.ts` 가 기출·RPM 을 지웠기 때문이다(D-117). **돌려도 아무 일도
-안 일어난다.** 기록으로만 커밋한다. 되살릴 일이 있으면 그 15개 UUID 가 무엇이었는지가
+2026-08-27 부터 미커밋으로 있었다. 가리키는 문항 15개는 **둘로 나뉘어 이미 삭제됐고, 그
+사실은 커밋된 원장 둘로 DB 없이 확인된다**(2026-09-02 전량 대조 — 겹침 0 · 누락 0):
+
+- `PROVENANCE_CONFIRMED` **6건** → `scripts/import/ledgers/legacy-corpus-delete.json.gz`
+  (2026-08-27, 문항 45,374 — 외벽 격리 전량 삭제, D-117)
+- `ALGEBRA` **9건**(전부 RPM `transformed`) → `scripts/rpm/ledgers/textbook-problems-deleted-2026-08-24.json.gz`
+  (**사흘 앞선 2026-08-24**, 1,336행 — `scripts/rpm/delete-textbook-problems.ts` 가 지웠다)
+
+⚠️ **「같은 날 `delete-legacy-corpus.ts` 가 지웠다」는 9건에 대해 틀린 말이었다.** 그래서
+**되살릴 일이 생기면 되돌리기가 둘이다** — `delete-legacy-corpus.ts --revert` 는 제 원장만
+읽으므로 그것만 돌리면 9건은 안 돌아온다. RPM 쪽은 `delete-textbook-problems.ts --revert` 다.
+(확인법: 두 `.json.gz` 를 gunzip 해 15개 UUID 를 문자열로 훑으면 6/9 로 갈린다 — DB 조회가 아니다.)
+
+**돌려도 DB 는 못 바꾼다** — 기본이 드라이런이고 쓰기는 `ALLOW_GRADE_REMEDIATION=1` 이라야
+열린다. ⚠️ 다만 **드라이런에서도 조용히 0건이 아니라 `TypeError` 로 죽는다**: `missing` 을
+세어 놓고도 `changes` 필터가 `byId.get(id)!.unitId` 를 그대로 읽어, 없는 id 가 하나만 있어도
+「Cannot read properties of undefined」가 난다. **그 크래시는 새 결함이 아니라 예상된
+결과다 — 조사하지 마라.** 기록으로만 커밋한다. 되살릴 일이 있으면 그 15개 UUID 가 무엇이었는지가
 근거이지, 이 스크립트를 돌리는 것이 아니다.
 
 ⚠️ **안 커밋한 `scratch/q-*.ts` 셋은 `npm run lint` 의 에러 5건을 내는 바로 그 파일들이다**
 (`no-explicit-any`). 미추적이라 커밋 훅을 안 거쳤다. 커밋하면 **모두의 lint 가 빨개진다** —
 「늘 우는 가드는 꺼진다」(2026-08-20). 일회용 디버그 스크립트라 잃어도 되는 것들이다.
 🔴 **그래서 다른 컴퓨터에서 lint 는 0 에러다.** 여기서 5건이 보였다고 코드를 의심하지 마라.
+
+🔴 **그렇다고 `scratch/` 를 무시 규칙에 넣지 마라 — 검토했고 버렸다**(2026-09-02).
+넣으면 반쪽 상태가 된다:
+⑴ **이미 추적 중인 140건에는 안 먹는다** — git 의 무시 규칙은 추적 중인 경로를 안 건드린다.
+   문서와 동작이 갈린다.
+⑵ **lint 를 하나도 안 고친다** — `eslint.config.mjs` 가 그 함정을 이미 적어 두었다:
+   「`.gitignore` 는 고쳤는데 **ESLint 는 `.gitignore` 를 안 본다**」. tsc 도 `tsconfig.json` 만 본다.
+   지렛대는 `globalIgnores` 인데 이 저장소는 `.probe`·`.measure`·`.tmp-*` 는 넣고
+   **`scratch` 는 일부러 안 넣었다**(`tsconfig.json` 도 `scratch/rescued` 한 폴더만 콕 집어 뺐다 —
+   나머지를 **일부러 범위에 남겼다**는 증거다).
+⑶ **커밋해야 하는 산출물이 조용히 사라진다** — `scratch/` 에 `BRIEF-*`·`REPORT-*`·`DECISION-*` 가
+   25건 넘게 추적 중이고 이 회차도 브리프를 일부러 커밋했다. 무시하면 새 브리프가
+   `git status` 에서 안 보이는데, 그게 「**미추적 새 파일이 가장 약한 고리**」(2026-08-23) 그대로다.
+⑷ **디렉터리째 무시하면 `!` 예외가 안 먹는다** — `.gitignore` 에 이미 주석으로 박힌 함정이다.
 
 ### 0-L.5 이 회차가 저장소에 남긴 것
 
