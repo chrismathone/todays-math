@@ -7817,6 +7817,120 @@ function part241Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
 }
 
+/* ── 2-4-1 «심화상» — D-113 물결 4 (2026-09-01) ──────────────────────────────
+ *
+ * 🔴 **물결 2 가 §7 에 스스로 열어 둔 물음을 닫는다.** 그 회차는 2-4-1·2-4-2·2-4-3 의
+ * 심화상을 비우며 「이 하나는 **«없다»가 아니라 «내가 못 찾았다»**에 가깝다 — 전수로
+ * 반증하지 않았다」고 적었다. 전수로 세었다 — **있다.**
+ *
+ * ── 무엇이 중과 상을 가르나 ────────────────────────────────────────────────
+ * 물결 2 의 심화중은 창 안에 «묶음 수의 배수»가 **하나뿐**이라, 이 소단원의 성질
+ * (「똑같이 나누므로 전체가 묶음 수로 나누어떨어져야 한다」)이 **곧바로** 굳힌다.
+ * 창을 넓혀 배수가 **여럿**이 되면 그 성질은 **한 후보도 못 자른다.** 그때
+ * 「그중 몇 묶음이 $P$ 개」를 같이 주면, 후보마다 **한 묶음을 실제로 구해**
+ * $P$ 가 온전한 묶음 수가 되는지 견주어야 하나가 남는다 — 그것이 «상»이다(D-115 ⑾).
+ *
+ * ⚠️ **2-4-2·2-4-3 에는 못 쓴다 — 구성상 불가다.** 그쪽은 분수를 **발문이 주고
+ *    개수를 답**하므로, 후보 전체 수가 여럿이면 답도 여럿이 된다. 그 둘은 그대로 비운다.
+ *
+ * 전수 실측: 자리 **1,581** · 서로 다른 (분모, 분자) **21** ·
+ *            서로 다른 (분모, 분자, 준 개수) **187** · 후보 수 2~5개.
+ */
+type Frac241High = {
+  d: number;
+  L: number;
+  U: number;
+  /** 창 안의 «묶음 수의 배수» 전부 — 해설이 이대로 늘어놓는다 */
+  cands: number[];
+  T: number;
+  m: number;
+  k: number;
+  /** 지면에 주는 개수 = $k \times m$ */
+  P: number;
+};
+
+/**
+ * 🔴 **답이 분수라 반증 ⑥ 을 «유리수까지» 본다.** 공용 `forwardReachable` 은 지면의
+ *    정수를 엮어 정수를 만들므로 **진분수인 답에는 구조적으로 못 닿는다** — 그 0 은
+ *    «깨끗»이 아니라 «못 셈»이다. 그래서 「지면 두 수를 분수로 읽는 길」($P/U$ 같은)을
+ *    여기서 따로 본다.
+ */
+function frac241FracOneStep(
+  nums: readonly number[],
+  kn: number,
+  kd: number,
+): boolean {
+  const eq = (a: number, b: number) => a * kd === kn * b;
+  for (const a of nums)
+    for (const b of nums) {
+      if (a === b) continue;
+      if (eq(a + b, 1) || eq(a - b, 1)) return true;
+      if (a * b !== a && a * b !== b && eq(a * b, 1)) return true;
+      if (b !== 0 && eq(a, b)) return true;
+    }
+  return nums.some((v) => eq(v, 1));
+}
+
+function frac241HighPool(): Frac241High[] {
+  const out: Frac241High[] = [];
+  for (let d = 3; d <= 8; d += 1)
+    for (let L = 10; L <= 90; L += 5)
+      for (const w of [10, 15, 20, 25]) {
+        const U = L + w;
+        if (U > 100) continue;
+        const cands: number[] = [];
+        for (let t = L + 1; t < U; t += 1)
+          if (t % d === 0 && t / d >= 3 && t / d <= 12) cands.push(t);
+        // 하나면 물결 2 의 «심화중» 이다(성질이 곧바로 굳힌다).
+        // 여섯 이상이면 해설이 후보를 다 적을 수 없다.
+        if (cands.length < 2 || cands.length > 5) continue;
+        if (!cands.every((t) => t >= 20 && t <= 96)) continue;
+        for (let k = 2; k < d; k += 1)
+          for (const T of cands) {
+            const m = T / d;
+            const P = k * m;
+            // 🔴 **다른 후보에서는 «아예 나누어떨어지지 않아야» 한다.**
+            //    「$P$ 개가 몇 묶음이 되기는 하는데 그 수가 전체 묶음 수 이상」인 자리를
+            //    남겨 두면, 해설의 「딱 떨어지는 것은 … 뿐입니다」가 **글자 그대로는
+            //    거짓**이 된다(실제로 첫 판이 그런 문항을 냈다 — $30$개·한 묶음 $5$개는
+            //    $6$묶음이라 «전체»가 되어 버려 버려지는데, 해설은 「안 떨어진다」로 읽힌다).
+            //    전수로 재니 이 울타리의 값은 1,581 → **1,492자리**뿐이다(서로 다른
+            //    (분모,분자,준 개수) 187 은 그대로) — 값싸게 해설을 참으로 만든다.
+            if (!cands.every((t) => t === T || P % (t / d) !== 0)) continue;
+            if (frac241FracOneStep([L, U, d, P], k, d)) continue;
+            out.push({ d, L, U, cands, T, m, k, P });
+          }
+      }
+  if (out.length === 0) throw new Error("2-4-1 심화상 풀이 비었습니다");
+  return out;
+}
+
+let FRAC241_HIGH: Frac241High[] | null = null;
+
+/** 6단 · 2-4-1 — 성질이 후보를 하나도 못 자른다. 후보마다 한 묶음을 만들어 견준다. */
+function part241High(unit: UnitSeed, rng: Rng): ElemProblem {
+  FRAC241_HIGH ??= frac241HighPool();
+  const f = pick(rng, FRAC241_HIGH);
+  const stuff = pick(rng, FRAC24_STUFF);
+  const 을를 = josa(stuff, "을", "를");
+  const 이가 = josa(stuff, "이", "가");
+  const stem = pick(rng, [
+    `${stuff}${이가} ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 이 ${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없고, 그중 몇 묶음이 ${n(f.P)}개입니다. ${n(f.P)}개는 전체의 얼마인지 분수로 나타내시오.`,
+    `${n(f.L)}개보다 많고 ${n(f.U)}개보다 적은 ${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누었더니 남는 것이 없었습니다. 그 가운데 몇 묶음이 ${n(f.P)}개일 때, ${n(f.P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+    `${stuff} 수는 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적습니다. 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없으며, 그중 몇 묶음을 세었더니 ${n(f.P)}개였습니다. ${n(f.P)}개는 전체의 얼마인지 분수로 나타내시오.`,
+    `${stuff}${을를} 똑같이 ${n(f.d)}묶음으로 나누면 남는 것이 없습니다. ${stuff} 수가 ${n(f.L)}개보다 많고 ${n(f.U)}개보다 적고 그중 몇 묶음이 ${n(f.P)}개일 때, ${n(f.P)}개는 전체의 얼마인지 분수로 쓰시오.`,
+  ]);
+  // **후보마다 한 묶음을 실제로 만든다** — 이 걸음이 이 갈래를 상으로 만든다.
+  const tries = f.cands
+    .map((t) => expr(`${t}\\div${f.d}=${t / f.d}`))
+    .join(", ");
+  return makeDeep(unit, stem, expr(`\\frac{${f.k}}{${f.d}}`), [
+    `똑같이 ${n(f.d)}묶음으로 나누므로 전체는 ${n(f.d)}묶음으로 나누어떨어져야 합니다. ${n(f.L)} 보다 크고 ${n(f.U)} 보다 작은 수 가운데 그런 수는 ${list22(f.cands)} 입니다.`,
+    `후보마다 한 묶음이 몇 개인지 구해 봅니다. ${tries} 입니다.`,
+    `${n(f.P)}개가 묶음으로 딱 떨어지는 것은 한 묶음이 ${n(f.m)}개일 때뿐이므로 전체는 ${n(f.T)}개입니다. ${expr(`${f.P}\\div${f.m}=${f.k}`)} 에서 ${n(f.k)}묶음이므로 전체 ${n(f.d)}묶음 가운데 ${expr(`\\frac{${f.k}}{${f.d}}`)} 입니다.`,
+  ]);
+}
+
 /** 5단 · 2-4-2·2-4-3 — 같은 되짚기, 답은 «몇 개». `unitOnly` 는 단위분수 소단원. */
 function frac24MidOf(unitOnly: boolean) {
   return (unit: UnitSeed, rng: Rng): ElemProblem => {
@@ -8631,7 +8745,7 @@ function cap25Stem(
       "개",
     ],
     [
-      `한 컵에 ${thing}${을를} ${per} 씩 담았습니다. 이 컵으로 ${vessel}에 여러 번 ${v.past} ${thing}${이가} 모두 ${tailText}. 몇 번 ${v.past.slice(0, -2)}는지 쓰시오.`,
+      `한 ${pack}에 ${thing}${을를} ${per} 씩 담았습니다. 이 ${pack}${josa(pack, "으로", "로")} ${vessel}에 여러 번 ${v.past} ${thing}${이가} 모두 ${tailText}. 몇 번 ${v.past.slice(0, -2)}는지 쓰시오.`,
       "번",
     ],
     [
@@ -8680,7 +8794,9 @@ function capSumMidOf(cfg: CapCfg) {
       `${cfg.small}끼리만 봅니다. 한 번 ${v.now} 때마다 ${cfg.small} 자리는 ${n(f.s)} 씩 커지고, $1000\\,\\mathrm{${cfg.small}}$ ${cfg.jGa} 되면 $1\\,\\mathrm{${cfg.big}}$ ${cfg.jRo} 받아올림합니다. 그래서 ${cfg.small} 자리는 차례로 ${list25(f.tail)} 입니다.`,
       // ⚠️ **수 뒤에 조사를 붙이지 않는다**(g3 규약 — `josa` 주석. 시험이 전수로 잠근다).
       //    「$250$ 이 되는 것은」이 아니라 「끝자리가 $250$ 인 것은」으로 적는다.
-      `${cfg.small} 자리가 ${n(f.es)} 인 것은 ${n(f.k)} 번째뿐입니다.`,
+      // ⚠️ **「뿐」이라 쓰지 않는다** — 위 목록은 $k$ 번째까지만 늘어놓으므로 그 글만으로는
+      //    «그 뒤에 또 없다»를 못 보인다. 「처음」이라 적고 **다음 걸음이 확인**한다.
+      `${cfg.small} 자리가 ${n(f.es)} 인 것은 ${n(f.k)} 번째가 처음입니다.`,
       `확인하면 ${cfg.small}끼리는 ${expr(`${f.s}\\times${f.k}=${f.s * f.k}`)}, ${cfg.big}끼리는 ${expr(`${f.b}\\times${f.k}=${f.b * f.k}`)} 이고, ${unitNum(f.s * f.k, cfg.small)} ${cfg.jNun} ${mixedCap(cfg, carry, f.es)} 이므로 ${expr(`${f.b * f.k}+${carry}=${f.eb}`)} 에서 ${end} 입니다. 따라서 ${n(f.k)}${cnt}입니다.`,
     ]);
   };
@@ -13777,10 +13893,14 @@ export const G3_TIERS: ElemTierMap = {
     응용: part241Apply,
     심화하: part241Deep,
     심화중: part241Mid,
-    // ⚠️ 심화상은 비운다 — 이 소단원의 굳히는 성질(「전체가 묶음 수로 나누어떨어진다」)은
-    //    범위 안 배수를 **늘 하나로** 집는다. 성질이 못 굳히는 자리를 만들려면 창을
-    //    넓혀야 하는데 그러면 답이 여럿이 되어 문항이 아니다. 2-4 의 심화상은
-    //    성질이 무력한 2-4-5(대분수) 에 둔다.
+    // 🔴 **심화상을 세웠다 (물결 4, 2026-09-01)** — 물결 2 가 여기 적어 둔 「비운다」를
+    //    뒤집는다. 그 회차의 근거는 「창을 넓히면 답이 여럿이 되어 문항이 아니다」였는데,
+    //    **「그중 몇 묶음이 $P$ 개」를 같이 주면** 후보마다 한 묶음을 실제로 구해
+    //    $P$ 가 온전한 묶음 수가 되는지 견주게 되어 답이 **하나로** 선다.
+    //    전수 실측 **1,581자리** · 서로 다른 (분모,분자,준 개수) **187**.
+    //    (물결 2 는 스스로 「«없다»가 아니라 «내가 못 찾았다»에 가깝다 — 전수로
+    //     반증하지 않았다」고 §7 에 적어 두었다. 그 물음을 닫는다.)
+    심화상: part241High,
   },
   // (1) 은 단위분수, (2) 는 분자 2 이상 — **분자 하나로만** 갈리므로 같은 공장을 쓴다.
   "초3|2-4-2": {
