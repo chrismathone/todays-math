@@ -5251,6 +5251,15 @@ function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
  * ⚠️ 표준 네 갈래(차·범위비교·결합·합계)는 **갈래 없는 경로 그대로**다 — 여기 것들은 별개다.
  */
 export const G4_TIERS: ElemTierMap = {
+  // ── 1-1 큰 수 — **열네 칸 전부 비운다**(확대 넷째 물결, 보고서 §3).
+  //    마디를 굳힐 수 있는 성질이 둘뿐이다 — ㉠ 「몇 자리 수인가 / 어느 자리 숫자가
+  //    무엇인가」 ㉡ 「$10000$씩 뛰면 그 자리 숫자만 커진다」.
+  //    ㉠ 으로 열면 후보가 「도착한 수에서 뛴 수만큼 거꾸로 뺀 내림 사슬」이고 굳힘이
+  //    자리 성질이라, **1-6-1 심화중과 구조가 글자 그대로 같다**(물결 3 이 이미 세웠다).
+  //    ㉡ 으로 열면(「뛴 수가 둘 중 하나」) 답이 $b-n\times c$ 라 `forwardReachable` 의
+  //    허용 꼴 `a\times b\pm c` 그 자체여서 **반증 ⑥ 이 문다**. 「나누어떨어지나」로 피하면
+  //    $10000$ 을 나누어떨어뜨리는 수는 $1000$ 도 나누어떨어뜨리므로 죽는 쪽이 늘 같다.
+  //    그리고 「잘못 …했더니」는 1-1-6 심화하가 이미 쓰고 위 두 칸에서는 금지다.
   "초4|1-1-1": {
     연산: tier11Calc,
     기본: tier11Basic,
@@ -5305,11 +5314,23 @@ export const G4_TIERS: ElemTierMap = {
     응용: tier22Apply,
     심화하: tier22Deep,
   },
+  // ── 1-2 각도 — 확대 넷째 물결(D-113). 굳힘 축은 **시각 ↔ 큰 눈금 칸수**다.
+  //    🔴 **1-2-1·1-2-2·1-2-4·1-2-5·1-2-6 은 중·상 둘 다 비운다**(보고서 §3).
+  //    ㉠ 1-2-2 는 마디가 「$90$을 나눴나 $180$을 나눴나」 하나뿐인데 $180$ 쪽이 늘 크므로
+  //       어떤 크기 조건을 걸어도 「크면 직선, 작으면 직각」 한 줄로 닫혀 굳힘이 일을 안 하고,
+  //       「나눈 개수가 자연수」로 굳히려 하면 $90$을 나누어떨어뜨리는 수는 $180$ 도
+  //       나누어떨어뜨리므로 **죽는 쪽이 늘 같다**(지름길 100%).
+  //    ㉡ 1-2-5·1-2-6 이 쓸 마디(「같은 두 각이 어느 것인지 안 말한다」)는 토대 §2.3-㉡ 이
+  //       **2-2 에 배정**했다. 1-2 에서 다시 쓰면 한 시험지에 같은 문항이 둘 선다.
+  //    ㉢ 1-2-4 심화하가 이미 「잘못 …했더니」이고, 그 포장은 위 두 칸에서 금지다.
+  //    ㉣ 1-2-1 은 견줄 뿐이라 계산 거리가 $0$ 이다.
+  //    1-2-3 상도 비운다 — 후보가 «시각 둘»뿐이라 「만들어 견주기」가 아니라 「둘 중 고르기」다.
   "초4|1-2-3": {
     연산: tier23Calc,
     기본: tier23Basic,
     응용: tier23Apply,
     심화하: tier23Deep,
+    심화중: tier23Mid,
   },
   "초4|1-2-4": {
     연산: tier24Calc,
@@ -5386,6 +5407,13 @@ export const G4_TIERS: ElemTierMap = {
     심화중: tier37Mid,
     심화상: tier37Top,
   },
+  // ── 1-4 평면도형의 이동 — **여덟 칸 전부 비운다**(확대 넷째 물결, 보고서 §3).
+  //    되짚을 값이 방향·칸수·각뿐이고 상태 공간이 유한하다 — 돌린 각 후보는
+  //    $\{90^\circ,180^\circ,270^\circ\}$ 셋, 뒤집기는 두 방향이다. 마디를 열면
+  //    (「몇 번 뒤집었나」) 후보가 홀짝 집합이라 **답이 여럿**이 되고, 안 열면
+  //    한 문항으로 굳는다(「같은 각으로 두 번 돌려 처음이 된다」는 $180^\circ$ 하나뿐이다).
+  //    그리고 「잘못 …했더니」는 이 대단원 심화하가 **둘**(1-4-1·1-4-2) 쓰고 있어
+  //    위 두 칸에서 금지다(토대 §2.3-㉠).
   "초4|1-4-1": {
     연산: tier41Calc,
     기본: tier41Basic,
@@ -5515,17 +5543,30 @@ export const G4_TIERS: ElemTierMap = {
     심화하: tier214Deep,
     심화중: tier214Mid,
   },
+  // ── 2-2 삼각형 — 확대 넷째 물결(D-113). 굳힘 축은 **이등변의 «어느 둘이 같은지»**다
+  //    (토대 §2.3-㉡ 이 이 마디를 2-2 에 배정했다).
+  //    🔴 **2-2-5 는 반증 ④ 로 비운다** — «기본»이 이미 그 마디를 열고 「크기가 같은 두 각이
+  //       모두 둔각일 수는 없다」로 굳힌다(씨앗 32 전량 확인, 보고서 §5). 그 위에 심화중을
+  //       얹으면 사다리가 접힌다.
+  //    🔴 **2-2-3·2-2-4 도 비운다** — 2-2-3 은 성질이 「세 변·세 각이 모두 같다」 하나뿐이라
+  //       어떤 값을 줘도 $\times3/\div3$ 한 번에 굳고, 2-2-4 는 두 각을 주면 나머지가 늘
+  //       하나로 굳는다(안 굳게 하려면 2-2-2 의 개념을 끌어와야 해서 반증 ③).
+  //    🔴 **심화상은 다섯 소단원 전부 비운다** — 이등변의 갈래는 언제나 **둘**이라
+  //       「만들어 견주기」가 아니라 「둘 중 고르기」이고, 그건 심화중의 정의 그 자체다.
+  //       후보를 셋 이상 만들려면 삼각형 부등식(초4 교과 밖)이나 둘레의 약수(초5)가 필요하다.
   "초4|2-2-1": {
     연산: tier221Calc,
     기본: tier221Basic,
     응용: tier221Apply,
     심화하: tier221Deep,
+    심화중: tier221Mid,
   },
   "초4|2-2-2": {
     연산: tier222Calc,
     기본: tier222Basic,
     응용: tier222Apply,
     심화하: tier222Deep,
+    심화중: tier222Mid,
   },
   "초4|2-2-3": {
     연산: tier223Calc,
@@ -5689,6 +5730,16 @@ export const G4_TIERS: ElemTierMap = {
     심화중: tier264Mid,
     심화상: tier264Top,
   },
+  // ── 2-5 꺾은선그래프 — 확대 넷째 물결(D-113). 굳힘 축은 **기준값을 안 준다**이고,
+  //    값을 감추는 축은 1-5(막대)가 가져갔다(토대 §2.3-㉢). `lineChart` 는 «가려진 값»을
+  //    못 받으므로(`CHART_ACCEPTS_UNKNOWN`) 값을 지우는 판은 그림이 **표**인 2-5-3 뿐이다.
+  //    🔴 **2-5-1 은 중·상 둘 다 비운다** — 응용이 이미 「한가운데 값」이고 심화하가
+  //       「늘어난 구간만 골라 더하기」라, 남은 마디를 열면 «구간을 하나씩 훑기»가 되어
+  //       반증 ③·⑤ 에 같이 걸린다.
+  //    🔴 **2-5-2 상**은 비운다 — 꺾은선은 값을 못 가려 후보를 만들 재료가 자체적으로 없다.
+  //    🔴 **2-5-3 중**은 비운다 — 값을 하나만 지우면 「눈금 한 칸으로 나누어떨어진다」가
+  //       후보를 하나로 줄이려면 이웃 사이가 정확히 두 칸이어야 하고, 그러면 답이 늘
+  //       **한가운데**라 지름길이 100% 다(보고서 §3).
   "초4|2-5-1": {
     연산: tier251Calc,
     기본: tier251Basic,
@@ -5700,12 +5751,14 @@ export const G4_TIERS: ElemTierMap = {
     기본: tier252Basic,
     응용: tier252Apply,
     심화하: tier252Deep,
+    심화중: tier252Mid,
   },
   "초4|2-5-3": {
     연산: tier253Calc,
     기본: tier253Basic,
     응용: tier253Apply,
     심화하: tier253Deep,
+    심화상: tier253Top,
   },
 };
 
@@ -18444,5 +18497,554 @@ function tier247MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
         `이웃한 두 변의 길이의 합은 ${expr(`${total}\\div2=${total / 2}`)} 이고, ` +
         `이웃한 변의 길이는 ${expr(`${total / 2}-${side}=${rest}`)} 에서 ${cm(rest)}입니다.`,
     ],
+  );
+}
+
+/* ══════ 물결 4 — 1-2 각도 · 2-2 삼각형 · 2-5 꺾은선 확대 갈래 (D-113·D-115) ══════
+ *
+ * 남은 다섯 대단원(1-1·1-2·1-4·2-2·2-5) 가운데 **셋**에만 선다. 대단원마다 굳힘 축을
+ * 하나씩 예약하는 규약(앞 물결 셋이 세웠다)을 그대로 잇는다:
+ *
+ * ```
+ * 1-3 (파일럿)  곱의 자릿수 · 나머지는 나누는 수보다 작다
+ * 2-3 (물결 2)  소수의 자릿값 · 받아올림/받아내림
+ * 2-6 (물결 2)  변의 수는 자연수 · 나누어떨어져야 한다
+ * 2-1 (물결 2)  진분수 조건(분자 < 분모)
+ * 1-5 (물결 3)  눈금 한 칸 — 모든 막대에 같다
+ * 1-6 (물결 3)  배열의 자리 — 첫째부터 차례로만 간다
+ * 2-4 (물결 3)  이름이 성질을 되돌려 준다
+ * ─────────────────────────────────────────────────────────────────────────
+ * 1-2 (여기)    **시각 ↔ 큰 눈금 칸수** — 작은 쪽 각이 같은 정각이 둘이다
+ * 2-2 (여기)    **이등변의 «어느 둘이 같은지»가 안 정해진다** (토대 §2.3-㉡ 배정)
+ * 2-5 (여기)    **기준값(문턱·지워진 값)을 안 준다** — 값을 감추는 축은 1-5 가 가져갔고
+ *               `lineChart` 는 unknown 을 못 받으므로 «표»인 2-5-3 에서만 값을 지운다
+ * ```
+ *
+ * 🔴 **비운 대단원 둘과 그 까닭**(수치는 §보고서 — 전부 돌리거나 계산해서 나온 값이다):
+ *   · **1-1 큰 수 (14칸)** — 굳힐 수 있는 성질이 ㉠ 자릿수 ㉡ 「뛴 자리 말고는 안 변한다」
+ *     둘뿐인데, ㉠ 은 **1-6-1 심화중과 구조가 같고**(내림 사슬 + 자리 성질 컷),
+ *     ㉡ 으로 마디를 열면 답이 `b - n\times c` 라 **반증 ⑥ 의 허용 꼴 그대로**다.
+ *     「잘못 …했더니」 포장은 토대 §2.3-㉠ 이 위 두 칸에서 금지했고 1-1-6 심화하가 이미 쓴다.
+ *   · **1-4 평면도형의 이동 (8칸)** — 되짚을 값이 방향·칸수·각뿐이고 상태 공간이
+ *     $\{90,180,270\}$·$\{$좌우, 위아래$\}$ 로 유한하다. 마디를 열면 답이 여럿이 되고
+ *     (1-4-3 은 홀짝이라 후보가 무한), 안 열면 한 문항으로 굳는다.
+ *
+ * ⚠️ **이 회차가 물려받은 규율 — 「지름길은 적는 것이 아니라 전수로 세어 %를 내는 것」**
+ *    (물결 3 적대 검토). 밭이 「하나만 남긴다」를 보장해도 **죽는 쪽이 늘 같으면**
+ *    학생은 성질을 한 번도 안 대고 그 쪽을 바로 고른다. 그래서 아래 밭은 전부
+ *    ⑴ 후보가 여럿이고 ⑵ 정확히 하나가 남고 ⑶ **살아남는 쪽이 씨앗마다 갈리는지**를
+ *    전수로 세어 만든다. 시험이 그 셋을 각각 잠근다.
+ */
+
+/**
+ * **1-2-3 심화중의 밭** — 「작은 쪽 각이 $a^\circ$인 정각」은 **둘**이다.
+ *
+ * 큰 눈금 한 칸이 $30^\circ$ 이므로 두 바늘 사이가 $c$칸이면 $c$시와 $(12-c)$시가
+ * 똑같이 $30\times c$ 도를 이룬다. 그 마디를 「$6$시보다 이르다/늦다」 한 줄이 굳힌다.
+ *
+ * 밭에 담는 조건 둘 —
+ *  ㉠ 두 후보의 **답(분류)이 서로 달라야** 한다. 같으면 굳힘이 아무 일도 안 한다.
+ *  ㉡ $t$시간 뒤가 **$12$시가 되면 안 된다**. 두 바늘이 겹쳐 각이 $0^\circ$가 되는데
+ *     그건 「이루는 각」이라 부를 것이 없다.
+ *
+ * ⚠️ 답이 낱말(예각·직각·둔각)이라 `readRat` 이 못 읽는다 — **반증 ⑥ 축 밖**이다.
+ *    그 0 은 「깨끗」이 아니라 「못 셈」이고, 대신 사람이 손으로 봤다(보고서 §5).
+ * ⚠️ **그림을 안 붙인다.** 시계를 그리면 「몇 시인가」가 그림에서 바로 보여 마디가
+ *    통째로 닫힌다(09 §2.2). 응용은 그림을 붙이므로 지면에서도 갈린다.
+ */
+const CLOCK_MID_FIELD: {
+  angle: number;
+  after: number;
+  early: boolean;
+  hour: number;
+  kind: string;
+}[] = (() => {
+  const cells = (h: number) => Math.min(h, 12 - h);
+  const wrap = (h: number) => ((h - 1) % 12) + 1;
+  const out: {
+    angle: number;
+    after: number;
+    early: boolean;
+    hour: number;
+    kind: string;
+  }[] = [];
+  for (const angle of [30, 60, 90, 120, 150]) {
+    const early = angle / 30;
+    const late = 12 - early;
+    for (let t = 1; t <= 5; t += 1) {
+      const n1 = wrap(early + t);
+      const n2 = wrap(late + t);
+      if (n1 === 12 || n2 === 12) continue;
+      const k1 = angleKind(30 * cells(n1));
+      const k2 = angleKind(30 * cells(n2));
+      if (k1 === k2) continue;
+      out.push({ angle, after: t, early: true, hour: early, kind: k1 });
+      out.push({ angle, after: t, early: false, hour: late, kind: k2 });
+    }
+  }
+  return out;
+})();
+
+/**
+ * **1-2-3 5단 심화중 — 「몇 시인지」를 안 말한다.**
+ *
+ * 응용은 시각을 주고 각을 묻는다(순방향, 그림도 붙는다). 여기서는 각만 주어
+ * 시각 후보가 **둘**이 되고, 「$6$시보다 이르다/늦다」가 하나를 고른 뒤에야
+ * $t$시간 뒤의 각을 잴 수 있다. 후보를 **끝까지 재 보지 않고** 시각 한 줄로
+ * 닫으므로 중이다(D-115 ⑾).
+ */
+function tier23Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, CLOCK_MID_FIELD);
+  const cells = (h: number) => Math.min(h, 12 - h);
+  const other = 12 - f.hour;
+  const lo = Math.min(f.hour, other);
+  const hi = Math.max(f.hour, other);
+  const afterCells = cells(f.after > 0 ? ((f.hour + f.after - 1) % 12) + 1 : 0);
+  const afterHour = ((f.hour + f.after - 1) % 12) + 1;
+  return makeDeep(
+    unit,
+    `어느 정각에 시계의 긴바늘과 짧은바늘이 이루는 작은 쪽 각의 크기가 ` +
+      `${deg(f.angle)}입니다. 그 시각은 ${n(6)}시보다 ` +
+      `${f.early ? "이릅니다" : "늦습니다"}. 그 시각에서 ${n(f.after)}시간 뒤 정각에 ` +
+      `두 바늘이 이루는 작은 쪽 각은 예각, 직각, 둔각 중 무엇인가?`,
+    f.kind,
+    [
+      `시계의 큰 눈금 한 칸의 각도는 ${expr("360\\div12=30")} 에서 ${deg(30)}입니다. ` +
+        `작은 쪽 각이 ${deg(f.angle)}이려면 두 바늘 사이가 ` +
+        `${expr(`${f.angle}\\div30=${f.angle / 30}`)} 에서 ${n(f.angle / 30)}칸이어야 ` +
+        `하므로, 그 정각은 ${n(lo)}시이거나 ${n(hi)}시입니다.`,
+      `${n(6)}시보다 ${f.early ? "이르므로" : "늦으므로"} 그 시각은 ${n(f.hour)}시입니다. ` +
+        `${n(f.after)}시간 뒤는 ${n(afterHour)}시이고 두 바늘 사이는 ${n(afterCells)}칸이므로 ` +
+        `${expr(`30\\times${afterCells}=${30 * afterCells}`)} 에서 ${deg(30 * afterCells)}이고, ` +
+        `${deg(30 * afterCells)}는 ${f.kind}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-2-1 심화중의 밭** — 「주어진 한 변이 «같은 두 변» 중 하나인지 «나머지 한 변»인지」
+ * 를 안 말한다. 토대 §2.3-㉡ 이 이 마디를 **2-2 에 배정**했고, 2-2-5 는 «기본»이 이미
+ * 각으로 그 마디를 열어 반증 ④ 에 걸리므로(보고서 §5) **변 축인 2-2-1** 로 내려온다.
+ *
+ * 두 가지 —
+ *   ㉮ $a$ 가 같은 두 변 중 하나 → $(a,\;a,\;S-2a)$
+ *   ㉯ $a$ 가 나머지 한 변      → $((S-a)\div2,\;(S-a)\div2,\;a)$
+ * 둘 다 **실제로 만들어지는 삼각형이어야** 밭에 담는다. 한쪽이 애초에 안 서면 굳힘이
+ * 아무 일도 안 하고 「$a$ 는 늘 나머지 한 변」이 100% 지름길이 된다.
+ *
+ * 굳히는 것은 **가장 짧은 변의 길이**다 — 두 가지의 최단 변이 서로 다른 자리만 담고,
+ * 문턱 $t$ 를 그 사이에 놓는다. 「$t$보다 길다」와 「$t$보다 짧다」를 **둘 다** 만들어
+ * 죽는 쪽이 씨앗마다 갈리게 한다(실측 ㉮ 45.1% · ㉯ 54.9%).
+ *
+ * ⚠️ **삼각형 부등식은 «생성 필터»로만 쓴다.** 발문·해설이 근거로 쓰면 초4 교과 밖이라
+ *    반증 ③ 이다(토대 §3 2-2 함정 ①). 여기서는 밭을 만들 때만 쓴다.
+ * ⚠️ 답을 「세 변을 각각」이 아니라 **「같은 두 변의 합」**으로 묻는다 — 세 변을 물으면
+ *    ㉯ 에서 답에 $a$ 가 그대로 들어가고(발문에 있는 수), 심화하의 답 모양과도 겹친다.
+ */
+const ISO_SIDE_FIELD: {
+  total: number;
+  side: number;
+  bar: number;
+  longer: boolean;
+  pairSum: number;
+}[] = (() => {
+  const stands = (x: number, y: number, z: number) =>
+    x > 0 && y > 0 && z > 0 && x + y > z && y + z > x && z + x > y;
+  const out: {
+    total: number;
+    side: number;
+    bar: number;
+    longer: boolean;
+    pairSum: number;
+  }[] = [];
+  for (let total = 20; total <= 60; total += 1) {
+    for (let side = 5; side < total; side += 1) {
+      const oddA = total - 2 * side;
+      // 🔴 가장 짧은 변을 $5\,$cm 이상으로 둔다. $(20,20,2)$ 도 삼각형이지만 지면에서는
+      //    바늘처럼 보이고, 「가장 짧은 변이 …보다 길다」가 사실상 한 눈에 갈린다.
+      if (oddA < 5 || oddA === side) continue;
+      if (!stands(side, side, oddA)) continue;
+      if ((total - side) % 2 !== 0) continue;
+      const pairB = (total - side) / 2;
+      if (pairB === side || pairB < 5) continue;
+      if (!stands(pairB, pairB, side)) continue;
+      const minA = Math.min(side, oddA);
+      const minB = Math.min(pairB, side);
+      if (minA === minB) continue;
+      const lo = Math.min(minA, minB);
+      const hi = Math.max(minA, minB);
+      for (let bar = lo; bar < hi; bar += 1) {
+        // 「가장 짧은 변이 $bar$ 보다 길다」 → 최단이 큰 쪽만 남는다.
+        out.push({
+          total,
+          side,
+          bar,
+          longer: true,
+          pairSum: minA > bar ? 2 * side : total - side,
+        });
+        // 「$bar$ 보다 짧다」 → 최단이 작은 쪽만 남는다($bar$ 가 lo 와 같으면 둘 다 죽는다).
+        if (bar > lo) {
+          out.push({
+            total,
+            side,
+            bar,
+            longer: false,
+            pairSum: minA < bar ? 2 * side : total - side,
+          });
+        }
+      }
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-2-1 5단 심화중 — 주어진 한 변이 «어느 쪽»인지 안 말한다.**
+ *
+ * 기본은 같은 마디를 열되 **두 가지를 다 답으로 둔다**(집합 얼굴) — 굳히지 않으므로
+ * 심화중 잣대를 통과하지 못한다(반증 ⑤). 응용은 「길이가 같은 두 변이 **아닌** 나머지
+ * 한 변」이라고 못 박아 마디가 아예 안 열린다. 여기서는 그 말을 지우고, **가장 짧은
+ * 변의 길이**라는 조건 한 줄이 한 가지를 죽인다. 답(같은 두 변의 합)까지 가지 않고
+ * 최단 변만 견주어 닫으므로 중이다(D-115 ⑾).
+ */
+function tier221Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier221MidRaw(unit, rng));
+}
+
+function tier221MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, ISO_SIDE_FIELD);
+  const oddA = f.total - 2 * f.side;
+  const pairB = (f.total - f.side) / 2;
+  const minA = Math.min(f.side, oddA);
+  const minB = Math.min(pairB, f.side);
+  const takeA = f.pairSum === 2 * f.side;
+  return makeDeep(
+    unit,
+    `세 변의 길이의 합이 ${cm(f.total)}인 이등변삼각형이 있습니다. 이 삼각형의 한 변의 ` +
+      `길이는 ${cm(f.side)}이고, 가장 짧은 변의 길이는 ${cm(f.bar)}보다 ` +
+      `${f.longer ? "깁니다" : "짧습니다"}. 길이가 같은 두 변의 길이의 합은 몇 cm인가?`,
+    cm(f.pairSum),
+    [
+      `이등변삼각형은 길이가 같은 변이 두 개입니다. ${cm(f.side)}인 변이 길이가 같은 두 ` +
+        `변 중 하나이면 나머지 한 변은 ${expr(`${f.total}-${f.side}\\times2=${oddA}`)} 이고, ` +
+        `${cm(f.side)}인 변이 나머지 한 변이면 길이가 같은 두 변은 각각 ` +
+        `${expr(`(${f.total}-${f.side})\\div2=${pairB}`)} 입니다. 어느 쪽인지 말하지 ` +
+        `않았으므로 두 가지를 다 생각해야 합니다.`,
+      `앞의 경우 세 변은 ${cm(f.side)}, ${cm(f.side)}, ${cm(oddA)}이므로 가장 짧은 변은 ` +
+        `${cm(minA)}이고, 뒤의 경우 세 변은 ${cm(pairB)}, ${cm(pairB)}, ${cm(f.side)}이므로 ` +
+        `가장 짧은 변은 ${cm(minB)}입니다. 가장 짧은 변이 ${cm(f.bar)}보다 ` +
+        `${f.longer ? "길므로" : "짧으므로"} ${takeA ? "앞" : "뒤"}의 경우입니다. ` +
+        `그러므로 길이가 같은 두 변의 길이의 합은 ` +
+        `${takeA ? expr(`${f.side}\\times2=${f.pairSum}`) : expr(`${f.total}-${f.side}=${f.pairSum}`)} ` +
+        `에서 ${cm(f.pairSum)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-2-2 심화중의 밭** — 각 축에서 같은 마디를 연다. 2-2-1 과 **다른 것을 견준다**:
+ * 저쪽은 변의 길이, 이쪽은 **크기가 같은 두 각의 합**이다.
+ *
+ *   ㉮ $a^\circ$ 가 나머지 한 각(꼭지각) → 같은 두 각의 합 $180-a$, 가장 큰 각 $(180-a)\div2$
+ *   ㉯ $a^\circ$ 가 같은 두 각 중 하나   → 같은 두 각의 합 $2a$,     가장 큰 각 $180-2a$
+ *
+ * $a<60$ 으로 잡아 두 가지 모두 가장 큰 각이 $a^\circ$ 가 **아니게** 한다 — 그러면
+ * 답이 발문의 수와 같아지지 않는다(`answerPrintedOnPage`). $180-a$ 가 짝수여야 하므로
+ * $a$ 는 짝수다. 정삼각형($a=60$)은 두 가지가 하나로 겹쳐 마디가 안 열리므로 뺀다.
+ *
+ * 문턱 $s$ 는 $2a$ 와 $180-a$ **사이**에서 뽑는다. 「$s$보다 크다」면 ㉮, 「작다」면 ㉯ 가
+ * 남는다 — 두 문구를 다 만들어 죽는 쪽이 갈리게 한다.
+ */
+const ISO_ANGLE_FIELD: {
+  given: number;
+  bar: number;
+  bigger: boolean;
+  answer: number;
+}[] = (() => {
+  const out: { given: number; bar: number; bigger: boolean; answer: number }[] =
+    [];
+  // 🔴 주어진 각은 $20^\circ$ 부터다. $2^\circ$·$6^\circ$ 는 지면에서 그릴 수도 잴 수도
+  //    없는 각이고(1-2 가 재는 각의 띠 밖이다), 두 가지의 «같은 두 각의 합»이 $4$와 $178$
+  //    처럼 극단으로 갈라져 문턱이 아무 일도 안 하는 것처럼 보인다.
+  for (let given = 20; given <= 58; given += 2) {
+    const sumApex = 180 - given; // ㉮ 같은 두 각의 합
+    const sumBase = 2 * given; // ㉯ 같은 두 각의 합
+    if (sumApex <= sumBase) continue;
+    for (let bar = sumBase + 1; bar < sumApex; bar += 1) {
+      out.push({ given, bar, bigger: true, answer: (180 - given) / 2 });
+      out.push({ given, bar, bigger: false, answer: 180 - 2 * given });
+    }
+  }
+  return out;
+})();
+
+/**
+ * **2-2-2 5단 심화중 — 주어진 한 각이 «어느 쪽»인지 안 말한다.**
+ *
+ * 연산·기본·응용은 「크기가 같은 두 각」·「두 밑각」·「꼭지각」을 **말로 지목한다** —
+ * 마디가 안 열린다. 여기서는 그 말을 지우고, 「크기가 같은 두 각의 합」이 문턱보다
+ * 큰지 작은지 한 줄이 한 가지를 죽인다. 답(가장 큰 각)까지 가지 않고 «합»만 견주어
+ * 닫으므로 중이다.
+ */
+function tier222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier222MidRaw(unit, rng));
+}
+
+function tier222MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const f = pick(rng, ISO_ANGLE_FIELD);
+  const sumApex = 180 - f.given;
+  const sumBase = 2 * f.given;
+  return makeDeep(
+    unit,
+    `이등변삼각형의 한 각의 크기가 ${deg(f.given)}입니다. 이 삼각형에서 크기가 같은 두 ` +
+      `각의 크기의 합은 ${deg(f.bar)}보다 ${f.bigger ? "큽니다" : "작습니다"}. ` +
+      `이 삼각형에서 가장 큰 각의 크기는 몇 도인가?`,
+    deg(f.answer),
+    [
+      `이등변삼각형은 크기가 같은 두 각이 있습니다. ${deg(f.given)}가 그 두 각 중 ` +
+        `하나이면 두 각의 합은 ${expr(`${f.given}\\times2=${sumBase}`)} 이고, ` +
+        `${deg(f.given)}가 나머지 한 각이면 두 각의 합은 ` +
+        `${expr(`180-${f.given}=${sumApex}`)} 입니다.`,
+      `그 합이 ${deg(f.bar)}보다 ${f.bigger ? "크므로" : "작으므로"} ${deg(f.given)}는 ` +
+        `${f.bigger ? "나머지 한 각" : "크기가 같은 두 각 중 하나"}입니다. ` +
+        `${
+          f.bigger
+            ? `크기가 같은 두 각은 각각 ${expr(`${sumApex}\\div2=${f.answer}`)} 이고`
+            : `나머지 한 각은 ${expr(`180-${sumBase}=${f.answer}`)} 이고`
+        } ` +
+        `${deg(f.given)}보다 크므로 가장 큰 각의 크기는 ${deg(f.answer)}입니다.`,
+    ],
+  );
+}
+
+/**
+ * **2-5-2 심화중용 값 — 「처음으로 넘은 때」 앞에서 한 번 내려간다.**
+ *
+ * 심화하가 쓰는 `dipLineValues` 는 **오른 뒤** 내려간다. 그러면 「처음으로 넘은 때」의
+ * 앞쪽이 늘 오름차순이라 **「바로 앞의 값」이 곧 답**이 되어 지름길이 100% 가 된다.
+ * 여기서는 내림을 **넘은 때보다 앞**에 놓는다 — `v0 < v2 < v1 < v3 < v4` 라
+ * 「$v_3$에서 처음 넘었다」면 앞쪽 최댓값은 **바로 앞($v_2$)이 아니라 $v_1$** 이다.
+ *
+ * 다섯 값이 모두 다르므로 「값이 $x$인 때」가 하나로 정해진다.
+ */
+function w4DipFirstValues(rng: Rng, theme: LineTheme): number[] {
+  const up0 = intBetween(rng, 2, 5);
+  const down = intBetween(rng, 1, up0 - 1);
+  const up2 = intBetween(rng, down + 1, down + 4);
+  const up3 = intBetween(rng, 1, 5);
+  const first = intBetween(rng, theme.base[0], theme.base[1]) * theme.step;
+  const v1 = first + up0 * theme.step;
+  const v2 = v1 - down * theme.step;
+  const v3 = v2 + up2 * theme.step;
+  return [first, v1, v2, v3, v3 + up3 * theme.step];
+}
+
+/**
+ * **2-5-2 5단 심화중 — 문턱을 안 준다.**
+ *
+ * 심화하는 문턱 $T$ 를 주고 「그때부터 마지막까지 몇 늘었나」를 묻는다(되짚기 한 번,
+ * 마디마다 굳는다). 여기서는 **거꾸로** 늘어난 양만 주고 $T$ 를 묻는다 — $T$ 는
+ * 하나로 굳지 않고 **구간**으로만 정해지며, 「처음으로」라는 말의 뜻(그 앞의 때는
+ * 모두 넘지 않아야 한다)이 아래끝을 굳힌다.
+ *
+ * ⚠️ 「가장 **큰** 수」로 물으면 안 된다 — 그것은 $($마지막 값$)-D$ 그 자체라
+ *    앞쪽을 한 번도 안 보고 100% 맞는다. 「가장 **작은** 수」여야 앞쪽 최댓값이 답이 된다.
+ * ⚠️ 「$T$ 이상」이 아니라 「$T$를 넘은」으로 쓴다. 그러면 $T$ 가 앞쪽 최댓값과 **같아도**
+ *    되므로 답이 $+1$ 이 아니라 그 값 자체가 되고, 「$T$ 는 자연수」라는 군더더기가 없다.
+ */
+function tier252Mid(unit: UnitSeed, rng: Rng): ElemProblem {
+  return unlessForward(() => tier252MidRaw(unit, rng));
+}
+
+function tier252MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const nums = w4DipFirstValues(rng, theme);
+  // 「처음으로 넘은 때」가 될 수 있는 자리는 $1$ 과 $3$ 뿐이다 — $2$ 는 앞($v_1$)이 이미
+  // 더 크고, $4$ 는 늘어난 양이 $0$ 이 되어 발문이 뜻을 잃는다.
+  const at = pick(rng, [1, 3]);
+  const last = nums[nums.length - 1]!;
+  const grew = last - nums[at]!;
+  const before = nums.slice(0, at);
+  const peak = Math.max(...before);
+  const peakAt = before.indexOf(peak);
+  return makeDeep(
+    unit,
+    `${lineIntro(theme)} ${theme.topic}의 값이 처음으로 어떤 수를 넘은 때부터 마지막 ` +
+      `때까지 값은 ${n(grew)}${theme.unit} 늘었습니다. 그 어떤 수가 될 수 있는 수 중 ` +
+      `가장 작은 수는 몇 ${theme.unit}인가?`,
+    `${n(peak)}${theme.unit}`,
+    [
+      `마지막 ${theme.labels[nums.length - 1]!.math}의 값은 ${n(last)}${theme.unit}이고 ` +
+        `그때부터 ${n(grew)}${theme.unit} 늘었으므로, 처음으로 넘은 때의 값은 ` +
+        `${expr(`${last}-${grew}=${nums[at]!}`)} 에서 ${n(nums[at]!)}${theme.unit}입니다. ` +
+        `그 값을 가진 때는 ${theme.labels[at]!.math}입니다.`,
+      `${josa(theme.labels[at]!.math, "이", "가")} 처음으로 넘은 때이려면 그 앞의 때들은 ` +
+        `하나도 넘지 않아야 합니다. 앞의 때들 가운데 값이 가장 큰 때는 ` +
+        `${theme.labels[peakAt]!.math}의 ${n(peak)}${theme.unit}이므로 어떤 수는 ` +
+        `${n(peak)}${theme.unit} 이상이어야 하고, ${theme.labels[at]!.math}에서 넘어야 ` +
+        `하므로 ${n(nums[at]!)}${theme.unit}보다 작아야 합니다. 그 사이는 ` +
+        `${expr(`${nums[at]!}-${peak}=${nums[at]! - peak}`)} 만큼이고, 가장 작은 수는 ` +
+        `${n(peak)}${theme.unit}입니다.`,
+    ],
+    lineFigure(theme, nums),
+  );
+}
+
+/**
+ * **2-5-3 심화상의 밭** — 표에서 값 **둘**을 지운다(꺾은선은 값을 못 가린다. 표만 된다).
+ *
+ * 지우는 자리는 **둘째 때와 마지막 때**다. 두 값의 합만 주면 짝이 여럿 남고, 그 짝을
+ * 하나씩 **실제로 만들어 네 구간의 변화량을 다 구해** 견주어야 하나가 남는다 —
+ * 후보를 발문이 주지 않고 되짚기가 만든다(D-115 심화상 정의).
+ *
+ * 밭은 걸음(`tableValues` 의 $1,2,3,4$ 순열) 24가지를 전수로 돌려 **후보가 셋 이상이고
+ * 정확히 하나만 살아남는** 자리만 담는다. 실측 12/24 · 평균 후보 3.83 · 살아남는 것이
+ * 후보 목록의 첫 2 · 가운데 4 · 끝 6 — **«끝을 집으면 맞는» 지름길이 없다**(보고서 §5).
+ *
+ * ⚠️ 값이 아니라 **걸음**으로 담는다. 첫 값(소재의 띠)을 더해도 부등식이 그대로라
+ *    같은 밭이 모든 소재·모든 첫 값에 그대로 선다.
+ * ⚠️ 답이 두 쪽(「$450$명, $950$명」)이라 `readRat` 이 못 읽는다 — 반증 ⑥ 축 **밖**이다.
+ */
+const TABLE_HIDE_FIELD: {
+  gaps: number[];
+  steep: number;
+  cands: { lo: number; hi: number }[];
+  answer: { lo: number; hi: number };
+}[] = (() => {
+  const perms: number[][] = [];
+  const walk = (rest: number[], acc: number[]) => {
+    if (acc.length === 4) {
+      perms.push([...acc]);
+      return;
+    }
+    for (const r of rest)
+      walk(
+        rest.filter((x) => x !== r),
+        [...acc, r],
+      );
+  };
+  walk([1, 2, 3, 4], []);
+  const out: {
+    gaps: number[];
+    steep: number;
+    cands: { lo: number; hi: number }[];
+    answer: { lo: number; hi: number };
+  }[] = [];
+  for (const gaps of perms) {
+    const v = [0];
+    for (const g of gaps) v.push(v[v.length - 1]! + g);
+    const sum = v[1]! + v[4]!;
+    const gapsOf = (lo: number, hi: number) => {
+      const w = [...v];
+      w[1] = lo;
+      w[4] = hi;
+      return w.slice(1).map((t, i) => t - w[i]!);
+    };
+    const truth = gapsOf(v[1]!, v[4]!);
+    const most = Math.max(...truth);
+    if (truth.filter((t) => t === most).length !== 1) continue;
+    const steep = truth.indexOf(most);
+    const cands: { lo: number; hi: number }[] = [];
+    for (let lo = v[0]! + 1; lo <= v[2]! - 1; lo += 1) {
+      const hi = sum - lo;
+      if (hi <= v[3]!) continue;
+      cands.push({ lo, hi });
+    }
+    const alive = cands.filter((c) => {
+      const q = gapsOf(c.lo, c.hi);
+      return new Set(q).size === 4 && q[steep]! >= Math.max(...q);
+    });
+    if (cands.length < 3 || alive.length !== 1) continue;
+    out.push({ gaps, steep, cands, answer: alive[0]! });
+  }
+  return out;
+})();
+
+/** 값 둘을 지운 표. 지운 칸은 $\square$ 대신 **글자 □** 로 둔다(표 칸은 KaTeX 가 아니다). */
+function tableFigureHidden(
+  theme: LineTheme,
+  nums: readonly number[],
+  hidden: readonly number[],
+): Record<string, unknown> {
+  return fig("table", {
+    headers: ["구분", `${theme.short ?? theme.topic}(${theme.unit})`],
+    rows: theme.labels.map((l, i) => [
+      l.text,
+      hidden.includes(i) ? "□" : String(nums[i] ?? ""),
+    ]),
+  });
+}
+
+/**
+ * **2-5-3 6단 심화상 — 지워진 두 값을 만들어 견준다.**
+ *
+ * 심화중이 없는 소단원이다(보고서 §3): 값을 하나만 지우면 「눈금 한 칸으로
+ * 나누어떨어진다」가 후보를 하나로 줄이려면 이웃 사이가 정확히 두 칸이어야 하고,
+ * 그러면 답이 늘 **한가운데**라 지름길이 100% 가 된다.
+ */
+function tier253Top(unit: UnitSeed, rng: Rng): ElemProblem {
+  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  const f = pick(rng, TABLE_HIDE_FIELD);
+  const base = intBetween(rng, theme.base[0], theme.base[1]);
+  const cell = (v: number) => (base + v) * theme.step;
+  const marks = [0];
+  for (const g of f.gaps) marks.push(marks[marks.length - 1]! + g);
+  const nums = marks.map(cell);
+  const sum = cell(f.answer.lo) + cell(f.answer.hi);
+  const at = (i: number) => theme.labels[i]!.math;
+  // `unitJosa` 는 **단위까지 붙여** 돌려준다 — 앞에 `theme.unit` 을 또 쓰면 「$650$명명과」다.
+  const and = unitJosa(theme.unit, "과", "와");
+  const so = unitJosa(theme.unit, "이라", "라");
+  const gapsOf = (lo: number, hi: number) => {
+    const w = [...marks];
+    w[1] = lo;
+    w[4] = hi;
+    return w.slice(1).map((t, i) => (t - w[i]!) * theme.step);
+  };
+  const shown = f.cands
+    .map(
+      (c) =>
+        `${n(cell(c.lo))}${and} ` +
+        `${expr(`${sum}-${cell(c.lo)}=${cell(c.hi)}`)} 에서 ${n(cell(c.hi))}${theme.unit}`,
+    )
+    .join(", ");
+  const lines = f.cands.map((c) => {
+    const q = gapsOf(c.lo, c.hi);
+    const most = Math.max(...q);
+    const same = new Set(q).size !== 4;
+    const ok = !same && q[f.steep]! === most;
+    return (
+      `${n(cell(c.lo))}${and} ${n(cell(c.hi))}${theme.unit}이면 변화량이 ` +
+      `차례로 ${q.map((g) => n(g)).join(", ")}${so} ` +
+      (ok
+        ? `네 구간이 서로 다르고 가장 가파른 구간도 ${josa(at(f.steep), "과", "와")} ` +
+          `${at(f.steep + 1)} 사이입니다.`
+        : same
+          ? `같은 변화량이 생겨 알맞지 않습니다.`
+          : `가장 가파른 구간이 ${josa(at(q.indexOf(most)), "과", "와")} ` +
+            `${at(q.indexOf(most) + 1)} 사이가 되어 알맞지 않습니다.`)
+    );
+  });
+  return makeDeep(
+    unit,
+    `${tableIntro(theme)} 그런데 ${josa(at(1), "과", "와")} ${at(4)}의 값이 지워졌습니다. ` +
+      `값은 갈수록 커졌고, 지워진 두 값의 합은 ${n(sum)}${theme.unit}입니다. 이 표를 ` +
+      `세로 눈금 한 칸이 ${n(theme.step)}${theme.unit}인 꺾은선그래프로 나타내면 다섯 점이 ` +
+      `모두 눈금 위에 정확히 찍히고, 이웃한 두 때 사이의 변화량은 네 구간이 서로 모두 ` +
+      `다르며, 선이 가장 가파른 구간은 ${josa(at(f.steep), "과", "와")} ` +
+      `${at(f.steep + 1)} 사이입니다. 지워진 두 값을 각각 구하시오.`,
+    `${n(cell(f.answer.lo))}${theme.unit}, ${n(cell(f.answer.hi))}${theme.unit}`,
+    [
+      `다섯 점이 모두 눈금 위에 찍히므로 지워진 값도 ` +
+        `${n(theme.step)}${unitJosa(theme.unit, "으로", "로")} 나누어떨어집니다. 값이 ` +
+        `갈수록 커지므로 ${at(1)}의 값은 ${n(nums[0]!)}${theme.unit}보다 크고 ` +
+        `${n(nums[2]!)}${theme.unit}보다 작으며, ${at(4)}의 값은 ` +
+        `${n(nums[3]!)}${theme.unit}보다 큽니다. 두 값의 합이 ${n(sum)}${theme.unit}이므로 ` +
+        `될 수 있는 짝은 ${shown} 입니다.`,
+      `짝마다 이웃한 두 때의 변화량을 구해 봅니다. ${lines.join(" ")} ` +
+        `그러므로 지워진 두 값은 ${n(cell(f.answer.lo))}${and} ` +
+        `${n(cell(f.answer.hi))}${theme.unit}입니다.`,
+    ],
+    tableFigureHidden(theme, nums, [1, 4]),
   );
 }
