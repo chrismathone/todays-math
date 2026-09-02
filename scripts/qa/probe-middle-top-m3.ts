@@ -54,6 +54,23 @@ import {
 const SEEDS = 400;
 const SEED0 = 20260901;
 
+/**
+ * 🔴 **모집단을 손 목록(`M3_TOP`)에서 뽑지 않는다** — 2026-09-02.
+ *
+ * 확대 갈래는 물결마다 **새 모듈**에 서므로(`m3Top2.ts` · 접미사 `U`), 2차 물결
+ * 넷이 이 판정기에서 **조용히 빠져** 있었다 — 「깨끗하다」가 아니라 **아무도 안
+ * 쟀다**는 뜻이다. 중2 판정기는 이미 등록에서 뽑는다. 여기도 맞춘다.
+ */
+function topEntries(): { key: string; unitSection: string }[] {
+  return registeredTypes()
+    .filter((e) => e.grade === "중3")
+    .filter((e) => {
+      const d = generateMiddleProblem(e.key, SEED0).difficulty;
+      return d === "심화중" || d === "심화상";
+    })
+    .map((e) => ({ key: e.key, unitSection: e.unitSection }));
+}
+
 // ────────────────────────────────────────────────────────────────────────────
 // ㉠ 굳힘을 안 읽고 극단을 집으면 몇 %가 맞나
 // ────────────────────────────────────────────────────────────────────────────
@@ -309,7 +326,7 @@ function selftest(): void {
 
   // ── 등록: 새 갈래가 실제로 `심화중`·`심화상` 으로 나오는가 (분모)
   const tiers = new Set(
-    M3_TOP.map((e) => generateMiddleProblem(e.key, SEED0).difficulty),
+    topEntries().map((e) => generateMiddleProblem(e.key, SEED0).difficulty),
   );
   say(
     "분모 — 등록한 유형이 확대 갈래로 나온다",
@@ -378,7 +395,7 @@ function reportOverlap(): void {
   );
   const seeds = [SEED0, 5150131, 777003, 424242, 31337];
   const all = registeredTypes();
-  for (const mine of M3_TOP) {
+  for (const mine of topEntries()) {
     const xs = sampleType(mine.key, seeds);
     const ceiling = pairMax(xs, xs); // 자기 자신과 — 다른 씨앗끼리
     console.log(`  ── ${mine.key}  (${xs[0]!.tier})`);

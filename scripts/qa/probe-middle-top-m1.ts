@@ -58,6 +58,27 @@ import { isThin } from "./probe-middle-solution-depth";
 import { isDirectScript } from "../import/isDirectScript";
 
 const SEEDS = [20260827, 7, 4242, 99991, 31337, 5150131, 20260901, 12345];
+
+/**
+ * 🔴 **모집단을 손 목록(`M1_TOP`)에서 뽑지 않는다** — 2026-09-02.
+ *
+ * 이 자는 `M1_TOP` 을 돌고 있었다. 그런데 확대 갈래는 물결마다 **새 모듈**에
+ * 서므로(`m1Top2.ts` · 접미사 `U`), 2차 물결 넷이 이 보고서에서 **조용히 빠져**
+ * 있었다 — 「이 유형들은 깨끗하다」가 아니라 **아무도 안 쟀다**는 뜻이다.
+ * 이 저장소가 여러 번 적은 「목록을 손으로 쓰면 세는 쪽이 눈이 먼다」 그대로다.
+ *
+ * 그래서 **등록에서 뽑는다** — 중2 판정기(`probe-middle-extending-tiers`)가 이미
+ * 그렇게 서 있다. 축(`AXES`)을 안 적은 유형은 조용히 빠지지 않고 **빨갛게 찍힌다.**
+ */
+function topEntries(): { key: string }[] {
+  return registeredTypes()
+    .filter((e) => e.grade === "중1")
+    .filter((e) => {
+      const d = generateMiddleProblem(e.key, SEEDS[0]!, 0).difficulty;
+      return d === "심화중" || d === "심화상";
+    })
+    .map((e) => ({ key: e.key }));
+}
 const VARIANTS = [0, 1, 2];
 /** 「수+정답」 열쇠가 뜻을 가지려면 천장이 이보다 높아야 한다. */
 const CEILING_FLOOR = 0.5;
@@ -252,7 +273,7 @@ const AXES: Record<
 
 export function sweep(): Row[] {
   const out: Row[] = [];
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     for (const seed of SEEDS) {
       for (const v of VARIANTS) {
         const p = generateMiddleProblem(e.key, seed, v);
@@ -284,7 +305,7 @@ function reportShortcuts(rows: Row[]): void {
     "| 유형 | 표본 | ⑴ 지면 수 조합이 맞은 최고 규칙 | ⑵ 굳힘 조건을 지운 답 | 우연 수준 |",
   );
   console.log("|---|---|---|---|---|");
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     const mine = rows.filter((r) => r.key === e.key);
     const tally = new Map<string, number>();
     for (const r of mine) {
@@ -295,7 +316,15 @@ function reportShortcuts(rows: Row[]): void {
       }
     }
     const best = [...tally.entries()].sort((a, b) => b[1] - a[1])[0];
-    const axis = AXES[e.key]!;
+    // 🔴 축을 안 적은 유형은 **조용히 빠지지 않는다** — 그 줄이 «깨끗»으로 읽히면
+    //    새 물결이 판정기 밖에 서 있는 것을 아무도 모른다.
+    const axis = AXES[e.key];
+    if (axis === undefined) {
+      console.log(
+        `| ${e.key} | ${mine.length} | 🔴 **축(AXES)을 안 적었다** | — |`,
+      );
+      continue;
+    }
     let noBind = "**축 없음** (조건을 지우면 문제가 사라진다)";
     const probe = axis.withoutBinding(mine[0]!.facts);
     if (probe !== null) {
@@ -322,9 +351,15 @@ function reportBinding(rows: Row[]): void {
   console.log("\n## ㉡ 굳힘이 항등식인가 — 인자를 흔들면 답이 바뀌나\n");
   console.log("| 유형 | 표본 | 흔들어도 답이 그대로 | 판정 |");
   console.log("|---|---|---|---|");
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     const mine = rows.filter((r) => r.key === e.key);
-    const axis = AXES[e.key]!;
+    const axis = AXES[e.key];
+    if (axis === undefined) {
+      console.log(
+        `| ${e.key} | ${mine.length} | 🔴 **축(AXES)을 안 적었다** | — |`,
+      );
+      continue;
+    }
     const same = mine.filter((r) => {
       const got = axis.perturbed(r.facts);
       return Number.isFinite(got) && got === answerNumber(r.answer);
@@ -348,7 +383,7 @@ function reportOverlap(rows: Row[]): void {
     "그러므로 기준선의 최댓값을 **내 값의 면제부로 쓰면 안 된다** — 중앙값과 견주어라.\n",
   );
   const all = registeredTypes();
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     const mine = rows.filter((r) => r.key === e.key);
     const p0 = generateMiddleProblem(e.key, SEEDS[0]!, 0);
     // 천장 — 같은 유형을 다른 씨앗으로 자기 자신과 견준다.
@@ -426,7 +461,7 @@ function reportDepth(rows: Row[]): void {
   );
   console.log("| 유형 | 표본 | 걸음 건너뛰기 | 해설 길이 중앙값 |");
   console.log("|---|---|---|---|");
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     const mine = rows.filter((r) => r.key === e.key);
     const thin = mine.filter((r) => isThin(r.content, r.solution)).length;
     const lens = mine.map((r) => r.solution.length).sort((a, b) => a - b);
@@ -447,7 +482,7 @@ function reportRubric(): void {
     "사람이 본다」고 못 박았다. 읽은 결과는 보고서에 **[눈]** 으로 적는다.\n",
   );
   const all = registeredTypes();
-  for (const e of M1_TOP) {
+  for (const e of topEntries()) {
     const section = generateMiddleProblem(e.key, SEEDS[0]!, 0).unitSection;
     console.log(`\n### «${section}» — \`${e.key.split("|")[2]}\` 가 서는 자리`);
     for (const t of all) {
@@ -604,7 +639,7 @@ function main(): void {
   }
   const rows = sweep();
   console.log(
-    `# 중1 상위 갈래 판정 — 유형 ${M1_TOP.length} × 씨앗 ${SEEDS.length} × 변형 ${VARIANTS.length} = ${rows.length}문항`,
+    `# 중1 상위 갈래 판정 — 유형 ${topEntries().length} × 씨앗 ${SEEDS.length} × 변형 ${VARIANTS.length} = ${rows.length}문항`,
   );
   if (argv.includes("--rubric")) {
     reportRubric();
