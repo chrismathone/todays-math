@@ -852,6 +852,51 @@ describe("중2 확대 갈래 2차 — 물린 결함의 회귀 잠금", () => {
     }
   });
 
+  it("⑸ 🔴 `31U` 해설의 「무한소수가 되는 까닭」이 **참인 수**를 적는다", () => {
+    // 🔴 이 검사는 **적대적 검증이 찾아 준 치명 결함의 회귀 잠금**이다(2026-09-02).
+    //    `oddLeftover(den * v)` 가 분자와의 약분 `gcd(p, v)` 를 빼먹어, $p=3$·$x=9$ 에서
+    //    「$9$가 남는다」고 적었다. 참은 $3$ 이다 — 바로 **윗줄**이 $\dfrac{1}{300}$ 이라
+    //    **해설이 스스로 모순**이었다. 실측 42.5% 문항. 정답은 맞으므로 값 검산·냄새·
+    //    조사·렌더가 **전부 초록**인 부류다(2026-08-24 「값이 맞으면 시험이 다 초록이다」).
+    //
+    //    ⚠️ 규칙을 옮겨 적지 않는다 — 해설이 스스로 적어 둔 **나열 줄**($x=k$일 때의
+    //    기약분수)에서 분모를 읽어 «까닭 줄»과 맞대는 방식이다. 두 줄이 어긋나면 빨강.
+    const oddPart = (n: number): number => {
+      let d = n;
+      while (d % 2 === 0) d /= 2;
+      while (d % 5 === 0) d /= 5;
+      return d;
+    };
+    let checked = 0;
+    for (const p of rows(E31, 120)) {
+      const sol = p.solution;
+      // 나열 줄: `$x=9$일 때 $\dfrac{1}{300}$` — 약분이 끝난 꼴이다.
+      const listed = new Map<number, number>();
+      for (const m of sol.matchAll(
+        /\$x=(\d+)\$일 때 \$\\dfrac\{\d+\}\{(\d+)\}\$/g,
+      )) {
+        listed.set(Number(m[1]), oddPart(Number(m[2])));
+      }
+      // 까닭 줄: `$x=9$일 때는 $3$`
+      for (const m of sol.matchAll(/\$x=(\d+)\$일 때는 \$(\d+)\$/g)) {
+        const v = Number(m[1]);
+        const said = Number(m[2]);
+        const truth = listed.get(v);
+        expect(truth, `31U 나열 줄에 $x=${v}$ 가 없다`).toBeDefined();
+        expect(
+          said,
+          `31U $x=${v}$ — 까닭 줄은 「${said}」인데 나열 줄의 기약분모가 말하는 것은 「${truth}」`,
+        ).toBe(truth);
+        checked += 1;
+      }
+    }
+    // 🔴 이 검사가 **무언가를 실제로 봤는지** 센다 — 0 은 «깨끗»과 «못 셈»을 안 가른다.
+    expect(
+      checked,
+      "까닭 줄을 하나도 못 읽었다 — 자가 눈이 멀었다",
+    ).toBeGreaterThan(300);
+  });
+
   it("⑷ 🔴 `32U` 해설의 셈이 맞는다 — **값은 맞고 해설만 틀리는** 부류를 막는다", () => {
     // 🔴 이 검사는 **변이 시험이 찾아 준 구멍**이다. 「지수의 최대공약수로 맞춘다」를
     //    「아무 공약수로 맞춘다」로 바꾸면 답은 **그대로 맞는다** — 지수를 어떤 공약수로

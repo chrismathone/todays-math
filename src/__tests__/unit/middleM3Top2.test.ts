@@ -49,6 +49,7 @@ import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import { isThin } from "../../../scripts/qa/probe-middle-solution-depth";
 import { edgeScore, siftScore } from "../../../scripts/qa/probe-middle-top-m3";
 import { bareNumbers } from "../../lib/elementary/rules";
+import { pageSmells } from "../helpers/midPage";
 import { createRng } from "../../lib/elementary/rng";
 import type { Rng } from "../../lib/elementary/types";
 import { renderMathHtml } from "../../lib/math/renderMathHtml";
@@ -731,6 +732,13 @@ describe("[중3 2차 물결] ㉦ 지면 냄새", () => {
       ),
     ).toBe(false);
     expect(BAD.some(([re]) => re.test("$2\\times4-(-7)=15$이다."))).toBe(false);
+    // 🔴 **공용 계량기의 눈금** — 손 목록이 못 보는 것을 이쪽이 본다는 증거.
+    //    이 두 줄이 실제로 41U·42U 에서 지면에 나가고 있었다.
+    expect(pageSmells("$-8+0=-8$이다.")).not.toEqual([]);
+    expect(pageSmells("$x=\\dfrac{-8+0}{2}=-4$이다.")).not.toEqual([]);
+    // 그리고 «아니오»도 낸다 — 늘 우는 가드가 아니다(1차 물결 11유형 400씨앗 적발 0).
+    expect(pageSmells("$y=a\\times(-3)^{2}+q=9a-100a=-91a$")).toEqual([]);
+    expect(pageSmells("$2\\times4-(-7)=15$이다.")).toEqual([]);
     expect(BAD.some(([re]) => re.test("$x^{2}-y^{2}=(x+y)(x-y)$이므로"))).toBe(
       false,
     );
@@ -751,6 +759,15 @@ describe("[중3 2차 물결] ㉦ 지면 냄새", () => {
               if (re.test(text))
                 hits.push(`${e.key} s${seed}v${v} ${field}: ${why}`);
             }
+            // 🔴 **공용 계량기도 같이 댄다 — 손 목록 하나만 두면 눈이 먼다.**
+            //    이 파일은 처음에 `BAD` 하나만 썼고, 그 목록에 `+0` 이 없어서
+            //    41U(2.5%)·42U(11.8%)가 「상수 0 을 더했다」를 그대로 지면에 냈다.
+            //    이웃 m1Top2·m2Top2 시험은 처음부터 `pageSmells` 를 쓴다 —
+            //    같은 규칙이 두 벌이면 한쪽만 새 규칙을 얻는다(2026-08-18).
+            //    ⚠️ 「공용 가드가 `-91a` 를 문다」는 이 파일의 옛 주석은 **사실이
+            //    아니다** — 실측으로 `pageSmells("…=-91a")` 는 `[]` 다.
+            for (const why of pageSmells(text))
+              hits.push(`${e.key} s${seed}v${v} ${field}: 공용 — ${why}`);
           }
         }
       }

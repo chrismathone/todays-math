@@ -293,10 +293,16 @@ const FINITE_DECIMAL: TypeEntry[] = [
         for (let v = 1; v <= limit; v += 1) {
           roll.push(`$x=${v}$일 때 $${reduced(v)}$`);
         }
+        // 🔴 **약분을 하고 나서 남는 것을 적어야 한다.** `oddLeftover(den * v)` 는
+        //    분자 $p$ 와의 약분을 빼먹어, $p=3$ · $x=9$ 에서 「$9$가 남는다」고 적었다
+        //    (참은 $3$ — 바로 윗줄이 $\dfrac{1}{300}$ 이라 **해설이 스스로 모순**이었다).
+        //    값·냄새·조사·렌더가 전부 초록인 부류라 관문이 침묵한다. 실측 42.5% 문항.
+        const leftoverOf = (v: number): number =>
+          oddLeftover((den * v) / gcd(p, v));
         const deadWhy = dead
-          .map((v) => `$x=${v}$일 때는 $${oddLeftover(den * v)}$`)
+          .map((v) => `$x=${v}$일 때는 $${leftoverOf(v)}$`)
           .join(", ");
-        const lastDead = oddLeftover(den * dead[dead.length - 1]!);
+        const lastDead = leftoverOf(dead[dead.length - 1]!);
         const cancelWhy = cancelled
           .map((v) => `$x=${v}$일 때 $${reduced(v)}$`)
           .join(", ");
@@ -419,7 +425,11 @@ const COMPARE_POWERS: TypeEntry[] = [
           answer: `$${truth}$`,
           solution: [
             `세 수의 지수 $${exps[0]}$, $${exps[1]}$, $${exps[2]}$의 최대공약수는 $${common}$이다.`,
-            `지수법칙 $\\left(a^{m}\\right)^{n}=a^{mn}$을 거꾸로 쓰면 세 수를 모두 지수가 $${common}$인 거듭제곱으로 고칠 수 있다.`,
+            // 🔴 법칙의 글자를 $a$ 로 쓰면 **발문의 $a$**(= 특정한 수 $5^{15}$)와 부딪힌다.
+            //    바로 다음 줄이 「$a=5^{15}$은 이미…」라 인접한 세 줄에서 $a$ 가 두 뜻이 됐다.
+            //    이 유형의 통째가 그 법칙을 알아보는 것인데, 법칙을 적는 자리에서 글자가
+            //    부딪히면 학생이 못 읽는다. 값·냄새·조사·렌더가 전부 초록인 부류다(400/400).
+            `지수법칙 $\\left(A^{m}\\right)^{n}=A^{mn}$을 거꾸로 쓰면 세 수를 모두 지수가 $${common}$인 거듭제곱으로 고칠 수 있다.`,
             lines.join("\n"),
             // 🔴 「(으)로」는 **받침 유무가 아니라 ㄹ 받침인가**로 갈린다 —
             //    $15$(십오)는 「로」, $30$(삼십)은 「으로」다. `josaMismatches` 는

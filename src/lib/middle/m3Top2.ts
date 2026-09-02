@@ -416,6 +416,10 @@ export function planAbsSum(rng: Rng): AbsSumPlan {
     if (dead[0]!.root === 0) return null;
 
     const kept = branches.filter((b) => b.alive).map((b) => b.root);
+    // 🔴 **사는** 뿌리가 $0$ 이면 마지막 줄이 `$-8+0=-8$` 이 된다 — 저장소 공용 계량기
+    //    `pageSmells` 가 막는 `+0` 이다(실측 2.5%). 위 「죽는 뿌리 $0$」만 막고 이쪽을
+    //    안 막아 새어 나갔다. 값은 맞고 KaTeX 도 초록이라 값 검산이 구조적으로 못 본다.
+    if (kept.some((v) => v === 0)) return null;
     return {
       p,
       q,
@@ -555,9 +559,17 @@ export type AxisReflectPlan = {
 export function planAxisReflect(rng: Rng): AxisReflectPlan {
   return attempt(2000, () => {
     const p = intBetween(rng, -6, 6);
+    // 🔴 $p=0$ 이면 `xMinus(0)` 이 `"x"` 라 지면에 `(x)^{2}` 이 찍힌다 — 값은 맞고
+    //    KaTeX 도 초록이라 값 검산·렌더 검사가 구조적으로 못 보는 부류다(실측 6.3%).
+    //    같은 파일 `planAbsSum` 이 이미 같은 이유로 $p=0$ 을 버린다 — 그쪽과 맞춘다.
+    if (p === 0) return null;
     const d = intBetween(rng, 1, 7);
     const w = intBetween(rng, -9, 9);
     if (w === p) return null;
+    // 🔴 지면이 대입하는 세 좌표에 $0$ 이 있으면 `$\dfrac{-8+0}{2}$`·`$2\times3-0=6$` 이
+    //    찍힌다 — 공용 계량기 `pageSmells` 가 막는 그 모양이다(실측 11.8%).
+    //    1차 물결 11유형은 400씨앗에서 적발 0 이므로 「늘 우는 가드」가 아니라 **규약**이다.
+    if (w === 0 || p - d === 0 || p + d === 0) return null;
     if (Math.abs(w - p) === d) return null;
     const answer = solveAxisReflection(p - d, p + d, w);
     if (Math.abs(answer) > 20) return null;
@@ -923,7 +935,7 @@ function renderHypArea(rng: Rng): Body {
     `또 $(a-b)^{2}=a^{2}+b^{2}-2ab=${hyp * hyp}-${4 * area}=${diff * diff}$이므로 $|a-b|=${diff}$이다.`,
     `$a+b=${sum}$, $|a-b|=${diff}$이므로 두 변의 길이는 $${t}$${waGwa(t)} $${s}$이다. 그런데 여기까지로는 어느 쪽이 $\\overline{BC}$인지 정해지지 않는다.`,
     `삼각형에서 큰 각의 대변이 더 길다는 것을 쓰면 두 경우를 가를 수 있다.`,
-    `${MARKS[0]} $\\overline{BC}=${t}$, $\\overline{CA}=${s}$이면 $\\angle A$의 대변이 $\\angle B$의 대변보다 더 기므로 $\\angle A>\\angle B$이다.`,
+    `${MARKS[0]} $\\overline{BC}=${t}$, $\\overline{CA}=${s}$이면 $\\angle A$의 대변이 $\\angle B$의 대변보다 더 길므로 $\\angle A>\\angle B$이다.`,
     `${MARKS[1]} $\\overline{BC}=${s}$, $\\overline{CA}=${t}$이면 $\\angle A$의 대변이 $\\angle B$의 대변보다 더 짧으므로 $\\angle A<\\angle B$이다.`,
     `주어진 조건은 $\\angle A${cmp}\\angle B$이므로 조건에 맞는 경우는 ${aIsSmaller ? MARKS[1] : MARKS[0]}뿐이다.`,
     `따라서 $\\overline{BC}=${bc}$, $\\overline{CA}=${ca}$이므로 $${fn} A=\\dfrac{${targetName}}{\\overline{AB}}=\\dfrac{${target}}{${hyp}}${reduced ? `=${fracTex(num, den)}` : ""}$이다.`,

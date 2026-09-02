@@ -86,7 +86,11 @@ const SMELLS: ReadonlyArray<readonly [RegExp, string]> = [
   [/\\dfrac\{\}|\\dfrac\{[^{}]*\}\{\}/, "빈 분수"],
   [/\*\*/, "마크다운 굵게"],
   [/undefined|NaN|Infinity/, "undefined/NaN"],
-  [/\$\s*\$/, "빈 수식"],
+  // 🔴 `\s` 는 **줄바꿈을 넘는다.** 그래서 수식만 있는 줄이 잇달으면(`$…$\n$…$`)
+  //    「빈 수식」으로 걸렸다 — 32U 해설이 지수를 고쳐 쓰는 두 줄이 그 모양이라
+  //    600/600 이 빨갛게 나왔고, 그 지면은 **멀쩡하다.** 늘 우는 가드는 꺼진다
+  //    (2026-08-20). 뜻은 「빈 수식」이므로 **같은 줄 안**으로 좁힌다.
+  [/\$[ \t]*\$/, "빈 수식"],
   [/\\frac\{(\d+)\}\{\1\}/, "약분 안 한 분수(같은 수)"],
 ];
 
@@ -247,6 +251,64 @@ type Erasure = { name: string; values: string[] };
 
 function erasures(key: string, p: MidProblem): Erasure[] {
   const f = p.facts;
+  // ── 2차 물결(D-116, 2026-09-02) — 접미사 `U` ────────────────────────────
+  if (key === "2-1|유리수와 순환소수|31U") {
+    // 굳힘은 「$x$ 가 분자의 홀수 소인수와 **약분된다**」이다. 그것을 지우면
+    // 「$x$ 자체가 $2$·$5$ 만으로 이루어져야 한다」가 되어 살아남는 자리가 줄어든다.
+    const { den, limit } = f as Record<string, number>;
+    const oddPart = (n: number): number => {
+      let d = n;
+      while (d % 2 === 0) d /= 2;
+      while (d % 5 === 0) d /= 5;
+      return d;
+    };
+    let s = 0;
+    for (let v = 1; v <= limit!; v += 1) if (oddPart(den! * v) === 1) s += v;
+    return [{ name: "약분 축 지움", values: [String(s)] }];
+  }
+  if (key === "2-1|단항식의 계산|32U") {
+    // 굳힘은 「지수를 맞추면 **밑만** 견주면 된다」이다. 그 걸음을 지우고
+    // 밑을 그대로 견주면(= 지수를 안 맞추면) 다른 대소가 나와야 한다.
+    const { b1, b2, b3 } = f as Record<string, number>;
+    const naive = [
+      ["a", b1!],
+      ["b", b2!],
+      ["c", b3!],
+    ] as [string, number][];
+    naive.sort((x, y) => x[1] - y[1]);
+    return [
+      {
+        name: "지수 맞추기 걸음 지움 (밑만 견줌)",
+        values: [`$${naive.map(([n]) => n).join("<")}$`],
+      },
+    ];
+  }
+  if (key === "2-1|일차부등식|33U") {
+    // 굳힘은 「자연수 해가 **정확히 그 개수**」다. 개수를 안 주면 상수의 범위가
+    // 개수마다 통째로 달라져야 한다 — 안 달라지면 그 조건은 장식이다.
+    const { total } = f as Record<string, number>;
+    const values: string[] = [];
+    for (let c = 1; c <= total!; c += 1) values.push(String(total! - c - 1));
+    return [{ name: "「해가 N개」 지움", values }];
+  }
+  // 🔴 이 소단원 이름에는 **가는 공백**(U+2009)이 들어 있다 — 눈으로는 두 칸으로
+  //    보이지만 `"그래프  ⑵"` 라고 손으로 치면 **안 맞는다.** 그래서 escape 로 적는다.
+  //    처음에 보통 공백 둘로 쳤더니 이 갈래만 「지울 조건을 안 적었다」로 남았다.
+  if (key === "2-1|일차함수와 그 그래프  ⑵|34U") {
+    // 심화상 — 굳지 않는다. 만나기 «전»과 «뒤» **두 구간을 다 만들어** 견주어야
+    // 답이 정해진다. 한 구간만 보면 답이 갈리는 것을 값 둘로 보인다.
+    const { head, target, fast, slow } = f as Record<string, number>;
+    const rel = fast! - slow!;
+    return [
+      {
+        name: "한 구간만 봄 (후보를 다 안 만듦)",
+        values: [
+          String((head! - target!) / rel),
+          String((head! + target!) / rel),
+        ],
+      },
+    ];
+  }
   if (key === "2-1|연립일차방정식|90") {
     // 비 조건을 지운다 — 비를 모르면 $k$ 가 안 굳고 $m$ 도 안 굳어야 한다.
     const { ca, cb, u, v, c, d } = f as Record<string, number>;
@@ -478,6 +540,15 @@ const CALIBRATION: ReadonlyArray<
   ["$x=27$를 대입하면", true, "josa", "27 → 을"],
   ["양변에 $6$를 곱하면", true, "josa", "6 → 을"],
   ["$2a+b=4t$이고 $a-b=t$이다.", false, "smell", "멀쩡하다"],
+  // 🔴 「빈 수식」 규칙의 눈금 — 양성은 남기고 **줄바꿈 오탐만** 죽였다.
+  ["값은 $$이다.", true, "smell", "빈 수식 — 정말 비었다"],
+  ["값은 $ $이다.", true, "smell", "빈 수식 — 같은 줄에 `$ $`"],
+  [
+    "$b=7^{30}=49^{15}$\n$c=2^{60}=16^{15}$",
+    false,
+    "smell",
+    "수식만 있는 줄이 잇달을 뿐 — 빈 수식이 아니다 (32U 가 600/600 걸리던 자리)",
+  ],
   [
     "$240$가지이므로 $480$가지를 둘로 나눈다.",
     false,
