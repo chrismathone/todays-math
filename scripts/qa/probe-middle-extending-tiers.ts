@@ -6,7 +6,7 @@
  * 「값은 맞고 **지면만 흉한**」 부류를 훑는다 — 값 검산으로는 구조적으로 안 잡힌다.
  *
  * ```bash
- * npx tsx scripts/qa/probe-middle-extending-tiers.ts --selftest   # 눈금 (양성 6 · 음성 6)
+ * npx tsx scripts/qa/probe-middle-extending-tiers.ts --selftest   # 눈금 (양성 10 · 음성 11)
  * npx tsx scripts/qa/probe-middle-extending-tiers.ts              # 전부 (아래 넷을 차례로)
  * npx tsx scripts/qa/probe-middle-extending-tiers.ts --smell      # ㈃ 지면 냄새·조사
  * npx tsx scripts/qa/probe-middle-extending-tiers.ts --anchor     # ㉠ 굳힘이 자리를 고르는가
@@ -80,7 +80,12 @@ const SMELLS: ReadonlyArray<readonly [RegExp, string]> = [
   // ⚠️ `1\times64`(인수 짝 나열)는 **멀쩡한 표기**다. 잡으려는 것은 «계수 $1$»이므로
   //    뒤에 문자가 오는 것만 문다 — 안 그러면 피타고라스 갈래가 600/600 거짓 경보였다.
   //    **늘 우는 가드는 꺼진다**(2026-08-20).
-  [/1\\times-?\d*[a-zA-Z]/, "계수 1 곱셈기호"],
+  //
+  //    🔴 그러고도 **앞을 안 봤다.** 3차 물결 `36V` 를 등록하니 `$\dfrac{81\times3y+…}`
+  //    의 「$81$」이 걸려 **600 중 67 이 거짓 경보**였다(그 지면은 멀쩡하다). 계수 $1$
+  //    이라는 말은 「$1$ 이 **수의 첫 자리**」라는 뜻이므로 앞자리를 막는다 —
+  //    `midPage.pageSmells` 의 「계수 1 을 적었다」가 같은 이유로 `(?<![\d.])` 를 단다.
+  [/(?<![\d.])1\\times-?\d*[a-zA-Z]/, "계수 1 곱셈기호"],
   [/\+-|\\times-|--/, "부호 겹침"],
   [/\$1[a-zA-Z](?![a-zA-Z0-9])/, "계수 1"],
   [/\\dfrac\{\}|\\dfrac\{[^{}]*\}\{\}/, "빈 분수"],
@@ -127,6 +132,84 @@ export function smellFaults(text: string): string[] {
   return SMELLS.filter(([re]) => re.test(text)).map(([, name]) => name);
 }
 
+/**
+ * 🔴 **정수 경계 걸음을 건너뛰었나** — D-116 계약 ⑹「해설이 걸음을 건너뛰지 않는다」.
+ *
+ * `$cx\le R$이다.` 에서 `$x\le B$이다.` 로 뛸 때 $R/c$ 가 정수가 아니면 해설은
+ * **그 분수와 「$x$는 자연수」를 반드시 적어야** 한다. 안 적으면 쓴 대로 읽었을 때
+ * **거짓 함의**다 — 3차 물결 `38V` 의 첫 판이 「$22-2x\ge1$에서 $x\le10$이다」라고
+ * 적었는데 그 부등식의 참 해는 $x\le10.5$ 였다(800씨앗 중 574 = 71.8%).
+ *
+ * **값은 늘 맞으므로** 값 검산·KaTeX·위 냄새 목록·조사 자가 **구조적으로 못 본다.**
+ *
+ * ⚠️ 못 보는 것 — 이 축이 서는 갈래는 지금 **하나뿐이다**(`38V`, 실측 600문항에
+ *    걸음 1,200). 나머지 열둘은 그런 모양을 아예 안 적으므로 그 갈래의 «0» 은
+ *    «깨끗»이 아니라 **«잴 것이 없다»** 다. 그래서 `runSmell` 이 걸린 수와 함께
+ *    **「걸음 N」을 같이 찍는다** — 0 이 «깨끗»인지 «못 셈»인지 사람이 가르게.
+ *
+ * ⚠️ 관계 기호를 글에서 **찾아 쓰지 않고** 둘 다 대 본다. 위 경계 줄에는
+ *    `\ge`(조건 $y\ge1$)와 `\le`(경계)가 **함께** 있어서, 「어느 쪽인가」를
+ *    글자로 물으면 틀린 쪽을 고른다.
+ */
+const BOUND_STEP = [
+  {
+    sign: "\\le",
+    claim: /\$(\d*)x\\le(\d+)\$이다\./,
+    final: /\$x\\le(\d+)\$이다\./g,
+    frac: /\$x\\le\\dfrac\{(\d+)\}\{(\d+)\}\$/,
+    round: (v: number): number => Math.floor(v),
+  },
+  {
+    sign: "\\ge",
+    claim: /\$(\d*)x\\ge(\d+)\$이다\./,
+    final: /\$x\\ge(\d+)\$이다\./g,
+    frac: /\$x\\ge\\dfrac\{(\d+)\}\{(\d+)\}\$/,
+    round: (v: number): number => Math.ceil(v),
+  },
+] as const;
+
+/** 이 자가 **잴 것을 몇 개나 봤나** — 판정 옆에 같이 찍는다. */
+export function boundStepClaims(text: string): number {
+  let n = 0;
+  for (const line of text.split("\n"))
+    for (const P of BOUND_STEP) if (P.claim.test(line)) n += 1;
+  return n;
+}
+
+export function boundStepFaults(text: string): string[] {
+  const out: string[] = [];
+  for (const line of text.split("\n")) {
+    for (const P of BOUND_STEP) {
+      const claim = P.claim.exec(line);
+      if (claim === null) continue;
+      const c = claim[1] === "" ? 1 : Number(claim[1]);
+      const r = Number(claim[2]);
+      const finals = [...line.matchAll(P.final)];
+      if (finals.length === 0) {
+        out.push(`정수 경계 「$x${P.sign}B$이다.」가 없다`);
+        continue;
+      }
+      const b = Number(finals[finals.length - 1]![1]);
+      const exact = r / c;
+      if (P.round(exact) !== b) {
+        out.push(
+          `경계를 ${b} 로 적었는데 ${r}/${c} 에서 참은 ${P.round(exact)}`,
+        );
+        continue;
+      }
+      if (Number.isInteger(exact)) continue; // 나누어떨어지면 뛴 걸음이 없다
+      const fr = P.frac.exec(line);
+      if (fr === null || Number(fr[1]) !== r || Number(fr[2]) !== c) {
+        out.push(`참 경계 ${r}/${c} 를 안 적고 정수로 뛰었다`);
+        continue;
+      }
+      if (!line.includes("$x$는 자연수이므로"))
+        out.push("「$x$는 자연수」 걸음을 안 적고 정수로 뛰었다");
+    }
+  }
+  return out;
+}
+
 function runSmell(keys: string[]): number {
   let faults = 0;
   let total = 0;
@@ -136,12 +219,15 @@ function runSmell(keys: string[]): number {
     const hits: string[] = [];
     const stems = new Set<string>();
     const answers = new Set<string>();
+    let boundClaims = 0;
     for (const p of rows) {
       total += 1;
       const text = `${p.content}\n${p.solution}`;
       for (const s of smellFaults(text))
         hits.push(`[${s}] ${text.slice(0, 90)}`);
       for (const j of josaFaults(text)) hits.push(`[조사] ${j}`);
+      boundClaims += boundStepClaims(text);
+      for (const s of boundStepFaults(text)) hits.push(`[정수 경계] ${s}`);
       stems.add(
         p.content
           .replace(/\$[^$]*\$/g, "◇")
@@ -154,6 +240,9 @@ function runSmell(keys: string[]): number {
     console.log(
       `  ${hits.length === 0 ? "🟢" : "🔴"} ${key}` +
         ` · 표본 ${rows.length} · 뼈대 ${stems.size} · 서로 다른 정답 ${answers.size}` +
+        // 「정수 경계 걸음」을 **몇 개나 봤는지** 같이 찍는다 — 0 이면 그 갈래에서
+        // 이 축은 «깨끗»이 아니라 **«잴 것이 없다»** 다.
+        ` · 정수 경계 걸음 ${boundClaims}` +
         ` · 걸린 것 ${hits.length}`,
     );
     for (const h of hits.slice(0, 5)) console.log(`      ${h}`);
@@ -320,6 +409,12 @@ export function erasures(key: string, p: MidProblem): Erasure[] {
   if (key === "2-1|일차부등식|35V") {
     // 굳힘은 「$x-y$ 의 각 변에 **음수 $-1$ 을 곱해** 부등호의 방향을 바꾼 뒤 더한다」.
     // 그 걸음을 지우면 두 범위를 그대로 빼게 되어 답의 두 끝이 안쪽으로 밀린다.
+    //
+    // ⚠️ **여기 🟢 은 «측정했다»가 아니라 «그렇게 될 수밖에 없다»** 다. 아래 두 값은
+    //    답과 **늘** 다르다 — $truth.lo-\text{지운 값} = \frac{d_2-d_1}2 = \frac w2$ 이고
+    //    $w\in\{2,4,6\}$ 이라 $\ge1$, 둘째 것도 늘 $y_1-1$ 이다(400씨앗 358문항 전량
+    //    장식 0). 이 갈래에서 「뒤집기가 항등식이 되는 자리」를 실제로 막는 것은
+    //    ㉡ 축이 아니라 생성기의 `d1 + d2 === 0` 줄이다(그 줄을 끄면 시험이 빨개진다).
     const { s1, d1, d2 } = f as Record<string, number>;
     return [
       { name: "뒤집기 걸음 지움", values: [String((s1! - d1!) / 2)] },
@@ -585,9 +680,15 @@ function runOverlap(keys: string[]): void {
  * (2026-08-20 「판정자의 성적표에는 양성과 음성 대조군이 둘 다 있어야 한다」).
  */
 const CALIBRATION: ReadonlyArray<
-  readonly [string, boolean, "smell" | "josa", string]
+  readonly [string, boolean, "smell" | "josa" | "bound", string]
 > = [
   ["$2a+b=1\\times4t$이다.", true, "smell", "1× 곱셈기호"],
+  [
+    "$\\dfrac{81\\times3y+72y}{3y+y}$이다.",
+    false,
+    "smell",
+    "「$81$」의 끝자리 $1$ 은 계수가 아니다 (36V 가 600 중 67 걸리던 자리)",
+  ],
   ["$x=3+-4$이다.", true, "smell", "부호 겹침"],
   ["$\\dfrac{5}{}$이다.", true, "smell", "빈 분수"],
   ["여기는 **굵게** 썼다.", true, "smell", "마크다운 굵게"],
@@ -613,6 +714,37 @@ const CALIBRATION: ReadonlyArray<
   ["$x=27$을 대입하면", false, "josa", "27 → 을 (맞다)"],
   ["양변에 $6$을 곱하면", false, "josa", "6 → 을 (맞다)"],
   ["$a:b=5:4$로 하나뿐이므로", false, "josa", "4 → 로 (맞다)"],
+  // 🔴 정수 경계 걸음의 눈금 — 양성 둘·음성 셋.
+  [
+    "$y=22-2x$이고 $y\\ge1$이므로 $22-2x\\ge1$, 곧 $2x\\le21$이다. 양변을 $2$로 나누면 $x\\le10$이다.",
+    true,
+    "bound",
+    "$21/2$ 를 안 적고 정수로 뛰었다 (38V 첫 판의 지면)",
+  ],
+  [
+    "또 $z=2x-12$이고 $z\\ge1$이므로 $2x\\ge13$이다. 양변을 $2$로 나누면 $x\\ge\\dfrac{13}{2}$이고, $x$는 자연수이므로 $x\\ge6$이다.",
+    true,
+    "bound",
+    "걸음은 적었는데 올림을 잘못했다 ($13/2$ 의 참은 $7$)",
+  ],
+  [
+    "$y=22-2x$이고 $y\\ge1$이므로 $22-2x\\ge1$, 곧 $2x\\le21$이다. 양변을 $2$로 나누면 $x\\le\\dfrac{21}{2}$이고, $x$는 자연수이므로 $x\\le10$이다.",
+    false,
+    "bound",
+    "걸음을 다 적었다",
+  ],
+  [
+    "또 $z=x-7$이고 $z\\ge1$이므로 $x\\ge8$이다.",
+    false,
+    "bound",
+    "계수가 $1$ 이라 나누는 걸음 자체가 없다",
+  ],
+  [
+    "$y=22-3x$이고 $y\\ge1$이므로 $22-3x\\ge1$, 곧 $3x\\le21$이다. 양변을 $3$으로 나누면 $x\\le7$이다.",
+    false,
+    "bound",
+    "나누어떨어지면 적을 걸음이 없다",
+  ],
 ];
 
 function runSelftest(): number {
@@ -622,7 +754,9 @@ function runSelftest(): number {
     const got =
       kind === "smell"
         ? smellFaults(text).length > 0
-        : josaFaults(text).length > 0;
+        : kind === "josa"
+          ? josaFaults(text).length > 0
+          : boundStepFaults(text).length > 0;
     const ok = got === expected;
     if (!ok) wrong += 1;
     console.log(

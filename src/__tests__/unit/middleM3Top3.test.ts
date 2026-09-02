@@ -77,6 +77,7 @@ import {
 } from "../../lib/middle/generate";
 import type { Sift } from "../../lib/middle/m3Top";
 import {
+  CANCEL_ANSWERS,
   M3_TOP_3,
   cancelExprValue,
   divisors,
@@ -87,6 +88,8 @@ import {
   planQuadraticAlive,
   planRationalRoots,
   planRootSum,
+  quadAlivePool,
+  rationalRootPool,
   solveCancelCoef,
   solveQuadraticAlive,
   solveRationalRoots,
@@ -859,9 +862,18 @@ describe("[중3 3차 물결] ㉡ 값 검산 — 생성기 식을 옮겨 적지 �
       expect(p.facts.x).toBe(sum);
       // 「모두 구하시오」이므로 하나짜리면 설계가 무너진 것이다.
       expect(live.length).toBeGreaterThanOrEqual(2);
-      // 🔴 $b$ 가 홀수라 판별식이 늘 홀수 — **중근이 구조적으로 안 생긴다**(불변식).
-      expect(b % 2).toBe(1);
-      for (const k of live) expect(b * b - 4 * a * k).not.toBe(0);
+      // 🔴 **창 안에 중근이 없다** — 「두 근」이라는 발문을 참으로 만드는 불변식.
+      //
+      // ⚠️ 첫 판은 **대용품**(「$b$ 가 홀수」)을 잠갔다. 그러면 대용품을 넓히는 순간
+      //    「불변식이 깨졌다」와 「대용품을 바꿨다」가 구분되지 않는다. 지키려던 것은
+      //    처음부터 «창 안에 중근이 없다»이고, 판별식 $b^2-4ak$ 가 $0$ 이 되는 자연수
+      //    $k$ 는 $b^2/(4a)$ **하나뿐**이므로 그것이 정수가 아니면 된다.
+      //    (2026-09-02 — 창끝 몫 상한을 걸면서 $b$ 의 홀짝 제한을 풀었다.)
+      expect((b * b) % (4 * a), `s${seed}: 창 안에 중근이 생긴다`).not.toBe(0);
+      const win = Math.floor((b * b) / (4 * a));
+      for (let k = 1; k <= win; k += 1) {
+        expect(b * b - 4 * a * k, `s${seed}: $k=${k}$ 가 중근이다`).not.toBe(0);
+      }
       checked += 1;
     }
     expect(checked).toBeGreaterThanOrEqual(200);
@@ -1046,6 +1058,224 @@ describe("[중3 3차 물결] ㉣ 굳힘을 **안 읽고** 찍으면 우연 수�
     }
   });
 
+  it("51V — 답이 발문의 **두 계수를 한 번 나눈** 값도 아니다 (지름길 봉쇄)", () => {
+    // 🔴 2026-09-02 적대적 검증. 답은 $r=\dfrac{2pa}{pt}$ 라 $|t|=1$ 인 씨앗에서
+    //    $|r|$ 이 «상수항 $\div p$» 와 **딱 같다** — 지면의 `$…+7(k-3)x+42=0$` 에서
+    //    $42\div7=6$ 이 그대로 답이었다. 실측 **57.1%**(부호까지 29.6%).
+    //    「적힌 수 하나 집기」를 막는 검사는 이 자리를 **구조적으로 못 본다.**
+    //
+    // ⚠️ **참을 지면에서 가져온다** — 제품의 `stemReachable` 을 부르면 그 함수가
+    //    망가질수록 좋은 점수가 나온다(동어반복). 발문 글자를 파싱해 몫을 여기서
+    //    다시 만들고, 「읽은 값이 서로 앞뒤가 맞나」로 파서가 살아 있는지 확인한다.
+    const oneStep = (coefs: number[]): Set<number> => {
+      const q = new Set<number>();
+      for (const x of coefs)
+        for (const y of coefs) {
+          if (y === 0 || x % y !== 0) continue;
+          q.add(x / y);
+        }
+      return q;
+    };
+    // 눈금 — 이 검사가 «아니오» 를 낼 수 있다 (양성 2 · 음성 1).
+    expect(oneStep([6, 36, 15, 180]).has(12)).toBe(true); // 180 ÷ 15
+    expect(oneStep([6, 36, 9, 108]).has(4)).toBe(true); //  36 ÷ 9
+    expect(oneStep([6, 36, 15, 180]).has(7)).toBe(false); // 음성
+
+    let read = 0;
+    for (const seed of WIDE) {
+      const p = make(KEY_QUAD, seed);
+      const m =
+        /방정식 \$\(k\^\{2\}-(\d+)\)x\^\{2\}\+(\d+)\(k-(\d+)\)x\+(\d+)=0\$/.exec(
+          p.content,
+        );
+      expect(m, `s${seed}: 발문을 못 읽었다\n${p.content}`).not.toBeNull();
+      const a2 = Number(m![1]);
+      const pp = Number(m![2]);
+      const a = Number(m![3]);
+      const konst = Number(m![4]);
+      // 파서가 살아 있나 — 읽은 넷이 서로 앞뒤가 맞는가.
+      expect(a2, `s${seed}: 발문의 $a^{2}$ 이 $a$ 와 안 맞는다`).toBe(a * a);
+      expect(konst, `s${seed}: 발문의 상수항이 $2pa$ 가 아니다`).toBe(
+        2 * pp * a,
+      );
+      read += 1;
+      const q = oneStep([a, a2, pp, konst]);
+      expect(
+        q.has(Math.abs(p.facts.x!)),
+        `s${seed}: 답 ${p.facts.x} 가 «${konst}÷${pp}» 류 나눗셈 한 번으로 나온다\n${p.content}`,
+      ).toBe(false);
+    }
+    expect(read, "발문을 하나도 못 읽었다면 이 검사는 아무것도 안 지킨다").toBe(
+      WIDE.length,
+    );
+  });
+
+  it("52V — 정답이 **한 값에 안 쏠린다** — 최빈 비율과 겹칠 확률을 잠근다", () => {
+    // 🔴 2026-09-02 적대적 검증. 「축이 없다」와 「답이 고르다」는 다른 말이다.
+    //    `cancelPool()` 은 $a$ 마다 계수 조합 수가 달라(`4:16 5:6 6:5 7:2 8:1 9:1`)
+    //    풀에서 그냥 뽑으면 **$a=4$ 가 51.2%** 였고, 12벌 한 벌에 서로 다른 정답이
+    //    **3~4종**뿐이었다. 저술 당시 판정기는 「서로 다른 답 6종」만 찍고 **분포를
+    //    안 찍었다** — 그 6종이 어떻게 나뉘는지는 아무도 안 보고 있었다.
+    const hist = new Map<number, number>();
+    for (const seed of WIDE) {
+      for (const v of [0, 1, 2]) {
+        const ans = firstNumber(make(KEY_CANCEL, seed, v).answer);
+        hist.set(ans, (hist.get(ans) ?? 0) + 1);
+      }
+    }
+    const n = [...hist.values()].reduce((t, v) => t + v, 0);
+    expect(n).toBe(WIDE.length * 3);
+    // 풀이 낼 수 있는 답이 **하나도 안 빠진다**.
+    expect([...hist.keys()].sort((x, y) => x - y)).toEqual(CANCEL_ANSWERS);
+    const share = [...hist.entries()]
+      .sort((x, y) => x[0] - y[0])
+      .map(([k, v]) => `${k}:${((v / n) * 100).toFixed(1)}%`)
+      .join(" ");
+    const top = Math.max(...hist.values()) / n;
+    expect(top, `최빈 정답이 너무 무겁다 — ${share}`).toBeLessThan(0.25);
+    // 한 시험지에 둘이 실렸을 때 정답이 겹칠 확률 $\sum p^2$ (고르면 $1/6=16.7\%$).
+    const collide = [...hist.values()].reduce(
+      (t, v) => t + (v / n) * (v / n),
+      0,
+    );
+    expect(
+      collide,
+      `한 시험지의 둘이 같은 답일 확률 ${(collide * 100).toFixed(1)}% — ${share}`,
+    ).toBeLessThan(0.2);
+  });
+
+  it("51V·53V — 풀이 낼 수 있는 답이 **하나도 안 빠지고**, 한 값에 안 쏠린다", () => {
+    // 🔴 ㉠ 를 조인 값 — 51V 는 몫 가드로 풀이 $26\to16$(답 $20\to9$), 53V 는 창끝 몫
+    //    상한으로 답이 $15\to10$ 이 됐다. 그러면 **한 시험지에 같은 답이 더 자주 겹친다**
+    //    (12벌 한 벌의 서로 다른 정답 실측 $10.7\to7.9$ · $10.7\to8.0$). 그래서 52V 처럼
+    //    **답을 먼저 고르고** 그에 맞는 씨앗을 뽑게 했다($\to 8.6$ · $8.5$).
+    //    이 검사가 그 균형을 잠근다 — 「고르게 뽑기」를 무르면 빨개진다.
+    const reach51 = new Set(
+      quadAlivePool().map((s) => otherRootAtOne(s.a, s.p, s.a - s.p)!),
+    );
+    const reach53 = new Set(
+      rationalRootPool().map((s) =>
+        solveRationalRoots(s.a, s.b, true).reduce((t, v) => t + v, 0),
+      ),
+    );
+    // ⚠️ **문턱을 실측 사이에 놓는다** — 「고르게 뽑기」를 실제로 꺼서 재 봤다(씨앗 2,400).
+    //
+    // ```
+    //        균형 켬                    균형 끔
+    //  51V   최빈 13.33% 최소 8.96%   최빈 17.33% 최소 4.63%
+    //  53V   최빈 10.83% 최소 8.75%   최빈 14.46% 최소 4.33%
+    // ```
+    //
+    //    🔴 **최빈만 보면 53V 를 못 갈라 준다**(14.46% 는 어떤 문턱을 둬도 10.83% 와 너무
+    //    가깝다) — 실제로 최빈 문턱만 뒀더니 53V 변이가 **초록**이었다. 가르는 것은
+    //    **최소 쪽**이다: 고르게 뽑으면 «가장 드문 답»이 올라온다. 그래서 둘 다 잠근다.
+    //    씨앗을 240 으로 좁히면 흔들림이 커져($51V$ 최빈 14.9%) 최빈 문턱이 무뎌진다.
+    const N = 2400;
+    const seeds = Array.from({ length: N }, (_, i) => 20260902 + i * 7919);
+    for (const [name, key, reach, plan] of [
+      ["51V", KEY_QUAD, reach51, planQuadraticAlive],
+      ["53V", KEY_ROOTS, reach53, planRationalRoots],
+    ] as const) {
+      const hist = new Map<number, number>();
+      for (const seed of seeds) {
+        const ans = plan(createRng(seed)).answer;
+        hist.set(ans, (hist.get(ans) ?? 0) + 1);
+      }
+      // 설계의 답이 곧 지면의 답인가 — 이 히스토그램이 «다른 것»을 세고 있지 않다는 다리.
+      for (const seed of WIDE.slice(0, 40)) {
+        expect(firstNumber(make(key, seed).answer)).toBe(
+          plan(createRng(seed + keySalt(key))).answer,
+        );
+      }
+      // 풀이 낼 수 있는 답을 **하나도 안 빠뜨린다** — 「고르게」의 반대편 검사다.
+      expect(
+        [...hist.keys()].sort((x, y) => x - y),
+        `${name}: 풀이 낼 수 있는 답 가운데 안 나온 것이 있다`,
+      ).toEqual([...reach].sort((x, y) => x - y));
+      const top = Math.max(...hist.values()) / N;
+      const low = Math.min(...hist.values()) / N;
+      const uniform = ((1 / reach.size) * 100).toFixed(1);
+      expect(
+        top,
+        `${name}: 최빈 정답 ${(top * 100).toFixed(2)}% (답 ${reach.size}종이면 고를 때 ${uniform}%)`,
+      ).toBeLessThan(0.16);
+      expect(
+        low,
+        `${name}: 가장 드문 정답 ${(low * 100).toFixed(2)}% (답 ${reach.size}종이면 고를 때 ${uniform}%)`,
+      ).toBeGreaterThan(0.07);
+    }
+  });
+
+  it("53V — 답이 발문에 적힌 수 가운데 하나인 씨앗이 **하나도 없다**", () => {
+    // 🔴 `rationalRootPool` 의 `new Set([0, 2, a, b]).has(sum)` 은 ㉠ 의 근거로
+    //    주석에 적혀 있는데 **그것을 지키는 시험이 하나도 없었다**(51V 에는 짝이
+    //    있었다). 지우고 돌리니 58/58 초록이라 «가드가 아니라 장식»인 자리였다.
+    //
+    // ⚠️ **부호를 뺀 값도 같이 막는다.** 지면의 `$16x^{2}-26x+k=0$` 은 수를 읽는 자
+    //    (`/-?\d+/`)에게 **`-26`** 으로 보이는데, 학생이 읽는 계수는 $26$ 이다.
+    //    한쪽만 세면 답이 $26$ 인 씨앗이 그대로 빠져나간다 — 첫 판이 그랬고,
+    //    변이(가드 제거)가 **초록**이라 드러났다.
+    for (const seed of WIDE) {
+      const p = make(KEY_ROOTS, seed);
+      const nums = new Set<number>();
+      for (const g of p.content.matchAll(/-?\d+/g)) {
+        nums.add(Number(g[0]));
+        nums.add(-Number(g[0]));
+      }
+      expect(
+        nums.has(p.facts.x!),
+        `s${seed} 답 ${p.facts.x} 가 발문에 적혀 있다\n${p.content}`,
+      ).toBe(false);
+    }
+  });
+
+  it("53V — 창끝은 **언제나 산다**. 숨기지 않고 적고, 그 몫을 절반 아래로 잠근다", () => {
+    // ⚠️ **정직하게 적는다** — 창끝 $k=\lfloor b^2/4a\rfloor$ 의 판별식은
+    //    $b^2\bmod 4a$ 인데 이 격자에서는 **늘 제곱수**다. 그래서 「살아남은 자리가
+    //    연속이 아니다」로는 «뒤에서 하나»를 못 막는다(모듈 머리말이 막았다고
+    //    단언하던 자리 — 2026-09-02 에 실측 $18/18$ 로 뒤집혔다).
+    //    깨는 대신 **몫에 상한**을 건다: 창끝 하나로는 답의 절반도 못 얻는다.
+    //    실측 창끝 몫 평균 $58.3\% \to 41.2\%$ · 최대 $83.3\% \to 46.2\%$.
+    let maxShare = 0;
+    for (const seed of WIDE) {
+      const plan = planRationalRoots(createRng(seed));
+      expect(
+        plan.kept,
+        `a=${plan.a} b=${plan.b}: 창끝이 죽었다 — 구조적 사실이 바뀌었으면 머리말도 고쳐야 한다`,
+      ).toContain(plan.window);
+      expect(
+        2 * plan.window,
+        `a=${plan.a} b=${plan.b} 창=${plan.window} 합=${plan.answer}: 창끝 하나가 답의 절반을 넘는다`,
+      ).toBeLessThan(plan.answer);
+      // 위 상한이 이것을 머금는다 — 사는 것이 둘이면 하나가 창끝이라 합 < 2·창 이다.
+      expect(plan.kept.length).toBeGreaterThanOrEqual(3);
+      // 창 안에 중근이 없다 — 대용품(「$b$ 홀수」)이 아니라 원래 지키려던 것.
+      expect((plan.b * plan.b) % (4 * plan.a)).not.toBe(0);
+      maxShare = Math.max(maxShare, plan.window / plan.answer);
+    }
+    expect(
+      maxShare,
+      `창끝 몫 최대 ${(maxShare * 100).toFixed(1)}%`,
+    ).toBeLessThan(0.5);
+  });
+
+  it("54V — 답이 발문에 적힌 수 가운데 하나인 씨앗이 **하나도 없다**", () => {
+    // 🔴 `rootSumPool` 의 `new Set([0, d, n]).has(sum)` 도 같은 자리였다 —
+    //    무르면 58/58 초록이었다(실제로 3짝을 버리는 살아 있는 규칙인데).
+    for (const seed of WIDE) {
+      const p = make(KEY_ROOTSUM, seed);
+      const nums = new Set<number>();
+      for (const g of p.content.matchAll(/-?\d+/g)) {
+        nums.add(Number(g[0]));
+        nums.add(-Number(g[0]));
+      }
+      expect(
+        nums.has(p.facts.x!),
+        `s${seed} 답 ${p.facts.x} 가 발문에 적혀 있다\n${p.content}`,
+      ).toBe(false);
+    }
+  });
+
   it("53V — 사는 자리가 **연속이 아니고**, 그 모양이 씨앗마다 갈린다", () => {
     const shapes = new Set<string>();
     for (const seed of WIDE) {
@@ -1179,7 +1409,16 @@ describe("[중3 3차 물결] ㉤ 해설이 적은 등식을 전부 다시 계산
     }
     expect(bad.slice(0, 5)).toEqual([]);
     expect(identity).toBeGreaterThan(200);
-    expect(numeric).toBeGreaterThanOrEqual(0);
+    // 🔴 첫 판은 `toBeGreaterThanOrEqual(0)` 이었다 — **언제나 참인 장식**이다.
+    //    52V 해설의 등식은 **하나도 빠짐없이** $a$·$x$·$A$·$B$ 가운데 하나를 쓰므로
+    //    «자유 문자 없는 수치 등식»이 구조적으로 $0$ 이고, 그래서 그 줄은 「아니오」를
+    //    낼 수 없었다(형제 51V·53V·54V 는 같은 자리에 실효 하한이 걸려 있다).
+    //    그 사실을 **못 박는다** — $0$ 이 아니게 되면 해설 구조가 바뀐 것이니 그때
+    //    이 갈래의 검산을 다시 설계하라는 뜻이다(2026-09-02 적대적 검증).
+    expect(
+      numeric,
+      "52V 해설에 «자유 문자 없는 수치 등식»이 생겼다 — 검산 설계를 다시 보라",
+    ).toBe(0);
   });
 
   it("53V — 등식마다 값을 견주고, 본 자리 수를 찍는다", () => {
@@ -1327,7 +1566,9 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
   });
 
   it("53V — 나열한 판별식·제곱근·두 근·합을 **각각 다른 길로** 다시 만든다", () => {
-    for (const seed of SEEDS) {
+    // 🔴 2026-09-02 — 씨앗을 `SEEDS`(9개)에서 `WIDE`(240개)로 넓혔다. 풀이 스물둘이라
+    //    아홉 개로는 절반도 안 밟는다(창끝 몫 상한을 넣으며 풀이 통째로 바뀌었다).
+    for (const seed of WIDE) {
       const p = make(KEY_ROOTS, seed);
       const m = /이차방정식 \$(\d+)x\^\{2\}-(\d+)x\+k=0\$/.exec(p.content)!;
       const a = Number(m[1]);
@@ -1338,6 +1579,12 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
       expect(window, `s${seed}: 창이 판별식으로 다시 계산한 값과 다르다`).toBe(
         Math.floor((b * b) / (4 * a)),
       );
+      // 🔴 그리고 **설계값**과도 맞댄다 — 위 한 줄은 창을 «발문에서 읽은 $a,b$» 로
+      //    다시 계산할 뿐이라, 발문과 해설이 같이 틀리면 스스로 맞다고 답한다.
+      const plan = planRationalRoots(createRng(seed + keySalt(KEY_ROOTS)));
+      expect(a, `s${seed}: 발문의 $a$ 가 설계값과 다르다`).toBe(plan.a);
+      expect(b, `s${seed}: 발문의 $b$ 가 설계값과 다르다`).toBe(plan.b);
+      expect(window, `s${seed}: 해설의 창이 설계값과 다르다`).toBe(plan.window);
 
       // ① 나열 줄의 판별식을 뽑아 $k$ 로 다시 계산해 대조한다.
       const listLine = p.solution
@@ -1414,7 +1661,15 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
   });
 
   it("54V — 약수 목록·제곱 목록·버린 것·합을 서로 맞댄다 (반대쪽 표본 포함)", () => {
-    for (const seed of SEEDS) {
+    // 🔴 2026-09-02 — 씨앗을 `SEEDS`(9개)에서 `WIDE`(240개)로 넓혔다.
+    //    이 검사는 「버린 것이 정말 창 밖인가」를 재는 **유일한** 자인데, 좁은 씨앗은
+    //    **경계 짝**($N$ = 가장 큰 살아남은 값)을 한 번도 안 밟았다. 그래서 `>` 를
+    //    `>=` 로 바꾸면 해설이 「$100$은 $100$보다 크므로 조건에 맞지 않는다」고 적고
+    //    **바로 다음 줄에서 $100$을 살아남은 값으로 세는데** 정답은 그대로라 값 검산이
+    //    구조적으로 못 보고 이 검사도 초록이었다. 아래 `boundary` 가 그 짝을 실제로
+    //    밟았는지 세고, $0$ 이면 판정을 거부한다 — $0$ 은 「깨끗」과 「못 셈」을 안 가른다.
+    let boundary = 0;
+    for (const seed of WIDE) {
       const p = make(KEY_ROOTSUM, seed);
       const sm =
         /\$(\d+)\$ 이하의 자연수 \$n\$에 대하여 \$\\sqrt\{n\}\+\\dfrac\{(\d+)\}\{\\sqrt\{n\}\}\$/.exec(
@@ -1422,6 +1677,14 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
         )!;
       const N = Number(sm[1]);
       const D = Number(sm[2]);
+      // 🔴 **발문의 창을 «설계값»과 맞댄다.** 아래 ③ 은 $N$ 을 **발문에서 읽어** 쓰므로
+      //    발문과 해설이 «같이» 틀리면 스스로 맞다고 답한다(자를 잴 대상에서 가져온
+      //    자리). 실제로 발문의 `$N$ 이하` 를 `$N+1$ 이하` 로 바꾸면 발문은 「$71$ 이하」
+      //    인데 해설은 「$70$보다 크므로」인 지면이 나오는데 58/58 초록이었다.
+      //    설계는 `make` 와 **같은 씨앗**으로 다시 만든다(변형 0 이면 rng 가 같다).
+      const plan = planRootSum(createRng(seed + keySalt(KEY_ROOTSUM)));
+      expect(N, `s${seed}: 발문의 창이 설계값과 다르다`).toBe(plan.n);
+      expect(D, `s${seed}: 발문의 $d$ 가 설계값과 다르다`).toBe(plan.d);
       const line = p.solution.split("\n").find((l) => l.includes("의 약수는"))!;
       const halves = line.split("이므로");
       const listedDivs = [...halves[0]!.matchAll(/\$(\d+)\$/g)]
@@ -1438,9 +1701,15 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
       const cutLine = p.solution
         .split("\n")
         .find((l) => l.includes("보다 크므로"))!;
-      const cut = [...cutLine.matchAll(/\$(\d+)\$/g)]
-        .map((g) => Number(g[1]))
-        .slice(0, -1); // 마지막 하나는 $N$
+      const cutNums = [...cutLine.matchAll(/\$(\d+)\$/g)].map((g) =>
+        Number(g[1]),
+      );
+      // 🔴 마지막 하나는 **해설이 쓰는 창**이다. 버리지 말고 발문·설계와 맞댄다.
+      expect(
+        cutNums[cutNums.length - 1],
+        `s${seed}: 해설이 쓰는 창이 발문과 다르다\n${cutLine}`,
+      ).toBe(N);
+      const cut = cutNums.slice(0, -1);
       expect(cut.length).toBeGreaterThanOrEqual(1);
       for (const v of cut) expect(v).toBeGreaterThan(N);
       // ④ 🔴 **반대쪽 표본** — 해설이 나열하지 않은 $1..N$ 의 모든 $n$ 은 자연수가 아니다.
@@ -1466,7 +1735,14 @@ describe("[중3 3차 물결] ㉤-2 해설이 두 번 말한 것을 맞댄다", (
       expect(kept.reduce((t, v) => t + v, 0)).toBe(Number(eq[2]));
       expect(Number(eq[2])).toBe(p.facts.x);
       expect(firstNumber(p.answer)).toBe(p.facts.x);
+      // ⑥ **경계 짝을 밟았나** — $N$ 이 가장 큰 살아남은 값과 같은 씨앗.
+      //    여기서만 `>` ↔ `>=` 가 갈린다.
+      if (Math.max(...kept) === N) boundary += 1;
     }
+    expect(
+      boundary,
+      "경계 짝($N$ = 가장 큰 살아남은 값)을 한 번도 안 밟았다 — 이 검사는 그 자리를 못 지킨다",
+    ).toBeGreaterThanOrEqual(1);
   });
 
   it("52V — 발문의 계수로 일정값을 **다시 계산**한다 (제품 상수를 안 쓴다)", () => {

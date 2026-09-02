@@ -32,10 +32,17 @@
  * 않는다(브리프 §6).
  *
  * ```bash
- * npx tsx scripts/qa/probe-middle-top-m3.ts --selftest   # 눈금 (양성 5 · 음성 5)
- * npx tsx scripts/qa/probe-middle-top-m3.ts              # ㉠ ㉡ ㉢ 전량
+ * npx tsx scripts/qa/probe-middle-top-m3.ts --selftest   # 눈금 17건 (양성 9 · 음성 8)
+ * npx tsx scripts/qa/probe-middle-top-m3.ts              # ㉠ ㉠-2 ㉡ ㉢ 전량
  * npx tsx scripts/qa/probe-middle-top-m3.ts --overlap    # ㉢ 만 (천장 포함, 느리다)
  * ```
+ *
+ * 🔴 **2026-09-02 — ㉠ 이 못 보는 자리 셋을 얹었다**(`reportShortcuts`·`spreadScore`).
+ * ㉠ 을 «후보 목록»으로만 재면, 후보 고르기가 어려워도 ⑴ 답이 한 값에 쏠려 있거나
+ * ⑵ 발문의 두 수를 한 번 나누면 답이 나오거나 ⑶ 목록의 맨 끝이 늘 살아남는 것을
+ * 구조적으로 못 본다. 눈금이 $10 \to 17$ 건이 됐다 —
+ * `src/__tests__/unit/elemProbeGauges.test.ts` 의 `["probe-middle-top-m3", 10]` 을
+ * **17 로 고쳐야** 한다(그 파일은 이 세션의 몫이 아니라 리드가 반영한다).
  */
 import { pathToFileURL } from "node:url";
 
@@ -206,6 +213,76 @@ export function siftScore(sifts: readonly Sift[]): SiftScore {
     keptAvg: kept / n,
     broken,
   };
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// ㉠-2 ㉠ 이 **못 보는 자리** 셋 — 2026-09-02 적대적 검증이 찾은 것
+//
+// 🔴 셋 다 같은 뿌리다: **㉠ 을 «후보 목록»으로만 재고 있었다.**
+//    후보에서 하나를 고르는 일이 어려워도, ⑴ 답이 한 값에 쏠려 있거나
+//    ⑵ 발문의 두 수를 한 번 나누면 답이 나오거나 ⑶ 목록의 맨 끝이 늘 살아남으면
+//    학생은 굳힘을 **한 번도 안 읽고** 답(또는 답의 절반)에 닿는다.
+//    셋 다 `edgeScore`·`siftScore` 가 구조적으로 못 보는 축이다.
+// ────────────────────────────────────────────────────────────────────────────
+
+export type SpreadScore = {
+  n: number;
+  kinds: number;
+  /** 최빈 답의 비율 */
+  top: number;
+  /** 한 시험지에 둘이 실렸을 때 정답이 겹칠 확률 $\sum p^2$ */
+  collide: number;
+  /** 값 → 비율 (내림차순) */
+  share: [number, number][];
+};
+
+/**
+ * ⑴ **답이 고르게 흩어지나.** 「서로 다른 답이 $k$ 종」은 «몇 종인가»만 말하고
+ * «어떻게 나뉘는가»는 안 말한다 — 여섯 종이라도 하나가 절반이면 한 시험지에 같은
+ * 답이 되풀이된다(52V 실측: 최빈 $51.2\%$ · 겹칠 확률 $33.5\%$).
+ */
+export function spreadScore(answers: readonly number[]): SpreadScore {
+  const hist = new Map<number, number>();
+  for (const a of answers) hist.set(a, (hist.get(a) ?? 0) + 1);
+  const n = answers.length || 1;
+  const share: [number, number][] = [...hist]
+    .map(([k, v]) => [k, v / n] as [number, number])
+    .sort((x, y) => y[1] - x[1]);
+  return {
+    n: answers.length,
+    kinds: hist.size,
+    top: share.length ? share[0]![1] : 0,
+    collide: share.reduce((t, [, p]) => t + p * p, 0),
+    share,
+  };
+}
+
+/**
+ * ⑵ **발문에 적힌 두 수를 한 번 나눈 값 전부**(나누어떨어지는 것만).
+ *
+ * 51V 의 답은 $\dfrac{2pa}{pt}$ 라 $|t|=1$ 이면 «상수항 $\div p$» 와 딱 같아진다 —
+ * 실측 $57.1\%$. 「적힌 수 하나 집기」를 막는 자는 이 자리를 **구조적으로 못 본다.**
+ */
+export function oneStepQuotients(coefs: readonly number[]): Set<number> {
+  const out = new Set<number>();
+  for (const x of coefs) {
+    for (const y of coefs) {
+      if (y === 0 || x % y !== 0) continue;
+      out.add(x / y);
+      out.add(-(x / y));
+    }
+  }
+  return out;
+}
+
+/**
+ * ⑶ **목록의 맨 끝이 늘 살아남으면 그 몫만큼은 공짜다.**
+ *
+ * 53V 는 창끝 $k=\lfloor b^2/4a\rfloor$ 가 $100\%$ 살아남는다(구조적 사실). 그러면
+ * 「그 하나가 답에서 얼마를 차지하나」가 곧 «안 읽고 얻는 몫»이다.
+ */
+export function edgeShare(edge: number, total: number): number {
+  return total === 0 ? 0 : edge / total;
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -383,6 +460,58 @@ function selftest(): void {
     `num=${jaccard(numberKey(a1, "$3$"), numberKey(a2, "$3$")).toFixed(2)}`,
   );
 
+  // ── ㉠-2 ⑴ 답 흩어짐: 양성 — 여섯 종이어도 하나가 절반이면 잡는다
+  const skew = spreadScore([4, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9, 4]);
+  say(
+    "㉠-2 양성 — 답이 한 값에 쏠리면 잡는다",
+    true,
+    skew.kinds === 6 && skew.top > 0.5,
+    `종류=${skew.kinds} 최빈=${(skew.top * 100).toFixed(1)}% 겹칠확률=${(skew.collide * 100).toFixed(1)}%`,
+  );
+  // ── ㉠-2 ⑴ 음성: 고르게 나뉘면 안 잡힌다 (「종류가 같아도 분포가 다르다」)
+  const flat = spreadScore([4, 5, 6, 7, 8, 9, 4, 5, 6, 7, 8, 9]);
+  say(
+    "㉠-2 음성 — 고르게 나뉜 답을 «쏠림»으로 안 잡는다",
+    true,
+    flat.kinds === 6 && flat.top < 0.25 && flat.collide < 0.2,
+    `종류=${flat.kinds} 최빈=${(flat.top * 100).toFixed(1)}% 겹칠확률=${(flat.collide * 100).toFixed(1)}%`,
+  );
+  // ── ㉠-2 ⑵ 한 걸음 나눗셈: 양성 — 상수항 180 ÷ p 15 = 12
+  const q1 = oneStepQuotients([6, 36, 15, 180]);
+  say(
+    "㉠-2 양성 — 「상수항 ÷ p」가 답이면 잡는다",
+    true,
+    q1.has(12) && q1.has(-12),
+    `180/15=12`,
+  );
+  // ── ㉠-2 ⑵ 양성②: 다른 짝($a^2 \div p$)도 잡는다 — 「상수항÷p」만 세면 눈이 먼다
+  say(
+    "㉠-2 양성② — $a^{2} \\div p$ 꼴도 잡는다",
+    true,
+    oneStepQuotients([6, 36, 9, 108]).has(4),
+    `36/9=4`,
+  );
+  // ── ㉠-2 ⑵ 음성: 나누어떨어지지 않는 값은 안 잡는다
+  say(
+    "㉠-2 음성 — 한 걸음에 안 닿는 답은 안 잡는다",
+    true,
+    !q1.has(7) && !q1.has(-7),
+    `7 ∉ {1,5,6,12,30}`,
+  );
+  // ── ㉠-2 ⑶ 창끝 몫: 양성(절반 넘음) · 음성(절반 미만)
+  say(
+    "㉠-2 양성 — 창끝 하나가 답의 절반을 넘으면 잡는다",
+    true,
+    edgeShare(10, 16) >= 0.5,
+    `10/16=${(edgeShare(10, 16) * 100).toFixed(1)}%`,
+  );
+  say(
+    "㉠-2 음성 — 창끝 몫이 절반 미만이면 안 잡는다",
+    true,
+    edgeShare(10, 30) < 0.5,
+    `10/30=${(edgeShare(10, 30) * 100).toFixed(1)}%`,
+  );
+
   // ── 등록: 새 갈래가 실제로 `심화중`·`심화상` 으로 나오는가 (분모)
   const tiers = new Set(
     topEntries().map((e) => makeSample(e.key, SEED0, 0).difficulty),
@@ -453,10 +582,10 @@ function collectSifts(): { name: string; sifts: Sift[] }[] {
  */
 function reportNoSiftAxis(): void {
   let inStem = 0;
-  const answers = new Set<number>();
+  const answers: number[] = [];
   for (let i = 0; i < SEEDS; i += 1) {
     const p = planCancel(createRng(SEED0 + i * 7919));
-    answers.add(p.answer);
+    answers.push(p.answer);
     const stem = new Set([0, 2, 3, p.cs[0], p.cs[1], p.cs[2], p.s, -p.s]);
     if (stem.has(p.answer)) inStem += 1;
   }
@@ -465,8 +594,99 @@ function reportNoSiftAxis(): void {
     `    ⚪ ㉠ **잴 축 없음** — 값이 하나로 굳어 후보 목록(\`sift\`)이 설계에 없다.`,
   );
   console.log(
-    `    ${inStem === 0 ? "✅" : "🔴"} 그 대신: 답이 발문에 적힌 수 가운데 하나인 씨앗 ${inStem}건` +
-      `  (서로 다른 답 ${answers.size}종 · 씨앗 ${SEEDS})`,
+    `    ${inStem === 0 ? "✅" : "🔴"} 그 대신 ⑴: 답이 발문에 적힌 수 가운데 하나인 씨앗 ${inStem}건` +
+      `  (씨앗 ${SEEDS})`,
+  );
+  // 🔴 2026-09-02 — 「서로 다른 답 N 종」만 찍고 **분포를 안 찍고 있었다.**
+  //    여섯 종이라도 하나가 절반이면 한 시험지에 같은 답이 되풀이된다.
+  const sp = spreadScore(answers);
+  console.log(
+    `    ${sp.top < 0.3 ? "✅" : "🔴"} 그 대신 ⑵: 정답 분포 — 서로 다른 답 ${sp.kinds}종 ·` +
+      ` 최빈 ${(sp.top * 100).toFixed(1)}% · 둘이 겹칠 확률 ${(sp.collide * 100).toFixed(1)}%` +
+      `  (고르면 ${((1 / sp.kinds) * 100).toFixed(1)}%)`,
+  );
+  console.log(
+    `        ` +
+      sp.share.map(([k, p]) => `${k}:${(p * 100).toFixed(1)}%`).join(" "),
+  );
+}
+
+/**
+ * 🔴 **㉠ 이 못 보는 자리 둘을 따로 찍는다** — 2026-09-02 적대적 검증.
+ *
+ * ⑴ `51V` — 발문의 두 계수를 **한 번 나누면** 답이 나오나(굳힘도 «나머지 해»도 안 읽고).
+ * ⑵ `53V` — 창끝이 **늘 살아남나**, 그리고 그 하나가 답에서 얼마를 차지하나.
+ *
+ * 참은 **지면 글자**에서 온다 — 설계값을 그대로 쓰면 설계가 틀릴수록 좋은 점수가 나온다.
+ */
+function reportShortcuts(): void {
+  console.log("\n═══ ㉠-2 굳힘을 **안 읽고** 한 걸음에 닿나 ═══\n");
+
+  // ⑴ 51V
+  let read = 0;
+  let hitAbs = 0;
+  let hitSigned = 0;
+  let hitKonstOverP = 0;
+  const ans51: number[] = [];
+  const stemRe =
+    /방정식 \$\(k\^\{2\}-(\d+)\)x\^\{2\}\+(\d+)\(k-(\d+)\)x\+(\d+)=0\$/;
+  for (let i = 0; i < SEEDS; i += 1) {
+    const p = makeSample("3-1|이차방정식의 풀이|51V", SEED0 + i * 7919, 0);
+    const m = stemRe.exec(p.content);
+    if (!m) continue;
+    const a2 = Number(m[1]);
+    const pp = Number(m[2]);
+    const a = Number(m[3]);
+    const konst = Number(m[4]);
+    if (a2 !== a * a || konst !== 2 * pp * a) continue; // 파서가 헛읽었다
+    read += 1;
+    const ans = Number(/-?\d+/.exec(p.answer)![0]);
+    ans51.push(ans);
+    const q = oneStepQuotients([a, a2, pp, konst]);
+    if (q.has(Math.abs(ans))) hitAbs += 1;
+    if (q.has(ans)) hitSigned += 1;
+    if (konst % pp === 0 && Math.abs(ans) === konst / pp) hitKonstOverP += 1;
+  }
+  const sp51 = spreadScore(ans51);
+  console.log(`  3-1|이차방정식의 풀이|51V (심화중)`);
+  if (read === 0) {
+    console.log(
+      `    🔴 발문을 하나도 못 읽었다 — 이 줄의 «0건» 은 「깨끗」이 아니라 「못 셈」이다.`,
+    );
+  } else {
+    console.log(
+      `    ${hitAbs === 0 ? "✅" : "🔴"} |답| = 발문의 두 계수를 한 번 나눈 값 ${hitAbs}건` +
+        ` (${((hitAbs / read) * 100).toFixed(1)}%) · 부호까지 ${hitSigned}건` +
+        ` · 그중 «상수항÷p» ${hitKonstOverP}건   (읽은 발문 ${read})`,
+    );
+    console.log(
+      `    ${sp51.top < 0.3 ? "✅" : "🔴"} 정답 분포 — 서로 다른 답 ${sp51.kinds}종 · 최빈 ${(sp51.top * 100).toFixed(1)}%`,
+    );
+  }
+
+  // ⑵ 53V
+  let alive = 0;
+  let n = 0;
+  let shareSum = 0;
+  let shareMax = 0;
+  let half = 0;
+  for (let i = 0; i < SEEDS; i += 1) {
+    const plan = planRationalRoots(createRng(SEED0 + i * 7919));
+    n += 1;
+    if (plan.kept.includes(plan.window)) alive += 1;
+    const sh = edgeShare(plan.window, plan.answer);
+    shareSum += sh;
+    shareMax = Math.max(shareMax, sh);
+    if (sh >= 0.5) half += 1;
+  }
+  console.log(`  3-1|이차방정식의 활용|53V (심화상)`);
+  console.log(
+    `    ⚪ 창끝($k=\\lfloor b^2/4a\\rfloor$)이 사는 비율 ${((alive / n) * 100).toFixed(1)}%` +
+      ` — **구조적 사실**이라 «깨끗»으로 찍지 않는다 (머리말 §⑷㉠ 에 적어 두었다)`,
+  );
+  console.log(
+    `    ${half === 0 ? "✅" : "🔴"} 그 대신: 창끝이 답에서 차지하는 몫 — 평균 ${((shareSum / n) * 100).toFixed(1)}%` +
+      ` · 최대 ${(shareMax * 100).toFixed(1)}% · 절반 이상인 씨앗 ${half}건   (씨앗 ${n})`,
   );
 }
 
@@ -492,6 +712,7 @@ function reportEdgeAndSift(): void {
     );
   }
   reportNoSiftAxis();
+  reportShortcuts();
 }
 
 function reportOverlap(): void {

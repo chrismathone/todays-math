@@ -502,6 +502,70 @@ function waysToBuyHere(
   return out;
 }
 
+/** 해설에서 그 조각으로 **시작하는** 줄. 없으면 던진다 — 조용히 건너뛰면 분모 밖이 된다. */
+function lineStarting(solution: string, head: string, who: string): string {
+  const hit = solution.split("\n").find((l) => l.startsWith(head));
+  if (hit === undefined)
+    throw new Error(`${who}: 「${head}」로 시작하는 줄이 없다 — ${solution}`);
+  return hit;
+}
+
+/**
+ * 🔴 **정수 경계 걸음** — `$cx\le R$` 에서 `$x\le B$` 로 뛸 때 $R/c$ 가 정수가
+ * 아니면 해설이 **그 분수와 「$x$는 자연수」를 반드시 적어야** 한다.
+ *
+ * 첫 판은 곧바로 `$22-2x\ge1$에서 $x\le10$이다` 를 적었는데 그 부등식의 참 해는
+ * $x\le10.5$ 다 — 쓴 대로 읽으면 **거짓 함의**이고, 「자연수」라는 낱말은
+ * **그다음 줄**에 처음 나왔다(800씨앗 중 574 = 71.8%). 값은 전부 맞으므로
+ * 값 검산·KaTeX·`pageSmells`·조사 자가 **구조적으로 못 본다** — 그래서 축을 세운다.
+ *
+ * ⚠️ 관계 기호를 글에서 **찾아 쓰지 않는다.** 위 경계 줄에는 `\ge`(조건 $y\ge1$)와
+ *    `\le`(경계)가 **둘 다** 있어서, 「어느 쪽인가」를 글자로 물으면 틀린다.
+ */
+const BOUND_PATTERNS = {
+  le: {
+    sign: "\\le",
+    claim: /\$(\d*)x\\le(\d+)\$이다\./,
+    frac: /\$x\\le\\dfrac\{(\d+)\}\{(\d+)\}\$/,
+    final: /\$x\\le(\d+)\$이다\./g,
+    round: (v: number): number => Math.floor(v),
+  },
+  ge: {
+    sign: "\\ge",
+    claim: /\$(\d*)x\\ge(\d+)\$이다\./,
+    frac: /\$x\\ge\\dfrac\{(\d+)\}\{(\d+)\}\$/,
+    final: /\$x\\ge(\d+)\$이다\./g,
+    round: (v: number): number => Math.ceil(v),
+  },
+} as const;
+
+function integerBoundFault(line: string, rel: "le" | "ge"): string | null {
+  const P = BOUND_PATTERNS[rel];
+  const claim = P.claim.exec(line);
+  if (claim === null) return `경계 주장 「$cx${P.sign}R$이다.」를 못 읽었다`;
+  const c = claim[1] === "" ? 1 : num(claim[1]);
+  const r = num(claim[2]);
+  const finals = [...line.matchAll(P.final)];
+  if (finals.length === 0) return `정수 경계 「$x${P.sign}B$이다.」가 없다`;
+  const b = num(finals[finals.length - 1]![1]);
+  const exact = r / c;
+  if (P.round(exact) !== b)
+    return `정수 경계를 $${b}$ 로 적었는데 $${r}/${c}$ 에서 참은 $${P.round(exact)}$ 다`;
+  // 나누어떨어지면 건너뛴 걸음이 아예 없다 — 분수도 「자연수」도 적을 것이 없다.
+  if (Number.isInteger(exact)) return null;
+  const frac = P.frac.exec(line);
+  if (frac === null || num(frac[1]) !== r || num(frac[2]) !== c)
+    return `참 경계 $${r}/${c}$ 를 안 적고 정수로 뛰었다`;
+  if (!line.includes("$x$는 자연수이므로"))
+    return "「$x$는 자연수」 걸음을 안 적고 정수로 뛰었다";
+  return null;
+}
+
+/** 지면에 「$N$점」으로 찍히는 값 전부 — `$96x$점`(총합)은 수가 아니므로 안 잡힌다. */
+function printedPoints(text: string): number[] {
+  return [...text.matchAll(/\$(-?\d+)\$점/g)].map((m) => num(m[1]));
+}
+
 // ── 눈금 — 손으로 쓴 지면 (엔진을 안 거친다) ──────────────────
 
 /** 양성: 답을 아는 지면에서 그 답을 낸다. 넷 다 정찰 브리프의 손 실측이다. */
@@ -916,14 +980,22 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
       const pairs = headcountPairs(a, b, t);
       expect(pairs.length, p.content).toBeGreaterThan(1);
 
-      // ⑴ 평균식 줄 — 발문의 세 수를 그대로 옮겼는가.
+      // 🔴 ⑴ **총합 줄**(해설 첫 줄) — 첫 판의 시험은 이 줄을 **아예 안 읽었다.**
+      //    계수를 여학생 평균으로 바꿔 발문과 어긋나게 해도 70/70 이 초록이었다.
+      const [sa, sb] = grab(
+        /^남학생 수를 \$x\$명, 여학생 수를 \$y\$명이라 하면 남학생의 점수의 총합은 \$(\d+)x\$점, 여학생의 점수의 총합은 \$(\d+)y\$점이고 전체 학생 수는 \$x\+y\$명이다\./,
+        p.solution,
+        "36V 총합 줄",
+      );
+      expect([num(sa), num(sb)], p.solution).toEqual([a, b]);
+      // ⑵ 평균식 줄 — 발문의 세 수를 그대로 옮겼는가.
       const [fa, fb, ft] = grab(
         /\$\\dfrac\{(\d+)x\+(\d+)y\}\{x\+y\}=(\d+)\$이다\./,
         p.solution,
         "36V 평균식 줄",
       );
       expect([num(fa), num(fb), num(ft)], p.solution).toEqual([a, b, t]);
-      // ⑵ 정리한 줄 — 그 등식이 **모든 인원 쌍**에서 참인가(규칙을 안 옮겨 적는다).
+      // ⑶ 정리한 줄 — 그 등식이 **모든 인원 쌍**에서 참인가(규칙을 안 옮겨 적는다).
       const [cx, cy] = grab(
         /이항하여 정리하면 \$(\d+)x=(\d+)y\$이다\./,
         p.solution,
@@ -934,42 +1006,100 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
       }
       expect(num(cx), p.solution).toBeGreaterThan(1); // `1x` 는 지면 냄새다
       expect(num(cy), p.solution).toBeGreaterThan(1);
-      // ⑶ 비 줄 — 적어 둔 비가 **모든 인원 쌍**과 맞고 기약인가.
-      const [rx, ry] = grab(
-        /두 인원의 비는 \$x:y=(\d+):(\d+)\$/,
-        p.solution,
+      // 🔴 ⑷ 비 줄 — 첫 판의 시험은 `두 인원의 비는 $x:y=…$` **한 조각만** 읽어서,
+      //    바로 앞의 「곧 $x={m}y$이므로 남학생 수는 여학생 수의 $m$배이다」를
+      //    상수로 굳히거나 배수를 $m{+}1$ 로 바꿔도 초록이었다. 셋을 맞댄다.
+      const ratioLine = lineStarting(p.solution, "곧 $", "36V 비 줄");
+      const [lhsL, multT, rhsL, bigSide, smallSide, multT2, rx, ry] = grab(
+        /^곧 \$([xy])=(\d+)([xy])\$이므로 (남학생|여학생) 수는 (남학생|여학생) 수의 \$(\d+)\$배이다\. 두 인원의 비는 \$x:y=(\d+):(\d+)\$/,
+        ratioLine,
         "36V 비 줄",
+      );
+      const sideOf = (letter: string): string =>
+        letter === "x" ? "남학생" : "여학생";
+      expect(lhsL === rhsL, ratioLine).toBe(false);
+      expect([bigSide, smallSide], ratioLine).toEqual([
+        sideOf(lhsL),
+        sideOf(rhsL),
+      ]);
+      expect(num(multT2), ratioLine).toBe(num(multT));
+      expect([num(rx), num(ry)], ratioLine).toEqual(
+        lhsL === "x" ? [num(multT), 1] : [1, num(multT)],
       );
       expect(gcd(num(rx), num(ry)), p.solution).toBe(1);
       expect(Math.min(num(rx), num(ry)), p.solution).toBe(1);
       for (const [m, f] of pairs) {
         expect(m * num(ry), p.solution).toBe(f * num(rx));
+        // 「$m$배」를 **인원 쌍으로** 다시 잰다 — 비 줄과 배수 문장이 갈리면 문다.
+        expect(lhsL === "x" ? m : f, ratioLine).toBe(
+          num(multT) * (lhsL === "x" ? f : m),
+        );
       }
-      // ⑷ 다음 시험 줄 — 새 평균 둘이 정말 오른 값인가.
+      // ⑸ 다음 시험 줄 — 새 평균 둘이 정말 오른 값인가.
       const [na, nb] = grab(
         /다음 시험에서 남학생의 평균은 \$(\d+)\$점, 여학생의 평균은 \$(\d+)\$점이므로/,
         p.solution,
         "36V 다음 시험 줄",
       );
       expect([num(na), num(nb)], p.solution).toEqual([a + u, b + v]);
-      // ⑸ 대입 줄 — 약분 전후의 수를 **인원 쌍으로 다시 계산**해 맞댄다.
+      // 🔴 ⑹ 대입 줄 — 첫 판의 시험은 `\dfrac{…}` **뒤쪽만** 읽어서, 접두
+      //    「여기에 $x=4y$를 대입하면」을 **바로 윗줄과 정면 모순**인 $y=4x$ 로
+      //    뒤집어도 초록이었다. 접두부터 읽고 비 줄과 맞댄다.
+      const [subL, subM, subR] = grab(
+        /여기에 \$([xy])=(\d+)([xy])\$를 대입하면 /,
+        p.solution,
+        "36V 대입 줄 접두",
+      );
+      expect([subL, num(subM), subR], p.solution).toEqual([
+        lhsL,
+        num(multT),
+        rhsL,
+      ]);
       const subst =
-        /\\dfrac\{(\d+)\\times(\d+)y\+(\d+)y\}\{(\d+)y\+y\}=\\dfrac\{(\d+)y\}\{(\d+)y\}=(\d+)\$이다\./.exec(
-          p.solution,
-        ) ??
-        /\\dfrac\{(\d+)x\+(\d+)\\times(\d+)x\}\{x\+(\d+)x\}=\\dfrac\{(\d+)x\}\{(\d+)x\}=(\d+)\$이다\./.exec(
-          p.solution,
-        );
-      expect(subst, `36V 대입 줄을 못 읽었다 — ${p.solution}`).not.toBeNull();
-      const numerated = num(subst![5]);
-      const denominated = num(subst![6]);
-      const shown = num(subst![7]);
+        subL === "x"
+          ? grab(
+              /대입하면 \$\\dfrac\{(\d+)\\times(\d+)y\+(\d+)y\}\{(\d+)y\+y\}=\\dfrac\{(\d+)y\}\{(\d+)y\}=(\d+)\$이다\./,
+              p.solution,
+              "36V 대입 줄 (x=my)",
+            )
+          : grab(
+              /대입하면 \$\\dfrac\{(\d+)x\+(\d+)\\times(\d+)x\}\{x\+(\d+)x\}=\\dfrac\{(\d+)x\}\{(\d+)x\}=(\d+)\$이다\./,
+              p.solution,
+              "36V 대입 줄 (y=mx)",
+            );
+      // 두 판에서 자리가 다르다 — `x=my` 는 [새평균A, 배수, 새평균B, 배수],
+      // `y=mx` 는 [새평균A, 새평균B, 배수, 배수] 다.
+      const [newA, newB] =
+        subL === "x"
+          ? [num(subst[0]), num(subst[2])]
+          : [num(subst[0]), num(subst[1])];
+      const mults =
+        subL === "x"
+          ? [num(subst[1]), num(subst[3])]
+          : [num(subst[2]), num(subst[3])];
+      expect([newA, newB], p.solution).toEqual([a + u, b + v]);
+      expect(mults, p.solution).toEqual([num(multT), num(multT)]);
+      const numerated = num(subst[4]);
+      const denominated = num(subst[5]);
+      const shown = num(subst[6]);
+      expect(denominated, p.solution).toBe(num(multT) + 1);
+      expect(numerated, p.solution).toBe(
+        subL === "x" ? newA * num(multT) + newB : newA + newB * num(multT),
+      );
       expect(numerated / denominated, p.solution).toBe(shown);
       // 인원 쌍마다 산술평균의 정의로 다시 계산한 값과 같아야 한다.
       for (const [m, f] of pairs) {
         expect(((a + u) * m + (b + v) * f) / (m + f), p.solution).toBe(shown);
       }
-      // ⑹ 함정 줄 — 「똑같이 나눈」 값이 정말 그 값이고 참과 달라야 한다.
+      // 🔴 ⑺ 약분 문자 줄 — 첫 판의 시험은 이 줄을 **아예 안 읽었다.** 사라지는
+      //    문자는 대입식의 **오른쪽 문자**다($x=my$ 를 넣으면 $y$ 만 남는다).
+      const [cancelled] = grab(
+        /분자와 분모에서 \$([xy])\$가 약분되어 사라지므로/,
+        p.solution,
+        "36V 약분 문자 줄",
+      );
+      expect(cancelled, p.solution).toBe(subR);
+      // ⑻ 함정 줄 — 「똑같이 나눈」 값이 정말 그 값이고 참과 달라야 한다.
       const [nr, nv] = grab(
         /전체 평균도 \$(\d+)\$점 오른다고 보면 \$(\d+)\$점이지만/,
         p.solution,
@@ -978,7 +1108,7 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
       expect(num(nr), p.solution).toBe((u + v) / 2);
       expect(num(nv), p.solution).toBe(t + (u + v) / 2);
       expect(num(nv), p.solution).not.toBe(shown);
-      // ⑺ 결론 줄 — 셋(대입 줄 · 결론 줄 · 정답)이 서로 맞아야 한다.
+      // ⑼ 결론 줄 — 셋(대입 줄 · 결론 줄 · 정답)이 서로 맞아야 한다.
       const [ct] = grab(
         /따라서 다음 시험에서 반 전체의 평균 점수는 \$(\d+)\$점이다\./,
         p.solution,
@@ -1091,6 +1221,7 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
   it("`38V` — 창·순서쌍·금액·가짓수를 **전수 대입**으로 다시 재고 셋을 맞댄다", () => {
     let checked = 0;
     let tupleCount = 0;
+    let boundChecked = 0;
     for (const p of rows(E38, 120)) {
       const [p1t, p2t, p3t, nt, totalt] = grab(
         /\$(\d+)\$원인 \S+, \$(\d+)\$원인 \S+, \$(\d+)\$원인 \S+ 세 종류를 합하여 모두 \$(\d+)\$\S+ 사고 \$(\d+)\$원을 냈다\./,
@@ -1139,27 +1270,56 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
         if (y >= 1 && z >= 1) byReduced.push([x, y, z]);
       }
       expect(byReduced, p.solution).toEqual(truth);
-      // ⑷ 위 경계 줄 · 아래 경계 줄 — 실제 최대·최소와 같은가, 그리고 **한 칸 밖은 정말 틀리는가**.
-      const [xmax] = grab(
-        /\$y\\ge1\$이므로 \$\d+-\d*x\\ge1\$에서 \$x\\le(\d+)\$이다\./,
-        p.solution,
-        "38V 위 경계 줄",
+      // ⑷ 위 경계 줄 · 아래 경계 줄 — 실제 최대·최소와 같은가, **정수 경계로
+      //    뛰지 않는가**, 그리고 한 칸 밖은 정말 틀리는가.
+      const upper = lineStarting(p.solution, "$y=", "38V 위 경계 줄");
+      const lower = lineStarting(p.solution, "또 $z=", "38V 아래 경계 줄");
+      // 🔴 ㉯ 줄5 **앞 절반**. 첫 판의 시험은 `$y\ge1$이므로` 부터 매치를 시작해
+      //    이 조각을 통째로 건너뛰었다 — 지면에 찍히는 $y$ 의 식이 그 밖이었고,
+      //    한 칸 어긋내면 「한 줄 안에서 $y$ 가 두 값」인 지면이 초록으로 나갔다.
+      const [ya, yalpha, ia, ialpha] = grab(
+        /^\$y=(\d+)-(\d+)x\$이고 \$y\\ge1\$이므로 \$(\d+)-(\d+)x\\ge1\$, 곧 /,
+        upper,
+        "38V 줄5 앞 절반",
       );
-      const [zc, zk, xmin] = grab(
-        /=\$?(\d*)x-(\d+)\$이고 \$z\\ge1\$이므로 \$x\\ge(\d+)\$이다\./,
-        p.solution,
-        "38V 아래 경계 줄",
+      expect([num(ia), num(ialpha)], upper).toEqual([num(ya), num(yalpha)]);
+      expect([num(ya), num(yalpha)], upper).toEqual([num(kk), num(alpha)]);
+      for (const [x, y] of truth) {
+        expect(num(ya) - num(yalpha) * x, upper).toBe(y);
+      }
+      const [zc, zk] = grab(
+        /^또 \$z=\d+-x-y=\d+-x-\\left\(\d+-\d+x\\right\)=(\d*)x-(\d+)\$이고 \$z\\ge1\$이므로 /,
+        lower,
+        "38V 줄6 앞 절반",
       );
       const coefZ = zc === "" ? 1 : num(zc);
-      expect(coefZ, p.solution).toBe(num(alpha) - 1);
-      expect(num(zk), p.solution).toBe(num(kk) - n);
+      expect(coefZ, lower).toBe(num(alpha) - 1);
+      expect(num(zk), lower).toBe(num(kk) - n);
       for (const [x, , z] of truth) {
-        expect(coefZ * x - num(zk), p.solution).toBe(z);
+        expect(coefZ * x - num(zk), lower).toBe(z);
       }
-      expect(num(xmax), p.solution).toBe(Math.max(...truth.map((s) => s[0])));
-      expect(num(xmin), p.solution).toBe(Math.min(...truth.map((s) => s[0])));
+      // 🔴 **정수 경계로 뛰지 않는가** (계약 ⑹.6). 값은 늘 맞으므로 값 검산·
+      //    KaTeX·냄새·조사가 구조적으로 못 보던 자리다.
+      expect(integerBoundFault(upper, "le"), upper).toBeNull();
+      expect(integerBoundFault(lower, "ge"), lower).toBeNull();
+      boundChecked += 2;
+      const upperEnds = [...upper.matchAll(/\$x\\le(\d+)\$이다\./g)];
+      const lowerEnds = [...lower.matchAll(/\$x\\ge(\d+)\$이다\./g)];
+      const xmax = num(upperEnds[upperEnds.length - 1]![1]);
+      const xmin = num(lowerEnds[lowerEnds.length - 1]![1]);
+      expect(xmax, upper).toBe(Math.max(...truth.map((s) => s[0])));
+      expect(xmin, lower).toBe(Math.min(...truth.map((s) => s[0])));
+      // 🔴 ㉮ 창 줄 — 「$A$부터 $B$까지의 자연수」의 **두 끝**. 첫 판의 시험에는
+      //    「부터」를 읽는 정규식이 **아예 없어서**, 두 끝을 맞바꿔 「$9$부터 $7$
+      //    까지」로 적어도 70/70 이 초록이었다.
+      const [wLo, wHi] = grab(
+        /그러므로 \$x\$는 \$(\d+)\$부터 \$(\d+)\$까지의 자연수이고/,
+        p.solution,
+        "38V 창 줄",
+      );
+      expect([num(wLo), num(wHi)], p.solution).toEqual([xmin, xmax]);
       // 창 밖의 이웃이 정말 조건을 어기는가 — 끝을 한 칸 잘못 적어도 답이 맞을 수 있다.
-      for (const x of [num(xmin) - 1, num(xmax) + 1]) {
+      for (const x of [xmin - 1, xmax + 1]) {
         const y = num(kk) - num(alpha) * x;
         const z = n - x - y;
         expect(x >= 1 && y >= 1 && z >= 1, `${p.solution}\n$x=${x}$`).toBe(
@@ -1213,6 +1373,7 @@ describe("중2 확대 갈래 3차 — 🔴 해설의 중간값을 다른 길로 
     }
     expect(checked, "38V 해설을 하나도 못 읽었다").toBe(120);
     expect(tupleCount, "38V 순서쌍을 하나도 못 읽었다").toBeGreaterThan(240);
+    expect(boundChecked, "38V 경계 줄을 하나도 못 읽었다").toBe(240);
   });
 });
 
@@ -1429,18 +1590,27 @@ describe("중2 확대 갈래 3차 — 물린 결함의 회귀 잠금", () => {
     // 🔴 값·냄새·렌더가 **전부 초록**인 채로 지면에 나가던 자리다. 공용 조사 자
     //    (`josaMismatches`)는 「(으)로」축을 구조적으로 못 본다.
     let seen = 0;
-    for (const p of rows(E38, 60)) {
+    const divisionCounts = new Set<number>();
+    for (const p of rows(E38, 120)) {
       expect(p.solution, "38V 목적격으로 지었다").not.toMatch(
         /\$-?\d+\$[을를] 나누면/,
       );
-      // 「$d$(으)로 나누면」이 실제로 **두 자리**(백원 나누기 · 소거식 나누기)에 있다.
-      expect(
-        (p.solution.match(/\$-?\d+\$(?:으로|로) 나누면/g) ?? []).length,
-        "38V",
-      ).toBe(2);
+      // 「나누면」이 나오는 자리를 **하나도 빠짐없이** 세고, 전부 «(으)로»인지 본다.
+      // 백원 나누기 · 소거식 나누기 · 위 경계 · (아래 경계) — 정수 경계 걸음을
+      // 넣으며 두 자리에서 **셋 또는 넷**으로 늘었다($\alpha=3$ 이면 넷).
+      const spots =
+        p.solution.match(/\$-?\d+\$(?:으로|로|을|를) 나누면/g) ?? [];
+      expect(spots.length, `38V ${p.solution}`).toBeGreaterThanOrEqual(3);
+      for (const s of spots) expect(s, "38V").toMatch(/(?:으로|로) 나누면$/);
+      divisionCounts.add(spots.length);
       seen += 1;
     }
-    expect(seen).toBe(60);
+    expect(seen).toBe(120);
+    // 「셋뿐」이면 아래 경계의 나누는 걸음이 구조적으로 안 난다는 뜻이다 — 갈리는지 본다.
+    expect(
+      [...divisionCounts].sort((x, y) => x - y),
+      "38V 「(으)로 나누면」 자리 수",
+    ).toEqual([3, 4]);
     // 양성 대조 — 일부러 틀린 글을 대어 **검출기가 도는 것**을 회차마다 보인다.
     expect(euroRoMismatches("양변을 $100$로 나누면")).toEqual([
       "$…100$로 → 으로",
@@ -1495,5 +1665,93 @@ describe("중2 확대 갈래 3차 — 물린 결함의 회귀 잠금", () => {
         /\$\d+\$가지/,
       );
     }
+  });
+
+  it("⑸ 🔴 `36V` — 지면의 「평균 … $N$점」이 $100$점을 넘지 않는다 (첫 판이 $107$점을 찍었다)", () => {
+    // 🔴 생성기는 첫 시험을 `a > 97 || b < 42` 로 막아 **「$100$점 만점」을 스스로
+    //    전제**하는데 다음 시험의 평균 $a+u$ 에는 상한이 없었다. 매개변수 전수
+    //    $6{,}504$ 중 **429(6.6%)**, 최대 **$109$점**. 값·KaTeX·`pageSmells`·조사가
+    //    전부 초록이라 **구조적으로 침묵**하던 자리다.
+    //
+    //    ⚠️ 참을 **생성기의 목록에서 안 가져온다** — 지면의 「$N$점」을 전부 훑는다.
+    //    생성기가 새 자리에 평균을 찍으면 그 목록은 낡지만 이 훑기는 안 낡는다.
+    // 눈금 ㉠ 양성 — 일부러 넘긴 글은 잡힌다.
+    expect(
+      printedPoints(
+        "다음 시험에서 남학생의 평균은 $107$점, 여학생의 평균은 $80$점이므로",
+      ).filter((v) => v > 100),
+    ).toEqual([107]);
+    // 눈금 ㉡ 음성 — 문자가 섞인 총합(`$96x$점`)은 «평균»이 아니므로 안 잡는다.
+    expect(printedPoints("남학생의 점수의 총합은 $96x$점이고")).toEqual([]);
+    let seen = 0;
+    for (const p of rows(E36, 400)) {
+      for (const text of [p.content, p.answer, p.solution]) {
+        for (const value of printedPoints(text)) {
+          seen += 1;
+          expect(value, `${p.content}\n${p.solution}`).toBeLessThanOrEqual(100);
+          expect(value, `${p.content}\n${p.solution}`).toBeGreaterThan(0);
+        }
+      }
+    }
+    // 눈금 ㉢ — **그 줄들을 실제로 읽었는가**. 0 은 «깨끗»과 «못 셈»을 안 가른다.
+    expect(seen, "36V 「$N$점」을 하나도 못 읽었다").toBeGreaterThan(400 * 8);
+  });
+
+  it("⑹ 🔴 `38V` — 부등식에서 정수 경계로 **뛰지 않는다** (첫 판이 800씨앗 중 574건 뛰었다)", () => {
+    // 눈금 ㉠ 양성 — 걸음을 뺀 글·경계를 잘못 반올림한 글은 둘 다 잡힌다.
+    expect(
+      integerBoundFault(
+        "$y=22-2x$이고 $y\\ge1$이므로 $22-2x\\ge1$, 곧 $2x\\le21$이다. 양변을 $2$로 나누면 $x\\le10$이다.",
+        "le",
+      ),
+      "첫 판의 지면이 바로 이 모양이었다",
+    ).toMatch(/정수로 뛰었다/);
+    expect(
+      integerBoundFault(
+        "또 $z=2x-12$이고 $z\\ge1$이므로 $2x\\ge13$이다. 양변을 $2$로 나누면 $x\\ge\\dfrac{13}{2}$이고, $x$는 자연수이므로 $x\\ge6$이다.",
+        "ge",
+      ),
+    ).toMatch(/참은/);
+    expect(
+      integerBoundFault(
+        "$y=22-2x$이고 $y\\ge1$이므로 $22-2x\\ge1$, 곧 $2x\\le21$이다. 양변을 $2$로 나누면 $x\\le\\dfrac{21}{2}$이고, $x\\le10$이다.",
+        "le",
+      ),
+      "「$x$는 자연수」를 빼면 잡혀야 한다",
+    ).toMatch(/자연수/);
+    // 눈금 ㉡ 음성 — 옳은 세 모양은 안 문다. **거짓 경보는 가드를 끈다**(2026-08-20).
+    expect(
+      integerBoundFault(
+        "$y=22-2x$이고 $y\\ge1$이므로 $22-2x\\ge1$, 곧 $2x\\le21$이다. 양변을 $2$로 나누면 $x\\le\\dfrac{21}{2}$이고, $x$는 자연수이므로 $x\\le10$이다.",
+        "le",
+      ),
+    ).toBeNull();
+    expect(
+      integerBoundFault("또 $z=x-7$이고 $z\\ge1$이므로 $x\\ge8$이다.", "ge"),
+      "계수가 $1$ 이면 나누는 걸음 자체가 없다",
+    ).toBeNull();
+    expect(
+      integerBoundFault(
+        "$y=22-3x$이고 $y\\ge1$이므로 $22-3x\\ge1$, 곧 $3x\\le21$이다. 양변을 $3$으로 나누면 $x\\le7$이다.",
+        "le",
+      ),
+      "나누어떨어지면 적을 걸음이 없다",
+    ).toBeNull();
+    // 실측 — 800씨앗 전량. 분수가 실제로 나오는 자리가 있어야 이 축이 산 것이다.
+    let seen = 0;
+    let fractional = 0;
+    for (const p of rows(E38, 800)) {
+      const upper = lineStarting(p.solution, "$y=", "38V 위 경계 줄");
+      const lower = lineStarting(p.solution, "또 $z=", "38V 아래 경계 줄");
+      expect(integerBoundFault(upper, "le"), upper).toBeNull();
+      expect(integerBoundFault(lower, "ge"), lower).toBeNull();
+      seen += 2;
+      if (upper.includes("$x$는 자연수이므로")) fractional += 1;
+      if (lower.includes("$x$는 자연수이므로")) fractional += 1;
+    }
+    expect(seen, "38V 경계 줄을 하나도 못 읽었다").toBe(1600);
+    // 눈금 ㉢ — 「자연수」 걸음이 **실제로 나는** 자리가 있는가. 없으면 위 양성이
+    //    손으로 쓴 글에서만 도는 것이고, 이 갈래에서는 구조적으로 0이 된다.
+    expect(fractional, "38V 분수 경계가 한 번도 안 났다").toBeGreaterThan(400);
   });
 });

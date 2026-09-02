@@ -22,6 +22,7 @@ import { describe, expect, it } from "vitest";
 
 import type { TestPrintProblem } from "@/components/print/types";
 import { JASEUP_GEOMETRY, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
+import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
 import {
   assessAnswerKeyRisk,
   estimateSolutionPx,
@@ -167,5 +168,84 @@ describe("[적대③-C] 정답지 쪽에서 사라질 해설을 짚는다", () =
     expect(assessAnswerKeyRisk(withSolutions(Array(25).fill(null)))).toEqual(
       [],
     );
+  });
+});
+
+/**
+ * 🔴 **없던 축** — 「어느 유형의 해설이 한 단을 넘는가」를 아무도 안 세고 있었다.
+ *
+ * 2026-09-02, 확대 갈래 3차 물결이 낸 `1-1|일차방정식의 활용|53V` 의 해설이
+ * **최대 1242px**(한 단 964.8px)였다. 등록 1,411유형 가운데 **그 하나뿐**이었고,
+ * 2위는 854px 였다. 넘치면 세로로 잘리는 게 아니라 **같은 쪽 다른 문항의 해설이
+ * 통째로 사라진다**(이 파일 머리말).
+ *
+ * 위의 `[적대③-C]` 검사들은 **손으로 지은 해설 문자열**만 본다. 그래서 「우리 엔진이
+ * 실제로 무엇을 내놓는가」라는 축이 통째로 밖이었고, 그 축이 없으니 변이시킬 수도 없었다.
+ * 원장님이 종이에서 찾아 주실 때까지 아무도 몰랐을 부류다.
+ *
+ * 실측 기준선(2026-09-02):
+ *   · 중등 등록 유형 1,411 — 여덟 판씩(11,000판 남짓), 한 단 초과 **0** (53V 를 고친 뒤)
+ *     이 쓸기는 1.3초 걸린다. 판을 늘리는 것이 이 가드의 재현율이므로 줄이지 말 것.
+ *   · 초등 — 소단원 360 × 문형 × 씨앗 3 = 7,404판, 한 단 초과 **0** · 최대 405px
+ *     (초4 2-5-3 꺾은선그래프). 초등은 여기서 안 쓸고 이 숫자만 남긴다 —
+ *     쓸면 7,404판이라 관문이 느려지고, 초등 문형은 확대 갈래처럼 자주 늘지 않는다.
+ *     늘리는 물결이 오면 그때 이 쓸기에 초등을 더할 것.
+ */
+describe("[지면] 등록된 중등 유형의 해설이 정답지 한 단을 넘지 않는다", () => {
+  const COLUMN = JASEUP_MEASURED_PX.answerSolutionsFull;
+
+  it("자가 살아 있다 — 일부러 큰 해설은 넘는다고 답한다", () => {
+    // 눈금이 없으면 「0건」이 «깨끗»인지 «못 셈»인지 안 갈린다.
+    const huge = Array.from(
+      { length: 80 },
+      (_, i) => `${i + 1}단계를 계산한다.`,
+    ).join("\n");
+    expect(estimateSolutionPx(huge)).toBeGreaterThan(COLUMN);
+    expect(estimateSolutionPx("$x=1$이다.")).toBeLessThan(COLUMN);
+  });
+
+  it("모든 유형이 한 단 안에 들어온다", () => {
+    const types = registeredTypes();
+    // 분모가 줄면 이 검사는 조용히 눈이 먼다 — 모집단부터 못 박는다.
+    expect(types.length).toBeGreaterThan(1300);
+
+    const over: string[] = [];
+    let measured = 0;
+    let worst = { key: "", px: 0 };
+    for (const e of types) {
+      // ⚠️ 씨앗을 둘만 쓰면 **이 검사를 만들게 한 그 결함을 못 잡는다.** 53V 는
+      //    판의 51.5% 가 한 단을 넘었는데, 두 판만 보면 23.5% 확률로 둘 다 안 넘는다 —
+      //    실제로 처음에 그렇게 짰다가 초록이 나왔다. 여덟 판이면 0.4% 다.
+      //    「몇 판을 보는가」가 곧 이 가드의 재현율이다.
+      for (const [seed, variant] of [
+        [20260902, 0],
+        [777, 1],
+        [31337, 2],
+        [900001, 0],
+        [4242, 1],
+        [58008, 2],
+        [123456, 0],
+        [70707, 1],
+      ] as [number, number][]) {
+        let px: number;
+        try {
+          px = estimateSolutionPx(
+            generateMiddleProblem(e.key, seed, variant).solution,
+          );
+        } catch {
+          continue; // 그 씨앗으로 못 만드는 유형은 건너뛴다 (attempt 소진)
+        }
+        measured += 1;
+        if (px > worst.px) worst = { key: e.key, px };
+        if (px > COLUMN) over.push(`${e.key} ${Math.round(px)}px`);
+      }
+    }
+    // 「몇 판을 실제로 쟀는가」를 같이 못 박는다 — 전부 건너뛰어도 초록이면 장식이다.
+    expect(measured).toBeGreaterThan(9000);
+    expect(
+      over,
+      `해설이 한 단(${COLUMN}px)을 넘는 유형 — 같은 쪽 다른 해설이 사라진다. ` +
+        `가장 큰 것 ${worst.key} ${Math.round(worst.px)}px`,
+    ).toEqual([]);
   });
 });

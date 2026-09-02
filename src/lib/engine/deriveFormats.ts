@@ -192,6 +192,23 @@ export function toDescriptiveStem(content: string): string {
 
 type Rat = { n: number; d: number };
 
+/**
+ * 「$a \le x \le b$」처럼 **두 부등호로 묶인 사슬**에서 왼쪽 끝이 오른쪽 끝보다
+ * 큰가 — 곧 그 구간이 **있을 수 없는가**.
+ *
+ * 오답을 만들 때만 쓴다. 정답에는 이 모양이 안 나오므로(생성기가 참인 구간을
+ * 낸다) 여기서 걸리는 것은 전부 우리가 방금 지어낸 거짓이다.
+ */
+const ORDER_CHAIN =
+  /(-?\d+(?:\.\d+)?)\s*\\(?:le|leq|lt)\s*[^$]{1,12}?\\(?:le|leq|lt)\s*(-?\d+(?:\.\d+)?)/g;
+
+export function reversesOrder(text: string): boolean {
+  for (const m of text.matchAll(ORDER_CHAIN)) {
+    if (Number(m[1]) > Number(m[2])) return true;
+  }
+  return false;
+}
+
 export function numericMistakes(answer: string): Mistake[] {
   const parsed = parseNumericAnswer(answer);
   if (!parsed) return [];
@@ -211,6 +228,14 @@ export function numericMistakes(answer: string): Mistake[] {
     if (!sameKind(parsed.rat, reduced)) return;
     const value = wrap(formatRat(reduced, parsed.style));
     if (parsed.decorated && shapeOf(value) !== wantShape) return;
+    // 🔴 정답이 **구간**이면 한쪽 끝만 흔들려 «있을 수 없는 구간»이 나온다.
+    //    2026-09-02 확대 갈래 3차 물결이 「$y$ 의 값의 범위」를 정답으로 내는 첫
+    //    유형(중2 `35V`)을 들이자 보기에 `$12\le y\le10$` 이 찍혔다 — 실측
+    //    157/1200판(13.1%). 학생이 계산 없이 지워 내므로 문항이 쉬워지고,
+    //    무엇보다 **종이에 거짓이 나간다.**
+    //    `shapeOf` 가르기는 이걸 못 본다 — 모양(`$N\le y\le N$`)은 그대로다.
+    //    등록 1,411유형을 전수로 훑어 이 부류를 내는 것은 `35V` **하나뿐**이었다.
+    if (reversesOrder(value)) return;
     if (seen.has(value)) return;
     seen.add(value);
     out.push({ tag, value });

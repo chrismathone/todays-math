@@ -60,14 +60,44 @@
  *      실측했다. 반반으로 고르면 $50\%$ 로 붙는다. 시험이 그 균형을 잠근다.
  *      그 위에 더해, **답은 살아남은 $k$ 가 아니라 그 방정식의 «나머지 해»** 다 —
  *      후보를 옳게 골라도 한 걸음이 더 남는다.
+ *
+ *      🔴 **그런데 그 «한 걸음»이 나눗셈 한 번으로 건너뛰어졌다** (2026-09-02 적대적 검증).
+ *      답은 $r=\dfrac{C}{A}=\dfrac{2pa}{pt}=\dfrac{2a}{t}$ 인데 $|t|=1$ 인 씨앗에서는
+ *      $|r|=2a=\dfrac{\text{상수항}}{p}$ 가 된다 — 곧 **발문에 적힌 두 계수를 한 번
+ *      나누면 답이 나온다.** 실측 **57.1%**(부호까지 29.6%)였다. 「적힌 수 하나 집기」는
+ *      막아 놓고 「적힌 수 **둘을 한 번 나눈** 값」은 아무도 안 보고 있었다.
+ *      그래서 ㉠ 가드를 **몫까지** 넓혔다(`stemReachable`) — $|t|=1$ 이 통째로 빠지고
+ *      $a^2\div p$ 꼴(예: $36\div9=4$)도 같이 빠진다. 풀이 얇아지므로 $a$ 와 상수항
+ *      상한을 함께 넓혔다(아래 `quadAlivePool` 주석).
  *    · `52V` — **후보 목록이 아예 없다**(값이 하나로 굳는다). 중1 `94T`·2차 `42U` 와
  *      같은 자리다. ⚠️ 「축이 없다」와 「축이 초록이다」는 **다른 말**이므로 시험은 이
  *      갈래에 ㉠ 을 **«잴 축 없음»으로 따로 찍는다**. 대신 「답이 발문에 적힌 수 가운데
  *      하나인가」를 재고, 그것이 **구조적으로 $0$** 임을 생성기 불변식
  *      ($a\notin\{c_1,c_2,c_3\}$, $a\ne3$, $a\ne|S|$)이 보장하며 시험이 그것을 잠근다.
+ *
+ *      🔴 **그런데 «축이 없다»가 «답이 고르다»는 뜻은 아니었다** (2026-09-02 적대적
+ *      검증). 후보 목록이 없으니 ㉠ 을 못 재는 것은 맞지만, 그 사이에 **답 자체가 한
+ *      값으로 쏠려** 있었다 — 최빈 정답 $a=4$ 가 **51.2%** 이고 12벌 한 벌에 서로 다른
+ *      정답이 **3~4종**뿐이었다. `cancelPool()` 이 $a$ 마다 낼 수 있는 계수 조합의 수가
+ *      다른데(`4:16 5:6 6:5 7:2 8:1 9:1`) 풀에서 그냥 하나를 뽑았기 때문이다.
+ *      51V 는 `wantDeadIsMin` 으로 **먼저 자리를 고르고** 거기 맞는 씨앗을 뽑는데
+ *      52V 에는 그 자를 안 댔다. 이제 **답을 먼저 고르고**(`CANCEL_ANSWERS`) 그에 맞는
+ *      계수를 뽑는다. 시험이 분포를 잠그고 판정기가 그것을 찍는다.
  *    · `53V`·`54V` — 답이 **살아남은 것 전부의 합**이라 목록의 어느 자리도 답이 아니다
  *      (중1 `32T`·`95T`, 2차 `41U`·`43U` 의 처방). 그 위에 `53V` 는 「살아남은 자리가
- *      **연속이 아닐 것**」을 불변식으로 요구해 「앞/뒤에서 몇 개」로도 못 찍게 했다.
+ *      **연속이 아닐 것**」을 불변식으로 요구한다.
+ *
+ *      ⚠️ **정직하게 적는다 — 「연속이 아니니 «뒤에서 몇 개»로도 못 찍는다」는 틀린
+ *      말이었다**(2026-09-02 적대적 검증). 창끝 $k=\left\lfloor b^2/4a\right\rfloor$ 는
+ *      **언제나 살아남는다**(실측 $18/18$, 넓혀도 반례 $0$) — 창끝의 판별식
+ *      $b^2\bmod 4a$ 가 이 격자에서 늘 제곱수이기 때문이다. 「연속이 아니다」는 «몇 개가
+ *      사는가»를 못 찍게 할 뿐 «맨 끝이 사는가»는 못 막는다. 게다가 사는 것이 둘뿐인
+ *      씨앗이 $61\%$ 였고 그 씨앗에서는 **답의 절반 이상이 창끝 하나**였다.
+ *      그래서 깨는 대신 **몫에 상한을 걸었다** — 창끝 하나로는 답의 절반도 못 얻는다
+ *      (`rationalRootPool` 의 `2*window < sum`). 근거는 `54V` 와 같은 꼴이다:
+ *      ⓐ 답이 «합»이고 ⓑ 나머지가 **띄엄띄엄** 놓이며 ⓒ 몇 개가 사는지는 창 안의 $k$ 를
+ *      **하나씩 대 봐야** 안다. 시험이 「창끝이 산다」와 「그 몫이 절반 미만」을 **둘 다**
+ *      못 박는다 — 구조적 사실은 숨기지 말고 적어 두고 잠근다.
  *
  *      ⚠️ **정직하게 적는다** — `54V` 는 창이 약수 목록의 **큰 쪽**을 자르므로 살아남는
  *      $k$ 가 늘 약수 목록의 **앞부분**이고, $k=1$ 은 어떤 $D$ 의 약수이기도 하므로
@@ -295,6 +325,46 @@ export function otherRootAtOne(a: number, p: number, k: number): number | null {
   return (2 * p * a) / lead;
 }
 
+/**
+ * 🔴 **㉠ — 발문에서 «한 걸음»으로 닿는 수 전부** (부호 양쪽).
+ *
+ * 처음 판은 「발문에 **적힌** 수」만 막았다. 그런데 이 문항의 답은
+ * $r=\dfrac{2pa}{pt}$ 라, $|t|=1$ 이면 $|r|$ 이 **상수항 $\div p$** 와 딱 같아진다 —
+ * 지면의 `$…+7(k-3)x+42=0$` 에서 $42\div7=6$ 이 그대로 답이었다(실측 57.1%).
+ * 「집어 찍기」를 막는 가드가 「한 번 나눠 찍기」를 못 본 것이다.
+ *
+ * ⚠️ **나눗셈의 피제수·제수는 «계수 넷»으로 한정한다.** 지수 $2$ 와 해 $x=1$ 은
+ *    «적힌 수»로는 세지만(위 집합) **나눗셈의 상대로는 안 센다** — $a\div2$ 같은 것까지
+ *    막으면 풀이 아홉으로 줄어 12벌을 못 채운다. 그 대신 그 둘은 여전히 «적힌 수» 라
+ *    답이 $\pm1$·$\pm2$ 인 씨앗은 그대로 막힌다.
+ */
+export function stemReachable(
+  a: number,
+  p: number,
+  konst: number,
+): Set<number> {
+  const out = new Set<number>();
+  const add = (v: number): void => {
+    out.add(v);
+    out.add(-v);
+  };
+  // ⑴ 지면에 글자로 적히는 수 — 지수 $2$ · 해 $x=1$ · 계수 넷 · $0$.
+  //
+  // ⚠️ **부호를 뺀 값만 세면 샌다.** 지면의 `$6(k-4)x$` 는 수를 읽는 자
+  //    (`/-?\d+/`)에게 **`-4`** 로 보인다. 답이 $-4$ 인 씨앗이 그렇게 빠져나가
+  //    「발문에서 하나 집기」가 열려 있었다 — 시험이 그것을 잡았다.
+  for (const v of [0, 1, 2, a, a * a, p, konst]) add(v);
+  // ⑵ 그 **계수 둘을 한 번 나눈** 값 — 나누어떨어지는 것만.
+  const coefs = [a, a * a, p, konst];
+  for (const x of coefs) {
+    for (const y of coefs) {
+      if (y === 0 || x % y !== 0) continue;
+      add(x / y);
+    }
+  }
+  return out;
+}
+
 export type QuadAliveSeed = {
   a: number;
   p: number;
@@ -332,8 +402,16 @@ export type QuadAlivePlan = {
  * r ∉ {0, 1, -1}          r=1 이면 중근이라 «나머지 해»가 없고, r=-1 은 p=0 이라야 한다
  * p ≠ a                   살아난 k = a-p 가 0 이면 발문이 흉하다
  * |A| = |pt| ≥ 2          「양변을 A 로 나누면」이 걸음 하나가 되게
- * 답이 발문에 적힌 수가 아니다   ㉠ — 「지면에서 하나 집기」를 구조적으로 막는다
+ * 답이 발문에서 «한 걸음»에 안 닿는다  ㉠ — 적힌 수 집기 **와** 「계수 둘을 한 번 나누기」
+ *                         (`stemReachable`) 를 **둘 다** 막는다. 뒤엣것을 안 막으면
+ *                         $|t|=1$ 인 씨앗에서 상수항 ÷ p 가 곧 답이다 (실측 57.1%)
  * ```
+ *
+ * ⚠️ **상한을 왜 넓혔나** — 몫까지 막으면 $|t|=1$ 이 통째로 빠져 옛 상한($a\le10$ ·
+ *    상수항 $\le400$)에서는 풀이 **열하나**가 된다. 시험의 바닥이 「서로 다른 해설 열셋」
+ *    (=12벌 적재를 채운다)이므로 그대로 두면 12벌을 못 만든다. 그래서 $a\le12$ ·
+ *    상수항 $\le550$ 으로 넓혀 **열여섯**으로 되돌렸다. 상수항은 $2a(t+2a)$ 라
+ *    $4a^2$ 항이 지배하므로 $a$ 만 넓히는 것으로는 안 늘어난다 — 둘을 같이 넓혀야 한다.
  *
  * ⚠️ 이 조건들에서 **$p>a$ 가 저절로 따라온다.** $p<a$ 이면 $t=p-2a<-a$ 인데 $t\mid 2a$ 라
  *    $|t|=2a$, 곧 $p=0$ 이어야 한다(제외). 그래서 두 후보가 **둘 다 음수**이고 인수분해가
@@ -341,7 +419,7 @@ export type QuadAlivePlan = {
  */
 export function quadAlivePool(): QuadAliveSeed[] {
   const out: QuadAliveSeed[] = [];
-  for (let a = 2; a <= 10; a += 1) {
+  for (let a = 2; a <= 12; a += 1) {
     for (let p = 2; p <= 80; p += 1) {
       const t = p - 2 * a;
       if (t === 0) continue;
@@ -350,21 +428,11 @@ export function quadAlivePool(): QuadAliveSeed[] {
       if (r === 0 || r === 1 || r === -1) continue;
       if (p === a) continue;
       const konst = 2 * p * a;
-      if (konst > 400) continue;
+      if (konst > 550) continue;
       if (Math.abs(r) > 50) continue;
       if (Math.abs(p * t) < 2) continue;
-      // ㉠ — 답이 발문의 어느 수와도 같지 않아야 한다.
-      //
-      // ⚠️ **부호를 뺀 값만 세면 샌다.** 지면의 `$6(k-4)x$` 는 수를 읽는 자
-      //    (`/-?\d+/`)에게 **`-4`** 로 보인다. 답이 $-4$ 인 씨앗이 그렇게 빠져나가
-      //    「발문에서 하나 집기」가 열려 있었다 — 시험이 그것을 잡았다.
-      //    그래서 ±양쪽을 다 막는다.
-      const stem = new Set<number>();
-      for (const v of [0, 1, 2, a, a * a, p, konst]) {
-        stem.add(v);
-        stem.add(-v);
-      }
-      if (stem.has(r)) continue;
+      // ㉠ — 답이 발문에서 **한 걸음**에 닿으면 안 된다(적힌 수 · 계수 둘의 몫).
+      if (stemReachable(a, p, konst).has(r)) continue;
       out.push({ a, p, deadIsMin: -a < a - p });
     }
   }
@@ -372,6 +440,11 @@ export function quadAlivePool(): QuadAliveSeed[] {
 }
 
 const QUAD_ALIVE_POOL = quadAlivePool();
+
+/** 그 씨앗이 낼 답의 크기 $\left|\dfrac{2a}{p-2a}\right|$ — 규칙을 옮겨 적지 않는다. */
+function quadAnswerAbs(s: QuadAliveSeed): number {
+  return Math.abs(otherRootAtOne(s.a, s.p, s.a - s.p)!);
+}
 
 /**
  * **51V «심화중»** — 「이차방정식이 되고 그 해 중 하나가 $x=1$일 때 나머지 해」.
@@ -390,7 +463,15 @@ export function planQuadraticAlive(rng: Rng): QuadAlivePlan {
   if (sub.length === 0) {
     throw new Error("m3Top3 51V: 죽는 자리에 맞는 씨앗이 없습니다");
   }
-  const { a, p, deadIsMin } = pick(rng, sub);
+  // 🔴 **답의 크기도 고르게 뽑는다** — ㉠ 몫 가드를 넣으며 풀이 $26\to16$ 으로 줄었고,
+  //    그대로 두면 한 무리 안에서 $|r|$ 별 씨앗 수가 달라(예: $-3$ 이 셋, $-8$ 이 하나)
+  //    12벌 한 벌의 서로 다른 정답이 $10.7\to7.9$ 로 내려간다(실측). 52V 와 같은 처방이다.
+  //    ⚠️ `wantDeadIsMin` 을 **먼저** 뽑는 순서를 지킨다 — `deadIsMin` 은 $t<0$ 과 같은
+  //       말이라 답의 **부호**를 정하고, 그 균형이 ㉠ 의 「극단 집기」를 잡아 준다.
+  const mags = [...new Set(sub.map(quadAnswerAbs))].sort((x, y) => x - y);
+  const wantMag = pick(rng, mags);
+  const sub2 = sub.filter((s) => quadAnswerAbs(s) === wantMag);
+  const { a, p, deadIsMin } = pick(rng, sub2);
   const cands = solveQuadraticAlive(a, p, false);
   const kept = solveQuadraticAlive(a, p, true);
   if (kept.length !== 1) {
@@ -576,15 +657,46 @@ export function cancelPool(): CancelSeed[] {
 const CANCEL_POOL = cancelPool();
 
 /**
+ * 🔴 **풀에 있는 답 전부**(오름차순) — 답을 «고르게» 뽑기 위한 축이다.
+ *
+ * `cancelPool()` 은 $a$ 마다 쓸 수 있는 계수 조합의 수가 다르다(실측 `4:16 5:6 6:5
+ * 7:2 8:1 9:1`). 풀에서 그냥 하나를 뽑으면 **$a=4$ 가 혼자 절반**이다.
+ */
+export const CANCEL_ANSWERS: number[] = [
+  ...new Set(CANCEL_POOL.map((s) => s.a)),
+].sort((x, y) => x - y);
+
+/**
  * **52V «심화중»** — 「$x$의 값에 관계없이 일정한 식에서 계수 구하기」.
  *
  * 안 굳는 마디는 **$x$** 다. 발문이 「관계없이」라고만 하므로 $x$ 는 어떤 수여도 되고,
  * 각 괄호의 곱 $(x+ca)(x-ca)$ 도 하나로 안 굳는다. 그런데 곱셈 공식으로 셋을 펴면
  * $x^2$ 이 셋 나오고 발문이 빼 둔 $3x^2$ 과 **소거되어** 식이 $-(\Sigma)a^2$ 이 된다 —
  * $x$ 를 **하나도 구하지 않고** 답이 굳는다(D-115 ⑾ 의 «중»).
+ *
+ * ⚠️ **정직하게 적는다 — 굳힘은 $x=0$ 한 줄 대입으로 우회된다**(실측 1,200표본 100%).
+ *    발문이 「$x$의 값에 **관계없이** 항상 $S$」라고 **먼저 말해 주므로** $x=0$ 대입이
+ *    정당하고, 그 순간 $-3x^2$ 이 사라져 $-\Sigma c^2a^2=S$ 가 바로 나온다 — 학생이
+ *    위에 적은 «소거»를 한 번도 안 만난다. 설계로는 못 막는다(「관계없이」를 빼면
+ *    문항이 성립하지 않는다). `54V` 가 「$n=1$ 은 언제나 산다」를 적어 둔 것과 같은
+ *    자리이므로 숨기지 않고 여기 적는다 — 2026-09-02 적대적 검증.
+ *
+ * 🔴 **답을 먼저 고르고 그에 맞는 계수를 뽑는다** (2026-09-02 적대적 검증).
+ * 풀에서 그냥 하나를 뽑으면 $a$ 별 씨앗 수가 `4:16 5:6 6:5 7:2 8:1 9:1` 이라
+ * **$a=4$ 가 51.2%** 였고, 12벌 한 벌에 서로 다른 정답이 **3~4종**뿐이었다 —
+ * 한 시험지에 같은 답이 되풀이된다. 51V 가 `wantDeadIsMin` 으로 죽는 자리를 먼저
+ * 고르는 것과 **같은 처방**인데 여기에는 그 자를 안 대고 있었다.
+ *
+ * ⚠️ 이것은 «지표에 맞춰 데이터를 고른 것»이 아니다 — 여섯 값 다 이 설계가 원래 낼 수
+ *    있는 답이고, 한쪽으로 치우쳐 뽑고 있던 것을 고르게 바꿨을 뿐이다(51V 와 같은 말).
  */
 export function planCancel(rng: Rng): CancelPlan {
-  const { cs, a, s } = pick(rng, CANCEL_POOL);
+  const wantA = pick(rng, CANCEL_ANSWERS);
+  const sub = CANCEL_POOL.filter((x) => x.a === wantA);
+  if (sub.length === 0) {
+    throw new Error(`m3Top3 52V: 답 ${wantA} 에 맞는 씨앗이 없습니다`);
+  }
+  const { cs, a, s } = pick(rng, sub);
   const kept = solveCancelCoef(cs, s, true);
   if (kept.length !== 1 || kept[0] !== a) {
     throw new Error(`m3Top3 52V: 자연수 $a$ 가 하나로 안 굳습니다 (${kept})`);
@@ -697,18 +809,41 @@ export type RationalRootPlan = {
  * 쓸 수 있는 $(a,b)$ 를 프로그램으로 뽑는다.
  *
  * ```
- * b 는 홀수                b^2-4ak 가 늘 홀수라 **0 이 될 수 없다** — 곧 중근이 안 생겨
+ * b^2 가 4a 로 안 나누어짐   판별식 0 이 창 안에 못 들어온다 — 곧 중근이 안 생겨
  *                          「두 근」이라는 발문이 늘 참이다 (불변식)
  * 창 4..12                 해설이 지면에서 안 넘치게 (표지도 열둘까지만 있다)
  * 사는 것 2..5, 창 전체 아님   굳힘이 실제로 일하고, 답도 한 자리가 아니게
  * 사는 자리가 연속이 아님      연속이면 「앞/뒤에서 몇 개」로 찍힌다 (㉠)
+ * 창끝의 몫 < 절반           창끝은 **늘 산다**(아래 ⚠️). 그 하나가 답의 절반을 넘으면
+ *                          판별식을 한 번도 안 세고 답의 절반이 나온다 (㉠)
  * 답이 발문에 적힌 수가 아님    ㉠ — 「지면에서 하나 집기」를 막는다
  * ```
+ *
+ * ⚠️ **정직하게 적는다 — 창끝 $k=\left\lfloor b^2/4a\right\rfloor$ 는 언제나 살아남는다.**
+ *    창끝의 판별식은 $b^2 \bmod 4a$ 인데, 다른 조건들을 통과하는 격자점에서는 그 값이
+ *    **늘 제곱수**다(예: $b$ 가 홀수이면 $a\in\{2,3,4,6\}$ 에서 $b^2\bmod 4a\in\{1,9\}$ 로
+ *    정리된다). $b$ 의 홀짝을 풀고 $a\le16$·$b\le60$ 까지 넓혀 훑어도 **창끝이 죽는 짝은
+ *    하나도 없다** — 이것은 이 설계의 **구조적 사실**이지 ㉠ 을 넘긴 근거가 아니다.
+ *    (머리말 §⑷㉠ 이 「연속이 아니라 «뒤에서 몇 개»로도 못 찍는다」고 단언하던 것은
+ *     **틀린 말**이었다. «뒤에서 하나»는 늘 맞는다 — 2026-09-02 적대적 검증.)
+ *
+ *    그래서 «못 깨는 것»을 숨기지 않고 **몫에 상한을 건다**: 창끝 하나로는 답의 절반도
+ *    못 얻는다($2\cdot\text{창} < \text{합}$). 이 조건은 「사는 것이 셋 이상」을 저절로
+ *    머금는다 — 사는 것이 둘이면 하나가 창끝이라 합이 창의 두 배 미만이기 때문이다.
+ *    실측: 창끝의 몫 평균 $58.3\%$·최대 $83.3\%$ → 평균 $40.5\%$·최대 $46.2\%$.
+ *
+ * ⚠️ **불변식을 «$b$ 는 홀수»에서 «$b^2$ 가 $4a$ 로 안 나누어짐»으로 바꿨다.** 지키려던
+ *    것은 처음부터 «창 안에 중근이 없다»였고, 판별식 $b^2-4ak$ 가 $0$ 이 되는 자연수 $k$ 는
+ *    $b^2/(4a)$ **하나뿐**이므로 그것이 정수가 아니면 된다. 「$b$ 가 홀수」는 그 조건의
+ *    **좁은 대용품**이었고, 그 대용품 때문에 위 몫 상한을 걸면 풀이 일곱으로 줄었다.
+ *    바꾼 뒤 풀은 $18 \to 22$ 로 늘었다. 시험이 «창 안 어느 $k$ 에서도 판별식이 $0$ 이
+ *    아니다»를 **값으로** 확인한다(대용품이 아니라 원래 지키려던 것을 잰다).
  */
 export function rationalRootPool(): RationalRootSeed[] {
   const out: RationalRootSeed[] = [];
-  for (let a = 2; a <= 9; a += 1) {
-    for (let b = 7; b <= 29; b += 2) {
+  for (let a = 2; a <= 16; a += 1) {
+    for (let b = 5; b <= 60; b += 1) {
+      if ((b * b) % (4 * a) === 0) continue;
       const window = Math.floor((b * b) / (4 * a));
       if (window < 4 || window > 12) continue;
       const kept = solveRationalRoots(a, b, true);
@@ -719,6 +854,8 @@ export function rationalRootPool(): RationalRootSeed[] {
       );
       if (contiguous) continue;
       const sum = kept.reduce((t, v) => t + v, 0);
+      // ㉠ — 창끝은 늘 산다. 그 하나가 답의 절반을 못 넘게 한다.
+      if (2 * window >= sum) continue;
       if (new Set([0, 2, a, b]).has(sum)) continue;
       out.push({ a, b });
     }
@@ -728,6 +865,16 @@ export function rationalRootPool(): RationalRootSeed[] {
 
 const RATIONAL_ROOT_POOL = rationalRootPool();
 
+/** 그 씨앗이 낼 답(살아남은 $k$ 의 합) — 규칙을 옮겨 적지 않고 굳힘 함수를 그대로 부른다. */
+function rationalRootAnswer(s: RationalRootSeed): number {
+  return solveRationalRoots(s.a, s.b, true).reduce((t, v) => t + v, 0);
+}
+
+/** 풀이 낼 수 있는 답 전부(오름차순) — 답을 «고르게» 뽑기 위한 축이다. */
+const RATIONAL_ROOT_ANSWERS: number[] = [
+  ...new Set(RATIONAL_ROOT_POOL.map(rationalRootAnswer)),
+].sort((x, y) => x - y);
+
 /**
  * **53V «심화상»** — 「두 근이 모두 유리수가 되도록 하는 자연수 $k$ 를 모두 구하고 그 합」.
  *
@@ -736,7 +883,17 @@ const RATIONAL_ROOT_POOL = rationalRootPool();
  * 하나씩 대 봐야 갈린다 — D-115 ⑾ 의 «상».
  */
 export function planRationalRoots(rng: Rng): RationalRootPlan {
-  const { a, b } = pick(rng, RATIONAL_ROOT_POOL);
+  // 🔴 **답을 먼저 고르고 그에 맞는 $(a,b)$ 를 뽑는다** — 51V·52V 와 같은 처방.
+  //    창끝 몫 상한을 넣으며 풀의 답 분포가 고르지 않게 됐다(합 $18$·$22$·$26$ 이 각각
+  //    넷, $14$·$45$ 가 하나). 그대로 두면 한 시험지에 같은 답이 더 자주 겹친다.
+  const wantSum = pick(rng, RATIONAL_ROOT_ANSWERS);
+  const sub = RATIONAL_ROOT_POOL.filter(
+    (s) => rationalRootAnswer(s) === wantSum,
+  );
+  if (sub.length === 0) {
+    throw new Error(`m3Top3 53V: 답 ${wantSum} 에 맞는 씨앗이 없습니다`);
+  }
+  const { a, b } = pick(rng, sub);
   const window = Math.floor((b * b) / (4 * a));
   const cands = solveRationalRoots(a, b, false);
   const kept = solveRationalRoots(a, b, true);
@@ -771,7 +928,12 @@ function renderRationalRoots(rng: Rng): Body {
   const lines: string[] = [
     `근의 공식에 의하여 주어진 이차방정식의 두 근은 ` +
       `$x=\\dfrac{${b}\\pm\\sqrt{${b2}-${fourA}k}}{${twoA}}$이다.`,
-    `$${a}$, $${b}$, $k$가 모두 유리수이므로 두 근이 모두 유리수이려면 ` +
+    // 🔴 **계수를 부호째 적고, 근거를 «정수»에 건다** (2026-09-02 적대적 검증).
+    //    첫 판은 `$${a}$, $${b}$, $k$가 모두 **유리수**이므로` 였다. 둘 다 틀렸다 —
+    //    일차항 계수는 $-b$ 이고, 「근호 안이 제곱수」라는 판정은 근호 안이 **정수**일
+    //    때만 성립한다(유리수 계수만으로는 근호 안이 정수가 아닐 수 있다).
+    //    값·정답은 옳아서 값 검산·KaTeX·조사 자가 구조적으로 못 보던 자리다.
+    `$${a}$, $${-b}$, $k$가 모두 정수이므로 두 근이 모두 유리수이려면 ` +
       `근호 안의 수 $${b2}-${fourA}k$가 제곱수이어야 한다.`,
     `또 두 근이 있으려면 $${b2}-${fourA}k\\ge 0$이어야 하므로 ` +
       `$${fourA}k\\le ${b2}$에서 자연수 $k$는 $1$부터 $${window}$까지이다.`,

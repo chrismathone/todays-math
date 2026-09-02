@@ -15,6 +15,7 @@ import {
   asShortAnswer,
   deriveThreeFormats,
   numericMistakes,
+  reversesOrder,
   toDescriptiveStem,
   type StemProblem,
 } from "@/lib/engine/deriveFormats";
@@ -425,5 +426,62 @@ describe("계산 실수 목록 — 값이 목록을 가른다", () => {
 
   it("수가 아니면 빈 목록이다 — 오답을 지어내지 않는다", () => {
     expect(numericMistakes("정비례")).toEqual([]);
+  });
+});
+
+/**
+ * 🔴 **구간이 정답인 유형** — 2026-09-02 확대 갈래 3차 물결(중2 `35V`)이 처음 들여왔다.
+ *
+ * 한쪽 끝만 흔들면 «있을 수 없는 구간»이 보기에 찍힌다. 실측 157/1200판(13.1%).
+ * `shapeOf` 가르기는 이 부류를 **구조적으로 못 본다** — 모양은 그대로다.
+ * 등록 1,411유형을 전수로 훑어 이 부류를 내는 것은 `35V` 하나뿐이었다.
+ */
+describe("객관식 — 구간이 정답이면 뒤집힌 구간을 보기로 내지 않는다", () => {
+  it("자가 살아 있다 — 뒤집힌 것은 잡고 옳은 것은 안 잡는다", () => {
+    expect(reversesOrder("$12\\le y\\le10$")).toBe(true);
+    expect(reversesOrder("$8\\le y\\le12$")).toBe(false);
+    expect(reversesOrder("$-3\\le x\\le-5$")).toBe(true);
+    // 사슬이 아니면 아무 말도 안 한다 — 「$5\\le x$」 하나만으로는 못 뒤집는다.
+    expect(reversesOrder("$5\\le x$")).toBe(false);
+    expect(reversesOrder("$7$")).toBe(false);
+  });
+
+  it("오답 후보에서 뒤집힌 구간이 빠진다", () => {
+    const answer = "$6\\le y\\le10$";
+    const values = numericMistakes(answer).map((m) => m.value);
+    expect(values.length).toBeGreaterThan(0); // 「0개라 초록」이 아님을 못 박는다
+    for (const v of values) expect(reversesOrder(v)).toBe(false);
+    // 가드가 없으면 나오던 바로 그 값
+    expect(values).not.toContain("$12\\le y\\le10$");
+  });
+
+  it("보기 다섯을 만들어도 뒤집힌 구간이 없다", () => {
+    const stem: StemProblem = {
+      content: "$y$의 값의 범위를 구하시오.",
+      answer: "$6\\le y\\le10$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "활용",
+    };
+    let made = 0;
+    for (let i = 0; i < 40; i += 1) {
+      let mc;
+      try {
+        mc = asMultipleChoice(stem, createRng(1000 + i));
+      } catch {
+        continue; // 후보가 넷이 안 되면 객관식을 안 만든다 — 그건 정상이다
+      }
+      made += 1;
+      expect(reversesOrder(mc.content), mc.content).toBe(false);
+    }
+    expect(made).toBeGreaterThan(0);
+
+    // 🔴 대가(D-20) — 후보가 넷을 못 채우면 그 변형은 **객관식이 안 나온다.**
+    //    `$1\\le y\\le9$` 는 후보가 셋뿐이라(위쪽 $2$·아래쪽 $0$·$3$)
+    //    던진다. 35V 실측으로 1,200판 중 객관식을 못 만든 판이 107 → 186 이 됐다.
+    //    단답형은 그대로 나가므로 문항을 잃지는 않는다.
+    expect(() =>
+      asMultipleChoice({ ...stem, answer: "$1\\le y\\le9$" }, createRng(1)),
+    ).toThrow();
   });
 });

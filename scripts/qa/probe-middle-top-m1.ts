@@ -6,8 +6,8 @@
  * (「0 은 «깨끗»과 «못 셈»을 안 가른다」 — 이 저장소가 여러 번 데인 자리).
  *
  * ```bash
- * npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 12건 (양성 7 · 음성 5)
- * npx tsx scripts/qa/probe-middle-top-m1.ts              # ㉠㉡㉢ + 해설 깊이
+ * npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 16건 (양성 9 · 음성 7)
+ * npx tsx scripts/qa/probe-middle-top-m1.ts              # ㉠㉡㉢ + 해설 깊이 + 해설 높이
  * npx tsx scripts/qa/probe-middle-top-m1.ts --overlap    # ㉢ 만 (천장 포함)
  * ```
  *
@@ -31,6 +31,12 @@
  *
  * **⑸ 해설 깊이** — 규칙을 옮겨 적지 않는다. `probe-middle-solution-depth.ts` 의
  * `isThin` 을 **그대로 import** 한다(두 벌이 되면 한쪽만 고쳐도 아무도 모른다).
+ *
+ * **⑹ 해설 높이** — 「걸음을 건너뛰지 않는다」(D-116 ⑹)와 **정면으로 부딪히는 축**이다.
+ * 후보를 한 줄씩 적으면 해설이 길어지고, 정답지 한 단(964.8px)을 넘으면 **그 쪽 다른
+ * 문항의 해설이 통째로 사라진다.** 3차 물결의 `53V` 가 1242px 로 착지할 뻔했는데
+ * 이 자에도 저술자의 시험 92개에도 그 축이 **아예 없었다** — 값·글자만 보고 지면을
+ * 안 봤기 때문이다(2026-08-24 「값이 맞으면 시험이 다 초록이다」와 같은 자리).
  *
  * ## 🔴 이 자가 못 보는 것
  *
@@ -74,6 +80,8 @@ import {
   swappedMultiplierAnswer,
   upperOnlySum,
 } from "../../src/lib/middle/m1Top3";
+import { JASEUP_MEASURED_PX } from "../../src/lib/printGeometry";
+import { estimateSolutionPx } from "../../src/lib/printOverflow";
 import { isThin } from "./probe-middle-solution-depth";
 import { isDirectScript } from "../import/isDirectScript";
 
@@ -645,6 +653,60 @@ function reportDepth(rows: Row[]): void {
   }
 }
 
+/**
+ * 🔴 **⑹ 해설이 정답지 한 단에 들어가나** — 2026-09-02 에 세운 축.
+ *
+ * ## 왜 이 축이 필요한가
+ *
+ * 3차 물결의 `53V` 가 해설 **1242.3px** 로 착지할 뻔했다. 정답지 한 단은
+ * `JASEUP_MEASURED_PX.answerSolutionsFull` = 964.8px 이고, `.answerSolutions` 는
+ * `column-count:2` + `overflow:hidden` 이라 **넘친 해설은 «조금 잘리는» 것이 아니라
+ * 그 쪽 다른 문항의 해설을 밀어내 통째로 없앤다**(`printOverflow.ts` 주석).
+ *
+ * 그런데 그 결함을 **이 판정기도, 저술자의 시험 92개도, 관문 어느 것도 못 봤다** —
+ * 값 검산·미설명 수·KaTeX·냄새 자는 전부 「값이 맞나」와 「글자가 옳나」를 볼 뿐
+ * 「지면에 들어가나」를 안 본다. 심화 갈래는 해설이 **후보를 하나씩 적어야** 하므로
+ * (D-116 ⑹) 이 축이 구조적으로 위험한 자리다. 그래서 **갈래마다 재어 찍는다.**
+ *
+ * ⚠️ 자를 옮겨 적지 않는다 — 제품 `estimateSolutionPx` 를 **그대로 부른다.**
+ */
+function reportSolutionHeight(): void {
+  const col = JASEUP_MEASURED_PX.answerSolutionsFull;
+  console.log(
+    `\n## ⑹ 해설이 정답지 한 단(${col}px)에 들어가나 — 제품 \`estimateSolutionPx\` 를 그대로 부른다\n`,
+  );
+  console.log(
+    "⚠️ 넘치면 **그 쪽 다른 문항의 해설이 통째로 사라진다**(`column-count:2` + `overflow:hidden`).",
+  );
+  console.log(
+    "심화 갈래는 후보를 한 줄씩 적으므로(D-116 ⑹) 여기가 구조적으로 위험한 자리다.\n",
+  );
+  console.log("| 유형 | 표본 | 중앙 | 최대 | 한 단 초과 | 한 단 대비 |");
+  console.log("|---|---|---|---|---|---|");
+  // 🔴 보고용 표본(24판)으로는 최댓값을 못 믿는다 — 여기서만 씨앗을 넓힌다.
+  const WIDE = 60;
+  for (const e of topEntries()) {
+    const px: number[] = [];
+    for (let s = 0; s < WIDE; s += 1) {
+      for (const v of VARIANTS) {
+        px.push(
+          estimateSolutionPx(
+            generateMiddleProblem(e.key, 1000003 + s * 7919, v).solution,
+          ),
+        );
+      }
+    }
+    px.sort((a, b) => a - b);
+    const over = px.filter((h) => h > col).length;
+    const max = px[px.length - 1]!;
+    console.log(
+      `| \`${e.key.split("|")[2]}\` | ${px.length} | ${px[Math.floor(px.length / 2)]!.toFixed(0)}px | ` +
+        `**${max.toFixed(0)}px** | ${over === 0 ? "0" : `🔴 **${pct(over, px.length)} (${over}/${px.length})**`} | ` +
+        `${((max / col) * 100).toFixed(0)}% |`,
+    );
+  }
+}
+
 function reportRubric(): void {
   console.log(
     "\n## 반증 ④ — 같은 소단원의 **연산·기본·응용**을 사람이 읽을 목록\n",
@@ -790,6 +852,28 @@ function selftest(): number {
     "생략 표지가 있어도 중간 결과가 셋이면 얇지 않다",
   );
 
+  // ⑹ 해설 높이 — 제품 자를 그대로 쓴다. 그 자가 «아니오»를 낼 수 있는지 여기서 본다.
+  //    🔴 양성만 두면 「길면 잡는다」만 재고 **거짓 경보는 구조적으로 0** 이 된다.
+  const oneColumn = JASEUP_MEASURED_PX.answerSolutionsFull;
+  add(
+    "양성 ⑹: 아주 긴 해설은 정답지 한 단을 넘는다",
+    true,
+    estimateSolutionPx(
+      Array.from(
+        { length: 60 },
+        (_, i) =>
+          `$${i}$ 이것은 아주 긴 해설 줄이며 지면에서 여러 줄을 먹는다.`,
+      ).join("\n"),
+    ) > oneColumn,
+    `한 단은 ${oneColumn}px — 60줄짜리 해설은 그것을 넘어야 한다`,
+  );
+  add(
+    "음성 ⑹: 짧은 해설은 한 단을 안 넘는다",
+    false,
+    estimateSolutionPx("따라서 구하는 값은 $12$이다.") > oneColumn,
+    "이 자가 아무 글이나 «넘친다»고 하면 아무것도 못 잰다",
+  );
+
   // 굳힘 함수 자체 — 답을 아는 손 계산과 맞대 본다
   add(
     "양성: 31T 굳힘 함수가 손 계산과 같다",
@@ -844,6 +928,7 @@ function main(): void {
   reportShortcuts(rows);
   reportBinding(rows);
   reportDepth(rows);
+  reportSolutionHeight();
   reportOverlap(rows);
 }
 

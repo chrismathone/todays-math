@@ -54,6 +54,8 @@ import { bareNumbers } from "@/lib/elementary/rules";
 import { createRng } from "@/lib/elementary/rng";
 import { renderMathHtml } from "@/lib/math/renderMathHtml";
 import { pointsAtFigure } from "@/lib/middle/figureReference";
+import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
+import { estimateSolutionPx } from "@/lib/printOverflow";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
 import {
   boxCountsLeavingLast,
@@ -89,7 +91,7 @@ import {
   pageNumbers,
 } from "../../../scripts/qa/probe-middle-top-m1";
 import { extensionNumberReason } from "../helpers/rpmCatalog";
-import { josaMismatches, pageSmells } from "../helpers/midPage";
+import { josaMismatches, numVowelFinal, pageSmells } from "../helpers/midPage";
 
 const K51 = "1-1|최대공약수와 최소공배수|51V";
 const K52 = "1-1|정비례와 반비례|52V";
@@ -168,6 +170,51 @@ function gcd2(a: number, b: number): number {
     y = t;
   }
   return x;
+}
+
+function lcm2(a: number, b: number): number {
+  return Math.abs((a / gcd2(a, b)) * b);
+}
+
+/**
+ * 우리말 수관형사 — 생성기의 `koreanCount` 를 **여기 다시 적는다.**
+ *
+ * 🔴 가져다 쓰면 동어반복이라 아무것도 안 지킨다. 검증이 「셈말이 개수와 맞나」를
+ * 재는데 그 셈말을 생성기에서 가져오면 늘 맞는다 — 2026-09-02 검증에서 실제로
+ * `koreanCount(n)` 를 `koreanCount(n-1)` 로 바꾼 변이가 **92/92 초록**이었다.
+ */
+const COUNT_WORD: Record<number, string> = {
+  3: "세",
+  4: "네",
+  5: "다섯",
+  6: "여섯",
+  7: "일곱",
+  8: "여덟",
+};
+
+/** 목록 글자(`$3$, $4$, $5$`)에서 수를 읽는다. */
+function readList(listTex: string): number[] {
+  return [...listTex.matchAll(/\$(\d+)\$/g)].map((m) => Number(m[1]));
+}
+
+/**
+ * 🔴 **수 뒤 주격 조사 「이/가」** — 공용 `josaMismatches` 가 **못 보는 사각**이다.
+ *
+ * 그 자는 「이」를 `JOSA_PAIR` 에 넣지 않는다(서술격 「$5$이다」와 안 갈려서
+ * 거짓 경보가 쏟아진다 — 그 파일 주석에 적혀 있다). 그래서 「가를 써야 할 자리에
+ * 이를 썼다」는 **구조적으로 0** 이다. 여기서는 조사가 붙는 **자리를 못 박아**
+ * 그 사각을 메운다 — 뒤에 오는 말이 정해져 있으므로 서술격과 헷갈릴 일이 없다.
+ *
+ * 받침 판정은 `midPage.numVowelFinal`(시험 쪽 규칙)에서 온다 — 생성기의
+ * `m2Josa` 를 부르면 동어반복이다.
+ */
+function subjectJosaFor(n: number): "이" | "가" {
+  return numVowelFinal(n) ? "가" : "이";
+}
+
+/** 목적격 조사 「을/를」 — 위와 같은 까닭으로 자리를 못 박아 잰다. */
+function objectJosaFor(n: number): "을" | "를" {
+  return numVowelFinal(n) ? "를" : "을";
 }
 
 /**
@@ -614,6 +661,14 @@ const EXPLAINED: Record<string, (content: string) => Set<number>> = {
   [K52]: (content) => {
     const { x0, yA, yB } = read52(content);
     const out = new Set<number>([x0, yA, yB]);
+    // 🔴 창의 양 끝은 **기약분수**로 그린다(2026-09-02). 약분한 분자·분모가
+    //    지면에 새로 나오므로 여기에 같이 적는다 — 안 적으면 이 축이
+    //    「고친 것」을 결함으로 신고한다.
+    for (const y of [yA, yB]) {
+      const g = gcd2(y, x0);
+      out.add(y / g);
+      out.add(x0 / g);
+    }
     for (const a of integersMeetingSegment(x0, yA, yB)) out.add(a);
     out.add(integersMeetingSegment(x0, yA, yB).reduce((s, v) => s + v, 0));
     return out;
@@ -624,7 +679,8 @@ const EXPLAINED: Record<string, (content: string) => Set<number>> = {
     const alive = boxCountsLeavingLast(a, b, c);
     for (const n of alive) out.add(n);
     out.add(alive.reduce((s, v) => s + v, 0));
-    for (let n = 1; n <= alive[alive.length - 1]! + 1; n += 1) {
+    // 🔴 훑기는 $n=2$ 부터다 — 발문의 「여러 개의 상자」가 $n=1$ 을 이미 뺐다.
+    for (let n = 2; n <= alive[alive.length - 1]! + 1; n += 1) {
       out.add(n);
       out.add(n - 1);
       const s = simulateLastBox(a, b, c, n);
@@ -1115,6 +1171,22 @@ describe("중1 3차 확대 갈래 — ㉠ 창이 한쪽 끝만인가", () => {
       ).not.toBe(x!);
       expect(n1! + d1!, `${seed}/${v}`).not.toBe(x!);
       expect(n2! + d2!, `${seed}/${v}`).not.toBe(x!);
+      /**
+       * 🔴 **3항 지름길** — 「최소공배수 = 두 수의 곱」이라 잘못 아는 학생.
+       *
+       * 판정기의 `obviousCandidates` 는 **두 수 짝**(합·차·곱·gcd·lcm)만 만들어서
+       * 이 부류를 **표현할 수 없다** — 그 자로는 구조적으로 0이다(2026-09-02
+       * 검증이 짚은 자리). 그래서 여기서 직접 잰다.
+       *
+       * 두 분모가 서로소이면 $d_1d_2=\mathrm{lcm}(d_1,d_2)$ 라 이 값이 참 답과
+       * **정확히** 같아진다(전수 실측 68/3384 = 2.01%). 생성기가 그 판을 버린다.
+       */
+      expect(d1! * d2! + gcd2(n1!, n2!), `${seed}/${v} 곱=lcm 지름길`).not.toBe(
+        x!,
+      );
+      expect(gcd2(d1!, d2!), `${seed}/${v} 두 분모가 서로소다`).toBeGreaterThan(
+        1,
+      );
     }
   });
 
@@ -1258,14 +1330,44 @@ describe("중1 3차 확대 갈래 — 해설의 나열 줄을 한 줄씩 다시 
     for (const [seed, v] of BULK) {
       const p = build(K53, seed, v);
       const { a, b, c } = read53(p.content);
-      const lines = p.solution
-        .split("\n")
-        .filter((l) => /^상자가 \$\d+\$개이면/.test(l));
+      const all = p.solution.split("\n");
+      /**
+       * 🔴 **차림 세 줄의 «주장»** — 여기서 $a$ 와 $c$ 가 뒤바뀌면 뒤의 모든 줄과
+       * 어긋나는데, 값 검산은 문자 $n$ 이 든 식을 판정 대상에서 빼므로 못 본다.
+       * 그래서 **역할을 수에 묶어** 읽는다.
+       */
+      const [setA, setB] = grab(
+        /^상자의 개수를 \$n\$이라 하면 한 상자에 \$(\d+)\$개씩 담고 \$(\d+)\$개가 남으므로 과자는 모두 \$(\d+)\\times n\+(\d+)\$\(개\)이다\.$/,
+        all[0]!,
+        "53V 차림 첫 줄",
+      );
+      expect([num(setA!), num(setB!)], `${seed}/${v} 첫 조건`).toEqual([a, b]);
+      const [packC, packC2] = grab(
+        /^이 과자를 \$(\d+)\$개씩 담으면 앞의 \$n-1\$개 상자에 \$(\d+)\\times\(n-1\)\$\(개\)가 들어가고, 마지막 상자에는 나머지가 담긴다\.$/,
+        all[1]!,
+        "53V 차림 둘째 줄",
+      );
+      expect([num(packC!), num(packC2!)], `${seed}/${v} 둘째 조건`).toEqual([
+        c,
+        c,
+      ]);
+      const [critC, critLo, critHi] = grab(
+        /^마지막 한 상자에만 \$(\d+)\$개보다 적게 담기고 빈 상자가 생기지 않으려면 마지막 상자에 담기는 과자가 \$(\d+)\$개부터 \$(\d+)\$개까지이어야 한다\. 상자는 여러 개이므로 \$n\$의 값을 \$2\$부터 차례로 넣어 본다\.$/,
+        all[2]!,
+        "53V 기준 줄",
+      );
+      expect(
+        [num(critC!), num(critLo!), num(critHi!)],
+        `${seed}/${v} 기준`,
+      ).toEqual([c, 1, c - 1]);
+      const lines = all.filter((l) => /^\$n=\d+\$이면/.test(l));
       const seenN: number[] = [];
       const aliveFromText: number[] = [];
       for (const line of lines) {
-        const [nRaw, totalRaw] = grab(
-          /^상자가 \$(\d+)\$개이면 과자는 \$[^$]*?=(\d+)\$\(개\)/,
+        // ⓐ 과자 수 · ⓑ 앞 상자 몫 — 한 줄에서 **네 수**를 한꺼번에 읽는다.
+        //    앞 상자가 하나뿐이면 `$c\times1=c$` 대신 `$c$` 라 쓰므로 `=` 는 선택이다.
+        const [nRaw, totalRaw, prevRaw, needRaw] = grab(
+          /^\$n=(\d+)\$이면 과자 \$[^$]*?=(\d+)\$\(개\) 중 앞의 \$(\d+)\$개 상자에 \$(?:[^$]*=)?(\d+)\$\(개\)가 담기므로/,
           line,
           "53V 나열 줄",
         );
@@ -1273,53 +1375,77 @@ describe("중1 3차 확대 갈래 — 해설의 나열 줄을 한 줄씩 다시 
         const total = num(totalRaw!);
         seenN.push(n);
         const sim = simulateLastBox(a, b, c, n);
-        // ⓐ 과자 수
         expect(total, `${seed}/${v} n=${n} 과자 수`).toBe(sim.total);
+        expect(num(prevRaw!), `${seed}/${v} n=${n} 앞 상자 수`).toBe(n - 1);
+        expect(num(needRaw!), `${seed}/${v} n=${n} 앞 상자 몫`).toBe(
+          c * (n - 1),
+        );
         const alive = /조건에 맞는다\.$/.test(line);
         const dead = /조건에 맞지 않는다\.$/.test(line);
         expect(alive !== dead, `${seed}/${v} n=${n} 판정 문구`).toBe(true);
         if (sim.ranOut || sim.last <= 0) {
           // ⓒ 「빈 상자가 생긴다」쪽 — 까닭이 바뀌어도 결론은 같으므로 까닭까지 본다.
           expect(line, `${seed}/${v} n=${n} 까닭`).toContain(
-            "빈 상자가 생기므로",
+            "마지막 상자에 담을 과자가 없다. 빈 상자가 생기므로",
           );
-          const [needRaw] = grab(
-            /과자가 \$[^$]*?=(\d+)\$\(개\) 필요하다/,
-            line,
-            "53V 빈 상자 줄",
-          );
-          expect(num(needRaw!), `${seed}/${v} n=${n} 필요한 개수`).toBe(
-            c * (n - 1),
+          // 그 줄은 마지막 상자 개수를 **적으면 안 된다** — 담을 것이 없다.
+          expect(line, `${seed}/${v} n=${n} 없는 수`).not.toContain(
+            "마지막 상자는",
           );
           expect(alive).toBe(false);
         } else {
-          // ⓑ 마지막 상자 개수
-          const [lastRaw] = grab(
-            /마지막 상자에 담기는 과자는 \$(?:[^$]*=)?(\d+)\$\(개\)이다/,
+          // ⓓ 마지막 상자 개수 — **뺄셈의 두 항까지** 읽어 맞댄다(걸음을 건너뛰면 안 된다).
+          const [minu, subt, lastRaw] = grab(
+            /마지막 상자는 \$(\d+)-(\d+)=(\d+)\$\(개\)이다\./,
             line,
             "53V 마지막 상자 줄",
           );
+          expect(num(minu!), `${seed}/${v} n=${n} 피감수`).toBe(sim.total);
+          expect(num(subt!), `${seed}/${v} n=${n} 감수`).toBe(c * (n - 1));
           expect(num(lastRaw!), `${seed}/${v} n=${n} 마지막 상자`).toBe(
             sim.last,
           );
           expect(alive, `${seed}/${v} n=${n} 판정`).toBe(sim.last <= c - 1);
-          if (!alive) {
-            expect(line, `${seed}/${v} n=${n} 까닭`).toContain("적지 않으므로");
+          // ⓔ **까닭이 기준과 같은 수를 말하나** — 살면 「$1$개 이상 $c-1$개 이하」,
+          //    죽으면 「$c$개보다 적지 않다」. 기준을 흔들면 여기서 빨개진다.
+          if (alive) {
+            const [loRaw, hiRaw] = grab(
+              /\$(\d+)\$개 이상 \$(\d+)\$개 이하이므로 조건에 맞는다\.$/,
+              line,
+              "53V 살아남는 까닭",
+            );
+            expect([num(loRaw!), num(hiRaw!)], `${seed}/${v} n=${n}`).toEqual([
+              1,
+              c - 1,
+            ]);
+          } else {
+            const [limRaw] = grab(
+              /\$(\d+)\$개보다 적지 않으므로 조건에 맞지 않는다\.$/,
+              line,
+              "53V 죽는 까닭",
+            );
+            expect(num(limRaw!), `${seed}/${v} n=${n} 까닭의 기준`).toBe(c);
           }
         }
         if (alive) aliveFromText.push(n);
       }
-      // 훑은 자리가 $1$ 부터 빠짐없이 이어져야 「모두」가 참이 된다.
+      // 🔴 훑은 자리가 $2$ 부터 빠짐없이 이어져야 「모두」가 참이 된다. $1$ 이 아니라
+      //    $2$ 인 까닭은 발문이 「**여러 개**의 상자」라고 이미 $n=1$ 을 뺐기 때문이다.
       expect(seenN, `${seed}/${v} 훑은 자리`).toEqual(
-        Array.from({ length: seenN.length }, (_, k) => k + 1),
+        Array.from({ length: seenN.length }, (_, k) => k + 2),
       );
       // 🔴 반증 — 훑은 범위 **밖**까지 전수로 돌려 같은 집합이 나오는지 본다.
+      //    $n=1$ 까지 포함해 훑는다(발문이 뺐다는 주장 자체를 여기서 확인한다).
       const brute: number[] = [];
       for (let n = 1; n <= 500; n += 1) {
         const s = simulateLastBox(a, b, c, n);
         if (!s.ranOut && s.last >= 1 && s.last <= c - 1) brute.push(n);
       }
       expect(aliveFromText, `${seed}/${v} 모두`).toEqual(brute);
+      expect(
+        brute[0]!,
+        `${seed}/${v} $n=1$ 이 살아남으면 발문이 거짓말한다`,
+      ).toBeGreaterThanOrEqual(2);
       // 🔴 **위쪽 끝이 «왜» 죽는지도 한 줄 보여야 한다** (D-116 ⑹). 마지막 나열 줄이
       //    살아남는 경우이면 학생은 「왜 여기서 끝나나」를 못 본다 — 마무리 문장의
       //    주장이 지면 어디에서도 확인되지 않는다. 변이 시험이 이 자리를 찾아 줬다
@@ -1327,10 +1453,26 @@ describe("중1 3차 확대 갈래 — 해설의 나열 줄을 한 줄씩 다시 
       expect(seenN[seenN.length - 1]!, `${seed}/${v} 위쪽 끝`).toBe(
         brute[brute.length - 1]! + 1,
       );
-      const [listRaw, sumRaw] = grab(
-        /구하는 값은 \$([\d+]+)=(\d+)\$이다\.$/,
+      // 🔴 마무리 줄의 상한이 **실제로 훑은 마지막 자리**를 가리켜야 한다.
+      const [capRaw] = grab(
+        /^상자가 \$(\d+)\$개보다 많으면 .*빈 상자가 생기므로 조건에 맞지 않는다\.$/m,
+        p.solution,
+        "53V 마무리 줄",
+      );
+      expect(num(capRaw!), `${seed}/${v} 마무리 상한`).toBe(
+        seenN[seenN.length - 1]!,
+      );
+      // 🔴 **결론 줄의 «목록»과 «셈말»** — 2026-09-02 검증이 짚은 사각이다.
+      //    종전 판은 합식(`$5+6+7=18$`)만 봤으므로, 목록에서 후보를 하나 빼거나
+      //    셈말을 「세」→「네」로 바꿔도 92개 시험이 전부 초록이었다.
+      const [listWordsRaw, countWordRaw, listRaw, sumRaw] = grab(
+        /따라서 조건에 맞는 상자의 개수는 ((?:\$\d+\$(?:, )?)+)의 (\S+) 가지이고, 구하는 값은 \$([\d+]+)=(\d+)\$이다\.$/,
         p.solution,
         "53V 마지막 줄",
+      );
+      expect(readList(listWordsRaw!), `${seed}/${v} 결론 목록`).toEqual(brute);
+      expect(countWordRaw!, `${seed}/${v} 결론 셈말`).toBe(
+        COUNT_WORD[brute.length],
       );
       expect(listRaw!.split("+").map(Number)).toEqual(brute);
       expect(num(sumRaw!)).toBe(brute.reduce((s, n) => s + n, 0));
@@ -1426,28 +1568,57 @@ describe("중1 3차 확대 갈래 — 해설의 나열 줄을 한 줄씩 다시 
       const p = build(K52, seed, v);
       const { x0, yA, yB } = read52(p.content);
       // 「$a$ 의 값이 이것이면 그래프가 점 A 를 지난다」는 주장을 **대입해서** 확인한다.
-      const [n1, d1, got1] = grab(
-        /\$(?:\d+)\\times\\dfrac\{(\d+)\}\{(\d+)\}=(\d+)\$이므로 그래프는 점 \$\\mathrm\{A\}\$를 지나고/,
+      //
+      // 🔴 2026-09-02 — 창의 양 끝을 **기약분수**로 그리게 고쳤다. 그래서 분모가
+      //    $x_0$ 이라고 못 박을 수 없다. 대신 ⑴ 곱하는 수가 $x_0$ 이고 ⑵ 분수가
+      //    **기약**이며 ⑶ 그 값에 $x_0$ 을 곱하면 끝점이 나오는지를 정수 산술로 본다.
+      const [mulA, n1, d1, got1] = grab(
+        /\$(\d+)\\times\\dfrac\{(\d+)\}\{(\d+)\}=(\d+)\$이므로 그래프는 점 \$\\mathrm\{A\}\$를 지나고/,
         p.solution,
         "52V 아래 경계",
       );
-      expect(num(d1!)).toBe(x0);
-      expect((num(n1!) / num(d1!)) * x0).toBe(yA);
+      expect(num(mulA!), `${seed}/${v} 아래 경계의 곱하는 수`).toBe(x0);
+      expect(
+        gcd2(num(n1!), num(d1!)),
+        `${seed}/${v} 아래 경계가 기약이 아니다`,
+      ).toBe(1);
+      expect(num(n1!) * x0, `${seed}/${v} 아래 경계 값`).toBe(yA * num(d1!));
       expect(num(got1!)).toBe(yA);
-      const [n2, d2, got2] = grab(
-        /\$(?:\d+)\\times\\dfrac\{(\d+)\}\{(\d+)\}=(\d+)\$이므로 그래프는 점 \$\\mathrm\{B\}\$를 지나고/,
+      const [mulB, n2, d2, got2] = grab(
+        /\$(\d+)\\times\\dfrac\{(\d+)\}\{(\d+)\}=(\d+)\$이므로 그래프는 점 \$\\mathrm\{B\}\$를 지나고/,
         p.solution,
         "52V 위 경계",
       );
-      expect(num(d2!)).toBe(x0);
-      expect((num(n2!) / num(d2!)) * x0).toBe(yB);
+      expect(num(mulB!), `${seed}/${v} 위 경계의 곱하는 수`).toBe(x0);
+      expect(
+        gcd2(num(n2!), num(d2!)),
+        `${seed}/${v} 위 경계가 기약이 아니다`,
+      ).toBe(1);
+      expect(num(n2!) * x0, `${seed}/${v} 위 경계 값`).toBe(yB * num(d2!));
       expect(num(got2!)).toBe(yB);
+      const ints = integersMeetingSegment(x0, yA, yB);
+      // 🔴 **나열 줄 ↔ 셈말 ↔ 합 줄, 셋이 서로 맞나** — 2026-09-02 검증이 짚은 사각이다.
+      //    종전 판은 합식만 봤으므로 나열에서 첫 후보를 빼거나 셈말을 하나 줄여도
+      //    92개 시험이 전부 초록이었다(지면은 스스로 모순인 채 나간다).
+      const [loTex, hiTex, listWordsRaw, countWordRaw] = grab(
+        /그러므로 \$a\$의 값은 \$(\\dfrac\{\d+\}\{\d+\})\$부터 \$(\\dfrac\{\d+\}\{\d+\})\$까지의 수이고, 이 가운데 정수는 ((?:\$\d+\$(?:, )?)+)의 (\S+) 개이다\./,
+        p.solution,
+        "52V 나열 줄",
+      );
+      // 범위 줄의 두 끝이 경계 두 줄의 그것과 **같은 글자**여야 한다.
+      expect(loTex!, `${seed}/${v} 범위의 아래 끝`).toBe(
+        `\\dfrac{${num(n1!)}}{${num(d1!)}}`,
+      );
+      expect(hiTex!, `${seed}/${v} 범위의 위 끝`).toBe(
+        `\\dfrac{${num(n2!)}}{${num(d2!)}}`,
+      );
+      expect(readList(listWordsRaw!), `${seed}/${v} 나열`).toEqual(ints);
+      expect(countWordRaw!, `${seed}/${v} 셈말`).toBe(COUNT_WORD[ints.length]);
       const [listRaw, sumRaw] = grab(
         /구하는 값은 \$([\d+]+)=(\d+)\$이다\.$/,
         p.solution,
         "52V 마지막 줄",
       );
-      const ints = integersMeetingSegment(x0, yA, yB);
       expect(listRaw!.split("+").map(Number)).toEqual(ints);
       // 🔴 반증 — 목록에 **없는** 정수는 전부 밖이어야 한다.
       for (let a = -600; a <= 600; a += 1) {
@@ -1456,6 +1627,354 @@ describe("중1 3차 확대 갈래 — 해설의 나열 줄을 한 줄씩 다시 
       }
       expect(num(sumRaw!)).toBe(ints.reduce((s, n) => s + n, 0));
       expect(num(sumRaw!)).toBe(p.facts.x!);
+    }
+  });
+});
+
+/**
+ * 🔴 **해설의 «말»을 지킨다** — 2026-09-02 검증이 짚은 사각.
+ *
+ * 종전 92개 시험은 해설의 **수**만 지키고 **주장**(논리 문장)은 하나도 안 봤다.
+ * 검증자가 「배수↔약수」·「공배수↔공약수」·「최소공배수↔최대공약수」·「분자는 가장
+ * 작아야↔분모는 가장 커야」를 맞바꾸고 굳힘의 핵심 줄을 **통째로 지웠는데 92/92 가
+ * 전부 초록**이었다. 2차 물결의 치명 결함(해설이 스스로 모순인 두 줄)과 **같은
+ * 모양**이다 — 값 검산·미설명 수·KaTeX 는 이 축을 구조적으로 못 본다.
+ *
+ * ⚠️ 여기서 쓰는 정규식은 **역할을 수에 묶는다.** 「$q$ 가 $55$ 의 배수」에서
+ *    $55$ 가 **분모**여야 하고 「$p$ 가 $16$ 의 약수」에서 $16$ 이 **분자**여야
+ *    한다 — 낱말만 바꿔치기하면 수가 제자리를 벗어나 빨개진다.
+ */
+describe("중1 3차 확대 갈래 — 해설의 «주장»이 옳은 자리를 가리키나", () => {
+  it("`51V` — 배수·약수·공배수·공약수·최소공배수·최대공약수가 제자리다 (220판)", () => {
+    for (const [seed, v] of BULK) {
+      const p = build(K51, seed, v);
+      const { n1, d1, n2, d2 } = read51(p.content);
+      const best = smallestByBruteForce(n1, d1, n2, d2);
+      const lines = p.solution.split("\n");
+      // 🔴 줄 수를 못 박는다 — 굳힘 줄을 통째로 지우면 여기서 먼저 빨개진다.
+      expect(lines.length, `${seed}/${v} 해설 줄 수`).toBe(8);
+      // ⓐ 첫 두 줄 — 「$q$ 가 **분모**의 배수, $p$ 가 **분자**의 약수」
+      const [mul1, div1] = grab(
+        /이 값이 자연수가 되려면 \$q\$가 \$(\d+)\$의 배수이고 \$p\$가 \$(\d+)\$의 약수이어야 한다\.$/,
+        lines[0]!,
+        "51V 첫 줄의 주장",
+      );
+      expect([num(mul1!), num(div1!)], `${seed}/${v} 첫 분수`).toEqual([
+        d1,
+        n1,
+      ]);
+      const [mul2, div2] = grab(
+        /^같은 까닭으로 .*자연수가 되려면 \$q\$가 \$(\d+)\$의 배수이고 \$p\$가 \$(\d+)\$의 약수이어야 한다\.$/,
+        lines[1]!,
+        "51V 둘째 줄의 주장",
+      );
+      expect([num(mul2!), num(div2!)], `${seed}/${v} 둘째 분수`).toEqual([
+        d2,
+        n2,
+      ]);
+      // ⓑ 셋째 줄 — 「$q$ 는 두 **분모**의 **공배수**, $p$ 는 두 **분자**의 **공약수**」
+      const [ca, cb, cc, cd] = grab(
+        /^즉 \$q\$는 두 분모 \$(\d+)\$, \$(\d+)\$의 공배수이고, \$p\$는 두 분자 \$(\d+)\$, \$(\d+)\$의 공약수이다\.$/,
+        lines[2]!,
+        "51V 셋째 줄의 주장",
+      );
+      expect(
+        [num(ca!), num(cb!), num(cc!), num(cd!)],
+        `${seed}/${v} 공배수·공약수`,
+      ).toEqual([d1, d2, n1, n2]);
+      // ⓒ **굳힘 줄** — 「분자는 가장 작아야 · 분모는 가장 커야」와
+      //    「$q$ 는 최소공배수 · $p$ 는 최대공약수」. 이 줄이 이 유형의 «중»이다.
+      expect(
+        /^\$\\dfrac\{q\}\{p\}\$가 가장 작으려면 분자 \$q\$는 가장 작아야 하고 분모 \$p\$는 가장 커야 하므로, \$q\$는 두 분모의 최소공배수이고 \$p\$는 두 분자의 최대공약수이다\.$/.test(
+          lines[3]!,
+        ),
+        `${seed}/${v} 굳힘 줄: ${lines[3]}`,
+      ).toBe(true);
+      // ⓓ 값 줄 — 「두 **분모**를 소인수분해 … 두 분모의 **최소공배수**는 $q$」
+      const [f1, f2, lcmVal] = grab(
+        /^두 분모를 소인수분해하면 \$(\d+)=[^$]*\$, \$(\d+)=[^$]*\$이므로 두 분모의 최소공배수는 \$(?:[^$]*=)?(\d+)\$이다\.$/,
+        lines[4]!,
+        "51V 최소공배수 줄",
+      );
+      expect([num(f1!), num(f2!)], `${seed}/${v} 소인수분해한 두 수`).toEqual([
+        d1,
+        d2,
+      ]);
+      expect(num(lcmVal!), `${seed}/${v} 최소공배수 값`).toBe(best.q);
+      expect(num(lcmVal!), `${seed}/${v} 최소공배수 재계산`).toBe(lcm2(d1, d2));
+      const [g1, g2, gcdVal] = grab(
+        /^두 분자를 소인수분해하면 \$(\d+)=[^$]*\$, \$(\d+)=[^$]*\$이므로 두 분자의 최대공약수는 \$(?:[^$]*=)?(\d+)\$이다\.$/,
+        lines[5]!,
+        "51V 최대공약수 줄",
+      );
+      expect([num(g1!), num(g2!)], `${seed}/${v} 소인수분해한 두 분자`).toEqual(
+        [n1, n2],
+      );
+      expect(num(gcdVal!), `${seed}/${v} 최대공약수 값`).toBe(best.p);
+      expect(num(gcdVal!), `${seed}/${v} 최대공약수 재계산`).toBe(gcd2(n1, n2));
+      // ⓔ 마지막 줄 — $p$ 와 $q$ 가 뒤바뀌면 여기서 걸린다.
+      const [pRaw, qRaw] = grab(
+        /^따라서 \$p=(\d+)\$, \$q=(\d+)\$이므로 구하는 값은 \$\d+\+\d+=\d+\$이다\.$/,
+        lines[7]!,
+        "51V 마지막 줄",
+      );
+      expect([num(pRaw!), num(qRaw!)], `${seed}/${v} p·q`).toEqual([
+        best.p,
+        best.q,
+      ]);
+    }
+  });
+
+  it("`54V` — 첫 줄의 계수 배치와 마무리(상한) 줄의 주장이 참이다 (220판)", () => {
+    for (const [seed, v] of BULK) {
+      const p = build(K54, seed, v);
+      const { p: pp, q, t } = read54(p.content);
+      const lines = p.solution.split("\n");
+      /**
+       * ⓐ **첫 줄의 계수 배치.** $a$ 는 $p$점짜리, $b$ 는 $q$점짜리의 개수이므로
+       * 식은 $p\times a+q\times b=T$ 여야 한다. 둘을 맞바꾸면 바로 다음 줄
+       * (「$T-q\times b$ 가 $p$ 의 배수」)과 정면으로 어긋나는데, 종전 시험은
+       * 그 식을 **판정 대상에서 빼고 있었다**(`isPureArithmetic` 이 문자 $a$·$b$
+       * 때문에 건너뛴다). 그래서 맞바꾼 지면이 92/92 초록이었다.
+       */
+      const [decA, decB, coefA, coefB, total] = grab(
+        /^맞힌 \$(\d+)\$점짜리 문제의 개수를 \$a\$, 맞힌 \$(\d+)\$점짜리 문제의 개수를 \$b\$라 하면 \$(\d+)\\times a\+(\d+)\\times b=(\d+)\$이고/,
+        lines[0]!,
+        "54V 첫 줄",
+      );
+      expect(num(decA!), `${seed}/${v} $a$ 의 배점`).toBe(pp);
+      expect(num(decB!), `${seed}/${v} $b$ 의 배점`).toBe(q);
+      expect(num(coefA!), `${seed}/${v} $a$ 의 계수`).toBe(pp);
+      expect(num(coefB!), `${seed}/${v} $b$ 의 계수`).toBe(q);
+      expect(num(total!), `${seed}/${v} 총점`).toBe(t);
+      // 둘째 줄도 같은 배점을 써야 한다 — 첫 줄만 고치면 여기서 갈린다.
+      const [subQ, divP] = grab(
+        /^\$b\$의 값을 \$1\$부터 차례로 넣어 \$\d+-(\d+)\\times b\$가 \$(\d+)\$의 배수가 되는지 확인한다\.$/,
+        lines[1]!,
+        "54V 둘째 줄",
+      );
+      expect([num(subQ!), num(divP!)], `${seed}/${v} 훑기 줄의 배점`).toEqual([
+        q,
+        pp,
+      ]);
+      /**
+       * ⓑ **마무리(상한) 줄** — 이 심화상 문항의 「모두」를 떠받치는 유일한 근거다.
+       * 종전 시험은 이 줄을 **한 글자도 안 읽었다**: 임계 $b$ 를 하나 줄이면
+       * 바로 윗줄이 그 $b$ 에서 답을 구했는데 이 줄이 그것을 부정하는 지면이
+       * 나오는데도 92/92 초록이었다(`arithmeticEquationFailures` 는 `=` 가 든
+       * 순수 산술만 보고, 그 줄의 임계값·배점에는 `=` 가 없다).
+       */
+      const stopLine = lines[lines.length - 2]!;
+      const [stopRaw, qRaw, mulQ, mulStop, prod, restP, askP] = grab(
+        /^\$b\$의 값이 \$(\d+)\$ 이상이면 \$(\d+)\$점짜리 문제만으로 얻는 점수가 \$(\d+)\\times(\d+)=(\d+)\$\(점\) 이상이 되어 남는 점수가 \$(\d+)\$점보다 작아지므로 \$(\d+)\$점짜리 문제를 한 문제도 맞힐 수 없다\.$/,
+        stopLine,
+        "54V 마무리 줄",
+      );
+      const stop = num(stopRaw!);
+      expect(num(qRaw!), `${seed}/${v} 마무리의 배점`).toBe(q);
+      expect([num(mulQ!), num(mulStop!)], `${seed}/${v} 곱의 두 항`).toEqual([
+        q,
+        stop,
+      ]);
+      expect(num(prod!), `${seed}/${v} 곱`).toBe(q * stop);
+      expect(
+        [num(restP!), num(askP!)],
+        `${seed}/${v} 남는 점수의 기준`,
+      ).toEqual([pp, pp]);
+      // 🔴 **주장이 참인가** — 임계에서 남는 점수가 $p$ 보다 작아야 하고(맞다),
+      //    바로 앞자리에서는 **작지 않아야** 한다(임계가 헐겁지 않다).
+      expect(t - q * stop, `${seed}/${v} 임계에서 남는 점수`).toBeLessThan(pp);
+      expect(
+        t - q * (stop - 1),
+        `${seed}/${v} 임계 바로 앞은 아직 살아 있어야 한다`,
+      ).toBeGreaterThanOrEqual(pp);
+      // 그리고 훑은 마지막 자리가 임계 바로 앞이어야 이어진다.
+      expect(stop - 1, `${seed}/${v} 훑기와 마무리가 이어지나`).toBe(
+        lastBToCheck(pp, q, t),
+      );
+      /**
+       * ⓒ **결론 줄의 목록과 셈말.** 후보가 넷·다섯인 조합이 전수의 41% 라
+       * 드문 자리가 아닌데, 셈말을 늘 「세」로 고정해도 92/92 초록이었다.
+       */
+      const found = scorePairs(pp, q, t);
+      const [listWordsRaw, countWordRaw, listRaw, sumRaw] = grab(
+        /따라서 \$a\$의 값은 ((?:\$\d+\$(?:, )?)+)의 (\S+) 가지이고, 구하는 값은 \$([\d+]+)=(\d+)\$이다\.$/,
+        lines[lines.length - 1]!,
+        "54V 결론 줄",
+      );
+      expect(readList(listWordsRaw!), `${seed}/${v} 결론 목록`).toEqual(
+        found.map((k) => k.a),
+      );
+      expect(countWordRaw!, `${seed}/${v} 결론 셈말`).toBe(
+        COUNT_WORD[found.length],
+      );
+      expect(listRaw!.split("+").map(Number)).toEqual(found.map((k) => k.a));
+      expect(num(sumRaw!)).toBe(answerNumber(p.answer));
+    }
+  });
+
+  /**
+   * 🔴 **수 뒤 주격 조사 「이/가」** — 공용 `josaMismatches` 가 **못 보는 자리**다.
+   *
+   * ⑴ 그 자는 「이」를 `JOSA_PAIR` 에 안 넣는다(서술격 「$5$이다」와 안 갈려서
+   *    거짓 경보가 쏟아진다). 그래서 「가를 써야 할 자리에 이를 썼다」는 0 이다.
+   * ⑵ `52V` 는 더 나쁘다 — 수식이 `)` 로 끝나 `trailingReadNumber` 가 `null` 이라
+   *    **800/800 전량을 건너뛴다.** 모듈 머리말은 「공용 자를 그대로 쓴다」고 적었지만
+   *    이 유형에서는 **구조적으로 0** 이었다(「0 은 «깨끗»과 «못 셈»을 안 가른다」).
+   *
+   * 여기서는 조사가 붙는 **자리를 못 박아** 잰다 — 뒤에 오는 말이 정해져 있으므로
+   * 서술격과 헷갈릴 일이 없다. 받침 규칙은 시험 쪽 `numVowelFinal` 에서 온다.
+   */
+  it("🔴 `51V`·`52V` 의 조사 자리를 **직접** 잰다 (공용 자의 사각, 220판)", () => {
+    // 눈금 — 이 자가 «아니오» 를 낼 수 있는가. 받침 있는 수는 「이/을」, 없는 수는 「가/를」.
+    expect([subjectJosaFor(36), subjectJosaFor(10), subjectJosaFor(7)]).toEqual(
+      ["이", "이", "이"],
+    );
+    expect([subjectJosaFor(4), subjectJosaFor(59), subjectJosaFor(25)]).toEqual(
+      ["가", "가", "가"],
+    );
+    expect([objectJosaFor(63), objectJosaFor(34)]).toEqual(["을", "를"]);
+    // 그리고 공용 자가 이 자리들을 **정말 못 보는지** 확인한다 — 못 본다는 사실이
+    // 참이라야 이 시험이 뜻을 가진다(참이 아니게 되면 여기서 알려 준다).
+    expect(josaMismatches("두 점 $\\mathrm{B}(4, 59)$이 있다")).toEqual([]);
+    expect(josaMismatches("$36$이 서로소이며")).toEqual([]);
+    let seen51 = 0;
+    let seen52 = 0;
+    for (const [seed, v] of BULK) {
+      const p51 = build(K51, seed, v);
+      const { d1 } = read51(p51.content);
+      const [num51, josa51] = grab(
+        /\$(\d+)\$([이가]) 서로소이며/,
+        p51.solution,
+        "51V 조사 자리",
+      );
+      seen51 += 1;
+      // 조사가 붙은 수가 **첫 분수의 분모**여야 한다 — 아니면 자리를 잘못 잡은 것이다.
+      expect(num(num51!), `${seed}/${v} 51V 조사가 붙은 수`).toBe(d1);
+      expect(josa51!, `${seed}/${v} 51V $${d1}$ 뒤 조사`).toBe(
+        subjectJosaFor(d1),
+      );
+      const p52 = build(K52, seed, v);
+      const { yB } = read52(p52.content);
+      const [yContent, josaContent] = grab(
+        /\$\\mathrm\{B\}\(\d+, (\d+)\)\$([이가]) 있다/,
+        p52.content,
+        "52V 발문 조사 자리",
+      );
+      const [ySolution, josaSolution] = grab(
+        /\$\\mathrm\{B\}\(\d+, (\d+)\)\$([을를]) 이은 선분이므로/,
+        p52.solution,
+        "52V 해설 조사 자리",
+      );
+      seen52 += 1;
+      // 「읽을 때 마지막에 오는 수」는 점 $\mathrm{B}$ 의 $y$좌표다.
+      expect(
+        [num(yContent!), num(ySolution!)],
+        `${seed}/${v} 52V 읽는 수`,
+      ).toEqual([yB, yB]);
+      expect(josaContent!, `${seed}/${v} 52V 발문 $${yB}$ 뒤 조사`).toBe(
+        subjectJosaFor(yB),
+      );
+      expect(josaSolution!, `${seed}/${v} 52V 해설 $${yB}$ 뒤 조사`).toBe(
+        objectJosaFor(yB),
+      );
+    }
+    // 🔴 **그 줄을 실제로 읽었는가** — 0 건이면 「깨끗」이 아니라 「못 셈」이다.
+    expect(seen51, "51V 조사 자리를 한 번도 안 읽었다").toBe(BULK.length);
+    expect(seen52, "52V 조사 자리를 한 번도 안 읽었다").toBe(BULK.length);
+  });
+});
+
+/**
+ * 🔴 **정답지 한 단을 넘으면 옆 문항 해설이 통째로 사라진다.**
+ *
+ * `.answerSolutions` 는 `column-count:2` + `overflow:hidden` 이라, 넘친 해설은
+ * «조금 잘리는» 것이 아니라 **그 쪽 다른 문항의 해설을 밀어내 없앤다**
+ * (`printOverflow.ts` `assessAnswerKeyRisk` 주석).
+ *
+ * ⚠️ **이 축이 통째로 시험 밖이었다.** 값 검산·미설명 수·KaTeX·냄새 자 어느 것도
+ *    「해설이 지면에 들어가나」를 못 본다 — 그래서 `53V` 가 **1242px**(등록 1,4xx
+ *    유형 중 혼자 한 단 초과, 2위가 872px)로 착지할 뻔했다. 씨앗 200×변형 3 =
+ *    600판에서 **317판(52.8%)** 이 한 단 초과였다.
+ *
+ * 자를 **제품에서 그대로 부른다**(`estimateSolutionPx`) — 규칙을 옮겨 적지 않는다.
+ * 상한은 **문턱이 아니라 실측 기록**이다: 커지면 빨개져야 한다.
+ */
+describe("중1 3차 확대 갈래 — 해설이 정답지 한 단에 들어가나", () => {
+  /** 실측(2026-09-02, 씨앗 200 × 변형 3 = 600판, 제품 `estimateSolutionPx`). */
+  const MEASURED_PX: Record<string, number> = {
+    [K51]: 408.8,
+    [K52]: 392.8,
+    [K53]: 689.7, // 고치기 전 **1242.3**
+    [K54]: 654.1,
+  };
+  /** 여유 — 실측이 이보다 커지면 빨개진다. 지면 한 줄(17.825px)의 두 배쯤. */
+  const SLACK_PX = 36;
+
+  it("🔴 자가 살아 있는가 — 긴 글은 한 단을 넘고 짧은 글은 안 넘는다", () => {
+    const col = JASEUP_MEASURED_PX.answerSolutionsFull;
+    const long = Array.from(
+      { length: 60 },
+      (_, i) =>
+        `$${i}$ 이것은 아주 긴 해설 줄이며 지면에서 여러 줄을 먹는다. 그러므로 높이가 커야 한다.`,
+    ).join("\n");
+    expect(
+      estimateSolutionPx(long),
+      "긴 글이 한 단을 안 넘는다",
+    ).toBeGreaterThan(col);
+    expect(
+      estimateSolutionPx("짧다."),
+      "짧은 글이 한 단을 넘는다",
+    ).toBeLessThan(200);
+  });
+
+  it("🔴 네 유형 전부 한 단(964.8px) 안에 들어간다 — 600판", () => {
+    const col = JASEUP_MEASURED_PX.answerSolutionsFull;
+    for (const key of KEYS) {
+      let worst = 0;
+      let over = 0;
+      let n = 0;
+      for (let s = 0; s < 200; s += 1) {
+        for (let v = 0; v < 3; v += 1) {
+          const px = estimateSolutionPx(
+            build(key, 1000003 + s * 7919, v).solution,
+          );
+          worst = Math.max(worst, px);
+          if (px > col) over += 1;
+          n += 1;
+        }
+      }
+      expect(n, `${key} 표본`).toBe(600);
+      expect(over, `${key} 한 단 초과`).toBe(0);
+      expect(worst, `${key} 최대 ${worst.toFixed(1)}px`).toBeLessThanOrEqual(
+        MEASURED_PX[key]! + SLACK_PX,
+      );
+    }
+  });
+
+  it("🔴 `53V` 는 중1 확대 갈래의 상한(700px) 안이다 — 훑는 자리 상한이 그것을 지킨다", () => {
+    // `top > 8` 을 지우거나 나열 줄을 늘리면 이 줄이 먼저 빨개진다.
+    let worst = 0;
+    for (let s = 0; s < 200; s += 1) {
+      for (let v = 0; v < 3; v += 1) {
+        const p = build(K53, 1000003 + s * 7919, v);
+        worst = Math.max(worst, estimateSolutionPx(p.solution));
+        expect(p.facts.top!, `${s}/${v} 훑는 자리`).toBeLessThanOrEqual(8);
+      }
+    }
+    expect(worst, `53V 최대 ${worst.toFixed(1)}px`).toBeLessThan(700);
+  });
+
+  it("🔴 `54V` 의 해설 길이 상한(`bStop <= 13`)이 산출물에 실제로 걸린다", () => {
+    // 그 상한을 지우면 나열 줄이 12 → 23 이 되어 해설이 한 단을 넘는다.
+    for (const [seed, v] of BULK) {
+      const p = build(K54, seed, v);
+      const rows = p.solution
+        .split("\n")
+        .filter((l) => /^\$b=\d+\$이면/.test(l));
+      expect(p.facts.bstop!, `${seed}/${v} bStop`).toBeLessThanOrEqual(13);
+      expect(rows.length, `${seed}/${v} 나열 줄`).toBe(p.facts.bstop! - 1);
+      expect(rows.length, `${seed}/${v} 나열 줄 상한`).toBeLessThanOrEqual(12);
     }
   });
 });
@@ -1589,10 +2108,20 @@ describe("중1 3차 확대 갈래 — 판정기(`probe-middle-top-m1`)의 축을
      * 아래 넷은 **전부 그 아래**라 「굳힘을 안 읽고 집어서 맞는 자리」가 아니다.
      */
     const MEASURED: Record<string, number> = {
-      [K51]: 0.02, // 실측 0.4%
-      [K52]: 0.08, // 실측 4.5% (우연 14~25%)
-      [K53]: 0.1, // 실측 6.9% (우연 20~33%)
-      [K54]: 0.04, // 실측 1.0% (우연 20~33%)
+      [K51]: 0.02, // 실측 0.5% (`합`·`양수합`)
+      [K52]: 0.05, // 실측 3.2% (`차 #0#3`, 우연 14~25%)
+      // 🔴 실측 **10.5%**(`최소공배수 #0#2` = $\mathrm{lcm}(a,c)$, 우연 20~33%).
+      //    2026-09-02 에 6.9% 에서 올랐다 — **지름길이 새로 생긴 것이 아니라
+      //    분모가 좁아졌다.** 해설이 정답지 한 단을 넘어(1242px) 훑는 자리를
+      //    $12\to8$ 로 줄였고, 그래서 유효 조합이 140 → 67 이 되면서 원래 있던
+      //    우연 판의 «비율»이 커졌다. 전수 67조합으로 다시 세면 최고 규칙이
+      //    **9.0%**(`합 #2#3`=$2c$ · `합 #0#2`=$a+c$)이고 `최소공배수 #0#2` 는
+      //    **6.0%(4/67)** 다 — 220판 표본이 그 4조합을 더 자주 뽑았을 뿐이다.
+      //    ⚠️ 우연 수준(후보 셋~다섯이면 20~33%)의 **절반 아래**라 「굳힘을 안 읽고
+      //    집어서 맞는 자리」가 아니다. 그리고 개념 지름길(`withoutBinding` =
+      //    `looseBoxCounts`)은 아래 시험에서 **0%** 다.
+      [K53]: 0.11,
+      [K54]: 0.03, // 실측 1.4% (우연 20~33%)
     };
     for (const key of KEYS) {
       const tally = new Map<string, number>();

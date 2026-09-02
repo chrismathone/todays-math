@@ -18,6 +18,7 @@ import {
   generateMiddleSet,
   registeredTypes,
 } from "../../lib/middle/generate";
+import { M1_LINEAR_APPLY } from "../../lib/middle/m1LinearApply";
 import type { MidProblem } from "../../lib/middle/types";
 import { josaMismatches } from "../helpers/midPage";
 
@@ -538,9 +539,21 @@ function firstNumber(text: string): number {
 }
 
 describe("중1 일차방정식의 활용 60유형", () => {
-  const entries = registeredTypes().filter(
-    (e) => e.rpmMinor === "일차방정식의 활용",
-  );
+  // 🔴 **모집단은 «이 모듈»이다 — 「중단원이 같은 등록 유형 전부」가 아니다.**
+  //    2026-09-02 확대 갈래 3차 물결이 같은 중단원에 `53V`·`54V` 를 세우자
+  //    이 검사가 62를 세고, 검산표 `VERIFY["53V"]` 가 없어 다섯이 빨개졌다.
+  //    아래 ⚠️ 주석은 **다른 중단원**만 막고 있었다 — 같은 중단원의 다른 모듈은
+  //    구조적으로 못 본다. 확대 갈래(`m1Top*.ts`, 접미사 T·U·V)는 이 명부 밖이고
+  //    제 시험(`middleM1Top*.test.ts`)이 따로 지킨다.
+  //    ⚠️ 그렇다고 「T·U·V 로 끝나면 뺀다」로 적으면 안 된다 — 다음 접미사가
+  //    오면 또 샌다. **어느 모듈인가**를 물어야 한다.
+  const entries = M1_LINEAR_APPLY;
+
+  it("이 모듈의 60유형이 실제로 등록돼 있다 — 모듈만 보면 «등록»을 안 지킨다", () => {
+    const registered = new Set(registeredTypes().map((e) => e.key));
+    expect(entries.length).toBeGreaterThan(0);
+    for (const e of entries) expect(registered.has(e.key), e.key).toBe(true);
+  });
 
   it("RPM 색인의 22유형 + 갈래 D 가 지은 38유형이 빈틈없이 등록돼 있다", () => {
     // 01~22 는 RPM 색인 그대로, 23~38 은 두 소단원을 10유형으로 채우려고 지은 것.
