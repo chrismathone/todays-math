@@ -52,8 +52,28 @@ import {
   naturalRootCandidates,
   ratioValue,
   solveSameRemainder,
-  M1_TOP,
 } from "../../src/lib/middle/m1Top";
+// 2차 물결(`m1Top2.ts`)의 굳힘 함수 — **규칙을 옮겨 적지 않는다.**
+// 이 자가 저마다 다시 구현하면 한쪽만 고쳐도 아무도 모른다.
+import {
+  allTriplesSum,
+  integerTriples,
+  tenDivisorNumbers,
+  unitDigitCycle,
+  unitDigitOfProduct,
+  valueFromReciprocalSum,
+  TRIPLES,
+} from "../../src/lib/middle/m1Top2";
+// 3차 물결(`m1Top3.ts`)의 굳힘 함수 — 여기서 다시 구현하지 않는다.
+import {
+  boxCountsLeavingLast,
+  integersMeetingSegment,
+  looseBoxCounts,
+  scorePairs,
+  smallestMultiplierFraction,
+  swappedMultiplierAnswer,
+  upperOnlySum,
+} from "../../src/lib/middle/m1Top3";
 import { isThin } from "./probe-middle-solution-depth";
 import { isDirectScript } from "../import/isDirectScript";
 
@@ -92,11 +112,29 @@ export function pageNumbers(content: string): number[] {
   return out;
 }
 
-/** 답에서 처음 나오는 수. */
-export function answerNumber(answer: string): number {
+/**
+ * 답에서 처음 나오는 수 — **없으면 `null`(판정 불가)**.
+ *
+ * 🔴 2026-09-02 수리. 종전 판은 수가 없으면 **던졌다.** 그런데 형제 유형의 답에는
+ * 수가 없는 것이 흔하다 — 실측으로 소단원 «정비례 관계 y=ax의 그래프» 형제 12개 중
+ * **4개**가 그렇다(`06`→`$y=-x$` · `08`→`증가한다.` · `09`→`$y=-x$` · `23`→`$y=bx$`).
+ * 그래서 그 소단원에 확대 갈래를 세우는 순간 `--overlap` 이 **그 자리에서 죽었다**
+ * (`Error: 답에 수가 없다: $y=-x$`). 「이 열쇠로는 못 잰다」와 「자가 고장 났다」는
+ * 다른 말인데 던지면 둘이 같아진다 — 그리고 죽은 자는 아무것도 안 지킨다.
+ *
+ * 참고로 「반비례 관계 y=a/x의 그래프」 쪽은 답이 전부 수를 품고 있어 **0건**이다.
+ * 이 결함은 정비례 쪽에만 있었고, 그래서 2차 물결까지는 드러나지 않았다.
+ */
+export function answerNumberOrNull(answer: string): number | null {
   const m = answer.match(/-?\d+(?:\.\d+)?/);
-  if (m === null) throw new Error(`답에 수가 없다: ${answer}`);
-  return Number(m[0]);
+  return m === null ? null : Number(m[0]);
+}
+
+/** 답에서 처음 나오는 수 — 우리 유형의 답은 반드시 수다. 없으면 던진다. */
+export function answerNumber(answer: string): number {
+  const v = answerNumberOrNull(answer);
+  if (v === null) throw new Error(`답에 수가 없다: ${answer}`);
+  return v;
 }
 
 function lcm(a: number, b: number): number {
@@ -169,17 +207,25 @@ export function koreanJaccard(a: string, b: string): number {
   return hit / (x.size + y.size - hit);
 }
 
-/** 「지면 수 + 정답」 열쇠 — 작은 집합에서 잘 듣는다. */
+/**
+ * 「지면 수 + 정답」 열쇠 — 작은 집합에서 잘 듣는다.
+ *
+ * 🔴 한쪽 답에 수가 없으면 **`null`(판정 불가)** 을 낸다. 던지지 않는다 —
+ * 위 `answerNumberOrNull` 주석 참조.
+ */
 export function numAnswerJaccard(
   aContent: string,
   aAnswer: string,
   bContent: string,
   bAnswer: string,
-): number {
-  const key = (c: string, ans: string): Set<string> =>
-    new Set([...pageNumbers(c).map(String), `=${answerNumber(ans)}`]);
-  const x = key(aContent, aAnswer);
-  const y = key(bContent, bAnswer);
+): number | null {
+  const na = answerNumberOrNull(aAnswer);
+  const nb = answerNumberOrNull(bAnswer);
+  if (na === null || nb === null) return null;
+  const key = (c: string, n: number): Set<string> =>
+    new Set([...pageNumbers(c).map(String), `=${n}`]);
+  const x = key(aContent, na);
+  const y = key(bContent, nb);
   let hit = 0;
   for (const w of x) if (y.has(w)) hit += 1;
   return hit / (x.size + y.size - hit);
@@ -204,17 +250,23 @@ type Row = {
  * `null` 은 「그 축이 이 유형에 **없다**」는 뜻이다 — 「0%」와 **다른 말**이라
  * 표에서도 따로 찍는다.
  */
-const AXES: Record<
-  string,
-  {
-    /** 굳힘 조건을 안 읽고 낼 수 있는 답. 없으면 `null`(축 없음). */
-    withoutBinding: (f: Record<string, number>) => number | null;
-    /** 굳힘 인자를 흔든 답. 원래와 같으면 굳힘이 장식이다. */
-    perturbed: (f: Record<string, number>) => number;
-    /** 후보 개수 — 우연 수준 $1/k$ 를 찍기 위해. `null` 이면 후보 목록이 없다. */
-    candidateCount: (f: Record<string, number>) => number | null;
-  }
-> = {
+export type Axis = {
+  /** 굳힘 조건을 안 읽고 낼 수 있는 답. 없으면 `null`(축 없음). */
+  withoutBinding: (f: Record<string, number>) => number | null;
+  /** 굳힘 인자를 흔든 답. 원래와 같으면 굳힘이 장식이다. */
+  perturbed: (f: Record<string, number>) => number;
+  /** 후보 개수 — 우연 수준 $1/k$ 를 찍기 위해. `null` 이면 후보 목록이 없다. */
+  candidateCount: (f: Record<string, number>) => number | null;
+};
+
+/**
+ * 🔴 **내보내는 까닭** — 등록(`generate.ts`)이 리드 몫이라, 새 물결의 유형은 이 자의
+ * 모집단(`registeredTypes()`)에 아직 없을 수 있다. 그러면 여기 적은 축이 **한 번도
+ * 안 돌고**, 등록되는 날에야 처음 돈다 — 그날 틀린 것이 드러나면 이미 늦다.
+ * 그래서 각 물결의 시험이 **이 표를 그대로 import 해서** 자기 유형의 축을 미리 댄다
+ * (`middleM1Top3.test.ts`). 규칙을 옮겨 적는 것이 아니라 **같은 것을 부르는 것**이다.
+ */
+export const AXES: Record<string, Axis> = {
   // 31T — 굳힘 조건(「나머지가 모두 같다」)을 지우면 문제 자체가 사라진다.
   // 그래서 ㉠ 은 「셋 중 둘만 읽으면 맞나」로 잰다(`thirdNumberMatters` 가 막는 것).
   "1-1|최대공약수와 최소공배수|31T": {
@@ -268,6 +320,117 @@ const AXES: Record<
         0,
       ),
     candidateCount: (f) => divisors(f.m!).length,
+  },
+
+  // ══ 2차 물결(`m1Top2.ts`) — 2026-09-02 에 등록했다 ══════════════
+  //
+  // 🔴 모집단을 등록에서 뽑도록 고친 뒤에도 이 넷은 「축(AXES)을 안 적었다」로
+  //    ㉠·㉡ 표에 **여덟 줄**이 빨갛게 찍히고 있었다. 그 빨간 줄의 뜻은
+  //    「이 유형들이 나쁘다」가 아니라 **「아무도 안 쟀다」**이다 — 손 목록으로
+  //    돌던 옛 판이었다면 넷이 **조용히 빠져** 「깨끗」으로 읽혔을 자리다.
+
+  // 41U — 굳힘은 「거듭제곱의 일의 자리는 네 개마다 되풀이된다」 하나다.
+  "1-1|소인수분해|41U": {
+    // 되풀이를 모르면 지수를 못 다루므로 「밑끼리만 곱해 일의 자리를 본다」
+    // (= 지수를 $1$ 로 본 것)가 가장 뻔한 지름길이다.
+    withoutBinding: (f) => (f.b1! * f.b2!) % 10,
+    // ⚠️ 지수를 **$4$ 의 배수만큼** 흔들면 주기 때문에 답이 그대로다 — 그것은
+    //    「굳힘이 장식」이 아니라 **내 변이가 뜻을 안 바꾼 것**이다(2026-08-21).
+    //    그래서 $1$ 만 흔든다. 생성기가 이 값을 이미 막고 있으므로 이 줄은
+    //    「그 가드가 산출물에 실제로 반영되는가」를 잰다 — 가드를 지우면 빨개진다.
+    perturbed: (f) => unitDigitOfProduct(f.b1!, f.e1! + 1, f.b2!, f.e2!),
+    // 후보 목록은 «두 주기표의 곱»이 낼 수 있는 서로 다른 일의 자리다.
+    candidateCount: (f) => {
+      const out = new Set<number>();
+      for (const d1 of unitDigitCycle(f.b1!)) {
+        for (const d2 of unitDigitCycle(f.b2!)) out.add((d1 * d2) % 10);
+      }
+      return out.size;
+    },
+  },
+  // 42U — 굳힘 조건은 「밑 $p$ 를 바꿔 가며 상한 안인지 하나씩 견준다」.
+  //       밑을 $2$ 로만 보고 멈추면 `facts.loose` 가 나온다.
+  "1-1|소인수분해|42U": {
+    withoutBinding: (f) => f.loose!,
+    // ⚠️ 상한을 $+1$ 만 흔들면 경계에 수가 없는 판에서 답이 그대로라
+    //    「뜻이 안 바뀌는 변이」가 된다. 새 $q$ 가 반드시 들어오도록 크게 흔든다.
+    perturbed: (f) =>
+      tenDivisorNumbers(f.limit! + 100).reduce((a, b) => a + b, 0),
+    candidateCount: (f) => f.count!,
+  },
+  // 43U — 굳힘 조건은 $\frac1a+\frac1b=s$. 지우면 식의 값이 안 정해져
+  //       답 자체가 없다(94T 와 같은 «축 없음»).
+  "1-1|문자의 사용과 식의 계산|43U": {
+    withoutBinding: () => null,
+    perturbed: (f) =>
+      valueFromReciprocalSum(f.s! + 1, f.p!, f.q!, f.r!, f.u!) ?? Number.NaN,
+    candidateCount: () => null,
+  },
+  // 44U — 굳힘 조건은 「세 수의 합이 **정수**」. 지우면 열 가지가 다 산다.
+  "1-1|정수와 유리수의 계산|44U": {
+    withoutBinding: (f) =>
+      allTriplesSum([f.n1!, f.n2!, f.n3!, f.n4!, f.n5!], f.L!),
+    // 「정수」의 뜻 자체를 흔든다 — 분자 세 개의 합이 $L$ 이 아니라
+    // $L+1$ 의 배수여야 한다면 살아남는 조합이 통째로 달라진다.
+    perturbed: (f) =>
+      integerTriples([f.n1!, f.n2!, f.n3!, f.n4!, f.n5!], f.L! + 1).reduce(
+        (a, k) => a + k.sum,
+        0,
+      ),
+    candidateCount: () => TRIPLES.length,
+  },
+
+  // ══ 3차 물결(`m1Top3.ts`) — 2026-09-02 ═══════════════════════════
+  //
+  // 🔴 등록(`generate.ts`)은 리드 몫이라 이 넷이 아직 `registeredTypes()` 에 없을 수
+  //    있다. 그때 이 항목들은 **잠자코 있다** — 모집단이 등록에서 오기 때문이다.
+  //    등록되는 순간 함께 재어지고, 안 적었으면 그 자리에 🔴 이 찍힌다.
+
+  // 51V — 굳힘은 「$q$ 는 두 분모의 공배수, $p$ 는 두 분자의 공약수」 둘이다.
+  "1-1|최대공약수와 최소공배수|51V": {
+    // 🔴 이 유형 고유의 지름길은 「굳힘을 안 읽은 답」이 아니라 **뒤집어 쓴 답**이다 —
+    //    분자에 최대공약수, 분모에 최소공배수를 넣는 흔한 오답. 그것이 참 답과 같으면
+    //    뒤집어 푼 학생과 옳게 푼 학생을 못 가른다(정찰이 실제로 그런 판을 만났다:
+    //    $\frac{28}{15}$, $\frac{42}{25}$ 에서 $14+75$ 와 $5+84$ 가 **둘 다 $89$**).
+    withoutBinding: (f) => swappedMultiplierAnswer(f.n1!, f.d1!, f.n2!, f.d2!),
+    // ⚠️ 분모 하나를 흔든다. $d_2$ 가 $d_1$ 의 약수이면 최소공배수가 $d_1$ 그대로라
+    //    흔들어도 답이 안 바뀌는데(그것이 이 축의 **음성 대조**다), 생성기가 그런 판을
+    //    버리므로 여기서는 늘 달라져야 한다.
+    perturbed: (f) => {
+      const got = smallestMultiplierFraction(f.n1!, f.d1!, f.n2!, f.d2! + 1);
+      return got.p + got.q;
+    },
+    // 후보 목록이 **아예 없다** — 값이 하나로 굳는다(94T·43U 와 같은 «축 없음»).
+    candidateCount: () => null,
+  },
+  // 52V — 굳힘은 「$x=x_0$ 에서 $y=ax_0$」과 「$a$ 가 커지면 그 값도 커진다」 둘이다.
+  "1-1|정비례와 반비례|52V": {
+    // 굳힘의 **절반**(아래 끝)을 안 읽고 「$ax_0$ 이 $y_B$ 이하」만 본 답.
+    withoutBinding: (f) => upperOnlySum(f.x0!, f.yb!),
+    // ⚠️ $y_\mathrm{B}$ 를 $x_0$ **미만**으로 흔들면 창이 안 바뀐다(음성 대조).
+    //    그래서 $x_0$ 만큼 올려 정수가 반드시 하나 더 들어오게 한다.
+    perturbed: (f) =>
+      integersMeetingSegment(f.x0!, f.ya!, f.yb! + f.x0!).reduce(
+        (a, b) => a + b,
+        0,
+      ),
+    candidateCount: (f) => f.cnt!,
+  },
+  // 53V — 굳힘 조건은 「마지막 한 상자에만 $c$개보다 적게 + 빈 상자 없음」.
+  "1-1|일차방정식의 활용|53V": {
+    // 그 조건의 **절반**(빈 상자 없음)만 읽고 멈춘 답.
+    withoutBinding: (f) =>
+      looseBoxCounts(f.a!, f.b!, f.c!).reduce((s, n) => s + n, 0),
+    perturbed: (f) =>
+      boxCountsLeavingLast(f.a!, f.b!, f.c! + 1).reduce((s, n) => s + n, 0),
+    candidateCount: (f) => f.cnt!,
+  },
+  // 54V — 굳힘 조건은 총점. 첫 해를 찾고 멈추면 `facts.first` 가 나온다.
+  "1-1|일차방정식의 활용|54V": {
+    withoutBinding: (f) => f.first!,
+    perturbed: (f) =>
+      scorePairs(f.p!, f.q!, f.t! + 1).reduce((s, k) => s + k.a, 0),
+    candidateCount: (f) => f.cnt!,
   },
 };
 
@@ -388,21 +551,28 @@ function reportOverlap(rows: Row[]): void {
     const p0 = generateMiddleProblem(e.key, SEEDS[0]!, 0);
     // 천장 — 같은 유형을 다른 씨앗으로 자기 자신과 견준다.
     let ceilNum = 0;
+    let ceilNumPairs = 0;
     let ceilJac = 0;
     let n = 0;
     for (let i = 0; i < mine.length; i += 1) {
       for (let j = i + 1; j < mine.length; j += 1) {
-        ceilNum += numAnswerJaccard(
+        const v = numAnswerJaccard(
           mine[i]!.content,
           mine[i]!.answer,
           mine[j]!.content,
           mine[j]!.answer,
         );
+        // 🔴 「수+정답」 열쇠로 못 재는 쌍은 **평균에서 빼고 세어 찍는다.** 0 으로
+        //    치면 천장이 낮아져 「이 열쇠로는 판정 불가」가 실제보다 더 자주 나온다.
+        if (v !== null) {
+          ceilNum += v;
+          ceilNumPairs += 1;
+        }
         ceilJac += koreanJaccard(mine[i]!.content, mine[j]!.content);
         n += 1;
       }
     }
-    ceilNum /= n;
+    ceilNum = ceilNumPairs === 0 ? Number.NaN : ceilNum / ceilNumPairs;
     ceilJac /= n;
     const section = p0.unitSection;
     const siblings = all.filter(
@@ -414,7 +584,8 @@ function reportOverlap(rows: Row[]): void {
       `\n### \`${e.key}\` (${p0.difficulty}) — 소단원 «${section}» 형제 ${siblings.length}`,
     );
     console.log(
-      `천장(자기 자신): 수+정답 **${ceilNum.toFixed(3)}** · 한글 Jaccard **${ceilJac.toFixed(3)}**` +
+      `천장(자기 자신): 수+정답 **${Number.isNaN(ceilNum) ? "판정 불가(답에 수가 없다)" : ceilNum.toFixed(3)}**` +
+        ` (잰 쌍 ${ceilNumPairs}/${n}) · 한글 Jaccard **${ceilJac.toFixed(3)}**` +
         `${ceilNum < CEILING_FLOOR ? "  ← 수+정답 천장이 문턱 아래다. 그 열쇠로는 **판정 불가**" : ""}`,
     );
     // 🔴 **분모** — 형제끼리는 원래 얼마나 닮았나. 이것 없이 내 값만 보면
@@ -448,8 +619,11 @@ function reportOverlap(rows: Row[]): void {
       };
     });
     for (const s of scored.sort((a, b) => b.jac - a.jac)) {
+      // 🔴 「판정 불가」를 **0.000 으로 찍지 않는다.** 0 으로 보이면 「안 닮았다」로
+      //    읽히는데 실은 **이 열쇠가 그 형제를 못 본다**는 뜻이다.
+      const num = s.num === null ? "판정 불가" : s.num.toFixed(3);
       console.log(
-        `| \`${s.key}\` | ${s.tier} | ${s.num.toFixed(3)} | **${s.jac.toFixed(3)}** |`,
+        `| \`${s.key}\` | ${s.tier} | ${num} | **${s.jac.toFixed(3)}** |`,
       );
     }
   }
@@ -557,8 +731,26 @@ function selftest(): number {
   add(
     "음성 ㉢: 무관한 지면은 수+정답이 낮다",
     false,
-    numAnswerJaccard("$12$와 $18$", "$6$", "$77$과 $91$", "$7$") > 0.3,
+    (numAnswerJaccard("$12$와 $18$", "$6$", "$77$과 $91$", "$7$") ?? 1) > 0.3,
     "겹치는 수가 없으면 0 이어야 한다",
+  );
+
+  // 🔴 2026-09-02 — 「답에 수가 없는 형제」. 종전 판은 **던져서** `--overlap` 이
+  //    그 자리에서 죽었다(소단원 «정비례 관계 y=ax의 그래프» 형제 12개 중 4개).
+  //    「이 열쇠로는 못 잰다」와 「자가 고장 났다」를 갈라야 한다 — 죽은 자는
+  //    아무것도 안 지킨다. 양성·음성을 **한 쌍**으로 둔다.
+  add(
+    "양성 ㉢: 답에 수가 없으면 «판정 불가»(null)를 낸다",
+    true,
+    numAnswerJaccard("$y=ax$의 그래프", "$27$", "네 정비례 관계", "$y=-x$") ===
+      null,
+    "형제 `06` 의 답 `$y=-x$` 에는 수가 없다 — 던지지 말고 판정 불가여야 한다",
+  );
+  add(
+    "음성 ㉢: 답에 수가 있으면 판정 불가가 아니다",
+    false,
+    numAnswerJaccard("$12$와 $18$", "$6$", "$12$와 $18$", "$6$") === null,
+    "이 자가 «판정 불가»를 **아무 때나** 내면 겹침을 영영 못 잰다",
   );
 
   // ㉢ 한글 Jaccard — 양성/음성

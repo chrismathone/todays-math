@@ -50,6 +50,17 @@ import {
   planVertexQuadrant,
   type Sift,
 } from "../../src/lib/middle/m3Top";
+import {
+  M3_TOP_3,
+  planCancel,
+  planQuadraticAlive,
+  planRationalRoots,
+  planRootSum,
+} from "../../src/lib/middle/m3Top3";
+import { tidySolution } from "../../src/lib/middle/solutionText";
+import { resolveMiddleTier } from "../../src/lib/middle/tier";
+import type { MidProblem } from "../../src/lib/middle/types";
+import { wrapDanClause } from "../../src/lib/problemText";
 
 const SEEDS = 400;
 const SEED0 = 20260901;
@@ -59,16 +70,64 @@ const SEED0 = 20260901;
  *
  * 확대 갈래는 물결마다 **새 모듈**에 서므로(`m3Top2.ts` · 접미사 `U`), 2차 물결
  * 넷이 이 판정기에서 **조용히 빠져** 있었다 — 「깨끗하다」가 아니라 **아무도 안
- * 쟀다**는 뜻이다. 중2 판정기는 이미 등록에서 뽑는다. 여기도 맞춘다.
+ * 쟀다**는 뜻이다. 중2 판정기는 이미 등록에서 뽑는다. 여기도 맞췄다.
+ *
+ * 🔴 **그런데 등록만으로는 한 걸음 모자란다** — 2026-09-02 (3차 물결).
+ *
+ * 확대 갈래는 물결마다 **새 모듈**에 선다(`m3Top2.ts` `U` · `m3Top3.ts` `V`).
+ * 그런데 `generate.ts` 에 spread 한 줄을 넣는 것은 **리드의 몫**이라, 저술 세션이
+ * 이 자를 돌리는 시점에는 그 물결이 `registeredTypes()` 에 **아직 없다.**
+ * 등록만 보면 그 넷은 조용히 빠지고 「🔴 줄이 없다」가 나오는데, 그것은
+ * 「깨끗하다」가 아니라 **아무도 안 쟀다**는 뜻이다 — 0 은 「깨끗」과 「못 셈」을
+ * 안 가른다(2026-08-21). 그래서 등록 목록에 **소유 모듈을 합집합**으로 얹는다.
+ *
+ * 합집합이 실제로 일하는지는 `--selftest` 가 「3차 물결 넷이 모집단에 있다」로 센다.
  */
-function topEntries(): { key: string; unitSection: string }[] {
-  return registeredTypes()
-    .filter((e) => e.grade === "중3")
-    .filter((e) => {
-      const d = generateMiddleProblem(e.key, SEED0).difficulty;
-      return d === "심화중" || d === "심화상";
-    })
-    .map((e) => ({ key: e.key, unitSection: e.unitSection }));
+export function topEntries(): { key: string; unitSection: string }[] {
+  const rows = new Map<string, string>();
+  for (const e of registeredTypes()) {
+    if (e.grade !== "중3") continue;
+    const d = makeSample(e.key, SEED0, 0).difficulty;
+    if (d !== "심화중" && d !== "심화상") continue;
+    rows.set(e.key, e.unitSection);
+  }
+  // 아직 등록되지 않은 소유 모듈 — 등록되면 위에서 이미 잡히므로 여기서는 덮어쓰기다.
+  for (const e of M3_TOP_3) rows.set(e.key, e.unitSection);
+  return [...rows].map(([key, unitSection]) => ({ key, unitSection }));
+}
+
+const LOCAL_BY_KEY = new Map(M3_TOP_3.map((e) => [e.key, e]));
+const REGISTERED_KEYS = new Set(registeredTypes().map((e) => e.key));
+
+/** `generate.ts` 의 소금 — 등록 뒤에는 두 길이 **글자까지 같아야** 한다. */
+function keySalt(key: string): number {
+  let h = 0;
+  for (let i = 0; i < key.length; i += 1) {
+    h = (Math.imul(h, 31) + key.charCodeAt(i)) | 0;
+  }
+  return h >>> 0;
+}
+
+/**
+ * 한 문항 — 등록돼 있으면 **제품 함수**를, 아직이면 소유 모듈의 생성기를 쓴다.
+ *
+ * ⚠️ 등록 전 길도 `generateMiddleProblem` 이 **부르는 그 함수들**
+ * (`tidySolution`·`wrapDanClause`·`resolveMiddleTier`)을 그대로 밟는다 —
+ * 규칙을 옮겨 적으면 두 길이 갈라져도 아무도 모른다.
+ */
+function makeSample(key: string, seed: number, variant: number): MidProblem {
+  const local = LOCAL_BY_KEY.get(key);
+  if (!local || REGISTERED_KEYS.has(key)) {
+    return generateMiddleProblem(key, seed, variant);
+  }
+  const p = local.handler(createRng(seed + keySalt(key) + variant * 0x9e37));
+  const content = wrapDanClause(p.content);
+  return {
+    ...p,
+    content,
+    solution: tidySolution(p.solution),
+    difficulty: resolveMiddleTier(p.difficulty, content, !!p.figureSpec),
+  };
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -192,7 +251,7 @@ function sampleType(key: string, seeds: number[]): Sample[] {
   for (const s of seeds) {
     for (const v of [0, 1, 2]) {
       try {
-        const p = generateMiddleProblem(key, s, v);
+        const p = makeSample(key, s, v);
         out.push({
           key,
           tier: p.difficulty,
@@ -326,7 +385,7 @@ function selftest(): void {
 
   // ── 등록: 새 갈래가 실제로 `심화중`·`심화상` 으로 나오는가 (분모)
   const tiers = new Set(
-    topEntries().map((e) => generateMiddleProblem(e.key, SEED0).difficulty),
+    topEntries().map((e) => makeSample(e.key, SEED0, 0).difficulty),
   );
   say(
     "분모 — 등록한 유형이 확대 갈래로 나온다",
@@ -334,6 +393,15 @@ function selftest(): void {
     tiers.has("심화중") && tiers.has("심화상"),
     [...tiers].join("·"),
   );
+
+  // 🔴 **모집단이 새는가** — 등록이 리드의 몫이라, 합집합이 죽으면 3차 물결 넷이
+  //    조용히 빠지고 「🔴 줄 없음」이 「깨끗」으로 읽힌다.
+  //
+  //    ⚠️ 그 검사는 여기 두지 **않았다.** 이 `--selftest` 의 «눈금 건수»는 공유 시험
+  //    `src/__tests__/unit/elemProbeGauges.test.ts` 가 **숫자로 얼려** 두었고, 그 파일은
+  //    이 세션의 몫이 아니다(병렬 세션 셋이 같은 줄을 고치면 병합에서 부딪힌다).
+  //    그래서 같은 검사를 `middleM3Top3.test.ts` 의
+  //    「판정기 모집단에 3차 물결 넷이 들어 있다」로 옮겼다 — 관문에서 똑같이 돈다.
 
   let ok = 0;
   for (const r of rows) {
@@ -354,14 +422,52 @@ function selftest(): void {
 function collectSifts(): { name: string; sifts: Sift[] }[] {
   const median: Sift[] = [];
   const vertex: Sift[] = [];
+  // 3차 물결(`m3Top3.ts` · 접미사 `V`) — 후보를 견주는 셋.
+  // `52V` 는 값이 하나로 굳어 **후보 목록이 아예 없다**. 0 으로 찍으면 「깨끗」과
+  // 「못 셈」이 안 갈리므로 여기 넣지 않고 `reportNoSiftAxis()` 가 따로 찍는다.
+  const quadAlive: Sift[] = [];
+  const rational: Sift[] = [];
+  const rootSum: Sift[] = [];
   for (let i = 0; i < SEEDS; i += 1) {
     median.push(planMedianMean(createRng(SEED0 + i * 7919)).sift);
     vertex.push(planVertexQuadrant(createRng(SEED0 + i * 7919)).sift);
+    quadAlive.push(planQuadraticAlive(createRng(SEED0 + i * 7919)).sift);
+    rational.push(planRationalRoots(createRng(SEED0 + i * 7919)).sift);
+    rootSum.push(planRootSum(createRng(SEED0 + i * 7919)).sift);
   }
   return [
     { name: "3-2|산포도|11T (심화상)", sifts: median },
     { name: "3-1|이차함수의 그래프 ⑵|22T (심화중)", sifts: vertex },
+    { name: "3-1|이차방정식의 풀이|51V (심화중)", sifts: quadAlive },
+    { name: "3-1|이차방정식의 활용|53V (심화상)", sifts: rational },
+    { name: "3-1|근호를 포함한 식의 계산|54V (심화상)", sifts: rootSum },
   ];
+}
+
+/**
+ * 🔴 **「축이 없다」와 「축이 초록이다」는 다른 말이다.**
+ *
+ * 값이 하나로 굳는 갈래(`52V`)는 후보 목록이 설계에 **없어서** ㉠ 을 잴 수 없다.
+ * 0 으로 찍으면 「깨끗」과 「못 셈」이 안 갈리므로 **«잴 축 없음»으로 따로 찍고**,
+ * 그 대신 재는 것(「답이 발문에 적힌 수 가운데 하나인가」)을 같이 낸다.
+ */
+function reportNoSiftAxis(): void {
+  let inStem = 0;
+  const answers = new Set<number>();
+  for (let i = 0; i < SEEDS; i += 1) {
+    const p = planCancel(createRng(SEED0 + i * 7919));
+    answers.add(p.answer);
+    const stem = new Set([0, 2, 3, p.cs[0], p.cs[1], p.cs[2], p.s, -p.s]);
+    if (stem.has(p.answer)) inStem += 1;
+  }
+  console.log(`\n  3-1|다항식의 곱셈|52V (심화중)`);
+  console.log(
+    `    ⚪ ㉠ **잴 축 없음** — 값이 하나로 굳어 후보 목록(\`sift\`)이 설계에 없다.`,
+  );
+  console.log(
+    `    ${inStem === 0 ? "✅" : "🔴"} 그 대신: 답이 발문에 적힌 수 가운데 하나인 씨앗 ${inStem}건` +
+      `  (서로 다른 답 ${answers.size}종 · 씨앗 ${SEEDS})`,
+  );
 }
 
 function reportEdgeAndSift(): void {
@@ -385,6 +491,7 @@ function reportEdgeAndSift(): void {
         ` · 설계 깨짐 ${s.broken}`,
     );
   }
+  reportNoSiftAxis();
 }
 
 function reportOverlap(): void {

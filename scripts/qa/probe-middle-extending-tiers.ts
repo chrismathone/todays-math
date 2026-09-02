@@ -249,7 +249,14 @@ function runAnchor(keys: string[]): void {
  */
 type Erasure = { name: string; values: string[] };
 
-function erasures(key: string, p: MidProblem): Erasure[] {
+/**
+ * ⚠️ **왜 내보내나** — 이 자의 모집단은 `registeredTypes()` 다(손 목록이 아니다,
+ * `d93eeeed`). 그래서 **리드가 `generate.ts` 에 넣기 전에는** 새 물결의 유형이
+ * 여기 안 들어오고, 그 사이 이 표에 적은 줄이 **한 번도 안 돌아 본 채로** 남는다.
+ * 「지울 조건을 안 적었다」가 안 뜬다고 «적었다»가 아니다 — 안 세어졌을 뿐이다.
+ * 등록 전에도 모듈이 낸 문항을 이 표에 직접 대 볼 수 있게 내보낸다.
+ */
+export function erasures(key: string, p: MidProblem): Erasure[] {
   const f = p.facts;
   // ── 2차 물결(D-116, 2026-09-02) — 접미사 `U` ────────────────────────────
   if (key === "2-1|유리수와 순환소수|31U") {
@@ -308,6 +315,52 @@ function erasures(key: string, p: MidProblem): Erasure[] {
         ],
       },
     ];
+  }
+  // ── 3차 물결(D-116, 2026-09-02) — 접미사 `V` ─────────────────────────────
+  if (key === "2-1|일차부등식|35V") {
+    // 굳힘은 「$x-y$ 의 각 변에 **음수 $-1$ 을 곱해** 부등호의 방향을 바꾼 뒤 더한다」.
+    // 그 걸음을 지우면 두 범위를 그대로 빼게 되어 답의 두 끝이 안쪽으로 밀린다.
+    const { s1, d1, d2 } = f as Record<string, number>;
+    return [
+      { name: "뒤집기 걸음 지움", values: [String((s1! - d1!) / 2)] },
+      // $x-y$ 의 위끝을 안 읽으면(= 흔들면) 답의 왼쪽 끝이 따라 움직인다.
+      {
+        name: "$x-y$ 의 위끝 흔들기",
+        values: [String((s1! - (d2! + 2)) / 2)],
+      },
+    ];
+  }
+  if (key === "2-1|연립일차방정식의 활용|36V") {
+    // 굳힘은 **전체 평균**이다 — 그것이 두 인원의 비를 정한다. 지우면 비를 모르므로
+    // 다음 시험의 전체 평균이 비마다 달라진다(값이 하나로 안 남는다).
+    const { avgA, avgB, riseA, riseB } = f as Record<string, number>;
+    const values: string[] = [];
+    for (let p2 = 1; p2 <= 6; p2 += 1) {
+      for (let q2 = 1; q2 <= 6; q2 += 1) {
+        const numer = (avgA! + riseA!) * p2 + (avgB! + riseB!) * q2;
+        if (numer % (p2 + q2) !== 0) continue;
+        values.push(String(numer / (p2 + q2)));
+      }
+    }
+    return [{ name: "전체 평균 지움", values }];
+  }
+  if (key === "2-1|연립일차방정식|37V") {
+    // 굳힘은 **상수항 견주기**다 — 계수비만으로는 후보 둘이 다 산다.
+    const { r } = f as Record<string, number>;
+    return [{ name: "상수항 견주기 지움", values: [String(r!), String(-r!)] }];
+  }
+  if (key === "2-1|연립일차방정식의 활용|38V") {
+    // 굳힘은 「각 종류를 **적어도 한 개씩**」이다 — 지우면 $x$ 의 창이 양쪽으로
+    // 넓어져 가짓수가 달라진다. 소거를 안 쓰고 전수 대입으로 다시 센다.
+    const { p1, p2, p3, n, total } = f as Record<string, number>;
+    let c = 0;
+    for (let x = 0; x <= n!; x += 1) {
+      for (let y = 0; x + y <= n!; y += 1) {
+        const z = n! - x - y;
+        if (p1! * x + p2! * y + p3! * z === total!) c += 1;
+      }
+    }
+    return [{ name: "「각각 적어도 한 개씩」 지움", values: [String(c)] }];
   }
   if (key === "2-1|연립일차방정식|90") {
     // 비 조건을 지운다 — 비를 모르면 $k$ 가 안 굳고 $m$ 도 안 굳어야 한다.
@@ -370,8 +423,8 @@ function erasures(key: string, p: MidProblem): Erasure[] {
   return [];
 }
 
-/** 정답 문자열에서 수만 뽑는다 — `$840\,\mathrm{cm}^2$` → `840`. */
-function answerNumber(answer: string): string {
+/** 정답 문자열에서 수만 뽑는다 — `$840\,\mathrm{cm}^2$` → `840`. (내보내는 까닭은 `erasures` 와 같다.) */
+export function answerNumber(answer: string): string {
   const m = /-?\d+/.exec(answer.replace(/\\,\\mathrm\{cm\}(\^2)?/g, ""));
   return m ? m[0] : answer;
 }
@@ -446,7 +499,8 @@ function numberKey(p: MidProblem): Set<string> {
   return new Set(nums);
 }
 
-function overlapPair(
+/** 내보내는 까닭은 `erasures` 와 같다 — 등록 전에도 새 물결을 이 자로 재 볼 수 있게. */
+export function overlapPair(
   as: MidProblem[],
   bs: MidProblem[],
 ): {
