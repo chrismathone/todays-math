@@ -1446,7 +1446,7 @@ describe("중1 4차 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다"
       );
       // ⑵ 「$N$은 $d_1$과 $d_2$의 공배수이고, 가장 작은 수는 최소공배수인 $L$이다」
       const cm =
-        /\$N\$은 \$(\d+)\$[와과] \$(\d+)\$의 (공배수|공약수)이고, 그 중 가장 (작은|큰) 수는 두 수의 (최소공배수|최대공약수)인 \$(\d+)\$이다/.exec(
+        /\$N\$은 \$(\d+)\$[와과] \$(\d+)\$의 (공배수|공약수)이고, 그중 가장 (작은|큰) 수는 두 수의 (최소공배수|최대공약수)인 \$(\d+)\$이다/.exec(
           p.solution,
         );
       expect(cm, `62W 공배수 줄이 없다 — ${s}/${v}`).not.toBeNull();
@@ -1851,5 +1851,116 @@ describe("중1 4차 확대 갈래 — 판정기의 축을 미리 댄다", () => 
     const cand = obviousCandidates(pageNumbers(p.content));
     expect(new Set(cand.values()).size).toBe(1);
     expect([...cand.values()][0]).toBe(p.facts.a);
+  });
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+// 🔴 ㉳ 해설의 «말» — **판정을 진술하는 문장**을 지키는 자
+//
+// 2026-09-03 검문에서 이 파일의 낱말 가드에 큰 구멍이 있었다. 참인 문장을
+// 거짓으로 뒤집는 변이 **13개 중 10개가 초록**이었다 — 「$x$는 $a$의 **약수**」를
+// 「배수」로 바꿔도, 「중앙값은 **세 번째** 값」을 「두 번째」로 바꿔도, 「$a\le b$라
+// 하자」를 「$a\ge b$」로 바꿔도 아무 시험도 안 물었다. 굳힘 개념과 마무리 논거가
+// 통째로 그 문장들 안에 있다.
+//
+// ⚠️ 값 검산·KaTeX·해설 높이·조사 자는 이 부류를 **구조적으로** 못 본다 —
+//    문장이 거짓이어도 값은 그대로이기 때문이다(2026-08-24 「값이 맞으면 시험이
+//    다 초록이다」와 같은 자리).
+// ════════════════════════════════════════════════════════════════════════════
+
+/** 유형마다 「반드시 있어야 하는 문장」 — 값은 지면에서 다시 읽어 만든다. */
+function requiredWords(key: string, content: string): string[] {
+  if (key === K61) {
+    const { a } = read61(content);
+    return [
+      `두 수의 곱이 $${a}$이므로`,
+      `$x$는 $${a}$의 약수이고`,
+      `도 $${a}$의 약수이다`,
+      `$${a}$의 약수를 모두 더한 값과 같다`,
+    ];
+  }
+  if (key === K62) {
+    return ["도수는 학생 수이므로 둘 다 자연수이다", "서로소이므로"];
+  }
+  if (key === K63) {
+    return [
+      "다섯 수의 평균은",
+      "중앙값은 크기순으로 나열했을 때 세 번째 값인데",
+    ];
+  }
+  if (key === K64) {
+    return ["$a\\le b$라 하자", "밑넓이의 $2$배와 옆넓이의 합이므로"];
+  }
+  throw new Error(`말 목록이 없는 유형: ${key}`);
+}
+
+/**
+ * 「그 문장을 거짓으로 만드는 맞바꿈」 — 눈금의 **양성 대조**다.
+ * 각 짝은 `[찾을 것, 바꿀 것]` 이고, 바꾼 뒤 `requiredWords` 가 반드시 물어야 한다.
+ */
+const FLIPS: Record<string, readonly (readonly [string, string])[]> = {
+  [K61]: [
+    ["의 약수이고", "의 배수이고"],
+    ["의 약수이다", "의 배수이다"],
+    ["의 약수를 모두 더한 값과 같다", "의 배수를 모두 더한 값과 같다"],
+    ["두 수의 곱이", "두 수의 합이"],
+  ],
+  [K62]: [
+    ["둘 다 자연수이다", "둘 다 유리수이다"],
+    ["서로소이므로", "서로 같으므로"],
+  ],
+  [K63]: [
+    ["다섯 수의 평균은", "다섯 수의 중앙값은"],
+    ["세 번째 값인데", "두 번째 값인데"],
+  ],
+  [K64]: [
+    ["$a\\le b$라 하자", "$a\\ge b$라 하자"],
+    ["옆넓이의 합이므로", "옆넓이의 곱이므로"],
+  ],
+};
+
+function missingWords(
+  key: string,
+  content: string,
+  solution: string,
+): string[] {
+  return requiredWords(key, content).filter((w) => !solution.includes(w));
+}
+
+describe("[중1 4차 물결] ㉳ 해설의 «말»이 판정을 옳게 진술한다", () => {
+  it("네 유형 모두 — 660판 전량에 그 문장들이 있다", () => {
+    for (const key of [K61, K62, K63, K64]) {
+      for (const [seed, variant] of WIDE) {
+        const p = build(key, seed, variant);
+        expect(
+          missingWords(key, p.content, p.solution),
+          `${key} s${seed}v${variant}`,
+        ).toEqual([]);
+      }
+    }
+  });
+
+  it("눈금 — 낱말을 하나씩 뒤집으면 **전부** 빨개진다 (양성 10 · 음성 4)", () => {
+    let positives = 0;
+    for (const key of [K61, K62, K63, K64]) {
+      const p = build(key, SEEDS[0]!, 0);
+      // 음성 — 손대지 않은 지면은 깨끗하다
+      expect(missingWords(key, p.content, p.solution), key).toEqual([]);
+      for (const [from, to] of FLIPS[key]!) {
+        // ⚠️ 맞바꿈이 **실제로 일어났는지** 먼저 본다. 안 일어나면 「빨개지지
+        //    않았다」가 «가드가 없다»가 아니라 «변이가 헛돌았다»는 뜻이다.
+        expect(p.solution, `${key}: 맞바꿀 자리가 없다 — ${from}`).toContain(
+          from,
+        );
+        const flipped = p.solution.split(from).join(to);
+        expect(flipped).not.toBe(p.solution);
+        positives += 1;
+        expect(
+          missingWords(key, p.content, flipped),
+          `${key}: 「${from}」→「${to}」 를 아무도 안 물었다`,
+        ).not.toEqual([]);
+      }
+    }
+    expect(positives).toBe(10);
   });
 });

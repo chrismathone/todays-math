@@ -13,6 +13,7 @@ import {
   asDescriptive,
   asMultipleChoice,
   asShortAnswer,
+  declaredUpperBound,
   deriveThreeFormats,
   numericMistakes,
   reversesOrder,
@@ -483,5 +484,108 @@ describe("객관식 — 구간이 정답이면 뒤집힌 구간을 보기로 내
     expect(() =>
       asMultipleChoice({ ...stem, answer: "$1\\le y\\le9$" }, createRng(1)),
     ).toThrow();
+  });
+});
+
+describe("발문이 스스로 못 박은 상한 (4차 물결 `37W`)", () => {
+  const WORK_STEM =
+    "(단, 전체 일의 양을 $1$로 놓고, 두 사람이 하루에 하는 일의 양은 일정하다.)";
+
+  it("눈금 — 이 자가 «있다»와 «없다»를 가른다", () => {
+    // 양성 — 발문이 스스로 상한을 선언한다
+    expect(declaredUpperBound(WORK_STEM)).toBe(1);
+    expect(declaredUpperBound("전체를 $1$이라 하면 …")).toBe(1);
+    expect(declaredUpperBound("전체 일의 양을 1로 생각하자.")).toBe(1);
+    // 음성 — 「전체」가 나와도 상한을 선언하지 않으면 아무 말도 안 한다
+    expect(declaredUpperBound("전체 학생 수를 구하시오.")).toBeNull();
+    expect(declaredUpperBound("두 수의 합이 $1$이다.")).toBeNull();
+    expect(declaredUpperBound("$100$점 만점인 시험에서 …")).toBeNull();
+  });
+
+  it("상한을 넘는 오답은 **맨 뒤로 밀린다** — 넷이 다 넘는 판이 없다", () => {
+    const stem: StemProblem = {
+      content: `두 사람이 함께 하루에 하는 일의 양을 구하시오. ${WORK_STEM}`,
+      answer: "$\\dfrac{37}{180}$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "활용",
+    };
+    const value = (t: string): number | null => {
+      const m = /frac\{(-?\d+)\}\{(-?\d+)\}/.exec(t);
+      return m ? Number(m[1]) / Number(m[2]) : null;
+    };
+    let made = 0;
+    let worst = 0;
+    for (let i = 0; i < 60; i += 1) {
+      let mc;
+      try {
+        mc = asMultipleChoice(stem, createRng(4000 + i));
+      } catch {
+        continue;
+      }
+      made += 1;
+      const opts = mc.content
+        .split("\n")
+        .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? ""))
+        .map((ln) => ln.trim().slice(1).trim());
+      expect(opts).toHaveLength(5);
+      const over = opts.filter((t) => {
+        const v = value(t);
+        return t !== stem.answer && v !== null && v > 1;
+      }).length;
+      worst = Math.max(worst, over);
+    }
+    expect(made).toBeGreaterThan(0);
+    // 🔴 가드가 없으면 여기가 **4** 였다(실측 400판 중 3판, 0.75%). 그 판은
+    //    학생이 계산 없이 답을 집는다. 「뒤로 민다」이므로 0 은 못 되고,
+    //    좋은 후보 셋이 늘 있으므로 **하나까지**다.
+    expect(worst).toBeLessThanOrEqual(1);
+  });
+
+  it("상한을 안 선언하는 발문에서는 아무것도 안 바뀐다 (음성 대조)", () => {
+    const stem: StemProblem = {
+      content: "두 수의 곱을 구하시오.",
+      answer: "$\\dfrac{37}{180}$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "활용",
+    };
+    // 상한을 안 선언하면 «$1$ 을 넘는 오답»이 그대로 나온다 — 그게 정상이다.
+    // ⚠️ 씨앗 하나로 보면 안 된다. 뽑기가 무작위라 그 판에 안 실릴 수 있다 —
+    //    그러면 이 음성 대조가 「가드가 꺼져 있다」를 못 보고 조용히 초록이 된다.
+    let over = 0;
+    for (let i = 0; i < 30; i += 1) {
+      const opts = asMultipleChoice(stem, createRng(7000 + i))
+        .content.split("\n")
+        .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? ""));
+      expect(opts).toHaveLength(5);
+      const m = /frac\{(-?\d+)\}\{(-?\d+)\}/;
+      over += opts.filter((t) => {
+        const g = m.exec(t);
+        return (
+          g !== null &&
+          !t.includes("{37}{180}") &&
+          Number(g[1]) / Number(g[2]) > 1
+        );
+      }).length;
+    }
+    expect(over).toBeGreaterThan(0);
+  });
+
+  it("상한 때문에 후보가 모자라도 객관식을 잃지 않는다 — 버리지 않고 민다", () => {
+    // 정답이 $1$ 에 가까우면 좋은 후보가 거의 다 상한을 넘는다.
+    const stem: StemProblem = {
+      content: `하루에 하는 일의 양을 구하시오. ${WORK_STEM}`,
+      answer: "$\\dfrac{9}{10}$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "활용",
+    };
+    const mc = asMultipleChoice(stem, createRng(11));
+    expect(
+      mc.content
+        .split("\n")
+        .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? "")),
+    ).toHaveLength(5);
   });
 });

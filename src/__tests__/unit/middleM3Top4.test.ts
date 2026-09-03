@@ -635,8 +635,23 @@ function factorWords(content: string, solution: string): string[] {
   const t = s + 1;
   if (!solution.includes("부호가 서로 같고")) bad.push("부호 근거가 없다");
   if (!solution.includes("모두 자연수이다")) bad.push("자연수 근거가 없다");
+  // 🔴 굳힘 줄과 나열이 **서로 어긋나면 안 된다.** 2026-09-03 검문에서 이 해설은
+  //    「$m+1$과 $n+1$은 모두 $2$ 이상이다」라고 적고 **바로 다음 줄에서
+  //    $m+1=1$ 을 훑고 있었다**(리드 실측 1,200/1,200판 = 100%). 게다가 버리는
+  //    근거마저 그 제약이 아니라 「$b=mn=0$」이었다. 값도 KaTeX 도 초록이라
+  //    어느 자도 구조적으로 못 보는 부류다 — 그래서 여기 못 박는다.
+  const saysTwoUp = solution.includes("모두 $2$ 이상이다");
+  if (!saysTwoUp) bad.push("굳힘 줄(«$m+1$·$n+1$ 은 모두 $2$ 이상»)이 없다");
+  if (saysTwoUp && solution.includes("$m+1=1$")) {
+    bad.push("「모두 $2$ 이상」이라 적고 $m+1=1$ 을 훑는다 (자기모순)");
+  }
+  if (saysTwoUp && !solution.includes("$2$ 이상인 두 자연수의 곱")) {
+    bad.push("나열 줄이 「$2$ 이상인 두 자연수의 곱」이라고 적지 않았다");
+  }
   const lines = solution.split("\n").filter((l) => /^[㉠-㉧]/.test(l));
-  const pairs = divisors(t).filter((d) => d * d <= t);
+  // 굳힘 줄이 「$m+1$·$n+1$ 은 모두 $2$ 이상」이라 못 박으므로 $(1,\,T)$ 는
+  // 애초에 나열하지 않는다 — 제품과 같은 창을 여기서도 독립으로 만든다.
+  const pairs = divisors(t).filter((d) => d >= 2 && d * d <= t);
   if (lines.length !== pairs.length) {
     bad.push(`후보 줄이 ${lines.length}개인데 약수쌍은 ${pairs.length}개다`);
   }
@@ -658,10 +673,8 @@ function factorWords(content: string, solution: string): string[] {
       if (!line.includes("서로 다르므로"))
         bad.push(`사는 근거(상수항이 «서로 다르다»)가 없다: ${line}`);
     } else if (m < 1 || n < 1) {
-      if (!saysNo || saysYes)
-        bad.push(`죽어야 하는데 살았다고 적었다: ${line}`);
-      if (!line.includes("자연수가 아니므로"))
-        bad.push(`죽는 근거(«자연수가 아니다»)가 없다: ${line}`);
+      // 굳힘 줄이 $(1,\,T)$ 를 이미 죽였으므로 여기 오면 안 된다.
+      bad.push(`「모두 $2$ 이상」을 어기는 줄이 나왔다: ${line}`);
     } else {
       if (!saysNo || saysYes)
         bad.push(`죽어야 하는데 살았다고 적었다: ${line}`);
@@ -862,18 +875,48 @@ describe("[중3 4차 물결] 눈금 — 「말 검사기」가 «아니오»를 
         p.solution.replace("서로 다르므로", "서로 같으므로"),
       ),
     ).not.toEqual([]);
-    // 양성 ⑵ 죽는 근거의 낱말을 「정수」로 바꾼다 (값은 그대로다)
+    // 양성 ⑵ 굳힘 줄이 못 박은 것을 나열이 어긴다 — 옛 결함을 그대로 되살린다
     expect(
       factorWords(
         p.content,
-        p.solution.replace("자연수가 아니므로", "정수가 아니므로"),
+        `${p.solution}\n한편 $m+1=1$이면 $b=mn=0$이어서 조건에 맞지 않는다.`,
       ),
     ).not.toEqual([]);
-    // 양성 ⑶ 판정 자체를 뒤집는다
+    // 양성 ⑵′ 굳힘 줄 자체를 지운다
     expect(
       factorWords(
         p.content,
-        p.solution.replace("조건에 맞지 않는다", "조건에 맞는다"),
+        p.solution.replace("모두 $2$ 이상이다", "모두 정수이다"),
+      ),
+    ).not.toEqual([]);
+    // 양성 ⑶ 사는 줄의 판정을 뒤집는다 — 이 줄은 **어느 판에나** 있다
+    expect(p.solution).toContain("조건에 맞고");
+    expect(
+      factorWords(
+        p.content,
+        p.solution.replace("조건에 맞고", "조건에 맞지 않고"),
+      ),
+    ).not.toEqual([]);
+    // 양성 ⑶′ 죽는 줄의 판정을 뒤집는다.
+    // ⚠️ $(1,\,T)$ 를 나열에서 뺀 뒤로 「조건에 맞지 않는다」는 **$T$ 가 제곱수일
+    //    때만** 나온다(가운데 쌍 $m=n$). 그래서 그런 씨앗을 **찾아서** 대고,
+    //    못 찾으면 «깨끗»이 아니라 **실패**로 찍는다 — 안 그러면 이 양성 대조가
+    //    조용히 0이 된다(「0 은 «깨끗»과 «못 셈»을 안 가른다」).
+    //    (씨앗은 **지면에서** 읽는다 — `planFactorSum(createRng(seed))` 은
+    //    `make` 와 씨앗 뿌리는 법이 달라 다른 판을 낸다.)
+    const squareSeed = WIDE.find(
+      (s) => intSqrt(readFactorStem(make(KEY_FACTOR, s).content) + 1) !== null,
+    );
+    expect(
+      squareSeed,
+      "제곱수 $T$ 씨앗이 없어 «죽는 줄» 양성을 못 잰다",
+    ).toBeDefined();
+    const q = make(KEY_FACTOR, squareSeed!);
+    expect(q.solution).toContain("조건에 맞지 않는다");
+    expect(
+      factorWords(
+        q.content,
+        q.solution.replace("조건에 맞지 않는다", "조건에 맞는다"),
       ),
     ).not.toEqual([]);
     // 양성 ⑷ 굳힘의 근거 줄을 통째로 지운다
@@ -1469,7 +1512,7 @@ describe("[중3 4차 물결] ㉤ 해설이 적은 등식을 전부 다시 계산
       // 해설이 «주장한 값» — 약수쌍마다 $(m,n)$ 과 거기서 나오는 $a$, $b$.
       const envS: Env[] = [];
       for (const d of divisors(s + 1)) {
-        if (d * d > s + 1) continue;
+        if (d < 2 || d * d > s + 1) continue;
         const m = d - 1;
         const n = (s + 1) / d - 1;
         envS.push({ m, n, a: m + n, b: m * n, x: 0 });
@@ -1482,7 +1525,12 @@ describe("[중3 4차 물결] ㉤ 해설이 적은 등식을 전부 다시 계산
       expect(r.checked, `s${seed}: 판정한 등식이 없다`).toBeGreaterThanOrEqual(
         10,
       );
-      expect(r.numeric, `s${seed}: 수치 등식이 없다`).toBeGreaterThanOrEqual(4);
+      // ⚠️ 문턱이 $4$ 에서 $3$ 으로 **내려간 까닭을 적는다.** 2026-09-03 에
+      //    약수쌍 $(1,\,T)$ 를 나열에서 뺐고(굳힘 줄이 이미 죽인 쌍이다), 그
+      //    줄이 수치 등식 하나를 들고 있었다. 문턱을 «맞추려고» 내린 것이
+      //    아니라 **다시 재서** 내렸다: 씨앗 90개 실측 분포 $3$ 이 40 · $4$ 가
+      //    41 · $5$ 가 9 (합 329). 최솟값이 곧 문턱이다.
+      expect(r.numeric, `s${seed}: 수치 등식이 없다`).toBeGreaterThanOrEqual(3);
       expect(r.identity, `s${seed}: 항등식 검산이 없다`).toBeGreaterThanOrEqual(
         1,
       );
@@ -1708,7 +1756,7 @@ describe("[중3 4차 물결] ㉥ 해설이 걸음을 건너뛰지 않는다", ()
     for (const seed of SEEDS) {
       const p = make(KEY_FACTOR, seed);
       const s = readFactorStem(p.content);
-      const pairs = divisors(s + 1).filter((d) => d * d <= s + 1);
+      const pairs = divisors(s + 1).filter((d) => d >= 2 && d * d <= s + 1);
       pairs.forEach((_, i) => {
         expect(p.solution, `s${seed}: ${i + 1}번째 표지가 없다`).toContain(
           ["㉠", "㉡", "㉢", "㉣", "㉤", "㉥", "㉦", "㉧"][i]!,

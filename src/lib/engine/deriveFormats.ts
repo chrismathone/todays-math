@@ -75,6 +75,40 @@ export function asDescriptive(stem: StemProblem): DerivedProblem {
   };
 }
 
+/**
+ * 발문이 **스스로 못 박은 상한** — 없으면 `null`.
+ *
+ * 🔴 2026-09-03 확대 갈래 4차 물결. 중2 `37W`(일의 양) 발문은 「(단, 전체 일의
+ *    양을 $1$로 놓고, …)」라고 **자기가 상한을 선언**한다. 그런데 파생 객관식
+ *    오답의 **51.69%(827/1,600)** 가 $1$ 을 넘었다 — $\dfrac{37}{180}$ 의 보기에
+ *    $\dfrac{37}{18}$·$\dfrac{217}{180}$·$\dfrac{180}{37}$ 이 끼는 식이다.
+ *    「하루에 전체 일을 한 번 넘게 한다」는 값이라 학생이 **계산 없이 지워 낸다**.
+ *    넷이 다 그런 판이 **0.75%(3/400)** 였고 그 판은 답이 **거저** 정해진다.
+ *
+ * ⚠️ 이것은 「값이 틀렸다」가 아니라 **「문항이 쉬워진다」**다. 값 검산·KaTeX·
+ *    해설 높이·냄새 훑개 어느 자도 구조적으로 못 본다(2026-08-24 「값이 맞으면
+ *    시험이 다 초록이다」와 같은 자리).
+ *
+ * 🔴 **열쇠를 «유형»이 아니라 «지면의 말»에 둔다.** 유형 목록으로 적으면 다음
+ *    물결이 같은 소재를 새로 지을 때 구조적으로 0이 된다. 등록 1,411유형 + 4차
+ *    12유형을 전수로 훑어 이 상한을 **스스로 선언**하는 것은 `37W` 와 묵은
+ *    `2-1|연립일차방정식의 활용|32A` **둘뿐**이었고(32A 도 45.8%로 같은 결함),
+ *    「$N$점 만점」 꼴은 **0유형**이었다 — 3차에서 미룬 「$146$점」은 발문이
+ *    상한을 선언하지 않으므로 **다른 부류**이고 이 자로는 안 걸린다.
+ *    그래서 그 말은 여기 안 적는다(안 걸리는 규칙은 장식이다).
+ */
+export function declaredUpperBound(content: string): number | null {
+  // 「전체 (…의 양)을 $1$로 놓고」 · 「전체를 1이라 하면」
+  if (
+    /전체[^.。\n]{0,24}\$?1\$?\s*(?:로|이라고?)\s*(?:놓|하|생각|보)/.test(
+      content,
+    )
+  ) {
+    return 1;
+  }
+  return null;
+}
+
 export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   if (hasChoices(stem.content)) {
     throw new Error(
@@ -88,24 +122,39 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   //    **버리지 말고 뒤로 민다** — 좋은 후보로 넷을 못 채울 때만 쓴다.
   //    (소수·분수 정답에서는 소수점 자리 실수라 진짜 오답이므로 여기 안 넣는다.)
   const WEAK = new Set(["times-ten", "div-ten"]);
+  // 🔴 발문이 스스로 못 박은 상한을 넘는 오답도 **버리지 말고 뒤로 민다** —
+  //    바로 위 `times-ten` 과 같은 처리다. 버리면 후보가 모자라 5지선다를
+  //    통째로 잃는 유형이 생긴다(그때는 «상한을 넘는 보기»보다 나쁘다).
+  const bound = declaredUpperBound(stem.content);
+  const overBound = (value: string): boolean => {
+    if (bound === null) return false;
+    const p = parseNumericAnswer(value);
+    return p !== null && p.rat.d !== 0 && p.rat.n / p.rat.d > bound;
+  };
   const seen = new Set<string>([correct]);
   const strong: string[] = [];
   const weak: string[] = [];
+  const overs: string[] = [];
   for (const m of numericMistakes(correct)) {
     if (seen.has(m.value)) continue;
     seen.add(m.value);
+    if (overBound(m.value)) {
+      overs.push(m.value);
+      continue;
+    }
     (WEAK.has(m.tag) && !m.value.includes("frac") && !m.value.includes(".")
       ? weak
       : strong
     ).push(m.value);
   }
-  if (strong.length + weak.length < 4) {
+  const pool = strong.length + weak.length + overs.length;
+  if (pool < 4) {
     throw new Error(
-      `정답이 수·분수·소수가 아니거나 오답 후보가 ${strong.length + weak.length}개뿐이라 5지선다를 못 만듭니다: ${correct}`,
+      `정답이 수·분수·소수가 아니거나 오답 후보가 ${pool}개뿐이라 5지선다를 못 만듭니다: ${correct}`,
     );
   }
   const distractors: string[] = [];
-  for (const bucket of [strong, weak]) {
+  for (const bucket of [strong, weak, overs]) {
     const rest = [...bucket];
     while (distractors.length < 4 && rest.length > 0) {
       const next = pick(rng, rest);

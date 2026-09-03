@@ -398,10 +398,23 @@ export function planFactorSum(rng: Rng): FactorPlan {
   }
   const { s } = pick(rng, sub);
   const t = s + 1;
+  /**
+   * 🔴 **약수쌍 $(1,\,T)$ 는 여기서 뺀다.** 바로 앞 굳힘 줄이
+   * 「$m+1$ 과 $n+1$ 은 모두 $2$ 이상이다」라고 못 박기 때문이다.
+   *
+   * ⚠️ 처음에는 $d=1$ 도 담고 ㉠ 에서 「$b=mn=0$ 이라 자연수가 아니다」로 버렸다.
+   *    그러면 지면이 **자기가 한 줄 앞에 세운 제약을 스스로 어긴다** — 게다가
+   *    버리는 근거마저 그 제약이 아니라 다른 것이다. 리드 실측 1,200/1,200판
+   *    (100%)에 나가고 있었다. 값·KaTeX·해설 높이 어느 자도 이 부류를 못 본다.
+   *    ($d\ge2$ 이므로 아래 열거에서 $m=d-1\ge1$ 이 **불변식**이 된다.)
+   */
   const pairs: [number, number][] = [];
   for (const d of divisors(t)) {
-    if (d * d > t) continue;
+    if (d < 2 || d * d > t) continue;
     pairs.push([d, t / d]);
+  }
+  if (pairs.length === 0) {
+    throw new Error(`m3Top4 55W: $2$ 이상인 약수쌍이 없습니다 (T=${t})`);
   }
   const cand = factorCandidates(s);
   const kept = solveFactorA(s, true, true);
@@ -438,7 +451,7 @@ function renderFactorSum(rng: Rng): Body {
       `$mn+m+n+1=${t}$, 곧 $(m+1)(n+1)=${t}$이다.`,
     // 굳힘 ⑴ — 이 한 줄이 약수쌍 $(1,\,T)$ 를 죽인다.
     `$m$과 $n$이 모두 자연수이므로 $m+1$과 $n+1$은 모두 $2$ 이상이다.`,
-    `$${t}$${eulReul(t)} 두 자연수의 곱으로 나타내면 ` +
+    `$${t}$${eulReul(t)} $2$ 이상인 두 자연수의 곱으로 나타내면 ` +
       `${pairs.map(([p, q]) => `$${t}=${p}\\times ${q}$`).join(", ")}이다.`,
   ];
   pairs.forEach(([p, q], i) => {
@@ -446,11 +459,8 @@ function renderFactorSum(rng: Rng): Body {
     const m = p - 1;
     const n = q - 1;
     const head = `${mark} $m+1=${p}$, $n+1=${q}$이면 $m=${m}$, $n=${n}$이다.`;
-    if (m < 1) {
-      lines.push(
-        `${head} 이때 $b=mn=${m * n}$이어서 $b$가 자연수가 아니므로 조건에 맞지 않는다.`,
-      );
-    } else if (m === n) {
+    // $d\ge2$ 로 걸렀으므로 $m\ge1$ 이다 — 「자연수가 아니다」 갈래는 여기 없다.
+    if (m === n) {
       lines.push(
         `${head} 이때 두 일차식의 상수항이 $${m}$${euroRo(m)} 서로 같으므로 ` +
           `조건에 맞지 않는다.`,
@@ -676,6 +686,23 @@ export type BoxCase = {
  * `useMedian` 이 곧 굳힘이다 — 중앙값 조건이 $x$ 의 자리를 일곱에서 **셋**으로
  * 좁힌다. 끄면 일곱 자리를 다 훑게 되고, 사분위수범위만으로는 답이 하나로 안
  * 정해진다(상수 구간이 통째로 걸리거나 위쪽이 열려 무한히 많아진다).
+ *
+ * 🔴 **네째 자리($x$ 자신이 중앙값)를 처음에는 못 훑고 있었다.** 그 자리만 따로
+ *    받는 갈래가 있었는데 $x=m$ **하나만** 시험했고, 게다가 그 갈래의 조건이
+ *    `!useMedian || m === m` 이라 **늘 참인 죽은 조건**이었다. 실측: 격자 씨앗
+ *    11,386 중 **1,058(9.3%)** 에서 참보다 적게 셌다(더 센 자리는 0).
+ *    보기 — `vs=2,4,6,8,10,14 · m=6 · q=6` 에서 $\{5,9\}$ 를 냈으나 참은
+ *    $\{5,7,9\}$ 다($x=7$ 은 $Q_1=4$·$Q_3=10$ 이라 상수 구간에 든다).
+ *
+ *    그 자리는 $Q_1$·$Q_3$ 가 **둘 다 상수**라 아래 `constIqr` 갈래와 **같은
+ *    셈**이다. 그래서 갈래를 따로 두지 않고 지웠다 — 두 벌이면 한쪽만 고쳐도
+ *    아무도 모른다. (`useMedian` 이 참이면 그 자리는 위 `continue` 가 이미
+ *    걸러 낸다: `sq.med` 가 `null` 이므로 `m` 과 같을 수 없다. 씨앗의 $m$ 은
+ *    늘 자료값이라 「$x=m$」 은 「값이 서로 다른」에 걸려 애초에 답이 못 된다.)
+ *
+ *    ✅ 고친 뒤 `vs=2,4,6,8,10,14 · m=6 · q=6` 이 $\{5,7,9\}$ 를 낸다 — $x$ 를
+ *    $1..60$ 까지 **전부 넣어 직접 판정한 참**과 같다. 그리고 `boxMeanPool` 의
+ *    D-20 표를 다시 세니 **한 자리도 안 바뀌었다**(그 까닭은 그 표 옆에 적었다).
  */
 export function solveBoxCases(
   vs: readonly number[],
@@ -693,19 +720,7 @@ export function solveBoxCases(
     const hits: number[] = [];
     const inRange = (x: number): boolean =>
       (lo === null || x > lo) && (hi === null || x < hi);
-    if (sq.med === null) {
-      // $x$ 자신이 중앙값인 자리 — 굳힘을 끄면 여기도 후보다.
-      if (!useMedian || m === m) {
-        if (
-          inRange(m) &&
-          sq.q1 !== null &&
-          sq.q3 !== null &&
-          sq.q3 - sq.q1 === q
-        ) {
-          hits.push(m);
-        }
-      }
-    } else if (constIqr !== null) {
+    if (constIqr !== null) {
       if (constIqr === q) {
         const from = lo === null ? 1 : lo + 1;
         const to = hi === null ? Infinity : hi - 1;
@@ -762,6 +777,15 @@ export type BoxPlan = BoxSeed & {
  * → 「평균이 정수」 **$17{,}796$**(−85.7% · 이게 가장 크다) → 「답이 발문에 안 적힘」
  * **$11{,}446$**(−35.7%) → 「$(M,Q)$ 한 걸음 아님」 **$11{,}386$**(−0.5%).
  * 남은 자리 분포는 아래 `boxBySlot()` 이 그대로 들고 있다.
+ *
+ * ✅ **2026-09-03 재검산 — 위 다섯 수는 그대로다.** 같은 날 `solveBoxCases` 의
+ *    네째 자리 결함을 고쳤는데(그 함수 머리말 참조), 격자 전수로 다시 세니
+ *    $143{,}125 \to 124{,}375$(−13.1%)·풀 $11{,}386$ 이 **자리까지 같았다.**
+ *    까닭은 옛 코드가 그 자리에서 **아무것도 안 담았기** 때문이다 —
+ *    `inRange(m)` 은 $m$ 이 곧 $v_3$ 이나 $v_4$ 라 **늘 거짓**이었다. 그래서
+ *    「후보가 둘 이상인가」라는 이 판정은 다른 자리들이 이미 채우고 있었다.
+ *    곧 **함수 계약만 고쳐졌고 제품은 한 판도 안 움직였다** — 고치고 나서
+ *    이 표를 다시 세지 않았으면 그 사실을 몰랐을 것이다.
  */
 export function boxMeanPool(): BoxSeed[] {
   if (BOX_CACHE.pool) return BOX_CACHE.pool;

@@ -1899,3 +1899,75 @@ describe("중2 확대 갈래 4차 — 물린 결함의 회귀 잠금", () => {
     expect(lens).toEqual(new Set([3, 4, 5]));
   });
 });
+
+// ════════════════════════════════════════════════════════════════════════════
+// 🔴 ㉳ 해설의 «말» — **「왜 그런가」를 진술하는 줄**을 지키는 자
+//
+// 2026-09-03 검문: 이 파일의 시험은 `39W` 의 `zeroLine`·`fracLine` 과 `38W` 의
+// 조건 진술 줄(해설 둘째 줄)을 **한 글자도 안 읽고 있었다.** 「$-a$가 $b$의
+// **약수**여야 한다」를 「배수」로 바꿔도, 「$L$에서 살 때보다도 **싸고**」를
+// 「비싸고」로 바꿔도(그러면 「가장 싸려면 … 보다도 비싸고 … 보다도 싸야 한다」는
+// **자기모순 문장**이 지면에 나간다) 92개가 전부 초록이었다.
+//
+// ⚠️ 값도 KaTeX 도 그대로다 — 이 부류는 여기서 안 물면 아무 데서도 안 물린다.
+// ════════════════════════════════════════════════════════════════════════════
+
+/** `39W` — 부호에 따라 갈리는 진술. 값은 지면에서 다시 읽지 않고 **문장 모양**만 본다. */
+const M2_WORDS: Record<string, readonly string[]> = {
+  "38W": ["에서 살 때보다도 싸고", "에서 살 때보다도 싸야 한다"],
+  "39W": ["의 약수여야 한다"],
+};
+
+/** 참인 문장을 거짓으로 만드는 맞바꿈 — 눈금의 양성 대조. */
+const M2_FLIPS: Record<string, readonly (readonly [string, string])[]> = {
+  "38W": [
+    ["살 때보다도 싸고", "살 때보다도 비싸고"],
+    ["살 때보다도 싸야 한다", "살 때보다도 비싸야 한다"],
+  ],
+  "39W": [["의 약수여야 한다", "의 배수여야 한다"]],
+};
+
+function m2Missing(rpmType: string, solution: string): string[] {
+  return (M2_WORDS[rpmType] ?? []).filter((w) => !solution.includes(w));
+}
+
+describe("[중2 4차 물결] ㅣ 해설의 «말»이 «왜 그런가»를 옳게 진술한다", () => {
+  it("`38W`·`39W` — 800판 전량에 그 줄이 있다", () => {
+    for (const [rpmType, entry] of [
+      ["38W", E38],
+      ["39W", E39],
+    ] as const) {
+      for (const p of rows(entry, WIDE)) {
+        expect(m2Missing(rpmType, p.solution), `${rpmType}`).toEqual([]);
+      }
+    }
+  });
+
+  it("눈금 — 낱말을 뒤집으면 **전부** 빨개진다 (양성 3 · 음성 2)", () => {
+    let positives = 0;
+    for (const [rpmType, entry] of [
+      ["38W", E38],
+      ["39W", E39],
+    ] as const) {
+      // `39W` 는 부호 갈래가 둘이라 **두 갈래를 다** 만나도록 판을 넓게 훑는다.
+      const boards = rows(entry, 40);
+      for (const [from, to] of M2_FLIPS[rpmType]!) {
+        const hit = boards.find((p) => p.solution.includes(from));
+        expect(
+          hit,
+          `${rpmType}: 맞바꿀 자리를 40판에서 못 찾았다 — ${from}`,
+        ).toBeDefined();
+        // 음성 — 손대지 않은 지면은 깨끗하다
+        expect(m2Missing(rpmType, hit!.solution)).toEqual([]);
+        const flipped = hit!.solution.split(from).join(to);
+        expect(flipped).not.toBe(hit!.solution);
+        positives += 1;
+        expect(
+          m2Missing(rpmType, flipped),
+          `${rpmType}: 「${from}」→「${to}」 를 아무도 안 물었다`,
+        ).not.toEqual([]);
+      }
+    }
+    expect(positives).toBe(3);
+  });
+});
