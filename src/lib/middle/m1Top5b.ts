@@ -312,6 +312,48 @@ const PYRAMID_ASKS: readonly {
  */
 const PYRAMID_SIDES: readonly number[] = [5, 6, 7, 8, 9, 10, 11, 12];
 
+/**
+ * 🔴 **답을 먼저 고른다** — 2026-09-04 리드 검문에서 이 유형의 최빈 정답이
+ *    **14.0%**(문턱 12%)였다. 창이 $8\times3=24$ 로 좁은데 물음끼리 답이 겹쳐
+ *    ($2n$ 과 $n+1$ 이 $10$ 에서, $2n$ 과 $3n+1$ 이 $22$ 에서) 그 답이 두 배로
+ *    자주 나왔고, `pick` 이 «짝»을 고르므로 쏠림이 답 개수보다 커진다.
+ *
+ *    창을 넓히면 $k$ 가 커져 지면의 수가 커진다 — 원장님이 못 박은 대로 «숫자
+ *    규모»는 다양성의 축이 아니다. 그래서 3차 `55W` 가 쓴 방식을 그대로 쓴다:
+ *    **살아남는 짝을 전수로 모아 답으로 묶고, 답을 먼저 뽑는다.** 그러면 쏠림이
+ *    구조적으로 $1/|\text{답}|$ 이 된다.
+ *
+ * ⚠️ `scaledOnce` 걸러내기를 **이 풀 안으로** 옮겼다 — D-20 원장이 세는 것이
+ *    바뀌지 않게 하려고 조건은 글자 그대로 같다.
+ */
+type PyramidSeed = { n: number; askIndex: number; x: number };
+const PYRAMID_CACHE: { pool?: PyramidSeed[]; answers?: number[] } = {};
+
+export function pyramidPool(): PyramidSeed[] {
+  if (!PYRAMID_CACHE.pool) {
+    const out: PyramidSeed[] = [];
+    for (const n of PYRAMID_SIDES) {
+      const k = skewPairCount(n);
+      for (let i = 0; i < PYRAMID_ASKS.length; i += 1) {
+        const x = PYRAMID_ASKS[i]!.value(n);
+        if (scaledOnce(k).has(x)) continue;
+        out.push({ n, askIndex: i, x });
+      }
+    }
+    PYRAMID_CACHE.pool = out;
+  }
+  return PYRAMID_CACHE.pool;
+}
+
+export function pyramidAnswers(): number[] {
+  if (!PYRAMID_CACHE.answers) {
+    PYRAMID_CACHE.answers = [...new Set(pyramidPool().map((s) => s.x))].sort(
+      (a, b) => a - b,
+    );
+  }
+  return PYRAMID_CACHE.answers;
+}
+
 const PYRAMID_SKEW: TypeEntry[] = [
   defType(
     BOOK2,
@@ -322,8 +364,14 @@ const PYRAMID_SKEW: TypeEntry[] = [
     "심화상",
     (rng): Body =>
       attempt(2000, (): Body | null => {
-        const n = pick(rng, PYRAMID_SIDES);
-        const askIndex = intBetween(rng, 0, PYRAMID_ASKS.length - 1);
+        // 🔴 답을 먼저 뽑는다(위 `pyramidPool` 머리말) — 쏠림 14.0% → 답 개수의 역수.
+        const want = pick(rng, pyramidAnswers());
+        const seedRow = pick(
+          rng,
+          pyramidPool().filter((s) => s.x === want),
+        );
+        const n = seedRow.n;
+        const askIndex = seedRow.askIndex;
         const asked = PYRAMID_ASKS[askIndex]!;
         const k = skewPairCount(n);
         const x = asked.value(n);

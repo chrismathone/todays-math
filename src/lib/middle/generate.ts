@@ -37,12 +37,21 @@ import { M1_TOP } from "./m1Top";
 import { M1_TOP_2 } from "./m1Top2";
 import { M1_TOP_3 } from "./m1Top3";
 import { M1_TOP_4 } from "./m1Top4";
+import { M1_TOP_5A } from "./m1Top5a";
+import { M1_TOP_5B } from "./m1Top5b";
+import { M1_TOP_5C } from "./m1Top5c";
+import { M1_TOP_5D } from "./m1Top5d";
+import { M1_TOP_5E } from "./m1Top5e";
+import { M1_TOP_5F } from "./m1Top5f";
+import { M1_TOP_5G } from "./m1Top5g";
+import { M1_TOP_5H } from "./m1Top5h";
 import { M1_TYPES_10 } from "./m1Types10";
 import { M2_TYPES } from "./m2";
 import { M2_TOP } from "./m2Top";
 import { M2_TOP_2 } from "./m2Top2";
 import { M2_TOP_3 } from "./m2Top3";
 import { M2_TOP_4 } from "./m2Top4";
+import { M2_TOP_5C } from "./m2Top5c";
 import { M3_TYPES } from "./m3";
 import { M3_TOP } from "./m3Top";
 import { M3_TOP_2 } from "./m3Top2";
@@ -81,11 +90,21 @@ const ALL: TypeEntry[] = [
   ...M1_TOP_3,
   // 4차 물결 — 새 소단원 넷(D-116, 2026-09-03). 접미사 `W`.
   ...M1_TOP_4,
+  // 5차 물결 — 남은 소단원(D-116, 2026-09-03). 접미사 `X`.
+  ...M1_TOP_5A,
+  ...M1_TOP_5B,
+  ...M1_TOP_5C,
+  ...M1_TOP_5D,
+  ...M1_TOP_5E,
+  ...M1_TOP_5F,
+  ...M1_TOP_5G,
+  ...M1_TOP_5H,
   // 중2 확대 갈래(심화중·심화상) — D-116, 학년별 병렬 세션 소유 모듈(m2Top.ts 머리말).
   ...M2_TOP,
   ...M2_TOP_2,
   ...M2_TOP_3,
   ...M2_TOP_4,
+  ...M2_TOP_5C,
   // 중3 확대 갈래(심화중·심화상) — D-116. 같은 이유로 명부 밖이다(m3Top.ts 머리말).
   ...M3_TOP,
   ...M3_TOP_2,

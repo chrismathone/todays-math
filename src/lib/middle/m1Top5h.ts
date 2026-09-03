@@ -380,6 +380,52 @@ const POLYGON_CASES: readonly PolygonCase[] = (() => {
   return out;
 })();
 
+/**
+ * 🔴 **답을 먼저 고른다** — 2026-09-04 리드 검문에서 최빈 정답이 **12.12%**
+ *    (갈래 자기 시험 660판) · **11.6%**(리드 블록 넷 × 250판)로 문턱 12% 를
+ *    걸치고 있었다. 창 28판이 서로 다른 답 24개를 내므로 어떤 답은 두 판에서
+ *    나오고, `pick` 이 «판»을 고르니 그 답이 두 배로 잦다.
+ *
+ *    3차 `55W` 가 쓴 방식을 그대로 쓴다 — 답으로 묶어 두고 **답을 먼저 뽑는다.**
+ *    그러면 쏠림이 구조적으로 $1/|\text{답}|$ 이 된다.
+ *
+ * ⚠️ 발문을 «내각/외각»·«변/꼭짓점»으로 가르는 두 갈래는 **답을 안 바꾼다** —
+ *    그래서 그것은 답을 뽑은 뒤에 따로 뽑는다(지면은 갈리고 쏠림은 안 는다).
+ */
+const POLYGON_ANSWER_CACHE: {
+  byAnswer?: Map<number, PolygonCase[]>;
+  answers?: number[];
+} = {};
+
+function polygonAnswerOf(c: PolygonCase): number {
+  let s = 0;
+  for (const [m, n] of c.scan.pairs) s += m + n;
+  return s;
+}
+
+export function polygonByAnswer(): Map<number, PolygonCase[]> {
+  if (!POLYGON_ANSWER_CACHE.byAnswer) {
+    const map = new Map<number, PolygonCase[]>();
+    for (const c of POLYGON_CASES) {
+      const x = polygonAnswerOf(c);
+      const cur = map.get(x);
+      if (cur) cur.push(c);
+      else map.set(x, [c]);
+    }
+    POLYGON_ANSWER_CACHE.byAnswer = map;
+  }
+  return POLYGON_ANSWER_CACHE.byAnswer;
+}
+
+export function polygonAnswers(): number[] {
+  if (!POLYGON_ANSWER_CACHE.answers) {
+    POLYGON_ANSWER_CACHE.answers = [...polygonByAnswer().keys()].sort(
+      (a, b) => a - b,
+    );
+  }
+  return POLYGON_ANSWER_CACHE.answers;
+}
+
 const POLYGON_TYPE: TypeEntry[] = [
   defType(
     BOOK2,
@@ -390,7 +436,9 @@ const POLYGON_TYPE: TypeEntry[] = [
     "심화상",
     (rng): Body =>
       attempt(2000, (): Body | null => {
-        const c = pick(rng, POLYGON_CASES);
+        // 🔴 답을 먼저 뽑는다(위 `polygonByAnswer` 머리말) — 쏠림 12.12% → 답 개수의 역수.
+        const wantAnswer = pick(rng, polygonAnswers());
+        const c = pick(rng, polygonByAnswer().get(wantAnswer)!);
         // 발문을 «외각»으로 낼지 «내각»으로 낼지 — 내각으로 내면 한 줄이 더 든다.
         const inner = intBetween(rng, 0, 1) === 1;
         // 「변의 개수」로 물을지 「꼭짓점의 개수」로 물을지 — 정다각형에서 둘은 같다.

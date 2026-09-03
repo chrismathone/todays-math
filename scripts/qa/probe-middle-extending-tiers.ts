@@ -46,6 +46,10 @@ import {
 import { eulReul, euroRo, waGwa } from "../../src/lib/middle/m2Josa";
 import { isPrime, naturalSolutions } from "../../src/lib/middle/m2Top";
 import type { MidProblem } from "../../src/lib/middle/types";
+import {
+  survivingNumbers,
+  swapDiffNumbers,
+} from "../../src/lib/middle/m2Top5c";
 import { isDirectScript } from "../import/isDirectScript";
 
 const SEED_BASE = 20260901;
@@ -589,6 +593,75 @@ export function erasures(key: string, p: MidProblem): Erasure[] {
           ? String(naive.reduce((s, t) => s + (a * t.b) / 2, 0))
           : String(naive.reduce((s, t) => s + t.c, 0));
     return [{ name: "「둘 다 짝수」 걸음 지움", values: [value] }];
+  }
+
+  // ── 5차 물결(D-116, 2026-09-04) — 접미사 `X` ─────────────────────────────
+  if (key === "2-2|피타고라스 정리|109X") {
+    // 굳힘은 「막대 다섯에서 만들 수 있는 세 짝 열 개를 **다 견주어** 직각인 것을
+    // 남김없이 찾는다」다. 첫 직각삼각형에서 멈추면 그 하나의 넓이만 나온다.
+    //
+    // ⚠️ **여기 🟢 은 «측정했다»가 아니라 «그렇게 될 수밖에 없다»** 다 — 넓이는
+    //    늘 양수라 부분합이 전체합과 같을 수 없다(3차 `35V` 가 선 자리와 같다).
+    //    이 갈래에서 「다 찾는다」를 실제로 지키는 것은 생성기의 `rights.length !== 2`
+    //    와 `hitCount !== 2` 두 줄이고, 그것은 갈래의 자기 시험이 문다.
+    const { area1 } = f as Record<string, number>;
+    return [
+      { name: "첫 직각삼각형에서 멈춤 (다 안 셈)", values: [String(area1)] },
+    ];
+  }
+  if (key === "2-2|도형의 닮음|110X") {
+    // 굳힘은 「닮음비가 $k$ 이면 **부피비는 $k^{3}$**」이다. 그 세제곱을 안 쓰면
+    // 조각이 다 같은 부피로 보여, 물은 조각의 부피가 **주어진 조각과 같아진다.**
+    // $i$ 와 $j$ 가 다르고 세제곱 차 $i^{3}-(i-1)^{3}$ 는 $i$ 마다 다르므로 늘 갈린다.
+    const { given } = f as Record<string, number>;
+    return [
+      { name: "부피비를 닮음비의 세제곱으로 안 봄", values: [String(given)] },
+    ];
+  }
+  if (key === "2-1|일차부등식의 활용|111X") {
+    // 굳힘은 「$m$배가 두 경계 사이」라는 **부등식 둘이 후보를 자른다**는 것이다.
+    // 그것을 지우면 자리 조건만 남아 후보 **전체**의 합이 답이 된다.
+    //
+    // 후보 목록은 `facts` 에 없지만 되만들 수 있다 — 두 자리 수 $10a+b$ 의 자리를
+    // 바꾼 차가 $9(a-b)$ 이므로 `d/9` 가 곧 자리 숫자의 차다. 바꾼 수가 큰지
+    // 작은지는 facts 에 없어서 **두 방향을 다 대 보고 살아남는 합이 답과 같은
+    // 쪽**을 고른다(추론이 아니라 맞춰 보는 것이다).
+    const { x, d, m, low, high } = f as Record<string, number>;
+    const sum = (xs: readonly number[]): number =>
+      xs.reduce((a, b) => a + b, 0);
+    for (const larger of [true, false]) {
+      const cands = swapDiffNumbers(d! / 9, larger);
+      if (sum(survivingNumbers(cands, m!, low!, high!)) !== x!) continue;
+      return [
+        {
+          name: "부등식 걸음 지움 (후보를 안 자름)",
+          values: [String(sum(cands))],
+        },
+      ];
+    }
+    // 되만들기가 실패하면 «깨끗»이라 하지 않는다 — 빈 목록을 내면 위에서
+    // 「지울 조건을 안 적었다」로 빨개진다.
+    return [];
+  }
+  // 🔴 소단원 이름의 **가는 공백**(U+2009) 주의 — 위 `34U` 머리말과 같은 자리다.
+  if (key === "2-1|일차함수와 그 그래프  ⑵|112X") {
+    // 굳힘은 「**빠진 사분면**이 $a$·$b$ 의 부호를 정한다」다. 그것을 지우면 부호가
+    // 안 정해지고, 합 $b\dfrac{a-1}{a}$ 의 **크기가 둘로 갈린다** —
+    // $a=p$ 면 $\dfrac{q(p-1)}{p}$, $a=-p$ 면 $\dfrac{q(p+1)}{p}$ 다
+    // ($\gcd(p,q)=1$ 이고 $\gcd(p\pm1,p)=1$ 이라 분자가 곧 기약 분자다).
+    //
+    // ⚠️ **정직하게 적어 둘 것** — 이 자의 견줌은 `answerNumber` 가 뽑는 «첫 정수»,
+    //    곧 분자의 **크기**다. 그래서 $b$ 의 부호만 뒤집힌 경우는 크기가 같아
+    //    이 축이 **구조적으로 못 본다.** 여기서 실제로 갈라 주는 것은 $a$ 의
+    //    부호이고, 값을 둘 내놓는 것은 「지우면 답이 하나로 안 정해진다」는
+    //    사실을 그대로 적은 것이다(2차 `34U` 가 선 자리와 같다).
+    const { p: pp, q: qq } = f as Record<string, number>;
+    return [
+      {
+        name: "사분면으로 부호를 정하는 걸음 지움",
+        values: [String(qq! * (pp! - 1)), String(qq! * (pp! + 1))],
+      },
+    ];
   }
   return [];
 }

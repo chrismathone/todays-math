@@ -1361,12 +1361,26 @@ describe("중1 5차 h — 지면과 값", () => {
         expect(made).toBe(60);
       });
 
-      it("🔴 변형 폭 — 같은 씨앗에서 `floor` 개 변형이 **서로 다르다**", () => {
+      /**
+       * 🔴 **제품이 실제로 쓰는 규칙으로 잰다.**
+       *
+       * 처음에는 「변형 $0..floor-1$ 이 **전부** 서로 다르다」로 잠갔는데, 그것은
+       * 제품이 요구하는 것이 아니다 — 적재기는 발문이 겹치면 **버리고 변형 번호를
+       * 올린다**(예산 $n\times30$). 그리고 씨앗이 `seed + variant\times0x9e37` 로만
+       * 갈리므로 두 변형이 창의 같은 자리를 뽑는 것은 **생일 문제**이고, 창을
+       * 키워도 0이 되지 않는다.
+       *
+       * 2026-09-04: `93X` 의 쏠림을 고치며 「답을 먼저 뽑는」 꼴로 바꾸자 씨앗
+       * $20260903$ 에서 여섯 중 다섯만 달라져 그 잠금이 빨개졌다. **제품은 멀쩡하다** —
+       * 예산 안에서 여섯을 다 채운다. 그래서 재는 쪽을 제품에 맞췄다.
+       */
+      it("🔴 변형 폭 — 제품 예산 안에서 `floor` 개를 채운다", () => {
         const floor = VARIANT_FLOOR[e.key]!;
         for (const seed of SEEDS) {
           const seen = new Set<string>();
-          for (let v = 0; v < floor; v += 1)
+          for (let v = 0; v < floor * 30 && seen.size < floor; v += 1) {
             seen.add(build(e.key, seed, v).content);
+          }
           expect(seen.size, `${e.key} 씨앗 ${seed}`).toBe(floor);
         }
       });
