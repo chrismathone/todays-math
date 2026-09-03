@@ -87,6 +87,8 @@ import {
   solidPrefix,
   triangleColumn,
   triangularRow,
+  bisectorStopShort,
+  triangleStopShort,
 } from "@/lib/middle/m1Top5a";
 import { tidySolution } from "@/lib/middle/solutionText";
 import { resolveMiddleTier } from "@/lib/middle/tier";
@@ -1090,11 +1092,18 @@ describe("중1 5차a 확대 갈래 — 지면과 값", () => {
          *
          * ⚠️ 그러니 이 표는 «등록 뒤»에만 뜻이 있다. 등록을 되돌리면 다시 빨개지고,
          *    그것이 맞다 — 자와 제품이 갈렸다는 신호다.
+         *
+         * 🔴 **2026-09-04 에 `67X` 가 $174	o166$ 으로 다시 움직였다.** 이것도 결함이
+         *    아니라 **창을 깎은 결과**다 — 「굳힘을 읽고 덜 간 답」(그 줄의 첫 수)이
+         *    $col=1$ 인 25자리에서 참 답과 같아 창을 $261	o236$ 으로 줄였고, 서로 다른
+         *    발문이 그만큼 줄었다. 판정기 축을 지으며 드러났고 널 모형은 0.00% 였다.
+         *    같은 회차에 `65X` 도 창이 $1{,}427	o1{,}413$ 이 됐는데 그쪽은 이 표의
+         *    씨앗 $220$개가 그 14자리를 안 뽑아 값이 그대로다($218$).
          */
         const expected: Record<string, readonly [number, number]> = {
           [K65]: [218, 3],
           [K66]: [215, 6],
-          [K67]: [174, 9],
+          [K67]: [166, 9],
           [K68]: [209, 11],
         };
         expect(
@@ -1191,8 +1200,21 @@ describe("중1 5차a 확대 갈래 — ㉠ 창이 한쪽 끝만인가", () => {
       5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
     ]);
     expect([...up].sort((a, b) => a - b)).toEqual([
-      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+      6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
     ]);
+    // 🔴 «위»에서 **다섯째 줄**이 빠진 것도 결함이 아니다 — 그 줄에서 지면 자를
+    //    통과한 자리가 $N=11$ **하나뿐**이었고(12·13·14 는 지면 조합에 걸린다),
+    //    하필 그 하나가 $col=1$ 이라 「덜 간 답」 가드에 걸린다. 곧 다섯째 줄 «위»는
+    //    **두 가드가 각각 다른 자리를 먹어** 통째로 비었다. 아래에서 창 전수로 확인한다.
+    for (let N = rowEnd(4) + 1; N <= rowEnd(5); N += 1) {
+      const above = aboveInTriangle(N);
+      if (above === null) continue; // $N=15$ 는 위 줄에 자리가 없다
+      const byPage = looksLikeShortcut(above, [1, 2, 3, N]);
+      const byShort = triangleStopShort(5, "위") === above;
+      expect(byPage || byShort).toBe(true);
+      // 그리고 **둘이 같은 자리를 먹지 않는다** — 한쪽만 있으면 이 줄이 살아남는다.
+      expect(byPage && byShort).toBe(false);
+    }
     // 🔴 «아래»에서 여섯째 줄이 빠진 것은 결함이 아니다 — 발문에 $1$, $2$, $3$ 과 $N$ 이
     //    찍히므로 그 넷의 합이 $N+6$ 이고, 줄 번호가 여섯이면 **답이 바로 그 합**이다.
     //    «위»의 답은 $N-5$ 라 그 자리에 안 걸리므로 여섯째 줄이 살아 있다.
@@ -1312,31 +1334,57 @@ describe("중1 5차a 확대 갈래 — 쏠림과 지름길", () => {
   });
 
   it("🔴 D-20 손실 원장이 재현된다 — 창 전수, 「가드 하나만 껐을 때」", () => {
-    type Row = { ans: number; page: number[] };
-    const count = (rows: Row[]): [number, number, number, number] => {
-      const on = rows.filter((r) => !looksLikeShortcut(r.ans, r.page));
+    // 🔴 **가드가 둘이다.** ⑴ `looksLikeShortcut` — 지면에 찍힌 수를 더하고 곱해 본다.
+    //    ⑵ 「굳힘을 읽고 **덜 간** 답」(`bisectorStopShort`·`triangleStopShort`) —
+    //    2026-09-04 에 더했다. ⑵ 가 잡는 부류를 ⑴ 은 **구조적으로 못 본다**: 새는 답이
+    //    지면에 **없는** 값(가운데 각들의 합 · 줄 번호)을 거쳐 나오기 때문이다.
+    //    실측으로 ⑴ 만 있을 때 `65X` 는 0.98%, `67X` 는 **9.58%** 가 샜고 널 모형은
+    //    둘 다 0.00% 였다 — 우연이 아니라 구조다.
+    //    ⚠️ 그래서 원장을 **단계마다** 적는다. 합쳐서 한 수만 적으면 「어느 가드가
+    //    무엇을 깎았나」를 다음 사람이 못 되짚는다.
+    type Row = { ans: number; page: number[]; short?: number };
+    /** `[전체, 서로 다른 답, ⑴ 만, ⑴ 뒤 서로 다른 답, ⑴+⑵, ⑴+⑵ 뒤 서로 다른 답]` */
+    const count = (
+      rows: Row[],
+    ): [number, number, number, number, number, number] => {
+      const one = rows.filter((r) => !looksLikeShortcut(r.ans, r.page));
+      const both = one.filter((r) => r.short !== r.ans);
       return [
         rows.length,
         new Set(rows.map((r) => r.ans)).size,
-        on.length,
-        new Set(on.map((r) => r.ans)).size,
+        one.length,
+        new Set(one.map((r) => r.ans)).size,
+        both.length,
+        new Set(both.map((r) => r.ans)).size,
       ];
     };
     // 65X
     const a65: Row[] = [];
     for (let mid = 20; mid <= 170; mid += 2) {
-      a65.push({ ans: bisectorAngleFromMiddle(mid), page: [mid] });
+      a65.push({
+        ans: bisectorAngleFromMiddle(mid),
+        page: [mid],
+        short: bisectorStopShort({ mode: "A", mid, ans: 0 }),
+      });
     }
     for (let poq = 100; poq <= 175; poq += 1) {
       const ans = middleSumFromBisector(poq);
       if (ans < 20 || ans > 170) continue;
-      a65.push({ ans, page: [poq] });
+      a65.push({
+        ans,
+        page: [poq],
+        short: bisectorStopShort({ mode: "B", poq, ans: 0 }),
+      });
     }
     for (let c1 = 12; c1 <= 86; c1 += 1) {
       for (let c2 = c1 + 1; c2 <= 86; c2 += 1) {
         if ((c1 + c2) % 2 !== 0) continue;
         if (c1 + c2 > 170) continue;
-        a65.push({ ans: bisectorAngleFromMiddle(c1 + c2), page: [c1, c2] });
+        a65.push({
+          ans: bisectorAngleFromMiddle(c1 + c2),
+          page: [c1, c2],
+          short: bisectorStopShort({ mode: "C", c1, c2, ans: 0 }),
+        });
       }
     }
     // 🔴 「지면에 찍히는 수」 목록이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다 —
@@ -1346,17 +1394,28 @@ describe("중1 5차a 확대 갈래 — 쏠림과 지름길", () => {
         k.mode === "A" ? [k.mid] : k.mode === "B" ? [k.poq] : [k.c1, k.c2];
       expect(anglePageNums(k)).toEqual(want);
     }
-    expect(count(a65)).toEqual([1521, 116, 1427, 112]);
-    expect(ANGLE_BISECTOR_WINDOW.length).toBe(1427);
+    expect(count(a65)).toEqual([1521, 116, 1427, 112, 1413, 111]);
+    expect(ANGLE_BISECTOR_WINDOW.length).toBe(1413);
     // 67X
     const a67: Row[] = [];
     for (let N = rowEnd(4) + 1; N <= rowEnd(18); N += 1) {
-      a67.push({ ans: belowInTriangle(N), page: [1, 2, 3, N] });
+      const r = triangularRow(N);
+      a67.push({
+        ans: belowInTriangle(N),
+        page: [1, 2, 3, N],
+        short: triangleStopShort(r, "아래"),
+      });
       const up = aboveInTriangle(N);
-      if (up !== null) a67.push({ ans: up, page: [1, 2, 3, N] });
+      if (up !== null) {
+        a67.push({
+          ans: up,
+          page: [1, 2, 3, N],
+          short: triangleStopShort(r, "위"),
+        });
+      }
     }
-    expect(count(a67)).toEqual([308, 182, 261, 156]);
-    expect(TRIANGLE_ROW_WINDOW.length).toBe(261);
+    expect(count(a67)).toEqual([308, 182, 261, 156, 236, 141]);
+    expect(TRIANGLE_ROW_WINDOW.length).toBe(236);
     // 68X
     const a68: Row[] = [];
     for (const ask of ["모서리", "꼭짓점", "면"] as const) {
@@ -1370,7 +1429,10 @@ describe("중1 5차a 확대 갈래 — 쏠림과 지름길", () => {
         }
       }
     }
-    expect(count(a68)).toEqual([1452, 111, 1138, 107]);
+    // 68X 는 ⑵ 가드가 **없다** — 그 유형의 지름길 적중 2.72%는 널 모형 2.46%와 같은
+    //    자리라 «우연 수준»이고, 우연을 막겠다고 창을 깎으면 잃기만 한다.
+    //    그래서 ⑴ 뒤와 ⑴+⑵ 뒤가 **같아야** 한다 — 이 줄이 그것을 못 박는다.
+    expect(count(a68)).toEqual([1452, 111, 1138, 107, 1138, 107]);
     expect(SKEW_EDGE_WINDOW.length).toBe(1138);
     // 66X 는 창 크기만 못 박는다 (전수 재구성은 위 셋으로 충분히 보였다).
     expect(EQUAL_PART_WINDOW.length).toBe(935);

@@ -67,7 +67,6 @@ import {
   tenDivisorNumbers,
   unitDigitCycle,
   unitDigitOfProduct,
-  valueFromReciprocalSum,
   TRIPLES,
 } from "../../src/lib/middle/m1Top2";
 // 3차 물결(`m1Top3.ts`)의 굳힘 함수 — 여기서 다시 구현하지 않는다.
@@ -381,8 +380,22 @@ export const AXES: Record<string, Axis> = {
   //       답 자체가 없다(94T 와 같은 «축 없음»).
   "1-1|문자의 사용과 식의 계산|43U": {
     withoutBinding: () => null,
-    perturbed: (f) =>
-      valueFromReciprocalSum(f.s! + 1, f.p!, f.q!, f.r!, f.u!) ?? Number.NaN,
+    // 🔴 **첫 판은 `valueFromReciprocalSum(s+1, …) ?? NaN` 이었다 — 그것이 96판 중
+    //    95판에서 `null` 을 냈다.** 그 함수는 몫이 정수가 아니면 거부하는데(지면에
+    //    소수를 안 내려고), 생성기가 참 $s$ 에서만 나누어떨어지게 계수를 역산하므로
+    //    $s$ 를 흔들면 거의 언제나 정수가 아니다. 그런데 아래 `reportBinding` 이
+    //    `Number.isFinite` 로 걸러 그 95판을 **「답이 바뀌었다 → 굳힘이 산다」**로
+    //    세고 있었다 — 실제로 잰 것은 **1판**뿐이었고 나머지는 «못 셈»이 «깨끗»으로
+    //    읽혔다(2026-09-04 에 실측으로 드러났다).
+    //
+    //    ㉡ 이 묻는 것은 「$s$ 를 흔들면 **값이** 달라지나」이지 「정수인가」가 아니다.
+    //    정수 조건은 **지면을 위한 것**이라 이 판정과 아무 상관이 없다. 그래서
+    //    유리수 그대로 견준다 — 분모 $r(s+1)+u$ 는 $r\ge1$, $s\ge2$, $u\ge1$ 이라
+    //    늘 $4$ 이상이므로 **언제나 정의된다**(실측 분모 $0$ 인 판 0/96).
+    //    고친 뒤 잰 판 1 → **96**, 답이 그대로인 판 **0** (결론은 그대로 «굳힘이 산다»).
+    //    이 함수가 «장식»도 낼 수 있음은 기울기 $pu+qr=0$ 인 계수로 확인했다
+    //    ($p=2$, $q=-1$, $r=2$, $u=1$ 에서 $s=3$ 과 $s=4$ 의 값이 둘 다 $1$ 이다).
+    perturbed: (f) => (f.p! * (f.s! + 1) - f.q!) / (f.r! * (f.s! + 1) + f.u!),
     candidateCount: () => null,
   },
   // 44U — 굳힘 조건은 「세 수의 합이 **정수**」. 지우면 열 가지가 다 산다.
@@ -562,14 +575,33 @@ function reportShortcuts(rows: Row[]): void {
       );
       continue;
     }
-    let noBind = "**축 없음** (조건을 지우면 문제가 사라진다)";
-    const probe = axis.withoutBinding(mine[0]!.facts);
-    if (probe !== null) {
-      const hit = mine.filter(
-        (r) => axis.withoutBinding(r.facts) === answerNumber(r.answer),
-      ).length;
-      noBind = `${pct(hit, mine.length)} (${hit}/${mine.length})`;
+    // 🔴 **판마다 따로 본다.** 예전에는 `mine[0]` 하나가 `null` 이면 그 유형을 통째로
+    //    「축 없음」으로 적었다 — 판에 따라 축이 서고 안 서는 유형에서 나머지를
+    //    구조적으로 못 본다. 그리고 값이 **안 서는** 판(`NaN`)은 「지름길이 안 맞았다」와
+    //    다른 말이라 분모에서 뺀다 — 안 빼면 「지름길 0%」의 분모 대부분이 애초에
+    //    지름길이 서지도 않는 판일 수 있고, 그 표는 «깨끗»과 «못 셈»을 안 가른다.
+    let hit = 0;
+    let noAxis = 0;
+    let noValue = 0;
+    for (const r of mine) {
+      let wb: number | null;
+      try {
+        wb = axis.withoutBinding(r.facts);
+      } catch {
+        wb = Number.NaN;
+      }
+      if (wb === null) noAxis += 1;
+      else if (!Number.isFinite(wb)) noValue += 1;
+      else if (wb === answerNumber(r.answer)) hit += 1;
     }
+    const scored = mine.length - noAxis - noValue;
+    const tail = noValue > 0 ? ` · 지름길이 안 서는 판 ${noValue}` : "";
+    const noBind =
+      noAxis === mine.length
+        ? "**축 없음** (조건을 지우면 문제가 사라진다)"
+        : scored === 0
+          ? `🔴 **못 쟀다** (${mine.length}판 모두 값이 안 섰다)`
+          : `${pct(hit, scored)} (${hit}/${scored})${tail}${noAxis > 0 ? ` · 축 없는 판 ${noAxis}` : ""}`;
     const ks = mine
       .map((r) => axis.candidateCount(r.facts))
       .filter((v): v is number => v !== null);
@@ -597,13 +629,36 @@ function reportBinding(rows: Row[]): void {
       );
       continue;
     }
-    const same = mine.filter((r) => {
-      const got = axis.perturbed(r.facts);
-      return Number.isFinite(got) && got === answerNumber(r.answer);
-    }).length;
+    // 🔴 **값을 못 낸 판을 «답이 바뀌었다»로 세지 않는다.** 예전에는 아래 `same`
+    //    하나만 세고 `Number.isFinite` 로 조용히 걸렀는데, 그러면 흔들기가 창 밖으로
+    //    나가 `NaN`·`null` 을 내는 판이 전부 **「굳힘이 산다」**로 읽힌다.
+    //    실제로 `43U` 가 96판 중 **95판**을 그렇게 통과하고 있었다(2026-09-04).
+    //    「답이 안 바뀌었다」(장식)와 「잴 수가 없었다」(못 셈)는 다른 말이므로
+    //    분모를 갈라 찍고, 못 잰 판이 있으면 판정을 **보류**한다.
+    let same = 0;
+    let unmeasured = 0;
+    for (const r of mine) {
+      let got: number;
+      try {
+        got = axis.perturbed(r.facts);
+      } catch {
+        got = Number.NaN;
+      }
+      if (!Number.isFinite(got)) unmeasured += 1;
+      else if (got === answerNumber(r.answer)) same += 1;
+    }
+    const measured = mine.length - unmeasured;
+    const verdict =
+      measured === 0
+        ? "🔴 **못 쟀다** (흔들기가 한 판도 값을 못 냈다)"
+        : same > 0
+          ? "🔴 **장식**"
+          : unmeasured > 0
+            ? `⚠️ 굳힘이 산다 — 다만 ${unmeasured}판은 **못 쟀다**`
+            : "굳힘이 산다";
     console.log(
-      `| \`${e.key.split("|")[2]}\` | ${mine.length} | ${pct(same, mine.length)} (${same}/${mine.length}) | ` +
-        `${same === 0 ? "굳힘이 산다" : "🔴 **장식**"} |`,
+      `| \`${e.key.split("|")[2]}\` | ${mine.length} | ${pct(same, measured)} (${same}/${measured}) | ` +
+        `${verdict} |`,
     );
   }
 }
@@ -834,7 +889,9 @@ function selftest(): number {
   );
 
   // ㉡ 굳힘 검출 — 양성: 인자를 흔들어도 값이 같은 «장식» 함수
-  const decorative = (n: number): number => 42;
+  // 인자를 **받되 안 쓰는** 함수 — 그것이 «장식»의 정의다. 삼항으로 적어야
+  //    `no-unused-vars` 가 안 울린다(경고는 가드를 끄는 잡음이 된다).
+  const decorative = (n: number): number => (n > 0 ? 42 : 42);
   add(
     "양성 ㉡: 장식인 굳힘은 흔들어도 답이 같다",
     true,

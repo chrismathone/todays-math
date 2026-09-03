@@ -321,6 +321,25 @@ export function anglePageNums(k: AngleCase): number[] {
  * **하나만** 껐을 때」를 시험이 전수로 세어 못 박는다(㉶). 측정점은 **판**과
  * **서로 다른 답** 둘이고, 한 행에 섞지 않는다.
  */
+/**
+ * 🔴 **굳힘을 읽고 «덜 간» 답** — 평각으로 가운데 각들의 합까지만 가고 멈춘 것.
+ *
+ * 되묻는 판(mode B)에서는 대응하는 «덜 감»이 「$2$배를 잊음」이다.
+ *
+ * ⚠️ 이 함수가 있는 까닭은 `looksLikeShortcut`(지면 수 조합)이 이 부류를 **구조적으로
+ *    못 보기** 때문이다. 그 자는 지면에 찍힌 수들을 더하고 곱해 볼 뿐인데, 여기서 새는
+ *    답은 «지면에 없는 값(가운데 각들의 합)»을 거쳐 나온다. 실측으로 창 $1{,}427$ 자리
+ *    가운데 **14자리(0.98%)** 가 그렇게 샜고, 널 모형은 **0.00%** 라 우연이 아니었다
+ *    (2026-09-04, 판정기 축을 지으며 드러났다).
+ *
+ * 아래 창이 이 함수로 그 자리를 걸러 내고, 판정기(`probe-middle-top-m1.ts`)의 ㉠ 축도
+ * **같은 함수를 부른다** — 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
+ */
+export function bisectorStopShort(k: AngleCase): number {
+  if (k.mode === "B") return k.poq - 90;
+  return 180 - (k.mode === "A" ? k.mid : k.c1 + k.c2);
+}
+
 export const ANGLE_BISECTOR_WINDOW: readonly AngleCase[] = (() => {
   const all: AngleCase[] = [];
   for (let mid = 20; mid <= 170; mid += 2) {
@@ -338,7 +357,11 @@ export const ANGLE_BISECTOR_WINDOW: readonly AngleCase[] = (() => {
       all.push({ mode: "C", c1, c2, ans: bisectorAngleFromMiddle(c1 + c2) });
     }
   }
-  return all.filter((k) => !looksLikeShortcut(k.ans, anglePageNums(k)));
+  return all.filter(
+    (k) =>
+      !looksLikeShortcut(k.ans, anglePageNums(k)) &&
+      bisectorStopShort(k) !== k.ans,
+  );
 })();
 
 /** 모드별 창 — 모드를 먼저 고르고 그 안에서 뽑아야 세 모드가 고르게 나온다. */
@@ -617,16 +640,42 @@ type RowCase = { N: number; r: number; dir: "아래" | "위"; ans: number };
  * 위쪽을 자른 까닭: 해설이 줄 끝 수를 **전부 적으므로**(D-116 ⑹) 열여덟이 지면
  * 길이의 상한이다(㉮).
  */
+/**
+ * 🔴 **굳힘을 읽고 «덜 간» 답** — 목표 줄까지는 갔지만 「왼쪽으로부터 몇 번째」를
+ * 안 세고 **그 줄의 첫 번째 수**를 답한 것.
+ *
+ * ⚠️ $N$ 이 자기 줄의 첫 수이면($col=1$) 이 값이 **참 답과 같아진다.** 그러면 열을
+ *    한 번도 안 세고 맞는다 — 이 유형이 심화상인 까닭(줄마다 길이가 다르다)의
+ *    마지막 마디가 통째로 빠지는 자리다. 실측으로 창 $261$ 자리 가운데
+ *    **25자리(9.58%)** 가 그랬고 **전부 $col=1$** 이었다. 널 모형은 **0.00%** 이므로
+ *    우연이 아니라 구조다(2026-09-04, 판정기 축을 지으며 드러났다).
+ *
+ * `looksLikeShortcut`(지면 수 조합)은 이 부류를 **구조적으로 못 본다** — 새는 답이
+ * 지면에 없는 값(줄 번호)을 거쳐 나오기 때문이다. 아래 창이 이 함수로 그 자리를
+ * 걸러 내고, 판정기의 ㉠ 축도 **같은 함수를 부른다**.
+ */
+export function triangleStopShort(r: number, dir: "아래" | "위"): number {
+  const target = dir === "아래" ? r + 1 : r - 1;
+  return rowEnd(target - 1) + 1;
+}
+
 export const TRIANGLE_ROW_WINDOW: readonly RowCase[] = (() => {
   const out: RowCase[] = [];
   for (let N = rowEnd(4) + 1; N <= rowEnd(18); N += 1) {
     const r = triangularRow(N);
     const below = belowInTriangle(N);
-    if (!looksLikeShortcut(below, [1, 2, 3, N])) {
+    if (
+      !looksLikeShortcut(below, [1, 2, 3, N]) &&
+      triangleStopShort(r, "아래") !== below
+    ) {
       out.push({ N, r, dir: "아래", ans: below });
     }
     const above = aboveInTriangle(N);
-    if (above !== null && !looksLikeShortcut(above, [1, 2, 3, N])) {
+    if (
+      above !== null &&
+      !looksLikeShortcut(above, [1, 2, 3, N]) &&
+      triangleStopShort(r, "위") !== above
+    ) {
       out.push({ N, r, dir: "위", ans: above });
     }
   }
