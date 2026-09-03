@@ -284,7 +284,7 @@ export function pyramidSideFromSkew(k: number): number | null {
 }
 
 /** 무엇을 묻는가 — `[지면 글자, 조사, 답]`. */
-const PYRAMID_ASKS: readonly {
+export const PYRAMID_ASKS: readonly {
   ask: string;
   josa: "을" | "를";
   value: (n: number) => number;
@@ -460,7 +460,7 @@ export function distinctLineCount(n: number, m: number): number {
  * 말이면 같은 시험지에 나란히 실릴 때 학생이 두 번 읽는다 — 그래서 문장 골격을
  * 바꿨다(㉢). 값과 조건은 한 글자도 안 바꿨다.
  */
-const POINT_ASKS: readonly {
+export const POINT_ASKS: readonly {
   key: "line" | "diff" | "sum";
   tail: string;
   value: (n: number, m: number) => number;
@@ -605,7 +605,7 @@ const COEF_PAIRS: readonly (readonly [number, number])[] = (() => {
 })();
 
 /** 무엇을 묻는가. 셋 다 이 소단원의 낱말(계수·상수항)로만 물어본다. */
-const LINEAR_ASKS: readonly {
+export const LINEAR_ASKS: readonly {
   key: "const" | "coef" | "sum";
   ask: string;
   josa: "을" | "를";

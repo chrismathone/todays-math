@@ -103,6 +103,7 @@ import { wrapDanClause } from "@/lib/problemText";
 // 🔴 남의 자를 **그대로 import** 한다 — 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.
 import { isThin } from "../../../scripts/qa/probe-middle-solution-depth";
 import {
+  AXES,
   koreanJaccard,
   numAnswerJaccard,
   obviousCandidates,
@@ -1554,17 +1555,77 @@ describe("중1 5차a 확대 갈래 — ㉢ 형제와의 겹침", () => {
 });
 
 // ═══════════════════════════════════════════════════════════
-// 리드에게 넘기는 자리 — 판정기 축은 여기서 못 적는다
+// 판정기 축 — 리드가 채운 것을 여기서 **그대로 부른다**
 // ═══════════════════════════════════════════════════════════
 
-describe("중1 5차a 확대 갈래 — 판정기 축은 리드 몫임을 못 박는다", () => {
-  it("🔴 `probe-middle-top-m1` 의 `AXES` 에 이 넷이 **아직 없다** — 등록과 함께 리드가 적어야 한다", () => {
-    // 이 시험이 초록인 동안은 판정기가 이 넷을 「축(AXES)을 안 적었다」로 **빨갛게 찍는다**.
-    // 그 파일은 다른 갈래도 함께 쓰는 공용이라 여기서 못 고친다(브리프 절대 규칙 1).
-    // 리드가 `AXES` 를 채우고 `elemProbeGauges.test.ts` 의 항목 수를 올리면 이 검사를
-    // **지워야** 한다 — 그때 빨개지는 것이 신호다.
-    const axisFile = "scripts/qa/probe-middle-top-m1.ts";
-    expect(axisFile).toBe("scripts/qa/probe-middle-top-m1.ts");
-    for (const key of KEYS) expect(key).toMatch(/\|\d+X$/);
+describe("중1 5차a 확대 갈래 — 판정기 축이 이 넷을 실제로 잰다", () => {
+  // 🔴 **여기 있던 것은 도장이었다.** `expect(axisFile).toBe(axisFile)` 라
+  //    무엇을 해도 초록이라 아무것도 안 지켰다. 2026-09-04 에 리드가 `AXES` 를
+  //    채우면서 진짜 검사로 갈았다 — 판정기 표를 **import 해서 그대로 부른다**
+  //    (규칙을 옮겨 적으면 두 벌이 되고 한쪽만 고쳐도 아무도 모른다).
+  it("🔴 `AXES` 에 이 넷이 있다 — 없으면 판정기가 「축을 안 적었다」로 찍는다", () => {
+    for (const key of KEYS) expect(Object.keys(AXES)).toContain(key);
+  });
+
+  it("🔴 ㉡ — 굳힘 인자를 흔들면 답이 달라진다 (창 전수 씨앗 220판)", () => {
+    for (const e of M1_TOP_5A) {
+      let measured = 0;
+      for (const [seed, v] of WIDE) {
+        const p = build(e.key, seed, v);
+        const got = AXES[e.key]!.perturbed(p.facts as Record<string, number>);
+        // 🔴 값을 못 내면 **세지 않는다.** `NaN` 은 무엇과도 안 같아 그 판이
+        //    조용히 통과하는데, 그것은 「굳힘이 산다」가 아니라 「못 쟀다」이다
+        //    (2026-09-04 에 `43U` 가 96판 중 95판을 그렇게 통과하고 있었다).
+        if (!Number.isFinite(got)) continue;
+        measured += 1;
+        expect(got, `${e.key} ${seed}/${v}`).not.toBe(answerNumber(p.answer));
+      }
+      // 못 잰 판이 섞이면 위 단정이 «비어 있는 채로» 초록이 된다 — 분모를 지킨다.
+      expect(measured, `${e.key} 잰 판`).toBe(WIDE.length);
+    }
+  });
+
+  it("🔴 ㉠ — 「굳힘을 읽고 덜 간 답」이 몇 %나 맞나 (유형마다 갈라 적는다)", () => {
+    // 🔴 **0 을 한 줄로 요구하면 결정을 거짓말로 덮는다.** 창 전수 실측 —
+    //    `65X` 0.98%(가운데 합 60) · `67X` 9.58%(col=1) 는 널 모형이 **0.00%** 라
+    //    구조적 결함이었고 **창에서 막았다**(261→236 · 1427→1413).
+    //    반면 `68X` 2.72% 는 널 모형 **2.46%** 와 같은 자리라 **우연 수준**이고,
+    //    우연을 막겠다고 창을 깎으면 잃기만 한다 — 그래서 **일부러 안 막았다.**
+    //    그 결정을 여기 수치로 남긴다. 0 으로 적으면 다음 사람이 「깨끗하다」로
+    //    읽고, 언젠가 진짜 결함이 그 자리에 들어와도 안 보인다.
+    const ZERO = new Set([K65, K66, K67]);
+    for (const e of M1_TOP_5A) {
+      let hit = 0;
+      let scored = 0;
+      for (const [seed, v] of WIDE) {
+        const p = build(e.key, seed, v);
+        const wb = AXES[e.key]!.withoutBinding(
+          p.facts as Record<string, number>,
+        );
+        if (wb === null || !Number.isFinite(wb)) continue; // 축이 없거나 값이 안 서는 판
+        scored += 1;
+        if (wb === answerNumber(p.answer)) hit += 1;
+      }
+      expect(scored, `${e.key} 잰 판`).toBeGreaterThan(0);
+      if (ZERO.has(e.key)) {
+        expect(hit, `${e.key} — 막은 자리라 0 이어야 한다`).toBe(0);
+      } else {
+        // `68X` — 우연 수준(창 전수 2.72% · 널 모형 2.46%)을 넘지 않는지만 본다.
+        expect(hit / scored, `${e.key} 우연 수준 위로 올라갔다`).toBeLessThan(
+          0.05,
+        );
+      }
+    }
+  });
+
+  it("🔴 그 축이 «있다»도 낼 수 있다 — 가드를 끄면 지름길이 돌아온다", () => {
+    // 음성 대조가 없으면 위 「0건」이 «깨끗»인지 «못 셈»인지 안 갈린다.
+    // 막기 전의 자리를 손으로 만들어 축이 그것을 잡는지 본다.
+    expect(bisectorStopShort({ mode: "C", c1: 28, c2: 32, ans: 0 })).toBe(
+      bisectorAngleFromMiddle(60),
+    );
+    expect(triangleStopShort(triangularRow(121), "아래")).toBe(
+      belowInTriangle(121),
+    );
   });
 });

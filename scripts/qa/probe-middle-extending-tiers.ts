@@ -663,6 +663,171 @@ export function erasures(key: string, p: MidProblem): Erasure[] {
       },
     ];
   }
+  // ══ 5차 물결 중2 — 갈래 a·b·d·e (2026-09-04) ═══════════════════
+  //
+  // ⚠️ 값은 «굳힘을 지웠을 때 나오는 답»이고, `answerNumber` 가 읽는 것은
+  //    **정답의 첫 정수**(분수면 분자)다. 그래서 분수 답의 지운 값도 분자로 적는다.
+
+  if (key === "2-2|확률|101X") {
+    // 굳힘은 「셋 중 둘이 맞히는 갈래가 셋이고 그 셋을 다 세워 더한다」.
+    // 한 갈래에서 멈추면 그 갈래의 분자 하나만 남는다(분모는 같다).
+    const { t1, t2, t3 } = f as Record<string, number>;
+    return [
+      {
+        name: "한 갈래에서 멈춤 (셋을 안 더함)",
+        values: [String(t1), String(t2), String(t3)],
+      },
+    ];
+  }
+  if (key === "2-2|평행선 사이의 선분의 길이의 비|102X") {
+    // 굳힘은 「대응하는 세 변의 비가 같으므로 둘레의 비도 같은 비」다.
+    // 지우면 둘레를 길이로 곧장 읽어 «둘레의 차»를 답으로 낸다.
+    const { whole, small } = f as Record<string, number>;
+    return [
+      {
+        name: "둘레의 비를 안 쓰고 둘레의 차를 답으로",
+        values: [String(whole - small)],
+      },
+    ];
+  }
+  if (key === "2-1|연립일차방정식의 활용|103X") {
+    // 굳힘은 가감법이다. 생성기가 「단순평균으로 읽은 값」을 `naive` 로 적어 두고
+    // 그것이 참 답과 다른 판만 낸다 — 그 값을 그대로 쓴다(규칙을 옮겨 적지 않는다).
+    const { naive } = f as Record<string, number>;
+    return [{ name: "가감법 대신 단순평균으로 읽음", values: [String(naive)] }];
+  }
+  if (key === "2-2|평행선 사이의 선분의 길이의 비|104X") {
+    // 굳지 않는다 — 배수 목록을 만들어 삼각형이 되는 범위로 거른 뒤 남은 것을 다 더한다.
+    const { first, last } = f as Record<string, number>;
+    return [
+      { name: "첫 후보에서 멈춤 (다 안 더함)", values: [String(first)] },
+      { name: "끝 후보만 봄", values: [String(last)] },
+    ];
+  }
+  if (key === "2-2|삼각형의 외심과 내심|105X") {
+    // 굳힘은 「외심이면 세 삼각형이 이등변이라 여섯 각이 두 개씩 묶인다」이고,
+    // 그 결과가 「중심각은 원주각의 두 배」다. 두 배를 잊으면 꼭지각 그대로가 나온다.
+    const { vertexAngle } = f as Record<string, number>;
+    return [
+      { name: "두 배를 잊음 (꼭지각 그대로)", values: [String(vertexAngle)] },
+    ];
+  }
+  if (key === "2-1|일차부등식의 활용|106X") {
+    // 굳힘은 일차부등식 둘이 만드는 닫힌 범위다. 한쪽 경계를 잘못 잡으면 하나를 더 센다.
+    const { deadX } = f as Record<string, number>;
+    return [{ name: "경계를 잘못 잡아 하나 더 셈", values: [String(deadX)] }];
+  }
+  if (key === "2-1|일차함수와 그 그래프  ⑴|107X") {
+    // 굳지 않는다 — 살아남는 짝을 다 세우고 각각의 함숫값을 더해야 한다.
+    const { first, last } = f as Record<string, number>;
+    return [
+      { name: "첫 후보에서 멈춤 (다 안 더함)", values: [String(first)] },
+      { name: "끝 후보만 봄", values: [String(last)] },
+    ];
+  }
+  if (key === "2-2|여러 가지 사각형|108X") {
+    // 굳지 않는다 — 약수 짝을 다 적고 「차가 D 이상」으로 거른 뒤 남은 합을 견준다.
+    // 거르지 않으면 버려야 할 짝의 합이 더 작아 그것을 고른다.
+    const { deadMin } = f as Record<string, number>;
+    return [
+      { name: "거르지 않고 가장 작은 합을 고름", values: [String(deadMin)] },
+    ];
+  }
+  if (key === "2-2|삼각형의 성질|113X") {
+    // 굳힘은 각의 이등분선의 성질(두 변까지의 거리가 같다)이다. 지우면 D 를 밑변의
+    // 중점으로 보아 두 조각의 넓이를 같게 놓는다.
+    // ⚠️ 지면은 절반이 정수면 정수로, 아니면 분수로 적힌다 — 첫 정수가 갈리므로
+    //    두 꼴을 나누어 적는다(안 나누면 홀수 판에서 이 자가 헛돈다).
+    const { whole } = f as Record<string, number>;
+    return [
+      {
+        name: "이등분선의 성질을 안 씀 (두 조각을 같게 봄)",
+        values: [whole! % 2 === 0 ? String(whole! / 2) : String(whole)],
+      },
+    ];
+  }
+  if (key === "2-2|경우의 수|114X") {
+    // 굳힘은 「두 번 센 것은 최소공배수의 배수」다. 지우면 두 개수를 그냥 더해
+    // 겹친 것을 두 번 센다.
+    const { n, cp, cq } = f as Record<string, number>;
+    return [
+      {
+        name: "겹친 것을 안 뺌 (합의 법칙의 전제를 지움)",
+        values: [String(n! - (cp! + cq!))],
+      },
+    ];
+  }
+  if (key === "2-1|연립일차방정식|115X") {
+    // 굳지 않는다 — M 의 약수를 다 세우고 해가 창 안인지 걸러야 한다.
+    // 지우면 거르지 않고 모든 약수를 더한다(후보 목록은 facts 에 없지만 되만든다).
+    const { m, b } = f as Record<string, number>;
+    let all = 0;
+    for (let d = 1; d <= m!; d += 1) if (m! % d === 0) all += d + b!;
+    return [{ name: "거르지 않고 약수를 다 더함", values: [String(all)] }];
+  }
+  if (key === "2-2|평행사변형|116X") {
+    // 굳지 않는다 — 180 의 약수를 다 세우고 두 번 걸러 남은 것을 더한다.
+    const { smallest, largest } = f as Record<string, number>;
+    return [
+      { name: "하나만 구하고 멈춤 (가장 큰 것)", values: [String(smallest)] },
+      { name: "하나만 구하고 멈춤 (가장 작은 것)", values: [String(largest)] },
+    ];
+  }
+  if (key === "2-2|도형의 닮음|117X") {
+    // 굳힘은 SAS 닮음으로 «어느 두 삼각형이 닮았는지»를 하나로 정하는 것이다.
+    // 지우면 대응을 거꾸로 잡아 비가 뒤집힌다.
+    const { ratioDen, bc } = f as Record<string, number>;
+    return [
+      {
+        name: "대응을 거꾸로 잡아 닮음비를 뒤집음",
+        values: [String(ratioDen! * bc!)],
+      },
+    ];
+  }
+  if (key === "2-1|일차부등식|118X") {
+    // 굳지 않는다 — 부호가 셋으로 갈리고 살아남는 값이 여럿이라 다 세어 더해야 한다.
+    const { lo, hi } = f as Record<string, number>;
+    return [
+      { name: "하나만 세고 멈춤 (작은 쪽)", values: [String(lo)] },
+      { name: "하나만 세고 멈춤 (큰 쪽)", values: [String(hi)] },
+    ];
+  }
+  if (key === "2-1|일차함수와 그 그래프  ⑵|119X") {
+    // 굳지 않는다 — 기준 점에서 나머지 셋으로 가는 기울기를 다 구해 견주어야
+    // «어느 점이 직선 밖인지»가 나온다. 그 걸음을 지우면 기준 점을 그대로 쓰고,
+    // 그때의 y절편이 곧 그 직선 자신의 y절편이다(생성기가 `lineIntercept` 로 적어 둔다).
+    const { lineIntercept } = f as Record<string, number>;
+    return [
+      {
+        name: "직선 밖의 점을 안 가림 (기준 점을 그대로 씀)",
+        values: [String(lineIntercept)],
+      },
+    ];
+  }
+  if (key === "2-2|평행사변형|120X") {
+    // 굳힘은 「두 대각선이 서로 다른 것을 이등분하면 평행사변형」이라 «어느 두 선분이
+    // 같은가»를 하나로 정하는 것이다. 지우면 다른 짝을 같다고 놓아 x 가 달라진다.
+    // 되만들기가 안 되면(기울기가 같아 해가 없으면) 빈 목록을 낸다 — 지어내지 않는다.
+    const { p1, q1, p2, q2, p3, q3, p4, q4 } = f as Record<string, number>;
+    const out: Erasure[] = [];
+    for (const [pa, qa, pb, qb, nm] of [
+      [p1!, q1!, p4!, q4!, "1과 4를 같다고 놓음"],
+      [p3!, q3!, p2!, q2!, "3과 2를 같다고 놓음"],
+    ] as [number, number, number, number, string][]) {
+      if (pa === pb) continue;
+      const t = (qb - qa) / (pa - pb);
+      if (!Number.isInteger(t) || t <= 0) continue;
+      const ae = pa * t + qa;
+      const ec = p3! * t + q3!;
+      if (ae <= 0 || ec <= 0) continue;
+      out.push({
+        name: `다른 짝을 같다고 놓음 (${nm})`,
+        values: [String(2 * (ae + ec))],
+      });
+    }
+    return out;
+  }
+
   return [];
 }
 

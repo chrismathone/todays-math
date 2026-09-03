@@ -69,11 +69,13 @@ import {
 import { renderMathHtml } from "@/lib/math/renderMathHtml";
 import { pointsAtFigure } from "@/lib/middle/figureReference";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
+import { gcd } from "@/lib/middle/m1Top";
 import {
   factorPairWithSum,
   largerFromSumAndDiff,
   M1_TOP_5C,
   pageShortcutValues,
+  polyhedronDivisorCandidates,
   polyhedronScan,
   printedNumbers,
   polyhedronStop,
@@ -625,14 +627,14 @@ function read76(content: string): StatPage & { product: number } {
 }
 
 const RE74 =
-  /^어떤 (각기둥|각뿔대)((?: 모양의 (?:상자|블록|조형물|모형))?) (\(가\)|\$A\$)와 어떤 각뿔\2 (\(나\)|\$B\$)가 있다\. 두 (입체도형|상자|블록|조형물|모형)의 모서리의 개수의 곱은 \$(\d+)\$이고 꼭짓점의 개수의 합은 \$(\d+)\$이다\. (.+)$/;
+  /^어떤 (각기둥|각뿔대)((?: 모양의 (?:상자|블록|조형물|모형|장식품))?) (\(가\)|\$A\$)와 어떤 각뿔\2 (\(나\)|\$B\$)가 있다\. 두 (입체도형|상자|블록|조형물|모형|장식품)의 모서리의 개수의 최대공약수는 \$(\d+)\$이고 꼭짓점의 개수의 합은 \$(\d+)\$이다\. (.+)$/;
 
 type Page74 = {
   prism: string;
   l1: string;
   l2: string;
   thing: string;
-  edgeProduct: number;
+  edgeGcd: number;
   vSum: number;
   ask: string;
 };
@@ -644,7 +646,7 @@ function read74(content: string): Page74 {
     l1: l1!,
     l2: l2!,
     thing: thing!,
-    edgeProduct: num(ep!),
+    edgeGcd: num(ep!),
     vSum: num(vs!),
     ask: ask!,
   };
@@ -722,13 +724,13 @@ const VERIFY: Record<string, (content: string) => number> = {
   },
 
   [K74]: (content) => {
-    const { l1, l2, edgeProduct, vSum, ask, thing } = read74(content);
+    const { l1, l2, edgeGcd, vSum, ask, thing } = read74(content);
     // 🔴 $a$ 와 $b$ 를 **둘 다** 훑는다 — $b=K-2a$ 를 유도하지 않는다.
     const hits: [number, number][] = [];
     for (let a = 3; a <= 60; a += 1) {
       for (let b = 3; b <= 60; b += 1) {
         if (2 * a + (b + 1) !== vSum) continue;
-        if (3 * a * (2 * b) !== edgeProduct) continue;
+        if (gcd(3 * a, 2 * b) !== edgeGcd) continue;
         hits.push([a, b]);
       }
     }
@@ -752,8 +754,13 @@ const VERIFY: Record<string, (content: string) => number> = {
     };
     const ans = table[ask];
     if (ans === undefined) throw new Error(`74X: 모르는 물음 — ${ask}`);
-    if (pageShortcutValues([edgeProduct, vSum]).has(ans)) {
+    if (pageShortcutValues([edgeGcd, vSum]).has(ans)) {
       throw new Error("74X: 답이 지면 수 조합으로 나온다");
+    }
+    // 🔴 $V\mid 3a$ 로 미리 줄였을 때 후보가 **하나**면 견줄 것이 없다 — 그 판은
+    //    「후보를 다 만들어 견준다」가 성립하지 않으므로 지면으로 나가면 안 된다.
+    if (polyhedronDivisorCandidates(vSum - 1, edgeGcd).length < 2) {
+      throw new Error("74X: 약수의 성질만으로 후보가 하나로 줄어든다");
     }
     return ans;
   },
@@ -848,8 +855,8 @@ const EXPLAINED: Record<string, (content: string) => Set<number>> = {
     return out;
   },
   [K74]: (content) => {
-    const { edgeProduct, vSum } = read74(content);
-    const out = new Set<number>([1, 2, 3, edgeProduct, vSum]);
+    const { edgeGcd, vSum } = read74(content);
+    const out = new Set<number>([1, 2, 3, edgeGcd, vSum]);
     const kSum = vSum - 1;
     let stop = 3;
     for (; kSum - 2 * stop >= 3; stop += 1);
@@ -861,8 +868,8 @@ const EXPLAINED: Record<string, (content: string) => Set<number>> = {
       out.add(bt);
       out.add(3 * t);
       out.add(2 * bt);
-      out.add(3 * t * (2 * bt));
-      if (3 * t * (2 * bt) === edgeProduct) {
+      out.add(gcd(3 * t, 2 * bt));
+      if (gcd(3 * t, 2 * bt) === edgeGcd) {
         out.add(t + 2);
         out.add(bt + 1);
         out.add((t + 2) * (bt + 1));
@@ -930,13 +937,14 @@ const GOOD_PAGES: readonly { key: string; page: string; want: number }[] = [
   },
   {
     key: K74,
-    // 꼭짓점 합 $22$ → $b=21-2a$ · 모서리 곱 $6ab=270$ → $a=3$, $b=15$
-    // 면의 개수의 곱 $=(3+2)\times(15+1)=80$
+    // 꼭짓점 합 $17$ → $b=16-2a$ · 훑으면 최대공약수가 차례로
+    // $\gcd(9,20)=1$, $\gcd(12,16)=4$, $\gcd(15,12)=3$, $\gcd(18,8)=2$ → $a=5$, $b=6$
+    // 면의 개수의 곱 $=(5+2)\times(6+1)=49$
     page:
       "어떤 각기둥 (가)와 어떤 각뿔 (나)가 있다. " +
-      "두 입체도형의 모서리의 개수의 곱은 $270$이고 꼭짓점의 개수의 합은 $22$이다. " +
+      "두 입체도형의 모서리의 개수의 최대공약수는 $3$이고 꼭짓점의 개수의 합은 $17$이다. " +
       "두 입체도형의 면의 개수의 곱을 구하시오.",
-    want: 80,
+    want: 49,
   },
   {
     key: K75,
@@ -984,17 +992,27 @@ const BAD_PAGES: readonly { key: string; page: string; why: string }[] = [
   },
   {
     key: K74,
-    page: GOOD_PAGES[1]!.page.replace("곱은 $270$", "곱은 $271$"),
-    why: "조건에 맞는 짝이 하나도 없다",
+    page: GOOD_PAGES[1]!.page.replace("최대공약수는 $3$", "최대공약수는 $5$"),
+    why: "조건에 맞는 짝이 하나도 없다 — $K=16$ 의 어느 자리도 최대공약수가 $5$ 가 아니다",
   },
   {
     key: K74,
-    // 꼭짓점 합 $13$ → 훑는 줄이 셋보다 적다
+    // 꼭짓점 합 $13$ → 훑는 줄이 셋보다 적다($a=3,4$ 뿐)
     page:
       "어떤 각기둥 (가)와 어떤 각뿔 (나)가 있다. " +
-      "두 입체도형의 모서리의 개수의 곱은 $162$이고 꼭짓점의 개수의 합은 $13$이다. " +
+      "두 입체도형의 모서리의 개수의 최대공약수는 $4$이고 꼭짓점의 개수의 합은 $13$이다. " +
       "두 입체도형의 면의 개수의 곱을 구하시오.",
     why: "훑는 줄이 셋보다 적어 «다 만들어 견준다»가 얕다",
+  },
+  {
+    key: K74,
+    // 🔴 2026-09-04 에 더한 자리. 꼭짓점 합 $22$ · 최대공약수 $7$ 이면 $7\mid3a$ 라
+    // 후보가 $a=7$ **하나**로 줄어 훑을 것이 없다(답 $(7+2)\times(7+1)=72$).
+    page:
+      "어떤 각기둥 (가)와 어떤 각뿔 (나)가 있다. " +
+      "두 입체도형의 모서리의 개수의 최대공약수는 $7$이고 꼭짓점의 개수의 합은 $22$이다. " +
+      "두 입체도형의 면의 개수의 곱을 구하시오.",
+    why: "약수의 성질만으로 후보가 하나로 줄어 «다 만들어 견준다»가 성립하지 않는다",
   },
   {
     key: K75,
@@ -1084,8 +1102,11 @@ describe("중1 5차c 확대 갈래 — 굳힘 함수와 음성 대조", () => {
   });
 
   it("`polyhedronScan`·`polyhedronStop` 은 손 계산과 맞는다", () => {
-    // 꼭짓점의 합 $22$ → $K=21$ · $b=21-2a$ · $6ab=270$ → $a=3$, $b=15$
-    expect(polyhedronScan(21, 270)).toEqual([3]);
+    // 꼭짓점의 합 $22$ → $K=21$ · $b=21-2a$ · 최대공약수는 차례로
+    // $\gcd(9,30)=3$, $\gcd(12,26)=2$, $\gcd(15,22)=1$, $\gcd(18,18)=18$,
+    // $\gcd(21,14)=7$, $\gcd(24,10)=2$, $\gcd(27,6)=3$.
+    expect(polyhedronScan(21, 7)).toEqual([7]);
+    expect(polyhedronScan(21, 18)).toEqual([6]);
     expect(polyhedronStop(21)).toBe(10);
     // $a=3$ 부터 $b\ge3$ 인 마지막은 $a=9$($b=3$) 이므로 멈추는 자리는 $10$.
     expect(21 - 2 * 9).toBe(3);
@@ -1093,12 +1114,22 @@ describe("중1 5차c 확대 갈래 — 굳힘 함수와 음성 대조", () => {
   });
 
   it("🔴 음성 대조 — 살아남는 $a$ 가 **둘**인 판과 **하나도 없는** 판이 실재한다", () => {
-    // $K=16$ 이면 $6a(16-2a)$ 는 $a=3$ 과 $a=5$ 에서 똑같이 $180$ 이다.
-    expect(6 * 3 * (16 - 6)).toBe(180);
-    expect(6 * 5 * (16 - 10)).toBe(180);
-    expect(polyhedronScan(16, 180)).toEqual([3, 5]);
-    // 아무 $a$ 도 안 맞는 곱.
-    expect(polyhedronScan(21, 271)).toEqual([]);
+    // $K=21$ 에서 최대공약수 $3$ 은 $a=3$($\gcd(9,30)$)과 $a=9$($\gcd(27,6)$) 둘이다.
+    expect(gcd(9, 30)).toBe(3);
+    expect(gcd(27, 6)).toBe(3);
+    expect(polyhedronScan(21, 3)).toEqual([3, 9]);
+    expect(polyhedronScan(21, 2)).toEqual([4, 8]);
+    // 아무 $a$ 도 안 내는 최대공약수.
+    expect(polyhedronScan(21, 5)).toEqual([]);
+  });
+
+  it("`polyhedronDivisorCandidates` 는 손 계산과 맞는다 — 그리고 «하나»를 낼 수 있다", () => {
+    // $V\mid3a$ 인 자리만 남는다. $K=21$ 이면 훑기 자리는 $a=3..9$.
+    expect(polyhedronDivisorCandidates(21, 3)).toEqual([3, 4, 5, 6, 7, 8, 9]);
+    expect(polyhedronDivisorCandidates(21, 2)).toEqual([4, 6, 8]);
+    // 🔴 **하나로 줄어드는 판** — 그때는 훑을 것이 없어 생성기가 버린다.
+    expect(polyhedronDivisorCandidates(21, 7)).toEqual([7]);
+    expect(polyhedronDivisorCandidates(21, 18)).toEqual([6]);
   });
 
   it("`sumOfPairSums` 는 손 계산과 맞는다", () => {
@@ -1292,9 +1323,14 @@ describe("중1 5차c 확대 갈래 — 지면과 값", () => {
             if (m[1]!.includes("=") && isPureArithmetic(m[1]!)) seen += 1;
           }
         }
-        // 🔴 한 도막도 못 읽었으면 이 검사는 구조적으로 0 이다. **판마다 넷 이상**을
+        // 🔴 한 도막도 못 읽었으면 이 검사는 구조적으로 0 이다. **판마다 셋 이상**을
         //    요구한다 — 그래야 「등식이 다 맞는다」가 마지막 줄 하나만 보는 셈이 안 된다.
-        expect(seen).toBeGreaterThan(220 * 4);
+        //    ⚠️ 2026-09-04 에 넷 → 셋으로 낮췄다. `74X` 의 훑기 줄이 곱셈 등식
+        //    (`$9\times30=270$`)에서 최대공약수(`$3$`)로 바뀌어 **판마다 등식이 하나
+        //    줄었기** 때문이다 — 해설의 «걸음»이 줄어든 것이 아니라(훑기 줄 수는 그대로)
+        //    그 걸음이 등식이 아니게 된 것이다. 걸음 수는 「$a$ 마다 두 수와 최대공약수
+        //    판정이 맞는가」 검사가 따로 지킨다. 다른 셋은 여전히 넷을 넘는다.
+        expect(seen).toBeGreaterThanOrEqual(220 * 3);
       });
 
       it("🔴 해설에 나온 수가 전부 설명된다 — 미설명 수 0 (220판)", () => {
@@ -1446,6 +1482,33 @@ describe("중1 5차c 확대 갈래 — ㉠ 창이 한쪽 끝만인가", () => {
     expect(first.length).toBeLessThan(WIDE.length);
     expect(last.length).toBeLessThan(WIDE.length);
     expect(first.length + last.length).toBeLessThan(WIDE.length);
+    /**
+     * 🔴 **「갈린다」는 「쏠렸다」를 못 센다** (2026-09-04).
+     *
+     * 곱 조건일 때 이 검사는 **초록이었다** — 자리가 갈리기는 갈렸다. 그런데 살아남는
+     * 자리가 **끝인 판이 48.2%** 였고(「끝에서부터 훑으면 첫 줄에 끝난다」), 그것을 이
+     * 검사가 구조적으로 못 봤다. 초등 함정 ㉠ 「살아남는 후보가 언제나 목록의 같은
+     * 자리면 굳힘이 «어느 후보인가»를 한 번도 안 고른다」와 같은 자리다.
+     * 그래서 **쏠림 자체**를 잰다 — 실측(660판) 첫 18.2% · 끝 19.1% ·
+     * 상대 위치 중앙값 **0.600**(곱일 때는 0.833 이었다).
+     */
+    expect(
+      last.length / WIDE.length,
+      "74X: 살아남는 자리가 끝으로 쏠린다",
+    ).toBeLessThan(0.3);
+    expect(
+      first.length / WIDE.length,
+      "74X: 살아남는 자리가 첫쪽으로 쏠린다",
+    ).toBeLessThan(0.3);
+    const rel = [...WIDE]
+      .map(([s, v]) => {
+        const f = build(K74, s, v).facts;
+        return (f.a! - 3) / (f.lines! - 1);
+      })
+      .sort((x, y) => x - y);
+    const median = rel[Math.floor(rel.length / 2)]!;
+    expect(median, "74X: 참 자리의 상대 위치 중앙값").toBeGreaterThan(0.25);
+    expect(median, "74X: 참 자리의 상대 위치 중앙값").toBeLessThan(0.75);
   });
 
   it("`75X` — **해당 없음**: 후보 목록이 없다. 대신 $A$ 의 부호가 갈리는 것을 잰다", () => {
@@ -1500,6 +1563,26 @@ type Axis = {
   perturbed: (f: Record<string, number>) => number;
 };
 
+/**
+ * 「$a$ 를 이 자리로 찍었다면 답이 얼마인가」 — `74X` 전용.
+ *
+ * 🔴 지면이 **무엇을 물었는지**가 `facts` 에 없으므로, 참 $a$·$b$ 가 내는 값 넷과
+ * 답 `x` 를 맞대어 되만든다. 어느 것과도 안 맞거나 그 자리가 창 밖이면 `null`.
+ */
+function seatAnswer74(f: Record<string, number>, a: number): number | null {
+  const vals = (p: number, q: number): number[] => [
+    (p + 2) * (q + 1),
+    2 * p * (q + 1),
+    (p + 2) * (2 * q),
+    3 * p * (q + 1),
+  ];
+  const idx = vals(f.a!, f.b!).indexOf(f.x!);
+  if (idx < 0) return null;
+  const b = f.vSum! - 1 - 2 * a;
+  if (a < 3 || b < 3) return null;
+  return vals(a, b)[idx]!;
+}
+
 const AXES_LOCAL: Record<string, Axis> = {
   // 73X — 굳힘은 「넓이의 차 ÷ 계급의 크기 = 도수의 차」. 그것을 지우면 차를 모르므로
   //       학생이 할 수 있는 것은 「두 도수가 같다」로 놓는 것뿐이다(합의 절반).
@@ -1512,24 +1595,33 @@ const AXES_LOCAL: Record<string, Axis> = {
     },
   },
   /**
-   * 74X — 굳힘은 모서리의 곱이다. 그것을 지우면 꼭짓점 식만 남아 $a$ 가 **하나로
-   * 안 정해진다**(후보가 셋~일곱). 그래서 여기서는 `withoutBinding` 이 낼 «정해진 답»이
-   * 아예 없다 — `null` 을 내고, 대신 아래 「후보가 여럿 남고 그중 하나만 답을 낸다」로 잰다.
+   * 74X — 굳힘은 모서리의 개수의 **최대공약수**다(2026-09-04 에 곱에서 바꿨다 —
+   * 까닭은 `polyhedronScan` 머리말).
    *
    * ⚠️ 처음에는 「학생이 $a=3$ 으로 찍는다」를 굳힘 없는 답으로 삼았다. 그런데 그 값은
-   *    **$a$ 가 정말 $3$ 인 판에서 맞는다** — 실측 220판 중 **17판**이 그랬고, 그러면
-   *    「굳힘 없는 답 0%」가 빨개진다. 그 빨강은 굳힘이 장식이라는 뜻이 아니라
+   *    **$a$ 가 정말 $3$ 인 판에서 맞는다** — 곱 판의 실측 220판 중 **17판**이 그랬고,
+   *    그러면 「굳힘 없는 답 0%」가 빨개진다. 그 빨강은 굳힘이 장식이라는 뜻이 아니라
    *    **내 축이 틀렸다**는 뜻이었다(2026-08-29 「판정이 놀라운 값을 내면 재는 쪽을 먼저
-   *    의심하라」). 축을 고치고 그 사실을 여기 적어 둔다.
+   *    의심하라」). 그때는 `null`(축 없음)로 두었는데, 그 「축 없음」이 **곱 판의 진짜
+   *    지름길(끝 자리 48.2%)을 통째로 가리고 있었다.**
+   *
+   * 🔴 지금 축은 **「끝에서 둘째 자리로 찍는다」**이다. 고친 뒤 가장 잘 뚫는 고정 자리는
+   *    「앞에서 4째」(28.1%)인데 그 자리는 `lines=3` 인 판에 **존재하지 않아** `null` 을
+   *    내므로, 늘 정의되고 배수가 0.05 밖에 안 낮은 「끝에서 둘째」를 쓴다
+   *    (실측 1,200판 27.2% · 우연 19.0% · **1.43배**).
    */
   [K74]: {
-    withoutBinding: () => null,
+    withoutBinding: (f) => seatAnswer74(f, polyhedronStop(f.vSum! - 1) - 2),
+    // ⚠️ 최대공약수를 아무렇게나 흔들면 살아남는 자리가 **하나도 없어** 아무것도 안 잰다.
+    //    이웃 자리 $a'$ 가 반드시 살도록 $V'=\gcd(3a',\ 2b')$ 로 되계산하고,
+    //    `polyhedronScan` 이 실제로 $a'$ 를 내놓는지 제품 함수로 확인한다.
     perturbed: (f) => {
-      const alive = polyhedronScan(f.vSum! - 1, f.edgeProduct! + 6);
-      if (alive.length === 0) return -1;
-      const a = alive[0]!;
-      const b = f.vSum! - 1 - 2 * a;
-      return (a + 2) * (b + 1);
+      const kSum = f.vSum! - 1;
+      const a2 = kSum - 2 * (f.a! + 1) >= 3 ? f.a! + 1 : f.a! - 1;
+      if (a2 < 3) return -1;
+      const b2 = kSum - 2 * a2;
+      if (!polyhedronScan(kSum, gcd(3 * a2, 2 * b2)).includes(a2)) return -1;
+      return seatAnswer74(f, a2) ?? -1;
     },
   },
   // 75X — 굳힘은 「세 식을 모두 더하면 $A+B+C$ 의 $2$배」. 그것을 지우면 학생이 할 수
@@ -1709,10 +1801,10 @@ describe("중1 5차c 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다
     let lines = 0;
     for (const [s, v] of BULK) {
       const p = build(K74, s, v);
-      const { edgeProduct, vSum } = read74(p.content);
+      const { edgeGcd, vSum } = read74(p.content);
       const rows = [
         ...p.solution.matchAll(
-          /\$a=(\d+)\$이면 \$b=(\d+)-1-(\d+)=(\d+)\$이고, 모서리의 개수는 각각 \$(\d+)\$(?:와|과) \$(\d+)\$이므로 그 곱은 \$(\d+)\\times(\d+)=(\d+)\$이다\. 이것은 \$(\d+)\$(?:(?:와|과) 같으므로 조건에 맞는다|(?:이|가) 아니므로 조건에 맞지 않는다)\./g,
+          /\$a=(\d+)\$이면 \$b=(\d+)-1-(\d+)=(\d+)\$이고, 모서리의 개수는 각각 \$(\d+)\$(?:와|과) \$(\d+)\$이므로 그 최대공약수는 \$(\d+)\$이다\. 이것은 \$(\d+)\$(?:(?:와|과) 같으므로 조건에 맞는다|(?:이|가) 아니므로 조건에 맞지 않는다)\./g,
         ),
       ];
       // ㉴ 훑는 자리가 선언한 제약과 맞는가 — $a=3$ 부터, $b\ge3$ 인 동안.
@@ -1728,16 +1820,15 @@ describe("중1 5차c 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다
         expect(Number(m[4])).toBeGreaterThanOrEqual(3);
         expect(Number(m[5])).toBe(3 * a);
         expect(Number(m[6])).toBe(2 * Number(m[4]));
-        expect(Number(m[7])).toBe(3 * a);
-        expect(Number(m[8])).toBe(2 * Number(m[4]));
-        expect(Number(m[9])).toBe(3 * a * 2 * Number(m[4]));
-        expect(Number(m[10])).toBe(edgeProduct);
+        // 🔴 규칙을 옮겨 적지 않는다 — 제품이 쓰는 `gcd` 를 그대로 부른다.
+        expect(Number(m[7])).toBe(gcd(3 * a, 2 * Number(m[4])));
+        expect(Number(m[8])).toBe(edgeGcd);
         // 판정 낱말이 실제 값과 맞는가 — 「맞는다」와 「맞지 않는다」를 갈라 본다.
         const says =
           m[0].includes("와 같으므로 조건에 맞는다") ||
           m[0].includes("과 같으므로 조건에 맞는다");
         expect(says, `74X 판정 낱말이 값과 어긋난다 — ${m[0]}`).toBe(
-          Number(m[9]) === edgeProduct,
+          Number(m[7]) === edgeGcd,
         );
         if (says) alive += 1;
         lines += 1;
@@ -1757,7 +1848,7 @@ describe("중1 5차c 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다
       const brute: number[] = [];
       for (let a = 3; a <= 60; a += 1) {
         for (let b = 3; b <= 60; b += 1) {
-          if (2 * a + b + 1 === vSum && 3 * a * (2 * b) === edgeProduct) {
+          if (2 * a + b + 1 === vSum && gcd(3 * a, 2 * b) === edgeGcd) {
             brute.push(a);
           }
         }
@@ -1901,14 +1992,14 @@ describe("중1 5차c 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다
     let sites = 0;
     for (const [s, v] of BULK) {
       const p = build(K74, s, v);
-      const { edgeProduct } = read74(p.content);
+      const { edgeGcd } = read74(p.content);
       for (const m of p.solution.matchAll(
         /이것은 \$(\d+)\$(이|가) 아니므로/g,
       )) {
         expect(m[2], `74X 「이/가」 — $${m[1]}$`).toBe(
           subjectJosaFor(Number(m[1])),
         );
-        expect(Number(m[1])).toBe(edgeProduct);
+        expect(Number(m[1])).toBe(edgeGcd);
         sites += 1;
       }
       for (const m of p.solution.matchAll(
@@ -1974,6 +2065,135 @@ describe("중1 5차c 확대 갈래 — 해설이 정답지 한 단에 들어가�
     }
     expect(maxLines).toBe(7);
     expect(minLines).toBe(3);
+  });
+
+  /**
+   * 🔴 **곱으로 되돌리면 배수가 2.4 로 돌아온다** — 이 시험이 없으면 「1.4」가 뜻을 잃는다.
+   *
+   * 2026-09-04 에 `74X` 의 둘째 조건을 모서리의 개수의 **곱**에서 **최대공약수**로
+   * 바꿨다. 까닭은 곱 $6a(K-2a)$ 가 $a=K/4$ 에서 최대인 **위로 볼록** 함수라
+   * $a$ 와 $K/2-a$ 가 같은 값을 내고, 「답이 하나로 정해진다」 가드가 첫쪽을 버려
+   * **살아남는 자리가 훑기의 끝으로 쏠렸기** 때문이다.
+   *
+   * ⚠️ 대조군(곱)은 **엔진 밖에서** 짓는다 — 제품에서 지운 조건이라 제품 함수로는
+   *    못 부른다. 대신 «판별식»(같은 값을 내는 자리를 세는 규칙)은 두 팔이 **한 벌**을
+   *    쓰게 해서, 한쪽만 고치면 갈라지지 않게 한다.
+   */
+  it("🔴 음성 대조 — 둘째 조건을 **곱으로 되돌리면** 자리 쏠림이 돌아온다", () => {
+    type Plate = { a: number; idx: number; x: number; kSum: number };
+    const vals = (a: number, b: number): number[] => [
+      (a + 2) * (b + 1),
+      2 * a * (b + 1),
+      (a + 2) * (2 * b),
+      3 * a * (b + 1),
+    ];
+    /** 두 팔이 **같은 규칙**으로 창을 만든다 — 조건 함수만 갈아 끼운다. */
+    const window = (cond: (a: number, b: number) => number): Plate[] => {
+      const out: Plate[] = [];
+      for (let a = 3; a <= 9; a += 1) {
+        for (let b = 3; b <= 15; b += 1) {
+          const kSum = 2 * a + b;
+          const stop = polyhedronStop(kSum);
+          if (stop - 3 < 3 || stop - 3 > 7) continue;
+          const v = cond(a, b);
+          const alive: number[] = [];
+          for (let t = 3; t < stop; t += 1) {
+            if (cond(t, kSum - 2 * t) === v) alive.push(t);
+          }
+          if (alive.length !== 1 || alive[0] !== a) continue;
+          for (let idx = 0; idx < 4; idx += 1) {
+            const x = vals(a, b)[idx]!;
+            let twins = 0;
+            for (let t = 3; t < stop; t += 1) {
+              if (vals(t, kSum - 2 * t)[idx] === x) twins += 1;
+            }
+            if (twins !== 1) continue;
+            if (pageShortcutValues([v, kSum + 1]).has(x)) continue;
+            out.push({ a, idx, x, kSum });
+          }
+        }
+      }
+      return out;
+    };
+    /** 「고정 자리 하나를 늘 찍는다」의 최고 적중 ÷ 우연 수준. */
+    const worstSeatRatio = (ps: Plate[]): number => {
+      let best = 0;
+      for (let k = 1; k <= 7; k += 1) {
+        for (const fromEnd of [false, true]) {
+          let hit = 0;
+          for (const p of ps) {
+            const stop = polyhedronStop(p.kSum);
+            const a = fromEnd ? stop - k : 3 + (k - 1);
+            const b = p.kSum - 2 * a;
+            // 🔴 분모는 **그 창의 모든 판**이다 — 자리가 없는 판은 «못 맞힌 것»이지
+            //    «분모에서 빠질 것»이 아니다(빼면 자리가 드문 쪽이 거짓으로 높게 나온다).
+            if (a >= 3 && b >= 3 && vals(a, b)[p.idx] === p.x) hit += 1;
+          }
+          best = Math.max(best, hit / ps.length);
+        }
+      }
+      const lines =
+        ps.reduce((s, p) => s + (polyhedronStop(p.kSum) - 3), 0) / ps.length;
+      return best * lines;
+    };
+    const byProduct = window((a, b) => 3 * a * (2 * b));
+    const byGcd = window((a, b) => gcd(3 * a, 2 * b));
+    // 🔴 **양성 대조** — 곱으로 되돌리면 우연의 두 배를 넘는다(실측 2.46).
+    expect(worstSeatRatio(byProduct)).toBeGreaterThan(2);
+    // 🔴 **음성 대조** — 최대공약수는 1.5 아래다(실측 1.41).
+    expect(worstSeatRatio(byGcd)).toBeLessThan(1.5);
+    // 살아남는 자리가 «끝»인 판의 비율도 갈린다(곱 48.2% ↔ 최대공약수 19.8%).
+    const endShare = (ps: Plate[]): number =>
+      ps.filter((p) => p.a === polyhedronStop(p.kSum) - 1).length / ps.length;
+    expect(endShare(byProduct)).toBeGreaterThan(0.4);
+    expect(endShare(byGcd)).toBeLessThan(0.3);
+  });
+
+  /**
+   * 🔴 **약수의 성질만으로 답이 나오면 안 된다.**
+   *
+   * $V=\gcd(3a,\ 2b)$ 이면 $V\mid3a$ 이므로 학생은 훑기 전에 후보를 줄일 수 있다.
+   * 그 줄이기 자체는 지름길이 **아니다**(거른 뒤 첫 후보 적중 35.2% 대 그 안의 우연
+   * 34.9% = 1.01배). 문제는 그것이 후보를 **하나로** 줄이는 판이다 — 그때는 견줄 것이
+   * 없어 「후보를 다 만들어 견준다」가 성립하지 않는다.
+   */
+  it("🔴 `74X` — 약수로 걸러도 후보가 **둘 이상** 남는다 (660판) · 가드를 끄면 26.0%", () => {
+    let least = 99;
+    for (const [s, v] of WIDE) {
+      const p = build(K74, s, v);
+      const cands = polyhedronDivisorCandidates(
+        p.facts.vSum! - 1,
+        p.facts.edgeGcd!,
+      );
+      expect(
+        cands.length,
+        `74X: 약수로 거르면 후보가 하나뿐이다 — 씨앗 ${s}/${v}`,
+      ).toBeGreaterThanOrEqual(2);
+      // 참 $a$ 는 반드시 그 안에 있다(그렇지 않으면 되만들기가 틀린 것이다).
+      expect(cands).toContain(p.facts.a!);
+      least = Math.min(least, cands.length);
+    }
+    expect(least).toBe(2);
+    // 🔴 **음성 대조** — 이 가드를 끈 창에서는 «하나뿐»인 판이 실재한다(창 전수 26.0%).
+    let solo = 0;
+    let all = 0;
+    for (let a = 3; a <= 9; a += 1) {
+      for (let b = 3; b <= 15; b += 1) {
+        const kSum = 2 * a + b;
+        if (polyhedronStop(kSum) - 3 < 3 || polyhedronStop(kSum) - 3 > 7) {
+          continue;
+        }
+        const V = gcd(3 * a, 2 * b);
+        const alive = polyhedronScan(kSum, V);
+        if (alive.length !== 1 || alive[0] !== a) continue;
+        all += 1;
+        if (polyhedronDivisorCandidates(kSum, V).length < 2) solo += 1;
+      }
+    }
+    expect(solo, "가드를 끈 창에 «후보가 하나뿐»인 판이 없다").toBeGreaterThan(
+      0,
+    );
+    expect(solo / all).toBeGreaterThan(0.15);
   });
 
   it("🔴 `76X` 의 짝 상한이 산출물에 실제로 걸린다", () => {
@@ -2126,7 +2346,11 @@ describe("중1 5차c 확대 갈래 — 판정기의 자를 미리 댄다", () =>
 
   it("🔴 `74X` 의 지면에는 수가 **둘뿐**이라 그 자가 구조적으로 약하다 — 그 사실을 찍는다", () => {
     // 「0건」을 «깨끗»으로 읽지 않기 위해, 이 유형에서 그 자가 만들 수 있는 후보가
-    // 몇 개인지 세어 둔다. 실측 전수(창 128판)에서 걸림 **0건** · 우연 수준 1.56%.
+    // 몇 개인지 세어 둔다.
+    // 🔴 **곱 판에서는 이 가드가 «구조적으로 0» 이었는데 이제 일한다**(2026-09-04):
+    //    창 전수로 판 **78 → 71**(8.97% 잃음) · 서로 다른 답 **50 → 47**. 최대공약수는
+    //    $1$~$12$ 의 작은 수라 꼭짓점의 합과 맞물려 한두 걸음짜리 값을 실제로 만든다
+    //    (곱은 $90$~$360$ 이라 그 자가 만드는 값이 답의 범위를 못 덮었다 — 그때 0.00%).
     const p = build(K74, SEEDS[0]!);
     const nums = pageNumbers(p.content);
     expect(nums).toHaveLength(2);
@@ -2137,7 +2361,8 @@ describe("중1 5차c 확대 갈래 — 판정기의 자를 미리 댄다", () =>
   it("🔴 지면 수의 **개수**를 못 박는다 — 그 개수가 그 자의 힘을 정한다", () => {
     /**
      * 실측 전수(D-20 원장): 지면 수 조합 가드의 걸림률 대 우연 수준은
-     * `73X` **65.27% vs 67.3%**(0.97배 — 우연보다 낮다) · `74X` **0.00% vs 1.6%**(구조적 0) ·
+     * `73X` **65.27% vs 67.3%**(0.97배 — 우연보다 낮다) · `74X` **8.97%**(최대공약수로
+     * 바꾼 뒤. 곱일 때는 0.00% 로 구조적 0 이었다) ·
      * `75X` **83.32% vs 62.7%**(1.33배) · `76X` **79.21% vs 70.6%**(1.12배)다.
      * 갈리는 것은 유형의 «뻔함»이 아니라 **지면에 수가 몇 개 찍히는가**다 —
      * 걸림률만 보고 「이 유형이 더 뻔하다」로 읽지 말라는 뜻을 여기 못 박는다.
