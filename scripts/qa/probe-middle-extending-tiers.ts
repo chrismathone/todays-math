@@ -457,6 +457,81 @@ export function erasures(key: string, p: MidProblem): Erasure[] {
     }
     return [{ name: "「각각 적어도 한 개씩」 지움", values: [String(c)] }];
   }
+  // ── 4차 물결(D-116, 2026-09-03) — 접미사 `W` ─────────────────────────────
+  //
+  // ⚠️ 이 넷은 **아직 등록 전일 수 있다**(리드 몫). `topKeys()` 는 `registeredTypes()`
+  //    에서 뽑으므로, 등록 전에는 이 네 줄이 **한 번도 안 돌아 본 채로** 남는다 —
+  //    「지울 조건을 안 적었다」가 안 뜬다고 «적었다»가 아니다(위 `erasures` 머리말).
+  if (key === "2-1|유리수와 순환소수|36W") {
+    // 굳힘은 「순환마디의 **합**으로 나눈 **나머지**를 부분합 목록에서 되찾는다」이다.
+    // 그 걸음을 지우면 마디를 다 지난 자리에서 멈춰 답이 짧아진다.
+    const { times, len, sum, cycle } = f as Record<string, number>;
+    const prop = (sum! * len!) / cycle!;
+    return [
+      { name: "나머지를 되찾는 걸음 지움", values: [String(times! * len!)] },
+      {
+        name: "비례로 어림 (마디의 평균 숫자로 나눔)",
+        values: [
+          String(Math.floor(prop)),
+          String(Math.round(prop)),
+          String(Math.ceil(prop)),
+        ],
+      },
+    ];
+  }
+  if (key === "2-1|연립일차방정식의 활용|37W") {
+    // 굳힘은 「세 식을 변끼리 더하면 좌변이 **두 배**가 된다」이다. 그 걸음을 지우면
+    // 답이 두 배가 된다.
+    //
+    // ⚠️ `answerNumber` 는 정답 문자열의 **첫 수**(= 분자)만 읽는다. 그래서 지운 값도
+    //    **답과 같은 분모로 맞춘 분자**로 낸다 — 안 그러면 꼴이 달라 영영 안 맞고,
+    //    그 축은 «늘 🟢» 이 되어 아무것도 안 잰다.
+    const { p: pp, q: qq, r: rr } = f as Record<string, number>;
+    const g = (a: number, b: number): number => (b === 0 ? a : g(b, a % b));
+    const l = (a: number, b: number): number => (a / g(a, b)) * b;
+    const M = l(l(pp!, qq!), rr!);
+    const sumNum = M / pp! + M / qq! + M / rr!;
+    const td = (2 * M) / g(sumNum, 2 * M);
+    return [
+      {
+        name: "반으로 나누는 걸음 지움 (답의 분모로 맞춘 분자)",
+        values: [String((sumNum * td) / M)],
+      },
+    ];
+  }
+  if (key === "2-1|일차부등식의 활용|38W") {
+    // 굳지 않는다 — 후보 셋을 **쌍마다** 견주어야 창이 양쪽에서 닫힌다. 한 쌍만
+    // 견주면 창이 한쪽으로 열려 개수가 달라진다. 금액을 **직접 계산**해 다시 센다.
+    const { p0, p1, p2, s0, s1, s2, ask, freeIdx, cheapIdx } = f as Record<
+      string,
+      number
+    >;
+    const price = [p0!, p1!, p2!];
+    const ship = [s0!, s1!, s2!];
+    const cost = (i: number, x: number): number => price[i]! * x + ship[i]!;
+    const countAgainst = (foes: number[]): number => {
+      let c = 0;
+      for (let x = 1; x <= 400; x += 1)
+        if (foes.every((foe) => cost(ask!, x) < cost(foe, x))) c += 1;
+      return c;
+    };
+    return [
+      {
+        name: "배송료 없는 가게 한 쪽만 견줌",
+        values: [String(countAgainst([freeIdx!]))],
+      },
+      {
+        name: "단가가 가장 싼 가게 한 쪽만 견줌",
+        values: [String(countAgainst([cheapIdx!]))],
+      },
+    ];
+  }
+  if (key === "2-1|일차함수와 그 그래프  ⑴|39W") {
+    // 굳지 않는다 — 후보가 여럿 살아남는다. 지울 것은 「$x$절편이 **자연수**」라는
+    // 조건이다. 「정수」로 늦추면 부호가 반대인 $a$ 까지 살아나 절편이 짝을 이루고
+    // 합이 $0$ 이 된다.
+    return [{ name: "«자연수» 를 «정수» 로 늦춤", values: ["0"] }];
+  }
   if (key === "2-1|연립일차방정식|90") {
     // 비 조건을 지운다 — 비를 모르면 $k$ 가 안 굳고 $m$ 도 안 굳어야 한다.
     const { ca, cb, u, v, c, d } = f as Record<string, number>;

@@ -64,6 +64,12 @@ import {
   planRationalRoots,
   planRootSum,
 } from "../../src/lib/middle/m3Top3";
+import {
+  M3_TOP_4,
+  planBoxMean,
+  planFactorSum,
+  planScatterPair,
+} from "../../src/lib/middle/m3Top4";
 import { tidySolution } from "../../src/lib/middle/solutionText";
 import { resolveMiddleTier } from "../../src/lib/middle/tier";
 import type { MidProblem } from "../../src/lib/middle/types";
@@ -100,10 +106,13 @@ export function topEntries(): { key: string; unitSection: string }[] {
   }
   // 아직 등록되지 않은 소유 모듈 — 등록되면 위에서 이미 잡히므로 여기서는 덮어쓰기다.
   for (const e of M3_TOP_3) rows.set(e.key, e.unitSection);
+  for (const e of M3_TOP_4) rows.set(e.key, e.unitSection);
   return [...rows].map(([key, unitSection]) => ({ key, unitSection }));
 }
 
-const LOCAL_BY_KEY = new Map(M3_TOP_3.map((e) => [e.key, e]));
+const LOCAL_BY_KEY = new Map(
+  [...M3_TOP_3, ...M3_TOP_4].map((e) => [e.key, e] as const),
+);
 const REGISTERED_KEYS = new Set(registeredTypes().map((e) => e.key));
 
 /** `generate.ts` 의 소금 — 등록 뒤에는 두 길이 **글자까지 같아야** 한다. */
@@ -283,6 +292,35 @@ export function oneStepQuotients(coefs: readonly number[]): Set<number> {
  */
 export function edgeShare(edge: number, total: number): number {
   return total === 0 ? 0 : edge / total;
+}
+
+/**
+ * ⑷ **적힌 두 수를 «한 걸음»(＋−×÷)으로 이은 값 전부** — 4차 물결(`W`)이 쓴다.
+ *
+ * 🔴 **제품의 `oneStepReach` 를 부르지 않는다.** 4차 생성기는 바로 그 함수로 씨앗을
+ * 거르므로, 그것으로 채점하면 **제품이 틀릴수록 좋은 점수**가 나온다(동어반복).
+ * 여기서는 **지면에서 읽은 수**로 다시 만든다 — 두 벌이 갈라지면 그것이 신호다.
+ *
+ * `oneStepQuotients` 는 나눗셈만 센다. 3차 `51V` 가 그 자리에서 걸렸기 때문인데,
+ * 4차의 `56W`·`57W` 는 답이 **차·합**이라 그 자로는 구조적으로 못 본다.
+ */
+export function oneStepAll(nums: readonly number[]): Set<number> {
+  const out = new Set<number>();
+  const add = (v: number): void => {
+    if (!Number.isFinite(v)) return;
+    out.add(v);
+    out.add(-v);
+  };
+  for (const v of nums) add(v);
+  for (const a of nums) {
+    for (const b of nums) {
+      add(a + b);
+      add(a - b);
+      add(a * b);
+      if (b !== 0 && a % b === 0) add(a / b);
+    }
+  }
+  return out;
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -498,6 +536,29 @@ function selftest(): void {
     !q1.has(7) && !q1.has(-7),
     `7 ∉ {1,5,6,12,30}`,
   );
+  // ── ㉠-2 ⑷ 네 셈 한 걸음(4차 `W`): 양성 둘 · 음성 하나.
+  //    `oneStepQuotients` 는 나눗셈만 세므로 «차가 답」인 4차 유형을 구조적으로 못 본다.
+  const all1 = oneStepAll([0, 1, 2, 126, 13]);
+  say(
+    "㉠-2 양성 — 「$n$ 에서 $c$ 를 뺀 값」이 답이면 잡는다",
+    true,
+    all1.has(113) && all1.has(139),
+    `126-13=113 · 126+13=139`,
+  );
+  say(
+    "㉠-2 양성② — 나눗셈·곱셈도 그대로 잡는다",
+    true,
+    oneStepAll([6, 36, 15, 180]).has(12) && oneStepAll([0, 1, 2, 23]).has(46),
+    `180/15=12 · 23*2=46`,
+  );
+  // 🔴 음성이 없으면 재현율만 재고 «지어냄»은 구조적으로 0 이 된다.
+  say(
+    "㉠-2 음성 — 한 걸음에 안 닿는 값은 안 잡는다",
+    true,
+    !all1.has(40) && !all1.has(-40),
+    `40 ∉ {0,1,2,13,126}의 한 걸음`,
+  );
+
   // ── ㉠-2 ⑶ 창끝 몫: 양성(절반 넘음) · 음성(절반 미만)
   say(
     "㉠-2 양성 — 창끝 하나가 답의 절반을 넘으면 잡는다",
@@ -557,12 +618,21 @@ function collectSifts(): { name: string; sifts: Sift[] }[] {
   const quadAlive: Sift[] = [];
   const rational: Sift[] = [];
   const rootSum: Sift[] = [];
+  // 4차 물결(`m3Top4.ts` · 접미사 `W`) — 후보를 견주는 셋.
+  // `56W` 는 값이 하나로 굳어 **후보 목록이 아예 없다**(`52V` 와 같은 자리).
+  // 0 으로 찍으면 「깨끗」과 「못 셈」이 안 갈리므로 `reportWave4Shortcuts()` 가 따로 찍는다.
+  const factorSum: Sift[] = [];
+  const boxMean: Sift[] = [];
+  const scatter: Sift[] = [];
   for (let i = 0; i < SEEDS; i += 1) {
     median.push(planMedianMean(createRng(SEED0 + i * 7919)).sift);
     vertex.push(planVertexQuadrant(createRng(SEED0 + i * 7919)).sift);
     quadAlive.push(planQuadraticAlive(createRng(SEED0 + i * 7919)).sift);
     rational.push(planRationalRoots(createRng(SEED0 + i * 7919)).sift);
     rootSum.push(planRootSum(createRng(SEED0 + i * 7919)).sift);
+    factorSum.push(planFactorSum(createRng(SEED0 + i * 7919)).sift);
+    boxMean.push(planBoxMean(createRng(SEED0 + i * 7919)).sift);
+    scatter.push(planScatterPair(createRng(SEED0 + i * 7919)).sift);
   }
   return [
     { name: "3-2|산포도|11T (심화상)", sifts: median },
@@ -570,6 +640,9 @@ function collectSifts(): { name: string; sifts: Sift[] }[] {
     { name: "3-1|이차방정식의 풀이|51V (심화중)", sifts: quadAlive },
     { name: "3-1|이차방정식의 활용|53V (심화상)", sifts: rational },
     { name: "3-1|근호를 포함한 식의 계산|54V (심화상)", sifts: rootSum },
+    { name: "3-1|다항식의 인수분해|55W (심화상)", sifts: factorSum },
+    { name: "3-2|상자그림과 산점도|57W (심화상)", sifts: boxMean },
+    { name: "3-2|상자그림과 산점도|58W (심화중)", sifts: scatter },
   ];
 }
 
@@ -690,6 +763,175 @@ function reportShortcuts(): void {
   );
 }
 
+/**
+ * 🔴 **4차 물결(`W`) — ㉠ 이 못 보는 자리를 따로 찍는다.**
+ *
+ * 참은 **지면 글자**에서 온다(`oneStepAll` + 발문 파싱). 설계값을 그대로 쓰면
+ * 설계가 틀릴수록 좋은 점수가 나온다. 그리고 **읽은 발문 수를 함께 찍는다** —
+ * $0$ 이면 「깨끗」이 아니라 「못 셈」이다(2026-08-21).
+ *
+ * ⚠️ `58W` 는 **㉵ 를 구조적으로 못 막는다** — 묻는 것이 «두 점수의 합»이라 답은
+ *    언제나 «적힌 두 수의 합»이다. 그래서 그 줄은 «막을 수 없음»으로 찍고, 대신
+ *    우연 수준(28쌍 중 하나)과 「그대로 적힌 수인가」를 낸다.
+ */
+function reportWave4Shortcuts(): void {
+  console.log("\n═══ ㉠-2 (4차 `W`) 굳힘을 **안 읽고** 한 걸음에 닿나 ═══\n");
+
+  // ⑴ 55W — 발문에 적힌 수는 $a+b$ 의 값과 지수 $2$ 뿐이다.
+  {
+    let read = 0;
+    let hit = 0;
+    const ans: number[] = [];
+    for (let i = 0; i < SEEDS; i += 1) {
+      const p = makeSample("3-1|다항식의 인수분해|55W", SEED0 + i * 7919, 0);
+      const m = /\$a\+b=(\d+)\$/.exec(p.content);
+      if (!m) continue;
+      read += 1;
+      const a = Number(/-?\d+/.exec(p.answer)![0]);
+      ans.push(a);
+      if (oneStepAll([0, 1, 2, Number(m[1])]).has(a)) hit += 1;
+    }
+    const sp = spreadScore(ans);
+    console.log(`  3-1|다항식의 인수분해|55W (심화상)`);
+    if (read === 0) {
+      console.log(
+        `    🔴 발문을 하나도 못 읽었다 — 이 줄의 «0건» 은 「깨끗」이 아니라 「못 셈」이다.`,
+      );
+    } else {
+      console.log(
+        `    ${hit === 0 ? "✅" : "🔴"} 답 = 발문의 수를 한 걸음에 이은 값 ${hit}건` +
+          `   (읽은 발문 ${read})`,
+      );
+      console.log(
+        `    ${sp.top < 0.3 ? "✅" : "🔴"} 정답 분포 — 서로 다른 답 ${sp.kinds}종 ·` +
+          ` 최빈 ${(sp.top * 100).toFixed(1)}% · 둘이 겹칠 확률 ${(sp.collide * 100).toFixed(1)}%`,
+      );
+    }
+  }
+
+  // ⑵ 56W — 값이 하나로 굳어 ㉠ 을 **잴 축이 없다**(`52V` 와 같은 자리).
+  {
+    let read = 0;
+    let hit = 0;
+    const ans: number[] = [];
+    for (let i = 0; i < SEEDS; i += 1) {
+      const p = makeSample("3-1|무리수와 실수|56W", SEED0 + i * 7919, 0);
+      const m = /\\sqrt\{(\d+)\}\$의 정수 부분/.exec(p.content);
+      const c = /\$b\^\{2\}\+2ab\+(\d+)\$/.exec(p.content);
+      if (!m || !c) continue;
+      read += 1;
+      const a = Number(/-?\d+/.exec(p.answer)![0]);
+      ans.push(a);
+      if (oneStepAll([0, 1, 2, Number(m[1]), Number(c[1])]).has(a)) hit += 1;
+    }
+    const sp = spreadScore(ans);
+    console.log(`  3-1|무리수와 실수|56W (심화중)`);
+    console.log(
+      `    ⚪ ㉠ **잴 축 없음** — 값이 하나로 굳어 후보 목록(sift)이 설계에 없다.`,
+    );
+    if (read === 0) {
+      console.log(`    🔴 발문을 하나도 못 읽었다 — «0건» 은 「못 셈」이다.`);
+    } else {
+      console.log(
+        `    ${hit === 0 ? "✅" : "🔴"} 그 대신 ⑴: 답이 발문의 수 한 걸음에 닿는 씨앗 ${hit}건` +
+          `   (읽은 발문 ${read})`,
+      );
+      console.log(
+        `    ${sp.top < 0.3 ? "✅" : "🔴"} 그 대신 ⑵: 정답 분포 — 서로 다른 답 ${sp.kinds}종 ·` +
+          ` 최빈 ${(sp.top * 100).toFixed(1)}% · 둘이 겹칠 확률 ${(sp.collide * 100).toFixed(1)}%`,
+      );
+    }
+  }
+
+  // ⑶ 57W — 발문에 수가 여덟이라 «한 걸음»이 원래 잘 걸린다. **우연 수준과 함께** 낸다.
+  {
+    let read = 0;
+    let inStem = 0;
+    let mq = 0;
+    let full = 0;
+    let chance = 0;
+    const ans: number[] = [];
+    for (let i = 0; i < SEEDS; i += 1) {
+      const p = makeSample("3-2|상자그림과 산점도|57W", SEED0 + i * 7919, 0);
+      const nums = [...p.content.matchAll(/\$(\d+)\$/g)].map((g) =>
+        Number(g[1]),
+      );
+      const cond = /중앙값이 \$(\d+)\$이고 사분위수범위가 \$(\d+)\$/.exec(
+        p.content,
+      );
+      if (nums.length < 8 || !cond) continue;
+      read += 1;
+      const a = Number(/-?\d+/.exec(p.answer)![0]);
+      ans.push(a);
+      if (nums.includes(a)) inStem += 1;
+      if (oneStepAll([Number(cond[1]), Number(cond[2])]).has(a)) mq += 1;
+      const reach = oneStepAll(nums);
+      if (reach.has(a)) full += 1;
+      // 우연 수준 — 자료가 놓인 범위의 정수를 아무거나 집었을 때 걸릴 비율
+      const lo = Math.min(...nums);
+      const hi = Math.max(...nums);
+      let n = 0;
+      for (let t = lo; t <= hi; t += 1) if (reach.has(t)) n += 1;
+      chance += n / (hi - lo + 1);
+    }
+    const sp = spreadScore(ans);
+    console.log(`  3-2|상자그림과 산점도|57W (심화상)`);
+    if (read === 0) {
+      console.log(`    🔴 발문을 하나도 못 읽었다 — «0건» 은 「못 셈」이다.`);
+    } else {
+      console.log(
+        `    ${inStem === 0 && mq === 0 ? "✅" : "🔴"} 답이 발문에 적혀 있는 씨앗 ${inStem}건 ·` +
+          ` (중앙값, 사분위수범위) 한 걸음 ${mq}건   (읽은 발문 ${read})`,
+      );
+      console.log(
+        `    ⚪ 발문 여덟 수 전체로 넓히면 ${((full / read) * 100).toFixed(1)}% —` +
+          ` **우연 수준 ${((chance / read) * 100).toFixed(1)}%** 아래다` +
+          ` (수가 많으면 한 걸음은 원래 잘 걸린다 — 문턱이 아니라 대조가 필요한 자리)`,
+      );
+      console.log(
+        `    ${sp.top < 0.3 ? "✅" : "🔴"} 정답 분포 — 서로 다른 답 ${sp.kinds}종 ·` +
+          ` 최빈 ${(sp.top * 100).toFixed(1)}% · 둘이 겹칠 확률 ${(sp.collide * 100).toFixed(1)}%`,
+      );
+    }
+  }
+
+  // ⑷ 58W — ㉵ 가 **구조적으로 100%** 다. 숨기지 않고 적고 우연 수준을 함께 낸다.
+  {
+    let read = 0;
+    let inStem = 0;
+    const ans: number[] = [];
+    for (let i = 0; i < SEEDS; i += 1) {
+      const p = makeSample("3-2|상자그림과 산점도|58W", SEED0 + i * 7919, 0);
+      const pts = [...p.content.matchAll(/\$\((\d+),\\ (\d+)\)\$/g)];
+      if (pts.length !== 8) continue;
+      read += 1;
+      const a = Number(/-?\d+/.exec(p.answer)![0]);
+      ans.push(a);
+      if (pts.flatMap((g) => [Number(g[1]), Number(g[2])]).includes(a)) {
+        inStem += 1;
+      }
+    }
+    const sp = spreadScore(ans);
+    console.log(`  3-2|상자그림과 산점도|58W (심화중)`);
+    if (read === 0) {
+      console.log(`    🔴 발문을 하나도 못 읽었다 — «0건» 은 「못 셈」이다.`);
+    } else {
+      console.log(
+        `    ⚪ ㉵ **막을 수 없음** — 묻는 것이 «두 점수의 합»이라 답은 언제나 적힌 두 수의 합이다.` +
+          ` 우연 수준은 28쌍 중 하나 = ${((1 / 28) * 100).toFixed(1)}%`,
+      );
+      console.log(
+        `    ${inStem === 0 ? "✅" : "🔴"} 그 대신: 답이 발문에 **그대로 적힌 수**인 씨앗 ${inStem}건` +
+          `   (읽은 발문 ${read})`,
+      );
+      console.log(
+        `    ${sp.top < 0.3 ? "✅" : "🔴"} 정답 분포 — 서로 다른 답 ${sp.kinds}종 ·` +
+          ` 최빈 ${(sp.top * 100).toFixed(1)}% · 둘이 겹칠 확률 ${(sp.collide * 100).toFixed(1)}%`,
+      );
+    }
+  }
+}
+
 function reportEdgeAndSift(): void {
   console.log("\n═══ ㉠ 굳힘을 **안 읽고** 극단을 집으면 몇 %가 맞나 ═══");
   console.log(
@@ -713,6 +955,7 @@ function reportEdgeAndSift(): void {
   }
   reportNoSiftAxis();
   reportShortcuts();
+  reportWave4Shortcuts();
 }
 
 function reportOverlap(): void {

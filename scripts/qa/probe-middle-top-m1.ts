@@ -6,7 +6,7 @@
  * (「0 은 «깨끗»과 «못 셈»을 안 가른다」 — 이 저장소가 여러 번 데인 자리).
  *
  * ```bash
- * npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 16건 (양성 9 · 음성 7)
+ * npx tsx scripts/qa/probe-middle-top-m1.ts --selftest   # 눈금 24건 (양성 13 · 음성 11)
  * npx tsx scripts/qa/probe-middle-top-m1.ts              # ㉠㉡㉢ + 해설 깊이 + 해설 높이
  * npx tsx scripts/qa/probe-middle-top-m1.ts --overlap    # ㉢ 만 (천장 포함)
  * ```
@@ -80,6 +80,17 @@ import {
   swappedMultiplierAnswer,
   upperOnlySum,
 } from "../../src/lib/middle/m1Top3";
+// 4차 물결(`m1Top4.ts`)의 굳힘 함수 — 여기서 다시 구현하지 않는다.
+import {
+  boxDimensionPairs,
+  classFrequencySum,
+  divisorSum,
+  divisorsOf,
+  meanEqualsMedianValues,
+  productTotalAnswer,
+  relativeDenominator,
+  smallestTotalCount,
+} from "../../src/lib/middle/m1Top4";
 import { JASEUP_MEASURED_PX } from "../../src/lib/printGeometry";
 import { estimateSolutionPx } from "../../src/lib/printOverflow";
 import { isThin } from "./probe-middle-solution-depth";
@@ -440,6 +451,61 @@ export const AXES: Record<string, Axis> = {
       scorePairs(f.p!, f.q!, f.t! + 1).reduce((s, k) => s + k.a, 0),
     candidateCount: (f) => f.cnt!,
   },
+
+  // ══ 4차 물결(`m1Top4.ts`) — 2026-09-03 ═══════════════════════════
+  //
+  // 🔴 등록(`generate.ts`)은 리드 몫이라 이 넷이 아직 `registeredTypes()` 에 없을 수
+  //    있다. 그때 이 항목들은 **잠자코 있다** — 모집단이 등록에서 오기 때문이다.
+  //    등록되는 순간 함께 재어지고, 안 적었으면 그 자리에 🔴 이 찍힌다.
+  //    (그래서 저술자의 시험이 이 표를 **그대로 import 해서** 미리 댄다.)
+
+  // 61W — 굳힘은 「$xy=a$ 이고 둘 다 자연수 ⟹ $x$ 는 $a$ 의 약수」 하나다.
+  "1-1|정비례와 반비례|61W": {
+    // 🔴 **축 없음** — 굳힘을 안 읽으면 그래프 위의 점이 무수히 많아 답 자체가
+    //    안 나온다(`94T`·`43U`·`51V` 와 같은 자리). 이 유형의 진짜 지름길은
+    //    「$a$ 에 작은 수를 한두 번 곱하거나 나눈 값」인데, 지면에 수가 $a$ **하나**
+    //    뿐이라 아래 ⑴ 의 자로는 구조적으로 0 이다 — 그 축은 생성기가 막고
+    //    저술자의 시험이 **널 모형과 견주어** 잰다(지름길 2.08% · 우연 5.90%).
+    withoutBinding: () => null,
+    // 그래프의 상수를 흔들면 약수의 합이 달라져야 한다.
+    // ⚠️ 음성 대조: $\sigma(14)=\sigma(15)=24$ 라 «그대로»가 나올 수 있는 짝이
+    //    실재한다 — 생성기 창(약수 6~12개)에는 그런 짝이 없다(실측 0/94).
+    perturbed: (f) => divisorSum(f.a! + 1),
+    // 후보 목록은 «$a$ 의 약수» 다.
+    candidateCount: (f) => divisorsOf(f.a!).length,
+  },
+  // 62W — 굳힘은 「(도수)=(총합)×(상대도수)이고 도수는 자연수」 하나다.
+  "1-2|도수분포표와 상대도수|62W": {
+    // 「최소공배수 = 두 수의 곱」으로 아는 학생의 답. 두 기약분모가 서로소이면
+    // 참 답과 **같아진다** — 생성기가 그런 판을 버리므로 여기서는 늘 갈려야 한다.
+    withoutBinding: (f) => productTotalAnswer(f.p!, f.q!),
+    // 상대도수 하나를 흔들면 기약분모가 달라져 답이 달라져야 한다.
+    perturbed: (f) => classFrequencySum(f.p!, f.q! + 1),
+    // 후보 목록이 **아예 없다** — 값이 하나로 굳는다.
+    candidateCount: () => null,
+  },
+  // 63W — 굳지 않는다. 중앙값의 자리를 세 경우로 갈라 각각 넣어 봐야 한다.
+  "1-2|대푯값|63W": {
+    // 첫 경우에서 멈춘 답 — (가) 의 해 하나만 적고 끝낸 학생.
+    withoutBinding: (f) => f.first!,
+    perturbed: (f) =>
+      meanEqualsMedianValues(f.c1!, f.c2!, f.c3!, f.c4! + 1).reduce(
+        (a, b) => a + b,
+        0,
+      ),
+    candidateCount: (f) => f.cnt!,
+  },
+  // 64W — 굳지 않는다. $a$ 를 하나씩 넣어 $b$ 가 자연수인지 봐야 한다.
+  "1-2|입체도형의 겉넓이와 부피|64W": {
+    // 첫 밑면을 찾고 멈춘 답.
+    withoutBinding: (f) => f.first!,
+    perturbed: (f) =>
+      boxDimensionPairs(f.h!, f.k! + 1).reduce(
+        (s, [a, b]) => s + a * b * f.h!,
+        0,
+      ),
+    candidateCount: (f) => f.cnt!,
+  },
 };
 
 export function sweep(): Row[] {
@@ -734,7 +800,8 @@ function reportRubric(): void {
 // ── 눈금 — **이 자가 «아니오»를 낼 수 있는가** ──────────────────
 
 /**
- * 양성 6 · 음성 6. 음성이 없으면 재현율만 재고 거짓 경보는 구조적으로 0이 된다
+ * 양성 13 · 음성 11 (2026-09-03 에 4차 물결 여덟을 더했다). 음성이 없으면 재현율만
+ * 재고 거짓 경보는 구조적으로 0이 된다
  * (2026-08-20 「판정자의 성적표에는 양성과 음성 대조군이 둘 다 있어야 한다」).
  *
  * 🔴 대조군을 **엔진 밖에서** 짓는다 — 엔진 산출물로만 눈금을 매기면 갈래를 고치는
@@ -886,6 +953,62 @@ function selftest(): number {
     true,
     coprimePairSums(4, 385).join(",") === "184,248,328,1544",
     "(1,385)(5,77)(7,55)(11,35) 에 4를 곱한 합",
+  );
+
+  // ══ 4차 물결(`m1Top4.ts`)의 굳힘 함수 — 양성 4 · 음성 4 ═══════════
+  //
+  // 🔴 대조군을 **엔진 밖에서** 짓는다. 넷 다 «손 계산»과 «그 자가 «아니오»를 낼 수
+  //    있는가»를 한 쌍으로 둔다 — 양성만 두면 재현율만 재고 거짓 경보는 구조적으로
+  //    0 이 된다(2026-08-20).
+  add(
+    "양성: 61W 굳힘 함수가 손 계산과 같다",
+    true,
+    divisorSum(36) === 91,
+    "$36$ 의 약수 $1,2,3,4,6,9,12,18,36$ 의 합은 $91$",
+  );
+  add(
+    "음성: 61W 는 상수를 흔들면 답이 달라진다",
+    false,
+    divisorSum(36) === divisorSum(37),
+    "$\\sigma(36)=91$ · $\\sigma(37)=38$ — 흔들기 축이 살아 있다",
+  );
+  add(
+    "양성: 62W 굳힘 함수가 손 계산과 같다",
+    true,
+    relativeDenominator(35) === 20 &&
+      smallestTotalCount(30, 35) === 20 &&
+      classFrequencySum(30, 35) === 13,
+    "$0.3=\\frac3{10}$ · $0.35=\\frac7{20}$ → $N=20$, 도수 $6+7=13$",
+  );
+  add(
+    "음성: 62W 는 기약분모가 서로소가 아니면 «곱으로 본 답»과 갈린다",
+    false,
+    productTotalAnswer(30, 35) === classFrequencySum(30, 35),
+    "서로소인 판($0.2$·$0.25$)에서는 같아진다 — 그래서 생성기가 그것을 버린다",
+  );
+  add(
+    "양성: 63W 는 조건에 맞는 $x$ 가 **하나도 없는** 판을 낼 수 있다",
+    true,
+    meanEqualsMedianValues(5, 6, 7, 12).length === 0,
+    "$5,6,7,12$ — 세 경우가 다 죽는다(자가 «없음»을 낼 수 있다)",
+  );
+  add(
+    "음성: 63W 우리 창의 판은 빈 집합이 아니다",
+    false,
+    meanEqualsMedianValues(7, 10, 13, 18).length === 0,
+    "$7,10,13,18$ → $x=2,12,17$",
+  );
+  add(
+    "양성: 64W 는 밑면이 **하나도 없는** 판을 낼 수 있다",
+    true,
+    boxDimensionPairs(8, 12).length === 0,
+    "$h=8$, $K=12$ — 첫 자리에서 이미 $a>b$ 다",
+  );
+  add(
+    "음성: 64W 우리 창의 판은 빈 집합이 아니다",
+    false,
+    boxDimensionPairs(3, 63).length === 0,
+    "$h=3$, $K=63$ → 밑면 $1\\times15$, $3\\times9$, $5\\times6$",
   );
 
   let bad = 0;
