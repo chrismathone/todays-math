@@ -174,6 +174,14 @@ import {
 import { JASEUP_MEASURED_PX } from "../../src/lib/printGeometry";
 import { estimateSolutionPx } from "../../src/lib/printOverflow";
 import { isThin } from "./probe-middle-solution-depth";
+import {
+  type Axis,
+  answerNumber,
+  answerNumberOrNull,
+  chanceLevel,
+  scorePerturb,
+  scoreShortcut,
+} from "./extendingAxis";
 import { isDirectScript } from "../import/isDirectScript";
 
 const SEEDS = [20260827, 7, 4242, 99991, 31337, 5150131, 20260901, 12345];
@@ -211,30 +219,8 @@ export function pageNumbers(content: string): number[] {
   return out;
 }
 
-/**
- * 답에서 처음 나오는 수 — **없으면 `null`(판정 불가)**.
- *
- * 🔴 2026-09-02 수리. 종전 판은 수가 없으면 **던졌다.** 그런데 형제 유형의 답에는
- * 수가 없는 것이 흔하다 — 실측으로 소단원 «정비례 관계 y=ax의 그래프» 형제 12개 중
- * **4개**가 그렇다(`06`→`$y=-x$` · `08`→`증가한다.` · `09`→`$y=-x$` · `23`→`$y=bx$`).
- * 그래서 그 소단원에 확대 갈래를 세우는 순간 `--overlap` 이 **그 자리에서 죽었다**
- * (`Error: 답에 수가 없다: $y=-x$`). 「이 열쇠로는 못 잰다」와 「자가 고장 났다」는
- * 다른 말인데 던지면 둘이 같아진다 — 그리고 죽은 자는 아무것도 안 지킨다.
- *
- * 참고로 「반비례 관계 y=a/x의 그래프」 쪽은 답이 전부 수를 품고 있어 **0건**이다.
- * 이 결함은 정비례 쪽에만 있었고, 그래서 2차 물결까지는 드러나지 않았다.
- */
-export function answerNumberOrNull(answer: string): number | null {
-  const m = answer.match(/-?\d+(?:\.\d+)?/);
-  return m === null ? null : Number(m[0]);
-}
-
-/** 답에서 처음 나오는 수 — 우리 유형의 답은 반드시 수다. 없으면 던진다. */
-export function answerNumber(answer: string): number {
-  const v = answerNumberOrNull(answer);
-  if (v === null) throw new Error(`답에 수가 없다: ${answer}`);
-  return v;
-}
+// 답에서 수를 읽는 두 함수는 **공용 모듈**에 있다 — 중3 판정기도 같은 것을 부른다.
+export { answerNumber, answerNumberOrNull };
 
 function lcm(a: number, b: number): number {
   return Math.abs((a / gcd(a, b)) * b);
@@ -349,14 +335,9 @@ type Row = {
  * `null` 은 「그 축이 이 유형에 **없다**」는 뜻이다 — 「0%」와 **다른 말**이라
  * 표에서도 따로 찍는다.
  */
-export type Axis = {
-  /** 굳힘 조건을 안 읽고 낼 수 있는 답. 없으면 `null`(축 없음). */
-  withoutBinding: (f: Record<string, number>) => number | null;
-  /** 굳힘 인자를 흔든 답. 원래와 같으면 굳힘이 장식이다. */
-  perturbed: (f: Record<string, number>) => number;
-  /** 후보 개수 — 우연 수준 $1/k$ 를 찍기 위해. `null` 이면 후보 목록이 없다. */
-  candidateCount: (f: Record<string, number>) => number | null;
-};
+// 🔴 **채점은 `extendingAxis.ts` 한 곳이다** — 중3 판정기도 그것을 부른다.
+//    여기 두면 두 벌이 되고, 그러면 한쪽만 고쳐도 아무도 모른다(2026-08-18).
+export type { Axis } from "./extendingAxis";
 
 /**
  * 🔴 **내보내는 까닭** — 등록(`generate.ts`)이 리드 몫이라, 새 물결의 유형은 이 자의
@@ -1845,21 +1826,10 @@ function reportShortcuts(rows: Row[]): void {
     //    구조적으로 못 본다. 그리고 값이 **안 서는** 판(`NaN`)은 「지름길이 안 맞았다」와
     //    다른 말이라 분모에서 뺀다 — 안 빼면 「지름길 0%」의 분모 대부분이 애초에
     //    지름길이 서지도 않는 판일 수 있고, 그 표는 «깨끗»과 «못 셈»을 안 가른다.
-    let hit = 0;
-    let noAxis = 0;
-    let noValue = 0;
-    for (const r of mine) {
-      let wb: number | null;
-      try {
-        wb = axis.withoutBinding(r.facts);
-      } catch {
-        wb = Number.NaN;
-      }
-      if (wb === null) noAxis += 1;
-      else if (!Number.isFinite(wb)) noValue += 1;
-      else if (wb === answerNumber(r.answer)) hit += 1;
-    }
-    const scored = mine.length - noAxis - noValue;
+    const { hit, noAxis, noValue, scored } = scoreShortcut(
+      mine.map((r) => ({ facts: r.facts, answer: answerNumber(r.answer) })),
+      axis,
+    );
     const tail = noValue > 0 ? ` · 지름길이 안 서는 판 ${noValue}` : "";
     const noBind =
       noAxis === mine.length
@@ -1867,13 +1837,10 @@ function reportShortcuts(rows: Row[]): void {
         : scored === 0
           ? `🔴 **못 쟀다** (${mine.length}판 모두 값이 안 섰다)`
           : `${pct(hit, scored)} (${hit}/${scored})${tail}${noAxis > 0 ? ` · 축 없는 판 ${noAxis}` : ""}`;
-    const ks = mine
-      .map((r) => axis.candidateCount(r.facts))
-      .filter((v): v is number => v !== null);
-    const chance =
-      ks.length === 0
-        ? "— (후보 목록 없음)"
-        : `1/${(ks.reduce((a, b) => a + b, 0) / ks.length).toFixed(1)}`;
+    const chance = chanceLevel(
+      mine.map((r) => ({ facts: r.facts, answer: answerNumber(r.answer) })),
+      axis,
+    );
     console.log(
       `| \`${e.key.split("|")[2]}\` ${mine[0]!.tier} | ${mine.length} | ` +
         `${best ? `\`${best[0]}\` ${pct(best[1], mine.length)}` : "**0건**"} | ${noBind} | ${chance} |`,
@@ -1900,19 +1867,10 @@ function reportBinding(rows: Row[]): void {
     //    실제로 `43U` 가 96판 중 **95판**을 그렇게 통과하고 있었다(2026-09-04).
     //    「답이 안 바뀌었다」(장식)와 「잴 수가 없었다」(못 셈)는 다른 말이므로
     //    분모를 갈라 찍고, 못 잰 판이 있으면 판정을 **보류**한다.
-    let same = 0;
-    let unmeasured = 0;
-    for (const r of mine) {
-      let got: number;
-      try {
-        got = axis.perturbed(r.facts);
-      } catch {
-        got = Number.NaN;
-      }
-      if (!Number.isFinite(got)) unmeasured += 1;
-      else if (got === answerNumber(r.answer)) same += 1;
-    }
-    const measured = mine.length - unmeasured;
+    const { same, unmeasured, measured } = scorePerturb(
+      mine.map((r) => ({ facts: r.facts, answer: answerNumber(r.answer) })),
+      axis,
+    );
     const verdict =
       measured === 0
         ? "🔴 **못 쟀다** (흔들기가 한 판도 값을 못 냈다)"

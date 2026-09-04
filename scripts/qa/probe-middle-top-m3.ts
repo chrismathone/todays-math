@@ -70,10 +70,36 @@ import {
   planFactorSum,
   planScatterPair,
 } from "../../src/lib/middle/m3Top4";
+import {
+  consecutiveCandidates,
+  consecutiveCounts,
+  liveTrigRoots,
+  remainingInscribedSum,
+  specialAngleOf,
+  squareGapCandidates,
+  squareGapHits,
+  type TrigFn,
+  trigExprValue,
+} from "../../src/lib/middle/m3Top5a";
+import {
+  angleValuesOf,
+  divisorPairsOf,
+  divisorsOf as divisorsOf5b,
+  solveAnglePairs,
+  solveIncircleRadius,
+  solveSegmentDivisors,
+} from "../../src/lib/middle/m3Top5b";
 import { tidySolution } from "../../src/lib/middle/solutionText";
 import { resolveMiddleTier } from "../../src/lib/middle/tier";
 import type { MidProblem } from "../../src/lib/middle/types";
 import { wrapDanClause } from "../../src/lib/problemText";
+import {
+  type Axis,
+  answerNumber,
+  chanceLevel,
+  scorePerturb,
+  scoreShortcut,
+} from "./extendingAxis";
 
 const SEEDS = 400;
 const SEED0 = 20260901;
@@ -571,6 +597,41 @@ function selftest(): void {
     true,
     edgeShare(10, 30) < 0.5,
     `10/30=${(edgeShare(10, 30) * 100).toFixed(1)}%`,
+  );
+
+  // ── 지우기 축(㉢): 채점기가 «아니오»를 낼 수 있나 ─────────────────
+  //    🔴 이 눈금이 없으면 「장식 0건」이 «깨끗»인지 «채점기가 죽었는지» 안 갈린다
+  //       (2026-08-21). 답을 아는 가짜 축 둘을 대 본다.
+  const fakeRows = [
+    { facts: { a: 3 }, answer: 7 },
+    { facts: { a: 4 }, answer: 9 },
+  ];
+  const decorative: Axis = {
+    // 굳힘을 지워도 답이 그대로 = 장식. 흔들어도 그대로 = 항등식.
+    withoutBinding: (f) => 2 * f.a! + 1,
+    perturbed: (f) => 2 * f.a! + 1,
+    candidateCount: () => 5,
+  };
+  const alive: Axis = {
+    withoutBinding: () => null,
+    perturbed: (f) => 2 * f.a! + 2,
+    candidateCount: () => 5,
+  };
+  const dHit = scoreShortcut(fakeRows, decorative);
+  const dSame = scorePerturb(fakeRows, decorative);
+  say(
+    "㉢ 양성 — 장식인 축을 대면 ㉠·㉡ 이 둘 다 문다",
+    true,
+    dHit.hit === 2 && dSame.same === 2,
+    `지름길 ${dHit.hit}/2 · 그대로 ${dSame.same}/2`,
+  );
+  const aHit = scoreShortcut(fakeRows, alive);
+  const aSame = scorePerturb(fakeRows, alive);
+  say(
+    "㉢ 음성 — 살아 있는 축을 대면 아무것도 안 문다",
+    true,
+    aHit.hit === 0 && aHit.noAxis === 2 && aSame.same === 0,
+    `지름길 ${aHit.hit}/2 · 축없음 ${aHit.noAxis} · 그대로 ${aSame.same}/2`,
   );
 
   // ── 등록: 새 갈래가 실제로 `심화중`·`심화상` 으로 나오는가 (분모)
@@ -1120,9 +1181,256 @@ function reportWhyNoQuadratic(): void {
   );
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// 확대 갈래의 «지우기» 축 — 2026-09-04 에 세웠다 (중3에는 **아예 없었다**)
+// ═══════════════════════════════════════════════════════════════════
+//
+// 🔴 이 축이 없던 동안 중3 확대 갈래 일곱에서 「장식 0건」은 **«깨끗»이 아니라
+//    «못 셈»**이었다(2026-08-21 「0은 깨끗과 못 셈을 안 가른다」).
+//    채점은 `extendingAxis.ts` 한 곳이고 중1 판정기도 **그것을 부른다** —
+//    옮겨 적으면 두 벌이 되고, 그러면 한쪽만 고쳐도 아무도 모른다(2026-08-18).
+//
+// ⚠️ 5차 물결 모듈(`m3Top5a`·`m3Top5b`)은 굳힘을 **불 인자로 받는 순수 함수**로
+//    지어져 있다(「㉡ 을 밖에서 재는 통로다」라고 그 주석이 적어 두었다).
+//    그래서 여기서는 그 함수를 **그대로 부른다** — 규칙을 다시 구현하지 않는다.
+
+/** `131X` — `fn` 이 `facts` 에 없다. 살아 있는 근 $1/2$ 이 낸 각으로 되만든다. */
+function trigFnOf(f: Record<string, number>): TrigFn {
+  for (const fn of ["sin", "cos"] as TrigFn[])
+    if (specialAngleOf(fn, 1, 2) === f.angle!) return fn;
+  throw new Error(`131X: 삼각비를 못 되만들었다 — 각 ${f.angle!}`);
+}
+
+/** `131X` — 살아 있는 근들이 낳는 값의 합. 특수각이 아니면 **던진다**. */
+function trigSum(
+  f: Record<string, number>,
+  deadNum: number,
+  deadDen: number,
+  useRange: boolean,
+  useTan: boolean,
+): number {
+  const fn = trigFnOf(f);
+  const roots = liveTrigRoots(fn, deadNum, deadDen, useRange, useTan);
+  let total = 0;
+  for (const [p, q] of roots) {
+    const ang = specialAngleOf(fn, p, q);
+    if (ang === null) throw new Error("131X: 특수각이 아니다");
+    total += trigExprValue(ang, f.u!, f.v!);
+  }
+  return total;
+}
+
+const sumM3 = (xs: readonly number[]): number => xs.reduce((a, b) => a + b, 0);
+
+export const AXES_M3: Record<string, Axis> = {
+  // 129X — 굳힘이 **둘**이다. `useSmall`($k^2<2N$) 과 `useParity`($a$ 가 자연수).
+  //        둘을 다 지우면 $2N$ 의 약수가 통째로 남는다.
+  "3-1|이차방정식의 활용|129X": {
+    withoutBinding: (f) => sumM3(consecutiveCounts(f.total!, false, false)),
+    // 합을 흔들면 약수가 통째로 바뀐다. 살아남는 $k$ 가 없으면 $0$ 이라 값은 선다.
+    perturbed: (f) => sumM3(consecutiveCounts(f.total! + 1, true, true)),
+    candidateCount: (f) => consecutiveCandidates(f.total!).length,
+  },
+
+  // 130X — 굳힘은 **둘째** 조건(제곱근이 또 자연수)이다. 지우면 첫 조건이 만든
+  //        후보가 전부 산다.
+  "3-1|제곱근의 뜻과 성질|130X": {
+    withoutBinding: (f) => sumM3(squareGapHits(f.a!, f.b!, false)),
+    perturbed: (f) => sumM3(squareGapHits(f.a!, f.b! + 1, true)),
+    candidateCount: (f) => squareGapCandidates(f.a!).length,
+  },
+
+  // 131X — 굳힘은 「범위 밖·탄젠트 없는 근을 **버린다**」이다.
+  //
+  // 🔴 **죽는 근은 이 축의 입력이 될 수 없다.** `planTrigRoot` 가
+  //    「살아남는 근이 $\dfrac12$ 하나가 아니면 던진다」를 **단언**하므로, 죽는 근을
+  //    어떻게 흔들어도 답이 안 바뀐다. 그것을 그대로 재면 24판 전부 「🔴 장식」이
+  //    찍히는데 그건 결함이 아니라 **설계**다 — 그리고 **거짓 경보는 가드를 끈다**
+  //    (2026-08-20). 그래서 ㉡ 은 값을 실제로 정하는 굳힘, 곧 **어느 삼각비인가**를
+  //    흔든다($\sin\leftrightarrow\cos$ 이면 각이 $30^\circ\leftrightarrow60^\circ$ 로
+  //    바뀌어 값이 달라져야 한다).
+  //    ⚠️ 다만 「살아남는 근이 늘 $\dfrac12$」라는 사실 자체는 **다양성 쪽 지적**으로
+  //       남긴다(인수인계 §0-O). 지금 판정기의 `sift` 는 그것을 **색인**으로 적어
+  //       ($1$ 이냐 $2$ 냐) 값이 늘 같다는 것을 구조적으로 못 본다.
+  "3-2|삼각비|131X": {
+    // 지우면 죽은 근까지 값을 매겨야 하는데 그 근은 특수각이 아니다 — 축이 없다.
+    withoutBinding: (f) => {
+      try {
+        return trigSum(f, f.deadNum!, f.deadDen!, false, false);
+      } catch {
+        return null;
+      }
+    },
+    perturbed: (f) => {
+      const other: TrigFn = trigFnOf(f) === "sin" ? "cos" : "sin";
+      const ang = specialAngleOf(other, 1, 2);
+      if (ang === null)
+        throw new Error("131X: 반대쪽 삼각비가 특수각이 아니다");
+      return trigExprValue(ang, f.u!, f.v!);
+    },
+    candidateCount: () => 2,
+  },
+
+  // 132X — 굳힘은 「원주각은 중심각의 **절반**」이다. 지우면 중심각을 그대로 답한다.
+  "3-2|원주각|132X": {
+    withoutBinding: (f) => remainingInscribedSum(f.p!, f.q!, f.r!, false),
+    perturbed: (f) => remainingInscribedSum(f.p! + 1, f.q!, f.r!, true),
+    candidateCount: () => null,
+  },
+
+  // 144X — 굳힘이 **둘**이다(두 변의 길이가 각각 약수의 창을 자른다).
+  //        둘을 다 지우면 $n$ 의 약수가 통째로 남는다.
+  "3-2|삼각비의 활용|144X": {
+    withoutBinding: (f) =>
+      sumM3(solveSegmentDivisors(f.n!, f.b!, f.c!, false, false)),
+    // 굳힘 인자는 두 변의 길이다. 창을 옮기면 살아남는 약수가 달라져야 한다.
+    //
+    // 🔴 첫 판은 `b - 1` 을 먼저 댔는데 **24판 중 15판이 「장식」**으로 찍혔다.
+    //    굳힘이 장식이어서가 아니라 **내 흔들기가 뜻을 안 바꿔서**다 — 거르는 조건이
+    //    $y\le b$ 라 $b$ 를 $1$ 만 줄여도 $y$ 가 정확히 $b$ 인 약수가 없으면 아무것도
+    //    안 떨어진다(2026-08-21 「뜻이 바뀌었나」). 지금은 **살아남은 것 가운데 가장
+    //    큰 $y$ 바로 아래**로 창을 좁혀 **반드시 하나를 떨군다.**
+    perturbed: (f) => {
+      const kept = solveSegmentDivisors(f.n!, f.b!, f.c!, true, true);
+      if (kept.length === 0) return Number.NaN;
+      const maxY = Math.max(...kept.map((x) => f.n! / x));
+      return sumM3(solveSegmentDivisors(f.n!, maxY - 1, f.c!, true, true));
+    },
+    candidateCount: (f) => divisorsOf5b(f.n!).length,
+  },
+
+  // 145X — 굳힘은 「두 근 가운데 **양수만** 반지름이 된다」이다. 지우면 음의 근을
+  //        그대로 반지름으로 써 둘레가 달라진다.
+  "3-2|원과 직선|145X": {
+    withoutBinding: (f) => {
+      const [lo] = solveIncircleRadius(f.p!, f.q!, false);
+      return 2 * (f.p! + f.q! + lo!);
+    },
+    // 굳힘 인자는 두 접선 길이다. 판별식이 제곱수가 아니면 제품 함수가 **던진다** —
+    // 그래서 좁게 흔들면 대부분이 「못 쟀다」가 된다(첫 판은 24판 중 23판이 그랬다).
+    // 창을 넓혀 값이 서는 첫 자리를 쓴다.
+    //
+    // 🔴 **여기서는 「첫 번째로 값이 서는 흔들기」를 쓰면 안 된다.** 그건 제비뽑기다 —
+    //    이웃 $(p',q')$ 가운데 우연히 **둘레가 같은** 자리를 집으면 멀쩡한 굳힘이
+    //    「장식」으로 찍힌다(실측 20판 중 2판이 그랬다. 거짓 경보는 가드를 끈다).
+    //    ㉡ 이 주장하는 것은 「굳힘이 **항등식**이다」이므로, 옳은 판정은
+    //    **어떤 흔들기로도 안 바뀌는가**다. 값이 서는 자리를 다 훑어 하나라도
+    //    달라지면 그것을 낸다(= 굳힘이 산다). 다 같으면 참 답을 그대로 내어
+    //    「장식」으로 찍히게 한다.
+    perturbed: (f) => {
+      const truth = 2 * (f.p! + f.q! + f.r!);
+      let sawAny = false;
+      for (let dp = -8; dp <= 8; dp += 1)
+        for (let dq = -8; dq <= 8; dq += 1) {
+          if (dp === 0 && dq === 0) continue;
+          const p2 = f.p! + dp;
+          const q2 = f.q! + dq;
+          if (p2 < 1 || q2 < 1) continue;
+          // 🔴 **맞바꾼 짝은 흔들기가 아니다.** 식이 $p$·$q$ 에 대칭이라 답이 반드시
+          //    같다. 그것을 세면 「장식」이 찍히는데 그건 내 자의 허물이다 —
+          //    실측으로 창 $\pm4$ 에서 값이 선 이웃이 **그 하나뿐**인 판이 있었다.
+          if (p2 === f.q! && q2 === f.p!) continue;
+          let got: number;
+          try {
+            const [hi] = solveIncircleRadius(p2, q2, true);
+            got = 2 * (p2 + q2 + hi!);
+          } catch {
+            continue;
+          }
+          if (!Number.isFinite(got)) continue;
+          sawAny = true;
+          if (got !== truth) return got;
+        }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: () => 2,
+  },
+
+  // 146X — 굳힘이 **둘**이다(합이 짝수 · 합이 $178$ 이하). 둘을 다 지우면 $m$ 의
+  //        약수쌍이 통째로 남는다.
+  "3-2|원주각의 활용|146X": {
+    withoutBinding: (f) =>
+      sumM3(angleValuesOf(solveAnglePairs(f.m!, false, false))),
+    perturbed: (f) =>
+      sumM3(angleValuesOf(solveAnglePairs(f.m! + 1, true, true))),
+    candidateCount: (f) => divisorPairsOf(f.m!).length,
+  },
+};
+
+/** 축을 재는 표본 — `facts` 를 물고 와야 하므로 `sampleType` 과 따로 둔다. */
+function axisRows(
+  key: string,
+): { facts: Record<string, number>; answer: number }[] {
+  const out: { facts: Record<string, number>; answer: number }[] = [];
+  for (const s of [20260901, 7, 4242, 99991, 31337, 5150131, 20260827, 12345])
+    for (const v of [0, 1, 2]) {
+      const p = makeSample(key, s, v);
+      out.push({ facts: p.facts ?? {}, answer: answerNumber(p.answer) });
+    }
+  return out;
+}
+
+const pctM3 = (a: number, b: number): string =>
+  b === 0 ? "—" : `${((100 * a) / b).toFixed(1)}%`;
+
+function reportExtendingAxes(): void {
+  console.log("\n## ㉠ 지름길 — 굳힘 조건을 안 읽고 답이 나오나\n");
+  console.log("| 유형 | 표본 | 굳힘을 지운 답이 맞나 | 우연 수준 |");
+  console.log("|---|---|---|---|");
+  for (const e of topEntries()) {
+    const axis = AXES_M3[e.key];
+    // 🔴 축을 안 적은 유형은 **조용히 빠지지 않는다** — 그 줄이 «깨끗»으로 읽히면
+    //    새 물결이 판정기 밖에 서 있는 것을 아무도 모른다.
+    if (axis === undefined) {
+      console.log(`| ${e.key} | — | 🔴 **축(AXES_M3)을 안 적었다** | — |`);
+      continue;
+    }
+    const rows = axisRows(e.key);
+    const { hit, noAxis, noValue, scored } = scoreShortcut(rows, axis);
+    const tail = noValue > 0 ? ` · 지름길이 안 서는 판 ${noValue}` : "";
+    const verdict =
+      noAxis === rows.length
+        ? "**축 없음** (조건을 지우면 문제가 사라진다)"
+        : scored === 0
+          ? `🔴 **못 쟀다** (${rows.length}판 모두 값이 안 섰다)`
+          : `${pctM3(hit, scored)} (${hit}/${scored})${tail}` +
+            (noAxis > 0 ? ` · 축 없는 판 ${noAxis}` : "");
+    console.log(
+      `| \`${e.key.split("|")[2]}\` | ${rows.length} | ${verdict} | ` +
+        `${chanceLevel(rows, axis)} |`,
+    );
+  }
+
+  console.log("\n## ㉡ 굳힘이 항등식인가 — 인자를 흔들면 답이 바뀌나\n");
+  console.log("| 유형 | 표본 | 흔들어도 답이 그대로 | 판정 |");
+  console.log("|---|---|---|---|");
+  for (const e of topEntries()) {
+    const axis = AXES_M3[e.key];
+    if (axis === undefined) {
+      console.log(`| ${e.key} | — | 🔴 **축(AXES_M3)을 안 적었다** | — |`);
+      continue;
+    }
+    const rows = axisRows(e.key);
+    const { same, unmeasured, measured } = scorePerturb(rows, axis);
+    const verdict =
+      measured === 0
+        ? "🔴 **못 쟀다** (흔들기가 한 판도 값을 못 냈다)"
+        : same > 0
+          ? "🔴 **장식**"
+          : unmeasured > 0
+            ? `⚠️ 굳힘이 산다 — 다만 ${unmeasured}판은 **못 쟀다**`
+            : "굳힘이 산다";
+    console.log(
+      `| \`${e.key.split("|")[2]}\` | ${rows.length} | ` +
+        `${pctM3(same, measured)} (${same}/${measured}) | ${verdict} |`,
+    );
+  }
+}
+
 function main(): void {
   const a = process.argv.slice(2);
   if (a.includes("--selftest")) return selftest();
+  if (a.includes("--axes")) return reportExtendingAxes();
   if (a.includes("--overlap")) return reportOverlap();
   if (a.includes("--empty")) {
     reportWhyNoMedianMid();
@@ -1130,6 +1438,7 @@ function main(): void {
     return;
   }
   reportEdgeAndSift();
+  reportExtendingAxes();
   reportOverlap();
   reportWhyNoMedianMid();
   reportWhyNoQuadratic();
