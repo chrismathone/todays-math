@@ -110,23 +110,30 @@ async function selftest(): Promise<boolean> {
   } as unknown as Record<string, unknown>;
   const rb = await renderFigureSpec(bad);
   const rg = await renderFigureSpec(good);
+  // ⚠️ 찍는 꼴은 `elemProbeGauges.test.ts` 의 집안 규약이다 — 판정 줄마다 ✅/❌ 로
+  //    시작하고 마지막에 「눈금 N건」. 이 꼴을 안 지키면 그 시험이 이 자의 눈금을
+  //    **자동으로 못 돌린다** — 눈금이 있어도 아무도 안 보는 것이 된다.
   console.log(
-    `눈금 — 양성(짧은 선분) ${rb.ok ? "🔴 그려졌다" : "✅ 거부됐다"}` +
-      ` · 음성(긴 선분) ${rg.ok ? "✅ 그려졌다" : "🔴 거부됐다"}`,
+    `  ${rb.ok ? "❌" : "✅"} 양성 — 표시가 붙은 **짧은 선분**은 거부되어야 한다` +
+      `  (그려졌나 ${rb.ok ? "예" : "아니오"}, 기대 아니오)`,
   );
-  if (rb.ok) {
-    console.log(
-      "   🔴 양성이 통과했다 — 이 자는 지금 아무것도 못 잡는다. 판정을 거부한다.",
-    );
-    return false;
-  }
-  if (!rg.ok) {
+  console.log(
+    `  ${rg.ok ? "✅" : "❌"} 음성 — 같은 모양의 **긴 선분**은 그려져야 한다` +
+      `  (그려졌나 ${rg.ok ? "예" : "아니오"}, 기대 예)`,
+  );
+  const pass = !rb.ok && rg.ok;
+  if (rb.ok)
+    console.log("   🔴 양성이 통과했다 — 이 자는 지금 아무것도 못 잡는다.");
+  if (!rg.ok)
     console.log(
       `   🔴 음성이 막혔다 — 이 자는 멀쩡한 그림도 빨갛게 낸다: ${rg.error}`,
     );
-    return false;
-  }
-  return true;
+  console.log(
+    pass
+      ? "\n✅ 눈금 2건 전부 맞다 (양성 1 · 음성 1)"
+      : "\n❌ 눈금 2건 중 어긋난 것이 있다 — 판정을 거부한다.",
+  );
+  return pass;
 }
 
 async function main(): Promise<void> {
@@ -150,18 +157,34 @@ async function main(): Promise<void> {
   >();
   let withFigure = 0;
   let short = 0;
+  const threw = new Map<string, string>();
   for (const e of entries) {
     for (let s = 0; s < seeds; s += 1) {
       // 🔴 **적재기가 부르는 그 함수**로 걷는다 — 변형 범위를 옮겨 적지 않는다.
       const got = collectDistinctVariantsResult(
         (v) => {
-          const p = generateMiddleProblem(e.key, SEED_BASE + s * 7919, v);
-          return {
-            content: p.content,
-            answer: p.answer,
-            figureSpec:
-              (p.figureSpec as Record<string, unknown> | null) ?? null,
-          };
+          try {
+            const p = generateMiddleProblem(e.key, SEED_BASE + s * 7919, v);
+            return {
+              content: p.content,
+              answer: p.answer,
+              figureSpec:
+                (p.figureSpec as Record<string, unknown> | null) ?? null,
+            };
+          } catch (err) {
+            // ⚠️ 생성기가 던지는 것은 **그림 결함이 아니다** — 변형 공간이 바닥난
+            //    것이고(「유형 생성 재시도 초과」), 적재기는 거기까지 안 간다.
+            //    그런데 그냥 터지면 **판정기가 결함을 찾은 것처럼** 보인다 —
+            //    관문이 실제로 그렇게 읽었고, 표에는 스택트레이스만 남았다.
+            //    잡아서 **세어 찍고** 걸음만 잇는다. 같은 열쇠를 돌려주므로
+            //    `distinctKey` 가 접어 걸음이 제풀에 끝난다.
+            threw.set(e.key, err instanceof Error ? err.message : String(err));
+            return {
+              content: `__throw__${e.key}`,
+              answer: "",
+              figureSpec: null,
+            };
+          }
         },
         variants,
         { allowShort: true },
@@ -178,8 +201,17 @@ async function main(): Promise<void> {
   console.log(
     `등록 ${entries.length}유형 · 씨앗 ${seeds} × 변형 ${variants}(적재기와 같은 걸음)` +
       ` · 그림 붙은 판 ${withFigure} · **서로 다른 스펙 ${specs.size}**` +
-      ` · 변형을 못 채운 유형 ${short}`,
+      ` · 변형을 못 채운 유형 ${short} · 생성기가 던진 유형 ${threw.size}`,
   );
+  if (threw.size > 0) {
+    // 「던졌다」를 숫자만 남기면 그 유형의 그림은 **안 본 것**인데 표는 조용하다.
+    const sample = [...threw.entries()].slice(0, 3);
+    console.log(
+      `   ⚠️ 변형 공간이 바닥난 유형 ${threw.size}개 — 그 유형의 **먼 변형은 안 봤다**` +
+        `(적재기도 거기까지는 안 간다). 예:\n` +
+        sample.map(([k, m]) => `      · ${k} — ${m}`).join("\n"),
+    );
+  }
 
   const items = [...specs.entries()];
   const results = await mapLimit(items, CONCURRENCY, async ([id, v]) => {
