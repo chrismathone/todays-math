@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
@@ -17,6 +18,17 @@ import type {
   ProblemType,
 } from "@/contracts/problem.contract";
 import { classifyFormat } from "@/lib/problem/provenance";
+import {
+  addToBasket,
+  clearBasket,
+  loadBasket,
+  makeTestFromBasket,
+  removeFromBasket,
+  type BasketState,
+} from "@/lib/problem/basketApi";
+
+import { BasketBar } from "./BasketBar";
+import { BasketPanel } from "./BasketPanel";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import {
   loadProblems,
@@ -172,6 +184,15 @@ export function ProblemBank() {
   const [notice, setNotice] = useState<string | null>(null);
   const [panel, setPanel] = useState<Panel>(null);
 
+  // ── 담기 바구니 (원장님 확정 2026-09-04) ──────────────────────────
+  //
+  // 🔴 **분포를 여기서 세지 않는다.** 서버가 센 것을 그대로 들고 있다 — 화면이
+  //    다시 세면 「이 쪽에 안 보이는 담긴 문항」이 분포에서 빠져 바가 거짓말을 한다.
+  const router = useRouter();
+  const [basket, setBasket] = useState<BasketState | null>(null);
+  const [basketBusy, setBasketBusy] = useState(false);
+  const [basketOpen, setBasketOpen] = useState(false);
+
   // 단원은 **범위 하나**로만 좁힌다(시작·끝 소단원 id). 서버가 `orderIndex` 로 푼다.
   const filters: ProblemListFilters = useMemo(
     () => ({
@@ -241,6 +262,59 @@ export function ProblemBank() {
       cancelled = true;
     };
   }, []);
+
+  // 바구니는 **계정에 저장**된다 — 다른 기기에서 담은 것이 여기 그대로 있어야 한다.
+  useEffect(() => {
+    let cancelled = false;
+    loadBasket()
+      .then((next) => {
+        if (!cancelled) setBasket(next);
+      })
+      // 🔴 바구니를 못 읽어도 문제은행은 써야 한다. 이 실패로 목록을 막지 않는다 —
+      //    다만 조용히 넘기지도 않는다(바가 없는 것과 «못 읽은 것»은 다른 말이다).
+      .catch((e: unknown) => {
+        if (!cancelled)
+          setError(
+            e instanceof Error ? e.message : "바구니를 불러오지 못했습니다",
+          );
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /** 담기·빼기·비우기·시험지 만들기가 **모두 같은 자물쇠**를 쓴다 — 왕복 중 두 번 눌러
+   *  같은 요청이 두 벌 나가는 것을 막는다. */
+  const runBasket = useCallback(
+    async (op: () => Promise<BasketState>, label: string) => {
+      setBasketBusy(true);
+      try {
+        setBasket(await op());
+      } catch (e) {
+        setError(e instanceof Error ? e.message : `${label}에 실패했습니다`);
+      } finally {
+        setBasketBusy(false);
+      }
+    },
+    [],
+  );
+
+  // ⚠️ 카드는 `memo` 다 — 인라인 화살표로 넘기면 20장이 매번 다시 그려진다.
+  const toggleBasket = useCallback(
+    (id: string, picked: boolean) => {
+      void runBasket(
+        () => (picked ? removeFromBasket(id) : addToBasket(id)),
+        picked ? "빼기" : "담기",
+      );
+    },
+    [runBasket],
+  );
+
+  /** 담긴 문항 id — 카드마다 `includes` 로 훑으면 20장 × 담긴 수가 된다. */
+  const pickedIds = useMemo(
+    () => new Set((basket?.items ?? []).map((i) => i.problem.id)),
+    [basket],
+  );
 
   const defaultUnitId = rangeStart || units[0]?.id || "";
   const unitActionsDisabled = unitsLoading || units.length === 0;
@@ -670,12 +744,77 @@ export function ProblemBank() {
               problem={problem}
               onTransformAdopted={handleTransformAdopted}
               onReviewStatusChange={handleReviewStatusChange}
+              basket={{
+                picked: pickedIds.has(problem.id),
+                busy: basketBusy,
+                onToggle: toggleBasket,
+              }}
             />
           ))
         ) : null}
       </section>
 
       {loading ? <ProblemGridSkeleton /> : null}
+
+      {/* 🔴 **담기 전에는 바가 아예 없다** (Wire ①, 원장님 확정). 담는 순간 나타나고
+          필터를 바꿔도 쪽을 넘겨도 따라다닌다. 바 높이만큼 아래 여백을 주어야
+          마지막 카드가 가리지 않는다 — 그 여백도 담긴 것이 있을 때만 준다. */}
+      {basket && basket.total > 0 ? (
+        <>
+          <div
+            aria-hidden
+            style={{ height: basketOpen ? "22rem" : "5rem" }}
+            className="print:hidden"
+          />
+          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-divider bg-surface shadow-[0_-2px_12px_rgba(0,0,0,0.08)] print:hidden">
+            {basketOpen ? (
+              <BasketPanel
+                items={basket.items}
+                busy={basketBusy}
+                onRemove={(id) =>
+                  void runBasket(() => removeFromBasket(id), "빼기")
+                }
+                onClear={() => void runBasket(() => clearBasket(), "비우기")}
+                onClose={() => setBasketOpen(false)}
+                onMakeTest={(classId, testDate) => {
+                  setBasketBusy(true);
+                  void makeTestFromBasket({ classId, testDate })
+                    .then((made) => {
+                      // 시험지가 되면 바구니는 서버에서 비워진다 — 화면도 그렇게 만든다.
+                      setBasket({
+                        items: [],
+                        spread: basket.spread,
+                        unknown: 0,
+                        total: 0,
+                      });
+                      setBasketOpen(false);
+                      setNotice(
+                        `${made.problemCount}문항으로 시험지를 만들었습니다`,
+                      );
+                      router.push(`/tests/${made.testId}`);
+                    })
+                    .catch((e: unknown) =>
+                      setError(
+                        e instanceof Error
+                          ? e.message
+                          : "시험지를 만들지 못했습니다",
+                      ),
+                    )
+                    .finally(() => setBasketBusy(false));
+                }}
+              />
+            ) : null}
+            <BasketBar
+              total={basket.total}
+              spread={basket.spread}
+              unknown={basket.unknown}
+              busy={basketBusy}
+              onOpenList={() => setBasketOpen((v) => !v)}
+              onMakeTest={() => setBasketOpen(true)}
+            />
+          </div>
+        </>
+      ) : null}
 
       {!loading && !error && problems.length > 0 ? (
         <PaginationRow

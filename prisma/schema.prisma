@@ -147,6 +147,8 @@ model User {
   predictionRuns PredictionRun[]
   accounts       Account[]
   sessions       Session[]
+  /// 담기 바구니 (문제은행에서 고른 문항)
+  basketItems    BasketItem[]
 
   /// 계정 역할. 기본값은 director — 기본값이 reviewer 면 기존 계정이 조용히 권한을 잃는다.
   role            UserRole           @default(director)
@@ -489,6 +491,7 @@ model Problem {
   solutionSource      SolutionSource     @default(none) @map("solution_source")
   reports             ProblemReport[]
   reviewLogs          ProblemReviewLog[]
+  basketItems         BasketItem[]
 
   // 자동 출제 조회 핵심 인덱스
   @@index([unitId, difficulty, reviewStatus, directUseAllowed])
@@ -667,6 +670,40 @@ model TestProblem {
   @@index([testId, orderIndex])
   @@index([problemId])
   @@map("test_problem")
+}
+
+// ─────────────────────────────────────────────
+// 담기 바구니 — 문제은행에서 고른 문항 (2026-09-04, 원장님 확정)
+// 계약: src/contracts/basket.contract.ts
+// ─────────────────────────────────────────────
+
+/// 원장이 문제은행에서 담아 둔 문항. **계정당 하나**의 바구니다.
+///
+/// 🔴 브라우저가 아니라 **서버**에 둔다 — 원장님이 「집에서 고르고 학원에서 이어서」를
+///    요구하셨다. 브라우저에 두면 그 약속이 절반만 참이 된다.
+model BasketItem {
+  id        String @id @default(uuid()) @db.Uuid
+  userId    String @map("user_id") @db.Uuid
+  problemId String @map("problem_id") @db.Uuid
+
+  /// 담은 차례. **시험지의 문항 번호가 이 순서를 따른다.**
+  ///
+  /// ⚠️ 행을 빼도 **다시 매기지 않는다** — 다시 매기면 남은 행의 번호가 통째로
+  ///    흔들려 「셋째로 담은 것」이 다른 문항을 가리킨다. 빈 자리는 그대로 두고
+  ///    시험지로 옮길 때 차례대로 다시 세어 1..N 을 붙인다.
+  orderIndex Int      @map("order_index")
+  addedAt    DateTime @default(now()) @map("added_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// 🔴 **Restrict 가 아니라 Cascade 다.** 바구니는 «고르는 중»인 임시 목록이라
+  ///    문항이 사라지면 같이 사라져야 한다. Restrict 로 두면 문항 하나 때문에
+  ///    적재 되돌리기가 통째로 막힌다(2026-09-04 에 `98X` 24행을 지울 때 겪은 자리).
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  /// 같은 문항을 두 번 담을 수 없다 — 담기는 **멱등**이다.
+  @@unique([userId, problemId])
+  @@index([userId, orderIndex])
+  @@map("basket_item")
 }
 
 // ─────────────────────────────────────────────

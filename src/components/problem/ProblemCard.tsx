@@ -79,6 +79,18 @@ type ProblemCardProps = {
    * ⚠️ `ProblemCard` 는 `memo` 다 — `useCallback` 으로 고정해서 넘길 것.
    */
   onReviewStatusChange?: (id: string, next: ReviewStatus) => Promise<void>;
+  /**
+   * 담기 바구니 (원장님 확정 2026-09-04). **넘기지 않으면 「담기」 버튼이 아예 없다** —
+   * 문제은행(S-08)에서만 담는다. 검수 화면·dev 미리보기에는 나오지 않는다.
+   *
+   * ⚠️ `ProblemCard` 는 `memo` 다 — `useCallback` 으로 고정해서 넘길 것. 그리고
+   *    `picked` 는 **문항마다 다른 값**이므로 호출부가 카드별로 계산해 넘긴다.
+   */
+  basket?: {
+    picked: boolean;
+    busy: boolean;
+    onToggle: (id: string, picked: boolean) => void;
+  };
 };
 
 /**
@@ -96,6 +108,7 @@ export const ProblemCard = memo(function ProblemCard({
   problem,
   onTransformAdopted,
   onReviewStatusChange,
+  basket,
 }: ProblemCardProps) {
   const [showSolution, setShowSolution] = useState(false);
   const [showTransform, setShowTransform] = useState(false);
@@ -197,6 +210,24 @@ export const ProblemCard = memo(function ProblemCard({
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-6 print:hidden">
           {/* 검수 — 왼쪽(판단), 보기·변형 — 오른쪽(작업). 지금 상태가 될 버튼은 안 낸다
               (승인된 것에 「승인」을 다시 누를 일이 없다). */}
+          {/* 🔴 **담기가 맨 앞이다.** 문제은행에서 원장이 가장 자주 누르는 것이
+              이것이고, 오른쪽 끝(해설·변형)은 «그 문항을 더 볼 때» 누르는 자리다.
+              담긴 것은 글자를 바꾼다 — 색만 바꾸면 흑백 화면·인쇄에서 안 갈린다. */}
+          {basket ? (
+            <button
+              type="button"
+              disabled={basket.busy}
+              aria-pressed={basket.picked}
+              onClick={() => basket.onToggle(problem.id, basket.picked)}
+              className={
+                basket.picked
+                  ? `${CARD_ACTION_CLASS} border-ink bg-ink text-white hover:bg-black`
+                  : CARD_ACTION_CLASS
+              }
+            >
+              {basket.picked ? "✓ 담김" : "담기"}
+            </button>
+          ) : null}
           {onReviewStatusChange && problem.reviewStatus !== "approved" ? (
             <button
               type="button"
