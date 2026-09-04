@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
@@ -188,8 +188,25 @@ export function ProblemBank() {
   //
   // 🔴 **분포를 여기서 세지 않는다.** 서버가 센 것을 그대로 들고 있다 — 화면이
   //    다시 세면 「이 쪽에 안 보이는 담긴 문항」이 분포에서 빠져 바가 거짓말을 한다.
-  const router = useRouter();
   const [basket, setBasket] = useState<BasketState | null>(null);
+  /**
+   * 방금 만든 시험지 — 만들자마자 **화면을 옮기지 않는다.**
+   *
+   * 🔴 `useRouter()` 는 앱 라우터 밖에서 던진다. 문제은행 컴포넌트 시험 64건이
+   *    라우터 없이 이것을 렌더하므로, 여기에 라우터를 물리면 그 시험들이 통째로
+   *    빨개진다 — 그때 «남의 시험을 고쳐 가리는» 것이 아니라 **결합을 없애는** 것이
+   *    옳다. 그리고 만들자마자 끌고 가는 것보다 「보러 갈지」를 원장님이 정하는
+   *    편이 낫다 — 이어서 더 담을 수도 있다.
+   */
+  const [madeTestId, setMadeTestId] = useState<string | null>(null);
+  /**
+   * 🔴 **바구니 오류는 `error` 에 넣으면 안 된다.** 그 상태는 문항 목록을 통째로
+   *    가린다(`{!loading && !error ? …}`) — 바구니를 못 읽었다고 문제은행이 빈
+   *    화면이 되면 안 된다. 실제로 그렇게 짰다가 컴포넌트 시험 64건이 «목록이 안
+   *    뜬다»로 멈췄고, 그때서야 내 주석(「이 실패로 목록을 막지 않는다」)과 코드가
+   *    서로 다른 말을 하고 있는 것을 봤다.
+   */
+  const [basketError, setBasketError] = useState<string | null>(null);
   const [basketBusy, setBasketBusy] = useState(false);
   const [basketOpen, setBasketOpen] = useState(false);
 
@@ -274,7 +291,7 @@ export function ProblemBank() {
       //    다만 조용히 넘기지도 않는다(바가 없는 것과 «못 읽은 것»은 다른 말이다).
       .catch((e: unknown) => {
         if (!cancelled)
-          setError(
+          setBasketError(
             e instanceof Error ? e.message : "바구니를 불러오지 못했습니다",
           );
       });
@@ -291,7 +308,9 @@ export function ProblemBank() {
       try {
         setBasket(await op());
       } catch (e) {
-        setError(e instanceof Error ? e.message : `${label}에 실패했습니다`);
+        setBasketError(
+          e instanceof Error ? e.message : `${label}에 실패했습니다`,
+        );
       } finally {
         setBasketBusy(false);
       }
@@ -711,10 +730,28 @@ export function ProblemBank() {
       ) : null}
 
       {notice ? (
-        <p className="mt-4 text-[12.5px] font-bold text-ink">{notice}</p>
+        <p className="mt-4 text-[12.5px] font-bold text-ink">
+          {notice}
+          {madeTestId ? (
+            <>
+              {" — "}
+              <Link
+                href={`/tests/${madeTestId}`}
+                className="underline underline-offset-2"
+              >
+                시험지 보기
+              </Link>
+            </>
+          ) : null}
+        </p>
       ) : null}
       {error ? (
         <p className="mt-4 text-[12.5px] font-bold text-g-red-text">{error}</p>
+      ) : null}
+      {basketError ? (
+        <p className="mt-4 text-[12.5px] font-bold text-g-red-text">
+          담기 바구니 — {basketError}
+        </p>
       ) : null}
       {unitsError ? (
         <p className="mt-4 text-[12.5px] font-bold text-g-red-text">
@@ -791,10 +828,10 @@ export function ProblemBank() {
                       setNotice(
                         `${made.problemCount}문항으로 시험지를 만들었습니다`,
                       );
-                      router.push(`/tests/${made.testId}`);
+                      setMadeTestId(made.testId);
                     })
                     .catch((e: unknown) =>
-                      setError(
+                      setBasketError(
                         e instanceof Error
                           ? e.message
                           : "시험지를 만들지 못했습니다",
