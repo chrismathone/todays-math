@@ -257,3 +257,42 @@ export function tooAdvanced(orderIndex: number, solution: string): string[] {
   const intro = conceptIntro();
   return conceptsUsed(solution).filter((c) => orderIndex < (intro[c] ?? 0));
 }
+
+/**
+ * **음수 부호가 붙은 자리** — 초등 지면에 음수가 나가면 안 된다(음수는 중1이다).
+ *
+ * ## 🔴 가르는 성질은 「빼기표 «뒤»」가 아니라 「빼기표 «앞»」이다
+ *
+ * 처음엔 「빼기표 뒤에 숫자」로 셌다. 적재본 55,782행에서 **13건**이 걸렸는데
+ * **전부 거짓**이었다 — `$\triangle=\square-3$`(초5 대응 관계)의 그 빼기표는
+ * 부호가 아니라 **연산자**다. 부호와 연산자를 가르는 것은 **앞에 항이 있는가**다.
+ * 그래서 빼기표마다 왼쪽으로 되짚어 «뜻 있는 글자»를 보고, 그것이 항이면 건너뛴다.
+ *
+ * ⚠️ **뒤도 봐야 한다.** 「$-$」 하나가 낱말로 쓰이는 자리(줄표·범위표)가 있어서,
+ *    뒤에 수나 수식(`\dfrac`·`(`·`{`)이 와야 부호로 센다.
+ *
+ * ⚠️ **유니코드 빼기표(U+2212)도 본다.** 지면 글자에는 둘이 섞인다.
+ *
+ * ## 이 자가 «예»와 «아니오»를 둘 다 낼 수 있는가
+ *
+ * `elemNoNegativeAnswer.test.ts` 가 눈금 열둘로 그것을 먼저 확인하고 나서야 전수를
+ * 판정한다 — **0 은 «깨끗»과 «못 셈»을 안 가른다.** 실제로 그 눈금이 픽스처의
+ * 역슬래시가 먹힌 것을 두 번 잡아 판정을 거부했다(2026-09-04).
+ */
+export function negativeSigns(text: string): string[] {
+  const out: string[] = [];
+  const re = /[-−]/g;
+  for (let m = re.exec(text); m !== null; m = re.exec(text)) {
+    // 왼쪽으로 공백·달러를 건너뛰고 처음 만나는 «뜻 있는» 글자
+    let i = m.index - 1;
+    while (i >= 0 && /[\s$]/.test(text[i]!)) i -= 1;
+    const before = i < 0 ? "" : text[i]!;
+    // 앞에 항이 있으면 **연산자**다 — 숫자·글자·닫는 괄호·중괄호
+    if (/[0-9A-Za-z가-힣)\]}]/.test(before)) continue;
+    // 뒤에 수나 수식이 와야 부호다
+    const after = text.slice(m.index + 1).replace(/^[\s$]*/, "");
+    if (!/^[\d\\({]/.test(after)) continue;
+    out.push(text.slice(Math.max(0, m.index - 6), m.index + 8));
+  }
+  return out;
+}
