@@ -130,6 +130,47 @@ import {
   fourTriangleAreas,
   quadrantLatticeCount,
 } from "../../src/lib/middle/m1Top5d";
+// 5차 물결 갈래 e~i 의 굳힘 함수 — 여기서 다시 구현하지 않는다.
+import {
+  type Segment,
+  heightCrossings,
+  sectorCentralAngle,
+  sectorFromAreaAndArc,
+  solveFromTwoValues,
+  splitAngleDivisors,
+} from "../../src/lib/middle/m1Top5e";
+import {
+  type Rat as RatF,
+  allQuotients,
+  axialSectionAreas,
+  edgeLengthSum,
+  integerQuotients,
+  rat as ratF,
+  solveByExteriorChain,
+} from "../../src/lib/middle/m1Top5f";
+import {
+  absoluteWindowCandidates,
+  absoluteWindowSurvivors,
+  halvedSideProduct,
+  listPriceFromDiscounts,
+  sidePairFromSums,
+  travelDistance,
+} from "../../src/lib/middle/m1Top5g";
+import {
+  equalityConstants,
+  integerWindowValues,
+  polygonPairs,
+  triangleTriples,
+} from "../../src/lib/middle/m1Top5h";
+import {
+  type Rat as RatI,
+  coneFromRolls,
+  incongruentTriangleCount,
+  longestSideSum,
+  rat as ratI,
+  sphereRatios,
+  tripleProduct,
+} from "../../src/lib/middle/m1Top5i";
 import { JASEUP_MEASURED_PX } from "../../src/lib/printGeometry";
 import { estimateSolutionPx } from "../../src/lib/printOverflow";
 import { isThin } from "./probe-middle-solution-depth";
@@ -453,6 +494,160 @@ const areas79 = (f: Record<string, number>): number[] =>
   fourTriangleAreas(f.p!, f.q!, f.t!, f.r!, f.u!, f.v!);
 const spread79 = (xs: readonly number[]): number =>
   Math.max(...xs) - Math.min(...xs);
+
+// ── 5차 물결 e~i — `facts` 에 없는 것을 **되만드는** 자리 ────────────────
+//
+// 🔴 되만들기가 실패하면 `null` 을 내지 않고 **던진다.** `null` 은 「축 없음」이라는
+//    **다른 뜻**이고, 둘이 겹치면 표가 «못 셈»을 «깨끗»으로 읽는다(`68X` 와 같은 규약).
+
+/** `84X` — 네 구간을 `facts` 의 꺾인 점들로 되만든다(생성기와 같은 모양). */
+function segments84(f: Record<string, number>): Segment[] {
+  const [t1, t2, t3, t4] = [f.t1!, f.t2!, f.t3!, f.t4!];
+  const [peak, dip, top] = [f.peak!, f.dip!, f.top!];
+  const rate = (dy: number, dx: number): number => {
+    if (dx <= 0 || dy <= 0 || dy % dx !== 0)
+      throw new Error(`segments84: 기울기가 자연수가 아니다 — ${dy}/${dx}`);
+    return dy / dx;
+  };
+  return [
+    { from: 0, to: t1, low: 0, high: peak, rate: rate(peak, t1), rising: true },
+    {
+      from: t1,
+      to: t2,
+      low: peak,
+      high: dip,
+      rate: rate(peak - dip, t2 - t1),
+      rising: false,
+    },
+    {
+      from: t2,
+      to: t3,
+      low: dip,
+      high: top,
+      rate: rate(top - dip, t3 - t2),
+      rising: true,
+    },
+    {
+      from: t3,
+      to: t4,
+      low: top,
+      high: 0,
+      rate: rate(top, t4 - t3),
+      rising: false,
+    },
+  ];
+}
+
+/**
+ * `86X` — 세 유리수의 **부호**가 `facts` 에 없다. 여덟 조합을 다 대어 「몫의 합과
+ * 개수」가 맞는 것만 남긴다. 부호를 셋 다 뒤집으면 몫이 **그대로**이므로 짝으로
+ * 남는 것이 정상이고, 남은 것들의 몫 목록이 하나로 모이지 않으면 **던진다**.
+ */
+function quotients86(f: Record<string, number>): number[] {
+  const found: number[][] = [];
+  for (const s0 of [1, -1])
+    for (const s1 of [1, -1])
+      for (const s2 of [1, -1]) {
+        if (s0 === s1 && s1 === s2) continue; // 생성기가 막는 자리
+        const base: RatF[] = [
+          ratF(s0 * f.num!, f.den!),
+          ratF(s1 * f.k! * f.num!, f.den!),
+          ratF(s2 * f.m! * f.num!, f.den!),
+        ];
+        const qs = integerQuotients(base);
+        if (qs.length !== f.cnt!) continue;
+        if (qs.reduce((a, b) => a + b, 0) !== f.x!) continue;
+        found.push(qs);
+      }
+  if (found.length === 0) throw new Error("quotients86: 부호를 못 되만들었다");
+  const key = (xs: number[]): string => [...xs].sort((a, b) => a - b).join(",");
+  if (new Set(found.map(key)).size !== 1)
+    throw new Error("quotients86: 되만든 몫이 하나로 안 모인다");
+  return found[0]!;
+}
+
+/** `86X` — 되만든 부호로 세 유리수를 되짓는다. */
+function base86(f: Record<string, number>, dk: number): RatF[] {
+  const target = key86(quotients86(f));
+  for (const s0 of [1, -1])
+    for (const s1 of [1, -1])
+      for (const s2 of [1, -1]) {
+        if (s0 === s1 && s1 === s2) continue;
+        const base: RatF[] = [
+          ratF(s0 * f.num!, f.den!),
+          ratF(s1 * f.k! * f.num!, f.den!),
+          ratF(s2 * f.m! * f.num!, f.den!),
+        ];
+        if (key86(integerQuotients(base)) !== target) continue;
+        return [
+          ratF(s0 * f.num!, f.den!),
+          ratF(s1 * (f.k! + dk) * f.num!, f.den!),
+          ratF(s2 * f.m! * f.num!, f.den!),
+        ];
+      }
+  throw new Error("base86: 부호를 못 되만들었다");
+}
+
+/** `86X` — **여섯 몫 전부**(정수 조건을 지운 것). 유리수라 값으로 더한다. */
+const allSix86 = (f: Record<string, number>): number[] =>
+  allQuotients(base86(f, 0)).map((v) => v.q.n / v.q.d);
+
+/** `86X` — 흔든 뒤의 정수 몫의 합. */
+const shaken86 = (f: Record<string, number>, dk: number): number =>
+  sum1(integerQuotients(base86(f, dk)));
+const key86 = (xs: number[]): string => [...xs].sort((a, b) => a - b).join(",");
+
+/** `93X` — `facts.sum` 이 $1$ 이면 「합」, $0$ 이면 「차」다. */
+const kind93 = (f: Record<string, number>): "합" | "차" =>
+  f.sum! === 1 ? "합" : "차";
+
+/** `97X` — 무엇을 물었나. 답이 $q^3m$ 이면 부피, $q^2m$ 이면 겉넓이다. */
+function mode97(f: Record<string, number>): "부피" | "겉넓이" {
+  const v = sphereRatios(f.p!, f.q!);
+  if (v.volume[1] * f.m! === f.x!) return "부피";
+  if (v.area[1] * f.m! === f.x!) return "겉넓이";
+  throw new Error(`mode97: 무엇을 물었는지 못 되만들었다 — ${f.x!}`);
+}
+
+/** `98X` — $a$ 의 부호가 `facts` 에 없다. 둘을 대어 답이 나오는 쪽을 고른다. */
+function aNegative98(f: Record<string, number>): boolean {
+  const [ab, bc, ca] = triple98(f);
+  const hits = [false, true].filter(
+    (s) => tripleProduct(ab, bc, ca, s) === f.x!,
+  );
+  if (hits.length !== 1)
+    throw new Error(`98X: $a$ 의 부호를 못 되만들었다 (${hits.length}개)`);
+  return hits[0]!;
+}
+const triple98 = (f: Record<string, number>): [RatI, RatI, RatI] => [
+  ratI(f.abNum!, f.abDen!),
+  ratI(f.bcNum!, f.bcDen!),
+  ratI(f.caNum!, f.caDen!),
+];
+
+/** `99X` — 개수를 물었나 합을 물었나. 둘 다 맞으면 갈리지 않으므로 **던진다**. */
+function mode99(f: Record<string, number>): "개수" | "합" {
+  const isCount = incongruentTriangleCount(f.L!) === f.x!;
+  const isSum = longestSideSum(f.L!) === f.x!;
+  if (isCount === isSum) throw new Error("mode99: 무엇을 물었는지 안 갈린다");
+  return isCount ? "개수" : "합";
+}
+
+/** 첫 번째로 값이 서는 흔들기를 고른다 — 「못 쟀다」를 줄이되 뜻은 바꾼다. */
+function firstFinite(...tries: (() => number | null)[]): number {
+  for (const t of tries) {
+    let v: number | null;
+    try {
+      v = t();
+    } catch {
+      continue;
+    }
+    if (v !== null && Number.isFinite(v)) return v;
+  }
+  return Number.NaN;
+}
+
+const sum1 = (xs: readonly number[]): number => xs.reduce((a, b) => a + b, 0);
 
 export const AXES: Record<string, Axis> = {
   // 31T — 굳힘 조건(「나머지가 모두 같다」)을 지우면 문제 자체가 사라진다.
@@ -1241,6 +1436,352 @@ export const AXES: Record<string, Axis> = {
         f.q2!,
       ]),
     // 후보 목록이 **아예 없다** — 곱 하나로 굳는다.
+    candidateCount: () => null,
+  },
+
+  // ══ 5차 물결(`m1Top5e~i.ts`) — 2026-09-04 에 축을 세웠다 ═══════════
+  //
+  // 🔴 여기 없던 동안 이 스무 유형은 ㉠·㉡ 표에 **「축을 안 적었다」**로 찍히고
+  //    있었다. 그 빨간 줄의 뜻은 「나쁘다」가 아니라 **「아무도 안 쟀다」**이다.
+  //    ⚠️ `withoutBinding: () => null` 은 **「축 없음」**이라는 뜻이고 「0%」와
+  //       다른 말이다 — 굳힘 조건을 지우면 답이 아예 안 정해지는 유형이 그것이다.
+  //       판정기가 그 둘을 따로 찍으므로 «못 쟀다»로 뭉개지지 않는다.
+
+  // 81X — 굳힘은 「평행선의 엇각 → 세 각의 합이 $180^{\circ}$」 하나다. 그것이
+  // $N=180-c-r$ 를 준다. 지우면 학생은 $c$ 를 안 읽고 평각 $180$ 만 쓴다.
+  "1-2|위치 관계|81X": {
+    withoutBinding: (f) => sum1(splitAngleDivisors(180 - f.r!, f.r!)),
+    // 🔴 $N$ 을 $1$ 만 흔들어도 약수 집합이 통째로 바뀐다. 모듈 머리말이 적어 둔
+    //    음성 대조는 「$c$ 와 $r$ 을 함께 옮겨 $N$ 이 같은 짝」이다 — 굳힘은 두 수
+    //    각각이 아니라 그 **차**에 걸리므로 그때는 답이 그대로여야 맞다.
+    perturbed: (f) => sum1(splitAngleDivisors(f.n! - 1, f.r!)),
+    candidateCount: (f) => divisors(f.n!).length,
+  },
+
+  // 82X — 굳힘은 「부채꼴의 넓이 $=\frac12 r\ell$」 하나다. 그것이 **중심각을
+  // 거치지 않고** 반지름을 준다. 지우면 중심각이 안 정해져 문제가 사라진다.
+  "1-2|원과 부채꼴|82X": {
+    withoutBinding: () => null,
+    perturbed: (f) => {
+      const r = sectorFromAreaAndArc(f.area!, f.arc! + 1);
+      const ang = sectorCentralAngle(r, f.arc! + 1);
+      return (f.area! * (ang + f.grow!)) / ang;
+    },
+    candidateCount: () => null,
+  },
+
+  // 83X — 굳힘은 「두 대입값이 일차식을 정한다」 하나다. 하나만 읽으면 기울기가
+  // 안 서서 해가 안 정해진다(축 없음).
+  "1-1|일차방정식의 풀이|83X": {
+    withoutBinding: () => null,
+    // 대입점 $q$ 를 옮기면 기울기가 달라져 해가 옮겨 가야 한다. 정수가 아니면
+    // 제품 함수가 던지고 판정기가 **「못 쟀다」**로 따로 센다 — 그 둘은 다른 말이다.
+    // 🔴 대입점 $q$ 를 옮기면 기울기가 분수가 되어 제품 함수가 던지는 자리가
+    //    많았다(24판 중 13판이 「못 쟀다」). 대신 **$p$ 에서의 값**을 $2a(q-p)$ 만큼
+    //    옮긴다 — 그러면 기울기가 $-a$ 가 되어 **늘 정수**이고, 답은
+    //    $(p-\delta)+2(q-p)$ 라 참 답 $p+\delta$ 와 **같아질 수도 있다**
+    //    ($q-p=\delta$ 인 자리). 늘 다른 흔들기는 아무것도 안 잰다.
+    perturbed: (f) =>
+      solveFromTwoValues(f.p!, f.m! + 2 * f.a! * (f.q! - f.p!), f.q!, f.n!),
+    candidateCount: () => null,
+  },
+
+  // 84X — 굳힘은 「네 구간을 **하나씩 다** 짚는다」이다. 지우면 첫 구간에서 멈춘다.
+  "1-1|좌표와 그래프|84X": {
+    withoutBinding: (f) => {
+      const hits = heightCrossings(segments84(f), f.d!);
+      return hits.length === 0 ? null : hits[0]!.at;
+    },
+    // 높이를 흔들면 살아남는 구간과 시각이 달라져야 한다. 시각이 정수가 아닌
+    // 흔들기는 제품 함수가 던지므로 몇 자리를 차례로 대 본다.
+    // 🔴 높이를 **아무렇게나** 흔들면 시각이 정수가 아니게 되어 제품 함수가 던진다
+    //    (첫 판은 24판 중 19판이 「못 쟀다」였고, 남은 5판으로 「장식」이 찍혔다 —
+    //    그 분모로는 아무것도 못 말한다). 지금 건너는 구간들의 **기울기의
+    //    최소공배수**만큼 옮기면 그 구간들의 시각이 정수로 남는다.
+    perturbed: (f) => {
+      const segs = segments84(f);
+      const live = heightCrossings(segs, f.d!).map((h) => segs[h.index]!.rate);
+      const step = live.reduce((a, b) => lcm(a, b), 1);
+      return firstFinite(
+        ...[1, -1, 2, -2].map(
+          (k) => () =>
+            sum1(heightCrossings(segs, f.d! + k * step).map((h) => h.at)),
+        ),
+      );
+    },
+    candidateCount: () => 4,
+  },
+
+  // 85X — 굳힘은 「오일러 공식으로 두 정다면체를 **가려내는 것**」이다. 지우면
+  // 모서리 개수를 모르므로 길이의 합이 안 선다(축 없음).
+  "1-2|다면체와 회전체|85X": {
+    withoutBinding: () => null,
+    // 한쪽 모서리 길이를 흔들면 합이 그 모서리 개수만큼 달라져야 한다.
+    perturbed: (f) => Math.abs(edgeLengthSum(f.gapA!, f.lenA! + 1) - f.sumB!),
+    candidateCount: () => null,
+  },
+
+  // 86X — 굳힘은 「여섯 몫 가운데 **정수인 것만**」이다. 지우면 여섯을 다 더한다.
+  "1-1|정수와 유리수의 계산|86X": {
+    // 🔴 첫 판은 `integerQuotients` 를 그대로 더했다 — 그건 **참 답 그 자체**라
+    //    ㉠ 이 **100%**로 찍혔다. 「지름길이 답을 맞힌다」가 아니라 **동어반복**이다.
+    //    지우는 것은 「정수인 것만」이므로 **여섯을 다 더해야** 그 조건이 빠진다.
+    withoutBinding: (f) => sum1(allSix86(f)),
+    perturbed: (f) => shaken86(f, 1),
+    candidateCount: () => 6,
+  },
+
+  // 87X — 굳힘은 「외각의 성질을 **두 번**」이다. 한 번만 쓰면 각이 안 정해진다.
+  "1-2|다각형|87X": {
+    withoutBinding: () => null,
+    // 네 인자 어느 것을 흔들어도 답이 달라져야 한다. 창 밖으로 나가 `null` 이 되는
+    // 자리가 있으므로 차례로 대 본다(생성기도 넷 중 하나는 살아남는 것을 요구한다).
+    perturbed: (f) =>
+      firstFinite(
+        ...(
+          [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+          ] as const
+        ).map(([da, dc, db, de]) => () => {
+          const ang = solveByExteriorChain(
+            f.a! + da,
+            f.c! + dc,
+            f.s1!,
+            f.b! + db,
+            f.e! + de,
+            f.s2!,
+          );
+          return ang === null ? null : 180 - ang.angZ;
+        }),
+      ),
+    candidateCount: () => null,
+  },
+
+  // 88X — 굳힘은 「회전체의 **축을 지나는 단면**이 무엇인가」이다. 셋을 다 구해야
+  // 가장 큰 것과 가장 작은 것이 갈린다. 지우면 견줄 것이 없다(축 없음).
+  "1-2|다면체와 회전체|88X": {
+    withoutBinding: () => null,
+    perturbed: (f) => {
+      const areas = axialSectionAreas(
+        { r: f.cylR! + 1, h: f.cylH! },
+        { r: f.conR!, h: f.conH! },
+        { top: f.top!, bottom: f.bottom!, h: f.frsH! },
+      ).map((c) => c.area);
+      return Math.max(...areas) - Math.min(...areas);
+    },
+    candidateCount: () => 3,
+  },
+
+  // 89X — 굳힘은 **대각선 개수의 합**이다. 지우면 변의 개수를 그냥 반씩 나눈다.
+  //       그 지름길은 생성기 모듈이 `halvedSideProduct` 로 내보내 준다.
+  "1-2|다각형|89X": {
+    withoutBinding: (f) => halvedSideProduct(f.s!),
+    perturbed: (f) =>
+      firstFinite(
+        ...[
+          1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8, 9, -9, 10,
+          -10,
+        ].map((dd) => () => {
+          const pair = sidePairFromSums(f.s!, f.d! + dd);
+          return pair === null ? null : pair[0] * pair[1];
+        }),
+      ),
+    candidateCount: (f) => f.stop! - 2,
+  },
+
+  // 90X — 굳힘은 「두 속력이 **같은 거리**를 가리킨다」이다. 한쪽만으로는 거리가
+  // 안 정해진다(축 없음).
+  "1-1|일차방정식의 활용|90X": {
+    withoutBinding: () => null,
+    perturbed: (f) =>
+      firstFinite(
+        () => travelDistance(f.a!, f.b!, f.p! + 1, f.q!),
+        () => travelDistance(f.a!, f.b!, f.p!, f.q! + 1),
+        () => travelDistance(f.a!, f.b!, f.p! + 2, f.q!),
+        () => travelDistance(f.a!, f.b!, f.p!, f.q! + 2),
+      ),
+    candidateCount: () => null,
+  },
+
+  // 91X — 굳힘은 「할인 조건 **둘**이 같은 정가를 가리킨다」이다. 하나만으로는
+  // 원가가 안 서고 정가도 안 선다(축 없음).
+  "1-1|일차방정식의 활용|91X": {
+    withoutBinding: () => null,
+    perturbed: (f) =>
+      firstFinite(
+        ...[100, -100, 200, -200, 300, -300, 400, -400, 500, -500].map(
+          (dd) => () => listPriceFromDiscounts(f.r1!, f.e2!, f.d1! + dd, f.d2!),
+        ),
+      ),
+    candidateCount: () => null,
+  },
+
+  // 92X — 굳힘은 **둘째** 절댓값 조건이다. 지우면 첫 창의 후보를 전부 더한다.
+  "1-1|정수와 유리수|92X": {
+    withoutBinding: (f) => sum1(absoluteWindowCandidates(f.c1!, f.d1!)),
+    perturbed: (f) =>
+      sum1(absoluteWindowSurvivors(f.c1!, f.d1!, f.c2!, f.d2! + 1)),
+    candidateCount: (f) => absoluteWindowCandidates(f.c1!, f.d1!).length,
+  },
+
+  // 93X — 굳힘은 「짝을 **모두** 찾는다」이다. 지우면 첫 짝에서 멈춘다.
+  "1-2|다각형|93X": {
+    withoutBinding: (f) => {
+      const scan = polygonPairs(kind93(f), f.deg!);
+      if (scan === null || scan.pairs.length === 0) return null;
+      const [m, n] = scan.pairs[0]!;
+      return m + n;
+    },
+    // ⚠️ 생성기가 이미 `deg + 1` 로 흔들어 같으면 버린다. 그래서 그 방향으로만
+    //    재면 **동어반복**이다 — 생성기가 안 보는 `deg - 1` 쪽으로 흔든다.
+    perturbed: (f) =>
+      firstFinite(
+        ...[-1, -2, 2].map((dd) => () => {
+          const scan = polygonPairs(kind93(f), f.deg! + dd);
+          return scan === null
+            ? null
+            : scan.pairs.reduce((a, [m, n]) => a + m + n, 0);
+        }),
+      ),
+    candidateCount: (f) => f.hi! - f.lo! + 1,
+  },
+
+  // 94X — 굳힘은 **삼각형이 되는 조건**이다. 지우면 열 조합의 둘레를 다 더한다.
+  "1-2|작도와 합동|94X": {
+    // 🔴 첫 판은 `t.perimeter` 를 다 더했다. 그런데 그 칸은 **못 만드는 조합에서
+    //    $0$** 이라(모듈 타입 주석), 다 더해도 참 답과 **똑같다** — ㉠ 이 100%로
+    //    찍혔고 그건 지름길이 아니라 **동어반복**이었다. 조건을 지운다는 것은
+    //    「못 만드는 것도 둘레를 잰다」이므로 세 변을 그대로 더한다.
+    withoutBinding: (f) =>
+      sum1(
+        triangleTriples([f.a1!, f.a2!, f.a3!, f.a4!, f.a5!]).map(
+          (t) => t.triple[0] + t.triple[1] + t.triple[2],
+        ),
+      ),
+    // ⚠️ 생성기는 `a5 + 1` 로 흔든다. 그 방향은 동어반복이므로 가운데를 흔든다.
+    perturbed: (f) =>
+      firstFinite(
+        ...(
+          [
+            [0, 0, 1, 0, 0],
+            [0, 0, -1, 0, 0],
+            [0, 1, 0, 0, 0],
+            [0, -1, 0, 0, 0],
+            [0, 0, 0, 1, 0],
+            [0, 0, 0, -1, 0],
+          ] as const
+        ).map(
+          (d) => () =>
+            sum1(
+              triangleTriples([
+                f.a1! + d[0],
+                f.a2! + d[1],
+                f.a3! + d[2],
+                f.a4! + d[3],
+                f.a5! + d[4],
+              ])
+                .filter((t) => t.ok)
+                .map((t) => t.perimeter),
+            ),
+        ),
+      ),
+    candidateCount: () => 10,
+  },
+
+  // 95X — 굳힘은 「두 수 사이의 정수가 **$k$개**」이다. 지우면 위끝이 안 서서
+  // 자연수 목록이 안 정해진다(축 없음).
+  "1-1|정수와 유리수|95X": {
+    withoutBinding: () => null,
+    // ⚠️ 생성기는 `k + 1` 로 흔들어 같으면 버린다 — 그 방향은 동어반복이다.
+    perturbed: (f) =>
+      firstFinite(
+        ...[-1, 2, -2].map(
+          (dk) => () => sum1(integerWindowValues(f.p!, f.q!, f.r!, f.k! + dk)),
+        ),
+      ),
+    candidateCount: () => null,
+  },
+
+  // 96X — 굳힘은 「해가 **자연수**가 된다」이다. 지우면 범위 안 배수를 전부 더한다.
+  "1-1|일차방정식의 풀이|96X": {
+    withoutBinding: (f) =>
+      sum1(equalityConstants(f.a!, f.c!, f.b1!, f.b2!).multiples),
+    // ⚠️ 생성기는 `c + 1` 로 흔든다. 그 방향은 동어반복이므로 창의 끝을 흔든다.
+    //    🔴 첫 판은 `b2 + 1` 이었는데 **24판 전부 «장식»**으로 찍혔다. 그건 굳힘이
+    //    장식이어서가 아니라 **내 흔들기가 뜻을 안 바꿔서**다 — 배수는 $a$ 걸음으로
+    //    놓이므로 창을 $1$ 만 넓히면 새 배수가 들어올 일이 거의 없다. $a$ 만큼
+    //    옮기면 배수가 **반드시 하나 들고 난다**(2026-08-21 「뜻이 바뀌었나」).
+    perturbed: (f) =>
+      sum1(equalityConstants(f.a!, f.c!, f.b1! + f.a!, f.b2! + f.a!).alive),
+    candidateCount: (f) =>
+      equalityConstants(f.a!, f.c!, f.b1!, f.b2!).multiples.length,
+  },
+
+  // 97X — 굳힘은 「겉넓이의 비 $p^2:q^2$ 에서 부피의 비 $p^3:q^3$ 을 **접는다**」이다.
+  //       지우면 학생은 **주어진 비를 그대로** 나눈다 — 이 유형의 참 지름길이다.
+  "1-2|입체도형의 겉넓이와 부피|97X": {
+    withoutBinding: (f) => {
+      const r = sphereRatios(f.p!, f.q!);
+      // 부피를 물었는데 넓이의 비로 나눈다 / 겉넓이를 물었는데 부피의 비로 나눈다.
+      return mode97(f) === "부피"
+        ? (f.given! * r.area[1]) / (r.area[0] + r.area[1])
+        : (f.given! * r.volume[1]) / (r.volume[1] - r.volume[0]);
+    },
+    perturbed: (f) =>
+      firstFinite(
+        ...[
+          [1, 0],
+          [0, 1],
+          [-1, 0],
+          [0, 2],
+        ].map(([dp, dq]) => () => {
+          const p2 = f.p! + dp!;
+          const q2 = f.q! + dq!;
+          if (p2 < 1 || q2 <= p2 || gcd(p2, q2) !== 1) return null;
+          const r = sphereRatios(p2, q2);
+          return mode97(f) === "부피"
+            ? (f.given! * r.volume[1]) / (r.volume[0] + r.volume[1])
+            : (f.given! * r.area[1]) / (r.area[1] - r.area[0]);
+        }),
+      ),
+    candidateCount: () => null,
+  },
+
+  // 98X — 굳힘은 「세 곱의 곱이 $(abc)^2$ 이므로 제곱근을 취하고 **부호를 가린다**」이다.
+  //       지우면 부호를 안 가리고 양의 제곱근을 그대로 답한다.
+  "1-1|정수와 유리수의 계산|98X": {
+    withoutBinding: (f) => Math.sqrt(f.square!),
+    perturbed: (f) => {
+      const neg = aNegative98(f);
+      const [ab, bc, ca] = triple98(f);
+      return firstFinite(
+        ...[2, 3, 4, -1].map(
+          (kk) => () => tripleProduct(ratI(ab.n * kk, ab.d), bc, ca, neg),
+        ),
+      );
+    },
+    candidateCount: () => 2,
+  },
+
+  // 99X — 굳힘은 「**서로 합동이 아닌** 것만 센다」이다. 그것을 지우면 세는 대상이
+  // 달라지는데 그 목록을 모듈이 안 내보내므로 규칙을 옮겨 적지 않고 축을 비운다.
+  "1-2|작도와 합동|99X": {
+    withoutBinding: () => null,
+    perturbed: (f) =>
+      mode99(f) === "개수"
+        ? incongruentTriangleCount(f.L! + 1)
+        : longestSideSum(f.L! + 1),
+    candidateCount: (f) => f.cMax! - f.cMin! + 1,
+  },
+
+  // 100X — 굳힘은 「굴린 횟수 $n$ 이 모선을 준다($\ell=nr$)」이다. 지우면 모선을
+  // 모르므로 옆면의 넓이가 안 선다(축 없음).
+  "1-2|입체도형의 겉넓이와 부피|100X": {
+    withoutBinding: () => null,
+    perturbed: (f) => coneFromRolls(f.r!, f.n! + 1).surface,
     candidateCount: () => null,
   },
 };
