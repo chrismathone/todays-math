@@ -1159,8 +1159,14 @@ export const M2_CENTER_CENTROID: TypeEntry[] = [
     "응용",
     (rng): Body => {
       const a = 4 * intBetween(rng, 4, 15);
-      const h = intBetween(rng, 60, 100);
       const w = a / 2;
+      // 🔴 그림 높이를 **밑변에 비례**시킨다. `fitPts` 는 가로세로 비를 지키므로
+      //    `h` 를 밑변과 따로 뽑으면 바늘처럼 길쭉한 판이 나오고, 그때 배율이
+      //    세로에 묶여 $\overline{PQ}$(=$w/2$ 단위)가 렌더러의 표시 최소 길이
+      //    아래로 내려간다 — 실측 9.33px, 「too short for its tick/parallel marks」.
+      //    `h ≤ 1.674w` 면 배율이 늘 가로에 묶여 $\overline{PQ}$ 가 46px 로 고정된다.
+      //    뽑는 횟수·차례는 그대로라 발문·정답·해설·facts 는 한 글자도 안 바뀐다.
+      const h = Math.round((w * intBetween(rng, 10, 16)) / 10);
       const x = a / 4;
       return {
         content: `그림과 같이 $\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 하고, $\\overline{AM}$, $\\overline{AN}$의 중점을 각각 $P$, $Q$라 하자. $\\overline{BC}=${a}\\,\\mathrm{cm}$일 때, $\\overline{PQ}$의 길이를 구하시오.`,
