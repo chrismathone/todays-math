@@ -154,6 +154,19 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     );
   }
   const distractors: string[] = [];
+  // 🔴 정답이 단항식이면 **지수 오답을 적어도 하나** 반드시 넣는다.
+  //    넣기만 해서는 모자란다 — 넷을 무작위로 뽑으므로 계수 오답만 뽑히는 판이
+  //    생기고(실측 300판 중 7판), 그 판에서는 보기 다섯의 지수가 다시 전부 같아져
+  //    「지수를 따져야 한다」는 마디가 통째로 사라진다. 하나를 먼저 못 박는다.
+  const expValues = new Set(
+    monomialExponentMistakes(correct).map((m) => m.value),
+  );
+  const expInPool = strong.filter((v) => expValues.has(v));
+  if (expInPool.length > 0) {
+    const first = pick(rng, expInPool);
+    distractors.push(first);
+    strong.splice(strong.indexOf(first), 1);
+  }
   for (const bucket of [strong, weak, overs]) {
     const rest = [...bucket];
     while (distractors.length < 4 && rest.length > 0) {
@@ -330,7 +343,73 @@ export function numericMistakes(answer: string): Mistake[] {
     push("off-by-two-down", { n: parsed.rat.n - 2, d: 1 });
   }
 
+  // 🔴 정답이 **단항식**이면 계수만 흔들어서는 안 된다.
+  //    위의 아홉 남짓은 전부 `parsed.rat`(= 맨 앞의 수)만 건드리므로, 정답이
+  //    `$36x^{9}y^{7}$` 같은 단항식이면 보기 다섯의 **지수가 전부 같아진다.**
+  //    그러면 「$x$·$y$ 의 지수를 각각 따져야 한다」가 마디인 유형이 객관식에서는
+  //    계수 하나만 구하면 끝나 버린다 — 2026-09-04 중2 `124X`(심화상) 적대 검문이
+  //    실측으로 잡았다(보기 다섯의 지수가 같은 판 **100%** · 계수만으로 갈리는 판 98.39%).
+  //    지수 실수는 이 단원에서 학생이 실제로 하는 오답이다(더하기와 곱하기를 바꾼다).
+  //
+  // ⚠️ **단항식 꼴에만** 낸다. `$4x^{2}-81$`(곱셈 공식)이나 `$y=4x^{2}$`(이차함수)에서
+  //    지수를 흔들면 «이차식이 아닌 것»이 되어 학생이 계산 없이 지워 내므로
+  //    문항이 오히려 쉬워진다 — 위 `times-ten` 주석과 같은 이유다. 등록 1,483유형을
+  //    전수로 훑어 이 부류(계수 있는 단항식 정답)는 여덟, 단항식이 아닌 변수 지수는
+  //    서른셋이었고 뒤엣것은 손대지 않는다.
+  for (const m of monomialExponentMistakes(answer.trim())) {
+    if (seen.has(m.value)) continue;
+    seen.add(m.value);
+    out.push(m);
+  }
+
   return out;
+}
+
+/** `$-8x^{3}y^{7}$` 처럼 **계수 하나 × 변수 거듭제곱**뿐인 정답. */
+const MONOMIAL_ANSWER = /^\$(-?\d+)((?:[a-z](?:\^\{\d+\})?)+)\$$/;
+const MONOMIAL_FACTOR = /([a-z])(?:\^\{(\d+)\})?/g;
+
+/**
+ * 단항식 정답의 **지수**를 흔든 오답. 계수는 그대로 둔다.
+ *
+ * 정답이 단항식이 아니면 빈 배열이다 — 그 판정이 이 함수의 값어치다.
+ */
+export function monomialExponentMistakes(answer: string): Mistake[] {
+  const m = MONOMIAL_ANSWER.exec(answer.trim());
+  if (!m) return [];
+  const coefficient = m[1]!;
+  const factors: { v: string; e: number }[] = [];
+  for (const f of m[2]!.matchAll(MONOMIAL_FACTOR)) {
+    factors.push({ v: f[1]!, e: f[2] ? Number(f[2]) : 1 });
+  }
+  if (factors.length === 0) return [];
+  const render = (fs: readonly { v: string; e: number }[]): string =>
+    `$${coefficient}${fs.map((f) => (f.e === 1 ? f.v : `${f.v}^{${f.e}}`)).join("")}$`;
+  const out: Mistake[] = [];
+  factors.forEach((f, i) => {
+    for (const step of [1, -1]) {
+      const e = f.e + step;
+      // ⚠️ 지수 $1$ 은 표기가 사라지고 $0$ 은 변수가 사라진다 — 모양이 달라져
+      //    학생이 계산 없이 지워 내므로 안 만든다.
+      if (e < 2) continue;
+      out.push({
+        tag: `exp-${f.v}-${step > 0 ? "up" : "down"}`,
+        value: render(factors.map((g, j) => (j === i ? { v: g.v, e } : g))),
+      });
+    }
+  });
+  // 두 변수의 지수를 **맞바꾼** 오답 — 어느 쪽을 어느 쪽으로 나눴는지 헷갈린 실수다.
+  const [a, b] = factors;
+  if (factors.length === 2 && a && b && a.e !== b.e && a.e >= 2 && b.e >= 2) {
+    out.push({
+      tag: "exp-swap",
+      value: render([
+        { v: a.v, e: b.e },
+        { v: b.v, e: a.e },
+      ]),
+    });
+  }
+  return out.filter((x) => x.value !== answer.trim());
 }
 
 /**

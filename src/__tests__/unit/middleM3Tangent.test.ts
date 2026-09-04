@@ -198,9 +198,26 @@ function everyNumberFinite(v: unknown): boolean {
 }
 
 describe("중3 원의 접선 10유형 (원과 직선 07~16)", () => {
-  const entries = registeredTypes().filter(
+  // 🔴 이 자의 모집단은 **기본 10유형(`07`~`16`)** 이다. 확대 갈래(D-116, 접미사
+  //    `U`·`V`·`W`·`X`)는 이 소단원에도 들어오는데, 그것들은 여기서 재는 계약
+  //    (RPM 색인 제목·그림이 늘 있다·모드 갈래 수)을 **일부러** 안 지킨다.
+  //    2026-09-04 에 `145X` 가 등록되며 이 자가 다섯 자리에서 빨개졌다.
+  // ⚠️ 그렇다고 그냥 걸러 내면 **새 기본 유형도 같이 숨는다.** 그래서 걸러 낸 것이
+  //    확대 갈래뿐임을 아래 시험이 스스로 확인한다.
+  const inSection = registeredTypes().filter(
     (e) => e.rpmBook === "3-2" && e.unitSection === "원의 접선",
   );
+  const isBase = (t: string): boolean => /^\d+$/.test(t);
+  const entries = inSection.filter((e) => isBase(e.rpmType));
+
+  it("걸러 낸 것은 **확대 갈래뿐**이다 — 새 기본 유형은 못 숨는다", () => {
+    const dropped = inSection.filter((e) => !isBase(e.rpmType));
+    expect(
+      dropped.filter((e) => !/^\d+[UVWX]$/.test(e.rpmType)).map((e) => e.key),
+      "확대 갈래도 기본도 아닌 것이 이 소단원에 있다",
+    ).toEqual([]);
+    expect(entries.length + dropped.length).toBe(inSection.length);
+  });
 
   it("원과 직선 07~16 10유형이 등록돼 있다", () => {
     expect(entries.length).toBe(10);
@@ -225,9 +242,7 @@ describe("중3 원의 접선 10유형 (원과 직선 07~16)", () => {
     }
   });
 
-  for (const e of registeredTypes().filter(
-    (x) => x.rpmBook === "3-2" && x.unitSection === "원의 접선",
-  )) {
+  for (const e of entries) {
     describe(`${e.rpmType} ${e.rpmTitle}`, () => {
       it("같은 씨앗이면 같은 문항", () => {
         const a = generateMiddleProblem(e.key, 20260823);

@@ -15,6 +15,7 @@ import {
   asShortAnswer,
   declaredUpperBound,
   deriveThreeFormats,
+  monomialExponentMistakes,
   numericMistakes,
   reversesOrder,
   toDescriptiveStem,
@@ -587,5 +588,113 @@ describe("발문이 스스로 못 박은 상한 (4차 물결 `37W`)", () => {
         .split("\n")
         .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? "")),
     ).toHaveLength(5);
+  });
+});
+
+/**
+ * 단항식 정답의 **지수 오답** — 2026-09-04 중2 `124X`(심화상) 적대 검문이
+ * 잡은 자리. 계수만 흔들면 보기 다섯의 지수가 전부 같아져, 「$x$·$y$ 의 지수를
+ * 각각 따져야 한다」가 마디인 유형이 객관식에서 계수 하나로 풀린다.
+ *
+ * 🔴 여기서 재는 것은 둘이다 — ⑴ **단항식에만** 낸다(아니면 이차함수·곱셈공식의
+ * 보기가 «이차식이 아닌 것»이 되어 오히려 쉬워진다) ⑵ 단항식이면 **반드시 하나는**
+ * 보기에 든다(넷을 무작위로 뽑으므로 넣어 두기만 해서는 안 드는 판이 생긴다).
+ */
+describe("단항식 지수 오답", () => {
+  const expsOf = (t: string): string =>
+    [...t.matchAll(/\^\{(\d+)\}/g)].map((m) => m[1]).join(",");
+
+  it("계수는 그대로 두고 지수만 흔든다 — 맞바꿈까지", () => {
+    const got = monomialExponentMistakes("$36x^{9}y^{7}$");
+    const values = got.map((m) => m.value);
+    expect(values).toContain("$36x^{10}y^{7}$");
+    expect(values).toContain("$36x^{8}y^{7}$");
+    expect(values).toContain("$36x^{9}y^{8}$");
+    expect(values).toContain("$36x^{9}y^{6}$");
+    expect(values, "두 지수를 맞바꾼 실수").toContain("$36x^{7}y^{9}$");
+    for (const v of values) {
+      expect(v, "계수는 한 번도 안 바뀐다").toMatch(/^\$36[a-z]/);
+      expect(v, "정답 그 자체는 오답이 아니다").not.toBe("$36x^{9}y^{7}$");
+    }
+  });
+
+  it("지수 $1$·$0$ 은 안 만든다 — 표기가 사라져 모양이 달라진다", () => {
+    // 🔴 처음엔 「`^{1}`·`^{0}` 이 없다」로만 봤는데, 지수가 $1$ 이면 표기 자체가
+    //    사라져 `$5xy^{2}$` 가 되므로 그 검사가 **구조적으로 못 본다**(변이가 초록이었다).
+    //    모양을 통째로 못 박는다 — 두 변수가 **둘 다** 지수를 달고 있어야 한다.
+    for (const v of monomialExponentMistakes("$5x^{2}y^{2}$").map(
+      (m) => m.value,
+    )) {
+      expect(v, "지수 표기가 사라지면 모양이 달라진다").toMatch(
+        /^\$5x\^\{\d+\}y\^\{\d+\}\$$/,
+      );
+      for (const e of [...v.matchAll(/\^\{(\d+)\}/g)]) {
+        expect(Number(e[1]), v).toBeGreaterThanOrEqual(2);
+      }
+    }
+    // 지수가 $1$ 인 변수는 **올리기만** 한다 — 내리면 변수가 사라진다.
+    for (const v of monomialExponentMistakes("$5xy^{2}$").map((m) => m.value)) {
+      expect(v, "변수가 사라지면 안 된다").toMatch(/x/);
+      expect(v).toMatch(/y/);
+      expect(v).not.toMatch(/\^\{[01]\}/);
+    }
+  });
+
+  it("🔴 음성 대조 — 단항식이 아니면 한 개도 안 낸다", () => {
+    for (const notMono of [
+      "$4x^{2}-81$", // 곱셈 공식
+      "$y=4x^{2}$", // 이차함수
+      "$6x^{2}y(x-5y)$", // 인수분해
+      "$12$", // 그냥 수
+      "$\dfrac{3}{4}$",
+      "$8\,\mathrm{cm}^{3}$", // 단위 지수
+      "$x^{6}y^{4}$", // 계수가 없다
+    ]) {
+      expect(monomialExponentMistakes(notMono), notMono).toEqual([]);
+    }
+  });
+
+  it("보기 다섯에 지수 오답이 **반드시** 하나는 든다", () => {
+    const stem: StemProblem = {
+      content: "다음 식을 간단히 하시오. $A\times B\div C$",
+      answer: "$36x^{9}y^{7}$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "계산",
+    };
+    let vary = 0;
+    for (let s = 1; s <= 200; s += 1) {
+      const mc = asMultipleChoice(stem, createRng(s * 7919 + 13));
+      const sets = new Set(
+        mc.content
+          .split("\n")
+          .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? ""))
+          .map((ln) => expsOf(ln)),
+      );
+      expect(sets.size, mc.content).toBeGreaterThan(0);
+      if (sets.size > 1) vary += 1;
+    }
+    // 🔴 고치기 전에는 **0/200** 이었다(계수만 흔들었다).
+    expect(vary, "지수가 갈리는 판").toBe(200);
+  });
+
+  it("🔴 음성 대조 — 단항식이 아닌 정답의 보기는 지수가 그대로다", () => {
+    const stem: StemProblem = {
+      content: "다음 식을 전개하시오. $(2x-9)(2x+9)$",
+      answer: "$4x^{2}-81$",
+      solution: "풀이.",
+      familyKey: "mid:test",
+      problemType: "계산",
+    };
+    for (let s = 1; s <= 50; s += 1) {
+      const mc = asMultipleChoice(stem, createRng(s * 31 + 5));
+      const sets = new Set(
+        mc.content
+          .split("\n")
+          .filter((ln) => "①②③④⑤".includes(ln.trim()[0] ?? ""))
+          .map((ln) => expsOf(ln)),
+      );
+      expect(sets.size, mc.content).toBe(1);
+    }
   });
 });

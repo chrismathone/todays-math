@@ -57,12 +57,18 @@ import { M2_TOP_5B } from "./m2Top5b";
 import { M2_TOP_5C } from "./m2Top5c";
 import { M2_TOP_5D } from "./m2Top5d";
 import { M2_TOP_5E } from "./m2Top5e";
+import { M2_TOP_5F } from "./m2Top5f";
+import { M2_TOP_5G } from "./m2Top5g";
+import { M2_TOP_5H } from "./m2Top5h";
+import { M2_TOP_5I } from "./m2Top5i";
+import { M2_TOP_5J } from "./m2Top5j";
 import { M3_TYPES } from "./m3";
 import { M3_TOP } from "./m3Top";
 import { M3_TOP_2 } from "./m3Top2";
 import { M3_TOP_3 } from "./m3Top3";
 import { M3_TOP_4 } from "./m3Top4";
 import { M3_TOP_5A } from "./m3Top5a";
+import { M3_TOP_5B } from "./m3Top5b";
 import { MID_SUP_B } from "./midSupB";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -116,12 +122,18 @@ const ALL: TypeEntry[] = [
   ...M2_TOP_5C,
   ...M2_TOP_5D,
   ...M2_TOP_5E,
+  ...M2_TOP_5F,
+  ...M2_TOP_5G,
+  ...M2_TOP_5H,
+  ...M2_TOP_5I,
+  ...M2_TOP_5J,
   // 중3 확대 갈래(심화중·심화상) — D-116. 같은 이유로 명부 밖이다(m3Top.ts 머리말).
   ...M3_TOP,
   ...M3_TOP_2,
   ...M3_TOP_3,
   ...M3_TOP_4,
   ...M3_TOP_5A,
+  ...M3_TOP_5B,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();
