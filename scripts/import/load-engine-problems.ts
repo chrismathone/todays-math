@@ -68,6 +68,9 @@ import {
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
+// 「그림이 없는데 발문이 가리키나」도 마찬가지다 — 규칙은 `figurelessRow` 한 곳이고
+// 잠그는 쪽(`scripts/qa/lockFigurelessLoadedRows.ts`)이 **같은 함수**를 부른다.
+import { figurelessPointer } from "../../src/lib/engine/figurelessRow";
 
 // 관리용 스크립트는 **자기 클라이언트**를 쓴다 — `src/lib/db` 의 바깥벽 확장은
 // 읽기를 `pool='shared'` 로 좁혀서, 「내가 넣은 행이 정말 shared 인가」를 물을 때
@@ -901,8 +904,33 @@ async function apply(planFile: string, doApply: boolean) {
     });
   };
 
+  /**
+   * 🔴 **그림이 실패했는데 발문이 그림을 가리키면 출제허용으로 넣지 않는다.**
+   *
+   * 2026-09-04 실측 — `renderFigure` 가 스펙 2종에서 실패했고(「segment 'PQ' is too
+   * short (9.33px)」), 그 4행이 **「그림과 같이 $\triangle ABC$에서…」**인 채로
+   * `directUseAllowed: true` 로 들어갔다. 종이에 그림 없이 나가면 **못 푸는 문항**이다.
+   *
+   * 실패는 위에서 **세기만** 했다(`failed += 1`). 세는 것과 막는 것은 다른 일이다 —
+   * 그 수를 아무도 안 보면 「4,852건 전부 출제허용」이라는 초록 줄만 남는다.
+   *
+   * ⚠️ 규칙을 여기서 짓지 않는다. 「가리키나」는 `pointsAtFigure` 한 곳이고,
+   *    「그림이 있나」는 방금 렌더가 낸 값이다. 둘 다 **재는 것**이지 모형이 아니다.
+   */
+  let lockedFigureless = 0;
+  const lockedSamples: string[] = [];
+  /** 넣기를 **요청한** 값. 되읽기는 「전부 참인가」가 아니라 이것과 견준다. */
+  const wantDirect = new Map<string, boolean>();
+
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
+    const pointer = figurelessPointer(svg !== null, r.content);
+    const figureless = r.figureSpec !== null && pointer !== null;
+    if (figureless) {
+      lockedFigureless += 1;
+      if (lockedSamples.length < 3)
+        lockedSamples.push(`${r.externalId} — 「${pointer}」`);
+    }
     // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
     // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
     const made = await prisma.problem.create({
@@ -922,12 +950,13 @@ async function apply(planFile: string, doApply: boolean) {
         // 아류 번호를 정한다. 비워 두면 문항마다 혼자 한 무리가 된다.
         familyKey: r.familyKey,
         reviewStatus: "approved",
-        directUseAllowed: true,
+        directUseAllowed: !figureless,
         pool: "shared",
         solutionSource: "none",
       },
       select: { id: true },
     });
+    wantDirect.set(made.id, !figureless);
     created.push({
       externalId: r.externalId,
       problemId: made.id,
@@ -954,7 +983,9 @@ async function apply(planFile: string, doApply: boolean) {
     (p) =>
       p.pool !== "shared" ||
       p.reviewStatus !== "approved" ||
-      !p.directUseAllowed,
+      // ⚠️ 「전부 참인가」가 아니라 **요청한 값과 같은가**를 본다. 전자로 두면 위
+      //    그림 가드가 잠근 행이 여기서 «바깥벽이 물었다»로 오진된다.
+      p.directUseAllowed !== wantDirect.get(p.id),
   );
   if (back.length !== created.length)
     throw new Error(`되읽은 행이 ${back.length}/${created.length} 다 — 멈춘다`);
@@ -966,9 +997,24 @@ async function apply(planFile: string, doApply: boolean) {
     process.exitCode = 1;
     return;
   }
+  const allowed = back.filter((p) => p.directUseAllowed).length;
   console.log(
-    `✅ ${back.length}건 전부 shared · approved · 출제허용 — 앱이 볼 수 있다`,
+    `✅ ${back.length}건 전부 shared · approved · 요청한 출제허용 그대로 — 앱이 볼 수 있다` +
+      ` (출제허용 ${allowed})`,
   );
+  // 🔴 **말없는 상한을 만들지 않는다** — 잠근 것이 있으면 반드시 찍는다.
+  if (lockedFigureless > 0) {
+    console.log(
+      `\n🔴 그림이 안 그려졌는데 **발문이 그림을 가리켜** 출제에서 뺀 것 ${lockedFigureless}건` +
+        `\n   (그림 렌더 실패 자체는 위 「그림 실패」 줄에 있다. 여기 것은 그중` +
+        ` **발문이 지면을 가리키는** 행이라 종이에서 못 푼다.)`,
+    );
+    for (const s of lockedSamples) console.log(`   · ${s}`);
+    console.log(
+      `   → 고치는 자리는 적재기가 아니라 **그 유형의 그림 스펙**이다.` +
+        ` 고친 뒤 이 계획을 다시 돌리면 그림이 붙은 행으로 다시 들어온다.`,
+    );
+  }
 }
 
 async function revert(ledgerFile: string) {
