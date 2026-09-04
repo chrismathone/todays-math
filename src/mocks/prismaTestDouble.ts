@@ -267,6 +267,21 @@ interface TestProblemRow {
   score: number | null;
 }
 
+/**
+ * 담기 바구니 한 칸 (D-118).
+ *
+ * 🔴 `orderIndex` 는 **1..N 이 아니다** — 빼기가 구멍을 내고 그 구멍을 일부러 안
+ *    메운다. 그래서 가짜도 「지운 뒤 다시 매기기」를 하면 안 된다. 그것을 하면
+ *    「최댓값+1 로 준다」를 겨누는 시험이 **가짜 때문에** 초록이 된다.
+ */
+interface BasketItemRow {
+  id: string;
+  userId: string;
+  problemId: string;
+  orderIndex: number;
+  addedAt: Date;
+}
+
 /** T7.3 — 예측기 코퍼스 적재기(scripts/predictor/load-exams.ts) 전용. */
 interface ExamRow {
   id: string;
@@ -535,6 +550,7 @@ let progressRows: ProgressRow[] = [];
 let problemRows: ProblemRow[] = [];
 let testRows: TestRow[] = [];
 let testProblemRows: TestProblemRow[] = [];
+let basketItemRows: BasketItemRow[] = [];
 let testResultRows: TestResultRow[] = [];
 let problemAnswerRows: ProblemAnswerRow[] = [];
 let analysisReportRows: AnalysisReportRow[] = [];
@@ -565,6 +581,9 @@ export function resetPrismaTestDouble() {
   testProblemRows = Object.entries(MOCK_TEST_PROBLEMS_BY_TEST_ID).flatMap(
     ([testId, items]) => items.map((item) => toTestProblemRow(testId, item)),
   );
+  // 바구니는 **빈 것이 정상**이다 — 시드로 채우면 「담기 전에는 바가 없다」(원장님
+  // 확정 Wire ①)를 겨누는 시험이 분모를 잃는다.
+  basketItemRows = [];
 
   testRows.push({
     id: RECENT_BLOCK_TEST_ID,
@@ -924,6 +943,37 @@ function hydrateTestProblems(
   }));
 }
 
+/**
+ * 바구니 → 문항 붙이기. `include: { problem: true }`(조회)와
+ * `include: { problem: { select: { id, unitId } } }`(시험지 만들기) 둘 다 온다.
+ *
+ * 🔴 문항이 없으면 **던진다.** 실제 DB 는 `onDelete: Cascade` 라 그 상태가 될 수
+ *    없다 — 가짜가 `null` 을 내면 `serializeProblem(null)` 이 조용히 이상한 것을
+ *    만들고, 그게 계약 검사에서야 터져 원인을 못 짚는다.
+ */
+function hydrateBasketItems(
+  rows: BasketItemRow[],
+  include?: { problem?: boolean | { select?: Record<string, unknown> } },
+) {
+  if (!include?.problem) return rows;
+  const spec = include.problem;
+  return rows.map((row) => {
+    const problem = problemRows.find((p) => p.id === row.problemId);
+    if (!problem) {
+      throw new Error(
+        `prismaTestDouble: 바구니가 없는 문항을 가리킨다 (${row.problemId}) — 실제 DB 는 Cascade 로 같이 지운다`,
+      );
+    }
+    return {
+      ...row,
+      problem:
+        spec === true || !spec.select
+          ? problem
+          : (applySelect([problem], spec.select)[0] as typeof problem),
+    };
+  });
+}
+
 function hydrateTestResults(
   rows: TestResultRow[],
   include?: { answers?: boolean; analysisReport?: boolean },
@@ -1167,8 +1217,20 @@ const prismaModels = {
     async findFirst({ where }: { where?: Record<string, unknown> } = {}) {
       return unitRows.find((row) => matchesWhere(row, where)) ?? null;
     },
-    async findMany({ where }: { where?: Record<string, unknown> } = {}) {
-      return unitRows.filter((row) => matchesWhere(row, where));
+    /**
+     * ⚠️ **`orderBy` 를 조용히 버리면 안 된다.** 시드 `unitRows` 가 마침 교육과정
+     *    차례라, 버려도 대부분 «맞는» 답이 나온다 — 그래서 「이 라우트가 정말
+     *    정렬하는가」를 겨누는 시험이 구조적으로 못 갈라낸다(담기 바구니의 범위
+     *    산정이 이것을 쓴다). 실제 Prisma 와 같게 정렬한다.
+     */
+    async findMany({
+      where,
+      orderBy,
+    }: { where?: Record<string, unknown>; orderBy?: unknown } = {}) {
+      return applyOrder(
+        unitRows.filter((row) => matchesWhere(row, where)),
+        orderBy,
+      );
     },
   },
   progress: {
@@ -1332,6 +1394,25 @@ const prismaModels = {
     async findUnique({ where }: { where: { id: string } }) {
       return problemRows.find((row) => row.id === where.id) ?? null;
     },
+    /**
+     * 담기(D-118)가 「이 문항을 **볼 수 있나**」를 `OR: [{pool:"shared"},{userId}]`
+     * 로 묻는다. 이 메서드가 없어서 그 가드는 **한 번도 시험을 안 탔다** —
+     * 라우트를 부르면 `TypeError` 로 죽는다(2026-09-05 에 시험을 쓰다 드러났다).
+     */
+    async findFirst({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      orderBy?: unknown;
+      select?: Record<string, unknown>;
+    } = {}) {
+      const row =
+        problemRows.find((r) => matchesWhere(r, where, PROBLEM_RELATIONS)) ??
+        null;
+      if (!row) return null;
+      return select ? (applySelect([row], select)[0] as unknown) : row;
+    },
     async update({
       where,
       data,
@@ -1354,6 +1435,93 @@ const prismaModels = {
       }
       const [removed] = problemRows.splice(index, 1);
       return removed!;
+    },
+  },
+  /**
+   * 담기 바구니 (D-118). 라우트가 실제로 부르는 것만 구현한다 —
+   * `findMany` · `findFirst` · `upsert` · `deleteMany` · `count`.
+   *
+   * 🔴 **`upsert` 가 차례를 스스로 정하지 않는다.** 「최댓값+1」을 여기서 계산하면
+   *    그 규칙이 두 벌이 되고, 라우트가 `COUNT(*)+1` 로 돌아가도 가짜가 옳은 값을
+   *    내어 **시험이 통과한다.** 차례는 라우트가 준 `create.orderIndex` 를 그대로 쓴다.
+   */
+  basketItem: {
+    async findMany({
+      where,
+      orderBy,
+      include,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      orderBy?: unknown;
+      include?: { problem?: boolean | { select?: Record<string, unknown> } };
+      select?: Record<string, unknown>;
+    } = {}) {
+      const rows = applyOrder(
+        basketItemRows.filter((row) => matchesWhere(row, where)),
+        orderBy,
+      );
+      if (select) return applySelect(rows, select);
+      return hydrateBasketItems(rows, include);
+    },
+    async findFirst({
+      where,
+      orderBy,
+      select,
+      include,
+    }: {
+      where?: Record<string, unknown>;
+      orderBy?: unknown;
+      select?: Record<string, unknown>;
+      include?: { problem?: boolean | { select?: Record<string, unknown> } };
+    } = {}) {
+      const rows = applyOrder(
+        basketItemRows.filter((row) => matchesWhere(row, where)),
+        orderBy,
+      ).slice(0, 1);
+      if (select) return (applySelect(rows, select)[0] ?? null) as unknown;
+      return hydrateBasketItems(rows, include)[0] ?? null;
+    },
+    async upsert({
+      where,
+      create,
+      update,
+    }: {
+      where: { userId_problemId: { userId: string; problemId: string } };
+      create: { userId: string; problemId: string; orderIndex: number };
+      update: Record<string, unknown>;
+    }) {
+      const key = where.userId_problemId;
+      const existing = basketItemRows.find(
+        (row) => row.userId === key.userId && row.problemId === key.problemId,
+      );
+      // 🔴 **`update` 를 실제로 적용한다.** 「어차피 `{}` 니까」 하고 무시하면
+      //    그 자리가 **축 없는 자리**가 되어, 라우트가 차례를 다시 매기도록 바뀌어도
+      //    멱등을 겨누는 시험이 구조적으로 못 본다.
+      if (existing) {
+        Object.assign(existing, update);
+        return existing;
+      }
+      const row: BasketItemRow = {
+        id: randomUUID(),
+        userId: create.userId,
+        problemId: create.problemId,
+        orderIndex: create.orderIndex,
+        addedAt: new Date(),
+      };
+      basketItemRows.push(row);
+      return row;
+    },
+    async deleteMany({ where }: { where?: Record<string, unknown> } = {}) {
+      const kept = basketItemRows.filter((row) => !matchesWhere(row, where));
+      const removed = basketItemRows.length - kept.length;
+      // 🔴 **남은 행의 차례를 다시 매기지 않는다.** 실제 DB 도 안 한다 —
+      //    여기서 메우면 「구멍이 남는가」를 겨누는 시험이 무의미해진다.
+      basketItemRows = kept;
+      return { count: removed };
+    },
+    async count({ where }: { where?: Record<string, unknown> } = {}) {
+      return basketItemRows.filter((row) => matchesWhere(row, where)).length;
     },
   },
   test: {
@@ -1951,6 +2119,7 @@ function snapshotRows() {
     problemRows,
     testRows,
     testProblemRows,
+    basketItemRows,
     testResultRows,
     problemAnswerRows,
     analysisReportRows,
@@ -1973,6 +2142,7 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
   problemRows = snapshot.problemRows;
   testRows = snapshot.testRows;
   testProblemRows = snapshot.testProblemRows;
+  basketItemRows = snapshot.basketItemRows;
   testResultRows = snapshot.testResultRows;
   problemAnswerRows = snapshot.problemAnswerRows;
   analysisReportRows = snapshot.analysisReportRows;

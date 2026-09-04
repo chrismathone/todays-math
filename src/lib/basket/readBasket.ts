@@ -10,11 +10,19 @@
  * 그것을 따로 세면 **담긴 것의 일부만 받아 온 쪽**에서 조용히 다른 수가 나온다.
  * 세는 곳과 보이는 곳이 갈리면 둘 다 눈이 먼다.
  *
- * ## 난이도가 없는 문항을 «0» 으로 뭉개지 않는다
+ * ## 🔴 `unknown` 칸을 **뗐다** (원장님 지시 2026-09-05)
  *
- * `difficulty` 가 비어 있는 문항이 실제로 있다(기출 이관분). 그것을 분포의 어느 칸에
- * 넣으면 그 칸이 부풀고, 아예 빼면 합이 `total` 과 안 맞는다. 그래서 **`unknown` 으로
- * 따로 센다** — 「0 은 «없음»과 «못 셈»을 안 가른다」의 같은 자리다.
+ * 처음엔 「난이도가 안 적힌 문항」을 따로 세는 칸을 두고, 그 까닭을
+ * 「`difficulty` 가 비어 있는 문항이 실제로 있다(기출 이관분)」고 적었다.
+ * **거짓이었다.** `Problem.difficulty` 는 `20260813014714_init` 부터 지금까지
+ * **NOT NULL** 이고(그 뒤 마이그레이션은 enum 값 이름만 바꿨다), 계약
+ * `problemSchema.difficulty` 도 필수다 — 그 칸은 **구조적으로 늘 0** 이었고,
+ * 화면의 「난이도 없음 N」은 한 번도 그려질 수 없었다.
+ *
+ * 늘 0 인 칸은 「깨끗하다」와 「셀 것이 없다」를 안 가른다. 그래서 뗐다.
+ * 대신 **모르는 갈래가 오면 던진다**(아래 `countSpread`) — 조용히 새 키를 만들면
+ * 「적힌 수의 합 == 담긴 수」가 맞는 채로 분포만 틀린다. 난이도를 나중에
+ * nullable 로 바꾸는 날, 이 함수가 **그 자리에서 멈춰** 다시 보게 한다.
  */
 import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import { db } from "@/lib/db";
@@ -23,7 +31,6 @@ import { serializeProblem } from "@/lib/serializers";
 export type BasketData = {
   items: { orderIndex: number; problem: ReturnType<typeof serializeProblem> }[];
   spread: Record<Difficulty, number>;
-  unknown: number;
   total: number;
 };
 
@@ -36,23 +43,26 @@ export type BasketData = {
  *    「그 칸이 0이다」를 못 가른다. 그리고 손으로 나열하지 않고
  *    `DIFFICULTY_LADDER` 를 도므로 **새 갈래가 붙으면 여기도 따라온다** —
  *    2026-08-25 에 손 목록이 셋으로 남아 새 갈래 `연산` 이 통째로 빠진 자리다.
- * ㉡ **난이도가 없는 문항을 어느 칸에도 안 넣는다.** 넣으면 그 칸이 부풀고,
- *    아예 버리면 적힌 수의 합이 「담은 문항 N개」와 안 맞아 바를 못 믿게 된다.
- *    그래서 `unknown` 으로 따로 센다.
+ * ㉡ **모르는 갈래는 조용히 안 삼킨다 — 던진다.** `spread[d] += 1` 은 없는 키도
+ *    만들어 낸다. 그러면 「적힌 수의 합 == 담긴 수」는 그대로 맞는데 **분포만 틀리고**,
+ *    바는 아무 말도 안 한다. 지금 그런 값은 올 수 없지만(NOT NULL + 계약),
+ *    「올 수 없다」를 믿고 침묵하면 그 전제가 깨지는 날 아무도 모른다.
  */
-export function countSpread(difficulties: readonly (Difficulty | null)[]): {
+export function countSpread(difficulties: readonly Difficulty[]): {
   spread: Record<Difficulty, number>;
-  unknown: number;
 } {
   const spread = Object.fromEntries(
     DIFFICULTY_LADDER.map((d) => [d, 0]),
   ) as Record<Difficulty, number>;
-  let unknown = 0;
   for (const d of difficulties) {
-    if (d === null) unknown += 1;
-    else spread[d] += 1;
+    if (!(d in spread)) {
+      throw new Error(
+        `[바구니] 사다리에 없는 난이도: ${JSON.stringify(d)} — 조용히 새 칸을 만들지 않는다`,
+      );
+    }
+    spread[d] += 1;
   }
-  return { spread, unknown };
+  return { spread };
 }
 
 /**
@@ -81,8 +91,8 @@ export async function readBasket(userId: string): Promise<BasketData> {
     include: { problem: true },
   });
 
-  const { spread, unknown } = countSpread(
-    rows.map((row) => row.problem.difficulty as Difficulty | null),
+  const { spread } = countSpread(
+    rows.map((row) => row.problem.difficulty as Difficulty),
   );
 
   return {
@@ -91,7 +101,6 @@ export async function readBasket(userId: string): Promise<BasketData> {
       problem: serializeProblem(row.problem),
     })),
     spread,
-    unknown,
     total: rows.length,
   };
 }

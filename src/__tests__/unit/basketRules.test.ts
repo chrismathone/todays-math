@@ -7,18 +7,18 @@
  * ㉠ `countSpread` — 바가 말하는 「7개 · 심화중 3 · 응용 2」의 근원.
  * ㉡ `renumberForTest` — 바구니 번호(구멍이 있다)를 시험지 번호(1..N)로 옮기는 자리.
  *
- * ## 🔴 이 시험이 **못 보는 것** — 정직하게 적는다
+ * ## 이 시험이 **안 보는 것** (2026-09-05 갱신)
  *
- * API 세 갈래(`/api/basket` GET·POST·DELETE, `/api/basket/test`)는 아직 시험이
- * 없다. `prismaTestDouble` 에 `basketItem` 모델이 없고, 그것을 얹는 것은 그 파일을
- * 쓰는 다른 트랙과 부딪히는 일이라 이 회차에 안 했다. 곧 **「멱등하게 담긴다」·
- * 「빈 바구니는 422」·「시험지를 만들면 비워진다」는 지금 코드에만 있고 아무도
- * 지키지 않는다.** 다음 회차의 일감이다.
+ * 라우트 네 갈래는 이제 `src/__tests__/api/basket.test.ts` 가 본다(멱등·최댓값+1·
+ * 빈 바구니 422·비워짐·원자성…). 여기는 **DB 없이 서는 규칙**만 겨눈다 — 그래야
+ * 「분포를 세는 규칙」과 「번호를 옮기는 규칙」이 라우트를 안 거치고도 갈린다.
  */
 import { describe, expect, it } from "vitest";
 
 import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
+import { problemSchema } from "@/contracts/problem.contract";
 import { countSpread, renumberForTest } from "@/lib/basket/readBasket";
+import { MOCK_PROBLEMS } from "@/mocks/data";
 
 describe("담기 바구니 — 난이도 분포", () => {
   it("🔴 사다리 **전 칸**을 낸다 — 손 목록이 아니라 `DIFFICULTY_LADDER` 를 돈다", () => {
@@ -30,44 +30,60 @@ describe("담기 바구니 — 난이도 분포", () => {
   });
 
   it("난이도별로 센다", () => {
-    const { spread, unknown } = countSpread([
-      "기본",
-      "기본",
-      "응용",
-    ] as Difficulty[]);
+    const { spread } = countSpread(["기본", "기본", "응용"] as Difficulty[]);
     expect(spread["기본"]).toBe(2);
     expect(spread["응용"]).toBe(1);
     expect(spread["심화상"]).toBe(0);
-    expect(unknown).toBe(0);
   });
 
-  it("🔴 난이도가 **없는** 문항은 어느 칸에도 안 넣고 `unknown` 으로 따로 센다", () => {
-    // 어느 칸에 넣으면 그 칸이 부풀고, 아예 버리면 적힌 수의 합이 「담은 문항 N개」와
-    // 안 맞아 원장님이 바를 못 믿게 된다.
-    const { spread, unknown } = countSpread([
-      "응용",
-      null,
-      null,
-    ] as (Difficulty | null)[]);
-    expect(unknown).toBe(2);
-    expect(spread["응용"]).toBe(1);
-    const inLadder = DIFFICULTY_LADDER.reduce((a, d) => a + spread[d], 0);
-    expect(inLadder).toBe(1);
+  it("🔴 사다리에 **없는** 갈래가 오면 조용히 새 칸을 만들지 않고 던진다", () => {
+    // `spread[d] += 1` 은 없는 키도 만들어 낸다. 그러면 「적힌 수의 합 == 담긴 수」는
+    // 그대로 맞는데 **분포만 틀리고** 바는 아무 말도 안 한다.
+    // (`unknown` 칸을 뗀 자리다 — 원장님 지시 2026-09-05. 아래 describe 참조.)
+    expect(() => countSpread(["최상" as Difficulty])).toThrow(
+      /사다리에 없는 난이도/,
+    );
+    // 양성 대조 — 멀쩡한 값에는 안 던진다(그래야 위 단정이 «늘 던진다»가 아니다).
+    expect(() => countSpread(["기본"] as Difficulty[])).not.toThrow();
   });
 
-  it("적힌 수의 **합이 담긴 수와 같다** — 어느 갈래가 와도", () => {
+  it("적힌 수의 **합이 곧 담긴 수다** — 어느 갈래가 와도", () => {
     const input = [
       "연산",
       "심화중",
-      null,
       "심화상",
       "기본",
-      null,
       "응용",
-    ] as (Difficulty | null)[];
-    const { spread, unknown } = countSpread(input);
-    const sum = DIFFICULTY_LADDER.reduce((a, d) => a + spread[d], 0) + unknown;
+      "심화하",
+      "기본",
+    ] as Difficulty[];
+    const { spread } = countSpread(input);
+    const sum = DIFFICULTY_LADDER.reduce((a, d) => a + spread[d], 0);
     expect(sum).toBe(input.length);
+  });
+});
+
+describe("담기 바구니 — `unknown` 칸을 **뗀 근거**", () => {
+  /**
+   * 🔴 처음 이 축을 넣으며 「난이도가 비어 있는 문항이 실제로 있다(기출 이관분)」고
+   *    적었다. **거짓이었다.** `Problem.difficulty` 는 `20260813014714_init` 부터
+   *    NOT NULL 이고 계약도 그것을 요구한다 — 그 칸은 구조적으로 늘 0 이었고,
+   *    화면의 「난이도 없음 N」은 한 번도 그려질 수 없었다. 그래서 뗐다.
+   *
+   * **뗀 근거를 시험으로 남긴다.** 주석으로만 두면 다음 사람이 「분포에 난이도 없는
+   * 문항이 빠졌다」고 보고 그 칸을 **다시 만든다.** 난이도를 nullable 로 바꾸는 날
+   * 이 시험이 빨개져서 그때 다시 보게 한다.
+   */
+  it("🔴 계약이 난이도를 **요구한다** — 그래서 «난이도 없는 문항»은 올 수 없다", () => {
+    const sample = MOCK_PROBLEMS[0]!;
+    // 양성 대조 — 이것이 통과해야 아래 단정이 «스키마가 원래 다 거부한다»가 아니다.
+    expect(
+      problemSchema.safeParse(sample).success,
+      "픽스처가 계약을 안 지킨다",
+    ).toBe(true);
+    expect(
+      problemSchema.safeParse({ ...sample, difficulty: null }).success,
+    ).toBe(false);
   });
 });
 

@@ -58,10 +58,16 @@ export type BasketItem = z.infer<typeof basketItemSchema>;
 export const basketResponseSchema = dataResponseSchema(
   z.strictObject({
     items: z.array(basketItemSchema),
-    /** 난이도별 개수. 난이도가 없는 문항은 세지 않고 `unknown` 으로 따로 센다. */
+    /**
+     * 난이도별 개수 — **사다리 전 칸이 온다**(0 인 칸도 온다). 그래야 받는 쪽이
+     * 「그 칸이 없다」와 「그 칸이 0이다」를 가른다.
+     *
+     * 🔴 **`unknown` 칸은 뗐다 (원장님 지시 2026-09-05).** 「난이도가 안 적힌 문항」을
+     *    따로 세는 칸을 두었었는데, `Problem.difficulty` 가 `init` 부터 NOT NULL 이고
+     *    위 `problemSchema` 도 요구해서 **구조적으로 늘 0** 이었다. 늘 0 인 칸은
+     *    「깨끗」과 「셀 것이 없음」을 안 가른다. 지금은 적힌 수의 **합이 곧 `total`** 이다.
+     */
     spread: z.record(difficultySchema, z.number().int().min(0)),
-    /** 난이도가 안 적힌 문항 수 — `spread` 에 뭉개면 분포가 거짓이 된다. */
-    unknown: z.number().int().min(0),
     /** 담긴 문항 수 = `items.length`. 화면이 다시 세지 않게 서버가 준다. */
     total: z.number().int().min(0),
   }),

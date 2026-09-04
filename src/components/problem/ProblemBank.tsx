@@ -21,6 +21,7 @@ import { classifyFormat } from "@/lib/problem/provenance";
 import {
   addToBasket,
   clearBasket,
+  EMPTY_BASKET,
   loadBasket,
   makeTestFromBasket,
   removeFromBasket,
@@ -818,12 +819,7 @@ export function ProblemBank() {
                   void makeTestFromBasket({ classId, testDate })
                     .then((made) => {
                       // 시험지가 되면 바구니는 서버에서 비워진다 — 화면도 그렇게 만든다.
-                      setBasket({
-                        items: [],
-                        spread: basket.spread,
-                        unknown: 0,
-                        total: 0,
-                      });
+                      setBasket(EMPTY_BASKET);
                       setBasketOpen(false);
                       setNotice(
                         `${made.problemCount}문항으로 시험지를 만들었습니다`,
@@ -844,7 +840,6 @@ export function ProblemBank() {
             <BasketBar
               total={basket.total}
               spread={basket.spread}
-              unknown={basket.unknown}
               busy={basketBusy}
               onOpenList={() => setBasketOpen((v) => !v)}
               onMakeTest={() => setBasketOpen(true)}

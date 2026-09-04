@@ -21,17 +21,17 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
  * 그러나 **지면에 「연산 0 · 기본 0」을 늘어놓으면 읽을 것이 아니라 소음**이다.
  * 그래서 그리는 쪽에서 0을 접는다 — 세는 쪽과 그리는 쪽의 일이 다르다.
  *
- * ## 난이도가 없는 문항
+ * ## 적힌 수의 합은 곧 「담은 문항 N개」다
  *
- * `unknown` 은 **따로 적는다.** 분포 어느 칸에 넣으면 그 칸이 부풀고, 아예 빼면
- * 적힌 수의 합이 「담은 문항 N개」와 안 맞아 원장님이 바를 못 믿게 된다.
+ * 예전에는 「난이도 없음 N」을 따로 적었는데, 난이도는 **NOT NULL** 이라 그 칸이
+ * 구조적으로 늘 0 이었다(원장님 지시로 2026-09-05 에 뗐다). 지금은 0 인 칸만
+ * 접히므로, 적힌 수를 다 더하면 `total` 이 된다.
  *
  * D-30 — 바 표면은 누르는 것이 아니다. 손가락 커서는 실제 `<button>` 에만 있다.
  */
 export type BasketBarProps = {
   total: number;
   spread: Record<Difficulty, number>;
-  unknown: number;
   /** 왕복 중에는 버튼을 잠근다 — 두 번 눌러 시험지가 둘 생기는 것을 막는다. */
   busy: boolean;
   onOpenList: () => void;
@@ -41,7 +41,6 @@ export type BasketBarProps = {
 export function BasketBar({
   total,
   spread,
-  unknown,
   busy,
   onOpenList,
   onMakeTest,
@@ -50,7 +49,6 @@ export function BasketBar({
   const parts = DIFFICULTY_LADDER.filter((d) => (spread[d] ?? 0) > 0).map(
     (d) => `${d} ${spread[d]}`,
   );
-  if (unknown > 0) parts.push(`난이도 없음 ${unknown}`);
 
   return (
     <div

@@ -7,13 +7,30 @@
  * 화면은 응답을 그대로 상태에 넣기만 하면 된다 — 다시 세지 않는다.
  */
 import type { BasketItem } from "@/contracts/basket.contract";
-import type { Difficulty } from "@/contracts/difficulty";
+import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 
 export type BasketState = {
   items: BasketItem[];
+  /** 사다리 **전 칸**이 온다 — 0 인 칸도. 적힌 수의 합이 곧 `total` 이다. */
   spread: Record<Difficulty, number>;
-  unknown: number;
   total: number;
+};
+
+/**
+ * 빈 바구니 — **한 곳에서만 짓는다.**
+ *
+ * 🔴 화면이 「비었다」를 손으로 지으면 그 자리가 규칙의 두 번째 벌이 된다. 실제로
+ *    시험지를 만든 뒤 상태를 비울 때 **옛 `spread` 를 그대로 물려주고** 있었다 —
+ *    바가 안 보이는 상태라 티가 안 났을 뿐, 「담긴 수 0인데 분포는 5」였다.
+ *    그리고 갈래가 늘면 손 목록은 조용히 낡는다(D-106 에서 겪은 그 자리).
+ */
+export const EMPTY_BASKET: BasketState = {
+  items: [],
+  spread: Object.fromEntries(DIFFICULTY_LADDER.map((d) => [d, 0])) as Record<
+    Difficulty,
+    number
+  >,
+  total: 0,
 };
 
 /** 서버가 준 그대로. 화면이 분포를 다시 세지 않는다(바가 거짓말하지 않게). */
