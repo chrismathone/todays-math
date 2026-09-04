@@ -70,12 +70,18 @@ MUTATIONS: list[tuple[str, str, str, str]] = [
         "㉢ 음성 — 넓게 훑는 58W 축은 안 문다",
     ),
     (
-        "57W 되만들기가 지면의 **다른 줄**을 읽게 한다",
-        '  const line = content.split("\\n")[1] ?? "";',
-        '  const line = content.split("\\n")[2] ?? "";',
+        "57W 되만들기가 지면에서 읽은 값을 하나씩 어긋나게 한다",
+        "  return Object.fromEntries(nums.map((v, i) => [`d${i}`, v]));",
+        "  return Object.fromEntries(nums.map((v, i) => [`d${i}`, v + 1]));",
         "㉢ 양성 — 57W 의 자료 여섯을 **지면에서** 읽는다",
     ),
 ]
+
+# ⚠️ **여기 안 담은 변이가 하나 있다** — 「읽는 줄을 `[1]` 에서 `[2]` 로」.
+#    그러면 `stemDataFacts` 가 실제로 **던져서** `--axes` 가 통째로 죽고, ⑶ 의
+#    지문을 못 얻어 이 하네스가 **판정을 거부**한다. 그건 결함이 아니라 그 되만들기가
+#    설계대로 「못 읽으면 던진다」를 하는 것이다(조용히 「축 없음」이 되지 않는다).
+#    ⑶ 을 「죽어도 «바뀐 것»으로 친다」로 무르면 **문법 오류도 통과**하므로 그대로 둔다.
 
 
 def run(args: list[str]) -> tuple[int, str]:
