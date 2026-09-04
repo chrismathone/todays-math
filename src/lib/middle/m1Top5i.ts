@@ -722,6 +722,21 @@ export function productBody(c: ProductCase): Body {
   };
 }
 
+/**
+ * 답의 부호로 가른 두 풀 — **반반으로 뽑기 위한** 것이다(아래 `98X` 주석 참조).
+ *
+ * ⚠️ 여기서 지면 지름길 가드까지 미리 걸러 두지 **않는다.** 그러려면 창 13,068건의
+ *    지면을 모듈이 실릴 때 전부 지어야 해서(실측 수 초) 이 모듈을 읽는 모든 시험이
+ *    그만큼 느려진다. 가드는 지금처럼 `attempt` 안에서 돌린다 — 양수 쪽도 20.48%가
+ *    살아남아(1,338건) 3,000번 안에 반드시 잡힌다.
+ */
+export const PRODUCT_POSITIVE: readonly ProductCase[] = PRODUCT_WINDOW.filter(
+  (c) => c.answer > 0,
+);
+export const PRODUCT_NEGATIVE: readonly ProductCase[] = PRODUCT_WINDOW.filter(
+  (c) => c.answer < 0,
+);
+
 const TRIPLE_PRODUCT: TypeEntry[] = [
   defType(
     BOOK1,
@@ -730,15 +745,32 @@ const TRIPLE_PRODUCT: TypeEntry[] = [
     "두 수씩 곱한 값에서 세 수의 곱 구하기",
     SEC.곱셈,
     "심화중",
-    (rng): Body =>
-      attempt(3000, (): Body | null => {
-        const c = pick(rng, PRODUCT_WINDOW);
+    (rng): Body => {
+      // 🔴 **답의 부호를 먼저 뽑는다.** 안 그러면 바로 아래 지면 지름길 가드가
+      //    부호를 한쪽으로 몰아 **더 큰 지름길**을 만든다 — 실측(2026-09-04):
+      //    창은 양수 6,534 · 음수 6,534 로 **정확히 반반**인데, 그 가드를 지나면
+      //    양수는 6,534 → 1,338(**20.48%만 산다**) 음수는 6,534 → 5,010(76.68%)
+      //    이라 살아남은 풀의 **79%가 음수**가 된다. 제품 경로 1,200판 실측으로도
+      //    음수 답이 **77.08%** 였다. 곧 「부호는 안 따지고 **음의 근**을 그대로
+      //    적는다」가 **77% 맞는다** — 우연(둘 중 하나)이 50% 이므로 **우연의
+      //    1.54배**다. 이 유형의 굳힘이 바로 그 부호이므로 그것을 건너뛸 수 있으면
+      //    유형이 통째로 무너진다.
+      //    ⚠️ 이것은 **가드가 나빠서가 아니다** — 가드는 제 일을 한다. 걸러 낸 뒤의
+      //    **분포**를 아무도 안 본 것이 결함이다. 그래서 가드를 끄지 않고(끄면 원래
+      //    막던 지름길이 돌아온다) **부호를 먼저 정한 뒤 그 쪽 풀에서만** 뽑는다.
+      //    ⚠️ 「음수만 낸다」로 고치면 안 된다 — 그때는 **음의 근이 100%** 가 된다.
+      //    두 갈래 지름길이 있는 축에서는 **반반**이 최선이다(가장 잘 뚫는 길을
+      //    우연 수준까지 낮춘다).
+      const pool = pick(rng, [PRODUCT_POSITIVE, PRODUCT_NEGATIVE]);
+      return attempt(3000, (): Body | null => {
+        const c = pick(rng, pool);
         const body = productBody(c);
         if (pageShortcutValues(contentNumbers(body.content)).has(c.answer)) {
           return null;
         }
         return body;
-      }),
+      });
+    },
   ),
 ];
 

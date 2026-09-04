@@ -72,6 +72,8 @@ import {
   CONE_ROLLS,
   CONE_WINDOW,
   M1_TOP_5I,
+  PRODUCT_NEGATIVE,
+  PRODUCT_POSITIVE,
   PRODUCT_WINDOW,
   SPHERE_WINDOW,
   WIRE_L_VALUES,
@@ -1666,6 +1668,52 @@ describe("중1 5차i 확대 갈래 — 쏠림과 지름길", () => {
   it("🔴 `98X` 창의 불변식 — 음수는 늘 하나 또는 둘이다 (해설의 분기 없는 줄이 그것에 기댄다)", () => {
     const lens = new Set(PRODUCT_WINDOW.map((c) => c.negatives.length));
     expect([...lens].sort()).toEqual([1, 2]);
+  });
+
+  it("🔴 `98X` — 답의 부호가 **반반**이다 (한쪽으로 쏠리면 「그 근을 그냥 적는다」가 지름길이 된다)", () => {
+    /**
+     * 🔴 **이 자가 없던 동안 「음의 근을 그냥 적는다」가 77% 맞았다** (2026-09-04).
+     *
+     * 창 자체는 양수 6,534 · 음수 6,534 로 **정확히 반반**인데, 지면 지름길 가드
+     * (`pageShortcutValues`)를 지나면 양수는 **20.48%**(1,338)만 살고 음수는
+     * **76.68%**(5,010)가 살아 살아남은 풀의 79%가 음수가 된다. 제품 경로
+     * 1,200판 실측으로도 음수 **77.08%** 였다. 이 유형의 굳힘이 바로 그 부호이므로
+     * 그것을 안 따지고 맞는 판이 넷 중 셋이면 유형이 통째로 무너진다 — 우연은 50%다.
+     *
+     * ⚠️ **창을 세는 것으로는 이 결함을 못 본다.** 창은 반반이었다. 재야 하는 것은
+     *    **가드를 지난 뒤 제품이 실제로 뽑는 것**이다. 그래서 이 자는 `build` 로
+     *    제품 경로를 탄다.
+     */
+    let pos = 0;
+    for (const [seed, v] of WIDE) {
+      const f = build(K98, seed, v).facts as Record<string, number>;
+      if (f.x! > 0) pos += 1;
+    }
+    const rate = pos / WIDE.length;
+    // 반반에서 크게 벗어나면 어느 쪽이든 그 근을 그냥 적는 것이 지름길이 된다.
+    expect(rate, `양수 답 ${pos}/${WIDE.length}`).toBeGreaterThan(0.4);
+    expect(rate, `양수 답 ${pos}/${WIDE.length}`).toBeLessThan(0.6);
+  });
+
+  it("🔴 `98X` — 부호로 가른 두 풀이 **둘 다 가드를 지나는 판을 갖는다**", () => {
+    /**
+     * 위 자가 초록인 것만으로는 모자란다 — 양수 풀이 가드를 **하나도** 못 지나면
+     * `attempt` 가 3,000번을 헛돌다 던진다. 「반반으로 뽑는다」가 성립할 수 있는지를
+     * 여기서 따로 못 박는다. 그리고 **0은 «깨끗»과 «못 셈»을 안 가르므로** 살아남은
+     * 수를 실제로 세어 둔다(실측 양수 1,338 · 음수 5,010).
+     */
+    expect(PRODUCT_POSITIVE.length + PRODUCT_NEGATIVE.length).toBe(
+      PRODUCT_WINDOW.length,
+    );
+    const alive = (pool: readonly (typeof PRODUCT_WINDOW)[number][]): number =>
+      pool.filter(
+        (c) =>
+          !pageShortcutValues(contentNumbers(productBody(c).content)).has(
+            c.answer,
+          ),
+      ).length;
+    expect(alive(PRODUCT_POSITIVE)).toBeGreaterThan(500);
+    expect(alive(PRODUCT_NEGATIVE)).toBeGreaterThan(500);
   });
 });
 
