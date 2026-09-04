@@ -129,6 +129,62 @@ export function meanOf(values: readonly number[]): number {
   return values.reduce((a, b) => a + b, 0) / values.length;
 }
 
+/**
+ * 🔴 **되짚기가 낸 후보 셋** — 굳힘을 안 읽으면 학생이 아는 전부가 이것이다.
+ *
+ * 2차 물결부터는 이런 «설계 함수»가 관례인데(`m3Top2.ts` `solveAbsSumEquation`),
+ * 1차 물결은 그것이 `planMedianMean` 안에 **인라인**으로만 있었다. 그래서 «지우기»
+ * 축이 밖에서 이 규칙을 **옮겨 적어야** 잴 수 있었다 — 규칙이 두 벌이 되면 한쪽만
+ * 고쳐도 아무도 모른다(2026-08-18). 밖으로 빼고 생성기가 이것을 부르게 했다.
+ */
+export function medianMeanCandidates(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+): [number, number, number] {
+  const s = a + b + c + d;
+  return [5 * b - s, s / 4, 5 * c - s];
+}
+
+/**
+ * 🔴 **굳힘 «둘»을 각각 인자로 받는다** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * `useSlot` 은 자리 조건(그 $x$ 를 실제로 넣어 정렬한 중앙값이 평균과 같은가),
+ * `useNatural` 은 「변량은 자연수」다.
+ *
+ * ⚠️ 자리 조건을 「$x\le b$」 따위로 **다시 쓰지 않고 정렬해 계산한다** — 후보를
+ *    만들 때 쓴 식으로 검산하면 동어반복이 된다(이 파일 머리말).
+ */
+export function medianMeanAlive(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  useSlot: boolean,
+  useNatural: boolean,
+): boolean {
+  if (useNatural && !(Number.isInteger(x) && x >= 1)) return false;
+  if (!useSlot) return true;
+  const data = [a, b, c, d, x];
+  return medianOf(data) === meanOf(data);
+}
+
+/** 굳힘을 댄 뒤 남은 후보. 둘을 다 끄면 후보 셋이 그대로 돌아온다. */
+export function solveMedianMean(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  useSlot: boolean,
+  useNatural: boolean,
+): number[] {
+  return medianMeanCandidates(a, b, c, d).filter((x) =>
+    medianMeanAlive(a, b, c, d, x, useSlot, useNatural),
+  );
+}
+
 export type MedianMeanRow = {
   /** 이 자리에서 되짚기가 낸 후보 */
   x: number;
@@ -216,14 +272,17 @@ export function planMedianMean(rng: Rng): MedianMeanPlan {
     if (S % 4 !== 0) return null;
 
     const base: [number, number, number, number] = [a, b, c, d];
+    // 후보 셋은 `medianMeanCandidates` 한 곳에서만 만든다 — 판정기가 부르는 것과
+    // 같은 함수여야 한다(규칙을 두 벌 두지 않는다).
+    const cand = medianMeanCandidates(a, b, c, d);
     const raw: { x: number; needText: string; needHolds: boolean }[] = [
-      { x: 5 * b - S, needText: `x\\le ${b}`, needHolds: 5 * b - S <= b },
+      { x: cand[0], needText: `x\\le ${b}`, needHolds: cand[0] <= b },
       {
-        x: S / 4,
+        x: cand[1],
         needText: `${b}<x\\le ${c}`,
-        needHolds: S / 4 > b && S / 4 <= c,
+        needHolds: cand[1] > b && cand[1] <= c,
       },
-      { x: 5 * c - S, needText: `x>${c}`, needHolds: 5 * c - S > c },
+      { x: cand[2], needText: `x>${c}`, needHolds: cand[2] > c },
     ];
     // 후보가 겹치면 「후보 셋」이 거짓말이 된다.
     if (new Set(raw.map((r) => r.x)).size !== 3) return null;
@@ -233,7 +292,14 @@ export function planMedianMean(rng: Rng): MedianMeanPlan {
       const data = [a, b, c, d, r.x];
       const median = medianOf(data);
       const mean = meanOf(data);
-      return { ...r, natural, median, mean, ok: natural && median === mean };
+      // 살아남음의 판정도 판정기와 **같은 함수**로 한다.
+      return {
+        ...r,
+        natural,
+        median,
+        mean,
+        ok: medianMeanAlive(a, b, c, d, r.x, true, true),
+      };
     });
 
     // 🔴 해설이 말하는 자리 조건과 **실제 정렬 결과**가 어긋나면 해설이 거짓말을
@@ -345,6 +411,27 @@ export function quadrantOf(x: number, y: number): number {
   return y > 0 ? 2 : 3;
 }
 
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * 후보는 점을 지나는 조건이 낸 두 근이고, 굳힘은 「꼭짓점 $(k,\;k^2-t)$ 가 발문이
+ * 지정한 사분면 위에 있는가」다. `useQuadrant` 를 끄면 둘이 그대로 남는다.
+ *
+ * ⚠️ 사분면 판정은 `quadrantOf` **하나**가 한다 — 「$k>0$ 이고 $k^2>t$ 이면 제1」
+ *    처럼 다시 쓰지 않는다(규칙을 두 벌 두지 않는다).
+ */
+export function solveVertexQuadrant(
+  k1: number,
+  k2: number,
+  t: number,
+  quadrant: number,
+  useQuadrant: boolean,
+): number[] {
+  return [k1, k2].filter(
+    (k) => !useQuadrant || quadrantOf(k, k * k - t) === quadrant,
+  );
+}
+
 export type VertexQuadrantPlan = {
   /** 되짚기가 만든 두 후보 */
   roots: [number, number];
@@ -395,7 +482,8 @@ export function planVertexQuadrant(rng: Rng): VertexQuadrantPlan {
     if (rows[0]!.quadrant === rows[1]!.quadrant) return null;
 
     const quadrant = pick(rng, rows).quadrant;
-    const kept = rows.filter((r) => r.quadrant === quadrant).map((r) => r.k);
+    // 굳힘은 `solveVertexQuadrant` 한 곳에서만 — 판정기가 부르는 것과 같은 함수다.
+    const kept = solveVertexQuadrant(k1, k2, t, quadrant, true);
     if (kept.length !== 1) return null;
 
     const p = k1 + k2;

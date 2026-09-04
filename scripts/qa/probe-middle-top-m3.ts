@@ -56,19 +56,37 @@ import {
   planMedianMean,
   planVertexQuadrant,
   type Sift,
+  solveMedianMean,
+  solveVertexQuadrant,
 } from "../../src/lib/middle/m3Top";
 import {
+  solveAbsSumEquation,
+  solveAxisReflection,
+  solveDiffOfSquares,
+  solveHypotenuseArea,
+} from "../../src/lib/middle/m3Top2";
+import {
+  CANCEL_ANSWERS,
   M3_TOP_3,
+  otherRootAtOne,
   planCancel,
   planQuadraticAlive,
   planRationalRoots,
   planRootSum,
+  solveCancelCoef,
+  solveQuadraticAlive,
+  solveRationalRoots,
+  solveRootSumNatural,
 } from "../../src/lib/middle/m3Top3";
 import {
   M3_TOP_4,
+  foldParts,
   planBoxMean,
   planFactorSum,
   planScatterPair,
+  solveBoxCases,
+  solveFactorA,
+  solvePairSum,
 } from "../../src/lib/middle/m3Top4";
 import {
   consecutiveCandidates,
@@ -632,6 +650,148 @@ function selftest(): void {
     true,
     aHit.hit === 0 && aHit.noAxis === 2 && aSame.same === 0,
     `지름길 ${aHit.hit}/2 · 축없음 ${aHit.noAxis} · 그대로 ${aSame.same}/2`,
+  );
+
+  // ── 지우기 축을 **실제로 쓰는** 자리 — 2026-09-04 에 14유형을 채우며 ─────
+  //
+  // 🔴 **내 흔들기가 두 번 먼저 틀렸다**(22T 는 24판 전부 · 58W 는 5판이 거짓
+  //    「장식」이었다). 그 둘을 눈금으로 박는다 — «좁은(틀린) 흔들기»가 «장식»을
+  //    찍는 것(**양성**: 채점기가 «예»를 낼 수 있다)과 «넓은(옳은) 흔들기»가
+  //    아무것도 안 무는 것(**음성**)을 짝으로 댄다. 양성이 없으면 「장식 0건」이
+  //    «깨끗»인지 «내 흔들기가 죽었는지» 안 갈린다(2026-08-20 · 08-21).
+  //
+  // ⚠️ 픽스처는 **손으로 지은 것**이다 — 살아 있는 엔진에서 뽑으면 생성기가 그
+  //    자리를 고치는 순간 양성이 조용히 사라진다(2026-08-31 초6 과 같은 처방).
+
+  // ⑴ 22T — 두 근의 부호가 다르면 **사분면이 $x$부호를 이미 고정**하므로, $t$ 를
+  //    아무리 흔들어도 살아남는 근이 하나인 동안에는 언제나 같은 근이다.
+  //    $k=2,\,5$ · $t=10$ · 제1사분면 → 꼭짓점 $(2,-6)$·$(5,15)$ 라 답은 $5$.
+  const vqRow = [
+    { facts: { root0: 2, root1: 5, t: 10, quadrant: 1, answer: 5 }, answer: 5 },
+  ];
+  const vqTOnly: Axis = {
+    withoutBinding: () => null,
+    perturbed: (f) => {
+      const truth = f.answer!;
+      let sawAny = false;
+      for (let dt = -12; dt <= 12; dt += 1) {
+        if (dt === 0) continue;
+        const t2 = f.t! + dt;
+        if (t2 < 1) continue;
+        const kept = solveVertexQuadrant(
+          f.root0!,
+          f.root1!,
+          t2,
+          f.quadrant!,
+          true,
+        );
+        if (kept.length !== 1) continue;
+        sawAny = true;
+        if (kept[0]! !== truth) return kept[0]!;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: () => 2,
+  };
+  const vqNarrow = scorePerturb(vqRow, vqTOnly);
+  say(
+    "㉢ 양성 — $t$ 만 흔든 22T 축을 «장식»으로 잡는다",
+    true,
+    vqNarrow.same === 1 && vqNarrow.unmeasured === 0,
+    `그대로 ${vqNarrow.same}/1 · 못잼 ${vqNarrow.unmeasured}`,
+  );
+  const vqReal = scorePerturb(vqRow, AXES_M3["3-1|이차함수의 그래프 ⑵|22T"]!);
+  say(
+    "㉢ 음성 — 사분면까지 훑는 22T 축은 안 문다",
+    true,
+    vqReal.same === 0 && vqReal.unmeasured === 0,
+    `그대로 ${vqReal.same}/1 · 못잼 ${vqReal.unmeasured}`,
+  );
+
+  // ⑵ 58W — 차가 $\pm5$ 인 짝 하나(학생 $0$·$1$)와 절댓값이 서로 다른 여섯.
+  //    답은 $60+70=130$. 좁게($\pm1,\pm2$) 흔들면 ㉮ 짝에 **안 든** 학생은 답을
+  //    그대로 두고 ㉯ 짝에 **든** 학생은 짝을 통째로 없애(살아남는 것 $0$) 건너뛰어져,
+  //    «달라지는 자리»가 구조적으로 안 나온다. 넓게 훑으면 학생 $0$ 의 차가 $+12$ 가
+  //    되어 학생 $7(-12)$ 과 **새 짝**을 이루고 답이 $60+50=110$ 으로 바뀐다.
+  const spFacts: Record<string, number> = { k: 5, x: 130 };
+  const spXs = [60, 70, 55, 80, 52, 85, 65, 50];
+  const spYs = [55, 75, 54, 82, 43, 95, 54, 62];
+  spXs.forEach((v, i) => {
+    spFacts[`x${i}`] = v;
+    spFacts[`y${i}`] = spYs[i]!;
+  });
+  const spRow = [{ facts: spFacts, answer: 130 }];
+  const spNarrow: Axis = {
+    withoutBinding: () => null,
+    perturbed: (f) => {
+      const [xs, ys] = scatterXY(f);
+      const truth = f.x!;
+      let sawAny = false;
+      for (let i = 0; i < 8; i += 1) {
+        for (const dy of [-2, -1, 1, 2]) {
+          const ys2 = [...ys];
+          ys2[i] = ys2[i]! + dy;
+          const kept = solvePairSum(xs, ys2, true);
+          if (kept.length !== 1) continue;
+          sawAny = true;
+          if (kept[0]! !== truth) return kept[0]!;
+        }
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: () => 28,
+  };
+  const spN = scorePerturb(spRow, spNarrow);
+  say(
+    "㉢ 양성 — 좁게 흔든 58W 축을 «장식»으로 잡는다",
+    true,
+    spN.same === 1 && spN.unmeasured === 0,
+    `그대로 ${spN.same}/1 · 못잼 ${spN.unmeasured}`,
+  );
+  const spR = scorePerturb(spRow, AXES_M3["3-2|상자그림과 산점도|58W"]!);
+  say(
+    "㉢ 음성 — 넓게 훑는 58W 축은 안 문다",
+    true,
+    spR.same === 0 && spR.unmeasured === 0,
+    `그대로 ${spR.same}/1 · 못잼 ${spR.unmeasured}`,
+  );
+
+  // ⑶ 57W 의 여섯 자료값은 `facts` 에 **없다** — 지면에서 되만든다.
+  //    되만들기가 조용히 실패하면 그 유형이 통째로 「축 없음」으로 세어져 결함이
+  //    사라진다. 그래서 **읽는가**와 **못 읽으면 던지는가**를 짝으로 댄다.
+  const boxStem =
+    "값이 서로 다른 일곱 개의 자료가 다음과 같다.\n" +
+    "$8$, $14$, $20$, $26$, $32$, $38$, $x$\n" +
+    "이 자료의 중앙값이 $26$이고 사분위수범위가 $23$일 때, 이 자료의 평균을 구하시오.";
+  // ⚠️ **던지게 두면 눈금이 «빨강»이 아니라 «죽음»이 된다.** 되만들기가 망가지면
+  //    이 자리가 던지는데, 그러면 판정 줄이 아예 안 찍혀 다음 사람이 「몇 건이
+  //    빨간가」를 못 읽는다. 잡아서 **판정으로** 내린다.
+  let read: Record<string, number> = {};
+  try {
+    read = stemDataFacts("3-2|상자그림과 산점도|57W", boxStem);
+  } catch {
+    read = {};
+  }
+  say(
+    "㉢ 양성 — 57W 의 자료 여섯을 **지면에서** 읽는다",
+    true,
+    Object.keys(read).length === 6 && read.d0 === 8 && read.d5 === 38,
+    `${Object.keys(read).length}개 · d0=${read.d0} d5=${read.d5}`,
+  );
+  let stemThrew = false;
+  try {
+    stemDataFacts(
+      "3-2|상자그림과 산점도|57W",
+      "머리말\n$8$, $14$, $20$, $x$\n꼬리말",
+    );
+  } catch {
+    stemThrew = true;
+  }
+  say(
+    "㉢ 음성 — 지면이 그 모양이 아니면 **던진다**(축 없음으로 새지 않는다)",
+    true,
+    stemThrew,
+    stemThrew ? "던졌다" : "조용히 지나갔다",
   );
 
   // ── 등록: 새 갈래가 실제로 `심화중`·`심화상` 으로 나오는가 (분모)
@@ -1222,7 +1382,480 @@ function trigSum(
 
 const sumM3 = (xs: readonly number[]): number => xs.reduce((a, b) => a + b, 0);
 
+// ── 1~4차 물결이 `facts` 에 안 담은 값을 되만드는 자리 ──────────────────────
+//
+// 🔴 **되만들기가 실패하면 던진다.** `null` 을 돌려주면 「축 없음」으로 세어져
+//    결함이 조용히 사라진다 — 「0은 «깨끗»과 «못 셈»을 안 가른다」(2026-08-21).
+
+/** `57W` — 지면에서 읽은 여섯 자료값. `axisRows` 가 `d0`~`d5` 로 넣어 준다. */
+function boxVs(f: Record<string, number>): number[] {
+  const vs: number[] = [];
+  for (let i = 0; i < 6; i += 1) {
+    const v = f[`d${i}`];
+    if (v === undefined) throw new Error(`57W: 자료 d${i} 가 없다`);
+    vs.push(v);
+  }
+  return vs;
+}
+
+/** `58W` — 여덟 학생의 두 점수. `facts` 에 `x0`~`x7`·`y0`~`y7` 로 들어 있다. */
+function scatterXY(f: Record<string, number>): [number[], number[]] {
+  const xs: number[] = [];
+  const ys: number[] = [];
+  for (let i = 0; i < 8; i += 1) {
+    const x = f[`x${i}`];
+    const y = f[`y${i}`];
+    if (x === undefined || y === undefined)
+      throw new Error(`58W: 학생 ${i} 의 점수가 없다`);
+    xs.push(x);
+    ys.push(y);
+  }
+  return [xs, ys];
+}
+
 export const AXES_M3: Record<string, Axis> = {
+  // ══════════════════════════════════════════════════════════════════
+  // 1차 물결 (`m3Top.ts` · 접미사 `T`)
+  // ══════════════════════════════════════════════════════════════════
+
+  // 11T — 굳힘이 **둘**이다(자리 조건 · 「변량은 자연수」). 둘을 다 지우면 되짚기가
+  //       낸 후보 셋이 통째로 남는다. 답은 살아남은 것을 **오름차순으로 모두** 적으므로
+  //       `answerNumber` 가 읽는 것은 그 **첫 값**(= 가장 작은 것)이다. 그래서 지름길도
+  //       「후보 셋 가운데 가장 작은 것을 첫 답으로 적기」로 맞춘다.
+  "3-2|산포도|11T": {
+    withoutBinding: (f) =>
+      Math.min(...solveMedianMean(f.a!, f.b!, f.c!, f.d!, false, false)),
+    // 굳힘 인자는 네 변량이다. 하나씩 흔들어 **하나라도** 답이 달라지면 굳힘이 산다
+    //  — 「첫 번째로 값이 서는 흔들기」는 제비뽑기다(145X 와 같은 처방).
+    //
+    // ⚠️ 오름차순이 깨진 자료는 이 설계의 것이 아니므로 건너뛴다(발문이 $a<b<c<d$ 로
+    //    적는다). 그것까지 세면 흔들기가 «다른 설계»를 재게 된다.
+    perturbed: (f) => {
+      const truth = f.answerMin!;
+      const base = [f.a!, f.b!, f.c!, f.d!];
+      let sawAny = false;
+      for (let i = 0; i < 4; i += 1) {
+        for (const dv of [-2, -1, 1, 2]) {
+          const v = [...base];
+          v[i] = v[i]! + dv;
+          if (!(v[0]! < v[1]! && v[1]! < v[2]! && v[2]! < v[3]!)) continue;
+          const kept = solveMedianMean(v[0]!, v[1]!, v[2]!, v[3]!, true, true);
+          if (kept.length === 0) continue;
+          const got = Math.min(...kept);
+          sawAny = true;
+          if (got !== truth) return got;
+        }
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) =>
+      solveMedianMean(f.a!, f.b!, f.c!, f.d!, false, false).length,
+  },
+
+  // 22T — 생성기 머리말이 적어 둔 대로 굳힘은 **부호 판정 «두 번»**이다
+  //       ($x$좌표 $k$ 의 부호 · $y$좌표 $k^2-t$ 의 부호). 130X 와 같은 자리라
+  //       ㉠ 은 그 **둘째**만 지운다 — 「꼭짓점의 $y$좌표를 한 번도 안 구하고,
+  //       사분면이 요구하는 $x$부호에 맞는 근을 집는다」.
+  //
+  // 🔴 그것으로 **갈리는 판이 많다**(실측은 보고서에 적었다). 두 근의 부호가
+  //    다르면 사분면이 곧 부호를 지정하므로 $y$좌표 판정이 할 일이 없다.
+  //    갈리지 않는 판(두 근이 같은 부호)에서는 학생이 찍어야 하므로 «작은 쪽 집기»로
+  //    모형을 이었다 — 거기서 `NaN` 을 내면 그 판이 분모에서 빠져 적중률이
+  //    **부풀어 오른다**(못 잰 판을 «맞다»로 세는 것과 같은 자리).
+  "3-1|이차함수의 그래프 ⑵|22T": {
+    withoutBinding: (f) => {
+      const wantPositive = f.quadrant! === 1 || f.quadrant! === 4;
+      const cand = solveVertexQuadrant(
+        f.root0!,
+        f.root1!,
+        f.t!,
+        f.quadrant!,
+        false,
+      );
+      const bySign = cand.filter((k) => k > 0 === wantPositive);
+      return Math.min(...(bySign.length > 0 ? bySign : cand));
+    },
+    // 🔴 **첫 판은 $t$ 만 흔들었다가 24판 전부 「장식」을 찍었다.** $t$ 는 꼭짓점을
+    //    위아래로 옮길 뿐이라, 살아남는 후보가 **하나인 동안에는 언제나 같은 근**이다
+    //    (사분면이 $x$부호를 이미 고정한다). 그것은 굳힘의 허물이 아니라 **내 흔들기가
+    //    뜻을 안 바꾼 것**이다(2026-08-21). 굳힘의 진짜 인자는 **발문이 지정하는
+    //    사분면**이므로 그것을 먼저 훑고, $t$ 도 이어서 훑는다 — 흔들 자리가 여럿이면
+    //    전부 보고 하나라도 달라지면 「굳힘이 산다」다(145X 와 같은 처방).
+    perturbed: (f) => {
+      const truth = f.answer!;
+      let sawAny = false;
+      const pick1 = (t2: number, q2: number): number | null => {
+        const kept = solveVertexQuadrant(f.root0!, f.root1!, t2, q2, true);
+        return kept.length === 1 ? kept[0]! : null;
+      };
+      for (const q2 of [1, 2, 3, 4]) {
+        if (q2 === f.quadrant!) continue;
+        const got = pick1(f.t!, q2);
+        if (got === null) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      for (let dt = -12; dt <= 12; dt += 1) {
+        if (dt === 0) continue;
+        const t2 = f.t! + dt;
+        if (t2 < 1) continue;
+        const got = pick1(t2, f.quadrant!);
+        if (got === null) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) =>
+      solveVertexQuadrant(f.root0!, f.root1!, f.t!, f.quadrant!, false).length,
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // 2차 물결 (`m3Top2.ts` · 접미사 `U`)
+  // ══════════════════════════════════════════════════════════════════
+
+  // 41U — 굳힘은 「후보를 **원 방정식에 넣어** 성립하는 것만 남긴다」이다.
+  //       지우면 세 갈래가 낸 후보 셋의 합이 그대로 답이 된다.
+  "3-1|제곱근의 뜻과 성질|41U": {
+    withoutBinding: (f) =>
+      sumM3(solveAbsSumEquation(f.p!, f.q!, f.c1!, f.c2!, f.r!, false)),
+    // 🔴 **$r$ 을 좁게 흔들면 «장식»이 거짓으로 찍힌다.** 가운데 갈래가 죽는 씨앗에서는
+    //    산 두 뿌리의 합이 $\dfrac{2(c_1p+c_2q)}{c_1+c_2}$ 라 **$r$ 과 무관**하기
+    //    때문이다(죽는 자리가 안 바뀌는 범위 안에서는 늘 같다). 그것은 굳힘의 허물이
+    //    아니라 내 흔들기가 뜻을 안 바꾼 것이다(2026-08-21). 그래서 죽는 자리가
+    //    바뀔 만큼 **넓게 훑고**, 하나라도 달라지면 「굳힘이 산다」로 본다.
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (let dr = -60; dr <= 60; dr += 1) {
+        if (dr === 0) continue;
+        const r2 = f.r! + dr;
+        if (r2 < 1) continue;
+        let got: number;
+        try {
+          got = sumM3(solveAbsSumEquation(f.p!, f.q!, f.c1!, f.c2!, r2, true));
+        } catch {
+          continue;
+        }
+        if (!Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) =>
+      solveAbsSumEquation(f.p!, f.q!, f.c1!, f.c2!, f.r!, false).length,
+  },
+
+  // 42U — 굳힘은 「포물선은 축에 대하여 대칭이다」 하나다.
+  //
+  // 🔴 **지우면 문제가 사라진다 — 축 없음.** 발문이 주는 조건은 둘뿐이라 $a$·$q$·$k$ 가
+  //    하나로 안 굳고(생성기 해설이 그렇게 적는다), 대칭을 안 쓰면 나머지 $x$절편을
+  //    낼 길이 없다. 「$0\%$」가 아니라 「그 축이 이 유형에 없다」는 뜻이다.
+  //    ⚠️ ㉠ 에 해당하는 것(「발문에 적힌 수 하나 찍기」)은 이 갈래에서 생성기
+  //       불변식($w\ne x_2$·$w\ne x_1$·$w\ne p$)이 **구조적으로 0**으로 막고 있고,
+  //       그것은 `middleM3Top2.test.ts` 가 잠근다.
+  "3-1|이차함수의 그래프 ⑴|42U": {
+    withoutBinding: () => null,
+    // 생성기 주석이 「$x_1$ 이나 $x_2$ 를 흔들면 축이 옮겨 가 답이 달라진다」고
+    // 적어 둔 그 자리를 그대로 잰다.
+    perturbed: (f) => solveAxisReflection(f.x1! + 1, f.x2!, f.w!),
+    candidateCount: () => null,
+  },
+
+  // 43U — 굳힘은 「$x-y$ 와 $x+y$ 의 **홀짝이 같아야** $x$, $y$ 가 자연수」다.
+  //       지우면 곱이 $N$ 인 약수쌍이 통째로 살아 합이 달라진다.
+  "3-1|다항식의 인수분해|43U": {
+    withoutBinding: (f) => sumM3(solveDiffOfSquares(f.n!, false)),
+    // 굳힘 인자는 $N$ 이다. 홀짝 구조가 실제로 바뀌도록 넓게 훑는다
+    // ($N$ 이 $4$ 의 배수인 것이 이 설계의 전제라 $\pm4$ 만 봐서는 뜻이 덜 바뀐다).
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (let dn = -12; dn <= 12; dn += 1) {
+        if (dn === 0) continue;
+        const n2 = f.n! + dn;
+        if (n2 < 4) continue;
+        const got = sumM3(solveDiffOfSquares(n2, true));
+        if (!Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => solveDiffOfSquares(f.n!, false).length,
+  },
+
+  // 44U — 굳힘은 「큰 각의 대변이 더 길다」로 **두 배정 중 하나를 죽이는 것**이다.
+  //       지우면 학생은 배정을 찍어야 한다 — 여기서는 「$\overline{BC}$ 가 짧은 변」
+  //       쪽으로 늘 찍는 게으른 학생을 잰다(우연 $1/2$).
+  //
+  // ⚠️ 생성기가 굳힘의 **방향**($\angle A<\angle B$ / $>$)을 씨앗마다 반반으로
+  //    뒤집으므로 이 지름길은 우연 수준에 머물러야 한다. 크게 벗어나면 그 균형이
+  //    깨진 것이다.
+  "3-2|삼각비|44U": {
+    withoutBinding: (f) =>
+      solveHypotenuseArea(
+        f.small!,
+        f.large!,
+        f.hyp!,
+        true,
+        f.ratio! as 0 | 1,
+      )[0],
+    // 굳힘 인자는 **발문의 부등호 방향**이다. 뒤집으면 $\overline{BC}$ 와
+    // $\overline{CA}$ 가 맞바뀌므로 답이 달라져야 한다.
+    perturbed: (f) =>
+      solveHypotenuseArea(
+        f.small!,
+        f.large!,
+        f.hyp!,
+        f.aIsSmaller! === 0,
+        f.ratio! as 0 | 1,
+      )[0],
+    candidateCount: () => 2,
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // 3차 물결 (`m3Top3.ts` · 접미사 `V`)
+  // ══════════════════════════════════════════════════════════════════
+
+  // 51V — 굳힘은 「$x^2$ 의 계수가 $0$ 이 아니다(= 이차방정식이다)」다.
+  //
+  // 🔴 **지우면 답이 서지 않는다 — 축 없음.** 죽는 후보 $k=-a$ 는 식을 **일차방정식**
+  //    으로 만들어 «나머지 해»가 아예 없기 때문이다(`otherRootAtOne` 이 `null`).
+  //    131X 와 같은 자리다. 「$0\%$」가 아니라 「그 축이 이 유형에 없다」는 뜻이고,
+  //    이 판정은 **말이 아니라 계산으로** 나온다(아래 `null` 검사).
+  //    ⚠️ 이 유형의 ㉠ 은 그 대신 `reportShortcuts()` ⑴ 이 재고 있다
+  //       (「발문의 계수 둘을 한 번 나누면 답이 나오나」 — 옛 실측 57.1%).
+  "3-1|이차방정식의 풀이|51V": {
+    withoutBinding: (f) => {
+      const vals = solveQuadraticAlive(f.a!, f.p!, false).map((k) =>
+        otherRootAtOne(f.a!, f.p!, k),
+      );
+      if (vals.some((v) => v === null)) return null;
+      // 둘 다 값이 서면 그때는 「작은 후보 집기」가 지름길이 된다 — 그 자리를
+      // 구조적으로 못 보지 않도록 값을 낸다(지금 설계에서는 여기에 안 온다).
+      return vals[0]!;
+    },
+    // 굳힘 인자는 $a$ 다 — 죽는 후보가 $-a$ 이고 계수가 $k^2-a^2$ 이다.
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (const da of [-4, -3, -2, -1, 1, 2, 3, 4]) {
+        const a2 = f.a! + da;
+        if (a2 < 1) continue;
+        const alive = solveQuadraticAlive(a2, f.p!, true);
+        if (alive.length !== 1) continue;
+        const got = otherRootAtOne(a2, f.p!, alive[0]!);
+        if (got === null || !Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => solveQuadraticAlive(f.a!, f.p!, false).length,
+  },
+
+  // 52V — 굳힘은 「발문이 빼 둔 $3x^2$ 이 세 곱에서 나온 $x^2$ 셋과 **소거된다**」이다.
+  //       지우면 식이 $x$ 에 따라 변해 「관계없이 $S$」인 자연수 $a$ 가 **하나도 없다**
+  //       (살아남는 것이 없으면 합이 $0$ 이라 값은 선다).
+  //
+  // ⚠️ **이 축이 못 보는 것** — 생성기 머리말이 스스로 적어 둔 우회로($x=0$ 한 줄
+  //    대입, 실측 100%)는 굳힘을 «지운» 것이 아니라 **다른 길로 간** 것이라 여기서
+  //    구조적으로 안 잡힌다. 그쪽은 `reportNoSiftAxis()` 와 그 주석이 맡는다.
+  "3-1|다항식의 곱셈|52V": {
+    withoutBinding: (f) =>
+      sumM3(solveCancelCoef([f.c1!, f.c2!, f.c3!], f.s!, false)),
+    // 굳힘 인자는 $\Sigma=c_1^2+c_2^2+c_3^2$ 다 — 소거 뒤 남는 값이 $-\Sigma a^2$ 이다.
+    // 계수 하나를 흔들면 그 $S$ 를 내는 자연수 $a$ 가 달라져야 한다.
+    perturbed: (f) =>
+      sumM3(solveCancelCoef([f.c1!, f.c2!, f.c3! + 1], f.s!, true)),
+    // 후보 목록이 없는 갈래다. 우연 수준은 **풀이 낼 수 있는 답의 가짓수**로 잰다.
+    candidateCount: () => CANCEL_ANSWERS.length,
+  },
+
+  // 53V — 굳힘은 「판별식이 **제곱수**」다. 창(자연수 $k$ 는 $1$ 부터
+  //       $\lfloor b^2/4a\rfloor$ 까지)은 발문이 주는 것이라 굳힘이 아니다.
+  //       지우면 창 전체의 합이 답이 된다.
+  "3-1|이차방정식의 활용|53V": {
+    withoutBinding: (f) => sumM3(solveRationalRoots(f.a!, f.b!, false)),
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (const db of [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]) {
+        const b2 = f.b! + db;
+        if (b2 < 1) continue;
+        const got = sumM3(solveRationalRoots(f.a!, b2, true));
+        if (!Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => solveRationalRoots(f.a!, f.b!, false).length,
+  },
+
+  // 54V — 굳힘이 **둘**이다(「$n$ 이 제곱수」 · 「$k$ 가 $d$ 의 약수」).
+  //       둘을 다 지우면 발문이 주는 창 $1..N$ 이 통째로 남는다.
+  "3-1|근호를 포함한 식의 계산|54V": {
+    withoutBinding: (f) => sumM3(solveRootSumNatural(f.d!, f.n!, false, false)),
+    // 굳힘 인자는 $d$ 다 — 약수 조건이 그것으로 걸린다.
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (const dd of [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]) {
+        const d2 = f.d! + dd;
+        if (d2 < 1) continue;
+        const got = sumM3(solveRootSumNatural(d2, f.n!, true, true));
+        if (!Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => solveRootSumNatural(f.d!, f.n!, false, false).length,
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // 4차 물결 (`m3Top4.ts` · 접미사 `W`)
+  // ══════════════════════════════════════════════════════════════════
+
+  // 55W — 굳힘이 **둘**이다(「$a$, $b$ 가 자연수」 → $m\ge1$ · 「두 상수항이 서로
+  //       다르다」 → $m\ne n$). 둘을 다 지우면 $S+1$ 의 약수쌍이 통째로 남는다.
+  "3-1|다항식의 인수분해|55W": {
+    withoutBinding: (f) => sumM3(solveFactorA(f.s!, false, false)),
+    perturbed: (f) => {
+      const truth = f.x!;
+      let sawAny = false;
+      for (let ds = -8; ds <= 8; ds += 1) {
+        if (ds === 0) continue;
+        const s2 = f.s! + ds;
+        if (s2 < 3) continue;
+        const got = sumM3(solveFactorA(s2, true, true));
+        if (!Number.isFinite(got)) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => solveFactorA(f.s!, false, false).length,
+  },
+
+  // 56W — 굳힘은 「가운데 항의 계수가 **$2a$** 여서 무리수 항이 접힌다」이다.
+  //
+  // 🔴 **지우면 답이 서지 않는다 — 축 없음.** 계수가 $2$ 가 아니면 $(k-2)a\sqrt n$ 이
+  //    남아 값이 유리수가 아니기 때문이다. 말로 단정하지 않고 `foldParts` 를 실제로
+  //    불러 `root !== 0` 인 것을 보고 `null` 을 낸다.
+  "3-1|무리수와 실수|56W": {
+    withoutBinding: (f) => {
+      const p = foldParts(f.n!, f.c!, 1);
+      return p.root === 0 ? p.rational : null;
+    },
+    // 굳힘 인자는 그 **계수**다. 흔들면 무리수 항이 살아나고, 유리수 부분만
+    // 견주어도 $n-2a^2+c$ 라 이미 답과 다르다.
+    perturbed: (f) => foldParts(f.n!, f.c!, 3).rational,
+    candidateCount: () => null,
+  },
+
+  // 57W — 굳힘은 「중앙값이 $m$」이다. 그것이 $x$ 의 자리를 일곱에서 셋으로 좁힌다.
+  //       지우면 일곱 자리를 다 훑게 되어 조건에 맞는 $x$ 가 여럿 나오고, 게으른
+  //       학생은 그중 **가장 작은 것**을 집는다.
+  //
+  // ⚠️ 여섯 자료값은 `facts` 에 **없다.** 풀에서 되찾으려 했더니 120판 중 **40판**이
+  //    갈리지 않았다(같은 `facts` 를 내는 자료가 여럿이고 그 자료마다 지름길이 다르다).
+  //    그래서 **지면 글자**에서 읽는다 — 참은 설계값이 아니라 지면에서 온다.
+  "3-2|상자그림과 산점도|57W": {
+    withoutBinding: (f) => {
+      const hits = solveBoxCases(boxVs(f), f.m!, f.q!, false)
+        .flatMap((c) => c.hits)
+        .filter((v) => Number.isFinite(v));
+      if (hits.length === 0) return Number.NaN;
+      return (f.sum! - f.xValue! + Math.min(...hits)) / 7;
+    },
+    // 굳힘 인자는 중앙값 $m$ 이다. 자료값마다 대 보고, 그것으로 값이 안 서면
+    // 사분위수범위 $q$ 까지 훑는다(못 잰 판을 「답이 그대로」로 세지 않기 위해).
+    perturbed: (f) => {
+      const vs = boxVs(f);
+      const truth = f.x!;
+      let sawAny = false;
+      const meanOfHits = (m2: number, q2: number): number | null => {
+        const hits = solveBoxCases(vs, m2, q2, true)
+          .flatMap((c) => c.hits)
+          .filter((v) => Number.isFinite(v));
+        if (hits.length !== 1) return null;
+        return (f.sum! - f.xValue! + hits[0]!) / 7;
+      };
+      for (const m2 of vs) {
+        if (m2 === f.m!) continue;
+        const got = meanOfHits(m2, f.q!);
+        if (got === null) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      for (let dq = -6; dq <= 6; dq += 1) {
+        if (dq === 0) continue;
+        const q2 = f.q! + dq;
+        if (q2 < 1) continue;
+        const got = meanOfHits(f.m!, q2);
+        if (got === null) continue;
+        sawAny = true;
+        if (got !== truth) return got;
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) =>
+      new Set(
+        solveBoxCases(boxVs(f), f.m!, f.q!, false)
+          .flatMap((c) => c.hits)
+          .filter((v) => Number.isFinite(v)),
+      ).size,
+  },
+
+  // 58W — 굳힘은 「두 사람의 (국어$-$영어)의 합이 $0$」이다. 지우면 $\binom82=28$ 쌍이
+  //       전부 후보로 남고, 게으른 학생은 그중 하나를 찍는다(우연 $1/28$).
+  "3-2|상자그림과 산점도|58W": {
+    withoutBinding: (f) => {
+      const [xs, ys] = scatterXY(f);
+      return Math.min(...solvePairSum(xs, ys, false));
+    },
+    // 굳힘 인자는 **차** 자체다. 학생 하나의 영어 점수를 흔들면 그 사람이 든 짝은
+    // 깨지고 다른 짝이 설 수 있다.
+    //
+    // 🔴 **첫 판은 $\pm1,\pm2$ 만 흔들어 24판 중 5판이 「장식」으로 찍혔다.**
+    //    짝에 **안 든** 학생을 조금 흔들면 원래 짝이 그대로 살아 답이 안 바뀌는 것이
+    //    **당연하고**, 짝에 **든** 학생을 조금 흔들면 짝이 통째로 사라져(살아남는 것 $0$)
+    //    판정에서 건너뛰어진다. 곧 좁은 창에서는 «달라지는 자리»가 구조적으로 안 나온다 —
+    //    그건 굳힘의 허물이 아니라 내 흔들기의 허물이다(2026-08-21).
+    //    차의 절댓값이 $26$ 까지이므로 **$\pm60$** 까지 훑으면 짝에 든 학생의 차가
+    //    다른 학생의 차와 부호만 반대인 자리를 지나 **새 짝**이 선다. 그때 답이
+    //    달라진다(고친 뒤 「장식」 5 → 0).
+    perturbed: (f) => {
+      const [xs, ys] = scatterXY(f);
+      const truth = f.x!;
+      let sawAny = false;
+      for (let i = 0; i < 8; i += 1) {
+        for (let dy = -60; dy <= 60; dy += 1) {
+          if (dy === 0) continue;
+          const ys2 = [...ys];
+          ys2[i] = ys2[i]! + dy;
+          const kept = solvePairSum(xs, ys2, true);
+          if (kept.length !== 1) continue;
+          sawAny = true;
+          if (kept[0]! !== truth) return kept[0]!;
+        }
+      }
+      return sawAny ? truth : Number.NaN;
+    },
+    candidateCount: (f) => {
+      const [xs, ys] = scatterXY(f);
+      return solvePairSum(xs, ys, false).length;
+    },
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // 5차 물결 (`m3Top5a.ts`·`m3Top5b.ts` · 접미사 `X`)
+  // ══════════════════════════════════════════════════════════════════
+
   // 129X — 굳힘이 **둘**이다. `useSmall`($k^2<2N$) 과 `useParity`($a$ 가 자연수).
   //        둘을 다 지우면 $2N$ 의 약수가 통째로 남는다.
   "3-1|이차방정식의 활용|129X": {
@@ -1357,6 +1990,27 @@ export const AXES_M3: Record<string, Axis> = {
   },
 };
 
+/**
+ * 🔴 `57W` 의 여섯 자료값은 `facts` 에 **없다**(`m`·`q`·`xValue`·`slot`·`sum` 뿐).
+ *
+ * 그래서 **지면 둘째 줄**에서 읽어 `d0`~`d5` 로 얹는다. 설계 풀(`boxMeanPool`)에서
+ * 되찾는 길도 대 봤는데 120판 중 **40판**이 안 갈렸다 — 같은 `facts` 를 내는 자료가
+ * 여럿이고 그 자료마다 지름길 값이 다르다. 그리고 이 판정기가 이미 세워 둔 원칙이
+ * 「참은 **지면 글자**에서 온다」이다(`reportShortcuts` 머리말).
+ *
+ * ⚠️ 못 읽으면 **던진다.** 조용히 건너뛰면 그 유형이 「축 없음」으로 세어져 결함이
+ *    사라진다 — 「0은 «깨끗»과 «못 셈»을 안 가른다」(2026-08-21).
+ */
+function stemDataFacts(key: string, content: string): Record<string, number> {
+  if (!key.endsWith("57W")) return {};
+  const line = content.split("\n")[1] ?? "";
+  const nums = [...line.matchAll(/\$(-?\d+)\$/g)].map((m) => Number(m[1]));
+  if (nums.length !== 6 || !line.includes("$x$")) {
+    throw new Error(`57W: 자료 여섯을 지면에서 못 읽었다 — ${line}`);
+  }
+  return Object.fromEntries(nums.map((v, i) => [`d${i}`, v]));
+}
+
 /** 축을 재는 표본 — `facts` 를 물고 와야 하므로 `sampleType` 과 따로 둔다. */
 function axisRows(
   key: string,
@@ -1365,7 +2019,10 @@ function axisRows(
   for (const s of [20260901, 7, 4242, 99991, 31337, 5150131, 20260827, 12345])
     for (const v of [0, 1, 2]) {
       const p = makeSample(key, s, v);
-      out.push({ facts: p.facts ?? {}, answer: answerNumber(p.answer) });
+      out.push({
+        facts: { ...(p.facts ?? {}), ...stemDataFacts(key, p.content) },
+        answer: answerNumber(p.answer),
+      });
     }
   return out;
 }
