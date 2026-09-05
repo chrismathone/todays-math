@@ -19,6 +19,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { MathText } from "../../src/components/math/MathText";
 import { displayWidth } from "../../src/lib/math/displayWidth";
+import { solutionForDisplay } from "../../src/lib/solutionSteps";
 import { PAPER_VARS, paperStyles, writeProbe } from "./paperProbe";
 
 const prisma = new PrismaClient();
@@ -33,7 +34,12 @@ function solutionItem(number: number, row: Row): string {
   return `<article class="solutionItem" data-pid="${row.id}"><div class="solutionHeading">문 ${number} · ${renderToStaticMarkup(
     <MathText as="span" text={row.answer ?? ""} />,
   )}</div><div class="solutionBody">${renderToStaticMarkup(
-    <MathText as="div" text={row.solution ?? "해설이 등록되지 않았습니다."} />,
+    // 🔴 제품(`PrintAnswerKeyPage`)과 **같은 글**을 그린다. 원문을 그리면 이 탐침이
+    //    재는 높이가 지면과 달라져, 그 높이로 뽑은 상수가 통째로 틀린다.
+    <MathText
+      as="div"
+      text={solutionForDisplay(row.solution) ?? "해설이 등록되지 않았습니다."}
+    />,
   )}</div></article>`;
 }
 
@@ -77,7 +83,12 @@ async function main() {
   const styles = await paperStyles();
 
   const out: Record<string, unknown> = {};
-  const perItem: Array<{ pid: string; px: number; width: number }> = [];
+  const perItem: Array<{
+    pid: string;
+    px: number;
+    width: number;
+    lineWidths: number[];
+  }> = [];
 
   try {
     /* ── ① 쪽 구조: 빠른 정답 상자 높이 · 해설 칸 높이 ───────────────────────── */
@@ -160,10 +171,16 @@ async function main() {
       })) as Array<{ pid: string; px: number }>;
       for (const m of measured) {
         const row = rows.find((r) => r.id === m.pid)!;
+        // ⚠️ 지면은 홑 개행을 **하드 브레이크**로 그린다. 폭을 통짜로 재면
+        //    「두 줄짜리」와 「한 줄짜리」가 같은 폭으로 보여 상수가 흐려진다.
+        //    그래서 **줄별 폭**도 같이 남긴다 — 「한 줄에 몇 단위」를 여기서 미리
+        //    박지 않으려고 개수가 아니라 폭의 배열이다.
+        const shown = solutionForDisplay(row.solution) ?? "";
         perItem.push({
           pid: m.pid,
           px: m.px,
-          width: displayWidth(row.solution ?? ""),
+          width: displayWidth(shown),
+          lineWidths: shown.split(/\r?\n/).map((l) => displayWidth(l)),
         });
       }
       process.stdout.write(`\r해설 측정 ${perItem.length}/${rows.length}`);

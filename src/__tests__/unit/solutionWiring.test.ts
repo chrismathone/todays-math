@@ -24,13 +24,28 @@ import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { estimateSolutionPx } from "@/lib/printOverflow";
+import { solutionForDisplay } from "@/lib/solutionSteps";
+
 const ROOT = join(process.cwd(), "src");
+
+/**
+ * 🔴 **탐침도 지면을 그린다 — 모집단에 넣어야 한다.**
+ *
+ * 처음엔 `src/` 만 훑었다. 그래서 `scripts/qa/measure-answerkey-overflow.tsx` 가
+ * **원문**을 그리는 것을 구조적으로 못 봤다. 그 탐침은 자를 채점하는 «참»을 만드는
+ * 물건이라, 제품과 갈리면 **틀린 자가 만점**을 받는다 — 2026-09-06 에 실제로
+ * 그럴 뻔했다(자를 고치고 그 탐침으로 채점할 참이었다).
+ */
+const PROBE_ROOT = join(process.cwd(), "scripts", "qa");
 
 function walk(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
     const path = join(dir, name);
+    // `_` 로 시작하는 것은 임시 자료다(`.gitignore` 의 `scripts/qa/_*`) — 판정 대상이
+    // 아니다. 옛 코드를 git 에서 꺼내 두는 자리라 여기 걸리면 늘 우는 가드가 된다.
     if (statSync(path).isDirectory())
-      return name === "__tests__" ? [] : walk(path);
+      return name === "__tests__" || name.startsWith("_") ? [] : walk(path);
     return path.endsWith(".tsx") || path.endsWith(".ts") ? [path] : [];
   });
 }
@@ -43,14 +58,16 @@ const RAW_PASS =
   /\b(?:text|content)=\{\s*[A-Za-z_$][\w$]*\.solution\b(?!\s*\))/g;
 
 describe("[배선] 해설은 전부 solutionForDisplay 를 지난다", () => {
-  const files = walk(ROOT);
+  const files = [...walk(ROOT), ...walk(PROBE_ROOT)];
 
   it("렌더러에 해설을 그대로 넘기는 자리가 없다", () => {
     const offenders: string[] = [];
     for (const file of files) {
       const text = readFileSync(file, "utf8");
       for (const m of text.matchAll(RAW_PASS))
-        offenders.push(`${file.replace(ROOT, "src")}: ${m[0]}`);
+        offenders.push(
+          `${file.replace(ROOT, "src").replace(PROBE_ROOT, "scripts/qa")}: ${m[0]}`,
+        );
     }
     expect(
       offenders,
@@ -81,5 +98,58 @@ describe("[배선] 해설은 전부 solutionForDisplay 를 지난다", () => {
       callers.length,
       "해설을 그리는 자리를 하나도 못 찾았다 — 검사가 눈이 멀었다",
     ).toBeGreaterThanOrEqual(4);
+    // 탐침이 모집단에 실제로 들어왔는지 — 안 들어오면 위 검사가 그쪽에 눈이 멀었다.
+    expect(
+      files.some((f) => f.includes("measure-answerkey-overflow")),
+      "정답지 탐침이 모집단에 없다 — `scripts/qa` 를 안 훑고 있다",
+    ).toBe(true);
+  });
+
+  /**
+   * 🔴 **자도 지면과 같은 글을 봐야 한다.**
+   *
+   * 위 검사는 **JSX prop** 만 본다(`text={x.solution}`). 그래서 넘침 자
+   * (`estimateSolutionPx(problem.solution)`)는 **축 밖**이었다 — 함수 인자라
+   * 그 정규식에 안 걸린다. 「없는 축은 변이시킬 수 없다」의 그 자리다.
+   *
+   * 2026-09-06 에 `solutionForDisplay` 를 네 화면에 걸자마자 **자만 눈이 멀었다**:
+   * 지면은 갈라 그리는데 자는 원문을 재서, 실측 **16,169행(16.0%)** 이 어긋나고
+   * 그중 **16,168행에서 자가 낮게** 봤다(평균 22px · 최대 125px).
+   * 해설 과소는 「조금 잘림」이 아니라 **해설 한 건이 통째로 사라짐**이다
+   * (`printOverflow.ts` 주석 자신이 그렇게 적는다).
+   *
+   * ⚠️ 소스를 훑지 않고 **동작으로** 잰다 — 자를 어떻게 부르든 같은 값이 나와야 한다.
+   */
+  describe("자도 지면과 같은 글을 본다", () => {
+    /**
+     * 지면에서 두 줄로 갈리는 해설. `splitSolutionSteps` 가 한글 문장 끝에서 끊는다.
+     *
+     * ⚠️ **두 조각이 각각 한 줄보다 짧아야** 이 표본이 경계를 가른다. 긴 문장 둘을
+     *    쓰면 «붙여도 두 줄 · 갈라도 두 줄»이라 자가 틀려도 값이 같다 — 처음에
+     *    실제로 그런 표본을 써서 결함이 있는데도 **초록**이 나왔다
+     *    (「변이가 초록이면 표본부터 의심하라」).
+     *
+     * ⚠️ `따라서`·`그러므로`·`∴` 는 그 자체가 마커다. 여기 쓰면 아래 `flat` 이
+     *    그것 때문에 또 갈려서 대조가 안 선다(이것도 실제로 그랬다).
+     */
+    const SPLITS = "밑변은 $5$이다. 높이는 $4$이다.";
+
+    it("🔴 이 표본이 실제로 갈린다 — 안 갈리면 아래 검사는 아무것도 안 지킨다", () => {
+      expect(solutionForDisplay(SPLITS)).toContain("\n");
+    });
+
+    it("원문을 넘기든 갈린 글을 넘기든 자가 같은 값을 낸다", () => {
+      expect(estimateSolutionPx(SPLITS)).toBe(
+        estimateSolutionPx(solutionForDisplay(SPLITS)),
+      );
+    });
+
+    it("갈리는 해설은 안 갈리는 같은 길이보다 **크게** 잰다 — 과소는 곧 놓침이다", () => {
+      const flat = SPLITS.replace("이다. 높이는", "이고 높이는");
+      expect(solutionForDisplay(flat)).not.toContain("\n");
+      expect(estimateSolutionPx(SPLITS)).toBeGreaterThan(
+        estimateSolutionPx(flat),
+      );
+    });
   });
 });

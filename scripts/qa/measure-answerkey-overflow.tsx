@@ -24,6 +24,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { MathText } from "../../src/components/math/MathText";
 import type { TestPrintProblem } from "../../src/components/print/types";
 import { paginateAnswerKey } from "../../src/lib/printLayout";
+import { solutionForDisplay } from "../../src/lib/solutionSteps";
 import { PAPER_VARS, paperStyles, writeProbe } from "./paperProbe";
 
 const prisma = new PrismaClient();
@@ -54,9 +55,15 @@ function renderAnswerPage(
         `<article class="solutionItem" data-pid="${p.id}"><div class="solutionHeading">문 ${startingNumber + i} · ${renderToStaticMarkup(
           <MathText as="span" text={p.answer} />,
         )}</div><div class="solutionBody">${renderToStaticMarkup(
+          // 🔴 **제품과 같은 글을 그려야 «참»이다.** `PrintAnswerKeyPage` 는
+          //    `solutionForDisplay` 를 태운다 — 여기서 원문을 그리면 이 탐침이
+          //    «제품이 아닌 지면»을 재고, 그 기록으로 자를 채점하면
+          //    **틀린 자가 만점**을 받는다(2026-09-06 실제로 그럴 뻔했다).
           <MathText
             as="div"
-            text={p.solution ?? "해설이 등록되지 않았습니다."}
+            text={
+              solutionForDisplay(p.solution) ?? "해설이 등록되지 않았습니다."
+            }
           />,
         )}</div></article>`,
     )

@@ -54,6 +54,7 @@ import {
   normalizeOcrText,
   parseProblemContent,
 } from "@/lib/problem/parseProblemContent";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * 본문 **표시 폭** 한계. 원문 글자 수가 아니다 — 한글·전각은 2, 수식은 글리프 근사로 센다
@@ -862,10 +863,27 @@ export function quickAnswerBoxPx(answers: readonly string[]): number {
  *    수식마다 빈 줄을 넣어 «문단»이 100개가 넘는 것이 있는데, 렌더러는 그 개행을
  *    전부 공백으로 녹여 한 문단으로 흘린다. 문단으로 세면 실측 309px 짜리를
  *    2,098px 로 본다 — 실제로 그렇게 틀렸다.
+ *
+ * ## 🔴 2026-09-06 — 자만 눈이 멀어 있었다
+ *
+ * 지면(`PrintAnswerKeyPage`)은 `solutionForDisplay(solution)` 를 그리는데 여기는
+ * **원문**을 받고 있었다. `solutionForDisplay` 배선이 네 화면에 들어간 그날부터
+ * 자와 지면이 갈렸다 — 실측 **16,169행(16.0%)** 이 다르고 그중 **16,168행에서 자가
+ * 낮게** 봤다(평균 22px · 최대 125px). **과소는 곧 놓침이고**, 이 파일 아래
+ * `findAnswerKeyRisks` 가 적어 두었듯 해설 과소는 「조금 잘림」이 아니라
+ * **해설 한 건이 통째로 사라짐**이다.
+ *
+ * 그래서 **부르는 쪽이 아니라 여기서** 태운다 — 자를 어떻게 부르든 지면과 같은 글을
+ * 본다(호출부를 고치면 다음에 새로 부르는 자리가 또 원문을 넘긴다).
+ * `solutionForDisplay` 는 **멱등**이라 이미 갈린 글을 넘겨도 안전하다
+ * (공유 DB 해설 100,828행 전량에서 확인 — 멱등하지 않은 행 0).
  */
 export function estimateSolutionPx(solution: string | null): number {
   // 해설이 없으면 지면에 「해설이 등록되지 않았습니다.」 한 줄이 나간다.
-  const text = normalizeOcrText(solution ?? "해설이 등록되지 않았습니다.");
+  const shown = solutionForDisplay(solution);
+  const text = normalizeOcrText(
+    shown === null || shown === "" ? "해설이 등록되지 않았습니다." : shown,
+  );
   // 🔴 홑 개행은 지면에서 **하드 브레이크**다(`applyHardBreaks`) — 줄마다 따로 센다.
   //    2026-08-25 이전에는 `normalizeOcrText` 가 개행을 전부 녹여 늘 한 덩어리였다.
   //    한 덩어리로 세면 실측 25,256건의 해설을 최대 44줄 **과소평가**하고, 해설 과소는

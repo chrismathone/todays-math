@@ -1681,8 +1681,45 @@ describe("중1 4차 확대 갈래 — 나열 줄을 한 줄씩 다시 셈한다"
 
 describe("중1 4차 확대 갈래 — 해설이 정답지 한 단에 들어가나", () => {
   const COLUMN = JASEUP_MEASURED_PX.answerSolutionsFull;
-  /** 브리프가 못 박은 상한 — 한 단(964.8px)보다 넉넉히 아래. */
-  const CAP = 700;
+
+  /**
+   * 실측 기록(2026-09-06, 씨앗 220 × 변형 3 = 660판, 제품 `estimateSolutionPx`).
+   *
+   * ## 🔴 왜 「전부 700px 미만」에서 **유형별 기록**으로 바뀌었나
+   *
+   * 처음엔 브리프가 못 박은 한 줄(`CAP = 700`)이었다. 그 한 줄은 **네 유형을 한
+   * 문턱으로** 재므로, `61W`(305.5px)가 **두 배**가 돼도 아무 말을 안 한다 —
+   * 「해설이 갑자기 길어졌다」를 못 보는 자리가 셋이나 열려 있었다.
+   * `middleM1Top3.test.ts` 가 이미 쓰던 «유형별 실측 기록» 꼴로 맞췄다.
+   *
+   * ## 🔴 그리고 2026-09-06 에 **지면이 아니라 자가 바뀌었다**
+   *
+   * `estimateSolutionPx` 가 그날까지 **원문**을 쟀다 — 지면은 `solutionForDisplay`
+   * 로 갈라 그리는데 자만 안 걸려 있었다(`solutionWiring.test.ts`). 옛 자를
+   * `git show HEAD:` 로 꺼내 같은 660판에 대어 재니 여기서 둘이 올라갔다:
+   * `63W` 402.7 → **420.5** · `64W` 671.9 → **761.0**. `61W`·`62W` 는 0.0 차이다.
+   *
+   * **생성기는 한 글자도 안 바뀌었다** — 지면은 늘 761px 이었고 자가 몰랐을 뿐이라
+   * 회귀가 아니라 기록의 수정이다. 한 단(964.8px)은 옛 자·새 자 어느 쪽으로도
+   * 660판 × 4유형에서 **한 판도 안 넘는다**.
+   */
+  const MEASURED_PX: Record<string, number> = {
+    [K61]: 305.5,
+    [K62]: 323.4,
+    [K63]: 420.5, // 옛 자로는 402.7
+    [K64]: 761.0, // 옛 자로는 671.9
+  };
+
+  /**
+   * 여유 — 지면 **한 줄**(17.825px)이다.
+   *
+   * ⚠️ **두 줄(36px)로 두면 가드가 죽는다.** `m1Top4.ts:817` 의 `stop > 12` 를
+   *    `stop > 13` 으로 한 칸 올리면 `64W` 최대가 761.0 → **796.6px**, 딱 +35.6px
+   *    이라 36 여유 안에 숨는다(실제로 재 봤다). 18 이면 빨개진다.
+   *    아래 「훑는 자리 상한」 시험과 **짝**이다 — 그쪽이 `maxStop === 12` 를 잡고
+   *    이쪽이 그 상한이 곧 높이임을 잡는다.
+   */
+  const SLACK_PX = 18;
 
   it("🔴 자가 살아 있는가 — 긴 글은 한 단을 넘고 짧은 글은 안 넘는다", () => {
     const huge = Array.from(
@@ -1690,27 +1727,38 @@ describe("중1 4차 확대 갈래 — 해설이 정답지 한 단에 들어가�
       (_, i) => `${i + 1}단계를 계산한다.`,
     ).join("\n");
     expect(estimateSolutionPx(huge)).toBeGreaterThan(COLUMN);
-    expect(estimateSolutionPx("$x=1$이다.")).toBeLessThan(CAP);
+    expect(estimateSolutionPx("$x=1$이다.")).toBeLessThan(200);
   });
 
-  it("🔴 네 유형 전부 660판에서 700px 미만이다", () => {
+  it("🔴 네 유형 전부 660판에서 실측 기록 안이다 — 한 단(964.8px)은 물론이다", () => {
     let measured = 0;
-    let worst = { key: "", px: 0 };
     const over: string[] = [];
+    const worstOf = new Map<string, number>();
     for (const e of M1_TOP_4) {
       for (const [s, v] of WIDE) {
         const px = estimateSolutionPx(build(e.key, s, v).solution);
         measured += 1;
-        if (px > worst.px) worst = { key: e.key, px };
-        if (px >= CAP) over.push(`${e.key} ${s}/${v} ${Math.round(px)}px`);
+        worstOf.set(e.key, Math.max(worstOf.get(e.key) ?? 0, px));
+        // 진짜 한계는 한 단이다 — 넘으면 옆 문항 해설이 통째로 사라진다.
+        if (px > COLUMN) over.push(`${e.key} ${s}/${v} ${Math.round(px)}px`);
       }
     }
     expect(measured).toBe(4 * WIDE.length);
     expect(measured).toBeGreaterThanOrEqual(2400);
-    expect(
-      over,
-      `해설이 ${CAP}px 을 넘는 판 — 가장 큰 것 ${worst.key} ${Math.round(worst.px)}px`,
-    ).toEqual([]);
+    // 🔴 기록이 네 유형을 **다 덮는가** — 안 덮으면 그 유형은 분모 밖이고,
+    //    `MEASURED_PX[e.key]` 가 `undefined` 라 아래 비교가 조용히 뜻을 잃는다.
+    expect(M1_TOP_4.map((e) => e.key).sort()).toEqual(
+      Object.keys(MEASURED_PX).sort(),
+    );
+    expect(over, "해설이 한 단을 넘는 판").toEqual([]);
+    // 그리고 **기록보다 커지면** 그것대로 빨개진다 — 문턱이 아니라 기록이다.
+    for (const e of M1_TOP_4) {
+      const worst = worstOf.get(e.key)!;
+      expect(
+        worst,
+        `${e.key} 최대 ${worst.toFixed(1)}px — 기록 ${MEASURED_PX[e.key]}px`,
+      ).toBeLessThanOrEqual(MEASURED_PX[e.key]! + SLACK_PX);
+    }
   });
 
   it("🔴 `64W` 의 훑는 자리 상한이 산출물에 실제로 걸린다", () => {
