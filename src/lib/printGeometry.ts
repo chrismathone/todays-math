@@ -99,3 +99,55 @@ export const JASEUP_MEASURED_PX = {
   /** 상자와 해설 칸 사이 여백. */
   quickAnswerGap: 14,
 } as const;
+
+/**
+ * **기출 2단 지면** 실측 치수 (Chromium · 인쇄 매체 · `PastPaper.module.css`).
+ *
+ * Wire C(머리띠형) → Hi-fi H2(금색 톤 띠), 원장님 확정 2026-09-05.
+ *
+ * ⚠️ `PastPaper.module.css` 를 바꾸면 이 값은 **다시 재야 한다.** 손으로 고치지 말 것 —
+ *    `npx tsx scripts/qa/measure-exam-paper-units.tsx` 가 뽑는다.
+ *
+ * ⚠️ 자습(`JASEUP_MEASURED_PX`)과 **분모가 다르다.** 저기는 「한 장에 문항 둘」이고
+ *    칸이 개수로 나뉘는데, 여기는 단 높이가 고정이고 한 단에 들어가는 만큼 들어간다.
+ *    임계값을 물려받지 말 것(CLAUDE.md 2026-08-17).
+ */
+export const EXAM_MEASURED_PX = {
+  /** 한 단의 폭. 자습 문항 열(363.5)보다 25px 좁다 — 줄 수가 달라진다. */
+  problemColumn: 338.27,
+  /** 단 사이 간격(7mm). */
+  columnGap: 26.46,
+  /** 첫 장 한 단의 높이 — 머리말이 얹혀 이어지는 장보다 33px 좁다. */
+  firstPageColumn: 959.13,
+  /** 이어지는 장 한 단의 높이. */
+  continuationColumn: 992.03,
+  /** 한 장의 단 수. */
+  columnsPerPage: 2,
+  /** 문항 **사이** 여백(5.5mm). 단의 마지막 문항 뒤에는 안 붙는다. */
+  itemGap: 20.79,
+  /**
+   * 머리띠(번호·유형·배점)가 본문과 무관하게 늘 먹는 세로 — 띠 31.67 + 아래 6.80.
+   * 자습의 `fixedChrome`(문항번호 + 정답란 62.5) 자리다. 기출 지면에는 정답란이 없다.
+   */
+  bandChrome: 38.48,
+  /** 본문 행높이 — 실측값이다(CSS 의 1.62 가 아니라 `.problemText` 가 정한다). */
+  line: 20,
+  /** 표시폭 1단위의 px — 한글 한 글자(12.5px)가 표시폭 2 다. */
+  unit: 6.25,
+  /** 1열 보기의 글자칸 — 마커(①)와 `gap-1.5` 만큼 좁다. */
+  choiceTextColumn: 319.77,
+  /** 상자 항목칸 — `p-4` 와 테두리를 뺀 몫이라 가장 좁다. */
+  boxItemColumn: 304.27,
+  /** 상자 하나가 글자 말고 먹는 세로(라벨 줄 포함). 폭과 무관해 자습과 같다. */
+  boxChrome: 98,
+  /** 보기 그리드 위 여백 `mt-4`. */
+  choiceGridTop: 16,
+  /** 보기 행 사이 간격 `gap-y-2`. */
+  choiceRowGap: 8,
+  /** 인쇄 그림 폭 상한 — `print:max-w-[70mm]`. 단 폭보다 좁아 그대로 쓴다. */
+  figureMaxWidth: 264.567,
+  /** 그림 묶음 위 여백 `mt-3`. */
+  figureBlockTop: 12,
+  /** 그림 사이 간격 `gap-4`. */
+  figureGap: 16,
+} as const;

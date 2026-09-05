@@ -47,7 +47,7 @@ import {
   figureSvgViewBox,
 } from "@/lib/figure/figureSvgFrame";
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
-import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
+import { EXAM_MEASURED_PX, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
 import { paginateAnswerKey } from "@/lib/printLayout";
 import {
@@ -142,9 +142,10 @@ export { parseFigureDimensions } from "@/lib/figurePrintSize";
  */
 export function estimateFigureBlockPx(
   figures: readonly (FigureDimensionType | null)[],
+  ruler: RulerMetrics = JASEUP_RULER,
 ): number {
   if (figures.length === 0) return 0;
-  const { problemColumn, figureGap, figureBlockTop } = JASEUP_MEASURED_PX;
+  const { problemColumn, figureGap, figureBlockTop } = ruler;
 
   let total = figureBlockTop;
   let rowWidth = 0;
@@ -221,14 +222,43 @@ function countTallMath(text: string): number {
  * 상자는 `p-4` 와 테두리만큼 좁다. 한 값으로 뭉개면 **좁은 쪽에서 덜 센다** —
  * 폭 6.4%(보기)·10.7%(상자)를 안 보는 셈이라 접히는 줄이 통째로 빠진다.
  */
-const COLUMN_UNITS = JASEUP_MEASURED_PX.problemColumn / JASEUP_MEASURED_PX.unit;
-const CHOICE_TEXT_UNITS =
-  JASEUP_MEASURED_PX.choiceTextColumn / JASEUP_MEASURED_PX.unit;
-const BOX_ITEM_UNITS =
-  JASEUP_MEASURED_PX.boxItemColumn / JASEUP_MEASURED_PX.unit;
+/**
+ * 자에서 **지면에 매인 부분**. 지면이 다르면 이 묶음만 갈아 끼운다 —
+ * 규칙(줄 세는 법·상자·보기·그림)은 한 벌로 둔다.
+ *
+ * 🔴 **자를 하나 더 만들지 않는 이유.** 기출 2단 지면은 단 폭이 338.27px 로
+ *    자습 문항 열(363.5px)보다 25px 좁다. 그래서 같은 문항이 줄 수가 다르다.
+ *    그렇다고 두 번째 자를 쓰면 규칙이 두 벌이 되고, 한쪽만 고치면 아무도 못 본다
+ *    (이 저장소가 여러 번 낸 결함이다). 갈리는 것은 **치수뿐**이므로 치수만 받는다.
+ */
+export interface RulerMetrics {
+  unit: number;
+  line: number;
+  problemColumn: number;
+  choiceTextColumn: number;
+  boxItemColumn: number;
+  boxChrome: number;
+  /** 본문과 무관하게 늘 붙는 세로 — 자습은 문항번호+정답란, 기출은 머리띠. */
+  fixedChrome: number;
+  choiceGridTop: number;
+  choiceRowGap: number;
+  figureBlockTop: number;
+  figureGap: number;
+  figureMaxWidth: number;
+}
+
+export const JASEUP_RULER: RulerMetrics = JASEUP_MEASURED_PX;
+
+/** 기출 2단 지면의 자. 실측은 `scripts/qa/measure-exam-paper-units.tsx` 가 뽑는다. */
+export const EXAM_RULER: RulerMetrics = {
+  ...EXAM_MEASURED_PX,
+  fixedChrome: EXAM_MEASURED_PX.bandChrome,
+};
+
+const unitsOf = (px: number, ruler: RulerMetrics) => px / ruler.unit;
 
 /** 표시폭을 열 폭으로 나눠 줄 수로. 빈 문자열은 0줄이다. */
-function linesFor(text: string, unitsPerLine = COLUMN_UNITS): number {
+function linesFor(text: string, unitsPerLine: number): number {
   const width = displayWidth(text);
   if (width <= 0) return 0;
   return Math.ceil(width / unitsPerLine);
@@ -241,9 +271,9 @@ function linesFor(text: string, unitsPerLine = COLUMN_UNITS): number {
  * 글자 줄 말고도 `mt-4`(16px)와 행 간격 `gap-y-2`(8px)를 먹는다. 예전에는 둘 다
  * 0으로 봤다 — 1열 5보기면 그것만 1.8줄이다.
  */
-function choicesBlockPx(items: readonly string[]): number {
+function choicesBlockPx(items: readonly string[], ruler: RulerMetrics): number {
   if (items.length === 0) return 0;
-  const { line, choiceGridTop, choiceRowGap } = JASEUP_MEASURED_PX;
+  const { line, choiceGridTop, choiceRowGap } = ruler;
   // 2열은 항목이 전부 한 칸에 들어갈 때만 고른다 — 그래서 행마다 한 줄이다.
   const rows = fitsTwoColumns(items)
     ? Math.ceil(items.length / 2)
@@ -251,7 +281,9 @@ function choicesBlockPx(items: readonly string[]): number {
   const textLines = fitsTwoColumns(items)
     ? rows
     : items.reduce(
-        (sum, item) => sum + Math.max(1, linesFor(item, CHOICE_TEXT_UNITS)),
+        (sum, item) =>
+          sum +
+          Math.max(1, linesFor(item, unitsOf(ruler.choiceTextColumn, ruler))),
         0,
       );
   return choiceGridTop + textLines * line + choiceRowGap * (rows - 1);
@@ -286,9 +318,12 @@ function choicesBlockPx(items: readonly string[]): number {
  * ⚠️ viewBox 를 못 읽으면 **0이 아니라 「모른다」**(`UNKNOWN_FIGURE_HEIGHT_PX`)로
  *    센다. 0으로 세면 못 읽는 그림일수록 조용해지는데, 그게 이 결함의 모양이었다.
  */
-export function estimateFigureSvgPx(svg: string | null | undefined): number {
+export function estimateFigureSvgPx(
+  svg: string | null | undefined,
+  ruler: RulerMetrics = JASEUP_RULER,
+): number {
   if (!svg) return 0;
-  const { figureBlockTop } = JASEUP_MEASURED_PX;
+  const { figureBlockTop } = ruler;
   const box = figureSvgViewBox(svg);
   if (box === null) return figureBlockTop + UNKNOWN_FIGURE_HEIGHT_PX;
   const printedWidth = mmToCssPx(FIGURE_SVG_PRINT_MM[figureSvgSize(svg)]);
@@ -299,6 +334,7 @@ export function estimateProblemPx(
   content: string,
   figures: readonly (FigureDimensionType | null)[] = [],
   figureSvg: string | null = null,
+  ruler: RulerMetrics = JASEUP_RULER,
 ): number {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   // 조판이 안 그리는 `[그림]` 자국을 자도 안 센다 — **같은 함수**를 부른다.
@@ -309,7 +345,7 @@ export function estimateProblemPx(
     rawQuestion,
     figures.length > 0 || Boolean(figureSvg),
   );
-  const { line, boxChrome, fixedChrome } = JASEUP_MEASURED_PX;
+  const { line, boxChrome, fixedChrome } = ruler;
 
   // 문항번호와 정답란은 본문과 무관하게 늘 붙는다 — 실측 62.5px = 3.08줄.
   // 예전에는 0으로 셌고, 그래서 «14줄» 이 칸 484px 과 아무 관계가 없었다.
@@ -334,7 +370,9 @@ export function estimateProblemPx(
    */
   const flushPlain = () => {
     if (plain.length === 0) return;
-    for (const part of plain) px += Math.max(1, linesFor(part)) * line;
+    for (const part of plain)
+      px +=
+        Math.max(1, linesFor(part, unitsOf(ruler.problemColumn, ruler))) * line;
     plain = [];
   };
   const flushBox = () => {
@@ -359,7 +397,10 @@ export function estimateProblemPx(
       px += Math.ceil(items.length / cols) * line;
     } else {
       px += items.reduce(
-        (sum, item) => sum + Math.max(1, linesFor(item, BOX_ITEM_UNITS)) * line,
+        (sum, item) =>
+          sum +
+          Math.max(1, linesFor(item, unitsOf(ruler.boxItemColumn, ruler))) *
+            line,
         0,
       );
     }
@@ -380,9 +421,9 @@ export function estimateProblemPx(
   flushPlain();
   flushBox();
 
-  px += estimateFigureBlockPx(figures);
-  px += estimateFigureSvgPx(figureSvg);
-  px += choicesBlockPx(choices);
+  px += estimateFigureBlockPx(figures, ruler);
+  px += estimateFigureSvgPx(figureSvg, ruler);
+  px += choicesBlockPx(choices, ruler);
   /**
    * **세로로 쌓이는 수식**은 폭이 아니라 높이를 먹는다. 해설 자에만 있던 항을
    * 여기에도 건다(적대적 리뷰 ④ A). 원문 전체에서 세는 이유는 발문·상자·보기 어디에

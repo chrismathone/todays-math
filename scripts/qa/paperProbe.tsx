@@ -39,6 +39,17 @@ export const PAPER_VARS = Object.entries(PAPER_CSS_VARIABLES)
   .map(([key, value]) => `${key}:${value}`)
   .join(";");
 
+/**
+ * 🔴 **속성에 그대로 끼워 넣으면 잘린다.** 글꼴 스택에 큰따옴표가 있어
+ * (`"KoPubBatang", "Nanum Myeongjo", …`) `style="${PAPER_VARS}"` 는 그 첫 따옴표에서
+ * **속성이 끝난다.** 그러면 지면이 `--paper-font-serif`·`--paper-font-sans` 를 잃고
+ * 본문이 명조가 아니라 상위의 고딕으로 그려진다 — 줄바꿈이 달라지므로 **잰 높이가
+ * 통째로 딴 지면 것**이 된다. 에러도 경고도 없고, 잰 값은 그럴듯하다.
+ *
+ * 2026-09-05 에 기출 탐침 대조(`examPaperProbeParity`)가 잡았다. 자습 탐침도 같은 줄이었다.
+ */
+export const PAPER_VARS_ATTR = PAPER_VARS.replaceAll('"', "&quot;");
+
 /** `public/` 아래 그림을 file:// 로 읽게 만든다 — 인쇄 지면은 그림이 빠지면 안 된다. */
 export const FIGURE_ROOT = pathToFileURL(path.join(ROOT, "public")).href;
 
@@ -164,7 +175,7 @@ export function renderPage(
       ? `<header class="firstHeader"><div><div class="academyName">오늘의수학</div><div class="englishLabel">SELF-STUDY</div><h1 class="testTitle">${TITLE}</h1><div class="todayGoal">오늘의 목표 · ${SECTION}의 핵심 개념을 확인하고 문제에 적용한다.</div></div><div class="studentMeta"><div class="dateLabel">학습일</div><div class="dateValue">2026.08.18</div><div class="nameLine">이름 ________ · 반 ______</div></div></header>
 <section class="conceptBox"><h2 class="conceptTitle">◆ 핵심 개념 정리</h2><div class="conceptText">${SECTION}의 정의와 계산 원리를 확인한 뒤 풀이 과정에 적용한다.</div></section>`
       : `<header class="continuationHeader"><span>오늘의수학 · ${TITLE}</span><span>p. ${pageNumber}</span></header>`;
-  return `<section class="a4Page ${kind === "first" ? "jaseupFirst" : "jaseupContinuation"}" data-page-kind="questions" data-page-number="${pageNumber}" style="${PAPER_VARS}">
+  return `<section class="a4Page ${kind === "first" ? "jaseupFirst" : "jaseupContinuation"}" data-page-kind="questions" data-page-number="${pageNumber}" style="${PAPER_VARS_ATTR}">
 ${head}
 <div class="problemList">${slots.join("\n")}</div>
 <footer class="pageFooter"><strong>오늘의 메모</strong><span class="memoLine"></span><span>p. ${pageNumber}</span></footer>

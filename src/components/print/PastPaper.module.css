@@ -1,0 +1,197 @@
+/*
+ * **기출 시험지 2단 지면** — Wire C(머리띠형) + Hi-fi H2(금색 톤 띠). 원장님 확정 2026-09-05.
+ *
+ * 팔레트를 새로 만들지 않는다. 05 §8.5 확정값(종이 #FCFCF8 · 금색 #A57F00 · 본문 명조 ·
+ * 라벨은 sans · 학원명은 좌측 상단 작은 금색)을 그대로 쓴다.
+ *
+ * ## 🔴 단을 CSS 에 맡기지 않는다
+ *
+ * 시안은 `column-count: 2` 를 썼는데, 내용이 넘치면 브라우저가 **셋째 단을 만들어**
+ * 종이 밖으로 흘린다 — 지면은 반쯤 비어 보이는데 문항이 없다(문6 이 그렇게 사라졌다).
+ * `overflow: hidden` 을 걸면 «사라진다»가 «잘린다»로 바뀔 뿐 여전히 조용하다.
+ * 그래서 지면은 **단을 두 칸의 그리드로 그리고**, 어느 문항이 어느 단에 앉는지는
+ * `packColumns` 가 정한다. 넘치는 문항은 `tooTall` 로 **드러난다.**
+ *
+ * ## 치수를 손으로 고치지 말 것
+ *
+ * 여기 값이 바뀌면 자(`EXAM_MEASURED_PX`)가 낡는다. 바꿨으면
+ * `npx tsx scripts/qa/measure-exam-paper-units.tsx` 로 **다시 뽑아** 상수를 갱신한다.
+ */
+
+.page {
+  /* 자가 이 값들에서 단 폭·높이를 유도한다. 바꾸면 실측을 다시 뽑을 것. */
+  --exam-pad-x: 12mm;
+  --exam-pad-top: 13mm;
+  --exam-pad-bottom: 10mm;
+  --exam-col-gap: 7mm;
+  --gold: #a57f00;
+  --ink: #1b1b18;
+  --ink-60: #6a6a60;
+  --rule: #d8d3c2;
+
+  padding: var(--exam-pad-top) var(--exam-pad-x) var(--exam-pad-bottom);
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+  color: var(--ink);
+}
+
+/* ── 머리말 ─────────────────────────────────────────────────────────────── */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 8mm;
+  padding-bottom: 3mm;
+  border-bottom: 2px solid var(--gold);
+}
+
+.mastLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.academy {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+
+.mastEn {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--ink-60);
+}
+
+.mastMid {
+  text-align: center;
+}
+
+.paperTitle {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.paperSub {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  color: var(--ink-60);
+  margin-top: 1mm;
+}
+
+.mastRight {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  color: var(--ink-60);
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  text-align: right;
+}
+
+.contHead {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9.5px;
+  color: var(--ink-60);
+  padding-bottom: 2.5mm;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── 단 ─────────────────────────────────────────────────────────────────── */
+.columns {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--exam-col-gap);
+  font-size: 12.5px;
+  line-height: 1.62;
+}
+
+/* 가운데 세로 룰 — `column-rule` 이 없는 그리드라 왼쪽 테두리로 그린다. */
+.column + .column {
+  border-left: 1px solid var(--rule);
+  padding-left: calc(var(--exam-col-gap) / 2);
+}
+
+.column {
+  min-width: 0;
+  /* 🔴 `overflow` 를 걸지 않는다. 넘치면 **보이는 편이 낫다** — 안 보이면 아무도
+     못 고친다. 넘칠 만한 문항은 `packColumns` 의 `tooTall` 로 미리 드러난다. */
+}
+
+.column + .column {
+  padding-right: 0;
+}
+
+/* ── 문항 ───────────────────────────────────────────────────────────────── */
+.item {
+  margin-bottom: var(--exam-item-gap, 5.5mm);
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+/* H2 · 금색 톤 띠 (원장님 확정) */
+.bandRow {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  background: rgb(165 127 0 / 7%);
+  border-left: 3px solid var(--gold);
+  padding: 1.3mm 2mm;
+  margin-bottom: 1.8mm;
+}
+
+.num {
+  white-space: nowrap;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.numWord {
+  font-size: 0.72em;
+  font-weight: 400;
+}
+
+.kind {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9px;
+  color: var(--ink-60);
+}
+
+.score {
+  margin-left: auto;
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9.5px;
+  color: var(--ink-60);
+  white-space: nowrap;
+}
+
+.body {
+  min-width: 0;
+}
+
+/* 🔴 서술형 답란은 **없다** — 원장님 확정 2026-09-05(답안지 별도).
+   원본 문18 이 「답안지에 그림을 그려서 설명할 것」이라 적는다. */
+
+/* 넘칠 만한 문항 표시 — **화면에서만** 보인다. 종이에는 안 나간다. */
+.tooTall {
+  outline: 1.5px dashed #b45309;
+  outline-offset: 2px;
+}
+
+@media print {
+  .tooTall {
+    outline: none;
+  }
+}
