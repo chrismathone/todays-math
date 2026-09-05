@@ -1,0 +1,93 @@
+{
+ "version": 2,
+ "points": {
+  "O": [
+   178.0,
+   112.0
+  ],
+  "A": [
+   145.59,
+   57.98
+  ],
+  "B": [
+   145.59,
+   166.02
+  ],
+  "P": [
+   55.55,
+   112.0
+  ],
+  "X": [
+   116.78,
+   100.0
+  ]
+ },
+ "circles": {
+  "c": {
+   "center": "O",
+   "radius": 63.0
+  }
+ },
+ "segments": {
+  "PA": [
+   "P",
+   "A"
+  ],
+  "PB": [
+   "P",
+   "B"
+  ],
+  "PO": [
+   "P",
+   "O"
+  ],
+  "OA": [
+   "O",
+   "A"
+  ],
+  "OB": [
+   "O",
+   "B"
+  ],
+  "AB": [
+   "A",
+   "B"
+  ]
+ },
+ "dimensions": {
+  "dimPA": {
+   "points": [
+    "P",
+    "A"
+   ],
+   "label": "10",
+   "side": "auto"
+  },
+  "dimOB": {
+   "points": [
+    "O",
+    "B"
+   ],
+   "label": "6",
+   "side": "auto"
+  },
+  "dimPB": {
+   "points": [
+    "P",
+    "B"
+   ],
+   "label": "y",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "O": "O",
+  "A": "A",
+  "B": "B",
+  "P": "P",
+  "X": {
+   "text": "x",
+   "italic": true
+  }
+ }
+}

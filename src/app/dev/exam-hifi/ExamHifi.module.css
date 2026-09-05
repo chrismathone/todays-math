@@ -1,0 +1,310 @@
+/*
+ * 기출 2단 폼 Hi-fi — **C 머리띠형** 골격에 색·서체를 얹는다.
+ *
+ * 팔레트를 새로 만들지 않는다. 05 §8.5 확정값(종이 #FCFCF8 · 금색 #A57F00 · 명조 본문 ·
+ * sans 라벨)을 그대로 쓰고, 네 안은 **머리띠 표현과 배점 자리**에서만 갈린다.
+ *
+ * 본문(발문·보기·그림)은 `PaperProblemView` 하나를 거치므로 여기서 손대지 않는다 —
+ * 안마다 글자가 달라 보이면 비교가 틀 이야기가 아니게 된다.
+ */
+
+:root {
+  --gold: #a57f00;
+  --ink: #1b1b18;
+  --ink-60: #6a6a60;
+  --rule: #d8d3c2;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  padding: 32px 16px 80px;
+  background: #f1f0ea;
+  min-height: 100vh;
+}
+
+.head {
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #3f3f3a;
+}
+
+.ask {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #3f3f3a;
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.h2 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.what {
+  font-size: 12.5px;
+  color: #55554d;
+}
+
+/* ── 지면 골격 (네 안 공통) ─────────────────────────────────────────────── */
+.page {
+  padding: 13mm 12mm 10mm;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+  color: var(--ink);
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 8mm;
+  padding-bottom: 3mm;
+  border-bottom: 2px solid var(--gold);
+}
+
+.mastLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.academy {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+
+.mastEn {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--ink-60);
+}
+
+.mastMid {
+  text-align: center;
+}
+
+.paperTitle {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.paperSub {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  color: var(--ink-60);
+  margin-top: 1mm;
+}
+
+.mastRight {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  color: var(--ink-60);
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  text-align: right;
+}
+
+.contHead {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9.5px;
+  color: var(--ink-60);
+  padding-bottom: 2.5mm;
+  border-bottom: 1px solid var(--rule);
+}
+
+.columns {
+  flex: 1;
+  min-height: 0;
+  /* 넘치면 브라우저가 셋째 단을 만들어 종이 밖으로 흘린다 — 지면은 유한하므로 자른다. */
+  overflow: hidden;
+  column-count: 2;
+  column-gap: 7mm;
+  column-rule: 1px solid var(--rule);
+  font-size: 12.5px;
+  line-height: 1.62;
+}
+
+.item {
+  break-inside: avoid;
+  margin-bottom: 5.5mm;
+}
+
+.bandRow {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.num {
+  white-space: nowrap;
+}
+
+.numWord {
+  font-size: 0.72em;
+  font-weight: 400;
+}
+
+.kind {
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9px;
+  color: var(--ink-60);
+}
+
+.score {
+  margin-left: auto;
+  font-family: var(--paper-font-sans), system-ui, sans-serif;
+  font-size: 9.5px;
+  color: var(--ink-60);
+  white-space: nowrap;
+}
+
+.body {
+  min-width: 0;
+}
+
+/* 서술형 답란 — 높이는 인라인 style 로 배점에서 계산해 넣는다(제안값). */
+.answerBox {
+  border-bottom: 1px solid var(--rule);
+  margin: 1mm 0 3mm;
+}
+
+/* ── H1 · 금색 가는 룰 ──────────────────────────────────────────────────── */
+.v_h1 .bandRow {
+  border-top: 1px solid var(--gold);
+  padding-top: 1.4mm;
+  margin-bottom: 1.6mm;
+}
+
+.v_h1 .num {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ── H2 · 금색 톤 띠 ────────────────────────────────────────────────────── */
+.v_h2 .bandRow {
+  background: rgb(165 127 0 / 7%);
+  border-left: 3px solid var(--gold);
+  padding: 1.3mm 2mm;
+  margin-bottom: 1.8mm;
+}
+
+.v_h2 .num {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+/* ── H3 · 잉크 룰에 번호를 얹음 ─────────────────────────────────────────── */
+.v_h3 .bandRow {
+  position: relative;
+  margin-bottom: 1.8mm;
+  padding-top: 1.6mm;
+}
+
+.v_h3 .bandRow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-top: 1.5px solid var(--ink);
+}
+
+/* 번호·배점이 룰을 **끊고** 앉는다 — 종이색으로 룰을 덮는다. */
+.v_h3 .num,
+.v_h3 .score {
+  position: relative;
+  top: -2.6mm;
+  background: var(--paper-warm);
+  padding: 0 1.6mm 0 0;
+}
+
+/* 번호 왼쪽에도 룰이 보여야 «끊고 앉은» 것으로 읽힌다 — 안 그러면 그냥 룰 앞에 선 것이다. */
+.v_h3 .num {
+  margin-left: 3.5mm;
+  padding-left: 1.6mm;
+}
+
+.v_h3 .score {
+  padding: 0 0 0 1.6mm;
+}
+
+.v_h3 .kind {
+  position: relative;
+  top: -2.6mm;
+  background: var(--paper-warm);
+  padding-right: 1.6mm;
+}
+
+.v_h3 .num {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ── H4 · 두 줄 머리 ────────────────────────────────────────────────────── */
+.v_h4 .bandRow {
+  display: grid;
+  grid-template-areas:
+    "meta meta"
+    "num  num";
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.2mm;
+  margin-bottom: 1.6mm;
+}
+
+.v_h4 .kind,
+.v_h4 .score {
+  grid-area: meta;
+  justify-self: start;
+  margin-left: 0;
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.v_h4 .score {
+  justify-self: end;
+}
+
+.v_h4 .num {
+  grid-area: num;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.15;
+}

@@ -1,0 +1,62 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   30.0,
+   175.0
+  ],
+  "B": [
+   210.0,
+   175.0
+  ],
+  "P": [
+   171.96,
+   33.04
+  ]
+ },
+ "segments": {
+  "PA": {
+   "points": [
+    "P",
+    "A"
+   ],
+   "dash": "6 4"
+  },
+  "PB": {
+   "points": [
+    "P",
+    "B"
+   ],
+   "dash": "6 4"
+  },
+  "AB": [
+   "A",
+   "B"
+  ]
+ },
+ "angles": {
+  "angP": {
+   "vertex": "P",
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "60°"
+  }
+ },
+ "dimensions": {
+  "dimAB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "9",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "P": "P"
+ }
+}

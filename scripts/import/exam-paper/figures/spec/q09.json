@@ -1,0 +1,65 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   28.0,
+   148.0
+  ],
+  "B": [
+   93.88,
+   148.0
+  ],
+  "C": [
+   183.88,
+   58.0
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ]
+ },
+ "angles": {
+  "angA": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "30°",
+   "radius": 34
+  },
+  "angC": {
+   "vertex": "C",
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "15°"
+  }
+ },
+ "dimensions": {
+  "dimAC": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "12",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C"
+ }
+}
