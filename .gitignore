@@ -314,6 +314,8 @@ scripts/qa/reports/svg-compare-blocked/
 !scripts/qa/reports/solution-hwp-repair.json
 !scripts/qa/reports/lsub-repair.json
 !scripts/qa/reports/content-damaged-lock.json
+# 유령 문항류 제거의 되돌리기 원장 (D-120). 커밋 안 되면 되돌리기가 이 컴퓨터에만 남는다.
+!scripts/qa/reports/ghost-families-ledger.json
 
 # 해설 생성 배치 산출물 — 재생성 가능, 원장(reports/ai-solution-*.json)만 커밋
 scripts/qa/nosol-out/
