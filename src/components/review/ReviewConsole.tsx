@@ -25,6 +25,7 @@ import {
   type ReviewConsoleRow,
 } from "@/lib/review/consoleRow";
 import { REASON_LABELS, REASON_ORDER } from "@/components/review/reasonLabels";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import type { ReportReason } from "@/contracts/problemReport.contract";
 import type {
   ReviewQueueKey,
@@ -287,7 +288,9 @@ export function ReviewConsole({
                       해설 보기
                     </summary>
                     <div className="mt-2 text-[14px] leading-relaxed text-text-2">
-                      <PaperProblemView content={row.solution} />
+                      <PaperProblemView
+                        content={solutionForDisplay(row.solution) ?? ""}
+                      />
                     </div>
                   </details>
                 ) : (

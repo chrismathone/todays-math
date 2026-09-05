@@ -10,6 +10,7 @@ import {
 } from "@/lib/elementary/generate";
 import { ELEM_GRADES } from "@/lib/elementary/types";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * 초3-1~초6-2 자체 출제 엔진 QA.
@@ -44,7 +45,11 @@ export default async function ElemEnginePage({
   const drawn = await Promise.all(
     items.map(async (item) => {
       if (!item.figureSpec) {
-        return { ...item, figureSvg: null as string | null, figureError: null as string | null };
+        return {
+          ...item,
+          figureSvg: null as string | null,
+          figureError: null as string | null,
+        };
       }
       const svg = await renderFigureSpec(item.figureSpec);
       return {
@@ -102,19 +107,26 @@ export default async function ElemEnginePage({
               {index + 1}. {item.section}
             </p>
             {item.figureError ? (
-              <p className="mb-2 text-[12px] text-g-red-text">{item.figureError}</p>
+              <p className="mb-2 text-[12px] text-g-red-text">
+                {item.figureError}
+              </p>
             ) : null}
             <PaperProblemView
               content={item.content}
               figureSvg={item.figureSvg}
             />
             <div className="mt-2 text-[12px] text-text-1">
-              <span className="font-extrabold tracking-wide text-text-2">정답</span>{" "}
+              <span className="font-extrabold tracking-wide text-text-2">
+                정답
+              </span>{" "}
               <MathText as="span" text={item.answer} />
             </div>
             <div className="mt-1 text-[12px] text-text-2">
               <p className="mb-1 font-extrabold tracking-wide">해설</p>
-              <PaperProblemView content={item.solution} framed={false} />
+              <PaperProblemView
+                content={solutionForDisplay(item.solution) ?? ""}
+                framed={false}
+              />
             </div>
           </li>
         ))}

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { PaperProblemView } from "@/components/print/PaperProblemView";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * 검수 콘솔 **Hi-fi 4안** — A(한 장씩) + E(대기열) 확정본의 시안 (D-07 2단계).
@@ -282,7 +283,7 @@ function Answer({ r }: { r: Row }) {
             해설 보기
           </summary>
           <div className="mt-2 text-[14px] leading-relaxed text-text-2">
-            <PaperProblemView content={r.solution} />
+            <PaperProblemView content={solutionForDisplay(r.solution) ?? ""} />
           </div>
         </details>
       ) : state === "none" ? (

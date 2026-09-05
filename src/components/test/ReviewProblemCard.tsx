@@ -6,7 +6,7 @@ import { MathText } from "@/components/math/MathText";
 import { ProblemExcerpt } from "@/components/problem/ProblemExcerpt";
 import { Button } from "@/components/ui/Button";
 import type { ProblemEntity } from "@/contracts/problem.contract";
-import { splitSolutionSteps } from "@/lib/solutionSteps";
+import { solutionForDisplay, splitSolutionSteps } from "@/lib/solutionSteps";
 
 type Props = {
   orderIndex: number;
@@ -41,7 +41,7 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
   onReplace,
   replacing,
 }: Props) {
-  const solution = problem.solution?.trim() ?? "";
+  const solution = solutionForDisplay(problem.solution)?.trim() ?? "";
 
   return (
     <article

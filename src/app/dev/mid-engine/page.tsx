@@ -6,6 +6,7 @@ import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * 중1~중3 자체 출제 엔진 QA — **눈으로 보는 자리**.
@@ -191,7 +192,10 @@ export default async function MidEnginePage({
                 </div>
                 <div className="mt-1 text-[12px] text-text-2">
                   <p className="mb-1 font-extrabold tracking-wide">해설</p>
-                  <PaperProblemView content={p.solution} framed={false} />
+                  <PaperProblemView
+                    content={solutionForDisplay(p.solution) ?? ""}
+                    framed={false}
+                  />
                 </div>
               </>
             ) : null}

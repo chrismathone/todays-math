@@ -12,6 +12,7 @@ import {
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import type { ElemProblem } from "@/lib/elementary/types";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * **초6 난이도 사다리 — 네 갈래를 나란히** (매쓰홀릭 벤치마킹용 검수 화면).
@@ -232,7 +233,7 @@ export default async function TierBenchG6Page({
                             해설
                           </p>
                           <PaperProblemView
-                            content={p.solution}
+                            content={solutionForDisplay(p.solution) ?? ""}
                             framed={false}
                           />
                         </div>

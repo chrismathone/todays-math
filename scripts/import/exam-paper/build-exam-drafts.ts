@@ -96,8 +96,46 @@ const SCRUBS: Scrub[] = [
   },
 ];
 
+/**
+ * 이 편의 학교. **메타에만 남고 지면에는 안 나간다.**
+ *
+ * 🔴 원장님 지시(2026-09-06): *「문제에 〈정화〉 같은 학교 추측 가능한 문제들은
+ * 다른 이름으로 교체할 것, 적절한 네임으로」*. 실제로 문14 발문이
+ * 「**정화**는 매직아일랜드가 있는 C지점으로부터…」로 학교 이름을 **사람 이름처럼**
+ * 쓰고 있었다. 지면 머리띠는 `JH중` 으로 가려 두었는데 **본문이 그 가림을 무의미하게**
+ * 만든다.
+ *
+ * 바꾸는 것과 남았는지 세는 것이 **같은 값 하나**(`SCHOOL_STEM`)를 본다 — 두 벌이면
+ * 한쪽만 고쳐도 아무도 모른다.
+ */
+const SCHOOL = "정화중";
+/** 학교를 가리키는 알맹이 (`정화중` → `정화`). */
+const SCHOOL_STEM = SCHOOL.replace(/(?:여자)?(?:중학교|고등학교|중|고)$/u, "");
+
+/**
+ * 걷는 것이 아니라 **바꾸는 것.** 지우면 문장이 무너진다(「는 매직아일랜드가…」).
+ *
+ * ⚠️ **장소 이름은 그대로 둔다.** 롯데월드·잠실역·석촌호수는 학교를 안 가리키고,
+ *    원본 그림(지도)에 그대로 있으므로 본문만 바꾸면 오히려 어긋난다
+ *    (원장님 확정 「기출문제는 그림 완전 이전이 생명」).
+ */
+const RENAMES: (Scrub & { to: string })[] = [
+  {
+    name: "🔴 학교를 추측할 수 있는 사람 이름",
+    re: new RegExp(SCHOOL_STEM, "gu"),
+    to: "수아",
+    probe: `${SCHOOL_STEM}는 매직아일랜드가 있는 지점으로부터`,
+  },
+];
+
 /** 걷어 낸 **뒤에** 남으면 안 되는 것. 각 항목도 probe 로 눈금을 맞춘다. */
 const FORBIDDEN: Scrub[] = [
+  {
+    // 참을 `SCHOOL` 하나에서 가져온다. 바꾸기가 새면 여기서 멈춘다.
+    name: "🔴 학교를 추측할 수 있는 이름",
+    re: new RegExp(SCHOOL_STEM, "u"),
+    probe: `${SCHOOL_STEM}는 매직아일랜드로 갔다`,
+  },
   {
     name: "🔴 개인정보(검수자 실명)",
     re: /(?:워드|오검|검토|검수|완료|출제)\s*[::]\s*[가-힣]/u,
@@ -121,15 +159,25 @@ const FORBIDDEN: Scrub[] = [
   },
 ];
 
-for (const s of [...SCRUBS, ...FORBIDDEN]) {
+for (const s of [...SCRUBS, ...RENAMES, ...FORBIDDEN]) {
   const changed = s.re.test(s.probe);
   s.re.lastIndex = 0;
   if (!changed) {
     throw new Error(`[중단] 눈금이 안 걸린다: ${s.name} — 판정을 거부한다`);
   }
 }
+// 바꾸기는 「걸리나」로 부족하다 — **바뀐 글에 그 이름이 없어야** 한다.
+for (const r of RENAMES) {
+  r.re.lastIndex = 0;
+  const after = r.probe.replace(r.re, r.to);
+  r.re.lastIndex = 0;
+  if (r.re.test(after))
+    throw new Error(`[중단] 바꾸기가 제 눈금도 못 지운다: ${r.name}`);
+  r.re.lastIndex = 0;
+}
 console.log(
-  `눈금 통과 — 걷기 ${SCRUBS.length}개 · 금지 ${FORBIDDEN.length}개 전부 살아 있다`,
+  `눈금 통과 — 걷기 ${SCRUBS.length}개 · 바꾸기 ${RENAMES.length}개 · ` +
+    `금지 ${FORBIDDEN.length}개 전부 살아 있다`,
 );
 
 function scrub(text: string): { out: string; hits: string[] } {
@@ -180,8 +228,20 @@ function splitAnswer(text: string): { answer: string; solution: string } {
 // 규칙: PDF 발문에 상자 마커가 있고 HWP 발문에 없으면, HWP 발문의 **첫 항목 앞**에 붙인다.
 // 첫 항목을 못 찾으면 **멈춘다**(조용히 안 붙이면 그 문항만 지면에서 상자를 잃는다).
 // 상자를 그리는 규칙은 `src/lib/math/boxBlock.ts` 가 갖고 있다 — 여기서 옮겨 적지 않는다.
+//
+// 🔴 **PDF 가 찾은 이름을 그대로 쓴다 — 없는 이름을 지어내지 않는다.** (원장님 지적)
+//
+// 앞 회차는 어느 경우든 `<상자>` 를 넣었고, 지면이 그 낱말을 **라벨로 그렸다**.
+// 원본 지면을 렌더해 보니 문3 은 **테두리만 있고 머리 라벨이 없다** — 지면에
+// 〈상자〉라는 없던 이름이 찍혀 나간 것이다.
+// 원장님 확정: *「원문에 〈보기〉〈조건〉 없으면 붙이지 말 것」* (D-119 ⑹ 을 뒤집는다).
+// 그래서 `보기`·`조건` 은 그대로 두고, 추출기의 **총칭** 마커 `상자` 만
+// 머리 없는 상자 `<나열>` 로 옮긴다.
 const BOX_MARKER_RE =
-  /[<〈［[＜《≪〔【]\s*(?:보\s*기|조\s*건|상\s*자)\s*[>〉］\]＞》≫〕】]/;
+  /[<〈［[＜《≪〔【]\s*(보\s*기|조\s*건|상\s*자)\s*[>〉］\]＞》≫〕】]/;
+/** 추출기의 총칭 마커 → 머리 없는 상자. 라벨이 있는 것은 이름을 지킨다. */
+const GENERIC_BOX_LABEL = "상자";
+const HEADERLESS_BOX_LABEL = "나열";
 /** 상자 첫 항목의 표지. `boxBlock.ts` 의 계열 첫 원소들에서 왔다. */
 const FIRST_ITEM_RE = new RegExp(
   "(㉠|㈀|㉮|㈎|Ⓐ" +
@@ -191,7 +251,11 @@ const FIRST_ITEM_RE = new RegExp(
 );
 
 function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
-  if (!BOX_MARKER_RE.test(fromPdf) || BOX_MARKER_RE.test(stem)) return stem;
+  const found = BOX_MARKER_RE.exec(fromPdf);
+  if (!found || BOX_MARKER_RE.test(stem)) return stem;
+  // PDF 가 부른 이름. 총칭(`상자`)이면 머리 없는 상자로 바꾸고, 진짜 라벨은 지킨다.
+  const raw = found[1]!.replace(/\s+/g, "");
+  const label = raw === GENERIC_BOX_LABEL ? HEADERLESS_BOX_LABEL : raw;
   const m = FIRST_ITEM_RE.exec(stem);
   if (!m) {
     throw new Error(
@@ -200,9 +264,10 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
     );
   }
   console.log(
-    `  문${n} 상자 복원: 첫 항목 «${m[1].trim()}» 앞에 <상자> 를 넣는다`,
+    `  문${n} 상자 복원: 첫 항목 «${m[1].trim()}» 앞에 <${label}> 를 넣는다` +
+      (label === raw ? "" : ` (PDF 총칭 «${raw}» → 머리 없는 상자)`),
   );
-  return `${stem.slice(0, m.index)}<상자> ${stem.slice(m.index)}`;
+  return `${stem.slice(0, m.index)}<${label}> ${stem.slice(m.index)}`;
 }
 
 // ── ㉢ 배점 — **정본은 PDF 쪽이다.** 근거는 본문 밖에 있다: 합이 100점이어야 한다 ──
@@ -298,18 +363,45 @@ const paper = normalizePastExamPaper({
   questions: questions as PastExamPaper["questions"],
   meta: {
     exam_id: "2025-jeonghwa-3-2-mid",
-    school: "정화중", // 지면에는 JH중 으로 가려져 있다(원장님 요청). 메타에만 남긴다.
+    school: SCHOOL, // 지면에는 JH중 으로 가려져 있다(원장님 요청). 메타에만 남긴다.
     grade: "중3",
     subject: "수학",
   },
   _sourceFile: readFileSync(join(DIR, "source_path.txt"), "utf-8").trim(),
 });
 
-const drafts = convertPastExamPaper(paper, answers).map((d, i) => ({
-  ...d,
-  // HWP 가 아는 출제 형식(객관식/단답형/서술형). `problemType`(계산/개념/활용/서술형)과 다른 축.
-  questionType: hwp.questions[i].type,
-}));
+/** 학교를 추측할 수 있는 이름을 바꾼다. 아래 `FORBIDDEN` 이 남았는지 다시 센다. */
+function rename(text: string | null | undefined): string | null {
+  if (text === null || text === undefined) return null;
+  let out = text;
+  for (const r of RENAMES) {
+    r.re.lastIndex = 0;
+    out = out.replace(r.re, r.to);
+  }
+  return out;
+}
+
+const renamed: string[] = [];
+const drafts = convertPastExamPaper(paper, answers).map((d, i) => {
+  const content = rename(d.content)!;
+  const answer = rename(d.answer)!;
+  const solution = rename(d.solution);
+  if (content !== d.content || answer !== d.answer || solution !== d.solution)
+    renamed.push(`문${d.questionNumber}`);
+  return {
+    ...d,
+    content,
+    answer,
+    solution,
+    // HWP 가 아는 출제 형식(객관식/단답형/서술형). `problemType`(계산/개념/활용/서술형)과 다른 축.
+    questionType: hwp.questions[i].type,
+  };
+});
+console.log(
+  renamed.length > 0
+    ? `학교를 추측할 수 있는 이름을 바꿨다: ${renamed.join(", ")}`
+    : "학교를 추측할 수 있는 이름 없음",
+);
 
 // ── ㉤ 금지 검사 — 걷은 **뒤** 전량에 대고 본다 ─────────────────────────────
 let bad = 0;

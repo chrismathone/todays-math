@@ -22,6 +22,7 @@ import {
 } from "@/lib/elementary/generate";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import type { ElemProblem } from "@/lib/elementary/types";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
  * **초4 난이도 사다리를 한 줄씩 눈으로 보는 자리** — 매쓰홀릭 벤치마킹용 (2026-08-30).
@@ -311,7 +312,7 @@ export default async function TierBenchG4Page({
                           해설
                         </p>
                         <PaperProblemView
-                          content={problem.solution}
+                          content={solutionForDisplay(problem.solution) ?? ""}
                           framed={false}
                         />
                       </div>

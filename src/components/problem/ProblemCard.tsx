@@ -10,6 +10,7 @@ import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
 import { provenanceBadges } from "@/lib/problem/provenance";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 import { REVIEW_STATUS_LABEL } from "./labels";
 import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
@@ -311,7 +312,7 @@ export const ProblemCard = memo(function ProblemCard({
                 <MathText
                   as="div"
                   className={paper.problemText}
-                  text={problem.solution}
+                  text={solutionForDisplay(problem.solution) ?? ""}
                 />
               </div>
             ) : null}

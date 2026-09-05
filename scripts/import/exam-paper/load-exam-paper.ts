@@ -23,7 +23,8 @@
  * `exam-load-ledger.json` 에 넣은 id 를 적는다. `--revert` 는 그 파일만 보고 지운다.
  * 원장을 **DB 보다 먼저** 쓴다(2026-08-29 교훈 — 중간에 죽으면 되돌릴 수 없다).
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { PrismaClient } from "@prisma/client";
@@ -60,88 +61,233 @@ const prisma = new PrismaClient();
  *
  * ⚠️ 이 표는 **원장님 검토 대상**이다. 틀린 소단원은 진도 범위 출제에서 엉뚱한 문제로 섞인다.
  */
-const UNIT_BY_NUMBER: Record<number, { section: string; why: string }> = {
+/**
+ * 손으로 정한 **소단원**과 **문항류**. 둘 다 사람이 원문과 «원본 그림»을 보고 정한다.
+ *
+ * ## 🔴 `family` 를 안 쓰면 문항마다 새 류가 생긴다 (D-120)
+ *
+ * 이 표에 `family` 가 없던 회차에 기출 19문항이 **19개의 새 문항류**로 들어갔다.
+ * 적재기가 `familyKey` 를 안 주면 DB 트리거가 `solo:` + `gen_random_uuid()` 를 찍는데,
+ * 그 키는 **문항마다 유일**하기 때문이다. 원장님이 화면에서 찾으셨다 —
+ * *「기출이 문항류가 전부 새로 붙었는데, 정말 새로운 문항류여서 새로 붙은 거야?」*
+ * 같은 결함의 잔해가 이 6개 소단원에만 **유령 무리 95개**(문항 0, 전량 `solo:uuid`)다.
+ *
+ * ## 기준 — 개념축 하나 (D-120)
+ *
+ * **같은 정리·성질로 같은 절차를 밟으면 같은 류.** 형식(객관식/서술형)·구하는 대상
+ * (길이/넓이/각)·방향(역산)·소재(나무/사다리)는 **안 가른다**. 판정은 지문 닮음으로
+ * 하지 않는다 — 지문이 글자까지 같아도 개념이 셋인 자리가 있다(`삼각비` 03·19·20).
+ *
+ * `|E01` 처럼 **E 로 시작하는 유형 번호**는 「기출에서 태어난 새 류」다. 나머지는
+ * 반드시 **그 소단원에 이미 살아 있는** 엔진 류여야 하고, 아니면 적재가 **멈춘다**
+ * (아래 `assertFamilies`). 오타 한 글자면 새 류가 조용히 생기기 때문이다.
+ */
+const UNIT_BY_NUMBER: Record<
+  number,
+  { section: string; why: string; family: string }
+> = {
   1: {
     section: "삼각비의 뜻",
     why: "직각삼각형에서 cos·sin 을 정의대로 읽는다(접기)",
+    family: "mid:3-2|삼각비|E01", // 🆕 접은 도형에서 삼각비 — 접기 류가 없다
   },
-  2: { section: "삼각비의 활용", why: "넓이 공식 ½ab sin C" },
-  3: { section: "삼각비의 값", why: "0°~90° 에서 sin·cos·tan 값의 대소" },
+  2: {
+    section: "삼각비의 활용",
+    why: "넓이 공식 ½ab sin C",
+    family: "mid:3-2|삼각비의 활용|09", // 그림: AB=6, BC=8, ∠B=60°
+  },
+  3: {
+    section: "삼각비의 값",
+    why: "0°~90° 에서 sin·cos·tan 값의 대소",
+    family: "mid:3-2|삼각비|14", // 「가장 큰/작은 것」. 「모두 고른 것은?」은 형식 축
+  },
   4: {
     section: "삼각비의 값",
     why: "반지름 1 사분원 — 단위원에서 삼각비의 값",
+    family: "mid:3-2|삼각비|12", // 그림 배치가 |12 와 같다(사분원·수선의 발·접선)
   },
-  5: { section: "삼각비의 활용", why: "수선의 발과 tan 으로 높이 구하기" },
-  6: { section: "원의 접선", why: "원에 외접하는 사각형의 접선 길이" },
-  7: { section: "원주각의 활용", why: "접선과 현이 이루는 각" },
-  8: { section: "원주각의 활용", why: "원에 내접하는 다각형의 대각 성질" },
-  9: { section: "삼각비의 활용", why: "삼각형에서 변의 길이 구하기" },
-  10: { section: "원주각의 활용", why: "접선과 현이 이루는 각 + 호의 길이 비" },
-  11: { section: "원의 접선", why: "한 점에서 그은 두 접선" },
-  12: { section: "원주각의 활용", why: "접선과 현이 이루는 각 + 닮음" },
-  13: { section: "원의 접선", why: "두 접선과 지름" },
-  14: { section: "삼각비의 활용", why: "삼각형의 변 — 특수각 분해" },
-  15: { section: "삼각비의 활용", why: "정사각형 안의 tan 값" },
-  16: { section: "원주각", why: "일정한 원주각을 갖는 점의 자취" },
-  17: { section: "삼각비의 활용", why: "삼각형 분해로 cos 75° 유도" },
-  18: { section: "원주각", why: "반원에 대한 원주각은 직각" },
-  19: { section: "원주각", why: "지름에 대한 원주각으로 직각삼각형 세기" },
+  5: {
+    section: "삼각비의 활용",
+    why: "수선의 발과 tan 으로 높이 구하기",
+    family: "mid:3-2|삼각비의 활용|06",
+  },
+  6: {
+    section: "원의 접선",
+    why: "원에 외접하는 사각형의 접선 길이",
+    family: "mid:3-2|원과 직선|14", // AB+CD=BC+AD
+  },
+  7: {
+    section: "원주각의 활용",
+    why: "접선과 현이 이루는 각",
+    family: "mid:3-2|원주각의 활용|09", // 그림: 중심각 150° → 원주각 75° → 접현각 105°
+  },
+  8: {
+    section: "원주각의 활용",
+    why: "원에 내접하는 다각형의 대각 성질",
+    family: "mid:3-2|원주각의 활용|04", // 오각형 내접
+  },
+  9: {
+    section: "삼각비의 활용",
+    why: "삼각형에서 변의 길이 구하기",
+    family: "mid:3-2|삼각비의 활용|05", // 두 각과 한 변. |04 는 두 변과 낀각이라 다르다
+  },
+  10: {
+    section: "원주각의 활용",
+    why: "접선과 현이 이루는 각 + 호의 길이 비",
+    family: "mid:3-2|원주각의 활용|08", // |08 의 둘째 지문이 정확히 이것
+  },
+  11: {
+    section: "원의 접선",
+    why: "한 점에서 그은 두 접선",
+    family: "mid:3-2|원과 직선|07", // 그림: x=PO(√136), y=PB(10) → 236. 피타고라스가 알맹이
+  },
+  12: {
+    section: "원주각의 활용",
+    why: "접선과 현이 이루는 각 + 닮음",
+    family: "mid:3-2|원주각의 활용|E01", // 🆕 각이 아니라 넓이 — 원 안의 닮음+넓이 류가 없다
+  },
+  13: {
+    section: "원의 접선",
+    why: "두 접선과 지름",
+    family: "mid:3-2|원과 직선|09", // 「∠APB의 크기」
+  },
+  14: {
+    section: "삼각비의 활용",
+    why: "삼각형의 변 — 특수각 분해",
+    family: "mid:3-2|삼각비의 활용|05", // 문9 와 같은 류다
+  },
+  15: {
+    section: "삼각비의 활용",
+    why: "정사각형 안의 tan 값",
+    family: "mid:3-2|삼각비의 활용|E01", // 🆕 복합 도형에서 각의 삼각비
+  },
+  16: {
+    section: "원주각",
+    why: "일정한 원주각을 갖는 점의 자취",
+    family: "mid:3-2|원주각|E01", // 🆕 자취 류가 없다
+  },
+  17: {
+    section: "삼각비의 활용",
+    why: "삼각형 분해로 cos 75° 유도",
+    family: "mid:3-2|삼각비의 활용|E02", // 🆕 특수각이 아닌 삼각비를 도형으로 유도
+  },
+  18: {
+    section: "원주각",
+    why: "반원에 대한 원주각은 직각",
+    family: "mid:3-2|원주각|05", // 「이유를 설명하시오」는 형식 축이라 안 가른다
+  },
+  19: {
+    section: "원주각",
+    why: "지름에 대한 원주각으로 직각삼각형 세기",
+    family: "mid:3-2|원주각|E02", // 🆕 세는 류가 없다
+  },
 };
 
-/** 문항번호 → 그림 스펙 이름. 문19 는 두 장이라 옆으로 붙인다. */
-const FIGURES: Record<number, string[]> = {
-  1: ["q01"],
-  2: ["q02"],
-  4: ["q04"],
-  5: ["q05"],
-  6: ["q06"],
-  7: ["q07"],
-  8: ["q08"],
-  9: ["q09"],
-  10: ["q10"],
-  11: ["q11"],
-  12: ["q12"],
-  13: ["q13"],
-  14: ["q14"],
-  15: ["q15"],
-  16: ["q16"],
-  17: ["q17"],
-  18: ["q18"],
-  19: ["q19a", "q19b"],
-};
+/**
+ * 🔴 **그림은 원본에서 옮긴다 — 다시 그리지 않는다.** (원장님 확정 2026-09-06)
+ *
+ * 앞 회차는 `figures/make_specs.py` 로 **발문의 값에서 좌표를 계산해** FigureSpec 을
+ * 짓고 SVG 로 그렸다. 값은 전부 맞았지만(문13 을 재면 접선·지름·각이 다 정확하다)
+ * **모양이 원본과 다르다** — 점 배치·비율·라벨 자리·각 표시 크기가 전부 우리 판단이다.
+ * 원장님이 문10·12·13·14 와 「각 크기가 삼각형을 벗어난다」를 짚으셨고 **다섯이 한 뿌리**다.
+ * 그리고 **문14 는 원본이 지도 사진**이라 도형 엔진으로는 재현이 아예 불가능하다.
+ *
+ * 원장님 확정: *「기출문제는 그림 완전 이전이 생명」* ·
+ * *「굳이 도형 엔진으로 도형만 만들 필요 없음. 원본과 너무 차이남」*.
+ *
+ * 원본 PDF 에 그림이 **래스터로 박혀 있어** 바이트 그대로 꺼낼 수 있다
+ * (`figures/extract_source_figures.py` → `figures/source/`).
+ *
+ * ## 목록을 손으로 적지 않는다
+ *
+ * 어느 문항에 그림이 몇 장인지는 **추출기의 색인**(`source/index.json`)이 안다.
+ * 손으로 적으면 세는 쪽과 넣는 쪽이 갈라진다 — 이 저장소가 여러 번 데인 자리다.
+ * (문3 은 원본에 그림이 정말 없다. 문19 는 서술형 ⑴⑵ 라 두 장이다.)
+ */
+interface SourceFigure {
+  number: number;
+  file: string;
+  /** 원본 지면에서 그 그림이 차지하던 **물리 폭(mm)**. `figureSourceMm` 의 근거다. */
+  widthMm: number;
+  /** 파일의 픽셀 치수 `[w, h]`. `figureDims` 의 근거다. */
+  px: [number, number];
+}
 
-const VIEWBOX = /viewBox="0 0 ([0-9.]+) ([0-9.]+)"/;
+// ⚠️ `import.meta.dirname` 은 tsx 가 CJS 로 옮기면 `undefined` 다(실측). 저장소 뿌리에서
+//    부르는 스크립트라 `cwd` 로 잡고, 없으면 `readSourceFigures` 가 경로째 찍고 멈춘다.
+const FIGURE_SRC_DIR = join(
+  process.cwd(),
+  "scripts",
+  "import",
+  "exam-paper",
+  "figures",
+  "source",
+);
 
-/** 여러 장을 **한 장으로** 잇는다 — `figureSvg` 는 컬럼이 하나뿐이다. */
-function composeSvg(names: string[]): string {
-  const parts = names.map((n) => {
-    const raw = readFileSync(join(DIR, "svg", `${n}.svg`), "utf-8");
-    const m = VIEWBOX.exec(raw);
-    if (!m) throw new Error(`[중단] ${n}.svg 에 viewBox 가 없다`);
-    const inner = raw
-      .replace(/^[\s\S]*?<svg[^>]*>/, "")
-      .replace(/<\/svg>\s*$/, "")
-      // 낱장의 흰 바탕은 이어 붙일 때 서로를 덮는다 — 뗀다.
-      .replace(/<rect[^>]*fill="#ffffff"[^>]*\/>/g, "");
-    return { w: Number(m[1]), h: Number(m[2]), inner };
+/**
+ * 배포 경로의 조각. **학교를 가리키면 안 된다** — `EXAM_ID` 에는 학교 이름이 들어 있어
+ * 그대로 쓰면 URL 이 학교를 말한다(원장님 지시: 그림 파일 경로에 학교명 금지).
+ * 해시는 편마다 **한 값으로 고정**이라 다시 적재해도 같은 자리에 간다(멱등).
+ */
+const FIGURE_SLUG = createHash("sha1")
+  .update(EXAM_ID)
+  .digest("hex")
+  .slice(0, 10);
+const FIGURE_URL_BASE = `/figures/exam/${FIGURE_SLUG}`;
+const FIGURE_OUT_DIR = join(
+  process.cwd(),
+  "public",
+  "figures",
+  "exam",
+  FIGURE_SLUG,
+);
+
+/** 문항번호 → 원본 그림들. 추출기 색인에서 읽는다. */
+function readSourceFigures(): Map<number, SourceFigure[]> {
+  const indexPath = join(FIGURE_SRC_DIR, "index.json");
+  if (!existsSync(indexPath))
+    throw new Error(
+      `[중단] 원본 그림 색인이 없다: ${indexPath}\n` +
+        "  figures/extract_source_figures.py 를 먼저 돌릴 것 — " +
+        "그림을 다시 그리는 길로 되돌아가지 않는다",
+    );
+  const idx = JSON.parse(readFileSync(indexPath, "utf-8")) as {
+    figures: SourceFigure[];
+  };
+  const by = new Map<number, SourceFigure[]>();
+  for (const f of idx.figures) {
+    const src = join(FIGURE_SRC_DIR, f.file);
+    if (!existsSync(src))
+      throw new Error(`[중단] 색인이 가리키는 ${f.file} 이 없다`);
+    if (!(f.widthMm > 0))
+      throw new Error(`[중단] ${f.file} 의 widthMm 가 없다`);
+    if (!by.has(f.number)) by.set(f.number, []);
+    by.get(f.number)!.push(f);
+  }
+  return by;
+}
+
+/**
+ * 원본 파일을 배포 경로로 **바이트 그대로** 옮긴다.
+ *
+ * ⚠️ 옮긴 뒤 **바이트를 대조한다.** 「복사했다」와 「같은 파일이 거기 있다」는 다른 말이고,
+ *    다르면 그건 이미 «다시 그린 것»이다.
+ * ⚠️ 이 파일들은 **커밋되어야** 한다 — 공유 DB 는 코드보다 먼저 나가므로, 밀지 않으면
+ *    production 의 DB 는 URL 을 알고 배포본에 파일이 없다(CLAUDE.md 2026-08-20).
+ *    `pre-push` 의 `checkDeployedFigures` 가 이 자리를 지킨다.
+ */
+function copyFigures(figs: SourceFigure[]): string[] {
+  mkdirSync(FIGURE_OUT_DIR, { recursive: true });
+  return figs.map((f) => {
+    const src = join(FIGURE_SRC_DIR, f.file);
+    const dst = join(FIGURE_OUT_DIR, f.file);
+    const bytes = readFileSync(src);
+    if (!existsSync(dst) || !readFileSync(dst).equals(bytes))
+      writeFileSync(dst, bytes);
+    if (!readFileSync(dst).equals(bytes))
+      throw new Error(`[중단] ${f.file} 이 원본과 다르다 — 완전 이전이 아니다`);
+    return `${FIGURE_URL_BASE}/${f.file}`;
   });
-  if (parts.length === 1)
-    return readFileSync(join(DIR, "svg", `${names[0]}.svg`), "utf-8");
-  const gap = 24;
-  const w = parts.reduce((s, p) => s + p.w, 0) + gap * (parts.length - 1);
-  const h = Math.max(...parts.map((p) => p.h));
-  let x = 0;
-  const groups = parts.map((p) => {
-    const g = `<g transform="translate(${x.toFixed(2)},${((h - p.h) / 2).toFixed(2)})">${p.inner}</g>`;
-    x += p.w + gap;
-    return g;
-  });
-  return (
-    `<svg viewBox="0 0 ${w.toFixed(1)} ${h.toFixed(1)}" xmlns="http://www.w3.org/2000/svg">` +
-    `<rect width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="#ffffff" />` +
-    groups.join("") +
-    "</svg>"
-  );
 }
 
 /** 지면에 날 것이 나가나 — **제품 렌더러**로 판정한다(규칙을 옮겨 적지 않는다). */
@@ -157,6 +303,83 @@ function renderFaults(text: string): string[] {
   const raw = plain.match(/\\[A-Za-z]{2,}/);
   if (raw) bad.push(`날 LaTeX ${raw[0]}`);
   return bad;
+}
+
+/** 기출에서 태어난 새 문항류의 유형 번호 (`…|E01`). 엔진 번호와 겹칠 수 없다. */
+const NEW_FAMILY_RE = /\|E\d{2}$/;
+
+/**
+ * 🔴 **배정한 문항류가 그 소단원에 정말 있는가** (D-120).
+ *
+ * 오타 한 글자면 트리거가 **새 류를 조용히 만든다** — 이번 결함이 정확히 그 모양이다.
+ * 그래서 `E` 가 아닌 키는 「그 소단원에 **살아 있는 문항이 붙은** 무리」여야 한다.
+ * ⚠️ 「무리 행이 있다」로는 부족하다 — 유령 무리 95개가 행만 있고 문항이 0개다.
+ * 개념축(D-120)에서 문항이 하나도 없는 무리는 **개념이 아니다.**
+ *
+ * 그리고 판정 **전에** 일부러 틀린 키를 대 본다. 「0건」이 «깨끗»인지 «못 셈»인지
+ * 갈라야 한다 — 도장은 «아니오»를 못 낸다.
+ */
+async function assertFamilies(
+  bySection: Map<string, { id: string; section: string }>,
+): Promise<void> {
+  const sections = [
+    ...new Set(Object.values(UNIT_BY_NUMBER).map((v) => v.section)),
+  ];
+  /** 소단원 → 그 소단원에서 **문항이 붙어 있는** 무리 키. */
+  const live = new Map<string, Set<string>>();
+  for (const section of sections) {
+    const unit = bySection.get(section);
+    if (!unit) throw new Error(`[중단] 소단원 «${section}» 이 트리에 없다`);
+    const rows = await prisma.problem.findMany({
+      where: { unitId: unit.id, source: { not: "past_exam" } },
+      select: { familyKey: true },
+      distinct: ["familyKey"],
+    });
+    live.set(
+      section,
+      new Set(rows.map((r) => r.familyKey).filter((k): k is string => !!k)),
+    );
+  }
+
+  const judge = (section: string, key: string): string | null => {
+    if (NEW_FAMILY_RE.test(key)) {
+      return live.get(section)!.has(key)
+        ? `«${key}» 는 새 류(E)인데 «${section}» 에 이미 있다 — 번호를 새로 딸 것`
+        : null;
+    }
+    return live.get(section)!.has(key)
+      ? null
+      : `«${key}» 가 «${section}» 에 없다 — 오타면 새 류가 조용히 생긴다`;
+  };
+
+  // ── 음성 대조: 이 검사가 «아니오» 를 낼 수 있는가 ──────────────────────
+  const [probeSection, probe] = [
+    UNIT_BY_NUMBER[2]!.section,
+    UNIT_BY_NUMBER[2]!.family,
+  ];
+  if (judge(probeSection, `${probe}0`) === null)
+    throw new Error(
+      "[중단] 문항류 검사가 일부러 틀린 키를 통과시킨다 — 검사가 눈이 멀었다",
+    );
+  if (judge(probeSection, probe) !== null)
+    throw new Error(
+      `[중단] 문항류 검사가 «${probe}» 를 막는다 — 늘 우는 가드는 꺼진다`,
+    );
+
+  const bad: string[] = [];
+  let reused = 0;
+  let born = 0;
+  for (const [n, v] of Object.entries(UNIT_BY_NUMBER)) {
+    const why = judge(v.section, v.family);
+    if (why) bad.push(`문${n}: ${why}`);
+    else if (NEW_FAMILY_RE.test(v.family)) born += 1;
+    else reused += 1;
+  }
+  if (bad.length > 0)
+    throw new Error(`[중단] 문항류 배정이 어긋난다\n  ${bad.join("\n  ")}`);
+  console.log(
+    `문항류 배정 확인 — 기존 무리 ${reused} · 새 류 ${born} (개념축 D-120)\n`,
+  );
 }
 
 /** 답 표기 차이를 접는다 — ①↔1, `$`·공백. */
@@ -245,6 +468,14 @@ async function main(): Promise<void> {
   const bySection = new Map(units.map((u) => [u.section, u]));
   console.log(`중3 소단원 ${units.length}개\n`);
 
+  await assertFamilies(bySection);
+
+  const sourceFigures = readSourceFigures();
+  console.log(
+    `원본 그림 ${[...sourceFigures.values()].flat().length}장 / ${sourceFigures.size}문항 — ` +
+      `배포 경로 ${FIGURE_URL_BASE}`,
+  );
+
   // ── 조립 ────────────────────────────────────────────────────────────────
   const ai = new Map<
     number,
@@ -312,6 +543,8 @@ async function main(): Promise<void> {
     }
 
     // ── 지면 검사 ─────────────────────────────────────────────────────────
+    const figs = sourceFigures.get(n) ?? [];
+
     const faults = [
       ...renderFaults(d.content).map((f) => `본문: ${f}`),
       ...renderFaults(d.answer).map((f) => `정답: ${f}`),
@@ -324,6 +557,8 @@ async function main(): Promise<void> {
 
     rows.push({
       unitId: unit.id,
+      // 🔴 이 줄이 없으면 트리거가 문항마다 `solo:uuid` 를 찍는다 (D-120).
+      familyKey: want.family,
       source: "past_exam",
       difficulty: d.difficulty,
       problemType: d.problemType,
@@ -332,8 +567,12 @@ async function main(): Promise<void> {
       answer: d.answer,
       solution,
       solutionSource,
-      figureSvg: FIGURES[n] ? composeSvg(FIGURES[n]) : null,
-      figureSource: FIGURES[n] ? "engine" : null,
+      // 🔴 원본을 옮긴다. `figureSvg`(우리가 다시 그린 것)는 **안 쓴다**.
+      figureUrls: figs.length > 0 ? copyFigures(figs) : [],
+      figureDims: figs.flatMap((f) => f.px),
+      figureSourceMm: figs.map((f) => f.widthMm),
+      figureSvg: null,
+      figureSource: figs.length > 0 ? "source" : null,
       externalId: d.externalId,
       sourceFile: d.sourceFile,
       school: d.school,
@@ -356,7 +595,7 @@ async function main(): Promise<void> {
   console.log(`넣을 행 ${rows.length} · 뺀 행 ${skipped.length}`);
   for (const s of skipped) console.log(`  ⛔ ${s}`);
   console.log(
-    `그림 붙은 행 ${rows.filter((r) => r.figureSvg).length} · ` +
+    `그림 붙은 행 ${rows.filter((r) => (r.figureUrls as string[]).length > 0).length} · ` +
       `해설 있는 행 ${rows.filter((r) => r.solution).length}`,
   );
 

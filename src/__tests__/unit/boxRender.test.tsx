@@ -66,15 +66,42 @@ describe("[상자 렌더] blockquote → 보기 카드", () => {
     expect(out).toContain("my-4 border border-[#8A8A88] bg-white p-4");
   });
 
-  it("`<조건>`·`<상자>` 라벨도 같은 카드로 그린다", () => {
-    for (const label of ["조건", "상자"]) {
+  it("`<조건>` 은 라벨을 그대로 단다", () => {
+    const out = html(
+      <MarkdownRenderer content={"> <조건1>\n>\n> 첫째\n>\n> 둘째"} />,
+    );
+    expect(out).toContain("data-box-card");
+    // 낱말은 **원본대로** 두고 괄호만 바꾼다(D-108) — 원본이 `<조건>` 이면 `〈조건〉`.
+    expect(out).toContain("〈조건〉");
+    expect(out).not.toContain("&lt;조건&gt;");
+  });
+
+  /**
+   * 🔴 **`<상자>` 는 라벨이 아니라 「이건 상자다」는 표시다.**
+   *
+   * 앞 회차는 그 낱말을 머리로 그려서, 기출 문3 이 지면에 **원본에 없던 〈상자〉**를
+   * 달고 나갔다. 원장님이 화면에서 찾으셨고 *「원문에 〈보기〉〈조건〉 없으면 붙이지
+   * 말 것」* 으로 확정하셨다(D-119 ⑹ 을 뒤집는다).
+   *
+   * 적재기는 앞으로 `<나열>` 을 넣지만, **이미 실린 `<상자>` 도** 머리 없이 그린다 —
+   * 안 그러면 그 행들을 다시 적재하기 전까지 계속 이름이 찍힌다.
+   */
+  it("`<상자>`·`<나열>` 은 **머리 없는** 카드다 — 없던 이름을 지어내지 않는다", () => {
+    for (const label of ["상자", "나열"]) {
       const out = html(
         <MarkdownRenderer content={`> <${label}1>\n>\n> 첫째\n>\n> 둘째`} />,
       );
-      expect(out).toContain("data-box-card");
-      // 낱말은 **원본대로** 두고 괄호만 바꾼다(D-108) — 원본이 `<조건>` 이면 `〈조건〉`.
-      expect(out).toContain(`〈${label}〉`);
-      expect(out).not.toContain(`&lt;${label}&gt;`);
+      expect(out, `${label}: 테두리 카드는 그려야 한다`).toContain(
+        "data-box-card",
+      );
+      expect(out, `${label}: 머리 라벨이 찍히면 안 된다`).not.toContain(
+        `〈${label}〉`,
+      );
+      // 마커 줄을 «안 그리는» 것과 «날문자로 남기는» 것은 다르다.
+      expect(out).not.toContain(`&lt;${label}`);
+      expect(out).not.toContain(`<${label}`);
+      // 항목은 그대로 다 나온다.
+      expect(out.match(/data-box-item/g)).toHaveLength(2);
     }
   });
 

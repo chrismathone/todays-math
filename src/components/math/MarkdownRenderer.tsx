@@ -89,8 +89,14 @@ const BOX_HEADER_RE = /^<(보기|조건|상자|나열)([1-3])?>/;
  * 라벨 머리를 그리지 않는 상자. 원장님(2026-08-18) "다음 작은 수를 네모 박스 안에
  * 넣으면 더 깔끔할텐데" — 발문 뒤 **나열 대상**은 «보기»도 «조건»도 아니라서
  * 머리에 라벨을 얹으면 없던 이름이 생긴다. 테두리만 두른다.
+ *
+ * 🔴 `상자` 도 여기 있다 — 그 낱말은 **라벨이 아니라 «상자다»라는 표시**다.
+ *    라벨로 그리면 지면에 〈상자〉라는 없던 이름이 찍힌다. 2026-09-06 에 기출 문3 이
+ *    실제로 그렇게 나갔고 **원장님이 화면에서 찾으셨다** — 원본에는 테두리만 있고
+ *    라벨이 없다(원본 지면을 렌더해 확인했다). 새로 넣는 자리는 `<나열>` 을 쓰지만,
+ *    이미 실린 `<상자>` 도 여기서 머리 없이 그려 **다시는 이름이 안 생기게** 한다.
  */
-const HEADERLESS_LABEL = "나열";
+const HEADERLESS_LABELS = new Set(["나열", "상자"]);
 
 const QUOTE_CLASS =
   "my-4 border border-[#8A8A88] bg-white p-4 not-italic print:border-black";
@@ -156,7 +162,7 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   if (!header) return <div className={QUOTE_CLASS}>{children}</div>;
 
   const label = header[1]!;
-  const headerless = label === HEADERLESS_LABEL;
+  const headerless = HEADERLESS_LABELS.has(label);
   const columns = header[2] === "2" ? 2 : header[2] === "3" ? 3 : 1;
   // 첫 문단은 **언제나 마커 줄**이다(`renderBoxSegment` 가 그렇게 싣는다).
   // 머리 없는 상자는 그 줄을 **그리지 않을** 뿐, 항목에서 빼는 건 똑같다 —

@@ -2,6 +2,7 @@ import { MathText } from "@/components/math/MathText";
 import { A4Page } from "@/components/print/A4Page";
 import type { TestPrintProblem } from "@/components/print/types";
 import { formatShortProblemCode } from "@/contracts/problemCode.contract";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 import styles from "./TestPrint.module.css";
 
@@ -81,7 +82,10 @@ export function PrintAnswerKeyPage({
               <div className={styles.solutionBody}>
                 <MathText
                   as="div"
-                  text={problem.solution ?? "해설이 등록되지 않았습니다."}
+                  text={
+                    solutionForDisplay(problem.solution) ??
+                    "해설이 등록되지 않았습니다."
+                  }
                 />
               </div>
             </article>
