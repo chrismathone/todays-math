@@ -105,6 +105,40 @@ describe("[상자 렌더] blockquote → 보기 카드", () => {
     }
   });
 
+  /**
+   * 🔴 **적재기가 본문에 넣는 마커는 `boxBlock` 이 «입력»으로 아는 것이어야 한다.**
+   *
+   * 2026-09-06 에 「원본에 없던 〈상자〉를 지우자」고 적재기가 `<나열>` 을 넣게 고쳤다.
+   * 그런데 `나열` 은 입력 마커가 **아니라** `renderBoxSegment` 가 내부에서 만드는
+   * 표기다(`boxBlock` 이 아는 입력은 `보기|조건|상자` 셋뿐이다). 그래서 상자가 아예
+   * 안 서고 **`<나열>` 이 날 글자로 지면에 찍혔다** — 지면을 그려 봐서야 알았다.
+   *
+   * 그러니 본문에는 `<상자>` 를 넣고, **머리를 안 그리는 일은 렌더러가** 한다.
+   * 아래 둘은 그 갈림을 통째로 잠근다 — 하나는 「이렇게 하면 된다」, 하나는
+   * 「이렇게 하면 안 된다」다.
+   */
+  it("본문 경로: `<상자>` 는 **머리 없는 테두리**가 되고 날 글자가 안 남는다", () => {
+    const raw =
+      "다음 중 옳은 것을 모두 고른 것은?\n<상자> ㉠ 첫째이다.\n㉡ 둘째이다.\n㉢ 셋째이다.\n1. ㉠\n2. ㉡";
+    const out = html(<ProblemContent content={raw} />);
+    expect(out, "테두리 상자가 서야 한다").toContain("data-box-card");
+    expect(out.match(/data-box-item/g)).toHaveLength(3);
+    expect(out, "원본에 없던 이름이 찍히면 안 된다").not.toContain("〈상자〉");
+    expect(out).not.toContain("&lt;상자");
+    expect(out).not.toContain("&lt;나열");
+  });
+
+  it("🔴 `<나열>` 을 본문에 넣으면 상자가 **안 선다** — 적재기가 쓰면 안 되는 마커", () => {
+    const raw =
+      "다음 중 옳은 것을 모두 고른 것은?\n<나열> ㉠ 첫째이다.\n㉡ 둘째이다.\n㉢ 셋째이다.\n1. ㉠\n2. ㉡";
+    const out = html(<ProblemContent content={raw} />);
+    // 「상자가 안 선다」가 이 검사의 요점이다. 언젠가 `boxBlock` 이 `나열` 을 입력으로
+    // 받게 되면 이 검사가 빨개지고, 그때 적재기 주석을 같이 고치면 된다.
+    expect(out, "지금은 `나열` 이 입력 마커가 아니다").not.toContain(
+      "data-box-card",
+    );
+  });
+
   it("문제 본문 경로 전체에서 보기 상자가 나온다", () => {
     // ProblemContent → parseProblemContent → MarkdownRenderer 까지 이어지는지 확인.
     const raw =

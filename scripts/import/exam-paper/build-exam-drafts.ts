@@ -231,17 +231,21 @@ function splitAnswer(text: string): { answer: string; solution: string } {
 //
 // 🔴 **PDF 가 찾은 이름을 그대로 쓴다 — 없는 이름을 지어내지 않는다.** (원장님 지적)
 //
-// 앞 회차는 어느 경우든 `<상자>` 를 넣었고, 지면이 그 낱말을 **라벨로 그렸다**.
-// 원본 지면을 렌더해 보니 문3 은 **테두리만 있고 머리 라벨이 없다** — 지면에
-// 〈상자〉라는 없던 이름이 찍혀 나간 것이다.
-// 원장님 확정: *「원문에 〈보기〉〈조건〉 없으면 붙이지 말 것」* (D-119 ⑹ 을 뒤집는다).
-// 그래서 `보기`·`조건` 은 그대로 두고, 추출기의 **총칭** 마커 `상자` 만
-// 머리 없는 상자 `<나열>` 로 옮긴다.
+// 앞 회차는 원본이 뭐라 했든 **언제나 `<상자>`** 를 넣었다. 원본이 `<보기>` 라 해도
+// 그 이름을 잃는다. 그래서 PDF 가 실제로 부른 이름을 그대로 싣는다.
+//
+// ⚠️ **머리 라벨을 안 그리는 일은 여기서 하지 않는다.** 문3 은 원본에 테두리만 있고
+//    라벨이 없는데 지면에 〈상자〉가 찍혀 나갔다(원장님이 화면에서 찾으셨다).
+//    원장님 확정: *「원문에 〈보기〉〈조건〉 없으면 붙이지 말 것」* (D-119 ⑹ 을 뒤집는다).
+//    고칠 자리는 **렌더러**(`MarkdownRenderer.HEADERLESS_LABELS`)다 — 거기서 `상자` 를
+//    머리 없이 그린다.
+//
+// 🔴 여기서 `<나열>` 을 넣으면 안 된다. `나열` 은 **입력 마커가 아니라**
+//    `renderBoxSegment` 가 내부에서 만드는 표기다(`boxBlock` 이 아는 입력은
+//    `보기|조건|상자` 셋뿐이다). 실제로 `<나열>` 을 넣어 봤더니 상자가 아예 안 서고
+//    **날 글자로 지면에 찍혔다** — 스크린샷으로 잡았다.
 const BOX_MARKER_RE =
   /[<〈［[＜《≪〔【]\s*(보\s*기|조\s*건|상\s*자)\s*[>〉］\]＞》≫〕】]/;
-/** 추출기의 총칭 마커 → 머리 없는 상자. 라벨이 있는 것은 이름을 지킨다. */
-const GENERIC_BOX_LABEL = "상자";
-const HEADERLESS_BOX_LABEL = "나열";
 /** 상자 첫 항목의 표지. `boxBlock.ts` 의 계열 첫 원소들에서 왔다. */
 const FIRST_ITEM_RE = new RegExp(
   "(㉠|㈀|㉮|㈎|Ⓐ" +
@@ -253,9 +257,9 @@ const FIRST_ITEM_RE = new RegExp(
 function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
   const found = BOX_MARKER_RE.exec(fromPdf);
   if (!found || BOX_MARKER_RE.test(stem)) return stem;
-  // PDF 가 부른 이름. 총칭(`상자`)이면 머리 없는 상자로 바꾸고, 진짜 라벨은 지킨다.
-  const raw = found[1]!.replace(/\s+/g, "");
-  const label = raw === GENERIC_BOX_LABEL ? HEADERLESS_BOX_LABEL : raw;
+  // PDF 가 부른 이름을 그대로 쓴다. `상자` 는 「라벨 없는 테두리」라는 뜻이고,
+  // 그것을 머리 없이 그리는 일은 렌더러가 한다.
+  const label = found[1]!.replace(/\s+/g, "");
   const m = FIRST_ITEM_RE.exec(stem);
   if (!m) {
     throw new Error(
@@ -265,7 +269,7 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
   }
   console.log(
     `  문${n} 상자 복원: 첫 항목 «${m[1].trim()}» 앞에 <${label}> 를 넣는다` +
-      (label === raw ? "" : ` (PDF 총칭 «${raw}» → 머리 없는 상자)`),
+      (label === "상자" ? " (라벨 없는 테두리 — 지면에 머리를 안 그린다)" : ""),
   );
   return `${stem.slice(0, m.index)}<${label}> ${stem.slice(m.index)}`;
 }
