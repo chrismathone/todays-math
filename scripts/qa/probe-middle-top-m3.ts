@@ -202,6 +202,22 @@ export type EdgeScore = {
   minHit: number;
   /** 우연 수준 = 1/(후보 수) 의 평균 */
   chance: number;
+  /**
+   * 🔴 **가장 잘 맞는 «자리»를 집었을 때** — 극단만이 아니라 가운데까지 센다.
+   *
+   * 후보를 정렬해 답이 몇째인지 본다. 게으른 학생은 후보 목록을 보므로 **후보 수를
+   * 안다** — 그래서 「후보가 $n$ 개면 $p$ 째를 집는다」가 그가 쓸 수 있는 가장 좋은
+   * 규칙이고, 그 성적이 $\sum_n P(n)\max_p P(\text{답}=p\mid n)$ 다. 우연 수준은
+   * 그대로 $\overline{1/n}$ 이라 **같은 자로 견줄 수 있다.**
+   */
+  bestHit: number;
+  /** `bestHit` 를 만든 자리 — 「후보 3개 중 2째」처럼 사람이 읽을 말. */
+  bestAt: string;
+  /**
+   * 🔴 답이 **하나가 아닌** 판 — 이 축으로는 못 잰다. 조용히 빼면 「깨끗」과
+   * 「못 셈」이 안 갈린다(`55W` 는 답이 «살아남은 것 전부의 합»이라 늘 여기 든다).
+   */
+  unscored: number;
 };
 
 function sameSet(a: readonly number[], b: readonly number[]): boolean {
@@ -218,19 +234,54 @@ export function edgeScore(sifts: readonly Sift[]): EdgeScore {
   let maxHit = 0;
   let minHit = 0;
   let chance = 0;
+  /** 후보 수별 · 자리별 도수 — 「$n$ 개 중 $p$ 째가 답」이 몇 판인가. */
+  const byLen = new Map<number, number[]>();
+  let unscored = 0;
   for (const s of sifts) {
     const mx = Math.max(...s.candidates);
     const mn = Math.min(...s.candidates);
     if (sameSet([mx], s.kept)) maxHit += 1;
     if (sameSet([mn], s.kept)) minHit += 1;
     chance += 1 / s.candidates.length;
+
+    // 🔴 자리 세기 — 답이 하나일 때만 뜻이 있다.
+    if (s.kept.length !== 1) {
+      unscored += 1;
+      continue;
+    }
+    const sorted = [...s.candidates].sort((a, b) => a - b);
+    const at = sorted.indexOf(s.kept[0]!);
+    if (at < 0) {
+      unscored += 1; // `kept` 가 후보 밖 — `siftScore.broken` 이 따로 찍는다
+      continue;
+    }
+    const row =
+      byLen.get(sorted.length) ?? new Array<number>(sorted.length).fill(0);
+    row[at]! += 1;
+    byLen.set(sorted.length, row);
   }
   const n = sifts.length || 1;
+  // 「후보가 $n$ 개면 $p$ 째를 집는다」의 가장 좋은 성적 — 길이마다 최빈 자리를 집는다.
+  let best = 0;
+  let bestAt = "—";
+  let topShare = -1;
+  for (const [len, row] of byLen) {
+    const top = Math.max(...row);
+    best += top;
+    // 보고에는 **가장 많이 기여한 한 자리**를 적는다 — 어디를 고쳐야 하는지가 그것이다.
+    if (top > topShare) {
+      topShare = top;
+      bestAt = `후보 ${len}개 중 ${row.indexOf(top) + 1}째`;
+    }
+  }
   return {
     n: sifts.length,
     maxHit: maxHit / n,
     minHit: minHit / n,
     chance: chance / n,
+    bestHit: best / n,
+    bestAt,
+    unscored,
   };
 }
 
@@ -1168,6 +1219,21 @@ function reportEdgeAndSift(): void {
       `    ${verdict} 최댓값 집기 ${(e.maxHit * 100).toFixed(1)}% · 최솟값 집기 ${(e.minHit * 100).toFixed(1)}%` +
         `  ← 우연 수준 ${(e.chance * 100).toFixed(1)}%   (씨앗 ${e.n})`,
     );
+    // 🔴 **극단만 재면 가운데가 쏠림의 피난처가 된다** — `57W` 가 실제로 그랬다
+    //    (극단 둘은 초록인데 「세 경우 중 가운데」가 57.7%, 우연 33.3%).
+    //    그리고 못 잰 판은 **못 잰 것으로 찍는다** — 0 은 「깨끗」과 「못 셈」을 안 가른다.
+    if (e.unscored === e.n) {
+      console.log(
+        `    ⚪ 자리 집기 — **이 축으로는 못 잰다** (답이 하나가 아닌 판 ${e.unscored}/${e.n})`,
+      );
+    } else {
+      const bv = e.bestHit <= e.chance + 0.1 ? "✅" : "🔴";
+      console.log(
+        `    ${bv} 가장 잘 맞는 자리 ${(e.bestHit * 100).toFixed(1)}% (${e.bestAt})` +
+          `  ← 우연 수준 ${(e.chance * 100).toFixed(1)}%` +
+          (e.unscored > 0 ? `   · 못 잰 판 ${e.unscored}` : ""),
+      );
+    }
     console.log(
       `    ${s.identity === 0 ? "✅" : "🔴"} ㉡ 굳힘이 아무도 안 거른 비율 ${(s.identity * 100).toFixed(1)}%` +
         ` · 남긴 후보 평균 ${s.keptAvg.toFixed(2)} / ${sifts[0]!.candidates.length}` +
