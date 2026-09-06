@@ -75,4 +75,60 @@ describe("splitSolutionSteps — 해설 줄 나누기", () => {
   it("빈 문자열은 빈 목록", () => {
     expect(splitSolutionSteps("")).toEqual([]);
   });
+
+  /**
+   * 🔴 2026-09-06 — **삽입구로 끝나는 문장을 통째로 못 보고 있었다.**
+   *
+   * 규칙이 마침표 **바로 앞 한 글자**만 봐서 `…작습니다). ` 는 한글이 아니라 `)` 다.
+   * 실측 적재본 **176행**이 그래서 두 문장이 한 줄로 나갔다. 원장님이 확정하신
+   * 규칙(「문장마다」)이 못 보던 자리이지 새 규칙이 아니다.
+   *
+   * ⚠️ 표본은 **적재본에서 그대로** 가져왔다 — 지어낸 글로 세우면 「검출기가 도는가」만
+   *    보고 「실데이터의 그 모양을 잡는가」는 구조적으로 못 본다(2026-08-30).
+   */
+  describe("삽입구로 끝나는 문장 끝 (`…). `)", () => {
+    it("괄호 안이 한글로 끝나는 삽입구 뒤에서 가른다 — E41102-A04-008 실데이터", () => {
+      const s =
+        "값이 $9$kg 이상이 된 것은 $2$개월이 처음입니다($1$개월의 값은 $4$kg으로 그보다 작습니다). 그때부터 보면 $13-9=4$ 이므로 $4$kg 늘었습니다.";
+      const steps = splitSolutionSteps(s);
+      expect(steps).toHaveLength(2);
+      expect(steps[0]!.endsWith("작습니다).")).toBe(true);
+      expect(steps[1]!.startsWith("그때부터")).toBe(true);
+    });
+
+    it("괄호 앞이 한글이면 괄호 안이 라틴이어도 가른다 — E30502-A04-014 실데이터", () => {
+      const s =
+        "$3\\,\\mathrm{km}$ 는 $3900$ 입니다 (단위: m). 이으면 $3900+2400=6300$ 입니다.";
+      const steps = splitSolutionSteps(s);
+      expect(steps).toHaveLength(2);
+      expect(steps[0]!.endsWith("(단위: m).")).toBe(true);
+    });
+
+    /* ── 음성 대조 — 「자를 수 있다」만 보면 「안 자를 것도 자르나」는 안 보인다 ── */
+
+    it("괄호 앞이 한글이 아니면 안 가른다", () => {
+      const s = "the value (x). next part";
+      expect(splitSolutionSteps(s)).toEqual([s]);
+    });
+
+    it("여는 괄호가 없으면 안 가른다 — 못 가르는 것은 버리는 쪽으로", () => {
+      const s = "넓이는 이다). 그다음 값은 $3$";
+      expect(splitSolutionSteps(s)).toEqual([s]);
+    });
+
+    it("수식이 닫힌 뒤의 마침표는 안 가른다 — `$f(x)$.`", () => {
+      const s = "함수는 $f(x)$. 그리고 값은 $2$";
+      expect(splitSolutionSteps(s)).toEqual([s]);
+    });
+
+    it("수식 안의 괄호·소수점은 건드리지 않는다", () => {
+      const s = "값은 $g(1.5)$ 이고 답은 $7$";
+      expect(splitSolutionSteps(s)).toEqual([s]);
+    });
+
+    it("글 맨 끝의 삽입구는 안 가른다 — 빈 줄이 생긴다", () => {
+      const s = "두 삼각형은 서로 닮음이다 (AA 닮음).";
+      expect(splitSolutionSteps(s)).toEqual([s]);
+    });
+  });
 });
