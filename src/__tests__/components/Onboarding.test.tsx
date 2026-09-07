@@ -17,10 +17,11 @@ import {
   progressRecordRequestSchema,
   progressResponseSchema,
   studentCreateRequestSchema,
+  studentListResponseSchema,
   studentResponseSchema,
 } from "@/contracts/class.contract";
 import { paginationParamsSchema } from "@/contracts/common.contract";
-import { MOCK_CLASSES, MOCK_UNITS } from "@/mocks/data";
+import { MOCK_CLASSES, MOCK_STUDENTS, MOCK_UNITS } from "@/mocks/data";
 import {
   jsonError,
   jsonOk,
@@ -121,6 +122,51 @@ describe("[T1.3] S-02 온보딩", () => {
         ),
       ),
     );
+  });
+
+  it("🔴 반과 **학생**을 이미 만들었으면 3단계까지 열린다 — 새로고침해도 진도만 넣으면 끝난다", async () => {
+    // 2026-09-07: 이어하기가 반만 읽어서, 새로고침하면 학생이 0으로 보이고 3단계가
+    // 통째로 잠겼다. 반을 만들고 학생을 넣은 원장이 F5 한 번에 되돌아가는 자리다.
+    const cls = MOCK_CLASSES[0]!;
+    server.use(
+      http.get("/api/classes", () =>
+        jsonOk(
+          classListResponseSchema,
+          paginate([cls], paginationParamsSchema.parse({})),
+        ),
+      ),
+      http.get("/api/students", ({ request }) => {
+        // 되살린 **그 반**의 학생만 물어야 한다 — classId 를 안 보내면 남의 반 학생이 뜬다.
+        expect(new URL(request.url).searchParams.get("classId")).toBe(cls.id);
+        return jsonOk(
+          studentListResponseSchema,
+          paginate(
+            MOCK_STUDENTS.filter((st) => st.classId === cls.id),
+            paginationParamsSchema.parse({}),
+          ),
+        );
+      }),
+    );
+
+    const user = userEvent.setup();
+    renderForm();
+
+    const seeded = MOCK_STUDENTS.filter((st) => st.classId === cls.id);
+    expect(seeded.length).toBeGreaterThan(0); // 분모 — 시드가 비면 아무것도 안 재는 시험이 된다
+    await waitFor(() => {
+      expect(screen.getByLabelText("소단원")).toBeEnabled();
+    });
+    // 되살린 학생이 화면에도 있어야 한다(「몇 명 넣었더라」를 원장이 다시 세지 않게).
+    for (const st of seeded)
+      expect(screen.getByText(st.name)).toBeInTheDocument();
+
+    // 그리고 **끝까지 간다** — 진도만 고르면 완료된다.
+    await user.selectOptions(
+      screen.getByLabelText("소단원"),
+      MOCK_UNITS[0]!.id,
+    );
+    await user.click(screen.getByRole("button", { name: "완료" }));
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/"));
   });
 
   it("🔴 반이 이미 있으면 1단계를 건너뛰고 2단계가 열린다 — 새로고침해도 처음으로 안 돌아간다", async () => {

@@ -46,6 +46,10 @@ import {
   TEST_NOT_FOUND_ID,
   TEST_PRINTED_ID,
   MOCK_UNITS,
+  MOCK_REVIEW_RANGE_START_UNIT,
+  MOCK_REVIEW_RANGE_END_UNIT,
+  MOCK_CLASS_B,
+  MOCK_CURRENT_PROGRESS_UNIT,
 } from "@/mocks/data";
 import { db } from "@/lib/db";
 
@@ -92,6 +96,151 @@ describe("[T4.2] POST /api/tests/generate — draft TEST + TEST_PROBLEM 생성",
     expect(res.status).toBe(400);
     const body = errorResponseSchema.parse(await res.json());
     expect(body.error.code).toBe("VALIDATION_ERROR");
+  });
+
+  /**
+   * 🔴 **진도가 없어도 범위를 직접 주면 확인테스트는 나간다** (2026-09-07).
+   *
+   * 화면은 진도가 없을 때 「진도를 기록하거나 **「고치기」로 직접 고르세요**」라고
+   * 안내하고, 서버 사유(`divergedMessage`)도 「범위를 직접 고르거나」라고 적는다.
+   * 그런데 라우트는 `testType` 을 보기 **전에** 진도가 없으면 400 을 냈다 —
+   * 화면과 서버가 둘 다 성립할 수 없는 지시를 하고 있었다.
+   *
+   * 확인테스트의 범위는 **요청이 들고 온다**(계약 refine 이 시작·끝을 모두 요구한다).
+   * 그러니 진도는 필요 없다. 일일테스트는 진도가 곧 범위라 그대로 400 이다.
+   */
+  describe("진도가 없는 반", () => {
+    /** 진도 기록이 하나도 없는 반 — 픽스처의 반들은 전부 진도가 있다. */
+    async function classWithoutProgress() {
+      // 확정된 반 픽스처를 펼쳐 쓴다 — 손으로 나열하면 스키마가 자랄 때 먼저 깨진다.
+      const { id: _id, createdAt: _c, updatedAt: _u, ...base } = MOCK_CLASS_B;
+      const cls = await db.class.create({
+        data: { ...base, name: "진도 없는 반" },
+      });
+      // 분모를 못 박는다 — 시드가 자라 이 반에 진도가 생기면 아무것도 안 재게 된다.
+      // 테스트 더블은 라우트가 부르는 것만 구현한다 — `count` 대신 목록 길이로 센다.
+      expect(
+        (await db.progress.findMany({ where: { classId: cls.id } })).length,
+      ).toBe(0);
+      return cls;
+    }
+
+    it("일일테스트는 그대로 400 — 진도가 곧 범위라 만들 수 없다", async () => {
+      const cls = await classWithoutProgress();
+      const res = await generateTest(
+        jsonRequest("http://localhost/api/tests/generate", "POST", {
+          classId: cls.id,
+          testType: "daily",
+          testDate: "2026-08-13",
+        }),
+      );
+      expect(res.status).toBe(400);
+      const body = errorResponseSchema.parse(await res.json());
+      expect(body.error.message).toContain("진도가 기록되지 않았습니다");
+    });
+
+    it("🔴 확인테스트에 범위를 직접 주면 만들어진다 — 화면이 「고치기로 직접 고르세요」라고 안내하는 그 길", async () => {
+      const cls = await classWithoutProgress();
+      const res = await generateTest(
+        jsonRequest("http://localhost/api/tests/generate", "POST", {
+          classId: cls.id,
+          testType: "review",
+          testDate: "2026-08-13",
+          problemCount: 4,
+          difficultyRatio: {
+            연산: 0,
+            기본: 2,
+            응용: 2,
+            심화하: 0,
+            심화중: 0,
+            심화상: 0,
+          },
+          rangeStartUnitId: MOCK_REVIEW_RANGE_START_UNIT.id,
+          rangeEndUnitId: MOCK_REVIEW_RANGE_END_UNIT.id,
+        }),
+      );
+      expect(res.status).toBe(201);
+      const body = testGenerateResponseSchema.parse(await res.json());
+      // 🔴 범위가 **요청한 그대로** 적혀야 한다 — 진도로 덮어쓰면 지면의 범위가 거짓이 된다.
+      expect(body.data.test.rangeStartUnitId).toBe(
+        MOCK_REVIEW_RANGE_START_UNIT.id,
+      );
+      expect(body.data.test.rangeEndUnitId).toBe(MOCK_REVIEW_RANGE_END_UNIT.id);
+      expect(body.data.test.status).toBe("draft");
+    });
+
+    /**
+     * 🔴 **진도가 있어도 요청한 범위가 이긴다.** 위 시험은 진도가 없는 반이라
+     * 「요청 우선」과 「진도 우선」이 **같은 값**을 낸다 — 아무것도 안 가른다(변이로 확인).
+     * 진도가 있는 반에서 요청 끝을 진도와 **다르게** 주어야 그 축이 선다. 진도가
+     * 이기면 지면에 찍히는 범위가 원장이 고른 것과 달라진다.
+     */
+    it("🔴 진도가 있는 반이어도 **요청한 범위**가 시험지에 적힌다", async () => {
+      // 픽스처 전제 — 둘이 같으면 이 시험은 아무것도 안 잰다.
+      expect(MOCK_REVIEW_RANGE_END_UNIT.id).not.toBe(
+        MOCK_CURRENT_PROGRESS_UNIT.id,
+      );
+      const res = await generateTest(
+        jsonRequest("http://localhost/api/tests/generate", "POST", {
+          classId: CLASS_A_ID,
+          testType: "review",
+          testDate: "2026-08-13",
+          problemCount: 4,
+          difficultyRatio: {
+            연산: 0,
+            기본: 2,
+            응용: 2,
+            심화하: 0,
+            심화중: 0,
+            심화상: 0,
+          },
+          rangeStartUnitId: MOCK_REVIEW_RANGE_START_UNIT.id,
+          rangeEndUnitId: MOCK_REVIEW_RANGE_END_UNIT.id,
+        }),
+      );
+      expect(res.status).toBe(201);
+      const body = testGenerateResponseSchema.parse(await res.json());
+      expect(body.data.test.rangeEndUnitId).toBe(MOCK_REVIEW_RANGE_END_UNIT.id);
+    });
+
+    /**
+     * 🔴 **부족할 때도 죽지 않는다.** 부족 응답은 「AI 생성」이 채울 단원을 가리키는데,
+     * 그 계산이 진도(`current`)를 되돌아갈 곳으로 쓴다. 진도가 없는 반에서는 그것이
+     * 없으므로 **범위의 끝**으로 되돌아가야 한다 — 안 그러면 여기서 터진다.
+     * 이 갈래가 없으면 그 되돌아갈 곳을 지워도 시험이 초록이다(변이로 확인했다).
+     */
+    it("🔴 진도 없는 반의 확인테스트가 부족하면 422 로, 채울 단원을 **범위 안에서** 가리킨다", async () => {
+      const cls = await classWithoutProgress();
+      const res = await generateTest(
+        jsonRequest("http://localhost/api/tests/generate", "POST", {
+          classId: cls.id,
+          testType: "review",
+          testDate: "2026-08-13",
+          problemCount: 30,
+          difficultyRatio: {
+            연산: 0,
+            기본: 10,
+            응용: 15,
+            심화하: 5,
+            심화중: 0,
+            심화상: 0,
+          },
+          rangeStartUnitId: MOCK_REVIEW_RANGE_START_UNIT.id,
+          rangeEndUnitId: MOCK_REVIEW_RANGE_END_UNIT.id,
+        }),
+      );
+      expect(res.status).toBe(422);
+      const body = insufficientProblemsErrorResponseSchema.parse(
+        await res.json(),
+      );
+      // 범위 안의 단원이어야 한다 — 진도가 없다고 엉뚱한 곳을 가리키면 한 번 눌러도 안 채워진다.
+      const inRange = MOCK_UNITS.filter(
+        (u) =>
+          u.orderIndex >= MOCK_REVIEW_RANGE_START_UNIT.orderIndex &&
+          u.orderIndex <= MOCK_REVIEW_RANGE_END_UNIT.orderIndex,
+      ).map((u) => u.id);
+      expect(inRange).toContain(body.error.details.unitId);
+    });
   });
 
   /**

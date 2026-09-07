@@ -72,7 +72,15 @@ export async function generateDraftTest(
     studentProgress: studentProgressRows.map(serializeProgress),
     useIndividualProgress: student?.useIndividualProgress ?? false,
   });
-  if (!current) {
+  // 🔴 **진도를 요구하는 것은 일일테스트뿐이다** (2026-09-07).
+  //
+  //    일일테스트는 진도가 곧 범위라 없으면 만들 수 없다. 확인테스트의 범위는
+  //    **요청이 들고 온다** — 계약의 refine 이 시작·끝을 모두 요구하므로 여기 도달한
+  //    review 요청에는 범위가 반드시 있다. 그런데 예전에는 `testType` 을 보기 **전에**
+  //    진도가 없으면 400 을 냈고, 그래서 화면의 「진도를 기록하거나 **「고치기」로 직접
+  //    고르세요**」와 서버 사유의 「범위를 직접 고르거나」가 **둘 다 성립할 수 없는
+  //    지시**였다 — 직접 골라도 같은 400 이 났다.
+  if (!current && input.testType === "daily") {
     // 「진도가 없다」가 덮는 상태가 **둘**이고 원장님이 할 일이 다르다:
     // 아무도 진도가 없는 것과, 학생마다 진도가 갈리는 것(개별진도반).
     // 뒤엣것을 앞엣것으로 말하면 **있는 진도를 다시 입력하러 간다.**
@@ -91,7 +99,8 @@ export async function generateDraftTest(
       input.testType === "daily"
         ? resolveRange({
             testType: "daily",
-            currentProgressUnitId: current.unitId,
+            // 바로 위 가드가 daily + 진도 없음을 이미 400 으로 돌려보냈다.
+            currentProgressUnitId: current!.unitId,
             units,
           })
         : resolveRange({
@@ -166,8 +175,13 @@ export async function generateDraftTest(
             // 한 번 눌러서 실제로 채워진다.
             unitId:
               input.testType === "daily"
-                ? current.unitId
-                : thinnestUnitId(unitIds, usable, current.unitId),
+                ? current!.unitId
+                : // 진도가 없는 반이면 되돌아갈 곳이 범위의 끝뿐이다(요청이 준 값).
+                  thinnestUnitId(
+                    unitIds,
+                    usable,
+                    current?.unitId ?? input.rangeEndUnitId!,
+                  ),
             available: capacity,
             required: count,
           },
@@ -179,8 +193,8 @@ export async function generateDraftTest(
 
   const rangeEndUnitId =
     input.testType === "daily"
-      ? current.unitId
-      : (input.rangeEndUnitId ?? current.unitId);
+      ? current!.unitId
+      : (input.rangeEndUnitId ?? current?.unitId)!;
   const rangeStartUnitId =
     input.testType === "daily" ? null : (input.rangeStartUnitId ?? null);
 

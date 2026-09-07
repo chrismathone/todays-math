@@ -183,3 +183,51 @@ describe("[D-55] ProblemCard — 도형 SVG", () => {
     expect(midFrame?.className).toContain("max-w-[240px]");
   });
 });
+
+/**
+ * 🔴 **낼 수 없는 문항에는 「담기」를 주지 않는다** (2026-09-07).
+ *
+ * 서버가 422 로 막지만(`problemEligibility`), 눌리는 것처럼 보이는 버튼은 그 자체로
+ * 거짓말이다(D-30). 실측 1,751건(전부 `approved` 인데 `directUseAllowed=false` —
+ * 그림 유실로 잠근 것들)이 이 갈래다.
+ *
+ * ⚠️ **빼기는 언제나 열어 둔다** — 담은 뒤에 잠긴 문항이 바구니에 갇히면
+ *    그 바구니로는 시험지를 영영 못 만든다.
+ */
+describe("[D-118] ProblemCard — 담기 버튼의 자격", () => {
+  const noop = () => {};
+
+  function renderCard(
+    patch: Partial<typeof MOCK_PROBLEM_WITH_FRACTION>,
+    picked = false,
+  ) {
+    return render(
+      <ProblemCard
+        problem={{ ...MOCK_PROBLEM_WITH_FRACTION, ...patch }}
+        basket={{ picked, busy: false, onToggle: noop }}
+      />,
+    );
+  }
+
+  it("자격이 있으면 담을 수 있다 — 반증 쪽", () => {
+    renderCard({ reviewStatus: "approved", directUseAllowed: true });
+    expect(screen.getByRole("button", { name: "담기" })).toBeEnabled();
+  });
+
+  it("출제가 잠긴 문항은 「담기」가 잠기고 사유를 단다", () => {
+    renderCard({ reviewStatus: "approved", directUseAllowed: false });
+    const btn = screen.getByRole("button", { name: "담기" });
+    expect(btn).toBeDisabled();
+    expect(btn).toHaveAttribute("title", "출제가 잠긴 문항입니다.");
+  });
+
+  it("검수를 통과하지 않은 문항도 잠긴다", () => {
+    renderCard({ reviewStatus: "pending", directUseAllowed: true });
+    expect(screen.getByRole("button", { name: "담기" })).toBeDisabled();
+  });
+
+  it("🔴 이미 담긴 것은 자격이 없어도 **뺄 수 있다** — 바구니에 갇히면 안 된다", () => {
+    renderCard({ reviewStatus: "approved", directUseAllowed: false }, true);
+    expect(screen.getByRole("button", { name: "✓ 담김" })).toBeEnabled();
+  });
+});

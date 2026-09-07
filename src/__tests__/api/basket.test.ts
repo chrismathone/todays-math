@@ -490,3 +490,111 @@ describe("POST /api/basket/test — 담은 것으로 시험지", () => {
     expect(res.status).toBe(401);
   });
 });
+
+/**
+ * 🔴 **출제 자격** — 손으로 짜는 길이 자동 출제의 관문 옆으로 나 있었다 (2026-09-07).
+ *
+ * 담기는 「볼 수 있나」(공유 풀)만 물었고 시험지 만들기는 아무것도 안 물었다. 그래서
+ * 실측 **1,751건**(전부 `approved` 인데 `directUseAllowed=false` — 그림이 유실돼 잠근
+ * 것들)이 「다음 그림에서…」라고 적힌 채 **그림 없이 종이로** 나갈 수 있었다.
+ * 이 결함은 500도 로그도 안 남긴다 — 원장이 인쇄물을 봐야 안다.
+ *
+ * 규칙은 `src/lib/problemEligibility.ts` **한 곳**이고, 그 모듈의 `where` 와 술어가
+ * 같은 답을 내는지는 `problemEligibility.test.ts` 가 24행 행렬로 따로 잠근다.
+ */
+describe("🔴 출제 자격 — 낼 수 없는 문항은 담기지도, 시험지가 되지도 않는다", () => {
+  /** 시드된 DB 행을 펼쳐 «자격이 없는» 문항 하나를 만든다. */
+  async function seedProblem(patch: Record<string, unknown>) {
+    const seed = await db.problem.findUnique({
+      where: { id: MOCK_PROBLEMS[0]!.id },
+    });
+    const base = { ...(seed as Record<string, unknown>) };
+    delete base.id;
+    delete base.problemCode;
+    delete base.createdAt;
+    delete base.updatedAt;
+    // exam-wiring: 테스트 — 픽스처다. 자격 없는 문항을 만들려고 시드 행을 펼친 것이고 기출이 아니다.
+    return db.problem.create({
+      data: { ...base, ...patch } as Parameters<
+        typeof db.problem.create
+      >[0]["data"],
+    });
+  }
+
+  async function expectAddRejected(problemId: string, reason: string) {
+    const res = await addToBasket(
+      jsonRequest("http://localhost/api/basket", "POST", { problemId }),
+    );
+    expect(res.status).toBe(422);
+    const body = errorResponseSchema.parse(await res.json());
+    expect(body.error.code).toBe("VALIDATION_ERROR");
+    // 🔴 사유까지 본다 — 상태 코드만 보면 다른 422 가 대신 통과시킨다.
+    expect(body.error.message).toBe(reason);
+    // 그리고 **정말 안 담겼는지**를 바구니로 확인한다(응답만 보면 반쪽이다).
+    expect((await read()).total).toBe(0);
+  }
+
+  it("출제가 잠긴 문항은 담기지 않는다 — 오늘 1,751건이 이 갈래다", async () => {
+    const blocked = await seedProblem({ directUseAllowed: false });
+    await expectAddRejected(blocked.id, "출제가 잠긴 문항입니다.");
+  });
+
+  it("검수를 통과하지 않은 문항은 담기지 않는다 (D-22)", async () => {
+    const pending = await seedProblem({ reviewStatus: "pending" });
+    await expectAddRejected(pending.id, "검수를 통과하지 않은 문항입니다.");
+  });
+
+  it("정답이 없는 문항은 담기지 않는다 — 정답지가 빈다", async () => {
+    const noAnswer = await seedProblem({ answer: "(정답 없음)" });
+    await expectAddRejected(noAnswer.id, "정답이 없는 문항입니다.");
+  });
+
+  it("자격이 있으면 담긴다 — **반증 쪽**(가드가 멀쩡한 것을 막지 않는가)", async () => {
+    const ok = await seedProblem({});
+    const basket = await add(ok.id);
+    expect(basket.total).toBe(1);
+  });
+
+  it("🔴 담은 **뒤에** 잠긴 문항은 시험지가 되지 않는다 — 가드가 생기기 전에 담긴 행도 이 길로 막힌다", async () => {
+    // 시드에 이 반의 시험지가 이미 있으므로 **전후로 견준다** — 절대 수를 박으면
+    // 시드가 자랄 때 이 시험이 «만들지 않았다»를 못 재고 먼저 깨진다.
+    const before = await db.test.count({ where: { classId: CLASS_ID } });
+    await add(PROBLEM_EARLY.id);
+    await add(PROBLEM_LATE.id);
+    // 담을 때는 멀쩡했다. 그 사이 그림 유실로 잠겼다(실제로 그렇게 잠근다).
+    await db.problem.update({
+      where: { id: PROBLEM_LATE.id },
+      data: { directUseAllowed: false },
+    });
+
+    const res = await makeTestFromBasket(
+      jsonRequest("http://localhost/api/basket/test", "POST", {
+        classId: CLASS_ID,
+        testDate: TEST_DATE,
+      }),
+    );
+    expect(res.status).toBe(422);
+    const body = errorResponseSchema.parse(await res.json());
+    // 🔴 **무엇을 빼야 하는지 말한다** — 조용히 빼면 원장이 고른 것과 다른 시험지가
+    //    나가고, 그 사실을 인쇄물에서만 알게 된다(D-20).
+    expect(body.error.message).toContain("낼 수 없는 문항 1건");
+    expect(body.error.message).toContain("출제가 잠긴 문항입니다.");
+    // 조용히 만들지 않았는지 — 시험지가 **하나도 더** 안 생겼어야 한다.
+    expect(await db.test.count({ where: { classId: CLASS_ID } })).toBe(before);
+  });
+
+  it("담긴 것이 전부 자격을 갖추면 시험지가 만들어진다 — **반증 쪽**", async () => {
+    await add(PROBLEM_EARLY.id);
+    await add(PROBLEM_LATE.id);
+    const res = await makeTestFromBasket(
+      jsonRequest("http://localhost/api/basket/test", "POST", {
+        classId: CLASS_ID,
+        testDate: TEST_DATE,
+      }),
+    );
+    expect(res.status).toBe(201);
+    expect(
+      basketTestResponseSchema.parse(await res.json()).data.problemCount,
+    ).toBe(2);
+  });
+});

@@ -23,6 +23,7 @@ import {
 } from "@/contracts/basket.contract";
 import { uuidSchema } from "@/contracts/common.contract";
 import {
+  jsonError,
   jsonOk,
   notFoundError,
   unauthorizedError,
@@ -30,6 +31,7 @@ import {
 } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { readBasket } from "@/lib/basket/readBasket";
+import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
 
 export async function GET() {
@@ -54,9 +56,23 @@ export async function POST(request: NextRequest) {
       id: parsed.data.problemId,
       OR: [{ pool: "shared" }, { userId: session.id }],
     },
-    select: { id: true },
+    select: {
+      id: true,
+      pool: true,
+      reviewStatus: true,
+      directUseAllowed: true,
+      answer: true,
+    },
   });
   if (!problem) return notFoundError("문항");
+
+  // 🔴 **낼 수 없는 문항은 담을 수 없다** (2026-09-07). 자동 출제는 자격 네 조건을
+  //    거는데 이 길은 하나도 안 물었다 — 그림이 유실돼 잠근 1,751건이 「다음 그림에서…」
+  //    라고 적힌 채 그림 없이 종이로 나갈 수 있었다. 규칙은 `problemEligibility.ts` 한 곳.
+  //    404 가 아니라 422 다: 문항은 **있고 보이는데** 낼 수 없는 것이라, 화면이
+  //    「없는 문항」이라 말하면 원장이 검색을 의심한다.
+  const ineligible = problemIneligibleReason(problem);
+  if (ineligible) return jsonError("VALIDATION_ERROR", ineligible, 422);
 
   // 담은 차례 — 지금 바구니의 **가장 큰 번호 + 1**.
   //

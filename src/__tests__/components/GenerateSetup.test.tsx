@@ -13,6 +13,7 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import NewTestPage from "@/app/(main)/tests/new/page";
+import { testGenerateRequestSchema } from "@/contracts/test.contract";
 import {
   CLASS_A_ID,
   CLASS_B_ID,
@@ -512,11 +513,35 @@ describe("[T4.3 S-04] 출제 설정 — 문제 부족", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("문항 수 줄이기는 가용 수로 다시 출제한다", async () => {
+  /**
+   * 🔴 **요청 전체를 계약으로 검사한다** (2026-09-07).
+   *
+   * 예전 이 목은 `problemCount === 3` 만 보고 201 을 냈다. 그래서 화면이 **줄인 수와
+   * 옛 배분**을 함께 보내도 초록이었다 — 실서버에서는 계약의 refine(「배분의 합 == 문항
+   * 수」)이 **400** 을 낸다. 실제로 「문항 수 줄이기」가 그 자리에서 죽고 있었다.
+   * 목이 제품보다 너그러우면 그 시험은 아무것도 안 지킨다.
+   */
+  it("문항 수 줄이기는 가용 수로 다시 출제한다 — **배분도 같이** 줄어든다", async () => {
     const generateBodies: unknown[] = [];
+    const rejected: string[] = [];
     server.use(
       http.post("/api/tests/generate", async ({ request }) => {
-        const parsed = (await request.json()) as { problemCount?: number };
+        const raw: unknown = await request.json();
+        const check = testGenerateRequestSchema.safeParse(raw);
+        if (!check.success) {
+          // 실서버가 내는 것과 같은 400 — 사유를 모아 두면 빨간 이유가 한 줄로 보인다.
+          rejected.push(check.error.issues.map((i) => i.message).join(" · "));
+          return HttpResponse.json(
+            {
+              error: {
+                code: "VALIDATION_ERROR",
+                message: "요청 값이 올바르지 않습니다.",
+              },
+            },
+            { status: 400 },
+          );
+        }
+        const parsed = check.data;
         generateBodies.push(parsed);
         if (parsed.problemCount === 3) {
           return HttpResponse.json(
@@ -564,7 +589,17 @@ describe("[T4.3 S-04] 출제 설정 — 문제 부족", () => {
         "/tests/90000000-0000-4000-8000-000000000043",
       );
     });
-    expect(generateBodies.at(-1)).toMatchObject({ problemCount: 3 });
+    // 계약이 거부한 요청이 하나라도 있으면 실서버에서는 400 이다.
+    expect(rejected, `계약이 거부한 요청: ${rejected.join(" / ")}`).toEqual([]);
+    const last = generateBodies.at(-1) as {
+      problemCount: number;
+      difficultyRatio: Record<string, number>;
+    };
+    expect(last.problemCount).toBe(3);
+    // 🔴 **배분의 합이 줄인 수와 같다** — 화면 상태만 줄이고 요청엔 옛 배분을 보내던 자리.
+    expect(
+      DIFFICULTY_LADDER.reduce((sum, t) => sum + last.difficultyRatio[t]!, 0),
+    ).toBe(3);
   });
 
   /**

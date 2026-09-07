@@ -39,6 +39,7 @@ import {
 import { renumberForTest } from "@/lib/basket/readBasket";
 import { db } from "@/lib/db";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
+import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
 
 export async function POST(request: NextRequest) {
@@ -64,7 +65,19 @@ export async function POST(request: NextRequest) {
   const items = await db.basketItem.findMany({
     where: { userId: session.id },
     orderBy: { orderIndex: "asc" },
-    include: { problem: { select: { id: true, unitId: true } } },
+    include: {
+      problem: {
+        select: {
+          id: true,
+          unitId: true,
+          problemCode: true,
+          pool: true,
+          reviewStatus: true,
+          directUseAllowed: true,
+          answer: true,
+        },
+      },
+    },
   });
 
   // 🔴 빈 바구니로 시험지를 만들면 **문항 0개짜리 지면**이 나간다. 스키마가 그것을
@@ -73,6 +86,31 @@ export async function POST(request: NextRequest) {
     return jsonError(
       "VALIDATION_ERROR",
       "담은 문항이 없습니다. 문제은행에서 먼저 담으십시오.",
+      422,
+    );
+  }
+
+  // 🔴 **담긴 것 중 낼 수 없는 것이 있으면 시험지를 만들지 않는다** (2026-09-07).
+  //    담기에도 같은 가드가 있지만 여기가 없으면 안 된다 — 가드가 생기기 **전에** 담긴
+  //    행과, 담은 뒤에 잠긴 문항이 그대로 지면으로 나간다. 자격은 담을 때가 아니라
+  //    **종이가 될 때** 참이어야 한다.
+  //
+  //    조용히 빼지 않는다: 원장이 고른 것과 다른 시험지가 나가면 그 사실을 인쇄물에서만
+  //    알게 된다. 무엇을 빼야 하는지 말해 주고 멈춘다(D-20 — 무엇을 잃는지 세라).
+  const blocked = items
+    .map((item) => ({
+      code: item.problem.problemCode,
+      reason: problemIneligibleReason(item.problem),
+    }))
+    .filter((x): x is { code: string; reason: string } => x.reason !== null);
+  if (blocked.length > 0) {
+    const head = blocked
+      .slice(0, 3)
+      .map((b) => `${b.code}(${b.reason})`)
+      .join(" · ");
+    return jsonError(
+      "VALIDATION_ERROR",
+      `낼 수 없는 문항 ${blocked.length}건이 담겨 있습니다. 빼고 다시 만드십시오 — ${head}${blocked.length > 3 ? " 외" : ""}`,
       422,
     );
   }

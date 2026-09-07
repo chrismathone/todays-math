@@ -30,8 +30,7 @@ import type { Difficulty } from "@/contracts/common.contract";
 import type { ProblemType } from "@/contracts/problem.contract";
 import { db } from "@/lib/db";
 import type { SelectableProblem } from "@/lib/generator/selectProblems";
-import { MISSING_ANSWER } from "@/lib/missingAnswer";
-import { problemVisibleWhere } from "@/lib/problemPool";
+import { problemEligibleWhere } from "@/lib/problemEligibility";
 
 /**
  * 출제 후보 1건 — 엔진이 읽는 필드만.
@@ -67,13 +66,11 @@ export interface FindEligibleProblemsParams {
 export function eligibleProblemsWhere(params: FindEligibleProblemsParams) {
   return {
     AND: [
-      problemVisibleWhere(),
+      // 🔴 자격 네 조건은 `problemEligibility.ts` **한 곳**에 있다 — 손으로 짜는 길
+      //    (담기 바구니 → 시험지)도 같은 것을 쓴다. 옮겨 적으면 한쪽만 고쳐진다.
+      problemEligibleWhere(),
       {
         unitId: { in: params.unitIds },
-        reviewStatus: "approved" as const,
-        directUseAllowed: true,
-        // 정답이 없으면 정답지가 비어 채점이 불가능하다 → 출제 대상에서 제외.
-        answer: { not: MISSING_ANSWER },
         ...(params.difficulty ? { difficulty: params.difficulty } : {}),
       },
     ],

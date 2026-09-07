@@ -44,36 +44,56 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
   const [progressError, setProgressError] = useState("");
   const [progressSaving, setProgressSaving] = useState(false);
 
-  // 🔴 이어하기 — 반을 이미 만든 계정이 다시 들어오면(새로고침·로그인) 1단계로 되돌리지
-  //    않는다. 2026-09-07 새 계정으로 걸어 보니 반을 만든 뒤 새로고침하자 「추가」가 잠겼다.
-  //    가장 최근 반을 1단계의 답으로 삼는다 — 여러 반이면 어느 것이든 2·3단계를 여는 데 족하다.
+  /**
+   * 🔴 **이어하기** — 이미 만든 것 위에서 다시 시작한다 (2026-09-07).
+   *
+   * 새 계정으로 걸어 보니 반을 만든 뒤 새로고침하자 1단계로 되돌아가 「추가」가 잠겼다.
+   * 반만 되살리게 고쳤더니 이번엔 **학생이 0으로 보여 3단계가 통째로 잠겼다** — 절반만
+   * 고친 것이었다. 반·학생을 **둘 다** 읽어야 「진도만 넣으면 끝」이 된다.
+   *
+   * ⚠️ 학생은 **되살린 그 반**의 것만 묻는다(`classId`). 안 좁히면 남의 반 학생이
+   *    이 반에 있는 것처럼 보이고, 원장이 「내가 저기 넣었나」를 다시 세게 된다.
+   *
+   * 이어하기는 **편의이지 관문이 아니다** — 못 읽으면 조용히 처음부터 시작한다.
+   */
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/classes?page=1&pageSize=100")
-      .then(async (res) =>
-        res.ok
-          ? ((await res.json()) as {
-              data: Array<{
-                id: string;
-                name: string;
-                grade: string;
-                createdAt?: string;
-              }>;
-            })
-          : null,
-      )
-      .then((body) => {
-        if (cancelled || !body || body.data.length === 0) return;
+    void (async () => {
+      try {
+        const res = await fetch("/api/classes?page=1&pageSize=100");
+        if (!res.ok) return;
+        const body = (await res.json()) as {
+          data: Array<{
+            id: string;
+            name: string;
+            grade: string;
+            createdAt?: string;
+          }>;
+        };
+        if (cancelled || body.data.length === 0) return;
+        // 가장 최근 반 — 여러 반이면 어느 것이든 2·3단계를 여는 데 족하다.
         const latest = [...body.data].sort((a, b) =>
           String(b.createdAt ?? "").localeCompare(String(a.createdAt ?? "")),
         )[0]!;
         setClassId((prev) => prev ?? latest.id);
         setClassName((prev) => prev || latest.name);
         setGrade((prev) => prev || latest.grade);
-      })
-      .catch(() => {
-        /* 못 읽으면 처음부터 — 이어하기는 편의이지 관문이 아니다 */
-      });
+
+        const stRes = await fetch(
+          `/api/students?classId=${latest.id}&page=1&pageSize=100`,
+        );
+        if (!stRes.ok || cancelled) return;
+        const stBody = (await stRes.json()) as {
+          data: Array<{ name: string }>;
+        };
+        if (cancelled || stBody.data.length === 0) return;
+        setStudents((prev) =>
+          prev.length > 0 ? prev : stBody.data.map((st) => st.name),
+        );
+      } catch {
+        /* 못 읽으면 처음부터 */
+      }
+    })();
     return () => {
       cancelled = true;
     };

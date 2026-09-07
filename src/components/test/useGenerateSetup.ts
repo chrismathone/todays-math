@@ -325,7 +325,13 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
             testType,
             testDate,
             problemCount: count,
-            difficultyRatio,
+            // 🔴 **`difficultyRatio` 가 아니라 `nextRatio`** (2026-09-07).
+            //    「문항 수 줄이기」는 줄인 수에 맞춰 배분을 다시 계산해 놓고(위 `nextRatio`)
+            //    요청에는 클로저의 **옛 배분**을 실어 보냈다 — 계약의 refine(「배분의 합 ==
+            //    문항 수」)이 서버에서 400 을 냈고, 그 버튼이 그 자리에서 죽어 있었다.
+            //    바로 위의 자체 검사는 `nextRatio` 를 보므로 통과했다: 재는 것과 보내는
+            //    것이 달라서 화면은 아무 말도 안 했다.
+            difficultyRatio: nextRatio,
             ...(testType === "review"
               ? { rangeStartUnitId, rangeEndUnitId }
               : {}),

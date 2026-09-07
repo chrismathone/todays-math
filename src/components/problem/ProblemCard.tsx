@@ -10,6 +10,7 @@ import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
 import { provenanceBadges } from "@/lib/problem/provenance";
+import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 
 import { REVIEW_STATUS_LABEL } from "./labels";
@@ -116,6 +117,12 @@ export const ProblemCard = memo(function ProblemCard({
   // 승격은 왕복이 있다. 누른 뒤 응답이 오기 전에 또 누르면 같은 요청이 두 번 나간다.
   const [reviewBusy, setReviewBusy] = useState(false);
 
+  /**
+   * 낼 수 없는 사유 — 규칙은 `problemEligibility.ts` 한 곳이고 서버가 같은 것을 쓴다.
+   * 여기서 다시 판정하면 「화면은 담을 수 있다는데 서버가 거부」가 생긴다.
+   */
+  const ineligibleReason = problemIneligibleReason(problem);
+
   const changeReview = async (next: ReviewStatus) => {
     if (!onReviewStatusChange || reviewBusy) return;
     setReviewBusy(true);
@@ -217,7 +224,19 @@ export const ProblemCard = memo(function ProblemCard({
           {basket ? (
             <button
               type="button"
-              disabled={basket.busy}
+              /* 🔴 **낼 수 없는 문항에는 「담기」를 주지 않는다** (2026-09-07).
+                 서버가 422 로 막지만(problemEligibility), 눌리는 것처럼 보이는 버튼은
+                 그 자체로 거짓말이다(D-30). 담긴 것을 **빼는** 것은 언제나 열어 둔다 —
+                 담은 뒤에 잠긴 문항이 바구니에 갇히면 시험지를 영영 못 만든다.
+                 사유는 `title` 로만 말한다: 눈에 보이는 새 표지는 형태 결정이다(D-07). */
+              disabled={
+                basket.busy || (!basket.picked && ineligibleReason !== null)
+              }
+              title={
+                !basket.picked && ineligibleReason !== null
+                  ? ineligibleReason
+                  : undefined
+              }
               aria-pressed={basket.picked}
               onClick={() => basket.onToggle(problem.id, basket.picked)}
               className={
