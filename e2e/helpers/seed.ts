@@ -8,8 +8,16 @@ import {
   E2E_TARGET_SECTION,
 } from "../env";
 
+import {
+  DIFFICULTY_LADDER,
+  E2E_DIFFICULTY_RATIO,
+  E2E_SHORTFALL_STOCK,
+  E2E_STOCK,
+  totalOf,
+  type TierCounts,
+} from "./tiers";
+
 const TYPES = ["계산", "개념", "활용", "서술형"] as const;
-const DIFFICULTIES = ["easy", "mid", "hard"] as const;
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -60,7 +68,7 @@ async function createClassWithProgress(
       name: className,
       grade: E2E_TARGET_GRADE,
       defaultProblemCount: 8,
-      difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+      difficultyRatio: E2E_DIFFICULTY_RATIO,
     },
   });
   await db.student.create({
@@ -81,12 +89,12 @@ async function createApprovedProblems(
   db: PrismaClient,
   userId: string,
   unitId: string,
-  counts: { easy: number; mid: number; hard: number },
+  counts: TierCounts,
 ) {
   const created: { id: string }[] = [];
   let n = 0;
-  for (const difficulty of DIFFICULTIES) {
-    for (let i = 0; i < counts[difficulty]; i += 1) {
+  for (const difficulty of DIFFICULTY_LADDER) {
+    for (let i = 0; i < (counts[difficulty] ?? 0); i += 1) {
       n += 1;
       created.push(
         // exam-wiring: 테스트 — E2E 시드다. 제품 적재 경로가 아니다
@@ -137,8 +145,14 @@ export async function seedE2eFixtures() {
       db,
       dailyUser.id,
       unit.id,
-      { easy: 5, mid: 6, hard: 3 },
+      E2E_STOCK,
     );
+    // 🔴 분모를 못 박는다 — 재고를 줄이면 여정 B 의 「교체」가 조용히 못 하게 된다.
+    if (dailyProblems.length !== totalOf(E2E_STOCK)) {
+      throw new Error(
+        `[e2e seed] 재고가 어긋난다: ${dailyProblems.length} != ${totalOf(E2E_STOCK)}`,
+      );
+    }
     const test = await db.test.create({
       data: {
         userId: dailyUser.id,
@@ -171,11 +185,12 @@ export async function seedE2eFixtures() {
       E2E_ACCOUNTS.shortfall.studentName,
       unit.id,
     );
-    await createApprovedProblems(db, shortfallUser.id, unit.id, {
-      easy: 0,
-      mid: 2,
-      hard: 0,
-    });
+    await createApprovedProblems(
+      db,
+      shortfallUser.id,
+      unit.id,
+      E2E_SHORTFALL_STOCK,
+    );
   } finally {
     await db.$disconnect();
   }

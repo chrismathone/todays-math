@@ -221,6 +221,27 @@ describe("[D-118] ProblemCard — 담기 버튼의 자격", () => {
     expect(btn).toHaveAttribute("title", "출제가 잠긴 문항입니다.");
   });
 
+  it("🔴 사유가 **눈에 보인다** — 원장님 확정 2026-09-07 (title 은 올려야 보인다)", () => {
+    renderCard({ reviewStatus: "approved", directUseAllowed: false });
+    expect(screen.getByText("출제가 잠긴 문항입니다.")).toBeInTheDocument();
+  });
+
+  it("자격이 있으면 사유를 안 적는다 — 반증 쪽(멀쩡한 카드에 잡음을 넣지 않는다)", () => {
+    const { container } = renderCard({
+      reviewStatus: "approved",
+      directUseAllowed: true,
+    });
+    expect(container.querySelector("[data-ineligible-reason]")).toBeNull();
+  });
+
+  it("이미 담긴 것에는 사유를 안 적는다 — 빼기만 하면 되는 상태다", () => {
+    const { container } = renderCard(
+      { reviewStatus: "approved", directUseAllowed: false },
+      true,
+    );
+    expect(container.querySelector("[data-ineligible-reason]")).toBeNull();
+  });
+
   it("검수를 통과하지 않은 문항도 잠긴다", () => {
     renderCard({ reviewStatus: "pending", directUseAllowed: true });
     expect(screen.getByRole("button", { name: "담기" })).toBeDisabled();

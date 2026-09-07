@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
+
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import { onlySupportedGrades } from "@/contracts/supportedGrades";
 
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
 import { Button } from "@/components/ui/Button";
@@ -55,6 +58,12 @@ function RangeField({
 }) {
   const summary = loading ? null : describeRange(units, startUnitId, endUnitId);
   /**
+   * 🔴 **고르는 목록만 좁힌다** (원장님 확정 2026-09-07 「초3~중3만으로」).
+   * 위의 `describeRange` 는 **좁히지 않은** `units` 를 쓴다 — 지원 밖 학년에 찍힌 옛
+   * 범위도 이름을 되찾아야 한다. 좁히면 그 시험지의 범위가 조용히 「—」가 된다.
+   */
+  const pickableUnits = useMemo(() => onlySupportedGrades(units), [units]);
+  /**
    * **아직 안 온 것 · 없는 것 · 못 불러온 것을 갈라 말한다.** 예전에는 셋이 같은
    * 문장으로 나가서, 느린 회선이나 500 을 원장이 「진도가 없다」로 읽었다.
    */
@@ -106,7 +115,7 @@ function RangeField({
       {editing ? (
         <div className="mt-2">
           <UnitRangePicker
-            units={units}
+            units={pickableUnits}
             startUnitId={startUnitId || null}
             endUnitId={endUnitId || null}
             onChange={onChangeRange}

@@ -228,7 +228,8 @@ export const ProblemCard = memo(function ProblemCard({
                  서버가 422 로 막지만(problemEligibility), 눌리는 것처럼 보이는 버튼은
                  그 자체로 거짓말이다(D-30). 담긴 것을 **빼는** 것은 언제나 열어 둔다 —
                  담은 뒤에 잠긴 문항이 바구니에 갇히면 시험지를 영영 못 만든다.
-                 사유는 `title` 로만 말한다: 눈에 보이는 새 표지는 형태 결정이다(D-07). */
+                 사유는 버튼 **옆에 글자로** 적는다 — 원장님 확정 2026-09-07
+                 「잠긴 문항 사유는 눈에 보이게」. `title` 은 마우스를 올려야 보인다. */
               disabled={
                 basket.busy || (!basket.picked && ineligibleReason !== null)
               }
@@ -247,6 +248,17 @@ export const ProblemCard = memo(function ProblemCard({
             >
               {basket.picked ? "✓ 담김" : "담기"}
             </button>
+          ) : null}
+          {/* 🔴 **왜 못 담는지 지면에 적는다** (원장님 확정 2026-09-07).
+              기능색이 아니라 **글자색**이라 색 쓰는 자리가 늘지 않는다(검수 상태와 같은
+              방식). 담긴 것에는 안 적는다 — 그건 빼기만 하면 되는 상태다. */}
+          {basket && !basket.picked && ineligibleReason ? (
+            <span
+              className="text-[11.5px] font-bold text-text-3"
+              data-ineligible-reason
+            >
+              {ineligibleReason}
+            </span>
           ) : null}
           {onReviewStatusChange && problem.reviewStatus !== "approved" ? (
             <button

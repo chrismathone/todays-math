@@ -1,20 +1,17 @@
 import type { APIRequestContext } from "@playwright/test";
 
+import { DIFFICULTY_LADDER, E2E_STOCK, type TierCounts } from "./tiers";
+
 const TYPES = ["계산", "개념", "활용", "서술형"] as const;
-const DIFFICULTIES = ["easy", "mid", "hard"] as const;
 
 export async function seedApprovedProblemsViaApi(
   request: APIRequestContext,
   unitId: string,
-  counts: { easy: number; mid: number; hard: number } = {
-    easy: 5,
-    mid: 6,
-    hard: 3,
-  },
+  counts: TierCounts = E2E_STOCK,
 ) {
   let n = 0;
-  for (const difficulty of DIFFICULTIES) {
-    for (let i = 0; i < counts[difficulty]; i += 1) {
+  for (const difficulty of DIFFICULTY_LADDER) {
+    for (let i = 0; i < (counts[difficulty] ?? 0); i += 1) {
       n += 1;
       const created = await request.post("/api/problems", {
         data: {
