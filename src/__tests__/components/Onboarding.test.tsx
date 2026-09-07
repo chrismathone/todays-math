@@ -13,16 +13,19 @@ import type { UserEvent } from "@testing-library/user-event";
 import OnboardingPage from "@/app/(auth)/onboarding/page";
 import { OnboardingForm } from "@/components/onboarding/OnboardingForm";
 import {
+  classListResponseSchema,
   progressRecordRequestSchema,
   progressResponseSchema,
   studentCreateRequestSchema,
   studentResponseSchema,
 } from "@/contracts/class.contract";
-import { MOCK_UNITS } from "@/mocks/data";
+import { paginationParamsSchema } from "@/contracts/common.contract";
+import { MOCK_CLASSES, MOCK_UNITS } from "@/mocks/data";
 import {
   jsonError,
   jsonOk,
   notFoundError,
+  paginate,
   validationError,
 } from "@/mocks/handlers/_helpers";
 import { server } from "@/mocks/server";
@@ -108,6 +111,38 @@ describe("[T1.3] S-02 온보딩", () => {
     connection.mockClear();
     push.mockReset();
     allowCreatedClassWrites();
+    // 기본은 **반이 없는 새 계정** — 폼이 반 목록을 읽어 이어하기를 하므로(2026-09-07)
+    // 기본 목(MOCK_CLASSES)을 그대로 두면 모든 시험이 2단계에서 시작한다.
+    server.use(
+      http.get("/api/classes", () =>
+        jsonOk(
+          classListResponseSchema,
+          paginate([], paginationParamsSchema.parse({})),
+        ),
+      ),
+    );
+  });
+
+  it("🔴 반이 이미 있으면 1단계를 건너뛰고 2단계가 열린다 — 새로고침해도 처음으로 안 돌아간다", async () => {
+    server.use(
+      http.get("/api/classes", () =>
+        jsonOk(
+          classListResponseSchema,
+          paginate(MOCK_CLASSES, paginationParamsSchema.parse({})),
+        ),
+      ),
+    );
+    renderForm();
+    const names = MOCK_CLASSES.map((c) => c.name);
+    // 1단계가 «완료» 상태(반 이름만 적힘)로 바뀌고 2단계 「추가」가 풀린다.
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "추가" })).toBeEnabled();
+    });
+    expect(
+      screen.queryByRole("button", { name: "반 만들기" }),
+    ).not.toBeInTheDocument();
+    const shown = names.filter((n) => screen.queryByText(n) !== null);
+    expect(shown.length).toBe(1);
   });
 
   it("한 페이지에 반·학생·진도 3단이 함께 보이고 캐러셀이 없다", () => {

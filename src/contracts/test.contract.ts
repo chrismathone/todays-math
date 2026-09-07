@@ -287,6 +287,9 @@ export const dailyReviewResponseSchema = dataResponseSchema(
   z.strictObject({
     /** 기준일(KST) — 「오늘」의 정의. */
     day: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    /** 이 계정이 eywa 소유자인가(`isEywaOwner`). 아니면 아래는 전부 비어 있고 화면은
+     *  이 섹션을 **그리지 않는다** — eywa 는 원장님 학원 하나의 배선이다(2026-09-07). */
+    eywaOwner: z.boolean(),
     /** 마지막 동기화 — 없으면 null(한 번도 안 돌았다). 화면 스트립이 그대로 쓴다. */
     sync: z
       .strictObject({

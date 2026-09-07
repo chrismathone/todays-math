@@ -20,6 +20,7 @@ import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
 import { planDailyReview } from "@/lib/daily/planDailyReview";
 import { db } from "@/lib/db";
 import { countEligibleProblems } from "@/lib/findEligibleProblems";
+import { isEywaOwner } from "@/lib/eywa/owner";
 import { getSessionUser } from "@/lib/session";
 
 /** 「오늘」은 학원 시간(KST)이다 — 서버 시계의 UTC 자정이 아니다. */
@@ -35,6 +36,25 @@ export async function GET(request: NextRequest) {
   const dayParam = new URL(request.url).searchParams.get("day");
   const day =
     dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam) ? dayParam : kstToday();
+
+  // 🔴 eywa 소유자가 아니면 여기서 끝 — 아래 조회는 전부 **계정 구분이 없다**(연계 학생·
+  //    마지막 동기화 기록은 학원 하나의 것). 2026-09-07 에 새 계정이 원장님 학원의 동기화
+  //    상태를 그대로 봤다. 빈 응답을 주고 화면은 섹션 자체를 그리지 않는다.
+  if (!isEywaOwner(session.email)) {
+    return jsonOk(dailyReviewResponseSchema, {
+      data: {
+        day,
+        eywaOwner: false,
+        sync: null,
+        attended: 0,
+        auto: [],
+        lacking: [],
+        examOrUnread: [],
+        noRange: [],
+        todayTests: [],
+      },
+    });
+  }
 
   // 연계 학생 먼저 — 진도·직전 시험은 그 id 목록으로 좁혀 묻는다(관계 where 없이,
   // 테스트 더블도 같은 질의를 그대로 소화한다).
@@ -173,6 +193,7 @@ export async function GET(request: NextRequest) {
   return jsonOk(dailyReviewResponseSchema, {
     data: {
       day,
+      eywaOwner: true,
       sync: syncRun
         ? {
             ranAt: syncRun.ranAt.toISOString(),

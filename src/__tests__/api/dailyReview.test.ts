@@ -91,6 +91,31 @@ describe("[2단계] GET /api/tests/daily-review — 오늘의 학생별 확인�
   beforeEach(async () => {
     resetPrismaTestDouble();
     await seed();
+    // 🔴 소유자 게이트(2026-09-07) — 모킹된 세션(teacher@)을 소유자로 둔다.
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  it("🔴 eywa 소유자가 아니면 빈 응답 — 연계 학생·동기화 기록은 학원 하나의 것이라 남에게 안 준다", async () => {
+    vi.mocked(getSessionUser).mockResolvedValueOnce({
+      id: "10000000-0000-4000-8000-000000000002",
+      email: "walk@todaysmath.test",
+      name: "다른 선생님",
+    });
+    const res = await get();
+    expect(res.status).toBe(200);
+    const body = dailyReviewResponseSchema.parse(await res.json());
+    expect(body.data.eywaOwner).toBe(false);
+    expect(body.data.sync).toBeNull();
+    expect(body.data.attended).toBe(0);
+    expect(body.data.auto).toEqual([]);
+    expect(body.data.lacking).toEqual([]);
+    expect(body.data.examOrUnread).toEqual([]);
+    expect(body.data.todayTests).toEqual([]);
+  });
+
+  it("소유자면 eywaOwner 가 참이다", async () => {
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.eywaOwner).toBe(true);
   });
 
   it("세션이 없으면 401", async () => {

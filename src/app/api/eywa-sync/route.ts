@@ -13,8 +13,14 @@
  *   (계획 §8-2). 로컬·개발에서는 제한이 없다.
  */
 import { eywaSyncResponseSchema } from "@/contracts/test.contract";
-import { jsonError, jsonOk, unauthorizedError } from "@/lib/apiResponse";
+import {
+  forbiddenError,
+  jsonError,
+  jsonOk,
+  unauthorizedError,
+} from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { isEywaOwner } from "@/lib/eywa/owner";
 import { runEywaSync } from "@/lib/eywa/runSync";
 import { getSessionUser } from "@/lib/session";
 
@@ -70,5 +76,7 @@ export async function executeSyncResponse() {
 export async function POST() {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  // 🔴 소유자 계정만 — 남의 학원 동기화를 누구나 돌릴 수 있던 자리(2026-09-07).
+  if (!isEywaOwner(session.email)) return forbiddenError();
   return executeSyncResponse();
 }

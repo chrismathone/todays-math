@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -43,6 +43,41 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
   const [unitId, setUnitId] = useState("");
   const [progressError, setProgressError] = useState("");
   const [progressSaving, setProgressSaving] = useState(false);
+
+  // 🔴 이어하기 — 반을 이미 만든 계정이 다시 들어오면(새로고침·로그인) 1단계로 되돌리지
+  //    않는다. 2026-09-07 새 계정으로 걸어 보니 반을 만든 뒤 새로고침하자 「추가」가 잠겼다.
+  //    가장 최근 반을 1단계의 답으로 삼는다 — 여러 반이면 어느 것이든 2·3단계를 여는 데 족하다.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/classes?page=1&pageSize=100")
+      .then(async (res) =>
+        res.ok
+          ? ((await res.json()) as {
+              data: Array<{
+                id: string;
+                name: string;
+                grade: string;
+                createdAt?: string;
+              }>;
+            })
+          : null,
+      )
+      .then((body) => {
+        if (cancelled || !body || body.data.length === 0) return;
+        const latest = [...body.data].sort((a, b) =>
+          String(b.createdAt ?? "").localeCompare(String(a.createdAt ?? "")),
+        )[0]!;
+        setClassId((prev) => prev ?? latest.id);
+        setClassName((prev) => prev || latest.name);
+        setGrade((prev) => prev || latest.grade);
+      })
+      .catch(() => {
+        /* 못 읽으면 처음부터 — 이어하기는 편의이지 관문이 아니다 */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleCreateClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

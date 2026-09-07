@@ -12,7 +12,7 @@
  * 4. 동기화가 48시간 넘으면 「오래됨」 경고.
  */
 import { http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -20,6 +20,11 @@ import MainPage from "@/app/(main)/page";
 import { dailyReviewResponseSchema } from "@/contracts/test.contract";
 import { CLASS_A_ID, MOCK_UNITS, STUDENT_IDS } from "@/mocks/data";
 import { server } from "@/mocks/server";
+
+// MainScreen 이 반 0개면 온보딩으로 보낸다(useRouter) — 여기서는 반이 있으므로 안 불린다.
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
+}));
 
 const DAY = "2026-08-21";
 const UNIT_A = MOCK_UNITS[0]!; // 중2 1. 수와 식 첫 차시
@@ -39,6 +44,7 @@ function richDaily(syncRanAt: string) {
   return dailyReviewResponseSchema.parse({
     data: {
       day: DAY,
+      eywaOwner: true,
       sync: {
         ranAt: syncRanAt,
         students: 193,
@@ -114,6 +120,38 @@ async function findSection() {
 }
 
 describe("[2단계] 메인 상단 계기판 — 오늘의 확인테스트", () => {
+  it("🔴 eywa 소유자가 아니면 섹션 자체가 없다 — 남의 학원 동기화 상태를 새 계정이 보던 자리", async () => {
+    server.use(
+      http.get("/api/tests/daily-review", () =>
+        HttpResponse.json(
+          dailyReviewResponseSchema.parse({
+            data: {
+              day: DAY,
+              eywaOwner: false,
+              sync: null,
+              attended: 0,
+              auto: [],
+              lacking: [],
+              examOrUnread: [],
+              noRange: [],
+              todayTests: [],
+            },
+          }),
+        ),
+      ),
+    );
+    render(<MainPage />);
+    // 메인의 나머지(반 표)가 뜬 뒤에도 섹션이 없어야 한다.
+    await screen.findByText("인쇄 일수"); // 대시보드가 다 읽힌 표식(Main.test 와 같은 것)
+    expect(
+      screen.queryByRole("region", { name: "오늘의 확인테스트" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/eywa 동기화/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "지금 가져오기" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("숫자 줄 — 자동·부족·시험기간이 갈라져 선다", async () => {
     useRichHandlers();
     render(<MainPage />);

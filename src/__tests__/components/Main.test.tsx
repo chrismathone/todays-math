@@ -8,7 +8,7 @@
  * 시안: hifi-h5-final.html, hifi-h5-google.html G2, wire-s03-final.html
  */
 import { http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -28,6 +28,11 @@ import {
   TEST_DRAFT_ID,
 } from "@/mocks/data";
 import { server } from "@/mocks/server";
+
+// MainScreen 이 반 0개면 온보딩으로 보낸다(useRouter) — 여기서는 반이 있으므로 안 불린다.
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
+}));
 
 const OUTER_GRID = "grid-cols-[minmax(0,1fr)_112px]";
 const INNER_GRID = "grid-cols-[44px_minmax(0,1fr)_232px]";

@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 import type {
@@ -36,6 +37,13 @@ type LoadState =
     };
 
 export function MainScreen() {
+  const router = useRouter();
+  // 효과의 의존에 router 를 넣지 않는다 — 시험 더블처럼 렌더마다 새 객체를 주는 라우터면
+  // 대시보드를 렌더마다 다시 읽어 선택이 초기화된다. 최신 객체는 ref 로 든다.
+  const routerRef = useRef(router);
+  useEffect(() => {
+    routerRef.current = router;
+  }, [router]);
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const [selectedClassId, setSelectedClassId] = useState("");
   const [viewOverride, setViewOverride] = useState<"stack" | "ledger" | null>(
@@ -51,6 +59,12 @@ export function MainScreen() {
     loadMainDashboard()
       .then((data) => {
         if (cancelled) return;
+        // 🔴 반이 하나도 없으면 메인은 빈 표뿐이다 — S-02 대로 온보딩으로 보낸다.
+        //    2026-09-07 새 계정이 로그인 직후 빈 메인에 떨어졌다(가입 경로만 온보딩이었다).
+        if (data.classes.length === 0) {
+          routerRef.current.replace("/onboarding");
+          return;
+        }
         setState({ status: "ready", ...data });
         const rows = buildClassRows(
           data.classes,

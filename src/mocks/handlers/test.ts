@@ -101,6 +101,7 @@ export const testHandlers: HttpHandler[] = [
     return jsonOk(dailyReviewResponseSchema, {
       data: {
         day,
+        eywaOwner: true,
         sync: null,
         attended: 0,
         auto: [],

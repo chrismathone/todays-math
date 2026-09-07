@@ -151,6 +151,9 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
   }
 
   const d = state.data;
+  // 🔴 eywa 소유자가 아니면 이 섹션은 **없다** — 남의 학원 동기화 상태를 새 계정이 보던
+  //    자리(2026-09-07). 「없음」을 안내하지 않는다: 이 계정에는 원래 없는 배선이다.
+  if (!d.eywaOwner) return null;
   const testByStudent = new Map(d.todayTests.map((t) => [t.studentId, t]));
   // 「모두 출제」 대상 — 자동 묶음에서 오늘 시험이 이미 있는 학생을 뺀 것.
   const targets = d.auto.flatMap((g) =>

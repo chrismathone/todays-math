@@ -28,6 +28,14 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
  * 접히므로, 적힌 수를 다 더하면 `total` 이 된다.
  *
  * D-30 — 바 표면은 누르는 것이 아니다. 손가락 커서는 실제 `<button>` 에만 있다.
+ *
+ * ## 🔴 바는 자기를 화면에 고정하지 않는다 (2026-09-07)
+ *
+ * 고정(`fixed bottom-0`)은 **`ProblemBank` 의 틀**이 한다 — 틀 안에 패널과 이 바가 차례로
+ * 선다. 예전엔 이 바의 뿌리에도 `fixed bottom-0` 이 붙어 있어서 **틀과 겹쳐 그려졌고**,
+ * 패널을 열면 마지막 줄(「이 문항들로 시험지 만들기」)이 바 밑에 깔려 **눌리지 않았다.**
+ * 새 계정으로 걸어 보다 Playwright 가 「`담은 문항` 영역이 포인터를 가로챈다」고 찍어서
+ * 드러났다. `BasketBar.test.tsx` 가 그 모양을 잠근다.
  */
 export type BasketBarProps = {
   total: number;
@@ -52,7 +60,7 @@ export function BasketBar({
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-divider bg-surface shadow-[0_-2px_12px_rgba(0,0,0,0.08)] print:hidden"
+      className="print:hidden"
       // 담긴 것이 있다는 사실 자체가 알림이다 — 화면 낭독기에도 그렇게 읽히게 한다.
       role="region"
       aria-label="담은 문항"

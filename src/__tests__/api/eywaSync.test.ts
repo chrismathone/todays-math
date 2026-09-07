@@ -9,7 +9,7 @@
  * 그리고 **원장 sink** — 라우트가 넘긴 writeLedger 가 정말 DB 원장에 쓰고
  * 최근 14회만 남기는가(원장은 «추가만», 줄면 멈춘다 — 2026-08-20 교훈).
  */
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/session", () => ({
   getSessionUser: vi.fn(async () => ({
@@ -61,6 +61,24 @@ const SUMMARY = {
 };
 
 describe("[2단계] POST /api/eywa-sync — 지금 가져오기", () => {
+  // 🔴 소유자 게이트(2026-09-07) — 모킹된 세션(teacher@)을 소유자로 둔다.
+  //    eywa 는 원장님 학원 하나의 배선이라 다른 계정은 부를 수 없어야 한다.
+  beforeEach(() => {
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  it("🔴 소유자가 아니면 403 — 본체를 부르지 않는다 (남의 학원 동기화를 누구나 돌리던 자리)", async () => {
+    vi.mocked(getSessionUser).mockResolvedValueOnce({
+      id: "10000000-0000-4000-8000-000000000002",
+      email: "walk@todaysmath.test",
+      name: "다른 선생님",
+    });
+    runEywaSyncMock.mockClear();
+    const res = await eywaSync();
+    expect(res.status).toBe(403);
+    expect(runEywaSyncMock).not.toHaveBeenCalled();
+  });
+
   it("세션이 없으면 401 — 본체를 부르지도 않는다", async () => {
     vi.mocked(getSessionUser).mockResolvedValueOnce(null);
     runEywaSyncMock.mockClear();
