@@ -14,6 +14,14 @@ const testContract = () => import("@/contracts/test.contract");
 type ReadyState = {
   status: "ready";
   test: TestEntity;
+  /**
+   * 반 이름 — 검수 머리말이 「어느 반의 시험인가」를 적는 데 쓴다(UI-06).
+   *
+   * ⚠️ 아래 `replace` 는 상태를 **새로 지어** 돌려준다(펼치기가 아니다). 그래서 여기에
+   *    필드를 더할 때마다 그 자리에 같이 적어야 한다 — 안 적으면 문항을 한 번 교체하는
+   *    순간 값이 조용히 사라진다. `useTestReview.test.ts` 가 그 갈래를 잠근다.
+   */
+  className: string;
   problems: TestProblemItem[];
 };
 
@@ -44,6 +52,7 @@ export function useTestReview(testId: string) {
           setState({
             status: "ready",
             test: body.data.test,
+            className: body.data.className,
             problems: body.data.problems,
           });
         }
@@ -81,6 +90,8 @@ export function useTestReview(testId: string) {
           return {
             status: "ready",
             test: body.data.test,
+            // 교체 응답에는 반 이름이 없다 — 시험이 바뀐 게 아니므로 들고 있던 것을 잇는다.
+            className: prev.className,
             problems: prev.problems.map((item) =>
               item.orderIndex === seq ? body.data.problem : item,
             ),

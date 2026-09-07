@@ -27,6 +27,7 @@ import { resolveDefaultReviewRange } from "@/lib/generator/defaultReviewRange";
 import { resolveRange } from "@/lib/generator/resolveRange";
 
 import {
+  MOCK_CLASSES,
   MOCK_PROGRESS,
   MOCK_UNITS,
   CLASS_STARVED_ID,
@@ -206,7 +207,12 @@ export const testHandlers: HttpHandler[] = [
     const test = findTest(String(params.id));
     if (!test) return notFoundError("테스트");
     return jsonOk(testDetailResponseSchema, {
-      data: { test, problems: MOCK_TEST_PROBLEMS_BY_TEST_ID[test.id] ?? [] },
+      data: {
+        test,
+        // 실제 라우트도 시험의 classId 로 반을 찾아 이름을 싣는다 — 여기서도 같게 한다.
+        className: MOCK_CLASSES.find((c) => c.id === test.classId)?.name ?? "",
+        problems: MOCK_TEST_PROBLEMS_BY_TEST_ID[test.id] ?? [],
+      },
     });
   }),
 

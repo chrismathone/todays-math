@@ -180,6 +180,14 @@ export const testListResponseSchema = listResponseSchema(testSchema);
 export const testDetailResponseSchema = dataResponseSchema(
   z.strictObject({
     test: testSchema,
+    /**
+     * 반 이름 — 검수 화면(S-05)이 「어느 반의 시험을 보고 있는가」를 적으려고 쓴다.
+     *
+     * 🔴 **`testSchema` 가 아니라 이 응답에만 둔다.** 시험 엔티티에 넣으면 목록·생성·교체·
+     *    확정·인쇄 응답까지 전부 이 값을 요구하게 되고(`strictObject`), 그 응답들은 반 이름이
+     *    필요 없다. 반 이름은 **이 화면의 맥락**이지 시험의 속성이 아니다.
+     */
+    className: z.string(),
     problems: z.array(testProblemItemSchema),
   }),
 );
