@@ -137,18 +137,38 @@ function HeaderWire({
       </span>
     </>
   );
+  /**
+   * 🔴 **계정 묶음은 실제 헤더와 같은 무게여야 한다.**
+   * 처음에 12.5px 「원장님」으로 그렸다가 `AccountBadge` 를 열어 보니 실제는
+   * **17.25px 구분선 + 15px 이메일 + 로그아웃**이었다. 그 차이만큼 시안이 가벼웠고,
+   * 그 가벼운 헤더에서 잰 「1024px 에 80px」은 **실제 헤더의 값이 아니었다.**
+   * (2026-08-19 에 적어 둔 「시안을 작은 픽스처로 세우면 실화면에서 깨진다」와 같은 자리.)
+   * 이메일은 길이만 맞춘 표본이다 — 개인 주소를 저장소에 심지 않는다.
+   */
+  const account = (
+    <span className="flex shrink-0 items-center gap-2 whitespace-nowrap">
+      <span aria-hidden className="text-[17.25px] text-divider">
+        │
+      </span>
+      <span className="text-[15px] text-text-2">wonjang@todaysmath.kr</span>
+      <span className="border border-control px-2 py-0.5 text-[12.5px]">
+        로그아웃
+      </span>
+    </span>
+  );
+  /** 메인 화면이 헤더에 더 붙이는 버튼(`MainScreen` 의 `extraNav`). 이것도 폭을 먹는다. */
+  const extraNav = (
+    <span className="shrink-0 whitespace-nowrap bg-ink px-2.5 py-0.5 text-[15.75px] font-extrabold text-bg">
+      전체 표 ⇄
+    </span>
+  );
   const nav = (
     <nav className="flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold">
+      {extraNav}
       <span>메인</span>
       <span>반 관리</span>
       <span>문제은행</span>
     </nav>
-  );
-  const account = (
-    <span className="flex shrink-0 items-center gap-2 whitespace-nowrap text-[12.5px] text-text-2">
-      <span>원장님</span>
-      <span className="border border-control px-2 py-0.5">로그아웃</span>
-    </span>
   );
 
   if (variant === "B") {
@@ -203,6 +223,10 @@ export function UiWireClient({
   longestUnit,
 }: Props) {
   const [width, setWidth] = useState<number>(1024);
+  /** 검수 머리말이 **세 상태**를 다 감당하는지 눌러 보게 한다(§ UI-06). */
+  const [headStatus, setHeadStatus] = useState<string>("confirmed");
+  /** 학생별 출제 — 반 이름만으로는 안 갈리는 경우를 켜 본다. */
+  const [headStudent, setHeadStudent] = useState<boolean>(false);
 
   const longestClass =
     classes.reduce<ClassRow | null>(
@@ -346,6 +370,43 @@ export function UiWireClient({
                   </Field>
                 ))}
               </div>
+            </div>
+          </div>
+        </Case>
+
+        <Case
+          id="A+"
+          title="전폭 유지 · 난이도만 한 줄 · 배분 합계 상시"
+          note="🔴 처음 시안에 **빠져 있던 선택지**다. 「전폭 폼」 확정은 짧은 필드의 배치까지 못 박은 것이 아니므로, 폭을 그대로 두고도 난이도 6갈래를 한 줄에 놓을 수 있다. 지금은 4열 그리드라 심화하가 첫 줄 끝, 심화중·심화상이 다음 줄로 갈린다 — 합계가 맞아도 «어디에 얼마를 줬나»를 두 줄에서 찾아야 한다. 확정을 뒤집지 않는다."
+        >
+          <div className="flex flex-col gap-4">
+            {[
+              ["출제 대상", ["반", "학생"]],
+              ["시험 구성", ["유형", "시행일", "문항 수"]],
+            ].map(([group, fields]) => (
+              <div key={group as string} className="flex flex-col gap-2">
+                <span className="text-[11.5px] font-black">
+                  {group as string}
+                </span>
+                {(fields as string[]).map((f) => (
+                  <Field key={f} label={f}>
+                    <Slot label={`${f} 선택`} wide />
+                  </Field>
+                ))}
+              </div>
+            ))}
+            <div className="flex flex-col gap-2">
+              <span className="text-[11.5px] font-black">난이도 배분</span>
+              <div className="grid grid-cols-6 gap-2">
+                {DIFFICULTY_LADDER.map((d) => (
+                  <Field key={d} label={d}>
+                    <Slot label="0 문항" />
+                  </Field>
+                ))}
+              </div>
+              <span className="text-[11.5px] text-text-2">
+                배분 합계 8 / 총 8문항
+              </span>
             </div>
           </div>
         </Case>
@@ -539,6 +600,43 @@ export function UiWireClient({
             지금은 「검수」와 「8문항」뿐이다. 반·유형·시행일·상태가 없다.
           </span>
         </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[11.5px] font-bold">상태</span>
+          {(
+            [
+              ["draft", "초안"],
+              ["confirmed", "확정됨"],
+              ["confirming", "확정 처리 중"],
+            ] as const
+          ).map(([v, t]) => (
+            <button
+              key={v}
+              type="button"
+              onClick={() => setHeadStatus(v)}
+              aria-pressed={headStatus === v}
+              className={`border px-3 py-1 text-[12.5px] ${
+                headStatus === v
+                  ? "border-ink bg-ink text-white"
+                  : "border-control bg-white"
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setHeadStudent((v) => !v)}
+            aria-pressed={headStudent}
+            className={`border px-3 py-1 text-[12.5px] ${
+              headStudent
+                ? "border-ink bg-ink text-white"
+                : "border-control bg-white"
+            }`}
+          >
+            학생별 시험
+          </button>
+        </div>
+
         <p className={CAPTION}>
           반 이름은 이미 API 가 싣고 있습니다(2026-09-07 커밋). 남은 것은
           모양뿐입니다.
@@ -577,12 +675,13 @@ export function UiWireClient({
             <ReviewHead
               variant={id}
               className={sample?.className ?? "중2 목요일반"}
+              studentName={headStudent ? "김서연" : null}
               testType={
                 sample?.testType === "review" ? "확인테스트" : "일일테스트"
               }
               testDate={sample?.testDate ?? "2026-09-07"}
               count={sample?.problemCount ?? 8}
-              status={sample?.status ?? "confirmed"}
+              status={headStatus}
             />
           </Case>
         ))}
@@ -596,15 +695,23 @@ export function UiWireClient({
   );
 }
 
+/**
+ * 🔴 **「확정」이 비활성인 사유는 셋이다** — `TestReview.tsx:89` 가
+ *    `disabled={!draft || confirming}` 이다. 곧 «이미 확정됨»뿐 아니라
+ *    **«처리 중»**에도 비활성이다. 처음 시안은 초안 여부만 보고 두 문장을 냈고,
+ *    그러면 처리 중에 눌리지 않는 이유는 여전히 답하지 못한다.
+ */
 const STATUS_TEXT: Record<string, string> = {
   draft: "초안",
   confirmed: "확정됨",
   printed: "인쇄함",
+  confirming: "확정 처리 중",
 };
 
 function ReviewHead({
   variant,
   className,
+  studentName,
   testType,
   testDate,
   count,
@@ -612,6 +719,7 @@ function ReviewHead({
 }: {
   variant: "A" | "B" | "C" | "D";
   className: string;
+  studentName?: string | null;
   testType: string;
   testDate: string;
   count: number;
@@ -619,21 +727,29 @@ function ReviewHead({
 }) {
   const label = STATUS_TEXT[status] ?? status;
   const why =
-    status === "draft"
-      ? "확정하면 문항을 바꿀 수 없습니다."
-      : "확정된 시험은 문항을 바꿀 수 없습니다.";
+    status === "confirming"
+      ? "확정을 처리하는 중입니다."
+      : status === "draft"
+        ? "확정하면 문항을 바꿀 수 없습니다."
+        : "확정된 시험은 문항을 바꿀 수 없습니다.";
+  /**
+   * 🔴 **학생별 출제가 있다**(`GenerateSetup` 의 학생 선택). 같은 반·같은 날·같은
+   *    유형의 학생별 시험을 연속으로 검수하면 **반 이름만으로는 안 갈린다.**
+   *    처음 시안에 이 칸이 없었다.
+   */
+  const who = studentName ? `${className} · ${studentName}` : className;
 
   if (variant === "A")
     return (
       <div className="border-b border-ink pb-2 text-[13px]">
-        {className} · {testType} · {testDate} · {count}문항 · {label}
+        {who} · {testType} · {testDate} · {count}문항 · {label}
       </div>
     );
 
   if (variant === "B")
     return (
       <div className="border-b border-ink pb-2">
-        <div className="text-[17px] font-black">{className}</div>
+        <div className="text-[17px] font-black">{who}</div>
         <div className="mt-1 text-[11.5px] text-text-2">
           {testType} · {testDate} · {count}문항 · {label}
         </div>
@@ -644,7 +760,7 @@ function ReviewHead({
     return (
       <div className="flex items-end justify-between border-b border-ink pb-2">
         <div>
-          <div className="text-[17px] font-black">{className}</div>
+          <div className="text-[17px] font-black">{who}</div>
           <div className="mt-1 text-[11.5px] text-text-2">
             {testType} · {testDate} · {count}문항
           </div>
@@ -659,7 +775,7 @@ function ReviewHead({
   return (
     <dl className="grid grid-cols-4 border-b border-ink pb-2 text-[12.5px]">
       {[
-        ["반", className],
+        ["반 · 학생", who],
         ["유형", testType],
         ["시행일", testDate],
         ["문항", `${count}문항 · ${label}`],
