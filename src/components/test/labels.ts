@@ -2,4 +2,4 @@
 //    난이도 값이 곧 사람이 읽는 말이다 — `연산`·`기본`·`응용`·`심화`.
 
 export const FIELD_CLASS =
-  "h-11 w-full cursor-pointer border border-[#C2C2C0] bg-white px-3 text-[12.5px] text-[#161616] focus:border-[#1A73E8] focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-[#1A73E8] disabled:cursor-not-allowed";
+  "h-11 w-full cursor-pointer border border-control bg-white px-3 text-[12.5px] text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-g-blue disabled:cursor-not-allowed";

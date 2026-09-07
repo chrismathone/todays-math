@@ -109,7 +109,7 @@ export function ProblemRegisterForm({
           name="content"
           required
           rows={3}
-          className="border border-divider bg-white px-3 py-2 text-[12.5px] text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-g-blue"
+          className="border border-control bg-white px-3 py-2 text-[12.5px] text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-g-blue"
         />
       </label>
       <label className="mt-3 flex flex-col gap-1 text-[10.5px] font-black tracking-[1.5px] text-text-2">

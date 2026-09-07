@@ -25,7 +25,7 @@ const MIN = 0;
 const MAX = 100;
 
 const BTN =
-  "rounded border border-divider px-2 py-0.5 text-[11.5px] font-bold text-muted " +
+  "rounded border border-control px-2 py-0.5 text-[11.5px] font-bold text-muted " +
   "hover:border-ink hover:text-ink";
 
 type Props = {
