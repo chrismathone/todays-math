@@ -1,3 +1,4 @@
+import { nameSelectionClass } from "@/components/ui/rowSelection";
 import type { ClassRow } from "@/lib/main/pipeline";
 
 import { ActionControl } from "./ActionControl";
@@ -49,11 +50,9 @@ export function LedgerTable({
                   aria-current={
                     row.classId === selectedClassId ? "true" : undefined
                   }
-                  className={`min-h-11 cursor-pointer text-left ${
-                    row.classId === selectedClassId
-                      ? "text-g-blue underline underline-offset-4"
-                      : "hover:underline hover:underline-offset-4"
-                  }`}
+                  className={`min-h-11 cursor-pointer text-left ${nameSelectionClass(
+                    row.classId === selectedClassId,
+                  )}`}
                 >
                   {row.name}
                 </button>
