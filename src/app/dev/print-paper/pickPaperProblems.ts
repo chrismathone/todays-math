@@ -1,4 +1,5 @@
 import { splitBoxSegments } from "@/lib/math/boxBlock";
+import { splitSolutionSteps } from "@/lib/solutionSteps";
 
 /**
  * 인쇄 검수 **시험지 견본**에 실을 문항을 고른다 — 고르는 규칙만.
@@ -71,6 +72,20 @@ const isMultiAnswer = (c: Candidate) =>
  */
 const isLong = (c: Candidate) => c.content.length >= 220;
 
+/**
+ * 해설이 **지면에서 여러 줄로 갈리는가** — `solution-line-split` 검수용.
+ *
+ * 🔴 길이로 고르면 안 된다. 그 항목이 묻는 것은 «길다»가 아니라 **«갈린다»**이고,
+ *    긴 해설이라도 마커가 없으면 한 줄로 나간다. 그래서 **제품이 쓰는 그 함수**
+ *    (`splitSolutionSteps`)를 그대로 불러 실제로 몇 조각이 되는지 센다 — 규칙을
+ *    옮겨 적으면 갈래 규칙이 바뀐 날 이 자리가 조용히 엉뚱한 문항을 뽑는다.
+ *
+ *    그리고 **세 조각 이상**을 요구한다. 두 조각짜리는 세로가 거의 안 늘어서
+ *    「넘쳐 사라지나」가 드러나지 않는다.
+ */
+const hasSplitSolution = (c: Candidate) =>
+  splitSolutionSteps(c.solution ?? "").length >= 3;
+
 export const SLOTS: readonly Slot[] = [
   {
     forItem: "essay-badge",
@@ -113,6 +128,12 @@ export const SLOTS: readonly Slot[] = [
     label: "복수 정답 — 정답지 표기",
     want: isMultiAnswer,
     count: 2,
+  },
+  {
+    forItem: "solution-line-split",
+    label: "해설이 3조각 이상 — 갈린 줄이 넘쳐 사라지지 않나",
+    want: hasSplitSolution,
+    count: 4,
   },
   {
     forItem: "two-column",

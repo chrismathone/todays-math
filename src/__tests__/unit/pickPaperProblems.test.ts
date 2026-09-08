@@ -10,8 +10,10 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { ITEMS } from "../../app/dev/print-check/items";
 import {
   pickPaperProblems,
+  SLOTS,
   type Candidate,
   type Slot,
 } from "../../app/dev/print-paper/pickPaperProblems";
@@ -111,5 +113,52 @@ describe("정원", () => {
   it("풀이 정원보다 작으면 있는 만큼만", () => {
     const pool = [c({ id: "a" })];
     expect(pickPaperProblems(pool, 25, []).picked).toHaveLength(1);
+  });
+});
+
+describe("자리가 가리키는 검수 항목이 실재한다", () => {
+  /*
+    🔴 `forItem` 은 **문자열**이라 타입이 못 센다. 오타가 나면 그 자리는 아무 항목도
+       안 가리키는데, 자리 보고서는 「○ 4/4」라고 찍는다 — 검수된 척하는 자리가
+       하나 생기고, 정작 그 검수 항목은 영영 시험지에 안 실린다.
+       2026-09-06 에 `<나열>` 이 「입력 마커가 아닌데 아무도 안 울었다」와 같은 부류다.
+  */
+  const ids = new Set(ITEMS.map((i) => i.id));
+
+  it("눈금 — 이 검사는 «없는 id»를 실제로 잡을 수 있다", () => {
+    expect(ids.has("이런-항목은-없다")).toBe(false);
+    expect(ids.size).toBeGreaterThan(10);
+  });
+
+  it("🔴 모든 자리의 forItem 이 print-check 항목 id 다", () => {
+    const orphans = SLOTS.filter((s) => !ids.has(s.forItem)).map(
+      (s) => s.forItem,
+    );
+    expect(orphans).toEqual([]);
+  });
+});
+
+describe("해설이 갈리는 문항 자리 (solution-line-split)", () => {
+  const slot = SLOTS.find((s) => s.forItem === "solution-line-split")!;
+
+  it("그 자리가 있다", () => {
+    expect(slot).toBeDefined();
+  });
+
+  it("한 문장짜리 해설은 **안** 뽑는다 — 갈릴 것이 없다", () => {
+    expect(slot.want(c({ id: "one", solution: "$x=3$ 입니다" }))).toBe(false);
+    // 해설이 아예 없는 행도 마찬가지 — `null` 에서 터지지 않는 것까지 함께 본다.
+    expect(slot.want(c({ id: "none", solution: null }))).toBe(false);
+  });
+
+  it("문장 셋으로 갈리는 해설은 뽑는다", () => {
+    const three = "두 삼각형은 닮음입니다. 따라서 $x:6=4:8$ 입니다. ∴ $x=3$";
+    expect(slot.want(c({ id: "three", solution: three }))).toBe(true);
+  });
+
+  it("⚠️ 두 조각짜리는 안 뽑는다 — 세로가 거의 안 늘어 「넘쳐 사라지나」가 안 보인다", () => {
+    expect(slot.want(c({ id: "two", solution: "닮음입니다. ∴ $x=3$" }))).toBe(
+      false,
+    );
   });
 });
