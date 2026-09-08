@@ -22,6 +22,8 @@ type ReadyState = {
    *    순간 값이 조용히 사라진다. `useTestReview.test.ts` 가 그 갈래를 잠근다.
    */
   className: string;
+  /** 학생 이름 — 반 전체 시험이면 `null`. 같은 반·날짜·유형이 학생 수만큼 있을 수 있다. */
+  studentName: string | null;
   problems: TestProblemItem[];
 };
 
@@ -53,6 +55,7 @@ export function useTestReview(testId: string) {
             status: "ready",
             test: body.data.test,
             className: body.data.className,
+            studentName: body.data.studentName,
             problems: body.data.problems,
           });
         }
@@ -92,6 +95,7 @@ export function useTestReview(testId: string) {
             test: body.data.test,
             // 교체 응답에는 반 이름이 없다 — 시험이 바뀐 게 아니므로 들고 있던 것을 잇는다.
             className: prev.className,
+            studentName: prev.studentName,
             problems: prev.problems.map((item) =>
               item.orderIndex === seq ? body.data.problem : item,
             ),

@@ -133,6 +133,14 @@ type Props = {
 
 export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
   const form = useGenerateSetup({ initialClassId, initialStudentId });
+  /**
+   * 배분 합계 — 갈래를 **손으로 더하지 않는다**(D-106). 사다리를 돌아 더하므로
+   * 갈래가 늘어도 이 값이 저절로 따라온다.
+   */
+  const ratioSum = DIFFICULTY_LADDER.reduce(
+    (sum, tier) => sum + (form.difficultyRatio[tier] ?? 0),
+    0,
+  );
 
   return (
     <main className="px-8 py-6">
@@ -235,7 +243,17 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             갈래가 늘거나 이름이 바뀔 때 이 칸이 저절로 따라온다. 예전에는 하·중·상을
             세 번 적어 두어서 화면과 계약이 갈릴 자리가 셋이었다.
           */}
-          <div className="grid grid-cols-4 gap-3">
+          {/*
+            🔴 **한 줄에 다 놓는다** (UI-04, 원장님 결정 2026-09-08).
+            종전에는 `grid-cols-4` 라 6갈래가 **4+2** 로 갈렸다 — 심화하가 첫 줄 끝,
+            심화중·심화상이 다음 줄이라 「어디에 얼마를 줬나」를 두 줄에서 찾아야 했다.
+            갈래 수(`DIFFICULTY_LADDER.length`)로 열을 잡아 사다리가 늘어도 따라온다.
+            좁은 창에서는 3+3 으로 접힌다 — 한 줄을 억지로 지키면 칸이 못 읽게 좁아진다.
+
+            ⚠️ **폼 폭은 안 건드린다.** §8.6 S-04 「전폭 폼」은 확정이고, 짧은 필드의
+               배치까지 못 박은 것이 아니다. 그래서 배치만 고친다.
+          */}
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
             {DIFFICULTY_LADDER.map((tier) => (
               <label
                 key={tier}
@@ -256,6 +274,19 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
               </label>
             ))}
           </div>
+
+          {/*
+            배분 합계 — **입력 중에도** 총 문항 수와 견줄 수 있게 한다(UI-04).
+            종전에는 제출해야만 알았다. 문구는 상태만 적고 지시하지 않는다(D-08).
+          */}
+          <p
+            className={`text-[11.5px] ${
+              ratioSum === form.problemCount ? "text-text-2" : "text-g-red-text"
+            }`}
+          >
+            배분 합계 {ratioSum} / 총 {form.problemCount}문항
+            {ratioSum === form.problemCount ? "" : " — 맞지 않습니다"}
+          </p>
 
           {form.testType === "review" ? (
             <RangeField

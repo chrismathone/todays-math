@@ -188,6 +188,15 @@ export const testDetailResponseSchema = dataResponseSchema(
      *    필요 없다. 반 이름은 **이 화면의 맥락**이지 시험의 속성이 아니다.
      */
     className: z.string(),
+    /**
+     * 학생 이름 — 반 전체 시험이면 `null`.
+     *
+     * 🔴 **반 이름만으로는 안 갈리는 경우가 있다.** 학생별 출제(`studentId`)가 있어서
+     *    같은 반·같은 날·같은 유형의 시험이 학생 수만큼 생긴다. 그것들을 연속으로
+     *    검수하면 머리말이 전부 똑같아진다 — 무엇을 보고 있는지 모른 채 확정하게 된다.
+     *    (2026-09-08 협의에서 드러났다. 첫 시안 넷 다 이 칸이 없었다.)
+     */
+    studentName: z.string().nullable(),
     problems: z.array(testProblemItemSchema),
   }),
 );

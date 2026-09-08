@@ -13,6 +13,13 @@ type Props = {
   testId: string;
 };
 
+/** 상태를 사람 말로. 시험 상태 열거형과 한 곳에서 짝짓는다. */
+const TEST_STATUS_TEXT: Record<string, string> = {
+  draft: "초안",
+  confirmed: "확정됨",
+  printed: "인쇄함",
+};
+
 export function TestReview({ testId }: Props) {
   const {
     state,
@@ -56,11 +63,33 @@ export function TestReview({ testId }: Props) {
   return (
     <div className="flex min-h-[calc(100vh-52px)] flex-col">
       <main className="flex-1 pb-20">
+        {/*
+          검수 머리말 — **무엇을 보고 있는가**를 문항을 읽기 전에 알린다
+          (UI-06, 원장님 결정 2026-09-08 · 안 B).
+
+          종전에는 「검수」와 「8문항」뿐이라, 여러 반의 시험을 연속으로 처리하면
+          문항 내용을 기억해야 대상을 알 수 있었다.
+
+          🔴 **학생 이름이 반드시 있어야 한다.** 학생별 출제가 있어 같은 반·같은 날·
+             같은 유형의 시험이 학생 수만큼 생긴다 — 반 이름만 적으면 그것들이 전부
+             똑같이 보인다(2026-09-08 협의에서 드러났다).
+
+          ⚠️ 「확정이 왜 비활성인가」는 여기 안 적는다. 그 답은 **버튼 옆**에 있어야
+             한다 — 이 화면은 아래로 길어서 머리말은 스크롤 밖으로 나간다.
+        */}
         <div className="flex items-baseline justify-between px-8 py-4">
-          <h1 className="text-[15px] font-black">검수</h1>
-          <p className="text-[11.5px] text-text-2 tabular-nums">
-            {state.problems.length}문항
-          </p>
+          <div>
+            <h1 className="text-[17px] font-black">
+              {state.studentName
+                ? `${state.className} · ${state.studentName}`
+                : state.className}
+            </h1>
+            <p className="mt-1 text-[11.5px] text-text-2">
+              {state.test.testType === "review" ? "확인테스트" : "일일테스트"} ·{" "}
+              {state.test.testDate} · {state.problems.length}문항 ·{" "}
+              {TEST_STATUS_TEXT[state.test.status] ?? state.test.status}
+            </p>
+          </div>
         </div>
         <div>
           {state.problems.map((item) => (
@@ -84,6 +113,21 @@ export function TestReview({ testId }: Props) {
           </p>
         ) : null}
         <div className="ml-auto flex items-center gap-2">
+          {/*
+            비활성 사유를 **버튼 옆**에 적는다 (UI-06). 비활성 버튼만 두면 「이미 끝난
+            것인지, 무엇이 모자란 것인지」를 알 수 없다.
+
+            🔴 사유는 **셋**이다 — 위 `disabled` 가 `!draft || confirming` 이므로
+               «이미 확정됨»뿐 아니라 **«처리 중»**에도 눌리지 않는다. 처음 시안은
+               초안 여부만 보고 두 문장을 냈고, 그러면 처리 중인 이유는 답하지 못했다.
+          */}
+          {!draft || confirming ? (
+            <p className="text-[11.5px] text-text-2">
+              {confirming
+                ? "확정을 처리하는 중입니다"
+                : "확정된 시험은 문항을 바꿀 수 없습니다"}
+            </p>
+          ) : null}
           <Button
             variant="ink"
             disabled={!draft || confirming}

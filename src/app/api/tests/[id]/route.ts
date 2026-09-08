@@ -28,12 +28,19 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
 
   // 반 이름은 검수 머리말이 쓴다. 소유 확인이 이미 끝났으므로 그 시험의 반만 곧장 읽는다
   // (`requireOwnedTest` 를 고치면 이 값이 필요 없는 다른 라우트까지 반을 끌고 온다).
-  const [problems, cls] = await Promise.all([
+  const [problems, cls, student] = await Promise.all([
     loadTestProblemItems(id),
     db.class.findUnique({
       where: { id: owned.data.classId },
       select: { name: true },
     }),
+    // 반 전체 시험이면 `studentId` 가 없다 — 그때는 조회 자체를 안 한다.
+    owned.data.studentId
+      ? db.student.findUnique({
+          where: { id: owned.data.studentId },
+          select: { name: true },
+        })
+      : Promise.resolve(null),
   ]);
 
   return jsonOk(testDetailResponseSchema, {
@@ -41,6 +48,7 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
       test: serializeTest(owned.data),
       // 반이 지워진 시험은 지금 구조상 없지만(FK), 이름이 없다고 검수를 막지는 않는다.
       className: cls?.name ?? "",
+      studentName: student?.name ?? null,
       problems,
     },
   });

@@ -115,8 +115,17 @@ function HeaderWire({
     variant === "D" && width < 1200
       ? "text-[22px] font-black tracking-[-0.5px]"
       : "text-[28.5px] font-black tracking-[-0.5px]";
-  const date =
-    variant === "A" && width < 1200 ? "9. 7. (일)" : "2026년 9월 7일 일요일";
+  /**
+   * ⚠️ **실제 문자열이어야 한다.** 처음엔 「2026년 9월 7일 일요일」로 그렸는데
+   *    제품(`formatMastheadDate`)은 **`2026-09-07 일`** 을 낸다 — 시안이 더 길었다.
+   *    폭을 재는 시안에서 문자열 길이를 지어내면 그 측정은 제품의 것이 아니다.
+   *
+   * 🔴 그리고 **A 의 「날짜 축약」은 버렸다.** 축약해도 1024px 에서 두 줄(115px)이
+   *    그대로였다 — 넘치는 양이 그 몇 글자보다 크다. 아무것도 못 사는 손잡이를
+   *    시안에 남기면 다음 사람이 그것을 «해결책»으로 읽는다. A 가 실제로 하는 일은
+   *    **「묶음 단위로 접히고 단어는 절대 안 쪼갠다」 하나뿐**이다.
+   */
+  const date = "2026-09-07 일";
 
   const mark = (
     <span className="flex shrink-0 items-baseline whitespace-nowrap">
@@ -166,7 +175,7 @@ function HeaderWire({
     <nav className="flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold">
       {extraNav}
       <span>메인</span>
-      <span>반 관리</span>
+      <span>반</span>
       <span>문제은행</span>
     </nav>
   );
@@ -297,8 +306,8 @@ export function UiWireClient({
           [
             [
               "A",
-              "한 줄 유지 · 좁아지면 날짜를 줄인다",
-              "가장 작은 변경. 워드마크·메뉴·계정은 그대로 두고, 자리를 만드는 것은 날짜 하나다. 계정 상시 노출(§8.8) 유지.",
+              "묶음 단위로 접는다 (단어는 안 쪼갠다)",
+              "가장 작은 변경이자 결함을 직접 없애는 안. 워드마크·날짜·메뉴·계정을 각각 nowrap 묶음으로 두고 헤더가 줄바꿈하게 한다. 1024px 에서 두 줄(115px)이 되지만 넘침 0 · 숨는 것 0 이고, 새 상호작용이 없다. ⚠️ 「날짜 축약」은 재 보고 버렸다 — 축약해도 두 줄 그대로였다.",
             ],
             [
               "B",

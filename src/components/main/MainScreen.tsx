@@ -36,6 +36,16 @@ type LoadState =
       metrics: WeeklyMetrics;
     };
 
+/**
+ * 메인이 헤더에 더 붙이는 「전체 표 ⇄ / 오늘 작업 ⇄」 버튼의 모양.
+ *
+ * 🔴 **상수로 뺀 이유** — 이 버튼은 헤더의 폭을 실제로 먹는데, 로그인 없이 헤더를
+ *    볼 자리가 없어서 시안·계측이 매번 이걸 **빠뜨리거나 베껴** 썼다. 베끼면 갈린다.
+ *    `/dev/chrome-check` 가 이 상수를 그대로 읽어 «메인과 같은 무게»의 헤더를 그린다.
+ */
+export const MAIN_VIEW_TOGGLE_CLASS =
+  "cursor-pointer bg-ink px-2.5 py-0.5 text-[15.75px] font-extrabold text-bg";
+
 export function MainScreen() {
   const router = useRouter();
   // 효과의 의존에 router 를 넣지 않는다 — 시험 더블처럼 렌더마다 새 객체를 주는 라우터면
@@ -183,7 +193,7 @@ export function MainScreen() {
         <button
           type="button"
           onClick={() => setViewOverride(view === "stack" ? "ledger" : "stack")}
-          className="cursor-pointer bg-ink px-2.5 py-0.5 text-[15.75px] font-extrabold text-bg"
+          className={MAIN_VIEW_TOGGLE_CLASS}
         >
           {view === "stack" ? "전체 표 ⇄" : "오늘 작업 ⇄"}
         </button>

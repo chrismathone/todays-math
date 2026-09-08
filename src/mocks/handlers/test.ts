@@ -29,6 +29,7 @@ import { resolveRange } from "@/lib/generator/resolveRange";
 import {
   MOCK_CLASSES,
   MOCK_PROGRESS,
+  MOCK_STUDENTS,
   MOCK_UNITS,
   CLASS_STARVED_ID,
   MOCK_EMPTY_PROBLEM_UNIT,
@@ -211,6 +212,10 @@ export const testHandlers: HttpHandler[] = [
         test,
         // 실제 라우트도 시험의 classId 로 반을 찾아 이름을 싣는다 — 여기서도 같게 한다.
         className: MOCK_CLASSES.find((c) => c.id === test.classId)?.name ?? "",
+        // 학생별 시험이면 이름도 싣는다 — 반 전체면 null(라우트와 같다).
+        studentName: test.studentId
+          ? (MOCK_STUDENTS.find((st) => st.id === test.studentId)?.name ?? null)
+          : null,
         problems: MOCK_TEST_PROBLEMS_BY_TEST_ID[test.id] ?? [],
       },
     });
