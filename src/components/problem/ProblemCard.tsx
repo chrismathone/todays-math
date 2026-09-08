@@ -51,6 +51,16 @@ const CARD_ACTION_CLASS =
   "inline-flex min-h-11 cursor-pointer items-center gap-2 border border-control bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-side";
 
 /**
+ * 관리 동작(검수 승인·반려) — 테두리를 빼서 **무게만** 낮춘다 (UI-07, 2026-09-08).
+ *
+ * ⚠️ 낮추는 것은 무게지 **누를 자리가 아니다**: `min-h-11`(44px, 05 §6.1)과
+ *    `text-text-2`(흰 바탕 대비 6.21:1)를 그대로 둔다. 「덜 눈에 띄게」를
+ *    「못 찾게·못 누르게」로 만들면 그건 개선이 아니라 다른 결함이다.
+ */
+const CARD_MANAGE_CLASS =
+  "inline-flex min-h-11 cursor-pointer items-center px-2 text-sm font-medium text-text-2 underline-offset-4 transition-colors hover:text-ink hover:underline";
+
+/**
  * 검수 상태에 기능색을 쓴다 (원장님 확정 2026-08-18 "검수 상태에도 색을 써서 더 명확하게").
  * G2 네 의미에 그대로 대응한다 — 승인=끝난 단계, 대기=입력 대기, 반려=경고.
  * 면색이 아니라 **글자색**이라 색 쓰는 자리가 늘지 않는다.
@@ -260,26 +270,6 @@ export const ProblemCard = memo(function ProblemCard({
               {ineligibleReason}
             </span>
           ) : null}
-          {onReviewStatusChange && problem.reviewStatus !== "approved" ? (
-            <button
-              type="button"
-              disabled={reviewBusy}
-              onClick={() => void changeReview("approved")}
-              className={CARD_ACTION_CLASS}
-            >
-              승인
-            </button>
-          ) : null}
-          {onReviewStatusChange && problem.reviewStatus !== "rejected" ? (
-            <button
-              type="button"
-              disabled={reviewBusy}
-              onClick={() => void changeReview("rejected")}
-              className={CARD_ACTION_CLASS}
-            >
-              반려
-            </button>
-          ) : null}
           <button
             type="button"
             aria-expanded={showSolution}
@@ -299,6 +289,52 @@ export const ProblemCard = memo(function ProblemCard({
             >
               {showTransform ? "변형 닫기" : "변형"}
             </button>
+          ) : null}
+          {/*
+            🔴 **검수(승인·반려)는 «관리»다 — 주 행동 옆에 두지 않는다**
+               (UI-07, 2026-09-08 결정 · 안 C).
+
+            종전에는 「반려」가 **담기 바로 옆에 같은 테두리 버튼**으로 있었다. 그런데
+            이 카드의 왼쪽 끝은 «이 문항을 시험지에 넣을까»이고 오른쪽 끝(해설·변형)은
+            «그 문항을 더 볼 때»다 — 검수는 **둘 다 아니다.**
+
+            실측이 이 결함을 «전 카드»로 키웠다: 공유 DB 는 pending 0 · rejected 0 ·
+            approved 100,828 이라 「승인」은 **영영 안 뜨고** 「반려」는 **모든 카드에
+            항상** 뜬다. 곧 원장님은 담을 때마다 그 옆의 반려를 지나친다.
+            게다가 잠긴 문항에서는 사유 글자가 담기와 반려 **사이에 끼어** 반려를
+            설명하는 것처럼 읽혔다.
+
+            🔴 **반려는 공유 풀(D-31) 행을 직접 바꾼다** — 한 번 누르면 다른 계정의
+               출제 풀에서도 빠진다. 되돌릴 수는 있지만(반려하면 「승인」이 다시 뜬다)
+               담기와 헷갈려 누를 자리에 둘 동작이 아니다.
+
+            그래서 **자리와 무게를 함께** 바꾼다: 구분선 뒤 관리 묶음으로 떼고, 테두리를
+            없애 무게를 낮추되 **누를 자리(min-h-11)와 글자 대비는 그대로** 둔다
+            (§6.1 44px · 대비 6.21:1). 「덜 눈에 띄게」가 「못 찾게」가 되면 안 된다.
+          */}
+          {onReviewStatusChange ? (
+            <span className="ml-2 flex items-center gap-1 border-l border-divider pl-3">
+              {problem.reviewStatus !== "approved" ? (
+                <button
+                  type="button"
+                  disabled={reviewBusy}
+                  onClick={() => void changeReview("approved")}
+                  className={CARD_MANAGE_CLASS}
+                >
+                  승인
+                </button>
+              ) : null}
+              {problem.reviewStatus !== "rejected" ? (
+                <button
+                  type="button"
+                  disabled={reviewBusy}
+                  onClick={() => void changeReview("rejected")}
+                  className={CARD_MANAGE_CLASS}
+                >
+                  반려
+                </button>
+              ) : null}
+            </span>
           ) : null}
         </div>
 

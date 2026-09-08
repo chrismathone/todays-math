@@ -264,10 +264,23 @@ describe("데이터가 없을 때", () => {
     render(<ExamPage />);
 
     expect(
-      await screen.findByText(
-        "아직 회차가 없습니다. 예측을 실행하면 여기에 쌓입니다.",
-      ),
+      await screen.findByText("아직 회차가 없습니다."),
     ).toBeInTheDocument();
+
+    /*
+      🔴 **문구가 «할 수 없는 일»을 시키면 안 된다** (UI-03, 2026-09-08).
+      종전 문구는 「예측을 실행하면 여기에 쌓입니다」였는데 **실행할 자리가 화면에
+      없다.** 그래서 이 시험은 글자를 그대로 옮겨 적지 않고 두 가지를 묻는다:
+        ⑴ 무엇이 있어야 회차가 생기는지 적었는가
+        ⑵ **실행을 약속하는 컨트롤이 없는가** — 죽은 버튼을 두는 것이 D-30 이
+           막는 바로 그 버그다. 글자만 물으면 누가 버튼을 달아도 초록이다.
+    */
+    expect(screen.getByText(/지난 시험지를 근거로/)).toBeInTheDocument();
+    for (const dead of [/새 회차/, /예측 실행/, /예측하기/]) {
+      expect(screen.queryByRole("button", { name: dead })).toBeNull();
+      expect(screen.queryByRole("link", { name: dead })).toBeNull();
+    }
+
     // 크롬은 그대로 서 있어야 한다 — 탭을 잃으면 돌아갈 길이 없다.
     expect(
       screen.getByRole("link", { name: "오늘의수학" }),
