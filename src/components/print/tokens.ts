@@ -12,7 +12,17 @@ export const PAPER_COLORS = {
 } as const;
 
 export const PAPER_FONTS = {
-  serifKR: '"KoPubBatang", "Nanum Myeongjo", "Noto Serif KR", "Batang", serif',
+  /**
+   * 🔴 **맨 앞이 자체 적재분이다** (2026-09-08). `var(--font-noto-serif-kr)` 는
+   *    `src/app/fonts.ts` 가 `next/font/local` 로 싣고 루트 레이아웃이 얹는다.
+   *    이것이 없으면 그 기계에 깔린 것이 지면을 정하고, 실측상 `Batang` 으로 떨어지면
+   *    같은 글이 6~7% 넓어져 **자가 넘침을 놓친다**(UI-09).
+   *
+   * ⚠️ 뒤의 이름들을 지우지 마라. 변수가 안 붙는 자리(자 `paperProbe` 는 Next 밖에서
+   *    그린다)에서는 그 목록이 유일한 길이다.
+   */
+  serifKR:
+    'var(--font-noto-serif-kr), "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR", "Batang", serif',
   sansKR: 'Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
 } as const;
 
