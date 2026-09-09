@@ -25,8 +25,10 @@ export function TestReview({ testId }: Props) {
     state,
     replace,
     confirm,
+    retry,
     replacingSeq,
     confirming,
+    busy,
     replacedCount,
     actionError,
   } = useTestReview(testId);
@@ -42,18 +44,27 @@ export function TestReview({ testId }: Props) {
     return <TestReviewContentSkeleton />;
   }
 
-  if (state.status === "notfound") {
+  if (state.status === "notfound" || state.status === "error") {
     return (
       <main className="px-8 py-6">
-        <p className="text-[12.5px]">테스트를 찾을 수 없습니다</p>
-      </main>
-    );
-  }
-
-  if (state.status === "error") {
-    return (
-      <main className="px-8 py-6">
-        <p className="text-[12.5px] text-g-red-text">{state.message}</p>
+        <p role="alert" className="text-[12.5px] text-g-red-text">
+          {state.status === "notfound"
+            ? "테스트를 찾을 수 없습니다"
+            : state.message}
+        </p>
+        <div className="mt-3 flex items-center gap-2">
+          {state.status === "error" ? (
+            <Button variant="ink" onClick={retry}>
+              다시 불러오기
+            </Button>
+          ) : null}
+          <Link
+            href="/"
+            className="inline-flex min-h-11 items-center px-3 text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+          >
+            오늘의 테스트로 돌아가기
+          </Link>
+        </div>
       </main>
     );
   }
@@ -97,13 +108,13 @@ export function TestReview({ testId }: Props) {
               key={item.id}
               orderIndex={item.orderIndex}
               problem={item.problem}
-              replacing={replacingSeq !== null}
+              replacing={busy}
               onReplace={draft ? replaceProblem : undefined}
             />
           ))}
         </div>
       </main>
-      <footer className="sticky bottom-0 flex items-center gap-4 border-t border-divider bg-side px-8 py-3">
+      <footer className="sticky bottom-0 flex flex-wrap items-center gap-4 border-t border-divider bg-side px-8 py-3">
         <span className="text-[11.5px] text-text-2 tabular-nums">
           교체 {replacedCount}
         </span>
@@ -112,25 +123,25 @@ export function TestReview({ testId }: Props) {
             {actionError}
           </p>
         ) : null}
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex flex-wrap items-center justify-end gap-2">
           {/*
             비활성 사유를 **버튼 옆**에 적는다 (UI-06). 비활성 버튼만 두면 「이미 끝난
             것인지, 무엇이 모자란 것인지」를 알 수 없다.
 
-            🔴 사유는 **셋**이다 — 위 `disabled` 가 `!draft || confirming` 이므로
-               «이미 확정됨»뿐 아니라 **«처리 중»**에도 눌리지 않는다. 처음 시안은
-               초안 여부만 보고 두 문장을 냈고, 그러면 처리 중인 이유는 답하지 못했다.
+            교체·확정은 서로 기다린다. 처리 중인 문항 번호도 여기서 알린다.
           */}
-          {!draft || confirming ? (
-            <p className="text-[11.5px] text-text-2">
-              {confirming
+          <p role="status" className="text-[11.5px] text-text-2">
+            {replacingSeq !== null
+              ? `문 ${replacingSeq} 교체 중입니다. 교체가 끝나면 확정할 수 있습니다`
+              : confirming
                 ? "확정을 처리하는 중입니다"
-                : "확정된 시험은 문항을 바꿀 수 없습니다"}
-            </p>
-          ) : null}
+                : !draft
+                  ? "확정된 시험은 문항을 바꿀 수 없습니다"
+                  : "확정 후 인쇄할 수 있습니다"}
+          </p>
           <Button
             variant="ink"
-            disabled={!draft || confirming}
+            disabled={!draft || busy}
             onClick={() => void confirm()}
           >
             확정

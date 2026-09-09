@@ -14,8 +14,10 @@ import { http, HttpResponse } from "msw";
 
 import TestReviewPage from "@/app/(main)/tests/[id]/page";
 import { ReviewProblemCard } from "@/components/test/ReviewProblemCard";
+import { TestReview } from "@/components/test/TestReview";
 import {
   MOCK_PROBLEMS,
+  MOCK_TEST_DRAFT,
   MOCK_TEST_CONFIRMED_PROBLEMS,
   MOCK_TEST_DRAFT_PROBLEMS,
   TEST_CONFIRMED_ID,
@@ -223,5 +225,182 @@ describe("[T4.3 S-05] 검수 — 하단 확정·인쇄", () => {
     expect(
       screen.queryByRole("button", { name: "교체" }),
     ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "오늘의 테스트로 돌아가기" }),
+    ).toHaveAttribute("href", "/");
+  });
+});
+
+function deferredResponse() {
+  let resolve!: (response: Response) => void;
+  const promise = new Promise<Response>((res) => {
+    resolve = res;
+  });
+  return { promise, resolve };
+}
+
+describe("검수 — 처리 중 안내와 복구", () => {
+  it("교체 중에는 모든 교체와 확정을 막고 완료 후 확정을 허용한다", async () => {
+    const response = deferredResponse();
+    let replaceCalls = 0;
+    let confirmCalls = 0;
+    server.use(
+      http.put("/api/tests/:id/problems/:seq", () => {
+        replaceCalls += 1;
+        return response.promise;
+      }),
+      http.post("/api/tests/:id/confirm", () => {
+        confirmCalls += 1;
+        return HttpResponse.json({
+          data: { ...MOCK_TEST_DRAFT, status: "confirmed" },
+        });
+      }),
+    );
+    const { user } = await renderReview(TEST_DRAFT_ID);
+    const first = await screen.findByRole("article", { name: "문 1" });
+    await user.click(within(first).getByRole("button", { name: "교체" }));
+    expect(
+      screen.getByText("문 1 교체 중입니다. 교체가 끝나면 확정할 수 있습니다"),
+    ).toHaveAttribute("role", "status");
+    for (const button of screen.getAllByRole("button", { name: "교체" })) {
+      expect(button).toBeDisabled();
+    }
+    const confirm = screen.getByRole("button", { name: "확정" });
+    expect(confirm).toBeDisabled();
+    await user.click(confirm);
+    await user.click(within(first).getByRole("button", { name: "교체" }));
+    expect(replaceCalls).toBe(1);
+    expect(confirmCalls).toBe(0);
+    response.resolve(
+      HttpResponse.json({
+        data: {
+          test: { ...MOCK_TEST_DRAFT, modified: true },
+          problem: { ...MOCK_TEST_DRAFT_PROBLEMS[0], replaced: true },
+        },
+      }),
+    );
+    await waitFor(() => expect(confirm).toBeEnabled());
+    expect(screen.queryByText(/문 1 교체 중/)).not.toBeInTheDocument();
+    await user.click(confirm);
+    expect(await screen.findByRole("link", { name: "인쇄" })).toHaveAttribute(
+      "href",
+      `/tests/${TEST_DRAFT_ID}/print`,
+    );
+    expect(confirmCalls).toBe(1);
+  });
+
+  it("확정 중에는 교체도 막고 실패하면 버튼 옆 오류와 함께 재시도할 수 있다", async () => {
+    const response = deferredResponse();
+    let confirmCalls = 0;
+    let replaceCalls = 0;
+    server.use(
+      http.post("/api/tests/:id/confirm", () => {
+        confirmCalls += 1;
+        return confirmCalls === 1
+          ? response.promise
+          : HttpResponse.json({
+              data: { ...MOCK_TEST_DRAFT, status: "confirmed" },
+            });
+      }),
+      http.put("/api/tests/:id/problems/:seq", () => {
+        replaceCalls += 1;
+        return new HttpResponse(null, { status: 500 });
+      }),
+    );
+    const { user } = await renderReview(TEST_DRAFT_ID);
+    const first = await screen.findByRole("article", { name: "문 1" });
+    const confirm = screen.getByRole("button", { name: "확정" });
+    await user.click(confirm);
+    expect(screen.getByText("확정을 처리하는 중입니다")).toHaveAttribute(
+      "role",
+      "status",
+    );
+    expect(confirm).toBeDisabled();
+    for (const button of screen.getAllByRole("button", { name: "교체" })) {
+      expect(button).toBeDisabled();
+    }
+    await user.click(confirm);
+    await user.click(within(first).getByRole("button", { name: "교체" }));
+    expect(confirmCalls).toBe(1);
+    expect(replaceCalls).toBe(0);
+    response.resolve(new HttpResponse(null, { status: 500 }));
+    const error = await screen.findByRole("alert");
+    expect(error).toHaveTextContent("다시 확정해 주세요");
+    expect(error.closest("footer")).toContainElement(confirm);
+    expect(confirm).toBeEnabled();
+    expect(within(first).getByRole("button", { name: "교체" })).toBeEnabled();
+    await user.click(confirm);
+    await screen.findByRole("link", { name: "인쇄" });
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("조회 실패 안내에서 다시 불러오면 초안으로 복구한다", async () => {
+    const response = deferredResponse();
+    let loadCalls = 0;
+    server.use(
+      http.get("/api/tests/:id", () => {
+        loadCalls += 1;
+        return loadCalls === 1
+          ? new HttpResponse(null, { status: 500 })
+          : response.promise;
+      }),
+    );
+    const { user } = await renderReview(TEST_DRAFT_ID);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "테스트를 불러오지 못했습니다",
+    );
+    expect(
+      screen.getByRole("link", { name: "오늘의 테스트로 돌아가기" }),
+    ).toHaveAttribute("href", "/");
+    await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "다시 불러오기" }),
+    ).not.toBeInTheDocument();
+    response.resolve(
+      HttpResponse.json({
+        data: {
+          test: MOCK_TEST_DRAFT,
+          className: "중등 A반",
+          studentName: "김민서",
+          problems: MOCK_TEST_DRAFT_PROBLEMS,
+        },
+      }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "중등 A반 · 김민서" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("일일테스트 · 2026-08-10 · 8문항 · 초안"),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "확정" })).toBeEnabled();
+    expect(loadCalls).toBe(2);
+  });
+
+  it("다른 시험을 불러오는 동안 이전 머리말·문항·인쇄 링크를 숨긴다", async () => {
+    const response = deferredResponse();
+    const { rerender } = render(<TestReview testId={TEST_CONFIRMED_ID} />);
+    await screen.findByRole("link", { name: "인쇄" });
+    server.use(http.get(`/api/tests/${TEST_DRAFT_ID}`, () => response.promise));
+    rerender(<TestReview testId={TEST_DRAFT_ID} />);
+    expect(screen.queryByRole("heading", { level: 1 })).not.toBeInTheDocument();
+    expect(screen.queryByRole("article")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: "인쇄" }),
+    ).not.toBeInTheDocument();
+    response.resolve(
+      HttpResponse.json({
+        data: {
+          test: MOCK_TEST_DRAFT,
+          className: "다음 반",
+          studentName: "이서준",
+          problems: MOCK_TEST_DRAFT_PROBLEMS,
+        },
+      }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "다음 반 · 이서준" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "인쇄" })).toBeDisabled();
   });
 });
