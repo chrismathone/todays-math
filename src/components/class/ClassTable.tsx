@@ -25,6 +25,17 @@ export function ClassTable({
         </tr>
       </thead>
       <tbody>
+        {classes.length === 0 ? (
+          <tr>
+            <td
+              colSpan={2}
+              className="border-b border-divider px-2.5 py-3 text-text-2"
+            >
+              등록된 반이 없습니다. 반 이름과 학년을 입력해 첫 반을 추가해
+              주세요.
+            </td>
+          </tr>
+        ) : null}
         {classes.map((cls) => {
           const selected = cls.id === selectedClassId;
           return (
