@@ -118,7 +118,7 @@ function PickButton({
   onClick: () => void;
 }) {
   const tone = current
-    ? "bg-g-blue text-white"
+    ? "bg-g-blue text-white disabled:bg-side"
     : selected
       ? "bg-side text-ink"
       : "bg-transparent text-ink";
@@ -129,7 +129,7 @@ function PickButton({
       aria-current={current ? "true" : undefined}
       aria-pressed={selected}
       onClick={onClick}
-      className={`min-h-11 w-full cursor-pointer truncate px-2 text-left text-[12.5px] font-bold disabled:cursor-default disabled:opacity-50 ${tone}`}
+      className={`min-h-11 w-full cursor-pointer truncate px-2 text-left text-[12.5px] font-bold disabled:cursor-not-allowed disabled:text-text-3 ${tone}`}
     >
       {label}
     </button>
