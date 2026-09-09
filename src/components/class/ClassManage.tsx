@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 
@@ -15,9 +15,21 @@ type ClassManageProps = {
   units: UnitNode[];
 };
 
+type MutationFeedback = {
+  pending: boolean;
+  error: string | null;
+  success: string | null;
+};
+
 export function ClassManage({ units }: ClassManageProps) {
   const manage = useClassManage();
   const current = findUnit(units, manage.currentUnitId);
+  const selectedClass = manage.selectedClass;
+  const progressDisabled =
+    !selectedClass ||
+    manage.progressStatus !== "ready" ||
+    manage.progressMutation.pending ||
+    units.length === 0;
 
   if (manage.status === "loading") {
     return <ClassManageSkeleton />;
@@ -25,121 +37,264 @@ export function ClassManage({ units }: ClassManageProps) {
 
   if (manage.status === "error") {
     return (
-      <p className="px-[26px] py-6 text-[12.5px] text-g-red-text">
-        {manage.error}
-      </p>
+      <main className="px-[26px] py-6">
+        <p role="alert" className="mb-3 text-[12.5px] text-g-red-text">
+          {manage.error}
+        </p>
+        <Button variant="secondary" onClick={manage.retryClasses}>
+          반 목록 다시 불러오기
+        </Button>
+      </main>
     );
   }
 
   return (
     <main className="px-[26px] py-5">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
-        <section>
+        <section aria-label="반 관리">
           <ClassTable
             classes={manage.classes}
             selectedClassId={manage.selectedClassId}
             onSelect={manage.selectClass}
           />
-          <AddClassForm onAdd={manage.addClass} />
+          <AddClassForm
+            onAdd={manage.addClass}
+            feedback={manage.classMutation}
+          />
         </section>
-        <div>
-          <StudentList students={manage.students} />
-          {manage.selectedClassId ? (
-            <AddStudentForm onAdd={manage.addStudent} />
+        <section aria-labelledby="class-students-heading">
+          <StudentList
+            students={manage.students}
+            selectedClass={selectedClass}
+            status={manage.studentsStatus}
+            onRetry={manage.retryDetails}
+          />
+          {selectedClass ? (
+            <AddStudentForm
+              classId={selectedClass.id}
+              onAdd={manage.addStudent}
+              feedback={manage.studentMutation}
+              disabled={manage.studentsStatus !== "ready"}
+            />
           ) : null}
-        </div>
+        </section>
       </div>
 
-      <section className="mt-8">
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          <Button onClick={() => void manage.advance()}>다음 소단원</Button>
-          <p className="text-[12.5px] text-text-2">
-            현재{" "}
-            <span className="font-black text-ink">
-              {current?.section ?? "없음"}
-            </span>
+      <section className="mt-8" aria-labelledby="class-progress-heading">
+        <h2
+          id="class-progress-heading"
+          className="mb-2 border-t-[3px] border-ink pt-1.5 text-[10.5px] font-black tracking-[2.5px]"
+        >
+          진도
+        </h2>
+        {selectedClass ? (
+          <p className="mb-3 break-words text-[12.5px] font-bold text-ink">
+            {selectedClass.name} · {selectedClass.grade}
           </p>
-          {manage.error ? (
-            <p className="text-[12.5px] text-g-red-text">{manage.error}</p>
-          ) : null}
+        ) : null}
+        <div className="mb-3 flex flex-wrap items-center gap-3">
+          <Button
+            onClick={() => void manage.advance()}
+            disabled={progressDisabled || !manage.currentUnitId}
+          >
+            다음 소단원
+          </Button>
+          {!selectedClass ? (
+            <p className="text-[12.5px] text-text-2">
+              반을 추가하면 진도를 설정할 수 있습니다.
+            </p>
+          ) : manage.progressStatus === "loading" ? (
+            <p role="status" className="text-[12.5px] text-text-2">
+              진도를 불러오는 중…
+            </p>
+          ) : manage.progressStatus === "error" ? (
+            <>
+              <p role="alert" className="text-[12.5px] text-g-red-text">
+                진도를 불러오지 못했습니다.
+              </p>
+              <Button variant="secondary" onClick={manage.retryDetails}>
+                진도 다시 불러오기
+              </Button>
+            </>
+          ) : manage.currentUnitId ? (
+            <p className="text-[12.5px] text-text-2">
+              현재{" "}
+              <span className="font-black text-ink">
+                {current?.section ?? "저장된 단원을 확인할 수 없습니다"}
+              </span>
+            </p>
+          ) : (
+            <p className="text-[12.5px] text-text-2">
+              저장된 진도가 없습니다. 소단원을 선택해 시작해 주세요.
+            </p>
+          )}
+          <Feedback
+            feedback={manage.progressMutation}
+            pendingText="진도를 저장하는 중…"
+          />
         </div>
-        <UnitTreePicker
-          units={units}
-          currentUnitId={manage.currentUnitId}
-          onSelect={(unitId) => {
-            void manage.selectUnit(unitId);
-          }}
-        />
+        {units.length === 0 ? (
+          <p className="text-[12.5px] text-text-2">
+            선택할 수 있는 단원이 없습니다.
+          </p>
+        ) : (
+          <fieldset
+            disabled={progressDisabled}
+            aria-label="반 진도 설정"
+            aria-busy={manage.progressMutation.pending}
+            className="min-w-0"
+          >
+            <UnitTreePicker
+              units={units}
+              currentUnitId={manage.currentUnitId}
+              onSelect={(unitId) => {
+                void manage.selectUnit(unitId);
+              }}
+            />
+          </fieldset>
+        )}
       </section>
     </main>
   );
 }
 
+function Feedback({
+  feedback,
+  pendingText,
+}: {
+  feedback: MutationFeedback;
+  pendingText: string;
+}) {
+  if (feedback.error)
+    return (
+      <p role="alert" className="text-[12.5px] text-g-red-text">
+        {feedback.error}
+      </p>
+    );
+  if (feedback.pending || feedback.success) {
+    return (
+      <p role="status" className="text-[12.5px] text-text-2">
+        {feedback.pending ? pendingText : feedback.success}
+      </p>
+    );
+  }
+  return null;
+}
+
 function AddClassForm({
   onAdd,
+  feedback,
 }: {
-  onAdd: (name: string, grade: string) => Promise<void>;
+  onAdd: (name: string, grade: string) => Promise<boolean>;
+  feedback: MutationFeedback;
 }) {
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    await onAdd(name, grade);
-    setName("");
-    setGrade("");
+    if (feedback.pending || !name.trim() || !grade.trim()) return;
+    if (await onAdd(name, grade)) {
+      setName("");
+      setGrade("");
+    }
   }
 
   return (
     <form
       onSubmit={(event) => void handleSubmit(event)}
-      className="mt-3 flex gap-2"
+      aria-label="반 추가"
+      aria-busy={feedback.pending}
+      className="mt-3"
     >
-      <Input
-        aria-label="반 이름"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="반 이름"
-        className="min-w-0 flex-1"
-      />
-      <Input
-        aria-label="학년"
-        value={grade}
-        onChange={(event) => setGrade(event.target.value)}
-        placeholder="학년"
-        className="max-w-24"
-      />
-      <Button type="submit" variant="secondary">
-        반 추가
-      </Button>
+      <div className="flex gap-2">
+        <Input
+          aria-label="반 이름"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="반 이름"
+          className="min-w-0 flex-1"
+          required
+          maxLength={100}
+          disabled={feedback.pending}
+        />
+        <Input
+          aria-label="학년"
+          value={grade}
+          onChange={(event) => setGrade(event.target.value)}
+          placeholder="학년"
+          className="max-w-24"
+          required
+          maxLength={10}
+          disabled={feedback.pending}
+        />
+        <Button
+          type="submit"
+          variant="secondary"
+          disabled={feedback.pending || !name.trim() || !grade.trim()}
+        >
+          {feedback.pending ? "추가 중…" : "반 추가"}
+        </Button>
+      </div>
+      <div className="mt-2">
+        <Feedback feedback={feedback} pendingText="반을 추가하는 중…" />
+      </div>
     </form>
   );
 }
 
-function AddStudentForm({ onAdd }: { onAdd: (name: string) => Promise<void> }) {
-  const [name, setName] = useState("");
+function AddStudentForm({
+  classId,
+  onAdd,
+  feedback,
+  disabled,
+}: {
+  classId: string;
+  onAdd: (name: string) => Promise<boolean>;
+  feedback: MutationFeedback;
+  disabled: boolean;
+}) {
+  // Keep drafts with their class, including when an earlier request finishes late.
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const name = drafts[classId] ?? "";
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    await onAdd(name);
-    setName("");
+    if (disabled || feedback.pending || !name.trim()) return;
+    if (await onAdd(name)) setDrafts((prev) => ({ ...prev, [classId]: "" }));
   }
 
   return (
     <form
       onSubmit={(event) => void handleSubmit(event)}
-      className="mt-3 flex gap-2"
+      aria-label="학생 등록"
+      aria-busy={feedback.pending}
+      className="mt-3"
     >
-      <Input
-        aria-label="학생 이름"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="이름"
-        className="min-w-0 flex-1"
-      />
-      <Button type="submit" variant="secondary">
-        등록
-      </Button>
+      <div className="flex gap-2">
+        <Input
+          aria-label="학생 이름"
+          value={name}
+          onChange={(event) =>
+            setDrafts((prev) => ({ ...prev, [classId]: event.target.value }))
+          }
+          placeholder="이름"
+          className="min-w-0 flex-1"
+          required
+          maxLength={50}
+          disabled={disabled || feedback.pending}
+        />
+        <Button
+          type="submit"
+          variant="secondary"
+          disabled={disabled || feedback.pending || !name.trim()}
+        >
+          {feedback.pending ? "등록 중…" : "등록"}
+        </Button>
+      </div>
+      <div className="mt-2">
+        <Feedback feedback={feedback} pendingText="학생을 등록하는 중…" />
+      </div>
     </form>
   );
 }
