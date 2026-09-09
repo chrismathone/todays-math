@@ -70,7 +70,6 @@ export function UnitTreePicker({
             key={unit.id}
             label={unit.section}
             current={unit.id === currentUnitId}
-            selected={false}
             onClick={() => onSelect(unit.id)}
           />
         ))}
@@ -115,21 +114,22 @@ function PickButton({
 }: {
   label: string;
   current: boolean;
-  selected: boolean;
+  selected?: boolean;
   onClick: () => void;
 }) {
   const tone = current
     ? "bg-g-blue text-white"
     : selected
-      ? "bg-white text-ink"
+      ? "bg-side text-ink"
       : "bg-transparent text-ink";
 
   return (
     <button
       type="button"
       aria-current={current ? "true" : undefined}
+      aria-pressed={selected}
       onClick={onClick}
-      className={`min-h-11 w-full cursor-pointer truncate px-2 text-left text-[12.5px] font-bold ${tone}`}
+      className={`min-h-11 w-full cursor-pointer truncate px-2 text-left text-[12.5px] font-bold disabled:cursor-default disabled:opacity-50 ${tone}`}
     >
       {label}
     </button>

@@ -18,8 +18,8 @@ function MastheadSkeleton({
       <span aria-label="화면을 불러오는 중" className="sr-only" role="status">
         화면을 불러오는 중
       </span>
-      <header className="flex items-baseline gap-6 border-b-[3px] border-ink px-[26px] pt-[19px] pb-[15px]">
-        <span className="flex items-baseline whitespace-nowrap">
+      <header className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-b-[3px] border-ink px-[26px] pt-[19px] pb-[15px]">
+        <span className="flex shrink-0 items-baseline whitespace-nowrap">
           <Link
             aria-current={tab === "math" ? "page" : undefined}
             className={`text-[28.5px] font-black tracking-[-0.5px] ${tab === "math" ? "text-ink" : "text-text-3"}`}
@@ -31,7 +31,7 @@ function MastheadSkeleton({
             aria-hidden="true"
             className="mx-[7px] text-[28.5px] text-[#C2C2C0]"
           >
-            ×
+            │
           </span>
           <Link
             aria-current={tab === "exam" ? "page" : undefined}
@@ -44,7 +44,7 @@ function MastheadSkeleton({
         <Skeleton className="h-4 w-28 shrink-0" />
         <nav
           aria-label="화면을 불러오는 동안 사용할 수 있는 메뉴"
-          className="ml-auto flex items-center gap-5 whitespace-nowrap text-[17.25px] font-bold"
+          className="ml-auto flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold"
         >
           <Link href="/">메인</Link>
           <Link href="/classes">반</Link>

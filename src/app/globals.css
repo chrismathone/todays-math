@@ -150,6 +150,12 @@ body {
   font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif;
 }
 
+/* 키보드 탐색 위치는 링크·직접 만든 컨트롤에서도 공통으로 드러나야 한다. */
+.app-chrome :where(a, button, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
 /*
  * 로딩 자리 — **기다리는 칸**이다. 색을 새로 들이지 않고 이미 그 뜻으로 쓰는
  * 토큰을 그대로 쓴다(`--seg-empty` 는 `PipelineDots` 의 «대기» 색이다).

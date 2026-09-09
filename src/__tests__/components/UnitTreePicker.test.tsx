@@ -73,9 +73,25 @@ describe("[T2.3] UnitTreePicker", () => {
 
   it("학년을 고르면 해당 학년의 대단원만 보여 준다", async () => {
     const user = userEvent.setup();
-    renderPicker({ units: [...MOCK_UNITS, extraGradeUnit] });
+    const { onSelect } = renderPicker({
+      units: [...MOCK_UNITS, extraGradeUnit],
+    });
 
     await user.click(screen.getByRole("button", { name: "중1" }));
+
+    expect(screen.getByRole("button", { name: "중1" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(screen.getByRole("button", { name: "중2" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "중2" })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
+    expect(onSelect).not.toHaveBeenCalled();
 
     expect(
       screen.getByRole("button", { name: "1. 소인수분해" }),

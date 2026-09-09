@@ -3,7 +3,7 @@ import { ProblemBank } from "@/components/problem/ProblemBank";
 
 export default function ProblemsPage() {
   return (
-    <AppChrome>
+    <AppChrome activeNav="problems">
       <ProblemBank />
     </AppChrome>
   );

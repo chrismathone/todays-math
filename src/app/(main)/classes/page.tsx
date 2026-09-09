@@ -20,7 +20,7 @@ export default async function ClassesPage() {
   });
 
   return (
-    <AppChrome>
+    <AppChrome activeNav="classes">
       {/* 고르는 목록만 좁힌다 — 이름을 되찾는 `/api/units` 는 그대로다(2026-09-07). */}
       <ClassManage units={onlySupportedGrades(units)} />
     </AppChrome>

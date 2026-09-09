@@ -83,6 +83,32 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("목록 로딩 실패 후 재시도하면 대시보드로 복구한다", async () => {
+    server.use(
+      http.get(
+        "/api/progress",
+        () => new HttpResponse("broken", { status: 500 }),
+      ),
+    );
+    const user = userEvent.setup();
+    render(<MainPage />);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "목록을 불러오지 못했습니다",
+    );
+    expect(screen.getByRole("link", { name: "반" })).toHaveAttribute(
+      "href",
+      "/classes",
+    );
+    server.resetHandlers();
+    await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
+
+    expect(
+      await screen.findByRole("article", { name: "중2 심화반" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
   it("이번 주 지표는 테스트 목록이 아니라 metrics API 응답을 표시한다", async () => {
     server.use(
       http.get("/api/metrics", () =>

@@ -1,9 +1,36 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 
 describe("[AppChrome]", () => {
+  it("현재 메뉴와 본문으로 건너뛸 목적지를 제공한다", () => {
+    render(
+      <AppChrome activeNav="classes">
+        <main>반 관리 본문</main>
+      </AppChrome>,
+    );
+
+    const navigation = within(
+      screen.getByRole("navigation", { name: "주 메뉴" }),
+    );
+    expect(navigation.getByRole("link", { name: "반" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(navigation.getByRole("link", { name: "메인" })).not.toHaveAttribute(
+      "aria-current",
+    );
+    expect(
+      navigation.getByRole("link", { name: "문제은행" }),
+    ).not.toHaveAttribute("aria-current");
+
+    const skip = screen.getByRole("link", { name: "본문으로 건너뛰기" });
+    const target = document.querySelector(skip.getAttribute("href")!);
+    expect(target).toHaveAttribute("tabindex", "-1");
+    expect(target).toContainElement(screen.getByRole("main"));
+  });
+
   it("로고와 메인 탐색 링크를 보여 준다", () => {
     render(
       <AppChrome dateLabel="2026.08.14. 금">

@@ -27,6 +27,7 @@ type AppChromeProps = {
   extraNav?: React.ReactNode;
   /** 현재 열려 있는 제품 탭. 기본은 '오늘의 수학'. */
   tab?: Tab;
+  activeNav?: "main" | "classes" | "problems";
 };
 
 const WORDMARK = "text-[28.5px] font-black tracking-[-0.5px]";
@@ -37,11 +38,18 @@ export function AppChrome({
   remaining,
   extraNav,
   tab = "math",
+  activeNav,
 }: AppChromeProps) {
   const date = dateLabel ?? formatMastheadDate();
 
   return (
-    <div className="min-h-full bg-canvas text-ink">
+    <div className="app-chrome min-h-full bg-canvas text-ink">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-ink focus:px-4 focus:py-3 focus:text-[12.5px] focus:font-bold focus:text-white"
+      >
+        본문으로 건너뛰기
+      </a>
       {/*
         좁은 창에서 **단어 중간에 줄이 바뀌던 것**을 없앤다 (UI-01, 2026-09-08 결정 · 안 A).
         고친 것은 둘이다 — 헤더가 **묶음 단위로** 접히게 하고(`flex-wrap` + `gap-y`),
@@ -97,15 +105,37 @@ export function AppChrome({
             {remaining > 0 ? `남은 작업 ${remaining}` : "오늘 완료"}
           </span>
         ) : null}
-        <nav className="ml-auto flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold">
+        <nav
+          aria-label="주 메뉴"
+          className="ml-auto flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold"
+        >
           {extraNav}
-          <Link href="/">메인</Link>
-          <Link href="/classes">반</Link>
-          <Link href="/problems">문제은행</Link>
+          {(
+            [
+              ["main", "/", "메인"],
+              ["classes", "/classes", "반"],
+              ["problems", "/problems", "문제은행"],
+            ] as const
+          ).map(([key, href, label]) => (
+            <Link
+              key={key}
+              href={href}
+              aria-current={activeNav === key ? "page" : undefined}
+              className={
+                activeNav === key
+                  ? "underline decoration-2 underline-offset-4"
+                  : undefined
+              }
+            >
+              {label}
+            </Link>
+          ))}
           <AccountBadge />
         </nav>
       </header>
-      {children}
+      <div id="main-content" tabIndex={-1}>
+        {children}
+      </div>
     </div>
   );
 }

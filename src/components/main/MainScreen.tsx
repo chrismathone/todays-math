@@ -16,6 +16,7 @@ import { recordProgress } from "@/lib/class/classApi";
 import { loadMainDashboard } from "@/lib/main/loadMainDashboard";
 import { buildClassRows, remainingCount } from "@/lib/main/pipeline";
 import { DashboardSkeleton } from "@/components/ui/PageSkeletons";
+import { Button } from "@/components/ui/Button";
 
 import { ClassCard } from "./ClassCard";
 import { DailyReviewSection } from "./DailyReviewSection";
@@ -60,6 +61,7 @@ export function MainScreen() {
     null,
   );
   const [advanceError, setAdvanceError] = useState<string | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   // 차시이동 화살표로 "열람 중인" 차시(진도 미기록). null이면 현재 기록된 진도를 본다.
   // 반을 바꾸거나 진도를 기록하면 null로 되돌려 그 반의 실제 진도를 다시 본다.
   const [viewedUnitId, setViewedUnitId] = useState<string | null>(null);
@@ -93,7 +95,7 @@ export function MainScreen() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [loadAttempt]);
 
   const rows = useMemo(() => {
     if (state.status !== "ready") return [];
@@ -180,14 +182,28 @@ export function MainScreen() {
 
   if (state.status === "error") {
     return (
-      <div className="min-h-screen bg-canvas px-7 py-8 text-ink">
-        {state.message}
-      </div>
+      <AppChrome activeNav="main">
+        <main className="px-[26px] py-6">
+          <p role="alert" className="mb-3 text-[12.5px] text-g-red-text">
+            {state.message}
+          </p>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setState({ status: "loading" });
+              setLoadAttempt((attempt) => attempt + 1);
+            }}
+          >
+            다시 불러오기
+          </Button>
+        </main>
+      </AppChrome>
     );
   }
 
   return (
     <AppChrome
+      activeNav="main"
       remaining={remaining}
       extraNav={
         <button
