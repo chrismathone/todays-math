@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { TestEntity, TestProblemItem } from "@/contracts/test.contract";
 
@@ -14,13 +14,7 @@ const testContract = () => import("@/contracts/test.contract");
 type ReadyState = {
   status: "ready";
   test: TestEntity;
-  /**
-   * 반 이름 — 검수 머리말이 「어느 반의 시험인가」를 적는 데 쓴다(UI-06).
-   *
-   * ⚠️ 아래 `replace` 는 상태를 **새로 지어** 돌려준다(펼치기가 아니다). 그래서 여기에
-   *    필드를 더할 때마다 그 자리에 같이 적어야 한다 — 안 적으면 문항을 한 번 교체하는
-   *    순간 값이 조용히 사라진다. `useTestReview.test.ts` 가 그 갈래를 잠근다.
-   */
+  /** 반 이름 — 교체 응답에는 없으므로 기존 검수 맥락을 유지한다(UI-06). */
   className: string;
   /** 학생 이름 — 반 전체 시험이면 `null`. 같은 반·날짜·유형이 학생 수만큼 있을 수 있다. */
   studentName: string | null;
@@ -33,106 +27,214 @@ type ReviewState =
   | { status: "error"; message: string }
   | ReadyState;
 
+type ReviewScope = { testId: string };
+type PendingAction = { kind: "replace"; seq: number } | { kind: "confirm" };
+type Snapshot = {
+  scope: ReviewScope;
+  state: ReviewState;
+  pending: PendingAction | null;
+  actionError: string | null;
+};
+
+const LOADING: ReviewState = { status: "loading" };
+
 export function useTestReview(testId: string) {
-  const [state, setState] = useState<ReviewState>({ status: "loading" });
-  const [replacingSeq, setReplacingSeq] = useState<number | null>(null);
-  const [confirming, setConfirming] = useState(false);
-  const [actionError, setActionError] = useState<string | null>(null);
+  const [scope, setScope] = useState<ReviewScope>({ testId });
+  const [snapshot, setSnapshot] = useState<Snapshot>({
+    scope,
+    state: LOADING,
+    pending: null,
+    actionError: null,
+  });
+  // Lock commands synchronously, including two calls before React renders.
+  const activeLoad = useRef<{
+    scope: ReviewScope;
+    pending: boolean;
+    draft: boolean;
+  } | null>(null);
+
+  // Reset before committing a new test's UI; effects alone are too late.
+  // A fresh scope also distinguishes A → B → A and retries of the same test.
+  if (scope.testId !== testId) setScope({ testId });
+  const current = scope.testId === testId && snapshot.scope === scope;
+  const state = current ? snapshot.state : LOADING;
+  const pending = current ? snapshot.pending : null;
+  const actionError = current ? snapshot.actionError : null;
 
   useEffect(() => {
-    let cancelled = false;
-    fetch(`/api/tests/${testId}`)
+    const load = { scope, pending: false, draft: false };
+    const controller = new AbortController();
+    activeLoad.current = load;
+    fetch(`/api/tests/${scope.testId}`, { signal: controller.signal })
       .then(async (res) => {
+        if (activeLoad.current !== load) return;
         if (res.status === 404) {
-          if (!cancelled) setState({ status: "notfound" });
+          setSnapshot({
+            scope,
+            state: { status: "notfound" },
+            pending: null,
+            actionError: null,
+          });
           return;
         }
         if (!res.ok) throw new Error("fail");
         const { testDetailResponseSchema } = await testContract();
         const body = testDetailResponseSchema.parse(await res.json());
-        if (!cancelled) {
-          setState({
-            status: "ready",
-            test: body.data.test,
-            className: body.data.className,
-            studentName: body.data.studentName,
-            problems: body.data.problems,
+        if (body.data.test.id !== scope.testId) throw new Error("Wrong test");
+        if (activeLoad.current === load) {
+          load.draft = body.data.test.status === "draft";
+          setSnapshot({
+            scope,
+            state: { status: "ready", ...body.data },
+            pending: null,
+            actionError: null,
           });
         }
       })
       .catch(() => {
-        if (!cancelled) {
-          setState({
-            status: "error",
-            message: "테스트를 불러오지 못했습니다",
+        if (activeLoad.current === load) {
+          setSnapshot({
+            scope,
+            state: {
+              status: "error",
+              message: "테스트를 불러오지 못했습니다",
+            },
+            pending: null,
+            actionError: null,
           });
         }
       });
     return () => {
-      cancelled = true;
+      if (activeLoad.current === load) activeLoad.current = null;
+      controller.abort();
     };
-  }, [testId]);
+  }, [scope]);
+
+  const retry = useCallback(() => {
+    if (
+      activeLoad.current?.scope !== scope ||
+      (state.status !== "error" && state.status !== "notfound")
+    ) {
+      return;
+    }
+    activeLoad.current = null;
+    setScope({ testId });
+  }, [scope, state.status, testId]);
 
   const replace = useCallback(
     async (seq: number) => {
-      if (state.status !== "ready" || state.test.status !== "draft") return;
-      setReplacingSeq(seq);
-      setActionError(null);
+      const load = activeLoad.current;
+      if (
+        load?.scope !== scope ||
+        !load.draft ||
+        load.pending ||
+        state.status !== "ready" ||
+        !state.problems.some((item) => item.orderIndex === seq)
+      ) {
+        return;
+      }
+      load.pending = true;
+      setSnapshot((prev) =>
+        prev.scope === scope
+          ? { ...prev, pending: { kind: "replace", seq }, actionError: null }
+          : prev,
+      );
       try {
-        const res = await fetch(`/api/tests/${testId}/problems/${seq}`, {
+        const res = await fetch(`/api/tests/${scope.testId}/problems/${seq}`, {
           method: "PUT",
         });
-        if (!res.ok) {
-          setActionError("문제를 교체하지 못했습니다");
-          return;
-        }
+        if (!res.ok) throw new Error("fail");
         const { testProblemReplaceResponseSchema } = await testContract();
         const body = testProblemReplaceResponseSchema.parse(await res.json());
-        setState((prev) => {
-          if (prev.status !== "ready") return prev;
+        if (
+          body.data.test.id !== scope.testId ||
+          body.data.problem.orderIndex !== seq
+        ) {
+          throw new Error("Wrong test or problem");
+        }
+        if (activeLoad.current !== load) return;
+        load.draft = body.data.test.status === "draft";
+        setSnapshot((prev) => {
+          if (prev.scope !== scope || prev.state.status !== "ready")
+            return prev;
           return {
-            status: "ready",
-            test: body.data.test,
-            // 교체 응답에는 반 이름이 없다 — 시험이 바뀐 게 아니므로 들고 있던 것을 잇는다.
-            className: prev.className,
-            studentName: prev.studentName,
-            problems: prev.problems.map((item) =>
-              item.orderIndex === seq ? body.data.problem : item,
-            ),
+            ...prev,
+            state: {
+              ...prev.state,
+              test: body.data.test,
+              problems: prev.state.problems.map((item) =>
+                item.orderIndex === seq ? body.data.problem : item,
+              ),
+            },
           };
         });
       } catch {
-        setActionError("문제를 교체하지 못했습니다");
+        if (activeLoad.current === load) {
+          setSnapshot((prev) =>
+            prev.scope === scope
+              ? {
+                  ...prev,
+                  actionError: "문제를 교체하지 못했습니다. 다시 교체해 주세요",
+                }
+              : prev,
+          );
+        }
       } finally {
-        setReplacingSeq(null);
+        if (activeLoad.current === load) {
+          load.pending = false;
+          setSnapshot((prev) =>
+            prev.scope === scope ? { ...prev, pending: null } : prev,
+          );
+        }
       }
     },
-    [state, testId],
+    [scope, state],
   );
 
   const confirm = useCallback(async () => {
-    if (state.status !== "ready" || state.test.status !== "draft") return;
-    setConfirming(true);
-    setActionError(null);
+    const load = activeLoad.current;
+    if (load?.scope !== scope || !load.draft || load.pending) return;
+    load.pending = true;
+    setSnapshot((prev) =>
+      prev.scope === scope
+        ? { ...prev, pending: { kind: "confirm" }, actionError: null }
+        : prev,
+    );
     try {
-      const res = await fetch(`/api/tests/${testId}/confirm`, {
+      const res = await fetch(`/api/tests/${scope.testId}/confirm`, {
         method: "POST",
       });
-      if (!res.ok) {
-        setActionError("테스트를 확정하지 못했습니다");
-        return;
-      }
+      if (!res.ok) throw new Error("fail");
       const { testConfirmResponseSchema } = await testContract();
       const body = testConfirmResponseSchema.parse(await res.json());
-      setState((prev) =>
-        prev.status === "ready" ? { ...prev, test: body.data } : prev,
+      if (body.data.id !== scope.testId) throw new Error("Wrong test");
+      if (activeLoad.current !== load) return;
+      load.draft = body.data.status === "draft";
+      setSnapshot((prev) =>
+        prev.scope === scope && prev.state.status === "ready"
+          ? { ...prev, state: { ...prev.state, test: body.data } }
+          : prev,
       );
     } catch {
-      setActionError("테스트를 확정하지 못했습니다");
+      if (activeLoad.current === load) {
+        setSnapshot((prev) =>
+          prev.scope === scope
+            ? {
+                ...prev,
+                actionError: "테스트를 확정하지 못했습니다. 다시 확정해 주세요",
+              }
+            : prev,
+        );
+      }
     } finally {
-      setConfirming(false);
+      if (activeLoad.current === load) {
+        load.pending = false;
+        setSnapshot((prev) =>
+          prev.scope === scope ? { ...prev, pending: null } : prev,
+        );
+      }
     }
-  }, [state, testId]);
+  }, [scope]);
 
   const replacedCount =
     state.status === "ready"
@@ -143,8 +245,10 @@ export function useTestReview(testId: string) {
     state,
     replace,
     confirm,
-    replacingSeq,
-    confirming,
+    retry,
+    replacingSeq: pending?.kind === "replace" ? pending.seq : null,
+    confirming: pending?.kind === "confirm",
+    busy: pending !== null,
     replacedCount,
     actionError,
   };
