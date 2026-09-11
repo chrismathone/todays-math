@@ -1,0 +1,528 @@
+.page {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 38px 42px 56px;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.context {
+  margin-bottom: 10px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.heading h1 {
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.055em;
+}
+
+.intro {
+  margin-top: 12px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.dimensions {
+  flex-shrink: 0;
+  padding-bottom: 4px;
+}
+
+.dimensions > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.dimensions strong {
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.lesson {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  align-items: start;
+  gap: 38px;
+}
+
+.demo,
+.scrubber {
+  min-width: 0;
+}
+
+.viewport {
+  position: relative;
+  height: clamp(380px, 52vh, 650px);
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  background: #fff;
+}
+
+.modelMount,
+.model {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.model {
+  --poster-color: transparent;
+  --progress-bar-color: var(--ink);
+  --progress-bar-height: 2px;
+  touch-action: pan-y;
+}
+
+.model:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -4px;
+}
+
+.pose {
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  padding: 4px 0;
+  background: #fff;
+  color: var(--text-2);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.loadMessage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  background: #fff;
+  text-align: center;
+}
+
+.loadMessage p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.loadMessage > span {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.loadMessage button {
+  margin-top: 8px;
+}
+
+.viewTools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 12px;
+  margin: 6px 0 22px;
+}
+
+.viewTools > p {
+  padding: 8px 0;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.viewButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.playback {
+  display: flex;
+  gap: 8px;
+}
+
+.playButton {
+  min-width: 104px;
+  min-height: 48px;
+  gap: 10px;
+  padding: 0 18px;
+  font-size: 15px;
+}
+
+.playButton > span {
+  font-size: 12px;
+}
+
+.sliderHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.percent {
+  font-size: 24px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.percent > span {
+  margin-left: 3px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.range {
+  display: block;
+  width: 100%;
+  height: 34px;
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+
+.range:disabled {
+  cursor: not-allowed;
+}
+
+.range:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.rangeEnds {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.controlHint {
+  margin-top: 18px;
+  color: var(--text-2);
+  font-size: 13px;
+  text-align: right;
+}
+
+.explanation {
+  padding-top: 20px;
+  word-break: keep-all;
+}
+
+.explanation h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.explanation > p,
+.prompt p {
+  margin-top: 12px;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.pairs {
+  display: grid;
+  gap: 22px;
+  margin: 30px 0 36px;
+  padding: 0;
+  list-style: none;
+}
+
+.pairs li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pairs li > span:last-child {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.pairs strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.facePair {
+  display: flex;
+  gap: 5px;
+}
+
+.facePair > span {
+  display: grid;
+  width: 37px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid currentColor;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.blue {
+  color: #174e87;
+  background: #e5f0ff;
+}
+.green {
+  color: #225738;
+  background: #e7f2e8;
+}
+.amber {
+  color: #795007;
+  background: #fff1cc;
+}
+
+.prompt {
+  padding-top: 24px;
+  border-top: 1px solid var(--divider);
+}
+
+.prompt h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.prompt p:last-child {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.printExplanation {
+  display: none;
+}
+
+.comparison {
+  margin-top: 64px;
+  padding-top: 30px;
+  border-top: 1px solid var(--divider);
+}
+
+.comparisonHeading h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.comparisonHeading p,
+.comparisonNote {
+  margin-top: 10px;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.comparisonFigures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 24px;
+}
+
+.comparisonImage {
+  display: grid;
+  place-items: center;
+  height: 240px;
+}
+
+.comparisonImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.comparisonFigures figcaption {
+  margin-top: 18px;
+  max-width: 360px;
+}
+
+.comparisonFigures h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.comparisonFigures p {
+  margin-top: 8px;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.comparisonNote {
+  margin-top: 28px;
+}
+
+@media (max-width: 1100px) {
+  .page {
+    padding: 30px 26px 40px;
+  }
+  .lesson {
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 26px;
+  }
+  .controls {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .playback {
+    order: 1;
+  }
+  .controlHint {
+    text-align: left;
+  }
+}
+
+@media (max-width: 760px) {
+  .comparisonFigures {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .comparisonImage {
+    height: 240px;
+  }
+  .comparisonFigures figcaption {
+    max-width: none;
+  }
+  .heading {
+    display: block;
+    margin-bottom: 24px;
+  }
+  .dimensions {
+    margin-top: 22px;
+  }
+  .dimensions strong {
+    font-size: 18px;
+  }
+  .lesson {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .explanation {
+    padding-top: 0;
+  }
+  .pairs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .pairs li {
+    gap: 10px;
+  }
+  .viewport {
+    height: clamp(340px, 53vh, 510px);
+  }
+  .viewTools {
+    margin-bottom: 18px;
+  }
+  .viewButtons {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 26px 18px 36px;
+  }
+  .intro {
+    font-size: 15px;
+  }
+  .pose {
+    left: 16px;
+    top: 12px;
+  }
+  .pairs {
+    display: grid;
+  }
+  .playButton {
+    flex: 1;
+  }
+}
+
+@media print {
+  .comparison {
+    margin-top: 28px;
+    break-inside: avoid;
+  }
+  .comparisonFigures {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .comparisonImage {
+    height: 150px;
+  }
+  .page {
+    max-width: none;
+    padding: 24px 0;
+  }
+  .context,
+  .interactive {
+    display: none;
+  }
+  .heading {
+    display: block;
+  }
+  .dimensions {
+    margin-top: 16px;
+  }
+  .lesson {
+    display: block;
+  }
+  .printExplanation {
+    display: block;
+    margin: 24px 0;
+    line-height: 1.8;
+  }
+  .explanation {
+    max-width: 560px;
+  }
+  .pairs {
+    display: flex;
+    gap: 28px;
+  }
+  .facePair {
+    print-color-adjust: exact;
+  }
+}
