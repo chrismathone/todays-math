@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
@@ -28,6 +29,12 @@ export default async function BlenderPage() {
             <p className={styles.intro}>
               펼쳐진 여섯 면이 어떻게 만나 직육면체가 되는지 살펴보세요.
             </p>
+            <Link
+              href="/dev/blender/stack-cubes"
+              className="mt-3 inline-flex min-h-11 items-center text-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-g-blue print:hidden"
+            >
+              쌓기나무 실험
+            </Link>
           </div>
           <p className={styles.dimensions}>
             <span>가로 × 세로 × 높이</span>
