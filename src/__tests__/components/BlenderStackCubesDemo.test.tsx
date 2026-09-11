@@ -141,7 +141,7 @@ describe("Blender stacking-cubes lesson", () => {
       fireEvent.change(screen.getByRole("slider"), { target: { value: "75" } });
       fireEvent.click(screen.getByRole("button", { name: "층 벌리기" }));
       await act(async () =>
-        fireEvent.click(screen.getByRole("button", { name, exact: true })),
+        fireEvent.click(screen.getByRole("button", { name })),
       );
       expect(frames.size).toBe(0);
       expect(viewer.currentTime).toBe(0);
@@ -151,9 +151,7 @@ describe("Blender stacking-cubes lesson", () => {
     }
     fireEvent.change(screen.getByRole("slider"), { target: { value: "60" } });
     await act(async () =>
-      fireEvent.click(
-        screen.getByRole("button", { name: "입체", exact: true }),
-      ),
+      fireEvent.click(screen.getByRole("button", { name: "입체" })),
     );
     expect(viewer.currentTime).toBe(0.6);
     expect(viewer.cameraOrbit).toBe("30deg 60deg 0.13m");
@@ -177,7 +175,7 @@ describe("Blender stacking-cubes lesson", () => {
     expect(frames.size).toBe(0);
     vi.mocked(viewer.jumpCameraToGoal).mockClear();
     await act(async () =>
-      fireEvent.click(screen.getByRole("button", { name: "위", exact: true })),
+      fireEvent.click(screen.getByRole("button", { name: "위" })),
     );
     expect(viewer.jumpCameraToGoal).toHaveBeenCalledOnce();
   });
