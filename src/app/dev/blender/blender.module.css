@@ -204,6 +204,9 @@
   height: 34px;
   margin: 2px 0 0;
   accent-color: var(--ink);
+}
+
+input.range[type="range"]:not(:disabled) {
   cursor: pointer;
 }
 
