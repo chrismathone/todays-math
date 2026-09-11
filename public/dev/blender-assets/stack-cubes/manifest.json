@@ -81,6 +81,19 @@
     ]
   ],
   "unitMetres": 0.01,
+  "appearance": {
+    "layerColors": [
+      "#6eafca",
+      "#e7b45a",
+      "#cd838c"
+    ],
+    "edgeColors": [
+      "#407994",
+      "#a57932",
+      "#914c58"
+    ],
+    "bevelWidthMetres": 0.00025
+  },
   "animation": {
     "name": "Separate",
     "durationSeconds": 1,
@@ -119,8 +132,8 @@
       "sha256": "4e8a21c56bb9d82d41f9e22dca838db0e927ecc7da5128bfefd14c28062a9fe9"
     },
     "stack-cubes.glb": {
-      "bytes": 41084,
-      "sha256": "9275df8bbcf0faee1ca24f490dc70af8af1bb5ddb612b091063ef4f706a0a7bf"
+      "bytes": 43380,
+      "sha256": "87e26dc734f0096ba7e12ed1f7c7e841107ea450a64bbc778ac377e3c7c2a12a"
     },
     "top.svg": {
       "bytes": 2464,

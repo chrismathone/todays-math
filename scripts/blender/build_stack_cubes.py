@@ -25,6 +25,9 @@ HEIGHTS = [[1, 1, 0], [2, 3, 1], [1, 2, 1]]
 VOXELS = [(x, y, z) for y, row in enumerate(HEIGHTS) for x, h in enumerate(row) for z in range(h)]
 GAP = 0.65
 UNIT = 0.01  # one cube edge is one centimetre
+LAYER_COLORS = ("6eafca", "e7b45a", "cd838c")
+EDGE_COLORS = ("407994", "a57932", "914c58")
+BEVEL_WIDTH = 0.025
 OUTPUT.mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action="SELECT")
 bpy.ops.object.delete(use_global=False)
@@ -43,7 +46,8 @@ def material(name, color):
     return mat
 
 
-wood = [material(f"Wood layer {i + 1}", color) for i, color in enumerate(("e6bd86", "dfb37b", "d9a769"))]
+wood = [material(f"Wood layer {i + 1}", color) for i, color in enumerate(LAYER_COLORS)]
+edges = [material(f"Block edges layer {i + 1}", color) for i, color in enumerate(EDGE_COLORS)]
 base_mat = material("Neutral counting board", "edf0f2")
 grid_mat = material("Board cell boundaries", "c5cdd1")
 arrow_mat = material("Front direction", "2766a3")
@@ -62,18 +66,21 @@ for z in range(3):
     layer.keyframe_insert(data_path="location", frame=30)
     layers.append(layer)
 
-# A small bevel reveals the boundary between touching blocks without moving
-# their centres or inventing a gap in the mathematical model.
+# Darker bevel faces outline every block, including the seams between blocks
+# in the same layer. The unit bounds and touching faces remain unchanged.
 bpy.ops.mesh.primitive_cube_add(size=1)
 template = bpy.context.object
+template.data.materials.append(wood[0])
+template.data.materials.append(edges[0])
 bevel = template.modifiers.new("Soft wooden edges", "BEVEL")
-bevel.width, bevel.segments = 0.018, 2
+bevel.width, bevel.segments, bevel.material = BEVEL_WIDTH, 2, 1
 bpy.ops.object.modifier_apply(modifier=bevel.name)
 meshes = []
 for z in range(3):
     mesh = template.data.copy()
     mesh.name = f"Unit wood cube layer {z + 1}"
-    mesh.materials.append(wood[z])
+    mesh.materials[0] = wood[z]
+    mesh.materials[1] = edges[z]
     meshes.append(mesh)
 bpy.data.objects.remove(template, do_unlink=True)
 
@@ -174,6 +181,9 @@ for view in ("iso", "top", "front", "side"):
 manifest = {
     "generator": "scripts/blender/build_stack_cubes.py", "blenderVersion": bpy.app.version_string,
     "heightRowsFrontToBack": HEIGHTS, "voxels": VOXELS, "unitMetres": UNIT,
+    "appearance": {"layerColors": [f"#{c}" for c in LAYER_COLORS],
+                   "edgeColors": [f"#{c}" for c in EDGE_COLORS],
+                   "bevelWidthMetres": BEVEL_WIDTH * UNIT},
     "animation": {"name": "Separate", "durationSeconds": 1, "extraGapPerLayerMetres": GAP * UNIT},
     "checks": checks,
     "assets": {p.name: {"bytes": p.stat().st_size, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}

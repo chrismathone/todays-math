@@ -33,3 +33,10 @@ Blender에서 만든 12개 블록을 회전하거나 층별로 벌려 살펴보�
 - [인쇄 CSS](2026-09-11-stacking-cubes/print-media.png)
 
 작업 브랜치는 main에 병합했다. 완료된 `blender-stack-ui` 워커를 해제하고 깨끗한 워크트리를 제거했으며, Git 브랜치 `BIGSHOL/blender-stack-ui`는 보존했다. dev 서버와 사용자 브라우저는 LAN 쌓기나무 주소로 열어 두었다.
+
+## 후속 개선 — 층 색과 블록 경계
+
+1층 파랑, 2층 노랑, 3층 분홍으로 GLB 재질을 변경했다. 각 블록의 0.25mm 모서리를 더 진하게 칠해 같은 층의 맞닿은 블록도 구분되도록 했다. 새 GLB는 43,380바이트다. 생성기 검사와 기존 독립 검증을 다시 통과했고, LAN 브라우저에서 쌓기·층 분리·위에서 보기 및 390px 화면의 경계를 확인했다. 페이지 오류와 가로 넘침은 없었다.
+
+- [층별 색과 경계](2026-09-11-stacking-cubes/layers-stacked.png)
+- [층을 벌린 상태](2026-09-11-stacking-cubes/layers-separated.png)
